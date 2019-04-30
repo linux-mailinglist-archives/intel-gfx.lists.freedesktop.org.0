@@ -1,39 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D3A5BEECC
-	for <lists+intel-gfx@lfdr.de>; Tue, 30 Apr 2019 04:34:46 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C5D2DEFC8
+	for <lists+intel-gfx@lfdr.de>; Tue, 30 Apr 2019 06:52:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 58FAE89369;
-	Tue, 30 Apr 2019 02:34:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4E26A89385;
+	Tue, 30 Apr 2019 04:52:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DD55589369;
- Tue, 30 Apr 2019 02:34:42 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C36D789385
+ for <intel-gfx@lists.freedesktop.org>; Tue, 30 Apr 2019 04:52:46 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 29 Apr 2019 19:34:42 -0700
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 29 Apr 2019 21:52:45 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.60,412,1549958400"; 
- d="asc'?scan'208";a="295654186"
-Received: from zhen-hp.sh.intel.com (HELO zhen-hp) ([10.239.13.116])
- by orsmga004.jf.intel.com with ESMTP; 29 Apr 2019 19:34:39 -0700
-Date: Tue, 30 Apr 2019 10:34:26 +0800
-From: Zhenyu Wang <zhenyuw@linux.intel.com>
-To: Xiaolin Zhang <xiaolin.zhang@intel.com>
-Message-ID: <20190430023426.GH12913@zhen-hp.sh.intel.com>
-References: <1556507458-24684-1-git-send-email-xiaolin.zhang@intel.com>
- <1556507458-24684-3-git-send-email-xiaolin.zhang@intel.com>
+X-IronPort-AV: E=Sophos;i="5.60,412,1549958400"; d="scan'208";a="135544290"
+Received: from sharmash-mobl3.gar.corp.intel.com (HELO [10.252.151.218])
+ ([10.252.151.218])
+ by orsmga007.jf.intel.com with ESMTP; 29 Apr 2019 21:52:43 -0700
+To: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+References: <20190412183009.8237-1-ville.syrjala@linux.intel.com>
+ <20190412183009.8237-2-ville.syrjala@linux.intel.com>
+ <0a2a7f7d-7799-8b22-db7e-db73418a95c6@intel.com>
+ <20190426143715.GP24299@intel.com>
+From: "Sharma, Shashank" <shashank.sharma@intel.com>
+Message-ID: <1b775593-5259-70b8-84da-9a3dee237f64@intel.com>
+Date: Tue, 30 Apr 2019 10:22:40 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
 MIME-Version: 1.0
-In-Reply-To: <1556507458-24684-3-git-send-email-xiaolin.zhang@intel.com>
-User-Agent: Mutt/1.10.0 (2018-05-17)
-Subject: Re: [Intel-gfx] [PATCH v5 2/8] drm/i915: vgpu shared memory setup
- for pv optimization
+In-Reply-To: <20190426143715.GP24299@intel.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915: Enable pipe HDR mode on ICL
+ if only HDR planes are used
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -46,237 +49,77 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: Zhenyu Wang <zhenyuw@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org, zhiyuan.lv@intel.com, hang.yuan@intel.com,
- intel-gvt-dev@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============0443733324=="
+Cc: intel-gfx@lists.freedesktop.org
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
---===============0443733324==
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="Mjqg7Yu+0hL22rav"
-Content-Disposition: inline
-
-
---Mjqg7Yu+0hL22rav
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On 2019.04.29 11:10:52 +0800, Xiaolin Zhang wrote:
-> To enable vgpu pv features, we need to setup a shared memory page
-> which will be used for data exchange directly accessed between both
-> guest and backend i915 driver to avoid emulation trap cost.
->=20
-> guest i915 will allocate this page memory and then pass it's physical
-> address to backend i915 driver through PVINFO register so that backend i9=
-15
-> driver can access this shared page meory without any trap cost with the
-> help form hyperviser's read guest gpa functionality.
->=20
-> guest i915 will send VGT_G2V_SHARED_PAGE_SETUP notification to host GVT
-> once shared memory setup finished.
->=20
-> the layout of the shared_page also defined as well in this patch which
-> is used for pv features implementation.
->
-
-Problem is for compatibility. Looks you don't define anything to let guest
-know the exact format of shared page that host can support, e.g if you want
-to extend page format in future, how guest can know that? We need some kind
-of version or compat bit alike.
-
-> v0: RFC
-> v1: addressed RFC comment to move both shared_page_lock and shared_page
-> to i915_virtual_gpu structure
-> v2: packed i915_virtual_gpu structure
-> v3: added SHARED_PAGE_SETUP g2v notification for pv shared_page setup
-> v4: added intel_vgpu_setup_shared_page() in i915_vgpu_pv.c
-> v5: per engine desc data in shared memory
->=20
-> Signed-off-by: Xiaolin Zhang <xiaolin.zhang@intel.com>
-> ---
->  drivers/gpu/drm/i915/i915_drv.h    |  4 +++-
->  drivers/gpu/drm/i915/i915_pvinfo.h |  5 ++++-
->  drivers/gpu/drm/i915/i915_vgpu.c   | 40 ++++++++++++++++++++++++++++++++=
-++++++
->  drivers/gpu/drm/i915/i915_vgpu.h   | 20 +++++++++++++++++++
->  4 files changed, 67 insertions(+), 2 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_=
-drv.h
-> index 91a16b35..acf9035 100644
-> --- a/drivers/gpu/drm/i915/i915_drv.h
-> +++ b/drivers/gpu/drm/i915/i915_drv.h
-> @@ -1244,7 +1244,9 @@ struct i915_virtual_gpu {
->  	bool active;
->  	u32 caps;
->  	u32 pv_caps;
-> -};
-> +	spinlock_t shared_page_lock[I915_NUM_ENGINES];
-> +	struct gvt_shared_page *shared_page;
-> +} __packed;
-> =20
->  /* used in computing the new watermarks state */
->  struct intel_wm_config {
-> diff --git a/drivers/gpu/drm/i915/i915_pvinfo.h b/drivers/gpu/drm/i915/i9=
-15_pvinfo.h
-> index 619305a..4657bf7 100644
-> --- a/drivers/gpu/drm/i915/i915_pvinfo.h
-> +++ b/drivers/gpu/drm/i915/i915_pvinfo.h
-> @@ -46,6 +46,7 @@ enum vgt_g2v_type {
->  	VGT_G2V_PPGTT_L4_PAGE_TABLE_DESTROY,
->  	VGT_G2V_EXECLIST_CONTEXT_CREATE,
->  	VGT_G2V_EXECLIST_CONTEXT_DESTROY,
-> +	VGT_G2V_SHARED_PAGE_SETUP,
->  	VGT_G2V_MAX,
->  };
-> =20
-> @@ -110,7 +111,9 @@ struct vgt_if {
-> =20
->  	u32 pv_caps;
-> =20
-> -	u32  rsv7[0x200 - 25];    /* pad to one page */
-> +	u64 shared_page_gpa;
-> +
-> +	u32  rsv7[0x200 - 27];    /* pad to one page */
->  } __packed;
-> =20
->  #define vgtif_reg(x) \
-> diff --git a/drivers/gpu/drm/i915/i915_vgpu.c b/drivers/gpu/drm/i915/i915=
-_vgpu.c
-> index 7329f5a..da439b1 100644
-> --- a/drivers/gpu/drm/i915/i915_vgpu.c
-> +++ b/drivers/gpu/drm/i915/i915_vgpu.c
-> @@ -135,6 +135,9 @@ void intel_vgt_deballoon(struct drm_i915_private *dev=
-_priv)
-> =20
->  	for (i =3D 0; i < 4; i++)
->  		vgt_deballoon_space(&dev_priv->ggtt, &bl_info.space[i]);
-> +
-> +	if (dev_priv->vgpu.shared_page)
-> +		free_page((unsigned long)dev_priv->vgpu.shared_page);
->  }
-> =20
->  static int vgt_balloon_space(struct i915_ggtt *ggtt,
-> @@ -286,6 +289,38 @@ int intel_vgt_balloon(struct drm_i915_private *dev_p=
-riv)
->   * i915 vgpu PV support for Linux
->   */
-> =20
-> +/*
-> + * shared_page setup for VGPU PV features
-> + */
-> +static int intel_vgpu_setup_shared_page(struct drm_i915_private *dev_pri=
-v)
-> +{
-> +	struct intel_uncore *uncore =3D &dev_priv->uncore;
-> +	u64 gpa;
-> +	int i;
-> +
-> +	dev_priv->vgpu.shared_page =3D  (struct gvt_shared_page *)
-> +			get_zeroed_page(GFP_KERNEL);
-> +	if (!dev_priv->vgpu.shared_page) {
-> +		DRM_ERROR("out of memory for shared page memory\n");
-> +		return -ENOMEM;
-> +	}
-> +
-> +	/* pass guest memory pa address to GVT and then read back to verify */
-> +	gpa =3D __pa(dev_priv->vgpu.shared_page);
-> +	__raw_uncore_write64(uncore, vgtif_reg(shared_page_gpa), gpa);
-> +	if (gpa !=3D __raw_uncore_read64(uncore, vgtif_reg(shared_page_gpa))) {
-> +		DRM_ERROR("vgpu: passed shared_page_gpa failed\n");
-> +		free_page((unsigned long)dev_priv->vgpu.shared_page);
-> +		return -EIO;
-> +	}
-> +	__raw_uncore_write32(uncore, vgtif_reg(g2v_notify),
-> +			VGT_G2V_SHARED_PAGE_SETUP);
-> +	for (i =3D 0; i < I915_NUM_ENGINES; i++)
-> +		spin_lock_init(&dev_priv->vgpu.shared_page_lock[i]);
-> +
-> +	return 0;
-> +}
-> +
->  /**
->   * intel_vgpu_check_pv_caps - detect virtual GPU PV capabilities
->   * @dev_priv: i915 device private
-> @@ -313,6 +348,11 @@ bool intel_vgpu_check_pv_caps(struct drm_i915_privat=
-e *dev_priv)
->  	if (!pvcaps)
->  		return false;
-> =20
-> +	if (intel_vgpu_setup_shared_page(dev_priv)) {
-> +		dev_priv->vgpu.pv_caps =3D 0;
-> +		return false;
-> +	}
-> +
->  	__raw_uncore_write32(uncore, vgtif_reg(pv_caps), pvcaps);
-> =20
->  	return true;
-> diff --git a/drivers/gpu/drm/i915/i915_vgpu.h b/drivers/gpu/drm/i915/i915=
-_vgpu.h
-> index 91010fc..697c426 100644
-> --- a/drivers/gpu/drm/i915/i915_vgpu.h
-> +++ b/drivers/gpu/drm/i915/i915_vgpu.h
-> @@ -26,6 +26,26 @@
-> =20
->  #include "i915_pvinfo.h"
-> =20
-> +/*
-> + * A shared page(4KB) between gvt and VM, could be allocated by guest dr=
-iver
-> + * or a fixed location in PCI bar 0 region
-> + */
-> +struct pv_ppgtt_update {
-> +	u64 pdp;
-> +	u64 start;
-> +	u64 length;
-> +	u32 cache_level;
-> +};
-> +
-> +struct pv_submission {
-> +	u64 descs[EXECLIST_MAX_PORTS];
-> +};
-> +
-> +struct gvt_shared_page {
-> +	struct pv_ppgtt_update pv_ppgtt;
-> +	struct pv_submission pv_elsp[I915_NUM_ENGINES];
-> +};
-> +
->  void i915_check_vgpu(struct drm_i915_private *dev_priv);
-> =20
->  bool intel_vgpu_has_full_ppgtt(struct drm_i915_private *dev_priv);
-> --=20
-> 2.7.4
->=20
-
---=20
-Open Source Technology Center, Intel ltd.
-
-$gpg --keyserver wwwkeys.pgp.net --recv-keys 4D781827
-
---Mjqg7Yu+0hL22rav
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iF0EARECAB0WIQTXuabgHDW6LPt9CICxBBozTXgYJwUCXMe0MgAKCRCxBBozTXgY
-J97GAKCIBKlGmE1kc1hE0pWk6tmtXp9o5ACgktQ3rAbAKRajIO7vOdPD3ZI9Ly4=
-=rPQC
------END PGP SIGNATURE-----
-
---Mjqg7Yu+0hL22rav--
-
---===============0443733324==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
-IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
-
---===============0443733324==--
+Ck9uIDQvMjYvMjAxOSA4OjA3IFBNLCBWaWxsZSBTeXJqw6Rsw6Qgd3JvdGU6Cj4gT24gRnJpLCBB
+cHIgMjYsIDIwMTkgYXQgMDY6NDA6MTFQTSArMDUzMCwgU2hhcm1hLCBTaGFzaGFuayB3cm90ZToK
+Pj4gT24gNC8xMy8yMDE5IDEyOjAwIEFNLCBWaWxsZSBTeXJqYWxhIHdyb3RlOgo+Pj4gRnJvbTog
+VmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KPj4+Cj4+PiBU
+aGUgcGlwZSBoYXMgYSBzcGVjaWFsIEhEUiBtb2RlIHdpdGggaGlnaGVyIHByZWNpc2lvbiB3aGVu
+IG9ubHkKPj4+IEhEUiBwbGFuZXMgYXJlIGFjdGl2ZS4gTGV0J3MgdXNlIGl0Lgo+Pj4KPj4+IEN1
+cmlvdXNseSB0aGlzIGZpeGVzIHRoZSBrbXNfY29sb3IgZ2FtbWEvZGVnYW1tYSB0ZXN0cyB3aGVu
+Cj4+PiB1c2luZyBhIEhEUiBwbGFuZSwgd2hpY2ggaXMgYWx3YXlzIHRoZSBjYXNlIHVubGVzcyBv
+bmUgaGFja3MKPj4+IHRoZSB0ZXN0IHRvIHVzZSBhbiBTRFIgcGxhbmUuIElmIG9uZSBkb2VzIGhh
+Y2sgdGhlIHRlc3QgdG8gdXNlCj4+PiBhbiBTRFIgcGxhbmUgaXQgZG9lcyBwYXNzIGFscmVhZHku
+Cj4+Pgo+Pj4gSSBoYXZlIG5vIGFjdHVhbCBleHBsYW5hdGlvbiBob3cgdGhlIG91dHB1dCBhZnRl
+ciB0aGUgZ2FtbWEKPj4+IExVVCBjYW4gYmUgZGlmZmVyZW50IGJldHdlZW4gdGhlIHR3byBtb2Rl
+cy4gVGhlIHdheSB0aGUgdGVzdHMKPj4+IGFyZSB3cml0dGVuIHNob3VsZCBtZWFuIHRoYXQgdGhl
+IG91dHB1dCBzaG91bGQgYmUgaWRlbnRpY2FsCj4+PiBiZXR3ZWVuIHRoZSBzb2xpZCBjb2xvciB2
+cy4gdGhlIGdyYWRpZW50LiBCdXQgY2xlYXJseSB0aGF0Cj4+PiBzb21laG93IGRvZXNuJ3QgaG9s
+ZCB0cnVlIGZvciB0aGUgSERSIHBsYW5lcyBpbiBub24tSERSIHBpcGUKPj4+IG1vZGUuIEFueXdh
+eXMsIGFzIGxvbmcgYXMgd2Ugc3RpY2sgdG8gb25lIHR5cGUgb2YgcGxhbmUgdGhlCj4+PiB0ZXN0
+IHNob3VsZCBwcm9kdWNlIHNlbnNpYmxlIHJlc3VsdHMgbm93Lgo+Pj4KPj4+IFNpZ25lZC1vZmYt
+Ynk6IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5jb20+Cj4+PiAt
+LS0KPj4+ICAgIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfcmVnLmggICAgICB8ICAxICsKPj4+
+ICAgIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX2Rpc3BsYXkuYyB8ICA3ICsrKysrKysKPj4+
+ICAgIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX3Nwcml0ZS5oICB8IDEyICsrKysrKysrLS0t
+LQo+Pj4gICAgMyBmaWxlcyBjaGFuZ2VkLCAxNiBpbnNlcnRpb25zKCspLCA0IGRlbGV0aW9ucygt
+KQo+Pj4KPj4+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3JlZy5oIGIv
+ZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9yZWcuaAo+Pj4gaW5kZXggOGFkMmYwYTAzZjI4Li45
+MGQ2MGVjZDMzMTcgMTAwNjQ0Cj4+PiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3Jl
+Zy5oCj4+PiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3JlZy5oCj4+PiBAQCAtNTc2
+Nyw2ICs1NzY3LDcgQEAgZW51bSB7Cj4+PiAgICAjZGVmaW5lIF9QSVBFX01JU0NfQgkJCTB4NzEw
+MzAKPj4+ICAgICNkZWZpbmUgICBQSVBFTUlTQ19ZVVY0MjBfRU5BQkxFCSgxIDw8IDI3KQo+Pj4g
+ICAgI2RlZmluZSAgIFBJUEVNSVNDX1lVVjQyMF9NT0RFX0ZVTExfQkxFTkQgKDEgPDwgMjYpCj4+
+PiArI2RlZmluZSAgIFBJUEVNSVNDX0hEUl9NT0RFCQkoMSA8PCAyMykgLyogaWNsKyAqLwo+Pj4g
+ICAgI2RlZmluZSAgIFBJUEVNSVNDX09VVFBVVF9DT0xPUlNQQUNFX1lVViAgKDEgPDwgMTEpCj4+
+PiAgICAjZGVmaW5lICAgUElQRU1JU0NfRElUSEVSX0JQQ19NQVNLCSg3IDw8IDUpCj4+PiAgICAj
+ZGVmaW5lICAgUElQRU1JU0NfRElUSEVSXzhfQlBDCQkoMCA8PCA1KQo+Pj4gZGlmZiAtLWdpdCBh
+L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX2Rpc3BsYXkuYyBiL2RyaXZlcnMvZ3B1L2RybS9p
+OTE1L2ludGVsX2Rpc3BsYXkuYwo+Pj4gaW5kZXggNDkwYmQ0OWZmNDJhLi5kMGRiZGJkNWRiM2Yg
+MTAwNjQ0Cj4+PiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9kaXNwbGF5LmMKPj4+
+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX2Rpc3BsYXkuYwo+Pj4gQEAgLTQwNTUs
+NiArNDA1NSw5IEBAIHN0YXRpYyB2b2lkIGludGVsX3VwZGF0ZV9waXBlX2NvbmZpZyhjb25zdCBz
+dHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZSAqb2xkX2NydGNfc3RhCj4+PiAgICAJCQlpcm9ubGFrZV9w
+Zml0X2Rpc2FibGUob2xkX2NydGNfc3RhdGUpOwo+Pj4gICAgCX0KPj4+ICAgIAo+Pj4gKwlpZiAo
+SU5URUxfR0VOKGRldl9wcml2KSA+PSA5IHx8IElTX0JST0FEV0VMTChkZXZfcHJpdikpCj4+PiAr
+CQliZHdfc2V0X3BpcGVtaXNjKG5ld19jcnRjX3N0YXRlKTsKPj4+ICsKPj4+ICAgIAlpZiAoSU5U
+RUxfR0VOKGRldl9wcml2KSA+PSAxMSkKPj4+ICAgIAkJaWNsX3NldF9waXBlX2NoaWNrZW4oY3J0
+Yyk7Cj4+PiAgICB9Cj4+PiBAQCAtODg2OSw2ICs4ODcyLDEwIEBAIHN0YXRpYyB2b2lkIGJkd19z
+ZXRfcGlwZW1pc2MoY29uc3Qgc3RydWN0IGludGVsX2NydGNfc3RhdGUgKmNydGNfc3RhdGUpCj4+
+PiAgICAJCXZhbCB8PSBQSVBFTUlTQ19ZVVY0MjBfRU5BQkxFIHwKPj4+ICAgIAkJCVBJUEVNSVND
+X1lVVjQyMF9NT0RFX0ZVTExfQkxFTkQ7Cj4+PiAgICAKPj4+ICsJaWYgKElOVEVMX0dFTihkZXZf
+cHJpdikgPj0gMTEgJiYKPj4+ICsJICAgIChjcnRjX3N0YXRlLT5hY3RpdmVfcGxhbmVzICYgfmlj
+bF9oZHJfcGxhbmVfbWFzaygpKSA9PSAwKQo+Pj4gKwkJdmFsIHw9IFBJUEVNSVNDX0hEUl9NT0RF
+Owo+Pj4gKwo+PiBTaG91bGRuJ3Qgd2UgY2hlY2sgaWYgdGhlIGNvbnRlbnQgYmVpbmcgcGxheWVk
+IG9uIHBsYW5lIGlzIEhEUiBiZWZvcmUKPj4gZW5hYmxpbmcgdGhpcyBiaXQgKGV2ZW4gdGhvdWdo
+IEkgYW0gbm90IHN1cmUgaWYgdGhlcmUgaXMgYW55IGhhcm0gaW4KPj4gZG9pbmcgdGhhdCk/IE9y
+IG1heWJlIGNoZWNrIHRoZSBjb25uZWN0b3ItPm91dHB1dF9oZHJfbWV0YWRhdGEgPyBNb3N0IG9m
+Cj4+IHRoZSB0aW1lcyB3ZSB3b3VsZCBiZSBzZW5kaW5nIFNEUiBidWZmZXJzIG9uIHRoaXMgcGxh
+bmUuIFdoYXQgaGFwcGVucwo+PiBleGFjdGx5IHdoZW4gd2Ugc2V0IHRoaXMgYml0ID8gVGhlIGJz
+cGVjIHNheXM6Cj4+Cj4+ICJUaGlzIGZpZWxkIGVuYWJsZXMgdGhlIEhEUiBtb2RlLCBhbGxvd2lu
+ZyBmb3IgaGlnaGVyIHByZWNpc2lvbiBvdXRwdXQKPj4gZnJvbSB0aGUgSERSIHN1cHBvcnRpbmcg
+cGxhbmVzIGFuZCBieXBhc3NpbmcgdGhlIFNEUiBwbGFuZXMgaW4gYmxlbmRpbmcuICIKPiBJIHRo
+aW5rIHRoZSBiaXQgaXMganVzdCBtaXNuYW1lZCAobGlrZSBtb3N0IHRoaW5ncyB3aXRoICJIRFIi
+IGluIHRoZWlyCj4gbmFtZSkuIEl0J3MganVzdCBhICJnaW1tZSBtb2FyIHByZWNpc2lvbiIgYml0
+LgoKTGV0cyBtYWtlIHRoaXMgYSBiaXQgbW9yZSBjbGVhciwgbWF5IGJlIHJlbmFtZSB0aGUgYml0
+IHRvIApQSVBFTUlTQ19IRFJfUFJFQ0lTSU9OX01PREUgaW5zdGVhZD8KCldpdGggdGhhdCBjaGFu
+Z2UsIHRoaXMgcGF0Y2ggaXMKClJldmlld2VkLWJ5OiBTaGFzaGFuayBTaGFybWEgPHNoYXNoYW5r
+LnNoYXJtYUBpbnRlbC5jb20+Cgo+Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVk
+ZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZv
+L2ludGVsLWdmeA==
