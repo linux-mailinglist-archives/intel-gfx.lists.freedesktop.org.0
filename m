@@ -2,51 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 79567FB44
-	for <lists+intel-gfx@lfdr.de>; Tue, 30 Apr 2019 16:20:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C0B91FB5C
+	for <lists+intel-gfx@lfdr.de>; Tue, 30 Apr 2019 16:25:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DF88689182;
-	Tue, 30 Apr 2019 14:19:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BE72E891B9;
+	Tue, 30 Apr 2019 14:25:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C5CC989182
- for <intel-gfx@lists.freedesktop.org>; Tue, 30 Apr 2019 14:19:57 +0000 (UTC)
-X-Amp-Result: UNSCANNABLE
-X-Amp-File-Uploaded: False
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by orsmga106.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 30 Apr 2019 07:19:57 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.60,414,1549958400"; 
- d="p7s'?scan'208";a="295797710"
-Received: from fmsmsx104.amr.corp.intel.com ([10.18.124.202])
- by orsmga004.jf.intel.com with ESMTP; 30 Apr 2019 07:19:56 -0700
-Received: from fmsmsx101.amr.corp.intel.com (10.18.124.199) by
- fmsmsx104.amr.corp.intel.com (10.18.124.202) with Microsoft SMTP Server (TLS)
- id 14.3.408.0; Tue, 30 Apr 2019 07:19:56 -0700
-Received: from fmsmsx106.amr.corp.intel.com ([169.254.5.95]) by
- fmsmsx101.amr.corp.intel.com ([169.254.1.245]) with mapi id 14.03.0415.000;
- Tue, 30 Apr 2019 07:19:55 -0700
-From: "Summers, Stuart" <stuart.summers@intel.com>
-To: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "jani.nikula@linux.intel.com" <jani.nikula@linux.intel.com>
-Thread-Topic: [Intel-gfx] [PATCH 4/5] drm/i915: Move sseu helper functions
- to intel_sseu.h
-Thread-Index: AQHU/qOCc44Qu+KgYEeva2Aowd4wsKZU3uIAgABYvAA=
-Date: Tue, 30 Apr 2019 14:19:55 +0000
-Message-ID: <a5d090d029a7d5c5e0bbfcef7b3a6b9028bf94ea.camel@intel.com>
-References: <20190429155135.6468-1-stuart.summers@intel.com>
- <20190429155135.6468-5-stuart.summers@intel.com> <87ef5jrhlz.fsf@intel.com>
-In-Reply-To: <87ef5jrhlz.fsf@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: yes
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.54.134.159]
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 5AB02891AC;
+ Tue, 30 Apr 2019 14:25:08 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 53614A011C;
+ Tue, 30 Apr 2019 14:25:08 +0000 (UTC)
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 4/5] drm/i915: Move sseu helper functions to
- intel_sseu.h
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?b?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Date: Tue, 30 Apr 2019 14:25:08 -0000
+Message-ID: <20190430142508.26877.51816@emeril.freedesktop.org>
+References: <20190408152702.4153-1-ville.syrjala@linux.intel.com>
+X-Patchwork-Hint: ignore
+In-Reply-To: <20190408152702.4153-1-ville.syrjala@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_seri?=
+ =?utf-8?q?es_starting_with_=5B1/2=5D_drm/i915=3A_Use_mul=5Fu32=5Fu32=28?=
+ =?utf-8?q?=29_more_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -59,264 +39,73 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============2007553272=="
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============2007553272==
-Content-Language: en-US
-Content-Type: multipart/signed; micalg=sha-1;
-	protocol="application/x-pkcs7-signature"; boundary="=-FOwsG/qyS9Szl3bpanAl"
-
---=-FOwsG/qyS9Szl3bpanAl
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-On Tue, 2019-04-30 at 12:02 +0300, Jani Nikula wrote:
-> On Mon, 29 Apr 2019, Stuart Summers <stuart.summers@intel.com> wrote:
-> > Signed-off-by: Stuart Summers <stuart.summers@intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/gt/intel_sseu.h     | 47
-> > ++++++++++++++++++++++++
-> >  drivers/gpu/drm/i915/intel_device_info.h | 47 --------------------
-> > ----
-> >  2 files changed, 47 insertions(+), 47 deletions(-)
-> >=20
-> > diff --git a/drivers/gpu/drm/i915/gt/intel_sseu.h
-> > b/drivers/gpu/drm/i915/gt/intel_sseu.h
-> > index f5ff6b7a756a..5127b4ff92bf 100644
-> > --- a/drivers/gpu/drm/i915/gt/intel_sseu.h
-> > +++ b/drivers/gpu/drm/i915/gt/intel_sseu.h
-> > @@ -63,12 +63,59 @@ intel_sseu_from_device_info(const struct
-> > sseu_dev_info *sseu)
-> >  	return value;
-> >  }
-> > =20
-> > +static inline unsigned int sseu_subslice_total(const struct
-> > sseu_dev_info *sseu)
-> > +{
-> > +	unsigned int i, total =3D 0;
-> > +
-> > +	for (i =3D 0; i < ARRAY_SIZE(sseu->subslice_mask); i++)
-> > +		total +=3D hweight8(sseu->subslice_mask[i]);
-> > +
-> > +	return total;
-> > +}
-> > +
-> >  static inline unsigned int
-> >  sseu_subslices_per_slice(const struct sseu_dev_info *sseu, u8
-> > slice)
-> >  {
-> >  	return hweight8(sseu->subslice_mask[slice]);
-> >  }
-> > =20
-> > +static inline int sseu_eu_idx(const struct sseu_dev_info *sseu,
-> > +			      int slice, int subslice)
-> > +{
-> > +	int subslice_stride =3D DIV_ROUND_UP(sseu->max_eus_per_subslice,
-> > +					   BITS_PER_BYTE);
-> > +	int slice_stride =3D sseu->max_subslices * subslice_stride;
-> > +
-> > +	return slice * slice_stride + subslice * subslice_stride;
-> > +}
-> > +
-> > +static inline u16 sseu_get_eus(const struct sseu_dev_info *sseu,
-> > +			       int slice, int subslice)
-> > +{
-> > +	int i, offset =3D sseu_eu_idx(sseu, slice, subslice);
-> > +	u16 eu_mask =3D 0;
-> > +
-> > +	for (i =3D 0;
-> > +	     i < DIV_ROUND_UP(sseu->max_eus_per_subslice,
-> > BITS_PER_BYTE); i++) {
-> > +		eu_mask |=3D ((u16) sseu->eu_mask[offset + i]) <<
-> > +			(i * BITS_PER_BYTE);
-> > +	}
-> > +
-> > +	return eu_mask;
-> > +}
-> > +
-> > +static inline void sseu_set_eus(struct sseu_dev_info *sseu,
-> > +				int slice, int subslice, u16 eu_mask)
-> > +{
-> > +	int i, offset =3D sseu_eu_idx(sseu, slice, subslice);
-> > +
-> > +	for (i =3D 0;
-> > +	     i < DIV_ROUND_UP(sseu->max_eus_per_subslice,
-> > BITS_PER_BYTE); i++) {an't be=20
-> > +		sseu->eu_mask[offset + i] =3D
-> > +			(eu_mask >> (BITS_PER_BYTE * i)) & 0xff;
-> > +	}
-> > +}
-> > +
->=20
-> I'd appreciate follow-up to rename these functions
-> intel_sseu_*. Functions in intel_foo.[ch] should be named
-> intel_foo_*().
-
-Makes sense.
-
->=20
-> Also, I'm starting to wonder the benefits of the plethora of inline
-> functions we use. Should we move them to the .c file? It can't be a
-> perf
-> thing can it?
-
-These are mostly called at driver load time, so no, shouldn't be a
-performance issue. I don't have a preference either way, so no problem
-moving these as suggested.
-
-Thanks,
-Stuart
-
->=20
-> BR,
-> Jani.
->=20
-> >  u32 intel_sseu_make_rpcs(struct drm_i915_private *i915,
-> >  			 const struct intel_sseu *req_sseu);
-> > =20
-> > diff --git a/drivers/gpu/drm/i915/intel_device_info.h
-> > b/drivers/gpu/drm/i915/intel_device_info.h
-> > index 5a2e17d6146b..6412a9c72898 100644
-> > --- a/drivers/gpu/drm/i915/intel_device_info.h
-> > +++ b/drivers/gpu/drm/i915/intel_device_info.h
-> > @@ -218,53 +218,6 @@ struct intel_driver_caps {
-> >  	bool has_logical_contexts:1;
-> >  };
-> > =20
-> > -static inline unsigned int sseu_subslice_total(const struct
-> > sseu_dev_info *sseu)
-> > -{
-> > -	unsigned int i, total =3D 0;
-> > -
-> > -	for (i =3D 0; i < ARRAY_SIZE(sseu->subslice_mask); i++)
-> > -		total +=3D hweight8(sseu->subslice_mask[i]);
-> > -
-> > -	return total;
-> > -}
-> > -
-> > -static inline int sseu_eu_idx(const struct sseu_dev_info *sseu,
-> > -			      int slice, int subslice)
-> > -{
-> > -	int subslice_stride =3D DIV_ROUND_UP(sseu->max_eus_per_subslice,
-> > -					   BITS_PER_BYTE);
-> > -	int slice_stride =3D sseu->max_subslices * subslice_stride;
-> > -
-> > -	return slice * slice_stride + subslice * subslice_stride;
-> > -}
-> > -
-> > -static inline u16 sseu_get_eus(const struct sseu_dev_info *sseu,
-> > -			       int slice, int subslice)
-> > -{
-> > -	int i, offset =3D sseu_eu_idx(sseu, slice, subslice);
-> > -	u16 eu_mask =3D 0;
-> > -
-> > -	for (i =3D 0;
-> > -	     i < DIV_ROUND_UP(sseu->max_eus_per_subslice,
-> > BITS_PER_BYTE); i++) {
-> > -		eu_mask |=3D ((u16) sseu->eu_mask[offset + i]) <<
-> > -			(i * BITS_PER_BYTE);
-> > -	}
-> > -
-> > -	return eu_mask;
-> > -}
-> > -
-> > -static inline void sseu_set_eus(struct sseu_dev_info *sseu,
-> > -				int slice, int subslice, u16 eu_mask)
-> > -{
-> > -	int i, offset =3D sseu_eu_idx(sseu, slice, subslice);
-> > -
-> > -	for (i =3D 0;
-> > -	     i < DIV_ROUND_UP(sseu->max_eus_per_subslice,
-> > BITS_PER_BYTE); i++) {
-> > -		sseu->eu_mask[offset + i] =3D
-> > -			(eu_mask >> (BITS_PER_BYTE * i)) & 0xff;
-> > -	}
-> > -}
-> > -
-> >  const char *intel_platform_name(enum intel_platform platform);
-> > =20
-> >  void intel_device_info_subplatform_init(struct drm_i915_private
-> > *dev_priv);
->=20
->=20
-
---=-FOwsG/qyS9Szl3bpanAl
-Content-Type: application/x-pkcs7-signature; name="smime.p7s"
-Content-Disposition: attachment; filename="smime.p7s"
-Content-Transfer-Encoding: base64
-
-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
-PwuHX1mRETAlwqXCZa6ba8eraUCltlCb/ZiEk9UFRVLjbLNPh9IYOi+sWkS6n5CovLKAqhMCAwEA
-AaOCAjMwggIvMB0GA1UdDgQWBBSgeYqvLV4nBaCUzAXLr0TeMJYR5zAfBgNVHSMEGDAWgBTaQSOc
-Wo9xr1eDPiDT42XbDMsL2zBlBgNVHR8EXjBcMFqgWKBWhlRodHRwOi8vd3d3LmludGVsLmNvbS9y
-ZXBvc2l0b3J5L0NSTC9JbnRlbCUyMEV4dGVybmFsJTIwQmFzaWMlMjBJc3N1aW5nJTIwQ0ElMjA0
-Qi5jcmwwgZ8GCCsGAQUFBwEBBIGSMIGPMCIGCCsGAQUFBzABhhZodHRwOi8vb2NzcC5pbnRlbC5j
-b20vMGkGCCsGAQUFBzAChl1odHRwOi8vd3d3LmludGVsLmNvbS9yZXBvc2l0b3J5L2NlcnRpZmlj
-YXRlcy9JbnRlbCUyMEV4dGVybmFsJTIwQmFzaWMlMjBJc3N1aW5nJTIwQ0ElMjA0Qi5jcnQwCwYD
-VR0PBAQDAgeAMDwGCSsGAQQBgjcVBwQvMC0GJSsGAQQBgjcVCIbDjHWEmeVRg/2BKIWOn1OCkcAJ
-Z4HevTmV8EMCAWQCAQkwHwYDVR0lBBgwFgYIKwYBBQUHAwQGCisGAQQBgjcKAwwwKQYJKwYBBAGC
-NxUKBBwwGjAKBggrBgEFBQcDBDAMBgorBgEEAYI3CgMMME0GA1UdEQRGMESgKAYKKwYBBAGCNxQC
-A6AaDBhzdHVhcnQuc3VtbWVyc0BpbnRlbC5jb22BGHN0dWFydC5zdW1tZXJzQGludGVsLmNvbTAN
-BgkqhkiG9w0BAQUFAAOCAQEAfyIC7rzSi6S8O+sdH384K8zyeMRJnl6vR7whl9PuEat+BkKpoxHn
-jQ0SFyF/cyI4lH/n938Pm3/Ctq0Z5GTldX6hhxxcLAR0qbk6AQU0Cq2nYMlZfX4FUz3FRsazbjTW
-1qObcvPRUAVScaa7SRGdensvbNV++pN1XqEdc++szxo58UzPaEgDlHIe2sEIVXnFkHnJv0ikRHG3
-urcA1bdj7Rac7dJBeQOQMdZEGmrWWmmbJzvk3OmoK9tKN7wcErQSdlqyYOMLesPfa7YNyLFYEJQd
-CC/N7V8U9yFZx8akWREb8lJYDl9KypirEsufleiew26CWrwcbmdlldDCFS6/HDGCAhcwggITAgEB
-MIGQMHkxCzAJBgNVBAYTAlVTMQswCQYDVQQIEwJDQTEUMBIGA1UEBxMLU2FudGEgQ2xhcmExGjAY
-BgNVBAoTEUludGVsIENvcnBvcmF0aW9uMSswKQYDVQQDEyJJbnRlbCBFeHRlcm5hbCBCYXNpYyBJ
-c3N1aW5nIENBIDRCAhMzAAB04Th3owY0UbEUAAAAAHThMAkGBSsOAwIaBQCgXTAYBgkqhkiG9w0B
-CQMxCwYJKoZIhvcNAQcBMBwGCSqGSIb3DQEJBTEPFw0xOTA0MzAxNDE5NTJaMCMGCSqGSIb3DQEJ
-BDEWBBSjLreOGdV9ND8OnIYJLXjOJQNA4jANBgkqhkiG9w0BAQEFAASCAQBevUKAUvPzTHfyn5ov
-wuJ0HZH8iUPeBB09MYGAdznS83CqP1uuwDDRrzabLJK8CWNhbFRVzDeTpTK6bGYbewCmgaha6ikc
-Qu18ebvkFgN8UaqxFeW2WnuLtEUVAErmpQ+Q7sPDOzdu4pncJXyKh7MhkAxu2itodfIs2Qh0tBfc
-jKpoIdm92ylPAXHy6wRdKaGd3s69bTTF+mR1yS/BMGb+ZX/TInzYW45f9GJc71RdvDmnY2dOjCK6
-RZgrKdW3WWqmC0SCuriKbp0SHN+PABJoCJHHv7KF0G5XowIE0Ou5DuOqpCLFZselq6j9xsgynkdI
-ubGz+0vdiagSYqiZQZ8zAAAAAAAA
-
-
---=-FOwsG/qyS9Szl3bpanAl--
-
---===============2007553272==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
-IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
-
---===============2007553272==--
+PT0gU2VyaWVzIERldGFpbHMgPT0KClNlcmllczogc2VyaWVzIHN0YXJ0aW5nIHdpdGggWzEvMl0g
+ZHJtL2k5MTU6IFVzZSBtdWxfdTMyX3UzMigpIG1vcmUgKHJldjIpClVSTCAgIDogaHR0cHM6Ly9w
+YXRjaHdvcmsuZnJlZWRlc2t0b3Aub3JnL3Nlcmllcy81OTE4MC8KU3RhdGUgOiBzdWNjZXNzCgo9
+PSBTdW1tYXJ5ID09CgpDSSBCdWcgTG9nIC0gY2hhbmdlcyBmcm9tIENJX0RSTV82MDE3IC0+IFBh
+dGNod29ya18xMjkwOQo9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
+PT09PT09PT09CgpTdW1tYXJ5Ci0tLS0tLS0KCiAgKipTVUNDRVNTKioKCiAgTm8gcmVncmVzc2lv
+bnMgZm91bmQuCgogIEV4dGVybmFsIFVSTDogaHR0cHM6Ly9wYXRjaHdvcmsuZnJlZWRlc2t0b3Au
+b3JnL2FwaS8xLjAvc2VyaWVzLzU5MTgwL3JldmlzaW9ucy8yL21ib3gvCgpLbm93biBpc3N1ZXMK
+LS0tLS0tLS0tLS0tCgogIEhlcmUgYXJlIHRoZSBjaGFuZ2VzIGZvdW5kIGluIFBhdGNod29ya18x
+MjkwOSB0aGF0IGNvbWUgZnJvbSBrbm93biBpc3N1ZXM6CgojIyMgSUdUIGNoYW5nZXMgIyMjCgoj
+IyMjIElzc3VlcyBoaXQgIyMjIwoKICAqIGlndEBnZW1fZXhlY19zdXNwZW5kQGJhc2ljLXMzOgog
+ICAgLSBmaS1ibGItZTY4NTA6ICAgICAgIFtQQVNTXVsxXSAtPiBbSU5DT01QTEVURV1bMl0gKFtm
+ZG8jMTA3NzE4XSkKICAgWzFdOiBodHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0t
+dGlwL0NJX0RSTV82MDE3L2ZpLWJsYi1lNjg1MC9pZ3RAZ2VtX2V4ZWNfc3VzcGVuZEBiYXNpYy1z
+My5odG1sCiAgIFsyXTogaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9Q
+YXRjaHdvcmtfMTI5MDkvZmktYmxiLWU2ODUwL2lndEBnZW1fZXhlY19zdXNwZW5kQGJhc2ljLXMz
+Lmh0bWwKCiAgKiBpZ3RAaTkxNV9zZWxmdGVzdEBsaXZlX2hhbmdjaGVjazoKICAgIC0gZmktc2ts
+LWlvbW11OiAgICAgICBbUEFTU11bM10gLT4gW0lOQ09NUExFVEVdWzRdIChbZmRvIzEwODYwMl0g
+LyBbZmRvIzEwODc0NF0pCiAgIFszXTogaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUv
+ZHJtLXRpcC9DSV9EUk1fNjAxNy9maS1za2wtaW9tbXUvaWd0QGk5MTVfc2VsZnRlc3RAbGl2ZV9o
+YW5nY2hlY2suaHRtbAogICBbNF06IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2Ry
+bS10aXAvUGF0Y2h3b3JrXzEyOTA5L2ZpLXNrbC1pb21tdS9pZ3RAaTkxNV9zZWxmdGVzdEBsaXZl
+X2hhbmdjaGVjay5odG1sCgogICogaWd0QGttc19jaGFtZWxpdW1AZHAtY3JjLWZhc3Q6CiAgICAt
+IGZpLWtibC03NTAwdTogICAgICAgW1BBU1NdWzVdIC0+IFtETUVTRy1XQVJOXVs2XSAoW2ZkbyMx
+MDM4NDFdKQogICBbNV06IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAv
+Q0lfRFJNXzYwMTcvZmkta2JsLTc1MDB1L2lndEBrbXNfY2hhbWVsaXVtQGRwLWNyYy1mYXN0Lmh0
+bWwKICAgWzZdOiBodHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlwL1BhdGNo
+d29ya18xMjkwOS9maS1rYmwtNzUwMHUvaWd0QGttc19jaGFtZWxpdW1AZHAtY3JjLWZhc3QuaHRt
+bAoKICAKIyMjIyBQb3NzaWJsZSBmaXhlcyAjIyMjCgogICogaWd0QGk5MTVfc2VsZnRlc3RAbGl2
+ZV9jb250ZXh0czoKICAgIC0gZmktYmR3LWd2dGR2bTogICAgICBbRE1FU0ctRkFJTF1bN10gKFtm
+ZG8jMTEwMjM1XSkgLT4gW1BBU1NdWzhdCiAgIFs3XTogaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEu
+b3JnL3RyZWUvZHJtLXRpcC9DSV9EUk1fNjAxNy9maS1iZHctZ3Z0ZHZtL2lndEBpOTE1X3NlbGZ0
+ZXN0QGxpdmVfY29udGV4dHMuaHRtbAogICBbOF06IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9y
+Zy90cmVlL2RybS10aXAvUGF0Y2h3b3JrXzEyOTA5L2ZpLWJkdy1ndnRkdm0vaWd0QGk5MTVfc2Vs
+ZnRlc3RAbGl2ZV9jb250ZXh0cy5odG1sCiAgICAtIGZpLXNrbC1ndnRkdm06ICAgICAgW0RNRVNH
+LUZBSUxdWzldIChbZmRvIzExMDIzNV0pIC0+IFtQQVNTXVsxMF0KICAgWzldOiBodHRwczovL2lu
+dGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlwL0NJX0RSTV82MDE3L2ZpLXNrbC1ndnRkdm0v
+aWd0QGk5MTVfc2VsZnRlc3RAbGl2ZV9jb250ZXh0cy5odG1sCiAgIFsxMF06IGh0dHBzOi8vaW50
+ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAvUGF0Y2h3b3JrXzEyOTA5L2ZpLXNrbC1ndnRk
+dm0vaWd0QGk5MTVfc2VsZnRlc3RAbGl2ZV9jb250ZXh0cy5odG1sCgogIAogIFtmZG8jMTAzODQx
+XTogaHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MTAzODQxCiAg
+W2ZkbyMxMDc3MThdOiBodHRwczovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9p
+ZD0xMDc3MTgKICBbZmRvIzEwODYwMl06IGh0dHBzOi8vYnVncy5mcmVlZGVza3RvcC5vcmcvc2hv
+d19idWcuY2dpP2lkPTEwODYwMgogIFtmZG8jMTA4NzQ0XTogaHR0cHM6Ly9idWdzLmZyZWVkZXNr
+dG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MTA4NzQ0CiAgW2ZkbyMxMTAyMzVdOiBodHRwczovL2J1
+Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD0xMTAyMzUKCgpQYXJ0aWNpcGF0aW5n
+IGhvc3RzICg1MyAtPiA0NikKLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tCgogIE1pc3Np
+bmcgICAgKDcpOiBmaS1rYmwtc29yYWthIGZpLWlsay1tNTQwIGZpLWhzdy00MjAwdSBmaS1ieXQt
+c3F1YXdrcyBmaS1ic3ctY3lhbiBmaS1jdGctcDg2MDAgZmktYnl0LWNsYXBwZXIgCgoKQnVpbGQg
+Y2hhbmdlcwotLS0tLS0tLS0tLS0tCgogICogTGludXg6IENJX0RSTV82MDE3IC0+IFBhdGNod29y
+a18xMjkwOQoKICBDSV9EUk1fNjAxNzogNjljM2EzN2FmOTQzMDY1MGQxZmMyYTU1NTVkNGQwNzg2
+ODk4Njk0ZCBAIGdpdDovL2Fub25naXQuZnJlZWRlc2t0b3Aub3JnL2dmeC1jaS9saW51eAogIElH
+VF80OTcxOiBmYzVlMDQ2N2ViNjkxM2QyMWFkOTMyYWE4YTMxYzc3ZmRiNWE5Yzc3IEAgZ2l0Oi8v
+YW5vbmdpdC5mcmVlZGVza3RvcC5vcmcveG9yZy9hcHAvaW50ZWwtZ3B1LXRvb2xzCiAgUGF0Y2h3
+b3JrXzEyOTA5OiAyYzg1MjU2MzkxMmY0NWIyMzc0MmFmZTQ2NzRhYmMxMzE1MTE2MDcwIEAgZ2l0
+Oi8vYW5vbmdpdC5mcmVlZGVza3RvcC5vcmcvZ2Z4LWNpL2xpbnV4CgoKPT0gTGludXggY29tbWl0
+cyA9PQoKMmM4NTI1NjM5MTJmIGRybS9pOTE1OiBTaW1wbGlmeSBzb21lIGljbCBwbGwgY2FsY3Vs
+YXRpb25zCmE5YmRjZWQwY2E4OSBkcm0vaTkxNTogVXNlIG11bF91MzJfdTMyKCkgbW9yZQoKPT0g
+TG9ncyA9PQoKRm9yIG1vcmUgZGV0YWlscyBzZWU6IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9y
+Zy90cmVlL2RybS10aXAvUGF0Y2h3b3JrXzEyOTA5LwpfX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBs
+aXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1h
+bi9saXN0aW5mby9pbnRlbC1nZng=
