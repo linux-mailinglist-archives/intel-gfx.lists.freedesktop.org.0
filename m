@@ -2,52 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 96EBF10D4B
-	for <lists+intel-gfx@lfdr.de>; Wed,  1 May 2019 21:37:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8CFBF10D4C
+	for <lists+intel-gfx@lfdr.de>; Wed,  1 May 2019 21:37:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 03FDA892B7;
-	Wed,  1 May 2019 19:37:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E51FD892B7;
+	Wed,  1 May 2019 19:37:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8ED03892B7
- for <intel-gfx@lists.freedesktop.org>; Wed,  1 May 2019 19:37:14 +0000 (UTC)
-X-Amp-Result: UNSCANNABLE
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DC36E892B9
+ for <intel-gfx@lists.freedesktop.org>; Wed,  1 May 2019 19:37:56 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
 X-Amp-File-Uploaded: False
 Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 01 May 2019 12:37:14 -0700
+ by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 01 May 2019 12:37:56 -0700
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="5.60,418,1549958400"; 
- d="p7s'?scan'208";a="166673449"
-Received: from fmsmsx105.amr.corp.intel.com ([10.18.124.203])
- by fmsmga002.fm.intel.com with ESMTP; 01 May 2019 12:37:13 -0700
-Received: from fmsmsx114.amr.corp.intel.com (10.18.116.8) by
- FMSMSX105.amr.corp.intel.com (10.18.124.203) with Microsoft SMTP Server (TLS)
- id 14.3.408.0; Wed, 1 May 2019 12:37:12 -0700
+ d="p7s'?scan'208";a="166673565"
+Received: from fmsmsx108.amr.corp.intel.com ([10.18.124.206])
+ by fmsmga002.fm.intel.com with ESMTP; 01 May 2019 12:37:56 -0700
 Received: from fmsmsx106.amr.corp.intel.com ([169.254.5.95]) by
- FMSMSX114.amr.corp.intel.com ([169.254.6.228]) with mapi id 14.03.0415.000;
- Wed, 1 May 2019 12:37:11 -0700
+ FMSMSX108.amr.corp.intel.com ([169.254.9.202]) with mapi id 14.03.0415.000;
+ Wed, 1 May 2019 12:37:55 -0700
 From: "Summers, Stuart" <stuart.summers@intel.com>
 To: "Ceraolo Spurio, Daniele" <daniele.ceraolospurio@intel.com>,
  "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [PATCH 3/6] drm/i915: Move calculation of subslices per slice
- to new function
-Thread-Index: AQHVAEnBxxnHa6WFmkCTt5KJWVr5zKZXH0aA
-Date: Wed, 1 May 2019 19:37:11 +0000
-Message-ID: <cf9c2a58d5042fbb8e47004065b7410be7160b9f.camel@intel.com>
+Thread-Topic: [PATCH 2/6] drm/i915: Add macro for SSEU stride calculation
+Thread-Index: AQHVAElRJqoMkk1CO0unrfcTiyGtGKZXH32A
+Date: Wed, 1 May 2019 19:37:54 +0000
+Message-ID: <5ddb987f8a4148674959b3fc3814dc1956bbffcb.camel@intel.com>
 References: <20190501153450.30494-1-stuart.summers@intel.com>
- <20190501153450.30494-4-stuart.summers@intel.com>
- <76be3194-3e2d-e390-71f3-8bb0aa39a243@intel.com>
-In-Reply-To: <76be3194-3e2d-e390-71f3-8bb0aa39a243@intel.com>
+ <20190501153450.30494-3-stuart.summers@intel.com>
+ <fdfbce56-944e-60d9-8978-bfedc0853481@intel.com>
+In-Reply-To: <fdfbce56-944e-60d9-8978-bfedc0853481@intel.com>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: yes
 X-MS-TNEF-Correlator: 
 x-originating-ip: [10.54.134.159]
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 3/6] drm/i915: Move calculation of subslices
- per slice to new function
+Subject: Re: [Intel-gfx] [PATCH 2/6] drm/i915: Add macro for SSEU stride
+ calculation
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -60,52 +57,58 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============1555529632=="
+Content-Type: multipart/mixed; boundary="===============0704414887=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1555529632==
+--===============0704414887==
 Content-Language: en-US
 Content-Type: multipart/signed; micalg=sha-1;
-	protocol="application/x-pkcs7-signature"; boundary="=-lxl0VPS0Z076HB1Lyc4o"
+	protocol="application/x-pkcs7-signature"; boundary="=-64ESBTWI4zzRIsffSuSA"
 
---=-lxl0VPS0Z076HB1Lyc4o
+--=-64ESBTWI4zzRIsffSuSA
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, 2019-05-01 at 11:14 -0700, Daniele Ceraolo Spurio wrote:
+On Wed, 2019-05-01 at 11:11 -0700, Daniele Ceraolo Spurio wrote:
 >=20
 > On 5/1/19 8:34 AM, Stuart Summers wrote:
-> > Add a new function to return the number of subslices per slice to
-> > consolidate code usage.
+> > Subslice stride and EU stride are calculated multiple times in
+> > i915_query. Move this calculation to a macro to reduce code
+> > duplication.
 > >=20
-> > v2: rebase on changes to move sseu struct to intel_sseu.h
+> > v2: update headers in intel_sseu.h
 > >=20
 > > Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 > > Signed-off-by: Stuart Summers <stuart.summers@intel.com>
 > > ---
-> >   drivers/gpu/drm/i915/gt/intel_sseu.h     | 6 ++++++
-> >   drivers/gpu/drm/i915/i915_debugfs.c      | 2 +-
-> >   drivers/gpu/drm/i915/intel_device_info.c | 4 ++--
-> >   3 files changed, 9 insertions(+), 3 deletions(-)
+> >   drivers/gpu/drm/i915/gt/intel_sseu.h |  2 ++
+> >   drivers/gpu/drm/i915/i915_query.c    | 17 ++++++++---------
+> >   2 files changed, 10 insertions(+), 9 deletions(-)
 > >=20
 > > diff --git a/drivers/gpu/drm/i915/gt/intel_sseu.h
 > > b/drivers/gpu/drm/i915/gt/intel_sseu.h
-> > index c0b16b248d4c..f5ff6b7a756a 100644
+> > index 73bc824094e8..c0b16b248d4c 100644
 > > --- a/drivers/gpu/drm/i915/gt/intel_sseu.h
 > > +++ b/drivers/gpu/drm/i915/gt/intel_sseu.h
-> > @@ -63,6 +63,12 @@ intel_sseu_from_device_info(const struct
-> > sseu_dev_info *sseu)
-> >   	return value;
-> >   }
+> > @@ -8,11 +8,13 @@
+> >   #define __INTEL_SSEU_H__
 > >  =20
-> > +static inline unsigned int
-> > +sseu_subslices_per_slice(const struct sseu_dev_info *sseu, u8
-> > slice)
+> >   #include <linux/types.h>
+> > +#include <linux/kernel.h>
+> >  =20
+> >   struct drm_i915_private;
+> >  =20
+> >   #define GEN_MAX_SLICES		(6) /* CNL upper bound */
+> >   #define GEN_MAX_SUBSLICES	(8) /* ICL upper bound */
+> > +#define GEN_SSEU_STRIDE(bits) DIV_ROUND_UP(bits, BITS_PER_BYTE)
 >=20
-> This is exposed, so needs an intel_* prefix. with that:
+> What we pass to this macro isn't really a bits count but the maximum=20
+> amount of s/ss/eus. s/bits/max_entry/, or something like that? with
+> that:
 
-Will change in the next series update. Thanks for the review!
+Makes sense, I'll make the change in the next series post. Thanks for
+the review!
 
 -Stuart
 
@@ -114,57 +117,64 @@ Will change in the next series update. Thanks for the review!
 >=20
 > Daniele
 >=20
-> > +{
-> > +	return hweight8(sseu->subslice_mask[slice]);
-> > +}
-> > +
-> >   u32 intel_sseu_make_rpcs(struct drm_i915_private *i915,
-> >   			 const struct intel_sseu *req_sseu);
 > >  =20
-> > diff --git a/drivers/gpu/drm/i915/i915_debugfs.c
-> > b/drivers/gpu/drm/i915/i915_debugfs.c
-> > index 0e4dffcd4da4..fe854c629a32 100644
-> > --- a/drivers/gpu/drm/i915/i915_debugfs.c
-> > +++ b/drivers/gpu/drm/i915/i915_debugfs.c
-> > @@ -4185,7 +4185,7 @@ static void i915_print_sseu_info(struct
-> > seq_file *m, bool is_available_info,
-> >   		   sseu_subslice_total(sseu));
-> >   	for (s =3D 0; s < fls(sseu->slice_mask); s++) {
-> >   		seq_printf(m, "  %s Slice%i subslices: %u\n", type,
-> > -			   s, hweight8(sseu->subslice_mask[s]));
-> > +			   s, sseu_subslices_per_slice(sseu, s));
-> >   	}
-> >   	seq_printf(m, "  %s EU Total: %u\n", type,
-> >   		   sseu->eu_total);
-> > diff --git a/drivers/gpu/drm/i915/intel_device_info.c
-> > b/drivers/gpu/drm/i915/intel_device_info.c
-> > index 6af480b95bc6..559cf0d0628e 100644
-> > --- a/drivers/gpu/drm/i915/intel_device_info.c
-> > +++ b/drivers/gpu/drm/i915/intel_device_info.c
-> > @@ -93,7 +93,7 @@ static void sseu_dump(const struct sseu_dev_info
-> > *sseu, struct drm_printer *p)
-> >   	drm_printf(p, "subslice total: %u\n",
-> > sseu_subslice_total(sseu));
-> >   	for (s =3D 0; s < sseu->max_slices; s++) {
-> >   		drm_printf(p, "slice%d: %u subslices, mask=3D%04x\n",
-> > -			   s, hweight8(sseu->subslice_mask[s]),
-> > +			   s, sseu_subslices_per_slice(sseu, s),
-> >   			   sseu->subslice_mask[s]);
-> >   	}
-> >   	drm_printf(p, "EU total: %u\n", sseu->eu_total);
-> > @@ -126,7 +126,7 @@ void intel_device_info_dump_topology(const
-> > struct sseu_dev_info *sseu,
+> >   struct sseu_dev_info {
+> >   	u8 slice_mask;
+> > diff --git a/drivers/gpu/drm/i915/i915_query.c
+> > b/drivers/gpu/drm/i915/i915_query.c
+> > index 782183b78f49..7c1708c22811 100644
+> > --- a/drivers/gpu/drm/i915/i915_query.c
+> > +++ b/drivers/gpu/drm/i915/i915_query.c
+> > @@ -37,6 +37,8 @@ static int query_topology_info(struct
+> > drm_i915_private *dev_priv,
+> >   	const struct sseu_dev_info *sseu =3D &RUNTIME_INFO(dev_priv)-
+> > >sseu;
+> >   	struct drm_i915_query_topology_info topo;
+> >   	u32 slice_length, subslice_length, eu_length, total_length;
+> > +	u8 subslice_stride =3D GEN_SSEU_STRIDE(sseu->max_subslices);
+> > +	u8 eu_stride =3D GEN_SSEU_STRIDE(sseu->max_eus_per_subslice);
+> >   	int ret;
 > >  =20
-> >   	for (s =3D 0; s < sseu->max_slices; s++) {
-> >   		drm_printf(p, "slice%d: %u subslice(s) (0x%hhx):\n",
-> > -			   s, hweight8(sseu->subslice_mask[s]),
-> > +			   s, sseu_subslices_per_slice(sseu, s),
-> >   			   sseu->subslice_mask[s]);
+> >   	if (query_item->flags !=3D 0)
+> > @@ -48,12 +50,10 @@ static int query_topology_info(struct
+> > drm_i915_private *dev_priv,
+> >   	BUILD_BUG_ON(sizeof(u8) !=3D sizeof(sseu->slice_mask));
 > >  =20
-> >   		for (ss =3D 0; ss < sseu->max_subslices; ss++) {
+> >   	slice_length =3D sizeof(sseu->slice_mask);
+> > -	subslice_length =3D sseu->max_slices *
+> > -		DIV_ROUND_UP(sseu->max_subslices, BITS_PER_BYTE);
+> > -	eu_length =3D sseu->max_slices * sseu->max_subslices *
+> > -		DIV_ROUND_UP(sseu->max_eus_per_subslice,
+> > BITS_PER_BYTE);
+> > -
+> > -	total_length =3D sizeof(topo) + slice_length + subslice_length +
+> > eu_length;
+> > +	subslice_length =3D sseu->max_slices * subslice_stride;
+> > +	eu_length =3D sseu->max_slices * sseu->max_subslices * eu_stride;
+> > +	total_length =3D sizeof(topo) + slice_length + subslice_length +
+> > +		       eu_length;
+> >  =20
+> >   	ret =3D copy_query_item(&topo, sizeof(topo), total_length,
+> >   			      query_item);
+> > @@ -69,10 +69,9 @@ static int query_topology_info(struct
+> > drm_i915_private *dev_priv,
+> >   	topo.max_eus_per_subslice =3D sseu->max_eus_per_subslice;
+> >  =20
+> >   	topo.subslice_offset =3D slice_length;
+> > -	topo.subslice_stride =3D DIV_ROUND_UP(sseu->max_subslices,
+> > BITS_PER_BYTE);
+> > +	topo.subslice_stride =3D subslice_stride;
+> >   	topo.eu_offset =3D slice_length + subslice_length;
+> > -	topo.eu_stride =3D
+> > -		DIV_ROUND_UP(sseu->max_eus_per_subslice,
+> > BITS_PER_BYTE);
+> > +	topo.eu_stride =3D eu_stride;
+> >  =20
+> >   	if (__copy_to_user(u64_to_user_ptr(query_item->data_ptr),
+> >   			   &topo, sizeof(topo)))
 > >=20
 
---=-lxl0VPS0Z076HB1Lyc4o
+--=-64ESBTWI4zzRIsffSuSA
 Content-Type: application/x-pkcs7-signature; name="smime.p7s"
 Content-Disposition: attachment; filename="smime.p7s"
 Content-Transfer-Encoding: base64
@@ -220,18 +230,18 @@ CC/N7V8U9yFZx8akWREb8lJYDl9KypirEsufleiew26CWrwcbmdlldDCFS6/HDGCAhcwggITAgEB
 MIGQMHkxCzAJBgNVBAYTAlVTMQswCQYDVQQIEwJDQTEUMBIGA1UEBxMLU2FudGEgQ2xhcmExGjAY
 BgNVBAoTEUludGVsIENvcnBvcmF0aW9uMSswKQYDVQQDEyJJbnRlbCBFeHRlcm5hbCBCYXNpYyBJ
 c3N1aW5nIENBIDRCAhMzAAB04Th3owY0UbEUAAAAAHThMAkGBSsOAwIaBQCgXTAYBgkqhkiG9w0B
-CQMxCwYJKoZIhvcNAQcBMBwGCSqGSIb3DQEJBTEPFw0xOTA1MDExOTM3MDNaMCMGCSqGSIb3DQEJ
-BDEWBBQNBLLp5qUYJ6vkIVpoL5QOmtbS+jANBgkqhkiG9w0BAQEFAASCAQChnEuuTIm+fFZ6N2QW
-jzva+xRF3mVRi0Lxm1noqxyN9fsnPJATCS4g4n7QYVpe1jP9Yh5bz5aSt+NJ+Ulf9EtwUyjUxTHG
-sHi40xH5nI4eH814MiRfcJ2Ybk595q4x3UOboVBMKvwgBtbx4+xj+l/ROmNRM2FZYQfnzNKgAagS
-s1TI6FbecZ3N5REet3T3SWRkgnmrZRsqv4VRVw+nsas0wSjgRAXCbGCuh1uIUw6+ojC8Z/GsCdIi
-7/V9bQdfkGNjcIn/d/0zvMKDtxmp5AatcfB7VVEefGWlVzQUa8SoJBzcrdUXVzpFV6YAPIifR7iL
-kkehjEfeSKI5Dj/9zSofAAAAAAAA
+CQMxCwYJKoZIhvcNAQcBMBwGCSqGSIb3DQEJBTEPFw0xOTA1MDExOTM3NTBaMCMGCSqGSIb3DQEJ
+BDEWBBTHqD+PkYcqglsZXPsLn0tP0nPkEzANBgkqhkiG9w0BAQEFAASCAQBFuFIxE38UdCLyxqPQ
+mmvQM+N3KCbN/plQfNm2Ei/yy40KL78yuqAUj87+0mgtZNbDHXZmbDqhlnWZWGThmg66iuOTlCAg
+JFMeUpLa36FhetvekAAJ5RT2FFTQIY/fTcHhbiK/H8Odx+yhwhl5v/MnsGIsRBqKi+uCmW7FpIUU
+o52OUnqRVPJ5C/jcmav5mfekk9/S4t/E1Onz33er3/rd3ARwFnzotHnrcqbOKVnzdE2XLOdJF42z
+b/APOYpcigMUqdXbzPfxXwctS84uIEIw7gpnYJ/veVjtN/cbj3+oMAcIPjEbetSJoHWhZD69jzqI
+XoxCLJbspEtau/+rp3TfAAAAAAAA
 
 
---=-lxl0VPS0Z076HB1Lyc4o--
+--=-64ESBTWI4zzRIsffSuSA--
 
---===============1555529632==
+--===============0704414887==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -241,4 +251,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
 IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
 dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
 
---===============1555529632==--
+--===============0704414887==--
