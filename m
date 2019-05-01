@@ -2,51 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 673F810D4A
-	for <lists+intel-gfx@lfdr.de>; Wed,  1 May 2019 21:36:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 96EBF10D4B
+	for <lists+intel-gfx@lfdr.de>; Wed,  1 May 2019 21:37:17 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CCD3B892FE;
-	Wed,  1 May 2019 19:36:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 03FDA892B7;
+	Wed,  1 May 2019 19:37:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3ACE1892D8
- for <intel-gfx@lists.freedesktop.org>; Wed,  1 May 2019 19:36:34 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8ED03892B7
+ for <intel-gfx@lists.freedesktop.org>; Wed,  1 May 2019 19:37:14 +0000 (UTC)
 X-Amp-Result: UNSCANNABLE
 X-Amp-File-Uploaded: False
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
  by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 01 May 2019 12:36:33 -0700
+ 01 May 2019 12:37:14 -0700
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="5.60,418,1549958400"; 
- d="p7s'?scan'208";a="147350589"
-Received: from fmsmsx103.amr.corp.intel.com ([10.18.124.201])
- by orsmga003.jf.intel.com with ESMTP; 01 May 2019 12:36:33 -0700
-Received: from fmsmsx162.amr.corp.intel.com (10.18.125.71) by
- FMSMSX103.amr.corp.intel.com (10.18.124.201) with Microsoft SMTP Server (TLS)
- id 14.3.408.0; Wed, 1 May 2019 12:36:33 -0700
+ d="p7s'?scan'208";a="166673449"
+Received: from fmsmsx105.amr.corp.intel.com ([10.18.124.203])
+ by fmsmga002.fm.intel.com with ESMTP; 01 May 2019 12:37:13 -0700
+Received: from fmsmsx114.amr.corp.intel.com (10.18.116.8) by
+ FMSMSX105.amr.corp.intel.com (10.18.124.203) with Microsoft SMTP Server (TLS)
+ id 14.3.408.0; Wed, 1 May 2019 12:37:12 -0700
 Received: from fmsmsx106.amr.corp.intel.com ([169.254.5.95]) by
- fmsmsx162.amr.corp.intel.com ([169.254.5.66]) with mapi id 14.03.0415.000;
- Wed, 1 May 2019 12:36:32 -0700
+ FMSMSX114.amr.corp.intel.com ([169.254.6.228]) with mapi id 14.03.0415.000;
+ Wed, 1 May 2019 12:37:11 -0700
 From: "Summers, Stuart" <stuart.summers@intel.com>
 To: "Ceraolo Spurio, Daniele" <daniele.ceraolospurio@intel.com>,
  "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [PATCH 4/6] drm/i915: Move sseu helper functions to intel_sseu.h
-Thread-Index: AQHVAE53hhTdB5kCaU2qT5qxuhvwpaZXHxSA
-Date: Wed, 1 May 2019 19:36:32 +0000
-Message-ID: <654ff16bfc603980c7cd9c5c547c3e992f502b08.camel@intel.com>
+Thread-Topic: [PATCH 3/6] drm/i915: Move calculation of subslices per slice
+ to new function
+Thread-Index: AQHVAEnBxxnHa6WFmkCTt5KJWVr5zKZXH0aA
+Date: Wed, 1 May 2019 19:37:11 +0000
+Message-ID: <cf9c2a58d5042fbb8e47004065b7410be7160b9f.camel@intel.com>
 References: <20190501153450.30494-1-stuart.summers@intel.com>
- <20190501153450.30494-5-stuart.summers@intel.com>
- <7b457b13-f890-4f94-f19f-6e2a6e205d14@intel.com>
-In-Reply-To: <7b457b13-f890-4f94-f19f-6e2a6e205d14@intel.com>
+ <20190501153450.30494-4-stuart.summers@intel.com>
+ <76be3194-3e2d-e390-71f3-8bb0aa39a243@intel.com>
+In-Reply-To: <76be3194-3e2d-e390-71f3-8bb0aa39a243@intel.com>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: yes
 X-MS-TNEF-Correlator: 
 x-originating-ip: [10.54.134.159]
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 4/6] drm/i915: Move sseu helper functions to
- intel_sseu.h
+Subject: Re: [Intel-gfx] [PATCH 3/6] drm/i915: Move calculation of subslices
+ per slice to new function
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -59,197 +60,111 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============2004722208=="
+Content-Type: multipart/mixed; boundary="===============1555529632=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============2004722208==
+--===============1555529632==
 Content-Language: en-US
 Content-Type: multipart/signed; micalg=sha-1;
-	protocol="application/x-pkcs7-signature"; boundary="=-Jc9yxLhFL+iw4fRrve6e"
+	protocol="application/x-pkcs7-signature"; boundary="=-lxl0VPS0Z076HB1Lyc4o"
 
---=-Jc9yxLhFL+iw4fRrve6e
+--=-lxl0VPS0Z076HB1Lyc4o
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, 2019-05-01 at 11:48 -0700, Daniele Ceraolo Spurio wrote:
+On Wed, 2019-05-01 at 11:14 -0700, Daniele Ceraolo Spurio wrote:
 >=20
 > On 5/1/19 8:34 AM, Stuart Summers wrote:
-> > v2: fix spacing from checkpatch warning
+> > Add a new function to return the number of subslices per slice to
+> > consolidate code usage.
 > >=20
+> > v2: rebase on changes to move sseu struct to intel_sseu.h
+> >=20
+> > Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 > > Signed-off-by: Stuart Summers <stuart.summers@intel.com>
 > > ---
-> >   drivers/gpu/drm/i915/gt/intel_sseu.h     | 47
-> > ++++++++++++++++++++++++
-> >   drivers/gpu/drm/i915/intel_device_info.h | 47 -----------------
-> > -------
-> >   2 files changed, 47 insertions(+), 47 deletions(-)
+> >   drivers/gpu/drm/i915/gt/intel_sseu.h     | 6 ++++++
+> >   drivers/gpu/drm/i915/i915_debugfs.c      | 2 +-
+> >   drivers/gpu/drm/i915/intel_device_info.c | 4 ++--
+> >   3 files changed, 9 insertions(+), 3 deletions(-)
 > >=20
 > > diff --git a/drivers/gpu/drm/i915/gt/intel_sseu.h
 > > b/drivers/gpu/drm/i915/gt/intel_sseu.h
-> > index f5ff6b7a756a..029e71d8f140 100644
+> > index c0b16b248d4c..f5ff6b7a756a 100644
 > > --- a/drivers/gpu/drm/i915/gt/intel_sseu.h
 > > +++ b/drivers/gpu/drm/i915/gt/intel_sseu.h
-> > @@ -63,12 +63,59 @@ intel_sseu_from_device_info(const struct
+> > @@ -63,6 +63,12 @@ intel_sseu_from_device_info(const struct
 > > sseu_dev_info *sseu)
 > >   	return value;
 > >   }
 > >  =20
-> > +static inline unsigned int sseu_subslice_total(const struct
-> > sseu_dev_info *sseu)
-> > +{
-> > +	unsigned int i, total =3D 0;
-> > +
-> > +	for (i =3D 0; i < ARRAY_SIZE(sseu->subslice_mask); i++)
-> > +		total +=3D hweight8(sseu->subslice_mask[i]);
-> > +
-> > +	return total;
-> > +}
-> > +
-> >   static inline unsigned int
-> >   sseu_subslices_per_slice(const struct sseu_dev_info *sseu, u8
+> > +static inline unsigned int
+> > +sseu_subslices_per_slice(const struct sseu_dev_info *sseu, u8
 > > slice)
-> >   {
-> >   	return hweight8(sseu->subslice_mask[slice]);
-> >   }
-> >  =20
-> > +static inline int sseu_eu_idx(const struct sseu_dev_info *sseu,
-> > +			      int slice, int subslice)
-> > +{
-> > +	int subslice_stride =3D DIV_ROUND_UP(sseu->max_eus_per_subslice,
-> > +					   BITS_PER_BYTE);
-> > +	int slice_stride =3D sseu->max_subslices * subslice_stride;
-> > +
-> > +	return slice * slice_stride + subslice * subslice_stride;
-> > +}
-> > +
-> > +static inline u16 sseu_get_eus(const struct sseu_dev_info *sseu,
-> > +			       int slice, int subslice)
-> > +{
-> > +	int i, offset =3D sseu_eu_idx(sseu, slice, subslice);
-> > +	u16 eu_mask =3D 0;
-> > +
-> > +	for (i =3D 0;
-> > +	     i < DIV_ROUND_UP(sseu->max_eus_per_subslice,
-> > BITS_PER_BYTE); i++) {
-> > +		eu_mask |=3D ((u16)sseu->eu_mask[offset + i]) <<
-> > +			(i * BITS_PER_BYTE);
-> > +	}
-> > +
-> > +	return eu_mask;
-> > +}
-> > +
-> > +static inline void sseu_set_eus(struct sseu_dev_info *sseu,
-> > +				int slice, int subslice, u16 eu_mask)
-> > +{
-> > +	int i, offset =3D sseu_eu_idx(sseu, slice, subslice);
-> > +
-> > +	for (i =3D 0;
-> > +	     i < DIV_ROUND_UP(sseu->max_eus_per_subslice,
-> > BITS_PER_BYTE); i++) {
-> > +		sseu->eu_mask[offset + i] =3D
-> > +			(eu_mask >> (BITS_PER_BYTE * i)) & 0xff;
-> > +	}
-> > +}
-> > +
 >=20
-> AFAICS sseu_get_eus() and sseu_set_eus() are only used by sseu-
-> related=20
-> functions in device_info.c and sseu_eu_idx() is only used by those 2,
-> so=20
-> we can make all 3 of them static in that file. We should also
-> migrate=20
-> all of the sseu code from device_info.c to intel_sseu.c for
-> consistency;=20
-> I'm ok with that being done as a follow up if you prefer to avoid it
-> in=20
-> this series.
->=20
-> I was also about to mention adding the intel_* prefix to the
-> remaining=20
-> functions but then I realized you add it in the next patch. My
-> personal=20
-> preference would be to do that in this patch, but I'm not going to
-> block=20
-> on it.
+> This is exposed, so needs an intel_* prefix. with that:
 
-Not sure why I missed this one, but good catch! I'll post a fix in the
-next series update.
+Will change in the next series update. Thanks for the review!
 
 -Stuart
 
 >=20
+> Reviewed-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+>=20
 > Daniele
 >=20
+> > +{
+> > +	return hweight8(sseu->subslice_mask[slice]);
+> > +}
+> > +
 > >   u32 intel_sseu_make_rpcs(struct drm_i915_private *i915,
 > >   			 const struct intel_sseu *req_sseu);
 > >  =20
-> > diff --git a/drivers/gpu/drm/i915/intel_device_info.h
-> > b/drivers/gpu/drm/i915/intel_device_info.h
-> > index 5a2e17d6146b..6412a9c72898 100644
-> > --- a/drivers/gpu/drm/i915/intel_device_info.h
-> > +++ b/drivers/gpu/drm/i915/intel_device_info.h
-> > @@ -218,53 +218,6 @@ struct intel_driver_caps {
-> >   	bool has_logical_contexts:1;
-> >   };
+> > diff --git a/drivers/gpu/drm/i915/i915_debugfs.c
+> > b/drivers/gpu/drm/i915/i915_debugfs.c
+> > index 0e4dffcd4da4..fe854c629a32 100644
+> > --- a/drivers/gpu/drm/i915/i915_debugfs.c
+> > +++ b/drivers/gpu/drm/i915/i915_debugfs.c
+> > @@ -4185,7 +4185,7 @@ static void i915_print_sseu_info(struct
+> > seq_file *m, bool is_available_info,
+> >   		   sseu_subslice_total(sseu));
+> >   	for (s =3D 0; s < fls(sseu->slice_mask); s++) {
+> >   		seq_printf(m, "  %s Slice%i subslices: %u\n", type,
+> > -			   s, hweight8(sseu->subslice_mask[s]));
+> > +			   s, sseu_subslices_per_slice(sseu, s));
+> >   	}
+> >   	seq_printf(m, "  %s EU Total: %u\n", type,
+> >   		   sseu->eu_total);
+> > diff --git a/drivers/gpu/drm/i915/intel_device_info.c
+> > b/drivers/gpu/drm/i915/intel_device_info.c
+> > index 6af480b95bc6..559cf0d0628e 100644
+> > --- a/drivers/gpu/drm/i915/intel_device_info.c
+> > +++ b/drivers/gpu/drm/i915/intel_device_info.c
+> > @@ -93,7 +93,7 @@ static void sseu_dump(const struct sseu_dev_info
+> > *sseu, struct drm_printer *p)
+> >   	drm_printf(p, "subslice total: %u\n",
+> > sseu_subslice_total(sseu));
+> >   	for (s =3D 0; s < sseu->max_slices; s++) {
+> >   		drm_printf(p, "slice%d: %u subslices, mask=3D%04x\n",
+> > -			   s, hweight8(sseu->subslice_mask[s]),
+> > +			   s, sseu_subslices_per_slice(sseu, s),
+> >   			   sseu->subslice_mask[s]);
+> >   	}
+> >   	drm_printf(p, "EU total: %u\n", sseu->eu_total);
+> > @@ -126,7 +126,7 @@ void intel_device_info_dump_topology(const
+> > struct sseu_dev_info *sseu,
 > >  =20
-> > -static inline unsigned int sseu_subslice_total(const struct
-> > sseu_dev_info *sseu)
-> > -{
-> > -	unsigned int i, total =3D 0;
-> > -
-> > -	for (i =3D 0; i < ARRAY_SIZE(sseu->subslice_mask); i++)
-> > -		total +=3D hweight8(sseu->subslice_mask[i]);
-> > -
-> > -	return total;
-> > -}
-> > -
-> > -static inline int sseu_eu_idx(const struct sseu_dev_info *sseu,
-> > -			      int slice, int subslice)
-> > -{
-> > -	int subslice_stride =3D DIV_ROUND_UP(sseu->max_eus_per_subslice,
-> > -					   BITS_PER_BYTE);
-> > -	int slice_stride =3D sseu->max_subslices * subslice_stride;
-> > -
-> > -	return slice * slice_stride + subslice * subslice_stride;
-> > -}
-> > -
-> > -static inline u16 sseu_get_eus(const struct sseu_dev_info *sseu,
-> > -			       int slice, int subslice)
-> > -{
-> > -	int i, offset =3D sseu_eu_idx(sseu, slice, subslice);
-> > -	u16 eu_mask =3D 0;
-> > -
-> > -	for (i =3D 0;
-> > -	     i < DIV_ROUND_UP(sseu->max_eus_per_subslice,
-> > BITS_PER_BYTE); i++) {
-> > -		eu_mask |=3D ((u16) sseu->eu_mask[offset + i]) <<
-> > -			(i * BITS_PER_BYTE);
-> > -	}
-> > -
-> > -	return eu_mask;
-> > -}
-> > -
-> > -static inline void sseu_set_eus(struct sseu_dev_info *sseu,
-> > -				int slice, int subslice, u16 eu_mask)
-> > -{
-> > -	int i, offset =3D sseu_eu_idx(sseu, slice, subslice);
-> > -
-> > -	for (i =3D 0;
-> > -	     i < DIV_ROUND_UP(sseu->max_eus_per_subslice,
-> > BITS_PER_BYTE); i++) {
-> > -		sseu->eu_mask[offset + i] =3D
-> > -			(eu_mask >> (BITS_PER_BYTE * i)) & 0xff;
-> > -	}
-> > -}
-> > -
-> >   const char *intel_platform_name(enum intel_platform platform);
+> >   	for (s =3D 0; s < sseu->max_slices; s++) {
+> >   		drm_printf(p, "slice%d: %u subslice(s) (0x%hhx):\n",
+> > -			   s, hweight8(sseu->subslice_mask[s]),
+> > +			   s, sseu_subslices_per_slice(sseu, s),
+> >   			   sseu->subslice_mask[s]);
 > >  =20
-> >   void intel_device_info_subplatform_init(struct drm_i915_private
-> > *dev_priv);
+> >   		for (ss =3D 0; ss < sseu->max_subslices; ss++) {
 > >=20
 
---=-Jc9yxLhFL+iw4fRrve6e
+--=-lxl0VPS0Z076HB1Lyc4o
 Content-Type: application/x-pkcs7-signature; name="smime.p7s"
 Content-Disposition: attachment; filename="smime.p7s"
 Content-Transfer-Encoding: base64
@@ -305,18 +220,18 @@ CC/N7V8U9yFZx8akWREb8lJYDl9KypirEsufleiew26CWrwcbmdlldDCFS6/HDGCAhcwggITAgEB
 MIGQMHkxCzAJBgNVBAYTAlVTMQswCQYDVQQIEwJDQTEUMBIGA1UEBxMLU2FudGEgQ2xhcmExGjAY
 BgNVBAoTEUludGVsIENvcnBvcmF0aW9uMSswKQYDVQQDEyJJbnRlbCBFeHRlcm5hbCBCYXNpYyBJ
 c3N1aW5nIENBIDRCAhMzAAB04Th3owY0UbEUAAAAAHThMAkGBSsOAwIaBQCgXTAYBgkqhkiG9w0B
-CQMxCwYJKoZIhvcNAQcBMBwGCSqGSIb3DQEJBTEPFw0xOTA1MDExOTM2MjlaMCMGCSqGSIb3DQEJ
-BDEWBBQnhLsKRoLRE31eyqi0dvdyIoZNGDANBgkqhkiG9w0BAQEFAASCAQAKoYmgAsa/jRpMhOO0
-k2mWlpm52u3PI3xDbLr9/pZs4XPEymDVKPhfWkRiizTyrbb5xN9LvRjdzw2nj77m0fqvCSbu6YiL
-KV6x0W9TZ/shGvmj/77SKmYuP+a/OkIryzcxVlmE+9w4Mqczsdn3obQXOhMM/dnfpxWATQ0ycdGa
-wy6WB3TJ+mEcF7h1TP0NsfN0tLzIxik2QsTtt1zTOqDUkgnHjNvrOFEzjJ7RxTJyoSViVEZYgxrb
-Y7f16hvlqdvjQLEmzx+8XBslFN+z5QTS+me/j98E4Md9RFxPGxPa7uchq9DqWPOQpee9W6ARfz1r
-NW7nTIHjqj80jy8PIptDAAAAAAAA
+CQMxCwYJKoZIhvcNAQcBMBwGCSqGSIb3DQEJBTEPFw0xOTA1MDExOTM3MDNaMCMGCSqGSIb3DQEJ
+BDEWBBQNBLLp5qUYJ6vkIVpoL5QOmtbS+jANBgkqhkiG9w0BAQEFAASCAQChnEuuTIm+fFZ6N2QW
+jzva+xRF3mVRi0Lxm1noqxyN9fsnPJATCS4g4n7QYVpe1jP9Yh5bz5aSt+NJ+Ulf9EtwUyjUxTHG
+sHi40xH5nI4eH814MiRfcJ2Ybk595q4x3UOboVBMKvwgBtbx4+xj+l/ROmNRM2FZYQfnzNKgAagS
+s1TI6FbecZ3N5REet3T3SWRkgnmrZRsqv4VRVw+nsas0wSjgRAXCbGCuh1uIUw6+ojC8Z/GsCdIi
+7/V9bQdfkGNjcIn/d/0zvMKDtxmp5AatcfB7VVEefGWlVzQUa8SoJBzcrdUXVzpFV6YAPIifR7iL
+kkehjEfeSKI5Dj/9zSofAAAAAAAA
 
 
---=-Jc9yxLhFL+iw4fRrve6e--
+--=-lxl0VPS0Z076HB1Lyc4o--
 
---===============2004722208==
+--===============1555529632==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -326,4 +241,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
 IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
 dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
 
---===============2004722208==--
+--===============1555529632==--
