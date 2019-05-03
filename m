@@ -2,30 +2,45 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 166A01259A
-	for <lists+intel-gfx@lfdr.de>; Fri,  3 May 2019 02:38:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C7D0C1262D
+	for <lists+intel-gfx@lfdr.de>; Fri,  3 May 2019 03:46:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ABCAB8947A;
-	Fri,  3 May 2019 00:38:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3B4DC89230;
+	Fri,  3 May 2019 01:46:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 2641B8947A;
- Fri,  3 May 2019 00:38:51 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 1F56EA0019;
- Fri,  3 May 2019 00:38:51 +0000 (UTC)
+X-Greylist: delayed 3531 seconds by postgrey-1.36 at gabe;
+ Fri, 03 May 2019 01:46:28 UTC
+Received: from www262.sakura.ne.jp (www262.sakura.ne.jp [202.181.97.72])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 99EC189230
+ for <intel-gfx@lists.freedesktop.org>; Fri,  3 May 2019 01:46:28 +0000 (UTC)
+Received: from fsav403.sakura.ne.jp (fsav403.sakura.ne.jp [133.242.250.102])
+ by www262.sakura.ne.jp (8.15.2/8.15.2) with ESMTP id x430l87H085453;
+ Fri, 3 May 2019 09:47:09 +0900 (JST)
+ (envelope-from penguin-kernel@i-love.sakura.ne.jp)
+Received: from www262.sakura.ne.jp (202.181.97.72)
+ by fsav403.sakura.ne.jp (F-Secure/fsigk_smtp/530/fsav403.sakura.ne.jp);
+ Fri, 03 May 2019 09:47:08 +0900 (JST)
+X-Virus-Status: clean(F-Secure/fsigk_smtp/530/fsav403.sakura.ne.jp)
+Received: from [192.168.1.8] (softbank126012062002.bbtec.net [126.12.62.2])
+ (authenticated bits=0)
+ by www262.sakura.ne.jp (8.15.2/8.15.2) with ESMTPSA id x430l3WU085429
+ (version=TLSv1.2 cipher=AES256-SHA bits=256 verify=NO);
+ Fri, 3 May 2019 09:47:08 +0900 (JST)
+ (envelope-from penguin-kernel@i-love.sakura.ne.jp)
+To: Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>
+References: <20190502194208.3535-1-daniel.vetter@ffwll.ch>
+ <20190502204648.5537-1-daniel.vetter@ffwll.ch>
+From: Tetsuo Handa <penguin-kernel@i-love.sakura.ne.jp>
+Message-ID: <7e4ef8c8-2def-5af9-f80e-b276fea8696a@i-love.sakura.ne.jp>
+Date: Fri, 3 May 2019 09:47:03 +0900
+User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Imre Deak" <imre.deak@intel.com>
-Date: Fri, 03 May 2019 00:38:51 -0000
-Message-ID: <20190503003851.26884.2299@emeril.freedesktop.org>
-References: <20190502232648.4450-1-imre.deak@intel.com>
-X-Patchwork-Hint: ignore
-In-Reply-To: <20190502232648.4450-1-imre.deak@intel.com>
-Subject: [Intel-gfx] =?utf-8?q?=E2=9C=97_Fi=2ECI=2ESPARSE=3A_warning_for_d?=
- =?utf-8?q?rm/i915=3A_Add_support_for_asynchronous_display_power_disabling?=
+In-Reply-To: <20190502204648.5537-1-daniel.vetter@ffwll.ch>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH] RFC: hung_task: taint kernel
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -38,37 +53,29 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: "Liu, Chuansheng" <chuansheng.liu@intel.com>,
+ Valdis Kletnieks <valdis.kletnieks@vt.edu>,
+ LKML <linux-kernel@vger.kernel.org>, Daniel Vetter <daniel.vetter@intel.com>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ "Paul E. McKenney" <paulmck@linux.ibm.com>,
+ Vitaly Kuznetsov <vkuznets@redhat.com>, Dmitry Vyukov <dvyukov@google.com>
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-PT0gU2VyaWVzIERldGFpbHMgPT0KClNlcmllczogZHJtL2k5MTU6IEFkZCBzdXBwb3J0IGZvciBh
-c3luY2hyb25vdXMgZGlzcGxheSBwb3dlciBkaXNhYmxpbmcKVVJMICAgOiBodHRwczovL3BhdGNo
-d29yay5mcmVlZGVza3RvcC5vcmcvc2VyaWVzLzYwMjQyLwpTdGF0ZSA6IHdhcm5pbmcKCj09IFN1
-bW1hcnkgPT0KCiQgZGltIHNwYXJzZSBvcmlnaW4vZHJtLXRpcApTcGFyc2UgdmVyc2lvbjogdjAu
-NS4yCkNvbW1pdDogZHJtL2k5MTU6IEFkZCBzdXBwb3J0IGZvciB0cmFja2luZyB3YWtlcmVmcyB3
-L28gcG93ZXItb24gZ3VhcmFudGVlCi1kcml2ZXJzL2dwdS9kcm0vaTkxNS9zZWxmdGVzdHMvLi4v
-aTkxNV9kcnYuaDozNDQ4OjE2OiB3YXJuaW5nOiBleHByZXNzaW9uIHVzaW5nIHNpemVvZih2b2lk
-KQorZHJpdmVycy9ncHUvZHJtL2k5MTUvc2VsZnRlc3RzLy4uL2k5MTVfZHJ2Lmg6MzQ0OToxNjog
-d2FybmluZzogZXhwcmVzc2lvbiB1c2luZyBzaXplb2Yodm9pZCkKCkNvbW1pdDogZHJtL2k5MTU6
-IFZlcmlmeSBwb3dlciBkb21haW5zIHN0YXRlIGR1cmluZyBzdXNwZW5kIGluIGFsbCBjYXNlcwpP
-a2F5IQoKQ29tbWl0OiBkcm0vaTkxNTogQWRkIHN1cHBvcnQgZm9yIGFzeW5jaHJvbm91cyBkaXNw
-bGF5IHBvd2VyIGRpc2FibGluZwotZHJpdmVycy9ncHUvZHJtL2k5MTUvc2VsZnRlc3RzLy4uL2k5
-MTVfZHJ2Lmg6MzQ0OToxNjogd2FybmluZzogZXhwcmVzc2lvbiB1c2luZyBzaXplb2Yodm9pZCkK
-K2RyaXZlcnMvZ3B1L2RybS9pOTE1L3NlbGZ0ZXN0cy8uLi9pOTE1X2Rydi5oOjM0NTQ6MTY6IHdh
-cm5pbmc6IGV4cHJlc3Npb24gdXNpbmcgc2l6ZW9mKHZvaWQpCgpDb21taXQ6IGRybS9pOTE1OiBE
-aXNhYmxlIHBvd2VyIGFzeW5jaHJvbm91c2x5IGR1cmluZyBEUCBBVVggdHJhbnNmZXJzCk9rYXkh
-CgpDb21taXQ6IGRybS9pOTE1OiBXQVJOIGZvciBlRFAgZW5jb2RlcnMgaW4gaW50ZWxfZHBfZGV0
-ZWN0X2RwY2QoKQpPa2F5IQoKQ29tbWl0OiBkcm0vaTkxNTogUmVtb3ZlIHRoZSB1bm5lZWRlZCBB
-VVggcG93ZXIgcmVmIGZyb20gaW50ZWxfZHBfZGV0ZWN0KCkKT2theSEKCkNvbW1pdDogZHJtL2k5
-MTU6IFJlbW92ZSB0aGUgdW5uZWVkZWQgQVVYIHBvd2VyIHJlZiBmcm9tIGludGVsX2RwX2hwZF9w
-dWxzZSgpCk9rYXkhCgpDb21taXQ6IGRybS9pOTE1OiBSZXBsYWNlIHVzZSBvZiBQTExTIHBvd2Vy
-IGRvbWFpbiB3aXRoIERJU1BMQVlfQ09SRSBkb21haW4KT2theSEKCkNvbW1pdDogZHJtL2k5MTU6
-IEF2b2lkIHRha2luZyB0aGUgUFBTIGxvY2sgZm9yIG5vbi1lRFAvVkxWL0NIVgpPa2F5IQoKQ29t
-bWl0OiBkcm0vaTkxNTogQXNzZXJ0IHRoYXQgVHlwZUMgcG9ydHMgYXJlIG5vdCB1c2VkIGZvciBl
-RFAKT2theSEKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-CkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpo
-dHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeA==
+T24gMjAxOS8wNS8wMyA1OjQ2LCBEYW5pZWwgVmV0dGVyIHdyb3RlOgo+IFRoZXJlJ3MgdGhlIGh1
+bmdfdGFza19wYW5pYyBzeXNjdGwsIGJ1dCB0aGF0J3MgYSBiaXQgYW4gZXh0cmVtZSBtZWFzdXJl
+Lgo+IEFzIGEgZmFsbGJhY2sgdGFpbnQgYXQgbGVhc3QgdGhlIG1hY2hpbmUuCj4gCj4gT3VyIENJ
+IHVzZXMgdGhpcyB0byBkZWNpZGUgd2hlbiBhIHJlYm9vdCBpcyBuZWNlc3NhcnksIHBsdXMgdG8g
+ZmlndXJlCj4gb3V0IHdoZXRoZXIgdGhlIGtlcm5lbCBpcyBzdGlsbCBoYXBweS4KCldoeSB5b3Vy
+IENJIGNhbid0IHdhdGNoIGZvciAiYmxvY2tlZCBmb3IgbW9yZSB0aGFuIiBtZXNzYWdlIGluc3Rl
+YWQgb2YKc2V0dGluZyB0aGUgdGFpbnQgZmxhZz8gSG93IGRvZXMgeW91ciBDSSBkZWNpZGUgYSBy
+ZWJvb3QgaXMgbmVjZXNzYXJ5PwoKVGhlcmUgaXMgbm8gbmVlZCB0byBzZXQgdGhlIHRhaW50ZWQg
+ZmxhZyB3aGVuIHNvbWUgdGFzayB3YXMganVzdCBibG9ja2VkCmZvciBhIHdoaWxlLiBJdCBtaWdo
+dCBiZSBkdWUgdG8gbWVtb3J5IHByZXNzdXJlLCBpdCBtaWdodCBiZSBkdWUgdG8gc2V0dGluZwp2
+ZXJ5IHNob3J0IHRpbWVvdXQgKGUuZy4gYSBmZXcgc2Vjb25kcyksIGl0IG1pZ2h0IGJlIGR1ZSB0
+byBidXN5IENQVXMgZG9pbmcKc29tZXRoaW5nIGVsc2UuLi4KX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1n
+ZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21h
+aWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
