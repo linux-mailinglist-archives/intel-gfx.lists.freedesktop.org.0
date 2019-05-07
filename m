@@ -2,47 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D5D9216C8F
-	for <lists+intel-gfx@lfdr.de>; Tue,  7 May 2019 22:48:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5DC7816CF9
+	for <lists+intel-gfx@lfdr.de>; Tue,  7 May 2019 23:16:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 529616E845;
-	Tue,  7 May 2019 20:48:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4753C89F8B;
+	Tue,  7 May 2019 21:15:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B1D836E845
- for <intel-gfx@lists.freedesktop.org>; Tue,  7 May 2019 20:48:38 +0000 (UTC)
-X-Amp-Result: UNSCANNABLE
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C0C1389F8B
+ for <intel-gfx@lists.freedesktop.org>; Tue,  7 May 2019 21:15:56 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 07 May 2019 13:48:37 -0700
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 07 May 2019 14:15:55 -0700
 X-ExtLoop1: 1
-Received: from fmsmsx104.amr.corp.intel.com ([10.18.124.202])
- by fmsmga005.fm.intel.com with ESMTP; 07 May 2019 13:48:37 -0700
-Received: from fmsmsx152.amr.corp.intel.com (10.18.125.5) by
- fmsmsx104.amr.corp.intel.com (10.18.124.202) with Microsoft SMTP Server (TLS)
- id 14.3.408.0; Tue, 7 May 2019 13:48:37 -0700
-Received: from fmsmsx106.amr.corp.intel.com ([169.254.5.95]) by
- FMSMSX152.amr.corp.intel.com ([169.254.6.135]) with mapi id 14.03.0415.000;
- Tue, 7 May 2019 13:48:37 -0700
-From: "Summers, Stuart" <stuart.summers@intel.com>
-To: "Ceraolo Spurio, Daniele" <daniele.ceraolospurio@intel.com>,
+Received: from dceraolo-linux.fm.intel.com (HELO [10.1.27.145]) ([10.1.27.145])
+ by orsmga007.jf.intel.com with ESMTP; 07 May 2019 14:15:55 -0700
+To: "Summers, Stuart" <stuart.summers@intel.com>,
  "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [PATCH 5/5] drm/i915: Expand subslice mask
-Thread-Index: AQHVBQc427Kl5tb8mEGlwOuD1VIJS6Zgl7+A
-Date: Tue, 7 May 2019 20:48:36 +0000
-Message-ID: <2fac0fe1df309711846000cfdfbe9019df16bd19.camel@intel.com>
 References: <20190503213020.25628-1-stuart.summers@intel.com>
  <20190503213020.25628-6-stuart.summers@intel.com>
  <ea334454-c3af-0deb-b5a2-a744549a7249@intel.com>
-In-Reply-To: <ea334454-c3af-0deb-b5a2-a744549a7249@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: yes
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.54.134.159]
+ <2fac0fe1df309711846000cfdfbe9019df16bd19.camel@intel.com>
+From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Message-ID: <00b20669-e4a9-e3eb-5756-49c79a45451c@intel.com>
+Date: Tue, 7 May 2019 14:16:10 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.4.0
 MIME-Version: 1.0
+In-Reply-To: <2fac0fe1df309711846000cfdfbe9019df16bd19.camel@intel.com>
+Content-Language: en-US
 Subject: Re: [Intel-gfx] [PATCH 5/5] drm/i915: Expand subslice mask
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
@@ -56,523 +47,102 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============0356159550=="
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0356159550==
-Content-Language: en-US
-Content-Type: multipart/signed; micalg=sha-1;
-	protocol="application/x-pkcs7-signature"; boundary="=-dsbq+J1PBC/7xbNXj61S"
-
---=-dsbq+J1PBC/7xbNXj61S
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-On Tue, 2019-05-07 at 12:00 -0700, Daniele Ceraolo Spurio wrote:
->=20
-> On 5/3/19 2:30 PM, Stuart Summers wrote:
-> > Currently, the subslice_mask runtime parameter is stored as an
-> > array of subslices per slice. Expand the subslice mask array to
-> > better match what is presented to userspace through the
-> > I915_QUERY_TOPOLOGY_INFO ioctl. The index into this array is
-> > then calculated:
-> >    slice * subslice stride + subslice index / 8
-> >=20
-> > v2: fix spacing in set_sseu_info args
-> >      use set_sseu_info to initialize sseu data when building
-> >      device status in debugfs
-> >      rename variables in intel_engine_types.h to avoid checkpatch
-> >      warnings
-> > v3: update headers in intel_sseu.h
-> > v4: add const to some sseu_dev_info variables
-> >      use sseu->eu_stride for EU stride calculations
-> > v5: address review comments from Tvrtko and Daniele
-> >=20
-> > Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-> > Cc: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
-> > Acked-by: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
-> > Signed-off-by: Stuart Summers <stuart.summers@intel.com>
-> > ---
-> >   drivers/gpu/drm/i915/gt/intel_engine_cs.c    |  24 ++-
-> >   drivers/gpu/drm/i915/gt/intel_engine_types.h |  30 ++--
-> >   drivers/gpu/drm/i915/gt/intel_hangcheck.c    |   3 +-
-> >   drivers/gpu/drm/i915/gt/intel_sseu.c         |  43 ++++-
-> >   drivers/gpu/drm/i915/gt/intel_sseu.h         |  28 +++-
-> >   drivers/gpu/drm/i915/gt/intel_workarounds.c  |   2 +-
-> >   drivers/gpu/drm/i915/i915_debugfs.c          |  40 ++---
-> >   drivers/gpu/drm/i915/i915_drv.c              |   6 +-
-> >   drivers/gpu/drm/i915/i915_gpu_error.c        |   5 +-
-> >   drivers/gpu/drm/i915/i915_query.c            |  10 +-
-> >   drivers/gpu/drm/i915/intel_device_info.c     | 155 ++++++++++--
-> > -------
-> >   11 files changed, 227 insertions(+), 119 deletions(-)
-> >=20
-> > diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-> > b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-> > index 5907a9613641..290bda5cc82b 100644
-> > --- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-> > +++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-> > @@ -909,12 +909,30 @@ const char *i915_cache_level_str(struct
-> > drm_i915_private *i915, int type)
-> >   	}
-> >   }
-> >  =20
-> > +static inline u32
-> > +intel_sseu_fls_subslice(const struct sseu_dev_info *sseu, u32
-> > slice)
-> > +{
-> > +	u32 subslice;
-> > +	int i;
-> > +
-> > +	for (i =3D sseu->ss_stride - 1; i >=3D 0; i--) {
-> > +		subslice =3D fls(sseu->subslice_mask[slice * sseu-
-> > >ss_stride +
-> > +						   i]);
-> > +		if (subslice) {
-> > +			subslice +=3D i * BITS_PER_BYTE;
-> > +			break;
-> > +		}
-> > +	}
-> > +
-> > +	return subslice;
-> > +}
-> > +
-> >   u32 intel_calculate_mcr_s_ss_select(struct drm_i915_private
-> > *dev_priv)
-> >   {
-> >   	const struct sseu_dev_info *sseu =3D &RUNTIME_INFO(dev_priv)-
-> > >sseu;
-> >   	u32 mcr_s_ss_select;
-> >   	u32 slice =3D fls(sseu->slice_mask);
-> > -	u32 subslice =3D fls(sseu->subslice_mask[slice]);
-> > +	u32 subslice =3D intel_sseu_fls_subslice(sseu, slice);
-> >  =20
-> >   	if (IS_GEN(dev_priv, 10))
-> >   		mcr_s_ss_select =3D GEN8_MCR_SLICE(slice) |
-> > @@ -990,6 +1008,7 @@ void intel_engine_get_instdone(struct
-> > intel_engine_cs *engine,
-> >   			       struct intel_instdone *instdone)
-> >   {
-> >   	struct drm_i915_private *dev_priv =3D engine->i915;
-> > +	const struct sseu_dev_info *sseu =3D &RUNTIME_INFO(dev_priv)-
-> > >sseu;
-> >   	struct intel_uncore *uncore =3D engine->uncore;
-> >   	u32 mmio_base =3D engine->mmio_base;
-> >   	int slice;
-> > @@ -1007,7 +1026,8 @@ void intel_engine_get_instdone(struct
-> > intel_engine_cs *engine,
-> >  =20
-> >   		instdone->slice_common =3D
-> >   			intel_uncore_read(uncore, GEN7_SC_INSTDONE);
-> > -		for_each_instdone_slice_subslice(dev_priv, slice,
-> > subslice) {
-> > +		for_each_instdone_slice_subslice(dev_priv, sseu, slice,
-> > +						 subslice) {
-> >   			instdone->sampler[slice][subslice] =3D
-> >   				read_subslice_reg(dev_priv, slice,
-> > subslice,
-> >   						  GEN7_SAMPLER_INSTDONE
-> > );
-> > diff --git a/drivers/gpu/drm/i915/gt/intel_engine_types.h
-> > b/drivers/gpu/drm/i915/gt/intel_engine_types.h
-> > index c0ab11b12e14..582340b55144 100644
-> > --- a/drivers/gpu/drm/i915/gt/intel_engine_types.h
-> > +++ b/drivers/gpu/drm/i915/gt/intel_engine_types.h
-> > @@ -535,20 +535,20 @@ intel_engine_needs_breadcrumb_tasklet(const
-> > struct intel_engine_cs *engine)
-> >   	return engine->flags & I915_ENGINE_NEEDS_BREADCRUMB_TASKLET;
-> >   }
-> >  =20
-> > -#define instdone_slice_mask(dev_priv__) \
-> > -	(IS_GEN(dev_priv__, 7) ? \
-> > -	 1 : RUNTIME_INFO(dev_priv__)->sseu.slice_mask)
-> > -
-> > -#define instdone_subslice_mask(dev_priv__) \
-> > -	(IS_GEN(dev_priv__, 7) ? \
-> > -	 1 : RUNTIME_INFO(dev_priv__)->sseu.subslice_mask[0])
-> > -
-> > -#define for_each_instdone_slice_subslice(dev_priv__, slice__,
-> > subslice__) \
-> > -	for ((slice__) =3D 0, (subslice__) =3D 0; \
-> > -	     (slice__) < I915_MAX_SLICES; \
-> > -	     (subslice__) =3D ((subslice__) + 1) < I915_MAX_SUBSLICES ?
-> > (subslice__) + 1 : 0, \
-> > -	       (slice__) +=3D ((subslice__) =3D=3D 0)) \
-> > -		for_each_if((BIT(slice__) &
-> > instdone_slice_mask(dev_priv__)) && \
-> > -			    (BIT(subslice__) &
-> > instdone_subslice_mask(dev_priv__)))
-> > +#define instdone_has_slice(dev_priv___, sseu___, slice___) \
-> > +	((IS_GEN(dev_priv___, 7) ? 1 : ((sseu___)->slice_mask)) & \
-> > +	BIT(slice___))
-> > +
-> > +#define instdone_has_subslice(dev_priv__, sseu__, slice__,
-> > subslice__) \
-> > +	(IS_GEN(dev_priv__, 7) ? 1 : \
->=20
-> This will return true for all ss on gen7, while the original code=20
-> returned 1 as the subslice mask (i.e. only has ss =3D=3D 0).
-
-True, I'll fix this.
-
->=20
-> > +	 intel_sseu_has_subslice(sseu__, slice__, subslice__))
-> > +
-> > +#define for_each_instdone_slice_subslice(dev_priv_, sseu_, slice_,
-> > subslice_) \
-> > +	for ((slice_) =3D 0, (subslice_) =3D 0; (slice_) < I915_MAX_SLICES;
-> > \
-> > +	     (subslice_) =3D ((subslice_) + 1) % I915_MAX_SUBSLICES, \
-> > +	     (slice_) +=3D ((subslice_) =3D=3D 0)) \
-> > +		for_each_if((instdone_has_slice(dev_priv_, sseu_,
-> > slice_)) && \
-> > +			    (irnstdone_has_subslice(dev_priv_, sseu_,
-> > slice_, \
-> > +						    subslice_)))
-> >  =20
-> >   #endif /* __INTEL_ENGINE_TYPES_H__ */
-> > diff --git a/drivers/gpu/drm/i915/gt/intel_hangcheck.c
-> > b/drivers/gpu/drm/i915/gt/intel_hangcheck.c
-> > index 721ab74a382f..10e032c9ab10 100644
-> > --- a/drivers/gpu/drm/i915/gt/intel_hangcheck.c
-> > +++ b/drivers/gpu/drm/i915/gt/intel_hangcheck.c
-> > @@ -51,6 +51,7 @@ static bool instdone_unchanged(u32
-> > current_instdone, u32 *old_instdone)
-> >   static bool subunits_stuck(struct intel_engine_cs *engine)
-> >   {
-> >   	struct drm_i915_private *dev_priv =3D engine->i915;
-> > +	const struct sseu_dev_info *sseu =3D &RUNTIME_INFO(dev_priv)-
-> > >sseu;
-> >   	struct intel_instdone instdone;
-> >   	struct intel_instdone *accu_instdone =3D &engine-
-> > >hangcheck.instdone;
-> >   	bool stuck;
-> > @@ -72,7 +73,7 @@ static bool subunits_stuck(struct intel_engine_cs
-> > *engine)
-> >   	stuck &=3D instdone_unchanged(instdone.slice_common,
-> >   				    &accu_instdone->slice_common);
-> >  =20
-> > -	for_each_instdone_slice_subslice(dev_priv, slice, subslice) {
-> > +	for_each_instdone_slice_subslice(dev_priv, sseu, slice,
-> > subslice) {
-> >   		stuck &=3D
-> > instdone_unchanged(instdone.sampler[slice][subslice],
-> >   					    &accu_instdone-
-> > >sampler[slice][subslice]);
-> >   		stuck &=3D
-> > instdone_unchanged(instdone.row[slice][subslice],
-> > diff --git a/drivers/gpu/drm/i915/gt/intel_sseu.c
-> > b/drivers/gpu/drm/i915/gt/intel_sseu.c
-> > index a0756f006f5f..a8b98b0266b7 100644
-> > --- a/drivers/gpu/drm/i915/gt/intel_sseu.c
-> > +++ b/drivers/gpu/drm/i915/gt/intel_sseu.c
-> > @@ -8,6 +8,17 @@
-> >   #include "intel_lrc_reg.h"
-> >   #include "intel_sseu.h"
-> >  =20
-> > +void intel_sseu_set_info(struct sseu_dev_info *sseu, u8
-> > max_slices,
-> > +			 u8 max_subslices, u8 max_eus_per_subslice)
-> > +{
-> > +	sseu->max_slices =3D max_slices;
-> > +	sseu->max_subslices =3D max_subslices;
-> > +	sseu->max_eus_per_subslice =3D max_eus_per_subslice;
-> > +
-> > +	sseu->ss_stride =3D GEN_SSEU_STRIDE(sseu->max_subslices);
-> > +	sseu->eu_stride =3D GEN_SSEU_STRIDE(sseu->max_eus_per_subslice);
-> > +}
-> > +
-> >   unsigned int
-> >   intel_sseu_subslice_total(const struct sseu_dev_info *sseu)
-> >   {
-> > @@ -19,10 +30,40 @@ intel_sseu_subslice_total(const struct
-> > sseu_dev_info *sseu)
-> >   	return total;
-> >   }
-> >  =20
-> > +void intel_sseu_copy_subslices(const struct sseu_dev_info *sseu,
-> > int slice,
-> > +			       u8 *to_mask)
-> > +{
-> > +	int offset =3D slice * sseu->ss_stride;
-> > +
-> > +	memcpy(&to_mask[offset], &sseu->subslice_mask[offset], sseu-
-> > >ss_stride);
-> > +}
-> > +
-> > +u32  intel_sseu_get_subslices(const struct sseu_dev_info *sseu, u8
-> > slice)
->=20
-> nitpick: extra space
-
-Ok.
-
->=20
-> > +{
-> > +	int i, offset =3D slice * sseu->ss_stride;
-> > +	u32 mask;
-> > +
->=20
-> GEM_BUG_ON(sseu->ss_stride > size(u32)) to catch the unlikely case we
-> go=20
-> over and need to update the mask size?
-
-Makes sense. I'll add this.
-
->=20
-> > +	for (i =3D 0; i < sseu->ss_stride; i++)
-> > +		mask |=3D (u32)sseu->subslice_mask[offset + i] <<
-> > +			i * BITS_PER_BYTE;
-> > +
-> > +	return mask;
-> > +}
-> > +
-> > +void intel_sseu_set_subslices(struct sseu_dev_info *sseu, int
-> > slice,
-> > +			      u32 ss_mask)
-> > +{
-> > +	int i, offset =3D slice * sseu->ss_stride;
-> > +
-> > +	for (i =3D 0; i < sseu->ss_stride; i++)
-> > +		sseu->subslice_mask[offset + i] =3D
-> > +			(ss_mask >> (BITS_PER_BYTE * i)) & 0xff;
-> > +}
-> > +
-> >   unsigned int
-> >   intel_sseu_subslices_per_slice(const struct sseu_dev_info *sseu,
-> > u8 slice)
-> >   {
-> > -	return hweight8(sseu->subslice_mask[slice]);
-> > +	return hweight32(intel_sseu_get_subslices(sseu, slice));
-> >   }
-> >  =20
-> >   u32 intel_sseu_make_rpcs(struct drm_i915_private *i915,
->=20
-> <snip>
->=20
-> > --- a/drivers/gpu/drm/i915/intel_device_info.c
-> > +++ b/drivers/gpu/drm/i915/intel_device_info.c
-> > @@ -84,17 +84,46 @@ void intel_device_info_dump_flags(const struct
-> > intel_device_info *info,
-> >   #undef PRINT_FLAG
-> >   }
-> >  =20
-> > +#define SS_STR_MAX_SIZE (GEN_MAX_SUBSLICE_STRIDE * 2 + 1)
-> > +
-> > +static char *
-> > +subslice_per_slice_str(char *buf, u8 size, const struct
-> > sseu_dev_info *sseu,
-> > +		       u8 slice)
-> > +{
-> > +	int i;
-> > +	u8 ss_offset =3D slice * sseu->ss_stride;
-> > +
-> > +	GEM_BUG_ON(slice >=3D sseu->max_slices);
-> > +
-> > +	/* Two ASCII character hex plus null terminator */
-> > +	GEM_BUG_ON(size < sseu->ss_stride * 2 + 1);
-> > +
-> > +	memset(buf, 0, size);
-> > +
-> > +	/*
-> > +	 * Print subslice information in reverse order to match
-> > +	 * userspace expectations.
-> > +	 */
-> > +	for (i =3D 0; i < sseu->ss_stride; i++)
-> > +		sprintf(&buf[i * 2], "%02x",
-> > +			sseu->subslice_mask[ss_offset + sseu->ss_stride=20
-> > -
-> > +					    (i + 1)]);
-> > +
-> > +	return buf;
-> > +}
-> > +
-> >   static void sseu_dump(const struct sseu_dev_info *sseu, struct
-> > drm_printer *p)
-> >   {
-> >   	int s;
-> > +	char buf[SS_STR_MAX_SIZE];
-> >  =20
-> >   	drm_printf(p, "slice total: %u, mask=3D%04x\n",
-> >   		   hweight8(sseu->slice_mask), sseu->slice_mask);
-> >   	drm_printf(p, "subslice total: %u\n",
-> > intel_sseu_subslice_total(sseu));
-> >   	for (s =3D 0; s < sseu->max_slices; s++) {
-> > -		drm_printf(p, "slice%d: %u subslices, mask=3D%04x\n",
-> > +		drm_printf(p, "slice%d: %u subslices, mask=3D%s\n",
-> >   			   s, intel_sseu_subslices_per_slice(sseu, s),
-> > -			   sseu->subslice_mask[s]);
-> > +			   subslice_per_slice_str(buf, ARRAY_SIZE(buf),
-> > sseu, s));
->=20
-> Now that we have intel_sseu_get_subslices() can't we just print the=20
-> return from that instead of using the buffer?
-
-I personally would prefer we keep the stringify function as it gives a
-little more flexibility. Do you have a strong preference to move to a
-direct printk formatted string?
-
->=20
->=20
-> >   	}
-> >   	drm_printf(p, "EU total: %u\n", sseu->eu_total);
-> >   	drm_printf(p, "EU per subslice: %u\n", sseu->eu_per_subslice);
->=20
-> <snip>
->=20
-> > @@ -555,6 +570,7 @@ static void haswell_sseu_info_init(struct
-> > drm_i915_private *dev_priv)
-> >   	struct sseu_dev_info *sseu =3D &RUNTIME_INFO(dev_priv)->sseu;
-> >   	u32 fuse1;
-> >   	int s, ss;
-> > +	u32 subslice_mask;
-> >  =20
-> >   	/*
-> >   	 * There isn't a register to tell us how many slices/subslices.
-> > We
-> > @@ -566,22 +582,18 @@ static void haswell_sseu_info_init(struct
-> > drm_i915_private *dev_priv)
-> >   		/* fall through */
-> >   	case 1:
-> >   		sseu->slice_mask =3D BIT(0);
-> > -		sseu->subslice_mask[0] =3D BIT(0);
-> > +		subslice_mask =3D BIT(0);
-> >   		break;
-> >   	case 2:
-> >   		sseu->slice_mask =3D BIT(0);
-> > -		sseu->subslice_mask[0] =3D BIT(0) | BIT(1);
-> > +		subslice_mask =3D BIT(0) | BIT(1);
-> >   		break;
-> >   	case 3:
-> >   		sseu->slice_mask =3D BIT(0) | BIT(1);
-> > -		sseu->subslice_mask[0] =3D BIT(0) | BIT(1);
-> > -		sseu->subslice_mask[1] =3D BIT(0) | BIT(1);
-> > +		subslice_mask =3D BIT(0) | BIT(1);
-> >   		break;
-> >   	}
-> >  =20
-> > -	sseu->max_slices =3D hweight8(sseu->slice_mask);
-> > -	sseu->max_subslices =3D hweight8(sseu->subslice_mask[0]);
-> > -
-> >   	fuse1 =3D I915_READ(HSW_PAVP_FUSE1);
-> >   	switch ((fuse1 & HSW_F1_EU_DIS_MASK) >> HSW_F1_EU_DIS_SHIFT) {
-> >   	default:
-> > @@ -598,9 +610,14 @@ static void haswell_sseu_info_init(struct
-> > drm_i915_private *dev_priv)
-> >   		sseu->eu_per_subslice =3D 6;
-> >   		break;
-> >   	}
-> > -	sseu->max_eus_per_subslice =3D sseu->eu_per_subslice;
-> > +
-> > +	intel_sseu_set_info(sseu, hweight8(sseu->slice_mask),
-> > +			    hweight8(subslice_mask),
-> > +			    sseu->eu_per_subslice);
->=20
-> I'd still prefer this to use a local variable so that we always only
-> set=20
-> sseu->eu_per_subslice from within intel_sseu_set_info.
-
-So the reason I kept this is in intel_sseu_set_info we are really just
-setting the max_eus_per_subslice, not the eu_per_subslice. Are you
-saying you'd also like to move the code that sets eu_per_subslice in
-each generation's handler to local variables and/or just passed
-directly as an argument to intel_sseu_set_info?
-
-I.e. should we use intel_sseu_set_info to set most or all of the
-members of the intel_sseu structure? Or is it OK to keep the current
-implementation of only using this to set default maximums per platform?
-
--Stuart
-
->=20
-> Daniele
->=20
-> >  =20
-> >   	for (s =3D 0; s < sseu->max_slices; s++) {
-> > +		intel_sseu_set_subslices(sseu, s, subslice_mask);
-> > +
-> >   		for (ss =3D 0; ss < sseu->max_subslices; ss++) {
-> >   			intel_sseu_set_eus(sseu, s, ss,
-> >   					   (1UL << sseu-
-> > >eu_per_subslice) - 1);
-> >=20
-
---=-dsbq+J1PBC/7xbNXj61S
-Content-Type: application/x-pkcs7-signature; name="smime.p7s"
-Content-Disposition: attachment; filename="smime.p7s"
-Content-Transfer-Encoding: base64
-
-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
-PwuHX1mRETAlwqXCZa6ba8eraUCltlCb/ZiEk9UFRVLjbLNPh9IYOi+sWkS6n5CovLKAqhMCAwEA
-AaOCAjMwggIvMB0GA1UdDgQWBBSgeYqvLV4nBaCUzAXLr0TeMJYR5zAfBgNVHSMEGDAWgBTaQSOc
-Wo9xr1eDPiDT42XbDMsL2zBlBgNVHR8EXjBcMFqgWKBWhlRodHRwOi8vd3d3LmludGVsLmNvbS9y
-ZXBvc2l0b3J5L0NSTC9JbnRlbCUyMEV4dGVybmFsJTIwQmFzaWMlMjBJc3N1aW5nJTIwQ0ElMjA0
-Qi5jcmwwgZ8GCCsGAQUFBwEBBIGSMIGPMCIGCCsGAQUFBzABhhZodHRwOi8vb2NzcC5pbnRlbC5j
-b20vMGkGCCsGAQUFBzAChl1odHRwOi8vd3d3LmludGVsLmNvbS9yZXBvc2l0b3J5L2NlcnRpZmlj
-YXRlcy9JbnRlbCUyMEV4dGVybmFsJTIwQmFzaWMlMjBJc3N1aW5nJTIwQ0ElMjA0Qi5jcnQwCwYD
-VR0PBAQDAgeAMDwGCSsGAQQBgjcVBwQvMC0GJSsGAQQBgjcVCIbDjHWEmeVRg/2BKIWOn1OCkcAJ
-Z4HevTmV8EMCAWQCAQkwHwYDVR0lBBgwFgYIKwYBBQUHAwQGCisGAQQBgjcKAwwwKQYJKwYBBAGC
-NxUKBBwwGjAKBggrBgEFBQcDBDAMBgorBgEEAYI3CgMMME0GA1UdEQRGMESgKAYKKwYBBAGCNxQC
-A6AaDBhzdHVhcnQuc3VtbWVyc0BpbnRlbC5jb22BGHN0dWFydC5zdW1tZXJzQGludGVsLmNvbTAN
-BgkqhkiG9w0BAQUFAAOCAQEAfyIC7rzSi6S8O+sdH384K8zyeMRJnl6vR7whl9PuEat+BkKpoxHn
-jQ0SFyF/cyI4lH/n938Pm3/Ctq0Z5GTldX6hhxxcLAR0qbk6AQU0Cq2nYMlZfX4FUz3FRsazbjTW
-1qObcvPRUAVScaa7SRGdensvbNV++pN1XqEdc++szxo58UzPaEgDlHIe2sEIVXnFkHnJv0ikRHG3
-urcA1bdj7Rac7dJBeQOQMdZEGmrWWmmbJzvk3OmoK9tKN7wcErQSdlqyYOMLesPfa7YNyLFYEJQd
-CC/N7V8U9yFZx8akWREb8lJYDl9KypirEsufleiew26CWrwcbmdlldDCFS6/HDGCAhcwggITAgEB
-MIGQMHkxCzAJBgNVBAYTAlVTMQswCQYDVQQIEwJDQTEUMBIGA1UEBxMLU2FudGEgQ2xhcmExGjAY
-BgNVBAoTEUludGVsIENvcnBvcmF0aW9uMSswKQYDVQQDEyJJbnRlbCBFeHRlcm5hbCBCYXNpYyBJ
-c3N1aW5nIENBIDRCAhMzAAB04Th3owY0UbEUAAAAAHThMAkGBSsOAwIaBQCgXTAYBgkqhkiG9w0B
-CQMxCwYJKoZIhvcNAQcBMBwGCSqGSIb3DQEJBTEPFw0xOTA1MDcyMDQ4MzFaMCMGCSqGSIb3DQEJ
-BDEWBBQzpln0tiFxelFX/2/IX1cvTDP+7jANBgkqhkiG9w0BAQEFAASCAQBlVfScHb7Xs7zR8IJ8
-CYHHzPTO3bEGTn/lM1a1I6JGVMHePf6dbRl3PrLSRqelL0TYH/jhopacF6CQfeQn/5/ufjJxH8LC
-gR3F2INzgw7voY4pp8qr5t375D6UPYfxy7VNdSCgUf2Zudk3E4LHIdTp9qj20XBQeRjdctMdsYIW
-cNg88kS1qLL32G5bBt4dH8w59EIiVIfyTbDCtkpXvFupkf91+q7r1ZjQ2NEyFJRiGt7hSCZNqH2D
-8TezkyQu7nk+X4HDHXUAwAT3TSbBKWvS0Xh7dVUAaontIfaDPn6hvFolRI7qgTqFJIbdB/muWPkh
-aucCaJ6VYufHytWOvEEpAAAAAAAA
-
-
---=-dsbq+J1PBC/7xbNXj61S--
-
---===============0356159550==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
-IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
-
---===============0356159550==--
+PHNuaXA+Cgo+Pgo+Pj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfZGV2aWNlX2lu
+Zm8uYwo+Pj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfZGV2aWNlX2luZm8uYwo+
+Pj4gQEAgLTg0LDE3ICs4NCw0NiBAQCB2b2lkIGludGVsX2RldmljZV9pbmZvX2R1bXBfZmxhZ3Mo
+Y29uc3Qgc3RydWN0Cj4+PiBpbnRlbF9kZXZpY2VfaW5mbyAqaW5mbywKPj4+ICAgICN1bmRlZiBQ
+UklOVF9GTEFHCj4+PiAgICB9Cj4+PiAgICAKPj4+ICsjZGVmaW5lIFNTX1NUUl9NQVhfU0laRSAo
+R0VOX01BWF9TVUJTTElDRV9TVFJJREUgKiAyICsgMSkKPj4+ICsKPj4+ICtzdGF0aWMgY2hhciAq
+Cj4+PiArc3Vic2xpY2VfcGVyX3NsaWNlX3N0cihjaGFyICpidWYsIHU4IHNpemUsIGNvbnN0IHN0
+cnVjdAo+Pj4gc3NldV9kZXZfaW5mbyAqc3NldSwKPj4+ICsJCSAgICAgICB1OCBzbGljZSkKPj4+
+ICt7Cj4+PiArCWludCBpOwo+Pj4gKwl1OCBzc19vZmZzZXQgPSBzbGljZSAqIHNzZXUtPnNzX3N0
+cmlkZTsKPj4+ICsKPj4+ICsJR0VNX0JVR19PTihzbGljZSA+PSBzc2V1LT5tYXhfc2xpY2VzKTsK
+Pj4+ICsKPj4+ICsJLyogVHdvIEFTQ0lJIGNoYXJhY3RlciBoZXggcGx1cyBudWxsIHRlcm1pbmF0
+b3IgKi8KPj4+ICsJR0VNX0JVR19PTihzaXplIDwgc3NldS0+c3Nfc3RyaWRlICogMiArIDEpOwo+
+Pj4gKwo+Pj4gKwltZW1zZXQoYnVmLCAwLCBzaXplKTsKPj4+ICsKPj4+ICsJLyoKPj4+ICsJICog
+UHJpbnQgc3Vic2xpY2UgaW5mb3JtYXRpb24gaW4gcmV2ZXJzZSBvcmRlciB0byBtYXRjaAo+Pj4g
+KwkgKiB1c2Vyc3BhY2UgZXhwZWN0YXRpb25zLgo+Pj4gKwkgKi8KPj4+ICsJZm9yIChpID0gMDsg
+aSA8IHNzZXUtPnNzX3N0cmlkZTsgaSsrKQo+Pj4gKwkJc3ByaW50ZigmYnVmW2kgKiAyXSwgIiUw
+MngiLAo+Pj4gKwkJCXNzZXUtPnN1YnNsaWNlX21hc2tbc3Nfb2Zmc2V0ICsgc3NldS0+c3Nfc3Ry
+aWRlCj4+PiAtCj4+PiArCQkJCQkgICAgKGkgKyAxKV0pOwo+Pj4gKwo+Pj4gKwlyZXR1cm4gYnVm
+Owo+Pj4gK30KPj4+ICsKPj4+ICAgIHN0YXRpYyB2b2lkIHNzZXVfZHVtcChjb25zdCBzdHJ1Y3Qg
+c3NldV9kZXZfaW5mbyAqc3NldSwgc3RydWN0Cj4+PiBkcm1fcHJpbnRlciAqcCkKPj4+ICAgIHsK
+Pj4+ICAgIAlpbnQgczsKPj4+ICsJY2hhciBidWZbU1NfU1RSX01BWF9TSVpFXTsKPj4+ICAgIAo+
+Pj4gICAgCWRybV9wcmludGYocCwgInNsaWNlIHRvdGFsOiAldSwgbWFzaz0lMDR4XG4iLAo+Pj4g
+ICAgCQkgICBod2VpZ2h0OChzc2V1LT5zbGljZV9tYXNrKSwgc3NldS0+c2xpY2VfbWFzayk7Cj4+
+PiAgICAJZHJtX3ByaW50ZihwLCAic3Vic2xpY2UgdG90YWw6ICV1XG4iLAo+Pj4gaW50ZWxfc3Nl
+dV9zdWJzbGljZV90b3RhbChzc2V1KSk7Cj4+PiAgICAJZm9yIChzID0gMDsgcyA8IHNzZXUtPm1h
+eF9zbGljZXM7IHMrKykgewo+Pj4gLQkJZHJtX3ByaW50ZihwLCAic2xpY2UlZDogJXUgc3Vic2xp
+Y2VzLCBtYXNrPSUwNHhcbiIsCj4+PiArCQlkcm1fcHJpbnRmKHAsICJzbGljZSVkOiAldSBzdWJz
+bGljZXMsIG1hc2s9JXNcbiIsCj4+PiAgICAJCQkgICBzLCBpbnRlbF9zc2V1X3N1YnNsaWNlc19w
+ZXJfc2xpY2Uoc3NldSwgcyksCj4+PiAtCQkJICAgc3NldS0+c3Vic2xpY2VfbWFza1tzXSk7Cj4+
+PiArCQkJICAgc3Vic2xpY2VfcGVyX3NsaWNlX3N0cihidWYsIEFSUkFZX1NJWkUoYnVmKSwKPj4+
+IHNzZXUsIHMpKTsKPj4KPj4gTm93IHRoYXQgd2UgaGF2ZSBpbnRlbF9zc2V1X2dldF9zdWJzbGlj
+ZXMoKSBjYW4ndCB3ZSBqdXN0IHByaW50IHRoZQo+PiByZXR1cm4gZnJvbSB0aGF0IGluc3RlYWQg
+b2YgdXNpbmcgdGhlIGJ1ZmZlcj8KPiAKPiBJIHBlcnNvbmFsbHkgd291bGQgcHJlZmVyIHdlIGtl
+ZXAgdGhlIHN0cmluZ2lmeSBmdW5jdGlvbiBhcyBpdCBnaXZlcyBhCj4gbGl0dGxlIG1vcmUgZmxl
+eGliaWxpdHkuIERvIHlvdSBoYXZlIGEgc3Ryb25nIHByZWZlcmVuY2UgdG8gbW92ZSB0byBhCj4g
+ZGlyZWN0IHByaW50ayBmb3JtYXR0ZWQgc3RyaW5nPwo+IAoKSSBkbyBub3QsIGl0IGp1c3Qgc2Vl
+bWVkIGxpa2UgZHVwbGljYXRpb24gc2luY2UgeW91J3JlIG5vdCByZWFsbHkgdXNpbmcgCmFueSBl
+eHRyYSBmb3JtYXR0aW5nIG9yIG90aGVyIGZsZXhpYmlsaXR5IGluIGZpbGxpbmcgdGhlIGJ1ZmZl
+ci4gVGhpcyAKaXNuJ3QgYSBsb3Qgb2YgY29kZSwgc28gbWF5YmUgd2UgY2FuIHN3aXRjaCB0byBq
+dXN0IHVzaW5nIHRoZSB1MzIgZm9yIApub3cgYW5kIGFkZCB0aGlzIGJhY2sgaWYvd2hlbiB3ZSBk
+byByZXF1aXJlIHRoZSBmbGV4aWJpbGl0eT8KCj4+Cj4+Cj4+PiAgICAJfQo+Pj4gICAgCWRybV9w
+cmludGYocCwgIkVVIHRvdGFsOiAldVxuIiwgc3NldS0+ZXVfdG90YWwpOwo+Pj4gICAgCWRybV9w
+cmludGYocCwgIkVVIHBlciBzdWJzbGljZTogJXVcbiIsIHNzZXUtPmV1X3Blcl9zdWJzbGljZSk7
+Cj4+Cj4+IDxzbmlwPgo+Pgo+Pj4gQEAgLTU1NSw2ICs1NzAsNyBAQCBzdGF0aWMgdm9pZCBoYXN3
+ZWxsX3NzZXVfaW5mb19pbml0KHN0cnVjdAo+Pj4gZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYp
+Cj4+PiAgICAJc3RydWN0IHNzZXVfZGV2X2luZm8gKnNzZXUgPSAmUlVOVElNRV9JTkZPKGRldl9w
+cml2KS0+c3NldTsKPj4+ICAgIAl1MzIgZnVzZTE7Cj4+PiAgICAJaW50IHMsIHNzOwo+Pj4gKwl1
+MzIgc3Vic2xpY2VfbWFzazsKPj4+ICAgIAo+Pj4gICAgCS8qCj4+PiAgICAJICogVGhlcmUgaXNu
+J3QgYSByZWdpc3RlciB0byB0ZWxsIHVzIGhvdyBtYW55IHNsaWNlcy9zdWJzbGljZXMuCj4+PiBX
+ZQo+Pj4gQEAgLTU2NiwyMiArNTgyLDE4IEBAIHN0YXRpYyB2b2lkIGhhc3dlbGxfc3NldV9pbmZv
+X2luaXQoc3RydWN0Cj4+PiBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJpdikKPj4+ICAgIAkJLyog
+ZmFsbCB0aHJvdWdoICovCj4+PiAgICAJY2FzZSAxOgo+Pj4gICAgCQlzc2V1LT5zbGljZV9tYXNr
+ID0gQklUKDApOwo+Pj4gLQkJc3NldS0+c3Vic2xpY2VfbWFza1swXSA9IEJJVCgwKTsKPj4+ICsJ
+CXN1YnNsaWNlX21hc2sgPSBCSVQoMCk7Cj4+PiAgICAJCWJyZWFrOwo+Pj4gICAgCWNhc2UgMjoK
+Pj4+ICAgIAkJc3NldS0+c2xpY2VfbWFzayA9IEJJVCgwKTsKPj4+IC0JCXNzZXUtPnN1YnNsaWNl
+X21hc2tbMF0gPSBCSVQoMCkgfCBCSVQoMSk7Cj4+PiArCQlzdWJzbGljZV9tYXNrID0gQklUKDAp
+IHwgQklUKDEpOwo+Pj4gICAgCQlicmVhazsKPj4+ICAgIAljYXNlIDM6Cj4+PiAgICAJCXNzZXUt
+PnNsaWNlX21hc2sgPSBCSVQoMCkgfCBCSVQoMSk7Cj4+PiAtCQlzc2V1LT5zdWJzbGljZV9tYXNr
+WzBdID0gQklUKDApIHwgQklUKDEpOwo+Pj4gLQkJc3NldS0+c3Vic2xpY2VfbWFza1sxXSA9IEJJ
+VCgwKSB8IEJJVCgxKTsKPj4+ICsJCXN1YnNsaWNlX21hc2sgPSBCSVQoMCkgfCBCSVQoMSk7Cj4+
+PiAgICAJCWJyZWFrOwo+Pj4gICAgCX0KPj4+ICAgIAo+Pj4gLQlzc2V1LT5tYXhfc2xpY2VzID0g
+aHdlaWdodDgoc3NldS0+c2xpY2VfbWFzayk7Cj4+PiAtCXNzZXUtPm1heF9zdWJzbGljZXMgPSBo
+d2VpZ2h0OChzc2V1LT5zdWJzbGljZV9tYXNrWzBdKTsKPj4+IC0KPj4+ICAgIAlmdXNlMSA9IEk5
+MTVfUkVBRChIU1dfUEFWUF9GVVNFMSk7Cj4+PiAgICAJc3dpdGNoICgoZnVzZTEgJiBIU1dfRjFf
+RVVfRElTX01BU0spID4+IEhTV19GMV9FVV9ESVNfU0hJRlQpIHsKPj4+ICAgIAlkZWZhdWx0Ogo+
+Pj4gQEAgLTU5OCw5ICs2MTAsMTQgQEAgc3RhdGljIHZvaWQgaGFzd2VsbF9zc2V1X2luZm9faW5p
+dChzdHJ1Y3QKPj4+IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2KQo+Pj4gICAgCQlzc2V1LT5l
+dV9wZXJfc3Vic2xpY2UgPSA2Owo+Pj4gICAgCQlicmVhazsKPj4+ICAgIAl9Cj4+PiAtCXNzZXUt
+Pm1heF9ldXNfcGVyX3N1YnNsaWNlID0gc3NldS0+ZXVfcGVyX3N1YnNsaWNlOwo+Pj4gKwo+Pj4g
+KwlpbnRlbF9zc2V1X3NldF9pbmZvKHNzZXUsIGh3ZWlnaHQ4KHNzZXUtPnNsaWNlX21hc2spLAo+
+Pj4gKwkJCSAgICBod2VpZ2h0OChzdWJzbGljZV9tYXNrKSwKPj4+ICsJCQkgICAgc3NldS0+ZXVf
+cGVyX3N1YnNsaWNlKTsKPj4KPj4gSSdkIHN0aWxsIHByZWZlciB0aGlzIHRvIHVzZSBhIGxvY2Fs
+IHZhcmlhYmxlIHNvIHRoYXQgd2UgYWx3YXlzIG9ubHkKPj4gc2V0Cj4+IHNzZXUtPmV1X3Blcl9z
+dWJzbGljZSBmcm9tIHdpdGhpbiBpbnRlbF9zc2V1X3NldF9pbmZvLgo+IAo+IFNvIHRoZSByZWFz
+b24gSSBrZXB0IHRoaXMgaXMgaW4gaW50ZWxfc3NldV9zZXRfaW5mbyB3ZSBhcmUgcmVhbGx5IGp1
+c3QKPiBzZXR0aW5nIHRoZSBtYXhfZXVzX3Blcl9zdWJzbGljZSwgbm90IHRoZSBldV9wZXJfc3Vi
+c2xpY2UuIEFyZSB5b3UKPiBzYXlpbmcgeW91J2QgYWxzbyBsaWtlIHRvIG1vdmUgdGhlIGNvZGUg
+dGhhdCBzZXRzIGV1X3Blcl9zdWJzbGljZSBpbgo+IGVhY2ggZ2VuZXJhdGlvbidzIGhhbmRsZXIg
+dG8gbG9jYWwgdmFyaWFibGVzIGFuZC9vciBqdXN0IHBhc3NlZAo+IGRpcmVjdGx5IGFzIGFuIGFy
+Z3VtZW50IHRvIGludGVsX3NzZXVfc2V0X2luZm8/CgpNeSBiYWQsIEkgY29uZnVzZWQgZXVfcGVy
+X3N1YnNsaWNlIGFuZCBtYXhfZXVzX3Blcl9zdWJzbGljZSBhcyB0aGUgc2FtZSAKdmFyaWFibGUu
+IEp1c3QgaWdub3JlIHRoaXMgY29tbWVudCA6KQoKRGFuaWVsZQoKPiAKPiBJLmUuIHNob3VsZCB3
+ZSB1c2UgaW50ZWxfc3NldV9zZXRfaW5mbyB0byBzZXQgbW9zdCBvciBhbGwgb2YgdGhlCj4gbWVt
+YmVycyBvZiB0aGUgaW50ZWxfc3NldSBzdHJ1Y3R1cmU/IE9yIGlzIGl0IE9LIHRvIGtlZXAgdGhl
+IGN1cnJlbnQKPiBpbXBsZW1lbnRhdGlvbiBvZiBvbmx5IHVzaW5nIHRoaXMgdG8gc2V0IGRlZmF1
+bHQgbWF4aW11bXMgcGVyIHBsYXRmb3JtPwo+IAo+IC1TdHVhcnQKPiAKPj4KPj4gRGFuaWVsZQo+
+Pgo+Pj4gICAgCj4+PiAgICAJZm9yIChzID0gMDsgcyA8IHNzZXUtPm1heF9zbGljZXM7IHMrKykg
+ewo+Pj4gKwkJaW50ZWxfc3NldV9zZXRfc3Vic2xpY2VzKHNzZXUsIHMsIHN1YnNsaWNlX21hc2sp
+Owo+Pj4gKwo+Pj4gICAgCQlmb3IgKHNzID0gMDsgc3MgPCBzc2V1LT5tYXhfc3Vic2xpY2VzOyBz
+cysrKSB7Cj4+PiAgICAJCQlpbnRlbF9zc2V1X3NldF9ldXMoc3NldSwgcywgc3MsCj4+PiAgICAJ
+CQkJCSAgICgxVUwgPDwgc3NldS0KPj4+PiBldV9wZXJfc3Vic2xpY2UpIC0gMSk7Cj4+PgpfX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFp
+bGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZng=
