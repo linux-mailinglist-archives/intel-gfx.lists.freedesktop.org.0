@@ -1,58 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D3B7617AC5
-	for <lists+intel-gfx@lfdr.de>; Wed,  8 May 2019 15:36:00 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4FDE317B0D
+	for <lists+intel-gfx@lfdr.de>; Wed,  8 May 2019 15:50:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4179C89254;
-	Wed,  8 May 2019 13:35:59 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 31C7189254
- for <intel-gfx@lists.freedesktop.org>; Wed,  8 May 2019 13:35:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BA7E589165;
+	Wed,  8 May 2019 13:50:47 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B5AC689159;
+ Wed,  8 May 2019 13:50:46 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 08 May 2019 06:35:57 -0700
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 08 May 2019 06:50:45 -0700
 X-ExtLoop1: 1
-Received: from fmsmsx107.amr.corp.intel.com ([10.18.124.205])
- by orsmga002.jf.intel.com with ESMTP; 08 May 2019 06:35:57 -0700
-Received: from fmsmsx125.amr.corp.intel.com (10.18.125.40) by
- fmsmsx107.amr.corp.intel.com (10.18.124.205) with Microsoft SMTP Server (TLS)
- id 14.3.408.0; Wed, 8 May 2019 06:35:57 -0700
-Received: from bgsmsx106.gar.corp.intel.com (10.223.43.196) by
- FMSMSX125.amr.corp.intel.com (10.18.125.40) with Microsoft SMTP Server (TLS)
- id 14.3.408.0; Wed, 8 May 2019 06:35:56 -0700
-Received: from bgsmsx104.gar.corp.intel.com ([169.254.5.147]) by
- BGSMSX106.gar.corp.intel.com ([169.254.1.212]) with mapi id 14.03.0415.000;
- Wed, 8 May 2019 19:05:53 +0530
-From: "Shankar, Uma" <uma.shankar@intel.com>
-To: "Sharma, Shashank" <shashank.sharma@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [PATCH v3 1/4] drm/i915: Change gamma/degamma_lut_size data
- type to u32
-Thread-Index: AQHVBN0i1Xmz9jpN4USg/AaXn3PxGqZhO7sg
-Date: Wed, 8 May 2019 13:35:52 +0000
-Message-ID: <E7C9878FBA1C6D42A1CA3F62AEB6945F81FF1406@BGSMSX104.gar.corp.intel.com>
-References: <20190507135644.23882-1-shashank.sharma@intel.com>
- <20190507135644.23882-2-shashank.sharma@intel.com>
-In-Reply-To: <20190507135644.23882-2-shashank.sharma@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ctpclassification: CTP_NT
-x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiNThkNGQ1N2EtYmVlZC00NmIyLTk3YzMtZjgxZWNkY2I5YTU0IiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX05UIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE3LjEwLjE4MDQuNDkiLCJUcnVzdGVkTGFiZWxIYXNoIjoiWUVuVWFzbXhZR0pXZ2FBQTJKSXlXWks0NjI0d1diN2JRQmFYekJENDNRU2ZvdUpTU3QwaVBmYVlXOFwvSXVndHoifQ==
-dlp-product: dlpe-windows
-dlp-version: 11.0.600.7
-dlp-reaction: no-action
-x-originating-ip: [10.223.10.10]
+Received: from jzapadkx-mobl1.ger.corp.intel.com (HELO [10.252.0.159])
+ ([10.252.0.159])
+ by fmsmga005.fm.intel.com with ESMTP; 08 May 2019 06:50:44 -0700
+To: Chris Wilson <chris@chris-wilson.co.uk>, igt-dev@lists.freedesktop.org
+References: <20190508121058.27038-1-tvrtko.ursulin@linux.intel.com>
+ <20190508121058.27038-17-tvrtko.ursulin@linux.intel.com>
+ <155731847301.28545.3793641581373958416@skylake-alporthouse-com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <8d694e1c-93b8-dcab-2fd4-cd9e3cd4bb72@linux.intel.com>
+Date: Wed, 8 May 2019 14:50:41 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v3 1/4] drm/i915: Change
- gamma/degamma_lut_size data type to u32
+In-Reply-To: <155731847301.28545.3793641581373958416@skylake-alporthouse-com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [igt-dev] [PATCH i-g-t 16/21] gem_wsim: Some more
+ example workloads
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -65,40 +48,29 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
+Cc: Intel-gfx@lists.freedesktop.org
 Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-DQoNCj4tLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPkZyb206IFNoYXJtYSwgU2hhc2hhbmsN
-Cj5TZW50OiBUdWVzZGF5LCBNYXkgNywgMjAxOSA3OjI3IFBNDQo+VG86IGludGVsLWdmeEBsaXN0
-cy5mcmVlZGVza3RvcC5vcmcNCj5DYzogU2hhcm1hLCBTaGFzaGFuayA8c2hhc2hhbmsuc2hhcm1h
-QGludGVsLmNvbT47IFZpbGxlIFN5cmrDpGzDpA0KPjx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVs
-LmNvbT47IE1hYXJ0ZW4gTGFua2hvcnN0DQo+PG1hYXJ0ZW4ubGFua2hvcnN0QGxpbnV4LmludGVs
-LmNvbT47IFNoYW5rYXIsIFVtYSA8dW1hLnNoYW5rYXJAaW50ZWwuY29tPg0KPlN1YmplY3Q6IFtQ
-QVRDSCB2MyAxLzRdIGRybS9pOTE1OiBDaGFuZ2UgZ2FtbWEvZGVnYW1tYV9sdXRfc2l6ZSBkYXRh
-IHR5cGUgdG8NCj51MzINCj4NCj5DdXJyZW50bHksIGRhdGEgdHlwZSBvZiBnYW1tYV9sdXRfc2l6
-ZSAmIGRlZ2FtbWFfbHV0X3NpemUgZWxlbWVudHMgaW4NCj5pbnRlbF9kZXZpY2VfaW5mbyBpcyB1
-MTYsIHdoaWNoIG1lYW5zIGl0IGNhbiBhY2NvbW1vZGF0ZSBtYXhpbXVtIDY0ayB2YWx1ZXMuIElu
-DQo+Y2FzZSBvZiBJQ0wgbXVsdGlzZWdtZW50ZWQgZ2FtbWEsIHRoZSBzaXplIG9mIGdhbW1hIExV
-VCBpcyAyNTZLLg0KPg0KPlRoaXMgcGF0Y2ggY2hhbmdlcyB0aGUgZGF0YSB0eXBlIG9mIGJvdGgg
-b2YgdGhlc2UgZWxlbWVudHMgdG8gdTMyLg0KDQpMb29rcyBvayB0byBtZS4NClJldmlld2VkLWJ5
-OiBVbWEgU2hhbmthciA8dW1hLnNoYW5rYXJAaW50ZWwuY29tPg0KDQo+Q2M6IFZpbGxlIFN5cmrD
-pGzDpCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5jb20+DQo+Q2M6IE1hYXJ0ZW4gTGFua2hv
-cnN0IDxtYWFydGVuLmxhbmtob3JzdEBsaW51eC5pbnRlbC5jb20+DQo+Q2M6IFVtYSBTaGFua2Fy
-IDx1bWEuc2hhbmthckBpbnRlbC5jb20+DQo+DQo+U2lnbmVkLW9mZi1ieTogU2hhc2hhbmsgU2hh
-cm1hIDxzaGFzaGFuay5zaGFybWFAaW50ZWwuY29tPg0KPi0tLQ0KPiBkcml2ZXJzL2dwdS9kcm0v
-aTkxNS9pbnRlbF9kZXZpY2VfaW5mby5oIHwgNCArKy0tDQo+IDEgZmlsZSBjaGFuZ2VkLCAyIGlu
-c2VydGlvbnMoKyksIDIgZGVsZXRpb25zKC0pDQo+DQo+ZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1
-L2RybS9pOTE1L2ludGVsX2RldmljZV9pbmZvLmgNCj5iL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2lu
-dGVsX2RldmljZV9pbmZvLmgNCj5pbmRleCA1YTJlMTdkNjE0NmIuLjY3Njc3YzM1NjcxNiAxMDA2
-NDQNCj4tLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9kZXZpY2VfaW5mby5oDQo+Kysr
-IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfZGV2aWNlX2luZm8uaA0KPkBAIC0xNzksOCAr
-MTc5LDggQEAgc3RydWN0IGludGVsX2RldmljZV9pbmZvIHsNCj4gCWludCBjdXJzb3Jfb2Zmc2V0
-c1tJOTE1X01BWF9QSVBFU107DQo+DQo+IAlzdHJ1Y3QgY29sb3JfbHV0cyB7DQo+LQkJdTE2IGRl
-Z2FtbWFfbHV0X3NpemU7DQo+LQkJdTE2IGdhbW1hX2x1dF9zaXplOw0KPisJCXUzMiBkZWdhbW1h
-X2x1dF9zaXplOw0KPisJCXUzMiBnYW1tYV9sdXRfc2l6ZTsNCj4gCQl1MzIgZGVnYW1tYV9sdXRf
-dGVzdHM7DQo+IAkJdTMyIGdhbW1hX2x1dF90ZXN0czsNCj4gCX0gY29sb3I7DQo+LS0NCj4yLjE3
-LjENCg0KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50
-ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBz
-Oi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
+Ck9uIDA4LzA1LzIwMTkgMTM6MjcsIENocmlzIFdpbHNvbiB3cm90ZToKPiBRdW90aW5nIFR2cnRr
+byBVcnN1bGluICgyMDE5LTA1LTA4IDEzOjEwOjUzKQo+PiBGcm9tOiBUdnJ0a28gVXJzdWxpbiA8
+dHZydGtvLnVyc3VsaW5AaW50ZWwuY29tPgo+Pgo+PiBBIGZldyBhZGRpdGlvbmFsIHdvcmtsb2Fk
+cyB1c2VmdWwgZm9yIGV4cGVyaW1lbnRpbmcgd2l0aCBzY2hlZHVsaW5nLgo+Pgo+PiBTaWduZWQt
+b2ZmLWJ5OiBUdnJ0a28gVXJzdWxpbiA8dHZydGtvLnVyc3VsaW5AaW50ZWwuY29tPgo+IAo+IEFy
+ZSB0aGUgZXh0cmEgbW9kZXMgJiAud3NpbSBzdXBwb3J0ZWQgYnkgc2NyaXB0cy9tZWRpYS1iZW5j
+aC5wbD8KPiBpLmUuIGNhbiBJIGp1c3QgcnVuIG1lZGlhLWJlbmNoLnBsIGFuZCBoYXZlIGl0IGV4
+ZXJjaXNlIGFsbCB0aGUgbmV3Cj4gZmVhdHVyZXM/CgpOb3Qgc3VyZSB3aGF0IHlvdSBtZWFuIGJ5
+IGV4dHJhIG1vZGVzPyBJZiBhbGwgbmV3IHdzaW0gY29tbWFuZHMgdGhlbiBuby4gClRoZXkgYXJl
+IG5vdCBpbiB0aGUgZGVmYXVsdCBtZWRpYS1iZW5jaC5wbCBzZXQuIFRoZSB3b3JrbG9hZHMgZnJv
+bSB0aGlzIApwYXRjaCBhcmUgbm90IGluIHRoYXQgc2V0IHNvIGFyZSBqdXN0IGZvciByZWZlcmVu
+Y2UuCgpWaXJ0dWFsIGVuZ2luZSAoZ2VtX3dzaW0gLWIgaTkxNSkgaXMgc3VwcG9ydGVkIGJ5IG1l
+ZGlhLWJlbmNoLnBsIGV2ZW4gCndpdGggdGhlIG9sZC9kZWZhdWx0IHNldCBvZiB3b3JrbG9hZHMu
+CgpUaGUgY2F0Y2ggaXMgb2xkIHdzaW0gd29ya2xvYWRzIHVzZSBWQ1MgdG8gbWVhbiBhbnkgVkNT
+IGFuZCBpbiB0aG9zZSAKY2FzZXMgLWIgaTkxNSB3aWxsIHNldCB1cCB0aGUgdmlydHVhbCBlbmdp
+bmUgCmF1dG9tYXRpY2FsbHkvdHJhbnNwYXJlbnRseS4gU28gdGhvc2Ugb2xkIHdvcmtsb2FkcyBj
+YW4gYmUgcmFuIGJvdGggd2l0aCAKdXNlcnNwYWNlIG9yIGk5MTUgYmFsYW5jaW5nLgoKUmVnYXJk
+cywKClR2cnRrbwpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+XwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcK
+aHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZng=
