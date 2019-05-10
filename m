@@ -2,33 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 89D3219DF0
-	for <lists+intel-gfx@lfdr.de>; Fri, 10 May 2019 15:16:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 73A9919DF6
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 May 2019 15:17:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D9F43897C3;
-	Fri, 10 May 2019 13:16:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6C40A897C3;
+	Fri, 10 May 2019 13:17:03 +0000 (UTC)
 X-Original-To: Intel-gfx@lists.freedesktop.org
 Delivered-To: Intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E437E89BD5;
- Fri, 10 May 2019 13:16:01 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 05B19897C3;
+ Fri, 10 May 2019 13:17:01 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from localhost (unverified [78.156.65.138]) 
  by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 16516553-1500050 for multiple; Fri, 10 May 2019 14:15:57 +0100
+ 16516567-1500050 for multiple; Fri, 10 May 2019 14:16:59 +0100
 MIME-Version: 1.0
 To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
  igt-dev@lists.freedesktop.org
 From: Chris Wilson <chris@chris-wilson.co.uk>
-In-Reply-To: <20190508121058.27038-8-tvrtko.ursulin@linux.intel.com>
+In-Reply-To: <20190508121058.27038-9-tvrtko.ursulin@linux.intel.com>
 References: <20190508121058.27038-1-tvrtko.ursulin@linux.intel.com>
- <20190508121058.27038-8-tvrtko.ursulin@linux.intel.com>
-Message-ID: <155749415515.28545.14312332246496855@skylake-alporthouse-com>
+ <20190508121058.27038-9-tvrtko.ursulin@linux.intel.com>
+Message-ID: <155749421753.28545.9405913916326605139@skylake-alporthouse-com>
 User-Agent: alot/0.6
-Date: Fri, 10 May 2019 14:15:55 +0100
-Subject: Re: [Intel-gfx] [igt-dev] [PATCH i-g-t 07/21] gem_wsim: Factor out
- common error handling
+Date: Fri, 10 May 2019 14:16:57 +0100
+Subject: Re: [Intel-gfx] [PATCH i-g-t 08/21] gem_wsim: More wsim_err
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -47,14 +46,13 @@ Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-UXVvdGluZyBUdnJ0a28gVXJzdWxpbiAoMjAxOS0wNS0wOCAxMzoxMDo0NCkKPiBGcm9tOiBUdnJ0
-a28gVXJzdWxpbiA8dHZydGtvLnVyc3VsaW5AaW50ZWwuY29tPgo+IAo+IFRoZXJlIGlzIGEgcmVw
-ZWF0ZWQgcGF0dGVybiB3aXRoIGVycm9yIGhhbmRsaW5nIHdoaWNoIGNhbiBiZSBtb3ZlZCB0byBh
-Cj4gbWFjcm8gdG8gZm9yIGJldHRlciByZWFkYWJpbGl0eSBpbiB0aGUgY29tbWFuZCBwYXJzaW5n
-IGxvb3AuCj4gCj4gU2lnbmVkLW9mZi1ieTogVHZydGtvIFVyc3VsaW4gPHR2cnRrby51cnN1bGlu
-QGludGVsLmNvbT4KCkJhaCwgYXQgdGhlIGNvc3Qgb2YgaW5jbHVkaW5nIGNvbnRyb2wtZmxvdyBi
-dXJpZWQgaW5zaWRlIHRoZSBtYWNyby4KUmV2aWV3ZWQtYnk6IENocmlzIFdpbHNvbiA8Y2hyaXNA
-Y2hyaXMtd2lsc29uLmNvLnVrPgotQ2hyaXMKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMu
-ZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlz
-dGluZm8vaW50ZWwtZ2Z4
+UXVvdGluZyBUdnJ0a28gVXJzdWxpbiAoMjAxOS0wNS0wOCAxMzoxMDo0NSkKPiBGcm9tOiBUdnJ0
+a28gVXJzdWxpbiA8dHZydGtvLnVyc3VsaW5AaW50ZWwuY29tPgo+IAo+IEEgZmV3IG1vcmUgb3Bw
+b3J0dW5pdGllcyB0byBjb21wYWN0IHRoZSBjb2RlIGJ5IHVzaW5nIHRoZSBlcnJvciBsb2dnaW5n
+Cj4gaGVscGVyLgo+IAo+IFNpZ25lZC1vZmYtYnk6IFR2cnRrbyBVcnN1bGluIDx0dnJ0a28udXJz
+dWxpbkBpbnRlbC5jb20+ClJldmlld2VkLWJ5OiBDaHJpcyBXaWxzb24gPGNocmlzQGNocmlzLXdp
+bHNvbi5jby51az4KCkkgaGFkIHRvIGRvdWJsZSBjaGVjayB0aGF0IHdzaW1fZXJyKCkgd2Fzbid0
+IHRoZSBtYWdpYyBjZiBtYWNyby4KLUNocmlzCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3Rz
+LmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xp
+c3RpbmZvL2ludGVsLWdmeA==
