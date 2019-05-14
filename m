@@ -1,31 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E4EE01CD44
-	for <lists+intel-gfx@lfdr.de>; Tue, 14 May 2019 18:54:04 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 563D71CD45
+	for <lists+intel-gfx@lfdr.de>; Tue, 14 May 2019 18:54:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8CC168922F;
-	Tue, 14 May 2019 16:54:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C564F892C9;
+	Tue, 14 May 2019 16:54:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 55DB68922F
- for <intel-gfx@lists.freedesktop.org>; Tue, 14 May 2019 16:54:01 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2B92F892C9
+ for <intel-gfx@lists.freedesktop.org>; Tue, 14 May 2019 16:54:35 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from localhost (unverified [78.156.65.138]) 
  by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 16554937-1500050 for multiple; Tue, 14 May 2019 17:53:55 +0100
+ 16554941-1500050 for multiple; Tue, 14 May 2019 17:54:31 +0100
 MIME-Version: 1.0
 From: Chris Wilson <chris@chris-wilson.co.uk>
 User-Agent: alot/0.6
 To: Stuart Summers <stuart.summers@intel.com>, intel-gfx@lists.freedesktop.org
 References: <20190514164653.935-1-stuart.summers@intel.com>
-In-Reply-To: <20190514164653.935-1-stuart.summers@intel.com>
-Message-ID: <155785283553.21839.2059003338244451933@skylake-alporthouse-com>
-Date: Tue, 14 May 2019 17:53:55 +0100
-Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915: Re-add enable_rc6 modparam
+ <20190514164653.935-2-stuart.summers@intel.com>
+In-Reply-To: <20190514164653.935-2-stuart.summers@intel.com>
+Message-ID: <155785287067.21839.17391563022693529266@skylake-alporthouse-com>
+Date: Tue, 14 May 2019 17:54:30 +0100
+Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915: Extend reset modparam to
+ domain resets
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -43,14 +45,9 @@ Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-UXVvdGluZyBTdHVhcnQgU3VtbWVycyAoMjAxOS0wNS0xNCAxNzo0Njo1MikKPiBUbyBhbGxvdyBl
-YXNpZXIgZGVidWcgb2YgcGxhdGZvcm1zIHdoaWNoIGRvIG5vdCBmdWxseSBzdXBwb3J0Cj4gcG93
-ZXItc2F2aW5nIHJlbmRlciBDLXN0YXRlIDYsIGFkZCBiYWNrIHRoZSBtb2R1bGUgcGFyYW1ldGVy
-Cj4gdG8gYWxsb3cgUkM2IGZsb3dzIHRvIGJlIGRpc2FibGVkLiBJbnN0ZWFkIG9mIGRpcmVjdGx5
-IGFmZmVjdGluZwo+IHRoZSBSQzYgc3RhdGVzIHZpYSBhIGJpdG1hc2sgYXMgZG9uZSBwcmV2aW91
-c2x5LCB1c2UgdGhpcyBtb2R1bGUKPiBwYXJhbWV0ZXIgdG8gY2xlYXIgdGhlIGhhc19yYzYgZmll
-bGQgZm9yIHRoZXNlIHBsYXRmb3Jtcy4KCklmIHlvdSBrbm93IHdoaWNoIHBsYXRmb3JtcyBkb24n
-dCBzdXBwb3J0IHJjNiwgZG9uJ3QgZW5hYmxlIHJjNi4KLUNocmlzCl9fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50
-ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9y
-Zy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeA==
+UXVvdGluZyBTdHVhcnQgU3VtbWVycyAoMjAxOS0wNS0xNCAxNzo0Njo1MykKPiBJbiB0aGUgZXZl
+bnQgYSBwbGF0Zm9ybSBkb2VzIG5vdCBwcm9wZXJseSBpbXBsZW1lbnQgcmVzZXQsCgpUaGVuIGRv
+bid0IGVuYWJsZSByZXNldC4KLUNocmlzCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZy
+ZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3Rp
+bmZvL2ludGVsLWdmeA==
