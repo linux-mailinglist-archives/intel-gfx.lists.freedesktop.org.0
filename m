@@ -1,39 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C90120B75
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 May 2019 17:46:48 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A016B20BB4
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 May 2019 17:56:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AFA4E89722;
-	Thu, 16 May 2019 15:46:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A7C4089709;
+	Thu, 16 May 2019 15:56:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 18AE089722
- for <intel-gfx@lists.freedesktop.org>; Thu, 16 May 2019 15:46:45 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 921B689709
+ for <intel-gfx@lists.freedesktop.org>; Thu, 16 May 2019 15:56:23 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
 X-Amp-File-Uploaded: False
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 16 May 2019 08:46:44 -0700
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 16 May 2019 08:49:22 -0700
 X-ExtLoop1: 1
-Received: from fstricch-mobl.ger.corp.intel.com (HELO localhost)
- ([10.249.34.28])
- by fmsmga001.fm.intel.com with ESMTP; 16 May 2019 08:46:41 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-In-Reply-To: <20190516133031.GN24299@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1557985315.git.harish.chegondi@intel.com>
- <55619dbe3b3399292d86420725a0138ced488cca.1557985315.git.harish.chegondi@intel.com>
- <4410fcc9-4989-99eb-dc38-f568056b189f@linux.intel.com>
- <87a7fma79e.fsf@intel.com> <20190516133031.GN24299@intel.com>
-Date: Thu, 16 May 2019 18:46:47 +0300
-Message-ID: <87k1eq766w.fsf@intel.com>
+Received: from fmsmsx108.amr.corp.intel.com ([10.18.124.206])
+ by orsmga001.jf.intel.com with ESMTP; 16 May 2019 08:49:21 -0700
+Received: from fmsmsx123.amr.corp.intel.com (10.18.125.38) by
+ FMSMSX108.amr.corp.intel.com (10.18.124.206) with Microsoft SMTP Server (TLS)
+ id 14.3.408.0; Thu, 16 May 2019 08:49:21 -0700
+Received: from fmsmsx106.amr.corp.intel.com ([169.254.5.141]) by
+ fmsmsx123.amr.corp.intel.com ([169.254.7.159]) with mapi id 14.03.0415.000;
+ Thu, 16 May 2019 08:49:21 -0700
+From: "Summers, Stuart" <stuart.summers@intel.com>
+To: "Vivi, Rodrigo" <rodrigo.vivi@intel.com>, "jani.nikula@linux.intel.com"
+ <jani.nikula@linux.intel.com>
+Thread-Topic: [Intel-gfx] [PATCH 1/2] drm/i915: Re-add enable_rc6 modparam
+Thread-Index: AQHVCnS9ms3MYqGphkS+Vsw+YSLUYaZrS6qAgAAbZQCAAF1ZAIACOBCAgABGRYCAABmNAIAAAfuA
+Date: Thu, 16 May 2019 15:49:19 +0000
+Message-ID: <66758be0515771b27172bcf0e1e6138ff2932bce.camel@intel.com>
+References: <20190514164653.935-1-stuart.summers@intel.com>
+ <155785283553.21839.2059003338244451933@skylake-alporthouse-com>
+ <4387e52b0895d400d4e0f5c71e4c8e0a164add7c.camel@intel.com>
+ <20190515000604.GC18687@intel.com> <87ftpeaff0.fsf@intel.com>
+ <a13bccb377efbfe2f4ee9e414e4053610d315e3b.camel@intel.com>
+ <87mujm76ej.fsf@intel.com>
+In-Reply-To: <87mujm76ej.fsf@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: yes
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.54.134.159]
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 1/1] drm/i915: skip the second CRC even for
- GEN 7 GPUs
+Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915: Re-add enable_rc6 modparam
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -46,57 +60,160 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Tomi Sarvela <tomi.p.sarvela@intel.com>, intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Content-Type: multipart/mixed; boundary="===============0690070695=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gVGh1LCAxNiBNYXkgMjAxOSwgVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4
-LmludGVsLmNvbT4gd3JvdGU6Cj4gT24gVGh1LCBNYXkgMTYsIDIwMTkgYXQgMDM6NTU6MjVQTSAr
-MDMwMCwgSmFuaSBOaWt1bGEgd3JvdGU6Cj4+IE9uIFRodSwgMTYgTWF5IDIwMTksIE1hYXJ0ZW4g
-TGFua2hvcnN0IDxtYWFydGVuLmxhbmtob3JzdEBsaW51eC5pbnRlbC5jb20+IHdyb3RlOgo+PiA+
-IE9wIDE2LTA1LTIwMTkgb20gMDc6NTggc2NocmVlZiBIYXJpc2ggQ2hlZ29uZGk6Cj4+ID4+IGRp
-c3BsYXlfcGlwZV9jcmNfaXJxX2hhbmRsZXIoKSBza2lwcyB0aGUgZmlyc3QgQ1JDIGZvciBhbGwg
-R1BVcyBhbmQgdGhlCj4+ID4+IHNlY29uZCBDUkMgZm9yIEdFTjgrIEdQVXMuIFRoZSBzZWNvbmQg
-Q1JDIGlzIGludmFsaWQgZXZlbiBmb3IgQllUIHdoaWNoCj4+ID4+IGlzIGEgR0VONyBHUFUuIFNv
-LCBza2lwIHRoZSBzZWNvbmQgQ1JDIGV2ZW4gZm9yIEdFTjcgR1BVcy4KPj4gPj4KPj4gPj4gQ2M6
-IEphbmkgTmlrdWxhIDxqYW5pLm5pa3VsYUBpbnRlbC5jb20+Cj4+ID4+IENjOiBUb21pIFNhcnZl
-bGEgPHRvbWkucC5zYXJ2ZWxhQGludGVsLmNvbT4KPj4gPj4gQ2M6IFBldHJpIExhdHZhbGEgPHBl
-dHJpLmxhdHZhbGFAaW50ZWwuY29tPgo+PiA+PiBDYzogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5z
-eXJqYWxhQGxpbnV4LmludGVsLmNvbT4KPj4gPj4gQ2M6IE1hYXJ0ZW4gTGFua2hvcnN0IDxtYWFy
-dGVuLmxhbmtob3JzdEBsaW51eC5pbnRlbC5jb20+Cj4+ID4+IFNpZ25lZC1vZmYtYnk6IEhhcmlz
-aCBDaGVnb25kaSA8aGFyaXNoLmNoZWdvbmRpQGludGVsLmNvbT4KPj4gPj4gUmVmZXJlbmNlczog
-aHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MTAzMTkxCj4+ID4+
-IC0tLQo+PiA+PiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9pcnEuYyB8IDQgKystLQo+PiA+
-PiAgMSBmaWxlIGNoYW5nZWQsIDIgaW5zZXJ0aW9ucygrKSwgMiBkZWxldGlvbnMoLSkKPj4gPj4K
-Pj4gPj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfaXJxLmMgYi9kcml2
-ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2lycS5jCj4+ID4+IGluZGV4IDIzMzIxMWZkZTBlYS4uMzgw
-OWU5ZjdmYWUyIDEwMDY0NAo+PiA+PiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2ly
-cS5jCj4+ID4+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfaXJxLmMKPj4gPj4gQEAg
-LTE3NzUsMTEgKzE3NzUsMTEgQEAgc3RhdGljIHZvaWQgZGlzcGxheV9waXBlX2NyY19pcnFfaGFu
-ZGxlcihzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYsCj4+ID4+ICAJICogYm9ua2Vy
-cy4gU28gbGV0J3MganVzdCB3YWl0IGZvciB0aGUgbmV4dCB2YmxhbmsgYW5kIHJlYWQKPj4gPj4g
-IAkgKiBvdXQgdGhlIGJ1Z2d5IHJlc3VsdC4KPj4gPj4gIAkgKgo+PiA+PiAtCSAqIE9uIEdFTjgr
-IHNvbWV0aW1lcyB0aGUgc2Vjb25kIENSQyBpcyBib25rZXJzIGFzIHdlbGwsIHNvCj4+ID4+ICsJ
-ICogT24gR0VONysgc29tZXRpbWVzIHRoZSBzZWNvbmQgQ1JDIGlzIGJvbmtlcnMgYXMgd2VsbCwg
-c28KPj4gPj4gIAkgKiBkb24ndCB0cnVzdCB0aGF0IG9uZSBlaXRoZXIuCj4+ID4+ICAJICovCj4+
-ID4+ICAJaWYgKHBpcGVfY3JjLT5za2lwcGVkIDw9IDAgfHwKPj4gPj4gLQkgICAgKElOVEVMX0dF
-TihkZXZfcHJpdikgPj0gOCAmJiBwaXBlX2NyYy0+c2tpcHBlZCA9PSAxKSkgewo+PiA+PiArCSAg
-ICAoSU5URUxfR0VOKGRldl9wcml2KSA+PSA3ICYmIHBpcGVfY3JjLT5za2lwcGVkID09IDEpKSB7
-Cj4+ID4+ICAJCXBpcGVfY3JjLT5za2lwcGVkKys7Cj4+ID4+ICAJCXNwaW5fdW5sb2NrKCZwaXBl
-X2NyYy0+bG9jayk7Cj4+ID4+ICAJCXJldHVybjsKPj4gPgo+PiA+IEkgd291bGQgYmUgaW50ZXJl
-c3RlZCBpbiB0aGUgcmVzdWx0cywgaGFzd2VsbCBpcyBkaWZmZXJlbnQgZnJvbQo+PiA+IFZMVi4g
-SGFzIGl0IGV2ZXIgYmVlbiBvYnNlcnZlZCBvbiB0aGF0IHBsYXRmb3JtPwo+PiAKPj4gR29vZCBw
-b2ludC4gSSBsb29rZWQgYXQgWzFdIHdoaWNoIEkgcHJlc3VtZWQgd2FzIG9uIFZMViwgYnV0IGl0
-IHNheXMKPj4gbm90aGluZyBhYm91dCBIU1cuCj4KPiBUaGlzIHdob2xlIHRoaW5nIGlzIGp1c3Qg
-YSBwaWxlIG9mIGR1Y3QgdGFwZSBhbnl3YXkuIFRoZSByZWFzb24ocykKPiBmb3IgdGhlc2UgZnVu
-a3kgY3JjcyBoYXMgbmV2ZXIgYmVlbiBwcm9wZXJseSBhbmFseXNlZC4KCkkgZG9uJ3QgZGlzYWdy
-ZWUuIEFuZCB0aGlzIGlzIHBhcnRpYWxseSB3aHkgSSB3YXMgc28gZWFnZXIgdG8gYWNrIHRoZQpw
-YXRjaCBhdCBoYW5kLiBBbm90aGVyIHN0cmlwIG9mIGR1Y3QgdGFwZSBkb2VzIG5vIGhhcm0gd2hl
-biB5b3UgYWxyZWFkeQpoYXZlIHNvIG11Y2gsIGFuZCB3ZSBjYW4ndCBob2xkIHRoaXMgcGFydGlj
-dWxhciBpc3N1ZSBob3N0YWdlIHRvIHJvb3QKY2F1c2UgdGhlIGlzc3Vlcy4KCkJSLApKYW5pLgoK
-Ci0tIApKYW5pIE5pa3VsYSwgSW50ZWwgT3BlbiBTb3VyY2UgR3JhcGhpY3MgQ2VudGVyCl9fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWls
-aW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeA==
+--===============0690070695==
+Content-Language: en-US
+Content-Type: multipart/signed; micalg=sha-1;
+	protocol="application/x-pkcs7-signature"; boundary="=-iFFJhS8e35qNBodGTDbr"
+
+--=-iFFJhS8e35qNBodGTDbr
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+On Thu, 2019-05-16 at 18:42 +0300, Jani Nikula wrote:
+> On Thu, 16 May 2019, "Summers, Stuart" <stuart.summers@intel.com>
+> wrote:
+> > On Thu, 2019-05-16 at 12:59 +0300, Jani Nikula wrote:
+> > > On Tue, 14 May 2019, Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
+> > > > One possibility that just came to my mind now is, what if we
+> > > > make
+> > > > this only for platforms that are still protected by
+> > > > is_alpha_support=3D1
+> > > > (soon becoming require_force_probe=3D1)
+> > >=20
+> > > Please don't conflate alpha_support or force_probe with
+> > > *anything*
+> > > else.
+> > >=20
+> > > > But this is just one side of the coin... when product is out
+> > > > there
+> > > > and we want the user to debug the issue to see if it is a RC6
+> > > > bug
+> > > > we have no way to verify that. :/
+> > >=20
+> > > The problem is, if it works with rc6 disabled, it doesn't prove
+> > > it's
+> > > an
+> > > rc6 bug either.
+> >=20
+> > Good point. I'm not saying we should enforce a process of disabling
+> > RC6
+> > for the platform if enable_rc6=3D0 results in success. I'm just
+> > saying
+> > having the option is useful from a debug perspective. We will still
+> > need to do the appropriate full analysis, including the normal code
+> > review process on a pre-case basis when debug involves this
+> > parameter.
+> > But the parameter itself is still useful.
+>=20
+> The trouble starts when users figure out that enable_rc6=3D0 works
+> around
+> a particular problem they have (likely by way of disabling runtime
+> pm,
+> not directly related to rc6). You could argue this is a good thing,
+> but
+> unfortunately we generally never hear from them again, and the root
+> cause remains unsolved, with degraded user experience wrt power
+> management.
+
+So I understand the reasoning here, and agree that isn't an ideal
+situation. I'd also like a way to debug more efficiently. What did you
+think about the suggestion from Tvrtko to only apply on
+CONFIG_DRM_I915_DEBUG?
+
+Or we could even wrap this entirely with a CONFIG_I915_DEBUG_PM -
+although I'd like to suggest we still use the module parameter, we
+could just use the config option to hide the modparam under normal
+operation.
+
+Thanks,
+Stuart
+
+>=20
+> BR,
+> Jani.
+>=20
+>=20
+
+--=-iFFJhS8e35qNBodGTDbr
+Content-Type: application/x-pkcs7-signature; name="smime.p7s"
+Content-Disposition: attachment; filename="smime.p7s"
+Content-Transfer-Encoding: base64
+
+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
+PwuHX1mRETAlwqXCZa6ba8eraUCltlCb/ZiEk9UFRVLjbLNPh9IYOi+sWkS6n5CovLKAqhMCAwEA
+AaOCAjMwggIvMB0GA1UdDgQWBBSgeYqvLV4nBaCUzAXLr0TeMJYR5zAfBgNVHSMEGDAWgBTaQSOc
+Wo9xr1eDPiDT42XbDMsL2zBlBgNVHR8EXjBcMFqgWKBWhlRodHRwOi8vd3d3LmludGVsLmNvbS9y
+ZXBvc2l0b3J5L0NSTC9JbnRlbCUyMEV4dGVybmFsJTIwQmFzaWMlMjBJc3N1aW5nJTIwQ0ElMjA0
+Qi5jcmwwgZ8GCCsGAQUFBwEBBIGSMIGPMCIGCCsGAQUFBzABhhZodHRwOi8vb2NzcC5pbnRlbC5j
+b20vMGkGCCsGAQUFBzAChl1odHRwOi8vd3d3LmludGVsLmNvbS9yZXBvc2l0b3J5L2NlcnRpZmlj
+YXRlcy9JbnRlbCUyMEV4dGVybmFsJTIwQmFzaWMlMjBJc3N1aW5nJTIwQ0ElMjA0Qi5jcnQwCwYD
+VR0PBAQDAgeAMDwGCSsGAQQBgjcVBwQvMC0GJSsGAQQBgjcVCIbDjHWEmeVRg/2BKIWOn1OCkcAJ
+Z4HevTmV8EMCAWQCAQkwHwYDVR0lBBgwFgYIKwYBBQUHAwQGCisGAQQBgjcKAwwwKQYJKwYBBAGC
+NxUKBBwwGjAKBggrBgEFBQcDBDAMBgorBgEEAYI3CgMMME0GA1UdEQRGMESgKAYKKwYBBAGCNxQC
+A6AaDBhzdHVhcnQuc3VtbWVyc0BpbnRlbC5jb22BGHN0dWFydC5zdW1tZXJzQGludGVsLmNvbTAN
+BgkqhkiG9w0BAQUFAAOCAQEAfyIC7rzSi6S8O+sdH384K8zyeMRJnl6vR7whl9PuEat+BkKpoxHn
+jQ0SFyF/cyI4lH/n938Pm3/Ctq0Z5GTldX6hhxxcLAR0qbk6AQU0Cq2nYMlZfX4FUz3FRsazbjTW
+1qObcvPRUAVScaa7SRGdensvbNV++pN1XqEdc++szxo58UzPaEgDlHIe2sEIVXnFkHnJv0ikRHG3
+urcA1bdj7Rac7dJBeQOQMdZEGmrWWmmbJzvk3OmoK9tKN7wcErQSdlqyYOMLesPfa7YNyLFYEJQd
+CC/N7V8U9yFZx8akWREb8lJYDl9KypirEsufleiew26CWrwcbmdlldDCFS6/HDGCAhcwggITAgEB
+MIGQMHkxCzAJBgNVBAYTAlVTMQswCQYDVQQIEwJDQTEUMBIGA1UEBxMLU2FudGEgQ2xhcmExGjAY
+BgNVBAoTEUludGVsIENvcnBvcmF0aW9uMSswKQYDVQQDEyJJbnRlbCBFeHRlcm5hbCBCYXNpYyBJ
+c3N1aW5nIENBIDRCAhMzAAB04Th3owY0UbEUAAAAAHThMAkGBSsOAwIaBQCgXTAYBgkqhkiG9w0B
+CQMxCwYJKoZIhvcNAQcBMBwGCSqGSIb3DQEJBTEPFw0xOTA1MTYxNTQ5MTdaMCMGCSqGSIb3DQEJ
+BDEWBBQIcL+W40P66P9NniyAK4lNG+EYjTANBgkqhkiG9w0BAQEFAASCAQAmFj35nusJxSZFESCX
+EubW9zgZ/RsrVElQQEMPOnWeAiUgQu1Hi2sTQ1V0h3Gz+DFxT61GsLlY6mMIqCOwu0+irRSJmxzF
+vrFgbaCS3HAhvjB4Ij6ZMQylYB2J3HGRmg3i7qCywA+ibemepP0NAXoHyA2bl/C6qqCMdvJZ7lGi
+uY7QmX2xcS+qK6JJFOc44vFTVF6VQL3XvoMoOlIl/Z+BR0o6kwYGyNCEEDfIyU5ASA3y86orNUNO
+A2a2s/Qd+Q6XkTWr/rDWVRm1ydR6O8NC05bCdaMcslruKRp4Rb8ndDt/ExjnwO3vTP5ZOO3FnD7G
+HtIJts1HqRjDiXfWJZ6YAAAAAAAA
+
+
+--=-iFFJhS8e35qNBodGTDbr--
+
+--===============0690070695==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
+IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
+
+--===============0690070695==--
