@@ -2,31 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8DEAF2294F
-	for <lists+intel-gfx@lfdr.de>; Mon, 20 May 2019 00:26:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 38B2D2295D
+	for <lists+intel-gfx@lfdr.de>; Mon, 20 May 2019 01:00:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5FCDE8910B;
-	Sun, 19 May 2019 22:26:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D75CF890BE;
+	Sun, 19 May 2019 23:00:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 390F08910B;
- Sun, 19 May 2019 22:26:01 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 2F7EDA0091;
- Sun, 19 May 2019 22:26:01 +0000 (UTC)
+Received: from mail-qt1-x844.google.com (mail-qt1-x844.google.com
+ [IPv6:2607:f8b0:4864:20::844])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F24E3890BE;
+ Sun, 19 May 2019 23:00:41 +0000 (UTC)
+Received: by mail-qt1-x844.google.com with SMTP id l3so3490851qtj.5;
+ Sun, 19 May 2019 16:00:41 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:mime-version
+ :content-disposition:user-agent;
+ bh=ZIT4fwQjjK6qI/XuogwbTky+pffRZp+CADD76bcdk4I=;
+ b=HS74P4uO6AXeY/9N6HXR1yB7rwi6asul6ZxJNGBqbB5DcEp35I67rRUiRB+wIHDZfV
+ WNIkj23+i1wQrOFi1MZBYSPoRglzqyHYfYFi/6SEspYuUpRynpP2rcEeK8kmc0sSRkBW
+ rmmXuNXvx7/NF7FxKUKgY3Yz2AEB99C2Cu80tbG+5RutTtaqQidXUeBQvGN6Tl2H2hdy
+ mJLzrhPj9ix9yK903dDLtyu3flYjTC6zph+C3Qw/Fdf4XWeJS4HN4UNwbhCs2drz6lVo
+ Ur/XROWuCvh6qkAduxq3j2sPqJLQVOel2BEFbyXphyH+upz8MoYeBfmHjZYPKCaDYGbY
+ ptDw==
+X-Gm-Message-State: APjAAAVf6dTpv/WCoS4i6qCkBmNWThLvfi0YFuuN05XKwsYcyZKlwcpU
+ KbaZ01f3RXlPyoEHAgFQAEQ=
+X-Google-Smtp-Source: APXvYqye8ncGF0C5EUh0J4nXqEy4bzhLpeV9HUpRAzYG0qk8SoXDVDxsh6v2SqoSyntRtJBAAg+wUQ==
+X-Received: by 2002:ac8:2e84:: with SMTP id h4mr12503720qta.267.1558306840946; 
+ Sun, 19 May 2019 16:00:40 -0700 (PDT)
+Received: from smtp.gmail.com ([187.121.151.151])
+ by smtp.gmail.com with ESMTPSA id n22sm9452510qtb.56.2019.05.19.16.00.37
+ (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+ Sun, 19 May 2019 16:00:40 -0700 (PDT)
+Date: Sun, 19 May 2019 20:00:36 -0300
+From: Rodrigo Siqueira <rodrigosiqueiramelo@gmail.com>
+To: Petri Latvala <petri.latvala@intel.com>,
+ Arkadiusz Hiler <arkadiusz.hiler@intel.com>,
+ Chris Wilson <chris@chris-wilson.co.uk>
+Message-ID: <20190519230036.y73fer7uq4i7lpat@smtp.gmail.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
-Date: Sun, 19 May 2019 22:26:01 -0000
-Message-ID: <20190519222601.20355.77551@emeril.freedesktop.org>
-References: <20190519215043.10712-1-michal.wajdeczko@intel.com>
-X-Patchwork-Hint: ignore
-In-Reply-To: <20190519215043.10712-1-michal.wajdeczko@intel.com>
-Subject: [Intel-gfx] =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_drm/?=
- =?utf-8?q?i915/huc=3A_Don=27t_try_to_check_HuC_status_if_it=27s_not_loade?=
- =?utf-8?q?d_=28rev2=29?=
+User-Agent: NeoMutt/20180716
+X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20161025;
+ h=date:from:to:cc:subject:message-id:mime-version:content-disposition
+ :user-agent;
+ bh=ZIT4fwQjjK6qI/XuogwbTky+pffRZp+CADD76bcdk4I=;
+ b=egpuAQErrkjOz6GRJrQc2JuGj3eGvoQlSSBeS7IveVF13TjWuE/y8Foy1YWgIhnZFH
+ HHbZXwFVkp38C+4ec/QQbRUQX+HfwwBHQFyi6zPVwjeJ+jnn5kuJ7xJZdLAlpO2LjUGN
+ erwxdTGiBOS/K32WdBwShO3DCbm1OCYDQr2XghMLUUxHlaKc+fP0s29TW0IpPtnCTUrc
+ OJei6nCs6Cwz2PW6YoeydIWfNVpZbbdsJ8ZoUHqxFicMaa1uSmVAQcBu2nCoeGSxLRFi
+ pyyXQbpivvgQrGgDf/b21TtC93EhVEwOLE0QQekTSnb4kYzUXcprW/eBntq5TP/jLF7L
+ 5klA==
+Subject: [Intel-gfx] [PATCH V2 i-g-t] lib: Drop __kms_addfb() wrapper
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -39,96 +67,271 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: igt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============1181370717=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-PT0gU2VyaWVzIERldGFpbHMgPT0KClNlcmllczogZHJtL2k5MTUvaHVjOiBEb24ndCB0cnkgdG8g
-Y2hlY2sgSHVDIHN0YXR1cyBpZiBpdCdzIG5vdCBsb2FkZWQgKHJldjIpClVSTCAgIDogaHR0cHM6
-Ly9wYXRjaHdvcmsuZnJlZWRlc2t0b3Aub3JnL3Nlcmllcy82MDgwNy8KU3RhdGUgOiBzdWNjZXNz
-Cgo9PSBTdW1tYXJ5ID09CgpDSSBCdWcgTG9nIC0gY2hhbmdlcyBmcm9tIENJX0RSTV82MDk3IC0+
-IFBhdGNod29ya18xMzAzOQo9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
-PT09PT09PT09PT09CgpTdW1tYXJ5Ci0tLS0tLS0KCiAgKipTVUNDRVNTKioKCiAgTm8gcmVncmVz
-c2lvbnMgZm91bmQuCgogIEV4dGVybmFsIFVSTDogaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3Jn
-L3RyZWUvZHJtLXRpcC9QYXRjaHdvcmtfMTMwMzkvCgpLbm93biBpc3N1ZXMKLS0tLS0tLS0tLS0t
-CgogIEhlcmUgYXJlIHRoZSBjaGFuZ2VzIGZvdW5kIGluIFBhdGNod29ya18xMzAzOSB0aGF0IGNv
-bWUgZnJvbSBrbm93biBpc3N1ZXM6CgojIyMgSUdUIGNoYW5nZXMgIyMjCgojIyMjIElzc3VlcyBo
-aXQgIyMjIwoKICAqIGlndEBpOTE1X21vZHVsZV9sb2FkQHJlbG9hZDoKICAgIC0gZmktYmxiLWU2
-ODUwOiAgICAgICBbUEFTU11bMV0gLT4gW0lOQ09NUExFVEVdWzJdIChbZmRvIzEwNzcxOF0pCiAg
-IFsxXTogaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9DSV9EUk1fNjA5
-Ny9maS1ibGItZTY4NTAvaWd0QGk5MTVfbW9kdWxlX2xvYWRAcmVsb2FkLmh0bWwKICAgWzJdOiBo
-dHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlwL1BhdGNod29ya18xMzAzOS9m
-aS1ibGItZTY4NTAvaWd0QGk5MTVfbW9kdWxlX2xvYWRAcmVsb2FkLmh0bWwKCiAgKiBpZ3RAaTkx
-NV9wbV9ycG1AbW9kdWxlLXJlbG9hZDoKICAgIC0gZmktc2tsLTY3NzBocTogICAgICBbUEFTU11b
-M10gLT4gW0ZBSUxdWzRdIChbZmRvIzEwODUxMV0pCiAgIFszXTogaHR0cHM6Ly9pbnRlbC1nZngt
-Y2kuMDEub3JnL3RyZWUvZHJtLXRpcC9DSV9EUk1fNjA5Ny9maS1za2wtNjc3MGhxL2lndEBpOTE1
-X3BtX3JwbUBtb2R1bGUtcmVsb2FkLmh0bWwKICAgWzRdOiBodHRwczovL2ludGVsLWdmeC1jaS4w
-MS5vcmcvdHJlZS9kcm0tdGlwL1BhdGNod29ya18xMzAzOS9maS1za2wtNjc3MGhxL2lndEBpOTE1
-X3BtX3JwbUBtb2R1bGUtcmVsb2FkLmh0bWwKCiAgKiBpZ3RAaTkxNV9zZWxmdGVzdEBsaXZlX2V4
-ZWNsaXN0czoKICAgIC0gZmktYXBsLWd1YzogICAgICAgICBbUEFTU11bNV0gLT4gW0lOQ09NUExF
-VEVdWzZdIChbZmRvIzEwMzkyN10gLyBbZmRvIzEwOTcyMF0pCiAgIFs1XTogaHR0cHM6Ly9pbnRl
-bC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9DSV9EUk1fNjA5Ny9maS1hcGwtZ3VjL2lndEBp
-OTE1X3NlbGZ0ZXN0QGxpdmVfZXhlY2xpc3RzLmh0bWwKICAgWzZdOiBodHRwczovL2ludGVsLWdm
-eC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlwL1BhdGNod29ya18xMzAzOS9maS1hcGwtZ3VjL2lndEBp
-OTE1X3NlbGZ0ZXN0QGxpdmVfZXhlY2xpc3RzLmh0bWwKCiAgCiMjIyMgUG9zc2libGUgZml4ZXMg
-IyMjIwoKICAqIGlndEBhbWRncHUvYW1kX2Jhc2ljQHVzZXJwdHI6CiAgICAtIGZpLWtibC04ODA5
-ZzogICAgICAgW0RNRVNHLVdBUk5dWzddIChbZmRvIzEwODk2NV0pIC0+IFtQQVNTXVs4XQogICBb
-N106IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAvQ0lfRFJNXzYwOTcv
-Zmkta2JsLTg4MDlnL2lndEBhbWRncHUvYW1kX2Jhc2ljQHVzZXJwdHIuaHRtbAogICBbOF06IGh0
-dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAvUGF0Y2h3b3JrXzEzMDM5L2Zp
-LWtibC04ODA5Zy9pZ3RAYW1kZ3B1L2FtZF9iYXNpY0B1c2VycHRyLmh0bWwKCiAgKiBpZ3RAaTkx
-NV9zZWxmdGVzdEBsaXZlX2hhbmdjaGVjazoKICAgIC0gZmktc2tsLWlvbW11OiAgICAgICBbSU5D
-T01QTEVURV1bOV0gKFtmZG8jMTA4NjAyXSAvIFtmZG8jMTA4NzQ0XSkgLT4gW1BBU1NdWzEwXQog
-ICBbOV06IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAvQ0lfRFJNXzYw
-OTcvZmktc2tsLWlvbW11L2lndEBpOTE1X3NlbGZ0ZXN0QGxpdmVfaGFuZ2NoZWNrLmh0bWwKICAg
-WzEwXTogaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9QYXRjaHdvcmtf
-MTMwMzkvZmktc2tsLWlvbW11L2lndEBpOTE1X3NlbGZ0ZXN0QGxpdmVfaGFuZ2NoZWNrLmh0bWwK
-ICAgIC0gZmktYXBsLWd1YzogICAgICAgICBbRkFJTF1bMTFdIChbZmRvIzExMDYyM10pIC0+IFtQ
-QVNTXVsxMl0KICAgWzExXTogaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRp
-cC9DSV9EUk1fNjA5Ny9maS1hcGwtZ3VjL2lndEBpOTE1X3NlbGZ0ZXN0QGxpdmVfaGFuZ2NoZWNr
-Lmh0bWwKICAgWzEyXTogaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9Q
-YXRjaHdvcmtfMTMwMzkvZmktYXBsLWd1Yy9pZ3RAaTkxNV9zZWxmdGVzdEBsaXZlX2hhbmdjaGVj
-ay5odG1sCgogIAojIyMjIFdhcm5pbmdzICMjIyMKCiAgKiBpZ3RAcnVubmVyQGFib3J0ZWQ6CiAg
-ICAtIGZpLWFwbC1ndWM6ICAgICAgICAgW0ZBSUxdWzEzXSAoW2ZkbyMxMTA2MjJdKSAtPiBbRkFJ
-TF1bMTRdIChbZmRvIzEwODYyMl0gLyBbZmRvIzEwOTcyMF0pCiAgIFsxM106IGh0dHBzOi8vaW50
-ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAvQ0lfRFJNXzYwOTcvZmktYXBsLWd1Yy9pZ3RA
-cnVubmVyQGFib3J0ZWQuaHRtbAogICBbMTRdOiBodHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcv
-dHJlZS9kcm0tdGlwL1BhdGNod29ya18xMzAzOS9maS1hcGwtZ3VjL2lndEBydW5uZXJAYWJvcnRl
-ZC5odG1sCgogIAogIHtuYW1lfTogVGhpcyBlbGVtZW50IGlzIHN1cHByZXNzZWQuIFRoaXMgbWVh
-bnMgaXQgaXMgaWdub3JlZCB3aGVuIGNvbXB1dGluZwogICAgICAgICAgdGhlIHN0YXR1cyBvZiB0
-aGUgZGlmZmVyZW5jZSAoU1VDQ0VTUywgV0FSTklORywgb3IgRkFJTFVSRSkuCgogIFtmZG8jMTAz
-OTI3XTogaHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MTAzOTI3
-CiAgW2ZkbyMxMDc3MTNdOiBodHRwczovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNn
-aT9pZD0xMDc3MTMKICBbZmRvIzEwNzcxOF06IGh0dHBzOi8vYnVncy5mcmVlZGVza3RvcC5vcmcv
-c2hvd19idWcuY2dpP2lkPTEwNzcxOAogIFtmZG8jMTA4NTExXTogaHR0cHM6Ly9idWdzLmZyZWVk
-ZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MTA4NTExCiAgW2ZkbyMxMDg1NjldOiBodHRwczov
-L2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD0xMDg1NjkKICBbZmRvIzEwODYw
-Ml06IGh0dHBzOi8vYnVncy5mcmVlZGVza3RvcC5vcmcvc2hvd19idWcuY2dpP2lkPTEwODYwMgog
-IFtmZG8jMTA4NjIyXTogaHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/
-aWQ9MTA4NjIyCiAgW2ZkbyMxMDg3NDRdOiBodHRwczovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3No
-b3dfYnVnLmNnaT9pZD0xMDg3NDQKICBbZmRvIzEwODk2NV06IGh0dHBzOi8vYnVncy5mcmVlZGVz
-a3RvcC5vcmcvc2hvd19idWcuY2dpP2lkPTEwODk2NQogIFtmZG8jMTA5NzIwXTogaHR0cHM6Ly9i
-dWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MTA5NzIwCiAgW2ZkbyMxMTA2MjJd
-OiBodHRwczovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD0xMTA2MjIKICBb
-ZmRvIzExMDYyM106IGh0dHBzOi8vYnVncy5mcmVlZGVza3RvcC5vcmcvc2hvd19idWcuY2dpP2lk
-PTExMDYyMwoKClBhcnRpY2lwYXRpbmcgaG9zdHMgKDUyIC0+IDQyKQotLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0KCiAgQWRkaXRpb25hbCAoMSk6IGZpLXBudi1kNTEwIAogIE1pc3Npbmcg
-ICAgKDExKTogZmktaWxrLW01NDAgZmktaHN3LTQyMDB1IGZpLWJ5dC1zcXVhd2tzIGZpLWJzdy1j
-eWFuIGZpLWJ3ci0yMTYwIGZpLWN0Zy1wODYwMCBmaS1nZGctNTUxIGZpLWljbC11MyBmaS1ieXQt
-Y2xhcHBlciBmaS1iZHctc2FtdXMgZmkta2JsLXIgCgoKQnVpbGQgY2hhbmdlcwotLS0tLS0tLS0t
-LS0tCgogICogTGludXg6IENJX0RSTV82MDk3IC0+IFBhdGNod29ya18xMzAzOQoKICBDSV9EUk1f
-NjA5NzogM2YyZDZhNDdkOWVlYzY2NTk0ODg3YjFlOTcxOGJjMWEyOWFhNmE3NyBAIGdpdDovL2Fu
-b25naXQuZnJlZWRlc2t0b3Aub3JnL2dmeC1jaS9saW51eAogIElHVF80OTk2OiA2ZmU1ZDI1NGVj
-MWI5YjQ3ZDYxNDA4ZTFiNDlhNzMzOTg3NmJmMWU3IEAgZ2l0Oi8vYW5vbmdpdC5mcmVlZGVza3Rv
-cC5vcmcveG9yZy9hcHAvaW50ZWwtZ3B1LXRvb2xzCiAgUGF0Y2h3b3JrXzEzMDM5OiBkMjU5ZDYw
-NWU5MjZhMGVmNzU1NDIxOWMyZDhkMTNhYjczNWI4MjI4IEAgZ2l0Oi8vYW5vbmdpdC5mcmVlZGVz
-a3RvcC5vcmcvZ2Z4LWNpL2xpbnV4CgoKPT0gTGludXggY29tbWl0cyA9PQoKZDI1OWQ2MDVlOTI2
-IGRybS9pOTE1L2h1YzogRG9uJ3QgdHJ5IHRvIGNoZWNrIEh1QyBzdGF0dXMgaWYgaXQncyBub3Qg
-bG9hZGVkCgo9PSBMb2dzID09CgpGb3IgbW9yZSBkZXRhaWxzIHNlZTogaHR0cHM6Ly9pbnRlbC1n
-ZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9QYXRjaHdvcmtfMTMwMzkvCl9fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QK
-SW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9w
-Lm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeA==
+
+--===============1181370717==
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="dlulvy3vwqzgcvoq"
+Content-Disposition: inline
+
+
+--dlulvy3vwqzgcvoq
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+The function __kms_addfb() and drmModeAddFB2WithModifiers() have a
+similar code. Due to this similarity, this commit replaces all the
+occurrences of  __kms_addfb() by drmModeAddFB2WithModifiers() and adds
+the required adaptations.
+
+V1: Arkadiusz Hiler
+ - Fix array initialization
+ - Drop __kms_addfb()
+
+Signed-off-by: Rodrigo Siqueira <rodrigosiqueiramelo@gmail.com>
+---
+ lib/igt_fb.c                    | 14 +++++++++-----
+ lib/ioctl_wrappers.c            | 33 ---------------------------------
+ lib/ioctl_wrappers.h            | 11 -----------
+ tests/kms_available_modes_crc.c | 14 +++++++++-----
+ tests/kms_draw_crc.c            | 10 ++++++----
+ tests/prime_vgem.c              | 14 ++++++++------
+ 6 files changed, 32 insertions(+), 64 deletions(-)
+
+diff --git a/lib/igt_fb.c b/lib/igt_fb.c
+index d4929019..bac3b21c 100644
+--- a/lib/igt_fb.c
++++ b/lib/igt_fb.c
+@@ -1235,6 +1235,9 @@ igt_create_fb_with_bo_size(int fd, int width, int hei=
+ght,
+ 			   struct igt_fb *fb, uint64_t bo_size,
+ 			   unsigned bo_stride)
+ {
++	uint32_t handles[4] =3D {};
++	uint64_t modifiers[4] =3D {};
++
+ 	/* FIXME allow the caller to pass these in */
+ 	enum igt_color_encoding color_encoding =3D IGT_COLOR_YCBCR_BT709;
+ 	enum igt_color_range color_range =3D IGT_COLOR_YCBCR_LIMITED_RANGE;
+@@ -1262,11 +1265,12 @@ igt_create_fb_with_bo_size(int fd, int width, int h=
+eight,
+ 	if (fb->modifier || igt_has_fb_modifiers(fd))
+ 		flags =3D LOCAL_DRM_MODE_FB_MODIFIERS;
+=20
+-	do_or_die(__kms_addfb(fb->fd, fb->gem_handle,
+-			      fb->width, fb->height,
+-			      fb->drm_format, fb->modifier,
+-			      fb->strides, fb->offsets, fb->num_planes, flags,
+-			      &fb->fb_id));
++	memset(handles, fb->gem_handle, fb->num_planes);
++	memset(modifiers, modifier, fb->num_planes);
++	do_or_die(drmModeAddFB2WithModifiers(fb->fd, fb->width, fb->height,
++					     fb->drm_format, handles,
++					     fb->strides, fb->offsets,
++					     modifiers, &fb->fb_id, flags));
+=20
+ 	return fb->fb_id;
+ }
+diff --git a/lib/ioctl_wrappers.c b/lib/ioctl_wrappers.c
+index 280fdd62..0f00971d 100644
+--- a/lib/ioctl_wrappers.c
++++ b/lib/ioctl_wrappers.c
+@@ -1453,36 +1453,3 @@ void igt_require_fb_modifiers(int fd)
+ {
+ 	igt_require(igt_has_fb_modifiers(fd));
+ }
+-
+-int __kms_addfb(int fd, uint32_t handle,
+-		uint32_t width, uint32_t height,
+-		uint32_t pixel_format, uint64_t modifier,
+-		uint32_t strides[4], uint32_t offsets[4],
+-		int num_planes, uint32_t flags, uint32_t *buf_id)
+-{
+-	struct drm_mode_fb_cmd2 f;
+-	int ret, i;
+-
+-	if (flags & DRM_MODE_FB_MODIFIERS)
+-		igt_require_fb_modifiers(fd);
+-
+-	memset(&f, 0, sizeof(f));
+-
+-	f.width  =3D width;
+-	f.height =3D height;
+-	f.pixel_format =3D pixel_format;
+-	f.flags =3D flags;
+-
+-	for (i =3D 0; i < num_planes; i++) {
+-		f.handles[i] =3D handle;
+-		f.modifier[i] =3D modifier;
+-		f.pitches[i] =3D strides[i];
+-		f.offsets[i] =3D offsets[i];
+-	}
+-
+-	ret =3D igt_ioctl(fd, DRM_IOCTL_MODE_ADDFB2, &f);
+-
+-	*buf_id =3D f.fb_id;
+-
+-	return ret < 0 ? -errno : ret;
+-}
+diff --git a/lib/ioctl_wrappers.h b/lib/ioctl_wrappers.h
+index 03211c97..4afc3e09 100644
+--- a/lib/ioctl_wrappers.h
++++ b/lib/ioctl_wrappers.h
+@@ -209,17 +209,6 @@ struct local_drm_mode_fb_cmd2 {
+ bool igt_has_fb_modifiers(int fd);
+ void igt_require_fb_modifiers(int fd);
+=20
+-/**
+- * __kms_addfb:
+- *
+- * Creates a framebuffer object.
+- */
+-int __kms_addfb(int fd, uint32_t handle,
+-		uint32_t width, uint32_t height,
+-		uint32_t pixel_format, uint64_t modifier,
+-		uint32_t strides[4], uint32_t offsets[4],
+-		int num_planes, uint32_t flags, uint32_t *buf_id);
+-
+ /**
+  * to_user_pointer:
+  *
+diff --git a/tests/kms_available_modes_crc.c b/tests/kms_available_modes_cr=
+c.c
+index 50b5522a..9e5f1fd5 100644
+--- a/tests/kms_available_modes_crc.c
++++ b/tests/kms_available_modes_crc.c
+@@ -172,9 +172,10 @@ static bool setup_fb(data_t *data, igt_output_t *outpu=
+t, igt_plane_t *plane,
+ {
+ 	drmModeModeInfo *mode;
+ 	uint64_t w, h;
++	uint32_t handles[4] =3D {};
++	uint64_t modifiers[4] =3D {};
+ 	signed ret, gemsize =3D 0;
+ 	unsigned tile_width, tile_height;
+-	int num_planes =3D 1;
+ 	uint64_t tiling;
+ 	int bpp =3D 0;
+ 	int i;
+@@ -225,10 +226,13 @@ static bool setup_fb(data_t *data, igt_output_t *outp=
+ut, igt_plane_t *plane,
+=20
+ 	igt_assert_eq(ret, 0);
+=20
+-	ret =3D __kms_addfb(data->gfx_fd, data->gem_handle, w, h,
+-			  format, tiling, data->fb.strides, data->fb.offsets,
+-			  num_planes, LOCAL_DRM_MODE_FB_MODIFIERS,
+-			  &data->fb.fb_id);
++	memset(handles, data->gem_handle, 1);
++	memset(modifiers, tiling, 1);
++	ret =3D drmModeAddFB2WithModifiers(data->gfx_fd, w, h, format,
++					 handles, data->fb.strides,
++					 data->fb.offsets, modifiers,
++					 &data->fb.fb_id,
++					 LOCAL_DRM_MODE_FB_MODIFIERS);
+=20
+ 	if(ret < 0) {
+ 		igt_info("Creating fb for format %s failed, return code %d\n",
+diff --git a/tests/kms_draw_crc.c b/tests/kms_draw_crc.c
+index ea14db9a..507e6a7c 100644
+--- a/tests/kms_draw_crc.c
++++ b/tests/kms_draw_crc.c
+@@ -155,17 +155,19 @@ static void get_method_crc(enum igt_draw_method metho=
+d, uint32_t drm_format,
+=20
+ static bool format_is_supported(uint32_t format, uint64_t modifier)
+ {
+-	uint32_t gem_handle, fb_id;
++	uint32_t gem_handle, fb_id, handles[4] =3D {};
+ 	unsigned int offsets[4] =3D {};
+ 	unsigned int strides[4] =3D {};
++	uint64_t modifiers[4] =3D {};
+ 	int ret;
+=20
+ 	gem_handle =3D igt_create_bo_with_dimensions(drm_fd, 64, 64,
+ 						   format, modifier,
+ 						   0, NULL, &strides[0], NULL);
+-	ret =3D  __kms_addfb(drm_fd, gem_handle, 64, 64,
+-			   format, modifier, strides, offsets, 1,
+-			   LOCAL_DRM_MODE_FB_MODIFIERS, &fb_id);
++	memset(handles, gem_handle, 1);
++	ret =3D drmModeAddFB2WithModifiers(drm_fd, 64, 64, format, handles,
++					 strides, offsets, modifiers, &fb_id,
++					 LOCAL_DRM_MODE_FB_MODIFIERS);
+ 	drmModeRmFB(drm_fd, fb_id);
+ 	gem_close(drm_fd, gem_handle);
+=20
+diff --git a/tests/prime_vgem.c b/tests/prime_vgem.c
+index 09e3373b..286957e8 100644
+--- a/tests/prime_vgem.c
++++ b/tests/prime_vgem.c
+@@ -761,6 +761,7 @@ static void test_flip(int i915, int vgem, unsigned hang)
+ 	for (int i =3D 0; i < 2; i++) {
+ 		uint32_t strides[4] =3D {};
+ 		uint32_t offsets[4] =3D {};
++		uint32_t handles[4] =3D {};
+ 		int fd;
+=20
+ 		bo[i].width =3D mode->hdisplay;
+@@ -776,12 +777,13 @@ static void test_flip(int i915, int vgem, unsigned ha=
+ng)
+ 		strides[0] =3D bo[i].pitch;
+=20
+ 		/* May skip if i915 has no displays */
+-		igt_require(__kms_addfb(i915, handle[i],
+-					bo[i].width, bo[i].height,
+-					DRM_FORMAT_XRGB8888, I915_TILING_NONE,
+-					strides, offsets, 1,
+-					LOCAL_DRM_MODE_FB_MODIFIERS,
+-					&fb_id[i]) =3D=3D 0);
++		memset(handles, handle[i],1);
++		igt_require(drmModeAddFB2WithModifiers(i915, bo[i].width, bo[i].height,
++						       DRM_FORMAT_XRGB8888,
++						       handles, strides, offsets,
++						       I915_TILING_NONE, &fb_id[i],
++						       LOCAL_DRM_MODE_FB_MODIFIERS) =3D=3D 0);
++
+ 		igt_assert(fb_id[i]);
+ 	}
+=20
+--=20
+2.21.0
+
+--dlulvy3vwqzgcvoq
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCgAdFiEE4tZ+ii1mjMCMQbfkWJzP/comvP8FAlzh4BMACgkQWJzP/com
+vP/iZRAArqgDnM2Q2Gm2Ep9b9aFS431U3ifNQWTewmXzZK4c1Yh8k1BL8eGYcXyz
+qwEUGq9idQIFSyYV9aMKGKf5gMBQWeqjfrHnL021xZn94K3dkXIb+dAlG3/OsAl1
+HC5XO/z9X2Mf+VeE6q0IuGJY0QSsl7PL8q0mpRv4a9oumJjpfpQ/SlJXI2STUiCh
+d7ZeFc+HBr312IgAw5hc3XPNk6sUbxdN67TcosHb25WjhJ2Il0Mby4idLnW7Secg
+BOZKr/FOVu0zkbuoCy4TYnE+4ZZJ95/ryRsQbqxXETGuDO2D+q/CyAHbDr1qw3p3
+j5PRIbSEdBOdE9BkDctuz5by26QD5ca1iSura9h0cBM1T42GFnxMnlFzcRkhme9e
+SuhJP0SHb81lm+4xU6d6ysGY1sny01ZTuDrKKd785NwVNM13N0vxZMU9Str6AT6U
+yRAC21B1o76PG4mxzqecLufSqjPM2TUu7OTenxtCXLaY6Q7t+HptLrBjozJbB5G4
+B9QZ3gCZ7/LhHI0foegtFJpSu30xlIUGRx/BxUhrc+2Bi+cKV/HIBVtMCuRnS+Va
+5qR9QZXaH45NEBvSg16SMD9eeDU6mfHB/355WqdavXOFSW7zTR6FFmjAhHNfcRvL
+BrurZ2xqFFkloLK9fMDG6XgujLV0VF7M/4AGrdhWSJo36vMt2V8=
+=d3Ag
+-----END PGP SIGNATURE-----
+
+--dlulvy3vwqzgcvoq--
+
+--===============1181370717==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
+IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
+
+--===============1181370717==--
