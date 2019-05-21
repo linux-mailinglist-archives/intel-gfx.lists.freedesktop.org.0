@@ -1,65 +1,54 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 81A83257A8
-	for <lists+intel-gfx@lfdr.de>; Tue, 21 May 2019 20:38:57 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E37F2581C
+	for <lists+intel-gfx@lfdr.de>; Tue, 21 May 2019 21:18:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D0EC08961E;
-	Tue, 21 May 2019 18:38:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 586CA895F5;
+	Tue, 21 May 2019 19:18:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ed1-x544.google.com (mail-ed1-x544.google.com
- [IPv6:2a00:1450:4864:20::544])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DDE8B8961E
- for <intel-gfx@lists.freedesktop.org>; Tue, 21 May 2019 18:38:54 +0000 (UTC)
-Received: by mail-ed1-x544.google.com with SMTP id m4so30828291edd.8
- for <intel-gfx@lists.freedesktop.org>; Tue, 21 May 2019 11:38:54 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:content-transfer-encoding
- :in-reply-to:user-agent;
- bh=TqFMN/8wT73PSNJYdtdbrDZ3QbpaP88fZbuaFP3tkXo=;
- b=nmjW7E5RpEsqh+4s7/SIAxAzfAyymkixUvFtK4tojukQ+P7sP8pbm5Ag+QddLuwJty
- P+kkXgfPYkVEW/hhBT/I0VS8fEKmOYf41Lc6nNUMwKzdlaTJtDQU4iKDPpyPs/sw2Z5r
- 9/5by4ORSCRaj/PmiqhjPxyKWS7rp9zmTNxvbD6Fgl4KALJyJz57FAf/CS4lR6Iu+ZAe
- sclFvYMTcljKxUBFoPpATRw3TnEHR03lHW7Lj8pXIO6+XYhLOzAUgT63DlbOms2cGsPk
- I65/KqUrCsjMCI796hV0bL1FbhYq1oJWcVUGVbucnIk/O36OqK1Gn0t1R/S1SXO4KQPE
- skwA==
-X-Gm-Message-State: APjAAAVCu5cAIOkHKewNv2Hykpl68/skdNvHExMCwYf5nPq5v4trM63D
- Js6z7p7HON59uE2tE5wupVGCNGwcst8=
-X-Google-Smtp-Source: APXvYqxt6ctza6bvmO/13OnsMujfiK3SCqcjR/bKVvjYknaxcBmZ2tPmc6i23hHlFyclzzui+N38TA==
-X-Received: by 2002:a05:6402:1710:: with SMTP id
- y16mr83820147edu.275.1558463933445; 
- Tue, 21 May 2019 11:38:53 -0700 (PDT)
-Received: from archlinux-epyc ([2a01:4f9:2b:2b15::2])
- by smtp.gmail.com with ESMTPSA id d24sm6525030edb.5.2019.05.21.11.38.52
- (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
- Tue, 21 May 2019 11:38:52 -0700 (PDT)
-Date: Tue, 21 May 2019 11:38:50 -0700
-From: Nathan Chancellor <natechancellor@gmail.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Message-ID: <20190521183850.GA9157@archlinux-epyc>
-References: <87904259868782c1ad664d852b27a50c1597cfaa.1556540890.git.jani.nikula@intel.com>
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 12849895F5
+ for <intel-gfx@lists.freedesktop.org>; Tue, 21 May 2019 19:18:00 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 21 May 2019 12:17:59 -0700
+X-ExtLoop1: 1
+Received: from fmsmsx103.amr.corp.intel.com ([10.18.124.201])
+ by orsmga005.jf.intel.com with ESMTP; 21 May 2019 12:17:58 -0700
+Received: from FMSMSX110.amr.corp.intel.com (10.18.116.10) by
+ FMSMSX103.amr.corp.intel.com (10.18.124.201) with Microsoft SMTP Server (TLS)
+ id 14.3.408.0; Tue, 21 May 2019 12:17:58 -0700
+Received: from fmsmsx106.amr.corp.intel.com ([169.254.5.141]) by
+ FMSMSX110.amr.corp.intel.com ([169.254.14.250]) with mapi id 14.03.0415.000;
+ Tue, 21 May 2019 12:17:57 -0700
+From: "Summers, Stuart" <stuart.summers@intel.com>
+To: "Vivi, Rodrigo" <rodrigo.vivi@intel.com>
+Thread-Topic: [Intel-gfx] [PATCH 1/2] drm/i915: Re-add enable_rc6 modparam
+Thread-Index: AQHVCnS9ms3MYqGphkS+Vsw+YSLUYaZrS6qAgAAbZQCAAF1ZAIACOBCAgABGRYCAABmNAIAAAfuAgAGaQoCABnuvAA==
+Date: Tue, 21 May 2019 19:17:57 +0000
+Message-ID: <89c68007f7cc7568a98e73d090f1e35b908bee35.camel@intel.com>
+References: <20190514164653.935-1-stuart.summers@intel.com>
+ <155785283553.21839.2059003338244451933@skylake-alporthouse-com>
+ <4387e52b0895d400d4e0f5c71e4c8e0a164add7c.camel@intel.com>
+ <20190515000604.GC18687@intel.com> <87ftpeaff0.fsf@intel.com>
+ <a13bccb377efbfe2f4ee9e414e4053610d315e3b.camel@intel.com>
+ <87mujm76ej.fsf@intel.com>
+ <66758be0515771b27172bcf0e1e6138ff2932bce.camel@intel.com>
+ <20190517161739.GC6984@intel.com>
+In-Reply-To: <20190517161739.GC6984@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: yes
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.54.134.159]
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <87904259868782c1ad664d852b27a50c1597cfaa.1556540890.git.jani.nikula@intel.com>
-User-Agent: Mutt/1.11.4 (2019-03-13)
-X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20161025;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:content-transfer-encoding:in-reply-to
- :user-agent;
- bh=TqFMN/8wT73PSNJYdtdbrDZ3QbpaP88fZbuaFP3tkXo=;
- b=YNcfuKDobrhgDUGMzmCkQhLOMvXABfGneYr8IGVT2xohWEAH3Xal4uEnknXZS7/qSx
- XlUDiCfvbYCIVDutsw/eZPJEh5gfBv0tws/yzkDwFK2MR76Iaz/6stdia9aEkYenHuaX
- kYQdJ7avoxaHcbQoaM1/sq2KuM4IYBAa61SGKIkAuyMdmhjp8x1oxgtTOxehJoQpUcEP
- 6UCxPf68FgHf8BCBmYJ4Fvg4DkEnWc6c48KOkxS65X2qfrxFSdtdVz2z+oWqcTiEDb/b
- ZmIkxTOU6NlaaexGP9Rjte5cEDGg3a6SaD9k1q+uwpgUaglKQ2zq/9aRicVjBXtheAdX
- VJiA==
-Subject: Re: [Intel-gfx] [18/21] drm/i915: extract intel_runtime_pm.h from
- intel_drv.h
+Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915: Re-add enable_rc6 modparam
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -72,39 +61,228 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Content-Type: multipart/mixed; boundary="===============0538451242=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-SGkgSmFuaSwKCk9uIE1vbiwgQXByIDI5LCAyMDE5IGF0IDAzOjI5OjM2UE0gKzAzMDAsIEphbmkg
-TmlrdWxhIHdyb3RlOgo+IEl0IHVzZWQgdG8gYmUgaGFuZHkgdGhhdCB3ZSBvbmx5IGhhZCBhIGNv
-dXBsZSBvZiBoZWFkZXJzLCBidXQgb3ZlciB0aW1lCj4gaW50ZWxfZHJ2LmggaGFzIGJlY29tZSB1
-bndpZWxkeS4gRXh0cmFjdCBkZWNsYXJhdGlvbnMgdG8gYSBzZXBhcmF0ZQo+IGhlYWRlciBmaWxl
-IGNvcnJlc3BvbmRpbmcgdG8gdGhlIGltcGxlbWVudGF0aW9uIG1vZHVsZSwgY2xhcmlmeWluZyB0
-aGUKPiBtb2R1bGFyaXR5IG9mIHRoZSBkcml2ZXIuCj4gCj4gRW5zdXJlIHRoZSBuZXcgaGVhZGVy
-IGlzIHNlbGYtY29udGFpbmVkLCBhbmQgZG8gc28gd2l0aCBtaW5pbWFsIGZ1cnRoZXIKPiBpbmNs
-dWRlcywgdXNpbmcgZm9yd2FyZCBkZWNsYXJhdGlvbnMgYXMgbmVlZGVkLiBJbmNsdWRlIHRoZSBu
-ZXcgaGVhZGVyCj4gb25seSB3aGVyZSBuZWVkZWQsIGFuZCBzb3J0IHRoZSBtb2RpZmllZCBpbmNs
-dWRlIGRpcmVjdGl2ZXMgd2hpbGUgYXQgaXQKPiBhbmQgYXMgbmVlZGVkLgo+IAo+IE5vIGZ1bmN0
-aW9uYWwgY2hhbmdlcy4KPiAKPiBTaWduZWQtb2ZmLWJ5OiBKYW5pIE5pa3VsYSA8amFuaS5uaWt1
-bGFAaW50ZWwuY29tPgo+IC0tLQoKPHNuaXA+Cgo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9k
-cm0vaTkxNS9pbnRlbF9ydW50aW1lX3BtLmggYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9y
-dW50aW1lX3BtLmgKPiBuZXcgZmlsZSBtb2RlIDEwMDY0NAo+IGluZGV4IDAwMDAwMC4uNjkyMjc3
-Cj4gLS0tIC9kZXYvbnVsbAo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX3J1bnRp
-bWVfcG0uaAo+IEBAIC0wLDAgKzEsMTA1IEBACj4gKy8qIFNQRFgtTGljZW5zZS1JZGVudGlmaWVy
-OiBNSVQgKi8KPiArLyoKPiArICogQ29weXJpZ2h0IMKpIDIwMTkgSW50ZWwgQ29ycG9yYXRpb24K
-PiArICovCj4gKwo+ICsjaWZuZGVmIF9fSU5URUxfUlVOVElNRV9QTV9IX18KPiArI2RlZmluZSBf
-X0lOVEVMX1JVTlRJTUVfUE1fSF9fCj4gKwo+ICsjaW5jbHVkZSA8bGludXgvc3RhY2tkZXBvdC5o
-Pgo+ICsjaW5jbHVkZSA8bGludXgvdHlwZXMuaD4KPiArCj4gK3N0cnVjdCBkcm1faTkxNV9wcml2
-YXRlOwo+ICsKPiArdHlwZWRlZiBkZXBvdF9zdGFja19oYW5kbGVfdCBpbnRlbF93YWtlcmVmX3Q7
-CgpKdXN0IGFzIGFuIEZZSSwgdGhpcyBwYXJ0aWN1bGFyIGNoYW5nZSBjYXVzZXMgYSBzbGV3IG9m
-IGNsYW5nIHdhcm5pbmdzOgpodHRwczovL3RyYXZpcy1jaS5jb20vQ2xhbmdCdWlsdExpbnV4L2Nv
-bnRpbnVvdXMtaW50ZWdyYXRpb24vam9icy8yMDE3NTQ0MjAjTDI0MzUKCkkgYW0gbm90IHN1cmUg
-aG93IGV4YWN0bHkgeW91J2QgbGlrZSB0aGlzIHJlc29sdmVkIHNvIEkgZGlkbid0IHdhbnQgdG8K
-cHJvdmlkZSBhIHVzZWxlc3MgcGF0Y2guIEkgZmlndXJlZCBJIHdvdWxkIGxldCB5b3Uga25vdyBh
-Ym91dCBpdCBhbmQKbGVhdmUgaXQgdXAgdG8geW91LgoKQ2hlZXJzLApOYXRoYW4KX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcg
-bGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRl
-c2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
+--===============0538451242==
+Content-Language: en-US
+Content-Type: multipart/signed; micalg=sha-1;
+	protocol="application/x-pkcs7-signature"; boundary="=-jyKijYPsd3KgW+YbmL+T"
+
+--=-jyKijYPsd3KgW+YbmL+T
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+On Fri, 2019-05-17 at 09:17 -0700, Rodrigo Vivi wrote:
+> On Thu, May 16, 2019 at 03:49:19PM +0000, Summers, Stuart wrote:
+> > On Thu, 2019-05-16 at 18:42 +0300, Jani Nikula wrote:
+> > > On Thu, 16 May 2019, "Summers, Stuart" <stuart.summers@intel.com>
+> > > wrote:
+> > > > On Thu, 2019-05-16 at 12:59 +0300, Jani Nikula wrote:
+> > > > > On Tue, 14 May 2019, Rodrigo Vivi <rodrigo.vivi@intel.com>
+> > > > > wrote:
+> > > > > > One possibility that just came to my mind now is, what if
+> > > > > > we
+> > > > > > make
+> > > > > > this only for platforms that are still protected by
+> > > > > > is_alpha_support=3D1
+> > > > > > (soon becoming require_force_probe=3D1)
+> > > > >=20
+> > > > > Please don't conflate alpha_support or force_probe with
+> > > > > *anything*
+> > > > > else.
+> > > > >=20
+> > > > > > But this is just one side of the coin... when product is
+> > > > > > out
+> > > > > > there
+> > > > > > and we want the user to debug the issue to see if it is a
+> > > > > > RC6
+> > > > > > bug
+> > > > > > we have no way to verify that. :/
+> > > > >=20
+> > > > > The problem is, if it works with rc6 disabled, it doesn't
+> > > > > prove
+> > > > > it's
+> > > > > an
+> > > > > rc6 bug either.
+>=20
+> Well, RC6 is the main GT power gating. The issue could be on may
+> other
+> individual power gating, but if by disabling RC6 the issue is gone
+> it is a very good indication that it is a GT-PM bug somewhere.
+>=20
+> > > >=20
+> > > > Good point. I'm not saying we should enforce a process of
+> > > > disabling
+> > > > RC6
+> > > > for the platform if enable_rc6=3D0 results in success. I'm just
+> > > > saying
+> > > > having the option is useful from a debug perspective. We will
+> > > > still
+> > > > need to do the appropriate full analysis, including the normal
+> > > > code
+> > > > review process on a pre-case basis when debug involves this
+> > > > parameter.
+> > > > But the parameter itself is still useful.
+> > >=20
+> > > The trouble starts when users figure out that enable_rc6=3D0 works
+> > > around
+> > > a particular problem they have (likely by way of disabling
+> > > runtime
+> > > pm,
+> > > not directly related to rc6). You could argue this is a good
+> > > thing,
+> > > but
+> > > unfortunately we generally never hear from them again, and the
+> > > root
+> > > cause remains unsolved, with degraded user experience wrt power
+> > > management.
+>=20
+> This is indeed bad. We should probably be clear that by disabling
+> that
+> they are draining their power and probably killing battery life.
+
+I could add a DRM_ERROR or even a GEM_WARN_ON if this is set with a
+description similar to what you have if that's interesting.
+
+>=20
+> >=20
+> > So I understand the reasoning here, and agree that isn't an ideal
+> > situation. I'd also like a way to debug more efficiently. What did
+> > you
+> > think about the suggestion from Tvrtko to only apply on
+> > CONFIG_DRM_I915_DEBUG?
+>=20
+> if debug is on and parameter is set, right? Might be a good thing to
+> avoid the abuse on the parameter.
+>=20
+> >=20
+> > Or we could even wrap this entirely with a CONFIG_I915_DEBUG_PM -
+> > although I'd like to suggest we still use the module parameter, we
+> > could just use the config option to hide the modparam under normal
+> > operation.
+>=20
+> I think this looks more like you are enabling more logs and
+> not that you are disabling... unless the plan is to go with
+> this flag plus logs and traces around PM. Than I think it is
+> a good idea.
+
+I'm not precluding people from adding more logs here - and there will
+at least be some additional logs indicating we are bypassing the PM
+flows. But at least for this patch, the intention would be to add new
+"debug capability", which in this case, means the addition of the new
+module parameter, enable_rc6.
+
+Really this is just an extra deterent for users, since they'll need to
+custom build the kernel to get this - not something enabled by default
+in one of the distros, for instance.
+
+Thanks,
+Stuart
+
+>=20
+> Same rules needs to apply to  RC6, RPM, DC states,
+> display power well management, psr, etc.
+>=20
+> Thanks,
+> Rodrigo.
+>=20
+> >=20
+> > Thanks,
+> > Stuart
+> >=20
+> > >=20
+> > > BR,
+> > > Jani.
+> > >=20
+> > >=20
+>=20
+>=20
+>=20
+> > _______________________________________________
+> > Intel-gfx mailing list
+> > Intel-gfx@lists.freedesktop.org
+> > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+>=20
+>=20
+
+--=-jyKijYPsd3KgW+YbmL+T
+Content-Type: application/x-pkcs7-signature; name="smime.p7s"
+Content-Disposition: attachment; filename="smime.p7s"
+Content-Transfer-Encoding: base64
+
+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
+PwuHX1mRETAlwqXCZa6ba8eraUCltlCb/ZiEk9UFRVLjbLNPh9IYOi+sWkS6n5CovLKAqhMCAwEA
+AaOCAjMwggIvMB0GA1UdDgQWBBSgeYqvLV4nBaCUzAXLr0TeMJYR5zAfBgNVHSMEGDAWgBTaQSOc
+Wo9xr1eDPiDT42XbDMsL2zBlBgNVHR8EXjBcMFqgWKBWhlRodHRwOi8vd3d3LmludGVsLmNvbS9y
+ZXBvc2l0b3J5L0NSTC9JbnRlbCUyMEV4dGVybmFsJTIwQmFzaWMlMjBJc3N1aW5nJTIwQ0ElMjA0
+Qi5jcmwwgZ8GCCsGAQUFBwEBBIGSMIGPMCIGCCsGAQUFBzABhhZodHRwOi8vb2NzcC5pbnRlbC5j
+b20vMGkGCCsGAQUFBzAChl1odHRwOi8vd3d3LmludGVsLmNvbS9yZXBvc2l0b3J5L2NlcnRpZmlj
+YXRlcy9JbnRlbCUyMEV4dGVybmFsJTIwQmFzaWMlMjBJc3N1aW5nJTIwQ0ElMjA0Qi5jcnQwCwYD
+VR0PBAQDAgeAMDwGCSsGAQQBgjcVBwQvMC0GJSsGAQQBgjcVCIbDjHWEmeVRg/2BKIWOn1OCkcAJ
+Z4HevTmV8EMCAWQCAQkwHwYDVR0lBBgwFgYIKwYBBQUHAwQGCisGAQQBgjcKAwwwKQYJKwYBBAGC
+NxUKBBwwGjAKBggrBgEFBQcDBDAMBgorBgEEAYI3CgMMME0GA1UdEQRGMESgKAYKKwYBBAGCNxQC
+A6AaDBhzdHVhcnQuc3VtbWVyc0BpbnRlbC5jb22BGHN0dWFydC5zdW1tZXJzQGludGVsLmNvbTAN
+BgkqhkiG9w0BAQUFAAOCAQEAfyIC7rzSi6S8O+sdH384K8zyeMRJnl6vR7whl9PuEat+BkKpoxHn
+jQ0SFyF/cyI4lH/n938Pm3/Ctq0Z5GTldX6hhxxcLAR0qbk6AQU0Cq2nYMlZfX4FUz3FRsazbjTW
+1qObcvPRUAVScaa7SRGdensvbNV++pN1XqEdc++szxo58UzPaEgDlHIe2sEIVXnFkHnJv0ikRHG3
+urcA1bdj7Rac7dJBeQOQMdZEGmrWWmmbJzvk3OmoK9tKN7wcErQSdlqyYOMLesPfa7YNyLFYEJQd
+CC/N7V8U9yFZx8akWREb8lJYDl9KypirEsufleiew26CWrwcbmdlldDCFS6/HDGCAhcwggITAgEB
+MIGQMHkxCzAJBgNVBAYTAlVTMQswCQYDVQQIEwJDQTEUMBIGA1UEBxMLU2FudGEgQ2xhcmExGjAY
+BgNVBAoTEUludGVsIENvcnBvcmF0aW9uMSswKQYDVQQDEyJJbnRlbCBFeHRlcm5hbCBCYXNpYyBJ
+c3N1aW5nIENBIDRCAhMzAAB04Th3owY0UbEUAAAAAHThMAkGBSsOAwIaBQCgXTAYBgkqhkiG9w0B
+CQMxCwYJKoZIhvcNAQcBMBwGCSqGSIb3DQEJBTEPFw0xOTA1MjExOTE3NTRaMCMGCSqGSIb3DQEJ
+BDEWBBQxa73IEaqrok6okTxsaOnvmkeYszANBgkqhkiG9w0BAQEFAASCAQAnJB5oJtd8oUYEoKPO
+Fti4tJ5rFM4OwIpH9Mm/Pu6jshae1HIIhMj5HV//oNU9gEstRgGXg3zhkuIHMiVlPKMXzbb1mA0V
+KHgsS89XOH3mwBEejpwykNFARYp18qc/y7HTcQKDmkDs83gkalNbPiE/ObtuMwrvILU21xWlkVFz
+U51Gw6i/ujzAR/xntJIFh4y3Ja4leN/3AQfcGQdkTyQbTO8HgTZeXbrFv7nrT9yFbbT+6M7LXKWf
+31Q73WJn2KjIvIysqkVHz1IjfE44cas2j3XLdCqczyGtQ9w9IATxkjgmOdjMt70pnLq6uQjivNLh
+fbMp11ZTBux0tJDqGTfAAAAAAAAA
+
+
+--=-jyKijYPsd3KgW+YbmL+T--
+
+--===============0538451242==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
+IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
+
+--===============0538451242==--
