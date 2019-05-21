@@ -1,32 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 340F1259E6
-	for <lists+intel-gfx@lfdr.de>; Tue, 21 May 2019 23:24:13 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id DBAEF25A19
+	for <lists+intel-gfx@lfdr.de>; Tue, 21 May 2019 23:43:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8FA40895B6;
-	Tue, 21 May 2019 21:24:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EC54C895B6;
+	Tue, 21 May 2019 21:43:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id BA62C895B6;
- Tue, 21 May 2019 21:24:09 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id B2B83A010C;
- Tue, 21 May 2019 21:24:09 +0000 (UTC)
+Received: from ozlabs.org (bilbo.ozlabs.org [IPv6:2401:3900:2:1::2])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E9752895B6;
+ Tue, 21 May 2019 21:43:20 +0000 (UTC)
+Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
+ SHA256) (No client certificate requested)
+ by mail.ozlabs.org (Postfix) with ESMTPSA id 457q5022KZz9s3Z;
+ Wed, 22 May 2019 07:43:16 +1000 (AEST)
+Date: Wed, 22 May 2019 07:43:13 +1000
+From: Stephen Rothwell <sfr@canb.auug.org.au>
+To: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+Message-ID: <20190522074313.347f039a@canb.auug.org.au>
+In-Reply-To: <155844385673.15761.3434506339174536733@jlahtine-desk.ger.corp.intel.com>
+References: <20190520221526.0e103916@canb.auug.org.au>
+ <155844385673.15761.3434506339174536733@jlahtine-desk.ger.corp.intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Auld" <matthew.auld@intel.com>
-Date: Tue, 21 May 2019 21:24:09 -0000
-Message-ID: <20190521212409.13175.85936@emeril.freedesktop.org>
-References: <20190521204235.459-1-matthew.auld@intel.com>
-X-Patchwork-Hint: ignore
-In-Reply-To: <20190521204235.459-1-matthew.auld@intel.com>
-Subject: [Intel-gfx] =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_seri?=
- =?utf-8?q?es_starting_with_=5Bv3=2C1/2=5D_drm/i915/gtt=3A_grab_wakeref_in?=
- =?utf-8?q?_gen6=5Falloc=5Fva=5Frange?=
+X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=canb.auug.org.au; s=201702; t=1558474998;
+ bh=VLslGDXi1nLS5zOC5e0unUn83VnGb1HeqayhR5MbjPY=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+ b=bVfVn6vCR58ksGTm3Kz62mvFD/aP9HM8dyGBXIH3kCo+noYxJKuNjqMHduISxr3Zz
+ JAvv9T0uL+iBybdOBQioSUVBMudd6JuroiJGJ/at8j7IcG6K312zjXIdI8fqXKoWqY
+ YNBNj7VA6JjU1ZMHCylxbfCoe4Qnl2qIQ1G8njC+0xIZn9JNeimdr4p2jt/+m3aV5J
+ YfoT/TViq3MHC8mnivf70wb4ekHfXmTCkhPLM2JWh9o5UxEXjuaQgULB5m31ssiwtt
+ hsDHW31paQ7k0I0GI3aiZYmOOH1rqxIY88G/2otEjSUv6ik4Oj+qKMmaN2QvrYdOXi
+ jviTLZ4q8fMLQ==
+Subject: Re: [Intel-gfx] Comments in Fixes: line (Was: Re: linux-next: Fixes
+ tag needs some work in the drm-intel tree)
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -39,93 +50,63 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Intel Graphics <intel-gfx@lists.freedesktop.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ Linux Next Mailing List <linux-next@vger.kernel.org>,
+ DRI <dri-devel@lists.freedesktop.org>
+Content-Type: multipart/mixed; boundary="===============1915446579=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-PT0gU2VyaWVzIERldGFpbHMgPT0KClNlcmllczogc2VyaWVzIHN0YXJ0aW5nIHdpdGggW3YzLDEv
-Ml0gZHJtL2k5MTUvZ3R0OiBncmFiIHdha2VyZWYgaW4gZ2VuNl9hbGxvY192YV9yYW5nZQpVUkwg
-ICA6IGh0dHBzOi8vcGF0Y2h3b3JrLmZyZWVkZXNrdG9wLm9yZy9zZXJpZXMvNjA5MzAvClN0YXRl
-IDogc3VjY2VzcwoKPT0gU3VtbWFyeSA9PQoKQ0kgQnVnIExvZyAtIGNoYW5nZXMgZnJvbSBDSV9E
-Uk1fNjExNCAtPiBQYXRjaHdvcmtfMTMwNjUKPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
-PT09PT09PT09PT09PT09PT09PT09PQoKU3VtbWFyeQotLS0tLS0tCgogICoqU1VDQ0VTUyoqCgog
-IE5vIHJlZ3Jlc3Npb25zIGZvdW5kLgoKICBFeHRlcm5hbCBVUkw6IGh0dHBzOi8vaW50ZWwtZ2Z4
-LWNpLjAxLm9yZy90cmVlL2RybS10aXAvUGF0Y2h3b3JrXzEzMDY1LwoKUG9zc2libGUgbmV3IGlz
-c3VlcwotLS0tLS0tLS0tLS0tLS0tLS0tCgogIEhlcmUgYXJlIHRoZSB1bmtub3duIGNoYW5nZXMg
-dGhhdCBtYXkgaGF2ZSBiZWVuIGludHJvZHVjZWQgaW4gUGF0Y2h3b3JrXzEzMDY1OgoKIyMjIElH
-VCBjaGFuZ2VzICMjIwoKIyMjIyBQb3NzaWJsZSByZWdyZXNzaW9ucyAjIyMjCgogICoge2lndEBp
-OTE1X3NlbGZ0ZXN0QGxpdmVfYmx0fSAoTkVXKToKICAgIC0gZmktc2tsLWlvbW11OiAgICAgICBO
-T1RSVU4gLT4gW0lOQ09NUExFVEVdWzFdCiAgIFsxXTogaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEu
-b3JnL3RyZWUvZHJtLXRpcC9QYXRjaHdvcmtfMTMwNjUvZmktc2tsLWlvbW11L2lndEBpOTE1X3Nl
-bGZ0ZXN0QGxpdmVfYmx0Lmh0bWwKCiAgCk5ldyB0ZXN0cwotLS0tLS0tLS0KCiAgTmV3IHRlc3Rz
-IGhhdmUgYmVlbiBpbnRyb2R1Y2VkIGJldHdlZW4gQ0lfRFJNXzYxMTQgYW5kIFBhdGNod29ya18x
-MzA2NToKCiMjIyBOZXcgSUdUIHRlc3RzICgyKSAjIyMKCiAgKiBpZ3RAaTkxNV9zZWxmdGVzdEBs
-aXZlX2JsdDoKICAgIC0gU3RhdHVzZXMgOiAxIGluY29tcGxldGUocykgNDIgcGFzcyhzKQogICAg
-LSBFeGVjIHRpbWU6IFswLjAsIDEuOTldIHMKCiAgKiBpZ3RAaTkxNV9zZWxmdGVzdEBsaXZlX2Ns
-aWVudDoKICAgIC0gU3RhdHVzZXMgOiA0MiBwYXNzKHMpCiAgICAtIEV4ZWMgdGltZTogWzAuMzcs
-IDEuOTZdIHMKCiAgCgpLbm93biBpc3N1ZXMKLS0tLS0tLS0tLS0tCgogIEhlcmUgYXJlIHRoZSBj
-aGFuZ2VzIGZvdW5kIGluIFBhdGNod29ya18xMzA2NSB0aGF0IGNvbWUgZnJvbSBrbm93biBpc3N1
-ZXM6CgojIyMgSUdUIGNoYW5nZXMgIyMjCgojIyMjIElzc3VlcyBoaXQgIyMjIwoKICAqIGlndEBk
-ZWJ1Z2ZzX3Rlc3RAcmVhZF9hbGxfZW50cmllczoKICAgIC0gZmktaWxrLTY1MDogICAgICAgICBb
-UEFTU11bMl0gLT4gW0RNRVNHLVdBUk5dWzNdIChbZmRvIzEwNjM4N10pCiAgIFsyXTogaHR0cHM6
-Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9DSV9EUk1fNjExNC9maS1pbGstNjUw
-L2lndEBkZWJ1Z2ZzX3Rlc3RAcmVhZF9hbGxfZW50cmllcy5odG1sCiAgIFszXTogaHR0cHM6Ly9p
-bnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9QYXRjaHdvcmtfMTMwNjUvZmktaWxrLTY1
-MC9pZ3RAZGVidWdmc190ZXN0QHJlYWRfYWxsX2VudHJpZXMuaHRtbAoKICAKIyMjIyBQb3NzaWJs
-ZSBmaXhlcyAjIyMjCgogICogaWd0QGdlbV9iYXNpY0BjcmVhdGUtZmQtY2xvc2U6CiAgICAtIHtm
-aS1pY2wtdTN9OiAgICAgICAgW0RNRVNHLVdBUk5dWzRdIChbZmRvIzEwNzcyNF0pIC0+IFtQQVNT
-XVs1XSArMiBzaW1pbGFyIGlzc3VlcwogICBbNF06IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9y
-Zy90cmVlL2RybS10aXAvQ0lfRFJNXzYxMTQvZmktaWNsLXUzL2lndEBnZW1fYmFzaWNAY3JlYXRl
-LWZkLWNsb3NlLmh0bWwKICAgWzVdOiBodHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9k
-cm0tdGlwL1BhdGNod29ya18xMzA2NS9maS1pY2wtdTMvaWd0QGdlbV9iYXNpY0BjcmVhdGUtZmQt
-Y2xvc2UuaHRtbAoKICAqIGlndEBpOTE1X3NlbGZ0ZXN0QGxpdmVfY29udGV4dHM6CiAgICAtIGZp
-LWJkdy1ndnRkdm06ICAgICAgW0RNRVNHLUZBSUxdWzZdIChbZmRvIzExMDIzNV0pIC0+IFtQQVNT
-XVs3XQogICBbNl06IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAvQ0lf
-RFJNXzYxMTQvZmktYmR3LWd2dGR2bS9pZ3RAaTkxNV9zZWxmdGVzdEBsaXZlX2NvbnRleHRzLmh0
-bWwKICAgWzddOiBodHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlwL1BhdGNo
-d29ya18xMzA2NS9maS1iZHctZ3Z0ZHZtL2lndEBpOTE1X3NlbGZ0ZXN0QGxpdmVfY29udGV4dHMu
-aHRtbAoKICAqIGlndEBpOTE1X3NlbGZ0ZXN0QGxpdmVfaGFuZ2NoZWNrOgogICAgLSB7ZmktaWNs
-LXl9OiAgICAgICAgIFtJTkNPTVBMRVRFXVs4XSAoW2ZkbyMxMDc3MTNdIC8gW2ZkbyMxMDg1Njld
-KSAtPiBbUEFTU11bOV0KICAgWzhdOiBodHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9k
-cm0tdGlwL0NJX0RSTV82MTE0L2ZpLWljbC15L2lndEBpOTE1X3NlbGZ0ZXN0QGxpdmVfaGFuZ2No
-ZWNrLmh0bWwKICAgWzldOiBodHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlw
-L1BhdGNod29ya18xMzA2NS9maS1pY2wteS9pZ3RAaTkxNV9zZWxmdGVzdEBsaXZlX2hhbmdjaGVj
-ay5odG1sCgogIAojIyMjIFdhcm5pbmdzICMjIyMKCiAgKiBpZ3RAaTkxNV9zZWxmdGVzdEBsaXZl
-X2hhbmdjaGVjazoKICAgIC0gZmktYXBsLWd1YzogICAgICAgICBbRkFJTF1bMTBdIChbZmRvIzEx
-MDYyM10pIC0+IFtETUVTRy1GQUlMXVsxMV0gKFtmZG8jMTEwNjIwXSkKICAgWzEwXTogaHR0cHM6
-Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9DSV9EUk1fNjExNC9maS1hcGwtZ3Vj
-L2lndEBpOTE1X3NlbGZ0ZXN0QGxpdmVfaGFuZ2NoZWNrLmh0bWwKICAgWzExXTogaHR0cHM6Ly9p
-bnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9QYXRjaHdvcmtfMTMwNjUvZmktYXBsLWd1
-Yy9pZ3RAaTkxNV9zZWxmdGVzdEBsaXZlX2hhbmdjaGVjay5odG1sCgogIAogIHtuYW1lfTogVGhp
-cyBlbGVtZW50IGlzIHN1cHByZXNzZWQuIFRoaXMgbWVhbnMgaXQgaXMgaWdub3JlZCB3aGVuIGNv
-bXB1dGluZwogICAgICAgICAgdGhlIHN0YXR1cyBvZiB0aGUgZGlmZmVyZW5jZSAoU1VDQ0VTUywg
-V0FSTklORywgb3IgRkFJTFVSRSkuCgogIFtmZG8jMTA2Mzg3XTogaHR0cHM6Ly9idWdzLmZyZWVk
-ZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MTA2Mzg3CiAgW2ZkbyMxMDc3MTNdOiBodHRwczov
-L2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD0xMDc3MTMKICBbZmRvIzEwNzcy
-NF06IGh0dHBzOi8vYnVncy5mcmVlZGVza3RvcC5vcmcvc2hvd19idWcuY2dpP2lkPTEwNzcyNAog
-IFtmZG8jMTA4NTY5XTogaHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/
-aWQ9MTA4NTY5CiAgW2ZkbyMxMTAyMzVdOiBodHRwczovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3No
-b3dfYnVnLmNnaT9pZD0xMTAyMzUKICBbZmRvIzExMDYyMF06IGh0dHBzOi8vYnVncy5mcmVlZGVz
-a3RvcC5vcmcvc2hvd19idWcuY2dpP2lkPTExMDYyMAogIFtmZG8jMTEwNjIzXTogaHR0cHM6Ly9i
-dWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MTEwNjIzCgoKUGFydGljaXBhdGlu
-ZyBob3N0cyAoNTMgLT4gNDQpCi0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQoKICBNaXNz
-aW5nICAgICg5KTogZmkta2JsLXNvcmFrYSBmaS1pbGstbTU0MCBmaS1za2wtZ3Z0ZHZtIGZpLWhz
-dy00MjAwdSBmaS1ieXQtc3F1YXdrcyBmaS1ic3ctY3lhbiBmaS1wbnYtZDUxMCBmaS1ieXQtY2xh
-cHBlciBmaS1iZHctc2FtdXMgCgoKQnVpbGQgY2hhbmdlcwotLS0tLS0tLS0tLS0tCgogICogTGlu
-dXg6IENJX0RSTV82MTE0IC0+IFBhdGNod29ya18xMzA2NQoKICBDSV9EUk1fNjExNDogODY5MWZl
-NTM2ZTQxYzg1MmQzZDQyMGVkMDliMWQ1Zjk5MTYwMzFlNyBAIGdpdDovL2Fub25naXQuZnJlZWRl
-c2t0b3Aub3JnL2dmeC1jaS9saW51eAogIElHVF81MDAwOiBmOTk2MWQxNGQ3NmIzYTBmYTEyOTZl
-NTQ3ZjdjMDY1ZTJmOTM5NTVjIEAgZ2l0Oi8vYW5vbmdpdC5mcmVlZGVza3RvcC5vcmcveG9yZy9h
-cHAvaW50ZWwtZ3B1LXRvb2xzCiAgUGF0Y2h3b3JrXzEzMDY1OiBkZDllMDU4YjlkMzNhYzc3NGZi
-YWQ3MWJmNzc0NmVkMmI3YjI2MDY1IEAgZ2l0Oi8vYW5vbmdpdC5mcmVlZGVza3RvcC5vcmcvZ2Z4
-LWNpL2xpbnV4CgoKPT0gTGludXggY29tbWl0cyA9PQoKZGQ5ZTA1OGI5ZDMzIGRybS9pOTE1OiBh
-ZGQgaW4ta2VybmVsIGJsaXR0ZXIgY2xpZW50CmMyYTVlMzAxNTk2ZiBkcm0vaTkxNS9ndHQ6IGdy
-YWIgd2FrZXJlZiBpbiBnZW42X2FsbG9jX3ZhX3JhbmdlCgo9PSBMb2dzID09CgpGb3IgbW9yZSBk
-ZXRhaWxzIHNlZTogaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9QYXRj
-aHdvcmtfMTMwNjUvCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9y
-ZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdm
-eA==
+--===============1915446579==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ boundary="Sig_/=1dxdUJ9WnawpF7=6CXdUXL"; protocol="application/pgp-signature"
+
+--Sig_/=1dxdUJ9WnawpF7=6CXdUXL
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
+
+Hi Joonas,
+
+On Tue, 21 May 2019 16:04:16 +0300 Joonas Lahtinen <joonas.lahtinen@linux.i=
+ntel.com> wrote:
+>
+> We also have an incoming patch where the Fixes: line has a comment in
+> it. Does your tooling account for this when checking the Fixes: line?
+
+I will make sure mine does.
+
+--=20
+Cheers,
+Stephen Rothwell
+
+--Sig_/=1dxdUJ9WnawpF7=6CXdUXL
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAlzkcPEACgkQAVBC80lX
+0GzFlwf+MRLCmFgKUnLP3fJYw0qVudP2JJ2+wXN3AJcl4p302jwHHLs34RTTSeN7
+pxoR0xFFeaAIqytLYGfizowqX86Qv6dxiRTckoPuE3uw+SH76lcwQtZzgDTppYgo
+axsQxTaRStKFYun8p8SNZdFfZF8BuI9kTl8OhUcrysVs+57v8etyZ+XyZspvzVQN
+XR9Z4bIb1aufYEVJq0ygaQ0iCXzvfZOoeZdqrAJ+YWVwaG5D2G/JruOuDOU62E/D
+tcYcQmFSO9Ry3hsbOWAgzAL4nU8XR9Xwem2gJmg+1rqBRIOhCj3/ZTtR5ODnFA8Q
+IV3Uyqjc277gqQaOeVjGG8KCP+x4cQ==
+=fjIr
+-----END PGP SIGNATURE-----
+
+--Sig_/=1dxdUJ9WnawpF7=6CXdUXL--
+
+--===============1915446579==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
+IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
+
+--===============1915446579==--
