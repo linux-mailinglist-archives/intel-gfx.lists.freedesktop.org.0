@@ -2,36 +2,70 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7EEAE24838
-	for <lists+intel-gfx@lfdr.de>; Tue, 21 May 2019 08:40:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F3B5C2487B
+	for <lists+intel-gfx@lfdr.de>; Tue, 21 May 2019 08:55:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A83B389126;
-	Tue, 21 May 2019 06:40:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ECEB68921B;
+	Tue, 21 May 2019 06:55:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2402589123;
- Tue, 21 May 2019 06:40:49 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 20 May 2019 23:40:48 -0700
-X-ExtLoop1: 1
-Received: from jnikula-mobl3.fi.intel.com (HELO localhost) ([10.237.66.150])
- by fmsmga001.fm.intel.com with ESMTP; 20 May 2019 23:40:45 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Andrzej Hajda <a.hajda@samsung.com>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>
-In-Reply-To: <20190520092054.30724-3-gwan-gyeong.mun@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20190520092054.30724-1-gwan-gyeong.mun@intel.com>
- <20190520092054.30724-3-gwan-gyeong.mun@intel.com>
-Date: Tue, 21 May 2019 09:44:04 +0300
-Message-ID: <87woik8fyj.fsf@intel.com>
+Received: from mail-lf1-x142.google.com (mail-lf1-x142.google.com
+ [IPv6:2a00:1450:4864:20::142])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C5672891A0;
+ Tue, 21 May 2019 06:55:18 +0000 (UTC)
+Received: by mail-lf1-x142.google.com with SMTP id y10so12190704lfl.3;
+ Mon, 20 May 2019 23:55:18 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:in-reply-to
+ :references:mime-version;
+ bh=DqyiY8wtLT0EcPhKsm1D6X9mrDlfr7Pcv8QbK0RtkQo=;
+ b=WOUtv5wIHVCOeqQOvx5c/5GEyWdoYw1eyW2JAatB/MvDederEDZGnW9wWcZg2h5uYn
+ 3Pw1r2Ujj8c8V5lR4NF7IxNvYm69QD+cqzTscIEc1GTGtqkBFTrOuMJYFy6cKeGUO+HB
+ ZOMUwUYBF7BxvogoXB9rE07yqvMNgikYX/N0erF21XQz20PVoZyzoADlL1K8+cLQNauF
+ TNLh1muEbcmwh5zTb6hTcJrtTEC8RrGM168EuEiqgFdkeDNYB9kL8J59ZlCSA41Dt5mp
+ Kn3qVqKHsV8QcM0+kCzCFtpqtNfdV8NvE3rhsqYnzch+OQ42GSMN1kh0uXEBCKSLAKrj
+ iJ1A==
+X-Gm-Message-State: APjAAAUYR3VSYkEitC08ZcYezUmvu5XrNCuve9tT3n+HdA0N3E11Whk+
+ xlcsiU0NP/1/Qjj1kGRFFgw=
+X-Google-Smtp-Source: APXvYqy1F7FJIU78wglWp3p+82mfvFIDdJGHwavAqU+pyhw3fqARRWeboAF8X/P0v1Sen0yr3wGTeA==
+X-Received: by 2002:ac2:59c7:: with SMTP id x7mr1282058lfn.75.1558421717049;
+ Mon, 20 May 2019 23:55:17 -0700 (PDT)
+Received: from eldfell.localdomain ([194.136.85.206])
+ by smtp.gmail.com with ESMTPSA id n8sm4485022lfe.15.2019.05.20.23.55.16
+ (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+ Mon, 20 May 2019 23:55:16 -0700 (PDT)
+Date: Tue, 21 May 2019 09:55:05 +0300
+From: Pekka Paalanen <ppaalanen@gmail.com>
+To: Daniel Vetter <daniel@ffwll.ch>
+Message-ID: <20190521095505.7ef1cbdf@eldfell.localdomain>
+In-Reply-To: <20190520161107.GA21222@phenom.ffwll.local>
+References: <20190514110242.6f6ba4b0@eldfell.localdomain>
+ <9b6386239ecae396fc4f5cc4467f8e76721f2c83.camel@intel.com>
+ <CAKMK7uHJPugRWJx32oWVF94jBf28P0nBirZNbSBRMS1SbUaS9A@mail.gmail.com>
+ <20190514163602.7d252b12@eldfell.localdomain>
+ <CAKMK7uGMJMZiOP4rhhiu=Obu6sO0oav5se-vy8bNLu8dfoZmvA@mail.gmail.com>
+ <20190515103731.16855195@eldfell.localdomain>
+ <20190515082449.GA17751@phenom.ffwll.local>
+ <20190516112211.1cd5a8c6@eldfell.localdomain>
+ <20190516122455.GA3851@phenom.ffwll.local>
+ <20190517130824.17372663@eldfell.localdomain>
+ <20190520161107.GA21222@phenom.ffwll.local>
+X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v8 2/6] drm: Rename struct edp_vsc_psr to
- struct dp_sdp
+X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20161025;
+ h=date:from:to:cc:subject:message-id:in-reply-to:references
+ :mime-version;
+ bh=DqyiY8wtLT0EcPhKsm1D6X9mrDlfr7Pcv8QbK0RtkQo=;
+ b=kf6VuThoSyyPet0TW89H6BQHwFcXSP0HIsBk9EUb2R6dl/knTtfHq8w4ZTmYMoQ21J
+ ZkmyYPOBDxOAfVV1zx+aVGMS/21/VWZgTUCaYI5vHvRZ2ErL1rbab3H1uVwNPQS/QdR/
+ hJcL5ptDORQ0IQtgBiP1CaQeWYgvTTNonFho4tckee/gf2qb7rr/i8nrNi7mGXe3E/J9
+ rYAA6SRrXz9YPVSzo4midVsOmiQHY/WVKjiBz47y4O0QsQ9uEfd5au32lz+DYcRo9pLZ
+ jcOfQde5KHJdTFauQQworKaqlPqGWonQ7Gp8qLLbufmEJtTzd/orvCxdBWp0Og312pQs
+ hk8Q==
+Subject: Re: [Intel-gfx] [PATCH v7 09/11] drm: uevent for connector status
+ change
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -44,155 +78,455 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: "Ser, Simon" <simon.ser@intel.com>,
+ "maxime.ripard@bootlin.com" <maxime.ripard@bootlin.com>,
+ Daniel Vetter <daniel.vetter@ffwll.ch>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "paul.kocialkowski@bootlin.com" <paul.kocialkowski@bootlin.com>,
+ "airlied@linux.ie" <airlied@linux.ie>,
+ "thomas.petazzoni@bootlin.com" <thomas.petazzoni@bootlin.com>, "Vetter,
+ Daniel" <daniel.vetter@intel.com>
+Content-Type: multipart/mixed; boundary="===============0985873807=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gTW9uLCAyMCBNYXkgMjAxOSwgR3dhbi1neWVvbmcgTXVuIDxnd2FuLWd5ZW9uZy5tdW5AaW50
-ZWwuY29tPiB3cm90ZToKPiBWU0MgU0RQIFBheWxvYWQgZm9yIFBTUiBpcyBvbmUgb2YgZGF0YSBi
-bG9jayB0eXBlIG9mIFNEUCAoU2Vjb25kYXJheSBEYXRhCj4gUGFja2V0KS4gSW4gb3JkZXIgdG8g
-Z2VuZXJhbGl6ZSBTRFAgcGFja2V0IHN0cnVjdHVyZSBuYW1lLCBpdCByZW5hbWVzCj4gc3RydWN0
-IGVkcF92c2NfcHNyIHRvIHN0cnVjdCBkcF9zZHAuIEFuZCBlYWNoIFNEUCBkYXRhIGJsb2NrcyBo
-YXZlCj4gZGlmZmVyZW50IHVzYWdlcywgZWFjaCBTRFAgdHlwZSBoYXMgZGlmZmVyZW50IHJlc2Vy
-dmVkIGRhdGEgYmxvY2tzIGFuZAo+IFZpZGVvX1N0cmVhbV9Db25maWd1cmF0aW9uIEV4dGVuc2lv
-biBWRVNBIFNEUCBtaWdodCB1c2UgYWxsIG9mIERhdGEgQmxvY2tzCj4gYXMgRXh0ZW5kZWQgSU5G
-T1JGUkFNRSBEYXRhIEJ5dGUuIHNvIGl0IG1ha2VzIERhdGEgQmxvY2sgdmFyaWFibGVzIGFzCj4g
-YXJyYXkgdHlwZS4gQW5kIGl0IGFkZHMgY29tbWVudHMgb2YgZGV0YWlscyBvZiBEQiBvZiBWU0Mg
-U0RQIFBheWxvYWQKPiBmb3IgUGl4ZWwgRW5jb2RpbmcvQ29sb3JpbWV0cnkgRm9ybWF0LiBUaGlz
-IGNvbW1lbnRzIGZvbGxvd3MgRFAgMS40YSBzcGVjLAo+IHNlY3Rpb24gMi4yLjUuNy41LCBjaGFw
-dGVyICJWU0MgU0RQIFBheWxvYWQgZm9yIFBpeGVsIEVuY29kaW5nL0NvbG9yaW1ldHJ5Cj4gRm9y
-bWF0Ii4KPgo+IHY3OiBBZGRyZXNzZWQgcmV2aWV3IGNvbW1lbnRzIGZyb20gVmlsbGUuCj4KPiBD
-YzogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KPiBTaWdu
-ZWQtb2ZmLWJ5OiBHd2FuLWd5ZW9uZyBNdW4gPGd3YW4tZ3llb25nLm11bkBpbnRlbC5jb20+Cj4g
-UmV2aWV3ZWQtYnk6IE1hYXJ0ZW4gTGFua2hvcnN0IDxtYWFydGVuLmxhbmtob3JzdEBsaW51eC5p
-bnRlbC5jb20+CgpBbmRyemVqLCBMYXVyZW50IC0KClNldmVuIHZlcnNpb25zIG9mIHRoZSBwYXRj
-aCBhbmQgbG9va3MgbGlrZSB3ZSd2ZSBmYWlsZWQgdG8gbG9vcCB5b3UgaW4Kb24gdGhpcy4gU29y
-cnkuIE1heSBJIGhhdmUgeW91ciBhY2sgb24gdGhlIHBhdGNoIHBsZWFzZT8KCklzIGl0IHRvbyBt
-dWNoIHRvIGFzayB0byBoYXZlIHRoaXMgbWVyZ2VkIHZpYSBkcm0taW50ZWwgYWxvbmcgd2l0aCB0
-aGUKcmVzdCBvZiB0aGUgc2VyaWVzPwoKQlIsCkphbmkuCgoKPiAtLS0KPiAgLi4uL2RybS9icmlk
-Z2UvYW5hbG9naXgvYW5hbG9naXhfZHBfY29yZS5jICAgIHwgMTIgKysrLS0tLQo+ICAuLi4vZHJt
-L2JyaWRnZS9hbmFsb2dpeC9hbmFsb2dpeF9kcF9jb3JlLmggICAgfCAgMiArLQo+ICAuLi4vZ3B1
-L2RybS9icmlkZ2UvYW5hbG9naXgvYW5hbG9naXhfZHBfcmVnLmMgfCAxMCArKystLS0KPiAgZHJp
-dmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfcHNyLmMgICAgICAgICAgICAgIHwgIDIgKy0KPiAgaW5j
-bHVkZS9kcm0vZHJtX2RwX2hlbHBlci5oICAgICAgICAgICAgICAgICAgIHwgMzMgKysrKysrKysr
-KysrKy0tLS0tLQo+ICA1IGZpbGVzIGNoYW5nZWQsIDM2IGluc2VydGlvbnMoKyksIDIzIGRlbGV0
-aW9ucygtKQo+Cj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9icmlkZ2UvYW5hbG9naXgv
-YW5hbG9naXhfZHBfY29yZS5jIGIvZHJpdmVycy9ncHUvZHJtL2JyaWRnZS9hbmFsb2dpeC9hbmFs
-b2dpeF9kcF9jb3JlLmMKPiBpbmRleCAyMjVmNWU1ZGQ2OWIuLmQxYzI2NTlkMGNjZSAxMDA2NDQK
-PiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vYnJpZGdlL2FuYWxvZ2l4L2FuYWxvZ2l4X2RwX2NvcmUu
-Ywo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9icmlkZ2UvYW5hbG9naXgvYW5hbG9naXhfZHBfY29y
-ZS5jCj4gQEAgLTExNSw3ICsxMTUsNyBAQCBFWFBPUlRfU1lNQk9MX0dQTChhbmFsb2dpeF9kcF9w
-c3JfZW5hYmxlZCk7Cj4gIAo+ICBpbnQgYW5hbG9naXhfZHBfZW5hYmxlX3BzcihzdHJ1Y3QgYW5h
-bG9naXhfZHBfZGV2aWNlICpkcCkKPiAgewo+IC0Jc3RydWN0IGVkcF92c2NfcHNyIHBzcl92c2M7
-Cj4gKwlzdHJ1Y3QgZHBfc2RwIHBzcl92c2M7Cj4gIAo+ICAJaWYgKCFkcC0+cHNyX2VuYWJsZSkK
-PiAgCQlyZXR1cm4gMDsKPiBAQCAtMTI3LDggKzEyNyw4IEBAIGludCBhbmFsb2dpeF9kcF9lbmFi
-bGVfcHNyKHN0cnVjdCBhbmFsb2dpeF9kcF9kZXZpY2UgKmRwKQo+ICAJcHNyX3ZzYy5zZHBfaGVh
-ZGVyLkhCMiA9IDB4MjsKPiAgCXBzcl92c2Muc2RwX2hlYWRlci5IQjMgPSAweDg7Cj4gIAo+IC0J
-cHNyX3ZzYy5EQjAgPSAwOwo+IC0JcHNyX3ZzYy5EQjEgPSBFRFBfVlNDX1BTUl9TVEFURV9BQ1RJ
-VkUgfCBFRFBfVlNDX1BTUl9DUkNfVkFMVUVTX1ZBTElEOwo+ICsJcHNyX3ZzYy5EQlswXSA9IDA7
-Cj4gKwlwc3JfdnNjLkRCWzFdID0gRURQX1ZTQ19QU1JfU1RBVEVfQUNUSVZFIHwgRURQX1ZTQ19Q
-U1JfQ1JDX1ZBTFVFU19WQUxJRDsKPiAgCj4gIAlyZXR1cm4gYW5hbG9naXhfZHBfc2VuZF9wc3Jf
-c3BkKGRwLCAmcHNyX3ZzYywgdHJ1ZSk7Cj4gIH0KPiBAQCAtMTM2LDcgKzEzNiw3IEBAIEVYUE9S
-VF9TWU1CT0xfR1BMKGFuYWxvZ2l4X2RwX2VuYWJsZV9wc3IpOwo+ICAKPiAgaW50IGFuYWxvZ2l4
-X2RwX2Rpc2FibGVfcHNyKHN0cnVjdCBhbmFsb2dpeF9kcF9kZXZpY2UgKmRwKQo+ICB7Cj4gLQlz
-dHJ1Y3QgZWRwX3ZzY19wc3IgcHNyX3ZzYzsKPiArCXN0cnVjdCBkcF9zZHAgcHNyX3ZzYzsKPiAg
-CWludCByZXQ7Cj4gIAo+ICAJaWYgKCFkcC0+cHNyX2VuYWJsZSkKPiBAQCAtMTQ5LDggKzE0OSw4
-IEBAIGludCBhbmFsb2dpeF9kcF9kaXNhYmxlX3BzcihzdHJ1Y3QgYW5hbG9naXhfZHBfZGV2aWNl
-ICpkcCkKPiAgCXBzcl92c2Muc2RwX2hlYWRlci5IQjIgPSAweDI7Cj4gIAlwc3JfdnNjLnNkcF9o
-ZWFkZXIuSEIzID0gMHg4Owo+ICAKPiAtCXBzcl92c2MuREIwID0gMDsKPiAtCXBzcl92c2MuREIx
-ID0gMDsKPiArCXBzcl92c2MuREJbMF0gPSAwOwo+ICsJcHNyX3ZzYy5EQlsxXSA9IDA7Cj4gIAo+
-ICAJcmV0ID0gZHJtX2RwX2RwY2Rfd3JpdGViKCZkcC0+YXV4LCBEUF9TRVRfUE9XRVIsIERQX1NF
-VF9QT1dFUl9EMCk7Cj4gIAlpZiAocmV0ICE9IDEpIHsKPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9n
-cHUvZHJtL2JyaWRnZS9hbmFsb2dpeC9hbmFsb2dpeF9kcF9jb3JlLmggYi9kcml2ZXJzL2dwdS9k
-cm0vYnJpZGdlL2FuYWxvZ2l4L2FuYWxvZ2l4X2RwX2NvcmUuaAo+IGluZGV4IDc2OTI1NWRjNmU5
-OS4uM2U1ZmU5MGVkZjcxIDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9icmlkZ2UvYW5h
-bG9naXgvYW5hbG9naXhfZHBfY29yZS5oCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2JyaWRnZS9h
-bmFsb2dpeC9hbmFsb2dpeF9kcF9jb3JlLmgKPiBAQCAtMjU0LDcgKzI1NCw3IEBAIHZvaWQgYW5h
-bG9naXhfZHBfZW5hYmxlX3NjcmFtYmxpbmcoc3RydWN0IGFuYWxvZ2l4X2RwX2RldmljZSAqZHAp
-Owo+ICB2b2lkIGFuYWxvZ2l4X2RwX2Rpc2FibGVfc2NyYW1ibGluZyhzdHJ1Y3QgYW5hbG9naXhf
-ZHBfZGV2aWNlICpkcCk7Cj4gIHZvaWQgYW5hbG9naXhfZHBfZW5hYmxlX3Bzcl9jcmMoc3RydWN0
-IGFuYWxvZ2l4X2RwX2RldmljZSAqZHApOwo+ICBpbnQgYW5hbG9naXhfZHBfc2VuZF9wc3Jfc3Bk
-KHN0cnVjdCBhbmFsb2dpeF9kcF9kZXZpY2UgKmRwLAo+IC0JCQkgICAgIHN0cnVjdCBlZHBfdnNj
-X3BzciAqdnNjLCBib29sIGJsb2NraW5nKTsKPiArCQkJICAgICBzdHJ1Y3QgZHBfc2RwICp2c2Ms
-IGJvb2wgYmxvY2tpbmcpOwo+ICBzc2l6ZV90IGFuYWxvZ2l4X2RwX3RyYW5zZmVyKHN0cnVjdCBh
-bmFsb2dpeF9kcF9kZXZpY2UgKmRwLAo+ICAJCQkgICAgIHN0cnVjdCBkcm1fZHBfYXV4X21zZyAq
-bXNnKTsKPiAgCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9icmlkZ2UvYW5hbG9naXgv
-YW5hbG9naXhfZHBfcmVnLmMgYi9kcml2ZXJzL2dwdS9kcm0vYnJpZGdlL2FuYWxvZ2l4L2FuYWxv
-Z2l4X2RwX3JlZy5jCj4gaW5kZXggYTVmMjc2M2Q3MmU0Li5mNTkxODEwZWYxYmUgMTAwNjQ0Cj4g
-LS0tIGEvZHJpdmVycy9ncHUvZHJtL2JyaWRnZS9hbmFsb2dpeC9hbmFsb2dpeF9kcF9yZWcuYwo+
-ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9icmlkZ2UvYW5hbG9naXgvYW5hbG9naXhfZHBfcmVnLmMK
-PiBAQCAtMTA0MSw3ICsxMDQxLDcgQEAgc3RhdGljIHNzaXplX3QgYW5hbG9naXhfZHBfZ2V0X3Bz
-cl9zdGF0dXMoc3RydWN0IGFuYWxvZ2l4X2RwX2RldmljZSAqZHApCj4gIH0KPiAgCj4gIGludCBh
-bmFsb2dpeF9kcF9zZW5kX3Bzcl9zcGQoc3RydWN0IGFuYWxvZ2l4X2RwX2RldmljZSAqZHAsCj4g
-LQkJCSAgICAgc3RydWN0IGVkcF92c2NfcHNyICp2c2MsIGJvb2wgYmxvY2tpbmcpCj4gKwkJCSAg
-ICAgc3RydWN0IGRwX3NkcCAqdnNjLCBib29sIGJsb2NraW5nKQo+ICB7Cj4gIAl1bnNpZ25lZCBp
-bnQgdmFsOwo+ICAJaW50IHJldDsKPiBAQCAtMTA2OSw4ICsxMDY5LDggQEAgaW50IGFuYWxvZ2l4
-X2RwX3NlbmRfcHNyX3NwZChzdHJ1Y3QgYW5hbG9naXhfZHBfZGV2aWNlICpkcCwKPiAgCXdyaXRl
-bCgweDVELCBkcC0+cmVnX2Jhc2UgKyBBTkFMT0dJWF9EUF9TUERfUEIzKTsKPiAgCj4gIAkvKiBj
-b25maWd1cmUgREIwIC8gREIxIHZhbHVlcyAqLwo+IC0Jd3JpdGVsKHZzYy0+REIwLCBkcC0+cmVn
-X2Jhc2UgKyBBTkFMT0dJWF9EUF9WU0NfU0hBRE9XX0RCMCk7Cj4gLQl3cml0ZWwodnNjLT5EQjEs
-IGRwLT5yZWdfYmFzZSArIEFOQUxPR0lYX0RQX1ZTQ19TSEFET1dfREIxKTsKPiArCXdyaXRlbCh2
-c2MtPkRCWzBdLCBkcC0+cmVnX2Jhc2UgKyBBTkFMT0dJWF9EUF9WU0NfU0hBRE9XX0RCMCk7Cj4g
-Kwl3cml0ZWwodnNjLT5EQlsxXSwgZHAtPnJlZ19iYXNlICsgQU5BTE9HSVhfRFBfVlNDX1NIQURP
-V19EQjEpOwo+ICAKPiAgCS8qIHNldCByZXVzZSBzcGQgaW5mb3JmcmFtZSAqLwo+ICAJdmFsID0g
-cmVhZGwoZHAtPnJlZ19iYXNlICsgQU5BTE9HSVhfRFBfVklERU9fQ1RMXzMpOwo+IEBAIC0xMDky
-LDggKzEwOTIsOCBAQCBpbnQgYW5hbG9naXhfZHBfc2VuZF9wc3Jfc3BkKHN0cnVjdCBhbmFsb2dp
-eF9kcF9kZXZpY2UgKmRwLAo+ICAKPiAgCXJldCA9IHJlYWR4X3BvbGxfdGltZW91dChhbmFsb2dp
-eF9kcF9nZXRfcHNyX3N0YXR1cywgZHAsIHBzcl9zdGF0dXMsCj4gIAkJcHNyX3N0YXR1cyA+PSAw
-ICYmCj4gLQkJKCh2c2MtPkRCMSAmJiBwc3Jfc3RhdHVzID09IERQX1BTUl9TSU5LX0FDVElWRV9S
-RkIpIHx8Cj4gLQkJKCF2c2MtPkRCMSAmJiBwc3Jfc3RhdHVzID09IERQX1BTUl9TSU5LX0lOQUNU
-SVZFKSksIDE1MDAsCj4gKwkJKCh2c2MtPkRCWzFdICYmIHBzcl9zdGF0dXMgPT0gRFBfUFNSX1NJ
-TktfQUNUSVZFX1JGQikgfHwKPiArCQkoIXZzYy0+REJbMV0gJiYgcHNyX3N0YXR1cyA9PSBEUF9Q
-U1JfU0lOS19JTkFDVElWRSkpLCAxNTAwLAo+ICAJCURQX1RJTUVPVVRfUFNSX0xPT1BfTVMgKiAx
-MDAwKTsKPiAgCWlmIChyZXQpIHsKPiAgCQlkZXZfd2FybihkcC0+ZGV2LCAiRmFpbGVkIHRvIGFw
-cGx5IFBTUiAlZFxuIiwgcmV0KTsKPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUv
-aW50ZWxfcHNyLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9wc3IuYwo+IGluZGV4IDJh
-NTQ3YTEyOGEzNy4uMDFjYTUwMjA5OWRmIDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9p
-OTE1L2ludGVsX3Bzci5jCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfcHNyLmMK
-PiBAQCAtMzQyLDcgKzM0Miw3IEBAIHN0YXRpYyB2b2lkIGludGVsX3Bzcl9zZXR1cF92c2Moc3Ry
-dWN0IGludGVsX2RwICppbnRlbF9kcCwKPiAgewo+ICAJc3RydWN0IGludGVsX2RpZ2l0YWxfcG9y
-dCAqaW50ZWxfZGlnX3BvcnQgPSBkcF90b19kaWdfcG9ydChpbnRlbF9kcCk7Cj4gIAlzdHJ1Y3Qg
-ZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYgPSBkcF90b19pOTE1KGludGVsX2RwKTsKPiAtCXN0
-cnVjdCBlZHBfdnNjX3BzciBwc3JfdnNjOwo+ICsJc3RydWN0IGRwX3NkcCBwc3JfdnNjOwo+ICAK
-PiAgCWlmIChkZXZfcHJpdi0+cHNyLnBzcjJfZW5hYmxlZCkgewo+ICAJCS8qIFByZXBhcmUgVlND
-IEhlYWRlciBmb3IgU1UgYXMgcGVyIEVEUCAxLjQgc3BlYywgVGFibGUgNi4xMSAqLwo+IGRpZmYg
-LS1naXQgYS9pbmNsdWRlL2RybS9kcm1fZHBfaGVscGVyLmggYi9pbmNsdWRlL2RybS9kcm1fZHBf
-aGVscGVyLmgKPiBpbmRleCA5N2NlNzkwYTViNWEuLjhkN2M0N2U0NmYyZCAxMDA2NDQKPiAtLS0g
-YS9pbmNsdWRlL2RybS9kcm1fZHBfaGVscGVyLmgKPiArKysgYi9pbmNsdWRlL2RybS9kcm1fZHBf
-aGVscGVyLmgKPiBAQCAtMTA4MywxNyArMTA4MywzMCBAQCBzdHJ1Y3QgZHBfc2RwX2hlYWRlciB7
-Cj4gICNkZWZpbmUgRURQX1NEUF9IRUFERVJfVkFMSURfUEFZTE9BRF9CWVRFUwkweDFGCj4gICNk
-ZWZpbmUgRFBfU0RQX1BQU19IRUFERVJfUEFZTE9BRF9CWVRFU19NSU5VU18xIDB4N0YKPiAgCj4g
-LXN0cnVjdCBlZHBfdnNjX3BzciB7Cj4gKy8qKgo+ICsgKiBzdHJ1Y3QgZHBfc2RwIC0gRFAgc2Vj
-b25kYXJ5IGRhdGEgcGFja2V0Cj4gKyAqIEBzZHBfaGVhZGVyOiBEUCBzZWNvbmRhcnkgZGF0YSBw
-YWNrZXQgaGVhZGVyCj4gKyAqIEBEQjogRFAgc2Vjb25kYXJheSBkYXRhIHBhY2tldCBkYXRhIGJs
-b2Nrcwo+ICsgKiBWU0MgU0RQIFBheWxvYWQgZm9yIFBTUgo+ICsgKiBEQlswXTogU3RlcmVvIElu
-dGVyZmFjZQo+ICsgKiBEQlsxXTogMCAtIFBTUiBTdGF0ZTsgMSAtIFVwZGF0ZSBSRkI7IDIgLSBD
-UkMgVmFsaWQKPiArICogREJbMl06IENSQyB2YWx1ZSBiaXRzIDc6MCBvZiB0aGUgUiBvciBDciBj
-b21wb25lbnQKPiArICogREJbM106IENSQyB2YWx1ZSBiaXRzIDE1Ojggb2YgdGhlIFIgb3IgQ3Ig
-Y29tcG9uZW50Cj4gKyAqIERCWzRdOiBDUkMgdmFsdWUgYml0cyA3OjAgb2YgdGhlIEcgb3IgWSBj
-b21wb25lbnQKPiArICogREJbNV06IENSQyB2YWx1ZSBiaXRzIDE1Ojggb2YgdGhlIEcgb3IgWSBj
-b21wb25lbnQKPiArICogREJbNl06IENSQyB2YWx1ZSBiaXRzIDc6MCBvZiB0aGUgQiBvciBDYiBj
-b21wb25lbnQKPiArICogREJbN106IENSQyB2YWx1ZSBiaXRzIDE1Ojggb2YgdGhlIEIgb3IgQ2Ig
-Y29tcG9uZW50Cj4gKyAqIERCWzhdIC0gREJbMzFdOiBSZXNlcnZlZAo+ICsgKiBWU0MgU0RQIFBh
-eWxvYWQgZm9yIFBpeGVsIEVuY29kaW5nL0NvbG9yaW1ldHJ5IEZvcm1hdAo+ICsgKiBEQlswXSAt
-IERCWzE1XTogUmVzZXJ2ZWQKPiArICogREJbMTZdOiBQaXhlbCBFbmNvZGluZyBhbmQgQ29sb3Jp
-bWV0cnkgRm9ybWF0cwo+ICsgKiBEQlsxN106IER5bmFtaWMgUmFuZ2UgYW5kIENvbXBvbmVudCBC
-aXQgRGVwdGgKPiArICogREJbMThdOiBDb250ZW50IFR5cGUKPiArICogREJbMTldIC0gREJbMzFd
-OiBSZXNlcnZlZAo+ICsgKi8KPiArc3RydWN0IGRwX3NkcCB7Cj4gIAlzdHJ1Y3QgZHBfc2RwX2hl
-YWRlciBzZHBfaGVhZGVyOwo+IC0JdTggREIwOyAvKiBTdGVyZW8gSW50ZXJmYWNlICovCj4gLQl1
-OCBEQjE7IC8qIDAgLSBQU1IgU3RhdGU7IDEgLSBVcGRhdGUgUkZCOyAyIC0gQ1JDIFZhbGlkICov
-Cj4gLQl1OCBEQjI7IC8qIENSQyB2YWx1ZSBiaXRzIDc6MCBvZiB0aGUgUiBvciBDciBjb21wb25l
-bnQgKi8KPiAtCXU4IERCMzsgLyogQ1JDIHZhbHVlIGJpdHMgMTU6OCBvZiB0aGUgUiBvciBDciBj
-b21wb25lbnQgKi8KPiAtCXU4IERCNDsgLyogQ1JDIHZhbHVlIGJpdHMgNzowIG9mIHRoZSBHIG9y
-IFkgY29tcG9uZW50ICovCj4gLQl1OCBEQjU7IC8qIENSQyB2YWx1ZSBiaXRzIDE1Ojggb2YgdGhl
-IEcgb3IgWSBjb21wb25lbnQgKi8KPiAtCXU4IERCNjsgLyogQ1JDIHZhbHVlIGJpdHMgNzowIG9m
-IHRoZSBCIG9yIENiIGNvbXBvbmVudCAqLwo+IC0JdTggREI3OyAvKiBDUkMgdmFsdWUgYml0cyAx
-NTo4IG9mIHRoZSBCIG9yIENiIGNvbXBvbmVudCAqLwo+IC0JdTggREI4XzMxWzI0XTsgLyogUmVz
-ZXJ2ZWQgKi8KPiArCXU4IERCWzMyXTsKPiAgfSBfX3BhY2tlZDsKPiAgCj4gICNkZWZpbmUgRURQ
-X1ZTQ19QU1JfU1RBVEVfQUNUSVZFCSgxPDwwKQoKLS0gCkphbmkgTmlrdWxhLCBJbnRlbCBPcGVu
-IFNvdXJjZSBHcmFwaGljcyBDZW50ZXIKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJl
-ZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGlu
-Zm8vaW50ZWwtZ2Z4
+--===============0985873807==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ boundary="Sig_/lwH/F=R9sKzsOwGnaVjqIzL"; protocol="application/pgp-signature"
+
+--Sig_/lwH/F=R9sKzsOwGnaVjqIzL
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
+
+On Mon, 20 May 2019 18:11:07 +0200
+Daniel Vetter <daniel@ffwll.ch> wrote:
+
+> On Fri, May 17, 2019 at 01:08:24PM +0300, Pekka Paalanen wrote:
+> > On Thu, 16 May 2019 14:24:55 +0200
+> > Daniel Vetter <daniel@ffwll.ch> wrote:
+> >  =20
+> > > On Thu, May 16, 2019 at 11:22:11AM +0300, Pekka Paalanen wrote: =20
+> > > > On Wed, 15 May 2019 10:24:49 +0200
+> > > > Daniel Vetter <daniel@ffwll.ch> wrote:
+> > > >    =20
+> > > > > On Wed, May 15, 2019 at 10:37:31AM +0300, Pekka Paalanen wrote:  =
+ =20
+> > > > > > On Tue, 14 May 2019 16:34:01 +0200
+> > > > > > Daniel Vetter <daniel.vetter@ffwll.ch> wrote:
+> > > > > >      =20
+> > > > > > > On Tue, May 14, 2019 at 3:36 PM Pekka Paalanen <ppaalanen@gma=
+il.com> wrote:     =20
+> > > > > > > >
+> > > > > > > > On Tue, 14 May 2019 13:02:09 +0200
+> > > > > > > > Daniel Vetter <daniel.vetter@ffwll.ch> wrote:
+> > > > > > > >       =20
+> > > > > > > > > On Tue, May 14, 2019 at 10:18 AM Ser, Simon <simon.ser@in=
+tel.com> wrote:       =20
+> > > > > > > > > >
+> > > > > > > > > > On Tue, 2019-05-14 at 11:02 +0300, Pekka Paalanen wrote=
+:       =20
+> > > > > >=20
+> > > > > > ...
+> > > > > >      =20
+> > > > > > > > > > > Hi Daniel,
+> > > > > > > > > > >
+> > > > > > > > > > > just to clarify the first case, specific to one very =
+particular
+> > > > > > > > > > > property:
+> > > > > > > > > > >
+> > > > > > > > > > > With HDCP, there is a property that may change dynami=
+cally at runtime
+> > > > > > > > > > > (the undesired/desired/enabled tristate). Userspace m=
+ust be notified
+> > > > > > > > > > > when it changes, I do not want userspace have to poll=
+ that property
+> > > > > > > > > > > with a timer.
+> > > > > > > > > > >
+> > > > > > > > > > > When that property alone changes, and userspace is pr=
+epared to handle
+> > > > > > > > > > > that property changing alone, it must not trigger a r=
+eprobe of the
+> > > > > > > > > > > connector. There is no reason to reprobe at that poin=
+t AFAIU.
+> > > > > > > > > > >
+> > > > > > > > > > > How do you ensure that userspace can avoid triggering=
+ a reprobe with the
+> > > > > > > > > > > epoch approach or with any alternate uevent design?
+> > > > > > > > > > >
+> > > > > > > > > > > We need an event to userspace that indicates that re-=
+reading the
+> > > > > > > > > > > properties is enough and reprobe of the connector is =
+not necessary.
+> > > > > > > > > > > This is complementary to indicating to userspace that=
+ only some
+> > > > > > > > > > > connectors need to be reprobed instead of everything.=
+       =20
+> > > > > > > > > >
+> > > > > > > > > > Can't you use the PROPERTY hint? If PROPERTY is the HDC=
+P one, skip the
+> > > > > > > > > > reprobing. Would that work?       =20
+> > > > > > > >
+> > > > > > > > Hi,
+> > > > > > > >
+> > > > > > > > yes, that would work, if it was acceptable to DRM upstream.=
+ The replies
+> > > > > > > > to Paul seemed to be going south so fast that I thought we =
+wouldn't get
+> > > > > > > > any new uevent fields in favour of "epoch counters".
+> > > > > > > >       =20
+> > > > > > > > > Yes that's the idea, depending upon which property you ge=
+t you know
+> > > > > > > > > it's a sink change (needs full reprobe) or something else=
+ like hdcp
+> > > > > > > > > state machinery update.       =20
+> > > > > > > >
+> > > > > > > > Right.
+> > > > > > > >       =20
+> > > > > > > > > Wrt avoiding the full reprobe for sink changes: I think w=
+e should
+> > > > > > > > > indeed decouple that from the per-connector event for sin=
+k changes.
+> > > > > > > > > That along is a good win already, since you know for whic=
+h connector
+> > > > > > > > > you need to call drmGetConnector (which forces the reprob=
+e). It would
+> > > > > > > > > be nice to only call drmGetConnectorCurrent (avoids the r=
+eprobe), but
+> > > > > > > > > historically speaking every time we tried to rely on this=
+ we ended up
+> > > > > > > > > regretting things.       =20
+> > > > > > > >
+> > > > > > > > What changed? This sounds very much what Paul suggested. Lo=
+oking at it
+> > > > > > > > from userspace side:       =20
+> > > > > > >=20
+> > > > > > > This sounds solid, some refinements below:
+> > > > > > >      =20
+> > > > > > > > HOTPLUG=3D1 CONNECTOR=3Dxx PROPERTY=3Dyy
+> > > > > > > >
+> > > > > > > > - If yy is "Content Protection", no need to drmModeGetConne=
+ctor(), just
+> > > > > > > >   re-get the connector properties.
+> > > > > > > >
+> > > > > > > > - Kernel probably shouldn't bother sending this for propert=
+ies where
+> > > > > > > >   re-probe could be necessary, and send the below instead. =
+      =20
+> > > > > > >=20
+> > > > > > >=20
+> > > > > > > I think we should assert that the kernel can get the new prop=
+erty
+> > > > > > > values using drmModeGetConnectorCurrent for this case, i.e. t=
+he kernel
+> > > > > > > does not expect a full reprobe. I.e. upgrade your idea from "=
+should"
+> > > > > > > to "must"     =20
+> > > > > >=20
+> > > > > > Hi Daniel,
+> > > > > >=20
+> > > > > > ok, that's good.
+> > > > > >      =20
+> > > > > > > Furthermore different property can indicate different kind of=
+ updates,
+> > > > > > > e.g. hdcp vs general sink change vs. whatever else might come=
+ in the
+> > > > > > > future.     =20
+> > > > > >=20
+> > > > > > What do you mean by different kinds of updates?     =20
+> > > > >=20
+> > > > > Atm we're discussing two:
+> > > > >=20
+> > > > > - "Content Protection"
+> > > > > - "sink changed, but you don't need to reprobe" this would be qui=
+te a bit
+> > > > >   a catch all from the output detection. Paul thinks differently,=
+ but I'm
+> > > > >   not sold on splitting this up more, at least not right now. Thi=
+s would
+> > > > >   include connector status (and related things returned by drmGet=
+Connector
+> > > > >   which currently aren't a property), EDID, the mst path id, that=
+ kind of
+> > > > >   stuff.
+> > > > >=20
+> > > > > Ime once we have 2, there's more bound to come :-)   =20
+> > > >=20
+> > > > Hi Daniel,
+> > > >=20
+> > > > I don't understand what the "sink changed" thing could be, but sure,
+> > > > there can be more.   =20
+> > >=20
+> > > So if you have a repeater (hdmi or dp) and you change the thing you p=
+lug
+> > > into that, then on the computer you don't get a full hotplug, because=
+ the
+> > > repeater was always connected. Instead you get a short pulse hotplug,
+> > > indicating that something with the sink has changed. This could be a
+> > > slightly adjusted EDID (e.g. different eld in the audio section), or
+> > > something else. That's what I mean with "sink changed". Similar thing=
+ can
+> > > happen if you unplug and then plug in something else real quick (usua=
+lly
+> > > over suspend/resume), where connector->status stays the same, but the
+> > > actual thing plugged in is different. I think for hdmi this is just t=
+he
+> > > EDID, but we do parse a bunch of things out of the EDID that have fur=
+ther
+> > > effects (color space, max clock). With DP there's also dp aux stuff, =
+e.g.
+> > > if you switch from a 2 lane to a 4 lane cable then with same screen m=
+ore
+> > > modes can work.
+> > >=20
+> > > Clearer?
+> > >=20
+> > > I guess for the documentation for this new uapi we need to make an
+> > > exhaustive list of all the things that might have changed for a "sink
+> > > changed" event, whatever we actually agree on what that should look l=
+ike.
+> > > Or the PROPERTY=3D0 fallback you mention below as a fallback idea. =20
+> >=20
+> > Hi Daniel,
+> >=20
+> > to me all that sounds like userspace would better do a probe and start
+> > from scratch with that one connector. Therefore it would fall into the
+> > 'HOTPLUG=3D1 CONNECTOR=3Dxx' case, no PROPERTY.
+> >=20
+> > I suppose I'm missing something? =20
+>=20
+> Doing a full probe is hella expensive. Atm you always have to do this, but
+> we're talking about the brave new future where the kernel sucks less, and
+> the kernel would have done the expensive probing for you already.
+>=20
+> > But also I don't mind, I have always expected there might be more
+> > properties whose change does not require a probe.
+> >=20
+> > So, the kernel does sometimes do the probe on its own as well, right?
+> > Is that completely invisible to userspace, or could it stall some
+> > userspace operations that are not a probe of the same connector? =20
+>=20
+> Major stall because the locking design isn't pretty. If the kernel is
+> probing right now even your GetConnectorCurrent or GetProperties (on a
+> connector) will stall for whatever long it takes to read the EDID. Or
+> whatever else the kernel is doing in the probe paths right now. We could
+> probably improve this, and make sure that at least GetConnectorCurrent and
+> GetProperties stop sucking. But needs some serious locking-fu to make that
+> work.
+
+Hi Daniel,
+
+ok. I was assuming the kernel locking was unfixable, due to e.g.
+hardware interfaces that are, well, hardware.
+
+It seems the locking would be the first thing needing to be fixed
+before anyone goes adding more automatic probing into the kernel,
+because otherwise you risk introducing random timing hickups for
+userspace, leading to someone screaming "kernel regression".
+
+> Aside: Just realized this is another important reason why we need to batch
+> up property updates. If we don't, then userspace will simply get held up
+> until the kernel is done anyway.
+>=20
+> > I really think the design of the uAPI must start with how userspace is
+> > expected to react to the events. For that there are three cases:
+> > re-deiscover and probe everyting, re-probe one connector, re-read
+> > properties of one connector without probe. Userspace can then discover
+> > what exactly changed, just like it already does. =20
+>=20
+> Yup, I think on this we all agree.
+>=20
+
+...
+
+> > > > > > > > --------
+> > > > > > > >
+> > > > > > > > When discussing this in IRC, I had the concern about how ue=
+vents are
+> > > > > > > > delivered in userspace. Is there a possibility that they mi=
+ght be
+> > > > > > > > overwritten, contain stale attributes, or get squashed toge=
+ther?
+> > > > > > > >
+> > > > > > > > Particularly if a display server is current on the VT and a=
+ctive and
+> > > > > > > > monitoring udev, but stuck doing something and cannot servi=
+ce uevents
+> > > > > > > > very fast, and the kernel sends more than one event before =
+the process
+> > > > > > > > gets back to dispatching. The terminology in libudev API co=
+nfused me as
+> > > > > > > > an event is a device. Squashing together would make sense i=
+f the
+> > > > > > > > uevent were just updating a device attribute list. Previous=
+ly when we
+> > > > > > > > had just a single kind of uevent, that would not have made a
+> > > > > > > > difference, but if we gain different kinds of uevents like =
+here, it
+> > > > > > > > starts to matter.
+> > > > > > > >
+> > > > > > > > However, Paul came to the conclusion that we will be ok as =
+long as the
+> > > > > > > > events come via netlink.       =20
+> > > > > > >=20
+> > > > > > > Yeah netlink shouldn't drop events on the floor I think. It m=
+ight
+> > > > > > > still happen, but then I think you should get an indication o=
+f that
+> > > > > > > error, and you just treat it as a general hotplug event like =
+on older
+> > > > > > > kernels.     =20
+> > > > > >=20
+> > > > > > Alright, although reading Paul it sounds like there is another
+> > > > > > (fallback?) method as well that wouldn't work. Should userspace=
+ worry
+> > > > > > about that?
+> > > > > >=20
+> > > > > > Hmm, get an indication of an error... I don't know how that wou=
+ld be
+> > > > > > presented in libudev API and I can't point to any code in Westo=
+n that
+> > > > > > would deal with it. Does anyone have a clue about that?
+> > > > > >=20
+> > > > > > Userspace cannot really start taking advantage of any new fine-=
+grained
+> > > > > > hotplug events until it can rely on the event delivery. Granted=
+, this
+> > > > > > seems purely a userspace issue, but I bet it could be formulate=
+d as a
+> > > > > > kernel regression: things stop working after upgrading the kern=
+el while
+> > > > > > having always used new userspace which was ready for detailed h=
+otplug
+> > > > > > events but didn't ensure the delivery in userspace.     =20
+> > > > >=20
+> > > > > You have this already (if it's really an issue with netlink relia=
+bility,
+> > > > > tbh no idea), you can already miss a global uevent. It's easier t=
+o catch
+> > > > > up if you do miss it, since you're forcing a reprobe on everythin=
+g. That's
+> > > > > why I think the EPOCH thing would be good, userspace could be def=
+ensive
+> > > > > and always call GetConnectorCurrent on all connectors if it gets =
+any
+> > > > > hotplug uevent, and if it gets an EPOCH change, force a reprobe. =
+But I'm
+> > > > > not sure that's really required (aside from VT switching).   =20
+> > > >=20
+> > > > No, my concern is not an issue with netlink reliability. It is a
+> > > > potential issue when userspace chooses to not use netlink, and uses
+> > > > something else instead. I'm not sure what that else is but Paul says
+> > > > there is code in libudev and that is completely outside the control=
+ of
+> > > > KMS apps like display servers.   =20
+> > >=20
+> > > afaik this other path only exists because it's the older one, for uapi
+> > > backwards compatibility with older userspace. Shouldn't be used for
+> > > anything. =20
+> >=20
+> > "Shouldn't be used" and someone screaming "kernel regression"... are you
+> > sure that path won't matter?
+> >=20
+> > Like some home-brewn distribution that happens to configure their
+> > libudev and kernel to use the old method, uses already new userspace,
+> > and then upgrades the kernel that starts sending fine-grained hotplug
+> > events, resulting the display server randomly handling hotplug wrong.
+> >=20
+> > Reading Airlie's recent rant about kernel regression handling make this
+> > a scary scenario where you would have no other choice than to rip all
+> > the fine-grained uevents out again.
+> >=20
+> > Is there any difference in the kernel code between the old method and
+> > the netlink method? Would it be possible to send fine-grained hotplug
+> > events only through netlink, and fall back to the old 'HOTPLUG=3D1' for
+> > the old method? =20
+>=20
+> There's a lot of grey in kernel regressions, and for fringe setups used by
+> few people I wouldn't worry about this. If they expect their shit to keep
+> working when using new stuff and crappy old interfaces, they get to keep
+> all the pieces.
+
+It didn't sound gray at all, reading Dave Airlie's email about it. If
+someone updates the kernel, and something works worse after that, then
+it is by definition a kernel regression. Period. And the earliest
+regression wins, i.e. if a revert breaks other things, the revert will
+be done regardless.
+
+> Dave's recent rant was a bit special, since userspace is clearly smoking
+> some strong stuff (-modesetting's atomic is seriously not using atomic
+> correctly), but it was also affecting too many people, and changing the
+> boot setup meant you'd get a black screen on boot-up already. Instead of
+> just on the first modeset with more than 1 screen.
+
+Then I think I missed the context of Dave's email. Reading it again, I
+still do not see that context.
+
+Btw. how do you determine "not using atomic correctly"? Has some uAPI
+specification for atomic appeared? I wasn't aware there was any uAPI
+specs, so there is no "incorrect use" if it happened to work once.
+
+I don't personally really like these rules, but if these are the rules,
+then so be it. In my opinion it would be a huge step forward to get and
+require uAPI specifications, that people could verify both kernel and
+userspace against. Verifying against kernel code with no spec is what
+leads to the -modesetting issue by the sounds of it.
+
+Documenting kernel internal interfaces is not it. People reading
+DRM internal interface docs would need to know how DRM works internally
+before they could map that information into uAPI, which makes it less
+useful if not even useless for userspace developers.
+
+> There's also a fairly easy fix for that -modesetting issue: We don't
+> expose atomic if the compositor has a process name of "Xserver". Brutal,
+> but gets the job done. Once X is fixed, we can give a new "I'm not totally
+> broken anymore" interface to get back at atomic.
+
+You mean "Xorg". Or maybe "X". Or maybe the setuid helper? Wait, do you
+check against the process issuing ioctl by ioctl, or the process that
+opened the device? Which would be logind? What about DRM leasing? ...
+
+> tldr; I'm not worried at all, at least not more than with anything uapi.
+> Very rarely we'll have regrets.
+
+If you say so, ok. I'm a pessimist. I will certainly be happy if people
+can make progress with fine-grained uevents.
+
+
+Thanks,
+pq
+
+--Sig_/lwH/F=R9sKzsOwGnaVjqIzL
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCAAdFiEEJQjwWQChkWOYOIONI1/ltBGqqqcFAlzjoMkACgkQI1/ltBGq
+qqd3Yg//VVC9OfxyYbi6SSshaJPnoM5za9yKD0HZZ3Ysm/K2PT3UUtt0wI6PS35K
+seENH5DUTL84RlVWtBJ9ulI8cujM1goXjy3t9w3rUw8CoQrD91tCGu+xqHbCKSEg
+L2VA9G9+fd3TAJsYkrYw+GVbUSm+l/5zAHAUd6LtLvx1fkzZxZmSLYfcq9FvplQJ
+d3y9XWy8sQb378Q9xMqU+pgboj9O+C0rpF7R0wubdOKCrbsSWmGCAy3HbEit98sl
+p3DSArDC4zpD3ghXMsmuZ8wPweoyJ8Kj2fJSceoYH5QGDYlhjAt+QZaoAaRnJMCp
+28PM3kfNqZeD9ezqP/NP9HNcRPZYuWC5H+hIId5eKtI9awup3eqomNvDGuMBYX47
+zGQUfwcPnm8lNqXsU+Wq+qhxw75yXU4cX2rLqdExHlypwDn4jd28X1UzhUkUeG7X
+NTcG6y51w6RxAZzhaIMiKGipqa7QusVApwONfXfNATLtpLocygY/8ncPcMm9DEg1
+DXd6lTXjh9DMyCZB0Tx22lp4ZXgmn5YIwqFb+1RBE9EJ3dqTbooritpOKlrV/V6P
+U2PI2jnXCyO1DTJo8kWNENqqML4Fn/ApdxQi7v2QmTFQyD4YGLylpSbwgenmH5Yp
+PXylyeDvG+scODh4Ak0dxoDLaP1/rDoaPSrVwm+zMgZq7bUfKPo=
+=D7Kp
+-----END PGP SIGNATURE-----
+
+--Sig_/lwH/F=R9sKzsOwGnaVjqIzL--
+
+--===============0985873807==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
+IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
+
+--===============0985873807==--
