@@ -2,25 +2,25 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4A64824F8E
-	for <lists+intel-gfx@lfdr.de>; Tue, 21 May 2019 15:02:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A812124FA1
+	for <lists+intel-gfx@lfdr.de>; Tue, 21 May 2019 15:04:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 04FD18922E;
-	Tue, 21 May 2019 13:02:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EE5BE8937C;
+	Tue, 21 May 2019 13:04:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BF42289229;
- Tue, 21 May 2019 13:02:13 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E3DE089381;
+ Tue, 21 May 2019 13:04:20 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 21 May 2019 06:02:13 -0700
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 21 May 2019 06:04:20 -0700
 X-ExtLoop1: 1
 Received: from jlahtine-desk.ger.corp.intel.com (HELO localhost)
  ([10.252.2.137])
- by fmsmga008.fm.intel.com with ESMTP; 21 May 2019 06:02:10 -0700
+ by FMSMGA003.fm.intel.com with ESMTP; 21 May 2019 06:04:17 -0700
 MIME-Version: 1.0
 To: DRI <dri-devel@lists.freedesktop.org>,
  Daniel Vetter <daniel.vetter@ffwll.ch>, 
@@ -32,11 +32,11 @@ From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 In-Reply-To: <20190520221526.0e103916@canb.auug.org.au>
 References: <20190520221526.0e103916@canb.auug.org.au>
-Message-ID: <155844372974.15761.3182313807995451625@jlahtine-desk.ger.corp.intel.com>
+Message-ID: <155844385673.15761.3434506339174536733@jlahtine-desk.ger.corp.intel.com>
 User-Agent: alot/0.7
-Date: Tue, 21 May 2019 16:02:09 +0300
-Subject: Re: [Intel-gfx] linux-next: Fixes tag needs some work in the
- drm-intel tree
+Date: Tue, 21 May 2019 16:04:16 +0300
+Subject: [Intel-gfx] Comments in Fixes: line (Was: Re: linux-next: Fixes tag
+ needs some work in the drm-intel tree)
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -56,18 +56,9 @@ Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-UXVvdGluZyBTdGVwaGVuIFJvdGh3ZWxsICgyMDE5LTA1LTIwIDE1OjE1OjM4KQo+IEhpIGFsbCwK
-PiAKPiBJbiBjb21taXQKPiAKPiAgIDBkOTBjY2I3MDIxMSAoImRybS9pOTE1OiBEZWxheSBzZW1h
-cGhvcmUgc3VibWlzc2lvbiB1bnRpbCB0aGUgc3RhcnQgb2YgdGhlIHNpZ25hbGVyIikKPiAKPiBG
-aXhlcyB0YWcKPiAKPiAgIEZpeGVzOiBlODg2MTk2NDY5NzEgKCJkcm0vaTkxNTogVXNlIEhXIHNl
-bWFwaG9yZXMgZm9yIGludGVyLWVuZ2luZSBzeW5jaHJvbmkKPiAKPiBoYXMgdGhlc2UgcHJvYmxl
-bShzKToKPiAKPiAgIC0gU3ViamVjdCBoYXMgbGVhZGluZyBidXQgbm8gdHJhaWxpbmcgcGFyZW50
-aGVzZXMKPiAgIC0gU3ViamVjdCBoYXMgbGVhZGluZyBidXQgbm8gdHJhaWxpbmcgcXVvdGVzCj4g
-Cj4gUGxlYXNlIGRvbid0IHNwbGl0IEZpeGVzIHRhZ3MgYWNyb3NzIG1vcmUgdGhhbiBvbmUgbGlu
-ZS4KClRoYW5rcyBmb3IgdGhlIHJlcG9ydC4KClRoaXMgd2FzIGEgY29weSduIHBhc3RlIG1pc2hh
-cCwgZGV0ZWN0ZWQgYnkgb3VyIHRvb2xpbmcgKGFuZCBmaXhlZCBieQptZSkgYXQgdGhlIHRpbWUg
-b2YgY3JlYXRpbmcgYSBQUi4gVW5mb3J0dW5hdGVseSB0aGUgY2hlY2sgd2FzIG5vdCBiZWluZwpl
-bmZvcmNlZCBieSB0b29saW5nIGF0IGNvbW1pdCB0aW1lLiBXZSdsbCBmaXggdGhhdC4KClJlZ2Fy
-ZHMsIEpvb25hcwpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-XwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcK
-aHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZng=
+V2UgYWxzbyBoYXZlIGFuIGluY29taW5nIHBhdGNoIHdoZXJlIHRoZSBGaXhlczogbGluZSBoYXMg
+YSBjb21tZW50IGluCml0LiBEb2VzIHlvdXIgdG9vbGluZyBhY2NvdW50IGZvciB0aGlzIHdoZW4g
+Y2hlY2tpbmcgdGhlIEZpeGVzOiBsaW5lPwoKUmVnYXJkcywgSm9vbmFzCl9fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QK
+SW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9w
+Lm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeA==
