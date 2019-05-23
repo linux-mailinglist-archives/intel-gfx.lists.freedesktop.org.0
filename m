@@ -1,79 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF56B27C7A
-	for <lists+intel-gfx@lfdr.de>; Thu, 23 May 2019 14:11:26 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E8E227C91
+	for <lists+intel-gfx@lfdr.de>; Thu, 23 May 2019 14:18:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BF13989DFD;
-	Thu, 23 May 2019 12:11:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 780DD89A35;
+	Thu, 23 May 2019 12:18:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from NAM02-CY1-obe.outbound.protection.outlook.com
- (mail-eopbgr760088.outbound.protection.outlook.com [40.107.76.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6DE3C89D73;
- Thu, 23 May 2019 12:11:22 +0000 (UTC)
-Received: from MN2PR12MB2910.namprd12.prod.outlook.com (20.179.81.219) by
- MN2PR12MB3327.namprd12.prod.outlook.com (20.178.243.84) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.1922.18; Thu, 23 May 2019 12:11:20 +0000
-Received: from MN2PR12MB2910.namprd12.prod.outlook.com
- ([fe80::385d:9453:a16d:3964]) by MN2PR12MB2910.namprd12.prod.outlook.com
- ([fe80::385d:9453:a16d:3964%6]) with mapi id 15.20.1922.017; Thu, 23 May 2019
- 12:11:20 +0000
-From: "Zhou, David(ChunMing)" <David1.Zhou@amd.com>
-To: Lionel Landwerlin <lionel.g.landwerlin@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: Re:[PATCH 1/2] drm/syncobj: add an output syncobj parameter to
- find_fence
-Thread-Index: AQHVEV0oNxfE5mUrmUOptueOxTf8zKZ4nojJ
-Date: Thu, 23 May 2019 12:11:20 +0000
-Message-ID: <-puwqkvl1kf9u-b7x3md-nw9l5d8fjhc1-57ay9i80p3ne5zfq-v36laytxxssb-707g2imrn1o7-kvonq5nbuaig-6dlanc9wrlar1w0zlrxn0apu-qaxsb6-ac864zux0f2o3d8y3zq369i3-f7fg8.1558613478804@email.android.com>
-References: <20190523114620.19335-1-lionel.g.landwerlin@intel.com>,
- <20190523114620.19335-2-lionel.g.landwerlin@intel.com>
-In-Reply-To: <20190523114620.19335-2-lionel.g.landwerlin@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [101.86.234.22]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: c4bfc9c7-f43e-496b-4914-08d6df77c419
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0; PCL:0;
- RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600141)(711020)(4605104)(4618075)(2017052603328)(7193020);
- SRVR:MN2PR12MB3327; 
-x-ms-traffictypediagnostic: MN2PR12MB3327:
-x-microsoft-antispam-prvs: <MN2PR12MB3327E1891D8618341E692CE3B4010@MN2PR12MB3327.namprd12.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:4502;
-x-forefront-prvs: 00462943DE
-x-forefront-antispam-report: SFV:NSPM;
- SFS:(10009020)(136003)(396003)(39860400002)(366004)(346002)(376002)(13464003)(189003)(199004)(54896002)(72206003)(6486002)(316002)(91956017)(76116006)(66446008)(64756008)(66556008)(66476007)(66946007)(478600001)(73956011)(5660300002)(6512007)(9686003)(81166006)(81156014)(8676002)(8936002)(2501003)(14444005)(256004)(7736002)(6436002)(66066001)(54906003)(3846002)(6116002)(76176011)(25786009)(68736007)(86362001)(102836004)(6506007)(4326008)(53936002)(476003)(11346002)(446003)(486006)(110136005)(71190400001)(71200400001)(99286004)(2906002)(26005)(186003)(14454004)(37363001)(87826002);
- DIR:OUT; SFP:1101; SCL:1; SRVR:MN2PR12MB3327;
- H:MN2PR12MB2910.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
- PTR:InfoNoRecords; MX:1; A:1; 
-received-spf: None (protection.outlook.com: amd.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: lhWQOLMNwNOUkTFvNwUbzzzjA4Vdo0jRZcQosCGC4Vh/vX1CC17g0Ud/ZXpTlKXvjolISPmLcWGlX3Gj9BWTSJar0g4Vq4ke8I1upU4q9nivHtY4qVNsw0EQuj2G/9HZG1TN4dt+q64TPHrYfIYZpDZxTJ+iY0CYgZXoWs/37adro7ExticfajckEgTFVcUAH964nhjzRO4fSPrBxdM0LBRRRfVv4OMKn5cE8aEVcoI5Dhua/43ygau+DUwaTZdDeMn08UuGK/vxQELkA4AX/L6dp//PTtvpQjgpaKwzZivmYt645mkCmggIep/5lUtPX+2Us42NiiBU/sZCXldQ4LY+8d3ObuUtk6I7O8AebAAuWZV0Uk25QfcvZ7dZZB1GyRPowQ6QY9RfG6STE4I2A1gvAiSCQGkwDWT0LQisuso=
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 328EC89A35;
+ Thu, 23 May 2019 12:18:11 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 2BD8AA011C;
+ Thu, 23 May 2019 12:18:11 +0000 (UTC)
 MIME-Version: 1.0
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c4bfc9c7-f43e-496b-4914-08d6df77c419
-X-MS-Exchange-CrossTenant-originalarrivaltime: 23 May 2019 12:11:20.1238 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: zhoucm1@amd.com
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB3327
-X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=amdcloud.onmicrosoft.com; s=selector1-amdcloud-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=c+cZHM357duC9Az6walKVHjf+NmODG6ztndh0lb0Q4c=;
- b=Tr8NA2AzCk+WxsyzWxuZIGlk+Z6xRtB2oMxNJh1cK8RcFfVigUAzgCg5/jXUpxZO3t5l/jVzD5+fCkzEG+U2E5S3egHPddktlrHo+1eQRbHKGwQ+wBl5mwHN+VEfktEwAX0YTo9w2mYer/FEfyfLIz9/2rL05gJolwToc3iLif4=
-X-Mailman-Original-Authentication-Results: spf=none (sender IP is )
- smtp.mailfrom=David1.Zhou@amd.com; 
-Subject: Re: [Intel-gfx] [PATCH 1/2] drm/syncobj: add an output syncobj
- parameter to find_fence
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Date: Thu, 23 May 2019 12:18:11 -0000
+Message-ID: <20190523121811.12608.75994@emeril.freedesktop.org>
+References: <20190522145030.12751-1-jani.nikula@intel.com>
+X-Patchwork-Hint: ignore
+In-Reply-To: <20190522145030.12751-1-jani.nikula@intel.com>
+Subject: [Intel-gfx] =?utf-8?q?=E2=9C=93_Fi=2ECI=2EIGT=3A_success_for_seri?=
+ =?utf-8?q?es_starting_with_=5B1/4=5D_drm/i915=3A_move_and_rename_register?=
+ =?utf-8?q?_read_ioctl_function_declaration?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -86,708 +39,293 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Zhou, David\(ChunMing\)" <David1.Zhou@amd.com>, "Koenig,
- Christian" <Christian.Koenig@amd.com>,
- DRI-Devel <dri-devel@lists.freedesktop.org>
-Content-Type: multipart/mixed; boundary="===============0762037779=="
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0762037779==
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_puwqkvl1kf9ub7x3mdnw9l5d8fjhc157ay9i80p3ne5zfqv36laytxx_"
-
---_000_puwqkvl1kf9ub7x3mdnw9l5d8fjhc157ay9i80p3ne5zfqv36laytxx_
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-can you make the parameter optional? Otherwise looks good to me.
-
--David
-
--------- Original Message --------
-Subject: [PATCH 1/2] drm/syncobj: add an output syncobj parameter to find_f=
-ence
-From: Lionel Landwerlin
-To: intel-gfx@lists.freedesktop.org
-CC: Lionel Landwerlin ,"Koenig, Christian" ,"Zhou, David(ChunMing)" ,Eric A=
-nholt ,DRI-Devel
-
-[CAUTION: External Email]
-
-We would like to get both the fence & the syncobj in i915 rather than
-doing 2 calls to drm_syncobj_find() & drm_syncobj_find_fence().
-
-Signed-off-by: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
-Cc: Christian Koenig <Christian.Koenig@amd.com>
-Cc: David(ChunMing) Zhou <David1.Zhou@amd.com>
-Cc: Eric Anholt <eric@anholt.net>
-CC: DRI-Devel <dri-devel@lists.freedesktop.org>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c |  4 ++-
- drivers/gpu/drm/drm_syncobj.c          | 45 +++++++++++++++++---------
- drivers/gpu/drm/v3d/v3d_gem.c          |  5 ++-
- include/drm/drm_syncobj.h              |  1 +
- 4 files changed, 38 insertions(+), 17 deletions(-)
-
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c b/drivers/gpu/drm/amd/a=
-mdgpu/amdgpu_cs.c
-index 2f6239b6be6f..09fde3c73a2c 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
-@@ -1124,10 +1124,11 @@ static int amdgpu_syncobj_lookup_and_add_to_sync(st=
-ruct amdgpu_cs_parser *p,
-                                                 uint32_t handle, u64 point=
-,
-                                                 u64 flags)
- {
-+       struct drm_syncobj *syncobj;
-        struct dma_fence *fence;
-        int r;
-
--       r =3D drm_syncobj_find_fence(p->filp, handle, point, flags, &fence)=
-;
-+       r =3D drm_syncobj_find_fence(p->filp, handle, point, flags, &syncob=
-j, &fence);
-        if (r) {
-                DRM_ERROR("syncobj %u failed to find fence @ %llu (%d)!\n",
-                          handle, point, r);
-@@ -1136,6 +1137,7 @@ static int amdgpu_syncobj_lookup_and_add_to_sync(stru=
-ct amdgpu_cs_parser *p,
-
-        r =3D amdgpu_sync_fence(p->adev, &p->job->sync, fence, true);
-        dma_fence_put(fence);
-+       drm_syncobj_put(syncobj);
-
-        return r;
- }
-diff --git a/drivers/gpu/drm/drm_syncobj.c b/drivers/gpu/drm/drm_syncobj.c
-index 3d400905100b..f2fd0c1fb1d3 100644
---- a/drivers/gpu/drm/drm_syncobj.c
-+++ b/drivers/gpu/drm/drm_syncobj.c
-@@ -222,29 +222,32 @@ static void drm_syncobj_assign_null_handle(struct drm=
-_syncobj *syncobj)
-  * @handle: sync object handle to lookup.
-  * @point: timeline point
-  * @flags: DRM_SYNCOBJ_WAIT_FLAGS_WAIT_FOR_SUBMIT or not
-+ * @syncobj: out parameter for the syncobj
-  * @fence: out parameter for the fence
-  *
-  * This is just a convenience function that combines drm_syncobj_find() an=
-d
-  * drm_syncobj_fence_get().
-  *
-- * Returns 0 on success or a negative error value on failure. On success @=
-fence
-- * contains a reference to the fence, which must be released by calling
-- * dma_fence_put().
-+ * Returns 0 on success or a negative error value on failure. On
-+ * success @syncobj and @fence contains a reference respectively to
-+ * the syncobj and to the fence, which must be released by calling
-+ * respectively drm_syncobj_put() and dma_fence_put().
-  */
- int drm_syncobj_find_fence(struct drm_file *file_private,
-                           u32 handle, u64 point, u64 flags,
-+                          struct drm_syncobj **syncobj,
-                           struct dma_fence **fence)
- {
--       struct drm_syncobj *syncobj =3D drm_syncobj_find(file_private, hand=
-le);
-        struct syncobj_wait_entry wait;
-        u64 timeout =3D nsecs_to_jiffies64(DRM_SYNCOBJ_WAIT_FOR_SUBMIT_TIME=
-OUT);
-        int ret;
-
--       if (!syncobj)
-+       *syncobj =3D drm_syncobj_find(file_private, handle);
-+
-+       if (!(*syncobj))
-                return -ENOENT;
-
--       *fence =3D drm_syncobj_fence_get(syncobj);
--       drm_syncobj_put(syncobj);
-+       *fence =3D drm_syncobj_fence_get(*syncobj);
-
-        if (*fence) {
-                ret =3D dma_fence_chain_find_seqno(fence, point);
-@@ -255,13 +258,15 @@ int drm_syncobj_find_fence(struct drm_file *file_priv=
-ate,
-                ret =3D -EINVAL;
-        }
-
--       if (!(flags & DRM_SYNCOBJ_WAIT_FLAGS_WAIT_FOR_SUBMIT))
-+       if (!(flags & DRM_SYNCOBJ_WAIT_FLAGS_WAIT_FOR_SUBMIT)) {
-+               drm_syncobj_put(*syncobj);
-                return ret;
-+       }
-
-        memset(&wait, 0, sizeof(wait));
-        wait.task =3D current;
-        wait.point =3D point;
--       drm_syncobj_fence_add_wait(syncobj, &wait);
-+       drm_syncobj_fence_add_wait(*syncobj, &wait);
-
-        do {
-                set_current_state(TASK_INTERRUPTIBLE);
-@@ -286,7 +291,10 @@ int drm_syncobj_find_fence(struct drm_file *file_priva=
-te,
-        *fence =3D wait.fence;
-
-        if (wait.node.next)
--               drm_syncobj_remove_wait(syncobj, &wait);
-+               drm_syncobj_remove_wait(*syncobj, &wait);
-+
-+       if (ret)
-+               drm_syncobj_put(*syncobj);
-
-        return ret;
- }
-@@ -531,6 +539,7 @@ static int drm_syncobj_export_sync_file(struct drm_file=
- *file_private,
-                                        int handle, int *p_fd)
- {
-        int ret;
-+       struct drm_syncobj *syncobj;
-        struct dma_fence *fence;
-        struct sync_file *sync_file;
-        int fd =3D get_unused_fd_flags(O_CLOEXEC);
-@@ -538,13 +547,14 @@ static int drm_syncobj_export_sync_file(struct drm_fi=
-le *file_private,
-        if (fd < 0)
-                return fd;
-
--       ret =3D drm_syncobj_find_fence(file_private, handle, 0, 0, &fence);
-+       ret =3D drm_syncobj_find_fence(file_private, handle, 0, 0, &syncobj=
-, &fence);
-        if (ret)
-                goto err_put_fd;
-
-        sync_file =3D sync_file_create(fence);
-
-        dma_fence_put(fence);
-+       drm_syncobj_put(syncobj);
-
-        if (!sync_file) {
-                ret =3D -EINVAL;
-@@ -682,7 +692,8 @@ drm_syncobj_fd_to_handle_ioctl(struct drm_device *dev, =
-void *data,
- static int drm_syncobj_transfer_to_timeline(struct drm_file *file_private,
-                                            struct drm_syncobj_transfer *ar=
-gs)
- {
--       struct drm_syncobj *timeline_syncobj =3D NULL;
-+       struct drm_syncobj *timeline_syncobj;
-+       struct drm_syncobj *src_syncobj;
-        struct dma_fence *fence;
-        struct dma_fence_chain *chain;
-        int ret;
-@@ -693,7 +704,7 @@ static int drm_syncobj_transfer_to_timeline(struct drm_=
-file *file_private,
-        }
-        ret =3D drm_syncobj_find_fence(file_private, args->src_handle,
-                                     args->src_point, args->flags,
--                                    &fence);
-+                                    &src_syncobj, &fence);
-        if (ret)
-                goto err;
-        chain =3D kzalloc(sizeof(struct dma_fence_chain), GFP_KERNEL);
-@@ -704,6 +715,7 @@ static int drm_syncobj_transfer_to_timeline(struct drm_=
-file *file_private,
-        drm_syncobj_add_point(timeline_syncobj, chain, fence, args->dst_poi=
-nt);
- err1:
-        dma_fence_put(fence);
-+       drm_syncobj_put(src_syncobj);
- err:
-        drm_syncobj_put(timeline_syncobj);
-
-@@ -714,7 +726,8 @@ static int
- drm_syncobj_transfer_to_binary(struct drm_file *file_private,
-                               struct drm_syncobj_transfer *args)
- {
--       struct drm_syncobj *binary_syncobj =3D NULL;
-+       struct drm_syncobj *binary_syncobj;
-+       struct drm_syncobj *src_syncobj;
-        struct dma_fence *fence;
-        int ret;
-
-@@ -722,11 +735,13 @@ drm_syncobj_transfer_to_binary(struct drm_file *file_=
-private,
-        if (!binary_syncobj)
-                return -ENOENT;
-        ret =3D drm_syncobj_find_fence(file_private, args->src_handle,
--                                    args->src_point, args->flags, &fence);
-+                                    args->src_point, args->flags,
-+                                    &src_syncobj, &fence);
-        if (ret)
-                goto err;
-        drm_syncobj_replace_fence(binary_syncobj, fence);
-        dma_fence_put(fence);
-+       drm_syncobj_put(src_syncobj);
- err:
-        drm_syncobj_put(binary_syncobj);
-
-diff --git a/drivers/gpu/drm/v3d/v3d_gem.c b/drivers/gpu/drm/v3d/v3d_gem.c
-index 27e0f87075d9..26bd3a2e39ca 100644
---- a/drivers/gpu/drm/v3d/v3d_gem.c
-+++ b/drivers/gpu/drm/v3d/v3d_gem.c
-@@ -431,6 +431,7 @@ v3d_job_init(struct v3d_dev *v3d, struct drm_file *file=
-_priv,
-             struct v3d_job *job, void (*free)(struct kref *ref),
-             u32 in_sync)
- {
-+       struct drm_syncobj *in_syncobj =3D NULL;
-        struct dma_fence *in_fence =3D NULL;
-        int ret;
-
-@@ -443,10 +444,12 @@ v3d_job_init(struct v3d_dev *v3d, struct drm_file *fi=
-le_priv,
-
-        xa_init_flags(&job->deps, XA_FLAGS_ALLOC);
-
--       ret =3D drm_syncobj_find_fence(file_priv, in_sync, 0, 0, &in_fence)=
-;
-+       ret =3D drm_syncobj_find_fence(file_priv, in_sync, 0, 0, &syncobj, =
-&in_fence);
-        if (ret =3D=3D -EINVAL)
-                goto fail;
-
-+       drm_syncobj_put(in_sync);
-+
-        ret =3D drm_gem_fence_array_add(&job->deps, in_fence);
-        if (ret)
-                goto fail;
-diff --git a/include/drm/drm_syncobj.h b/include/drm/drm_syncobj.h
-index 6cf7243a1dc5..08eca690f783 100644
---- a/include/drm/drm_syncobj.h
-+++ b/include/drm/drm_syncobj.h
-@@ -121,6 +121,7 @@ void drm_syncobj_replace_fence(struct drm_syncobj *sync=
-obj,
-                               struct dma_fence *fence);
- int drm_syncobj_find_fence(struct drm_file *file_private,
-                           u32 handle, u64 point, u64 flags,
-+                          struct drm_syncobj **syncobj,
-                           struct dma_fence **fence);
- void drm_syncobj_free(struct kref *kref);
- int drm_syncobj_create(struct drm_syncobj **out_syncobj, uint32_t flags,
---
-2.21.0.392.gf8f6787159e
-
-
---_000_puwqkvl1kf9ub7x3mdnw9l5d8fjhc157ay9i80p3ne5zfqv36laytxx_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<meta name=3D"Generator" content=3D"Microsoft Exchange Server">
-<!-- converted from text --><style><!-- .EmailQuote { margin-left: 1pt; pad=
-ding-left: 4pt; border-left: #800000 2px solid; } --></style>
-</head>
-<body>
-<div>can you make the parameter optional? Otherwise looks good to me.<br>
-<br>
--David<br>
-<br>
--------- Original Message --------<br>
-Subject: [PATCH 1/2] drm/syncobj: add an output syncobj parameter to find_f=
-ence<br>
-From: Lionel Landwerlin <br>
-To: intel-gfx@lists.freedesktop.org<br>
-CC: Lionel Landwerlin ,&quot;Koenig, Christian&quot; ,&quot;Zhou, David(Chu=
-nMing)&quot; ,Eric Anholt ,DRI-Devel
-<br>
-<br>
-</div>
-<font size=3D"2"><span style=3D"font-size:11pt;">
-<div class=3D"PlainText">[CAUTION: External Email]<br>
-<br>
-We would like to get both the fence &amp; the syncobj in i915 rather than<b=
-r>
-doing 2 calls to drm_syncobj_find() &amp; drm_syncobj_find_fence().<br>
-<br>
-Signed-off-by: Lionel Landwerlin &lt;lionel.g.landwerlin@intel.com&gt;<br>
-Cc: Christian Koenig &lt;Christian.Koenig@amd.com&gt;<br>
-Cc: David(ChunMing) Zhou &lt;David1.Zhou@amd.com&gt;<br>
-Cc: Eric Anholt &lt;eric@anholt.net&gt;<br>
-CC: DRI-Devel &lt;dri-devel@lists.freedesktop.org&gt;<br>
----<br>
-&nbsp;drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c |&nbsp; 4 &#43;&#43;-<br>
-&nbsp;drivers/gpu/drm/drm_syncobj.c&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp; | 45 &#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;=
-&#43;&#43;&#43;&#43;&#43;&#43;---------<br>
-&nbsp;drivers/gpu/drm/v3d/v3d_gem.c&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp; |&nbsp; 5 &#43;&#43;-<br>
-&nbsp;include/drm/drm_syncobj.h&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp; 1 &#43;<br>
-&nbsp;4 files changed, 38 insertions(&#43;), 17 deletions(-)<br>
-<br>
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c b/drivers/gpu/drm/amd/a=
-mdgpu/amdgpu_cs.c<br>
-index 2f6239b6be6f..09fde3c73a2c 100644<br>
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c<br>
-&#43;&#43;&#43; b/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c<br>
-@@ -1124,10 &#43;1124,11 @@ static int amdgpu_syncobj_lookup_and_add_to_syn=
-c(struct amdgpu_cs_parser *p,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; uint32_t ha=
-ndle, u64 point,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; u64 flags)<=
-br>
-&nbsp;{<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct drm_syncobj *syncobj;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct dma_fence *fence;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int r;<br>
-<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; r =3D drm_syncobj_find_fence(p-&gt;fi=
-lp, handle, point, flags, &amp;fence);<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; r =3D drm_syncobj_find_fence(p-&g=
-t;filp, handle, point, flags, &amp;syncobj, &amp;fence);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (r) {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; DRM_ERROR(&quot;syncobj %u failed to find fence @ %llu (%d)=
-!\n&quot;,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
- handle, point, r);<br>
-@@ -1136,6 &#43;1137,7 @@ static int amdgpu_syncobj_lookup_and_add_to_sync(=
-struct amdgpu_cs_parser *p,<br>
-<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; r =3D amdgpu_sync_fence(p-&gt;ad=
-ev, &amp;p-&gt;job-&gt;sync, fence, true);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; dma_fence_put(fence);<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; drm_syncobj_put(syncobj);<br>
-<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return r;<br>
-&nbsp;}<br>
-diff --git a/drivers/gpu/drm/drm_syncobj.c b/drivers/gpu/drm/drm_syncobj.c<=
-br>
-index 3d400905100b..f2fd0c1fb1d3 100644<br>
---- a/drivers/gpu/drm/drm_syncobj.c<br>
-&#43;&#43;&#43; b/drivers/gpu/drm/drm_syncobj.c<br>
-@@ -222,29 &#43;222,32 @@ static void drm_syncobj_assign_null_handle(struct=
- drm_syncobj *syncobj)<br>
-&nbsp; * @handle: sync object handle to lookup.<br>
-&nbsp; * @point: timeline point<br>
-&nbsp; * @flags: DRM_SYNCOBJ_WAIT_FLAGS_WAIT_FOR_SUBMIT or not<br>
-&#43; * @syncobj: out parameter for the syncobj<br>
-&nbsp; * @fence: out parameter for the fence<br>
-&nbsp; *<br>
-&nbsp; * This is just a convenience function that combines drm_syncobj_find=
-() and<br>
-&nbsp; * drm_syncobj_fence_get().<br>
-&nbsp; *<br>
-- * Returns 0 on success or a negative error value on failure. On success @=
-fence<br>
-- * contains a reference to the fence, which must be released by calling<br=
->
-- * dma_fence_put().<br>
-&#43; * Returns 0 on success or a negative error value on failure. On<br>
-&#43; * success @syncobj and @fence contains a reference respectively to<br=
->
-&#43; * the syncobj and to the fence, which must be released by calling<br>
-&#43; * respectively drm_syncobj_put() and dma_fence_put().<br>
-&nbsp; */<br>
-&nbsp;int drm_syncobj_find_fence(struct drm_file *file_private,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp; u32 handle, u64 point, u64 flags,<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp; struct drm_syncobj **syncobj,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp; struct dma_fence **fence)<br>
-&nbsp;{<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct drm_syncobj *syncobj =3D drm_s=
-yncobj_find(file_private, handle);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct syncobj_wait_entry wait;<=
-br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; u64 timeout =3D nsecs_to_jiffies=
-64(DRM_SYNCOBJ_WAIT_FOR_SUBMIT_TIMEOUT);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int ret;<br>
-<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (!syncobj)<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *syncobj =3D drm_syncobj_find(fil=
-e_private, handle);<br>
-&#43;<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (!(*syncobj))<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; return -ENOENT;<br>
-<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *fence =3D drm_syncobj_fence_get(sync=
-obj);<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; drm_syncobj_put(syncobj);<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *fence =3D drm_syncobj_fence_get(=
-*syncobj);<br>
-<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (*fence) {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; ret =3D dma_fence_chain_find_seqno(fence, point);<br>
-@@ -255,13 &#43;258,15 @@ int drm_syncobj_find_fence(struct drm_file *file_=
-private,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; ret =3D -EINVAL;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
-<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (!(flags &amp; DRM_SYNCOBJ_WAIT_FL=
-AGS_WAIT_FOR_SUBMIT))<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (!(flags &amp; DRM_SYNCOBJ_WAI=
-T_FLAGS_WAIT_FOR_SUBMIT)) {<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp; drm_syncobj_put(*syncobj);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; return ret;<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
-<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; memset(&amp;wait, 0, sizeof(wait=
-));<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; wait.task =3D current;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; wait.point =3D point;<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; drm_syncobj_fence_add_wait(syncobj, &=
-amp;wait);<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; drm_syncobj_fence_add_wait(*synco=
-bj, &amp;wait);<br>
-<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; do {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; set_current_state(TASK_INTERRUPTIBLE);<br>
-@@ -286,7 &#43;291,10 @@ int drm_syncobj_find_fence(struct drm_file *file_p=
-rivate,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *fence =3D wait.fence;<br>
-<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (wait.node.next)<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; drm_syncobj_remove_wait(syncobj, &amp;wait);<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp; drm_syncobj_remove_wait(*syncobj, &amp;wait);<br>
-&#43;<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (ret)<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp; drm_syncobj_put(*syncobj);<br>
-<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return ret;<br>
-&nbsp;}<br>
-@@ -531,6 &#43;539,7 @@ static int drm_syncobj_export_sync_file(struct drm_=
-file *file_private,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp; int handle, int *p_fd)<br>
-&nbsp;{<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int ret;<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct drm_syncobj *syncobj;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct dma_fence *fence;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct sync_file *sync_file;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int fd =3D get_unused_fd_flags(O=
-_CLOEXEC);<br>
-@@ -538,13 &#43;547,14 @@ static int drm_syncobj_export_sync_file(struct dr=
-m_file *file_private,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (fd &lt; 0)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; return fd;<br>
-<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ret =3D drm_syncobj_find_fence(file_p=
-rivate, handle, 0, 0, &amp;fence);<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ret =3D drm_syncobj_find_fence(fi=
-le_private, handle, 0, 0, &amp;syncobj, &amp;fence);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (ret)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; goto err_put_fd;<br>
-<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; sync_file =3D sync_file_create(f=
-ence);<br>
-<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; dma_fence_put(fence);<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; drm_syncobj_put(syncobj);<br>
-<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (!sync_file) {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; ret =3D -EINVAL;<br>
-@@ -682,7 &#43;692,8 @@ drm_syncobj_fd_to_handle_ioctl(struct drm_device *d=
-ev, void *data,<br>
-&nbsp;static int drm_syncobj_transfer_to_timeline(struct drm_file *file_pri=
-vate,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct drm_syncobj_transfer *args)<br>
-&nbsp;{<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct drm_syncobj *timeline_syncobj =
-=3D NULL;<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct drm_syncobj *timeline_sync=
-obj;<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct drm_syncobj *src_syncobj;<=
-br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct dma_fence *fence;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct dma_fence_chain *chain;<b=
-r>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int ret;<br>
-@@ -693,7 &#43;704,7 @@ static int drm_syncobj_transfer_to_timeline(struct =
-drm_file *file_private,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ret =3D drm_syncobj_find_fence(f=
-ile_private, args-&gt;src_handle,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; args-&gt=
-;src_point, args-&gt;flags,<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &amp;fence);<=
-br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &amp;src_=
-syncobj, &amp;fence);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (ret)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; goto err;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; chain =3D kzalloc(sizeof(struct =
-dma_fence_chain), GFP_KERNEL);<br>
-@@ -704,6 &#43;715,7 @@ static int drm_syncobj_transfer_to_timeline(struct =
-drm_file *file_private,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; drm_syncobj_add_point(timeline_s=
-yncobj, chain, fence, args-&gt;dst_point);<br>
-&nbsp;err1:<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; dma_fence_put(fence);<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; drm_syncobj_put(src_syncobj);<br>
-&nbsp;err:<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; drm_syncobj_put(timeline_syncobj=
-);<br>
-<br>
-@@ -714,7 &#43;726,8 @@ static int<br>
-&nbsp;drm_syncobj_transfer_to_binary(struct drm_file *file_private,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct drm_syncobj_transfer *args)<br>
-&nbsp;{<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct drm_syncobj *binary_syncobj =
-=3D NULL;<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct drm_syncobj *binary_syncob=
-j;<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct drm_syncobj *src_syncobj;<=
-br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct dma_fence *fence;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int ret;<br>
-<br>
-@@ -722,11 &#43;735,13 @@ drm_syncobj_transfer_to_binary(struct drm_file *f=
-ile_private,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (!binary_syncobj)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; return -ENOENT;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ret =3D drm_syncobj_find_fence(f=
-ile_private, args-&gt;src_handle,<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; args-&gt;src_=
-point, args-&gt;flags, &amp;fence);<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; args-&gt;=
-src_point, args-&gt;flags,<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &amp;src_=
-syncobj, &amp;fence);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (ret)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; goto err;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; drm_syncobj_replace_fence(binary=
-_syncobj, fence);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; dma_fence_put(fence);<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; drm_syncobj_put(src_syncobj);<br>
-&nbsp;err:<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; drm_syncobj_put(binary_syncobj);=
-<br>
-<br>
-diff --git a/drivers/gpu/drm/v3d/v3d_gem.c b/drivers/gpu/drm/v3d/v3d_gem.c<=
-br>
-index 27e0f87075d9..26bd3a2e39ca 100644<br>
---- a/drivers/gpu/drm/v3d/v3d_gem.c<br>
-&#43;&#43;&#43; b/drivers/gpu/drm/v3d/v3d_gem.c<br>
-@@ -431,6 &#43;431,7 @@ v3d_job_init(struct v3d_dev *v3d, struct drm_file *=
-file_priv,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; st=
-ruct v3d_job *job, void (*free)(struct kref *ref),<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; u3=
-2 in_sync)<br>
-&nbsp;{<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct drm_syncobj *in_syncobj =
-=3D NULL;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct dma_fence *in_fence =3D N=
-ULL;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int ret;<br>
-<br>
-@@ -443,10 &#43;444,12 @@ v3d_job_init(struct v3d_dev *v3d, struct drm_file=
- *file_priv,<br>
-<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; xa_init_flags(&amp;job-&gt;deps,=
- XA_FLAGS_ALLOC);<br>
-<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ret =3D drm_syncobj_find_fence(file_p=
-riv, in_sync, 0, 0, &amp;in_fence);<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ret =3D drm_syncobj_find_fence(fi=
-le_priv, in_sync, 0, 0, &amp;syncobj, &amp;in_fence);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (ret =3D=3D -EINVAL)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; goto fail;<br>
-<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; drm_syncobj_put(in_sync);<br>
-&#43;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ret =3D drm_gem_fence_array_add(=
-&amp;job-&gt;deps, in_fence);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (ret)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; goto fail;<br>
-diff --git a/include/drm/drm_syncobj.h b/include/drm/drm_syncobj.h<br>
-index 6cf7243a1dc5..08eca690f783 100644<br>
---- a/include/drm/drm_syncobj.h<br>
-&#43;&#43;&#43; b/include/drm/drm_syncobj.h<br>
-@@ -121,6 &#43;121,7 @@ void drm_syncobj_replace_fence(struct drm_syncobj *=
-syncobj,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct dma_fence *fence);<br>
-&nbsp;int drm_syncobj_find_fence(struct drm_file *file_private,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp; u32 handle, u64 point, u64 flags,<br>
-&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp; struct drm_syncobj **syncobj,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp; struct dma_fence **fence);<br>
-&nbsp;void drm_syncobj_free(struct kref *kref);<br>
-&nbsp;int drm_syncobj_create(struct drm_syncobj **out_syncobj, uint32_t fla=
-gs,<br>
---<br>
-2.21.0.392.gf8f6787159e<br>
-<br>
-</div>
-</span></font>
-</body>
-</html>
-
---_000_puwqkvl1kf9ub7x3mdnw9l5d8fjhc157ay9i80p3ne5zfqv36laytxx_--
-
---===============0762037779==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
-IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
-
---===============0762037779==--
+PT0gU2VyaWVzIERldGFpbHMgPT0KClNlcmllczogc2VyaWVzIHN0YXJ0aW5nIHdpdGggWzEvNF0g
+ZHJtL2k5MTU6IG1vdmUgYW5kIHJlbmFtZSByZWdpc3RlciByZWFkIGlvY3RsIGZ1bmN0aW9uIGRl
+Y2xhcmF0aW9uClVSTCAgIDogaHR0cHM6Ly9wYXRjaHdvcmsuZnJlZWRlc2t0b3Aub3JnL3Nlcmll
+cy82MDk4MS8KU3RhdGUgOiBzdWNjZXNzCgo9PSBTdW1tYXJ5ID09CgpDSSBCdWcgTG9nIC0gY2hh
+bmdlcyBmcm9tIENJX0RSTV82MTIxX2Z1bGwgLT4gUGF0Y2h3b3JrXzEzMDcxX2Z1bGwKPT09PT09
+PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PQoKU3VtbWFyeQot
+LS0tLS0tCgogICoqU1VDQ0VTUyoqCgogIE5vIHJlZ3Jlc3Npb25zIGZvdW5kLgoKICAKCktub3du
+IGlzc3VlcwotLS0tLS0tLS0tLS0KCiAgSGVyZSBhcmUgdGhlIGNoYW5nZXMgZm91bmQgaW4gUGF0
+Y2h3b3JrXzEzMDcxX2Z1bGwgdGhhdCBjb21lIGZyb20ga25vd24gaXNzdWVzOgoKIyMjIElHVCBj
+aGFuZ2VzICMjIwoKIyMjIyBJc3N1ZXMgaGl0ICMjIyMKCiAgKiBpZ3RAZ2VtX2Vpb0ByZXNldC1z
+dHJlc3M6CiAgICAtIHNoYXJkLXNuYjogICAgICAgICAgW1BBU1NdWzFdIC0+IFtGQUlMXVsyXSAo
+W2ZkbyMxMDk2NjFdKQogICBbMV06IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2Ry
+bS10aXAvQ0lfRFJNXzYxMjEvc2hhcmQtc25iMS9pZ3RAZ2VtX2Vpb0ByZXNldC1zdHJlc3MuaHRt
+bAogICBbMl06IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAvUGF0Y2h3
+b3JrXzEzMDcxL3NoYXJkLXNuYjcvaWd0QGdlbV9laW9AcmVzZXQtc3RyZXNzLmh0bWwKCiAgKiBp
+Z3RAZ2VtX3RpbGVkX3N3YXBwaW5nQG5vbi10aHJlYWRlZDoKICAgIC0gc2hhcmQtZ2xrOiAgICAg
+ICAgICBbUEFTU11bM10gLT4gW0RNRVNHLVdBUk5dWzRdIChbZmRvIzEwODY4Nl0pCiAgIFszXTog
+aHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9DSV9EUk1fNjEyMS9zaGFy
+ZC1nbGs5L2lndEBnZW1fdGlsZWRfc3dhcHBpbmdAbm9uLXRocmVhZGVkLmh0bWwKICAgWzRdOiBo
+dHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlwL1BhdGNod29ya18xMzA3MS9z
+aGFyZC1nbGs4L2lndEBnZW1fdGlsZWRfc3dhcHBpbmdAbm9uLXRocmVhZGVkLmh0bWwKICAgIC0g
+c2hhcmQta2JsOiAgICAgICAgICBbUEFTU11bNV0gLT4gW0ZBSUxdWzZdIChbZmRvIzEwODY4Nl0p
+CiAgIFs1XTogaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9DSV9EUk1f
+NjEyMS9zaGFyZC1rYmw0L2lndEBnZW1fdGlsZWRfc3dhcHBpbmdAbm9uLXRocmVhZGVkLmh0bWwK
+ICAgWzZdOiBodHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlwL1BhdGNod29y
+a18xMzA3MS9zaGFyZC1rYmwyL2lndEBnZW1fdGlsZWRfc3dhcHBpbmdAbm9uLXRocmVhZGVkLmh0
+bWwKCiAgKiBpZ3RAaTkxNV9wbV9ycG1AcG0tdGlsaW5nOgogICAgLSBzaGFyZC1za2w6ICAgICAg
+ICAgIFtQQVNTXVs3XSAtPiBbSU5DT01QTEVURV1bOF0gKFtmZG8jMTA3ODA3XSkgKzEgc2ltaWxh
+ciBpc3N1ZQogICBbN106IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAv
+Q0lfRFJNXzYxMjEvc2hhcmQtc2tsNC9pZ3RAaTkxNV9wbV9ycG1AcG0tdGlsaW5nLmh0bWwKICAg
+WzhdOiBodHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlwL1BhdGNod29ya18x
+MzA3MS9zaGFyZC1za2w4L2lndEBpOTE1X3BtX3JwbUBwbS10aWxpbmcuaHRtbAoKICAqIGlndEBp
+OTE1X3N1c3BlbmRAZmVuY2UtcmVzdG9yZS11bnRpbGVkOgogICAgLSBzaGFyZC1hcGw6ICAgICAg
+ICAgIFtQQVNTXVs5XSAtPiBbRE1FU0ctV0FSTl1bMTBdIChbZmRvIzEwODU2Nl0pICs1IHNpbWls
+YXIgaXNzdWVzCiAgIFs5XTogaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRp
+cC9DSV9EUk1fNjEyMS9zaGFyZC1hcGwyL2lndEBpOTE1X3N1c3BlbmRAZmVuY2UtcmVzdG9yZS11
+bnRpbGVkLmh0bWwKICAgWzEwXTogaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJt
+LXRpcC9QYXRjaHdvcmtfMTMwNzEvc2hhcmQtYXBsNi9pZ3RAaTkxNV9zdXNwZW5kQGZlbmNlLXJl
+c3RvcmUtdW50aWxlZC5odG1sCgogICogaWd0QGttc19kcmF3X2NyY0BkcmF3LW1ldGhvZC14cmdi
+ODg4OC1tbWFwLWNwdS15dGlsZWQ6CiAgICAtIHNoYXJkLXNrbDogICAgICAgICAgW1BBU1NdWzEx
+XSAtPiBbRkFJTF1bMTJdIChbZmRvIzEwMzE4NF0gLyBbZmRvIzEwMzIzMl0pCiAgIFsxMV06IGh0
+dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAvQ0lfRFJNXzYxMjEvc2hhcmQt
+c2tsNy9pZ3RAa21zX2RyYXdfY3JjQGRyYXctbWV0aG9kLXhyZ2I4ODg4LW1tYXAtY3B1LXl0aWxl
+ZC5odG1sCiAgIFsxMl06IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAv
+UGF0Y2h3b3JrXzEzMDcxL3NoYXJkLXNrbDEvaWd0QGttc19kcmF3X2NyY0BkcmF3LW1ldGhvZC14
+cmdiODg4OC1tbWFwLWNwdS15dGlsZWQuaHRtbAoKICAqIGlndEBrbXNfZmJjb25fZmJ0QHBzci1z
+dXNwZW5kOgogICAgLSBzaGFyZC1za2w6ICAgICAgICAgIFtQQVNTXVsxM10gLT4gW0lOQ09NUExF
+VEVdWzE0XSAoW2ZkbyMxMDQxMDhdKSArMSBzaW1pbGFyIGlzc3VlCiAgIFsxM106IGh0dHBzOi8v
+aW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAvQ0lfRFJNXzYxMjEvc2hhcmQtc2tsOS9p
+Z3RAa21zX2ZiY29uX2ZidEBwc3Itc3VzcGVuZC5odG1sCiAgIFsxNF06IGh0dHBzOi8vaW50ZWwt
+Z2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAvUGF0Y2h3b3JrXzEzMDcxL3NoYXJkLXNrbDQvaWd0
+QGttc19mYmNvbl9mYnRAcHNyLXN1c3BlbmQuaHRtbAoKICAqIGlndEBrbXNfZmxpcEBmbGlwLXZz
+LWV4cGlyZWQtdmJsYW5rOgogICAgLSBzaGFyZC1za2w6ICAgICAgICAgIFtQQVNTXVsxNV0gLT4g
+W0ZBSUxdWzE2XSAoW2ZkbyMxMDUzNjNdKQogICBbMTVdOiBodHRwczovL2ludGVsLWdmeC1jaS4w
+MS5vcmcvdHJlZS9kcm0tdGlwL0NJX0RSTV82MTIxL3NoYXJkLXNrbDEwL2lndEBrbXNfZmxpcEBm
+bGlwLXZzLWV4cGlyZWQtdmJsYW5rLmh0bWwKICAgWzE2XTogaHR0cHM6Ly9pbnRlbC1nZngtY2ku
+MDEub3JnL3RyZWUvZHJtLXRpcC9QYXRjaHdvcmtfMTMwNzEvc2hhcmQtc2tsNS9pZ3RAa21zX2Zs
+aXBAZmxpcC12cy1leHBpcmVkLXZibGFuay5odG1sCgogICogaWd0QGttc19mbGlwQGZsaXAtdnMt
+ZXhwaXJlZC12YmxhbmstaW50ZXJydXB0aWJsZToKICAgIC0gc2hhcmQtYXBsOiAgICAgICAgICBb
+UEFTU11bMTddIC0+IFtGQUlMXVsxOF0gKFtmZG8jMTAyODg3XSAvIFtmZG8jMTA1MzYzXSkKICAg
+WzE3XTogaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9DSV9EUk1fNjEy
+MS9zaGFyZC1hcGw1L2lndEBrbXNfZmxpcEBmbGlwLXZzLWV4cGlyZWQtdmJsYW5rLWludGVycnVw
+dGlibGUuaHRtbAogICBbMThdOiBodHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0t
+dGlwL1BhdGNod29ya18xMzA3MS9zaGFyZC1hcGwyL2lndEBrbXNfZmxpcEBmbGlwLXZzLWV4cGly
+ZWQtdmJsYW5rLWludGVycnVwdGlibGUuaHRtbAoKICAqIGlndEBrbXNfZnJvbnRidWZmZXJfdHJh
+Y2tpbmdAZmJjLTFwLXByaS1pbmRmYi1tdWx0aWRyYXc6CiAgICAtIHNoYXJkLWljbGI6ICAgICAg
+ICAgW1BBU1NdWzE5XSAtPiBbRkFJTF1bMjBdIChbZmRvIzEwMzE2N10pCiAgIFsxOV06IGh0dHBz
+Oi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAvQ0lfRFJNXzYxMjEvc2hhcmQtaWNs
+YjIvaWd0QGttc19mcm9udGJ1ZmZlcl90cmFja2luZ0BmYmMtMXAtcHJpLWluZGZiLW11bHRpZHJh
+dy5odG1sCiAgIFsyMF06IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAv
+UGF0Y2h3b3JrXzEzMDcxL3NoYXJkLWljbGIyL2lndEBrbXNfZnJvbnRidWZmZXJfdHJhY2tpbmdA
+ZmJjLTFwLXByaS1pbmRmYi1tdWx0aWRyYXcuaHRtbAoKICAqIGlndEBrbXNfcGxhbmVfYWxwaGFf
+YmxlbmRAcGlwZS1hLWNvbnN0YW50LWFscGhhLW1pbjoKICAgIC0gc2hhcmQtc2tsOiAgICAgICAg
+ICBbUEFTU11bMjFdIC0+IFtGQUlMXVsyMl0gKFtmZG8jMTA4MTQ1XSkKICAgWzIxXTogaHR0cHM6
+Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9DSV9EUk1fNjEyMS9zaGFyZC1za2w2
+L2lndEBrbXNfcGxhbmVfYWxwaGFfYmxlbmRAcGlwZS1hLWNvbnN0YW50LWFscGhhLW1pbi5odG1s
+CiAgIFsyMl06IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAvUGF0Y2h3
+b3JrXzEzMDcxL3NoYXJkLXNrbDMvaWd0QGttc19wbGFuZV9hbHBoYV9ibGVuZEBwaXBlLWEtY29u
+c3RhbnQtYWxwaGEtbWluLmh0bWwKCiAgKiBpZ3RAa21zX3BsYW5lX2xvd3Jlc0BwaXBlLWEtdGls
+aW5nLXk6CiAgICAtIHNoYXJkLWljbGI6ICAgICAgICAgW1BBU1NdWzIzXSAtPiBbRkFJTF1bMjRd
+IChbZmRvIzEwMzE2Nl0pCiAgIFsyM106IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVl
+L2RybS10aXAvQ0lfRFJNXzYxMjEvc2hhcmQtaWNsYjgvaWd0QGttc19wbGFuZV9sb3dyZXNAcGlw
+ZS1hLXRpbGluZy15Lmh0bWwKICAgWzI0XTogaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3Ry
+ZWUvZHJtLXRpcC9QYXRjaHdvcmtfMTMwNzEvc2hhcmQtaWNsYjcvaWd0QGttc19wbGFuZV9sb3dy
+ZXNAcGlwZS1hLXRpbGluZy15Lmh0bWwKCiAgKiBpZ3RAa21zX3BzckBwc3IyX3ByaW1hcnlfbW1h
+cF9jcHU6CiAgICAtIHNoYXJkLWljbGI6ICAgICAgICAgW1BBU1NdWzI1XSAtPiBbU0tJUF1bMjZd
+IChbZmRvIzEwOTQ0MV0pCiAgIFsyNV06IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVl
+L2RybS10aXAvQ0lfRFJNXzYxMjEvc2hhcmQtaWNsYjIvaWd0QGttc19wc3JAcHNyMl9wcmltYXJ5
+X21tYXBfY3B1Lmh0bWwKICAgWzI2XTogaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUv
+ZHJtLXRpcC9QYXRjaHdvcmtfMTMwNzEvc2hhcmQtaWNsYjYvaWd0QGttc19wc3JAcHNyMl9wcmlt
+YXJ5X21tYXBfY3B1Lmh0bWwKCiAgKiBpZ3RAa21zX3NldG1vZGVAYmFzaWM6CiAgICAtIHNoYXJk
+LWtibDogICAgICAgICAgW1BBU1NdWzI3XSAtPiBbRkFJTF1bMjhdIChbZmRvIzk5OTEyXSkKICAg
+WzI3XTogaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9DSV9EUk1fNjEy
+MS9zaGFyZC1rYmw0L2lndEBrbXNfc2V0bW9kZUBiYXNpYy5odG1sCiAgIFsyOF06IGh0dHBzOi8v
+aW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAvUGF0Y2h3b3JrXzEzMDcxL3NoYXJkLWti
+bDcvaWd0QGttc19zZXRtb2RlQGJhc2ljLmh0bWwKCiAgKiBpZ3RAdG9vbHNfdGVzdEBzeXNmc19s
+M19wYXJpdHk6CiAgICAtIHNoYXJkLWhzdzogICAgICAgICAgW1BBU1NdWzI5XSAtPiBbU0tJUF1b
+MzBdIChbZmRvIzEwOTI3MV0pCiAgIFsyOV06IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90
+cmVlL2RybS10aXAvQ0lfRFJNXzYxMjEvc2hhcmQtaHN3Ny9pZ3RAdG9vbHNfdGVzdEBzeXNmc19s
+M19wYXJpdHkuaHRtbAogICBbMzBdOiBodHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9k
+cm0tdGlwL1BhdGNod29ya18xMzA3MS9zaGFyZC1oc3c2L2lndEB0b29sc190ZXN0QHN5c2ZzX2wz
+X3Bhcml0eS5odG1sCgogIAojIyMjIFBvc3NpYmxlIGZpeGVzICMjIyMKCiAgKiBpZ3RAaTkxNV9w
+bV9ycG1AaTJjOgogICAgLSBzaGFyZC1za2w6ICAgICAgICAgIFtJTkNPTVBMRVRFXVszMV0gKFtm
+ZG8jMTA3ODA3XSkgLT4gW1BBU1NdWzMyXQogICBbMzFdOiBodHRwczovL2ludGVsLWdmeC1jaS4w
+MS5vcmcvdHJlZS9kcm0tdGlwL0NJX0RSTV82MTIxL3NoYXJkLXNrbDYvaWd0QGk5MTVfcG1fcnBt
+QGkyYy5odG1sCiAgIFszMl06IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10
+aXAvUGF0Y2h3b3JrXzEzMDcxL3NoYXJkLXNrbDIvaWd0QGk5MTVfcG1fcnBtQGkyYy5odG1sCgog
+ICoge2lndEBrbXNfY3Vyc29yX2NyY0BwaXBlLWEtY3Vyc29yLXNpemUtY2hhbmdlfToKICAgIC0g
+c2hhcmQtc2tsOiAgICAgICAgICBbRkFJTF1bMzNdIChbZmRvIzEwMzIzMl0pIC0+IFtQQVNTXVsz
+NF0KICAgWzMzXTogaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9DSV9E
+Uk1fNjEyMS9zaGFyZC1za2wzL2lndEBrbXNfY3Vyc29yX2NyY0BwaXBlLWEtY3Vyc29yLXNpemUt
+Y2hhbmdlLmh0bWwKICAgWzM0XTogaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJt
+LXRpcC9QYXRjaHdvcmtfMTMwNzEvc2hhcmQtc2tsNy9pZ3RAa21zX2N1cnNvcl9jcmNAcGlwZS1h
+LWN1cnNvci1zaXplLWNoYW5nZS5odG1sCgogICogaWd0QGttc19kcF9kc2NAYmFzaWMtZHNjLWVu
+YWJsZS1lZHA6CiAgICAtIHNoYXJkLWljbGI6ICAgICAgICAgW1NLSVBdWzM1XSAoW2ZkbyMxMDkz
+NDldKSAtPiBbUEFTU11bMzZdCiAgIFszNV06IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90
+cmVlL2RybS10aXAvQ0lfRFJNXzYxMjEvc2hhcmQtaWNsYjYvaWd0QGttc19kcF9kc2NAYmFzaWMt
+ZHNjLWVuYWJsZS1lZHAuaHRtbAogICBbMzZdOiBodHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcv
+dHJlZS9kcm0tdGlwL1BhdGNod29ya18xMzA3MS9zaGFyZC1pY2xiMi9pZ3RAa21zX2RwX2RzY0Bi
+YXNpYy1kc2MtZW5hYmxlLWVkcC5odG1sCgogICogaWd0QGttc19kcmF3X2NyY0BkcmF3LW1ldGhv
+ZC1yZ2I1NjUtcmVuZGVyLXh0aWxlZDoKICAgIC0gc2hhcmQtc2tsOiAgICAgICAgICBbRkFJTF1b
+MzddIChbZmRvIzEwMzE4NF0gLyBbZmRvIzEwMzIzMl0pIC0+IFtQQVNTXVszOF0KICAgWzM3XTog
+aHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9DSV9EUk1fNjEyMS9zaGFy
+ZC1za2wzL2lndEBrbXNfZHJhd19jcmNAZHJhdy1tZXRob2QtcmdiNTY1LXJlbmRlci14dGlsZWQu
+aHRtbAogICBbMzhdOiBodHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlwL1Bh
+dGNod29ya18xMzA3MS9zaGFyZC1za2w3L2lndEBrbXNfZHJhd19jcmNAZHJhdy1tZXRob2Qtcmdi
+NTY1LXJlbmRlci14dGlsZWQuaHRtbAoKICAqIGlndEBrbXNfZmxpcEBmbGlwLXZzLWV4cGlyZWQt
+dmJsYW5rLWludGVycnVwdGlibGU6CiAgICAtIHNoYXJkLXNrbDogICAgICAgICAgW0ZBSUxdWzM5
+XSAoW2ZkbyMxMDUzNjNdKSAtPiBbUEFTU11bNDBdCiAgIFszOV06IGh0dHBzOi8vaW50ZWwtZ2Z4
+LWNpLjAxLm9yZy90cmVlL2RybS10aXAvQ0lfRFJNXzYxMjEvc2hhcmQtc2tsMS9pZ3RAa21zX2Zs
+aXBAZmxpcC12cy1leHBpcmVkLXZibGFuay1pbnRlcnJ1cHRpYmxlLmh0bWwKICAgWzQwXTogaHR0
+cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9QYXRjaHdvcmtfMTMwNzEvc2hh
+cmQtc2tsMS9pZ3RAa21zX2ZsaXBAZmxpcC12cy1leHBpcmVkLXZibGFuay1pbnRlcnJ1cHRpYmxl
+Lmh0bWwKCiAgKiBpZ3RAa21zX2Zyb250YnVmZmVyX3RyYWNraW5nQGZiYy0xcC1wcmltc2Nybi1w
+cmktaW5kZmItZHJhdy1yZW5kZXI6CiAgICAtIHNoYXJkLWljbGI6ICAgICAgICAgW0ZBSUxdWzQx
+XSAoW2ZkbyMxMDMxNjddKSAtPiBbUEFTU11bNDJdICs2IHNpbWlsYXIgaXNzdWVzCiAgIFs0MV06
+IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAvQ0lfRFJNXzYxMjEvc2hh
+cmQtaWNsYjQvaWd0QGttc19mcm9udGJ1ZmZlcl90cmFja2luZ0BmYmMtMXAtcHJpbXNjcm4tcHJp
+LWluZGZiLWRyYXctcmVuZGVyLmh0bWwKICAgWzQyXTogaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEu
+b3JnL3RyZWUvZHJtLXRpcC9QYXRjaHdvcmtfMTMwNzEvc2hhcmQtaWNsYjUvaWd0QGttc19mcm9u
+dGJ1ZmZlcl90cmFja2luZ0BmYmMtMXAtcHJpbXNjcm4tcHJpLWluZGZiLWRyYXctcmVuZGVyLmh0
+bWwKCiAgKiBpZ3RAa21zX2Zyb250YnVmZmVyX3RyYWNraW5nQHBzci0xcC1wcmltc2Nybi1zaHJm
+Yi1wbGZsaXAtYmx0OgogICAgLSBzaGFyZC1za2w6ICAgICAgICAgIFtGQUlMXVs0M10gKFtmZG8j
+MTAzMTY3XSkgLT4gW1BBU1NdWzQ0XQogICBbNDNdOiBodHRwczovL2ludGVsLWdmeC1jaS4wMS5v
+cmcvdHJlZS9kcm0tdGlwL0NJX0RSTV82MTIxL3NoYXJkLXNrbDMvaWd0QGttc19mcm9udGJ1ZmZl
+cl90cmFja2luZ0Bwc3ItMXAtcHJpbXNjcm4tc2hyZmItcGxmbGlwLWJsdC5odG1sCiAgIFs0NF06
+IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAvUGF0Y2h3b3JrXzEzMDcx
+L3NoYXJkLXNrbDcvaWd0QGttc19mcm9udGJ1ZmZlcl90cmFja2luZ0Bwc3ItMXAtcHJpbXNjcm4t
+c2hyZmItcGxmbGlwLWJsdC5odG1sCgogICogaWd0QGttc19sZWFzZUBsZWFzZS11ZXZlbnQ6CiAg
+ICAtIHNoYXJkLWFwbDogICAgICAgICAgW0RNRVNHLVdBUk5dWzQ1XSAoW2ZkbyMxMDM1NThdIC8g
+W2ZkbyMxMDU2MDJdKSAtPiBbUEFTU11bNDZdICsxMCBzaW1pbGFyIGlzc3VlcwogICBbNDVdOiBo
+dHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlwL0NJX0RSTV82MTIxL3NoYXJk
+LWFwbDYvaWd0QGttc19sZWFzZUBsZWFzZS11ZXZlbnQuaHRtbAogICBbNDZdOiBodHRwczovL2lu
+dGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlwL1BhdGNod29ya18xMzA3MS9zaGFyZC1hcGw0
+L2lndEBrbXNfbGVhc2VAbGVhc2UtdWV2ZW50Lmh0bWwKCiAgKiBpZ3RAa21zX3BsYW5lQHBsYW5l
+LXBvc2l0aW9uLWNvdmVyZWQtcGlwZS1jLXBsYW5lczoKICAgIC0gc2hhcmQtc2tsOiAgICAgICAg
+ICBbRkFJTF1bNDddIChbZmRvIzExMDAzOF0pIC0+IFtQQVNTXVs0OF0KICAgWzQ3XTogaHR0cHM6
+Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9DSV9EUk1fNjEyMS9zaGFyZC1za2wy
+L2lndEBrbXNfcGxhbmVAcGxhbmUtcG9zaXRpb24tY292ZXJlZC1waXBlLWMtcGxhbmVzLmh0bWwK
+ICAgWzQ4XTogaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9QYXRjaHdv
+cmtfMTMwNzEvc2hhcmQtc2tsOS9pZ3RAa21zX3BsYW5lQHBsYW5lLXBvc2l0aW9uLWNvdmVyZWQt
+cGlwZS1jLXBsYW5lcy5odG1sCgogICogaWd0QGttc19wbGFuZV9hbHBoYV9ibGVuZEBwaXBlLWMt
+Y29uc3RhbnQtYWxwaGEtbWluOgogICAgLSBzaGFyZC1za2w6ICAgICAgICAgIFtGQUlMXVs0OV0g
+KFtmZG8jMTA4MTQ1XSkgLT4gW1BBU1NdWzUwXSArMSBzaW1pbGFyIGlzc3VlCiAgIFs0OV06IGh0
+dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAvQ0lfRFJNXzYxMjEvc2hhcmQt
+c2tsMi9pZ3RAa21zX3BsYW5lX2FscGhhX2JsZW5kQHBpcGUtYy1jb25zdGFudC1hbHBoYS1taW4u
+aHRtbAogICBbNTBdOiBodHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlwL1Bh
+dGNod29ya18xMzA3MS9zaGFyZC1za2w5L2lndEBrbXNfcGxhbmVfYWxwaGFfYmxlbmRAcGlwZS1j
+LWNvbnN0YW50LWFscGhhLW1pbi5odG1sCgogICogaWd0QGttc19wc3IyX3N1QHBhZ2VfZmxpcDoK
+ICAgIC0gc2hhcmQtaWNsYjogICAgICAgICBbU0tJUF1bNTFdIChbZmRvIzEwOTY0Ml0pIC0+IFtQ
+QVNTXVs1Ml0KICAgWzUxXTogaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRp
+cC9DSV9EUk1fNjEyMS9zaGFyZC1pY2xiOC9pZ3RAa21zX3BzcjJfc3VAcGFnZV9mbGlwLmh0bWwK
+ICAgWzUyXTogaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9QYXRjaHdv
+cmtfMTMwNzEvc2hhcmQtaWNsYjIvaWd0QGttc19wc3IyX3N1QHBhZ2VfZmxpcC5odG1sCgogICog
+aWd0QGttc19wc3JAcHNyMl9ub19kcnJzOgogICAgLSBzaGFyZC1pY2xiOiAgICAgICAgIFtTS0lQ
+XVs1M10gKFtmZG8jMTA5NDQxXSkgLT4gW1BBU1NdWzU0XSArMiBzaW1pbGFyIGlzc3VlcwogICBb
+NTNdOiBodHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlwL0NJX0RSTV82MTIx
+L3NoYXJkLWljbGI2L2lndEBrbXNfcHNyQHBzcjJfbm9fZHJycy5odG1sCiAgIFs1NF06IGh0dHBz
+Oi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAvUGF0Y2h3b3JrXzEzMDcxL3NoYXJk
+LWljbGIyL2lndEBrbXNfcHNyQHBzcjJfbm9fZHJycy5odG1sCgogICogaWd0QGttc192YmxhbmtA
+cGlwZS1jLXRzLWNvbnRpbnVhdGlvbi1zdXNwZW5kOgogICAgLSBzaGFyZC1hcGw6ICAgICAgICAg
+IFtETUVTRy1XQVJOXVs1NV0gKFtmZG8jMTA4NTY2XSkgLT4gW1BBU1NdWzU2XSArNSBzaW1pbGFy
+IGlzc3VlcwogICBbNTVdOiBodHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlw
+L0NJX0RSTV82MTIxL3NoYXJkLWFwbDQvaWd0QGttc192YmxhbmtAcGlwZS1jLXRzLWNvbnRpbnVh
+dGlvbi1zdXNwZW5kLmh0bWwKICAgWzU2XTogaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3Ry
+ZWUvZHJtLXRpcC9QYXRjaHdvcmtfMTMwNzEvc2hhcmQtYXBsMS9pZ3RAa21zX3ZibGFua0BwaXBl
+LWMtdHMtY29udGludWF0aW9uLXN1c3BlbmQuaHRtbAoKICAqIGlndEBwZXJmX3BtdUByYzY6CiAg
+ICAtIHNoYXJkLWtibDogICAgICAgICAgW1NLSVBdWzU3XSAoW2ZkbyMxMDkyNzFdKSAtPiBbUEFT
+U11bNThdCiAgIFs1N106IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAv
+Q0lfRFJNXzYxMjEvc2hhcmQta2JsNy9pZ3RAcGVyZl9wbXVAcmM2Lmh0bWwKICAgWzU4XTogaHR0
+cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9QYXRjaHdvcmtfMTMwNzEvc2hh
+cmQta2JsNi9pZ3RAcGVyZl9wbXVAcmM2Lmh0bWwKCiAgCiMjIyMgV2FybmluZ3MgIyMjIwoKICAq
+IGlndEBnZW1fbW1hcF9ndHRAZm9ya2VkLWJpZy1jb3B5LW9kZDoKICAgIC0gc2hhcmQtaWNsYjog
+ICAgICAgICBbSU5DT01QTEVURV1bNTldIChbZmRvIzEwNzcxM10gLyBbZmRvIzEwOTEwMF0pIC0+
+IFtUSU1FT1VUXVs2MF0gKFtmZG8jMTA5NjczXSkgKzEgc2ltaWxhciBpc3N1ZQogICBbNTldOiBo
+dHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlwL0NJX0RSTV82MTIxL3NoYXJk
+LWljbGI1L2lndEBnZW1fbW1hcF9ndHRAZm9ya2VkLWJpZy1jb3B5LW9kZC5odG1sCiAgIFs2MF06
+IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAvUGF0Y2h3b3JrXzEzMDcx
+L3NoYXJkLWljbGIzL2lndEBnZW1fbW1hcF9ndHRAZm9ya2VkLWJpZy1jb3B5LW9kZC5odG1sCgog
+ICogaWd0QGdlbV9tbWFwX2d0dEBmb3JrZWQtYmlnLWNvcHkteHk6CiAgICAtIHNoYXJkLWljbGI6
+ICAgICAgICAgW1RJTUVPVVRdWzYxXSAoW2ZkbyMxMDk2NzNdKSAtPiBbSU5DT01QTEVURV1bNjJd
+IChbZmRvIzEwNzcxM10gLyBbZmRvIzEwOTEwMF0pCiAgIFs2MV06IGh0dHBzOi8vaW50ZWwtZ2Z4
+LWNpLjAxLm9yZy90cmVlL2RybS10aXAvQ0lfRFJNXzYxMjEvc2hhcmQtaWNsYjYvaWd0QGdlbV9t
+bWFwX2d0dEBmb3JrZWQtYmlnLWNvcHkteHkuaHRtbAogICBbNjJdOiBodHRwczovL2ludGVsLWdm
+eC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlwL1BhdGNod29ya18xMzA3MS9zaGFyZC1pY2xiNS9pZ3RA
+Z2VtX21tYXBfZ3R0QGZvcmtlZC1iaWctY29weS14eS5odG1sCgogICogaWd0QGk5MTVfcG1fcnBt
+QG1vZGVzZXQtcGM4LXJlc2lkZW5jeS1zdHJlc3M6CiAgICAtIHNoYXJkLXNrbDogICAgICAgICAg
+W0lOQ09NUExFVEVdWzYzXSAoW2ZkbyMxMDc4MDddKSAtPiBbU0tJUF1bNjRdIChbZmRvIzEwOTI3
+MV0pCiAgIFs2M106IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAvQ0lf
+RFJNXzYxMjEvc2hhcmQtc2tsNi9pZ3RAaTkxNV9wbV9ycG1AbW9kZXNldC1wYzgtcmVzaWRlbmN5
+LXN0cmVzcy5odG1sCiAgIFs2NF06IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2Ry
+bS10aXAvUGF0Y2h3b3JrXzEzMDcxL3NoYXJkLXNrbDMvaWd0QGk5MTVfcG1fcnBtQG1vZGVzZXQt
+cGM4LXJlc2lkZW5jeS1zdHJlc3MuaHRtbAoKICAqIGlndEBrbXNfYnVzeUBleHRlbmRlZC1tb2Rl
+c2V0LWhhbmctb2xkZmItcmVuZGVyLWQ6CiAgICAtIHNoYXJkLWFwbDogICAgICAgICAgW1NLSVBd
+WzY1XSAoW2ZkbyMxMDU2MDJdIC8gW2ZkbyMxMDkyNzFdIC8gW2ZkbyMxMDkyNzhdKSAtPiBbU0tJ
+UF1bNjZdIChbZmRvIzEwOTI3MV0gLyBbZmRvIzEwOTI3OF0pCiAgIFs2NV06IGh0dHBzOi8vaW50
+ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAvQ0lfRFJNXzYxMjEvc2hhcmQtYXBsNi9pZ3RA
+a21zX2J1c3lAZXh0ZW5kZWQtbW9kZXNldC1oYW5nLW9sZGZiLXJlbmRlci1kLmh0bWwKICAgWzY2
+XTogaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9QYXRjaHdvcmtfMTMw
+NzEvc2hhcmQtYXBsNC9pZ3RAa21zX2J1c3lAZXh0ZW5kZWQtbW9kZXNldC1oYW5nLW9sZGZiLXJl
+bmRlci1kLmh0bWwKCiAgKiBpZ3RAa21zX2Zyb250YnVmZmVyX3RyYWNraW5nQHBzci0ycC1wcmlt
+c2Nybi1zaHJmYi1wbGZsaXAtYmx0OgogICAgLSBzaGFyZC1hcGw6ICAgICAgICAgIFtTS0lQXVs2
+N10gKFtmZG8jMTA1NjAyXSAvIFtmZG8jMTA5MjcxXSkgLT4gW1NLSVBdWzY4XSAoW2ZkbyMxMDky
+NzFdKSArMyBzaW1pbGFyIGlzc3VlcwogICBbNjddOiBodHRwczovL2ludGVsLWdmeC1jaS4wMS5v
+cmcvdHJlZS9kcm0tdGlwL0NJX0RSTV82MTIxL3NoYXJkLWFwbDYvaWd0QGttc19mcm9udGJ1ZmZl
+cl90cmFja2luZ0Bwc3ItMnAtcHJpbXNjcm4tc2hyZmItcGxmbGlwLWJsdC5odG1sCiAgIFs2OF06
+IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAvUGF0Y2h3b3JrXzEzMDcx
+L3NoYXJkLWFwbDQvaWd0QGttc19mcm9udGJ1ZmZlcl90cmFja2luZ0Bwc3ItMnAtcHJpbXNjcm4t
+c2hyZmItcGxmbGlwLWJsdC5odG1sCgogICogaWd0QHByaW1lX252X2FwaUBpOTE1X252X2ltcG9y
+dF90d2ljZToKICAgIC0gc2hhcmQtaHN3OiAgICAgICAgICBbSU5DT01QTEVURV1bNjldIChbZmRv
+IzEwMzU0MF0pIC0+IFtTS0lQXVs3MF0gKFtmZG8jMTA5MjcxXSkKICAgWzY5XTogaHR0cHM6Ly9p
+bnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9DSV9EUk1fNjEyMS9zaGFyZC1oc3c3L2ln
+dEBwcmltZV9udl9hcGlAaTkxNV9udl9pbXBvcnRfdHdpY2UuaHRtbAogICBbNzBdOiBodHRwczov
+L2ludGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlwL1BhdGNod29ya18xMzA3MS9zaGFyZC1o
+c3cxL2lndEBwcmltZV9udl9hcGlAaTkxNV9udl9pbXBvcnRfdHdpY2UuaHRtbAoKICAKICB7bmFt
+ZX06IFRoaXMgZWxlbWVudCBpcyBzdXBwcmVzc2VkLiBUaGlzIG1lYW5zIGl0IGlzIGlnbm9yZWQg
+d2hlbiBjb21wdXRpbmcKICAgICAgICAgIHRoZSBzdGF0dXMgb2YgdGhlIGRpZmZlcmVuY2UgKFNV
+Q0NFU1MsIFdBUk5JTkcsIG9yIEZBSUxVUkUpLgoKICBbZmRvIzEwMjg4N106IGh0dHBzOi8vYnVn
+cy5mcmVlZGVza3RvcC5vcmcvc2hvd19idWcuY2dpP2lkPTEwMjg4NwogIFtmZG8jMTAzMTY2XTog
+aHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MTAzMTY2CiAgW2Zk
+byMxMDMxNjddOiBodHRwczovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD0x
+MDMxNjcKICBbZmRvIzEwMzE4NF06IGh0dHBzOi8vYnVncy5mcmVlZGVza3RvcC5vcmcvc2hvd19i
+dWcuY2dpP2lkPTEwMzE4NAogIFtmZG8jMTAzMjMyXTogaHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9w
+Lm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MTAzMjMyCiAgW2ZkbyMxMDM1NDBdOiBodHRwczovL2J1Z3Mu
+ZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD0xMDM1NDAKICBbZmRvIzEwMzU1OF06IGh0
+dHBzOi8vYnVncy5mcmVlZGVza3RvcC5vcmcvc2hvd19idWcuY2dpP2lkPTEwMzU1OAogIFtmZG8j
+MTA0MTA4XTogaHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MTA0
+MTA4CiAgW2ZkbyMxMDUzNjNdOiBodHRwczovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVn
+LmNnaT9pZD0xMDUzNjMKICBbZmRvIzEwNTYwMl06IGh0dHBzOi8vYnVncy5mcmVlZGVza3RvcC5v
+cmcvc2hvd19idWcuY2dpP2lkPTEwNTYwMgogIFtmZG8jMTA3NzEzXTogaHR0cHM6Ly9idWdzLmZy
+ZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MTA3NzEzCiAgW2ZkbyMxMDc4MDddOiBodHRw
+czovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD0xMDc4MDcKICBbZmRvIzEw
+ODE0NV06IGh0dHBzOi8vYnVncy5mcmVlZGVza3RvcC5vcmcvc2hvd19idWcuY2dpP2lkPTEwODE0
+NQogIFtmZG8jMTA4NTY2XTogaHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5j
+Z2k/aWQ9MTA4NTY2CiAgW2ZkbyMxMDg2ODZdOiBodHRwczovL2J1Z3MuZnJlZWRlc2t0b3Aub3Jn
+L3Nob3dfYnVnLmNnaT9pZD0xMDg2ODYKICBbZmRvIzEwOTEwMF06IGh0dHBzOi8vYnVncy5mcmVl
+ZGVza3RvcC5vcmcvc2hvd19idWcuY2dpP2lkPTEwOTEwMAogIFtmZG8jMTA5MjcxXTogaHR0cHM6
+Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MTA5MjcxCiAgW2ZkbyMxMDky
+NzhdOiBodHRwczovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD0xMDkyNzgK
+ICBbZmRvIzEwOTM0OV06IGh0dHBzOi8vYnVncy5mcmVlZGVza3RvcC5vcmcvc2hvd19idWcuY2dp
+P2lkPTEwOTM0OQogIFtmZG8jMTA5NDQxXTogaHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9z
+aG93X2J1Zy5jZ2k/aWQ9MTA5NDQxCiAgW2ZkbyMxMDk2NDJdOiBodHRwczovL2J1Z3MuZnJlZWRl
+c2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD0xMDk2NDIKICBbZmRvIzEwOTY2MV06IGh0dHBzOi8v
+YnVncy5mcmVlZGVza3RvcC5vcmcvc2hvd19idWcuY2dpP2lkPTEwOTY2MQogIFtmZG8jMTA5Njcz
+XTogaHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MTA5NjczCiAg
+W2ZkbyMxMTAwMzhdOiBodHRwczovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9p
+ZD0xMTAwMzgKICBbZmRvIzk5OTEyXTogaHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93
+X2J1Zy5jZ2k/aWQ9OTk5MTIKCgpQYXJ0aWNpcGF0aW5nIGhvc3RzICgxMCAtPiAxMCkKLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tCgogIE5vIGNoYW5nZXMgaW4gcGFydGljaXBhdGluZyBo
+b3N0cwoKCkJ1aWxkIGNoYW5nZXMKLS0tLS0tLS0tLS0tLQoKICAqIExpbnV4OiBDSV9EUk1fNjEy
+MSAtPiBQYXRjaHdvcmtfMTMwNzEKCiAgQ0lfRFJNXzYxMjE6IDBhMDI5NTI0ZjIyY2EyODdlYzdl
+NTE1ZWRjMTI1OGU3ZjgwNjc1MGMgQCBnaXQ6Ly9hbm9uZ2l0LmZyZWVkZXNrdG9wLm9yZy9nZngt
+Y2kvbGludXgKICBJR1RfNTAwMzogNTRlNmQ2NTFkMTEyMmRmYjY1NzhiODE3OWY3ODJkMzM1ZmUx
+NTg2NCBAIGdpdDovL2Fub25naXQuZnJlZWRlc2t0b3Aub3JnL3hvcmcvYXBwL2ludGVsLWdwdS10
+b29scwogIFBhdGNod29ya18xMzA3MTogZGVkOGIxODJlODJkZDAyZDc0NjM5MGZjOWYwOWYwZDFi
+NWFiMjEyOSBAIGdpdDovL2Fub25naXQuZnJlZWRlc2t0b3Aub3JnL2dmeC1jaS9saW51eAogIHBp
+Z2xpdF80NTA5OiBmZGM1YTRjYTExMTI0YWI4NDEzYzc5ODg4OTZlZWM0Yzk3MzM2Njk0IEAgZ2l0
+Oi8vYW5vbmdpdC5mcmVlZGVza3RvcC5vcmcvcGlnbGl0Cgo9PSBMb2dzID09CgpGb3IgbW9yZSBk
+ZXRhaWxzIHNlZTogaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9QYXRj
+aHdvcmtfMTMwNzEvCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9y
+ZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdm
+eA==
