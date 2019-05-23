@@ -2,32 +2,34 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5D1B27C34
-	for <lists+intel-gfx@lfdr.de>; Thu, 23 May 2019 13:52:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9AA2327CB3
+	for <lists+intel-gfx@lfdr.de>; Thu, 23 May 2019 14:25:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 45D0489C9C;
-	Thu, 23 May 2019 11:52:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3838D89E19;
+	Thu, 23 May 2019 12:25:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 295BF89C9C
- for <intel-gfx@lists.freedesktop.org>; Thu, 23 May 2019 11:52:15 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 16654068-1500050 for multiple; Thu, 23 May 2019 12:52:11 +0100
+Received: from mslow2.mail.gandi.net (mslow2.mail.gandi.net [217.70.178.242])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A1B5089E19
+ for <intel-gfx@lists.freedesktop.org>; Thu, 23 May 2019 12:24:59 +0000 (UTC)
+Received: from relay5-d.mail.gandi.net (unknown [217.70.183.197])
+ by mslow2.mail.gandi.net (Postfix) with ESMTP id CD9BC3AA7C8
+ for <intel-gfx@lists.freedesktop.org>; Thu, 23 May 2019 11:54:20 +0000 (UTC)
+X-Originating-IP: 90.88.22.185
+Received: from localhost (aaubervilliers-681-1-80-185.w90-88.abo.wanadoo.fr
+ [90.88.22.185]) (Authenticated sender: maxime.ripard@bootlin.com)
+ by relay5-d.mail.gandi.net (Postfix) with ESMTPSA id D2CD31C0016;
+ Thu, 23 May 2019 11:53:55 +0000 (UTC)
+Date: Thu, 23 May 2019 13:53:55 +0200
+From: Maxime Ripard <maxime.ripard@bootlin.com>
+To: Stephen Rothwell <sfr@canb.auug.org.au>
+Message-ID: <20190523115355.joyeqlmbjkufueyn@flea>
+References: <20190521105151.51ffa942@canb.auug.org.au>
 MIME-Version: 1.0
-From: Chris Wilson <chris@chris-wilson.co.uk>
-User-Agent: alot/0.6
-To: Lionel Landwerlin <lionel.g.landwerlin@intel.com>,
- intel-gfx@lists.freedesktop.org
-References: <20190523114620.19335-1-lionel.g.landwerlin@intel.com>
- <20190523114620.19335-3-lionel.g.landwerlin@intel.com>
-In-Reply-To: <20190523114620.19335-3-lionel.g.landwerlin@intel.com>
-Message-ID: <155861233043.28319.5452168515708280707@skylake-alporthouse-com>
-Date: Thu, 23 May 2019 12:52:10 +0100
-Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915: add syncobj timeline support
+In-Reply-To: <20190521105151.51ffa942@canb.auug.org.au>
+User-Agent: NeoMutt/20180716
+Subject: Re: [Intel-gfx] linux-next: manual merge of the drm-misc tree with
+ Linus' tree
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -40,29 +42,86 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Intel Graphics <intel-gfx@lists.freedesktop.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ Jyri Sarha <jsarha@ti.com>, Marco Felsch <m.felsch@pengutronix.de>,
+ Linux Next Mailing List <linux-next@vger.kernel.org>,
+ DRI <dri-devel@lists.freedesktop.org>, Thierry Reding <treding@nvidia.com>
+Content-Type: multipart/mixed; boundary="===============0482987082=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-UXVvdGluZyBMaW9uZWwgTGFuZHdlcmxpbiAoMjAxOS0wNS0yMyAxMjo0NjoyMCkKPiAtICAgICAg
-ICAgICAgICAgc3luY29iaiA9IGRybV9zeW5jb2JqX2ZpbmQoZmlsZSwgZmVuY2UuaGFuZGxlKTsK
-PiAtICAgICAgICAgICAgICAgaWYgKCFzeW5jb2JqKSB7Cj4gLSAgICAgICAgICAgICAgICAgICAg
-ICAgRFJNX0RFQlVHKCJJbnZhbGlkIHN5bmNvYmogaGFuZGxlIHByb3ZpZGVkXG4iKTsKPiAtICAg
-ICAgICAgICAgICAgICAgICAgICBlcnIgPSAtRU5PRU5UOwo+IC0gICAgICAgICAgICAgICAgICAg
-ICAgIGdvdG8gZXJyOwo+ICsgICAgICAgICAgICAgICAgICAgICAgIGlmICh1c2VyX2ZlbmNlLmZs
-YWdzICYgX19JOTE1X0VYRUNfRkVOQ0VfVU5LTk9XTl9GTEFHUykgewo+ICsgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgZXJyID0gLUVJTlZBTDsKPiArICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgIGdvdG8gZXJyOwo+ICsgICAgICAgICAgICAgICAgICAgICAgIH0KPiArCj4gKyAg
-ICAgICAgICAgICAgICAgICAgICAgaWYgKHVzZXJfZmVuY2UuZmxhZ3MgJiBJOTE1X0VYRUNfRkVO
-Q0VfV0FJVCkgewo+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgZXJyID0gZHJtX3N5
-bmNvYmpfZmluZF9mZW5jZSgKPiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgZmlsZSwgdXNlcl9mZW5jZS5oYW5kbGUsIHVzZXJfZmVuY2UudmFsdWUsCj4gKyAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIERSTV9TWU5DT0JKX1dBSVRfRkxBR1NfV0FJ
-VF9GT1JfU1VCTUlULAo+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAm
-c3luY29iaiwgJmZlbmNlKTsKCklzIHRoaXMgc3RpbGwgYSBzeW5jaHJvbm91cyB3YWl0PyBUaGF0
-IHdvdWxkIGJlIGFuIHVuZm9ydHVuYXRlIGNoYW5nZSBpbgpiZWhhdmlvdXIgYW5kIGFudGl0aGVz
-aXMgdG8gaGF2aW5nIGEgc2NoZWR1bGVyLgotQ2hyaXMKX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhA
-bGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxt
-YW4vbGlzdGluZm8vaW50ZWwtZ2Z4
+
+--===============0482987082==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="22oxjvmo2hvuqeqd"
+Content-Disposition: inline
+
+
+--22oxjvmo2hvuqeqd
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+
+On Tue, May 21, 2019 at 10:51:51AM +1000, Stephen Rothwell wrote:
+> Hi all,
+>
+> Today's linux-next merge of the drm-misc tree got a conflict in:
+>
+>   Documentation/devicetree/bindings/vendor-prefixes.txt
+>
+> between commit:
+>
+>   8122de54602e ("dt-bindings: Convert vendor prefixes to json-schema")
+>
+> from Linus' tree and commits:
+>
+>   b4a2c0055a4f ("dt-bindings: Add vendor prefix for VXT Ltd")
+>   b1b0d36bdb15 ("dt-bindings: drm/panel: simple: Add binding for TFC S9700RTWV43TR-01B")
+>   fbd8b69ab616 ("dt-bindings: Add vendor prefix for Evervision Electronics")
+>
+> from the drm-misc tree.
+>
+> I fixed it up (I deleted the file and added the patch below) and can
+> carry the fix as necessary. This is now fixed as far as linux-next is
+> concerned, but any non trivial conflicts should be mentioned to your
+> upstream maintainer when your tree is submitted for merging.  You may
+> also want to consider cooperating with the maintainer of the conflicting
+> tree to minimise any particularly complex conflicts.
+
+I just took your patch and pushed a temp branch there:
+https://git.kernel.org/pub/scm/linux/kernel/git/mripard/linux.git/commit/?h=drm-misc-next&id=3832f2cad5307ebcedeead13fbd8d3cf06ba5e90
+
+Rob, Stephen, are you ok with the change? If so, I'll push it.
+
+Maxime
+
+--
+Maxime Ripard, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
+
+--22oxjvmo2hvuqeqd
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXOaJzQAKCRDj7w1vZxhR
+xcfwAP9V0omTw8jbR0a5wFDMizYxiSE6KvGa0yDpAyucXGBcqAEAgP78Gkggt6vS
+4E1Xd5LVpNQXXiwmH7FNbcL6r2C8ggk=
+=birf
+-----END PGP SIGNATURE-----
+
+--22oxjvmo2hvuqeqd--
+
+--===============0482987082==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
+IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
+
+--===============0482987082==--
