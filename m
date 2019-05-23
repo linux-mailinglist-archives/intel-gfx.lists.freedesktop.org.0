@@ -2,25 +2,25 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B7CA27FCD
-	for <lists+intel-gfx@lfdr.de>; Thu, 23 May 2019 16:34:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D34127FD1
+	for <lists+intel-gfx@lfdr.de>; Thu, 23 May 2019 16:35:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 772E789EBD;
-	Thu, 23 May 2019 14:34:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 94D4E8982E;
+	Thu, 23 May 2019 14:35:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EAFEC89EBD
- for <intel-gfx@lists.freedesktop.org>; Thu, 23 May 2019 14:34:06 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4E7DC8982E
+ for <intel-gfx@lists.freedesktop.org>; Thu, 23 May 2019 14:35:39 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 16656374-1500050 
- for multiple; Thu, 23 May 2019 15:33:54 +0100
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 16656386-1500050 
+ for multiple; Thu, 23 May 2019 15:35:09 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 23 May 2019 15:33:54 +0100
-Message-Id: <20190523143354.9825-1-chris@chris-wilson.co.uk>
+Date: Thu, 23 May 2019 15:35:09 +0100
+Message-Id: <20190523143509.14245-1-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
 Subject: [Intel-gfx] [PATCH] drm/i915: Keep user GGTT alive for a minimum of
