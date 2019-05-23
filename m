@@ -2,34 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9AA2327CB3
-	for <lists+intel-gfx@lfdr.de>; Thu, 23 May 2019 14:25:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 779D627C49
+	for <lists+intel-gfx@lfdr.de>; Thu, 23 May 2019 13:58:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3838D89E19;
-	Thu, 23 May 2019 12:25:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4B49989C3F;
+	Thu, 23 May 2019 11:58:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mslow2.mail.gandi.net (mslow2.mail.gandi.net [217.70.178.242])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A1B5089E19
- for <intel-gfx@lists.freedesktop.org>; Thu, 23 May 2019 12:24:59 +0000 (UTC)
-Received: from relay5-d.mail.gandi.net (unknown [217.70.183.197])
- by mslow2.mail.gandi.net (Postfix) with ESMTP id CD9BC3AA7C8
- for <intel-gfx@lists.freedesktop.org>; Thu, 23 May 2019 11:54:20 +0000 (UTC)
-X-Originating-IP: 90.88.22.185
-Received: from localhost (aaubervilliers-681-1-80-185.w90-88.abo.wanadoo.fr
- [90.88.22.185]) (Authenticated sender: maxime.ripard@bootlin.com)
- by relay5-d.mail.gandi.net (Postfix) with ESMTPSA id D2CD31C0016;
- Thu, 23 May 2019 11:53:55 +0000 (UTC)
-Date: Thu, 23 May 2019 13:53:55 +0200
-From: Maxime Ripard <maxime.ripard@bootlin.com>
-To: Stephen Rothwell <sfr@canb.auug.org.au>
-Message-ID: <20190523115355.joyeqlmbjkufueyn@flea>
-References: <20190521105151.51ffa942@canb.auug.org.au>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 93B4289C3F
+ for <intel-gfx@lists.freedesktop.org>; Thu, 23 May 2019 11:58:04 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 23 May 2019 04:58:03 -0700
+X-ExtLoop1: 1
+Received: from fmsmsx108.amr.corp.intel.com ([10.18.124.206])
+ by fmsmga008.fm.intel.com with ESMTP; 23 May 2019 04:58:03 -0700
+Received: from fmsmsx115.amr.corp.intel.com (10.18.116.19) by
+ FMSMSX108.amr.corp.intel.com (10.18.124.206) with Microsoft SMTP Server (TLS)
+ id 14.3.408.0; Thu, 23 May 2019 04:58:03 -0700
+Received: from shsmsx102.ccr.corp.intel.com (10.239.4.154) by
+ fmsmsx115.amr.corp.intel.com (10.18.116.19) with Microsoft SMTP Server (TLS)
+ id 14.3.408.0; Thu, 23 May 2019 04:58:03 -0700
+Received: from shsmsx103.ccr.corp.intel.com ([169.254.4.70]) by
+ shsmsx102.ccr.corp.intel.com ([169.254.2.249]) with mapi id 14.03.0415.000;
+ Thu, 23 May 2019 19:58:01 +0800
+From: "Ye, Tony" <tony.ye@intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>
+Thread-Topic: [PATCH 2/3] drm/i915/huc: Check HuC firmware status only once
+Thread-Index: AQHVENDEIsv2FCZy0k6bnoTfDrTgDKZ3DfaAgAGN87s=
+Date: Thu, 23 May 2019 11:58:01 +0000
+Message-ID: <D6DFF214-15DC-459F-A23B-16D934136900@intel.com>
+References: <20190522190057.848-1-michal.wajdeczko@intel.com>
+ <20190522190057.848-3-michal.wajdeczko@intel.com>,
+ <155855602378.28319.14504255049114851811@skylake-alporthouse-com>
+In-Reply-To: <155855602378.28319.14504255049114851811@skylake-alporthouse-com>
+Accept-Language: en-US
+Content-Language: zh-CN
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
 MIME-Version: 1.0
-In-Reply-To: <20190521105151.51ffa942@canb.auug.org.au>
-User-Agent: NeoMutt/20180716
-Subject: Re: [Intel-gfx] linux-next: manual merge of the drm-misc tree with
- Linus' tree
+Subject: Re: [Intel-gfx] [PATCH 2/3] drm/i915/huc: Check HuC firmware status
+ only once
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -42,86 +58,29 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
- Intel Graphics <intel-gfx@lists.freedesktop.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- Jyri Sarha <jsarha@ti.com>, Marco Felsch <m.felsch@pengutronix.de>,
- Linux Next Mailing List <linux-next@vger.kernel.org>,
- DRI <dri-devel@lists.freedesktop.org>, Thierry Reding <treding@nvidia.com>
-Content-Type: multipart/mixed; boundary="===============0482987082=="
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
---===============0482987082==
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="22oxjvmo2hvuqeqd"
-Content-Disposition: inline
-
-
---22oxjvmo2hvuqeqd
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-
-On Tue, May 21, 2019 at 10:51:51AM +1000, Stephen Rothwell wrote:
-> Hi all,
->
-> Today's linux-next merge of the drm-misc tree got a conflict in:
->
->   Documentation/devicetree/bindings/vendor-prefixes.txt
->
-> between commit:
->
->   8122de54602e ("dt-bindings: Convert vendor prefixes to json-schema")
->
-> from Linus' tree and commits:
->
->   b4a2c0055a4f ("dt-bindings: Add vendor prefix for VXT Ltd")
->   b1b0d36bdb15 ("dt-bindings: drm/panel: simple: Add binding for TFC S9700RTWV43TR-01B")
->   fbd8b69ab616 ("dt-bindings: Add vendor prefix for Evervision Electronics")
->
-> from the drm-misc tree.
->
-> I fixed it up (I deleted the file and added the patch below) and can
-> carry the fix as necessary. This is now fixed as far as linux-next is
-> concerned, but any non trivial conflicts should be mentioned to your
-> upstream maintainer when your tree is submitted for merging.  You may
-> also want to consider cooperating with the maintainer of the conflicting
-> tree to minimise any particularly complex conflicts.
-
-I just took your patch and pushed a temp branch there:
-https://git.kernel.org/pub/scm/linux/kernel/git/mripard/linux.git/commit/?h=drm-misc-next&id=3832f2cad5307ebcedeead13fbd8d3cf06ba5e90
-
-Rob, Stephen, are you ok with the change? If so, I'll push it.
-
-Maxime
-
---
-Maxime Ripard, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
-
---22oxjvmo2hvuqeqd
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXOaJzQAKCRDj7w1vZxhR
-xcfwAP9V0omTw8jbR0a5wFDMizYxiSE6KvGa0yDpAyucXGBcqAEAgP78Gkggt6vS
-4E1Xd5LVpNQXXiwmH7FNbcL6r2C8ggk=
-=birf
------END PGP SIGNATURE-----
-
---22oxjvmo2hvuqeqd--
-
---===============0482987082==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
-IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
-
---===============0482987082==--
+Cgo+IOWcqCAyMDE55bm0NeaciDIz5pel77yM5LiK5Y2INDoxNO+8jENocmlzIFdpbHNvbiA8Y2hy
+aXNAY2hyaXMtd2lsc29uLmNvLnVrPiDlhpnpgZPvvJoKPiAKPiBRdW90aW5nIE1pY2hhbCBXYWpk
+ZWN6a28gKDIwMTktMDUtMjIgMjA6MDA6NTYpCj4+IER1cmluZyBkcml2ZXIgbG9hZCB3ZSBjaGVj
+a2VkIHRoYXQgSHVDIGZpcm13YXJlIHdhcyB2ZXJpZmllZCwgYW5kIG9uY2UKPj4gdmVyaWZpZWQg
+aXQgc3RheXMgdmVyaWZpZWQsIHNvIHRoZXJlIGlzIG5vIG5lZWQgdG8gY2hlY2sgdGhhdCBhZ2Fp
+bi4KPj4gCj4+IFNpZ25lZC1vZmYtYnk6IE1pY2hhbCBXYWpkZWN6a28gPG1pY2hhbC53YWpkZWN6
+a29AaW50ZWwuY29tPgo+PiBDYzogQ2hyaXMgV2lsc29uIDxjaHJpc0BjaHJpcy13aWxzb24uY28u
+dWs+Cj4+IENjOiBUb255IFllIDx0b255LnllQGludGVsLmNvbT4KPiAKPiBNYWtlcyBzZW5zZSB0
+byBtZSBhcyBwdXJlbHkgYSBjb2RlIG1vbmtleS4KPiAKPiBSZXZpZXdlZC1ieTogQ2hyaXMgV2ls
+c29uIDxjaHJpc0BjaHJpcy13aWxzb24uY28udWs+Cj4gCj4gSSB3b3VsZCBsaWtlIGEgc2Vjb25k
+IG9waW5pb24gZnJvbSBzb21lb25lIHdobyBrbm93cyB0aGUgaW5uYXJkcyBvZiB0aGUKPiBIdUMg
+dG8gY29uZmlybSB0aGF0IGluZGVlZCBvbmNlIHZlcmlmaWVkLCBpdCByZW1haW5zIHZlcmlmaWVk
+LiBBbmQgaWYgaXQKPiBjYW4gY2hhbmdlLCB3ZSBuZWVkIHRvIHJlcG9ydCB0aGUgY2hhbmdlIGlu
+IHN0YXR1cyB0byB1c2Vyc3BhY2UgKG9yIHRoZXkKPiBqdXN0IGhhbmcgYW5kIHRoZSBncHUgKyBo
+dWMgZ2V0cyByZXNldCkuCj4gLUNocmlzClVNRCBkb2VzbuKAmXQgYXV0aGVudGljYXRlIEh1Qy4g
+SXQgb25seSByZWFkcyB0aGUgYXV0aGVudGljYXRpb24gc3RhdHVzLiBTbyBhcyBsb25nIGFzIEtN
+RC9HdUMgdmVyaWZpZWQgaXQsIGl0IGtlZXBzIHZlcmlmaWVkLgpSZWdhcmRzLCAtVG9ueQpfX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFp
+bGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZng=
