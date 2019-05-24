@@ -1,30 +1,35 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2351A29133
-	for <lists+intel-gfx@lfdr.de>; Fri, 24 May 2019 08:45:54 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C199829190
+	for <lists+intel-gfx@lfdr.de>; Fri, 24 May 2019 09:13:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3388989AA2;
-	Fri, 24 May 2019 06:45:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 736256E08E;
+	Fri, 24 May 2019 07:13:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D291A89AA2
- for <intel-gfx@lists.freedesktop.org>; Fri, 24 May 2019 06:45:49 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 16663336-1500050 
- for multiple; Fri, 24 May 2019 07:45:31 +0100
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri, 24 May 2019 07:45:29 +0100
-Message-Id: <20190524064529.20514-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
+Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net
+ [217.70.183.199])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8A0336E059;
+ Fri, 24 May 2019 07:12:58 +0000 (UTC)
+X-Originating-IP: 90.88.147.134
+Received: from localhost (aaubervilliers-681-1-27-134.w90-88.abo.wanadoo.fr
+ [90.88.147.134]) (Authenticated sender: maxime.ripard@bootlin.com)
+ by relay9-d.mail.gandi.net (Postfix) with ESMTPSA id 8206DFF80C;
+ Fri, 24 May 2019 07:12:53 +0000 (UTC)
+Date: Fri, 24 May 2019 09:12:53 +0200
+From: Maxime Ripard <maxime.ripard@bootlin.com>
+To: Rob Herring <robh@kernel.org>
+Message-ID: <20190524071253.xfimg5mlvzevj2nk@flea>
+References: <20190521105151.51ffa942@canb.auug.org.au>
+ <20190523115355.joyeqlmbjkufueyn@flea>
+ <CAL_JsqKN6+f5FXUVs03VSv2AKvqaS0XemKFSYFthaxPoHJVwEg@mail.gmail.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [BrownBag] drm/i915/gtt: Neuter the deferred unbind
- callback from gen6_ppgtt_cleanup
+In-Reply-To: <CAL_JsqKN6+f5FXUVs03VSv2AKvqaS0XemKFSYFthaxPoHJVwEg@mail.gmail.com>
+User-Agent: NeoMutt/20180716
+Subject: Re: [Intel-gfx] linux-next: manual merge of the drm-misc tree with
+ Linus' tree
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -37,50 +42,99 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Tomi Sarvela <tomi.p.sarvela@intel.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Stephen Rothwell <sfr@canb.auug.org.au>,
+ Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Intel Graphics <intel-gfx@lists.freedesktop.org>,
+ Marco Felsch <m.felsch@pengutronix.de>, Jyri Sarha <jsarha@ti.com>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ Linux Next Mailing List <linux-next@vger.kernel.org>,
+ DRI <dri-devel@lists.freedesktop.org>, Thierry Reding <treding@nvidia.com>
+Content-Type: multipart/mixed; boundary="===============0339705149=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-SGF2aW5nIGRlZmVycmVkIHRoZSB2bWEgZGVzdHJ1Y3Rpb24gdG8gYSB3b3JrZXIgd2hlcmUgd2Ug
-Y2FuIGFjcXVpcmUgdGhlCnN0cnVjdF9tdXRleCwgd2UgaGF2ZSB0byBhdm9pZCBjaGFzaW5nIGJh
-Y2sgaW50byB0aGUgbm93IGRlc3Ryb3llZApwcGd0dC4gVGhlIHBkX3ZtYSBpcyBzcGVjaWFsIGlu
-IGhhdmluZyBhIGN1c3RvbSB1bmJpbmQgZnVuY3Rpb24gdG8gc2Nhbgpmb3IgdW51c2VkIHBhZ2Vz
-IGRlc3BpdGUgdGhlIFZNQSBpdHNlbGYgYmVpbmcgbm90aW9uYWxseSBwYXJ0IG9mIHRoZQpHR1RU
-LiBBcyBzdWNoLCB3ZSBuZWVkIHRvIGRpc2FibGUgdGhhdCBjYWxsYmFjayB0byBhdm9pZCBhCnVz
-ZS1hZnRlci1mcmVlLgoKVGhpcyB1bmZvcnR1bmF0ZWx5IGJsZXcgdXAgc28gZWFybHkgZHVyaW5n
-IGJvb3QgdGhhdCBDSSBkZWNsYXJlZCB0aGUKbWFjaGluZSB1bnJlYWNoYWJsZSBhcyBvcHBvc2Vk
-IHRvIGJlaW5nIHRoZSBtYWpvciBmYWlsdXJlIGl0IHdhcy4gT29wcy4KCkZpeGVzOiBkMzYyMjA5
-OWM3NmYgKCJkcm0vaTkxNS9ndHQ6IEFsd2F5cyBhY3F1aXJlIHN0cnVjdF9tdXRleCBmb3IgZ2Vu
-Nl9wcGd0dF9jbGVhbnVwIikKU2lnbmVkLW9mZi1ieTogQ2hyaXMgV2lsc29uIDxjaHJpc0BjaHJp
-cy13aWxzb24uY28udWs+CkNjOiBUdnJ0a28gVXJzdWxpbiA8dHZydGtvLnVyc3VsaW5AaW50ZWwu
-Y29tPgpDYzogVG9taSBTYXJ2ZWxhIDx0b21pLnAuc2FydmVsYUBpbnRlbC5jb20+Ci0tLQogZHJp
-dmVycy9ncHUvZHJtL2k5MTUvaTkxNV9nZW1fZ3R0LmMgfCAyOCArKysrKysrKysrKysrKysrKysr
-KysrKysrKysrCiAxIGZpbGUgY2hhbmdlZCwgMjggaW5zZXJ0aW9ucygrKQoKZGlmZiAtLWdpdCBh
-L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZ2VtX2d0dC5jIGIvZHJpdmVycy9ncHUvZHJtL2k5
-MTUvaTkxNV9nZW1fZ3R0LmMKaW5kZXggOGQ4YTRiMGFkNGQ5Li4yNjZiYWExMWRmNjQgMTAwNjQ0
-Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZ2VtX2d0dC5jCisrKyBiL2RyaXZlcnMv
-Z3B1L2RybS9pOTE1L2k5MTVfZ2VtX2d0dC5jCkBAIC0xODQ3LDYgKzE4NDcsMzMgQEAgc3RhdGlj
-IHZvaWQgZ2VuNl9wcGd0dF9jbGVhbnVwX3dvcmsoc3RydWN0IHdvcmtfc3RydWN0ICp3cmspCiAJ
-a2ZyZWUod29yayk7CiB9CiAKK3N0YXRpYyBpbnQgbm9wX3NldF9wYWdlcyhzdHJ1Y3QgaTkxNV92
-bWEgKnZtYSkKK3sKKwlyZXR1cm4gLUVOT0RFVjsKK30KKworc3RhdGljIHZvaWQgbm9wX2NsZWFy
-X3BhZ2VzKHN0cnVjdCBpOTE1X3ZtYSAqdm1hKQoreworfQorCitzdGF0aWMgaW50IG5vcF9iaW5k
-KHN0cnVjdCBpOTE1X3ZtYSAqdm1hLAorCQkgICAgZW51bSBpOTE1X2NhY2hlX2xldmVsIGNhY2hl
-X2xldmVsLAorCQkgICAgdTMyIHVudXNlZCkKK3sKKwlyZXR1cm4gLUVOT0RFVjsKK30KKworc3Rh
-dGljIHZvaWQgbm9wX3VuYmluZChzdHJ1Y3QgaTkxNV92bWEgKnZtYSkKK3sKK30KKworc3RhdGlj
-IGNvbnN0IHN0cnVjdCBpOTE1X3ZtYV9vcHMgbm9wX3ZtYV9vcHMgPSB7CisJLnNldF9wYWdlcyA9
-IG5vcF9zZXRfcGFnZXMsCisJLmNsZWFyX3BhZ2VzID0gbm9wX2NsZWFyX3BhZ2VzLAorCS5iaW5k
-X3ZtYSA9IG5vcF9iaW5kLAorCS51bmJpbmRfdm1hID0gbm9wX3VuYmluZCwKK307CisKIHN0YXRp
-YyB2b2lkIGdlbjZfcHBndHRfY2xlYW51cChzdHJ1Y3QgaTkxNV9hZGRyZXNzX3NwYWNlICp2bSkK
-IHsKIAlzdHJ1Y3QgZ2VuNl9od19wcGd0dCAqcHBndHQgPSB0b19nZW42X3BwZ3R0KGk5MTVfdm1f
-dG9fcHBndHQodm0pKTsKQEAgLTE4NTUsNiArMTg4Miw3IEBAIHN0YXRpYyB2b2lkIGdlbjZfcHBn
-dHRfY2xlYW51cChzdHJ1Y3QgaTkxNV9hZGRyZXNzX3NwYWNlICp2bSkKIAkvKiBGSVhNRSByZW1v
-dmUgdGhlIHN0cnVjdF9tdXRleCB0byBicmluZyB0aGUgbG9ja2luZyB1bmRlciBjb250cm9sICov
-CiAJSU5JVF9XT1JLKCZ3b3JrLT5iYXNlLCBnZW42X3BwZ3R0X2NsZWFudXBfd29yayk7CiAJd29y
-ay0+dm1hID0gcHBndHQtPnZtYTsKKwl3b3JrLT52bWEtPm9wcyA9ICZub3Bfdm1hX29wczsKIAlz
-Y2hlZHVsZV93b3JrKCZ3b3JrLT5iYXNlKTsKIAogCWdlbjZfcHBndHRfZnJlZV9wZChwcGd0dCk7
-Ci0tIAoyLjIwLjEKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9y
-ZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdm
-eA==
+
+--===============0339705149==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="hfshwxlp636xi7sx"
+Content-Disposition: inline
+
+
+--hfshwxlp636xi7sx
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+
+On Thu, May 23, 2019 at 11:10:39AM -0500, Rob Herring wrote:
+> On Thu, May 23, 2019 at 6:54 AM Maxime Ripard <maxime.ripard@bootlin.com> wrote:
+> >
+> > On Tue, May 21, 2019 at 10:51:51AM +1000, Stephen Rothwell wrote:
+> > > Hi all,
+> > >
+> > > Today's linux-next merge of the drm-misc tree got a conflict in:
+> > >
+> > >   Documentation/devicetree/bindings/vendor-prefixes.txt
+> > >
+> > > between commit:
+> > >
+> > >   8122de54602e ("dt-bindings: Convert vendor prefixes to json-schema")
+> > >
+> > > from Linus' tree and commits:
+> > >
+> > >   b4a2c0055a4f ("dt-bindings: Add vendor prefix for VXT Ltd")
+> > >   b1b0d36bdb15 ("dt-bindings: drm/panel: simple: Add binding for TFC S9700RTWV43TR-01B")
+> > >   fbd8b69ab616 ("dt-bindings: Add vendor prefix for Evervision Electronics")
+> > >
+> > > from the drm-misc tree.
+> > >
+> > > I fixed it up (I deleted the file and added the patch below) and can
+> > > carry the fix as necessary. This is now fixed as far as linux-next is
+> > > concerned, but any non trivial conflicts should be mentioned to your
+> > > upstream maintainer when your tree is submitted for merging.  You may
+> > > also want to consider cooperating with the maintainer of the conflicting
+> > > tree to minimise any particularly complex conflicts.
+> >
+> > I just took your patch and pushed a temp branch there:
+> > https://git.kernel.org/pub/scm/linux/kernel/git/mripard/linux.git/commit/?h=drm-misc-next&id=3832f2cad5307ebcedeead13fbd8d3cf06ba5e90
+> >
+> > Rob, Stephen, are you ok with the change? If so, I'll push it.
+>
+> The 'tfc' line is missing a ':' on the end.
+
+That's on me, sorry.
+
+> Does the file pass dt_binding_check like that?
+
+No, it didn't but I overlooked it somehow. I've pushed that patch with
+the extra semi-column.
+
+Maxime
+
+--
+Maxime Ripard, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
+
+--hfshwxlp636xi7sx
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXOeZdQAKCRDj7w1vZxhR
+xZr9AP9GA2LoSNSb8Aw3lEDA0VSIAbX2AciLEGPTA/XJg9DJNQEAjA43h9VqiTXF
+qjCOtN/i2lxT8YXjFbrhoaQuY7/4yQU=
+=kgcI
+-----END PGP SIGNATURE-----
+
+--hfshwxlp636xi7sx--
+
+--===============0339705149==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
+IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
+
+--===============0339705149==--
