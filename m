@@ -2,30 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 643DB2A97E
-	for <lists+intel-gfx@lfdr.de>; Sun, 26 May 2019 13:49:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AD56D2A9C0
+	for <lists+intel-gfx@lfdr.de>; Sun, 26 May 2019 14:32:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5619D892B7;
-	Sun, 26 May 2019 11:49:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C13A889C60;
+	Sun, 26 May 2019 12:32:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 0CBDA892B7;
- Sun, 26 May 2019 11:49:03 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 6251A89B78;
+ Sun, 26 May 2019 12:32:41 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 065DCA0088;
- Sun, 26 May 2019 11:49:03 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 5C374A0020;
+ Sun, 26 May 2019 12:32:41 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Stuart Summers" <stuart.summers@intel.com>
-Date: Sun, 26 May 2019 11:49:03 -0000
-Message-ID: <20190526114903.541.48514@emeril.freedesktop.org>
-References: <20190524154022.13575-1-stuart.summers@intel.com>
+To: "Hans de Goede" <hdegoede@redhat.com>
+Date: Sun, 26 May 2019 12:32:41 -0000
+Message-ID: <20190526123241.542.82752@emeril.freedesktop.org>
+References: <20190524163020.17099-1-hdegoede@redhat.com>
 X-Patchwork-Hint: ignore
-In-Reply-To: <20190524154022.13575-1-stuart.summers@intel.com>
-Subject: [Intel-gfx] =?utf-8?q?=E2=9C=97_Fi=2ECI=2ESPARSE=3A_warning_for_R?=
- =?utf-8?q?efactor_to_expand_subslice_mask_=28rev10=29?=
+In-Reply-To: <20190524163020.17099-1-hdegoede@redhat.com>
+Subject: [Intel-gfx] =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_f?=
+ =?utf-8?q?or_drm/i915/dsi=3A_Read_back_pclk_set_by_GOP_and_use_that_as_pc?=
+ =?utf-8?q?lk_=28version_3=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -45,17 +46,21 @@ Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-PT0gU2VyaWVzIERldGFpbHMgPT0KClNlcmllczogUmVmYWN0b3IgdG8gZXhwYW5kIHN1YnNsaWNl
-IG1hc2sgKHJldjEwKQpVUkwgICA6IGh0dHBzOi8vcGF0Y2h3b3JrLmZyZWVkZXNrdG9wLm9yZy9z
-ZXJpZXMvNTk3NDIvClN0YXRlIDogd2FybmluZwoKPT0gU3VtbWFyeSA9PQoKJCBkaW0gc3BhcnNl
-IG9yaWdpbi9kcm0tdGlwClNwYXJzZSB2ZXJzaW9uOiB2MC41LjIKQ29tbWl0OiBkcm0vaTkxNTog
-VXNlIGxvY2FsIHZhcmlhYmxlIGZvciBTU0VVIGluZm8gaW4gR0VUUEFSQU0gaW9jdGwKT2theSEK
-CkNvbW1pdDogZHJtL2k5MTU6IEFkZCBtYWNybyBmb3IgU1NFVSBzdHJpZGUgY2FsY3VsYXRpb24K
-T2theSEKCkNvbW1pdDogZHJtL2k5MTU6IE1vdmUgY2FsY3VsYXRpb24gb2Ygc3Vic2xpY2VzIHBl
-ciBzbGljZSB0byBuZXcgZnVuY3Rpb24KT2theSEKCkNvbW1pdDogZHJtL2k5MTU6IFJlZmFjdG9y
-IHNzZXUgaGVscGVyIGZ1bmN0aW9ucwpPa2F5IQoKQ29tbWl0OiBkcm0vaTkxNTogRXhwYW5kIHN1
-YnNsaWNlIG1hc2sKK2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZHJ2LmM6NDY2OjI0OiB3YXJu
-aW5nOiBleHByZXNzaW9uIHVzaW5nIHNpemVvZih2b2lkKQoKX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1n
-ZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21h
-aWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
+PT0gU2VyaWVzIERldGFpbHMgPT0KClNlcmllczogZHJtL2k5MTUvZHNpOiBSZWFkIGJhY2sgcGNs
+ayBzZXQgYnkgR09QIGFuZCB1c2UgdGhhdCBhcyBwY2xrICh2ZXJzaW9uIDMpClVSTCAgIDogaHR0
+cHM6Ly9wYXRjaHdvcmsuZnJlZWRlc2t0b3Aub3JnL3Nlcmllcy82MTExNS8KU3RhdGUgOiB3YXJu
+aW5nCgo9PSBTdW1tYXJ5ID09CgokIGRpbSBjaGVja3BhdGNoIG9yaWdpbi9kcm0tdGlwCjQ4ZWU5
+ZTMwYTAxZSBkcm0vaTkxNTogTWFrZSBpbnRlbF9mdXp6eV9jbG9ja19jaGVjayBhdmFpbGFibGUg
+b3V0c2lkZSBvZiBpbnRlbF9kaXNwbGF5LmMKYjViYTM3N2FlYWVmIGRybS9pOTE1L2RzaTogTW92
+ZSBsb2dnaW5nIG9mIERTSSBWQlQgcGFyYW1ldGVycyB0byBhIGhlbHBlciBmdW5jdGlvbgotOjU1
+OiBDSEVDSzpQQVJFTlRIRVNJU19BTElHTk1FTlQ6IEFsaWdubWVudCBzaG91bGQgbWF0Y2ggb3Bl
+biBwYXJlbnRoZXNpcwojNTU6IEZJTEU6IGRyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX2RzaV92
+YnQuYzo1NzU6CisJRFJNX0RFQlVHX0tNUygiQlRBICVzXG4iLAorCQkJZW5hYmxlZGRpc2FibGVk
+KCEoaW50ZWxfZHNpLT52aWRlb19mcm10X2NmZ19iaXRzICYgRElTQUJMRV9WSURFT19CVEEpKSk7
+Cgp0b3RhbDogMCBlcnJvcnMsIDAgd2FybmluZ3MsIDEgY2hlY2tzLCAxMDEgbGluZXMgY2hlY2tl
+ZApjOTU1NjAxYWNkZjkgZHJtL2k5MTUvZHNpOiBNb3ZlIHZsdi9pY2xfZHBoeV9wYXJhbV9pbml0
+IGNhbGwgb3V0IG9mIGludGVsX2RzaV92YnRfaW5pdAphOTAyZDY2YTIxNDUgZHJtL2k5MTUvZHNp
+OiBSZWFkIGJhY2sgcGNsayBzZXQgYnkgR09QIGFuZCB1c2UgdGhhdCBhcyBwY2xrICh2MykKCl9f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBt
+YWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3Rz
+LmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeA==
