@@ -2,45 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E363E2C37D
-	for <lists+intel-gfx@lfdr.de>; Tue, 28 May 2019 11:48:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D7D52C406
+	for <lists+intel-gfx@lfdr.de>; Tue, 28 May 2019 12:11:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3EDE089FDD;
-	Tue, 28 May 2019 09:48:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CC69089D3E;
+	Tue, 28 May 2019 10:11:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0975B89FDD
- for <intel-gfx@lists.freedesktop.org>; Tue, 28 May 2019 09:48:20 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1CA6289D3E
+ for <intel-gfx@lists.freedesktop.org>; Tue, 28 May 2019 10:11:11 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
  by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 28 May 2019 02:48:19 -0700
+ 28 May 2019 03:11:10 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.60,521,1549958400"; d="scan'208";a="179149599"
-Received: from linux.intel.com ([10.54.29.200])
- by fmsmga002.fm.intel.com with ESMTP; 28 May 2019 02:48:19 -0700
-Received: from [10.237.72.73] (mperes-desk.fi.intel.com [10.237.72.73])
- (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
- (No client certificate requested)
- by linux.intel.com (Postfix) with ESMTPS id 9135758001E;
- Tue, 28 May 2019 02:48:17 -0700 (PDT)
-To: Chris Wilson <chris@chris-wilson.co.uk>,
- Petri Latvala <petri.latvala@intel.com>
-References: <20190527183613.17076-1-michal.wajdeczko@intel.com>
- <155903540427.2573.16902107227143511776@skylake-alporthouse-com>
- <20190528094031.GQ22949@platvala-desk.ger.corp.intel.com>
- <155903675213.2573.1572948212701356584@skylake-alporthouse-com>
-From: Martin Peres <martin.peres@linux.intel.com>
-Message-ID: <2cfdccea-b7d3-f990-25e5-405e7d8b6cc2@linux.intel.com>
-Date: Tue, 28 May 2019 12:48:13 +0300
+Received: from unknown (HELO [10.252.33.94]) ([10.252.33.94])
+ by orsmga005.jf.intel.com with ESMTP; 28 May 2019 03:11:09 -0700
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+References: <20190527111053.12486-1-chris@chris-wilson.co.uk>
+ <20190527115114.13448-1-chris@chris-wilson.co.uk>
+ <755ef77a-c639-080c-4f50-0d5de5e4b4da@linux.intel.com>
+ <155903562398.2573.6149672701796769076@skylake-alporthouse-com>
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Message-ID: <0b7e029c-7c2a-500f-bd6f-b5f9119999cd@linux.intel.com>
+Date: Tue, 28 May 2019 12:11:08 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
+ Thunderbird/60.7.0
 MIME-Version: 1.0
-In-Reply-To: <155903675213.2573.1572948212701356584@skylake-alporthouse-com>
-Content-Language: en-PH
-Subject: Re: [Intel-gfx] [PATCH v5 00/17] GuC 32.0.3
+In-Reply-To: <155903562398.2573.6149672701796769076@skylake-alporthouse-com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [CI] drm/i915: Keep user GGTT alive for a minimum
+ of 250ms
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -53,25 +47,36 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gMjgvMDUvMjAxOSAxMjo0NSwgQ2hyaXMgV2lsc29uIHdyb3RlOgo+IFF1b3RpbmcgUGV0cmkg
-TGF0dmFsYSAoMjAxOS0wNS0yOCAxMDo0MDozMSkKPj4gT24gVHVlLCBNYXkgMjgsIDIwMTkgYXQg
-MTA6MjM6MjRBTSArMDEwMCwgQ2hyaXMgV2lsc29uIHdyb3RlOgo+Pj4gUXVvdGluZyBNaWNoYWwg
-V2FqZGVjemtvICgyMDE5LTA1LTI3IDE5OjM1OjU2KQo+Pj4+IE5ldyBHdUMgZmlybXdhcmVzIChm
-b3IgU0tMLCBCWFQsIEtCTCwgR0xLLCBJQ0wpIHdpdGggdXBkYXRlZCBBQkkgaW50ZXJmYWNlLgo+
-Pj4KPj4+IEFsbCByZXZpZXdlZC9hY2tlZCwgYW5kIEkgdHJ1c3QgdGhlIGZhaWx1cmVzIHdpbGwg
-YmUgZml4ZWQgaW4gdGltZSwgc28KPj4+IHB1c2hlZC4gVGhhbmtzLgo+Pj4gLUNocmlzCj4+Cj4+
-Cj4+IEJ1dCB3aXRob3V0IHRlbGxpbmcgTWFydGluIHRvIGZpbGUgY2lidWdsb2cgZmlsdGVycyBm
-b3Iga25vd24gaXNzdWVzPwo+IAo+IGZpLWljbC1ndWMgc2hvdWxkIHJlbWFpbiBzdXBwcmVzc2Vk
-Lgo+IGZpLWFwbC1ndWMgc2hvdWxkIGJlIHJldGlyZWQuCgpUaGlzIGlzIHNvbWV0aGluZyB0byBi
-ZSBkaXNjdXNzZWQgKmJlZm9yZSogbWVyZ2luZy4gSSBzdXBwcmVzc2VkIGFsbCB0aGUKZ3VjIHBs
-YXRmb3JtcyAoYXBsLCBjZmwsIGljbCwga2JsLCBza2wpLgoKTGV0J3MgaG9wZSB0aGF0IGl0IGRv
-ZXMgbm90IGFmZmVjdCB0aGUgc2hhcmRzLi4uCgpNYXJ0aW4KX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1n
-ZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21h
-aWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
+T3AgMjgtMDUtMjAxOSBvbSAxMToyNyBzY2hyZWVmIENocmlzIFdpbHNvbjoKPiBRdW90aW5nIE1h
+YXJ0ZW4gTGFua2hvcnN0ICgyMDE5LTA1LTI4IDEwOjI0OjQwKQo+PiBPcCAyNy0wNS0yMDE5IG9t
+IDEzOjUxIHNjaHJlZWYgQ2hyaXMgV2lsc29uOgo+Pj4gRG8gbm90IGFsbG93IHJ1bnRpbWUgcG0g
+YXV0b3N1c3BlbmQgdG8gcmVtb3ZlIHVzZXJzcGFjZSBHR1RUIG1tYXBzIHRvbwo+Pj4gcXVpY2ts
+eS4gRm9yIGV4YW1wbGUsIGlndCBzZXRzIHRoZSBhdXRvc3VzcGVuZCBkZWxheSB0byAwLCBhbmQg
+c28gd2UKPj4+IGltbWVkaWF0ZWx5IGF0dGVtcHQgdG8gcGVyZm9ybSBydW50aW1lIHN1c3BlbmQg
+dXBvbiByZWxlYXNpbmcgdGhlCj4+PiB3YWtlcmVmLiBVbmZvcnR1bmF0ZWx5LCB0aGF0IGludm9s
+dmVzIHRlYXJpbmcgZG93biBHR1RUIG1tYXBzIGFzIHRoZXkKPj4+IHJlcXVpcmUgYW4gYWN0aXZl
+IGRldmljZS4KPj4+Cj4+PiBPdmVycmlkZSB0aGUgYXV0b3N1c3BlbmQgZm9yIEdHVFQgbW1hcHMs
+IGJ5IGtlZXBpbmcgdGhlIHdha2VyZWYgYXJvdW5kCj4+PiBmb3IgMjUwbXMgYWZ0ZXIgcG9wdWxh
+dGluZyB0aGUgUFRFIGZvciBhIGZyZXNoIG1tYXAuCj4+Pgo+Pj4gdjI6IFByZWZlciByZWZjb3Vu
+dF90IGZvciBpdHMgdW5kZXIvb3ZlcmZsb3cgZXJyb3IgZGV0ZWN0aW9uCj4+PiB2MzogRmx1c2gg
+dGhlIHVzZXIgcnVudGltZSBhdXRvc3VzcGVuZCBwcmlvciB0byBzeXN0ZW0gc3lzdGVtLgo+Pj4K
+Pj4+IFNpZ25lZC1vZmYtYnk6IENocmlzIFdpbHNvbiA8Y2hyaXNAY2hyaXMtd2lsc29uLmNvLnVr
+Pgo+Pj4gQ2M6IE1pa2EgS3VvcHBhbGEgPG1pa2Eua3VvcHBhbGFAbGludXguaW50ZWwuY29tPgo+
+Pj4gUmV2aWV3ZWQtYnk6IE1pa2EgS3VvcHBhbGEgPG1pa2Eua3VvcHBhbGFAbGludXguaW50ZWwu
+Y29tPgo+PiBDYW4ndCB0aGlzIGV4dHJhIGRlbGF5IGJlIGFkZGVkIHRvIHRoZSBrZXJuZWwgY29y
+ZT8gRmVlbHMgbGlrZSB3ZSdyZSBqdXN0IGR1cGxpY2F0aW5nIGF1dG9zdXNwZW5kIGJlaGF2aW9y
+IGhlcmUuLgo+IFllcy4gSW4gdGhlIGVuZCwgd2Ugd291bGQgbmVlZCB0byBhZGp1c3QgdGhlIGRl
+dmljZSBwbSB0byBjbGFtcCB0aGUgdXNlcgo+IHN5c2ZzIHZhbHVlLiBCdXQgcmVhbGx5LCB3ZSB3
+YW50IGRpZmZlcmVudCBmbG9vcnMgZm9yIGRpZmZlcmVudAo+IG9wZXJhdGlvbnMgYXMgd2Ugd291
+bGQgZXhwZWN0IGRpZmZlcmVudCB3YWtldXAgbGF0ZW5jaWVzIC8gcGVuYWx0aWVzLgo+IEUuZy4g
+cmVhcGluZyBHVFQgbW1hcHMgaXMgZXhwZW5zaXZlLCBidXQgaWYgbm9uZSBhcmUgaW4gdXNlLi4u
+Cj4gLUNocmlzCgpTZWVtcyBhIGJpdCBsaWtlIHRoZSBQTSBRb1MgbWFuYWdlbWVudCB0aGVuLCBi
+dXQgZm9yIGF1dG9zdXNwZW5kLgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRl
+c2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8v
+aW50ZWwtZ2Z4
