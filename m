@@ -2,49 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C21162E1C5
-	for <lists+intel-gfx@lfdr.de>; Wed, 29 May 2019 17:58:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BCABB2E1D0
+	for <lists+intel-gfx@lfdr.de>; Wed, 29 May 2019 18:02:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A5A826E0AE;
-	Wed, 29 May 2019 15:58:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AC10C6E0F7;
+	Wed, 29 May 2019 16:02:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9F88A6E0AE
- for <intel-gfx@lists.freedesktop.org>; Wed, 29 May 2019 15:58:55 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C4E686E0F7
+ for <intel-gfx@lists.freedesktop.org>; Wed, 29 May 2019 16:02:09 +0000 (UTC)
+X-Amp-Result: UNSCANNABLE
 X-Amp-File-Uploaded: False
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 29 May 2019 08:58:55 -0700
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 29 May 2019 09:02:09 -0700
 X-ExtLoop1: 1
-Received: from fmsmsx104.amr.corp.intel.com ([10.18.124.202])
- by orsmga003.jf.intel.com with ESMTP; 29 May 2019 08:58:54 -0700
-Received: from fmsmsx112.amr.corp.intel.com (10.18.116.6) by
- fmsmsx104.amr.corp.intel.com (10.18.124.202) with Microsoft SMTP Server (TLS)
- id 14.3.408.0; Wed, 29 May 2019 08:58:53 -0700
+Received: from fmsmsx108.amr.corp.intel.com ([10.18.124.206])
+ by orsmga006.jf.intel.com with ESMTP; 29 May 2019 09:02:08 -0700
+Received: from fmsmsx163.amr.corp.intel.com (10.18.125.72) by
+ FMSMSX108.amr.corp.intel.com (10.18.124.206) with Microsoft SMTP Server (TLS)
+ id 14.3.408.0; Wed, 29 May 2019 09:02:06 -0700
 Received: from fmsmsx106.amr.corp.intel.com ([169.254.5.141]) by
- FMSMSX112.amr.corp.intel.com ([169.254.5.27]) with mapi id 14.03.0415.000;
- Wed, 29 May 2019 08:58:53 -0700
+ fmsmsx163.amr.corp.intel.com ([169.254.6.185]) with mapi id 14.03.0415.000;
+ Wed, 29 May 2019 09:02:06 -0700
 From: "Summers, Stuart" <stuart.summers@intel.com>
-To: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "jani.nikula@linux.intel.com" <jani.nikula@linux.intel.com>
-Thread-Topic: [Intel-gfx] [CI 5/5] drm/i915: Expand subslice mask
-Thread-Index: AQHVEkcNd2J/zhkBWECWxN/0meOzhqaCrtqAgAAQv4A=
-Date: Wed, 29 May 2019 15:58:52 +0000
-Message-ID: <b09cf59b4035d8e5820533c0c8ac0a91c1eeccb9.camel@intel.com>
+To: "Saarinen, Jani" <jani.saarinen@intel.com>, "Ceraolo Spurio, Daniele"
+ <daniele.ceraolospurio@intel.com>, "Navare, Manasi D"
+ <manasi.d.navare@intel.com>
+Thread-Topic: [Intel-gfx] [CI 0/5] Refactor to expand subslice mask
+Thread-Index: AQHVEkcMYc4gl/rxUUCD8E3DuYA4aKaBWDkAgAAAJYCAAM1fAIAAfo2AgAAcNIA=
+Date: Wed, 29 May 2019 16:02:05 +0000
+Message-ID: <10d9f31c7272227bd14cec812c65de924ebd24f6.camel@intel.com>
 References: <20190524154022.13575-1-stuart.summers@intel.com>
- <20190524154022.13575-6-stuart.summers@intel.com>
- <87r28h489e.fsf@intel.com>
-In-Reply-To: <87r28h489e.fsf@intel.com>
+ <20190528183234.GA10989@intel.com>
+ <ef092fee011695c74d03e0ea42701f03e240c9a3.camel@intel.com>
+ <43D4F724E12AB6478FC1572B3FBE89D076707E67@IRSMSX106.ger.corp.intel.com>
+ <f4363495-f489-58fc-72b0-dbc166a4b42c@intel.com>
+In-Reply-To: <f4363495-f489-58fc-72b0-dbc166a4b42c@intel.com>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: yes
 X-MS-TNEF-Correlator: 
 x-originating-ip: [10.54.134.159]
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [CI 5/5] drm/i915: Expand subslice mask
+Subject: Re: [Intel-gfx] [CI 0/5] Refactor to expand subslice mask
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -57,119 +59,139 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============1070661411=="
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Content-Type: multipart/mixed; boundary="===============1981436804=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1070661411==
+--===============1981436804==
 Content-Language: en-US
 Content-Type: multipart/signed; micalg=sha-1;
-	protocol="application/x-pkcs7-signature"; boundary="=-S7Bwzuuddl50g1HOySRK"
+	protocol="application/x-pkcs7-signature"; boundary="=-XACDKFx/14gocSgPcnAR"
 
---=-S7Bwzuuddl50g1HOySRK
+--=-XACDKFx/14gocSgPcnAR
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, 2019-05-29 at 17:58 +0300, Jani Nikula wrote:
-> On Fri, 24 May 2019, Stuart Summers <stuart.summers@intel.com> wrote:
-> > Currently, the subslice_mask runtime parameter is stored as an
-> > array of subslices per slice. Expand the subslice mask array to
-> > better match what is presented to userspace through the
-> > I915_QUERY_TOPOLOGY_INFO ioctl. The index into this array is
-> > then calculated:
-> >   slice * subslice stride + subslice index / 8
+On Wed, 2019-05-29 at 07:21 -0700, Daniele Ceraolo Spurio wrote:
+>=20
+> On 5/28/19 11:48 PM, Saarinen, Jani wrote:
+> > Hi,
 > >=20
-> > v2: fix spacing in set_sseu_info args
-> >     use set_sseu_info to initialize sseu data when building
-> >     device status in debugfs
-> >     rename variables in intel_engine_types.h to avoid checkpatch
-> >     warnings
-> > v3: update headers in intel_sseu.h
-> > v4: add const to some sseu_dev_info variables
-> >     use sseu->eu_stride for EU stride calculations
-> > v5: address review comments from Tvrtko and Daniele
-> > v6: remove extra space in intel_sseu_get_subslices
-> >     return the correct subslice enable in for_each_instdone
-> >     add GEM_BUG_ON to ensure user doesn't pass invalid ss_mask size
-> >     use printk formatted string for subslice mask
-> > v7: remove string.h header and rebase
+> > > -----Original Message-----
+> > > From: Intel-gfx [mailto:intel-gfx-bounces@lists.freedesktop.org]
+> > > On Behalf Of
+> > > Summers, Stuart
+> > > Sent: tiistai 28. toukokuuta 2019 21.33
+> > > To: Navare, Manasi D <manasi.d.navare@intel.com>
+> > > Cc: intel-gfx@lists.freedesktop.org
+> > > Subject: Re: [Intel-gfx] [CI 0/5] Refactor to expand subslice
+> > > mask
+> > >=20
+> > > On Tue, 2019-05-28 at 11:32 -0700, Manasi Navare wrote:
+> > > > Pushed to dinq, thanks for the patches and the reviews!
+> > >=20
+> > > Thanks for the push Manasi and the reviews Daniele and others!
 > >=20
-> > Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-> > Cc: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
-> > Acked-by: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
-> > Reviewed-by: Daniele Ceraolo Spurio <
-> > daniele.ceraolospurio@intel.com>
-> > Signed-off-by: Stuart Summers <stuart.summers@intel.com>
+> > This broke all the ICL systems because CI data was not looked that
+> > they did not actually even boot at all.
+> > All ICL's in BAT and whole ICL shards.
+> >=20
 >=20
-> As this patch uncovered a latent issue in 1e40d4aea57b
-> ("drm/i915/cnl:
-> Implement WaProgramMgsrForCorrectSliceSpecificMmioReads") and got
-> reverted, I'll take the opportunity to comment. I acknowledge the
-> revert
-> is shooting the messenger a bit, and this will smell like maintainer
-> bikeshedding.
+> Can we change the CI reply for the case where there are extra
+> missing=20
+> machines compared to the reference run from SUCCESS to WARNING or=20
+> something like that, so people have a clearer indication that
+> something=20
+> might have gone wrong?
 
-I have no problem reworking regressions my series caused :) I just
-wasn't aware there was an issue when merging.
+I agree here. I'm sure with time and experience these types of things
+will get easier to parse, but this was very unobvious to me when
+posting. I have no problem reworking, but would really appreciate a
+solution to this from the CI side to ensure we don't hit this type of
+thing in the future.
 
->=20
-> Now, the first reaction looking at the commit was, it does not fare
-> well
-> on the "if a bisect landed on this commit, how happy would I be"
-> scale.
->=20
-> While it's mostly refactoring, it could be chopped up to several
-> logical
-> and obvious steps. For example, add intel_sseu_set_info() first with
-> no
-> other changes. Add ss_stride and eu_stride to struct sseu_dev_info
-> separately. Add intel_sseu_get_subslices() but don't expand yet, make
-> it
-> just sseu->subslice_mask[s] first. And so on, you get the idea, a
-> series
-> of small non-functional changes followed by patches with functional
-> changes that stand out. Indeed patches 1-4 did this fine.
-
-This is good general feedback, thanks. I'll split this up when
-reposting.
-
->=20
-> It's easy on the reviewer, it's easy on whoever git blames years down
-> the line. Trust me, we will.
->=20
-> And it would be the commit adding intel_sseu_get_subslices(), or the
-> one
-> adding the GEM_BUG_ON()s into it, that would blow up 1e40d4aea57b
-> ("drm/i915/cnl: Implement
-> WaProgramMgsrForCorrectSliceSpecificMmioReads").
->=20
-> One more note below.
->=20
-> > @@ -461,7 +461,9 @@ static int i915_getparam_ioctl(struct
-> > drm_device *dev, void *data,
-> >  			return -ENODEV;
-> >  		break;
-> >  	case I915_PARAM_SUBSLICE_MASK:
-> > -		value =3D sseu->subslice_mask[0];
-> > +		/* Only copy bits from the first slice */
-> > +		memcpy(&value, sseu->subslice_mask,
-> > +		       min(sseu->ss_stride, (u8)sizeof(value)));
->=20
-> Frankly I'd rather see this written in self-evident code without the
-> comment.
-
-Sure, I'll take a look.
-
-Thanks for the comments!
+Thanks,
 Stuart
 
 >=20
-> BR,
-> Jani.
+> Daniele
 >=20
->=20
+> >=20
+> > >=20
+> > > -Stuart
+> > >=20
+> > > >=20
+> > > > Regards
+> > > > Manasi
+> > > >=20
+> > > > On Fri, May 24, 2019 at 08:40:17AM -0700, Stuart Summers wrote:
+> > > > > This patch series contains a few code clean-up patches,
+> > > > > followed by
+> > > > > a patch which changes the storage of the subslice mask to
+> > > > > better
+> > > > > match the userspace access through the
+> > > > > I915_QUERY_TOPOLOGY_INFO
+> > > > > ioctl. The index into the subslice_mask array is then
+> > > > > calculated:
+> > > > >    slice * subslice stride + subslice index / 8
+> > > > >=20
+> > > > > v2: fix i915_pm_sseu test failure
+> > > > > v3: no changes to patches in the series, just resending to
+> > > > > pick up
+> > > > >      in CI correctly
+> > > > > v4: rebase
+> > > > > v5: fix header test
+> > > > > v6: address review comments from Jari
+> > > > >      address minor checkpatch warning in existing code
+> > > > >      use eu_stride for EU div-by-8
+> > > > > v7: another rebase
+> > > > > v8: address review comments from Tvrtko and Daniele
+> > > > > v9: address review comments from Daniele
+> > > > > v10: add reviewed-by on last patch with minor suggested
+> > > > > change,
+> > > > >       rebase, and repost for CI
+> > > > >=20
+> > > > > Stuart Summers (5):
+> > > > >    drm/i915: Use local variable for SSEU info in GETPARAM
+> > > > > ioctl
+> > > > >    drm/i915: Add macro for SSEU stride calculation
+> > > > >    drm/i915: Move calculation of subslices per slice to new
+> > > > > function
+> > > > >    drm/i915: Refactor sseu helper functions
+> > > > >    drm/i915: Expand subslice mask
+> > > > >=20
+> > > > >   drivers/gpu/drm/i915/gt/intel_engine_cs.c    |  24 ++-
+> > > > >   drivers/gpu/drm/i915/gt/intel_engine_types.h |  30 ++--
+> > > > >   drivers/gpu/drm/i915/gt/intel_hangcheck.c    |   3 +-
+> > > > >   drivers/gpu/drm/i915/gt/intel_sseu.c         |  62 +++++++
+> > > > >   drivers/gpu/drm/i915/gt/intel_sseu.h         |  35 +++-
+> > > > >   drivers/gpu/drm/i915/gt/intel_workarounds.c  |   2 +-
+> > > > >   drivers/gpu/drm/i915/i915_debugfs.c          |  46 ++---
+> > > > >   drivers/gpu/drm/i915/i915_drv.c              |  15 +-
+> > > > >   drivers/gpu/drm/i915/i915_gpu_error.c        |   5 +-
+> > > > >   drivers/gpu/drm/i915/i915_query.c            |  15 +-
+> > > > >   drivers/gpu/drm/i915/intel_device_info.c     | 176
+> > > > > +++++++++++--
+> > > > > ------
+> > > > >   drivers/gpu/drm/i915/intel_device_info.h     |  47 -----
+> > > > >   12 files changed, 280 insertions(+), 180 deletions(-)
+> > > > >=20
+> > > > > --
+> > > > > 2.21.0.5.gaeb582a983
+> > > > >=20
+> > > > > _______________________________________________
+> > > > > Intel-gfx mailing list
+> > > > > Intel-gfx@lists.freedesktop.org
+> > > > > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+> >=20
+> > _______________________________________________
+> > Intel-gfx mailing list
+> > Intel-gfx@lists.freedesktop.org
+> > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+> >=20
 
---=-S7Bwzuuddl50g1HOySRK
+--=-XACDKFx/14gocSgPcnAR
 Content-Type: application/x-pkcs7-signature; name="smime.p7s"
 Content-Disposition: attachment; filename="smime.p7s"
 Content-Transfer-Encoding: base64
@@ -225,18 +247,18 @@ CC/N7V8U9yFZx8akWREb8lJYDl9KypirEsufleiew26CWrwcbmdlldDCFS6/HDGCAhcwggITAgEB
 MIGQMHkxCzAJBgNVBAYTAlVTMQswCQYDVQQIEwJDQTEUMBIGA1UEBxMLU2FudGEgQ2xhcmExGjAY
 BgNVBAoTEUludGVsIENvcnBvcmF0aW9uMSswKQYDVQQDEyJJbnRlbCBFeHRlcm5hbCBCYXNpYyBJ
 c3N1aW5nIENBIDRCAhMzAAB04Th3owY0UbEUAAAAAHThMAkGBSsOAwIaBQCgXTAYBgkqhkiG9w0B
-CQMxCwYJKoZIhvcNAQcBMBwGCSqGSIb3DQEJBTEPFw0xOTA1MjkxNTU4NDlaMCMGCSqGSIb3DQEJ
-BDEWBBRvMLAgFEoQ6Kwd64fNjMIFiulYQDANBgkqhkiG9w0BAQEFAASCAQAA+xQFt2b772xVJ1BJ
-341+otRui5GxTQpQQTF4Kc3M8F3BmkqkKOkwzPUFHp1yQ6+dlBPwPHNyZQ9de0qXlMEo776ouvRG
-dmlgGVH4iePTyVYY5OAkwzPntgVs6ilDmmAIN4OIZCcznW2FPe0Z6259PeWb6RXPiqqYCYF39gFl
-B96zSs5Qy6JNce2agtKX7bdy75Dte/JJKJ6DVcUSKtrFioCCjRjupkENhMG8ta+OuZAcXJ85mKcw
-OCRkkK2dhVJD5GvQOIHBhL1S8zm3HzjwaJNwT3ZR2ixalOVZcCegxsmPUuQXUaSC45h6ZrlfvSvH
-eleCaK7q37hUtMaxVgNzAAAAAAAA
+CQMxCwYJKoZIhvcNAQcBMBwGCSqGSIb3DQEJBTEPFw0xOTA1MjkxNjAyMDFaMCMGCSqGSIb3DQEJ
+BDEWBBTUAw18EcwyMEfuJolVxLM9kAZJizANBgkqhkiG9w0BAQEFAASCAQBqfeJyi6oz5jp35iDM
+XAHu72CgmXMOxrWZceVaXUJjAHXAe7gyB0e+BoQzIwDB8dwrvW6w4JLrROY9DntArjpTps7egHAy
+20rmRyq8bIXELWpjKGIDdOJkOSdv1zI/P9YDsPfQE4w9x5IEBkH5atW7qRo0IdzY+Gbn5lIikjY5
+/1UGtdZzB/RkIXVrjq4I1dlkTgqc60PG1DCA+59hRU+eKS6V8oKYCETgTsob996d6NaMrRbOS2XL
+eQqioq+UvgJjkpnBW2L24KqFnuw/n8NHaVIzQHguj2W7sjZMrt1qqzpEiZDKM0vRksRHaNeq1UXL
+SpQ0Dkpm3RgO5/3WFlumAAAAAAAA
 
 
---=-S7Bwzuuddl50g1HOySRK--
+--=-XACDKFx/14gocSgPcnAR--
 
---===============1070661411==
+--===============1981436804==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -246,4 +268,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
 IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
 dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
 
---===============1070661411==--
+--===============1981436804==--
