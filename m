@@ -2,31 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F0662E554
-	for <lists+intel-gfx@lfdr.de>; Wed, 29 May 2019 21:31:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1BD452E556
+	for <lists+intel-gfx@lfdr.de>; Wed, 29 May 2019 21:31:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 134256E095;
-	Wed, 29 May 2019 19:31:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4D0FF6E0AE;
+	Wed, 29 May 2019 19:31:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C559A6E095;
- Wed, 29 May 2019 19:31:27 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 832716E0A6;
+ Wed, 29 May 2019 19:31:30 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from fmsmga008.fm.intel.com ([10.253.24.58])
  by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 29 May 2019 12:31:27 -0700
+ 29 May 2019 12:31:30 -0700
 X-ExtLoop1: 1
 Received: from linuxpresi1-desktop.iind.intel.com ([10.223.74.121])
- by fmsmga008.fm.intel.com with ESMTP; 29 May 2019 12:31:23 -0700
+ by fmsmga008.fm.intel.com with ESMTP; 29 May 2019 12:31:27 -0700
 From: Uma Shankar <uma.shankar@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	dri-devel@lists.freedesktop.org
-Date: Thu, 30 May 2019 01:29:00 +0530
-Message-Id: <1559159944-21103-1-git-send-email-uma.shankar@intel.com>
+Date: Thu, 30 May 2019 01:29:01 +0530
+Message-Id: <1559159944-21103-2-git-send-email-uma.shankar@intel.com>
 X-Mailer: git-send-email 1.9.1
-Subject: [Intel-gfx] [PATCH 0/4] Document fixes for DRM UAPI and HDR
+In-Reply-To: <1559159944-21103-1-git-send-email-uma.shankar@intel.com>
+References: <1559159944-21103-1-git-send-email-uma.shankar@intel.com>
+Subject: [Intel-gfx] [PATCH 1/4] drm: Drop a redundant unused variable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -46,23 +48,17 @@ Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-VGhpcyBzZXJpZXMgYWRkcyBEUk0gVUFQSSBoZWFkZXIgc3RydWN0dXJlIGRvY3VtZW50YXRpb24g
-dG8ga2VybmVsCmRvY3MuIEZpeGVzIGlzc3VlcyB3aXRoIGV4aXN0aW5nIHN0cnVjdHVyZSBkb2N1
-bWVudGF0aW9uIGluIGRybQp1YXBpIGhlYWRlci4KClRoaXMgYWxzbyBmaXhlcyB3YXJuaW5ncyBp
-biBIRFIgZG9jIGFuZCBhZGRyZXNzZXMgc3VnZ2VzdGlvbnMgZnJvbQpEYW5pZWwgVmV0dGVyLgoK
-QWxzbyBkcm9wcGVkIHN0YXRpYyBmdW5jdGlvbiBkb2N1bWVudGF0aW9uIGluIGhkbWkgY29yZS4K
-ClVtYSBTaGFua2FyICg0KToKICBkcm06IERyb3AgYSByZWR1bmRhbnQgdW51c2VkIHZhcmlhYmxl
-CiAgZHJtOiBGaXggZG9jYm9vayB3YXJuaW5ncyBpbiBoZHIgbWV0YWRhdGEgaGVscGVyIHN0cnVj
-dHVyZXMKICBkcm06IEZpeGVkIGRvYyB3YXJuaW5ncyBpbiBkcm0gdWFwaSBoZWFkZXIKICB2aWRl
-by9oZG1pOiBEcm9wcGVkIHN0YXRpYyBmdW5jdGlvbnMgZnJvbSBrZXJuZWwgZG9jCgogRG9jdW1l
-bnRhdGlvbi9ncHUvZHJtLXVhcGkucnN0ICB8ICA5ICsrKysrKysKIGRyaXZlcnMvZ3B1L2RybS9k
-cm1fY29ubmVjdG9yLmMgfCAzMSArKysrKysrKysrKysrKysrKysrKysrCiBkcml2ZXJzL3ZpZGVv
-L2hkbWkuYyAgICAgICAgICAgIHwgMzIgKysrKysrKysrKystLS0tLS0tLS0tLQogaW5jbHVkZS9k
-cm0vZHJtX2Nvbm5lY3Rvci5oICAgICB8ICAzICstLQogaW5jbHVkZS9kcm0vZHJtX21vZGVfY29u
-ZmlnLmggICB8ICA0ICstLQogaW5jbHVkZS9saW51eC9oZG1pLmggICAgICAgICAgICB8ICAxICsK
-IGluY2x1ZGUvdWFwaS9kcm0vZHJtX21vZGUuaCAgICAgfCA1OSArKysrKysrKysrKysrKysrKysr
-KysrKysrKysrKysrKysrKysrKysrLQogNyBmaWxlcyBjaGFuZ2VkLCAxMTggaW5zZXJ0aW9ucygr
-KSwgMjEgZGVsZXRpb25zKC0pCgotLSAKMS45LjEKCl9fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxp
-c3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFu
-L2xpc3RpbmZvL2ludGVsLWdmeA==
+RHJvcCBhIHJlZHVuZGFudCBhbmQgdW51c2VkIHZhcmlhYmxlICJoZHJfb3V0cHV0X21ldGFkYXRh
+IiBmcm9tCmRybV9jb25uZWN0b3IuCgpTdWdnZXN0ZWQtYnk6IERhbmllbCBWZXR0ZXIgPGRhbmll
+bEBmZndsbC5jaD4KU2lnbmVkLW9mZi1ieTogVW1hIFNoYW5rYXIgPHVtYS5zaGFua2FyQGludGVs
+LmNvbT4KLS0tCiBpbmNsdWRlL2RybS9kcm1fY29ubmVjdG9yLmggfCAyIC0tCiAxIGZpbGUgY2hh
+bmdlZCwgMiBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9pbmNsdWRlL2RybS9kcm1fY29ubmVj
+dG9yLmggYi9pbmNsdWRlL2RybS9kcm1fY29ubmVjdG9yLmgKaW5kZXggZjhmNDAwMy4uNTQ3NjU2
+MSAxMDA2NDQKLS0tIGEvaW5jbHVkZS9kcm0vZHJtX2Nvbm5lY3Rvci5oCisrKyBiL2luY2x1ZGUv
+ZHJtL2RybV9jb25uZWN0b3IuaApAQCAtMTI0NCw4ICsxMjQ0LDYgQEAgc3RydWN0IGRybV9jb25u
+ZWN0b3IgewogCSAqLwogCXN0cnVjdCBsbGlzdF9ub2RlIGZyZWVfbm9kZTsKIAotCS8qIEhEUiBt
+ZXRkYXRhICovCi0Jc3RydWN0IGhkcl9vdXRwdXRfbWV0YWRhdGEgaGRyX291dHB1dF9tZXRhZGF0
+YTsKIAlzdHJ1Y3QgaGRyX3NpbmtfbWV0YWRhdGEgaGRyX3NpbmtfbWV0YWRhdGE7CiB9OwogCi0t
+IAoxLjkuMQoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18K
+SW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0
+dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
