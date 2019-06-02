@@ -1,34 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8781C3375C
-	for <lists+intel-gfx@lfdr.de>; Mon,  3 Jun 2019 19:59:44 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0BAB432588
+	for <lists+intel-gfx@lfdr.de>; Mon,  3 Jun 2019 00:21:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0921C892F0;
-	Mon,  3 Jun 2019 17:59:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0972E8921E;
+	Sun,  2 Jun 2019 22:21:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from depni-mx.sinp.msu.ru (depni-mx.sinp.msu.ru [213.131.7.21])
- by gabe.freedesktop.org (Postfix) with ESMTP id 165CA894DC
- for <intel-gfx@lists.freedesktop.org>; Sun,  2 Jun 2019 21:31:35 +0000 (UTC)
-Received: from spider (unknown [109.63.145.211])
- by depni-mx.sinp.msu.ru (Postfix) with ESMTPSA id B68A01BF404;
- Mon,  3 Jun 2019 00:34:03 +0300 (MSK)
-From: Serge Belyshev <belyshev@depni.sinp.msu.ru>
-To: Chris Wilson <chris@chris-wilson.co.uk>
-References: <20190321161908.8007-1-chris@chris-wilson.co.uk>
- <20190321161908.8007-2-chris@chris-wilson.co.uk>
- <878sv31mqk.fsf@depni.sinp.msu.ru>
-Date: Mon, 03 Jun 2019 00:31:33 +0300
-In-Reply-To: <878sv31mqk.fsf@depni.sinp.msu.ru> (Serge Belyshev's message of
- "Sun, 19 May 2019 00:22:43 +0300")
-Message-ID: <878suj8yiy.fsf@depni.sinp.msu.ru>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
+Received: from ozlabs.org (bilbo.ozlabs.org [IPv6:2401:3900:2:1::2])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 170A789219;
+ Sun,  2 Jun 2019 22:20:59 +0000 (UTC)
+Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
+ SHA256) (No client certificate requested)
+ by mail.ozlabs.org (Postfix) with ESMTPSA id 45HCLt6QTJz9s4V;
+ Mon,  3 Jun 2019 08:20:53 +1000 (AEST)
+Date: Mon, 3 Jun 2019 08:20:51 +1000
+From: Stephen Rothwell <sfr@canb.auug.org.au>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>, Jani Nikula
+ <jani.nikula@linux.intel.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Intel Graphics <intel-gfx@lists.freedesktop.org>, DRI
+ <dri-devel@lists.freedesktop.org>
+Message-ID: <20190603082051.273a014c@canb.auug.org.au>
 MIME-Version: 1.0
-X-Mailman-Approved-At: Mon, 03 Jun 2019 17:59:41 +0000
-Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915: Skip object locking around a
- no-op set-domain ioctl
+X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=canb.auug.org.au; s=201702; t=1559514056;
+ bh=wTdYZ6QQsl/ZBjigzg21CbLkrvMORg6/09w4BHo4vmk=;
+ h=Date:From:To:Cc:Subject:From;
+ b=pcV0gcQc5rgsOqLva+zbsq+h4LGY5mRBs7Fq2Le0oEjUpqKKFXFBGw0ipMTig1+JP
+ QMalwNmB0GlH2lwEQrX9fYyXGRdwPksaeoIgujrvzAkMdDHgh3hErboDdkVgwOsdlE
+ kuITZ/h9PI4PhYwMHnZ6gaa2sRq2iJfjZRHLrg9nVBxHwf8BSo4JvKxJpsQVDngcJJ
+ 9djmV9jXqzQZWkxJQFR17kHqYsd2QsG2IfrCE1G9bXw7CNppM8S/aceSEwm/Y9KxjY
+ ZmR6WL/OFatzSCBarvjvhvDnODktchcr/N4LXMXXaqsZGB8psS0o9iQeDOJN63ezFy
+ R+X4CZ06dwBCg==
+Subject: [Intel-gfx] linux-next: unable to fetch the drm-intel-fixes tree
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -41,24 +50,64 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Linux Next Mailing List <linux-next@vger.kernel.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: multipart/mixed; boundary="===============0665599749=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-SGkhCgo+IFRoaXMgcGF0Y2ggY2F1c2VzIGxvY2t1cHMgaW4gZmlyZWZveC4gVGhleSBhcHBlYXIg
-bGlrZSBub24tZmF0YWwgaGFuZ3MKPiBvZiB0aGUgd2VicGFnZSBjb250ZW50cywgImZpeGFibGUi
-IHdpdGggYWx0LXRhYiBvciBhIGJhY2tncm91bmQgc3lzdGVtCj4gbG9hZC4gIEkgaGF2ZSB2ZXJp
-ZmllZCB0aGF0IHJldmVydGluZyB0aGUgY29tbWl0IDc1NGEyNTQ0Mjcgb24gdG9wIG9mCj4gY3Vy
-cmVudCBMaW51cyB0cmVlIGZpeGVzIHRoZSBwcm9ibGVtLgoKVGhpcyBpcyBzdGlsbCBicm9rZW4g
-aW4gdjUuMi1yYzMuCgpJIGhhdmUgYWxzbyB2ZXJpZmllZCB0aGF0IHRoZSBwYXJ0aWN1bGFyIGNv
-bW1pdCwgaWYgYmFja3BvcnRlZCB0byB2NS4xCnJlbGVhc2UsIGJyZWFrcyBmaXJlZm94IHRoZXJl
-IHRvbyBpbiB0aGUgc2FtZSB3YXkuCgoKKGZvciByZWZlcmVuY2U6KQoKY29tbWl0IDc1NGEyNTQ0
-MjcwNWM0ZjkwZTBkMDVmMWE3YmQzMDNmZmU3MDBjYTkKQXV0aG9yOiBDaHJpcyBXaWxzb24gPGNo
-cmlzQGNocmlzLXdpbHNvbi5jby51az4KRGF0ZTogICBUaHUgTWFyIDIxIDE2OjE5OjA4IDIwMTkg
-KzAwMDAKCiAgICBkcm0vaTkxNTogU2tpcCBvYmplY3QgbG9ja2luZyBhcm91bmQgYSBuby1vcCBz
-ZXQtZG9tYWluIGlvY3RsCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9w
-Lm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVs
-LWdmeA==
+--===============0665599749==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ boundary="Sig_/1_9rLO0/J=YT2o1Opl+PJ50"; protocol="application/pgp-signature"
+
+--Sig_/1_9rLO0/J=YT2o1Opl+PJ50
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
+
+Hi all,
+
+Trying to fetch the drm-intel-fixes tree today gives me this error:
+
+-----------------------------------------------------------------
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+-----------------------------------------------------------------
+
+The same for drm-misc-fixes, drm-intel and drm-misc.  These are all
+hosted on git://anongit.freedesktop.org/ .
+
+--=20
+Cheers,
+Stephen Rothwell
+
+--Sig_/1_9rLO0/J=YT2o1Opl+PJ50
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAlz0S8MACgkQAVBC80lX
+0Gz3UQf9E0cKzaW8f5StW3DTvDdZiWjw1QyXRHKf8WQoEXoPZwtJ+0sJ64rdgg5N
+5ohpavRBGdD3FScFgbbCQw5O1Sq2yUVp328M+Er7LgqYrjr0CVrdRWnETC/Opujq
+7/Vpq33iyAqSsNH00H0cdU9Rj0CaTcQE1K2OlYmZucqXPldsT2UWTli3+SufoiUL
+ygs4VwVjBfld47TKB+xJF/ucl6b5egXv+Wnk5QR42FwkKSdFyLXxeVLnyZ60LerE
+583IymIdHjMOlg4j8iZ3vZw6mpbGKveoGo1FNh5O9ziNgqXXP2H69EyfAWyirvU3
+5rXk2jci4jM9RCzU6bxf4JtV9gFYbQ==
+=leUS
+-----END PGP SIGNATURE-----
+
+--Sig_/1_9rLO0/J=YT2o1Opl+PJ50--
+
+--===============0665599749==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
+IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
+
+--===============0665599749==--
