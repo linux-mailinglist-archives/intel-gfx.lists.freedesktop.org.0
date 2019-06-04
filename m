@@ -2,33 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 092EA34940
-	for <lists+intel-gfx@lfdr.de>; Tue,  4 Jun 2019 15:45:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A55D134941
+	for <lists+intel-gfx@lfdr.de>; Tue,  4 Jun 2019 15:45:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ED23C898C2;
-	Tue,  4 Jun 2019 13:45:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 368C68918D;
+	Tue,  4 Jun 2019 13:45:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0CAD6898C2
- for <intel-gfx@lists.freedesktop.org>; Tue,  4 Jun 2019 13:45:26 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 16789194-1500050 for multiple; Tue, 04 Jun 2019 14:45:27 +0100
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B7F668918D
+ for <intel-gfx@lists.freedesktop.org>; Tue,  4 Jun 2019 13:45:39 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 04 Jun 2019 06:45:39 -0700
+X-ExtLoop1: 1
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by FMSMGA003.fm.intel.com with SMTP; 04 Jun 2019 06:45:37 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Tue, 04 Jun 2019 16:45:36 +0300
+Date: Tue, 4 Jun 2019 16:45:36 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: "Vasilev, Oleg" <oleg.vasilev@intel.com>
+Message-ID: <20190604134536.GE5942@intel.com>
+References: <20190520150642.3477-1-oleg.vasilev@intel.com>
+ <86e71fd8943d4d4036a312cb431679ae4e863922.camel@intel.com>
+ <20190603133319.GZ5942@intel.com>
 MIME-Version: 1.0
-From: Chris Wilson <chris@chris-wilson.co.uk>
-User-Agent: alot/0.6
-To: Lionel Landwerlin <lionel.g.landwerlin@intel.com>,
- intel-gfx@lists.freedesktop.org
-References: <20190604131140.12647-1-lionel.g.landwerlin@intel.com>
- <20190604131140.12647-7-lionel.g.landwerlin@intel.com>
-In-Reply-To: <20190604131140.12647-7-lionel.g.landwerlin@intel.com>
-Message-ID: <155965592255.21578.5153774685582026308@skylake-alporthouse-com>
-Date: Tue, 04 Jun 2019 14:45:22 +0100
-Subject: Re: [Intel-gfx] [PATCH v3 6/7] drm/i915/perf: allow holding
- preemption on filtered ctx
+Content-Disposition: inline
+In-Reply-To: <20190603133319.GZ5942@intel.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH v3] drm/i915: add i2c symlink under hdmi
+ connector
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -41,29 +48,20 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: "Nikula, Jani" <jani.nikula@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-UXVvdGluZyBMaW9uZWwgTGFuZHdlcmxpbiAoMjAxOS0wNi0wNCAxNDoxMTozOSkKPiBkaWZmIC0t
-Z2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfbHJjLmMgYi9kcml2ZXJzL2dwdS9k
-cm0vaTkxNS9ndC9pbnRlbF9scmMuYwo+IGluZGV4IGVkMTlmNGU1M2QzMS4uNDA0NmYwNDU0MDhi
-IDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX2xyYy5jCj4gKysr
-IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfbHJjLmMKPiBAQCAtNjgzLDYgKzY4Mywx
-MiBAQCBzdGF0aWMgdm9pZCBwb3J0X2Fzc2lnbihzdHJ1Y3QgZXhlY2xpc3RfcG9ydCAqcG9ydCwg
-c3RydWN0IGk5MTVfcmVxdWVzdCAqcnEpCj4gICAgICAgICBpZiAocG9ydF9pc3NldChwb3J0KSkK
-PiAgICAgICAgICAgICAgICAgaTkxNV9yZXF1ZXN0X3B1dChwb3J0X3JlcXVlc3QocG9ydCkpOwo+
-ICAKPiArICAgICAgIGlmIChycS0+aGFzX3BlcmYpIHsKPiArICAgICAgICAgICAgICAgcnEtPnNj
-aGVkLmF0dHIucHJpb3JpdHkgPQo+ICsgICAgICAgICAgICAgICAgICAgICAgIChJOTE1X1BSSU9S
-SVRZX01BU0sgJiBycS0+c2NoZWQuYXR0ci5wcmlvcml0eSkgfAo+ICsgICAgICAgICAgICAgICAg
-ICAgICAgIEk5MTVfVVNFUl9QUklPUklUWShJOTE1X1BSSU9SSVRZX1BFUkYpOwo+ICsgICAgICAg
-fQoKVGhpcyBpcyBicm9rZW4uIFlvdSBjYW4gbm90IGlnbm9yZSBQSSBoZXJlLiBJZiB5b3UgYnVt
-cCB0aGUgcHJpb3JpdHkgaGVyZSB5b3UKbXVzdCBpbmNyZWFzZSB0aGUgcHJpb3JpdHkgb2YgYWxs
-IG9mIGl0cyBjcm9zcy1lbmdpbmUgZGVwZW5kZW5jaWVzIGFzCnRoZXkgbWF5IHN0aWxsIGJlIGlu
-ZmxpZ2h0IGFuZCBsYXRlciByZW9yZGVyZWQgY2F1c2luZyBkZWFkbG9ja3MuIChOb3RlCnlvdSBj
-YW5ub3QgdGFrZSB0aGUgbG9ja3MgcmVxdWlyZWQgZm9yIGJ1bXBpbmcgb3RoZXIgZW5naW5lcyBo
-ZXJlLikKLUNocmlzCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9y
-ZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdm
-eA==
+T24gTW9uLCBKdW4gMDMsIDIwMTkgYXQgMDQ6MzM6MTlQTSArMDMwMCwgVmlsbGUgU3lyasOkbMOk
+IHdyb3RlOgo+IE9uIE1vbiwgSnVuIDAzLCAyMDE5IGF0IDEwOjA5OjMwQU0gKzAwMDAsIFZhc2ls
+ZXYsIE9sZWcgd3JvdGU6Cj4gPiBIaSwKPiA+IAo+ID4gQ2FuIHRoaXMgYmUgcmV2aWV3ZWQsIHBs
+ZWFzZT8KPiAKPiBJdCBsb29rcyBnb29kIHRvIG1lLiBCdXQgdGhlIHRlc3QgcmVzdWx0cyBhcmUg
+aG9ycmlibGUsIGR1ZSB0byB0aGUgZXh0NAo+IGZhaWwgSSB0aGluay4gSSd2ZSBoaXQgcmV0ZXN0
+IHRvIGdldCBuZXcgcmVzdWx0cy4KCk5ldyByZXN1bHRzIGxvb2tlZCBmaW5lLCBzbyBwdXNoZWQu
+IFRoYW5rcyBmb3IgdGhlIHBhdGNoLgoKLS0gClZpbGxlIFN5cmrDpGzDpApJbnRlbApfX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGlu
+ZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVl
+ZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZng=
