@@ -1,31 +1,48 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B89B6368CA
-	for <lists+intel-gfx@lfdr.de>; Thu,  6 Jun 2019 02:38:33 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7BF6536902
+	for <lists+intel-gfx@lfdr.de>; Thu,  6 Jun 2019 03:05:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C5D3A894D4;
-	Thu,  6 Jun 2019 00:38:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 58971894DD;
+	Thu,  6 Jun 2019 01:05:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 0986C894D4;
- Thu,  6 Jun 2019 00:38:31 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 05B6FA0071;
- Thu,  6 Jun 2019 00:38:31 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 56C08894DD
+ for <intel-gfx@lists.freedesktop.org>; Thu,  6 Jun 2019 01:05:26 +0000 (UTC)
+X-Amp-Result: UNSCANNABLE
+X-Amp-File-Uploaded: False
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 05 Jun 2019 18:05:25 -0700
+X-ExtLoop1: 1
+Received: from fmsmsx107.amr.corp.intel.com ([10.18.124.205])
+ by orsmga001.jf.intel.com with ESMTP; 05 Jun 2019 18:05:25 -0700
+Received: from fmsmsx163.amr.corp.intel.com (10.18.125.72) by
+ fmsmsx107.amr.corp.intel.com (10.18.124.205) with Microsoft SMTP Server (TLS)
+ id 14.3.408.0; Wed, 5 Jun 2019 18:05:25 -0700
+Received: from fmsmsx117.amr.corp.intel.com ([169.254.3.77]) by
+ fmsmsx163.amr.corp.intel.com ([169.254.6.185]) with mapi id 14.03.0415.000;
+ Wed, 5 Jun 2019 18:05:24 -0700
+From: "Souza, Jose" <jose.souza@intel.com>
+To: "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Thread-Topic: [PATCH 2/2] drm/i915: Kill INTEL_SUBPLATFORM_AML
+Thread-Index: AQHVG7vn/494Q55fc0eYIc35CAegQaaORbaA
+Date: Thu, 6 Jun 2019 01:05:23 +0000
+Message-ID: <ef733ef6192bbd6a7d024e4b0daca747fb292974.camel@intel.com>
+References: <20190605162946.19223-1-ville.syrjala@linux.intel.com>
+ <20190605162946.19223-2-ville.syrjala@linux.intel.com>
+In-Reply-To: <20190605162946.19223-2-ville.syrjala@linux.intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: yes
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.24.9.50]
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Lucas De Marchi" <lucas.demarchi@intel.com>
-Date: Thu, 06 Jun 2019 00:38:31 -0000
-Message-ID: <20190606003831.10844.69330@emeril.freedesktop.org>
-References: <20190605235535.17791-1-lucas.demarchi@intel.com>
-X-Patchwork-Hint: ignore
-In-Reply-To: <20190605235535.17791-1-lucas.demarchi@intel.com>
-Subject: [Intel-gfx] =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_drm/?=
- =?utf-8?q?i915/dmc=3A_protect_against_reading_random_memory?=
+Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915: Kill INTEL_SUBPLATFORM_AML
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -38,86 +55,185 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1076811267=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-PT0gU2VyaWVzIERldGFpbHMgPT0KClNlcmllczogZHJtL2k5MTUvZG1jOiBwcm90ZWN0IGFnYWlu
-c3QgcmVhZGluZyByYW5kb20gbWVtb3J5ClVSTCAgIDogaHR0cHM6Ly9wYXRjaHdvcmsuZnJlZWRl
-c2t0b3Aub3JnL3Nlcmllcy82MTY5NS8KU3RhdGUgOiBzdWNjZXNzCgo9PSBTdW1tYXJ5ID09CgpD
-SSBCdWcgTG9nIC0gY2hhbmdlcyBmcm9tIENJX0RSTV82MTk5IC0+IFBhdGNod29ya18xMzE4Nwo9
-PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09CgpTdW1t
-YXJ5Ci0tLS0tLS0KCiAgKipTVUNDRVNTKioKCiAgTm8gcmVncmVzc2lvbnMgZm91bmQuCgogIEV4
-dGVybmFsIFVSTDogaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9QYXRj
-aHdvcmtfMTMxODcvCgpLbm93biBpc3N1ZXMKLS0tLS0tLS0tLS0tCgogIEhlcmUgYXJlIHRoZSBj
-aGFuZ2VzIGZvdW5kIGluIFBhdGNod29ya18xMzE4NyB0aGF0IGNvbWUgZnJvbSBrbm93biBpc3N1
-ZXM6CgojIyMgSUdUIGNoYW5nZXMgIyMjCgojIyMjIElzc3VlcyBoaXQgIyMjIwoKICAqIGlndEBn
-ZW1fY3R4X2NyZWF0ZUBiYXNpYy1maWxlczoKICAgIC0gZmktaWNsLXUyOiAgICAgICAgICBbUEFT
-U11bMV0gLT4gW0lOQ09NUExFVEVdWzJdIChbZmRvIzEwNzcxM10gLyBbZmRvIzEwOTEwMF0pCiAg
-IFsxXTogaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9DSV9EUk1fNjE5
-OS9maS1pY2wtdTIvaWd0QGdlbV9jdHhfY3JlYXRlQGJhc2ljLWZpbGVzLmh0bWwKICAgWzJdOiBo
-dHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlwL1BhdGNod29ya18xMzE4Ny9m
-aS1pY2wtdTIvaWd0QGdlbV9jdHhfY3JlYXRlQGJhc2ljLWZpbGVzLmh0bWwKCiAgKiBpZ3RAaTkx
-NV9wbV9ycG1AbW9kdWxlLXJlbG9hZDoKICAgIC0gZmktaWNsLWRzaTogICAgICAgICBbUEFTU11b
-M10gLT4gW0lOQ09NUExFVEVdWzRdIChbZmRvIzEwNzcxM10gLyBbZmRvIzEwODg0MF0pCiAgIFsz
-XTogaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9DSV9EUk1fNjE5OS9m
-aS1pY2wtZHNpL2lndEBpOTE1X3BtX3JwbUBtb2R1bGUtcmVsb2FkLmh0bWwKICAgWzRdOiBodHRw
-czovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlwL1BhdGNod29ya18xMzE4Ny9maS1p
-Y2wtZHNpL2lndEBpOTE1X3BtX3JwbUBtb2R1bGUtcmVsb2FkLmh0bWwKCiAgCiMjIyMgUG9zc2li
-bGUgZml4ZXMgIyMjIwoKICAqIGlndEBkZWJ1Z2ZzX3Rlc3RAcmVhZF9hbGxfZW50cmllczoKICAg
-IC0gZmktaWxrLTY1MDogICAgICAgICBbRE1FU0ctV0FSTl1bNV0gKFtmZG8jMTA2Mzg3XSkgLT4g
-W1BBU1NdWzZdCiAgIFs1XTogaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRp
-cC9DSV9EUk1fNjE5OS9maS1pbGstNjUwL2lndEBkZWJ1Z2ZzX3Rlc3RAcmVhZF9hbGxfZW50cmll
-cy5odG1sCiAgIFs2XTogaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9Q
-YXRjaHdvcmtfMTMxODcvZmktaWxrLTY1MC9pZ3RAZGVidWdmc190ZXN0QHJlYWRfYWxsX2VudHJp
-ZXMuaHRtbAoKICAqIGlndEBnZW1fZXhlY19iYXNpY0BiYXNpYy1hbGw6CiAgICAtIGZpLWljbC15
-OiAgICAgICAgICAgW0lOQ09NUExFVEVdWzddIChbZmRvIzEwNzcxM10pIC0+IFtQQVNTXVs4XQog
-ICBbN106IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAvQ0lfRFJNXzYx
-OTkvZmktaWNsLXkvaWd0QGdlbV9leGVjX2Jhc2ljQGJhc2ljLWFsbC5odG1sCiAgIFs4XTogaHR0
-cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9QYXRjaHdvcmtfMTMxODcvZmkt
-aWNsLXkvaWd0QGdlbV9leGVjX2Jhc2ljQGJhc2ljLWFsbC5odG1sCgogICogaWd0QGdlbV9leGVj
-X3JlbG9jQGJhc2ljLWd0dC1yZWFkLW5vcmVsb2M6CiAgICAtIGZpLWljbC11MzogICAgICAgICAg
-W0RNRVNHLVdBUk5dWzldIChbZmRvIzEwNzcyNF0pIC0+IFtQQVNTXVsxMF0gKzEgc2ltaWxhciBp
-c3N1ZQogICBbOV06IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAvQ0lf
-RFJNXzYxOTkvZmktaWNsLXUzL2lndEBnZW1fZXhlY19yZWxvY0BiYXNpYy1ndHQtcmVhZC1ub3Jl
-bG9jLmh0bWwKICAgWzEwXTogaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRp
-cC9QYXRjaHdvcmtfMTMxODcvZmktaWNsLXUzL2lndEBnZW1fZXhlY19yZWxvY0BiYXNpYy1ndHQt
-cmVhZC1ub3JlbG9jLmh0bWwKCiAgCiMjIyMgV2FybmluZ3MgIyMjIwoKICAqIGlndEBpOTE1X3Bt
-X3JwbUBtb2R1bGUtcmVsb2FkOgogICAgLSBmaS1zbmItMjYwMDogICAgICAgIFtTS0lQXVsxMV0g
-KFtmZG8jMTA5MjcxXSkgLT4gW0lOQ09NUExFVEVdWzEyXSAoW2ZkbyMxMDU0MTFdKQogICBbMTFd
-OiBodHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlwL0NJX0RSTV82MTk5L2Zp
-LXNuYi0yNjAwL2lndEBpOTE1X3BtX3JwbUBtb2R1bGUtcmVsb2FkLmh0bWwKICAgWzEyXTogaHR0
-cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9QYXRjaHdvcmtfMTMxODcvZmkt
-c25iLTI2MDAvaWd0QGk5MTVfcG1fcnBtQG1vZHVsZS1yZWxvYWQuaHRtbAoKICAKICB7bmFtZX06
-IFRoaXMgZWxlbWVudCBpcyBzdXBwcmVzc2VkLiBUaGlzIG1lYW5zIGl0IGlzIGlnbm9yZWQgd2hl
-biBjb21wdXRpbmcKICAgICAgICAgIHRoZSBzdGF0dXMgb2YgdGhlIGRpZmZlcmVuY2UgKFNVQ0NF
-U1MsIFdBUk5JTkcsIG9yIEZBSUxVUkUpLgoKICBbZmRvIzEwNTQxMV06IGh0dHBzOi8vYnVncy5m
-cmVlZGVza3RvcC5vcmcvc2hvd19idWcuY2dpP2lkPTEwNTQxMQogIFtmZG8jMTA2Mzg3XTogaHR0
-cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MTA2Mzg3CiAgW2ZkbyMx
-MDc3MTNdOiBodHRwczovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD0xMDc3
-MTMKICBbZmRvIzEwNzcyNF06IGh0dHBzOi8vYnVncy5mcmVlZGVza3RvcC5vcmcvc2hvd19idWcu
-Y2dpP2lkPTEwNzcyNAogIFtmZG8jMTA4NjAyXTogaHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9y
-Zy9zaG93X2J1Zy5jZ2k/aWQ9MTA4NjAyCiAgW2ZkbyMxMDg4NDBdOiBodHRwczovL2J1Z3MuZnJl
-ZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD0xMDg4NDAKICBbZmRvIzEwOTEwMF06IGh0dHBz
-Oi8vYnVncy5mcmVlZGVza3RvcC5vcmcvc2hvd19idWcuY2dpP2lkPTEwOTEwMAogIFtmZG8jMTA5
-MjcxXTogaHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MTA5Mjcx
-CgoKUGFydGljaXBhdGluZyBob3N0cyAoNTEgLT4gNDUpCi0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLQoKICBBZGRpdGlvbmFsICgyKTogZmkta2JsLTc1MDB1IGZpLWNtbC11IAogIE1pc3Np
-bmcgICAgKDgpOiBmaS1pbGstbTU0MCBmaS1oc3ctNDIwMHUgZmktYnl0LXNxdWF3a3MgZmktYnN3
-LWN5YW4gZmkta2JsLTc1NjB1IGZpLWJ5dC1jbGFwcGVyIGZpLWJkdy1zYW11cyBmaS1rYmwtciAK
-CgpCdWlsZCBjaGFuZ2VzCi0tLS0tLS0tLS0tLS0KCiAgKiBMaW51eDogQ0lfRFJNXzYxOTkgLT4g
-UGF0Y2h3b3JrXzEzMTg3CgogIENJX0RSTV82MTk5OiAzYzdlMzU2NTQ5YTIyODY1MzlkOTFmMTkx
-MTk2YWNkNzM0YjQwNzI5IEAgZ2l0Oi8vYW5vbmdpdC5mcmVlZGVza3RvcC5vcmcvZ2Z4LWNpL2xp
-bnV4CiAgSUdUXzUwNDE6IDRmMmI5ZjU5MzBmYTMzZDA5MWNmODk2MzdkYzZlN2Y3NmY2MzJhODgg
-QCBnaXQ6Ly9hbm9uZ2l0LmZyZWVkZXNrdG9wLm9yZy94b3JnL2FwcC9pbnRlbC1ncHUtdG9vbHMK
-ICBQYXRjaHdvcmtfMTMxODc6IDg0MTdiMDBmNTI5NmQ2NTNlZjE5ZWViZDg3OTYwYjI2OWVlODAx
-YjggQCBnaXQ6Ly9hbm9uZ2l0LmZyZWVkZXNrdG9wLm9yZy9nZngtY2kvbGludXgKCgo9PSBMaW51
-eCBjb21taXRzID09Cgo4NDE3YjAwZjUyOTYgZHJtL2k5MTUvZG1jOiBwcm90ZWN0IGFnYWluc3Qg
-cmVhZGluZyByYW5kb20gbWVtb3J5Cgo9PSBMb2dzID09CgpGb3IgbW9yZSBkZXRhaWxzIHNlZTog
-aHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9QYXRjaHdvcmtfMTMxODcv
-Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdm
-eCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xp
-c3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeA==
+--===============1076811267==
+Content-Language: en-US
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="=-7uSDCfELmcfxLyQb3G/q"
+
+--=-7uSDCfELmcfxLyQb3G/q
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+This is the same as WHL, we added the AML separated just in case it
+needed some different workaround or code path but looks like it don't
+need at all.
+
+Any objection with this change Rodrigo?
+
+On Wed, 2019-06-05 at 19:29 +0300, Ville Syrjala wrote:
+> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>=20
+> All AML parts are either KBL ULX or CFL ULX so there is no point
+> in keeping INTEL_SUBPLATFORM_AML around. As these are the only
+> CFL ULX parts (normal CFL didn't have Y SKUs) so we'll just
+> replace IS_AML_ULX with IS_CFL_ULX (it was already paired with
+> IS_KBL_ULX which accounts for the other half of the AML parts).
+>=20
+> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> Cc: Jos=C3=A9 Roberto de Souza <jose.souza@intel.com>
+> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+> ---
+>  drivers/gpu/drm/i915/i915_drv.h          | 5 ++---
+>  drivers/gpu/drm/i915/intel_ddi.c         | 8 +++++---
+>  drivers/gpu/drm/i915/intel_device_info.c | 6 ------
+>  drivers/gpu/drm/i915/intel_device_info.h | 1 -
+>  4 files changed, 7 insertions(+), 13 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/i915/i915_drv.h
+> b/drivers/gpu/drm/i915/i915_drv.h
+> index 89bf1e34feaa..16ea0e6077cf 100644
+> --- a/drivers/gpu/drm/i915/i915_drv.h
+> +++ b/drivers/gpu/drm/i915/i915_drv.h
+> @@ -2213,9 +2213,6 @@ IS_SUBPLATFORM(const struct drm_i915_private
+> *i915,
+>  	IS_SUBPLATFORM(dev_priv, INTEL_KABYLAKE, INTEL_SUBPLATFORM_ULT)
+>  #define IS_KBL_ULX(dev_priv) \
+>  	IS_SUBPLATFORM(dev_priv, INTEL_KABYLAKE, INTEL_SUBPLATFORM_ULX)
+> -#define IS_AML_ULX(dev_priv) \
+> -	(IS_SUBPLATFORM(dev_priv, INTEL_KABYLAKE,
+> INTEL_SUBPLATFORM_AML) || \
+> -	 IS_SUBPLATFORM(dev_priv, INTEL_COFFEELAKE,
+> INTEL_SUBPLATFORM_AML))
+>  #define IS_SKL_GT2(dev_priv)	(IS_SKYLAKE(dev_priv) && \
+>  				 INTEL_INFO(dev_priv)->gt =3D=3D 2)
+>  #define IS_SKL_GT3(dev_priv)	(IS_SKYLAKE(dev_priv) && \
+> @@ -2228,6 +2225,8 @@ IS_SUBPLATFORM(const struct drm_i915_private
+> *i915,
+>  				 INTEL_INFO(dev_priv)->gt =3D=3D 3)
+>  #define IS_CFL_ULT(dev_priv) \
+>  	IS_SUBPLATFORM(dev_priv, INTEL_COFFEELAKE,
+> INTEL_SUBPLATFORM_ULT)
+> +#define IS_CFL_ULX(dev_priv) \
+> +	IS_SUBPLATFORM(dev_priv, INTEL_COFFEELAKE,
+> INTEL_SUBPLATFORM_ULX)
+>  #define IS_CFL_GT2(dev_priv)	(IS_COFFEELAKE(dev_priv) && \
+>  				 INTEL_INFO(dev_priv)->gt =3D=3D 2)
+>  #define IS_CFL_GT3(dev_priv)	(IS_COFFEELAKE(dev_priv) && \
+> diff --git a/drivers/gpu/drm/i915/intel_ddi.c
+> b/drivers/gpu/drm/i915/intel_ddi.c
+> index 350eaf54f01f..65c02b260c98 100644
+> --- a/drivers/gpu/drm/i915/intel_ddi.c
+> +++ b/drivers/gpu/drm/i915/intel_ddi.c
+> @@ -615,7 +615,7 @@ skl_get_buf_trans_dp(struct drm_i915_private
+> *dev_priv, int *n_entries)
+>  static const struct ddi_buf_trans *
+>  kbl_get_buf_trans_dp(struct drm_i915_private *dev_priv, int
+> *n_entries)
+>  {
+> -	if (IS_KBL_ULX(dev_priv) || IS_AML_ULX(dev_priv)) {
+> +	if (IS_KBL_ULX(dev_priv) || IS_CFL_ULX(dev_priv)) {
+>  		*n_entries =3D ARRAY_SIZE(kbl_y_ddi_translations_dp);
+>  		return kbl_y_ddi_translations_dp;
+>  	} else if (IS_KBL_ULT(dev_priv) || IS_CFL_ULT(dev_priv)) {
+> @@ -631,7 +631,8 @@ static const struct ddi_buf_trans *
+>  skl_get_buf_trans_edp(struct drm_i915_private *dev_priv, int
+> *n_entries)
+>  {
+>  	if (dev_priv->vbt.edp.low_vswing) {
+> -		if (IS_SKL_ULX(dev_priv) || IS_KBL_ULX(dev_priv) ||
+> IS_AML_ULX(dev_priv)) {
+> +		if (IS_SKL_ULX(dev_priv) || IS_KBL_ULX(dev_priv) ||
+> +		    IS_CFL_ULX(dev_priv)) {
+>  			*n_entries =3D
+> ARRAY_SIZE(skl_y_ddi_translations_edp);
+>  			return skl_y_ddi_translations_edp;
+>  		} else if (IS_SKL_ULT(dev_priv) || IS_KBL_ULT(dev_priv)
+> ||
+> @@ -653,7 +654,8 @@ skl_get_buf_trans_edp(struct drm_i915_private
+> *dev_priv, int *n_entries)
+>  static const struct ddi_buf_trans *
+>  skl_get_buf_trans_hdmi(struct drm_i915_private *dev_priv, int
+> *n_entries)
+>  {
+> -	if (IS_SKL_ULX(dev_priv) || IS_KBL_ULX(dev_priv) ||
+> IS_AML_ULX(dev_priv)) {
+> +	if (IS_SKL_ULX(dev_priv) || IS_KBL_ULX(dev_priv) ||
+> +	    IS_CFL_ULX(dev_priv)) {
+>  		*n_entries =3D ARRAY_SIZE(skl_y_ddi_translations_hdmi);
+>  		return skl_y_ddi_translations_hdmi;
+>  	} else {
+> diff --git a/drivers/gpu/drm/i915/intel_device_info.c
+> b/drivers/gpu/drm/i915/intel_device_info.c
+> index 19437e8ec6fa..7135d8dc32a7 100644
+> --- a/drivers/gpu/drm/i915/intel_device_info.c
+> +++ b/drivers/gpu/drm/i915/intel_device_info.c
+> @@ -787,9 +787,6 @@ static const u16 subplatform_ulx_ids[] =3D {
+>  	INTEL_SKL_ULX_GT2_IDS(0),
+>  	INTEL_KBL_ULX_GT1_IDS(0),
+>  	INTEL_KBL_ULX_GT2_IDS(0),
+> -};
+> -
+> -static const u16 subplatform_aml_ids[] =3D {
+>  	INTEL_AML_KBL_GT2_IDS(0),
+>  	INTEL_AML_CFL_GT2_IDS(0),
+>  };
+> @@ -832,9 +829,6 @@ void intel_device_info_subplatform_init(struct
+> drm_i915_private *i915)
+>  			/* ULX machines are also considered ULT. */
+>  			mask |=3D BIT(INTEL_SUBPLATFORM_ULT);
+>  		}
+> -	} else if (find_devid(devid, subplatform_aml_ids,
+> -			      ARRAY_SIZE(subplatform_aml_ids))) {
+> -		mask =3D BIT(INTEL_SUBPLATFORM_AML);
+>  	} else if (find_devid(devid, subplatform_portf_ids,
+>  			      ARRAY_SIZE(subplatform_portf_ids))) {
+>  		mask =3D BIT(INTEL_SUBPLATFORM_PORTF);
+> diff --git a/drivers/gpu/drm/i915/intel_device_info.h
+> b/drivers/gpu/drm/i915/intel_device_info.h
+> index d67dedf0cbd8..ee4776dc59bd 100644
+> --- a/drivers/gpu/drm/i915/intel_device_info.h
+> +++ b/drivers/gpu/drm/i915/intel_device_info.h
+> @@ -91,7 +91,6 @@ enum intel_platform {
+>  /* HSW/BDW/SKL/KBL/CFL */
+>  #define INTEL_SUBPLATFORM_ULT	(0)
+>  #define INTEL_SUBPLATFORM_ULX	(1)
+> -#define INTEL_SUBPLATFORM_AML	(2)
+> =20
+>  /* CNL/ICL */
+>  #define INTEL_SUBPLATFORM_PORTF	(0)
+
+--=-7uSDCfELmcfxLyQb3G/q
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
+Content-Transfer-Encoding: 7bit
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCAAdFiEEVNG051EijGa0MiaQVenbO/mOWkkFAlz4ZtMACgkQVenbO/mO
+WklilAf/VKtiC7QDO6EN5UxBHosMTnf66z5UUVqVJqxYuIgE81AtVOpMx5+HLmrA
+Wu04ZzH7Erh6Jw26iSqzq3tIliRHdscPxw0sz2buAvwHw0cWquLkJ7+IZ7EYi0Tp
+m1U1F2JAo7zLv4Atto32Ca091ob27VrEtqhj+3ZPx21shMpbWsW094tHhmfgVM0y
+v8HxTCSWRc6kzd5YIkS1k+gLXPCIIXMtdRXzh0LD9xWyW00UB3WjcHzJzzQszCNS
+sJHG/VHzxNM5b1UY9uoJz7DZt/9Fb3hOV8bWw+LQIju0J0ciV9XAb8KhtvLI9dmp
+4dPZdudMNMKdH9KmfFw+cQ2kwY/F8w==
+=LOtv
+-----END PGP SIGNATURE-----
+
+--=-7uSDCfELmcfxLyQb3G/q--
+
+--===============1076811267==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
+IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
+
+--===============1076811267==--
