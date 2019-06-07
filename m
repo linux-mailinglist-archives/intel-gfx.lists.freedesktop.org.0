@@ -1,33 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 67BCD3927D
-	for <lists+intel-gfx@lfdr.de>; Fri,  7 Jun 2019 18:49:11 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A8973935F
+	for <lists+intel-gfx@lfdr.de>; Fri,  7 Jun 2019 19:36:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3864D89A98;
-	Fri,  7 Jun 2019 16:49:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3CDB689CF9;
+	Fri,  7 Jun 2019 17:36:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 3001F89A98;
- Fri,  7 Jun 2019 16:49:07 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 2928CA3ECB;
- Fri,  7 Jun 2019 16:49:07 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E75F289CF9
+ for <intel-gfx@lists.freedesktop.org>; Fri,  7 Jun 2019 17:36:17 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 07 Jun 2019 10:36:17 -0700
+X-ExtLoop1: 1
+Received: from fmsmsx106.amr.corp.intel.com ([10.18.124.204])
+ by fmsmga007.fm.intel.com with ESMTP; 07 Jun 2019 10:36:17 -0700
+Received: from fmsmsx116.amr.corp.intel.com (10.18.116.20) by
+ FMSMSX106.amr.corp.intel.com (10.18.124.204) with Microsoft SMTP Server (TLS)
+ id 14.3.408.0; Fri, 7 Jun 2019 10:36:17 -0700
+Received: from fmsmsx117.amr.corp.intel.com ([169.254.3.248]) by
+ fmsmsx116.amr.corp.intel.com ([169.254.2.137]) with mapi id 14.03.0415.000;
+ Fri, 7 Jun 2019 10:36:16 -0700
+From: "Souza, Jose" <jose.souza@intel.com>
+To: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "Deak, Imre" <imre.deak@intel.com>
+Thread-Topic: [Intel-gfx] [PATCH 01/23] drm/i915/icl: Add support to read
+ out the TBT PLL HW state
+Thread-Index: AQHVGuYY4iAl8F+Hc0iO3O/rPOylEKaQ7o+A
+Date: Fri, 7 Jun 2019 17:36:16 +0000
+Message-ID: <d128a80a94bb60955814846829ff06a0e3c8d20a.camel@intel.com>
+References: <20190604145826.16424-1-imre.deak@intel.com>
+ <20190604145826.16424-2-imre.deak@intel.com>
+In-Reply-To: <20190604145826.16424-2-imre.deak@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.24.8.212]
+Content-ID: <163D38694C361F499C982027C5D4DBA7@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
-Date: Fri, 07 Jun 2019 16:49:07 -0000
-Message-ID: <20190607164907.32140.36046@emeril.freedesktop.org>
-References: <20190607162611.23514-1-ville.syrjala@linux.intel.com>
-X-Patchwork-Hint: ignore
-In-Reply-To: <20190607162611.23514-1-ville.syrjala@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_f?=
- =?utf-8?q?or_series_starting_with_=5B1/4=5D_drm/fb-helper=3A_Do_not_assum?=
- =?utf-8?q?e_drm=5Fmode=5Fcreate=5Ffrom=5Fcmdline=5Fmode=28=29_can=27t_fai?=
- =?utf-8?q?l?=
+Subject: Re: [Intel-gfx] [PATCH 01/23] drm/i915/icl: Add support to read out
+ the TBT PLL HW state
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -40,27 +58,42 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: "De Marchi, Lucas" <lucas.demarchi@intel.com>, "Zanoni,
+ Paulo R" <paulo.r.zanoni@intel.com>
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-PT0gU2VyaWVzIERldGFpbHMgPT0KClNlcmllczogc2VyaWVzIHN0YXJ0aW5nIHdpdGggWzEvNF0g
-ZHJtL2ZiLWhlbHBlcjogRG8gbm90IGFzc3VtZSBkcm1fbW9kZV9jcmVhdGVfZnJvbV9jbWRsaW5l
-X21vZGUoKSBjYW4ndCBmYWlsClVSTCAgIDogaHR0cHM6Ly9wYXRjaHdvcmsuZnJlZWRlc2t0b3Au
-b3JnL3Nlcmllcy82MTc4MS8KU3RhdGUgOiB3YXJuaW5nCgo9PSBTdW1tYXJ5ID09CgokIGRpbSBj
-aGVja3BhdGNoIG9yaWdpbi9kcm0tdGlwCjMzYzUyNTY0Mzc3ZCBkcm0vZmItaGVscGVyOiBEbyBu
-b3QgYXNzdW1lIGRybV9tb2RlX2NyZWF0ZV9mcm9tX2NtZGxpbmVfbW9kZSgpIGNhbid0IGZhaWwK
-YTAzNDdkOGYwZjE3IGRybTogUmVmdXNlIHRvIGNyZWF0ZSB6ZXJvIHdpZHRoL2hlaWdodCBjbWRs
-aW5lIG1vZGVzCjI3YzY4YTIxZjQzOSBkcm0vZmItaGVscGVyOiBTZXQgdXAgZ2FtbWFfbHV0IGR1
-cmluZyByZXN0b3JlX2ZiZGV2X21vZGVfYXRvbWljKCkKYjU5ZDIzZjY1ZWRkIGRybS9pOTE1OiBU
-aHJvdyBhd2F5IHRoZSBCSU9TIGZiIGlmIGhhcyB0aGUgd3JvbmcgZGVwdGgvYnBwCi06MzI6IENI
-RUNLOk1VTFRJUExFX0FTU0lHTk1FTlRTOiBtdWx0aXBsZSBhc3NpZ25tZW50cyBzaG91bGQgYmUg
-YXZvaWRlZAojMzI6IEZJTEU6IGRyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX2ZiZGV2LmM6MjEx
-OgorCQlpbnRlbF9mYiA9IGlmYmRldi0+ZmIgPSBOVUxMOwoKdG90YWw6IDAgZXJyb3JzLCAwIHdh
-cm5pbmdzLCAxIGNoZWNrcywgMTcgbGluZXMgY2hlY2tlZAoKX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1n
-ZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21h
-aWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
+T24gVHVlLCAyMDE5LTA2LTA0IGF0IDE3OjU4ICswMzAwLCBJbXJlIERlYWsgd3JvdGU6DQo+IEFk
+ZCBzdXBwb3J0IHRvIHJlYWQgb3V0IHRoZSBUQlQgUExMIEhXIHN0YXRlLg0KDQpSZXZpZXdlZC1i
+eTogSm9zw6kgUm9iZXJ0byBkZSBTb3V6YSA8am9zZS5zb3V6YUBpbnRlbC5jb20+DQoNCj4gDQo+
+IENjOiBWYW5kaXRhIEt1bGthcm5pIDx2YW5kaXRhLmt1bGthcm5pQGludGVsLmNvbT4NCj4gQ2M6
+IFBhdWxvIFphbm9uaSA8cGF1bG8uci56YW5vbmlAaW50ZWwuY29tPg0KPiBDYzogTHVjYXMgRGUg
+TWFyY2hpIDxsdWNhcy5kZW1hcmNoaUBpbnRlbC5jb20+DQo+IFNpZ25lZC1vZmYtYnk6IEltcmUg
+RGVhayA8aW1yZS5kZWFrQGludGVsLmNvbT4NCj4gLS0tDQo+ICBkcml2ZXJzL2dwdS9kcm0vaTkx
+NS9pbnRlbF9kaXNwbGF5LmMgfCAxMSArKysrKysrKystLQ0KPiAgMSBmaWxlIGNoYW5nZWQsIDkg
+aW5zZXJ0aW9ucygrKSwgMiBkZWxldGlvbnMoLSkNCj4gDQo+IGRpZmYgLS1naXQgYS9kcml2ZXJz
+L2dwdS9kcm0vaTkxNS9pbnRlbF9kaXNwbGF5LmMNCj4gYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9p
+bnRlbF9kaXNwbGF5LmMNCj4gaW5kZXggZmM0N2VkMDI0N2M1Li4yNjQ3NDc4OGI3YjIgMTAwNjQ0
+DQo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX2Rpc3BsYXkuYw0KPiArKysgYi9k
+cml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9kaXNwbGF5LmMNCj4gQEAgLTk4NTksMTMgKzk4NTks
+MjAgQEAgc3RhdGljIHZvaWQgaWNlbGFrZV9nZXRfZGRpX3BsbChzdHJ1Y3QNCj4gZHJtX2k5MTVf
+cHJpdmF0ZSAqZGV2X3ByaXYsDQo+ICAJZW51bSBpbnRlbF9kcGxsX2lkIGlkOw0KPiAgCXUzMiB0
+ZW1wOw0KPiAgDQo+IC0JLyogVE9ETzogVEJUIHBsbCBub3QgaW1wbGVtZW50ZWQuICovDQo+ICAJ
+aWYgKGludGVsX3BvcnRfaXNfY29tYm9waHkoZGV2X3ByaXYsIHBvcnQpKSB7DQo+ICAJCXRlbXAg
+PSBJOTE1X1JFQUQoRFBDTEtBX0NGR0NSMF9JQ0wpICYNCj4gIAkJICAgICAgIERQQ0xLQV9DRkdD
+UjBfRERJX0NMS19TRUxfTUFTSyhwb3J0KTsNCj4gIAkJaWQgPSB0ZW1wID4+IERQQ0xLQV9DRkdD
+UjBfRERJX0NMS19TRUxfU0hJRlQocG9ydCk7DQo+ICAJfSBlbHNlIGlmIChpbnRlbF9wb3J0X2lz
+X3RjKGRldl9wcml2LCBwb3J0KSkgew0KPiAtCQlpZCA9IGljbF90Y19wb3J0X3RvX3BsbF9pZChp
+bnRlbF9wb3J0X3RvX3RjKGRldl9wcml2LA0KPiBwb3J0KSk7DQo+ICsJCXUzMiBjbGtfc2VsID0g
+STkxNV9SRUFEKERESV9DTEtfU0VMKHBvcnQpKSAmDQo+IERESV9DTEtfU0VMX01BU0s7DQo+ICsN
+Cj4gKwkJaWYgKGNsa19zZWwgPT0gRERJX0NMS19TRUxfTUcpIHsNCj4gKwkJCWlkID0NCj4gaWNs
+X3RjX3BvcnRfdG9fcGxsX2lkKGludGVsX3BvcnRfdG9fdGMoZGV2X3ByaXYsDQo+ICsJCQkJCQkJ
+CSAgICBwb3INCj4gdCkpOw0KPiArCQl9IGVsc2Ugew0KPiArCQkJV0FSTl9PTihjbGtfc2VsIDwg
+RERJX0NMS19TRUxfVEJUXzE2Mik7DQo+ICsJCQlpZCA9IERQTExfSURfSUNMX1RCVFBMTDsNCj4g
+KwkJfQ0KPiAgCX0gZWxzZSB7DQo+ICAJCVdBUk4oMSwgIkludmFsaWQgcG9ydCAleFxuIiwgcG9y
+dCk7DQo+ICAJCXJldHVybjsNCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNr
+dG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2lu
+dGVsLWdmeA==
