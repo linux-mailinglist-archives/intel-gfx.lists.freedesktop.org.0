@@ -2,55 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id EDF22387C8
-	for <lists+intel-gfx@lfdr.de>; Fri,  7 Jun 2019 12:17:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C07F0387A7
+	for <lists+intel-gfx@lfdr.de>; Fri,  7 Jun 2019 12:07:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7579289D43;
-	Fri,  7 Jun 2019 10:17:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1F4D189CF5;
+	Fri,  7 Jun 2019 10:07:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mail-vs1-xe43.google.com (mail-vs1-xe43.google.com
  [IPv6:2607:f8b0:4864:20::e43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B57BF89AC2;
- Fri,  7 Jun 2019 10:17:02 +0000 (UTC)
-Received: by mail-vs1-xe43.google.com with SMTP id d128so817139vsc.10;
- Fri, 07 Jun 2019 03:17:02 -0700 (PDT)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0059189CF5
+ for <intel-gfx@lists.freedesktop.org>; Fri,  7 Jun 2019 10:06:58 +0000 (UTC)
+Received: by mail-vs1-xe43.google.com with SMTP id d128so803209vsc.10
+ for <intel-gfx@lists.freedesktop.org>; Fri, 07 Jun 2019 03:06:58 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc:content-transfer-encoding;
- bh=9MFO+IVNLSuig9C2OwDlzgkjfzmwye5tIu6viOl58L8=;
- b=lAHUbwKqCAplp0dWEnqBWFxFWqaZ51K3obj7t6ugb6yYq3P9t2PyVMs27VdP78DMpa
- VEJmyp9PCIBd2i36vDZfZva9CxDskEJLl1rn/JhzkT9oIa2MebDCifhpuK9uCZ/ZcXwk
- U9PfrQ4Bj6v9fXGDYr4GtODKcNb8vxiFjT2gkErXwG9JALRfb49Gkv2fjO+7IA8fNKkn
- HlkKPl19pJSwjg2uKqbwaL1XKtSX61TTOC9l6XBRjwx80i/majqDQ+FQnubYQRg6re7g
- SVixWudeFNi1CPl2d7x9rVJHA6YUwzo+SOCaK+KEps9HgVWlcsVT7yfYAr3/Rgo7puvh
- KYGQ==
-X-Gm-Message-State: APjAAAXeCxfLNJf12FEZpbpjByrbupSX3S/yAZ9ZzLD0JOSQ7bxKcWKK
- zhU5Wbf1AT/urVB9D/iEPOU0H5tHoPgSJiN7P58=
-X-Google-Smtp-Source: APXvYqy5R7UqSMABE2+4vGHSjp5IK37iXPcBcg7G6bLE6C70/elnh4KWGHiTmOvlPmEnwOwIsl2DSEqgfw3+07M9aQk=
-X-Received: by 2002:a67:7fd8:: with SMTP id a207mr3940766vsd.85.1559902071810; 
- Fri, 07 Jun 2019 03:07:51 -0700 (PDT)
+ :message-id:subject:to:cc;
+ bh=CZMU8uMsmsdBo5OxKd4XsbqPo1UFC8QYsmA6VLwQ2gE=;
+ b=kWxjGpEKvAWDi/zGnvYNmLjHXaDPvqY1UKLGdUxUNANOQ2ibQ4g4Wp28JHz8s0oRGn
+ 3SVQU0EpWmYcQjK2IrUko7nk6e6I1qGqTfUqb/7abasbzTt/KZno7FL9AujltovKpJ9a
+ 27ys7zkQ0J0ElQVKI8g/4NY8GOXTfdUQXmQ9PFHtod+BYJaulAoJ14u5UjpceAeibwSf
+ yxyFRF9CaQd/bPijbK7Y+M5dNPdVxYsk3CehqIuQW3LFFnnp+po+c33Bjj91sPLNch9J
+ oe6hl+5Rt4UfugLJUon15g73yilbs0AXnPUvyL+nx6u1Km1vs/HA0p2RpScGEXmNfYoF
+ h1ew==
+X-Gm-Message-State: APjAAAUeMta+w0OCb/I4uICxD2L0i0hh748epyc0lI9/tnu1EnQQ8qsX
+ Oh1wMpxx/ia4KsDdbhzz1V3857itpozYgkZijSk=
+X-Google-Smtp-Source: APXvYqwaVHQwHt08NoaYDVdBLtSxfHQTGmV4PJ26slXnHBdCl6qQSp2K2f6MRQ2zMB0zdP1W0+YHjdbp9HAoPWA8puI=
+X-Received: by 2002:a67:ebc5:: with SMTP id y5mr16654217vso.34.1559902017966; 
+ Fri, 07 Jun 2019 03:06:57 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190606211544.5389-1-daniel.vetter@ffwll.ch>
-In-Reply-To: <20190606211544.5389-1-daniel.vetter@ffwll.ch>
-From: Emil Velikov <emil.l.velikov@gmail.com>
-Date: Fri, 7 Jun 2019 11:05:59 +0100
-Message-ID: <CACvgo50ACVW1haAnXBhdvOJZ_6vNDinMHq9QpBc2yydrpeFSRA@mail.gmail.com>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>
+References: <20190603174935.23982-1-chris@chris-wilson.co.uk>
+ <20190603174935.23982-2-chris@chris-wilson.co.uk>
+In-Reply-To: <20190603174935.23982-2-chris@chris-wilson.co.uk>
+From: Matthew Auld <matthew.william.auld@gmail.com>
+Date: Fri, 7 Jun 2019 11:06:31 +0100
+Message-ID: <CAM0jSHPG9oRR3HRS=MJLmEq=YCayq3OFO37ZU0kaPvVjhwxMAA@mail.gmail.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>
 X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=gmail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc:content-transfer-encoding;
- bh=9MFO+IVNLSuig9C2OwDlzgkjfzmwye5tIu6viOl58L8=;
- b=EseaK/wRuWwN5W1XvXmwVDJMolRZaCKX6az6C0IPvgkp4w+Q4E/smw7870Ee2JbRh1
- 9/FeWoS//qcmUPttFIyJQXMLUKPL637LThnirAg/yy/u/KIpEVvRzMOqp6GIye1HmHIU
- s/gWatZKIFFVYbvfppy8o625/QdYYb7oM3Mb1GdnaPGD/UVHG+rTiYZV+f4hkiQfUFWc
- PlxRr+GZ7EgnYVJW+BvK9QBWxBe4Dkhoq1st2W6NKJA/+xx6sre8BQaXHATMDToMv5Fa
- uR+BrWKoYR9s7NFgFt6o0x0m559wECcd0KY/TZQ9KFuhzibB7+o1ToK1LvPZgUTh7Bgk
- i9IA==
-Subject: Re: [Intel-gfx] [PATCH] drm/crc-debugfs: Also sprinkle irqrestore
- over early exits
+ :cc;
+ bh=CZMU8uMsmsdBo5OxKd4XsbqPo1UFC8QYsmA6VLwQ2gE=;
+ b=I+c8OMUmhwu/A9K+JZwcqAx8iiX2ML2ivxkUbA1jm2WZEILetlTqqZgw/Fy7UkwLkw
+ nNR2TB3zNFptsa1+fgjxCo6uJv3ibwZCuG5D61ws/FOGhwiNxyGnAqjuFLBbC+zlymBE
+ dZTKbSWzDEQbBR0hI7OWWbdp4PQM5ZDMtk/ckv7GZq9VqD5NobbdaRWc0dORTXSg1Agk
+ fozO18fCtPy+5ueZ6XLhq4hm3/yLwpe5GF1PwWs2FCVuJoR/KImQFzMAJ5IxynFFdsgy
+ KFWnY1wYhY9mXylCicW8JfFf/vk1s53JhWovhfSGHGrB8enDnlo9U/x2TtVnRhZ4+jS6
+ TF3w==
+Subject: Re: [Intel-gfx] [PATCH 2/7] drm/i915: Propagate fence errors
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -63,30 +63,20 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Rodrigo Siqueira <rodrigosiqueiramelo@gmail.com>,
- Tomeu Vizoso <tomeu.vizoso@collabora.com>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- DRI Development <dri-devel@lists.freedesktop.org>,
- Benjamin Gaignard <benjamin.gaignard@linaro.org>,
- Daniel Vetter <daniel.vetter@intel.com>,
- Emil Velikov <emil.velikov@collabora.com>
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gVGh1LCA2IEp1biAyMDE5IGF0IDIyOjE1LCBEYW5pZWwgVmV0dGVyIDxkYW5pZWwudmV0dGVy
-QGZmd2xsLmNoPiB3cm90ZToKPgo+IEkuIHdhcy4gYmxpbmQuCj4KPiBDYXVnaHQgd2l0aCB2a21z
-LCB3aGljaCBoYXMgc29tZSByZWFsbHkgc2xvdyBjcmMgY29tcHV0YXRpb24gZnVuY3Rpb24uCj4K
-PiBGaXhlczogMTg4MjAxOGE3MGUwICgiZHJtL2NyYy1kZWJ1Z2ZzOiBVc2VyIGlycXNhZmUgc3Bp
-bmxvY2sgaW4gZHJtX2NydGNfYWRkX2NyY19lbnRyeSIpCj4gQ2M6IFJvZHJpZ28gU2lxdWVpcmEg
-PHJvZHJpZ29zaXF1ZWlyYW1lbG9AZ21haWwuY29tPgo+IENjOiBUb21ldSBWaXpvc28gPHRvbWV1
-LnZpem9zb0Bjb2xsYWJvcmEuY29tPgo+IENjOiBFbWlsIFZlbGlrb3YgPGVtaWwudmVsaWtvdkBj
-b2xsYWJvcmEuY29tPgo+IENjOiBCZW5qYW1pbiBHYWlnbmFyZCA8YmVuamFtaW4uZ2FpZ25hcmRA
-bGluYXJvLm9yZz4KPiBDYzogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4Lmlu
-dGVsLmNvbT4KPiBTaWduZWQtb2ZmLWJ5OiBEYW5pZWwgVmV0dGVyIDxkYW5pZWwudmV0dGVyQGlu
-dGVsLmNvbT4KClJldmlld2VkLWJ5OiBFbWlsIFZlbGlrb3YgPGVtaWwudmVsaWtvdkBjb2xsYWJv
-cmEuY29tPgoKLUVtaWwKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Au
-b3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwt
-Z2Z4
+T24gTW9uLCAzIEp1biAyMDE5IGF0IDE4OjQ5LCBDaHJpcyBXaWxzb24gPGNocmlzQGNocmlzLXdp
+bHNvbi5jby51az4gd3JvdGU6Cj4KPiBFcnJvcnMgc3ByZWFkIGxpa2Ugd2lsZGZpcmUsIGFuZCBt
+dXN0IGV2ZW50dWFsbHkgYmUgcmV0dXJuZWQgdG8gdGhlCj4gdXNlci4gVGhleSBuZWVkIHRvIGJl
+IGNhcHR1cmVkIGFuZCBwYXNzZWQgYWxvbmcgdGhlIGZsb3cgb2YgZmVuY2VzLAo+IGluZmVjdGlu
+ZyBlYWNoIGluIHR1cm4gd2l0aCB0aGUgZXhpc3RpbmcgZXJyb3IsIHVudGlsIGZpbmFsbHkgdGhl
+eSBmYWxsCj4gb3V0IG9mIGEgdXNlciB2aXNpYmxlIHJlc3VsdC4KPgo+IFNpZ25lZC1vZmYtYnk6
+IENocmlzIFdpbHNvbiA8Y2hyaXNAY2hyaXMtd2lsc29uLmNvLnVrPgpSZXZpZXdlZC1ieTogTWF0
+dGhldyBBdWxkIDxtYXR0aGV3LmF1bGRAaW50ZWwuY29tPgpfX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdm
+eEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFp
+bG1hbi9saXN0aW5mby9pbnRlbC1nZng=
