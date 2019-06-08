@@ -1,34 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D1F539A03
-	for <lists+intel-gfx@lfdr.de>; Sat,  8 Jun 2019 03:15:49 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id E9DA139B41
+	for <lists+intel-gfx@lfdr.de>; Sat,  8 Jun 2019 07:11:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0A70088FA1;
-	Sat,  8 Jun 2019 01:15:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E7601891FF;
+	Sat,  8 Jun 2019 05:11:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 506 seconds by postgrey-1.36 at gabe;
- Sat, 08 Jun 2019 01:15:45 UTC
 Received: from smtp.bonedaddy.net (smtp.bonedaddy.net [45.33.94.42])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C8BEA88FA1;
- Sat,  8 Jun 2019 01:15:45 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DB13B891FF;
+ Sat,  8 Jun 2019 05:11:00 +0000 (UTC)
 Received: from chianamo (n58-108-67-123.per1.wa.optusnet.com.au
  [58.108.67.123])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
  (Authenticated sender: pabs3@bonedaddy.net)
- by smtp.bonedaddy.net (Postfix) with ESMTPSA id 141C7180041;
- Fri,  7 Jun 2019 21:07:06 -0400 (EDT)
-Message-ID: <f1bad113987c43d11a99f58db43c720edfba6fbe.camel@bonedaddy.net>
+ by smtp.bonedaddy.net (Postfix) with ESMTPSA id C49E6180041;
+ Sat,  8 Jun 2019 01:10:54 -0400 (EDT)
+Message-ID: <24d1a13799ae7e0331ff668d9b170c4920d7d762.camel@bonedaddy.net>
 From: Paul Wise <pabs3@bonedaddy.net>
 To: Daniel Vetter <daniel@ffwll.ch>, Jani Nikula <jani.nikula@intel.com>
 In-Reply-To: <20190607151021.GJ21222@phenom.ffwll.local>
 References: <20190607110513.12072-1-jani.nikula@intel.com>
  <20190607110513.12072-2-jani.nikula@intel.com>
  <20190607151021.GJ21222@phenom.ffwll.local>
-Date: Sat, 08 Jun 2019 09:06:53 +0800
+Date: Sat, 08 Jun 2019 13:10:51 +0800
 MIME-Version: 1.0
 User-Agent: Evolution 3.30.5-1.1 
 Subject: Re: [Intel-gfx] [PATCH 2/2] drm: add fallback override/firmware
@@ -48,17 +46,17 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Cc: Daniel Vetter <daniel.vetter@ffwll.ch>, intel-gfx@lists.freedesktop.org,
  stable@vger.kernel.org, dri-devel@lists.freedesktop.org,
  Ilpo =?ISO-8859-1?Q?J=E4rvinen?= <ilpo.jarvinen@cs.helsinki.fi>
-Content-Type: multipart/mixed; boundary="===============0318827708=="
+Content-Type: multipart/mixed; boundary="===============1582268331=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
---===============0318827708==
+--===============1582268331==
 Content-Type: multipart/signed; micalg="pgp-sha512";
-	protocol="application/pgp-signature"; boundary="=-maax3mrChKPjJo+a28Ho"
+	protocol="application/pgp-signature"; boundary="=-bpYT9ku/9oKoEROB5ndj"
 
 
---=-maax3mrChKPjJo+a28Ho
+--=-bpYT9ku/9oKoEROB5ndj
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
@@ -67,7 +65,16 @@ On Fri, 2019-06-07 at 17:10 +0200, Daniel Vetter wrote:
 > As discussed on irc, we need tested-by here from the reporters since
 > there's way too many losing and frustrangingly few winning moves here.
 
-I'm building it now, hopefully will be done today.
+Tested-by: Paul Wise <pabs3@bonedaddy.net>
+
+I've tested these two patches on top of Linux v5.2-rc3 and the EDID
+override works correctly on an Intel Ironlake GPU with a monitor that
+lost its EDID a while ago.
+
+I'll test that it also works with an nVidia GPU & noveau drivers later
+today once that system is available.
+
+https://patchwork.freedesktop.org/series/61764/
 
 --=20
 bye,
@@ -75,31 +82,31 @@ pabs
 
 https://bonedaddy.net/pabs3/
 
---=-maax3mrChKPjJo+a28Ho
+--=-bpYT9ku/9oKoEROB5ndj
 Content-Type: application/pgp-signature; name="signature.asc"
 Content-Description: This is a digitally signed message part
 
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAABCgAdFiEEYQsotVz8/kXqG1Y7MRa6Xp/6aaMFAlz7CikACgkQMRa6Xp/6
-aaNE3w/9HX+8kIhfhFnjtAf7mZWmE1PXcqI+Fah4wpzl73fAjiHhWt7pl3tRdjbY
-mdJZlgc4Ooqq+skAcTB2TZmCARp+GBAS6yQoVxrobOiT6fh1csjyyBXLpK9gEnBi
-SVBeqsGzFuo/XT/VN2JiKw6Vu6QL9by9KJT6vWNNu0vM19acKOsVNmkzB2EtQNi6
-Yvh7N45rnnbct/2zPvxGOzk8j2RIBQJRD1Izx2oAb+PW5EsZk+eZcZOwUDbwDhp7
-Imw4jbiS8adARPzI7wcaRR3OqiuWM/VirJn7jFJM+DNHIkBu5QUII28cxQsy+vIL
-8UPkVHRbJihvs8qY0WLOTM/TG1yyvts6olM9+xR6i7i5dG4xp/UWfhN9ouJtijVH
-Zp0kYcqo4fA0hUm12UP4Pr8MSgJVU/81VZHpN3vw65ph/i5ia6AP42Ql6mxllM7J
-f0II8entqNiqefP9qKiyKrL6GppO18D0yivBWTsXxbyyfR6EOr9+2HjA8g1c2Z6u
-GSUMQxl05MPx9/tqqEfZ3Uo9iuqK7En+4ZcI+hhp01+wD+ymiO8/k/wdqFRvpA2X
-u4FxMdUw8Cx2ism8or+1Xn4kSeCHM7/pB8/U4nC91d4gFXH8/1RJxCOfNvw+LQ1h
-vQMNGo9n+aH4Q2CrEN/emzc4Wcpa5kAEWD3WcaFyLWrFwAJBbPI=
-=ko3R
+iQIzBAABCgAdFiEEYQsotVz8/kXqG1Y7MRa6Xp/6aaMFAlz7Q1cACgkQMRa6Xp/6
+aaMi+Q//UJMU9LZGRUgS7CLCu9aZDIbXy5nZ9tGjVhJKxx/mHsfFRsxMIrxBt0pV
+bisxaCn+zL8aqY/vWRpNL/EdHyl7R5pSmpxuOrKb/GX0vBk9bO40IwEJu9QdHWgQ
+oL0TXkUAHa4erVFNJIqQ/+Zm6bXjlD85rpRGFqaPffhHxD5gdwmZh0nd2kEjIC3/
+zlpdfE6Ip5vxLUzFt0hwcqmbSLp9YHL+XlGySwV27aG3HucVxp6eZl8hms3q/GPk
+0PTpfZfZRVb/u3DIoB/hdgMn0RiKPdoYJ7/QT6g2mhA0gvK36mdz/0LAOhG5BstZ
+LhKHTJZsZWnEBk+i5hkGbNGnPmfaCrG5H5qnl2u6Zi+illfLQ1P8tRbN9iRL2YVp
+9l2d2CRCqcq42ANglgjXNS46DlnessW9JWY9GBph4n6RWm4WPHL96H8swpLClCWV
+4PJOG8tLGfcATGdEZY42Id8VYTA+csEwe1GT7MaP4/gqbBqcuLoa7xwAdmZZV/H/
+mxcwWuf6uyUIFXR2UDNFySw5g6Z+OLduVoKwj7ZZIbqcGyIlH80eq4jEUnfoliP0
+P9kk3OD3/QWOfEg0ImFFqRR3v/yAvc71aj4oTXmg4HM8O6OnUaVsdE83AQxPv9/f
+gWYMxt+yVPNke7cNyMqxa88dN1664HH0yxU0MldnySf0ST7hD+E=
+=hCLl
 -----END PGP SIGNATURE-----
 
---=-maax3mrChKPjJo+a28Ho--
+--=-bpYT9ku/9oKoEROB5ndj--
 
 
---===============0318827708==
+--===============1582268331==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -109,5 +116,5 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
 IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
 dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
 
---===============0318827708==--
+--===============1582268331==--
 
