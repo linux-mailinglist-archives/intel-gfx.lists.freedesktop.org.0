@@ -2,38 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 332A93B21C
-	for <lists+intel-gfx@lfdr.de>; Mon, 10 Jun 2019 11:29:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CD5F93B258
+	for <lists+intel-gfx@lfdr.de>; Mon, 10 Jun 2019 11:44:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0FD6C890EA;
-	Mon, 10 Jun 2019 09:29:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9F71B88FA1;
+	Mon, 10 Jun 2019 09:44:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DECC6890E9;
- Mon, 10 Jun 2019 09:29:38 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 10 Jun 2019 02:29:38 -0700
-X-ExtLoop1: 1
-Received: from jnikula-mobl3.fi.intel.com (HELO localhost) ([10.237.66.150])
- by fmsmga001.fm.intel.com with ESMTP; 10 Jun 2019 02:29:34 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Paul Wise <pabs3@bonedaddy.net>, Daniel Vetter <daniel@ffwll.ch>
-In-Reply-To: <0667fc81810f2da5110c7da00963c93da90a6cd7.camel@bonedaddy.net>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20190607110513.12072-1-jani.nikula@intel.com>
- <20190607110513.12072-2-jani.nikula@intel.com>
- <20190607151021.GJ21222@phenom.ffwll.local>
- <24d1a13799ae7e0331ff668d9b170c4920d7d762.camel@bonedaddy.net>
- <0667fc81810f2da5110c7da00963c93da90a6cd7.camel@bonedaddy.net>
-Date: Mon, 10 Jun 2019 12:32:30 +0300
-Message-ID: <87blz5zsy9.fsf@intel.com>
+Received: from mail-vs1-xe42.google.com (mail-vs1-xe42.google.com
+ [IPv6:2607:f8b0:4864:20::e42])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8293388FA1
+ for <intel-gfx@lists.freedesktop.org>; Mon, 10 Jun 2019 09:44:29 +0000 (UTC)
+Received: by mail-vs1-xe42.google.com with SMTP id q64so4928543vsd.1
+ for <intel-gfx@lists.freedesktop.org>; Mon, 10 Jun 2019 02:44:29 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=23nwxlr+cHrPt01iXkJw3XmMCMkaSs/JWYjCA0KTx00=;
+ b=GEPvNmJbxug687sWZ4Umk73YOJ3wbUoXhUf+TUnMHae9UFpi69U8QPhj4LxjyLwqEr
+ 0BmAcxuI4xQ6uqMhhkiY3O8dQw20itfIh0VewI234ujNt+X4UGtxLS1yIm9iOB7A6dB/
+ /4DdydTaLJPypFi6bcabGjqJo3N8lrsDqS4wkwWKk/zNdBvQyYIyMo88gW1zzjIYKoFL
+ DgU+SwDbPK73VHR1FqUi3baF9GV2djjTVIp9GCCi3tQOfpQmrUjf1LlOBMdbfnKdPQy6
+ TyVBLIPzUgkr6maHuxTSX2wcl0NTDfRrbDZMreeoUslqZZB13szE7YPUpkXhbkaCU5Qf
+ scSQ==
+X-Gm-Message-State: APjAAAUy9SwociDJCSpYt+Gt2BDnHdwelTF8xC9/Fsemn+5/0GSiK6mV
+ YPK2PmJKFbg+4WwEuy2jwMns+kHt3SdVWXGOF1Y=
+X-Google-Smtp-Source: APXvYqxLH/t2qm/XtBHweU9ybRCvGdAVsb4jYvCj/ut1H8z+52qsJCKYJSZWEWq/Oo6UaAMI/SRlyxIm3Z5/DCKOq+k=
+X-Received: by 2002:a67:dc1:: with SMTP id 184mr2619454vsn.164.1560159868558; 
+ Mon, 10 Jun 2019 02:44:28 -0700 (PDT)
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 2/2] drm: add fallback override/firmware
- EDID modes workaround
+References: <20190610072126.6355-1-chris@chris-wilson.co.uk>
+ <20190610072126.6355-5-chris@chris-wilson.co.uk>
+In-Reply-To: <20190610072126.6355-5-chris@chris-wilson.co.uk>
+From: Matthew Auld <matthew.william.auld@gmail.com>
+Date: Mon, 10 Jun 2019 10:44:02 +0100
+Message-ID: <CAM0jSHMe8so-gs-WW+VtvdtjcYjgkatfW0qK_+vnoiNMBg8CdA@mail.gmail.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>
+X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc;
+ bh=23nwxlr+cHrPt01iXkJw3XmMCMkaSs/JWYjCA0KTx00=;
+ b=snJszGsFbkUEgFT9oY3z6yrDg29hp4LWRW8cNq1u4b4Xq3WZG9pSIJ1+NICDJUSN4o
+ JJre0RqpdAPQYDn9kk7gLZPTqvHQQdjuTGo8gX5u2iX6IRrIcghk+rAn64LTKPq0gxjY
+ 7RPQ1YD3qieomhAG0nf8CZhoGvZHvXys6cf9oiLJMOE9PXjucLsXtDo8HGnLrHPUbZvG
+ BBg85TAAxFkneXfPqSi9HtzyAXk6w+lI0y8+PzB8NUdHKQd/nWFvJoojlpPVeetm/QFg
+ 0YMFzZF8V1HxDZGcp+u3U/yyDto2pZ+Wmr0vgcZ3gdquBjeB1krca5e3EIolGo11rYCU
+ tJbg==
+Subject: Re: [Intel-gfx] [PATCH 04/28] drm/i915: Promote i915->mm.obj_lock
+ to be irqsafe
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -46,31 +64,22 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>, intel-gfx@lists.freedesktop.org,
- stable@vger.kernel.org, dri-devel@lists.freedesktop.org,
- Ilpo =?utf-8?Q?J=C3=A4rvinen?= <ilpo.jarvinen@cs.helsinki.fi>
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gU2F0LCAwOCBKdW4gMjAxOSwgUGF1bCBXaXNlIDxwYWJzM0Bib25lZGFkZHkubmV0PiB3cm90
-ZToKPiBPbiBTYXQsIDIwMTktMDYtMDggYXQgMTM6MTAgKzA4MDAsIFBhdWwgV2lzZSB3cm90ZToK
-Pgo+PiBJJ3ZlIHRlc3RlZCB0aGVzZSB0d28gcGF0Y2hlcyBvbiB0b3Agb2YgTGludXggdjUuMi1y
-YzMgYW5kIHRoZSBFRElECj4+IG92ZXJyaWRlIHdvcmtzIGNvcnJlY3RseSBvbiBhbiBJbnRlbCBJ
-cm9ubGFrZSBHUFUgd2l0aCBhIG1vbml0b3IgdGhhdAo+PiBsb3N0IGl0cyBFRElEIGEgd2hpbGUg
-YWdvLgo+Cj4gV2hpbGUgdGVzdGluZyBJIG5vdGljZWQgYSBjb3VwbGUgb2YgdGhpbmdzOgo+Cj4g
-V2hpbGUgZXZlcnl0aGluZyB0aGUgR1VJIGlzIHRoZSBjb3JyZWN0IHJlc29sdXRpb24sIEdOT01F
-IGlzIHVuYWJsZSB0bwo+IGlkZW50aWZ5IHRoZSBtb25pdG9yIHZlbmRvciBvciBtb2RlbC4gVGhp
-cyBpcyBhIHJlZ3Jlc3Npb24gZnJvbSB0aGUKPiBwcmV2aW91cyBlZGlkIG92ZXJyaWRlIGZ1bmN0
-aW9uYWxpdHkuIEl0IGxvb2tzIGxpa2UgdGhpcyBpcyBiZWNhdXNlIHRoZQo+IGVkaWQgZmlsZSBp
-biAvc3lzIGlzIG5vdCBwb3B1bGF0ZWQgd2l0aCB0aGUgRURJRCBvdmVycmlkZSBkYXRhLgoKUmln
-aHQsIEkndmUgYWRkZWQgYSBjYWxsIHRvIGRybV9jb25uZWN0b3JfdXBkYXRlX2VkaWRfcHJvcGVy
-dHkoKSBpbiB2Mgp0byBhZGRyZXNzIHRoaXMgaXNzdWUuCgo+IEkgZ290IGEgY3Jhc2ggZHVlIHRv
-IG51bGwgcG9pbnRlciBkZXJlZmVyZW5jZSBhdCBvbmUgcG9pbnQsIEknbGwgdHJ5IHRvCj4gdHJh
-Y2sgZG93biB3aGVuIHRoaXMgaGFwcGVucy4KCkNhbid0IHRoaW5rIG9mIHdoeSB0aGlzIHdvdWxk
-IGhhcHBlbjsgdGhlIGJhY2t0cmFjZSBtaWdodCBvZmZlciBjbHVlcy4KClRoYW5rcyBmb3IgdGVz
-dGluZyEKCkJSLApKYW5pLgoKLS0gCkphbmkgTmlrdWxhLCBJbnRlbCBPcGVuIFNvdXJjZSBHcmFw
-aGljcyBDZW50ZXIKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
-Cmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
+T24gTW9uLCAxMCBKdW4gMjAxOSBhdCAwODoyMSwgQ2hyaXMgV2lsc29uIDxjaHJpc0BjaHJpcy13
+aWxzb24uY28udWs+IHdyb3RlOgo+Cj4gVGhlIGludGVudCBpcyB0byBiZSB1cGRhdGUgdGhlIG1t
+Lmxpc3RzIGZyb20gaW5zaWRlIGEgaXJxc29mZiBzZWN0aW9uCj4gKGUuZy4gZnJvbSBhIHNvZnRp
+cnEgcmN1IHdvcmtxdWV1ZSksIGVyZ28gd2UgbmVlZCB0byBtYWtlIHRoZSBtbS5vYmpfbG9jawo+
+IGlycXNhZmUuCj4KPiBGaXhlczogM2I0ZmE5NjQwY2NkICgiZHJtL2k5MTU6IFRyYWNrIHRoZSBw
+dXJnZWFibGUgb2JqZWN0cyBvbiBhIHNlcGFyYXRlIGV2aWN0aW9uIGxpc3QiKQo+IFNpZ25lZC1v
+ZmYtYnk6IENocmlzIFdpbHNvbiA8Y2hyaXNAY2hyaXMtd2lsc29uLmNvLnVrPgo+IENjOiBKb29u
+YXMgTGFodGluZW4gPGpvb25hcy5sYWh0aW5lbkBsaW51eC5pbnRlbC5jb20+Cj4gQ2M6IE1hdHRo
+ZXcgQXVsZCA8bWF0dGhldy53aWxsaWFtLmF1bGRAZ21haWwuY29tPgpSZXZpZXdlZC1ieTogTWF0
+dGhldyBBdWxkIDxtYXR0aGV3LndpbGxpYW0uYXVsZEBnbWFpbC5jb20+Cl9fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QK
+SW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9w
+Lm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeA==
