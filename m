@@ -2,30 +2,36 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D6493B823
-	for <lists+intel-gfx@lfdr.de>; Mon, 10 Jun 2019 17:16:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F6F63B859
+	for <lists+intel-gfx@lfdr.de>; Mon, 10 Jun 2019 17:31:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 18ED88915A;
-	Mon, 10 Jun 2019 15:16:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6FA6789167;
+	Mon, 10 Jun 2019 15:31:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 116E089159;
- Mon, 10 Jun 2019 15:16:55 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 0A031A00EA;
- Mon, 10 Jun 2019 15:16:55 +0000 (UTC)
+X-Greylist: delayed 356 seconds by postgrey-1.36 at gabe;
+ Mon, 10 Jun 2019 15:31:48 UTC
+Received: from smtp107.iad3a.emailsrvr.com (smtp107.iad3a.emailsrvr.com
+ [173.203.187.107])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 908C589167
+ for <intel-gfx@lists.freedesktop.org>; Mon, 10 Jun 2019 15:31:48 +0000 (UTC)
+X-Auth-ID: kenneth@whitecape.org
+Received: by smtp14.relay.iad3a.emailsrvr.com (Authenticated sender:
+ kenneth-AT-whitecape.org) with ESMTPSA id 4B79F25184; 
+ Mon, 10 Jun 2019 11:25:51 -0400 (EDT)
+X-Sender-Id: kenneth@whitecape.org
+Received: from kirito.localnet (50-39-175-242.bvtn.or.frontiernet.net
+ [50.39.175.242])
+ (using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384)
+ by 0.0.0.0:465 (trex/5.7.12); Mon, 10 Jun 2019 11:25:51 -0400
+From: Kenneth Graunke <kenneth@whitecape.org>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon, 10 Jun 2019 08:25:46 -0700
+Message-ID: <2412677.VNyTJ0fQGL@kirito>
+In-Reply-To: <20190610081914.25428-1-lionel.g.landwerlin@intel.com>
+References: <20190610081914.25428-1-lionel.g.landwerlin@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Tvrtko Ursulin" <tvrtko.ursulin@linux.intel.com>
-Date: Mon, 10 Jun 2019 15:16:55 -0000
-Message-ID: <20190610151655.9307.74955@emeril.freedesktop.org>
-References: <20190610125706.26110-1-tvrtko.ursulin@linux.intel.com>
-X-Patchwork-Hint: ignore
-In-Reply-To: <20190610125706.26110-1-tvrtko.ursulin@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_drm/?=
- =?utf-8?q?i915=3A_Make_read=5Fsubslice=5Freg_take_engine?=
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/perf: fix ICL perf register offsets
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -38,71 +44,93 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0151351840=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-PT0gU2VyaWVzIERldGFpbHMgPT0KClNlcmllczogZHJtL2k5MTU6IE1ha2UgcmVhZF9zdWJzbGlj
-ZV9yZWcgdGFrZSBlbmdpbmUKVVJMICAgOiBodHRwczovL3BhdGNod29yay5mcmVlZGVza3RvcC5v
-cmcvc2VyaWVzLzYxODQxLwpTdGF0ZSA6IHN1Y2Nlc3MKCj09IFN1bW1hcnkgPT0KCkNJIEJ1ZyBM
-b2cgLSBjaGFuZ2VzIGZyb20gQ0lfRFJNXzYyMjUgLT4gUGF0Y2h3b3JrXzEzMjIyCj09PT09PT09
-PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0KClN1bW1hcnkKLS0t
-LS0tLQoKICAqKlNVQ0NFU1MqKgoKICBObyByZWdyZXNzaW9ucyBmb3VuZC4KCiAgRXh0ZXJuYWwg
-VVJMOiBodHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlwL1BhdGNod29ya18x
-MzIyMi8KCktub3duIGlzc3VlcwotLS0tLS0tLS0tLS0KCiAgSGVyZSBhcmUgdGhlIGNoYW5nZXMg
-Zm91bmQgaW4gUGF0Y2h3b3JrXzEzMjIyIHRoYXQgY29tZSBmcm9tIGtub3duIGlzc3VlczoKCiMj
-IyBJR1QgY2hhbmdlcyAjIyMKCiMjIyMgSXNzdWVzIGhpdCAjIyMjCgogICogaWd0QGdlbV9iYXNp
-Y0BiYWQtY2xvc2U6CiAgICAtIGZpLWljbC11MzogICAgICAgICAgW1BBU1NdWzFdIC0+IFtETUVT
-Ry1XQVJOXVsyXSAoW2ZkbyMxMDc3MjRdKQogICBbMV06IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAx
-Lm9yZy90cmVlL2RybS10aXAvQ0lfRFJNXzYyMjUvZmktaWNsLXUzL2lndEBnZW1fYmFzaWNAYmFk
-LWNsb3NlLmh0bWwKICAgWzJdOiBodHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0t
-dGlwL1BhdGNod29ya18xMzIyMi9maS1pY2wtdTMvaWd0QGdlbV9iYXNpY0BiYWQtY2xvc2UuaHRt
-bAoKICAqIGlndEBnZW1fZXhlY19zdXNwZW5kQGJhc2ljLXM0LWRldmljZXM6CiAgICAtIGZpLWJs
-Yi1lNjg1MDogICAgICAgW1BBU1NdWzNdIC0+IFtJTkNPTVBMRVRFXVs0XSAoW2ZkbyMxMDc3MThd
-KQogICBbM106IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAvQ0lfRFJN
-XzYyMjUvZmktYmxiLWU2ODUwL2lndEBnZW1fZXhlY19zdXNwZW5kQGJhc2ljLXM0LWRldmljZXMu
-aHRtbAogICBbNF06IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAvUGF0
-Y2h3b3JrXzEzMjIyL2ZpLWJsYi1lNjg1MC9pZ3RAZ2VtX2V4ZWNfc3VzcGVuZEBiYXNpYy1zNC1k
-ZXZpY2VzLmh0bWwKCiAgKiBpZ3RAcHJpbWVfYnVzeUBiYXNpYy1iZWZvcmUtZGVmYXVsdDoKICAg
-IC0gZmktaWNsLWRzaTogICAgICAgICBbUEFTU11bNV0gLT4gW0lOQ09NUExFVEVdWzZdIChbZmRv
-IzEwNzcxM10pCiAgIFs1XTogaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRp
-cC9DSV9EUk1fNjIyNS9maS1pY2wtZHNpL2lndEBwcmltZV9idXN5QGJhc2ljLWJlZm9yZS1kZWZh
-dWx0Lmh0bWwKICAgWzZdOiBodHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlw
-L1BhdGNod29ya18xMzIyMi9maS1pY2wtZHNpL2lndEBwcmltZV9idXN5QGJhc2ljLWJlZm9yZS1k
-ZWZhdWx0Lmh0bWwKCiAgCiMjIyMgUG9zc2libGUgZml4ZXMgIyMjIwoKICAqIGlndEBnZW1fcmVu
-ZGVyX2xpbmVhcl9ibGl0c0BiYXNpYzoKICAgIC0gZmktaWNsLXUzOiAgICAgICAgICBbRE1FU0ct
-V0FSTl1bN10gKFtmZG8jMTA3NzI0XSkgLT4gW1BBU1NdWzhdCiAgIFs3XTogaHR0cHM6Ly9pbnRl
-bC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9DSV9EUk1fNjIyNS9maS1pY2wtdTMvaWd0QGdl
-bV9yZW5kZXJfbGluZWFyX2JsaXRzQGJhc2ljLmh0bWwKICAgWzhdOiBodHRwczovL2ludGVsLWdm
-eC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlwL1BhdGNod29ya18xMzIyMi9maS1pY2wtdTMvaWd0QGdl
-bV9yZW5kZXJfbGluZWFyX2JsaXRzQGJhc2ljLmh0bWwKCiAgKiBpZ3RAa21zX2Zyb250YnVmZmVy
-X3RyYWNraW5nQGJhc2ljOgogICAgLSBmaS1pY2wtdTI6ICAgICAgICAgIFtGQUlMXVs5XSAoW2Zk
-byMxMDMxNjddKSAtPiBbUEFTU11bMTBdCiAgIFs5XTogaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEu
-b3JnL3RyZWUvZHJtLXRpcC9DSV9EUk1fNjIyNS9maS1pY2wtdTIvaWd0QGttc19mcm9udGJ1ZmZl
-cl90cmFja2luZ0BiYXNpYy5odG1sCiAgIFsxMF06IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9y
-Zy90cmVlL2RybS10aXAvUGF0Y2h3b3JrXzEzMjIyL2ZpLWljbC11Mi9pZ3RAa21zX2Zyb250YnVm
-ZmVyX3RyYWNraW5nQGJhc2ljLmh0bWwKCiAgCiAgW2ZkbyMxMDMxNjddOiBodHRwczovL2J1Z3Mu
-ZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD0xMDMxNjcKICBbZmRvIzEwNzcxM106IGh0
-dHBzOi8vYnVncy5mcmVlZGVza3RvcC5vcmcvc2hvd19idWcuY2dpP2lkPTEwNzcxMwogIFtmZG8j
-MTA3NzE4XTogaHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MTA3
-NzE4CiAgW2ZkbyMxMDc3MjRdOiBodHRwczovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVn
-LmNnaT9pZD0xMDc3MjQKCgpQYXJ0aWNpcGF0aW5nIGhvc3RzICg1NCAtPiA0NSkKLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tCgogIE1pc3NpbmcgICAgKDkpOiBmaS1rYmwtc29yYWthIGZp
-LWlsay1tNTQwIGZpLWhzdy00MjAwdSBmaS1ieXQtajE5MDAgZmktaHN3LXBlcHB5IGZpLWJ5dC1z
-cXVhd2tzIGZpLWJzdy1jeWFuIGZpLWJ5dC1jbGFwcGVyIGZpLWJkdy1zYW11cyAKCgpCdWlsZCBj
-aGFuZ2VzCi0tLS0tLS0tLS0tLS0KCiAgKiBMaW51eDogQ0lfRFJNXzYyMjUgLT4gUGF0Y2h3b3Jr
-XzEzMjIyCgogIENJX0RSTV82MjI1OiAzOWJiNzQ1OTU2N2FhZGEyZTcwNmU0ZGE0YTY1MGRjNGY3
-YzQxYWJmIEAgZ2l0Oi8vYW5vbmdpdC5mcmVlZGVza3RvcC5vcmcvZ2Z4LWNpL2xpbnV4CiAgSUdU
-XzUwNDk6IGRiNTFjYmJhNWE4ZjQ4NTZkNmY1NmE2MWFhNTFmZGE2ZTIzOWZhNDQgQCBnaXQ6Ly9h
-bm9uZ2l0LmZyZWVkZXNrdG9wLm9yZy94b3JnL2FwcC9pbnRlbC1ncHUtdG9vbHMKICBQYXRjaHdv
-cmtfMTMyMjI6IGI5YzdlMjJlNmVhYjM4YmM5YWRlZmJkYTcwNjU4YjhmODBjOGMzY2QgQCBnaXQ6
-Ly9hbm9uZ2l0LmZyZWVkZXNrdG9wLm9yZy9nZngtY2kvbGludXgKCgo9PSBMaW51eCBjb21taXRz
-ID09CgpiOWM3ZTIyZTZlYWIgZHJtL2k5MTU6IE1ha2UgcmVhZF9zdWJzbGljZV9yZWcgdGFrZSBl
-bmdpbmUKCj09IExvZ3MgPT0KCkZvciBtb3JlIGRldGFpbHMgc2VlOiBodHRwczovL2ludGVsLWdm
-eC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlwL1BhdGNod29ya18xMzIyMi8KX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJ
-bnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Au
-b3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
+--===============0151351840==
+Content-Type: multipart/signed; boundary="nextPart5940946.cnCSSQtQyx"; micalg="pgp-sha256"; protocol="application/pgp-signature"
+
+--nextPart5940946.cnCSSQtQyx
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+
+On Monday, June 10, 2019 1:19:14 AM PDT Lionel Landwerlin wrote:
+> We got the wrong offsets (could they have changed?). New values were
+> computed off an error state by looking up the register offset in the
+> context image as written by the HW.
+> 
+> Signed-off-by: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
+> Fixes: 1de401c08fa805 ("drm/i915/perf: enable perf support on ICL")
+> ---
+>  drivers/gpu/drm/i915/i915_perf.c | 10 +++++++---
+>  1 file changed, 7 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
+> index 4a767087de27..6c85191fc6c9 100644
+> --- a/drivers/gpu/drm/i915/i915_perf.c
+> +++ b/drivers/gpu/drm/i915/i915_perf.c
+> @@ -3612,9 +3612,13 @@ void i915_perf_init(struct drm_i915_private *dev_priv)
+>  			dev_priv->perf.oa.ops.enable_metric_set = gen8_enable_metric_set;
+>  			dev_priv->perf.oa.ops.disable_metric_set = gen10_disable_metric_set;
+>  
+> -			dev_priv->perf.oa.ctx_oactxctrl_offset = 0x128;
+> -			dev_priv->perf.oa.ctx_flexeu0_offset = 0x3de;
+> -
+> +			if (IS_GEN(dev_priv, 10)) {
+> +				dev_priv->perf.oa.ctx_oactxctrl_offset = 0x128;
+> +				dev_priv->perf.oa.ctx_flexeu0_offset = 0x3de;
+> +			} else {
+> +				dev_priv->perf.oa.ctx_oactxctrl_offset = 0x124;
+> +				dev_priv->perf.oa.ctx_flexeu0_offset = 0x78e;
+> +			}
+>  			dev_priv->perf.oa.gen8_valid_ctx_bit = (1<<16);
+>  		}
+>  	}
+> 
+
+Sounds believable.
+
+Acked-by: Kenneth Graunke <kenneth@whitecape.org>
+
+--nextPart5940946.cnCSSQtQyx
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part.
+Content-Transfer-Encoding: 7Bit
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEE6OtbNAgc4e6ibv4ZW1vaBx1JzDgFAlz+dnoACgkQW1vaBx1J
+zDhHZQ//RyggyJ5Yg+jLujWlnxJLMs/HYTCM8AmweuS/5ggsr/bOBN6WDDO0wruS
+IJlVVrq6Fcs/GEGXKuEQf6hmuyBu3FRbHFTIsXvSqcZYYcTe2sml//O1bsILtbbB
+i1DlBxh91AOqRJ1VN2FOAyQFZdv5yY8egnQxC0IRKDDMjqa9ZuW+ITn46sZX3EO5
++pr5RblgP+zBopmi4Uij1j0wtLZr4XVJsy8VCKCUUh/IAYfe6tap5mCrThlC8XTP
+9nOYJjaGqzmdRntIiX3HN0ICq1++Y2/KRMk7v9etmeHGJWzjP/0HRmyJIaHPr3kP
+ZW043tf/rn/2Mqnoiq8tOfZ/qTing8yZKKZtGsIAluylImEJGKCgqpgOjJZK6KfY
+rayuqe8zHi5Cw1ak05A6a1fIGBMREtaRJPZV2ob1x0ousqd355qpAKcBXtI/wC6e
+8E6Y6Bz1YOivZZ9wIfupugrWDe5wjQ6IZWUbvrv/fQmofQQCMEAWDrCxebyallMc
++3NKx+IFesFbsekyR02Quipv7Q4HYao9AIvSYmffmpTZRBj8DA098xBRRXia3N3u
+ITBfHpb6/JIt8EJp9rD7LNEpLpGoFh1GO0JgN3xw7N7lgCDY+VfXivRKF9rEZQOq
+aSvNPTPw/LETaC7Sq9Q8FOD0RmYxoco8PjVjBNpaEDuT4azEUKE=
+=Ep1F
+-----END PGP SIGNATURE-----
+
+--nextPart5940946.cnCSSQtQyx--
+
+
+
+
+--===============0151351840==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
+IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
+
+--===============0151351840==--
+
+
+
