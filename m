@@ -1,32 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 24B963B5AA
-	for <lists+intel-gfx@lfdr.de>; Mon, 10 Jun 2019 15:02:18 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id C270C3B5BA
+	for <lists+intel-gfx@lfdr.de>; Mon, 10 Jun 2019 15:05:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 84DC6890B9;
-	Mon, 10 Jun 2019 13:02:16 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
+	by gabe.freedesktop.org (Postfix) with ESMTP id D5FBE88F1E;
+	Mon, 10 Jun 2019 13:05:50 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1542C890B9;
- Mon, 10 Jun 2019 13:02:14 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4911188F1E
+ for <Intel-gfx@lists.freedesktop.org>; Mon, 10 Jun 2019 13:05:49 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
-Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 16852577-1500050 
- for multiple; Mon, 10 Jun 2019 14:02:01 +0100
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon, 10 Jun 2019 14:02:00 +0100
-Message-Id: <20190610130200.21164-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20190610125550.20870-1-chris@chris-wilson.co.uk>
-References: <20190610125550.20870-1-chris@chris-wilson.co.uk>
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 16852628-1500050 for multiple; Mon, 10 Jun 2019 14:05:18 +0100
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH i-g-t v2] i915/gem_mmap_gtt: Disregard forked
- subtests on ICL for reasons
+To: Intel-gfx@lists.freedesktop.org,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+From: Chris Wilson <chris@chris-wilson.co.uk>
+In-Reply-To: <20190610130110.26306-1-tvrtko.ursulin@linux.intel.com>
+References: <20190610130110.26306-1-tvrtko.ursulin@linux.intel.com>
+Message-ID: <156017191664.383.14001735029510950842@skylake-alporthouse-com>
+User-Agent: alot/0.6
+Date: Mon, 10 Jun 2019 14:05:16 +0100
+Subject: Re: [Intel-gfx] [RFC] drm/i915/hangcheck: Look at instdone for all
+ engines
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -39,28 +40,24 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: igt-dev@lists.freedesktop.org
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Tm90aGluZyB0byBzZWUgaGVyZSwgcGxlYXNlIG1vdmUgYWxvbmcuCgpSZWZlcmVuY2VzOiBodHRw
-czovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD0xMTA4ODIKU2lnbmVkLW9m
-Zi1ieTogQ2hyaXMgV2lsc29uIDxjaHJpc0BjaHJpcy13aWxzb24uY28udWs+CkNjOiBNaWthIEt1
-b3BwYWxhIDxtaWthLmt1b3BwYWxhQGxpbnV4LmludGVsLmNvbT4KQ2M6IE1hcnRpbiBQZXJlcyA8
-bWFydGluLnBlcmVzQGxpbnV4LmludGVsLmNvbT4KLS0tCiB0ZXN0cy9pOTE1L2dlbV9tbWFwX2d0
-dC5jIHwgMyArKysKIDEgZmlsZSBjaGFuZ2VkLCAzIGluc2VydGlvbnMoKykKCmRpZmYgLS1naXQg
-YS90ZXN0cy9pOTE1L2dlbV9tbWFwX2d0dC5jIGIvdGVzdHMvaTkxNS9nZW1fbW1hcF9ndHQuYwpp
-bmRleCAwMzQ2NThlNjQuLjZmM2E5YzM2ZSAxMDA2NDQKLS0tIGEvdGVzdHMvaTkxNS9nZW1fbW1h
-cF9ndHQuYworKysgYi90ZXN0cy9pOTE1L2dlbV9tbWFwX2d0dC5jCkBAIC02NTYsNiArNjU2LDkg
-QEAgdGVzdF9odWdlX2NvcHkoaW50IGZkLCBpbnQgaHVnZSwgaW50IHRpbGluZ19hLCBpbnQgdGls
-aW5nX2IsIGludCBuY3B1cykKIAl1aW50NjRfdCBodWdlX29iamVjdF9zaXplLCBpOwogCXVuc2ln
-bmVkIG1vZGUgPSBDSEVDS19SQU07CiAKKwlpZ3RfZmFpbF9vbl9mKGludGVsX2dlbihkZXZpZCkg
-Pj0gMTEgJiYgbmNwdXMgPiAxLAorCQkgICAgICAiUGxlYXNlIGFkanVzdCB5b3VyIGV4cGVjdGF0
-aW9ucywgaHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MTEwODgy
-XG4iKTsKKwogCXN3aXRjaCAoaHVnZSkgewogCWNhc2UgLTI6CiAJCWh1Z2Vfb2JqZWN0X3NpemUg
-PSBnZW1fbWFwcGFibGVfYXBlcnR1cmVfc2l6ZSgpIC8gNDsKLS0gCjIuMjAuMQoKX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcg
-bGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRl
-c2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
+UXVvdGluZyBUdnJ0a28gVXJzdWxpbiAoMjAxOS0wNi0xMCAxNDowMToxMCkKPiBGcm9tOiBUdnJ0
+a28gVXJzdWxpbiA8dHZydGtvLnVyc3VsaW5AaW50ZWwuY29tPgo+IAo+IEl0IHNlZW1zIGludGVs
+X2VuZ2luZV9nZXRfaW5zdGRvbmUgaXMgYWJsZSB0byBnZXQgaW5zdGRvbmUgZm9yIGFsbCBlbmdp
+bmVzCj4gYnV0IGludGVsX2hhbmdjaGVjay5jL3N1YnVuaXRzX3N0dWNrIGRlY2lkZXMgdG8gaWdu
+b3JlIGl0IGZvciBub24gcmVuZGVyLgo+IAo+IFdlIGNhbiBqdXN0IGRyb3AgdGhlIGNoZWNrIGlu
+IHN1YnVuaXRzX3N0dWNrIHNpbmNlIHRoZSBjaGVja3Mgb24KPiB1bmF2YWlsYWJsZSBmaWVsZHMg
+d2lsbCBhbHdheXMgcmV0dXJuIHN0dWNrLCB3aGljaCB3aGVuIGJpdHdpc2UgYW5kIHdpdGgKPiB0
+aGUgcG90ZW50aWFsIHVuc3R1Y2sgaW5zdGRvbmUgaXMgaGFybWxlc3MuCj4gCj4gU2lnbmVkLW9m
+Zi1ieTogVHZydGtvIFVyc3VsaW4gPHR2cnRrby51cnN1bGluQGludGVsLmNvbT4KPiBDYzogQ2hy
+aXMgV2lsc29uIDxjaHJpc0BjaHJpcy13aWxzb24uY28udWs+Cj4gQ2M6IE1pa2EgS3VvcHBhbGEg
+PG1pa2Eua3VvcHBhbGFAbGludXguaW50ZWwuY29tPgo+IC0tLQo+IFdvdWxkIGFjdHVhbGx5IHVz
+aW5nIHRoZSBhdmFpbGFibGUgZGF0YSBpbXByb3ZlIGhhbmcgZGV0ZWN0aW9uPwoKTm8sIGp1c3Qg
+cHJvbG9uZyBpdCA6KQotQ2hyaXMKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRl
+c2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8v
+aW50ZWwtZ2Z4
