@@ -1,30 +1,36 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 853723C5D1
-	for <lists+intel-gfx@lfdr.de>; Tue, 11 Jun 2019 10:17:31 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id EF1E93C5E6
+	for <lists+intel-gfx@lfdr.de>; Tue, 11 Jun 2019 10:27:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A41EA8908E;
-	Tue, 11 Jun 2019 08:17:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B1DBC8916B;
+	Tue, 11 Jun 2019 08:27:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 46592890B1;
- Tue, 11 Jun 2019 08:17:28 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 16859919-1500050 
- for multiple; Tue, 11 Jun 2019 09:17:20 +0100
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 11 Jun 2019 09:17:19 +0100
-Message-Id: <20190611081719.16367-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
+Received: from smtp.bonedaddy.net (smtp.bonedaddy.net [45.33.94.42])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4127F89154;
+ Tue, 11 Jun 2019 08:27:07 +0000 (UTC)
+Received: from chianamo (n58-108-67-123.per1.wa.optusnet.com.au
+ [58.108.67.123])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ (Authenticated sender: pabs3@bonedaddy.net)
+ by smtp.bonedaddy.net (Postfix) with ESMTPSA id 956FB180041;
+ Tue, 11 Jun 2019 04:27:03 -0400 (EDT)
+Message-ID: <08ffd10ecac7e684503ce55b0f929ac856b9b76b.camel@bonedaddy.net>
+From: Paul Wise <pabs3@bonedaddy.net>
+To: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org
+In-Reply-To: <20190610093054.28445-1-jani.nikula@intel.com>
+References: <20190607110513.12072-2-jani.nikula@intel.com>
+ <20190610093054.28445-1-jani.nikula@intel.com>
+Date: Tue, 11 Jun 2019 16:27:00 +0800
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH i-g-t] i915/gem_ctx_shared: Prefer explicit
- domain control
+User-Agent: Evolution 3.30.5-1.1 
+Subject: Re: [Intel-gfx] [PATCH v2] drm: add fallback override/firmware EDID
+ modes workaround
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -37,59 +43,219 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: igt-dev@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Ilpo =?ISO-8859-1?Q?J=E4rvinen?= <ilpo.jarvinen@cs.helsinki.fi>,
+ stable@vger.kernel.org
+Content-Type: multipart/mixed; boundary="===============1863029583=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-U2luY2Ugd2UgYXJlIGZpZGRsaW5nIGJlaGluZCB0aGUgc2NlbmVzLCB3ZSBhcmUgd3JpdGluZyB0
-byBvYmplY3RzIHRoYXQKYXJlIG5vdCBwYXJ0IG9mIHRoZSBleGVjYnVmZmVyLCBkbyBub3QgcmVs
-eSBvbiBpbXBsaWNpdCBkb21haW4KbWFuYWdlbWVudCBiZWluZyBhYmxlIHRvIHRyYWNrIHRoZSBh
-cHByb3ByaWF0ZSBDUFUgY2FjaGUgc3RhdHVzLgoKQnVnemlsbGE6IGh0dHBzOi8vYnVncy5mcmVl
-ZGVza3RvcC5vcmcvc2hvd19idWcuY2dpP2lkPTExMDg5MApTaWduZWQtb2ZmLWJ5OiBDaHJpcyBX
-aWxzb24gPGNocmlzQGNocmlzLXdpbHNvbi5jby51az4KLS0tCiB0ZXN0cy9pOTE1L2dlbV9jdHhf
-c2hhcmVkLmMgfCAzMiArKysrKysrKysrKysrKysrKysrKysrLS0tLS0tLS0tLQogMSBmaWxlIGNo
-YW5nZWQsIDIyIGluc2VydGlvbnMoKyksIDEwIGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBhL3Rl
-c3RzL2k5MTUvZ2VtX2N0eF9zaGFyZWQuYyBiL3Rlc3RzL2k5MTUvZ2VtX2N0eF9zaGFyZWQuYwpp
-bmRleCAwNjk5NjQ1NDYuLmVkNDNlODkwMyAxMDA2NDQKLS0tIGEvdGVzdHMvaTkxNS9nZW1fY3R4
-X3NoYXJlZC5jCisrKyBiL3Rlc3RzL2k5MTUvZ2VtX2N0eF9zaGFyZWQuYwpAQCAtMTg0LDI3ICsx
-ODQsMzAgQEAgc3RhdGljIHZvaWQgZXhoYXVzdF9zaGFyZWRfZ3R0KGludCBpOTE1LCB1bnNpZ25l
-ZCBpbnQgZmxhZ3MpCiBzdGF0aWMgdm9pZCBleGVjX3NoYXJlZF9ndHQoaW50IGk5MTUsIHVuc2ln
-bmVkIGludCByaW5nKQogewogCWNvbnN0IGludCBnZW4gPSBpbnRlbF9nZW4oaW50ZWxfZ2V0X2Ry
-bV9kZXZpZChpOTE1KSk7Ci0JY29uc3QgdWludDMyX3QgYmJlID0gTUlfQkFUQ0hfQlVGRkVSX0VO
-RDsKLQlzdHJ1Y3QgZHJtX2k5MTVfZ2VtX2V4ZWNfb2JqZWN0MiBvYmogPSB7Ci0JCS5oYW5kbGUg
-PSBnZW1fY3JlYXRlKGk5MTUsIDQwOTYpCi0JfTsKKwlzdHJ1Y3QgZHJtX2k5MTVfZ2VtX2V4ZWNf
-b2JqZWN0MiBvYmogPSB7fTsKIAlzdHJ1Y3QgZHJtX2k5MTVfZ2VtX2V4ZWNidWZmZXIyIGV4ZWNi
-dWYgPSB7CiAJCS5idWZmZXJzX3B0ciA9IHRvX3VzZXJfcG9pbnRlcigmb2JqKSwKIAkJLmJ1ZmZl
-cl9jb3VudCA9IDEsCiAJCS5mbGFncyA9IHJpbmcsCiAJfTsKLQl1aW50MzJfdCBzY3JhdGNoID0g
-b2JqLmhhbmRsZTsKKwl1aW50MzJfdCBzY3JhdGNoLCAqczsKIAl1aW50MzJfdCBiYXRjaFsxNl07
-CiAJaW50IGk7CiAKIAlnZW1fcmVxdWlyZV9yaW5nKGk5MTUsIHJpbmcpOwogCWlndF9yZXF1aXJl
-KGdlbV9jYW5fc3RvcmVfZHdvcmQoaTkxNSwgcmluZykpOwogCisJc2NyYXRjaCA9IGdlbV9jcmVh
-dGUoaTkxNSwgNDA5Nik7CisJcyA9IGdlbV9tbWFwX19jcHUoaTkxNSwgc2NyYXRjaCwgMCwgNDA5
-NiwgUFJPVF9XUklURSk7CisKKwlnZW1fc2V0X2RvbWFpbihpOTE1LCBzY3JhdGNoLCBJOTE1X0dF
-TV9ET01BSU5fQ1BVLCBJOTE1X0dFTV9ET01BSU5fQ1BVKTsKKwkqcyA9IE1JX0JBVENIX0JVRkZF
-Ul9FTkQ7CisKIAkvKiBMb2FkIG9iamVjdCBpbnRvIHBsYWNlIGluIHRoZSBHVFQgKi8KLQlnZW1f
-d3JpdGUoaTkxNSwgb2JqLmhhbmRsZSwgMCwgJmJiZSwgc2l6ZW9mKGJiZSkpOworCW9iai5oYW5k
-bGUgPSBzY3JhdGNoOwogCWdlbV9leGVjYnVmKGk5MTUsICZleGVjYnVmKTsKIAotCS8qIFByZXN1
-bWUgbm90aGluZyBjYXVzZXMgYW4gZXZpY3Rpb24gaW4gdGhlIG1lYW50aW1lICovCisJLyogUHJl
-c3VtZSBub3RoaW5nIGNhdXNlcyBhbiBldmljdGlvbiBpbiB0aGUgbWVhbnRpbWUhICovCiAKIAlv
-YmouaGFuZGxlID0gZ2VtX2NyZWF0ZShpOTE1LCA0MDk2KTsKIApAQCAtMjM1LDEwICsyMzgsMTkg
-QEAgc3RhdGljIHZvaWQgZXhlY19zaGFyZWRfZ3R0KGludCBpOTE1LCB1bnNpZ25lZCBpbnQgcmlu
-ZykKIAlnZW1fc3luYyhpOTE1LCBvYmouaGFuZGxlKTsgLyogd3JpdGUgaGF6YXJkIGxpZXMgKi8K
-IAlnZW1fY2xvc2UoaTkxNSwgb2JqLmhhbmRsZSk7CiAKLQlnZW1fcmVhZChpOTE1LCBzY3JhdGNo
-LCAwLCBiYXRjaCwgc2l6ZW9mKHVpbnQzMl90KSk7Ci0JZ2VtX2Nsb3NlKGk5MTUsIHNjcmF0Y2gp
-OworCS8qCisJICogSWYgd2UgY3JlYXRlZCB0aGUgbmV3IGNvbnRleHQgd2l0aCB0aGUgb2xkIEdU
-VCwgdGhlIHdyaXRlCisJICogaW50byB0aGUgc3RhbGUgbG9jYXRpb24gb2Ygc2NyYXRjaCB3aWxs
-IGhhdmUgbGFuZGVkIGluIHRoZSByaWdodAorCSAqIG9iamVjdC4gT3RoZXJ3aXNlLCBpdCBzaG91
-bGQgcmVhZCB0aGUgcHJldmlvdXMgdmFsdWUgb2YKKwkgKiBNSV9CQVRDSF9CVUZGRVJfRU5ELgor
-CSAqCisJICogU2V0dGluZyAud3JpdGUgPSBDUFUgdG8gcGFwZXIgb3ZlciBvdXIgd3JpdGUgaGF6
-YXJkIGxpZXMgYWJvdmUuCisJICovCisJZ2VtX3NldF9kb21haW4oaTkxNSwgc2NyYXRjaCwgSTkx
-NV9HRU1fRE9NQUlOX0NQVSwgSTkxNV9HRU1fRE9NQUlOX0NQVSk7CisJaWd0X2Fzc2VydF9lcV91
-MzIoKnMsIDB4YzBmZmVlKTsKIAotCWlndF9hc3NlcnRfZXFfdTMyKCpiYXRjaCwgMHhjMGZmZWUp
-OworCW11bm1hcChzLCA0MDk2KTsKKwlnZW1fY2xvc2UoaTkxNSwgc2NyYXRjaCk7CiB9CiAKIHN0
-YXRpYyBpbnQgbm9wX3N5bmMoaW50IGk5MTUsIHVpbnQzMl90IGN0eCwgdW5zaWduZWQgaW50IHJp
-bmcsIGludDY0X3QgdGltZW91dCkKLS0gCjIuMjAuMQoKX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhA
-bGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxt
-YW4vbGlzdGluZm8vaW50ZWwtZ2Z4
+
+--===============1863029583==
+Content-Type: multipart/signed; micalg="pgp-sha512";
+	protocol="application/pgp-signature"; boundary="=-9hW4Nd8WB8C0i0szl6Tm"
+
+
+--=-9hW4Nd8WB8C0i0szl6Tm
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+On Mon, 2019-06-10 at 12:30 +0300, Jani Nikula wrote:
+> We've moved the override and firmware EDID (simply "override EDID" from
+> now on) handling to the low level drm_do_get_edid() function in order to
+> transparently use the override throughout the stack. The idea is that
+> you get the override EDID via the ->get_modes() hook.
+>=20
+> Unfortunately, there are scenarios where the DDC probe in drm_get_edid()
+> called via ->get_modes() fails, although the preceding ->detect()
+> succeeds.
+>=20
+> In the case reported by Paul Wise, the ->detect() hook,
+> intel_crt_detect(), relies on hotplug detect, bypassing the DDC. In the
+> case reported by Ilpo J=C3=A4rvinen, there is no ->detect() hook, which i=
+s
+> interpreted as connected. The subsequent DDC probe reached via
+> ->get_modes() fails, and we don't even look at the override EDID,
+> resulting in no modes being added.
+>=20
+> Because drm_get_edid() is used via ->detect() all over the place, we
+> can't trivially remove the DDC probe, as it leads to override EDID
+> effectively meaning connector forcing. The goal is that connector
+> forcing and override EDID remain orthogonal.
+>=20
+> Generally, the underlying problem here is the conflation of ->detect()
+> and ->get_modes() via drm_get_edid(). The former should just detect, and
+> the latter should just get the modes, typically via reading the EDID. As
+> long as drm_get_edid() is used in ->detect(), it needs to retain the DDC
+> probe. Or such users need to have a separate DDC probe step first.
+>=20
+> The EDID caching between ->detect() and ->get_modes() done by some
+> drivers is a further complication that prevents us from making
+> drm_do_get_edid() adapt to the two cases.
+>=20
+> Work around the regression by falling back to a separate attempt at
+> getting the override EDID at drm_helper_probe_single_connector_modes()
+> level. With a working DDC and override EDID, it'll never be called; the
+> override EDID will come via ->get_modes(). There will still be a failing
+> DDC probe attempt in the cases that require the fallback.
+>=20
+> v2:
+> - Call drm_connector_update_edid_property (Paul)
+> - Update commit message about EDID caching (Daniel)
+>=20
+> Bugzilla: https://bugs.freedesktop.org/show_bug.cgi?id=3D107583
+> Reported-by: Paul Wise <pabs3@bonedaddy.net>
+> Cc: Paul Wise <pabs3@bonedaddy.net>
+> References: http://mid.mail-archive.com/alpine.DEB.2.20.1905262211270.243=
+90@whs-18.cs.helsinki.fi
+> Reported-by: Ilpo J=C3=A4rvinen <ilpo.jarvinen@cs.helsinki.fi>
+> Cc: Ilpo J=C3=A4rvinen <ilpo.jarvinen@cs.helsinki.fi>
+> Suggested-by: Daniel Vetter <daniel.vetter@ffwll.ch>
+> References: 15f080f08d48 ("drm/edid: respect connector force for drm_get_=
+edid ddc probe")
+> Fixes: 53fd40a90f3c ("drm: handle override and firmware EDID at drm_do_ge=
+t_edid() level")
+> Cc: <stable@vger.kernel.org> # v4.15+
+> Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
+> Cc: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+> Cc: Harish Chegondi <harish.chegondi@intel.com>
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> ---
+>  drivers/gpu/drm/drm_edid.c         | 30 ++++++++++++++++++++++++++++++
+>  drivers/gpu/drm/drm_probe_helper.c |  7 +++++++
+>  include/drm/drm_edid.h             |  1 +
+>  3 files changed, 38 insertions(+)
+>=20
+> diff --git a/drivers/gpu/drm/drm_edid.c b/drivers/gpu/drm/drm_edid.c
+> index c59a1e8c5ada..9d8f2b952004 100644
+> --- a/drivers/gpu/drm/drm_edid.c
+> +++ b/drivers/gpu/drm/drm_edid.c
+> @@ -1587,6 +1587,36 @@ static struct edid *drm_get_override_edid(struct d=
+rm_connector *connector)
+>  	return IS_ERR(override) ? NULL : override;
+>  }
+> =20
+> +/**
+> + * drm_add_override_edid_modes - add modes from override/firmware EDID
+> + * @connector: connector we're probing
+> + *
+> + * Add modes from the override/firmware EDID, if available. Only to be u=
+sed from
+> + * drm_helper_probe_single_connector_modes() as a fallback for when DDC =
+probe
+> + * failed during drm_get_edid() and caused the override/firmware EDID to=
+ be
+> + * skipped.
+> + *
+> + * Return: The number of modes added or 0 if we couldn't find any.
+> + */
+> +int drm_add_override_edid_modes(struct drm_connector *connector)
+> +{
+> +	struct edid *override;
+> +	int num_modes =3D 0;
+> +
+> +	override =3D drm_get_override_edid(connector);
+> +	if (override) {
+> +		drm_connector_update_edid_property(connector, override);
+> +		num_modes =3D drm_add_edid_modes(connector, override);
+> +		kfree(override);
+> +
+> +		DRM_DEBUG_KMS("[CONNECTOR:%d:%s] adding %d modes via fallback override=
+/firmware EDID\n",
+> +			      connector->base.id, connector->name, num_modes);
+> +	}
+> +
+> +	return num_modes;
+> +}
+> +EXPORT_SYMBOL(drm_add_override_edid_modes);
+> +
+>  /**
+>   * drm_do_get_edid - get EDID data using a custom EDID block read functi=
+on
+>   * @connector: connector we're probing
+> diff --git a/drivers/gpu/drm/drm_probe_helper.c b/drivers/gpu/drm/drm_pro=
+be_helper.c
+> index 01e243f1ea94..ef2c468205a2 100644
+> --- a/drivers/gpu/drm/drm_probe_helper.c
+> +++ b/drivers/gpu/drm/drm_probe_helper.c
+> @@ -480,6 +480,13 @@ int drm_helper_probe_single_connector_modes(struct d=
+rm_connector *connector,
+> =20
+>  	count =3D (*connector_funcs->get_modes)(connector);
+> =20
+> +	/*
+> +	 * Fallback for when DDC probe failed in drm_get_edid() and thus skippe=
+d
+> +	 * override/firmware EDID.
+> +	 */
+> +	if (count =3D=3D 0 && connector->status =3D=3D connector_status_connect=
+ed)
+> +		count =3D drm_add_override_edid_modes(connector);
+> +
+>  	if (count =3D=3D 0 && connector->status =3D=3D connector_status_connect=
+ed)
+>  		count =3D drm_add_modes_noedid(connector, 1024, 768);
+>  	count +=3D drm_helper_probe_add_cmdline_mode(connector);
+> diff --git a/include/drm/drm_edid.h b/include/drm/drm_edid.h
+> index 88b63801f9db..b9719418c3d2 100644
+> --- a/include/drm/drm_edid.h
+> +++ b/include/drm/drm_edid.h
+> @@ -478,6 +478,7 @@ struct edid *drm_get_edid_switcheroo(struct drm_conne=
+ctor *connector,
+>  				     struct i2c_adapter *adapter);
+>  struct edid *drm_edid_duplicate(const struct edid *edid);
+>  int drm_add_edid_modes(struct drm_connector *connector, struct edid *edi=
+d);
+> +int drm_add_override_edid_modes(struct drm_connector *connector);
+> =20
+>  u8 drm_match_cea_mode(const struct drm_display_mode *to_match);
+>  enum hdmi_picture_aspect drm_get_cea_aspect_ratio(const u8 video_code);
+
+Tested-by: Paul Wise <pabs3@bonedaddy.net>
+
+This version looks good to me.
+
+Both the EDID override data and the resolution are fixed.
+
+--=20
+bye,
+pabs
+
+https://bonedaddy.net/pabs3/
+
+--=-9hW4Nd8WB8C0i0szl6Tm
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEYQsotVz8/kXqG1Y7MRa6Xp/6aaMFAlz/ZdAACgkQMRa6Xp/6
+aaMQ5Q/9F/MwBs2IOnXgGF4i86yn6S47bFjfJC17xXsD0vqDd+VzXCTm5kykSSwk
+umFaIWlH2/6gFYOd4wP6S0BOU/jzUbNM/JASTepAla+RDCyJ24twaqRx2vNMHehB
+WflUP/4CwFvA/oLgk2+Cz7Qu07RJ5iYJUCwIYXukqkfnTV0ooTUfgzlYRJMGKLt9
+wmqy+JApuqz/7Nef7Txlha51m3HL0PG+gQEpZ8DwRTazVC1yfqhkKguKZJOcx1pp
+0kfo69zA6OXghyr1JuqG4upJiXtTrc9lIHb7XzScCO4hDPdnFL/DTk09ku8a4T1M
+l+ZZUX0W3lXYp0Yo9ikVEoyt5d15u9qdg5Dem/6EwlBnd4tD2jFU37PvX2Rsht7r
+9OmlltcjVesZK46jVVaOTFfNXzXTFqLtTzOgZ3PwLiKeUwMn12kSncALQRqNDyDW
+zaVIYM0Z8NPBt9FtD1i6O4IxHzkXD2aSnvpNgtD3M+XhodfGsQPoZGoCfBTQvWD0
+v6DjFzHDa5hJ4zO8fcdNPcH9JGvoBI7hf3CMwmf1fmlTN7vkQGd3hp5Z/uyksT0e
+0smRbnOl8Cpp3ApxyE+Yv3YFYqpIP9IdDTe3lStMGu47/QdrgsNC+N4RaYe0nNCR
+V9Set1zHTj9M0L3Ffr6FGT9LVTbdQ7LyW5RKIiOfHJw94gBJHBI=
+=RCQ7
+-----END PGP SIGNATURE-----
+
+--=-9hW4Nd8WB8C0i0szl6Tm--
+
+
+--===============1863029583==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
+IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
+
+--===============1863029583==--
+
