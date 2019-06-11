@@ -2,41 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E6C33C1A1
-	for <lists+intel-gfx@lfdr.de>; Tue, 11 Jun 2019 05:52:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D688D3C1CE
+	for <lists+intel-gfx@lfdr.de>; Tue, 11 Jun 2019 05:59:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1D3AE890E5;
-	Tue, 11 Jun 2019 03:52:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BAC2C890E5;
+	Tue, 11 Jun 2019 03:59:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from ozlabs.org (ozlabs.org [203.11.71.1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 81DCC890D8;
- Tue, 11 Jun 2019 03:52:06 +0000 (UTC)
-Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
- SHA256) (No client certificate requested)
- by mail.ozlabs.org (Postfix) with ESMTPSA id 45NGKJ07Knz9sND;
- Tue, 11 Jun 2019 13:52:03 +1000 (AEST)
-Date: Tue, 11 Jun 2019 13:52:02 +1000
-From: Stephen Rothwell <sfr@canb.auug.org.au>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>, Intel Graphics
- <intel-gfx@lists.freedesktop.org>, DRI <dri-devel@lists.freedesktop.org>,
- Dave Airlie <airlied@linux.ie>
-Message-ID: <20190611135202.145424e5@canb.auug.org.au>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id D394B890DD;
+ Tue, 11 Jun 2019 03:59:33 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id C96F5A3ECB;
+ Tue, 11 Jun 2019 03:59:33 +0000 (UTC)
 MIME-Version: 1.0
-X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=canb.auug.org.au; s=201702; t=1560225124;
- bh=6kjthrPOTPWNQKlDGL3hQSGhKE1EZEUyQV+BEUTX/uQ=;
- h=Date:From:To:Cc:Subject:From;
- b=q5TYlxbV/yk36cmEt8Cq5Uq29SkAYK5S+IeBicjJcTS9JPs3B6J7GrO53k0MGARjm
- MkN2i7goAvrnWiWBT7mCe+FaPZ/9Tb9mNm3jn1zLAy54fkhhIWLiornH1P/kkbEc6A
- NoH+AUGVuCiOWVlzjnyvQ65eE9n+Uw93TPImcFyDx3Sp0y6gOt6H6VQpNARgTjk/ew
- flvgbQeanJK//42/c1W67lHVrsZh66L3we6PVvSV+nxzPNWoQd1GKSad2PHFS0Ux+k
- 3N9qLEay6vVVEmck1v9jQ3f2rlUzVaYBXNi96ipt2pJPVWuoyt+1ed0cmKA3NJ/2Ls
- cLf3r3tJAGx0g==
-Subject: [Intel-gfx] linux-next: manual merge of the drm-misc tree with the
- drm tree
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Stephen Rothwell" <sfr@canb.auug.org.au>
+Date: Tue, 11 Jun 2019 03:59:33 -0000
+Message-ID: <20190611035933.9310.61452@emeril.freedesktop.org>
+References: <20190611135202.145424e5@canb.auug.org.au>
+X-Patchwork-Hint: ignore
+In-Reply-To: <20190611135202.145424e5@canb.auug.org.au>
+Subject: [Intel-gfx] =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_f?=
+ =?utf-8?q?or_linux-next=3A_manual_merge_of_the_drm-misc_tree_with_the_drm?=
+ =?utf-8?q?_tree?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -49,104 +39,28 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Linux Next Mailing List <linux-next@vger.kernel.org>,
- Sam Ravnborg <sam@ravnborg.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: multipart/mixed; boundary="===============0101085204=="
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0101085204==
-Content-Type: multipart/signed; micalg=pgp-sha256;
- boundary="Sig_/jfim9.VH5cOFoRzquBp6qyc"; protocol="application/pgp-signature"
-
---Sig_/jfim9.VH5cOFoRzquBp6qyc
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
-
-Hi all,
-
-Today's linux-next merge of the drm-misc tree got a conflict in:
-
-  drivers/gpu/drm/amd/display/dc/dce/dce_clk_mgr.c
-
-between commit:
-
-  9b93eb475aa9 ("drm/amd/display: move clk_mgr files to right place")
-
-from the drm tree and commit:
-
-  4fc4dca8320e ("drm/amd: drop use of drmp.h in os_types.h")
-
-from the drm-misc tree.
-
-I fixed it up (I deleted the file and added the following patch) and
-can carry the fix as necessary. This is now fixed as far as linux-next
-is concerned, but any non trivial conflicts should be mentioned to your
-upstream maintainer when your tree is submitted for merging.  You may
-also want to consider cooperating with the maintainer of the conflicting
-tree to minimise any particularly complex conflicts.
-
-I am not sure if this is actually needed but it seemed prudent with the
-addition of the kzalloc/kfree calls in this file.
-
-From: Stephen Rothwell <sfr@canb.auug.org.au>
-Date: Tue, 11 Jun 2019 13:48:08 +1000
-Subject: [PATCH] drm/amd/display: merge fix for "drm/amd: drop use of drmp.=
-h in os_types.h"
-
-Signed-off-by: Stephen Rothwell <sfr@canb.auug.org.au>
----
- drivers/gpu/drm/amd/display/dc/clk_mgr/clk_mgr.c | 2 ++
- 1 file changed, 2 insertions(+)
-
-diff --git a/drivers/gpu/drm/amd/display/dc/clk_mgr/clk_mgr.c b/drivers/gpu=
-/drm/amd/display/dc/clk_mgr/clk_mgr.c
-index eb2204d42337..cb3f6a74d9e3 100644
---- a/drivers/gpu/drm/amd/display/dc/clk_mgr/clk_mgr.c
-+++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/clk_mgr.c
-@@ -23,6 +23,8 @@
-  *
-  */
-=20
-+#include <linux/slab.h>
-+
- #include "dal_asic_id.h"
- #include "dc_types.h"
- #include "dccg.h"
---=20
-2.20.1
-
---=20
-Cheers,
-Stephen Rothwell
-
---Sig_/jfim9.VH5cOFoRzquBp6qyc
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAlz/JWIACgkQAVBC80lX
-0GxNRwgApUmTX5kjEA+cNRAn68/Axad9xBwda1Zu4g/kvsT/rNgtT6X1OaArVK/i
-KX72++Kyo1bggwxeINKmH1Y6PsbnlIHKLD7FcdV0us4Ab43jeB00xU9ENp27OuXb
-5cuxkliKZFh7RaFwIyrmNLZaaq0aI6Ciwt+X+EsD1hl5tgyV5wniHERIKO+Qjh9C
-OsuiafBoxg7hdXKKcSGNq2tw0PHuYJ10iBduylvmXPOHm81S9JJ8Of13vrfFzJye
-W9U6OzTxuu5qsyKPiGulVOPBGMO8SrCs0XedHbiUtvnTK69CfE0bytnyTmLDVamL
-IxNmUS+bhE8U4qkJjeGMN5a8PyvMXA==
-=QHva
------END PGP SIGNATURE-----
-
---Sig_/jfim9.VH5cOFoRzquBp6qyc--
-
---===============0101085204==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
-IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
-
---===============0101085204==--
+PT0gU2VyaWVzIERldGFpbHMgPT0KClNlcmllczogbGludXgtbmV4dDogbWFudWFsIG1lcmdlIG9m
+IHRoZSBkcm0tbWlzYyB0cmVlIHdpdGggdGhlIGRybSB0cmVlClVSTCAgIDogaHR0cHM6Ly9wYXRj
+aHdvcmsuZnJlZWRlc2t0b3Aub3JnL3Nlcmllcy82MTg3OC8KU3RhdGUgOiB3YXJuaW5nCgo9PSBT
+dW1tYXJ5ID09CgokIGRpbSBjaGVja3BhdGNoIG9yaWdpbi9kcm0tdGlwCmUwYTFlMTE3M2ZiMCBs
+aW51eC1uZXh0OiBtYW51YWwgbWVyZ2Ugb2YgdGhlIGRybS1taXNjIHRyZWUgd2l0aCB0aGUgZHJt
+IHRyZWUKLToxNTogRVJST1I6R0lUX0NPTU1JVF9JRDogUGxlYXNlIHVzZSBnaXQgY29tbWl0IGRl
+c2NyaXB0aW9uIHN0eWxlICdjb21taXQgPDEyKyBjaGFycyBvZiBzaGExPiAoIjx0aXRsZSBsaW5l
+PiIpJyAtIGllOiAnY29tbWl0IDliOTNlYjQ3NWFhOSAoImRybS9hbWQvZGlzcGxheTogbW92ZSBj
+bGtfbWdyIGZpbGVzIHRvIHJpZ2h0IHBsYWNlIiknCiMxNTogCiAgOWI5M2ViNDc1YWE5ICgiZHJt
+L2FtZC9kaXNwbGF5OiBtb3ZlIGNsa19tZ3IgZmlsZXMgdG8gcmlnaHQgcGxhY2UiKQoKLTozNTog
+V0FSTklORzpDT01NSVRfTE9HX0xPTkdfTElORTogUG9zc2libGUgdW53cmFwcGVkIGNvbW1pdCBk
+ZXNjcmlwdGlvbiAocHJlZmVyIGEgbWF4aW11bSA3NSBjaGFycyBwZXIgbGluZSkKIzM1OiAKU3Vi
+amVjdDogW1BBVENIXSBkcm0vYW1kL2Rpc3BsYXk6IG1lcmdlIGZpeCBmb3IgImRybS9hbWQ6IGRy
+b3AgdXNlIG9mIGRybXAuaCBpbiBvc190eXBlcy5oIgoKdG90YWw6IDEgZXJyb3JzLCAxIHdhcm5p
+bmdzLCAwIGNoZWNrcywgOCBsaW5lcyBjaGVja2VkCgpfX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBs
+aXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1h
+bi9saXN0aW5mby9pbnRlbC1nZng=
