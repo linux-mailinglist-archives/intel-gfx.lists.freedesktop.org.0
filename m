@@ -1,41 +1,61 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 53F4A42432
-	for <lists+intel-gfx@lfdr.de>; Wed, 12 Jun 2019 13:38:22 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 810E3424F9
+	for <lists+intel-gfx@lfdr.de>; Wed, 12 Jun 2019 14:05:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4B32E88DF5;
-	Wed, 12 Jun 2019 11:38:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 84EC6893A8;
+	Wed, 12 Jun 2019 12:05:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4E55F88DF5
- for <intel-gfx@lists.freedesktop.org>; Wed, 12 Jun 2019 11:38:19 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 92625893A8
+ for <intel-gfx@lists.freedesktop.org>; Wed, 12 Jun 2019 12:05:02 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 12 Jun 2019 04:38:18 -0700
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 12 Jun 2019 05:05:02 -0700
 X-ExtLoop1: 1
-Received: from swatish2-mobl.gar.corp.intel.com (HELO [10.66.99.83])
- ([10.66.99.83])
- by orsmga007.jf.intel.com with ESMTP; 12 Jun 2019 04:38:17 -0700
-To: Jani Nikula <jani.nikula@linux.intel.com>, intel-gfx@lists.freedesktop.org
-References: <1559123462-7343-1-git-send-email-swati2.sharma@intel.com>
- <1559123462-7343-4-git-send-email-swati2.sharma@intel.com>
- <87sgso2vlx.fsf@intel.com>
-From: "Sharma, Swati2" <swati2.sharma@intel.com>
-Organization: Intel
-Message-ID: <34ff0e77-59d0-9f68-7d1d-b3660b40039d@intel.com>
-Date: Wed, 12 Jun 2019 17:08:15 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.0
-MIME-Version: 1.0
-In-Reply-To: <87sgso2vlx.fsf@intel.com>
+Received: from fmsmsx108.amr.corp.intel.com ([10.18.124.206])
+ by fmsmga008.fm.intel.com with ESMTP; 12 Jun 2019 05:05:02 -0700
+Received: from fmsmsx120.amr.corp.intel.com (10.18.124.208) by
+ FMSMSX108.amr.corp.intel.com (10.18.124.206) with Microsoft SMTP Server (TLS)
+ id 14.3.408.0; Wed, 12 Jun 2019 05:05:02 -0700
+Received: from bgsmsx103.gar.corp.intel.com (10.223.4.130) by
+ fmsmsx120.amr.corp.intel.com (10.18.124.208) with Microsoft SMTP Server (TLS)
+ id 14.3.408.0; Wed, 12 Jun 2019 05:05:01 -0700
+Received: from bgsmsx104.gar.corp.intel.com ([169.254.5.30]) by
+ BGSMSX103.gar.corp.intel.com ([169.254.4.241]) with mapi id 14.03.0415.000;
+ Wed, 12 Jun 2019 17:34:58 +0530
+From: "Shankar, Uma" <uma.shankar@intel.com>
+To: "Peres, Martin" <martin.peres@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Thread-Topic: =?utf-8?B?W0ludGVsLWdmeF0g4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgRW5hYmxl?=
+ =?utf-8?Q?_Multi-segmented-gamma_for_ICL_(rev4)?=
+Thread-Index: AQHVIOwInFujW+VtIESDxcLw/BrWhqaX6+xg
+Date: Wed, 12 Jun 2019 12:04:58 +0000
+Message-ID: <E7C9878FBA1C6D42A1CA3F62AEB6945F820700DF@BGSMSX104.gar.corp.intel.com>
+References: <1560321900-18318-1-git-send-email-uma.shankar@intel.com>
+ <20190612065644.21004.16904@emeril.freedesktop.org>
+ <E7C9878FBA1C6D42A1CA3F62AEB6945F8206FF01@BGSMSX104.gar.corp.intel.com>
+ <56A4AB1F0E1B5D4C83D27F43C50F662E58FC5356@IRSMSX107.ger.corp.intel.com>
+In-Reply-To: <56A4AB1F0E1B5D4C83D27F43C50F662E58FC5356@IRSMSX107.ger.corp.intel.com>
+Accept-Language: en-US
 Content-Language: en-US
-Subject: Re: [Intel-gfx] [v7][PATCH 03/12] drm/i915: Add func to compare
- hw/sw gamma lut
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ctpclassification: CTP_NT
+x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiZWEzYWUzYzQtODIzNS00ZmVhLWJjYWYtZmQxMzBjYzdiYTNiIiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX05UIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE3LjEwLjE4MDQuNDkiLCJUcnVzdGVkTGFiZWxIYXNoIjoidlczXC83c1ZEVFQ3QUdBSlllMGgxWTB1b2ZcL1hGNTltR2pOaUJvTGVwY0NCanl5UjVIdGwyZTlFemZwMXVxRmZcLyJ9
+dlp-product: dlpe-windows
+dlp-version: 11.0.600.7
+dlp-reaction: no-action
+x-originating-ip: [10.223.10.10]
+MIME-Version: 1.0
+Subject: Re: [Intel-gfx] 
+ =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgRW5h?=
+ =?utf-8?q?ble_Multi-segmented-gamma_for_ICL_=28rev4=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -48,692 +68,130 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============0358655714=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This is a multi-part message in MIME format.
---===============0358655714==
-Content-Type: multipart/alternative;
- boundary="------------1B717E05327F2797C11D7C39"
-Content-Language: en-US
-
-This is a multi-part message in MIME format.
---------------1B717E05327F2797C11D7C39
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
-
-On 05-Jun-19 3:37 PM, Jani Nikula wrote:
-> On Wed, 29 May 2019, Swati Sharma <swati2.sharma@intel.com> wrote:
->> v3: -Rebase
->> v4: -Renamed intel_compare_color_lut() to intel_color_lut_equal() [Jani]
->>      -Added the default label above the correct label [Jani]
->>      -Corrected smatch warn "variable dereferenced before check"
->>       [Dan Carpenter]
->> v5: -Added condition (!blob1 && !blob2) return true [Jani]
->>      -Called PIPE_CONF_CHECK_COLOR_LUT inside if (!adjust) [Jani]
->>      -Added #undef PIPE_CONF_CHECK_COLOR_LUT [Jani]
->> v6: -Added func intel_color_get_bit_precision() to get bit precision for
->>       gamma and degamma lut readout depending upon platform and
->>       corresponding to load_luts() [Ankit]
->>      -Added debug log for color para in intel_dump_pipe_config [Jani]
->>      -Made patch11 as patch3 [Jani]
->> v7: -Renamed func intel_color_get_bit_precision() to
->>       intel_color_get_gamma_bit_precision()
->>      -Added separate function/platform for gamma bit precision [Ville]
->>      -Corrected checkpatch warnings
-> The patch revisions are great, but you do need to add an actual commit
-> message first as well.
->
-> In general, please don't reference "this patch" because on the one hand
-> it's kind of obvious and on the other hand it ceases to be a patch when
-> it gets applied and becomes a commit.
->
-> Please also use the imperative style in the commit message like you have
-> in the title/subject line.
->
-> So instead of "In this patch, foo is added." use "Add foo."
->
-> BR,
-> Jani.
-
-Sure, thanks Jani. Will correct other patches.
-
->
->
->> Signed-off-by: Swati Sharma <swati2.sharma@intel.com>
->> ---
->>   drivers/gpu/drm/i915/intel_color.c   | 166 +++++++++++++++++++++++++++++++++++
->>   drivers/gpu/drm/i915/intel_color.h   |   7 ++
->>   drivers/gpu/drm/i915/intel_display.c |  24 +++++
->>   3 files changed, 197 insertions(+)
->>
->> diff --git a/drivers/gpu/drm/i915/intel_color.c b/drivers/gpu/drm/i915/intel_color.c
->> index 50b98ee..b20a2c6 100644
->> --- a/drivers/gpu/drm/i915/intel_color.c
->> +++ b/drivers/gpu/drm/i915/intel_color.c
->> @@ -1251,6 +1251,172 @@ static int icl_color_check(struct intel_crtc_state *crtc_state)
->>   	return 0;
->>   }
->>   
->> +static int i9xx_gamma_precision(struct intel_crtc_state *crtc_state)
->> +{
->> +	if (!crtc_state->gamma_enable)
->> +		return 0;
->> +
->> +	switch (crtc_state->gamma_mode) {
->> +	case GAMMA_MODE_MODE_8BIT:
->> +		return 8;
->> +	case GAMMA_MODE_MODE_10BIT:
->> +		return 16;
->> +	default:
->> +		MISSING_CASE(crtc_state->gamma_mode);
->> +		return 0;
->> +	}
->> +}
->> +
->> +static int chv_gamma_precision(struct intel_crtc_state *crtc_state)
->> +{
->> +	if (crtc_state->cgm_mode & CGM_PIPE_MODE_GAMMA)
->> +		return 10;
->> +	else
->> +		return i9xx_gamma_precision(crtc_state);
->> +}
->> +
->> +static int ilk_gamma_precision(struct intel_crtc_state *crtc_state)
->> +{
->> +	if (!crtc_state->gamma_enable)
->> +		return 0;
->> +
->> +	if ((crtc_state->csc_mode & CSC_POSITION_BEFORE_GAMMA) == 0)
->> +		return 0;
->> +
->> +	switch (crtc_state->gamma_mode) {
->> +	case GAMMA_MODE_MODE_8BIT:
->> +		return 8;
->> +	case GAMMA_MODE_MODE_10BIT:
->> +		return 10;
->> +	default:
->> +		MISSING_CASE(crtc_state->gamma_mode);
->> +		return 0;
->> +	}
->> +}
->> +
->> +static int ivb_gamma_precision(struct intel_crtc_state *crtc_state)
->> +{
->> +	if (!crtc_state->gamma_enable)
->> +		return 0;
->> +
->> +	if ((crtc_state->csc_mode & CSC_POSITION_BEFORE_GAMMA) == 0)
->> +		return 0;
->> +
->> +	switch (crtc_state->gamma_mode) {
->> +	case GAMMA_MODE_MODE_8BIT:
->> +		return 8;
->> +	case GAMMA_MODE_MODE_SPLIT:
->> +	case GAMMA_MODE_MODE_10BIT:
->> +		return 10;
->> +	default:
->> +		MISSING_CASE(crtc_state->gamma_mode);
->> +		return 0;
->> +	}
->> +}
->> +
->> +static int glk_gamma_precision(struct intel_crtc_state *crtc_state)
->> +{
->> +	if (!crtc_state->gamma_enable)
->> +		return 0;
->> +
->> +	if ((crtc_state->csc_mode & CSC_POSITION_BEFORE_GAMMA) == 0)
->> +		return 0;
->> +
->> +	switch (crtc_state->gamma_mode) {
->> +	case GAMMA_MODE_MODE_8BIT:
->> +		return 8;
->> +	case GAMMA_MODE_MODE_10BIT:
->> +		return 10;
->> +	default:
->> +		MISSING_CASE(crtc_state->gamma_mode);
->> +		return 0;
->> +	}
->> +}
->> +
->> +static int icl_gamma_precision(struct intel_crtc_state *crtc_state)
->> +{
->> +	if ((crtc_state->gamma_mode & PRE_CSC_GAMMA_ENABLE) == 0)
->> +		return 0;
->> +
->> +	switch (crtc_state->gamma_mode & GAMMA_MODE_MODE_MASK) {
->> +	case GAMMA_MODE_MODE_8BIT:
->> +		return 8;
->> +	case GAMMA_MODE_MODE_10BIT:
->> +		return 10;
->> +	default:
->> +		MISSING_CASE(crtc_state->gamma_mode);
->> +		return 0;
->> +	}
->> +}
->> +
->> +int intel_color_get_gamma_bit_precision(struct intel_crtc_state *crtc_state)
->> +{
->> +	struct intel_crtc *crtc = to_intel_crtc(crtc_state->base.crtc);
->> +	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
->> +
->> +	if (HAS_GMCH(dev_priv)) {
->> +		if (IS_CHERRYVIEW(dev_priv))
->> +			return chv_gamma_precision(crtc_state);
->> +		else
->> +			return i9xx_gamma_precision(crtc_state);
->> +	} else {
->> +		if (INTEL_GEN(dev_priv) >= 11)
->> +			return icl_gamma_precision(crtc_state);
->> +		else if (IS_CANNONLAKE(dev_priv) || IS_GEMINILAKE(dev_priv))
->> +			return glk_gamma_precision(crtc_state);
->> +		else if (INTEL_GEN(dev_priv) >= 7)
->> +			return ivb_gamma_precision(crtc_state);
->> +		else
->> +			return ilk_gamma_precision(crtc_state);
->> +	}
->> +
->> +	return 0;
->> +}
->> +
->> +static inline bool err_check(struct drm_color_lut *sw_lut,
->> +			     struct drm_color_lut *hw_lut, u32 err)
->> +{
->> +	return ((abs((long)hw_lut->red - sw_lut->red)) <= err) &&
->> +		((abs((long)hw_lut->blue - sw_lut->blue)) <= err) &&
->> +		((abs((long)hw_lut->green - sw_lut->green)) <= err);
->> +}
->> +
->> +bool intel_color_lut_equal(struct drm_property_blob *blob1,
->> +			   struct drm_property_blob *blob2,
->> +			   u32 bit_precision)
->> +{
->> +	struct drm_color_lut *sw_lut, *hw_lut;
->> +	int sw_lut_size, hw_lut_size, i;
->> +	u32 err;
->> +
->> +	if (!blob1 && !blob2)
->> +		return true;
->> +
->> +	if (!blob1)
->> +		return true;
->> +
->> +	if (!blob2)
->> +		return false;
->> +
->> +	sw_lut_size = drm_color_lut_size(blob1);
->> +	hw_lut_size = drm_color_lut_size(blob2);
->> +
->> +	if (sw_lut_size != hw_lut_size)
->> +		return false;
->> +
->> +	sw_lut = blob1->data;
->> +	hw_lut = blob2->data;
->> +
->> +	err = 0xffff >> bit_precision;
->> +
->> +	for (i = 0; i < sw_lut_size; i++) {
->> +		if (!err_check(&hw_lut[i], &sw_lut[i], err))
->> +			return false;
->> +	}
->> +
->> +	return true;
->> +}
->> +
->>   void intel_color_init(struct intel_crtc *crtc)
->>   {
->>   	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
->> diff --git a/drivers/gpu/drm/i915/intel_color.h b/drivers/gpu/drm/i915/intel_color.h
->> index 057e8ac..02ea1bc 100644
->> --- a/drivers/gpu/drm/i915/intel_color.h
->> +++ b/drivers/gpu/drm/i915/intel_color.h
->> @@ -6,13 +6,20 @@
->>   #ifndef __INTEL_COLOR_H__
->>   #define __INTEL_COLOR_H__
->>   
->> +#include <linux/types.h>
->> +
->>   struct intel_crtc_state;
->>   struct intel_crtc;
->> +struct drm_property_blob;
->>   
->>   void intel_color_init(struct intel_crtc *crtc);
->>   int intel_color_check(struct intel_crtc_state *crtc_state);
->>   void intel_color_commit(const struct intel_crtc_state *crtc_state);
->>   void intel_color_load_luts(const struct intel_crtc_state *crtc_state);
->>   void intel_color_get_config(struct intel_crtc_state *crtc_state);
->> +bool intel_color_lut_equal(struct drm_property_blob *blob1,
->> +			   struct drm_property_blob *blob2,
->> +			   u32 bit_precision);
->> +int intel_color_get_gamma_bit_precision(struct intel_crtc_state *crtc_state);
->>   
->>   #endif /* __INTEL_COLOR_H__ */
->> diff --git a/drivers/gpu/drm/i915/intel_display.c b/drivers/gpu/drm/i915/intel_display.c
->> index 3e01028..b8ff3f4 100644
->> --- a/drivers/gpu/drm/i915/intel_display.c
->> +++ b/drivers/gpu/drm/i915/intel_display.c
->> @@ -11570,6 +11570,15 @@ static void intel_dump_pipe_config(struct intel_crtc *crtc,
->>   				      drm_rect_width(&state->base.dst),
->>   				      drm_rect_height(&state->base.dst));
->>   	}
->> +
->> +	if (IS_CHERRYVIEW(dev_priv))
->> +		DRM_DEBUG_KMS("cgm_mode:%d gamma_mode:%d gamma_enable:%d csc_enable:%d\n",
->> +			       pipe_config->cgm_mode, pipe_config->gamma_mode,
->> +			       pipe_config->gamma_enable, pipe_config->csc_enable);
->> +	else
->> +		DRM_DEBUG_KMS("csc_mode:%d gamma_mode:%d gamma_enable:%d csc_enable:%d\n",
->> +			       pipe_config->csc_mode, pipe_config->gamma_mode,
->> +			       pipe_config->gamma_enable, pipe_config->csc_enable);
->>   }
->>   
->>   static bool check_digital_port_conflicts(struct drm_atomic_state *state)
->> @@ -11947,6 +11956,7 @@ static bool fastboot_enabled(struct drm_i915_private *dev_priv)
->>   			  bool adjust)
->>   {
->>   	bool ret = true;
->> +	u32 bp_gamma = 0;
->>   	bool fixup_inherited = adjust &&
->>   		(current_config->base.mode.private_flags & I915_MODE_FLAG_INHERITED) &&
->>   		!(pipe_config->base.mode.private_flags & I915_MODE_FLAG_INHERITED);
->> @@ -12098,6 +12108,15 @@ static bool fastboot_enabled(struct drm_i915_private *dev_priv)
->>   	} \
->>   } while (0)
->>   
->> +#define PIPE_CONF_CHECK_COLOR_LUT(name, bit_precision) do { \
->> +	if (!intel_color_lut_equal(current_config->name, \
->> +				   pipe_config->name, bit_precision)) { \
->> +		pipe_config_err(adjust, __stringify(name), \
->> +				"hw_state doesn't match sw_state\n"); \
->> +		ret = false; \
->> +	} \
->> +} while (0)
->> +
->>   #define PIPE_CONF_QUIRK(quirk) \
->>   	((current_config->quirks | pipe_config->quirks) & (quirk))
->>   
->> @@ -12193,6 +12212,10 @@ static bool fastboot_enabled(struct drm_i915_private *dev_priv)
->>   			PIPE_CONF_CHECK_X(csc_mode);
->>   		PIPE_CONF_CHECK_BOOL(gamma_enable);
->>   		PIPE_CONF_CHECK_BOOL(csc_enable);
->> +
->> +		bp_gamma = intel_color_get_gamma_bit_precision(pipe_config);
->> +		if (bp_gamma)
->> +			PIPE_CONF_CHECK_COLOR_LUT(base.gamma_lut, bp_gamma);
->>   	}
->>   
->>   	PIPE_CONF_CHECK_BOOL(double_wide);
->> @@ -12255,6 +12278,7 @@ static bool fastboot_enabled(struct drm_i915_private *dev_priv)
->>   #undef PIPE_CONF_CHECK_FLAGS
->>   #undef PIPE_CONF_CHECK_CLOCK_FUZZY
->>   #undef PIPE_CONF_QUIRK
->> +#undef PIPE_CONF_CHECK_COLOR_LUT
->>   
->>   	return ret;
->>   }
-
-
--- 
-~Swati Sharma
-
-
---------------1B717E05327F2797C11D7C39
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 7bit
-
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  </head>
-  <body text="#000000" bgcolor="#FFFFFF">
-    <div class="moz-cite-prefix">On 05-Jun-19 3:37 PM, Jani Nikula
-      wrote:<br>
-    </div>
-    <blockquote type="cite" cite="mid:87sgso2vlx.fsf@intel.com">
-      <pre class="moz-quote-pre" wrap="">On Wed, 29 May 2019, Swati Sharma <a class="moz-txt-link-rfc2396E" href="mailto:swati2.sharma@intel.com">&lt;swati2.sharma@intel.com&gt;</a> wrote:
-</pre>
-      <blockquote type="cite">
-        <pre class="moz-quote-pre" wrap="">v3: -Rebase
-v4: -Renamed intel_compare_color_lut() to intel_color_lut_equal() [Jani]
-    -Added the default label above the correct label [Jani]
-    -Corrected smatch warn "variable dereferenced before check"
-     [Dan Carpenter]
-v5: -Added condition (!blob1 &amp;&amp; !blob2) return true [Jani]
-    -Called PIPE_CONF_CHECK_COLOR_LUT inside if (!adjust) [Jani]
-    -Added #undef PIPE_CONF_CHECK_COLOR_LUT [Jani]
-v6: -Added func intel_color_get_bit_precision() to get bit precision for
-     gamma and degamma lut readout depending upon platform and
-     corresponding to load_luts() [Ankit]
-    -Added debug log for color para in intel_dump_pipe_config [Jani]
-    -Made patch11 as patch3 [Jani]
-v7: -Renamed func intel_color_get_bit_precision() to
-     intel_color_get_gamma_bit_precision()
-    -Added separate function/platform for gamma bit precision [Ville]
-    -Corrected checkpatch warnings
-</pre>
-      </blockquote>
-      <pre class="moz-quote-pre" wrap="">
-The patch revisions are great, but you do need to add an actual commit
-message first as well.
-
-In general, please don't reference "this patch" because on the one hand
-it's kind of obvious and on the other hand it ceases to be a patch when
-it gets applied and becomes a commit.
-
-Please also use the imperative style in the commit message like you have
-in the title/subject line.
-
-So instead of "In this patch, foo is added." use "Add foo."
-
-BR,
-Jani.</pre>
-    </blockquote>
-    <pre>Sure, thanks Jani. Will correct other patches.
-</pre>
-    <blockquote type="cite" cite="mid:87sgso2vlx.fsf@intel.com">
-      <pre class="moz-quote-pre" wrap="">
-
-
-</pre>
-      <blockquote type="cite">
-        <pre class="moz-quote-pre" wrap="">
-Signed-off-by: Swati Sharma <a class="moz-txt-link-rfc2396E" href="mailto:swati2.sharma@intel.com">&lt;swati2.sharma@intel.com&gt;</a>
----
- drivers/gpu/drm/i915/intel_color.c   | 166 +++++++++++++++++++++++++++++++++++
- drivers/gpu/drm/i915/intel_color.h   |   7 ++
- drivers/gpu/drm/i915/intel_display.c |  24 +++++
- 3 files changed, 197 insertions(+)
-
-diff --git a/drivers/gpu/drm/i915/intel_color.c b/drivers/gpu/drm/i915/intel_color.c
-index 50b98ee..b20a2c6 100644
---- a/drivers/gpu/drm/i915/intel_color.c
-+++ b/drivers/gpu/drm/i915/intel_color.c
-@@ -1251,6 +1251,172 @@ static int icl_color_check(struct intel_crtc_state *crtc_state)
- 	return 0;
- }
- 
-+static int i9xx_gamma_precision(struct intel_crtc_state *crtc_state)
-+{
-+	if (!crtc_state-&gt;gamma_enable)
-+		return 0;
-+
-+	switch (crtc_state-&gt;gamma_mode) {
-+	case GAMMA_MODE_MODE_8BIT:
-+		return 8;
-+	case GAMMA_MODE_MODE_10BIT:
-+		return 16;
-+	default:
-+		MISSING_CASE(crtc_state-&gt;gamma_mode);
-+		return 0;
-+	}
-+}
-+
-+static int chv_gamma_precision(struct intel_crtc_state *crtc_state)
-+{
-+	if (crtc_state-&gt;cgm_mode &amp; CGM_PIPE_MODE_GAMMA)
-+		return 10;
-+	else
-+		return i9xx_gamma_precision(crtc_state);
-+}
-+
-+static int ilk_gamma_precision(struct intel_crtc_state *crtc_state)
-+{
-+	if (!crtc_state-&gt;gamma_enable)
-+		return 0;
-+
-+	if ((crtc_state-&gt;csc_mode &amp; CSC_POSITION_BEFORE_GAMMA) == 0)
-+		return 0;
-+
-+	switch (crtc_state-&gt;gamma_mode) {
-+	case GAMMA_MODE_MODE_8BIT:
-+		return 8;
-+	case GAMMA_MODE_MODE_10BIT:
-+		return 10;
-+	default:
-+		MISSING_CASE(crtc_state-&gt;gamma_mode);
-+		return 0;
-+	}
-+}
-+
-+static int ivb_gamma_precision(struct intel_crtc_state *crtc_state)
-+{
-+	if (!crtc_state-&gt;gamma_enable)
-+		return 0;
-+
-+	if ((crtc_state-&gt;csc_mode &amp; CSC_POSITION_BEFORE_GAMMA) == 0)
-+		return 0;
-+
-+	switch (crtc_state-&gt;gamma_mode) {
-+	case GAMMA_MODE_MODE_8BIT:
-+		return 8;
-+	case GAMMA_MODE_MODE_SPLIT:
-+	case GAMMA_MODE_MODE_10BIT:
-+		return 10;
-+	default:
-+		MISSING_CASE(crtc_state-&gt;gamma_mode);
-+		return 0;
-+	}
-+}
-+
-+static int glk_gamma_precision(struct intel_crtc_state *crtc_state)
-+{
-+	if (!crtc_state-&gt;gamma_enable)
-+		return 0;
-+
-+	if ((crtc_state-&gt;csc_mode &amp; CSC_POSITION_BEFORE_GAMMA) == 0)
-+		return 0;
-+
-+	switch (crtc_state-&gt;gamma_mode) {
-+	case GAMMA_MODE_MODE_8BIT:
-+		return 8;
-+	case GAMMA_MODE_MODE_10BIT:
-+		return 10;
-+	default:
-+		MISSING_CASE(crtc_state-&gt;gamma_mode);
-+		return 0;
-+	}
-+}
-+
-+static int icl_gamma_precision(struct intel_crtc_state *crtc_state)
-+{
-+	if ((crtc_state-&gt;gamma_mode &amp; PRE_CSC_GAMMA_ENABLE) == 0)
-+		return 0;
-+
-+	switch (crtc_state-&gt;gamma_mode &amp; GAMMA_MODE_MODE_MASK) {
-+	case GAMMA_MODE_MODE_8BIT:
-+		return 8;
-+	case GAMMA_MODE_MODE_10BIT:
-+		return 10;
-+	default:
-+		MISSING_CASE(crtc_state-&gt;gamma_mode);
-+		return 0;
-+	}
-+}
-+
-+int intel_color_get_gamma_bit_precision(struct intel_crtc_state *crtc_state)
-+{
-+	struct intel_crtc *crtc = to_intel_crtc(crtc_state-&gt;base.crtc);
-+	struct drm_i915_private *dev_priv = to_i915(crtc-&gt;base.dev);
-+
-+	if (HAS_GMCH(dev_priv)) {
-+		if (IS_CHERRYVIEW(dev_priv))
-+			return chv_gamma_precision(crtc_state);
-+		else
-+			return i9xx_gamma_precision(crtc_state);
-+	} else {
-+		if (INTEL_GEN(dev_priv) &gt;= 11)
-+			return icl_gamma_precision(crtc_state);
-+		else if (IS_CANNONLAKE(dev_priv) || IS_GEMINILAKE(dev_priv))
-+			return glk_gamma_precision(crtc_state);
-+		else if (INTEL_GEN(dev_priv) &gt;= 7)
-+			return ivb_gamma_precision(crtc_state);
-+		else
-+			return ilk_gamma_precision(crtc_state);
-+	}
-+
-+	return 0;
-+}
-+
-+static inline bool err_check(struct drm_color_lut *sw_lut,
-+			     struct drm_color_lut *hw_lut, u32 err)
-+{
-+	return ((abs((long)hw_lut-&gt;red - sw_lut-&gt;red)) &lt;= err) &amp;&amp;
-+		((abs((long)hw_lut-&gt;blue - sw_lut-&gt;blue)) &lt;= err) &amp;&amp;
-+		((abs((long)hw_lut-&gt;green - sw_lut-&gt;green)) &lt;= err);
-+}
-+
-+bool intel_color_lut_equal(struct drm_property_blob *blob1,
-+			   struct drm_property_blob *blob2,
-+			   u32 bit_precision)
-+{
-+	struct drm_color_lut *sw_lut, *hw_lut;
-+	int sw_lut_size, hw_lut_size, i;
-+	u32 err;
-+
-+	if (!blob1 &amp;&amp; !blob2)
-+		return true;
-+
-+	if (!blob1)
-+		return true;
-+
-+	if (!blob2)
-+		return false;
-+
-+	sw_lut_size = drm_color_lut_size(blob1);
-+	hw_lut_size = drm_color_lut_size(blob2);
-+
-+	if (sw_lut_size != hw_lut_size)
-+		return false;
-+
-+	sw_lut = blob1-&gt;data;
-+	hw_lut = blob2-&gt;data;
-+
-+	err = 0xffff &gt;&gt; bit_precision;
-+
-+	for (i = 0; i &lt; sw_lut_size; i++) {
-+		if (!err_check(&amp;hw_lut[i], &amp;sw_lut[i], err))
-+			return false;
-+	}
-+
-+	return true;
-+}
-+
- void intel_color_init(struct intel_crtc *crtc)
- {
- 	struct drm_i915_private *dev_priv = to_i915(crtc-&gt;base.dev);
-diff --git a/drivers/gpu/drm/i915/intel_color.h b/drivers/gpu/drm/i915/intel_color.h
-index 057e8ac..02ea1bc 100644
---- a/drivers/gpu/drm/i915/intel_color.h
-+++ b/drivers/gpu/drm/i915/intel_color.h
-@@ -6,13 +6,20 @@
- #ifndef __INTEL_COLOR_H__
- #define __INTEL_COLOR_H__
- 
-+#include &lt;linux/types.h&gt;
-+
- struct intel_crtc_state;
- struct intel_crtc;
-+struct drm_property_blob;
- 
- void intel_color_init(struct intel_crtc *crtc);
- int intel_color_check(struct intel_crtc_state *crtc_state);
- void intel_color_commit(const struct intel_crtc_state *crtc_state);
- void intel_color_load_luts(const struct intel_crtc_state *crtc_state);
- void intel_color_get_config(struct intel_crtc_state *crtc_state);
-+bool intel_color_lut_equal(struct drm_property_blob *blob1,
-+			   struct drm_property_blob *blob2,
-+			   u32 bit_precision);
-+int intel_color_get_gamma_bit_precision(struct intel_crtc_state *crtc_state);
- 
- #endif /* __INTEL_COLOR_H__ */
-diff --git a/drivers/gpu/drm/i915/intel_display.c b/drivers/gpu/drm/i915/intel_display.c
-index 3e01028..b8ff3f4 100644
---- a/drivers/gpu/drm/i915/intel_display.c
-+++ b/drivers/gpu/drm/i915/intel_display.c
-@@ -11570,6 +11570,15 @@ static void intel_dump_pipe_config(struct intel_crtc *crtc,
- 				      drm_rect_width(&amp;state-&gt;base.dst),
- 				      drm_rect_height(&amp;state-&gt;base.dst));
- 	}
-+
-+	if (IS_CHERRYVIEW(dev_priv))
-+		DRM_DEBUG_KMS("cgm_mode:%d gamma_mode:%d gamma_enable:%d csc_enable:%d\n",
-+			       pipe_config-&gt;cgm_mode, pipe_config-&gt;gamma_mode,
-+			       pipe_config-&gt;gamma_enable, pipe_config-&gt;csc_enable);
-+	else
-+		DRM_DEBUG_KMS("csc_mode:%d gamma_mode:%d gamma_enable:%d csc_enable:%d\n",
-+			       pipe_config-&gt;csc_mode, pipe_config-&gt;gamma_mode,
-+			       pipe_config-&gt;gamma_enable, pipe_config-&gt;csc_enable);
- }
- 
- static bool check_digital_port_conflicts(struct drm_atomic_state *state)
-@@ -11947,6 +11956,7 @@ static bool fastboot_enabled(struct drm_i915_private *dev_priv)
- 			  bool adjust)
- {
- 	bool ret = true;
-+	u32 bp_gamma = 0;
- 	bool fixup_inherited = adjust &amp;&amp;
- 		(current_config-&gt;base.mode.private_flags &amp; I915_MODE_FLAG_INHERITED) &amp;&amp;
- 		!(pipe_config-&gt;base.mode.private_flags &amp; I915_MODE_FLAG_INHERITED);
-@@ -12098,6 +12108,15 @@ static bool fastboot_enabled(struct drm_i915_private *dev_priv)
- 	} \
- } while (0)
- 
-+#define PIPE_CONF_CHECK_COLOR_LUT(name, bit_precision) do { \
-+	if (!intel_color_lut_equal(current_config-&gt;name, \
-+				   pipe_config-&gt;name, bit_precision)) { \
-+		pipe_config_err(adjust, __stringify(name), \
-+				"hw_state doesn't match sw_state\n"); \
-+		ret = false; \
-+	} \
-+} while (0)
-+
- #define PIPE_CONF_QUIRK(quirk) \
- 	((current_config-&gt;quirks | pipe_config-&gt;quirks) &amp; (quirk))
- 
-@@ -12193,6 +12212,10 @@ static bool fastboot_enabled(struct drm_i915_private *dev_priv)
- 			PIPE_CONF_CHECK_X(csc_mode);
- 		PIPE_CONF_CHECK_BOOL(gamma_enable);
- 		PIPE_CONF_CHECK_BOOL(csc_enable);
-+
-+		bp_gamma = intel_color_get_gamma_bit_precision(pipe_config);
-+		if (bp_gamma)
-+			PIPE_CONF_CHECK_COLOR_LUT(base.gamma_lut, bp_gamma);
- 	}
- 
- 	PIPE_CONF_CHECK_BOOL(double_wide);
-@@ -12255,6 +12278,7 @@ static bool fastboot_enabled(struct drm_i915_private *dev_priv)
- #undef PIPE_CONF_CHECK_FLAGS
- #undef PIPE_CONF_CHECK_CLOCK_FUZZY
- #undef PIPE_CONF_QUIRK
-+#undef PIPE_CONF_CHECK_COLOR_LUT
- 
- 	return ret;
- }
-</pre>
-      </blockquote>
-      <pre class="moz-quote-pre" wrap="">
-</pre>
-    </blockquote>
-    <p><br>
-    </p>
-    <pre class="moz-signature" cols="72">-- 
-~Swati Sharma
-</pre>
-  </body>
-</html>
-
---------------1B717E05327F2797C11D7C39--
-
---===============0358655714==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
-IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
-
---===============0358655714==--
+DQoNCj4tLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPkZyb206IFBlcmVzLCBNYXJ0aW4NCj5T
+ZW50OiBXZWRuZXNkYXksIEp1bmUgMTIsIDIwMTkgMzo1MSBQTQ0KPlRvOiBTaGFua2FyLCBVbWEg
+PHVtYS5zaGFua2FyQGludGVsLmNvbT47IGludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcN
+Cj5DYzogU2hhcm1hLCBTaGFzaGFuayA8c2hhc2hhbmsuc2hhcm1hQGludGVsLmNvbT4NCj5TdWJq
+ZWN0OiBSZTogW0ludGVsLWdmeF0g4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgRW5hYmxlIE11
+bHRpLXNlZ21lbnRlZC1nYW1tYSBmb3IgSUNMDQo+KHJldjQpDQo+DQo+T24gMTIvMDYvMjAxOSAx
+MTo1OCwgU2hhbmthciwgVW1hIHdyb3RlOg0KPj4NCj4+DQo+Pj4gLS0tLS1PcmlnaW5hbCBNZXNz
+YWdlLS0tLS0NCj4+PiBGcm9tOiBJbnRlbC1nZnggW21haWx0bzppbnRlbC1nZngtYm91bmNlc0Bs
+aXN0cy5mcmVlZGVza3RvcC5vcmddIE9uDQo+Pj4gQmVoYWxmIE9mIFBhdGNod29yaw0KPj4+IFNl
+bnQ6IFdlZG5lc2RheSwgSnVuZSAxMiwgMjAxOSAxMjoyNyBQTQ0KPj4+IFRvOiBTaGFybWEsIFNo
+YXNoYW5rIDxzaGFzaGFuay5zaGFybWFAaW50ZWwuY29tPg0KPj4+IENjOiBpbnRlbC1nZnhAbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnDQo+Pj4gU3ViamVjdDogW0ludGVsLWdmeF0g4pyXIEZpLkNJLkJB
+VDogZmFpbHVyZSBmb3IgRW5hYmxlDQo+Pj4gTXVsdGktc2VnbWVudGVkLWdhbW1hIGZvciBJQ0wN
+Cj4+PiAocmV2NCkNCj4+Pg0KPj4+ID09IFNlcmllcyBEZXRhaWxzID09DQo+Pj4NCj4+PiBTZXJp
+ZXM6IEVuYWJsZSBNdWx0aS1zZWdtZW50ZWQtZ2FtbWEgZm9yIElDTCAocmV2NCkNCj4+PiBVUkwg
+ICA6IGh0dHBzOi8vcGF0Y2h3b3JrLmZyZWVkZXNrdG9wLm9yZy9zZXJpZXMvNjAxMjYvDQo+Pj4g
+U3RhdGUgOiBmYWlsdXJlDQo+Pj4NCj4+PiA9PSBTdW1tYXJ5ID09DQo+Pj4NCj4+PiBDSSBCdWcg
+TG9nIC0gY2hhbmdlcyBmcm9tIENJX0RSTV82MjQyIC0+IFBhdGNod29ya18xMzI0OA0KPj4+ID09
+PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0NCj4+Pg0K
+Pj4+IFN1bW1hcnkNCj4+PiAtLS0tLS0tDQo+Pj4NCj4+PiAgKipGQUlMVVJFKioNCj4+Pg0KPj4+
+ICBTZXJpb3VzIHVua25vd24gY2hhbmdlcyBjb21pbmcgd2l0aCBQYXRjaHdvcmtfMTMyNDggYWJz
+b2x1dGVseSBuZWVkDQo+Pj4gdG8gYmUgIHZlcmlmaWVkIG1hbnVhbGx5Lg0KPj4+DQo+Pj4gIElm
+IHlvdSB0aGluayB0aGUgcmVwb3J0ZWQgY2hhbmdlcyBoYXZlIG5vdGhpbmcgdG8gZG8gd2l0aCB0
+aGUNCj4+PiBjaGFuZ2VzICBpbnRyb2R1Y2VkIGluIFBhdGNod29ya18xMzI0OCwgcGxlYXNlIG5v
+dGlmeSB5b3VyIGJ1ZyB0ZWFtDQo+Pj4gdG8gYWxsb3cgdGhlbSAgdG8gZG9jdW1lbnQgdGhpcyBu
+ZXcgZmFpbHVyZSBtb2RlLCB3aGljaCB3aWxsIHJlZHVjZSBmYWxzZQ0KPnBvc2l0aXZlcyBpbiBD
+SS4NCj4+Pg0KPj4+ICBFeHRlcm5hbCBVUkw6DQo+Pj4gaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEu
+b3JnL3RyZWUvZHJtLXRpcC9QYXRjaHdvcmtfMTMyNDgvDQo+Pj4NCj4+PiBQb3NzaWJsZSBuZXcg
+aXNzdWVzDQo+Pj4gLS0tLS0tLS0tLS0tLS0tLS0tLQ0KPj4+DQo+Pj4gIEhlcmUgYXJlIHRoZSB1
+bmtub3duIGNoYW5nZXMgdGhhdCBtYXkgaGF2ZSBiZWVuIGludHJvZHVjZWQgaW4NCj5QYXRjaHdv
+cmtfMTMyNDg6DQo+Pj4NCj4+PiAjIyMgSUdUIGNoYW5nZXMgIyMjDQo+Pj4NCj4+PiAjIyMjIFBv
+c3NpYmxlIHJlZ3Jlc3Npb25zICMjIyMNCj4+Pg0KPj4+ICAqIGlndEBpOTE1X21vZHVsZV9sb2Fk
+QHJlbG9hZC13aXRoLWZhdWx0LWluamVjdGlvbjoNCj4+PiAgICAtIGZpLXNrbC1ndnRkdm06ICAg
+ICAgW1BBU1NdWzFdIC0+IFtJTkNPTVBMRVRFXVsyXQ0KPj4+ICAgWzFdOiBodHRwczovL2ludGVs
+LWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlwL0NJX0RSTV82MjQyL2ZpLXNrbC0NCj4+PiBndnRk
+dm0vaWd0QGk5MTVfbW9kdWxlX2xvYWRAcmVsb2FkLXdpdGgtZmF1bHQtaW5qZWN0aW9uLmh0bWwN
+Cj4+PiAgIFsyXToNCj4+PiBodHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlw
+L1BhdGNod29ya18xMzI0OC9maS1za2wtDQo+Pj4gZ3Z0ZHZtL2lndEBpOTE1X21vZHVsZV9sb2Fk
+QHJlbG9hZC13aXRoLWZhdWx0LWluamVjdGlvbi5odG1sDQo+Pg0KPj4gSGkgTWFydGluLA0KPj4g
+R2V0dGluZyB0aGlzIGZhaWx1cmUgb24gQkFUIHJ1biBpbiBpbnRlbC1nZngsIGNhbiB5b3UgaGVs
+cCBlbmFibGUgYSBDSSBydW4gZm9yIGZ1bGwgSUdUDQo+c2Nhbi4NCj4+IEkgYW0gZ2V0dGluZyBC
+QVQgcGFzc2luZyBvbiB0cnlib3QgYW5kIHRoaXMgZG9lc24ndCBzZWVtIHRvIGJlIHJlbGF0ZWQg
+dG8gdGhlDQo+Y2hhbmdlcyBoZXJlLg0KPg0KPlRoYW5rcyBmb3IgcmVwb3J0aW5nIHRoZSBpc3N1
+ZS4gSSBtYXBwZWQgdGhpcyBmYWlsdXJlIHRvIHRoaXMgYnVnOg0KPmh0dHBzOi8vYnVncy5mcmVl
+ZGVza3RvcC5vcmcvc2hvd19idWcuY2dpP2lkPTExMDM0Mw0KPg0KPkkgYW0gc3VyZSB0aGUgR0VN
+IHRlYW0gd2lsbCBiZSBoYXBweSB0byB0YWtlIGFub3RoZXIgbG9vayBhdCB0aGlzIGlzc3VlIDpE
+DQoNClRoYW5rcyBNYXJ0aW4gZm9yIHlvdXIgaGVscCBoZXJlLg0KDQpSZWdhcmRzLA0KVW1hIFNo
+YW5rYXINCg0KPk1hcnRpbg0KPg0KPj4NCj4+IFRoYW5rcyAmIFJlZ2FyZHMsDQo+PiBVbWEgU2hh
+bmthcg0KPj4NCj4+Pg0KPj4+IEtub3duIGlzc3Vlcw0KPj4+IC0tLS0tLS0tLS0tLQ0KPj4+DQo+
+Pj4gIEhlcmUgYXJlIHRoZSBjaGFuZ2VzIGZvdW5kIGluIFBhdGNod29ya18xMzI0OCB0aGF0IGNv
+bWUgZnJvbSBrbm93biBpc3N1ZXM6DQo+Pj4NCj4+PiAjIyMgSUdUIGNoYW5nZXMgIyMjDQo+Pj4N
+Cj4+PiAjIyMjIElzc3VlcyBoaXQgIyMjIw0KPj4+DQo+Pj4gICogaWd0QGdlbV9leGVjX3JlbG9j
+QGJhc2ljLWNwdS1ub3JlbG9jOg0KPj4+ICAgIC0gZmktaWNsLXUzOiAgICAgICAgICBbUEFTU11b
+M10gLT4gW0RNRVNHLVdBUk5dWzRdIChbZmRvIzEwNzcyNF0pICsxIHNpbWlsYXIgaXNzdWUNCj4+
+PiAgIFszXTogaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9DSV9EUk1f
+NjI0Mi9maS1pY2wtDQo+Pj4gdTMvaWd0QGdlbV9leGVjX3JlbG9jQGJhc2ljLWNwdS1ub3JlbG9j
+Lmh0bWwNCj4+PiAgIFs0XToNCj4+PiBodHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9k
+cm0tdGlwL1BhdGNod29ya18xMzI0OC9maS1pY2wtDQo+Pj4gdTMvaWd0QGdlbV9leGVjX3JlbG9j
+QGJhc2ljLWNwdS1ub3JlbG9jLmh0bWwNCj4+Pg0KPj4+ICAqIGlndEBwcmltZV92Z2VtQGJhc2lj
+LWZlbmNlLWZsaXA6DQo+Pj4gICAgLSBmaS1pbGstNjUwOiAgICAgICAgIFtQQVNTXVs1XSAtPiBb
+RE1FU0ctV0FSTl1bNl0gKFtmZG8jMTA2Mzg3XSkgKzIgc2ltaWxhciBpc3N1ZXMNCj4+PiAgIFs1
+XTogaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9DSV9EUk1fNjI0Mi9m
+aS1pbGstDQo+Pj4gNjUwL2lndEBwcmltZV92Z2VtQGJhc2ljLWZlbmNlLWZsaXAuaHRtbA0KPj4+
+ICAgWzZdOg0KPj4+IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAvUGF0
+Y2h3b3JrXzEzMjQ4L2ZpLWlsay0NCj4+PiA2NTAvaWd0QHByaW1lX3ZnZW1AYmFzaWMtZmVuY2Ut
+ZmxpcC5odG1sDQo+Pj4NCj4+Pg0KPj4+ICMjIyMgUG9zc2libGUgZml4ZXMgIyMjIw0KPj4+DQo+
+Pj4gICogaWd0QGk5MTVfbW9kdWxlX2xvYWRAcmVsb2FkOg0KPj4+ICAgIC0gZmktaWNsLXUzOiAg
+ICAgICAgICBbRE1FU0ctV0FSTl1bN10gKFtmZG8jMTA3NzI0XSkgLT4gW1BBU1NdWzhdDQo+Pj4g
+ICBbN106IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAvQ0lfRFJNXzYy
+NDIvZmktaWNsLQ0KPj4+IHUzL2lndEBpOTE1X21vZHVsZV9sb2FkQHJlbG9hZC5odG1sDQo+Pj4g
+ICBbOF06DQo+Pj4gaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9QYXRj
+aHdvcmtfMTMyNDgvZmktaWNsLQ0KPj4+IHUzL2lndEBpOTE1X21vZHVsZV9sb2FkQHJlbG9hZC5o
+dG1sDQo+Pj4NCj4+PiAgKiBpZ3RAaTkxNV9tb2R1bGVfbG9hZEByZWxvYWQtd2l0aC1mYXVsdC1p
+bmplY3Rpb246DQo+Pj4gICAgLSBmaS1ic3cta2Vma2E6ICAgICAgIFtETUVTRy1XQVJOXVs5XSAt
+PiBbUEFTU11bMTBdDQo+Pj4gICBbOV06IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVl
+L2RybS10aXAvQ0lfRFJNXzYyNDIvZmktYnN3LQ0KPj4+IGtlZmthL2lndEBpOTE1X21vZHVsZV9s
+b2FkQHJlbG9hZC13aXRoLWZhdWx0LWluamVjdGlvbi5odG1sDQo+Pj4gICBbMTBdOg0KPj4+IGh0
+dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAvUGF0Y2h3b3JrXzEzMjQ4L2Zp
+LWJzdy0NCj4+PiBrZWZrYS9pZ3RAaTkxNV9tb2R1bGVfbG9hZEByZWxvYWQtd2l0aC1mYXVsdC1p
+bmplY3Rpb24uaHRtbA0KPj4+DQo+Pj4gICogaWd0QGttc19jaGFtZWxpdW1AaGRtaS1ocGQtZmFz
+dDoNCj4+PiAgICAtIGZpLWtibC03NTAwdTogICAgICAgW0ZBSUxdWzExXSAoW2ZkbyMxMDk0ODVd
+KSAtPiBbUEFTU11bMTJdDQo+Pj4gICBbMTFdOiBodHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcv
+dHJlZS9kcm0tdGlwL0NJX0RSTV82MjQyL2ZpLWtibC0NCj4+PiA3NTAwdS9pZ3RAa21zX2NoYW1l
+bGl1bUBoZG1pLWhwZC1mYXN0Lmh0bWwNCj4+PiAgIFsxMl06DQo+Pj4gaHR0cHM6Ly9pbnRlbC1n
+ZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9QYXRjaHdvcmtfMTMyNDgvZmkta2JsLQ0KPj4+IDc1
+MDB1L2lndEBrbXNfY2hhbWVsaXVtQGhkbWktaHBkLWZhc3QuaHRtbA0KPj4+DQo+Pj4NCj4+PiAg
+e25hbWV9OiBUaGlzIGVsZW1lbnQgaXMgc3VwcHJlc3NlZC4gVGhpcyBtZWFucyBpdCBpcyBpZ25v
+cmVkIHdoZW4gY29tcHV0aW5nDQo+Pj4gICAgICAgICAgdGhlIHN0YXR1cyBvZiB0aGUgZGlmZmVy
+ZW5jZSAoU1VDQ0VTUywgV0FSTklORywgb3IgRkFJTFVSRSkuDQo+Pj4NCj4+PiAgW2ZkbyMxMDYz
+ODddOiBodHRwczovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD0xMDYzODcN
+Cj4+PiAgW2ZkbyMxMDc3MTNdOiBodHRwczovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVn
+LmNnaT9pZD0xMDc3MTMNCj4+PiAgW2ZkbyMxMDc3MjRdOiBodHRwczovL2J1Z3MuZnJlZWRlc2t0
+b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD0xMDc3MjQNCj4+PiAgW2ZkbyMxMDg2MDJdOiBodHRwczov
+L2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD0xMDg2MDINCj4+PiAgW2ZkbyMx
+MDk0ODVdOiBodHRwczovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD0xMDk0
+ODUNCj4+Pg0KPj4+DQo+Pj4gUGFydGljaXBhdGluZyBob3N0cyAoNTMgLT4gNDcpDQo+Pj4gLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tDQo+Pj4NCj4+PiAgQWRkaXRpb25hbCAoMSk6IGZp
+LWJzdy1uMzA1MA0KPj4+ICBNaXNzaW5nICAgICg3KTogZmkta2JsLXNvcmFrYSBmaS1pbGstbTU0
+MCBmaS1oc3ctNDIwMHUgZmktYnl0LXNxdWF3a3MgZmktYnN3LWN5YW4gZmktDQo+Pj4gYnl0LWNs
+YXBwZXIgZmktYmR3LXNhbXVzDQo+Pj4NCj4+Pg0KPj4+IEJ1aWxkIGNoYW5nZXMNCj4+PiAtLS0t
+LS0tLS0tLS0tDQo+Pj4NCj4+PiAgKiBMaW51eDogQ0lfRFJNXzYyNDIgLT4gUGF0Y2h3b3JrXzEz
+MjQ4DQo+Pj4NCj4+PiAgQ0lfRFJNXzYyNDI6IGMxMmI4MjlkODE0NTJiMzM1ZmQ5ODZiOTNiMjUz
+MjAwMWI5MzE1N2UgQA0KPj4+IGdpdDovL2Fub25naXQuZnJlZWRlc2t0b3Aub3JnL2dmeC1jaS9s
+aW51eA0KPj4+ICBJR1RfNTA1MTogMWYyYWNlZjgzNmZmY2JmNTExM2RmNGFkZThiNTg3OTM1Yzdk
+NTg2OCBADQo+Pj4gZ2l0Oi8vYW5vbmdpdC5mcmVlZGVza3RvcC5vcmcveG9yZy9hcHAvaW50ZWwt
+Z3B1LXRvb2xzDQo+Pj4gIFBhdGNod29ya18xMzI0ODogZThlZGZmMGRhYjBiODA5YTg4ZWM5MWUw
+ZjkyZWU2NmFjNzlmZTRiZiBADQo+Pj4gZ2l0Oi8vYW5vbmdpdC5mcmVlZGVza3RvcC5vcmcvZ2Z4
+LWNpL2xpbnV4DQo+Pj4NCj4+Pg0KPj4+ID09IExpbnV4IGNvbW1pdHMgPT0NCj4+Pg0KPj4+IGU4
+ZWRmZjBkYWIwYiBkcm0vaTkxNS9pY2w6IEFkZCBNdWx0aS1zZWdtZW50ZWQgZ2FtbWEgc3VwcG9y
+dA0KPj4+IDhlYzM0ZWZlNTNhYw0KPj4+IGRybS9pOTE1OiBSZW5hbWUgaXZiX2xvYWRfbHV0XzEw
+X21heA0KPj4+IGQ4YzVmYTA1YzkxNyBkcm0vaTkxNS9pY2w6IEFkZCByZWdpc3RlciBkZWZpbml0
+aW9ucyBmb3IgTXVsdGkNCj4+PiBTZWdtZW50ZWQgZ2FtbWENCj4+PiAwMTEzYTJjNjdiMTQgZHJt
+L2k5MTU6IENoYW5nZSBnYW1tYS9kZWdhbW1hX2x1dF9zaXplIGRhdGEgdHlwZSB0byB1MzINCj4+
+Pg0KPj4+ID09IExvZ3MgPT0NCj4+Pg0KPj4+IEZvciBtb3JlIGRldGFpbHMgc2VlOg0KPj4+IGh0
+dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAvUGF0Y2h3b3JrXzEzMjQ4Lw0K
+Pj4+IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fDQo+Pj4g
+SW50ZWwtZ2Z4IG1haWxpbmcgbGlzdA0KPj4+IEludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5v
+cmcNCj4+PiBodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2lu
+dGVsLWdmeA0KPj4NCg0KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Au
+b3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwt
+Z2Z4
