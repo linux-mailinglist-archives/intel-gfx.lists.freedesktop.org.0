@@ -2,41 +2,35 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 397A141A04
-	for <lists+intel-gfx@lfdr.de>; Wed, 12 Jun 2019 03:46:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 49FBB41AB0
+	for <lists+intel-gfx@lfdr.de>; Wed, 12 Jun 2019 05:24:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D73B0890AF;
-	Wed, 12 Jun 2019 01:46:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5ACF389204;
+	Wed, 12 Jun 2019 03:24:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from ozlabs.org (ozlabs.org [203.11.71.1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5F6F2890AF;
- Wed, 12 Jun 2019 01:46:22 +0000 (UTC)
-Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
- SHA256) (No client certificate requested)
- by mail.ozlabs.org (Postfix) with ESMTPSA id 45NqTj2JQyz9s3l;
- Wed, 12 Jun 2019 11:46:16 +1000 (AEST)
-Date: Wed, 12 Jun 2019 11:46:15 +1000
-From: Stephen Rothwell <sfr@canb.auug.org.au>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>, Intel Graphics
- <intel-gfx@lists.freedesktop.org>, DRI <dri-devel@lists.freedesktop.org>,
- Alex Deucher <alexdeucher@gmail.com>
-Message-ID: <20190612114615.69a78655@canb.auug.org.au>
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 985FF891C7;
+ Wed, 12 Jun 2019 03:24:30 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 11 Jun 2019 20:24:29 -0700
+X-ExtLoop1: 1
+Received: from zhen-hp.sh.intel.com (HELO zhen-hp) ([10.239.13.116])
+ by orsmga003.jf.intel.com with ESMTP; 11 Jun 2019 20:24:26 -0700
+Date: Wed, 12 Jun 2019 11:22:36 +0800
+From: Zhenyu Wang <zhenyuw@linux.intel.com>
+To: Hariprasad Kelam <hariprasad.kelam@gmail.com>
+Message-ID: <20190612032236.GH9684@zhen-hp.sh.intel.com>
+References: <20190526075633.GA9245@hari-Inspiron-1545>
 MIME-Version: 1.0
-X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=canb.auug.org.au; s=201702; t=1560303979;
- bh=45fFLXH707RuVC+r3D6MLgxoOcS6lkh37RpWxE6pCG0=;
- h=Date:From:To:Cc:Subject:From;
- b=B6QwwN/MyJhRc5MMmVS5hkIY9b39wOmRJadZWnU5zcqPPAPA4hHEloUCMAWYBViPQ
- jcZpSLvRzM3ER0McWYKxgj6wbQbhuUkr3v28xFMyVwIah3gPZap9nl3NoM9FyWWq5S
- QpTdngwyezRCRmX2vrkycFA6oa0ERop0npao5FLouZ+VhcZEuHaTjZVm23OuKjVzLO
- e5uIJQoJpVGJK0miUSdMuGf3iuu1zpHBUb6BOPMt8lF/V7tONYwYTGx1ImlU4TaHzp
- wd8vWYUvTVcKkGq3PeN5LhH8xwkPVt9nqE2EUQHEWDipuccgdkhPgQGaeWWgmvtE2T
- Lk+lojGVFEzVw==
-Subject: [Intel-gfx] linux-next: manual merge of the drm-misc tree with the
- amdgpu tree
+In-Reply-To: <20190526075633.GA9245@hari-Inspiron-1545>
+User-Agent: Mutt/1.10.0 (2018-05-17)
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/gvt: remove duplicate entry of
+ trace
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -49,84 +43,117 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Dave Airlie <airlied@linux.ie>, Charlene Liu <charlene.liu@amd.com>,
- Linux Next Mailing List <linux-next@vger.kernel.org>,
- Sam Ravnborg <sam@ravnborg.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: multipart/mixed; boundary="===============1439920556=="
+Reply-To: Zhenyu Wang <zhenyuw@linux.intel.com>
+Cc: David Airlie <airlied@linux.ie>, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ intel-gvt-dev@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============1858191915=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1439920556==
-Content-Type: multipart/signed; micalg=pgp-sha256;
- boundary="Sig_/4P5AwUEph_+1clfAOt0GSyc"; protocol="application/pgp-signature"
 
---Sig_/4P5AwUEph_+1clfAOt0GSyc
-Content-Type: text/plain; charset=US-ASCII
+--===============1858191915==
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="JSVXQxoTSdH0Ya++"
+Content-Disposition: inline
+
+
+--JSVXQxoTSdH0Ya++
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-Hi all,
+On 2019.05.26 13:26:33 +0530, Hariprasad Kelam wrote:
+> Remove duplicate include of trace.h
+>=20
+> Issue identified by includecheck
+>=20
+> Signed-off-by: Hariprasad Kelam <hariprasad.kelam@gmail.com>
+> ---
+>  drivers/gpu/drm/i915/gvt/trace_points.c | 1 -
+>  1 file changed, 1 deletion(-)
+>=20
+> diff --git a/drivers/gpu/drm/i915/gvt/trace_points.c b/drivers/gpu/drm/i9=
+15/gvt/trace_points.c
+> index a3deed69..569f5e3 100644
+> --- a/drivers/gpu/drm/i915/gvt/trace_points.c
+> +++ b/drivers/gpu/drm/i915/gvt/trace_points.c
+> @@ -32,5 +32,4 @@
+> =20
+>  #ifndef __CHECKER__
+>  #define CREATE_TRACE_POINTS
+> -#include "trace.h"
+>  #endif
+> --=20
 
-Today's linux-next merge of the drm-misc tree got a conflict in:
+This actually caused build issue like
+ERROR: "__tracepoint_gma_index" [drivers/gpu/drm/i915/i915.ko] undefined!
+ERROR: "__tracepoint_render_mmio" [drivers/gpu/drm/i915/i915.ko] undefined!
+ERROR: "__tracepoint_gvt_command" [drivers/gpu/drm/i915/i915.ko] undefined!
+ERROR: "__tracepoint_spt_guest_change" [drivers/gpu/drm/i915/i915.ko] undef=
+ined!
+ERROR: "__tracepoint_gma_translate" [drivers/gpu/drm/i915/i915.ko] undefine=
+d!
+ERROR: "__tracepoint_spt_alloc" [drivers/gpu/drm/i915/i915.ko] undefined!
+ERROR: "__tracepoint_spt_change" [drivers/gpu/drm/i915/i915.ko] undefined!
+ERROR: "__tracepoint_oos_sync" [drivers/gpu/drm/i915/i915.ko] undefined!
+ERROR: "__tracepoint_write_ir" [drivers/gpu/drm/i915/i915.ko] undefined!
+ERROR: "__tracepoint_propagate_event" [drivers/gpu/drm/i915/i915.ko] undefi=
+ned!
+ERROR: "__tracepoint_inject_msi" [drivers/gpu/drm/i915/i915.ko] undefined!
+ERROR: "__tracepoint_spt_refcount" [drivers/gpu/drm/i915/i915.ko] undefined!
+ERROR: "__tracepoint_spt_free" [drivers/gpu/drm/i915/i915.ko] undefined!
+ERROR: "__tracepoint_oos_change" [drivers/gpu/drm/i915/i915.ko] undefined!
+scripts/Makefile.modpost:91: recipe for target '__modpost' failed
 
-  drivers/gpu/drm/amd/display/dc/dce/dce_audio.c
+Looks we need fix like below.
 
-between commit:
+Subject: [PATCH] drm/i915/gvt: remove duplicate include of trace.h
 
-  c7c7192c56d2 ("drm/amd/display: add audio related regs")
+This removes duplicate include of trace.h. Found by Hariprasad Kelam
+with includecheck.
 
-from the amdgpu tree and commit:
+Reported-by: Hariprasad Kelam <hariprasad.kelam@gmail.com>
+Signed-off-by: Zhenyu Wang <zhenyuw@linux.intel.com>
+---
+ drivers/gpu/drm/i915/gvt/trace_points.c | 2 --
+ 1 file changed, 2 deletions(-)
 
-  4fc4dca8320e ("drm/amd: drop use of drmp.h in os_types.h")
-
-from the drm-misc tree.
-
-I fixed it up (see below) and can carry the fix as necessary. This
-is now fixed as far as linux-next is concerned, but any non trivial
-conflicts should be mentioned to your upstream maintainer when your tree
-is submitted for merging.  You may also want to consider cooperating
-with the maintainer of the conflicting tree to minimise any particularly
-complex conflicts.
+diff --git a/drivers/gpu/drm/i915/gvt/trace_points.c b/drivers/gpu/drm/i915=
+/gvt/trace_points.c
+index a3deed692b9c..fe552e877e09 100644
+--- a/drivers/gpu/drm/i915/gvt/trace_points.c
++++ b/drivers/gpu/drm/i915/gvt/trace_points.c
+@@ -28,8 +28,6 @@
+  *
+  */
+=20
+-#include "trace.h"
+-
+ #ifndef __CHECKER__
+ #define CREATE_TRACE_POINTS
+ #include "trace.h"
+--=20
+2.20.1
 
 --=20
-Cheers,
-Stephen Rothwell
+Open Source Technology Center, Intel ltd.
 
-diff --cc drivers/gpu/drm/amd/display/dc/dce/dce_audio.c
-index d43d5d924c19,9b078a71de2e..000000000000
---- a/drivers/gpu/drm/amd/display/dc/dce/dce_audio.c
-+++ b/drivers/gpu/drm/amd/display/dc/dce/dce_audio.c
-@@@ -22,7 -22,9 +22,10 @@@
-   * Authors: AMD
-   *
-   */
-+=20
-+ #include <linux/slab.h>
-+=20
- +#include "../dc.h"
-  #include "reg_helper.h"
-  #include "dce_audio.h"
-  #include "dce/dce_11_0_d.h"
+$gpg --keyserver wwwkeys.pgp.net --recv-keys 4D781827
 
---Sig_/4P5AwUEph_+1clfAOt0GSyc
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
+--JSVXQxoTSdH0Ya++
+Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAl0AWWgACgkQAVBC80lX
-0GyInAf9EkndAclA4v6jGiJ3ikxT3HRWH+0v8pKJ0AH0Q2+KPoLfPRfVMdOWEAbb
-2L6jAiiPL2a2RCFSnsFMbxP6Ki48DQiJM2lhw/VA54Y8Db1XGXmN+0pmGCE1dvbc
-0Bksmtcn/Hek8uE7GmM4ZfTLW8vnca7aey+KqC8bFt3oYntotcA2wYq5k0b8zuXV
-vFZzj12lS5+N+f41zoYVBLwaHKB7h9mdwcQlPFRAl5YTySnXXieR2TL4h3Vzs16E
-vtohgcJWUqiJSkAFwahAyW43Zt18BdD3kmgZqSpv0JgkWxXhrcTbUvSnbSTiRUmX
-YaxywF9MrIjMLwZzCG3GT1Knbeph/w==
-=dUfW
+iF0EARECAB0WIQTXuabgHDW6LPt9CICxBBozTXgYJwUCXQBv/AAKCRCxBBozTXgY
+J6qvAJ9q4SpHBMazUVGyrExwIyT3tac9zQCbB8m/t9a9wlOqkm0W0bss9NDOds0=
+=lNiG
 -----END PGP SIGNATURE-----
 
---Sig_/4P5AwUEph_+1clfAOt0GSyc--
+--JSVXQxoTSdH0Ya++--
 
---===============1439920556==
+--===============1858191915==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -136,4 +163,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
 IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
 dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
 
---===============1439920556==--
+--===============1858191915==--
