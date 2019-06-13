@@ -2,62 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87A3F43227
-	for <lists+intel-gfx@lfdr.de>; Thu, 13 Jun 2019 04:11:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 43FC043229
+	for <lists+intel-gfx@lfdr.de>; Thu, 13 Jun 2019 04:15:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1474589272;
-	Thu, 13 Jun 2019 02:11:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EFEBF891B1;
+	Thu, 13 Jun 2019 02:15:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ed1-x542.google.com (mail-ed1-x542.google.com
- [IPv6:2a00:1450:4864:20::542])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4470389274;
- Thu, 13 Jun 2019 02:11:03 +0000 (UTC)
-Received: by mail-ed1-x542.google.com with SMTP id k21so25404960edq.3;
- Wed, 12 Jun 2019 19:11:03 -0700 (PDT)
+Received: from mail-qt1-x842.google.com (mail-qt1-x842.google.com
+ [IPv6:2607:f8b0:4864:20::842])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8D886891AC;
+ Thu, 13 Jun 2019 02:15:05 +0000 (UTC)
+Received: by mail-qt1-x842.google.com with SMTP id n11so18692668qtl.5;
+ Wed, 12 Jun 2019 19:15:05 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:date:from:to:cc:subject:message-id:mime-version
  :content-disposition:user-agent;
- bh=0cVvTv62Az1HTrl8FUiIHyxSc2jG6hN8Hla75BR5w4M=;
- b=icivoTmYlkzsyniDAT9m2aiAKy9H/hbo2/j6AaMLWA06uRJcLg+ghmXBRVpi+WOJ5c
- O8T/C9EHDGplksE1bOqDpQbeiVa1JXaQ0BwybUDhMUC/G6R3YmYIkaqOQl17xf+LIOM+
- f/LzaBLpaR+341J6ErkDuadYuCKzgREI3rfksn1yx10P1eQTV1VEP1w8GO6tbB0Ncy3I
- Z28cJsLjkJt5F2VLRIR8yUn3pJN73mcyrk//jfAzP40o7HGvGOxegXHSHBvhhIIR3C7O
- Ijw1GDuYC7QJwsgkd+6gMjbFuaagbwXc0Cw6WdFw3AFWY9wF23hMOG35GdBD6UHf6kBR
- 2/6A==
-X-Gm-Message-State: APjAAAXg1TZyhz1/HUPp+JDr/gKwIQ36p+CKnHKOgxDqhbUsAQNYHNEv
- DXQbTAVfxxb4vJXAAjl0P0c=
-X-Google-Smtp-Source: APXvYqzLd3ifguWITMiOZcgmncv5B0deo4wOLKQDnv7+CdbJeThnYCTF1jdNVtCFDE3yxhQCAIzN6g==
-X-Received: by 2002:a17:906:eb93:: with SMTP id
- mh19mr1902254ejb.42.1560391861842; 
- Wed, 12 Jun 2019 19:11:01 -0700 (PDT)
+ bh=weatLZ9NSXiBe38NzD/EWYekaHcQFfxcWtn1w8cZ0uk=;
+ b=htdeJxQxnR1BfhYe1X2doj4dWH79UdXCnsfqtpURm+zjv0wG/TxTBL9iCmhg4yfKhV
+ aFnSVq6yxu576JFztFuAGhMXDCB6KFOc81h00BnN2QEOPWLBy29ZL2u0Ioae+oDzXKqH
+ hwbhMl4kwDRCVy8wJX83yl868LCC6rXkGVO8EUKXZI2e6j/OIxtcL7tAIEV/joo7JmLn
+ zWOcabpSNHwbxU6/hS1C30hDDIUcTpLGYIOp2wzgocYxwr5mL/IWjPpNeEQ9V0yeJNHq
+ 2/SorBZCeCc+CR1H+RoK74eA9cf6oQXn/reSccARlhyboJJT7SJgisUuwhppS/W+AVdX
+ qjQg==
+X-Gm-Message-State: APjAAAX3fEuJFsiwql4ovt8/vH20w+mjq2wC3qRTZXP8lNZD7S7CS7WE
+ Djssz1oG2q0QVNIMep1Tg10=
+X-Google-Smtp-Source: APXvYqzPsRDs+uYE09CIQI2S8IuU4l/6WIwsdH+QkpqAU0+vEnHXIrgom2LQaYCYHtX872DvbvdICA==
+X-Received: by 2002:aed:3bb5:: with SMTP id r50mr69791659qte.89.1560392104538; 
+ Wed, 12 Jun 2019 19:15:04 -0700 (PDT)
 Received: from smtp.gmail.com ([187.121.151.146])
- by smtp.gmail.com with ESMTPSA id d22sm267726ejm.83.2019.06.12.19.10.56
+ by smtp.gmail.com with ESMTPSA id b23sm891739qte.19.2019.06.12.19.15.00
  (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
- Wed, 12 Jun 2019 19:11:00 -0700 (PDT)
-Date: Wed, 12 Jun 2019 23:10:54 -0300
+ Wed, 12 Jun 2019 19:15:03 -0700 (PDT)
+Date: Wed, 12 Jun 2019 23:14:58 -0300
 From: Rodrigo Siqueira <rodrigosiqueiramelo@gmail.com>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <maxime.ripard@bootlin.com>,
- Sean Paul <sean@poorly.run>, David Airlie <airlied@linux.ie>,
+To: Brian Starkey <Brian.Starkey@arm.com>, Liviu Dudau <Liviu.Dudau@arm.com>,
+ Petri Latvala <petri.latvala@intel.com>,
+ Arkadiusz Hiler <arkadiusz.hiler@intel.com>,
  Daniel Vetter <daniel@ffwll.ch>
-Message-ID: <20190613021054.cdewdb3azy6zuoyw@smtp.gmail.com>
+Message-ID: <cover.1560374714.git.rodrigosiqueiramelo@gmail.com>
 MIME-Version: 1.0
 User-Agent: NeoMutt/20180716
 X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=gmail.com; s=20161025;
  h=date:from:to:cc:subject:message-id:mime-version:content-disposition
  :user-agent;
- bh=0cVvTv62Az1HTrl8FUiIHyxSc2jG6hN8Hla75BR5w4M=;
- b=QOaYprUy58aYx9mi4m91RPw+yTHHislGhUo783bCLgkBVWrShDTV6jY+zsCkdfCoqG
- eoauFxtYTWaOLjk5v68w7R1+0tVLBVRIGyEym6CgAfE5xjo+ZYn4i6532sT3AU3kseBw
- HoQYm9G+7u8HQjuPgvFyM5uitbZ3Ql+z37/l5YxAHXcJo1mkDgw54jy5iF6igvpJbclj
- b/OevCFYu83pizJrTwDy0DUaW89ilAnz4TvTdtnsSKkSOLrUowI7PvNQ+KC8FZkaXJhq
- KnU1FkSDXQXkmzOvDqXzkDwWFJ2gkAjRToM8IR/QdReoloeJTV+XiCeMMvUxeMVn++Tu
- aMUA==
-Subject: [Intel-gfx] [RESEND PATCH V3] drm/drm_vblank: Change EINVAL by the
- correct errno
+ bh=weatLZ9NSXiBe38NzD/EWYekaHcQFfxcWtn1w8cZ0uk=;
+ b=l1FigqiKfl8aGjC4eEvfdLjPsp+qNTyrwWFeKYBPb+7B1du79AzgZYUXqYgMUDUmZU
+ +rhgKUrkFZJ/n+dedP9usi4wAjMJVLlJf84CQ7eX1HBgEcG8SY89eyfaeQEFj/Va5SuG
+ pkVpIe1dw6MKzpBmezFo73ymf5dYg9vZ62N1cMDlM+skNOMoqRBm5wVwdF42lqKQJHg9
+ d33a2fNnQrsS1tF8DEdRDyww32vH1isToGAWRbUbNsDED3sBzAM06P4sMBirdMPB2b6P
+ HwsTaFyhTPZ7rNLrCXaYbv5lQQOeTMt0Lmj9Ly8CkRGoXhtj2lkDXbgX8XJXL+hs5zuh
+ C3iw==
+Subject: [Intel-gfx] [PATCH V6 i-g-t 0/6] igt: Add support for testing
+ writeback connectors
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -70,118 +69,88 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, kernel-janitors@vger.kernel.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============0366047954=="
+Cc: igt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ nd <nd@arm.com>
+Content-Type: multipart/mixed; boundary="===============1179118740=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
---===============0366047954==
+--===============1179118740==
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="jmacjpd643vk5d4c"
+	protocol="application/pgp-signature"; boundary="w2hus3bqse4zgnjo"
 Content-Disposition: inline
 
 
---jmacjpd643vk5d4c
+--w2hus3bqse4zgnjo
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-For historical reason, the function drm_wait_vblank_ioctl always return
--EINVAL if something gets wrong. This scenario limits the flexibility
-for the userspace make detailed verification of the problem and take
-some action. In particular, the validation of =E2=80=9Cif (!dev->irq_enable=
-d)=E2=80=9D
-in the drm_wait_vblank_ioctl is responsible for checking if the driver
-support vblank or not. If the driver does not support VBlank, the
-function drm_wait_vblank_ioctl returns EINVAL which does not represent
-the real issue; this patch changes this behavior by return EOPNOTSUPP.
-Additionally, some operations are unsupported by this function, and
-returns EINVAL; this patch also changes the return value to EOPNOTSUPP
-in this case. Lastly, the function drm_wait_vblank_ioctl is invoked by
-libdrm, which is used by many compositors; because of this, it is
-important to check if this change breaks any compositor. In this sense,
-the following projects were examined:
+DRM already have writeback connectors support, which is a way to expose
+in DRM the hardware functionality from display engines that allows
+writing back into memory the result of the DE's composition of supported
+planes.
 
-* Drm-hwcomposer
-* Kwin
-* Sway
-* Wlroots
-* Wayland-core
-* Weston
-* Xorg (67 different drivers)
+These days, I'm working to add the writeback support into the vkms[1],
+and I used the kms_writeback to validate my implementation. As a result,
+I had to rebase the v5 version of Liviu's series, and I also fixed a
+small issue in the first path (lib/igt_kms: Add writeback support).
 
-For each repository the verification happened in three steps:
+Patches have been originally implemented by Brian, Liviu has done the v3
+and v4 updates to them. I=E2=80=99m just sending a v6.
 
-* Update the main branch
-* Look for any occurrence "drmWaitVBlank" with the command:
-  git grep -n "drmWaitVBlank"
-* Look in the git history of the project with the command:
-  git log -SdrmWaitVBlank
+1. https://patchwork.freedesktop.org/series/61738/
 
-Finally, none of the above projects validate the use of EINVAL which
-make safe, at least for these projects, to change the return values.
+Brian Starkey (6):
+  lib/igt_kms: Add writeback support
+  kms_writeback: Add initial writeback tests
+  lib: Add function to hash a framebuffer
+  kms_writeback: Add writeback-check-output
+  lib/igt_kms: Add igt_output_clone_pipe for cloning
+  kms_writeback: Add tests using a cloned output
 
-Change since V2:
- Daniel Vetter and Chris Wilson
- - Replace ENOTTY by EOPNOTSUPP
- - Return EINVAL if the parameters are wrong
+ lib/igt_fb.c           |  66 ++++++
+ lib/igt_fb.h           |   3 +
+ lib/igt_kms.c          | 157 +++++++++----
+ lib/igt_kms.h          |  10 +
+ tests/Makefile.sources |   1 +
+ tests/kms_writeback.c  | 492 +++++++++++++++++++++++++++++++++++++++++
+ tests/meson.build      |   1 +
+ 7 files changed, 692 insertions(+), 38 deletions(-)
+ create mode 100644 tests/kms_writeback.c
 
-Signed-off-by: Rodrigo Siqueira <rodrigosiqueiramelo@gmail.com>
----
-Update:
-  Now IGT has a way to validate if a driver has vblank support or not.
-  See: https://gitlab.freedesktop.org/drm/igt-gpu-tools/commit/2d244aed6916=
-5753f3adbbd6468db073dc1acf9A
-
- drivers/gpu/drm/drm_vblank.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/gpu/drm/drm_vblank.c b/drivers/gpu/drm/drm_vblank.c
-index 0d704bddb1a6..d76a783a7d4b 100644
---- a/drivers/gpu/drm/drm_vblank.c
-+++ b/drivers/gpu/drm/drm_vblank.c
-@@ -1578,10 +1578,10 @@ int drm_wait_vblank_ioctl(struct drm_device *dev, v=
-oid *data,
- 	unsigned int flags, pipe, high_pipe;
-=20
- 	if (!dev->irq_enabled)
--		return -EINVAL;
-+		return -EOPNOTSUPP;
-=20
- 	if (vblwait->request.type & _DRM_VBLANK_SIGNAL)
--		return -EINVAL;
-+		return -EOPNOTSUPP;
-=20
- 	if (vblwait->request.type &
- 	    ~(_DRM_VBLANK_TYPES_MASK | _DRM_VBLANK_FLAGS_MASK |
 --=20
 2.21.0
 
---jmacjpd643vk5d4c
+
+--=20
+Rodrigo Siqueira
+https://siqueira.tech
+
+--w2hus3bqse4zgnjo
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAEBCgAdFiEE4tZ+ii1mjMCMQbfkWJzP/comvP8FAl0BsK0ACgkQWJzP/com
-vP/4gA/7Biiupy7WhSPymKnZ+eYD/VkGhQ4xZ5o56UC7EC2582d/qLV3AGUW5R0C
-syX2HCKmxfNdpOBOa/75VOVjl9w6NS+Le/gnuVL07H9uW7zUefwWCEXNR7l1o22Z
-htFjEkqX8CYCzm9WMA+iUqgcpp0Em+/6FkTqLcTIBQqXsBFNOdnK1UNG8H1yI0jY
-r/Zl2a1Me6B3JtS3vLmBSRLh7xez+fOiX2pXbT1t+WZUlC+TGcIqn14WVaAXgJuw
-XKYzQxl+FJadL291ezbozPXNy29ljZ5PNOvxnhcG4SA9b55WGWM4Zh6GjeLcQqgY
-LaogzlZpe/QfTyk23C0efRUoXEFLhvB92IDWoeGo+brZG3y6ynQkGY7Xra0q1tem
-i0u9QGoFmfbAvlNXvJwZ7Q1ZOHqUGxKvfg0AZO3S0hwV0wb/lFAN2INT2uRMCapj
-VBipChDqv/9q+BLvMfyIMmpeAguVgA21iVtHHS61GvtBkj3tZVUFqlKcicQVe9rL
-nyemMYkrzoeozU+6gVShDJXDonB8Vf7tWB0tqKIsrtfqQsIQ0avY/IMl/Bo++gV3
-9EstV2YuONvhuL6ad2V5tq+ErwrQC0jaya8GWeO0TFGfiEO8XqvWmlnSvaw3+nuw
-UEtMVj3H7eM4zJpUPNm0NoQwUpy6meETdn9pqbmn0JzEeQzs1Xs=
-=Oj71
+iQIzBAEBCgAdFiEE4tZ+ii1mjMCMQbfkWJzP/comvP8FAl0BsaIACgkQWJzP/com
+vP9wShAAwUxKd6e+ZfaLU6tD+nchKtf2qIaB9Bnd+pBHwBGqPcDFlROYv7+tivw+
+O3byk4ggHEjdwxq8QzE2nTWdrXudjjLBs9KGMVwd7cjyHJrYat7bs4GPmElrynar
+V7u8TdTCi++g4MsNJ0sTeJG5u2/28s5g5xkiOkgx3SFsk+s08O8cKWMM2GE1j3me
+BkpN7uvDDst7ckZhTlNVjVe4Nap5voMS+u8vbhF0/DdobqDG4j8gE3LIYY0C3NAY
+fP6oc6UNqIkgCjiIOiYXvydOtJu1X/x+lUcL84O7Pa7wzAib3mSJoi8L7OAFTae3
+JCvY8cLucAr5PL6EbmtKw84mG6vgVnMC0Ate7Ydqu/CPQ7emQ3SbPLtWMUpBE96O
+1Y6jcuJuWvDeXkpb5/NOUk6os636AxT2Nbvtf1I3RUyptHXs8MdkKW1LdvLlVB6U
+5DNcF9kc+kSXdycvQZuIFqOQNHo4A49od5Nt6g/pQvGYA03IgrrbgTB9YBSQbfaT
+Ha5YPo8Gy8jitM/bsJn1VM8VyePyq890LgzrQ2V31yP9juHXXBqb1EkxRBYCuTN8
+6/chFmWc2ynHeUpg+o3nITeBGOV62UoUNerbbmcwGeM0sSeg82edpDHUhPEckQtm
+T9QAw/OcbTtRXOCqUVMXKg+EzxK7HulDaSK05oALL0z+VL+uKgg=
+=c007
 -----END PGP SIGNATURE-----
 
---jmacjpd643vk5d4c--
+--w2hus3bqse4zgnjo--
 
---===============0366047954==
+--===============1179118740==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -191,4 +160,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
 IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
 dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
 
---===============0366047954==--
+--===============1179118740==--
