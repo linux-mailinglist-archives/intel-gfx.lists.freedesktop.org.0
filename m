@@ -2,30 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 998EC454AA
-	for <lists+intel-gfx@lfdr.de>; Fri, 14 Jun 2019 08:28:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EADC3454E8
+	for <lists+intel-gfx@lfdr.de>; Fri, 14 Jun 2019 08:43:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4B754892A0;
-	Fri, 14 Jun 2019 06:28:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A7E498931F;
+	Fri, 14 Jun 2019 06:43:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id B7028892A0;
- Fri, 14 Jun 2019 06:28:24 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id AFA8DA0074;
- Fri, 14 Jun 2019 06:28:24 +0000 (UTC)
+Received: from ozlabs.org (ozlabs.org [IPv6:2401:3900:2:1::2])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 573038931F
+ for <intel-gfx@lists.freedesktop.org>; Fri, 14 Jun 2019 06:43:01 +0000 (UTC)
+Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
+ SHA256) (No client certificate requested)
+ by mail.ozlabs.org (Postfix) with ESMTPSA id 45Q9z50BPZz9sBr;
+ Fri, 14 Jun 2019 16:42:53 +1000 (AEST)
+Date: Fri, 14 Jun 2019 16:42:53 +1000
+From: Stephen Rothwell <sfr@canb.auug.org.au>
+To: Patchwork <patchwork@emeril.freedesktop.org>
+Message-ID: <20190614164253.1f8364ab@canb.auug.org.au>
+In-Reply-To: <20190614044735.17471.63333@emeril.freedesktop.org>
+References: <20190614144133.5dbea6bf@canb.auug.org.au>
+ <20190614044735.17471.63333@emeril.freedesktop.org>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Daniel Vetter" <daniel.vetter@ffwll.ch>
-Date: Fri, 14 Jun 2019 06:28:24 -0000
-Message-ID: <20190614062824.19703.8024@emeril.freedesktop.org>
-References: <20190614061723.1173-1-daniel.vetter@ffwll.ch>
-X-Patchwork-Hint: ignore
-In-Reply-To: <20190614061723.1173-1-daniel.vetter@ffwll.ch>
-Subject: [Intel-gfx] =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_f?=
- =?utf-8?q?or_drm/kms=3A_Catch_mode=5Fobject_lifetime_errors?=
+X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=canb.auug.org.au; s=201702; t=1560494577;
+ bh=dXiO4rOFLK9rclkJoqVWBWUVC09gkZkbFj4mMiTUqX8=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+ b=KQl90vchdQuQeRo4+sFsM06+qefW1P/oFAIXRJeGKHTZWkhMiSg3NbggdOb5QzSSy
+ 1WHj+4t7UO/LZErnqorAkm6VXBEe7DgZlL7kzgdx2nWmXw5Sg5G8hdy+iAdZeVbUHh
+ wORPlmQnKU79zVYg4kN4DMmQimQ5g4xMQI6Nom9RUS1ccWOiEA09HXzi6L376qFqkR
+ y97E0Nx//N5gdABMhDsUYod7h2dhz129PrszEr1Cjl3ng/j7eQ7sKhH8JbZp57H5KQ
+ m0WIxbTzohQORbA5shFmlM3bo9UonlZt9UySQ8abGhQzrrjhFkywDX+1/5dMhLcHFz
+ ljn1EWi4SW9sw==
+Subject: Re: [Intel-gfx] 
+ =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgbGlu?=
+ =?utf-8?q?ux-next=3A_build_failure_after_merge_of_the_drm-misc_tree?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -38,21 +51,94 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0087173564=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-PT0gU2VyaWVzIERldGFpbHMgPT0KClNlcmllczogZHJtL2ttczogQ2F0Y2ggbW9kZV9vYmplY3Qg
-bGlmZXRpbWUgZXJyb3JzClVSTCAgIDogaHR0cHM6Ly9wYXRjaHdvcmsuZnJlZWRlc2t0b3Aub3Jn
-L3Nlcmllcy82MjA4My8KU3RhdGUgOiB3YXJuaW5nCgo9PSBTdW1tYXJ5ID09CgokIGRpbSBjaGVj
-a3BhdGNoIG9yaWdpbi9kcm0tdGlwCjQ4MDBlYmJlNGRmMyBkcm0va21zOiBDYXRjaCBtb2RlX29i
-amVjdCBsaWZldGltZSBlcnJvcnMKLTo2MzogV0FSTklORzpOT19BVVRIT1JfU0lHTl9PRkY6IE1p
-c3NpbmcgU2lnbmVkLW9mZi1ieTogbGluZSBieSBub21pbmFsIHBhdGNoIGF1dGhvciAnRGFuaWVs
-IFZldHRlciA8ZGFuaWVsLnZldHRlckBmZndsbC5jaD4nCgp0b3RhbDogMCBlcnJvcnMsIDEgd2Fy
-bmluZ3MsIDAgY2hlY2tzLCAzMiBsaW5lcyBjaGVja2VkCgpfX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdm
-eEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFp
-bG1hbi9saXN0aW5mby9pbnRlbC1nZng=
+--===============0087173564==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ boundary="Sig_/9kVZhO6OWKhA2iosiMKs5w/"; protocol="application/pgp-signature"
+
+--Sig_/9kVZhO6OWKhA2iosiMKs5w/
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+Hi all,
+
+On Fri, 14 Jun 2019 04:47:35 -0000 Patchwork <patchwork@emeril.freedesktop.=
+org> wrote:
+>
+> =3D=3D Series Details =3D=3D
+>=20
+> Series: linux-next: build failure after merge of the drm-misc tree
+> URL   : https://patchwork.freedesktop.org/series/62080/
+> State : failure
+>=20
+> =3D=3D Summary =3D=3D
+>=20
+> CALL    scripts/checksyscalls.sh
+>   CALL    scripts/atomic/check-atomics.sh
+>   DESCEND  objtool
+>   CHK     include/generated/compile.h
+>   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.o
+> drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:4024:18: erro=
+r: initialization from incompatible pointer type [-Werror=3Dincompatible-po=
+inter-types]
+>   .atomic_check =3D amdgpu_dm_connector_atomic_check,
+>                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+> drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:4024:18: note=
+: (near initialization for =E2=80=98amdgpu_dm_connector_helper_funcs.atomic=
+_check=E2=80=99)
+> cc1: some warnings being treated as errors
+> scripts/Makefile.build:278: recipe for target 'drivers/gpu/drm/amd/amdgpu=
+/../display/amdgpu_dm/amdgpu_dm.o' failed
+> make[4]: *** [drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.o=
+] Error 1
+> scripts/Makefile.build:489: recipe for target 'drivers/gpu/drm/amd/amdgpu=
+' failed
+> make[3]: *** [drivers/gpu/drm/amd/amdgpu] Error 2
+> scripts/Makefile.build:489: recipe for target 'drivers/gpu/drm' failed
+> make[2]: *** [drivers/gpu/drm] Error 2
+> scripts/Makefile.build:489: recipe for target 'drivers/gpu' failed
+> make[1]: *** [drivers/gpu] Error 2
+> Makefile:1071: recipe for target 'drivers' failed
+> make: *** [drivers] Error 2
+>=20
+
+Can someone please stop this CI from trying to validate linux-next
+merge fix patches ...
+
+--=20
+Cheers,
+Stephen Rothwell
+
+--Sig_/9kVZhO6OWKhA2iosiMKs5w/
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAl0DQe0ACgkQAVBC80lX
+0Gyu5QgAnppd95nUdXyJR+jAQTeN0VipRvYmHxb5jF1mxRARdfzKMQwKrjyxkyyW
+VEr1LvGzjlsKJ0qU0Yr6nHNJtjR9BI1YH5tJy2uc1AJdjy+Zh/NgeTvMslsp1eri
+YGkdNpWfP4wbTqGz1fM/Zgm4EfkJWYtdnWSw7CUEk8PNy8rC+/yX0qLbq89fenud
+OzwtAQhRXx/kFErpAx5G76bQFkdWFFqUk9+PHeZqgZVWwesY6tI/20n9RypeZ0bC
+pYoaV1wWIBRmBmQ1q3WD2T+ViHrVnLg6mYf7h6LW37yucuXMkBLpArhSwsLec2HK
+uDX+MOPzfHjqKv/xStnxX+G/V+FAEw==
+=guwQ
+-----END PGP SIGNATURE-----
+
+--Sig_/9kVZhO6OWKhA2iosiMKs5w/--
+
+--===============0087173564==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
+IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
+
+--===============0087173564==--
