@@ -1,44 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id EADC3454E8
-	for <lists+intel-gfx@lfdr.de>; Fri, 14 Jun 2019 08:43:04 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 86B49454FF
+	for <lists+intel-gfx@lfdr.de>; Fri, 14 Jun 2019 08:49:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A7E498931F;
-	Fri, 14 Jun 2019 06:43:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5936E8931F;
+	Fri, 14 Jun 2019 06:49:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from ozlabs.org (ozlabs.org [IPv6:2401:3900:2:1::2])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 573038931F
- for <intel-gfx@lists.freedesktop.org>; Fri, 14 Jun 2019 06:43:01 +0000 (UTC)
-Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
- SHA256) (No client certificate requested)
- by mail.ozlabs.org (Postfix) with ESMTPSA id 45Q9z50BPZz9sBr;
- Fri, 14 Jun 2019 16:42:53 +1000 (AEST)
-Date: Fri, 14 Jun 2019 16:42:53 +1000
-From: Stephen Rothwell <sfr@canb.auug.org.au>
-To: Patchwork <patchwork@emeril.freedesktop.org>
-Message-ID: <20190614164253.1f8364ab@canb.auug.org.au>
-In-Reply-To: <20190614044735.17471.63333@emeril.freedesktop.org>
-References: <20190614144133.5dbea6bf@canb.auug.org.au>
- <20190614044735.17471.63333@emeril.freedesktop.org>
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DF1918931F
+ for <intel-gfx@lists.freedesktop.org>; Fri, 14 Jun 2019 06:48:58 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by orsmga106.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 13 Jun 2019 23:48:58 -0700
+X-ExtLoop1: 1
+Received: from yyosef-mobl.ger.corp.intel.com (HELO [10.252.23.42])
+ ([10.252.23.42])
+ by orsmga003.jf.intel.com with ESMTP; 13 Jun 2019 23:48:57 -0700
+To: "Robert M. Fosha" <robert.m.fosha@intel.com>,
+ intel-gfx@lists.freedesktop.org
+References: <20190614002838.3072-1-robert.m.fosha@intel.com>
+ <20190614002838.3072-2-robert.m.fosha@intel.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <62ddd492-4a40-0854-73a2-bc5693797011@linux.intel.com>
+Date: Fri, 14 Jun 2019 07:48:56 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.0
 MIME-Version: 1.0
-X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=canb.auug.org.au; s=201702; t=1560494577;
- bh=dXiO4rOFLK9rclkJoqVWBWUVC09gkZkbFj4mMiTUqX8=;
- h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
- b=KQl90vchdQuQeRo4+sFsM06+qefW1P/oFAIXRJeGKHTZWkhMiSg3NbggdOb5QzSSy
- 1WHj+4t7UO/LZErnqorAkm6VXBEe7DgZlL7kzgdx2nWmXw5Sg5G8hdy+iAdZeVbUHh
- wORPlmQnKU79zVYg4kN4DMmQimQ5g4xMQI6Nom9RUS1ccWOiEA09HXzi6L376qFqkR
- y97E0Nx//N5gdABMhDsUYod7h2dhz129PrszEr1Cjl3ng/j7eQ7sKhH8JbZp57H5KQ
- m0WIxbTzohQORbA5shFmlM3bo9UonlZt9UySQ8abGhQzrrjhFkywDX+1/5dMhLcHFz
- ljn1EWi4SW9sw==
-Subject: Re: [Intel-gfx] 
- =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgbGlu?=
- =?utf-8?q?ux-next=3A_build_failure_after_merge_of_the_drm-misc_tree?=
+In-Reply-To: <20190614002838.3072-2-robert.m.fosha@intel.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH 1/4] drm/i915: Support flags in whitlist WAs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -51,94 +47,58 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============0087173564=="
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0087173564==
-Content-Type: multipart/signed; micalg=pgp-sha256;
- boundary="Sig_/9kVZhO6OWKhA2iosiMKs5w/"; protocol="application/pgp-signature"
-
---Sig_/9kVZhO6OWKhA2iosiMKs5w/
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-Hi all,
-
-On Fri, 14 Jun 2019 04:47:35 -0000 Patchwork <patchwork@emeril.freedesktop.=
-org> wrote:
->
-> =3D=3D Series Details =3D=3D
->=20
-> Series: linux-next: build failure after merge of the drm-misc tree
-> URL   : https://patchwork.freedesktop.org/series/62080/
-> State : failure
->=20
-> =3D=3D Summary =3D=3D
->=20
-> CALL    scripts/checksyscalls.sh
->   CALL    scripts/atomic/check-atomics.sh
->   DESCEND  objtool
->   CHK     include/generated/compile.h
->   CC [M]  drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.o
-> drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:4024:18: erro=
-r: initialization from incompatible pointer type [-Werror=3Dincompatible-po=
-inter-types]
->   .atomic_check =3D amdgpu_dm_connector_atomic_check,
->                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-> drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:4024:18: note=
-: (near initialization for =E2=80=98amdgpu_dm_connector_helper_funcs.atomic=
-_check=E2=80=99)
-> cc1: some warnings being treated as errors
-> scripts/Makefile.build:278: recipe for target 'drivers/gpu/drm/amd/amdgpu=
-/../display/amdgpu_dm/amdgpu_dm.o' failed
-> make[4]: *** [drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.o=
-] Error 1
-> scripts/Makefile.build:489: recipe for target 'drivers/gpu/drm/amd/amdgpu=
-' failed
-> make[3]: *** [drivers/gpu/drm/amd/amdgpu] Error 2
-> scripts/Makefile.build:489: recipe for target 'drivers/gpu/drm' failed
-> make[2]: *** [drivers/gpu/drm] Error 2
-> scripts/Makefile.build:489: recipe for target 'drivers/gpu' failed
-> make[1]: *** [drivers/gpu] Error 2
-> Makefile:1071: recipe for target 'drivers' failed
-> make: *** [drivers] Error 2
->=20
-
-Can someone please stop this CI from trying to validate linux-next
-merge fix patches ...
-
---=20
-Cheers,
-Stephen Rothwell
-
---Sig_/9kVZhO6OWKhA2iosiMKs5w/
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAl0DQe0ACgkQAVBC80lX
-0Gyu5QgAnppd95nUdXyJR+jAQTeN0VipRvYmHxb5jF1mxRARdfzKMQwKrjyxkyyW
-VEr1LvGzjlsKJ0qU0Yr6nHNJtjR9BI1YH5tJy2uc1AJdjy+Zh/NgeTvMslsp1eri
-YGkdNpWfP4wbTqGz1fM/Zgm4EfkJWYtdnWSw7CUEk8PNy8rC+/yX0qLbq89fenud
-OzwtAQhRXx/kFErpAx5G76bQFkdWFFqUk9+PHeZqgZVWwesY6tI/20n9RypeZ0bC
-pYoaV1wWIBRmBmQ1q3WD2T+ViHrVnLg6mYf7h6LW37yucuXMkBLpArhSwsLec2HK
-uDX+MOPzfHjqKv/xStnxX+G/V+FAEw==
-=guwQ
------END PGP SIGNATURE-----
-
---Sig_/9kVZhO6OWKhA2iosiMKs5w/--
-
---===============0087173564==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
-IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
-
---===============0087173564==--
+Ck9uIDE0LzA2LzIwMTkgMDE6MjgsIFJvYmVydCBNLiBGb3NoYSB3cm90ZToKPiBGcm9tOiBKb2hu
+IEhhcnJpc29uIDxKb2huLkMuSGFycmlzb25ASW50ZWwuY29tPgo+IAo+IE5ld2VyIGhhcmR3YXJl
+IGFkZHMgZmxhZ3MgdG8gdGhlIHdoaXRlbGlzdCB3b3JrLWFyb3VuZCByZWdpc3Rlci4gVGhlc2UK
+PiBhbGxvdyBwZXIgYWNjZXNzIGRpcmVjdGlvbiBwcml2aWxlZ2VzIGFuZCByYW5nZXMuCj4gCj4g
+U2lnbmVkLW9mZi1ieTogSm9obiBIYXJyaXNvbiA8Sm9obi5DLkhhcnJpc29uQEludGVsLmNvbT4K
+PiBTaWduZWQtb2ZmLWJ5OiBSb2JlcnQgTS4gRm9zaGEgPHJvYmVydC5tLmZvc2hhQGludGVsLmNv
+bT4KPiBDYzogVHZydGtvIFVyc3VsaW4gPHR2cnRrby51cnN1bGluQGludGVsLmNvbT4KPiBDYzog
+Q2hyaXMgV2lsc29uIDxjaHJpc0BjaHJpcy13aWxzb24uY28udWs+Cj4gLS0tCj4gICBkcml2ZXJz
+L2dwdS9kcm0vaTkxNS9ndC9pbnRlbF93b3JrYXJvdW5kcy5jIHwgOSArKysrKysrKy0KPiAgIGRy
+aXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfcmVnLmggICAgICAgICAgICAgfCA3ICsrKysrKysKPiAg
+IDIgZmlsZXMgY2hhbmdlZCwgMTUgaW5zZXJ0aW9ucygrKSwgMSBkZWxldGlvbigtKQo+IAo+IGRp
+ZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRlbF93b3JrYXJvdW5kcy5jIGIv
+ZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfd29ya2Fyb3VuZHMuYwo+IGluZGV4IDE2NWIw
+YTQ1ZTAwOS4uYWU4MjM0MGZmZjQ1IDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1
+L2d0L2ludGVsX3dvcmthcm91bmRzLmMKPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9p
+bnRlbF93b3JrYXJvdW5kcy5jCj4gQEAgLTEwMTIsNyArMTAxMiw3IEBAIGJvb2wgaW50ZWxfZ3Rf
+dmVyaWZ5X3dvcmthcm91bmRzKHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICppOTE1LAo+ICAgfQo+
+ICAgCj4gICBzdGF0aWMgdm9pZAo+IC13aGl0ZWxpc3RfcmVnKHN0cnVjdCBpOTE1X3dhX2xpc3Qg
+KndhbCwgaTkxNV9yZWdfdCByZWcpCj4gK3doaXRlbGlzdF9yZWdfZXh0KHN0cnVjdCBpOTE1X3dh
+X2xpc3QgKndhbCwgaTkxNV9yZWdfdCByZWcsIHUzMiBmbGFncykKPiAgIHsKPiAgIAlzdHJ1Y3Qg
+aTkxNV93YSB3YSA9IHsKPiAgIAkJLnJlZyA9IHJlZwo+IEBAIC0xMDIxLDkgKzEwMjEsMTYgQEAg
+d2hpdGVsaXN0X3JlZyhzdHJ1Y3QgaTkxNV93YV9saXN0ICp3YWwsIGk5MTVfcmVnX3QgcmVnKQo+
+ICAgCWlmIChHRU1fREVCVUdfV0FSTl9PTih3YWwtPmNvdW50ID49IFJJTkdfTUFYX05PTlBSSVZf
+U0xPVFMpKQo+ICAgCQlyZXR1cm47Cj4gICAKPiArCXdhLnJlZy5yZWcgfD0gZmxhZ3M7Cj4gICAJ
+X3dhX2FkZCh3YWwsICZ3YSk7Cj4gICB9Cj4gICAKPiArc3RhdGljIHZvaWQKPiArd2hpdGVsaXN0
+X3JlZyhzdHJ1Y3QgaTkxNV93YV9saXN0ICp3YWwsIGk5MTVfcmVnX3QgcmVnKQo+ICt7Cj4gKwl3
+aGl0ZWxpc3RfcmVnX2V4dCh3YWwsIHJlZywgUklOR19GT1JDRV9UT19OT05QUklWX1JXKTsKPiAr
+fQo+ICsKPiAgIHN0YXRpYyB2b2lkIGdlbjlfd2hpdGVsaXN0X2J1aWxkKHN0cnVjdCBpOTE1X3dh
+X2xpc3QgKncpCj4gICB7Cj4gICAJLyogV2FWRkVTdGF0ZUFmdGVyUGlwZUNvbnRyb2x3aXRoTWVk
+aWFTdGF0ZUNsZWFyOnNrbCxieHQsZ2xrLGNmbCAqLwo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dw
+dS9kcm0vaTkxNS9pOTE1X3JlZy5oIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9yZWcuaAo+
+IGluZGV4IGVkZjlmOTM5MzRhMS4uMTBmZWE1YWIzZmMzIDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMv
+Z3B1L2RybS9pOTE1L2k5MTVfcmVnLmgKPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1
+X3JlZy5oCj4gQEAgLTI1MTMsNiArMjUxMywxMyBAQCBlbnVtIGk5MTVfcG93ZXJfd2VsbF9pZCB7
+Cj4gICAjZGVmaW5lICAgUklOR19XQUlUX1NFTUFQSE9SRQkoMSA8PCAxMCkgLyogZ2VuNisgKi8K
+PiAgIAo+ICAgI2RlZmluZSBSSU5HX0ZPUkNFX1RPX05PTlBSSVYoYmFzZSwgaSkgX01NSU8oKChi
+YXNlKSArIDB4NEQwKSArIChpKSAqIDQpCj4gKyNkZWZpbmUgICBSSU5HX0ZPUkNFX1RPX05PTlBS
+SVZfUlcJCSgwIDw8IDI4KSAgICAvKiBDRkwrICYgR2VuMTErICovCgpTaG91bGRuJ3QgdGhpcyBj
+b21tZW50IGJlIGFnYWluc3QgdGhlIFJEIGFuZCBXUiBmbGFncywgd2hpbGUgdGhlIGFib3ZlIApp
+cyB0aGUgbGVnYWN5IG9uZT8KCj4gKyNkZWZpbmUgICBSSU5HX0ZPUkNFX1RPX05PTlBSSVZfUkQJ
+CSgxIDw8IDI4KQo+ICsjZGVmaW5lICAgUklOR19GT1JDRV9UT19OT05QUklWX1dSCQkoMiA8PCAy
+OCkKPiArI2RlZmluZSAgIFJJTkdfRk9SQ0VfVE9fTk9OUFJJVl9SQU5HRV8xCQkoMCA8PCAwKSAg
+ICAgLyogQ0ZMKyAmIEdlbjExKyAqLwo+ICsjZGVmaW5lICAgUklOR19GT1JDRV9UT19OT05QUklW
+X1JBTkdFXzQJCSgxIDw8IDApCj4gKyNkZWZpbmUgICBSSU5HX0ZPUkNFX1RPX05PTlBSSVZfUkFO
+R0VfMTYJKDIgPDwgMCkKPiArI2RlZmluZSAgIFJJTkdfRk9SQ0VfVE9fTk9OUFJJVl9SQU5HRV82
+NAkoMyA8PCAwKQo+ICAgI2RlZmluZSAgIFJJTkdfTUFYX05PTlBSSVZfU0xPVFMgIDEyCj4gICAK
+PiAgICNkZWZpbmUgR0VON19UTEJfUkRfQUREUglfTU1JTygweDQ3MDApCj4gCgpSZWdhcmRzLAoK
+VHZydGtvCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCklu
+dGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRw
+czovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeA==
