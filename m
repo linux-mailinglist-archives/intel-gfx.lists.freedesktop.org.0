@@ -2,33 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 69E064641E
-	for <lists+intel-gfx@lfdr.de>; Fri, 14 Jun 2019 18:30:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BE6E346431
+	for <lists+intel-gfx@lfdr.de>; Fri, 14 Jun 2019 18:32:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A354C89319;
-	Fri, 14 Jun 2019 16:30:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 25995899F2;
+	Fri, 14 Jun 2019 16:32:26 +0000 (UTC)
 X-Original-To: Intel-gfx@lists.freedesktop.org
 Delivered-To: Intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6315489319
- for <Intel-gfx@lists.freedesktop.org>; Fri, 14 Jun 2019 16:30:47 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 10B30899F2
+ for <Intel-gfx@lists.freedesktop.org>; Fri, 14 Jun 2019 16:32:23 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from localhost (unverified [78.156.65.138]) 
  by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 16905163-1500050 for multiple; Fri, 14 Jun 2019 17:30:42 +0100
+ 16905196-1500050 for multiple; Fri, 14 Jun 2019 17:32:19 +0100
 MIME-Version: 1.0
 From: Chris Wilson <chris@chris-wilson.co.uk>
 User-Agent: alot/0.6
 To: Intel-gfx@lists.freedesktop.org,
  Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
 References: <20190614151731.17608-1-tvrtko.ursulin@linux.intel.com>
- <20190614151731.17608-25-tvrtko.ursulin@linux.intel.com>
-In-Reply-To: <20190614151731.17608-25-tvrtko.ursulin@linux.intel.com>
-Message-ID: <156052984034.7796.3724777676080347884@skylake-alporthouse-com>
-Date: Fri, 14 Jun 2019 17:30:40 +0100
-Subject: Re: [Intel-gfx] [RFC 24/31] drm/i915: Compartmentalize
- i915_ggtt_cleanup_hw
+ <20190614151731.17608-26-tvrtko.ursulin@linux.intel.com>
+In-Reply-To: <20190614151731.17608-26-tvrtko.ursulin@linux.intel.com>
+Message-ID: <156052993763.7796.3552935312189324070@skylake-alporthouse-com>
+Date: Fri, 14 Jun 2019 17:32:17 +0100
+Subject: Re: [Intel-gfx] [RFC 25/31] drm/i915: Compartmentalize
+ i915_gem_init_ggtt
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -46,15 +46,15 @@ Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-UXVvdGluZyBUdnJ0a28gVXJzdWxpbiAoMjAxOS0wNi0xNCAxNjoxNzoyNCkKPiBGcm9tOiBUdnJ0
+UXVvdGluZyBUdnJ0a28gVXJzdWxpbiAoMjAxOS0wNi0xNCAxNjoxNzoyNSkKPiBGcm9tOiBUdnJ0
 a28gVXJzdWxpbiA8dHZydGtvLnVyc3VsaW5AaW50ZWwuY29tPgo+IAo+IENvbnRpbnVpbmcgb24g
 dGhlIHRoZW1lIG9mIGJldHRlciBsb2dpY2FsIG9yZ2FuaXphdGlvbiBvZiBvdXIgY29kZSwgbWFr
 ZQo+IHRoZSBmaXJzdCBzdGVwIHRvd2FyZHMgbWFraW5nIHRoZSBnZ3R0IGNvZGUgYmV0dGVyIGlz
 b2xhdGVkIGZyb20gd2lkZXIKPiBzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZS4KPiAKPiB2MjoKPiAg
-KiBDbGVhbnVwIG9mIG1tLndjX3N0YXNoIGRvZXMgbm90IG5lZWQgc3RydWN0X211dGV4LiAoQ2hy
-aXMpCj4gCj4gU2lnbmVkLW9mZi1ieTogVHZydGtvIFVyc3VsaW4gPHR2cnRrby51cnN1bGluQGlu
-dGVsLmNvbT4KCiogc2hha2VzIGZpcnN0IGF0IHN0cnVjdF9tdXRleAoKUmV2aWV3ZWQtYnk6IENo
-cmlzIFdpbHNvbiA8Y2hyaXNAY2hyaXMtd2lsc29uLmNvLnVrPgotQ2hyaXMKX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlz
-dApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0
-b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
+KiBCcmluZyB0aGUgaWNrbGUgb25pb24gdW53aW5kIGJhY2suIChDaHJpcykKPiAgKiBSZW5hbWUg
+dG8gaTkxNV9pbml0X2dndHQuIChDaHJpcykKPiAKPiBTaWduZWQtb2ZmLWJ5OiBUdnJ0a28gVXJz
+dWxpbiA8dHZydGtvLnVyc3VsaW5AaW50ZWwuY29tPgoKQnV0IG5vdCBwYXNzaW5nIGd0PyBPciBp
+cyB0aGF0IHN0aWxsIHdhaXRpbmcgb24gbW92aW5nIGdndHQgYW5kCmFsaWFzaW5nX3BwZ3R0Pwot
+Q2hyaXMKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50
+ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBz
+Oi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
