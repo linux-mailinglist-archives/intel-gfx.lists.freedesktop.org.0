@@ -1,51 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 583984514B
-	for <lists+intel-gfx@lfdr.de>; Fri, 14 Jun 2019 03:46:36 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 69140453A2
+	for <lists+intel-gfx@lfdr.de>; Fri, 14 Jun 2019 06:41:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 32700892E4;
-	Fri, 14 Jun 2019 01:46:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 479F0892FE;
+	Fri, 14 Jun 2019 04:41:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DA08D892E4
- for <intel-gfx@lists.freedesktop.org>; Fri, 14 Jun 2019 01:46:32 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 13 Jun 2019 18:46:32 -0700
-X-ExtLoop1: 1
-Received: from kmsmsx152.gar.corp.intel.com ([172.21.73.87])
- by fmsmga005.fm.intel.com with ESMTP; 13 Jun 2019 18:46:31 -0700
-Received: from pgsmsx111.gar.corp.intel.com ([169.254.2.51]) by
- KMSMSX152.gar.corp.intel.com ([169.254.11.195]) with mapi id 14.03.0415.000;
- Fri, 14 Jun 2019 09:42:08 +0800
-From: "Lee, Shawn C" <shawn.c.lee@intel.com>
-To: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [Intel-gfx] [PATCH] drm/i915: Refine eDP aux backlight enable
- sequence.
-Thread-Index: AQHVIadSYgkM1Bppp0afFyU5IOmSuaaYyNqAgABCSICAAVXssA==
-Date: Fri, 14 Jun 2019 01:42:08 +0000
-Message-ID: <D42A2A322A1FCA4089E30E9A9BA36AC65D60CD02@PGSMSX111.gar.corp.intel.com>
-References: <1560404842-13583-1-git-send-email-shawn.c.lee@intel.com>
- <20190613091943.GU5942@intel.com> <87muilwrp2.fsf@intel.com>
-In-Reply-To: <87muilwrp2.fsf@intel.com>
-Accept-Language: zh-TW, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-version: 11.0.600.7
-dlp-reaction: no-action
-x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiZWM3ZTYzZTUtYWRjYy00YjFhLWI0OGYtNDUyNThmMGVlM2NhIiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX05UIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE3LjEwLjE4MDQuNDkiLCJUcnVzdGVkTGFiZWxIYXNoIjoibmJRM0xFZzRxbHhMMjJWOUFYU0V2bkk0amlcL1djaXBiXC9UYm1cLzNMaWtCZ2xVbWZRajRLS0hQVThYcXpRU2tINSJ9
-x-ctpclassification: CTP_NT
-x-originating-ip: [172.30.20.205]
+Received: from ozlabs.org (ozlabs.org [IPv6:2401:3900:2:1::2])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AFC1B8924F;
+ Fri, 14 Jun 2019 04:41:38 +0000 (UTC)
+Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
+ SHA256) (No client certificate requested)
+ by mail.ozlabs.org (Postfix) with ESMTPSA id 45Q7H15S2fz9s4Y;
+ Fri, 14 Jun 2019 14:41:33 +1000 (AEST)
+Date: Fri, 14 Jun 2019 14:41:33 +1000
+From: Stephen Rothwell <sfr@canb.auug.org.au>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>, Intel Graphics
+ <intel-gfx@lists.freedesktop.org>, DRI <dri-devel@lists.freedesktop.org>,
+ Dave Airlie <airlied@linux.ie>
+Message-ID: <20190614144133.5dbea6bf@canb.auug.org.au>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Refine eDP aux backlight enable
- sequence.
+X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=canb.auug.org.au; s=201702; t=1560487295;
+ bh=/d+ryYV/vaMZn5qaMRIajjQqgkaOkU1+4KD1BOAynSs=;
+ h=Date:From:To:Cc:Subject:From;
+ b=ebM/DX4zLGPWz7/mr0RvODiffTm/dcL/MPUPUpk+LC6wNRIk3kjJGJoglIScrpqCy
+ r/M+e4hgy/ZIawLiYi53HZ/Xur/igR5L8pyMLV6InoUHvp00VivhbnvCImLZpANVXQ
+ 9zhff4W4bqkCVjZwGcEsZ7CQZVFQO8e7BLU41UIo8CzYTmsoMHxjugddxnpjrbMvoD
+ twVFzcCycM2XKD7PKoSKN6ibJe90uACbnVbXwBw8o/cIWqhX0p7Z6JubFO7Bhm3zgU
+ 1tx0JNTyFDC02/I1l3oRKGgwz/N4sqp+s6zp/IG8SU+u6CrBDtOVzGrTlALeynp3IU
+ pScU0mZe71oWw==
+Subject: [Intel-gfx] linux-next: build failure after merge of the drm-misc
+ tree
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -58,58 +49,114 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: "1560404842-13583-1-git-send-email-shawn.c.lee@intel.com"
- <1560404842-13583-1-git-send-email-shawn.c.lee@intel.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Sean Paul <seanpaul@chromium.org>,
+ Linux Next Mailing List <linux-next@vger.kernel.org>,
+ Harry Wentland <harry.wentland@amd.com>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
+Content-Type: multipart/mixed; boundary="===============2009641653=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Ck9uIFRodSwgMTMgSnVuIDIwMTksIEphbmkgTmlrdWxhIDxqYW5pLm5pa3VsYUBpbnRlbC5jb20+
-IHdyb3RlOgo+T24gVGh1LCAxMyBKdW4gMjAxOSwgVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJq
-YWxhQGxpbnV4LmludGVsLmNvbT4gd3JvdGU6Cj4+IE9uIFdlZCwgSnVuIDEyLCAyMDE5IGF0IDEw
-OjQ3OjIyUE0gLTA3MDAsIExlZSwgU2hhd24gQyB3cm90ZToKPj4+IE1vZGlmeSBhdXggYmFja2xp
-Z2h0IGVuYWJsZSBzZXF1ZW5jZSBqdXN0IGxpa2Ugd2hhdCB3ZSBkaWQgZm9yIAo+Pj4gZ2VuZXJu
-YWwgZURQIHBhbmVsLgo+Pj4gMS4gU2V0dXAgUFdNIGZyZXEgYW5kIGJyaWdodG5lc3MgbGV2ZWwg
-YmVmb3JlIGVuYWJsZSBkaXNwbGF5IGJhY2tsaWdodC4KPj4+IDIuIEFkZCBUOCAodmFsaWQgZGF0
-YSB0byBiYWNrbGlnaHQgZW5hYmxlKSBkZWxheS4KPj4KPj4gSWYgd2UgcmVzcGVjdCB0aGUgb25f
-ZGVsYXkgc2hvdWxkbid0IHdlIHRoZW4gcmVzcGVjdCB0aGUgb2ZmX2RlbGF5IHRvbz8KPj4KPj4g
-SW4gd2hpY2ggY2FzZSBJIHN1Z2dlc3QgdHdvIHBhdGNoZXM6Cj4+IDEuIHN3YWFwIHRoZSBlbmFi
-bGUgdnMuIHNldF9icmlnaHRuZXNzIG9yZGVyIDIuIGFkZCB0aGUgb24vb2ZmIGRlbGF5cwo+Cj5U
-aGUgYXV4IGJhY2tsaWdodCBmdW5jdGlvbnMgYXJlIGNhbGxlZCB2aWEgdGhlIHNhbWUgaG9va3Mg
-YXMgZXZlcnl0aGluZyBpbiBpbnRlbF9wYW5lbC5jLCB3aGljaCBkbyBub3QgaGF2ZSBkZWxheXMg
-KHRoZXkncmUgYWxsIG9uIHRoZSBjYWxsaW5nIHNpZGUgaW4gaW50ZWxfZHAuYykgc28gSSdtIGNv
-bmZ1c2VkIHdoeSB0aGVzZSB3b3VsZCByZXF1aXJlIHRoZSBkZWxheXMuCj4KPkJSLAo+SmFuaS4K
-ClJlZmVyIHRvIGludGVsX2VkcF9iYWNrbGlnaHRfb24oKS4gUFdNIHdhcyByZXN0b3JlZCBhdCB0
-aGUgZW5kIG9mIGludGVsX3BhbmVsX2VuYWJsZV9iYWNrbGlnaHQoKS4KQWZ0ZXIgdGhhdCwgZHJp
-dmVyIHdvdWxkIHdhaXQgZm9yIHNvbWUgZGVsYXkgd2FpdF9iYWNrbGlnaHRfb24oKSBiZWZvcmUg
-ZW5hYmxlIGJhY2tsaWdodC4gCgpUaGFua3MgZm9yIFZpbGxlJ3MgcmVjb21tZW5kYXRpb24uIEkg
-d2lsbCBzZW5kIHNlcGFyYXRlIGZvciB0aGlzIGNoYW5nZS4KCkJlc3QgcmVnYXJkcywKU2hhd24K
-Cj4+PiAKPj4+IENjOiBKYW5pIE5pa3VsYSA8amFuaS5uaWt1bGFAaW50ZWwuY29tPgo+Pj4gQ2M6
-IEpvc2UgUm9iZXJ0byBkZSBTb3V6YSA8am9zZS5zb3V6YUBpbnRlbC5jb20+Cj4+PiBDYzogQ29v
-cGVyIENoaW91IDxjb29wZXIuY2hpb3VAaW50ZWwuY29tPgo+Pj4gCj4+PiBTaWduZWQtb2ZmLWJ5
-OiBMZWUsIFNoYXduIEMgPHNoYXduLmMubGVlQGludGVsLmNvbT4KPj4+IC0tLQo+Pj4gIGRyaXZl
-cnMvZ3B1L2RybS9pOTE1L2ludGVsX2RwX2F1eF9iYWNrbGlnaHQuYyB8IDYgKysrKystCj4+PiAg
-MSBmaWxlIGNoYW5nZWQsIDUgaW5zZXJ0aW9ucygrKSwgMSBkZWxldGlvbigtKQo+Pj4gCj4+PiBk
-aWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfZHBfYXV4X2JhY2tsaWdodC5j
-Cj4+PiBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX2RwX2F1eF9iYWNrbGlnaHQuYwo+Pj4g
-aW5kZXggN2RlZDk1YTMzNGRiLi5jMTEyZTBiOTMwZGUgMTAwNjQ0Cj4+PiAtLS0gYS9kcml2ZXJz
-L2dwdS9kcm0vaTkxNS9pbnRlbF9kcF9hdXhfYmFja2xpZ2h0LmMKPj4+ICsrKyBiL2RyaXZlcnMv
-Z3B1L2RybS9pOTE1L2ludGVsX2RwX2F1eF9iYWNrbGlnaHQuYwo+Pj4gQEAgLTIxNiw4ICsyMTYs
-MTIgQEAgc3RhdGljIHZvaWQgaW50ZWxfZHBfYXV4X2VuYWJsZV9iYWNrbGlnaHQoY29uc3Qgc3Ry
-dWN0IGludGVsX2NydGNfc3RhdGUgKmNydGNfc3QKPj4+ICAJCX0KPj4+ICAJfQo+Pj4gIAo+Pj4g
-LQlzZXRfYXV4X2JhY2tsaWdodF9lbmFibGUoaW50ZWxfZHAsIHRydWUpOwo+Pj4gIAlpbnRlbF9k
-cF9hdXhfc2V0X2JhY2tsaWdodChjb25uX3N0YXRlLAo+Pj4gY29ubmVjdG9yLT5wYW5lbC5iYWNr
-bGlnaHQubGV2ZWwpOwo+Pj4gKwo+Pj4gKwl3YWl0X3JlbWFpbmluZ19tc19mcm9tX2ppZmZpZXMo
-aW50ZWxfZHAtPmxhc3RfcG93ZXJfb24sCj4+PiArCQkJCSAgICAgICBpbnRlbF9kcC0+YmFja2xp
-Z2h0X29uX2RlbGF5KTsKPj4+ICsKPj4+ICsJc2V0X2F1eF9iYWNrbGlnaHRfZW5hYmxlKGludGVs
-X2RwLCB0cnVlKTsKPj4+ICB9Cj4+PiAgCj4+PiAgc3RhdGljIHZvaWQgaW50ZWxfZHBfYXV4X2Rp
-c2FibGVfYmFja2xpZ2h0KGNvbnN0IHN0cnVjdCAKPj4+IGRybV9jb25uZWN0b3Jfc3RhdGUgKm9s
-ZF9jb25uX3N0YXRlKQo+Pj4gLS0KPj4+IDIuNy40Cj4+PiAKPj4+IF9fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCj4+PiBJbnRlbC1nZnggbWFpbGluZyBsaXN0
-Cj4+PiBJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4+PiBodHRwczovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo+Cj4tLQo+SmFuaSBOaWt1
-bGEsIEludGVsIE9wZW4gU291cmNlIEdyYXBoaWNzIENlbnRlcgpfX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVs
-LWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcv
-bWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZng=
+--===============2009641653==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ boundary="Sig_//+.8RdugmHQfla=VfC_BGU/"; protocol="application/pgp-signature"
+
+--Sig_//+.8RdugmHQfla=VfC_BGU/
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
+
+Hi all,
+
+After merging the drm-misc tree, today's linux-next build (x86_64
+allmodconfig) failed like this:
+
+drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:4031:18: error:=
+ initialization of 'int (*)(struct drm_connector *, struct drm_atomic_state=
+ *)' from incompatible pointer type 'int (*)(struct drm_connector *, struct=
+ drm_connector_state *)' [-Werror=3Dincompatible-pointer-types]
+  .atomic_check =3D amdgpu_dm_connector_atomic_check,
+                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:4031:18: note: =
+(near initialization for 'amdgpu_dm_connector_helper_funcs.atomic_check')
+
+Caused by commit
+
+  6f3b62781bbd ("drm: Convert connector_helper_funcs->atomic_check to accep=
+t drm_atomic_state")
+
+interacting with commit
+
+  88694af9e4d1 ("drm/amd/display: Expose HDR output metadata for supported =
+connectors")
+
+from the drm tree.
+
+I added the following merge fix patch:
+
+From: Stephen Rothwell <sfr@canb.auug.org.au>
+Date: Fri, 14 Jun 2019 14:27:12 +1000
+Subject: [PATCH] fixup for "drm: Convert connector_helper_funcs->atomic_che=
+ck
+ to accept drm_atomic_state"
+
+Signed-off-by: Stephen Rothwell <sfr@canb.auug.org.au>
+---
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gp=
+u/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+index 413bf22e9585..b3a083c9a11c 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+@@ -3976,9 +3976,10 @@ is_hdr_metadata_different(const struct drm_connector=
+_state *old_state,
+=20
+ static int
+ amdgpu_dm_connector_atomic_check(struct drm_connector *conn,
+-				 struct drm_connector_state *new_con_state)
++				 struct drm_atomic_state *state)
+ {
+-	struct drm_atomic_state *state =3D new_con_state->state;
++	struct drm_connector_state *new_con_state =3D
++		drm_atomic_get_new_connector_state(state, conn);
+ 	struct drm_connector_state *old_con_state =3D
+ 		drm_atomic_get_old_connector_state(state, conn);
+ 	struct drm_crtc *crtc =3D new_con_state->crtc;
+--=20
+2.20.1
+
+--=20
+Cheers,
+Stephen Rothwell
+
+--Sig_//+.8RdugmHQfla=VfC_BGU/
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAl0DJX0ACgkQAVBC80lX
+0GxcLAgAljvrK6Ifl9wqiaYaz9OxA/w0ZH1f0ia1PUmQSyjwkPD5cYLtWrpvIjpy
+b9CuAwupRZuY8mjiygi/S0PMdUUEarl3/l2C2daY5BM5US23Vtt5g9g1LEmzbmru
+6L0Ya+tmjHgq7K8hQBNnRShoZhG5k1C+Mx02WFQ+EacdaRdo6lmMRclMihGbeOGs
+JmBE+Q8M0xN8XLuhqWF4sm69DXCKMmojWDiYmhfGyd9XbhYHENIVFiyWHGSRlc3R
+6zsyH+QENQIEo1/5c+UnAKRilOho8au0+aLfRxQh0Dg21Q5ytv4ii4DHu9n/R3VM
+KuEb7sBzmVu0AYkQnultJTy2cm6Nbg==
+=IVWq
+-----END PGP SIGNATURE-----
+
+--Sig_//+.8RdugmHQfla=VfC_BGU/--
+
+--===============2009641653==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
+IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
+
+--===============2009641653==--
