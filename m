@@ -1,32 +1,35 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D22A47AA5
-	for <lists+intel-gfx@lfdr.de>; Mon, 17 Jun 2019 09:19:41 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1BC0847ABA
+	for <lists+intel-gfx@lfdr.de>; Mon, 17 Jun 2019 09:23:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8BDA489183;
-	Mon, 17 Jun 2019 07:19:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 78923891D9;
+	Mon, 17 Jun 2019 07:23:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 861BC891A8
- for <intel-gfx@lists.freedesktop.org>; Mon, 17 Jun 2019 07:19:36 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 16923059-1500050 
- for multiple; Mon, 17 Jun 2019 08:19:16 +0100
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon, 17 Jun 2019 08:19:12 +0100
-Message-Id: <20190617071912.20256-22-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20190617071912.20256-1-chris@chris-wilson.co.uk>
-References: <20190617071912.20256-1-chris@chris-wilson.co.uk>
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B3DDA891F9;
+ Mon, 17 Jun 2019 07:23:40 +0000 (UTC)
+X-Amp-Result: UNSCANNABLE
+X-Amp-File-Uploaded: False
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 17 Jun 2019 00:23:40 -0700
+X-ExtLoop1: 1
+Received: from zhen-hp.sh.intel.com (HELO zhen-hp) ([10.239.13.116])
+ by orsmga008.jf.intel.com with ESMTP; 17 Jun 2019 00:23:37 -0700
+Date: Mon, 17 Jun 2019 15:21:37 +0800
+From: Zhenyu Wang <zhenyuw@linux.intel.com>
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Message-ID: <20190617072137.GA9684@zhen-hp.sh.intel.com>
+References: <20190613133419.GB6634@kroah.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 22/22] drm/i915: Move idle barrier cleanup into
- engine-pm
+In-Reply-To: <20190613133419.GB6634@kroah.com>
+User-Agent: Mutt/1.10.0 (2018-05-17)
+Subject: Re: [Intel-gfx] [PATCH] i915: gvt: no need to check return value of
+ debugfs_create functions
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -39,54 +42,239 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: matthew.auld@intel.com, mika.kuoppala@intel.com
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: Zhenyu Wang <zhenyuw@linux.intel.com>
+Cc: David Airlie <airlied@linux.ie>, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, intel-gvt-dev@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============1470164756=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Tm93IHRoYXQgd2Ugbm93IGxvbmdlciBuZWVkIHRvIGd1YXJhbnRlZSB0aGF0IHRoZSBhY3RpdmUg
-Y2FsbGJhY2sgaXMKdW5kZXIgdGhlIHN0cnVjdF9tdXRleCwgd2UgY2FuIGxpZnQgaXQgb3V0IG9m
-IHRoZSBpOTE1X2dlbV9wYXJrKCkgYW5kCmludG8gdGhlIGVuZ2luZSBwYXJraW5nIGl0c2VsZi4K
-ClNpZ25lZC1vZmYtYnk6IENocmlzIFdpbHNvbiA8Y2hyaXNAY2hyaXMtd2lsc29uLmNvLnVrPgot
-LS0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9wbS5jICAgIHwgMTkgLS0tLS0t
-LS0tLS0tLS0tLS0tLQogZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfZW5naW5lX3BtLmMg
-fCAxNSArKysrKysrKysrKysrKysKIDIgZmlsZXMgY2hhbmdlZCwgMTUgaW5zZXJ0aW9ucygrKSwg
-MTkgZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5
-MTVfZ2VtX3BtLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1fcG0uYwppbmRl
-eCBjOTQzM2NkZTRiOWEuLjM2NGNkOGJlYTQ0YSAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJt
-L2k5MTUvZ2VtL2k5MTVfZ2VtX3BtLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5
-MTVfZ2VtX3BtLmMKQEAgLTEwLDI5ICsxMCwxMCBAQAogI2luY2x1ZGUgImk5MTVfZHJ2LmgiCiAj
-aW5jbHVkZSAiaTkxNV9nbG9iYWxzLmgiCiAKLXN0YXRpYyB2b2lkIGNhbGxfaWRsZV9iYXJyaWVy
-cyhzdHJ1Y3QgaW50ZWxfZW5naW5lX2NzICplbmdpbmUpCi17Ci0Jc3RydWN0IGxsaXN0X25vZGUg
-Km5vZGUsICpuZXh0OwotCi0JbGxpc3RfZm9yX2VhY2hfc2FmZShub2RlLCBuZXh0LCBsbGlzdF9k
-ZWxfYWxsKCZlbmdpbmUtPmJhcnJpZXJfdGFza3MpKSB7Ci0JCXN0cnVjdCBkbWFfZmVuY2VfY2Ig
-KmNiID0KLQkJCWNvbnRhaW5lcl9vZigoc3RydWN0IGxpc3RfaGVhZCAqKW5vZGUsCi0JCQkJICAg
-ICB0eXBlb2YoKmNiKSwgbm9kZSk7Ci0KLQkJY2ItPmZ1bmMoTlVMTCwgY2IpOwotCX0KLX0KLQog
-c3RhdGljIHZvaWQgaTkxNV9nZW1fcGFyayhzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqaTkxNSkK
-IHsKLQlzdHJ1Y3QgaW50ZWxfZW5naW5lX2NzICplbmdpbmU7Ci0JZW51bSBpbnRlbF9lbmdpbmVf
-aWQgaWQ7Ci0KIAlsb2NrZGVwX2Fzc2VydF9oZWxkKCZpOTE1LT5kcm0uc3RydWN0X211dGV4KTsK
-IAotCWZvcl9lYWNoX2VuZ2luZShlbmdpbmUsIGk5MTUsIGlkKQotCQljYWxsX2lkbGVfYmFycmll
-cnMoZW5naW5lKTsgLyogY2xlYW51cCBhZnRlciB3ZWRnaW5nICovCi0KIAlpOTE1X3RpbWVsaW5l
-c19wYXJrKGk5MTUpOwogCWk5MTVfdm1hX3BhcmtlZChpOTE1KTsKIApkaWZmIC0tZ2l0IGEvZHJp
-dmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfZW5naW5lX3BtLmMgYi9kcml2ZXJzL2dwdS9kcm0v
-aTkxNS9ndC9pbnRlbF9lbmdpbmVfcG0uYwppbmRleCBkNWQzYWFjNWMyNjguLjU0ODhjM2U1NTdk
-ZSAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfZW5naW5lX3BtLmMK
-KysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfZW5naW5lX3BtLmMKQEAgLTk2LDYg
-Kzk2LDE5IEBAIHN0YXRpYyBib29sIHN3aXRjaF90b19rZXJuZWxfY29udGV4dChzdHJ1Y3QgaW50
-ZWxfZW5naW5lX2NzICplbmdpbmUpCiAJcmV0dXJuIGZhbHNlOwogfQogCitzdGF0aWMgdm9pZCBj
-YWxsX2lkbGVfYmFycmllcnMoc3RydWN0IGludGVsX2VuZ2luZV9jcyAqZW5naW5lKQoreworCXN0
-cnVjdCBsbGlzdF9ub2RlICpub2RlLCAqbmV4dDsKKworCWxsaXN0X2Zvcl9lYWNoX3NhZmUobm9k
-ZSwgbmV4dCwgbGxpc3RfZGVsX2FsbCgmZW5naW5lLT5iYXJyaWVyX3Rhc2tzKSkgeworCQlzdHJ1
-Y3QgZG1hX2ZlbmNlX2NiICpjYiA9CisJCQljb250YWluZXJfb2YoKHN0cnVjdCBsaXN0X2hlYWQg
-Kilub2RlLAorCQkJCSAgICAgdHlwZW9mKCpjYiksIG5vZGUpOworCisJCWNiLT5mdW5jKE5VTEws
-IGNiKTsKKwl9Cit9CisKIHN0YXRpYyBpbnQgX19lbmdpbmVfcGFyayhzdHJ1Y3QgaW50ZWxfd2Fr
-ZXJlZiAqd2YpCiB7CiAJc3RydWN0IGludGVsX2VuZ2luZV9jcyAqZW5naW5lID0KQEAgLTExNSw2
-ICsxMjgsOCBAQCBzdGF0aWMgaW50IF9fZW5naW5lX3Bhcmsoc3RydWN0IGludGVsX3dha2VyZWYg
-KndmKQogCiAJR0VNX1RSQUNFKCIlc1xuIiwgZW5naW5lLT5uYW1lKTsKIAorCWNhbGxfaWRsZV9i
-YXJyaWVycyhlbmdpbmUpOyAvKiBjbGVhbnVwIGFmdGVyIHdlZGdpbmcgKi8KKwogCWludGVsX2Vu
-Z2luZV9kaXNhcm1fYnJlYWRjcnVtYnMoZW5naW5lKTsKIAlpbnRlbF9lbmdpbmVfcG9vbF9wYXJr
-KCZlbmdpbmUtPnBvb2wpOwogCi0tIAoyLjIwLjEKCl9fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxp
-c3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFu
-L2xpc3RpbmZvL2ludGVsLWdmeA==
+
+--===============1470164756==
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="I8PrZ52jkgMwZ8Ef"
+Content-Disposition: inline
+
+
+--I8PrZ52jkgMwZ8Ef
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On 2019.06.13 15:34:19 +0200, Greg Kroah-Hartman wrote:
+> When calling debugfs functions, there is no need to ever check the
+> return value.  The function can work or not, but the code logic should
+> never do something different based on this.
+
+Looks fine to me. We'd follow this idiom.
+
+Reviewed-by: Zhenyu Wang <zhenyuw@linux.intel.com>
+
+>=20
+> Because there is no need to check these functions, a number of local
+> functions can be made to return void to simplify things as nothing can
+> fail.
+>=20
+> Cc: Zhenyu Wang <zhenyuw@linux.intel.com>
+> Cc: Zhi Wang <zhi.a.wang@intel.com>
+> Cc: Jani Nikula <jani.nikula@linux.intel.com>
+> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> Cc: David Airlie <airlied@linux.ie>
+> Cc: Daniel Vetter <daniel@ffwll.ch>
+> Cc: intel-gvt-dev@lists.freedesktop.org
+> Cc: intel-gfx@lists.freedesktop.org
+> Cc: dri-devel@lists.freedesktop.org
+> Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+> ---
+>  drivers/gpu/drm/i915/gvt/debugfs.c | 47 ++++++------------------------
+>  drivers/gpu/drm/i915/gvt/gvt.c     |  4 +--
+>  drivers/gpu/drm/i915/gvt/gvt.h     |  4 +--
+>  drivers/gpu/drm/i915/gvt/kvmgt.c   |  3 --
+>  drivers/gpu/drm/i915/gvt/vgpu.c    |  4 +--
+>  5 files changed, 13 insertions(+), 49 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/i915/gvt/debugfs.c b/drivers/gpu/drm/i915/gv=
+t/debugfs.c
+> index 8a9606f91e68..fdd9058ab8f2 100644
+> --- a/drivers/gpu/drm/i915/gvt/debugfs.c
+> +++ b/drivers/gpu/drm/i915/gvt/debugfs.c
+> @@ -189,36 +189,19 @@ DEFINE_SIMPLE_ATTRIBUTE(vgpu_scan_nonprivbb_fops,
+>  /**
+>   * intel_gvt_debugfs_add_vgpu - register debugfs entries for a vGPU
+>   * @vgpu: a vGPU
+> - *
+> - * Returns:
+> - * Zero on success, negative error code if failed.
+>   */
+> -int intel_gvt_debugfs_add_vgpu(struct intel_vgpu *vgpu)
+> +void intel_gvt_debugfs_add_vgpu(struct intel_vgpu *vgpu)
+>  {
+> -	struct dentry *ent;
+>  	char name[16] =3D "";
+> =20
+>  	snprintf(name, 16, "vgpu%d", vgpu->id);
+>  	vgpu->debugfs =3D debugfs_create_dir(name, vgpu->gvt->debugfs_root);
+> -	if (!vgpu->debugfs)
+> -		return -ENOMEM;
+> -
+> -	ent =3D debugfs_create_bool("active", 0444, vgpu->debugfs,
+> -				  &vgpu->active);
+> -	if (!ent)
+> -		return -ENOMEM;
+> -
+> -	ent =3D debugfs_create_file("mmio_diff", 0444, vgpu->debugfs,
+> -				  vgpu, &vgpu_mmio_diff_fops);
+> -	if (!ent)
+> -		return -ENOMEM;
+> =20
+> -	ent =3D debugfs_create_file("scan_nonprivbb", 0644, vgpu->debugfs,
+> -				 vgpu, &vgpu_scan_nonprivbb_fops);
+> -	if (!ent)
+> -		return -ENOMEM;
+> -
+> -	return 0;
+> +	debugfs_create_bool("active", 0444, vgpu->debugfs, &vgpu->active);
+> +	debugfs_create_file("mmio_diff", 0444, vgpu->debugfs, vgpu,
+> +			    &vgpu_mmio_diff_fops);
+> +	debugfs_create_file("scan_nonprivbb", 0644, vgpu->debugfs, vgpu,
+> +			    &vgpu_scan_nonprivbb_fops);
+>  }
+> =20
+>  /**
+> @@ -234,27 +217,15 @@ void intel_gvt_debugfs_remove_vgpu(struct intel_vgp=
+u *vgpu)
+>  /**
+>   * intel_gvt_debugfs_init - register gvt debugfs root entry
+>   * @gvt: GVT device
+> - *
+> - * Returns:
+> - * zero on success, negative if failed.
+>   */
+> -int intel_gvt_debugfs_init(struct intel_gvt *gvt)
+> +void intel_gvt_debugfs_init(struct intel_gvt *gvt)
+>  {
+>  	struct drm_minor *minor =3D gvt->dev_priv->drm.primary;
+> -	struct dentry *ent;
+> =20
+>  	gvt->debugfs_root =3D debugfs_create_dir("gvt", minor->debugfs_root);
+> -	if (!gvt->debugfs_root) {
+> -		gvt_err("Cannot create debugfs dir\n");
+> -		return -ENOMEM;
+> -	}
+> =20
+> -	ent =3D debugfs_create_ulong("num_tracked_mmio", 0444, gvt->debugfs_roo=
+t,
+> -				   &gvt->mmio.num_tracked_mmio);
+> -	if (!ent)
+> -		return -ENOMEM;
+> -
+> -	return 0;
+> +	debugfs_create_ulong("num_tracked_mmio", 0444, gvt->debugfs_root,
+> +			     &gvt->mmio.num_tracked_mmio);
+>  }
+> =20
+>  /**
+> diff --git a/drivers/gpu/drm/i915/gvt/gvt.c b/drivers/gpu/drm/i915/gvt/gv=
+t.c
+> index 43f4242062dd..8f37eefa0a02 100644
+> --- a/drivers/gpu/drm/i915/gvt/gvt.c
+> +++ b/drivers/gpu/drm/i915/gvt/gvt.c
+> @@ -375,9 +375,7 @@ int intel_gvt_init_device(struct drm_i915_private *de=
+v_priv)
+>  	}
+>  	gvt->idle_vgpu =3D vgpu;
+> =20
+> -	ret =3D intel_gvt_debugfs_init(gvt);
+> -	if (ret)
+> -		gvt_err("debugfs registration failed, go on.\n");
+> +	intel_gvt_debugfs_init(gvt);
+> =20
+>  	gvt_dbg_core("gvt device initialization is done\n");
+>  	dev_priv->gvt =3D gvt;
+> diff --git a/drivers/gpu/drm/i915/gvt/gvt.h b/drivers/gpu/drm/i915/gvt/gv=
+t.h
+> index f5a328b5290a..b73c7e63b2d5 100644
+> --- a/drivers/gpu/drm/i915/gvt/gvt.h
+> +++ b/drivers/gpu/drm/i915/gvt/gvt.h
+> @@ -682,9 +682,9 @@ static inline void intel_gvt_mmio_set_in_ctx(
+>  	gvt->mmio.mmio_attribute[offset >> 2] |=3D F_IN_CTX;
+>  }
+> =20
+> -int intel_gvt_debugfs_add_vgpu(struct intel_vgpu *vgpu);
+> +void intel_gvt_debugfs_add_vgpu(struct intel_vgpu *vgpu);
+>  void intel_gvt_debugfs_remove_vgpu(struct intel_vgpu *vgpu);
+> -int intel_gvt_debugfs_init(struct intel_gvt *gvt);
+> +void intel_gvt_debugfs_init(struct intel_gvt *gvt);
+>  void intel_gvt_debugfs_clean(struct intel_gvt *gvt);
+> =20
+> =20
+> diff --git a/drivers/gpu/drm/i915/gvt/kvmgt.c b/drivers/gpu/drm/i915/gvt/=
+kvmgt.c
+> index a68addf95c23..3c26fb28a2d1 100644
+> --- a/drivers/gpu/drm/i915/gvt/kvmgt.c
+> +++ b/drivers/gpu/drm/i915/gvt/kvmgt.c
+> @@ -1798,9 +1798,6 @@ static int kvmgt_guest_init(struct mdev_device *mde=
+v)
+>  						"kvmgt_nr_cache_entries",
+>  						0444, vgpu->debugfs,
+>  						&vgpu->vdev.nr_cache_entries);
+> -	if (!info->debugfs_cache_entries)
+> -		gvt_vgpu_err("Cannot create kvmgt debugfs entry\n");
+> -
+>  	return 0;
+>  }
+> =20
+> diff --git a/drivers/gpu/drm/i915/gvt/vgpu.c b/drivers/gpu/drm/i915/gvt/v=
+gpu.c
+> index 44ce3c2b9ac1..d5a6e4e3d0fd 100644
+> --- a/drivers/gpu/drm/i915/gvt/vgpu.c
+> +++ b/drivers/gpu/drm/i915/gvt/vgpu.c
+> @@ -420,9 +420,7 @@ static struct intel_vgpu *__intel_gvt_create_vgpu(str=
+uct intel_gvt *gvt,
+>  	if (ret)
+>  		goto out_clean_submission;
+> =20
+> -	ret =3D intel_gvt_debugfs_add_vgpu(vgpu);
+> -	if (ret)
+> -		goto out_clean_sched_policy;
+> +	intel_gvt_debugfs_add_vgpu(vgpu);
+> =20
+>  	ret =3D intel_gvt_hypervisor_set_opregion(vgpu);
+>  	if (ret)
+> --=20
+> 2.22.0
+>=20
+> _______________________________________________
+> intel-gvt-dev mailing list
+> intel-gvt-dev@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gvt-dev
+
+--=20
+Open Source Technology Center, Intel ltd.
+
+$gpg --keyserver wwwkeys.pgp.net --recv-keys 4D781827
+
+--I8PrZ52jkgMwZ8Ef
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iF0EARECAB0WIQTXuabgHDW6LPt9CICxBBozTXgYJwUCXQc/gQAKCRCxBBozTXgY
+J45sAJ9UT9JlKO8X7fshut6D0+sO3rtGDwCgi8/J5dlNW33XxlnZnTPldLqPEIg=
+=mrig
+-----END PGP SIGNATURE-----
+
+--I8PrZ52jkgMwZ8Ef--
+
+--===============1470164756==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
+IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
+
+--===============1470164756==--
