@@ -1,31 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6287447C08
-	for <lists+intel-gfx@lfdr.de>; Mon, 17 Jun 2019 10:22:00 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A67C47C2E
+	for <lists+intel-gfx@lfdr.de>; Mon, 17 Jun 2019 10:24:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6913189150;
-	Mon, 17 Jun 2019 08:21:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2D7B489151;
+	Mon, 17 Jun 2019 08:24:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1D7BC89150
- for <intel-gfx@lists.freedesktop.org>; Mon, 17 Jun 2019 08:21:57 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 17 Jun 2019 01:21:56 -0700
-X-ExtLoop1: 1
-Received: from sorvi.fi.intel.com ([10.237.72.207])
- by orsmga006.jf.intel.com with ESMTP; 17 Jun 2019 01:21:55 -0700
-From: Mika Kahola <mika.kahola@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon, 17 Jun 2019 11:24:13 +0300
-Message-Id: <20190617082413.22549-1-mika.kahola@intel.com>
-X-Mailer: git-send-email 2.17.1
-Subject: [Intel-gfx] [PATCH] drm/i915/icl: Add missing device ID
+Received: from mx1.redhat.com (mx1.redhat.com [209.132.183.28])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4908189151;
+ Mon, 17 Jun 2019 08:24:51 +0000 (UTC)
+Received: from smtp.corp.redhat.com (int-mx01.intmail.prod.int.phx2.redhat.com
+ [10.5.11.11])
+ (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+ (No client certificate requested)
+ by mx1.redhat.com (Postfix) with ESMTPS id 792877FDF6;
+ Mon, 17 Jun 2019 08:24:40 +0000 (UTC)
+Received: from sirius.home.kraxel.org (ovpn-116-33.ams2.redhat.com
+ [10.36.116.33])
+ by smtp.corp.redhat.com (Postfix) with ESMTP id DCCF17E666;
+ Mon, 17 Jun 2019 08:24:38 +0000 (UTC)
+Received: by sirius.home.kraxel.org (Postfix, from userid 1000)
+ id 1E34D16E18; Mon, 17 Jun 2019 10:24:38 +0200 (CEST)
+Date: Mon, 17 Jun 2019 10:24:38 +0200
+From: Gerd Hoffmann <kraxel@redhat.com>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>
+Message-ID: <20190617082438.s5eypq5lf6s33nyz@sirius.home.kraxel.org>
+References: <20190614203615.12639-1-daniel.vetter@ffwll.ch>
+ <20190614203615.12639-41-daniel.vetter@ffwll.ch>
+MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <20190614203615.12639-41-daniel.vetter@ffwll.ch>
+User-Agent: NeoMutt/20180716
+X-Scanned-By: MIMEDefang 2.79 on 10.5.11.11
+X-Greylist: Sender IP whitelisted, not delayed by milter-greylist-4.5.16
+ (mx1.redhat.com [10.5.110.27]); Mon, 17 Jun 2019 08:24:50 +0000 (UTC)
+Subject: Re: [Intel-gfx] [PATCH 40/59] drm/vram-helper: Drop
+ drm_gem_prime_export/import
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -38,25 +51,26 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-MIME-Version: 1.0
+Cc: Thomas Zimmermann <tzimmermann@suse.de>,
+ Maxime Ripard <maxime.ripard@bootlin.com>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ David Airlie <airlied@linux.ie>, Daniel Vetter <daniel.vetter@intel.com>
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-V2UgYXJlIG1pc3NpbmcgUENJIGRldmljZSBJRCBmb3IgU0tVIElDTExQIFUgR1QgMS41RiAoMHg4
-QTU0KSBhcyBwZXIgQlNQZWMuCgpCU3BlYzogMTkwOTIKClNpZ25lZC1vZmYtYnk6IE1pa2EgS2Fo
-b2xhIDxtaWthLmthaG9sYUBpbnRlbC5jb20+Ci0tLQogaW5jbHVkZS9kcm0vaTkxNV9wY2lpZHMu
-aCB8IDMgKystCiAxIGZpbGUgY2hhbmdlZCwgMiBpbnNlcnRpb25zKCspLCAxIGRlbGV0aW9uKC0p
-CgpkaWZmIC0tZ2l0IGEvaW5jbHVkZS9kcm0vaTkxNV9wY2lpZHMuaCBiL2luY2x1ZGUvZHJtL2k5
-MTVfcGNpaWRzLmgKaW5kZXggNmQ2MGVhNjhjMTcxLi42YzM0MmFjNDcwYzggMTAwNjQ0Ci0tLSBh
-L2luY2x1ZGUvZHJtL2k5MTVfcGNpaWRzLmgKKysrIGIvaW5jbHVkZS9kcm0vaTkxNV9wY2lpZHMu
-aApAQCAtNTY4LDcgKzU2OCw4IEBACiAJSU5URUxfVkdBX0RFVklDRSgweDhBNTYsIGluZm8pLCBc
-CiAJSU5URUxfVkdBX0RFVklDRSgweDhBNzEsIGluZm8pLCBcCiAJSU5URUxfVkdBX0RFVklDRSgw
-eDhBNzAsIGluZm8pLCBcCi0JSU5URUxfVkdBX0RFVklDRSgweDhBNTMsIGluZm8pCisJSU5URUxf
-VkdBX0RFVklDRSgweDhBNTMsIGluZm8pLCBcCisJSU5URUxfVkdBX0RFVklDRSgweDhBNTQsIGlu
-Zm8pCiAKICNkZWZpbmUgSU5URUxfSUNMXzExX0lEUyhpbmZvKSBcCiAJSU5URUxfSUNMX1BPUlRf
-Rl9JRFMoaW5mbyksIFwKLS0gCjIuMTcuMQoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMu
-ZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlz
-dGluZm8vaW50ZWwtZ2Z4
+ICBIaSwKCj4gQXNpZGU6IFdvdWxkIGJlIHJlYWxseSBuaWNlIHRvIHN3aXRjaCB0aGUgb3RoZXJz
+IG92ZXIgdG8KPiBkcm1fZ2VtX29iamVjdF9mdW5jcy4KCldoaWxlIG1vc3QgY2FsbGJhY2tzIGFy
+ZSBwcmV0dHkgc3RyYWlnaHQgZm9yd2FyZCAoanVzdCBob29rIHRoZSBzYW1lCmNhbGxiYWNrcyBp
+bnRvIHRoZSBkcm1fZ2VtX29iamVjdF9mdW5jcy4gc3RydWN0KSB0aGUgbW1hcCBiaXRzIGFyZSBh
+CmJpdCBtb3JlIG9ic2N1cmUuCgpGaXJzdCwgdGhlcmUgc2VlbSB0byBiZSB0d28gd2F5cyB0byBt
+bWFwIGEgZ2VtIGJ1ZmZlcjoKCiAgKDEpIGRybV9kcml2ZXItPmZvcHMtPm1tYXAsIGFuZAogICgy
+KSBkcm1fZHJpdmVyLT5nZW1fcHJpbWVfbW1hcC4KCmRybV9nZW1fb2JqZWN0X2Z1bmNzIGhhcyBq
+dXN0IGEgc2luZ2xlIHZtX29wcyAuLi4KCkFsc28gaXQgaXMgbm90IG9idmlvdXMgaG93IG9uZSB3
+b3VsZCBjb252ZXJ0IHNvbWV0aGluZyB3aGljaCBiYXNpY2FsbHkKY2FsbHMgdHRtX2JvX21tYXAo
+KSBpbiBkcm1fZHJpdmVyLT5mb3BzLT5tbWFwIHRvIHRoZSBuZXcgaW50ZXJmYWNlLgoKdGhhbmtz
+LAogIEdlcmQKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+CkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpo
+dHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeA==
