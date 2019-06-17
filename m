@@ -1,44 +1,56 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AFEB24789F
-	for <lists+intel-gfx@lfdr.de>; Mon, 17 Jun 2019 05:25:11 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7921E4815A
+	for <lists+intel-gfx@lfdr.de>; Mon, 17 Jun 2019 13:56:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 058BF89186;
-	Mon, 17 Jun 2019 03:25:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 60DDE891B5;
+	Mon, 17 Jun 2019 11:56:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from ozlabs.org (bilbo.ozlabs.org [IPv6:2401:3900:2:1::2])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 555FB89186;
- Mon, 17 Jun 2019 03:25:08 +0000 (UTC)
-Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
- SHA256) (No client certificate requested)
- by mail.ozlabs.org (Postfix) with ESMTPSA id 45RxRN6tlcz9sBp;
- Mon, 17 Jun 2019 13:25:04 +1000 (AEST)
-Date: Mon, 17 Jun 2019 13:25:04 +1000
-From: Stephen Rothwell <sfr@canb.auug.org.au>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>, Intel Graphics
- <intel-gfx@lists.freedesktop.org>, DRI <dri-devel@lists.freedesktop.org>,
- Alex Deucher <alexdeucher@gmail.com>
-Message-ID: <20190617132504.2cf70caf@canb.auug.org.au>
-In-Reply-To: <20190612114615.69a78655@canb.auug.org.au>
-References: <20190612114615.69a78655@canb.auug.org.au>
+Received: from ushosting.nmnhosting.com (ushosting.nmnhosting.com
+ [66.55.73.32])
+ by gabe.freedesktop.org (Postfix) with ESMTP id B460489159;
+ Mon, 17 Jun 2019 04:07:40 +0000 (UTC)
+Received: from mail2.nmnhosting.com (unknown [202.169.106.97])
+ by ushosting.nmnhosting.com (Postfix) with ESMTPS id E75102DC007F;
+ Mon, 17 Jun 2019 00:07:39 -0400 (EDT)
+Received: from adsilva.ozlabs.ibm.com (static-82-10.transact.net.au
+ [122.99.82.10] (may be forged)) (authenticated bits=0)
+ by mail2.nmnhosting.com (8.15.2/8.15.2) with ESMTPSA id x5H47CvI055927
+ (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=NO);
+ Mon, 17 Jun 2019 14:07:28 +1000 (AEST)
+ (envelope-from alastair@d-silva.org)
+Message-ID: <da2ff58290c4b6f08eb5ac25c288bdd03b5688f7.camel@d-silva.org>
+From: "Alastair D'Silva" <alastair@d-silva.org>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Date: Mon, 17 Jun 2019 14:07:12 +1000
+In-Reply-To: <20190617020430.8708-4-alastair@au1.ibm.com>
+References: <20190617020430.8708-1-alastair@au1.ibm.com>
+ <20190617020430.8708-4-alastair@au1.ibm.com>
+User-Agent: Evolution 3.32.2 (3.32.2-1.fc30) 
 MIME-Version: 1.0
+X-Greylist: Sender succeeded SMTP AUTH, not delayed by milter-greylist-4.6.2
+ (mail2.nmnhosting.com [10.0.1.20]); Mon, 17 Jun 2019 14:07:35 +1000 (AEST)
+X-Mailman-Approved-At: Mon, 17 Jun 2019 11:56:38 +0000
 X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=canb.auug.org.au; s=201702; t=1560741906;
- bh=ybZ9kfd8BqZ5IeQ7uWoB5rdf9MlwGRYtVyyb/7TehV4=;
- h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
- b=ZYe8InBSjtvC0Rq4E0GsWn0uKWuK7Lml7+BhjfjebHEcNHsfyjvuCjzqefPOoFNwZ
- JGk3EU3F5OtZV43FdCl9dzH44C7fY3N9NH0jbOxhSHROHZGP0xyP0X+ybBY62fREk2
- 8KmmPeOHp7nrSuD0AouplCthgdvT4yOCo+WRVkalVaN08DBoaQi2wbUIKPQuULRip/
- TWFeVEGXaoea6NLKVXXVl/A9mUfeJtJIRYhDjcU9jA2empmyFUxH95hBm8OJpIcrh+
- FBYiX/cqtXMbspBqgt+wgaguYUcxsCJPBImbBDOT0U9ZnFn2TUyHubPTobZqyMu3EZ
- YIe1CMTFIU3UQ==
-Subject: Re: [Intel-gfx] linux-next: manual merge of the drm-misc tree with
- the amdgpu tree
+ d=d-silva.org; s=201810a; t=1560744460;
+ bh=fcIJWb9zFrSz2UB8a7mxef1I4k9iDutEwQyvrCEDLlQ=;
+ h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
+ b=WCFaSA53OEIg+og8L/naQbQPlaTsOoXPKsvTwtmXP2Vk09oVK0XuS5AD3x5/CqLrM
+ G0GIng39m1v0lZ4sKpUf3T99/+YBxM9RX44WLALuhESqgh+r5BAShy10176lEQBE3q
+ DQvd2fgD6zwuDb2r3HtAMEKvNfyGEklzY4KUQ+U+VxMilUgRO+yfLfvjALw1DuedIj
+ U07cuyKZx46E0NJINEB5+8FVHhYvvSWxSY7sKWAoGvSBG/TJ18P0TuXGu+r+H6bH0e
+ aXUQ8ilJHofP52ff/zDalxsvFnS/I19R0WtGSyZHeql8nV+rZAy3ckW9tGr7DubBUl
+ qpbsJvQK16Hb/jOSoEHhPkG1VKXuLKMb1qy/wzkUplRpkQy3lck+ggy2ukzRhUgkqh
+ N1Q6mMJi30A9PGd1HWpWuLWkLg4LedcJItJ961IWPw6XnamogZOK4OajearEtq6Wug
+ Q7fZpUvUrqSKSyRRBPeipKEoLRw/YY+95nWqf7l5GKHjuTC0GylNVU3e6c29Aa3j+X
+ 5pRuwG5Xw/zIJlIzmObseyKrpDD4TC7M/3O2j/4ernSmXnXxPfSq1dRv9DqHM2oKIk
+ cA8ovQOzGfvEiJha5fCrgByfWUnR6D8Ngp3/azplb/9QJOs0SiH1pg9yh8F/C3rFek
+ 9RkRnoy0sArwZ3E9Df8kzHf0=
+Subject: Re: [Intel-gfx] [PATCH v3 3/7] lib/hexdump.c: Optionally suppress
+ lines of repeated bytes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -51,102 +63,56 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Dave Airlie <airlied@linux.ie>, Charlene Liu <charlene.liu@amd.com>,
- Linux Next Mailing List <linux-next@vger.kernel.org>,
- Sam Ravnborg <sam@ravnborg.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: multipart/mixed; boundary="===============1993983283=="
+Cc: linux-fbdev@vger.kernel.org, Stanislaw Gruszka <sgruszka@redhat.com>,
+ Petr Mladek <pmladek@suse.com>, David Airlie <airlied@linux.ie>,
+ dri-devel@lists.freedesktop.org, devel@driverdev.osuosl.org,
+ linux-scsi@vger.kernel.org, Jassi Brar <jassisinghbrar@gmail.com>,
+ ath10k@lists.infradead.org, intel-gfx@lists.freedesktop.org,
+ Dan Carpenter <dan.carpenter@oracle.com>, Jose Abreu <Jose.Abreu@synopsys.com>,
+ Tom Lendacky <thomas.lendacky@amd.com>,
+ "James E.J. Bottomley" <jejb@linux.ibm.com>,
+ Steven Rostedt <rostedt@goodmis.org>, linux-fsdevel@vger.kernel.org,
+ Alexander Viro <viro@zeniv.linux.org.uk>, Kalle Valo <kvalo@codeaurora.org>,
+ Karsten Keil <isdn@linux-pingi.de>,
+ "Martin K. Petersen" <martin.petersen@oracle.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ linux-wireless@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Sergey Senozhatsky <sergey.senozhatsky@gmail.com>,
+ David Laight <David.Laight@ACULAB.COM>, netdev@vger.kernel.org,
+ Enric Balletbo i Serra <enric.balletbo@collabora.com>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ "David S. Miller" <davem@davemloft.net>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1993983283==
-Content-Type: multipart/signed; micalg=pgp-sha256;
- boundary="Sig_/pBbuo/mx.9ub.bLi2Nl_21V"; protocol="application/pgp-signature"
-
---Sig_/pBbuo/mx.9ub.bLi2Nl_21V
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
-
-Hi all,
-
-On Wed, 12 Jun 2019 11:46:15 +1000 Stephen Rothwell <sfr@canb.auug.org.au> =
-wrote:
->
-> Hi all,
->=20
-> Today's linux-next merge of the drm-misc tree got a conflict in:
->=20
->   drivers/gpu/drm/amd/display/dc/dce/dce_audio.c
->=20
-> between commit:
->=20
->   c7c7192c56d2 ("drm/amd/display: add audio related regs")
->=20
-> from the amdgpu tree and commit:
->=20
->   4fc4dca8320e ("drm/amd: drop use of drmp.h in os_types.h")
->=20
-> from the drm-misc tree.
->=20
-> I fixed it up (see below) and can carry the fix as necessary. This
-> is now fixed as far as linux-next is concerned, but any non trivial
-> conflicts should be mentioned to your upstream maintainer when your tree
-> is submitted for merging.  You may also want to consider cooperating
-> with the maintainer of the conflicting tree to minimise any particularly
-> complex conflicts.
->=20
-> --=20
-> Cheers,
-> Stephen Rothwell
->=20
-> diff --cc drivers/gpu/drm/amd/display/dc/dce/dce_audio.c
-> index d43d5d924c19,9b078a71de2e..000000000000
-> --- a/drivers/gpu/drm/amd/display/dc/dce/dce_audio.c
-> +++ b/drivers/gpu/drm/amd/display/dc/dce/dce_audio.c
-> @@@ -22,7 -22,9 +22,10 @@@
->    * Authors: AMD
->    *
->    */
-> +=20
-> + #include <linux/slab.h>
-> +=20
->  +#include "../dc.h"
->   #include "reg_helper.h"
->   #include "dce_audio.h"
->   #include "dce/dce_11_0_d.h"
-
-This is now a conflict between the drm tree and the amdgpu tree.
-
---=20
-Cheers,
-Stephen Rothwell
-
---Sig_/pBbuo/mx.9ub.bLi2Nl_21V
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAl0HCBAACgkQAVBC80lX
-0GxBBwf8CoFB80pNJP6cX+YNjV2ZKobvI1VFUmzmEog2O/V8WCoCN5WupKfm4Gf1
-Ea0TELkV5+6TnObptjAVgBjxl0hSYJGZ56ncNpQl8Q8a8eo0L4PvEY4EF9CP2DBG
-rCY7GHqLnoh6vl6h4kXgiw1qS6EPsAauW/Dw2BSGpbEq9kj+o9v9VnloPBaNeFvy
-pDKoxqHXfQcq+srgFOxAR0LiigcJYBxXqLXp/YehfGRRP4FkHk94OnHFx8jM08JG
-7TZPMfvkxCxMIJ1pt0LroHy0v5TUe7Q/L/15UfC6E59WHChNaPWLKk0X6/h/lgHX
-TgCvoFy9JxWfxUTj2JH49z7N4HEkqQ==
-=glaT
------END PGP SIGNATURE-----
-
---Sig_/pBbuo/mx.9ub.bLi2Nl_21V--
-
---===============1993983283==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
-IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
-
---===============1993983283==--
+T24gTW9uLCAyMDE5LTA2LTE3IGF0IDEyOjA0ICsxMDAwLCBBbGFzdGFpciBEJ1NpbHZhIHdyb3Rl
+Ogo+IEZyb206IEFsYXN0YWlyIEQnU2lsdmEgPGFsYXN0YWlyQGQtc2lsdmEub3JnPgo+IAo+IFNv
+bWUgYnVmZmVycyBtYXkgb25seSBiZSBwYXJ0aWFsbHkgZmlsbGVkIHdpdGggdXNlZnVsIGRhdGEs
+IHdoaWxlIHRoZQo+IHJlc3QKPiBpcyBwYWRkZWQgKHR5cGljYWxseSB3aXRoIDB4MDAgb3IgMHhm
+ZikuCj4gCj4gVGhpcyBwYXRjaCBpbnRyb2R1Y2VzIGEgZmxhZyB0byBhbGxvdyB0aGUgc3VwcmVz
+c2lvbiBvZiBsaW5lcyBvZgo+IHJlcGVhdGVkCj4gYnl0ZXMsIHdoaWNoIGFyZSByZXBsYWNlZCB3
+aXRoICcqKiBTa2lwcGVkICV1IGJ5dGVzIG9mIHZhbHVlIDB4JXggKionCj4gCj4gQW4gaW5saW5l
+IHdyYXBwZXIgZnVuY3Rpb24gaXMgcHJvdmlkZWQgZm9yIGJhY2t3YXJkcyBjb21wYXRpYmlsaXR5
+Cj4gd2l0aAo+IGV4aXN0aW5nIGNvZGUsIHdoaWNoIG1haW50YWlucyB0aGUgb3JpZ2luYWwgYmVo
+YXZpb3VyLgo+IAo+IFNpZ25lZC1vZmYtYnk6IEFsYXN0YWlyIEQnU2lsdmEgPGFsYXN0YWlyQGQt
+c2lsdmEub3JnPgo+IC0tLQo+ICBpbmNsdWRlL2xpbnV4L3ByaW50ay5oIHwgMjUgKysrKysrKysr
+LS0tCj4gIGxpYi9oZXhkdW1wLmMgICAgICAgICAgfCA5MSArKysrKysrKysrKysrKysrKysrKysr
+KysrKysrKysrKysrKystLQo+IC0tLS0KPiAgMiBmaWxlcyBjaGFuZ2VkLCA5OSBpbnNlcnRpb25z
+KCspLCAxNyBkZWxldGlvbnMoLSkKPiAKPiBkaWZmIC0tZ2l0IGEvaW5jbHVkZS9saW51eC9wcmlu
+dGsuaCBiL2luY2x1ZGUvbGludXgvcHJpbnRrLmgKPiBpbmRleCBjZWZkMzc0YzQ3YjEuLmQ3NzU0
+Nzk5Y2ZlMCAxMDA2NDQKPiAtLS0gYS9pbmNsdWRlL2xpbnV4L3ByaW50ay5oCj4gKysrIGIvaW5j
+bHVkZS9saW51eC9wcmludGsuaAo+IEBAIC00ODEsMTMgKzQ4MSwxOCBAQCBlbnVtIHsKPiAgCURV
+TVBfUFJFRklYX0FERFJFU1MsCj4gIAlEVU1QX1BSRUZJWF9PRkZTRVQKPiAgfTsKPiArCj4gIGV4
+dGVybiBpbnQgaGV4X2R1bXBfdG9fYnVmZmVyKGNvbnN0IHZvaWQgKmJ1Ziwgc2l6ZV90IGxlbiwg
+aW50Cj4gcm93c2l6ZSwKPiAgCQkJICAgICAgaW50IGdyb3Vwc2l6ZSwgY2hhciAqbGluZWJ1Ziwg
+c2l6ZV90Cj4gbGluZWJ1ZmxlbiwKPiAgCQkJICAgICAgYm9vbCBhc2NpaSk7Cj4gKwo+ICsjZGVm
+aW5lIEhFWERVTVBfQVNDSUkJCQlCSVQoMCkKPiArI2RlZmluZSBIRVhEVU1QX1NVUFBSRVNTX1JF
+UEVBVEVECUJJVCgxKQo+ICsKClRoaXMgaXMgbWlzc2luZyB0aGUgaW5jbHVkZSBvZiBsaW51eC9i
+aXRzLmgsIEknbGwgZml4IHRoaXMgaW4gdGhlIG5leHQKdmVyc2lvbi4KCi0tIApBbGFzdGFpciBE
+J1NpbHZhICAgICAgICAgICBtb2I6IDA0MjMgNzYyIDgxOQpza3lwZTogYWxhc3RhaXJfZHNpbHZh
+ICAgIApUd2l0dGVyOiBARXZpbERlZWNlCmJsb2c6IGh0dHA6Ly9hbGFzdGFpci5kLXNpbHZhLm9y
+ZwoKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVs
+LWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczov
+L2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeA==
