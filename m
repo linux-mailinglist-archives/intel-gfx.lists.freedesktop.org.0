@@ -1,34 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B17684A6D3
-	for <lists+intel-gfx@lfdr.de>; Tue, 18 Jun 2019 18:27:02 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C82E24A6F4
+	for <lists+intel-gfx@lfdr.de>; Tue, 18 Jun 2019 18:32:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D7E256E183;
-	Tue, 18 Jun 2019 16:27:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9EDAB6E190;
+	Tue, 18 Jun 2019 16:32:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 447456E183
- for <intel-gfx@lists.freedesktop.org>; Tue, 18 Jun 2019 16:26:59 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1CD226E190
+ for <intel-gfx@lists.freedesktop.org>; Tue, 18 Jun 2019 16:32:37 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from localhost (unverified [78.156.65.138]) 
  by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 16943401-1500050 
- for <intel-gfx@lists.freedesktop.org>; Tue, 18 Jun 2019 17:26:54 +0100
+ 16943461-1500050 for multiple; Tue, 18 Jun 2019 17:32:32 +0100
 MIME-Version: 1.0
 From: Chris Wilson <chris@chris-wilson.co.uk>
 User-Agent: alot/0.6
-To: intel-gfx@lists.freedesktop.org
-References: <20190618161951.28820-1-chris@chris-wilson.co.uk>
- <20190618161951.28820-2-chris@chris-wilson.co.uk>
-In-Reply-To: <20190618161951.28820-2-chris@chris-wilson.co.uk>
-Message-ID: <156087521455.31375.13502866617389430585@skylake-alporthouse-com>
-Date: Tue, 18 Jun 2019 17:26:54 +0100
-Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915: Don't dereference request if
- it may have been retired
+To: Mika Kuoppala <mika.kuoppala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+References: <20190618161731.15607-1-mika.kuoppala@linux.intel.com>
+In-Reply-To: <20190618161731.15607-1-mika.kuoppala@linux.intel.com>
+Message-ID: <156087555349.31375.1232847972150261025@skylake-alporthouse-com>
+Date: Tue, 18 Jun 2019 17:32:33 +0100
+Subject: Re: [Intel-gfx] [PATCH 1/3] drm/i915/gtt: pde entry encoding is
+ identical
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -46,17 +45,17 @@ Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-UXVvdGluZyBDaHJpcyBXaWxzb24gKDIwMTktMDYtMTggMTc6MTk6NTEpCj4gVGhpcyBoYXMgY291
-bnQgbWUgb3V0IG9uIGNvdW50bGVzcyBvY2Nhc2lvbnMsIHdoZW4gd2UgcmV0cmlldmUgYSBwb2lu
-dGVyCj4gZnJvbSB0aGUgc3VibWlzc2lvbi9leGVjbGlzdHMgYmFja2VuZCwgaXQgZG9lcyBub3Qg
-Y2FycnkgYSByZWZlcmVuY2UgdG8KPiB0aGUgY29udGV4dCBvciByaW5nLiBUaG9zZSBhcmUgb25s
-eSBwaW5uZWQgd2hpbGUgdGhlIHJxdWVzdCBpcyBhY3RpdmUsCj4gc28gaWYgd2Ugc2VlIHRoZSBy
-ZXF1ZXN0IGlzIGNvbXBsZXRlZCwgaXQgbWF5IGJlIGluIHRoZSBwcm9jZXNzIG9mIGJlaW5nCj4g
-cmV0aXJlZCBhbmQgdGhvc2UgcG9pbnRlcnMgZGVmdW5jdC4KPiAKCkkgZ3Vlc3MKRml4ZXM6IDNh
-MDY4NzIxYTk3MyAoImRybS9pOTE1OiBTaG93IHJpbmctPnN0YXJ0IGZvciB0aGUgRUxTUCBjb250
-ZXh0L3JlcXVlc3QgcXVldWUiKQp2NC4xOCEKCj4gQnVnemlsbGE6IGh0dHBzOi8vYnVncy5mcmVl
-ZGVza3RvcC5vcmcvc2hvd19idWcuY2dpP2lkPTExMDkzOAo+IFNpZ25lZC1vZmYtYnk6IENocmlz
-IFdpbHNvbiA8Y2hyaXNAY2hyaXMtd2lsc29uLmNvLnVrPgotQ2hyaXMKX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJ
-bnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Au
-b3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
+UXVvdGluZyBNaWthIEt1b3BwYWxhICgyMDE5LTA2LTE4IDE3OjE3OjI5KQo+IEZvciBhbGwgcGFn
+ZSBkaXJlY3RvcnkgZW50cmllcywgdGhlIHBkZSBlbmNvZGluZyBpcwo+IGlkZW50aWNhbC4gRG9u
+J3QgY29tcGlsaWNhdGUgY2FsbCBzaXRlcyB3aXRoIGRpZmZlcmVudAo+IHZlcnNpb25zIG9mIGRv
+aW5nIHRoZSBzYW1lIHRoaW5nLiBXZSBjaGVjayB0aGUgZXhpc3RlbmNlIG9mCj4gcGh5c2ljYWwg
+cGFnZSBiZWZvcmUgd3JpdGluZyB0aGUgZW50cnkgaW50byBpdC4gVGhpcyBmdXJ0aGVyCj4gZ2Vu
+ZXJhbGl6ZXMgdGhlIHBkIHNvIHRoYXQgbWFuaXB1bGF0aW9uIGluIGNhbGxzaXRlcyB3aWxsIGJl
+Cj4gaWRlbnRpY2FsLCByZW1vdmluZyB0aGUgbmVlZCB0byBoYW5kbGUgcGRwcyBkaWZmZXJlbnRs
+eSBmb3IgZ2VuOC4KCkFuZCB3ZSBjYW4gcHVsbCBpbiB0aGUgYXRvbWljX2luYyBhcyB3ZWxsPyBB
+dCB0aGUgdG9wIGxldmVsIHRoZSByZXN1bHQKZ29lcyB1bnVzZWQsIGJ1dCBzaW5jZSB3ZSBzaG91
+bGQgbm90IGJlIGFzIGZyZXF1ZW50bHkgaW5zZXJ0aW5nIG5ldwpwYWdlcyB0aGUgaGlnaGVyIHVw
+IHdlIGdvLCB0aGF0IHNob3VsZCBiZSBpbnNpZ25pZmljYW50LgotQ2hyaXMKX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlz
+dApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0
+b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
