@@ -2,33 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B1F44A485
-	for <lists+intel-gfx@lfdr.de>; Tue, 18 Jun 2019 16:55:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 469CA4A4DD
+	for <lists+intel-gfx@lfdr.de>; Tue, 18 Jun 2019 17:12:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CC8B36E1C0;
-	Tue, 18 Jun 2019 14:55:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2F4476E174;
+	Tue, 18 Jun 2019 15:12:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C64F56E1C0
- for <intel-gfx@lists.freedesktop.org>; Tue, 18 Jun 2019 14:55:14 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 16942177-1500050 for multiple; Tue, 18 Jun 2019 15:55:09 +0100
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 794F96E174;
+ Tue, 18 Jun 2019 15:12:47 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 711A3A00E9;
+ Tue, 18 Jun 2019 15:12:47 +0000 (UTC)
 MIME-Version: 1.0
-From: Chris Wilson <chris@chris-wilson.co.uk>
-User-Agent: alot/0.6
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
+Date: Tue, 18 Jun 2019 15:12:47 -0000
+Message-ID: <20190618151247.30452.70931@emeril.freedesktop.org>
 References: <20190618142108.9978-1-ville.syrjala@linux.intel.com>
- <20190618142108.9978-4-ville.syrjala@linux.intel.com>
-In-Reply-To: <20190618142108.9978-4-ville.syrjala@linux.intel.com>
-Message-ID: <156086971035.31375.13192884909397662143@skylake-alporthouse-com>
-Date: Tue, 18 Jun 2019 15:55:10 +0100
-Subject: Re: [Intel-gfx] [PATCH 3/3] drm/i915: Initialize drm_driver vblank
- funcs at compile time
+X-Patchwork-Hint: ignore
+In-Reply-To: <20190618142108.9978-1-ville.syrjala@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?q?=E2=9C=97_Fi=2ECI=2EBAT=3A_failure_for_drm/?=
+ =?utf-8?q?i915=3A_Finish_drm=5Fdriver_vfunc_cleanup?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -41,33 +38,28 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-UXVvdGluZyBWaWxsZSBTeXJqYWxhICgyMDE5LTA2LTE4IDE1OjIxOjA4KQo+IEZyb206IFZpbGxl
-IFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5jb20+Cj4gCj4gTW92ZSB0aGUg
-LmdldF92YmxhbmtfdGltZXN0YW1wKCkgYW5kIC5nZXRfc2Nhbm91dF9wb3NpdGlvbigpCj4gaW5p
-dGlhbGl6YXRpb24gdG8gaGFwcGVuIGF0IGNvbXBpbGUgdGltZS4gTm8gcG9pbnQgaW4gZGVsYXlp
-bmcKPiBpdCBzaW5jZSB3ZSBhbHdheXMgYXNzaWduIHRoZSBzYW1lIGZ1bmN0aW9ucy4KPiAKPiBT
-aWduZWQtb2ZmLWJ5OiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwu
-Y29tPgo+IC0tLQo+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2Rydi5jIHwgIDMgKysrCj4g
-IGRyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfaXJxLmMgfCAxMSArKysrLS0tLS0tLQo+ICBkcml2
-ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2lycS5oIHwgIDUgKysrKysKPiAgMyBmaWxlcyBjaGFuZ2Vk
-LCAxMiBpbnNlcnRpb25zKCspLCA3IGRlbGV0aW9ucygtKQo+IAo+IGRpZmYgLS1naXQgYS9kcml2
-ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2Rydi5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9k
-cnYuYwo+IGluZGV4IGVhNmIwNjEwOWQ1YS4uMTc4ZTk4NzJiOTA1IDEwMDY0NAo+IC0tLSBhL2Ry
-aXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZHJ2LmMKPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkx
-NS9pOTE1X2Rydi5jCj4gQEAgLTMyMTYsNiArMzIxNiw5IEBAIHN0YXRpYyBzdHJ1Y3QgZHJtX2Ry
-aXZlciBkcml2ZXIgPSB7Cj4gICAgICAgICAuZ2VtX3ByaW1lX2V4cG9ydCA9IGk5MTVfZ2VtX3By
-aW1lX2V4cG9ydCwKPiAgICAgICAgIC5nZW1fcHJpbWVfaW1wb3J0ID0gaTkxNV9nZW1fcHJpbWVf
-aW1wb3J0LAo+ICAKPiArICAgICAgIC5nZXRfdmJsYW5rX3RpbWVzdGFtcCA9IGRybV9jYWxjX3Zi
-bHRpbWVzdGFtcF9mcm9tX3NjYW5vdXRwb3MsCj4gKyAgICAgICAuZ2V0X3NjYW5vdXRfcG9zaXRp
-b24gPSBpOTE1X2dldF9jcnRjX3NjYW5vdXRwb3MsCgpPbmUgbWlnaHQgc3VnZ2VzdCBpbnRlbF9n
-ZXRfY3J0Y19zY2Fub3V0cG9zLCBhbmQgYSBwdXNoIGZvciBpdCB0byBiZQpwYXNzZWQgZHJtX2Ny
-dGMgaW5zdGVhZCBvZiBkZXYgKyBwaXBlLgoKUmV2aWV3ZWQtYnk6IENocmlzIFdpbHNvbiA8Y2hy
-aXNAY2hyaXMtd2lsc29uLmNvLnVrPgotQ2hyaXMKX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4v
-bGlzdGluZm8vaW50ZWwtZ2Z4
+PT0gU2VyaWVzIERldGFpbHMgPT0KClNlcmllczogZHJtL2k5MTU6IEZpbmlzaCBkcm1fZHJpdmVy
+IHZmdW5jIGNsZWFudXAKVVJMICAgOiBodHRwczovL3BhdGNod29yay5mcmVlZGVza3RvcC5vcmcv
+c2VyaWVzLzYyMzE3LwpTdGF0ZSA6IGZhaWx1cmUKCj09IFN1bW1hcnkgPT0KCkFwcGx5aW5nOiBk
+cm0vaTkxNTogRml4IHZhcmlvdXMgdHJhY2Vwb2ludHMgZm9yIGdlbjIKQXBwbHlpbmc6IGRybS9p
+OTE1OiBOdWtlIGRybV9kcml2ZXIgaXJxIHZmdW5jcwpVc2luZyBpbmRleCBpbmZvIHRvIHJlY29u
+c3RydWN0IGEgYmFzZSB0cmVlLi4uCk0JZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9pcnEuYwpG
+YWxsaW5nIGJhY2sgdG8gcGF0Y2hpbmcgYmFzZSBhbmQgMy13YXkgbWVyZ2UuLi4KQXV0by1tZXJn
+aW5nIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfaXJxLmMKQ09ORkxJQ1QgKGNvbnRlbnQpOiBN
+ZXJnZSBjb25mbGljdCBpbiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2lycS5jCmVycm9yOiBG
+YWlsZWQgdG8gbWVyZ2UgaW4gdGhlIGNoYW5nZXMuCmhpbnQ6IFVzZSAnZ2l0IGFtIC0tc2hvdy1j
+dXJyZW50LXBhdGNoJyB0byBzZWUgdGhlIGZhaWxlZCBwYXRjaApQYXRjaCBmYWlsZWQgYXQgMDAw
+MiBkcm0vaTkxNTogTnVrZSBkcm1fZHJpdmVyIGlycSB2ZnVuY3MKV2hlbiB5b3UgaGF2ZSByZXNv
+bHZlZCB0aGlzIHByb2JsZW0sIHJ1biAiZ2l0IGFtIC0tY29udGludWUiLgpJZiB5b3UgcHJlZmVy
+IHRvIHNraXAgdGhpcyBwYXRjaCwgcnVuICJnaXQgYW0gLS1za2lwIiBpbnN0ZWFkLgpUbyByZXN0
+b3JlIHRoZSBvcmlnaW5hbCBicmFuY2ggYW5kIHN0b3AgcGF0Y2hpbmcsIHJ1biAiZ2l0IGFtIC0t
+YWJvcnQiLgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18K
+SW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0
+dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
