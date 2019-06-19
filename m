@@ -1,36 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E11A4B214
-	for <lists+intel-gfx@lfdr.de>; Wed, 19 Jun 2019 08:24:51 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 081E74B21C
+	for <lists+intel-gfx@lfdr.de>; Wed, 19 Jun 2019 08:32:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CCEEC6E29C;
-	Wed, 19 Jun 2019 06:24:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 131596E29C;
+	Wed, 19 Jun 2019 06:32:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4B3846E29C;
- Wed, 19 Jun 2019 06:24:48 +0000 (UTC)
-X-Amp-Result: UNSCANNABLE
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DFCDF6E29C
+ for <intel-gfx@lists.freedesktop.org>; Wed, 19 Jun 2019 06:32:07 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 18 Jun 2019 23:24:47 -0700
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by orsmga105.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 18 Jun 2019 23:32:07 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.63,392,1557212400"; 
- d="asc'?scan'208";a="168149932"
-Received: from zhen-hp.sh.intel.com (HELO zhen-hp) ([10.239.13.116])
- by FMSMGA003.fm.intel.com with ESMTP; 18 Jun 2019 23:24:45 -0700
-Date: Wed, 19 Jun 2019 14:22:40 +0800
-From: Zhenyu Wang <zhenyuw@linux.intel.com>
-To: Jani Nikula <jani.nikula@intel.com>,
- "Vivi, Rodrigo" <rodrigo.vivi@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Message-ID: <20190619062240.GM9684@zhen-hp.sh.intel.com>
+X-IronPort-AV: E=Sophos;i="5.63,392,1557212400"; d="scan'208";a="358094438"
+Received: from yyosef-mobl.ger.corp.intel.com (HELO [10.252.23.42])
+ ([10.252.23.42])
+ by fmsmga005.fm.intel.com with ESMTP; 18 Jun 2019 23:32:06 -0700
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+References: <20190618202139.1481-1-chris@chris-wilson.co.uk>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <94b19e73-a22b-4042-8196-c24399bf6734@linux.intel.com>
+Date: Wed, 19 Jun 2019 07:32:05 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.0
 MIME-Version: 1.0
-User-Agent: Mutt/1.10.0 (2018-05-17)
-Subject: [Intel-gfx] [PULL] gvt-fixes
+In-Reply-To: <20190618202139.1481-1-chris@chris-wilson.co.uk>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH i-g-t] i915/gem_ctx_engine: Prevent
+ preemption
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -43,85 +47,29 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: Zhenyu Wang <zhenyuw@linux.intel.com>
-Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
- intel-gvt-dev <intel-gvt-dev@lists.freedesktop.org>, "Lv,
- Zhiyuan" <zhiyuan.lv@intel.com>, "Yuan, Hang" <hang.yuan@intel.com>
-Content-Type: multipart/mixed; boundary="===============1741010049=="
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
---===============1741010049==
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="VHnRLfjpj1i6VFsc"
-Content-Disposition: inline
-
-
---VHnRLfjpj1i6VFsc
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-
-Hi,
-
-Here's one gvt fix for 5.2-rc6 to sanitize reserved register write in
-PVINFO which should be discarded. This fixed some guest behavior which
-contain some unmerged features that probe through PVINFO register state.
-
-Thanks.
---
-The following changes since commit 15e7f52a4596b496ce3da2fa4c1f94c6fb0023f2:
-
-  drm/i915/gvt: save RING_HEAD into vreg when vgpu switched out (2019-06-03=
- 13:18:36 +0800)
-
-are available in the Git repository at:
-
-  https://github.com/intel/gvt-linux tags/gvt-fixes-2019-06-19
-
-for you to fetch changes up to 971afec3a5373f96684ad899579f6a4d51462410:
-
-  drm/i915/gvt: ignore unexpected pvinfo write (2019-06-17 15:45:41 +0800)
-
-----------------------------------------------------------------
-gvt-fixes-2019-06-19
-
-- Fix reserved PVINFO register write (Weinan)
-
-----------------------------------------------------------------
-Weinan Li (1):
-      drm/i915/gvt: ignore unexpected pvinfo write
-
- drivers/gpu/drm/i915/gvt/handlers.c | 15 +++++++++------
- 1 file changed, 9 insertions(+), 6 deletions(-)
-
---=20
-Open Source Technology Center, Intel ltd.
-
-$gpg --keyserver wwwkeys.pgp.net --recv-keys 4D781827
-
---VHnRLfjpj1i6VFsc
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iF0EARECAB0WIQTXuabgHDW6LPt9CICxBBozTXgYJwUCXQnUsAAKCRCxBBozTXgY
-JybSAJ9gjpl1liMPbRScC2tTDMw/XnfDuQCdGrJ2diP6ArBJI4Ue1ibTD8l05CM=
-=mJ31
------END PGP SIGNATURE-----
-
---VHnRLfjpj1i6VFsc--
-
---===============1741010049==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
-IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
-
---===============1741010049==--
+Ck9uIDE4LzA2LzIwMTkgMjE6MjEsIENocmlzIFdpbHNvbiB3cm90ZToKPiBJbiBvcmRlciB0byBw
+aW4gdGhlIGVuZ2luZSBhcyBidXN5LCB3ZSBoYXZlIHRvIHByZXZlbnQgdGhlIGtlcm5lbCBmcm9t
+Cj4gZXhlY3V0aW5nIG90aGVyIGluZGVwZW5kZW50IHdvcmsgYWhlYWQgb2Ygb3VyIHBsdWcsIHNv
+IHRlbGwgdGhlIHNwaW5uZXIKPiB0byBub3QgYWxsb3cgcHJlZW1wdGlvbi4KPiAKPiBTaWduZWQt
+b2ZmLWJ5OiBDaHJpcyBXaWxzb24gPGNocmlzQGNocmlzLXdpbHNvbi5jby51az4KPiAtLS0KPiAg
+IHRlc3RzL2k5MTUvZ2VtX2N0eF9lbmdpbmVzLmMgfCAzICsrLQo+ICAgMSBmaWxlIGNoYW5nZWQs
+IDIgaW5zZXJ0aW9ucygrKSwgMSBkZWxldGlvbigtKQo+IAo+IGRpZmYgLS1naXQgYS90ZXN0cy9p
+OTE1L2dlbV9jdHhfZW5naW5lcy5jIGIvdGVzdHMvaTkxNS9nZW1fY3R4X2VuZ2luZXMuYwo+IGlu
+ZGV4IDNlY2FkZTQxNy4uZDQ3Y2JkZDdjIDEwMDY0NAo+IC0tLSBhL3Rlc3RzL2k5MTUvZ2VtX2N0
+eF9lbmdpbmVzLmMKPiArKysgYi90ZXN0cy9pOTE1L2dlbV9jdHhfZW5naW5lcy5jCj4gQEAgLTI4
+Myw3ICsyODMsOCBAQCBzdGF0aWMgdm9pZCBleGVjdXRlX29uZShpbnQgaTkxNSkKPiAgIAo+ICAg
+CQkJc3BpbiA9IGlndF9zcGluX25ldyhpOTE1LAo+ICAgCQkJCQkgICAgLmN0eCA9IHBhcmFtLmN0
+eF9pZCwKPiAtCQkJCQkgICAgLmVuZ2luZSA9IDApOwo+ICsJCQkJCSAgICAuZW5naW5lID0gMCwK
+PiArCQkJCQkgICAgLmZsYWdzID0gSUdUX1NQSU5fTk9fUFJFRU1QVElPTik7Cj4gICAKPiAgIAkJ
+CWlndF9kZWJ1ZygiVGVzdGluZyB3aXRoIG1hcCBvZiAlZCBlbmdpbmVzXG4iLCBpICsgMSk7Cj4g
+ICAJCQltZW1zZXQoJmVuZ2luZXMuZW5naW5lcywgLTEsIHNpemVvZihlbmdpbmVzLmVuZ2luZXMp
+KTsKPiAKClRoZSBuby1vcCBiYXRjaCBwcmVlbXB0cyB0aGUgc3Bpbm5lcj8gSG93IGRvZXMgdGhh
+dCBhZmZlY3QgdGhlIGJ1c3kgCmNoZWNrIG9uIHRoZSBuby1vcCBiYXRjaD8KClJlZ2FyZHMsCgpU
+dnJ0a28KCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJ
+bnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0
+cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZng=
