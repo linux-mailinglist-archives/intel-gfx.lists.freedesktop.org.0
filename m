@@ -1,32 +1,65 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 84A354D1AD
-	for <lists+intel-gfx@lfdr.de>; Thu, 20 Jun 2019 17:08:53 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D9A1A4D1BE
+	for <lists+intel-gfx@lfdr.de>; Thu, 20 Jun 2019 17:11:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A425B6E59C;
-	Thu, 20 Jun 2019 15:08:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 876C26E5AF;
+	Thu, 20 Jun 2019 15:11:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id ED2AD6E59D;
- Thu, 20 Jun 2019 15:08:50 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id E6734A010C;
- Thu, 20 Jun 2019 15:08:50 +0000 (UTC)
+Received: from mail-wr1-x442.google.com (mail-wr1-x442.google.com
+ [IPv6:2a00:1450:4864:20::442])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BCA376E593;
+ Thu, 20 Jun 2019 15:11:20 +0000 (UTC)
+Received: by mail-wr1-x442.google.com with SMTP id c2so3406659wrm.8;
+ Thu, 20 Jun 2019 08:11:20 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to:user-agent;
+ bh=0H9zlAD92P9ekBZ1IL5Ma72ZjrQuRTtWpdcHpCq85Z0=;
+ b=hy+h0Z1X3Fr7p2ZR7f4z9YEzSs+7G8REOibTqCE66l7YHY3lLBSp8vwQrXKE51r+HC
+ sBA4jvBswTzc5TClMkvcQfUmW0VTuL7LK5Kqp4Lju0/b5X1mKn4+Emi8PxD+cik96tZQ
+ lTsCdg2/ufcBMCbRze+BMsMHJF4anAvedXp7wouTthvACRbzgbfs0msJ5x1XSgyhPJ0J
+ Aqqavbseddsmg8aGv732mi2mW/o7snLVU6Zq/jml5b8UC+8hcHwUlhJglqgTZtgCj0l4
+ 5Oiz4SQMyHaxymkjt1GKOYwi5p/BgAtlog5/cjC9tJ2WwE2SiYX64EOJoiowSZxVB3TG
+ h0Lw==
+X-Gm-Message-State: APjAAAU3afZarhG0JhmfffPYqjLk2WMuSqSRrxtGD5yGLxSpS1ABj+Bc
+ 5LpGFxsH2LPcZloQErRl9XI=
+X-Google-Smtp-Source: APXvYqxLgLTJRrKRTzgbmzlJtFRAFQi6lL43mcKlCoh2TXalCaiWaw2DfmIMa07K4qj2M0uHp8AFAw==
+X-Received: by 2002:a5d:42c5:: with SMTP id t5mr74980574wrr.5.1561043479267;
+ Thu, 20 Jun 2019 08:11:19 -0700 (PDT)
+Received: from localhost (p2E5BEF36.dip0.t-ipconnect.de. [46.91.239.54])
+ by smtp.gmail.com with ESMTPSA id z5sm4224300wma.36.2019.06.20.08.11.18
+ (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+ Thu, 20 Jun 2019 08:11:18 -0700 (PDT)
+Date: Thu, 20 Jun 2019 17:11:17 +0200
+From: Thierry Reding <thierry.reding@gmail.com>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>
+Message-ID: <20190620151117.GD15501@ulmo>
+References: <20190614203615.12639-1-daniel.vetter@ffwll.ch>
+ <20190614203615.12639-59-daniel.vetter@ffwll.ch>
+ <20190618151938.GA2567@kroah.com> <20190618152530.GA4576@kroah.com>
+ <CAKMK7uEd0sZ81RMjDsz6cnkW+krPuvoqUcEY4U3ofB9W_qeFvA@mail.gmail.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Souza, Jose" <jose.souza@intel.com>
-Date: Thu, 20 Jun 2019 15:08:50 -0000
-Message-ID: <20190620150850.12829.7397@emeril.freedesktop.org>
-References: <20190619233134.20009-1-jose.souza@intel.com>
-X-Patchwork-Hint: ignore
-In-Reply-To: <20190619233134.20009-1-jose.souza@intel.com>
-Subject: [Intel-gfx] =?utf-8?q?=E2=9C=93_Fi=2ECI=2EIGT=3A_success_for_seri?=
- =?utf-8?q?es_starting_with_=5Bv2=2C1/2=5D_drm/i915/ehl/dsi=3A_Set_lane_la?=
- =?utf-8?q?tency_optimization_for_DW1?=
+In-Reply-To: <CAKMK7uEd0sZ81RMjDsz6cnkW+krPuvoqUcEY4U3ofB9W_qeFvA@mail.gmail.com>
+User-Agent: Mutt/1.11.4 (2019-03-13)
+X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20161025;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to:user-agent;
+ bh=0H9zlAD92P9ekBZ1IL5Ma72ZjrQuRTtWpdcHpCq85Z0=;
+ b=rHrwXAOeR1/KtWequmWPWdA65pILcJ8Ugg/uhlmaLRf6zbVBySb7v+dG0Tm4RryMmR
+ T4QuTSmFcAB3DAxquMiXQmYJMKgwrOiHxSllIjmbAvjuehVdy4WyLykvLNHsGlYKrBWu
+ unT1LLRUgk1slKMOzkVDpf3+Fl3oZdhDvwWpq1SdBP7TayEDXYPw4/p+RZw1XeZrG8T/
+ vSYbu3j5LhNspeCsSouRUQKJ1FmTSKc7+T0+P9rZdeDRKdtALRu/UrOwfaCQcKVneR7y
+ xt9gHbkufAg0oaNLK2ZoKk+XOywXf6v0k7EXD2PTTERXSUEv2DsoALvbzARNLSEYQbtm
+ rt7Q==
+Subject: Re: [Intel-gfx] drm connectors, tegra,
+ and the web they weave (was Re: [PATCH 58/59] drm/todo: Add new
+ debugfs todo)
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -39,167 +72,337 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ Jonathan Hunter <jonathanh@nvidia.com>, linux-tegra@vger.kernel.org,
+ Daniel Vetter <daniel.vetter@intel.com>
+Content-Type: multipart/mixed; boundary="===============0839804827=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-PT0gU2VyaWVzIERldGFpbHMgPT0KClNlcmllczogc2VyaWVzIHN0YXJ0aW5nIHdpdGggW3YyLDEv
-Ml0gZHJtL2k5MTUvZWhsL2RzaTogU2V0IGxhbmUgbGF0ZW5jeSBvcHRpbWl6YXRpb24gZm9yIERX
-MQpVUkwgICA6IGh0dHBzOi8vcGF0Y2h3b3JrLmZyZWVkZXNrdG9wLm9yZy9zZXJpZXMvNjI0MTcv
-ClN0YXRlIDogc3VjY2VzcwoKPT0gU3VtbWFyeSA9PQoKQ0kgQnVnIExvZyAtIGNoYW5nZXMgZnJv
-bSBDSV9EUk1fNjMxMl9mdWxsIC0+IFBhdGNod29ya18xMzM1Nl9mdWxsCj09PT09PT09PT09PT09
-PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0KClN1bW1hcnkKLS0tLS0tLQoK
-ICAqKlNVQ0NFU1MqKgoKICBObyByZWdyZXNzaW9ucyBmb3VuZC4KCiAgCgpLbm93biBpc3N1ZXMK
-LS0tLS0tLS0tLS0tCgogIEhlcmUgYXJlIHRoZSBjaGFuZ2VzIGZvdW5kIGluIFBhdGNod29ya18x
-MzM1Nl9mdWxsIHRoYXQgY29tZSBmcm9tIGtub3duIGlzc3VlczoKCiMjIyBJR1QgY2hhbmdlcyAj
-IyMKCiMjIyMgSXNzdWVzIGhpdCAjIyMjCgogICogaWd0QGdlbV9laW9AaW4tZmxpZ2h0LWNvbnRl
-eHRzLTF1czoKICAgIC0gc2hhcmQta2JsOiAgICAgICAgICBbUEFTU11bMV0gLT4gW0RNRVNHLVdB
-Uk5dWzJdIChbZmRvIzExMDkxMyBdKSArMiBzaW1pbGFyIGlzc3VlcwogICBbMV06IGh0dHBzOi8v
-aW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAvQ0lfRFJNXzYzMTIvc2hhcmQta2JsNi9p
-Z3RAZ2VtX2Vpb0Bpbi1mbGlnaHQtY29udGV4dHMtMXVzLmh0bWwKICAgWzJdOiBodHRwczovL2lu
-dGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlwL1BhdGNod29ya18xMzM1Ni9zaGFyZC1rYmw2
-L2lndEBnZW1fZWlvQGluLWZsaWdodC1jb250ZXh0cy0xdXMuaHRtbAoKICAqIGlndEBnZW1fd29y
-a2Fyb3VuZHNAc3VzcGVuZC1yZXN1bWUtY29udGV4dDoKICAgIC0gc2hhcmQtYXBsOiAgICAgICAg
-ICBbUEFTU11bM10gLT4gW0RNRVNHLVdBUk5dWzRdIChbZmRvIzEwODU2Nl0pICsyIHNpbWlsYXIg
-aXNzdWVzCiAgIFszXTogaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9D
-SV9EUk1fNjMxMi9zaGFyZC1hcGw0L2lndEBnZW1fd29ya2Fyb3VuZHNAc3VzcGVuZC1yZXN1bWUt
-Y29udGV4dC5odG1sCiAgIFs0XTogaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJt
-LXRpcC9QYXRjaHdvcmtfMTMzNTYvc2hhcmQtYXBsNS9pZ3RAZ2VtX3dvcmthcm91bmRzQHN1c3Bl
-bmQtcmVzdW1lLWNvbnRleHQuaHRtbAoKICAqIGlndEBpOTE1X3BtX3JjNl9yZXNpZGVuY3lAcmM2
-LWFjY3VyYWN5OgogICAgLSBzaGFyZC1zbmI6ICAgICAgICAgIFtQQVNTXVs1XSAtPiBbU0tJUF1b
-Nl0gKFtmZG8jMTA5MjcxXSkKICAgWzVdOiBodHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJl
-ZS9kcm0tdGlwL0NJX0RSTV82MzEyL3NoYXJkLXNuYjEvaWd0QGk5MTVfcG1fcmM2X3Jlc2lkZW5j
-eUByYzYtYWNjdXJhY3kuaHRtbAogICBbNl06IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90
-cmVlL2RybS10aXAvUGF0Y2h3b3JrXzEzMzU2L3NoYXJkLXNuYjUvaWd0QGk5MTVfcG1fcmM2X3Jl
-c2lkZW5jeUByYzYtYWNjdXJhY3kuaHRtbAoKICAqIGlndEBrbXNfZmxpcEBmbGlwLXZzLXN1c3Bl
-bmQ6CiAgICAtIHNoYXJkLXNrbDogICAgICAgICAgW1BBU1NdWzddIC0+IFtJTkNPTVBMRVRFXVs4
-XSAoW2ZkbyMxMDk1MDddKQogICBbN106IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVl
-L2RybS10aXAvQ0lfRFJNXzYzMTIvc2hhcmQtc2tsOC9pZ3RAa21zX2ZsaXBAZmxpcC12cy1zdXNw
-ZW5kLmh0bWwKICAgWzhdOiBodHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlw
-L1BhdGNod29ya18xMzM1Ni9zaGFyZC1za2w1L2lndEBrbXNfZmxpcEBmbGlwLXZzLXN1c3BlbmQu
-aHRtbAogICAgLSBzaGFyZC1nbGs6ICAgICAgICAgIFtQQVNTXVs5XSAtPiBbSU5DT01QTEVURV1b
-MTBdIChbZmRvIzEwMzM1OV0gLyBbay5vcmcjMTk4MTMzXSkKICAgWzldOiBodHRwczovL2ludGVs
-LWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlwL0NJX0RSTV82MzEyL3NoYXJkLWdsazkvaWd0QGtt
-c19mbGlwQGZsaXAtdnMtc3VzcGVuZC5odG1sCiAgIFsxMF06IGh0dHBzOi8vaW50ZWwtZ2Z4LWNp
-LjAxLm9yZy90cmVlL2RybS10aXAvUGF0Y2h3b3JrXzEzMzU2L3NoYXJkLWdsazYvaWd0QGttc19m
-bGlwQGZsaXAtdnMtc3VzcGVuZC5odG1sCgogICogaWd0QGttc19mcm9udGJ1ZmZlcl90cmFja2lu
-Z0BmYmMtMnAtcHJpbXNjcm4tY3VyLWluZGZiLWRyYXctcHdyaXRlOgogICAgLSBzaGFyZC1oc3c6
-ICAgICAgICAgIFtQQVNTXVsxMV0gLT4gW1NLSVBdWzEyXSAoW2ZkbyMxMDkyNzFdKSArMTkgc2lt
-aWxhciBpc3N1ZXMKICAgWzExXTogaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJt
-LXRpcC9DSV9EUk1fNjMxMi9zaGFyZC1oc3c4L2lndEBrbXNfZnJvbnRidWZmZXJfdHJhY2tpbmdA
-ZmJjLTJwLXByaW1zY3JuLWN1ci1pbmRmYi1kcmF3LXB3cml0ZS5odG1sCiAgIFsxMl06IGh0dHBz
-Oi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAvUGF0Y2h3b3JrXzEzMzU2L3NoYXJk
-LWhzdzEvaWd0QGttc19mcm9udGJ1ZmZlcl90cmFja2luZ0BmYmMtMnAtcHJpbXNjcm4tY3VyLWlu
-ZGZiLWRyYXctcHdyaXRlLmh0bWwKCiAgKiBpZ3RAa21zX3BsYW5lQHBsYW5lLXBhbm5pbmctYm90
-dG9tLXJpZ2h0LXN1c3BlbmQtcGlwZS1jLXBsYW5lczoKICAgIC0gc2hhcmQtc2tsOiAgICAgICAg
-ICBbUEFTU11bMTNdIC0+IFtJTkNPTVBMRVRFXVsxNF0gKFtmZG8jMTA0MTA4XSkKICAgWzEzXTog
-aHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9DSV9EUk1fNjMxMi9zaGFy
-ZC1za2w1L2lndEBrbXNfcGxhbmVAcGxhbmUtcGFubmluZy1ib3R0b20tcmlnaHQtc3VzcGVuZC1w
-aXBlLWMtcGxhbmVzLmh0bWwKICAgWzE0XTogaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3Ry
-ZWUvZHJtLXRpcC9QYXRjaHdvcmtfMTMzNTYvc2hhcmQtc2tsMTAvaWd0QGttc19wbGFuZUBwbGFu
-ZS1wYW5uaW5nLWJvdHRvbS1yaWdodC1zdXNwZW5kLXBpcGUtYy1wbGFuZXMuaHRtbAoKICAqIGln
-dEBrbXNfcGxhbmVfYWxwaGFfYmxlbmRAcGlwZS1iLWNvbnN0YW50LWFscGhhLW1pbjoKICAgIC0g
-c2hhcmQtc2tsOiAgICAgICAgICBbUEFTU11bMTVdIC0+IFtGQUlMXVsxNl0gKFtmZG8jMTA4MTQ1
-XSkKICAgWzE1XTogaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9DSV9E
-Uk1fNjMxMi9zaGFyZC1za2w2L2lndEBrbXNfcGxhbmVfYWxwaGFfYmxlbmRAcGlwZS1iLWNvbnN0
-YW50LWFscGhhLW1pbi5odG1sCiAgIFsxNl06IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90
-cmVlL2RybS10aXAvUGF0Y2h3b3JrXzEzMzU2L3NoYXJkLXNrbDEvaWd0QGttc19wbGFuZV9hbHBo
-YV9ibGVuZEBwaXBlLWItY29uc3RhbnQtYWxwaGEtbWluLmh0bWwKCiAgKiBpZ3RAa21zX3JvdGF0
-aW9uX2NyY0BtdWx0aXBsYW5lLXJvdGF0aW9uLWNyb3BwaW5nLWJvdHRvbToKICAgIC0gc2hhcmQt
-a2JsOiAgICAgICAgICBbUEFTU11bMTddIC0+IFtETUVTRy1GQUlMXVsxOF0gKFtmZG8jMTA1NzYz
-XSkKICAgWzE3XTogaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9DSV9E
-Uk1fNjMxMi9zaGFyZC1rYmwxL2lndEBrbXNfcm90YXRpb25fY3JjQG11bHRpcGxhbmUtcm90YXRp
-b24tY3JvcHBpbmctYm90dG9tLmh0bWwKICAgWzE4XTogaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEu
-b3JnL3RyZWUvZHJtLXRpcC9QYXRjaHdvcmtfMTMzNTYvc2hhcmQta2JsMy9pZ3RAa21zX3JvdGF0
-aW9uX2NyY0BtdWx0aXBsYW5lLXJvdGF0aW9uLWNyb3BwaW5nLWJvdHRvbS5odG1sCgogICogaWd0
-QHBlcmZfcG11QHJjNjoKICAgIC0gc2hhcmQta2JsOiAgICAgICAgICBbUEFTU11bMTldIC0+IFtT
-S0lQXVsyMF0gKFtmZG8jMTA5MjcxXSkKICAgWzE5XTogaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEu
-b3JnL3RyZWUvZHJtLXRpcC9DSV9EUk1fNjMxMi9zaGFyZC1rYmw3L2lndEBwZXJmX3BtdUByYzYu
-aHRtbAogICBbMjBdOiBodHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlwL1Bh
-dGNod29ya18xMzM1Ni9zaGFyZC1rYmwyL2lndEBwZXJmX3BtdUByYzYuaHRtbAoKICAKIyMjIyBQ
-b3NzaWJsZSBmaXhlcyAjIyMjCgogICogaWd0QGdlbV9laW9Ad2FpdC0xMG1zOgogICAgLSBzaGFy
-ZC1hcGw6ICAgICAgICAgIFtETUVTRy1XQVJOXVsyMV0gKFtmZG8jMTEwOTEzIF0pIC0+IFtQQVNT
-XVsyMl0gKzEgc2ltaWxhciBpc3N1ZQogICBbMjFdOiBodHRwczovL2ludGVsLWdmeC1jaS4wMS5v
-cmcvdHJlZS9kcm0tdGlwL0NJX0RSTV82MzEyL3NoYXJkLWFwbDgvaWd0QGdlbV9laW9Ad2FpdC0x
-MG1zLmh0bWwKICAgWzIyXTogaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRp
-cC9QYXRjaHdvcmtfMTMzNTYvc2hhcmQtYXBsNS9pZ3RAZ2VtX2Vpb0B3YWl0LTEwbXMuaHRtbAoK
-ICAqIGlndEBnZW1fcGVyc2lzdGVudF9yZWxvY3NAZm9ya2VkLWludGVycnVwdGlibGUtZmF1bHRp
-bmctcmVsb2MtdGhyYXNoaW5nOgogICAgLSBzaGFyZC1rYmw6ICAgICAgICAgIFtETUVTRy1XQVJO
-XVsyM10gKFtmZG8jMTEwOTEzIF0pIC0+IFtQQVNTXVsyNF0KICAgWzIzXTogaHR0cHM6Ly9pbnRl
-bC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9DSV9EUk1fNjMxMi9zaGFyZC1rYmw3L2lndEBn
-ZW1fcGVyc2lzdGVudF9yZWxvY3NAZm9ya2VkLWludGVycnVwdGlibGUtZmF1bHRpbmctcmVsb2Mt
-dGhyYXNoaW5nLmh0bWwKICAgWzI0XTogaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUv
-ZHJtLXRpcC9QYXRjaHdvcmtfMTMzNTYvc2hhcmQta2JsNi9pZ3RAZ2VtX3BlcnNpc3RlbnRfcmVs
-b2NzQGZvcmtlZC1pbnRlcnJ1cHRpYmxlLWZhdWx0aW5nLXJlbG9jLXRocmFzaGluZy5odG1sCgog
-ICogaWd0QGttc19jdXJzb3JfZWRnZV93YWxrQHBpcGUtYi0xMjh4MTI4LXRvcC1lZGdlOgogICAg
-LSBzaGFyZC1zbmI6ICAgICAgICAgIFtTS0lQXVsyNV0gKFtmZG8jMTA5MjcxXSAvIFtmZG8jMTA5
-Mjc4XSkgLT4gW1BBU1NdWzI2XQogICBbMjVdOiBodHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcv
-dHJlZS9kcm0tdGlwL0NJX0RSTV82MzEyL3NoYXJkLXNuYjIvaWd0QGttc19jdXJzb3JfZWRnZV93
-YWxrQHBpcGUtYi0xMjh4MTI4LXRvcC1lZGdlLmh0bWwKICAgWzI2XTogaHR0cHM6Ly9pbnRlbC1n
-ZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9QYXRjaHdvcmtfMTMzNTYvc2hhcmQtc25iMi9pZ3RA
-a21zX2N1cnNvcl9lZGdlX3dhbGtAcGlwZS1iLTEyOHgxMjgtdG9wLWVkZ2UuaHRtbAoKICAqIGln
-dEBrbXNfY3Vyc29yX2xlZ2FjeUAyeC1sb25nLWZsaXAtdnMtY3Vyc29yLWF0b21pYzoKICAgIC0g
-c2hhcmQtZ2xrOiAgICAgICAgICBbRkFJTF1bMjddIChbZmRvIzEwNDg3M10pIC0+IFtQQVNTXVsy
-OF0KICAgWzI3XTogaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9DSV9E
-Uk1fNjMxMi9zaGFyZC1nbGs4L2lndEBrbXNfY3Vyc29yX2xlZ2FjeUAyeC1sb25nLWZsaXAtdnMt
-Y3Vyc29yLWF0b21pYy5odG1sCiAgIFsyOF06IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90
-cmVlL2RybS10aXAvUGF0Y2h3b3JrXzEzMzU2L3NoYXJkLWdsazEvaWd0QGttc19jdXJzb3JfbGVn
-YWN5QDJ4LWxvbmctZmxpcC12cy1jdXJzb3ItYXRvbWljLmh0bWwKCiAgKiBpZ3RAa21zX2ZsaXBA
-MngtZmxpcC12cy1leHBpcmVkLXZibGFuay1pbnRlcnJ1cHRpYmxlOgogICAgLSBzaGFyZC1oc3c6
-ICAgICAgICAgIFtTS0lQXVsyOV0gKFtmZG8jMTA5MjcxXSkgLT4gW1BBU1NdWzMwXSArMjMgc2lt
-aWxhciBpc3N1ZXMKICAgWzI5XTogaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJt
-LXRpcC9DSV9EUk1fNjMxMi9zaGFyZC1oc3cxL2lndEBrbXNfZmxpcEAyeC1mbGlwLXZzLWV4cGly
-ZWQtdmJsYW5rLWludGVycnVwdGlibGUuaHRtbAogICBbMzBdOiBodHRwczovL2ludGVsLWdmeC1j
-aS4wMS5vcmcvdHJlZS9kcm0tdGlwL1BhdGNod29ya18xMzM1Ni9zaGFyZC1oc3c2L2lndEBrbXNf
-ZmxpcEAyeC1mbGlwLXZzLWV4cGlyZWQtdmJsYW5rLWludGVycnVwdGlibGUuaHRtbAoKICAqIGln
-dEBrbXNfZnJvbnRidWZmZXJfdHJhY2tpbmdAZmJjLXN1c3BlbmQ6CiAgICAtIHNoYXJkLWFwbDog
-ICAgICAgICAgW0RNRVNHLVdBUk5dWzMxXSAoW2ZkbyMxMDg1NjZdKSAtPiBbUEFTU11bMzJdCiAg
-IFszMV06IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAvQ0lfRFJNXzYz
-MTIvc2hhcmQtYXBsMy9pZ3RAa21zX2Zyb250YnVmZmVyX3RyYWNraW5nQGZiYy1zdXNwZW5kLmh0
-bWwKICAgWzMyXTogaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9QYXRj
-aHdvcmtfMTMzNTYvc2hhcmQtYXBsMS9pZ3RAa21zX2Zyb250YnVmZmVyX3RyYWNraW5nQGZiYy1z
-dXNwZW5kLmh0bWwKCiAgKiBpZ3RAa21zX3BpcGVfY3JjX2Jhc2ljQHN1c3BlbmQtcmVhZC1jcmMt
-cGlwZS1jOgogICAgLSBzaGFyZC1za2w6ICAgICAgICAgIFtJTkNPTVBMRVRFXVszM10gKFtmZG8j
-MTA0MTA4XSkgLT4gW1BBU1NdWzM0XQogICBbMzNdOiBodHRwczovL2ludGVsLWdmeC1jaS4wMS5v
-cmcvdHJlZS9kcm0tdGlwL0NJX0RSTV82MzEyL3NoYXJkLXNrbDQvaWd0QGttc19waXBlX2NyY19i
-YXNpY0BzdXNwZW5kLXJlYWQtY3JjLXBpcGUtYy5odG1sCiAgIFszNF06IGh0dHBzOi8vaW50ZWwt
-Z2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAvUGF0Y2h3b3JrXzEzMzU2L3NoYXJkLXNrbDEwL2ln
-dEBrbXNfcGlwZV9jcmNfYmFzaWNAc3VzcGVuZC1yZWFkLWNyYy1waXBlLWMuaHRtbAoKICAqIGln
-dEBrbXNfcGxhbmVAcGxhbmUtcGFubmluZy1ib3R0b20tcmlnaHQtcGlwZS1iLXBsYW5lczoKICAg
-IC0gc2hhcmQtc25iOiAgICAgICAgICBbU0tJUF1bMzVdIChbZmRvIzEwOTI3MV0pIC0+IFtQQVNT
-XVszNl0gKzEgc2ltaWxhciBpc3N1ZQogICBbMzVdOiBodHRwczovL2ludGVsLWdmeC1jaS4wMS5v
-cmcvdHJlZS9kcm0tdGlwL0NJX0RSTV82MzEyL3NoYXJkLXNuYjIvaWd0QGttc19wbGFuZUBwbGFu
-ZS1wYW5uaW5nLWJvdHRvbS1yaWdodC1waXBlLWItcGxhbmVzLmh0bWwKICAgWzM2XTogaHR0cHM6
-Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9QYXRjaHdvcmtfMTMzNTYvc2hhcmQt
-c25iMi9pZ3RAa21zX3BsYW5lQHBsYW5lLXBhbm5pbmctYm90dG9tLXJpZ2h0LXBpcGUtYi1wbGFu
-ZXMuaHRtbAoKICAKICBbZmRvIzEwMzM1OV06IGh0dHBzOi8vYnVncy5mcmVlZGVza3RvcC5vcmcv
-c2hvd19idWcuY2dpP2lkPTEwMzM1OQogIFtmZG8jMTA0MTA4XTogaHR0cHM6Ly9idWdzLmZyZWVk
-ZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MTA0MTA4CiAgW2ZkbyMxMDQ4NzNdOiBodHRwczov
-L2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD0xMDQ4NzMKICBbZmRvIzEwNTc2
-M106IGh0dHBzOi8vYnVncy5mcmVlZGVza3RvcC5vcmcvc2hvd19idWcuY2dpP2lkPTEwNTc2Mwog
-IFtmZG8jMTA4MTQ1XTogaHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/
-aWQ9MTA4MTQ1CiAgW2ZkbyMxMDg1NjZdOiBodHRwczovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3No
-b3dfYnVnLmNnaT9pZD0xMDg1NjYKICBbZmRvIzEwOTI3MV06IGh0dHBzOi8vYnVncy5mcmVlZGVz
-a3RvcC5vcmcvc2hvd19idWcuY2dpP2lkPTEwOTI3MQogIFtmZG8jMTA5Mjc4XTogaHR0cHM6Ly9i
-dWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MTA5Mjc4CiAgW2ZkbyMxMDk1MDdd
-OiBodHRwczovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD0xMDk1MDcKICBb
-ZmRvIzExMDkxMyBdOiBodHRwczovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9p
-ZD0xMTA5MTMgCiAgW2sub3JnIzE5ODEzM106IGh0dHBzOi8vYnVnemlsbGEua2VybmVsLm9yZy9z
-aG93X2J1Zy5jZ2k/aWQ9MTk4MTMzCgoKUGFydGljaXBhdGluZyBob3N0cyAoMTAgLT4gOSkKLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tCgogIE1pc3NpbmcgICAgKDEpOiBzaGFyZC1pY2xi
-IAoKCkJ1aWxkIGNoYW5nZXMKLS0tLS0tLS0tLS0tLQoKICAqIExpbnV4OiBDSV9EUk1fNjMxMiAt
-PiBQYXRjaHdvcmtfMTMzNTYKCiAgQ0lfRFJNXzYzMTI6IDAzNGUzYWM2YTJkMTgwZDE4OGRhOTI3
-Mzg4YjYwYzdlNjJjNTY1NWIgQCBnaXQ6Ly9hbm9uZ2l0LmZyZWVkZXNrdG9wLm9yZy9nZngtY2kv
-bGludXgKICBJR1RfNTA2MTogYzg4Y2VkNzlhN2I3MWFlYzU4ZjFkOWM1YzU5OWFjMmY0MzFiY2Y3
-YSBAIGdpdDovL2Fub25naXQuZnJlZWRlc2t0b3Aub3JnL3hvcmcvYXBwL2ludGVsLWdwdS10b29s
-cwogIFBhdGNod29ya18xMzM1NjogNjkxYjgwOGJhYzc0YTYwMzM3NTgzNDQ1ZjZiYmJmMDg3Yzcz
-NGU2MyBAIGdpdDovL2Fub25naXQuZnJlZWRlc2t0b3Aub3JnL2dmeC1jaS9saW51eAogIHBpZ2xp
-dF80NTA5OiBmZGM1YTRjYTExMTI0YWI4NDEzYzc5ODg4OTZlZWM0Yzk3MzM2Njk0IEAgZ2l0Oi8v
-YW5vbmdpdC5mcmVlZGVza3RvcC5vcmcvcGlnbGl0Cgo9PSBMb2dzID09CgpGb3IgbW9yZSBkZXRh
-aWxzIHNlZTogaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9QYXRjaHdv
-cmtfMTMzNTYvCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-CkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpo
-dHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeA==
+
+--===============0839804827==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="uxuisgdDHaNETlh8"
+Content-Disposition: inline
+
+
+--uxuisgdDHaNETlh8
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Tue, Jun 18, 2019 at 07:32:20PM +0200, Daniel Vetter wrote:
+> On Tue, Jun 18, 2019 at 5:25 PM Greg Kroah-Hartman
+> <gregkh@linuxfoundation.org> wrote:
+> > On Tue, Jun 18, 2019 at 05:19:38PM +0200, Greg Kroah-Hartman wrote:
+> > > On Fri, Jun 14, 2019 at 10:36:14PM +0200, Daniel Vetter wrote:
+> > > > Greg is busy already, but maybe he won't do everything ...
+> > > >
+> > > > Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+> > > > Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+> > > > ---
+> > > >  Documentation/gpu/todo.rst | 3 +++
+> > > >  1 file changed, 3 insertions(+)
+> > > >
+> > > > diff --git a/Documentation/gpu/todo.rst b/Documentation/gpu/todo.rst
+> > > > index 9717540ee28f..026e55c517e1 100644
+> > > > --- a/Documentation/gpu/todo.rst
+> > > > +++ b/Documentation/gpu/todo.rst
+> > > > @@ -375,6 +375,9 @@ There's a bunch of issues with it:
+> > > >    this (together with the drm_minor->drm_device move) would allow =
+us to remove
+> > > >    debugfs_init.
+> > > >
+> > > > +- Drop the return code and error checking from all debugfs functio=
+ns. Greg KH is
+> > > > +  working on this already.
+> > >
+> > >
+> > > Part of this work was to try to delete drm_debugfs_remove_files().
+> > >
+> > > There are only 4 files that currently still call this function:
+> > >       drivers/gpu/drm/tegra/dc.c
+> > >       drivers/gpu/drm/tegra/dsi.c
+> > >       drivers/gpu/drm/tegra/hdmi.c
+> > >       drivers/gpu/drm/tegra/sor.c
+> > >
+> > > For dc.c, the driver wants to add debugfs files to the struct drm_crtc
+> > > debugfs directory.  Which is fine, but it has to do some special memo=
+ry
+> > > allocation to get the debugfs callback to point not to the struct
+> > > drm_minor pointer, but rather the drm_crtc structure.
+>=20
+> There's already a todo to switch the drm_minor debugfs stuff over to
+> drm_device. drm_minor is essentially different uapi flavours (/dev/
+> minor nodes, hence the name) sitting on top of the same drm_device.
+> Last time I checked all the debugfs files want the drm_device, not the
+> minor. I think we even discussed to only register the debugfs files
+> for the first minor, and create the other ones as symlinks to the
+> first one. But haven't yet gotten around to typing that.
+>=20
+> drm_crtc/connector are parts of drm_device with modesetting support,
+> so the drm_minor is even worse choice really.
+
+For the connector drivers we already sit on top of the per-connector
+debugfs directories. I think the only reason why we don't do that for
+the display controller is because drm_crtc didn't have built-in debugfs
+support like the connectors have. It looks like that's no longer true,
+though it's been there for a while. I think it'd be good to just move
+those over as well.
+
+As for passing struct drm_minor, I think that's mostly unnecessary. As
+far as I can tell, we only use drm_minor to get at drm_device, which in
+turn we only use to check some features flags, and drm_minor itself is
+only used to track the list of files that are being added so that they
+can later be removed again. Given that we can just tear down everything
+debugfs recursively, I don't think we need any of that.
+
+>=20
+> Not exactly sure why we went with this, but probably dates back to the
+> *bsd compat layer and a lot of these files hanging out in procfs too
+> (we've fixed those mistakes a few years ago, yay!).
+>=20
+> > > So, to remove this call, I need to remove this special memory allocat=
+ion
+> > > and to do that, I need to somehow be able to cast from drm_minor back=
+ to
+> > > the drm_crtc structure being used in this driver.  And I can't figure
+> > > how they are related at all.
+> > >
+> > > Any pointers here (pun intended) would be appreciated.
+> > >
+> > > For the other 3 files, the situation is much the same, but I need to =
+get
+> > > from a 'struct drm_minor' pointer to a 'struct drm_connector' pointer.
+>=20
+> Ditch the drm_minor, there's no no way to get from that to something
+> like drm_connector/crtc, since it's a n:m relationship.
+
+Yeah. That too.
+
+> > > I could just "open code" a bunch of calls to debugfs_create_file() for
+> > > these drivers, which would solve this issue, but in a more "non-drm"
+> > > way.  Is it worth to just do that instead of overthinking the whole
+> > > thing and trying to squish it into the drm "model" of drm debugfs cal=
+ls?
+> >
+> > An example of "open coding" this is the patch below for the sor.c
+> > driver.
+>=20
+> I think open-coding is the way to go here. One of the todos is to
+> extend debugfs support for crtc/connectors, but looking at the
+> open-coded version we really don't need a drm-flavoured midlayer here.
+
+Exactly my thoughts. It'd be nice to have some sort of macro to help
+bring the boilerplate down a bit.
+
+Thierry
+
+> > Totally untested, not even built, but you should get the idea here.
+> >
+> > thanks,
+> >
+> > greg k-h
+> >
+> > ---------------
+> >
+> > diff --git a/drivers/gpu/drm/tegra/sor.c b/drivers/gpu/drm/tegra/sor.c
+> > index 5be5a0817dfe..3216221c77c4 100644
+> > --- a/drivers/gpu/drm/tegra/sor.c
+> > +++ b/drivers/gpu/drm/tegra/sor.c
+> > @@ -414,7 +414,8 @@ struct tegra_sor {
+> >
+> >         struct drm_dp_aux *aux;
+> >
+> > -       struct drm_info_list *debugfs_files;
+> > +       struct dentry *debugfs_root;
+> > +       struct drm_device *drm;
+> >
+> >         const struct tegra_sor_ops *ops;
+> >         enum tegra_io_pad pad;
+> > @@ -1262,10 +1263,9 @@ static int tegra_sor_crc_wait(struct tegra_sor *=
+sor, unsigned long timeout)
+> >
+> >  static int tegra_sor_show_crc(struct seq_file *s, void *data)
+> >  {
+> > -       struct drm_info_node *node =3D s->private;
+> > -       struct tegra_sor *sor =3D node->info_ent->data;
+> > +       struct tegra_sor *sor =3D s->private;
+> >         struct drm_crtc *crtc =3D sor->output.encoder.crtc;
+> > -       struct drm_device *drm =3D node->minor->dev;
+> > +       struct drm_device *drm =3D sor->drm;
+> >         int err =3D 0;
+> >         u32 value;
+> >
+> > @@ -1302,6 +1302,20 @@ static int tegra_sor_show_crc(struct seq_file *s=
+, void *data)
+> >         return err;
+> >  }
+> >
+> > +static int crc_open(struct inode *inode, struct file *file)
+> > +{
+> > +       struct tegra_sor *sor =3D inode->i_private;
+> > +       return single_open(file, tegra_sor_show_crc, sor);
+> > +}
+> > +
+> > +static const struct file_operations crc_fops =3D {
+> > +       .owner =3D THIS_MODULE,
+> > +       .open =3D crc_open,
+> > +       .read =3D seq_read,
+> > +       .llseek =3D seq_lseek,
+> > +       .release =3D single_release,
+> > +};
+>=20
+> Hm, is there not a macro to create such simple files with read/write
+> ops? At least for sysfs this is a bit less boilerplate iirc.
+>=20
+> > +
+> >  #define DEBUGFS_REG32(_name) { .name =3D #_name, .offset =3D _name }
+> >
+> >  static const struct debugfs_reg32 tegra_sor_regs[] =3D {
+> > @@ -1424,10 +1438,9 @@ static const struct debugfs_reg32 tegra_sor_regs=
+[] =3D {
+> >
+> >  static int tegra_sor_show_regs(struct seq_file *s, void *data)
+> >  {
+> > -       struct drm_info_node *node =3D s->private;
+> > -       struct tegra_sor *sor =3D node->info_ent->data;
+> > +       struct tegra_sor *sor =3D s->private;
+> >         struct drm_crtc *crtc =3D sor->output.encoder.crtc;
+> > -       struct drm_device *drm =3D node->minor->dev;
+> > +       struct drm_device *drm =3D sor->drm;
+>=20
+> sor->output.connector.dev should give you this already. And I think
+> getting at the drm_device is the only reason we needed the drm_minor
+> here at all.
+>=20
+> >         unsigned int i;
+> >         int err =3D 0;
+> >
+> > @@ -1450,51 +1463,44 @@ static int tegra_sor_show_regs(struct seq_file =
+*s, void *data)
+> >         return err;
+> >  }
+> >
+> > -static const struct drm_info_list debugfs_files[] =3D {
+> > -       { "crc", tegra_sor_show_crc, 0, NULL },
+> > -       { "regs", tegra_sor_show_regs, 0, NULL },
+> > +static int regs_open(struct inode *inode, struct file *file)
+> > +{
+> > +       struct tegra_sor *sor =3D inode->i_private;
+> > +       return single_open(file, tegra_sor_show_regs, sor);
+> > +}
+> > +
+> > +static const struct file_operations crc_fops =3D {
+> > +       .owner =3D THIS_MODULE,
+> > +       .open =3D crc_open,
+> > +       .read =3D seq_read,
+> > +       .llseek =3D seq_lseek,
+> > +       .release =3D single_release,
+> >  };
+> >
+> >  static int tegra_sor_late_register(struct drm_connector *connector)
+> >  {
+> > -       struct tegra_output *output =3D connector_to_output(connector);
+> > -       unsigned int i, count =3D ARRAY_SIZE(debugfs_files);
+> >         struct drm_minor *minor =3D connector->dev->primary;
+> > -       struct dentry *root =3D connector->debugfs_entry;
+> > +       struct tegra_output *output =3D connector_to_output(connector);
+> >         struct tegra_sor *sor =3D to_sor(output);
+> > -       int err;
+> > +       struct dentry *root;
+> >
+> > -       sor->debugfs_files =3D kmemdup(debugfs_files, sizeof(debugfs_fi=
+les),
+> > -                                    GFP_KERNEL);
+> > -       if (!sor->debugfs_files)
+> > -               return -ENOMEM;
+> > +       sor->drm =3D minor->dev;
+> >
+> > -       for (i =3D 0; i < count; i++)
+> > -               sor->debugfs_files[i].data =3D sor;
+> > +       root =3D debugfs_create_dir("sor", connector->debugfs_entry);
+>=20
+> Hm I think the old files got created right in the
+> drm_connector->debugfs_entry directory?
+>=20
+> > +       sor->debugfs_root =3D root;
+> >
+> > -       err =3D drm_debugfs_create_files(sor->debugfs_files, count, roo=
+t, minor);
+> > -       if (err < 0)
+> > -               goto free;
+> > +       debugfs_create_file("crc", S_IFREG | S_IRUGO, root, sor, &crc_f=
+ops);
+> > +       debugfs_create_file("regs", S_IFREG | S_IRUGO, root, sor, &regs=
+_fops);
+> >
+> >         return 0;
+> > -
+> > -free:
+> > -       kfree(sor->debugfs_files);
+> > -       sor->debugfs_files =3D NULL;
+> > -
+> > -       return err;
+> >  }
+>=20
+> I think if you can create a debugfs-simple-file macro, this here would
+> win hands-down from a boilerplate pov. I like.
+
+I fully agree with this and all of your points above.
+
+> >  static void tegra_sor_early_unregister(struct drm_connector *connector)
+> >  {
+> >         struct tegra_output *output =3D connector_to_output(connector);
+> > -       unsigned int count =3D ARRAY_SIZE(debugfs_files);
+> >         struct tegra_sor *sor =3D to_sor(output);
+> >
+> > -       drm_debugfs_remove_files(sor->debugfs_files, count,
+> > -                                connector->dev->primary);
+> > -       kfree(sor->debugfs_files);
+> > -       sor->debugfs_files =3D NULL;
+> > +       debugfs_remove_recursive(sor->debugfs_root);
+>=20
+> Not needed, we tear down everything as part of drm_dev_unregister
+> anyway. So you can ditch this.
+
+And this. Greg, let me know if you need a hand with the patches or if
+you want any of these to be build/runtime tested.
+
+Thierry
+
+--uxuisgdDHaNETlh8
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAl0LohIACgkQ3SOs138+
+s6EFHA/+M445JdfOy3KDU0l1Z+q8GIbxBghef/HSVY+H+0PKwfIEYpUdRl2Dkz7S
+bqbRKJu+domYu7UHGIyR3QpDSq1At6FpvxR1tIZ25PHmsehNOvscCdn1MBN+LuzZ
+wMJ+XEwzu1OE9xlIAr4Vr8LTY6Fzn2Sql+vz3UxuVuRgg2xxFSGzdUrEaIrbZjcu
+6/iGXwtD4xHrMq6aHQs+fvwRkYUBFDnQU9o0aoahG8WhG9tdnsuF7yxtlGZn+jLw
+NwijgUtLNxU/YLrRK4w1G/mQdVIO/syfHbzavzpe2XDLqgSnYU+WjeRWHzNUKPna
+WBfgIJ5XPyyaXdPx67D06+RdJDiUC/YsXUF336zsebKW/Drd+mhN44lfL76T5zIm
+7Ot/Sm7GLgWRSh4zp7EXoXMSFnsMrGH57Yaf1NOVFPgnr+eH0aA8/uJZo0ZUkMkT
+nfdl0AhY/pTOUQZphcfz6ZEcq9ACYiRV53/8h4guonDV0YrSIM/M6+DnKW/5IxXZ
+ekUrfs3tqn2Aj9/AVHOc/ZQy+s5M9T70uTj1rJaH+xDJFexn/L4HJQHtCYZY1McP
+S9xvn7QGr911GPWLB1m4uLtKHr33XLHpSRUHRj51HU5TexSa161Ui0CMuNxN+L/J
+M28ZIZV20yPOPH6iMG5HpyLoMnriCtIrDkfIhyR28UjUCBmmfb4=
+=yJCg
+-----END PGP SIGNATURE-----
+
+--uxuisgdDHaNETlh8--
+
+--===============0839804827==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
+IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
+
+--===============0839804827==--
