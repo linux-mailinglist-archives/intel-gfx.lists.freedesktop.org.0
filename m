@@ -1,54 +1,39 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 435ED4C536
-	for <lists+intel-gfx@lfdr.de>; Thu, 20 Jun 2019 04:09:08 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5EF2A4C542
+	for <lists+intel-gfx@lfdr.de>; Thu, 20 Jun 2019 04:17:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 08F7B6E4A0;
-	Thu, 20 Jun 2019 02:09:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 442AE6E437;
+	Thu, 20 Jun 2019 02:17:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 603C56E4A0
- for <intel-gfx@lists.freedesktop.org>; Thu, 20 Jun 2019 02:09:04 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EEFCE6E437
+ for <intel-gfx@lists.freedesktop.org>; Thu, 20 Jun 2019 02:17:44 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
 X-Amp-File-Uploaded: False
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 19 Jun 2019 19:09:03 -0700
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 19 Jun 2019 19:17:44 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.63,395,1557212400"; d="scan'208";a="311522109"
-Received: from kmsmsx152.gar.corp.intel.com ([172.21.73.87])
- by orsmga004.jf.intel.com with ESMTP; 19 Jun 2019 19:09:02 -0700
-Received: from pgsmsx111.gar.corp.intel.com ([169.254.2.124]) by
- KMSMSX152.gar.corp.intel.com ([169.254.11.7]) with mapi id 14.03.0439.000;
- Thu, 20 Jun 2019 10:09:01 +0800
-From: "Lee, Shawn C" <shawn.c.lee@intel.com>
-To: "Nikula, Jani" <jani.nikula@intel.com>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [PATCH v2] drm/i915: Check backlight type while doing eDP
- backlight initializaiton
-Thread-Index: AQHVJndCOvbeiAVkvkGiKjTxIKm+HqaiMw6AgAGToxA=
-Date: Thu, 20 Jun 2019 02:09:01 +0000
-Message-ID: <D42A2A322A1FCA4089E30E9A9BA36AC65D61A9DD@PGSMSX111.gar.corp.intel.com>
-References: <1560913807-10464-1-git-send-email-shawn.c.lee@intel.com>
- <1560933806-5184-1-git-send-email-shawn.c.lee@intel.com>
- <874l4lnca2.fsf@intel.com>
-In-Reply-To: <874l4lnca2.fsf@intel.com>
-Accept-Language: zh-TW, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-version: 11.0.600.7
-dlp-reaction: no-action
-x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiYmM4MjQ1NWUtYTNhZi00ZmYwLWIwOWEtMzYxMGU0ZDliY2JlIiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX05UIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE3LjEwLjE4MDQuNDkiLCJUcnVzdGVkTGFiZWxIYXNoIjoiSzJ2Zk94SDhramFLTExlcm9BY1BmYmx1aU0zbjROb1wvMTl6eVJsK2k1S1JNS2VrS1RRSmRsYVErOGQ4TDRLZ0YifQ==
-x-ctpclassification: CTP_NT
-x-originating-ip: [172.30.20.206]
+X-IronPort-AV: E=Sophos;i="5.63,395,1557212400"; 
+ d="asc'?scan'208";a="358802563"
+Received: from zhen-hp.sh.intel.com (HELO zhen-hp) ([10.239.13.116])
+ by fmsmga006.fm.intel.com with ESMTP; 19 Jun 2019 19:17:42 -0700
+Date: Thu, 20 Jun 2019 10:15:35 +0800
+From: Zhenyu Wang <zhenyuw@linux.intel.com>
+To: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Message-ID: <20190620021535.GA6970@zhen-hp.sh.intel.com>
+References: <20190620010021.20637-1-daniele.ceraolospurio@intel.com>
+ <20190620010021.20637-7-daniele.ceraolospurio@intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915: Check backlight type while
- doing eDP backlight initializaiton
+In-Reply-To: <20190620010021.20637-7-daniele.ceraolospurio@intel.com>
+User-Agent: Mutt/1.10.0 (2018-05-17)
+Subject: Re: [Intel-gfx] [PATCH v2 6/6] drm/i915/gvt: decouple check_vgpu()
+ from uncore_init()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -61,67 +46,210 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: "1560933806-5184-1-git-send-email-shawn.c.lee@intel.com"
- <1560933806-5184-1-git-send-email-shawn.c.lee@intel.com>
-Cc: "Chiou, Cooper" <cooper.chiou@intel.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: Zhenyu Wang <zhenyuw@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============1051377797=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Ck9uIFdlZCwgMTkgSnVuIDIwMTksIEphbmkgTmlrdWxhIDxqYW5pLm5pa3VsYUBpbnRlbC5jb20+
-IHdyb3RlOgo+T24gV2VkLCAxOSBKdW4gMjAxOSwgTGVlIFNoYXduIEMgPHNoYXduLmMubGVlQGlu
-dGVsLmNvbT4gd3JvdGU6Cj4+IElmIExGUCBiYWNrbGlnaHQgdHlwZSBzZXR0aW5nIGZyb20gVkJU
-IHdhcyAiVkVTQSBlRFAgQVVYIEludGVyZmFjZSIuCj4+IERyaXZlciBzaG91bGQgY2hlY2sgcGFu
-ZWwgY2FwYWJpbGl0eSBhbmQgdHJ5IHRvIGluaXRpYWxpemUgYXV4IGJhY2tsaWdodC4KPj4gTm8g
-bWF0dGVyIGk5MTVfbW9kcGFyYW1zLmVuYWJsZV9kcGNkX2JhY2tsaWdodCB3YXMgZW5hYmxlZCBv
-ciBub3QuCj4+Cj4+IHYyOiBhY2Nlc3MgZGV2X3ByaXYtPnZidC5iYWNrbGlnaHQudHlwZSBkaXJl
-Y3RseSBhbmQgcmVtb3ZlIHVudXNlZCBmdW5jdGlvbi4KPj4KPj4gQ2M6IFZpbGxlIFN5cmrDpGzD
-pCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5jb20+Cj4+IENjOiBKYW5pIE5pa3VsYSA8amFu
-aS5uaWt1bGFAaW50ZWwuY29tPgo+PiBDYzogSm9zZSBSb2JlcnRvIGRlIFNvdXphIDxqb3NlLnNv
-dXphQGludGVsLmNvbT4KPj4gQ2M6IENvb3BlciBDaGlvdSA8Y29vcGVyLmNoaW91QGludGVsLmNv
-bT4KPj4KPj4gU2lnbmVkLW9mZi1ieTogTGVlIFNoYXduIEMgPHNoYXduLmMubGVlQGludGVsLmNv
-bT4KPj4gLS0tCj4+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Jpb3MuaCAg
-ICAgICAgICAgICB8IDEgKwo+PiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9k
-cF9hdXhfYmFja2xpZ2h0LmMgfCA0ICsrKy0KPj4gIDIgZmlsZXMgY2hhbmdlZCwgNCBpbnNlcnRp
-b25zKCspLCAxIGRlbGV0aW9uKC0pCj4+Cj4+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0v
-aTkxNS9kaXNwbGF5L2ludGVsX2Jpb3MuaCAKPj4gYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNw
-bGF5L2ludGVsX2Jpb3MuaAo+PiBpbmRleCA0ZTQyY2ZhZjYxYTcuLjBiN2JlNjM4OWEwNyAxMDA2
-NDQKPj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9iaW9zLmgKPj4g
-KysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9iaW9zLmgKPj4gQEAgLTQy
-LDYgKzQyLDcgQEAgZW51bSBpbnRlbF9iYWNrbGlnaHRfdHlwZSB7Cj4+ICAJSU5URUxfQkFDS0xJ
-R0hUX0RJU1BMQVlfRERJLAo+PiAgCUlOVEVMX0JBQ0tMSUdIVF9EU0lfRENTLAo+PiAgCUlOVEVM
-X0JBQ0tMSUdIVF9QQU5FTF9EUklWRVJfSU5URVJGQUNFLAo+PiArCUlOVEVMX0JBQ0tMSUdIVF9W
-RVNBX0VEUF9BVVhfSU5URVJGQUNFLAo+PiAgfTsKPj4gIAo+PiAgc3RydWN0IGVkcF9wb3dlcl9z
-ZXEgewo+PiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9k
-cF9hdXhfYmFja2xpZ2h0LmMgCj4+IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRl
-bF9kcF9hdXhfYmFja2xpZ2h0LmMKPj4gaW5kZXggN2RlZDk1YTMzNGRiLi5kYjdjN2I5ZjliNTYg
-MTAwNjQ0Cj4+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHBfYXV4
-X2JhY2tsaWdodC5jCj4+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxf
-ZHBfYXV4X2JhY2tsaWdodC5jCj4+IEBAIC0yNjQsOCArMjY0LDEwIEBAIGludGVsX2RwX2F1eF9k
-aXNwbGF5X2NvbnRyb2xfY2FwYWJsZShzdHJ1Y3QgCj4+IGludGVsX2Nvbm5lY3RvciAqY29ubmVj
-dG9yKSAgaW50IAo+PiBpbnRlbF9kcF9hdXhfaW5pdF9iYWNrbGlnaHRfZnVuY3Moc3RydWN0IGlu
-dGVsX2Nvbm5lY3RvciAqaW50ZWxfY29ubmVjdG9yKSAgewo+PiAgCXN0cnVjdCBpbnRlbF9wYW5l
-bCAqcGFuZWwgPSAmaW50ZWxfY29ubmVjdG9yLT5wYW5lbDsKPj4gKwlzdHJ1Y3QgZHJtX2k5MTVf
-cHJpdmF0ZSAqZGV2X3ByaXYgPSAKPj4gK3RvX2k5MTUoaW50ZWxfY29ubmVjdG9yLT5iYXNlLmRl
-dik7Cj4+ICAKPj4gLQlpZiAoIWk5MTVfbW9kcGFyYW1zLmVuYWJsZV9kcGNkX2JhY2tsaWdodCkK
-Pj4gKwlpZiAoIWk5MTVfbW9kcGFyYW1zLmVuYWJsZV9kcGNkX2JhY2tsaWdodCAmJgo+PiArCSAg
-ICAoZGV2X3ByaXYtPnZidC5iYWNrbGlnaHQudHlwZSAhPSAKPj4gK0lOVEVMX0JBQ0tMSUdIVF9W
-RVNBX0VEUF9BVVhfSU5URVJGQUNFKSkKPj4gIAkJcmV0dXJuIC1FTk9ERVY7Cj4KPlRoZXJlIHdh
-cyBhbHNvIHRoaXMgcGFydCBpbiB0aGUgdjEgcmV2aWV3Ogo+Cj4gICAgVGhlIHVzdWFsIHRoaW5n
-IHRvIGRvIGlzIHRvIHNldCBpOTE1LmVuYWJsZV9kcGNkX2JhY2tsaWdodCBpbml0aWFsIHZhbHVl
-Cj4gICAgdG8gLTEgKGkuZS4gbWFrZSBpdCBhbiBpbnQpLCBhbmQgd2l0aCB0aGF0IGRlZmF1bHQg
-dmFsdWUgcmVzcGVjdAo+ICAgIFZCVC4gT3RoZXJ3aXNlLCByZXNwZWN0IHRoZSB2YWx1ZSBvZiBl
-bmFibGVfZHBjZF9iYWNrbGlnaHQuCj4KPgo+QlIsCj5KYW5pLgoKRG8geW91IG1lYW4gd2Ugc2hv
-dWxkIGRvIGZvbGxvd2luZz8KMS4gQ2hhbmdlIGk5MTUuZW5hYmxlX2RwY2RfYmFja2xpZ2h0IHR5
-cGUgZnJvbSBib29sIHRvIGludC4KMi4gR2l2ZSBkZWZhdWx0IHZhbHVlIGFzIC0xIGZvciBlbmFi
-bGVfZHBjZF9iYWNrbGlnaHQgaW4gaTkxNV9wYXJhbS5oLgozLiBBZGQgYSBqdWRnZW1lbnQgdG8g
-Y2hlY2sgTEZQIGJhY2tsaWdodCB0eXBlIHdhcyBhdXggaW50ZXJmYWNlIG9yIG5vdC4KICAgQmV0
-d2VlbiBpZiAoIWk5MTVfbW9kcGFyYW1zLmVuYWJsZV9kcGNkX2JhY2tsaWdodCkgYW5kIAogICBp
-ZiAoIWludGVsX2RwX2F1eF9kaXNwbGF5X2NvbnRyb2xfY2FwYWJsZShpbnRlbF9jb25uZWN0b3Ip
-KS4KCkJlc3QgcmVnYXJkcywKU2hhd24KCj4+ICAKPj4gIAlpZiAoIWludGVsX2RwX2F1eF9kaXNw
-bGF5X2NvbnRyb2xfY2FwYWJsZShpbnRlbF9jb25uZWN0b3IpKQo+Cj4tLQo+SmFuaSBOaWt1bGEs
-IEludGVsIE9wZW4gU291cmNlIEdyYXBoaWNzIENlbnRlcgpfX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdm
-eEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFp
-bG1hbi9saXN0aW5mby9pbnRlbC1nZng=
+
+--===============1051377797==
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="HcAYCG3uE/tztfnV"
+Content-Disposition: inline
+
+
+--HcAYCG3uE/tztfnV
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On 2019.06.19 18:00:21 -0700, Daniele Ceraolo Spurio wrote:
+> With multiple uncore to initialize (GT vs Display), it makes little
+> sense to have the vgpu_check inside uncore_init(). We also have
+> a catch-22 scenario where the uncore is required to read the vgpu
+> capabilities while the vgpu capabilities are required to decide if
+> we need to initialize forcewake support. To remove this circular
+> dependency, we can perform the required MMIO access by mmapping just
+> the vgtif shared page in mmio space and use raw accessors.
+>=20
+> v2: rename check_vgpu to detect_vgpu (Chris)
+>=20
+> Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+> Cc: Zhenyu Wang <zhenyuw@linux.intel.com>
+> Cc: Chris Wilson <chris@chris-wilson.co.uk>
+
+Looks good to me.
+
+Acked-by: Zhenyu Wang <zhenyuw@linux.intel.com>
+
+> ---
+>  drivers/gpu/drm/i915/i915_drv.c     |  2 ++
+>  drivers/gpu/drm/i915/i915_pvinfo.h  |  5 +++--
+>  drivers/gpu/drm/i915/i915_vgpu.c    | 35 ++++++++++++++++++++++-------
+>  drivers/gpu/drm/i915/i915_vgpu.h    |  2 +-
+>  drivers/gpu/drm/i915/intel_uncore.c |  2 --
+>  5 files changed, 33 insertions(+), 13 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/i915/i915_drv.c b/drivers/gpu/drm/i915/i915_=
+drv.c
+> index 00b6512cdee6..8f84ed26e972 100644
+> --- a/drivers/gpu/drm/i915/i915_drv.c
+> +++ b/drivers/gpu/drm/i915/i915_drv.c
+> @@ -1899,6 +1899,8 @@ int i915_driver_load(struct pci_dev *pdev, const st=
+ruct pci_device_id *ent)
+> =20
+>  	disable_rpm_wakeref_asserts(&dev_priv->runtime_pm);
+> =20
+> +	i915_detect_vgpu(dev_priv);
+> +
+>  	ret =3D i915_driver_init_mmio(dev_priv);
+>  	if (ret < 0)
+>  		goto out_runtime_pm_put;
+> diff --git a/drivers/gpu/drm/i915/i915_pvinfo.h b/drivers/gpu/drm/i915/i9=
+15_pvinfo.h
+> index 969e514916ab..ca4661e98f79 100644
+> --- a/drivers/gpu/drm/i915/i915_pvinfo.h
+> +++ b/drivers/gpu/drm/i915/i915_pvinfo.h
+> @@ -110,8 +110,9 @@ struct vgt_if {
+>  	u32  rsv7[0x200 - 24];    /* pad to one page */
+>  } __packed;
+> =20
+> -#define vgtif_reg(x) \
+> -	_MMIO((VGT_PVINFO_PAGE + offsetof(struct vgt_if, x)))
+> +#define vgtif_offset(x) (offsetof(struct vgt_if, x))
+> +
+> +#define vgtif_reg(x) _MMIO(VGT_PVINFO_PAGE + vgtif_offset(x))
+> =20
+>  /* vGPU display status to be used by the host side */
+>  #define VGT_DRV_DISPLAY_NOT_READY 0
+> diff --git a/drivers/gpu/drm/i915/i915_vgpu.c b/drivers/gpu/drm/i915/i915=
+_vgpu.c
+> index 94d3992b599d..1a8f7c731126 100644
+> --- a/drivers/gpu/drm/i915/i915_vgpu.c
+> +++ b/drivers/gpu/drm/i915/i915_vgpu.c
+> @@ -52,34 +52,53 @@
+>   */
+> =20
+>  /**
+> - * i915_check_vgpu - detect virtual GPU
+> + * i915_detect_vgpu - detect virtual GPU
+>   * @dev_priv: i915 device private
+>   *
+>   * This function is called at the initialization stage, to detect whether
+>   * running on a vGPU.
+>   */
+> -void i915_check_vgpu(struct drm_i915_private *dev_priv)
+> +void i915_detect_vgpu(struct drm_i915_private *dev_priv)
+>  {
+> -	struct intel_uncore *uncore =3D &dev_priv->uncore;
+> +	struct pci_dev *pdev =3D dev_priv->drm.pdev;
+>  	u64 magic;
+>  	u16 version_major;
+> +	void __iomem *shared_area;
+> =20
+>  	BUILD_BUG_ON(sizeof(struct vgt_if) !=3D VGT_PVINFO_SIZE);
+> =20
+> -	magic =3D __raw_uncore_read64(uncore, vgtif_reg(magic));
+> -	if (magic !=3D VGT_MAGIC)
+> +	/*
+> +	 * This is called before we setup the main MMIO BAR mappings used via
+> +	 * the uncore structure, so we need to access the BAR directly. Since
+> +	 * we do not support VGT on older gens, return early so we don't have
+> +	 * to consider differently numbered or sized MMIO bars
+> +	 */
+> +	if (INTEL_GEN(dev_priv) < 6)
+> +		return;
+> +
+> +	shared_area =3D pci_iomap_range(pdev, 0, VGT_PVINFO_PAGE, VGT_PVINFO_SI=
+ZE);
+> +	if (!shared_area) {
+> +		DRM_ERROR("failed to map MMIO bar to check for VGT\n");
+>  		return;
+> +	}
+> +
+> +	magic =3D readq(shared_area + vgtif_offset(magic));
+> +	if (magic !=3D VGT_MAGIC)
+> +		goto out;
+> =20
+> -	version_major =3D __raw_uncore_read16(uncore, vgtif_reg(version_major));
+> +	version_major =3D readw(shared_area + vgtif_offset(version_major));
+>  	if (version_major < VGT_VERSION_MAJOR) {
+>  		DRM_INFO("VGT interface version mismatch!\n");
+> -		return;
+> +		goto out;
+>  	}
+> =20
+> -	dev_priv->vgpu.caps =3D __raw_uncore_read32(uncore, vgtif_reg(vgt_caps)=
+);
+> +	dev_priv->vgpu.caps =3D readl(shared_area + vgtif_offset(vgt_caps));
+> =20
+>  	dev_priv->vgpu.active =3D true;
+>  	DRM_INFO("Virtual GPU for Intel GVT-g detected.\n");
+> +
+> +out:
+> +	pci_iounmap(pdev, shared_area);
+>  }
+> =20
+>  bool intel_vgpu_has_full_ppgtt(struct drm_i915_private *dev_priv)
+> diff --git a/drivers/gpu/drm/i915/i915_vgpu.h b/drivers/gpu/drm/i915/i915=
+_vgpu.h
+> index ebe1b7bced98..a919735fb6ce 100644
+> --- a/drivers/gpu/drm/i915/i915_vgpu.h
+> +++ b/drivers/gpu/drm/i915/i915_vgpu.h
+> @@ -26,7 +26,7 @@
+> =20
+>  #include "i915_pvinfo.h"
+> =20
+> -void i915_check_vgpu(struct drm_i915_private *dev_priv);
+> +void i915_detect_vgpu(struct drm_i915_private *dev_priv);
+> =20
+>  bool intel_vgpu_has_full_ppgtt(struct drm_i915_private *dev_priv);
+> =20
+> diff --git a/drivers/gpu/drm/i915/intel_uncore.c b/drivers/gpu/drm/i915/i=
+ntel_uncore.c
+> index 2bd602a41bb7..68d54e126d79 100644
+> --- a/drivers/gpu/drm/i915/intel_uncore.c
+> +++ b/drivers/gpu/drm/i915/intel_uncore.c
+> @@ -1650,8 +1650,6 @@ int intel_uncore_init_mmio(struct intel_uncore *unc=
+ore)
+>  	if (ret)
+>  		return ret;
+> =20
+> -	i915_check_vgpu(i915);
+> -
+>  	if (INTEL_GEN(i915) > 5 && !intel_vgpu_active(i915))
+>  		uncore->flags |=3D UNCORE_HAS_FORCEWAKE;
+> =20
+> --=20
+> 2.20.1
+>=20
+
+--=20
+Open Source Technology Center, Intel ltd.
+
+$gpg --keyserver wwwkeys.pgp.net --recv-keys 4D781827
+
+--HcAYCG3uE/tztfnV
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iFwEARECAB0WIQTXuabgHDW6LPt9CICxBBozTXgYJwUCXQrsRwAKCRCxBBozTXgY
+J9DZAJ4mSm4VrlncOEMHm2sabvqJYcmmfgCUCnw7uPWjWHYxSqXb/yeLtmPPkw==
+=n/UN
+-----END PGP SIGNATURE-----
+
+--HcAYCG3uE/tztfnV--
+
+--===============1051377797==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
+IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
+
+--===============1051377797==--
