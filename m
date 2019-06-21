@@ -2,54 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 660984F128
-	for <lists+intel-gfx@lfdr.de>; Sat, 22 Jun 2019 01:28:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A2594F13A
+	for <lists+intel-gfx@lfdr.de>; Sat, 22 Jun 2019 01:39:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C849A6E93A;
-	Fri, 21 Jun 2019 23:28:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3B1426E940;
+	Fri, 21 Jun 2019 23:39:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x441.google.com (mail-wr1-x441.google.com
- [IPv6:2a00:1450:4864:20::441])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E75526E939;
- Fri, 21 Jun 2019 23:28:43 +0000 (UTC)
-Received: by mail-wr1-x441.google.com with SMTP id r16so7997434wrl.11;
- Fri, 21 Jun 2019 16:28:43 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc:content-transfer-encoding;
- bh=2sRz3jImaIcarByNIkSmOAFWuyo4oVjpo2KyaygqSJM=;
- b=V/cVE3vzQHMH/EY0OOWiseX3fTXQKsoWdMYCvJz4uIKqlNmLPYleDFnRZheyFn8orY
- +MWgSuOPoHDc9Lz3/OJGNOKJmJWrAJTc+zQAC+8VX36jcOwHedf9E9z+EQ+f1VhlIqGl
- K23Y4ALZq8zfUOFVjPB665eJD3DugVC4aj4sPJ41x/6echRvWms8tYy9BPDB1T+w2EgC
- D8hW9xkBG3WlHzqMH2HzPZD0nzzkvZYZRHtpkstjJywz+0gkiCMXWo6Id7WZ+RkL37Bw
- VHaBbmtWqrOsT/emS+iCflcyb2FNWOKKNxx4a/e2BdQjYJ66TKH0O+eEcuUUW5bBRT5o
- a2XA==
-X-Gm-Message-State: APjAAAVVrSTgYbRu8Ml28y+5yhdDM3lp3Puf3SNut8W6bfEzroO6/M3e
- +P1yea/5ea3X/Gd7peDwNaZXUYovDtyB66eNuleNaT6I
-X-Google-Smtp-Source: APXvYqwnjUOz0nH+FSA2YU/g03vSOiaNZudNx6glOz6d1SK4xQn+evycd+kPxTWM9YiR7WC7CrWt4Cr/X5/p5+5fjI8=
-X-Received: by 2002:adf:dfc5:: with SMTP id q5mr3737696wrn.142.1561159722570; 
- Fri, 21 Jun 2019 16:28:42 -0700 (PDT)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B772B6E940
+ for <intel-gfx@lists.freedesktop.org>; Fri, 21 Jun 2019 23:39:27 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 21 Jun 2019 16:39:27 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.63,402,1557212400"; 
+ d="scan'208,217";a="182203549"
+Received: from orsmsx106.amr.corp.intel.com ([10.22.225.133])
+ by fmsmga001.fm.intel.com with ESMTP; 21 Jun 2019 16:39:27 -0700
+Received: from orsmsx108.amr.corp.intel.com ([169.254.2.202]) by
+ ORSMSX106.amr.corp.intel.com ([169.254.1.191]) with mapi id 14.03.0439.000;
+ Fri, 21 Jun 2019 16:39:26 -0700
+From: "Srivatsa, Anusha" <anusha.srivatsa@intel.com>
+To: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Thread-Topic: PR-Latest GuC
+Thread-Index: AdUoipA1CUeowpPBTZCle0n/Tm8/Ow==
+Date: Fri, 21 Jun 2019 23:39:26 +0000
+Message-ID: <83F5C7385F545743AD4FB2A62F75B073480E5842@ORSMSX108.amr.corp.intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.3.86.135]
 MIME-Version: 1.0
-References: <20190620142639.17518-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20190620142639.17518-1-ville.syrjala@linux.intel.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Fri, 21 Jun 2019 19:28:30 -0400
-Message-ID: <CADnq5_N1zk4gQA2cwQ60-KjE6DszyK8Kqvzk3hse7+Q8mbibYA@mail.gmail.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>
-X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc:content-transfer-encoding;
- bh=2sRz3jImaIcarByNIkSmOAFWuyo4oVjpo2KyaygqSJM=;
- b=WFRtoD74o+UbuXlZ+ivHD2Vn3u7fGNKJwl5380RJ3toQboRfPdU4piSjlDFYTYhKWN
- kEgLdSLclzGf/ZSvWqgp0VwlTqMWQKdS3l3jyPPgQ5xq4Bkd5omMAqlh2lVMsWbyhmX2
- p9t4jLckG+sogI8QTrxixkrEPz8Dkheko8syJ+UsJlVl3bz65suer5tdedZCIBZHdlmd
- qBVm1xUyqZBH/q7PeZ039EKa8txJ2ASf0nliTORcMGj3jCylGvXUG5rVqbpmzLHEU1rL
- 5lE/+J7+9XWBAzdaOF/ABdbHG2PHslYA0S4k8REWzDwQ4MhTIDcz2TL8NupYy9MhCHgg
- AhgQ==
-Subject: Re: [Intel-gfx] [PATCH 0/5] drm: Aspect ratio fixes
+Subject: [Intel-gfx] PR-Latest GuC
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -62,34 +50,133 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Maling list - DRI developers <dri-devel@lists.freedesktop.org>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0770979507=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gVGh1LCBKdW4gMjAsIDIwMTkgYXQgMTA6MjYgQU0gVmlsbGUgU3lyamFsYQo8dmlsbGUuc3ly
-amFsYUBsaW51eC5pbnRlbC5jb20+IHdyb3RlOgo+Cj4gRnJvbTogVmlsbGUgU3lyasOkbMOkIDx2
-aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KPgo+IElsaWEgcG9pbnRlZCBvdXQgc29tZSBv
-ZGRiYWxsIGNyYXAgaW4gdGhlIGk5MTUgYXNwZWN0IHJhdGlvIGhhbmRsaW5nLgo+IFdoaWxlIGxv
-b2tpbmcgYXQgdGhhdCBJIG5vdGljZWQgYSBidW5jaCBvZiBmYWlsIGluIHRoZSBjb3JlIGFzIHdl
-bGwuCj4gVGhpcyBzZXJpZXMgYWltcyB0byBmaXggaXQgYWxsLgo+Cj4gQ2M6IElsaWEgTWlya2lu
-IDxpbWlya2luQGFsdW0ubWl0LmVkdT4KPgo+IFZpbGxlIFN5cmrDpGzDpCAoNSk6Cj4gICBkcm06
-IERvIG5vdCB1c2UgYml0d2lzZSBPUiB0byBzZXQgcGljdXJlX2FzcGVjdF9yYXRpbwo+ICAgZHJt
-OiBEbyBub3QgYWNjZXB0IGdhcmJhZ2UgbW9kZSBhc3BlY3QgcmF0aW8gZmxhZ3MKPiAgIGRybTog
-V0FSTiBvbiBpbGxlZ2FsIGFzcGVjdCByYXRpbyB3aGVuIGNvbnZlcnRpbmcgYSBtb2RlIHRvIHVt
-b2RlCgpQYXRjaGVzIDEtMzoKUmV2aWV3ZWQtYnk6IEFsZXggRGV1Y2hlciA8YWxleGFuZGVyLmRl
-dWNoZXJAYW1kLmNvbT4KCj4gICBkcm0vaTkxNTogRG8gbm90IG92ZXJyaWRlIG1vZGUncyBhc3Bl
-Y3QgcmF0aW8gd2l0aCB0aGUgcHJvcCB2YWx1ZSBOT05FCj4gICBkcm0vaTkxNTogRHJvcCByZWR1
-bmRhbnQgYXNwZWMgcmF0aW8gcHJvcCB2YWx1ZSBpbml0aWFsaXphdGlvbgo+Cj4gIGRyaXZlcnMv
-Z3B1L2RybS9kcm1fbW9kZXMuYyAgICAgICAgICAgICAgIHwgMTcgKysrKysrKysrKystLS0tLS0K
-PiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9oZG1pLmMgfCAgNSArKy0tLQo+
-ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Nkdm8uYyB8ICA0ICstLS0KPiAg
-MyBmaWxlcyBjaGFuZ2VkLCAxNCBpbnNlcnRpb25zKCspLCAxMiBkZWxldGlvbnMoLSkKPgo+IC0t
-Cj4gMi4yMS4wCj4KPiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fXwo+IGRyaS1kZXZlbCBtYWlsaW5nIGxpc3QKPiBkcmktZGV2ZWxAbGlzdHMuZnJlZWRlc2t0
-b3Aub3JnCj4gaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9k
-cmktZGV2ZWwKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18K
-SW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0
-dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
+--===============0770979507==
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_83F5C7385F545743AD4FB2A62F75B073480E5842ORSMSX108amrcor_"
+
+--_000_83F5C7385F545743AD4FB2A62F75B073480E5842ORSMSX108amrcor_
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+The following changes since commit acb56f2fae3235195bc99ecb7d09742fb4b65e63=
+:
+
+  cavium: Add firmware for CNN55XX crypto driver. (2019-06-18 09:12:52 -040=
+0)
+
+are available in the Git repository at:
+
+  git://anongit.freedesktop.org/drm/drm-firmware guc_v33
+
+for you to fetch changes up to c1f789d2a86885973481c07b833e143fe83e163a:
+
+  drm/i915/firmware: Add v33 of GuC for ICL (2019-06-19 17:38:22 -0700)
+
+----------------------------------------------------------------
+Anusha Srivatsa (5):
+      drm/i915/firmware: Add v33 of GuC for BXT
+      drm/i915/firmware: Add v33 of GuC for GLK
+      drm/i915/firmware: Add v33 of GuC for SKL
+      drm/i915/firmware: Add v33 of GuC for KBL
+      drm/i915/firmware: Add v33 of GuC for ICL
+
+ WHENCE                  |  15 +++++++++++++++
+ i915/bxt_guc_33.0.0.bin | Bin 0 -> 181888 bytes
+ i915/glk_guc_33.0.0.bin | Bin 0 -> 182336 bytes
+ i915/icl_guc_33.0.0.bin | Bin 0 -> 385280 bytes
+ i915/kbl_guc_33.0.0.bin | Bin 0 -> 182912 bytes
+ i915/skl_guc_33.0.0.bin | Bin 0 -> 182080 bytes
+ 6 files changed, 15 insertions(+)
+ create mode 100644 i915/bxt_guc_33.0.0.bin
+ create mode 100644 i915/glk_guc_33.0.0.bin
+ create mode 100644 i915/icl_guc_33.0.0.bin
+ create mode 100644 i915/kbl_guc_33.0.0.bin
+ create mode 100644 i915/skl_guc_33.0.0.bin
+
+
+Anusha
+
+--_000_83F5C7385F545743AD4FB2A62F75B073480E5842ORSMSX108amrcor_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<html dir=3D"ltr">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" id=3D"owaParaStyle">P {margin-top:0;margin-bottom:=
+0;}</style>
+</head>
+<body fpstyle=3D"1" ocsi=3D"0">
+<div style=3D"direction: ltr;font-family: Tahoma;color: #000000;font-size: =
+10pt;">The following changes since commit acb56f2fae3235195bc99ecb7d09742fb=
+4b65e63:<br>
+<br>
+&nbsp; cavium: Add firmware for CNN55XX crypto driver. (2019-06-18 09:12:52=
+ -0400)<br>
+<br>
+are available in the Git repository at:<br>
+<br>
+&nbsp; git://anongit.freedesktop.org/drm/drm-firmware guc_v33<br>
+<br>
+for you to fetch changes up to c1f789d2a86885973481c07b833e143fe83e163a:<br=
+>
+<br>
+&nbsp; drm/i915/firmware: Add v33 of GuC for ICL (2019-06-19 17:38:22 -0700=
+)<br>
+<br>
+----------------------------------------------------------------<br>
+Anusha Srivatsa (5):<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; drm/i915/firmware: Add v33 of GuC for BXT<br=
+>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; drm/i915/firmware: Add v33 of GuC for GLK<br=
+>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; drm/i915/firmware: Add v33 of GuC for SKL<br=
+>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; drm/i915/firmware: Add v33 of GuC for KBL<br=
+>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; drm/i915/firmware: Add v33 of GuC for ICL<br=
+>
+<br>
+&nbsp;WHENCE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp; 15 &#43;&#43;&#43;&#43;&#43=
+;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;<br>
+&nbsp;i915/bxt_guc_33.0.0.bin | Bin 0 -&gt; 181888 bytes<br>
+&nbsp;i915/glk_guc_33.0.0.bin | Bin 0 -&gt; 182336 bytes<br>
+&nbsp;i915/icl_guc_33.0.0.bin | Bin 0 -&gt; 385280 bytes<br>
+&nbsp;i915/kbl_guc_33.0.0.bin | Bin 0 -&gt; 182912 bytes<br>
+&nbsp;i915/skl_guc_33.0.0.bin | Bin 0 -&gt; 182080 bytes<br>
+&nbsp;6 files changed, 15 insertions(&#43;)<br>
+&nbsp;create mode 100644 i915/bxt_guc_33.0.0.bin<br>
+&nbsp;create mode 100644 i915/glk_guc_33.0.0.bin<br>
+&nbsp;create mode 100644 i915/icl_guc_33.0.0.bin<br>
+&nbsp;create mode 100644 i915/kbl_guc_33.0.0.bin<br>
+&nbsp;create mode 100644 i915/skl_guc_33.0.0.bin<br>
+<div><br>
+</div>
+<div><br>
+</div>
+<div>Anusha <br>
+</div>
+</div>
+</body>
+</html>
+
+--_000_83F5C7385F545743AD4FB2A62F75B073480E5842ORSMSX108amrcor_--
+
+--===============0770979507==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
+IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
+
+--===============0770979507==--
