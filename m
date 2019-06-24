@@ -1,55 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 900EE4FB79
-	for <lists+intel-gfx@lfdr.de>; Sun, 23 Jun 2019 14:11:13 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 301F250061
+	for <lists+intel-gfx@lfdr.de>; Mon, 24 Jun 2019 05:54:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1651A89A7A;
-	Sun, 23 Jun 2019 12:11:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A8E9D898BF;
+	Mon, 24 Jun 2019 03:53:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ed1-f68.google.com (mail-ed1-f68.google.com
- [209.85.208.68])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6CB4E89A7A
- for <intel-gfx@lists.freedesktop.org>; Sun, 23 Jun 2019 12:11:09 +0000 (UTC)
-Received: by mail-ed1-f68.google.com with SMTP id z25so17079596edq.9
- for <intel-gfx@lists.freedesktop.org>; Sun, 23 Jun 2019 05:11:09 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:message-id:date
- :user-agent:mime-version:in-reply-to:content-language
- :content-transfer-encoding;
- bh=nakBwI4sZGx37gf/nqQhnhkTTc4nH7gPn8eeyN2vS8M=;
- b=HBet0DgFk0ChRm8IdAn4Qs6aLUtABvhiycGjPU9NtIz/ZhDuG9b+h8QT/LkWQjGYz5
- VDH4TqsspDiOPdErnjEz41jVY+fGlZ2lsXI+9NYS1guWbrngyCom0q9GWUdaYvNJTNPw
- Wuz9am+9dNsyK4tqI1DK/+bA3E+2krM4HuWlnoT5BgXSUxlIPr42/bvOChlPEvh3SHFC
- 0OH9Mw0rN9Yo+LY+jHwVpFG1XEH9GnGSAVChQkZpTF2mzMQpqs7X55RhD3a/8wmnMqS+
- VvqfLmbU8SpMd8jE2bNHc5avcRW1tR4T4Q+TljVQkvPSUdNwhmRRpT2wGxBe9VlxPghg
- x+Rw==
-X-Gm-Message-State: APjAAAXc93VDVIrykKrzb/dnoLokl0sensySK074ORRfpjKO3Fm2f9j3
- kqyt7jDmoJc1RGzTsWnEz4eHdg==
-X-Google-Smtp-Source: APXvYqyZ6F4Gqyf1cneAQ+IhpWxmyuyOUQ4oEoz0is6nrggMhomfTzXpIIkJ0JA2pB63Ppiz79GlZw==
-X-Received: by 2002:a50:f781:: with SMTP id h1mr90781547edn.240.1561291868076; 
- Sun, 23 Jun 2019 05:11:08 -0700 (PDT)
-Received: from shalem.localdomain (84-106-84-65.cable.dynamic.v4.ziggo.nl.
- [84.106.84.65])
- by smtp.gmail.com with ESMTPSA id y3sm2661992edr.27.2019.06.23.05.11.07
- (version=TLS1_3 cipher=AEAD-AES128-GCM-SHA256 bits=128/128);
- Sun, 23 Jun 2019 05:11:07 -0700 (PDT)
-To: Derek Basehore <dbasehore@chromium.org>, linux-kernel@vger.kernel.org
-References: <20190622034105.188454-1-dbasehore@chromium.org>
- <20190622034105.188454-4-dbasehore@chromium.org>
-From: Hans de Goede <hdegoede@redhat.com>
-Message-ID: <ff551bd8-ab2b-a89f-281b-5b3d3c285efc@redhat.com>
-Date: Sun, 23 Jun 2019 14:11:06 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.0
+Received: from ozlabs.org (bilbo.ozlabs.org [203.11.71.1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E1B12898BF;
+ Mon, 24 Jun 2019 03:53:56 +0000 (UTC)
+Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
+ SHA256) (No client certificate requested)
+ by mail.ozlabs.org (Postfix) with ESMTPSA id 45XFlP3YK6z9s7h;
+ Mon, 24 Jun 2019 13:53:52 +1000 (AEST)
+Date: Mon, 24 Jun 2019 13:53:52 +1000
+From: Stephen Rothwell <sfr@canb.auug.org.au>
+To: DRI <dri-devel@lists.freedesktop.org>, Bjorn Helgaas
+ <bhelgaas@google.com>, Dave Airlie <airlied@linux.ie>
+Message-ID: <20190624135352.18b7dd23@canb.auug.org.au>
+In-Reply-To: <20190617132027.3e34597d@canb.auug.org.au>
+References: <20190617132027.3e34597d@canb.auug.org.au>
 MIME-Version: 1.0
-In-Reply-To: <20190622034105.188454-4-dbasehore@chromium.org>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH v3 3/4] drm/connector: Split out orientation
- quirk detection
+X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=canb.auug.org.au; s=201702; t=1561348435;
+ bh=VGIluw6Hvk7T/j5RUdomh0qB2Y2R8PaWhs0YvojBVVI=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+ b=Kshrg/nNzmsnx243Egr3ezPv5vwk/kYDsT8+lE6SKNkh2pveGDlbta+3tOnjwK7y1
+ lUnGKsTaJkb3OzafcN+QmaJiiK+V71m19UsbVBYo5bH/ucE2xrzZxJR++zMJkTgKpr
+ WAbqsBSY3kgEtz+2ABXEFfP0/zEqPeqUz9kzbOqtYB/G6y8e3tjt3lekyMX3m5mAkw
+ +GlnoR8qXL0El0aL9jNJGbZrYgGGkcc2td0wIpyUmJSuIexSQDcfw2RmJmkVfkd5xG
+ FGbH8V4HiSF2hnBZS/saJVUT9T+aEOtalu8jNX70Eyo4K1CEs1AbDOAlV99Bk/yF/h
+ Cs1gR1oWw1cZA==
+Subject: Re: [Intel-gfx] linux-next: manual merge of the drm-intel tree with
+ the pci tree
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -62,135 +50,81 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Maxime Ripard <maxime.ripard@bootlin.com>, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, David Airlie <airlied@linux.ie>,
- CK Hu <ck.hu@mediatek.com>, linux-mediatek@lists.infradead.org,
- Philipp Zabel <p.zabel@pengutronix.de>,
- Matthias Brugger <matthias.bgg@gmail.com>, Sam Ravnborg <sam@ravnborg.org>,
- linux-arm-kernel@lists.infradead.org
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Intel Graphics <intel-gfx@lists.freedesktop.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ Linux Next Mailing List <linux-next@vger.kernel.org>,
+ Mauro Carvalho Chehab <mchehab+samsung@kernel.org>
+Content-Type: multipart/mixed; boundary="===============0662988656=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-SGksCgpPbiAyMi0wNi0xOSAwNTo0MSwgRGVyZWsgQmFzZWhvcmUgd3JvdGU6Cj4gTm90IGV2ZXJ5
-IHBsYXRmb3JtIG5lZWRzIHF1aXJrIGRldGVjdGlvbiBmb3IgcGFuZWwgb3JpZW50YXRpb24sIHNv
-Cj4gc3BsaXQgdGhlIGRybV9jb25uZWN0b3JfaW5pdF9wYW5lbF9vcmllbnRhdGlvbl9wcm9wZXJ0
-eSBpbnRvIHR3bwo+IGZ1bmN0aW9ucy4gT25lIGZvciBwbGF0Zm9ybXMgd2l0aG91dCB0aGUgbmVl
-ZCBmb3IgcXVpcmtzLCBhbmQgdGhlCj4gb3RoZXIgZm9yIHBsYXRmb3JtcyB0aGF0IG5lZWQgcXVp
-cmtzLgo+IAo+IFNpZ25lZC1vZmYtYnk6IERlcmVrIEJhc2Vob3JlIDxkYmFzZWhvcmVAY2hyb21p
-dW0ub3JnPgo+IC0tLQo+ICAgZHJpdmVycy9ncHUvZHJtL2RybV9jb25uZWN0b3IuYyB8IDQ1ICsr
-KysrKysrKysrKysrKysrKysrKysrKy0tLS0tLS0tLQo+ICAgZHJpdmVycy9ncHUvZHJtL2k5MTUv
-aW50ZWxfZHAuYyB8ICA0ICstLQo+ICAgZHJpdmVycy9ncHUvZHJtL2k5MTUvdmx2X2RzaS5jICB8
-ICA1ICsrLS0KPiAgIGluY2x1ZGUvZHJtL2RybV9jb25uZWN0b3IuaCAgICAgfCAgMiArKwo+ICAg
-NCBmaWxlcyBjaGFuZ2VkLCAzOSBpbnNlcnRpb25zKCspLCAxNyBkZWxldGlvbnMoLSkKPiAKPiBk
-aWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2RybV9jb25uZWN0b3IuYyBiL2RyaXZlcnMvZ3B1
-L2RybS9kcm1fY29ubmVjdG9yLmMKPiBpbmRleCBlMTc1ODZhYWE4MGYuLmM0YjAxYWRmOTI3YSAx
-MDA2NDQKPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vZHJtX2Nvbm5lY3Rvci5jCj4gKysrIGIvZHJp
-dmVycy9ncHUvZHJtL2RybV9jb25uZWN0b3IuYwo+IEBAIC0xODk0LDMxICsxODk0LDIzIEBAIEVY
-UE9SVF9TWU1CT0woZHJtX2Nvbm5lY3Rvcl9zZXRfdnJyX2NhcGFibGVfcHJvcGVydHkpOwo+ICAg
-ICogZHJtX2Nvbm5lY3Rvcl9pbml0X3BhbmVsX29yaWVudGF0aW9uX3Byb3BlcnR5IC0KPiAgICAq
-CWluaXRpYWxpemUgdGhlIGNvbm5lY3RlcnMgcGFuZWxfb3JpZW50YXRpb24gcHJvcGVydHkKPiAg
-ICAqIEBjb25uZWN0b3I6IGNvbm5lY3RvciBmb3Igd2hpY2ggdG8gaW5pdCB0aGUgcGFuZWwtb3Jp
-ZW50YXRpb24gcHJvcGVydHkuCj4gLSAqIEB3aWR0aDogd2lkdGggaW4gcGl4ZWxzIG9mIHRoZSBw
-YW5lbCwgdXNlZCBmb3IgcGFuZWwgcXVpcmsgZGV0ZWN0aW9uCj4gLSAqIEBoZWlnaHQ6IGhlaWdo
-dCBpbiBwaXhlbHMgb2YgdGhlIHBhbmVsLCB1c2VkIGZvciBwYW5lbCBxdWlyayBkZXRlY3Rpb24K
-PiAgICAqCj4gICAgKiBUaGlzIGZ1bmN0aW9uIHNob3VsZCBvbmx5IGJlIGNhbGxlZCBmb3IgYnVp
-bHQtaW4gcGFuZWxzLCBhZnRlciBzZXR0aW5nCj4gICAgKiBjb25uZWN0b3ItPmRpc3BsYXlfaW5m
-by5wYW5lbF9vcmllbnRhdGlvbiBmaXJzdCAoaWYga25vd24pLgo+ICAgICoKPiAtICogVGhpcyBm
-dW5jdGlvbiB3aWxsIGNoZWNrIGZvciBwbGF0Zm9ybSBzcGVjaWZpYyAoZS5nLiBETUkgYmFzZWQp
-IHF1aXJrcwo+IC0gKiBvdmVycmlkaW5nIGRpc3BsYXlfaW5mby5wYW5lbF9vcmllbnRhdGlvbiBm
-aXJzdCwgdGhlbiBpZiBwYW5lbF9vcmllbnRhdGlvbgo+IC0gKiBpcyBub3QgRFJNX01PREVfUEFO
-RUxfT1JJRU5UQVRJT05fVU5LTk9XTiBpdCB3aWxsIGF0dGFjaCB0aGUKPiAtICogInBhbmVsIG9y
-aWVudGF0aW9uIiBwcm9wZXJ0eSB0byB0aGUgY29ubmVjdG9yLgo+ICsgKiBUaGlzIGZ1bmN0aW9u
-IHdpbGwgY2hlY2sgaWYgdGhlIHBhbmVsX29yaWVudGF0aW9uIGlzIG5vdAo+ICsgKiBEUk1fTU9E
-RV9QQU5FTF9PUklFTlRBVElPTl9VTktOT1dOLiBJZiBub3QsIGl0IHdpbGwgYXR0YWNoIHRoZSAi
-cGFuZWwKPiArICogb3JpZW50YXRpb24iIHByb3BlcnR5IHRvIHRoZSBjb25uZWN0b3IuCj4gICAg
-Kgo+ICAgICogUmV0dXJuczoKPiAgICAqIFplcm8gb24gc3VjY2VzcywgbmVnYXRpdmUgZXJybm8g
-b24gZmFpbHVyZS4KPiAgICAqLwo+ICAgaW50IGRybV9jb25uZWN0b3JfaW5pdF9wYW5lbF9vcmll
-bnRhdGlvbl9wcm9wZXJ0eSgKPiAtCXN0cnVjdCBkcm1fY29ubmVjdG9yICpjb25uZWN0b3IsIGlu
-dCB3aWR0aCwgaW50IGhlaWdodCkKPiArCXN0cnVjdCBkcm1fY29ubmVjdG9yICpjb25uZWN0b3Ip
-Cj4gICB7Cj4gICAJc3RydWN0IGRybV9kZXZpY2UgKmRldiA9IGNvbm5lY3Rvci0+ZGV2Owo+ICAg
-CXN0cnVjdCBkcm1fZGlzcGxheV9pbmZvICppbmZvID0gJmNvbm5lY3Rvci0+ZGlzcGxheV9pbmZv
-Owo+ICAgCXN0cnVjdCBkcm1fcHJvcGVydHkgKnByb3A7Cj4gLQlpbnQgb3JpZW50YXRpb25fcXVp
-cms7Cj4gLQo+IC0Jb3JpZW50YXRpb25fcXVpcmsgPSBkcm1fZ2V0X3BhbmVsX29yaWVudGF0aW9u
-X3F1aXJrKHdpZHRoLCBoZWlnaHQpOwo+IC0JaWYgKG9yaWVudGF0aW9uX3F1aXJrICE9IERSTV9N
-T0RFX1BBTkVMX09SSUVOVEFUSU9OX1VOS05PV04pCj4gLQkJaW5mby0+cGFuZWxfb3JpZW50YXRp
-b24gPSBvcmllbnRhdGlvbl9xdWlyazsKPiAgIAo+ICAgCWlmIChpbmZvLT5wYW5lbF9vcmllbnRh
-dGlvbiA9PSBEUk1fTU9ERV9QQU5FTF9PUklFTlRBVElPTl9VTktOT1dOKQo+ICAgCQlyZXR1cm4g
-MDsKPiBAQCAtMTk0MSw2ICsxOTMzLDM1IEBAIGludCBkcm1fY29ubmVjdG9yX2luaXRfcGFuZWxf
-b3JpZW50YXRpb25fcHJvcGVydHkoCj4gICB9Cj4gICBFWFBPUlRfU1lNQk9MKGRybV9jb25uZWN0
-b3JfaW5pdF9wYW5lbF9vcmllbnRhdGlvbl9wcm9wZXJ0eSk7Cj4gICAKPiArLyoqCj4gKyAqIGRy
-bV9jb25uZWN0b3JfaW5pdF9wYW5lbF9vcmllbnRhdGlvbl9wcm9wZXJ0eV9xdWlyayAtCj4gKyAq
-CWluaXRpYWxpemUgdGhlIGNvbm5lY3RlcnMgcGFuZWxfb3JpZW50YXRpb24gcHJvcGVydHkgd2l0
-aCBhIHF1aXJrCj4gKyAqCW92ZXJyaWRlCj4gKyAqIEBjb25uZWN0b3I6IGNvbm5lY3RvciBmb3Ig
-d2hpY2ggdG8gaW5pdCB0aGUgcGFuZWwtb3JpZW50YXRpb24gcHJvcGVydHkuCj4gKyAqIEB3aWR0
-aDogd2lkdGggaW4gcGl4ZWxzIG9mIHRoZSBwYW5lbCwgdXNlZCBmb3IgcGFuZWwgcXVpcmsgZGV0
-ZWN0aW9uCj4gKyAqIEBoZWlnaHQ6IGhlaWdodCBpbiBwaXhlbHMgb2YgdGhlIHBhbmVsLCB1c2Vk
-IGZvciBwYW5lbCBxdWlyayBkZXRlY3Rpb24KPiArICoKPiArICogVGhpcyBmdW5jdGlvbiB3aWxs
-IGNoZWNrIGZvciBwbGF0Zm9ybSBzcGVjaWZpYyAoZS5nLiBETUkgYmFzZWQpIHF1aXJrcwo+ICsg
-KiBvdmVycmlkaW5nIGRpc3BsYXlfaW5mby5wYW5lbF9vcmllbnRhdGlvbiBmaXJzdCwgdGhlbiBp
-ZiBwYW5lbF9vcmllbnRhdGlvbgo+ICsgKiBpcyBub3QgRFJNX01PREVfUEFORUxfT1JJRU5UQVRJ
-T05fVU5LTk9XTiBpdCB3aWxsIGF0dGFjaCB0aGUKPiArICogInBhbmVsIG9yaWVudGF0aW9uIiBw
-cm9wZXJ0eSB0byB0aGUgY29ubmVjdG9yLgo+ICsgKgo+ICsgKiBSZXR1cm5zOgo+ICsgKiBaZXJv
-IG9uIHN1Y2Nlc3MsIG5lZ2F0aXZlIGVycm5vIG9uIGZhaWx1cmUuCj4gKyAqLwo+ICtpbnQgZHJt
-X2Nvbm5lY3Rvcl9pbml0X3BhbmVsX29yaWVudGF0aW9uX3Byb3BlcnR5X3F1aXJrKAo+ICsJc3Ry
-dWN0IGRybV9jb25uZWN0b3IgKmNvbm5lY3RvciwgaW50IHdpZHRoLCBpbnQgaGVpZ2h0KQo+ICt7
-Cj4gKwlpbnQgb3JpZW50YXRpb25fcXVpcms7Cj4gKwo+ICsJb3JpZW50YXRpb25fcXVpcmsgPSBk
-cm1fZ2V0X3BhbmVsX29yaWVudGF0aW9uX3F1aXJrKHdpZHRoLCBoZWlnaHQpOwo+ICsJaWYgKG9y
-aWVudGF0aW9uX3F1aXJrICE9IERSTV9NT0RFX1BBTkVMX09SSUVOVEFUSU9OX1VOS05PV04pCj4g
-KwkJY29ubmVjdG9yLT5kaXNwbGF5X2luZm8ucGFuZWxfb3JpZW50YXRpb24gPSBvcmllbnRhdGlv
-bl9xdWlyazsKPiArCj4gKwlyZXR1cm4gZHJtX2Nvbm5lY3Rvcl9pbml0X3BhbmVsX29yaWVudGF0
-aW9uX3Byb3BlcnR5KGNvbm5lY3Rvcik7Cj4gK30KPiArRVhQT1JUX1NZTUJPTChkcm1fY29ubmVj
-dG9yX2luaXRfcGFuZWxfb3JpZW50YXRpb25fcHJvcGVydHlfcXVpcmspOwo+ICsKPiAgIGludCBk
-cm1fY29ubmVjdG9yX3NldF9vYmpfcHJvcChzdHJ1Y3QgZHJtX21vZGVfb2JqZWN0ICpvYmosCj4g
-ICAJCQkJICAgIHN0cnVjdCBkcm1fcHJvcGVydHkgKnByb3BlcnR5LAo+ICAgCQkJCSAgICB1aW50
-NjRfdCB2YWx1ZSkKPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfZHAu
-YyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX2RwLmMKPiBpbmRleCBiMDk5YTlkYzI4ZmQu
-LjdkNGU2MWNmNTQ2MyAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9k
-cC5jCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfZHAuYwo+IEBAIC03MjgyLDgg
-KzcyODIsOCBAQCBzdGF0aWMgYm9vbCBpbnRlbF9lZHBfaW5pdF9jb25uZWN0b3Ioc3RydWN0IGlu
-dGVsX2RwICppbnRlbF9kcCwKPiAgIAlpbnRlbF9wYW5lbF9zZXR1cF9iYWNrbGlnaHQoY29ubmVj
-dG9yLCBwaXBlKTsKPiAgIAo+ICAgCWlmIChmaXhlZF9tb2RlKQo+IC0JCWRybV9jb25uZWN0b3Jf
-aW5pdF9wYW5lbF9vcmllbnRhdGlvbl9wcm9wZXJ0eSgKPiAtCQkJY29ubmVjdG9yLCBmaXhlZF9t
-b2RlLT5oZGlzcGxheSwgZml4ZWRfbW9kZS0+dmRpc3BsYXkpOwo+ICsJCWRybV9jb25uZWN0b3Jf
-aW5pdF9wYW5lbF9vcmllbnRhdGlvbl9wcm9wZXJ0eV9xdWlyayhjb25uZWN0b3IsCj4gKwkJCQlm
-aXhlZF9tb2RlLT5oZGlzcGxheSwgZml4ZWRfbW9kZS0+dmRpc3BsYXkpOwo+ICAgCj4gICAJcmV0
-dXJuIHRydWU7Cj4gICAKPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvdmx2X2Rz
-aS5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvdmx2X2RzaS5jCj4gaW5kZXggYmZlMjg5MWVhYzM3
-Li5mYTk4MzNkYmUzNTkgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvdmx2X2Rz
-aS5jCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvdmx2X2RzaS5jCj4gQEAgLTE2NTAsNiAr
-MTY1MCw3IEBAIHN0YXRpYyB2b2lkIGludGVsX2RzaV9hZGRfcHJvcGVydGllcyhzdHJ1Y3QgaW50
-ZWxfY29ubmVjdG9yICpjb25uZWN0b3IpCj4gICAKPiAgIAlpZiAoY29ubmVjdG9yLT5wYW5lbC5m
-aXhlZF9tb2RlKSB7Cj4gICAJCXUzMiBhbGxvd2VkX3NjYWxlcnM7Cj4gKwkJaW50IG9yaWVudGF0
-aW9uOwo+ICAgCj4gICAJCWFsbG93ZWRfc2NhbGVycyA9IEJJVChEUk1fTU9ERV9TQ0FMRV9BU1BF
-Q1QpIHwgQklUKERSTV9NT0RFX1NDQUxFX0ZVTExTQ1JFRU4pOwo+ICAgCQlpZiAoIUhBU19HTUNI
-KGRldl9wcml2KSkKClRoZSBhYm92ZSBjaHVuayBzZWVtcyB0byBiZSBhIGxlZnRvdmVyIGZyb20g
-dGhlIHByZXZpb3VzIHZlcnNpb24gb2YgdGhpcyBzZXJpZXMuCgpPdGhlcndpc2UgdGhpcyBwYXRj
-aCBsb29rcyBnb29kLCB3aXRoIHRoaXMgZml4ZWQgeW91IGNhbiBhZGQgbXk6CgpSZXZpZXdlZC1i
-eTogSGFucyBkZSBHb2VkZSA8aGRlZ29lZGVAcmVkaGF0LmNvbT4KClJlZ2FyZHMsCgpIYW5zCgoK
-Cj4gQEAgLTE2NjAsOSArMTY2MSw3IEBAIHN0YXRpYyB2b2lkIGludGVsX2RzaV9hZGRfcHJvcGVy
-dGllcyhzdHJ1Y3QgaW50ZWxfY29ubmVjdG9yICpjb25uZWN0b3IpCj4gICAKPiAgIAkJY29ubmVj
-dG9yLT5iYXNlLnN0YXRlLT5zY2FsaW5nX21vZGUgPSBEUk1fTU9ERV9TQ0FMRV9BU1BFQ1Q7Cj4g
-ICAKPiAtCQljb25uZWN0b3ItPmJhc2UuZGlzcGxheV9pbmZvLnBhbmVsX29yaWVudGF0aW9uID0K
-PiAtCQkJdmx2X2RzaV9nZXRfcGFuZWxfb3JpZW50YXRpb24oY29ubmVjdG9yKTsKPiAtCQlkcm1f
-Y29ubmVjdG9yX2luaXRfcGFuZWxfb3JpZW50YXRpb25fcHJvcGVydHkoCj4gKwkJZHJtX2Nvbm5l
-Y3Rvcl9pbml0X3BhbmVsX29yaWVudGF0aW9uX3Byb3BlcnR5X3F1aXJrKAo+ICAgCQkJCSZjb25u
-ZWN0b3ItPmJhc2UsCj4gICAJCQkJY29ubmVjdG9yLT5wYW5lbC5maXhlZF9tb2RlLT5oZGlzcGxh
-eSwKPiAgIAkJCQljb25uZWN0b3ItPnBhbmVsLmZpeGVkX21vZGUtPnZkaXNwbGF5KTsKPiBkaWZm
-IC0tZ2l0IGEvaW5jbHVkZS9kcm0vZHJtX2Nvbm5lY3Rvci5oIGIvaW5jbHVkZS9kcm0vZHJtX2Nv
-bm5lY3Rvci5oCj4gaW5kZXggNDdlNzQ5Yjc0ZTVmLi4wNDY4ZmQ5YTQ0MTggMTAwNjQ0Cj4gLS0t
-IGEvaW5jbHVkZS9kcm0vZHJtX2Nvbm5lY3Rvci5oCj4gKysrIGIvaW5jbHVkZS9kcm0vZHJtX2Nv
-bm5lY3Rvci5oCj4gQEAgLTEzNzAsNiArMTM3MCw4IEBAIHZvaWQgZHJtX2Nvbm5lY3Rvcl9zZXRf
-bGlua19zdGF0dXNfcHJvcGVydHkoc3RydWN0IGRybV9jb25uZWN0b3IgKmNvbm5lY3RvciwKPiAg
-IHZvaWQgZHJtX2Nvbm5lY3Rvcl9zZXRfdnJyX2NhcGFibGVfcHJvcGVydHkoCj4gICAJCXN0cnVj
-dCBkcm1fY29ubmVjdG9yICpjb25uZWN0b3IsIGJvb2wgY2FwYWJsZSk7Cj4gICBpbnQgZHJtX2Nv
-bm5lY3Rvcl9pbml0X3BhbmVsX29yaWVudGF0aW9uX3Byb3BlcnR5KAo+ICsJc3RydWN0IGRybV9j
-b25uZWN0b3IgKmNvbm5lY3Rvcik7Cj4gK2ludCBkcm1fY29ubmVjdG9yX2luaXRfcGFuZWxfb3Jp
-ZW50YXRpb25fcHJvcGVydHlfcXVpcmsoCj4gICAJc3RydWN0IGRybV9jb25uZWN0b3IgKmNvbm5l
-Y3RvciwgaW50IHdpZHRoLCBpbnQgaGVpZ2h0KTsKPiAgIGludCBkcm1fY29ubmVjdG9yX2F0dGFj
-aF9tYXhfYnBjX3Byb3BlcnR5KHN0cnVjdCBkcm1fY29ubmVjdG9yICpjb25uZWN0b3IsCj4gICAJ
-CQkJCSAgaW50IG1pbiwgaW50IG1heCk7Cj4gCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3Rz
-LmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xp
-c3RpbmZvL2ludGVsLWdmeA==
+--===============0662988656==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ boundary="Sig_/D/pPn=xabmgy+IeW5=LwFxy"; protocol="application/pgp-signature"
+
+--Sig_/D/pPn=xabmgy+IeW5=LwFxy
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
+
+Hi all,
+
+On Mon, 17 Jun 2019 13:20:27 +1000 Stephen Rothwell <sfr@canb.auug.org.au> =
+wrote:
+>
+> Today's linux-next merge of the drm-intel tree got a conflict in:
+>=20
+>   drivers/gpu/drm/i915/i915_drv.h
+>=20
+> between commit:
+>=20
+>   151f4e2bdc7a ("docs: power: convert docs to ReST and rename to *.rst")
+>=20
+> from the pci tree and commit:
+>=20
+>   1bf676cc2dba ("drm/i915: move and rename i915_runtime_pm")
+>=20
+> from the drm-intel tree.
+>=20
+> I fixed it up (I just removed the struct definition form this files as
+> the latter did - its comment will need to be fixed up in its new file)
+> and can carry the fix as necessary. This is now fixed as far as linux-next
+> is concerned, but any non trivial conflicts should be mentioned to your
+> upstream maintainer when your tree is submitted for merging.  You may
+> also want to consider cooperating with the maintainer of the conflicting
+> tree to minimise any particularly complex conflicts.
+
+This is now a conflict between the drm and pci trees.
+--=20
+Cheers,
+Stephen Rothwell
+
+--Sig_/D/pPn=xabmgy+IeW5=LwFxy
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAl0QSVAACgkQAVBC80lX
+0GwM7gf9GK6qzUpAzdlZxWPsizUemMk0hlu06vCfFkvj4DMv6FYsDDyE7Pgt1OHm
+XGAE9GIE5qFu5DuesAChmzvOcMVg1kvp8oclWH/OFHCzBS87wDPE2MV0L3WDb+rb
+MgGgvDWdG2CJ12ztOdw+3Am1FBmIBVtQ7e1ss2kYERCtCWbwwnN5iJpt9MBpx8/8
+f+bHM4Um3Sttm9pTmYGg4tWzsSKY1NE3FouOZCVVUdUsbeNBDL2ACDmBOmg/zoZA
+LrVQ+xhPlU0q0fXVREO/A+TW3Ndba+UhQsPYHoIsOMaZeo4juJhdMGZt7EYZJhpz
++pSKH2SGBt35p0xFQLbfFvATmfcGog==
+=jGei
+-----END PGP SIGNATURE-----
+
+--Sig_/D/pPn=xabmgy+IeW5=LwFxy--
+
+--===============0662988656==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
+IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
+
+--===============0662988656==--
