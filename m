@@ -1,30 +1,38 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 994DB5050D
-	for <lists+intel-gfx@lfdr.de>; Mon, 24 Jun 2019 11:02:25 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C9BF50519
+	for <lists+intel-gfx@lfdr.de>; Mon, 24 Jun 2019 11:04:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5C450896BF;
-	Mon, 24 Jun 2019 09:02:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D4FEB899C4;
+	Mon, 24 Jun 2019 09:04:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 743BA896BF
- for <intel-gfx@lists.freedesktop.org>; Mon, 24 Jun 2019 09:02:21 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 17002383-1500050 
- for multiple; Mon, 24 Jun 2019 10:02:18 +0100
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon, 24 Jun 2019 10:02:14 +0100
-Message-Id: <20190624090214.2888-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 40ECC899C4
+ for <intel-gfx@lists.freedesktop.org>; Mon, 24 Jun 2019 09:04:50 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 24 Jun 2019 02:04:49 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.63,411,1557212400"; 
+ d="asc'?scan'208";a="155104078"
+Received: from zhen-hp.sh.intel.com (HELO zhen-hp) ([10.239.13.116])
+ by orsmga008.jf.intel.com with ESMTP; 24 Jun 2019 02:04:48 -0700
+Date: Mon, 24 Jun 2019 17:02:31 +0800
+From: Zhenyu Wang <zhenyuw@linux.intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>
+Message-ID: <20190624090231.GP9684@zhen-hp.sh.intel.com>
+References: <20190621191313.27709-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v3] drm/i915/execlists: Disable preemption under
- GVT
+In-Reply-To: <20190621191313.27709-1-chris@chris-wilson.co.uk>
+User-Agent: Mutt/1.10.0 (2018-05-17)
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/execlists: Disable preemption
+ under GVT
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -37,60 +45,114 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: Zhenyu Wang <zhenyuw@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============0106291154=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-UHJlZW1wdC10by1idXN5IHVzZXMgYSBHUFUgc2VtYXBob3JlIHRvIGVuZm9yY2UgYW4gaWRsZS1i
-YXJyaWVyIGFjcm9zcwpwcmVlbXB0aW9uLCBidXQgbWVkaWF0ZWQgZ3Z0IGRvZXMgbm90IGZ1bGx5
-IHN1cHBvcnQgc2VtYXBob3Jlcy4KClNpZ25lZC1vZmYtYnk6IENocmlzIFdpbHNvbiA8Y2hyaXNA
-Y2hyaXMtd2lsc29uLmNvLnVrPgotLS0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX2xy
-Yy5jIHwgMjEgKysrKysrKysrKysrKysrKy0tLS0tCiAxIGZpbGUgY2hhbmdlZCwgMTYgaW5zZXJ0
-aW9ucygrKSwgNSBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkx
-NS9ndC9pbnRlbF9scmMuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX2xyYy5jCmlu
-ZGV4IGM4YTBjOWIzMjc2NC4uODAxN2VmYjM2ZjdiIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9k
-cm0vaTkxNS9ndC9pbnRlbF9scmMuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRl
-bF9scmMuYwpAQCAtMjk0LDYgKzI5NCw5IEBAIHN0YXRpYyBpbmxpbmUgYm9vbCBuZWVkX3ByZWVt
-cHQoY29uc3Qgc3RydWN0IGludGVsX2VuZ2luZV9jcyAqZW5naW5lLAogewogCWludCBsYXN0X3By
-aW87CiAKKwlpZiAoIWludGVsX2VuZ2luZV9oYXNfcHJlZW1wdGlvbihlbmdpbmUpKQorCQlyZXR1
-cm4gZmFsc2U7CisKIAkvKgogCSAqIENoZWNrIGlmIHRoZSBjdXJyZW50IHByaW9yaXR5IGhpbnQg
-bWVyaXRzIGEgcHJlZW1wdGlvbiBhdHRlbXB0LgogCSAqCkBAIC04OTAsNiArODkzLDkgQEAgbmVl
-ZF90aW1lc2xpY2Uoc3RydWN0IGludGVsX2VuZ2luZV9jcyAqZW5naW5lLCBjb25zdCBzdHJ1Y3Qg
-aTkxNV9yZXF1ZXN0ICpycSkKIHsKIAlpbnQgaGludDsKIAorCWlmICghaW50ZWxfZW5naW5lX2hh
-c19wcmVlbXB0aW9uKGVuZ2luZSkpCisJCXJldHVybiBmYWxzZTsKKwogCWlmIChsaXN0X2lzX2xh
-c3QoJnJxLT5zY2hlZC5saW5rLCAmZW5naW5lLT5hY3RpdmUucmVxdWVzdHMpKQogCQlyZXR1cm4g
-ZmFsc2U7CiAKQEAgLTI2MDAsNyArMjYwNiw4IEBAIHN0YXRpYyB1MzIgKmdlbjhfZW1pdF9maW5p
-X2JyZWFkY3J1bWIoc3RydWN0IGk5MTVfcmVxdWVzdCAqcmVxdWVzdCwgdTMyICpjcykKIAkqY3Mr
-KyA9IE1JX1VTRVJfSU5URVJSVVBUOwogCiAJKmNzKysgPSBNSV9BUkJfT05fT0ZGIHwgTUlfQVJC
-X0VOQUJMRTsKLQljcyA9IGVtaXRfcHJlZW1wdF9idXN5d2FpdChyZXF1ZXN0LCBjcyk7CisJaWYg
-KGludGVsX2VuZ2luZV9oYXNfcHJlZW1wdGlvbihyZXF1ZXN0LT5lbmdpbmUpKQorCQljcyA9IGVt
-aXRfcHJlZW1wdF9idXN5d2FpdChyZXF1ZXN0LCBjcyk7CiAKIAlyZXF1ZXN0LT50YWlsID0gaW50
-ZWxfcmluZ19vZmZzZXQocmVxdWVzdCwgY3MpOwogCWFzc2VydF9yaW5nX3RhaWxfdmFsaWQocmVx
-dWVzdC0+cmluZywgcmVxdWVzdC0+dGFpbCk7CkBAIC0yNjI0LDcgKzI2MzEsOCBAQCBzdGF0aWMg
-dTMyICpnZW44X2VtaXRfZmluaV9icmVhZGNydW1iX3JjcyhzdHJ1Y3QgaTkxNV9yZXF1ZXN0ICpy
-ZXF1ZXN0LCB1MzIgKmNzKQogCSpjcysrID0gTUlfVVNFUl9JTlRFUlJVUFQ7CiAKIAkqY3MrKyA9
-IE1JX0FSQl9PTl9PRkYgfCBNSV9BUkJfRU5BQkxFOwotCWNzID0gZW1pdF9wcmVlbXB0X2J1c3l3
-YWl0KHJlcXVlc3QsIGNzKTsKKwlpZiAoaW50ZWxfZW5naW5lX2hhc19wcmVlbXB0aW9uKHJlcXVl
-c3QtPmVuZ2luZSkpCisJCWNzID0gZW1pdF9wcmVlbXB0X2J1c3l3YWl0KHJlcXVlc3QsIGNzKTsK
-IAogCXJlcXVlc3QtPnRhaWwgPSBpbnRlbF9yaW5nX29mZnNldChyZXF1ZXN0LCBjcyk7CiAJYXNz
-ZXJ0X3JpbmdfdGFpbF92YWxpZChyZXF1ZXN0LT5yaW5nLCByZXF1ZXN0LT50YWlsKTsKQEAgLTI2
-NzIsMTAgKzI2ODAsMTEgQEAgdm9pZCBpbnRlbF9leGVjbGlzdHNfc2V0X2RlZmF1bHRfc3VibWlz
-c2lvbihzdHJ1Y3QgaW50ZWxfZW5naW5lX2NzICplbmdpbmUpCiAJZW5naW5lLT51bnBhcmsgPSBO
-VUxMOwogCiAJZW5naW5lLT5mbGFncyB8PSBJOTE1X0VOR0lORV9TVVBQT1JUU19TVEFUUzsKLQlp
-ZiAoIWludGVsX3ZncHVfYWN0aXZlKGVuZ2luZS0+aTkxNSkpCisJaWYgKCFpbnRlbF92Z3B1X2Fj
-dGl2ZShlbmdpbmUtPmk5MTUpKSB7CiAJCWVuZ2luZS0+ZmxhZ3MgfD0gSTkxNV9FTkdJTkVfSEFT
-X1NFTUFQSE9SRVM7Ci0JaWYgKEhBU19MT0dJQ0FMX1JJTkdfUFJFRU1QVElPTihlbmdpbmUtPmk5
-MTUpKQotCQllbmdpbmUtPmZsYWdzIHw9IEk5MTVfRU5HSU5FX0hBU19QUkVFTVBUSU9OOworCQlp
-ZiAoSEFTX0xPR0lDQUxfUklOR19QUkVFTVBUSU9OKGVuZ2luZS0+aTkxNSkpCisJCQllbmdpbmUt
-PmZsYWdzIHw9IEk5MTVfRU5HSU5FX0hBU19QUkVFTVBUSU9OOworCX0KIH0KIAogc3RhdGljIHZv
-aWQgZXhlY2xpc3RzX2Rlc3Ryb3koc3RydWN0IGludGVsX2VuZ2luZV9jcyAqZW5naW5lKQpAQCAt
-MzQ2Myw2ICszNDcyLDggQEAgaW50ZWxfZXhlY2xpc3RzX2NyZWF0ZV92aXJ0dWFsKHN0cnVjdCBp
-OTE1X2dlbV9jb250ZXh0ICpjdHgsCiAJCXZlLT5iYXNlLmVtaXRfZmluaV9icmVhZGNydW1iID0g
-c2libGluZy0+ZW1pdF9maW5pX2JyZWFkY3J1bWI7CiAJCXZlLT5iYXNlLmVtaXRfZmluaV9icmVh
-ZGNydW1iX2R3ID0KIAkJCXNpYmxpbmctPmVtaXRfZmluaV9icmVhZGNydW1iX2R3OworCisJCXZl
-LT5iYXNlLmZsYWdzID0gc2libGluZy0+ZmxhZ3M7CiAJfQogCiAJcmV0dXJuICZ2ZS0+Y29udGV4
-dDsKLS0gCjIuMjAuMQoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Au
-b3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwt
-Z2Z4
+
+--===============0106291154==
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="82sSsPTX2JCK/L1V"
+Content-Disposition: inline
+
+
+--82sSsPTX2JCK/L1V
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On 2019.06.21 20:13:13 +0100, Chris Wilson wrote:
+> Preempt-to-busy uses a GPU semaphore to enforce an idle-barrier across
+> preemption, but mediated gvt does not fully support semaphores.
+>
+
+Current looks semaphore is still used from emit_fini_breadcrumb which
+caused gvt error, gvt may support memory based semaphore but not for
+reg based.
+
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> ---
+>  drivers/gpu/drm/i915/gt/intel_lrc.c | 13 ++++++++++---
+>  1 file changed, 10 insertions(+), 3 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/g=
+t/intel_lrc.c
+> index c8a0c9b32764..d8649e759ce8 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+> @@ -294,6 +294,9 @@ static inline bool need_preempt(const struct intel_en=
+gine_cs *engine,
+>  {
+>  	int last_prio;
+> =20
+> +	if (!intel_engine_has_preemption(engine))
+> +		return false;
+> +
+>  	/*
+>  	 * Check if the current priority hint merits a preemption attempt.
+>  	 *
+> @@ -890,6 +893,9 @@ need_timeslice(struct intel_engine_cs *engine, const =
+struct i915_request *rq)
+>  {
+>  	int hint;
+> =20
+> +	if (!intel_engine_has_preemption(engine))
+> +		return false;
+> +
+>  	if (list_is_last(&rq->sched.link, &engine->active.requests))
+>  		return false;
+> =20
+> @@ -2672,10 +2678,11 @@ void intel_execlists_set_default_submission(struc=
+t intel_engine_cs *engine)
+>  	engine->unpark =3D NULL;
+> =20
+>  	engine->flags |=3D I915_ENGINE_SUPPORTS_STATS;
+> -	if (!intel_vgpu_active(engine->i915))
+> +	if (!intel_vgpu_active(engine->i915)) {
+>  		engine->flags |=3D I915_ENGINE_HAS_SEMAPHORES;
+> -	if (HAS_LOGICAL_RING_PREEMPTION(engine->i915))
+> -		engine->flags |=3D I915_ENGINE_HAS_PREEMPTION;
+> +		if (HAS_LOGICAL_RING_PREEMPTION(engine->i915))
+> +			engine->flags |=3D I915_ENGINE_HAS_PREEMPTION;
+> +	}
+>  }
+> =20
+>  static void execlists_destroy(struct intel_engine_cs *engine)
+> --=20
+> 2.20.1
+>=20
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--=20
+Open Source Technology Center, Intel ltd.
+
+$gpg --keyserver wwwkeys.pgp.net --recv-keys 4D781827
+
+--82sSsPTX2JCK/L1V
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iF0EARECAB0WIQTXuabgHDW6LPt9CICxBBozTXgYJwUCXRCRpwAKCRCxBBozTXgY
+JyEmAJ9nYmdLaVp+ugghVtOPkqt04xKSqQCfUxB8oYqEB0YomULAwLzZ7xYG2cw=
+=ACp3
+-----END PGP SIGNATURE-----
+
+--82sSsPTX2JCK/L1V--
+
+--===============0106291154==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
+IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
+
+--===============0106291154==--
