@@ -1,54 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4583D55361
-	for <lists+intel-gfx@lfdr.de>; Tue, 25 Jun 2019 17:29:27 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id AFBE955365
+	for <lists+intel-gfx@lfdr.de>; Tue, 25 Jun 2019 17:30:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8912589911;
-	Tue, 25 Jun 2019 15:29:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0EB926E157;
+	Tue, 25 Jun 2019 15:30:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C3E6789911
- for <intel-gfx@lists.freedesktop.org>; Tue, 25 Jun 2019 15:29:24 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by fmsmga106.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 25 Jun 2019 08:29:24 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.63,416,1557212400"; d="scan'208";a="184523583"
-Received: from pgsmsx114.gar.corp.intel.com ([10.108.55.203])
- by fmsmga004.fm.intel.com with ESMTP; 25 Jun 2019 08:29:23 -0700
-Received: from pgsmsx111.gar.corp.intel.com ([169.254.2.124]) by
- pgsmsx114.gar.corp.intel.com ([169.254.4.160]) with mapi id 14.03.0439.000;
- Tue, 25 Jun 2019 23:29:22 +0800
-From: "Lee, Shawn C" <shawn.c.lee@intel.com>
-To: "Nikula, Jani" <jani.nikula@intel.com>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [PATCH v2] drm/i915: Refine eDP aux backlight enable/disable
- sequence
-Thread-Index: AQHVK2ev8skhmvO6iUCglYO6vVRNW6ar9DoAgACGlVA=
-Date: Tue, 25 Jun 2019 15:29:21 +0000
-Message-ID: <D42A2A322A1FCA4089E30E9A9BA36AC65D61C808@PGSMSX111.gar.corp.intel.com>
-References: <1561087486-19339-1-git-send-email-shawn.c.lee@intel.com>
- <1561476910-23655-1-git-send-email-shawn.c.lee@intel.com>
- <87pnn1ofyx.fsf@intel.com>
-In-Reply-To: <87pnn1ofyx.fsf@intel.com>
-Accept-Language: zh-TW, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-version: 11.0.600.7
-dlp-reaction: no-action
-x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiOWE3OWYxZGYtYTY1NC00YTY1LThlNjEtNDc0YmZiN2ZhMTVmIiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX05UIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE3LjEwLjE4MDQuNDkiLCJUcnVzdGVkTGFiZWxIYXNoIjoiTTJLNWxYcWFxaDJIeks1UTkwZUpRTkFtOFdcL3QxVVJ2bDJlY0hjRTdwV3l1aURBYUp3T3pGcmNLYXoxUWI0bjEifQ==
-x-ctpclassification: CTP_NT
-x-originating-ip: [172.30.20.205]
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CCD8089911
+ for <intel-gfx@lists.freedesktop.org>; Tue, 25 Jun 2019 15:30:17 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 17020050-1500050 for multiple; Tue, 25 Jun 2019 16:30:17 +0100
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915: Refine eDP aux backlight
- enable/disable sequence
+To: =?utf-8?q?Jos=C3=A9_Roberto_de_Souza?= <jose.souza@intel.com>,
+ Matt Roper <matthew.d.roper@intel.com>
+From: Chris Wilson <chris@chris-wilson.co.uk>
+In-Reply-To: <20190625152648.GF24125@mdroper-desk.amr.corp.intel.com>
+References: <20190614213749.15870-1-jose.souza@intel.com>
+ <20190614221739.GF32200@mdroper-desk.amr.corp.intel.com>
+ <20190625152648.GF24125@mdroper-desk.amr.corp.intel.com>
+Message-ID: <156147661309.2637.4372554521331129464@skylake-alporthouse-com>
+User-Agent: alot/0.6
+Date: Tue, 25 Jun 2019 16:30:13 +0100
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/ehl: Add missing VECS engine
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -61,50 +41,37 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: "1561476910-23655-1-git-send-email-shawn.c.lee@intel.com"
- <1561476910-23655-1-git-send-email-shawn.c.lee@intel.com>
-Cc: "Chiou, Cooper" <cooper.chiou@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Ck9uIFR1ZSwgMjUgSnVuIDIwMTksIEphbmkgTmlrdWxhIDxqYW5pLm5pa3VsYUBpbnRlbC5jb20+
-IHdyb3RlOgo+T24gVHVlLCAyNSBKdW4gMjAxOSwgTGVlIFNoYXduIEMgPHNoYXduLmMubGVlQGlu
-dGVsLmNvbT4gd3JvdGU6Cj4+IE1vZGlmeSBhdXggYmFja2xpZ2h0IGVuYWJsZS9kaXNhYmxlIHNl
-cXVlbmNlIGp1c3QgbGlrZSB3aGF0IHdlIGRpZCBmb3IgCj4+IGdlbmVybmFsIGVEUCBwYW5lbC4g
-U2V0dXAgUFdNIGZyZXEgYW5kIGJyaWdodG5lc3MgbGV2ZWwgYmVmb3JlIGVuYWJsZSAKPj4gZGlz
-cGxheSBiYWNrbGlnaHQuCj4+Cj4+IHYyOiBBY2NvcmRpbmcgdG8gc3BlYywgaXQgaXMgbm90IG5l
-Y2Vzc2FyeSB0byBzZXQgUFdNIHRvIDAgaWYKPj4gICAgIGJhY2tsaWdodCBlbmFibGUgYWxyZWFk
-eSBvZmYuIFJlbW92ZSBpbnRlbF9kcF9hdXhfc2V0X2JhY2tsaWdodCB0byAwLgo+Cj5QbGVhc2Ug
-dGhpbmsgaXQgdGhyb3VnaCBhZ2Fpbi4gVGhlIHNhbWUgYXBwbGllcyBoZXJlLiBUaGUgYnJpZ2h0
-bmVzcyBjaGFuZ2UgYmVmb3JlIGVuYWJsZSBpcyBpZ25vcmVkIGFjY29yZGluZyB0byBlRFAgc3Bl
-Yy4KPgo+QlIsCj5KYW5pLgo+CgpUaGlzIGlzIHdoYXQgdGhlIHByb2JsZW0gd2Ugc2VlIG9uIGEg
-bmV3IGVEUCBwYW5lbCBmcm9tIGN1c3RvbWVyLiBUQ09OIGRpZCBub3QgdHVybiBiYWNrbGlnaHQg
-b24gc3VjY2Vzc2Z1bC4KQWZ0ZXIgc2F3cCB0aGUgc2VxdWVuY2UsIGJhY2tsaWdodCB3b3JrcyB3
-ZWxsIGFzIGV4cGVjdGVkLiAKCkluIHRoZSBvdGhlciB3b3Jkcy4gTG9va3MgbGlrZSB0aGlzIFRD
-T04gYmFja2xpZ2h0IGVuYWJsZSBmbG93IHZpb2xhdGUgZURQIHNwZWMuIFdoYXQgZG8geW91IHRo
-aW5rPwoKPj4KPj4gQ2M6IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRl
-bC5jb20+Cj4+IENjOiBKYW5pIE5pa3VsYSA8amFuaS5uaWt1bGFAaW50ZWwuY29tPgo+PiBDYzog
-Sm9zZSBSb2JlcnRvIGRlIFNvdXphIDxqb3NlLnNvdXphQGludGVsLmNvbT4KPj4gQ2M6IENvb3Bl
-ciBDaGlvdSA8Y29vcGVyLmNoaW91QGludGVsLmNvbT4KPj4KPj4gU2lnbmVkLW9mZi1ieTogTGVl
-IFNoYXduIEMgPHNoYXduLmMubGVlQGludGVsLmNvbT4KPj4gLS0tCj4+ICBkcml2ZXJzL2dwdS9k
-cm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwX2F1eF9iYWNrbGlnaHQuYyB8IDIgKy0KPj4gIDEgZmls
-ZSBjaGFuZ2VkLCAxIGluc2VydGlvbigrKSwgMSBkZWxldGlvbigtKQo+Pgo+PiBkaWZmIC0tZ2l0
-IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcF9hdXhfYmFja2xpZ2h0LmMg
-Cj4+IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcF9hdXhfYmFja2xpZ2h0
-LmMKPj4gaW5kZXggNmIwYjczNDc5ZmI4Li43MGQ5YjljOTU4NmYgMTAwNjQ0Cj4+IC0tLSBhL2Ry
-aXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHBfYXV4X2JhY2tsaWdodC5jCj4+ICsr
-KyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHBfYXV4X2JhY2tsaWdodC5j
-Cj4+IEBAIC0yMTYsOCArMjE2LDggQEAgc3RhdGljIHZvaWQgaW50ZWxfZHBfYXV4X2VuYWJsZV9i
-YWNrbGlnaHQoY29uc3Qgc3RydWN0IGludGVsX2NydGNfc3RhdGUgKmNydGNfc3QKPj4gIAkJfQo+
-PiAgCX0KPj4gIAo+PiAtCXNldF9hdXhfYmFja2xpZ2h0X2VuYWJsZShpbnRlbF9kcCwgdHJ1ZSk7
-Cj4+ICAJaW50ZWxfZHBfYXV4X3NldF9iYWNrbGlnaHQoY29ubl9zdGF0ZSwgCj4+IGNvbm5lY3Rv
-ci0+cGFuZWwuYmFja2xpZ2h0LmxldmVsKTsKPj4gKwlzZXRfYXV4X2JhY2tsaWdodF9lbmFibGUo
-aW50ZWxfZHAsIHRydWUpOwo+PiAgfQo+PiAgCj4+ICBzdGF0aWMgdm9pZCBpbnRlbF9kcF9hdXhf
-ZGlzYWJsZV9iYWNrbGlnaHQoY29uc3Qgc3RydWN0IAo+PiBkcm1fY29ubmVjdG9yX3N0YXRlICpv
-bGRfY29ubl9zdGF0ZSkKPgo+LS0KPkphbmkgTmlrdWxhLCBJbnRlbCBPcGVuIFNvdXJjZSBHcmFw
-aGljcyBDZW50ZXIKPgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5v
-cmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1n
-Zng=
+UXVvdGluZyBNYXR0IFJvcGVyICgyMDE5LTA2LTI1IDE2OjI2OjQ4KQo+IE9uIEZyaSwgSnVuIDE0
+LCAyMDE5IGF0IDAzOjE3OjM5UE0gLTA3MDAsIE1hdHQgUm9wZXIgd3JvdGU6Cj4gPiBPbiBGcmks
+IEp1biAxNCwgMjAxOSBhdCAwMjozNzo0OVBNIC0wNzAwLCBKb3PDqSBSb2JlcnRvIGRlIFNvdXph
+IHdyb3RlOgo+ID4gPiBFSEwgY2FuIGhhdmUgdXAgdG8gb25lIFZFQ1ModmlkZW8gZW5oYW5jZW1l
+bnQpIGVuZ2luZSwgc28gYWRkIGl0IHRvCj4gPiA+IHRoZSBkZXZpY2VfaW5mby4KPiA+IAo+ID4g
+QnNwZWMgMjkxNTAgaGFzIGEgZm9vdG5vdGUgb24gVkVib3ggdGhhdCBpbmRpY2F0ZXMgIlBhc3Mt
+dGhyb3VnaCBvbmx5LAo+ID4gbm8gVkVib3ggcHJvY2Vzc2luZyBsb2dpYy4iICBUaGF0IG5vdGUg
+c2VlbXMgYSBiaXQgdmFndWUsIGJ1dCBJIHRoaW5rIEkKPiA+IHNhdyBzb21lIG1vcmUgZGV0YWls
+ZWQgaW5mbyBpbiB0aGUgcGFzdCBzb21ld2hlcmUgdGhhdCBpbmRpY2F0ZWQgdGhlCj4gPiBWRUNT
+IGNvbW1hbmQgc3RyZWFtZXIgaXMgc3RpbGwgdGVjaG5pY2FsbHkgcHJlc2VudCBidXQgZG9lc24n
+dCBhY3R1YWxseQo+ID4gZG8gYW55IHZpZGVvIGVuaGFuY2VtZW50IG9uIEVITDsgaXQganVzdCBw
+YXNzZXMgY29udGVudCB0aHJvdWdoIHRvIFNGQy4KPiA+IAo+ID4gSSdtIG5vdCB0ZXJyaWJseSBw
+bHVnZ2VkIGludG8gdGhlIG1lZGlhIHNpZGUgb2YgdGhlIHdvcmxkLCBzbyBJJ20gbm90Cj4gPiBz
+dXJlIGlmIHdlIHdhbnQgdG8gZXhwb3NlIFZFQ1MgdG8gdXNlcnNwYWNlIGlmIGl0J3MgYmFzaWNh
+bGx5IGEgbm9vcCBhbmQKPiA+IGRvZXNuJ3QgZG8gd2hhdCBpdCBub3JtYWxseSBkb2VzIG9uIG90
+aGVyIHBsYXRmb3Jtcy4gIEJzcGVjIHBhZ2UgNTIyOQo+ID4gaW1wbGllcyB0aGF0IFNGQyBjYW4g
+YmUgZmVkIGRpcmVjdGx5IGJ5IHRoZSBkZWNvZGUgZW5naW5lIHdpdGhvdXQgZ29pbmcKPiA+IHRo
+cm91Z2ggVkVCT1gsIHNvIEknbSBub3Qgc3VyZSBpZiBtZWRpYSB1c2Vyc3BhY2Ugd291bGQgZXZl
+ciBoYXZlIGEgdXNlCj4gPiBmb3IgdGhlIHBhc3N0aHJvdWdoLW9ubHkgVkVDUyBzdHJlYW1lci4K
+PiA+IAo+ID4gV2Ugc2hvdWxkIHByb2JhYmx5IGFzayBzb21lb25lIG9uIHRoZSBtZWRpYSB0ZWFt
+IHdoYXQgdGhlaXIgdGhvdWdodHMgYXJlCj4gPiBvbiB0aGlzLgo+IAo+IFNpbmNlIHRoZSBtZWRp
+YSB0ZWFtIGNvbmZpcm1lZCB0aGF0IHRoZXJlIGlzIGluZGVlZCBhIHVzZSBjYXNlIGZvciBhCj4g
+cGFzc3Rocm91Z2gtb25seSBWRUNTLAoKSWYgdGhlIENTIGV4aXN0cyBhcyBhIHNlcGFyYXRlIGVu
+dGl0eSBzdXJlLi4uIEFueSBjaGFuY2Ugd2UgY2FuIGdldCBhbgplaGwgaW50byBDSSB0byBhY3R1
+YWxseSBjb25maXJtIHRoaXM/Ci1DaHJpcwpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5m
+cmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0
+aW5mby9pbnRlbC1nZng=
