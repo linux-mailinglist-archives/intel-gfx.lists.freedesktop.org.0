@@ -2,66 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F8A655E06
-	for <lists+intel-gfx@lfdr.de>; Wed, 26 Jun 2019 04:00:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E28055F28
+	for <lists+intel-gfx@lfdr.de>; Wed, 26 Jun 2019 04:43:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8D62C6E1D8;
-	Wed, 26 Jun 2019 02:00:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 92BD16E255;
+	Wed, 26 Jun 2019 02:43:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-qt1-x841.google.com (mail-qt1-x841.google.com
- [IPv6:2607:f8b0:4864:20::841])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ED06D6E1D8;
- Wed, 26 Jun 2019 02:00:15 +0000 (UTC)
-Received: by mail-qt1-x841.google.com with SMTP id x47so675155qtk.11;
- Tue, 25 Jun 2019 19:00:15 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:subject:message-id:references
- :mime-version:content-disposition:in-reply-to:user-agent;
- bh=HpuOAuDXoNiwLSESipUp418iEseXPPASUvyqCZTf5Mw=;
- b=J5n5KwDQ+SH/St6ShxFlhkj/lhzeRleWIgFWTHrmHiXlxvC3K1CIkmxbV892pg8TtK
- NLcTOXOqy3tItBzCsF6okqwPpGDJLA8/g6avbvRYOD6cDePXa2Q6j0TvYWp8HlePBFnC
- eVGgTG5LjJeTicdALeo2u4DcFGeo4U9fYtat0uj2nYqueyx6QJm7PQP/FJktPKLsaq58
- 7hTPBPINpXkylVhLosziwic86UqpizAyZ0EaKwOnRcyegIHTzUvxpV2AvKtuvz4qZgps
- kLZ7lPvyVIvB5krTPH3ZzDn+wIBb+Gsmdum+QxMGu0zGYA+66x3TV/3XkikVot6WMrdb
- +dPg==
-X-Gm-Message-State: APjAAAVAIM6b5mjv5Vvv/Gh2W3cgym2DsQR8Go5zo9T8XE7ySigLelc6
- vA7BJcrPGfMhxwI81DH4IK7DPDC2HSU=
-X-Google-Smtp-Source: APXvYqxsk2sgNVPX0AcZD0OT3YkQmpZyeNJy6aJjXO819o3LNuOBXTzhKg373EnrondH0ZYKDY2mWg==
-X-Received: by 2002:a0c:b0ce:: with SMTP id p14mr1294280qvc.51.1561514415001; 
- Tue, 25 Jun 2019 19:00:15 -0700 (PDT)
-Received: from smtp.gmail.com ([187.121.151.146])
- by smtp.gmail.com with ESMTPSA id a54sm6533140qtk.85.2019.06.25.19.00.11
- (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
- Tue, 25 Jun 2019 19:00:14 -0700 (PDT)
-Date: Tue, 25 Jun 2019 23:00:05 -0300
-From: Rodrigo Siqueira <rodrigosiqueiramelo@gmail.com>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <maxime.ripard@bootlin.com>,
- Sean Paul <sean@poorly.run>, David Airlie <airlied@linux.ie>,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- kernel-janitors@vger.kernel.org, intel-gfx@lists.freedesktop.org
-Message-ID: <20190626020005.vb5gmqcvkyzgcjee@smtp.gmail.com>
-References: <20190619020750.swzerehjbvx6sbk2@smtp.gmail.com>
- <20190619074856.GJ12905@phenom.ffwll.local>
- <20190619075059.GK12905@phenom.ffwll.local>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id CF8246E207;
+ Wed, 26 Jun 2019 02:43:17 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id C4A8AA00FA;
+ Wed, 26 Jun 2019 02:43:17 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <20190619075059.GK12905@phenom.ffwll.local>
-User-Agent: NeoMutt/20180716
-X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20161025;
- h=date:from:to:subject:message-id:references:mime-version
- :content-disposition:in-reply-to:user-agent;
- bh=HpuOAuDXoNiwLSESipUp418iEseXPPASUvyqCZTf5Mw=;
- b=ih5M2Y3Xez7rNTHKOdlM0tA286STlKgr0/S9be5v1HeIoO44m1lsSarxkBC+N2Eb5e
- W6TFBwV5Y8BTqg/UVh2Q54hNNwEsbBxxXJTu+Nb2X5wXpxnEybX189zU6B4XuLFm+1s9
- py5t3So+h2DLha0uHL255bEV/OSvCwjNW6PG0y7in0SLWPPEeEJLyfA0jiyBloaytdFs
- Dd314PKfwvjqJbLB37OF/cHZNgB7KDkLcPKvpjGCD9Ey++WWzZwJzsYsT0/7g948xvFB
- 8tXoC/jw5KrGSg/vsypNyJLNyiGtllA9achRbzPAnoKbCGCljkRnzzHLbFWafVbZr4h8
- p/UQ==
-Subject: Re: [Intel-gfx] [PATCH V4] drm/drm_vblank: Change EINVAL by the
- correct errno
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Wed, 26 Jun 2019 02:43:17 -0000
+Message-ID: <20190626024317.20397.81044@emeril.freedesktop.org>
+References: <20190625230806.32192-1-chris@chris-wilson.co.uk>
+X-Patchwork-Hint: ignore
+In-Reply-To: <20190625230806.32192-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_drm/?=
+ =?utf-8?q?i915/guc=3A_Compact_init_params_debug_to_a_single_line_=28rev2?=
+ =?utf-8?q?=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -74,159 +39,74 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============0181185104=="
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
---===============0181185104==
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="o7ebaymw2qc26tic"
-Content-Disposition: inline
-
-
---o7ebaymw2qc26tic
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On 06/19, Daniel Vetter wrote:
-> On Wed, Jun 19, 2019 at 09:48:56AM +0200, Daniel Vetter wrote:
-> > On Tue, Jun 18, 2019 at 11:07:50PM -0300, Rodrigo Siqueira wrote:
-> > > For historical reason, the function drm_wait_vblank_ioctl always retu=
-rn
-> > > -EINVAL if something gets wrong. This scenario limits the flexibility
-> > > for the userspace make detailed verification of the problem and take
-> > > some action. In particular, the validation of =E2=80=9Cif (!dev->irq_=
-enabled)=E2=80=9D
-> > > in the drm_wait_vblank_ioctl is responsible for checking if the driver
-> > > support vblank or not. If the driver does not support VBlank, the
-> > > function drm_wait_vblank_ioctl returns EINVAL which does not represent
-> > > the real issue; this patch changes this behavior by return EOPNOTSUPP.
-> > > Additionally, some operations are unsupported by this function, and
-> > > returns EINVAL; this patch also changes the return value to EOPNOTSUPP
-> > > in this case. Lastly, the function drm_wait_vblank_ioctl is invoked by
-> > > libdrm, which is used by many compositors; because of this, it is
-> > > important to check if this change breaks any compositor. In this sens=
-e,
-> > > the following projects were examined:
-> > >=20
-> > > * Drm-hwcomposer
-> > > * Kwin
-> > > * Sway
-> > > * Wlroots
-> > > * Wayland-core
-> > > * Weston
-> > > * Xorg (67 different drivers)
-> > >=20
-> > > For each repository the verification happened in three steps:
-> > >=20
-> > > * Update the main branch
-> > > * Look for any occurrence "drmWaitVBlank" with the command:
-> > >   git grep -n "drmWaitVBlank"
-> > > * Look in the git history of the project with the command:
-> > >   git log -SdrmWaitVBlank
-> > >=20
-> > > Finally, none of the above projects validate the use of EINVAL which
-> > > make safe, at least for these projects, to change the return values.
-> > >=20
-> > > Change since V3:
-> > >  - Return EINVAL for _DRM_VBLANK_SIGNAL (Daniel)
-> > >=20
-> > > Change since V2:
-> > >  Daniel Vetter and Chris Wilson
-> > >  - Replace ENOTTY by EOPNOTSUPP
-> > >  - Return EINVAL if the parameters are wrong
-> > >=20
-> >=20
-> > Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
-> >=20
-> > Apologies for the confusion on the last time around. btw if someone tel=
-ls
-> > you "r-b (or a-b) with these changes", then just apply the r-b/a-b tag
-> > next time around. Otherwise people will re-review the same thing over a=
-nd
-> > over again.
->=20
-> btw when resending patches it's good practice to add anyone who commented
-> on it (or who commented on the igt test for the same patch and other way
-> round) onto the explicit Cc: list of the patch. That way it's easier for
-> them to follow the patch evolution and do a quick r-b once they're happy.
-
-Thanks for these valuable tips.
-Do you think that is a good idea to resend this patch CC's everybody? Or
-is it ok if I just apply it?
-=20
-> If you don't do that then much bigger chances your patch gets ignored.
-> -Daniel
-> >=20
-> > > Signed-off-by: Rodrigo Siqueira <rodrigosiqueiramelo@gmail.com>
-> > > ---
-> > >  drivers/gpu/drm/drm_vblank.c | 2 +-
-> > >  1 file changed, 1 insertion(+), 1 deletion(-)
-> > >=20
-> > > diff --git a/drivers/gpu/drm/drm_vblank.c b/drivers/gpu/drm/drm_vblan=
-k.c
-> > > index 603ab105125d..bed233361614 100644
-> > > --- a/drivers/gpu/drm/drm_vblank.c
-> > > +++ b/drivers/gpu/drm/drm_vblank.c
-> > > @@ -1582,7 +1582,7 @@ int drm_wait_vblank_ioctl(struct drm_device *de=
-v, void *data,
-> > >  	unsigned int flags, pipe, high_pipe;
-> > > =20
-> > >  	if (!dev->irq_enabled)
-> > > -		return -EINVAL;
-> > > +		return -EOPNOTSUPP;
-> > > =20
-> > >  	if (vblwait->request.type & _DRM_VBLANK_SIGNAL)
-> > >  		return -EINVAL;
-> > > --=20
-> > > 2.21.0
-> >=20
-> > --=20
-> > Daniel Vetter
-> > Software Engineer, Intel Corporation
-> > http://blog.ffwll.ch
->=20
-> --=20
-> Daniel Vetter
-> Software Engineer, Intel Corporation
-> http://blog.ffwll.ch
-
---=20
-Rodrigo Siqueira
-https://siqueira.tech
-
---o7ebaymw2qc26tic
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAEBCgAdFiEE4tZ+ii1mjMCMQbfkWJzP/comvP8FAl0S0aQACgkQWJzP/com
-vP9OChAAhjuLcUgtK3blJvPIR0GbBQ2YKI5GBvyvsD2cAeC3QEh7a/X+5S9BcncG
-AC/MTchAA76y0nXrgOKMDHD7E6y1wle9Ox+tJg4WsBpiya5f+Z6S8CllyLzfRFzS
-DpIiC2ouqfYJzsecJXj9gveMbblf4YlCE22Cbn0gLajB61yOpuJ8HJK3KhFK6Zjp
-KRD6sNXAuYkrWUPzsfNjOBt55r48DH2DfVtiMzANTo5qgs1yofYn1cwuYIsRqR+x
-ULgg0wKUWxJXuXIWqkk4H7KD0QmZuEwtpMHMxSC85UldTnJ7fxEHiQXA661163x+
-KAMlBLLUtK4LeGU5g2dbP3/ir3xLR5DuX07tZ1EXV8b5SGFzSKqrT1AEFYj2cpH1
-TG62Zc0J2DqX+JuvuISAUkOd0OgKsdC1bDxEMiEy0kZpHLsnl8YOAkLYZBhf58Dy
-O0RamNxYvfIEM9wcUm/wcxHtQVPAPYtqKRe2G1gOHSCHtDmRHF+Hpm8LAJcSRKdF
-FTm6HY/Qbk/Nwx7gSzlVdEqB/qrc8Keqw2f8q/rHCL+zqalsIPM3P55yBWJxroGp
-FM2dNRs6hN2XWRVNGpbZgaJ4im5IwzPCeIt+e+4EHu2AxPNa6jA55bW/JBOGLLOd
-J9BhpzIwTExBxHySR9M97PUNMsKPYeTXG6D+La98edR5uRCDT1U=
-=ksZ9
------END PGP SIGNATURE-----
-
---o7ebaymw2qc26tic--
-
---===============0181185104==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
-IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
-
---===============0181185104==--
+PT0gU2VyaWVzIERldGFpbHMgPT0KClNlcmllczogZHJtL2k5MTUvZ3VjOiBDb21wYWN0IGluaXQg
+cGFyYW1zIGRlYnVnIHRvIGEgc2luZ2xlIGxpbmUgKHJldjIpClVSTCAgIDogaHR0cHM6Ly9wYXRj
+aHdvcmsuZnJlZWRlc2t0b3Aub3JnL3Nlcmllcy82MjcyNS8KU3RhdGUgOiBzdWNjZXNzCgo9PSBT
+dW1tYXJ5ID09CgpDSSBCdWcgTG9nIC0gY2hhbmdlcyBmcm9tIENJX0RSTV82MzUxIC0+IFBhdGNo
+d29ya18xMzQyNwo9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
+PT09PT09CgpTdW1tYXJ5Ci0tLS0tLS0KCiAgKipTVUNDRVNTKioKCiAgTm8gcmVncmVzc2lvbnMg
+Zm91bmQuCgogIEV4dGVybmFsIFVSTDogaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUv
+ZHJtLXRpcC9QYXRjaHdvcmtfMTM0MjcvCgpLbm93biBpc3N1ZXMKLS0tLS0tLS0tLS0tCgogIEhl
+cmUgYXJlIHRoZSBjaGFuZ2VzIGZvdW5kIGluIFBhdGNod29ya18xMzQyNyB0aGF0IGNvbWUgZnJv
+bSBrbm93biBpc3N1ZXM6CgojIyMgSUdUIGNoYW5nZXMgIyMjCgojIyMjIElzc3VlcyBoaXQgIyMj
+IwoKICAqIGlndEBnZW1fZXhlY19zdXNwZW5kQGJhc2ljLXMzOgogICAgLSBmaS1ibGItZTY4NTA6
+ICAgICAgIFtQQVNTXVsxXSAtPiBbSU5DT01QTEVURV1bMl0gKFtmZG8jMTA3NzE4XSkKICAgWzFd
+OiBodHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlwL0NJX0RSTV82MzUxL2Zp
+LWJsYi1lNjg1MC9pZ3RAZ2VtX2V4ZWNfc3VzcGVuZEBiYXNpYy1zMy5odG1sCiAgIFsyXTogaHR0
+cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9QYXRjaHdvcmtfMTM0MjcvZmkt
+YmxiLWU2ODUwL2lndEBnZW1fZXhlY19zdXNwZW5kQGJhc2ljLXMzLmh0bWwKCiAgCiMjIyMgUG9z
+c2libGUgZml4ZXMgIyMjIwoKICAqIGlndEBkZWJ1Z2ZzX3Rlc3RAcmVhZF9hbGxfZW50cmllczoK
+ICAgIC0gZmktaWxrLTY1MDogICAgICAgICBbRE1FU0ctV0FSTl1bM10gKFtmZG8jMTA2Mzg3XSkg
+LT4gW1BBU1NdWzRdCiAgIFszXTogaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJt
+LXRpcC9DSV9EUk1fNjM1MS9maS1pbGstNjUwL2lndEBkZWJ1Z2ZzX3Rlc3RAcmVhZF9hbGxfZW50
+cmllcy5odG1sCiAgIFs0XTogaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRp
+cC9QYXRjaHdvcmtfMTM0MjcvZmktaWxrLTY1MC9pZ3RAZGVidWdmc190ZXN0QHJlYWRfYWxsX2Vu
+dHJpZXMuaHRtbAoKICAqIGlndEBnZW1fY3R4X2NyZWF0ZUBiYXNpYy1maWxlczoKICAgIC0gZmkt
+aWNsLXUzOiAgICAgICAgICBbSU5DT01QTEVURV1bNV0gKFtmZG8jMTA3NzEzXSAvIFtmZG8jMTA5
+MTAwXSkgLT4gW1BBU1NdWzZdCiAgIFs1XTogaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3Ry
+ZWUvZHJtLXRpcC9DSV9EUk1fNjM1MS9maS1pY2wtdTMvaWd0QGdlbV9jdHhfY3JlYXRlQGJhc2lj
+LWZpbGVzLmh0bWwKICAgWzZdOiBodHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0t
+dGlwL1BhdGNod29ya18xMzQyNy9maS1pY2wtdTMvaWd0QGdlbV9jdHhfY3JlYXRlQGJhc2ljLWZp
+bGVzLmh0bWwKCiAgKiBpZ3RAZ2VtX2N0eF9zd2l0Y2hAYmFzaWMtZGVmYXVsdDoKICAgIC0gZmkt
+aWNsLWd1YzogICAgICAgICBbSU5DT01QTEVURV1bN10gKFtmZG8jMTA3NzEzXSAvIFtmZG8jMTA4
+NTY5XSkgLT4gW1BBU1NdWzhdCiAgIFs3XTogaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3Ry
+ZWUvZHJtLXRpcC9DSV9EUk1fNjM1MS9maS1pY2wtZ3VjL2lndEBnZW1fY3R4X3N3aXRjaEBiYXNp
+Yy1kZWZhdWx0Lmh0bWwKICAgWzhdOiBodHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9k
+cm0tdGlwL1BhdGNod29ya18xMzQyNy9maS1pY2wtZ3VjL2lndEBnZW1fY3R4X3N3aXRjaEBiYXNp
+Yy1kZWZhdWx0Lmh0bWwKCiAgKiBpZ3RAa21zX2NoYW1lbGl1bUBoZG1pLWhwZC1mYXN0OgogICAg
+LSBmaS1rYmwtNzUwMHU6ICAgICAgIFtGQUlMXVs5XSAoW2ZkbyMxMDk0ODVdKSAtPiBbUEFTU11b
+MTBdCiAgIFs5XTogaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9DSV9E
+Uk1fNjM1MS9maS1rYmwtNzUwMHUvaWd0QGttc19jaGFtZWxpdW1AaGRtaS1ocGQtZmFzdC5odG1s
+CiAgIFsxMF06IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAvUGF0Y2h3
+b3JrXzEzNDI3L2ZpLWtibC03NTAwdS9pZ3RAa21zX2NoYW1lbGl1bUBoZG1pLWhwZC1mYXN0Lmh0
+bWwKCiAgCiAgW2ZkbyMxMDYzODddOiBodHRwczovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3df
+YnVnLmNnaT9pZD0xMDYzODcKICBbZmRvIzEwNzcxM106IGh0dHBzOi8vYnVncy5mcmVlZGVza3Rv
+cC5vcmcvc2hvd19idWcuY2dpP2lkPTEwNzcxMwogIFtmZG8jMTA3NzE4XTogaHR0cHM6Ly9idWdz
+LmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MTA3NzE4CiAgW2ZkbyMxMDg1NjldOiBo
+dHRwczovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD0xMDg1NjkKICBbZmRv
+IzEwOTEwMF06IGh0dHBzOi8vYnVncy5mcmVlZGVza3RvcC5vcmcvc2hvd19idWcuY2dpP2lkPTEw
+OTEwMAogIFtmZG8jMTA5NDg1XTogaHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1
+Zy5jZ2k/aWQ9MTA5NDg1CgoKUGFydGljaXBhdGluZyBob3N0cyAoNTEgLT4gNDYpCi0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLQoKICBBZGRpdGlvbmFsICgyKTogZmktZ2RnLTU1MSBmaS1i
+d3ItMjE2MCAKICBNaXNzaW5nICAgICg3KTogZmktaWxrLW01NDAgZmktaHN3LTQyMDB1IGZpLWJ5
+dC1zcXVhd2tzIGZpLWJzdy1jeWFuIGZpLWljbC15IGZpLWJ5dC1jbGFwcGVyIGZpLWJkdy1zYW11
+cyAKCgpCdWlsZCBjaGFuZ2VzCi0tLS0tLS0tLS0tLS0KCiAgKiBMaW51eDogQ0lfRFJNXzYzNTEg
+LT4gUGF0Y2h3b3JrXzEzNDI3CgogIENJX0RSTV82MzUxOiA4NDFhNWU5YjVkMGI2MTdjZWEzOWQy
+ZGU0NDkyY2YzNDc0ZDNmNTU1IEAgZ2l0Oi8vYW5vbmdpdC5mcmVlZGVza3RvcC5vcmcvZ2Z4LWNp
+L2xpbnV4CiAgSUdUXzUwNjg6IDE1YWQ2NjQ1MzQ0MTM2MjhmMDZjMGYxNzJhYWMxMTU5OGJmZGI4
+OTUgQCBnaXQ6Ly9hbm9uZ2l0LmZyZWVkZXNrdG9wLm9yZy94b3JnL2FwcC9pbnRlbC1ncHUtdG9v
+bHMKICBQYXRjaHdvcmtfMTM0Mjc6IGU2Yjc2M2IwNTc4YmIxNzU1ODY3YmY4NDFlNWJjYzA4OTNk
+N2MzNjggQCBnaXQ6Ly9hbm9uZ2l0LmZyZWVkZXNrdG9wLm9yZy9nZngtY2kvbGludXgKCgo9PSBM
+aW51eCBjb21taXRzID09CgplNmI3NjNiMDU3OGIgZHJtL2k5MTUvZ3VjOiBDb21wYWN0IGluaXQg
+cGFyYW1zIGRlYnVnIHRvIGEgc2luZ2xlIGxpbmUKCj09IExvZ3MgPT0KCkZvciBtb3JlIGRldGFp
+bHMgc2VlOiBodHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlwL1BhdGNod29y
+a18xMzQyNy8KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18K
+SW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0
+dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
