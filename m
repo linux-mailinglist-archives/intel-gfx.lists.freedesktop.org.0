@@ -1,33 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F8D556A42
-	for <lists+intel-gfx@lfdr.de>; Wed, 26 Jun 2019 15:19:53 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B10056A4B
+	for <lists+intel-gfx@lfdr.de>; Wed, 26 Jun 2019 15:23:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 284C46E427;
-	Wed, 26 Jun 2019 13:19:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 15F456E427;
+	Wed, 26 Jun 2019 13:23:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E2A576E427
- for <intel-gfx@lists.freedesktop.org>; Wed, 26 Jun 2019 13:19:49 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B3C6E6E427
+ for <intel-gfx@lists.freedesktop.org>; Wed, 26 Jun 2019 13:22:59 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from localhost (unverified [78.156.65.138]) 
  by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 17031478-1500050 for multiple; Wed, 26 Jun 2019 14:19:14 +0100
+ 17031508-1500050 for multiple; Wed, 26 Jun 2019 14:22:46 +0100
 MIME-Version: 1.0
-To: intel-gfx@lists.freedesktop.org
+To: Mika Kuoppala <mika.kuoppala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
 From: Chris Wilson <chris@chris-wilson.co.uk>
-In-Reply-To: <20190626065303.31624-2-chris@chris-wilson.co.uk>
+In-Reply-To: <878sto5w4q.fsf@gaia.fi.intel.com>
 References: <20190626065303.31624-1-chris@chris-wilson.co.uk>
- <20190626065303.31624-2-chris@chris-wilson.co.uk>
-Message-ID: <156155515028.2637.10811736221699001726@skylake-alporthouse-com>
+ <878sto5w4q.fsf@gaia.fi.intel.com>
+Message-ID: <156155536290.2637.6433622051425648885@skylake-alporthouse-com>
 User-Agent: alot/0.6
-Date: Wed, 26 Jun 2019 14:19:10 +0100
-Subject: Re: [Intel-gfx] [PATCH 2/6] drm/i915/selftests: Drop manual request
- wakerefs around hangcheck
+Date: Wed, 26 Jun 2019 14:22:42 +0100
+Subject: Re: [Intel-gfx] [PATCH 1/6] drm/i915/selftests: Serialise nop reset
+ with retirement
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -45,12 +46,25 @@ Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-UXVvdGluZyBDaHJpcyBXaWxzb24gKDIwMTktMDYtMjYgMDc6NTI6NTkpCj4gV2Ugbm8gbG9uZ2Vy
-IG5lZWQgdG8gbWFudWFsbHkgYWNxdWlyZSBhIHdha2VyZWYgZm9yIHJlcXVlc3QgZW1pc3Npb24s
-IHNvCj4gZHJvcCB0aGUgcmVkdW5kYW50IHdha2VyZWZzLCBsZXR0aW5nIHVzIHRlc3Qgb3VyIHdh
-a2VyZWYgaGFuZGxpbmcgbW9yZQo+IHByZWNpc2VseS4KClJlZmVyZW5jZXM6IDc5ZmZhYzg1OTlj
-NCAoImRybS9pOTE1OiBJbnZlcnQgdGhlIEdFTSB3YWtlcmVmIGhpZXJhcmNoeSIpCj4gU2lnbmVk
-LW9mZi1ieTogQ2hyaXMgV2lsc29uIDxjaHJpc0BjaHJpcy13aWxzb24uY28udWs+Ci1DaHJpcwpf
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZngg
-bWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0
-cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZng=
+UXVvdGluZyBNaWthIEt1b3BwYWxhICgyMDE5LTA2LTI2IDE0OjExOjQ5KQo+IENocmlzIFdpbHNv
+biA8Y2hyaXNAY2hyaXMtd2lsc29uLmNvLnVrPiB3cml0ZXM6Cj4gCj4gPiBJbiBvcmRlciBmb3Ig
+dGhlIHJlc2V0IGNvdW50IHRvIGJlIGFjY3VyYXRlIGFjcm9zcyBvdXIgc2VsZnRlc3QsIHdlIG5l
+ZWQKPiA+IHRvIHByZXZlbnQgdGhlIGJhY2tncm91bmQgcmV0aXJlIHdvcmtlciBmcm9tIG1vZGlm
+eWluZyBvdXIgZXhwZWN0ZWQKPiA+IHN0YXRlLgo+ID4KPiAKPiBPaywgdG8gc3VtbWFyaXplIHRo
+ZSBpcmMgZGlzY3Vzc2lvbiB3ZSBoYWQ6IFRoZSBhYm92ZSBob2xkcyB0cnVlCj4gZm9yIGlndF9y
+ZXNldF9lbmdpbmVfbm9wIG9ubHkuIEFzIHRoZXJlIGlzIG5vIHJhY2UgaW4KPiBnbG9iYWwgcmVz
+ZXQgcGF0aC4uLmN1cnJlbnRseS4KPiAKPiBCdXQgdGhlcmUgaXMgaW50ZW50IHRvd2FyZHMgc3lt
+bWV0cnkgb24gYm90aCBwYXRocwo+IHNvIGl0IG1ha2VzIHNlbnNlIHRvIGtlZXAgdGhlIHRlc3Rz
+IGFsaWduZWQuCj4gCj4gVGhlIGNvbW1pdCBtc2cgY291bGQgYmUgZW5oYW5jZWQgb24gdGhpcyBy
+ZWdhcmQuCj4gCj4gQWxzbyB3aGlsZSBsb29raW5nIHRocm91Z2ggdGhpcywgd2UgZG8gaW5jcmVh
+c2UKPiB0aGUgcmVzZXRfY291bnQgcmF0aGVyIGVhcmx5IGJlZm9yZSB0aGUgZmFpbHBhdGhzLgo+
+IGV2ZW4gd2l0aCB0aGUgcmVzZXRzIGRpc2FibGVkIGl0IGdldHMgaW5jcmVtZW50ZWQuCj4gU28g
+bm93IGl0IGlzIG1vcmUgb2YgYSBhdHRlbXB0ZWQgcmVzZXQgY291bnQuCgpXZSBkb24ndCBleHBl
+Y3QgaXQgdG8gZmFpbCwgYW5kIGlmIGl0IGRvZXMgd2Ugd2VkZ2UgYW5kIHJlcG9ydCAtRUlPIG5v
+dApqdXN0IGEgYm9yaW5nIC1FSU5WQUwgKG9yIGluIHRoZW9yeSB3ZSBkbyAtLSB0aGF0J3MgZ2Vu
+ZXJhbGx5IHRoZQphcHByb2FjaCB3ZSB0YWtlIGVsc2V3aGVyZSwgdHJlYXRpbmcgdGhlIEdQVSBn
+b2luZyBzb3V0aCBhcyBhIG1vcmUKc2V2ZXJlIGZhaWx1cmUgdGhhbiB0aGUgdGVzdCBpdHNlbGYg
+ZmFpbGluZyB0byBmdWxmaWwgaXRzIGNvbnRyYWN0KS4KLUNocmlzCl9fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50
+ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9y
+Zy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeA==
