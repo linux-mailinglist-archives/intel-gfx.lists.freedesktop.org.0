@@ -1,36 +1,36 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D0EB56C44
-	for <lists+intel-gfx@lfdr.de>; Wed, 26 Jun 2019 16:38:00 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id CCCD056C46
+	for <lists+intel-gfx@lfdr.de>; Wed, 26 Jun 2019 16:38:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 64FFF6E454;
+	by gabe.freedesktop.org (Postfix) with ESMTP id F3CE56E453;
 	Wed, 26 Jun 2019 14:37:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 328316E453
- for <intel-gfx@lists.freedesktop.org>; Wed, 26 Jun 2019 14:37:50 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F31806E453
+ for <intel-gfx@lists.freedesktop.org>; Wed, 26 Jun 2019 14:37:52 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from fmsmga001.fm.intel.com ([10.253.24.23])
  by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 26 Jun 2019 07:37:50 -0700
+ 26 Jun 2019 07:37:52 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.63,420,1557212400"; d="scan'208";a="183183237"
+X-IronPort-AV: E=Sophos;i="5.63,420,1557212400"; d="scan'208";a="183183247"
 Received: from jnikula-mobl3.fi.intel.com (HELO localhost) ([10.237.66.150])
- by fmsmga001.fm.intel.com with ESMTP; 26 Jun 2019 07:37:48 -0700
+ by fmsmga001.fm.intel.com with ESMTP; 26 Jun 2019 07:37:51 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed, 26 Jun 2019 17:40:13 +0300
-Message-Id: <20190626144020.2155-7-jani.nikula@intel.com>
+Date: Wed, 26 Jun 2019 17:40:14 +0300
+Message-Id: <20190626144020.2155-8-jani.nikula@intel.com>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20190626144020.2155-1-jani.nikula@intel.com>
 References: <20190626144020.2155-1-jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Subject: [Intel-gfx] [PATCH v2 06/13] drm/i915: make i915_pvinfo.h
+Subject: [Intel-gfx] [PATCH v2 07/13] drm/i915: make i915_vgpu.h
  self-contained
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
@@ -55,22 +55,21 @@ c2VsZi1jb250YWluZWQsCmFuZCBlbnN1cmUgaXQgc3RheXMgdGhhdCB3YXkuCgpSZXZpZXdlZC1i
 eTogQ2hyaXMgV2lsc29uIDxjaHJpc0BjaHJpcy13aWxzb24uY28udWs+ClNpZ25lZC1vZmYtYnk6
 IEphbmkgTmlrdWxhIDxqYW5pLm5pa3VsYUBpbnRlbC5jb20+Ci0tLQogZHJpdmVycy9ncHUvZHJt
 L2k5MTUvTWFrZWZpbGUuaGVhZGVyLXRlc3QgfCAxICsKIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2k5
-MTVfcHZpbmZvLmggICAgICAgIHwgMiArKwogMiBmaWxlcyBjaGFuZ2VkLCAzIGluc2VydGlvbnMo
-KykKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9NYWtlZmlsZS5oZWFkZXItdGVz
-dCBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L01ha2VmaWxlLmhlYWRlci10ZXN0CmluZGV4IDJmODAy
-ZDVhMzc3Ny4uYzVmM2U0NzAzZjcyIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9N
-YWtlZmlsZS5oZWFkZXItdGVzdAorKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9NYWtlZmlsZS5o
-ZWFkZXItdGVzdApAQCAtMTIsNiArMTIsNyBAQCBoZWFkZXJfdGVzdCA6PSBcCiAJaTkxNV9pcnEu
-aCBcCiAJaTkxNV9wYXJhbXMuaCBcCiAJaTkxNV9wcmlvbGlzdF90eXBlcy5oIFwKKwlpOTE1X3B2
-aW5mby5oIFwKIAlpOTE1X3JlZy5oIFwKIAlpOTE1X3NjaGVkdWxlcl90eXBlcy5oIFwKIAlpOTE1
-X3V0aWxzLmggXApkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9wdmluZm8u
-aCBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfcHZpbmZvLmgKaW5kZXggY2E0NjYxZTk4Zjc5
-Li42ODNlOTdhYzI0MzAgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfcHZp
-bmZvLmgKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9wdmluZm8uaApAQCAtMjQsNiAr
-MjQsOCBAQAogI2lmbmRlZiBfSTkxNV9QVklORk9fSF8KICNkZWZpbmUgX0k5MTVfUFZJTkZPX0hf
-CiAKKyNpbmNsdWRlIDxsaW51eC90eXBlcy5oPgorCiAvKiBUaGUgTU1JTyBvZmZzZXQgb2YgdGhl
-IHNoYXJlZCBpbmZvIGJldHdlZW4gZ3Vlc3QgYW5kIGhvc3QgZW11bGF0b3IgKi8KICNkZWZpbmUg
-VkdUX1BWSU5GT19QQUdFCTB4NzgwMDAKICNkZWZpbmUgVkdUX1BWSU5GT19TSVpFCTB4MTAwMAot
-LSAKMi4yMC4xCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-XwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcK
-aHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZng=
+MTVfdmdwdS5oICAgICAgICAgIHwgMSArCiAyIGZpbGVzIGNoYW5nZWQsIDIgaW5zZXJ0aW9ucygr
+KQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L01ha2VmaWxlLmhlYWRlci10ZXN0
+IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvTWFrZWZpbGUuaGVhZGVyLXRlc3QKaW5kZXggYzVmM2U0
+NzAzZjcyLi4xYzJkNDI2ZWE5MTMgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L01h
+a2VmaWxlLmhlYWRlci10ZXN0CisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L01ha2VmaWxlLmhl
+YWRlci10ZXN0CkBAIC0xNiw2ICsxNiw3IEBAIGhlYWRlcl90ZXN0IDo9IFwKIAlpOTE1X3JlZy5o
+IFwKIAlpOTE1X3NjaGVkdWxlcl90eXBlcy5oIFwKIAlpOTE1X3V0aWxzLmggXAorCWk5MTVfdmdw
+dS5oIFwKIAlpbnRlbF9jc3IuaCBcCiAJaW50ZWxfZHJ2LmggXAogCWludGVsX3BtLmggXApkaWZm
+IC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV92Z3B1LmggYi9kcml2ZXJzL2dwdS9k
+cm0vaTkxNS9pOTE1X3ZncHUuaAppbmRleCA4ZGQ3NDk3ZWRhMTUuLjhiMzY2M2RhZDE5MyAxMDA2
+NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV92Z3B1LmgKKysrIGIvZHJpdmVycy9n
+cHUvZHJtL2k5MTUvaTkxNV92Z3B1LmgKQEAgLTI0LDYgKzI0LDcgQEAKICNpZm5kZWYgX0k5MTVf
+VkdQVV9IXwogI2RlZmluZSBfSTkxNV9WR1BVX0hfCiAKKyNpbmNsdWRlICJpOTE1X2Rydi5oIgog
+I2luY2x1ZGUgImk5MTVfcHZpbmZvLmgiCiAKIHZvaWQgaTkxNV9kZXRlY3RfdmdwdShzdHJ1Y3Qg
+ZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYpOwotLSAKMi4yMC4xCgpfX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0Cklu
+dGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5v
+cmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZng=
