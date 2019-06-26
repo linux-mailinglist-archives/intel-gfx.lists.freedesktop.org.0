@@ -1,31 +1,67 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0550455DF2
-	for <lists+intel-gfx@lfdr.de>; Wed, 26 Jun 2019 03:48:33 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F8A655E06
+	for <lists+intel-gfx@lfdr.de>; Wed, 26 Jun 2019 04:00:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CC5306E1DE;
-	Wed, 26 Jun 2019 01:48:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8D62C6E1D8;
+	Wed, 26 Jun 2019 02:00:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id CBD336E1D8;
- Wed, 26 Jun 2019 01:48:29 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id C2D40A00EF;
- Wed, 26 Jun 2019 01:48:29 +0000 (UTC)
+Received: from mail-qt1-x841.google.com (mail-qt1-x841.google.com
+ [IPv6:2607:f8b0:4864:20::841])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ED06D6E1D8;
+ Wed, 26 Jun 2019 02:00:15 +0000 (UTC)
+Received: by mail-qt1-x841.google.com with SMTP id x47so675155qtk.11;
+ Tue, 25 Jun 2019 19:00:15 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to:user-agent;
+ bh=HpuOAuDXoNiwLSESipUp418iEseXPPASUvyqCZTf5Mw=;
+ b=J5n5KwDQ+SH/St6ShxFlhkj/lhzeRleWIgFWTHrmHiXlxvC3K1CIkmxbV892pg8TtK
+ NLcTOXOqy3tItBzCsF6okqwPpGDJLA8/g6avbvRYOD6cDePXa2Q6j0TvYWp8HlePBFnC
+ eVGgTG5LjJeTicdALeo2u4DcFGeo4U9fYtat0uj2nYqueyx6QJm7PQP/FJktPKLsaq58
+ 7hTPBPINpXkylVhLosziwic86UqpizAyZ0EaKwOnRcyegIHTzUvxpV2AvKtuvz4qZgps
+ kLZ7lPvyVIvB5krTPH3ZzDn+wIBb+Gsmdum+QxMGu0zGYA+66x3TV/3XkikVot6WMrdb
+ +dPg==
+X-Gm-Message-State: APjAAAVAIM6b5mjv5Vvv/Gh2W3cgym2DsQR8Go5zo9T8XE7ySigLelc6
+ vA7BJcrPGfMhxwI81DH4IK7DPDC2HSU=
+X-Google-Smtp-Source: APXvYqxsk2sgNVPX0AcZD0OT3YkQmpZyeNJy6aJjXO819o3LNuOBXTzhKg373EnrondH0ZYKDY2mWg==
+X-Received: by 2002:a0c:b0ce:: with SMTP id p14mr1294280qvc.51.1561514415001; 
+ Tue, 25 Jun 2019 19:00:15 -0700 (PDT)
+Received: from smtp.gmail.com ([187.121.151.146])
+ by smtp.gmail.com with ESMTPSA id a54sm6533140qtk.85.2019.06.25.19.00.11
+ (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+ Tue, 25 Jun 2019 19:00:14 -0700 (PDT)
+Date: Tue, 25 Jun 2019 23:00:05 -0300
+From: Rodrigo Siqueira <rodrigosiqueiramelo@gmail.com>
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <maxime.ripard@bootlin.com>,
+ Sean Paul <sean@poorly.run>, David Airlie <airlied@linux.ie>,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ kernel-janitors@vger.kernel.org, intel-gfx@lists.freedesktop.org
+Message-ID: <20190626020005.vb5gmqcvkyzgcjee@smtp.gmail.com>
+References: <20190619020750.swzerehjbvx6sbk2@smtp.gmail.com>
+ <20190619074856.GJ12905@phenom.ffwll.local>
+ <20190619075059.GK12905@phenom.ffwll.local>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Wed, 26 Jun 2019 01:48:29 -0000
-Message-ID: <20190626014829.20397.24625@emeril.freedesktop.org>
-References: <20190625194859.28005-1-chris@chris-wilson.co.uk>
-X-Patchwork-Hint: ignore
-In-Reply-To: <20190625194859.28005-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_drm/?=
- =?utf-8?q?i915/gt=3A_Add_some_debug_tracing_for_context_pinning?=
+In-Reply-To: <20190619075059.GK12905@phenom.ffwll.local>
+User-Agent: NeoMutt/20180716
+X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20161025;
+ h=date:from:to:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to:user-agent;
+ bh=HpuOAuDXoNiwLSESipUp418iEseXPPASUvyqCZTf5Mw=;
+ b=ih5M2Y3Xez7rNTHKOdlM0tA286STlKgr0/S9be5v1HeIoO44m1lsSarxkBC+N2Eb5e
+ W6TFBwV5Y8BTqg/UVh2Q54hNNwEsbBxxXJTu+Nb2X5wXpxnEybX189zU6B4XuLFm+1s9
+ py5t3So+h2DLha0uHL255bEV/OSvCwjNW6PG0y7in0SLWPPEeEJLyfA0jiyBloaytdFs
+ Dd314PKfwvjqJbLB37OF/cHZNgB7KDkLcPKvpjGCD9Ey++WWzZwJzsYsT0/7g948xvFB
+ 8tXoC/jw5KrGSg/vsypNyJLNyiGtllA9achRbzPAnoKbCGCljkRnzzHLbFWafVbZr4h8
+ p/UQ==
+Subject: Re: [Intel-gfx] [PATCH V4] drm/drm_vblank: Change EINVAL by the
+ correct errno
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -38,102 +74,159 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0181185104=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-PT0gU2VyaWVzIERldGFpbHMgPT0KClNlcmllczogZHJtL2k5MTUvZ3Q6IEFkZCBzb21lIGRlYnVn
-IHRyYWNpbmcgZm9yIGNvbnRleHQgcGlubmluZwpVUkwgICA6IGh0dHBzOi8vcGF0Y2h3b3JrLmZy
-ZWVkZXNrdG9wLm9yZy9zZXJpZXMvNjI3MzEvClN0YXRlIDogc3VjY2VzcwoKPT0gU3VtbWFyeSA9
-PQoKQ0kgQnVnIExvZyAtIGNoYW5nZXMgZnJvbSBDSV9EUk1fNjM1MSAtPiBQYXRjaHdvcmtfMTM0
-MjYKPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PQoK
-U3VtbWFyeQotLS0tLS0tCgogICoqV0FSTklORyoqCgogIE1pbm9yIHVua25vd24gY2hhbmdlcyBj
-b21pbmcgd2l0aCBQYXRjaHdvcmtfMTM0MjYgbmVlZCB0byBiZSB2ZXJpZmllZAogIG1hbnVhbGx5
-LgogIAogIElmIHlvdSB0aGluayB0aGUgcmVwb3J0ZWQgY2hhbmdlcyBoYXZlIG5vdGhpbmcgdG8g
-ZG8gd2l0aCB0aGUgY2hhbmdlcwogIGludHJvZHVjZWQgaW4gUGF0Y2h3b3JrXzEzNDI2LCBwbGVh
-c2Ugbm90aWZ5IHlvdXIgYnVnIHRlYW0gdG8gYWxsb3cgdGhlbQogIHRvIGRvY3VtZW50IHRoaXMg
-bmV3IGZhaWx1cmUgbW9kZSwgd2hpY2ggd2lsbCByZWR1Y2UgZmFsc2UgcG9zaXRpdmVzIGluIENJ
-LgoKICBFeHRlcm5hbCBVUkw6IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10
-aXAvUGF0Y2h3b3JrXzEzNDI2LwoKUG9zc2libGUgbmV3IGlzc3VlcwotLS0tLS0tLS0tLS0tLS0t
-LS0tCgogIEhlcmUgYXJlIHRoZSB1bmtub3duIGNoYW5nZXMgdGhhdCBtYXkgaGF2ZSBiZWVuIGlu
-dHJvZHVjZWQgaW4gUGF0Y2h3b3JrXzEzNDI2OgoKIyMjIElHVCBjaGFuZ2VzICMjIwoKIyMjIyBX
-YXJuaW5ncyAjIyMjCgogICogaWd0QGttc19jaGFtZWxpdW1AdmdhLWVkaWQtcmVhZDoKICAgIC0g
-Zmkta2JsLTc1Njd1OiAgICAgICBbVElNRU9VVF1bMV0gLT4gW0ZBSUxdWzJdCiAgIFsxXTogaHR0
-cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9DSV9EUk1fNjM1MS9maS1rYmwt
-NzU2N3UvaWd0QGttc19jaGFtZWxpdW1AdmdhLWVkaWQtcmVhZC5odG1sCiAgIFsyXTogaHR0cHM6
-Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9QYXRjaHdvcmtfMTM0MjYvZmkta2Js
-LTc1Njd1L2lndEBrbXNfY2hhbWVsaXVtQHZnYS1lZGlkLXJlYWQuaHRtbAoKICAKS25vd24gaXNz
-dWVzCi0tLS0tLS0tLS0tLQoKICBIZXJlIGFyZSB0aGUgY2hhbmdlcyBmb3VuZCBpbiBQYXRjaHdv
-cmtfMTM0MjYgdGhhdCBjb21lIGZyb20ga25vd24gaXNzdWVzOgoKIyMjIElHVCBjaGFuZ2VzICMj
-IwoKIyMjIyBJc3N1ZXMgaGl0ICMjIyMKCiAgKiBpZ3RAaTkxNV9wbV9ycG1AbW9kdWxlLXJlbG9h
-ZDoKICAgIC0gZmktc2tsLTY3NzBocTogICAgICBbUEFTU11bM10gLT4gW0ZBSUxdWzRdIChbZmRv
-IzEwODUxMV0pCiAgIFszXTogaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRp
-cC9DSV9EUk1fNjM1MS9maS1za2wtNjc3MGhxL2lndEBpOTE1X3BtX3JwbUBtb2R1bGUtcmVsb2Fk
-Lmh0bWwKICAgWzRdOiBodHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlwL1Bh
-dGNod29ya18xMzQyNi9maS1za2wtNjc3MGhxL2lndEBpOTE1X3BtX3JwbUBtb2R1bGUtcmVsb2Fk
-Lmh0bWwKCiAgCiMjIyMgUG9zc2libGUgZml4ZXMgIyMjIwoKICAqIGlndEBkZWJ1Z2ZzX3Rlc3RA
-cmVhZF9hbGxfZW50cmllczoKICAgIC0gZmktaWxrLTY1MDogICAgICAgICBbRE1FU0ctV0FSTl1b
-NV0gKFtmZG8jMTA2Mzg3XSkgLT4gW1BBU1NdWzZdCiAgIFs1XTogaHR0cHM6Ly9pbnRlbC1nZngt
-Y2kuMDEub3JnL3RyZWUvZHJtLXRpcC9DSV9EUk1fNjM1MS9maS1pbGstNjUwL2lndEBkZWJ1Z2Zz
-X3Rlc3RAcmVhZF9hbGxfZW50cmllcy5odG1sCiAgIFs2XTogaHR0cHM6Ly9pbnRlbC1nZngtY2ku
-MDEub3JnL3RyZWUvZHJtLXRpcC9QYXRjaHdvcmtfMTM0MjYvZmktaWxrLTY1MC9pZ3RAZGVidWdm
-c190ZXN0QHJlYWRfYWxsX2VudHJpZXMuaHRtbAoKICAqIGlndEBnZW1fY3R4X2NyZWF0ZUBiYXNp
-Yy1maWxlczoKICAgIC0gZmktaWNsLXUzOiAgICAgICAgICBbSU5DT01QTEVURV1bN10gKFtmZG8j
-MTA3NzEzXSAvIFtmZG8jMTA5MTAwXSkgLT4gW1BBU1NdWzhdCiAgIFs3XTogaHR0cHM6Ly9pbnRl
-bC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9DSV9EUk1fNjM1MS9maS1pY2wtdTMvaWd0QGdl
-bV9jdHhfY3JlYXRlQGJhc2ljLWZpbGVzLmh0bWwKICAgWzhdOiBodHRwczovL2ludGVsLWdmeC1j
-aS4wMS5vcmcvdHJlZS9kcm0tdGlwL1BhdGNod29ya18xMzQyNi9maS1pY2wtdTMvaWd0QGdlbV9j
-dHhfY3JlYXRlQGJhc2ljLWZpbGVzLmh0bWwKCiAgKiBpZ3RAZ2VtX2N0eF9zd2l0Y2hAYmFzaWMt
-ZGVmYXVsdDoKICAgIC0gZmktaWNsLWd1YzogICAgICAgICBbSU5DT01QTEVURV1bOV0gKFtmZG8j
-MTA3NzEzXSAvIFtmZG8jMTA4NTY5XSkgLT4gW1BBU1NdWzEwXQogICBbOV06IGh0dHBzOi8vaW50
-ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAvQ0lfRFJNXzYzNTEvZmktaWNsLWd1Yy9pZ3RA
-Z2VtX2N0eF9zd2l0Y2hAYmFzaWMtZGVmYXVsdC5odG1sCiAgIFsxMF06IGh0dHBzOi8vaW50ZWwt
-Z2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAvUGF0Y2h3b3JrXzEzNDI2L2ZpLWljbC1ndWMvaWd0
-QGdlbV9jdHhfc3dpdGNoQGJhc2ljLWRlZmF1bHQuaHRtbAoKICAqIGlndEBrbXNfY2hhbWVsaXVt
-QGhkbWktaHBkLWZhc3Q6CiAgICAtIGZpLWtibC03NTAwdTogICAgICAgW0ZBSUxdWzExXSAoW2Zk
-byMxMDk0ODVdKSAtPiBbUEFTU11bMTJdCiAgIFsxMV06IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAx
-Lm9yZy90cmVlL2RybS10aXAvQ0lfRFJNXzYzNTEvZmkta2JsLTc1MDB1L2lndEBrbXNfY2hhbWVs
-aXVtQGhkbWktaHBkLWZhc3QuaHRtbAogICBbMTJdOiBodHRwczovL2ludGVsLWdmeC1jaS4wMS5v
-cmcvdHJlZS9kcm0tdGlwL1BhdGNod29ya18xMzQyNi9maS1rYmwtNzUwMHUvaWd0QGttc19jaGFt
-ZWxpdW1AaGRtaS1ocGQtZmFzdC5odG1sCgogICogaWd0QGttc19mcm9udGJ1ZmZlcl90cmFja2lu
-Z0BiYXNpYzoKICAgIC0gZmktaWNsLXUyOiAgICAgICAgICBbRkFJTF1bMTNdIChbZmRvIzEwMzE2
-N10pIC0+IFtQQVNTXVsxNF0KICAgWzEzXTogaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3Ry
-ZWUvZHJtLXRpcC9DSV9EUk1fNjM1MS9maS1pY2wtdTIvaWd0QGttc19mcm9udGJ1ZmZlcl90cmFj
-a2luZ0BiYXNpYy5odG1sCiAgIFsxNF06IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVl
-L2RybS10aXAvUGF0Y2h3b3JrXzEzNDI2L2ZpLWljbC11Mi9pZ3RAa21zX2Zyb250YnVmZmVyX3Ry
-YWNraW5nQGJhc2ljLmh0bWwKCiAgCiMjIyMgV2FybmluZ3MgIyMjIwoKICAqIGlndEBrbXNfY2hh
-bWVsaXVtQGRwLWNyYy1mYXN0OgogICAgLSBmaS1rYmwtNzU2N3U6ICAgICAgIFtUSU1FT1VUXVsx
-NV0gLT4gW0ZBSUxdWzE2XSAoW2ZkbyMxMDk2MzUgXSkKICAgWzE1XTogaHR0cHM6Ly9pbnRlbC1n
-ZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9DSV9EUk1fNjM1MS9maS1rYmwtNzU2N3UvaWd0QGtt
-c19jaGFtZWxpdW1AZHAtY3JjLWZhc3QuaHRtbAogICBbMTZdOiBodHRwczovL2ludGVsLWdmeC1j
-aS4wMS5vcmcvdHJlZS9kcm0tdGlwL1BhdGNod29ya18xMzQyNi9maS1rYmwtNzU2N3UvaWd0QGtt
-c19jaGFtZWxpdW1AZHAtY3JjLWZhc3QuaHRtbAoKICAKICBbZmRvIzEwMzE2N106IGh0dHBzOi8v
-YnVncy5mcmVlZGVza3RvcC5vcmcvc2hvd19idWcuY2dpP2lkPTEwMzE2NwogIFtmZG8jMTA2Mzg3
-XTogaHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MTA2Mzg3CiAg
-W2ZkbyMxMDc3MTNdOiBodHRwczovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9p
-ZD0xMDc3MTMKICBbZmRvIzEwODUxMV06IGh0dHBzOi8vYnVncy5mcmVlZGVza3RvcC5vcmcvc2hv
-d19idWcuY2dpP2lkPTEwODUxMQogIFtmZG8jMTA4NTY5XTogaHR0cHM6Ly9idWdzLmZyZWVkZXNr
-dG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MTA4NTY5CiAgW2ZkbyMxMDkxMDBdOiBodHRwczovL2J1
-Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD0xMDkxMDAKICBbZmRvIzEwOTQ4NV06
-IGh0dHBzOi8vYnVncy5mcmVlZGVza3RvcC5vcmcvc2hvd19idWcuY2dpP2lkPTEwOTQ4NQogIFtm
-ZG8jMTA5NjM1IF06IGh0dHBzOi8vYnVncy5mcmVlZGVza3RvcC5vcmcvc2hvd19idWcuY2dpP2lk
-PTEwOTYzNSAKCgpQYXJ0aWNpcGF0aW5nIGhvc3RzICg1MSAtPiA0NikKLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tCgogIEFkZGl0aW9uYWwgKDIpOiBmaS1nZGctNTUxIGZpLWJ3ci0yMTYw
-IAogIE1pc3NpbmcgICAgKDcpOiBmaS1pbGstbTU0MCBmaS1oc3ctNDIwMHUgZmktYnl0LXNxdWF3
-a3MgZmktYnN3LWN5YW4gZmktaWNsLXkgZmktYnl0LWNsYXBwZXIgZmktYmR3LXNhbXVzIAoKCkJ1
-aWxkIGNoYW5nZXMKLS0tLS0tLS0tLS0tLQoKICAqIExpbnV4OiBDSV9EUk1fNjM1MSAtPiBQYXRj
-aHdvcmtfMTM0MjYKCiAgQ0lfRFJNXzYzNTE6IDg0MWE1ZTliNWQwYjYxN2NlYTM5ZDJkZTQ0OTJj
-ZjM0NzRkM2Y1NTUgQCBnaXQ6Ly9hbm9uZ2l0LmZyZWVkZXNrdG9wLm9yZy9nZngtY2kvbGludXgK
-ICBJR1RfNTA2ODogMTVhZDY2NDUzNDQxMzYyOGYwNmMwZjE3MmFhYzExNTk4YmZkYjg5NSBAIGdp
-dDovL2Fub25naXQuZnJlZWRlc2t0b3Aub3JnL3hvcmcvYXBwL2ludGVsLWdwdS10b29scwogIFBh
-dGNod29ya18xMzQyNjogN2U2OTUzMTE1NzllM2M1YTkzMTYzNjk3NTNlMjY1MjIyODEzZmIwNCBA
-IGdpdDovL2Fub25naXQuZnJlZWRlc2t0b3Aub3JnL2dmeC1jaS9saW51eAoKCj09IExpbnV4IGNv
-bW1pdHMgPT0KCjdlNjk1MzExNTc5ZSBkcm0vaTkxNS9ndDogQWRkIHNvbWUgZGVidWcgdHJhY2lu
-ZyBmb3IgY29udGV4dCBwaW5uaW5nCgo9PSBMb2dzID09CgpGb3IgbW9yZSBkZXRhaWxzIHNlZTog
-aHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9QYXRjaHdvcmtfMTM0MjYv
-Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdm
-eCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xp
-c3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeA==
+
+--===============0181185104==
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="o7ebaymw2qc26tic"
+Content-Disposition: inline
+
+
+--o7ebaymw2qc26tic
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On 06/19, Daniel Vetter wrote:
+> On Wed, Jun 19, 2019 at 09:48:56AM +0200, Daniel Vetter wrote:
+> > On Tue, Jun 18, 2019 at 11:07:50PM -0300, Rodrigo Siqueira wrote:
+> > > For historical reason, the function drm_wait_vblank_ioctl always retu=
+rn
+> > > -EINVAL if something gets wrong. This scenario limits the flexibility
+> > > for the userspace make detailed verification of the problem and take
+> > > some action. In particular, the validation of =E2=80=9Cif (!dev->irq_=
+enabled)=E2=80=9D
+> > > in the drm_wait_vblank_ioctl is responsible for checking if the driver
+> > > support vblank or not. If the driver does not support VBlank, the
+> > > function drm_wait_vblank_ioctl returns EINVAL which does not represent
+> > > the real issue; this patch changes this behavior by return EOPNOTSUPP.
+> > > Additionally, some operations are unsupported by this function, and
+> > > returns EINVAL; this patch also changes the return value to EOPNOTSUPP
+> > > in this case. Lastly, the function drm_wait_vblank_ioctl is invoked by
+> > > libdrm, which is used by many compositors; because of this, it is
+> > > important to check if this change breaks any compositor. In this sens=
+e,
+> > > the following projects were examined:
+> > >=20
+> > > * Drm-hwcomposer
+> > > * Kwin
+> > > * Sway
+> > > * Wlroots
+> > > * Wayland-core
+> > > * Weston
+> > > * Xorg (67 different drivers)
+> > >=20
+> > > For each repository the verification happened in three steps:
+> > >=20
+> > > * Update the main branch
+> > > * Look for any occurrence "drmWaitVBlank" with the command:
+> > >   git grep -n "drmWaitVBlank"
+> > > * Look in the git history of the project with the command:
+> > >   git log -SdrmWaitVBlank
+> > >=20
+> > > Finally, none of the above projects validate the use of EINVAL which
+> > > make safe, at least for these projects, to change the return values.
+> > >=20
+> > > Change since V3:
+> > >  - Return EINVAL for _DRM_VBLANK_SIGNAL (Daniel)
+> > >=20
+> > > Change since V2:
+> > >  Daniel Vetter and Chris Wilson
+> > >  - Replace ENOTTY by EOPNOTSUPP
+> > >  - Return EINVAL if the parameters are wrong
+> > >=20
+> >=20
+> > Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
+> >=20
+> > Apologies for the confusion on the last time around. btw if someone tel=
+ls
+> > you "r-b (or a-b) with these changes", then just apply the r-b/a-b tag
+> > next time around. Otherwise people will re-review the same thing over a=
+nd
+> > over again.
+>=20
+> btw when resending patches it's good practice to add anyone who commented
+> on it (or who commented on the igt test for the same patch and other way
+> round) onto the explicit Cc: list of the patch. That way it's easier for
+> them to follow the patch evolution and do a quick r-b once they're happy.
+
+Thanks for these valuable tips.
+Do you think that is a good idea to resend this patch CC's everybody? Or
+is it ok if I just apply it?
+=20
+> If you don't do that then much bigger chances your patch gets ignored.
+> -Daniel
+> >=20
+> > > Signed-off-by: Rodrigo Siqueira <rodrigosiqueiramelo@gmail.com>
+> > > ---
+> > >  drivers/gpu/drm/drm_vblank.c | 2 +-
+> > >  1 file changed, 1 insertion(+), 1 deletion(-)
+> > >=20
+> > > diff --git a/drivers/gpu/drm/drm_vblank.c b/drivers/gpu/drm/drm_vblan=
+k.c
+> > > index 603ab105125d..bed233361614 100644
+> > > --- a/drivers/gpu/drm/drm_vblank.c
+> > > +++ b/drivers/gpu/drm/drm_vblank.c
+> > > @@ -1582,7 +1582,7 @@ int drm_wait_vblank_ioctl(struct drm_device *de=
+v, void *data,
+> > >  	unsigned int flags, pipe, high_pipe;
+> > > =20
+> > >  	if (!dev->irq_enabled)
+> > > -		return -EINVAL;
+> > > +		return -EOPNOTSUPP;
+> > > =20
+> > >  	if (vblwait->request.type & _DRM_VBLANK_SIGNAL)
+> > >  		return -EINVAL;
+> > > --=20
+> > > 2.21.0
+> >=20
+> > --=20
+> > Daniel Vetter
+> > Software Engineer, Intel Corporation
+> > http://blog.ffwll.ch
+>=20
+> --=20
+> Daniel Vetter
+> Software Engineer, Intel Corporation
+> http://blog.ffwll.ch
+
+--=20
+Rodrigo Siqueira
+https://siqueira.tech
+
+--o7ebaymw2qc26tic
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCgAdFiEE4tZ+ii1mjMCMQbfkWJzP/comvP8FAl0S0aQACgkQWJzP/com
+vP9OChAAhjuLcUgtK3blJvPIR0GbBQ2YKI5GBvyvsD2cAeC3QEh7a/X+5S9BcncG
+AC/MTchAA76y0nXrgOKMDHD7E6y1wle9Ox+tJg4WsBpiya5f+Z6S8CllyLzfRFzS
+DpIiC2ouqfYJzsecJXj9gveMbblf4YlCE22Cbn0gLajB61yOpuJ8HJK3KhFK6Zjp
+KRD6sNXAuYkrWUPzsfNjOBt55r48DH2DfVtiMzANTo5qgs1yofYn1cwuYIsRqR+x
+ULgg0wKUWxJXuXIWqkk4H7KD0QmZuEwtpMHMxSC85UldTnJ7fxEHiQXA661163x+
+KAMlBLLUtK4LeGU5g2dbP3/ir3xLR5DuX07tZ1EXV8b5SGFzSKqrT1AEFYj2cpH1
+TG62Zc0J2DqX+JuvuISAUkOd0OgKsdC1bDxEMiEy0kZpHLsnl8YOAkLYZBhf58Dy
+O0RamNxYvfIEM9wcUm/wcxHtQVPAPYtqKRe2G1gOHSCHtDmRHF+Hpm8LAJcSRKdF
+FTm6HY/Qbk/Nwx7gSzlVdEqB/qrc8Keqw2f8q/rHCL+zqalsIPM3P55yBWJxroGp
+FM2dNRs6hN2XWRVNGpbZgaJ4im5IwzPCeIt+e+4EHu2AxPNa6jA55bW/JBOGLLOd
+J9BhpzIwTExBxHySR9M97PUNMsKPYeTXG6D+La98edR5uRCDT1U=
+=ksZ9
+-----END PGP SIGNATURE-----
+
+--o7ebaymw2qc26tic--
+
+--===============0181185104==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
+IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
+
+--===============0181185104==--
