@@ -2,59 +2,34 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BF4605824D
-	for <lists+intel-gfx@lfdr.de>; Thu, 27 Jun 2019 14:15:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D989A5828B
+	for <lists+intel-gfx@lfdr.de>; Thu, 27 Jun 2019 14:26:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BE3736E161;
-	Thu, 27 Jun 2019 12:15:38 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mx1.suse.de (mx2.suse.de [195.135.220.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C388B6E161;
- Thu, 27 Jun 2019 12:15:37 +0000 (UTC)
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-Received: from relay2.suse.de (unknown [195.135.220.254])
- by mx1.suse.de (Postfix) with ESMTP id 4939BAE9A;
- Thu, 27 Jun 2019 12:15:36 +0000 (UTC)
-To: Daniel Vetter <daniel.vetter@ffwll.ch>,
- DRI Development <dri-devel@lists.freedesktop.org>
-References: <20190614203615.12639-1-daniel.vetter@ffwll.ch>
- <20190614203615.12639-2-daniel.vetter@ffwll.ch>
-From: Thomas Zimmermann <tzimmermann@suse.de>
-Openpgp: preference=signencrypt
-Autocrypt: addr=tzimmermann@suse.de; keydata=
- xsBNBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
- XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
- BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
- hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
- 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
- AAHNKFRob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmNvbT7CwJQEEwEIAD4W
- IQRyF/usjOnPY0ShaOVoDcEdUwt6IwUCWznTtgIbAwUJA8JnAAULCQgHAgYVCgkICwIEFgID
- AQIeAQIXgAAKCRBoDcEdUwt6I7D7CACBK42XW+7mCiK8ioXMEy1NzGbXC51RzGea8N83oEJS
- 1KVUtQxrkDxgrW/WLSl/TfqHFsJpdEFOv1XubWbleun3uKPy0e5vZCd5UjZPkeNjnqfCYTDy
- hVVsdOuFbtWDppJyJrThLqr9AgSFmoCNNUt1SVpYEEOLNE6C32BhlnSq21VLC+YXTgO/ZHTa
- YXkq54hHj63jwrcjkBSCkXLh37kHeqnl++GHpN+3R+o3w2OpwHAlvVjdKPT27v1tVkiydsFG
- 65Vd0n3m/ft+IOrGgxQM1C20uqKvsZGB4r3OGR50ekAybO7sjEJJ1Obl4ge/6RRqcvKz4LMb
- tGs85D6tPIeFzsBNBFs50uABCADGJj+DP1fk+UWOWrf4O61HTbC4Vr9QD2K4fUUHnzg2B6zU
- R1BPXqLGG0+lzK8kfYU/F5RjmEcClsIkAaFkg4kzKP14tvY1J5+AV3yNqcdg018HNtiyrSwI
- E0Yz/qm1Ot2NMZ0DdvVBg22IMsiudQ1tx9CH9mtyTbIXgACvl3PW2o9CxiHPE/bohFhwZwh/
- kXYYAE51lhinQ3oFEeQZA3w4OTvxSEspiQR8dg8qJJb+YOAc5IKk6sJmmM7JfFMWSr22satM
- 23oQ3WvJb4RV6HTRTAIEyyZS7g2DhiytgMG60t0qdABG5KXSQW+OKlZRpuWwKWaLh3if/p/u
- 69dvpanbABEBAAHCwHwEGAEIACYWIQRyF/usjOnPY0ShaOVoDcEdUwt6IwUCWznS4AIbDAUJ
- A8JnAAAKCRBoDcEdUwt6I6X3CACJ8D+TpXBCqJE5xwog08+Dp8uBpx0T9n1wE0GQisZruACW
- NofYn8PTX9k4wmegDLwt7YQDdKxQ4+eTfZeLNQqWg6OCftH5Kx7sjWnJ09tOgniVdROzWJ7c
- VJ/i0okazncsJ+nq48UYvRGE1Swh3A4QRIyphWX4OADOBmTFl9ZYNPnh23eaC9WrNvFr7yP7
- iGjMlfEW8l6Lda//EC5VpXVNza0xeae0zFNst2R9pn+bLkihwDLWxOIyifGRxTqNxoS4I1aw
- VhxPSVztPMSpIA/sOr/N/p6JrBLn+gui2K6mP7bGb8hF+szfArYqz3T1rv1VzUWAJf5Wre5U
- iNx9uqqx
-Message-ID: <bc19d6ca-8cce-11da-f6a0-46e97910d916@suse.de>
-Date: Thu, 27 Jun 2019 14:15:35 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0862E6E184;
+	Thu, 27 Jun 2019 12:25:59 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5013D6E184;
+ Thu, 27 Jun 2019 12:25:57 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 27 Jun 2019 05:25:56 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.63,423,1557212400"; d="scan'208";a="162619581"
+Received: from czwolak-mobl2.ger.corp.intel.com (HELO localhost.localdomain)
+ ([10.252.4.8])
+ by fmsmga008.fm.intel.com with ESMTP; 27 Jun 2019 05:25:55 -0700
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+To: igt-dev@lists.freedesktop.org
+Date: Thu, 27 Jun 2019 13:25:52 +0100
+Message-Id: <20190627122552.10255-1-tvrtko.ursulin@linux.intel.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-In-Reply-To: <20190614203615.12639-2-daniel.vetter@ffwll.ch>
-Subject: Re: [Intel-gfx] [PATCH 01/59] drm/todo: Improve drm_gem_object
- funcs todo
+Subject: [Intel-gfx] [PATCH i-g-t] lib/i915: Use engine discovery in
+ gem_test_engines
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -67,122 +42,37 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Rob Herring <robh@kernel.org>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- =?UTF-8?Q?Noralf_Tr=c3=b8nnes?= <noralf@tronnes.org>,
- Gerd Hoffmann <kraxel@redhat.com>, Daniel Vetter <daniel.vetter@intel.com>
-Content-Type: multipart/mixed; boundary="===============0227697432=="
+Cc: Intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---===============0227697432==
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="NW7mm1suUVrQxujJVbSQ1h2Ml0Im0bcO8"
-
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---NW7mm1suUVrQxujJVbSQ1h2Ml0Im0bcO8
-Content-Type: multipart/mixed; boundary="pkWeKZaMpVbSxYczRoMiMaVD43hbhFmxd";
- protected-headers="v1"
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>,
- DRI Development <dri-devel@lists.freedesktop.org>
-Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Gerd Hoffmann <kraxel@redhat.com>, Rob Herring <robh@kernel.org>,
- =?UTF-8?Q?Noralf_Tr=c3=b8nnes?= <noralf@tronnes.org>,
- Daniel Vetter <daniel.vetter@intel.com>
-Message-ID: <bc19d6ca-8cce-11da-f6a0-46e97910d916@suse.de>
-Subject: Re: [PATCH 01/59] drm/todo: Improve drm_gem_object funcs todo
-References: <20190614203615.12639-1-daniel.vetter@ffwll.ch>
- <20190614203615.12639-2-daniel.vetter@ffwll.ch>
-In-Reply-To: <20190614203615.12639-2-daniel.vetter@ffwll.ch>
-
---pkWeKZaMpVbSxYczRoMiMaVD43hbhFmxd
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: quoted-printable
-
-Hi
-
-Am 14.06.19 um 22:35 schrieb Daniel Vetter:
-> We're kinda going in the wrong direction. Spotted while typing better
-> gem/prime docs.
->=20
-> Cc: Thomas Zimmermann <tzimmermann@suse.de>
-> Cc: Gerd Hoffmann <kraxel@redhat.com>
-> Cc: Rob Herring <robh@kernel.org>
-> Cc: Noralf Tr=C3=B8nnes <noralf@tronnes.org>
-> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
-> ---
->  Documentation/gpu/todo.rst | 4 ++++
->  1 file changed, 4 insertions(+)
->=20
-> diff --git a/Documentation/gpu/todo.rst b/Documentation/gpu/todo.rst
-> index b4a76c2703e5..23583f0e3755 100644
-> --- a/Documentation/gpu/todo.rst
-> +++ b/Documentation/gpu/todo.rst
-> @@ -228,6 +228,10 @@ struct drm_gem_object_funcs
->  GEM objects can now have a function table instead of having the callba=
-cks on the
->  DRM driver struct. This is now the preferred way and drivers can be mo=
-ved over.
-> =20
-> +Unfortunately some of the recently added GEM helpers are going in the =
-wrong
-> +direction by adding OPS macros that use the old, deprecated hooks. See=
-
-> +DRM_GEM_CMA_VMAP_DRIVER_OPS, DRM_GEM_SHMEM_DRIVER_OPS, and DRM_GEM_VRA=
-M_DRIVER_PRIME.
-
-There's currently only bochs using DRM_GEM_VRAM_DRIVER_PRIME.
-
-Best regards
-Thomas
-
-> +
->  Use DRM_MODESET_LOCK_ALL_* helpers instead of boilerplate
->  ---------------------------------------------------------
-> =20
->=20
-
---=20
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Linux GmbH, Maxfeldstrasse 5, 90409 Nuernberg, Germany
-GF: Felix Imend=C3=B6rffer, Mary Higgins, Sri Rasiah
-HRB 21284 (AG N=C3=BCrnberg)
-
-
---pkWeKZaMpVbSxYczRoMiMaVD43hbhFmxd--
-
---NW7mm1suUVrQxujJVbSQ1h2Ml0Im0bcO8
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEEchf7rIzpz2NEoWjlaA3BHVMLeiMFAl0Us2cACgkQaA3BHVML
-eiM49wgAk02al8+u6YeolTyj78GoyVaMg2g/cIKl3AQ7Qa1fWMolQmPKF6Wq8vie
-wJ15cn43m/JA8EcGtFLq7k6WejRt9pXWKfDAlG0/KJPsOhrZfpKrQwRF/PyzB2D7
-u6an4niwXh7/MYWtCNSBGIxPnefIZJSv1NbKysQmrdeoiVdfIA8kuSEe3DdY9hkv
-rG0ba01ShctahI1rXK4dNE6ROcOA68xidRqa/h3G5gWZ2VRw63P4z7W6f7YdOTIa
-/j/oKHCr8eBX890IPCHeW+3mlbJFI9Vm16zKrFXlu5mPYYzLoVwepEu0/iQhPGqP
-kZ9BHmydBvEC7gBVblltqy148liyPQ==
-=bNji
------END PGP SIGNATURE-----
-
---NW7mm1suUVrQxujJVbSQ1h2Ml0Im0bcO8--
-
---===============0227697432==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
-IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
-
---===============0227697432==--
+RnJvbTogVHZydGtvIFVyc3VsaW4gPHR2cnRrby51cnN1bGluQGludGVsLmNvbT4KCklmIHJlcXVl
+c3QgaXMgdG8gdmVyaWZ5IGFsbCBlbmdpbmVzIHdvcmssIHVzZSB0aGUgbmV3IGVuZ2luZSBkaXNj
+b3ZlcnkgQVBJCnNvIHdlIGNhbiBhY3R1YWxseSB0ZXN0IGFsbC4KClRoZXJlIGlzIGEgc3BvcmFk
+aWMgYW5kIG15c3RlcmlvdXMsIHBvc3NpYmx5IG1lbW9yeSBjb3JydXB0aW9uIGlzc3VlCnN1cnJv
+bmRpbmcgdGhpcyBhcmVhIHNvIGxldHMgc2VlIGlmIHRoaXMgY2hhbmdlcyB0aGUgcGF0dGVybi4K
+Ckl0IGlzIGVhc3kgdG8gZG8gaW4gdGhpcyBmdW5jdGlvbiBkdWUgaXQgcmUtb3BlbmluZyB0aGUg
+ZHJpdmVyIGFuZAp0aHJvd2luZyBpdCBhd2F5LiBTbyB0aGVyZSBhcmUgbm8gY29uY2VybnMgdGhh
+dCB0aGUgbW9kaWZpZWQgZGVmYXVsdApjb250ZXh0IGNhbiBhZmZlY3QgYW55IG90aGVyIHRlc3Qu
+CgpTaWduZWQtb2ZmLWJ5OiBUdnJ0a28gVXJzdWxpbiA8dHZydGtvLnVyc3VsaW5AaW50ZWwuY29t
+PgpSZWZlcmVuY2VzOiBodHRwczovL2J1Z3ppbGxhLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5j
+Z2k/aWQ9MTEwNjY3Ci0tLQogbGliL2k5MTUvZ2VtX3N1Ym1pc3Npb24uYyB8IDggKysrKysrLS0K
+IDEgZmlsZSBjaGFuZ2VkLCA2IGluc2VydGlvbnMoKyksIDIgZGVsZXRpb25zKC0pCgpkaWZmIC0t
+Z2l0IGEvbGliL2k5MTUvZ2VtX3N1Ym1pc3Npb24uYyBiL2xpYi9pOTE1L2dlbV9zdWJtaXNzaW9u
+LmMKaW5kZXggMmZkNDYwZDVlZDJiLi5hOGJiNDVjNmFjOGYgMTAwNjQ0Ci0tLSBhL2xpYi9pOTE1
+L2dlbV9zdWJtaXNzaW9uLmMKKysrIGIvbGliL2k5MTUvZ2VtX3N1Ym1pc3Npb24uYwpAQCAtMjgs
+NiArMjgsOCBAQAogCiAjaW5jbHVkZSA8aTkxNV9kcm0uaD4KIAorI2luY2x1ZGUgImk5MTUvZ2Vt
+X2VuZ2luZV90b3BvbG9neS5oIgorCiAjaW5jbHVkZSAiaWd0X2NvcmUuaCIKICNpbmNsdWRlICJp
+Z3RfZ3QuaCIKICNpbmNsdWRlICJpZ3Rfc3lzZnMuaCIKQEAgLTIxNSw4ICsyMTcsMTAgQEAgdm9p
+ZCBnZW1fdGVzdF9lbmdpbmUoaW50IGk5MTUsIHVuc2lnbmVkIGludCBlbmdpbmUpCiAJZ2VtX3dy
+aXRlKGk5MTUsIG9iai5oYW5kbGUsIDAsICZiYmUsIHNpemVvZihiYmUpKTsKIAogCWlmIChlbmdp
+bmUgPT0gQUxMX0VOR0lORVMpIHsKLQkJZm9yX2VhY2hfcGh5c2ljYWxfZW5naW5lKGk5MTUsIGVu
+Z2luZSkgewotCQkJZXhlY2J1Zi5mbGFncyA9IGVuZ2luZTsKKwkJY29uc3Qgc3RydWN0IGludGVs
+X2V4ZWN1dGlvbl9lbmdpbmUyICplMjsKKworCQlfX2Zvcl9lYWNoX3BoeXNpY2FsX2VuZ2luZShp
+OTE1LCBlMikgeworCQkJZXhlY2J1Zi5mbGFncyA9IGUyLT5mbGFnczsKIAkJCWdlbV9leGVjYnVm
+KGk5MTUsICZleGVjYnVmKTsKIAkJfQogCX0gZWxzZSB7Ci0tIAoyLjIwLjEKCl9fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxp
+c3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNr
+dG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeA==
