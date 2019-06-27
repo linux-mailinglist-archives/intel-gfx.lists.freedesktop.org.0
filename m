@@ -2,46 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 054D757E15
-	for <lists+intel-gfx@lfdr.de>; Thu, 27 Jun 2019 10:18:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DC1EE57E34
+	for <lists+intel-gfx@lfdr.de>; Thu, 27 Jun 2019 10:27:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 66E396E837;
-	Thu, 27 Jun 2019 08:18:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 14D0B6E4E8;
+	Thu, 27 Jun 2019 08:27:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 991BC6E837;
- Thu, 27 Jun 2019 08:18:39 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 27 Jun 2019 01:18:39 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.63,423,1557212400"; d="scan'208";a="185191056"
-Received: from irsmsx105.ger.corp.intel.com ([163.33.3.28])
- by fmsmga004.fm.intel.com with ESMTP; 27 Jun 2019 01:18:37 -0700
-Received: from irsmsx104.ger.corp.intel.com ([169.254.5.143]) by
- irsmsx105.ger.corp.intel.com ([169.254.7.184]) with mapi id 14.03.0439.000;
- Thu, 27 Jun 2019 09:18:37 +0100
-From: "Ser, Simon" <simon.ser@intel.com>
-To: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "chris@chris-wilson.co.uk" <chris@chris-wilson.co.uk>
-Thread-Topic: [igt-dev] [PATCH i-g-t] i915/gem_pread/pwrite: Rename "basic"
-Thread-Index: AQHVLLsMNwwKVJXCG0G9AMZH21COv6avF6UA
-Date: Thu, 27 Jun 2019 08:18:36 +0000
-Message-ID: <20db22e0517c227b6fef12d7b523312fbe17c703.camel@intel.com>
-References: <20190627073615.15573-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20190627073615.15573-1-chris@chris-wilson.co.uk>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.237.72.181]
-Content-ID: <B50A950DC27F7948917EE7BFE4FECB4F@intel.com>
+Received: from mx1.suse.de (mx2.suse.de [195.135.220.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6DF1D6E4E8;
+ Thu, 27 Jun 2019 08:27:40 +0000 (UTC)
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.220.254])
+ by mx1.suse.de (Postfix) with ESMTP id E35D7B077;
+ Thu, 27 Jun 2019 08:27:38 +0000 (UTC)
+To: Daniel Vetter <daniel@ffwll.ch>, Gerd Hoffmann <kraxel@redhat.com>
+References: <20190614203615.12639-1-daniel.vetter@ffwll.ch>
+ <20190614203615.12639-41-daniel.vetter@ffwll.ch>
+ <20190617082438.s5eypq5lf6s33nyz@sirius.home.kraxel.org>
+ <20190617135912.GB12905@phenom.ffwll.local>
+From: Thomas Zimmermann <tzimmermann@suse.de>
+Openpgp: preference=signencrypt
+Autocrypt: addr=tzimmermann@suse.de; keydata=
+ xsBNBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
+ XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
+ BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
+ hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
+ 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
+ AAHNKFRob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmNvbT7CwJQEEwEIAD4W
+ IQRyF/usjOnPY0ShaOVoDcEdUwt6IwUCWznTtgIbAwUJA8JnAAULCQgHAgYVCgkICwIEFgID
+ AQIeAQIXgAAKCRBoDcEdUwt6I7D7CACBK42XW+7mCiK8ioXMEy1NzGbXC51RzGea8N83oEJS
+ 1KVUtQxrkDxgrW/WLSl/TfqHFsJpdEFOv1XubWbleun3uKPy0e5vZCd5UjZPkeNjnqfCYTDy
+ hVVsdOuFbtWDppJyJrThLqr9AgSFmoCNNUt1SVpYEEOLNE6C32BhlnSq21VLC+YXTgO/ZHTa
+ YXkq54hHj63jwrcjkBSCkXLh37kHeqnl++GHpN+3R+o3w2OpwHAlvVjdKPT27v1tVkiydsFG
+ 65Vd0n3m/ft+IOrGgxQM1C20uqKvsZGB4r3OGR50ekAybO7sjEJJ1Obl4ge/6RRqcvKz4LMb
+ tGs85D6tPIeFzsBNBFs50uABCADGJj+DP1fk+UWOWrf4O61HTbC4Vr9QD2K4fUUHnzg2B6zU
+ R1BPXqLGG0+lzK8kfYU/F5RjmEcClsIkAaFkg4kzKP14tvY1J5+AV3yNqcdg018HNtiyrSwI
+ E0Yz/qm1Ot2NMZ0DdvVBg22IMsiudQ1tx9CH9mtyTbIXgACvl3PW2o9CxiHPE/bohFhwZwh/
+ kXYYAE51lhinQ3oFEeQZA3w4OTvxSEspiQR8dg8qJJb+YOAc5IKk6sJmmM7JfFMWSr22satM
+ 23oQ3WvJb4RV6HTRTAIEyyZS7g2DhiytgMG60t0qdABG5KXSQW+OKlZRpuWwKWaLh3if/p/u
+ 69dvpanbABEBAAHCwHwEGAEIACYWIQRyF/usjOnPY0ShaOVoDcEdUwt6IwUCWznS4AIbDAUJ
+ A8JnAAAKCRBoDcEdUwt6I6X3CACJ8D+TpXBCqJE5xwog08+Dp8uBpx0T9n1wE0GQisZruACW
+ NofYn8PTX9k4wmegDLwt7YQDdKxQ4+eTfZeLNQqWg6OCftH5Kx7sjWnJ09tOgniVdROzWJ7c
+ VJ/i0okazncsJ+nq48UYvRGE1Swh3A4QRIyphWX4OADOBmTFl9ZYNPnh23eaC9WrNvFr7yP7
+ iGjMlfEW8l6Lda//EC5VpXVNza0xeae0zFNst2R9pn+bLkihwDLWxOIyifGRxTqNxoS4I1aw
+ VhxPSVztPMSpIA/sOr/N/p6JrBLn+gui2K6mP7bGb8hF+szfArYqz3T1rv1VzUWAJf5Wre5U
+ iNx9uqqx
+Message-ID: <e51754b0-542c-b1bb-9d5b-e53daf6d92eb@suse.de>
+Date: Thu, 27 Jun 2019 10:27:32 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.1
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [igt-dev] [PATCH i-g-t] i915/gem_pread/pwrite:
- Rename "basic"
+In-Reply-To: <20190617135912.GB12905@phenom.ffwll.local>
+Subject: Re: [Intel-gfx] [PATCH 40/59] drm/vram-helper: Drop
+ drm_gem_prime_export/import
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -54,48 +68,153 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "igt-dev@lists.freedesktop.org" <igt-dev@lists.freedesktop.org>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Maxime Ripard <maxime.ripard@bootlin.com>,
+ Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ David Airlie <airlied@linux.ie>, Daniel Vetter <daniel.vetter@intel.com>
+Content-Type: multipart/mixed; boundary="===============0487227923=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gVGh1LCAyMDE5LTA2LTI3IGF0IDA4OjM2ICswMTAwLCBDaHJpcyBXaWxzb24gd3JvdGU6DQo+
-IFRoZSAiYmFzaWMiIHN1YnRlc3RzIHBlcmZvcm0gbm8gdmVyaWZpY2F0aW9uIHRoYXQgdGhlIHJl
-YWQvd3JpdGUgd29yaywNCj4gb25seSBmdW5jdGlvbiBhcyBtZXJlIEFQSSBleGVyY2lzZXJzIGFu
-ZCBsb29zZSBiZW5jaG1hcmtzLiBSZW5hbWUgdGhlbQ0KPiB0byByZWZsZWN0IHRoYXQgdGhleSBh
-cmUgcG9vciBiZW5jaG1hcmtzIGluc3RlYWQuDQo+IA0KPiBTaWduZWQtb2ZmLWJ5OiBDaHJpcyBX
-aWxzb24gPGNocmlzQGNocmlzLXdpbHNvbi5jby51az4NCg0KUmV2aWV3ZWQtYnk6IFNpbW9uIFNl
-ciA8c2ltb24uc2VyQGludGVsLmNvbT4NCg0KPiAtLS0NCj4gIHRlc3RzL2k5MTUvZ2VtX3ByZWFk
-LmMgICAgICAgICAgICAgICAgfCAyICstDQo+ICB0ZXN0cy9pOTE1L2dlbV9wd3JpdGUuYyAgICAg
-ICAgICAgICAgIHwgMiArLQ0KPiAgdGVzdHMvaW50ZWwtY2kvZmFzdC1mZWVkYmFjay50ZXN0bGlz
-dCB8IDIgLS0NCj4gIDMgZmlsZXMgY2hhbmdlZCwgMiBpbnNlcnRpb25zKCspLCA0IGRlbGV0aW9u
-cygtKQ0KPiANCj4gZGlmZiAtLWdpdCBhL3Rlc3RzL2k5MTUvZ2VtX3ByZWFkLmMgYi90ZXN0cy9p
-OTE1L2dlbV9wcmVhZC5jDQo+IGluZGV4IGM2NDc4NzY1My4uMGQzZTEwYjgwIDEwMDY0NA0KPiAt
-LS0gYS90ZXN0cy9pOTE1L2dlbV9wcmVhZC5jDQo+ICsrKyBiL3Rlc3RzL2k5MTUvZ2VtX3ByZWFk
-LmMNCj4gQEAgLTE1OSw3ICsxNTksNyBAQCBpZ3RfbWFpbl9hcmdzKCJzOiIsIE5VTEwsIGhlbHBf
-c3RyLCBvcHRfaGFuZGxlciwgTlVMTCkNCj4gIAkJZHN0X3VzZXIgPSBtYWxsb2Mob2JqZWN0X3Np
-emUpOw0KPiAgCX0NCj4gIA0KPiAtCWlndF9zdWJ0ZXN0KCJiYXNpYyIpIHsNCj4gKwlpZ3Rfc3Vi
-dGVzdCgiYmVuY2giKSB7DQo+ICAJCWZvciAoY291bnQgPSAxOyBjb3VudCA8PSAxPDwxNzsgY291
-bnQgPDw9IDEpIHsNCj4gIAkJCXN0cnVjdCB0aW1ldmFsIHN0YXJ0LCBlbmQ7DQo+ICANCj4gZGlm
-ZiAtLWdpdCBhL3Rlc3RzL2k5MTUvZ2VtX3B3cml0ZS5jIGIvdGVzdHMvaTkxNS9nZW1fcHdyaXRl
-LmMNCj4gaW5kZXggOTc3MDNhMmFhLi4zN2U5Nzg3OTEgMTAwNjQ0DQo+IC0tLSBhL3Rlc3RzL2k5
-MTUvZ2VtX3B3cml0ZS5jDQo+ICsrKyBiL3Rlc3RzL2k5MTUvZ2VtX3B3cml0ZS5jDQo+IEBAIC0y
-ODYsNyArMjg2LDcgQEAgaWd0X21haW5fYXJncygiczoiLCBOVUxMLCBoZWxwX3N0ciwgb3B0X2hh
-bmRsZXIsIE5VTEwpDQo+ICAJCXNyY191c2VyID0gbWFsbG9jKG9iamVjdF9zaXplKTsNCj4gIAl9
-DQo+ICANCj4gLQlpZ3Rfc3VidGVzdCgiYmFzaWMiKSB7DQo+ICsJaWd0X3N1YnRlc3QoImJlbmNo
-Iikgew0KPiAgCQlmb3IgKGNvdW50ID0gMTsgY291bnQgPD0gMTw8MTc7IGNvdW50IDw8PSAxKSB7
-DQo+ICAJCQlzdHJ1Y3QgdGltZXZhbCBzdGFydCwgZW5kOw0KPiAgDQo+IGRpZmYgLS1naXQgYS90
-ZXN0cy9pbnRlbC1jaS9mYXN0LWZlZWRiYWNrLnRlc3RsaXN0IGIvdGVzdHMvaW50ZWwtY2kvZmFz
-dC1mZWVkYmFjay50ZXN0bGlzdA0KPiBpbmRleCA4NjE4ZGZkMjguLjVmY2I1ZTc2ZCAxMDA2NDQN
-Cj4gLS0tIGEvdGVzdHMvaW50ZWwtY2kvZmFzdC1mZWVkYmFjay50ZXN0bGlzdA0KPiArKysgYi90
-ZXN0cy9pbnRlbC1jaS9mYXN0LWZlZWRiYWNrLnRlc3RsaXN0DQo+IEBAIC04Nyw4ICs4Nyw2IEBA
-IGlndEBnZW1fbW1hcF9ndHRAYmFzaWMtd3JpdGUtZ3R0LW5vLXByZWZhdWx0DQo+ICBpZ3RAZ2Vt
-X21tYXBfZ3R0QGJhc2ljLXdyaXRlLW5vLXByZWZhdWx0DQo+ICBpZ3RAZ2VtX21tYXBfZ3R0QGJh
-c2ljLXdyaXRlLXJlYWQNCj4gIGlndEBnZW1fbW1hcF9ndHRAYmFzaWMtd3JpdGUtcmVhZC1kaXN0
-aW5jdA0KPiAtaWd0QGdlbV9wcmVhZEBiYXNpYw0KPiAtaWd0QGdlbV9wd3JpdGVAYmFzaWMNCj4g
-IGlndEBnZW1fcmVuZGVyX2xpbmVhcl9ibGl0c0BiYXNpYw0KPiAgaWd0QGdlbV9yZW5kZXJfdGls
-ZWRfYmxpdHNAYmFzaWMNCj4gIGlndEBnZW1fcmluZ2ZpbGxAYmFzaWMtZGVmYXVsdA0KX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxp
-bmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJl
-ZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--===============0487227923==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="wMydacYR0DTQCWxiVGYgvSXJgc07WuHFA"
+
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--wMydacYR0DTQCWxiVGYgvSXJgc07WuHFA
+Content-Type: multipart/mixed; boundary="Z0SImBY5s1zzeVZowdbaaQby8g0UAEa7n";
+ protected-headers="v1"
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: Daniel Vetter <daniel@ffwll.ch>, Gerd Hoffmann <kraxel@redhat.com>
+Cc: Maxime Ripard <maxime.ripard@bootlin.com>,
+ Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ David Airlie <airlied@linux.ie>, Daniel Vetter <daniel.vetter@intel.com>,
+ Sean Paul <sean@poorly.run>
+Message-ID: <e51754b0-542c-b1bb-9d5b-e53daf6d92eb@suse.de>
+Subject: Re: [PATCH 40/59] drm/vram-helper: Drop drm_gem_prime_export/import
+References: <20190614203615.12639-1-daniel.vetter@ffwll.ch>
+ <20190614203615.12639-41-daniel.vetter@ffwll.ch>
+ <20190617082438.s5eypq5lf6s33nyz@sirius.home.kraxel.org>
+ <20190617135912.GB12905@phenom.ffwll.local>
+In-Reply-To: <20190617135912.GB12905@phenom.ffwll.local>
+
+--Z0SImBY5s1zzeVZowdbaaQby8g0UAEa7n
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: quoted-printable
+
+Hi
+
+Am 17.06.19 um 15:59 schrieb Daniel Vetter:
+> On Mon, Jun 17, 2019 at 10:24:38AM +0200, Gerd Hoffmann wrote:
+>>   Hi,
+>>
+>>> Aside: Would be really nice to switch the others over to
+>>> drm_gem_object_funcs.
+>>
+>> While most callbacks are pretty straight forward (just hook the same
+>> callbacks into the drm_gem_object_funcs. struct) the mmap bits are a
+>> bit more obscure.
+>>
+>> First, there seem to be two ways to mmap a gem buffer:
+>>
+>>   (1) drm_driver->fops->mmap, and
+>>   (2) drm_driver->gem_prime_mmap.
+>>
+>> drm_gem_object_funcs has just a single vm_ops ...
+>>
+>> Also it is not obvious how one would convert something which basically=
+
+>> calls ttm_bo_mmap() in drm_driver->fops->mmap to the new interface.
+>=20
+> Yeah the mmap side is still a mess, but my series here was getting a bi=
+t
+> too long already. There's a bunch of problems here:
+>=20
+> drm_driver->gem_prime_mmap could be nuked and instead we use
+> drm_gem_prime_mmap everywhere. Especially the various versions in helpe=
+rs
+> really don't add much.
+>=20
+> The trouble is that removing the hook outright isn't quite right, becau=
+se
+> it also signals "is mmap allowed on this dma-buf". I'm kinda tempted to=
+
+> just make that a hard requirement, and force people who can't support m=
+map
+> on the dma-buf (or who need begin/end_cpu_access hooks) to supply their=
+
+> own set of dma_buf_ops.
+>=20
+> Second one is drm_driver->fops->mmap. That one we need to keep, but thi=
+s
+> isn't mmap on a buffer, but mmap on the entire drm_device. The one whic=
+h
+> should be replaced by drm_gem_object_funcs.vm_ops is
+> drm_driver->gem_vm_ops.
+
+=46rom what I've seen in fbdev drivers, it's an mmap of the framebuffer
+memory, which typically is the same as the device's memory but doesn't
+have to. And it's only valid for/while the current display mode (e.g.,
+mgafb doesn't set fixes.smem_length until you configure a mode).
+
+I guess it should be legal to just mmap the shadow FB from the fbcon
+emulation.
+
+Best regards
+Thomas
+
+> Hope that explains a bit better what's going on here. Step one here for=
+
+> mmap is definitely to roll out drm_gem_prime_mmap as far as possible, s=
+o
+> it's easier to understand where the exceptions are.
+>=20
+> Cheers, Daniel
+>=20
+
+--=20
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Linux GmbH, Maxfeldstrasse 5, 90409 Nuernberg, Germany
+GF: Felix Imend=C3=B6rffer, Mary Higgins, Sri Rasiah
+HRB 21284 (AG N=C3=BCrnberg)
+
+
+--Z0SImBY5s1zzeVZowdbaaQby8g0UAEa7n--
+
+--wMydacYR0DTQCWxiVGYgvSXJgc07WuHFA
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEEchf7rIzpz2NEoWjlaA3BHVMLeiMFAl0UffQACgkQaA3BHVML
+eiNbewf7BwzOgKKoTeMAagNJnmeGtX1Is2UMCJZKkDH8tg2onQusCJBMiZGdskDt
+kK58CrnznuFthJl2amFWXvqKh5iuBJ/30AinPuAGW0MJeuUgYPenGX9kIvLIeruV
+kOpKYC8EiHKUtcqSWF6ay8f5ooYcEibL6ucm01MlBo4v4WiWGdkMIvqdlRig7D7I
+4dNsTiMNsOdHoJHswrg/rcoN8YegcY6WqFUistZfRUrIto4XSx6iUwBbI493StuB
+G9+oskgAzIDP1N7Yvi59///RLUWt16uyecRV56bkzgOWqqH5uBQ0EFjZ6VqIR+Bm
++7rqLZr7ftCCEAXR5z+AeoioAI4QgQ==
+=izsP
+-----END PGP SIGNATURE-----
+
+--wMydacYR0DTQCWxiVGYgvSXJgc07WuHFA--
+
+--===============0487227923==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
+IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
+
+--===============0487227923==--
