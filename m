@@ -1,28 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 948F65AA87
-	for <lists+intel-gfx@lfdr.de>; Sat, 29 Jun 2019 13:41:04 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5723658E57
+	for <lists+intel-gfx@lfdr.de>; Fri, 28 Jun 2019 01:11:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F027A6E99F;
-	Sat, 29 Jun 2019 11:41:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C229C6E81D;
+	Thu, 27 Jun 2019 23:11:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DF8536E84F;
- Thu, 27 Jun 2019 23:10:53 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
- (Authenticated sender: mfilion) with ESMTPSA id 593CC26D984
-Message-ID: <10e51f52d13295cdaa34aa39b1e931817ed29f9f.camel@collabora.com>
-From: Mark Filion <mark.filion@collabora.com>
-To: events@lists.x.org
-Date: Thu, 27 Jun 2019 19:10:48 -0400
-Organization: Collabora Ltd.
-User-Agent: Evolution 3.32.2 (3.32.2-1.fc30) 
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 288CF6E81D
+ for <intel-gfx@lists.freedesktop.org>; Thu, 27 Jun 2019 23:11:40 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 17050625-1500050 for multiple; Fri, 28 Jun 2019 00:11:37 +0100
 MIME-Version: 1.0
-X-Mailman-Approved-At: Sat, 29 Jun 2019 11:40:59 +0000
-Subject: [Intel-gfx] XDC 2019: 10 days left to submit your talks!
+From: Chris Wilson <chris@chris-wilson.co.uk>
+User-Agent: alot/0.6
+To: Matthew Auld <matthew.auld@intel.com>, intel-gfx@lists.freedesktop.org
+References: <20190627205633.1143-1-matthew.auld@intel.com>
+ <20190627205633.1143-8-matthew.auld@intel.com>
+In-Reply-To: <20190627205633.1143-8-matthew.auld@intel.com>
+Message-ID: <156167709548.21955.12736333494895557331@skylake-alporthouse-com>
+Date: Fri, 28 Jun 2019 00:11:35 +0100
+Subject: Re: [Intel-gfx] [PATCH v2 07/37] drm/i915: support creating LMEM
+ objects
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -40,14 +45,19 @@ Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-SGVsbG8hCgpPbmx5aCAxMCBkYXlzIHRvIGdvIHRvIHN1Ym1pdCB5b3VyIHRhbGtzLCB3b3Jrc2hv
-cHMgb3IgZGVtb3MgZm9yIHRoaXMKeWVhcidzIFguT3JnIERldmVsb3BlciBDb25mZXJlbmNlLCB3
-aGljaCB3aWxsIGJlIHRha2luZyBwbGFjZSBpbgpiZWF1dGlmdWwgTW9udHLDqWFsLCBDYW5hZGEg
-b24gT2N0b2JlciAyLTQsIDIwMTkhCgpXaGV0aGVyIGl0J3MgdGhlIExpbnV4IGtlcm5lbCwgTWVz
-YSwgRFJNLCBXYXlsYW5kIG9yIFgxMSwgaWYgaXQncwpyZWxhdGVkIHRvIHRoZSBPcGVuIFNvdXJj
-ZSBncmFwaGljcyBzdGFjaywgcGxlYXNlIHNlbmQgaXQgaW4hCgpIZWFkIHRvIHRoZSBYREMgd2Vi
-c2l0ZSB0byBsZWFybiBtb3JlOiAKCiAgICBodHRwczovL3hkYzIwMTkueC5vcmcvCgpUaGUgZGVh
-ZGxpbmUgZm9yIHN1Ym1pc3Npb25zIFN1bmRheSwgNyBKdWx5IDIwMTkuCgpCZXN0LAoKTWFyawoK
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
-IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
+UXVvdGluZyBNYXR0aGV3IEF1bGQgKDIwMTktMDYtMjcgMjE6NTY6MDMpCj4gV2UgY3VycmVudGx5
+IGRlZmluZSBMTUVNLCBvciBsb2NhbCBtZW1vcnksIGFzIGp1c3QgYW5vdGhlciBtZW1vcnkKPiBy
+ZWdpb24sIGxpa2Ugc3lzdGVtIG1lbW9yeSBvciBzdG9sZW4sIHdoaWNoIHdlIGNhbiBleHBvc2Ug
+dG8gdXNlcnNwYWNlCj4gYW5kIGNhbiBiZSBtYXBwZWQgdG8gdGhlIENQVSB2aWEgc29tZSBCQVIu
+Cj4gCj4gU2lnbmVkLW9mZi1ieTogTWF0dGhldyBBdWxkIDxtYXR0aGV3LmF1bGRAaW50ZWwuY29t
+Pgo+IENjOiBKb29uYXMgTGFodGluZW4gPGpvb25hcy5sYWh0aW5lbkBsaW51eC5pbnRlbC5jb20+
+Cj4gQ2M6IEFiZGllbCBKYW51bGd1ZSA8YWJkaWVsLmphbnVsZ3VlQGxpbnV4LmludGVsLmNvbT4K
+PiAtLS0KPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvTWFrZWZpbGUgICAgICAgICAgICAgICAgIHwg
+IDEgKwo+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2Rydi5oICAgICAgICAgICAgICAgfCAg
+NSArKwo+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9yZWdpb25fbG1lbS5jICAgICAgfCA2
+NiArKysrKysrKysrKysrKysrKysrCj4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX3JlZ2lv
+bl9sbWVtLmggICAgICB8IDE2ICsrKysrCgpZb3UgbWlzc2VkIHRoZSBtbS8gdmliZXMgSSB3YXMg
+dHJ5aW5nIHRvIHNlbmQ/IDspCi1DaHJpcwpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5m
+cmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0
+aW5mby9pbnRlbC1nZng=
