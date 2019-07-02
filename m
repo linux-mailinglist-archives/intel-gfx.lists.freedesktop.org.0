@@ -1,34 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B6BDC5CDAC
-	for <lists+intel-gfx@lfdr.de>; Tue,  2 Jul 2019 12:36:33 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4906C5CDBF
+	for <lists+intel-gfx@lfdr.de>; Tue,  2 Jul 2019 12:43:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8072889471;
-	Tue,  2 Jul 2019 10:36:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 272D489994;
+	Tue,  2 Jul 2019 10:43:34 +0000 (UTC)
 X-Original-To: Intel-gfx@lists.freedesktop.org
 Delivered-To: Intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0735F89471
- for <Intel-gfx@lists.freedesktop.org>; Tue,  2 Jul 2019 10:36:29 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C370E8996F;
+ Tue,  2 Jul 2019 10:43:32 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from localhost (unverified [78.156.65.138]) 
  by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 17097181-1500050 for multiple; Tue, 02 Jul 2019 11:36:24 +0100
+ 17097271-1500050 for multiple; Tue, 02 Jul 2019 11:43:28 +0100
 MIME-Version: 1.0
-To: Intel-gfx@lists.freedesktop.org,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ igt-dev@lists.freedesktop.org
 From: Chris Wilson <chris@chris-wilson.co.uk>
-In-Reply-To: <20190702102313.9333-3-tvrtko.ursulin@linux.intel.com>
-References: <20190702102313.9333-1-tvrtko.ursulin@linux.intel.com>
- <20190702102313.9333-3-tvrtko.ursulin@linux.intel.com>
-Message-ID: <156206378130.2466.9151377721718293973@skylake-alporthouse-com>
+In-Reply-To: <20190627102019.9019-1-tvrtko.ursulin@linux.intel.com>
+References: <20190627102019.9019-1-tvrtko.ursulin@linux.intel.com>
+Message-ID: <156206420511.2466.7620831804562092731@skylake-alporthouse-com>
 User-Agent: alot/0.6
-Date: Tue, 02 Jul 2019 11:36:21 +0100
-Subject: Re: [Intel-gfx] [PATCH 2/3] drm/i915: Remove some legacy mmio
- accessors from interrupt handling
+Date: Tue, 02 Jul 2019 11:43:25 +0100
+Subject: Re: [Intel-gfx] [PATCH i-g-t] tests/i915/gem_ctx_switch: Update
+ with engine discovery
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -41,23 +40,23 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Paulo Zanoni <paulo.r.zanoni@intel.com>
+Cc: Intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-UXVvdGluZyBUdnJ0a28gVXJzdWxpbiAoMjAxOS0wNy0wMiAxMToyMzoxMikKPiBGcm9tOiBUdnJ0
-a28gVXJzdWxpbiA8dHZydGtvLnVyc3VsaW5AaW50ZWwuY29tPgo+IAo+IE1vc3RseSBpbiBnZW4x
-MSBpbnRlcnJ1cHQgaGFuZGxpbmcgYW5kIGEgY291cGxlIG5laWdoYm91cmluZyBmdW5jdGlvbnMK
-PiB3aGljaCB3ZXJlIGVhc3kgc2luY2UgdW5jb3JlIGxvY2FsIHdhcyBhbHJlYWR5IGF2YWlsYWJs
-ZS4KPiAKPiBDby1hdXRob3JlZC1ieTogUGF1bG8gWmFub25pIDxwYXVsby5yLnphbm9uaUBpbnRl
-bC5jb20+Cj4gU2lnbmVkLW9mZi1ieTogUGF1bG8gWmFub25pIDxwYXVsby5yLnphbm9uaUBpbnRl
-bC5jb20+Cj4gU2lnbmVkLW9mZi1ieTogVHZydGtvIFVyc3VsaW4gPHR2cnRrby51cnN1bGluQGlu
-dGVsLmNvbT4KPiBDYzogRGFuaWVsZSBDZXJhb2xvIFNwdXJpbyA8ZGFuaWVsZS5jZXJhb2xvc3B1
-cmlvQGludGVsLmNvbT4KCk1ha2VzIHNlbnNlIHRvIG1lLApSZXZpZXdlZC1ieTogQ2hyaXMgV2ls
-c29uIDxjaHJpc0BjaHJpcy13aWxzb24uY28udWs+CmJ1dCBJJ20gd2FyeSB0aGF0IHRoaXMgaXMg
-dG9vIGxpdHRsZSBvZiBhIGRyb3AgaW4gYSBjaHVybmluZyBvY2Vhbi4KLUNocmlzCl9fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5n
-IGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVk
-ZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeA==
+UXVvdGluZyBUdnJ0a28gVXJzdWxpbiAoMjAxOS0wNi0yNyAxMToyMDoxOSkKPiArYm9vbCBnZW1f
+Y29udGV4dF9oYXNfZW5naW5lX21hcChpbnQgZmQsIHVpbnQzMl90IGN0eCkKPiArewo+ICsgICAg
+ICAgc3RydWN0IGRybV9pOTE1X2dlbV9jb250ZXh0X3BhcmFtIHBhcmFtID0gewo+ICsgICAgICAg
+ICAgICAgICAucGFyYW0gPSBJOTE1X0NPTlRFWFRfUEFSQU1fRU5HSU5FUywKPiArICAgICAgICAg
+ICAgICAgLmN0eF9pZCA9IGN0eAo+ICsgICAgICAgfTsKPiArICAgICAgIGludCByZXQ7Cj4gKwo+
+ICsgICAgICAgcmV0ID0gX19nZW1fY29udGV4dF9nZXRfcGFyYW0oZmQsICZwYXJhbSk7Cj4gKyAg
+ICAgICBpZ3RfYXNzZXJ0X2VxKHJldCwgMCk7CgpyZXQgaXMgLUVJTlZBTCBpZiB0aGUgcGFyYW1l
+dGVyIGRvZXNuJ3QgZXhpc3Qgb24gb2xkZXIga2VybmVscywgd2hlcmUKbmF0dXJhbGx5IHdlIGhh
+dmUgbm8gZW5naW5lIG1hcCEKCmJvb2wgcmVzdWx0OwoKcmVzdWx0ID0gZmFsc2U7CmlmIChfX2dl
+bV9jb250ZXh0X2dldF9wYXJhbShmZCwgJnBhcmFtKSA9PSAwKQoJcmVzdWx0ID0gcGFyYW0uc2l6
+ZTsKCnJldHVybiByZXN1bHQ7Cgo/Ci1DaHJpcwpfX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0
+cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9s
+aXN0aW5mby9pbnRlbC1nZng=
