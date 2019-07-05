@@ -2,28 +2,28 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A264060198
-	for <lists+intel-gfx@lfdr.de>; Fri,  5 Jul 2019 09:41:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 272F0601AE
+	for <lists+intel-gfx@lfdr.de>; Fri,  5 Jul 2019 09:46:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 74F666E417;
-	Fri,  5 Jul 2019 07:41:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8DFC66E422;
+	Fri,  5 Jul 2019 07:46:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 38C996E417
- for <intel-gfx@lists.freedesktop.org>; Fri,  5 Jul 2019 07:41:36 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A933A6E422
+ for <intel-gfx@lists.freedesktop.org>; Fri,  5 Jul 2019 07:46:15 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 17136970-1500050 
- for multiple; Fri, 05 Jul 2019 08:41:21 +0100
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 17137009-1500050 
+ for multiple; Fri, 05 Jul 2019 08:46:07 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri,  5 Jul 2019 08:41:20 +0100
-Message-Id: <20190705074120.22234-1-chris@chris-wilson.co.uk>
+Date: Fri,  5 Jul 2019 08:45:57 +0100
+Message-Id: <20190705074604.16496-1-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v2] drm/i915: Order assert forcewake test
+Subject: [Intel-gfx] [PATCH 1/8] drm/i915: Order assert forcewake test
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
