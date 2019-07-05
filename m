@@ -2,30 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA66160093
-	for <lists+intel-gfx@lfdr.de>; Fri,  5 Jul 2019 07:23:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D31C560099
+	for <lists+intel-gfx@lfdr.de>; Fri,  5 Jul 2019 07:29:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1C4A96E40B;
-	Fri,  5 Jul 2019 05:23:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3DF176E40C;
+	Fri,  5 Jul 2019 05:29:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 730746E40B;
- Fri,  5 Jul 2019 05:23:48 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 6BFD2A0075;
- Fri,  5 Jul 2019 05:23:48 +0000 (UTC)
-MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: akpm@linux-foundation.org
-Date: Fri, 05 Jul 2019 05:23:48 -0000
-Message-ID: <20190705052348.29485.79866@emeril.freedesktop.org>
-References: <20190705050948.TPpsTT9oH%akpm@linux-foundation.org>
-X-Patchwork-Hint: ignore
-In-Reply-To: <20190705050948.TPpsTT9oH%akpm@linux-foundation.org>
-Subject: [Intel-gfx] =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_f?=
- =?utf-8?q?or_+_diff-sucks=2Epatch_added_to_-mm_tree?=
+Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 170306E40C;
+ Fri,  5 Jul 2019 05:29:07 +0000 (UTC)
+Received: from localhost.localdomain (c-73-223-200-170.hsd1.ca.comcast.net
+ [73.223.200.170])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by mail.kernel.org (Postfix) with ESMTPSA id 111B621850;
+ Fri,  5 Jul 2019 05:29:07 +0000 (UTC)
+Date: Thu, 4 Jul 2019 22:29:06 -0700
+From: Andrew Morton <akpm@linux-foundation.org>
+To: Joe Perches <joe@perches.com>
+Message-Id: <20190704222906.f817d02cb248561edd84a669@linux-foundation.org>
+In-Reply-To: <5f4680cce78573ecfbbdc0dfca489710581b966f.camel@perches.com>
+References: <20190704220152.1bF4q6uyw%akpm@linux-foundation.org>
+ <80bf2204-558a-6d3f-c493-bf17b891fc8a@infradead.org>
+ <CAK7LNAQc1xYoet1o8HJVGKuonUV40MZGpK7eHLyUmqet50djLw@mail.gmail.com>
+ <20190705131435.58c2be19@canb.auug.org.au>
+ <20190704220931.f1bd2462907901f9e7aca686@linux-foundation.org>
+ <5f4680cce78573ecfbbdc0dfca489710581b966f.camel@perches.com>
+X-Mailer: Sylpheed 3.5.1 (GTK+ 2.24.31; x86_64-pc-linux-gnu)
+Mime-Version: 1.0
+X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=kernel.org; s=default; t=1562304547;
+ bh=ku9aEp+wapV1jAtHr82zZH6REpuJWRVS+GCf+tHXR7Y=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+ b=gpwsyMS6DRC1CwjjTw4nWYbfs5wE2bJ85FBSXW84XxfeYBs6quUOEtr8MLEJ6QcMZ
+ 03jv6nY0lDeUSDRQOggVvU24ZcWC8z5wMyc53vkGgU4qbFnuhBeU8cBq+krJtoDFTV
+ 5BAl2jqKEoiqIRjP7Qf7cwvYh0pBZRG2A96dQtGc=
+Subject: Re: [Intel-gfx] mmotm 2019-07-04-15-01 uploaded (gpu/drm/i915/oa/)
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -38,22 +51,30 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Stephen Rothwell <sfr@canb.auug.org.au>, mm-commits@vger.kernel.org,
+ DRI <dri-devel@lists.freedesktop.org>, linux-mm@kvack.org,
+ Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Intel Graphics <intel-gfx@lists.freedesktop.org>,
+ Randy Dunlap <rdunlap@infradead.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>, mhocko@suse.cz,
+ Masahiro Yamada <yamada.masahiro@socionext.com>,
+ Mark Brown <broonie@kernel.org>,
+ Linux-Next Mailing List <linux-next@vger.kernel.org>,
+ linux-fsdevel@vger.kernel.org
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-PT0gU2VyaWVzIERldGFpbHMgPT0KClNlcmllczogKyBkaWZmLXN1Y2tzLnBhdGNoIGFkZGVkIHRv
-IC1tbSB0cmVlClVSTCAgIDogaHR0cHM6Ly9wYXRjaHdvcmsuZnJlZWRlc2t0b3Aub3JnL3Nlcmll
-cy82MzI1MS8KU3RhdGUgOiB3YXJuaW5nCgo9PSBTdW1tYXJ5ID09CgokIGRpbSBjaGVja3BhdGNo
-IG9yaWdpbi9kcm0tdGlwCmNkZjcyM2Q3MjEzOSArIGRpZmYtc3Vja3MucGF0Y2ggYWRkZWQgdG8g
-LW1tIHRyZWUKLToyMjogV0FSTklORzpDT01NSVRfTE9HX0xPTkdfTElORTogUG9zc2libGUgdW53
-cmFwcGVkIGNvbW1pdCBkZXNjcmlwdGlvbiAocHJlZmVyIGEgbWF4aW11bSA3NSBjaGFycyBwZXIg
-bGluZSkKIzIyOiAKKioqIFJlbWVtYmVyIHRvIHVzZSBEb2N1bWVudGF0aW9uL3Byb2Nlc3Mvc3Vi
-bWl0LWNoZWNrbGlzdC5yc3Qgd2hlbiB0ZXN0aW5nIHlvdXIgY29kZSAqKioKCnRvdGFsOiAwIGVy
-cm9ycywgMSB3YXJuaW5ncywgMCBjaGVja3MsIDEgbGluZXMgY2hlY2tlZAoKX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlz
-dApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0
-b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
+T24gVGh1LCAwNCBKdWwgMjAxOSAyMjoyMjo0MSAtMDcwMCBKb2UgUGVyY2hlcyA8am9lQHBlcmNo
+ZXMuY29tPiB3cm90ZToKCj4gPiBTbyB3aGVuIGNvbXBhcmluZyBhIHplcm8tbGVuZ3RoIGZpbGUg
+d2l0aCBhIG5vbi1leGlzdGVudCBmaWxlLCBkaWZmCj4gPiBwcm9kdWNlcyBubyBvdXRwdXQuCj4g
+Cj4gV2h5IHVzZSB0aGUgLU4gb3B0aW9uID8KPiAKPiAkIGRpZmYgLS1oZWxwCj4gWy4uLl0KPiAg
+IC1OLCAtLW5ldy1maWxlICAgICAgICAgICAgICAgICAgdHJlYXQgYWJzZW50IGZpbGVzIGFzIGVt
+cHR5Cj4gCj4gb3RoZXJ3aXNlCj4gCj4gJCBjZCAkKG1rdGVtcCAtZCAtcCAuKQo+ICQgdG91Y2gg
+eAo+ICQgZGlmZiAtdSB4IHkKPiBkaWZmOiB5OiBObyBzdWNoIGZpbGUgb3IgZGlyZWN0b3J5CgpX
+aXRob3V0IC1OIGRpZmYgZmFpbHMgYW5kIGV4aXRzIHdpdGggYW4gZXJyb3IuICAtTiBkb2VzIHdo
+YXQncyBkZXNpcmVkCmFzIGxvbmcgYXMgdGhlIG5vbi1taXNzaW5nIGZpbGUgaXNuJ3QgZW1wdHku
+CgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwt
+Z2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8v
+bGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
