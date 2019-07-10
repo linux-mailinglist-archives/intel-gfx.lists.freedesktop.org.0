@@ -2,32 +2,34 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C00064792
-	for <lists+intel-gfx@lfdr.de>; Wed, 10 Jul 2019 15:52:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CD809647A9
+	for <lists+intel-gfx@lfdr.de>; Wed, 10 Jul 2019 15:55:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0031089830;
-	Wed, 10 Jul 2019 13:52:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C7B376E0E1;
+	Wed, 10 Jul 2019 13:55:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A6E6C89830
- for <intel-gfx@lists.freedesktop.org>; Wed, 10 Jul 2019 13:52:04 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CDEFE6E0E1
+ for <intel-gfx@lists.freedesktop.org>; Wed, 10 Jul 2019 13:55:49 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from localhost (unverified [78.156.65.138]) 
  by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 17200269-1500050 for multiple; Wed, 10 Jul 2019 14:51:56 +0100
+ 17200317-1500050 for multiple; Wed, 10 Jul 2019 14:55:47 +0100
 MIME-Version: 1.0
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
 From: Chris Wilson <chris@chris-wilson.co.uk>
-In-Reply-To: <20190710134937.25835-1-ville.syrjala@linux.intel.com>
-References: <20190710134937.25835-1-ville.syrjala@linux.intel.com>
-Message-ID: <156276671483.4055.15258594647096908962@skylake-alporthouse-com>
 User-Agent: alot/0.6
-Date: Wed, 10 Jul 2019 14:51:54 +0100
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Don't pass stack garbage to pcode
- in the second data register
+To: Mika Kuoppala <mika.kuoppala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+References: <20190707210024.26192-1-chris@chris-wilson.co.uk>
+ <20190707210024.26192-6-chris@chris-wilson.co.uk>
+ <87pnmiq9ta.fsf@gaia.fi.intel.com>
+In-Reply-To: <87pnmiq9ta.fsf@gaia.fi.intel.com>
+Message-ID: <156276694529.4055.11385351593683694629@skylake-alporthouse-com>
+Date: Wed, 10 Jul 2019 14:55:45 +0100
+Subject: Re: [Intel-gfx] [PATCH 05/11] drm/i915/gtt: Compute the radix for
+ gen8 page table levels
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -40,22 +42,20 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Dan Carpenter <dan.carpenter@oracle.com>
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-UXVvdGluZyBWaWxsZSBTeXJqYWxhICgyMDE5LTA3LTEwIDE0OjQ5OjM3KQo+IEZyb206IFZpbGxl
-IFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5jb20+Cj4gCj4gWmVybyBpbml0
-aWFsaXplIHZhbDIgc28gdGhhdCB3ZSBkb24ndCBwYXNzIHN0YWNrIGdhcmJhZ2UgdG8KPiB0aGUg
-cGNvZGUgcWd2IHJlYWQgY29tbWFuZC4gSSBzdXNwZWN0IGluIHRoaXMgY2FzZSBwY29kZQo+IGp1
-c3QgaWdub3JlcyB0aGUgaW5pdGlhbCB2YWx1ZSBpbiB0aGF0IHJlZ2lzdGVycywgYnV0IGJldHRl
-cgo+IHNhZmUgdGhhbiBzb3JyeS4KPiAKPiBDYzogRGFuIENhcnBlbnRlciA8ZGFuLmNhcnBlbnRl
-ckBvcmFjbGUuY29tPgo+IFJlcG9ydGVkLWJ5OiBEYW4gQ2FycGVudGVyIDxkYW4uY2FycGVudGVy
-QG9yYWNsZS5jb20+Cj4gU2lnbmVkLW9mZi1ieTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJq
-YWxhQGxpbnV4LmludGVsLmNvbT4KCkZhaXIgZW5vdWdoIHRvIGJlIGRlZmVuc2l2ZSwKUmV2aWV3
-ZWQtYnk6IENocmlzIFdpbHNvbiA8Y2hyaXNAY2hyaXMtd2lsc29uLmNvLnVrPgotQ2hyaXMKX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1h
-aWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMu
-ZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
+UXVvdGluZyBNaWthIEt1b3BwYWxhICgyMDE5LTA3LTEwIDE0OjQ5OjA1KQo+IENocmlzIFdpbHNv
+biA8Y2hyaXNAY2hyaXMtd2lsc29uLmNvLnVrPiB3cml0ZXM6Cj4gPiArc3RhdGljIGlubGluZSB1
+bnNpZ25lZCBpbnQgZ2VuOF9wdF9jb3VudCh1NjQgYWRkciwgdTY0IGVuZCkKPiA+ICt7Cj4gPiAr
+ICAgICBHRU1fQlVHX09OKGFkZHIgPj0gZW5kKTsKPiA+ICsgICAgIGlmICgoYWRkciBeIGVuZCkg
+JiB+STkxNV9QREVfTUFTSykKPiA+ICsgICAgICAgICAgICAgcmV0dXJuIEk5MTVfUERFUyAtIChh
+ZGRyICYgSTkxNV9QREVfTUFTSyk7Cj4gCj4gT2ssIEkgeWllbGQgb24gNTEyLiBJOTE1X1BERVMg
+aXMgZmluZSBhcyBpdCBhdGxlYXN0Cj4gY291cGxlcyBpdCB0byBtYXNrIDpPCgpJIGhhZCBhbHJl
+YWR5IHJlbW92ZWQgdGhlbSBhbGwhIDotcAoKR2l2ZSBvciB0YWtlIGEgZmV3IEdFTjhfUERFUyBz
+aW5jZSB0aGF0IGVuZHMgdXAgYmVpbmcgdGhlIHNpbmdsZQpjb25zdGFudCB3ZSByZXF1aXJlLgot
+Q2hyaXMKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50
+ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBz
+Oi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
