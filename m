@@ -1,33 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id ACA5C648CC
-	for <lists+intel-gfx@lfdr.de>; Wed, 10 Jul 2019 17:01:26 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0F6CC648CA
+	for <lists+intel-gfx@lfdr.de>; Wed, 10 Jul 2019 17:01:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ED8396E0FD;
-	Wed, 10 Jul 2019 15:01:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5CA456E0E9;
+	Wed, 10 Jul 2019 15:01:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 971A96E0EE;
- Wed, 10 Jul 2019 15:01:23 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 17201029-1500050 for multiple; Wed, 10 Jul 2019 16:01:06 +0100
-MIME-Version: 1.0
-To: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-From: Chris Wilson <chris@chris-wilson.co.uk>
-In-Reply-To: <20190710145239.12844-1-janusz.krzysztofik@linux.intel.com>
-References: <20190710145239.12844-1-janusz.krzysztofik@linux.intel.com>
-Message-ID: <156277086449.4055.15655120452619911756@skylake-alporthouse-com>
-User-Agent: alot/0.6
-Date: Wed, 10 Jul 2019 16:01:04 +0100
-Subject: Re: [Intel-gfx] [RFC PATCH] drm/i915: Drop extern qualifiers from
- header function prototypes
+Received: from bedivere.hansenpartnership.com (bedivere.hansenpartnership.com
+ [66.63.167.143])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1243C6E0E9
+ for <intel-gfx@lists.freedesktop.org>; Wed, 10 Jul 2019 15:01:17 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+ by bedivere.hansenpartnership.com (Postfix) with ESMTP id E3A198EE24C;
+ Wed, 10 Jul 2019 08:01:15 -0700 (PDT)
+Received: from bedivere.hansenpartnership.com ([127.0.0.1])
+ by localhost (bedivere.hansenpartnership.com [127.0.0.1]) (amavisd-new,
+ port 10024)
+ with ESMTP id w7OgwRly1-Ej; Wed, 10 Jul 2019 08:01:15 -0700 (PDT)
+Received: from jarvis.lan (unknown [50.35.68.20])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by bedivere.hansenpartnership.com (Postfix) with ESMTPSA id 6C5948EE147;
+ Wed, 10 Jul 2019 08:01:15 -0700 (PDT)
+Message-ID: <1562770874.3213.14.camel@HansenPartnership.com>
+From: James Bottomley <James.Bottomley@HansenPartnership.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 10 Jul 2019 08:01:14 -0700
+In-Reply-To: <1561834612.3071.6.camel@HansenPartnership.com>
+References: <1561834612.3071.6.camel@HansenPartnership.com>
+X-Mailer: Evolution 3.26.6 
+Mime-Version: 1.0
+X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+ d=hansenpartnership.com; 
+ s=20151216; t=1562770875;
+ bh=kTKmUcjPIZy+cb272mn02BGDr/iISuwOGoTGGPFVmB4=;
+ h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
+ b=UTIwU8xij1Z+s9YfJbAnDiV3mL1XHgtV2hGw+QEjW+zIbFTQqNbzuoGBlSLHfLhlA
+ pPgwIA07Mh/i6aP5OiucFcP4yQAuuOFr7rvO6MiH1fcP8t719juppreWl7YzPruswN
+ igUaGuGI2HcT5oLofkY6FD0TyRUzpWqcCPOWOhNo=
+X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+ d=hansenpartnership.com; 
+ s=20151216; t=1562770875;
+ bh=kTKmUcjPIZy+cb272mn02BGDr/iISuwOGoTGGPFVmB4=;
+ h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
+ b=UTIwU8xij1Z+s9YfJbAnDiV3mL1XHgtV2hGw+QEjW+zIbFTQqNbzuoGBlSLHfLhlA
+ pPgwIA07Mh/i6aP5OiucFcP4yQAuuOFr7rvO6MiH1fcP8t719juppreWl7YzPruswN
+ igUaGuGI2HcT5oLofkY6FD0TyRUzpWqcCPOWOhNo=
+Subject: Re: [Intel-gfx] screen freeze with 5.2-rc6 Dell XPS-13 skylake i915
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -40,29 +62,29 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org
+Cc: linux-kernel <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-UXVvdGluZyBKYW51c3ogS3J6eXN6dG9maWsgKDIwMTktMDctMTAgMTU6NTI6MzkpCj4gRm9sbG93
-IGRpbSBjaGVja3BhdGNoIHJlY29tbWVuZGF0aW9uIHNvIGl0IGRvZXNuJ3QgY29tcGxhaW4gb24g
-dGhhdCBub3cKPiBhbmQgYWdhaW4gb24gaGVhZGVyIGZpbGUgbW9kaWZpY2F0aW9ucy4KPiAKPiBT
-aWduZWQtb2ZmLWJ5OiBKYW51c3ogS3J6eXN6dG9maWsgPGphbnVzei5rcnp5c3p0b2Zpa0BsaW51
-eC5pbnRlbC5jb20+Cgo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZHJ2LmgKPiAr
-KysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2Rydi5oCj4gQEAgLTIzODgsMTkgKzIzODgs
-MTggQEAgX19pOTE1X3ByaW50ayhzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYsIGNv
-bnN0IGNoYXIgKmxldmVsLAo+ICAgICAgICAgX19pOTE1X3ByaW50ayhkZXZfcHJpdiwgS0VSTl9F
-UlIsIGZtdCwgIyNfX1ZBX0FSR1NfXykKPiAgCj4gICNpZmRlZiBDT05GSUdfQ09NUEFUCj4gLWV4
-dGVybiBsb25nIGk5MTVfY29tcGF0X2lvY3RsKHN0cnVjdCBmaWxlICpmaWxwLCB1bnNpZ25lZCBp
-bnQgY21kLAo+IC0gICAgICAgICAgICAgICAgICAgICAgICAgICAgIHVuc2lnbmVkIGxvbmcgYXJn
-KTsKPiArbG9uZyBpOTE1X2NvbXBhdF9pb2N0bChzdHJ1Y3QgZmlsZSAqZmlscCwgdW5zaWduZWQg
-aW50IGNtZCwgdW5zaWduZWQgbG9uZyBhcmcpOwo+ICAjZWxzZQo+ICAjZGVmaW5lIGk5MTVfY29t
-cGF0X2lvY3RsIE5VTEwKPiAgI2VuZGlmCj4gIGV4dGVybiBjb25zdCBzdHJ1Y3QgZGV2X3BtX29w
-cyBpOTE1X3BtX29wczsKPiArZXh0ZXJuIGNvbnN0IHN0cnVjdCBkZXZfcG1fb3BzIGk5MTVfcG1f
-b3BzXzE7CgpUaGF0J3Mgbm92ZWwuCi1DaHJpcwpfX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0
-cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9s
-aXN0aW5mby9pbnRlbC1nZng=
+T24gU2F0LCAyMDE5LTA2LTI5IGF0IDExOjU2IC0wNzAwLCBKYW1lcyBCb3R0b21sZXkgd3JvdGU6
+Cj4gVGhlIHN5bXB0b21zIGFyZSByZWFsbHkgd2VpcmQ6IHRoZSBzY3JlZW4gaW1hZ2UgaXMgbG9j
+a2VkIGluIHBsYWNlLiAKPiBUaGUgbWFjaGluZSBpcyBzdGlsbCBmdW5jdGlvbmFsIGFuZCBpZiBJ
+IGxvZyBpbiBvdmVyIHRoZSBuZXR3b3JrIEkKPiBjYW4gZG8gYW55dGhpbmcgSSBsaWtlLCBpbmNs
+dWRpbmcga2lsbGluZyB0aGUgWCBzZXJ2ZXIgYW5kIHRoZQo+IGRpc3BsYXkgd2lsbCBuZXZlciBh
+bHRlci4gIEl0IGFsc28gc2VlbXMgdGhhdCB0aGUgc3lzdGVtIGlzIGFjY2VwdGluZwo+IGtleWJv
+YXJkIGlucHV0IGJlY2F1c2Ugd2hlbiBpdCBmcmVlemVzIEkgY2FuIGNhdCBpbmZvcm1hdGlvbiB0
+byBhCj4gZmlsZSAoaWYgdGhlIG1vdXNlIHdhcyBvdmVyIGFuIHh0ZXJtKSBhbmQgdmVyaWZ5IG92
+ZXIgdGhlIG5ldHdvcmsgdGhlCj4gZmlsZSBjb250ZW50cy4gTm90aGluZyB1bnVzdWFsIGFwcGVh
+cnMgaW4gZG1lc2cgd2hlbiB0aGUgbG9ja3VwCj4gaGFwcGVucy4KPiAKPiBUaGUgbGFzdCBrZXJu
+ZWwgSSBib290ZWQgc3VjY2Vzc2Z1bGx5IG9uIHRoZSBzeXN0ZW0gd2FzIDUuMCwgc28gSSdsbAo+
+IHRyeSBjb21waWxpbmcgNS4xIHRvIG5hcnJvdyBkb3duIHRoZSBjaGFuZ2VzLgoKSSd2ZSBjb25m
+aXJtZWQgdGhhdCA1LjEgZG9lc24ndCBoYXZlIHRoZSByZWdyZXNzaW9uIGFuZCBJJ20gbm93IHRy
+eWluZwp0byBiaXNlY3QgdGhlIDUuMiBtZXJnZSB3aW5kb3csIGJ1dCBzaW5jZSB0aGUgcHJvYmxl
+bSB0YWtlcyBxdWl0ZSBhCndoaWxlIHRvIG1hbmlmZXN0IHRoaXMgd2lsbCB0YWtlIHNvbWUgdGlt
+ZS4gIEFueSBoaW50cyBhYm91dCBzcGVjaWZpYwpwYXRjaGVzIHRoYXQgbWlnaHQgYmUgdGhlIHBy
+b2JsZW0gd291bGQgYmUgd2VsY29tZS4KCkphbWVzCgpfX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBs
+aXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1h
+bi9saXN0aW5mby9pbnRlbC1nZng=
