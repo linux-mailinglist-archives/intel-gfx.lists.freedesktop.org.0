@@ -2,49 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A98064C6C
-	for <lists+intel-gfx@lfdr.de>; Wed, 10 Jul 2019 20:56:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7FBCD64C6A
+	for <lists+intel-gfx@lfdr.de>; Wed, 10 Jul 2019 20:54:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CEDF46E11E;
-	Wed, 10 Jul 2019 18:56:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C38396E11E;
+	Wed, 10 Jul 2019 18:54:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E9C176E11E
- for <intel-gfx@lists.freedesktop.org>; Wed, 10 Jul 2019 18:56:11 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E40E06E11E
+ for <intel-gfx@lists.freedesktop.org>; Wed, 10 Jul 2019 18:54:56 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
 X-Amp-File-Uploaded: False
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 10 Jul 2019 11:56:11 -0700
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga106.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 10 Jul 2019 11:54:56 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.63,475,1557212400"; 
- d="scan'208,217";a="365026188"
-Received: from orsmsx103.amr.corp.intel.com ([10.22.225.130])
- by fmsmga006.fm.intel.com with ESMTP; 10 Jul 2019 11:56:09 -0700
-Received: from orsmsx108.amr.corp.intel.com ([169.254.2.65]) by
- ORSMSX103.amr.corp.intel.com ([169.254.5.44]) with mapi id 14.03.0439.000;
- Wed, 10 Jul 2019 11:56:09 -0700
-From: "Srivatsa, Anusha" <anusha.srivatsa@intel.com>
-To: "linux-firmware@kernel.org" <linux-firmware@kernel.org>
-Thread-Topic: PR- GUC v33 (BXT,SKL,GLK.KBL,ICL)
-Thread-Index: AdU115p62aukD0qaSPSrFmJA6drgcQBeSKMQ
-Date: Wed, 10 Jul 2019 18:56:08 +0000
-Message-ID: <83F5C7385F545743AD4FB2A62F75B073480FEE89@ORSMSX108.amr.corp.intel.com>
-References: <83F5C7385F545743AD4FB2A62F75B073480FBB3B@ORSMSX108.amr.corp.intel.com>
-In-Reply-To: <83F5C7385F545743AD4FB2A62F75B073480FBB3B@ORSMSX108.amr.corp.intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-version: 11.0.600.7
-dlp-reaction: no-action
-x-ctpclassification: CTP_NT
-x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiMmM5ZmI3ZTgtNjk4NC00NWI2LTljMmEtYzg3ZjM1MmQ1YmZjIiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX05UIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE3LjEwLjE4MDQuNDkiLCJUcnVzdGVkTGFiZWxIYXNoIjoiQVFRcXljKzFkTVQ0ZTJWYkc5Nk1SRmM2c2ZrbUJhbHpSY3ROY1JDQUIzTjhyOHdSZFhST3FRaVNJV2lSR3JYTSJ9
-x-originating-ip: [10.22.254.138]
+X-IronPort-AV: E=Sophos;i="5.63,475,1557212400"; d="scan'208";a="159846378"
+Received: from labuser-z97x-ud5h.jf.intel.com (HELO intel.com) ([10.54.75.49])
+ by orsmga008.jf.intel.com with ESMTP; 10 Jul 2019 11:54:56 -0700
+Date: Wed, 10 Jul 2019 11:57:15 -0700
+From: Manasi Navare <manasi.d.navare@intel.com>
+To: "Souza, Jose" <jose.souza@intel.com>
+Message-ID: <20190710185715.GA24720@intel.com>
+References: <20190709214735.16907-1-manasi.d.navare@intel.com>
+ <20190709214735.16907-2-manasi.d.navare@intel.com>
+ <e2761d4e329bcedb0147aef45a7a28c48dc8a3ba.camel@intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] PR- GUC v33 (BXT,SKL,GLK.KBL,ICL)
+Content-Disposition: inline
+In-Reply-To: <e2761d4e329bcedb0147aef45a7a28c48dc8a3ba.camel@intel.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915/display/tgl: Bump up the
+ plane/fb height to support 8K
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -57,266 +47,60 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "'jwboyer@kernel.org'" <jwboyer@kernel.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "'kyle@kernel.org'" <kyle@kernel.org>,
- "'ben@decadent.org.uk'" <ben@decadent.org.uk>
-Content-Type: multipart/mixed; boundary="===============0100811653=="
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0100811653==
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_83F5C7385F545743AD4FB2A62F75B073480FEE89ORSMSX108amrcor_"
-
---_000_83F5C7385F545743AD4FB2A62F75B073480FEE89ORSMSX108amrcor_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-Hi Kyle, Ben, Josh,
-
-Can these i915 changes be merged to linux-firmware.git?
-
-Thanks,
-Anusha
-From: Srivatsa, Anusha
-Sent: Monday, July 8, 2019 2:54 PM
-To: linux-firmware@kernel.org
-Cc: intel-gfx@lists.freedesktop.org
-Subject: PR- GUC v33 (BXT,SKL,GLK.KBL,ICL)
-
-Hi,
-
-Can these i915 changes be merged to the linux-firmware.git?
-
-The following changes since commit 70e43940b05e8d6e0c5f15b5e2d67760f1581ece=
-:
-
-  linux-firmware: rsi: add firmware image for redpine 9116 chipset (2019-06=
--28 07:41:20 -0400)
-
-are available in the Git repository at:
-
-  git://anongit.freedesktop.org/drm/drm-firmware guc_v33
-
-for you to fetch changes up to 05dbae6639f09c3e0a02e93de5f803db9aadedd1:
-
-  drm/i915/firmware: Add v33 of GuC for ICL (2019-07-08 14:40:55 -0700)
-
-----------------------------------------------------------------
-Anusha Srivatsa (5):
-      drm/i915/firmware: Add v33 of GuC for BXT
-      drm/i915/firmware: Add v33 of GuC for GLK
-      drm/i915/firmware: Add v33 of GuC for SKL
-      drm/i915/firmware: Add v33 of GuC for KBL
-      drm/i915/firmware: Add v33 of GuC for ICL
-
- WHENCE                  |  15 +++++++++++++++
- i915/bxt_guc_33.0.0.bin | Bin 0 -> 181888 bytes
- i915/glk_guc_33.0.0.bin | Bin 0 -> 182336 bytes
- i915/icl_guc_33.0.0.bin | Bin 0 -> 385280 bytes
- i915/kbl_guc_33.0.0.bin | Bin 0 -> 182912 bytes
- i915/skl_guc_33.0.0.bin | Bin 0 -> 182080 bytes
- 6 files changed, 15 insertions(+)
- create mode 100644 i915/bxt_guc_33.0.0.bin
- create mode 100644 i915/glk_guc_33.0.0.bin
- create mode 100644 i915/icl_guc_33.0.0.bin
- create mode 100644 i915/kbl_guc_33.0.0.bin
- create mode 100644 i915/skl_guc_33.0.0.bin
-
-Thanks,
-Anusha
-
---_000_83F5C7385F545743AD4FB2A62F75B073480FEE89ORSMSX108amrcor_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Tahoma;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:12.0pt;
-	font-family:"Times New Roman",serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-p
-	{mso-style-priority:99;
-	margin:0in;
-	margin-bottom:.0001pt;
-	font-size:12.0pt;
-	font-family:"Times New Roman",serif;}
-span.EmailStyle18
-	{mso-style-type:personal-reply;
-	font-family:"Calibri",sans-serif;
-	color:#1F497D;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,sans-serif;color:#1F497D">Hi Kyle, Ben, Josh,<o:p></o:p></span>=
-</p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,sans-serif;color:#1F497D"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,sans-serif;color:#1F497D">Can these i915 changes be merged to l=
-inux-firmware.git?<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><a name=3D"_MailEndCompose"><span style=3D"font-size=
-:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:#1F497D"><o:p>&nbs=
-p;</o:p></span></a></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,sans-serif;color:#1F497D">Thanks,<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,sans-serif;color:#1F497D">Anusha
-<o:p></o:p></span></p>
-<div style=3D"border:none;border-left:solid blue 1.5pt;padding:0in 0in 0in =
-4.0pt">
-<div>
-<div style=3D"border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0in =
-0in 0in">
-<p class=3D"MsoNormal"><a name=3D"_____replyseparator"></a><b><span style=
-=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif">From:</spa=
-n></b><span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-=
-serif"> Srivatsa, Anusha
-<br>
-<b>Sent:</b> Monday, July 8, 2019 2:54 PM<br>
-<b>To:</b> linux-firmware@kernel.org<br>
-<b>Cc:</b> intel-gfx@lists.freedesktop.org<br>
-<b>Subject:</b> PR- GUC v33 (BXT,SKL,GLK.KBL,ICL)<o:p></o:p></span></p>
-</div>
-</div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<div>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ta=
-homa&quot;,sans-serif;color:black">Hi,<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ta=
-homa&quot;,sans-serif;color:black"><o:p>&nbsp;</o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ta=
-homa&quot;,sans-serif;color:black">Can these i915 changes be merged to the =
-linux-firmware.git?<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ta=
-homa&quot;,sans-serif;color:black"><o:p>&nbsp;</o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ta=
-homa&quot;,sans-serif;color:black">The following changes since commit 70e43=
-940b05e8d6e0c5f15b5e2d67760f1581ece:<br>
-<br>
-&nbsp; linux-firmware: rsi: add firmware image for redpine 9116 chipset (20=
-19-06-28 07:41:20 -0400)<br>
-<br>
-are available in the Git repository at:<br>
-<br>
-&nbsp; git://anongit.freedesktop.org/drm/drm-firmware guc_v33<br>
-<br>
-for you to fetch changes up to 05dbae6639f09c3e0a02e93de5f803db9aadedd1:<br=
->
-<br>
-&nbsp; drm/i915/firmware: Add v33 of GuC for ICL (2019-07-08 14:40:55 -0700=
-)<br>
-<br>
-----------------------------------------------------------------<br>
-Anusha Srivatsa (5):<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; drm/i915/firmware: Add v33 of GuC for BXT<br=
->
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; drm/i915/firmware: Add v33 of GuC for GLK<br=
->
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; drm/i915/firmware: Add v33 of GuC for SKL<br=
->
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; drm/i915/firmware: Add v33 of GuC for KBL<br=
->
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; drm/i915/firmware: Add v33 of GuC for ICL<br=
->
-<br>
-&nbsp;WHENCE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp; 15 &#43;&#43;&#43;&#43;&#43=
-;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;<br>
-&nbsp;i915/bxt_guc_33.0.0.bin | Bin 0 -&gt; 181888 bytes<br>
-&nbsp;i915/glk_guc_33.0.0.bin | Bin 0 -&gt; 182336 bytes<br>
-&nbsp;i915/icl_guc_33.0.0.bin | Bin 0 -&gt; 385280 bytes<br>
-&nbsp;i915/kbl_guc_33.0.0.bin | Bin 0 -&gt; 182912 bytes<br>
-&nbsp;i915/skl_guc_33.0.0.bin | Bin 0 -&gt; 182080 bytes<br>
-&nbsp;6 files changed, 15 insertions(&#43;)<br>
-&nbsp;create mode 100644 i915/bxt_guc_33.0.0.bin<br>
-&nbsp;create mode 100644 i915/glk_guc_33.0.0.bin<br>
-&nbsp;create mode 100644 i915/icl_guc_33.0.0.bin<br>
-&nbsp;create mode 100644 i915/kbl_guc_33.0.0.bin<br>
-&nbsp;create mode 100644 i915/skl_guc_33.0.0.bin<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ta=
-homa&quot;,sans-serif;color:black"><o:p>&nbsp;</o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ta=
-homa&quot;,sans-serif;color:black">Thanks,<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ta=
-homa&quot;,sans-serif;color:black">Anusha<o:p></o:p></span></p>
-</div>
-</div>
-</div>
-</div>
-</body>
-</html>
-
---_000_83F5C7385F545743AD4FB2A62F75B073480FEE89ORSMSX108amrcor_--
-
---===============0100811653==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
-IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
-
---===============0100811653==--
+T24gVHVlLCBKdWwgMDksIDIwMTkgYXQgMDQ6MDc6MjNQTSAtMDcwMCwgU291emEsIEpvc2Ugd3Jv
+dGU6Cj4gT24gVHVlLCAyMDE5LTA3LTA5IGF0IDE0OjQ3IC0wNzAwLCBNYW5hc2kgTmF2YXJlIHdy
+b3RlOgo+ID4gT24gVEdMKywgdGhlIHBsYW5lIGhlaWdodCBmb3IgOEsgcGxhbmVzIGNhbiBiZSA0
+MzIwLCBzbyBidW1wIGl0IHVwCj4gPiBUbyBzdXBwb3J0IDQzMjAsIHdlIG5lZWQgdG8gaW5jcmVh
+c2UgdGhlIG51bWJlciBvZiBiaXRzIHVzZWQgdG8KPiA+IHJlYWQgcGxhbmVfaGVpZ2h0IHRvIDEz
+IGFzIG9wcG9zZWQgdG8gb2xkZXIgMTIgYml0cy4KPiA+IAo+ID4gQ2M6IE1hYXJ0ZW4gTGFua2hv
+cnN0IDxtYWFydGVuLmxhbmtob3JzdEBsaW51eC5pbnRlbC5jb20+Cj4gPiBDYzogVmlsbGUgU3ly
+asOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KPiA+IFNpZ25lZC1vZmYtYnk6
+IE1hbmFzaSBOYXZhcmUgPG1hbmFzaS5kLm5hdmFyZUBpbnRlbC5jb20+Cj4gPiAtLS0KPiA+ICBk
+cml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuYyB8IDIxCj4gPiArKysr
+KysrKysrKysrKysrKystLQo+ID4gIDEgZmlsZSBjaGFuZ2VkLCAxOSBpbnNlcnRpb25zKCspLCAy
+IGRlbGV0aW9ucygtKQo+ID4gCj4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUv
+ZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMKPiA+IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxh
+eS9pbnRlbF9kaXNwbGF5LmMKPiA+IGluZGV4IDBkNWM4YWYwMWY1NC4uYmU5YTU0Y2I1ZWNjIDEw
+MDY0NAo+ID4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5
+LmMKPiA+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5j
+Cj4gPiBAQCAtMzM0Myw2ICszMzQzLDE2IEBAIHN0YXRpYyBpbnQgaWNsX21heF9wbGFuZV93aWR0
+aChjb25zdCBzdHJ1Y3QKPiA+IGRybV9mcmFtZWJ1ZmZlciAqZmIsCj4gPiAgCXJldHVybiA1MTIw
+Owo+ID4gIH0KPiA+ICAKPiA+ICtzdGF0aWMgaW50IHNrbF9tYXhfcGxhbmVfaGVpZ2h0KHZvaWQp
+Cj4gPiArewo+ID4gKwlyZXR1cm4gNDA5NjsKPiA+ICt9Cj4gPiArCj4gPiArc3RhdGljIGludCB0
+Z2xfbWF4X3BsYW5lX2hlaWdodCh2b2lkKQo+ID4gK3sKPiA+ICsJcmV0dXJuIDQzMjA7Cj4gPiAr
+fQo+ID4gKwo+ID4gIHN0YXRpYyBib29sIHNrbF9jaGVja19tYWluX2Njc19jb29yZGluYXRlcyhz
+dHJ1Y3QgaW50ZWxfcGxhbmVfc3RhdGUKPiA+ICpwbGFuZV9zdGF0ZSwKPiA+ICAJCQkJCSAgIGlu
+dCBtYWluX3gsIGludCBtYWluX3ksIHUzMgo+ID4gbWFpbl9vZmZzZXQpCj4gPiAgewo+ID4gQEAg
+LTMzOTEsOSArMzQwMSwxMyBAQCBzdGF0aWMgaW50IHNrbF9jaGVja19tYWluX3N1cmZhY2Uoc3Ry
+dWN0Cj4gPiBpbnRlbF9wbGFuZV9zdGF0ZSAqcGxhbmVfc3RhdGUpCj4gPiAgCWludCB3ID0gZHJt
+X3JlY3Rfd2lkdGgoJnBsYW5lX3N0YXRlLT5iYXNlLnNyYykgPj4gMTY7Cj4gPiAgCWludCBoID0g
+ZHJtX3JlY3RfaGVpZ2h0KCZwbGFuZV9zdGF0ZS0+YmFzZS5zcmMpID4+IDE2Owo+ID4gIAlpbnQg
+bWF4X3dpZHRoOwo+ID4gLQlpbnQgbWF4X2hlaWdodCA9IDQwOTY7Cj4gPiArCWludCBtYXhfaGVp
+Z2h0Owo+ID4gIAl1MzIgYWxpZ25tZW50LCBvZmZzZXQsIGF1eF9vZmZzZXQgPSBwbGFuZV9zdGF0
+ZS0KPiA+ID5jb2xvcl9wbGFuZVsxXS5vZmZzZXQ7Cj4gPiAgCj4gPiArCWlmIChJTlRFTF9HRU4o
+ZGV2X3ByaXYpID49IDEyKQo+ID4gKwkJbWF4X2hlaWdodCA9IHRnbF9tYXhfcGxhbmVfaGVpZ2h0
+KCk7Cj4gPiArCWVsc2UKPiA+ICsJCW1heF9oZWlnaHQgPSBza2xfbWF4X3BsYW5lX2hlaWdodCgp
+Owo+IAo+IEdpdmUgYSBsaW5lIGJldHdlZW4gbWF4X3dpZHRoIGJsb2NrLCBhbHNvIEkgd291bGQg
+bW92ZSB0aGUgaGVpZ2h0IGFmdGVyCj4gdGhlIHdpZHRoLgoKT2ssIHdpbGwgbWFrZSB0aGlzIGNo
+YW5nZSwgY2FuIEkgYWRkIHlvdXIgci1iIHdpdGggdGhpcyBjaGFuZ2U/CgpNYW5hc2kKCj4gCj4g
+PiAgCWlmIChJTlRFTF9HRU4oZGV2X3ByaXYpID49IDExKQo+ID4gIAkJbWF4X3dpZHRoID0gaWNs
+X21heF9wbGFuZV93aWR0aChmYiwgMCwgcm90YXRpb24pOwo+ID4gIAllbHNlIGlmIChJTlRFTF9H
+RU4oZGV2X3ByaXYpID49IDEwIHx8IElTX0dFTUlOSUxBS0UoZGV2X3ByaXYpKQo+ID4gQEAgLTk4
+NjUsNyArOTg3OSwxMCBAQCBza3lsYWtlX2dldF9pbml0aWFsX3BsYW5lX2NvbmZpZyhzdHJ1Y3QK
+PiA+IGludGVsX2NydGMgKmNydGMsCj4gPiAgCW9mZnNldCA9IEk5MTVfUkVBRChQTEFORV9PRkZT
+RVQocGlwZSwgcGxhbmVfaWQpKTsKPiA+ICAKPiA+ICAJdmFsID0gSTkxNV9SRUFEKFBMQU5FX1NJ
+WkUocGlwZSwgcGxhbmVfaWQpKTsKPiA+IC0JZmItPmhlaWdodCA9ICgodmFsID4+IDE2KSAmIDB4
+ZmZmKSArIDE7Cj4gPiArCWlmIChJTlRFTF9HRU4oZGV2X3ByaXYpID49IDEyKQo+ID4gKwkJZmIt
+PmhlaWdodCA9ICgodmFsID4+IDE2KSAmIDB4MWZmZikgKyAxOwo+ID4gKwllbHNlCj4gPiArCQlm
+Yi0+aGVpZ2h0ID0gKCh2YWwgPj4gMTYpICYgMHhmZmYpICsgMTsKPiA+ICAJZmItPndpZHRoID0g
+KCh2YWwgPj4gMCkgJiAweDFmZmYpICsgMTsKPiA+ICAKPiA+ICAJdmFsID0gSTkxNV9SRUFEKFBM
+QU5FX1NUUklERShwaXBlLCBwbGFuZV9pZCkpOwpfX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0
+cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9s
+aXN0aW5mby9pbnRlbC1nZng=
