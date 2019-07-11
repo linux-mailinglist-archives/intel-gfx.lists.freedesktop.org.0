@@ -1,44 +1,62 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15D0F6525D
-	for <lists+intel-gfx@lfdr.de>; Thu, 11 Jul 2019 09:23:43 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id B44BA65280
+	for <lists+intel-gfx@lfdr.de>; Thu, 11 Jul 2019 09:29:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 80F5D6E0C8;
-	Thu, 11 Jul 2019 07:23:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5633B89D02;
+	Thu, 11 Jul 2019 07:29:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 44A9A6E0C8
- for <intel-gfx@lists.freedesktop.org>; Thu, 11 Jul 2019 07:23:40 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 11 Jul 2019 00:23:39 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.63,476,1557212400"; d="scan'208";a="193314181"
-Received: from dawalker-mobl.ger.corp.intel.com (HELO [10.251.80.131])
- ([10.251.80.131])
- by fmsmga002.fm.intel.com with ESMTP; 11 Jul 2019 00:23:38 -0700
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-References: <20190708111944.20095-1-chris@chris-wilson.co.uk>
- <90ade255-1338-0c87-4df9-f445b66cefaf@linux.intel.com>
- <156258817632.9375.11792986185475548766@skylake-alporthouse-com>
- <30a45908-0857-83fa-5f03-07dd481d8ec2@linux.intel.com>
- <156259317575.9375.9765045306016542839@skylake-alporthouse-com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <c8892810-91dd-d24a-260c-62364a559dfc@linux.intel.com>
-Date: Thu, 11 Jul 2019 08:23:37 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.1
+Received: from mail-lf1-x141.google.com (mail-lf1-x141.google.com
+ [IPv6:2a00:1450:4864:20::141])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C71BD89C60;
+ Thu, 11 Jul 2019 07:29:35 +0000 (UTC)
+Received: by mail-lf1-x141.google.com with SMTP id r15so3324927lfm.11;
+ Thu, 11 Jul 2019 00:29:35 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:in-reply-to
+ :references:mime-version;
+ bh=dH+7Wdjzw5CSmOjB2GXowTgRMjAtunaaYHA0nrjqNdA=;
+ b=Hu22p66H6G568CwlmTY+GFgvc051+tvYQ9FPaIiLSflRUogKdRfm/vYhlV/klt/yyL
+ bf6IASIPGTm4590UJjq+mY9YeUKPKnT0u1ujyROrGA01quZQq2BF11/G+CSlxUVNztDY
+ 7n/dzG5pPT4bonhLo9BHQlguuf8eWRU+wWJppjM/p70MtnEQ4I7XtfhTEZbJN8eWzvzz
+ cyouSWyYv/MimF/wqAnKbWeUlWtqnuKgHSgCOR+WbcUAMQQssR89OcrG2eBzlTfmO/mO
+ 4gM3aad4K/W17Ez/JJCpEwk8Dyl04x+PWDIxqLA8sTnls/NFh9/QUuKUN9XsbLCE821D
+ p+fg==
+X-Gm-Message-State: APjAAAVZBgwixLmX0gngfzK0b6spJ1iUMGguAh16pQrKlM1AiMaFWvHV
+ u6g+rmpr10abhWHI+iZqaMo=
+X-Google-Smtp-Source: APXvYqyluACLWERxNG740O5nTnKiHcRSfhjrQnw+9Kmhym72mSW9T2pKVh0RVveJW2eC1d+HFbw6GQ==
+X-Received: by 2002:a05:6512:48f:: with SMTP id
+ v15mr1055595lfq.37.1562830174152; 
+ Thu, 11 Jul 2019 00:29:34 -0700 (PDT)
+Received: from eldfell.localdomain ([194.136.85.206])
+ by smtp.gmail.com with ESMTPSA id d16sm840986ljc.96.2019.07.11.00.29.33
+ (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+ Thu, 11 Jul 2019 00:29:33 -0700 (PDT)
+Date: Thu, 11 Jul 2019 10:29:23 +0300
+From: Pekka Paalanen <ppaalanen@gmail.com>
+To: Lyude Paul <lyude@redhat.com>
+Message-ID: <20190711102923.3d219640@eldfell.localdomain>
+In-Reply-To: <11bb4ca1d27d3ab2d169deb57951855c4ddcd563.camel@redhat.com>
+References: <20190613184335.7970-1-ville.syrjala@linux.intel.com>
+ <11bb4ca1d27d3ab2d169deb57951855c4ddcd563.camel@redhat.com>
+X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-In-Reply-To: <156259317575.9375.9765045306016542839@skylake-alporthouse-com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915/oa: Reconfigure contexts on
- the fly
+X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20161025;
+ h=date:from:to:cc:subject:message-id:in-reply-to:references
+ :mime-version;
+ bh=dH+7Wdjzw5CSmOjB2GXowTgRMjAtunaaYHA0nrjqNdA=;
+ b=PBSoeNkJzx5ShLJTe/BPvKuayiudkggrQo1yOHglLE7QAR3z5im6mR7p1DkM2KoTm4
+ f0yvKP2efxXrBp7/wTVlQ8ExGzdp/yj54rRBfcQ88aCYuMZph3+k59zvlS8AR0JwpNHA
+ nPRHraHp7Mug3YSkMFihXlm4SLAE6qQiAZwBwRfmYTjai/UL49v/xcSS5V9znqBWbORK
+ hCdkBCet/aQBCY++5fBEK9w2XvRzHDH1nMmGGhnXu5UTrSDFzu06Zl4j5zIR9IhhGRaG
+ AG8nIqJyWyVcxfRyI8anBX6R+SN/guTwWjjUeSP8q1/9voYg8ATiFvGkN5TR+FjJuCOL
+ J1ig==
+Subject: Re: [Intel-gfx] [RFC][PATCH 0/2] drm: PATH prop for all connectors?
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -51,71 +69,172 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Cc: "Leo \(Sunpeng\) Li" <sunpeng.li@amd.com>, intel-gfx@lists.freedesktop.org,
+ Ilia Mirkin <imirkin@alum.mit.edu>, dri-devel@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============1559960132=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Ck9uIDA4LzA3LzIwMTkgMTQ6MzksIENocmlzIFdpbHNvbiB3cm90ZToKPiBRdW90aW5nIFR2cnRr
-byBVcnN1bGluICgyMDE5LTA3LTA4IDEzOjI0OjM5KQo+Pgo+PiBPbiAwOC8wNy8yMDE5IDEzOjE2
-LCBDaHJpcyBXaWxzb24gd3JvdGU6Cj4+PiBRdW90aW5nIFR2cnRrbyBVcnN1bGluICgyMDE5LTA3
-LTA4IDEzOjEwOjM0KQo+Pj4+Cj4+Pj4gT24gMDgvMDcvMjAxOSAxMjoxOSwgQ2hyaXMgV2lsc29u
-IHdyb3RlOgo+Pj4+PiBBdm9pZCBhIGdsb2JhbCBpZGxlIGJhcnJpZXIgYnkgcmVjb25maWd1cmlu
-ZyBlYWNoIGNvbnRleHQgYnkgcmV3cml0aW5nCj4+Pj4+IHRoZW0gd2l0aCBNSV9TVE9SRV9EV09S
-RCBmcm9tIHRoZSBrZXJuZWwgY29udGV4dC4KPj4+Pj4KPj4+Pj4gdjI6IFdlIG9ubHkgbmVlZCB0
-byBkZXRlcm1pbmUgdGhlIGRlc2lyZWQgcmVnaXN0ZXIgdmFsdWVzIG9uY2UsIHRoZXkgYXJlCj4+
-Pj4+IHRoZSBzYW1lIGZvciBhbGwgY29udGV4dHMuCj4+Pj4+Cj4+Pj4+IFNpZ25lZC1vZmYtYnk6
-IENocmlzIFdpbHNvbiA8Y2hyaXNAY2hyaXMtd2lsc29uLmNvLnVrPgo+Pj4+PiBDYzogTGlvbmVs
-IExhbmR3ZXJsaW4gPGxpb25lbC5nLmxhbmR3ZXJsaW5AaW50ZWwuY29tPgo+Pj4+PiBDYzogVHZy
-dGtvIFVyc3VsaW4gPHR2cnRrby51cnN1bGluQGludGVsLmNvbT4KPj4+Pj4gUmV2aWV3ZWQtYnk6
-IExpb25lbCBMYW5kd2VybGluIDxsaW9uZWwuZy5sYW5kd2VybGluQGludGVsLmNvbT4KPj4+Pj4g
-LS0tCj4+Pj4+ICAgICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1fY29udGV4dC5j
-IHwgICAyICsKPj4+Pj4gICAgIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX2xyYy5jICAg
-ICAgICAgfCAgIDcgKy0KPj4+Pj4gICAgIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfcGVyZi5j
-ICAgICAgICAgICAgfCAyNDggKysrKysrKysrKysrKysrLS0tLS0KPj4+Pj4gICAgIDMgZmlsZXMg
-Y2hhbmdlZCwgMTk1IGluc2VydGlvbnMoKyksIDYyIGRlbGV0aW9ucygtKQo+Pj4+Pgo+Pj4+PiBk
-aWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX2NvbnRleHQuYyBi
-L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9jb250ZXh0LmMKPj4+Pj4gaW5kZXgg
-ZTM2N2RjZTJhNjk2Li4xZjBkMTBiYjg4YzEgMTAwNjQ0Cj4+Pj4+IC0tLSBhL2RyaXZlcnMvZ3B1
-L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9jb250ZXh0LmMKPj4+Pj4gKysrIGIvZHJpdmVycy9ncHUv
-ZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX2NvbnRleHQuYwo+Pj4+PiBAQCAtNjI0LDcgKzYyNCw5IEBA
-IGk5MTVfZ2VtX2NvbnRleHRfY3JlYXRlX2tlcm5lbChzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAq
-aTkxNSwgaW50IHByaW8pCj4+Pj4+ICAgICAgICAgY3R4LT5zY2hlZC5wcmlvcml0eSA9IEk5MTVf
-VVNFUl9QUklPUklUWShwcmlvKTsKPj4+Pj4gICAgICAgICBjdHgtPnJpbmdfc2l6ZSA9IFBBR0Vf
-U0laRTsKPj4+Pj4gICAgIAo+Pj4+PiArICAgICAvKiBJc29sYXRlIHRoZSBrZXJuZWwgY29udGV4
-dCBmcm9tIHByeWluZyBleWVzIGFuZCBzdGlja3kgZmluZ2VycyAqLwo+Pj4+PiAgICAgICAgIEdF
-TV9CVUdfT04oIWk5MTVfZ2VtX2NvbnRleHRfaXNfa2VybmVsKGN0eCkpOwo+Pj4+PiArICAgICBs
-aXN0X2RlbF9pbml0KCZjdHgtPmxpbmspOwo+Pj4+Cj4+Pj4gV2h5IGV4YWN0bHk/Cj4+Pgo+Pj4g
-T3RoZXJ3aXNlIHdlIHJlY3Vyc2l2ZWx5IHRyeSB0byBtb2RpZnkgdGhlIGNvbnRleHQuCj4+Cj4+
-ICAgRnJvbSBnZW44X2NvbmZpZ3VyZV9hbGxfY29udGV4dHMsIHR3aWNlLCBvciByZWFsbHkgcmVj
-dXJzaXZlbHk/IElmCj4+IGZvcm1lciBpc24ndCB0aGF0IHNvbHZhYmxlIGJ5IHNpbXBseSBza2lw
-cGluZyBrZXJuZWwgY29udGV4dHMgaW4gdGhlCj4+IGZpcnN0IGxvb3A/Cj4+Cj4+Pj4gQW55IHJl
-cGVyY3Vzc2lvbnMgZm9yIGk5MTVfc3lzZnMvaTkxNV9sM193cml0ZT8gZGVidWdmcyBJIGdhdGhl
-ciB5b3UKPj4+PiB3b24ndCBjYXJlIGFib3V0Pwo+Pj4KPj4+IE5vLCBiZWNhdXNlIHdoYXQgbWF0
-dGVycyBmb3IgdGhvc2UgaXMgdXNlciBjb250ZXh0cy4KPj4KPj4gVGhlcmUgaXNuJ3Qgc29tZSB0
-aW1lIGNvc3QgYXNzb2NpYXRlZCB3aXRoIGwzX3JlbWFwIGNhbGxzIHdoZW4gc3dpdGNoaW5nCj4+
-IGNvbnRleHRzPwo+IAo+IE5vLCBpdCdzIGV2ZW4gd2VpcmRlciB0aGFuIHRoYXQgYXMgaXQgaXMg
-bm90IGEgY29udGV4dCByZWdpc3RlciAoYXQKPiBsZWFzdCBvbiBoc3cgd2hlcmUgd2Ugc3VwcG9y
-dCBpdCkuIEkgZ3Vlc3MsIHdlIHNob3VsZCBqdXN0IHVubGF6eSBhbmQgZW1pdAo+IGEgcmVxdWVz
-dCBmcm9tIHRoZSBzeXNmcy4KPiAKPj4+PiBTaG91bGQgYWRkaW5nIHRvIGk5MTUtPmNvbnRleHRz
-Lmxpc3QgYmUgZG9uZSBmcm9tIGdlbV9jb250ZXh0X3JlZ2lzdGVyPwo+Pj4+IFdoYXQgcmVtYWlu
-cyBub3QgYSBrZXJuZWwgY29udGV4dCwgYnV0IG9uIGEgbGlzdD8KPj4+Cj4+PiBBbmQgSSBhbHNv
-IHBsYW4gdG8gcHVsbCBpdCB1bmRlciBpdHMgb3duIG11dGV4Lgo+Pj4gICAgCj4+Pj4gV29uJ3Qg
-cHJlZW1wdCBjb250ZXh0IGJlIG1pc3NlZCBpbiByZS1jb25maWd1cmF0aW9uPwo+Pj4KPj4+IFdo
-YXQgcHJlZW1wdC1jb250ZXh0PyA6LXAgQW5kIEkgd291bGQgc2tpcCBrZXJuZWxfY29udGV4dCBp
-ZiBJIGNvdWxkLCBidXQKPj4+IGZvciB3aGF0ZXZlciByZWFzb24gb2EgZXZlbnRzIGFyZSBiZWlu
-ZyBzZW50IHRvIHVzZXJzcGFjZSBldmVuIHdoaWxlIHRoZQo+Pj4gR1BVIGlzIGlkbGUgYW5kIGln
-dCBleHBlY3RzIHRoZSByZWd1bGFyIHRpY2suCj4+Cj4+IE15IHRyZWUgc3RpbGwgaGFzIGl0PyBJ
-cyBpdCBvdXQgb2YgZGF0ZT8gU29sdXRpb24gd2l0aCBrZWVwaW5nIGl0IG9uIHRoZQo+PiBsaXN0
-IGFuZCBza2lwcGluZyBzb3VuZHMgbW9yZSBmdXR1cmUgcHJvb2YgaWYgZG9hYmxlLgo+IAo+IEl0
-J3Mgb25seSB1c2VkIGJ5IGd1YyBmb3IgdGhlIGd1YyBjb21tYW5kIHRvIHByZWVtcHQtdG8taWRs
-ZS4gSXQgc2hvdWxkCj4gbm90IGJlIHJlY29yZGVkIGFzIGFuIG9hIGV2ZW50IGJ1dCBhbiBpbnRl
-ci1jb250ZXh0IGJsaXAgKHdoaWNoIGlzCj4gZXhhY3RseSB3aGF0IGl0IGlzKS4KPiAKPiBTaW1p
-bGFybHksIEkgYWxzbyB0aGluayBvYSBzaG91bGQgbm90IHByeWluZyBpbnRvIHRoZSBrZXJuZWwg
-Y29udGV4dAo+IChldmVuIHRob3VnaCBpdCdzIG5vdCB1c2VkIGZvciBtdWNoIGF0IHByZXNlbnQp
-LgoKV2lsbCB0aGVyZSBiZSBhIHNlcGFyYXRlIGJsaXR0ZXIgY29udGV4dD8KCk9BIGNhbiBoYW5k
-bGUgdGhlIGNoYW5naW5nIGNvbmZpZyBiZXR3ZWVuIGtlcm5lbCBhbmQgb3RoZXIgY29udGV4dHM/
-CgpSZWdhcmRzLAoKVHZydGtvCgoKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVk
-ZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZv
-L2ludGVsLWdmeA==
+--===============1559960132==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ boundary="Sig_/+0Jw/1b9rrO3Jp9+yo2w91N"; protocol="application/pgp-signature"
+
+--Sig_/+0Jw/1b9rrO3Jp9+yo2w91N
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+On Wed, 10 Jul 2019 18:43:53 -0400
+Lyude Paul <lyude@redhat.com> wrote:
+
+> (adding sunpeng.li@amd.com to the thread here, since this is relevant to =
+the DP
+> aux device work)
+>=20
+> I mentioned this in IRC, but figured I should mention it on the ML as wel=
+l so it
+> can be discussed further. Honestly: I don't like the way we implement the=
+ path
+> prop for MST. Mainly because
+>=20
+>  * It looks ugly: mst:<obj-id>-<port#1>-<port#2> is ambiguous looking. I =
+didn't
+>    even realize the first number was actually supposed to be the object I=
+D until
+>    I looked at the code
+>  * I strongly doubt object IDs are consistent enough for the path prop to
+>    actually be as meaningful as it looks
+>  *=20
+> Obviously we can't just remove the path property, since it's being used in
+> userspace. This has me somewhat convinced that I think it might be a bett=
+er idea
+> to just make a whole new path_v2 prop, and document that the path prop wa=
+s a bad
+> idea and is now deprecated (but still functional). If we did this, we cou=
+ld come
+> up with a much nicer MST naming scheme as well! Consider:
+>=20
+> For a connector with the RAD 0.1 living on the topology on DP-1 on card0:
+>=20
+> mst:DP-1:0.1
+>=20
+> I see multiple benefits to this:
+>  * Look how easy it is to read!
+>  * DP-1 isn't guaranteed to be consistent, but it is certainly far more l=
+ikely
+>    to be consistent than an object ID.
+
+Hi,
+
+please, do not go with "more consistent but not fully". If the name is
+not all the way persistent, then it's useless because it will break
+things in rare cases. We already have a 80% or a 95% solutions, adding
+one more <100% solution does not help.
+
+>  * This seems a lot easier to write udev rules for, imho
+
+Wait, one can write udev rules for connectors and stuff?
+How? What can they do?
+
+> The only thing I'm not sure about whether or not we should also prepend t=
+he
+> connector name with the device (e.g. card0, card1, etc.). I thought this =
+might
+> be necessary at first, but thinking about it - it shouldn't be hard to fi=
+gure
+> out the device in question from looking at sysfs since any userspace appl=
+ication
+> will know which DRM fd the connector comes from.
+
+=46rom a display server perspective using the libdrm KMS API, yes, we
+always know from which device a connector comes from, and can make up a
+persistent name for the device ("card0" is not a persistent name).
+
+
+Thanks,
+pq
+
+>=20
+> Does this sound like a good idea? If so, I'd be happy to write up some pa=
+tches
+> for this
+>=20
+> On Thu, 2019-06-13 at 21:43 +0300, Ville Syrjala wrote:
+> > From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+> >=20
+> > Here's a possible apporoach for providing userspace with
+> > some stable connector identifiers. Combine with the bus
+> > name of the GPU and you should have some kind of real
+> > physical path description. Unfortunately the ship has
+> > sailed for MST connectors because userspace is already
+> > parsing the property and expects to find certain things
+> > there. So if we want stable names for those we'd probably
+> > have introduce another PATH prop (PHYS_PATH?).
+> >=20
+> > I suppose one alternative would to make the connector=20
+> > type_id stable. Currently that is being populated by drm=20
+> > core and it's just a global counter. Not sure how badly
+> > things would turn out if we'd allow each driver to set
+> > that. It could result in conflicting xrandr connector
+> > names between different GPUs which I suppose would
+> > confuse existing userspace?
+> >=20
+> > Cc: Daniel Vetter <daniel@ffwll.ch>
+> > Cc: Pekka Paalanen <ppaalanen@gmail.com>
+> > Cc: Ilia Mirkin <imirkin@alum.mit.edu>
+> >=20
+> > Ville Syrj=C3=A4l=C3=A4 (2):
+> >   drm: Improve PATH prop docs
+> >   drm/i915: Populate PATH prop for every connector
+> >=20
+> >  drivers/gpu/drm/drm_connector.c        | 13 ++++++++--
+> >  drivers/gpu/drm/i915/icl_dsi.c         |  3 +++
+> >  drivers/gpu/drm/i915/intel_connector.c | 20 +++++++++++++++
+> >  drivers/gpu/drm/i915/intel_connector.h |  3 +++
+> >  drivers/gpu/drm/i915/intel_crt.c       |  2 ++
+> >  drivers/gpu/drm/i915/intel_dp.c        |  6 ++++-
+> >  drivers/gpu/drm/i915/intel_dp_mst.c    |  3 +--
+> >  drivers/gpu/drm/i915/intel_dvo.c       |  3 +++
+> >  drivers/gpu/drm/i915/intel_hdmi.c      |  4 +++
+> >  drivers/gpu/drm/i915/intel_lvds.c      |  2 ++
+> >  drivers/gpu/drm/i915/intel_sdvo.c      | 35 ++++++++++++++++++--------
+> >  drivers/gpu/drm/i915/intel_tv.c        |  2 ++
+> >  drivers/gpu/drm/i915/vlv_dsi.c         |  3 +++
+> >  13 files changed, 83 insertions(+), 16 deletions(-)
+> >  =20
+>=20
+
+
+--Sig_/+0Jw/1b9rrO3Jp9+yo2w91N
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCAAdFiEEJQjwWQChkWOYOIONI1/ltBGqqqcFAl0m5VMACgkQI1/ltBGq
+qqe0phAAghZL7EsC/LixdimBug2fwI4H4u52OE0oiO0s6qnKn09FMFu3qPJaYmSJ
+1DcTBd2uOZ0xsiYpgdZL0y1m6V6gdUlWtP+DPz9hrTH7EYMK18FETppzcmmeI+Ob
+QUudEZkiKzyu4MjhsBrEVwnXm/5Fg0VkF3l6VEUZAKQ7enqOOLj0un7wTkk83TAb
+k401Hg080kNWYU2RMuH9rxDtytZMTAg7/cr3mLQZo5Fjf+5yd9JWtltdJXZwveYT
+1rp5cidkcwRpe5k6DWCZZFUEXg60pZKjFEuxaSfo8Us078xgrN9z3EICy8EnAshI
+OO43Zi89klHgf6NI4kp86SKAMLbrHsEojy5WZrbkWmLFy0vvfiEahxJHQ0YEJDr0
+hub3NBW8+5AGavydUwgffQ3oTkX2k61+clZ/wXAP1FEK61U1G62jYY3k0LcHdXxQ
+Z/8gAkwWhyE/0bv3DhHzFZpKk3Jdv+B7K1Gr4g6oB5dvh5YBtW+xAs+bYvNkaXi1
+UjALg33IZajOKjHUCKSJ9lXYFUlb8YMHP+n2Aw8s41bdqwNXoPLCKMOHbn523dyO
+v6ONtYw0W+aR1dcxT7oSngE281TcYOK5/wIX3nd/IRuDeW4k9ZDVnyfu/2v039xq
+jzKGGI5OsiQDgB1EeAPnUra/7ZN1us4SXsmZyCj/LHvG37hDsns=
+=UBoq
+-----END PGP SIGNATURE-----
+
+--Sig_/+0Jw/1b9rrO3Jp9+yo2w91N--
+
+--===============1559960132==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
+IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
+
+--===============1559960132==--
