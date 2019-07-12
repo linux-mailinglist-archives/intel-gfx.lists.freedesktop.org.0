@@ -2,52 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D267C6628A
-	for <lists+intel-gfx@lfdr.de>; Fri, 12 Jul 2019 01:51:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8EA1F662A5
+	for <lists+intel-gfx@lfdr.de>; Fri, 12 Jul 2019 02:06:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A21646E294;
-	Thu, 11 Jul 2019 23:51:06 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 787E26E294
- for <Intel-gfx@lists.freedesktop.org>; Thu, 11 Jul 2019 23:51:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 22D326E294;
+	Fri, 12 Jul 2019 00:06:38 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6CBC96E294
+ for <intel-gfx@lists.freedesktop.org>; Fri, 12 Jul 2019 00:06:36 +0000 (UTC)
 X-Amp-Result: UNKNOWN
 X-Amp-Original-Verdict: FILE UNKNOWN
 X-Amp-File-Uploaded: False
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga105.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 11 Jul 2019 16:51:04 -0700
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 11 Jul 2019 17:06:35 -0700
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="5.63,480,1557212400"; 
- d="p7s'?scan'208";a="171393865"
-Received: from fmsmsx106.amr.corp.intel.com ([10.18.124.204])
- by orsmga006.jf.intel.com with ESMTP; 11 Jul 2019 16:51:04 -0700
-Received: from fmsmsx154.amr.corp.intel.com (10.18.116.70) by
- FMSMSX106.amr.corp.intel.com (10.18.124.204) with Microsoft SMTP Server (TLS)
- id 14.3.439.0; Thu, 11 Jul 2019 16:51:04 -0700
+ d="p7s'?scan'208";a="177332798"
+Received: from fmsmsx108.amr.corp.intel.com ([10.18.124.206])
+ by orsmga002.jf.intel.com with ESMTP; 11 Jul 2019 17:06:35 -0700
+Received: from fmsmsx112.amr.corp.intel.com (10.18.116.6) by
+ FMSMSX108.amr.corp.intel.com (10.18.124.206) with Microsoft SMTP Server (TLS)
+ id 14.3.439.0; Thu, 11 Jul 2019 17:06:35 -0700
 Received: from fmsmsx106.amr.corp.intel.com ([169.254.5.248]) by
- FMSMSX154.amr.corp.intel.com ([169.254.6.214]) with mapi id 14.03.0439.000;
- Thu, 11 Jul 2019 16:51:03 -0700
+ FMSMSX112.amr.corp.intel.com ([169.254.5.121]) with mapi id 14.03.0439.000;
+ Thu, 11 Jul 2019 17:06:34 -0700
 From: "Summers, Stuart" <stuart.summers@intel.com>
-To: "Intel-gfx@lists.freedesktop.org" <Intel-gfx@lists.freedesktop.org>,
- "tvrtko.ursulin@linux.intel.com" <tvrtko.ursulin@linux.intel.com>
-Thread-Topic: [Intel-gfx] [PATCH v2 2/4] drm/i915: Fix
- WaProgramMgsrForL3BankSpecificMmioReads
-Thread-Index: AQHVOAG+AgTHsm4bn0+emdnVbYqP9KbGjE+A
-Date: Thu, 11 Jul 2019 23:51:02 +0000
-Message-ID: <be6ada43cd2da587cbc4b7d535cd8a5aa8c7813e.camel@intel.com>
-References: <20190709210620.15805-3-tvrtko.ursulin@linux.intel.com>
- <20190711155939.18059-1-tvrtko.ursulin@linux.intel.com>
-In-Reply-To: <20190711155939.18059-1-tvrtko.ursulin@linux.intel.com>
+To: "De Marchi, Lucas" <lucas.demarchi@intel.com>
+Thread-Topic: [Intel-gfx] [PATCH v3 1/1] drm/i915: Add modular FIA
+Thread-Index: AQHVOCtuHOk+Sar8TUGOl9G5YilqMabGghyAgAAJWoCAAATbAA==
+Date: Fri, 12 Jul 2019 00:06:34 +0000
+Message-ID: <ef586120f87e920690d8c2733872394ecd4f537a.camel@intel.com>
+References: <20190711205827.12849-1-lucas.demarchi@intel.com>
+ <20190711205827.12849-2-lucas.demarchi@intel.com>
+ <8508f5d2ebc23b5a6a67af51bd9aa9f7cc8cb976.camel@intel.com>
+ <20190711234907.pflpxssq26c6rymd@ldmartin-desk1>
+In-Reply-To: <20190711234907.pflpxssq26c6rymd@ldmartin-desk1>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: yes
 X-MS-TNEF-Correlator: 
 x-originating-ip: [10.54.134.159]
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v2 2/4] drm/i915: Fix
- WaProgramMgsrForL3BankSpecificMmioReads
+Subject: Re: [Intel-gfx] [PATCH v3 1/1] drm/i915: Add modular FIA
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -60,214 +59,376 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============1333755909=="
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Content-Type: multipart/mixed; boundary="===============0821006661=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1333755909==
+--===============0821006661==
 Content-Language: en-US
 Content-Type: multipart/signed; micalg=sha-1;
-	protocol="application/x-pkcs7-signature"; boundary="=-eTUEKTw1WV8mJk01m54W"
+	protocol="application/x-pkcs7-signature"; boundary="=-3Yqh6VtFj8pewY7Wa0CL"
 
---=-eTUEKTw1WV8mJk01m54W
+--=-3Yqh6VtFj8pewY7Wa0CL
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, 2019-07-11 at 16:59 +0100, Tvrtko Ursulin wrote:
-> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-
-This is generally much more readable than the previous implementation,
-thanks! Some minor comments below...
-
+On Thu, 2019-07-11 at 16:49 -0700, Lucas De Marchi wrote:
+> On Thu, Jul 11, 2019 at 04:15:42PM -0700, Summers, Stuart wrote:
+> > On Thu, 2019-07-11 at 13:58 -0700, Lucas De Marchi wrote:
+> > > From: Anusha Srivatsa <anusha.srivatsa@intel.com>
+> > >=20
+> > > Some platforms may have Modular FIA. If Modular FIA is used in
+> > > the
+> > > SOC,
+> > > then Display Driver will access the additional instances of
+> > > FIA based on pre-assigned offset in GTTMADDR space.
+> > >=20
+> > > Each Modular FIA instance has its own IOSF Sideband Port ID
+> > > and it houses only 2 Type-C Port. In SOC that has more than
+> > > two Type-C Ports, there are multiple instances of Modular FIA.
+> > > Gunit will need to use different destination ID when it access
+> > > different pair of Type-C Port.
+> > >=20
+> > > The DFLEXDPSP register has Modular FIA bit starting on Tiger
+> > > Lake.  If
+> > > Modular FIA is used in the SOC, this register bit exists in all
+> > > the
+> > > instances of Modular FIA. IOM FW is required to program only the
+> > > MF
+> > > bit
+> > > in first FIA instance that houses the Type-C Port 0 and Port 1,
+> > > for
+> > > Display Driver to read from.
+> > >=20
+> > > v2 (Lucas):
+> > >   - Move all accesses to FIA to be contained in intel_tc.c, along
+> > > with
+> > >     display_fia that is now called tc_phy_fia
+> > >   - Save the fia instance number on intel_digital_port, so we
+> > > don't
+> > > have
+> > >     to query if modular FIA is used on every access
+> > > v3 (Lucas): Make function static
+> > > v4 (Lucas): Move enum phy_fia to the header and use it in
+> > >    intel_digital_port (suggested by Ville)
+> > >=20
+> > > Cc: Jani Nikula <jani.nikula@intel.com>
+> > > Signed-off-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
+> > > Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+> > > Acked-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+> > > ---
+> > >  drivers/gpu/drm/i915/display/intel_display.h |  6 +++
+> > >  drivers/gpu/drm/i915/display/intel_tc.c      | 43
+> > > ++++++++++++++++
+> > > ----
+> > >  drivers/gpu/drm/i915/i915_reg.h              | 13 ++++--
+> > >  drivers/gpu/drm/i915/intel_device_info.h     |  1 +
+> > >  drivers/gpu/drm/i915/intel_drv.h             |  1 +
+> > >  5 files changed, 52 insertions(+), 12 deletions(-)
+> > >=20
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_display.h
+> > > b/drivers/gpu/drm/i915/display/intel_display.h
+> > > index 8a4a57ef82a2..8b048976f7b4 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_display.h
+> > > +++ b/drivers/gpu/drm/i915/display/intel_display.h
+> > > @@ -243,6 +243,12 @@ enum phy {
+> > >=20
+> > >  #define phy_name(a) ((a) + 'A')
+> > >=20
+> > > +enum phy_fia {
+> > > +	FIA1,
+> > > +	FIA2,
+> > > +	FIA3,
+> > > +};
+> > > +
+> > >  #define for_each_pipe(__dev_priv, __p) \
+> > >  	for ((__p) =3D 0; (__p) < INTEL_INFO(__dev_priv)->num_pipes;
+> > > (__p)++)
+> > >=20
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_tc.c
+> > > b/drivers/gpu/drm/i915/display/intel_tc.c
+> > > index f44ee4bfe7c8..9400da4f7916 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_tc.c
+> > > +++ b/drivers/gpu/drm/i915/display/intel_tc.c
+> > > @@ -22,6 +22,24 @@ static const char *tc_port_mode_name(enum
+> > > tc_port_mode mode)
+> > >  	return names[mode];
+> > >  }
+> > >=20
+> > > +static bool has_modular_fia(struct drm_i915_private *i915)
+> > > +{
+> > > +	if (!INTEL_INFO(i915)->display.has_modular_fia)
+> > > +		return false;
+> > > +
+> > > +	return intel_uncore_read(&i915->uncore,
+> > > +				 PORT_TX_DFLEXDPSP(FIA1)) &
+> > > MODULAR_FIA_MASK;
+> > > +}
+> > > +
+> > > +static enum phy_fia tc_port_to_fia(struct drm_i915_private
+> > > *i915,
+> > > +				   enum tc_port tc_port)
+> > > +{
+> > > +	if (!has_modular_fia(i915))
+> > > +		return FIA1;
+> > > +
+> > > +	return tc_port / 2;
+> >=20
+> > I realize this is described in the commit message, but would be
+> > nice to
+> > have a brief comment describing why we need this conversion.
+> >=20
+> > > +}
+> > > +
+> > >  u32 intel_tc_port_get_lane_mask(struct intel_digital_port
+> > > *dig_port)
+> > >  {
+> > >  	struct drm_i915_private *i915 =3D to_i915(dig_port-
+> > > > base.base.dev);
+> > >=20
+> > > @@ -29,7 +47,8 @@ u32 intel_tc_port_get_lane_mask(struct
+> > > intel_digital_port *dig_port)
+> > >  	struct intel_uncore *uncore =3D &i915->uncore;
+> > >  	u32 lane_mask;
+> > >=20
+> > > -	lane_mask =3D intel_uncore_read(uncore, PORT_TX_DFLEXDPSP);
+> > > +	lane_mask =3D intel_uncore_read(uncore,
+> > > +				      PORT_TX_DFLEXDPSP(dig_port-
+> > > > tc_phy_fia));
+> > >=20
+> > >  	WARN_ON(lane_mask =3D=3D 0xffffffff);
+> > >=20
+> > > @@ -78,7 +97,8 @@ void intel_tc_port_set_fia_lane_count(struct
+> > > intel_digital_port *dig_port,
+> > >=20
+> > >  	WARN_ON(lane_reversal && dig_port->tc_mode !=3D TC_PORT_LEGACY);
+> > >=20
+> > > -	val =3D intel_uncore_read(uncore, PORT_TX_DFLEXDPMLE1);
+> > > +	val =3D intel_uncore_read(uncore,
+> > > +				PORT_TX_DFLEXDPMLE1(dig_port-
+> > > > tc_phy_fia));
+> > >=20
+> > >  	val &=3D ~DFLEXDPMLE1_DPMLETC_MASK(tc_port);
+> > >=20
+> > >  	switch (required_lanes) {
+> > > @@ -97,7 +117,8 @@ void intel_tc_port_set_fia_lane_count(struct
+> > > intel_digital_port *dig_port,
+> > >  		MISSING_CASE(required_lanes);
+> > >  	}
+> > >=20
+> > > -	intel_uncore_write(uncore, PORT_TX_DFLEXDPMLE1, val);
+> > > +	intel_uncore_write(uncore,
+> > > +			   PORT_TX_DFLEXDPMLE1(dig_port->tc_phy_fia),
+> > > val);
+> > >  }
+> > >=20
+> > >  static void tc_port_fixup_legacy_flag(struct intel_digital_port
+> > > *dig_port,
+> > > @@ -129,7 +150,8 @@ static u32 tc_port_live_status_mask(struct
+> > > intel_digital_port *dig_port)
+> > >  	u32 mask =3D 0;
+> > >  	u32 val;
+> > >=20
+> > > -	val =3D intel_uncore_rea
+> > > d(uncore, PORT_TX_DFLEXDPSP);
+> > > +	val =3D intel_uncore_read(uncore,
+> > > +				PORT_TX_DFLEXDPSP(dig_port-
+> > > > tc_phy_fia));
+> > >=20
+> > >  	if (val =3D=3D 0xffffffff) {
+> > >  		DRM_DEBUG_KMS("Port %s: PHY in TCCOLD, nothingo make it
+> > > t
+> > > connected\n",
+> > > @@ -159,7 +181,8 @@ static bool icl_tc_phy_status_complete(struct
+> > > intel_digital_port *dig_port)
+> > >  	struct intel_uncore *uncore =3D &i915->uncore;
+> > >  	u32 val;
+> > >=20
+> > > -	val =3D intel_uncore_read(uncore, PORT_TX_DFLEXDPPMS);
+> > > +	val =3D intel_uncore_read(uncore,
+> > > +				PORT_TX_DFLEXDPPMS(dig_port-
+> > > > tc_phy_fia));
+> > >=20
+> > >  	if (val =3D=3D 0xffffffff) {
+> > >  		DRM_DEBUG_KMS("Port %s: PHY in TCCOLD, assuming not
+> > > complete\n",
+> > >  			      dig_port->tc_port_name);
+> > > @@ -177,7 +200,8 @@ static bool icl_tc_phy_set_safe_mode(struct
+> > > intel_digital_port *dig_port,
+> > >  	struct intel_uncore *uncore =3D &i915->uncore;
+> > >  	u32 val;
+> > >=20
+> > > -	val =3D intel_uncore_read(uncore, PORT_TX_DFLEXDPCSSS);
+> > > +	val =3D intel_uncore_read(uncore,
+> > > +				PORT_TX_DFLEXDPCSSS(dig_port-
+> > > > tc_phy_fia));
+> > >=20
+> > >  	if (val =3D=3D 0xffffffff) {
+> > >  		DRM_DEBUG_KMS("Port %s: PHY in TCCOLD, can't set safe-
+> > > mode to %s\n",
+> > >  			      dig_port->tc_port_name,
+> > > @@ -190,7 +214,8 @@ static bool icl_tc_phy_set_safe_mode(struct
+> > > intel_digital_port *dig_port,
+> > >  	if (!enable)
+> > >  		val |=3D DP_PHY_MODE_STATUS_NOT_SAFE(tc_port);
+> > >=20
+> > > -	intel_uncore_write(uncore, PORT_TX_DFLEXDPCSSS, val);
+> > > +	intel_uncore_write(uncore,
+> > > +			   PORT_TX_DFLEXDPCSSS(dig_port->tc_phy_fia),
+> > > val);
+> > >=20
+> > >  	if (enable && wait_for(!icl_tc_phy_status_complete(dig_port),
+> > > 10))
+> > >  		DRM_DEBUG_KMS("Port %s: PHY complete clear timed
+> > > out\n",
+> > > @@ -206,7 +231,8 @@ static bool icl_tc_phy_is_in_safe_mode(struct
+> > > intel_digital_port *dig_port)
+> > >  	struct intel_uncore *uncore =3D &i915->uncore;
+> > >  	u32 val;
+> > >=20
+> > > -	val =3D intel_uncore_read(uncore, PORT_TX_DFLEXDPCSSS);
+> > > +	val =3D intel_uncore_read(uncore,
+> > > +				PORT_TX_DFLEXDPCSSS(dig_port-
+> > > > tc_phy_fia));
+> > >=20
+> > >  	if (val =3D=3D 0xffffffff) {
+> > >  		DRM_DEBUG_KMS("Port %s: PHY in TCCOLD, assume safe
+> > > mode\n",
+> > >  			      dig_port->tc_port_name);
+> > > @@ -503,4 +529,5 @@ void intel_tc_port_init(struct
+> > > intel_digital_port
+> > > *dig_port, bool is_legacy)
+> > >  	mutex_init(&dig_port->tc_lock);
+> > >  	dig_port->tc_legacy_port =3D is_legacy;
+> > >  	dig_port->tc_link_refcount =3D 0;
+> > > +	dig_port->tc_phy_fia =3D tc_port_to_fia(i915, tc_port);
+> > >  }
+> > > diff --git a/drivers/gpu/drm/i915/i915_reg.h
+> > > b/drivers/gpu/drm/i915/i915_reg.h
+> > > index 95b9ca1fda2e..d0510022013c 100644
+> > > --- a/drivers/gpu/drm/i915/i915_reg.h
+> > > +++ b/drivers/gpu/drm/i915/i915_reg.h
+> > > @@ -2203,9 +2203,13 @@ enum i915_power_well_id {
+> > >  #define   DW6_OLDO_DYN_PWR_DOWN_EN	(1 << 28)
+> > >=20
+> > >  #define FIA1_BASE			0x163000
+> > > +#define FIA2_BASE			0x16E000
+> > > +#define FIA3_BASE			0x16F000
+> > > +#define _FIA(fia)			_PICK((fia), FIA1_BASE,
+> > > FIA2_BASE, FIA3_BASE)
+> > > +#define _MMIO_FIA(fia, off)		_MMIO(_FIA(fia) +
+> > > (off))
+> > >=20
+> > >  /* ICL PHY DFLEX registers */
+> > > -#define PORT_TX_DFLEXDPMLE1		_MMIO(FIA1_BASE +
+> > > 0x008C0)
+> > > +#define PORT_TX_DFLEXDPMLE1(fia)	_MMIO_FIA((fia),  0x008C0)
+> > >  #define   DFLEXDPMLE1_DPMLETC_MASK(tc_port)	(0xf << (4 *
+> > > (tc_port)))
+> > >  #define   DFLEXDPMLE1_DPMLETC_ML0(tc_port)	(1 << (4 *
+> > > (tc_port)))
+> > >  #define   DFLEXDPMLE1_DPMLETC_ML1_0(tc_port)	(3 << (4 *
+> > > (tc_port)))
+> > > @@ -11484,17 +11488,18 @@ enum skl_power_gate {
+> > >  						_ICL_DSC1_RC_BUF_THRESH
+> > > _1_UDW_PB, \
+> > >  						_ICL_DSC1_RC_BUF_THRESH
+> > > _1_UDW_PC)
+> > >=20
+> > > -#define PORT_TX_DFLEXDPSP			_MMIO(FIA1_BASE
+> > > +
+> > > 0x008A0)
+> > > +#define PORT_TX_DFLEXDPSP(fia)			_MMIO_FIA((fia)
+> > > , 0x008A0)
+> > > +#define   MODULAR_FIA_MASK			(1 << 4)
+> > >  #define   TC_LIVE_STATE_TBT(tc_port)		(1 <<
+> > > ((tc_port) * 8 +
+> > > 6))
+> > >  #define   TC_LIVE_STATE_TC(tc_port)		(1 <<
+> > > ((tc_port) * 8 +
+> > > 5))
+> > >  #define   DP_LANE_ASSIGNMENT_SHIFT(tc_port)	((tc_port) * 8)
+> > >  #define   DP_LANE_ASSIGNMENT_MASK(tc_port)	(0xf <<
+> > > ((tc_port) *
+> > > 8))
+> > >  #define   DP_LANE_ASSIGNMENT(tc_port, x)	((x) << ((tc_port) *
+> > > 8))
+> > >=20
+> > > -#define PORT_TX_DFLEXDPPMS				_MMIO(F
+> > > IA1_BASE
+> > > + 0x00890)
+> > > +#define PORT_TX_DFLEXDPPMS(fia)			_MMIO_FIA((fia)
+> > > , 0x00890)
+> > >  #define   DP_PHY_MODE_STATUS_COMPLETED(tc_port)		(1 <<
+> > > (tc_port))
+> > >=20
+> > > -#define PORT_TX_DFLEXDPCSSS			_MMIO(FIA1_BASE
+> > > +
+> > > 0x00894)
+> > > +#define PORT_TX_DFLEXDPCSSS(fia)		_MMIO_FIA((fia),
+> > > 0x00894)
+> > >  #define   DP_PHY_MODE_STATUS_NOT_SAFE(tc_port)		(1 <<
+> > > (tc_port))
+> > >=20
+> > >  #endif /* _I915_REG_H_ */
+> > > diff --git a/drivers/gpu/drm/i915/intel_device_info.h
+> > > b/drivers/gpu/drm/i915/intel_device_info.h
+> > > index ddafc819bf30..e9dc86ed517b 100644
+> > > --- a/drivers/gpu/drm/i915/intel_device_info.h
+> > > +++ b/drivers/gpu/drm/i915/intel_device_info.h
+> > > @@ -136,6 +136,7 @@ enum intel_ppgtt_type {
+> > >  	func(has_gmch); \
+> > >  	func(has_hotplug); \
+> > >  	func(has_ipc); \
+> > > +	func(has_modular_fia); \
+> >=20
+> > If we have a register to tell us whether the platform supports
+> > this,
+> > why do we need this feature flag?
 >=20
-> Two issues in this code:
->=20
-> 1.
-> fls() usage is incorrect causing off by one in subslice mask lookup,
-> which in other words means subslice mask of all zeroes is always used
-> (subslice mask of a slice which is not present, or even out of bounds
-> array access), rendering the checks in wa_init_mcr either futile or
-> random.
->=20
-> 2.
-> Condition in WARN_ON is not correct. It is doing a bitwise and
-> operation
-> between a positive (present subslices) and negative mask (disabled L3
-> banks).
->=20
-> This means that with corrected fls() usage the assert would always
-> incorrectly fail.
->=20
-> We can fix this by inverting the fuse bits in the check.
->=20
-> v2:
->  * Simplify check for logic and redability.
->  * Improve commentary explaining what is really happening ie. what
-> the
->    assert is really trying to check and why.
->=20
-> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> Fixes: fe864b76c2ab ("drm/i915: Implement
-> WaProgramMgsrForL3BankSpecificMmioReads")
-> Reviewed-by: Chris Wilson <chris@chris-wilson.co.uk> # v1
-> Cc: Micha=C5=82 Winiarski <michal.winiarski@intel.com>
-> ---
->  drivers/gpu/drm/i915/gt/intel_workarounds.c | 80 ++++++++++---------
-> --
->  1 file changed, 40 insertions(+), 40 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> index 9e069286d3ce..80f1159e5cda 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> @@ -761,7 +761,27 @@ static void
->  wa_init_mcr(struct drm_i915_private *i915, struct i915_wa_list *wal)
->  {
->  	const struct sseu_dev_info *sseu =3D &RUNTIME_INFO(i915)->sseu;
-> -	u32 mcr_slice_subslice_mask;
-> +	u32 mcr_mask, mcr;
-> +
-> +	/*
-> +	 * WaProgramMgsrForCorrectSliceSpecificMmioReads:cnl,icl
-> +	 * Before any MMIO read into slice/subslice specific registers,
-> MCR
-> +	 * packet control register needs to be programmed to point to
-> any
-> +	 * enabled s/ss pair. Otherwise, incorrect values will be
-> returned.
-> +	 * This means each subsequent MMIO read will be forwarded to an
-> +	 * specific s/ss combination, but this is OK since these
-> registers
-> +	 * are consistent across s/ss in almost all cases. In the rare
-> +	 * occasions, such as INSTDONE, where this value is dependent
-> +	 * on s/ss combo, the read should be done with
-> read_subslice_reg.
-> +	 */
-> +	mcr =3D intel_calculate_mcr_s_ss_select(i915);
-> +
-> +	if (INTEL_GEN(i915) >=3D 11)
-> +		mcr_mask =3D GEN11_MCR_SLICE_MASK |
-> GEN11_MCR_SUBSLICE_MASK;
-> +	else
-> +		mcr_mask =3D GEN8_MCR_SLICE_MASK |
-> GEN8_MCR_SUBSLICE_MASK;
-> +
-> +	wa_write_masked_or(wal, GEN8_MCR_SELECTOR, mcr_mask, mcr);
+> because the platform may not have the register bit that tells if the
+> we
+> have modular FIA, as is the case with Ice Lake. The bit is reserved
+> there. This is actually "may_have_modular_fia" rather than
+> "has_modular_fia", but the name is pretty bad to make it that way.
 
-Was there a specific reason to move this up to the top? Or this is
-purely to move this functionality all together rather than spread out
-through the function? Looking at the documentation, we do want to
-specifically apply WaProgramMgsrForL3BankSpecificMmioReads before any
-other workarounds. So maybe just move this whole block to the bottom of
-the function instead?=20
+Ah, right, makes sense.
 
-> =20
->  	/*
->  	 * WaProgramMgsrForL3BankSpecificMmioReads: cnl,icl
-> @@ -776,49 +796,29 @@ wa_init_mcr(struct drm_i915_private *i915,
-> struct i915_wa_list *wal)
->  	 * something more complex that requires checking the range of
-> every
->  	 * MMIO read).
->  	 */
-> -	if (INTEL_GEN(i915) >=3D 10 &&
-> -	    is_power_of_2(sseu->slice_mask)) {
-> +	if (INTEL_GEN(i915) >=3D 10 && is_power_of_2(sseu->slice_mask)) {
->  		/*
-> -		 * read FUSE3 for enabled L3 Bank IDs, if L3 Bank
-> matches
-> -		 * enabled subslice, no need to redirect MCR packet
-> +		 * GEN8_MCR_SELECTOR contains dual-purpose bits which
-> select
-> +		 * both to which subslice, or to which L3 bank, the
-> respective
-> +		 * mmio reads will go.
-> +		 * Since we have selected one enabled subslice in
-> +		 * WaProgramMgsrForCorrectSliceSpecificMmioReads, we
-> now
-> +		 * need to check if the L3 bank of the equal "instance"
-> is also
-> +		 * enabled.
-> +		 * If that is not the case we could try to find a
-> number which
-> +		 * works for both, or going even further, implement a
-> dynamic
-> +		 * scheme where we switch at before every affected mmio
-
-s/at //?
-
-> read.
-> +		 * Fortunately neither seems to be needed at the moment
-> for
-> +		 * current parts and current driver behaviour.
->  		 */
-> -		u32 slice =3D fls(sseu->slice_mask);
-> -		u32 fuse3 =3D
-> -			intel_uncore_read(&i915->uncore,
-> GEN10_MIRROR_FUSE3);
-> -		u8 ss_mask =3D sseu->subslice_mask[slice];
-> -
-> -		u8 enabled_mask =3D (ss_mask | ss_mask >>
-> -				   GEN10_L3BANK_PAIR_COUNT) &
-> GEN10_L3BANK_MASK;
-> -		u8 disabled_mask =3D fuse3 & GEN10_L3BANK_MASK;
-> +		unsigned int mcr_ss =3D BIT((mcr >> 24) & 0x7);
-
-Can you add macros for these magic numbers?
-
-> +		unsigned int l3_fuse =3D
-> +			intel_uncore_read(&i915->uncore,
-> GEN10_MIRROR_FUSE3) &
-> +			GEN10_L3BANK_MASK;
-> +		unsigned int l3_en =3D ~(l3_fuse << 4 | l3_fuse);
-
-Macro here for the 4?
+I would still like a comment above if possible, but not a blocker:
+Reviewed-by: Stuart Summers <stuart.summers@intel.com>
 
 Thanks,
 Stuart
 
-> =20
-> -		/*
-> -		 * Production silicon should have matched L3Bank and
-> -		 * subslice enabled
-> -		 */
-> -		WARN_ON((enabled_mask & disabled_mask) !=3D
-> enabled_mask);
-> +		WARN_ON(!(mcr_ss & l3_en));
->  	}
-> -
-> -	if (INTEL_GEN(i915) >=3D 11)
-> -		mcr_slice_subslice_mask =3D GEN11_MCR_SLICE_MASK |
-> -					  GEN11_MCR_SUBSLICE_MASK;
-> -	else
-> -		mcr_slice_subslice_mask =3D GEN8_MCR_SLICE_MASK |
-> -					  GEN8_MCR_SUBSLICE_MASK;
-> -	/*
-> -	 * WaProgramMgsrForCorrectSliceSpecificMmioReads:cnl,icl
-> -	 * Before any MMIO read into slice/subslice specific registers,
-> MCR
-> -	 * packet control register needs to be programmed to point to
-> any
-> -	 * enabled s/ss pair. Otherwise, incorrect values will be
-> returned.
-> -	 * This means each subsequent MMIO read will be forwarded to an
-> -	 * specific s/ss combination, but this is OK since these
-> registers
-> -	 * are consistent across s/ss in almost all cases. In the rare
-> -	 * occasions, such as INSTDONE, where this value is dependent
-> -	 * on s/ss combo, the read should be done with
-> read_subslice_reg.
-> -	 */
-> -	wa_write_masked_or(wal,
-> -			   GEN8_MCR_SELECTOR,
-> -			   mcr_slice_subslice_mask,
-> -			   intel_calculate_mcr_s_ss_select(i915));
->  }
-> =20
->  static void
+>=20
+> Lucas De Marchi
+>=20
+> >=20
+> > Thanks,
+> > Stuart
+> >=20
+> > >  	func(has_overlay); \
+> > >  	func(has_psr); \
+> > >  	func(overlay_needs_physical); \
+> > > diff --git a/drivers/gpu/drm/i915/intel_drv.h
+> > > b/drivers/gpu/drm/i915/intel_drv.h
+> > > index 770f9f6aad84..e8ecbd55476e 100644
+> > > --- a/drivers/gpu/drm/i915/intel_drv.h
+> > > +++ b/drivers/gpu/drm/i915/intel_drv.h
+> > > @@ -1245,6 +1245,7 @@ struct intel_digital_port {
+> > >  	bool tc_legacy_port:1;
+> > >  	char tc_port_name[8];
+> > >  	enum tc_port_mode tc_mode;
+> > > +	enum phy_fia tc_phy_fia;
+> > >=20
+> > >  	void (*write_infoframe)(struct intel_encoder *encoder,
+> > >  				const struct intel_crtc_state
+> > > *crtc_state,
+>=20
+>=20
 
---=-eTUEKTw1WV8mJk01m54W
+--=-3Yqh6VtFj8pewY7Wa0CL
 Content-Type: application/x-pkcs7-signature; name="smime.p7s"
 Content-Disposition: attachment; filename="smime.p7s"
 Content-Transfer-Encoding: base64
@@ -323,18 +484,18 @@ CC/N7V8U9yFZx8akWREb8lJYDl9KypirEsufleiew26CWrwcbmdlldDCFS6/HDGCAhcwggITAgEB
 MIGQMHkxCzAJBgNVBAYTAlVTMQswCQYDVQQIEwJDQTEUMBIGA1UEBxMLU2FudGEgQ2xhcmExGjAY
 BgNVBAoTEUludGVsIENvcnBvcmF0aW9uMSswKQYDVQQDEyJJbnRlbCBFeHRlcm5hbCBCYXNpYyBJ
 c3N1aW5nIENBIDRCAhMzAAB04Th3owY0UbEUAAAAAHThMAkGBSsOAwIaBQCgXTAYBgkqhkiG9w0B
-CQMxCwYJKoZIhvcNAQcBMBwGCSqGSIb3DQEJBTEPFw0xOTA3MTEyMzUwNTlaMCMGCSqGSIb3DQEJ
-BDEWBBRc9pQbRHnbuE4vmwWMp2xz4xQypjANBgkqhkiG9w0BAQEFAASCAQBbazstb9iXolF0cYs5
-88sizJj8NHL8To3O4tiQgQcCfp4mIsc9VC2Yc3xNkIzfts4MUuO5KsKf0keg5WSjHM6CrZ27vNyN
-TLu6Wui1IWzaWkZ/XK2kDwmHQxM42nB8Bp5fdbL3C9LknPmjuMSB9BR8G46J02ekwoeAkMCp8SQ2
-07Oo0LDiw+P6UvI7OIfc4Rt/xRXw3oHLeQspM/t8atGHKfRfKY0UawIS6jtE5Yc0ZWy68aPqNIIl
-LOC/l/uRrANaXAMMxhKSIjvspuWvt89UzXDKiOhey8Ukz5HQmzCR9VMf42HZze9MPO1Yv1dNaAET
-kYtft5cx67kWh1vOIIsRAAAAAAAA
+CQMxCwYJKoZIhvcNAQcBMBwGCSqGSIb3DQEJBTEPFw0xOTA3MTIwMDA2MzBaMCMGCSqGSIb3DQEJ
+BDEWBBSqcoT1GwlMgCcsol+vb8Cc6Sjh4zANBgkqhkiG9w0BAQEFAASCAQAzf4WyphfFt8JFJQOC
+bnM/nzQkLpjPzggyNnwWrofqkRG+Bp6Ay3ytdi0Gjagsk6VRyk9FYFlzPVoa9zkJ7Wrt16WyHmab
+SdShSYDn3BxgA8oTzp7jINiLPVQGsswAMBzjLYAV695XDzoyLCuMyIBUaFq+hSav3XCRYtgtC3ln
++lxGbCT0oAD7c6iNs+RnFNwBa/7yWUoxHxT2Aojd73JNdEI/XrmI84zlVW3afjNb+10vRkMjaKEE
+zviZ/LYFxtG4+7x3q24xbiiYdtdN9zbilXZXgx9lqxXQW4kjLZ2dXIjMNScuWJb7ujKOokWbYrC8
+XArRTE8wa+7lMkNGsFY0AAAAAAAA
 
 
---=-eTUEKTw1WV8mJk01m54W--
+--=-3Yqh6VtFj8pewY7Wa0CL--
 
---===============1333755909==
+--===============0821006661==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -344,4 +505,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
 IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
 dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
 
---===============1333755909==--
+--===============0821006661==--
