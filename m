@@ -1,29 +1,35 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0374166ABD
-	for <lists+intel-gfx@lfdr.de>; Fri, 12 Jul 2019 12:09:43 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B792C66AF1
+	for <lists+intel-gfx@lfdr.de>; Fri, 12 Jul 2019 12:33:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BE79A6E33D;
-	Fri, 12 Jul 2019 10:09:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 36D5F6E345;
+	Fri, 12 Jul 2019 10:33:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7AFB46E33D;
- Fri, 12 Jul 2019 10:09:39 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 17244141-1500050 
- for multiple; Fri, 12 Jul 2019 11:09:33 +0100
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri, 12 Jul 2019 11:09:32 +0100
-Message-Id: <20190712100932.30819-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.22.0
+Received: from lb1-smtp-cloud8.xs4all.net (lb1-smtp-cloud8.xs4all.net
+ [194.109.24.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E75556E345
+ for <intel-gfx@lists.freedesktop.org>; Fri, 12 Jul 2019 10:33:02 +0000 (UTC)
+Received: from xps13 ([83.160.161.190]) by smtp-cloud8.xs4all.net with ESMTPSA
+ id lsrDhP6COHOZUlsrGhbQVQ; Fri, 12 Jul 2019 12:33:01 +0200
+Message-ID: <cec8238bfffa43650b7bd8feb0e9d9c0acdc15b3.camel@tiscali.nl>
+From: Paul Bolle <pebolle@tiscali.nl>
+To: Chris Wilson <chris@chris-wilson.co.uk>, James Bottomley
+ <James.Bottomley@HansenPartnership.com>, intel-gfx@lists.freedesktop.org
+Date: Fri, 12 Jul 2019 12:32:45 +0200
+In-Reply-To: <9a8ed0f8e880e1a7387db00c74a9b71210ce6aff.camel@tiscali.nl>
+References: <1561834612.3071.6.camel@HansenPartnership.com>
+ <156283735757.12757.8954391372130933707@skylake-alporthouse-com>
+ <9a8ed0f8e880e1a7387db00c74a9b71210ce6aff.camel@tiscali.nl>
+User-Agent: Evolution 3.32.3 (3.32.3-1.fc30) 
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH i-g-t] [RFT] What's up with Broadwater?
+X-CMAE-Envelope: MS4wfLaRbaES6HfwrzMNSFf3CXWwhvICM4kUP0lrUQX2EC2KOFCdmhd99TIO807yAvQL5IL1KDhcislGjxi3g+Wo9W91bdNcXlP4RKJaVQlDTrvx2kBEmgkr
+ A6cbPM/5KpT15ST7HsbnQN7fPkqx8NUc8kJwU+P7BBRFcd1qRiAYu7IibvuuYjQMriAQaQGVIx0J0NqmyDqfMoTbYkD4h6l35gudeX0kvPqut95hSQQK2xvi
+ pe6ivjWD0ZOjElm+SZCCcVdsHzW/hJ5CLuxFNkO3xW8Mmff+U04/drYmwJz9uNiNWXvXPlUj+CgtW8EWEHzUHg==
+Subject: Re: [Intel-gfx] screen freeze with 5.2-rc6 Dell XPS-13 skylake i915
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -36,22 +42,22 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: igt-dev@lists.freedesktop.org
+Cc: linux-kernel <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-SnVzdCBhIHBva2UgdG8gc2VlIGlmIHdlIHN0aWxsIGdldCBteXN0ZXJ5IGZhaWx1cmVzIHdpdGgK
-TUlfU1RPUkVfRFdPUkRfSU1NIG9yIG1heWJlIHdlJ3ZlIGNyYWNrZWQgdGhlIGZsdXNoaW5nIQot
-LS0KIGxpYi9pZ3RfZ3QuYyB8IDMgLS0tCiAxIGZpbGUgY2hhbmdlZCwgMyBkZWxldGlvbnMoLSkK
-CmRpZmYgLS1naXQgYS9saWIvaWd0X2d0LmMgYi9saWIvaWd0X2d0LmMKaW5kZXggNzhlM2NkMDg5
-Li4yZDBhMzRiMjIgMTAwNjQ0Ci0tLSBhL2xpYi9pZ3RfZ3QuYworKysgYi9saWIvaWd0X2d0LmMK
-QEAgLTU3Miw5ICs1NzIsNiBAQCBib29sIGdlbV9jbGFzc19jYW5fc3RvcmVfZHdvcmQoaW50IGZk
-LCBpbnQgY2xhc3MpCiAJaWYgKGdlbiA9PSA2ICYmIGNsYXNzID09IEk5MTVfRU5HSU5FX0NMQVNT
-X1ZJREVPKQogCQlyZXR1cm4gZmFsc2U7CiAKLQlpZiAoaW5mby0+aXNfYnJvYWR3YXRlcikKLQkJ
-cmV0dXJuIGZhbHNlOyAvKiBOb3Qgc3VyZSB5ZXQuLi4gKi8KLQogCXJldHVybiB0cnVlOwogfQog
-Ci0tIAoyLjIyLjAKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9y
-ZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdm
-eA==
+UGF1bCBCb2xsZSBzY2hyZWVmIG9wIGRvIDExLTA3LTIwMTkgb20gMTM6MjAgWyswMjAwXToKPiBD
+aHJpcyBXaWxzb24gc2NocmVlZiBvcCBkbyAxMS0wNy0yMDE5IG9tIDEwOjI5IFsrMDEwMF06Cj4g
+PiBUZW1wb3Jhcnkgd29ya2Fyb3VuZCB3b3VsZCBiZSB0byBzZXQgaTkxNS5lbmFibGVfcHNyPTAK
+PiAKPiBUaGF0IHdvcmthcm91bmQgc2VlbXMgdG8gd29yayBmb3IgbWUuIE92ZXIgYW4gaG91ciBv
+ZiB1cHRpbWUgd2l0aG91dCBhbnkKPiBzY3JlZW4gZnJlZXplcy4KCk1heSBvciBtYXkgbm90IGJl
+IHJlbGF0ZWQ6IDI0IGhvdXJzIGludG8gdGhhdCBzZXNzaW9uIEkgaGFkIHRoZSBtYWNoaW5lIGxv
+Y2sKdXAgaGFyZC4gU2NyZWVuIGZyb3plbiwgbm8gaW5wdXQgcG9zc2libGUsIGV0Yy4gSSBoYWQg
+dG8gcG93ZXIgY3ljbGUgaXQgKGFmdGVyCmhhbGYgYW4gaG91ciwgYmVoYXZpbmcgdmVyeSBwYXRp
+ZW50KS4KCkJ1dCB0aGUgc2NyZWVuIGZyZWV6ZSB0aGF0IHdlJ3JlIGZvY3VzaW5nIG9uIGhlcmUg
+bmV2ZXIgb2NjdXJyZWQgZHVyaW5nIHRoaXMKc2Vzc2lvbi4KCgpQYXVsIEJvbGxlCgpfX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGlu
+ZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVl
+ZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZng=
