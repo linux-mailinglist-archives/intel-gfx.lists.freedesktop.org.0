@@ -1,37 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E0E996B259
-	for <lists+intel-gfx@lfdr.de>; Wed, 17 Jul 2019 01:26:34 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C4E6D6B24E
+	for <lists+intel-gfx@lfdr.de>; Wed, 17 Jul 2019 01:21:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8E2686E1BB;
-	Tue, 16 Jul 2019 23:26:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B34736E1B6;
+	Tue, 16 Jul 2019 23:21:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 2381 seconds by postgrey-1.36 at gabe;
- Tue, 16 Jul 2019 23:26:31 UTC
-Received: from Galois.linutronix.de (Galois.linutronix.de
- [IPv6:2a0a:51c0:0:12e:550::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A2DF86E1BB
- for <intel-gfx@lists.freedesktop.org>; Tue, 16 Jul 2019 23:26:31 +0000 (UTC)
-Received: from pd9ef1cb8.dip0.t-ipconnect.de ([217.239.28.184] helo=nanos)
- by Galois.linutronix.de with esmtpsa (TLS1.2:DHE_RSA_AES_256_CBC_SHA256:256)
- (Exim 4.80) (envelope-from <tglx@linutronix.de>)
- id 1hnWDb-0008Eh-6C; Wed, 17 Jul 2019 00:46:43 +0200
-Date: Wed, 17 Jul 2019 00:46:42 +0200 (CEST)
-From: Thomas Gleixner <tglx@linutronix.de>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-In-Reply-To: <20190712210238.5622-1-lucas.demarchi@intel.com>
-Message-ID: <alpine.DEB.2.21.1907170046080.1767@nanos.tec.linutronix.de>
-References: <20190712210238.5622-1-lucas.demarchi@intel.com>
-User-Agent: Alpine 2.21 (DEB 202 2017-01-01)
+Received: from anholt.net (anholt.net [50.246.234.109])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 854726E1B6;
+ Tue, 16 Jul 2019 23:21:04 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+ by anholt.net (Postfix) with ESMTP id 32E5A10A2C47;
+ Tue, 16 Jul 2019 16:21:04 -0700 (PDT)
+X-Virus-Scanned: Debian amavisd-new at anholt.net
+Received: from anholt.net ([127.0.0.1])
+ by localhost (kingsolver.anholt.net [127.0.0.1]) (amavisd-new, port 10024)
+ with LMTP id wrnpGYEhumn2; Tue, 16 Jul 2019 16:21:03 -0700 (PDT)
+Received: from eliezer.anholt.net (localhost [127.0.0.1])
+ by anholt.net (Postfix) with ESMTP id E975C10A264A;
+ Tue, 16 Jul 2019 16:21:02 -0700 (PDT)
+Received: by eliezer.anholt.net (Postfix, from userid 1000)
+ id DD8EF2FE2547; Tue, 16 Jul 2019 16:21:03 -0700 (PDT)
+From: Eric Anholt <eric@anholt.net>
+To: Rob Clark <robdclark@gmail.com>, dri-devel@lists.freedesktop.org
+In-Reply-To: <20190716213746.4670-1-robdclark@gmail.com>
+References: <20190716213746.4670-1-robdclark@gmail.com>
+User-Agent: Notmuch/0.22.2+1~gb0bcfaa (http://notmuchmail.org) Emacs/26.1
+ (x86_64-pc-linux-gnu)
+Date: Tue, 16 Jul 2019 16:21:01 -0700
+Message-ID: <87o91th8gy.fsf@anholt.net>
 MIME-Version: 1.0
-X-Linutronix-Spam-Score: -1.0
-X-Linutronix-Spam-Level: -
-X-Linutronix-Spam-Status: No , -1.0 points, 5.0 required, ALL_TRUSTED=-1,
- SHORTCIRCUIT=-0.0001
-Subject: Re: [Intel-gfx] [PATCH] x86/gpu: add TGL stolen memory support
+Subject: Re: [Intel-gfx] [PATCH v3 1/3] drm/gem: don't force writecombine
+ mmap'ing
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -44,34 +47,72 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Michel Thierry <michel.thierry@intel.com>, intel-gfx@lists.freedesktop.org,
- x86@kernel.org, Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
- "H. Peter Anvin" <hpa@zytor.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Rob Clark <robdclark@chromium.org>,
+ Maxime Ripard <maxime.ripard@bootlin.com>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ David Airlie <airlied@linux.ie>, linux-kernel@vger.kernel.org
+Content-Type: multipart/mixed; boundary="===============0730195437=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gRnJpLCAxMiBKdWwgMjAxOSwgTHVjYXMgRGUgTWFyY2hpIHdyb3RlOgoKPiBGcm9tOiBNaWNo
-ZWwgVGhpZXJyeSA8bWljaGVsLnRoaWVycnlAaW50ZWwuY29tPgo+IAo+IFJldXNlIEdlbjExIHN0
-b2xlbiBtZW1vcnkgY2hhbmdlcyBzaW5jZSBUaWdlciBMYWtlIHVzZXMgdGhlIHNhbWUgQlNNCj4g
-cmVnaXN0ZXIgKGFuZCBmb3JtYXQpLgo+IAo+IENjOiBUaG9tYXMgR2xlaXhuZXIgPHRnbHhAbGlu
-dXRyb25peC5kZT4KPiBDYzogSW5nbyBNb2xuYXIgPG1pbmdvQHJlZGhhdC5jb20+Cj4gQ2M6IEJv
-cmlzbGF2IFBldGtvdiA8YnBAYWxpZW44LmRlPgo+IENjOiAiSC4gUGV0ZXIgQW52aW4iIDxocGFA
-enl0b3IuY29tPgo+IENjOiB4ODZAa2VybmVsLm9yZwo+IFNpZ25lZC1vZmYtYnk6IE1pY2hlbCBU
-aGllcnJ5IDxtaWNoZWwudGhpZXJyeUBpbnRlbC5jb20+Cj4gU2lnbmVkLW9mZi1ieTogTHVjYXMg
-RGUgTWFyY2hpIDxsdWNhcy5kZW1hcmNoaUBpbnRlbC5jb20+Cj4gUmV2aWV3ZWQtYnk6IFJvZHJp
-Z28gVml2aSA8cm9kcmlnby52aXZpQGludGVsLmNvbT4KPiAtLS0KPiAgYXJjaC94ODYva2VybmVs
-L2Vhcmx5LXF1aXJrcy5jIHwgMSArCj4gIDEgZmlsZSBjaGFuZ2VkLCAxIGluc2VydGlvbigrKQo+
-IAo+IGRpZmYgLS1naXQgYS9hcmNoL3g4Ni9rZXJuZWwvZWFybHktcXVpcmtzLmMgYi9hcmNoL3g4
-Ni9rZXJuZWwvZWFybHktcXVpcmtzLmMKPiBpbmRleCA2YzRmMDE1NDA4MzMuLjZmNmIxZDA0ZGFk
-ZiAxMDA2NDQKPiAtLS0gYS9hcmNoL3g4Ni9rZXJuZWwvZWFybHktcXVpcmtzLmMKPiArKysgYi9h
-cmNoL3g4Ni9rZXJuZWwvZWFybHktcXVpcmtzLmMKPiBAQCAtNTQ5LDYgKzU0OSw3IEBAIHN0YXRp
-YyBjb25zdCBzdHJ1Y3QgcGNpX2RldmljZV9pZCBpbnRlbF9lYXJseV9pZHNbXSBfX2luaXRjb25z
-dCA9IHsKPiAgCUlOVEVMX0NOTF9JRFMoJmdlbjlfZWFybHlfb3BzKSwKPiAgCUlOVEVMX0lDTF8x
-MV9JRFMoJmdlbjExX2Vhcmx5X29wcyksCj4gIAlJTlRFTF9FSExfSURTKCZnZW4xMV9lYXJseV9v
-cHMpLAo+ICsJSU5URUxfVEdMXzEyX0lEUygmZ2VuMTFfZWFybHlfb3BzKSwKCkhvdyBleGFjdGx5
-IGlzIHRoaXMgc3VwcG9zZWQgdG8gYnVpbGQ/CgpfX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0
-cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9s
-aXN0aW5mby9pbnRlbC1nZng=
+--===============0730195437==
+Content-Type: multipart/signed; boundary="=-=-=";
+	micalg=pgp-sha512; protocol="application/pgp-signature"
+
+--=-=-=
+Content-Type: text/plain
+
+Rob Clark <robdclark@gmail.com> writes:
+
+> From: Rob Clark <robdclark@chromium.org>
+>
+> The driver should be in control of this.
+>
+> Signed-off-by: Rob Clark <robdclark@chromium.org>
+> ---
+> It is possible that this was masking bugs (ie. not setting appropriate
+> pgprot) in drivers.  I don't have a particularly good idea for tracking
+> those down (since I don't have the hw for most drivers).  Unless someone
+> has a better idea, maybe land this and let driver maintainers fix any
+> potential fallout in their drivers?
+>
+> This is necessary for the last patch to fix VGEM brokenness on arm.
+
+This will break at least v3d and panfrost, and it looks like cirrus as
+well, since you're now promoting the mapping to cached by default and
+drm_gem_shmem_helper now produces cached mappings.  That's all I could
+find that would break, but don't trust me on that.
+
+
+--=-=-=
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCgAdFiEE/JuuFDWp9/ZkuCBXtdYpNtH8nugFAl0uW90ACgkQtdYpNtH8
+nuhEYQ//SHu8CMphEkC2owZV5vypxTHr7xCw11FdyGvA/BKc+ydJ/bLYJC9AZ4q2
+RLnWRI2LhwJxpXdLIvW1SFeZwj3RqhAcngI6hccJD9EB+75IjeqtLMuvKn5WNjV1
+mY+gNypUpx3ENntShYWB/cpXiKiEKTYKP+1UjRewSxzSwICf9NEdc0k+BMLs0mpP
+BdT7agdnuD90yX6o080eiz5pRGFw7GgpXbvC2jmUIulS+ITHzf0n4zsQ70zIxRNa
+NT+gsw8nb2WOjJgIl8AJIV1iFWtn186C1gKP0m3E0ldRITcbP/rh4uU4MLL9mh7v
+NmWFJ/p0Ja7LrWI5RIWMrcBGx+tDO2rzoAyVmgekC4HEa2ueSfxsIQKwxarwne1D
+nsKwuZZ4F8pyCmlMCQLdi51eM7hvn1nd4DbPq9WQ8s3diQFy0+MXUJUE6VIJU5jz
+UynwKRHIOYrBHnYm4dqnLugXnlYVakvVJGrnyrzg+AvjTerx6l0DzMXo+v5dRJFS
+J5CWYdhbewr7XGEzjdn2GNMs1p/x+ZU7zEvDCWjPAPxag8Ay5cfkeBTQbvlEqMX3
+GMcY4av5AdB9G3MA4gJb95Ykkx4dFbA3z00kJfvi2uE3wT8Ia9Yq2eXj3g/YCzCX
+EnDcGbs+9Cp7gdww2Z4xHVTpz4m39X2NeOld2sZX6TfBepurmVQ=
+=CmID
+-----END PGP SIGNATURE-----
+--=-=-=--
+
+--===============0730195437==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
+IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
+
+--===============0730195437==--
