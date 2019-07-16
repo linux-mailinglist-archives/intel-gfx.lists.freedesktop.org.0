@@ -2,39 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C4E6D6B24E
-	for <lists+intel-gfx@lfdr.de>; Wed, 17 Jul 2019 01:21:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 57D6C6B274
+	for <lists+intel-gfx@lfdr.de>; Wed, 17 Jul 2019 01:39:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B34736E1B6;
-	Tue, 16 Jul 2019 23:21:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C753F6E1BD;
+	Tue, 16 Jul 2019 23:39:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from anholt.net (anholt.net [50.246.234.109])
- by gabe.freedesktop.org (Postfix) with ESMTP id 854726E1B6;
- Tue, 16 Jul 2019 23:21:04 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 12CCE895F5;
+ Tue, 16 Jul 2019 23:39:13 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by anholt.net (Postfix) with ESMTP id 32E5A10A2C47;
- Tue, 16 Jul 2019 16:21:04 -0700 (PDT)
+ by anholt.net (Postfix) with ESMTP id 9682C10A264A;
+ Tue, 16 Jul 2019 16:39:13 -0700 (PDT)
 X-Virus-Scanned: Debian amavisd-new at anholt.net
 Received: from anholt.net ([127.0.0.1])
  by localhost (kingsolver.anholt.net [127.0.0.1]) (amavisd-new, port 10024)
- with LMTP id wrnpGYEhumn2; Tue, 16 Jul 2019 16:21:03 -0700 (PDT)
+ with LMTP id 12F3ajGnutvd; Tue, 16 Jul 2019 16:39:12 -0700 (PDT)
 Received: from eliezer.anholt.net (localhost [127.0.0.1])
- by anholt.net (Postfix) with ESMTP id E975C10A264A;
- Tue, 16 Jul 2019 16:21:02 -0700 (PDT)
+ by anholt.net (Postfix) with ESMTP id 61F0710A1AE9;
+ Tue, 16 Jul 2019 16:39:12 -0700 (PDT)
 Received: by eliezer.anholt.net (Postfix, from userid 1000)
- id DD8EF2FE2547; Tue, 16 Jul 2019 16:21:03 -0700 (PDT)
+ id 600D12FE2547; Tue, 16 Jul 2019 16:39:13 -0700 (PDT)
 From: Eric Anholt <eric@anholt.net>
 To: Rob Clark <robdclark@gmail.com>, dri-devel@lists.freedesktop.org
-In-Reply-To: <20190716213746.4670-1-robdclark@gmail.com>
+In-Reply-To: <20190716213746.4670-3-robdclark@gmail.com>
 References: <20190716213746.4670-1-robdclark@gmail.com>
+ <20190716213746.4670-3-robdclark@gmail.com>
 User-Agent: Notmuch/0.22.2+1~gb0bcfaa (http://notmuchmail.org) Emacs/26.1
  (x86_64-pc-linux-gnu)
-Date: Tue, 16 Jul 2019 16:21:01 -0700
-Message-ID: <87o91th8gy.fsf@anholt.net>
+Date: Tue, 16 Jul 2019 16:39:11 -0700
+Message-ID: <87lfwxh7mo.fsf@anholt.net>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v3 1/3] drm/gem: don't force writecombine
- mmap'ing
+Subject: Re: [Intel-gfx] [PATCH v3 3/3] drm/vgem: use normal cached mmap'ings
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -47,15 +47,15 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Rob Clark <robdclark@chromium.org>,
- Maxime Ripard <maxime.ripard@bootlin.com>,
+Cc: Rob Clark <robdclark@chromium.org>, Deepak Sharma <deepak.sharma@amd.com>,
+ Eric Biggers <ebiggers@google.com>, David Airlie <airlied@linux.ie>,
  Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- David Airlie <airlied@linux.ie>, linux-kernel@vger.kernel.org
-Content-Type: multipart/mixed; boundary="===============0730195437=="
+ linux-kernel@vger.kernel.org, Emil Velikov <emil.velikov@collabora.com>
+Content-Type: multipart/mixed; boundary="===============0199345688=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0730195437==
+--===============0199345688==
 Content-Type: multipart/signed; boundary="=-=-=";
 	micalg=pgp-sha512; protocol="application/pgp-signature"
 
@@ -66,46 +66,48 @@ Rob Clark <robdclark@gmail.com> writes:
 
 > From: Rob Clark <robdclark@chromium.org>
 >
-> The driver should be in control of this.
+> Since there is no real device associated with VGEM, it is impossible to
+> end up with appropriate dev->dma_ops, meaning that we have no way to
+> invalidate the shmem pages allocated by VGEM.  So, at least on platforms
+> without drm_cflush_pages(), we end up with corruption when cache lines
+> from previous usage of VGEM bo pages get evicted to memory.
 >
-> Signed-off-by: Rob Clark <robdclark@chromium.org>
-> ---
-> It is possible that this was masking bugs (ie. not setting appropriate
-> pgprot) in drivers.  I don't have a particularly good idea for tracking
-> those down (since I don't have the hw for most drivers).  Unless someone
-> has a better idea, maybe land this and let driver maintainers fix any
-> potential fallout in their drivers?
->
-> This is necessary for the last patch to fix VGEM brokenness on arm.
+> The only sane option is to use cached mappings.
 
-This will break at least v3d and panfrost, and it looks like cirrus as
-well, since you're now promoting the mapping to cached by default and
-drm_gem_shmem_helper now produces cached mappings.  That's all I could
-find that would break, but don't trust me on that.
+This may be an improvement, but...
 
+pin/unpin is only on attaching/closing the dma-buf, right?  So, great,
+you flushed the cached map once after exporting the vgem dma-buf to the
+actual GPU device, but from then on you still have no interface for
+getting coherent access through VGEM's mapping again, which still
+exists.
+
+I feel like this is papering over something that's really just broken,
+and we should stop providing VGEM just because someone wants to write
+dma-buf test code without driver-specific BO alloc ioctl code.
 
 --=-=-=
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAEBCgAdFiEE/JuuFDWp9/ZkuCBXtdYpNtH8nugFAl0uW90ACgkQtdYpNtH8
-nuhEYQ//SHu8CMphEkC2owZV5vypxTHr7xCw11FdyGvA/BKc+ydJ/bLYJC9AZ4q2
-RLnWRI2LhwJxpXdLIvW1SFeZwj3RqhAcngI6hccJD9EB+75IjeqtLMuvKn5WNjV1
-mY+gNypUpx3ENntShYWB/cpXiKiEKTYKP+1UjRewSxzSwICf9NEdc0k+BMLs0mpP
-BdT7agdnuD90yX6o080eiz5pRGFw7GgpXbvC2jmUIulS+ITHzf0n4zsQ70zIxRNa
-NT+gsw8nb2WOjJgIl8AJIV1iFWtn186C1gKP0m3E0ldRITcbP/rh4uU4MLL9mh7v
-NmWFJ/p0Ja7LrWI5RIWMrcBGx+tDO2rzoAyVmgekC4HEa2ueSfxsIQKwxarwne1D
-nsKwuZZ4F8pyCmlMCQLdi51eM7hvn1nd4DbPq9WQ8s3diQFy0+MXUJUE6VIJU5jz
-UynwKRHIOYrBHnYm4dqnLugXnlYVakvVJGrnyrzg+AvjTerx6l0DzMXo+v5dRJFS
-J5CWYdhbewr7XGEzjdn2GNMs1p/x+ZU7zEvDCWjPAPxag8Ay5cfkeBTQbvlEqMX3
-GMcY4av5AdB9G3MA4gJb95Ykkx4dFbA3z00kJfvi2uE3wT8Ia9Yq2eXj3g/YCzCX
-EnDcGbs+9Cp7gdww2Z4xHVTpz4m39X2NeOld2sZX6TfBepurmVQ=
-=CmID
+iQIzBAEBCgAdFiEE/JuuFDWp9/ZkuCBXtdYpNtH8nugFAl0uYB8ACgkQtdYpNtH8
+nugJRw/9EiWQGRfpgMVOaSPrCIjAmsQZR/yI4mMxq6i3W567axR5MUXdes8PKkJW
+5LDqVM4OBs7GY/Rl76LiSO+LeMXuUH57MYAhsvzeweB4vkuPibrFjPLhzHdRz5/P
+augC8mcdlSuP7xZKKGlMuOHfNsMipAZR0lOT+yiVfZ+UfWLNXTky5moA33yyPT1n
+d3YuPIYFWUrZxwGlEQocBJUE6Us5lMieNWdfuAFk9Uhqtz47N8KwbnKPW0FkVKuF
+E3oedpmxIyySwWF16gJn0jwy9gYtnmxyFmSk57V2F8fNvnwGP9JWkpAZEEqv4NMy
+vhWf+lUHxSVj48oWg0B7jXliFA50qjeJA3cQWujXyaKusV99ujoQzWzxAWCWhDCG
+K/kSMHgkLTbz+hOSXfOupKLV7I0aysXZB/USQOln/wSk6AajkEzYMr6l2BxZWuko
+BcGoBCmt6z77yqyAbQOPWuP0LivFore0bLQyXauOSOV8fkUpmx8gNXtkUPy9drCs
+axR3qVp0pfLItCdFTUXhV594hX3J4aN9SMojcAW+Lfmw8/3xDwEPWM5eAR10b2uo
+QioDDThXBXTrc6Vx/NEIouY9zMPuD/mWknuS06x84HmLmFNj0MaD96CQU4yjy5he
+eg2k8an5SqjXoSVC2Pk3Cm3A3Yq4P9FHMiUh9wWtj78r0yIO9j8=
+=koaP
 -----END PGP SIGNATURE-----
 --=-=-=--
 
---===============0730195437==
+--===============0199345688==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -115,4 +117,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
 IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
 dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
 
---===============0730195437==--
+--===============0199345688==--
