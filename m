@@ -2,37 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A2B556A4E8
-	for <lists+intel-gfx@lfdr.de>; Tue, 16 Jul 2019 11:28:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 990BB6A609
+	for <lists+intel-gfx@lfdr.de>; Tue, 16 Jul 2019 11:58:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 094B46E0E5;
-	Tue, 16 Jul 2019 09:28:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 898046E0F4;
+	Tue, 16 Jul 2019 09:58:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 82BDF6E0E5
- for <intel-gfx@lists.freedesktop.org>; Tue, 16 Jul 2019 09:28:30 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A06006E0F4
+ for <intel-gfx@lists.freedesktop.org>; Tue, 16 Jul 2019 09:58:35 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 16 Jul 2019 02:28:30 -0700
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga106.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 16 Jul 2019 02:58:35 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.63,497,1557212400"; 
- d="asc'?scan'208";a="194828365"
-Received: from zhen-hp.sh.intel.com (HELO zhen-hp) ([10.239.13.116])
- by fmsmga002.fm.intel.com with ESMTP; 16 Jul 2019 02:28:28 -0700
-Date: Tue, 16 Jul 2019 17:25:23 +0800
-From: Zhenyu Wang <zhenyuw@linux.intel.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>
-Message-ID: <20190716092523.GQ16681@zhen-hp.sh.intel.com>
-References: <20190709091233.8573-1-chris@chris-wilson.co.uk>
+X-IronPort-AV: E=Sophos;i="5.63,497,1557212400"; d="scan'208";a="161377618"
+Received: from fmsmsx104.amr.corp.intel.com ([10.18.124.202])
+ by orsmga008.jf.intel.com with ESMTP; 16 Jul 2019 02:58:34 -0700
+Received: from fmsmsx155.amr.corp.intel.com (10.18.116.71) by
+ fmsmsx104.amr.corp.intel.com (10.18.124.202) with Microsoft SMTP Server (TLS)
+ id 14.3.439.0; Tue, 16 Jul 2019 02:58:34 -0700
+Received: from bgsmsx110.gar.corp.intel.com (10.223.4.212) by
+ FMSMSX155.amr.corp.intel.com (10.18.116.71) with Microsoft SMTP Server (TLS)
+ id 14.3.439.0; Tue, 16 Jul 2019 02:58:34 -0700
+Received: from bgsmsx104.gar.corp.intel.com ([169.254.5.156]) by
+ BGSMSX110.gar.corp.intel.com ([169.254.11.126]) with mapi id 14.03.0439.000;
+ Tue, 16 Jul 2019 15:28:31 +0530
+From: "Shankar, Uma" <uma.shankar@intel.com>
+To: "Kulkarni, Vandita" <vandita.kulkarni@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Thread-Topic: [PATCH 1/4] drm/i915/tgl/dsi: Program TRANS_VBLANK register
+Thread-Index: AQHVMJDVwPdh1KFTRUSGmYAuTuYDBqbNGATw
+Date: Tue, 16 Jul 2019 09:58:31 +0000
+Message-ID: <E7C9878FBA1C6D42A1CA3F62AEB6945F8212EC57@BGSMSX104.gar.corp.intel.com>
+References: <20190702041850.4293-1-vandita.kulkarni@intel.com>
+ <20190702041850.4293-2-vandita.kulkarni@intel.com>
+In-Reply-To: <20190702041850.4293-2-vandita.kulkarni@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ctpclassification: CTP_NT
+x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiNWQxYzk1NWYtOGMxZi00YmZlLTljYmYtMDA3YzliMWE0NDNlIiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX05UIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE3LjEwLjE4MDQuNDkiLCJUcnVzdGVkTGFiZWxIYXNoIjoiTDVzUVBWOHNxUE5FdlYyN2dGOFF0cFNOQlEzS3A1aDJCN01qY1wvUjlZUDFcL21ESzFDK1ltVFFXK3lnM1REa25JIn0=
+dlp-product: dlpe-windows
+dlp-version: 11.0.600.7
+dlp-reaction: no-action
+x-originating-ip: [10.223.10.10]
 MIME-Version: 1.0
-In-Reply-To: <20190709091233.8573-1-chris@chris-wilson.co.uk>
-User-Agent: Mutt/1.10.0 (2018-05-17)
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/execlists: Disable preemption
- under GVT
+Subject: Re: [Intel-gfx] [PATCH 1/4] drm/i915/tgl/dsi: Program TRANS_VBLANK
+ register
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -45,221 +65,40 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: Zhenyu Wang <zhenyuw@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============1221382301=="
+Cc: "Nikula,
+ Jani" <jani.nikula@intel.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
---===============1221382301==
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="aYrjF+tKt+ApYAdb"
-Content-Disposition: inline
-
-
---aYrjF+tKt+ApYAdb
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On 2019.07.09 10:12:33 +0100, Chris Wilson wrote:
-> Preempt-to-busy uses a GPU semaphore to enforce an idle-barrier across
-> preemption, but mediated gvt does not fully support semaphores.
->=20
-> v2: Fiddle around with the flags and settle on using has-semaphores for
-> the core bits so that we retain the ability to preempt our own
-> semaphores.
->=20
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> Cc: Zhenyu Wang <zhenyuw@linux.intel.com>
-> Cc: Xiaolin Zhang <xiaolin.zhang@intel.com>
-> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-> ---
-
-I've tried to run guest with this one for several benchmarks on SKL
-and didn't observe hang. I think the hang met by Xiaolin might be caused
-by other things that can be double checked later.
-
-So for semaphore disable in vGPU case,
-
-Acked-by: Zhenyu Wang <zhenyuw@linux.intel.com>
-
-thanks!
-
->  drivers/gpu/drm/i915/gt/intel_engine_cs.c |  4 ++--
->  drivers/gpu/drm/i915/gt/intel_lrc.c       | 24 +++++++++++++++++------
->  drivers/gpu/drm/i915/gt/selftest_lrc.c    |  6 ++++++
->  3 files changed, 26 insertions(+), 8 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/=
-i915/gt/intel_engine_cs.c
-> index 56310812da21..614ed8c488ef 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-> @@ -825,6 +825,8 @@ int intel_engine_init_common(struct intel_engine_cs *=
-engine)
->  	struct drm_i915_private *i915 =3D engine->i915;
->  	int ret;
-> =20
-> +	engine->set_default_submission(engine);
-> +
->  	/* We may need to do things with the shrinker which
->  	 * require us to immediately switch back to the default
->  	 * context. This can cause a problem as pinning the
-> @@ -852,8 +854,6 @@ int intel_engine_init_common(struct intel_engine_cs *=
-engine)
-> =20
->  	engine->emit_fini_breadcrumb_dw =3D ret;
-> =20
-> -	engine->set_default_submission(engine);
-> -
->  	return 0;
-> =20
->  err_unpin:
-> diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/g=
-t/intel_lrc.c
-> index 558a5850de3c..ef36f4b5e212 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-> @@ -295,6 +295,9 @@ static inline bool need_preempt(const struct intel_en=
-gine_cs *engine,
->  {
->  	int last_prio;
-> =20
-> +	if (!intel_engine_has_semaphores(engine))
-> +		return false;
-> +
->  	/*
->  	 * Check if the current priority hint merits a preemption attempt.
->  	 *
-> @@ -893,6 +896,9 @@ need_timeslice(struct intel_engine_cs *engine, const =
-struct i915_request *rq)
->  {
->  	int hint;
-> =20
-> +	if (!intel_engine_has_semaphores(engine))
-> +		return false;
-> +
->  	if (list_is_last(&rq->sched.link, &engine->active.requests))
->  		return false;
-> =20
-> @@ -2634,7 +2640,8 @@ static u32 *gen8_emit_fini_breadcrumb(struct i915_r=
-equest *request, u32 *cs)
->  	*cs++ =3D MI_USER_INTERRUPT;
-> =20
->  	*cs++ =3D MI_ARB_ON_OFF | MI_ARB_ENABLE;
-> -	cs =3D emit_preempt_busywait(request, cs);
-> +	if (intel_engine_has_semaphores(request->engine))
-> +		cs =3D emit_preempt_busywait(request, cs);
-> =20
->  	request->tail =3D intel_ring_offset(request, cs);
->  	assert_ring_tail_valid(request->ring, request->tail);
-> @@ -2658,7 +2665,8 @@ static u32 *gen8_emit_fini_breadcrumb_rcs(struct i9=
-15_request *request, u32 *cs)
->  	*cs++ =3D MI_USER_INTERRUPT;
-> =20
->  	*cs++ =3D MI_ARB_ON_OFF | MI_ARB_ENABLE;
-> -	cs =3D emit_preempt_busywait(request, cs);
-> +	if (intel_engine_has_semaphores(request->engine))
-> +		cs =3D emit_preempt_busywait(request, cs);
-> =20
->  	request->tail =3D intel_ring_offset(request, cs);
->  	assert_ring_tail_valid(request->ring, request->tail);
-> @@ -2706,10 +2714,11 @@ void intel_execlists_set_default_submission(struc=
-t intel_engine_cs *engine)
->  	engine->unpark =3D NULL;
-> =20
->  	engine->flags |=3D I915_ENGINE_SUPPORTS_STATS;
-> -	if (!intel_vgpu_active(engine->i915))
-> +	if (!intel_vgpu_active(engine->i915)) {
->  		engine->flags |=3D I915_ENGINE_HAS_SEMAPHORES;
-> -	if (HAS_LOGICAL_RING_PREEMPTION(engine->i915))
-> -		engine->flags |=3D I915_ENGINE_HAS_PREEMPTION;
-> +		if (HAS_LOGICAL_RING_PREEMPTION(engine->i915))
-> +			engine->flags |=3D I915_ENGINE_HAS_PREEMPTION;
-> +	}
->  }
-> =20
->  static void execlists_destroy(struct intel_engine_cs *engine)
-> @@ -3399,7 +3408,6 @@ intel_execlists_create_virtual(struct i915_gem_cont=
-ext *ctx,
->  	ve->base.class =3D OTHER_CLASS;
->  	ve->base.uabi_class =3D I915_ENGINE_CLASS_INVALID;
->  	ve->base.instance =3D I915_ENGINE_CLASS_INVALID_VIRTUAL;
-> -	ve->base.flags =3D I915_ENGINE_IS_VIRTUAL;
-> =20
->  	/*
->  	 * The decision on whether to submit a request using semaphores
-> @@ -3496,8 +3504,12 @@ intel_execlists_create_virtual(struct i915_gem_con=
-text *ctx,
->  		ve->base.emit_fini_breadcrumb =3D sibling->emit_fini_breadcrumb;
->  		ve->base.emit_fini_breadcrumb_dw =3D
->  			sibling->emit_fini_breadcrumb_dw;
-> +
-> +		ve->base.flags =3D sibling->flags;
->  	}
-> =20
-> +	ve->base.flags |=3D I915_ENGINE_IS_VIRTUAL;
-> +
->  	return &ve->context;
-> =20
->  err_put:
-> diff --git a/drivers/gpu/drm/i915/gt/selftest_lrc.c b/drivers/gpu/drm/i91=
-5/gt/selftest_lrc.c
-> index fe4e15f9ba9d..a13f06ba984b 100644
-> --- a/drivers/gpu/drm/i915/gt/selftest_lrc.c
-> +++ b/drivers/gpu/drm/i915/gt/selftest_lrc.c
-> @@ -269,6 +269,9 @@ static int live_timeslice_preempt(void *arg)
->  		enum intel_engine_id id;
-> =20
->  		for_each_engine(engine, i915, id) {
-> +			if (!intel_engine_has_preemption(engine))
-> +				continue;
-> +
->  			memset(vaddr, 0, PAGE_SIZE);
-> =20
->  			err =3D slice_semaphore_queue(engine, vma, count);
-> @@ -354,6 +357,9 @@ static int live_busywait_preempt(void *arg)
->  		struct igt_live_test t;
->  		u32 *cs;
-> =20
-> +		if (!intel_engine_has_preemption(engine))
-> +			continue;
-> +
->  		if (!intel_engine_can_store_dword(engine))
->  			continue;
-> =20
-> --=20
-> 2.22.0
->=20
-
---=20
-Open Source Technology Center, Intel ltd.
-
-$gpg --keyserver wwwkeys.pgp.net --recv-keys 4D781827
-
---aYrjF+tKt+ApYAdb
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iF0EARECAB0WIQTXuabgHDW6LPt9CICxBBozTXgYJwUCXS2YAgAKCRCxBBozTXgY
-J5ZqAKCZAS/Gh5aNhM7Dwp7pwCcSQLwrZwCfXgZ0OB2arGJAOG6GIr0MQtd+1aM=
-=YtCl
------END PGP SIGNATURE-----
-
---aYrjF+tKt+ApYAdb--
-
---===============1221382301==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
-IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
-
---===============1221382301==--
+Cgo+LS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0KPkZyb206IEt1bGthcm5pLCBWYW5kaXRhCj5T
+ZW50OiBUdWVzZGF5LCBKdWx5IDIsIDIwMTkgOTo0OSBBTQo+VG86IGludGVsLWdmeEBsaXN0cy5m
+cmVlZGVza3RvcC5vcmcKPkNjOiB2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbTsgTmlrdWxh
+LCBKYW5pIDxqYW5pLm5pa3VsYUBpbnRlbC5jb20+OyBTaGFua2FyLCBVbWEKPjx1bWEuc2hhbmth
+ckBpbnRlbC5jb20+OyBLdWxrYXJuaSwgVmFuZGl0YSA8dmFuZGl0YS5rdWxrYXJuaUBpbnRlbC5j
+b20+Cj5TdWJqZWN0OiBbUEFUQ0ggMS80XSBkcm0vaTkxNS90Z2wvZHNpOiBQcm9ncmFtIFRSQU5T
+X1ZCTEFOSyByZWdpc3Rlcgo+Cj5Qcm9ncmFtIHZibGFuayByZWdpc3RlciBmb3IgbWlwaSBkc2kg
+aW4gdmlkZW8gbW9kZSBvbiBUR0wuCj4KPlNpZ25lZC1vZmYtYnk6IFZhbmRpdGEgS3Vsa2Fybmkg
+PHZhbmRpdGEua3Vsa2FybmlAaW50ZWwuY29tPgo+LS0tCj4gZHJpdmVycy9ncHUvZHJtL2k5MTUv
+ZGlzcGxheS9pY2xfZHNpLmMgfCA5ICsrKysrKysrKwo+IDEgZmlsZSBjaGFuZ2VkLCA5IGluc2Vy
+dGlvbnMoKykKPgo+ZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaWNs
+X2RzaS5jCj5iL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaWNsX2RzaS5jCj5pbmRleCBi
+ODY3M2RlYmY5MzIuLjU1NmViYTI2MzZmZSAxMDA2NDQKPi0tLSBhL2RyaXZlcnMvZ3B1L2RybS9p
+OTE1L2Rpc3BsYXkvaWNsX2RzaS5jCj4rKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5
+L2ljbF9kc2kuYwo+QEAgLTg2Niw2ICs4NjYsMTUgQEAgZ2VuMTFfZHNpX3NldF90cmFuc2NvZGVy
+X3RpbWluZ3Moc3RydWN0IGludGVsX2VuY29kZXIKPiplbmNvZGVyLAo+IAkJZHNpX3RyYW5zID0g
+ZHNpX3BvcnRfdG9fdHJhbnNjb2Rlcihwb3J0KTsKPiAJCUk5MTVfV1JJVEUoVlNZTkNTSElGVChk
+c2lfdHJhbnMpLCB2c3luY19zaGlmdCk7Cj4gCX0KPisKPisJLyogcHJvZ3JhbSBUUkFOU19WQkxB
+TksgcmVnaXN0ZXIsIHNob3VsZCBiZSBzYW1lIGFzIHZ0b3RhbCBwcm9nYW1tZWQgKi8KClR5cG8g
+aGVyZSBpbiBwcm9ncmFtbWVkLgoKPisJaWYgKElOVEVMX0dFTihkZXZfcHJpdikgPj0gMTIpIHsK
+PisJCWZvcl9lYWNoX2RzaV9wb3J0KHBvcnQsIGludGVsX2RzaS0+cG9ydHMpIHsKPisJCQlkc2lf
+dHJhbnMgPSBkc2lfcG9ydF90b190cmFuc2NvZGVyKHBvcnQpOwo+KwkJCUk5MTVfV1JJVEUoVkJM
+QU5LKGRzaV90cmFucyksCj4rCQkJCSAgICh2YWN0aXZlIC0gMSkgfCAoKHZ0b3RhbCAtIDEpIDw8
+IDE2KSk7CgpXZSBjYW4gcHV0IHRoaXMgbGluZSBhbG9uZyB3aXRoIFZUT1RBTCBhbmQgZ2V0IHJp
+ZCBvZiB0aGlzIGV4dHJhIGZvciBsb29wLgoKPisJCX0KPisJfQo+IH0KPgo+IHN0YXRpYyB2b2lk
+IGdlbjExX2RzaV9lbmFibGVfdHJhbnNjb2RlcihzdHJ1Y3QgaW50ZWxfZW5jb2RlciAqZW5jb2Rl
+cikKPi0tCj4yLjIxLjAuNS5nYWViNTgyYQoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMu
+ZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlz
+dGluZm8vaW50ZWwtZ2Z4
