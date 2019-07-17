@@ -1,33 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 312AA6C1AB
-	for <lists+intel-gfx@lfdr.de>; Wed, 17 Jul 2019 21:45:40 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id F24286C1B4
+	for <lists+intel-gfx@lfdr.de>; Wed, 17 Jul 2019 21:49:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7FAD36E29E;
-	Wed, 17 Jul 2019 19:45:38 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 61A176E29E
- for <Intel-gfx@lists.freedesktop.org>; Wed, 17 Jul 2019 19:45:37 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 17379202-1500050 for multiple; Wed, 17 Jul 2019 20:45:08 +0100
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6FBDE6E29E;
+	Wed, 17 Jul 2019 19:49:18 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+X-Greylist: delayed 761 seconds by postgrey-1.36 at gabe;
+ Wed, 17 Jul 2019 19:49:17 UTC
+Received: from mail.fgv6.net (greebo.fgv6.net [151.80.214.200])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2E40D6E29E
+ for <intel-gfx@lists.freedesktop.org>; Wed, 17 Jul 2019 19:49:16 +0000 (UTC)
+Received: from xps16 (ip1f11c9a4.dynamic.kabel-deutschland.de [31.17.201.164])
+ (Authenticated sender: kubrick@fgv6.net)
+ by mail.fgv6.net (Postfix) with ESMTPSA id 4237D3C0071;
+ Wed, 17 Jul 2019 19:49:15 +0000 (UTC)
+Message-ID: <f90b1425b74668e8cd80df1dc6d0c99badd7da35.camel@fgv6.net>
+From: =?ISO-8859-1?Q?Fran=E7ois?= Guerraz <kubrick@fgv6.net>
+To: "Pandiyan, Dhinakaran" <dhinakaran.pandiyan@intel.com>, 
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Date: Wed, 17 Jul 2019 21:49:14 +0200
+In-Reply-To: <df5f95a4c2a7e7bf9fd076f43e4e65bfb10375d1.camel@intel.com>
+References: <df5f95a4c2a7e7bf9fd076f43e4e65bfb10375d1.camel@intel.com>
+User-Agent: Evolution 3.32.4 
 MIME-Version: 1.0
-From: Chris Wilson <chris@chris-wilson.co.uk>
-User-Agent: alot/0.6
-To: Intel-gfx@lists.freedesktop.org,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-References: <20190717180624.20354-1-tvrtko.ursulin@linux.intel.com>
- <20190717180624.20354-7-tvrtko.ursulin@linux.intel.com>
-In-Reply-To: <20190717180624.20354-7-tvrtko.ursulin@linux.intel.com>
-Message-ID: <156339270684.25270.4743966259748741380@skylake-alporthouse-com>
-Date: Wed, 17 Jul 2019 20:45:06 +0100
-Subject: Re: [Intel-gfx] [PATCH 6/6] drm/i915/icl: Add Wa_1409178092
+X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+ d=fgv6.net; s=2018; 
+ t=1563392955; bh=6XkglcJJXRYg9f8J2muYfjeaqePFyN4aYi1LfI0s+zI=;
+ h=Subject:From:To:Date:In-Reply-To:References:From;
+ b=Ug5zVKVtnrO437J8GatlJk1aWRp7UrvttBDTLdBAbnzEeqD0ZKn2w2skaZE1U5y8s
+ J2vTpOfbRTKs9onlqBkOXm4guOClmp3jlU6rYt+BHVa+OKsw4wYuTwwk/gFbZnP0+h
+ TWFp5UfG8ipZN9BZ9sZ1569aDhv86pPbUw7hIjpg=
+Subject: Re: [Intel-gfx] drm/i915/vbt: Fix VBT parsing for the PSR section
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -45,30 +52,7 @@ Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-UXVvdGluZyBUdnJ0a28gVXJzdWxpbiAoMjAxOS0wNy0xNyAxOTowNjoyNCkKPiBGcm9tOiBUdnJ0
-a28gVXJzdWxpbiA8dHZydGtvLnVyc3VsaW5AaW50ZWwuY29tPgo+IAo+IFdlIHdlcmUgbWlzc2lu
-ZyB0aGlzIHdvcmthcm91bmQgd2hpY2ggY2FuIGNhdXNlIGhhbmdzIGlmIGZpbmUgZ3JhaW5lZAo+
-IGNvaGVyZW5jeSB3YXMgdXNlZC4KPiAKPiBTaWduZWQtb2ZmLWJ5OiBUdnJ0a28gVXJzdWxpbiA8
-dHZydGtvLnVyc3VsaW5AaW50ZWwuY29tPgo+IC0tLQo+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9n
-dC9pbnRlbF93b3JrYXJvdW5kcy5jIHwgNiArKysrKysKPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUv
-aTkxNV9yZWcuaCAgICAgICAgICAgICB8IDMgKysrCj4gIDIgZmlsZXMgY2hhbmdlZCwgOSBpbnNl
-cnRpb25zKCspCj4gCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVs
-X3dvcmthcm91bmRzLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRlbF93b3JrYXJvdW5k
-cy5jCj4gaW5kZXggZmY1MzJmZjVkNTc0Li43MDRhY2UwMWU3ZjUgMTAwNjQ0Cj4gLS0tIGEvZHJp
-dmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfd29ya2Fyb3VuZHMuYwo+ICsrKyBiL2RyaXZlcnMv
-Z3B1L2RybS9pOTE1L2d0L2ludGVsX3dvcmthcm91bmRzLmMKPiBAQCAtMTI5Nyw2ICsxMjk3LDEy
-IEBAIHJjc19lbmdpbmVfd2FfaW5pdChzdHJ1Y3QgaW50ZWxfZW5naW5lX2NzICplbmdpbmUsIHN0
-cnVjdCBpOTE1X3dhX2xpc3QgKndhbCkKPiAgICAgICAgICAgICAgICAgd2Ffd3JpdGVfb3Iod2Fs
-LAo+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICBHRU43X1NBUkNIS01ELAo+ICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICBHRU43X0RJU0FCTEVfU0FNUExFUl9QUkVGRVRDSCk7Cj4gKwo+
-ICsgICAgICAgICAgICAgICAvKiBXYV8xNDA5MTc4MDkyOmljbCAqLwo+ICsgICAgICAgICAgICAg
-ICB3YV93cml0ZV9tYXNrZWRfb3Iod2FsLAo+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgR0VOMTFfU0NSQVRDSDIsCj4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICBHRU4xMV9DT0hFUkVOVF9QQVJUSUFMX1dSSVRFX01FUkdFX0VOQUJMRSwKPiArICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgIDApOwoKSXQncyBtZW50aW9uZWQgdGhhdCB0aGlzIGlz
-IG9ubHkgZm9yIEhBU19MTEMoKSwgdG8gYXZvaWQgY29taW5nIGJhY2sgdG8KdGhpcyBpbiBmdXR1
-cmUsIEknZCBtYXJrIGl0IHVwIG5vdy4KClJldmlld2VkLWJ5OiBDaHJpcyBXaWxzb24gPGNocmlz
-QGNocmlzLXdpbHNvbi5jby51az4KLUNocmlzCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3Rz
-LmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xp
-c3RpbmZvL2ludGVsLWdmeA==
+VGVzdGVkLWJ5OiBGcmFuw6dvaXMgR3VlcnJheiA8a3Vicmlja0BmZ3Y2Lm5ldD4KCk9uIERlbGwg
+WFBTIDkzNTAKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+CkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpo
+dHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeA==
