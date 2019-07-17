@@ -1,67 +1,63 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 601E66B36B
-	for <lists+intel-gfx@lfdr.de>; Wed, 17 Jul 2019 03:33:18 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F6196B37A
+	for <lists+intel-gfx@lfdr.de>; Wed, 17 Jul 2019 03:47:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4DBB36E1D8;
-	Wed, 17 Jul 2019 01:33:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DF5D56E1CF;
+	Wed, 17 Jul 2019 01:47:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-qk1-x742.google.com (mail-qk1-x742.google.com
- [IPv6:2607:f8b0:4864:20::742])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D6DE66E1CF;
- Wed, 17 Jul 2019 01:33:14 +0000 (UTC)
-Received: by mail-qk1-x742.google.com with SMTP id m14so16152625qka.10;
- Tue, 16 Jul 2019 18:33:14 -0700 (PDT)
+Received: from mail-qt1-x842.google.com (mail-qt1-x842.google.com
+ [IPv6:2607:f8b0:4864:20::842])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0BB316E1CF;
+ Wed, 17 Jul 2019 01:47:36 +0000 (UTC)
+Received: by mail-qt1-x842.google.com with SMTP id n11so21722758qtl.5;
+ Tue, 16 Jul 2019 18:47:35 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:date:from:to:cc:subject:message-id:references
  :mime-version:content-disposition:in-reply-to:user-agent;
- bh=pRba4ypTNj7G5JCLvYUciIsduVvk5EZhkGt9BvqVIuo=;
- b=PCcaVw5LnqdGSLxTM9xYL8sLKMkYU1nJLV2aTFG/+qcvscbXxIjr2F8jCXHc4B6LFZ
- xF5fUk+SvQaMgC3tLedppFV+Lq5CxHYqjxoqPSTvHmIm+j/b+lTy/FGOi8NmA1BogAnm
- xJCC+lq5xoO1xuaeESwZME7hvOErK9XDIrygBKuNPs5izr3nXpWKhYyiNwVb/8aEiEpO
- vqfF4O4z1UwMqMGXPrzsdvNlRmvGIrfryKkQLOuRydaAr6INQvieCTwrbA92X1/wdoWp
- qiPOTRmyJpB7vKFUKoVTC1Syj1n6EawX/a5HYGI7bJqZ11u1C1zgNNz3h8gpd6BWCA2g
- mSWA==
-X-Gm-Message-State: APjAAAU6CSuRzkEGEwWj1GaZ5V3DydAco73KLn+vuy2vnY+JqUFxIy01
- jsxiCGNcLRasCghPonKqJFk=
-X-Google-Smtp-Source: APXvYqxg5GEU9Ga47pmTZdlfWBNsJuLdBLnON7jvHIJKHTB0fCYKip1uuqpeUjJxuZ+FiO7fnBEdqA==
-X-Received: by 2002:ae9:de81:: with SMTP id
- s123mr23847297qkf.339.1563326728531; 
- Tue, 16 Jul 2019 18:25:28 -0700 (PDT)
+ bh=pUEvqgKQGcczPnLR3qADtD3JfJe4jZ7cA7OUIQIqUHc=;
+ b=NwtWPeBjb6bVlYlzxGPrvRIVORZwxVFFQ1pEvZvganG44/Bmtw12FGfSCnofM2jYoH
+ 1uGJqgzll6lH/0+qIhNg4MZB/AfEYCQyNyJJDtlLHylUJAb29JTmsUVjJPB8A3o+q8np
+ JecoGsbmvdlZUQ8Iv8h0XJTq7CQ9pIDgRMED4H8O0xF5ZFdubRJE7A1hOPaTiuDzavh7
+ 2FQjpjvGL6nTE6sW5kNZIZ7SRJRyohZvCkj9JuOXIN7CWSj+iDzNJwFw+28g7ZS/Iluk
+ IUWBm4gRP4f9KXBr2FLZMZVceO9Z8L6awZND0iGk2nICGbu+6RVR0hwQ3kZJlyqJHS5b
+ S2oQ==
+X-Gm-Message-State: APjAAAUZlr5FHjwLJDemJFyMcoCQnXzjJP7o7gjODiuTtzkwdGCNFXnS
+ 9GrfECmvL6+LXigRWm9eUVbrCFCFAGg=
+X-Google-Smtp-Source: APXvYqysgoHRT9nJ4o3ivgj33cn+8PO1AktlNq1RhNsV1BWeQRfTticp0nqWTTLJICn8n6SSE2jubQ==
+X-Received: by 2002:a0c:b999:: with SMTP id v25mr26863225qvf.36.1563328055128; 
+ Tue, 16 Jul 2019 18:47:35 -0700 (PDT)
 Received: from smtp.gmail.com ([187.121.151.22])
- by smtp.gmail.com with ESMTPSA id a135sm10274098qkg.72.2019.07.16.18.25.20
+ by smtp.gmail.com with ESMTPSA id x8sm10681927qka.106.2019.07.16.18.47.30
  (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
- Tue, 16 Jul 2019 18:25:27 -0700 (PDT)
-Date: Tue, 16 Jul 2019 22:25:18 -0300
+ Tue, 16 Jul 2019 18:47:34 -0700 (PDT)
+Date: Tue, 16 Jul 2019 22:47:27 -0300
 From: Rodrigo Siqueira <rodrigosiqueiramelo@gmail.com>
 To: "Ser, Simon" <simon.ser@intel.com>
-Message-ID: <20190717012518.qvx5lvznxsl2m3vw@smtp.gmail.com>
+Message-ID: <20190717014727.ijkoikehrla5la2s@smtp.gmail.com>
 References: <cover.1560374714.git.rodrigosiqueiramelo@gmail.com>
- <539f9b55a8269d3eb20d7d211f701d1a301d5b9d.1560374714.git.rodrigosiqueiramelo@gmail.com>
- <cb41813cb605db17faee193acfa3f1bbd5b2a039.camel@intel.com>
- <e54ac9aed7325a0b7735251199dcb3dba8cbdcec.camel@intel.com>
- <20190712024941.4asntpe6s23x66q4@smtp.gmail.com>
- <89a0e0508c989289690ecea001bb9ae51da9ac07.camel@intel.com>
+ <9f4a3f1d1c9df084ec2bf8e9b7475bbeda5f0985.1560374714.git.rodrigosiqueiramelo@gmail.com>
+ <43c3d3c9150fbfd24e0fdf63747fc523b1890c75.camel@intel.com>
 MIME-Version: 1.0
-In-Reply-To: <89a0e0508c989289690ecea001bb9ae51da9ac07.camel@intel.com>
+In-Reply-To: <43c3d3c9150fbfd24e0fdf63747fc523b1890c75.camel@intel.com>
 User-Agent: NeoMutt/20180716
 X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=gmail.com; s=20161025;
  h=date:from:to:cc:subject:message-id:references:mime-version
  :content-disposition:in-reply-to:user-agent;
- bh=pRba4ypTNj7G5JCLvYUciIsduVvk5EZhkGt9BvqVIuo=;
- b=qPKhyQ+dw0jyzt8kfCwMPEJQtVRCXyBlarQw27YKbtoE+8ItIMRLb8LM2cByzBlEd6
- pDq+uxnqCtcy4CzYVTZ/959BEAKtlp9CsvJ/h8lImT40hU/zwOEOe0Tas+zuFGkcJLqN
- 1bhIwul2PUUhkScIjOSEa7q7qsrgGSXX/K5O1H97h0H6KmZVN6DV83g2KkQv0pIdrb0l
- GsfalWOuGmJ/M8JjIsdZHbQTiyPc2YZh5l5/stCDiCxqz/ue61LGIB6qkQx8KMlwPX2+
- B9k35KFqub+oh4vV8OU41Cf7ZYLz5UCswL1O+bPury5aukEH6X+l3v9KvK+Qhs6F5IOP
- YFxA==
-Subject: Re: [Intel-gfx] [igt-dev] [PATCH V6 i-g-t 3/6] lib: Add function to
- hash a framebuffer
+ bh=pUEvqgKQGcczPnLR3qADtD3JfJe4jZ7cA7OUIQIqUHc=;
+ b=LXLfteCWzdHMjnUWFV/kdYf3DqHzk0QtGFVkGgEK/lkqRoIXJKtUvpvLBKHTAnYQNM
+ sdBbl7e4xRQkk/9KgySIyP4iSULEPG9r/4j0JB/VcpafEpTswD+T6mOsAe0F5MxHiLE0
+ WYCl83DKnlkA57Rb6gIXJWo21RgQxC9Z0uE3M26F5/SMTFRDjNAXSJI/YF+C/PeFimxp
+ QBDt2iBHfXVAUaQKKkXVMxiEc3bXXvPEg+pSI3en3UXiTd6ULLymXifaLuNegTqMYZTX
+ Ft22A65cBUXSNgFoaA+Ln8mYmq7XdDfIyOlOVFs6AOxlk0REesoY0mw36KkPeKAa6IcA
+ K2HQ==
+Subject: Re: [Intel-gfx] [igt-dev] [PATCH V6 i-g-t 5/6] lib/igt_kms: Add
+ igt_output_clone_pipe for cloning
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -77,238 +73,270 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
  "igt-dev@lists.freedesktop.org" <igt-dev@lists.freedesktop.org>,
  "nd@arm.com" <nd@arm.com>
-Content-Type: multipart/mixed; boundary="===============0485948005=="
+Content-Type: multipart/mixed; boundary="===============0153408555=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
---===============0485948005==
+--===============0153408555==
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="zhpnofc2xan2alvp"
+	protocol="application/pgp-signature"; boundary="mutgwvowrsinxz2q"
 Content-Disposition: inline
 
 
---zhpnofc2xan2alvp
+--mutgwvowrsinxz2q
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
 On 07/12, Ser, Simon wrote:
-> On Thu, 2019-07-11 at 23:49 -0300, Rodrigo Siqueira wrote:
-> > On 07/10, Ser, Simon wrote:
-> > > On Wed, 2019-07-10 at 15:30 +0000, Ser, Simon wrote:
-> > > > Mostly LGTM, here are a few nits.
-> > > >=20
-> > > > On Wed, 2019-06-12 at 23:17 -0300, Brian Starkey wrote:
-> > > > > To use writeback buffers as a CRC source, we need to be able to h=
-ash
-> > > > > them. Implement a simple FVA-1a hashing routine for this purpose.
-> > > > >=20
-> > > > > Doing a bytewise hash on the framebuffer directly can be very slo=
-w if
-> > > > > the memory is noncached. By making a copy of each line in the FB =
-first
-> > > > > (which can take advantage of word-access speedup), we can do the =
-hash
-> > > > > on a cached copy, which is much faster (10x speedup on my platfor=
-m).
-> > > > >=20
-> > > > > v6: use igt_memcpy_from_wc() instead of plain memcpy, as suggeste=
-d by
-> > > > >     Chris Wilson
-> > > > >=20
-> > > > > Signed-off-by: Brian Starkey <brian.starkey@arm.com>
-> > > > > [rebased and updated to the most recent API]
-> > > > > Signed-off-by: Liviu Dudau <liviu.dudau@arm.com>
-> > > > > ---
-> > > > >  lib/igt_fb.c | 66 ++++++++++++++++++++++++++++++++++++++++++++++=
-++++++
-> > > > >  lib/igt_fb.h |  3 +++
-> > > > >  2 files changed, 69 insertions(+)
-> > > > >=20
-> > > > > diff --git a/lib/igt_fb.c b/lib/igt_fb.c
-> > > > > index 9d4f905e..d07dae39 100644
-> > > > > --- a/lib/igt_fb.c
-> > > > > +++ b/lib/igt_fb.c
-> > > > > @@ -3256,6 +3256,72 @@ bool igt_fb_supported_format(uint32_t drm_=
-format)
-> > > > >  	return false;
-> > > > >  }
-> > > > > =20
-> > > > > +/*
-> > > > > + * This implements the FNV-1a hashing algorithm instead of CRC, =
-for
-> > > > > + * simplicity
-> > > > > + * http://www.isthe.com/chongo/tech/comp/fnv/index.html
-> > > > > + *
-> > > > > + * hash =3D offset_basis
-> > > > > + * for each octet_of_data to be hashed
-> > > > > + *         hash =3D hash xor octet_of_data
-> > > > > + *         hash =3D hash * FNV_prime
-> > > > > + * return hash
-> > > > > + *
-> > > > > + * 32 bit offset_basis =3D 2166136261
-> > > > > + * 32 bit FNV_prime =3D 224 + 28 + 0x93 =3D 16777619
-> > > > > + */
-> > > > > +int igt_fb_get_crc(struct igt_fb *fb, igt_crc_t *crc)
-> > > > > +{
-> > > > > +#define FNV1a_OFFSET_BIAS 2166136261
-> > > > > +#define FNV1a_PRIME 16777619
-> > > >=20
-> > > > I'd just use plain uint32_t variables for those, but no big deal.
-> > > >=20
-> > > > > +	uint32_t hash;
-> > > > > +	void *map;
-> > > > > +	char *ptr, *line =3D NULL;
-> > > > > +	int x, y, cpp =3D igt_drm_format_to_bpp(fb->drm_format) / 8;
-> > > > > +	uint32_t stride =3D calc_plane_stride(fb, 0);
-> > > >=20
-> > > > We could return -EINVAL in case fb->num_planes !=3D 1.
-> > >=20
-> > > Let's not waste cycles. With this ^ fixed, this patch is:
-> > >=20
-> > > Reviewed-by: Simon Ser <simon.ser@intel.com>
-> > >=20
-> > > Other nits are optional.
-> >=20
-> > I agreed with all your suggestions, and I already applied all of them.
-> > Should I wait for the other patches review, or should I resend the new
-> > version?
->=20
-> I'm fine with waiting for the full review before a new version of the
-> whole patchset, but you can also send an updated version of a single
-> patch with:
->=20
->     git send-email --in-reply-to=3D"<cover.1560374714.git.rodrigosiqueira=
-melo@gmail.com>" -1 <commit hash>
->=20
-> where In-Reply-To is the Message-Id of the patch you want to update. I
-> agree it's a little tedious since you need to extract the Message-Id
-> from the message header.
+> So, to test these last two patches we'd need specific hardware right?
+> Because VKMS doesn't support cloning yet (does it?).
 
-Thanks for the tip with git-send-mail. Since I already applied most of
-your suggestions, I'll send a full version soon.
+hmmm... actually, VKMS successfully pass in this test. However, if you
+compare "writeback-check-output" and "writeback-check-output-clone", you
+will notice they are very similar. Maybe, this test does not correctly
+validating cloning feature?
+
+> What kind of hardware supports cloned writeback outputs? I have a
+> Raspberry Pi which supports writeback via VC4, but I don't think it has
+> writeback cloning. I'm also not willing to install any proprietary
+> driver.
+>=20
+> I guess we could land the first part of the series, and wait for VKMS
+> to support cloned outputs to land the last two patches.
+>=20
+> Any other ideas?
+
+btw, I'm totally comfortable with the idea of focusing on the first part
+of this series.
+
+Thanks
 =20
-> > Thanks for all the feedback
->=20
-> :)
->=20
-> > Best Regards
+> On Wed, 2019-06-12 at 23:18 -0300, Brian Starkey wrote:
+> > An output can be added as a clone of any other output(s) attached to a
+> > pipe using igt_output_clone_pipe()
+> >=20
+> > v5: Drop field out_fence_requested from struct igt_pipe (Brian Starkey)
+> >=20
+> > Signed-off-by: Brian Starkey <brian.starkey@arm.com>
+> > ---
+> >  lib/igt_kms.c | 100 +++++++++++++++++++++++++++++++-------------------
+> >  lib/igt_kms.h |   4 ++
+> >  2 files changed, 66 insertions(+), 38 deletions(-)
+> >=20
+> > diff --git a/lib/igt_kms.c b/lib/igt_kms.c
+> > index 140db346..b85a0404 100644
+> > --- a/lib/igt_kms.c
+> > +++ b/lib/igt_kms.c
+> > @@ -1765,6 +1765,17 @@ static void igt_display_log_shift(igt_display_t =
+*display, int shift)
+> >  	igt_assert(display->log_shift >=3D 0);
+> >  }
 > > =20
-> > > > > +	if (fb->is_dumb)
-> > > > > +		map =3D kmstest_dumb_map_buffer(fb->fd, fb->gem_handle, fb->si=
-ze,
-> > > > > +					      PROT_READ);
-> > > > > +	else
-> > > > > +		map =3D gem_mmap__gtt(fb->fd, fb->gem_handle, fb->size,
-> > > > > +				    PROT_READ);
-> > > > > +	ptr =3D map;
-> > > >=20
-> > > > Nit: no need for this, can assign the result of mmap directly to pt=
-r.
-> > > >=20
-> > > > > +
-> > > > > +	/*
-> > > > > +	 * Framebuffers are often uncached, which can make byte-wise ac=
-cesses
-> > > > > +	 * very slow. We copy each line of the FB into a local buffer t=
-o speed
-> > > > > +	 * up the hashing.
-> > > > > +	 */
-> > > > > +	line =3D malloc(stride);
-> > > > > +	if (!line) {
-> > > > > +		munmap(map, fb->size);
-> > > > > +		return -ENOMEM;
-> > > > > +	}
-> > > > > +
-> > > > > +	hash =3D FNV1a_OFFSET_BIAS;
-> > > > > +
-> > > > > +	for (y =3D 0; y < fb->height; y++, ptr +=3D stride) {
-> > > > > +
-> > > > > +		igt_memcpy_from_wc(line, ptr, stride);
-> > > >=20
-> > > > Nit: no need to copy the whole stride actually, we can just copy
-> > > > fb->width * cpp since we're only going to read that.
-> > > >=20
-> > > > > +
-> > > > > +		for (x =3D 0; x < fb->width * cpp; x++) {
-> > > > > +			hash ^=3D line[x];
-> > > > > +			hash *=3D FNV1a_PRIME;
-> > > > > +		}
-> > > > > +	}
-> > > > > +
-> > > > > +	crc->n_words =3D 1;
-> > > > > +	crc->crc[0] =3D hash;
-> > > > > +
-> > > > > +	free(line);
-> > > > > +	munmap(map, fb->size);
-> > > > > +
-> > > > > +	return 0;
-> > > > > +#undef FNV1a_OFFSET_BIAS
-> > > > > +#undef FNV1a_PRIME
-> > > > > +}
-> > > > > +
-> > > > >  /**
-> > > > >   * igt_format_is_yuv:
-> > > > >   * @drm_format: drm fourcc
-> > > > > diff --git a/lib/igt_fb.h b/lib/igt_fb.h
-> > > > > index adefebe1..a2741c05 100644
-> > > > > --- a/lib/igt_fb.h
-> > > > > +++ b/lib/igt_fb.h
-> > > > > @@ -37,6 +37,7 @@
-> > > > >  #include <i915_drm.h>
-> > > > > =20
-> > > > >  #include "igt_color_encoding.h"
-> > > > > +#include "igt_debugfs.h"
-> > > > > =20
-> > > > >  /*
-> > > > >   * Internal format to denote a buffer compatible with pixman's
-> > > > > @@ -194,5 +195,7 @@ int igt_format_plane_bpp(uint32_t drm_format,=
- int plane);
-> > > > >  void igt_format_array_fill(uint32_t **formats_array, unsigned in=
-t *count,
-> > > > >  			   bool allow_yuv);
-> > > > > =20
-> > > > > +int igt_fb_get_crc(struct igt_fb *fb, igt_crc_t *crc);
-> > > > > +
-> > > > >  #endif /* __IGT_FB_H__ */
-> > > > > =20
-> > > > > _______________________________________________
-> > > > > igt-dev mailing list
-> > > > > igt-dev@lists.freedesktop.org
-> > > > > https://lists.freedesktop.org/mailman/listinfo/igt-dev
-> > > > _______________________________________________
-> > > > igt-dev mailing list
-> > > > igt-dev@lists.freedesktop.org
-> > > > https://lists.freedesktop.org/mailman/listinfo/igt-dev
+> > +static int igt_output_idx(igt_output_t *output)
+> > +{
+> > +	int i;
+> > +
+> > +	for (i =3D 0; i < output->display->n_outputs; i++)
+> > +		if (&output->display->outputs[i] =3D=3D output)
+> > +			return i;
+> > +
+> > +	return -1;
+> > +}
+> > +
+> >  static void igt_output_refresh(igt_output_t *output)
+> >  {
+> >  	igt_display_t *display =3D output->display;
+> > @@ -2317,42 +2328,6 @@ void igt_display_fini(igt_display_t *display)
+> >  	display->planes =3D NULL;
+> >  }
+> > =20
+> > -static void igt_display_refresh(igt_display_t *display)
+> > -{
+> > -	igt_output_t *output;
+> > -	int i;
+> > -
+> > -	unsigned long pipes_in_use =3D 0;
+> > -
+> > -       /* Check that two outputs aren't trying to use the same pipe */
+> > -	for (i =3D 0; i < display->n_outputs; i++) {
+> > -		output =3D &display->outputs[i];
+> > -
+> > -		if (output->pending_pipe !=3D PIPE_NONE) {
+> > -			if (pipes_in_use & (1 << output->pending_pipe))
+> > -				goto report_dup;
+> > -
+> > -			pipes_in_use |=3D 1 << output->pending_pipe;
+> > -		}
+> > -
+> > -		if (output->force_reprobe)
+> > -			igt_output_refresh(output);
+> > -	}
+> > -
+> > -	return;
+> > -
+> > -report_dup:
+> > -	for (; i > 0; i--) {
+> > -		igt_output_t *b =3D &display->outputs[i - 1];
+> > -
+> > -		igt_assert_f(output->pending_pipe !=3D
+> > -			     b->pending_pipe,
+> > -			     "%s and %s are both trying to use pipe %s\n",
+> > -			     igt_output_name(output), igt_output_name(b),
+> > -			     kmstest_pipe_name(output->pending_pipe));
+> > -	}
+> > -}
+> > -
+> >  static igt_pipe_t *igt_output_get_driving_pipe(igt_output_t *output)
+> >  {
+> >  	igt_display_t *display =3D output->display;
+> > @@ -2376,6 +2351,40 @@ static igt_pipe_t *igt_output_get_driving_pipe(i=
+gt_output_t *output)
+> >  	return &display->pipes[pipe];
+> >  }
+> > =20
+> > +static void igt_display_refresh(igt_display_t *display)
+> > +{
+> > +	igt_output_t *output;
+> > +	igt_pipe_t *pipe;
+> > +	int i;
+> > +
+> > +	unsigned long pipes_in_use =3D 0;
+> > +	unsigned long pending_crtc_idx_mask;
+> > +
+> > +	/* Check that outputs and pipes agree wrt. cloning */
+> > +	for (i =3D 0; i < display->n_outputs; i++) {
+> > +		output =3D &display->outputs[i];
+> > +		pending_crtc_idx_mask =3D 1 << output->pending_pipe;
+> > +
+> > +		pipe =3D igt_output_get_driving_pipe(output);
+> > +		if (pipe) {
+> > +			igt_assert_f(pipe->outputs & (1 << igt_output_idx(output)),
+> > +				     "Output %s not expected to be using pipe %s\n",
+> > +				     igt_output_name(output),
+> > +				     kmstest_pipe_name(pipe->pipe));
+> > +
+> > +			if (pipes_in_use & pending_crtc_idx_mask)
+> > +				LOG(display, "Output %s clones pipe %s\n",
+> > +				    igt_output_name(output),
+> > +				    kmstest_pipe_name(pipe->pipe));
+> > +		}
+> > +
+> > +		pipes_in_use |=3D pending_crtc_idx_mask;
+> > +
+> > +		if (output->force_reprobe)
+> > +			igt_output_refresh(output);
+> > +	}
+> > +}
+> > +
+> >  static igt_plane_t *igt_pipe_get_plane(igt_pipe_t *pipe, int plane_idx)
+> >  {
+> >  	igt_require_f(plane_idx >=3D 0 && plane_idx < pipe->n_planes,
+> > @@ -3766,6 +3775,7 @@ void igt_output_override_mode(igt_output_t *outpu=
+t, const drmModeModeInfo *mode)
+> >  	output->use_override_mode =3D !!mode;
+> > =20
+> >  	if (pipe) {
+> > +		igt_debug("overriding pipe mode in %s way\n", output->display->is_at=
+omic ? "atomic" : "legacy");
+> >  		if (output->display->is_atomic)
+> >  			igt_pipe_obj_replace_prop_blob(pipe, IGT_CRTC_MODE_ID, igt_output_g=
+et_mode(output), sizeof(*mode));
+> >  		else
+> > @@ -3773,6 +3783,16 @@ void igt_output_override_mode(igt_output_t *outp=
+ut, const drmModeModeInfo *mode)
+> >  	}
+> >  }
+> > =20
+> > +void igt_output_clone_pipe(igt_output_t *output, enum pipe pipe)
+> > +{
+> > +	igt_display_t *display =3D output->display;
+> > +	uint32_t current_clones =3D display->pipes[pipe].outputs;
+> > +
+> > +	igt_output_set_pipe(output, pipe);
+> > +
+> > +	display->pipes[pipe].outputs |=3D current_clones;
+> > +}
+> > +
+> >  /*
+> >   * igt_output_set_pipe:
+> >   * @output: Target output for which the pipe is being set to
+> > @@ -3789,11 +3809,15 @@ void igt_output_set_pipe(igt_output_t *output, =
+enum pipe pipe)
+> > =20
+> >  	igt_assert(output->name);
+> > =20
+> > -	if (output->pending_pipe !=3D PIPE_NONE)
+> > +	if (output->pending_pipe !=3D PIPE_NONE) {
+> >  		old_pipe =3D igt_output_get_driving_pipe(output);
+> > +		old_pipe->outputs &=3D ~(1 << igt_output_idx(output));
+> > +	}
+> > =20
+> > -	if (pipe !=3D PIPE_NONE)
+> > +	if (pipe !=3D PIPE_NONE) {
+> >  		pipe_obj =3D &display->pipes[pipe];
+> > +		pipe_obj->outputs =3D (1 << igt_output_idx(output));
+> > +	}
+> > =20
+> >  	LOG(display, "%s: set_pipe(%s)\n", igt_output_name(output),
+> >  	    kmstest_pipe_name(pipe));
+> > diff --git a/lib/igt_kms.h b/lib/igt_kms.h
+> > index cacc6b90..676839bb 100644
+> > --- a/lib/igt_kms.h
+> > +++ b/lib/igt_kms.h
+> > @@ -354,6 +354,8 @@ struct igt_pipe {
+> >  	uint32_t crtc_id;
+> > =20
+> >  	int32_t out_fence_fd;
+> > +
+> > +	uint32_t outputs;
+> >  };
+> > =20
+> >  typedef struct {
+> > @@ -411,6 +413,8 @@ const char *igt_output_name(igt_output_t *output);
+> >  drmModeModeInfo *igt_output_get_mode(igt_output_t *output);
+> >  void igt_output_override_mode(igt_output_t *output, const drmModeModeI=
+nfo *mode);
+> >  void igt_output_set_pipe(igt_output_t *output, enum pipe pipe);
+> > +void igt_output_clone_pipe(igt_output_t *output, enum pipe pipe);
+> > +
+> >  igt_plane_t *igt_output_get_plane(igt_output_t *output, int plane_idx);
+> >  igt_plane_t *igt_output_get_plane_type(igt_output_t *output, int plane=
+_type);
+> >  int igt_output_count_plane_type(igt_output_t *output, int plane_type);
+> > _______________________________________________
+> > igt-dev mailing list
+> > igt-dev@lists.freedesktop.org
+> > https://lists.freedesktop.org/mailman/listinfo/igt-dev
 
 --=20
 Rodrigo Siqueira
 https://siqueira.tech
 
---zhpnofc2xan2alvp
+--mutgwvowrsinxz2q
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAEBCgAdFiEE4tZ+ii1mjMCMQbfkWJzP/comvP8FAl0ueP0ACgkQWJzP/com
-vP89cA//UGVW7rR7jD+sKZPRNqzcckCPtmBJPpJnrLNZak7E1qkKFm/WEfay8icv
-GfZ/sQPw4Sm+uyobEOAV5Z8s8p5nQDEX4nPtm0ivZN2mzaJp2J680l5tGZnRP4e3
-bNQOBbmVA7TPsc69gxUIkmx58XfVPGd2QjCyLUAdUqZ7ooKjLNJ4j8X3LFdneSfN
-AWfERAAW3b55tLq2uPdtO1icD8IyfDcgQIRrqQDG4kWfcEqgwm9KoGUVzMFh+bx5
-DO9eFa65ESCknTukh6DbBxfu0NWH+8xvVXDG4uEs38DbSPoroiOUqEd3iVg3aw6E
-0oztgh7GikEx8nMnYADKmYX/433LO5t8kD1acJBe8/ReKBmssoJqekkxkgMZ/2ie
-Jn9Am0o+avY5dztSZDfLzl8R1tmSPDZMgO0CiRy3fSrFVwXzxsrXle0KhbLP6uOk
-PKiOrpWQBWaCBeTRWm8RJUNwYVk0w8tngVz1UteC6Z96UJn1KNjc0b1wINzOubYG
-Mg2Ppx6c7V1hf5q2LMYyUVaMJ/pq0rIVRrJnXWgi7qRPx05jfEdsBiIXFc4X7U46
-Cqgi0Fk7nClmZ3l85AC5etc74407Cf0LKUuryEhlYl82JeXWt2MpdVexAAjG5Rqg
-gO/1Cy6pWi+aSwXdPc6KSsDy/4GrCgljKZBBMKN0Cxll13SS6UQ=
-=IQk9
+iQIzBAEBCgAdFiEE4tZ+ii1mjMCMQbfkWJzP/comvP8FAl0ufi8ACgkQWJzP/com
+vP/OKQ/+PyDepVRqtJlnBt4Ts43wrLs7MhZuA6HdSYSlZ9gv07HHPbRa6a12bNi1
+0Q2LB2zUZke87lp9EvTA+6KrO4dOFtMCXi7ebpFOLzn4HN+QAmpbi9WnpWBpJqdL
+5EWO5vx8UZtv2kc+xj6BgKXZYa+ZY1R1Tr9tzalbj/Veks6f80IizAsrybe1uw0B
+QLgRUqwVQo428gkLfKdBL71p2va2KrwGtUHwSkT+hNvPAY8ojOSGZV5qPUacxvv/
+gfruGWzaKLLrZ1DDO3Yf0p6yloMaMRUub/BAGdZwvH5tskdDMTrGam3lqNom2IR0
+l395RLdMJc9v+4qQPhL11+rlhs8jwrIRNrE4Uo6p3VUctmGj519ZW7VgzqXcGnn3
+QNw/O7MRpKNIIUGr1UHBGVNns2R4QIDGwR3/DPCG/zoUPHjAchwQWZxJyM5mYXxV
+SQR3IaKDiHLRi/vk3CRDRyKkdvHmtwnj4GJL2y554pysQMr4VzIhPRGUIbwKXvui
+SKOGA8ZndN5DVWR8LYdvunN86e0ux/sQ/39OA87yLWsCiBxPu2DPZhKv+cEcAcCg
+eylTbE3PnCRKu7ymr3ZX9PuMNcgY2VnMP/OlHzD7rzXPqglrskKI4EmT+vkhLfnC
+TuBdnUvcosrje5L/B+7dM0DmQ/k/lF5+YChuN6ELqSdMQ7v8Rf4=
+=90Ts
 -----END PGP SIGNATURE-----
 
---zhpnofc2xan2alvp--
+--mutgwvowrsinxz2q--
 
---===============0485948005==
+--===============0153408555==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -318,4 +346,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
 IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
 dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
 
---===============0485948005==--
+--===============0153408555==--
