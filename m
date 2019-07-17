@@ -2,62 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F6196B37A
-	for <lists+intel-gfx@lfdr.de>; Wed, 17 Jul 2019 03:47:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A0DFE6B38C
+	for <lists+intel-gfx@lfdr.de>; Wed, 17 Jul 2019 03:55:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DF5D56E1CF;
-	Wed, 17 Jul 2019 01:47:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8BC7D6E1DE;
+	Wed, 17 Jul 2019 01:55:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-qt1-x842.google.com (mail-qt1-x842.google.com
- [IPv6:2607:f8b0:4864:20::842])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0BB316E1CF;
- Wed, 17 Jul 2019 01:47:36 +0000 (UTC)
-Received: by mail-qt1-x842.google.com with SMTP id n11so21722758qtl.5;
- Tue, 16 Jul 2019 18:47:35 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to:user-agent;
- bh=pUEvqgKQGcczPnLR3qADtD3JfJe4jZ7cA7OUIQIqUHc=;
- b=NwtWPeBjb6bVlYlzxGPrvRIVORZwxVFFQ1pEvZvganG44/Bmtw12FGfSCnofM2jYoH
- 1uGJqgzll6lH/0+qIhNg4MZB/AfEYCQyNyJJDtlLHylUJAb29JTmsUVjJPB8A3o+q8np
- JecoGsbmvdlZUQ8Iv8h0XJTq7CQ9pIDgRMED4H8O0xF5ZFdubRJE7A1hOPaTiuDzavh7
- 2FQjpjvGL6nTE6sW5kNZIZ7SRJRyohZvCkj9JuOXIN7CWSj+iDzNJwFw+28g7ZS/Iluk
- IUWBm4gRP4f9KXBr2FLZMZVceO9Z8L6awZND0iGk2nICGbu+6RVR0hwQ3kZJlyqJHS5b
- S2oQ==
-X-Gm-Message-State: APjAAAUZlr5FHjwLJDemJFyMcoCQnXzjJP7o7gjODiuTtzkwdGCNFXnS
- 9GrfECmvL6+LXigRWm9eUVbrCFCFAGg=
-X-Google-Smtp-Source: APXvYqysgoHRT9nJ4o3ivgj33cn+8PO1AktlNq1RhNsV1BWeQRfTticp0nqWTTLJICn8n6SSE2jubQ==
-X-Received: by 2002:a0c:b999:: with SMTP id v25mr26863225qvf.36.1563328055128; 
- Tue, 16 Jul 2019 18:47:35 -0700 (PDT)
-Received: from smtp.gmail.com ([187.121.151.22])
- by smtp.gmail.com with ESMTPSA id x8sm10681927qka.106.2019.07.16.18.47.30
- (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
- Tue, 16 Jul 2019 18:47:34 -0700 (PDT)
-Date: Tue, 16 Jul 2019 22:47:27 -0300
-From: Rodrigo Siqueira <rodrigosiqueiramelo@gmail.com>
-To: "Ser, Simon" <simon.ser@intel.com>
-Message-ID: <20190717014727.ijkoikehrla5la2s@smtp.gmail.com>
-References: <cover.1560374714.git.rodrigosiqueiramelo@gmail.com>
- <9f4a3f1d1c9df084ec2bf8e9b7475bbeda5f0985.1560374714.git.rodrigosiqueiramelo@gmail.com>
- <43c3d3c9150fbfd24e0fdf63747fc523b1890c75.camel@intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 49EAE6E1D5
+ for <intel-gfx@lists.freedesktop.org>; Wed, 17 Jul 2019 01:55:35 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 16 Jul 2019 18:55:34 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.64,272,1559545200"; d="scan'208";a="170108433"
+Received: from orsmsx108.amr.corp.intel.com ([10.22.240.6])
+ by orsmga003.jf.intel.com with ESMTP; 16 Jul 2019 18:55:34 -0700
+Received: from orsmsx152.amr.corp.intel.com (10.22.226.39) by
+ ORSMSX108.amr.corp.intel.com (10.22.240.6) with Microsoft SMTP Server (TLS)
+ id 14.3.439.0; Tue, 16 Jul 2019 18:55:34 -0700
+Received: from vkasired-desk2.fm.intel.com (10.22.254.138) by
+ ORSMSX152.amr.corp.intel.com (10.22.226.39) with Microsoft SMTP Server (TLS)
+ id 14.3.439.0; Tue, 16 Jul 2019 18:55:33 -0700
+Date: Tue, 16 Jul 2019 18:54:39 -0700
+From: Vivek Kasireddy <vivek.kasireddy@intel.com>
+To: Ville =?UTF-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Message-ID: <20190716185159.562c0610@vkasired-desk2.fm.intel.com>
+In-Reply-To: <20190710184752.GL5942@intel.com>
+References: <20190703230353.24059-1-vivek.kasireddy@intel.com>
+ <20190710184752.GL5942@intel.com>
+X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-In-Reply-To: <43c3d3c9150fbfd24e0fdf63747fc523b1890c75.camel@intel.com>
-User-Agent: NeoMutt/20180716
-X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20161025;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to:user-agent;
- bh=pUEvqgKQGcczPnLR3qADtD3JfJe4jZ7cA7OUIQIqUHc=;
- b=LXLfteCWzdHMjnUWFV/kdYf3DqHzk0QtGFVkGgEK/lkqRoIXJKtUvpvLBKHTAnYQNM
- sdBbl7e4xRQkk/9KgySIyP4iSULEPG9r/4j0JB/VcpafEpTswD+T6mOsAe0F5MxHiLE0
- WYCl83DKnlkA57Rb6gIXJWo21RgQxC9Z0uE3M26F5/SMTFRDjNAXSJI/YF+C/PeFimxp
- QBDt2iBHfXVAUaQKKkXVMxiEc3bXXvPEg+pSI3en3UXiTd6ULLymXifaLuNegTqMYZTX
- Ft22A65cBUXSNgFoaA+Ln8mYmq7XdDfIyOlOVFs6AOxlk0REesoY0mw36KkPeKAa6IcA
- K2HQ==
-Subject: Re: [Intel-gfx] [igt-dev] [PATCH V6 i-g-t 5/6] lib/igt_kms: Add
- igt_output_clone_pipe for cloning
+X-Originating-IP: [10.22.254.138]
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/ehl: Add support for DPLL4 (v10)
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -70,280 +50,201 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "igt-dev@lists.freedesktop.org" <igt-dev@lists.freedesktop.org>,
- "nd@arm.com" <nd@arm.com>
-Content-Type: multipart/mixed; boundary="===============0153408555=="
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
---===============0153408555==
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="mutgwvowrsinxz2q"
-Content-Disposition: inline
-
-
---mutgwvowrsinxz2q
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On 07/12, Ser, Simon wrote:
-> So, to test these last two patches we'd need specific hardware right?
-> Because VKMS doesn't support cloning yet (does it?).
-
-hmmm... actually, VKMS successfully pass in this test. However, if you
-compare "writeback-check-output" and "writeback-check-output-clone", you
-will notice they are very similar. Maybe, this test does not correctly
-validating cloning feature?
-
-> What kind of hardware supports cloned writeback outputs? I have a
-> Raspberry Pi which supports writeback via VC4, but I don't think it has
-> writeback cloning. I'm also not willing to install any proprietary
-> driver.
->=20
-> I guess we could land the first part of the series, and wait for VKMS
-> to support cloned outputs to land the last two patches.
->=20
-> Any other ideas?
-
-btw, I'm totally comfortable with the idea of focusing on the first part
-of this series.
-
-Thanks
-=20
-> On Wed, 2019-06-12 at 23:18 -0300, Brian Starkey wrote:
-> > An output can be added as a clone of any other output(s) attached to a
-> > pipe using igt_output_clone_pipe()
-> >=20
-> > v5: Drop field out_fence_requested from struct igt_pipe (Brian Starkey)
-> >=20
-> > Signed-off-by: Brian Starkey <brian.starkey@arm.com>
-> > ---
-> >  lib/igt_kms.c | 100 +++++++++++++++++++++++++++++++-------------------
-> >  lib/igt_kms.h |   4 ++
-> >  2 files changed, 66 insertions(+), 38 deletions(-)
-> >=20
-> > diff --git a/lib/igt_kms.c b/lib/igt_kms.c
-> > index 140db346..b85a0404 100644
-> > --- a/lib/igt_kms.c
-> > +++ b/lib/igt_kms.c
-> > @@ -1765,6 +1765,17 @@ static void igt_display_log_shift(igt_display_t =
-*display, int shift)
-> >  	igt_assert(display->log_shift >=3D 0);
-> >  }
-> > =20
-> > +static int igt_output_idx(igt_output_t *output)
-> > +{
-> > +	int i;
-> > +
-> > +	for (i =3D 0; i < output->display->n_outputs; i++)
-> > +		if (&output->display->outputs[i] =3D=3D output)
-> > +			return i;
-> > +
-> > +	return -1;
-> > +}
-> > +
-> >  static void igt_output_refresh(igt_output_t *output)
-> >  {
-> >  	igt_display_t *display =3D output->display;
-> > @@ -2317,42 +2328,6 @@ void igt_display_fini(igt_display_t *display)
-> >  	display->planes =3D NULL;
-> >  }
-> > =20
-> > -static void igt_display_refresh(igt_display_t *display)
-> > -{
-> > -	igt_output_t *output;
-> > -	int i;
-> > -
-> > -	unsigned long pipes_in_use =3D 0;
-> > -
-> > -       /* Check that two outputs aren't trying to use the same pipe */
-> > -	for (i =3D 0; i < display->n_outputs; i++) {
-> > -		output =3D &display->outputs[i];
-> > -
-> > -		if (output->pending_pipe !=3D PIPE_NONE) {
-> > -			if (pipes_in_use & (1 << output->pending_pipe))
-> > -				goto report_dup;
-> > -
-> > -			pipes_in_use |=3D 1 << output->pending_pipe;
-> > -		}
-> > -
-> > -		if (output->force_reprobe)
-> > -			igt_output_refresh(output);
-> > -	}
-> > -
-> > -	return;
-> > -
-> > -report_dup:
-> > -	for (; i > 0; i--) {
-> > -		igt_output_t *b =3D &display->outputs[i - 1];
-> > -
-> > -		igt_assert_f(output->pending_pipe !=3D
-> > -			     b->pending_pipe,
-> > -			     "%s and %s are both trying to use pipe %s\n",
-> > -			     igt_output_name(output), igt_output_name(b),
-> > -			     kmstest_pipe_name(output->pending_pipe));
-> > -	}
-> > -}
-> > -
-> >  static igt_pipe_t *igt_output_get_driving_pipe(igt_output_t *output)
-> >  {
-> >  	igt_display_t *display =3D output->display;
-> > @@ -2376,6 +2351,40 @@ static igt_pipe_t *igt_output_get_driving_pipe(i=
-gt_output_t *output)
-> >  	return &display->pipes[pipe];
-> >  }
-> > =20
-> > +static void igt_display_refresh(igt_display_t *display)
-> > +{
-> > +	igt_output_t *output;
-> > +	igt_pipe_t *pipe;
-> > +	int i;
-> > +
-> > +	unsigned long pipes_in_use =3D 0;
-> > +	unsigned long pending_crtc_idx_mask;
-> > +
-> > +	/* Check that outputs and pipes agree wrt. cloning */
-> > +	for (i =3D 0; i < display->n_outputs; i++) {
-> > +		output =3D &display->outputs[i];
-> > +		pending_crtc_idx_mask =3D 1 << output->pending_pipe;
-> > +
-> > +		pipe =3D igt_output_get_driving_pipe(output);
-> > +		if (pipe) {
-> > +			igt_assert_f(pipe->outputs & (1 << igt_output_idx(output)),
-> > +				     "Output %s not expected to be using pipe %s\n",
-> > +				     igt_output_name(output),
-> > +				     kmstest_pipe_name(pipe->pipe));
-> > +
-> > +			if (pipes_in_use & pending_crtc_idx_mask)
-> > +				LOG(display, "Output %s clones pipe %s\n",
-> > +				    igt_output_name(output),
-> > +				    kmstest_pipe_name(pipe->pipe));
-> > +		}
-> > +
-> > +		pipes_in_use |=3D pending_crtc_idx_mask;
-> > +
-> > +		if (output->force_reprobe)
-> > +			igt_output_refresh(output);
-> > +	}
-> > +}
-> > +
-> >  static igt_plane_t *igt_pipe_get_plane(igt_pipe_t *pipe, int plane_idx)
-> >  {
-> >  	igt_require_f(plane_idx >=3D 0 && plane_idx < pipe->n_planes,
-> > @@ -3766,6 +3775,7 @@ void igt_output_override_mode(igt_output_t *outpu=
-t, const drmModeModeInfo *mode)
-> >  	output->use_override_mode =3D !!mode;
-> > =20
-> >  	if (pipe) {
-> > +		igt_debug("overriding pipe mode in %s way\n", output->display->is_at=
-omic ? "atomic" : "legacy");
-> >  		if (output->display->is_atomic)
-> >  			igt_pipe_obj_replace_prop_blob(pipe, IGT_CRTC_MODE_ID, igt_output_g=
-et_mode(output), sizeof(*mode));
-> >  		else
-> > @@ -3773,6 +3783,16 @@ void igt_output_override_mode(igt_output_t *outp=
-ut, const drmModeModeInfo *mode)
-> >  	}
-> >  }
-> > =20
-> > +void igt_output_clone_pipe(igt_output_t *output, enum pipe pipe)
-> > +{
-> > +	igt_display_t *display =3D output->display;
-> > +	uint32_t current_clones =3D display->pipes[pipe].outputs;
-> > +
-> > +	igt_output_set_pipe(output, pipe);
-> > +
-> > +	display->pipes[pipe].outputs |=3D current_clones;
-> > +}
-> > +
-> >  /*
-> >   * igt_output_set_pipe:
-> >   * @output: Target output for which the pipe is being set to
-> > @@ -3789,11 +3809,15 @@ void igt_output_set_pipe(igt_output_t *output, =
-enum pipe pipe)
-> > =20
-> >  	igt_assert(output->name);
-> > =20
-> > -	if (output->pending_pipe !=3D PIPE_NONE)
-> > +	if (output->pending_pipe !=3D PIPE_NONE) {
-> >  		old_pipe =3D igt_output_get_driving_pipe(output);
-> > +		old_pipe->outputs &=3D ~(1 << igt_output_idx(output));
-> > +	}
-> > =20
-> > -	if (pipe !=3D PIPE_NONE)
-> > +	if (pipe !=3D PIPE_NONE) {
-> >  		pipe_obj =3D &display->pipes[pipe];
-> > +		pipe_obj->outputs =3D (1 << igt_output_idx(output));
-> > +	}
-> > =20
-> >  	LOG(display, "%s: set_pipe(%s)\n", igt_output_name(output),
-> >  	    kmstest_pipe_name(pipe));
-> > diff --git a/lib/igt_kms.h b/lib/igt_kms.h
-> > index cacc6b90..676839bb 100644
-> > --- a/lib/igt_kms.h
-> > +++ b/lib/igt_kms.h
-> > @@ -354,6 +354,8 @@ struct igt_pipe {
-> >  	uint32_t crtc_id;
-> > =20
-> >  	int32_t out_fence_fd;
-> > +
-> > +	uint32_t outputs;
-> >  };
-> > =20
-> >  typedef struct {
-> > @@ -411,6 +413,8 @@ const char *igt_output_name(igt_output_t *output);
-> >  drmModeModeInfo *igt_output_get_mode(igt_output_t *output);
-> >  void igt_output_override_mode(igt_output_t *output, const drmModeModeI=
-nfo *mode);
-> >  void igt_output_set_pipe(igt_output_t *output, enum pipe pipe);
-> > +void igt_output_clone_pipe(igt_output_t *output, enum pipe pipe);
-> > +
-> >  igt_plane_t *igt_output_get_plane(igt_output_t *output, int plane_idx);
-> >  igt_plane_t *igt_output_get_plane_type(igt_output_t *output, int plane=
-_type);
-> >  int igt_output_count_plane_type(igt_output_t *output, int plane_type);
-> > _______________________________________________
-> > igt-dev mailing list
-> > igt-dev@lists.freedesktop.org
-> > https://lists.freedesktop.org/mailman/listinfo/igt-dev
-
---=20
-Rodrigo Siqueira
-https://siqueira.tech
-
---mutgwvowrsinxz2q
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAEBCgAdFiEE4tZ+ii1mjMCMQbfkWJzP/comvP8FAl0ufi8ACgkQWJzP/com
-vP/OKQ/+PyDepVRqtJlnBt4Ts43wrLs7MhZuA6HdSYSlZ9gv07HHPbRa6a12bNi1
-0Q2LB2zUZke87lp9EvTA+6KrO4dOFtMCXi7ebpFOLzn4HN+QAmpbi9WnpWBpJqdL
-5EWO5vx8UZtv2kc+xj6BgKXZYa+ZY1R1Tr9tzalbj/Veks6f80IizAsrybe1uw0B
-QLgRUqwVQo428gkLfKdBL71p2va2KrwGtUHwSkT+hNvPAY8ojOSGZV5qPUacxvv/
-gfruGWzaKLLrZ1DDO3Yf0p6yloMaMRUub/BAGdZwvH5tskdDMTrGam3lqNom2IR0
-l395RLdMJc9v+4qQPhL11+rlhs8jwrIRNrE4Uo6p3VUctmGj519ZW7VgzqXcGnn3
-QNw/O7MRpKNIIUGr1UHBGVNns2R4QIDGwR3/DPCG/zoUPHjAchwQWZxJyM5mYXxV
-SQR3IaKDiHLRi/vk3CRDRyKkdvHmtwnj4GJL2y554pysQMr4VzIhPRGUIbwKXvui
-SKOGA8ZndN5DVWR8LYdvunN86e0ux/sQ/39OA87yLWsCiBxPu2DPZhKv+cEcAcCg
-eylTbE3PnCRKu7ymr3ZX9PuMNcgY2VnMP/OlHzD7rzXPqglrskKI4EmT+vkhLfnC
-TuBdnUvcosrje5L/B+7dM0DmQ/k/lF5+YChuN6ELqSdMQ7v8Rf4=
-=90Ts
------END PGP SIGNATURE-----
-
---mutgwvowrsinxz2q--
-
---===============0153408555==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
-IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
-
---===============0153408555==--
+T24gV2VkLCAxMCBKdWwgMjAxOSAyMTo0Nzo1MiArMDMwMApWaWxsZSBTeXJqw6Rsw6QgPHZpbGxl
+LnN5cmphbGFAbGludXguaW50ZWwuY29tPiB3cm90ZToKSGkgVmlsbGUsCgo+IE9uIFdlZCwgSnVs
+IDAzLCAyMDE5IGF0IDA0OjAzOjUzUE0gLTA3MDAsIFZpdmVrIEthc2lyZWRkeSB3cm90ZToKPiA+
+IFRoaXMgcGF0Y2ggYWRkcyBzdXBwb3J0IGZvciBEUExMNCBvbiBFSEwgdGhhdCBpbmNsdWRlIHRo
+ZQo+ID4gZm9sbG93aW5nIHJlc3RyaWN0aW9uczoKPiA+IAo+ID4gLSBEUExMNCBjYW5ub3QgYmUg
+dXNlZCB3aXRoIERESUEgKGNvbWJvIHBvcnQgQSBpbnRlcm5hbCBlRFAgdXNhZ2UpLgo+ID4gICBE
+UExMNCBjYW4gYmUgdXNlZCB3aXRoIG90aGVyIERESXMsIGluY2x1ZGluZyBERElECj4gPiAgIChj
+b21ibyBwb3J0IEEgZXh0ZXJuYWwgdXNhZ2UpLgo+ID4gCj4gPiAtIERQTEw0IGNhbm5vdCBiZSBl
+bmFibGVkIHdoZW4gREM1IG9yIERDNiBhcmUgZW5hYmxlZC4KPiA+IAo+ID4gLSBUaGUgRFBMTDQg
+ZW5hYmxlLCBsb2NrLCBwb3dlciBlbmFibGVkLCBhbmQgcG93ZXIgc3RhdGUgYXJlCj4gPiBjb25u
+ZWN0ZWQgdG8gdGhlIE1HUExMMV9FTkFCTEUgcmVnaXN0ZXIuCj4gPiAKPiA+IHYyOiAoc3VnZ2Vz
+dGlvbnMgZnJvbSBCb2IgUGFhdXdlKQo+ID4gLSBSZXdvcmsgZWhsX2dldF9kcGxsKCkgZnVuY3Rp
+b24gdG8gY2FsbCBpbnRlbF9maW5kX3NoYXJlZF9kcGxsKCkKPiA+IGFuZCBpdGVyYXRlIHR3aWNl
+OiBvbmNlIGZvciBDb21ibyBwbGxzIGFuZCBvbmNlIGZvciBNRyBwbGxzLgo+ID4gCj4gPiAtIFVz
+ZSBNRyBwbGwgZnVuY3MgZm9yIERQTEw0IGluc3RlYWQgb2YgY3JlYXRpbmcgbmV3IG9uZXMgYW5k
+IG1vZGlmeQo+ID4gICBtZ19wbGxfZW5hYmxlIHRvIGluY2x1ZGUgdGhlIHJlc3RyaWN0aW9ucyBm
+b3IgRUhMLgo+ID4gCj4gPiB2MzogRml4IGNvbXBpbGF0aW9uIGVycm9yCj4gPiAKPiA+IHY0OiAo
+c3VnZ2VzdGlvbnMgZnJvbSBMdWNhcyBhbmQgVmlsbGUpCj4gPiAtIFRyZWF0IERQTEw0IGFzIGEg
+Y29tYm8gcGh5IFBMTCBhbmQgbm90IGFzIE1HIFBMTAo+ID4gLSBEaXNhYmxlIERDIHN0YXRlcyB3
+aGVuIHRoaXMgRFBMTCBpcyBiZWluZyBlbmFibGVkCj4gPiAtIFJldXNlIGljbF9nZXRfZHBsbCBp
+bnN0ZWFkIG9mIGNyZWF0aW5nIGEgc2VwYXJhdGUgb25lIGZvciBFSEwKPiA+IAo+ID4gdjU6IChz
+dWdnZXN0aW9uIGZyb20gVmlsbGUpCj4gPiAtIFJlZmNvdW50IHRoZSBEQyBPRkYgcG93ZXIgZG9t
+YWlucyBkdXJpbmcgdGhlIGVuYWJsaW5nIGFuZAo+ID4gZGlzYWJsaW5nIG9mIHRoaXMgRFBMTC4K
+PiA+IAo+ID4gdjY6IHJlYmFzZQo+ID4gCj4gPiB2NzogKHN1Z2dlc3Rpb24gZnJvbSBJbXJlKQo+
+ID4gLSBBZGQgYSBuZXcgcG93ZXIgZG9tYWluIGluc3RlYWQgb2YgaXRlcmF0aW5nIG92ZXIgdGhl
+IGRvbWFpbnMKPiA+ICAgYXNzb2ljYXRlZCB3aXRoIERDIE9GRiBwb3dlciB3ZWxsLgo+ID4gCj4g
+PiB2ODogKFZpbGxlIGFuZCBJbXJlKQo+ID4gLSBSZW5hbWUgUE9XRVJfRE9NQUlOX0RQTEw0IFRP
+IFBPV0VSX0RPTUFJTl9EUExMX0RDX09GRgo+ID4gLSBHcmFiIGEgcmVmZXJlbmNlIGluIGludGVs
+X21vZGVzZXRfc2V0dXBfaHdfc3RhdGUoKSBpZiB0aGlzCj4gPiAgIERQTEwgd2FzIGFscmVhZHkg
+ZW5hYmxlZCBwZXJoYXBzIGJ5IEJJT1MuCj4gPiAtIENoZWNrIGZvciB0aGUgcG9ydCB0eXBlIGlu
+c3RlYWQgb2YgdGhlIGVuY29kZXIKPiA+IAo+ID4gdjk6IChWaWxsZSkKPiA+IC0gTW92ZSB0aGUg
+YmxvY2sgb2YgY29kZSB0aGF0IGdyYWJzIGEgcmVmZXJlbmNlIHRvIHRoZSBwb3dlciBkb21haW4K
+PiA+ICAgUE9XRVJfRE9NQUlOX0RQTExfRENfT0ZGIHRvIGludGVsX21vZGVzZXRfcmVhZG91dF9o
+d19zdGF0ZSgpIHRvCj4gPiBlbnN1cmUgdGhhdCB0aGVyZSBpcyBhIHJlZmVyZW5jZSBwcmVzZW50
+IGJlZm9yZSB0aGlzIERQTEwgbWlnaHQgZ2V0Cj4gPiBkaXNhYmxlZC4KPiA+IAo+ID4gdjEwOiBy
+ZWJhc2UKPiA+IAo+ID4gQ2M6IEpvc8OpIFJvYmVydG8gZGUgU291emEgPGpvc2Uuc291emFAaW50
+ZWwuY29tPgo+ID4gQ2M6IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRl
+bC5jb20+Cj4gPiBDYzogTWF0dCBSb3BlciA8bWF0dGhldy5kLnJvcGVyQGludGVsLmNvbT4KPiA+
+IENjOiBJbXJlIERlYWsgPGltcmUuZGVha0BpbnRlbC5jb20+Cj4gPiBTaWduZWQtb2ZmLWJ5OiBW
+aXZlayBLYXNpcmVkZHkgPHZpdmVrLmthc2lyZWRkeUBpbnRlbC5jb20+Cj4gPiAtLS0KPiA+ICBk
+cml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuYyAgfCAgNyArKysKPiA+
+ICAuLi4vZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5X3Bvd2VyLmMgICAgfCAgMyArKwo+
+ID4gIC4uLi9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXlfcG93ZXIuaCAgICB8ICAxICsK
+PiA+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwbGxfbWdyLmMgfCA0Nwo+
+ID4gKysrKysrKysrKysrKysrKystLSBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVs
+X2RwbGxfbWdyLmgKPiA+IHwgIDYgKysrIDUgZmlsZXMgY2hhbmdlZCwgNjAgaW5zZXJ0aW9ucygr
+KSwgNCBkZWxldGlvbnMoLSkKPiA+IAo+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9p
+OTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jCj4gPiBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rp
+c3BsYXkvaW50ZWxfZGlzcGxheS5jIGluZGV4Cj4gPiA5MTlmNWFjODQ0YzguLjU1NzQ2MjIwODQ2
+MiAxMDA2NDQgLS0tCj4gPiBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlz
+cGxheS5jICsrKwo+ID4gYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3Bs
+YXkuYyBAQCAtMTY2NTMsNgo+ID4gKzE2NjUzLDEzIEBAIHN0YXRpYyB2b2lkIGludGVsX21vZGVz
+ZXRfcmVhZG91dF9od19zdGF0ZShzdHJ1Y3QKPiA+IGRybV9kZXZpY2UgKmRldikgcGxsLT5vbiA9
+IHBsbC0+aW5mby0+ZnVuY3MtPmdldF9od19zdGF0ZShkZXZfcHJpdiwKPiA+IHBsbCwgJnBsbC0+
+c3RhdGUuaHdfc3RhdGUpOwo+ID4gKwo+ID4gKwkJaWYgKElTX0VMS0hBUlRMQUtFKGRldl9wcml2
+KSAmJiBwbGwtPm9uICYmCj4gPiArCQkgICAgcGxsLT5pbmZvLT5pZCA9PSBEUExMX0lEX0VITF9E
+UExMNCkgewo+ID4gKwkJCXBsbC0+d2FrZXJlZiA9Cj4gPiBpbnRlbF9kaXNwbGF5X3Bvd2VyX2dl
+dChkZXZfcHJpdiwKPiA+ICsKPiA+IFBPV0VSX0RPTUFJTl9EUExMX0RDX09GRik7Cj4gPiArCQl9
+Cj4gPiArCj4gPiAgCQlwbGwtPnN0YXRlLmNydGNfbWFzayA9IDA7Cj4gPiAgCQlmb3JfZWFjaF9p
+bnRlbF9jcnRjKGRldiwgY3J0Yykgewo+ID4gIAkJCXN0cnVjdCBpbnRlbF9jcnRjX3N0YXRlICpj
+cnRjX3N0YXRlID0KPiA+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5
+L2ludGVsX2Rpc3BsYXlfcG93ZXIuYwo+ID4gYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5
+L2ludGVsX2Rpc3BsYXlfcG93ZXIuYyBpbmRleAo+ID4gYzE5Yjk1ODQ2MWNhLi43NDM3ZmM3MWQy
+ODkgMTAwNjQ0IC0tLQo+ID4gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rp
+c3BsYXlfcG93ZXIuYyArKysKPiA+IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRl
+bF9kaXNwbGF5X3Bvd2VyLmMgQEAgLTExOCw2Cj4gPiArMTE4LDggQEAgaW50ZWxfZGlzcGxheV9w
+b3dlcl9kb21haW5fc3RyKGVudW0KPiA+IGludGVsX2Rpc3BsYXlfcG93ZXJfZG9tYWluIGRvbWFp
+bikgcmV0dXJuICJNT0RFU0VUIjsgY2FzZQo+ID4gUE9XRVJfRE9NQUlOX0dUX0lSUTogcmV0dXJu
+ICJHVF9JUlEiOwo+ID4gKwljYXNlIFBPV0VSX0RPTUFJTl9EUExMX0RDX09GRjoKPiA+ICsJCXJl
+dHVybiAiRFBMTF9EQ19PRkYiOwo+ID4gIAlkZWZhdWx0Ogo+ID4gIAkJTUlTU0lOR19DQVNFKGRv
+bWFpbik7Cj4gPiAgCQlyZXR1cm4gIj8iOwo+ID4gQEAgLTI0NTUsNiArMjQ1Nyw3IEBAIHZvaWQg
+aW50ZWxfZGlzcGxheV9wb3dlcl9wdXQoc3RydWN0Cj4gPiBkcm1faTkxNV9wcml2YXRlICpkZXZf
+cHJpdiwgSUNMX1BXXzJfUE9XRVJfRE9NQUlOUwo+ID4gfAkJCVwgQklUX1VMTChQT1dFUl9ET01B
+SU5fTU9ERVNFVCkKPiA+IHwJCQlcIEJJVF9VTEwoUE9XRVJfRE9NQUlOX0FVWF9BKQo+ID4gfAkJ
+CVwKPiA+ICsJQklUX1VMTChQT1dFUl9ET01BSU5fRFBMTF9EQ19PRkYpIHwKPiA+IFwgQklUX1VM
+TChQT1dFUl9ET01BSU5fSU5JVCkpCj4gPiAgCj4gPiAgI2RlZmluZSBJQ0xfRERJX0lPX0FfUE9X
+RVJfRE9NQUlOUyAoCQkJXAo+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rp
+c3BsYXkvaW50ZWxfZGlzcGxheV9wb3dlci5oCj4gPiBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rp
+c3BsYXkvaW50ZWxfZGlzcGxheV9wb3dlci5oIGluZGV4Cj4gPiBmZjU3YjBhN2ZlNTkuLjhmNDNm
+NzA1MWExNiAxMDA2NDQgLS0tCj4gPiBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50
+ZWxfZGlzcGxheV9wb3dlci5oICsrKwo+ID4gYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5
+L2ludGVsX2Rpc3BsYXlfcG93ZXIuaCBAQCAtNTksNiArNTksNwo+ID4gQEAgZW51bSBpbnRlbF9k
+aXNwbGF5X3Bvd2VyX2RvbWFpbiB7IFBPV0VSX0RPTUFJTl9HTUJVUywKPiA+ICAJUE9XRVJfRE9N
+QUlOX01PREVTRVQsCj4gPiAgCVBPV0VSX0RPTUFJTl9HVF9JUlEsCj4gPiArCVBPV0VSX0RPTUFJ
+Tl9EUExMX0RDX09GRiwKPiA+ICAJUE9XRVJfRE9NQUlOX0lOSVQsCj4gPiAgCj4gPiAgCVBPV0VS
+X0RPTUFJTl9OVU0sCj4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxh
+eS9pbnRlbF9kcGxsX21nci5jCj4gPiBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50
+ZWxfZHBsbF9tZ3IuYyBpbmRleAo+ID4gZjk1Mzk3MWU3YzNiLi42N2NmZTgzNjI4NmUgMTAwNjQ0
+IC0tLQo+ID4gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwbGxfbWdyLmMg
+KysrCj4gPiBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHBsbF9tZ3IuYyBA
+QCAtMjkwNSw2ICsyOTA1LDkKPiA+IEBAIHN0YXRpYyBib29sIGljbF9nZXRfY29tYm9fcGh5X2Rw
+bGwoc3RydWN0IGludGVsX2F0b21pY19zdGF0ZQo+ID4gKnN0YXRlLCBpbnRlbF9hdG9taWNfZ2V0
+X25ld19jcnRjX3N0YXRlKHN0YXRlLCBjcnRjKTsgc3RydWN0Cj4gPiBpY2xfcG9ydF9kcGxsICpw
+b3J0X2RwbGwgPQo+ID4gJmNydGNfc3RhdGUtPmljbF9wb3J0X2RwbGxzW0lDTF9QT1JUX0RQTExf
+REVGQVVMVF07Cj4gPiArCXN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJpdiA9Cj4gPiB0
+b19pOTE1KGNydGMtPmJhc2UuZGV2KTsKPiA+ICsJZW51bSBwb3J0IHBvcnQgPSBlbmNvZGVyLT5w
+b3J0Owo+ID4gKwlib29sIGhhc19kcGxsNCA9IGZhbHNlOwo+ID4gIAo+ID4gIAlpZiAoIWljbF9j
+YWxjX2RwbGxfc3RhdGUoY3J0Y19zdGF0ZSwgZW5jb2RlciwKPiA+ICZwb3J0X2RwbGwtPmh3X3N0
+YXRlKSkgeyBEUk1fREVCVUdfS01TKCJDb3VsZCBub3QgY2FsY3VsYXRlIGNvbWJvCj4gPiBQSFkg
+UExMIHN0YXRlLlxuIik7IEBAIC0yOTEyLDEwICsyOTE1LDE0IEBAIHN0YXRpYyBib29sCj4gPiBp
+Y2xfZ2V0X2NvbWJvX3BoeV9kcGxsKHN0cnVjdCBpbnRlbF9hdG9taWNfc3RhdGUgKnN0YXRlLCBy
+ZXR1cm4KPiA+IGZhbHNlOyB9Cj4gPiAgCj4gPiArCWlmIChJU19FTEtIQVJUTEFLRShkZXZfcHJp
+dikgJiYgcG9ydCAhPSBQT1JUX0EpCj4gPiArCQloYXNfZHBsbDQgPSB0cnVlOwo+ID4gKwo+ID4g
+IAlwb3J0X2RwbGwtPnBsbCA9IGludGVsX2ZpbmRfc2hhcmVkX2RwbGwoc3RhdGUsIGNydGMsCj4g
+PiAgCQkJCQkJJnBvcnRfZHBsbC0+aHdfc3RhdGUsCj4gPiAgCQkJCQkJRFBMTF9JRF9JQ0xfRFBM
+TDAsCj4gPiAtCQkJCQkJRFBMTF9JRF9JQ0xfRFBMTDEpOwo+ID4gKwkJCQkJCWhhc19kcGxsNCA/
+Cj4gPiBEUExMX0lEX0VITF9EUExMNAo+ID4gKwkJCQkJCQkgIDoKPiA+IERQTExfSURfSUNMX0RQ
+TEwxKTsgaWYgKCFwb3J0X2RwbGwtPnBsbCkgewo+ID4gIAkJRFJNX0RFQlVHX0tNUygiTm8gY29t
+Ym8gUEhZIFBMTCBmb3VuZCBmb3IgcG9ydAo+ID4gJWNcbiIsIHBvcnRfbmFtZShlbmNvZGVyLT5w
+b3J0KSk7Cj4gPiBAQCAtMzExOSw4ICszMTI2LDE0IEBAIHN0YXRpYyBib29sIGNvbWJvX3BsbF9n
+ZXRfaHdfc3RhdGUoc3RydWN0Cj4gPiBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJpdiwgc3RydWN0
+IGludGVsX3NoYXJlZF9kcGxsICpwbGwsCj4gPiAgCQkJCSAgIHN0cnVjdCBpbnRlbF9kcGxsX2h3
+X3N0YXRlCj4gPiAqaHdfc3RhdGUpIHsKPiA+IC0JcmV0dXJuIGljbF9wbGxfZ2V0X2h3X3N0YXRl
+KGRldl9wcml2LCBwbGwsIGh3X3N0YXRlLAo+ID4gLQo+ID4gQ05MX0RQTExfRU5BQkxFKHBsbC0+
+aW5mby0+aWQpKTsKPiA+ICsJaTkxNV9yZWdfdCBlbmFibGVfcmVnID0gQ05MX0RQTExfRU5BQkxF
+KHBsbC0+aW5mby0+aWQpOwo+ID4gKwo+ID4gKwlpZiAoSVNfRUxLSEFSVExBS0UoZGV2X3ByaXYp
+ICYmCj4gPiArCSAgICBwbGwtPmluZm8tPmlkID09IERQTExfSURfRUhMX0RQTEw0KSB7Cj4gPiAr
+CQllbmFibGVfcmVnID0gTUdfUExMX0VOQUJMRSgwKTsKPiA+ICsJfQo+ID4gKwo+ID4gKwlyZXR1
+cm4gaWNsX3BsbF9nZXRfaHdfc3RhdGUoZGV2X3ByaXYsIHBsbCwgaHdfc3RhdGUsCj4gPiBlbmFi
+bGVfcmVnKTsgfQo+ID4gIAo+ID4gIHN0YXRpYyBib29sIHRidF9wbGxfZ2V0X2h3X3N0YXRlKHN0
+cnVjdCBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJpdiwKPiA+IEBAIC0zMjMxLDYgKzMyNDQsMTkg
+QEAgc3RhdGljIHZvaWQgY29tYm9fcGxsX2VuYWJsZShzdHJ1Y3QKPiA+IGRybV9pOTE1X3ByaXZh
+dGUgKmRldl9wcml2LCB7Cj4gPiAgCWk5MTVfcmVnX3QgZW5hYmxlX3JlZyA9IENOTF9EUExMX0VO
+QUJMRShwbGwtPmluZm8tPmlkKTsKPiA+ICAKPiA+ICsJaWYgKElTX0VMS0hBUlRMQUtFKGRldl9w
+cml2KSAmJgo+ID4gKwkgICAgcGxsLT5pbmZvLT5pZCA9PSBEUExMX0lEX0VITF9EUExMNCkgewo+
+ID4gKwkJZW5hYmxlX3JlZyA9IE1HX1BMTF9FTkFCTEUoMCk7Cj4gPiArCj4gPiArCQkvKgo+ID4g
+KwkJICogV2UgbmVlZCB0byBkaXNhYmxlIERDIHN0YXRlcyB3aGVuIHRoaXMgRFBMTCBpcwo+ID4g
+ZW5hYmxlZC4KPiA+ICsJCSAqIFRoaXMgY2FuIGJlIGRvbmUgYnkgdGFraW5nIGEgcmVmZXJlbmNl
+IG9uIERQTEw0Cj4gPiBwb3dlcgo+ID4gKwkJICogZG9tYWluLgo+ID4gKwkJICovCj4gPiArCQlw
+bGwtPndha2VyZWYgPSBpbnRlbF9kaXNwbGF5X3Bvd2VyX2dldChkZXZfcHJpdiwKPiA+ICsKPiA+
+IFBPV0VSX0RPTUFJTl9EUExMX0RDX09GRik7Cj4gPiArCX0KPiA+ICsKPiA+ICAJaWNsX3BsbF9w
+b3dlcl9lbmFibGUoZGV2X3ByaXYsIHBsbCwgZW5hYmxlX3JlZyk7Cj4gPiAgCj4gPiAgCWljbF9k
+cGxsX3dyaXRlKGRldl9wcml2LCBwbGwpOwo+ID4gQEAgLTMzMjYsNyArMzM1MiwxOSBAQCBzdGF0
+aWMgdm9pZCBpY2xfcGxsX2Rpc2FibGUoc3RydWN0Cj4gPiBkcm1faTkxNV9wcml2YXRlICpkZXZf
+cHJpdiwgc3RhdGljIHZvaWQgY29tYm9fcGxsX2Rpc2FibGUoc3RydWN0Cj4gPiBkcm1faTkxNV9w
+cml2YXRlICpkZXZfcHJpdiwgc3RydWN0IGludGVsX3NoYXJlZF9kcGxsICpwbGwpCj4gPiAgewo+
+ID4gLQlpY2xfcGxsX2Rpc2FibGUoZGV2X3ByaXYsIHBsbCwKPiA+IENOTF9EUExMX0VOQUJMRShw
+bGwtPmluZm8tPmlkKSk7Cj4gPiArCWk5MTVfcmVnX3QgZW5hYmxlX3JlZyA9IENOTF9EUExMX0VO
+QUJMRShwbGwtPmluZm8tPmlkKTsKPiA+ICsKPiA+ICsJaWYgKElTX0VMS0hBUlRMQUtFKGRldl9w
+cml2KSAmJgo+ID4gKwkgICAgcGxsLT5pbmZvLT5pZCA9PSBEUExMX0lEX0VITF9EUExMNCkgewo+
+ID4gKwkJZW5hYmxlX3JlZyA9IE1HX1BMTF9FTkFCTEUoMCk7Cj4gPiArCQlpY2xfcGxsX2Rpc2Fi
+bGUoZGV2X3ByaXYsIHBsbCwgZW5hYmxlX3JlZyk7Cj4gPiArCj4gPiArCQlpbnRlbF9kaXNwbGF5
+X3Bvd2VyX3B1dChkZXZfcHJpdiwKPiA+IFBPV0VSX0RPTUFJTl9EUExMX0RDX09GRiwKPiA+ICsJ
+CQkJCXBsbC0+d2FrZXJlZik7Cj4gPiArCQlyZXR1cm47Cj4gPiArCX0KPiA+ICsKPiA+ICsJaWNs
+X3BsbF9kaXNhYmxlKGRldl9wcml2LCBwbGwsIGVuYWJsZV9yZWcpOwo+ID4gIH0KPiA+ICAKPiA+
+ICBzdGF0aWMgdm9pZCB0YnRfcGxsX2Rpc2FibGUoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRl
+dl9wcml2LAo+ID4gQEAgLTM0MDYsNiArMzQ0NCw3IEBAIHN0YXRpYyBjb25zdCBzdHJ1Y3QgaW50
+ZWxfZHBsbF9tZ3IKPiA+IGljbF9wbGxfbWdyID0geyBzdGF0aWMgY29uc3Qgc3RydWN0IGRwbGxf
+aW5mbyBlaGxfcGxsc1tdID0gewo+ID4gIAl7ICJEUExMIDAiLCAmY29tYm9fcGxsX2Z1bmNzLCBE
+UExMX0lEX0lDTF9EUExMMCwgMCB9LAo+ID4gIAl7ICJEUExMIDEiLCAmY29tYm9fcGxsX2Z1bmNz
+LCBEUExMX0lEX0lDTF9EUExMMSwgMCB9LAo+ID4gKwl7ICJEUExMIDQiLCAmY29tYm9fcGxsX2Z1
+bmNzLCBEUExMX0lEX0VITF9EUExMNCwgMCB9LAo+ID4gIAl7IH0sCj4gPiAgfTsKPiA+ICAKPiA+
+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwbGxfbWdy
+LmgKPiA+IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcGxsX21nci5oIGlu
+ZGV4Cj4gPiAxNjY4ZjgxMTY5MDguLjRjMmM1ZTkzYWZmMyAxMDA2NDQgLS0tCj4gPiBhL2RyaXZl
+cnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHBsbF9tZ3IuaCArKysKPiA+IGIvZHJpdmVy
+cy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcGxsX21nci5oIEBAIC0yOCw2ICsyOCw3IEBA
+Cj4gPiAgI2luY2x1ZGUgPGxpbnV4L3R5cGVzLmg+Cj4gPiAgCj4gPiAgI2luY2x1ZGUgImludGVs
+X2Rpc3BsYXkuaCIKPiA+ICsjaW5jbHVkZSAiaW50ZWxfd2FrZXJlZi5oIgo+ID4gIAo+ID4gIC8q
+RklYTUU6IE1vdmUgdGhpcyB0byBhIG1vcmUgYXBwcm9wcmlhdGUgcGxhY2UuICovCj4gPiAgI2Rl
+ZmluZSBhYnNfZGlmZihhLCBiKSAoewkJCVwKPiA+IEBAIC0xMTgsNiArMTE5LDEwIEBAIGVudW0g
+aW50ZWxfZHBsbF9pZCB7Cj4gPiAgCSAqIEBEUExMX0lEX0lDTF9EUExMMTogSUNMIGNvbWJvIFBI
+WSBEUExMMQo+ID4gIAkgKi8KPiA+ICAJRFBMTF9JRF9JQ0xfRFBMTDEgPSAxLAo+ID4gKwkvKioK
+PiA+ICsJICogQERQTExfSURfRUhMX0RQTEw0OiBFSEwgY29tYm8gUEhZIERQTEw0Cj4gPiArCSAq
+Lwo+ID4gKwlEUExMX0lEX0VITF9EUExMNCA9IDIsICAKPiAKPiBXaGlsZSBsb29raW5nIGF0IHRo
+ZSBUR0wgc3R1ZmYgSSBub3RpY2VkIHRoYXQgdGhpcyBJRCBzZWVtcyB0byBiZQo+IHdyb25nLiBX
+ZSB1c2UgdGhpcyB0byBnZW5lcmF0ZSB0aGUgcmVnaXN0ZXIgb2Zmc2V0cyBidXQgdGhlIGRvY3Mg
+c2hvdwo+IHRoZSBmb2xsb3dpbmc6Cj4gCj4gRFBMTDBfQ0ZHQ1IwICAweDE2NDAwMAo+IERQTEwx
+X0NGR0NSMCAgMHgxNjQwODAKPiBUQlRQTExfQ0ZHQ1IwIDB4MTY0MTAwCj4gRFBMTDRfQ0ZHQ1Iw
+ICAweDE2NDIwMAo+IAo+IFNvIHRoZSBEUExMNCBhY2Nlc3NlcyB3aWxsIG5vdyBsYW5kIG9uIFRC
+VFBMTC4gVGhlIElEIGlmIERQTEw0IHNob3VsZAo+IHJlYWxseSBiZSA0IEkgZ3Vlc3MuClllcywg
+bG9va3MgbGlrZSBpdCBzaG91bGQgYmUgNCBpbmRlZWQuIEhvd2V2ZXIsIEkgd2FzIHdvbmRlcmlu
+ZyB3aGF0IGlzCnRoZSBiZXN0IHdheSB0byBhZGRyZXNzIHRoaXMgaXNzdWUuIFNpbXBseSBjaGFu
+Z2luZyB0aGUgaWQgdG8gNCBpc24ndApnb2luZyB0byB3b3JrIGFzIHRoZXJlIGFyZSBtYW55IHBs
+YWNlcyBpbiBpbnRlbF9kcGxsX21nci5jIHRoYXQgYXNzdW1lCnRoZSBkcGxsIGlkIHRvIGJlIHRo
+ZSBpbmRleCBpbiB0aGUgZGV2X3ByaXYtPnNoYXJlZF9kcGxscyBhcnJheSBhcwpzdGF0ZWQgaW4g
+dGhlIGRlZmluaXRpb24gb2YgZHBsbF9pbmZvOgogICAgICAgIC8qKgogICAgICAgICAqIEBpZDog
+dW5pcXVlIGluZGVudGlmaWVyIGZvciB0aGlzIERQTEw7IHNob3VsZCBtYXRjaCB0aGUKaW5kZXgg
+aW4gdGhlCiAgICAgICAgICogZGV2X3ByaXYtPnNoYXJlZF9kcGxscyBhcnJheQogICAgICAgICAq
+LwogICAgICAgIGVudW0gaW50ZWxfZHBsbF9pZCBpZDsKClNob3VsZCBJIGNoYW5nZSBhbGwgdGhl
+c2UgcGxhY2VzIHRoYXQgbWFrZSB0aGlzIGFzc3VtcHRpb24gYW5kIGZpeCB0aGVtPwpPciwgc2hv
+dWxkIEkganVzdCBzaW1wbHkgYWRkIGFuIGlmIGNvbmRpdGlvbiBhcm91bmQgY3IwIGFuZCBjcjEg
+YWNjZXNzZXMKaW4gaWNsX2RwbGxfd3JpdGUgYW5kIGljbF9wbGxfZ2V0X2h3X3N0YXRlPwoKVGhh
+bmtzLApWaXZlawoKPiAKPiA+ICAJLyoqCj4gPiAgCSAqIEBEUExMX0lEX0lDTF9UQlRQTEw6IElD
+TCBUQlQgUExMCj4gPiAgCSAqLwo+ID4gQEAgLTMyMCw2ICszMjUsNyBAQCBzdHJ1Y3QgaW50ZWxf
+c2hhcmVkX2RwbGwgewo+ID4gIAkgKiBAaW5mbzogcGxhdGZvcm0gc3BlY2lmaWMgaW5mbwo+ID4g
+IAkgKi8KPiA+ICAJY29uc3Qgc3RydWN0IGRwbGxfaW5mbyAqaW5mbzsKPiA+ICsJaW50ZWxfd2Fr
+ZXJlZl90IHdha2VyZWY7Cj4gPiAgfTsKPiA+ICAKPiA+ICAjZGVmaW5lIFNLTF9EUExMMCAwCj4g
+PiAtLSAKPiA+IDIuMjEuMCAgCj4gCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVl
+ZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5m
+by9pbnRlbC1nZng=
