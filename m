@@ -2,51 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 09ABF71CF1
-	for <lists+intel-gfx@lfdr.de>; Tue, 23 Jul 2019 18:30:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EA54C71D00
+	for <lists+intel-gfx@lfdr.de>; Tue, 23 Jul 2019 18:35:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 52B286E2F8;
-	Tue, 23 Jul 2019 16:30:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 50CC689FC3;
+	Tue, 23 Jul 2019 16:35:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 06ABD6E2F8
- for <intel-gfx@lists.freedesktop.org>; Tue, 23 Jul 2019 16:30:32 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7A6F389FC3
+ for <intel-gfx@lists.freedesktop.org>; Tue, 23 Jul 2019 16:35:21 +0000 (UTC)
 X-Amp-Result: UNKNOWN
 X-Amp-Original-Verdict: FILE UNKNOWN
 X-Amp-File-Uploaded: False
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 23 Jul 2019 09:30:32 -0700
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by orsmga105.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 23 Jul 2019 09:35:20 -0700
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="5.64,299,1559545200"; 
- d="p7s'?scan'208";a="172003511"
-Received: from fmsmsx103.amr.corp.intel.com ([10.18.124.201])
- by orsmga003.jf.intel.com with ESMTP; 23 Jul 2019 09:30:31 -0700
-Received: from fmsmsx116.amr.corp.intel.com (10.18.116.20) by
- FMSMSX103.amr.corp.intel.com (10.18.124.201) with Microsoft SMTP Server (TLS)
- id 14.3.439.0; Tue, 23 Jul 2019 09:30:31 -0700
+ d="p7s'?scan'208";a="171213682"
+Received: from fmsmsx106.amr.corp.intel.com ([10.18.124.204])
+ by fmsmga007.fm.intel.com with ESMTP; 23 Jul 2019 09:35:20 -0700
+Received: from fmsmsx122.amr.corp.intel.com (10.18.125.37) by
+ FMSMSX106.amr.corp.intel.com (10.18.124.204) with Microsoft SMTP Server (TLS)
+ id 14.3.439.0; Tue, 23 Jul 2019 09:35:20 -0700
 Received: from fmsmsx103.amr.corp.intel.com ([169.254.2.66]) by
- fmsmsx116.amr.corp.intel.com ([169.254.2.161]) with mapi id 14.03.0439.000;
- Tue, 23 Jul 2019 09:30:31 -0700
+ fmsmsx122.amr.corp.intel.com ([169.254.5.206]) with mapi id 14.03.0439.000;
+ Tue, 23 Jul 2019 09:35:19 -0700
 From: "Summers, Stuart" <stuart.summers@intel.com>
 To: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, "De
  Marchi, Lucas" <lucas.demarchi@intel.com>
-Thread-Topic: [PATCH 20/22] drm/i915: Move MOCS setup to intel_mocs.c
-Thread-Index: AQHVOReu5G5FBQ3PekWO2RwD7JSoeKbY6wiA
-Date: Tue, 23 Jul 2019 16:30:30 +0000
-Message-ID: <212312f010e2d67b267ba178e82f1f52fa54340d.camel@intel.com>
+Thread-Topic: [Intel-gfx] [PATCH 17/22] drm/i915/tgl: Implement Wa_1406941453
+Thread-Index: AQHVORe8XxUi9cCjLkiABhjNJcNYYKbY7F+A
+Date: Tue, 23 Jul 2019 16:35:19 +0000
+Message-ID: <730d04bd40aa67ffc5a4e69257a1a8f0841fdae4.camel@intel.com>
 References: <20190713010940.17711-1-lucas.demarchi@intel.com>
- <20190713010940.17711-21-lucas.demarchi@intel.com>
-In-Reply-To: <20190713010940.17711-21-lucas.demarchi@intel.com>
+ <20190713010940.17711-18-lucas.demarchi@intel.com>
+In-Reply-To: <20190713010940.17711-18-lucas.demarchi@intel.com>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: yes
 X-MS-TNEF-Correlator: 
 x-originating-ip: [10.54.134.159]
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 20/22] drm/i915: Move MOCS setup to
- intel_mocs.c
+Subject: Re: [Intel-gfx] [PATCH 17/22] drm/i915/tgl: Implement Wa_1406941453
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -59,117 +58,70 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============1951829343=="
+Cc: "Thierry, Michel" <michel.thierry@intel.com>
+Content-Type: multipart/mixed; boundary="===============1703083470=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1951829343==
+--===============1703083470==
 Content-Language: en-US
 Content-Type: multipart/signed; micalg=sha-1;
-	protocol="application/x-pkcs7-signature"; boundary="=-fM4fUgoTj6DA3mg4NaHL"
+	protocol="application/x-pkcs7-signature"; boundary="=-f0qtY4ngCTyCkwRiQmNO"
 
---=-fM4fUgoTj6DA3mg4NaHL
+--=-f0qtY4ngCTyCkwRiQmNO
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
 On Fri, 2019-07-12 at 18:09 -0700, Lucas De Marchi wrote:
-> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> From: Michel Thierry <michel.thierry@intel.com>
 >=20
-> Hide the details of MOCS setup from i915_gem by moving both current
-> calls
-> into one in intel_mocs_init.
+> Enable Small PL for power benefit.
 >=20
-> Cc: Stuart Summers <stuart.summers@intel.com>
-> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> Signed-off-by: Michel Thierry <michel.thierry@intel.com>
 > Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 
 Reviewed-by: Stuart Summers <stuart.summers@intel.com>
 
 > ---
->  drivers/gpu/drm/i915/gt/intel_mocs.c | 15 +++++++++++----
->  drivers/gpu/drm/i915/gt/intel_mocs.h |  3 +--
->  drivers/gpu/drm/i915/i915_gem.c      |  3 +--
->  3 files changed, 13 insertions(+), 8 deletions(-)
+>  drivers/gpu/drm/i915/gt/intel_workarounds.c | 5 +++++
+>  drivers/gpu/drm/i915/i915_reg.h             | 3 +++
+>  2 files changed, 8 insertions(+)
 >=20
-> diff --git a/drivers/gpu/drm/i915/gt/intel_mocs.c
-> b/drivers/gpu/drm/i915/gt/intel_mocs.c
-> index 365d8ff11f23..5cd18768b5df 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_mocs.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_mocs.c
-> @@ -399,14 +399,13 @@ void intel_mocs_init_engine(struct
-> intel_engine_cs *engine)
->   *
->   * This function initializes the MOCS global registers.
->   */
-> -void intel_mocs_init_global(struct intel_gt *gt)
-> +static void intel_mocs_init_global(struct intel_gt *gt)
->  {
->  	struct intel_uncore *uncore =3D gt->uncore;
->  	struct drm_i915_mocs_table table;
->  	unsigned int index;
-> =20
-> -	if (!HAS_GLOBAL_MOCS_REGISTERS(gt->i915))
-> -		return;
-> +	GEM_BUG_ON(!HAS_GLOBAL_MOCS_REGISTERS(gt->i915));
-> =20
->  	if (!get_mocs_settings(gt, &table))
->  		return;
-> @@ -575,7 +574,7 @@ static int emit_mocs_l3cc_table(struct
-> i915_request *rq,
->   *
->   * Return: Nothing.
->   */
-> -void intel_mocs_init_l3cc_table(struct intel_gt *gt)
-> +static void intel_mocs_init_l3cc_table(struct intel_gt *gt)
->  {
->  	struct intel_uncore *uncore =3D gt->uncore;
->  	struct drm_i915_mocs_table table;
-> @@ -653,3 +652,11 @@ int intel_rcs_context_init_mocs(struct
-> i915_request *rq)
-> =20
->  	return 0;
->  }
+> diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c
+> b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+> index 347ba16346d3..f3367339f445 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+> @@ -1285,6 +1285,11 @@ rcs_engine_wa_init(struct intel_engine_cs
+> *engine, struct i915_wa_list *wal)
+>  		wa_write_or(wal,
+>  			    GEN12_L3SQCREG2,
+>  			    GEN12_LQSC_FLUSH_COHERENT_LINES);
 > +
-> +void intel_mocs_init(struct intel_gt *gt)
-> +{
-> +	intel_mocs_init_l3cc_table(gt);
-> +
-> +	if (HAS_GLOBAL_MOCS_REGISTERS(gt->i915))
-> +		intel_mocs_init_global(gt);
-> +}
-> diff --git a/drivers/gpu/drm/i915/gt/intel_mocs.h
-> b/drivers/gpu/drm/i915/gt/intel_mocs.h
-> index aa3a2df07c82..2c5cbf213819 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_mocs.h
-> +++ b/drivers/gpu/drm/i915/gt/intel_mocs.h
-> @@ -55,8 +55,7 @@ struct intel_engine_cs;
->  struct intel_gt;
-> =20
->  int intel_rcs_context_init_mocs(struct i915_request *rq);
-> -void intel_mocs_init_l3cc_table(struct intel_gt *gt);
-> -void intel_mocs_init_global(struct intel_gt *gt);
-> +void intel_mocs_init(struct intel_gt *gt);
->  void intel_mocs_init_engine(struct intel_engine_cs *engine);
-> =20
->  #endif
-> diff --git a/drivers/gpu/drm/i915/i915_gem.c
-> b/drivers/gpu/drm/i915/i915_gem.c
-> index d23e156f6659..7980ee9bf8a8 100644
-> --- a/drivers/gpu/drm/i915/i915_gem.c
-> +++ b/drivers/gpu/drm/i915/i915_gem.c
-> @@ -1254,8 +1254,7 @@ int i915_gem_init_hw(struct drm_i915_private
-> *i915)
->  		goto out;
+> +		/* Wa_1406941453:tgl */
+> +		wa_masked_en(wal,
+> +			     SAMPLER_MODE,
+> +			     SAMPLER_ENABLE_SMALL_PL);
 >  	}
 > =20
-> -	intel_mocs_init_global(gt);
-> -	intel_mocs_init_l3cc_table(gt);
-> +	intel_mocs_init(gt);
+>  	if (IS_GEN(i915, 11)) {
+> diff --git a/drivers/gpu/drm/i915/i915_reg.h
+> b/drivers/gpu/drm/i915/i915_reg.h
+> index d048c349e07e..712616fcd6b3 100644
+> --- a/drivers/gpu/drm/i915/i915_reg.h
+> +++ b/drivers/gpu/drm/i915/i915_reg.h
+> @@ -9009,6 +9009,9 @@ enum {
+>  #define   GEN9_DG_MIRROR_FIX_ENABLE	(1 << 5)
+>  #define   GEN9_CCS_TLB_PREFETCH_ENABLE	(1 << 3)
 > =20
->  	intel_engines_set_scheduler_caps(i915);
-> =20
+> +#define SAMPLER_MODE			_MMIO(0xe18c)
+> +#define   SAMPLER_ENABLE_SMALL_PL	(1 << 15)
+> +
+>  #define GEN8_ROW_CHICKEN		_MMIO(0xe4f0)
+>  #define   FLOW_CONTROL_ENABLE		(1 << 15)
+>  #define   PARTIAL_INSTRUCTION_SHOOTDOWN_DISABLE	(1 << 8)
 
---=-fM4fUgoTj6DA3mg4NaHL
+--=-f0qtY4ngCTyCkwRiQmNO
 Content-Type: application/x-pkcs7-signature; name="smime.p7s"
 Content-Disposition: attachment; filename="smime.p7s"
 Content-Transfer-Encoding: base64
@@ -225,18 +177,18 @@ CC/N7V8U9yFZx8akWREb8lJYDl9KypirEsufleiew26CWrwcbmdlldDCFS6/HDGCAhcwggITAgEB
 MIGQMHkxCzAJBgNVBAYTAlVTMQswCQYDVQQIEwJDQTEUMBIGA1UEBxMLU2FudGEgQ2xhcmExGjAY
 BgNVBAoTEUludGVsIENvcnBvcmF0aW9uMSswKQYDVQQDEyJJbnRlbCBFeHRlcm5hbCBCYXNpYyBJ
 c3N1aW5nIENBIDRCAhMzAAB04Th3owY0UbEUAAAAAHThMAkGBSsOAwIaBQCgXTAYBgkqhkiG9w0B
-CQMxCwYJKoZIhvcNAQcBMBwGCSqGSIb3DQEJBTEPFw0xOTA3MjMxNjMwMjdaMCMGCSqGSIb3DQEJ
-BDEWBBRbhIKcnYjpiQVSrYsi38mI8sXJ/DANBgkqhkiG9w0BAQEFAASCAQCQAqU34qHybc3Hr61N
-PYRfVxRpm55ekUoQlk1H9kdAqC0D8HmPmgNICfYu9yGCcY2R5tiRwqmcdqp6Mx/WALLhLoc5mMvG
-4Ns9arOpQapVAw5gVQEz6gidX5KVNyquTo24sKOygI7CEjXnDwR+xaGjDEJOox2OIBK8lXnbtt+/
-rbI32oLaTBJtg2MQDHtbovvtrfFYiyHfjTPDyLsHM9GIX/u5oK0GbXGJIuuKEvO/6f1mOwKmeP7H
-+6Dx59DIqEmVy57GMw7GwNZIkVnMYsrPui27T47Y4QaYRqjwQD9OYYIJsBfd85wSer/8m+wPEQxc
-yy3gzto2tu5SFpPNyviYAAAAAAAA
+CQMxCwYJKoZIhvcNAQcBMBwGCSqGSIb3DQEJBTEPFw0xOTA3MjMxNjM1MTVaMCMGCSqGSIb3DQEJ
+BDEWBBQX+gnRVl72owu1jMxS8ksKsji3ijANBgkqhkiG9w0BAQEFAASCAQB6Y3bytZ0fws4ruSaT
+RAqEseE/dBPBrh9WIuuEa3CPvdpokAKrZ4jqfHkG9Y+G3CH5vwkM37MbUNEetnyNquLGszvL+XIY
+d/eM1fGGlCeFJTIMM5FoaC3PNgPrVSOynrEbzYiPsgvuTuXgCSYfW+kBKdDpTLTX+4nSCzmoHUu1
++cAmLDvM6320LOsAZ7rP8Z9fCALb0hIA6GhoO3lS39OrpswvwNCsjOUew+qLxrALMcXGdM4xbQ2q
+CEYY+YoleiXIsCcgdvq3VSb4ybYREzO5/C/076SGoRCXMdg9a1c8CV44cYUM/iGxq9DJk36xGeAR
+Bgu29V96sO+aEuKEsKMOAAAAAAAA
 
 
---=-fM4fUgoTj6DA3mg4NaHL--
+--=-f0qtY4ngCTyCkwRiQmNO--
 
---===============1951829343==
+--===============1703083470==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -246,4 +198,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
 IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
 dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
 
---===============1951829343==--
+--===============1703083470==--
