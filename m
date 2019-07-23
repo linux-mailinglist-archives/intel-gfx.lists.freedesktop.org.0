@@ -2,40 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 938347117C
-	for <lists+intel-gfx@lfdr.de>; Tue, 23 Jul 2019 07:59:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4BC3771185
+	for <lists+intel-gfx@lfdr.de>; Tue, 23 Jul 2019 07:59:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9429E89E3B;
-	Tue, 23 Jul 2019 05:58:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E1E9D89A76;
+	Tue, 23 Jul 2019 05:59:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ED32089E3B;
- Tue, 23 Jul 2019 05:58:57 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 38B3D89948;
+ Tue, 23 Jul 2019 05:59:44 +0000 (UTC)
 Received: from dragon (98.142.130.235.16clouds.com [98.142.130.235])
  (using TLSv1.2 with cipher DHE-RSA-AES128-SHA (128/128 bits))
  (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id 3D4B52238E;
- Tue, 23 Jul 2019 05:58:34 +0000 (UTC)
-Date: Tue, 23 Jul 2019 13:58:08 +0800
+ by mail.kernel.org (Postfix) with ESMTPSA id AEFD92239E;
+ Tue, 23 Jul 2019 05:59:25 +0000 (UTC)
+Date: Tue, 23 Jul 2019 13:58:59 +0800
 From: Shawn Guo <shawnguo@kernel.org>
 To: Andrzej Pietrasiewicz <andrzej.p@collabora.com>
-Message-ID: <20190723055807.GQ3738@dragon>
+Message-ID: <20190723055858.GR3738@dragon>
 References: <cover.1562843413.git.andrzej.p@collabora.com>
- <4a9fb80b4dc328b420ca5d94ebc2810ab86f788c.1562843413.git.andrzej.p@collabora.com>
+ <9cdd2fc46dbcb6b596786e5a12b7176c77a38d78.1562843413.git.andrzej.p@collabora.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <4a9fb80b4dc328b420ca5d94ebc2810ab86f788c.1562843413.git.andrzej.p@collabora.com>
+In-Reply-To: <9cdd2fc46dbcb6b596786e5a12b7176c77a38d78.1562843413.git.andrzej.p@collabora.com>
 User-Agent: Mutt/1.5.21 (2010-09-15)
 X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=kernel.org; s=default; t=1563861537;
- bh=Kr6/01JDa/v6ZtlnzoIlfsNhc5A2e5DicJmo9mS2sNU=;
+ d=kernel.org; s=default; t=1563861584;
+ bh=WXCUgCbLphkBBDiAXTlN2S4IeeJ15hJXwNnoniA16Ic=;
  h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=Gv+14L8kGFdq4rxkPTZIYD8+70TWAlhXuuFNLITtBfRKqpT9+pJkUW+lKE+oY+sEl
- 7MuJ5jgBC+3x1lKOR0EZpbQduCUL8pC2B/Swj6MVWJGpw7Opu4VYXZx3TzCjAtjeDo
- n/bJKKnMiPuXI1fEC3H05E8cy/aW/FjvhgM0VUVQ=
-Subject: Re: [Intel-gfx] [PATCH v4 12/23] drm: zte: Provide ddc symlink in
- hdmi connector sysfs directory
+ b=LGJwiqqtNJhoOXE73HgeUcCUMf8en/oKC+lOhSHN2LFczVYleuZ4/dqA4Tj9tGSyv
+ NaSN3pIZAWHUEiEqkMoH7io44ZKlA9v0X45AUlf2GZAQAV4qAjaWPYlDzdVhyU0wtN
+ BOX97jqG+kNXSp0Fe6UIJWbPVWe3NvvaSHbsA12Q=
+Subject: Re: [Intel-gfx] [PATCH v4 13/23] drm: zte: Provide ddc symlink in
+ vga connector sysfs directory
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -86,7 +86,7 @@ Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gVGh1LCBKdWwgMTEsIDIwMTkgYXQgMDE6MjY6MzlQTSArMDIwMCwgQW5kcnplaiBQaWV0cmFz
+T24gVGh1LCBKdWwgMTEsIDIwMTkgYXQgMDE6MjY6NDBQTSArMDIwMCwgQW5kcnplaiBQaWV0cmFz
 aWV3aWN6IHdyb3RlOgo+IFVzZSB0aGUgZGRjIHBvaW50ZXIgcHJvdmlkZWQgYnkgdGhlIGdlbmVy
 aWMgY29ubmVjdG9yLgo+IAo+IFNpZ25lZC1vZmYtYnk6IEFuZHJ6ZWogUGlldHJhc2lld2ljeiA8
 YW5kcnplai5wQGNvbGxhYm9yYS5jb20+CgpBY2tlZC1ieTogU2hhd24gR3VvIDxzaGF3bmd1b0Br
