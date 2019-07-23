@@ -1,31 +1,45 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5BD6970E02
-	for <lists+intel-gfx@lfdr.de>; Tue, 23 Jul 2019 02:19:15 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8694970E6A
+	for <lists+intel-gfx@lfdr.de>; Tue, 23 Jul 2019 03:03:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EE32F89E08;
-	Tue, 23 Jul 2019 00:19:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5C64489DD8;
+	Tue, 23 Jul 2019 01:03:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id F300389E08;
- Tue, 23 Jul 2019 00:19:11 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id EBA06A0119;
- Tue, 23 Jul 2019 00:19:11 +0000 (UTC)
+Received: from ozlabs.org (ozlabs.org [203.11.71.1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3357189DD8;
+ Tue, 23 Jul 2019 01:03:35 +0000 (UTC)
+Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
+ SHA256) (No client certificate requested)
+ by mail.ozlabs.org (Postfix) with ESMTPSA id 45t0bS1wKvz9s3Z;
+ Tue, 23 Jul 2019 11:03:31 +1000 (AEST)
+Date: Tue, 23 Jul 2019 11:03:31 +1000
+From: Stephen Rothwell <sfr@canb.auug.org.au>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>, Jani Nikula
+ <jani.nikula@linux.intel.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Intel Graphics <intel-gfx@lists.freedesktop.org>, DRI
+ <dri-devel@lists.freedesktop.org>, "Gustavo A. R. Silva"
+ <gustavo@embeddedor.com>
+Message-ID: <20190723110331.1967d000@canb.auug.org.au>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Daniele Ceraolo Spurio" <daniele.ceraolospurio@intel.com>
-Date: Tue, 23 Jul 2019 00:19:11 -0000
-Message-ID: <20190723001911.5094.61384@emeril.freedesktop.org>
-References: <20190722232048.9970-1-daniele.ceraolospurio@intel.com>
-X-Patchwork-Hint: ignore
-In-Reply-To: <20190722232048.9970-1-daniele.ceraolospurio@intel.com>
-Subject: [Intel-gfx] =?utf-8?q?=E2=9C=97_Fi=2ECI=2ESPARSE=3A_warning_for_u?=
- =?utf-8?q?C_fw_path_unification_+_misc_clean-up?=
+X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=canb.auug.org.au; s=201702; t=1563843813;
+ bh=EgLzuuOlqciTbhsbAXpNasSCsMeGLSHIWQ28FtGs0I0=;
+ h=Date:From:To:Cc:Subject:From;
+ b=VQRQuOZWsUz9x7pT7riQeHCsTKnY4/Gxk+HepcfdxKw7AZj2N7lbFQLBUVRZema+X
+ urUkvYolS6kFFeiWaP6yHdUV34CcnxCpHVwVGe1037NC4zyiYwTbgI6ikw+E+drvwZ
+ R/Y+6PJeJImx1oghtkw9fWCuFuzXax7YFUs8kFQJ9nGiWisptq5Upd9SWD70680hj2
+ oNmeW5mO7BF9Rjqs8pQpdVl6RGgP7rQVNPAlvItuzvrOPI36l7GqQSk14JQxpstdKn
+ iO+H+en5kflYU9FvXechwyqanVyHIUWy2r26507iH3MYqXvVPz7vqWCIL8gmTWz+wW
+ 093iKepYe2TmA==
+Subject: [Intel-gfx] linux-next: manual merge of the drm-intel tree with the
+ kspp-gustavo tree
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -38,33 +52,77 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Linux Next Mailing List <linux-next@vger.kernel.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: multipart/mixed; boundary="===============2083644875=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-PT0gU2VyaWVzIERldGFpbHMgPT0KClNlcmllczogdUMgZncgcGF0aCB1bmlmaWNhdGlvbiArIG1p
-c2MgY2xlYW4tdXAKVVJMICAgOiBodHRwczovL3BhdGNod29yay5mcmVlZGVza3RvcC5vcmcvc2Vy
-aWVzLzY0MDM5LwpTdGF0ZSA6IHdhcm5pbmcKCj09IFN1bW1hcnkgPT0KCiQgZGltIHNwYXJzZSBv
-cmlnaW4vZHJtLXRpcApTcGFyc2UgdmVyc2lvbjogdjAuNS4yCkNvbW1pdDogZHJtL2k5MTUvdWM6
-IEd0LWZ5IHVjIHJlc2V0Ck9rYXkhCgpDb21taXQ6IGRybS9pOTE1L3VjOiBVbmlmeSB1QyBwbGF0
-Zm9ybSBjaGVjawpPa2F5IQoKQ29tbWl0OiBkcm0vaTkxNS91YzogVW5pZnkgdUMgRlcgc2VsZWN0
-aW9uCisuL2luY2x1ZGUvdWFwaS9saW51eC9wZXJmX2V2ZW50Lmg6MTQ3OjU2OiB3YXJuaW5nOiBj
-YXN0IHRydW5jYXRlcyBiaXRzIGZyb20gY29uc3RhbnQgdmFsdWUgKDgwMDAwMDAwMDAwMDAwMDAg
-YmVjb21lcyAwKQorLi9pbmNsdWRlL3VhcGkvbGludXgvcGVyZl9ldmVudC5oOjE0Nzo1Njogd2Fy
-bmluZzogY2FzdCB0cnVuY2F0ZXMgYml0cyBmcm9tIGNvbnN0YW50IHZhbHVlICg4MDAwMDAwMDAw
-MDAwMDAwIGJlY29tZXMgMCkKCkNvbW1pdDogZHJtL2k5MTUvdWM6IFNhbml0aXplIHVDIHdoZW4g
-R1QgaXMgc2FuaXRpemVkCk9rYXkhCgpDb21taXQ6IGRybS9pOTE1L3VjOiBVbmlmeSB1Y19mdyBz
-dGF0dXMgdHJhY2tpbmcKT2theSEKCkNvbW1pdDogZHJtL2k5MTUvdWM6IE1vdmUgeGZlciByc2Eg
-bG9naWMgdG8gY29tbW9uIGZ1bmN0aW9uCitkcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC91Yy9pbnRl
-bF91Y19mdy5jOjM3MToyMDogd2FybmluZzogZXhwcmVzc2lvbiB1c2luZyBzaXplb2Yodm9pZCkK
-K2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L3VjL2ludGVsX3VjX2Z3LmM6MzcxOjIwOiB3YXJuaW5n
-OiBleHByZXNzaW9uIHVzaW5nIHNpemVvZih2b2lkKQoKQ29tbWl0OiBkcm0vaTkxNS9odWM6IENv
-cHkgaHVjIHJzYSBvbmx5IG9uY2UKT2theSEKCkNvbW1pdDogZHJtL2k5MTUvdWM6IFBsdW1iIHRo
-ZSBndCB0aHJvdWdoIGZ3X3VwbG9hZApPa2F5IQoKQ29tbWl0OiBkcm0vaTkxNS91YzogVW5pZnkg
-dUMgZmlybXdhcmUgdXBsb2FkCk9rYXkhCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5m
-cmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0
-aW5mby9pbnRlbC1nZng=
+--===============2083644875==
+Content-Type: multipart/signed; boundary="Sig_/ys73Uxj2mKTiAI7sxPqI1zL";
+ protocol="application/pgp-signature"; micalg=pgp-sha256
+
+--Sig_/ys73Uxj2mKTiAI7sxPqI1zL
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
+
+Hi all,
+
+Today's linux-next merge of the drm-intel tree got a conflict in:
+
+  drivers/gpu/drm/i915/display/intel_dp.c
+
+between commit:
+
+  b6ac32eac063 ("drm/i915: Mark expected switch fall-throughs")
+
+from the kspp-gustavo tree and commit:
+
+  bc85328ff431 ("drm/i915: Move the TypeC port handling code to a separate =
+file")
+  4f36afb26cbe ("drm/i915: Sanitize the TypeC FIA lane configuration decodi=
+ng")
+
+from the drm-intel tree.
+
+I fixed it up (bc85328ff431 moved the function updated by b6ac32eac063
+and 4f36afb26cbe added an equivalt fixup) and can carry the fix as
+necessary. This is now fixed as far as linux-next is concerned, but any
+non trivial conflicts should be mentioned to your upstream maintainer
+when your tree is submitted for merging.  You may also want to consider
+cooperating with the maintainer of the conflicting tree to minimise any
+particularly complex conflicts.
+
+--=20
+Cheers,
+Stephen Rothwell
+
+--Sig_/ys73Uxj2mKTiAI7sxPqI1zL
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAl02XOMACgkQAVBC80lX
+0GwDbwgAlaf+xE1tNCPsgcl5HiOTZUxrqytDq4ycNhd8xFpJEaYjWRt9ldGASVMz
+UfcpujMglgxs74dUunYoPKpX1dRDvwStCnTsAhqmNFYsYvITqfCcFXeQow0a+FEq
+FTaY8ukiLVLud61SU2OtRuDhynlvaH1MGcWFy7VmWXq5I64aGKoLAK6TkrUnYBEP
+hmMG0nH6qXD5npB2HkGnSrFszOKMfU775mHEjTDXPLbYyb/IcKqFVXU8fil0t6YC
+mdbekGPEh8a97++FZRMqndFuxipjobnmIef3ncpGwRsEDin7bakacvn4HGAtQdd/
+pHErDey/00MZW90mXE4cjshBlsIdBw==
+=0Gt0
+-----END PGP SIGNATURE-----
+
+--Sig_/ys73Uxj2mKTiAI7sxPqI1zL--
+
+--===============2083644875==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
+IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
+
+--===============2083644875==--
