@@ -1,32 +1,37 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C78371502
-	for <lists+intel-gfx@lfdr.de>; Tue, 23 Jul 2019 11:26:06 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A720471544
+	for <lists+intel-gfx@lfdr.de>; Tue, 23 Jul 2019 11:34:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3A88B89733;
-	Tue, 23 Jul 2019 09:26:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 157CB89EF7;
+	Tue, 23 Jul 2019 09:34:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 85FC88973E
- for <intel-gfx@lists.freedesktop.org>; Tue, 23 Jul 2019 09:26:03 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 17528441-1500050 
- for multiple; Tue, 23 Jul 2019 10:25:52 +0100
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 23 Jul 2019 10:25:50 +0100
-Message-Id: <20190723092550.2443-4-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.22.0
-In-Reply-To: <20190723092550.2443-1-chris@chris-wilson.co.uk>
-References: <20190723092550.2443-1-chris@chris-wilson.co.uk>
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1208689EF7;
+ Tue, 23 Jul 2019 09:34:14 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 23 Jul 2019 02:33:22 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.64,298,1559545200"; 
+ d="asc'?scan'208";a="197061461"
+Received: from zhen-hp.sh.intel.com (HELO zhen-hp) ([10.239.13.116])
+ by fmsmga002.fm.intel.com with ESMTP; 23 Jul 2019 02:33:20 -0700
+Date: Tue, 23 Jul 2019 17:29:58 +0800
+From: Zhenyu Wang <zhenyuw@linux.intel.com>
+To: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Jani Nikula <jani.nikula@intel.com>,
+ "Vivi, Rodrigo" <rodrigo.vivi@intel.com>
+Message-ID: <20190723092958.GD8319@zhen-hp.sh.intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 4/4] drm/i915: Push the ring creation flags to
- the backend
+User-Agent: Mutt/1.10.0 (2018-05-17)
+Subject: [Intel-gfx] [PULL] gvt-fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -39,70 +44,101 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: Zhenyu Wang <zhenyuw@linux.intel.com>
+Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
+ intel-gvt-dev <intel-gvt-dev@lists.freedesktop.org>, "Lv,
+ Zhiyuan" <zhiyuan.lv@intel.com>, "Yuan, Hang" <hang.yuan@intel.com>
+Content-Type: multipart/mixed; boundary="===============1287860483=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-UHVzaCB0aGUgcmluZyBjcmVhdGlvbiBmbGFncyBmcm9tIHRoZSBvdXRlciBHRU0gY29udGV4dCB0
-byB0aGUgaW5uZXIKaW50ZWxfY290bmV4dCB0byBhdm9pZCBhbiB1bnNpZ2h0bHkgYmFjay1yZWZl
-cmVuY2UgZnJvbSBpbnNpZGUgdGhlCmJhY2tlbmQuCgpTaWduZWQtb2ZmLWJ5OiBDaHJpcyBXaWxz
-b24gPGNocmlzQGNocmlzLXdpbHNvbi5jby51az4KLS0tCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9n
-ZW0vaTkxNV9nZW1fY29udGV4dC5jICAgICAgfCAxNiArKysrKysrKysrKy0tLS0tCiAuLi4vZ3B1
-L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9jb250ZXh0X3R5cGVzLmggICAgfCAgMyAtLS0KIGRyaXZl
-cnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX2xyYy5jICAgICAgICAgICAgICB8ICA1ICsrLS0tCiAz
-IGZpbGVzIGNoYW5nZWQsIDEzIGluc2VydGlvbnMoKyksIDExIGRlbGV0aW9ucygtKQoKZGlmZiAt
-LWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9jb250ZXh0LmMgYi9kcml2
-ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1fY29udGV4dC5jCmluZGV4IDFiM2RjNzI1OGVm
-Mi4uODA5NDAwODk3MzIyIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkx
-NV9nZW1fY29udGV4dC5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9j
-b250ZXh0LmMKQEAgLTI5Niw2ICsyOTYsOCBAQCBzdGF0aWMgc3RydWN0IGk5MTVfZ2VtX2VuZ2lu
-ZXMgKmRlZmF1bHRfZW5naW5lcyhzdHJ1Y3QgaTkxNV9nZW1fY29udGV4dCAqY3R4KQogCQkJcmV0
-dXJuIEVSUl9DQVNUKGNlKTsKIAkJfQogCisJCWNlLT5yaW5nID0gKHZvaWQgKilTWl8xNks7CisK
-IAkJZS0+ZW5naW5lc1tpZF0gPSBjZTsKIAl9CiAJZS0+bnVtX2VuZ2luZXMgPSBpZDsKQEAgLTQz
-NCw4ICs0MzYsNiBAQCBfX2NyZWF0ZV9jb250ZXh0KHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpp
-OTE1KQogCWk5MTVfZ2VtX2NvbnRleHRfc2V0X2Jhbm5hYmxlKGN0eCk7CiAJaTkxNV9nZW1fY29u
-dGV4dF9zZXRfcmVjb3ZlcmFibGUoY3R4KTsKIAotCWN0eC0+cmluZ19zaXplID0gNCAqIFBBR0Vf
-U0laRTsKLQogCWZvciAoaSA9IDA7IGkgPCBBUlJBWV9TSVpFKGN0eC0+aGFuZ190aW1lc3RhbXAp
-OyBpKyspCiAJCWN0eC0+aGFuZ190aW1lc3RhbXBbaV0gPSBqaWZmaWVzIC0gQ09OVEVYVF9GQVNU
-X0hBTkdfSklGRklFUzsKIApAQCAtNTY1LDggKzU2NSwxNSBAQCBpOTE1X2dlbV9jb250ZXh0X2Ny
-ZWF0ZV9ndnQoc3RydWN0IGRybV9kZXZpY2UgKmRldikKIAlpOTE1X2dlbV9jb250ZXh0X3NldF9j
-bG9zZWQoY3R4KTsgLyogbm90IHVzZXIgYWNjZXNzaWJsZSAqLwogCWk5MTVfZ2VtX2NvbnRleHRf
-Y2xlYXJfYmFubmFibGUoY3R4KTsKIAlpOTE1X2dlbV9jb250ZXh0X3NldF9mb3JjZV9zaW5nbGVf
-c3VibWlzc2lvbihjdHgpOwotCWlmICghVVNFU19HVUNfU1VCTUlTU0lPTih0b19pOTE1KGRldikp
-KQotCQljdHgtPnJpbmdfc2l6ZSA9IDUxMiAqIFBBR0VfU0laRTsgLyogTWF4IHJpbmcgYnVmZmVy
-IHNpemUgKi8KKwlpZiAoIVVTRVNfR1VDX1NVQk1JU1NJT04odG9faTkxNShkZXYpKSkgeworCQlj
-b25zdCB1bnNpZ25lZCBsb25nIHJpbmdfc2l6ZSA9IDUxMiAqIFNaXzRLOyAvKiBtYXggKi8KKwkJ
-c3RydWN0IGk5MTVfZ2VtX2VuZ2luZXNfaXRlciBpdDsKKwkJc3RydWN0IGludGVsX2NvbnRleHQg
-KmNlOworCisJCWZvcl9lYWNoX2dlbV9lbmdpbmUoY2UsIGk5MTVfZ2VtX2NvbnRleHRfbG9ja19l
-bmdpbmVzKGN0eCksIGl0KQorCQkJY2UtPnJpbmcgPSAodm9pZCAqKXJpbmdfc2l6ZTsKKwkJaTkx
-NV9nZW1fY29udGV4dF91bmxvY2tfZW5naW5lcyhjdHgpOworCX0KIAogCUdFTV9CVUdfT04oaTkx
-NV9nZW1fY29udGV4dF9pc19rZXJuZWwoY3R4KSk7CiBvdXQ6CkBAIC02MDUsNyArNjEyLDYgQEAg
-aTkxNV9nZW1fY29udGV4dF9jcmVhdGVfa2VybmVsKHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpp
-OTE1LCBpbnQgcHJpbykKIAogCWk5MTVfZ2VtX2NvbnRleHRfY2xlYXJfYmFubmFibGUoY3R4KTsK
-IAljdHgtPnNjaGVkLnByaW9yaXR5ID0gSTkxNV9VU0VSX1BSSU9SSVRZKHByaW8pOwotCWN0eC0+
-cmluZ19zaXplID0gUEFHRV9TSVpFOwogCiAJR0VNX0JVR19PTighaTkxNV9nZW1fY29udGV4dF9p
-c19rZXJuZWwoY3R4KSk7CiAKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9p
-OTE1X2dlbV9jb250ZXh0X3R5cGVzLmggYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9n
-ZW1fY29udGV4dF90eXBlcy5oCmluZGV4IGEwMmQ5ODQ5NDA3OC4uMjYwZDU5Y2MzZGU4IDEwMDY0
-NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1fY29udGV4dF90eXBlcy5o
-CisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9jb250ZXh0X3R5cGVzLmgK
-QEAgLTE2OSw5ICsxNjksNiBAQCBzdHJ1Y3QgaTkxNV9nZW1fY29udGV4dCB7CiAKIAlzdHJ1Y3Qg
-aTkxNV9zY2hlZF9hdHRyIHNjaGVkOwogCi0JLyoqIHJpbmdfc2l6ZTogc2l6ZSBmb3IgYWxsb2Nh
-dGluZyB0aGUgcGVyLWVuZ2luZSByaW5nIGJ1ZmZlciAqLwotCXUzMiByaW5nX3NpemU7Ci0KIAkv
-KiogZ3VpbHR5X2NvdW50OiBIb3cgbWFueSB0aW1lcyB0aGlzIGNvbnRleHQgaGFzIGNhdXNlZCBh
-IEdQVSBoYW5nLiAqLwogCWF0b21pY190IGd1aWx0eV9jb3VudDsKIAkvKioKZGlmZiAtLWdpdCBh
-L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX2xyYy5jIGIvZHJpdmVycy9ncHUvZHJtL2k5
-MTUvZ3QvaW50ZWxfbHJjLmMKaW5kZXggNWZkYWM0MDAxNWNmLi4zZjFiMjBjYzUwYzIgMTAwNjQ0
-Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX2xyYy5jCisrKyBiL2RyaXZlcnMv
-Z3B1L2RybS9pOTE1L2d0L2ludGVsX2xyYy5jCkBAIC0zMTQwLDkgKzMxNDAsOCBAQCBzdGF0aWMg
-aW50IGV4ZWNsaXN0c19jb250ZXh0X2RlZmVycmVkX2FsbG9jKHN0cnVjdCBpbnRlbF9jb250ZXh0
-ICpjZSwKIAkJZ290byBlcnJvcl9kZXJlZl9vYmo7CiAJfQogCi0JcmluZyA9IGludGVsX2VuZ2lu
-ZV9jcmVhdGVfcmluZyhlbmdpbmUsCi0JCQkJCXRpbWVsaW5lLAotCQkJCQljZS0+Z2VtX2NvbnRl
-eHQtPnJpbmdfc2l6ZSk7CisJcmluZyA9IGludGVsX2VuZ2luZV9jcmVhdGVfcmluZyhlbmdpbmUs
-IHRpbWVsaW5lLAorCQkJCQkodW5zaWduZWQgbG9uZyljZS0+cmluZyk7CiAJaW50ZWxfdGltZWxp
-bmVfcHV0KHRpbWVsaW5lKTsKIAlpZiAoSVNfRVJSKHJpbmcpKSB7CiAJCXJldCA9IFBUUl9FUlIo
-cmluZyk7Ci0tIAoyLjIyLjAKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNr
-dG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2lu
-dGVsLWdmeA==
+
+--===============1287860483==
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="eqp4TxRxnD4KrmFZ"
+Content-Disposition: inline
+
+
+--eqp4TxRxnD4KrmFZ
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+
+Hi,
+
+Here's recent gvt-fixes for 5.3-rc. It includes safety guard
+for possible ggtt access error with related checks, includecheck
+fix and one cache entry size fix for 2MB ppgtt guest.
+
+Thanks.
+--
+The following changes since commit d7e8a19b38c8ac1a32b6b03af049e2c88d4155db:
+
+  drm/i915: Don't dereference request if it may have been retired when prin=
+ting (2019-07-09 16:16:18 +0300)
+
+are available in the Git repository at:
+
+  https://github.com/intel/gvt-linux.git tags/gvt-fixes-2019-07-23
+
+for you to fetch changes up to 8642656299cf86cfeceb1a48b0e1874de6874a2b:
+
+  drm/i915/gvt: fix incorrect cache entry for guest page mapping (2019-07-1=
+8 11:06:41 +0800)
+
+----------------------------------------------------------------
+gvt-fixes-2019-07-23
+
+- Guard against potential ggtt access error (Xiong)
+- Fix includecheck (Zhenyu)
+- Fix cache entry for guest page mapping found by 2M ppgtt guest (Xiaolin)
+
+----------------------------------------------------------------
+Xiaolin Zhang (1):
+      drm/i915/gvt: fix incorrect cache entry for guest page mapping
+
+Xiong Zhang (3):
+      drm/i915/gvt: Warning for invalid ggtt access
+      drm/i915/gvt: Don't use ggtt_validdate_range() with size=3D0
+      drm/i915/gvt: Checking workload's gma earlier
+
+Zhenyu Wang (1):
+      drm/i915/gvt: remove duplicate include of trace.h
+
+ drivers/gpu/drm/i915/gvt/cmd_parser.c   | 10 ----------
+ drivers/gpu/drm/i915/gvt/fb_decoder.c   |  6 +++---
+ drivers/gpu/drm/i915/gvt/gtt.c          |  9 +++++++++
+ drivers/gpu/drm/i915/gvt/kvmgt.c        | 12 ++++++++++++
+ drivers/gpu/drm/i915/gvt/scheduler.c    | 28 ++++++++++++++++++++++++++++
+ drivers/gpu/drm/i915/gvt/trace_points.c |  2 --
+ 6 files changed, 52 insertions(+), 15 deletions(-)
+
+--=20
+Open Source Technology Center, Intel ltd.
+
+$gpg --keyserver wwwkeys.pgp.net --recv-keys 4D781827
+
+--eqp4TxRxnD4KrmFZ
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iF0EARECAB0WIQTXuabgHDW6LPt9CICxBBozTXgYJwUCXTbTlgAKCRCxBBozTXgY
+JyD0AJ4zCBiLnoqviISTZxhz2nNIYV821wCgnZMKbEFO/vNfJj3U+vobFHbOhA8=
+=L3k7
+-----END PGP SIGNATURE-----
+
+--eqp4TxRxnD4KrmFZ--
+
+--===============1287860483==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
+IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
+
+--===============1287860483==--
