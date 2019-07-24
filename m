@@ -2,42 +2,47 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B3CB673B91
-	for <lists+intel-gfx@lfdr.de>; Wed, 24 Jul 2019 22:01:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A951173B9E
+	for <lists+intel-gfx@lfdr.de>; Wed, 24 Jul 2019 22:02:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6E0636E64B;
-	Wed, 24 Jul 2019 20:01:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 10B1F6E649;
+	Wed, 24 Jul 2019 20:02:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2E39D6E64B
- for <intel-gfx@lists.freedesktop.org>; Wed, 24 Jul 2019 20:01:39 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 24 Jul 2019 13:01:38 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.64,304,1559545200"; d="scan'208";a="197615699"
-Received: from irvmail001.ir.intel.com ([163.33.26.43])
- by fmsmga002.fm.intel.com with ESMTP; 24 Jul 2019 13:01:37 -0700
-Received: from mwajdecz-mobl1.ger.corp.intel.com
- (mwajdecz-mobl1.ger.corp.intel.com [10.249.145.15])
- by irvmail001.ir.intel.com (8.14.3/8.13.6/MailSET/Hub) with ESMTP id
- x6OK1aE1013077; Wed, 24 Jul 2019 21:01:37 +0100
-To: intel-gfx@lists.freedesktop.org, "Daniele Ceraolo Spurio"
- <daniele.ceraolospurio@intel.com>
-References: <20190724173446.35188-1-michal.wajdeczko@intel.com>
- <20190724173446.35188-2-michal.wajdeczko@intel.com>
- <cb59b4db-9adb-fead-4fed-a39917e202f6@intel.com>
-Date: Wed, 24 Jul 2019 22:01:36 +0200
+Received: from mx1.riseup.net (mx1.riseup.net [198.252.153.129])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4EAD96E649
+ for <intel-gfx@lists.freedesktop.org>; Wed, 24 Jul 2019 20:02:12 +0000 (UTC)
+Received: from capuchin.riseup.net (capuchin-pn.riseup.net [10.0.1.176])
+ (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+ (Client CN "*.riseup.net",
+ Issuer "COMODO RSA Domain Validation Secure Server CA" (verified OK))
+ by mx1.riseup.net (Postfix) with ESMTPS id D0DEF1A3E72;
+ Wed, 24 Jul 2019 13:02:11 -0700 (PDT)
+X-Riseup-User-ID: BA6904DE8154E52BA0E96F6BD2EBF4809CFF8DB982ABC4A154E9342593BC3D3A
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+ by capuchin.riseup.net (Postfix) with ESMTPSA id 7C6FF120519;
+ Wed, 24 Jul 2019 13:02:11 -0700 (PDT)
+From: Francisco Jerez <currojerez@riseup.net>
+To: Chris Wilson <chris@chris-wilson.co.uk>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+In-Reply-To: <156397886241.31349.9195166642161638629@skylake-alporthouse-com>
+References: <20190720143132.17522-1-chris@chris-wilson.co.uk>
+ <65da19be-2696-8d60-e055-63a37101cf6b@linux.intel.com>
+ <156388293186.31349.1576327527372090940@skylake-alporthouse-com>
+ <87pnm0qtr2.fsf@riseup.net>
+ <156397886241.31349.9195166642161638629@skylake-alporthouse-com>
+Date: Wed, 24 Jul 2019 13:02:10 -0700
+Message-ID: <87a7d3qjzx.fsf@riseup.net>
 MIME-Version: 1.0
-From: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
-Message-ID: <op.z5f68yu8xaggs7@mwajdecz-mobl1.ger.corp.intel.com>
-In-Reply-To: <cb59b4db-9adb-fead-4fed-a39917e202f6@intel.com>
-User-Agent: Opera Mail/1.0 (Win32)
-Subject: Re: [Intel-gfx] [PATCH 2/3] drm/i915/uc: Move uc firmware layout
- definitions to dedicated file
+X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=riseup.net; s=squak; 
+ t=1563998532; bh=dGCwMWM5PIhsRaGEK70qrrWCTxnsvouThFiAiadxg5s=;
+ h=From:To:Subject:In-Reply-To:References:Date:From;
+ b=XzPHJ136ZrtpfDGVr1pp8XLTM0NYdodS6rtWJ43PfbzP9HW9XSbpA6MAC5m6RCfIb
+ KWwKqMC2WJmucVu2BuKTN54L+ajoVwht0C42wIN59ybGqWZc4gbbaovn+ih1SY4UkN
+ PDbPa0IrSOlWLIRiIHfYnqpK1hFm4PzO/y6R1zlY=
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Disable atomics in L3 for gen9
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -50,168 +55,139 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"; DelSp="yes"
+Content-Type: multipart/mixed; boundary="===============1676402829=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gV2VkLCAyNCBKdWwgMjAxOSAxOTo1MDozNyArMDIwMCwgRGFuaWVsZSBDZXJhb2xvIFNwdXJp
-byAgCjxkYW5pZWxlLmNlcmFvbG9zcHVyaW9AaW50ZWwuY29tPiB3cm90ZToKCj4KPgo+IE9uIDcv
-MjQvMTkgMTA6MzQgQU0sIE1pY2hhbCBXYWpkZWN6a28gd3JvdGU6Cj4+IEdlbmVyaWMgdWMgZmly
-bXdhcmUgbGF5b3V0IGRlZmluaXRpb25zIGFyZSB1bmxpa2VseSB0byBjaGFuZ2UgYW5kCj4+IGFy
-ZSBzZXBhcmF0ZSB0byBvdGhlciBHdUMgc3BlY2lmaWMgZGVmaW5pdGlvbnMuCj4+ICBTaWduZWQt
-b2ZmLWJ5OiBNaWNoYWwgV2FqZGVjemtvIDxtaWNoYWwud2FqZGVjemtvQGludGVsLmNvbT4KPj4g
-Q2M6IERhbmllbGUgQ2VyYW9sbyBTcHVyaW8gPGRhbmllbGUuY2VyYW9sb3NwdXJpb0BpbnRlbC5j
-b20+Cj4KPiBLZWVwaW5nIHRoaW5ncyB0aGF0IGFwcGx5IHRvIEh1QyBhcyB3ZWxsIGluIGEgZ2Vu
-ZXJpYyBmaWxlIHNlZW1zICAKPiBzZW5zaWJsZSB0byBtZS4KPgo+PiAtLS0KPj4gICBEb2N1bWVu
-dGF0aW9uL2dwdS9pOTE1LnJzdCAgICAgICAgICAgICAgICAgICB8ICAyICstCj4+ICAgZHJpdmVy
-cy9ncHUvZHJtL2k5MTUvZ3QvdWMvaW50ZWxfZ3VjX2Z3aWYuaCAgfCA3MCAtLS0tLS0tLS0tLS0t
-LS0tLQo+PiAgIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L3VjL2ludGVsX3VjX2Z3LmMgICAgIHwg
-IDEgKwo+PiAgIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L3VjL2ludGVsX3VjX2Z3X2FiaS5oIHwg
-ODEgKysrKysrKysrKysrKysrKysrKysKPj4gICA0IGZpbGVzIGNoYW5nZWQsIDgzIGluc2VydGlv
-bnMoKyksIDcxIGRlbGV0aW9ucygtKQo+PiAgIGNyZWF0ZSBtb2RlIDEwMDY0NCBkcml2ZXJzL2dw
-dS9kcm0vaTkxNS9ndC91Yy9pbnRlbF91Y19md19hYmkuaAo+PiAgZGlmZiAtLWdpdCBhL0RvY3Vt
-ZW50YXRpb24vZ3B1L2k5MTUucnN0IGIvRG9jdW1lbnRhdGlvbi9ncHUvaTkxNS5yc3QKPj4gaW5k
-ZXggYzIxNzNkMTIwNDkyLi4zNjZjYjdmNDZkMTcgMTAwNjQ0Cj4+IC0tLSBhL0RvY3VtZW50YXRp
-b24vZ3B1L2k5MTUucnN0Cj4+ICsrKyBiL0RvY3VtZW50YXRpb24vZ3B1L2k5MTUucnN0Cj4+IEBA
-IC00NDgsNyArNDQ4LDcgQEAgR3VDLWJhc2VkIGNvbW1hbmQgc3VibWlzc2lvbgo+PiAgIEd1QyBG
-aXJtd2FyZSBMYXlvdXQKPj4gICAtLS0tLS0tLS0tLS0tLS0tLS0tCj4+ICAgLS4uIGtlcm5lbC1k
-b2M6OiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC91Yy9pbnRlbF9ndWNfZndpZi5oCj4+ICsuLiBr
-ZXJuZWwtZG9jOjogZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvdWMvaW50ZWxfdWNfZndfYWJpLmgK
-Pj4gICAgICA6ZG9jOiBHdUMgRmlybXdhcmUgTGF5b3V0Cj4KPiBUaGlzIGlzIG5vdyBnZW5lcmlj
-IHVDIGZpcm13YXJlIGxheW91dAo+Cj4+ICAgICBHdUMgQWRkcmVzcyBTcGFjZQo+PiBkaWZmIC0t
-Z2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvdWMvaW50ZWxfZ3VjX2Z3aWYuaCAgCj4+IGIv
-ZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvdWMvaW50ZWxfZ3VjX2Z3aWYuaAo+PiBpbmRleCAzMGNj
-YTNhMjkzMjMuLjA2YTliZGZiMGZhZiAxMDA2NDQKPj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5
-MTUvZ3QvdWMvaW50ZWxfZ3VjX2Z3aWYuaAo+PiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9n
-dC91Yy9pbnRlbF9ndWNfZndpZi5oCj4+IEBAIC0xMjEsNzYgKzEyMSw2IEBACj4+ICAgICAjZGVm
-aW5lIEdVQ19DVExfTUFYX0RXT1JEUwkJKFNPRlRfU0NSQVRDSF9DT1VOVCAtIDIpIC8qIFsxLi4x
-NF0gKi8KPj4gICAtLyoqCj4+IC0gKiBET0M6IEd1QyBGaXJtd2FyZSBMYXlvdXQKPj4gLSAqCj4+
-IC0gKiBUaGUgR3VDIGZpcm13YXJlIGxheW91dCBsb29rcyBsaWtlIHRoaXM6Cj4+IC0gKgo+PiAt
-ICogICAgICstLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tKwo+PiAtICogICAgIHwgICAg
-ICAgICB1Y19jc3NfaGVhZGVyICAgICAgICAgfAo+PiAtICogICAgIHwgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgfAo+PiAtICogICAgIHwgY29udGFpbnMgbWFqb3IvbWlub3IgdmVyc2lv
-biAgfAo+PiAtICogICAgICstLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tKwo+PiAtICog
-ICAgIHwgICAgICAgICAgICAgdUNvZGUgICAgICAgICAgICAgfAo+PiAtICogICAgICstLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tKwo+PiAtICogICAgIHwgICAgICAgICBSU0Egc2lnbmF0
-dXJlICAgICAgICAgfAo+PiAtICogICAgICstLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-Kwo+PiAtICogICAgIHwgICAgICAgICAgbW9kdWx1cyBrZXkgICAgICAgICAgfAo+PiAtICogICAg
-ICstLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tKwo+PiAtICogICAgIHwgICAgICAgICAg
-ZXhwb25lbnQgdmFsICAgICAgICAgfAo+PiAtICogICAgICstLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tKwo+PiAtICoKPj4gLSAqIFRoZSBmaXJtd2FyZSBtYXkgb3IgbWF5IG5vdCBoYXZl
-IG1vZHVsdXMga2V5IGFuZCBleHBvbmVudCBkYXRhLiBUaGUgIAo+PiBoZWFkZXIsCj4+IC0gKiB1
-Q29kZSBhbmQgUlNBIHNpZ25hdHVyZSBhcmUgbXVzdC1oYXZlIGNvbXBvbmVudHMgdGhhdCB3aWxs
-IGJlIHVzZWQgIAo+PiBieSBkcml2ZXIuCj4+IC0gKiBMZW5ndGggb2YgZWFjaCBjb21wb25lbnRz
-LCB3aGljaCBpcyBhbGwgaW4gZHdvcmRzLCBjYW4gYmUgZm91bmQgaW4gIAo+PiBoZWFkZXIuCj4+
-IC0gKiBJbiB0aGUgY2FzZSB0aGF0IG1vZHVsdXMgYW5kIGV4cG9uZW50IGFyZSBub3QgcHJlc2Vu
-dCBpbiBmdywgYS5rLmEgIAo+PiB0cnVuY2F0ZWQKPj4gLSAqIGltYWdlLCB0aGUgbGVuZ3RoIHZh
-bHVlIHN0aWxsIGFwcGVhcnMgaW4gaGVhZGVyLgo+PiAtICoKPj4gLSAqIERyaXZlciB3aWxsIGRv
-IHNvbWUgYmFzaWMgZncgc2l6ZSB2YWxpZGF0aW9uIGJhc2VkIG9uIHRoZSBmb2xsb3dpbmcgIAo+
-PiBydWxlczoKPj4gLSAqCj4+IC0gKiAxLiBIZWFkZXIsIHVDb2RlIGFuZCBSU0EgYXJlIG11c3Qt
-aGF2ZSBjb21wb25lbnRzLgo+PiAtICogMi4gQWxsIGZpcm13YXJlIGNvbXBvbmVudHMsIGlmIHRo
-ZXkgcHJlc2VudCwgYXJlIGluIHRoZSBzZXF1ZW5jZSAgCj4+IGlsbHVzdHJhdGVkCj4+IC0gKiAg
-ICBpbiB0aGUgbGF5b3V0IHRhYmxlIGFib3ZlLgo+PiAtICogMy4gTGVuZ3RoIGluZm8gb2YgZWFj
-aCBjb21wb25lbnQgY2FuIGJlIGZvdW5kIGluIGhlYWRlciwgaW4gZHdvcmRzLgo+PiAtICogNC4g
-TW9kdWx1cyBhbmQgZXhwb25lbnQga2V5IGFyZSBub3QgcmVxdWlyZWQgYnkgZHJpdmVyLiBUaGV5
-IG1heSAgCj4+IG5vdCBhcHBlYXIKPj4gLSAqICAgIGluIGZ3LiBTbyBkcml2ZXIgd2lsbCBsb2Fk
-IGEgdHJ1bmNhdGVkIGZpcm13YXJlIGluIHRoaXMgY2FzZS4KPj4gLSAqCj4+IC0gKiBIdUMgZmly
-bXdhcmUgbGF5b3V0IGlzIHNhbWUgYXMgR3VDIGZpcm13YXJlLgo+PiAtICogT25seSBIdUMgdmVy
-c2lvbiBpbmZvcm1hdGlvbiBpcyBzYXZlZCBpbiBhIGRpZmZlcmVudCB3YXkuCj4+IC0gKi8KPj4g
-LQo+PiAtc3RydWN0IHVjX2Nzc19oZWFkZXIgewo+PiAtCXUzMiBtb2R1bGVfdHlwZTsKPj4gLQkv
-KiBoZWFkZXJfc2l6ZSBpbmNsdWRlcyBhbGwgbm9uLXVDb2RlIGJpdHMsIGluY2x1ZGluZyBjc3Nf
-aGVhZGVyLCByc2EKPj4gLQkgKiBrZXksIG1vZHVsdXMga2V5IGFuZCBleHBvbmVudCBkYXRhLiAq
-Lwo+PiAtCXUzMiBoZWFkZXJfc2l6ZV9kdzsKPj4gLQl1MzIgaGVhZGVyX3ZlcnNpb247Cj4+IC0J
-dTMyIG1vZHVsZV9pZDsKPj4gLQl1MzIgbW9kdWxlX3ZlbmRvcjsKPj4gLQl1MzIgZGF0ZTsKPj4g
-LSNkZWZpbmUgQ1NTX0RBVEVfREFZCQkJKDB4RkYgPDwgMCkKPj4gLSNkZWZpbmUgQ1NTX0RBVEVf
-TU9OVEgJCQkoMHhGRiA8PCA4KQo+PiAtI2RlZmluZSBDU1NfREFURV9ZRUFSCQkJKDB4RkZGRiA8
-PCAxNikKPj4gLQl1MzIgc2l6ZV9kdzsgLyogdUNvZGUgcGx1cyBoZWFkZXJfc2l6ZV9kdyAqLwo+
-PiAtCXUzMiBrZXlfc2l6ZV9kdzsKPj4gLQl1MzIgbW9kdWx1c19zaXplX2R3Owo+PiAtCXUzMiBl
-eHBvbmVudF9zaXplX2R3Owo+PiAtCXUzMiB0aW1lOwo+PiAtI2RlZmluZSBDU1NfVElNRV9IT1VS
-CQkJKDB4RkYgPDwgMCkKPj4gLSNkZWZpbmUgQ1NTX0RBVEVfTUlOCQkJKDB4RkYgPDwgOCkKPj4g
-LSNkZWZpbmUgQ1NTX0RBVEVfU0VDCQkJKDB4RkZGRiA8PCAxNikKPj4gLQljaGFyIHVzZXJuYW1l
-WzhdOwo+PiAtCWNoYXIgYnVpbGRudW1iZXJbMTJdOwo+PiAtCXUzMiBzd192ZXJzaW9uOwo+PiAt
-I2RlZmluZSBDU1NfU1dfVkVSU0lPTl9HVUNfTUFKT1IJKDB4RkYgPDwgMTYpCj4+IC0jZGVmaW5l
-IENTU19TV19WRVJTSU9OX0dVQ19NSU5PUgkoMHhGRiA8PCA4KQo+PiAtI2RlZmluZSBDU1NfU1df
-VkVSU0lPTl9HVUNfUEFUQ0gJKDB4RkYgPDwgMCkKPj4gLSNkZWZpbmUgQ1NTX1NXX1ZFUlNJT05f
-SFVDX01BSk9SCSgweEZGRkYgPDwgMTYpCj4+IC0jZGVmaW5lIENTU19TV19WRVJTSU9OX0hVQ19N
-SU5PUgkoMHhGRkZGIDw8IDApCj4+IC0JdTMyIHJlc2VydmVkWzE0XTsKPj4gLQl1MzIgaGVhZGVy
-X2luZm87Cj4+IC19IF9fcGFja2VkOwo+PiAtCj4+ICAgLyogV29yayBpdGVtIGZvciBzdWJtaXR0
-aW5nIHdvcmtsb2FkcyBpbnRvIHdvcmsgcXVldWUgb2YgR3VDLiAqLwo+PiAgIHN0cnVjdCBndWNf
-d3FfaXRlbSB7Cj4+ICAgCXUzMiBoZWFkZXI7Cj4+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9k
-cm0vaTkxNS9ndC91Yy9pbnRlbF91Y19mdy5jICAKPj4gYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9n
-dC91Yy9pbnRlbF91Y19mdy5jCj4+IGluZGV4IDhjZTcyMTA5MDdjMC4uZDVjYjE5YjRlNWMxIDEw
-MDY0NAo+PiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC91Yy9pbnRlbF91Y19mdy5jCj4+
-ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L3VjL2ludGVsX3VjX2Z3LmMKPj4gQEAgLTI3
-LDYgKzI3LDcgQEAKPj4gICAjaW5jbHVkZSA8ZHJtL2RybV9wcmludC5oPgo+PiAgICAgI2luY2x1
-ZGUgImludGVsX3VjX2Z3LmgiCj4+ICsjaW5jbHVkZSAiaW50ZWxfdWNfZndfYWJpLmgiCj4+ICAg
-I2luY2x1ZGUgImk5MTVfZHJ2LmgiCj4+ICAgICAvKioKPj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMv
-Z3B1L2RybS9pOTE1L2d0L3VjL2ludGVsX3VjX2Z3X2FiaS5oICAKPj4gYi9kcml2ZXJzL2dwdS9k
-cm0vaTkxNS9ndC91Yy9pbnRlbF91Y19md19hYmkuaAo+PiBuZXcgZmlsZSBtb2RlIDEwMDY0NAo+
-PiBpbmRleCAwMDAwMDAwMDAwMDAuLjNjYTUzNTUzNDE1MQo+PiAtLS0gL2Rldi9udWxsCj4+ICsr
-KyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L3VjL2ludGVsX3VjX2Z3X2FiaS5oCj4+IEBAIC0w
-LDAgKzEsODEgQEAKPj4gKy8qIFNQRFgtTGljZW5zZS1JZGVudGlmaWVyOiBNSVQgKi8KPj4gKy8q
-Cj4+ICsgKiBDb3B5cmlnaHQgwqkgMjAxOSBJbnRlbCBDb3Jwb3JhdGlvbgo+PiArICovCj4+ICsK
-Pj4gKyNpZm5kZWYgX0lOVEVMX1VDX0ZXX0FCSV9ICj4+ICsjZGVmaW5lIF9JTlRFTF9VQ19GV19B
-QklfSAo+PiArCj4+ICsjaW5jbHVkZSA8bGludXgvdHlwZXMuaD4KPj4gKwo+PiArLyoqCj4+ICsg
-KiBET0M6IEd1QyBGaXJtd2FyZSBMYXlvdXQKPj4gKyAqCj4+ICsgKiBUaGUgR3VDIGZpcm13YXJl
-IGxheW91dCBsb29rcyBsaWtlIHRoaXM6Cj4KPiBzYW1lIGhlcmUsIHMvR3VDL3VDLgo+Cj4+ICsg
-Kgo+PiArICogICAgICstLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tKwo+PiArICogICAg
-IHwgICAgICAgICB1Y19jc3NfaGVhZGVyICAgICAgICAgfAo+PiArICogICAgIHwgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgfAo+PiArICogICAgIHwgY29udGFpbnMgbWFqb3IvbWlub3Ig
-dmVyc2lvbiAgfAo+PiArICogICAgICstLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tKwo+
-PiArICogICAgIHwgICAgICAgICAgICAgdUNvZGUgICAgICAgICAgICAgfAo+PiArICogICAgICst
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tKwo+PiArICogICAgIHwgICAgICAgICBSU0Eg
-c2lnbmF0dXJlICAgICAgICAgfAo+PiArICogICAgICstLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tKwo+PiArICogICAgIHwgICAgICAgICAgbW9kdWx1cyBrZXkgICAgICAgICAgfAo+PiAr
-ICogICAgICstLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tKwo+PiArICogICAgIHwgICAg
-ICAgICAgZXhwb25lbnQgdmFsICAgICAgICAgfAo+PiArICogICAgICstLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tKwo+PiArICoKPj4gKyAqIFRoZSBmaXJtd2FyZSBtYXkgb3IgbWF5IG5v
-dCBoYXZlIG1vZHVsdXMga2V5IGFuZCBleHBvbmVudCBkYXRhLiBUaGUgIAo+PiBoZWFkZXIsCj4+
-ICsgKiB1Q29kZSBhbmQgUlNBIHNpZ25hdHVyZSBhcmUgbXVzdC1oYXZlIGNvbXBvbmVudHMgdGhh
-dCB3aWxsIGJlIHVzZWQgIAo+PiBieSBkcml2ZXIuCj4+ICsgKiBMZW5ndGggb2YgZWFjaCBjb21w
-b25lbnRzLCB3aGljaCBpcyBhbGwgaW4gZHdvcmRzLCBjYW4gYmUgZm91bmQgaW4gIAo+PiBoZWFk
-ZXIuCj4+ICsgKiBJbiB0aGUgY2FzZSB0aGF0IG1vZHVsdXMgYW5kIGV4cG9uZW50IGFyZSBub3Qg
-cHJlc2VudCBpbiBmdywgYS5rLmEgIAo+PiB0cnVuY2F0ZWQKPj4gKyAqIGltYWdlLCB0aGUgbGVu
-Z3RoIHZhbHVlIHN0aWxsIGFwcGVhcnMgaW4gaGVhZGVyLgo+PiArICoKPj4gKyAqIERyaXZlciB3
-aWxsIGRvIHNvbWUgYmFzaWMgZncgc2l6ZSB2YWxpZGF0aW9uIGJhc2VkIG9uIHRoZSBmb2xsb3dp
-bmcgIAo+PiBydWxlczoKPj4gKyAqCj4+ICsgKiAxLiBIZWFkZXIsIHVDb2RlIGFuZCBSU0EgYXJl
-IG11c3QtaGF2ZSBjb21wb25lbnRzLgo+PiArICogMi4gQWxsIGZpcm13YXJlIGNvbXBvbmVudHMs
-IGlmIHRoZXkgcHJlc2VudCwgYXJlIGluIHRoZSBzZXF1ZW5jZSAgCj4+IGlsbHVzdHJhdGVkCj4+
-ICsgKiAgICBpbiB0aGUgbGF5b3V0IHRhYmxlIGFib3ZlLgo+PiArICogMy4gTGVuZ3RoIGluZm8g
-b2YgZWFjaCBjb21wb25lbnQgY2FuIGJlIGZvdW5kIGluIGhlYWRlciwgaW4gZHdvcmRzLgo+PiAr
-ICogNC4gTW9kdWx1cyBhbmQgZXhwb25lbnQga2V5IGFyZSBub3QgcmVxdWlyZWQgYnkgZHJpdmVy
-LiBUaGV5IG1heSAgCj4+IG5vdCBhcHBlYXIKPj4gKyAqICAgIGluIGZ3LiBTbyBkcml2ZXIgd2ls
-bCBsb2FkIGEgdHJ1bmNhdGVkIGZpcm13YXJlIGluIHRoaXMgY2FzZS4KPj4gKyAqCj4+ICsgKiBI
-dUMgZmlybXdhcmUgbGF5b3V0IGlzIHNhbWUgYXMgR3VDIGZpcm13YXJlLgo+PiArICogT25seSBI
-dUMgdmVyc2lvbiBpbmZvcm1hdGlvbiBpcyBzYXZlZCBpbiBhIGRpZmZlcmVudCB3YXkuCj4KPiBB
-bmQgcmV3b3JkIHRoaXMgYXMgc29tZXRoaW5nIGxpa2U6ICJUaGUgb25seSBkaWZmZXJlbmNlIGJl
-dHdlZW4gR3VDIGFuZCAgCj4gSHVDIGZpcm13YXJlcyBpcyBob3cgdGhlIHZlcnNpb24gaW5mb3Jt
-YXRpb24gaXMgc2F2ZWQiCj4KPiBXaXRoIHRoYXQ6CgpBcyBhaW0gb2YgdGhpcyBwYXRjaCB3YXMg
-anVzdCB0byBtb3ZlIGRlZmluaXRpb24gYXMtaXMgZnJvbSBvbmUgcGxhY2UKdG8gdGhlIG90aGVy
-LCBjYW4gSSBtYWtlIGFsbCBhYm92ZSBmaXh1cHMgaW4gb3RoZXIgcGF0Y2ggPwoKTm90ZSB0aGF0
-IGNoYW5naW5nICJET0MiIHRhZyB3aWxsIHJlcXVpcmUgY29ycmVzcG9uZGluZyBjaGFuZ2VzIGlu
-IC5yc3QKYW5kIEkgZG9uJ3Qgd2FudCB0byB0aGF0IGluIGhlcmUKCj4KPiBSZXZpZXdlZC1ieTog
-RGFuaWVsZSBDZXJhb2xvIFNwdXJpbyA8ZGFuaWVsZS5jZXJhb2xvc3B1cmlvQGludGVsLmNvbT4K
-Pgo+IERhbmllbGUKPgo+PiArICovCj4+ICsKPj4gK3N0cnVjdCB1Y19jc3NfaGVhZGVyIHsKPj4g
-Kwl1MzIgbW9kdWxlX3R5cGU7Cj4+ICsJLyogaGVhZGVyX3NpemUgaW5jbHVkZXMgYWxsIG5vbi11
-Q29kZSBiaXRzLCBpbmNsdWRpbmcgY3NzX2hlYWRlciwgcnNhCj4+ICsJICoga2V5LCBtb2R1bHVz
-IGtleSBhbmQgZXhwb25lbnQgZGF0YS4gKi8KPj4gKwl1MzIgaGVhZGVyX3NpemVfZHc7Cj4+ICsJ
-dTMyIGhlYWRlcl92ZXJzaW9uOwo+PiArCXUzMiBtb2R1bGVfaWQ7Cj4+ICsJdTMyIG1vZHVsZV92
-ZW5kb3I7Cj4+ICsJdTMyIGRhdGU7Cj4+ICsjZGVmaW5lIENTU19EQVRFX0RBWQkJCSgweEZGIDw8
-IDApCj4+ICsjZGVmaW5lIENTU19EQVRFX01PTlRICQkJKDB4RkYgPDwgOCkKPj4gKyNkZWZpbmUg
-Q1NTX0RBVEVfWUVBUgkJCSgweEZGRkYgPDwgMTYpCj4+ICsJdTMyIHNpemVfZHc7IC8qIHVDb2Rl
-IHBsdXMgaGVhZGVyX3NpemVfZHcgKi8KPj4gKwl1MzIga2V5X3NpemVfZHc7Cj4+ICsJdTMyIG1v
-ZHVsdXNfc2l6ZV9kdzsKPj4gKwl1MzIgZXhwb25lbnRfc2l6ZV9kdzsKPj4gKwl1MzIgdGltZTsK
-Pj4gKyNkZWZpbmUgQ1NTX1RJTUVfSE9VUgkJCSgweEZGIDw8IDApCj4+ICsjZGVmaW5lIENTU19E
-QVRFX01JTgkJCSgweEZGIDw8IDgpCj4+ICsjZGVmaW5lIENTU19EQVRFX1NFQwkJCSgweEZGRkYg
-PDwgMTYpCj4+ICsJY2hhciB1c2VybmFtZVs4XTsKPj4gKwljaGFyIGJ1aWxkbnVtYmVyWzEyXTsK
-Pj4gKwl1MzIgc3dfdmVyc2lvbjsKPj4gKyNkZWZpbmUgQ1NTX1NXX1ZFUlNJT05fR1VDX01BSk9S
-CSgweEZGIDw8IDE2KQo+PiArI2RlZmluZSBDU1NfU1dfVkVSU0lPTl9HVUNfTUlOT1IJKDB4RkYg
-PDwgOCkKPj4gKyNkZWZpbmUgQ1NTX1NXX1ZFUlNJT05fR1VDX1BBVENICSgweEZGIDw8IDApCj4+
-ICsjZGVmaW5lIENTU19TV19WRVJTSU9OX0hVQ19NQUpPUgkoMHhGRkZGIDw8IDE2KQo+PiArI2Rl
-ZmluZSBDU1NfU1dfVkVSU0lPTl9IVUNfTUlOT1IJKDB4RkZGRiA8PCAwKQo+PiArCXUzMiByZXNl
-cnZlZFsxNF07Cj4+ICsJdTMyIGhlYWRlcl9pbmZvOwo+PiArfSBfX3BhY2tlZDsKPj4gKwo+PiAr
-I2VuZGlmIC8qIF9JTlRFTF9VQ19GV19BQklfSCAqLwpfX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBs
-aXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1h
-bi9saXN0aW5mby9pbnRlbC1nZng=
+--===============1676402829==
+Content-Type: multipart/signed; boundary="==-=-=";
+	micalg=pgp-sha256; protocol="application/pgp-signature"
+
+--==-=-=
+Content-Type: multipart/mixed; boundary="=-=-="
+
+--=-=-=
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+Chris Wilson <chris@chris-wilson.co.uk> writes:
+
+> Quoting Francisco Jerez (2019-07-23 23:19:13)
+>> Chris Wilson <chris@chris-wilson.co.uk> writes:
+>>=20
+>> > Quoting Tvrtko Ursulin (2019-07-22 12:41:36)
+>> >>=20
+>> >> On 20/07/2019 15:31, Chris Wilson wrote:
+>> >> > Enabling atomic operations in L3 leads to unrecoverable GPU hangs, =
+as
+>> >> > the machine stops responding milliseconds after receipt of the reset
+>> >> > request [GDRT]. By disabling the cached atomics, the hang do not oc=
+cur
+>> >> > and we presume the GPU would reset normally for similar hangs.
+>> >> >=20
+>> >> > Reported-by: Jason Ekstrand <jason@jlekstrand.net>
+>> >> > Bugzilla: https://bugs.freedesktop.org/show_bug.cgi?id=3D110998
+>> >> > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+>> >> > Cc: Jason Ekstrand <jason@jlekstrand.net>
+>> >> > Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+>> >> > Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+>> >> > ---
+>> >> > Jason reports that Windows is not clearing L3SQCREG4:22 and does not
+>> >> > suffer the same GPU hang so it is likely some other w/a that intera=
+cts
+>> >> > badly. Fwiw, these 3 are the only registers I could find that menti=
+on
+>> >> > atomic ops (and appear to be part of the same chain for memory acce=
+ss).
+>> >>=20
+>> >> Bit-toggling itself looks fine to me and matches what I could find in=
+=20
+>> >> the docs. (All three bits across three registers should be equal.)
+>> >>=20
+>> >> What I am curious about is what are the other consequences of disabli=
+ng=20
+>> >> L3 atomics? Performance drop somewhere?
+>> >
+>> > The test I have where it goes from dead to passing, that's a considera=
+ble
+>> > performance improvement ;)
+>> >
+>> > I imagine not being able to use L3 for atomics is pretty dire, whether=
+ that
+>> > has any impact, I have no clue.
+>> >
+>> > It is still very likely that we see this because we are doing something
+>> > wrong elsewhere.
+>>=20
+>> This reminds me of f3fc4884ebe6ae649d3723be14b219230d3b7fd2 followed by
+>> d351f6d94893f3ba98b1b20c5ef44c35fc1da124 due to the massive impact (of
+>> the order of 20x IIRC) using the L3 turned out to have on the
+>> performance of HDC atomics, on at least that platform.  It seems
+>> unfortunate that we're going to lose L3 atomics on Gen9 now, even though
+>> it's only buffer atomics which are broken IIUC, and even though the
+>> Windows driver is somehow getting away without disabling them.  Some of
+>> our setup must be wrong either in the kernel or in userspace...  Are
+>> these registers at least whitelisted so userspace can re-enable L3
+>> atomics once the problem is addressed?  Wouldn't it be a more specific
+>> workaround for userspace to simply use a non-L3-cacheable MOCS for
+>> (rarely used) buffer surfaces, so it could benefit from L3 atomics
+>> elsewhere?
+>
+> If it was the case that disabling L3 atomics was the only way to prevent
+> the machine lockup under this scenario, then I think it is
+> unquestionably the right thing to do, and we could not leave it to
+> userspace to dtrt. We should never add non-context saved unsafe
+> registers to the whitelist (if setting a register may cause data
+> corruption or worse in another context/process, that is bad) despite our
+> repeated transgressions. However, there's no evidence to say that it does
+> prevent the machine lockup as it prevents the GPU hang that lead to the
+> lockup on reset.
+>
+> Other than GPGPU requiring a flush around every sneeze, I did not see
+> anything in the gen9 w/a list that seemed like a match. Nevertheless, I
+> expect there is a more precise w/a than a blanket disable.
+> -Chris
+
+Supposedly there is a more precise one (setting the surface state MOCS
+to UC for buffer images), but it relies on userspace doing the right
+thing for the machine not to lock up.  There is a good chance that the
+reason why L3 atomics hang on such buffers is ultimately under userspace
+control, in which case we'll eventually have to undo the programming
+done in this patch in order to re-enable L3 atomics once the problem is
+addressed.  That means that userspace will have the freedom to hang the
+machine hard once again, which sounds really bad, but it's no real news
+for us (*cough* HSW *cough*), and it might be the only way to match the
+performance of the Windows driver.
+
+What can we do here?  Add an i915 option to enable performance features
+that can lead to the system hanging hard under malicious (or
+incompetent) userspace programming?  Probably only the user can tell
+whether the trade-off between performance and security of the system is
+acceptable...
+
+--=-=-=--
+
+--==-=-=
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEAREIAB0WIQST8OekYz69PM20/4aDmTidfVK/WwUCXTi5QgAKCRCDmTidfVK/
+W5xvAP91HLKrprBFegO6imcY8MwujwEJBB4w1O8h2f4boo5z2gD/duU8Fk4AcYzE
+B6MXAGLkRwu57qzdFbuGbwW+04n9d5w=
+=/dsr
+-----END PGP SIGNATURE-----
+--==-=-=--
+
+--===============1676402829==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
+IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
+
+--===============1676402829==--
