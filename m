@@ -1,42 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5DA8E72C5C
-	for <lists+intel-gfx@lfdr.de>; Wed, 24 Jul 2019 12:32:53 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id F41E472C77
+	for <lists+intel-gfx@lfdr.de>; Wed, 24 Jul 2019 12:41:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3CCD46E492;
-	Wed, 24 Jul 2019 10:32:51 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BA1BF6E492
- for <Intel-gfx@lists.freedesktop.org>; Wed, 24 Jul 2019 10:32:50 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 24 Jul 2019 03:32:50 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.64,302,1559545200"; d="scan'208";a="368747081"
-Received: from jsartini-mobl.ger.corp.intel.com (HELO [10.252.0.141])
- ([10.252.0.141])
- by fmsmga005.fm.intel.com with ESMTP; 24 Jul 2019 03:32:49 -0700
-To: Chris Wilson <chris@chris-wilson.co.uk>, Intel-gfx@lists.freedesktop.org
-References: <20190724100716.10731-1-tvrtko.ursulin@linux.intel.com>
- <20190724100716.10731-2-tvrtko.ursulin@linux.intel.com>
- <156396328470.31349.6273691818655517005@skylake-alporthouse-com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <a0378a8b-89b2-a999-6dc6-2f67a87a420b@linux.intel.com>
-Date: Wed, 24 Jul 2019 11:32:48 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id C65D76E4FF;
+	Wed, 24 Jul 2019 10:41:07 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 9BD4B6E504;
+ Wed, 24 Jul 2019 10:41:06 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 93517A0073;
+ Wed, 24 Jul 2019 10:41:06 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <156396328470.31349.6273691818655517005@skylake-alporthouse-com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH 2/5] drm/i915: Avoid one round-tip through
- global i915 when getting to gt
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Tvrtko Ursulin" <tvrtko.ursulin@linux.intel.com>
+Date: Wed, 24 Jul 2019 10:41:06 -0000
+Message-ID: <20190724104106.10329.39000@emeril.freedesktop.org>
+References: <20190724100716.10731-1-tvrtko.ursulin@linux.intel.com>
+X-Patchwork-Hint: ignore
+In-Reply-To: <20190724100716.10731-1-tvrtko.ursulin@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_f?=
+ =?utf-8?q?or_series_starting_with_=5B1/5=5D_drm/i915=3A_Split_i915=5Fgem?=
+ =?utf-8?q?=5Finit=5Fhw_into_GT_and_i915_parts?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -49,18 +39,28 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Ck9uIDI0LzA3LzIwMTkgMTE6MTQsIENocmlzIFdpbHNvbiB3cm90ZToKPiBRdW90aW5nIFR2cnRr
-byBVcnN1bGluICgyMDE5LTA3LTI0IDExOjA3OjEzKQo+PiBGcm9tOiBUdnJ0a28gVXJzdWxpbiA8
-dHZydGtvLnVyc3VsaW5AaW50ZWwuY29tPgo+Pgo+PiBHbyB0byBndC0+YWN0aXZlX3JpbmdzIHZp
-YSB0aW1lbGluZSBpbnN0ZWFkIG9mIGdsb2JhbCBpOTE1IGZvciBtb3JlCj4+IGxvZ2ljYWwgb3Jn
-YW5pemF0aW9uLgo+IAo+IEdyciwgSSd2ZSBiZWVuIHNlbmRpbmcgcGF0Y2hlcyB0byBraWxsIHRo
-aXMgZm9yIG92ZXIgNiBtb250aHMuCgpBcyBwYXJ0IG9mIHNvbWV0aGluZyBiaWdnZXIgSSBiZXQ/
-IDopCgpSZWdhcmRzLAoKVHZydGtvCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVk
-ZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZv
-L2ludGVsLWdmeA==
+PT0gU2VyaWVzIERldGFpbHMgPT0KClNlcmllczogc2VyaWVzIHN0YXJ0aW5nIHdpdGggWzEvNV0g
+ZHJtL2k5MTU6IFNwbGl0IGk5MTVfZ2VtX2luaXRfaHcgaW50byBHVCBhbmQgaTkxNSBwYXJ0cwpV
+UkwgICA6IGh0dHBzOi8vcGF0Y2h3b3JrLmZyZWVkZXNrdG9wLm9yZy9zZXJpZXMvNjQxNjQvClN0
+YXRlIDogd2FybmluZwoKPT0gU3VtbWFyeSA9PQoKJCBkaW0gY2hlY2twYXRjaCBvcmlnaW4vZHJt
+LXRpcAo2NjNlNDA3OGEwNGYgZHJtL2k5MTU6IFNwbGl0IGk5MTVfZ2VtX2luaXRfaHcgaW50byBH
+VCBhbmQgaTkxNSBwYXJ0cwotOjQyOiBXQVJOSU5HOkFWT0lEX0JVRzogQXZvaWQgY3Jhc2hpbmcg
+dGhlIGtlcm5lbCAtIHRyeSB1c2luZyBXQVJOX09OICYgcmVjb3ZlcnkgY29kZSByYXRoZXIgdGhh
+biBCVUcoKSBvciBCVUdfT04oKQojNDI6IEZJTEU6IGRyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVf
+Z2VtLmM6MTI2NzoKKwlCVUdfT04oIWk5MTUtPmtlcm5lbF9jb250ZXh0KTsKCnRvdGFsOiAwIGVy
+cm9ycywgMSB3YXJuaW5ncywgMCBjaGVja3MsIDM1IGxpbmVzIGNoZWNrZWQKYzUwMzQxOWIwZmQ3
+IGRybS9pOTE1OiBBdm9pZCBvbmUgcm91bmQtdGlwIHRocm91Z2ggZ2xvYmFsIGk5MTUgd2hlbiBn
+ZXR0aW5nIHRvIGd0CjVkODU2OGIzODk3MyBkcm0vaTkxNTogTWFrZSB3YWl0X2Zvcl90aW1lbGlu
+ZXMgdGFrZSBzdHJ1Y3QgaW50ZWxfZ3QKYTg0ZjViNzYwYTQ4IGRybS9pOTE1OiBBdm9pZCByb3Vu
+ZC10cmlwIHZpYSBpOTE1IGluIGludGVsX2d0X3BhcmsKZjlkODkwMWRkZWY5IGRybS9pOTE1OiBN
+YWtlIHBtX25vdGlmeSB0YWtlIGludGVsX2d0CgpfX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0
+cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9s
+aXN0aW5mby9pbnRlbC1nZng=
