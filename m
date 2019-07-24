@@ -2,33 +2,34 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF0E772C30
-	for <lists+intel-gfx@lfdr.de>; Wed, 24 Jul 2019 12:15:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6515772C53
+	for <lists+intel-gfx@lfdr.de>; Wed, 24 Jul 2019 12:29:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DBD8989ECD;
-	Wed, 24 Jul 2019 10:15:03 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
+	by gabe.freedesktop.org (Postfix) with ESMTP id 710476E492;
+	Wed, 24 Jul 2019 10:29:52 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 34DE289ECD
- for <Intel-gfx@lists.freedesktop.org>; Wed, 24 Jul 2019 10:15:02 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D20A76E492
+ for <intel-gfx@lists.freedesktop.org>; Wed, 24 Jul 2019 10:29:50 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from localhost (unverified [78.156.65.138]) 
  by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 17560944-1500050 for multiple; Wed, 24 Jul 2019 11:14:46 +0100
+ 17561465-1500050 for multiple; Wed, 24 Jul 2019 11:29:45 +0100
 MIME-Version: 1.0
+To: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
+ intel-gfx@lists.freedesktop.org
 From: Chris Wilson <chris@chris-wilson.co.uk>
+In-Reply-To: <156395638435.31349.15923031690949143492@skylake-alporthouse-com>
+References: <20190724022153.8927-1-daniele.ceraolospurio@intel.com>
+ <20190724022153.8927-7-daniele.ceraolospurio@intel.com>
+ <156395638435.31349.15923031690949143492@skylake-alporthouse-com>
+Message-ID: <156396418361.31349.18388848127196755077@skylake-alporthouse-com>
 User-Agent: alot/0.6
-To: Intel-gfx@lists.freedesktop.org,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-References: <20190724100716.10731-1-tvrtko.ursulin@linux.intel.com>
- <20190724100716.10731-2-tvrtko.ursulin@linux.intel.com>
-In-Reply-To: <20190724100716.10731-2-tvrtko.ursulin@linux.intel.com>
-Message-ID: <156396328470.31349.6273691818655517005@skylake-alporthouse-com>
-Date: Wed, 24 Jul 2019 11:14:44 +0100
-Subject: Re: [Intel-gfx] [PATCH 2/5] drm/i915: Avoid one round-tip through
- global i915 when getting to gt
+Date: Wed, 24 Jul 2019 11:29:43 +0100
+Subject: Re: [Intel-gfx] [PATCH v2 6/8] drm/i915/guc: Set GuC init params
+ only once
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -46,11 +47,17 @@ Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-UXVvdGluZyBUdnJ0a28gVXJzdWxpbiAoMjAxOS0wNy0yNCAxMTowNzoxMykKPiBGcm9tOiBUdnJ0
-a28gVXJzdWxpbiA8dHZydGtvLnVyc3VsaW5AaW50ZWwuY29tPgo+IAo+IEdvIHRvIGd0LT5hY3Rp
-dmVfcmluZ3MgdmlhIHRpbWVsaW5lIGluc3RlYWQgb2YgZ2xvYmFsIGk5MTUgZm9yIG1vcmUKPiBs
-b2dpY2FsIG9yZ2FuaXphdGlvbi4KCkdyciwgSSd2ZSBiZWVuIHNlbmRpbmcgcGF0Y2hlcyB0byBr
-aWxsIHRoaXMgZm9yIG92ZXIgNiBtb250aHMuCi1DaHJpcwpfX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdm
-eEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFp
-bG1hbi9saXN0aW5mby9pbnRlbC1nZng=
+UXVvdGluZyBDaHJpcyBXaWxzb24gKDIwMTktMDctMjQgMDk6MTk6NDQpCj4gUXVvdGluZyBEYW5p
+ZWxlIENlcmFvbG8gU3B1cmlvICgyMDE5LTA3LTI0IDAzOjIxOjUxKQo+ID4gQWxsIHRoZSBHdUMg
+b2JqZWN0cyBhcmUgcGVybWEtcGlubmVkLCBzbyB0aGVpciBvZmZzZXQgY2FuJ3QgY2hhbmdlIGF0
+Cj4gPiBydW50aW1lLiBXZSBjYW4gdGhlcmVmb3JlIHNldCAoYW5kIGxvZyEpIHRoZSBwYXJhbWV0
+ZXJzIG9ubHkgb25jZSBkdXJpbmcKPiA+IGJvb3QuCj4gPiBTdWdnZXN0ZWQtYnk6IENocmlzIFdp
+bHNvbiA8Y2hyaXNAY2hyaXMtd2lsc29uLmNvLnVrPgo+ID4gU2lnbmVkLW9mZi1ieTogRGFuaWVs
+ZSBDZXJhb2xvIFNwdXJpbyA8ZGFuaWVsZS5jZXJhb2xvc3B1cmlvQGludGVsLmNvbT4KPiA+IENj
+OiBDaHJpcyBXaWxzb24gPGNocmlzQGNocmlzLXdpbHNvbi5jby51az4KPiA+IENjOiBNaWNoYWwg
+V2FqZGVjemtvIDxtaWNoYWwud2FqZGVjemtvQGludGVsLmNvbT4KPiBSZXZpZXdlZC1ieTogQ2hy
+aXMgV2lsc29uIDxjaHJpc0BjaHJpcy13aWxzb24uY28udWs+CgpUaGlzIHdhcyBzdGFuZGFsb25l
+IGFuZCBJIGhvcGUgbm9uY29udHJvdmVyc2lhbCwgc28gcHVzaGVkLgotQ2hyaXMKX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcg
+bGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRl
+c2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
