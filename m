@@ -1,67 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BBE5273ED9
-	for <lists+intel-gfx@lfdr.de>; Wed, 24 Jul 2019 22:28:04 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3966C74010
+	for <lists+intel-gfx@lfdr.de>; Wed, 24 Jul 2019 22:37:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 801CC6E656;
-	Wed, 24 Jul 2019 20:28:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 88EF56E656;
+	Wed, 24 Jul 2019 20:37:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BF5FE6E656
- for <intel-gfx@lists.freedesktop.org>; Wed, 24 Jul 2019 20:28:00 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga105.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 24 Jul 2019 13:28:00 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.64,304,1559545200"; d="scan'208";a="174995764"
-Received: from fmsmsx105.amr.corp.intel.com ([10.18.124.203])
- by orsmga006.jf.intel.com with ESMTP; 24 Jul 2019 13:27:59 -0700
-Received: from fmsmsx116.amr.corp.intel.com ([169.254.2.137]) by
- FMSMSX105.amr.corp.intel.com ([169.254.4.116]) with mapi id 14.03.0439.000;
- Wed, 24 Jul 2019 13:27:59 -0700
-From: "Souza, Jose" <jose.souza@intel.com>
-To: "pebolle@tiscali.nl" <pebolle@tiscali.nl>,
- "James.Bottomley@HansenPartnership.com"
- <James.Bottomley@HansenPartnership.com>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>, "chris@chris-wilson.co.uk"
- <chris@chris-wilson.co.uk>
-Thread-Topic: [Intel-gfx] screen freeze with 5.2-rc6 Dell XPS-13 skylake i915
-Thread-Index: AQHVN8s6u18XhfEo0kuWcj/kjNqW06bGT1sAgAAD6QCAAADBAIAAGPCAgAAIRACAAANRAIAABuIAgAAHAoCAAANkgIAA9aWAgAACeQCABSUwAIAACPCAgAE98wCAAeSegIAAAIsAgArdJICAABICAA==
-Date: Wed, 24 Jul 2019 20:27:59 +0000
-Message-ID: <d084df248afc1943e06c50d391a775d117064743.camel@intel.com>
-References: <1561834612.3071.6.camel@HansenPartnership.com>
- <156283735757.12757.8954391372130933707@skylake-alporthouse-com>
- <1562875878.2840.0.camel@HansenPartnership.com>
- <27a5b2ca8cfc79bf617387a363ea7192acc4e1f0.camel@intel.com>
- <1562876880.2840.12.camel@HansenPartnership.com>
- <1562882235.13723.1.camel@HansenPartnership.com>
- <dad073fb4b06cf0abb7ab702a9474b9c443186eb.camel@intel.com>
- <1562884722.15001.3.camel@HansenPartnership.com>
- <2c4edfabf49998eb5da3a6adcabc006eb64bfe90.camel@tiscali.nl>
- <55f4d1c242d684ca2742e8c14613d810a9ee9504.camel@intel.com>
- <1562888433.2915.0.camel@HansenPartnership.com>
- <1562941185.3398.1.camel@HansenPartnership.com>
- <68472c5f390731e170221809a12d88cb3bc6460e.camel@tiscali.nl>
- <143142cad4a946361a0bf285b6f1701c81096c7b.camel@intel.com>
- <595d9bc87bf47717c8675eb5b1a1cbb2bc463752.camel@tiscali.nl>
- <a10f009fc160f05077760ff59cd86a9c99006b39.camel@intel.com>
- <9ef8fc1ae2c3a9bad588899488a781333af4449a.camel@tiscali.nl>
- <1563398966.3438.5.camel@HansenPartnership.com>
- <b22cf290b089cb1174ec0fdeb15bdf2e90bf51dc.camel@tiscali.nl>
-In-Reply-To: <b22cf290b089cb1174ec0fdeb15bdf2e90bf51dc.camel@tiscali.nl>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.121.193.213]
-Content-ID: <A7957F01B860F9449BFB02718FC3DA75@intel.com>
+Received: from mx1.riseup.net (mx1.riseup.net [198.252.153.129])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 65E976E656
+ for <intel-gfx@lists.freedesktop.org>; Wed, 24 Jul 2019 20:37:23 +0000 (UTC)
+Received: from bell.riseup.net (bell-pn.riseup.net [10.0.1.178])
+ (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+ (Client CN "*.riseup.net",
+ Issuer "COMODO RSA Domain Validation Secure Server CA" (verified OK))
+ by mx1.riseup.net (Postfix) with ESMTPS id 1EF7E1A2E27;
+ Wed, 24 Jul 2019 13:37:23 -0700 (PDT)
+X-Riseup-User-ID: AB0D66D635975B06F4C1884CB8B8E86B8AEC8B54DDC910966D60AACECAB96AAE
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+ by bell.riseup.net (Postfix) with ESMTPSA id B684E222923;
+ Wed, 24 Jul 2019 13:37:22 -0700 (PDT)
+From: Francisco Jerez <currojerez@riseup.net>
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20190718145407.21352-3-chris@chris-wilson.co.uk>
+References: <20190718145407.21352-1-chris@chris-wilson.co.uk>
+ <20190718145407.21352-3-chris@chris-wilson.co.uk>
+Date: Wed, 24 Jul 2019 13:37:24 -0700
+Message-ID: <878ssnqid7.fsf@riseup.net>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] screen freeze with 5.2-rc6 Dell XPS-13 skylake i915
+X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=riseup.net; s=squak; 
+ t=1564000643; bh=4ZV+VzNFf14rO17YJtqjimQp2dO4QPukDFQQ+zkyuQQ=;
+ h=From:To:Subject:In-Reply-To:References:Date:From;
+ b=SHQol1tkuWHqoB6uRzJxSBhB815MVJyYD7sP6VHiKB1ZfaANt+YVfNLRTFbZ6KaQK
+ YCC8vQJ/4KagaE6fOTZtUVzWDh37otVlssGEUbeoXcaba1LyKtkILXbt9iHjPb3FQ5
+ Bl9dx1Kb65VisIsAIcQzVVkgL+5OlQIGWQoBHdDY=
+Subject: Re: [Intel-gfx] [PATCH 3/4] drm/i915: Flush all user surfaces prior
+ to first use
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -74,33 +51,134 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1461869148=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-SGkgUGF1bA0KDQpXZSBmaXhlZCB0aGUgcGF0Y2ggaW5zdGVhZCBvZiByZXZlcnQgaXQsIGl0IGlz
-IG1lcmdlZCBvbiBkcm0tdGlwIGFuZCBvbg0KaGlzIHdheSB0byBsaW51eC1zdGFibGUuDQoNCkh1
-Z2UgdGhhbmtzIGFnYWluDQoNCk9uIFdlZCwgMjAxOS0wNy0yNCBhdCAyMToyMyArMDIwMCwgUGF1
-bCBCb2xsZSB3cm90ZToNCj4gSGkgSm9zZSwNCj4gDQo+IEphbWVzIEJvdHRvbWxleSBzY2hyZWVm
-IG9wIGRvIDE4LTA3LTIwMTkgb20gMDY6MjkgWyswOTAwXToNCj4gPiBPbiBXZWQsIDIwMTktMDct
-MTcgYXQgMjM6MjcgKzAyMDAsIFBhdWwgQm9sbGUgd3JvdGU6DQo+ID4gPiBJJ3ZlIGp1c3QgcmVh
-Y2hlZCBhIGRheSBvZiB1cHRpbWUgd2l0aCB5b3VyIHJldmVydC4gKFRoZSBwcm9wZXINCj4gPiA+
-IHVwdGltZSBpcyBqdXN0IGEgZnJhY3Rpb24gb2YgYSBkYXksIHRoaXMgYmVpbmcgYSBsYXB0b3Au
-KSBBbnlob3csDQo+ID4gPiBubw0KPiA+ID4gc2NyZWVuIGZyZWV6ZXMgb2NjdXJyZWQgZHVyaW5n
-IHRoaXMgZGF5Lg0KPiA+IA0KPiA+IEknbSBhZnJhaWQgbXkgc3RhdHVzIGlzIHRoYXQgSSdtIGlu
-IFRva3lvIGRvaW5nIGNvbmZlcmVuY2UNCj4gPiBwcmVzZW50YXRpb25zIChhbmQga2VybmVsIGRl
-bW9zKSBzbyBJJ20gYSBiaXQgcmVsdWN0YW50IHRvIG1lc3MNCj4gPiB3aXRoIG15DQo+ID4gc2V0
-dXAgdW50aWwgSSBmaW5pc2ggZXZlcnl0aGluZyBvbiBGcmlkYXksIGJ1dCBJIHdpbGwgdGVzdCBp
-dCBhZnRlcg0KPiA+IHRoZW4sIHByb21pc2UuDQo+IA0KPiBCeSBub3cgSSdtIHRlc3RpbmcgdGhp
-cyBmb3IgYSB3ZWVrIChjdXJyZW50bHkgb24gdG9wIG9mIDUuMi4yKS4gU3RpbGwNCj4gbm8NCj4g
-ZnJlZXplcyB3aGF0c29ldmVyLiANCj4gDQo+IFNvIHdoYXQncyB0aGUgc3RhdHVzIG9mIHRoaXMg
-cmV2ZXJ0PyBVbmxlc3MgdGhpcyBpcyBzb21ldGhpbmcgcHJldHR5DQo+IG9ic2N1cmUNCj4gdGhh
-dCBmb3Igc29tZSBvZGQgcmVhc29uIG9ubHkgSmFtZXMgYW5kIEkgYXJlIGFibGUgdG8gaGl0IGl0
-IHdvdWxkIGJlDQo+IG5pY2UgdG8NCj4gZ2V0IHRoaXMgaW50byBzdGFibGUgYmVmb3JlIHRoZSBt
-YWluIGRpc3Ryb3Mgc3dpdGNoIG92ZXIgdG8gNS4yLnkuDQo+IA0KPiBUaGFua3MsDQo+IA0KPiAN
-Cj4gUGF1bCBCb2xsZQ0KPiANCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNr
-dG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2lu
-dGVsLWdmeA==
+--===============1461869148==
+Content-Type: multipart/signed; boundary="==-=-=";
+	micalg=pgp-sha256; protocol="application/pgp-signature"
+
+--==-=-=
+Content-Type: multipart/mixed; boundary="=-=-="
+
+--=-=-=
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+Chris Wilson <chris@chris-wilson.co.uk> writes:
+
+> Since userspace has the ability to bypass the CPU cache from within its
+> unprivileged command stream, we have to flush the CPU cache to memory
+> in order to overwrite the previous contents on creation.
+>
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+> Cc: stablevger.kernel.org
+> ---
+>  drivers/gpu/drm/i915/gem/i915_gem_shmem.c | 26 ++++++-----------------
+>  1 file changed, 7 insertions(+), 19 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_shmem.c b/drivers/gpu/drm/=
+i915/gem/i915_gem_shmem.c
+> index d2a1158868e7..f752b326d399 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
+> @@ -459,7 +459,6 @@ i915_gem_object_create_shmem(struct drm_i915_private =
+*i915, u64 size)
+>  {
+>  	struct drm_i915_gem_object *obj;
+>  	struct address_space *mapping;
+> -	unsigned int cache_level;
+>  	gfp_t mask;
+>  	int ret;
+>=20=20
+> @@ -498,24 +497,13 @@ i915_gem_object_create_shmem(struct drm_i915_privat=
+e *i915, u64 size)
+>  	obj->write_domain =3D I915_GEM_DOMAIN_CPU;
+>  	obj->read_domains =3D I915_GEM_DOMAIN_CPU;
+>=20=20
+> -	if (HAS_LLC(i915))
+> -		/* On some devices, we can have the GPU use the LLC (the CPU
+> -		 * cache) for about a 10% performance improvement
+> -		 * compared to uncached.  Graphics requests other than
+> -		 * display scanout are coherent with the CPU in
+> -		 * accessing this cache.  This means in this mode we
+> -		 * don't need to clflush on the CPU side, and on the
+> -		 * GPU side we only need to flush internal caches to
+> -		 * get data visible to the CPU.
+> -		 *
+> -		 * However, we maintain the display planes as UC, and so
+> -		 * need to rebind when first used as such.
+> -		 */
+> -		cache_level =3D I915_CACHE_LLC;
+> -	else
+> -		cache_level =3D I915_CACHE_NONE;
+> -
+> -	i915_gem_object_set_cache_coherency(obj, cache_level);
+> +	/*
+> +	 * Note that userspace has control over cache-bypass
+> +	 * via its command stream, so even on LLC architectures
+> +	 * we have to flush out the CPU cache to memory to
+> +	 * clear previous contents.
+> +	 */
+> +	i915_gem_object_set_cache_coherency(obj, I915_CACHE_NONE);
+>=20=20
+
+I'm not sure if you've seen my comments about this in an internal thread
+you were CC'ed to: I don't think this patch will have the intended
+effect.  The various clflushes this could trigger before the first use
+of the buffer are conditional on "obj->cache_dirty &
+~obj->cache_coherent", which will always be false on LLC platforms
+AFAICT, because on those platforms i915_gem_object_set_cache_coherency()
+will always set bit 0 of obj->cache_coherent.
+
+I attached a patch with the same purpose as this to that internal thread
+which doesn't suffer from this bug, but my patch was specific to Gen12+
+where cache bypass is actually exposed to userspace.  Why is this patch
+enabling the flushes for all platforms?  AFAICT the only currently
+exposed MOCS entries that might allow userspace to bypass the LLC are 16
+and 17 on Gen11, which enable the SCF MOCS table bit, which is marked
+"S/W should NOT set this field in client platforms" in the Gen9 docs,
+and according to the Gen10-11 docs is "Not supported".  Does LLC bypass
+actually work on ICL?  I doubt it but it might have been fixed in some
+other Gen11 project.  Shouldn't this change be conditional on the
+platform supporting LLC bypass?  Do you want me to resend my patch here
+with the Gen12+ checks changed to Gen11+?
+
+>  	trace_i915_gem_object_create(obj);
+>=20=20
+> --=20
+> 2.22.0
+>
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--=-=-=--
+
+--==-=-=
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEAREIAB0WIQST8OekYz69PM20/4aDmTidfVK/WwUCXTjBhAAKCRCDmTidfVK/
+W5Q8APwONKvPeZT7b6HBWD+RJTDS8nxAlBSC2n5Mb2Jrd8cuuQD/bNNLbQnX7/0F
+pHreb4FryvOmp38b83xhK3enc87sFyQ=
+=keAd
+-----END PGP SIGNATURE-----
+--==-=-=--
+
+--===============1461869148==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
+IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
+
+--===============1461869148==--
