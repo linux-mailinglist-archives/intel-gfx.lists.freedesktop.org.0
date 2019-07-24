@@ -2,47 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D4317225F
-	for <lists+intel-gfx@lfdr.de>; Wed, 24 Jul 2019 00:28:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DCDFA72402
+	for <lists+intel-gfx@lfdr.de>; Wed, 24 Jul 2019 03:49:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 20A7C6E37F;
-	Tue, 23 Jul 2019 22:28:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5940B6E41D;
+	Wed, 24 Jul 2019 01:49:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 552 seconds by postgrey-1.36 at gabe;
- Tue, 23 Jul 2019 22:28:23 UTC
-Received: from mx1.riseup.net (mx1.riseup.net [198.252.153.129])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3667C6E37F
- for <intel-gfx@lists.freedesktop.org>; Tue, 23 Jul 2019 22:28:23 +0000 (UTC)
-Received: from bell.riseup.net (bell-pn.riseup.net [10.0.1.178])
- (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
- (Client CN "*.riseup.net",
- Issuer "COMODO RSA Domain Validation Secure Server CA" (verified OK))
- by mx1.riseup.net (Postfix) with ESMTPS id 889041A052E;
- Tue, 23 Jul 2019 15:19:11 -0700 (PDT)
-X-Riseup-User-ID: 4B50138C9438CEC0218C9D64761A63AA996846B9C5D7F45BA9D447FEA939FFD0
-Received: from [127.0.0.1] (localhost [127.0.0.1])
- by bell.riseup.net (Postfix) with ESMTPSA id 110822229DD;
- Tue, 23 Jul 2019 15:19:11 -0700 (PDT)
-From: Francisco Jerez <currojerez@riseup.net>
-To: Chris Wilson <chris@chris-wilson.co.uk>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-In-Reply-To: <156388293186.31349.1576327527372090940@skylake-alporthouse-com>
-References: <20190720143132.17522-1-chris@chris-wilson.co.uk>
- <65da19be-2696-8d60-e055-63a37101cf6b@linux.intel.com>
- <156388293186.31349.1576327527372090940@skylake-alporthouse-com>
-Date: Tue, 23 Jul 2019 15:19:13 -0700
-Message-ID: <87pnm0qtr2.fsf@riseup.net>
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BB53F6E41B;
+ Wed, 24 Jul 2019 01:49:35 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 23 Jul 2019 18:49:35 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.64,300,1559545200"; d="scan'208";a="193293347"
+Received: from fmsmsx107.amr.corp.intel.com ([10.18.124.205])
+ by fmsmga004.fm.intel.com with ESMTP; 23 Jul 2019 18:49:35 -0700
+Received: from fmsmsx151.amr.corp.intel.com (10.18.125.4) by
+ fmsmsx107.amr.corp.intel.com (10.18.124.205) with Microsoft SMTP Server (TLS)
+ id 14.3.439.0; Tue, 23 Jul 2019 18:49:34 -0700
+Received: from shsmsx103.ccr.corp.intel.com (10.239.4.69) by
+ FMSMSX151.amr.corp.intel.com (10.18.125.4) with Microsoft SMTP Server (TLS)
+ id 14.3.439.0; Tue, 23 Jul 2019 18:49:34 -0700
+Received: from shsmsx107.ccr.corp.intel.com ([169.254.9.162]) by
+ SHSMSX103.ccr.corp.intel.com ([169.254.4.109]) with mapi id 14.03.0439.000;
+ Wed, 24 Jul 2019 09:49:31 +0800
+From: "Zhang, Xiaolin" <xiaolin.zhang@intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>, "intel-gfx@lists.freedesktop.org"
+ <intel-gfx@lists.freedesktop.org>, "intel-gvt-dev@lists.freedesktop.org"
+ <intel-gvt-dev@lists.freedesktop.org>
+Thread-Topic: [PATCH v8 1/9] drm/i915: introduced vgpu pv capability
+Thread-Index: AQHVQQJWO/M/AJbGb0ucwRHYyh4zXw==
+Date: Wed, 24 Jul 2019 01:49:30 +0000
+Message-ID: <073732E20AE4C540AE91DBC3F07D4460876B5EF7@SHSMSX107.ccr.corp.intel.com>
+References: <1563881524-147440-1-git-send-email-xiaolin.zhang@intel.com>
+ <1563881524-147440-2-git-send-email-xiaolin.zhang@intel.com>
+ <156387421346.31349.17560663189266498755@skylake-alporthouse-com>
+Accept-Language: en-US, zh-CN
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.239.4.100]
 MIME-Version: 1.0
-X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=riseup.net; s=squak; 
- t=1563920351; bh=c04w8AfxWx/WBRgVPpljuTBU/A+2zoX7vErvWjr4Ltk=;
- h=From:To:Subject:In-Reply-To:References:Date:From;
- b=pktNzikHp9pBhx+GXIugPQiFjozQ8aDlsWzlIHvIj+E4/DLmBZH34BNyRsYMZAISX
- YO8wce1gYO/rsvUfSdqHH/3xeScsTy7HQvoMJ2xnQcmDAVg6aVgPyvdbbb7pYjFB5F
- mx3sSNMvGd235v9qNGETjdoCSkXoRc0RxU02wiY4=
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Disable atomics in L3 for gen9
+Subject: Re: [Intel-gfx] [PATCH v8 1/9] drm/i915: introduced vgpu pv
+ capability
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -55,104 +61,38 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============0710260241=="
+Cc: "Wang, Zhenyu Z" <zhenyu.z.wang@intel.com>, "Yuan,
+ Hang" <hang.yuan@intel.com>, "Lv, Zhiyuan" <zhiyuan.lv@intel.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0710260241==
-Content-Type: multipart/signed; boundary="==-=-=";
-	micalg=pgp-sha256; protocol="application/pgp-signature"
-
---==-=-=
-Content-Type: multipart/mixed; boundary="=-=-="
-
---=-=-=
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-Chris Wilson <chris@chris-wilson.co.uk> writes:
-
-> Quoting Tvrtko Ursulin (2019-07-22 12:41:36)
->>=20
->> On 20/07/2019 15:31, Chris Wilson wrote:
->> > Enabling atomic operations in L3 leads to unrecoverable GPU hangs, as
->> > the machine stops responding milliseconds after receipt of the reset
->> > request [GDRT]. By disabling the cached atomics, the hang do not occur
->> > and we presume the GPU would reset normally for similar hangs.
->> >=20
->> > Reported-by: Jason Ekstrand <jason@jlekstrand.net>
->> > Bugzilla: https://bugs.freedesktop.org/show_bug.cgi?id=3D110998
->> > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
->> > Cc: Jason Ekstrand <jason@jlekstrand.net>
->> > Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
->> > Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
->> > ---
->> > Jason reports that Windows is not clearing L3SQCREG4:22 and does not
->> > suffer the same GPU hang so it is likely some other w/a that interacts
->> > badly. Fwiw, these 3 are the only registers I could find that mention
->> > atomic ops (and appear to be part of the same chain for memory access).
->>=20
->> Bit-toggling itself looks fine to me and matches what I could find in=20
->> the docs. (All three bits across three registers should be equal.)
->>=20
->> What I am curious about is what are the other consequences of disabling=
-=20
->> L3 atomics? Performance drop somewhere?
->
-> The test I have where it goes from dead to passing, that's a considerable
-> performance improvement ;)
->
-> I imagine not being able to use L3 for atomics is pretty dire, whether th=
-at
-> has any impact, I have no clue.
->
-> It is still very likely that we see this because we are doing something
-> wrong elsewhere.
-
-This reminds me of f3fc4884ebe6ae649d3723be14b219230d3b7fd2 followed by
-d351f6d94893f3ba98b1b20c5ef44c35fc1da124 due to the massive impact (of
-the order of 20x IIRC) using the L3 turned out to have on the
-performance of HDC atomics, on at least that platform.  It seems
-unfortunate that we're going to lose L3 atomics on Gen9 now, even though
-it's only buffer atomics which are broken IIUC, and even though the
-Windows driver is somehow getting away without disabling them.  Some of
-our setup must be wrong either in the kernel or in userspace...  Are
-these registers at least whitelisted so userspace can re-enable L3
-atomics once the problem is addressed?  Wouldn't it be a more specific
-workaround for userspace to simply use a non-L3-cacheable MOCS for
-(rarely used) buffer surfaces, so it could benefit from L3 atomics
-elsewhere?
-
-
-> -Chris
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---=-=-=--
-
---==-=-=
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEAREIAB0WIQST8OekYz69PM20/4aDmTidfVK/WwUCXTeH4QAKCRCDmTidfVK/
-WwbHAP9c4hzIqz9H4W8ip44Redvx9uRQxd8HEJm82AxoyGiZEgEAiLlxJ+jzkL3P
-xXuKcRSMTx4sWNhe9RxgOYFRwMJhczY=
-=tMMc
------END PGP SIGNATURE-----
---==-=-=--
-
---===============0710260241==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
-IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
-
---===============0710260241==--
+T24gMDcvMjMvMjAxOSAwNTozMCBQTSwgQ2hyaXMgV2lsc29uIHdyb3RlOgo+IFF1b3RpbmcgWGlh
+b2xpbiBaaGFuZyAoMjAxOS0wNy0yMyAxMjozMTo1NikKPj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMv
+Z3B1L2RybS9pOTE1L2k5MTVfdmdwdS5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV92Z3B1
+LmMKPj4gaW5kZXggZGJkMWZhMy4uOWIzN2RkMSAxMDA2NDQKPj4gLS0tIGEvZHJpdmVycy9ncHUv
+ZHJtL2k5MTUvaTkxNV92Z3B1LmMKPj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV92
+Z3B1LmMKPj4gQEAgLTk1LDcgKzk1LDE0IEBAIHZvaWQgaTkxNV9kZXRlY3RfdmdwdShzdHJ1Y3Qg
+ZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYpCj4+ICAgICAgICAgZGV2X3ByaXYtPnZncHUuY2Fw
+cyA9IHJlYWRsKHNoYXJlZF9hcmVhICsgdmd0aWZfb2Zmc2V0KHZndF9jYXBzKSk7Cj4+ICAKPj4g
+ICAgICAgICBkZXZfcHJpdi0+dmdwdS5hY3RpdmUgPSB0cnVlOwo+PiAtICAgICAgIERSTV9JTkZP
+KCJWaXJ0dWFsIEdQVSBmb3IgSW50ZWwgR1ZULWcgZGV0ZWN0ZWQuXG4iKTsKPj4gKwo+PiArICAg
+ICAgIGlmICghaW50ZWxfdmdwdV9jaGVja19wdl9jYXBzKGRldl9wcml2LCBzaGFyZWRfYXJlYSkp
+IHsKPj4gKyAgICAgICAgICAgICAgIERSTV9JTkZPKCJWaXJ0dWFsIEdQVSBmb3IgSW50ZWwgR1ZU
+LWcgZGV0ZWN0ZWQuXG4iKTsKPj4gKyAgICAgICAgICAgICAgIHJldHVybjsKPj4gKyAgICAgICB9
+Cj4+ICsKPj4gKyAgICAgICBEUk1fSU5GTygiVmlydHVhbCBHUFUgZm9yIEludGVsIEdWVC1nIGRl
+dGVjdGVkIHdpdGggcHZfY2FwcyAweCV4LlxuIiwKPj4gKyAgICAgICAgICAgICAgICAgICAgICAg
+ZGV2X3ByaXYtPnZncHUucHZfY2Fwcyk7Cj4gVGhpcyBpcyBhIHVzZXItZmFjaW5nIG1lc3NhZ2Us
+IGF2b2lkIHVzaW5nIGFueSBqYXJnb24uIEluc3RlYWQgb2YKPiBwdl9jYXBzOiV4LCBleHBhbmQg
+aXQgdG8gYSBzZXQgb2Ygc3RyaW5ncyBpZiB5b3UgdGhpbmsgaXQncyBpbXBvcnRhbnQKPiBmb3Ig
+dGhlIHVzZXIgdG8ga25vdy4gSXQncyBwcm9iYWJseSBub3QhIEJ1dCB5b3UgcHJvYmFibHkgd2Fu
+dCB0bwo+IGluY2x1ZGUgdGhlIGNhcHMgaW4gZGVidWdmcy9pOTE1X2NhcGFiaWxpdGllcy4KPiAt
+Q2hyaXMKPgpDaHJpcywgdGhhbmtzIHlvdXIgdGltZSB0byByZXZpZXcgYW5kIGl0IGlzIGdvb2Qg
+cG9pbnQuCkkgd2lsbCBwb2xpc2ggdGhlIG1lc3NhZ2UgbGlrZSB0aGlzICJ4eHggR1ZULWcgZGV0
+ZWN0ZWQgd2l0aCBQVgpPcHRpbWl6YXRpb25zLiIKYW5kIHdpbGwgaW5jbHVkZSB0aGUgcHYgY2Fw
+cyBpbiBkZWJ1Z2ZzL2k5MTVfY2FwYWJpbGl0aWVzLiBkbyB5b3UgdGhpbmsKaXMgaXQgYmV0dGVy
+PwotQlJzLCBYaWFvbGluCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9w
+Lm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVs
+LWdmeA==
