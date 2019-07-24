@@ -1,30 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2359873285
-	for <lists+intel-gfx@lfdr.de>; Wed, 24 Jul 2019 17:11:44 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5007B732AA
+	for <lists+intel-gfx@lfdr.de>; Wed, 24 Jul 2019 17:24:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8D1706E5CD;
-	Wed, 24 Jul 2019 15:11:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 72CFB6E5CB;
+	Wed, 24 Jul 2019 15:24:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6474A6E5CB
- for <intel-gfx@lists.freedesktop.org>; Wed, 24 Jul 2019 15:11:39 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 974F26E5CB
+ for <intel-gfx@lists.freedesktop.org>; Wed, 24 Jul 2019 15:24:47 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from localhost (unverified [78.156.65.138]) 
  by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 17569227-1500050 for multiple; Wed, 24 Jul 2019 16:11:20 +0100
+ 17569561-1500050 for multiple; Wed, 24 Jul 2019 16:24:39 +0100
 MIME-Version: 1.0
 To: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
 From: Chris Wilson <chris@chris-wilson.co.uk>
 In-Reply-To: <20190724150525.18291-1-janusz.krzysztofik@linux.intel.com>
 References: <20190724150525.18291-1-janusz.krzysztofik@linux.intel.com>
-Message-ID: <156398107902.31349.6805258014181001471@skylake-alporthouse-com>
+Message-ID: <156398187775.31349.10647488705940146436@skylake-alporthouse-com>
 User-Agent: alot/0.6
-Date: Wed, 24 Jul 2019 16:11:19 +0100
+Date: Wed, 24 Jul 2019 16:24:37 +0100
 Subject: Re: [Intel-gfx] [RFC PATCH] drm/i915/guc: Fix premature release of
  context on reset
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -57,10 +57,11 @@ dAo+IGhlbHBlciByZWxlYXNlcyBhIGNvbnRleHQgYXNzb2NpYXRlZCB3aXRoIGEgcmVxdWVzdCBi
 ZWluZyBwcm9jZXNzZWQgYXMKPiBzb29uIGFzIHRoZSBjb250ZXh0IGluZmxpZ2h0IHF1ZXVlIGJl
 Y29tZXMgZW1wdHkuICBTaW5jZSBHdUMgc3VibWlzc2lvbgo+IGRvZXNuJ3Qga2VlcCBleHRyYSBj
 b250ZXh0IHJlZmVyZW5jZXMsIHBvc3NpYmx5IHN0aWxsIGFjdGl2ZSBjb250ZXh0cwo+IG1heSBi
-ZSByZWxlYXNlZCBwcmVtYXR1cmVseSwgcmVzdWx0aW5nIGluIGtlcm5lbCBwYW5pYy4KPiAKPiBG
-aXggaXQgYnkgcHJvdmlkaW5nIGEgbG9jYWwsIG1vZGlmaWVkIGNvcHkgb2YKPiBleGVjbGlzdHNf
-Y2FuY2VsX3BvcnRfcmVxdWVzdHMoKSBoZWxwZXIuCgpUaGVuIHJlbW92ZSB0aGUgZXhwb3J0IGFu
-ZCBzdHViLgotQ2hyaXMKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Au
-b3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwt
-Z2Z4
+ZSByZWxlYXNlZCBwcmVtYXR1cmVseSwgcmVzdWx0aW5nIGluIGtlcm5lbCBwYW5pYy4KCkZ3aXcs
+IHRoYXQgcnEtPmNvbnRleHQtPmluZmxpZ2h0ID0gTlVMTCBpbiBzY2hlZHVsZV9vdXQoKSBpcyBu
+b3QKcHJvdGVjdGVkIGFnYWluc3QgYSBkYW5nbGluZyBkZXJlZmVyZW5jZS4gV2hpY2gsIGlmIHlv
+dSBhcmUgbm90IGZhbGxpbmcKaW50byB0aGUgZXhlY2xpc3RzIHRyYXAsIHlvdSBjYW4gcmVtb3Zl
+IGVudGlyZWx5IHRvIGF2b2lkIHRoZSBwb3RlbnRpYWwKdXNlLWFmdGVyLWZyZWUuCi1DaHJpcwpf
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZngg
+bWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0
+cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZng=
