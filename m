@@ -1,60 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 943737350A
-	for <lists+intel-gfx@lfdr.de>; Wed, 24 Jul 2019 19:17:40 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id F04057354E
+	for <lists+intel-gfx@lfdr.de>; Wed, 24 Jul 2019 19:24:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2E4EF6E5FB;
-	Wed, 24 Jul 2019 17:17:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 65D256E56E;
+	Wed, 24 Jul 2019 17:24:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mx1.suse.de (mx2.suse.de [195.135.220.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4C50E6E5FB;
- Wed, 24 Jul 2019 17:17:37 +0000 (UTC)
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-Received: from relay2.suse.de (unknown [195.135.220.254])
- by mx1.suse.de (Postfix) with ESMTP id BDE9BAC18;
- Wed, 24 Jul 2019 17:17:35 +0000 (UTC)
-To: Andrzej Pietrasiewicz <andrzej.p@collabora.com>,
- dri-devel@lists.freedesktop.org
-References: <cover.1563960855.git.andrzej.p@collabora.com>
- <0afab6e2f61907409ba13a0ba91b8ee701eb7d74.1563960855.git.andrzej.p@collabora.com>
-From: Thomas Zimmermann <tzimmermann@suse.de>
-Openpgp: preference=signencrypt
-Autocrypt: addr=tzimmermann@suse.de; keydata=
- xsBNBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
- XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
- BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
- hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
- 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
- AAHNKFRob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmNvbT7CwJQEEwEIAD4W
- IQRyF/usjOnPY0ShaOVoDcEdUwt6IwUCWznTtgIbAwUJA8JnAAULCQgHAgYVCgkICwIEFgID
- AQIeAQIXgAAKCRBoDcEdUwt6I7D7CACBK42XW+7mCiK8ioXMEy1NzGbXC51RzGea8N83oEJS
- 1KVUtQxrkDxgrW/WLSl/TfqHFsJpdEFOv1XubWbleun3uKPy0e5vZCd5UjZPkeNjnqfCYTDy
- hVVsdOuFbtWDppJyJrThLqr9AgSFmoCNNUt1SVpYEEOLNE6C32BhlnSq21VLC+YXTgO/ZHTa
- YXkq54hHj63jwrcjkBSCkXLh37kHeqnl++GHpN+3R+o3w2OpwHAlvVjdKPT27v1tVkiydsFG
- 65Vd0n3m/ft+IOrGgxQM1C20uqKvsZGB4r3OGR50ekAybO7sjEJJ1Obl4ge/6RRqcvKz4LMb
- tGs85D6tPIeFzsBNBFs50uABCADGJj+DP1fk+UWOWrf4O61HTbC4Vr9QD2K4fUUHnzg2B6zU
- R1BPXqLGG0+lzK8kfYU/F5RjmEcClsIkAaFkg4kzKP14tvY1J5+AV3yNqcdg018HNtiyrSwI
- E0Yz/qm1Ot2NMZ0DdvVBg22IMsiudQ1tx9CH9mtyTbIXgACvl3PW2o9CxiHPE/bohFhwZwh/
- kXYYAE51lhinQ3oFEeQZA3w4OTvxSEspiQR8dg8qJJb+YOAc5IKk6sJmmM7JfFMWSr22satM
- 23oQ3WvJb4RV6HTRTAIEyyZS7g2DhiytgMG60t0qdABG5KXSQW+OKlZRpuWwKWaLh3if/p/u
- 69dvpanbABEBAAHCwHwEGAEIACYWIQRyF/usjOnPY0ShaOVoDcEdUwt6IwUCWznS4AIbDAUJ
- A8JnAAAKCRBoDcEdUwt6I6X3CACJ8D+TpXBCqJE5xwog08+Dp8uBpx0T9n1wE0GQisZruACW
- NofYn8PTX9k4wmegDLwt7YQDdKxQ4+eTfZeLNQqWg6OCftH5Kx7sjWnJ09tOgniVdROzWJ7c
- VJ/i0okazncsJ+nq48UYvRGE1Swh3A4QRIyphWX4OADOBmTFl9ZYNPnh23eaC9WrNvFr7yP7
- iGjMlfEW8l6Lda//EC5VpXVNza0xeae0zFNst2R9pn+bLkihwDLWxOIyifGRxTqNxoS4I1aw
- VhxPSVztPMSpIA/sOr/N/p6JrBLn+gui2K6mP7bGb8hF+szfArYqz3T1rv1VzUWAJf5Wre5U
- iNx9uqqx
-Message-ID: <f4c0432e-9223-54bc-c995-e0704555fc6e@suse.de>
-Date: Wed, 24 Jul 2019 19:17:33 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3FA176E56E
+ for <intel-gfx@lists.freedesktop.org>; Wed, 24 Jul 2019 17:24:56 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 24 Jul 2019 10:24:55 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.64,303,1559545200"; d="scan'208";a="177714152"
+Received: from irvmail001.ir.intel.com ([163.33.26.43])
+ by FMSMGA003.fm.intel.com with ESMTP; 24 Jul 2019 10:24:54 -0700
+Received: from mwajdecz-mobl1.ger.corp.intel.com
+ (mwajdecz-mobl1.ger.corp.intel.com [172.28.174.50])
+ by irvmail001.ir.intel.com (8.14.3/8.13.6/MailSET/Hub) with ESMTP id
+ x6OHOrxf005139; Wed, 24 Jul 2019 18:24:54 +0100
+To: intel-gfx@lists.freedesktop.org, "Daniele Ceraolo Spurio"
+ <daniele.ceraolospurio@intel.com>
+References: <20190724022153.8927-1-daniele.ceraolospurio@intel.com>
+ <20190724022153.8927-4-daniele.ceraolospurio@intel.com>
+ <op.z5fml1vyxaggs7@mwajdecz-mobl1.ger.corp.intel.com>
+ <8fd309ea-2624-8d8c-9eae-da7ce8d81c0d@intel.com>
+Date: Wed, 24 Jul 2019 19:24:53 +0200
 MIME-Version: 1.0
-In-Reply-To: <0afab6e2f61907409ba13a0ba91b8ee701eb7d74.1563960855.git.andrzej.p@collabora.com>
-Subject: Re: [Intel-gfx] [PATCH v5 18/24] drm/ast: Provide ddc symlink in
- connector sysfs directory
+From: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
+Message-ID: <op.z5fzzrtuxaggs7@mwajdecz-mobl1.ger.corp.intel.com>
+In-Reply-To: <8fd309ea-2624-8d8c-9eae-da7ce8d81c0d@intel.com>
+User-Agent: Opera Mail/1.0 (Win32)
+Subject: Re: [Intel-gfx] [PATCH v2 3/8] drm/i915/uc: Unify uc_fw status
+ tracking
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -67,175 +51,100 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Neil Armstrong <narmstrong@baylibre.com>,
- Maxime Ripard <maxime.ripard@bootlin.com>, linux-kernel@vger.kernel.org,
- Matthias Brugger <matthias.bgg@gmail.com>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Shawn Guo <shawnguo@kernel.org>, kernel@collabora.com,
- Sam Ravnborg <sam@ravnborg.org>, linux-samsung-soc@vger.kernel.org,
- linux-rockchip@lists.infradead.org, Krzysztof Kozlowski <krzk@kernel.org>,
- Jonathan Hunter <jonathanh@nvidia.com>, David Airlie <airlied@linux.ie>,
- Chen-Yu Tsai <wens@csie.org>, Kukjin Kim <kgene@kernel.org>,
- NXP Linux Team <linux-imx@nxp.com>, Dave Airlie <airlied@redhat.com>,
- Jonas Karlman <jonas@kwiboo.se>, linux-arm-msm@vger.kernel.org,
- intel-gfx@lists.freedesktop.org, Jyri Sarha <jsarha@ti.com>,
- Mamta Shukla <mamtashukla555@gmail.com>, linux-mediatek@lists.infradead.org,
- linux-tegra@vger.kernel.org, Thomas Gleixner <tglx@linutronix.de>,
- Vincent Abriou <vincent.abriou@st.com>, Allison Randal <allison@lohutok.net>,
- linux-arm-kernel@lists.infradead.org, Jernej Skrabec <jernej.skrabec@siol.net>,
- amd-gfx@lists.freedesktop.org, Tomi Valkeinen <tomi.valkeinen@ti.com>,
- Enrico Weigelt <info@metux.net>, Seung-Woo Kim <sw0312.kim@samsung.com>,
- Douglas Anderson <dianders@chromium.org>, Todor Tomov <todor.tomov@linaro.org>,
- Kyungmin Park <kyungmin.park@samsung.com>, Huang Rui <ray.huang@amd.com>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Alex Deucher <alexander.deucher@amd.com>, freedreno@lists.freedesktop.org,
- =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
- Gerd Hoffmann <kraxel@redhat.com>
-Content-Type: multipart/mixed; boundary="===============0832753736=="
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"; DelSp="yes"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---===============0832753736==
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="rQW7V0pPHkAw2NNiWp7qw2pJTEuWVVZkI"
-
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---rQW7V0pPHkAw2NNiWp7qw2pJTEuWVVZkI
-Content-Type: multipart/mixed; boundary="1nTmnYcXxxfxqvFKU3qpyJbp2Ylpbb6UI";
- protected-headers="v1"
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: Andrzej Pietrasiewicz <andrzej.p@collabora.com>,
- dri-devel@lists.freedesktop.org
-Cc: Sam Ravnborg <sam@ravnborg.org>, Neil Armstrong
- <narmstrong@baylibre.com>, David Airlie <airlied@linux.ie>,
- Douglas Anderson <dianders@chromium.org>,
- Thierry Reding <thierry.reding@gmail.com>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, kernel@collabora.com,
- linux-samsung-soc@vger.kernel.org, linux-rockchip@lists.infradead.org,
- Vincent Abriou <vincent.abriou@st.com>, Krzysztof Kozlowski
- <krzk@kernel.org>, Jonathan Hunter <jonathanh@nvidia.com>,
- Maxime Ripard <maxime.ripard@bootlin.com>, Chen-Yu Tsai <wens@csie.org>,
- Kukjin Kim <kgene@kernel.org>, NXP Linux Team <linux-imx@nxp.com>,
- Dave Airlie <airlied@redhat.com>, intel-gfx@lists.freedesktop.org,
- freedreno@lists.freedesktop.org, linux-tegra@vger.kernel.org,
- Jonas Karlman <jonas@kwiboo.se>, linux-arm-msm@vger.kernel.org,
- Mamta Shukla <mamtashukla555@gmail.com>, linux-mediatek@lists.infradead.org,
- Jyri Sarha <jsarha@ti.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Matthias Brugger <matthias.bgg@gmail.com>,
- Thomas Gleixner <tglx@linutronix.de>, Sean Paul <sean@poorly.run>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Allison Randal <allison@lohutok.net>, linux-arm-kernel@lists.infradead.org,
- Enrico Weigelt <info@metux.net>, Jernej Skrabec <jernej.skrabec@siol.net>,
- amd-gfx@lists.freedesktop.org, Tomi Valkeinen <tomi.valkeinen@ti.com>,
- Seung-Woo Kim <sw0312.kim@samsung.com>, linux-kernel@vger.kernel.org,
- Todor Tomov <todor.tomov@linaro.org>,
- Kyungmin Park <kyungmin.park@samsung.com>, Huang Rui <ray.huang@amd.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Alex Deucher <alexander.deucher@amd.com>, Shawn Guo <shawnguo@kernel.org>,
- =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
- Gerd Hoffmann <kraxel@redhat.com>
-Message-ID: <f4c0432e-9223-54bc-c995-e0704555fc6e@suse.de>
-Subject: Re: [PATCH v5 18/24] drm/ast: Provide ddc symlink in connector sysfs
- directory
-References: <cover.1563960855.git.andrzej.p@collabora.com>
- <0afab6e2f61907409ba13a0ba91b8ee701eb7d74.1563960855.git.andrzej.p@collabora.com>
-In-Reply-To: <0afab6e2f61907409ba13a0ba91b8ee701eb7d74.1563960855.git.andrzej.p@collabora.com>
-
---1nTmnYcXxxfxqvFKU3qpyJbp2Ylpbb6UI
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: quoted-printable
-
-
-
-Am 24.07.19 um 15:59 schrieb Andrzej Pietrasiewicz:
-> Use the ddc pointer provided by the generic connector.
->=20
-> Signed-off-by: Andrzej Pietrasiewicz <andrzej.p@collabora.com>
-> ---
->  drivers/gpu/drm/ast/ast_mode.c | 13 ++++++++-----
->  1 file changed, 8 insertions(+), 5 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/ast/ast_mode.c b/drivers/gpu/drm/ast/ast_m=
-ode.c
-> index c792362024a5..1c899a6e87b7 100644
-> --- a/drivers/gpu/drm/ast/ast_mode.c
-> +++ b/drivers/gpu/drm/ast/ast_mode.c
-> @@ -867,7 +867,14 @@ static int ast_connector_init(struct drm_device *d=
-ev)
->  		return -ENOMEM;
-> =20
->  	connector =3D &ast_connector->base;
-> -	drm_connector_init(dev, connector, &ast_connector_funcs, DRM_MODE_CON=
-NECTOR_VGA);
-> +	ast_connector->i2c =3D ast_i2c_create(dev);
-> +	if (!ast_connector->i2c)
-> +		DRM_ERROR("failed to add ddc bus for connector\n");
-> +
-> +	drm_connector_init_with_ddc(dev, connector,
-> +				    &ast_connector_funcs,
-> +				    DRM_MODE_CONNECTOR_VGA,
-> +				    &ast_connector->i2c->adapter);
-> =20
->  	drm_connector_helper_add(connector, &ast_connector_helper_funcs);
-> =20
-> @@ -881,10 +888,6 @@ static int ast_connector_init(struct drm_device *d=
-ev)
->  	encoder =3D list_first_entry(&dev->mode_config.encoder_list, struct d=
-rm_encoder, head);
->  	drm_connector_attach_encoder(connector, encoder);
-> =20
-> -	ast_connector->i2c =3D ast_i2c_create(dev);
-> -	if (!ast_connector->i2c)
-> -		DRM_ERROR("failed to add ddc bus for connector\n");
-> -
->  	return 0;
->  }
-> =20
->=20
-
-Reviewed-by: Thomas Zimmermann <tzimmermann@suse.de>
-
---=20
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Linux GmbH, Maxfeldstrasse 5, 90409 Nuernberg, Germany
-GF: Felix Imend=C3=B6rffer, Mary Higgins, Sri Rasiah
-HRB 21284 (AG N=C3=BCrnberg)
-
-
---1nTmnYcXxxfxqvFKU3qpyJbp2Ylpbb6UI--
-
---rQW7V0pPHkAw2NNiWp7qw2pJTEuWVVZkI
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEEchf7rIzpz2NEoWjlaA3BHVMLeiMFAl04kq0ACgkQaA3BHVML
-eiOVlgf9G4jOeCy2mr53PWbrCulWova4UboUrbdUc7gRFOmPd+B+OzGYuSRcUnlg
-kOVXCeSAueui+sQ0IbNuz/aH/ObT+dZzXd5gkLN9J6jj1WoLQ8Wyn4apJy13rnsE
-mHtW7wjvJ8kq5Yool9NZApYN9aD6ZTxZQwt4YokeS7Kfryf+vQN3pweb8XGBW3d4
-FuLKHRSrgcqTY1XUMAbXlEC5A0DfBo4wfar1q7u045ggLL84yMQcw3SJ9WyiPbpf
-k2v9fkgpwy60HTlNaTBxlzm4KBoRVXfYqIynlK3QMf7GF2sz0RiBF2RmzgG96f0I
-UqpER9GagpcIV5uY52PywoarGEUWuA==
-=lXB9
------END PGP SIGNATURE-----
-
---rQW7V0pPHkAw2NNiWp7qw2pJTEuWVVZkI--
-
---===============0832753736==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
-IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
-
---===============0832753736==--
+T24gV2VkLCAyNCBKdWwgMjAxOSAxODozNzo1MiArMDIwMCwgRGFuaWVsZSBDZXJhb2xvIFNwdXJp
+byAgCjxkYW5pZWxlLmNlcmFvbG9zcHVyaW9AaW50ZWwuY29tPiB3cm90ZToKCj4+PiAtICAgIHVj
+X2Z3LT5sb2FkX3N0YXR1cyA9IElOVEVMX1VDX0ZJUk1XQVJFX1NVQ0NFU1M7Cj4+PiAtICAgIERS
+TV9ERUJVR19EUklWRVIoIiVzIGZ3IGxvYWQgJXNcbiIsCj4+PiAtICAgICAgICAgICAgIGludGVs
+X3VjX2Z3X3R5cGVfcmVwcih1Y19mdy0+dHlwZSksCj4+PiAtICAgICAgICAgICAgIGludGVsX3Vj
+X2Z3X3N0YXR1c19yZXByKHVjX2Z3LT5sb2FkX3N0YXR1cykpOwo+Pj4gKyAgICB1Y19mdy0+c3Rh
+dHVzID0gSU5URUxfVUNfRklSTVdBUkVfTE9BREVEOwo+Pgo+PiBtYXliZSB3ZSBjYW4gc2xpZ2h0
+bHkgbW9kaWZ5IHhmZXIgZnVuY3Rpb24gYWdyZWVtZW50IGFuZCB1c2UKPj4gLUVJTlBST0dSRVNT
+IHRvIGluZGljYXRlIHdoZXRoZXIgZncgaXMganVzdCBsb2FkZWQgKEh1Qykgb3IKPj4gaXMgYWxy
+ZWFkeSBhdXRoZW50aWNhdGVkIGFuZCBydW5uaW5nIChHdUMpOgo+Pgo+PiAgICAgaWYgKCFlcnIp
+Cj4+ICAgICAgICAgdWNfZnctPnN0YXR1cyA9IElOVEVMX1VDX0ZJUk1XQVJFX1JVTk5JTkc7Cj4+
+ICAgICBlbHNlIGlmIChlcnIgPT0gLUVJTlBST0dSRVNTKQo+PiAgICAgICAgIHVjX2Z3LT5zdGF0
+dXMgPSBJTlRFTF9VQ19GSVJNV0FSRV9MT0FERUQ7Cj4+ICAgICBlbHNlCj4+ICAgICAgICAgZ290
+byBmYWlsOwo+Pgo+Cj4gSSd2ZSBwdXJwb3NlbHkga2VwdCB0aGUgUlVOTklORyBzdGF0ZSBvdXRz
+aWRlIGJlY2F1c2UgaW4gcGF0Y2ggOCBJIG1vdmUgIAo+IHRoZSB3YWl0IG91dHNpZGUgdGhlIHhm
+ZXIsIHNvIHRoZSBzd2l0Y2ggdG8gdGhlIHJ1bm5pbmcgc3RhdGUgd2lsbCBiZSAgCj4gZG9uZSBv
+dXRzaWRlIG9mIGhlcmUgZm9yIGJvdGggdUMuIFNlZW1lZCBsaWtlIGxlc3MgY2h1cm4gdG8gZ28g
+ZGlyZWN0bHkgIAo+IHdpdGggdGhhdC4KCm9rLCBJIG1pc3NlZCB0aGF0IG1vdmUgaW4gZGlmZiA4
+LzgKCgo+Pj4gQEAgLTM1LDEyICszNSwxNCBAQCBzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZTsKPj4+
+ICAjZGVmaW5lIElOVEVMX1VDX0ZJUk1XQVJFX1VSTCAgCj4+PiAiaHR0cHM6Ly9naXQua2VybmVs
+Lm9yZy9wdWIvc2NtL2xpbnV4L2tlcm5lbC9naXQvZmlybXdhcmUvbGludXgtZmlybXdhcmUuZ2l0
+L3RyZWUvaTkxNSIKPj4+IGVudW0gaW50ZWxfdWNfZndfc3RhdHVzIHsKPj4+IC0gICAgSU5URUxf
+VUNfRklSTVdBUkVfTk9UX1NVUFBPUlRFRCA9IC0yLCAvKiBubyB1YyBIVyAqLwo+Pj4gLSAgICBJ
+TlRFTF9VQ19GSVJNV0FSRV9GQUlMID0gLTEsCj4+PiArICAgIElOVEVMX1VDX0ZJUk1XQVJFX0xP
+QURfRkFJTCA9IC0zLAo+Pj4gKyAgICBJTlRFTF9VQ19GSVJNV0FSRV9GRVRDSF9GQUlMID0gLTIs
+Cj4+PiArICAgIElOVEVMX1VDX0ZJUk1XQVJFX05PVF9TVVBQT1JURUQgPSAtMSwgLyogbm8gdWMg
+SFcgKi8KPj4+ICAgICAgSU5URUxfVUNfRklSTVdBUkVfVU5JTklUSUFMSVpFRCA9IDAsIC8qIHVz
+ZWQgdG8gY2F0Y2ggY2hlY2tzIGRvbmUgIAo+Pj4gdG9vIGVhcmx5ICovCj4+PiAtICAgIElOVEVM
+X1VDX0ZJUk1XQVJFX05PVF9TVEFSVEVEID0gMSwKPj4+IC0gICAgSU5URUxfVUNfRklSTVdBUkVf
+UEVORElORywKPj4+IC0gICAgSU5URUxfVUNfRklSTVdBUkVfU1VDQ0VTUwo+Pj4gKyAgICBJTlRF
+TF9VQ19GSVJNV0FSRV9TRUxFQ1RJT05fRE9ORSwgLyogc2VsZWN0aW9uIGluY2x1ZGUgdGhlICJu
+byAgCj4+PiBGVyIgY2FzZSAqLwo+Pgo+PiB3aHkgZG8geW91IHdhbnQgdG8ga2VlcCAiTm8gRlci
+IGNhc2UgaGVyZSA/Cj4+IHdoZW4gd2Uga25vdyB0aGF0IHRoZXJlIGlzIG5vIGZ3LCB3ZSBzaG91
+bGQgbm90IGF0dGVtcHQgdG8gZmV0Y2ggaXQuCj4+IHNvIHRoaXMgaXMgZGlmZmVyZW50IHN0YXRl
+IHRoYW4gImZ3IHdhcyBzZWxlY3RlZCwgYXdhaXRpbmcgZmV0Y2giCj4KPiBXZSBuZWVkIGEgd2F5
+IHRvIGRpZmZlcmVudGlhdGUgZm9yIHRoZSBsb2dnaW5nIGFuZCBJIGRpZG4ndCB3YW50IGFuICAK
+PiBleHRyYSBzdGF0ZSBzaW5jZSB3ZSBjaGVjayBmdy0+cGF0aCBhbnl3YXkgdG8gbWFrZSBzdXJl
+IHRoZSBmdyB3YXMgIAo+IGFjdHVhbGx5IHNlbGVjdGVkLgoKQnV0ICJOL0EiIHN0YXRlIGFsc28g
+bWVhbnMgdGhhdCB3ZSBhbHJlYWR5IHBhc3Mgb3ZlciBpbml0X2Vhcmx5IHN0ZXAKdGhhdCBpbmNs
+dWRlcyBzZWxlY3Rpb24sIHNvIHdlIGRvbid0IG5lZWQgdG8gYWRkIGFueSBleHRyYSBzdGF0ZS4K
+Cj4KPj4KPj4+ICsgICAgSU5URUxfVUNfRklSTVdBUkVfQVZBSUxBQkxFLCAvKiBmZXRjaCBkb25l
+ICovCj4+PiArICAgIElOVEVMX1VDX0ZJUk1XQVJFX0xPQURFRCwgLyogZG1hIHhmZXIgZG9uZSAq
+Lwo+Pj4gKyAgICBJTlRFTF9VQ19GSVJNV0FSRV9SVU5OSU5HIC8qIGZ3IGluaXQvYXV0aCBkb25l
+ICovCj4+PiAgfTsKPj4+IGVudW0gaW50ZWxfdWNfZndfdHlwZSB7Cj4+PiBAQCAtNTcsOCArNTks
+NyBAQCBzdHJ1Y3QgaW50ZWxfdWNfZncgewo+Pj4gICAgICBjb25zdCBjaGFyICpwYXRoOwo+Pj4g
+ICAgICBzaXplX3Qgc2l6ZTsKPj4+ICAgICAgc3RydWN0IGRybV9pOTE1X2dlbV9vYmplY3QgKm9i
+ajsKPj4+IC0gICAgZW51bSBpbnRlbF91Y19md19zdGF0dXMgZmV0Y2hfc3RhdHVzOwo+Pj4gLSAg
+ICBlbnVtIGludGVsX3VjX2Z3X3N0YXR1cyBsb2FkX3N0YXR1czsKPj4+ICsgICAgZW51bSBpbnRl
+bF91Y19md19zdGF0dXMgc3RhdHVzOwo+Pj4gICAgIC8qCj4+PiAgICAgICAqIFRoZSBmaXJtd2Fy
+ZSBidWlsZCBwcm9jZXNzIHdpbGwgZ2VuZXJhdGUgYSB2ZXJzaW9uIGhlYWRlciBmaWxlICAKPj4+
+IHdpdGggbWFqb3IgYW5kCj4+PiBAQCAtODMsMTggKzg0LDIyIEBAIHN0YXRpYyBpbmxpbmUKPj4+
+ICBjb25zdCBjaGFyICppbnRlbF91Y19md19zdGF0dXNfcmVwcihlbnVtIGludGVsX3VjX2Z3X3N0
+YXR1cyBzdGF0dXMpCj4+PiAgewo+Pj4gICAgICBzd2l0Y2ggKHN0YXR1cykgewo+Pj4gKyAgICBj
+YXNlIElOVEVMX1VDX0ZJUk1XQVJFX0xPQURfRkFJTDoKPj4+ICsgICAgICAgIHJldHVybiAiTE9B
+RCBGQUlMIjsKCnNvcnJ5IGZvciBzZWNvbmQgdGhvdWdodHMsIGJ1dCB3aXRoIHRoZXNlIG5hbWVz
+IHdlIGNvdWxkIGhhdmU6CgpMT0FERUQgKHVzZXI6IGh1cnJheSEpIC0tPiBOT1RfTE9BREVEICh1
+c2VyOiBidXQgd2Ugd2VyZSBhbHJlYWR5IGxvYWRlZD8hPykKCnNvIG1heWJlIHBsYWluICJGQUlM
+IiBhcyB0aGlzIGlzIHVzZXIgZmFjaW5nIHN0YXR1cyA/Cgo+Pj4gKyAgICBjYXNlIElOVEVMX1VD
+X0ZJUk1XQVJFX0ZFVENIX0ZBSUw6Cj4+PiArICAgICAgICByZXR1cm4gIkZFVENIIEZBSUwiOwoK
+c2FtZSBoZXJlLCAiZmV0Y2giIGl0J3MgbmFtZSBvZiBvdXIgaW50ZXJuYWwgc3RlcCwKIk1JU1NJ
+TkciIHNvdW5kcyBiZXR0ZXIgaW1ubwoKPj4+ICAgICAgY2FzZSBJTlRFTF9VQ19GSVJNV0FSRV9O
+T1RfU1VQUE9SVEVEOgo+Pj4gLSAgICAgICAgcmV0dXJuICJOL0EgLSB1YyBIVyBub3QgYXZhaWxh
+YmxlIjsKPj4+IC0gICAgY2FzZSBJTlRFTF9VQ19GSVJNV0FSRV9GQUlMOgo+Pj4gLSAgICAgICAg
+cmV0dXJuICJGQUlMIjsKPj4+ICsgICAgICAgIHJldHVybiAiTi9BIjsKPj4+ICAgICAgY2FzZSBJ
+TlRFTF9VQ19GSVJNV0FSRV9VTklOSVRJQUxJWkVEOgo+Pj4gICAgICAgICAgcmV0dXJuICJVTklO
+SVRJQUxJWkVEIjsKPj4+IC0gICAgY2FzZSBJTlRFTF9VQ19GSVJNV0FSRV9OT1RfU1RBUlRFRDoK
+Pj4+IC0gICAgICAgIHJldHVybiAiTk9UX1NUQVJURUQiOwo+Pj4gLSAgICBjYXNlIElOVEVMX1VD
+X0ZJUk1XQVJFX1BFTkRJTkc6Cj4+PiAtICAgICAgICByZXR1cm4gIlBFTkRJTkciOwo+Pj4gLSAg
+ICBjYXNlIElOVEVMX1VDX0ZJUk1XQVJFX1NVQ0NFU1M6Cj4+PiAtICAgICAgICByZXR1cm4gIlNV
+Q0NFU1MiOwo+Pj4gKyAgICBjYXNlIElOVEVMX1VDX0ZJUk1XQVJFX1NFTEVDVElPTl9ET05FOgo+
+Pj4gKyAgICAgICAgcmV0dXJuICJTRUxFQ1RJT04gRE9ORSI7Cj4+Cj4+IG5pdDogdGhpcyBpcyBu
+b3QgbXkgZmF2b3JpdGUsIHdoYXQgd2FzIHdyb25nIHdpdGgKPj4gIlBFTkRJTkciIChrbm93biwg
+YXdhaXRpbmcgZmV0Y2gvbG9hZCwgbG9vayBpdCdzIHRyYW5zaWVudCBzdGF0ZSEpCj4+ICJTRUxF
+Q1RFRCIgKHNob3J0ZXIsIGFwcGxpZXMgdG8gdGhpcyBmdyBvYmplY3QgdnMgc3RlcCkKPgo+IEkg
+d2FudGVkIHRvIGhpZ2hsaWdodCB0aGUgZmFjdCB0aGF0IHRoZSBzZWxlY3Rpb24gaW5jbHVkZWQg
+dGhlICJubyBGVyIgIAo+IGNhc2UsIHRoZSBmdyB3YXNuJ3QgbmVjZXNzYXJpbHkgInNlbGVjdGVk
+Ii4gV2UganVzdCBrbm93IHRoYXQgd2UndmUgcnVuICAKPiB0aHJvdWdoIHRoZSBzZWxlY3Rpb24g
+Y29kZS4KCmJ1dCBmcm9tIHRoZSB1c2VyIHBvdiB0aGlzIGlzIGludGVybmFsIGRldGFpbCwgbm90
+IHN1cmUgaWYgd2Ugc2hvdWxkIGV4cG9zZQp0aGF0LCBvbiBvdGhlciBoYW5kLCBQRU5ESU5HIGNs
+ZWFybHkgaW5kaWNhdGVzIHRoYXQgd2UgYXJlIHN0aWxsIGdvaW5nIHRvICAKZG8Kc29tZXRoaW5n
+IHdpdGggdGhhdCBmaXJtd2FyZSAoZmV0Y2gveGZlci9hdXRoKSB1bnRpbCB3ZSByZWFjaCBlbmQg
+c3RhdGUuCgo+Cj4+Cj4+PiArICAgIGNhc2UgSU5URUxfVUNfRklSTVdBUkVfQVZBSUxBQkxFOgo+
+Pj4gKyAgICAgICAgcmV0dXJuICJBVkFJTEFCTEUiOwo+Pj4gKyAgICBjYXNlIElOVEVMX1VDX0ZJ
+Uk1XQVJFX0xPQURFRDoKPj4+ICsgICAgICAgIHJldHVybiAiTE9BREVEIjsKPj4+ICsgICAgY2Fz
+ZSBJTlRFTF9VQ19GSVJNV0FSRV9SVU5OSU5HOgo+Pj4gKyAgICAgICAgcmV0dXJuICJSVU5OSU5H
+IjsKCmhtbSwgdGhlIGRpZmZlcmVuY2UgYmV0d2VlbiBMT0FERUQvUlVOTklORyBtaWdodCBiZSB1
+bm5vdGljZWQgYnkgdGhlCnVzZXIsIGFzIGhlIG1heSBhbHNvIHRyZWF0IExPQURFRCBhcyBmdWxs
+IHN1Y2Nlc3MuCgpzbyBtYXliZSBzL0xPQURFRC9UUkFOU0ZFUlJFRCA/Cgo+Pj4gICAgICB9Cj4+
+PiAgICAgIHJldHVybiAiPGludmFsaWQ+IjsKPj4+ICB9Cl9fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4
+QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWls
+bWFuL2xpc3RpbmZvL2ludGVsLWdmeA==
