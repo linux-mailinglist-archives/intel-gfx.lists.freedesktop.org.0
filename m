@@ -2,34 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A7926734BB
-	for <lists+intel-gfx@lfdr.de>; Wed, 24 Jul 2019 19:12:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D365F734EA
+	for <lists+intel-gfx@lfdr.de>; Wed, 24 Jul 2019 19:16:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 953A76E600;
-	Wed, 24 Jul 2019 17:12:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CD5DF6E60C;
+	Wed, 24 Jul 2019 17:16:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 897326E5FC
- for <intel-gfx@lists.freedesktop.org>; Wed, 24 Jul 2019 17:12:22 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 24 Jul 2019 10:12:22 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.64,303,1559545200"; d="scan'208";a="171556941"
-Received: from jssummer-desk.ra.intel.com ([10.54.134.159])
- by fmsmga007.fm.intel.com with ESMTP; 24 Jul 2019 10:12:21 -0700
-From: Stuart Summers <stuart.summers@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 24 Jul 2019 10:12:20 -0700
-Message-Id: <20190724171220.22986-10-stuart.summers@intel.com>
-X-Mailer: git-send-email 2.21.0.5.gaeb582a983
-In-Reply-To: <20190724171220.22986-1-stuart.summers@intel.com>
-References: <20190724171220.22986-1-stuart.summers@intel.com>
+Received: from mx1.suse.de (mx2.suse.de [195.135.220.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1C30C6E5FB;
+ Wed, 24 Jul 2019 17:16:45 +0000 (UTC)
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.220.254])
+ by mx1.suse.de (Postfix) with ESMTP id C2476AC18;
+ Wed, 24 Jul 2019 17:16:42 +0000 (UTC)
+To: Andrzej Pietrasiewicz <andrzej.p@collabora.com>,
+ dri-devel@lists.freedesktop.org
+References: <cover.1563960855.git.andrzej.p@collabora.com>
+ <53f5ded2971235e5b63c9a3ed4ed8bccf10c78f2.1563960855.git.andrzej.p@collabora.com>
+From: Thomas Zimmermann <tzimmermann@suse.de>
+Openpgp: preference=signencrypt
+Autocrypt: addr=tzimmermann@suse.de; keydata=
+ xsBNBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
+ XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
+ BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
+ hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
+ 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
+ AAHNKFRob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmNvbT7CwJQEEwEIAD4W
+ IQRyF/usjOnPY0ShaOVoDcEdUwt6IwUCWznTtgIbAwUJA8JnAAULCQgHAgYVCgkICwIEFgID
+ AQIeAQIXgAAKCRBoDcEdUwt6I7D7CACBK42XW+7mCiK8ioXMEy1NzGbXC51RzGea8N83oEJS
+ 1KVUtQxrkDxgrW/WLSl/TfqHFsJpdEFOv1XubWbleun3uKPy0e5vZCd5UjZPkeNjnqfCYTDy
+ hVVsdOuFbtWDppJyJrThLqr9AgSFmoCNNUt1SVpYEEOLNE6C32BhlnSq21VLC+YXTgO/ZHTa
+ YXkq54hHj63jwrcjkBSCkXLh37kHeqnl++GHpN+3R+o3w2OpwHAlvVjdKPT27v1tVkiydsFG
+ 65Vd0n3m/ft+IOrGgxQM1C20uqKvsZGB4r3OGR50ekAybO7sjEJJ1Obl4ge/6RRqcvKz4LMb
+ tGs85D6tPIeFzsBNBFs50uABCADGJj+DP1fk+UWOWrf4O61HTbC4Vr9QD2K4fUUHnzg2B6zU
+ R1BPXqLGG0+lzK8kfYU/F5RjmEcClsIkAaFkg4kzKP14tvY1J5+AV3yNqcdg018HNtiyrSwI
+ E0Yz/qm1Ot2NMZ0DdvVBg22IMsiudQ1tx9CH9mtyTbIXgACvl3PW2o9CxiHPE/bohFhwZwh/
+ kXYYAE51lhinQ3oFEeQZA3w4OTvxSEspiQR8dg8qJJb+YOAc5IKk6sJmmM7JfFMWSr22satM
+ 23oQ3WvJb4RV6HTRTAIEyyZS7g2DhiytgMG60t0qdABG5KXSQW+OKlZRpuWwKWaLh3if/p/u
+ 69dvpanbABEBAAHCwHwEGAEIACYWIQRyF/usjOnPY0ShaOVoDcEdUwt6IwUCWznS4AIbDAUJ
+ A8JnAAAKCRBoDcEdUwt6I6X3CACJ8D+TpXBCqJE5xwog08+Dp8uBpx0T9n1wE0GQisZruACW
+ NofYn8PTX9k4wmegDLwt7YQDdKxQ4+eTfZeLNQqWg6OCftH5Kx7sjWnJ09tOgniVdROzWJ7c
+ VJ/i0okazncsJ+nq48UYvRGE1Swh3A4QRIyphWX4OADOBmTFl9ZYNPnh23eaC9WrNvFr7yP7
+ iGjMlfEW8l6Lda//EC5VpXVNza0xeae0zFNst2R9pn+bLkihwDLWxOIyifGRxTqNxoS4I1aw
+ VhxPSVztPMSpIA/sOr/N/p6JrBLn+gui2K6mP7bGb8hF+szfArYqz3T1rv1VzUWAJf5Wre5U
+ iNx9uqqx
+Message-ID: <ea96186f-8d38-a698-f29e-049987ae0163@suse.de>
+Date: Wed, 24 Jul 2019 19:16:35 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 9/9] drm/i915: Expand subslice mask
+In-Reply-To: <53f5ded2971235e5b63c9a3ed4ed8bccf10c78f2.1563960855.git.andrzej.p@collabora.com>
+Subject: Re: [Intel-gfx] [PATCH v5 02/24] drm: Add drm_connector_init()
+ variant with ddc
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -42,116 +67,195 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Neil Armstrong <narmstrong@baylibre.com>,
+ Maxime Ripard <maxime.ripard@bootlin.com>, linux-kernel@vger.kernel.org,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Shawn Guo <shawnguo@kernel.org>, kernel@collabora.com,
+ Sam Ravnborg <sam@ravnborg.org>, linux-samsung-soc@vger.kernel.org,
+ linux-rockchip@lists.infradead.org, Krzysztof Kozlowski <krzk@kernel.org>,
+ Jonathan Hunter <jonathanh@nvidia.com>, David Airlie <airlied@linux.ie>,
+ Chen-Yu Tsai <wens@csie.org>, Kukjin Kim <kgene@kernel.org>,
+ NXP Linux Team <linux-imx@nxp.com>, Dave Airlie <airlied@redhat.com>,
+ Jonas Karlman <jonas@kwiboo.se>, linux-arm-msm@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org, Jyri Sarha <jsarha@ti.com>,
+ Mamta Shukla <mamtashukla555@gmail.com>, linux-mediatek@lists.infradead.org,
+ linux-tegra@vger.kernel.org, Thomas Gleixner <tglx@linutronix.de>,
+ Vincent Abriou <vincent.abriou@st.com>, Allison Randal <allison@lohutok.net>,
+ linux-arm-kernel@lists.infradead.org, Jernej Skrabec <jernej.skrabec@siol.net>,
+ amd-gfx@lists.freedesktop.org, Tomi Valkeinen <tomi.valkeinen@ti.com>,
+ Enrico Weigelt <info@metux.net>, Seung-Woo Kim <sw0312.kim@samsung.com>,
+ Douglas Anderson <dianders@chromium.org>, Todor Tomov <todor.tomov@linaro.org>,
+ Kyungmin Park <kyungmin.park@samsung.com>, Huang Rui <ray.huang@amd.com>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Alex Deucher <alexander.deucher@amd.com>, freedreno@lists.freedesktop.org,
+ =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
+ Gerd Hoffmann <kraxel@redhat.com>
+Content-Type: multipart/mixed; boundary="===============1030605184=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Q3VycmVudGx5LCB0aGUgc3Vic2xpY2VfbWFzayBydW50aW1lIHBhcmFtZXRlciBpcyBzdG9yZWQg
-YXMgYW4KYXJyYXkgb2Ygc3Vic2xpY2VzIHBlciBzbGljZS4gRXhwYW5kIHRoZSBzdWJzbGljZSBt
-YXNrIGFycmF5IHRvCmJldHRlciBtYXRjaCB3aGF0IGlzIHByZXNlbnRlZCB0byB1c2Vyc3BhY2Ug
-dGhyb3VnaCB0aGUKSTkxNV9RVUVSWV9UT1BPTE9HWV9JTkZPIGlvY3RsLiBUaGUgaW5kZXggaW50
-byB0aGlzIGFycmF5IGlzCnRoZW4gY2FsY3VsYXRlZDoKICBzbGljZSAqIHN1YnNsaWNlIHN0cmlk
-ZSArIHN1YnNsaWNlIGluZGV4IC8gOAoKdjI6IEZpeCAzMi1iaXQgYnVpbGQKClNpZ25lZC1vZmYt
-Ynk6IFN0dWFydCBTdW1tZXJzIDxzdHVhcnQuc3VtbWVyc0BpbnRlbC5jb20+Ci0tLQogZHJpdmVy
-cy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfc3NldS5jICAgICAgICB8IDI3ICsrKysrKysrKysrKysr
-KysrKysrLQogZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfc3NldS5oICAgICAgICB8ICA1
-ICsrKy0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX3dvcmthcm91bmRzLmMgfCAgMyAr
-LS0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZGVidWdmcy5jICAgICAgICAgfCAgNSArKyst
-CiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9kZXZpY2VfaW5mby5jICAgIHwgIDggKysrLS0t
-CiA1IGZpbGVzIGNoYW5nZWQsIDM5IGluc2VydGlvbnMoKyksIDkgZGVsZXRpb25zKC0pCgpkaWZm
-IC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfc3NldS5jIGIvZHJpdmVycy9n
-cHUvZHJtL2k5MTUvZ3QvaW50ZWxfc3NldS5jCmluZGV4IDYwN2MxNDQ3Mjg3Yy4uZTQyNmYzNGI0
-ZGQ2IDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRlbF9zc2V1LmMKKysr
-IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfc3NldS5jCkBAIC0zMCw2ICszMCwzMSBA
-QCBpbnRlbF9zc2V1X3N1YnNsaWNlX3RvdGFsKGNvbnN0IHN0cnVjdCBzc2V1X2Rldl9pbmZvICpz
-c2V1KQogCXJldHVybiB0b3RhbDsKIH0KIAordTMyIGludGVsX3NzZXVfZ2V0X3N1YnNsaWNlcyhj
-b25zdCBzdHJ1Y3Qgc3NldV9kZXZfaW5mbyAqc3NldSwgdTggc2xpY2UpCit7CisJaW50IGksIG9m
-ZnNldCA9IHNsaWNlICogc3NldS0+c3Nfc3RyaWRlOworCXUzMiBtYXNrID0gMDsKKworCWlmIChz
-bGljZSA+PSBzc2V1LT5tYXhfc2xpY2VzKSB7CisJCURSTV9FUlJPUigiJXM6IGludmFsaWQgc2xp
-Y2UgJWQsIG1heDogJWRcbiIsCisJCQkgIF9fZnVuY19fLCBzbGljZSwgc3NldS0+bWF4X3NsaWNl
-cyk7CisJCXJldHVybiAwOworCX0KKworCWlmIChzc2V1LT5zc19zdHJpZGUgPiBzaXplb2YobWFz
-aykpIHsKKwkJRFJNX0VSUk9SKCIlczogaW52YWxpZCBzdWJzbGljZSBzdHJpZGUgJWQsIG1heDog
-JXVcbiIsCisJCQkgIF9fZnVuY19fLCBzc2V1LT5zc19zdHJpZGUsCisJCQkgKHVuc2lnbmVkIGlu
-dClzaXplb2YobWFzaykpOworCQlyZXR1cm4gMDsKKwl9CisKKwlmb3IgKGkgPSAwOyBpIDwgc3Nl
-dS0+c3Nfc3RyaWRlOyBpKyspCisJCW1hc2sgfD0gKHUzMilzc2V1LT5zdWJzbGljZV9tYXNrW29m
-ZnNldCArIGldIDw8CisJCQlpICogQklUU19QRVJfQllURTsKKworCXJldHVybiBtYXNrOworfQor
-CiB2b2lkIGludGVsX3NzZXVfc2V0X3N1YnNsaWNlcyhzdHJ1Y3Qgc3NldV9kZXZfaW5mbyAqc3Nl
-dSwgaW50IHNsaWNlLAogCQkJICAgICAgdTMyIHNzX21hc2spCiB7CkBAIC00Myw3ICs2OCw3IEBA
-IHZvaWQgaW50ZWxfc3NldV9zZXRfc3Vic2xpY2VzKHN0cnVjdCBzc2V1X2Rldl9pbmZvICpzc2V1
-LCBpbnQgc2xpY2UsCiB1bnNpZ25lZCBpbnQKIGludGVsX3NzZXVfc3Vic2xpY2VzX3Blcl9zbGlj
-ZShjb25zdCBzdHJ1Y3Qgc3NldV9kZXZfaW5mbyAqc3NldSwgdTggc2xpY2UpCiB7Ci0JcmV0dXJu
-IGh3ZWlnaHQ4KHNzZXUtPnN1YnNsaWNlX21hc2tbc2xpY2VdKTsKKwlyZXR1cm4gaHdlaWdodDMy
-KGludGVsX3NzZXVfZ2V0X3N1YnNsaWNlcyhzc2V1LCBzbGljZSkpOwogfQogCiB1MzIgaW50ZWxf
-c3NldV9tYWtlX3JwY3Moc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmk5MTUsCmRpZmYgLS1naXQg
-YS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRlbF9zc2V1LmggYi9kcml2ZXJzL2dwdS9kcm0v
-aTkxNS9ndC9pbnRlbF9zc2V1LmgKaW5kZXggMGVjYzFjMzVhN2ExLi4yMjkxNzY0YjdkYjUgMTAw
-NjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX3NzZXUuaAorKysgYi9kcml2
-ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRlbF9zc2V1LmgKQEAgLTE1LDEwICsxNSwxMSBAQCBzdHJ1
-Y3QgZHJtX2k5MTVfcHJpdmF0ZTsKICNkZWZpbmUgR0VOX01BWF9TTElDRVMJCSg2KSAvKiBDTkwg
-dXBwZXIgYm91bmQgKi8KICNkZWZpbmUgR0VOX01BWF9TVUJTTElDRVMJKDgpIC8qIElDTCB1cHBl
-ciBib3VuZCAqLwogI2RlZmluZSBHRU5fU1NFVV9TVFJJREUobWF4X2VudHJpZXMpIERJVl9ST1VO
-RF9VUChtYXhfZW50cmllcywgQklUU19QRVJfQllURSkKKyNkZWZpbmUgR0VOX01BWF9TVUJTTElD
-RV9TVFJJREUgR0VOX1NTRVVfU1RSSURFKEdFTl9NQVhfU1VCU0xJQ0VTKQogCiBzdHJ1Y3Qgc3Nl
-dV9kZXZfaW5mbyB7CiAJdTggc2xpY2VfbWFzazsKLQl1OCBzdWJzbGljZV9tYXNrW0dFTl9NQVhf
-U0xJQ0VTXTsKKwl1OCBzdWJzbGljZV9tYXNrW0dFTl9NQVhfU0xJQ0VTICogR0VOX01BWF9TVUJT
-TElDRV9TVFJJREVdOwogCXUxNiBldV90b3RhbDsKIAl1OCBldV9wZXJfc3Vic2xpY2U7CiAJdTgg
-bWluX2V1X2luX3Bvb2w7CkBAIC04NSw2ICs4Niw4IEBAIGludGVsX3NzZXVfc3Vic2xpY2VfdG90
-YWwoY29uc3Qgc3RydWN0IHNzZXVfZGV2X2luZm8gKnNzZXUpOwogdW5zaWduZWQgaW50CiBpbnRl
-bF9zc2V1X3N1YnNsaWNlc19wZXJfc2xpY2UoY29uc3Qgc3RydWN0IHNzZXVfZGV2X2luZm8gKnNz
-ZXUsIHU4IHNsaWNlKTsKIAordTMyICBpbnRlbF9zc2V1X2dldF9zdWJzbGljZXMoY29uc3Qgc3Ry
-dWN0IHNzZXVfZGV2X2luZm8gKnNzZXUsIHU4IHNsaWNlKTsKKwogdm9pZCBpbnRlbF9zc2V1X3Nl
-dF9zdWJzbGljZXMoc3RydWN0IHNzZXVfZGV2X2luZm8gKnNzZXUsIGludCBzbGljZSwKIAkJCSAg
-ICAgIHUzMiBzc19tYXNrKTsKIApkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3Qv
-aW50ZWxfd29ya2Fyb3VuZHMuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX3dvcmth
-cm91bmRzLmMKaW5kZXggNzA0YWNlMDFlN2Y1Li43ZWM2MDQzNWQ4NzEgMTAwNjQ0Ci0tLSBhL2Ry
-aXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX3dvcmthcm91bmRzLmMKKysrIGIvZHJpdmVycy9n
-cHUvZHJtL2k5MTUvZ3QvaW50ZWxfd29ya2Fyb3VuZHMuYwpAQCAtNzk0LDggKzc5NCw3IEBAIHdh
-X2luaXRfbWNyKHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICppOTE1LCBzdHJ1Y3QgaTkxNV93YV9s
-aXN0ICp3YWwpCiAJfQogCiAJc2xpY2UgPSBmbHMoc3NldS0+c2xpY2VfbWFzaykgLSAxOwotCUdF
-TV9CVUdfT04oc2xpY2UgPj0gQVJSQVlfU0laRShzc2V1LT5zdWJzbGljZV9tYXNrKSk7Ci0Jc3Vi
-c2xpY2UgPSBmbHMobDNfZW4gJiBzc2V1LT5zdWJzbGljZV9tYXNrW3NsaWNlXSk7CisJc3Vic2xp
-Y2UgPSBmbHMobDNfZW4gJiBpbnRlbF9zc2V1X2dldF9zdWJzbGljZXMoc3NldSwgc2xpY2UpKTsK
-IAlpZiAoIXN1YnNsaWNlKSB7CiAJCURSTV9XQVJOKCJObyBjb21tb24gaW5kZXggZm91bmQgYmV0
-d2VlbiBzdWJzbGljZSBtYXNrICV4IGFuZCBMMyBiYW5rIG1hc2sgJXghXG4iLAogCQkJIHNzZXUt
-PnN1YnNsaWNlX21hc2tbc2xpY2VdLCBsM19lbik7CmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9k
-cm0vaTkxNS9pOTE1X2RlYnVnZnMuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZGVidWdm
-cy5jCmluZGV4IDdmODQyNTA2YjllYS4uOTZhMjVhNzcwYWRlIDEwMDY0NAotLS0gYS9kcml2ZXJz
-L2dwdS9kcm0vaTkxNS9pOTE1X2RlYnVnZnMuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9p
-OTE1X2RlYnVnZnMuYwpAQCAtMzk0NCwxMyArMzk0NCwxNiBAQCBzdGF0aWMgdm9pZCBnZW45X3Nz
-ZXVfZGV2aWNlX3N0YXR1cyhzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYsCiAKIAkJ
-Zm9yIChzcyA9IDA7IHNzIDwgaW5mby0+c3NldS5tYXhfc3Vic2xpY2VzOyBzcysrKSB7CiAJCQl1
-bnNpZ25lZCBpbnQgZXVfY250OworCQkJdTggc3NfaWR4ID0gcyAqIGluZm8tPnNzZXUuc3Nfc3Ry
-aWRlICsKKwkJCQkgICAgc3MgLyBCSVRTX1BFUl9CWVRFOwogCiAJCQlpZiAoSVNfR0VOOV9MUChk
-ZXZfcHJpdikpIHsKIAkJCQlpZiAoIShzX3JlZ1tzXSAmIChHRU45X1BHQ1RMX1NTX0FDSyhzcykp
-KSkKIAkJCQkJLyogc2tpcCBkaXNhYmxlZCBzdWJzbGljZSAqLwogCQkJCQljb250aW51ZTsKIAot
-CQkJCXNzZXUtPnN1YnNsaWNlX21hc2tbc10gfD0gQklUKHNzKTsKKwkJCQlzc2V1LT5zdWJzbGlj
-ZV9tYXNrW3NzX2lkeF0gfD0KKwkJCQkJQklUKHNzICUgQklUU19QRVJfQllURSk7CiAJCQl9CiAK
-IAkJCWV1X2NudCA9IDIgKiBod2VpZ2h0MzIoZXVfcmVnWzIqcyArIHNzLzJdICYKZGlmZiAtLWdp
-dCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX2RldmljZV9pbmZvLmMgYi9kcml2ZXJzL2dw
-dS9kcm0vaTkxNS9pbnRlbF9kZXZpY2VfaW5mby5jCmluZGV4IDcyM2IxZmRlNWZjNC4uMDRkZGU0
-ZjIwNGMzIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9kZXZpY2VfaW5m
-by5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX2RldmljZV9pbmZvLmMKQEAgLTkz
-LDkgKzkzLDkgQEAgc3RhdGljIHZvaWQgc3NldV9kdW1wKGNvbnN0IHN0cnVjdCBzc2V1X2Rldl9p
-bmZvICpzc2V1LCBzdHJ1Y3QgZHJtX3ByaW50ZXIgKnApCiAJCSAgIGh3ZWlnaHQ4KHNzZXUtPnNs
-aWNlX21hc2spLCBzc2V1LT5zbGljZV9tYXNrKTsKIAlkcm1fcHJpbnRmKHAsICJzdWJzbGljZSB0
-b3RhbDogJXVcbiIsIGludGVsX3NzZXVfc3Vic2xpY2VfdG90YWwoc3NldSkpOwogCWZvciAocyA9
-IDA7IHMgPCBzc2V1LT5tYXhfc2xpY2VzOyBzKyspIHsKLQkJZHJtX3ByaW50ZihwLCAic2xpY2Ul
-ZDogJXUgc3Vic2xpY2VzLCBtYXNrPSUwNHhcbiIsCisJCWRybV9wcmludGYocCwgInNsaWNlJWQ6
-ICV1IHN1YnNsaWNlcywgbWFzaz0lMDh4XG4iLAogCQkJICAgcywgaW50ZWxfc3NldV9zdWJzbGlj
-ZXNfcGVyX3NsaWNlKHNzZXUsIHMpLAotCQkJICAgc3NldS0+c3Vic2xpY2VfbWFza1tzXSk7CisJ
-CQkgICBpbnRlbF9zc2V1X2dldF9zdWJzbGljZXMoc3NldSwgcykpOwogCX0KIAlkcm1fcHJpbnRm
-KHAsICJFVSB0b3RhbDogJXVcbiIsIHNzZXUtPmV1X3RvdGFsKTsKIAlkcm1fcHJpbnRmKHAsICJF
-VSBwZXIgc3Vic2xpY2U6ICV1XG4iLCBzc2V1LT5ldV9wZXJfc3Vic2xpY2UpOwpAQCAtMTU5LDkg
-KzE1OSw5IEBAIHZvaWQgaW50ZWxfZGV2aWNlX2luZm9fZHVtcF90b3BvbG9neShjb25zdCBzdHJ1
-Y3Qgc3NldV9kZXZfaW5mbyAqc3NldSwKIAl9CiAKIAlmb3IgKHMgPSAwOyBzIDwgc3NldS0+bWF4
-X3NsaWNlczsgcysrKSB7Ci0JCWRybV9wcmludGYocCwgInNsaWNlJWQ6ICV1IHN1YnNsaWNlKHMp
-ICgweCVoaHgpOlxuIiwKKwkJZHJtX3ByaW50ZihwLCAic2xpY2UlZDogJXUgc3Vic2xpY2Uocykg
-KDB4JTA4eCk6XG4iLAogCQkJICAgcywgaW50ZWxfc3NldV9zdWJzbGljZXNfcGVyX3NsaWNlKHNz
-ZXUsIHMpLAotCQkJICAgc3NldS0+c3Vic2xpY2VfbWFza1tzXSk7CisJCQkgICBpbnRlbF9zc2V1
-X2dldF9zdWJzbGljZXMoc3NldSwgcykpOwogCiAJCWZvciAoc3MgPSAwOyBzcyA8IHNzZXUtPm1h
-eF9zdWJzbGljZXM7IHNzKyspIHsKIAkJCXUxNiBlbmFibGVkX2V1cyA9IHNzZXVfZ2V0X2V1cyhz
-c2V1LCBzLCBzcyk7Ci0tIAoyLjIxLjAuNS5nYWViNTgyYTk4MwoKX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRl
-bC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
-L21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--===============1030605184==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="LtNJJAmlPBJFSmTCjBWxZTnrO1jKlugWK"
+
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--LtNJJAmlPBJFSmTCjBWxZTnrO1jKlugWK
+Content-Type: multipart/mixed; boundary="vnsNtGTawS7eHAvH285t7LPE1bVWovlWW";
+ protected-headers="v1"
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: Andrzej Pietrasiewicz <andrzej.p@collabora.com>,
+ dri-devel@lists.freedesktop.org
+Cc: Sam Ravnborg <sam@ravnborg.org>, Neil Armstrong
+ <narmstrong@baylibre.com>, David Airlie <airlied@linux.ie>,
+ Douglas Anderson <dianders@chromium.org>,
+ Thierry Reding <thierry.reding@gmail.com>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, kernel@collabora.com,
+ linux-samsung-soc@vger.kernel.org, linux-rockchip@lists.infradead.org,
+ Vincent Abriou <vincent.abriou@st.com>, Krzysztof Kozlowski
+ <krzk@kernel.org>, Jonathan Hunter <jonathanh@nvidia.com>,
+ Maxime Ripard <maxime.ripard@bootlin.com>, Chen-Yu Tsai <wens@csie.org>,
+ Kukjin Kim <kgene@kernel.org>, NXP Linux Team <linux-imx@nxp.com>,
+ Dave Airlie <airlied@redhat.com>, intel-gfx@lists.freedesktop.org,
+ freedreno@lists.freedesktop.org, linux-tegra@vger.kernel.org,
+ Jonas Karlman <jonas@kwiboo.se>, linux-arm-msm@vger.kernel.org,
+ Mamta Shukla <mamtashukla555@gmail.com>, linux-mediatek@lists.infradead.org,
+ Jyri Sarha <jsarha@ti.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ Thomas Gleixner <tglx@linutronix.de>, Sean Paul <sean@poorly.run>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Allison Randal <allison@lohutok.net>, linux-arm-kernel@lists.infradead.org,
+ Enrico Weigelt <info@metux.net>, Jernej Skrabec <jernej.skrabec@siol.net>,
+ amd-gfx@lists.freedesktop.org, Tomi Valkeinen <tomi.valkeinen@ti.com>,
+ Seung-Woo Kim <sw0312.kim@samsung.com>, linux-kernel@vger.kernel.org,
+ Todor Tomov <todor.tomov@linaro.org>,
+ Kyungmin Park <kyungmin.park@samsung.com>, Huang Rui <ray.huang@amd.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Alex Deucher <alexander.deucher@amd.com>, Shawn Guo <shawnguo@kernel.org>,
+ =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
+ Gerd Hoffmann <kraxel@redhat.com>
+Message-ID: <ea96186f-8d38-a698-f29e-049987ae0163@suse.de>
+Subject: Re: [PATCH v5 02/24] drm: Add drm_connector_init() variant with ddc
+References: <cover.1563960855.git.andrzej.p@collabora.com>
+ <53f5ded2971235e5b63c9a3ed4ed8bccf10c78f2.1563960855.git.andrzej.p@collabora.com>
+In-Reply-To: <53f5ded2971235e5b63c9a3ed4ed8bccf10c78f2.1563960855.git.andrzej.p@collabora.com>
+
+--vnsNtGTawS7eHAvH285t7LPE1bVWovlWW
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: quoted-printable
+
+Hi
+
+Am 24.07.19 um 15:59 schrieb Andrzej Pietrasiewicz:
+> Allow passing ddc adapter pointer to the init function. Even if
+> drm_connector_init() sometime in the future decides to e.g. memset() al=
+l
+> connector fields to zeros, the newly added function ensures that at its=
+
+> completion the ddc member of connector is correctly set.
+>=20
+> Signed-off-by: Andrzej Pietrasiewicz <andrzej.p@collabora.com>
+> ---
+>  drivers/gpu/drm/drm_connector.c | 19 +++++++++++++++++++
+>  include/drm/drm_connector.h     |  5 +++++
+>  2 files changed, 24 insertions(+)
+>=20
+> diff --git a/drivers/gpu/drm/drm_connector.c b/drivers/gpu/drm/drm_conn=
+ector.c
+> index 068d4b05f1be..06fbfc44fb48 100644
+> --- a/drivers/gpu/drm/drm_connector.c
+> +++ b/drivers/gpu/drm/drm_connector.c
+> @@ -296,6 +296,25 @@ int drm_connector_init(struct drm_device *dev,
+>  }
+>  EXPORT_SYMBOL(drm_connector_init);
+> =20
+> +int drm_connector_init_with_ddc(struct drm_device *dev,
+> +				struct drm_connector *connector,
+> +				const struct drm_connector_funcs *funcs,
+> +				int connector_type,
+> +				struct i2c_adapter *ddc)
+> +{
+> +	int ret;
+> +
+> +	ret =3D drm_connector_init(dev, connector, funcs, connector_type);
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* provide ddc symlink in sysfs */
+> +	connector->ddc =3D ddc;
+> +
+> +	return ret;
+> +}
+> +EXPORT_SYMBOL(drm_connector_init_with_ddc);
+> +
+
+Thanks for including such a function.
+
+Acked-by: Thomas Zimmermann <tzimmermann@suse.de>
+
+>  /**
+>   * drm_connector_attach_edid_property - attach edid property.
+>   * @connector: the connector
+> diff --git a/include/drm/drm_connector.h b/include/drm/drm_connector.h
+> index 33a6fff85fdb..937fda9c1374 100644
+> --- a/include/drm/drm_connector.h
+> +++ b/include/drm/drm_connector.h
+> @@ -1410,6 +1410,11 @@ int drm_connector_init(struct drm_device *dev,
+>  		       struct drm_connector *connector,
+>  		       const struct drm_connector_funcs *funcs,
+>  		       int connector_type);
+> +int drm_connector_init_with_ddc(struct drm_device *dev,
+> +				struct drm_connector *connector,
+> +				const struct drm_connector_funcs *funcs,
+> +				int connector_type,
+> +				struct i2c_adapter *ddc);
+>  void drm_connector_attach_edid_property(struct drm_connector *connecto=
+r);
+>  int drm_connector_register(struct drm_connector *connector);
+>  void drm_connector_unregister(struct drm_connector *connector);
+>=20
+
+--=20
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Linux GmbH, Maxfeldstrasse 5, 90409 Nuernberg, Germany
+GF: Felix Imend=C3=B6rffer, Mary Higgins, Sri Rasiah
+HRB 21284 (AG N=C3=BCrnberg)
+
+
+--vnsNtGTawS7eHAvH285t7LPE1bVWovlWW--
+
+--LtNJJAmlPBJFSmTCjBWxZTnrO1jKlugWK
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEEchf7rIzpz2NEoWjlaA3BHVMLeiMFAl04knMACgkQaA3BHVML
+eiPIEAf/SbE8+UterlzTVb4DSKX4d7+6Qm6csshf2sBPxiw6ecOqETPDYsQXsZYK
+lwqXKV0mCZ7emWWXINgeIGb27bYeXxlv/s7BpdMC/H88bZK2MqnHQdbwlXD5W+PF
+9QPMXdbn55pDDyjE/Onjmip5Ce+gkXQb2EyafrqkEuDxhCx9QCUnSwrXpV6kTmxS
+/ZCuKYDKVU89AoRunyM8VS2Uqwm9e0GZTaUHcr+3rxGUxwi99/LJu7vGLwLih7Nl
+BEJUyOIzVT9mg7dGE70z8XG/0X0bDQEQiNjKHIUdMOCKbMBZerZjPuGH2a84AS4h
+j71GFMojM8wuds7/IkMG76b5vfNGNA==
+=Nt+n
+-----END PGP SIGNATURE-----
+
+--LtNJJAmlPBJFSmTCjBWxZTnrO1jKlugWK--
+
+--===============1030605184==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
+IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
+
+--===============1030605184==--
