@@ -1,29 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 33B7E75ACC
-	for <lists+intel-gfx@lfdr.de>; Fri, 26 Jul 2019 00:38:51 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6975975AD5
+	for <lists+intel-gfx@lfdr.de>; Fri, 26 Jul 2019 00:44:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 729416E839;
-	Thu, 25 Jul 2019 22:38:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E47EA89259;
+	Thu, 25 Jul 2019 22:44:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 36C8C6E838
- for <intel-gfx@lists.freedesktop.org>; Thu, 25 Jul 2019 22:38:47 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EF4DD6E838
+ for <intel-gfx@lists.freedesktop.org>; Thu, 25 Jul 2019 22:44:19 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 17610856-1500050 
- for <intel-gfx@lists.freedesktop.org>; Thu, 25 Jul 2019 23:38:44 +0100
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 17610920-1500050 
+ for multiple; Thu, 25 Jul 2019 23:44:09 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 25 Jul 2019 23:38:43 +0100
-Message-Id: <20190725223843.8971-1-chris@chris-wilson.co.uk>
+Date: Thu, 25 Jul 2019 23:44:03 +0100
+Message-Id: <20190725224407.4206-1-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.22.0
 MIME-Version: 1.0
-Subject: [Intel-gfx] [CI] drm/i915: Capture vma contents outside of spinlock
+Subject: [Intel-gfx] [PATCH 1/5] drm/i915: Capture vma contents outside of
+ spinlock
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
