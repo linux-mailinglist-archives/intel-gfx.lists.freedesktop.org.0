@@ -2,32 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F06B763E9
-	for <lists+intel-gfx@lfdr.de>; Fri, 26 Jul 2019 12:54:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 168FD76585
+	for <lists+intel-gfx@lfdr.de>; Fri, 26 Jul 2019 14:18:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 453516ED1A;
-	Fri, 26 Jul 2019 10:54:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 41E976ED2B;
+	Fri, 26 Jul 2019 12:18:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 990586ED1A
- for <intel-gfx@lists.freedesktop.org>; Fri, 26 Jul 2019 10:54:35 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 17624975-1500050 for multiple; Fri, 26 Jul 2019 11:54:32 +0100
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk
+ [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 74A6A6ED27;
+ Fri, 26 Jul 2019 12:18:32 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+ (Authenticated sender: andrzej.p) with ESMTPSA id 4A9CC28BF32
+To: Sam Ravnborg <sam@ravnborg.org>
+References: <cover.1563960855.git.andrzej.p@collabora.com>
+ <e82d6aca4f8abc95834c8a36c101d153518bb1ac.1563960855.git.andrzej.p@collabora.com>
+ <20190726063759.GB6443@ravnborg.org>
+From: Andrzej Pietrasiewicz <andrzej.p@collabora.com>
+Message-ID: <489b4283-c346-b2f3-0b20-3905b261049f@collabora.com>
+Date: Fri, 26 Jul 2019 14:18:26 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-From: Chris Wilson <chris@chris-wilson.co.uk>
-User-Agent: alot/0.6
-To: Michal Wajdeczko <michal.wajdeczko@intel.com>,
- intel-gfx@lists.freedesktop.org
-References: <20190725205106.36148-1-michal.wajdeczko@intel.com>
-In-Reply-To: <20190725205106.36148-1-michal.wajdeczko@intel.com>
-Message-ID: <156413847060.30723.7960621077354504737@skylake-alporthouse-com>
-Date: Fri, 26 Jul 2019 11:54:30 +0100
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/uc: Don't sanitize guc_log_level
- modparam
+In-Reply-To: <20190726063759.GB6443@ravnborg.org>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH v5 01/24] drm: Include ddc adapter pointer
+ in struct drm_connector
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -40,23 +41,42 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
+Cc: Neil Armstrong <narmstrong@baylibre.com>,
+ Maxime Ripard <maxime.ripard@bootlin.com>, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, Matthias Brugger <matthias.bgg@gmail.com>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Shawn Guo <shawnguo@kernel.org>, kernel@collabora.com,
+ linux-samsung-soc@vger.kernel.org,
+ Oleksandr Andrushchenko <oleksandr_andrushchenko@epam.com>,
+ Krzysztof Kozlowski <krzk@kernel.org>, Jonathan Hunter <jonathanh@nvidia.com>,
+ David Airlie <airlied@linux.ie>, Chen-Yu Tsai <wens@csie.org>,
+ Kukjin Kim <kgene@kernel.org>, NXP Linux Team <linux-imx@nxp.com>,
+ linux-rockchip@lists.infradead.org, Thomas Zimmermann <tzimmermann@suse.de>,
+ Jonas Karlman <jonas@kwiboo.se>, linux-arm-msm@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org, Jyri Sarha <jsarha@ti.com>,
+ Alexios Zavras <alexios.zavras@intel.com>,
+ Mamta Shukla <mamtashukla555@gmail.com>, linux-mediatek@lists.infradead.org,
+ Dave Airlie <airlied@redhat.com>, linux-tegra@vger.kernel.org,
+ Thomas Gleixner <tglx@linutronix.de>, Vincent Abriou <vincent.abriou@st.com>,
+ linux-arm-kernel@lists.infradead.org, Jernej Skrabec <jernej.skrabec@siol.net>,
+ amd-gfx@lists.freedesktop.org, Tomi Valkeinen <tomi.valkeinen@ti.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Seung-Woo Kim <sw0312.kim@samsung.com>,
+ Douglas Anderson <dianders@chromium.org>, Todor Tomov <todor.tomov@linaro.org>,
+ Kyungmin Park <kyungmin.park@samsung.com>, Huang Rui <ray.huang@amd.com>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Alex Deucher <alexander.deucher@amd.com>, freedreno@lists.freedesktop.org,
+ =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
+ Gerd Hoffmann <kraxel@redhat.com>
 Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-UXVvdGluZyBNaWNoYWwgV2FqZGVjemtvICgyMDE5LTA3LTI1IDIxOjUxOjA2KQo+IFdlIGFyZSBh
-bHJlYWR5IHN0b3JpbmcgcnVudGltZSB2YWx1ZSBvZiBsb2cgbGV2ZWwgaW4gcHJpdmF0ZQo+IGZp
-ZWxkLCBzbyB0aGVyZSBpcyBubyBuZWVkIHRvIG1vZGlmeSBtb2RwYXJhbS4KPiAKPiBTaWduZWQt
-b2ZmLWJ5OiBNaWNoYWwgV2FqZGVjemtvIDxtaWNoYWwud2FqZGVjemtvQGludGVsLmNvbT4KPiBD
-YzogRGFuaWVsZSBDZXJhb2xvIFNwdXJpbyA8ZGFuaWVsZS5jZXJhb2xvc3B1cmlvQGludGVsLmNv
-bT4KCk1pY2hhbCBpcyBwZXJzdWFzaXZlIHRoYXQgaGF2aW5nIGFscmVhZHkgYnJva2VuIHRoZSBs
-aW5rIGJldHdlZW4gdGhlCm1vZHBhcmFtIGFuZCB0aGUgYWN0dWFsIHZhbHVlIHNldCB2aWEgZGVi
-dWdmcywgbm8gb25lIGNhbiBjdXJyZW50bHkKdHJ1c3QgdGhlIHZhbHVlIHJlcG9ydGVkIGJ5IG1v
-ZHBhcmFtLgoKSW4gdGhhdCByZXNwZWN0LCB0aGlzIHNob3VsZCBub3QgaGF2ZSBub3RpY2VhYmxl
-IHVzZXJzcGFjZSBjb25zZXF1ZW5jZXMKYW5kIGlzIGp1c3QgYW5vdGhlciBzdGVwIGFsb25nIHRo
-ZSByb2FkIG9mIHJlbW92aW5nIHRoZSBtb2RwYXJhbQplbnRpcmVseS4KClJldmlld2VkLWJ5OiBD
-aHJpcyBXaWxzb24gPGNocmlzQGNocmlzLXdpbHNvbi5jby51az4KLUNocmlzCl9fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxp
-c3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNr
-dG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeA==
+SGkgU2FtLAoKVyBkbml1IDI2LjA3LjIwMTkgb8KgMDg6MzcsIFNhbSBSYXZuYm9yZyBwaXN6ZToK
+PiBIaSBBbmRyemVqLgo+IAo+IFBhdGNoIGxvb2tzIGdvb2QsIGJ1dCBvbmUga2VybmVsLWRvYyBk
+ZXRhaWwuCj4gCgpUaGFua3MsIEkgd2lsbCBhZGRyZXNzIGJvdGggaXNzdWVzIHlvdSBmb3VuZCwg
+aW4gdjYuCgpBbmRyemVqCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9w
+Lm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVs
+LWdmeA==
