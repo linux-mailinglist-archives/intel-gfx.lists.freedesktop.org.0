@@ -2,39 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D7C1D78D99
-	for <lists+intel-gfx@lfdr.de>; Mon, 29 Jul 2019 16:17:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3493878DA9
+	for <lists+intel-gfx@lfdr.de>; Mon, 29 Jul 2019 16:20:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7E59289FCA;
-	Mon, 29 Jul 2019 14:17:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4B3B889B62;
+	Mon, 29 Jul 2019 14:20:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 157C089FC9
- for <intel-gfx@lists.freedesktop.org>; Mon, 29 Jul 2019 14:17:21 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 29 Jul 2019 07:17:20 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.64,323,1559545200"; d="scan'208";a="346637087"
-Received: from hinestho-mobl1.amr.corp.intel.com (HELO [10.252.1.47])
- ([10.252.1.47])
- by orsmga005.jf.intel.com with ESMTP; 29 Jul 2019 07:17:19 -0700
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-References: <20190729132412.23380-1-chris@chris-wilson.co.uk>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <af08651d-d4b3-236b-d6f3-f151dcc701b7@linux.intel.com>
-Date: Mon, 29 Jul 2019 15:17:18 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+Received: from mail-lf1-x142.google.com (mail-lf1-x142.google.com
+ [IPv6:2a00:1450:4864:20::142])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 285D289B11;
+ Mon, 29 Jul 2019 14:20:45 +0000 (UTC)
+Received: by mail-lf1-x142.google.com with SMTP id h28so42147522lfj.5;
+ Mon, 29 Jul 2019 07:20:45 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:in-reply-to
+ :references:mime-version;
+ bh=43UGeEwAQkjlHDnqicJjZYi7omjHdHxow+JLSHMazAo=;
+ b=qPyKnkm1+sHuAQVPdrMPDpdcZ4LwjCMURgeXYi1Vrfp3MLY+sRaoc2dFz6Tox7bqg/
+ 7s/y58Zfd3jpHvfXyu/cBWhr5V8vD5mwrhu6fyAMBnE9AQZlWuwi/A1c6C5BybfuAPn7
+ Gvt2f/HzYwlnsYHjaJ7KS3488jcDPrQzLsybrfndcid7P9w389iKj7elhvJA+oqPkNt6
+ sk3HeYlQhGyI1tCOzUVr74JXMcKmIVBAiaW5r6FchzT+jWrmvO5G+5HioTigFuyc0PsD
+ sKD50V7RRspWi1Qn5MWHok5ir5bLJVCsZTrNQ1xmbEf2JqfAlTWhpQ3hlkJcI93z1XPa
+ QHDA==
+X-Gm-Message-State: APjAAAXoLmw1ypZV5yIfPeAU2PZ3nXrcpo2VoovTTNAVKO0P8dKN0xu2
+ LwMYffDTEoPY1IxabQBI/ok=
+X-Google-Smtp-Source: APXvYqynET/j6yhi8X7zI1dtHBq6j04AuC8cZus1oGE4JVGVHyVGvr+ZYd3kLAVtk0c9gW/mNjfslA==
+X-Received: by 2002:a19:7607:: with SMTP id c7mr53774385lff.28.1564410043428; 
+ Mon, 29 Jul 2019 07:20:43 -0700 (PDT)
+Received: from eldfell.localdomain ([194.136.85.206])
+ by smtp.gmail.com with ESMTPSA id p15sm13039939lji.80.2019.07.29.07.20.42
+ (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+ Mon, 29 Jul 2019 07:20:43 -0700 (PDT)
+Date: Mon, 29 Jul 2019 17:20:40 +0300
+From: Pekka Paalanen <ppaalanen@gmail.com>
+To: Ramalingam C <ramalingam.c@intel.com>
+Message-ID: <20190729172040.48257318@eldfell.localdomain>
+In-Reply-To: <20190714110008.19647-1-ramalingam.c@intel.com>
+References: <20190712070026.13088-2-ramalingam.c@intel.com>
+ <20190714110008.19647-1-ramalingam.c@intel.com>
+X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-In-Reply-To: <20190729132412.23380-1-chris@chris-wilson.co.uk>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Flush the i915_vm_release before
- ggtt shutdown
+X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20161025;
+ h=date:from:to:cc:subject:message-id:in-reply-to:references
+ :mime-version;
+ bh=43UGeEwAQkjlHDnqicJjZYi7omjHdHxow+JLSHMazAo=;
+ b=UztM92RZAid6DlYuZ0Z+R2hS/xNvGCKuTp2B6FGptUoMlIAJu8IUP2yPSM/YTObZE1
+ 0ooAqjpAAdN8CXe9IeYmW2IBrzpZ4sPme5TE++t0RtZ/vutooKYUkKeYRtFXx8a0AV+1
+ 5dzx+Dk7SqR7rcQKLiNRDo7BEC5gJf37Kbbf/lphd2816rl/UqjsQm6GbW3oqAcKbXB3
+ BcUn4oOcV7wh7hiBTOQ1AnTVWX30B0UcYJIIN5WsPb6k+hjGEG1ZTPhJ7Xcv9earNhQu
+ 11QR/fMfExUDTpLQa5pJJ2ywZ+SLX7aVIseE2d0RkiDyHcsFMnpDVHwRGbiiajCKVtuk
+ 9eBg==
+Subject: Re: [Intel-gfx] [PATCH v11 1/6] drm: Add Content protection type
+ property
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -47,33 +69,136 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>
+Content-Type: multipart/mixed; boundary="===============1468566267=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Ck9uIDI5LzA3LzIwMTkgMTQ6MjQsIENocmlzIFdpbHNvbiB3cm90ZToKPiBBcyB0aGUgZ2VuNl9w
-cGd0dCBtYXkgcmVmZXIgYmFjayB0byB0aGUgR0dUVCBmb3IgdGhlaXIgcGFnZS1kaXJlY3RvcnkK
-PiBzbG90cywgbWFrZSBzdXJlIHRob3NlIF9faTkxNV92bV9yZWxlYXNlIGFyZSBjb21wbGV0ZWQg
-cHJpb3IgdG8gc2h1dHRpbmcKPiBkb3duIHRoZSBHR1RULgo+IAo+IEZpeGVzOiBiMzJmYTgxMTE1
-NjMgKCJkcm0vaTkxNS9ndHQ6IERlZmVyIGFkZHJlc3Mgc3BhY2UgY2xlYW51cCB0byBhbiBSQ1Ug
-d29ya2VyIikKPiBTaWduZWQtb2ZmLWJ5OiBDaHJpcyBXaWxzb24gPGNocmlzQGNocmlzLXdpbHNv
-bi5jby51az4KPiBDYzogVHZydGtvIFVyc3VsaW4gPHR2cnRrby51cnN1bGluQGludGVsLmNvbT4K
-PiAtLS0KPiBUaGUgd29ya2VycyBhcmUgUkNVIGRlZmVycmVkIHNvIG5lZWQgYSBiYXJyaWVyIHRv
-IGZpcnN0IGZsdXNoIHRoZSBmcmVlcwo+IG9udG8gdGhlIHdvcmtxdWV1ZS4KPiAtLS0KPiAgIGRy
-aXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZ2VtX2d0dC5jIHwgMyArKysKPiAgIDEgZmlsZSBjaGFu
-Z2VkLCAzIGluc2VydGlvbnMoKykKPiAKPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5
-MTUvaTkxNV9nZW1fZ3R0LmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2dlbV9ndHQuYwo+
-IGluZGV4IDRkZDFmYTk1NjE0My4uNDIzYzg5MGQwM2JmIDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMv
-Z3B1L2RybS9pOTE1L2k5MTVfZ2VtX2d0dC5jCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUv
-aTkxNV9nZW1fZ3R0LmMKPiBAQCAtMjcyMSw2ICsyNzIxLDkgQEAgc3RhdGljIHZvaWQgZ2d0dF9j
-bGVhbnVwX2h3KHN0cnVjdCBpOTE1X2dndHQgKmdndHQpCj4gICAKPiAgIAlnZ3R0LT52bS5jbG9z
-ZWQgPSB0cnVlOwo+ICAgCj4gKwlyY3VfYmFycmllcigpOyAvKiBmbHVzaCB0aGUgUkNVJ2VkX19p
-OTE1X3ZtX3JlbGVhc2UgKi8KPiArCWZsdXNoX3dvcmtxdWV1ZShpOTE1LT53cSk7Cj4gKwo+ICAg
-CW11dGV4X2xvY2soJmk5MTUtPmRybS5zdHJ1Y3RfbXV0ZXgpOwo+ICAgCj4gICAJbGlzdF9mb3Jf
-ZWFjaF9lbnRyeV9zYWZlKHZtYSwgdm4sICZnZ3R0LT52bS5ib3VuZF9saXN0LCB2bV9saW5rKQo+
-IAoKUmV2aWV3ZWQtYnk6IFR2cnRrbyBVcnN1bGluIDx0dnJ0a28udXJzdWxpbkBpbnRlbC5jb20+
-CgpSZWdhcmRzLAoKVHZydGtvCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNr
-dG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2lu
-dGVsLWdmeA==
+--===============1468566267==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ boundary="Sig_/NynhjkGkYDa3r.f5jBc2xvm"; protocol="application/pgp-signature"
+
+--Sig_/NynhjkGkYDa3r.f5jBc2xvm
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
+
+On Sun, 14 Jul 2019 16:30:08 +0530
+Ramalingam C <ramalingam.c@intel.com> wrote:
+
+> This patch adds a DRM ENUM property to the selected connectors.
+> This property is used for mentioning the protected content's type
+> from userspace to kernel HDCP authentication.
+>=20
+> Type of the stream is decided by the protected content providers.
+> Type 0 content can be rendered on any HDCP protected display wires.
+> But Type 1 content can be rendered only on HDCP2.2 protected paths.
+>=20
+> So when a userspace sets this property to Type 1 and starts the HDCP
+> enable, kernel will honour it only if HDCP2.2 authentication is through
+> for type 1. Else HDCP enable will be failed.
+>=20
+> Need ACK for this new conenctor property from userspace consumer.
+>=20
+> v2:
+>   cp_content_type is replaced with content_protection_type [daniel]
+>   check at atomic_set_property is removed [Maarten]
+> v3:
+>   %s/content_protection_type/hdcp_content_type [Pekka]
+> v4:
+>   property is created for the first requested connector and then reused.
+> 	[Danvet]
+> v5:
+>   kernel doc nits addressed [Daniel]
+>   Rebased as part of patch reordering.
+> v6:
+>   Kernel docs are modified [pekka]
+> v7:
+>   More details in Kernel docs. [pekka]
+> v8:
+>   Few more clarification into kernel doc of content type [pekka]
+> v9:
+>   Small fixes in coding style.
+>=20
+> Signed-off-by: Ramalingam C <ramalingam.c@intel.com>
+> Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
+> ---
+>  drivers/gpu/drm/drm_atomic_uapi.c         |  4 ++
+>  drivers/gpu/drm/drm_connector.c           | 51 +++++++++++++++++++++++
+>  drivers/gpu/drm/drm_hdcp.c                | 36 +++++++++++++++-
+>  drivers/gpu/drm/i915/display/intel_hdcp.c |  4 +-
+>  include/drm/drm_connector.h               |  7 ++++
+>  include/drm/drm_hdcp.h                    |  2 +-
+>  include/drm/drm_mode_config.h             |  6 +++
+>  include/uapi/drm/drm_mode.h               |  4 ++
+>  8 files changed, 111 insertions(+), 3 deletions(-)
+
+
+Snip - sorry, gmail simply refuses to deliver my mail without trimming
+it hard.
+
+> =20
+> diff --git a/include/uapi/drm/drm_mode.h b/include/uapi/drm/drm_mode.h
+> index 5ab331e5dc23..5c954394093f 100644
+> --- a/include/uapi/drm/drm_mode.h
+> +++ b/include/uapi/drm/drm_mode.h
+> @@ -218,6 +218,10 @@ extern "C" {
+>  #define DRM_MODE_CONTENT_PROTECTION_DESIRED     1
+>  #define DRM_MODE_CONTENT_PROTECTION_ENABLED     2
+> =20
+> +/* Content Type classification for HDCP2.2 vs others */
+> +#define DRM_MODE_HDCP_CONTENT_TYPE0		0
+> +#define DRM_MODE_HDCP_CONTENT_TYPE1		1
+
+Hi,
+
+I still believe that these definitions do not belong in the uapi
+header. Userspace must use the string names instead.
+
+Otherwise the patch looks fine, though my Weston review is still
+on-going.
+
+
+Thanks,
+pq
+
+> +
+>  struct drm_mode_modeinfo {
+>  	__u32 clock;
+>  	__u16 hdisplay;
+
+
+--Sig_/NynhjkGkYDa3r.f5jBc2xvm
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCAAdFiEEJQjwWQChkWOYOIONI1/ltBGqqqcFAl0/ALgACgkQI1/ltBGq
+qqcwPhAAo1S/7nLjCwA1EOrpbRkGmSdbKL7skcDvCl4GkPZvZiqa16+2khrqK3rk
+i46hXEEHjLlWJ/PZdsu7mNafZgu3ADQfxb2ppNq/m27HXlO8dWswye71xOAeH7If
+7uThdHLC5UV9vPY22Bx2LJi/QzFFgdULP1+eQOZS2Uv1UtJVx3JMTVLYl+QU+ZDc
+nTkibE2cH2OTm0K3J3uiS9rGDg17LrfeZZZbi4HBd5UTf+2tf/FDKVwbVBx5aESt
+sZJpqcxuPTtnSqAtU73qDKEnpKK8RwW4VghaBS38jT1t2jYNQ2dHo1wCcBpj2XSR
+rSCqKJl+xwuQy+TRZ6Y7MRg6YoqqHVaAYBNuvTfaMpHW0poiLCb9nvOgAzk7u/lq
+lddUNOpznO3XbK4frXdaY7NulJVkTvHiFJ/4dnXxU32473pBILx7hNwQyGcZp1EH
+pQ4z4xo5eymh5iYp8wdkHAAADSegR7bT3qz1G4NKakEzn9s0C+A9GDRajLq3/rea
+/9U7dkyImFBRiELvR4/AM//rReFUZcTV7HJu1OVjdkg5HvFoQz2InBtKmbf4Lhhr
+n202yWfQYK7FF9kRFhj0W5+YRmE0/2zkBePMvXRNUfJpGZ2zTXaar79II12wAoag
+QlgNhJFH4wabtnvZ+mSV+GRhK8uRbIOXc5Fcleow+0XwxNOpWcU=
+=P0q8
+-----END PGP SIGNATURE-----
+
+--Sig_/NynhjkGkYDa3r.f5jBc2xvm--
+
+--===============1468566267==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
+IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
+
+--===============1468566267==--
