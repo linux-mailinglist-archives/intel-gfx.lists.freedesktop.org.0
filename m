@@ -1,41 +1,39 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8CC70792A9
-	for <lists+intel-gfx@lfdr.de>; Mon, 29 Jul 2019 19:54:31 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id E084E792AA
+	for <lists+intel-gfx@lfdr.de>; Mon, 29 Jul 2019 19:55:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C469E8926B;
-	Mon, 29 Jul 2019 17:54:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3937E89BAB;
+	Mon, 29 Jul 2019 17:55:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4FE7A8924C
- for <intel-gfx@lists.freedesktop.org>; Mon, 29 Jul 2019 17:54:28 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 29 Jul 2019 10:54:27 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.64,323,1559545200"; d="scan'208";a="162302400"
-Received: from dceraolo-linux.fm.intel.com (HELO [10.1.27.145]) ([10.1.27.145])
- by orsmga007.jf.intel.com with ESMTP; 29 Jul 2019 10:54:27 -0700
-To: Michal Wajdeczko <michal.wajdeczko@intel.com>,
- intel-gfx@lists.freedesktop.org,
- "Sundaresan, Sujaritha" <sujaritha.sundaresan@intel.com>
-References: <20190729152301.22588-1-michal.wajdeczko@intel.com>
- <20190729152301.22588-2-michal.wajdeczko@intel.com>
-From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Message-ID: <68fcfb3c-6558-3c03-b519-8eae3453ce5c@intel.com>
-Date: Mon, 29 Jul 2019 10:54:15 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+Received: from asavdk3.altibox.net (asavdk3.altibox.net [109.247.116.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3B8C689BB0;
+ Mon, 29 Jul 2019 17:55:09 +0000 (UTC)
+Received: from ravnborg.org (unknown [158.248.194.18])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by asavdk3.altibox.net (Postfix) with ESMTPS id 6F00220037;
+ Mon, 29 Jul 2019 19:55:07 +0200 (CEST)
+Date: Mon, 29 Jul 2019 19:55:06 +0200
+From: Sam Ravnborg <sam@ravnborg.org>
+To: Brian Welty <brian.welty@intel.com>
+Message-ID: <20190729175506.GC1753@ravnborg.org>
+References: <20190729165457.18500-1-brian.welty@intel.com>
+ <20190729165457.18500-2-brian.welty@intel.com>
 MIME-Version: 1.0
-In-Reply-To: <20190729152301.22588-2-michal.wajdeczko@intel.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH 1/4] drm/i915: Report -ENODEV after
- injecting probe failure
+Content-Disposition: inline
+In-Reply-To: <20190729165457.18500-2-brian.welty@intel.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-CMAE-Score: 0
+X-CMAE-Analysis: v=2.3 cv=dqr19Wo4 c=1 sm=1 tr=0
+ a=UWs3HLbX/2nnQ3s7vZ42gw==:117 a=UWs3HLbX/2nnQ3s7vZ42gw==:17
+ a=jpOVt7BSZ2e4Z31A5e1TngXxSK0=:19 a=kj9zAlcOel0A:10
+ a=rAoZsCgsuSWAWfXA6msA:9 a=CjuIK1q_8ugA:10
+Subject: Re: [Intel-gfx] [RFC PATCH 1/3] drm: introduce new struct
+ drm_mem_region
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -48,36 +46,24 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-CgpPbiA3LzI5LzE5IDg6MjIgQU0sIE1pY2hhbCBXYWpkZWN6a28gd3JvdGU6Cj4gV2Ugd2FudCB0
-byBkbyBtb3JlIGRyaXZlciB0ZXN0aW5nIHVzaW5nIGluamVjdGVkIGxvYWQgZXJyb3JzLAo+IGJ1
-dCB3ZSBkb24ndCB3YW50IHRvIGxpbWl0IG91cnNlbHZlcyB0byB1c2Ugb25seSAtRU5PREVWIChh
-cwo+IG90aGVyIGVycm9ycyBhcmUgaW50ZXJwcmV0ZWQgYXMgcmVhbCBpc3N1ZXMsIGxpa2UgdGhp
-czoKPiAKPiA8ND4gWzM4MS41Njk0NzldIGk5MTU6IHByb2JlIG9mIDAwMDA6MDA6MDIuMCBmYWls
-ZWQgd2l0aCBlcnJvciAtNwo+IAo+IFN1Z2dlc3RlZC1ieTogRGFuaWVsZSBDZXJhb2xvIFNwdXJp
-byA8ZGFuaWVsZS5jZXJhb2xvc3B1cmlvQGludGVsLmNvbT4KPiBTaWduZWQtb2ZmLWJ5OiBNaWNo
-YWwgV2FqZGVjemtvIDxtaWNoYWwud2FqZGVjemtvQGludGVsLmNvbT4KPiBDYzogRGFuaWVsZSBD
-ZXJhb2xvIFNwdXJpbyA8ZGFuaWVsZS5jZXJhb2xvc3B1cmlvQGludGVsLmNvbT4KCklJUkMgdGhl
-IGZpbmFsIG91dGNvbWUgb2YgdGhlIGRpc2N1c3Npb24gd2UgaGFkIG9uIHRoaXMgYSB3aGlsZSBi
-YWNrIHdhcyAKdGhhdCBDSSB3b3VsZCBpZ25vcmUgdGhpcyBraW5kIG9mIGVycm9yIG1lc3NhZ2Uu
-IEFueXRoaW5nIGNoYW5nZWQ/IFdlIAphbHJlYWR5IGhhdmUgcGxhY2VzIHdlIHJldHVybiBzb21l
-dGhpbmcgZGlmZmVyZW50IGZyb20gLUVOT0RFViAoZS5nLiAKX19md19kb21haW5faW5pdCgpIGlu
-IGludGVsX3VuY29yZS5jKQoKRGFuaWVsZQoKPiAtLS0KPiAgIGRyaXZlcnMvZ3B1L2RybS9pOTE1
-L2k5MTVfcGNpLmMgfCAyICstCj4gICAxIGZpbGUgY2hhbmdlZCwgMSBpbnNlcnRpb24oKyksIDEg
-ZGVsZXRpb24oLSkKPiAKPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9w
-Y2kuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfcGNpLmMKPiBpbmRleCBiZDkyMTFiM2Q3
-NmUuLjMzMjk0OWMyMGEyOSAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1
-X3BjaS5jCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9wY2kuYwo+IEBAIC05NTYs
-NyArOTU2LDcgQEAgc3RhdGljIGludCBpOTE1X3BjaV9wcm9iZShzdHJ1Y3QgcGNpX2RldiAqcGRl
-diwgY29uc3Qgc3RydWN0IHBjaV9kZXZpY2VfaWQgKmVudCkKPiAgIAo+ICAgCWVyciA9IGk5MTVf
-ZHJpdmVyX3Byb2JlKHBkZXYsIGVudCk7Cj4gICAJaWYgKGVycikKPiAtCQlyZXR1cm4gZXJyOwo+
-ICsJCXJldHVybiBpOTE1X2Vycm9yX2luamVjdGVkKCkgPyAtRU5PREVWIDogZXJyOwo+ICAgCj4g
-ICAJaWYgKGk5MTVfaW5qZWN0X3Byb2JlX2ZhaWx1cmUoKSkgewo+ICAgCQlpOTE1X3BjaV9yZW1v
-dmUocGRldik7Cj4gCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9y
-ZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdm
-eA==
+SGkgQnJpYW4uCgpTbWFsbCBuaXQgYmVsb3cgLSBkaWQgbm90IHRyeSB0byB1bmRlcnN0YW5kIHlv
+dXIgcGF0Y2guCgoJU2FtCgo+IGRpZmYgLS1naXQgYS9pbmNsdWRlL2RybS9kcm1fbW0uaCBiL2lu
+Y2x1ZGUvZHJtL2RybV9tbS5oCj4gaW5kZXggMmMzYmJiNDNjN2QxLi4zZDEyM2ViMTBkNjIgMTAw
+NjQ0Cj4gLS0tIGEvaW5jbHVkZS9kcm0vZHJtX21tLmgKPiArKysgYi9pbmNsdWRlL2RybS9kcm1f
+bW0uaAo+IEBAIC00Myw2ICs0Myw4IEBACj4gICNpbmNsdWRlIDxsaW51eC9tbV90eXBlcy5oPgo+
+ICAjaW5jbHVkZSA8bGludXgvbGlzdC5oPgo+ICAjaW5jbHVkZSA8bGludXgvc3BpbmxvY2suaD4K
+PiArI2luY2x1ZGUgPGxpbnV4L2RtYS1mZW5jZS5oPgo+ICsjaW5jbHVkZSA8bGludXgvaW8tbWFw
+cGluZy5oPgoKS2VlcCBpbmNsdWRlIGZpbGVzIHNvcnRlZC4KCj4gICNpZmRlZiBDT05GSUdfRFJN
+X0RFQlVHX01NCj4gICNpbmNsdWRlIDxsaW51eC9zdGFja2RlcG90Lmg+Cj4gICNlbmRpZgo+IEBA
+IC01NCw2ICs1NiwzMSBAQAo+ICAjZGVmaW5lIERSTV9NTV9CVUdfT04oZXhwcikgQlVJTERfQlVH
+X09OX0lOVkFMSUQoZXhwcikKPiAgI2VuZGlmCj4gIAo+ICtzdHJ1Y3QgZHJtX2RldmljZTsKPiAr
+c3RydWN0IGRybV9tbTsKTGlrZXdpc2UgZm9yd2FyZHMuIEJ1dCB0aGV5IGFyZSBnb29kIGhlcmUu
+CgoJU2FtCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCklu
+dGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRw
+czovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeA==
