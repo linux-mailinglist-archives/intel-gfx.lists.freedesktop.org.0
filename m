@@ -1,62 +1,37 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3493878DA9
-	for <lists+intel-gfx@lfdr.de>; Mon, 29 Jul 2019 16:20:51 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id C165A78DFA
+	for <lists+intel-gfx@lfdr.de>; Mon, 29 Jul 2019 16:29:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4B3B889B62;
-	Mon, 29 Jul 2019 14:20:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1431489B84;
+	Mon, 29 Jul 2019 14:29:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-lf1-x142.google.com (mail-lf1-x142.google.com
- [IPv6:2a00:1450:4864:20::142])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 285D289B11;
- Mon, 29 Jul 2019 14:20:45 +0000 (UTC)
-Received: by mail-lf1-x142.google.com with SMTP id h28so42147522lfj.5;
- Mon, 29 Jul 2019 07:20:45 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:in-reply-to
- :references:mime-version;
- bh=43UGeEwAQkjlHDnqicJjZYi7omjHdHxow+JLSHMazAo=;
- b=qPyKnkm1+sHuAQVPdrMPDpdcZ4LwjCMURgeXYi1Vrfp3MLY+sRaoc2dFz6Tox7bqg/
- 7s/y58Zfd3jpHvfXyu/cBWhr5V8vD5mwrhu6fyAMBnE9AQZlWuwi/A1c6C5BybfuAPn7
- Gvt2f/HzYwlnsYHjaJ7KS3488jcDPrQzLsybrfndcid7P9w389iKj7elhvJA+oqPkNt6
- sk3HeYlQhGyI1tCOzUVr74JXMcKmIVBAiaW5r6FchzT+jWrmvO5G+5HioTigFuyc0PsD
- sKD50V7RRspWi1Qn5MWHok5ir5bLJVCsZTrNQ1xmbEf2JqfAlTWhpQ3hlkJcI93z1XPa
- QHDA==
-X-Gm-Message-State: APjAAAXoLmw1ypZV5yIfPeAU2PZ3nXrcpo2VoovTTNAVKO0P8dKN0xu2
- LwMYffDTEoPY1IxabQBI/ok=
-X-Google-Smtp-Source: APXvYqynET/j6yhi8X7zI1dtHBq6j04AuC8cZus1oGE4JVGVHyVGvr+ZYd3kLAVtk0c9gW/mNjfslA==
-X-Received: by 2002:a19:7607:: with SMTP id c7mr53774385lff.28.1564410043428; 
- Mon, 29 Jul 2019 07:20:43 -0700 (PDT)
-Received: from eldfell.localdomain ([194.136.85.206])
- by smtp.gmail.com with ESMTPSA id p15sm13039939lji.80.2019.07.29.07.20.42
- (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
- Mon, 29 Jul 2019 07:20:43 -0700 (PDT)
-Date: Mon, 29 Jul 2019 17:20:40 +0300
-From: Pekka Paalanen <ppaalanen@gmail.com>
-To: Ramalingam C <ramalingam.c@intel.com>
-Message-ID: <20190729172040.48257318@eldfell.localdomain>
-In-Reply-To: <20190714110008.19647-1-ramalingam.c@intel.com>
-References: <20190712070026.13088-2-ramalingam.c@intel.com>
- <20190714110008.19647-1-ramalingam.c@intel.com>
-X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 29BF289B84
+ for <intel-gfx@lists.freedesktop.org>; Mon, 29 Jul 2019 14:29:33 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 29 Jul 2019 07:29:32 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.64,323,1559545200"; d="scan'208";a="190602396"
+Received: from jnikula-mobl3.fi.intel.com (HELO localhost) ([10.237.66.150])
+ by fmsmga001.fm.intel.com with ESMTP; 29 Jul 2019 07:29:31 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <156440976334.6373.17742144058690324554@skylake-alporthouse-com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20190729140847.18557-1-jani.nikula@intel.com>
+ <156440976334.6373.17742144058690324554@skylake-alporthouse-com>
+Date: Mon, 29 Jul 2019 17:33:54 +0300
+Message-ID: <87o91coqp9.fsf@intel.com>
 MIME-Version: 1.0
-X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20161025;
- h=date:from:to:cc:subject:message-id:in-reply-to:references
- :mime-version;
- bh=43UGeEwAQkjlHDnqicJjZYi7omjHdHxow+JLSHMazAo=;
- b=UztM92RZAid6DlYuZ0Z+R2hS/xNvGCKuTp2B6FGptUoMlIAJu8IUP2yPSM/YTObZE1
- 0ooAqjpAAdN8CXe9IeYmW2IBrzpZ4sPme5TE++t0RtZ/vutooKYUkKeYRtFXx8a0AV+1
- 5dzx+Dk7SqR7rcQKLiNRDo7BEC5gJf37Kbbf/lphd2816rl/UqjsQm6GbW3oqAcKbXB3
- BcUn4oOcV7wh7hiBTOQ1AnTVWX30B0UcYJIIN5WsPb6k+hjGEG1ZTPhJ7Xcv9earNhQu
- 11QR/fMfExUDTpLQa5pJJ2ywZ+SLX7aVIseE2d0RkiDyHcsFMnpDVHwRGbiiajCKVtuk
- 9eBg==
-Subject: Re: [Intel-gfx] [PATCH v11 1/6] drm: Add Content protection type
- property
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: use upstream version of header
+ tests
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -69,136 +44,50 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
- dri-devel <dri-devel@lists.freedesktop.org>
-Content-Type: multipart/mixed; boundary="===============1468566267=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1468566267==
-Content-Type: multipart/signed; micalg=pgp-sha256;
- boundary="Sig_/NynhjkGkYDa3r.f5jBc2xvm"; protocol="application/pgp-signature"
-
---Sig_/NynhjkGkYDa3r.f5jBc2xvm
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
-
-On Sun, 14 Jul 2019 16:30:08 +0530
-Ramalingam C <ramalingam.c@intel.com> wrote:
-
-> This patch adds a DRM ENUM property to the selected connectors.
-> This property is used for mentioning the protected content's type
-> from userspace to kernel HDCP authentication.
->=20
-> Type of the stream is decided by the protected content providers.
-> Type 0 content can be rendered on any HDCP protected display wires.
-> But Type 1 content can be rendered only on HDCP2.2 protected paths.
->=20
-> So when a userspace sets this property to Type 1 and starts the HDCP
-> enable, kernel will honour it only if HDCP2.2 authentication is through
-> for type 1. Else HDCP enable will be failed.
->=20
-> Need ACK for this new conenctor property from userspace consumer.
->=20
-> v2:
->   cp_content_type is replaced with content_protection_type [daniel]
->   check at atomic_set_property is removed [Maarten]
-> v3:
->   %s/content_protection_type/hdcp_content_type [Pekka]
-> v4:
->   property is created for the first requested connector and then reused.
-> 	[Danvet]
-> v5:
->   kernel doc nits addressed [Daniel]
->   Rebased as part of patch reordering.
-> v6:
->   Kernel docs are modified [pekka]
-> v7:
->   More details in Kernel docs. [pekka]
-> v8:
->   Few more clarification into kernel doc of content type [pekka]
-> v9:
->   Small fixes in coding style.
->=20
-> Signed-off-by: Ramalingam C <ramalingam.c@intel.com>
-> Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
-> ---
->  drivers/gpu/drm/drm_atomic_uapi.c         |  4 ++
->  drivers/gpu/drm/drm_connector.c           | 51 +++++++++++++++++++++++
->  drivers/gpu/drm/drm_hdcp.c                | 36 +++++++++++++++-
->  drivers/gpu/drm/i915/display/intel_hdcp.c |  4 +-
->  include/drm/drm_connector.h               |  7 ++++
->  include/drm/drm_hdcp.h                    |  2 +-
->  include/drm/drm_mode_config.h             |  6 +++
->  include/uapi/drm/drm_mode.h               |  4 ++
->  8 files changed, 111 insertions(+), 3 deletions(-)
-
-
-Snip - sorry, gmail simply refuses to deliver my mail without trimming
-it hard.
-
-> =20
-> diff --git a/include/uapi/drm/drm_mode.h b/include/uapi/drm/drm_mode.h
-> index 5ab331e5dc23..5c954394093f 100644
-> --- a/include/uapi/drm/drm_mode.h
-> +++ b/include/uapi/drm/drm_mode.h
-> @@ -218,6 +218,10 @@ extern "C" {
->  #define DRM_MODE_CONTENT_PROTECTION_DESIRED     1
->  #define DRM_MODE_CONTENT_PROTECTION_ENABLED     2
-> =20
-> +/* Content Type classification for HDCP2.2 vs others */
-> +#define DRM_MODE_HDCP_CONTENT_TYPE0		0
-> +#define DRM_MODE_HDCP_CONTENT_TYPE1		1
-
-Hi,
-
-I still believe that these definitions do not belong in the uapi
-header. Userspace must use the string names instead.
-
-Otherwise the patch looks fine, though my Weston review is still
-on-going.
-
-
-Thanks,
-pq
-
-> +
->  struct drm_mode_modeinfo {
->  	__u32 clock;
->  	__u16 hdisplay;
-
-
---Sig_/NynhjkGkYDa3r.f5jBc2xvm
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAEBCAAdFiEEJQjwWQChkWOYOIONI1/ltBGqqqcFAl0/ALgACgkQI1/ltBGq
-qqcwPhAAo1S/7nLjCwA1EOrpbRkGmSdbKL7skcDvCl4GkPZvZiqa16+2khrqK3rk
-i46hXEEHjLlWJ/PZdsu7mNafZgu3ADQfxb2ppNq/m27HXlO8dWswye71xOAeH7If
-7uThdHLC5UV9vPY22Bx2LJi/QzFFgdULP1+eQOZS2Uv1UtJVx3JMTVLYl+QU+ZDc
-nTkibE2cH2OTm0K3J3uiS9rGDg17LrfeZZZbi4HBd5UTf+2tf/FDKVwbVBx5aESt
-sZJpqcxuPTtnSqAtU73qDKEnpKK8RwW4VghaBS38jT1t2jYNQ2dHo1wCcBpj2XSR
-rSCqKJl+xwuQy+TRZ6Y7MRg6YoqqHVaAYBNuvTfaMpHW0poiLCb9nvOgAzk7u/lq
-lddUNOpznO3XbK4frXdaY7NulJVkTvHiFJ/4dnXxU32473pBILx7hNwQyGcZp1EH
-pQ4z4xo5eymh5iYp8wdkHAAADSegR7bT3qz1G4NKakEzn9s0C+A9GDRajLq3/rea
-/9U7dkyImFBRiELvR4/AM//rReFUZcTV7HJu1OVjdkg5HvFoQz2InBtKmbf4Lhhr
-n202yWfQYK7FF9kRFhj0W5+YRmE0/2zkBePMvXRNUfJpGZ2zTXaar79II12wAoag
-QlgNhJFH4wabtnvZ+mSV+GRhK8uRbIOXc5Fcleow+0XwxNOpWcU=
-=P0q8
------END PGP SIGNATURE-----
-
---Sig_/NynhjkGkYDa3r.f5jBc2xvm--
-
---===============1468566267==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
-IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
-
---===============1468566267==--
+T24gTW9uLCAyOSBKdWwgMjAxOSwgQ2hyaXMgV2lsc29uIDxjaHJpc0BjaHJpcy13aWxzb24uY28u
+dWs+IHdyb3RlOgo+IFF1b3RpbmcgSmFuaSBOaWt1bGEgKDIwMTktMDctMjkgMTU6MDg6NDcpCj4+
+IFRocm93IG91dCBvdXIgbG9jYWwgaGFja3Mgb2YgaGVhZGVyIHRlc3RzIG5vdyB0aGF0IHRoZSBt
+b3JlIGdlbmVyaWMKPj4ga2J1aWxkIHZlcnNpb25zIGFyZSB1cHN0cmVhbS4KPj4gCj4+IEF0IGxl
+YXN0IGZvciBub3csIGNvbnRpbnVlIHRvIGtlZXAgdGhlIGhlYWRlciB0ZXN0cyBiZWhpbmQKPj4g
+Q09ORklHX0RSTV9JOTE1X1dFUlJPUj15IGtub2IuCj4+IAo+PiBDYzogQ2hyaXMgV2lsc29uIDxj
+aHJpc0BjaHJpcy13aWxzb24uY28udWs+Cj4+IFNpZ25lZC1vZmYtYnk6IEphbmkgTmlrdWxhIDxq
+YW5pLm5pa3VsYUBpbnRlbC5jb20+Cj4+IAo+PiAtLS0KPj4gCj4+IFRlY2huaWNhbGx5IHRoZSB1
+cHN0cmVhbSB2ZXJzaW9ucyBhcmUgb25seSBpbiBkcm0tdGlwLCBhbmQgbm90IGluIGRpbnEKPj4g
+dW50aWwgYSBiYWNrbWVyZ2UsIGJ1dCBJIHRoaW5rIGl0J3MgZ29vZCBlbm91Z2guIEkgZG9uJ3Qg
+dGhpbmsgaXQgc2hvdWxkCj4+IG1lc3MgYW55dGhpbmcgdXAuCj4KPj4gZGlmZiAtLWdpdCBhL2Ry
+aXZlcnMvZ3B1L2RybS9pOTE1L0tjb25maWcuZGVidWcgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9L
+Y29uZmlnLmRlYnVnCj4+IGluZGV4IDRjZGMwMTgxYTA5My4uODdhMzhjNmFhYTQxIDEwMDY0NAo+
+PiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9LY29uZmlnLmRlYnVnCj4+ICsrKyBiL2RyaXZl
+cnMvZ3B1L2RybS9pOTE1L0tjb25maWcuZGVidWcKPj4gQEAgLTcsNiArNyw3IEBAIGNvbmZpZyBE
+Uk1fSTkxNV9XRVJST1IKPj4gICAgICAgICAgIyBXZSB1c2UgdGhlIGRlcGVuZGVuY3kgb24gIUNP
+TVBJTEVfVEVTVCB0byBub3QgYmUgZW5hYmxlZCBpbgo+PiAgICAgICAgICAjIGFsbG1vZGNvbmZp
+ZyBvciBhbGx5ZXNjb25maWcgY29uZmlndXJhdGlvbnMKPj4gICAgICAgICAgZGVwZW5kcyBvbiAh
+Q09NUElMRV9URVNUCj4+ICsgICAgICAgc2VsZWN0IEhFQURFUl9URVNUCj4+ICAgICAgICAgIGRl
+ZmF1bHQgbgo+PiAgICAgICAgICBoZWxwCj4+ICAgICAgICAgICAgQWRkIC1XZXJyb3IgdG8gdGhl
+IGJ1aWxkIGZsYWdzIGZvciAoYW5kIG9ubHkgZm9yKSBpOTE1LmtvLgo+PiBkaWZmIC0tZ2l0IGEv
+ZHJpdmVycy9ncHUvZHJtL2k5MTUvTWFrZWZpbGUgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9NYWtl
+ZmlsZQo+PiBpbmRleCA0MmMxN2E3YjBjYjAuLjMzMWIxOWNjODI0NyAxMDA2NDQKPj4gLS0tIGEv
+ZHJpdmVycy9ncHUvZHJtL2k5MTUvTWFrZWZpbGUKPj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5
+MTUvTWFrZWZpbGUKPj4gQEAgLTMyLDcgKzMyLDcgQEAgc3ViZGlyLWNjZmxhZ3MteSArPSBcCj4+
+ICAgICAgICAgJChjYWxsIGFzLWluc3RyLG1vdm50ZHFhICglZWF4KSQoY29tbWEpJXhtbTAsLURD
+T05GSUdfQVNfTU9WTlREUUEpCj4+ICAKPj4gICMgRXh0cmEgaGVhZGVyIHRlc3RzCj4+IC1pbmNs
+dWRlICQoc3JjKS9NYWtlZmlsZS5oZWFkZXItdGVzdAo+PiAraGVhZGVyLXRlc3QtcGF0dGVybi0k
+KENPTkZJR19EUk1fSTkxNV9XRVJST1IpIDo9ICouaAo+Cj4gQnV0IHdvbid0IHRoYXQgYWN0dWFs
+bHkgYnJlYWsgZGlucSBjb21waWxhdGlvbiB1bnRpbCB0aGUgYmFja21lcmdlPyBGb3IKPiB0aG9z
+ZSBvZiB1cyB0aGF0IGNvbXBpbGUgd2l0aCBXRVJST1IuCgpJdCBicmVha3MgdGhlIGhlYWRlciB0
+ZXN0aW5nIGJ5IGRvaW5nIG5vdGhpbmcgaW5zdGVhZCwgYmVjYXVzZSBvbiBkaW5xCnRob3NlIGhl
+YWRlci10ZXN0LSogdmFyaWFibGVzIGRvbid0IG1lYW4gYW55dGhpbmcuCgpBbGFzIHRoaXMgZG9l
+c24ndCBhcHBseSB0byBkaW5xIGFueXdheSBzbyBJIGd1ZXNzIEknbGwgd2FpdCBmb3IgdGhlCmJh
+Y2ttZXJnZS4KCkJSLApKYW5pLgoKCj4gLUNocmlzCj4gX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX18KPiBJbnRlbC1nZnggbWFpbGluZyBsaXN0Cj4gSW50ZWwt
+Z2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+IGh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
+L21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4CgotLSAKSmFuaSBOaWt1bGEsIEludGVsIE9wZW4g
+U291cmNlIEdyYXBoaWNzIENlbnRlcgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVl
+ZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5m
+by9pbnRlbC1nZng=
