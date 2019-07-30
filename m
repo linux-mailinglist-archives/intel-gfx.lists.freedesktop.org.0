@@ -1,59 +1,38 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 717747A13F
-	for <lists+intel-gfx@lfdr.de>; Tue, 30 Jul 2019 08:24:40 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id AE1457A192
+	for <lists+intel-gfx@lfdr.de>; Tue, 30 Jul 2019 09:04:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6D86789A8B;
-	Tue, 30 Jul 2019 06:24:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 57E156E417;
+	Tue, 30 Jul 2019 07:04:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2AC0789A88
- for <intel-gfx@lists.freedesktop.org>; Tue, 30 Jul 2019 06:24:37 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B79506E417;
+ Tue, 30 Jul 2019 07:04:01 +0000 (UTC)
+X-Amp-Result: UNSCANNABLE
 X-Amp-File-Uploaded: False
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 29 Jul 2019 23:24:36 -0700
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 30 Jul 2019 00:04:00 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.64,325,1559545200"; d="scan'208";a="200056272"
-Received: from fmsmsx107.amr.corp.intel.com ([10.18.124.205])
- by fmsmga002.fm.intel.com with ESMTP; 29 Jul 2019 23:24:36 -0700
-Received: from fmsmsx157.amr.corp.intel.com (10.18.116.73) by
- fmsmsx107.amr.corp.intel.com (10.18.124.205) with Microsoft SMTP Server (TLS)
- id 14.3.439.0; Mon, 29 Jul 2019 23:24:32 -0700
-Received: from bgsmsx104.gar.corp.intel.com (10.223.4.190) by
- FMSMSX157.amr.corp.intel.com (10.18.116.73) with Microsoft SMTP Server (TLS)
- id 14.3.439.0; Mon, 29 Jul 2019 23:24:32 -0700
-Received: from BGSMSX108.gar.corp.intel.com ([169.254.8.155]) by
- BGSMSX104.gar.corp.intel.com ([169.254.5.156]) with mapi id 14.03.0439.000;
- Tue, 30 Jul 2019 11:54:31 +0530
-From: "Kulkarni, Vandita" <vandita.kulkarni@intel.com>
-To: "Shankar, Uma" <uma.shankar@intel.com>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [PATCH 1/4] drm/i915/tgl/dsi: Program TRANS_VBLANK register
-Thread-Index: AQHVMJDVMW0lCyg1iUaFt2YLe9k4nKbMvLaAgBYgBZA=
-Date: Tue, 30 Jul 2019 06:24:31 +0000
-Message-ID: <57510F3E2013164E925CD03ED7512A3B8091E7A2@BGSMSX108.gar.corp.intel.com>
-References: <20190702041850.4293-1-vandita.kulkarni@intel.com>
- <20190702041850.4293-2-vandita.kulkarni@intel.com>
- <E7C9878FBA1C6D42A1CA3F62AEB6945F8212EC57@BGSMSX104.gar.corp.intel.com>
-In-Reply-To: <E7C9878FBA1C6D42A1CA3F62AEB6945F8212EC57@BGSMSX104.gar.corp.intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiNWQxYzk1NWYtOGMxZi00YmZlLTljYmYtMDA3YzliMWE0NDNlIiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX05UIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE3LjIuNS4xOCIsIlRydXN0ZWRMYWJlbEhhc2giOiJMNXNRUFY4c3FQTkV2VjI3Z0Y4UXRwU05CUTNLcDVoMkI3TWpjXC9SOVlQMVwvbURLMUMrWW1UUVcreWczVERrbkkifQ==
-x-ctpclassification: CTP_NT
-dlp-product: dlpe-windows
-dlp-version: 11.0.600.7
-dlp-reaction: no-action
-x-originating-ip: [10.223.10.10]
+X-IronPort-AV: E=Sophos;i="5.64,325,1559545200"; 
+ d="asc'?scan'208";a="176688546"
+Received: from zhen-hp.sh.intel.com (HELO zhen-hp) ([10.239.13.116])
+ by orsmga006.jf.intel.com with ESMTP; 30 Jul 2019 00:03:58 -0700
+Date: Tue, 30 Jul 2019 15:00:20 +0800
+From: Zhenyu Wang <zhenyuw@linux.intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Message-ID: <20190730070020.GX8319@zhen-hp.sh.intel.com>
+References: <20190723092958.GD8319@zhen-hp.sh.intel.com>
+ <20190729033347.GQ8319@zhen-hp.sh.intel.com>
+ <87zhkxnlsu.fsf@intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 1/4] drm/i915/tgl/dsi: Program TRANS_VBLANK
- register
+In-Reply-To: <87zhkxnlsu.fsf@intel.com>
+User-Agent: Mutt/1.10.0 (2018-05-17)
+Subject: Re: [Intel-gfx] [PULL] gvt-fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -66,52 +45,112 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Nikula,
- Jani" <jani.nikula@intel.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: Zhenyu Wang <zhenyuw@linux.intel.com>
+Cc: intel-gfx <intel-gfx@lists.freedesktop.org>, "Yuan,
+ Hang" <hang.yuan@intel.com>, "Lv, Zhiyuan" <zhiyuan.lv@intel.com>,
+ intel-gvt-dev <intel-gvt-dev@lists.freedesktop.org>
+Content-Type: multipart/mixed; boundary="===============0921262920=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Cgo+IC0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tCj4gRnJvbTogU2hhbmthciwgVW1hCj4gU2Vu
-dDogVHVlc2RheSwgSnVseSAxNiwgMjAxOSAzOjI5IFBNCj4gVG86IEt1bGthcm5pLCBWYW5kaXRh
-IDx2YW5kaXRhLmt1bGthcm5pQGludGVsLmNvbT47IGludGVsLQo+IGdmeEBsaXN0cy5mcmVlZGVz
-a3RvcC5vcmcKPiBDYzogdmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5jb207IE5pa3VsYSwgSmFu
-aSA8amFuaS5uaWt1bGFAaW50ZWwuY29tPgo+IFN1YmplY3Q6IFJFOiBbUEFUQ0ggMS80XSBkcm0v
-aTkxNS90Z2wvZHNpOiBQcm9ncmFtIFRSQU5TX1ZCTEFOSyByZWdpc3Rlcgo+IAo+IAo+IAo+ID4t
-LS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQo+ID5Gcm9tOiBLdWxrYXJuaSwgVmFuZGl0YQo+ID5T
-ZW50OiBUdWVzZGF5LCBKdWx5IDIsIDIwMTkgOTo0OSBBTQo+ID5UbzogaW50ZWwtZ2Z4QGxpc3Rz
-LmZyZWVkZXNrdG9wLm9yZwo+ID5DYzogdmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5jb207IE5p
-a3VsYSwgSmFuaQo+ID48amFuaS5uaWt1bGFAaW50ZWwuY29tPjsgU2hhbmthciwgVW1hIDx1bWEu
-c2hhbmthckBpbnRlbC5jb20+Owo+ID5LdWxrYXJuaSwgVmFuZGl0YSA8dmFuZGl0YS5rdWxrYXJu
-aUBpbnRlbC5jb20+Cj4gPlN1YmplY3Q6IFtQQVRDSCAxLzRdIGRybS9pOTE1L3RnbC9kc2k6IFBy
-b2dyYW0gVFJBTlNfVkJMQU5LIHJlZ2lzdGVyCj4gPgo+ID5Qcm9ncmFtIHZibGFuayByZWdpc3Rl
-ciBmb3IgbWlwaSBkc2kgaW4gdmlkZW8gbW9kZSBvbiBUR0wuCj4gPgo+ID5TaWduZWQtb2ZmLWJ5
-OiBWYW5kaXRhIEt1bGthcm5pIDx2YW5kaXRhLmt1bGthcm5pQGludGVsLmNvbT4KPiA+LS0tCj4g
-PiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ljbF9kc2kuYyB8IDkgKysrKysrKysrCj4g
-PiAxIGZpbGUgY2hhbmdlZCwgOSBpbnNlcnRpb25zKCspCj4gPgo+ID5kaWZmIC0tZ2l0IGEvZHJp
-dmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pY2xfZHNpLmMKPiA+Yi9kcml2ZXJzL2dwdS9kcm0v
-aTkxNS9kaXNwbGF5L2ljbF9kc2kuYwo+ID5pbmRleCBiODY3M2RlYmY5MzIuLjU1NmViYTI2MzZm
-ZSAxMDA2NDQKPiA+LS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pY2xfZHNpLmMK
-PiA+KysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pY2xfZHNpLmMKPiA+QEAgLTg2
-Niw2ICs4NjYsMTUgQEAgZ2VuMTFfZHNpX3NldF90cmFuc2NvZGVyX3RpbWluZ3Moc3RydWN0Cj4g
-PmludGVsX2VuY29kZXIgKmVuY29kZXIsCj4gPiAJCWRzaV90cmFucyA9IGRzaV9wb3J0X3RvX3Ry
-YW5zY29kZXIocG9ydCk7Cj4gPiAJCUk5MTVfV1JJVEUoVlNZTkNTSElGVChkc2lfdHJhbnMpLCB2
-c3luY19zaGlmdCk7Cj4gPiAJfQo+ID4rCj4gPisJLyogcHJvZ3JhbSBUUkFOU19WQkxBTksgcmVn
-aXN0ZXIsIHNob3VsZCBiZSBzYW1lIGFzIHZ0b3RhbAo+IHByb2dhbW1lZAo+ID4rKi8KPiAKPiBU
-eXBvIGhlcmUgaW4gcHJvZ3JhbW1lZC4KVGhhbmtzIGZvciB0aGUgcmV2aWV3LgpXaWxsIGZpeC4K
-PiAKPiA+KwlpZiAoSU5URUxfR0VOKGRldl9wcml2KSA+PSAxMikgewo+ID4rCQlmb3JfZWFjaF9k
-c2lfcG9ydChwb3J0LCBpbnRlbF9kc2ktPnBvcnRzKSB7Cj4gPisJCQlkc2lfdHJhbnMgPSBkc2lf
-cG9ydF90b190cmFuc2NvZGVyKHBvcnQpOwo+ID4rCQkJSTkxNV9XUklURShWQkxBTksoZHNpX3Ry
-YW5zKSwKPiA+KwkJCQkgICAodmFjdGl2ZSAtIDEpIHwgKCh2dG90YWwgLSAxKSA8PCAxNikpOwo+
-IAo+IFdlIGNhbiBwdXQgdGhpcyBsaW5lIGFsb25nIHdpdGggVlRPVEFMIGFuZCBnZXQgcmlkIG9m
-IHRoaXMgZXh0cmEgZm9yIGxvb3AuCkJ1dCBsb29rcyBsaWtlIHRoZSByZXN0IG9mIHRoZSBjb2Rl
-IGlzIHdyaXR0ZW4gaW4gdGhlIHNpbWlsYXIgZmFzaGlvbi4gSXQgZ2l2ZXMgYmV0dGVyIHJlYWRh
-YmlsaXR5IGFzIGl0IGhhcyBwbGF0Zm9ybSBjaGVjayB0b28uCkFsc28gaXQgaXMgY2FsbGVkIGR1
-cmluZyBtb2Rlc2V0LCBpdCBpcyBub3QgdmVyeSBjbGVhciB0byBtZSBpZiBpdCBpcyBzaWduaWZp
-Y2FudCBlbm91Z2guCgotVGhhbmtzClZhbmRpdGEKPiAKPiA+KwkJfQo+ID4rCX0KPiA+IH0KPiA+
-Cj4gPiBzdGF0aWMgdm9pZCBnZW4xMV9kc2lfZW5hYmxlX3RyYW5zY29kZXIoc3RydWN0IGludGVs
-X2VuY29kZXIgKmVuY29kZXIpCj4gPi0tCj4gPjIuMjEuMC41LmdhZWI1ODJhCgpfX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBs
-aXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVz
-a3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZng=
+
+--===============0921262920==
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="cxMSjUqMQBJIqbX5"
+Content-Disposition: inline
+
+
+--cxMSjUqMQBJIqbX5
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On 2019.07.29 14:05:05 +0300, Jani Nikula wrote:
+>=20
+> Please fix, and make it a habit to run the checks before sending the
+> pull requests.
+>=20
+
+Sorry for that! I've tried to refresh and regenerate the pull. This also
+brings in two more fixes in queue, one for runtime pm warning fix and anoth=
+er
+one for windows guest TDR reset fix.
+
+Thanks.
+--
+The following changes since commit 89f5752307cf53010d97503ac501b2ca1b089922:
+
+  drm/i915: Fix the TBT AUX power well enabling (2019-07-29 15:54:37 +0300)
+
+are available in the Git repository at:
+
+  https://github.com/intel/gvt-linux.git tags/gvt-fixes-2019-07-30
+
+for you to fetch changes up to 4187414808095f645ca0661f8dde77617e2e7cb3:
+
+  drm/i915/gvt: Adding ppgtt to GVT GEM context after shadow pdps settled. =
+(2019-07-30 14:30:56 +0800)
+
+----------------------------------------------------------------
+gvt-fixes-2019-07-30
+
+- Guard against potential ggtt access error (Xiong)
+- Fix includecheck (Zhenyu)
+- Fix cache entry for guest page mapping found by 2M ppgtt guest (Xiaolin)
+- Fix runtime pm warning (Xiaolin)
+- Fix shadow mm settlement for Windows guest reset failure (Colin)
+
+----------------------------------------------------------------
+Colin Xu (1):
+      drm/i915/gvt: Adding ppgtt to GVT GEM context after shadow pdps settl=
+ed.
+
+Xiaolin Zhang (2):
+      drm/i915/gvt: fix incorrect cache entry for guest page mapping
+      drm/i915/gvt: grab runtime pm first for forcewake use
+
+Xiong Zhang (3):
+      drm/i915/gvt: Warning for invalid ggtt access
+      drm/i915/gvt: Don't use ggtt_validdate_range() with size=3D0
+      drm/i915/gvt: Checking workload's gma earlier
+
+Zhenyu Wang (1):
+      drm/i915/gvt: remove duplicate include of trace.h
+
+ drivers/gpu/drm/i915/gvt/cmd_parser.c   | 10 ------
+ drivers/gpu/drm/i915/gvt/fb_decoder.c   |  6 ++--
+ drivers/gpu/drm/i915/gvt/gtt.c          |  9 +++++
+ drivers/gpu/drm/i915/gvt/kvmgt.c        | 12 +++++++
+ drivers/gpu/drm/i915/gvt/scheduler.c    | 59 ++++++++++++++++++++++++-----=
+----
+ drivers/gpu/drm/i915/gvt/trace_points.c |  2 --
+ 6 files changed, 68 insertions(+), 30 deletions(-)
+
+--=20
+Open Source Technology Center, Intel ltd.
+
+$gpg --keyserver wwwkeys.pgp.net --recv-keys 4D781827
+
+--cxMSjUqMQBJIqbX5
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iF0EARECAB0WIQTXuabgHDW6LPt9CICxBBozTXgYJwUCXT/rBAAKCRCxBBozTXgY
+J3eDAJ9IbcLyXfV77uIiu/xsYnriuczlmwCeIRaCDNB90b00poKfnfCX4wWUpoE=
+=Caxx
+-----END PGP SIGNATURE-----
+
+--cxMSjUqMQBJIqbX5--
+
+--===============0921262920==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
+IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
+
+--===============0921262920==--
