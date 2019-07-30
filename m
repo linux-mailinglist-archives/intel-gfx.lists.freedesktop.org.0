@@ -2,45 +2,45 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0375E7A866
-	for <lists+intel-gfx@lfdr.de>; Tue, 30 Jul 2019 14:28:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F1327A87C
+	for <lists+intel-gfx@lfdr.de>; Tue, 30 Jul 2019 14:30:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C28696E4BB;
-	Tue, 30 Jul 2019 12:28:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4AB0D6E4BB;
+	Tue, 30 Jul 2019 12:30:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x444.google.com (mail-wr1-x444.google.com
- [IPv6:2a00:1450:4864:20::444])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1812789F85
- for <intel-gfx@lists.freedesktop.org>; Tue, 30 Jul 2019 12:28:09 +0000 (UTC)
-Received: by mail-wr1-x444.google.com with SMTP id f9so65543517wre.12
- for <intel-gfx@lists.freedesktop.org>; Tue, 30 Jul 2019 05:28:09 -0700 (PDT)
+Received: from mail-wr1-x443.google.com (mail-wr1-x443.google.com
+ [IPv6:2a00:1450:4864:20::443])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B647F6E4C2
+ for <intel-gfx@lists.freedesktop.org>; Tue, 30 Jul 2019 12:30:38 +0000 (UTC)
+Received: by mail-wr1-x443.google.com with SMTP id c2so62364070wrm.8
+ for <intel-gfx@lists.freedesktop.org>; Tue, 30 Jul 2019 05:30:38 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
  :organization:message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=o6BWUJ5Omes0vGmH/kxsO2n7MvW9sU2T4J9qSJTdvZk=;
- b=kfx2VXw3gtQHKNxbINY5uAvIy7glu2inA5SxsMz4LdGlD6IVYZNmFNQDYNycHtY8Np
- RvzmajFOWZ9lpRDkecl4Bl9h2IdbElCbXEtIaOxpJSV0KlQ4HIFRqv3mAezi7CPzZG6f
- uwKyRNoEjlnLj2LYl1ob1bXKADljiCcBq3bpaI73b9erY7az9w6zVpH0/aya3UImKwQv
- LoOmFRboaPTdU/4pJVyYa6OHYwotw8ZzVDN/ME+1nJFXGv9ryNlupXc92UgWA6tyfxGu
- IHxWKmgcgGGPYXBD+vGARy75svTp/nWptigpMrfEwlmBWZluXhFAp02WzdlVzCe4UTn0
- PQHQ==
-X-Gm-Message-State: APjAAAUD7P05c5sITgZA3zFVH3u8TJaOdkTbO5mtOq6MnFwndJdwH3BX
- 7T7yGaHi/KflQEymbNceTx7rdw==
-X-Google-Smtp-Source: APXvYqwh+uwh8UnbJJdzuw+IyMzM++n/sNgDeDj4wpRHJb7+i5k6zSwsKJBHpQroLZ3Mmus+2o4ycA==
-X-Received: by 2002:a5d:48cf:: with SMTP id p15mr79083014wrs.151.1564489687529; 
- Tue, 30 Jul 2019 05:28:07 -0700 (PDT)
+ bh=rVJ2b2XxkGYFRd/tEShYun7q/BtNfvc7wF8nAlKV2BI=;
+ b=JLyEiUOx/ntjUEdYobzNDF9PKrhU0mAjgnmuiX6Fual7EK8DpKjuWQLyEcD3V4I0MY
+ 3VXudh5dWHqiaqScBCTw2DaPTslCk+2fEDWQUinzhjaweit9r9zRyfD1T0j8jneMrPgM
+ QvLGaxp4N7B83pqv80J8AzGfb+RZLU/KjXQNEpm4shsPVZvarHJPPhQlCycAumoPxdel
+ QKCoiHbQAA6D8OSV+S37yT2jWZFIGix9wIaApxMT6yvYGkKxniGE14N6jaEXpIp1vxNa
+ yldC00pJg3xgWJCXbihzfE21qAyxfy3AQ2LC32V9qRFezbabBHTzx5YkiWYz8HABC5ZV
+ 1tEA==
+X-Gm-Message-State: APjAAAVF3dvfSrTPZRq6K8ppsnMUx0iV8GSpav48O4v5bN40paojGWJf
+ JHEbmEpbPNGv+zkGEuhoxMqkyA==
+X-Google-Smtp-Source: APXvYqzn9OdQ5em32Kjwirga5Sl4Or3ftfaC6zoK3ETHOUTTpbEtfTk6XlPpMxhs5aGqCC0EJAa0Ww==
+X-Received: by 2002:a5d:5647:: with SMTP id j7mr51136317wrw.191.1564489837064; 
+ Tue, 30 Jul 2019 05:30:37 -0700 (PDT)
 Received: from [10.1.2.12] (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr.
  [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id h8sm66378347wmf.12.2019.07.30.05.28.02
+ by smtp.gmail.com with ESMTPSA id s188sm53666391wmf.40.2019.07.30.05.30.23
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Tue, 30 Jul 2019 05:28:06 -0700 (PDT)
+ Tue, 30 Jul 2019 05:30:36 -0700 (PDT)
 To: Andrzej Pietrasiewicz <andrzej.p@collabora.com>,
  dri-devel@lists.freedesktop.org
 References: <cover.1564161140.git.andrzej.p@collabora.com>
- <ebb75e71b8b7c8d65d54a947a03fd21b8969fb3a.1564161140.git.andrzej.p@collabora.com>
+ <3b61da77a6456805db0deffe6d1a2343dd784730.1564161140.git.andrzej.p@collabora.com>
 From: Neil Armstrong <narmstrong@baylibre.com>
 Openpgp: preference=signencrypt
 Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
@@ -93,27 +93,27 @@ Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  VsbXrP9BZ6snXyHfebPnno/te5XRqZTL9aJOytB/1iUna+1MAwBxGFPvqeEUUyT+gx1l3Acl
  ZaTUOEkgIor5losDrePdPgE=
 Organization: Baylibre
-Message-ID: <1c4fd617-1cb1-2a40-5b2b-6a55217b401b@baylibre.com>
-Date: Tue, 30 Jul 2019 14:28:02 +0200
+Message-ID: <6ebbb98e-b54b-6ed1-1b20-ef5acae5a232@baylibre.com>
+Date: Tue, 30 Jul 2019 14:30:22 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.8.0
 MIME-Version: 1.0
-In-Reply-To: <ebb75e71b8b7c8d65d54a947a03fd21b8969fb3a.1564161140.git.andrzej.p@collabora.com>
+In-Reply-To: <3b61da77a6456805db0deffe6d1a2343dd784730.1564161140.git.andrzej.p@collabora.com>
 Content-Language: en-US
 X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=subject:to:cc:references:from:openpgp:autocrypt:organization
  :message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=o6BWUJ5Omes0vGmH/kxsO2n7MvW9sU2T4J9qSJTdvZk=;
- b=kz66EOZA0HoZobgs7JgchcuPY/cj9QE3B/uOxtPkPP2hqV0xDLWhMsCnml/XQAAdxF
- pAbdjlMRH0M6P0E9lPcHqp63uBGVN3De7qJNMzwploY81Z9yFbvjmabcsqxTJ6hhYC6e
- H+YUhB4EFELkhX7Diq+peHv13VGNxC/r2wFucWG8UG2g2BLQHTRyRfs/tLBWzINgdcPH
- 1LOGlFx4kT2Jnvg6hA2Q//D1UV/4GPmlt2X8z1qrxPf7WB1PUbjrx45tUT3I643zrEHa
- kabjqTZOXPSLp4Ol7DKnsA8khtC4yHZgbGCLUS+xVslxANQeMFQvYmd9b1j0Ulp57WjA
- 6IwA==
-Subject: Re: [Intel-gfx] [PATCH v6 19/24] drm/bridge: dumb-vga-dac: Provide
- ddc symlink in connector sysfs directory
+ bh=rVJ2b2XxkGYFRd/tEShYun7q/BtNfvc7wF8nAlKV2BI=;
+ b=HPhMljq2hUknHZHLSpW1skOB/cdSc9Ma22HhG+EINERW3HycnpgwhBeEjehXXgvXHL
+ 0AzLQ9NrnIObBDDNIbyV1us1moh06JTodqbCxYlsYerPCVO8BqfFHPSdXZuQ9u4KGjsv
+ SqIocl12MMahuysObSnCllhwVuiYHA+m1FWxO7VYNTxTDvM55EyR9RNvgIPwR8+lnH7s
+ tSHLxqhULtxATjqARVPOhUrijr04aTI4505boGVfrLNKqWYsuTFzzAXJgiCgjW8x4IWg
+ b6YSu7kK+591vMXHI2ztXribAP/r8k5SjHFsQs9QkEuI3Z7o+imNdVWMSbg5zC6EvEWI
+ 9nWA==
+Subject: Re: [Intel-gfx] [PATCH v6 21/24] drm/bridge: ti-tfp410: Provide ddc
+ symlink in connector sysfs directory
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -140,23 +140,22 @@ Cc: "Y.C. Chen" <yc_chen@aspeedtech.com>,
  linux-rockchip@lists.infradead.org, Chen-Yu Tsai <wens@csie.org>,
  Kukjin Kim <kgene@kernel.org>, NXP Linux Team <linux-imx@nxp.com>,
  CK Hu <ck.hu@mediatek.com>, Dave Airlie <airlied@redhat.com>,
- Harry Wentland <harry.wentland@amd.com>, intel-gfx@lists.freedesktop.org,
- freedreno@lists.freedesktop.org, linux-tegra@vger.kernel.org,
- Philipp Zabel <p.zabel@pengutronix.de>, Jonas Karlman <jonas@kwiboo.se>,
- linux-arm-msm@vger.kernel.org, Sascha Hauer <s.hauer@pengutronix.de>,
- Inki Dae <inki.dae@samsung.com>, Mamta Shukla <mamtashukla555@gmail.com>,
- linux-mediatek@lists.infradead.org, Maxime Ripard <mripard@kernel.org>,
- Matthias Brugger <matthias.bgg@gmail.com>,
+ intel-gfx@lists.freedesktop.org, freedreno@lists.freedesktop.org,
+ linux-tegra@vger.kernel.org, Philipp Zabel <p.zabel@pengutronix.de>,
+ Jonas Karlman <jonas@kwiboo.se>, linux-arm-msm@vger.kernel.org,
+ Sascha Hauer <s.hauer@pengutronix.de>, Inki Dae <inki.dae@samsung.com>,
+ Alexios Zavras <alexios.zavras@intel.com>,
+ Mamta Shukla <mamtashukla555@gmail.com>, linux-mediatek@lists.infradead.org,
+ Maxime Ripard <mripard@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
  Thomas Gleixner <tglx@linutronix.de>,
  Pengutronix Kernel Team <kernel@pengutronix.de>,
- linux-arm-kernel@lists.infradead.org, Enrico Weigelt <info@metux.net>,
+ Allison Randal <allison@lohutok.net>, linux-arm-kernel@lists.infradead.org,
  Jernej Skrabec <jernej.skrabec@siol.net>, amd-gfx@lists.freedesktop.org,
  Tomi Valkeinen <tomi.valkeinen@ti.com>,
  Thomas Zimmermann <tzimmermann@suse.de>,
  Seung-Woo Kim <sw0312.kim@samsung.com>, Sandy Huang <hjc@rock-chips.com>,
  linux-kernel@vger.kernel.org, Todor Tomov <todor.tomov@linaro.org>,
  Kyungmin Park <kyungmin.park@samsung.com>, Huang Rui <ray.huang@amd.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
  Alex Deucher <alexander.deucher@amd.com>, Shawn Guo <shawnguo@kernel.org>,
  =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
  Gerd Hoffmann <kraxel@redhat.com>
@@ -168,22 +167,22 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 T24gMjYvMDcvMjAxOSAxOToyMywgQW5kcnplaiBQaWV0cmFzaWV3aWN6IHdyb3RlOgo+IFVzZSB0
 aGUgZGRjIHBvaW50ZXIgcHJvdmlkZWQgYnkgdGhlIGdlbmVyaWMgY29ubmVjdG9yLgo+IAo+IFNp
 Z25lZC1vZmYtYnk6IEFuZHJ6ZWogUGlldHJhc2lld2ljeiA8YW5kcnplai5wQGNvbGxhYm9yYS5j
-b20+Cj4gLS0tCj4gIGRyaXZlcnMvZ3B1L2RybS9icmlkZ2UvZHVtYi12Z2EtZGFjLmMgfCA2ICsr
-KystLQo+ICAxIGZpbGUgY2hhbmdlZCwgNCBpbnNlcnRpb25zKCspLCAyIGRlbGV0aW9ucygtKQo+
-IAo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vYnJpZGdlL2R1bWItdmdhLWRhYy5jIGIv
-ZHJpdmVycy9ncHUvZHJtL2JyaWRnZS9kdW1iLXZnYS1kYWMuYwo+IGluZGV4IGQzMjg4NWI5MDZh
-ZS4uOGVmNjUzOWFlNzhhIDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9icmlkZ2UvZHVt
-Yi12Z2EtZGFjLmMKPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vYnJpZGdlL2R1bWItdmdhLWRhYy5j
-Cj4gQEAgLTExMSw4ICsxMTEsMTAgQEAgc3RhdGljIGludCBkdW1iX3ZnYV9hdHRhY2goc3RydWN0
-IGRybV9icmlkZ2UgKmJyaWRnZSkKPiAgCj4gIAlkcm1fY29ubmVjdG9yX2hlbHBlcl9hZGQoJnZn
-YS0+Y29ubmVjdG9yLAo+ICAJCQkJICZkdW1iX3ZnYV9jb25faGVscGVyX2Z1bmNzKTsKPiAtCXJl
-dCA9IGRybV9jb25uZWN0b3JfaW5pdChicmlkZ2UtPmRldiwgJnZnYS0+Y29ubmVjdG9yLAo+IC0J
-CQkJICZkdW1iX3ZnYV9jb25fZnVuY3MsIERSTV9NT0RFX0NPTk5FQ1RPUl9WR0EpOwo+ICsJcmV0
-ID0gZHJtX2Nvbm5lY3Rvcl9pbml0X3dpdGhfZGRjKGJyaWRnZS0+ZGV2LCAmdmdhLT5jb25uZWN0
-b3IsCj4gKwkJCQkJICAmZHVtYl92Z2FfY29uX2Z1bmNzLAo+ICsJCQkJCSAgRFJNX01PREVfQ09O
-TkVDVE9SX1ZHQSwKPiArCQkJCQkgIHZnYS0+ZGRjKTsKPiAgCWlmIChyZXQpIHsKPiAgCQlEUk1f
-RVJST1IoIkZhaWxlZCB0byBpbml0aWFsaXplIGNvbm5lY3RvclxuIik7Cj4gIAkJcmV0dXJuIHJl
-dDsKPiAKClJldmlld2VkLWJ5OiBOZWlsIEFybXN0cm9uZyA8bmFybXN0cm9uZ0BiYXlsaWJyZS5j
-b20+Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVs
-LWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczov
-L2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeA==
+b20+Cj4gLS0tCj4gIGRyaXZlcnMvZ3B1L2RybS9icmlkZ2UvdGktdGZwNDEwLmMgfCA2ICsrKyst
+LQo+ICAxIGZpbGUgY2hhbmdlZCwgNCBpbnNlcnRpb25zKCspLCAyIGRlbGV0aW9ucygtKQo+IAo+
+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vYnJpZGdlL3RpLXRmcDQxMC5jIGIvZHJpdmVy
+cy9ncHUvZHJtL2JyaWRnZS90aS10ZnA0MTAuYwo+IGluZGV4IGRiZjM1YzdiYzg1ZS4uNjFjYzIz
+NTRlZjFiIDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9icmlkZ2UvdGktdGZwNDEwLmMK
+PiArKysgYi9kcml2ZXJzL2dwdS9kcm0vYnJpZGdlL3RpLXRmcDQxMC5jCj4gQEAgLTEzNCw4ICsx
+MzQsMTAgQEAgc3RhdGljIGludCB0ZnA0MTBfYXR0YWNoKHN0cnVjdCBkcm1fYnJpZGdlICpicmlk
+Z2UpCj4gIAo+ICAJZHJtX2Nvbm5lY3Rvcl9oZWxwZXJfYWRkKCZkdmktPmNvbm5lY3RvciwKPiAg
+CQkJCSAmdGZwNDEwX2Nvbl9oZWxwZXJfZnVuY3MpOwo+IC0JcmV0ID0gZHJtX2Nvbm5lY3Rvcl9p
+bml0KGJyaWRnZS0+ZGV2LCAmZHZpLT5jb25uZWN0b3IsCj4gLQkJCQkgJnRmcDQxMF9jb25fZnVu
+Y3MsIGR2aS0+Y29ubmVjdG9yX3R5cGUpOwo+ICsJcmV0ID0gZHJtX2Nvbm5lY3Rvcl9pbml0X3dp
+dGhfZGRjKGJyaWRnZS0+ZGV2LCAmZHZpLT5jb25uZWN0b3IsCj4gKwkJCQkJICAmdGZwNDEwX2Nv
+bl9mdW5jcywKPiArCQkJCQkgIGR2aS0+Y29ubmVjdG9yX3R5cGUsCj4gKwkJCQkJICBkdmktPmRk
+Yyk7Cj4gIAlpZiAocmV0KSB7Cj4gIAkJZGV2X2VycihkdmktPmRldiwgImRybV9jb25uZWN0b3Jf
+aW5pdCgpIGZhaWxlZDogJWRcbiIsIHJldCk7Cj4gIAkJcmV0dXJuIHJldDsKPiAKClJldmlld2Vk
+LWJ5OiBOZWlsIEFybXN0cm9uZyA8bmFybXN0cm9uZ0BiYXlsaWJyZS5jb20+Cl9fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxp
+c3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNr
+dG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeA==
