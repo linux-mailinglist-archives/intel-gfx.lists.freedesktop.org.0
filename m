@@ -2,34 +2,35 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C212E7A2C0
-	for <lists+intel-gfx@lfdr.de>; Tue, 30 Jul 2019 10:03:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C27537A2BF
+	for <lists+intel-gfx@lfdr.de>; Tue, 30 Jul 2019 10:03:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5A5906E446;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4092D6E443;
 	Tue, 30 Jul 2019 08:03:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 71DDF6E442
- for <intel-gfx@lists.freedesktop.org>; Tue, 30 Jul 2019 08:03:19 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 815E16E443
+ for <intel-gfx@lists.freedesktop.org>; Tue, 30 Jul 2019 08:03:21 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga006.jf.intel.com ([10.7.209.51])
  by fmsmga106.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 30 Jul 2019 01:03:18 -0700
+ 30 Jul 2019 01:03:20 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.64,326,1559545200"; d="scan'208";a="176702459"
+X-IronPort-AV: E=Sophos;i="5.64,326,1559545200"; d="scan'208";a="176702467"
 Received: from vandita-desktop.iind.intel.com ([10.223.74.218])
- by orsmga006.jf.intel.com with ESMTP; 30 Jul 2019 01:03:17 -0700
+ by orsmga006.jf.intel.com with ESMTP; 30 Jul 2019 01:03:19 -0700
 From: Vandita Kulkarni <vandita.kulkarni@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 30 Jul 2019 13:06:47 +0530
-Message-Id: <20190730073648.5157-6-vandita.kulkarni@intel.com>
+Date: Tue, 30 Jul 2019 13:06:48 +0530
+Message-Id: <20190730073648.5157-7-vandita.kulkarni@intel.com>
 X-Mailer: git-send-email 2.21.0.5.gaeb582a
 In-Reply-To: <20190730073648.5157-1-vandita.kulkarni@intel.com>
 References: <20190730073648.5157-1-vandita.kulkarni@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [v2 5/6] drm/i915/tgl: Add mipi dsi support for TGL
+Subject: [Intel-gfx] [v2 6/6] drm/i915/tgl/dsi: Enable blanking packets
+ during BLLP for video mode
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -48,22 +49,32 @@ Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-TW9zdCBvZiB0aGUgZnVuY3Rpb25zIGFuZCBtaXBpIGRzaSBzZXF1ZW5jZSByZW1haW5zCnNhbWUg
-YXMgb2YgSUNMIGZvciBUR0wuIEhlbmNlIGV4dGVuZGluZyB0aGUgc3VwcG9ydAp0byBUR0wuCgpT
-aWduZWQtb2ZmLWJ5OiBWYW5kaXRhIEt1bGthcm5pIDx2YW5kaXRhLmt1bGthcm5pQGludGVsLmNv
-bT4KLS0tCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuYyB8IDEg
-KwogMSBmaWxlIGNoYW5nZWQsIDEgaW5zZXJ0aW9uKCspCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9n
-cHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkx
-NS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuYwppbmRleCA5ZTRlZTI5ZmQwZmMuLjcxYWU2MmU5NDc2
-NyAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5
-LmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMKQEAg
-LTE1MzE5LDYgKzE1MzE5LDcgQEAgc3RhdGljIHZvaWQgaW50ZWxfc2V0dXBfb3V0cHV0cyhzdHJ1
-Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYpCiAJCWludGVsX2RkaV9pbml0KGRldl9wcml2
-LCBQT1JUX0EpOwogCQlpbnRlbF9kZGlfaW5pdChkZXZfcHJpdiwgUE9SVF9CKTsKIAkJaW50ZWxf
-ZGRpX2luaXQoZGV2X3ByaXYsIFBPUlRfQyk7CisJCWljbF9kc2lfaW5pdChkZXZfcHJpdik7CiAJ
-fSBlbHNlIGlmIChJU19FTEtIQVJUTEFLRShkZXZfcHJpdikpIHsKIAkJaW50ZWxfZGRpX2luaXQo
-ZGV2X3ByaXYsIFBPUlRfQSk7CiAJCWludGVsX2RkaV9pbml0KGRldl9wcml2LCBQT1JUX0IpOwot
-LSAKMi4yMS4wLjUuZ2FlYjU4MmEKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVk
-ZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZv
-L2ludGVsLWdmeA==
+QmxhbmtpbmcgcGFja2V0IGJpdCB3aWxsIGNvbnRyb2wgd2hldGhlciB0aGUgdHJhbnNjb2RlciBh
+bGxvd3MgdGhlIGxpbmsKdG8gZW50ZXIgdGhlIExQIHN0YXRlIGR1cmluZyBCTExQIHJlZ2lvbnMg
+KGFzc3VtaW5nIHRoZXJlIGlzIGVub3VnaCB0aW1lKSwKb3Igd2hldGhlciBpdCB3aWxsIGtlZXAg
+dGhlIGxpbmsgaW4gdGhlIEhTIHN0YXRlIHdpdGggYSBCbGFua2luZyBQYWNrZXQKClNpZ25lZC1v
+ZmYtYnk6IFZhbmRpdGEgS3Vsa2FybmkgPHZhbmRpdGEua3Vsa2FybmlAaW50ZWwuY29tPgotLS0K
+IGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaWNsX2RzaS5jIHwgNSArKysrKwogZHJpdmVy
+cy9ncHUvZHJtL2k5MTUvaTkxNV9yZWcuaCAgICAgICAgfCAxICsKIDIgZmlsZXMgY2hhbmdlZCwg
+NiBpbnNlcnRpb25zKCspCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxh
+eS9pY2xfZHNpLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ljbF9kc2kuYwppbmRl
+eCBlYWYyNzc5Yjg5YjguLmFlMzM2MzlkNDhiYSAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJt
+L2k5MTUvZGlzcGxheS9pY2xfZHNpLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxh
+eS9pY2xfZHNpLmMKQEAgLTY4NSw2ICs2ODUsMTEgQEAgZ2VuMTFfZHNpX2NvbmZpZ3VyZV90cmFu
+c2NvZGVyKHN0cnVjdCBpbnRlbF9lbmNvZGVyICplbmNvZGVyLAogCQkJYnJlYWs7CiAJCX0KIAor
+CQlpZiAoSU5URUxfR0VOKGRldl9wcml2KSA+PSAxMikgeworCQkJaWYgKGlzX3ZpZF9tb2RlKGlu
+dGVsX2RzaSkpCisJCQkJdG1wIHw9IEJMQU5LSU5HX1BBQ0tFVF9FTkFCTEU7CisJCX0KKwogCQkv
+KiBwcm9ncmFtIERTSSBvcGVyYXRpb24gbW9kZSAqLwogCQlpZiAoaXNfdmlkX21vZGUoaW50ZWxf
+ZHNpKSkgewogCQkJdG1wICY9IH5PUF9NT0RFX01BU0s7CmRpZmYgLS1naXQgYS9kcml2ZXJzL2dw
+dS9kcm0vaTkxNS9pOTE1X3JlZy5oIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9yZWcuaApp
+bmRleCBkMmI3NjEyMWQ4NjMuLjFhODQ3ZjQ0M2VmNyAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUv
+ZHJtL2k5MTUvaTkxNV9yZWcuaAorKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3JlZy5o
+CkBAIC0xMDk3OSw2ICsxMDk3OSw3IEBAIGVudW0gc2tsX3Bvd2VyX2dhdGUgewogI2RlZmluZSAg
+Q0FMSUJSQVRJT05fRElTQUJMRUQJCSgweDAgPDwgNCkKICNkZWZpbmUgIENBTElCUkFUSU9OX0VO
+QUJMRURfSU5JVElBTF9PTkxZCSgweDIgPDwgNCkKICNkZWZpbmUgIENBTElCUkFUSU9OX0VOQUJM
+RURfSU5JVElBTF9QRVJJT0RJQwkoMHgzIDw8IDQpCisjZGVmaW5lICBCTEFOS0lOR19QQUNLRVRf
+RU5BQkxFCQkoMSA8PCAyKQogI2RlZmluZSAgUzNEX09SSUVOVEFUSU9OX0xBTkRTQ0FQRQkoMSA8
+PCAxKQogI2RlZmluZSAgRU9UUF9ESVNBQkxFRAkJCSgxIDw8IDApCiAKLS0gCjIuMjEuMC41Lmdh
+ZWI1ODJhCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJ
+bnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0
+cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZng=
