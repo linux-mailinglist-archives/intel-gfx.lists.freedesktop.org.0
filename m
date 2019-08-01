@@ -2,40 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 708A27D35D
-	for <lists+intel-gfx@lfdr.de>; Thu,  1 Aug 2019 04:30:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4965B7D45D
+	for <lists+intel-gfx@lfdr.de>; Thu,  1 Aug 2019 06:23:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EC92D6E330;
-	Thu,  1 Aug 2019 02:30:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F2CD96E33B;
+	Thu,  1 Aug 2019 04:23:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from ozlabs.org (bilbo.ozlabs.org [203.11.71.1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A5C5D6E32E;
- Thu,  1 Aug 2019 02:30:11 +0000 (UTC)
-Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
- SHA256) (No client certificate requested)
- by mail.ozlabs.org (Postfix) with ESMTPSA id 45zZ596mjNz9sBF;
- Thu,  1 Aug 2019 12:30:04 +1000 (AEST)
-Date: Thu, 1 Aug 2019 12:30:04 +1000
-From: Stephen Rothwell <sfr@canb.auug.org.au>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>, Intel Graphics
- <intel-gfx@lists.freedesktop.org>, DRI <dri-devel@lists.freedesktop.org>
-Message-ID: <20190801123004.2aa5c658@canb.auug.org.au>
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 72FD96E33B
+ for <intel-gfx@lists.freedesktop.org>; Thu,  1 Aug 2019 04:23:09 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 31 Jul 2019 21:23:08 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.64,332,1559545200"; d="scan'208";a="372442037"
+Received: from amanna-mobl.gar.corp.intel.com (HELO [10.252.74.118])
+ ([10.252.74.118])
+ by fmsmga006.fm.intel.com with ESMTP; 31 Jul 2019 21:23:06 -0700
+To: Anshuman Gupta <anshuman.gupta@intel.com>, intel-gfx@lists.freedesktop.org
+References: <20190730135024.31765-1-anshuman.gupta@intel.com>
+ <20190730135024.31765-2-anshuman.gupta@intel.com>
+From: Animesh Manna <animesh.manna@intel.com>
+Message-ID: <fb236a30-013e-aa88-fe2b-7821b9c1cbc7@intel.com>
+Date: Thu, 1 Aug 2019 09:53:05 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:45.0) Gecko/20100101
+ Thunderbird/45.2.0
 MIME-Version: 1.0
-X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=canb.auug.org.au; s=201702; t=1564626608;
- bh=F6yYrwA8wrWGh9l/at9G7REoMS60ygdsyKPlul1m6gI=;
- h=Date:From:To:Cc:Subject:From;
- b=QaZhCL+WBLqKyRiIv9LmrKpl6lnFiNtDPMGJjUMSdtQB5AlMbdwTBaGZToKG2k1KZ
- TaJr26TJisLqZUDxc8IkpNs1ba5SnN7mTN/ImIzh6uDuOIWVMVZyIdfO4Eg8KB/Axf
- ElH6m8mo/b5MTfuEAxx/4m3d/uo2O4ynHbto1kTGnzgnFdH11dj/DrebsXuz/9PYNP
- B8nKHzGj9g7aeu30cMPwOijKPeQDMUtwSPPjLp1IbiKtRGDbWby9nFPRyKdS87NSYE
- 89+ZD7dRbn/ljDySH7NtC4YKAH7ANEkUs5mwRRzQLNzl2lQpjfps7656qoOZiMxceu
- HJmQNdoVeUHeQ==
-Subject: [Intel-gfx] linux-next: build failure after merge of the drm-misc
- tree
+In-Reply-To: <20190730135024.31765-2-anshuman.gupta@intel.com>
+Subject: Re: [Intel-gfx] [PATCH v3 1/9] drm/i915/tgl: Add DC3CO required
+ register and bits
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -48,74 +46,51 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Neil Armstrong <narmstrong@baylibre.com>,
- Emil Velikov <emil.velikov@collabora.com>,
- Linux Next Mailing List <linux-next@vger.kernel.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- Andrzej Pietrasiewicz <andrzej.p@collabora.com>
-Content-Type: multipart/mixed; boundary="===============0887341683=="
+Cc: jani.nikula@intel.com
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0887341683==
-Content-Type: multipart/signed; boundary="Sig_/1rIQwGsme1TfqSXECl9f2.Z";
- protocol="application/pgp-signature"; micalg=pgp-sha256
-
---Sig_/1rIQwGsme1TfqSXECl9f2.Z
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
-
-Hi all,
-
-After merging the drm-misc tree, today's linux-next build (x86_64
-allmodconfig) failed like this:
-
-drivers/gpu/drm/radeon/radeon_connectors.c: In function 'radeon_add_legacy_=
-connector':
-drivers/gpu/drm/radeon/radeon_connectors.c:2433:5: error: 'ddc' undeclared =
-(first use in this function)
-     ddc =3D &radeon_connector->ddc_bus->adapter;
-     ^~~
-drivers/gpu/drm/radeon/radeon_connectors.c:2433:5: note: each undeclared id=
-entifier is reported only once for each function it appears in
-
-Caused by commit
-
-  bed7a2182de6 ("drm/radeon: Provide ddc symlink in connector sysfs directo=
-ry")
-
-I have used the drm-misc tree from next-20190731 for today.
-
---=20
-Cheers,
-Stephen Rothwell
-
---Sig_/1rIQwGsme1TfqSXECl9f2.Z
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAl1CTqwACgkQAVBC80lX
-0GwQFwf/bkQ4sQR7J6NB16AEgGu/p2R8lXhPjZa2XtdZY+zrfKDcD1fhlriYJaIf
-ZalH+q0oPJmGm53OhaeLMmTVF0lOWEoEtVZFto+YEtoqTILgMwRu47dXhanM4iJT
-qxe0Rq8haX/zCypvqrFMTStQmOzg0AZcRKYPWtvnrQBFx6PGwpr6A94ajjxIbW0o
-FMyXrW2deieI0Gx8PLD/Z3q29V30fKNcxVoHMCyLsvQaItqnTwYJTKR/iLDioaAM
-wSPsUMpNGDPTOWPe2+gItHWQTGDFua9tJB/iglf28rOi8rZSEFUuhlclg5fV97Ti
-GGXVLs46KPRtNUXiKaBdZVDkwtgegg==
-=2y3a
------END PGP SIGNATURE-----
-
---Sig_/1rIQwGsme1TfqSXECl9f2.Z--
-
---===============0887341683==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
-IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
-
---===============0887341683==--
+CgpPbiA3LzMwLzIwMTkgNzoyMCBQTSwgQW5zaHVtYW4gR3VwdGEgd3JvdGU6Cj4gQWRkaW5nIGZv
+bGxvd2luZyBkZWZpbml0aW9uIHRvIGk5MTVfcmVnLmgKPiAxLiBEQ19TVEFURV9FTiByZWdpc3Rl
+ciBEQzNDTyBiaXQgZmllbGRzIGFuZCBtYXNrcy4KPiAyLiBUcmFuc2NvZGVyIEVYSVRMSU5FIHJl
+Z2lzdGVyIGFuZCBpdHMgYml0IGZpZWxkcyBhbmQgbWFzay4KPgo+IENjOiBOaWt1bGEsIEphbmkg
+PGphbmkubmlrdWxhQGludGVsLmNvbT4KPiBDYzogRGVhaywgSW1yZSA8aW1yZS5kZWFrQGludGVs
+LmNvbT4KPiBDYzogTWFubmEsIEFuaW1lc2ggPGFuaW1lc2gubWFubmFAaW50ZWwuY29tPgoKU2hv
+dWxkIGJlIGxpa2UgYmVsb3csCkNjOiBBbmltZXNoIE1hbm5hIDxhbmltZXNoLm1hbm5hQGludGVs
+LmNvbT4KCk5lZWQgY2hhbmdlIGV2ZXJ5d2hlcmUgaW4gdGhpcyBwYXRjaCBzZXJpZXMgZm9yIGFs
+bC4KCj4gU2lnbmVkLW9mZi1ieTogQW5zaHVtYW4gR3VwdGEgPGFuc2h1bWFuLmd1cHRhQGludGVs
+LmNvbT4KPiAtLS0KPiAgIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfcmVnLmggfCA4ICsrKysr
+KysrCj4gICAxIGZpbGUgY2hhbmdlZCwgOCBpbnNlcnRpb25zKCspCj4KPiBkaWZmIC0tZ2l0IGEv
+ZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9yZWcuaCBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5
+MTVfcmVnLmgKPiBpbmRleCBkMmI3NjEyMWQ4NjMuLmQ0MmU5NWRhNWIxNCAxMDA2NDQKPiAtLS0g
+YS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3JlZy5oCj4gKysrIGIvZHJpdmVycy9ncHUvZHJt
+L2k5MTUvaTkxNV9yZWcuaAo+IEBAIC00MTk1LDYgKzQxOTUsNyBAQCBlbnVtIHsKPiAgICNkZWZp
+bmUgX1ZUT1RBTF9BCTB4NjAwMGMKPiAgICNkZWZpbmUgX1ZCTEFOS19BCTB4NjAwMTAKPiAgICNk
+ZWZpbmUgX1ZTWU5DX0EJMHg2MDAxNAo+ICsjZGVmaW5lIF9FWElUTElORV9BCTB4NjAwMTgKPiAg
+ICNkZWZpbmUgX1BJUEVBU1JDCTB4NjAwMWMKPiAgICNkZWZpbmUgX0JDTFJQQVRfQQkweDYwMDIw
+Cj4gICAjZGVmaW5lIF9WU1lOQ1NISUZUX0EJMHg2MDAyOAo+IEBAIC00MjQxLDExICs0MjQyLDE2
+IEBAIGVudW0gewo+ICAgI2RlZmluZSBWVE9UQUwodHJhbnMpCQlfTU1JT19UUkFOUzIodHJhbnMs
+IF9WVE9UQUxfQSkKPiAgICNkZWZpbmUgVkJMQU5LKHRyYW5zKQkJX01NSU9fVFJBTlMyKHRyYW5z
+LCBfVkJMQU5LX0EpCj4gICAjZGVmaW5lIFZTWU5DKHRyYW5zKQkJX01NSU9fVFJBTlMyKHRyYW5z
+LCBfVlNZTkNfQSkKPiArI2RlZmluZSBFWElUTElORSh0cmFucykJCV9NTUlPX1RSQU5TMih0cmFu
+cywgX0VYSVRMSU5FX0EpCj4gICAjZGVmaW5lIEJDTFJQQVQodHJhbnMpCQlfTU1JT19UUkFOUzIo
+dHJhbnMsIF9CQ0xSUEFUX0EpCj4gICAjZGVmaW5lIFZTWU5DU0hJRlQodHJhbnMpCV9NTUlPX1RS
+QU5TMih0cmFucywgX1ZTWU5DU0hJRlRfQSkKPiAgICNkZWZpbmUgUElQRVNSQyh0cmFucykJCV9N
+TUlPX1RSQU5TMih0cmFucywgX1BJUEVBU1JDKQo+ICAgI2RlZmluZSBQSVBFX01VTFQodHJhbnMp
+CV9NTUlPX1RSQU5TMih0cmFucywgX1BJUEVfTVVMVF9BKQo+ICAgCj4gKyNkZWZpbmUgIEVYSVRM
+SU5FX0VOQUJMRQkoMSA8PCAzMSkKPiArI2RlZmluZSAgRVhJVExJTkVfTUFTSwkJKDB4MWZmZikK
+PiArI2RlZmluZSAgRVhJVExJTkVfU0hJRlQJCTAKPiArCj4gICAvKiBIU1crIGVEUCBQU1IgcmVn
+aXN0ZXJzICovCj4gICAjZGVmaW5lIEhTV19FRFBfUFNSX0JBU0UJMHg2NDgwMAo+ICAgI2RlZmlu
+ZSBCRFdfRURQX1BTUl9CQVNFCTB4NmY4MDAKPiBAQCAtOTk5Niw2ICsxMDAwMiw4IEBAIGVudW0g
+c2tsX3Bvd2VyX2dhdGUgewo+ICAgLyogR0VOOSBEQyAqLwo+ICAgI2RlZmluZSBEQ19TVEFURV9F
+TgkJCV9NTUlPKDB4NDU1MDQpCj4gICAjZGVmaW5lICBEQ19TVEFURV9ESVNBQkxFCQkwCj4gKyNk
+ZWZpbmUgIERDX1NUQVRFX0VOX0RDM0NPCQkoMSA8PCAzMCkKPiArI2RlZmluZSAgRENfU1RBVEVf
+REMzQ09fU1RBVFVTCQkoMSA8PCAyOSkKTmVlZCBleHRyYSBzcGFjZS4KClJlZ2FyZHMsCkFuaW1l
+c2gKPiAgICNkZWZpbmUgIERDX1NUQVRFX0VOX1VQVE9fREM1CQkoMSA8PCAwKQo+ICAgI2RlZmlu
+ZSAgRENfU1RBVEVfRU5fREM5CQkoMSA8PCAzKQo+ICAgI2RlZmluZSAgRENfU1RBVEVfRU5fVVBU
+T19EQzYJCSgyIDw8IDApCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3Rv
+cC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRl
+bC1nZng=
