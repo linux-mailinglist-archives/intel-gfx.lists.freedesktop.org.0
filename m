@@ -2,32 +2,35 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E0327F7B1
-	for <lists+intel-gfx@lfdr.de>; Fri,  2 Aug 2019 15:00:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 28D2A7F7E5
+	for <lists+intel-gfx@lfdr.de>; Fri,  2 Aug 2019 15:10:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 697606EDFD;
-	Fri,  2 Aug 2019 13:00:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8BAF66EE00;
+	Fri,  2 Aug 2019 13:10:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 00C066EDFA
- for <intel-gfx@lists.freedesktop.org>; Fri,  2 Aug 2019 13:00:21 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 55DCA6EDFE;
+ Fri,  2 Aug 2019 13:10:27 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from localhost (unverified [78.156.65.138]) 
  by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 17817178-1500050 for multiple; Fri, 02 Aug 2019 14:00:19 +0100
+ 17817444-1500050 for multiple; Fri, 02 Aug 2019 14:10:20 +0100
 MIME-Version: 1.0
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Sergey Senozhatsky <sergey.senozhatsky@gmail.com>
 From: Chris Wilson <chris@chris-wilson.co.uk>
+In-Reply-To: <156475071634.6598.8668583907388398632@skylake-alporthouse-com>
+References: <20190802123956.2450-1-sergey.senozhatsky@gmail.com>
+ <20190802123956.2450-2-sergey.senozhatsky@gmail.com>
+ <156475071634.6598.8668583907388398632@skylake-alporthouse-com>
+Message-ID: <156475141863.6598.6809215010139776043@skylake-alporthouse-com>
 User-Agent: alot/0.6
-To: Michal Wajdeczko <michal.wajdeczko@intel.com>,
- intel-gfx@lists.freedesktop.org
-References: <20190802124739.12548-1-michal.wajdeczko@intel.com>
-In-Reply-To: <20190802124739.12548-1-michal.wajdeczko@intel.com>
-Message-ID: <156475081729.6598.908010822675088109@skylake-alporthouse-com>
-Date: Fri, 02 Aug 2019 14:00:17 +0100
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Fix documentation for
- __intel_wait_for_register_fw*
+Date: Fri, 02 Aug 2019 14:10:18 +0100
+Subject: Re: [Intel-gfx] [PATCH 2/2] i915: do not leak module ref counter
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -40,16 +43,37 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: David Airlie <airlied@linux.ie>, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ Sergey Senozhatsky <sergey.senozhatsky@gmail.com>
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-UXVvdGluZyBNaWNoYWwgV2FqZGVjemtvICgyMDE5LTA4LTAyIDEzOjQ3OjM5KQo+IFVzZSBzZWN0
-aW9uIG5hbWUgIlJldHVybiIgYW5kIHByb3BlciBlcnJvciBjb2RlIC1FVElNRURPVVQKClF1aWNr
-ZXIgd2F5IGlzIHVzZSBhIGdyYXk6Z3JheSBjb2xvcnNjaGVtZSBmb3IgY29tbWVudHMgOi1wCgo+
-IFNpZ25lZC1vZmYtYnk6IE1pY2hhbCBXYWpkZWN6a28gPG1pY2hhbC53YWpkZWN6a29AaW50ZWwu
-Y29tPgpSZXZpZXdlZC1ieTogQ2hyaXMgV2lsc29uIDxjaHJpc0BjaHJpcy13aWxzb24uY28udWs+
-Ci1DaHJpcwpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJ
-bnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0
-cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZng=
+UXVvdGluZyBDaHJpcyBXaWxzb24gKDIwMTktMDgtMDIgMTM6NTg6MzYpCj4gUXVvdGluZyBTZXJn
+ZXkgU2Vub3poYXRza3kgKDIwMTktMDgtMDIgMTM6Mzk6NTYpCj4gPiBwdXRfZmlsZXN5c3RlbSgp
+IGJlZm9yZSBpOTE1X2dlbWZzX2luaXQoKSBkZWFscyB3aXRoCj4gPiBrZXJuX21vdW50KCkgZXJy
+b3IuCj4gPiAKPiA+IFNpZ25lZC1vZmYtYnk6IFNlcmdleSBTZW5vemhhdHNreSA8c2VyZ2V5LnNl
+bm96aGF0c2t5QGdtYWlsLmNvbT4KPiA+IC0tLQo+ID4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2dl
+bS9pOTE1X2dlbWZzLmMgfCA0ICsrKy0KPiA+ICAxIGZpbGUgY2hhbmdlZCwgMyBpbnNlcnRpb25z
+KCspLCAxIGRlbGV0aW9uKC0pCj4gPiAKPiA+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0v
+aTkxNS9nZW0vaTkxNV9nZW1mcy5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2Vt
+ZnMuYwo+ID4gaW5kZXggY2YwNWJhNzJkZjlkLi5kNDM3MTg4ZDE3MzYgMTAwNjQ0Cj4gPiAtLS0g
+YS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1mcy5jCj4gPiArKysgYi9kcml2ZXJz
+L2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1mcy5jCj4gPiBAQCAtMjQsOCArMjQsMTAgQEAgaW50
+IGk5MTVfZ2VtZnNfaW5pdChzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqaTkxNSkKPiA+ICAgICAg
+ICAgICAgICAgICByZXR1cm4gLUVOT0RFVjsKPiA+ICAKPiA+ICAgICAgICAgZ2VtZnMgPSBrZXJu
+X21vdW50KHR5cGUpOwo+IAo+IExvb2tpbmcgYXJvdW5kLCBpdCBsb29rcyBsaWtlIHdlIGFsd2F5
+cyBuZWVkIHRvIGRyb3AgdHlwZSBhZnRlcgo+IG1vdW50aW5nLiBTaG91bGQgdGhlCj4gICAgICAg
+ICBwdXRfZmlsZXN5c3RlbSh0eXBlKTsKPiBiZSBoZXJlIGluc3RlYWQ/Cj4gCj4gQW55d2F5LCBu
+aWNlIGNhdGNoLgoKU2lnaC4gcHV0X2ZpbGVzeXN0ZW0oKSBpcyBwYXJ0IG9mIGZzIGludGVybmFs
+cy4gSSdkIGJlIHRlbXB0ZWQgdG8gYWRkCgpzdGF0aWMgdm9pZCBwdXRfZmlsZXN5c3RlbShzdHJ1
+Y3QgZmlsZV9zeXN0ZW1fdHlwZSAqZnMpCnsKCW1vZHVsZV9wdXQoZnMtPm93bmVyKTsKfQoKYW5k
+IGNjIHRoYXQgZm9yIHN0YWJsZS4gQW5kIHNlbmQgYSBwYXRjaCB0byBhZGQgRVhQT1JUX1NZTUJP
+TCBhbmQgcXVldWUKaXQgZm9yIHJlbW92YWwuIE9yIGp1c3QgaWdub3JlIHRoZSBzdGFibGVAIHNp
+bmNlIGl0J3MgdW5saWtlbHkgdG8gYmUKZXZlciBtZXQgaW4gdGhlIHdpbGQgYW5kIGp1c3QgcmVx
+dWVzdCB0aGUgRVhQT1JUX1NZTUJPTC4KLUNocmlzCl9fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxp
+c3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFu
+L2xpc3RpbmZvL2ludGVsLWdmeA==
