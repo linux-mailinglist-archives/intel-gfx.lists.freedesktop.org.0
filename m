@@ -2,33 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 22351810BB
-	for <lists+intel-gfx@lfdr.de>; Mon,  5 Aug 2019 06:15:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5392781212
+	for <lists+intel-gfx@lfdr.de>; Mon,  5 Aug 2019 08:04:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 542D889B3C;
-	Mon,  5 Aug 2019 04:15:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AE02689FED;
+	Mon,  5 Aug 2019 06:04:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mx1.suse.de (mx2.suse.de [195.135.220.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8244D89B3C;
- Mon,  5 Aug 2019 04:15:31 +0000 (UTC)
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-Received: from relay2.suse.de (unknown [195.135.220.254])
- by mx1.suse.de (Postfix) with ESMTP id 56732ACC1;
- Mon,  5 Aug 2019 04:15:29 +0000 (UTC)
-To: john.hubbard@gmail.com, Andrew Morton <akpm@linux-foundation.org>
-References: <20190804224915.28669-1-jhubbard@nvidia.com>
- <20190804224915.28669-21-jhubbard@nvidia.com>
-From: Juergen Gross <jgross@suse.com>
-Message-ID: <82afb221-52a2-b399-46f5-0ee1f21c3417@suse.com>
-Date: Mon, 5 Aug 2019 06:15:27 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7EE9B89FED
+ for <intel-gfx@lists.freedesktop.org>; Mon,  5 Aug 2019 06:04:10 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 04 Aug 2019 23:04:10 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.64,348,1559545200"; 
+ d="scan'208,217";a="164555289"
+Received: from fmsmsx103.amr.corp.intel.com ([10.18.124.201])
+ by orsmga007.jf.intel.com with ESMTP; 04 Aug 2019 23:04:09 -0700
+Received: from fmsmsx111.amr.corp.intel.com (10.18.116.5) by
+ FMSMSX103.amr.corp.intel.com (10.18.124.201) with Microsoft SMTP Server (TLS)
+ id 14.3.439.0; Sun, 4 Aug 2019 23:03:59 -0700
+Received: from shsmsx108.ccr.corp.intel.com (10.239.4.97) by
+ fmsmsx111.amr.corp.intel.com (10.18.116.5) with Microsoft SMTP Server (TLS)
+ id 14.3.439.0; Sun, 4 Aug 2019 23:03:58 -0700
+Received: from shsmsx104.ccr.corp.intel.com ([169.254.5.112]) by
+ SHSMSX108.ccr.corp.intel.com ([169.254.8.163]) with mapi id 14.03.0439.000;
+ Mon, 5 Aug 2019 14:03:57 +0800
+From: "Yang, Dong" <dong.yang@intel.com>
+To: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Thread-Topic: patc push failed
+Thread-Index: AdVLUy8ea1FZ1ClfQpapAgQLySIstg==
+Date: Mon, 5 Aug 2019 06:03:56 +0000
+Message-ID: <CFEFE6A4B6B19549BBA2CEC86E99FAA03619D71C@SHSMSX104.ccr.corp.intel.com>
+Accept-Language: zh-CN, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ctpclassification: CTP_NT
+x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiYTU4N2Q5NGUtOTMzNS00ZmFhLWFmNmQtYzM3ZTU2ZWI1YTQ4IiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX05UIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE3LjEwLjE4MDQuNDkiLCJUcnVzdGVkTGFiZWxIYXNoIjoia3RCdGE4bzc0bzBzZVlsN2p6MlN3SGtqcmp1RmhMRHZlYUkyUHBaRncxU1E1VVlMVGlhRGp6dVZrcFU1RFhDcSJ9
+dlp-product: dlpe-windows
+dlp-version: 11.0.400.15
+dlp-reaction: no-action
+x-originating-ip: [10.239.127.40]
 MIME-Version: 1.0
-In-Reply-To: <20190804224915.28669-21-jhubbard@nvidia.com>
-Content-Language: de-DE
-Subject: Re: [Intel-gfx] [PATCH v2 20/34] xen: convert put_page() to
- put_user_page*()
+Subject: [Intel-gfx] patc push failed
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -41,46 +61,159 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-fbdev@vger.kernel.org, Jan Kara <jack@suse.cz>, kvm@vger.kernel.org,
- Boris Ostrovsky <boris.ostrovsky@oracle.com>,
- Dave Hansen <dave.hansen@linux.intel.com>, Dave Chinner <david@fromorbit.com>,
- dri-devel@lists.freedesktop.org, linux-mm@kvack.org,
- sparclinux@vger.kernel.org, Ira Weiny <ira.weiny@intel.com>,
- Dan Williams <dan.j.williams@intel.com>, devel@driverdev.osuosl.org,
- rds-devel@oss.oracle.com, linux-rdma@vger.kernel.org, x86@kernel.org,
- amd-gfx@lists.freedesktop.org, Christoph Hellwig <hch@infradead.org>,
- Jason Gunthorpe <jgg@ziepe.ca>, xen-devel@lists.xenproject.org,
- devel@lists.orangefs.org, linux-media@vger.kernel.org,
- John Hubbard <jhubbard@nvidia.com>, intel-gfx@lists.freedesktop.org,
- linux-block@vger.kernel.org,
- =?UTF-8?B?SsOpcsO0bWUgR2xpc3Nl?= <jglisse@redhat.com>,
- linux-rpi-kernel@lists.infradead.org, ceph-devel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-nfs@vger.kernel.org,
- netdev@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>,
- linux-xfs@vger.kernel.org, linux-crypto@vger.kernel.org,
- linux-fsdevel@vger.kernel.org
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Type: multipart/mixed; boundary="===============1960326759=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gMDUuMDguMTkgMDA6NDksIGpvaG4uaHViYmFyZEBnbWFpbC5jb20gd3JvdGU6Cj4gRnJvbTog
-Sm9obiBIdWJiYXJkIDxqaHViYmFyZEBudmlkaWEuY29tPgo+IAo+IEZvciBwYWdlcyB0aGF0IHdl
-cmUgcmV0YWluZWQgdmlhIGdldF91c2VyX3BhZ2VzKigpLCByZWxlYXNlIHRob3NlIHBhZ2VzCj4g
-dmlhIHRoZSBuZXcgcHV0X3VzZXJfcGFnZSooKSByb3V0aW5lcywgaW5zdGVhZCBvZiB2aWEgcHV0
-X3BhZ2UoKSBvcgo+IHJlbGVhc2VfcGFnZXMoKS4KPiAKPiBUaGlzIGlzIHBhcnQgYSB0cmVlLXdp
-ZGUgY29udmVyc2lvbiwgYXMgZGVzY3JpYmVkIGluIGNvbW1pdCBmYzFkOGU3Y2NhMmQKPiAoIm1t
-OiBpbnRyb2R1Y2UgcHV0X3VzZXJfcGFnZSooKSwgcGxhY2Vob2xkZXIgdmVyc2lvbnMiKS4KPiAK
-PiBUaGlzIGFsc28gaGFuZGxlcyBwYWdlc1tpXSA9PSBOVUxMIGNhc2VzLCB0aGFua3MgdG8gYW4g
-YXBwcm9hY2gKPiB0aGF0IGlzIGFjdHVhbGx5IHdyaXR0ZW4gYnkgSnVlcmdlbiBHcm9zcy4KPiAK
-PiBTaWduZWQtb2ZmLWJ5OiBKdWVyZ2VuIEdyb3NzIDxqZ3Jvc3NAc3VzZS5jb20+Cj4gU2lnbmVk
-LW9mZi1ieTogSm9obiBIdWJiYXJkIDxqaHViYmFyZEBudmlkaWEuY29tPgo+IAo+IENjOiBCb3Jp
-cyBPc3Ryb3Zza3kgPGJvcmlzLm9zdHJvdnNreUBvcmFjbGUuY29tPgo+IENjOiB4ZW4tZGV2ZWxA
-bGlzdHMueGVucHJvamVjdC5vcmcKPiAtLS0KPiAKPiBIaSBKdWVyZ2VuLAo+IAo+IFNheSwgdGhp
-cyBpcyAqZXhhY3RseSogd2hhdCB5b3UgcHJvcG9zZWQgaW4geW91ciBndXAucGF0Y2gsIHNvCj4g
-SSd2ZSBzcGVjdWxhdGl2ZWx5IGFkZGVkIHlvdXIgU2lnbmVkLW9mZi1ieSBhYm92ZSwgYnV0IG5l
-ZWQgeW91cgo+IGFwcHJvdmFsIGJlZm9yZSB0aGF0J3MgZmluYWwuIExldCBtZSBrbm93IHBsZWFz
-ZS4uLgoKWWVzLCB0aGF0J3MgZmluZSB3aXRoIG1lLgoKCkp1ZXJnZW4KX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJ
-bnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Au
-b3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
+--===============1960326759==
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_CFEFE6A4B6B19549BBA2CEC86E99FAA03619D71CSHSMSX104ccrcor_"
+
+--_000_CFEFE6A4B6B19549BBA2CEC86E99FAA03619D71CSHSMSX104ccrcor_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+Hi,
+
+I have clone the drm-intel code-base, after I apply my patch locally and I =
+want upstream the patch, but it report error:
+fatal: unable to access 'https://anongit.freedesktop.org/git/drm-intel.git/=
+': The requested URL returned error: 403
+
+I use git clone to clone the code-base:
+git clone https://anongit.freedesktop.org/git/drm-intel.git
+
+and git push to upstream the patch.
+
+Anybody can help to tell me what wrong?
+
+Best Regards,
+Dong
+
+
+--_000_CFEFE6A4B6B19549BBA2CEC86E99FAA03619D71CSHSMSX104ccrcor_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:SimSun;
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:"Intel Clear Light";
+	panose-1:2 11 4 4 2 2 3 2 2 4;}
+@font-face
+	{font-family:"\601D\6E90\9ED1\4F53 CN Normal";
+	panose-1:2 11 4 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:SimSun;
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+@font-face
+	{font-family:"\@\601D\6E90\9ED1\4F53 CN Normal";
+	panose-1:2 11 4 0 0 0 0 0 0 0;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Intel Clear Light",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.25in 1.0in 1.25in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Intel Clear Light&q=
+uot;,sans-serif">Hi,<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Intel Clear Light&q=
+uot;,sans-serif"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Intel Clear Light&q=
+uot;,sans-serif">I have clone the drm-intel code-base, after I apply my pat=
+ch locally and I want upstream the patch, but it report error:<o:p></o:p></=
+span></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Intel Clear Light&q=
+uot;,sans-serif">fatal: unable to access 'https://anongit.freedesktop.org/g=
+it/drm-intel.git/': The requested URL returned error: 403<o:p></o:p></span>=
+</p>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Intel Clear Light&q=
+uot;,sans-serif"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Intel Clear Light&q=
+uot;,sans-serif">I use git clone to clone the code-base:<o:p></o:p></span><=
+/p>
+<p class=3D"MsoNormal">git clone <a href=3D"https://anongit.freedesktop.org=
+/git/drm-intel.git" title=3D"drm-intel Git repository">
+<span style=3D"font-size:10.0pt;font-family:&quot;Arial&quot;,sans-serif;co=
+lor:black;background:white;text-decoration:none">https://anongit.freedeskto=
+p.org/git/drm-intel.git</span></a><o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Intel Clear Light&q=
+uot;,sans-serif"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Intel Clear Light&q=
+uot;,sans-serif">and git push to upstream the patch.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Intel Clear Light&q=
+uot;,sans-serif"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Intel Clear Light&q=
+uot;,sans-serif">Anybody can help to tell me what wrong?<o:p></o:p></span><=
+/p>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Intel Clear Light&q=
+uot;,sans-serif"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Intel Clear Light&q=
+uot;,sans-serif">Best Regards,<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Intel Clear Light&q=
+uot;,sans-serif">Dong<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+</body>
+</html>
+
+--_000_CFEFE6A4B6B19549BBA2CEC86E99FAA03619D71CSHSMSX104ccrcor_--
+
+--===============1960326759==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
+IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
+
+--===============1960326759==--
