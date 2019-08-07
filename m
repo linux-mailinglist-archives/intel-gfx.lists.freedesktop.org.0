@@ -1,42 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D811F842DD
-	for <lists+intel-gfx@lfdr.de>; Wed,  7 Aug 2019 05:21:27 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6749B84306
+	for <lists+intel-gfx@lfdr.de>; Wed,  7 Aug 2019 05:48:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C5BB06E5DE;
-	Wed,  7 Aug 2019 03:21:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B67506E5E8;
+	Wed,  7 Aug 2019 03:48:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from ozlabs.org (bilbo.ozlabs.org [203.11.71.1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 031E86E5DE;
- Wed,  7 Aug 2019 03:21:25 +0000 (UTC)
-Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
- SHA256) (No client certificate requested)
- by mail.ozlabs.org (Postfix) with ESMTPSA id 463GxZ5nJlz9sNm;
- Wed,  7 Aug 2019 13:21:22 +1000 (AEST)
-Date: Wed, 7 Aug 2019 13:21:22 +1000
-From: Stephen Rothwell <sfr@canb.auug.org.au>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>, Intel Graphics
- <intel-gfx@lists.freedesktop.org>, DRI <dri-devel@lists.freedesktop.org>,
- Alex Deucher <alexdeucher@gmail.com>
-Message-ID: <20190807132122.698277b3@canb.auug.org.au>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id C20956E5E6;
+ Wed,  7 Aug 2019 03:48:49 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id BA99DA00FE;
+ Wed,  7 Aug 2019 03:48:49 +0000 (UTC)
 MIME-Version: 1.0
-X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=canb.auug.org.au; s=201702; t=1565148083;
- bh=Zj56/N6J9SqSEYqx4TFSlTMJwiW/FCBC7anYs5vZGTE=;
- h=Date:From:To:Cc:Subject:From;
- b=Cr8l9KKSRD1cgAFy73xZ6XxjUMfZf0bzV6yACwmcV1XhGCyHVlNCxBhFw3gpar14Y
- Nn4ZILYLnI64wGUrFMOnAxk75JU0XoQjDPDRA3aIUCH5Z0IsolOZIOUb8HtHw6GWBX
- UL2ji/Z/KWyG2qH7HQRlAmfwjHP1cQYkEF0cyw8yffl8EsAVojwT0MYU0GbdoJR+Zt
- Jm7PT5O5Pf1HqdRh2Y2I0Y+8+DCk9elrAZXpDcjC6CeC85EhOUFzIjscovAhAKMcGY
- hAWjZY01KSl3Oectk9Niod6S5Giwj4V2MBi0+pWarxbCEX4k2S5j6w98pAzhV1NRTC
- 1Ojq2muakB/tg==
-Subject: [Intel-gfx] linux-next: build failure after merge of the drm-misc
- tree
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Stephen Rothwell" <sfr@canb.auug.org.au>
+Date: Wed, 07 Aug 2019 03:48:49 -0000
+Message-ID: <20190807034849.1119.21041@emeril.freedesktop.org>
+References: <20190807132122.698277b3@canb.auug.org.au>
+X-Patchwork-Hint: ignore
+In-Reply-To: <20190807132122.698277b3@canb.auug.org.au>
+Subject: [Intel-gfx] =?utf-8?q?=E2=9C=97_Fi=2ECI=2EBAT=3A_failure_for_linu?=
+ =?utf-8?q?x-next=3A_build_failure_after_merge_of_the_drm-misc_tree?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -49,122 +38,26 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Felix Kuehling <Felix.Kuehling@amd.com>,
- Linux Next Mailing List <linux-next@vger.kernel.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- Gerd Hoffmann <kraxel@redhat.com>
-Content-Type: multipart/mixed; boundary="===============1245928305=="
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1245928305==
-Content-Type: multipart/signed; boundary="Sig_/CDHrW63E0.twJ01h6XrsSgb";
- protocol="application/pgp-signature"; micalg=pgp-sha256
-
---Sig_/CDHrW63E0.twJ01h6XrsSgb
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
-
-Hi all,
-
-After merging the drm-misc tree, today's linux-next build (x86_64
-allmodconfig) failed like this:
-
-drivers/gpu/drm/amd/amdgpu/amdgpu_object.c: In function 'amdgpu_bo_release_=
-notify':
-drivers/gpu/drm/amd/amdgpu/amdgpu_object.c:1245:28: error: 'struct ttm_buff=
-er_object' has no member named 'resv'
-  reservation_object_lock(bo->resv, NULL);
-                            ^~
-drivers/gpu/drm/amd/amdgpu/amdgpu_object.c:1247:47: error: 'struct ttm_buff=
-er_object' has no member named 'resv'
-  r =3D amdgpu_fill_buffer(abo, AMDGPU_POISON, bo->resv, &fence);
-                                               ^~
-drivers/gpu/drm/amd/amdgpu/amdgpu_object.c:1253:30: error: 'struct ttm_buff=
-er_object' has no member named 'resv'
-  reservation_object_unlock(bo->resv);
-                              ^~
-
-Caused by commit
-
-  5a5011a72489 ("drm/amdgpu: switch driver from bo->resv to bo->base.resv")
-
-interacting with commit
-
-  ab2f7a5c18b5 ("drm/amdgpu: Implement VRAM wipe on release")
-
-from the amdgpu tree.
-
-I have added the following patch for today:
-
-From: Stephen Rothwell <sfr@canb.auug.org.au>
-Date: Wed, 7 Aug 2019 13:17:54 +1000
-Subject: [PATCH] drm/amdgpu: fix up for "drm/amdgpu: switch driver from bo-=
->resv to bo->base.resv"
-
-Signed-off-by: Stephen Rothwell <sfr@canb.auug.org.au>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_object.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
-
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c b/drivers/gpu/drm/a=
-md/amdgpu/amdgpu_object.c
-index b2c03be51c29..2d07f16f1789 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
-@@ -1242,15 +1242,15 @@ void amdgpu_bo_release_notify(struct ttm_buffer_obj=
-ect *bo)
- 	    !(abo->flags & AMDGPU_GEM_CREATE_VRAM_WIPE_ON_RELEASE))
- 		return;
-=20
--	reservation_object_lock(bo->resv, NULL);
-+	reservation_object_lock(bo->base.resv, NULL);
-=20
--	r =3D amdgpu_fill_buffer(abo, AMDGPU_POISON, bo->resv, &fence);
-+	r =3D amdgpu_fill_buffer(abo, AMDGPU_POISON, bo->base.resv, &fence);
- 	if (!WARN_ON(r)) {
- 		amdgpu_bo_fence(abo, fence, false);
- 		dma_fence_put(fence);
- 	}
-=20
--	reservation_object_unlock(bo->resv);
-+	reservation_object_unlock(bo->base.resv);
- }
-=20
- /**
---=20
-2.20.1
-
---=20
-Cheers,
-Stephen Rothwell
-
---Sig_/CDHrW63E0.twJ01h6XrsSgb
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAl1KQ7IACgkQAVBC80lX
-0Gx9xQgAnT0UG7gTC4SWsKJsckbfUk5lxfcwSny+VZR29NGb3WjT4YzhiU/Xnbdw
-J5Ifvhnu8JGxHQgv+/0x/2tE1jfK7LssrRYXbzu/0KVfgOLIe1IGEJ3a+rxoIM7x
-QShhok2gWudajNFMdS3zD66JDVk/u/F0hvduM4SQSBES1fEwqFSbZWbQecol4OTm
-RSfLRGcyZhpvRqbuI2xTHloswHQHsRFSU6f3EGwaClQnEdYJFiUV2E7rGGROd7QP
-fXTY08hV0wUOdAuoBFRJRyNakaoAK/Qe1LprR4uG4FCyWo+Q/E6xOJ5AchhHCHC5
-onh3r3kitOFYGwOANgcbPldfVYHsuQ==
-=OTBj
------END PGP SIGNATURE-----
-
---Sig_/CDHrW63E0.twJ01h6XrsSgb--
-
---===============1245928305==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
-IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
-
---===============1245928305==--
+PT0gU2VyaWVzIERldGFpbHMgPT0KClNlcmllczogbGludXgtbmV4dDogYnVpbGQgZmFpbHVyZSBh
+ZnRlciBtZXJnZSBvZiB0aGUgZHJtLW1pc2MgdHJlZQpVUkwgICA6IGh0dHBzOi8vcGF0Y2h3b3Jr
+LmZyZWVkZXNrdG9wLm9yZy9zZXJpZXMvNjQ4MDkvClN0YXRlIDogZmFpbHVyZQoKPT0gU3VtbWFy
+eSA9PQoKQXBwbHlpbmc6IGxpbnV4LW5leHQ6IGJ1aWxkIGZhaWx1cmUgYWZ0ZXIgbWVyZ2Ugb2Yg
+dGhlIGRybS1taXNjIHRyZWUKZXJyb3I6IHNoYTEgaW5mb3JtYXRpb24gaXMgbGFja2luZyBvciB1
+c2VsZXNzIChkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfb2JqZWN0LmMpLgplcnJv
+cjogY291bGQgbm90IGJ1aWxkIGZha2UgYW5jZXN0b3IKaGludDogVXNlICdnaXQgYW0gLS1zaG93
+LWN1cnJlbnQtcGF0Y2gnIHRvIHNlZSB0aGUgZmFpbGVkIHBhdGNoClBhdGNoIGZhaWxlZCBhdCAw
+MDAxIGxpbnV4LW5leHQ6IGJ1aWxkIGZhaWx1cmUgYWZ0ZXIgbWVyZ2Ugb2YgdGhlIGRybS1taXNj
+IHRyZWUKV2hlbiB5b3UgaGF2ZSByZXNvbHZlZCB0aGlzIHByb2JsZW0sIHJ1biAiZ2l0IGFtIC0t
+Y29udGludWUiLgpJZiB5b3UgcHJlZmVyIHRvIHNraXAgdGhpcyBwYXRjaCwgcnVuICJnaXQgYW0g
+LS1za2lwIiBpbnN0ZWFkLgpUbyByZXN0b3JlIHRoZSBvcmlnaW5hbCBicmFuY2ggYW5kIHN0b3Ag
+cGF0Y2hpbmcsIHJ1biAiZ2l0IGFtIC0tYWJvcnQiLgoKX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhA
+bGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxt
+YW4vbGlzdGluZm8vaW50ZWwtZ2Z4
