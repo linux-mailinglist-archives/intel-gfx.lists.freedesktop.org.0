@@ -2,29 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C6F484753
-	for <lists+intel-gfx@lfdr.de>; Wed,  7 Aug 2019 10:28:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0FB7C8479B
+	for <lists+intel-gfx@lfdr.de>; Wed,  7 Aug 2019 10:37:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 97FB86E69F;
-	Wed,  7 Aug 2019 08:28:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8F686894B7;
+	Wed,  7 Aug 2019 08:37:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A71AA6E680
- for <intel-gfx@lists.freedesktop.org>; Wed,  7 Aug 2019 08:28:09 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A45E3896DD
+ for <intel-gfx@lists.freedesktop.org>; Wed,  7 Aug 2019 08:37:17 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 17913914-1500050 
- for multiple; Wed, 07 Aug 2019 09:28:03 +0100
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 17914067-1500050 
+ for multiple; Wed, 07 Aug 2019 09:37:04 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed,  7 Aug 2019 09:28:01 +0100
-Message-Id: <20190807082801.19398-1-chris@chris-wilson.co.uk>
+Date: Wed,  7 Aug 2019 09:37:00 +0100
+Message-Id: <20190807083702.16349-1-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.23.0.rc1
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915: Rename engines with to match their
- user interface
+Subject: [Intel-gfx] [PATCH 1/3] drm/i915: Rename engines with to match
+ their user interface
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -60,7 +60,7 @@ ICB8ICAyICsrCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9zZWxmdGVzdF9lbmdpbmVfY3MuYyB8
 IDE5ICsrKysrLS0tLS0KIDQgZmlsZXMgY2hhbmdlZCwgMzcgaW5zZXJ0aW9ucygrKSwgNDIgZGVs
 ZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfZW5n
 aW5lX2NzLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRlbF9lbmdpbmVfY3MuYwppbmRl
-eCA1NzQ4MDc5ZWJjZTIuLmI1N2FkYzk3M2UyYSAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJt
+eCBkMGJlZmQ2YzAyM2EuLmQzOGMxMTRiMDk2NCAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJt
 L2k5MTUvZ3QvaW50ZWxfZW5naW5lX2NzLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3Qv
 aW50ZWxfZW5naW5lX2NzLmMKQEAgLTU1LDMwICs1NSw2IEBACiAKICNkZWZpbmUgR0VOOF9MUl9D
 T05URVhUX09USEVSX1NJWkUJKCAyICogUEFHRV9TSVpFKQogCi1zdHJ1Y3QgZW5naW5lX2NsYXNz
