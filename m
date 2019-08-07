@@ -2,32 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 035F484476
-	for <lists+intel-gfx@lfdr.de>; Wed,  7 Aug 2019 08:30:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 882D184587
+	for <lists+intel-gfx@lfdr.de>; Wed,  7 Aug 2019 09:19:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1F07189C9A;
-	Wed,  7 Aug 2019 06:30:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5D6866E61D;
+	Wed,  7 Aug 2019 07:19:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from verein.lst.de (verein.lst.de [213.95.11.211])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CF67089C9A;
- Wed,  7 Aug 2019 06:30:10 +0000 (UTC)
-Received: by verein.lst.de (Postfix, from userid 2407)
- id 662B368B05; Wed,  7 Aug 2019 08:30:03 +0200 (CEST)
-Date: Wed, 7 Aug 2019 08:30:02 +0200
-From: Christoph Hellwig <hch@lst.de>
-To: Hugh Dickins <hughd@google.com>
-Message-ID: <20190807063002.GG6627@lst.de>
-References: <20190805160307.5418-1-sergey.senozhatsky@gmail.com>
- <20190805160307.5418-3-sergey.senozhatsky@gmail.com>
- <20190805181255.GH1131@ZenIV.linux.org.uk>
- <20190805182834.GI1131@ZenIV.linux.org.uk>
- <alpine.LSU.2.11.1908060007190.1941@eggly.anvils>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 12CF06E61F;
+ Wed,  7 Aug 2019 07:19:43 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 07 Aug 2019 00:19:42 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.64,356,1559545200"; d="scan'208";a="176880179"
+Received: from paasikivi.fi.intel.com ([10.237.72.42])
+ by orsmga003.jf.intel.com with ESMTP; 07 Aug 2019 00:19:32 -0700
+Received: by paasikivi.fi.intel.com (Postfix, from userid 1000)
+ id 9980B202CC; Wed,  7 Aug 2019 10:20:07 +0300 (EEST)
+Date: Wed, 7 Aug 2019 10:20:07 +0300
+From: Sakari Ailus <sakari.ailus@linux.intel.com>
+To: john.hubbard@gmail.com
+Message-ID: <20190807072007.GG21370@paasikivi.fi.intel.com>
+References: <20190807013340.9706-1-jhubbard@nvidia.com>
+ <20190807013340.9706-12-jhubbard@nvidia.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <alpine.LSU.2.11.1908060007190.1941@eggly.anvils>
-User-Agent: Mutt/1.5.17 (2007-11-01)
-Subject: Re: [Intel-gfx] [PATCHv2 2/3] i915: convert to new mount API
+In-Reply-To: <20190807013340.9706-12-jhubbard@nvidia.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH v3 11/41] media/v4l2-core/mm: convert
+ put_page() to put_user_page*()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -40,31 +48,48 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org, David Airlie <airlied@linux.ie>,
- intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- David Howells <dhowells@redhat.com>,
- Sergey Senozhatsky <sergey.senozhatsky@gmail.com>,
- Al Viro <viro@zeniv.linux.org.uk>, linux-fsdevel@vger.kernel.org,
- Christoph Hellwig <hch@lst.de>
+Cc: linux-fbdev@vger.kernel.org, Jan Kara <jack@suse.cz>, kvm@vger.kernel.org,
+ Dave Hansen <dave.hansen@linux.intel.com>, Dave Chinner <david@fromorbit.com>,
+ dri-devel@lists.freedesktop.org, linux-mm@kvack.org,
+ sparclinux@vger.kernel.org, Ira Weiny <ira.weiny@intel.com>,
+ Dan Williams <dan.j.williams@intel.com>, devel@driverdev.osuosl.org,
+ rds-devel@oss.oracle.com, linux-rdma@vger.kernel.org, x86@kernel.org,
+ amd-gfx@lists.freedesktop.org, Christoph Hellwig <hch@infradead.org>,
+ Jason Gunthorpe <jgg@ziepe.ca>, Hans Verkuil <hans.verkuil@cisco.com>,
+ xen-devel@lists.xenproject.org, devel@lists.orangefs.org,
+ linux-media@vger.kernel.org, Kees Cook <keescook@chromium.org>,
+ John Hubbard <jhubbard@nvidia.com>, intel-gfx@lists.freedesktop.org,
+ linux-block@vger.kernel.org,
+ =?iso-8859-1?B?Suly9G1l?= Glisse <jglisse@redhat.com>,
+ linux-rpi-kernel@lists.infradead.org, ceph-devel@vger.kernel.org,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ linux-arm-kernel@lists.infradead.org, linux-nfs@vger.kernel.org,
+ netdev@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>,
+ Souptick Joarder <jrdr.linux@gmail.com>, linux-xfs@vger.kernel.org,
+ linux-crypto@vger.kernel.org, linux-fsdevel@vger.kernel.org,
+ Andrew Morton <akpm@linux-foundation.org>, Robin Murphy <robin.murphy@arm.com>
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gVHVlLCBBdWcgMDYsIDIwMTkgYXQgMTI6NTA6MTBBTSAtMDcwMCwgSHVnaCBEaWNraW5zIHdy
-b3RlOgo+IFRob3VnaCBwZXJzb25hbGx5IEknbSBhdmVyc2UgdG8gbWFuYWdpbmcgImYib2JqZWN0
-cyB0aHJvdWdoCj4gIm0iaW50ZXJmYWNlcywgd2hpY2ggY2FuIGdldCByaWRpY3Vsb3VzIChub3Rh
-Ymx5LCBNQURWX0hVR0VQQUdFIHdvcmtzCj4gb24gdGhlIHZpcnR1YWwgYWRkcmVzcyBvZiBhIG1h
-cHBpbmcsIGJ1dCB0aGUgaHVnZS1vci1ub3QgYWxpZ25tZW50IG9mCj4gdGhhdCBtYXBwaW5nIG11
-c3QgaGF2ZSBiZWVuIGRlY2lkZWQgcHJldmlvdXNseSkuICBJbiBHb29nbGUgd2UgZG8gdXNlCj4g
-ZmNudGxzIEZfSFVHRVBBR0UgYW5kIEZfTk9IVUdFUEFHRSB0byBvdmVycmlkZSBvbiBhIHBlci1m
-aWxlIGJhc2lzIC0KPiBvbmUgZGF5IEknbGwgZ2V0IHRvIHVwc3RyZWFtaW5nIHRob3NlLgoKU3Vj
-aCBhbiBpbnRlcmZhY2Ugc2VlbXMgdmVyeSB1c2VmdWwsIGFsdGhvdWdoIHRoZSB0d28gZmNudGxz
-IHNlZW0gYSBiaXQKb2RkLgoKQnV0IEkgdGhpbmsgdGhlIHBvaW50IGhlcmUgaXMgdGhhdCB0aGUg
-aTkxNSBoYXMgaXRzIG93biBzb21ld2hhdCBvZGQKaW5zdGFuY2Ugb2YgdG1wZnMuICBJZiB3ZSBj
-b3VsZCBwYXNzIHRoZSBlcXVpdmFsZW50IG9mIHRoZSBodWdlPSoKb3B0aW9ucyB0byBzaG1lbV9m
-aWxlX3NldHVwIGFsbCB0aGF0IGdhcmJhZ2UgKGluY2x1ZGluZyB0aGUKc2htZW1fZmlsZV9zZXR1
-cF93aXRoX21udCBmdW5jdGlvbikgY291bGQgZ28gYXdheS4KX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1n
-ZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21h
-aWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
+T24gVHVlLCBBdWcgMDYsIDIwMTkgYXQgMDY6MzM6MTBQTSAtMDcwMCwgam9obi5odWJiYXJkQGdt
+YWlsLmNvbSB3cm90ZToKPiBGcm9tOiBKb2huIEh1YmJhcmQgPGpodWJiYXJkQG52aWRpYS5jb20+
+Cj4gCj4gRm9yIHBhZ2VzIHRoYXQgd2VyZSByZXRhaW5lZCB2aWEgZ2V0X3VzZXJfcGFnZXMqKCks
+IHJlbGVhc2UgdGhvc2UgcGFnZXMKPiB2aWEgdGhlIG5ldyBwdXRfdXNlcl9wYWdlKigpIHJvdXRp
+bmVzLCBpbnN0ZWFkIG9mIHZpYSBwdXRfcGFnZSgpIG9yCj4gcmVsZWFzZV9wYWdlcygpLgo+IAo+
+IFRoaXMgaXMgcGFydCBhIHRyZWUtd2lkZSBjb252ZXJzaW9uLCBhcyBkZXNjcmliZWQgaW4gY29t
+bWl0IGZjMWQ4ZTdjY2EyZAo+ICgibW06IGludHJvZHVjZSBwdXRfdXNlcl9wYWdlKigpLCBwbGFj
+ZWhvbGRlciB2ZXJzaW9ucyIpLgo+IAo+IENjOiBNYXVybyBDYXJ2YWxobyBDaGVoYWIgPG1jaGVo
+YWJAa2VybmVsLm9yZz4KPiBDYzogS2VlcyBDb29rIDxrZWVzY29va0BjaHJvbWl1bS5vcmc+Cj4g
+Q2M6IEhhbnMgVmVya3VpbCA8aGFucy52ZXJrdWlsQGNpc2NvLmNvbT4KPiBDYzogU2FrYXJpIEFp
+bHVzIDxzYWthcmkuYWlsdXNAbGludXguaW50ZWwuY29tPgo+IENjOiBKYW4gS2FyYSA8amFja0Bz
+dXNlLmN6Pgo+IENjOiBSb2JpbiBNdXJwaHkgPHJvYmluLm11cnBoeUBhcm0uY29tPgo+IENjOiBT
+b3VwdGljayBKb2FyZGVyIDxqcmRyLmxpbnV4QGdtYWlsLmNvbT4KPiBDYzogRGFuIFdpbGxpYW1z
+IDxkYW4uai53aWxsaWFtc0BpbnRlbC5jb20+Cj4gQ2M6IGxpbnV4LW1lZGlhQHZnZXIua2VybmVs
+Lm9yZwo+IFNpZ25lZC1vZmYtYnk6IEpvaG4gSHViYmFyZCA8amh1YmJhcmRAbnZpZGlhLmNvbT4K
+CkFja2VkLWJ5OiBTYWthcmkgQWlsdXMgPHNha2FyaS5haWx1c0BsaW51eC5pbnRlbC5jb20+Cgot
+LSAKU2FrYXJpIEFpbHVzCnNha2FyaS5haWx1c0BsaW51eC5pbnRlbC5jb20KX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlz
+dApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0
+b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
