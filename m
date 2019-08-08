@@ -1,38 +1,37 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D17B4865B2
-	for <lists+intel-gfx@lfdr.de>; Thu,  8 Aug 2019 17:27:15 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 33070865C3
+	for <lists+intel-gfx@lfdr.de>; Thu,  8 Aug 2019 17:29:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 32BFD6E870;
-	Thu,  8 Aug 2019 15:27:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 76B656E87C;
+	Thu,  8 Aug 2019 15:29:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A69386E86D;
- Thu,  8 Aug 2019 15:27:12 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 08 Aug 2019 08:27:12 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.64,361,1559545200"; d="scan'208";a="186384204"
-Received: from gaia.fi.intel.com ([10.237.72.192])
- by orsmga002.jf.intel.com with ESMTP; 08 Aug 2019 08:27:10 -0700
-Received: by gaia.fi.intel.com (Postfix, from userid 1000)
- id 081A85C0569; Thu,  8 Aug 2019 18:26:35 +0300 (EEST)
-From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20190806084939.20203-1-chris@chris-wilson.co.uk>
-References: <20190806081052.11564-1-chris@chris-wilson.co.uk>
- <20190806084939.20203-1-chris@chris-wilson.co.uk>
-Date: Thu, 08 Aug 2019 18:26:35 +0300
-Message-ID: <87imr78yqc.fsf@gaia.fi.intel.com>
+Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net
+ [217.70.183.201])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1D8806E87C;
+ Thu,  8 Aug 2019 15:29:42 +0000 (UTC)
+X-Originating-IP: 88.168.111.231
+Received: from localhost (lpr83-1-88-168-111-231.fbx.proxad.net
+ [88.168.111.231]) (Authenticated sender: maxime.ripard@bootlin.com)
+ by relay8-d.mail.gandi.net (Postfix) with ESMTPSA id 327B91BF206;
+ Thu,  8 Aug 2019 15:29:38 +0000 (UTC)
+Date: Thu, 8 Aug 2019 17:29:38 +0200
+From: Maxime Ripard <maxime.ripard@bootlin.com>
+To: Daniel Vetter <daniel@ffwll.ch>
+Message-ID: <20190808152938.vxdykmx7nio3xdmz@flea>
+References: <20190803104719.gwb6hmreeaqyye6n@flea>
+ <CAPM=9tygocpAnOzJHy3TW2UQc0_6A86e7CpQT1CCMEhWfjzheg@mail.gmail.com>
+ <20190806160146.sj7l5wrrjtt5nhbz@flea>
+ <20190806161132.GC7444@phenom.ffwll.local>
+ <20190807120246.tl4hhztr3qna3qf6@flea>
+ <CAKMK7uF6+qEoJ9StaB=r2P=VGMV8O+DoNhQZvtV0NKKgJxbi2A@mail.gmail.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [igt-dev] [PATCH i-g-t] i915/gem_persistent_relocs:
- Don't call DROP_IDLE in the middle of submitting
+In-Reply-To: <CAKMK7uF6+qEoJ9StaB=r2P=VGMV8O+DoNhQZvtV0NKKgJxbi2A@mail.gmail.com>
+User-Agent: NeoMutt/20180716
+Subject: Re: [Intel-gfx] [PULL] drm-misc-next
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -45,56 +44,102 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: igt-dev@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: "DRM maintainer tools announcements, discussion,
+ and development" <dim-tools@lists.freedesktop.org>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>
+Content-Type: multipart/mixed; boundary="===============0828330883=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Q2hyaXMgV2lsc29uIDxjaHJpc0BjaHJpcy13aWxzb24uY28udWs+IHdyaXRlczoKCj4gVG8gYWN0
-dWFsbHkgRFJPUF9JRExFIG1lYW5zIHRoYXQgd2UgaGF2ZSB0byB3YWl0IGZvciBvbmdvaW5nIHN1
-Ym1pc3Npb24sCj4gYW5kIGFueSBuZXcgY29uY3VycmVudGx5IHN1Ym1pdHRlZCwgaS5lLiBpdCBz
-aG91bGQgb25seSBiZSBjYWxsZWQgZHVyaW5nCj4gc2luZ2xlLXRocmVhZGVkIHN1Ym1pc3Npb24g
-dG8gZW5zdXJlIHRoZSBHUFUgaXMgaWRsZSBiZWZvcmUgdGhlIG5ldwo+IGFjdGlvbi4KPgo+IHYy
-OiBBbHNvIGluY2x1ZGUgU0hSSU5LIGZvciB0aHJhc2gtYWxsLXRoZS10aGluZ3MsIGFuZCBmaW5k
-IGEgZHVwZSBpbgo+IGdlbV9yZWxvY192c19ncHUuCgpBZ3JlZWQgdGhhdCBpcyByYXRoZXIgcG9p
-bnRsZXNzIHRyeWluZyB0byBndWFyYW50ZWUgYW4gaWRsZSBncHUKZHVyaW5nIGEgdGVzdC4KClJl
-dmlld2VkLWJ5OiBNaWthIEt1b3BwYWxhIDxtaWthLmt1b3BwYWxhQGxpbnV4LmludGVsLmNvbT4K
-CkJ1dCBiZXR3ZWVuIGEgdGVzdHMsIGl0IHdpbGwgc2VydmUgYXMgYSBmbHVzaD8KCj4KPiBTaWdu
-ZWQtb2ZmLWJ5OiBDaHJpcyBXaWxzb24gPGNocmlzQGNocmlzLXdpbHNvbi5jby51az4KPiAtLS0K
-PiAgdGVzdHMvaTkxNS9nZW1fcGVyc2lzdGVudF9yZWxvY3MuYyB8IDkgKysrKysrLS0tCj4gIHRl
-c3RzL2k5MTUvZ2VtX3JlbG9jX3ZzX2dwdS5jICAgICAgfCA5ICsrKysrKy0tLQo+ICAyIGZpbGVz
-IGNoYW5nZWQsIDEyIGluc2VydGlvbnMoKyksIDYgZGVsZXRpb25zKC0pCj4KPiBkaWZmIC0tZ2l0
-IGEvdGVzdHMvaTkxNS9nZW1fcGVyc2lzdGVudF9yZWxvY3MuYyBiL3Rlc3RzL2k5MTUvZ2VtX3Bl
-cnNpc3RlbnRfcmVsb2NzLmMKPiBpbmRleCA0NTJmZTY4NmUuLmRmZjRlOWE3NiAxMDA2NDQKPiAt
-LS0gYS90ZXN0cy9pOTE1L2dlbV9wZXJzaXN0ZW50X3JlbG9jcy5jCj4gKysrIGIvdGVzdHMvaTkx
-NS9nZW1fcGVyc2lzdGVudF9yZWxvY3MuYwo+IEBAIC0yODEsMTAgKzI4MSwxMyBAQCBzdGF0aWMg
-dm9pZCBkb19mb3JrZWRfdGVzdChpbnQgZmQsIHVuc2lnbmVkIGZsYWdzKQo+ICAJc3RydWN0IGln
-dF9oZWxwZXJfcHJvY2VzcyB0aHJhc2hlciA9IHt9Owo+ICAKPiAgCWlmIChmbGFncyAmIChUSFJB
-U0ggfCBUSFJBU0hfSU5BQ1RJVkUpKSB7Cj4gLQkJdWludDY0X3QgdmFsID0gKGZsYWdzICYgVEhS
-QVNIX0lOQUNUSVZFKSA/Cj4gLQkJCQkoRFJPUF9SRVRJUkUgfCBEUk9QX0JPVU5EIHwgRFJPUF9V
-TkJPVU5EKSA6IERST1BfQUxMOwo+IC0KPiAgCQlpZ3RfZm9ya19oZWxwZXIoJnRocmFzaGVyKSB7
-Cj4gKwkJCXVpbnQ2NF90IHZhbDsKPiArCj4gKwkJCXZhbCA9IERST1BfUkVUSVJFIHwgRFJPUF9C
-T1VORCB8IERST1BfVU5CT1VORDsKPiArCQkJaWYgKCEoZmxhZ3MgJiBUSFJBU0hfSU5BQ1RJVkUp
-KQo+ICsJCQkJdmFsIHw9IERST1BfQUNUSVZFIHwgRFJPUF9TSFJJTktfQUxMOwo+ICsKPiAgCQkJ
-d2hpbGUgKDEpIHsKPiAgCQkJCXVzbGVlcCgxMDAwKTsKPiAgCQkJCWlndF9kcm9wX2NhY2hlc19z
-ZXQoZmQsIHZhbCk7Cj4gZGlmZiAtLWdpdCBhL3Rlc3RzL2k5MTUvZ2VtX3JlbG9jX3ZzX2dwdS5j
-IGIvdGVzdHMvaTkxNS9nZW1fcmVsb2NfdnNfZ3B1LmMKPiBpbmRleCBkNDIxZTQzNDAuLjMyODcz
-MGE5YiAxMDA2NDQKPiAtLS0gYS90ZXN0cy9pOTE1L2dlbV9yZWxvY192c19ncHUuYwo+ICsrKyBi
-L3Rlc3RzL2k5MTUvZ2VtX3JlbG9jX3ZzX2dwdS5jCj4gQEAgLTI1OCwxMCArMjU4LDEzIEBAIHN0
-YXRpYyB2b2lkIGRvX2ZvcmtlZF90ZXN0KGludCBmZCwgdW5zaWduZWQgZmxhZ3MpCj4gIAkJaWd0
-X3JlcXVpcmVfaGFuZ19yaW5nKGZkLCBJOTE1X0VYRUNfQkxUKTsKPiAgCj4gIAlpZiAoZmxhZ3Mg
-JiAoVEhSQVNIIHwgVEhSQVNIX0lOQUNUSVZFKSkgewo+IC0JCXVpbnQ2NF90IHZhbCA9IChmbGFn
-cyAmIFRIUkFTSF9JTkFDVElWRSkgPwo+IC0JCQkJKERST1BfUkVUSVJFIHwgRFJPUF9CT1VORCB8
-IERST1BfVU5CT1VORCkgOiBEUk9QX0FMTDsKPiAtCj4gIAkJaWd0X2ZvcmtfaGVscGVyKCZ0aHJh
-c2hlcikgewo+ICsJCQl1aW50NjRfdCB2YWw7Cj4gKwo+ICsJCQl2YWwgPSBEUk9QX1JFVElSRSB8
-IERST1BfQk9VTkQgfCBEUk9QX1VOQk9VTkQ7Cj4gKwkJCWlmICghKGZsYWdzICYgVEhSQVNIX0lO
-QUNUSVZFKSkKPiArCQkJCXZhbCB8PSBEUk9QX0FDVElWRSB8IERST1BfU0hSSU5LX0FMTDsKPiAr
-Cj4gIAkJCXdoaWxlICgxKSB7Cj4gIAkJCQl1c2xlZXAoMTAwMCk7Cj4gIAkJCQlpZ3RfZHJvcF9j
-YWNoZXNfc2V0KGZkLCB2YWwpOwo+IC0tIAo+IDIuMjMuMC5yYzEKPgo+IF9fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCj4gaWd0LWRldiBtYWlsaW5nIGxpc3QK
-PiBpZ3QtZGV2QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+IGh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0
-b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaWd0LWRldgpfX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBs
-aXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1h
-bi9saXN0aW5mby9pbnRlbC1nZng=
+
+--===============0828330883==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="tpm5r3tjneldi45c"
+Content-Disposition: inline
+
+
+--tpm5r3tjneldi45c
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+
+Hi,
+
+On Wed, Aug 07, 2019 at 02:30:25PM +0200, Daniel Vetter wrote:
+> On Wed, Aug 7, 2019 at 2:02 PM Maxime Ripard <maxime.ripard@bootlin.com> wrote:
+> > On Tue, Aug 06, 2019 at 06:11:32PM +0200, Daniel Vetter wrote:
+> > > On Tue, Aug 06, 2019 at 06:01:46PM +0200, Maxime Ripard wrote:
+> > > > On Tue, Aug 06, 2019 at 10:33:53AM +1000, Dave Airlie wrote:
+> > > > > On Sat, 3 Aug 2019 at 20:47, Maxime Ripard <maxime.ripard@bootlin.com> wrote:
+> > > > > >
+> > > > > > Hi Daniel, Dave,
+> > > > > >
+> > > > > > Here is the first (and pretty late) drm-misc-next PR.
+> > > > > >
+> > > > > > It's pretty big due to the lateness, but there's nothing really major
+> > > > > > showing up. It's pretty much the usual bunch of reworks, fixes, and
+> > > > > > new helpers being introduced.
+> > > > >
+> > > > > dim: 415d2e9e0757 ("Revert "drm/gem: Rename drm_gem_dumb_map_offset()
+> > > > > to drm_gem_map_offset()""): mandatory review missing.
+> > > > > dim: be855382bacb ("Revert "drm/panfrost: Use drm_gem_map_offset()""):
+> > > > > mandatory review missing.
+> > > > > dim: e4eee93d2577 ("drm/vgem: drop DRM_AUTH usage from the driver"):
+> > > > > mandatory review missing.
+> > > > > dim: 88209d2c5035 ("drm/msm: drop DRM_AUTH usage from the driver"):
+> > > > > mandatory review missing.
+> > > > > dim: ccdae4257569 ("drm/nouveau: remove open-coded drm_invalid_op()"):
+> > > > > mandatory review missing.
+> > > > >
+> > > > > Pretty sure review in drm-misc-next is a rule. I don't even see acks
+> > > > > on most of these.
+> > > >
+> > > > Ugh, sorry for that. I guess I'm still pretty new to the
+> > > > maintainer-side of dim, which commands did you use to check that?
+> > >
+> > > dim apply-pull does this. If all committers use the tooling as they should
+> > > they shouldn't be able to push patches which violate anything here, that's
+> > > why dim request-pull doesn't reject.
+> >
+> > Yeah, sure, I meant to ask if there was anyway to check this before
+> > sending the PR on our end.
+>
+> I think we'd need to create new command. Or maybe we should integrate
+> it as part of the pull request generation, as an information/warning
+> that there might be problems you need to explain. Want to write a dim
+> patch?
+
+I just sent something that should catch that, but considering my
+dim-fu, you probably want to review it :)
+
+Maxime
+
+--
+Maxime Ripard, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
+
+--tpm5r3tjneldi45c
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXUw/4gAKCRDj7w1vZxhR
+xQhZAQDIFh4FiAC2OiEynoM7OgTcLbBRVCAtxnX0wjbRXAmUqQD/VHWeXxKlsWKq
+HA8j4Z84fwIgTw1b3CpyUilEOC13Bwo=
+=2oc6
+-----END PGP SIGNATURE-----
+
+--tpm5r3tjneldi45c--
+
+--===============0828330883==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
+IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
+
+--===============0828330883==--
