@@ -2,36 +2,34 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 33070865C3
-	for <lists+intel-gfx@lfdr.de>; Thu,  8 Aug 2019 17:29:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E6027865DC
+	for <lists+intel-gfx@lfdr.de>; Thu,  8 Aug 2019 17:34:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 76B656E87C;
-	Thu,  8 Aug 2019 15:29:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0C47D6E87E;
+	Thu,  8 Aug 2019 15:34:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net
- [217.70.183.201])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1D8806E87C;
- Thu,  8 Aug 2019 15:29:42 +0000 (UTC)
-X-Originating-IP: 88.168.111.231
-Received: from localhost (lpr83-1-88-168-111-231.fbx.proxad.net
- [88.168.111.231]) (Authenticated sender: maxime.ripard@bootlin.com)
- by relay8-d.mail.gandi.net (Postfix) with ESMTPSA id 327B91BF206;
- Thu,  8 Aug 2019 15:29:38 +0000 (UTC)
-Date: Thu, 8 Aug 2019 17:29:38 +0200
-From: Maxime Ripard <maxime.ripard@bootlin.com>
-To: Daniel Vetter <daniel@ffwll.ch>
-Message-ID: <20190808152938.vxdykmx7nio3xdmz@flea>
-References: <20190803104719.gwb6hmreeaqyye6n@flea>
- <CAPM=9tygocpAnOzJHy3TW2UQc0_6A86e7CpQT1CCMEhWfjzheg@mail.gmail.com>
- <20190806160146.sj7l5wrrjtt5nhbz@flea>
- <20190806161132.GC7444@phenom.ffwll.local>
- <20190807120246.tl4hhztr3qna3qf6@flea>
- <CAKMK7uF6+qEoJ9StaB=r2P=VGMV8O+DoNhQZvtV0NKKgJxbi2A@mail.gmail.com>
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AE6E56E87F;
+ Thu,  8 Aug 2019 15:34:14 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 17932964-1500050 for multiple; Thu, 08 Aug 2019 16:34:12 +0100
 MIME-Version: 1.0
-In-Reply-To: <CAKMK7uF6+qEoJ9StaB=r2P=VGMV8O+DoNhQZvtV0NKKgJxbi2A@mail.gmail.com>
-User-Agent: NeoMutt/20180716
-Subject: Re: [Intel-gfx] [PULL] drm-misc-next
+To: Mika Kuoppala <mika.kuoppala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+From: Chris Wilson <chris@chris-wilson.co.uk>
+In-Reply-To: <87imr78yqc.fsf@gaia.fi.intel.com>
+References: <20190806081052.11564-1-chris@chris-wilson.co.uk>
+ <20190806084939.20203-1-chris@chris-wilson.co.uk>
+ <87imr78yqc.fsf@gaia.fi.intel.com>
+Message-ID: <156527844980.22627.14726758959554624075@skylake-alporthouse-com>
+User-Agent: alot/0.6
+Date: Thu, 08 Aug 2019 16:34:09 +0100
+Subject: Re: [Intel-gfx] [igt-dev] [PATCH i-g-t] i915/gem_persistent_relocs:
+ Don't call DROP_IDLE in the middle of submitting
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -44,102 +42,30 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "DRM maintainer tools announcements, discussion,
- and development" <dim-tools@lists.freedesktop.org>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- dri-devel <dri-devel@lists.freedesktop.org>
-Content-Type: multipart/mixed; boundary="===============0828330883=="
+Cc: igt-dev@lists.freedesktop.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
---===============0828330883==
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="tpm5r3tjneldi45c"
-Content-Disposition: inline
-
-
---tpm5r3tjneldi45c
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-
-Hi,
-
-On Wed, Aug 07, 2019 at 02:30:25PM +0200, Daniel Vetter wrote:
-> On Wed, Aug 7, 2019 at 2:02 PM Maxime Ripard <maxime.ripard@bootlin.com> wrote:
-> > On Tue, Aug 06, 2019 at 06:11:32PM +0200, Daniel Vetter wrote:
-> > > On Tue, Aug 06, 2019 at 06:01:46PM +0200, Maxime Ripard wrote:
-> > > > On Tue, Aug 06, 2019 at 10:33:53AM +1000, Dave Airlie wrote:
-> > > > > On Sat, 3 Aug 2019 at 20:47, Maxime Ripard <maxime.ripard@bootlin.com> wrote:
-> > > > > >
-> > > > > > Hi Daniel, Dave,
-> > > > > >
-> > > > > > Here is the first (and pretty late) drm-misc-next PR.
-> > > > > >
-> > > > > > It's pretty big due to the lateness, but there's nothing really major
-> > > > > > showing up. It's pretty much the usual bunch of reworks, fixes, and
-> > > > > > new helpers being introduced.
-> > > > >
-> > > > > dim: 415d2e9e0757 ("Revert "drm/gem: Rename drm_gem_dumb_map_offset()
-> > > > > to drm_gem_map_offset()""): mandatory review missing.
-> > > > > dim: be855382bacb ("Revert "drm/panfrost: Use drm_gem_map_offset()""):
-> > > > > mandatory review missing.
-> > > > > dim: e4eee93d2577 ("drm/vgem: drop DRM_AUTH usage from the driver"):
-> > > > > mandatory review missing.
-> > > > > dim: 88209d2c5035 ("drm/msm: drop DRM_AUTH usage from the driver"):
-> > > > > mandatory review missing.
-> > > > > dim: ccdae4257569 ("drm/nouveau: remove open-coded drm_invalid_op()"):
-> > > > > mandatory review missing.
-> > > > >
-> > > > > Pretty sure review in drm-misc-next is a rule. I don't even see acks
-> > > > > on most of these.
-> > > >
-> > > > Ugh, sorry for that. I guess I'm still pretty new to the
-> > > > maintainer-side of dim, which commands did you use to check that?
-> > >
-> > > dim apply-pull does this. If all committers use the tooling as they should
-> > > they shouldn't be able to push patches which violate anything here, that's
-> > > why dim request-pull doesn't reject.
-> >
-> > Yeah, sure, I meant to ask if there was anyway to check this before
-> > sending the PR on our end.
->
-> I think we'd need to create new command. Or maybe we should integrate
-> it as part of the pull request generation, as an information/warning
-> that there might be problems you need to explain. Want to write a dim
-> patch?
-
-I just sent something that should catch that, but considering my
-dim-fu, you probably want to review it :)
-
-Maxime
-
---
-Maxime Ripard, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
-
---tpm5r3tjneldi45c
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXUw/4gAKCRDj7w1vZxhR
-xQhZAQDIFh4FiAC2OiEynoM7OgTcLbBRVCAtxnX0wjbRXAmUqQD/VHWeXxKlsWKq
-HA8j4Z84fwIgTw1b3CpyUilEOC13Bwo=
-=2oc6
------END PGP SIGNATURE-----
-
---tpm5r3tjneldi45c--
-
---===============0828330883==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
-IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
-
---===============0828330883==--
+UXVvdGluZyBNaWthIEt1b3BwYWxhICgyMDE5LTA4LTA4IDE2OjI2OjM1KQo+IENocmlzIFdpbHNv
+biA8Y2hyaXNAY2hyaXMtd2lsc29uLmNvLnVrPiB3cml0ZXM6Cj4gCj4gPiBUbyBhY3R1YWxseSBE
+Uk9QX0lETEUgbWVhbnMgdGhhdCB3ZSBoYXZlIHRvIHdhaXQgZm9yIG9uZ29pbmcgc3VibWlzc2lv
+biwKPiA+IGFuZCBhbnkgbmV3IGNvbmN1cnJlbnRseSBzdWJtaXR0ZWQsIGkuZS4gaXQgc2hvdWxk
+IG9ubHkgYmUgY2FsbGVkIGR1cmluZwo+ID4gc2luZ2xlLXRocmVhZGVkIHN1Ym1pc3Npb24gdG8g
+ZW5zdXJlIHRoZSBHUFUgaXMgaWRsZSBiZWZvcmUgdGhlIG5ldwo+ID4gYWN0aW9uLgo+ID4KPiA+
+IHYyOiBBbHNvIGluY2x1ZGUgU0hSSU5LIGZvciB0aHJhc2gtYWxsLXRoZS10aGluZ3MsIGFuZCBm
+aW5kIGEgZHVwZSBpbgo+ID4gZ2VtX3JlbG9jX3ZzX2dwdS4KPiAKPiBBZ3JlZWQgdGhhdCBpcyBy
+YXRoZXIgcG9pbnRsZXNzIHRyeWluZyB0byBndWFyYW50ZWUgYW4gaWRsZSBncHUKPiBkdXJpbmcg
+YSB0ZXN0Lgo+IAo+IFJldmlld2VkLWJ5OiBNaWthIEt1b3BwYWxhIDxtaWthLmt1b3BwYWxhQGxp
+bnV4LmludGVsLmNvbT4KPiAKPiBCdXQgYmV0d2VlbiBhIHRlc3RzLCBpdCB3aWxsIHNlcnZlIGFz
+IGEgZmx1c2g/CgpBdCB0aGUgZW5kIG9mIGEgX3Rlc3RfIChiaW5hcnkpLCB3ZSBkbyByZXNldCBh
+bmQgaWRsZSB0aGUgR1BVLiBUaGUKdGhlb3J5IGlzIHRoYXQgd2Ugd2FudCBlYWNoIHRlc3QgdG8g
+aGF2ZSBhIGNsZWFuIHNsYXRlLCBhbmQgdG8gY2F0Y2ggYW55CnJlc2lkdWFsIHByb2JsZW1zIGlu
+IHRoZSB0ZXN0IHRoYXQgY3JlYXRlZCB0aGVtLgoKQnV0IHdlIGRvbid0IGRvIGFueXRoaW5nIGJl
+dHdlZW4gc3VidGVzdHMgYnkgZGVmYXVsdCwgYW5kIHdlIGZyZXF1ZW50bHkKcnVuIGludG8gcHJv
+YmxlbXMgdGhlcmUgaWYgb25lIHN1YnRlc3QgZmFpbHMgYW5kIGNhdXNlcyB0aGUgbmV4dCB0bwpm
+YWlsIGFuZCBzbyBvbiBhbmQgc28gb24uIEFuIHVuc29sdmVkIGRpbGVtbWEuCi1DaHJpcwpfX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFp
+bGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZng=
