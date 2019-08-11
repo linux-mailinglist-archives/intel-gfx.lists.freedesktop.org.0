@@ -2,38 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 57F498912C
-	for <lists+intel-gfx@lfdr.de>; Sun, 11 Aug 2019 11:57:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 574F58912D
+	for <lists+intel-gfx@lfdr.de>; Sun, 11 Aug 2019 11:57:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D04716E31E;
-	Sun, 11 Aug 2019 09:57:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B49256E320;
+	Sun, 11 Aug 2019 09:57:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 13EEC6E31E
- for <intel-gfx@lists.freedesktop.org>; Sun, 11 Aug 2019 09:57:39 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 465356E320
+ for <intel-gfx@lists.freedesktop.org>; Sun, 11 Aug 2019 09:57:47 +0000 (UTC)
 X-Amp-Result: UNKNOWN
 X-Amp-Original-Verdict: FILE UNKNOWN
 X-Amp-File-Uploaded: False
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 11 Aug 2019 02:57:38 -0700
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 11 Aug 2019 02:57:46 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.64,372,1559545200"; d="scan'208";a="187106468"
+X-IronPort-AV: E=Sophos;i="5.64,372,1559545200"; d="scan'208";a="177215120"
 Received: from smarley-mobl.ger.corp.intel.com (HELO intel.intel)
  ([10.251.93.188])
- by orsmga002.jf.intel.com with ESMTP; 11 Aug 2019 02:57:36 -0700
-Date: Sun, 11 Aug 2019 12:57:35 +0300
+ by fmsmga007.fm.intel.com with ESMTP; 11 Aug 2019 02:57:45 -0700
+Date: Sun, 11 Aug 2019 12:57:44 +0300
 From: Andi Shyti <andi.shyti@intel.com>
 To: Chris Wilson <chris@chris-wilson.co.uk>
-Message-ID: <20190810125721.GA17148@intel.intel>
+Message-ID: <20190810125832.GB17148@intel.intel>
 References: <20190810090329.6966-1-chris@chris-wilson.co.uk>
+ <20190810090329.6966-2-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20190810090329.6966-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20190810090329.6966-2-chris@chris-wilson.co.uk>
 User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915: Remove unused
- debugfs/i915_emon_status
+Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915: Verify the engine setup after
+ recording the defaults
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -52,14 +53,13 @@ Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-SGkgQ2hyaXMsCgpPbiBTYXQsIEF1ZyAxMCwgMjAxOSBhdCAxMDowMzoyOEFNICswMTAwLCBDaHJp
-cyBXaWxzb24gd3JvdGU6Cj4gQmVmb3JlIHdlIHN0YXJ0IHVwb24gb3VyIGdyZWF0IEdUIGludGVy
-cnVwdCByZWZhY3RvciwgdGhyb3cgb3V0IHRoZQo+IGNydWZ0ISBJbiB0aGlzIGNhc2UsIGl0IGlz
-IGFuIHVubG92ZWQgZGVidWdmcyBzaG93aW5nIHRoZSBjdXJyZW50IGlwcwo+IHN0YXR1cywgYSBm
-YWlybHkgbWVhbmluZ2xlc3MgYnVuY2ggb2YgbnVtYmVycyB0aGF0IHdlIGFyZSBub3QgY2hlY2tp
-bmcuCj4gCj4gU2lnbmVkLW9mZi1ieTogQ2hyaXMgV2lsc29uIDxjaHJpc0BjaHJpcy13aWxzb24u
-Y28udWs+Cj4gQ2M6IEFuZGkgU2h5dGkgPGFuZGkuc2h5dGlAaW50ZWwuY29tPgoKQWNrZWQtYnk6
-IEFuZGkgU2h5dGkgPGFuZGkuc2h5dGlAaW50ZWwuY29tPgoKQW5kaQpfX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0Cklu
-dGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5v
-cmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZng=
+SGkgQ2hyaXMsCgpPbiBTYXQsIEF1ZyAxMCwgMjAxOSBhdCAxMDowMzoyOUFNICswMTAwLCBDaHJp
+cyBXaWxzb24gd3JvdGU6Cj4gQ2hlY2sgdGhhdCB0aGUgZW5naW5lIHcvYSBwZXJzaXN0IGFmdGVy
+IHdlIHBlcmZvcm1lZCBhIGNvbnRleHQgc3dpdGNoCj4gYW5kIHJlY29yZCB0aG9zZSB3L2EgaW50
+byB0aGUgZGVmYXVsdCBjb250ZXh0IHN0YXRlLgo+IAo+IFNpZ25lZC1vZmYtYnk6IENocmlzIFdp
+bHNvbiA8Y2hyaXNAY2hyaXMtd2lsc29uLmNvLnVrPgo+IENjOiBBbmRpIFNoeXRpIDxhbmRpLnNo
+eXRpQGludGVsLmNvbT4KCkFja2VkLWJ5OiBBbmRpIFNoeXRpIDxhbmRpLnNoeXRpQGludGVsLmNv
+bT4KClRoYW5rcywKQW5kaQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3Rv
+cC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRl
+bC1nZng=
