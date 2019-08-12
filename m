@@ -1,34 +1,35 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E84ED89A55
-	for <lists+intel-gfx@lfdr.de>; Mon, 12 Aug 2019 11:47:33 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D01F389AAE
+	for <lists+intel-gfx@lfdr.de>; Mon, 12 Aug 2019 11:59:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 08DBD6E4CB;
-	Mon, 12 Aug 2019 09:47:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3489989DFE;
+	Mon, 12 Aug 2019 09:59:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 993236E4CA
- for <intel-gfx@lists.freedesktop.org>; Mon, 12 Aug 2019 09:47:30 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CD5C789DFE
+ for <intel-gfx@lists.freedesktop.org>; Mon, 12 Aug 2019 09:59:01 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from localhost (unverified [78.156.65.138]) 
  by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 17966666-1500050 for multiple; Mon, 12 Aug 2019 10:47:19 +0100
+ 17966854-1500050 for multiple; Mon, 12 Aug 2019 10:58:59 +0100
 MIME-Version: 1.0
-To: Michal Wajdeczko <michal.wajdeczko@intel.com>,
- intel-gfx@lists.freedesktop.org
 From: Chris Wilson <chris@chris-wilson.co.uk>
-In-Reply-To: <op.z6ek7b1bxaggs7@mwajdecz-mobl1.ger.corp.intel.com>
-References: <20190812092935.21048-1-michal.wajdeczko@intel.com>
- <156560258296.2301.84561074931933496@skylake-alporthouse-com>
- <op.z6ek7b1bxaggs7@mwajdecz-mobl1.ger.corp.intel.com>
-Message-ID: <156560323764.2301.5713408983590495291@skylake-alporthouse-com>
 User-Agent: alot/0.6
-Date: Mon, 12 Aug 2019 10:47:17 +0100
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/uc: Update copyright and license
+To: Mika Kuoppala <mika.kuoppala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+References: <20190812091045.29587-1-chris@chris-wilson.co.uk>
+ <20190812091045.29587-2-chris@chris-wilson.co.uk>
+ <87y2zy7mfe.fsf@gaia.fi.intel.com>
+In-Reply-To: <87y2zy7mfe.fsf@gaia.fi.intel.com>
+Message-ID: <156560393718.2301.11983694987791177055@skylake-alporthouse-com>
+Date: Mon, 12 Aug 2019 10:58:57 +0100
+Subject: Re: [Intel-gfx] [PATCH 2/8] drm/i915/selftests: Prevent the
+ timeslice expiring during suppression tests
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -46,18 +47,23 @@ Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-UXVvdGluZyBNaWNoYWwgV2FqZGVjemtvICgyMDE5LTA4LTEyIDEwOjQxOjI1KQo+IE9uIE1vbiwg
-MTIgQXVnIDIwMTkgMTE6MzY6MjIgKzAyMDAsIENocmlzIFdpbHNvbiAgCj4gPGNocmlzQGNocmlz
-LXdpbHNvbi5jby51az4gd3JvdGU6Cj4gCj4gPiBIb3dldmVyLCB5b3UgZGlkIGFsdGVybmF0ZSBi
-ZXR3ZWVuIC8qIFNQRFggKi8gYW5kIC8vIFNQRFggd2l0aCBubyByaHltZQo+ID4gb3IgcmVhc29u
-IEkgY291bGQgc2VlLgo+IAo+IGh0dHBzOi8vZWxpeGlyLmJvb3RsaW4uY29tL2xpbnV4L2xhdGVz
-dC9zb3VyY2UvRG9jdW1lbnRhdGlvbi9wcm9jZXNzL2xpY2Vuc2UtcnVsZXMucnN0Cj4gCj4gIlRo
-ZSBTUERYIGxpY2Vuc2UgaWRlbnRpZmllciBpbiBrZXJuZWwgZmlsZXMgc2hhbGwgYmUgYWRkZWQg
-YXQgdGhlIGZpcnN0Cj4gICBwb3NzaWJsZSBsaW5lIGluIGEgZmlsZSB3aGljaCBjYW4gY29udGFp
-biBhIGNvbW1lbnQuIgo+IAo+ICAgICAgICBDIHNvdXJjZTogICAgICAgIC8vIFNQRFgtTGljZW5z
-ZS1JZGVudGlmaWVyOiA8U1BEWCBMaWNlbnNlIEV4cHJlc3Npb24+Cj4gICAgICAgIEMgaGVhZGVy
-OiAgICAgICAgLyogU1BEWC1MaWNlbnNlLUlkZW50aWZpZXI6IDxTUERYIExpY2Vuc2UgRXhwcmVz
-c2lvbj4gKi8KCkhhaCwgSSBzdGFuZCBieSBteSBjb21tZW50ICJmb3Igbm8gcmVhc29uIi4gOi1w
-Ci1DaHJpcwpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJ
-bnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0
-cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZng=
+UXVvdGluZyBNaWthIEt1b3BwYWxhICgyMDE5LTA4LTEyIDEwOjM5OjAxKQo+IENocmlzIFdpbHNv
+biA8Y2hyaXNAY2hyaXMtd2lsc29uLmNvLnVrPiB3cml0ZXM6Cj4gCj4gPiBXaGVuIHRlc3Rpbmcg
+d2hldGhlciB3ZSBwcmV2ZW50IHN1cHByZXNzaW5nIHByZWVtcHRpb24sIGl0IGhlbHBzIHRvCj4g
+PiBhdm9pZCBhIHRpbWUgc2xpY2UgZXhwaXJpbmcgcHJlbWF0dXJlbHkuCj4gPgo+IAo+IEkgZGlk
+IGxvb2sgdGhlIHRlc3QgYW5kIGl0IGRvZXMgY2FsbCBzY2hlZHVsZSBvbiBpdCdzIG93bi4KPiAK
+PiBTbyB3aGF0IHdlIHdhbnQgdG8gZG8gaXMgdG8gcG9zdHBvbmUgdGhlIGRlZmFjdG8gc2NoZWR1
+bGUgdGljawo+IHByb3ZpZGVkIGJ5IGRyaXZlciBub3QgdG8gbWVzcyBvdXIgb3duIHNjaGVkdWxl
+PyAod2hpY2ggd2UKPiB1c2UgdG8gY2hlY2sgdGhhdCBubyBwcmVlbXB0aW9uIGRvZXMgb2NjdXIg
+d2l0aCBlcXVhbAo+IHByaW9yaXRpZXM/KQoKVGhlIHRlc3QgaXMgdHJ5aW5nIHRvIGxvb2sgYXQg
+b3VyIG1lY2hhbmljcyB0byBlbnN1cmUgdGhhdCB3ZSBkb24ndApjYXVzZSBwcmVlbXB0aW9ucyB3
+aGVyZSB3ZSBzaW1wbHkgcHV0IGJhY2sgdGhlIHNhbWUgcmVxdWVzdC4gQXMgc3VjaCwgd2UKaGF2
+ZSBhIG1hcmtlciBpbiB0aGUgcHJlZW1wdGlvbiBjb2RlIHRoYXQgd2UgYXJlIHRyeWluZyB0byBh
+dm9pZCwgYW5kCm11c3QgY29udHJvbCB0aGUgc2NoZWR1bGluZyB0byBleGNsdWRlIGFsbCBvdGhl
+ciBldmVudHMgdGhhbiB0aGUgb25lIHdlCmFyZSBpbmplY3RpbmcuCgpUaGUgdGltZXNsaWNlIGNv
+dWxkIGV4cGlyZSBhbmQgcmV2ZXJzZSBBLEIgKHRvIEIsQSkgc3VjaCB0aGF0IG91cgpwcm9tb3Rp
+b24gb2YgQSBkb2VzIChjb3JyZWN0bHkpIGNhdXNlIGEgcHJlZW1wdGlvbiB0aGF0IHdlIGV4cGVj
+dCBuZXZlcgp0byBuZWVkLgotQ2hyaXMKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJl
+ZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGlu
+Zm8vaW50ZWwtZ2Z4
