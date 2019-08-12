@@ -1,34 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B6908985B
-	for <lists+intel-gfx@lfdr.de>; Mon, 12 Aug 2019 09:56:08 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 45B7989861
+	for <lists+intel-gfx@lfdr.de>; Mon, 12 Aug 2019 10:03:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BF39F89EAC;
-	Mon, 12 Aug 2019 07:56:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 48FE988503;
+	Mon, 12 Aug 2019 08:03:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0E8AB89EAC
- for <intel-gfx@lists.freedesktop.org>; Mon, 12 Aug 2019 07:56:04 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 17965138-1500050 for multiple; Mon, 12 Aug 2019 08:55:59 +0100
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 330CD88503
+ for <intel-gfx@lists.freedesktop.org>; Mon, 12 Aug 2019 08:03:49 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orsmga106.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 12 Aug 2019 01:02:04 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.64,376,1559545200"; 
+ d="asc'?scan'208";a="259706922"
+Received: from zhen-hp.sh.intel.com (HELO zhen-hp) ([10.239.13.116])
+ by orsmga001.jf.intel.com with ESMTP; 12 Aug 2019 01:02:03 -0700
+Date: Mon, 12 Aug 2019 15:57:56 +0800
+From: Zhenyu Wang <zhenyuw@linux.intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>
+Message-ID: <20190812075756.GD14790@zhen-hp.sh.intel.com>
+References: <20190809154146.16397-1-chris@chris-wilson.co.uk>
+ <874l2q8gij.fsf@gaia.fi.intel.com>
+ <156536737864.32306.8520357726207994926@skylake-alporthouse-com>
 MIME-Version: 1.0
-To: Michal Wajdeczko <michal.wajdeczko@intel.com>,
- intel-gfx@lists.freedesktop.org
-From: Chris Wilson <chris@chris-wilson.co.uk>
-In-Reply-To: <20190812073949.24076-1-michal.wajdeczko@intel.com>
-References: <20190811195132.9660-3-michal.wajdeczko@intel.com>
- <20190812073949.24076-1-michal.wajdeczko@intel.com>
-Message-ID: <156559655756.2301.3687471610468467080@skylake-alporthouse-com>
-User-Agent: alot/0.6
-Date: Mon, 12 Aug 2019 08:55:57 +0100
-Subject: Re: [Intel-gfx] [PATCH v2 2/4] drm/i915/uc: Include HuC firmware
- version in summary
+In-Reply-To: <156536737864.32306.8520357726207994926@skylake-alporthouse-com>
+User-Agent: Mutt/1.10.0 (2018-05-17)
+Subject: Re: [Intel-gfx] [PATCH 1/4] drm/i915: Remove
+ i915_gem_context_create_gvt()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -41,35 +47,79 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: Zhenyu Wang <zhenyuw@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============0340921777=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-UXVvdGluZyBNaWNoYWwgV2FqZGVjemtvICgyMDE5LTA4LTEyIDA4OjM5OjQ5KQo+IEFmdGVyIHN1
-Y2Nlc3NmdWwgdUMgaW5pdGlhbGl6YXRpb24gd2UgYXJlIHJlcG9ydGluZyBHdUMKPiBmaXJtd2Fy
-ZSB2ZXJzaW9uIGFuZCBzdGF0dXMgb2YgR3VDIHN1Ym1pc3Npb24gYW5kIEh1Qy4KPiBBZGQgSHVD
-IGZ3IHZlcnNpb24gdG8gdGhpcyByZXBvcnQgdG8gbWFrZSBpdCBjb21wbGV0ZSwKPiBidXQgYWxz
-byBza2lwIGFsbCBIdUMgaW5mbyBpZiBIdUMgaXMgbm90IHN1cHBvcnRlZC4KPiAKPiB2Mjogc3F1
-ZWV6ZSB0byBvbmUgbGluZSAoQ2hyaXMpCj4gCj4gU2lnbmVkLW9mZi1ieTogTWljaGFsIFdhamRl
-Y3prbyA8bWljaGFsLndhamRlY3prb0BpbnRlbC5jb20+Cj4gQ2M6IERhbmllbGUgQ2VyYW9sbyBT
-cHVyaW8gPGRhbmllbGUuY2VyYW9sb3NwdXJpb0BpbnRlbC5jb20+Cj4gQ2M6IENocmlzIFdpbHNv
-biA8Y2hyaXNAY2hyaXMtd2lsc29uLmNvLnVrPgpSZXZpZXdlZC1ieTogQ2hyaXMgV2lsc29uIDxj
-aHJpc0BjaHJpcy13aWxzb24uY28udWs+Cgo+IC0tLQo+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9n
-dC91Yy9pbnRlbF91Yy5jIHwgMTggKysrKysrKysrKysrKy0tLS0tCj4gIDEgZmlsZSBjaGFuZ2Vk
-LCAxMyBpbnNlcnRpb25zKCspLCA1IGRlbGV0aW9ucygtKQo+IAo+IGRpZmYgLS1naXQgYS9kcml2
-ZXJzL2dwdS9kcm0vaTkxNS9ndC91Yy9pbnRlbF91Yy5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUv
-Z3QvdWMvaW50ZWxfdWMuYwo+IGluZGV4IGFhOTcwMWNmYzc1NC4uYTNhNTkxOGM2NzgyIDEwMDY0
-NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L3VjL2ludGVsX3VjLmMKPiArKysgYi9k
-cml2ZXJzL2dwdS9kcm0vaTkxNS9ndC91Yy9pbnRlbF91Yy5jCj4gQEAgLTUwMywxMiArNTAzLDIw
-IEBAIGludCBpbnRlbF91Y19pbml0X2h3KHN0cnVjdCBpbnRlbF91YyAqdWMpCj4gICAgICAgICAg
-ICAgICAgICAgICAgICAgZ290byBlcnJfY29tbXVuaWNhdGlvbjsKPiAgICAgICAgIH0KPiAgCj4g
-LSAgICAgICBkZXZfaW5mbyhpOTE1LT5kcm0uZGV2LCAiR3VDIGZpcm13YXJlIHZlcnNpb24gJXUu
-JXVcbiIsCj4gLSAgICAgICAgICAgICAgICBndWMtPmZ3Lm1ham9yX3Zlcl9mb3VuZCwgZ3VjLT5m
-dy5taW5vcl92ZXJfZm91bmQpOwo+IC0gICAgICAgZGV2X2luZm8oaTkxNS0+ZHJtLmRldiwgIkd1
-QyBzdWJtaXNzaW9uICVzXG4iLAo+ICsgICAgICAgZGV2X2luZm8oaTkxNS0+ZHJtLmRldiwgIiVz
-IGZpcm13YXJlICVzIHZlcnNpb24gJXUuJXUgJXM6JXNcbiIsCgpJIHdvdWxkIGhhdmUgcHV0IGEg
-Y29tbWEgYmV0d2VlbiB0aGUgdmVyc2lvbiBhbmQgdGhlIHRhZzpzdGF0ZS4KLUNocmlzCl9fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWls
-aW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeA==
+
+--===============0340921777==
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="XvKFcGCOAo53UbWW"
+Content-Disposition: inline
+
+
+--XvKFcGCOAo53UbWW
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On 2019.08.09 17:16:18 +0100, Chris Wilson wrote:
+> Quoting Mika Kuoppala (2019-08-09 17:12:20)
+> > Chris Wilson <chris@chris-wilson.co.uk> writes:
+> >=20
+> > > As we are phasing out using the GEM context for internal clients that
+> > > need to manipulate logical context state directly, remove the
+> > > constructor for the GVT context. We are not using it for anything oth=
+er
+> > > than default setup and allocation of an i915_ppgtt.
+> > >
+> > > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> >=20
+> > Not familiar with gvt but seems to create similar enough
+> > context.=20
+> >=20
+> > Higher priority, not closed and using more strict
+> > lock.
+>=20
+> I thought they would appreciate the higher priority ;)
+>=20
+> gvt currently doesn't have anyway for it to determine the relative
+> priority of its guest vs the host, so if we set it too low we impact the
+> qos of the guest, too high and its affects the qos of the host. Keeping
+> it at max user though still gives the kernel some leeway to usurp it.
+> And who knows one day we may get a scheduler.
+
+yep, appreciate that. ;)
+
+Acked-by: Zhenyu Wang <zhenyuw@linux.intel.com>
+
+--=20
+Open Source Technology Center, Intel ltd.
+
+$gpg --keyserver wwwkeys.pgp.net --recv-keys 4D781827
+
+--XvKFcGCOAo53UbWW
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iF0EARECAB0WIQTXuabgHDW6LPt9CICxBBozTXgYJwUCXVEcAwAKCRCxBBozTXgY
+JxTCAJ9lwqOfVtvzettshXd4QrLzWALoZQCfd8DDPOfqD0GOTSH2vegBbnqSBYs=
+=qUnv
+-----END PGP SIGNATURE-----
+
+--XvKFcGCOAo53UbWW--
+
+--===============0340921777==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
+IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
+
+--===============0340921777==--
