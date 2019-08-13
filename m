@@ -2,25 +2,25 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 414E08BE05
-	for <lists+intel-gfx@lfdr.de>; Tue, 13 Aug 2019 18:13:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9BCD98BE06
+	for <lists+intel-gfx@lfdr.de>; Tue, 13 Aug 2019 18:13:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0A0776E1BA;
-	Tue, 13 Aug 2019 16:13:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 12F436E1BC;
+	Tue, 13 Aug 2019 16:13:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D00B16E1BA
- for <intel-gfx@lists.freedesktop.org>; Tue, 13 Aug 2019 16:13:27 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5D9A16E1BC;
+ Tue, 13 Aug 2019 16:13:33 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 18011676-1500050 
- for multiple; Tue, 13 Aug 2019 17:13:21 +0100
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 18011686-1500050 
+ for multiple; Tue, 13 Aug 2019 17:13:28 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 13 Aug 2019 17:13:20 +0100
-Message-Id: <20190813161320.27210-1-chris@chris-wilson.co.uk>
+Date: Tue, 13 Aug 2019 17:13:27 +0100
+Message-Id: <20190813161327.27264-1-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.23.0.rc1
 MIME-Version: 1.0
 Subject: [Intel-gfx] [PATCH i-g-t] i915/gem_mocs_settings: Fudge gen11:vcs2
@@ -37,6 +37,7 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: igt-dev@lists.freedesktop.org
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
