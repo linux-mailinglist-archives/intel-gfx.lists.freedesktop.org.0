@@ -1,30 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE3C18AFD4
-	for <lists+intel-gfx@lfdr.de>; Tue, 13 Aug 2019 08:19:18 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 63B808AFD6
+	for <lists+intel-gfx@lfdr.de>; Tue, 13 Aug 2019 08:20:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 760D26E055;
-	Tue, 13 Aug 2019 06:19:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 55B826E057;
+	Tue, 13 Aug 2019 06:20:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C477A6E055;
- Tue, 13 Aug 2019 06:19:14 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8A32B6E056;
+ Tue, 13 Aug 2019 06:20:24 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 17976885-1500050 
- for multiple; Tue, 13 Aug 2019 07:19:09 +0100
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 17976908-1500050 
+ for multiple; Tue, 13 Aug 2019 07:20:17 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 13 Aug 2019 07:19:07 +0100
-Message-Id: <20190813061907.5576-1-chris@chris-wilson.co.uk>
+Date: Tue, 13 Aug 2019 07:20:08 +0100
+Message-Id: <20190813062016.7870-1-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.23.0.rc1
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH i-g-t] i915/gem_exec_schedule: Limit the plug to
- fit small rings
+Subject: [Intel-gfx] [PATCH i-g-t 1/9] i915/gem_exec_schedule: Limit the
+ plug to fit small rings
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
