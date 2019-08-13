@@ -2,35 +2,37 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7DEE68B511
-	for <lists+intel-gfx@lfdr.de>; Tue, 13 Aug 2019 12:10:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 09DD38B5D0
+	for <lists+intel-gfx@lfdr.de>; Tue, 13 Aug 2019 12:44:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ECA3F6E0EA;
-	Tue, 13 Aug 2019 10:10:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C4D086E101;
+	Tue, 13 Aug 2019 10:44:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B76416E0E9;
- Tue, 13 Aug 2019 10:10:15 +0000 (UTC)
-X-Amp-Result: UNSCANNABLE
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4CD6F6E0FF;
+ Tue, 13 Aug 2019 10:44:15 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 13 Aug 2019 03:10:15 -0700
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 13 Aug 2019 03:44:14 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.64,381,1559545200"; 
- d="asc'?scan'208";a="187730207"
-Received: from zhen-hp.sh.intel.com (HELO zhen-hp) ([10.239.13.116])
- by orsmga002.jf.intel.com with ESMTP; 13 Aug 2019 03:10:13 -0700
-Date: Tue, 13 Aug 2019 18:06:04 +0800
-From: Zhenyu Wang <zhenyuw@linux.intel.com>
-To: "Vivi, Rodrigo" <rodrigo.vivi@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Jani Nikula <jani.nikula@intel.com>
-Message-ID: <20190813100604.GG19140@zhen-hp.sh.intel.com>
+X-IronPort-AV: E=Sophos;i="5.64,381,1559545200"; d="scan'208";a="176168419"
+Received: from chongyic-mobl.gar.corp.intel.com ([10.252.6.35])
+ by fmsmga008.fm.intel.com with ESMTP; 13 Aug 2019 03:44:12 -0700
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+References: <20190810123821.24009-1-chris@chris-wilson.co.uk>
+From: Abdiel Janulgue <abdiel.janulgue@linux.intel.com>
+Message-ID: <673f6878-1ac1-1d09-d9f8-ce8ce4ee7812@linux.intel.com>
+Date: Tue, 13 Aug 2019 13:44:11 +0300
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:60.0)
+ Gecko/20100101 Thunderbird/60.8.0
 MIME-Version: 1.0
-User-Agent: Mutt/1.10.0 (2018-05-17)
-Subject: [Intel-gfx] [PULL] gvt-next
+In-Reply-To: <20190810123821.24009-1-chris@chris-wilson.co.uk>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH i-g-t] i915/gem_mmap_gtt: Test mmap_offset
+ lifetime
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -43,118 +45,47 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: Zhenyu Wang <zhenyuw@linux.intel.com>
-Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
- intel-gvt-dev <intel-gvt-dev@lists.freedesktop.org>, "Lv,
- Zhiyuan" <zhiyuan.lv@intel.com>, "Yuan, Hang" <hang.yuan@intel.com>
-Content-Type: multipart/mixed; boundary="===============1101541759=="
+Cc: igt-dev@lists.freedesktop.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
---===============1101541759==
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="hxkXGo8AKqTJ+9QI"
-Content-Disposition: inline
-
-
---hxkXGo8AKqTJ+9QI
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-
-Hi,
-
-Here's gvt-next stuff for next kernel which include several enhancement
-for cmd parser and batch buffer shadow, remove extra debugfs function
-return check, and with other misc changes like typo, static check fix,
-etc.
-
-Thanks
---
-The following changes since commit e0e712fe42ef67bdf45fc348767d1d0a4eeba77f:
-
-  drm/i915: Update DRIVER_DATE to 20190730 (2019-07-30 11:50:24 -0700)
-
-are available in the Git repository at:
-
-  https://github.com/intel/gvt-linux.git tags/gvt-next-2019-08-13
-
-for you to fetch changes up to 220b65d8009dff397a112ee560c297299ba5e423:
-
-  drm/i915/gvt: Double check batch buffer size after copy (2019-08-13 17:55=
-:06 +0800)
-
-----------------------------------------------------------------
-gvt-next-2019-08-13
-
-- Enhance command parser for extra length check (Fred)
-- remove debugfs function return check (Greg)
-- batch buffer end double check after shadow copy (Tina)
-- one typo fix (Zhenyu)
-- klocwork warning fix (Zhi)
-- use struct_size() helper (Gustavo)
-
-----------------------------------------------------------------
-Gao, Fred (3):
-      drm/i915/gvt: Utility for valid command length check
-      drm/i915/gvt: Add MI command valid length check
-      drm/i915/gvt: Add valid length check for MI variable commands
-
-Greg Kroah-Hartman (1):
-      drm/i915/gvt: no need to check return value of debugfs_create functio=
-ns
-
-Gustavo A. R. Silva (1):
-      drm/i915/kvmgt: Use struct_size() helper
-
-Tina Zhang (1):
-      drm/i915/gvt: Double check batch buffer size after copy
-
-Zhenyu Wang (1):
-      drm/i915/gvt: Fix typo of VBLANK_TIMER_PERIOD
-
-Zhi Wang (1):
-      drm/i915/gvt: factor out tlb and mocs register offset table
-
- drivers/gpu/drm/i915/gvt/cmd_parser.c   | 180 ++++++++++++++++++++++++++--=
-----
- drivers/gpu/drm/i915/gvt/debugfs.c      |  47 ++-------
- drivers/gpu/drm/i915/gvt/gvt.c          |   4 +-
- drivers/gpu/drm/i915/gvt/gvt.h          |   8 +-
- drivers/gpu/drm/i915/gvt/interrupt.c    |   4 +-
- drivers/gpu/drm/i915/gvt/kvmgt.c        |  15 +--
- drivers/gpu/drm/i915/gvt/mmio_context.c |  57 ++++++----
- drivers/gpu/drm/i915/gvt/vgpu.c         |   4 +-
- 8 files changed, 212 insertions(+), 107 deletions(-)
-
-
---=20
-Open Source Technology Center, Intel ltd.
-
-$gpg --keyserver wwwkeys.pgp.net --recv-keys 4D781827
-
---hxkXGo8AKqTJ+9QI
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iF0EARECAB0WIQTXuabgHDW6LPt9CICxBBozTXgYJwUCXVKLjAAKCRCxBBozTXgY
-J8TlAJ0fIm0XGn5kAK2S5Po9HwH+PtzqSgCfY9pOjLkjbJicBBq4GaHAh3csJ4g=
-=5P70
------END PGP SIGNATURE-----
-
---hxkXGo8AKqTJ+9QI--
-
---===============1101541759==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
-IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
-
---===============1101541759==--
+CgpPbiAxMC8wOC8yMDE5IDE1LjM4LCBDaHJpcyBXaWxzb24gd3JvdGU6Cj4gQ2xvc2luZyB0aGUg
+b2JqZWN0IG9uIGFub3RoZXIgZmlsZSBzaG91bGQgbm90IGFmZmVjdCB0aGUgbG9jYWwKPiBtbWFw
+X29mZnNldC4KPiAKClRoYW5rcyBmb3IgdGhpcyEgSXQgaGVscGVkIHNxdWVlemVkIHRoZSBidWcg
+b3V0IG9mIG1tYXBfb2Zmc2V0LgoKUmV2aWV3ZWQtYnk6IEFiZGllbCBKYW51bGd1ZSA8YWJkaWVs
+LmphbnVsZ3VlQGxpbnV4LmludGVsLmNvbT4KCgo+IFNpZ25lZC1vZmYtYnk6IENocmlzIFdpbHNv
+biA8Y2hyaXNAY2hyaXMtd2lsc29uLmNvLnVrPgo+IENjOiBBYmRpZWwgSmFudWxndWUgPGFiZGll
+bC5qYW51bGd1ZUBsaW51eC5pbnRlbC5jb20+Cj4gLS0tCj4gIHRlc3RzL2k5MTUvZ2VtX21tYXBf
+Z3R0LmMgfCA0MCArKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysKPiAgMSBm
+aWxlIGNoYW5nZWQsIDQwIGluc2VydGlvbnMoKykKPiAKPiBkaWZmIC0tZ2l0IGEvdGVzdHMvaTkx
+NS9nZW1fbW1hcF9ndHQuYyBiL3Rlc3RzL2k5MTUvZ2VtX21tYXBfZ3R0LmMKPiBpbmRleCA2ZjNh
+OWMzNmUuLjhlZmY5MTg1MCAxMDA2NDQKPiAtLS0gYS90ZXN0cy9pOTE1L2dlbV9tbWFwX2d0dC5j
+Cj4gKysrIGIvdGVzdHMvaTkxNS9nZW1fbW1hcF9ndHQuYwo+IEBAIC0zMjIsNiArMzIyLDQ0IEBA
+IHRlc3RfcGZfbm9uYmxvY2soaW50IGk5MTUpCj4gIAlpZ3Rfc3Bpbl9mcmVlKGk5MTUsIHNwaW4p
+Owo+ICB9Cj4gIAo+ICtzdGF0aWMgdm9pZAo+ICt0ZXN0X2lzb2xhdGlvbihpbnQgaTkxNSkKPiAr
+ewo+ICsJc3RydWN0IGRybV9pOTE1X2dlbV9tbWFwX2d0dCBtbWFwX2FyZzsKPiArCWludCBBID0g
+Z2VtX3Jlb3Blbl9kcml2ZXIoaTkxNSk7Cj4gKwlpbnQgQiA9IGdlbV9yZW9wZW5fZHJpdmVyKGk5
+MTUpOwo+ICsJdWludDY0X3Qgb2Zmc2V0X2EsIG9mZnNldF9iOwo+ICsJdWludDMyX3QgYSwgYjsK
+PiArCXZvaWQgKnB0cjsKPiArCj4gKwlhID0gZ2VtX2NyZWF0ZShBLCA0MDk2KTsKPiArCWIgPSBn
+ZW1fb3BlbihCLCBnZW1fZmxpbmsoQSwgYSkpOwo+ICsKPiArCW1tYXBfYXJnLmhhbmRsZSA9IGE7
+Cj4gKwlkb19pb2N0bChBLCBEUk1fSU9DVExfSTkxNV9HRU1fTU1BUF9HVFQsICZtbWFwX2FyZyk7
+Cj4gKwlvZmZzZXRfYSA9IG1tYXBfYXJnLm9mZnNldDsKPiArCj4gKwltbWFwX2FyZy5oYW5kbGUg
+PSBiOwo+ICsJZG9faW9jdGwoQiwgRFJNX0lPQ1RMX0k5MTVfR0VNX01NQVBfR1RULCAmbW1hcF9h
+cmcpOwo+ICsJb2Zmc2V0X2IgPSBtbWFwX2FyZy5vZmZzZXQ7Cj4gKwo+ICsJaWd0X2luZm8oIkE6
+IHtmZDolZCwgaGFuZGxlOiVkLCBvZmZzZXQ6JSJQUkl4NjQifVxuIiwKPiArCQkgQSwgYSwgb2Zm
+c2V0X2EpOwo+ICsJaWd0X2luZm8oIkI6IHtmZDolZCwgaGFuZGxlOiVkLCBvZmZzZXQ6JSJQUkl4
+NjQifVxuIiwKPiArCQkgQiwgYiwgb2Zmc2V0X2IpOwo+ICsKPiArCWNsb3NlKEIpOwo+ICsKPiAr
+CXB0ciA9IG1tYXA2NCgwLCA0MDk2LCBQUk9UX1JFQUQsIE1BUF9TSEFSRUQsIEEsIG9mZnNldF9h
+KTsKPiArCWlndF9hc3NlcnQocHRyICE9IE1BUF9GQUlMRUQpOwo+ICsJbXVubWFwKHB0ciwgNDA5
+Nik7Cj4gKwo+ICsJY2xvc2UoQSk7Cj4gKwo+ICsJcHRyID0gbW1hcDY0KDAsIDQwOTYsIFBST1Rf
+UkVBRCwgTUFQX1NIQVJFRCwgQSwgb2Zmc2V0X2EpOwo+ICsJaWd0X2Fzc2VydChwdHIgPT0gTUFQ
+X0ZBSUxFRCk7Cj4gK30KPiArCj4gIHN0YXRpYyB2b2lkCj4gIHRlc3Rfd3JpdGVfZ3R0KGludCBm
+ZCkKPiAgewo+IEBAIC05NDUsNiArOTgzLDggQEAgaWd0X21haW4KPiAgCQl0ZXN0X3dyaXRlX2Nw
+dV9yZWFkX2d0dChmZCk7Cj4gIAlpZ3Rfc3VidGVzdCgiYmFzaWMtd2MiKQo+ICAJCXRlc3Rfd2Mo
+ZmQpOwo+ICsJaWd0X3N1YnRlc3QoImlzb2xhdGlvbiIpCj4gKwkJdGVzdF9pc29sYXRpb24oZmQp
+Owo+ICAJaWd0X3N1YnRlc3QoInBmLW5vbmJsb2NrIikKPiAgCQl0ZXN0X3BmX25vbmJsb2NrKGZk
+KTsKPiAgCj4gCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+CkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpo
+dHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeA==
