@@ -1,39 +1,39 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B49AB8BD50
-	for <lists+intel-gfx@lfdr.de>; Tue, 13 Aug 2019 17:37:55 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1443E8BD51
+	for <lists+intel-gfx@lfdr.de>; Tue, 13 Aug 2019 17:38:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 287FF6E182;
-	Tue, 13 Aug 2019 15:37:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7D06E6E191;
+	Tue, 13 Aug 2019 15:38:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 75C166E182;
- Tue, 13 Aug 2019 15:37:52 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 703366E191;
+ Tue, 13 Aug 2019 15:38:00 +0000 (UTC)
 X-Amp-Result: UNKNOWN
 X-Amp-Original-Verdict: FILE UNKNOWN
 X-Amp-File-Uploaded: False
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 13 Aug 2019 08:37:51 -0700
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 13 Aug 2019 08:37:59 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.64,382,1559545200"; d="scan'208";a="176234589"
+X-IronPort-AV: E=Sophos;i="5.64,382,1559545200"; d="scan'208";a="327712378"
 Received: from aquilante.fi.intel.com (HELO intel.intel) ([10.237.72.186])
- by fmsmga008.fm.intel.com with ESMTP; 13 Aug 2019 08:37:50 -0700
-Date: Tue, 13 Aug 2019 18:37:50 +0300
+ by orsmga004.jf.intel.com with ESMTP; 13 Aug 2019 08:37:58 -0700
+Date: Tue, 13 Aug 2019 18:37:59 +0300
 From: Andi Shyti <andi.shyti@intel.com>
 To: Chris Wilson <chris@chris-wilson.co.uk>
-Message-ID: <20190813153750.GD32007@intel.intel>
+Message-ID: <20190813153759.GE32007@intel.intel>
 References: <20190813062016.7870-1-chris@chris-wilson.co.uk>
- <20190813062016.7870-4-chris@chris-wilson.co.uk>
+ <20190813062016.7870-5-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20190813062016.7870-4-chris@chris-wilson.co.uk>
+In-Reply-To: <20190813062016.7870-5-chris@chris-wilson.co.uk>
 User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [igt-dev] [PATCH i-g-t 4/9] i915/gem_shrink: Make
- some pages dirty
+Subject: Re: [Intel-gfx] [igt-dev] [PATCH i-g-t 5/9] i915/gem_userptr_blits:
+ Apply some THP pressure
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -52,11 +52,11 @@ Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-SGkgQ2hyaXMsCgpPbiBUdWUsIEF1ZyAxMywgMjAxOSBhdCAwNzoyMDoxMUFNICswMTAwLCBDaHJp
-cyBXaWxzb24gd3JvdGU6Cj4gVHJ5aW5nIHRvIGhpdCBhIGRlYWRsb2NrIGZvciBpbnZhbGlkYXRp
-bmcgZGlydHkgdXNlcnB0ciBwYWdlcyAodmlhCj4ga2NvbXBhY3RkKS4KPiAKPiBTaWduZWQtb2Zm
-LWJ5OiBDaHJpcyBXaWxzb24gPGNocmlzQGNocmlzLXdpbHNvbi5jby51az4KClJldmlld2VkLWJ5
-OiBBbmRpIFNoeXRpIDxhbmRpLnNoeXRpQGludGVsLmNvbT4KCkFuZGkKX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJ
-bnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Au
-b3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
+SGkgQ2hyaXMsCgpPbiBUdWUsIEF1ZyAxMywgMjAxOSBhdCAwNzoyMDoxMkFNICswMTAwLCBDaHJp
+cyBXaWxzb24gd3JvdGU6Cj4gU3RpbGwgdHJ5aW5nIHRvIGhpdCBhIGRlYWRsb2NrIHdpdGggdXNl
+cnB0ciBmcm9tIGtjb21wYXRjZC4KPiAKPiBTaWduZWQtb2ZmLWJ5OiBDaHJpcyBXaWxzb24gPGNo
+cmlzQGNocmlzLXdpbHNvbi5jby51az4KClRoaXMgbG9va3MgYWxsIHJpZ2h0LCBhcyB3ZWxsLgoK
+UmV2ZWl3ZWQtYnk6IEFuZGkgU2h5dGkgPGFuZGkuc2h5dGlAaW50ZWwuY29tPgoKQW5kaQpfX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFp
+bGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZng=
