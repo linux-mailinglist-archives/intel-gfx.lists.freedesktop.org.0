@@ -2,38 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E37A68E1B9
-	for <lists+intel-gfx@lfdr.de>; Thu, 15 Aug 2019 02:14:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3FD6C8E1BC
+	for <lists+intel-gfx@lfdr.de>; Thu, 15 Aug 2019 02:14:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 921B56E87D;
-	Thu, 15 Aug 2019 00:14:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ED44B6E880;
+	Thu, 15 Aug 2019 00:14:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from hqemgate15.nvidia.com (hqemgate15.nvidia.com [216.228.121.64])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 304BF6E85E;
- Wed, 14 Aug 2019 21:53:45 +0000 (UTC)
+Received: from hqemgate14.nvidia.com (hqemgate14.nvidia.com [216.228.121.143])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CB4486E871;
+ Wed, 14 Aug 2019 23:34:59 +0000 (UTC)
 Received: from hqpgpgate102.nvidia.com (Not Verified[216.228.121.13]) by
- hqemgate15.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
- id <B5d5482f40000>; Wed, 14 Aug 2019 14:53:56 -0700
+ hqemgate14.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
+ id <B5d549aa50001>; Wed, 14 Aug 2019 16:35:01 -0700
 Received: from hqmail.nvidia.com ([172.20.161.6])
  by hqpgpgate102.nvidia.com (PGP Universal service);
- Wed, 14 Aug 2019 14:53:45 -0700
+ Wed, 14 Aug 2019 16:34:59 -0700
 X-PGP-Universal: processed;
- by hqpgpgate102.nvidia.com on Wed, 14 Aug 2019 14:53:45 -0700
+ by hqpgpgate102.nvidia.com on Wed, 14 Aug 2019 16:34:59 -0700
 Received: from rcampbell-dev.nvidia.com (10.124.1.5) by HQMAIL107.nvidia.com
  (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Wed, 14 Aug
- 2019 21:53:42 +0000
-To: Jason Gunthorpe <jgg@ziepe.ca>, <linux-mm@kvack.org>
-References: <20190806231548.25242-1-jgg@ziepe.ca>
- <20190806231548.25242-12-jgg@ziepe.ca>
+ 2019 23:34:58 +0000
+To: Andrew Morton <akpm@linux-foundation.org>, Daniel Vetter
+ <daniel.vetter@ffwll.ch>
+References: <20190814202027.18735-1-daniel.vetter@ffwll.ch>
+ <20190814202027.18735-2-daniel.vetter@ffwll.ch>
+ <20190814151447.e9ab74f4c7ed4297e39321d1@linux-foundation.org>
 X-Nvconfidentiality: public
 From: Ralph Campbell <rcampbell@nvidia.com>
-Message-ID: <84b35625-9877-0f35-155a-2d5ee1af4108@nvidia.com>
-Date: Wed, 14 Aug 2019 14:53:42 -0700
+Message-ID: <e917a6f3-463b-0abf-66b7-d4934dbb3af9@nvidia.com>
+Date: Wed, 14 Aug 2019 16:34:58 -0700
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.7.0
 MIME-Version: 1.0
-In-Reply-To: <20190806231548.25242-12-jgg@ziepe.ca>
+In-Reply-To: <20190814151447.e9ab74f4c7ed4297e39321d1@linux-foundation.org>
 X-Originating-IP: [10.124.1.5]
 X-ClientProxiedBy: HQMAIL105.nvidia.com (172.20.187.12) To
  HQMAIL107.nvidia.com (172.20.187.13)
@@ -41,19 +43,19 @@ Content-Language: en-US
 X-Mailman-Approved-At: Thu, 15 Aug 2019 00:14:32 +0000
 X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=nvidia.com; s=n1; 
- t=1565819637; bh=jn8qPKX3vGj+tzC7jfWRezHMQaQX7LZbuyruFud4LQQ=;
+ t=1565825701; bh=e+e/OQAXN7GkasI6yC/EXJqM8IXP7fwTmNiXqJvaCJE=;
  h=X-PGP-Universal:Subject:To:CC:References:X-Nvconfidentiality:From:
  Message-ID:Date:User-Agent:MIME-Version:In-Reply-To:
  X-Originating-IP:X-ClientProxiedBy:Content-Type:Content-Language:
  Content-Transfer-Encoding;
- b=Uy/wbQbI/8gVkXaKmTTwv+BToKsSnHkL4fjJP55iQ/ZlkQP2OtlkImaIl2J3Y4W7G
- mB5itZ0n9QzGL6wQvneV7cnvmEuDvAXs9I8nM+lm5VeT2HrSfqUQKJITY6RoWiahKa
- KlifUf5odeun27zyI1aFM28N+eumN+LjAQ5n4zzu+jSP4hRjpJlBuL2H3dl6e7qf0/
- ZxwBA2TqKNkk93zu8c+eJXx39NWA0utEl726npSZNBRVr87LB025ymRNuncppsbyax
- BTLkxtEts5zZjuzAj/Ye2TuvmWZBrWXRaZRUvPRqPQZeDSM2p+eqQKmB2s8vjB4PN6
- TEzQIENXwNPKw==
-Subject: Re: [Intel-gfx] [PATCH v3 hmm 11/11] mm/mmu_notifiers: remove
- unregister_no_release
+ b=JVminWy3F1xcDKxguw/IFHSOu8yhmVpbFza3GaG0mcfwG4ZfLiV+j+Y1GInVll+lG
+ zOHBACB2xataDHAY+fhoLTpXwvhpiAh8BOZRzHl8PQNjmb9XVXAJ6UhqcfmUWMkc1H
+ s74P3+VufRz//nqshg6mlRajAdOp+1vAhWQ3HkNiMU08Pq4yh431tX72STl+3t5R08
+ 2P0QHNrM//MIYUOmV/X/lEbCQgf8fXWN/WgAQy4ub4cbO3X3SQd3OPEX37pSR74BaI
+ 4AAwMUxOrZgCYLjOGKv8LKXCsKj6qQpYdOhjKvEkLAoCFplAqwo5b1MAIqg/BjouNM
+ h3xNFgkHpm/EA==
+Subject: Re: [Intel-gfx] [PATCH 1/5] mm: Check if mmu notifier callbacks are
+ allowed to fail
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -66,30 +68,55 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Andrea Arcangeli <aarcange@redhat.com>,
- "David \(ChunMing\) Zhou" <David1.Zhou@amd.com>,
- Dimitri Sivanich <sivanich@sgi.com>, Gavin Shan <shangw@linux.vnet.ibm.com>,
- Andrea Righi <andrea@betterlinux.com>, linux-rdma@vger.kernel.org,
- John Hubbard <jhubbard@nvidia.com>, "Kuehling, Felix" <Felix.Kuehling@amd.com>,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
+Cc: Michal Hocko <mhocko@suse.com>, Jason Gunthorpe <jgg@ziepe.ca>,
+ Daniel Vetter <daniel.vetter@intel.com>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ LKML <linux-kernel@vger.kernel.org>,
+ DRI Development <dri-devel@lists.freedesktop.org>, linux-mm@kvack.org,
  =?UTF-8?B?SsOpcsO0bWUgR2xpc3Nl?= <jglisse@redhat.com>,
- iommu@lists.linux-foundation.org, amd-gfx@lists.freedesktop.org,
- Jason Gunthorpe <jgg@mellanox.com>, Alex
- Deucher <alexander.deucher@amd.com>, intel-gfx@lists.freedesktop.org,
- Christoph Hellwig <hch@lst.de>
+ David Rientjes <rientjes@google.com>, Paolo Bonzini <pbonzini@redhat.com>,
+ =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
 Content-Transfer-Encoding: base64
 Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Ck9uIDgvNi8xOSA0OjE1IFBNLCBKYXNvbiBHdW50aG9ycGUgd3JvdGU6Cj4gRnJvbTogSmFzb24g
-R3VudGhvcnBlIDxqZ2dAbWVsbGFub3guY29tPgo+IAo+IG1tdV9ub3RpZmllcl91bnJlZ2lzdGVy
-X25vX3JlbGVhc2UoKSBhbmQgbW11X25vdGlmaWVyX2NhbGxfc3JjdSgpIG5vCj4gbG9uZ2VyIGhh
-dmUgYW55IHVzZXJzLCB0aGV5IGhhdmUgYWxsIGJlZW4gY29udmVydGVkIHRvIHVzZQo+IG1tdV9u
-b3RpZmllcl9wdXQoKS4KPiAKPiBTbyBkZWxldGUgdGhpcyBkaWZmaWN1bHQgdG8gdXNlIGludGVy
-ZmFjZS4KPiAKPiBTaWduZWQtb2ZmLWJ5OiBKYXNvbiBHdW50aG9ycGUgPGpnZ0BtZWxsYW5veC5j
-b20+CgpSZXZpZXdlZC1ieTogUmFscGggQ2FtcGJlbGwgPHJjYW1wYmVsbEBudmlkaWEuY29tPgpf
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZngg
-bWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0
-cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZng=
+Ck9uIDgvMTQvMTkgMzoxNCBQTSwgQW5kcmV3IE1vcnRvbiB3cm90ZToKPiBPbiBXZWQsIDE0IEF1
+ZyAyMDE5IDIyOjIwOjIzICswMjAwIERhbmllbCBWZXR0ZXIgPGRhbmllbC52ZXR0ZXJAZmZ3bGwu
+Y2g+IHdyb3RlOgo+IAo+PiBKdXN0IGEgYml0IG9mIHBhcmFub2lhLCBzaW5jZSBpZiB3ZSBzdGFy
+dCBwdXNoaW5nIHRoaXMgZGVlcCBpbnRvCj4+IGNhbGxjaGFpbnMgaXQncyBoYXJkIHRvIHNwb3Qg
+YWxsIHBsYWNlcyB3aGVyZSBhbiBtbXUgbm90aWZpZXIKPj4gaW1wbGVtZW50YXRpb24gbWlnaHQg
+ZmFpbCB3aGVuIGl0J3Mgbm90IGFsbG93ZWQgdG8uCj4+Cj4+IEluc3BpcmVkIGJ5IHNvbWUgY29u
+ZnVzaW9uIHdlIGhhZCBkaXNjdXNzaW5nIGk5MTUgbW11IG5vdGlmaWVycyBhbmQKPj4gd2hldGhl
+ciB3ZSBjb3VsZCB1c2UgdGhlIG5ld2x5LWludHJvZHVjZWQgcmV0dXJuIHZhbHVlIHRvIGhhbmRs
+ZSBzb21lCj4+IGNvcm5lciBjYXNlcy4gVW50aWwgd2UgcmVhbGl6ZWQgdGhhdCB0aGVzZSBhcmUg
+b25seSBmb3Igd2hlbiBhIHRhc2sKPj4gaGFzIGJlZW4ga2lsbGVkIGJ5IHRoZSBvb20gcmVhcGVy
+Lgo+Pgo+PiBBbiBhbHRlcm5hdGl2ZSBhcHByb2FjaCB3b3VsZCBiZSB0byBzcGxpdCB0aGUgY2Fs
+bGJhY2sgaW50byB0d28KPj4gdmVyc2lvbnMsIG9uZSB3aXRoIHRoZSBpbnQgcmV0dXJuIHZhbHVl
+LCBhbmQgdGhlIG90aGVyIHdpdGggdm9pZAo+PiByZXR1cm4gdmFsdWUgbGlrZSBpbiBvbGRlciBr
+ZXJuZWxzLiBCdXQgdGhhdCdzIGEgbG90IG1vcmUgY2h1cm4gZm9yCj4+IGZhaXJseSBsaXR0bGUg
+Z2FpbiBJIHRoaW5rLgo+Pgo+PiBTdW1tYXJ5IGZyb20gdGhlIG0tbCBkaXNjdXNzaW9uIG9uIHdo
+eSB3ZSB3YW50IHNvbWV0aGluZyBhdCB3YXJuaW5nCj4+IGxldmVsOiBUaGlzIGFsbG93cyBhdXRv
+bWF0ZWQgdG9vbGluZyBpbiBDSSB0byBjYXRjaCBidWdzIHdpdGhvdXQKPj4gaHVtYW5zIGhhdmlu
+ZyB0byBsb29rIGF0IGV2ZXJ5dGhpbmcuIElmIHdlIGp1c3QgdXBncmFkZSB0aGUgZXhpc3RpbmcK
+Pj4gcHJfaW5mbyB0byBhIHByX3dhcm4sIHRoZW4gd2UnbGwgaGF2ZSBmYWxzZSBwb3NpdGl2ZXMu
+IEFuZCBhcy1pcywgbm8KPj4gb25lIHdpbGwgZXZlciBzcG90IHRoZSBwcm9ibGVtIHNpbmNlIGl0
+J3MgbG9zdCBpbiB0aGUgbWFzc2l2ZSBhbW91bnRzCj4+IG9mIG92ZXJhbGwgZG1lc2cgbm9pc2Uu
+Cj4+Cj4+IC4uLgo+Pgo+PiAtLS0gYS9tbS9tbXVfbm90aWZpZXIuYwo+PiArKysgYi9tbS9tbXVf
+bm90aWZpZXIuYwo+PiBAQCAtMTc5LDYgKzE3OSw4IEBAIGludCBfX21tdV9ub3RpZmllcl9pbnZh
+bGlkYXRlX3JhbmdlX3N0YXJ0KHN0cnVjdCBtbXVfbm90aWZpZXJfcmFuZ2UgKnJhbmdlKQo+PiAg
+IAkJCQlwcl9pbmZvKCIlcFMgY2FsbGJhY2sgZmFpbGVkIHdpdGggJWQgaW4gJXNibG9ja2FibGUg
+Y29udGV4dC5cbiIsCj4+ICAgCQkJCQltbi0+b3BzLT5pbnZhbGlkYXRlX3JhbmdlX3N0YXJ0LCBf
+cmV0LAo+PiAgIAkJCQkJIW1tdV9ub3RpZmllcl9yYW5nZV9ibG9ja2FibGUocmFuZ2UpID8gIm5v
+bi0iIDogIiIpOwo+PiArCQkJCVdBUk5fT04obW11X25vdGlmaWVyX3JhbmdlX2Jsb2NrYWJsZShy
+YW5nZSkgfHwKPj4gKwkJCQkJcmV0ICE9IC1FQUdBSU4pOwo+PiAgIAkJCQlyZXQgPSBfcmV0Owo+
+PiAgIAkJCX0KPj4gICAJCX0KPiAKPiBBIHByb2JsZW0gd2l0aCBXQVJOX09OKGEgfHwgYikgaXMg
+dGhhdCBpZiBpdCB0cmlnZ2Vycywgd2UgZG9uJ3Qga25vdwo+IHdoZXRoZXIgaXQgd2FzIGJlY2F1
+c2Ugb2YgYSBvciBiZWNhdXNlIG9mIGIuICBPciBib3RoLiAgU28gSSdkIHN1Z2dlc3QKPiAKPiAJ
+V0FSTl9PTihhKTsKPiAJV0FSTl9PTihiKTsKPiAKClRoaXMgd29uJ3QgcXVpdGUgd29yay4gSXQg
+aXMgT0sgdG8gaGF2ZSAKbW11X25vdGlmaWVyX3JhbmdlX2Jsb2NrYWJsZShyYW5nZSkgYmUgdHJ1
+ZSBvciBmYWxzZS4Kc3luY19jcHVfZGV2aWNlX3BhZ2V0YWJsZXMoKSBzaG91bGRuJ3QgcmV0dXJu
+Ci1FQUdBSU4gdW5sZXNzIGJsb2NrYWJsZSBpcyB0cnVlLgpfX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdm
+eEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFp
+bG1hbi9saXN0aW5mby9pbnRlbC1nZng=
