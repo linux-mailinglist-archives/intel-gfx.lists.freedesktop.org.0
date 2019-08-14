@@ -1,32 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B8A88C9D9
-	for <lists+intel-gfx@lfdr.de>; Wed, 14 Aug 2019 05:19:30 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id A7E1E8C9DB
+	for <lists+intel-gfx@lfdr.de>; Wed, 14 Aug 2019 05:20:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 855996E231;
-	Wed, 14 Aug 2019 03:08:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 012F56E144;
+	Wed, 14 Aug 2019 03:20:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 82E256E22F;
- Wed, 14 Aug 2019 03:08:47 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 7A470A00FE;
- Wed, 14 Aug 2019 03:08:47 +0000 (UTC)
+Received: from ozlabs.org (ozlabs.org [IPv6:2401:3900:2:1::2])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AF89E6E144;
+ Wed, 14 Aug 2019 03:20:55 +0000 (UTC)
+Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
+ SHA256) (No client certificate requested)
+ by mail.ozlabs.org (Postfix) with ESMTPSA id 467Zbn2WQBz9sDB;
+ Wed, 14 Aug 2019 13:20:52 +1000 (AEST)
+Date: Wed, 14 Aug 2019 13:20:52 +1000
+From: Stephen Rothwell <sfr@canb.auug.org.au>
+To: Lucas Stach <l.stach@pengutronix.de>, Daniel Vetter
+ <daniel.vetter@ffwll.ch>, Intel Graphics <intel-gfx@lists.freedesktop.org>,
+ DRI <dri-devel@lists.freedesktop.org>
+Message-ID: <20190814132052.6a948fec@canb.auug.org.au>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Stephen Rothwell" <sfr@canb.auug.org.au>
-Date: Wed, 14 Aug 2019 03:08:47 -0000
-Message-ID: <20190814030847.27520.13153@emeril.freedesktop.org>
-References: <20190814125433.20147fb7@canb.auug.org.au>
-X-Patchwork-Hint: ignore
-In-Reply-To: <20190814125433.20147fb7@canb.auug.org.au>
-Subject: [Intel-gfx] =?utf-8?q?=E2=9C=97_Fi=2ECI=2EBAT=3A_failure_for_linu?=
- =?utf-8?q?x-next=3A_manual_merge_of_the_drm-misc_tree_with_the_drm_and_dr?=
- =?utf-8?q?m-intel_trees?=
+X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=canb.auug.org.au; s=201702; t=1565752853;
+ bh=aDsEWAk8z5cWPOG79P6XI4GbMTAPFisWuPLsGPIVZaE=;
+ h=Date:From:To:Cc:Subject:From;
+ b=OfvMgYDEoc5j4nmZxjhAiXUu8JURMocpVhHAxh5LYGPt5wh1xfDF4uSVU33HFFml/
+ bVD69r0O8Bj9PFG9LfVVbm2ZGeGlTML5crheGADIF91G1+F7REZsZ/ZQIPTWcSsJWB
+ aSKlBGjcCWQu8MGD7Hu8H4YrAfCYZkBnIUWls7McriXALqsrGB1T219MJLqqnjcDSp
+ ukd3JOX+9q01A3GpQf4H8hpgcjVDaaDR2PZU3w1oCRieSWnMiU8GNFvN2J6VLxGDih
+ 02hJHfYeGvg8Eb9vt01OYf4wcYmbhCSuvy4RVyQXJpn7Wq9LFOIKBzUZ6Y/9bGA/m2
+ ve5tACyT+5GSA==
+Subject: [Intel-gfx] linux-next: manual merge of the etnaviv tree with the
+ drm-misc tree
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -39,23 +49,98 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Linux Next Mailing List <linux-next@vger.kernel.org>,
+ Sam Ravnborg <sam@ravnborg.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ Christian =?UTF-8?B?S8O2bmln?= <christian.koenig@amd.com>
+Content-Type: multipart/mixed; boundary="===============0072663825=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-PT0gU2VyaWVzIERldGFpbHMgPT0KClNlcmllczogbGludXgtbmV4dDogbWFudWFsIG1lcmdlIG9m
-IHRoZSBkcm0tbWlzYyB0cmVlIHdpdGggdGhlIGRybSBhbmQgZHJtLWludGVsIHRyZWVzClVSTCAg
-IDogaHR0cHM6Ly9wYXRjaHdvcmsuZnJlZWRlc2t0b3Aub3JnL3Nlcmllcy82NTE2Mi8KU3RhdGUg
-OiBmYWlsdXJlCgo9PSBTdW1tYXJ5ID09CgpBcHBseWluZzogbGludXgtbmV4dDogbWFudWFsIG1l
-cmdlIG9mIHRoZSBkcm0tbWlzYyB0cmVlIHdpdGggdGhlIGRybSBhbmQgZHJtLWludGVsIHRyZWVz
-ClVzaW5nIGluZGV4IGluZm8gdG8gcmVjb25zdHJ1Y3QgYSBiYXNlIHRyZWUuLi4KTQlkcml2ZXJz
-L2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfb2JqZWN0LmMKTQlkcml2ZXJzL2dwdS9kcm0vaTkx
-NS9nZW0vaTkxNV9nZW1fb2JqZWN0LmMKTQlkcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRlbF9l
-bmdpbmVfcG9vbC5jCkZhbGxpbmcgYmFjayB0byBwYXRjaGluZyBiYXNlIGFuZCAzLXdheSBtZXJn
-ZS4uLgpObyBjaGFuZ2VzIC0tIFBhdGNoIGFscmVhZHkgYXBwbGllZC4KCl9fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QK
-SW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9w
-Lm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeA==
+--===============0072663825==
+Content-Type: multipart/signed; boundary="Sig_/vRy27nI4wAjYLxi9_zgcFMc";
+ protocol="application/pgp-signature"; micalg=pgp-sha256
+
+--Sig_/vRy27nI4wAjYLxi9_zgcFMc
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
+
+Hi all,
+
+Today's linux-next merge of the etnaviv tree got a conflict in:
+
+  drivers/gpu/drm/etnaviv/etnaviv_gem_submit.c
+
+between commit:
+
+  52791eeec1d9 ("dma-buf: rename reservation_object to dma_resv")
+
+from the drm-misc tree and commit:
+
+  6eae41fea750 ("drm/etnaviv: drop use of drmP.h")
+  2e737e520548 ("drm/etnaviv: clean up includes")
+
+from the etnaviv tree.
+
+I fixed it up (see below) and can carry the fix as necessary. This
+is now fixed as far as linux-next is concerned, but any non trivial
+conflicts should be mentioned to your upstream maintainer when your tree
+is submitted for merging.  You may also want to consider cooperating
+with the maintainer of the conflicting tree to minimise any particularly
+complex conflicts.
+
+--=20
+Cheers,
+Stephen Rothwell
+
+diff --cc drivers/gpu/drm/etnaviv/etnaviv_gem_submit.c
+index 998c96b40d8a,f535a627f297..000000000000
+--- a/drivers/gpu/drm/etnaviv/etnaviv_gem_submit.c
++++ b/drivers/gpu/drm/etnaviv/etnaviv_gem_submit.c
+@@@ -3,9 -3,15 +3,15 @@@
+   * Copyright (C) 2015 Etnaviv Project
+   */
+ =20
++ #include <drm/drm_file.h>
+  #include <linux/dma-fence-array.h>
++ #include <linux/file.h>
++ #include <linux/pm_runtime.h>
+ -#include <linux/reservation.h>
+ +#include <linux/dma-resv.h>
+  #include <linux/sync_file.h>
++ #include <linux/uaccess.h>
++ #include <linux/vmalloc.h>
++=20
+  #include "etnaviv_cmdbuf.h"
+  #include "etnaviv_drv.h"
+  #include "etnaviv_gpu.h"
+
+--Sig_/vRy27nI4wAjYLxi9_zgcFMc
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAl1TfhQACgkQAVBC80lX
+0GzCiAf/bmDL6BQOfqpZNVydZdEuaCwG8NkzhvP0TftrctQAmqld5q7Q+GrRccf8
+WtvfE18XBcAXibGZ8XsTK/iHJtg/g+BvONECGs+q4uu51ecaDgUOjMS73ZHo3gp8
+azilrXfnHBi3SGGZkXdftk3MOJfYM9SIAaMuDGXGwN27NuGs1j1a1L7AzrlGTyQy
+4UPhQGUpRmL2/XnlB0So2Lhr0WleOvrxVBDQP5O6IJWlKwzKecq28LhG/ueuDAY+
+W4c1evel6Xxv6o9BfSpLxkUrGRSRNohyyWPf1uBbm54E/NGk1kuHErYng94aqPd8
+8WXvlmss5jlimth4qziUbwJY5lu60Q==
+=JxjQ
+-----END PGP SIGNATURE-----
+
+--Sig_/vRy27nI4wAjYLxi9_zgcFMc--
+
+--===============0072663825==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
+IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
+
+--===============0072663825==--
