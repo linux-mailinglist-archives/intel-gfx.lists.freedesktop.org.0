@@ -1,31 +1,57 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 64B508CBC8
-	for <lists+intel-gfx@lfdr.de>; Wed, 14 Aug 2019 08:15:59 +0200 (CEST)
+Received: from gabe.freedesktop.org (unknown [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id B13AC8CBDC
+	for <lists+intel-gfx@lfdr.de>; Wed, 14 Aug 2019 08:21:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8AEF86E25B;
-	Wed, 14 Aug 2019 06:15:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 529D96E24E;
+	Wed, 14 Aug 2019 06:20:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 43B0B6E24E;
- Wed, 14 Aug 2019 06:15:39 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 3CD1FA00FD;
- Wed, 14 Aug 2019 06:15:39 +0000 (UTC)
+Received: from mail-oi1-x243.google.com (mail-oi1-x243.google.com
+ [IPv6:2607:f8b0:4864:20::243])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 64F856E24E
+ for <intel-gfx@lists.freedesktop.org>; Wed, 14 Aug 2019 06:20:58 +0000 (UTC)
+Received: by mail-oi1-x243.google.com with SMTP id k22so2203036oiw.11
+ for <intel-gfx@lists.freedesktop.org>; Tue, 13 Aug 2019 23:20:58 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=hpJolByIHyZPlmi/5SbfbdZfrmAHnxrtaOJkwS94th0=;
+ b=skdp2JdqJzMNc2Qix2fZ7rHcNFcHqGS3DTSnnkN3ELazPm0dn3gZqk2fhc6zUUo++6
+ /92Zvyj4Cafz1p7QqlYW6WLV1XBitJ8ZWAICmB2TB74eVTwDMpyGSU8Rhy5H6b5u5SvE
+ aCNrYEm3mTK0/yxz55+yMraj5QKH1eCvVE0/0wYdTvXWAQT8utm/ofcgZ2xB4wGwzJOg
+ tybO/e87AwjgYrfZ+S5zctx9AbYY/Y84R/xJ5yH2erndiNxhxH2Ab84A+ilTeoqaXzYu
+ nXSqOBsUPUU1hxatUjzWgsuI1IjV2oqsFtvQLJf3x9+hyLWF9Mha3LtTMVYEgONDwp5K
+ p0sQ==
+X-Gm-Message-State: APjAAAVpDwBxFHcao5B0qMzKMY0PUvVDd3Vw0A0EcbN9NpQCiWaZvAUJ
+ Pgv7avVYnkV2QNH5nWGFy7/6YGBhYUffabgCtpHYoIG9/L4=
+X-Google-Smtp-Source: APXvYqzEWQiLfRvT0q4eSQ5MqxnIR9U8kY51DdHz1KywC011NgNOL0iSRryO7FCKfcZp9UVpDq4f08O5ClImssaQaFM=
+X-Received: by 2002:aca:6183:: with SMTP id v125mr3714399oib.6.1565763657439; 
+ Tue, 13 Aug 2019 23:20:57 -0700 (PDT)
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Gerd Hoffmann" <kraxel@redhat.com>
-Date: Wed, 14 Aug 2019 06:15:39 -0000
-Message-ID: <20190814061539.27517.42302@emeril.freedesktop.org>
-References: <20190805140119.7337-1-kraxel@redhat.com>
-X-Patchwork-Hint: ignore
-In-Reply-To: <20190805140119.7337-1-kraxel@redhat.com>
-Subject: [Intel-gfx] =?utf-8?q?=E2=9C=97_Fi=2ECI=2EBAT=3A_failure_for_drm/?=
- =?utf-8?q?ttm=3A_make_ttm_bo_a_gem_bo_subclass_=28rev3=29?=
+References: <20190811085601.110919-1-christian.koenig@amd.com>
+ <156551511039.2301.9800850987730158624@skylake-alporthouse-com>
+In-Reply-To: <156551511039.2301.9800850987730158624@skylake-alporthouse-com>
+From: Sumit Semwal <sumit.semwal@linaro.org>
+Date: Wed, 14 Aug 2019 11:50:46 +0530
+Message-ID: <CAO_48GGPTVK0iaZQJr0vh=iOtCc7VX-EBD0mtPvraO6RVvywww@mail.gmail.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>
+X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linaro.org; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc;
+ bh=hpJolByIHyZPlmi/5SbfbdZfrmAHnxrtaOJkwS94th0=;
+ b=xCCUG2oMD08DGg8HiXiou8bkugK13FTZr5NAS1Nu4YFsbJjc+NhJ4mFVqSPtSUMKg2
+ 5xlhlCsKxgqAGLKmkE4atKI9E/BfEg3YbvmYmBlWHl5nFppNbCVV0yEWnW4W6zZv0zDe
+ vyYdYyWiR18fIixCljwk6ZrD/avFaxYkvTF+wVgaj28heXQg9ogVjE7uOaK+QZPgibdm
+ ZlDUazBoILkVQ0nFeGitK86SwhuyRaKNzKjMwq6syBDZmBsGNvVFnh3uttU8AzvT5lKr
+ 7Xx55tCSjYP6WvaqK9aoxkPKw5fK7E2bpd3abJSEqx+kQ2YRfu8r9Squ8/W+eVxRpz1J
+ kUPg==
+Subject: Re: [Intel-gfx] [PATCH] dma-buf: rename reservation_object to
+ dma_resv
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -38,60 +64,89 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ DRI mailing list <dri-devel@lists.freedesktop.org>,
+ Gustavo Padovan <gustavo@padovan.org>
+Content-Type: multipart/mixed; boundary="===============0178441945=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-PT0gU2VyaWVzIERldGFpbHMgPT0KClNlcmllczogZHJtL3R0bTogbWFrZSB0dG0gYm8gYSBnZW0g
-Ym8gc3ViY2xhc3MgKHJldjMpClVSTCAgIDogaHR0cHM6Ly9wYXRjaHdvcmsuZnJlZWRlc2t0b3Au
-b3JnL3Nlcmllcy82NDcwMS8KU3RhdGUgOiBmYWlsdXJlCgo9PSBTdW1tYXJ5ID09CgpBcHBseWlu
-ZzogZHJtL3R0bTogYWRkIGdlbSBiYXNlIG9iamVjdApVc2luZyBpbmRleCBpbmZvIHRvIHJlY29u
-c3RydWN0IGEgYmFzZSB0cmVlLi4uCk0JaW5jbHVkZS9kcm0vdHRtL3R0bV9ib19hcGkuaApGYWxs
-aW5nIGJhY2sgdG8gcGF0Y2hpbmcgYmFzZSBhbmQgMy13YXkgbWVyZ2UuLi4KQXV0by1tZXJnaW5n
-IGluY2x1ZGUvZHJtL3R0bS90dG1fYm9fYXBpLmgKTm8gY2hhbmdlcyAtLSBQYXRjaCBhbHJlYWR5
-IGFwcGxpZWQuCkFwcGx5aW5nOiBkcm0vdnJhbTogdXNlIGVtYmVkZGVkIGdlbSBvYmplY3QKVXNp
-bmcgaW5kZXggaW5mbyB0byByZWNvbnN0cnVjdCBhIGJhc2UgdHJlZS4uLgpNCWRyaXZlcnMvZ3B1
-L2RybS9hc3QvYXN0X21haW4uYwpNCWRyaXZlcnMvZ3B1L2RybS9kcm1fZ2VtX3ZyYW1faGVscGVy
-LmMKTQlkcml2ZXJzL2dwdS9kcm0vaGlzaWxpY29uL2hpYm1jL2hpYm1jX3R0bS5jCk0JZHJpdmVy
-cy9ncHUvZHJtL3Zib3h2aWRlby92Ym94X21haW4uYwpNCWluY2x1ZGUvZHJtL2RybV9nZW1fdnJh
-bV9oZWxwZXIuaApGYWxsaW5nIGJhY2sgdG8gcGF0Y2hpbmcgYmFzZSBhbmQgMy13YXkgbWVyZ2Uu
-Li4KQXV0by1tZXJnaW5nIGRyaXZlcnMvZ3B1L2RybS9kcm1fZ2VtX3ZyYW1faGVscGVyLmMKTm8g
-Y2hhbmdlcyAtLSBQYXRjaCBhbHJlYWR5IGFwcGxpZWQuCkFwcGx5aW5nOiBkcm0vcXhsOiB1c2Ug
-ZW1iZWRkZWQgZ2VtIG9iamVjdApVc2luZyBpbmRleCBpbmZvIHRvIHJlY29uc3RydWN0IGEgYmFz
-ZSB0cmVlLi4uCk0JZHJpdmVycy9ncHUvZHJtL3F4bC9xeGxfY21kLmMKTQlkcml2ZXJzL2dwdS9k
-cm0vcXhsL3F4bF9kZWJ1Z2ZzLmMKTQlkcml2ZXJzL2dwdS9kcm0vcXhsL3F4bF9kaXNwbGF5LmMK
-TQlkcml2ZXJzL2dwdS9kcm0vcXhsL3F4bF9kcnYuaApNCWRyaXZlcnMvZ3B1L2RybS9xeGwvcXhs
-X2dlbS5jCk0JZHJpdmVycy9ncHUvZHJtL3F4bC9xeGxfb2JqZWN0LmMKTQlkcml2ZXJzL2dwdS9k
-cm0vcXhsL3F4bF9vYmplY3QuaApNCWRyaXZlcnMvZ3B1L2RybS9xeGwvcXhsX3JlbGVhc2UuYwpN
-CWRyaXZlcnMvZ3B1L2RybS9xeGwvcXhsX3R0bS5jCkZhbGxpbmcgYmFjayB0byBwYXRjaGluZyBi
-YXNlIGFuZCAzLXdheSBtZXJnZS4uLgpBdXRvLW1lcmdpbmcgZHJpdmVycy9ncHUvZHJtL3F4bC9x
-eGxfcmVsZWFzZS5jCkF1dG8tbWVyZ2luZyBkcml2ZXJzL2dwdS9kcm0vcXhsL3F4bF9vYmplY3Qu
-aApBdXRvLW1lcmdpbmcgZHJpdmVycy9ncHUvZHJtL3F4bC9xeGxfZGVidWdmcy5jCk5vIGNoYW5n
-ZXMgLS0gUGF0Y2ggYWxyZWFkeSBhcHBsaWVkLgpBcHBseWluZzogZHJtL3JhZGVvbjogdXNlIGVt
-YmVkZGVkIGdlbSBvYmplY3QKVXNpbmcgaW5kZXggaW5mbyB0byByZWNvbnN0cnVjdCBhIGJhc2Ug
-dHJlZS4uLgpNCWRyaXZlcnMvZ3B1L2RybS9yYWRlb24vcmFkZW9uLmgKTQlkcml2ZXJzL2dwdS9k
-cm0vcmFkZW9uL3JhZGVvbl9jcy5jCk0JZHJpdmVycy9ncHUvZHJtL3JhZGVvbi9yYWRlb25fZGlz
-cGxheS5jCk0JZHJpdmVycy9ncHUvZHJtL3JhZGVvbi9yYWRlb25fZ2VtLmMKTQlkcml2ZXJzL2dw
-dS9kcm0vcmFkZW9uL3JhZGVvbl9vYmplY3QuYwpNCWRyaXZlcnMvZ3B1L2RybS9yYWRlb24vcmFk
-ZW9uX3ByaW1lLmMKTQlkcml2ZXJzL2dwdS9kcm0vcmFkZW9uL3JhZGVvbl90dG0uYwpGYWxsaW5n
-IGJhY2sgdG8gcGF0Y2hpbmcgYmFzZSBhbmQgMy13YXkgbWVyZ2UuLi4KQXV0by1tZXJnaW5nIGRy
-aXZlcnMvZ3B1L2RybS9yYWRlb24vcmFkZW9uX3R0bS5jCkF1dG8tbWVyZ2luZyBkcml2ZXJzL2dw
-dS9kcm0vcmFkZW9uL3JhZGVvbl9wcmltZS5jCkF1dG8tbWVyZ2luZyBkcml2ZXJzL2dwdS9kcm0v
-cmFkZW9uL3JhZGVvbl9vYmplY3QuYwpDT05GTElDVCAoY29udGVudCk6IE1lcmdlIGNvbmZsaWN0
-IGluIGRyaXZlcnMvZ3B1L2RybS9yYWRlb24vcmFkZW9uX29iamVjdC5jCkF1dG8tbWVyZ2luZyBk
-cml2ZXJzL2dwdS9kcm0vcmFkZW9uL3JhZGVvbl9nZW0uYwpBdXRvLW1lcmdpbmcgZHJpdmVycy9n
-cHUvZHJtL3JhZGVvbi9yYWRlb25fZGlzcGxheS5jCkF1dG8tbWVyZ2luZyBkcml2ZXJzL2dwdS9k
-cm0vcmFkZW9uL3JhZGVvbl9jcy5jCkF1dG8tbWVyZ2luZyBkcml2ZXJzL2dwdS9kcm0vcmFkZW9u
-L3JhZGVvbi5oCmVycm9yOiBGYWlsZWQgdG8gbWVyZ2UgaW4gdGhlIGNoYW5nZXMuCmhpbnQ6IFVz
-ZSAnZ2l0IGFtIC0tc2hvdy1jdXJyZW50LXBhdGNoJyB0byBzZWUgdGhlIGZhaWxlZCBwYXRjaApQ
-YXRjaCBmYWlsZWQgYXQgMDAwNCBkcm0vcmFkZW9uOiB1c2UgZW1iZWRkZWQgZ2VtIG9iamVjdApX
-aGVuIHlvdSBoYXZlIHJlc29sdmVkIHRoaXMgcHJvYmxlbSwgcnVuICJnaXQgYW0gLS1jb250aW51
-ZSIuCklmIHlvdSBwcmVmZXIgdG8gc2tpcCB0aGlzIHBhdGNoLCBydW4gImdpdCBhbSAtLXNraXAi
-IGluc3RlYWQuClRvIHJlc3RvcmUgdGhlIG9yaWdpbmFsIGJyYW5jaCBhbmQgc3RvcCBwYXRjaGlu
-ZywgcnVuICJnaXQgYW0gLS1hYm9ydCIuCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5m
-cmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0
-aW5mby9pbnRlbC1nZng=
+--===============0178441945==
+Content-Type: multipart/alternative; boundary="0000000000009ac14805900dc2ac"
+
+--0000000000009ac14805900dc2ac
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hello Christian,
+
+On Sun, 11 Aug 2019 at 14:48, Chris Wilson <chris@chris-wilson.co.uk> wrote=
+:
+
+> Quoting Christian K=C3=B6nig (2019-08-11 09:56:01)
+> > Be more consistent with the naming of the other DMA-buf objects.
+>
+> From the tip of my fingers, \o/
+>
+> > Signed-off-by: Christian K=C3=B6nig <christian.koenig@amd.com>
+>
+Thanks for doing this!
+Acked-by: Sumit Semwal <sumit.semwal@linaro.org>
+
+
+>
+> Letting the compiler do the real work (for the bits I spot checked it
+> was the expected mechanical translation), and overwhelmingly agreeing wit=
+h
+> the motivation,
+> Reviewed-by: Chris Wilson <chris@chris-wilson.co.uk>
+> -Chris
+>
+
+Best,
+Sumit.
+
+--0000000000009ac14805900dc2ac
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div dir=3D"ltr">Hello Christian,</div><br><div class=3D"g=
+mail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Sun, 11 Aug 2019 at 14=
+:48, Chris Wilson &lt;<a href=3D"mailto:chris@chris-wilson.co.uk">chris@chr=
+is-wilson.co.uk</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" s=
+tyle=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);pad=
+ding-left:1ex">Quoting Christian K=C3=B6nig (2019-08-11 09:56:01)<br>
+&gt; Be more consistent with the naming of the other DMA-buf objects.<br>
+<br>
+From the tip of my fingers, \o/<br>
+<br>
+&gt; Signed-off-by: Christian K=C3=B6nig &lt;<a href=3D"mailto:christian.ko=
+enig@amd.com" target=3D"_blank">christian.koenig@amd.com</a>&gt;<br></block=
+quote><div>Thanks for doing this!</div><div>Acked-by: Sumit Semwal &lt;<a h=
+ref=3D"mailto:sumit.semwal@linaro.org">sumit.semwal@linaro.org</a>&gt;</div=
+><div>=C2=A0</div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px=
+ 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
+<br>
+Letting the compiler do the real work (for the bits I spot checked it<br>
+was the expected mechanical translation), and overwhelmingly agreeing with<=
+br>
+the motivation,<br>
+Reviewed-by: Chris Wilson &lt;<a href=3D"mailto:chris@chris-wilson.co.uk" t=
+arget=3D"_blank">chris@chris-wilson.co.uk</a>&gt;<br>
+-Chris<br>
+</blockquote></div><br><div>Best,</div><div>Sumit.</div></div>
+
+--0000000000009ac14805900dc2ac--
+
+--===============0178441945==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
+IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
+
+--===============0178441945==--
