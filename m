@@ -2,38 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 93DDC8DF45
-	for <lists+intel-gfx@lfdr.de>; Wed, 14 Aug 2019 22:49:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 210738DF47
+	for <lists+intel-gfx@lfdr.de>; Wed, 14 Aug 2019 22:49:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DC50F893A7;
-	Wed, 14 Aug 2019 20:49:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1792F89503;
+	Wed, 14 Aug 2019 20:49:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from hqemgate14.nvidia.com (hqemgate14.nvidia.com [216.228.121.143])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BBFBD6E82C;
- Wed, 14 Aug 2019 20:14:26 +0000 (UTC)
-Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by
- hqemgate14.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
- id <B5d546ba40000>; Wed, 14 Aug 2019 13:14:28 -0700
+Received: from hqemgate15.nvidia.com (hqemgate15.nvidia.com [216.228.121.64])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CC2C46E835;
+ Wed, 14 Aug 2019 20:32:20 +0000 (UTC)
+Received: from hqpgpgate102.nvidia.com (Not Verified[216.228.121.13]) by
+ hqemgate15.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
+ id <B5d546fdf0001>; Wed, 14 Aug 2019 13:32:31 -0700
 Received: from hqmail.nvidia.com ([172.20.161.6])
- by hqpgpgate101.nvidia.com (PGP Universal service);
- Wed, 14 Aug 2019 13:14:26 -0700
+ by hqpgpgate102.nvidia.com (PGP Universal service);
+ Wed, 14 Aug 2019 13:32:20 -0700
 X-PGP-Universal: processed;
- by hqpgpgate101.nvidia.com on Wed, 14 Aug 2019 13:14:26 -0700
+ by hqpgpgate102.nvidia.com on Wed, 14 Aug 2019 13:32:20 -0700
 Received: from rcampbell-dev.nvidia.com (10.124.1.5) by HQMAIL107.nvidia.com
  (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Wed, 14 Aug
- 2019 20:14:24 +0000
+ 2019 20:32:13 +0000
 To: Jason Gunthorpe <jgg@ziepe.ca>, <linux-mm@kvack.org>
 References: <20190806231548.25242-1-jgg@ziepe.ca>
- <20190806231548.25242-2-jgg@ziepe.ca>
+ <20190806231548.25242-3-jgg@ziepe.ca>
 X-Nvconfidentiality: public
 From: Ralph Campbell <rcampbell@nvidia.com>
-Message-ID: <1391be01-932c-68ca-0160-e08ed2a0243d@nvidia.com>
-Date: Wed, 14 Aug 2019 13:14:24 -0700
+Message-ID: <d2d8d6a8-7ac5-8f04-c11a-61140fccc5e1@nvidia.com>
+Date: Wed, 14 Aug 2019 13:32:13 -0700
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.7.0
 MIME-Version: 1.0
-In-Reply-To: <20190806231548.25242-2-jgg@ziepe.ca>
+In-Reply-To: <20190806231548.25242-3-jgg@ziepe.ca>
 X-Originating-IP: [10.124.1.5]
 X-ClientProxiedBy: HQMAIL105.nvidia.com (172.20.187.12) To
  HQMAIL107.nvidia.com (172.20.187.13)
@@ -41,19 +41,19 @@ Content-Language: en-US
 X-Mailman-Approved-At: Wed, 14 Aug 2019 20:49:49 +0000
 X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=nvidia.com; s=n1; 
- t=1565813668; bh=l693Dsnz2cNYZkVUIa0hGWj4gZqviofo6oB5vcHDRgE=;
+ t=1565814751; bh=q5g/jOMKlOwEYLFivYM3g535tx3Zkm1ReT5LriUi6Cs=;
  h=X-PGP-Universal:Subject:To:CC:References:X-Nvconfidentiality:From:
  Message-ID:Date:User-Agent:MIME-Version:In-Reply-To:
  X-Originating-IP:X-ClientProxiedBy:Content-Type:Content-Language:
  Content-Transfer-Encoding;
- b=R5LCsQ2RGYP/aRbOOTYVqp3+mNbaFthG3djuEbE/Q5RcS9mR/XTArigIkLJIJcoUm
- 2K4ojNSONT0DPE3p48KuDCnr8/b/xkcFIsjgMnEh2A4XHosGTEQqAsOIgDIYpKjhA6
- rkPNvw30YaNhLDpHwnvQ22Rq+l1U9m2Nr7cxGupNe9zheNvIiYxkmouASaeFKHn1Ne
- hfrZ3XyWn84qlbZhdg2Z+7hrQwZnGR5tn9y+gosmO+PTqodnJTwNCIDxM/tYLWvgwz
- yiPA4kvRNQ0JR0eN4UhFvOmVWdRm65jh/bJrrdWl3KFGl5AiupxGl6Jnjo5KFXd1mW
- QlJuphdrdgDvw==
-Subject: Re: [Intel-gfx] [PATCH v3 hmm 01/11] mm/mmu_notifiers: hoist
- do_mmu_notifier_register down_write to the caller
+ b=bWazUH1oIGAphw/LWLwGrPnKZAno5v5obKf5t/eNR0RapozA5skQevZ5NNUWMTqSs
+ kQOZhem/RWC7YrXGqUQcoX9RNPOMaSjczbb19BupGsQlBWLQzrHehLyn5MRQxPoeRz
+ uRp+VPoBZXaU5WWDPyHzy/zn86IiYdKiYmtZuXSgMvZILtqwXmEIOyiTigq4o1+c8b
+ VlbXt4UAjtud+BNmrZDyOUAgEsUrePtigZDeaGw1BwQ9WQfGiUlfYRa7z7VO+ymAOg
+ wk1HgI2Ck8lmve8YFdkbz1IbY9uFTOy/smB0ozBuN1+Xs3FmWnPICy4oobSEcCxgmw
+ VWUvGnEtlLyrQ==
+Subject: Re: [Intel-gfx] [PATCH v3 hmm 02/11] mm/mmu_notifiers: do not
+ speculatively allocate a mmu_notifier_mm
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -73,7 +73,6 @@ Cc: Andrea Arcangeli <aarcange@redhat.com>,
  John Hubbard <jhubbard@nvidia.com>, "Kuehling, Felix" <Felix.Kuehling@amd.com>,
  linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
  =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
- Christoph Hellwig <hch@infradead.org>,
  =?UTF-8?B?SsOpcsO0bWUgR2xpc3Nl?= <jglisse@redhat.com>,
  iommu@lists.linux-foundation.org, amd-gfx@lists.freedesktop.org,
  Jason Gunthorpe <jgg@mellanox.com>, Alex
@@ -85,15 +84,22 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 Ck9uIDgvNi8xOSA0OjE1IFBNLCBKYXNvbiBHdW50aG9ycGUgd3JvdGU6Cj4gRnJvbTogSmFzb24g
-R3VudGhvcnBlIDxqZ2dAbWVsbGFub3guY29tPgo+IAo+IFRoaXMgc2ltcGxpZmllcyB0aGUgY29k
-ZSB0byBub3QgaGF2ZSBzbyBtYW55IG9uZSBsaW5lIGZ1bmN0aW9ucyBhbmQgZXh0cmEKPiBsb2dp
-Yy4gX19tbXVfbm90aWZpZXJfcmVnaXN0ZXIoKSBzaW1wbHkgYmVjb21lcyB0aGUgZW50cnkgcG9p
-bnQgdG8KPiByZWdpc3RlciB0aGUgbm90aWZpZXIsIGFuZCB0aGUgb3RoZXIgb25lIGNhbGxzIGl0
-IHVuZGVyIGxvY2suCj4gCj4gQWxzbyBhZGQgYSBsb2NrZGVwX2Fzc2VydCB0byBjaGVjayB0aGF0
-IHRoZSBjYWxsZXJzIGFyZSBob2xkaW5nIHRoZSBsb2NrCj4gYXMgZXhwZWN0ZWQuCj4gCj4gU3Vn
-Z2VzdGVkLWJ5OiBDaHJpc3RvcGggSGVsbHdpZyA8aGNoQGluZnJhZGVhZC5vcmc+Cj4gU2lnbmVk
-LW9mZi1ieTogSmFzb24gR3VudGhvcnBlIDxqZ2dAbWVsbGFub3guY29tPgoKTmljZSBjbGVhbiB1
-cC4KUmV2aWV3ZWQtYnk6IFJhbHBoIENhbXBiZWxsIDxyY2FtcGJlbGxAbnZpZGlhLmNvbT4KX19f
+R3VudGhvcnBlIDxqZ2dAbWVsbGFub3guY29tPgo+IAo+IEEgcHJpb3IgY29tbWl0IGUwZjNjM2Y3
+OGRhMiAoIm1tL21tdV9ub3RpZmllcjogaW5pdCBub3RpZmllciBpZiBuZWNlc3NhcnkiKQo+IG1h
+ZGUgYW4gYXR0ZW1wdCBhdCBkb2luZyB0aGlzLCBidXQgaGFkIHRvIGJlIHJldmVydGVkIGFzIGNh
+bGxpbmcKPiB0aGUgR0ZQX0tFUk5FTCBhbGxvY2F0b3IgdW5kZXIgdGhlIGlfbW1hcF9tdXRleCBj
+YXVzZXMgZGVhZGxvY2ssIHNlZQo+IGNvbW1pdCAzNWNmYTJiMGI0OTEgKCJtbS9tbXVfbm90aWZp
+ZXI6IGFsbG9jYXRlIG1tdV9ub3RpZmllciBpbiBhZHZhbmNlIikuCj4gCj4gSG93ZXZlciwgd2Ug
+Y2FuIGF2b2lkIHRoYXQgcHJvYmxlbSBieSBkb2luZyB0aGUgYWxsb2NhdGlvbiBvbmx5IHVuZGVy
+Cj4gdGhlIG1tYXBfc2VtLCB3aGljaCBpcyBhbHJlYWR5IGhhcHBlbmluZy4KPiAKPiBTaW5jZSBh
+bGwgd3JpdGVycyB0byBtbS0+bW11X25vdGlmaWVyX21tIGhvbGQgdGhlIHdyaXRlIHNpZGUgb2Yg
+dGhlCj4gbW1hcF9zZW0gcmVhZGluZyBpdCB1bmRlciB0aGF0IHNlbSBpcyBkZXRlcm1pbmlzdGlj
+IGFuZCB3ZSBjYW4gdXNlIHRoYXQgdG8KPiBkZWNpZGUgaWYgdGhlIGFsbG9jYXRpb24gcGF0aCBp
+cyByZXF1aXJlZCwgd2l0aG91dCBzcGVjdWxhdGlvbi4KPiAKPiBUaGUgYWN0dWFsIHVwZGF0ZSB0
+byBtbXVfbm90aWZpZXJfbW0gbXVzdCBzdGlsbCBiZSBkb25lIHVuZGVyIHRoZQo+IG1tX3Rha2Vf
+YWxsX2xvY2tzKCkgdG8gZW5zdXJlIHJlYWQtc2lkZSBjb2hlcmVuY3kuCj4gCj4gU2lnbmVkLW9m
+Zi1ieTogSmFzb24gR3VudGhvcnBlIDxqZ2dAbWVsbGFub3guY29tPgoKTG9va3MgZ29vZCB0byBt
+ZS4KUmV2aWV3ZWQtYnk6IFJhbHBoIENhbXBiZWxsIDxyY2FtcGJlbGxAbnZpZGlhLmNvbT4KX19f
 X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1h
 aWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMu
 ZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
