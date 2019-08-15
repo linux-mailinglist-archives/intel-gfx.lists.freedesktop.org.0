@@ -1,57 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1EC8B8F459
-	for <lists+intel-gfx@lfdr.de>; Thu, 15 Aug 2019 21:20:29 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 89ACB8F468
+	for <lists+intel-gfx@lfdr.de>; Thu, 15 Aug 2019 21:22:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 48E996E45F;
-	Thu, 15 Aug 2019 19:20:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CBCEE6EA53;
+	Thu, 15 Aug 2019 19:22:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-vs1-xe42.google.com (mail-vs1-xe42.google.com
- [IPv6:2607:f8b0:4864:20::e42])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BB3076E45F
- for <intel-gfx@lists.freedesktop.org>; Thu, 15 Aug 2019 19:20:25 +0000 (UTC)
-Received: by mail-vs1-xe42.google.com with SMTP id j25so2159111vsq.12
- for <intel-gfx@lists.freedesktop.org>; Thu, 15 Aug 2019 12:20:25 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=3dcKDdv0qZm2T/lI6tq1vDKf2Z6Oiv2k0qv0OTtMUic=;
- b=bDUfFgujd6gIQpUkl0Ce0SxJVpICrcf9rE4q+q/u4SRtaEWFyH44FC4/Lf6M7VgVyI
- akczTyjyrUCcojAV0HoKvrcQ13y6vb4lMvBI0P3gJFoitvFGJNhqa3Py7Y9yYoE4/gdn
- TT2lE22TF/MDIUDZRbdlZgNpreovtsgm5V1vmavqI1opyr9rXCcYD/0vfemJ+ydtC1w8
- X87ZSjpUfr/B6KndtIO0zJj+mMCWq8HqudEA7nh8HeA36o7rZAe+lErU7qetsL0Bx+tP
- Kk30WI55ZJz6LUyxc214Xae4+AKWR5Y4W0hU6ygRYJnb9dbxy+knja/8A6Ug1lWzou88
- 1y8w==
-X-Gm-Message-State: APjAAAXjSs9WhJihUYS+SLWhGjZRdSskNzpkBWJihPIxgfFr5XiOGpc4
- cEsirUJN5Z10ueg6kx3eoEro+03FIsJNKp8Tor8=
-X-Google-Smtp-Source: APXvYqw6oavY+k8e58v+sMPpU6LjEdigwaiFbrGZgEybV5slPXeKyD4cSldoDEUivN5ExUqNPGbeHdKsPZMHfO+1h00=
-X-Received: by 2002:a67:2d08:: with SMTP id t8mr4329513vst.178.1565896824745; 
- Thu, 15 Aug 2019 12:20:24 -0700 (PDT)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 9D01D6EA51;
+ Thu, 15 Aug 2019 19:22:24 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 9381BA47DB;
+ Thu, 15 Aug 2019 19:22:24 +0000 (UTC)
 MIME-Version: 1.0
-References: <20190814092643.1908-1-chris@chris-wilson.co.uk>
- <20190814092643.1908-4-chris@chris-wilson.co.uk>
-In-Reply-To: <20190814092643.1908-4-chris@chris-wilson.co.uk>
-From: Matthew Auld <matthew.william.auld@gmail.com>
-Date: Thu, 15 Aug 2019 20:19:58 +0100
-Message-ID: <CAM0jSHN5u-SpR0MisOVmyaWeBn-eGbtqUzJquHC8GOrmEFxmdA@mail.gmail.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>
-X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc;
- bh=3dcKDdv0qZm2T/lI6tq1vDKf2Z6Oiv2k0qv0OTtMUic=;
- b=WsuoQQx0lC/pzGw6iqltNmjNoKwUEjRWi7xpknMEXc3lCClpD+CFh1xYnwHZddUc/z
- iCYfJx1QVPsQrrUGvUnnbSs16O7Qbd4hL4NH4ESRdlIIM+Ci9Hlw8TlNBg0xz8uO8kpa
- FE+9tR8JlW5U8n5PQBgb1ivBWUAzOernwgJRCgcNYeowOEYNAi6NHsoLRqD+dPXkU9sq
- xoyNbQcuYin3YzvQyN0bIhb0Vdwru0dD/H8lzDVy93Mc3rkAN55nZgwURJ5PmxbBaBS5
- uIisHrtpRIH3v2FtBtw11BLFxZ43w4KgsVlYcWdtv1EEuJKQEDdtL3pmNF6wgIhQ5bxK
- 5lWA==
-Subject: Re: [Intel-gfx] [PATCH 4/8] drm/i915/gt: Guard timeline pinning
- with its own mutex
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Thu, 15 Aug 2019 19:22:24 -0000
+Message-ID: <20190815192224.31004.12790@emeril.freedesktop.org>
+References: <20190810153430.30636-1-chris@chris-wilson.co.uk>
+X-Patchwork-Hint: ignore
+In-Reply-To: <20190810153430.30636-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?q?=E2=9C=97_Fi=2ECI=2EBAT=3A_failure_for_seri?=
+ =?utf-8?q?es_starting_with_=5Bv5=5D_dma-fence=3A_Propagate_errors_to_dma-?=
+ =?utf-8?q?fence-array_container_=28rev7=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -64,20 +39,41 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gV2VkLCAxNCBBdWcgMjAxOSBhdCAxMDoyOCwgQ2hyaXMgV2lsc29uIDxjaHJpc0BjaHJpcy13
-aWxzb24uY28udWs+IHdyb3RlOgo+Cj4gSW4gcHJlcGFyYXRpb24gZm9yIHJlbW92aW5nIHN0cnVj
-dF9tdXRleCBmcm9tIGFyb3VuZCBjb250ZXh0IHJldGlyZW1lbnQsCj4gd2UgbmVlZCB0byBtYWtl
-IHRpbWVsaW5lIHBpbm5pbmcgc2FmZS4gU2luY2UgbXVsdGlwbGUgZW5naW5lcy9jb250ZXh0cwo+
-IGNhbiBzaGFyZSBhIHNpbmdsZSB0aW1lbGluZSwgaXQgbmVlZHMgdG8gYmUgcHJvdGVjdGVkIGJ5
-IGEgbXV0ZXguCj4KPiBTaWduZWQtb2ZmLWJ5OiBDaHJpcyBXaWxzb24gPGNocmlzQGNocmlzLXdp
-bHNvbi5jby51az4KCldpdGggYSBtb3JlIGFjY3VyYXRlIGNvbW1pdCBtZXNzYWdlLApSZXZpZXdl
-ZC1ieTogTWF0dGhldyBBdWxkIDxtYXR0aGV3LmF1bGRAaW50ZWwuY29tPgpfX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0
-CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3Rv
-cC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZng=
+PT0gU2VyaWVzIERldGFpbHMgPT0KClNlcmllczogc2VyaWVzIHN0YXJ0aW5nIHdpdGggW3Y1XSBk
+bWEtZmVuY2U6IFByb3BhZ2F0ZSBlcnJvcnMgdG8gZG1hLWZlbmNlLWFycmF5IGNvbnRhaW5lciAo
+cmV2NykKVVJMICAgOiBodHRwczovL3BhdGNod29yay5mcmVlZGVza3RvcC5vcmcvc2VyaWVzLzY1
+MDI3LwpTdGF0ZSA6IGZhaWx1cmUKCj09IFN1bW1hcnkgPT0KCkFwcGx5aW5nOiBkbWEtZmVuY2U6
+IFByb3BhZ2F0ZSBlcnJvcnMgdG8gZG1hLWZlbmNlLWFycmF5IGNvbnRhaW5lcgpVc2luZyBpbmRl
+eCBpbmZvIHRvIHJlY29uc3RydWN0IGEgYmFzZSB0cmVlLi4uCk0JZHJpdmVycy9kbWEtYnVmL2Rt
+YS1mZW5jZS1hcnJheS5jCkZhbGxpbmcgYmFjayB0byBwYXRjaGluZyBiYXNlIGFuZCAzLXdheSBt
+ZXJnZS4uLgpObyBjaGFuZ2VzIC0tIFBhdGNoIGFscmVhZHkgYXBwbGllZC4KQXBwbHlpbmc6IGRt
+YS1mZW5jZTogUmVwb3J0IHRoZSBjb21wb3NpdGUgc3luY19maWxlIHN0YXR1cwpVc2luZyBpbmRl
+eCBpbmZvIHRvIHJlY29uc3RydWN0IGEgYmFzZSB0cmVlLi4uCk0JZHJpdmVycy9kbWEtYnVmL3N5
+bmNfZmlsZS5jCkZhbGxpbmcgYmFjayB0byBwYXRjaGluZyBiYXNlIGFuZCAzLXdheSBtZXJnZS4u
+LgpObyBjaGFuZ2VzIC0tIFBhdGNoIGFscmVhZHkgYXBwbGllZC4KQXBwbHlpbmc6IGRtYS1mZW5j
+ZTogUmVmYWN0b3Igc2lnbmFsaW5nIGZvciBtYW51YWwgaW52b2NhdGlvbgpVc2luZyBpbmRleCBp
+bmZvIHRvIHJlY29uc3RydWN0IGEgYmFzZSB0cmVlLi4uCk0JZHJpdmVycy9kbWEtYnVmL01ha2Vm
+aWxlCk0JZHJpdmVycy9kbWEtYnVmL2RtYS1mZW5jZS5jCk0JZHJpdmVycy9ncHUvZHJtL2k5MTUv
+Z3QvaW50ZWxfYnJlYWRjcnVtYnMuYwpNCWluY2x1ZGUvbGludXgvZG1hLWZlbmNlLmgKRmFsbGlu
+ZyBiYWNrIHRvIHBhdGNoaW5nIGJhc2UgYW5kIDMtd2F5IG1lcmdlLi4uCkF1dG8tbWVyZ2luZyBp
+bmNsdWRlL2xpbnV4L2RtYS1mZW5jZS5oCkF1dG8tbWVyZ2luZyBkcml2ZXJzL2dwdS9kcm0vaTkx
+NS9ndC9pbnRlbF9icmVhZGNydW1icy5jCkF1dG8tbWVyZ2luZyBkcml2ZXJzL2RtYS1idWYvZG1h
+LWZlbmNlLmMKQXV0by1tZXJnaW5nIGRyaXZlcnMvZG1hLWJ1Zi9NYWtlZmlsZQpDT05GTElDVCAo
+Y29udGVudCk6IE1lcmdlIGNvbmZsaWN0IGluIGRyaXZlcnMvZG1hLWJ1Zi9NYWtlZmlsZQplcnJv
+cjogRmFpbGVkIHRvIG1lcmdlIGluIHRoZSBjaGFuZ2VzLgpoaW50OiBVc2UgJ2dpdCBhbSAtLXNo
+b3ctY3VycmVudC1wYXRjaCcgdG8gc2VlIHRoZSBmYWlsZWQgcGF0Y2gKUGF0Y2ggZmFpbGVkIGF0
+IDAwMDMgZG1hLWZlbmNlOiBSZWZhY3RvciBzaWduYWxpbmcgZm9yIG1hbnVhbCBpbnZvY2F0aW9u
+CldoZW4geW91IGhhdmUgcmVzb2x2ZWQgdGhpcyBwcm9ibGVtLCBydW4gImdpdCBhbSAtLWNvbnRp
+bnVlIi4KSWYgeW91IHByZWZlciB0byBza2lwIHRoaXMgcGF0Y2gsIHJ1biAiZ2l0IGFtIC0tc2tp
+cCIgaW5zdGVhZC4KVG8gcmVzdG9yZSB0aGUgb3JpZ2luYWwgYnJhbmNoIGFuZCBzdG9wIHBhdGNo
+aW5nLCBydW4gImdpdCBhbSAtLWFib3J0Ii4KCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3Rz
+LmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xp
+c3RpbmZvL2ludGVsLWdmeA==
