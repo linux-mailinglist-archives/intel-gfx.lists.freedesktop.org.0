@@ -1,30 +1,37 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 91E6F900C4
-	for <lists+intel-gfx@lfdr.de>; Fri, 16 Aug 2019 13:32:10 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 81564900DC
+	for <lists+intel-gfx@lfdr.de>; Fri, 16 Aug 2019 13:39:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 545456E31E;
-	Fri, 16 Aug 2019 11:32:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 42C376E31D;
+	Fri, 16 Aug 2019 11:39:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net
- [217.70.183.195])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D9E106E31D;
- Fri, 16 Aug 2019 11:32:05 +0000 (UTC)
-X-Originating-IP: 86.250.200.211
-Received: from localhost (lfbn-1-17395-211.w86-250.abo.wanadoo.fr
- [86.250.200.211]) (Authenticated sender: maxime.ripard@bootlin.com)
- by relay3-d.mail.gandi.net (Postfix) with ESMTPSA id 7215A60008;
- Fri, 16 Aug 2019 11:32:01 +0000 (UTC)
-Date: Fri, 16 Aug 2019 13:32:01 +0200
-From: Maxime Ripard <maxime.ripard@bootlin.com>
-To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
-Message-ID: <20190816113201.jwh7bqeddxllvgdv@flea>
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 21D666E31D
+ for <intel-gfx@lists.freedesktop.org>; Fri, 16 Aug 2019 11:39:27 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by orsmga106.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 16 Aug 2019 04:39:02 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.64,393,1559545200"; d="scan'208";a="179655144"
+Received: from gaia.fi.intel.com ([10.237.72.192])
+ by orsmga003.jf.intel.com with ESMTP; 16 Aug 2019 04:39:01 -0700
+Received: by gaia.fi.intel.com (Postfix, from userid 1000)
+ id DC5715C1EC6; Fri, 16 Aug 2019 14:38:17 +0300 (EEST)
+From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20190816092424.31386-1-chris@chris-wilson.co.uk>
+References: <20190816092424.31386-1-chris@chris-wilson.co.uk>
+Date: Fri, 16 Aug 2019 14:38:17 +0300
+Message-ID: <87v9ux5oie.fsf@gaia.fi.intel.com>
 MIME-Version: 1.0
-User-Agent: NeoMutt/20180716
-Subject: [Intel-gfx] [PULL] drm-misc-next
+Subject: Re: [Intel-gfx] [PATCH 1/3] drm/i915/execlists: Lift process_csb()
+ out of the irq-off spinlock
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -37,459 +44,235 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Maxime Ripard <mripard@kernel.org>, intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============1691965833=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
---===============1691965833==
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="l36wwyig2shiddn3"
-Content-Disposition: inline
-
-
---l36wwyig2shiddn3
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-Hi Daniel, Dave,
-
-Here's this week drm-misc-next PR.
-
-Maxime
-
-drm-misc-next-2019-08-16:
-drm-misc-next for 5.4:
-
-UAPI Changes:
-
-Cross-subsystem Changes:
-
-Core Changes:
-  - dma-buf: add reservation_object_fences helper, relax
-             reservation_object_add_shared_fence, remove
-             reservation_object seq number
-
-Driver Changes:
-  - More dt-bindings YAML conversions
-  - More removal of drmP.h includes
-  - dw-hdmi: Support get_eld and various i2s improvements
-  - gm12u320: Few fixes
-  - meson: Global cleanup
-  - panfrost: Few refactors, Support for GPU heap allocations
-  - sun4i: Support for DDC enable GPIO
-  - New panels: TI nspire, NEC NL8048HL11, LG Philips LB035Q02,
-                Sharp LS037V7DW01, Sony ACX565AKM, Toppoly TD028TTEC1
-                Toppoly TD043MTEA1
-The following changes since commit cc8f12996e24b102a086a253055ecc58c437c31d:
-
-  drm/rockchip: fix VOP_WIN_GET macro (2019-08-08 00:23:15 +0200)
-
-are available in the Git repository at:
-
-  git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-next-2019-08-16
-
-for you to fetch changes up to dc2e1e5b279966affbd11ff7cfef52eb634ca2c9:
-
-  drm/panel: Add driver for the Toppoly TD043MTEA1 panel (2019-08-14 22:23:=
-11 +0200)
-
-----------------------------------------------------------------
-drm-misc-next for 5.4:
-
-UAPI Changes:
-
-Cross-subsystem Changes:
-
-Core Changes:
-  - dma-buf: add reservation_object_fences helper, relax
-             reservation_object_add_shared_fence, remove
-             reservation_object seq number
-
-Driver Changes:
-  - More dt-bindings YAML conversions
-  - More removal of drmP.h includes
-  - dw-hdmi: Support get_eld and various i2s improvements
-  - gm12u320: Few fixes
-  - meson: Global cleanup
-  - panfrost: Few refactors, Support for GPU heap allocations
-  - sun4i: Support for DDC enable GPIO
-  - New panels: TI nspire, NEC NL8048HL11, LG Philips LB035Q02,
-                Sharp LS037V7DW01, Sony ACX565AKM, Toppoly TD028TTEC1
-                Toppoly TD043MTEA1
-
-----------------------------------------------------------------
-Chris Wilson (3):
-      dma-fence: Propagate errors to dma-fence-array container
-      dma-fence: Report the composite sync_file status
-      dma-buf/sw_sync: Synchronize signal vs syncpt free
-
-Christian K=F6nig (6):
-      dma-buf: make dma_fence structure a bit smaller v2
-      dma-buf: add reservation_object_fences helper
-      drm/i915: use new reservation_object_fences helper
-      dma-buf: further relax reservation_object_add_shared_fence
-      dma-buf: nuke reservation_object seq number
-      dma-buf: rename reservation_object to dma_resv
-
-Geert Uytterhoeven (1):
-      drm/bridge: dumb-vga-dac: Fix dereferencing -ENODEV DDC channel
-
-Gustavo A. R. Silva (1):
-      drm/komeda: Fix potential integer overflow in komeda_crtc_update_cloc=
-k_ratio
-
-Hans de Goede (4):
-      drm: gm12u320: Some minor cleanups
-      drm: gm12u320: Use DRM_DEV_ERROR everywhere
-      drm: gm12u320: Do not take a mutex from a wait_event condition
-      drm: gm12u320: Add -ENODEV to list of errors to ignore
-
-Jason Ekstrand (1):
-      drm/syncobj: Add better overview documentation for syncobj (v2)
-
-Jerome Brunet (8):
-      drm/bridge: dw-hdmi-i2s: support more i2s format
-      drm/bridge: dw-hdmi: move audio channel setup out of ahb
-      drm/bridge: dw-hdmi: set channel count in the infoframes
-      drm/bridge: dw-hdmi-i2s: enable lpcm multi channels
-      drm/bridge: dw-hdmi-i2s: set the channel allocation
-      drm/bridge: dw-hdmi-i2s: reset audio fifo before applying new params
-      drm/bridge: dw-hdmi-i2s: enable only the required i2s lanes
-      drm/bridge: dw-hdmi-i2s: add .get_eld support
-
-Julien Masson (9):
-      drm: meson: mask value when writing bits relaxed
-      drm: meson: crtc: use proper macros instead of magic constants
-      drm: meson: drv: use macro when initializing vpu
-      drm: meson: vpp: use proper macros instead of magic constants
-      drm: meson: viu: use proper macros instead of magic constants
-      drm: meson: venc: use proper macros instead of magic constants
-      drm: meson: global clean-up
-      drm: meson: add macro used to enable HDMI PLL
-      drm: meson: venc: set the correct macrovision max amplitude value
-
-Laurent Pinchart (9):
-      dt-bindings: Add vendor prefix for LG Display
-      dt-bindings: Add legacy 'toppoly' vendor prefix
-      dt-bindings: display: panel: Add bindings for NEC NL8048HL11 panel
-      drm/panel: Add driver for the LG Philips LB035Q02 panel
-      drm/panel: Add driver for the NEC NL8048HL11 panel
-      drm/panel: Add driver for the Sharp LS037V7DW01 panel
-      drm/panel: Add driver for the Sony ACX565AKM panel
-      drm/panel: Add driver for the Toppoly TD028TTEC1 panel
-      drm/panel: Add driver for the Toppoly TD043MTEA1 panel
-
-Linus Walleij (3):
-      drm/pl111: Support grayscale
-      drm/panel: simple: Add TI nspire panel bindings
-      drm/panel: simple: Support TI nspire panels
-
-Neil Armstrong (3):
-      dt-bindings: display: amlogic, meson-dw-hdmi: convert to yaml
-      dt-bindings: display: amlogic, meson-vpu: convert to yaml
-      MAINTAINERS: Update with Amlogic DRM bindings converted as YAML
-
-Nishka Dasgupta (1):
-      drm/aspeed: gfc_crtc: Make structure aspeed_gfx_funcs constant
-
-Ondrej Jirman (2):
-      dt-bindings: display: hdmi-connector: Support DDC bus enable
-      drm: sun4i: Add support for enabling DDC I2C bus to sun8i_dw_hdmi glue
-
-Rob Herring (12):
-      drm/panfrost: Remove completed features still in TODO
-      drm/shmem: Add madvise state and purge helpers
-      drm/panfrost: Add madvise and shrinker support
-      drm/gem: Allow sparsely populated page arrays in drm_gem_put_pages
-      drm/shmem: Put pages independent of a SG table being set
-      drm/panfrost: Restructure the GEM object creation
-      drm/panfrost: Split panfrost_mmu_map SG list mapping to its own funct=
-ion
-      drm/panfrost: Add a no execute flag for BO allocations
-      drm/panfrost: Consolidate reset handling
-      drm/panfrost: Convert MMU IRQ handler to threaded handler
-      drm/panfrost: Add support for GPU heap allocations
-      drm/panfrost: Bump driver version to 1.1
-
-Sam Ravnborg (12):
-      drm/bridge: tc358767: fix opencoded use of drm_panel_*
-      drm/imx: fix opencoded use of drm_panel_*
-      drm/fsl-dcu: fix opencoded use of drm_panel_*
-      drm/mxsfb: fix opencoded use of drm_panel_*
-      drm/panel: ili9322: move bus_flags to get_modes()
-      drm/panel: move drm_panel functions to .c file
-      drm/panel: use inline comments in drm_panel.h
-      drm/panel: drop return code from drm_panel_detach()
-      drm/i2c/tda998x: drop use of drmP.h
-      drm/tegra: drop use of drmP.h
-      drm/armada: drop use of drmP.h
-      drm/arm: drop use of drmP.h
-
-Sean Paul (1):
-      drm: Fix kerneldoc warns in connector-related docs
-
- .../bindings/display/amlogic,meson-dw-hdmi.txt     | 119 ----
- .../bindings/display/amlogic,meson-dw-hdmi.yaml    | 150 +++++
- .../bindings/display/amlogic,meson-vpu.txt         | 121 ----
- .../bindings/display/amlogic,meson-vpu.yaml        | 137 ++++
- .../bindings/display/connector/hdmi-connector.txt  |   1 +
- .../bindings/display/panel/nec,nl8048hl11.yaml     |  62 ++
- .../bindings/display/panel/ti,nspire.yaml          |  36 ++
- .../devicetree/bindings/vendor-prefixes.yaml       |   5 +
- MAINTAINERS                                        |   4 +-
- drivers/dma-buf/Makefile                           |   2 +-
- drivers/dma-buf/dma-buf.c                          |  59 +-
- drivers/dma-buf/dma-fence-array.c                  |  32 +-
- drivers/dma-buf/dma-fence.c                        |   2 +-
- drivers/dma-buf/{reservation.c =3D> dma-resv.c}      | 259 +++-----
- drivers/dma-buf/sw_sync.c                          |  16 +-
- drivers/dma-buf/sync_file.c                        |   2 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c   |  21 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c             |   4 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_display.c        |   2 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_dma_buf.c        |  20 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c            |   6 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_gem.h            |   2 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_ids.c            |   6 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_ids.h            |   2 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_mn.c             |   2 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_object.c         |  18 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_object.h         |   2 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_sync.c           |  10 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_sync.h           |   4 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c            |  14 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h            |   6 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_uvd.c            |   2 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c             |  20 +-
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c  |   2 +-
- drivers/gpu/drm/arm/display/komeda/komeda_crtc.c   |   2 +-
- drivers/gpu/drm/arm/hdlcd_crtc.c                   |  12 +-
- drivers/gpu/drm/arm/hdlcd_drv.c                    |   7 +-
- drivers/gpu/drm/arm/malidp_crtc.c                  |  11 +-
- drivers/gpu/drm/arm/malidp_drv.c                   |   8 +-
- drivers/gpu/drm/arm/malidp_drv.h                   |   7 +-
- drivers/gpu/drm/arm/malidp_hw.c                    |   7 +-
- drivers/gpu/drm/arm/malidp_mw.c                    |   5 +-
- drivers/gpu/drm/arm/malidp_planes.c                |   4 +-
- drivers/gpu/drm/armada/armada_crtc.c               |  10 +-
- drivers/gpu/drm/armada/armada_debugfs.c            |   8 +-
- drivers/gpu/drm/armada/armada_drm.h                |   5 +-
- drivers/gpu/drm/armada/armada_drv.c                |   8 +
- drivers/gpu/drm/armada/armada_fb.c                 |   3 +
- drivers/gpu/drm/armada/armada_fbdev.c              |   3 +
- drivers/gpu/drm/armada/armada_gem.c                |   7 +-
- drivers/gpu/drm/armada/armada_overlay.c            |   8 +-
- drivers/gpu/drm/armada/armada_plane.c              |   4 +-
- drivers/gpu/drm/armada/armada_trace.h              |   5 +-
- drivers/gpu/drm/aspeed/aspeed_gfx_crtc.c           |   2 +-
- drivers/gpu/drm/bridge/analogix/analogix_dp_core.c |   3 +-
- drivers/gpu/drm/bridge/dumb-vga-dac.c              |   7 +-
- .../gpu/drm/bridge/synopsys/dw-hdmi-ahb-audio.c    |  20 +-
- drivers/gpu/drm/bridge/synopsys/dw-hdmi-audio.h    |   1 +
- .../gpu/drm/bridge/synopsys/dw-hdmi-i2s-audio.c    |  60 +-
- drivers/gpu/drm/bridge/synopsys/dw-hdmi.c          |  37 ++
- drivers/gpu/drm/bridge/synopsys/dw-hdmi.h          |  13 +-
- drivers/gpu/drm/bridge/tc358767.c                  |  10 +-
- drivers/gpu/drm/drm_atomic_uapi.c                  |   2 +-
- drivers/gpu/drm/drm_connector.c                    |  10 +-
- drivers/gpu/drm/drm_gem.c                          |  29 +-
- drivers/gpu/drm/drm_gem_framebuffer_helper.c       |   4 +-
- drivers/gpu/drm/drm_gem_shmem_helper.c             |  61 +-
- drivers/gpu/drm/drm_panel.c                        | 102 ++-
- drivers/gpu/drm/drm_syncobj.c                      | 102 ++-
- drivers/gpu/drm/etnaviv/etnaviv_gem.c              |   8 +-
- drivers/gpu/drm/etnaviv/etnaviv_gem.h              |   2 +-
- drivers/gpu/drm/etnaviv/etnaviv_gem_submit.c       |  14 +-
- drivers/gpu/drm/fsl-dcu/fsl_dcu_drm_rgb.c          |  10 +-
- drivers/gpu/drm/i2c/tda998x_drv.c                  |   2 +-
- drivers/gpu/drm/i915/display/intel_display.c       |   4 +-
- drivers/gpu/drm/i915/gem/i915_gem_busy.c           |  28 +-
- drivers/gpu/drm/i915/gem/i915_gem_clflush.c        |   2 +-
- drivers/gpu/drm/i915/gem/i915_gem_client_blt.c     |   2 +-
- drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c         |   2 +-
- drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c     |   6 +-
- drivers/gpu/drm/i915/gem/i915_gem_fence.c          |   2 +-
- drivers/gpu/drm/i915/gem/i915_gem_object.h         |  10 +-
- drivers/gpu/drm/i915/gem/i915_gem_wait.c           |  18 +-
- drivers/gpu/drm/i915/i915_drv.h                    |   2 +-
- drivers/gpu/drm/i915/i915_gem.c                    |   2 +-
- drivers/gpu/drm/i915/i915_gem_batch_pool.c         |  12 +-
- drivers/gpu/drm/i915/i915_request.c                |   4 +-
- drivers/gpu/drm/i915/i915_sw_fence.c               |   8 +-
- drivers/gpu/drm/i915/i915_sw_fence.h               |   4 +-
- drivers/gpu/drm/i915/i915_vma.c                    |  16 +-
- drivers/gpu/drm/i915/i915_vma.h                    |   8 +-
- drivers/gpu/drm/imx/imx-ldb.c                      |  11 +-
- drivers/gpu/drm/imx/parallel-display.c             |  11 +-
- drivers/gpu/drm/lima/lima_gem.c                    |   8 +-
- drivers/gpu/drm/mediatek/mtk_drm_fb.c              |   2 +-
- drivers/gpu/drm/meson/meson_crtc.c                 |  17 +-
- drivers/gpu/drm/meson/meson_drv.c                  |  26 +-
- drivers/gpu/drm/meson/meson_dw_hdmi.c              |   2 +
- drivers/gpu/drm/meson/meson_dw_hdmi.h              |  12 +-
- drivers/gpu/drm/meson/meson_plane.c                |   2 +-
- drivers/gpu/drm/meson/meson_registers.h            | 136 +++-
- drivers/gpu/drm/meson/meson_vclk.c                 |   7 +-
- drivers/gpu/drm/meson/meson_venc.c                 | 169 +++--
- drivers/gpu/drm/meson/meson_venc_cvbs.c            |   3 +-
- drivers/gpu/drm/meson/meson_viu.c                  |  82 +--
- drivers/gpu/drm/meson/meson_vpp.c                  |  25 +-
- drivers/gpu/drm/msm/msm_gem.c                      |  18 +-
- drivers/gpu/drm/msm/msm_gem.h                      |   2 +-
- drivers/gpu/drm/msm/msm_gem_submit.c               |   2 +-
- drivers/gpu/drm/mxsfb/mxsfb_drv.c                  |   2 +-
- drivers/gpu/drm/mxsfb/mxsfb_out.c                  |   2 +-
- drivers/gpu/drm/nouveau/dispnv50/wndw.c            |   2 +-
- drivers/gpu/drm/nouveau/nouveau_bo.c               |  10 +-
- drivers/gpu/drm/nouveau/nouveau_bo.h               |   2 +-
- drivers/gpu/drm/nouveau/nouveau_fence.c            |  12 +-
- drivers/gpu/drm/nouveau/nouveau_gem.c              |   2 +-
- drivers/gpu/drm/nouveau/nouveau_prime.c            |   6 +-
- drivers/gpu/drm/panel/Kconfig                      |  46 ++
- drivers/gpu/drm/panel/Makefile                     |   6 +
- drivers/gpu/drm/panel/panel-ilitek-ili9322.c       |  34 +-
- drivers/gpu/drm/panel/panel-lg-lb035q02.c          | 237 +++++++
- drivers/gpu/drm/panel/panel-nec-nl8048hl11.c       | 248 ++++++++
- drivers/gpu/drm/panel/panel-sharp-ls037v7dw01.c    | 226 +++++++
- drivers/gpu/drm/panel/panel-simple.c               |  64 ++
- drivers/gpu/drm/panel/panel-sony-acx565akm.c       | 701 +++++++++++++++++=
-++++
- drivers/gpu/drm/panel/panel-tpo-td028ttec1.c       | 399 ++++++++++++
- drivers/gpu/drm/panel/panel-tpo-td043mtea1.c       | 509 +++++++++++++++
- drivers/gpu/drm/panfrost/Makefile                  |   1 +
- drivers/gpu/drm/panfrost/TODO                      |  11 -
- drivers/gpu/drm/panfrost/panfrost_device.c         |  18 +-
- drivers/gpu/drm/panfrost/panfrost_device.h         |   5 +
- drivers/gpu/drm/panfrost/panfrost_drv.c            | 105 ++-
- drivers/gpu/drm/panfrost/panfrost_gem.c            | 135 +++-
- drivers/gpu/drm/panfrost/panfrost_gem.h            |  20 +-
- drivers/gpu/drm/panfrost/panfrost_gem_shrinker.c   | 107 ++++
- drivers/gpu/drm/panfrost/panfrost_job.c            |  13 +-
- drivers/gpu/drm/panfrost/panfrost_mmu.c            | 216 +++++--
- drivers/gpu/drm/panfrost/panfrost_mmu.h            |   3 +-
- drivers/gpu/drm/pl111/pl111_display.c              |  29 +-
- drivers/gpu/drm/qxl/qxl_debugfs.c                  |   2 +-
- drivers/gpu/drm/qxl/qxl_release.c                  |   6 +-
- drivers/gpu/drm/radeon/cik.c                       |   2 +-
- drivers/gpu/drm/radeon/cik_sdma.c                  |   2 +-
- drivers/gpu/drm/radeon/evergreen_dma.c             |   2 +-
- drivers/gpu/drm/radeon/r100.c                      |   2 +-
- drivers/gpu/drm/radeon/r200.c                      |   2 +-
- drivers/gpu/drm/radeon/r600.c                      |   2 +-
- drivers/gpu/drm/radeon/r600_dma.c                  |   2 +-
- drivers/gpu/drm/radeon/radeon.h                    |   8 +-
- drivers/gpu/drm/radeon/radeon_asic.h               |  18 +-
- drivers/gpu/drm/radeon/radeon_benchmark.c          |   2 +-
- drivers/gpu/drm/radeon/radeon_cs.c                 |   2 +-
- drivers/gpu/drm/radeon/radeon_display.c            |   2 +-
- drivers/gpu/drm/radeon/radeon_gem.c                |   6 +-
- drivers/gpu/drm/radeon/radeon_mn.c                 |   2 +-
- drivers/gpu/drm/radeon/radeon_object.c             |  14 +-
- drivers/gpu/drm/radeon/radeon_object.h             |   2 +-
- drivers/gpu/drm/radeon/radeon_prime.c              |   6 +-
- drivers/gpu/drm/radeon/radeon_sync.c               |  10 +-
- drivers/gpu/drm/radeon/radeon_uvd.c                |   2 +-
- drivers/gpu/drm/radeon/radeon_vm.c                 |   2 +-
- drivers/gpu/drm/radeon/rv770_dma.c                 |   2 +-
- drivers/gpu/drm/radeon/si_dma.c                    |   2 +-
- drivers/gpu/drm/sun4i/sun8i_dw_hdmi.c              |  54 +-
- drivers/gpu/drm/sun4i/sun8i_dw_hdmi.h              |   2 +
- drivers/gpu/drm/tegra/dc.c                         |  13 +-
- drivers/gpu/drm/tegra/dpaux.c                      |   5 +-
- drivers/gpu/drm/tegra/drm.c                        |   8 +
- drivers/gpu/drm/tegra/drm.h                        |   3 +-
- drivers/gpu/drm/tegra/dsi.c                        |  10 +-
- drivers/gpu/drm/tegra/fb.c                         |   6 +-
- drivers/gpu/drm/tegra/gem.c                        |   3 +
- drivers/gpu/drm/tegra/gem.h                        |   1 -
- drivers/gpu/drm/tegra/gr2d.c                       |   1 +
- drivers/gpu/drm/tegra/hdmi.c                       |   5 +
- drivers/gpu/drm/tegra/hub.c                        |   3 +-
- drivers/gpu/drm/tegra/hub.h                        |   1 -
- drivers/gpu/drm/tegra/plane.c                      |   1 +
- drivers/gpu/drm/tegra/sor.c                        |   3 +
- drivers/gpu/drm/tegra/vic.c                        |   1 +
- drivers/gpu/drm/tiny/gm12u320.c                    |  44 +-
- drivers/gpu/drm/ttm/ttm_bo.c                       | 118 ++--
- drivers/gpu/drm/ttm/ttm_bo_util.c                  |  16 +-
- drivers/gpu/drm/ttm/ttm_bo_vm.c                    |   6 +-
- drivers/gpu/drm/ttm/ttm_execbuf_util.c             |  20 +-
- drivers/gpu/drm/ttm/ttm_tt.c                       |   2 +-
- drivers/gpu/drm/v3d/v3d_gem.c                      |   4 +-
- drivers/gpu/drm/vc4/vc4_gem.c                      |   6 +-
- drivers/gpu/drm/vgem/vgem_fence.c                  |  16 +-
- drivers/gpu/drm/virtio/virtgpu_ioctl.c             |   4 +-
- drivers/gpu/drm/virtio/virtgpu_plane.c             |   2 +-
- drivers/gpu/drm/vmwgfx/vmwgfx_blit.c               |   4 +-
- drivers/gpu/drm/vmwgfx/vmwgfx_bo.c                 |   8 +-
- drivers/gpu/drm/vmwgfx/vmwgfx_cotable.c            |   4 +-
- drivers/gpu/drm/vmwgfx/vmwgfx_resource.c           |   6 +-
- include/drm/bridge/dw_hdmi.h                       |   2 +
- include/drm/drmP.h                                 |   2 +-
- include/drm/drm_connector.h                        |   4 +-
- include/drm/drm_gem.h                              |   8 +-
- include/drm/drm_gem_shmem_helper.h                 |  15 +
- include/drm/drm_panel.h                            | 183 +++---
- include/drm/ttm/ttm_bo_api.h                       |  12 +-
- include/drm/ttm/ttm_bo_driver.h                    |  14 +-
- include/linux/amba/clcd-regs.h                     |   1 +
- include/linux/dma-buf.h                            |   4 +-
- include/linux/dma-fence.h                          |  14 +-
- include/linux/{reservation.h =3D> dma-resv.h}        | 222 +++----
- include/uapi/drm/panfrost_drm.h                    |  25 +
- 208 files changed, 5117 insertions(+), 1480 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/display/amlogic,meson=
--dw-hdmi.txt
- create mode 100644 Documentation/devicetree/bindings/display/amlogic,meson=
--dw-hdmi.yaml
- delete mode 100644 Documentation/devicetree/bindings/display/amlogic,meson=
--vpu.txt
- create mode 100644 Documentation/devicetree/bindings/display/amlogic,meson=
--vpu.yaml
- create mode 100644 Documentation/devicetree/bindings/display/panel/nec,nl8=
-048hl11.yaml
- create mode 100644 Documentation/devicetree/bindings/display/panel/ti,nspi=
-re.yaml
- rename drivers/dma-buf/{reservation.c =3D> dma-resv.c} (63%)
- create mode 100644 drivers/gpu/drm/panel/panel-lg-lb035q02.c
- create mode 100644 drivers/gpu/drm/panel/panel-nec-nl8048hl11.c
- create mode 100644 drivers/gpu/drm/panel/panel-sharp-ls037v7dw01.c
- create mode 100644 drivers/gpu/drm/panel/panel-sony-acx565akm.c
- create mode 100644 drivers/gpu/drm/panel/panel-tpo-td028ttec1.c
- create mode 100644 drivers/gpu/drm/panel/panel-tpo-td043mtea1.c
- create mode 100644 drivers/gpu/drm/panfrost/panfrost_gem_shrinker.c
- rename include/linux/{reservation.h =3D> dma-resv.h} (64%)
-
---
-Maxime Ripard, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
-
---l36wwyig2shiddn3
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXVaUMQAKCRDj7w1vZxhR
-xb5HAP45GxgM1IEzZbGi1Pb0t9UypqtAtxPdvbYhu+2YXKrcawD+JE4sjPMfSDf8
-MbRZYmdEyXToT2jdCQDCGAWcD+IpDwA=
-=Ef2U
------END PGP SIGNATURE-----
-
---l36wwyig2shiddn3--
-
---===============1691965833==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
-IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
-
---===============1691965833==--
+Q2hyaXMgV2lsc29uIDxjaHJpc0BjaHJpcy13aWxzb24uY28udWs+IHdyaXRlczoKCj4gSWYgd2Ug
+b25seSBjYWxsIHByb2Nlc3NfY3NiKCkgZnJvbSB0aGUgdGFza2xldCwgdGhvdWdoIHdlIGxvc2Ug
+dGhlCj4gYWJpbGl0eSB0byBieXBhc3Mga3NvZnRpcnFkIGludGVycnVwdCBwcm9jZXNzaW5nIG9u
+IGRpcmVjdCBzdWJtaXNzaW9uCj4gcGF0aHMsIHdlIGNhbiBwdXNoIGl0IG91dCBvZiB0aGUgaXJx
+LW9mZiBzcGlubG9jay4KPgo+IFRoZSBwZW5hbHR5IGlzIHRoYXQgd2UgdGhlbiBhbGxvdyBzY2hl
+ZHVsZV9vdXQgdG8gYmUgY2FsbGVkIGNvbmN1cnJlbnRseQo+IHdpdGggc2NoZWR1bGVfaW4gcmVx
+dWlyaW5nIHVzIHRvIGhhbmRsZSB0aGUgdXNhZ2UgY291bnQgKGJha2VkIGludG8gdGhlCj4gcG9p
+bnRlciBpdHNlbGYpIGF0b21pY2FsbHkuCj4KPiBBcyB3ZSBkbyBraWNrIHRoZSB0YXNrbGV0cyAo
+dmlhIGxvY2FsX2JoX2VuYWJsZSgpKSBhZnRlciBvdXIgc3VibWlzc2lvbiwKPiB0aGVyZSBpcyBh
+IHBvc3NpYmlsaXR5IHRoZXJlIHRvIHNlZSBpZiB3ZSBjYW4gcHVsbCB0aGUgbG9jYWwgc29mdGly
+cQo+IHByb2Nlc3NpbmcgYmFjayBmcm9tIHRoZSBrc29mdGlycWQuCj4KPiB2MjogU3RvcmUgdGhl
+ICdzd2l0Y2hfcHJpb3JpdHlfaGludCcgb24gc3VibWlzc2lvbiwgc28gdGhhdCB3ZSBjYW4KPiBz
+YWZlbHkgY2hlY2sgZHVyaW5nIHByb2Nlc3NfY3NiKCkuCj4KPiBTaWduZWQtb2ZmLWJ5OiBDaHJp
+cyBXaWxzb24gPGNocmlzQGNocmlzLXdpbHNvbi5jby51az4KPiBDYzogTWlrYSBLdW9wcGFsYSA8
+bWlrYS5rdW9wcGFsYUBsaW51eC5pbnRlbC5jb20+Cj4gLS0tCj4gIGRyaXZlcnMvZ3B1L2RybS9p
+OTE1L2d0L2ludGVsX2NvbnRleHRfdHlwZXMuaCB8ICAgNCArLQo+ICBkcml2ZXJzL2dwdS9kcm0v
+aTkxNS9ndC9pbnRlbF9lbmdpbmVfY3MuYyAgICAgfCAgIDIgKy0KPiAgZHJpdmVycy9ncHUvZHJt
+L2k5MTUvZ3QvaW50ZWxfZW5naW5lX3R5cGVzLmggIHwgIDEwICsrCj4gIGRyaXZlcnMvZ3B1L2Ry
+bS9pOTE1L2d0L2ludGVsX2xyYy5jICAgICAgICAgICB8IDEzNiArKysrKysrKysrKy0tLS0tLS0K
+PiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV91dGlscy5oICAgICAgICAgICAgIHwgIDIwICsr
+LQo+ICA1IGZpbGVzIGNoYW5nZWQsIDEwOCBpbnNlcnRpb25zKCspLCA2NCBkZWxldGlvbnMoLSkK
+Pgo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRlbF9jb250ZXh0X3R5
+cGVzLmggYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRlbF9jb250ZXh0X3R5cGVzLmgKPiBp
+bmRleCBhNjMyYjIwZWM0ZDguLmQ4Y2UyNjZjMDQ5ZiAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL2dw
+dS9kcm0vaTkxNS9ndC9pbnRlbF9jb250ZXh0X3R5cGVzLmgKPiArKysgYi9kcml2ZXJzL2dwdS9k
+cm0vaTkxNS9ndC9pbnRlbF9jb250ZXh0X3R5cGVzLmgKPiBAQCAtNDEsOSArNDEsNyBAQCBzdHJ1
+Y3QgaW50ZWxfY29udGV4dCB7Cj4gIAlzdHJ1Y3QgaW50ZWxfZW5naW5lX2NzICplbmdpbmU7Cj4g
+IAlzdHJ1Y3QgaW50ZWxfZW5naW5lX2NzICppbmZsaWdodDsKPiAgI2RlZmluZSBpbnRlbF9jb250
+ZXh0X2luZmxpZ2h0KGNlKSBwdHJfbWFza19iaXRzKChjZSktPmluZmxpZ2h0LCAyKQo+IC0jZGVm
+aW5lIGludGVsX2NvbnRleHRfaW5mbGlnaHRfY291bnQoY2UpICBwdHJfdW5tYXNrX2JpdHMoKGNl
+KS0+aW5mbGlnaHQsIDIpCj4gLSNkZWZpbmUgaW50ZWxfY29udGV4dF9pbmZsaWdodF9pbmMoY2Up
+IHB0cl9jb3VudF9pbmMoJihjZSktPmluZmxpZ2h0KQo+IC0jZGVmaW5lIGludGVsX2NvbnRleHRf
+aW5mbGlnaHRfZGVjKGNlKSBwdHJfY291bnRfZGVjKCYoY2UpLT5pbmZsaWdodCkKPiArI2RlZmlu
+ZSBpbnRlbF9jb250ZXh0X2luZmxpZ2h0X2NvdW50KGNlKSBwdHJfdW5tYXNrX2JpdHMoKGNlKS0+
+aW5mbGlnaHQsIDIpCj4gIAo+ICAJc3RydWN0IGk5MTVfYWRkcmVzc19zcGFjZSAqdm07Cj4gIAlz
+dHJ1Y3QgaTkxNV9nZW1fY29udGV4dCAqZ2VtX2NvbnRleHQ7Cj4gZGlmZiAtLWdpdCBhL2RyaXZl
+cnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX2VuZ2luZV9jcy5jIGIvZHJpdmVycy9ncHUvZHJtL2k5
+MTUvZ3QvaW50ZWxfZW5naW5lX2NzLmMKPiBpbmRleCA5NTdmMjdhMmVjOTcuLmJhNDU3YzFjN2Rj
+MCAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRlbF9lbmdpbmVfY3Mu
+Ywo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX2VuZ2luZV9jcy5jCj4gQEAg
+LTE0NTksNyArMTQ1OSw3IEBAIGludCBpbnRlbF9lbmFibGVfZW5naW5lX3N0YXRzKHN0cnVjdCBp
+bnRlbF9lbmdpbmVfY3MgKmVuZ2luZSkKPiAgCj4gIAkJZm9yIChwb3J0ID0gZXhlY2xpc3RzLT5w
+ZW5kaW5nOyAocnEgPSAqcG9ydCk7IHBvcnQrKykgewo+ICAJCQkvKiBFeGNsdWRlIGFueSBjb250
+ZXh0cyBhbHJlYWR5IGNvdW50ZWQgaW4gYWN0aXZlICovCj4gLQkJCWlmIChpbnRlbF9jb250ZXh0
+X2luZmxpZ2h0X2NvdW50KHJxLT5od19jb250ZXh0KSA9PSAxKQo+ICsJCQlpZiAoIWludGVsX2Nv
+bnRleHRfaW5mbGlnaHRfY291bnQocnEtPmh3X2NvbnRleHQpKQo+ICAJCQkJZW5naW5lLT5zdGF0
+cy5hY3RpdmUrKzsKPiAgCQl9Cj4gIAo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkx
+NS9ndC9pbnRlbF9lbmdpbmVfdHlwZXMuaCBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVs
+X2VuZ2luZV90eXBlcy5oCj4gaW5kZXggOTk2NWEzMjYwMWQ2Li41NDQxYWE5Y2I4NjMgMTAwNjQ0
+Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfZW5naW5lX3R5cGVzLmgKPiAr
+KysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRlbF9lbmdpbmVfdHlwZXMuaAo+IEBAIC0y
+MDQsNiArMjA0LDE2IEBAIHN0cnVjdCBpbnRlbF9lbmdpbmVfZXhlY2xpc3RzIHsKPiAgCSAqLwo+
+ICAJdW5zaWduZWQgaW50IHBvcnRfbWFzazsKPiAgCj4gKwkvKioKPiArCSAqIEBzd2l0Y2hfcHJp
+b3JpdHlfaGludDogU2Vjb25kIGNvbnRleHQgcHJpb3JpdHkuCj4gKwkgKgo+ICsJICogV2Ugc3Vi
+bWl0IG11bHRpcGxlIGNvbnRleHRzIHRvIHRoZSBIVyBzaW11bHRhbmVvdXNseSBhbmQgd291bGQK
+PiArCSAqIGxpa2UgdG8gb2NjYXNpb25hbGx5IHN3aXRjaCBiZXR3ZWVuIHRoZW0gdG8gZW11bGF0
+ZSB0aW1lc2xpY2luZy4KPiArCSAqIFRvIGtub3cgd2hlbiB0aW1lc2xpY2luZyBpcyBzdWl0YWJs
+ZSwgd2UgdHJhY2sgdGhlIHByaW9yaXR5IG9mCj4gKwkgKiB0aGUgY29udGV4dCBzdWJtaXR0ZWQg
+c2Vjb25kLgo+ICsJICovCj4gKwlpbnQgc3dpdGNoX3ByaW9yaXR5X2hpbnQ7Cj4gKwo+ICAJLyoq
+Cj4gIAkgKiBAcXVldWVfcHJpb3JpdHlfaGludDogSGlnaGVzdCBwZW5kaW5nIHByaW9yaXR5Lgo+
+ICAJICoKPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfbHJjLmMg
+Yi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRlbF9scmMuYwo+IGluZGV4IGU5ODYzZjRkODI2
+Yi4uOGNiOGM1MzAzZjQyIDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2lu
+dGVsX2xyYy5jCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfbHJjLmMKPiBA
+QCAtNTQ3LDI3ICs1NDcsMzkgQEAgZXhlY2xpc3RzX2NvbnRleHRfc3RhdHVzX2NoYW5nZShzdHJ1
+Y3QgaTkxNV9yZXF1ZXN0ICpycSwgdW5zaWduZWQgbG9uZyBzdGF0dXMpCj4gIAkJCQkgICBzdGF0
+dXMsIHJxKTsKPiAgfQo+ICAKPiArc3RhdGljIGlubGluZSBzdHJ1Y3QgaW50ZWxfZW5naW5lX2Nz
+ICoKPiArX19leGVjbGlzdHNfc2NoZWR1bGVfaW4oc3RydWN0IGk5MTVfcmVxdWVzdCAqcnEpCj4g
+K3sKPiArCXN0cnVjdCBpbnRlbF9lbmdpbmVfY3MgKiBjb25zdCBlbmdpbmUgPSBycS0+ZW5naW5l
+Owo+ICsJc3RydWN0IGludGVsX2NvbnRleHQgKiBjb25zdCBjZSA9IHJxLT5od19jb250ZXh0Owo+
+ICsKPiArCWludGVsX2NvbnRleHRfZ2V0KGNlKTsKPiArCj4gKwlpbnRlbF9ndF9wbV9nZXQoZW5n
+aW5lLT5ndCk7Cj4gKwlleGVjbGlzdHNfY29udGV4dF9zdGF0dXNfY2hhbmdlKHJxLCBJTlRFTF9D
+T05URVhUX1NDSEVEVUxFX0lOKTsKPiArCWludGVsX2VuZ2luZV9jb250ZXh0X2luKGVuZ2luZSk7
+Cj4gKwo+ICsJcmV0dXJuIGVuZ2luZTsKPiArfQo+ICsKPiAgc3RhdGljIGlubGluZSBzdHJ1Y3Qg
+aTkxNV9yZXF1ZXN0ICoKPiAgZXhlY2xpc3RzX3NjaGVkdWxlX2luKHN0cnVjdCBpOTE1X3JlcXVl
+c3QgKnJxLCBpbnQgaWR4KQo+ICB7Cj4gLQlzdHJ1Y3QgaW50ZWxfY29udGV4dCAqY2UgPSBycS0+
+aHdfY29udGV4dDsKPiAtCWludCBjb3VudDsKPiArCXN0cnVjdCBpbnRlbF9jb250ZXh0ICogY29u
+c3QgY2UgPSBycS0+aHdfY29udGV4dDsKPiArCXN0cnVjdCBpbnRlbF9lbmdpbmVfY3MgKm9sZDsK
+PiAgCj4gKwlHRU1fQlVHX09OKCFpbnRlbF9lbmdpbmVfcG1faXNfYXdha2UocnEtPmVuZ2luZSkp
+Owo+ICAJdHJhY2VfaTkxNV9yZXF1ZXN0X2luKHJxLCBpZHgpOwo+ICAKPiAtCWNvdW50ID0gaW50
+ZWxfY29udGV4dF9pbmZsaWdodF9jb3VudChjZSk7Cj4gLQlpZiAoIWNvdW50KSB7Cj4gLQkJaW50
+ZWxfY29udGV4dF9nZXQoY2UpOwo+IC0JCWNlLT5pbmZsaWdodCA9IHJxLT5lbmdpbmU7Cj4gLQo+
+IC0JCWludGVsX2d0X3BtX2dldChjZS0+aW5mbGlnaHQtPmd0KTsKPiAtCQlleGVjbGlzdHNfY29u
+dGV4dF9zdGF0dXNfY2hhbmdlKHJxLCBJTlRFTF9DT05URVhUX1NDSEVEVUxFX0lOKTsKPiAtCQlp
+bnRlbF9lbmdpbmVfY29udGV4dF9pbihjZS0+aW5mbGlnaHQpOwo+IC0JfQo+ICsJb2xkID0gUkVB
+RF9PTkNFKGNlLT5pbmZsaWdodCk7Cj4gKwlkbyB7Cj4gKwkJaWYgKCFvbGQpIHsKCkZyb20gb3Ro
+ZXIgdGhyZWFkIGdvdCB0aGUgZXhwbGFuYXRpb24gZm9yIHRoaXMuIFBlcmhhcHMgYSBjb21tZW50
+CmZvciBzb2xlIG93bmVyc2hpcCBzaG91bGQgYmUgd2FycmFudGVkLiBCdXQgSSBkb24ndCBpbnNp
+c3QKSWYgeW91IGRvbid0IGhhdmUgb2xkIGhvdyBjb3VsZCB5b3UgaGF2ZSBlbmQgdXAgc2NoZWR1
+bGluZyBvdXQuCgo+ICsJCQlXUklURV9PTkNFKGNlLT5pbmZsaWdodCwgX19leGVjbGlzdHNfc2No
+ZWR1bGVfaW4ocnEpKTsKPiArCQkJYnJlYWs7Cj4gKwkJfQo+ICsJfSB3aGlsZSAoIXRyeV9jbXB4
+Y2hnKCZjZS0+aW5mbGlnaHQsICZvbGQsIHB0cl9pbmMob2xkKSkpOwo+ICAKPiAtCWludGVsX2Nv
+bnRleHRfaW5mbGlnaHRfaW5jKGNlKTsKPiAgCUdFTV9CVUdfT04oaW50ZWxfY29udGV4dF9pbmZs
+aWdodChjZSkgIT0gcnEtPmVuZ2luZSk7Cj4gLQo+ICAJcmV0dXJuIGk5MTVfcmVxdWVzdF9nZXQo
+cnEpOwo+ICB9Cj4gIAo+IEBAIC01ODEsMzUgKzU5Myw0NSBAQCBzdGF0aWMgdm9pZCBraWNrX3Np
+YmxpbmdzKHN0cnVjdCBpOTE1X3JlcXVlc3QgKnJxLCBzdHJ1Y3QgaW50ZWxfY29udGV4dCAqY2Up
+Cj4gIH0KPiAgCj4gIHN0YXRpYyBpbmxpbmUgdm9pZAo+IC1leGVjbGlzdHNfc2NoZWR1bGVfb3V0
+KHN0cnVjdCBpOTE1X3JlcXVlc3QgKnJxKQo+ICtfX2V4ZWNsaXN0c19zY2hlZHVsZV9vdXQoc3Ry
+dWN0IGk5MTVfcmVxdWVzdCAqcnEsCj4gKwkJCSBzdHJ1Y3QgaW50ZWxfZW5naW5lX2NzICogY29u
+c3QgZW5naW5lKQo+ICB7Cj4gLQlzdHJ1Y3QgaW50ZWxfY29udGV4dCAqY2UgPSBycS0+aHdfY29u
+dGV4dDsKPiArCXN0cnVjdCBpbnRlbF9jb250ZXh0ICogY29uc3QgY2UgPSBycS0+aHdfY29udGV4
+dDsKPiAgCj4gLQlHRU1fQlVHX09OKCFpbnRlbF9jb250ZXh0X2luZmxpZ2h0X2NvdW50KGNlKSk7
+Cj4gKwlpbnRlbF9lbmdpbmVfY29udGV4dF9vdXQoZW5naW5lKTsKPiArCWV4ZWNsaXN0c19jb250
+ZXh0X3N0YXR1c19jaGFuZ2UocnEsIElOVEVMX0NPTlRFWFRfU0NIRURVTEVfT1VUKTsKPiArCWlu
+dGVsX2d0X3BtX3B1dChlbmdpbmUtPmd0KTsKPiAgCj4gLQl0cmFjZV9pOTE1X3JlcXVlc3Rfb3V0
+KHJxKTsKPiArCS8qCj4gKwkgKiBJZiB0aGlzIGlzIHBhcnQgb2YgYSB2aXJ0dWFsIGVuZ2luZSwg
+aXRzIG5leHQgcmVxdWVzdCBtYXkKPiArCSAqIGhhdmUgYmVlbiBibG9ja2VkIHdhaXRpbmcgZm9y
+IGFjY2VzcyB0byB0aGUgYWN0aXZlIGNvbnRleHQuCj4gKwkgKiBXZSBoYXZlIHRvIGtpY2sgYWxs
+IHRoZSBzaWJsaW5ncyBhZ2FpbiBpbiBjYXNlIHdlIG5lZWQgdG8KPiArCSAqIHN3aXRjaCAoZS5n
+LiB0aGUgbmV4dCByZXF1ZXN0IGlzIG5vdCBydW5uYWJsZSBvbiB0aGlzCj4gKwkgKiBlbmdpbmUp
+LiBIb3BlZnVsbHksIHdlIHdpbGwgYWxyZWFkeSBoYXZlIHN1Ym1pdHRlZCB0aGUgbmV4dAo+ICsJ
+ICogcmVxdWVzdCBiZWZvcmUgdGhlIHRhc2tsZXQgcnVucyBhbmQgZG8gbm90IG5lZWQgdG8gcmVi
+dWlsZAo+ICsJICogZWFjaCB2aXJ0dWFsIHRyZWUgYW5kIGtpY2sgZXZlcnlvbmUgYWdhaW4uCj4g
+KwkgKi8KPiArCWlmIChjZS0+ZW5naW5lICE9IGVuZ2luZSkKPiArCQlraWNrX3NpYmxpbmdzKHJx
+LCBjZSk7Cj4gIAo+IC0JaW50ZWxfY29udGV4dF9pbmZsaWdodF9kZWMoY2UpOwo+IC0JaWYgKCFp
+bnRlbF9jb250ZXh0X2luZmxpZ2h0X2NvdW50KGNlKSkgewo+IC0JCWludGVsX2VuZ2luZV9jb250
+ZXh0X291dChjZS0+aW5mbGlnaHQpOwo+IC0JCWV4ZWNsaXN0c19jb250ZXh0X3N0YXR1c19jaGFu
+Z2UocnEsIElOVEVMX0NPTlRFWFRfU0NIRURVTEVfT1VUKTsKPiAtCQlpbnRlbF9ndF9wbV9wdXQo
+Y2UtPmluZmxpZ2h0LT5ndCk7Cj4gKwlpbnRlbF9jb250ZXh0X3B1dChjZSk7Cj4gK30KPiAgCj4g
+LQkJLyoKPiAtCQkgKiBJZiB0aGlzIGlzIHBhcnQgb2YgYSB2aXJ0dWFsIGVuZ2luZSwgaXRzIG5l
+eHQgcmVxdWVzdCBtYXkKPiAtCQkgKiBoYXZlIGJlZW4gYmxvY2tlZCB3YWl0aW5nIGZvciBhY2Nl
+c3MgdG8gdGhlIGFjdGl2ZSBjb250ZXh0Lgo+IC0JCSAqIFdlIGhhdmUgdG8ga2ljayBhbGwgdGhl
+IHNpYmxpbmdzIGFnYWluIGluIGNhc2Ugd2UgbmVlZCB0bwo+IC0JCSAqIHN3aXRjaCAoZS5nLiB0
+aGUgbmV4dCByZXF1ZXN0IGlzIG5vdCBydW5uYWJsZSBvbiB0aGlzCj4gLQkJICogZW5naW5lKS4g
+SG9wZWZ1bGx5LCB3ZSB3aWxsIGFscmVhZHkgaGF2ZSBzdWJtaXR0ZWQgdGhlIG5leHQKPiAtCQkg
+KiByZXF1ZXN0IGJlZm9yZSB0aGUgdGFza2xldCBydW5zIGFuZCBkbyBub3QgbmVlZCB0byByZWJ1
+aWxkCj4gLQkJICogZWFjaCB2aXJ0dWFsIHRyZWUgYW5kIGtpY2sgZXZlcnlvbmUgYWdhaW4uCj4g
+LQkJICovCj4gLQkJY2UtPmluZmxpZ2h0ID0gTlVMTDsKPiAtCQlpZiAocnEtPmVuZ2luZSAhPSBj
+ZS0+ZW5naW5lKQo+IC0JCQlraWNrX3NpYmxpbmdzKHJxLCBjZSk7Cj4gK3N0YXRpYyBpbmxpbmUg
+dm9pZAo+ICtleGVjbGlzdHNfc2NoZWR1bGVfb3V0KHN0cnVjdCBpOTE1X3JlcXVlc3QgKnJxKQo+
+ICt7Cj4gKwlzdHJ1Y3QgaW50ZWxfY29udGV4dCAqIGNvbnN0IGNlID0gcnEtPmh3X2NvbnRleHQ7
+Cj4gKwlzdHJ1Y3QgaW50ZWxfZW5naW5lX2NzICpjdXIsICpvbGQ7Cj4gIAo+IC0JCWludGVsX2Nv
+bnRleHRfcHV0KGNlKTsKPiAtCX0KPiArCXRyYWNlX2k5MTVfcmVxdWVzdF9vdXQocnEpOwo+ICsJ
+R0VNX0JVR19PTihpbnRlbF9jb250ZXh0X2luZmxpZ2h0KGNlKSAhPSBycS0+ZW5naW5lKTsKPiAr
+Cj4gKwlvbGQgPSBSRUFEX09OQ0UoY2UtPmluZmxpZ2h0KTsKPiArCWRvCj4gKwkJY3VyID0gcHRy
+X3VubWFza19iaXRzKG9sZCwgMikgPyBwdHJfZGVjKG9sZCkgOiBOVUxMOwo+ICsJd2hpbGUgKCF0
+cnlfY21weGNoZygmY2UtPmluZmxpZ2h0LCAmb2xkLCBjdXIpKTsKPiArCWlmICghY3VyKQo+ICsJ
+CV9fZXhlY2xpc3RzX3NjaGVkdWxlX291dChycSwgb2xkKTsKPiAgCj4gIAlpOTE1X3JlcXVlc3Rf
+cHV0KHJxKTsKPiAgfQo+IEBAIC02ODQsNiArNzA2LDkgQEAgYXNzZXJ0X3BlbmRpbmdfdmFsaWQo
+Y29uc3Qgc3RydWN0IGludGVsX2VuZ2luZV9leGVjbGlzdHMgKmV4ZWNsaXN0cywKPiAgCj4gIAl0
+cmFjZV9wb3J0cyhleGVjbGlzdHMsIG1zZywgZXhlY2xpc3RzLT5wZW5kaW5nKTsKPiAgCj4gKwlp
+ZiAoIWV4ZWNsaXN0cy0+cGVuZGluZ1swXSkKCldvdWxkIGl0IGJlIHBydWRlbnQgdG8gcHV0IFJF
+QURfT05DRSBoZXJlIGFsc28uIEV2ZW4gaWYKeW91IGNvdWxkIGNvbnRlbXBsYXRlIHRoYXQgeW91
+IGRvbid0IHNlZSB0aGUKYXNzZXJ0IGV2ZXIgbmVlZGVkIGluIG90aGVyIHBsYWNlcy4KCk5vdyBp
+dCBzZWVtIHRvIGJlIGNvbnRhaW5lZCB0aG8sCgpSZXZpZXdlZC1ieTogTWlrYSBLdW9wcGFsYSA8
+bWlrYS5rdW9wcGFsYUBsaW51eC5pbnRlbC5jb20+CgoKPiArCQlyZXR1cm4gZmFsc2U7Cj4gKwo+
+ICAJaWYgKGV4ZWNsaXN0cy0+cGVuZGluZ1tleGVjbGlzdHNfbnVtX3BvcnRzKGV4ZWNsaXN0cyld
+KQo+ICAJCXJldHVybiBmYWxzZTsKPiAgCj4gQEAgLTk0MiwxMSArOTY3LDIzIEBAIG5lZWRfdGlt
+ZXNsaWNlKHN0cnVjdCBpbnRlbF9lbmdpbmVfY3MgKmVuZ2luZSwgY29uc3Qgc3RydWN0IGk5MTVf
+cmVxdWVzdCAqcnEpCj4gIH0KPiAgCj4gIHN0YXRpYyBib29sCj4gLWVuYWJsZV90aW1lc2xpY2Uo
+c3RydWN0IGludGVsX2VuZ2luZV9jcyAqZW5naW5lKQo+ICtzd2l0Y2hfcHJpbyhzdHJ1Y3QgaW50
+ZWxfZW5naW5lX2NzICplbmdpbmUsIGNvbnN0IHN0cnVjdCBpOTE1X3JlcXVlc3QgKnJxKQo+ICt7
+Cj4gKwlpZiAobGlzdF9pc19sYXN0KCZycS0+c2NoZWQubGluaywgJmVuZ2luZS0+YWN0aXZlLnJl
+cXVlc3RzKSkKPiArCQlyZXR1cm4gSU5UX01JTjsKPiArCj4gKwlyZXR1cm4gcnFfcHJpbyhsaXN0
+X25leHRfZW50cnkocnEsIHNjaGVkLmxpbmspKTsKPiArfQo+ICsKPiArc3RhdGljIGJvb2wKPiAr
+ZW5hYmxlX3RpbWVzbGljZShjb25zdCBzdHJ1Y3QgaW50ZWxfZW5naW5lX2V4ZWNsaXN0cyAqZXhl
+Y2xpc3RzKQo+ICB7Cj4gLQlzdHJ1Y3QgaTkxNV9yZXF1ZXN0ICpsYXN0ID0gbGFzdF9hY3RpdmUo
+JmVuZ2luZS0+ZXhlY2xpc3RzKTsKPiArCWNvbnN0IHN0cnVjdCBpOTE1X3JlcXVlc3QgKnJxID0g
+KmV4ZWNsaXN0cy0+YWN0aXZlOwo+ICAKPiAtCXJldHVybiBsYXN0ICYmIG5lZWRfdGltZXNsaWNl
+KGVuZ2luZSwgbGFzdCk7Cj4gKwlpZiAoaTkxNV9yZXF1ZXN0X2NvbXBsZXRlZChycSkpCj4gKwkJ
+cmV0dXJuIGZhbHNlOwo+ICsKPiArCXJldHVybiBleGVjbGlzdHMtPnN3aXRjaF9wcmlvcml0eV9o
+aW50ID49IGVmZmVjdGl2ZV9wcmlvKHJxKTsKPiAgfQo+ICAKPiAgc3RhdGljIHZvaWQgcmVjb3Jk
+X3ByZWVtcHRpb24oc3RydWN0IGludGVsX2VuZ2luZV9leGVjbGlzdHMgKmV4ZWNsaXN0cykKPiBA
+QCAtMTI5Miw2ICsxMzI5LDggQEAgc3RhdGljIHZvaWQgZXhlY2xpc3RzX2RlcXVldWUoc3RydWN0
+IGludGVsX2VuZ2luZV9jcyAqZW5naW5lKQo+ICAJCSpwb3J0ID0gZXhlY2xpc3RzX3NjaGVkdWxl
+X2luKGxhc3QsIHBvcnQgLSBleGVjbGlzdHMtPnBlbmRpbmcpOwo+ICAJCW1lbXNldChwb3J0ICsg
+MSwgMCwgKGxhc3RfcG9ydCAtIHBvcnQpICogc2l6ZW9mKCpwb3J0KSk7Cj4gIAkJZXhlY2xpc3Rz
+X3N1Ym1pdF9wb3J0cyhlbmdpbmUpOwo+ICsJCWV4ZWNsaXN0cy0+c3dpdGNoX3ByaW9yaXR5X2hp
+bnQgPQo+ICsJCQlzd2l0Y2hfcHJpbyhlbmdpbmUsICpleGVjbGlzdHMtPnBlbmRpbmcpOwo+ICAJ
+fSBlbHNlIHsKPiAgCQlyaW5nX3NldF9wYXVzZWQoZW5naW5lLCAwKTsKPiAgCX0KPiBAQCAtMTM1
+Niw3ICsxMzk1LDYgQEAgc3RhdGljIHZvaWQgcHJvY2Vzc19jc2Ioc3RydWN0IGludGVsX2VuZ2lu
+ZV9jcyAqZW5naW5lKQo+ICAJY29uc3QgdTggbnVtX2VudHJpZXMgPSBleGVjbGlzdHMtPmNzYl9z
+aXplOwo+ICAJdTggaGVhZCwgdGFpbDsKPiAgCj4gLQlsb2NrZGVwX2Fzc2VydF9oZWxkKCZlbmdp
+bmUtPmFjdGl2ZS5sb2NrKTsKPiAgCUdFTV9CVUdfT04oVVNFU19HVUNfU1VCTUlTU0lPTihlbmdp
+bmUtPmk5MTUpKTsKPiAgCj4gIAkvKgo+IEBAIC0xNDI3LDE1ICsxNDY1LDE0IEBAIHN0YXRpYyB2
+b2lkIHByb2Nlc3NfY3NiKHN0cnVjdCBpbnRlbF9lbmdpbmVfY3MgKmVuZ2luZSkKPiAgCQkJCSAg
+ICAgICBleGVjbGlzdHMtPnBlbmRpbmcsCj4gIAkJCQkgICAgICAgZXhlY2xpc3RzX251bV9wb3J0
+cyhleGVjbGlzdHMpICoKPiAgCQkJCSAgICAgICBzaXplb2YoKmV4ZWNsaXN0cy0+cGVuZGluZykp
+Owo+IC0JCQlleGVjbGlzdHMtPnBlbmRpbmdbMF0gPSBOVUxMOwo+ICAKPiAtCQkJdHJhY2VfcG9y
+dHMoZXhlY2xpc3RzLCAicHJvbW90ZWQiLCBleGVjbGlzdHMtPmFjdGl2ZSk7Cj4gLQo+IC0JCQlp
+ZiAoZW5hYmxlX3RpbWVzbGljZShlbmdpbmUpKQo+ICsJCQlpZiAoZW5hYmxlX3RpbWVzbGljZShl
+eGVjbGlzdHMpKQo+ICAJCQkJbW9kX3RpbWVyKCZleGVjbGlzdHMtPnRpbWVyLCBqaWZmaWVzICsg
+MSk7Cj4gIAo+ICAJCQlpZiAoIWluamVjdF9wcmVlbXB0X2hhbmcoZXhlY2xpc3RzKSkKPiAgCQkJ
+CXJpbmdfc2V0X3BhdXNlZChlbmdpbmUsIDApOwo+ICsKPiArCQkJV1JJVEVfT05DRShleGVjbGlz
+dHMtPnBlbmRpbmdbMF0sIE5VTEwpOwo+ICAJCQlicmVhazsKPiAgCj4gIAkJY2FzZSBDU0JfQ09N
+UExFVEU6IC8qIHBvcnQwIGNvbXBsZXRlZCwgYWR2YW5jZWQgdG8gcG9ydDEgKi8KPiBAQCAtMTQ3
+OSw4ICsxNTE2LDYgQEAgc3RhdGljIHZvaWQgcHJvY2Vzc19jc2Ioc3RydWN0IGludGVsX2VuZ2lu
+ZV9jcyAqZW5naW5lKQo+ICBzdGF0aWMgdm9pZCBfX2V4ZWNsaXN0c19zdWJtaXNzaW9uX3Rhc2ts
+ZXQoc3RydWN0IGludGVsX2VuZ2luZV9jcyAqY29uc3QgZW5naW5lKQo+ICB7Cj4gIAlsb2NrZGVw
+X2Fzc2VydF9oZWxkKCZlbmdpbmUtPmFjdGl2ZS5sb2NrKTsKPiAtCj4gLQlwcm9jZXNzX2NzYihl
+bmdpbmUpOwo+ICAJaWYgKCFlbmdpbmUtPmV4ZWNsaXN0cy5wZW5kaW5nWzBdKQo+ICAJCWV4ZWNs
+aXN0c19kZXF1ZXVlKGVuZ2luZSk7Cj4gIH0KPiBAQCAtMTQ5NCw5ICsxNTI5LDEyIEBAIHN0YXRp
+YyB2b2lkIGV4ZWNsaXN0c19zdWJtaXNzaW9uX3Rhc2tsZXQodW5zaWduZWQgbG9uZyBkYXRhKQo+
+ICAJc3RydWN0IGludGVsX2VuZ2luZV9jcyAqIGNvbnN0IGVuZ2luZSA9IChzdHJ1Y3QgaW50ZWxf
+ZW5naW5lX2NzICopZGF0YTsKPiAgCXVuc2lnbmVkIGxvbmcgZmxhZ3M7Cj4gIAo+IC0Jc3Bpbl9s
+b2NrX2lycXNhdmUoJmVuZ2luZS0+YWN0aXZlLmxvY2ssIGZsYWdzKTsKPiAtCV9fZXhlY2xpc3Rz
+X3N1Ym1pc3Npb25fdGFza2xldChlbmdpbmUpOwo+IC0Jc3Bpbl91bmxvY2tfaXJxcmVzdG9yZSgm
+ZW5naW5lLT5hY3RpdmUubG9jaywgZmxhZ3MpOwo+ICsJcHJvY2Vzc19jc2IoZW5naW5lKTsKPiAr
+CWlmICghUkVBRF9PTkNFKGVuZ2luZS0+ZXhlY2xpc3RzLnBlbmRpbmdbMF0pKSB7Cj4gKwkJc3Bp
+bl9sb2NrX2lycXNhdmUoJmVuZ2luZS0+YWN0aXZlLmxvY2ssIGZsYWdzKTsKPiArCQlfX2V4ZWNs
+aXN0c19zdWJtaXNzaW9uX3Rhc2tsZXQoZW5naW5lKTsKPiArCQlzcGluX3VubG9ja19pcnFyZXN0
+b3JlKCZlbmdpbmUtPmFjdGl2ZS5sb2NrLCBmbGFncyk7Cj4gKwl9Cj4gIH0KPiAgCj4gIHN0YXRp
+YyB2b2lkIGV4ZWNsaXN0c19zdWJtaXNzaW9uX3RpbWVyKHN0cnVjdCB0aW1lcl9saXN0ICp0aW1l
+cikKPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV91dGlscy5oIGIvZHJp
+dmVycy9ncHUvZHJtL2k5MTUvaTkxNV91dGlscy5oCj4gaW5kZXggZDY1MmJhNWQyMzIwLi41NjJm
+NzU2ZGE0MjEgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV91dGlscy5o
+Cj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV91dGlscy5oCj4gQEAgLTE2MSwxNyAr
+MTYxLDE1IEBAIF9fY2hlY2tfc3RydWN0X3NpemUoc2l6ZV90IGJhc2UsIHNpemVfdCBhcnIsIHNp
+emVfdCBjb3VudCwgc2l6ZV90ICpzaXplKQo+ICAJKCh0eXBlb2YocHRyKSkoKHVuc2lnbmVkIGxv
+bmcpKHB0cikgfCBfX2JpdHMpKTsJCQlcCj4gIH0pCj4gIAo+IC0jZGVmaW5lIHB0cl9jb3VudF9k
+ZWMocF9wdHIpIGRvIHsJCQkJCVwKPiAtCXR5cGVvZihwX3B0cikgX19wID0gKHBfcHRyKTsJCQkJ
+CVwKPiAtCXVuc2lnbmVkIGxvbmcgX192ID0gKHVuc2lnbmVkIGxvbmcpKCpfX3ApOwkJCVwKPiAt
+CSpfX3AgPSAodHlwZW9mKCpwX3B0cikpKC0tX192KTsJCQkJCVwKPiAtfSB3aGlsZSAoMCkKPiAt
+Cj4gLSNkZWZpbmUgcHRyX2NvdW50X2luYyhwX3B0cikgZG8gewkJCQkJXAo+IC0JdHlwZW9mKHBf
+cHRyKSBfX3AgPSAocF9wdHIpOwkJCQkJXAo+IC0JdW5zaWduZWQgbG9uZyBfX3YgPSAodW5zaWdu
+ZWQgbG9uZykoKl9fcCk7CQkJXAo+IC0JKl9fcCA9ICh0eXBlb2YoKnBfcHRyKSkoKytfX3YpOwkJ
+CQkJXAo+IC19IHdoaWxlICgwKQo+ICsjZGVmaW5lIHB0cl9kZWMocHRyKSAoewkJCQkJCQlcCj4g
+Kwl1bnNpZ25lZCBsb25nIF9fdiA9ICh1bnNpZ25lZCBsb25nKShwdHIpOwkJCVwKPiArCSh0eXBl
+b2YocHRyKSkoX192IC0gMSk7CQkJCQkJXAo+ICt9KQo+ICsKPiArI2RlZmluZSBwdHJfaW5jKHB0
+cikgKHsJCQkJCQkJXAo+ICsJdW5zaWduZWQgbG9uZyBfX3YgPSAodW5zaWduZWQgbG9uZykocHRy
+KTsJCQlcCj4gKwkodHlwZW9mKHB0cikpKF9fdiArIDEpOwkJCQkJCVwKPiArfSkKPiAgCj4gICNk
+ZWZpbmUgcGFnZV9tYXNrX2JpdHMocHRyKSBwdHJfbWFza19iaXRzKHB0ciwgUEFHRV9TSElGVCkK
+PiAgI2RlZmluZSBwYWdlX3VubWFza19iaXRzKHB0cikgcHRyX3VubWFza19iaXRzKHB0ciwgUEFH
+RV9TSElGVCkKPiAtLSAKPiAyLjIzLjAucmMxCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3Rz
+LmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xp
+c3RpbmZvL2ludGVsLWdmeA==
