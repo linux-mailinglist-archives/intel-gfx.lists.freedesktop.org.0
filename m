@@ -1,47 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 359578F95F
-	for <lists+intel-gfx@lfdr.de>; Fri, 16 Aug 2019 05:10:08 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 143298F979
+	for <lists+intel-gfx@lfdr.de>; Fri, 16 Aug 2019 05:31:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1E1546E2E0;
-	Fri, 16 Aug 2019 03:10:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B58816EAB3;
+	Fri, 16 Aug 2019 03:31:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from bombadil.infradead.org (bombadil.infradead.org
- [IPv6:2607:7c80:54:e::133])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 47BAA6E2E0;
- Fri, 16 Aug 2019 03:10:05 +0000 (UTC)
-Received: from static-50-53-52-16.bvtn.or.frontiernet.net ([50.53.52.16]
- helo=[192.168.1.17])
- by bombadil.infradead.org with esmtpsa (Exim 4.92 #3 (Red Hat Linux))
- id 1hyScu-0006Dn-JI; Fri, 16 Aug 2019 03:10:04 +0000
-References: <CAONH+Jm-O6=DQ+K2n5pNTNMg2Sq1KcVNFLuweVh6W82OPEFJoQ@mail.gmail.com>
- <abcae5c9-b3dc-7403-d628-5d7543d19702@infradead.org>
- <CAONH+JnZpbpdiwdajP7ke7X7wQGU7m4YoyZRDbLHKmRufkD6mQ@mail.gmail.com>
-From: Randy Dunlap <rdunlap@infradead.org>
-Message-ID: <5d637638-12d1-6c39-8f76-824a0e875feb@infradead.org>
-Date: Thu, 15 Aug 2019 20:10:03 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+Received: from ozlabs.org (ozlabs.org [IPv6:2401:3900:2:1::2])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CD2AC6EAB1;
+ Fri, 16 Aug 2019 03:31:37 +0000 (UTC)
+Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
+ SHA256) (No client certificate requested)
+ by mail.ozlabs.org (Postfix) with ESMTPSA id 468pl91FX1z9sNC;
+ Fri, 16 Aug 2019 13:31:32 +1000 (AEST)
+Date: Fri, 16 Aug 2019 13:31:32 +1000
+From: Stephen Rothwell <sfr@canb.auug.org.au>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>, Intel Graphics
+ <intel-gfx@lists.freedesktop.org>, DRI <dri-devel@lists.freedesktop.org>
+Message-ID: <20190816133132.6b37d7fa@canb.auug.org.au>
 MIME-Version: 1.0
-In-Reply-To: <CAONH+JnZpbpdiwdajP7ke7X7wQGU7m4YoyZRDbLHKmRufkD6mQ@mail.gmail.com>
-Content-Language: en-US
-X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt;
- c=relaxed/relaxed; 
- d=infradead.org; s=bombadil.20170209; h=Content-Transfer-Encoding:
- Content-Type:In-Reply-To:MIME-Version:Date:Message-ID:From:Cc:References:
- Subject:Sender:Reply-To:To:Content-ID:Content-Description:Resent-Date:
- Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
- List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=4j8pzC9X6BV/0Cgmn/vHlvEwxdtoqsY8m8EAgZ/56aI=; b=cjB+2UDwKTYOFgYTe9TsclryD
- fRTu6IgBmoFI+mvs9rUzSWQMIe8my5zq4ZZJaggyvAyurUvssi8NzmQ+IDgkvfZFbUJhXwBTWiyT9
- 1BxwxTOR4XitmL/hXXt3KYaV8F1+grwZoZc6lsF+l8YTZhKQosVb2Vm5JZmgWSyhN8wG19zuICD9y
- 3M85yq3D6DDgv2vI5vwrxFdo2YRbIlYT3Zegg2t+5N4MqPpcwoAV6fyo/8Z7qfOs0hpcb0A8fQf1i
- jpBMBFZEX/TRG3IOR0UX6AKwBOyqKYcdrITx8HSCB6o3pvWlM/2RU0MAqeElqVT7g/LrxSY1C4PMm
- 5oQ3KzFTA==;
-Subject: Re: [Intel-gfx] Linux Kernel 5.2.8 (uvc or i915? <<<)
+X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=canb.auug.org.au; s=201702; t=1565926294;
+ bh=GHLP3+kVivze2Qzz0yb8xDZ5EM3RQFJj3qJTpy3zYW0=;
+ h=Date:From:To:Cc:Subject:From;
+ b=jbtzeDGSIQ+ez6nHNfChtWjbQlDAqqiPzGlnS5JNOuk8pK0982dbmhIFsj4PdD2jJ
+ Ayuwzags4W1xohtACAjINbun/oE6Ai5ejV2fgBWtwUcQ5A0hPzELtNAVC/JY34xELZ
+ YXhg+cepT7MQMdfp51w/FVLyY0Vtf39x2fASr225GQKVnHRmyaglCjvEKhYBCUBqm6
+ suouvd2MLHbgm/t6ZFtV8kBGo+TxARM/UuKnbWAZi9J1NU2eq2JSSoCrmYOsxttBBV
+ qKwDekPA2Ez04lM/Ba5clQsIDNDSoB6y2inRdgq+tf5oZuA3q/7Lww/yGSNYZlrxnd
+ ZEdi263bCbIKQ==
+Subject: [Intel-gfx] linux-next: build warning after merge of the drm-misc
+ tree
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -54,53 +48,81 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
- LKML <linux-kernel@vger.kernel.org>,
- dri-devel <dri-devel@lists.freedesktop.org>,
- Nathaniel Russell <naterussell83@gmail.com>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- linux-media <linux-media@vger.kernel.org>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Linux Next Mailing List <linux-next@vger.kernel.org>,
+ Sam Ravnborg <sam@ravnborg.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Content-Type: multipart/mixed; boundary="===============1387044052=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-W2FkZGluZyBtYWlsaW5nIGxpc3RzIGV0Yy4gd2l0aCBOYXRoYW5pZWwncyB0ZXN0IGluZm9dCgoK
-T24gOC8xNS8xOSA3OjIxIFBNLCBOYXRoYW5pZWwgUnVzc2VsbCB3cm90ZToKPiBXZWxsIGkgc3Vy
-cHJlc3NlZCB0aGUgdXZjdmlkZW8gZHJpdmVyIGFuZCB5b3UgYXJlIHJpZ2h0IFJhbmR5IGl0Cj4g
-ZGVmaW5pdGVseSBpcyBub3QgdGhlIHV2Y3ZpZGVvIGRyaXZlci4gVGhlcmUgaXMgc29tZXRoaW5n
-IGdvaW5nIG9uIGluCj4gdGhlIGk5MTUgZHJpdmVyLgo+IAo+IAo+IE9uIDgvMTUvMTksIFJhbmR5
-IER1bmxhcCA8cmR1bmxhcEBpbmZyYWRlYWQub3JnPiB3cm90ZToKPj4gT24gOC8xNS8xOSA2OjE1
-IFBNLCBOYXRoYW5pZWwgUnVzc2VsbCB3cm90ZToKPj4+IEkgd291bGQgcmVhbGx5IGxpa2UgaGVs
-cCB3aXRoIHRoZSBrZXJuZWwgZXJyb3Igd2l0aCBteSB1dmN2aWRlbyBkcml2ZXIuCj4+Pgo+Pgo+
-PiBIaSBhZ2Fpbi4KPj4KPj4gV2hhdCBtYWtlcyB5b3UgdGhpbmsgdGhhdCB0aGUgcHJvYmxlbSBp
-cyByZWxhdGVkIHRvIHRoZSB1dmN2aWRlbyBkcml2ZXI/Cj4+IERvZXMgc29tZSBwcmV2aW91cyBr
-ZXJuZWwgdmVyc2lvbiB3b3JrIGNvcnJlY3RseT8gIElmIHNvLCB3aGF0IHZlcnNpb24ocyk/Cj4+
-Cj4+Cj4+IERvZXMgdGhpcyB3YXJuaW5nIG1lc3NhZ2Ugb25seSBoYXBwZW4gd2hlbiB0aGUgdXZj
-dmlkZW8gZHJpdmVyIGlzIGJlaW5nCj4+IGxvYWRlZD8KPj4gQ2FuIHlvdSBzdXBwcmVzcyBsb2Fk
-aW5nIG9mIHRoZSB1dmN2aWRlbyBkcml2ZXIgdG8gZmluZCBvdXQ/Cj4+Cj4+IE1vc3Qgb2YgdGhl
-IHByb2JsZW1zL2Vycm9ycy93YXJuaW5ncyB0aGF0IEkgc2VlIGFyZSByZWxhdGVkIHRvIHRoZSBp
-OTE1Cj4+IGRyaXZlcjoKPj4KPj4gWyAgIDEzLjAzMjM0MV0gdGltZWQgb3V0IHdhaXRpbmcgZm9y
-IHBvcnQgQyByZWFkeTogZ290IDB4MjAsIGV4cGVjdGVkIDB4ZTAKPj4gWyAgIDEzLjAzMjg3Ml0g
-V0FSTklORzogQ1BVOiAxIFBJRDogMjM5IGF0Cj4+IGRyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVs
-X2Rpc3BsYXkuYzoxNTk3IHZsdl93YWl0X3BvcnRfcmVhZHkrMHg5OS8weGUwCj4+IFtpOTE1XQo+
-PiBbICAgMTMuMDMzNjMyXSBSSVA6IDAwMTA6dmx2X3dhaXRfcG9ydF9yZWFkeSsweDk5LzB4ZTAg
-W2k5MTVdCj4+Cj4+IGFsdGhvdWdoIHRoZXJlIGFyZSBhIGZldyB1dmN2aWRlbyB3YXJuaW5nczoK
-Pj4gWyAgIDEzLjAzOTMwNV0gdXZjdmlkZW8gMS01OjEuMDogRW50aXR5IHR5cGUgZm9yIGVudGl0
-eSBFeHRlbnNpb24gNCB3YXMgbm90Cj4+IGluaXRpYWxpemVkIQo+PiBbICAgMTMuMDM5MzE4XSB1
-dmN2aWRlbyAxLTU6MS4wOiBFbnRpdHkgdHlwZSBmb3IgZW50aXR5IEV4dGVuc2lvbiAzIHdhcyBu
-b3QKPj4gaW5pdGlhbGl6ZWQhCj4+IFsgICAxMy4wMzkzMzBdIHV2Y3ZpZGVvIDEtNToxLjA6IEVu
-dGl0eSB0eXBlIGZvciBlbnRpdHkgUHJvY2Vzc2luZyAyIHdhcyBub3QKPj4gaW5pdGlhbGl6ZWQh
-Cj4+IFsgICAxMy4wMzkzMzldIHV2Y3ZpZGVvIDEtNToxLjA6IEVudGl0eSB0eXBlIGZvciBlbnRp
-dHkgQ2FtZXJhIDEgd2FzIG5vdAo+PiBpbml0aWFsaXplZCEKPj4KPj4KPj4gTGF1cmVudCwgZG8g
-eW91IHNlZSBhbnkgdXZjIGlzc3VlcyBoZXJlPyAgQW55IGlkZWFzL3N1Z2dlc3Rpb25zPwo+Pgo+
-Pgo+PiBAaW50ZWwtZ2Z4OiAgYW55IGlkZWFzIGFib3V0IHdoYXQgaXMgZ29pbmcgb24gaGVyZSB3
-aXRoIHRoZSBpOTE1IGRyaXZlcj8KPj4KPj4KPj4KPj4gT3JpZ2luYWwgbWVzc2FnZSB0byBsa21s
-Ogo+PiBodHRwczovL2xvcmUua2VybmVsLm9yZy9sa21sL0NBT05IK0ptLU82PURRK0sybjVwTlRO
-TWcyU3ExS2NWTkZMdXdlVmg2VzgyT1BFRkpvUUBtYWlsLmdtYWlsLmNvbS9ULyN1Cj4+Cj4+IFBy
-ZXZpb3VzIG1lc3NhZ2UgZm9yIDUuMS4yMSBrZXJuZWw6Cj4+IGh0dHBzOi8vbG9yZS5rZXJuZWwu
-b3JnL2xrbWwvQ0FPTkgrSmtURnVqWTl2RXlOTnVlbSs5ckoycUJLa2YtUGJLazk9REJTVkVwNmtX
-PXl3QG1haWwuZ21haWwuY29tLwo+Pgo+Pgo+PiB0aGFua3MuCj4+IC0tCj4+IH5SYW5keQo+PgoK
-Ci0tIAp+UmFuZHkKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
-Cmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
+--===============1387044052==
+Content-Type: multipart/signed; boundary="Sig_/IC4A=I2yzw9mVSXt_Y0ZdLK";
+ protocol="application/pgp-signature"; micalg=pgp-sha256
+
+--Sig_/IC4A=I2yzw9mVSXt_Y0ZdLK
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
+
+Hi all,
+
+After merging the drm-misc tree, today's linux-next build (x86_64
+allmodconfig) produced this warning:
+
+warning: same module names found:
+  drivers/video/fbdev/omap2/omapfb/displays/panel-nec-nl8048hl11.ko
+  drivers/gpu/drm/panel/panel-nec-nl8048hl11.ko
+warning: same module names found:
+  drivers/video/fbdev/omap2/omapfb/displays/panel-sharp-ls037v7dw01.ko
+  drivers/gpu/drm/panel/panel-sharp-ls037v7dw01.ko
+warning: same module names found:
+  drivers/video/fbdev/omap2/omapfb/displays/panel-sony-acx565akm.ko
+  drivers/gpu/drm/panel/panel-sony-acx565akm.ko
+warning: same module names found:
+  drivers/video/fbdev/omap2/omapfb/displays/panel-tpo-td028ttec1.ko
+  drivers/gpu/drm/panel/panel-tpo-td028ttec1.ko
+warning: same module names found:
+  drivers/video/fbdev/omap2/omapfb/displays/panel-tpo-td043mtea1.ko
+  drivers/gpu/drm/panel/panel-tpo-td043mtea1.ko
+
+Introduced by commits
+
+  df439abe6501 ("drm/panel: Add driver for the NEC NL8048HL11 panel")
+  c9cf4c2a3bd3 ("drm/panel: Add driver for the Sharp LS037V7DW01 panel")
+  1c8fc3f0c5d2 ("drm/panel: Add driver for the Sony ACX565AKM panel")
+  415b8dd08711 ("drm/panel: Add driver for the Toppoly TD028TTEC1 panel")
+  dc2e1e5b2799 ("drm/panel: Add driver for the Toppoly TD043MTEA1 panel")
+
+--=20
+Cheers,
+Stephen Rothwell
+
+--Sig_/IC4A=I2yzw9mVSXt_Y0ZdLK
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAl1WI5QACgkQAVBC80lX
+0GwRHQf/QDlEwyhJCOKizMPg8T0hbva+mS465aNjjHvczqhKjoKqZ5CyZhdamS5G
+wPXELESVZ+PURv1jJSdD1hRkMvDdAlvyeOehkNWBkoZO0wv3J81LB/wO15fKdnMf
+TDPusdBJlLPK2wjqd45tAWDzyfHzIY9KbiSYckD8ogUKuhwgNF5uu/te9WtmcIiz
+rpDzuebFjN2t1/D1rsRKDJNWU3U1VNjkerwifWuJoFielZ4+giPqtBSMPQbO4bdR
+S13jVpp+VIc9vQKYCstVwCbHVoqWf4C8YA81RxXdSGWiEPt4/76Zydor5FneQOWW
+QMN+nW0HZp7q871eXOYR3tuvvCP3uw==
+=HXwu
+-----END PGP SIGNATURE-----
+
+--Sig_/IC4A=I2yzw9mVSXt_Y0ZdLK--
+
+--===============1387044052==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
+IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
+
+--===============1387044052==--
