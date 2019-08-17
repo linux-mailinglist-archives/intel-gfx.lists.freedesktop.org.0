@@ -2,32 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 072A491054
-	for <lists+intel-gfx@lfdr.de>; Sat, 17 Aug 2019 13:51:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 05C8491059
+	for <lists+intel-gfx@lfdr.de>; Sat, 17 Aug 2019 13:55:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2BB2C6E4BA;
-	Sat, 17 Aug 2019 11:51:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 417E56E4C1;
+	Sat, 17 Aug 2019 11:55:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E67106E4BA;
- Sat, 17 Aug 2019 11:51:15 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 18172605-1500050 for multiple; Sat, 17 Aug 2019 12:51:13 +0100
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id C56516E49D;
+ Sat, 17 Aug 2019 11:55:02 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id B78CEA0097;
+ Sat, 17 Aug 2019 11:55:02 +0000 (UTC)
 MIME-Version: 1.0
-To: "Koenig, Christian" <Christian.Koenig@amd.com>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-In-Reply-To: <250a96e7-6cb7-6333-055a-eb30293534bf@amd.com>
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Sat, 17 Aug 2019 11:55:02 -0000
+Message-ID: <20190817115502.4449.16369@emeril.freedesktop.org>
 References: <20190817113947.5868-1-chris@chris-wilson.co.uk>
- <250a96e7-6cb7-6333-055a-eb30293534bf@amd.com>
-Message-ID: <156604267115.24359.13401934175715613226@skylake-alporthouse-com>
-User-Agent: alot/0.6
-Date: Sat, 17 Aug 2019 12:51:11 +0100
-Subject: Re: [Intel-gfx] [PATCH] dma-buf: Shrink size of struct dma_fence
+X-Patchwork-Hint: ignore
+In-Reply-To: <20190817113947.5868-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_f?=
+ =?utf-8?q?or_dma-buf=3A_Shrink_size_of_struct_dma=5Ffence?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -40,32 +38,21 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-UXVvdGluZyBLb2VuaWcsIENocmlzdGlhbiAoMjAxOS0wOC0xNyAxMjo0Mjo0OCkKPiBBbSAxNy4w
-OC4xOSB1bSAxMzozOSBzY2hyaWViIENocmlzIFdpbHNvbjoKPiA+IFJlYXJyYW5nZSB0aGUgY291
-cGxlIG9mIDMyLWJpdCBhdG9taWNzIGhpZGRlbiBhbW9uZ3N0IHRoZSBmaWVsZCBvZgo+ID4gcG9p
-bnRlcnMgdGhhdCB1bm5lY2Vzc2FyaWx5IGNhdXNlZCB0aGUgY29tcGlsZXIgdG8gaW5zZXJ0IHNv
-bWUgcGFkZGluZywKPiA+IHNocmlua3MgdGhlIHNpemUgb2YgdGhlIGJhc2Ugc3RydWN0IGRtYV9m
-ZW5jZSBmcm9tIDgwIHRvIDcyIGJ5dGVzIG9uCj4gPiB4ODYtNjQuCj4gPgo+ID4gU2lnbmVkLW9m
-Zi1ieTogQ2hyaXMgV2lsc29uIDxjaHJpc0BjaHJpcy13aWxzb24uY28udWs+Cj4gPiBDYzogQ2hy
-aXN0aWFuIEvDtm5pZyA8Y2hyaXN0aWFuLmtvZW5pZ0BhbWQuY29tPgo+IAo+IFJldmlld2VkLWJ5
-OiBDaHJpc3RpYW4gS8O2bmlnIDxjaHJpc3RpYW4ua29lbmlnQGFtZC5jb20+Cj4gCj4gQlRXOiBX
-ZSBjb3VsZCBhbHNvIHB1dCB0aGUgdGltZXN0YW1wIGluIHRoZSB1bmlvbiBpZiB3ZSB3YW50Lgo+
-IAo+IEUuZy4gdGhlIGNiX2xpc3Qgc2hvdWxkIG9ubHkgYmUgdXNlZCB3aGlsZSB0aGUgZmVuY2Ug
-aXMgdW5zaWduYWxlZCwgdGhlIAo+IHRpbWVzdGFtcCB3aGlsZSBpdCBpcyBzaWduYWxlZCBhbmQg
-dGhlIHJjdSB3aGlsZSBpdCBpcyBmcmVlZC4KPiAKPiBXb3VsZCBzYXZlIGFub3RoZXIgOCBieXRl
-cywgYnJpbmdpbmcgdXMgZG93biB0byA2NC4KCkkgd2FzIGxvb2tpbmcgYXQgcGFja2luZyB0aGUg
-ZXJyb3IgaW50byB0aGUgZmxhZ3MgYW5kIHNocmlua2luZyB0aGF0IHRvCjMyYiB0byBmaXQgaW5z
-aWRlIHRoZSBtYWdpY2FsIDY0IGJ5dGVzLiBZb3UgYXJlIHJpZ2h0IGFib3V0IHRoZQp0aW1lc3Rh
-bXAgYmVpbmcgbXV0dWFsbHkgZXhjbHVzaXZlIHdpdGggdGhlIGNiX2xpc3QuIFRoZSBvbmx5IGNh
-dmVhdApiZWluZyB0aGF0IG5vIHJlYWRlciB3b3VsZCBiZSBhbGxvd2VkIGFjY2VzcyB0byB0aGUg
-dGltZXN0YW1wIHVubGVzcwp0aGV5IGhvbGQgYSByZWZlcmVuY2UgKHdoaWNoIEkgdGhpbmsgY292
-ZXJzIGFsbCBjdXJyZW50IHVzZXJzKS4KLUNocmlzCl9fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxp
-c3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFu
-L2xpc3RpbmZvL2ludGVsLWdmeA==
+PT0gU2VyaWVzIERldGFpbHMgPT0KClNlcmllczogZG1hLWJ1ZjogU2hyaW5rIHNpemUgb2Ygc3Ry
+dWN0IGRtYV9mZW5jZQpVUkwgICA6IGh0dHBzOi8vcGF0Y2h3b3JrLmZyZWVkZXNrdG9wLm9yZy9z
+ZXJpZXMvNjUzNDUvClN0YXRlIDogd2FybmluZwoKPT0gU3VtbWFyeSA9PQoKJCBkaW0gY2hlY2tw
+YXRjaCBvcmlnaW4vZHJtLXRpcAo0MWVlYjVmMWE4YmMgZG1hLWJ1ZjogU2hyaW5rIHNpemUgb2Yg
+c3RydWN0IGRtYV9mZW5jZQotOjI3OiBDSEVDSzpVTkNPTU1FTlRFRF9ERUZJTklUSU9OOiBzcGlu
+bG9ja190IGRlZmluaXRpb24gd2l0aG91dCBjb21tZW50CiMyNzogRklMRTogaW5jbHVkZS9saW51
+eC9kbWEtZmVuY2UuaDo2NjoKKwlzcGlubG9ja190ICpsb2NrOwoKdG90YWw6IDAgZXJyb3JzLCAw
+IHdhcm5pbmdzLCAxIGNoZWNrcywgMjEgbGluZXMgY2hlY2tlZAoKX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRl
+bC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
+L21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
