@@ -2,49 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 93FE194C17
-	for <lists+intel-gfx@lfdr.de>; Mon, 19 Aug 2019 19:56:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0231894C46
+	for <lists+intel-gfx@lfdr.de>; Mon, 19 Aug 2019 20:03:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AF93B6E25A;
-	Mon, 19 Aug 2019 17:55:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ACE3A6E25C;
+	Mon, 19 Aug 2019 18:03:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4A0706E25A
- for <intel-gfx@lists.freedesktop.org>; Mon, 19 Aug 2019 17:55:57 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 53DFA6E25C
+ for <intel-gfx@lists.freedesktop.org>; Mon, 19 Aug 2019 18:03:36 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
 X-Amp-File-Uploaded: False
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 19 Aug 2019 10:55:56 -0700
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 19 Aug 2019 11:03:35 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.64,405,1559545200"; d="scan'208";a="179490661"
-Received: from orsmsx109.amr.corp.intel.com ([10.22.240.7])
- by fmsmga007.fm.intel.com with ESMTP; 19 Aug 2019 10:55:56 -0700
-Received: from orsmsx108.amr.corp.intel.com ([169.254.2.49]) by
- ORSMSX109.amr.corp.intel.com ([169.254.11.170]) with mapi id 14.03.0439.000;
- Mon, 19 Aug 2019 10:55:56 -0700
-From: "Srivatsa, Anusha" <anusha.srivatsa@intel.com>
-To: "De Marchi, Lucas" <lucas.demarchi@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [PATCH v2 04/40] drm/i915/tgl: update DMC firmware to 2.04
-Thread-Index: AQHVVN+nyHcchU27W065ZaVKxP1CT6cCxH/g
-Date: Mon, 19 Aug 2019 17:55:56 +0000
-Message-ID: <83F5C7385F545743AD4FB2A62F75B07348120643@ORSMSX108.amr.corp.intel.com>
+X-IronPort-AV: E=Sophos;i="5.64,405,1559545200"; d="scan'208";a="207082813"
+Received: from ldmartin-desk1.jf.intel.com (HELO ldmartin-desk1) ([10.24.9.29])
+ by fmsmga002.fm.intel.com with ESMTP; 19 Aug 2019 11:03:35 -0700
+Date: Mon, 19 Aug 2019 11:03:33 -0700
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: "Srivatsa, Anusha" <anusha.srivatsa@intel.com>
+Message-ID: <20190819180333.wwmxffdbejrjipdr@ldmartin-desk1>
 References: <20190817093902.2171-1-lucas.demarchi@intel.com>
  <20190817093902.2171-5-lucas.demarchi@intel.com>
-In-Reply-To: <20190817093902.2171-5-lucas.demarchi@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-version: 11.2.0.6
-dlp-reaction: no-action
-x-ctpclassification: CTP_NT
-x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiNjI0ZDNmNTktMDY4NC00ZDc4LTg2YzQtMmZlMTZlMjQ2YTkwIiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX05UIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE3LjEwLjE4MDQuNDkiLCJUcnVzdGVkTGFiZWxIYXNoIjoiWWNzRGE2RHJleXhYam5yRmEyTlNuSGxjZHJ0dVA1MFdTSXRiU2E0QnBKMUxIVmhSZG11Y29iN1pIWEgxVHlKbyJ9
-x-originating-ip: [10.22.254.140]
+ <83F5C7385F545743AD4FB2A62F75B07348120643@ORSMSX108.amr.corp.intel.com>
 MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <83F5C7385F545743AD4FB2A62F75B07348120643@ORSMSX108.amr.corp.intel.com>
+X-Patchwork-Hint: ignore
+User-Agent: NeoMutt/20180716
 Subject: Re: [Intel-gfx] [PATCH v2 04/40] drm/i915/tgl: update DMC firmware
  to 2.04
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -59,34 +48,38 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
 Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Cgo+IC0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tCj4gRnJvbTogRGUgTWFyY2hpLCBMdWNhcwo+
-IFNlbnQ6IFNhdHVyZGF5LCBBdWd1c3QgMTcsIDIwMTkgMjozOCBBTQo+IFRvOiBpbnRlbC1nZnhA
-bGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4gQ2M6IFNvdXphLCBKb3NlIDxqb3NlLnNvdXphQGludGVs
-LmNvbT47IFNyaXZhdHNhLCBBbnVzaGEKPiA8YW51c2hhLnNyaXZhdHNhQGludGVsLmNvbT4KPiBT
-dWJqZWN0OiBbUEFUQ0ggdjIgMDQvNDBdIGRybS9pOTE1L3RnbDogdXBkYXRlIERNQyBmaXJtd2Fy
-ZSB0byAyLjA0Cj4gCj4gMiBpbXBvcnRhbnQgZml4ZXM6Cj4gICAtIHZibGFuayBjb3VudGVyIGlz
-IG5vdyB3b3JraW5nCj4gICAtIFBTUjEgaXMgd29ya2luZwo+IAo+IENjOiBKb3NlIFNvdXphIDxq
-b3NlLnNvdXphQGludGVsLmNvbT4KPiBDYzogQW51c2hhIFNyaXZhdHNhIDxhbnVzaGEuc3JpdmF0
-c2FAaW50ZWwuY29tPgo+IFNpZ25lZC1vZmYtYnk6IEx1Y2FzIERlIE1hcmNoaSA8bHVjYXMuZGVt
-YXJjaGlAaW50ZWwuY29tPgoKUmV2aWV3ZWQtYnk6IEFudXNoYSBTcml2YXRzYSA8YW51c2hhLnNy
-aXZhdHNhQGludGVsLmNvbT4KPiAtLS0KPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfY3Ny
-LmMgfCA0ICsrLS0KPiAgMSBmaWxlIGNoYW5nZWQsIDIgaW5zZXJ0aW9ucygrKSwgMiBkZWxldGlv
-bnMoLSkKPiAKPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfY3NyLmMg
-Yi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9jc3IuYwo+IGluZGV4IDgyNzllNzJlZGY0Yy4u
-NTQ2NTc3ZTM5YjRlIDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX2Nz
-ci5jCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfY3NyLmMKPiBAQCAtMzksOCAr
-MzksOCBAQAo+IAo+ICAjZGVmaW5lIEdFTjEyX0NTUl9NQVhfRldfU0laRQkJSUNMX0NTUl9NQVhf
-RldfU0laRQo+IAo+IC0jZGVmaW5lIFRHTF9DU1JfUEFUSAkJCSJpOTE1L3RnbF9kbWNfdmVyMl8w
-My5iaW4iCj4gLSNkZWZpbmUgVEdMX0NTUl9WRVJTSU9OX1JFUVVJUkVECUNTUl9WRVJTSU9OKDIs
-IDMpCj4gKyNkZWZpbmUgVEdMX0NTUl9QQVRICQkJImk5MTUvdGdsX2RtY192ZXIyXzA0LmJpbiIK
-PiArI2RlZmluZSBUR0xfQ1NSX1ZFUlNJT05fUkVRVUlSRUQJQ1NSX1ZFUlNJT04oMiwgNCkKPiAg
-I2RlZmluZSBUR0xfQ1NSX01BWF9GV19TSVpFCQkweDYwMDAKPiAgTU9EVUxFX0ZJUk1XQVJFKFRH
-TF9DU1JfUEFUSCk7Cj4gCj4gLS0KPiAyLjIxLjAKCl9fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxp
-c3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFu
-L2xpc3RpbmZvL2ludGVsLWdmeA==
+T24gTW9uLCBBdWcgMTksIDIwMTkgYXQgMTA6NTU6NTZBTSAtMDcwMCwgQW51c2hhIFNyaXZhdHNh
+IHdyb3RlOgo+Cj4KPj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0KPj4gRnJvbTogRGUgTWFy
+Y2hpLCBMdWNhcwo+PiBTZW50OiBTYXR1cmRheSwgQXVndXN0IDE3LCAyMDE5IDI6MzggQU0KPj4g
+VG86IGludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKPj4gQ2M6IFNvdXphLCBKb3NlIDxq
+b3NlLnNvdXphQGludGVsLmNvbT47IFNyaXZhdHNhLCBBbnVzaGEKPj4gPGFudXNoYS5zcml2YXRz
+YUBpbnRlbC5jb20+Cj4+IFN1YmplY3Q6IFtQQVRDSCB2MiAwNC80MF0gZHJtL2k5MTUvdGdsOiB1
+cGRhdGUgRE1DIGZpcm13YXJlIHRvIDIuMDQKPj4KPj4gMiBpbXBvcnRhbnQgZml4ZXM6Cj4+ICAg
+LSB2YmxhbmsgY291bnRlciBpcyBub3cgd29ya2luZwo+PiAgIC0gUFNSMSBpcyB3b3JraW5nCj4+
+Cj4+IENjOiBKb3NlIFNvdXphIDxqb3NlLnNvdXphQGludGVsLmNvbT4KPj4gQ2M6IEFudXNoYSBT
+cml2YXRzYSA8YW51c2hhLnNyaXZhdHNhQGludGVsLmNvbT4KPj4gU2lnbmVkLW9mZi1ieTogTHVj
+YXMgRGUgTWFyY2hpIDxsdWNhcy5kZW1hcmNoaUBpbnRlbC5jb20+Cj4KPlJldmlld2VkLWJ5OiBB
+bnVzaGEgU3JpdmF0c2EgPGFudXNoYS5zcml2YXRzYUBpbnRlbC5jb20+Cgp0aGFua3MuIENhbiB5
+b3Ugc2VuZCB0aGUgRE1DIGZpcm13YXJlIHRvIHRoZSBmaXJtd2FyZSByZXBvPwoKTHVjYXMgRGUg
+TWFyY2hpCgo+PiAtLS0KPj4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX2Nzci5jIHwgNCAr
+Ky0tCj4+ICAxIGZpbGUgY2hhbmdlZCwgMiBpbnNlcnRpb25zKCspLCAyIGRlbGV0aW9ucygtKQo+
+Pgo+PiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfY3NyLmMgYi9kcml2
+ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9jc3IuYwo+PiBpbmRleCA4Mjc5ZTcyZWRmNGMuLjU0NjU3
+N2UzOWI0ZSAxMDA2NDQKPj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfY3NyLmMK
+Pj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfY3NyLmMKPj4gQEAgLTM5LDggKzM5
+LDggQEAKPj4KPj4gICNkZWZpbmUgR0VOMTJfQ1NSX01BWF9GV19TSVpFCQlJQ0xfQ1NSX01BWF9G
+V19TSVpFCj4+Cj4+IC0jZGVmaW5lIFRHTF9DU1JfUEFUSAkJCSJpOTE1L3RnbF9kbWNfdmVyMl8w
+My5iaW4iCj4+IC0jZGVmaW5lIFRHTF9DU1JfVkVSU0lPTl9SRVFVSVJFRAlDU1JfVkVSU0lPTigy
+LCAzKQo+PiArI2RlZmluZSBUR0xfQ1NSX1BBVEgJCQkiaTkxNS90Z2xfZG1jX3ZlcjJfMDQuYmlu
+Igo+PiArI2RlZmluZSBUR0xfQ1NSX1ZFUlNJT05fUkVRVUlSRUQJQ1NSX1ZFUlNJT04oMiwgNCkK
+Pj4gICNkZWZpbmUgVEdMX0NTUl9NQVhfRldfU0laRQkJMHg2MDAwCj4+ICBNT0RVTEVfRklSTVdB
+UkUoVEdMX0NTUl9QQVRIKTsKPj4KPj4gLS0KPj4gMi4yMS4wCj4KX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRl
+bC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
+L21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
