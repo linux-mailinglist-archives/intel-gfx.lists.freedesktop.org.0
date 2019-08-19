@@ -1,48 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 425C394F4B
-	for <lists+intel-gfx@lfdr.de>; Mon, 19 Aug 2019 22:47:54 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id BDCC894F4F
+	for <lists+intel-gfx@lfdr.de>; Mon, 19 Aug 2019 22:48:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 15AA56E291;
-	Mon, 19 Aug 2019 20:47:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1DED86E299;
+	Mon, 19 Aug 2019 20:48:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 13A996E291
- for <intel-gfx@lists.freedesktop.org>; Mon, 19 Aug 2019 20:47:51 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 19 Aug 2019 13:47:50 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.64,406,1559545200"; 
- d="scan'208,217";a="378318257"
-Received: from orsmsx101.amr.corp.intel.com ([10.22.225.128])
- by fmsmga006.fm.intel.com with ESMTP; 19 Aug 2019 13:47:50 -0700
-Received: from orsmsx121.amr.corp.intel.com (10.22.225.226) by
- ORSMSX101.amr.corp.intel.com (10.22.225.128) with Microsoft SMTP Server (TLS)
- id 14.3.439.0; Mon, 19 Aug 2019 13:47:50 -0700
-Received: from orsmsx108.amr.corp.intel.com ([169.254.2.49]) by
- ORSMSX121.amr.corp.intel.com ([169.254.10.173]) with mapi id 14.03.0439.000;
- Mon, 19 Aug 2019 13:47:50 -0700
-From: "Srivatsa, Anusha" <anusha.srivatsa@intel.com>
-To: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "Szwichtenberg, Radoslaw" <radoslaw.szwichtenberg@intel.com>, "Saarinen,
- Jani" <jani.saarinen@intel.com>
-Thread-Topic: PR for TGL DMC v2.04
-Thread-Index: AdVWz0Bc51EzaVdsQvK5QoGjFZpkmg==
-Date: Mon, 19 Aug 2019 20:47:50 +0000
-Message-ID: <83F5C7385F545743AD4FB2A62F75B07348120AB8@ORSMSX108.amr.corp.intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.19.9.42]
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 9217B6E299;
+ Mon, 19 Aug 2019 20:48:25 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 899E6A363E;
+ Mon, 19 Aug 2019 20:48:25 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] PR for TGL DMC v2.04
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matt Roper" <matthew.d.roper@intel.com>
+Date: Mon, 19 Aug 2019 20:48:25 -0000
+Message-ID: <20190819204825.21820.7443@emeril.freedesktop.org>
+References: <20190815215859.10970-1-matthew.d.roper@intel.com>
+X-Patchwork-Hint: ignore
+In-Reply-To: <20190815215859.10970-1-matthew.d.roper@intel.com>
+Subject: [Intel-gfx] =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_drm/?=
+ =?utf-8?q?i915/gen11=3A_Add_Wa=5F1604278689=3Aicl=2Cehl_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -55,110 +38,74 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Sarvela, Tomi P" <tomi.p.sarvela@intel.com>, "De Marchi,
- Lucas" <lucas.demarchi@intel.com>
-Content-Type: multipart/mixed; boundary="===============0041056980=="
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0041056980==
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_83F5C7385F545743AD4FB2A62F75B07348120AB8ORSMSX108amrcor_"
-
---_000_83F5C7385F545743AD4FB2A62F75B07348120AB8ORSMSX108amrcor_
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-Sending PR for TGl 2.04 -
-
-The following changes since commit 07b925b450bfb4cf3e141c612ec5b104658cd020=
-:
-
-  Install only listed firmware files (2019-08-15 07:46:53 -0400)
-
-are available in the Git repository at:
-
-  git://anongit.freedesktop.org/drm/drm-firmware TGLDMC
-
-for you to fetch changes up to fc47aa1ed8484fff262959d687146c161bef8427:
-
-  drm/i915/firmware: Add v2.04 of GuC for TGL (2019-08-19 13:22:30 -0700)
-
-----------------------------------------------------------------
-Anusha Srivatsa (1):
-      drm/i915/firmware: Add v2.04 of GuC for TGL
-
- WHENCE                   |   4 ++++
- i915/tgl_dmc_ver2_04.bin | Bin 0 -> 18436 bytes
- 2 files changed, 4 insertions(+)
- create mode 100644 i915/tgl_dmc_ver2_04.bin
-
-Thanks,
-Anusha
-
---_000_83F5C7385F545743AD4FB2A62F75B07348120AB8ORSMSX108amrcor_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-<html dir=3D"ltr">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style type=3D"text/css" id=3D"owaParaStyle"></style>
-</head>
-<body fpstyle=3D"1" ocsi=3D"0">
-<div style=3D"direction: ltr;font-family: Tahoma;color: #000000;font-size: =
-10pt;">
-<div>Sending PR for TGl 2.04 -</div>
-<div><br>
-</div>
-<div>The following changes since commit 07b925b450bfb4cf3e141c612ec5b104658=
-cd020:<br>
-<br>
-&nbsp; Install only listed firmware files (2019-08-15 07:46:53 -0400)<br>
-<br>
-are available in the Git repository at:<br>
-<br>
-&nbsp; git://anongit.freedesktop.org/drm/drm-firmware TGLDMC<br>
-<br>
-for you to fetch changes up to fc47aa1ed8484fff262959d687146c161bef8427:<br=
->
-<br>
-&nbsp; drm/i915/firmware: Add v2.04 of GuC for TGL (2019-08-19 13:22:30 -07=
-00)<br>
-<br>
-----------------------------------------------------------------<br>
-Anusha Srivatsa (1):<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; drm/i915/firmware: Add v2.04 of GuC for TGL<=
-br>
-<br>
-&nbsp;WHENCE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp; 4 &#43;&#43;&#4=
-3;&#43;<br>
-&nbsp;i915/tgl_dmc_ver2_04.bin | Bin 0 -&gt; 18436 bytes<br>
-&nbsp;2 files changed, 4 insertions(&#43;)<br>
-&nbsp;create mode 100644 i915/tgl_dmc_ver2_04.bin<br>
-</div>
-<div><br>
-</div>
-<div>Thanks,</div>
-<div>Anusha<br>
-</div>
-</div>
-</body>
-</html>
-
---_000_83F5C7385F545743AD4FB2A62F75B07348120AB8ORSMSX108amrcor_--
-
---===============0041056980==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
-IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
-
---===============0041056980==--
+PT0gU2VyaWVzIERldGFpbHMgPT0KClNlcmllczogZHJtL2k5MTUvZ2VuMTE6IEFkZCBXYV8xNjA0
+Mjc4Njg5OmljbCxlaGwgKHJldjIpClVSTCAgIDogaHR0cHM6Ly9wYXRjaHdvcmsuZnJlZWRlc2t0
+b3Aub3JnL3Nlcmllcy82NTI3Ni8KU3RhdGUgOiBzdWNjZXNzCgo9PSBTdW1tYXJ5ID09CgpDSSBC
+dWcgTG9nIC0gY2hhbmdlcyBmcm9tIENJX0RSTV82NzQxIC0+IFBhdGNod29ya18xNDA4NQo9PT09
+PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09CgpTdW1tYXJ5
+Ci0tLS0tLS0KCiAgKipTVUNDRVNTKioKCiAgTm8gcmVncmVzc2lvbnMgZm91bmQuCgogIEV4dGVy
+bmFsIFVSTDogaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9QYXRjaHdv
+cmtfMTQwODUvCgpLbm93biBpc3N1ZXMKLS0tLS0tLS0tLS0tCgogIEhlcmUgYXJlIHRoZSBjaGFu
+Z2VzIGZvdW5kIGluIFBhdGNod29ya18xNDA4NSB0aGF0IGNvbWUgZnJvbSBrbm93biBpc3N1ZXM6
+CgojIyMgSUdUIGNoYW5nZXMgIyMjCgojIyMjIElzc3VlcyBoaXQgIyMjIwoKICAqIGlndEBnZW1f
+ZmxpbmtfYmFzaWNAYmFzaWM6CiAgICAtIGZpLWljbC11MzogICAgICAgICAgW1BBU1NdWzFdIC0+
+IFtETUVTRy1XQVJOXVsyXSAoW2ZkbyMxMDc3MjRdKQogICBbMV06IGh0dHBzOi8vaW50ZWwtZ2Z4
+LWNpLjAxLm9yZy90cmVlL2RybS10aXAvQ0lfRFJNXzY3NDEvZmktaWNsLXUzL2lndEBnZW1fZmxp
+bmtfYmFzaWNAYmFzaWMuaHRtbAogICBbMl06IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90
+cmVlL2RybS10aXAvUGF0Y2h3b3JrXzE0MDg1L2ZpLWljbC11My9pZ3RAZ2VtX2ZsaW5rX2Jhc2lj
+QGJhc2ljLmh0bWwKCiAgKiBpZ3RAa21zX2NoYW1lbGl1bUBkcC1jcmMtZmFzdDoKICAgIC0gZmkt
+Y21sLXUyOiAgICAgICAgICBbUEFTU11bM10gLT4gW0ZBSUxdWzRdIChbZmRvIzExMDYyN10pCiAg
+IFszXTogaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9DSV9EUk1fNjc0
+MS9maS1jbWwtdTIvaWd0QGttc19jaGFtZWxpdW1AZHAtY3JjLWZhc3QuaHRtbAogICBbNF06IGh0
+dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAvUGF0Y2h3b3JrXzE0MDg1L2Zp
+LWNtbC11Mi9pZ3RAa21zX2NoYW1lbGl1bUBkcC1jcmMtZmFzdC5odG1sCgogIAojIyMjIFBvc3Np
+YmxlIGZpeGVzICMjIyMKCiAgKiBpZ3RAZ2VtX2J1c3lAYnVzeS1hbGw6CiAgICAtIGZpLWljbC11
+MzogICAgICAgICAgW0RNRVNHLVdBUk5dWzVdIChbZmRvIzEwNzcyNF0pIC0+IFtQQVNTXVs2XQog
+ICBbNV06IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAvQ0lfRFJNXzY3
+NDEvZmktaWNsLXUzL2lndEBnZW1fYnVzeUBidXN5LWFsbC5odG1sCiAgIFs2XTogaHR0cHM6Ly9p
+bnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9QYXRjaHdvcmtfMTQwODUvZmktaWNsLXUz
+L2lndEBnZW1fYnVzeUBidXN5LWFsbC5odG1sCgogICogaWd0QGdlbV9leGVjX3N1c3BlbmRAYmFz
+aWMtczM6CiAgICAtIGZpLWJsYi1lNjg1MDogICAgICAgW0lOQ09NUExFVEVdWzddIChbZmRvIzEw
+NzcxOF0pIC0+IFtQQVNTXVs4XQogICBbN106IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90
+cmVlL2RybS10aXAvQ0lfRFJNXzY3NDEvZmktYmxiLWU2ODUwL2lndEBnZW1fZXhlY19zdXNwZW5k
+QGJhc2ljLXMzLmh0bWwKICAgWzhdOiBodHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9k
+cm0tdGlwL1BhdGNod29ya18xNDA4NS9maS1ibGItZTY4NTAvaWd0QGdlbV9leGVjX3N1c3BlbmRA
+YmFzaWMtczMuaHRtbAoKICAqIGlndEBnZW1fc3luY0BiYXNpYy1zdG9yZS1lYWNoOgogICAgLSBm
+aS1jZmwtODEwOXU6ICAgICAgIFtJTkNPTVBMRVRFXVs5XSAoW2ZkbyMxMTE0MjddKSAtPiBbUEFT
+U11bMTBdCiAgIFs5XTogaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9D
+SV9EUk1fNjc0MS9maS1jZmwtODEwOXUvaWd0QGdlbV9zeW5jQGJhc2ljLXN0b3JlLWVhY2guaHRt
+bAogICBbMTBdOiBodHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlwL1BhdGNo
+d29ya18xNDA4NS9maS1jZmwtODEwOXUvaWd0QGdlbV9zeW5jQGJhc2ljLXN0b3JlLWVhY2guaHRt
+bAoKICAKICB7bmFtZX06IFRoaXMgZWxlbWVudCBpcyBzdXBwcmVzc2VkLiBUaGlzIG1lYW5zIGl0
+IGlzIGlnbm9yZWQgd2hlbiBjb21wdXRpbmcKICAgICAgICAgIHRoZSBzdGF0dXMgb2YgdGhlIGRp
+ZmZlcmVuY2UgKFNVQ0NFU1MsIFdBUk5JTkcsIG9yIEZBSUxVUkUpLgoKICBbZmRvIzEwNzcxM106
+IGh0dHBzOi8vYnVncy5mcmVlZGVza3RvcC5vcmcvc2hvd19idWcuY2dpP2lkPTEwNzcxMwogIFtm
+ZG8jMTA3NzE4XTogaHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9
+MTA3NzE4CiAgW2ZkbyMxMDc3MjRdOiBodHRwczovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3df
+YnVnLmNnaT9pZD0xMDc3MjQKICBbZmRvIzExMDYyN106IGh0dHBzOi8vYnVncy5mcmVlZGVza3Rv
+cC5vcmcvc2hvd19idWcuY2dpP2lkPTExMDYyNwogIFtmZG8jMTExNDI3XTogaHR0cHM6Ly9idWdz
+LmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MTExNDI3CgoKUGFydGljaXBhdGluZyBo
+b3N0cyAoNTUgLT4gNDcpCi0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQoKICBNaXNzaW5n
+ICAgICg4KTogZmkta2JsLXNvcmFrYSBmaS1pbGstbTU0MCBmaS1oc3ctNDIwMHUgZmktYnl0LXNx
+dWF3a3MgZmktYnN3LWN5YW4gZmktaWNsLXkgZmktYnl0LWNsYXBwZXIgZmktYmR3LXNhbXVzIAoK
+CkJ1aWxkIGNoYW5nZXMKLS0tLS0tLS0tLS0tLQoKICAqIENJOiBDSS0yMDE5MDUyOSAtPiBOb25l
+CiAgKiBMaW51eDogQ0lfRFJNXzY3NDEgLT4gUGF0Y2h3b3JrXzE0MDg1CgogIENJLTIwMTkwNTI5
+OiAyMDE5MDUyOQogIENJX0RSTV82NzQxOiAwZGI5MzMzYmU4MjFhY2FkYmY4YzQ3NmUxM2IxNjA1
+MjJkMjUyZDc3IEAgZ2l0Oi8vYW5vbmdpdC5mcmVlZGVza3RvcC5vcmcvZ2Z4LWNpL2xpbnV4CiAg
+SUdUXzUxNDE6IDcxMDJiNDE3ZmVkYzJhMWVhNmY3MmQ3NjhhOWYxYmQxMDBhMzRmMTMgQCBnaXQ6
+Ly9hbm9uZ2l0LmZyZWVkZXNrdG9wLm9yZy94b3JnL2FwcC9pbnRlbC1ncHUtdG9vbHMKICBQYXRj
+aHdvcmtfMTQwODU6IGIwYWY4Y2EyMzY1NWE5OGE5MmM0NWU3ZTY1MzY5OTk0YjQyYzAxODUgQCBn
+aXQ6Ly9hbm9uZ2l0LmZyZWVkZXNrdG9wLm9yZy9nZngtY2kvbGludXgKCgo9PSBMaW51eCBjb21t
+aXRzID09CgpiMGFmOGNhMjM2NTUgZHJtL2k5MTUvZ2VuMTE6IEFkZCBXYV8xNjA0Mjc4Njg5Omlj
+bCxlaGwKCj09IExvZ3MgPT0KCkZvciBtb3JlIGRldGFpbHMgc2VlOiBodHRwczovL2ludGVsLWdm
+eC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlwL1BhdGNod29ya18xNDA4NS8KX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJ
+bnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Au
+b3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
