@@ -1,32 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3429C95C84
-	for <lists+intel-gfx@lfdr.de>; Tue, 20 Aug 2019 12:46:50 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B41495C85
+	for <lists+intel-gfx@lfdr.de>; Tue, 20 Aug 2019 12:47:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2CAE46E6E0;
-	Tue, 20 Aug 2019 10:46:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5147A6E783;
+	Tue, 20 Aug 2019 10:47:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D20276E6E0
- for <intel-gfx@lists.freedesktop.org>; Tue, 20 Aug 2019 10:46:46 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 575146E783
+ for <intel-gfx@lists.freedesktop.org>; Tue, 20 Aug 2019 10:47:30 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from localhost (unverified [78.156.65.138]) 
  by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 18200339-1500050 for multiple; Tue, 20 Aug 2019 11:46:41 +0100
+ 18200350-1500050 for multiple; Tue, 20 Aug 2019 11:47:24 +0100
 MIME-Version: 1.0
 To: Stuart Summers <stuart.summers@intel.com>, intel-gfx@lists.freedesktop.org
 From: Chris Wilson <chris@chris-wilson.co.uk>
-In-Reply-To: <20190819215003.48305-4-stuart.summers@intel.com>
+In-Reply-To: <20190819215003.48305-5-stuart.summers@intel.com>
 References: <20190819215003.48305-1-stuart.summers@intel.com>
- <20190819215003.48305-4-stuart.summers@intel.com>
-Message-ID: <156629799957.1374.10561811428450083931@skylake-alporthouse-com>
+ <20190819215003.48305-5-stuart.summers@intel.com>
+Message-ID: <156629804205.1374.17900237529926271480@skylake-alporthouse-com>
 User-Agent: alot/0.6
-Date: Tue, 20 Aug 2019 11:46:39 +0100
-Subject: Re: [Intel-gfx] [PATCH 3/9] drm/i915: Add subslice stride runtime
+Date: Tue, 20 Aug 2019 11:47:22 +0100
+Subject: Re: [Intel-gfx] [PATCH 4/9] drm/i915: Add EU stride runtime
  parameter
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
@@ -45,14 +45,13 @@ Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-UXVvdGluZyBTdHVhcnQgU3VtbWVycyAoMjAxOS0wOC0xOSAyMjo0OTo1NykKPiBBZGQgYSBuZXcg
-cGFyYW1ldGVyLCBzc19zdHJpZGUsIHRvIHRoZSBydW50aW1lIGluZm8KPiBzdHJ1Y3R1cmUuIFRo
-aXMgaXMgdXNlZCB0byBtaXJyb3IgdGhlIHVzZXJzcGFjZSBjb25jZXB0Cj4gb2Ygc3Vic2xpY2Ug
-c3RyaWRlLCB3aGljaCBpcyBhIHJhbmdlIG9mIHN1YnNsaWNlcyBwZXIgc2xpY2UuCj4gCj4gVGhp
-cyBwYXRjaCBzaW1wbHkgYWRkcyB0aGUgZGVmaW5pdGlvbiBhbmQgdXBkYXRlcyB1c2FnZQo+IGlu
-IHRoZSBRVUVSWV9UT1BPTE9HWV9JTkZPIGhhbmRsZXIuCj4gCj4gU2lnbmVkLW9mZi1ieTogU3R1
-YXJ0IFN1bW1lcnMgPHN0dWFydC5zdW1tZXJzQGludGVsLmNvbT4KUmV2aWV3ZWQtYnk6IENocmlz
-IFdpbHNvbiA8Y2hyaXNAY2hyaXMtd2lsc29uLmNvLnVrPgotQ2hyaXMKX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJ
-bnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Au
-b3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
+UXVvdGluZyBTdHVhcnQgU3VtbWVycyAoMjAxOS0wOC0xOSAyMjo0OTo1OCkKPiBBZGQgYSBuZXcg
+U1NFVSBydW50aW1lIHBhcmFtZXRlciwgZXVfc3RyaWRlLCB3aGljaCBpcwo+IHVzZWQgdG8gbWly
+cm9yIHRoZSB1c2Vyc3BhY2UgY29uY2VwdCBvZiBhIHJhbmdlIG9mIEVVcwo+IHBlciBzdWJzbGlj
+ZS4KPiAKPiBUaGlzIHBhdGNoIHNpbXBseSBhZGRzIHRoZSBwYXJhbWV0ZXIgYW5kIHVwZGF0ZXMg
+dXNhZ2UKPiBpbiB0aGUgUVVFUllfVE9QT0xPR1lfSU5GTyBoYW5kbGVyLgo+IAo+IFNpZ25lZC1v
+ZmYtYnk6IFN0dWFydCBTdW1tZXJzIDxzdHVhcnQuc3VtbWVyc0BpbnRlbC5jb20+ClJldmlld2Vk
+LWJ5OiBDaHJpcyBXaWxzb24gPGNocmlzQGNocmlzLXdpbHNvbi5jby51az4KLUNocmlzCl9fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWls
+aW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeA==
