@@ -2,40 +2,35 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id AEDAB99095
-	for <lists+intel-gfx@lfdr.de>; Thu, 22 Aug 2019 12:20:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 07B9A9909F
+	for <lists+intel-gfx@lfdr.de>; Thu, 22 Aug 2019 12:22:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E109C6EAE9;
-	Thu, 22 Aug 2019 10:20:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4E3576EAF6;
+	Thu, 22 Aug 2019 10:22:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from ozlabs.org (ozlabs.org [IPv6:2401:3900:2:1::2])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 379146EAE9;
- Thu, 22 Aug 2019 10:20:36 +0000 (UTC)
-Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
- SHA256) (No client certificate requested)
- by mail.ozlabs.org (Postfix) with ESMTPSA id 46DgXG6J7Lz9sNC;
- Thu, 22 Aug 2019 20:20:30 +1000 (AEST)
-Date: Thu, 22 Aug 2019 20:20:20 +1000
-From: Stephen Rothwell <sfr@canb.auug.org.au>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>, Jani Nikula
- <jani.nikula@linux.intel.com>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>
-Message-ID: <20190822202020.5c1f83e0@canb.auug.org.au>
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1FCE66EAF2;
+ Thu, 22 Aug 2019 10:22:30 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 22 Aug 2019 03:22:29 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.64,416,1559545200"; d="scan'208";a="181339078"
+Received: from gkoczot-mobl.ger.corp.intel.com (HELO [10.252.52.80])
+ ([10.252.52.80])
+ by orsmga003.jf.intel.com with ESMTP; 22 Aug 2019 03:22:26 -0700
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Message-ID: <5f1fdfe3-814e-fad1-663c-7279217fc085@linux.intel.com>
+Date: Thu, 22 Aug 2019 12:22:26 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.2
 MIME-Version: 1.0
-X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=canb.auug.org.au; s=201702; t=1566469232;
- bh=40snNYPlDhecp8bE4e3VC3sN00AYuvqCywRJlpKLdEA=;
- h=Date:From:To:Cc:Subject:From;
- b=ljGNRTAE1S2k+70uUpg8nK0aM6AfQmN2taTN++fRfYxYhRC2V2/LaQ3TAxDApRnWt
- pKg+6+C5yZysTCa/KmQphlDtAd5/UpI0NaHMTqmRMjNrC31yoQ3gWCNoEkn122hWE0
- sg9Kckq0ZOJWRdgViX+LDu5SMl1g9N9G1r8I36qe2XHfo9bZGVQ7oOuUt85lhzjvuU
- tZisgc3gPFmhl0eYuoAX04Dj/XtYo78FsN3+O2nbi0hFbjlJgTfDbHqMS50zd8oBge
- 1UWsjy/SzU8lgPyjXB95JD4i7vczMXh1Hub9Atba8caW6XT9pCVHLCzW+SYkIh0nWu
- HH9+Eun4uF2Xg==
-Subject: [Intel-gfx] Merge in the drm-intel tree
+Content-Language: en-US
+Subject: [Intel-gfx] [PULL] drm-misc-fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -48,66 +43,45 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel Graphics <intel-gfx@lists.freedesktop.org>,
- DRI <dri-devel@lists.freedesktop.org>
-Content-Type: multipart/mixed; boundary="===============1756108997=="
+Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Maxime Ripard <mripard@kernel.org>, intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1756108997==
-Content-Type: multipart/signed; boundary="Sig_/8_2WD78wXEqMeJD556FmXUy";
- protocol="application/pgp-signature"; micalg=pgp-sha256
-
---Sig_/8_2WD78wXEqMeJD556FmXUy
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
-
-Hi all,
-
-I noticed that the drm tree has been back merge into the drm-intel
-tree.  Unfortunately, it seems that the file
-drivers/gpu/drm/i915/i915_gem_batch_pool.c has been resurrected.
-
-It was removed in commit
-
-  b40d73784ffc ("drm/i915: Replace struct_mutex for batch pool serialisatio=
-n")
-
-but has come back due to a conflict with commit
-
-  52791eeec1d9 ("dma-buf: rename reservation_object to dma_resv")
-
-from the drm tree.
---=20
-Cheers,
-Stephen Rothwell
-
---Sig_/8_2WD78wXEqMeJD556FmXUy
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAl1ebGUACgkQAVBC80lX
-0GwPJgf/Xi+vrBQ6HAKEOclLz5V4XqQqvo1+Iuebfo7ZAlu8qmKAfjuSZri0a9pH
-dCER1doC45xJxz/PchmoPbgzU08ksZsYmI8Py/ACPqgJ3zJh64Y9anMtty8xNvjT
-fRcLzip027NOwokyzNInsEH8HcRgLkFoh5DgssapKhl5Vr2MSKdTggzsa5P8Hh08
-j9ruySyME+hOGr39cPwnkBNnIoKUthG9up+WIVTyno6Xp6W7NiJB+FayIhQNdlvn
-yZm+xzcVcw4N+7tYGpblgzAvc3rlcaJla2QhQi9qrZbtxXTgP+tZ3PhVxWUbMaFk
-PRn4VGOdYUJdbOjceu/AmfnjwEjXYQ==
-=dKms
------END PGP SIGNATURE-----
-
---Sig_/8_2WD78wXEqMeJD556FmXUy--
-
---===============1756108997==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
-IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
-
---===============1756108997==--
+ZHJtLW1pc2MtZml4ZXMtMjAxOS0wOC0yMjoKRml4ZXMgZm9yIHY1LjMtcmM2OgotIGRtYSBmaXgg
+Zm9yIG9tYXAuCi0gTWFrZSBvdXRwdXQgcG9sbGluZyB3b3JrIG9uIGtvbWVkYS4KLSBGaXggYnBw
+IGNvbXB1dGluZyBmb3IgQUZCQyBmb3JtYXRzIGluIGtvbWVkYS4KLSBTdXBwb3J0IHRoZSBtZW1v
+cnktcmVnaW9uIHByb3BlcnR5IGluIGtvbWVkYS4KVGhlIGZvbGxvd2luZyBjaGFuZ2VzIHNpbmNl
+IGNvbW1pdCBkNDUzMzFiMDBkZGIxNzllMjkxNzY2NjE3MjU5MjYxYzExMmRiODcyOgoKICBMaW51
+eCA1LjMtcmM0ICgyMDE5LTA4LTExIDEzOjI2OjQxIC0wNzAwKQoKYXJlIGF2YWlsYWJsZSBpbiB0
+aGUgR2l0IHJlcG9zaXRvcnkgYXQ6CgogIGdpdDovL2Fub25naXQuZnJlZWRlc2t0b3Aub3JnL2Ry
+bS9kcm0tbWlzYyB0YWdzL2RybS1taXNjLWZpeGVzLTIwMTktMDgtMjIKCmZvciB5b3UgdG8gZmV0
+Y2ggY2hhbmdlcyB1cCB0byA2M2RhZjRlMTY2NTQ1MzYzZjNiODc1ZjViODFhZWNiNDZlMWUxZDE5
+OgoKICBkcm0vb21hcDogZW5zdXJlIHdlIGhhdmUgYSB2YWxpZCBkbWFfbWFzayAoMjAxOS0wOC0x
+MiAxNjoxNjozNCArMDMwMCkKCi0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0KRml4ZXMgZm9yIHY1LjMtcmM2OgotIGRtYSBmaXgg
+Zm9yIG9tYXAuCi0gTWFrZSBvdXRwdXQgcG9sbGluZyB3b3JrIG9uIGtvbWVkYS4KLSBGaXggYnBw
+IGNvbXB1dGluZyBmb3IgQUZCQyBmb3JtYXRzIGluIGtvbWVkYS4KLSBTdXBwb3J0IHRoZSBtZW1v
+cnktcmVnaW9uIHByb3BlcnR5IGluIGtvbWVkYS4KCi0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0KTG93cnkgTGkgKEFybSBUZWNo
+bm9sb2d5IENoaW5hKSAoMik6CiAgICAgIGRybS9rb21lZGE6IEluaXRpYWxpemUgYW5kIGVuYWJs
+ZSBvdXRwdXQgcG9sbGluZyBvbiBLb21lZGEKICAgICAgZHJtL2tvbWVkYTogQWRkcyBpbnRlcm5h
+bCBicHAgY29tcHV0aW5nIGZvciBhcm0gYWZiYyBvbmx5IGZvcm1hdCBZVTA4IFlVMTAKCk1hYXJ0
+ZW4gTGFua2hvcnN0ICgxKToKICAgICAgTWVyZ2UgcmVtb3RlLXRyYWNraW5nIGJyYW5jaCAnZHJt
+L2RybS1maXhlcycgaW50byBkcm0tbWlzYy1maXhlcwoKTWloYWlsIEF0YW5hc3NvdiAoMSk6CiAg
+ICAgIGRybS9rb21lZGE6IEFkZCBzdXBwb3J0IGZvciAnbWVtb3J5LXJlZ2lvbicgRFQgbm9kZSBw
+cm9wZXJ0eQoKVG9taSBWYWxrZWluZW4gKDEpOgogICAgICBkcm0vb21hcDogZW5zdXJlIHdlIGhh
+dmUgYSB2YWxpZCBkbWFfbWFzawoKIGRyaXZlcnMvZ3B1L2RybS9hcm0vZGlzcGxheS9rb21lZGEv
+a29tZWRhX2Rldi5jICAgICAgIHwgIDkgKysrKysrKysrCiAuLi4vZ3B1L2RybS9hcm0vZGlzcGxh
+eS9rb21lZGEva29tZWRhX2Zvcm1hdF9jYXBzLmMgICB8IDE5ICsrKysrKysrKysrKysrKysrKysK
+IC4uLi9ncHUvZHJtL2FybS9kaXNwbGF5L2tvbWVkYS9rb21lZGFfZm9ybWF0X2NhcHMuaCAgIHwg
+IDMgKysrCiAuLi4vZ3B1L2RybS9hcm0vZGlzcGxheS9rb21lZGEva29tZWRhX2ZyYW1lYnVmZmVy
+LmMgICB8ICA1ICsrKy0tCiBkcml2ZXJzL2dwdS9kcm0vYXJtL2Rpc3BsYXkva29tZWRhL2tvbWVk
+YV9rbXMuYyAgICAgICB8ICA1ICsrKysrCiBkcml2ZXJzL2dwdS9kcm0vb21hcGRybS9vbWFwX2Ry
+di5jICAgICAgICAgICAgICAgICAgICB8ICAyICstCiA2IGZpbGVzIGNoYW5nZWQsIDQwIGluc2Vy
+dGlvbnMoKyksIDMgZGVsZXRpb25zKC0pCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZy
+ZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3Rp
+bmZvL2ludGVsLWdmeA==
