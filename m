@@ -2,91 +2,36 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F2DE99401
-	for <lists+intel-gfx@lfdr.de>; Thu, 22 Aug 2019 14:40:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6FFEF99404
+	for <lists+intel-gfx@lfdr.de>; Thu, 22 Aug 2019 14:43:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 115966EB1A;
-	Thu, 22 Aug 2019 12:40:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C82CC6EB13;
+	Thu, 22 Aug 2019 12:43:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from NAM05-DM3-obe.outbound.protection.outlook.com
- (mail-eopbgr730082.outbound.protection.outlook.com [40.107.73.82])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2DCD96EB12;
- Thu, 22 Aug 2019 12:40:50 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=bMUvTmVkvD2mApIM5V8O/Ckf69cJ/ezIfzKP8WgwykwmCbeNl5Gba7Fu7tjB9IqgI4ftP4aPFzD4G816b6WebxfcL2ODTz9Ujhq7vBmvEaHYiNYyHUvjTv5WGDfS+wk6iyTdUkOEsp2CfLAFkf3gVGVRV1z784AJmZzEhTeBwfPkTVeZKZ2yxaCcZXYSP9oHuSrsHUYQfFEIbj53SSK75r4gYeXMqCjSfM8dOUaOHnoHcfOpOPXy+lQxdYbXDploJZrJHJRrFd5PTzPMmNCrSGzYl2nSIu+9bfKyTF+eQurFXBdoOF3onNjyWy18H3ezaEp1cKXLzCsuPuHQTUyT1A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=WpiPCoV1+xDiyT8Bhb2X73UqojcK9sxIKvY7P0FCeTc=;
- b=bKdHLmDzMVm4af+Sb4sylb5STadgNQDxlIbhxHYNkRyMnwCRlbhPxbhtt0SwKPghtLWybWhtTL7PsnSJ6GqdZC85lPjf+PBN4tLWansRJfh5nRm2+BYPmD/FKaHTTzv4W+6W5w0otpX/r/RMC/qsHoGt6F6cPNS2POfJm0nzHr05d+dpmqsDKTmJW9tgvwEiGzdOsaZn+7DWNHBgdLfnhNX3AmW0TtC80TIOXFsv6xkqZiydSsQAELUjuDbS10lgp50eeAAihuANkFCG7XgNVRhUzRc+T5TVX5vNKSCyJq81EaUEJ13b2lLGwfx6EYVx+SKGaJzt1PXz0xaTUEuXGA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-Received: from BN6PR12MB1809.namprd12.prod.outlook.com (10.175.101.17) by
- BN6PR12MB1139.namprd12.prod.outlook.com (10.168.227.143) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2178.18; Thu, 22 Aug 2019 12:40:47 +0000
-Received: from BN6PR12MB1809.namprd12.prod.outlook.com
- ([fe80::8542:935:262c:53d1]) by BN6PR12MB1809.namprd12.prod.outlook.com
- ([fe80::8542:935:262c:53d1%10]) with mapi id 15.20.2178.020; Thu, 22 Aug 2019
- 12:40:47 +0000
-From: "Deucher, Alexander" <Alexander.Deucher@amd.com>
-To: Hans Verkuil <hverkuil-cisco@xs4all.nl>, Dariusz Marcinkiewicz
- <darekm@google.com>, "dri-devel@lists.freedesktop.org"
- <dri-devel@lists.freedesktop.org>, "linux-media@vger.kernel.org"
- <linux-media@vger.kernel.org>
-Thread-Topic: [PATCH v7 1/9] drm_dp_cec: add connector info support.
-Thread-Index: AQHVUo1tGZonfbpra0y5AIvt63jjfKcG3HyAgABL/oc=
-Date: Thu, 22 Aug 2019 12:40:47 +0000
-Message-ID: <BN6PR12MB1809F2FD206B4E969ECBE24DF7A50@BN6PR12MB1809.namprd12.prod.outlook.com>
-References: <20190814104520.6001-1-darekm@google.com>
- <20190814104520.6001-2-darekm@google.com>,
- <38cda4f5-3299-2bd4-65f5-9a0f948902c6@xs4all.nl>
-In-Reply-To: <38cda4f5-3299-2bd4-65f5-9a0f948902c6@xs4all.nl>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [71.219.73.178]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 08ac1f4d-94ae-4e3f-859d-08d726fdf50c
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0; PCL:0;
- RULEID:(2390118)(7020095)(4652040)(8989299)(5600166)(711020)(4605104)(1401327)(4618075)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(2017052603328)(7193020);
- SRVR:BN6PR12MB1139; 
-x-ms-traffictypediagnostic: BN6PR12MB1139:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <BN6PR12MB11396E9F12015D9E5C0AF786F7A50@BN6PR12MB1139.namprd12.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:10000;
-x-forefront-prvs: 01371B902F
-x-forefront-antispam-report: SFV:NSPM;
- SFS:(10009020)(4636009)(366004)(396003)(376002)(39860400002)(136003)(346002)(199004)(189003)(256004)(53546011)(6506007)(7736002)(6116002)(3846002)(316002)(110136005)(54906003)(102836004)(54896002)(8936002)(6436002)(8676002)(186003)(26005)(9686003)(81166006)(86362001)(2501003)(99286004)(105004)(81156014)(6246003)(25786009)(19627405001)(55016002)(478600001)(66574012)(71200400001)(66946007)(14444005)(66476007)(33656002)(14454004)(66446008)(52536014)(11346002)(446003)(7416002)(64756008)(66556008)(4326008)(71190400001)(74316002)(66066001)(76176011)(5660300002)(7696005)(486006)(2201001)(229853002)(53936002)(76116006)(2906002)(5024004)(476003);
- DIR:OUT; SFP:1101; SCL:1; SRVR:BN6PR12MB1139;
- H:BN6PR12MB1809.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
- PTR:InfoNoRecords; A:1; MX:1; 
-received-spf: None (protection.outlook.com: amd.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: lFcWQy6pSRXsVbx+yKgQAc8RtUGWmAvX3qfnRJY6tTIMi6OuASZOTDCJEenYHoFNkbVrb6czrn3Sz9gpHfXzwbK/DUa68ZSRHmStIAZ9OQ1w4uktGru2VjTnm3yJh2ayZdIz6OEW/jBEuHImLa2VWiBbkrBFPJ9e/PUoLmoEFApSPXaL/9AinZjaOKzbC5hN8FL09NKSp9RGkfeVwmuu39Dzx3lzXYNl3kvWwurjI7us4GE8pKjhuFoBsfpZQv6du8INhQNzMnSOX7VGsuQGVl99f7s9k1//IABEdJQj8J4sg8cX6eOHMG/UGV1a16r7YV13PYGcFaCJsIzNCzDCawYwxXoZ5ZZjt2d+ffWTn+4YJg/mQZUIZEgkg72LQ6ND886FXHi77dkoXyvzifieWnrosz7tQtzSooQISfBqJ4M=
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F18E66EB13
+ for <intel-gfx@lists.freedesktop.org>; Thu, 22 Aug 2019 12:43:09 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 22 Aug 2019 05:43:09 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.64,416,1559545200"; d="scan'208";a="196240304"
+Received: from jnikula-mobl3.fi.intel.com (HELO localhost) ([10.237.66.150])
+ by fmsmga001.fm.intel.com with ESMTP; 22 Aug 2019 05:43:08 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20190817093902.2171-20-lucas.demarchi@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20190817093902.2171-1-lucas.demarchi@intel.com>
+ <20190817093902.2171-20-lucas.demarchi@intel.com>
+Date: Thu, 22 Aug 2019 15:43:07 +0300
+Message-ID: <871rxdcqw4.fsf@intel.com>
 MIME-Version: 1.0
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 08ac1f4d-94ae-4e3f-859d-08d726fdf50c
-X-MS-Exchange-CrossTenant-originalarrivaltime: 22 Aug 2019 12:40:47.5314 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: sryni+RHk+krRR5/K9OTmWm991XHq5kdU5Kx2BF83SiUT1LuvIG+T4ryGPgvdpQV7ES79In4OInb3LI85i7jmA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR12MB1139
-X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=WpiPCoV1+xDiyT8Bhb2X73UqojcK9sxIKvY7P0FCeTc=;
- b=etT9c0FwBPGqTnLRz5zl1G95iKv0BLB5k3QbqHXv1fCbN3x+dc9edWyWswgmeTF/bAMMd8WhX5aCWED+Qc4nxyoyg94iNKYuod0e+ZipUxgEHMQJldQXKG5UnBqsOBJmw8cNPgdq2Hb3w1G90UNquRLlKJ/MXRrO+dn6USYkkoY=
-X-Mailman-Original-Authentication-Results: spf=none (sender IP is )
- smtp.mailfrom=Alexander.Deucher@amd.com; 
-Subject: Re: [Intel-gfx] [PATCH v7 1/9] drm_dp_cec: add connector info
- support.
+Subject: Re: [Intel-gfx] [PATCH v2 19/40] drm/i915/tgl: Select master
+ transcoder in DP MST
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -99,645 +44,299 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Maxime Ripard <mripard@kernel.org>, Thomas Lim <Thomas.Lim@amd.com>,
- David Airlie <airlied@linux.ie>,
- "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, "Francis,
- David" <David.Francis@amd.com>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>, "Koenig,
- Christian" <Christian.Koenig@amd.com>, "Li,
- Sun peng \(Leo\)" <Sunpeng.Li@amd.com>, "Zuo, Jerry" <Jerry.Zuo@amd.com>,
- Dhinakaran Pandiyan <dhinakaran.pandiyan@intel.com>, "Koo,
- Anthony" <Anthony.Koo@amd.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- Ben Skeggs <bskeggs@redhat.com>
-Content-Type: multipart/mixed; boundary="===============0357299231=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0357299231==
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_BN6PR12MB1809F2FD206B4E969ECBE24DF7A50BN6PR12MB1809namp_"
-
---_000_BN6PR12MB1809F2FD206B4E969ECBE24DF7A50BN6PR12MB1809namp_
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-Acked-by: Alex Deucher <alexander.deucher@amd.com>
-________________________________
-From: Hans Verkuil <hverkuil-cisco@xs4all.nl>
-Sent: Thursday, August 22, 2019 4:08 AM
-To: Dariusz Marcinkiewicz <darekm@google.com>; dri-devel@lists.freedesktop.=
-org <dri-devel@lists.freedesktop.org>; linux-media@vger.kernel.org <linux-m=
-edia@vger.kernel.org>
-Cc: David Airlie <airlied@linux.ie>; nouveau@lists.freedesktop.org <nouveau=
-@lists.freedesktop.org>; Dhinakaran Pandiyan <dhinakaran.pandiyan@intel.com=
->; Koo, Anthony <Anthony.Koo@amd.com>; Francis, David <David.Francis@amd.co=
-m>; amd-gfx@lists.freedesktop.org <amd-gfx@lists.freedesktop.org>; Zuo, Jer=
-ry <Jerry.Zuo@amd.com>; Ben Skeggs <bskeggs@redhat.com>; Li, Sun peng (Leo)=
- <Sunpeng.Li@amd.com>; intel-gfx@lists.freedesktop.org <intel-gfx@lists.fre=
-edesktop.org>; Maxime Ripard <mripard@kernel.org>; Rodrigo Vivi <rodrigo.vi=
-vi@intel.com>; Sean Paul <sean@poorly.run>; Thomas Lim <Thomas.Lim@amd.com>=
-; linux-kernel@vger.kernel.org <linux-kernel@vger.kernel.org>; Manasi Navar=
-e <manasi.d.navare@intel.com>; Deucher, Alexander <Alexander.Deucher@amd.co=
-m>; Koenig, Christian <Christian.Koenig@amd.com>; Ville Syrj=E4l=E4 <ville.=
-syrjala@linux.intel.com>
-Subject: Re: [PATCH v7 1/9] drm_dp_cec: add connector info support.
-
-Alex, Ville/Rodrigo, Ben,
-
-Can you (hopefully) Ack this patch so that I can merge it?
-
-Thank you!
-
-        Hans
-
-On 8/14/19 12:44 PM, Dariusz Marcinkiewicz wrote:
-> Pass the connector info to the CEC adapter. This makes it possible
-> to associate the CEC adapter with the corresponding drm connector.
->
-> Signed-off-by: Dariusz Marcinkiewicz <darekm@google.com>
-> Signed-off-by: Hans Verkuil <hverkuil-cisco@xs4all.nl>
-> Tested-by: Hans Verkuil <hverkuil-cisco@xs4all.nl>
-> ---
->  .../display/amdgpu_dm/amdgpu_dm_mst_types.c   |  2 +-
->  drivers/gpu/drm/drm_dp_cec.c                  | 25 ++++++++++++-------
->  drivers/gpu/drm/i915/display/intel_dp.c       |  4 +--
->  drivers/gpu/drm/nouveau/nouveau_connector.c   |  3 +--
->  include/drm/drm_dp_helper.h                   | 17 ++++++-------
->  5 files changed, 27 insertions(+), 24 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c =
-b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
-> index 16218a202b591..5ec14efd4d8cb 100644
-> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
-> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
-> @@ -416,7 +416,7 @@ void amdgpu_dm_initialize_dp_connector(struct amdgpu_=
-display_manager *dm,
->
->        drm_dp_aux_register(&aconnector->dm_dp_aux.aux);
->        drm_dp_cec_register_connector(&aconnector->dm_dp_aux.aux,
-> -                                   aconnector->base.name, dm->adev->dev)=
-;
-> +                                   &aconnector->base);
->        aconnector->mst_mgr.cbs =3D &dm_mst_cbs;
->        drm_dp_mst_topology_mgr_init(
->                &aconnector->mst_mgr,
-> diff --git a/drivers/gpu/drm/drm_dp_cec.c b/drivers/gpu/drm/drm_dp_cec.c
-> index b15cee85b702b..b457c16c3a8bb 100644
-> --- a/drivers/gpu/drm/drm_dp_cec.c
-> +++ b/drivers/gpu/drm/drm_dp_cec.c
-> @@ -8,7 +8,9 @@
->  #include <linux/kernel.h>
->  #include <linux/module.h>
->  #include <linux/slab.h>
-> +#include <drm/drm_connector.h>
->  #include <drm/drm_dp_helper.h>
-> +#include <drm/drmP.h>
->  #include <media/cec.h>
->
->  /*
-> @@ -295,7 +297,10 @@ static void drm_dp_cec_unregister_work(struct work_s=
-truct *work)
->   */
->  void drm_dp_cec_set_edid(struct drm_dp_aux *aux, const struct edid *edid=
-)
->  {
-> -     u32 cec_caps =3D CEC_CAP_DEFAULTS | CEC_CAP_NEEDS_HPD;
-> +     struct drm_connector *connector =3D aux->cec.connector;
-> +     u32 cec_caps =3D CEC_CAP_DEFAULTS | CEC_CAP_NEEDS_HPD |
-> +                    CEC_CAP_CONNECTOR_INFO;
-> +     struct cec_connector_info conn_info;
->        unsigned int num_las =3D 1;
->        u8 cap;
->
-> @@ -344,13 +349,17 @@ void drm_dp_cec_set_edid(struct drm_dp_aux *aux, co=
-nst struct edid *edid)
->
->        /* Create a new adapter */
->        aux->cec.adap =3D cec_allocate_adapter(&drm_dp_cec_adap_ops,
-> -                                          aux, aux->cec.name, cec_caps,
-> +                                          aux, connector->name, cec_caps=
-,
->                                             num_las);
->        if (IS_ERR(aux->cec.adap)) {
->                aux->cec.adap =3D NULL;
->                goto unlock;
->        }
-> -     if (cec_register_adapter(aux->cec.adap, aux->cec.parent)) {
-> +
-> +     cec_fill_conn_info_from_drm(&conn_info, connector);
-> +     cec_s_conn_info(aux->cec.adap, &conn_info);
-> +
-> +     if (cec_register_adapter(aux->cec.adap, connector->dev->dev)) {
->                cec_delete_adapter(aux->cec.adap);
->                aux->cec.adap =3D NULL;
->        } else {
-> @@ -406,22 +415,20 @@ EXPORT_SYMBOL(drm_dp_cec_unset_edid);
->  /**
->   * drm_dp_cec_register_connector() - register a new connector
->   * @aux: DisplayPort AUX channel
-> - * @name: name of the CEC device
-> - * @parent: parent device
-> + * @connector: drm connector
->   *
->   * A new connector was registered with associated CEC adapter name and
->   * CEC adapter parent device. After registering the name and parent
->   * drm_dp_cec_set_edid() is called to check if the connector supports
->   * CEC and to register a CEC adapter if that is the case.
->   */
-> -void drm_dp_cec_register_connector(struct drm_dp_aux *aux, const char *n=
-ame,
-> -                                struct device *parent)
-> +void drm_dp_cec_register_connector(struct drm_dp_aux *aux,
-> +                                struct drm_connector *connector)
->  {
->        WARN_ON(aux->cec.adap);
->        if (WARN_ON(!aux->transfer))
->                return;
-> -     aux->cec.name =3D name;
-> -     aux->cec.parent =3D parent;
-> +     aux->cec.connector =3D connector;
->        INIT_DELAYED_WORK(&aux->cec.unregister_work,
->                          drm_dp_cec_unregister_work);
->  }
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i9=
-15/display/intel_dp.c
-> index 1092499115760..de2486fe7bf2d 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -5497,7 +5497,6 @@ static int
->  intel_dp_connector_register(struct drm_connector *connector)
->  {
->        struct intel_dp *intel_dp =3D intel_attached_dp(connector);
-> -     struct drm_device *dev =3D connector->dev;
->        int ret;
->
->        ret =3D intel_connector_register(connector);
-> @@ -5512,8 +5511,7 @@ intel_dp_connector_register(struct drm_connector *c=
-onnector)
->        intel_dp->aux.dev =3D connector->kdev;
->        ret =3D drm_dp_aux_register(&intel_dp->aux);
->        if (!ret)
-> -             drm_dp_cec_register_connector(&intel_dp->aux,
-> -                                           connector->name, dev->dev);
-> +             drm_dp_cec_register_connector(&intel_dp->aux, connector);
->        return ret;
->  }
->
-> diff --git a/drivers/gpu/drm/nouveau/nouveau_connector.c b/drivers/gpu/dr=
-m/nouveau/nouveau_connector.c
-> index 330d7d29a6e34..8aa703347eb54 100644
-> --- a/drivers/gpu/drm/nouveau/nouveau_connector.c
-> +++ b/drivers/gpu/drm/nouveau/nouveau_connector.c
-> @@ -1416,8 +1416,7 @@ nouveau_connector_create(struct drm_device *dev,
->        switch (type) {
->        case DRM_MODE_CONNECTOR_DisplayPort:
->        case DRM_MODE_CONNECTOR_eDP:
-> -             drm_dp_cec_register_connector(&nv_connector->aux,
-> -                                           connector->name, dev->dev);
-> +             drm_dp_cec_register_connector(&nv_connector->aux, connector=
-);
->                break;
->        }
->
-> diff --git a/include/drm/drm_dp_helper.h b/include/drm/drm_dp_helper.h
-> index 8364502f92cfe..7972b925a952b 100644
-> --- a/include/drm/drm_dp_helper.h
-> +++ b/include/drm/drm_dp_helper.h
-> @@ -1230,20 +1230,19 @@ struct drm_dp_aux_msg {
->
->  struct cec_adapter;
->  struct edid;
-> +struct drm_connector;
->
->  /**
->   * struct drm_dp_aux_cec - DisplayPort CEC-Tunneling-over-AUX
->   * @lock: mutex protecting this struct
->   * @adap: the CEC adapter for CEC-Tunneling-over-AUX support.
-> - * @name: name of the CEC adapter
-> - * @parent: parent device of the CEC adapter
-> + * @connector: the connector this CEC adapter is associated with
->   * @unregister_work: unregister the CEC adapter
->   */
->  struct drm_dp_aux_cec {
->        struct mutex lock;
->        struct cec_adapter *adap;
-> -     const char *name;
-> -     struct device *parent;
-> +     struct drm_connector *connector;
->        struct delayed_work unregister_work;
->  };
->
-> @@ -1451,8 +1450,8 @@ drm_dp_has_quirk(const struct drm_dp_desc *desc, en=
-um drm_dp_quirk quirk)
->
->  #ifdef CONFIG_DRM_DP_CEC
->  void drm_dp_cec_irq(struct drm_dp_aux *aux);
-> -void drm_dp_cec_register_connector(struct drm_dp_aux *aux, const char *n=
-ame,
-> -                                struct device *parent);
-> +void drm_dp_cec_register_connector(struct drm_dp_aux *aux,
-> +                                struct drm_connector *connector);
->  void drm_dp_cec_unregister_connector(struct drm_dp_aux *aux);
->  void drm_dp_cec_set_edid(struct drm_dp_aux *aux, const struct edid *edid=
-);
->  void drm_dp_cec_unset_edid(struct drm_dp_aux *aux);
-> @@ -1461,9 +1460,9 @@ static inline void drm_dp_cec_irq(struct drm_dp_aux=
- *aux)
->  {
->  }
->
-> -static inline void drm_dp_cec_register_connector(struct drm_dp_aux *aux,
-> -                                              const char *name,
-> -                                              struct device *parent)
-> +static inline void
-> +drm_dp_cec_register_connector(struct drm_dp_aux *aux,
-> +                           struct drm_connector *connector)
->  {
->  }
->
->
-
-
---_000_BN6PR12MB1809F2FD206B4E969ECBE24DF7A50BN6PR12MB1809namp_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
-ttom:0;} </style>
-</head>
-<body dir=3D"ltr">
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-Acked-by: Alex Deucher &lt;alexander.deucher@amd.com&gt;<br>
-</div>
-<div id=3D"appendonsend"></div>
-<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
-<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
-yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> Hans Verkuil &lt;hver=
-kuil-cisco@xs4all.nl&gt;<br>
-<b>Sent:</b> Thursday, August 22, 2019 4:08 AM<br>
-<b>To:</b> Dariusz Marcinkiewicz &lt;darekm@google.com&gt;; dri-devel@lists=
-.freedesktop.org &lt;dri-devel@lists.freedesktop.org&gt;; linux-media@vger.=
-kernel.org &lt;linux-media@vger.kernel.org&gt;<br>
-<b>Cc:</b> David Airlie &lt;airlied@linux.ie&gt;; nouveau@lists.freedesktop=
-.org &lt;nouveau@lists.freedesktop.org&gt;; Dhinakaran Pandiyan &lt;dhinaka=
-ran.pandiyan@intel.com&gt;; Koo, Anthony &lt;Anthony.Koo@amd.com&gt;; Franc=
-is, David &lt;David.Francis@amd.com&gt;; amd-gfx@lists.freedesktop.org
- &lt;amd-gfx@lists.freedesktop.org&gt;; Zuo, Jerry &lt;Jerry.Zuo@amd.com&gt=
-;; Ben Skeggs &lt;bskeggs@redhat.com&gt;; Li, Sun peng (Leo) &lt;Sunpeng.Li=
-@amd.com&gt;; intel-gfx@lists.freedesktop.org &lt;intel-gfx@lists.freedeskt=
-op.org&gt;; Maxime Ripard &lt;mripard@kernel.org&gt;; Rodrigo Vivi &lt;rodr=
-igo.vivi@intel.com&gt;;
- Sean Paul &lt;sean@poorly.run&gt;; Thomas Lim &lt;Thomas.Lim@amd.com&gt;; =
-linux-kernel@vger.kernel.org &lt;linux-kernel@vger.kernel.org&gt;; Manasi N=
-avare &lt;manasi.d.navare@intel.com&gt;; Deucher, Alexander &lt;Alexander.D=
-eucher@amd.com&gt;; Koenig, Christian &lt;Christian.Koenig@amd.com&gt;;
- Ville Syrj=E4l=E4 &lt;ville.syrjala@linux.intel.com&gt;<br>
-<b>Subject:</b> Re: [PATCH v7 1/9] drm_dp_cec: add connector info support.<=
-/font>
-<div>&nbsp;</div>
-</div>
-<div class=3D"BodyFragment"><font size=3D"2"><span style=3D"font-size:11pt;=
-">
-<div class=3D"PlainText">Alex, Ville/Rodrigo, Ben,<br>
-<br>
-Can you (hopefully) Ack this patch so that I can merge it?<br>
-<br>
-Thank you!<br>
-<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Hans<br>
-<br>
-On 8/14/19 12:44 PM, Dariusz Marcinkiewicz wrote:<br>
-&gt; Pass the connector info to the CEC adapter. This makes it possible<br>
-&gt; to associate the CEC adapter with the corresponding drm connector.<br>
-&gt; <br>
-&gt; Signed-off-by: Dariusz Marcinkiewicz &lt;darekm@google.com&gt;<br>
-&gt; Signed-off-by: Hans Verkuil &lt;hverkuil-cisco@xs4all.nl&gt;<br>
-&gt; Tested-by: Hans Verkuil &lt;hverkuil-cisco@xs4all.nl&gt;<br>
-&gt; ---<br>
-&gt;&nbsp; .../display/amdgpu_dm/amdgpu_dm_mst_types.c&nbsp;&nbsp; |&nbsp; =
-2 &#43;-<br>
-&gt;&nbsp; drivers/gpu/drm/drm_dp_cec.c&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | 25 &#4=
-3;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;-------<br>
-&gt;&nbsp; drivers/gpu/drm/i915/display/intel_dp.c&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp; |&nbsp; 4 &#43;--<br>
-&gt;&nbsp; drivers/gpu/drm/nouveau/nouveau_connector.c&nbsp;&nbsp; |&nbsp; =
-3 &#43;--<br>
-&gt;&nbsp; include/drm/drm_dp_helper.h&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | 1=
-7 &#43;&#43;&#43;&#43;&#43;&#43;-------<br>
-&gt;&nbsp; 5 files changed, 27 insertions(&#43;), 24 deletions(-)<br>
-&gt; <br>
-&gt; diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types=
-.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c<br>
-&gt; index 16218a202b591..5ec14efd4d8cb 100644<br>
-&gt; --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c<br>
-&gt; &#43;&#43;&#43; b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_=
-types.c<br>
-&gt; @@ -416,7 &#43;416,7 @@ void amdgpu_dm_initialize_dp_connector(struct =
-amdgpu_display_manager *dm,<br>
-&gt;&nbsp; <br>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; drm_dp_aux_register(&amp;aco=
-nnector-&gt;dm_dp_aux.aux);<br>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; drm_dp_cec_register_connecto=
-r(&amp;aconnector-&gt;dm_dp_aux.aux,<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; aconnector-&gt=
-;base.name, dm-&gt;adev-&gt;dev);<br>
-&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &amp;aconn=
-ector-&gt;base);<br>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; aconnector-&gt;mst_mgr.cbs =
-=3D &amp;dm_mst_cbs;<br>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; drm_dp_mst_topology_mgr_init=
-(<br>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp; &amp;aconnector-&gt;mst_mgr,<br>
-&gt; diff --git a/drivers/gpu/drm/drm_dp_cec.c b/drivers/gpu/drm/drm_dp_cec=
-.c<br>
-&gt; index b15cee85b702b..b457c16c3a8bb 100644<br>
-&gt; --- a/drivers/gpu/drm/drm_dp_cec.c<br>
-&gt; &#43;&#43;&#43; b/drivers/gpu/drm/drm_dp_cec.c<br>
-&gt; @@ -8,7 &#43;8,9 @@<br>
-&gt;&nbsp; #include &lt;linux/kernel.h&gt;<br>
-&gt;&nbsp; #include &lt;linux/module.h&gt;<br>
-&gt;&nbsp; #include &lt;linux/slab.h&gt;<br>
-&gt; &#43;#include &lt;drm/drm_connector.h&gt;<br>
-&gt;&nbsp; #include &lt;drm/drm_dp_helper.h&gt;<br>
-&gt; &#43;#include &lt;drm/drmP.h&gt;<br>
-&gt;&nbsp; #include &lt;media/cec.h&gt;<br>
-&gt;&nbsp; <br>
-&gt;&nbsp; /*<br>
-&gt; @@ -295,7 &#43;297,10 @@ static void drm_dp_cec_unregister_work(struct=
- work_struct *work)<br>
-&gt;&nbsp;&nbsp; */<br>
-&gt;&nbsp; void drm_dp_cec_set_edid(struct drm_dp_aux *aux, const struct ed=
-id *edid)<br>
-&gt;&nbsp; {<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp; u32 cec_caps =3D CEC_CAP_DEFAULTS | CEC_CAP_=
-NEEDS_HPD;<br>
-&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp; struct drm_connector *connector =3D aux-=
-&gt;cec.connector;<br>
-&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp; u32 cec_caps =3D CEC_CAP_DEFAULTS | CEC_=
-CAP_NEEDS_HPD |<br>
-&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; CEC_CAP_CONNECTOR_INFO;<b=
-r>
-&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp; struct cec_connector_info conn_info;<br>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; unsigned int num_las =3D 1;<=
-br>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; u8 cap;<br>
-&gt;&nbsp; <br>
-&gt; @@ -344,13 &#43;349,17 @@ void drm_dp_cec_set_edid(struct drm_dp_aux *=
-aux, const struct edid *edid)<br>
-&gt;&nbsp; <br>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /* Create a new adapter */<b=
-r>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; aux-&gt;cec.adap =3D cec_all=
-ocate_adapter(&amp;drm_dp_cec_adap_ops,<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp; aux, aux-&gt;cec.name, cec_caps,<br>
-&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; aux, connector-&gt;name, cec_caps,<br>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; num_las);<br>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (IS_ERR(aux-&gt;cec.adap)=
-) {<br>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp; aux-&gt;cec.adap =3D NULL;<br>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp; goto unlock;<br>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp; if (cec_register_adapter(aux-&gt;cec.adap, a=
-ux-&gt;cec.parent)) {<br>
-&gt; &#43;<br>
-&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp; cec_fill_conn_info_from_drm(&amp;conn_in=
-fo, connector);<br>
-&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp; cec_s_conn_info(aux-&gt;cec.adap, &amp;c=
-onn_info);<br>
-&gt; &#43;<br>
-&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp; if (cec_register_adapter(aux-&gt;cec.ada=
-p, connector-&gt;dev-&gt;dev)) {<br>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp; cec_delete_adapter(aux-&gt;cec.adap);<br>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp; aux-&gt;cec.adap =3D NULL;<br>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } else {<br>
-&gt; @@ -406,22 &#43;415,20 @@ EXPORT_SYMBOL(drm_dp_cec_unset_edid);<br>
-&gt;&nbsp; /**<br>
-&gt;&nbsp;&nbsp; * drm_dp_cec_register_connector() - register a new connect=
-or<br>
-&gt;&nbsp;&nbsp; * @aux: DisplayPort AUX channel<br>
-&gt; - * @name: name of the CEC device<br>
-&gt; - * @parent: parent device<br>
-&gt; &#43; * @connector: drm connector<br>
-&gt;&nbsp;&nbsp; *<br>
-&gt;&nbsp;&nbsp; * A new connector was registered with associated CEC adapt=
-er name and<br>
-&gt;&nbsp;&nbsp; * CEC adapter parent device. After registering the name an=
-d parent<br>
-&gt;&nbsp;&nbsp; * drm_dp_cec_set_edid() is called to check if the connecto=
-r supports<br>
-&gt;&nbsp;&nbsp; * CEC and to register a CEC adapter if that is the case.<b=
-r>
-&gt;&nbsp;&nbsp; */<br>
-&gt; -void drm_dp_cec_register_connector(struct drm_dp_aux *aux, const char=
- *name,<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct device *parent)<br>
-&gt; &#43;void drm_dp_cec_register_connector(struct drm_dp_aux *aux,<br>
-&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct drm_connector *connec=
-tor)<br>
-&gt;&nbsp; {<br>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; WARN_ON(aux-&gt;cec.adap);<b=
-r>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (WARN_ON(!aux-&gt;transfe=
-r))<br>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp; return;<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp; aux-&gt;cec.name =3D name;<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp; aux-&gt;cec.parent =3D parent;<br>
-&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp; aux-&gt;cec.connector =3D connector;<br>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; INIT_DELAYED_WORK(&amp;aux-&=
-gt;cec.unregister_work,<br>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp; drm_dp_cec_unregister_work);<br>
-&gt;&nbsp; }<br>
-&gt; diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm=
-/i915/display/intel_dp.c<br>
-&gt; index 1092499115760..de2486fe7bf2d 100644<br>
-&gt; --- a/drivers/gpu/drm/i915/display/intel_dp.c<br>
-&gt; &#43;&#43;&#43; b/drivers/gpu/drm/i915/display/intel_dp.c<br>
-&gt; @@ -5497,7 &#43;5497,6 @@ static int<br>
-&gt;&nbsp; intel_dp_connector_register(struct drm_connector *connector)<br>
-&gt;&nbsp; {<br>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct intel_dp *intel_dp =
-=3D intel_attached_dp(connector);<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp; struct drm_device *dev =3D connector-&gt;dev=
-;<br>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int ret;<br>
-&gt;&nbsp; <br>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ret =3D intel_connector_regi=
-ster(connector);<br>
-&gt; @@ -5512,8 &#43;5511,7 @@ intel_dp_connector_register(struct drm_conne=
-ctor *connector)<br>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; intel_dp-&gt;aux.dev =3D con=
-nector-&gt;kdev;<br>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ret =3D drm_dp_aux_register(=
-&amp;intel_dp-&gt;aux);<br>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (!ret)<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp; drm_dp_cec_register_connector(&amp;intel_dp-&gt;aux,<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; connector-&gt;name, dev-&gt;dev);<br>
-&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp; drm_dp_cec_register_connector(&amp;intel_dp-&gt;aux, connector);<br=
->
-&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return ret;<br>
-&gt;&nbsp; }<br>
-&gt;&nbsp; <br>
-&gt; diff --git a/drivers/gpu/drm/nouveau/nouveau_connector.c b/drivers/gpu=
-/drm/nouveau/nouveau_connector.c<br>
-&gt; index 330d7d29a6e34..8aa703347eb54 100644<br>
-&gt; --- a/drivers/gpu/drm/nouveau/nouveau_connector.c<br>
-&gt; &#43;&#43;&#43; b/drivers/gpu/drm/nouveau/nouveau_connector.c<br>
-&gt; @@ -1416,8 &#43;1416,7 @@ nouveau_connector_create(struct drm_device *=
-dev,<br>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; switch (type) {<br>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case DRM_MODE_CONNECTOR_Disp=
-layPort:<br>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case DRM_MODE_CONNECTOR_eDP:=
-<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp; drm_dp_cec_register_connector(&amp;nv_connector-&gt;aux,<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; connector-&gt;name, dev-&gt;dev);<br>
-&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp; drm_dp_cec_register_connector(&amp;nv_connector-&gt;aux, connector)=
-;<br>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp; break;<br>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
-&gt;&nbsp; <br>
-&gt; diff --git a/include/drm/drm_dp_helper.h b/include/drm/drm_dp_helper.h=
-<br>
-&gt; index 8364502f92cfe..7972b925a952b 100644<br>
-&gt; --- a/include/drm/drm_dp_helper.h<br>
-&gt; &#43;&#43;&#43; b/include/drm/drm_dp_helper.h<br>
-&gt; @@ -1230,20 &#43;1230,19 @@ struct drm_dp_aux_msg {<br>
-&gt;&nbsp; <br>
-&gt;&nbsp; struct cec_adapter;<br>
-&gt;&nbsp; struct edid;<br>
-&gt; &#43;struct drm_connector;<br>
-&gt;&nbsp; <br>
-&gt;&nbsp; /**<br>
-&gt;&nbsp;&nbsp; * struct drm_dp_aux_cec - DisplayPort CEC-Tunneling-over-A=
-UX<br>
-&gt;&nbsp;&nbsp; * @lock: mutex protecting this struct<br>
-&gt;&nbsp;&nbsp; * @adap: the CEC adapter for CEC-Tunneling-over-AUX suppor=
-t.<br>
-&gt; - * @name: name of the CEC adapter<br>
-&gt; - * @parent: parent device of the CEC adapter<br>
-&gt; &#43; * @connector: the connector this CEC adapter is associated with<=
-br>
-&gt;&nbsp;&nbsp; * @unregister_work: unregister the CEC adapter<br>
-&gt;&nbsp;&nbsp; */<br>
-&gt;&nbsp; struct drm_dp_aux_cec {<br>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct mutex lock;<br>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct cec_adapter *adap;<br=
->
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp; const char *name;<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp; struct device *parent;<br>
-&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp; struct drm_connector *connector;<br>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct delayed_work unregist=
-er_work;<br>
-&gt;&nbsp; };<br>
-&gt;&nbsp; <br>
-&gt; @@ -1451,8 &#43;1450,8 @@ drm_dp_has_quirk(const struct drm_dp_desc *d=
-esc, enum drm_dp_quirk quirk)<br>
-&gt;&nbsp; <br>
-&gt;&nbsp; #ifdef CONFIG_DRM_DP_CEC<br>
-&gt;&nbsp; void drm_dp_cec_irq(struct drm_dp_aux *aux);<br>
-&gt; -void drm_dp_cec_register_connector(struct drm_dp_aux *aux, const char=
- *name,<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct device *parent);<br>
-&gt; &#43;void drm_dp_cec_register_connector(struct drm_dp_aux *aux,<br>
-&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct drm_connector *connec=
-tor);<br>
-&gt;&nbsp; void drm_dp_cec_unregister_connector(struct drm_dp_aux *aux);<br=
->
-&gt;&nbsp; void drm_dp_cec_set_edid(struct drm_dp_aux *aux, const struct ed=
-id *edid);<br>
-&gt;&nbsp; void drm_dp_cec_unset_edid(struct drm_dp_aux *aux);<br>
-&gt; @@ -1461,9 &#43;1460,9 @@ static inline void drm_dp_cec_irq(struct drm=
-_dp_aux *aux)<br>
-&gt;&nbsp; {<br>
-&gt;&nbsp; }<br>
-&gt;&nbsp; <br>
-&gt; -static inline void drm_dp_cec_register_connector(struct drm_dp_aux *a=
-ux,<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; const char *name,<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct device *parent)<=
-br>
-&gt; &#43;static inline void<br>
-&gt; &#43;drm_dp_cec_register_connector(struct drm_dp_aux *aux,<br>
-&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp; struct drm_connector *connector)<br>
-&gt;&nbsp; {<br>
-&gt;&nbsp; }<br>
-&gt;&nbsp; <br>
-&gt; <br>
-<br>
-</div>
-</span></font></div>
-</body>
-</html>
-
---_000_BN6PR12MB1809F2FD206B4E969ECBE24DF7A50BN6PR12MB1809namp_--
-
---===============0357299231==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
-IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
-
---===============0357299231==--
+T24gU2F0LCAxNyBBdWcgMjAxOSwgTHVjYXMgRGUgTWFyY2hpIDxsdWNhcy5kZW1hcmNoaUBpbnRl
+bC5jb20+IHdyb3RlOgo+IEZyb206IEpvc8OpIFJvYmVydG8gZGUgU291emEgPGpvc2Uuc291emFA
+aW50ZWwuY29tPgo+Cj4gT24gVEdMIHRoZSBibGVuZGluZyBvZiBhbGwgdGhlIHN0cmVhbXMgaGF2
+ZSBtb3ZlZCBmcm9tIERESSB0bwo+IHRyYW5zY29kZXIsIHNvIG5vdyBldmVyeSB0cmFuc2NvZGVy
+IHdvcmtpbmcgb3ZlciB0aGUgc2FtZSBNU1QgcG9ydCBtdXN0Cj4gc2VuZCBpdHMgc3RyZWFtIHRv
+IGEgbWFzdGVyIHRyYW5zY29kZXIgYW5kIG1hc3RlciB3aWxsIHNlbmQgdG8gRERJCj4gcmVzcGVj
+dGluZyB0aGUgdGltZSBzbG90cy4KPgo+IFNvIGhlcmUgaXQgaXMgcGlja2luZyB0aGUgbG93ZXN0
+IHBpcGUvdHJhbnNjb2RlciBhcyBpdCB3aWxsIGJlCj4gZW5hYmxlZCBmaXJzdCBhbmQgZGlzYWJs
+ZWQgbGFzdC4KPiBCU3BlYzogNTA0OTMKPiBCU3BlYzogNDkxOTAKPgo+IHYyOiBNaXNzZWQgc2V0
+IG1zdF9tYXN0ZXJfdHJhbnMgdG8gVFJBTlNDT0RFUl9JTlZBTElEIHdoZW4gY29tcHV0aW5nIEhT
+Vwo+ICAgICBlbmNvZGVyIGNvbmZpZy4gSFNXIENSVCBodyBzdGF0ZSByZWFkb3V0IGNhbGxzCj4g
+ICAgIGhzd19jcnRfZ2V0X2NvbmZpZygpLT5pbnRlbF9kZGlfZ2V0X2NvbmZpZygpIHRoYXQgd2ls
+bCBzZXQKPiAgICAgbXN0X21hc3Rlcl90cmFucyB0byBUUkFOU0NPREVSX0lOVkFMSUQgY2F1c2lu
+ZyB0aGUgbWlzbWF0Y2ggd2hlbgo+ICAgICB2ZXJpZnlpbmcgQ1JUQyBzdGF0ZSBhZnRlciBhIG1v
+ZGVzZXQuIChKb3PDqSkKPgo+IENjOiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFAbGlu
+dXguaW50ZWwuY29tPgo+IENjOiBNYW5hc2kgTmF2YXJlIDxtYW5hc2kuZC5uYXZhcmVAaW50ZWwu
+Y29tPgo+IENjOiBSb2RyaWdvIFZpdmkgPHJvZHJpZ28udml2aUBpbnRlbC5jb20+Cj4gU2lnbmVk
+LW9mZi1ieTogSm9zw6kgUm9iZXJ0byBkZSBTb3V6YSA8am9zZS5zb3V6YUBpbnRlbC5jb20+Cj4g
+U2lnbmVkLW9mZi1ieTogTHVjYXMgRGUgTWFyY2hpIDxsdWNhcy5kZW1hcmNoaUBpbnRlbC5jb20+
+Cj4gLS0tCj4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfY3J0LmMgICAgICB8
+ICAgMiArCj4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGRpLmMgICAgICB8
+ICAxNyArKwo+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuYyAg
+fCAgMTUgKysKPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5Lmgg
+IHwgICAzICsKPiAgLi4uL2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheV90eXBlcy5oICAg
+IHwgICAzICsKPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcF9tc3QuYyAg
+IHwgMTU5ICsrKysrKysrKysrKysrKysrLQo+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5
+L2ludGVsX2RwX21zdC5oICAgfCAgIDIgKwo+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3Jl
+Zy5oICAgICAgICAgICAgICAgfCAgIDMgKwo+ICA4IGZpbGVzIGNoYW5nZWQsIDIwMSBpbnNlcnRp
+b25zKCspLCAzIGRlbGV0aW9ucygtKQo+Cj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9p
+OTE1L2Rpc3BsYXkvaW50ZWxfY3J0LmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2lu
+dGVsX2NydC5jCj4gaW5kZXggZTZlOGQ0YTgyMDQ0Li41MDMxMzUyMDBjYjMgMTAwNjQ0Cj4gLS0t
+IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9jcnQuYwo+ICsrKyBiL2RyaXZl
+cnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfY3J0LmMKPiBAQCAtNDE2LDYgKzQxNiw4IEBA
+IHN0YXRpYyBpbnQgaHN3X2NydF9jb21wdXRlX2NvbmZpZyhzdHJ1Y3QgaW50ZWxfZW5jb2RlciAq
+ZW5jb2RlciwKPiAgCS8qIEZESSBtdXN0IGFsd2F5cyBiZSAyLjcgR0h6ICovCj4gIAlwaXBlX2Nv
+bmZpZy0+cG9ydF9jbG9jayA9IDEzNTAwMCAqIDI7Cj4gIAo+ICsJcGlwZV9jb25maWctPm1zdF9t
+YXN0ZXJfdHJhbnMgPSBUUkFOU0NPREVSX0lOVkFMSUQ7Cj4gKwo+ICAJcmV0dXJuIDA7Cj4gIH0K
+PiAgCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGRp
+LmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RkaS5jCj4gaW5kZXggMWY1
+OTFlNjliNzQyLi41MGEyNmJlYThjZGUgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5
+MTUvZGlzcGxheS9pbnRlbF9kZGkuYwo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3Bs
+YXkvaW50ZWxfZGRpLmMKPiBAQCAtMTg0MCw2ICsxODQwLDEyIEBAIHZvaWQgaW50ZWxfZGRpX2Vu
+YWJsZV90cmFuc2NvZGVyX2Z1bmMoY29uc3Qgc3RydWN0IGludGVsX2NydGNfc3RhdGUgKmNydGNf
+c3RhdGUpCj4gIAl9IGVsc2UgaWYgKGludGVsX2NydGNfaGFzX3R5cGUoY3J0Y19zdGF0ZSwgSU5U
+RUxfT1VUUFVUX0RQX01TVCkpIHsKPiAgCQl0ZW1wIHw9IFRSQU5TX0RESV9NT0RFX1NFTEVDVF9E
+UF9NU1Q7Cj4gIAkJdGVtcCB8PSBERElfUE9SVF9XSURUSChjcnRjX3N0YXRlLT5sYW5lX2NvdW50
+KTsKPiArCj4gKwkJaWYgKElOVEVMX0dFTihkZXZfcHJpdikgPj0gMTIpIHsKPiArCQkJZW51bSB0
+cmFuc2NvZGVyIG1hc3RlciA9IGNydGNfc3RhdGUtPm1zdF9tYXN0ZXJfdHJhbnM7Cj4gKwo+ICsJ
+CQl0ZW1wIHw9IFRSQU5TX0RESV9NU1RfVFJBTlNQT1JUX1NFTEVDVF9EUFRQKG1hc3Rlcik7CgpG
+b3Igc29tZSByZWFzb24gSSdkIGZlZWwgc2FmZXIgaWYgd2UgaGFkIGEgV0FSTl9PTihtYXN0ZXIg
+PT0KVFJBTlNDT0RFUl9JTlZBTElEKSBzb21ld2hlcmUgYXJvdW5kIGhlcmUuCgoKPiArCQl9Cj4g
+IAl9IGVsc2Ugewo+ICAJCXRlbXAgfD0gVFJBTlNfRERJX01PREVfU0VMRUNUX0RQX1NTVDsKPiAg
+CQl0ZW1wIHw9IERESV9QT1JUX1dJRFRIKGNydGNfc3RhdGUtPmxhbmVfY291bnQpOwo+IEBAIC0z
+ODYxLDYgKzM4NjcsOCBAQCB2b2lkIGludGVsX2RkaV9nZXRfY29uZmlnKHN0cnVjdCBpbnRlbF9l
+bmNvZGVyICplbmNvZGVyLAo+ICAJCWJyZWFrOwo+ICAJfQo+ICAKPiArCXBpcGVfY29uZmlnLT5t
+c3RfbWFzdGVyX3RyYW5zID0gVFJBTlNDT0RFUl9JTlZBTElEOwo+ICsKPiAgCXN3aXRjaCAodGVt
+cCAmIFRSQU5TX0RESV9NT0RFX1NFTEVDVF9NQVNLKSB7Cj4gIAljYXNlIFRSQU5TX0RESV9NT0RF
+X1NFTEVDVF9IRE1JOgo+ICAJCXBpcGVfY29uZmlnLT5oYXNfaGRtaV9zaW5rID0gdHJ1ZTsKPiBA
+QCAtMzg5Niw2ICszOTA0LDEzIEBAIHZvaWQgaW50ZWxfZGRpX2dldF9jb25maWcoc3RydWN0IGlu
+dGVsX2VuY29kZXIgKmVuY29kZXIsCj4gIAkJcGlwZV9jb25maWctPm91dHB1dF90eXBlcyB8PSBC
+SVQoSU5URUxfT1VUUFVUX0RQX01TVCk7Cj4gIAkJcGlwZV9jb25maWctPmxhbmVfY291bnQgPQo+
+ICAJCQkoKHRlbXAgJiBERElfUE9SVF9XSURUSF9NQVNLKSA+PiBERElfUE9SVF9XSURUSF9TSElG
+VCkgKyAxOwo+ICsKPiArCQlpZiAoSU5URUxfR0VOKGRldl9wcml2KSA+PSAxMikgewo+ICsJCQl0
+ZW1wID0gdGVtcCAmIFRSQU5TX0RESV9NU1RfVFJBTlNQT1JUX1NFTEVDVF9NQVNLOwo+ICsJCQl0
+ZW1wID0gdGVtcCA+PiBUUkFOU19ERElfTVNUX1RSQU5TUE9SVF9TRUxFQ1RfU0hJRlQ7Cj4gKwkJ
+CXBpcGVfY29uZmlnLT5tc3RfbWFzdGVyX3RyYW5zID0gdGVtcDsKPiArCQl9Cj4gKwo+ICAJCWlu
+dGVsX2RwX2dldF9tX24oaW50ZWxfY3J0YywgcGlwZV9jb25maWcpOwo+ICAJCWJyZWFrOwo+ICAJ
+ZGVmYXVsdDoKPiBAQCAtMzk5OCw2ICs0MDEzLDggQEAgc3RhdGljIGludCBpbnRlbF9kZGlfY29t
+cHV0ZV9jb25maWcoc3RydWN0IGludGVsX2VuY29kZXIgKmVuY29kZXIsCj4gIAo+ICAJaW50ZWxf
+ZGRpX2NvbXB1dGVfbWluX3ZvbHRhZ2VfbGV2ZWwoZGV2X3ByaXYsIHBpcGVfY29uZmlnKTsKPiAg
+Cj4gKwlwaXBlX2NvbmZpZy0+bXN0X21hc3Rlcl90cmFucyA9IFRSQU5TQ09ERVJfSU5WQUxJRDsK
+PiArCj4gIAlyZXR1cm4gMDsKPiAgfQo+ICAKPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJt
+L2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNw
+bGF5L2ludGVsX2Rpc3BsYXkuYwo+IGluZGV4IGRkYjg0MzZlMjIwOC4uMTA5ZDRmZDk2MWM2IDEw
+MDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5j
+Cj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMKPiBA
+QCAtNDcsNiArNDcsNyBAQAo+ICAjaW5jbHVkZSAiZGlzcGxheS9pbnRlbF9jcnQuaCIKPiAgI2lu
+Y2x1ZGUgImRpc3BsYXkvaW50ZWxfZGRpLmgiCj4gICNpbmNsdWRlICJkaXNwbGF5L2ludGVsX2Rw
+LmgiCj4gKyNpbmNsdWRlICJkaXNwbGF5L2ludGVsX2RwX21zdC5oIgo+ICAjaW5jbHVkZSAiZGlz
+cGxheS9pbnRlbF9kc2kuaCIKPiAgI2luY2x1ZGUgImRpc3BsYXkvaW50ZWxfZHZvLmgiCj4gICNp
+bmNsdWRlICJkaXNwbGF5L2ludGVsX2dtYnVzLmgiCj4gQEAgLTEyMTM4LDYgKzEyMTM5LDE0IEBA
+IHN0YXRpYyB2b2lkIGludGVsX2R1bXBfcGlwZV9jb25maWcoY29uc3Qgc3RydWN0IGludGVsX2Ny
+dGNfc3RhdGUgKnBpcGVfY29uZmlnLAo+ICAKPiAgCWludGVsX2RwbGxfZHVtcF9od19zdGF0ZShk
+ZXZfcHJpdiwgJnBpcGVfY29uZmlnLT5kcGxsX2h3X3N0YXRlKTsKPiAgCj4gKwlpZiAoSU5URUxf
+R0VOKGRldl9wcml2KSA+PSAxMiAmJgo+ICsJICAgIGludGVsX2NydGNfaGFzX3R5cGUocGlwZV9j
+b25maWcsIElOVEVMX09VVFBVVF9EUF9NU1QpKSB7Cj4gKwkJZW51bSB0cmFuc2NvZGVyIG1hc3Rl
+ciA9IHBpcGVfY29uZmlnLT5tc3RfbWFzdGVyX3RyYW5zOwo+ICsKPiArCQlEUk1fREVCVUdfS01T
+KCJtYXN0ZXIgbXN0IGNwdV90cmFuc2NvZGVyOiAlc1xuIiwKPiArCQkJICAgICAgdHJhbnNjb2Rl
+cl9uYW1lKG1hc3RlcikpOwo+ICsJfQo+ICsKPiAgZHVtcF9wbGFuZXM6Cj4gIAlpZiAoIXN0YXRl
+KQo+ICAJCXJldHVybjsKPiBAQCAtMTI4MjEsNiArMTI4MzAsOCBAQCBpbnRlbF9waXBlX2NvbmZp
+Z19jb21wYXJlKGNvbnN0IHN0cnVjdCBpbnRlbF9jcnRjX3N0YXRlICpjdXJyZW50X2NvbmZpZywK
+PiAgCVBJUEVfQ09ORl9DSEVDS19JTkZPRlJBTUUoaGRtaSk7Cj4gIAlQSVBFX0NPTkZfQ0hFQ0tf
+SU5GT0ZSQU1FKGRybSk7Cj4gIAo+ICsJUElQRV9DT05GX0NIRUNLX0kobXN0X21hc3Rlcl90cmFu
+cyk7CgpUaGlzIGlzIGFjdHVhbGx5IG1vcmUgc3VidGxlIHRoYW4gaXQgbG9va3MuIFdlIG5vdyBj
+aGVjayBpdCBmb3IgYWxsCnBsYXRmb3JtcyBhbmQgTVNUIGFuZCBub24tTVNUIGFsaWtlLiBXaGlj
+aCBtZWFucyBub24tTVNUIGFuZCBwcmUgZ2VuIDEyCm11c3Qgc2V0IGl0IHRvIFRSQU5TQ09ERVJf
+SU5WQUxJRCBvbiBjb21wdXRlIGNvbmZpZyAqYW5kKiByZWFkb3V0LgoKSSB0aGluayBJJ2xsIGxl
+dCBpdCBzbGlkZSBoZXJlLCBidXQgSSB0aGluayB3ZSBuZWVkIHRvIGNvbnNpZGVyIHRoaXMgYW5k
+CmRlY2lkZSB3aGV0aGVyIHdlIHdhbnQgdGhpcyBpbiBnZW5lcmFsLiBJbmRlZWQgVFJBTlNDT0RF
+Ul9JTlZBTElEIGlzCmNyZWF0ZWQganVzdCBmb3IgdGhpcywgYW5kIGl0IGlzIGFjdHVhbGx5IG5v
+dCByZWFsbHkgdXNlZCBhcyBhIHZhbHVlCmFueXdoZXJlIGV4Y2VwdCBoZXJlLCBidXQgZ2VuZXJh
+dGVzIHdvcnJ5IGFsbCBvdmVyIHRoZSBwbGFjZSwgIndoYXQgaWYKdGhpcyBpcyAtMSIuCgpQZXJo
+YXBzIGluIGdlbmVyYWwgSSdkIGxpa2UgdGhlIGFwcHJvYWNoIG9mIG9ubHkgZG9pbmcgdGhlIHJl
+YWRvdXQgd2hlbgppdCdzIHJlbGV2YW50LCBhbmQgb25seSBjaGVja2luZyB0aGUgdmFsdWUgd2hl
+biBpdCdzIHJlbGV2YW50LgoKQlIsCkphbmkuCgoKPiArCj4gICN1bmRlZiBQSVBFX0NPTkZfQ0hF
+Q0tfWAo+ICAjdW5kZWYgUElQRV9DT05GX0NIRUNLX0kKPiAgI3VuZGVmIFBJUEVfQ09ORl9DSEVD
+S19CT09MCj4gQEAgLTEzNTk3LDYgKzEzNjA4LDEwIEBAIHN0YXRpYyBpbnQgaW50ZWxfYXRvbWlj
+X2NoZWNrKHN0cnVjdCBkcm1fZGV2aWNlICpkZXYsCj4gIAlpbnQgcmV0LCBpOwo+ICAJYm9vbCBh
+bnlfbXMgPSBzdGF0ZS0+Y2RjbGsuZm9yY2VfbWluX2NkY2xrX2NoYW5nZWQ7Cj4gIAo+ICsJcmV0
+ID0gaW50ZWxfZHBfbXN0X2F0b21pY19hZGRfYWZmZWN0ZWRfY3J0Y3Moc3RhdGUpOwo+ICsJaWYg
+KHJldCkKPiArCQlyZXR1cm4gcmV0Owo+ICsKPiAgCS8qIENhdGNoIEk5MTVfTU9ERV9GTEFHX0lO
+SEVSSVRFRCAqLwo+ICAJZm9yX2VhY2hfb2xkbmV3X2ludGVsX2NydGNfaW5fc3RhdGUoc3RhdGUs
+IGNydGMsIG9sZF9jcnRjX3N0YXRlLAo+ICAJCQkJCSAgICBuZXdfY3J0Y19zdGF0ZSwgaSkgewo+
+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXku
+aCBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5oCj4gaW5kZXgg
+YjYzZmI3YTQ1OTllLi4yODJlOGQ4ZjFjYzEgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJt
+L2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmgKPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkx
+NS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuaAo+IEBAIC05MSw2ICs5MSw4IEBAIGVudW0gcGlwZSB7
+Cj4gICNkZWZpbmUgcGlwZV9uYW1lKHApICgocCkgKyAnQScpCj4gIAo+ICBlbnVtIHRyYW5zY29k
+ZXIgewo+ICsJVFJBTlNDT0RFUl9JTlZBTElEID0gLTEsCj4gKwo+ICAJLyoKPiAgCSAqIFRoZSBm
+b2xsb3dpbmcgdHJhbnNjb2RlcnMgaGF2ZSBhIDE6MSB0cmFuc2NvZGVyIC0+IHBpcGUgbWFwcGlu
+ZywKPiAgCSAqIGtlZXAgdGhlaXIgdmFsdWVzIGZpeGVkOiB0aGUgY29kZSBhc3N1bWVzIHRoYXQg
+VFJBTlNDT0RFUl9BPTAsIHRoZQo+IEBAIC0xMzIsNiArMTM0LDcgQEAgc3RhdGljIGlubGluZSBj
+b25zdCBjaGFyICp0cmFuc2NvZGVyX25hbWUoZW51bSB0cmFuc2NvZGVyIHRyYW5zY29kZXIpCj4g
+IAkJcmV0dXJuICJEU0kgQSI7Cj4gIAljYXNlIFRSQU5TQ09ERVJfRFNJX0M6Cj4gIAkJcmV0dXJu
+ICJEU0kgQyI7Cj4gKwljYXNlIFRSQU5TQ09ERVJfSU5WQUxJRDoKPiAgCWRlZmF1bHQ6Cj4gIAkJ
+cmV0dXJuICI8aW52YWxpZD4iOwo+ICAJfQo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0v
+aTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXlfdHlwZXMuaCBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1
+L2Rpc3BsYXkvaW50ZWxfZGlzcGxheV90eXBlcy5oCj4gaW5kZXggM2MxYTVmM2UxZDIyLi5iN2Rh
+OTU1OTU0YjcgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRl
+bF9kaXNwbGF5X3R5cGVzLmgKPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2lu
+dGVsX2Rpc3BsYXlfdHlwZXMuaAo+IEBAIC05ODQsNiArOTg0LDkgQEAgc3RydWN0IGludGVsX2Ny
+dGNfc3RhdGUgewo+ICAKPiAgCS8qIEZvcndhcmQgRXJyb3IgY29ycmVjdGlvbiBTdGF0ZSAqLwo+
+ICAJYm9vbCBmZWNfZW5hYmxlOwo+ICsKPiArCS8qIE1hc3RlciB0cmFuc2NvZGVyIGZvciBhbGwg
+c3RyZWFtcywgb25seSB1c2VkIG9uIFRHTCsgKi8KPiArCWVudW0gdHJhbnNjb2RlciBtc3RfbWFz
+dGVyX3RyYW5zOwo+ICB9Owo+ICAKPiAgc3RydWN0IGludGVsX2NydGMgewo+IGRpZmYgLS1naXQg
+YS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwX21zdC5jIGIvZHJpdmVycy9n
+cHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcF9tc3QuYwo+IGluZGV4IGY1MmNkZDRjYTg3Ny4u
+NjcwYTEyZmQyZjI3IDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkv
+aW50ZWxfZHBfbXN0LmMKPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVs
+X2RwX21zdC5jCj4gQEAgLTg3LDYgKzg3LDUwIEBAIHN0YXRpYyBpbnQgaW50ZWxfZHBfbXN0X2Nv
+bXB1dGVfbGlua19jb25maWcoc3RydWN0IGludGVsX2VuY29kZXIgKmVuY29kZXIsCj4gIAlyZXR1
+cm4gMDsKPiAgfQo+ICAKPiArLyoKPiArICogSXRlcmF0ZSBvdmVyIGFsbCB0aGUgQ1JUQ3MgYW5k
+IHJldHVybiB0aGUgdHJhbnNjb2RlciBvZiB0aGUgbG93ZXN0IENSVEMgdGhhdAo+ICsgKiBzaGFy
+ZSB0aGUgc2FtZSBNU1QgY29ubmVjdG9yLgo+ICsgKi8KPiArc3RhdGljIGVudW0gdHJhbnNjb2Rl
+cgo+ICttc3RfY29tcHV0ZV9tYXN0ZXJfdHJhbnMoc3RydWN0IGRybV9hdG9taWNfc3RhdGUgKnN0
+YXRlLAo+ICsJCQkgc3RydWN0IGRybV9jb25uZWN0b3IgKm1zdF9jb25uKQo+ICt7Cj4gKwlzdHJ1
+Y3QgaW50ZWxfY29ubmVjdG9yICppbnRlbF9tc3RfY29ubiA9IHRvX2ludGVsX2Nvbm5lY3Rvciht
+c3RfY29ubik7Cj4gKwlzdHJ1Y3QgaW50ZWxfYXRvbWljX3N0YXRlICppbnRlbF9zdGF0ZSA9IHRv
+X2ludGVsX2F0b21pY19zdGF0ZShzdGF0ZSk7Cj4gKwlzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAq
+ZGV2X3ByaXYgPSB0b19pOTE1KHN0YXRlLT5kZXYpOwo+ICsJc3RydWN0IGludGVsX2NydGNfc3Rh
+dGUgKmludGVsX2NydGNfc3RhdGU7Cj4gKwlzdHJ1Y3QgaW50ZWxfY3J0YyAqaW50ZWxfY3J0YzsK
+PiArCWludCBpOwo+ICsKPiArCWlmIChJTlRFTF9HRU4oZGV2X3ByaXYpIDwgMTIpCj4gKwkJcmV0
+dXJuIFRSQU5TQ09ERVJfSU5WQUxJRDsKPiArCj4gKwkvKiBJdGVyYXRlIGZyb20gdGhlIGxvd2Vz
+dCB0byB0aGUgaGlnaGVzdCBwaXBlICovCj4gKwlmb3JfZWFjaF9uZXdfaW50ZWxfY3J0Y19pbl9z
+dGF0ZShpbnRlbF9zdGF0ZSwgaW50ZWxfY3J0YywgaW50ZWxfY3J0Y19zdGF0ZSwgaSkgewo+ICsJ
+CXN0cnVjdCBpbnRlbF9kaWdpdGFsX2Nvbm5lY3Rvcl9zdGF0ZSAqaW50ZWxfY29ubl9zdGF0ZTsK
+PiArCQlzdHJ1Y3QgaW50ZWxfY29ubmVjdG9yICppbnRlbF9jb25uOwo+ICsJCWludCBqOwo+ICsK
+PiArCQlpZiAoIWludGVsX2NydGNfc3RhdGUtPmJhc2UuYWN0aXZlKQo+ICsJCQljb250aW51ZTsK
+PiArCj4gKwkJZm9yX2VhY2hfbmV3X2ludGVsX2Nvbm5lY3Rvcl9pbl9zdGF0ZShpbnRlbF9zdGF0
+ZSwgaW50ZWxfY29ubiwKPiArCQkJCQkJICAgICAgaW50ZWxfY29ubl9zdGF0ZSwgaikgewo+ICsJ
+CQkvKiBPbmx5IGNhcmUgYWJvdXQgY29ubmVjdG9ycyBvZiB0aGlzIENSVEMgKi8KPiArCQkJaWYg
+KGludGVsX2Nvbm5fc3RhdGUtPmJhc2UuY3J0YyAhPQo+ICsJCQkgICAgaW50ZWxfY3J0Y19zdGF0
+ZS0+YmFzZS5jcnRjKQo+ICsJCQkJY29udGludWU7Cj4gKwo+ICsJCQlpZiAoaW50ZWxfY29ubi0+
+bXN0X3BvcnQgIT0gaW50ZWxfbXN0X2Nvbm4tPm1zdF9wb3J0KQo+ICsJCQkJY29udGludWU7Cj4g
+Kwo+ICsJCQlyZXR1cm4gaW50ZWxfY3J0Y19zdGF0ZS0+Y3B1X3RyYW5zY29kZXI7Cj4gKwkJfQo+
+ICsJfQo+ICsKPiArCXJldHVybiBUUkFOU0NPREVSX0lOVkFMSUQ7Cj4gK30KPiArCj4gIHN0YXRp
+YyBpbnQgaW50ZWxfZHBfbXN0X2NvbXB1dGVfY29uZmlnKHN0cnVjdCBpbnRlbF9lbmNvZGVyICpl
+bmNvZGVyLAo+ICAJCQkJICAgICAgIHN0cnVjdCBpbnRlbF9jcnRjX3N0YXRlICpwaXBlX2NvbmZp
+ZywKPiAgCQkJCSAgICAgICBzdHJ1Y3QgZHJtX2Nvbm5lY3Rvcl9zdGF0ZSAqY29ubl9zdGF0ZSkK
+PiBAQCAtOTQsMTQgKzEzOCwxNSBAQCBzdGF0aWMgaW50IGludGVsX2RwX21zdF9jb21wdXRlX2Nv
+bmZpZyhzdHJ1Y3QgaW50ZWxfZW5jb2RlciAqZW5jb2RlciwKPiAgCXN0cnVjdCBkcm1faTkxNV9w
+cml2YXRlICpkZXZfcHJpdiA9IHRvX2k5MTUoZW5jb2Rlci0+YmFzZS5kZXYpOwo+ICAJc3RydWN0
+IGludGVsX2RwX21zdF9lbmNvZGVyICppbnRlbF9tc3QgPSBlbmNfdG9fbXN0KCZlbmNvZGVyLT5i
+YXNlKTsKPiAgCXN0cnVjdCBpbnRlbF9kcCAqaW50ZWxfZHAgPSAmaW50ZWxfbXN0LT5wcmltYXJ5
+LT5kcDsKPiAtCXN0cnVjdCBpbnRlbF9jb25uZWN0b3IgKmNvbm5lY3RvciA9Cj4gLQkJdG9faW50
+ZWxfY29ubmVjdG9yKGNvbm5fc3RhdGUtPmNvbm5lY3Rvcik7Cj4gKwlzdHJ1Y3QgZHJtX2Nvbm5l
+Y3RvciAqY29ubmVjdG9yID0gY29ubl9zdGF0ZS0+Y29ubmVjdG9yOwo+ICsJc3RydWN0IGludGVs
+X2Nvbm5lY3RvciAqaW50ZWxfY29ubmVjdG9yID0gdG9faW50ZWxfY29ubmVjdG9yKGNvbm5lY3Rv
+cik7Cj4gIAlzdHJ1Y3QgaW50ZWxfZGlnaXRhbF9jb25uZWN0b3Jfc3RhdGUgKmludGVsX2Nvbm5f
+c3RhdGUgPQo+ICAJCXRvX2ludGVsX2RpZ2l0YWxfY29ubmVjdG9yX3N0YXRlKGNvbm5fc3RhdGUp
+Owo+ICAJY29uc3Qgc3RydWN0IGRybV9kaXNwbGF5X21vZGUgKmFkanVzdGVkX21vZGUgPQo+ICAJ
+CSZwaXBlX2NvbmZpZy0+YmFzZS5hZGp1c3RlZF9tb2RlOwo+IC0Jdm9pZCAqcG9ydCA9IGNvbm5l
+Y3Rvci0+cG9ydDsKPiArCXZvaWQgKnBvcnQgPSBpbnRlbF9jb25uZWN0b3ItPnBvcnQ7Cj4gIAlz
+dHJ1Y3QgbGlua19jb25maWdfbGltaXRzIGxpbWl0czsKPiArCWVudW0gdHJhbnNjb2RlciBtYXN0
+ZXI7Cj4gIAlpbnQgcmV0Owo+ICAKPiAgCWlmIChhZGp1c3RlZF9tb2RlLT5mbGFncyAmIERSTV9N
+T0RFX0ZMQUdfREJMU0NBTikKPiBAQCAtMTQ2LDYgKzE5MSw1MSBAQCBzdGF0aWMgaW50IGludGVs
+X2RwX21zdF9jb21wdXRlX2NvbmZpZyhzdHJ1Y3QgaW50ZWxfZW5jb2RlciAqZW5jb2RlciwKPiAg
+Cj4gIAlpbnRlbF9kZGlfY29tcHV0ZV9taW5fdm9sdGFnZV9sZXZlbChkZXZfcHJpdiwgcGlwZV9j
+b25maWcpOwo+ICAKPiArCW1hc3RlciA9IG1zdF9jb21wdXRlX21hc3Rlcl90cmFucyhjb25uX3N0
+YXRlLT5zdGF0ZSwgY29ubmVjdG9yKTsKPiArCXBpcGVfY29uZmlnLT5tc3RfbWFzdGVyX3RyYW5z
+ID0gbWFzdGVyOwo+ICsKPiArCXJldHVybiAwOwo+ICt9Cj4gKwo+ICtzdGF0aWMgaW50Cj4gK2lu
+dGVsX2RwX21zdF9tYXN0ZXJfdHJhbnNfY2hlY2soc3RydWN0IGRybV9jb25uZWN0b3IgKmNvbm4s
+Cj4gKwkJCQlzdHJ1Y3QgZHJtX2Nvbm5lY3Rvcl9zdGF0ZSAqbmV3X2Nvbm5fc3RhdGUpCj4gK3sK
+PiArCXN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJpdiA9IHRvX2k5MTUoY29ubi0+ZGV2
+KTsKPiArCXN0cnVjdCBkcm1fYXRvbWljX3N0YXRlICpzdGF0ZSA9IG5ld19jb25uX3N0YXRlLT5z
+dGF0ZTsKPiArCXN0cnVjdCBkcm1fY29ubmVjdG9yX3N0YXRlICpvbGRfY29ubl9zdGF0ZSA9Cj4g
+KwkJZHJtX2F0b21pY19nZXRfb2xkX2Nvbm5lY3Rvcl9zdGF0ZShzdGF0ZSwgY29ubik7Cj4gKwlz
+dHJ1Y3QgZHJtX2NydGMgKm5ld19jcnRjID0gbmV3X2Nvbm5fc3RhdGUtPmNydGM7Cj4gKwlzdHJ1
+Y3QgZHJtX2NydGMgKm9sZF9jcnRjID0gb2xkX2Nvbm5fc3RhdGUtPmNydGM7Cj4gKwllbnVtIHRy
+YW5zY29kZXIgb2xkX21hc3Rlcl90cmFucyA9IFRSQU5TQ09ERVJfSU5WQUxJRDsKPiArCWVudW0g
+dHJhbnNjb2RlciBuZXdfbWFzdGVyX3RyYW5zID0gVFJBTlNDT0RFUl9JTlZBTElEOwo+ICsJc3Ry
+dWN0IGRybV9jcnRjX3N0YXRlICpuZXdfY3J0Y19zdGF0ZSwgKm9sZF9jcnRjX3N0YXRlOwo+ICsK
+PiArCWlmIChJTlRFTF9HRU4oZGV2X3ByaXYpIDwgMTIpCj4gKwkJcmV0dXJuIDA7Cj4gKwo+ICsJ
+aWYgKG9sZF9jcnRjKSB7Cj4gKwkJc3RydWN0IGludGVsX2NydGNfc3RhdGUgKmludGVsX2NydGNf
+c3RhdGU7Cj4gKwo+ICsJCW9sZF9jcnRjX3N0YXRlID0gZHJtX2F0b21pY19nZXRfbmV3X2NydGNf
+c3RhdGUoc3RhdGUsIG9sZF9jcnRjKTsKPiArCQlpbnRlbF9jcnRjX3N0YXRlID0gdG9faW50ZWxf
+Y3J0Y19zdGF0ZShvbGRfY3J0Y19zdGF0ZSk7Cj4gKwkJb2xkX21hc3Rlcl90cmFucyA9IGludGVs
+X2NydGNfc3RhdGUtPm1zdF9tYXN0ZXJfdHJhbnM7Cj4gKwl9Cj4gKwo+ICsJaWYgKG5ld19jcnRj
+KSB7Cj4gKwkJc3RydWN0IGludGVsX2NydGNfc3RhdGUgKmludGVsX2NydGNfc3RhdGU7Cj4gKwo+
+ICsJCW5ld19jcnRjX3N0YXRlID0gZHJtX2F0b21pY19nZXRfbmV3X2NydGNfc3RhdGUoc3RhdGUs
+IG5ld19jcnRjKTsKPiArCQlpbnRlbF9jcnRjX3N0YXRlID0gdG9faW50ZWxfY3J0Y19zdGF0ZShu
+ZXdfY3J0Y19zdGF0ZSk7Cj4gKwkJbmV3X21hc3Rlcl90cmFucyA9IG1zdF9jb21wdXRlX21hc3Rl
+cl90cmFucyhzdGF0ZSwgY29ubik7Cj4gKwl9Cj4gKwo+ICsJaWYgKG9sZF9jcnRjICYmIG9sZF9t
+YXN0ZXJfdHJhbnMgIT0gbmV3X21hc3Rlcl90cmFucykKPiArCQlvbGRfY3J0Y19zdGF0ZS0+bW9k
+ZV9jaGFuZ2VkID0gdHJ1ZTsKPiArCj4gKwlpZiAobmV3X2NydGMgJiYgb2xkX21hc3Rlcl90cmFu
+cyAhPSBuZXdfbWFzdGVyX3RyYW5zKQo+ICsJCW5ld19jcnRjX3N0YXRlLT5tb2RlX2NoYW5nZWQg
+PSB0cnVlOwo+ICsKPiAgCXJldHVybiAwOwo+ICB9Cj4gIAo+IEBAIC0xNjgsNiArMjU4LDEwIEBA
+IGludGVsX2RwX21zdF9hdG9taWNfY2hlY2soc3RydWN0IGRybV9jb25uZWN0b3IgKmNvbm5lY3Rv
+ciwKPiAgCWlmIChyZXQpCj4gIAkJcmV0dXJuIHJldDsKPiAgCj4gKwlyZXQgPSBpbnRlbF9kcF9t
+c3RfbWFzdGVyX3RyYW5zX2NoZWNrKGNvbm5lY3RvciwgbmV3X2Nvbm5fc3RhdGUpOwo+ICsJaWYg
+KHJldCkKPiArCQlyZXR1cm4gcmV0Owo+ICsKPiAgCWlmICghb2xkX2Nvbm5fc3RhdGUtPmNydGMp
+Cj4gIAkJcmV0dXJuIDA7Cj4gIAo+IEBAIC02NjYsMyArNzYwLDYyIEBAIGludGVsX2RwX21zdF9l
+bmNvZGVyX2NsZWFudXAoc3RydWN0IGludGVsX2RpZ2l0YWxfcG9ydCAqaW50ZWxfZGlnX3BvcnQp
+Cj4gIAlkcm1fZHBfbXN0X3RvcG9sb2d5X21ncl9kZXN0cm95KCZpbnRlbF9kcC0+bXN0X21ncik7
+Cj4gIAkvKiBlbmNvZGVycyB3aWxsIGdldCBraWxsZWQgYnkgbm9ybWFsIGNsZWFudXAgKi8KPiAg
+fQo+ICsKPiArLyoqCj4gKyAqIGludGVsX2RwX21zdF9hdG9taWNfYWRkX2FmZmVjdGVkX2NydGNz
+IC0gQWRkIGFsbCBDUlRDcyB0aGF0IHNoYXJlIHRoZSBNU1QKPiArICogc3RyZWFtIHdpdGggdGhl
+IENSVENzIGluIHRoZSBjdXJyZW50IGF0b21pYyBzdGF0ZS4KPiArICogQHN0YXRlOiBzdGF0ZSB0
+byBhZGQgQ1JUQ3MKPiArICoKPiArICogSXQgaXMgbmVlZGVkIGFkZCB0aGUgQ1JUQ3MgdHJpZ2dl
+ciBhIGNhbGwgdG8gYXRvbWljX2NoZWNrKCkgdG8KPiArICogZXZlcnkgY29ubmVjdG9yIGF0dGFj
+aGVkIHRvIHRoZSBDUlRDIGluIGNhc2UgYSBuZXcgbWFzdGVyIHRyYW5zY29kZXIgd2lsbAo+ICsg
+KiBiZSBuZWVkZWQuCj4gKyAqLwo+ICtpbnQgaW50ZWxfZHBfbXN0X2F0b21pY19hZGRfYWZmZWN0
+ZWRfY3J0Y3Moc3RydWN0IGludGVsX2F0b21pY19zdGF0ZSAqc3RhdGUpCj4gK3sKPiArCXN0cnVj
+dCBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJpdiA9IHRvX2k5MTUoc3RhdGUtPmJhc2UuZGV2KTsK
+PiArCXN0cnVjdCBpbnRlbF9kaWdpdGFsX2Nvbm5lY3Rvcl9zdGF0ZSAqaW50ZWxfY29ubl9zdGF0
+ZTsKPiArCXN0cnVjdCBkcm1fZGV2aWNlICpkZXYgPSBzdGF0ZS0+YmFzZS5kZXY7Cj4gKwlzdHJ1
+Y3QgaW50ZWxfY29ubmVjdG9yICppbnRlbF9jb25uOwo+ICsJaW50IGk7Cj4gKwo+ICsJaWYgKElO
+VEVMX0dFTihkZXZfcHJpdikgPCAxMikKPiArCQlyZXR1cm4gMDsKPiArCj4gKwlmb3JfZWFjaF9u
+ZXdfaW50ZWxfY29ubmVjdG9yX2luX3N0YXRlKHN0YXRlLCBpbnRlbF9jb25uLCBpbnRlbF9jb25u
+X3N0YXRlLCBpKSB7Cj4gKwkJc3RydWN0IGRybV9jb25uZWN0b3JfbGlzdF9pdGVyIGNvbm5fbGlz
+dF9pdGVyOwo+ICsJCXN0cnVjdCBkcm1fY29ubmVjdG9yICpjb25uX2l0ZXI7Cj4gKwo+ICsJCWlm
+ICghaW50ZWxfY29ubi0+bXN0X3BvcnQpCj4gKwkJCWNvbnRpbnVlOwo+ICsKPiArCQlkcm1fY29u
+bmVjdG9yX2xpc3RfaXRlcl9iZWdpbihkZXYsICZjb25uX2xpc3RfaXRlcik7Cj4gKwkJZHJtX2Zv
+cl9lYWNoX2Nvbm5lY3Rvcl9pdGVyKGNvbm5faXRlciwgJmNvbm5fbGlzdF9pdGVyKSB7Cj4gKwkJ
+CXN0cnVjdCBkcm1fY29ubmVjdG9yX3N0YXRlICpjb25uX2l0ZXJfc3RhdGU7Cj4gKwkJCXN0cnVj
+dCBpbnRlbF9jb25uZWN0b3IgKmludGVsX2Nvbm5faXRlcjsKPiArCQkJc3RydWN0IGRybV9jcnRj
+X3N0YXRlICpjcnRjX3N0YXRlOwo+ICsKPiArCQkJaW50ZWxfY29ubl9pdGVyID0gdG9faW50ZWxf
+Y29ubmVjdG9yKGNvbm5faXRlcik7Cj4gKwo+ICsJCQlpZiAoaW50ZWxfY29ubl9pdGVyLT5tc3Rf
+cG9ydCAhPSBpbnRlbF9jb25uLT5tc3RfcG9ydCkKPiArCQkJCWNvbnRpbnVlOwo+ICsKPiArCQkJ
+Y29ubl9pdGVyX3N0YXRlID0gZHJtX2F0b21pY19nZXRfY29ubmVjdG9yX3N0YXRlKCZzdGF0ZS0+
+YmFzZSwgY29ubl9pdGVyKTsKPiArCQkJaWYgKElTX0VSUihjb25uX2l0ZXJfc3RhdGUpKSB7Cj4g
+KwkJCQlkcm1fY29ubmVjdG9yX2xpc3RfaXRlcl9lbmQoJmNvbm5fbGlzdF9pdGVyKTsKPiArCQkJ
+CXJldHVybiBQVFJfRVJSKGNvbm5faXRlcl9zdGF0ZSk7Cj4gKwkJCX0KPiArCQkJaWYgKCFjb25u
+X2l0ZXJfc3RhdGUtPmNydGMpCj4gKwkJCQljb250aW51ZTsKPiArCj4gKwkJCWNydGNfc3RhdGUg
+PSBkcm1fYXRvbWljX2dldF9jcnRjX3N0YXRlKCZzdGF0ZS0+YmFzZSwKPiArCQkJCQkJCSAgICAg
+ICBjb25uX2l0ZXJfc3RhdGUtPmNydGMpOwo+ICsJCQlpZiAoSVNfRVJSKGNydGNfc3RhdGUpKSB7
+Cj4gKwkJCQlkcm1fY29ubmVjdG9yX2xpc3RfaXRlcl9lbmQoJmNvbm5fbGlzdF9pdGVyKTsKPiAr
+CQkJCXJldHVybiBQVFJfRVJSKGNydGNfc3RhdGUpOwo+ICsJCQl9Cj4gKwkJfQo+ICsJCWRybV9j
+b25uZWN0b3JfbGlzdF9pdGVyX2VuZCgmY29ubl9saXN0X2l0ZXIpOwo+ICsJfQo+ICsKPiArCXJl
+dHVybiAwOwo+ICt9Cj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkv
+aW50ZWxfZHBfbXN0LmggYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwX21z
+dC5oCj4gaW5kZXggZjY2MGFkODBkYjA0Li4xNzM1OThhYTgxZDIgMTAwNjQ0Cj4gLS0tIGEvZHJp
+dmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcF9tc3QuaAo+ICsrKyBiL2RyaXZlcnMv
+Z3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHBfbXN0LmgKPiBAQCAtNiwxMCArNiwxMiBAQAo+
+ICAjaWZuZGVmIF9fSU5URUxfRFBfTVNUX0hfXwo+ICAjZGVmaW5lIF9fSU5URUxfRFBfTVNUX0hf
+Xwo+ICAKPiArc3RydWN0IGludGVsX2F0b21pY19zdGF0ZTsKPiAgc3RydWN0IGludGVsX2RpZ2l0
+YWxfcG9ydDsKPiAgCj4gIGludCBpbnRlbF9kcF9tc3RfZW5jb2Rlcl9pbml0KHN0cnVjdCBpbnRl
+bF9kaWdpdGFsX3BvcnQgKmludGVsX2RpZ19wb3J0LCBpbnQgY29ubl9pZCk7Cj4gIHZvaWQgaW50
+ZWxfZHBfbXN0X2VuY29kZXJfY2xlYW51cChzdHJ1Y3QgaW50ZWxfZGlnaXRhbF9wb3J0ICppbnRl
+bF9kaWdfcG9ydCk7Cj4gK2ludCBpbnRlbF9kcF9tc3RfYXRvbWljX2FkZF9hZmZlY3RlZF9jcnRj
+cyhzdHJ1Y3QgaW50ZWxfYXRvbWljX3N0YXRlICpzdGF0ZSk7Cj4gIGludCBpbnRlbF9kcF9tc3Rf
+ZW5jb2Rlcl9hY3RpdmVfbGlua3Moc3RydWN0IGludGVsX2RpZ2l0YWxfcG9ydCAqaW50ZWxfZGln
+X3BvcnQpOwo+ICAKPiAgI2VuZGlmIC8qIF9fSU5URUxfRFBfTVNUX0hfXyAqLwo+IGRpZmYgLS1n
+aXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3JlZy5oIGIvZHJpdmVycy9ncHUvZHJtL2k5
+MTUvaTkxNV9yZWcuaAo+IGluZGV4IDA0NWQ0MjFlOWE3YS4uYTU1ZjE1ZWI2MTc1IDEwMDY0NAo+
+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfcmVnLmgKPiArKysgYi9kcml2ZXJzL2dw
+dS9kcm0vaTkxNS9pOTE1X3JlZy5oCj4gQEAgLTk0MTksNiArOTQxOSw5IEBAIGVudW0gc2tsX3Bv
+d2VyX2dhdGUgewo+ICAjZGVmaW5lICBUUkFOU19ERElfRURQX0lOUFVUX0FfT05PRkYJKDQgPDwg
+MTIpCj4gICNkZWZpbmUgIFRSQU5TX0RESV9FRFBfSU5QVVRfQl9PTk9GRgkoNSA8PCAxMikKPiAg
+I2RlZmluZSAgVFJBTlNfRERJX0VEUF9JTlBVVF9DX09OT0ZGCSg2IDw8IDEyKQo+ICsjZGVmaW5l
+ICBUUkFOU19ERElfTVNUX1RSQU5TUE9SVF9TRUxFQ1RfU0hJRlQJCTEwIC8qIFRHTCsgKi8KPiAr
+I2RlZmluZSAgVFJBTlNfRERJX01TVF9UUkFOU1BPUlRfU0VMRUNUX01BU0sJCSgweDMgPDwgMTAp
+Cj4gKyNkZWZpbmUgIFRSQU5TX0RESV9NU1RfVFJBTlNQT1JUX1NFTEVDVF9EUFRQKHRyYW5zKQko
+KHRyYW5zKSA8PCAxMCkKPiAgI2RlZmluZSAgVFJBTlNfRERJX0hEQ1BfU0lHTkFMTElORwkoMSA8
+PCA5KQo+ICAjZGVmaW5lICBUUkFOU19ERElfRFBfVkNfUEFZTE9BRF9BTExPQwkoMSA8PCA4KQo+
+ICAjZGVmaW5lICBUUkFOU19ERElfSERNSV9TQ1JBTUJMRVJfQ1RTX0VOQUJMRSAoMSA8PCA3KQoK
+LS0gCkphbmkgTmlrdWxhLCBJbnRlbCBPcGVuIFNvdXJjZSBHcmFwaGljcyBDZW50ZXIKX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxp
+bmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJl
+ZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
