@@ -1,32 +1,60 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 775359B643
-	for <lists+intel-gfx@lfdr.de>; Fri, 23 Aug 2019 20:37:33 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C1E59B677
+	for <lists+intel-gfx@lfdr.de>; Fri, 23 Aug 2019 20:54:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 28A286ED19;
-	Fri, 23 Aug 2019 18:37:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 15F7E6E05F;
+	Fri, 23 Aug 2019 18:54:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 13B826ED17;
- Fri, 23 Aug 2019 18:37:30 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 3B027A010E;
- Fri, 23 Aug 2019 18:37:29 +0000 (UTC)
+Received: from mail-ed1-x544.google.com (mail-ed1-x544.google.com
+ [IPv6:2a00:1450:4864:20::544])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A8CF96E05F
+ for <intel-gfx@lists.freedesktop.org>; Fri, 23 Aug 2019 18:54:02 +0000 (UTC)
+Received: by mail-ed1-x544.google.com with SMTP id w5so14898923edl.8
+ for <intel-gfx@lists.freedesktop.org>; Fri, 23 Aug 2019 11:54:02 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=JgYakpos3TcFXliPxhIVrjo97uA/mlzVwer1bKfmpNU=;
+ b=NRKqpTaYWrf6DH4BZS/HSx942gXrPX+WcY73aFw9SEaDhzoV/oxnjob0nMFgbOcAB1
+ VxUjxTjXi9WMcwI0/UPPPWhYTUAjGQBKca8i6riRzdter8sHmAYBrrUuno5cpBn0Haz5
+ SG/waJWD3S2pfqV8hURfkiuHGyNpiTsOPnNfm68GCnyEAGMgBgEeM4q+LiLjfnm99Z+/
+ IGir2JUqmj+k7nn1P8ISNzxyGgxlbtyvRPaCnATbyRFOanwhIlj8Ef8MqMogJEaNyLlG
+ w83oHXDVyR+tFDBcCoJL8ynC4CPDyAB6MByYTqZZ7FmoniDQl1heKeTY6WrENlXToNLm
+ oTPQ==
+X-Gm-Message-State: APjAAAVKiJB9hDjeDd39RoIyz00+Vzf3NpvDVooJhJSEh8ggFz1+wGoJ
+ OU1WK1PQBwAhRFL1dQbSR2t/5WmNcitjrmNB6Kr3TEp22/o=
+X-Google-Smtp-Source: APXvYqzF51PH4w1d9JODuV5BRU7Pca3V08C2bQTVZeq+cUbt2y+F+/MLHGFevAgB/dZMJS5HOc5vGbY8qB46UF99RSQ=
+X-Received: by 2002:a50:e001:: with SMTP id e1mr6164679edl.177.1566586441214; 
+ Fri, 23 Aug 2019 11:54:01 -0700 (PDT)
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Fri, 23 Aug 2019 18:37:29 -0000
-Message-ID: <20190823183729.27174.73699@emeril.freedesktop.org>
-References: <20190823110147.31082-1-chris@chris-wilson.co.uk>
-X-Patchwork-Hint: ignore
-In-Reply-To: <20190823110147.31082-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?q?=E2=9C=97_Fi=2ECI=2EBAT=3A_failure_for_drm/?=
- =?utf-8?q?i915/selftests=3A_Teach_igt=5Fgpu=5Ffill=5Fdw=28=29_to_take_int?=
- =?utf-8?q?el=5Fcontext_=28rev2=29?=
+References: <20190808163608.28419-1-chris@chris-wilson.co.uk>
+ <CAOFGe94=pYgxJ_vDAG3iKYJkh1cJFTByiM4-vwy647sy+gX+fA@mail.gmail.com>
+ <CAOFGe95_=uAsR_1cANryAeB849gVf8gPei7wfzPjx1iBV_ZN=w@mail.gmail.com>
+ <16c74a90268.27ad.c6988b7ea6112e3e892765a0d4287e0c@jlekstrand.net>
+ <CAOFGe94unbH3jj=vaw3Ntkir8Lj5=YntMOXTAQ9mH+dbXCiTKg@mail.gmail.com>
+In-Reply-To: <CAOFGe94unbH3jj=vaw3Ntkir8Lj5=YntMOXTAQ9mH+dbXCiTKg@mail.gmail.com>
+From: Jason Ekstrand <jason@jlekstrand.net>
+Date: Fri, 23 Aug 2019 13:53:50 -0500
+Message-ID: <CAOFGe95wjMezeiO+1F73sV0W-wjFjpVYUpEmo_pnWzDpZ_jRgQ@mail.gmail.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>
+X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=jlekstrand-net.20150623.gappssmtp.com; s=20150623;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc;
+ bh=JgYakpos3TcFXliPxhIVrjo97uA/mlzVwer1bKfmpNU=;
+ b=HJ0H3ufJ+sscSCTnlEhzcErCUtHj2I4PuJArk3uwZKxWgPbIbJCwbmwJKvSEKGcUJe
+ wht+pinwiZ59BJ1FF2P366YFlkNpmuof8bqXjHJ3J/Bpk/jTWEFJFXkUrYgFyXD5BF9z
+ ZGur2WQqagBndDOFPkHaB0gYQDNeTRMV2m8+CwzwlHOwufL05GpvFzVysMhOMxegI6GZ
+ 44K5rasT0/awV2mg/RGSo7MSjDOi1eJ1//AnWjqLxIo3fWXa3BC8LmB3VA5AGhVIWh44
+ woc03bJyyRVliI3or6v2etLT2S5Roo0mdtEZ9MiWlqvxjEN3nfNJALUvd93ByL7thwGg
+ O0Cg==
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Restore relaxed padding
+ (OCL_OOB_SUPPRES_ENABLE) for skl+
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -39,233 +67,253 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Intel GFX <intel-gfx@lists.freedesktop.org>, stable@vger.kernel.org
+Content-Type: multipart/mixed; boundary="===============1373805461=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-PT0gU2VyaWVzIERldGFpbHMgPT0KClNlcmllczogZHJtL2k5MTUvc2VsZnRlc3RzOiBUZWFjaCBp
-Z3RfZ3B1X2ZpbGxfZHcoKSB0byB0YWtlIGludGVsX2NvbnRleHQgKHJldjIpClVSTCAgIDogaHR0
-cHM6Ly9wYXRjaHdvcmsuZnJlZWRlc2t0b3Aub3JnL3Nlcmllcy82NTcwMS8KU3RhdGUgOiBmYWls
-dXJlCgo9PSBTdW1tYXJ5ID09CgpDSSBCdWcgTG9nIC0gY2hhbmdlcyBmcm9tIENJX0RSTV82Nzc3
-IC0+IFBhdGNod29ya18xNDE3Mgo9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
-PT09PT09PT09PT09PT09CgpTdW1tYXJ5Ci0tLS0tLS0KCiAgKipGQUlMVVJFKioKCiAgU2VyaW91
-cyB1bmtub3duIGNoYW5nZXMgY29taW5nIHdpdGggUGF0Y2h3b3JrXzE0MTcyIGFic29sdXRlbHkg
-bmVlZCB0byBiZQogIHZlcmlmaWVkIG1hbnVhbGx5LgogIAogIElmIHlvdSB0aGluayB0aGUgcmVw
-b3J0ZWQgY2hhbmdlcyBoYXZlIG5vdGhpbmcgdG8gZG8gd2l0aCB0aGUgY2hhbmdlcwogIGludHJv
-ZHVjZWQgaW4gUGF0Y2h3b3JrXzE0MTcyLCBwbGVhc2Ugbm90aWZ5IHlvdXIgYnVnIHRlYW0gdG8g
-YWxsb3cgdGhlbQogIHRvIGRvY3VtZW50IHRoaXMgbmV3IGZhaWx1cmUgbW9kZSwgd2hpY2ggd2ls
-bCByZWR1Y2UgZmFsc2UgcG9zaXRpdmVzIGluIENJLgoKICBFeHRlcm5hbCBVUkw6IGh0dHBzOi8v
-aW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAvUGF0Y2h3b3JrXzE0MTcyLwoKUG9zc2li
-bGUgbmV3IGlzc3VlcwotLS0tLS0tLS0tLS0tLS0tLS0tCgogIEhlcmUgYXJlIHRoZSB1bmtub3du
-IGNoYW5nZXMgdGhhdCBtYXkgaGF2ZSBiZWVuIGludHJvZHVjZWQgaW4gUGF0Y2h3b3JrXzE0MTcy
-OgoKIyMjIElHVCBjaGFuZ2VzICMjIwoKIyMjIyBQb3NzaWJsZSByZWdyZXNzaW9ucyAjIyMjCgog
-ICogaWd0QGk5MTVfc2VsZnRlc3RAbGl2ZV9odWdlcGFnZXM6CiAgICAtIGZpLXNuYi0yNTIwbTog
-ICAgICAgW1BBU1NdWzFdIC0+IFtJTkNPTVBMRVRFXVsyXQogICBbMV06IGh0dHBzOi8vaW50ZWwt
-Z2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAvQ0lfRFJNXzY3NzcvZmktc25iLTI1MjBtL2lndEBp
-OTE1X3NlbGZ0ZXN0QGxpdmVfaHVnZXBhZ2VzLmh0bWwKICAgWzJdOiBodHRwczovL2ludGVsLWdm
-eC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlwL1BhdGNod29ya18xNDE3Mi9maS1zbmItMjUyMG0vaWd0
-QGk5MTVfc2VsZnRlc3RAbGl2ZV9odWdlcGFnZXMuaHRtbAogICAgLSBmaS13aGwtdTogICAgICAg
-ICAgIFtQQVNTXVszXSAtPiBbSU5DT01QTEVURV1bNF0KICAgWzNdOiBodHRwczovL2ludGVsLWdm
-eC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlwL0NJX0RSTV82Nzc3L2ZpLXdobC11L2lndEBpOTE1X3Nl
-bGZ0ZXN0QGxpdmVfaHVnZXBhZ2VzLmh0bWwKICAgWzRdOiBodHRwczovL2ludGVsLWdmeC1jaS4w
-MS5vcmcvdHJlZS9kcm0tdGlwL1BhdGNod29ya18xNDE3Mi9maS13aGwtdS9pZ3RAaTkxNV9zZWxm
-dGVzdEBsaXZlX2h1Z2VwYWdlcy5odG1sCiAgICAtIGZpLWtibC03NTY3dTogICAgICAgW1BBU1Nd
-WzVdIC0+IFtJTkNPTVBMRVRFXVs2XQogICBbNV06IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9y
-Zy90cmVlL2RybS10aXAvQ0lfRFJNXzY3NzcvZmkta2JsLTc1Njd1L2lndEBpOTE1X3NlbGZ0ZXN0
-QGxpdmVfaHVnZXBhZ2VzLmh0bWwKICAgWzZdOiBodHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcv
-dHJlZS9kcm0tdGlwL1BhdGNod29ya18xNDE3Mi9maS1rYmwtNzU2N3UvaWd0QGk5MTVfc2VsZnRl
-c3RAbGl2ZV9odWdlcGFnZXMuaHRtbAogICAgLSBmaS1iZHctZ3Z0ZHZtOiAgICAgIFtQQVNTXVs3
-XSAtPiBbSU5DT01QTEVURV1bOF0KICAgWzddOiBodHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcv
-dHJlZS9kcm0tdGlwL0NJX0RSTV82Nzc3L2ZpLWJkdy1ndnRkdm0vaWd0QGk5MTVfc2VsZnRlc3RA
-bGl2ZV9odWdlcGFnZXMuaHRtbAogICBbOF06IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90
-cmVlL2RybS10aXAvUGF0Y2h3b3JrXzE0MTcyL2ZpLWJkdy1ndnRkdm0vaWd0QGk5MTVfc2VsZnRl
-c3RAbGl2ZV9odWdlcGFnZXMuaHRtbAogICAgLSBmaS1rYmwtZ3VjOiAgICAgICAgIFtQQVNTXVs5
-XSAtPiBbSU5DT01QTEVURV1bMTBdCiAgIFs5XTogaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3Jn
-L3RyZWUvZHJtLXRpcC9DSV9EUk1fNjc3Ny9maS1rYmwtZ3VjL2lndEBpOTE1X3NlbGZ0ZXN0QGxp
-dmVfaHVnZXBhZ2VzLmh0bWwKICAgWzEwXTogaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3Ry
-ZWUvZHJtLXRpcC9QYXRjaHdvcmtfMTQxNzIvZmkta2JsLWd1Yy9pZ3RAaTkxNV9zZWxmdGVzdEBs
-aXZlX2h1Z2VwYWdlcy5odG1sCiAgICAtIGZpLWNmbC04MTA5dTogICAgICAgW1BBU1NdWzExXSAt
-PiBbSU5DT01QTEVURV1bMTJdCiAgIFsxMV06IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90
-cmVlL2RybS10aXAvQ0lfRFJNXzY3NzcvZmktY2ZsLTgxMDl1L2lndEBpOTE1X3NlbGZ0ZXN0QGxp
-dmVfaHVnZXBhZ2VzLmh0bWwKICAgWzEyXTogaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3Ry
-ZWUvZHJtLXRpcC9QYXRjaHdvcmtfMTQxNzIvZmktY2ZsLTgxMDl1L2lndEBpOTE1X3NlbGZ0ZXN0
-QGxpdmVfaHVnZXBhZ2VzLmh0bWwKICAgIC0gZmkta2JsLXI6ICAgICAgICAgICBbUEFTU11bMTNd
-IC0+IFtJTkNPTVBMRVRFXVsxNF0KICAgWzEzXTogaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3Jn
-L3RyZWUvZHJtLXRpcC9DSV9EUk1fNjc3Ny9maS1rYmwtci9pZ3RAaTkxNV9zZWxmdGVzdEBsaXZl
-X2h1Z2VwYWdlcy5odG1sCiAgIFsxNF06IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVl
-L2RybS10aXAvUGF0Y2h3b3JrXzE0MTcyL2ZpLWtibC1yL2lndEBpOTE1X3NlbGZ0ZXN0QGxpdmVf
-aHVnZXBhZ2VzLmh0bWwKICAgIC0gZmktc2tsLTYyNjB1OiAgICAgICBbUEFTU11bMTVdIC0+IFtJ
-TkNPTVBMRVRFXVsxNl0KICAgWzE1XTogaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUv
-ZHJtLXRpcC9DSV9EUk1fNjc3Ny9maS1za2wtNjI2MHUvaWd0QGk5MTVfc2VsZnRlc3RAbGl2ZV9o
-dWdlcGFnZXMuaHRtbAogICBbMTZdOiBodHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9k
-cm0tdGlwL1BhdGNod29ya18xNDE3Mi9maS1za2wtNjI2MHUvaWd0QGk5MTVfc2VsZnRlc3RAbGl2
-ZV9odWdlcGFnZXMuaHRtbAogICAgLSBmaS1za2wtNjc3MGhxOiAgICAgIFtQQVNTXVsxN10gLT4g
-W0lOQ09NUExFVEVdWzE4XQogICBbMTddOiBodHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJl
-ZS9kcm0tdGlwL0NJX0RSTV82Nzc3L2ZpLXNrbC02NzcwaHEvaWd0QGk5MTVfc2VsZnRlc3RAbGl2
-ZV9odWdlcGFnZXMuaHRtbAogICBbMThdOiBodHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJl
-ZS9kcm0tdGlwL1BhdGNod29ya18xNDE3Mi9maS1za2wtNjc3MGhxL2lndEBpOTE1X3NlbGZ0ZXN0
-QGxpdmVfaHVnZXBhZ2VzLmh0bWwKICAgIC0gZmktY2ZsLWd1YzogICAgICAgICBbUEFTU11bMTld
-IC0+IFtJTkNPTVBMRVRFXVsyMF0KICAgWzE5XTogaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3Jn
-L3RyZWUvZHJtLXRpcC9DSV9EUk1fNjc3Ny9maS1jZmwtZ3VjL2lndEBpOTE1X3NlbGZ0ZXN0QGxp
-dmVfaHVnZXBhZ2VzLmh0bWwKICAgWzIwXTogaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3Ry
-ZWUvZHJtLXRpcC9QYXRjaHdvcmtfMTQxNzIvZmktY2ZsLWd1Yy9pZ3RAaTkxNV9zZWxmdGVzdEBs
-aXZlX2h1Z2VwYWdlcy5odG1sCiAgICAtIGZpLXNrbC1sbWVtOiAgICAgICAgW1BBU1NdWzIxXSAt
-PiBbSU5DT01QTEVURV1bMjJdCiAgIFsyMV06IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90
-cmVlL2RybS10aXAvQ0lfRFJNXzY3NzcvZmktc2tsLWxtZW0vaWd0QGk5MTVfc2VsZnRlc3RAbGl2
-ZV9odWdlcGFnZXMuaHRtbAogICBbMjJdOiBodHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJl
-ZS9kcm0tdGlwL1BhdGNod29ya18xNDE3Mi9maS1za2wtbG1lbS9pZ3RAaTkxNV9zZWxmdGVzdEBs
-aXZlX2h1Z2VwYWdlcy5odG1sCiAgICAtIGZpLXNrbC02NzAwazI6ICAgICAgW1BBU1NdWzIzXSAt
-PiBbSU5DT01QTEVURV1bMjRdCiAgIFsyM106IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90
-cmVlL2RybS10aXAvQ0lfRFJNXzY3NzcvZmktc2tsLTY3MDBrMi9pZ3RAaTkxNV9zZWxmdGVzdEBs
-aXZlX2h1Z2VwYWdlcy5odG1sCiAgIFsyNF06IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90
-cmVlL2RybS10aXAvUGF0Y2h3b3JrXzE0MTcyL2ZpLXNrbC02NzAwazIvaWd0QGk5MTVfc2VsZnRl
-c3RAbGl2ZV9odWdlcGFnZXMuaHRtbAogICAgLSBmaS1jZmwtODcwMGs6ICAgICAgIFtQQVNTXVsy
-NV0gLT4gW0lOQ09NUExFVEVdWzI2XQogICBbMjVdOiBodHRwczovL2ludGVsLWdmeC1jaS4wMS5v
-cmcvdHJlZS9kcm0tdGlwL0NJX0RSTV82Nzc3L2ZpLWNmbC04NzAway9pZ3RAaTkxNV9zZWxmdGVz
-dEBsaXZlX2h1Z2VwYWdlcy5odG1sCiAgIFsyNl06IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9y
-Zy90cmVlL2RybS10aXAvUGF0Y2h3b3JrXzE0MTcyL2ZpLWNmbC04NzAway9pZ3RAaTkxNV9zZWxm
-dGVzdEBsaXZlX2h1Z2VwYWdlcy5odG1sCiAgICAtIGZpLWJkdy01NTU3dTogICAgICAgW1BBU1Nd
-WzI3XSAtPiBbSU5DT01QTEVURV1bMjhdCiAgIFsyN106IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAx
-Lm9yZy90cmVlL2RybS10aXAvQ0lfRFJNXzY3NzcvZmktYmR3LTU1NTd1L2lndEBpOTE1X3NlbGZ0
-ZXN0QGxpdmVfaHVnZXBhZ2VzLmh0bWwKICAgWzI4XTogaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEu
-b3JnL3RyZWUvZHJtLXRpcC9QYXRjaHdvcmtfMTQxNzIvZmktYmR3LTU1NTd1L2lndEBpOTE1X3Nl
-bGZ0ZXN0QGxpdmVfaHVnZXBhZ2VzLmh0bWwKICAgIC0gZmktc2tsLTY2MDB1OiAgICAgICBbUEFT
-U11bMjldIC0+IFtJTkNPTVBMRVRFXVszMF0KICAgWzI5XTogaHR0cHM6Ly9pbnRlbC1nZngtY2ku
-MDEub3JnL3RyZWUvZHJtLXRpcC9DSV9EUk1fNjc3Ny9maS1za2wtNjYwMHUvaWd0QGk5MTVfc2Vs
-ZnRlc3RAbGl2ZV9odWdlcGFnZXMuaHRtbAogICBbMzBdOiBodHRwczovL2ludGVsLWdmeC1jaS4w
-MS5vcmcvdHJlZS9kcm0tdGlwL1BhdGNod29ya18xNDE3Mi9maS1za2wtNjYwMHUvaWd0QGk5MTVf
-c2VsZnRlc3RAbGl2ZV9odWdlcGFnZXMuaHRtbAogICAgLSBmaS1za2wtZ3VjOiAgICAgICAgIFtQ
-QVNTXVszMV0gLT4gW0lOQ09NUExFVEVdWzMyXQogICBbMzFdOiBodHRwczovL2ludGVsLWdmeC1j
-aS4wMS5vcmcvdHJlZS9kcm0tdGlwL0NJX0RSTV82Nzc3L2ZpLXNrbC1ndWMvaWd0QGk5MTVfc2Vs
-ZnRlc3RAbGl2ZV9odWdlcGFnZXMuaHRtbAogICBbMzJdOiBodHRwczovL2ludGVsLWdmeC1jaS4w
-MS5vcmcvdHJlZS9kcm0tdGlwL1BhdGNod29ya18xNDE3Mi9maS1za2wtZ3VjL2lndEBpOTE1X3Nl
-bGZ0ZXN0QGxpdmVfaHVnZXBhZ2VzLmh0bWwKICAgIC0gZmkta2JsLTc1MDB1OiAgICAgICBbUEFT
-U11bMzNdIC0+IFtJTkNPTVBMRVRFXVszNF0KICAgWzMzXTogaHR0cHM6Ly9pbnRlbC1nZngtY2ku
-MDEub3JnL3RyZWUvZHJtLXRpcC9DSV9EUk1fNjc3Ny9maS1rYmwtNzUwMHUvaWd0QGk5MTVfc2Vs
-ZnRlc3RAbGl2ZV9odWdlcGFnZXMuaHRtbAogICBbMzRdOiBodHRwczovL2ludGVsLWdmeC1jaS4w
-MS5vcmcvdHJlZS9kcm0tdGlwL1BhdGNod29ya18xNDE3Mi9maS1rYmwtNzUwMHUvaWd0QGk5MTVf
-c2VsZnRlc3RAbGl2ZV9odWdlcGFnZXMuaHRtbAogICAgLSBmaS1rYmwtODgwOWc6ICAgICAgIFtQ
-QVNTXVszNV0gLT4gW0lOQ09NUExFVEVdWzM2XQogICBbMzVdOiBodHRwczovL2ludGVsLWdmeC1j
-aS4wMS5vcmcvdHJlZS9kcm0tdGlwL0NJX0RSTV82Nzc3L2ZpLWtibC04ODA5Zy9pZ3RAaTkxNV9z
-ZWxmdGVzdEBsaXZlX2h1Z2VwYWdlcy5odG1sCiAgIFszNl06IGh0dHBzOi8vaW50ZWwtZ2Z4LWNp
-LjAxLm9yZy90cmVlL2RybS10aXAvUGF0Y2h3b3JrXzE0MTcyL2ZpLWtibC04ODA5Zy9pZ3RAaTkx
-NV9zZWxmdGVzdEBsaXZlX2h1Z2VwYWdlcy5odG1sCiAgICAtIGZpLXNrbC1ndnRkdm06ICAgICAg
-W1BBU1NdWzM3XSAtPiBbSU5DT01QTEVURV1bMzhdCiAgIFszN106IGh0dHBzOi8vaW50ZWwtZ2Z4
-LWNpLjAxLm9yZy90cmVlL2RybS10aXAvQ0lfRFJNXzY3NzcvZmktc2tsLWd2dGR2bS9pZ3RAaTkx
-NV9zZWxmdGVzdEBsaXZlX2h1Z2VwYWdlcy5odG1sCiAgIFszOF06IGh0dHBzOi8vaW50ZWwtZ2Z4
-LWNpLjAxLm9yZy90cmVlL2RybS10aXAvUGF0Y2h3b3JrXzE0MTcyL2ZpLXNrbC1ndnRkdm0vaWd0
-QGk5MTVfc2VsZnRlc3RAbGl2ZV9odWdlcGFnZXMuaHRtbAogICAgLSBmaS1rYmwteDEyNzU6ICAg
-ICAgIFtQQVNTXVszOV0gLT4gW0lOQ09NUExFVEVdWzQwXQogICBbMzldOiBodHRwczovL2ludGVs
-LWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlwL0NJX0RSTV82Nzc3L2ZpLWtibC14MTI3NS9pZ3RA
-aTkxNV9zZWxmdGVzdEBsaXZlX2h1Z2VwYWdlcy5odG1sCiAgIFs0MF06IGh0dHBzOi8vaW50ZWwt
-Z2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAvUGF0Y2h3b3JrXzE0MTcyL2ZpLWtibC14MTI3NS9p
-Z3RAaTkxNV9zZWxmdGVzdEBsaXZlX2h1Z2VwYWdlcy5odG1sCiAgICAtIGZpLXNrbC1pb21tdTog
-ICAgICAgW1BBU1NdWzQxXSAtPiBbSU5DT01QTEVURV1bNDJdCiAgIFs0MV06IGh0dHBzOi8vaW50
-ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAvQ0lfRFJNXzY3NzcvZmktc2tsLWlvbW11L2ln
-dEBpOTE1X3NlbGZ0ZXN0QGxpdmVfaHVnZXBhZ2VzLmh0bWwKICAgWzQyXTogaHR0cHM6Ly9pbnRl
-bC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9QYXRjaHdvcmtfMTQxNzIvZmktc2tsLWlvbW11
-L2lndEBpOTE1X3NlbGZ0ZXN0QGxpdmVfaHVnZXBhZ2VzLmh0bWwKCiAgKiBpZ3RAcnVubmVyQGFi
-b3J0ZWQ6CiAgICAtIGZpLWtibC1ndWM6ICAgICAgICAgTk9UUlVOIC0+IFtGQUlMXVs0M10KICAg
-WzQzXTogaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9QYXRjaHdvcmtf
-MTQxNzIvZmkta2JsLWd1Yy9pZ3RAcnVubmVyQGFib3J0ZWQuaHRtbAoKICAKS25vd24gaXNzdWVz
-Ci0tLS0tLS0tLS0tLQoKICBIZXJlIGFyZSB0aGUgY2hhbmdlcyBmb3VuZCBpbiBQYXRjaHdvcmtf
-MTQxNzIgdGhhdCBjb21lIGZyb20ga25vd24gaXNzdWVzOgoKIyMjIElHVCBjaGFuZ2VzICMjIwoK
-IyMjIyBJc3N1ZXMgaGl0ICMjIyMKCiAgKiBpZ3RAZ2VtX21tYXBfZ3R0QGJhc2ljLXNob3J0Ogog
-ICAgLSBmaS1pY2wtdTM6ICAgICAgICAgIFtQQVNTXVs0NF0gLT4gW0RNRVNHLVdBUk5dWzQ1XSAo
-W2ZkbyMxMDc3MjRdKQogICBbNDRdOiBodHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9k
-cm0tdGlwL0NJX0RSTV82Nzc3L2ZpLWljbC11My9pZ3RAZ2VtX21tYXBfZ3R0QGJhc2ljLXNob3J0
-Lmh0bWwKICAgWzQ1XTogaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9Q
-YXRjaHdvcmtfMTQxNzIvZmktaWNsLXUzL2lndEBnZW1fbW1hcF9ndHRAYmFzaWMtc2hvcnQuaHRt
-bAoKICAqIGlndEBpOTE1X3NlbGZ0ZXN0QGxpdmVfaHVnZXBhZ2VzOgogICAgLSBmaS1pY2wtdTM6
-ICAgICAgICAgIFtQQVNTXVs0Nl0gLT4gW0lOQ09NUExFVEVdWzQ3XSAoW2ZkbyMxMDc3MTNdIC8g
-W2ZkbyMxMDk2NjNdKQogICBbNDZdOiBodHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9k
-cm0tdGlwL0NJX0RSTV82Nzc3L2ZpLWljbC11My9pZ3RAaTkxNV9zZWxmdGVzdEBsaXZlX2h1Z2Vw
-YWdlcy5odG1sCiAgIFs0N106IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10
-aXAvUGF0Y2h3b3JrXzE0MTcyL2ZpLWljbC11My9pZ3RAaTkxNV9zZWxmdGVzdEBsaXZlX2h1Z2Vw
-YWdlcy5odG1sCiAgICAtIGZpLXNuYi0yNjAwOiAgICAgICAgW1BBU1NdWzQ4XSAtPiBbSU5DT01Q
-TEVURV1bNDldIChbZmRvIzEwNTQxMV0pCiAgIFs0OF06IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAx
-Lm9yZy90cmVlL2RybS10aXAvQ0lfRFJNXzY3NzcvZmktc25iLTI2MDAvaWd0QGk5MTVfc2VsZnRl
-c3RAbGl2ZV9odWdlcGFnZXMuaHRtbAogICBbNDldOiBodHRwczovL2ludGVsLWdmeC1jaS4wMS5v
-cmcvdHJlZS9kcm0tdGlwL1BhdGNod29ya18xNDE3Mi9maS1zbmItMjYwMC9pZ3RAaTkxNV9zZWxm
-dGVzdEBsaXZlX2h1Z2VwYWdlcy5odG1sCiAgICAtIGZpLWFwbC1ndWM6ICAgICAgICAgW1BBU1Nd
-WzUwXSAtPiBbSU5DT01QTEVURV1bNTFdIChbZmRvIzEwMzkyN10pCiAgIFs1MF06IGh0dHBzOi8v
-aW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAvQ0lfRFJNXzY3NzcvZmktYXBsLWd1Yy9p
-Z3RAaTkxNV9zZWxmdGVzdEBsaXZlX2h1Z2VwYWdlcy5odG1sCiAgIFs1MV06IGh0dHBzOi8vaW50
-ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAvUGF0Y2h3b3JrXzE0MTcyL2ZpLWFwbC1ndWMv
-aWd0QGk5MTVfc2VsZnRlc3RAbGl2ZV9odWdlcGFnZXMuaHRtbAogICAgLSBmaS1nbGstZHNpOiAg
-ICAgICAgIFtQQVNTXVs1Ml0gLT4gW0lOQ09NUExFVEVdWzUzXSAoW2ZkbyMxMDMzNTldIC8gW2su
-b3JnIzE5ODEzM10pCiAgIFs1Ml06IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2Ry
-bS10aXAvQ0lfRFJNXzY3NzcvZmktZ2xrLWRzaS9pZ3RAaTkxNV9zZWxmdGVzdEBsaXZlX2h1Z2Vw
-YWdlcy5odG1sCiAgIFs1M106IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10
-aXAvUGF0Y2h3b3JrXzE0MTcyL2ZpLWdsay1kc2kvaWd0QGk5MTVfc2VsZnRlc3RAbGl2ZV9odWdl
-cGFnZXMuaHRtbAogICAgLSBmaS1jbWwtdTI6ICAgICAgICAgIFtQQVNTXVs1NF0gLT4gW0lOQ09N
-UExFVEVdWzU1XSAoW2ZkbyMxMTA1NjZdKQogICBbNTRdOiBodHRwczovL2ludGVsLWdmeC1jaS4w
-MS5vcmcvdHJlZS9kcm0tdGlwL0NJX0RSTV82Nzc3L2ZpLWNtbC11Mi9pZ3RAaTkxNV9zZWxmdGVz
-dEBsaXZlX2h1Z2VwYWdlcy5odG1sCiAgIFs1NV06IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9y
-Zy90cmVlL2RybS10aXAvUGF0Y2h3b3JrXzE0MTcyL2ZpLWNtbC11Mi9pZ3RAaTkxNV9zZWxmdGVz
-dEBsaXZlX2h1Z2VwYWdlcy5odG1sCgogIAojIyMjIFBvc3NpYmxlIGZpeGVzICMjIyMKCiAgKiBp
-Z3RAZ2VtX2N0eF9zd2l0Y2hAbGVnYWN5LXJlbmRlcjoKICAgIC0gZmktYnh0LWRzaTogICAgICAg
-ICBbSU5DT01QTEVURV1bNTZdIChbZmRvIzEwMzkyN10gLyBbZmRvIzExMTM4MV0pIC0+IFtQQVNT
-XVs1N10KICAgWzU2XTogaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9D
-SV9EUk1fNjc3Ny9maS1ieHQtZHNpL2lndEBnZW1fY3R4X3N3aXRjaEBsZWdhY3ktcmVuZGVyLmh0
-bWwKICAgWzU3XTogaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9QYXRj
-aHdvcmtfMTQxNzIvZmktYnh0LWRzaS9pZ3RAZ2VtX2N0eF9zd2l0Y2hAbGVnYWN5LXJlbmRlci5o
-dG1sCgogICogaWd0QGk5MTVfbW9kdWxlX2xvYWRAcmVsb2FkLXdpdGgtZmF1bHQtaW5qZWN0aW9u
-OgogICAgLSBmaS1oc3ctNDc3MHI6ICAgICAgIFtETUVTRy1XQVJOXVs1OF0gKFtmZG8jMTA3NzMy
-XSkgLT4gW1BBU1NdWzU5XQogICBbNThdOiBodHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJl
-ZS9kcm0tdGlwL0NJX0RSTV82Nzc3L2ZpLWhzdy00Nzcwci9pZ3RAaTkxNV9tb2R1bGVfbG9hZEBy
-ZWxvYWQtd2l0aC1mYXVsdC1pbmplY3Rpb24uaHRtbAogICBbNTldOiBodHRwczovL2ludGVsLWdm
-eC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlwL1BhdGNod29ya18xNDE3Mi9maS1oc3ctNDc3MHIvaWd0
-QGk5MTVfbW9kdWxlX2xvYWRAcmVsb2FkLXdpdGgtZmF1bHQtaW5qZWN0aW9uLmh0bWwKCiAgCiMj
-IyMgV2FybmluZ3MgIyMjIwoKICAqIGlndEBrbXNfY2hhbWVsaXVtQGhkbWktaHBkLWZhc3Q6CiAg
-ICAtIGZpLWtibC03NTAwdTogICAgICAgW0ZBSUxdWzYwXSAoW2ZkbyMxMTE0MDddKSAtPiBbRkFJ
-TF1bNjFdIChbZmRvIzExMTA5Nl0pCiAgIFs2MF06IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9y
-Zy90cmVlL2RybS10aXAvQ0lfRFJNXzY3NzcvZmkta2JsLTc1MDB1L2lndEBrbXNfY2hhbWVsaXVt
-QGhkbWktaHBkLWZhc3QuaHRtbAogICBbNjFdOiBodHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcv
-dHJlZS9kcm0tdGlwL1BhdGNod29ya18xNDE3Mi9maS1rYmwtNzUwMHUvaWd0QGttc19jaGFtZWxp
-dW1AaGRtaS1ocGQtZmFzdC5odG1sCgogIAogIHtuYW1lfTogVGhpcyBlbGVtZW50IGlzIHN1cHBy
-ZXNzZWQuIFRoaXMgbWVhbnMgaXQgaXMgaWdub3JlZCB3aGVuIGNvbXB1dGluZwogICAgICAgICAg
-dGhlIHN0YXR1cyBvZiB0aGUgZGlmZmVyZW5jZSAoU1VDQ0VTUywgV0FSTklORywgb3IgRkFJTFVS
-RSkuCgogIFtmZG8jMTAzMzU5XTogaHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1
-Zy5jZ2k/aWQ9MTAzMzU5CiAgW2ZkbyMxMDM5MjddOiBodHRwczovL2J1Z3MuZnJlZWRlc2t0b3Au
-b3JnL3Nob3dfYnVnLmNnaT9pZD0xMDM5MjcKICBbZmRvIzEwNTQxMV06IGh0dHBzOi8vYnVncy5m
-cmVlZGVza3RvcC5vcmcvc2hvd19idWcuY2dpP2lkPTEwNTQxMQogIFtmZG8jMTA1NjAyXTogaHR0
-cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MTA1NjAyCiAgW2ZkbyMx
-MDYxMDddOiBodHRwczovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD0xMDYx
-MDcKICBbZmRvIzEwNjM1MF06IGh0dHBzOi8vYnVncy5mcmVlZGVza3RvcC5vcmcvc2hvd19idWcu
-Y2dpP2lkPTEwNjM1MAogIFtmZG8jMTA3NzEzXTogaHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9y
-Zy9zaG93X2J1Zy5jZ2k/aWQ9MTA3NzEzCiAgW2ZkbyMxMDc3MjRdOiBodHRwczovL2J1Z3MuZnJl
-ZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD0xMDc3MjQKICBbZmRvIzEwNzczMl06IGh0dHBz
-Oi8vYnVncy5mcmVlZGVza3RvcC5vcmcvc2hvd19idWcuY2dpP2lkPTEwNzczMgogIFtmZG8jMTA5
-MzA5XTogaHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MTA5MzA5
-CiAgW2ZkbyMxMDk2NjNdOiBodHRwczovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNn
-aT9pZD0xMDk2NjMKICBbZmRvIzEwOTY3M106IGh0dHBzOi8vYnVncy5mcmVlZGVza3RvcC5vcmcv
-c2hvd19idWcuY2dpP2lkPTEwOTY3MwogIFtmZG8jMTEwNTY2XTogaHR0cHM6Ly9idWdzLmZyZWVk
-ZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MTEwNTY2CiAgW2ZkbyMxMTEwNDVdOiBodHRwczov
-L2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD0xMTEwNDUKICBbZmRvIzExMTA5
-Nl06IGh0dHBzOi8vYnVncy5mcmVlZGVza3RvcC5vcmcvc2hvd19idWcuY2dpP2lkPTExMTA5Ngog
-IFtmZG8jMTExMzgxXTogaHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/
-aWQ9MTExMzgxCiAgW2ZkbyMxMTE0MDddOiBodHRwczovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3No
-b3dfYnVnLmNnaT9pZD0xMTE0MDcKICBbay5vcmcjMTk4MTMzXTogaHR0cHM6Ly9idWd6aWxsYS5r
-ZXJuZWwub3JnL3Nob3dfYnVnLmNnaT9pZD0xOTgxMzMKCgpQYXJ0aWNpcGF0aW5nIGhvc3RzICg1
-MyAtPiA0NykKLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tCgogIEFkZGl0aW9uYWwgKDIp
-OiBmaS1pY2wtdTIgZmktZ2RnLTU1MSAKICBNaXNzaW5nICAgICg4KTogZmkta2JsLXNvcmFrYSBm
-aS1pbGstbTU0MCBmaS1oc3ctNDIwMHUgZmktYnl0LXNxdWF3a3MgZmktYnN3LWN5YW4gZmktaWNs
-LXkgZmktYnl0LWNsYXBwZXIgZmktYmR3LXNhbXVzIAoKCkJ1aWxkIGNoYW5nZXMKLS0tLS0tLS0t
-LS0tLQoKICAqIENJOiBDSS0yMDE5MDUyOSAtPiBOb25lCiAgKiBMaW51eDogQ0lfRFJNXzY3Nzcg
-LT4gUGF0Y2h3b3JrXzE0MTcyCgogIENJLTIwMTkwNTI5OiAyMDE5MDUyOQogIENJX0RSTV82Nzc3
-OiBmMzAzNWQ3NGYyZDQ0YmFiM2RiYzY2NzNmNjY2MGI0NDdjYmVmZDU0IEAgZ2l0Oi8vYW5vbmdp
-dC5mcmVlZGVza3RvcC5vcmcvZ2Z4LWNpL2xpbnV4CiAgSUdUXzUxNDg6IDUwMzkwZGQ3YWRhY2Nh
-ZTIxY2FmYTg1Yjg2NmMxNzYwNmNlYzk0YzMgQCBnaXQ6Ly9hbm9uZ2l0LmZyZWVkZXNrdG9wLm9y
-Zy94b3JnL2FwcC9pbnRlbC1ncHUtdG9vbHMKICBQYXRjaHdvcmtfMTQxNzI6IDRhNDFkYzVhZjdm
-OGIyZGQ5MTYyNTY2YjcxOTQ4Y2JlMmViOTdmNWIgQCBnaXQ6Ly9hbm9uZ2l0LmZyZWVkZXNrdG9w
-Lm9yZy9nZngtY2kvbGludXgKCgo9PSBMaW51eCBjb21taXRzID09Cgo0YTQxZGM1YWY3ZjggZHJt
-L2k5MTUvc2VsZnRlc3RzOiBUZWFjaCBpZ3RfZ3B1X2ZpbGxfZHcoKSB0byB0YWtlIGludGVsX2Nv
-bnRleHQKCj09IExvZ3MgPT0KCkZvciBtb3JlIGRldGFpbHMgc2VlOiBodHRwczovL2ludGVsLWdm
-eC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlwL1BhdGNod29ya18xNDE3Mi8KX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJ
-bnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Au
-b3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
+--===============1373805461==
+Content-Type: multipart/alternative; boundary="00000000000056c0940590cd54c4"
+
+--00000000000056c0940590cd54c4
+Content-Type: text/plain; charset="UTF-8"
+
+Bump?  Has this been landed or looked at beyond my review?
+
+On Wed, Aug 14, 2019 at 1:40 PM Jason Ekstrand <jason@jlekstrand.net> wrote:
+
+> I was going to ask the status of this and then I looked and realized that
+> I never provided a commit message blrub.  Oops.  Here you go:
+>
+> On Broadwell, the sampler was changed to not require extra padding for
+> simple (no arrays, mipmapping, or MSAA) 1D, 2D, and buffer surfaces.
+> Setting the GEN9_DISABLE_OCL_OOB_SUPPRESS_LOGIC bit in HALF_SLICE_CHICKEN3
+> disables this and reverts the hardware to the HSW-era behaviour where the
+> sampler over-fetches near the edges of the surface.  While the over-fetch
+> does not cause faults due to the scratch page, it still means that more
+> data than needed is getting pulled into the sampler cache.  If the
+> over-fetch from the sampler on a BUFFER surface leaks over into an atomic
+> on the L3$, hangs can occur.
+>
+> Bugzilla: https://bugs.freedesktop.org/show_bug.cgi?id=110228
+>
+> On Thu, Aug 8, 2019 at 11:35 PM Jason Ekstrand <jason@jlekstrand.net>
+> wrote:
+>
+>> Also, I think we can provide a better commit message. I'll type something
+>> in the morning when I can actually look stuff up and provide correct
+>> references.
+>>
+>> On August 8, 2019 12:33:15 Jason Ekstrand <jason@jlekstrand.net> wrote:
+>>
+>>> Note: This doesn't actually fix 110998.  I can still get a hard-hang
+>>> with a slightly different version of the reproducer example.  However, it
+>>> does fix the original and I suspect it will fix the UE4 editor hang in
+>>> 110228
+>>>
+>>> On Thu, Aug 8, 2019 at 12:30 PM Jason Ekstrand <jason@jlekstrand.net>
+>>> wrote:
+>>>
+>>>> This is consistent with what the Windows driver does and what I've
+>>>> heard from HW people.
+>>>>
+>>>> Reviewed-by: Jason Ekstrand <jason@jlekstrand.net>
+>>>>
+>>>> On Thu, Aug 8, 2019 at 11:36 AM Chris Wilson <chris@chris-wilson.co.uk>
+>>>> wrote:
+>>>>
+>>>>> This bit was fliped on for "syncing dependencies between camera and
+>>>>> graphics". BSpec has no recollection why, and it is causing
+>>>>> unrecoverable GPU hangs with Vulkan compute workloads.
+>>>>>
+>>>>> From BSpec, setting bit5 to 0 enables relaxed padding requiremets for
+>>>>> buffers, 1D and 2D non-array, non-MSAA, non-mip-mapped linear surfaces;
+>>>>> and *must* be set to 0h on skl+ to ensure "Out of Bounds" case is
+>>>>> suppressed.
+>>>>>
+>>>>> Reported-by: Jason Ekstrand <jason@jlekstrand.net>
+>>>>> Suggested-by: Jason Ekstrand <jason@jlekstrand.net>
+>>>>> Bugzilla: https://bugs.freedesktop.org/show_bug.cgi?id=110998
+>>>>> Fixes: 8424171e135c ("drm/i915/gen9: h/w w/a: syncing dependencies
+>>>>> between camera and graphics")
+>>>>> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+>>>>> Cc: Jason Ekstrand <jason@jlekstrand.net>
+>>>>> Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+>>>>> Cc: <stable@vger.kernel.org> # v4.1+
+>>>>> ---
+>>>>>  drivers/gpu/drm/i915/gt/intel_workarounds.c | 5 -----
+>>>>>  1 file changed, 5 deletions(-)
+>>>>>
+>>>>> diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c
+>>>>> b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+>>>>> index 704ace01e7f5..b95c1d59a347 100644
+>>>>> --- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
+>>>>> +++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+>>>>> @@ -297,11 +297,6 @@ static void gen9_ctx_workarounds_init(struct
+>>>>> intel_engine_cs *engine,
+>>>>>                           FLOW_CONTROL_ENABLE |
+>>>>>                           PARTIAL_INSTRUCTION_SHOOTDOWN_DISABLE);
+>>>>>
+>>>>> -       /* Syncing dependencies between camera and
+>>>>> graphics:skl,bxt,kbl */
+>>>>> -       if (!IS_COFFEELAKE(i915))
+>>>>> -               WA_SET_BIT_MASKED(HALF_SLICE_CHICKEN3,
+>>>>> -                                 GEN9_DISABLE_OCL_OOB_SUPPRESS_LOGIC);
+>>>>> -
+>>>>>         /* WaEnableYV12BugFixInHalfSliceChicken7:skl,bxt,kbl,glk,cfl */
+>>>>>         /* WaEnableSamplerGPGPUPreemptionSupport:skl,bxt,kbl,cfl */
+>>>>>         WA_SET_BIT_MASKED(GEN9_HALF_SLICE_CHICKEN7,
+>>>>> --
+>>>>> 2.23.0.rc1
+>>>>>
+>>>>>
+>>
+
+--00000000000056c0940590cd54c4
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Bump?=C2=A0 Has this been landed or looked at beyond my re=
+view?<br></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gma=
+il_attr">On Wed, Aug 14, 2019 at 1:40 PM Jason Ekstrand &lt;<a href=3D"mail=
+to:jason@jlekstrand.net">jason@jlekstrand.net</a>&gt; wrote:<br></div><bloc=
+kquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:=
+1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div>I was go=
+ing to ask the status of this and then I looked and realized that I never p=
+rovided a commit message blrub.=C2=A0 Oops.=C2=A0 Here you go:</div><div><b=
+r></div><div>On Broadwell, the sampler was changed to not require extra pad=
+ding for simple (no arrays, mipmapping, or MSAA) 1D, 2D, and buffer surface=
+s.=C2=A0 Setting the GEN9_DISABLE_OCL_OOB_SUPPRESS_LOGIC bit in HALF_SLICE_=
+CHICKEN3 disables this and reverts the hardware to the HSW-era behaviour wh=
+ere the sampler over-fetches near the edges of the surface.=C2=A0 While the=
+ over-fetch does not cause faults due to the scratch page, it still means t=
+hat more data than needed is getting pulled into the sampler cache.=C2=A0 I=
+f the over-fetch from the sampler on a BUFFER surface leaks over into an at=
+omic on the L3$, hangs can occur.</div><div><br></div><div>Bugzilla: <a hre=
+f=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110228" target=3D"_blan=
+k">https://bugs.freedesktop.org/show_bug.cgi?id=3D110228</a></div><br><div =
+class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, Aug 8, =
+2019 at 11:35 PM Jason Ekstrand &lt;<a href=3D"mailto:jason@jlekstrand.net"=
+ target=3D"_blank">jason@jlekstrand.net</a>&gt; wrote:<br></div><blockquote=
+ class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px so=
+lid rgb(204,204,204);padding-left:1ex"><u></u>
+
+<div>
+<div dir=3D"auto">
+<div dir=3D"auto">Also, I think we can provide a better commit message. I&#=
+39;ll type something in the morning when I can actually look stuff up and p=
+rovide correct references.</div><div dir=3D"auto"><br></div>
+<div id=3D"gmail-m_-3735639588675166938gmail-m_-6259061499944170341aqm-orig=
+inal" style=3D"color:black">
+
+<div class=3D"gmail-m_-3735639588675166938gmail-m_-6259061499944170341aqm-o=
+riginal-body">
+<div style=3D"color:black">
+<p style=3D"color:black;font-size:10pt;font-family:sans-serif;margin:8pt 0p=
+x">On August 8, 2019 12:33:15 Jason Ekstrand &lt;<a href=3D"mailto:jason@jl=
+ekstrand.net" target=3D"_blank">jason@jlekstrand.net</a>&gt; wrote:</p>
+<blockquote type=3D"cite" class=3D"gmail_quote" style=3D"margin:0px 0px 0px=
+ 0.75ex;border-left:1px solid rgb(128,128,128);padding-left:0.75ex">
+<div dir=3D"ltr">Note: This doesn&#39;t actually fix 110998.=C2=A0 I can st=
+ill get a hard-hang with a slightly different version of the reproducer exa=
+mple.=C2=A0 However, it does fix the original and I suspect it will fix the=
+ UE4 editor hang in 110228<br></div><br><div class=3D"gmail_quote"><div dir=
+=3D"ltr" class=3D"gmail_attr">On Thu, Aug 8, 2019 at 12:30 PM Jason Ekstran=
+d &lt;<a href=3D"mailto:jason@jlekstrand.net" target=3D"_blank">jason@jleks=
+trand.net</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=
+=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding=
+-left:1ex"><div dir=3D"ltr"><div>This is consistent with what the Windows d=
+river does and what I&#39;ve heard from HW people.</div><div><br></div><div=
+>Reviewed-by: Jason Ekstrand &lt;<a href=3D"mailto:jason@jlekstrand.net" ta=
+rget=3D"_blank">jason@jlekstrand.net</a>&gt;<br></div></div><br><div class=
+=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, Aug 8, 2019 =
+at 11:36 AM Chris Wilson &lt;<a href=3D"mailto:chris@chris-wilson.co.uk" ta=
+rget=3D"_blank">chris@chris-wilson.co.uk</a>&gt; wrote:<br></div><blockquot=
+e class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px s=
+olid rgb(204,204,204);padding-left:1ex">This bit was fliped on for &quot;sy=
+ncing dependencies between camera and<br>
+graphics&quot;. BSpec has no recollection why, and it is causing<br>
+unrecoverable GPU hangs with Vulkan compute workloads.<br>
+<br>
+From BSpec, setting bit5 to 0 enables relaxed padding requiremets for<br>
+buffers, 1D and 2D non-array, non-MSAA, non-mip-mapped linear surfaces;<br>
+and *must* be set to 0h on skl+ to ensure &quot;Out of Bounds&quot; case is=
+<br>
+suppressed.<br>
+<br>
+Reported-by: Jason Ekstrand &lt;<a href=3D"mailto:jason@jlekstrand.net" tar=
+get=3D"_blank">jason@jlekstrand.net</a>&gt;<br>
+Suggested-by: Jason Ekstrand &lt;<a href=3D"mailto:jason@jlekstrand.net" ta=
+rget=3D"_blank">jason@jlekstrand.net</a>&gt;<br>
+Bugzilla: <a href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110998"=
+ rel=3D"noreferrer" target=3D"_blank">https://bugs.freedesktop.org/show_bug=
+.cgi?id=3D110998</a><br>
+Fixes: 8424171e135c (&quot;drm/i915/gen9: h/w w/a: syncing dependencies bet=
+ween camera and graphics&quot;)<br>
+Signed-off-by: Chris Wilson &lt;<a href=3D"mailto:chris@chris-wilson.co.uk"=
+ target=3D"_blank">chris@chris-wilson.co.uk</a>&gt;<br>
+Cc: Jason Ekstrand &lt;<a href=3D"mailto:jason@jlekstrand.net" target=3D"_b=
+lank">jason@jlekstrand.net</a>&gt;<br>
+Cc: Mika Kuoppala &lt;<a href=3D"mailto:mika.kuoppala@linux.intel.com" targ=
+et=3D"_blank">mika.kuoppala@linux.intel.com</a>&gt;<br>
+Cc: &lt;<a href=3D"mailto:stable@vger.kernel.org" target=3D"_blank">stable@=
+vger.kernel.org</a>&gt; # v4.1+<br>
+---<br>
+=C2=A0drivers/gpu/drm/i915/gt/intel_workarounds.c | 5 -----<br>
+=C2=A01 file changed, 5 deletions(-)<br>
+<br>
+diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/=
+i915/gt/intel_workarounds.c<br>
+index 704ace01e7f5..b95c1d59a347 100644<br>
+--- a/drivers/gpu/drm/i915/gt/intel_workarounds.c<br>
++++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c<br>
+@@ -297,11 +297,6 @@ static void gen9_ctx_workarounds_init(struct intel_eng=
+ine_cs *engine,<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 FLOW_CONTROL_ENABLE |<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 PARTIAL_INSTRUCTION_SHOOTDOWN_DISABLE);<br>
+<br>
+-=C2=A0 =C2=A0 =C2=A0 =C2=A0/* Syncing dependencies between camera and grap=
+hics:skl,bxt,kbl */<br>
+-=C2=A0 =C2=A0 =C2=A0 =C2=A0if (!IS_COFFEELAKE(i915))<br>
+-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0WA_SET_BIT_MASKED(H=
+ALF_SLICE_CHICKEN3,<br>
+-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0GEN9_DISABLE_OCL_OOB_SUPPRESS_=
+LOGIC);<br>
+-<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 /* WaEnableYV12BugFixInHalfSliceChicken7:skl,bx=
+t,kbl,glk,cfl */<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 /* WaEnableSamplerGPGPUPreemptionSupport:skl,bx=
+t,kbl,cfl */<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 WA_SET_BIT_MASKED(GEN9_HALF_SLICE_CHICKEN7,<br>
+-- <br>
+2.23.0.rc1<br>
+<br>
+</blockquote></div>
+</blockquote></div>
+</blockquote>
+</div>
+</div>
+
+
+</div><div dir=3D"auto"><br></div>
+</div></div>
+
+</blockquote></div></div>
+</blockquote></div>
+
+--00000000000056c0940590cd54c4--
+
+--===============1373805461==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
+IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
+
+--===============1373805461==--
