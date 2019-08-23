@@ -2,16 +2,16 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 56AB39B047
-	for <lists+intel-gfx@lfdr.de>; Fri, 23 Aug 2019 15:03:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 299019B043
+	for <lists+intel-gfx@lfdr.de>; Fri, 23 Aug 2019 15:02:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BD5236EC86;
-	Fri, 23 Aug 2019 13:03:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6202E6EC85;
+	Fri, 23 Aug 2019 13:02:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8BA986EC86
- for <intel-gfx@lists.freedesktop.org>; Fri, 23 Aug 2019 13:03:31 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 47DBA6EC85
+ for <intel-gfx@lists.freedesktop.org>; Fri, 23 Aug 2019 13:02:29 +0000 (UTC)
 X-Amp-Result: UNKNOWN
 X-Amp-Original-Verdict: FILE UNKNOWN
 X-Amp-File-Uploaded: False
