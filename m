@@ -1,29 +1,29 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B42379B4B3
-	for <lists+intel-gfx@lfdr.de>; Fri, 23 Aug 2019 18:43:27 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id A5CE49B4CE
+	for <lists+intel-gfx@lfdr.de>; Fri, 23 Aug 2019 18:46:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6C1E16ECEE;
-	Fri, 23 Aug 2019 16:43:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 116A96ECF1;
+	Fri, 23 Aug 2019 16:46:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 24F966ECEE
- for <intel-gfx@lists.freedesktop.org>; Fri, 23 Aug 2019 16:43:23 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C0B4E6ECF1
+ for <intel-gfx@lists.freedesktop.org>; Fri, 23 Aug 2019 16:46:02 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 18243056-1500050 
- for multiple; Fri, 23 Aug 2019 17:43:14 +0100
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 18243077-1500050 
+ for multiple; Fri, 23 Aug 2019 17:45:56 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri, 23 Aug 2019 17:43:12 +0100
-Message-Id: <20190823164312.10398-1-chris@chris-wilson.co.uk>
+Date: Fri, 23 Aug 2019 17:45:54 +0100
+Message-Id: <20190823164554.10664-1-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.23.0
-In-Reply-To: <20190823110147.31082-1-chris@chris-wilson.co.uk>
-References: <20190823110147.31082-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20190823132700.25286-4-chris@chris-wilson.co.uk>
+References: <20190823132700.25286-4-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
 Subject: [Intel-gfx] [PATCH] drm/i915/selftests: Teach igt_gpu_fill_dw() to
  take intel_context
