@@ -1,30 +1,36 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 065A19AA6E
-	for <lists+intel-gfx@lfdr.de>; Fri, 23 Aug 2019 10:35:18 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 042B59AA71
+	for <lists+intel-gfx@lfdr.de>; Fri, 23 Aug 2019 10:35:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BF3FE6EC1B;
-	Fri, 23 Aug 2019 08:35:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5DE8F6EC22;
+	Fri, 23 Aug 2019 08:35:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net
- [217.70.183.201])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2FEB16EC1B;
- Fri, 23 Aug 2019 08:35:14 +0000 (UTC)
-X-Originating-IP: 86.250.200.211
-Received: from localhost (lfbn-1-17395-211.w86-250.abo.wanadoo.fr
- [86.250.200.211]) (Authenticated sender: maxime.ripard@bootlin.com)
- by relay8-d.mail.gandi.net (Postfix) with ESMTPSA id A35C01BF20C;
- Fri, 23 Aug 2019 08:35:09 +0000 (UTC)
-Date: Fri, 23 Aug 2019 10:35:09 +0200
-From: Maxime Ripard <maxime.ripard@bootlin.com>
-To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
-Message-ID: <20190823083509.c7mduqdqjnxc7ubb@flea>
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 168F96EC1E;
+ Fri, 23 Aug 2019 08:35:34 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 18236459-1500050 for multiple; Fri, 23 Aug 2019 09:35:24 +0100
 MIME-Version: 1.0
-User-Agent: NeoMutt/20180716
-Subject: [Intel-gfx] [PULL] drm-misc-next
+To: "Zhang, Xiaolin" <xiaolin.zhang@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>
+From: Chris Wilson <chris@chris-wilson.co.uk>
+In-Reply-To: <073732E20AE4C540AE91DBC3F07D4460876D3410@SHSMSX107.ccr.corp.intel.com>
+References: <1566543451-13955-1-git-send-email-xiaolin.zhang@intel.com>
+ <156654711627.27716.4474982727513548344@skylake-alporthouse-com>
+ <073732E20AE4C540AE91DBC3F07D4460876D3410@SHSMSX107.ccr.corp.intel.com>
+Message-ID: <156654932243.27716.13325423141754929364@skylake-alporthouse-com>
+User-Agent: alot/0.6
+Date: Fri, 23 Aug 2019 09:35:22 +0100
+Subject: Re: [Intel-gfx] [PATCH v2] drm/i915: to make vgpu ppgtt
+ notificaiton as atomic operation
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -37,274 +43,58 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Maxime Ripard <mripard@kernel.org>, intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============1243588845=="
+Cc: "Wang, Zhenyu Z" <zhenyu.z.wang@intel.com>,
+ "stable@vger.kernel.org" <stable@vger.kernel.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
---===============1243588845==
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="qigpbldqffyl3bre"
-Content-Disposition: inline
-
-
---qigpbldqffyl3bre
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-Hi Daniel, Dave,
-
-Here is what should be the final drm-misc-next PR for 5.4.
-
-Thanks!
-Maxime
-
-drm-misc-next-2019-08-23:
-drm-misc-next for 5.4:
-
-UAPI Changes:
-
-Cross-subsystem Changes:
-
-Core Changes:
-  - dma-buf: dma-fence selftests
-
-Driver Changes:
-  - kirin: Various cleanups and reworks
-  - komeda: Add support for DT memory-regions
-  - meson: Rely on the compatible to detect vpu features
-  - omap: Implement alpha and pixel blend mode properties
-  - panfrost: Implement per-fd address spaces, various fixes
-  - rockchip: DSI DT binding rework
-  - fbdev: Various cleanups
-The following changes since commit d777478599f781fc5162d1ae95dbee6e5ae05a41:
-
-  drm/xen-front: Make structure fb_funcs constant (2019-08-19 08:32:52 +030=
-0)
-
-are available in the Git repository at:
-
-  git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-next-2019-08-23
-
-for you to fetch changes up to e26ae7c0432101a924cf745b07470c8592de64cb:
-
-  omapdrm: no need to check return value of debugfs_create functions (2019-=
-08-23 10:21:03 +0300)
-
-----------------------------------------------------------------
-drm-misc-next for 5.4:
-
-UAPI Changes:
-
-Cross-subsystem Changes:
-
-Core Changes:
-  - dma-buf: dma-fence selftests
-
-Driver Changes:
-  - kirin: Various cleanups and reworks
-  - komeda: Add support for DT memory-regions
-  - meson: Rely on the compatible to detect vpu features
-  - omap: Implement alpha and pixel blend mode properties
-  - panfrost: Implement per-fd address spaces, various fixes
-  - rockchip: DSI DT binding rework
-  - fbdev: Various cleanups
-
-----------------------------------------------------------------
-Anders Roxell (1):
-      video: fbdev: sh_mobile_lcdcfb: Mark expected switch fall-through
-
-Chris Wilson (5):
-      dma-buf: Introduce selftesting framework
-      dma-buf: Add selftests for dma-fence
-      drm/i915: Select DMABUF_SELFTESTS for the default i915.ko debug build
-      dma-buf: Use %zu for printing sizeof
-      dmabuf: Mark up onstack timer for selftests
-
-Chuhong Yuan (2):
-      video: fbdev: sm712fb: Use dev_get_drvdata
-      video: fbdev: radeonfb: Use dev_get_drvdata
-
-Da Lv (1):
-      drm: kirin: Fix for hikey620 display offset problem
-
-Dariusz Marcinkiewicz (2):
-      drm: dw-hdmi: use cec_notifier_conn_(un)register
-      dw-hdmi-cec: use cec_notifier_cec_adap_(un)register
-
-Greg Kroah-Hartman (1):
-      omapdrm: no need to check return value of debugfs_create functions
-
-Gustavo A. R. Silva (2):
-      video: fbdev: pvr2fb: remove unnecessary comparison of unsigned integ=
-er with < 0
-      video: fbdev/mmp/core: Use struct_size() in kzalloc()
-
-Hans de Goede (1):
-      efifb: BGRT: Improve efifb_bgrt_sanity_check
-
-Jani Nikula (1):
-      drm: fix module name in edid_firmware log message
-
-Jean-Jacques Hiblot (1):
-      drm/omap: Add 'alpha' and 'pixel blend mode' plane properties
-
-John Stultz (3):
-      drm: kirin: Remove HISI_KIRIN_DW_DSI config option
-      drm: kirin: Remove unreachable return
-      drm: kirin: Move workqueue to ade_hw_ctx structure
-
-Jonathan Neusch=E4fer (1):
-      drm/drv: Use // for comments in example code
-
-Julien Masson (1):
-      drm: meson: use match data to detect vpu compatibility
-
-Mihail Atanassov (1):
-      drm/komeda: Add support for 'memory-region' DT node property
-
-Nickey Yang (1):
-      dt-bindings: display: rockchip: update DSI controller
-
-Nishka Dasgupta (1):
-      udlfb: Make dlfb_ops constant
-
-Rob Herring (2):
-      drm/panfrost: Implement per FD address spaces
-      drm/panfrost: Fix sleeping while atomic in panfrost_gem_open
-
-Souptick Joarder (2):
-      video: fbdev: aty[128]fb: Remove dead code
-      video: fbdev: viafb: Remove dead code
-
-Steven Price (2):
-      drm/panfrost: Enable devfreq to work without regulator
-      drm/panfrost: Remove opp table when unloading
-
-Thierry Reding (1):
-      drm/nouveau: Initialize GEM object before TTM object
-
-Wei Yongjun (1):
-      drm/panfrost: Fix missing unlock on error in panfrost_mmu_map_fault_a=
-ddr()
-
-Xu YiPing (21):
-      drm: kirin: Remove uncessary parameter indirection
-      drm: kirin: Remove out_format from ade_crtc
-      drm: kirin: Rename ade_plane to kirin_plane
-      drm: kirin: Rename ade_crtc to kirin_crtc
-      drm: kirin: Dynamically allocate the hw_ctx
-      drm: kirin: Move request irq handle in ade hw ctx alloc
-      drm: kirin: Move kirin_crtc, kirin_plane, kirin_format to kirin_drm_d=
-rv.h
-      drm: kirin: Reanme dc_ops to kirin_drm_data
-      drm: kirin: Move ade crtc/plane help functions to driver_data
-      drm: kirin: Move channel formats to driver data
-      drm: kirin: Move mode config function to driver_data
-      drm: kirin: Move plane number and primay plane in driver data
-      drm: kirin: Move config max_width and max_height to driver data
-      drm: kirin: Move drm driver to driver data
-      drm: kirin: Add register connect helper functions in drm init
-      drm: kirin: Rename plane_init and crtc_init
-      drm: kirin: Fix dev->driver_data setting
-      drm: kirin: Make driver_data variable non-global
-      drm: kirin: Add alloc_hw_ctx/clean_hw_ctx ops in driver data
-      drm: kirin: Pass driver data to crtc init and plane init
-      drm: kirin: Move ade drm init to kirin drm drv
-
- .../display/rockchip/dw_mipi_dsi_rockchip.txt      |  23 +-
- drivers/dma-buf/Kconfig                            |   5 +
- drivers/dma-buf/Makefile                           |   6 +
- drivers/dma-buf/selftest.c                         | 167 ++++++
- drivers/dma-buf/selftest.h                         |  30 ++
- drivers/dma-buf/selftests.h                        |  13 +
- drivers/dma-buf/st-dma-fence.c                     | 574 +++++++++++++++++=
-++++
- drivers/gpu/drm/arm/display/komeda/komeda_dev.c    |   9 +
- drivers/gpu/drm/bridge/synopsys/dw-hdmi-cec.c      |  13 +-
- drivers/gpu/drm/bridge/synopsys/dw-hdmi.c          |  45 +-
- drivers/gpu/drm/drm_drv.c                          |  14 +-
- drivers/gpu/drm/drm_kms_helper_common.c            |   2 +-
- drivers/gpu/drm/hisilicon/kirin/Kconfig            |  10 +-
- drivers/gpu/drm/hisilicon/kirin/Makefile           |   3 +-
- drivers/gpu/drm/hisilicon/kirin/kirin_ade_reg.h    |   1 +
- drivers/gpu/drm/hisilicon/kirin/kirin_drm_ade.c    | 351 +++++--------
- drivers/gpu/drm/hisilicon/kirin/kirin_drm_drv.c    | 262 +++++++---
- drivers/gpu/drm/hisilicon/kirin/kirin_drm_drv.h    |  48 +-
- drivers/gpu/drm/i915/Kconfig.debug                 |   1 +
- drivers/gpu/drm/meson/meson_crtc.c                 |   2 +-
- drivers/gpu/drm/meson/meson_drv.c                  |  14 +-
- drivers/gpu/drm/meson/meson_drv.h                  |  13 +-
- drivers/gpu/drm/meson/meson_dw_hdmi.c              |   2 +-
- drivers/gpu/drm/meson/meson_overlay.c              |   2 +-
- drivers/gpu/drm/meson/meson_plane.c                |  10 +-
- drivers/gpu/drm/meson/meson_vclk.c                 |  64 +--
- drivers/gpu/drm/meson/meson_venc.c                 |   2 +-
- drivers/gpu/drm/meson/meson_venc_cvbs.c            |  10 +-
- drivers/gpu/drm/meson/meson_viu.c                  |  10 +-
- drivers/gpu/drm/meson/meson_vpp.c                  |  10 +-
- drivers/gpu/drm/nouveau/nouveau_bo.c               |  69 ++-
- drivers/gpu/drm/nouveau/nouveau_bo.h               |   4 +
- drivers/gpu/drm/nouveau/nouveau_gem.c              |  29 +-
- drivers/gpu/drm/nouveau/nouveau_prime.c            |  16 +-
- drivers/gpu/drm/omapdrm/dss/dss.c                  |  11 +-
- drivers/gpu/drm/omapdrm/omap_plane.c               |   9 +-
- drivers/gpu/drm/panfrost/TODO                      |   4 -
- drivers/gpu/drm/panfrost/panfrost_devfreq.c        |  13 +-
- drivers/gpu/drm/panfrost/panfrost_devfreq.h        |   1 +
- drivers/gpu/drm/panfrost/panfrost_device.c         |   2 +
- drivers/gpu/drm/panfrost/panfrost_device.h         |  24 +-
- drivers/gpu/drm/panfrost/panfrost_drv.c            |  36 +-
- drivers/gpu/drm/panfrost/panfrost_gem.c            |  23 +-
- drivers/gpu/drm/panfrost/panfrost_gem.h            |   3 +
- drivers/gpu/drm/panfrost/panfrost_job.c            |  14 +-
- drivers/gpu/drm/panfrost/panfrost_mmu.c            | 227 +++++---
- drivers/gpu/drm/panfrost/panfrost_mmu.h            |   8 +
- drivers/video/fbdev/aty/aty128fb.c                 |  18 -
- drivers/video/fbdev/aty/atyfb_base.c               |  29 --
- drivers/video/fbdev/aty/radeon_base.c              |   6 +-
- drivers/video/fbdev/efifb.c                        |  27 +-
- drivers/video/fbdev/mmp/core.c                     |   6 +-
- drivers/video/fbdev/pvr2fb.c                       |   6 +-
- drivers/video/fbdev/sh_mobile_lcdcfb.c             |   2 +
- drivers/video/fbdev/sm712fb.c                      |   8 +-
- drivers/video/fbdev/udlfb.c                        |   2 +-
- drivers/video/fbdev/via/via-core.c                 |  43 --
- 57 files changed, 1681 insertions(+), 675 deletions(-)
- create mode 100644 drivers/dma-buf/selftest.c
- create mode 100644 drivers/dma-buf/selftest.h
- create mode 100644 drivers/dma-buf/selftests.h
- create mode 100644 drivers/dma-buf/st-dma-fence.c
-
---
-Maxime Ripard, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
-
---qigpbldqffyl3bre
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXV+lPQAKCRDj7w1vZxhR
-xa0hAP4p8LQULYds0+uw0O2xyAs94q3NqdukTNbLBJ9gaLh6hAD+LNhzTv2G6h17
-PWQL3nYC/G7vt+7UE6MCJM3s1a5g2Ao=
-=7Anj
------END PGP SIGNATURE-----
-
---qigpbldqffyl3bre--
-
---===============1243588845==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
-IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
-
---===============1243588845==--
+UXVvdGluZyBaaGFuZywgWGlhb2xpbiAoMjAxOS0wOC0yMyAwOTowNzowMSkKPiBPbiAwOC8yMy8y
+MDE5IDAzOjU4IFBNLCBDaHJpcyBXaWxzb24gd3JvdGU6Cj4gPiBRdW90aW5nIFhpYW9saW4gWmhh
+bmcgKDIwMTktMDgtMjMgMDc6NTc6MzEpCj4gPj4gdmdwdSBwcGd0dCBub3RpZmljYXRpb24gd2Fz
+IHNwbGl0IGludG8gMiBzdGVwcywgdGhlIGZpcnN0IHN0ZXAgaXMgdG8KPiA+PiB1cGRhdGUgUFZJ
+TkZPJ3MgcGRwIHJlZ2lzdGVyIGFuZCB0aGVuIHdyaXRlIFBWSU5GTydzIGcydl9ub3RpZnkgcmVn
+aXN0ZXIKPiA+PiB3aXRoIGFjdGlvbiBjb2RlIHRvIHRpcmdnZXIgcHBndHQgbm90aWZpY2F0aW9u
+IHRvIEdWVCBzaWRlLgo+ID4+Cj4gPj4gY3VycmVudGx5IHRoZXNlIHN0ZXBzIHdlcmUgbm90IGF0
+b21pYyBvcGVyYXRpb25zIGR1ZSB0byBubyBhbnkgcHJvdGVjdGlvbiwKPiA+PiBzbyBpdCBpcyBl
+YXN5IHRvIGVudGVyIHJhY2UgY29uZGl0aW9uIHN0YXRlIGR1cmluZyB0aGUgTVRCRiwgc3RyZXNz
+IGFuZAo+ID4+IElHVCB0ZXN0IHRvIGNhdXNlIEdQVSBoYW5nLgo+ID4+Cj4gPj4gdGhlIHNvbHV0
+aW9uIGlzIHRvIGFkZCBhIGxvY2sgdG8gbWFrZSB2Z3B1IHBwZ3R0IG5vdGljYXRpb24gYXMgYXRv
+bWljCj4gPj4gb3BlcmF0aW9uLgo+ID4+Cj4gPj4gQ2M6IHN0YWJsZUB2Z2VyLmtlcm5lbC5vcmcK
+PiA+PiBTaWduZWQtb2ZmLWJ5OiBYaWFvbGluIFpoYW5nIDx4aWFvbGluLnpoYW5nQGludGVsLmNv
+bT4KPiA+PiAtLS0KPiA+PiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9kcnYuaCAgICAgfCAx
+ICsKPiA+PiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9nZW1fZ3R0LmMgfCA0ICsrKysKPiA+
+PiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV92Z3B1LmMgICAgfCAxICsKPiA+PiAgMyBmaWxl
+cyBjaGFuZ2VkLCA2IGluc2VydGlvbnMoKykKPiA+Pgo+ID4+IGRpZmYgLS1naXQgYS9kcml2ZXJz
+L2dwdS9kcm0vaTkxNS9pOTE1X2Rydi5oIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9kcnYu
+aAo+ID4+IGluZGV4IGViMzFjMTYuLjMyZTE3YzQgMTAwNjQ0Cj4gPj4gLS0tIGEvZHJpdmVycy9n
+cHUvZHJtL2k5MTUvaTkxNV9kcnYuaAo+ID4+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5
+MTVfZHJ2LmgKPiA+PiBAQCAtOTYxLDYgKzk2MSw3IEBAIHN0cnVjdCBpOTE1X2Zyb250YnVmZmVy
+X3RyYWNraW5nIHsKPiA+PiAgfTsKPiA+PiAgCj4gPj4gIHN0cnVjdCBpOTE1X3ZpcnR1YWxfZ3B1
+IHsKPiA+PiArICAgICAgIHN0cnVjdCBtdXRleCBsb2NrOwo+ID4+ICAgICAgICAgYm9vbCBhY3Rp
+dmU7Cj4gPj4gICAgICAgICB1MzIgY2FwczsKPiA+PiAgfTsKPiA+PiBkaWZmIC0tZ2l0IGEvZHJp
+dmVycy9ncHUvZHJtL2k5MTUvaTkxNV9nZW1fZ3R0LmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9p
+OTE1X2dlbV9ndHQuYwo+ID4+IGluZGV4IDJjZDJkYWIuLmZmMGIxNzggMTAwNjQ0Cj4gPj4gLS0t
+IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9nZW1fZ3R0LmMKPiA+PiArKysgYi9kcml2ZXJz
+L2dwdS9kcm0vaTkxNS9pOTE1X2dlbV9ndHQuYwo+ID4+IEBAIC04MzMsNiArODMzLDggQEAgc3Rh
+dGljIGludCBnZW44X3BwZ3R0X25vdGlmeV92Z3Qoc3RydWN0IGk5MTVfcHBndHQgKnBwZ3R0LCBi
+b29sIGNyZWF0ZSkKPiA+PiAgICAgICAgIGVudW0gdmd0X2cydl90eXBlIG1zZzsKPiA+PiAgICAg
+ICAgIGludCBpOwo+ID4+ICAKPiA+PiArICAgICAgIG11dGV4X2xvY2soJmRldl9wcml2LT52Z3B1
+LmxvY2spOwo+ID4+ICsKPiA+PiAgICAgICAgIGlmIChjcmVhdGUpCj4gPj4gICAgICAgICAgICAg
+ICAgIGF0b21pY19pbmMocHhfdXNlZChwcGd0dC0+cGQpKTsgLyogbmV2ZXIgcmVtb3ZlICovCj4g
+Pj4gICAgICAgICBlbHNlCj4gPj4gQEAgLTg2MCw2ICs4NjIsOCBAQCBzdGF0aWMgaW50IGdlbjhf
+cHBndHRfbm90aWZ5X3ZndChzdHJ1Y3QgaTkxNV9wcGd0dCAqcHBndHQsIGJvb2wgY3JlYXRlKQo+
+ID4+ICAKPiA+PiAgICAgICAgIEk5MTVfV1JJVEUodmd0aWZfcmVnKGcydl9ub3RpZnkpLCBtc2cp
+Owo+ID4+ICAKPiA+IEhvdyBkbyB5b3Uga25vdyB0aGUgb3BlcmF0aW9uIGlzIGNvbXBsZXRlIGFu
+ZCBpdCBpcyBub3cgc2FmZSB0bwo+ID4gb3ZlcndyaXRlIHRoZSBkYXRhIHJlZ3M/Cj4gPiAtQ2hy
+aXMKPiA+Cj4gYnkgZGVzaWduLCB0aGUgZGF0YSByZWcgdmFsdWUgaXMgY29waWVkIG91dCB0byB1
+c2UsIHNvIGFzIGxvbmcgYXMgdGhlCj4gYWN0aW9uIGFuZCBkYXRhIGlzIG9wZXJhdGVkIHRvZ2V0
+aGVyLCBob3cgbG9uZyB0aGUgb3BlcmF0aW9uIGlzIG5vdCBhCj4gaXNzdWUgYW5kICBpdCBpcyBz
+YWZlIHRvIG92ZXJ3cml0ZSB0aGUgZGF0YSByZWdzIHdpdGggbmV3IGFjdGlvbiBuZXh0IHRpbWUu
+CgpXaGVuIGFuZCBob3cgcXVpY2tseSBpcyBpdCBjb3BpZWQ/IENvbnNpZGVyIHRoYXQgaXQgd2ls
+bCBiZSBpbW1lZGlhdGVseQpvdmVyd3JpdHRlbiBieSB0aGUgbmV4dCBwYWNrZXQuIERvZXMgdGhl
+IHZncHUgbW1pbyB3cml0ZSBjYXVzZSB0aGUKY2FsbGluZyBDUFUgdG8gYmUgdHJhcHBlZD8KLUNo
+cmlzCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVs
+LWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczov
+L2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeA==
