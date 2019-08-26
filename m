@@ -2,41 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 066B89C783
-	for <lists+intel-gfx@lfdr.de>; Mon, 26 Aug 2019 05:06:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EC47C9C7A4
+	for <lists+intel-gfx@lfdr.de>; Mon, 26 Aug 2019 05:16:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A251F6E108;
-	Mon, 26 Aug 2019 03:06:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3C6706E15E;
+	Mon, 26 Aug 2019 03:16:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from ozlabs.org (bilbo.ozlabs.org [IPv6:2401:3900:2:1::2])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DDE666E087;
- Mon, 26 Aug 2019 03:06:44 +0000 (UTC)
-Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
- SHA256) (No client certificate requested)
- by mail.ozlabs.org (Postfix) with ESMTPSA id 46Gxjq6nJQz9s7T;
- Mon, 26 Aug 2019 13:06:39 +1000 (AEST)
-Date: Mon, 26 Aug 2019 13:06:37 +1000
-From: Stephen Rothwell <sfr@canb.auug.org.au>
-To: Dave Airlie <airlied@linux.ie>, DRI <dri-devel@lists.freedesktop.org>,
- Daniel Vetter <daniel.vetter@ffwll.ch>, Intel Graphics
- <intel-gfx@lists.freedesktop.org>
-Message-ID: <20190826130637.176f6208@canb.auug.org.au>
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AAF546E13B;
+ Mon, 26 Aug 2019 03:16:51 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 25 Aug 2019 20:16:51 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.64,431,1559545200"; 
+ d="asc'?scan'208";a="263804410"
+Received: from zhen-hp.sh.intel.com (HELO zhen-hp) ([10.239.13.116])
+ by orsmga001.jf.intel.com with ESMTP; 25 Aug 2019 20:16:49 -0700
+Date: Mon, 26 Aug 2019 11:12:10 +0800
+From: Zhenyu Wang <zhenyuw@linux.intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>
+Message-ID: <20190826031210.GB29455@zhen-hp.sh.intel.com>
+References: <1566543451-13955-1-git-send-email-xiaolin.zhang@intel.com>
+ <156654711627.27716.4474982727513548344@skylake-alporthouse-com>
+ <073732E20AE4C540AE91DBC3F07D4460876D3410@SHSMSX107.ccr.corp.intel.com>
+ <156654932243.27716.13325423141754929364@skylake-alporthouse-com>
 MIME-Version: 1.0
-X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=canb.auug.org.au; s=201702; t=1566788801;
- bh=ao4+tkZSNPxGhHnop5/uB0c25lKvBwr4pgEKllddgAQ=;
- h=Date:From:To:Cc:Subject:From;
- b=DcqgXxue3U+qpniOSwRvKEcQjSkM2i+VPn8GRJ0jY2ra05YOru62S7WOrCnR8ejY8
- rVIdjuHyTCJiqazmPLx7jSI3QWIx8DGgtAK3rAp9qLyRSyVSyGLhXz1QO5vCL1qHcV
- hyptsAtmzvpKInJOjaxKw5f030CTZhTFdXyYUvaRqEd/2gpKa8Up9ptEfUJXDottn1
- ItGK/tSsRHVLRoSYV4ncesgPGUcC8CkYDMzRnktZ7cvYw67n70kZfAs2nydzHWt/n/
- rKZQ+aDBZyRrepbiWC+mfkjXJoYEwQocKMNKc+zskyTMVTtIwPoqEDsszkXKT7X8ME
- 2vgVpq0rIhpNg==
-Subject: [Intel-gfx] linux-next: manual merge of the drm tree with the
- drm-misc-fixes tree
+In-Reply-To: <156654932243.27716.13325423141754929364@skylake-alporthouse-com>
+User-Agent: Mutt/1.10.0 (2018-05-17)
+Subject: Re: [Intel-gfx] [PATCH v2] drm/i915: to make vgpu ppgtt
+ notificaiton as atomic operation
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -49,84 +48,122 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Mihail Atanassov <Mihail.Atanassov@arm.com>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- Linux Next Mailing List <linux-next@vger.kernel.org>, "James
- Qian Wang \(Arm Technology China\)" <james.qian.wang@arm.com>,
- Ayan kumar halder <ayan.halder@arm.com>
-Content-Type: multipart/mixed; boundary="===============0715195421=="
+Reply-To: Zhenyu Wang <zhenyuw@linux.intel.com>
+Cc: "intel-gvt-dev@lists.freedesktop.org"
+ <intel-gvt-dev@lists.freedesktop.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "stable@vger.kernel.org" <stable@vger.kernel.org>
+Content-Type: multipart/mixed; boundary="===============1551507176=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0715195421==
-Content-Type: multipart/signed; boundary="Sig_/wydur/h7UBhnu/l7f8Ha7ul";
- protocol="application/pgp-signature"; micalg=pgp-sha256
 
---Sig_/wydur/h7UBhnu/l7f8Ha7ul
-Content-Type: text/plain; charset=US-ASCII
+--===============1551507176==
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="qlTNgmc+xy1dBmNv"
+Content-Disposition: inline
+
+
+--qlTNgmc+xy1dBmNv
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-Hi all,
+On 2019.08.23 09:35:22 +0100, Chris Wilson wrote:
+> Quoting Zhang, Xiaolin (2019-08-23 09:07:01)
+> > On 08/23/2019 03:58 PM, Chris Wilson wrote:
+> > > Quoting Xiaolin Zhang (2019-08-23 07:57:31)
+> > >> vgpu ppgtt notification was split into 2 steps, the first step is to
+> > >> update PVINFO's pdp register and then write PVINFO's g2v_notify regi=
+ster
+> > >> with action code to tirgger ppgtt notification to GVT side.
+> > >>
+> > >> currently these steps were not atomic operations due to no any prote=
+ction,
+> > >> so it is easy to enter race condition state during the MTBF, stress =
+and
+> > >> IGT test to cause GPU hang.
+> > >>
+> > >> the solution is to add a lock to make vgpu ppgtt notication as atomic
+> > >> operation.
+> > >>
+> > >> Cc: stable@vger.kernel.org
+> > >> Signed-off-by: Xiaolin Zhang <xiaolin.zhang@intel.com>
+> > >> ---
+> > >>  drivers/gpu/drm/i915/i915_drv.h     | 1 +
+> > >>  drivers/gpu/drm/i915/i915_gem_gtt.c | 4 ++++
+> > >>  drivers/gpu/drm/i915/i915_vgpu.c    | 1 +
+> > >>  3 files changed, 6 insertions(+)
+> > >>
+> > >> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/=
+i915_drv.h
+> > >> index eb31c16..32e17c4 100644
+> > >> --- a/drivers/gpu/drm/i915/i915_drv.h
+> > >> +++ b/drivers/gpu/drm/i915/i915_drv.h
+> > >> @@ -961,6 +961,7 @@ struct i915_frontbuffer_tracking {
+> > >>  };
+> > >> =20
+> > >>  struct i915_virtual_gpu {
+> > >> +       struct mutex lock;
+> > >>         bool active;
+> > >>         u32 caps;
+> > >>  };
+> > >> diff --git a/drivers/gpu/drm/i915/i915_gem_gtt.c b/drivers/gpu/drm/i=
+915/i915_gem_gtt.c
+> > >> index 2cd2dab..ff0b178 100644
+> > >> --- a/drivers/gpu/drm/i915/i915_gem_gtt.c
+> > >> +++ b/drivers/gpu/drm/i915/i915_gem_gtt.c
+> > >> @@ -833,6 +833,8 @@ static int gen8_ppgtt_notify_vgt(struct i915_ppg=
+tt *ppgtt, bool create)
+> > >>         enum vgt_g2v_type msg;
+> > >>         int i;
+> > >> =20
+> > >> +       mutex_lock(&dev_priv->vgpu.lock);
+> > >> +
+> > >>         if (create)
+> > >>                 atomic_inc(px_used(ppgtt->pd)); /* never remove */
+> > >>         else
+> > >> @@ -860,6 +862,8 @@ static int gen8_ppgtt_notify_vgt(struct i915_ppg=
+tt *ppgtt, bool create)
+> > >> =20
+> > >>         I915_WRITE(vgtif_reg(g2v_notify), msg);
+> > >> =20
+> > > How do you know the operation is complete and it is now safe to
+> > > overwrite the data regs?
+> > > -Chris
+> > >
+> > by design, the data reg value is copied out to use, so as long as the
+> > action and data is operated together, how long the operation is not a
+> > issue and  it is safe to overwrite the data regs with new action next t=
+ime.
+>=20
+> When and how quickly is it copied? Consider that it will be immediately
+> overwritten by the next packet. Does the vgpu mmio write cause the
+> calling CPU to be trapped?
 
-Today's linux-next merge of the drm tree got a conflict in:
-
-  drivers/gpu/drm/arm/display/komeda/komeda_dev.c
-
-between commit:
-
-  51a44a28eefd ("drm/komeda: Add missing of_node_get() call")
-
-from the drm-misc-fixes tree and commit:
-
-  8965ad8433ea ("drm/komeda: Enable dual-link support")
-
-from the drm tree.
-
-I fixed it up (see below) and can carry the fix as necessary. This
-is now fixed as far as linux-next is concerned, but any non trivial
-conflicts should be mentioned to your upstream maintainer when your tree
-is submitted for merging.  You may also want to consider cooperating
-with the maintainer of the conflicting tree to minimise any particularly
-complex conflicts.
+yeah, mmio write will always be trapped, this data is got in notify
+mmio reg write trap handler. We need to add doc to tell that for
+current gvt notify interface, client needs to ensure serialized write
+but without data overwrite.
 
 --=20
-Cheers,
-Stephen Rothwell
+Open Source Technology Center, Intel ltd.
 
-diff --cc drivers/gpu/drm/arm/display/komeda/komeda_dev.c
-index 9d4d5075cc64,1ff7f4b2c620..000000000000
---- a/drivers/gpu/drm/arm/display/komeda/komeda_dev.c
-+++ b/drivers/gpu/drm/arm/display/komeda/komeda_dev.c
-@@@ -127,7 -128,8 +129,8 @@@ static int komeda_parse_pipe_dt(struct=20
-  	pipe->of_output_port =3D
-  		of_graph_get_port_by_id(np, KOMEDA_OF_PORT_OUTPUT);
- =20
-+ 	pipe->dual_link =3D pipe->of_output_links[0] && pipe->of_output_links[1];
- -	pipe->of_node =3D np;
- +	pipe->of_node =3D of_node_get(np);
- =20
-  	return 0;
-  }
+$gpg --keyserver wwwkeys.pgp.net --recv-keys 4D781827
 
---Sig_/wydur/h7UBhnu/l7f8Ha7ul
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
+--qlTNgmc+xy1dBmNv
+Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAl1jTL0ACgkQAVBC80lX
-0Gxv3Qf/UZODeNlf0Cg6Pp21C0lTRqUfi6nfMnY9tk8fimcVVU7XczrGHYCdq9lh
-2cix95QOpooh3Rr8edxYyYMnXNpP4l+Tt0yXFr1a7VGIX+mjZv35aY8Rw55L0WLC
-ja+YF6MBfyXQMaSxee3XRsqX3bHrnqwX5P84at39Q5+gHoGaqm4HPbGB9dslfYIX
-FG/D1pXucobj7tuKBDufUQcFcdmAvgt9uXqeveQ5mSAMToqtBM8d6F29lEan8A6H
-tzPQdiowwIb16nRya/Qu7IVW/I4QwJLwp5ykDPp9foeSGM7YWKejUXUroOkNt0V2
-C0m6H2culOjxXPqbSRq1efBeyIXpEQ==
-=mbfu
+iF0EARECAB0WIQTXuabgHDW6LPt9CICxBBozTXgYJwUCXWNOCgAKCRCxBBozTXgY
+JzzRAJ0X7LbFKhBwy4X/+yw15A/XA4mnegCdHFH6sMkgG0A4ZdteToz+xg8BFzA=
+=gV9R
 -----END PGP SIGNATURE-----
 
---Sig_/wydur/h7UBhnu/l7f8Ha7ul--
+--qlTNgmc+xy1dBmNv--
 
---===============0715195421==
+--===============1551507176==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -136,4 +173,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
 IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
 dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
 
---===============0715195421==--
+--===============1551507176==--
