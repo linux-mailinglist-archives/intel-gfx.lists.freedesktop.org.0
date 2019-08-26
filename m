@@ -2,31 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9CE079C692
-	for <lists+intel-gfx@lfdr.de>; Mon, 26 Aug 2019 01:52:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 066B89C783
+	for <lists+intel-gfx@lfdr.de>; Mon, 26 Aug 2019 05:06:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F058E6E06B;
-	Sun, 25 Aug 2019 23:52:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A251F6E108;
+	Mon, 26 Aug 2019 03:06:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 4D5166E02D;
- Sun, 25 Aug 2019 23:52:14 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 42790A47DA;
- Sun, 25 Aug 2019 23:52:14 +0000 (UTC)
+Received: from ozlabs.org (bilbo.ozlabs.org [IPv6:2401:3900:2:1::2])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DDE666E087;
+ Mon, 26 Aug 2019 03:06:44 +0000 (UTC)
+Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
+ SHA256) (No client certificate requested)
+ by mail.ozlabs.org (Postfix) with ESMTPSA id 46Gxjq6nJQz9s7T;
+ Mon, 26 Aug 2019 13:06:39 +1000 (AEST)
+Date: Mon, 26 Aug 2019 13:06:37 +1000
+From: Stephen Rothwell <sfr@canb.auug.org.au>
+To: Dave Airlie <airlied@linux.ie>, DRI <dri-devel@lists.freedesktop.org>,
+ Daniel Vetter <daniel.vetter@ffwll.ch>, Intel Graphics
+ <intel-gfx@lists.freedesktop.org>
+Message-ID: <20190826130637.176f6208@canb.auug.org.au>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Prathap Kumar Valsan" <prathap.kumar.valsan@intel.com>
-Date: Sun, 25 Aug 2019 23:52:14 -0000
-Message-ID: <20190825235214.8687.74124@emeril.freedesktop.org>
-References: <20190825224801.19117-1-prathap.kumar.valsan@intel.com>
-X-Patchwork-Hint: ignore
-In-Reply-To: <20190825224801.19117-1-prathap.kumar.valsan@intel.com>
-Subject: [Intel-gfx] =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_drm/?=
- =?utf-8?q?i915/tgl=3A_Add_sysfs_interface_to_control_class-of-service_=28?=
- =?utf-8?q?rev2=29?=
+X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=canb.auug.org.au; s=201702; t=1566788801;
+ bh=ao4+tkZSNPxGhHnop5/uB0c25lKvBwr4pgEKllddgAQ=;
+ h=Date:From:To:Cc:Subject:From;
+ b=DcqgXxue3U+qpniOSwRvKEcQjSkM2i+VPn8GRJ0jY2ra05YOru62S7WOrCnR8ejY8
+ rVIdjuHyTCJiqazmPLx7jSI3QWIx8DGgtAK3rAp9qLyRSyVSyGLhXz1QO5vCL1qHcV
+ hyptsAtmzvpKInJOjaxKw5f030CTZhTFdXyYUvaRqEd/2gpKa8Up9ptEfUJXDottn1
+ ItGK/tSsRHVLRoSYV4ncesgPGUcC8CkYDMzRnktZ7cvYw67n70kZfAs2nydzHWt/n/
+ rKZQ+aDBZyRrepbiWC+mfkjXJoYEwQocKMNKc+zskyTMVTtIwPoqEDsszkXKT7X8ME
+ 2vgVpq0rIhpNg==
+Subject: [Intel-gfx] linux-next: manual merge of the drm tree with the
+ drm-misc-fixes tree
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -39,57 +49,91 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Mihail Atanassov <Mihail.Atanassov@arm.com>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ Linux Next Mailing List <linux-next@vger.kernel.org>, "James
+ Qian Wang \(Arm Technology China\)" <james.qian.wang@arm.com>,
+ Ayan kumar halder <ayan.halder@arm.com>
+Content-Type: multipart/mixed; boundary="===============0715195421=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-PT0gU2VyaWVzIERldGFpbHMgPT0KClNlcmllczogZHJtL2k5MTUvdGdsOiBBZGQgc3lzZnMgaW50
-ZXJmYWNlIHRvIGNvbnRyb2wgY2xhc3Mtb2Ytc2VydmljZSAocmV2MikKVVJMICAgOiBodHRwczov
-L3BhdGNod29yay5mcmVlZGVza3RvcC5vcmcvc2VyaWVzLzY1NzY5LwpTdGF0ZSA6IHN1Y2Nlc3MK
-Cj09IFN1bW1hcnkgPT0KCkNJIEJ1ZyBMb2cgLSBjaGFuZ2VzIGZyb20gQ0lfRFJNXzY3ODMgLT4g
-UGF0Y2h3b3JrXzE0MTg1Cj09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
-PT09PT09PT09PT0KClN1bW1hcnkKLS0tLS0tLQoKICAqKlNVQ0NFU1MqKgoKICBObyByZWdyZXNz
-aW9ucyBmb3VuZC4KCiAgRXh0ZXJuYWwgVVJMOiBodHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcv
-dHJlZS9kcm0tdGlwL1BhdGNod29ya18xNDE4NS8KCktub3duIGlzc3VlcwotLS0tLS0tLS0tLS0K
-CiAgSGVyZSBhcmUgdGhlIGNoYW5nZXMgZm91bmQgaW4gUGF0Y2h3b3JrXzE0MTg1IHRoYXQgY29t
-ZSBmcm9tIGtub3duIGlzc3VlczoKCiMjIyBJR1QgY2hhbmdlcyAjIyMKCiMjIyMgSXNzdWVzIGhp
-dCAjIyMjCgogICogaWd0QGdlbV9iYXNpY0BjcmVhdGUtZmQtY2xvc2U6CiAgICAtIGZpLWljbC11
-MzogICAgICAgICAgW1BBU1NdWzFdIC0+IFtETUVTRy1XQVJOXVsyXSAoW2ZkbyMxMDc3MjRdKSAr
-MSBzaW1pbGFyIGlzc3VlCiAgIFsxXTogaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUv
-ZHJtLXRpcC9DSV9EUk1fNjc4My9maS1pY2wtdTMvaWd0QGdlbV9iYXNpY0BjcmVhdGUtZmQtY2xv
-c2UuaHRtbAogICBbMl06IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAv
-UGF0Y2h3b3JrXzE0MTg1L2ZpLWljbC11My9pZ3RAZ2VtX2Jhc2ljQGNyZWF0ZS1mZC1jbG9zZS5o
-dG1sCgogIAojIyMjIFBvc3NpYmxlIGZpeGVzICMjIyMKCiAgKiBpZ3RAaTkxNV9tb2R1bGVfbG9h
-ZEByZWxvYWQtbm8tZGlzcGxheToKICAgIC0gZmktaWNsLXUzOiAgICAgICAgICBbRE1FU0ctV0FS
-Tl1bM10gKFtmZG8jMTA3NzI0XSkgLT4gW1BBU1NdWzRdCiAgIFszXTogaHR0cHM6Ly9pbnRlbC1n
-ZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9DSV9EUk1fNjc4My9maS1pY2wtdTMvaWd0QGk5MTVf
-bW9kdWxlX2xvYWRAcmVsb2FkLW5vLWRpc3BsYXkuaHRtbAogICBbNF06IGh0dHBzOi8vaW50ZWwt
-Z2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAvUGF0Y2h3b3JrXzE0MTg1L2ZpLWljbC11My9pZ3RA
-aTkxNV9tb2R1bGVfbG9hZEByZWxvYWQtbm8tZGlzcGxheS5odG1sCgogIAogIHtuYW1lfTogVGhp
-cyBlbGVtZW50IGlzIHN1cHByZXNzZWQuIFRoaXMgbWVhbnMgaXQgaXMgaWdub3JlZCB3aGVuIGNv
-bXB1dGluZwogICAgICAgICAgdGhlIHN0YXR1cyBvZiB0aGUgZGlmZmVyZW5jZSAoU1VDQ0VTUywg
-V0FSTklORywgb3IgRkFJTFVSRSkuCgogIFtmZG8jMTA3NzEzXTogaHR0cHM6Ly9idWdzLmZyZWVk
-ZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MTA3NzEzCiAgW2ZkbyMxMDc3MjRdOiBodHRwczov
-L2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD0xMDc3MjQKICBbZmRvIzEwOTEw
-MF06IGh0dHBzOi8vYnVncy5mcmVlZGVza3RvcC5vcmcvc2hvd19idWcuY2dpP2lkPTEwOTEwMAoK
-ClBhcnRpY2lwYXRpbmcgaG9zdHMgKDU1IC0+IDQ3KQotLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0KCiAgTWlzc2luZyAgICAoOCk6IGZpLWtibC1zb3Jha2EgZmktaWxrLW01NDAgZmktaHN3
-LTQyMDB1IGZpLWJ5dC1zcXVhd2tzIGZpLWJzdy1jeWFuIGZpLWljbC15IGZpLWJ5dC1jbGFwcGVy
-IGZpLWJkdy1zYW11cyAKCgpCdWlsZCBjaGFuZ2VzCi0tLS0tLS0tLS0tLS0KCiAgKiBDSTogQ0kt
-MjAxOTA1MjkgLT4gTm9uZQogICogTGludXg6IENJX0RSTV82NzgzIC0+IFBhdGNod29ya18xNDE4
-NQoKICBDSS0yMDE5MDUyOTogMjAxOTA1MjkKICBDSV9EUk1fNjc4MzogYzhkMzE2ZTkwMDVhZWUx
-YWU2YzlmMjIxNGRhMWM5NWQ5YzY1ZmQ1ZiBAIGdpdDovL2Fub25naXQuZnJlZWRlc2t0b3Aub3Jn
-L2dmeC1jaS9saW51eAogIElHVF81MTQ5OiA2NzU2ZWRlNjgwZWUxMjc0NTM5MzM2MGQ3Y2M4N2Nj
-MGViNzMzZmY2IEAgZ2l0Oi8vYW5vbmdpdC5mcmVlZGVza3RvcC5vcmcveG9yZy9hcHAvaW50ZWwt
-Z3B1LXRvb2xzCiAgUGF0Y2h3b3JrXzE0MTg1OiAyOWNmMjc5ODk0NThlYjU2OTM1ODc4NmE5NmU0
-MDYyZjk4ZjU5Y2M5IEAgZ2l0Oi8vYW5vbmdpdC5mcmVlZGVza3RvcC5vcmcvZ2Z4LWNpL2xpbnV4
-CgoKPT0gTGludXggY29tbWl0cyA9PQoKMjljZjI3OTg5NDU4IGRybS9pOTE1L3RnbDogQWRkIHN5
-c2ZzIGludGVyZmFjZSB0byBjb250cm9sIGNsYXNzLW9mLXNlcnZpY2UKCj09IExvZ3MgPT0KCkZv
-ciBtb3JlIGRldGFpbHMgc2VlOiBodHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0t
-dGlwL1BhdGNod29ya18xNDE4NS8KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRl
-c2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8v
-aW50ZWwtZ2Z4
+--===============0715195421==
+Content-Type: multipart/signed; boundary="Sig_/wydur/h7UBhnu/l7f8Ha7ul";
+ protocol="application/pgp-signature"; micalg=pgp-sha256
+
+--Sig_/wydur/h7UBhnu/l7f8Ha7ul
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
+
+Hi all,
+
+Today's linux-next merge of the drm tree got a conflict in:
+
+  drivers/gpu/drm/arm/display/komeda/komeda_dev.c
+
+between commit:
+
+  51a44a28eefd ("drm/komeda: Add missing of_node_get() call")
+
+from the drm-misc-fixes tree and commit:
+
+  8965ad8433ea ("drm/komeda: Enable dual-link support")
+
+from the drm tree.
+
+I fixed it up (see below) and can carry the fix as necessary. This
+is now fixed as far as linux-next is concerned, but any non trivial
+conflicts should be mentioned to your upstream maintainer when your tree
+is submitted for merging.  You may also want to consider cooperating
+with the maintainer of the conflicting tree to minimise any particularly
+complex conflicts.
+
+--=20
+Cheers,
+Stephen Rothwell
+
+diff --cc drivers/gpu/drm/arm/display/komeda/komeda_dev.c
+index 9d4d5075cc64,1ff7f4b2c620..000000000000
+--- a/drivers/gpu/drm/arm/display/komeda/komeda_dev.c
++++ b/drivers/gpu/drm/arm/display/komeda/komeda_dev.c
+@@@ -127,7 -128,8 +129,8 @@@ static int komeda_parse_pipe_dt(struct=20
+  	pipe->of_output_port =3D
+  		of_graph_get_port_by_id(np, KOMEDA_OF_PORT_OUTPUT);
+ =20
++ 	pipe->dual_link =3D pipe->of_output_links[0] && pipe->of_output_links[1];
+ -	pipe->of_node =3D np;
+ +	pipe->of_node =3D of_node_get(np);
+ =20
+  	return 0;
+  }
+
+--Sig_/wydur/h7UBhnu/l7f8Ha7ul
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAl1jTL0ACgkQAVBC80lX
+0Gxv3Qf/UZODeNlf0Cg6Pp21C0lTRqUfi6nfMnY9tk8fimcVVU7XczrGHYCdq9lh
+2cix95QOpooh3Rr8edxYyYMnXNpP4l+Tt0yXFr1a7VGIX+mjZv35aY8Rw55L0WLC
+ja+YF6MBfyXQMaSxee3XRsqX3bHrnqwX5P84at39Q5+gHoGaqm4HPbGB9dslfYIX
+FG/D1pXucobj7tuKBDufUQcFcdmAvgt9uXqeveQ5mSAMToqtBM8d6F29lEan8A6H
+tzPQdiowwIb16nRya/Qu7IVW/I4QwJLwp5ykDPp9foeSGM7YWKejUXUroOkNt0V2
+C0m6H2culOjxXPqbSRq1efBeyIXpEQ==
+=mbfu
+-----END PGP SIGNATURE-----
+
+--Sig_/wydur/h7UBhnu/l7f8Ha7ul--
+
+--===============0715195421==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
+IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
+
+--===============0715195421==--
