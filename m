@@ -1,41 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC47C9C7A4
-	for <lists+intel-gfx@lfdr.de>; Mon, 26 Aug 2019 05:16:54 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3BC109C979
+	for <lists+intel-gfx@lfdr.de>; Mon, 26 Aug 2019 08:36:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3C6706E15E;
-	Mon, 26 Aug 2019 03:16:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 507106E17D;
+	Mon, 26 Aug 2019 06:36:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AAF546E13B;
- Mon, 26 Aug 2019 03:16:51 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3EF6B6E17D
+ for <intel-gfx@lists.freedesktop.org>; Mon, 26 Aug 2019 06:36:33 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 25 Aug 2019 20:16:51 -0700
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 25 Aug 2019 23:36:32 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.64,431,1559545200"; 
- d="asc'?scan'208";a="263804410"
-Received: from zhen-hp.sh.intel.com (HELO zhen-hp) ([10.239.13.116])
- by orsmga001.jf.intel.com with ESMTP; 25 Aug 2019 20:16:49 -0700
-Date: Mon, 26 Aug 2019 11:12:10 +0800
-From: Zhenyu Wang <zhenyuw@linux.intel.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>
-Message-ID: <20190826031210.GB29455@zhen-hp.sh.intel.com>
-References: <1566543451-13955-1-git-send-email-xiaolin.zhang@intel.com>
- <156654711627.27716.4474982727513548344@skylake-alporthouse-com>
- <073732E20AE4C540AE91DBC3F07D4460876D3410@SHSMSX107.ccr.corp.intel.com>
- <156654932243.27716.13325423141754929364@skylake-alporthouse-com>
-MIME-Version: 1.0
-In-Reply-To: <156654932243.27716.13325423141754929364@skylake-alporthouse-com>
-User-Agent: Mutt/1.10.0 (2018-05-17)
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915: to make vgpu ppgtt
- notificaiton as atomic operation
+X-IronPort-AV: E=Sophos;i="5.64,431,1559545200"; d="scan'208";a="174111965"
+Received: from genxfsim-shark-bay-client-platform.iind.intel.com
+ ([10.223.34.144])
+ by orsmga008.jf.intel.com with ESMTP; 25 Aug 2019 23:36:29 -0700
+From: Swati Sharma <swati2.sharma@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon, 26 Aug 2019 11:56:02 +0530
+Message-Id: <1566800772-18412-1-git-send-email-swati2.sharma@intel.com>
+X-Mailer: git-send-email 1.9.1
+Subject: [Intel-gfx] [v8][PATCH 00/10] drm/i915: adding state checker for
+ gamma lut value
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -48,129 +41,49 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: Zhenyu Wang <zhenyuw@linux.intel.com>
-Cc: "intel-gvt-dev@lists.freedesktop.org"
- <intel-gvt-dev@lists.freedesktop.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "stable@vger.kernel.org" <stable@vger.kernel.org>
-Content-Type: multipart/mixed; boundary="===============1551507176=="
+Cc: jani.nikula@intel.com, daniel.vetter@ffwll.ch, ankit.k.nautiyal@intel.com
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
---===============1551507176==
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="qlTNgmc+xy1dBmNv"
-Content-Disposition: inline
-
-
---qlTNgmc+xy1dBmNv
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On 2019.08.23 09:35:22 +0100, Chris Wilson wrote:
-> Quoting Zhang, Xiaolin (2019-08-23 09:07:01)
-> > On 08/23/2019 03:58 PM, Chris Wilson wrote:
-> > > Quoting Xiaolin Zhang (2019-08-23 07:57:31)
-> > >> vgpu ppgtt notification was split into 2 steps, the first step is to
-> > >> update PVINFO's pdp register and then write PVINFO's g2v_notify regi=
-ster
-> > >> with action code to tirgger ppgtt notification to GVT side.
-> > >>
-> > >> currently these steps were not atomic operations due to no any prote=
-ction,
-> > >> so it is easy to enter race condition state during the MTBF, stress =
-and
-> > >> IGT test to cause GPU hang.
-> > >>
-> > >> the solution is to add a lock to make vgpu ppgtt notication as atomic
-> > >> operation.
-> > >>
-> > >> Cc: stable@vger.kernel.org
-> > >> Signed-off-by: Xiaolin Zhang <xiaolin.zhang@intel.com>
-> > >> ---
-> > >>  drivers/gpu/drm/i915/i915_drv.h     | 1 +
-> > >>  drivers/gpu/drm/i915/i915_gem_gtt.c | 4 ++++
-> > >>  drivers/gpu/drm/i915/i915_vgpu.c    | 1 +
-> > >>  3 files changed, 6 insertions(+)
-> > >>
-> > >> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/=
-i915_drv.h
-> > >> index eb31c16..32e17c4 100644
-> > >> --- a/drivers/gpu/drm/i915/i915_drv.h
-> > >> +++ b/drivers/gpu/drm/i915/i915_drv.h
-> > >> @@ -961,6 +961,7 @@ struct i915_frontbuffer_tracking {
-> > >>  };
-> > >> =20
-> > >>  struct i915_virtual_gpu {
-> > >> +       struct mutex lock;
-> > >>         bool active;
-> > >>         u32 caps;
-> > >>  };
-> > >> diff --git a/drivers/gpu/drm/i915/i915_gem_gtt.c b/drivers/gpu/drm/i=
-915/i915_gem_gtt.c
-> > >> index 2cd2dab..ff0b178 100644
-> > >> --- a/drivers/gpu/drm/i915/i915_gem_gtt.c
-> > >> +++ b/drivers/gpu/drm/i915/i915_gem_gtt.c
-> > >> @@ -833,6 +833,8 @@ static int gen8_ppgtt_notify_vgt(struct i915_ppg=
-tt *ppgtt, bool create)
-> > >>         enum vgt_g2v_type msg;
-> > >>         int i;
-> > >> =20
-> > >> +       mutex_lock(&dev_priv->vgpu.lock);
-> > >> +
-> > >>         if (create)
-> > >>                 atomic_inc(px_used(ppgtt->pd)); /* never remove */
-> > >>         else
-> > >> @@ -860,6 +862,8 @@ static int gen8_ppgtt_notify_vgt(struct i915_ppg=
-tt *ppgtt, bool create)
-> > >> =20
-> > >>         I915_WRITE(vgtif_reg(g2v_notify), msg);
-> > >> =20
-> > > How do you know the operation is complete and it is now safe to
-> > > overwrite the data regs?
-> > > -Chris
-> > >
-> > by design, the data reg value is copied out to use, so as long as the
-> > action and data is operated together, how long the operation is not a
-> > issue and  it is safe to overwrite the data regs with new action next t=
-ime.
->=20
-> When and how quickly is it copied? Consider that it will be immediately
-> overwritten by the next packet. Does the vgpu mmio write cause the
-> calling CPU to be trapped?
-
-yeah, mmio write will always be trapped, this data is got in notify
-mmio reg write trap handler. We need to add doc to tell that for
-current gvt notify interface, client needs to ensure serialized write
-but without data overwrite.
-
---=20
-Open Source Technology Center, Intel ltd.
-
-$gpg --keyserver wwwkeys.pgp.net --recv-keys 4D781827
-
---qlTNgmc+xy1dBmNv
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iF0EARECAB0WIQTXuabgHDW6LPt9CICxBBozTXgYJwUCXWNOCgAKCRCxBBozTXgY
-JzzRAJ0X7LbFKhBwy4X/+yw15A/XA4mnegCdHFH6sMkgG0A4ZdteToz+xg8BFzA=
-=gV9R
------END PGP SIGNATURE-----
-
---qlTNgmc+xy1dBmNv--
-
---===============1551507176==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
-IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
-
---===============1551507176==--
+SW4gdGhpcyBwYXRjaCBzZXJpZXMsIGFkZGVkIHN0YXRlIGNoZWNrZXIgdG8gdmFsaWRhdGUgZ2Ft
+bWEgKDhCSVQgYW5kIDEwQklUKS4KVGhpcyByZWFkcyBoYXJkd2FyZSBzdGF0ZSwgYW5kIGNvbXBh
+cmVzIHRoZSBvcmlnaW5hbGx5IHJlcXVlc3RlZCBzdGF0ZShzL3cpIHRvIHRoZQpzdGF0ZSByZWFk
+IGZyb20gdGhlIGhhcmR3YXJlLgpUaGlzIGlzIGRvbmUgZm9yIGxlZ2FjeSwgaTk2NSwgaWxrLCBn
+bGsgYW5kIHRoZWlyIHZhcmlhbnQgcGxhdGZvcm1zLiAKCkludGVudGlvbmFsbHksIGV4Y2x1ZGVk
+IGJkdyBhbmQgaXZiIHNpbmNlIHRoZXkgaGF2ZSBzcGlsdCBnYW1tYSBtb2RlOyBmb3IgCndoaWNo
+IGRlZ2FtbWEgcmVhZCBvdXRzIGFyZSByZXF1aXJlZCAod2hpY2ggSSB0aGluayBzaG91bGRuJ3Qg
+YmUgaW5jbHVkZWQgaW4gdGhpcwpwYXRjaCBzZXJpZXMpLiBXaWxsIGluY2x1ZGUgYWZ0ZXIgZGVn
+YW1tYSBzdGF0ZSBjaGVja2VyIGlzIGNvbXBsZXRlZC4KCnYxOiAtSW1wbGVtZW50YXRpb24gZG9u
+ZSBmb3IgbGVnYWN5IHBsYXRmb3JtcwogICAgIChyZW1vdmVkIGFsbCB0aGUgcGxhY2Vob2xkZXJz
+KSAoSmFuaSkKdjI6IC1SZXN0cnVjdHVyZWQgY29kZSBhbmQgY3JlYXRlZCBwbGF0Zm9ybSBzcGVj
+aWZpYyBwYXRjaCBzZXJpZXMgZm9yIAogICAgIGdhbW1hIHZhbGlkYXRpb24KdjM6IC1SZWJhc2UK
+djQ6IC1NaW5vciBjaGFuZ2VzLWZ1bmN0aW9uIG5hbWUgY2hhbmdlcyBtYWlubHkKdjU6IC1BZGRl
+ZCBkZWdhbW1hIHZhbGlkYXRpb24gKFZpbGxlKQp2NjogLVJlbW92ZWQgZGVnYW1tYSBjaGFuZ2Vz
+LCBkZWJ1Z2dpbmcgd2FzIGJlY29taW5nIGRpZmZpY3VsdAogICAgLUFkZGVkIGZ1bmN0aW9uIHRv
+IGFzc2lnbiBiaXRfcHJlY2lzaW9uIGZvciBnYW1tYS9kZWdhbW1hCiAgICAgbHV0IHZhbHVlcyAv
+cGxhdGZvcm0KICAgIC1BZGRlZCBkZWJ1ZyBpbmZvIGludG8gaW50ZWxfZHVtcF9waXBlX2NvbmZp
+ZygpIChKYW5pKQp2NzogLUFkZGVkIHBsYXRmb3JtIHNwZWNpZmljIGZ1bmN0aW9ucyB0byBjb21w
+dXRlIGdhbW1hIGJpdCBwcmVjaXNpb24KICAgICBvbiB0aGUgYmFzaXMgb2YgR0FNTUFfTU9ERSAo
+VmlsbGUpCiAgICAtQ29ycmVjdGVkIGNoZWNrcGF0Y2ggd2FybmluZ3MKdjg6IC1SZXN0cnVjdHVy
+ZWQgY29kZQogICAgLVJlbW92ZWQgYmR3IGFuZCBpdmIgcGxhdGZvcm0gc3RhdGUgY2hlY2tlcgoK
+U3dhdGkgU2hhcm1hICgxMCk6CiAgZHJtL2k5MTUvZGlzcGxheTogQWRkIGZ1bmMgdG8gZ2V0IGdh
+bW1hIGJpdCBwcmVjaXNpb24KICBkcm0vaTkxNS9kaXNwbGF5OiBBZGQgZGVidWcgbG9nIGZvciBj
+b2xvciBwYXJhbWV0ZXJzCiAgZHJtL2k5MTUvZGlzcGxheTogQWRkIGZ1bmMgdG8gY29tcGFyZSBo
+dy9zdyBnYW1tYSBsdXQKICBkcm0vaTkxNS9kaXNwbGF5OiBBZGQgbWFjcm8gdG8gY29tcGFyZSBn
+YW1tYSBody9zdyBsdXQKICBkcm0vaTkxNS9kaXNwbGF5OiBFeHRyYWN0IGk5eHhfcmVhZF9sdXRz
+KCkKICBkcm0vaTkxL2Rpc3BsYXk6IEV4dHJhY3QgaTk2NV9yZWFkX2x1dHMoKQogIGRybS9pOTE1
+L2Rpc3BsYXk6IEV4dHJhY3QgY2h2X3JlYWRfbHV0cygpCiAgZHJtL2k5MTUvZGlzcGxheTogRXh0
+cmFjdCBpbGtfcmVhZF9sdXRzKCkKICBkcm0vaTkxNS9kaXNwbGF5OiBFeHRyYWN0IGdsa19yZWFk
+X2x1dHMoKQogIEZPUl9URVNUSU5HX09OTFk6IFByaW50IHJnYiB2YWx1ZXMgb2YgaHcgYW5kIHN3
+IGJsb2JzCgogZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9jb2xvci5jICAgfCAz
+NzAgKysrKysrKysrKysrKysrKysrKysrKysrKystCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNw
+bGF5L2ludGVsX2NvbG9yLmggICB8ICAgNyArCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5
+L2ludGVsX2Rpc3BsYXkuYyB8ICAzNCArKysKIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfcmVn
+LmggICAgICAgICAgICAgIHwgIDE1ICsrCiA0IGZpbGVzIGNoYW5nZWQsIDQyMyBpbnNlcnRpb25z
+KCspLCAzIGRlbGV0aW9ucygtKQoKLS0gCjEuOS4xCgpfX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBs
+aXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1h
+bi9saXN0aW5mby9pbnRlbC1nZng=
