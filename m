@@ -1,35 +1,36 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE0EB9DCC8
-	for <lists+intel-gfx@lfdr.de>; Tue, 27 Aug 2019 06:48:14 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7202D9DCF2
+	for <lists+intel-gfx@lfdr.de>; Tue, 27 Aug 2019 07:06:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BA9AE89227;
-	Tue, 27 Aug 2019 04:48:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B189E89A86;
+	Tue, 27 Aug 2019 05:06:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8F1A389227;
- Tue, 27 Aug 2019 04:48:11 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8276089A7A;
+ Tue, 27 Aug 2019 05:06:16 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 26 Aug 2019 21:48:10 -0700
+ by orsmga105.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 26 Aug 2019 22:06:15 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.64,435,1559545200"; d="scan'208";a="185174605"
+X-IronPort-AV: E=Sophos;i="5.64,436,1559545200"; 
+ d="scan'208,217";a="185177486"
 Received: from sharmash-mobl3.gar.corp.intel.com (HELO [10.252.72.100])
  ([10.252.72.100])
- by orsmga006.jf.intel.com with ESMTP; 26 Aug 2019 21:48:08 -0700
+ by orsmga006.jf.intel.com with ESMTP; 26 Aug 2019 22:06:12 -0700
 To: Ramalingam C <ramalingam.c@intel.com>,
  intel-gfx <intel-gfx@lists.freedesktop.org>,
  dri-devel <dri-devel@lists.freedesktop.org>
 References: <20190822151904.17919-1-ramalingam.c@intel.com>
  <20190822151904.17919-4-ramalingam.c@intel.com>
 From: "Sharma, Shashank" <shashank.sharma@intel.com>
-Message-ID: <4d2a0d7a-e364-bbc8-071c-d4bbd887479d@intel.com>
-Date: Tue, 27 Aug 2019 10:18:07 +0530
+Message-ID: <1b554810-f289-a5cf-4e1e-1397088fcc5f@intel.com>
+Date: Tue, 27 Aug 2019 10:36:11 +0530
 User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
  Thunderbird/60.8.0
 MIME-Version: 1.0
@@ -50,42 +51,206 @@ List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: Jani Nikula <jani.nikula@intel.com>, tomas.winkler@intel.com
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Type: multipart/mixed; boundary="===============0013282914=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Ck9uIDgvMjIvMjAxOSA4OjQ5IFBNLCBSYW1hbGluZ2FtIEMgd3JvdGU6Cj4gSTkxNSBuZWVkcyB0
-byBzZW5kIHRoZSBpbmRleCBvZiB0aGUgdHJhbnNjb2RlciBhcyBwZXIgTUUgRlcuCj4gVG8gc3Vw
-cG9ydCB0aGlzLCBkZWZpbmUgZW51bSBtZWlfZndfZGRpIGFuZCBhZGQgYXMgYSBtZW1iZXIgaW50
-bwo+IHRoZSBzdHJ1Y3QgaGRjcF9wb3J0X2RhdGEuCgpUaGUgY29tbWl0IG1lc3NhZ2Ugc2F5cyB5
-b3UgYXJlIGRlZmluaW5nIGVudW0gbWVpX2Z3X2RkaSwgYnV0IHlvdSBhcmUgCmFjdHVhbGx5IGRl
-ZmluaW5nIGVudW0gbWVpX2Z3X3RjOwoKLSBTaGFzaGFuawoKPiBTaWduZWQtb2ZmLWJ5OiBSYW1h
-bGluZ2FtIEMgPHJhbWFsaW5nYW0uY0BpbnRlbC5jb20+Cj4gQWNrZWQtYnk6IEphbmkgTmlrdWxh
-IDxqYW5pLm5pa3VsYUBpbnRlbC5jb20+Cj4gLS0tCj4gICBpbmNsdWRlL2RybS9pOTE1X21laV9o
-ZGNwX2ludGVyZmFjZS5oIHwgMTMgKysrKysrKysrKysrKwo+ICAgMSBmaWxlIGNoYW5nZWQsIDEz
-IGluc2VydGlvbnMoKykKPgo+IGRpZmYgLS1naXQgYS9pbmNsdWRlL2RybS9pOTE1X21laV9oZGNw
-X2ludGVyZmFjZS5oIGIvaW5jbHVkZS9kcm0vaTkxNV9tZWlfaGRjcF9pbnRlcmZhY2UuaAo+IGlu
-ZGV4IGE5N2FjZjFjOTcxMC4uMGRlNjI5YmYyZjYyIDEwMDY0NAo+IC0tLSBhL2luY2x1ZGUvZHJt
-L2k5MTVfbWVpX2hkY3BfaW50ZXJmYWNlLmgKPiArKysgYi9pbmNsdWRlL2RybS9pOTE1X21laV9o
-ZGNwX2ludGVyZmFjZS5oCj4gQEAgLTU0LDkgKzU0LDIxIEBAIGVudW0gbWVpX2Z3X2RkaSB7Cj4g
-ICAJTUVJX0RESV9SQU5HRV9FTkQgPSBNRUlfRERJX0EsCj4gICB9Owo+ICAgCj4gK2VudW0gbWVp
-X2Z3X3RjIHsKPiArCU1FSV9JTlZBTElEX1RSQU5TQ09ERVIgPSAweDAwLAkvKiBJbnZhbGlkIHRy
-YW5zY29kZXIgdHlwZSAqLwo+ICsJTUVJX1RDX0VEUCwJCQkvKiBUcmFuc2NvZGVyIGZvciBlRFAg
-Ki8KPiArCU1FSV9UQ19EU0kwLAkJCS8qIFRyYW5zY29kZXIgZm9yIERTSTAgKi8KPiArCU1FSV9U
-Q19EU0kxLAkJCS8qIFRyYW5zY29kZXIgZm9yIERTSTEgKi8KPiArCU1FSV9UQ19BID0gMHgxMCwJ
-CS8qIFRyYW5zY29kZXIgVENBICovCj4gKwlNRUlfVENfQiwJCQkvKiBUcmFuc2NvZGVyIFRDQiAq
-Lwo+ICsJTUVJX1RDX0MsCQkJLyogVHJhbnNjb2RlciBUQ0MgKi8KPiArCU1FSV9UQ19ECQkJLyog
-VHJhbnNjb2RlciBUQ0QgKi8KPiArfTsKPiArCj4gICAvKioKPiAgICAqIHN0cnVjdCBoZGNwX3Bv
-cnRfZGF0YSAtIGludGVsIHNwZWNpZmljIEhEQ1AgcG9ydCBkYXRhCj4gICAgKiBAZndfZGRpOiBk
-ZGkgaW5kZXggYXMgcGVyIE1FIEZXCj4gKyAqIEBmd190YzogdHJhbnNjb2RlciBpbmRleCBhcyBw
-ZXIgTUUgRlcKPiAgICAqIEBwb3J0X3R5cGU6IEhEQ1AgcG9ydCB0eXBlIGFzIHBlciBNRSBGVyBj
-bGFzc2lmaWNhdGlvbgo+ICAgICogQHByb3RvY29sOiBIRENQIGFkYXB0YXRpb24gYXMgcGVyIE1F
-IEZXCj4gICAgKiBAazogTm8gb2Ygc3RyZWFtcyB0cmFuc21pdHRlZCBvbiBhIHBvcnQuIE9ubHkg
-b24gRFAgTVNUIHRoaXMgaXMgIT0gMQo+IEBAIC02OSw2ICs4MSw3IEBAIGVudW0gbWVpX2Z3X2Rk
-aSB7Cj4gICAgKi8KPiAgIHN0cnVjdCBoZGNwX3BvcnRfZGF0YSB7Cj4gICAJZW51bSBtZWlfZndf
-ZGRpIGZ3X2RkaTsKPiArCWVudW0gbWVpX2Z3X3RjIGZ3X3RjOwo+ICAgCXU4IHBvcnRfdHlwZTsK
-PiAgIAl1OCBwcm90b2NvbDsKPiAgIAl1MTYgazsKX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4v
-bGlzdGluZm8vaW50ZWwtZ2Z4
+This is a multi-part message in MIME format.
+--===============0013282914==
+Content-Type: multipart/alternative;
+ boundary="------------60B69BBEACA2F5E23FBDF21B"
+Content-Language: en-US
+
+This is a multi-part message in MIME format.
+--------------60B69BBEACA2F5E23FBDF21B
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
+
+
+On 8/22/2019 8:49 PM, Ramalingam C wrote:
+> I915 needs to send the index of the transcoder as per ME FW.
+> To support this, define enum mei_fw_ddi and add as a member into
+> the struct hdcp_port_data.
+>
+> Signed-off-by: Ramalingam C <ramalingam.c@intel.com>
+> Acked-by: Jani Nikula <jani.nikula@intel.com>
+> ---
+>   include/drm/i915_mei_hdcp_interface.h | 13 +++++++++++++
+>   1 file changed, 13 insertions(+)
+>
+> diff --git a/include/drm/i915_mei_hdcp_interface.h b/include/drm/i915_mei_hdcp_interface.h
+> index a97acf1c9710..0de629bf2f62 100644
+> --- a/include/drm/i915_mei_hdcp_interface.h
+> +++ b/include/drm/i915_mei_hdcp_interface.h
+> @@ -54,9 +54,21 @@ enum mei_fw_ddi {
+>   	MEI_DDI_RANGE_END = MEI_DDI_A,
+>   };
+>   
+> +enum mei_fw_tc {
+> +	MEI_INVALID_TRANSCODER = 0x00,	/* Invalid transcoder type */
+> +	MEI_TC_EDP,			/* Transcoder for eDP */
+> +	MEI_TC_DSI0,			/* Transcoder for DSI0 */
+> +	MEI_TC_DSI1,			/* Transcoder for DSI1 */
+Also, this is a bit odd, coz ports above can't do HDCP, so it doesn't 
+make sense to have them here. But seems like we want to be in sync with 
+MEI FW definitions, so we should change the function
+
+intel_get_mei_fw_ddi_index to accept only from ports A to D, not above 
+or below.
+
+- Shashank
+
+> +	MEI_TC_A = 0x10,		/* Transcoder TCA */
+> +	MEI_TC_B,			/* Transcoder TCB */
+> +	MEI_TC_C,			/* Transcoder TCC */
+> +	MEI_TC_D			/* Transcoder TCD */
+> +};
+> +
+>   /**
+>    * struct hdcp_port_data - intel specific HDCP port data
+>    * @fw_ddi: ddi index as per ME FW
+> + * @fw_tc: transcoder index as per ME FW
+>    * @port_type: HDCP port type as per ME FW classification
+>    * @protocol: HDCP adaptation as per ME FW
+>    * @k: No of streams transmitted on a port. Only on DP MST this is != 1
+> @@ -69,6 +81,7 @@ enum mei_fw_ddi {
+>    */
+>   struct hdcp_port_data {
+>   	enum mei_fw_ddi fw_ddi;
+> +	enum mei_fw_tc fw_tc;
+>   	u8 port_type;
+>   	u8 protocol;
+>   	u16 k;
+
+--------------60B69BBEACA2F5E23FBDF21B
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  </head>
+  <body text="#000000" bgcolor="#FFFFFF">
+    <p><br>
+    </p>
+    <div class="moz-cite-prefix">On 8/22/2019 8:49 PM, Ramalingam C
+      wrote:<br>
+    </div>
+    <blockquote type="cite"
+      cite="mid:20190822151904.17919-4-ramalingam.c@intel.com">
+      <pre class="moz-quote-pre" wrap="">I915 needs to send the index of the transcoder as per ME FW.
+To support this, define enum mei_fw_ddi and add as a member into
+the struct hdcp_port_data.
+
+Signed-off-by: Ramalingam C <a class="moz-txt-link-rfc2396E" href="mailto:ramalingam.c@intel.com">&lt;ramalingam.c@intel.com&gt;</a>
+Acked-by: Jani Nikula <a class="moz-txt-link-rfc2396E" href="mailto:jani.nikula@intel.com">&lt;jani.nikula@intel.com&gt;</a>
+---
+ include/drm/i915_mei_hdcp_interface.h | 13 +++++++++++++
+ 1 file changed, 13 insertions(+)
+
+diff --git a/include/drm/i915_mei_hdcp_interface.h b/include/drm/i915_mei_hdcp_interface.h
+index a97acf1c9710..0de629bf2f62 100644
+--- a/include/drm/i915_mei_hdcp_interface.h
++++ b/include/drm/i915_mei_hdcp_interface.h
+@@ -54,9 +54,21 @@ enum mei_fw_ddi {
+ 	MEI_DDI_RANGE_END = MEI_DDI_A,
+ };
+ 
++enum mei_fw_tc {
++	MEI_INVALID_TRANSCODER = 0x00,	/* Invalid transcoder type */
++	MEI_TC_EDP,			/* Transcoder for eDP */
++	MEI_TC_DSI0,			/* Transcoder for DSI0 */
++	MEI_TC_DSI1,			/* Transcoder for DSI1 */</pre>
+    </blockquote>
+    Also, this is a bit odd, coz ports above can't do HDCP, so it
+    doesn't make sense to have them here. But seems like we want to be
+    in sync with MEI FW definitions, so we should change the function 
+    <div class="WordSection1">
+      <p class="MsoNormal"
+        style="margin-top:2.0pt;margin-right:0in;margin-bottom:2.0pt;
+        margin-left:0in;line-height:normal;text-autospace:none"><span
+          style="font-size:
+          10.0pt;font-family:&quot;Courier New&quot;">intel_get_mei_fw_ddi_index
+          to accept only from ports A to D, not above or below. <br>
+        </span></p>
+      <p class="MsoNormal"
+        style="margin-top:2.0pt;margin-right:0in;margin-bottom:2.0pt;
+        margin-left:0in;line-height:normal;text-autospace:none"><span
+          style="font-size:
+          10.0pt;font-family:&quot;Courier New&quot;">- Shashank </span><span
+          style="font-size:10.0pt;font-family:&quot;Segoe
+          UI&quot;,sans-serif;color:black"> </span></p>
+    </div>
+     
+    <style><!--
+ /* Font Definitions */
+ @font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:"Segoe UI";
+	panose-1:2 11 5 2 4 2 4 2 2 3;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:8.0pt;
+	margin-left:0in;
+	line-height:107%;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+.MsoChpDefault
+	{font-family:"Calibri",sans-serif;}
+.MsoPapDefault
+	{margin-bottom:8.0pt;
+	line-height:107%;}
+ /* Page Definitions */
+ @page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+-->
+</style>
+    <blockquote type="cite"
+      cite="mid:20190822151904.17919-4-ramalingam.c@intel.com">
+      <pre class="moz-quote-pre" wrap="">
++	MEI_TC_A = 0x10,		/* Transcoder TCA */
++	MEI_TC_B,			/* Transcoder TCB */
++	MEI_TC_C,			/* Transcoder TCC */
++	MEI_TC_D			/* Transcoder TCD */
++};
++
+ /**
+  * struct hdcp_port_data - intel specific HDCP port data
+  * @fw_ddi: ddi index as per ME FW
++ * @fw_tc: transcoder index as per ME FW
+  * @port_type: HDCP port type as per ME FW classification
+  * @protocol: HDCP adaptation as per ME FW
+  * @k: No of streams transmitted on a port. Only on DP MST this is != 1
+@@ -69,6 +81,7 @@ enum mei_fw_ddi {
+  */
+ struct hdcp_port_data {
+ 	enum mei_fw_ddi fw_ddi;
++	enum mei_fw_tc fw_tc;
+ 	u8 port_type;
+ 	u8 protocol;
+ 	u16 k;
+</pre>
+    </blockquote>
+  </body>
+</html>
+
+--------------60B69BBEACA2F5E23FBDF21B--
+
+--===============0013282914==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
+IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
+
+--===============0013282914==--
