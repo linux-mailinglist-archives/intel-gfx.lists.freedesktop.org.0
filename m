@@ -2,37 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 13AB79FA3A
-	for <lists+intel-gfx@lfdr.de>; Wed, 28 Aug 2019 08:11:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BD3349FA88
+	for <lists+intel-gfx@lfdr.de>; Wed, 28 Aug 2019 08:30:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D363489B30;
-	Wed, 28 Aug 2019 06:11:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 03F4E89A77;
+	Wed, 28 Aug 2019 06:30:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2DFAC89958;
- Wed, 28 Aug 2019 06:11:44 +0000 (UTC)
-X-Amp-Result: UNSCANNABLE
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5919989A77
+ for <intel-gfx@lists.freedesktop.org>; Wed, 28 Aug 2019 06:30:27 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 27 Aug 2019 23:11:43 -0700
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 27 Aug 2019 23:30:26 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.64,440,1559545200"; 
- d="asc'?scan'208";a="192483221"
-Received: from zhen-hp.sh.intel.com (HELO zhen-hp) ([10.239.13.116])
- by orsmga002.jf.intel.com with ESMTP; 27 Aug 2019 23:11:42 -0700
-Date: Wed, 28 Aug 2019 14:06:59 +0800
-From: Zhenyu Wang <zhenyuw@linux.intel.com>
-To: Xiong Zhang <xiong.y.zhang@intel.com>
-Message-ID: <20190828060659.GA4868@zhen-hp.sh.intel.com>
-References: <1566279978-9659-2-git-send-email-xiong.y.zhang@intel.com>
- <1566357790-5003-1-git-send-email-xiong.y.zhang@intel.com>
+X-IronPort-AV: E=Sophos;i="5.64,440,1559545200"; d="scan'208";a="171441138"
+Received: from aborowie-mobl.ger.corp.intel.com (HELO [10.249.35.21])
+ ([10.249.35.21])
+ by orsmga007.jf.intel.com with ESMTP; 27 Aug 2019 23:30:24 -0700
+To: Manasi Navare <manasi.d.navare@intel.com>, intel-gfx@lists.freedesktop.org
+References: <20190827221735.29351-1-manasi.d.navare@intel.com>
+ <20190827221735.29351-3-manasi.d.navare@intel.com>
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Message-ID: <af763463-d321-901d-3bad-1fa6de598dba@linux.intel.com>
+Date: Wed, 28 Aug 2019 08:30:23 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.2
 MIME-Version: 1.0
-In-Reply-To: <1566357790-5003-1-git-send-email-xiong.y.zhang@intel.com>
-User-Agent: Mutt/1.10.0 (2018-05-17)
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915: Move vgpu balloon info into
- i915_virtual_gpu struct
+In-Reply-To: <20190827221735.29351-3-manasi.d.navare@intel.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915/display: Move the
+ commit_tail() disable sequence to commit_modeset_disables() hook
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -45,217 +47,118 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: Zhenyu Wang <zhenyuw@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-gvt-dev@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============1534726268=="
+Cc: Jani Nikula <jani.nikula@intel.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
---===============1534726268==
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="tThc/1wpZn/ma/RB"
-Content-Disposition: inline
-
-
---tThc/1wpZn/ma/RB
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On 2019.08.21 11:23:10 +0800, Xiong Zhang wrote:
-> vgpu ballon info consists of four drm_mm_node which is used to reserve
-> ggtt space, then linux guest won't use these reserved ggtt space.
->=20
-> Each vgpu has its own ballon info, so move ballon info into
-> i915_virtual_gpu structure.
->=20
-> v2: Fix dim PARENTHESIS_ALIGNMENT check warning
->=20
-> Signed-off-by: Xiong Zhang <xiong.y.zhang@intel.com>
-> ---
-
-Looks fine to me. You need to refresh after deballoon fix merged.
-
-Reviewed-by: Zhenyu Wang <zhenyuw@linux.intel.com>
-
->  drivers/gpu/drm/i915/i915_drv.h  | 14 ++++++++++++++
->  drivers/gpu/drm/i915/i915_vgpu.c | 40 +++++++++++++++++-----------------=
-------
->  2 files changed, 31 insertions(+), 23 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_=
-drv.h
-> index 18be8b2..9c14095 100644
-> --- a/drivers/gpu/drm/i915/i915_drv.h
-> +++ b/drivers/gpu/drm/i915/i915_drv.h
-> @@ -1024,6 +1024,20 @@ struct i915_frontbuffer_tracking {
->  struct i915_virtual_gpu {
->  	bool active;
->  	u32 caps;
-> +
-> +	struct balloon_info {
-> +		/*
-> +		 * There are up to 2 regions per mappable/unmappable graphic
-> +		 * memory that might be ballooned. Here, index 0/1 is for
-> +		 * mappable graphic memory, 2/3 for unmappable graphic memory.
-> +		 */
-> +#define VGPU_MAPPABLE_BALLOON_LOW     0
-> +#define VGPU_MAPPABLE_BALLOON_HIGH    1
-> +#define VGPU_UNMAPPABLE_BALLOON_LOW   2
-> +#define VGPU_UNMAPPABLE_BALLOON_HIGH  3
-> +#define VGPU_MAX_BALLOON_NUM          4
-> +		struct drm_mm_node space[VGPU_MAX_BALLOON_NUM];
-> +	} bl_info;
->  };
-> =20
->  /* used in computing the new watermarks state */
-> diff --git a/drivers/gpu/drm/i915/i915_vgpu.c b/drivers/gpu/drm/i915/i915=
-_vgpu.c
-> index d2fd66f..0ed35f4 100644
-> --- a/drivers/gpu/drm/i915/i915_vgpu.c
-> +++ b/drivers/gpu/drm/i915/i915_vgpu.c
-> @@ -105,17 +105,6 @@ bool intel_vgpu_has_full_ppgtt(struct drm_i915_priva=
-te *dev_priv)
->  	return dev_priv->vgpu.caps & VGT_CAPS_FULL_PPGTT;
->  }
-> =20
-> -struct _balloon_info_ {
-> -	/*
-> -	 * There are up to 2 regions per mappable/unmappable graphic
-> -	 * memory that might be ballooned. Here, index 0/1 is for mappable
-> -	 * graphic memory, 2/3 for unmappable graphic memory.
-> -	 */
-> -	struct drm_mm_node space[4];
-> -};
-> -
-> -static struct _balloon_info_ bl_info;
-> -
->  static void vgt_deballoon_space(struct i915_ggtt *ggtt,
->  				struct drm_mm_node *node)
->  {
-> @@ -140,15 +129,16 @@ static void vgt_deballoon_space(struct i915_ggtt *g=
-gtt,
->   */
->  void intel_vgt_deballoon(struct i915_ggtt *ggtt)
->  {
-> +	struct drm_i915_private *dev_priv =3D ggtt->vm.i915;
->  	int i;
-> =20
-> -	if (!intel_vgpu_active(ggtt->vm.i915))
-> +	if (!intel_vgpu_active(dev_priv))
->  		return;
-> =20
->  	DRM_DEBUG("VGT deballoon.\n");
-> =20
-> -	for (i =3D 0; i < 4; i++)
-> -		vgt_deballoon_space(ggtt, &bl_info.space[i]);
-> +	for (i =3D 0; i < VGPU_MAX_BALLOON_NUM; i++)
-> +		vgt_deballoon_space(ggtt, &dev_priv->vgpu.bl_info.space[i]);
->  }
-> =20
->  static int vgt_balloon_space(struct i915_ggtt *ggtt,
-> @@ -219,6 +209,7 @@ static int vgt_balloon_space(struct i915_ggtt *ggtt,
->  int intel_vgt_balloon(struct i915_ggtt *ggtt)
->  {
->  	struct intel_uncore *uncore =3D &ggtt->vm.i915->uncore;
-> +	struct drm_mm_node *space;
->  	unsigned long ggtt_end =3D ggtt->vm.total;
-> =20
->  	unsigned long mappable_base, mappable_size, mappable_end;
-> @@ -253,9 +244,11 @@ int intel_vgt_balloon(struct i915_ggtt *ggtt)
->  		return -EINVAL;
->  	}
-> =20
-> +	space =3D ggtt->vm.i915->vgpu.bl_info.space;
->  	/* Unmappable graphic memory ballooning */
->  	if (unmappable_base > ggtt->mappable_end) {
-> -		ret =3D vgt_balloon_space(ggtt, &bl_info.space[2],
-> +		ret =3D vgt_balloon_space(ggtt,
-> +					&space[VGPU_UNMAPPABLE_BALLOON_LOW],
->  					ggtt->mappable_end, unmappable_base);
-> =20
->  		if (ret)
-> @@ -263,7 +256,8 @@ int intel_vgt_balloon(struct i915_ggtt *ggtt)
->  	}
-> =20
->  	if (unmappable_end < ggtt_end) {
-> -		ret =3D vgt_balloon_space(ggtt, &bl_info.space[3],
-> +		ret =3D vgt_balloon_space(ggtt,
-> +					&space[VGPU_UNMAPPABLE_BALLOON_HIGH],
->  					unmappable_end, ggtt_end);
->  		if (ret)
->  			goto err_upon_mappable;
-> @@ -271,17 +265,17 @@ int intel_vgt_balloon(struct i915_ggtt *ggtt)
-> =20
->  	/* Mappable graphic memory ballooning */
->  	if (mappable_base) {
-> -		ret =3D vgt_balloon_space(ggtt, &bl_info.space[0],
-> +		ret =3D vgt_balloon_space(ggtt,
-> +					&space[VGPU_MAPPABLE_BALLOON_LOW],
->  					0, mappable_base);
-> -
->  		if (ret)
->  			goto err_upon_unmappable;
->  	}
-> =20
->  	if (mappable_end < ggtt->mappable_end) {
-> -		ret =3D vgt_balloon_space(ggtt, &bl_info.space[1],
-> +		ret =3D vgt_balloon_space(ggtt,
-> +					&space[VGPU_MAPPABLE_BALLOON_HIGH],
->  					mappable_end, ggtt->mappable_end);
-> -
->  		if (ret)
->  			goto err_below_mappable;
->  	}
-> @@ -290,11 +284,11 @@ int intel_vgt_balloon(struct i915_ggtt *ggtt)
->  	return 0;
-> =20
->  err_below_mappable:
-> -	vgt_deballoon_space(ggtt, &bl_info.space[0]);
-> +	vgt_deballoon_space(ggtt, &space[VGPU_MAPPABLE_BALLOON_LOW]);
->  err_upon_unmappable:
-> -	vgt_deballoon_space(ggtt, &bl_info.space[3]);
-> +	vgt_deballoon_space(ggtt, &space[VGPU_UNMAPPABLE_BALLOON_HIGH]);
->  err_upon_mappable:
-> -	vgt_deballoon_space(ggtt, &bl_info.space[2]);
-> +	vgt_deballoon_space(ggtt, &space[VGPU_UNMAPPABLE_BALLOON_LOW]);
->  err:
->  	DRM_ERROR("VGT balloon fail\n");
->  	return ret;
-> --=20
-> 2.7.4
->=20
-> _______________________________________________
-> intel-gvt-dev mailing list
-> intel-gvt-dev@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gvt-dev
-
---=20
-Open Source Technology Center, Intel ltd.
-
-$gpg --keyserver wwwkeys.pgp.net --recv-keys 4D781827
-
---tThc/1wpZn/ma/RB
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iF0EARECAB0WIQTXuabgHDW6LPt9CICxBBozTXgYJwUCXWYaAwAKCRCxBBozTXgY
-J0EeAJ0RouK01hZJND7Ax0clEh1wsclGXgCfRgD/Wlj5vlhr/t7EgXIHzYPVJww=
-=Bsgs
------END PGP SIGNATURE-----
-
---tThc/1wpZn/ma/RB--
-
---===============1534726268==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
-IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
-
---===============1534726268==--
+T3AgMjgtMDgtMjAxOSBvbSAwMDoxNyBzY2hyZWVmIE1hbmFzaSBOYXZhcmU6Cj4gQ3JlYXRlIGEg
+bmV3IGhvb2sgY29tbWl0X21vZGVzZXRfZGlzYWJsZXMoKSBjb25zaXN0ZW50IHdpdGggdGhlIG5h
+bWluZwo+IGluIGRybSBhdG9taWMgaGVscGVycyBhbmQgc2ltaWxhciB0byB0aGUgY29tbWl0X21v
+ZGVzZXRfZW5hYmxlcygpIGhvb2suCj4gVGhpcyBoZWxwcyBiZXR0ZXIgb3JnYW5pemUgdGhlIGRp
+c2FibGUgc2VxdWVuY2UgaW4gYXRvbWljX2NvbW1pdF90YWlsKCkKPiBhbmQgbW92ZSB0aGF0IHRv
+IHRoaXMgZGlzYWJsZSBob29rLgo+Cj4gTm8gZnVuY3Rpb25hbCBjaGFuZ2UKPgo+IHYzOgo+ICog
+UmViYXNlIChNYW5hc2kpCj4gdjI6Cj4gKiBDcmVhdGUgYSBoZWxwZXIgZm9yIG9sZF9jcnRjX3N0
+YXRlIGRpc2FibGVzIChMdWNhcykKPgo+IFN1Z2dlc3RlZC1ieTogRGFuaWVsIFZldHRlciA8ZGFu
+aWVsLnZldHRlckBpbnRlbC5jb20+Cj4gQ2M6IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFs
+YUBsaW51eC5pbnRlbC5jb20+Cj4gQ2M6IE1hYXJ0ZW4gTGFua2hvcnN0IDxtYWFydGVuLmxhbmto
+b3JzdEBsaW51eC5pbnRlbC5jb20+Cj4gQ2M6IE1hdHQgUm9wZXIgPG1hdHRoZXcuZC5yb3BlckBp
+bnRlbC5jb20+Cj4gQ2M6IEphbmkgTmlrdWxhIDxqYW5pLm5pa3VsYUBpbnRlbC5jb20+Cj4gU2ln
+bmVkLW9mZi1ieTogTWFuYXNpIE5hdmFyZSA8bWFuYXNpLmQubmF2YXJlQGludGVsLmNvbT4KPiAt
+LS0KPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMgfCA5NCAr
+KysrKysrKysrKysrLS0tLS0tLQo+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2Rydi5oICAg
+ICAgICAgICAgICB8ICAxICsKPiAgMiBmaWxlcyBjaGFuZ2VkLCA2MSBpbnNlcnRpb25zKCspLCAz
+NCBkZWxldGlvbnMoLSkKPgo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNw
+bGF5L2ludGVsX2Rpc3BsYXkuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxf
+ZGlzcGxheS5jCj4gaW5kZXggMjNjOGM3ZjVjNDdhLi43ZjBhYjAxMDE1NjkgMTAwNjQ0Cj4gLS0t
+IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMKPiArKysgYi9k
+cml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuYwo+IEBAIC0xMzc1OCw2
+ICsxMzc1OCw2MSBAQCBzdGF0aWMgdm9pZCBpbnRlbF91cGRhdGVfY3J0YyhzdHJ1Y3QgaW50ZWxf
+Y3J0YyAqY3J0YywKPiAgCWludGVsX2ZpbmlzaF9jcnRjX2NvbW1pdChzdGF0ZSwgY3J0Yyk7Cj4g
+IH0KPiAgCj4gK3N0YXRpYyB2b2lkIGludGVsX29sZF9jcnRjX3N0YXRlX2Rpc2FibGVzKHN0cnVj
+dCBpbnRlbF9hdG9taWNfc3RhdGUgKnN0YXRlLAo+ICsJCQkJCSAgc3RydWN0IGludGVsX2NydGNf
+c3RhdGUgKm9sZF9jcnRjX3N0YXRlLAo+ICsJCQkJCSAgc3RydWN0IGludGVsX2NydGNfc3RhdGUg
+Km5ld19jcnRjX3N0YXRlLAo+ICsJCQkJCSAgc3RydWN0IGludGVsX2NydGMgKmNydGMpCj4gK3sK
+PiArCXN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJpdiA9IHRvX2k5MTUoc3RhdGUtPmJh
+c2UuZGV2KTsKPiArCj4gKwlpbnRlbF9jcnRjX2Rpc2FibGVfcGxhbmVzKHN0YXRlLCBjcnRjKTsK
+PiArCj4gKwkvKgo+ICsJICogV2UgbmVlZCB0byBkaXNhYmxlIHBpcGUgQ1JDIGJlZm9yZSBkaXNh
+YmxpbmcgdGhlIHBpcGUsCj4gKwkgKiBvciB3ZSByYWNlIGFnYWluc3QgdmJsYW5rIG9mZi4KPiAr
+CSAqLwo+ICsJaW50ZWxfY3J0Y19kaXNhYmxlX3BpcGVfY3JjKGNydGMpOwo+ICsKPiArCWRldl9w
+cml2LT5kaXNwbGF5LmNydGNfZGlzYWJsZShvbGRfY3J0Y19zdGF0ZSwgc3RhdGUpOwo+ICsJY3J0
+Yy0+YWN0aXZlID0gZmFsc2U7Cj4gKwlpbnRlbF9mYmNfZGlzYWJsZShjcnRjKTsKPiArCWludGVs
+X2Rpc2FibGVfc2hhcmVkX2RwbGwob2xkX2NydGNfc3RhdGUpOwo+ICsKPiArCS8qCj4gKwkgKiBV
+bmRlcnJ1bnMgZG9uJ3QgYWx3YXlzIHJhaXNlIGludGVycnVwdHMsCj4gKwkgKiBzbyBjaGVjayBt
+YW51YWxseS4KPiArCSAqLwo+ICsJaW50ZWxfY2hlY2tfY3B1X2ZpZm9fdW5kZXJydW5zKGRldl9w
+cml2KTsKPiArCWludGVsX2NoZWNrX3BjaF9maWZvX3VuZGVycnVucyhkZXZfcHJpdik7Cj4gKwo+
+ICsJLyogRklYTUUgdW5pZnkgdGhpcyBmb3IgYWxsIHBsYXRmb3JtcyAqLwo+ICsJaWYgKCFuZXdf
+Y3J0Y19zdGF0ZS0+YmFzZS5hY3RpdmUgJiYKPiArCSAgICAhSEFTX0dNQ0goZGV2X3ByaXYpICYm
+Cj4gKwkgICAgZGV2X3ByaXYtPmRpc3BsYXkuaW5pdGlhbF93YXRlcm1hcmtzKQo+ICsJCWRldl9w
+cml2LT5kaXNwbGF5LmluaXRpYWxfd2F0ZXJtYXJrcyhzdGF0ZSwKPiArCQkJCQkJICAgICBuZXdf
+Y3J0Y19zdGF0ZSk7Cj4gK30KPiArCj4gK3N0YXRpYyB2b2lkIGludGVsX2NvbW1pdF9tb2Rlc2V0
+X2Rpc2FibGVzKHN0cnVjdCBpbnRlbF9hdG9taWNfc3RhdGUgKnN0YXRlKQo+ICt7Cj4gKwlzdHJ1
+Y3QgaW50ZWxfY3J0Y19zdGF0ZSAqbmV3X2NydGNfc3RhdGUsICpvbGRfY3J0Y19zdGF0ZTsKPiAr
+CXN0cnVjdCBpbnRlbF9jcnRjICpjcnRjOwo+ICsJaW50IGk7Cj4gKwo+ICsJZm9yX2VhY2hfb2xk
+bmV3X2ludGVsX2NydGNfaW5fc3RhdGUoc3RhdGUsIGNydGMsIG9sZF9jcnRjX3N0YXRlLCBuZXdf
+Y3J0Y19zdGF0ZSwgaSkgewo+ICsJCWlmICghbmVlZHNfbW9kZXNldChuZXdfY3J0Y19zdGF0ZSkp
+Cj4gKwkJCWNvbnRpbnVlOwo+ICsKPiArCQlpbnRlbF9wcmVfcGxhbmVfdXBkYXRlKG9sZF9jcnRj
+X3N0YXRlLCBuZXdfY3J0Y19zdGF0ZSk7Cj4gKwo+ICsJCWlmIChvbGRfY3J0Y19zdGF0ZS0+YmFz
+ZS5hY3RpdmUpCj4gKwkJCWludGVsX29sZF9jcnRjX3N0YXRlX2Rpc2FibGVzKHN0YXRlLAo+ICsJ
+CQkJCQkgICAgICBvbGRfY3J0Y19zdGF0ZSwKPiArCQkJCQkJICAgICAgbmV3X2NydGNfc3RhdGUs
+Cj4gKwkJCQkJCSAgICAgIGNydGMpOwo+ICsJfQo+ICt9Cj4gKwo+ICBzdGF0aWMgdm9pZCBpbnRl
+bF9jb21taXRfbW9kZXNldF9lbmFibGVzKHN0cnVjdCBpbnRlbF9hdG9taWNfc3RhdGUgKnN0YXRl
+KQo+ICB7Cj4gIAlzdHJ1Y3QgaW50ZWxfY3J0YyAqY3J0YzsKPiBAQCAtMTM5MzgsNDIgKzEzOTkz
+LDEwIEBAIHN0YXRpYyB2b2lkIGludGVsX2F0b21pY19jb21taXRfdGFpbChzdHJ1Y3QgaW50ZWxf
+YXRvbWljX3N0YXRlICpzdGF0ZSkKPiAgCQkJcHV0X2RvbWFpbnNbY3J0Yy0+cGlwZV0gPQo+ICAJ
+CQkJbW9kZXNldF9nZXRfY3J0Y19wb3dlcl9kb21haW5zKG5ld19jcnRjX3N0YXRlKTsKPiAgCQl9
+Cj4gLQo+IC0JCWlmICghbmVlZHNfbW9kZXNldChuZXdfY3J0Y19zdGF0ZSkpCj4gLQkJCWNvbnRp
+bnVlOwo+IC0KPiAtCQlpbnRlbF9wcmVfcGxhbmVfdXBkYXRlKG9sZF9jcnRjX3N0YXRlLCBuZXdf
+Y3J0Y19zdGF0ZSk7Cj4gLQo+IC0JCWlmIChvbGRfY3J0Y19zdGF0ZS0+YmFzZS5hY3RpdmUpIHsK
+PiAtCQkJaW50ZWxfY3J0Y19kaXNhYmxlX3BsYW5lcyhzdGF0ZSwgY3J0Yyk7Cj4gLQo+IC0JCQkv
+Kgo+IC0JCQkgKiBXZSBuZWVkIHRvIGRpc2FibGUgcGlwZSBDUkMgYmVmb3JlIGRpc2FibGluZyB0
+aGUgcGlwZSwKPiAtCQkJICogb3Igd2UgcmFjZSBhZ2FpbnN0IHZibGFuayBvZmYuCj4gLQkJCSAq
+Lwo+IC0JCQlpbnRlbF9jcnRjX2Rpc2FibGVfcGlwZV9jcmMoY3J0Yyk7Cj4gLQo+IC0JCQlkZXZf
+cHJpdi0+ZGlzcGxheS5jcnRjX2Rpc2FibGUob2xkX2NydGNfc3RhdGUsIHN0YXRlKTsKPiAtCQkJ
+Y3J0Yy0+YWN0aXZlID0gZmFsc2U7Cj4gLQkJCWludGVsX2ZiY19kaXNhYmxlKGNydGMpOwo+IC0J
+CQlpbnRlbF9kaXNhYmxlX3NoYXJlZF9kcGxsKG9sZF9jcnRjX3N0YXRlKTsKPiAtCj4gLQkJCS8q
+Cj4gLQkJCSAqIFVuZGVycnVucyBkb24ndCBhbHdheXMgcmFpc2UKPiAtCQkJICogaW50ZXJydXB0
+cywgc28gY2hlY2sgbWFudWFsbHkuCj4gLQkJCSAqLwo+IC0JCQlpbnRlbF9jaGVja19jcHVfZmlm
+b191bmRlcnJ1bnMoZGV2X3ByaXYpOwo+IC0JCQlpbnRlbF9jaGVja19wY2hfZmlmb191bmRlcnJ1
+bnMoZGV2X3ByaXYpOwo+IC0KPiAtCQkJLyogRklYTUUgdW5pZnkgdGhpcyBmb3IgYWxsIHBsYXRm
+b3JtcyAqLwo+IC0JCQlpZiAoIW5ld19jcnRjX3N0YXRlLT5iYXNlLmFjdGl2ZSAmJgo+IC0JCQkg
+ICAgIUhBU19HTUNIKGRldl9wcml2KSAmJgo+IC0JCQkgICAgZGV2X3ByaXYtPmRpc3BsYXkuaW5p
+dGlhbF93YXRlcm1hcmtzKQo+IC0JCQkJZGV2X3ByaXYtPmRpc3BsYXkuaW5pdGlhbF93YXRlcm1h
+cmtzKHN0YXRlLAo+IC0JCQkJCQkJCSAgICAgbmV3X2NydGNfc3RhdGUpOwo+IC0JCX0KPiAgCX0K
+PiAgCj4gKwlkZXZfcHJpdi0+ZGlzcGxheS5jb21taXRfbW9kZXNldF9kaXNhYmxlcyhzdGF0ZSk7
+Cj4gKwo+ICAJLyogRklYTUU6IEV2ZW50dWFsbHkgZ2V0IHJpZCBvZiBvdXIgY3J0Yy0+Y29uZmln
+IHBvaW50ZXIgKi8KPiAgCWZvcl9lYWNoX25ld19pbnRlbF9jcnRjX2luX3N0YXRlKHN0YXRlLCBj
+cnRjLCBuZXdfY3J0Y19zdGF0ZSwgaSkKPiAgCQljcnRjLT5jb25maWcgPSBuZXdfY3J0Y19zdGF0
+ZTsKPiBAQCAtMTU5MjksNiArMTU5NTIsOSBAQCB2b2lkIGludGVsX2luaXRfZGlzcGxheV9ob29r
+cyhzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYpCj4gIAkJZGV2X3ByaXYtPmRpc3Bs
+YXkuY29tbWl0X21vZGVzZXRfZW5hYmxlcyA9IHNrbF9jb21taXRfbW9kZXNldF9lbmFibGVzOwo+
+ICAJZWxzZQo+ICAJCWRldl9wcml2LT5kaXNwbGF5LmNvbW1pdF9tb2Rlc2V0X2VuYWJsZXMgPSBp
+bnRlbF9jb21taXRfbW9kZXNldF9lbmFibGVzOwo+ICsKPiArCWRldl9wcml2LT5kaXNwbGF5LmNv
+bW1pdF9tb2Rlc2V0X2Rpc2FibGVzID0gaW50ZWxfY29tbWl0X21vZGVzZXRfZGlzYWJsZXM7Cj4g
+Kwo+ICB9Cj4gIAo+ICBzdGF0aWMgaTkxNV9yZWdfdCBpOTE1X3ZnYWNudHJsX3JlZyhzdHJ1Y3Qg
+ZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYpCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2Ry
+bS9pOTE1L2k5MTVfZHJ2LmggYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2Rydi5oCj4gaW5k
+ZXggNzVhNDJlOGRmNjdlLi5kYjc0ODA4MzFlNTIgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUv
+ZHJtL2k5MTUvaTkxNV9kcnYuaAo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZHJ2
+LmgKPiBAQCAtMjg5LDYgKzI4OSw3IEBAIHN0cnVjdCBkcm1faTkxNV9kaXNwbGF5X2Z1bmNzIHsK
+PiAgCXZvaWQgKCpjcnRjX2Rpc2FibGUpKHN0cnVjdCBpbnRlbF9jcnRjX3N0YXRlICpvbGRfY3J0
+Y19zdGF0ZSwKPiAgCQkJICAgICBzdHJ1Y3QgaW50ZWxfYXRvbWljX3N0YXRlICpvbGRfc3RhdGUp
+Owo+ICAJdm9pZCAoKmNvbW1pdF9tb2Rlc2V0X2VuYWJsZXMpKHN0cnVjdCBpbnRlbF9hdG9taWNf
+c3RhdGUgKnN0YXRlKTsKPiArCXZvaWQgKCpjb21taXRfbW9kZXNldF9kaXNhYmxlcykoc3RydWN0
+IGludGVsX2F0b21pY19zdGF0ZSAqc3RhdGUpOwo+ICAJdm9pZCAoKmF1ZGlvX2NvZGVjX2VuYWJs
+ZSkoc3RydWN0IGludGVsX2VuY29kZXIgKmVuY29kZXIsCj4gIAkJCQkgICBjb25zdCBzdHJ1Y3Qg
+aW50ZWxfY3J0Y19zdGF0ZSAqY3J0Y19zdGF0ZSwKPiAgCQkJCSAgIGNvbnN0IHN0cnVjdCBkcm1f
+Y29ubmVjdG9yX3N0YXRlICpjb25uX3N0YXRlKTsKCkhleSwKCk5hY2ssIHRoZXJlIGlzIG5vIG5l
+ZWQgdG8gc3RhcnQgaW50cm9kdWNpbmcgYSBzcGVjaWFsIGNhc2UgaGVyZS4gVGhlIHNhbWUgZW5h
+YmxlIGFuZCBkaXNhYmxlIHNlcXVlbmNlIGZvciBnZW4xMSB3aWxsIHN0aWxsIHdvcmsgYWxsIHRo
+ZSB3YXkgYmFjayB0byBnZW45IGlmIHRyYW5zY29kZXIgc3luYyBpcyBub3QgdXNlZC4gOikgRm9y
+IGRpc2FibGUgYWxsIHRoZSB3YXkgYmFjayB0byBnZW4yLgoKSXQgY291bGQgc3RpbGwgYmUgYmVu
+ZWZpY2lhbCB0byBtYWtlIHRob3NlIHNlcGFyYXRlIGZ1bmN0aW9ucywganVzdCBubyBmdW5jdGlv
+biBwb2ludGVyLgoKaW50ZWxfb2xkX2NydGNfc3RhdGVfZGlzYWJsZXMoCgpfX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0
+CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3Rv
+cC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZng=
