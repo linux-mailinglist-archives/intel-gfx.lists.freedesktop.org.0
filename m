@@ -1,40 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 596CCA0BCC
-	for <lists+intel-gfx@lfdr.de>; Wed, 28 Aug 2019 22:47:49 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 09659A0BD2
+	for <lists+intel-gfx@lfdr.de>; Wed, 28 Aug 2019 22:49:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3EDDB89E11;
-	Wed, 28 Aug 2019 20:47:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7543D89EB4;
+	Wed, 28 Aug 2019 20:49:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1DE7189E11
- for <intel-gfx@lists.freedesktop.org>; Wed, 28 Aug 2019 20:47:46 +0000 (UTC)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 053D689EB4
+ for <intel-gfx@lists.freedesktop.org>; Wed, 28 Aug 2019 20:49:03 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 28 Aug 2019 13:47:45 -0700
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga106.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 28 Aug 2019 13:49:03 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.64,442,1559545200"; d="scan'208";a="180668547"
-Received: from dceraolo-linux.fm.intel.com (HELO [10.1.27.145]) ([10.1.27.145])
- by fmsmga008.fm.intel.com with ESMTP; 28 Aug 2019 13:47:45 -0700
-To: Fernando Pacheco <fernando.pacheco@intel.com>,
- intel-gfx@lists.freedesktop.org
-References: <20190828004558.11903-1-fernando.pacheco@intel.com>
- <20190828004558.11903-2-fernando.pacheco@intel.com>
-From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Message-ID: <f199a434-3994-9cc3-a4e9-2cfad473a6ed@intel.com>
-Date: Wed, 28 Aug 2019 13:47:24 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+X-IronPort-AV: E=Sophos;i="5.64,442,1559545200"; 
+ d="scan'208,217";a="171673573"
+Received: from swatish2-mobl.gar.corp.intel.com (HELO [10.252.71.22])
+ ([10.252.71.22])
+ by orsmga007.jf.intel.com with ESMTP; 28 Aug 2019 13:48:59 -0700
+To: "Shankar, Uma" <uma.shankar@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+References: <1566800772-18412-1-git-send-email-swati2.sharma@intel.com>
+ <1566800772-18412-7-git-send-email-swati2.sharma@intel.com>
+ <E7C9878FBA1C6D42A1CA3F62AEB6945F821D39F8@BGSMSX104.gar.corp.intel.com>
+From: "Sharma, Swati2" <swati2.sharma@intel.com>
+Organization: Intel
+Message-ID: <3a446974-592a-ec3f-0ee7-68ef34de8a4b@intel.com>
+Date: Thu, 29 Aug 2019 02:18:58 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
  Thunderbird/60.8.0
 MIME-Version: 1.0
-In-Reply-To: <20190828004558.11903-2-fernando.pacheco@intel.com>
+In-Reply-To: <E7C9878FBA1C6D42A1CA3F62AEB6945F821D39F8@BGSMSX104.gar.corp.intel.com>
 Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH 1/3] drm/i915/uc: Extract common code from
- GuC stop/disable comm
+Subject: Re: [Intel-gfx] [v8][PATCH 06/10] drm/i91/display: Extract
+ i965_read_luts()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -47,73 +51,311 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Cc: "Nikula, Jani" <jani.nikula@intel.com>,
+ "daniel.vetter@ffwll.ch" <daniel.vetter@ffwll.ch>, "Nautiyal,
+ Ankit K" <ankit.k.nautiyal@intel.com>
+Content-Type: multipart/mixed; boundary="===============1592553478=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-CgpPbiA4LzI3LzE5IDU6NDUgUE0sIEZlcm5hbmRvIFBhY2hlY28gd3JvdGU6Cj4gRHVyaW5nIG5v
-cm1hbCBkcml2ZXIgdW5sb2FkIHdlIGF0dGVtcHQgdG8gZGlzYWJsZSBHdUMgY29tbXVuaWNhdGlv
-bgo+IHdoaWxlIGl0IGlzIGN1cnJlbnRseSBzdG9wcGVkLiBUaGlzIHJlc3VsdHMgaW4gYSBub3An
-ZCBjYWxsIHRvCj4gaW50ZWxfZ3VjX2N0X2Rpc2FibGUgd2l0aGluIGd1Y19kaXNhYmxlX2NvbW11
-bmljYXRpb24gYmVjYXVzZQo+IHN0b3AvZGlzYWJsZSByZWx5IG9uIHRoZSBzYW1lIGZsYWcgdG8g
-cHJldmVudCBmdXJ0aGVyIGNvbW1zIHdpdGggQ1QuCj4gCj4gV2UgY2FuIGF2b2lkIHRoZSBjYWxs
-IHRvIGRpc2FibGUgYW5kIHN0aWxsIGxlYXZlIGNvbW11bmljYXRpb24gaW4gYQo+IHNhdGlzZmFj
-dG9yeSBzdGF0ZSBieSBleHRyYWN0aW5nIGEgc2V0IG9mIHNoYXJlZCBzdGVwcyBmcm9tIHN0b3Av
-ZGlzYWJsZS4KPiBUaGlzIHNldCBjYW4gaW5jbHVkZSBndWNfZGlzYWJsZV9pbnRlcnJ1cHRzIGFz
-IHdlIGRvIG5vdCByZXF1aXJlIHRoZQo+IHNpbmdsZSBjYWxsZXIgb2YgZ3VjX3N0b3BfY29tbXVu
-aWNhdGlvbiB0byBiZSBhdG9taWM6Cj4gImRybS9pOTE1L3NlbGZ0ZXN0czogRml4dXAgYXRvbWlj
-IHJlc2V0IGNoZWNraW5nIi4KPiAKPiBUaGlzIHNpdHVhdGlvbiAoc3RvcCAtPiBkaXNhYmxlKSBv
-bmx5IG9jY3VycyBkdXJpbmcgaW50ZWxfdWNfZmluaV9odywKPiBzbyBkdXJpbmcgZmluaSwgY2Fs
-bCBndWNfZGlzYWJsZV9jb21tdW5pY2F0aW9uIG9ubHkgaWYgY3VycmVudGx5IGVuYWJsZWQuCj4g
-VGhlIHN5bW1ldHJpYyBjYWxscyB0byBlbmFibGUvZGlzYWJsZSByZW1haW4gdW5tb2RpZmllZCBm
-b3IgYWxsIG90aGVyCj4gc2NlbmFyaW9zLgo+IAo+IFNpZ25lZC1vZmYtYnk6IEZlcm5hbmRvIFBh
-Y2hlY28gPGZlcm5hbmRvLnBhY2hlY29AaW50ZWwuY29tPgo+IENjOiBDaHJpcyBXaWxzb24gPGNo
-cmlzQGNocmlzLXdpbHNvbi5jby51az4KPiBDYzogTWljaGFsIFdhamRlY3prbyA8bWljaGFsLndh
-amRlY3prb0BpbnRlbC5jb20+Cj4gQ2M6IERhbmllbGUgQ2VyYW9sbyBTcHVyaW8gPGRhbmllbGUu
-Y2VyYW9sb3NwdXJpb0BpbnRlbC5jb20+Cj4gLS0tCj4gICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9n
-dC91Yy9pbnRlbF91Yy5jIHwgMzAgKysrKysrKysrKysrKysrKy0tLS0tLS0tLS0tCj4gICAxIGZp
-bGUgY2hhbmdlZCwgMTggaW5zZXJ0aW9ucygrKSwgMTIgZGVsZXRpb25zKC0pCj4gCj4gZGlmZiAt
-LWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L3VjL2ludGVsX3VjLmMgYi9kcml2ZXJzL2dw
-dS9kcm0vaTkxNS9ndC91Yy9pbnRlbF91Yy5jCj4gaW5kZXggNzFlZTdhYjAzNWNjLi4yOWE5ZWVj
-NjBkMmUgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvdWMvaW50ZWxfdWMu
-Ywo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L3VjL2ludGVsX3VjLmMKPiBAQCAtMjI0
-LDE3ICsyMjQsNyBAQCBzdGF0aWMgaW50IGd1Y19lbmFibGVfY29tbXVuaWNhdGlvbihzdHJ1Y3Qg
-aW50ZWxfZ3VjICpndWMpCj4gICAJcmV0dXJuIDA7Cj4gICB9Cj4gICAKPiAtc3RhdGljIHZvaWQg
-Z3VjX3N0b3BfY29tbXVuaWNhdGlvbihzdHJ1Y3QgaW50ZWxfZ3VjICpndWMpCj4gLXsKPiAtCWlu
-dGVsX2d1Y19jdF9zdG9wKCZndWMtPmN0KTsKPiAtCj4gLQlndWMtPnNlbmQgPSBpbnRlbF9ndWNf
-c2VuZF9ub3A7Cj4gLQlndWMtPmhhbmRsZXIgPSBpbnRlbF9ndWNfdG9faG9zdF9ldmVudF9oYW5k
-bGVyX25vcDsKPiAtCj4gLQlndWNfY2xlYXJfbW1pb19tc2coZ3VjKTsKPiAtfQo+IC0KPiAtc3Rh
-dGljIHZvaWQgZ3VjX2Rpc2FibGVfY29tbXVuaWNhdGlvbihzdHJ1Y3QgaW50ZWxfZ3VjICpndWMp
-Cj4gK3N0YXRpYyB2b2lkIF9fZ3VjX3N0b3BfY29tbXVuaWNhdGlvbihzdHJ1Y3QgaW50ZWxfZ3Vj
-ICpndWMpCj4gICB7Cj4gICAJLyoKPiAgIAkgKiBFdmVudHMgZ2VuZXJhdGVkIGR1cmluZyBvciBh
-ZnRlciBDVCBkaXNhYmxlIGFyZSBsb2dnZWQgYnkgZ3VjIGluCj4gQEAgLTI0Nyw2ICsyMzcsMjAg
-QEAgc3RhdGljIHZvaWQgZ3VjX2Rpc2FibGVfY29tbXVuaWNhdGlvbihzdHJ1Y3QgaW50ZWxfZ3Vj
-ICpndWMpCj4gICAKPiAgIAlndWMtPnNlbmQgPSBpbnRlbF9ndWNfc2VuZF9ub3A7Cj4gICAJZ3Vj
-LT5oYW5kbGVyID0gaW50ZWxfZ3VjX3RvX2hvc3RfZXZlbnRfaGFuZGxlcl9ub3A7Cj4gK30KPiAr
-Cj4gK3N0YXRpYyB2b2lkIGd1Y19zdG9wX2NvbW11bmljYXRpb24oc3RydWN0IGludGVsX2d1YyAq
-Z3VjKQo+ICt7Cj4gKwlpbnRlbF9ndWNfY3Rfc3RvcCgmZ3VjLT5jdCk7Cj4gKwoKVGhlIG9ubHkg
-ZGlmZmVyZW5jZSBiZXR3ZWVuIGludGVsX2d1Y19jdF9zdG9wKCkgYW5kIAppbnRlbF9ndWNfY3Rf
-ZGlzYWJsZSgpIGlzIHRoYXQgaW4gdGhlIGxhdHRlciB3ZSBhbHNvIHRlbGwgZ3VjIHRoYXQgd2Un
-dmUgCmRpc2FibGVkIHRoZSBidWZmZXJzLiBXZSBjb3VsZCBwcm9iYWJseSBqdXN0IGFkZCBhIGNo
-ZWNrIHRvIHJldHVybiBlYXJseSAKaWYgIWludGVsX2d1Y19pc19ydW5uaW5nKCkgaW4gaW50ZWxf
-Z3VjX2N0X2Rpc2FibGUoKSBhbmQgZHJvcCB0aGUgCnN0b3AvZGlzYWJsZSBkaWZmZXJlbnRpYXRp
-b24gZW50aXJlbHksIGJ1dCB0aGF0IGRvZXNuJ3QgbmVlZCB0byBoYXBwZW4gCmluIHRoaXMgcGF0
-Y2guCgoKPiArCV9fZ3VjX3N0b3BfY29tbXVuaWNhdGlvbihndWMpOwo+ICsKPiArCURSTV9JTkZP
-KCJHdUMgY29tbXVuaWNhdGlvbiBzdG9wcGVkXG4iKTsKPiArfQo+ICsKPiArc3RhdGljIHZvaWQg
-Z3VjX2Rpc2FibGVfY29tbXVuaWNhdGlvbihzdHJ1Y3QgaW50ZWxfZ3VjICpndWMpCj4gK3sKCkFy
-ZSB3ZSBub3cgZ3VhcmFudGVlZCB0aGF0IGd1Y19kaXNhYmxlX2NvbW11bmljYXRpb24oKSBpcyBj
-YWxsZWQgb25seSBvZiAKY29tbXVuaWNhdGlvbiBpcyBhY3R1YWxseSBlbmFibGVkPyBpZiBzbywg
-d2UgY291bGQgYWRkIGhlcmUgYToKCglHRU1fQlVHX09OKCFndWNfY29tbXVuaWNhdGlvbl9lbmFi
-bGVkKGd1YykpOwoKd2l0aCBvciB3aXRob3V0IHRoYXQ6CgpSZXZpZXdlZC1ieTogRGFuaWVsZSBD
-ZXJhb2xvIFNwdXJpbyA8ZGFuaWVsZS5jZXJhb2xvc3B1cmlvQGludGVsLmNvbT4KCkRhbmllbGUK
-Cj4gKwlfX2d1Y19zdG9wX2NvbW11bmljYXRpb24oZ3VjKTsKPiAgIAo+ICAgCWludGVsX2d1Y19j
-dF9kaXNhYmxlKCZndWMtPmN0KTsKPiAgIAo+IEBAIC01MzcsNyArNTQxLDkgQEAgdm9pZCBpbnRl
-bF91Y19maW5pX2h3KHN0cnVjdCBpbnRlbF91YyAqdWMpCj4gICAJaWYgKGludGVsX3VjX3N1cHBv
-cnRzX2d1Y19zdWJtaXNzaW9uKHVjKSkKPiAgIAkJaW50ZWxfZ3VjX3N1Ym1pc3Npb25fZGlzYWJs
-ZShndWMpOwo+ICAgCj4gLQlndWNfZGlzYWJsZV9jb21tdW5pY2F0aW9uKGd1Yyk7Cj4gKwlpZiAo
-Z3VjX2NvbW11bmljYXRpb25fZW5hYmxlZChndWMpKQo+ICsJCWd1Y19kaXNhYmxlX2NvbW11bmlj
-YXRpb24oZ3VjKTsKPiArCj4gICAJX191Y19zYW5pdGl6ZSh1Yyk7Cj4gICB9Cj4gICAKPiAKX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1h
-aWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMu
-ZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
+This is a multi-part message in MIME format.
+--===============1592553478==
+Content-Type: multipart/alternative;
+ boundary="------------968DB7B8F6D1E690173030D3"
+Content-Language: en-US
+
+This is a multi-part message in MIME format.
+--------------968DB7B8F6D1E690173030D3
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
+
+On 28-Aug-19 9:38 PM, Shankar, Uma wrote:
+>
+>> -----Original Message-----
+>> From: Sharma, Swati2
+>> Sent: Monday, August 26, 2019 11:56 AM
+>> To: intel-gfx@lists.freedesktop.org
+>> Cc: Nikula, Jani <jani.nikula@intel.com>; Sharma, Shashank
+>> <shashank.sharma@intel.com>; Manna, Animesh <animesh.manna@intel.com>;
+>> Nautiyal, Ankit K <ankit.k.nautiyal@intel.com>; daniel.vetter@ffwll.ch;
+>> ville.syrjala@linux.intel.com; Shankar, Uma <uma.shankar@intel.com>; Sharma,
+>> Swati2 <swati2.sharma@intel.com>
+>> Subject: [v8][PATCH 06/10] drm/i91/display: Extract i965_read_luts()
+> Typo in i915.
+>
+>> For i965, have hw read out to create hw blob of gamma lut values.
+> Instead of "have", I feel "add" would sound better.
+>
+> Also, don't drop version history.
+>
+>> Signed-off-by: Swati Sharma <swati2.sharma@intel.com>
+>> ---
+>> drivers/gpu/drm/i915/display/intel_color.c | 39 ++++++++++++++++++++++++++++++
+>> drivers/gpu/drm/i915/i915_reg.h            |  3 +++
+>> 2 files changed, 42 insertions(+)
+>>
+>> diff --git a/drivers/gpu/drm/i915/display/intel_color.c
+>> b/drivers/gpu/drm/i915/display/intel_color.c
+>> index 45e0ee8..c77bbed 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_color.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_color.c
+>> @@ -1571,6 +1571,44 @@ void i9xx_read_luts(struct intel_crtc_state *crtc_state)
+>> 	crtc_state->base.gamma_lut = i9xx_read_lut_8(crtc_state);  }
+>>
+>> +static struct drm_property_blob *
+>> +i965_read_gamma_lut_10p6(struct intel_crtc_state *crtc_state) {
+> You can rename this as " i965_read_lut_10p6" as pointed by Ville as well.
+> Will help extend for de-gamma later and can be re-used.
+Did this since we may need to create a new func for degamma readout and
+this can't be reused.
+>
+> Also make these const, as recommended by Ville.
+>
+>> +	struct intel_crtc *crtc = to_intel_crtc(crtc_state->base.crtc);
+>> +	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
+>> +	u32 i, val1, val2, lut_size = INTEL_INFO(dev_priv)->color.gamma_lut_size;
+> Move to next line to honour 80 character limits.
+>
+>> +	enum pipe pipe = crtc->pipe;
+>> +	struct drm_property_blob *blob;
+>> +	struct drm_color_lut *blob_data;
+>> +
+>> +	blob = drm_property_create_blob(&dev_priv->drm,
+>> +					sizeof(struct drm_color_lut) * lut_size,
+>> +					NULL);
+>> +	if (IS_ERR(blob))
+>> +		return NULL;
+>> +
+>> +	blob_data = blob->data;
+>> +
+>> +	for (i = 0; i < lut_size - 1; i++) {
+>> +		val1 = I915_READ(PALETTE(pipe, 2 * i + 0));
+>> +		val2 = I915_READ(PALETTE(pipe, 2 * i + 1));
+>> +
+>> +		blob_data[i].red = REG_FIELD_GET(PALETTE_RED_MASK, val1) << 8 |
+>> REG_FIELD_GET(PALETTE_RED_MASK, val2);
+>> +		blob_data[i].green = REG_FIELD_GET(PALETTE_GREEN_MASK, val1)
+>> << 8 | REG_FIELD_GET(PALETTE_GREEN_MASK, val2);
+>> +		blob_data[i].blue = REG_FIELD_GET(PALETTE_BLUE_MASK, val1) << 8
+>> | REG_FIELD_GET(PALETTE_BLUE_MASK, val2) ;
+>> +	}
+>> +
+>> +	return blob;
+>> +}
+>> +
+>> +static void i965_read_luts(struct intel_crtc_state *crtc_state) {
+>> +	if (crtc_state->gamma_mode == GAMMA_MODE_MODE_8BIT)
+>> +		crtc_state->base.gamma_lut = i9xx_read_lut_8(crtc_state);
+>> +	else
+>> +		crtc_state->base.gamma_lut =
+>> i965_read_gamma_lut_10p6(crtc_state);
+>> +}
+>> +
+>> void intel_color_init(struct intel_crtc *crtc)  {
+>> 	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev); @@ -1586,6
+>> +1624,7 @@ void intel_color_init(struct intel_crtc *crtc)
+>> 		} else if (INTEL_GEN(dev_priv) >= 4) {
+>> 			dev_priv->display.color_check = i9xx_color_check;
+>> 			dev_priv->display.color_commit = i9xx_color_commit;
+>> +			dev_priv->display.read_luts = i965_read_luts;
+>> 			dev_priv->display.load_luts = i965_load_luts;
+>> 		} else {
+>> 			dev_priv->display.color_check = i9xx_color_check; diff --git
+>> a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h index
+>> b687faa..b30b0c6b 100644
+>> --- a/drivers/gpu/drm/i915/i915_reg.h
+>> +++ b/drivers/gpu/drm/i915/i915_reg.h
+>> @@ -3558,6 +3558,9 @@ static inline bool i915_mmio_reg_valid(i915_reg_t reg)
+>> #define _PALETTE_A		0xa000
+>> #define _PALETTE_B		0xa800
+>> #define _CHV_PALETTE_C		0xc000
+>> +#define PALETTE_RED_MASK        REG_GENMASK(23, 16)
+>> +#define PALETTE_GREEN_MASK      REG_GENMASK(15, 8)
+>> +#define PALETTE_BLUE_MASK       REG_GENMASK(7, 0)
+>> #define PALETTE(pipe, i)	_MMIO(DISPLAY_MMIO_BASE(dev_priv) + \
+>> 				      _PICK((pipe), _PALETTE_A,		\
+>> 					    _PALETTE_B, _CHV_PALETTE_C) + \
+>> --
+>> 1.9.1
+
+
+-- 
+~Swati Sharma
+
+
+--------------968DB7B8F6D1E690173030D3
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  </head>
+  <body text="#000000" bgcolor="#FFFFFF">
+    <div class="moz-cite-prefix"><tt>On 28-Aug-19 9:38 PM, Shankar, Uma
+        wrote:</tt><br>
+    </div>
+    <blockquote type="cite"
+cite="mid:E7C9878FBA1C6D42A1CA3F62AEB6945F821D39F8@BGSMSX104.gar.corp.intel.com">
+      <pre class="moz-quote-pre" wrap="">
+
+</pre>
+      <blockquote type="cite">
+        <pre class="moz-quote-pre" wrap="">-----Original Message-----
+From: Sharma, Swati2
+Sent: Monday, August 26, 2019 11:56 AM
+To: <a class="moz-txt-link-abbreviated" href="mailto:intel-gfx@lists.freedesktop.org">intel-gfx@lists.freedesktop.org</a>
+Cc: Nikula, Jani <a class="moz-txt-link-rfc2396E" href="mailto:jani.nikula@intel.com">&lt;jani.nikula@intel.com&gt;</a>; Sharma, Shashank
+<a class="moz-txt-link-rfc2396E" href="mailto:shashank.sharma@intel.com">&lt;shashank.sharma@intel.com&gt;</a>; Manna, Animesh <a class="moz-txt-link-rfc2396E" href="mailto:animesh.manna@intel.com">&lt;animesh.manna@intel.com&gt;</a>;
+Nautiyal, Ankit K <a class="moz-txt-link-rfc2396E" href="mailto:ankit.k.nautiyal@intel.com">&lt;ankit.k.nautiyal@intel.com&gt;</a>; <a class="moz-txt-link-abbreviated" href="mailto:daniel.vetter@ffwll.ch">daniel.vetter@ffwll.ch</a>;
+<a class="moz-txt-link-abbreviated" href="mailto:ville.syrjala@linux.intel.com">ville.syrjala@linux.intel.com</a>; Shankar, Uma <a class="moz-txt-link-rfc2396E" href="mailto:uma.shankar@intel.com">&lt;uma.shankar@intel.com&gt;</a>; Sharma,
+Swati2 <a class="moz-txt-link-rfc2396E" href="mailto:swati2.sharma@intel.com">&lt;swati2.sharma@intel.com&gt;</a>
+Subject: [v8][PATCH 06/10] drm/i91/display: Extract i965_read_luts()
+</pre>
+      </blockquote>
+      <pre class="moz-quote-pre" wrap="">
+Typo in i915.
+
+</pre>
+      <blockquote type="cite">
+        <pre class="moz-quote-pre" wrap="">
+For i965, have hw read out to create hw blob of gamma lut values.
+</pre>
+      </blockquote>
+      <pre class="moz-quote-pre" wrap="">Instead of "have", I feel "add" would sound better.
+
+Also, don't drop version history.
+
+</pre>
+      <blockquote type="cite">
+        <pre class="moz-quote-pre" wrap="">Signed-off-by: Swati Sharma <a class="moz-txt-link-rfc2396E" href="mailto:swati2.sharma@intel.com">&lt;swati2.sharma@intel.com&gt;</a>
+---
+drivers/gpu/drm/i915/display/intel_color.c | 39 ++++++++++++++++++++++++++++++
+drivers/gpu/drm/i915/i915_reg.h            |  3 +++
+2 files changed, 42 insertions(+)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_color.c
+b/drivers/gpu/drm/i915/display/intel_color.c
+index 45e0ee8..c77bbed 100644
+--- a/drivers/gpu/drm/i915/display/intel_color.c
++++ b/drivers/gpu/drm/i915/display/intel_color.c
+@@ -1571,6 +1571,44 @@ void i9xx_read_luts(struct intel_crtc_state *crtc_state)
+	crtc_state-&gt;base.gamma_lut = i9xx_read_lut_8(crtc_state);  }
+
++static struct drm_property_blob *
++i965_read_gamma_lut_10p6(struct intel_crtc_state *crtc_state) {
+</pre>
+      </blockquote>
+      <pre class="moz-quote-pre" wrap="">
+You can rename this as " i965_read_lut_10p6" as pointed by Ville as well.
+Will help extend for de-gamma later and can be re-used.</pre>
+    </blockquote>
+    <tt>Did this since we may need to create a new func for degamma
+      readout and<br>
+      this can't be reused.<br>
+    </tt>
+    <blockquote type="cite"
+cite="mid:E7C9878FBA1C6D42A1CA3F62AEB6945F821D39F8@BGSMSX104.gar.corp.intel.com">
+      <pre class="moz-quote-pre" wrap="">
+
+Also make these const, as recommended by Ville. 
+
+</pre>
+      <blockquote type="cite">
+        <pre class="moz-quote-pre" wrap="">+	struct intel_crtc *crtc = to_intel_crtc(crtc_state-&gt;base.crtc);
++	struct drm_i915_private *dev_priv = to_i915(crtc-&gt;base.dev);
++	u32 i, val1, val2, lut_size = INTEL_INFO(dev_priv)-&gt;color.gamma_lut_size;
+</pre>
+      </blockquote>
+      <pre class="moz-quote-pre" wrap="">
+Move to next line to honour 80 character limits.
+
+</pre>
+      <blockquote type="cite">
+        <pre class="moz-quote-pre" wrap="">+	enum pipe pipe = crtc-&gt;pipe;
++	struct drm_property_blob *blob;
++	struct drm_color_lut *blob_data;
++
++	blob = drm_property_create_blob(&amp;dev_priv-&gt;drm,
++					sizeof(struct drm_color_lut) * lut_size,
++					NULL);
++	if (IS_ERR(blob))
++		return NULL;
++
++	blob_data = blob-&gt;data;
++
++	for (i = 0; i &lt; lut_size - 1; i++) {
++		val1 = I915_READ(PALETTE(pipe, 2 * i + 0));
++		val2 = I915_READ(PALETTE(pipe, 2 * i + 1));
++
++		blob_data[i].red = REG_FIELD_GET(PALETTE_RED_MASK, val1) &lt;&lt; 8 |
+REG_FIELD_GET(PALETTE_RED_MASK, val2);
++		blob_data[i].green = REG_FIELD_GET(PALETTE_GREEN_MASK, val1)
+&lt;&lt; 8 | REG_FIELD_GET(PALETTE_GREEN_MASK, val2);
++		blob_data[i].blue = REG_FIELD_GET(PALETTE_BLUE_MASK, val1) &lt;&lt; 8
+| REG_FIELD_GET(PALETTE_BLUE_MASK, val2) ;
++	}
++
++	return blob;
++}
++
++static void i965_read_luts(struct intel_crtc_state *crtc_state) {
++	if (crtc_state-&gt;gamma_mode == GAMMA_MODE_MODE_8BIT)
++		crtc_state-&gt;base.gamma_lut = i9xx_read_lut_8(crtc_state);
++	else
++		crtc_state-&gt;base.gamma_lut =
+i965_read_gamma_lut_10p6(crtc_state);
++}
++
+void intel_color_init(struct intel_crtc *crtc)  {
+	struct drm_i915_private *dev_priv = to_i915(crtc-&gt;base.dev); @@ -1586,6
++1624,7 @@ void intel_color_init(struct intel_crtc *crtc)
+		} else if (INTEL_GEN(dev_priv) &gt;= 4) {
+			dev_priv-&gt;display.color_check = i9xx_color_check;
+			dev_priv-&gt;display.color_commit = i9xx_color_commit;
++			dev_priv-&gt;display.read_luts = i965_read_luts;
+			dev_priv-&gt;display.load_luts = i965_load_luts;
+		} else {
+			dev_priv-&gt;display.color_check = i9xx_color_check; diff --git
+a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h index
+b687faa..b30b0c6b 100644
+--- a/drivers/gpu/drm/i915/i915_reg.h
++++ b/drivers/gpu/drm/i915/i915_reg.h
+@@ -3558,6 +3558,9 @@ static inline bool i915_mmio_reg_valid(i915_reg_t reg)
+#define _PALETTE_A		0xa000
+#define _PALETTE_B		0xa800
+#define _CHV_PALETTE_C		0xc000
++#define PALETTE_RED_MASK        REG_GENMASK(23, 16)
++#define PALETTE_GREEN_MASK      REG_GENMASK(15, 8)
++#define PALETTE_BLUE_MASK       REG_GENMASK(7, 0)
+#define PALETTE(pipe, i)	_MMIO(DISPLAY_MMIO_BASE(dev_priv) + \
+				      _PICK((pipe), _PALETTE_A,		\
+					    _PALETTE_B, _CHV_PALETTE_C) + \
+--
+1.9.1
+</pre>
+      </blockquote>
+      <pre class="moz-quote-pre" wrap="">
+</pre>
+    </blockquote>
+    <br>
+    <br>
+    <pre class="moz-signature" cols="72">-- 
+~Swati Sharma
+</pre>
+  </body>
+</html>
+
+--------------968DB7B8F6D1E690173030D3--
+
+--===============1592553478==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
+IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
+
+--===============1592553478==--
