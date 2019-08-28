@@ -2,31 +2,37 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 82A599F9F5
-	for <lists+intel-gfx@lfdr.de>; Wed, 28 Aug 2019 07:47:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 13AB79FA3A
+	for <lists+intel-gfx@lfdr.de>; Wed, 28 Aug 2019 08:11:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2782D89B57;
-	Wed, 28 Aug 2019 05:47:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D363489B30;
+	Wed, 28 Aug 2019 06:11:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 1CBFC89B33;
- Wed, 28 Aug 2019 05:47:17 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 11267A0099;
- Wed, 28 Aug 2019 05:47:17 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2DFAC89958;
+ Wed, 28 Aug 2019 06:11:44 +0000 (UTC)
+X-Amp-Result: UNSCANNABLE
+X-Amp-File-Uploaded: False
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 27 Aug 2019 23:11:43 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.64,440,1559545200"; 
+ d="asc'?scan'208";a="192483221"
+Received: from zhen-hp.sh.intel.com (HELO zhen-hp) ([10.239.13.116])
+ by orsmga002.jf.intel.com with ESMTP; 27 Aug 2019 23:11:42 -0700
+Date: Wed, 28 Aug 2019 14:06:59 +0800
+From: Zhenyu Wang <zhenyuw@linux.intel.com>
+To: Xiong Zhang <xiong.y.zhang@intel.com>
+Message-ID: <20190828060659.GA4868@zhen-hp.sh.intel.com>
+References: <1566279978-9659-2-git-send-email-xiong.y.zhang@intel.com>
+ <1566357790-5003-1-git-send-email-xiong.y.zhang@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Wed, 28 Aug 2019 05:47:17 -0000
-Message-ID: <20190828054717.24241.83578@emeril.freedesktop.org>
-References: <20190827161726.3640-1-chris@chris-wilson.co.uk>
-X-Patchwork-Hint: ignore
-In-Reply-To: <20190827161726.3640-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_seri?=
- =?utf-8?q?es_starting_with_=5BCI=2C1/2=5D_drm/i915/selftests=3A_Remove_ac?=
- =?utf-8?q?cidental_serialization_between_gpu=5Ffill_=28rev2=29?=
+In-Reply-To: <1566357790-5003-1-git-send-email-xiong.y.zhang@intel.com>
+User-Agent: Mutt/1.10.0 (2018-05-17)
+Subject: Re: [Intel-gfx] [PATCH v2] drm/i915: Move vgpu balloon info into
+ i915_virtual_gpu struct
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -39,69 +45,217 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: Zhenyu Wang <zhenyuw@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-gvt-dev@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============1534726268=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-PT0gU2VyaWVzIERldGFpbHMgPT0KClNlcmllczogc2VyaWVzIHN0YXJ0aW5nIHdpdGggW0NJLDEv
-Ml0gZHJtL2k5MTUvc2VsZnRlc3RzOiBSZW1vdmUgYWNjaWRlbnRhbCBzZXJpYWxpemF0aW9uIGJl
-dHdlZW4gZ3B1X2ZpbGwgKHJldjIpClVSTCAgIDogaHR0cHM6Ly9wYXRjaHdvcmsuZnJlZWRlc2t0
-b3Aub3JnL3Nlcmllcy82NTg4OC8KU3RhdGUgOiBzdWNjZXNzCgo9PSBTdW1tYXJ5ID09CgpDSSBC
-dWcgTG9nIC0gY2hhbmdlcyBmcm9tIENJX0RSTV82Nzk0IC0+IFBhdGNod29ya18xNDIwNwo9PT09
-PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09CgpTdW1tYXJ5
-Ci0tLS0tLS0KCiAgKipTVUNDRVNTKioKCiAgTm8gcmVncmVzc2lvbnMgZm91bmQuCgogIEV4dGVy
-bmFsIFVSTDogaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9QYXRjaHdv
-cmtfMTQyMDcvCgpLbm93biBpc3N1ZXMKLS0tLS0tLS0tLS0tCgogIEhlcmUgYXJlIHRoZSBjaGFu
-Z2VzIGZvdW5kIGluIFBhdGNod29ya18xNDIwNyB0aGF0IGNvbWUgZnJvbSBrbm93biBpc3N1ZXM6
-CgojIyMgSUdUIGNoYW5nZXMgIyMjCgojIyMjIElzc3VlcyBoaXQgIyMjIwoKICAqIGlndEBpOTE1
-X3NlbGZ0ZXN0QGxpdmVfaGFuZ2NoZWNrOgogICAgLSBmaS1pY2wtdTI6ICAgICAgICAgIFtQQVNT
-XVsxXSAtPiBbSU5DT01QTEVURV1bMl0gKFtmZG8jMTA3NzEzXSAvIFtmZG8jMTA4NTY5XSkKICAg
-WzFdOiBodHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlwL0NJX0RSTV82Nzk0
-L2ZpLWljbC11Mi9pZ3RAaTkxNV9zZWxmdGVzdEBsaXZlX2hhbmdjaGVjay5odG1sCiAgIFsyXTog
-aHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9QYXRjaHdvcmtfMTQyMDcv
-ZmktaWNsLXUyL2lndEBpOTE1X3NlbGZ0ZXN0QGxpdmVfaGFuZ2NoZWNrLmh0bWwKCiAgKiBpZ3RA
-a21zX2NoYW1lbGl1bUBkcC1lZGlkLXJlYWQ6CiAgICAtIGZpLWljbC11MjogICAgICAgICAgW1BB
-U1NdWzNdIC0+IFtGQUlMXVs0XSAoW2ZkbyMxMDY3NjZdKQogICBbM106IGh0dHBzOi8vaW50ZWwt
-Z2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAvQ0lfRFJNXzY3OTQvZmktaWNsLXUyL2lndEBrbXNf
-Y2hhbWVsaXVtQGRwLWVkaWQtcmVhZC5odG1sCiAgIFs0XTogaHR0cHM6Ly9pbnRlbC1nZngtY2ku
-MDEub3JnL3RyZWUvZHJtLXRpcC9QYXRjaHdvcmtfMTQyMDcvZmktaWNsLXUyL2lndEBrbXNfY2hh
-bWVsaXVtQGRwLWVkaWQtcmVhZC5odG1sCgogIAojIyMjIFBvc3NpYmxlIGZpeGVzICMjIyMKCiAg
-KiBpZ3RAa21zX2NoYW1lbGl1bUBkcC1jcmMtZmFzdDoKICAgIC0gZmkta2JsLTc1MDB1OiAgICAg
-ICBbRkFJTF1bNV0gKFtmZG8jMTA5NDgzXSAvIFtmZG8jMTA5NjM1IF0pIC0+IFtQQVNTXVs2XQog
-ICBbNV06IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAvQ0lfRFJNXzY3
-OTQvZmkta2JsLTc1MDB1L2lndEBrbXNfY2hhbWVsaXVtQGRwLWNyYy1mYXN0Lmh0bWwKICAgWzZd
-OiBodHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlwL1BhdGNod29ya18xNDIw
-Ny9maS1rYmwtNzUwMHUvaWd0QGttc19jaGFtZWxpdW1AZHAtY3JjLWZhc3QuaHRtbAoKICAKICB7
-bmFtZX06IFRoaXMgZWxlbWVudCBpcyBzdXBwcmVzc2VkLiBUaGlzIG1lYW5zIGl0IGlzIGlnbm9y
-ZWQgd2hlbiBjb21wdXRpbmcKICAgICAgICAgIHRoZSBzdGF0dXMgb2YgdGhlIGRpZmZlcmVuY2Ug
-KFNVQ0NFU1MsIFdBUk5JTkcsIG9yIEZBSUxVUkUpLgoKICBbZmRvIzEwNjc2Nl06IGh0dHBzOi8v
-YnVncy5mcmVlZGVza3RvcC5vcmcvc2hvd19idWcuY2dpP2lkPTEwNjc2NgogIFtmZG8jMTA3NzEz
-XTogaHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MTA3NzEzCiAg
-W2ZkbyMxMDg1NjldOiBodHRwczovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9p
-ZD0xMDg1NjkKICBbZmRvIzEwOTQ4M106IGh0dHBzOi8vYnVncy5mcmVlZGVza3RvcC5vcmcvc2hv
-d19idWcuY2dpP2lkPTEwOTQ4MwogIFtmZG8jMTA5NjM1IF06IGh0dHBzOi8vYnVncy5mcmVlZGVz
-a3RvcC5vcmcvc2hvd19idWcuY2dpP2lkPTEwOTYzNSAKICBbZmRvIzExMTM4MV06IGh0dHBzOi8v
-YnVncy5mcmVlZGVza3RvcC5vcmcvc2hvd19idWcuY2dpP2lkPTExMTM4MQoKClBhcnRpY2lwYXRp
-bmcgaG9zdHMgKDUxIC0+IDQ0KQotLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0KCiAgQWRk
-aXRpb25hbCAoMik6IGZpLWhzdy1wZXBweSBmaS1nZGctNTUxIAogIE1pc3NpbmcgICAgKDkpOiBm
-aS1rYmwtc29yYWthIGZpLWlsay1tNTQwIGZpLXRnbC11IGZpLWhzdy00MjAwdSBmaS1ieXQtc3F1
-YXdrcyBmaS1ic3ctY3lhbiBmaS1pY2wteSBmaS1ieXQtY2xhcHBlciBmaS1iZHctc2FtdXMgCgoK
-QnVpbGQgY2hhbmdlcwotLS0tLS0tLS0tLS0tCgogICogQ0k6IENJLTIwMTkwNTI5IC0+IE5vbmUK
-ICAqIExpbnV4OiBDSV9EUk1fNjc5NCAtPiBQYXRjaHdvcmtfMTQyMDcKCiAgQ0ktMjAxOTA1Mjk6
-IDIwMTkwNTI5CiAgQ0lfRFJNXzY3OTQ6IGExYTQ1YTIxZjZmZWYwMGY2MTUwZGMxNTFjMjM1NTVh
-YTg1MWJmNzQgQCBnaXQ6Ly9hbm9uZ2l0LmZyZWVkZXNrdG9wLm9yZy9nZngtY2kvbGludXgKICBJ
-R1RfNTE1MDogYTRlODIxN2JjZGZlZjliYjUyM2YyNmE5MDg0YmJmNjE1YTZlOGFiYiBAIGdpdDov
-L2Fub25naXQuZnJlZWRlc2t0b3Aub3JnL3hvcmcvYXBwL2ludGVsLWdwdS10b29scwogIFBhdGNo
-d29ya18xNDIwNzogMDY5ZDc5Mjg0OTZiMzNmZGUxY2RiMGI5MjI1YTU5YWI1NTdlN2Q5NyBAIGdp
-dDovL2Fub25naXQuZnJlZWRlc2t0b3Aub3JnL2dmeC1jaS9saW51eAoKCj09IExpbnV4IGNvbW1p
-dHMgPT0KCjA2OWQ3OTI4NDk2YiBkcm0vaTkxNS9zZWxmdGVzdHM6IFRyeSB0byByZWN5Y2xlIGNv
-bnRleHQgYWxsb2NhdGlvbnMKYmUxODA3NmMwMDViIGRybS9pOTE1L3NlbGZ0ZXN0czogUmVtb3Zl
-IGFjY2lkZW50YWwgc2VyaWFsaXphdGlvbiBiZXR3ZWVuIGdwdV9maWxsCgo9PSBMb2dzID09CgpG
-b3IgbW9yZSBkZXRhaWxzIHNlZTogaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJt
-LXRpcC9QYXRjaHdvcmtfMTQyMDcvCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVk
-ZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZv
-L2ludGVsLWdmeA==
+
+--===============1534726268==
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="tThc/1wpZn/ma/RB"
+Content-Disposition: inline
+
+
+--tThc/1wpZn/ma/RB
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On 2019.08.21 11:23:10 +0800, Xiong Zhang wrote:
+> vgpu ballon info consists of four drm_mm_node which is used to reserve
+> ggtt space, then linux guest won't use these reserved ggtt space.
+>=20
+> Each vgpu has its own ballon info, so move ballon info into
+> i915_virtual_gpu structure.
+>=20
+> v2: Fix dim PARENTHESIS_ALIGNMENT check warning
+>=20
+> Signed-off-by: Xiong Zhang <xiong.y.zhang@intel.com>
+> ---
+
+Looks fine to me. You need to refresh after deballoon fix merged.
+
+Reviewed-by: Zhenyu Wang <zhenyuw@linux.intel.com>
+
+>  drivers/gpu/drm/i915/i915_drv.h  | 14 ++++++++++++++
+>  drivers/gpu/drm/i915/i915_vgpu.c | 40 +++++++++++++++++-----------------=
+------
+>  2 files changed, 31 insertions(+), 23 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_=
+drv.h
+> index 18be8b2..9c14095 100644
+> --- a/drivers/gpu/drm/i915/i915_drv.h
+> +++ b/drivers/gpu/drm/i915/i915_drv.h
+> @@ -1024,6 +1024,20 @@ struct i915_frontbuffer_tracking {
+>  struct i915_virtual_gpu {
+>  	bool active;
+>  	u32 caps;
+> +
+> +	struct balloon_info {
+> +		/*
+> +		 * There are up to 2 regions per mappable/unmappable graphic
+> +		 * memory that might be ballooned. Here, index 0/1 is for
+> +		 * mappable graphic memory, 2/3 for unmappable graphic memory.
+> +		 */
+> +#define VGPU_MAPPABLE_BALLOON_LOW     0
+> +#define VGPU_MAPPABLE_BALLOON_HIGH    1
+> +#define VGPU_UNMAPPABLE_BALLOON_LOW   2
+> +#define VGPU_UNMAPPABLE_BALLOON_HIGH  3
+> +#define VGPU_MAX_BALLOON_NUM          4
+> +		struct drm_mm_node space[VGPU_MAX_BALLOON_NUM];
+> +	} bl_info;
+>  };
+> =20
+>  /* used in computing the new watermarks state */
+> diff --git a/drivers/gpu/drm/i915/i915_vgpu.c b/drivers/gpu/drm/i915/i915=
+_vgpu.c
+> index d2fd66f..0ed35f4 100644
+> --- a/drivers/gpu/drm/i915/i915_vgpu.c
+> +++ b/drivers/gpu/drm/i915/i915_vgpu.c
+> @@ -105,17 +105,6 @@ bool intel_vgpu_has_full_ppgtt(struct drm_i915_priva=
+te *dev_priv)
+>  	return dev_priv->vgpu.caps & VGT_CAPS_FULL_PPGTT;
+>  }
+> =20
+> -struct _balloon_info_ {
+> -	/*
+> -	 * There are up to 2 regions per mappable/unmappable graphic
+> -	 * memory that might be ballooned. Here, index 0/1 is for mappable
+> -	 * graphic memory, 2/3 for unmappable graphic memory.
+> -	 */
+> -	struct drm_mm_node space[4];
+> -};
+> -
+> -static struct _balloon_info_ bl_info;
+> -
+>  static void vgt_deballoon_space(struct i915_ggtt *ggtt,
+>  				struct drm_mm_node *node)
+>  {
+> @@ -140,15 +129,16 @@ static void vgt_deballoon_space(struct i915_ggtt *g=
+gtt,
+>   */
+>  void intel_vgt_deballoon(struct i915_ggtt *ggtt)
+>  {
+> +	struct drm_i915_private *dev_priv =3D ggtt->vm.i915;
+>  	int i;
+> =20
+> -	if (!intel_vgpu_active(ggtt->vm.i915))
+> +	if (!intel_vgpu_active(dev_priv))
+>  		return;
+> =20
+>  	DRM_DEBUG("VGT deballoon.\n");
+> =20
+> -	for (i =3D 0; i < 4; i++)
+> -		vgt_deballoon_space(ggtt, &bl_info.space[i]);
+> +	for (i =3D 0; i < VGPU_MAX_BALLOON_NUM; i++)
+> +		vgt_deballoon_space(ggtt, &dev_priv->vgpu.bl_info.space[i]);
+>  }
+> =20
+>  static int vgt_balloon_space(struct i915_ggtt *ggtt,
+> @@ -219,6 +209,7 @@ static int vgt_balloon_space(struct i915_ggtt *ggtt,
+>  int intel_vgt_balloon(struct i915_ggtt *ggtt)
+>  {
+>  	struct intel_uncore *uncore =3D &ggtt->vm.i915->uncore;
+> +	struct drm_mm_node *space;
+>  	unsigned long ggtt_end =3D ggtt->vm.total;
+> =20
+>  	unsigned long mappable_base, mappable_size, mappable_end;
+> @@ -253,9 +244,11 @@ int intel_vgt_balloon(struct i915_ggtt *ggtt)
+>  		return -EINVAL;
+>  	}
+> =20
+> +	space =3D ggtt->vm.i915->vgpu.bl_info.space;
+>  	/* Unmappable graphic memory ballooning */
+>  	if (unmappable_base > ggtt->mappable_end) {
+> -		ret =3D vgt_balloon_space(ggtt, &bl_info.space[2],
+> +		ret =3D vgt_balloon_space(ggtt,
+> +					&space[VGPU_UNMAPPABLE_BALLOON_LOW],
+>  					ggtt->mappable_end, unmappable_base);
+> =20
+>  		if (ret)
+> @@ -263,7 +256,8 @@ int intel_vgt_balloon(struct i915_ggtt *ggtt)
+>  	}
+> =20
+>  	if (unmappable_end < ggtt_end) {
+> -		ret =3D vgt_balloon_space(ggtt, &bl_info.space[3],
+> +		ret =3D vgt_balloon_space(ggtt,
+> +					&space[VGPU_UNMAPPABLE_BALLOON_HIGH],
+>  					unmappable_end, ggtt_end);
+>  		if (ret)
+>  			goto err_upon_mappable;
+> @@ -271,17 +265,17 @@ int intel_vgt_balloon(struct i915_ggtt *ggtt)
+> =20
+>  	/* Mappable graphic memory ballooning */
+>  	if (mappable_base) {
+> -		ret =3D vgt_balloon_space(ggtt, &bl_info.space[0],
+> +		ret =3D vgt_balloon_space(ggtt,
+> +					&space[VGPU_MAPPABLE_BALLOON_LOW],
+>  					0, mappable_base);
+> -
+>  		if (ret)
+>  			goto err_upon_unmappable;
+>  	}
+> =20
+>  	if (mappable_end < ggtt->mappable_end) {
+> -		ret =3D vgt_balloon_space(ggtt, &bl_info.space[1],
+> +		ret =3D vgt_balloon_space(ggtt,
+> +					&space[VGPU_MAPPABLE_BALLOON_HIGH],
+>  					mappable_end, ggtt->mappable_end);
+> -
+>  		if (ret)
+>  			goto err_below_mappable;
+>  	}
+> @@ -290,11 +284,11 @@ int intel_vgt_balloon(struct i915_ggtt *ggtt)
+>  	return 0;
+> =20
+>  err_below_mappable:
+> -	vgt_deballoon_space(ggtt, &bl_info.space[0]);
+> +	vgt_deballoon_space(ggtt, &space[VGPU_MAPPABLE_BALLOON_LOW]);
+>  err_upon_unmappable:
+> -	vgt_deballoon_space(ggtt, &bl_info.space[3]);
+> +	vgt_deballoon_space(ggtt, &space[VGPU_UNMAPPABLE_BALLOON_HIGH]);
+>  err_upon_mappable:
+> -	vgt_deballoon_space(ggtt, &bl_info.space[2]);
+> +	vgt_deballoon_space(ggtt, &space[VGPU_UNMAPPABLE_BALLOON_LOW]);
+>  err:
+>  	DRM_ERROR("VGT balloon fail\n");
+>  	return ret;
+> --=20
+> 2.7.4
+>=20
+> _______________________________________________
+> intel-gvt-dev mailing list
+> intel-gvt-dev@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gvt-dev
+
+--=20
+Open Source Technology Center, Intel ltd.
+
+$gpg --keyserver wwwkeys.pgp.net --recv-keys 4D781827
+
+--tThc/1wpZn/ma/RB
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iF0EARECAB0WIQTXuabgHDW6LPt9CICxBBozTXgYJwUCXWYaAwAKCRCxBBozTXgY
+J0EeAJ0RouK01hZJND7Ax0clEh1wsclGXgCfRgD/Wlj5vlhr/t7EgXIHzYPVJww=
+=Bsgs
+-----END PGP SIGNATURE-----
+
+--tThc/1wpZn/ma/RB--
+
+--===============1534726268==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
+IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
+
+--===============1534726268==--
