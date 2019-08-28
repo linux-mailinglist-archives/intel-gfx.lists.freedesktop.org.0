@@ -1,36 +1,46 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7FA3CA0DB7
-	for <lists+intel-gfx@lfdr.de>; Thu, 29 Aug 2019 00:45:30 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 92729A0DC5
+	for <lists+intel-gfx@lfdr.de>; Thu, 29 Aug 2019 00:51:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ACDFD89E05;
-	Wed, 28 Aug 2019 22:45:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6BBA589EA3;
+	Wed, 28 Aug 2019 22:51:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2D8CE89E98
- for <intel-gfx@lists.freedesktop.org>; Wed, 28 Aug 2019 22:45:27 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B386C89EA3
+ for <intel-gfx@lists.freedesktop.org>; Wed, 28 Aug 2019 22:51:50 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga106.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 28 Aug 2019 15:45:26 -0700
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 28 Aug 2019 15:51:50 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.64,442,1559545200"; d="scan'208";a="188368411"
-Received: from labuser-z97x-ud5h.jf.intel.com ([10.54.75.49])
- by FMSMGA003.fm.intel.com with ESMTP; 28 Aug 2019 15:45:26 -0700
-From: Manasi Navare <manasi.d.navare@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 28 Aug 2019 15:47:01 -0700
-Message-Id: <20190828224701.422-1-manasi.d.navare@intel.com>
-X-Mailer: git-send-email 2.19.1
-In-Reply-To: <20190827221735.29351-3-manasi.d.navare@intel.com>
-References: <20190827221735.29351-3-manasi.d.navare@intel.com>
+X-IronPort-AV: E=Sophos;i="5.64,442,1559545200"; 
+ d="scan'208,217";a="185779451"
+Received: from orsmsx109.amr.corp.intel.com ([10.22.240.7])
+ by orsmga006.jf.intel.com with ESMTP; 28 Aug 2019 15:51:49 -0700
+Received: from orsmsx111.amr.corp.intel.com (10.22.240.12) by
+ ORSMSX109.amr.corp.intel.com (10.22.240.7) with Microsoft SMTP Server (TLS)
+ id 14.3.439.0; Wed, 28 Aug 2019 15:51:49 -0700
+Received: from orsmsx108.amr.corp.intel.com ([169.254.2.9]) by
+ ORSMSX111.amr.corp.intel.com ([169.254.12.153]) with mapi id 14.03.0439.000;
+ Wed, 28 Aug 2019 15:51:49 -0700
+From: "Srivatsa, Anusha" <anusha.srivatsa@intel.com>
+To: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Thread-Topic: PR-ICL DMC v1.09
+Thread-Index: AdVd8yyiZaTrOfkNSxevMHqpuiF3BQ==
+Date: Wed, 28 Aug 2019 22:51:48 +0000
+Message-ID: <83F5C7385F545743AD4FB2A62F75B0734813AA0D@ORSMSX108.amr.corp.intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.19.9.41]
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v2 2/2] drm/i915/display: Move the commit_tail()
- disable sequence to separate function
+Subject: [Intel-gfx] PR-ICL DMC v1.09
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -43,105 +53,110 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0834977867=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Q3JlYXRlIGEgbmV3IGZ1bmN0aW9uIGludGVsX2NvbW1pdF9tb2Rlc2V0X2Rpc2FibGVzKCkgY29u
-c2lzdGVudCB3aXRoIHRoZSBuYW1pbmcKaW4gZHJtIGF0b21pYyBoZWxwZXJzIGFuZCBzaW1pbGFy
-IHRvIHRoZSBlbmFibGUgZnVuY3Rpb24uClRoaXMgaGVscHMgYmV0dGVyIG9yZ2FuaXplIHRoZSBk
-aXNhYmxlIHNlcXVlbmNlIGluIGF0b21pY19jb21taXRfdGFpbCgpCgpObyBmdW5jdGlvbmFsIGNo
-YW5nZQoKdjQ6CiogRG8gbm90IGNyZWF0ZSBhIGZ1bmN0aW9uIHBvaW50ZXIsIGp1c3QgYSBmdW5j
-dGlvbiAoTWFhcnRlbikKdjM6CiogUmViYXNlIChNYW5hc2kpCnYyOgoqIENyZWF0ZSBhIGhlbHBl
-ciBmb3Igb2xkX2NydGNfc3RhdGUgZGlzYWJsZXMgKEx1Y2FzKQoKU3VnZ2VzdGVkLWJ5OiBEYW5p
-ZWwgVmV0dGVyIDxkYW5pZWwudmV0dGVyQGludGVsLmNvbT4KQ2M6IFZpbGxlIFN5cmrDpGzDpCA8
-dmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5jb20+CkNjOiBNYWFydGVuIExhbmtob3JzdCA8bWFh
-cnRlbi5sYW5raG9yc3RAbGludXguaW50ZWwuY29tPgpDYzogTWF0dCBSb3BlciA8bWF0dGhldy5k
-LnJvcGVyQGludGVsLmNvbT4KQ2M6IEphbmkgTmlrdWxhIDxqYW5pLm5pa3VsYUBpbnRlbC5jb20+
-ClNpZ25lZC1vZmYtYnk6IE1hbmFzaSBOYXZhcmUgPG1hbmFzaS5kLm5hdmFyZUBpbnRlbC5jb20+
-Ci0tLQogZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMgfCA5MiAr
-KysrKysrKysrKystLS0tLS0tLQogZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9kcnYuaCAgICAg
-ICAgICAgICAgfCAgMSArCiAyIGZpbGVzIGNoYW5nZWQsIDU5IGluc2VydGlvbnMoKyksIDM0IGRl
-bGV0aW9ucygtKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50
-ZWxfZGlzcGxheS5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5
-LmMKaW5kZXggNzdkZmIwZjZhNmUwLi41YzUzYjQ1ZGMwNmUgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMv
-Z3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jCisrKyBiL2RyaXZlcnMvZ3B1L2Ry
-bS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jCkBAIC0xMzc1OCw2ICsxMzc1OCw2MSBAQCBz
-dGF0aWMgdm9pZCBpbnRlbF91cGRhdGVfY3J0YyhzdHJ1Y3QgaW50ZWxfY3J0YyAqY3J0YywKIAlp
-bnRlbF9maW5pc2hfY3J0Y19jb21taXQoc3RhdGUsIGNydGMpOwogfQogCitzdGF0aWMgdm9pZCBp
-bnRlbF9vbGRfY3J0Y19zdGF0ZV9kaXNhYmxlcyhzdHJ1Y3QgaW50ZWxfYXRvbWljX3N0YXRlICpz
-dGF0ZSwKKwkJCQkJICBzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZSAqb2xkX2NydGNfc3RhdGUsCisJ
-CQkJCSAgc3RydWN0IGludGVsX2NydGNfc3RhdGUgKm5ld19jcnRjX3N0YXRlLAorCQkJCQkgIHN0
-cnVjdCBpbnRlbF9jcnRjICpjcnRjKQoreworCXN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpkZXZf
-cHJpdiA9IHRvX2k5MTUoc3RhdGUtPmJhc2UuZGV2KTsKKworCWludGVsX2NydGNfZGlzYWJsZV9w
-bGFuZXMoc3RhdGUsIGNydGMpOworCisJLyoKKwkgKiBXZSBuZWVkIHRvIGRpc2FibGUgcGlwZSBD
-UkMgYmVmb3JlIGRpc2FibGluZyB0aGUgcGlwZSwKKwkgKiBvciB3ZSByYWNlIGFnYWluc3QgdmJs
-YW5rIG9mZi4KKwkgKi8KKwlpbnRlbF9jcnRjX2Rpc2FibGVfcGlwZV9jcmMoY3J0Yyk7CisKKwlk
-ZXZfcHJpdi0+ZGlzcGxheS5jcnRjX2Rpc2FibGUob2xkX2NydGNfc3RhdGUsIHN0YXRlKTsKKwlj
-cnRjLT5hY3RpdmUgPSBmYWxzZTsKKwlpbnRlbF9mYmNfZGlzYWJsZShjcnRjKTsKKwlpbnRlbF9k
-aXNhYmxlX3NoYXJlZF9kcGxsKG9sZF9jcnRjX3N0YXRlKTsKKworCS8qCisJICogVW5kZXJydW5z
-IGRvbid0IGFsd2F5cyByYWlzZSBpbnRlcnJ1cHRzLAorCSAqIHNvIGNoZWNrIG1hbnVhbGx5Lgor
-CSAqLworCWludGVsX2NoZWNrX2NwdV9maWZvX3VuZGVycnVucyhkZXZfcHJpdik7CisJaW50ZWxf
-Y2hlY2tfcGNoX2ZpZm9fdW5kZXJydW5zKGRldl9wcml2KTsKKworCS8qIEZJWE1FIHVuaWZ5IHRo
-aXMgZm9yIGFsbCBwbGF0Zm9ybXMgKi8KKwlpZiAoIW5ld19jcnRjX3N0YXRlLT5iYXNlLmFjdGl2
-ZSAmJgorCSAgICAhSEFTX0dNQ0goZGV2X3ByaXYpICYmCisJICAgIGRldl9wcml2LT5kaXNwbGF5
-LmluaXRpYWxfd2F0ZXJtYXJrcykKKwkJZGV2X3ByaXYtPmRpc3BsYXkuaW5pdGlhbF93YXRlcm1h
-cmtzKHN0YXRlLAorCQkJCQkJICAgICBuZXdfY3J0Y19zdGF0ZSk7Cit9CisKK3N0YXRpYyB2b2lk
-IGludGVsX2NvbW1pdF9tb2Rlc2V0X2Rpc2FibGVzKHN0cnVjdCBpbnRlbF9hdG9taWNfc3RhdGUg
-KnN0YXRlKQoreworCXN0cnVjdCBpbnRlbF9jcnRjX3N0YXRlICpuZXdfY3J0Y19zdGF0ZSwgKm9s
-ZF9jcnRjX3N0YXRlOworCXN0cnVjdCBpbnRlbF9jcnRjICpjcnRjOworCWludCBpOworCisJZm9y
-X2VhY2hfb2xkbmV3X2ludGVsX2NydGNfaW5fc3RhdGUoc3RhdGUsIGNydGMsIG9sZF9jcnRjX3N0
-YXRlLCBuZXdfY3J0Y19zdGF0ZSwgaSkgeworCQlpZiAoIW5lZWRzX21vZGVzZXQobmV3X2NydGNf
-c3RhdGUpKQorCQkJY29udGludWU7CisKKwkJaW50ZWxfcHJlX3BsYW5lX3VwZGF0ZShvbGRfY3J0
-Y19zdGF0ZSwgbmV3X2NydGNfc3RhdGUpOworCisJCWlmIChvbGRfY3J0Y19zdGF0ZS0+YmFzZS5h
-Y3RpdmUpCisJCQlpbnRlbF9vbGRfY3J0Y19zdGF0ZV9kaXNhYmxlcyhzdGF0ZSwKKwkJCQkJCSAg
-ICAgIG9sZF9jcnRjX3N0YXRlLAorCQkJCQkJICAgICAgbmV3X2NydGNfc3RhdGUsCisJCQkJCQkg
-ICAgICBjcnRjKTsKKwl9Cit9CisKIHN0YXRpYyB2b2lkIGludGVsX2NvbW1pdF9tb2Rlc2V0X2Vu
-YWJsZXMoc3RydWN0IGludGVsX2F0b21pY19zdGF0ZSAqc3RhdGUpCiB7CiAJc3RydWN0IGludGVs
-X2NydGMgKmNydGM7CkBAIC0xMzkzOCw0MiArMTM5OTMsMTAgQEAgc3RhdGljIHZvaWQgaW50ZWxf
-YXRvbWljX2NvbW1pdF90YWlsKHN0cnVjdCBpbnRlbF9hdG9taWNfc3RhdGUgKnN0YXRlKQogCQkJ
-cHV0X2RvbWFpbnNbY3J0Yy0+cGlwZV0gPQogCQkJCW1vZGVzZXRfZ2V0X2NydGNfcG93ZXJfZG9t
-YWlucyhuZXdfY3J0Y19zdGF0ZSk7CiAJCX0KLQotCQlpZiAoIW5lZWRzX21vZGVzZXQobmV3X2Ny
-dGNfc3RhdGUpKQotCQkJY29udGludWU7Ci0KLQkJaW50ZWxfcHJlX3BsYW5lX3VwZGF0ZShvbGRf
-Y3J0Y19zdGF0ZSwgbmV3X2NydGNfc3RhdGUpOwotCi0JCWlmIChvbGRfY3J0Y19zdGF0ZS0+YmFz
-ZS5hY3RpdmUpIHsKLQkJCWludGVsX2NydGNfZGlzYWJsZV9wbGFuZXMoc3RhdGUsIGNydGMpOwot
-Ci0JCQkvKgotCQkJICogV2UgbmVlZCB0byBkaXNhYmxlIHBpcGUgQ1JDIGJlZm9yZSBkaXNhYmxp
-bmcgdGhlIHBpcGUsCi0JCQkgKiBvciB3ZSByYWNlIGFnYWluc3QgdmJsYW5rIG9mZi4KLQkJCSAq
-LwotCQkJaW50ZWxfY3J0Y19kaXNhYmxlX3BpcGVfY3JjKGNydGMpOwotCi0JCQlkZXZfcHJpdi0+
-ZGlzcGxheS5jcnRjX2Rpc2FibGUob2xkX2NydGNfc3RhdGUsIHN0YXRlKTsKLQkJCWNydGMtPmFj
-dGl2ZSA9IGZhbHNlOwotCQkJaW50ZWxfZmJjX2Rpc2FibGUoY3J0Yyk7Ci0JCQlpbnRlbF9kaXNh
-YmxlX3NoYXJlZF9kcGxsKG9sZF9jcnRjX3N0YXRlKTsKLQotCQkJLyoKLQkJCSAqIFVuZGVycnVu
-cyBkb24ndCBhbHdheXMgcmFpc2UKLQkJCSAqIGludGVycnVwdHMsIHNvIGNoZWNrIG1hbnVhbGx5
-LgotCQkJICovCi0JCQlpbnRlbF9jaGVja19jcHVfZmlmb191bmRlcnJ1bnMoZGV2X3ByaXYpOwot
-CQkJaW50ZWxfY2hlY2tfcGNoX2ZpZm9fdW5kZXJydW5zKGRldl9wcml2KTsKLQotCQkJLyogRklY
-TUUgdW5pZnkgdGhpcyBmb3IgYWxsIHBsYXRmb3JtcyAqLwotCQkJaWYgKCFuZXdfY3J0Y19zdGF0
-ZS0+YmFzZS5hY3RpdmUgJiYKLQkJCSAgICAhSEFTX0dNQ0goZGV2X3ByaXYpICYmCi0JCQkgICAg
-ZGV2X3ByaXYtPmRpc3BsYXkuaW5pdGlhbF93YXRlcm1hcmtzKQotCQkJCWRldl9wcml2LT5kaXNw
-bGF5LmluaXRpYWxfd2F0ZXJtYXJrcyhzdGF0ZSwKLQkJCQkJCQkJICAgICBuZXdfY3J0Y19zdGF0
-ZSk7Ci0JCX0KIAl9CiAKKwlpbnRlbF9jb21taXRfbW9kZXNldF9kaXNhYmxlcyhzdGF0ZSk7CisK
-IAkvKiBGSVhNRTogRXZlbnR1YWxseSBnZXQgcmlkIG9mIG91ciBjcnRjLT5jb25maWcgcG9pbnRl
-ciAqLwogCWZvcl9lYWNoX25ld19pbnRlbF9jcnRjX2luX3N0YXRlKHN0YXRlLCBjcnRjLCBuZXdf
-Y3J0Y19zdGF0ZSwgaSkKIAkJY3J0Yy0+Y29uZmlnID0gbmV3X2NydGNfc3RhdGU7CkBAIC0xNTky
-OSw2ICsxNTk1Miw3IEBAIHZvaWQgaW50ZWxfaW5pdF9kaXNwbGF5X2hvb2tzKHN0cnVjdCBkcm1f
-aTkxNV9wcml2YXRlICpkZXZfcHJpdikKIAkJZGV2X3ByaXYtPmRpc3BsYXkuY29tbWl0X21vZGVz
-ZXRfZW5hYmxlcyA9IHNrbF9jb21taXRfbW9kZXNldF9lbmFibGVzOwogCWVsc2UKIAkJZGV2X3By
-aXYtPmRpc3BsYXkuY29tbWl0X21vZGVzZXRfZW5hYmxlcyA9IGludGVsX2NvbW1pdF9tb2Rlc2V0
-X2VuYWJsZXM7CisKIH0KIAogc3RhdGljIGk5MTVfcmVnX3QgaTkxNV92Z2FjbnRybF9yZWcoc3Ry
-dWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2KQpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUv
-ZHJtL2k5MTUvaTkxNV9kcnYuaCBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZHJ2LmgKaW5k
-ZXggNzVhNDJlOGRmNjdlLi5kYjc0ODA4MzFlNTIgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2Ry
-bS9pOTE1L2k5MTVfZHJ2LmgKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9kcnYuaApA
-QCAtMjg5LDYgKzI4OSw3IEBAIHN0cnVjdCBkcm1faTkxNV9kaXNwbGF5X2Z1bmNzIHsKIAl2b2lk
-ICgqY3J0Y19kaXNhYmxlKShzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZSAqb2xkX2NydGNfc3RhdGUs
-CiAJCQkgICAgIHN0cnVjdCBpbnRlbF9hdG9taWNfc3RhdGUgKm9sZF9zdGF0ZSk7CiAJdm9pZCAo
-KmNvbW1pdF9tb2Rlc2V0X2VuYWJsZXMpKHN0cnVjdCBpbnRlbF9hdG9taWNfc3RhdGUgKnN0YXRl
-KTsKKwl2b2lkICgqY29tbWl0X21vZGVzZXRfZGlzYWJsZXMpKHN0cnVjdCBpbnRlbF9hdG9taWNf
-c3RhdGUgKnN0YXRlKTsKIAl2b2lkICgqYXVkaW9fY29kZWNfZW5hYmxlKShzdHJ1Y3QgaW50ZWxf
-ZW5jb2RlciAqZW5jb2RlciwKIAkJCQkgICBjb25zdCBzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZSAq
-Y3J0Y19zdGF0ZSwKIAkJCQkgICBjb25zdCBzdHJ1Y3QgZHJtX2Nvbm5lY3Rvcl9zdGF0ZSAqY29u
-bl9zdGF0ZSk7Ci0tIAoyLjE5LjEKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVk
-ZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZv
-L2ludGVsLWdmeA==
+--===============0834977867==
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_83F5C7385F545743AD4FB2A62F75B0734813AA0DORSMSX108amrcor_"
+
+--_000_83F5C7385F545743AD4FB2A62F75B0734813AA0DORSMSX108amrcor_
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+Sending the PR for the latest ICL DMC-
+
+The following changes since commit 7307a29961ad2765ebcad162da699d2497c5c3f8=
+:
+
+  brcm: Add 43455 based AP6255 NVRAM for the Minix Neo Z83-4 Mini PC (2019-=
+08-27 08:04:55 -0400)
+
+are available in the Git repository at:
+
+  https://cgit.freedesktop.org/drm/drm-firmware/ icl_dmc
+
+for you to fetch changes up to 082768e1550ee1ec903cb72b580327d55454d600:
+
+  drm/i915/firmware: Add v1.09 of DMC for ICL (2019-08-28 15:29:41 -0700)
+
+----------------------------------------------------------------
+Anusha Srivatsa (1):
+      drm/i915/firmware: Add v1.09 of DMC for ICL
+
+ WHENCE                   |   3 +++
+ i915/icl_dmc_ver1_09.bin | Bin 0 -> 25952 bytes
+ 2 files changed, 3 insertions(+)
+ create mode 100644 i915/icl_dmc_ver1_09.bin
+
+Regards,
+Anusha
+
+--_000_83F5C7385F545743AD4FB2A62F75B0734813AA0DORSMSX108amrcor_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<html dir=3D"ltr">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" id=3D"owaParaStyle"></style>
+</head>
+<body fpstyle=3D"1" ocsi=3D"0">
+<div style=3D"direction: ltr;font-family: Tahoma;color: #000000;font-size: =
+10pt;">
+<div>Sending the PR for the latest ICL DMC-</div>
+<div><br>
+</div>
+<div>The following changes since commit 7307a29961ad2765ebcad162da699d2497c=
+5c3f8:<br>
+<br>
+&nbsp; brcm: Add 43455 based AP6255 NVRAM for the Minix Neo Z83-4 Mini PC (=
+2019-08-27 08:04:55 -0400)<br>
+<br>
+are available in the Git repository at:<br>
+<br>
+&nbsp; https://cgit.freedesktop.org/drm/drm-firmware/ icl_dmc<br>
+<br>
+for you to fetch changes up to 082768e1550ee1ec903cb72b580327d55454d600:<br=
+>
+<br>
+&nbsp; drm/i915/firmware: Add v1.09 of DMC for ICL (2019-08-28 15:29:41 -07=
+00)<br>
+<br>
+----------------------------------------------------------------<br>
+Anusha Srivatsa (1):<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; drm/i915/firmware: Add v1.09 of DMC for ICL<=
+br>
+<br>
+&nbsp;WHENCE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp; 3 &#43;&#43;&#4=
+3;<br>
+&nbsp;i915/icl_dmc_ver1_09.bin | Bin 0 -&gt; 25952 bytes<br>
+&nbsp;2 files changed, 3 insertions(&#43;)<br>
+&nbsp;create mode 100644 i915/icl_dmc_ver1_09.bin<br>
+</div>
+<div><br>
+</div>
+<div>Regards,</div>
+<div>Anusha <br>
+</div>
+</div>
+</body>
+</html>
+
+--_000_83F5C7385F545743AD4FB2A62F75B0734813AA0DORSMSX108amrcor_--
+
+--===============0834977867==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
+IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
+
+--===============0834977867==--
