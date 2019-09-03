@@ -1,46 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 23345A76E4
-	for <lists+intel-gfx@lfdr.de>; Wed,  4 Sep 2019 00:24:29 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D568DA7737
+	for <lists+intel-gfx@lfdr.de>; Wed,  4 Sep 2019 00:45:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D8C41892D4;
-	Tue,  3 Sep 2019 22:24:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C594089A5E;
+	Tue,  3 Sep 2019 22:45:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5A896892D4
- for <intel-gfx@lists.freedesktop.org>; Tue,  3 Sep 2019 22:24:25 +0000 (UTC)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D523789A5E
+ for <intel-gfx@lists.freedesktop.org>; Tue,  3 Sep 2019 22:45:29 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 03 Sep 2019 15:24:25 -0700
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 03 Sep 2019 15:45:29 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.64,464,1559545200"; 
- d="scan'208,217";a="198876244"
-Received: from orsmsx103.amr.corp.intel.com ([10.22.225.130])
- by fmsmga001.fm.intel.com with ESMTP; 03 Sep 2019 15:24:24 -0700
-Received: from orsmsx160.amr.corp.intel.com (10.22.226.43) by
- ORSMSX103.amr.corp.intel.com (10.22.225.130) with Microsoft SMTP Server (TLS)
- id 14.3.439.0; Tue, 3 Sep 2019 15:24:24 -0700
-Received: from orsmsx108.amr.corp.intel.com ([169.254.2.9]) by
- ORSMSX160.amr.corp.intel.com ([169.254.13.75]) with mapi id 14.03.0439.000;
- Tue, 3 Sep 2019 15:24:24 -0700
-From: "Srivatsa, Anusha" <anusha.srivatsa@intel.com>
-To: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: PR - HuC Updates and ICL DMC v1.09
-Thread-Index: AdVipgCjk2sBxV+ES2CG4lGEzuQmfA==
-Date: Tue, 3 Sep 2019 22:24:23 +0000
-Message-ID: <83F5C7385F545743AD4FB2A62F75B0734814F64A@ORSMSX108.amr.corp.intel.com>
+X-IronPort-AV: E=Sophos;i="5.64,464,1559545200"; d="scan'208";a="382287835"
+Received: from fmsmsx104.amr.corp.intel.com ([10.18.124.202])
+ by fmsmga005.fm.intel.com with ESMTP; 03 Sep 2019 15:45:28 -0700
+Received: from fmsmsx114.amr.corp.intel.com (10.18.116.8) by
+ fmsmsx104.amr.corp.intel.com (10.18.124.202) with Microsoft SMTP Server (TLS)
+ id 14.3.439.0; Tue, 3 Sep 2019 15:45:28 -0700
+Received: from fmsmsx117.amr.corp.intel.com ([169.254.3.91]) by
+ FMSMSX114.amr.corp.intel.com ([169.254.6.244]) with mapi id 14.03.0439.000;
+ Tue, 3 Sep 2019 15:45:28 -0700
+From: "Souza, Jose" <jose.souza@intel.com>
+To: "Roper, Matthew D" <matthew.d.roper@intel.com>, "De Marchi, Lucas"
+ <lucas.demarchi@intel.com>
+Thread-Topic: [PATCH v3 5/7] drm/i915/tgl: disable SAGV temporarily
+Thread-Index: AQHVXkvQWRbZho3dCkaT5P7K3AB6IqcbAEmAgAALB4A=
+Date: Tue, 3 Sep 2019 22:45:28 +0000
+Message-ID: <bdc2420bd4e7cd42c02d249e1cb880b0de16716a.camel@intel.com>
+References: <20190829092554.32198-1-lucas.demarchi@intel.com>
+ <20190829092554.32198-6-lucas.demarchi@intel.com>
+ <20190903220559.GM13677@mdroper-desk.amr.corp.intel.com>
+In-Reply-To: <20190903220559.GM13677@mdroper-desk.amr.corp.intel.com>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [10.3.86.137]
+x-originating-ip: [10.24.9.135]
+Content-ID: <E0F333C69ECE1B4491C7CCAEA19E38EE@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] PR - HuC Updates and ICL DMC v1.09
+Subject: Re: [Intel-gfx] [PATCH v3 5/7] drm/i915/tgl: disable SAGV
+ temporarily
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -53,155 +59,45 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Sarvela, Tomi P" <tomi.p.sarvela@intel.com>
-Content-Type: multipart/mixed; boundary="===============1631037358=="
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1631037358==
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_83F5C7385F545743AD4FB2A62F75B0734814F64AORSMSX108amrcor_"
-
---_000_83F5C7385F545743AD4FB2A62F75B0734814F64AORSMSX108amrcor_
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-Sending PR for HUC Updates and ICl DMC.
-
-The following changes since commit 7307a29961ad2765ebcad162da699d2497c5c3f8=
-:
-
-  brcm: Add 43455 based AP6255 NVRAM for the Minix Neo Z83-4 Mini PC (2019-=
-08-27 08:04:55 -0400)
-
-are available in the Git repository at:
-
-  git://anongit.freedesktop.org/drm/drm-firmware gen9_huc_icl_dmc
-
-for you to fetch changes up to d258974f18273e3e37b34686c3b8ecc7bb2902bc:
-
-  drm/i915/firmware: Add v9.0.0 of HuC for Icelake (2019-09-03 14:27:25 -07=
-00)
-
-----------------------------------------------------------------
-Anusha Srivatsa (7):
-      drm/i915/firmware: Add v1.09 of DMC for ICL
-      drm/i915/firmware: Add v2.0.0 of HuC for Skylake
-      drm/i915/firmware: Add v4.0.0 of HuC for Kabylake
-      drm/i915/firmware: Add v2.0.0 of HuC for Broxton
-      drm/i915/firmware: Add v4.0.0 of HuC for Geminilake
-      drm/i915/firmware: Add v4.0.0 of HuC for Cometlake
-      drm/i915/firmware: Add v9.0.0 of HuC for Icelake
-
- WHENCE                    |  22 ++++++++++++++++++++++
- i915/bxt_huc_ver2_0_0.bin | Bin 0 -> 149824 bytes
- i915/cml_huc_ver4_0_0.bin | Bin 0 -> 226048 bytes
- i915/glk_huc_ver4_0_0.bin | Bin 0 -> 226048 bytes
- i915/icl_dmc_ver1_09.bin  | Bin 0 -> 25952 bytes
- i915/icl_huc_ver9_0_0.bin | Bin 0 -> 498880 bytes
- i915/kbl_huc_ver4_0_0.bin | Bin 0 -> 226048 bytes
- i915/skl_huc_ver2_0_0.bin | Bin 0 -> 136320 bytes
- 8 files changed, 22 insertions(+)
- create mode 100644 i915/bxt_huc_ver2_0_0.bin
- create mode 100644 i915/cml_huc_ver4_0_0.bin
- create mode 100644 i915/glk_huc_ver4_0_0.bin
- create mode 100644 i915/icl_dmc_ver1_09.bin
- create mode 100644 i915/icl_huc_ver9_0_0.bin
- create mode 100644 i915/kbl_huc_ver4_0_0.bin
- create mode 100644 i915/skl_huc_ver2_0_0.bin
-
-Regards,
-Anusha
-
---_000_83F5C7385F545743AD4FB2A62F75B0734814F64AORSMSX108amrcor_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-<html dir=3D"ltr">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style type=3D"text/css" id=3D"owaParaStyle"></style>
-</head>
-<body fpstyle=3D"1" ocsi=3D"0">
-<div style=3D"direction: ltr;font-family: Tahoma;color: #000000;font-size: =
-10pt;">
-<div>Sending PR for HUC Updates and ICl DMC.</div>
-<div><br>
-</div>
-<div>The following changes since commit 7307a29961ad2765ebcad162da699d2497c=
-5c3f8:<br>
-<br>
-&nbsp; brcm: Add 43455 based AP6255 NVRAM for the Minix Neo Z83-4 Mini PC (=
-2019-08-27 08:04:55 -0400)<br>
-<br>
-are available in the Git repository at:<br>
-<br>
-&nbsp; git://anongit.freedesktop.org/drm/drm-firmware gen9_huc_icl_dmc<br>
-<br>
-for you to fetch changes up to d258974f18273e3e37b34686c3b8ecc7bb2902bc:<br=
->
-<br>
-&nbsp; drm/i915/firmware: Add v9.0.0 of HuC for Icelake (2019-09-03 14:27:2=
-5 -0700)<br>
-<br>
-----------------------------------------------------------------<br>
-Anusha Srivatsa (7):<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; drm/i915/firmware: Add v1.09 of DMC for ICL<=
-br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; drm/i915/firmware: Add v2.0.0 of HuC for Sky=
-lake<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; drm/i915/firmware: Add v4.0.0 of HuC for Kab=
-ylake<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; drm/i915/firmware: Add v2.0.0 of HuC for Bro=
-xton<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; drm/i915/firmware: Add v4.0.0 of HuC for Gem=
-inilake<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; drm/i915/firmware: Add v4.0.0 of HuC for Com=
-etlake<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; drm/i915/firmware: Add v9.0.0 of HuC for Ice=
-lake<br>
-<br>
-&nbsp;WHENCE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp; 22 &#43;&#43;&#=
-43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#=
-43;&#43;&#43;&#43;&#43;<br>
-&nbsp;i915/bxt_huc_ver2_0_0.bin | Bin 0 -&gt; 149824 bytes<br>
-&nbsp;i915/cml_huc_ver4_0_0.bin | Bin 0 -&gt; 226048 bytes<br>
-&nbsp;i915/glk_huc_ver4_0_0.bin | Bin 0 -&gt; 226048 bytes<br>
-&nbsp;i915/icl_dmc_ver1_09.bin&nbsp; | Bin 0 -&gt; 25952 bytes<br>
-&nbsp;i915/icl_huc_ver9_0_0.bin | Bin 0 -&gt; 498880 bytes<br>
-&nbsp;i915/kbl_huc_ver4_0_0.bin | Bin 0 -&gt; 226048 bytes<br>
-&nbsp;i915/skl_huc_ver2_0_0.bin | Bin 0 -&gt; 136320 bytes<br>
-&nbsp;8 files changed, 22 insertions(&#43;)<br>
-&nbsp;create mode 100644 i915/bxt_huc_ver2_0_0.bin<br>
-&nbsp;create mode 100644 i915/cml_huc_ver4_0_0.bin<br>
-&nbsp;create mode 100644 i915/glk_huc_ver4_0_0.bin<br>
-&nbsp;create mode 100644 i915/icl_dmc_ver1_09.bin<br>
-&nbsp;create mode 100644 i915/icl_huc_ver9_0_0.bin<br>
-&nbsp;create mode 100644 i915/kbl_huc_ver4_0_0.bin<br>
-&nbsp;create mode 100644 i915/skl_huc_ver2_0_0.bin<br>
-</div>
-<div><br>
-</div>
-<div>Regards,</div>
-<div>Anusha<br>
-</div>
-</div>
-</body>
-</html>
-
---_000_83F5C7385F545743AD4FB2A62F75B0734814F64AORSMSX108amrcor_--
-
---===============1631037358==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
-IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
-
---===============1631037358==--
+T24gVHVlLCAyMDE5LTA5LTAzIGF0IDE1OjA1IC0wNzAwLCBNYXR0IFJvcGVyIHdyb3RlOg0KPiBP
+biBUaHUsIEF1ZyAyOSwgMjAxOSBhdCAwMjoyNTo1MkFNIC0wNzAwLCBMdWNhcyBEZSBNYXJjaGkg
+d3JvdGU6DQo+ID4gU0FHViBpcyBub3QgY3VycmVudGx5IHdvcmtpbmcgZm9yIFRpZ2VyIExha2Uu
+IFdlIGJldHRlciBkaXNhYmxlIGl0DQo+ID4gdW50aWwNCj4gPiB0aGUgaW1wbGVtZW50YXRpb24g
+aXMgc3RhYmlsaXplZCBhbmQgd2UgY2FuIGVuYWJsZSBpdC4NCj4gDQo+IERvZXMgIm5vdCBjdXJy
+ZW50bHkgd29ya2luZyIgcmVmZXIgdG8gdGhlIGhhcmR3YXJlIG5vdCB3b3JraW5nIGluIHRoZQ0K
+PiBjdXJyZW50IHN0ZXBwaW5nLCBvciBpcyBpdCBqdXN0IGEgbWF0dGVyIG9mIHVzIG5vdCBoYXZp
+bmcgcHJvcGVyDQo+IHNlcXVlbmNlcyBkb2N1bWVudGVkIHlldCBpbiB0aGUgYnNwZWMgKGFuZCBn
+ZW4xMSdzIHNlcXVlbmNlcyBub3QNCj4gYmVpbmcNCj4gc3VmZmljaWVudCk/DQo+IA0KPiBTb21l
+dGhpbmcgbW9yZSBkZXNjcmlwdGl2ZSB0aGFuICJIQUNLISIgaW4gdGhlIGNvbW1lbnQgYmVsb3cg
+bWlnaHQgYmUNCj4gYQ0KPiBnb29kIGlkZWEgc2luY2Ugd2UncmUgdHJ5aW5nIHRvIGxhbmQgdGhp
+cyB1cHN0cmVhbS4NCg0KVGhlIGluZm9ybWF0aW9uIHRoYXQgSSBoYWQgd2FzIHRoYXQgaW4gdGhl
+IGN1cnJlbnQgc3RlcHBpbmcgaXQgd291bGQNCm5vdCB3b3JrIGJ1dCBkb2luZyBzb21lIHNlYXJj
+aGluZyBJIGZvdW5kIHRoaXMgSFNEOiAyMjA4MTkxOTA5IFNvIGxvb2tzDQpsaWtlIGl0IHdhcyBm
+aXhlZCAxNSBkYXlzIGFnbyBhbmQgYSBuZXcgQklPUyBzaG91bGQgZml4IHRoZSBpc3N1ZS4NCg0K
+SSBndWVzcyBmb3Igbm93IHdlIGNvdWxkIGdvIHdpdGggdGhpcyBwYXRjaCBhbmQgdGhlIHJldmVy
+dCBpdCB3aGVuIHdlDQpjb25maXJtIHRoYXQgYSByZWxpYWJsZSByZWxlYXNlZCBCSU9TIGhhcyB0
+aGUgZml4IGFuZCBhZGRpbmcgdGhlIEhTRCB0bw0KdGhlIGNvbW1pdCBtZXNzYWdlLg0KDQo+IA0K
+PiANCj4gTWF0dA0KPiANCj4gPiBTaWduZWQtb2ZmLWJ5OiBMdWNhcyBEZSBNYXJjaGkgPGx1Y2Fz
+LmRlbWFyY2hpQGludGVsLmNvbT4NCj4gPiAtLS0NCj4gPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUv
+aW50ZWxfcG0uYyB8IDQgKysrKw0KPiA+ICAxIGZpbGUgY2hhbmdlZCwgNCBpbnNlcnRpb25zKCsp
+DQo+ID4gDQo+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX3BtLmMN
+Cj4gPiBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX3BtLmMNCj4gPiBpbmRleCA0ZmE5YmM4
+M2M4YjQuLjcyOTRmY2YwNTMyMyAxMDA2NDQNCj4gPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkx
+NS9pbnRlbF9wbS5jDQo+ID4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfcG0uYw0K
+PiA+IEBAIC0zNjU0LDYgKzM2NTQsMTAgQEAgc3RhdGljIGJvb2wgc2tsX25lZWRzX21lbW9yeV9i
+d193YShzdHJ1Y3QNCj4gPiBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJpdikNCj4gPiAgc3RhdGlj
+IGJvb2wNCj4gPiAgaW50ZWxfaGFzX3NhZ3Yoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9w
+cml2KQ0KPiA+ICB7DQo+ID4gKwkvKiBIQUNLISAqLw0KPiA+ICsJaWYgKElTX0dFTihkZXZfcHJp
+diwgMTIpKQ0KPiA+ICsJCXJldHVybiBmYWxzZTsNCj4gPiArDQo+ID4gIAlyZXR1cm4gKElTX0dF
+TjlfQkMoZGV2X3ByaXYpIHx8IElOVEVMX0dFTihkZXZfcHJpdikgPj0gMTApICYmDQo+ID4gIAkJ
+ZGV2X3ByaXYtPnNhZ3Zfc3RhdHVzICE9IEk5MTVfU0FHVl9OT1RfQ09OVFJPTExFRDsNCj4gPiAg
+fQ0KPiA+IC0tIA0KPiA+IDIuMjMuMA0KPiA+IA0KX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4v
+bGlzdGluZm8vaW50ZWwtZ2Z4
