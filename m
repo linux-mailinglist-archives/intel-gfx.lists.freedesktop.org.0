@@ -2,35 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DDD46AB225
-	for <lists+intel-gfx@lfdr.de>; Fri,  6 Sep 2019 07:48:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 372E9AB305
+	for <lists+intel-gfx@lfdr.de>; Fri,  6 Sep 2019 09:05:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A3FCB89F33;
-	Fri,  6 Sep 2019 05:48:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4410C6E14F;
+	Fri,  6 Sep 2019 07:05:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E95F289F33;
- Fri,  6 Sep 2019 05:48:01 +0000 (UTC)
-X-Amp-Result: UNSCANNABLE
-X-Amp-File-Uploaded: False
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 05 Sep 2019 22:48:01 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.64,472,1559545200"; 
- d="asc'?scan'208";a="213040135"
-Received: from zhen-hp.sh.intel.com (HELO zhen-hp) ([10.239.13.116])
- by fmsmga002.fm.intel.com with ESMTP; 05 Sep 2019 22:47:59 -0700
-Date: Fri, 6 Sep 2019 13:42:55 +0800
-From: Zhenyu Wang <zhenyuw@linux.intel.com>
-To: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Jani Nikula <jani.nikula@intel.com>,
- "Vivi, Rodrigo" <rodrigo.vivi@intel.com>
-Message-ID: <20190906054255.GC3458@zhen-hp.sh.intel.com>
+Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net
+ [217.70.183.201])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A5B9C89292;
+ Fri,  6 Sep 2019 07:05:06 +0000 (UTC)
+X-Originating-IP: 82.195.192.6
+Received: from localhost (unknown [82.195.192.6])
+ (Authenticated sender: maxime.ripard@bootlin.com)
+ by relay8-d.mail.gandi.net (Postfix) with ESMTPSA id A6BAB1BF209;
+ Fri,  6 Sep 2019 07:05:01 +0000 (UTC)
+Date: Fri, 6 Sep 2019 10:05:00 +0300
+From: Maxime Ripard <maxime.ripard@bootlin.com>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Message-ID: <20190906070500.dfxacpgxoxalcha3@flea>
 MIME-Version: 1.0
-User-Agent: Mutt/1.10.0 (2018-05-17)
-Subject: [Intel-gfx] [PULL] gvt-next-fixes
+User-Agent: NeoMutt/20180716
+Subject: [Intel-gfx] [PULL] drm-misc-next-fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -43,85 +37,101 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: Zhenyu Wang <zhenyuw@linux.intel.com>
-Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
- intel-gvt-dev <intel-gvt-dev@lists.freedesktop.org>, "Lv,
- Zhiyuan" <zhiyuan.lv@intel.com>, "Yuan, Hang" <hang.yuan@intel.com>
-Content-Type: multipart/mixed; boundary="===============1714353685=="
+Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Maxime Ripard <mripard@kernel.org>, intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============1394964328=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
---===============1714353685==
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="0OAP2g/MAC+5xKAE"
+--===============1394964328==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="hrja3wxz3awu3gn3"
 Content-Disposition: inline
 
 
---0OAP2g/MAC+5xKAE
+--hrja3wxz3awu3gn3
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
+Hi Daniel, Dave,
 
-Hi,
+Here is a drm-misc-next-fixes PR with a significant number of fixes
+for panfrost.
 
-Here's gvt-next-fixes with two recent fixes, one for recent
-guest hang regression and another for guest reset fix.
+Maxime
 
-Thanks.
---
-The following changes since commit c36beba6b296b3c05a0f29753b04775e5ae23886:
+drm-misc-next-fixes-2019-09-06:
+ - A significant number of panfrost fixes for runtime_pm, MMU and GEM support
+ - A fix for DCS transfers on mcde
+The following changes since commit 578d2342ec702e5fb8a77983fabb3754ae3e9660:
 
-  drm/i915: Seal races between async GPU cancellation, retirement and signa=
-ling (2019-05-13 13:53:35 +0300)
+  Merge tag 'drm-next-5.4-2019-08-23' of git://people.freedesktop.org/~agd5f/linux into drm-next (2019-08-27 17:22:15 +1000)
 
 are available in the Git repository at:
 
-  https://github.com/intel/gvt-linux.git tags/gvt-next-fixes-2019-09-06
+  git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-next-fixes-2019-09-06
 
-for you to fetch changes up to 4a5322560aa235efa84c0aa34c00e5749a0792fd:
+for you to fetch changes up to 88537ddbbe4c755e193aa220a306395edf08a4cf:
 
-  drm/i915/gvt: update RING_START reg of vGPU when the context is submitted=
- to i915 (2019-09-06 13:39:09 +0800)
-
-----------------------------------------------------------------
-gvt-next-fixes-2019-09-06
-
-- Fix guest context head pointer update for hang (Xiaolin)
-- Fix guest context ring state for reset (Weinan)
+  drm/mcde: Fix DSI transfers (2019-09-04 22:05:34 +0200)
 
 ----------------------------------------------------------------
-Weinan Li (1):
-      drm/i915/gvt: update RING_START reg of vGPU when the context is submi=
-tted to i915
+ - A significant number of panfrost fixes for runtime_pm, MMU and GEM support
+ - A fix for DCS transfers on mcde
 
-Xiaolin Zhang (1):
-      drm/i915/gvt: update vgpu workload head pointer correctly
+----------------------------------------------------------------
+Linus Walleij (1):
+      drm/mcde: Fix DSI transfers
 
- drivers/gpu/drm/i915/gvt/scheduler.c | 45 +++++++++++++++++++++++++-------=
-----
- 1 file changed, 32 insertions(+), 13 deletions(-)
+Rob Herring (12):
+      drm/panfrost: Fix possible suspend in panfrost_remove
+      drm/shmem: Do dma_unmap_sg before purging pages
+      drm/shmem: Use mutex_trylock in drm_gem_shmem_purge
+      drm/panfrost: Use mutex_trylock in panfrost_gem_purge
+      drm/panfrost: Rework runtime PM initialization
+      drm/panfrost: Hold runtime PM reference until jobs complete
+      drm/panfrost: Remove unnecessary mmu->lock mutex
+      drm/panfrost: Rework page table flushing and runtime PM interaction
+      drm/panfrost: Split mmu_hw_do_operation into locked and unlocked version
+      drm/panfrost: Add cache/TLB flush before switching address space
+      drm/panfrost: Flush and disable address space when freeing page tables
+      drm/panfrost: Remove unnecessary hwaccess_lock spin_lock
 
+Steven Price (1):
+      drm/panfrost: Add missing check for pfdev->regulator
 
---=20
-Open Source Technology Center, Intel ltd.
+ drivers/gpu/drm/drm_gem_shmem_helper.c           | 13 +++-
+ drivers/gpu/drm/mcde/mcde_dsi.c                  | 68 ++++++++++++------
+ drivers/gpu/drm/panfrost/panfrost_devfreq.c      |  6 +-
+ drivers/gpu/drm/panfrost/panfrost_device.c       | 10 ---
+ drivers/gpu/drm/panfrost/panfrost_device.h       |  3 -
+ drivers/gpu/drm/panfrost/panfrost_drv.c          | 16 +++--
+ drivers/gpu/drm/panfrost/panfrost_gem_shrinker.c | 11 +--
+ drivers/gpu/drm/panfrost/panfrost_job.c          | 43 +++++++----
+ drivers/gpu/drm/panfrost/panfrost_mmu.c          | 91 +++++++++++-------------
+ include/drm/drm_gem_shmem_helper.h               |  2 +-
+ 10 files changed, 149 insertions(+), 114 deletions(-)
 
-$gpg --keyserver wwwkeys.pgp.net --recv-keys 4D781827
+--
+Maxime Ripard, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
---0OAP2g/MAC+5xKAE
+--hrja3wxz3awu3gn3
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iF0EARECAB0WIQTXuabgHDW6LPt9CICxBBozTXgYJwUCXXHx3wAKCRCxBBozTXgY
-J93JAJ4rSS5tSPmOwQsCFD7/ozXr+nz5MQCffhVYZLo2ESxBNJ8OWH2hL4wzMmU=
-=79KX
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXXIFHAAKCRDj7w1vZxhR
+xbaAAP9XD9dGLlB/dkwzTDtTrtsHgJrwiEx1BCPq6+wN7YRsrQD9H9In3tNBBDD7
+Qw03QWiqasMOuqUmtfCXPTeN3mTKxQI=
+=43kx
 -----END PGP SIGNATURE-----
 
---0OAP2g/MAC+5xKAE--
+--hrja3wxz3awu3gn3--
 
---===============1714353685==
+--===============1394964328==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -131,4 +141,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
 IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
 dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
 
---===============1714353685==--
+--===============1394964328==--
