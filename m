@@ -1,56 +1,57 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 85434AF21A
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 Sep 2019 21:57:19 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7FB42AF22B
+	for <lists+intel-gfx@lfdr.de>; Tue, 10 Sep 2019 22:07:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6D7EE6E98D;
-	Tue, 10 Sep 2019 19:57:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BCFBF6E991;
+	Tue, 10 Sep 2019 20:07:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-vk1-xa43.google.com (mail-vk1-xa43.google.com
- [IPv6:2607:f8b0:4864:20::a43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B73376E98D
- for <intel-gfx@lists.freedesktop.org>; Tue, 10 Sep 2019 19:57:15 +0000 (UTC)
-Received: by mail-vk1-xa43.google.com with SMTP id b25so3840332vkk.3
- for <intel-gfx@lists.freedesktop.org>; Tue, 10 Sep 2019 12:57:15 -0700 (PDT)
+Received: from mail-ua1-x944.google.com (mail-ua1-x944.google.com
+ [IPv6:2607:f8b0:4864:20::944])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BBCCD6E991
+ for <intel-gfx@lists.freedesktop.org>; Tue, 10 Sep 2019 20:07:16 +0000 (UTC)
+Received: by mail-ua1-x944.google.com with SMTP id w16so6000346uap.9
+ for <intel-gfx@lists.freedesktop.org>; Tue, 10 Sep 2019 13:07:16 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=fHYSfKWi2kFCcTh7TrDW8AImosKJCnPWyoVj7t/8pnc=;
- b=X+j9A7FmNoSXH71S2XW7BD+8nCmPpRwIZfHzNRn6hBNthIu0v+fEYKPWDdwEWFbiqg
- 0WYZOrNkrqU92TJPEXj/iVJojSsUyvCqwSYF00QieIonvl7ov3vAksnEW9nXKA2ydj9Q
- CT6ZgvqPMaaWwqCSVV5DzUY8jHOiKD8X5Y+FposRVtZk1slh15wNHw2TJ4XWe0T/G2zP
- oHySTOGbUm2hhnVHNrOQYI9PIXmE7c+jksfYavEiCPPWWzuxrVfDMOLlmNxl78/2sLtQ
- Gb82poSqUtgkKHxUbd18cRtnAr6w9ntzebzZEQdDuKW17fDUlhFn/LT5SSc5Mktijn6d
- pP0g==
-X-Gm-Message-State: APjAAAW4BvSRco5D5dIIGtF/hUNwOmNeu5p/sbd4bwwzC20v05JXrqet
- MJS3lm2xPbOi8tQ9YoV/hdBhiVO18eGvRKHybD0=
-X-Google-Smtp-Source: APXvYqwduZrLP9OCdsaiuah7W5JK+Xxkz5ul1iJZ+OuGH8S2vvcRNz5xkF5NxocuGOOU87afmTjYVYgUzZd3CblUVPs=
-X-Received: by 2002:ac5:c80c:: with SMTP id y12mr5100508vkl.10.1568145434813; 
- Tue, 10 Sep 2019 12:57:14 -0700 (PDT)
+ bh=Bn4y95J+OpqVLk6eNARbKFhtHmikKM0m5l+CvllcfDE=;
+ b=tLw6bS6GQRS+9XifT9G0IpdlDtQrDqdldyRM2Xdg/XnY6cll7L2cZdHnUMrlXxjpZw
+ +nbOuPou1+iKFREhhtZheh5KMuWlwKBSc/MYmzVWcdjJYQq+U/NI4lLRHfwXA5lJG5jJ
+ jBOrsbURgGjBoMELWI5GcOWzxYuSnxOiFaJk3NxZdXxH+jNfmVaAJ9N3WUmbv+0IDypU
+ rMbVv+7CqJwB13TpIBPSWwVOSASChV3EQqbFVhvob6UwTW3p9XlDU4O9ogh7fGLnXgK4
+ JGk/XP4sml0O6FhzcvO5cMaLn9wvIkR3ykhl7xf1mjx3bFqaiNFcw8qcZrtwQLcQlwME
+ sL/g==
+X-Gm-Message-State: APjAAAU+9LzCiU03fenCE+l0qTLXH1vIDdlIo2S21wEbM7vziApHLFD6
+ dHQT78ymIToXgFKpZrICi1WUVxE90gb5mc+RKMmvfw==
+X-Google-Smtp-Source: APXvYqzODNBsWmK/XEMrIoX7TXBO9oHPOLfZusS6c7rnPWsdbNX0iqkKdHP0jlTcZYMK82BP2f6xik8wR6OYmpHmrwQ=
+X-Received: by 2002:ab0:3113:: with SMTP id e19mr308991ual.129.1568146035775; 
+ Tue, 10 Sep 2019 13:07:15 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190910153627.22820-1-chris@chris-wilson.co.uk>
- <20190910161657.23037-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20190910161657.23037-1-chris@chris-wilson.co.uk>
+References: <20190902040303.14195-1-chris@chris-wilson.co.uk>
+ <20190902040303.14195-10-chris@chris-wilson.co.uk>
+In-Reply-To: <20190902040303.14195-10-chris@chris-wilson.co.uk>
 From: Matthew Auld <matthew.william.auld@gmail.com>
-Date: Tue, 10 Sep 2019 20:56:48 +0100
-Message-ID: <CAM0jSHPOxJmMREPrgt7onzFekGXKSWNOWaW9Q9uVHM5N5DtRWg@mail.gmail.com>
+Date: Tue, 10 Sep 2019 21:06:49 +0100
+Message-ID: <CAM0jSHPfbgiM8D9q7qhkz_DpZ5xEuU=-FiumHoOLeY8zAm6deQ@mail.gmail.com>
 To: Chris Wilson <chris@chris-wilson.co.uk>
 X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=gmail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
  :cc;
- bh=fHYSfKWi2kFCcTh7TrDW8AImosKJCnPWyoVj7t/8pnc=;
- b=pjEh3MAnJ686Y8h/tVl75CaNokjMe/oqTpWxIB6Klr60Fwef1R9xVGSemuPO0gdnuN
- /RVkGXjJTloY9v74Ly7gs9ImIzobM4v/CLhQaxrO9k7k9ytztckbr5fHOcEx4EyTdKg2
- vVHOsDBbs1h6834pUSsDz2BD3PYbD/8JcVkm1OGvQuU9MTX8IE4Szpd2GIxjf0zz3J4k
- IGUD0Nls0CNjzYhifzWjDumd/V9SZTFb6rQBtX8u/SbJskrXGfIatZtpDgcZTL8Stf5y
- XBdWaS/r50dyFeYnT5vYc/MtKmHfWJ+Z+HBwK8JAAFkqz9GKMZDRw83+Nw9OxI+K6Qfj
- SpLA==
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/tgl: Disable rc6 for debugging
+ bh=Bn4y95J+OpqVLk6eNARbKFhtHmikKM0m5l+CvllcfDE=;
+ b=efubOOjUQc+aIDADIOWdsoLo5fBVXZrU4rt6zL+8TzVXIMy14xkJWVRmjskQCIoahC
+ 6eTNRU8i23WEna/jTKL2vj4KJ1XXlHuYc7LIx0rDqXz6celYFYMV+rLWKoNJ16oTBYGn
+ za+QdBDRnPpSYjI+XyUWwt/G3624TZt9vgJiTHfKkpujl4VP7n9fx2Up76wuzTqxRyiw
+ 645VCcKyAat0FsE0KfsSs0C1gM/9Qd1fiKKVQVIaK5+RUTQQ79wLVSbThssg0+z3EfQG
+ 4SQLc6OcIKv5PRUiMC7/HBxCgFG1DH/aw2TbQToabW2/5CKNpwd14LjrBgxEI52USlin
+ BsZw==
+Subject: Re: [Intel-gfx] [PATCH 10/21] drm/i915: Make i915_vma.flags
+ atomic_t for mutex reduction
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -69,12 +70,13 @@ Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gVHVlLCAxMCBTZXAgMjAxOSBhdCAxNzoxNywgQ2hyaXMgV2lsc29uIDxjaHJpc0BjaHJpcy13
-aWxzb24uY28udWs+IHdyb3RlOgo+Cj4gUmVmZXJlbmNlczogaHR0cHM6Ly9idWdzLmZyZWVkZXNr
-dG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MTExNTkzCj4gU2lnbmVkLW9mZi1ieTogQ2hyaXMgV2ls
-c29uIDxjaHJpc0BjaHJpcy13aWxzb24uY28udWs+Cj4gQ2M6IE1pa2EgS3VvcHBhbGEgPG1pa2Eu
-a3VvcHBhbGFAbGludXguaW50ZWwuY29tPgpBY2tlZC1ieTogTWF0dGhldyBBdWxkIDxtYXR0aGV3
-LmF1bGRAaW50ZWwuY29tPgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3Rv
-cC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRl
-bC1nZng=
+T24gTW9uLCAyIFNlcCAyMDE5IGF0IDA1OjAzLCBDaHJpcyBXaWxzb24gPGNocmlzQGNocmlzLXdp
+bHNvbi5jby51az4gd3JvdGU6Cj4KPiBJbiBwcmVwYXJhdGlvbiBmb3IgcmVkdWNpbmcgc3RydWN0
+X211dGV4IHN0cmFuZ2xlaG9sZCBhcm91bmQgdGhlIHZtLAo+IG1ha2UgdGhlIHZtYS5mbGFncyBh
+dG9taWMgc28gdGhhdCB3ZSBjYW4gYWNxdWlyZSBhIHBpbiBvbiB0aGUgdm1hCj4gYXRvbWljYWxs
+eSBiZWZvcmUgZGVjaWRpbmcgaWYgd2UgbmVlZCB0byB0YWtlIHRoZSBtdXRleC4KPgo+IFNpZ25l
+ZC1vZmYtYnk6IENocmlzIFdpbHNvbiA8Y2hyaXNAY2hyaXMtd2lsc29uLmNvLnVrPgpSZXZpZXdl
+ZC1ieTogTWF0dGhldyBBdWxkIDxtYXR0aGV3LmF1bGRAaW50ZWwuY29tPgpfX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0
+CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3Rv
+cC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZng=
