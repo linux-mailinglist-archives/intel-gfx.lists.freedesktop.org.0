@@ -1,45 +1,35 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F861B07B3
-	for <lists+intel-gfx@lfdr.de>; Thu, 12 Sep 2019 06:15:17 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A5B3DB079E
+	for <lists+intel-gfx@lfdr.de>; Thu, 12 Sep 2019 06:14:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BC7776E0F2;
-	Thu, 12 Sep 2019 04:12:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DF30C6EB5D;
+	Thu, 12 Sep 2019 04:12:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3E4846E0E2
- for <intel-gfx@lists.freedesktop.org>; Wed, 11 Sep 2019 23:53:49 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4813B6E040
+ for <intel-gfx@lists.freedesktop.org>; Thu, 12 Sep 2019 01:10:29 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
  by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 11 Sep 2019 16:53:48 -0700
+ 11 Sep 2019 18:10:28 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.64,492,1559545200"; 
- d="scan'208,217";a="189821482"
-Received: from orsmsx106.amr.corp.intel.com ([10.22.225.133])
- by orsmga006.jf.intel.com with ESMTP; 11 Sep 2019 16:53:48 -0700
-Received: from orsmsx108.amr.corp.intel.com ([169.254.2.9]) by
- ORSMSX106.amr.corp.intel.com ([169.254.1.16]) with mapi id 14.03.0439.000;
- Wed, 11 Sep 2019 16:53:48 -0700
-From: "Srivatsa, Anusha" <anusha.srivatsa@intel.com>
-To: "linux-firmware@kernel.org" <linux-firmware@kernel.org>
-Thread-Topic: i915 firmware updates - PR for CML guc,huc;TGL DMC and
- Gen9-Gen11 HuC Updates
-Thread-Index: AdVo/CeOYwUnxla4R/u2qvOtRTtA8w==
-Date: Wed, 11 Sep 2019 23:53:48 +0000
-Message-ID: <83F5C7385F545743AD4FB2A62F75B07348159C37@ORSMSX108.amr.corp.intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.3.86.137]
+X-IronPort-AV: E=Sophos;i="5.64,492,1559545200"; d="scan'208";a="179203218"
+Received: from josouza-mobl.jf.intel.com (HELO josouza-MOBL.intel.com)
+ ([10.24.9.135])
+ by orsmga008.jf.intel.com with ESMTP; 11 Sep 2019 18:10:28 -0700
+From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 11 Sep 2019 18:10:13 -0700
+Message-Id: <20190912011016.8353-1-jose.souza@intel.com>
+X-Mailer: git-send-email 2.23.0
 MIME-Version: 1.0
-Subject: [Intel-gfx] i915 firmware updates - PR for CML guc,huc;
- TGL DMC and Gen9-Gen11 HuC Updates
+Subject: [Intel-gfx] [PATCH 1/4] drm/i915/tgl: Add missing ddi clock select
+ during DP init sequence
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -52,171 +42,31 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "jwboyer@kernel.org" <jwboyer@kernel.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "kyle@kernel.org" <kyle@kernel.org>,
- "ben@decadent.org.uk" <ben@decadent.org.uk>
-Content-Type: multipart/mixed; boundary="===============1334366554=="
+Cc: Taylor@freedesktop.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1334366554==
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_83F5C7385F545743AD4FB2A62F75B07348159C37ORSMSX108amrcor_"
-
---_000_83F5C7385F545743AD4FB2A62F75B07348159C37ORSMSX108amrcor_
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-Josh,Kyle,Ben
-
-Can these i915 updates be merged from cml_tgldmc_huc_updates to linux-firmw=
-are
-
-The following changes since commit 44d4fca9922a252a0bd81f6307bcc072a78da54a=
-:
-
-  Merge https://github.com/pmachata/linux-firmware (2018-09-13 11:45:40 -04=
-00)
-
-are available in the Git repository at:
-
-  git://anongit.freedesktop.org/drm/drm-firmware cml_tgldmc_huc_updates
-
-for you to fetch changes up to e848f4708bcea2fa829cfbfd7e7a1b3a83b91d3e:
-
-  drm/i915/firmware: Add v9.0.0 of HuC for Icelake (2019-09-11 15:46:03 -07=
-00)
-
-----------------------------------------------------------------
-Anusha Srivatsa (8):
-      drm/i915/firmware: Add v2.04 of DMC for TGL
-      drm/i915/firmware: Add v33 of GuC for CML
-      drm/i915/firmware: Add v2.0.0 of HuC for Skylake
-      drm/i915/firmware: Add v4.0.0 of HuC for Kabylake
-      drm/i915/firmware: Add v2.0.0 of HuC for Broxton
-      drm/i915/firmware: Add v4.0.0 of HuC for Geminilake
-      drm/i915/firmware: Add v4.0.0 of HuC for Cometlake
-      drm/i915/firmware: Add v9.0.0 of HuC for Icelake
-
- WHENCE                   |  26 ++++++++++++++++++++++++++
- i915/bxt_huc_2.0.0.bin   | Bin 0 -> 149824 bytes
- i915/cml_guc_33.0.0.bin  | Bin 0 -> 182912 bytes
- i915/cml_huc_4.0.0.bin   | Bin 0 -> 226048 bytes
- i915/glk_huc_4.0.0.bin   | Bin 0 -> 226048 bytes
- i915/icl_huc_9.0.0.bin   | Bin 0 -> 498880 bytes
- i915/kbl_huc_4.0.0.bin   | Bin 0 -> 226048 bytes
- i915/skl_huc_2.0.0.bin   | Bin 0 -> 136320 bytes
- i915/tgl_dmc_ver2_04.bin | Bin 0 -> 18436 bytes
- 9 files changed, 26 insertions(+)
- create mode 100644 i915/bxt_huc_2.0.0.bin
- create mode 100644 i915/cml_guc_33.0.0.bin
- create mode 100644 i915/cml_huc_4.0.0.bin
- create mode 100644 i915/glk_huc_4.0.0.bin
- create mode 100644 i915/icl_huc_9.0.0.bin
- create mode 100644 i915/kbl_huc_4.0.0.bin
- create mode 100644 i915/skl_huc_2.0.0.bin
- create mode 100644 i915/tgl_dmc_ver2_04.bin
-
-Anusha
-
---_000_83F5C7385F545743AD4FB2A62F75B07348159C37ORSMSX108amrcor_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-<html dir=3D"ltr">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style type=3D"text/css" id=3D"owaParaStyle"></style>
-</head>
-<body fpstyle=3D"1" ocsi=3D"0">
-<div style=3D"direction: ltr;font-family: Tahoma;color: #000000;font-size: =
-10pt;">
-<div>Josh,Kyle,Ben</div>
-<div><br>
-</div>
-<div>Can these i915 updates be merged from cml_tgldmc_huc_updates to linux-=
-firmware</div>
-<div><br>
-</div>
-<div>The following changes since commit 44d4fca9922a252a0bd81f6307bcc072a78=
-da54a:<br>
-<br>
-&nbsp; Merge https://github.com/pmachata/linux-firmware (2018-09-13 11:45:4=
-0 -0400)<br>
-<br>
-are available in the Git repository at:<br>
-<br>
-&nbsp; git://anongit.freedesktop.org/drm/drm-firmware cml_tgldmc_huc_update=
-s<br>
-<br>
-for you to fetch changes up to e848f4708bcea2fa829cfbfd7e7a1b3a83b91d3e:<br=
->
-<br>
-&nbsp; drm/i915/firmware: Add v9.0.0 of HuC for Icelake (2019-09-11 15:46:0=
-3 -0700)<br>
-<br>
-----------------------------------------------------------------<br>
-Anusha Srivatsa (8):<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; drm/i915/firmware: Add v2.04 of DMC for TGL<=
-br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; drm/i915/firmware: Add v33 of GuC for CML<br=
->
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; drm/i915/firmware: Add v2.0.0 of HuC for Sky=
-lake<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; drm/i915/firmware: Add v4.0.0 of HuC for Kab=
-ylake<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; drm/i915/firmware: Add v2.0.0 of HuC for Bro=
-xton<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; drm/i915/firmware: Add v4.0.0 of HuC for Gem=
-inilake<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; drm/i915/firmware: Add v4.0.0 of HuC for Com=
-etlake<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; drm/i915/firmware: Add v9.0.0 of HuC for Ice=
-lake<br>
-<br>
-&nbsp;WHENCE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp; 26 &#43;&#43;&#43;&#4=
-3;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#4=
-3;&#43;&#43;&#43;&#43;&#43;&#43;&#43;<br>
-&nbsp;i915/bxt_huc_2.0.0.bin&nbsp;&nbsp; | Bin 0 -&gt; 149824 bytes<br>
-&nbsp;i915/cml_guc_33.0.0.bin&nbsp; | Bin 0 -&gt; 182912 bytes<br>
-&nbsp;i915/cml_huc_4.0.0.bin&nbsp;&nbsp; | Bin 0 -&gt; 226048 bytes<br>
-&nbsp;i915/glk_huc_4.0.0.bin&nbsp;&nbsp; | Bin 0 -&gt; 226048 bytes<br>
-&nbsp;i915/icl_huc_9.0.0.bin&nbsp;&nbsp; | Bin 0 -&gt; 498880 bytes<br>
-&nbsp;i915/kbl_huc_4.0.0.bin&nbsp;&nbsp; | Bin 0 -&gt; 226048 bytes<br>
-&nbsp;i915/skl_huc_2.0.0.bin&nbsp;&nbsp; | Bin 0 -&gt; 136320 bytes<br>
-&nbsp;i915/tgl_dmc_ver2_04.bin | Bin 0 -&gt; 18436 bytes<br>
-&nbsp;9 files changed, 26 insertions(&#43;)<br>
-&nbsp;create mode 100644 i915/bxt_huc_2.0.0.bin<br>
-&nbsp;create mode 100644 i915/cml_guc_33.0.0.bin<br>
-&nbsp;create mode 100644 i915/cml_huc_4.0.0.bin<br>
-&nbsp;create mode 100644 i915/glk_huc_4.0.0.bin<br>
-&nbsp;create mode 100644 i915/icl_huc_9.0.0.bin<br>
-&nbsp;create mode 100644 i915/kbl_huc_4.0.0.bin<br>
-&nbsp;create mode 100644 i915/skl_huc_2.0.0.bin<br>
-&nbsp;create mode 100644 i915/tgl_dmc_ver2_04.bin<br>
-</div>
-<div><br>
-</div>
-<div>Anusha <br>
-</div>
-</div>
-</body>
-</html>
-
---_000_83F5C7385F545743AD4FB2A62F75B07348159C37ORSMSX108amrcor_--
-
---===============1334366554==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
-IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
-
---===============1334366554==--
+RnJvbTogIlRheWxvciwgQ2xpbnRvbiBBIiA8Y2xpbnRvbi5hLnRheWxvckBpbnRlbC5jb20+CgpT
+dGVwIDQuYiB3YXMgY29tcGxldGUgbWlzc2VkIGJlY2F1c2UgaXQgaXMgb25seSByZXF1aXJlZCB0
+byBUQyBhbmQgVEJULgoKQnNwZWM6IDQ5MTkwClNpZ25lZC1vZmYtYnk6IFRheWxvciwgQ2xpbnRv
+biBBIDxjbGludG9uLmEudGF5bG9yQGludGVsLmNvbT4KLS0tCiBkcml2ZXJzL2dwdS9kcm0vaTkx
+NS9kaXNwbGF5L2ludGVsX2RkaS5jIHwgNSArKysrLQogMSBmaWxlIGNoYW5nZWQsIDQgaW5zZXJ0
+aW9ucygrKSwgMSBkZWxldGlvbigtKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1
+L2Rpc3BsYXkvaW50ZWxfZGRpLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVs
+X2RkaS5jCmluZGV4IDNlNjM5NDEzOTk2NC4uODE3OTJhMDRlMGFhIDEwMDY0NAotLS0gYS9kcml2
+ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RkaS5jCisrKyBiL2RyaXZlcnMvZ3B1L2Ry
+bS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGRpLmMKQEAgLTMyMjQsMTEgKzMyMjQsMTQgQEAgc3RhdGlj
+IHZvaWQgdGdsX2RkaV9wcmVfZW5hYmxlX2RwKHN0cnVjdCBpbnRlbF9lbmNvZGVyICplbmNvZGVy
+LAogCWludGVsX2VkcF9wYW5lbF9vbihpbnRlbF9kcCk7CiAKIAkvKgotCSAqIDEuYiwgMy4gYW5k
+IDQuIGlzIGRvbmUgYmVmb3JlIHRnbF9kZGlfcHJlX2VuYWJsZV9kcCgpIGJ5OgorCSAqIDEuYiwg
+My4gYW5kIDQuYSBpcyBkb25lIGJlZm9yZSB0Z2xfZGRpX3ByZV9lbmFibGVfZHAoKSBieToKIAkg
+KiBoYXN3ZWxsX2NydGNfZW5hYmxlKCktPmludGVsX2VuY29kZXJzX3ByZV9wbGxfZW5hYmxlKCkg
+YW5kCiAJICogaGFzd2VsbF9jcnRjX2VuYWJsZSgpLT5pbnRlbF9lbmFibGVfc2hhcmVkX2RwbGwo
+KQogCSAqLwogCisJLyogNC5iICovCisJaW50ZWxfZGRpX2Nsa19zZWxlY3QoZW5jb2RlciwgY3J0
+Y19zdGF0ZSk7CisKIAkvKiA1LiAqLwogCWlmICghaW50ZWxfcGh5X2lzX3RjKGRldl9wcml2LCBw
+aHkpIHx8CiAJICAgIGRpZ19wb3J0LT50Y19tb2RlICE9IFRDX1BPUlRfVEJUX0FMVCkKLS0gCjIu
+MjMuMAoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50
+ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBz
+Oi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
