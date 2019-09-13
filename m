@@ -1,48 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id EBD11B2866
-	for <lists+intel-gfx@lfdr.de>; Sat, 14 Sep 2019 00:30:16 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4DCADB2869
+	for <lists+intel-gfx@lfdr.de>; Sat, 14 Sep 2019 00:33:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 53A646F487;
-	Fri, 13 Sep 2019 22:30:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D47B76F488;
+	Fri, 13 Sep 2019 22:32:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B2F2D6F487
- for <intel-gfx@lists.freedesktop.org>; Fri, 13 Sep 2019 22:30:13 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A58C16F488
+ for <intel-gfx@lists.freedesktop.org>; Fri, 13 Sep 2019 22:32:56 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 13 Sep 2019 15:30:12 -0700
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 13 Sep 2019 15:32:56 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.64,501,1559545200"; 
- d="scan'208,217";a="185244908"
-Received: from orsmsx110.amr.corp.intel.com ([10.22.240.8])
- by fmsmga008.fm.intel.com with ESMTP; 13 Sep 2019 15:30:11 -0700
-Received: from orsmsx160.amr.corp.intel.com (10.22.226.43) by
- ORSMSX110.amr.corp.intel.com (10.22.240.8) with Microsoft SMTP Server (TLS)
- id 14.3.439.0; Fri, 13 Sep 2019 15:29:22 -0700
-Received: from orsmsx108.amr.corp.intel.com ([169.254.2.9]) by
- ORSMSX160.amr.corp.intel.com ([169.254.13.218]) with mapi id 14.03.0439.000;
- Fri, 13 Sep 2019 15:29:21 -0700
-From: "Srivatsa, Anusha" <anusha.srivatsa@intel.com>
-To: "linux-firmware@kernel.org" <linux-firmware@kernel.org>
-Thread-Topic: i915 firmware updates (CMl- GuC,HuC; TGL-DMC,ICL-DMC, HuC
- Updates-SKL,BXT,KBL,GLK,ICL) 
-Thread-Index: AdVqgrAbRnXsxWD5QvGKyb6HslgvBg==
-Date: Fri, 13 Sep 2019 22:29:21 +0000
-Message-ID: <83F5C7385F545743AD4FB2A62F75B0734815CF42@ORSMSX108.amr.corp.intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.3.86.137]
+X-IronPort-AV: E=Sophos;i="5.64,489,1559545200"; d="scan'208";a="337037952"
+Received: from josouza-mobl.jf.intel.com (HELO josouza-MOBL.intel.com)
+ ([10.24.9.135])
+ by orsmga004.jf.intel.com with ESMTP; 13 Sep 2019 15:32:56 -0700
+From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri, 13 Sep 2019 15:32:37 -0700
+Message-Id: <20190913223251.354877-1-jose.souza@intel.com>
+X-Mailer: git-send-email 2.23.0
 MIME-Version: 1.0
-Subject: [Intel-gfx] i915 firmware updates (CMl- GuC,HuC;
- TGL-DMC,ICL-DMC, HuC Updates-SKL,BXT,KBL,GLK,ICL)
+Subject: [Intel-gfx] [PATCH 00/14] TGL TC enabling
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -55,186 +41,47 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "jwboyer@kernel.org" <jwboyer@kernel.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "kyle@kernel.org" <kyle@kernel.org>,
- "ben@decadent.org.uk" <ben@decadent.org.uk>
-Content-Type: multipart/mixed; boundary="===============0973532433=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0973532433==
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_83F5C7385F545743AD4FB2A62F75B0734815CF42ORSMSX108amrcor_"
-
---_000_83F5C7385F545743AD4FB2A62F75B0734815CF42ORSMSX108amrcor_
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-Hi,
-Kyle, Josh,Ben
-
-Ignore the previous PR and kindly consider this one. It has another new upd=
-ate and is the latest one-
-
-The following changes since commit 6c6918ad8ae0dfb2cb591484eba525409980c16f=
-:
-
-  linux-firmware: Update firmware file for Intel Bluetooth AX201 (2019-09-0=
-9 04:22:42 -0400)
-
-are available in the Git repository at:
-
-  git://anongit.freedesktop.org/drm/drm-firmware cml_tgl-icl-dmc_huc_update=
-s
-
-for you to fetch changes up to 3ea84e52306e7b78cc6d727d9a41c8449146d765:
-
-  drm/i915/firmware: Add v9.0.0 of HuC for Icelake (2019-09-13 14:48:47 -07=
-00)
-
-----------------------------------------------------------------
-Anusha Srivatsa (9):
-      drm/i915/firmware: Add v1.09 of DMC for ICL
-      drm/i915/firmware: Add v2.04 of DMC for TGL
-      drm/i915/firmware: Add v33 of GuC for CML
-      drm/i915/firmware: Add v2.0.0 of HuC for Skylake
-      drm/i915/firmware: Add v4.0.0 of HuC for Kabylake
-      drm/i915/firmware: Add v2.0.0 of HuC for Broxton
-      drm/i915/firmware: Add v4.0.0 of HuC for Geminilake
-      drm/i915/firmware: Add v4.0.0 of HuC for Cometlake
-      drm/i915/firmware: Add v9.0.0 of HuC for Icelake
-
- WHENCE                   |  28 ++++++++++++++++++++++++++++
- i915/bxt_huc_2.0.0.bin   | Bin 0 -> 149824 bytes
- i915/cml_guc_33.0.0.bin  | Bin 0 -> 182912 bytes
- i915/cml_huc_4.0.0.bin   | Bin 0 -> 226048 bytes
- i915/glk_huc_4.0.0.bin   | Bin 0 -> 226048 bytes
- i915/icl_dmc_ver1_09.bin | Bin 0 -> 25952 bytes
- i915/icl_huc_9.0.0.bin   | Bin 0 -> 498880 bytes
- i915/kbl_huc_4.0.0.bin   | Bin 0 -> 226048 bytes
- i915/skl_huc_2.0.0.bin   | Bin 0 -> 136320 bytes
- i915/tgl_dmc_ver2_04.bin | Bin 0 -> 18436 bytes
- 10 files changed, 28 insertions(+)
- create mode 100644 i915/bxt_huc_2.0.0.bin
- create mode 100644 i915/cml_guc_33.0.0.bin
- create mode 100644 i915/cml_huc_4.0.0.bin
- create mode 100644 i915/glk_huc_4.0.0.bin
- create mode 100644 i915/icl_dmc_ver1_09.bin
- create mode 100644 i915/icl_huc_9.0.0.bin
- create mode 100644 i915/kbl_huc_4.0.0.bin
- create mode 100644 i915/skl_huc_2.0.0.bin
- create mode 100644 i915/tgl_dmc_ver2_04.bin
-
-
-Thanks,
-Anusha
-
---_000_83F5C7385F545743AD4FB2A62F75B0734815CF42ORSMSX108amrcor_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-<html dir=3D"ltr">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style type=3D"text/css" id=3D"owaParaStyle"></style>
-</head>
-<body fpstyle=3D"1" ocsi=3D"0">
-<div style=3D"direction: ltr;font-family: Tahoma;color: #000000;font-size: =
-10pt;">
-<div>Hi,</div>
-<div>Kyle, Josh,Ben<br>
-</div>
-<div><br>
-</div>
-<div>Ignore the previous PR and kindly consider this one. It has another ne=
-w update and is the latest one-</div>
-<div><br>
-</div>
-<div>The following changes since commit 6c6918ad8ae0dfb2cb591484eba52540998=
-0c16f:</div>
-<br>
-&nbsp; linux-firmware: Update firmware file for Intel Bluetooth AX201 (2019=
--09-09 04:22:42 -0400)<br>
-<br>
-are available in the Git repository at:<br>
-<br>
-&nbsp; git://anongit.freedesktop.org/drm/drm-firmware cml_tgl-icl-dmc_huc_u=
-pdates<br>
-<br>
-for you to fetch changes up to 3ea84e52306e7b78cc6d727d9a41c8449146d765:<br=
->
-<br>
-&nbsp; drm/i915/firmware: Add v9.0.0 of HuC for Icelake (2019-09-13 14:48:4=
-7 -0700)<br>
-<br>
-----------------------------------------------------------------<br>
-Anusha Srivatsa (9):<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; drm/i915/firmware: Add v1.09 of DMC for ICL<=
-br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; drm/i915/firmware: Add v2.04 of DMC for TGL<=
-br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; drm/i915/firmware: Add v33 of GuC for CML<br=
->
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; drm/i915/firmware: Add v2.0.0 of HuC for Sky=
-lake<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; drm/i915/firmware: Add v4.0.0 of HuC for Kab=
-ylake<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; drm/i915/firmware: Add v2.0.0 of HuC for Bro=
-xton<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; drm/i915/firmware: Add v4.0.0 of HuC for Gem=
-inilake<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; drm/i915/firmware: Add v4.0.0 of HuC for Com=
-etlake<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; drm/i915/firmware: Add v9.0.0 of HuC for Ice=
-lake<br>
-<br>
-&nbsp;WHENCE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp; 28 &#43;&#43;&#43;&#4=
-3;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#4=
-3;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;<br>
-&nbsp;i915/bxt_huc_2.0.0.bin&nbsp;&nbsp; | Bin 0 -&gt; 149824 bytes<br>
-&nbsp;i915/cml_guc_33.0.0.bin&nbsp; | Bin 0 -&gt; 182912 bytes<br>
-&nbsp;i915/cml_huc_4.0.0.bin&nbsp;&nbsp; | Bin 0 -&gt; 226048 bytes<br>
-&nbsp;i915/glk_huc_4.0.0.bin&nbsp;&nbsp; | Bin 0 -&gt; 226048 bytes<br>
-&nbsp;i915/icl_dmc_ver1_09.bin | Bin 0 -&gt; 25952 bytes<br>
-&nbsp;i915/icl_huc_9.0.0.bin&nbsp;&nbsp; | Bin 0 -&gt; 498880 bytes<br>
-&nbsp;i915/kbl_huc_4.0.0.bin&nbsp;&nbsp; | Bin 0 -&gt; 226048 bytes<br>
-&nbsp;i915/skl_huc_2.0.0.bin&nbsp;&nbsp; | Bin 0 -&gt; 136320 bytes<br>
-&nbsp;i915/tgl_dmc_ver2_04.bin | Bin 0 -&gt; 18436 bytes<br>
-&nbsp;10 files changed, 28 insertions(&#43;)<br>
-&nbsp;create mode 100644 i915/bxt_huc_2.0.0.bin<br>
-&nbsp;create mode 100644 i915/cml_guc_33.0.0.bin<br>
-&nbsp;create mode 100644 i915/cml_huc_4.0.0.bin<br>
-&nbsp;create mode 100644 i915/glk_huc_4.0.0.bin<br>
-&nbsp;create mode 100644 i915/icl_dmc_ver1_09.bin<br>
-&nbsp;create mode 100644 i915/icl_huc_9.0.0.bin<br>
-&nbsp;create mode 100644 i915/kbl_huc_4.0.0.bin<br>
-&nbsp;create mode 100644 i915/skl_huc_2.0.0.bin<br>
-&nbsp;create mode 100644 i915/tgl_dmc_ver2_04.bin<br>
-<div><br>
-</div>
-<div><br>
-</div>
-<div>Thanks,</div>
-<div>Anusha<br>
-</div>
-</div>
-</body>
-</html>
-
---_000_83F5C7385F545743AD4FB2A62F75B0734815CF42ORSMSX108amrcor_--
-
---===============0973532433==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
-IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
-
---===============0973532433==--
+VGhpcyBpcyBhbGwgdGhlIHBhdGNoZXMgcmVxdWlyZWQgdG8gaGF2ZSBUQyBhbHQtbW9kZSB3b3Jr
+aW5nIG9uIFRHTCwgbm8gVEJUIG9yIGxlZ2FjeSBzdXBwb3J0IGludGVudGVkIGhlcmUgYnV0IG11
+Y2ggb2YgdGhlIHdvcmsgaGVyZSB3aWxsIGhlbHAgdGhvc2UuCgpUaGUgZGtsIHBsbCBjYWxjdWxh
+dGlvbiBpcyBub3QgMTAwJSByZWFkeSwgc28gaXQgaXMgdXNpbmcgdGhlIGhhcmRjb2RlZCB0YWJs
+ZSBwcm92aWRlZCBidXQgZXZlbiB3aXRoIHRoaXMgdGFibGUgaXQgcmVzdWx0cyBpbiBhIHBvcnRf
+Y2xvY2sgc3RhdGUgbWlzbWF0Y2ggd2hlbiBydW5uaW5nIGF0IDUuNEdoei4KQWxzbyBJJ20gc3Rp
+bGwgZGVidWdnaW5nIHdoeSBlbmFibGUgY2xvY2sgZ2F0aW5nIGFmdGVyIGxpbmsgdHJhaW5pbmcg
+Y29tcGxldGUgYnJlYWtzIGFsbCB0aGUgZm9sbG93aW5nIHRyYWluaW5ncy4KQWxsIG9mIGFib3Zl
+IGlzIG5vdGVkIGluIHRoZSByZXNwZWN0aXZlIGNvbW1pdCBtZXNzYWdlLgoKT3RoZXIgdGhhbiB0
+aGUgYWJvdmUgdGhlIHNlcmllcyBpcyBwcmV0dHkgbXVjaCByZWFkeSBmb3IgcmV2aWV3cyBhbmQg
+dGVzdGluZy4KTWFrZSBzdXJlIHlvdSBoYXZlIGZpcm13YXJlIG9mIFRDIHJldGltZXJzIHVwZGF0
+ZWQuCgpKb3PDqSBSb2JlcnRvIGRlIFNvdXphICg1KToKICBkcm0vaTkxNS90Z2w6IEZpbmlzaCBt
+b2R1bGFyIEZJQSBzdXBwb3J0IG9uIHJlZ2lzdGVycwogIGRybS9pOTE1L2ljbDogVW5pZnkgZGlz
+YWJsZSBhbmQgZW5hYmxlIHBoeSBjbG9jayBnYXRpbmcgZnVuY3Rpb25zCiAgZHJtL2k5MTUvdGds
+OiBGaXggZGtsIHBoeSByZWdpc3RlciBzcGFjZSBhZGRyZXNzaW5nCiAgZHJtL2k5MTUvdGdsOiBD
+aGVjayB0aGUgVUMgaGVhbHRoIG9mIHRjIGNvbnRyb2xsZXJzIGFmdGVyIHBvd2VyIG9uCiAgZHJt
+L2k5MTU6IEFkZCBka2wgcGh5IHBsbCBjYWxjdWxhdGlvbnMKCkx1Y2FzIERlIE1hcmNoaSAoMik6
+CiAgZHJtL2k5MTUvdGdsOiBBZGQgaW5pdGlhbCBka2wgcGxsIHN1cHBvcnQKICBkcm0vaTkxNS90
+Z2w6IGluaXRpYWxpemUgVEMgYW5kIFRCVCBwb3J0cwoKVGF5bG9yLCBDbGludG9uIEEgKDUpOgog
+IGRybS9pOTE1L3RnbDogQWRkIG1pc3NpbmcgZGRpIGNsb2NrIHNlbGVjdCBkdXJpbmcgRFAgaW5p
+dCBzZXF1ZW5jZQogIGRybS9pOTE1L3RnbDogVEMgaGVscGVyIGZ1bmN0aW9uIHRvIHJldHVybiBw
+aW4gbWFwcGluZwogIGRybS9pOTE1L3RnbDogRml4IGRyaXZlciBjcmFzaCB3aGVuIHVwZGF0ZV9h
+Y3RpdmVfZHBsbCBpcyBjYWxsZWQKICBkcm0vaTkxNS90Z2w6IEFkZCBka2wgcGh5IHByb2dyYW1t
+aW5nIHNlcXVlbmNlcwogIGRybS9pOTE1L3RnbDogVXNlIGRrbCBwbGwgaGFyZGNvZGVkIHZhbHVl
+cwoKVmFuZGl0YSBLdWxrYXJuaSAoMik6CiAgZHJtL2k5MTUvdGdsOiBBZGQgZGtsIHBoeSByZWdp
+c3RlcnMKICBkcm0vaTkxNS90Z2w6IEFkZCBzdXBwb3J0IGZvciBka2wgcGxsIHdyaXRlCgogZHJp
+dmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kZGkuYyAgICAgIHwgMzQzICsrKysrKysr
+KysrLS0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jICB8ICAg
+OSArLQogLi4uL2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheV9wb3dlci5jICAgIHwgIDE2
+ICsKIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHBsbF9tZ3IuYyB8IDQ1NiAr
+KysrKysrKysrKysrKysrKy0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfdGMu
+YyAgICAgICB8ICA2NCArKy0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfdGMu
+aCAgICAgICB8ICAgMyArCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2Rydi5oICAgICAgICAg
+ICAgICAgfCAgIDMgKwogZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9yZWcuaCAgICAgICAgICAg
+ICAgIHwgMjA2ICsrKysrKystCiA4IGZpbGVzIGNoYW5nZWQsIDEwMDYgaW5zZXJ0aW9ucygrKSwg
+OTQgZGVsZXRpb25zKC0pCgotLSAKMi4yMy4wCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0
+cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9s
+aXN0aW5mby9pbnRlbC1nZng=
