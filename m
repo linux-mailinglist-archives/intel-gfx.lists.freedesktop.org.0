@@ -1,34 +1,37 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 14427B691A
-	for <lists+intel-gfx@lfdr.de>; Wed, 18 Sep 2019 19:30:25 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id CC49BB69DB
+	for <lists+intel-gfx@lfdr.de>; Wed, 18 Sep 2019 19:49:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 798E288F06;
-	Wed, 18 Sep 2019 17:30:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 007FE6F621;
+	Wed, 18 Sep 2019 17:49:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4999E88F06
- for <intel-gfx@lists.freedesktop.org>; Wed, 18 Sep 2019 17:30:22 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga106.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 18 Sep 2019 10:30:21 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.64,521,1559545200"; d="scan'208";a="181190518"
-Received: from jssummer-xeon.ra.intel.com ([10.23.184.90])
- by orsmga008.jf.intel.com with ESMTP; 18 Sep 2019 10:30:20 -0700
-From: Stuart Summers <stuart.summers@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 18 Sep 2019 10:31:21 -0700
-Message-Id: <20190918173121.183132-1-stuart.summers@intel.com>
-X-Mailer: git-send-email 2.22.0
+Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4D2F46F3A5;
+ Wed, 18 Sep 2019 14:09:30 +0000 (UTC)
+Received: from localhost (lfbn-1-10718-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256
+ bits)) (No client certificate requested)
+ by mail.kernel.org (Postfix) with ESMTPSA id 9CEF8218AF;
+ Wed, 18 Sep 2019 14:09:29 +0000 (UTC)
+Date: Wed, 18 Sep 2019 16:09:27 +0200
+From: Maxime Ripard <mripard@kernel.org>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Message-ID: <20190918140927.lfhbzkkr23woafvu@gilmour>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915: Allow set context SSEU on platforms
- after gen 11
+User-Agent: NeoMutt/20180716
+X-Mailman-Approved-At: Wed, 18 Sep 2019 17:49:28 +0000
+X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=kernel.org; s=default; t=1568815770;
+ bh=GZ8g/Pn4Ho3wcDeSqgFDYCeXhBZwE8Pxs984lDP1Zcg=;
+ h=Date:From:To:Cc:Subject:From;
+ b=uHwCFmINpWFrmxgfyxufI2N5ly+qUopoe861qKaZcN+z68xg672tSu5LueeGlTIW6
+ YHC7K/k4DlUy5p7/ujtj7OuddZLkEu614MvCJW4mObMqTby6md3eIPAuQGz5vX9t4z
+ kekudtmyRk4ni+QYeHykF6EyD+U2uXJnf5oxy9/o=
+Subject: [Intel-gfx] [PULL] drm-misc-next-fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -41,25 +44,83 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Maxime Ripard <mripard@kernel.org>, intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============1171696737=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-QnVnemlsbGE6IGh0dHBzOi8vYnVncy5mcmVlZGVza3RvcC5vcmcvc2hvd19idWcuY2dpP2lkPTEx
-MDU1OQoKQ2M6IFR2cnRrbyBVcnN1bGluIDx0dnJ0a28udXJzdWxpbkBsaW51eC5pbnRlbC5jb20+
-ClNpZ25lZC1vZmYtYnk6IFN0dWFydCBTdW1tZXJzIDxzdHVhcnQuc3VtbWVyc0BpbnRlbC5jb20+
-Ci0tLQogZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX2NvbnRleHQuYyB8IDIgKy0K
-IDEgZmlsZSBjaGFuZ2VkLCAxIGluc2VydGlvbigrKSwgMSBkZWxldGlvbigtKQoKZGlmZiAtLWdp
-dCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9jb250ZXh0LmMgYi9kcml2ZXJz
-L2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1fY29udGV4dC5jCmluZGV4IGYxYzBlNWQ5NThmMy4u
-MzlhZjRjODFiMjlhIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9n
-ZW1fY29udGV4dC5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9jb250
-ZXh0LmMKQEAgLTEzMTAsNyArMTMxMCw3IEBAIHN0YXRpYyBpbnQgc2V0X3NzZXUoc3RydWN0IGk5
-MTVfZ2VtX2NvbnRleHQgKmN0eCwKIAlpZiAoYXJncy0+c2l6ZSA8IHNpemVvZih1c2VyX3NzZXUp
-KQogCQlyZXR1cm4gLUVJTlZBTDsKIAotCWlmICghSVNfR0VOKGk5MTUsIDExKSkKKwlpZiAoSU5U
-RUxfR0VOKGk5MTUpIDwgMTEpCiAJCXJldHVybiAtRU5PREVWOwogCiAJaWYgKGNvcHlfZnJvbV91
-c2VyKCZ1c2VyX3NzZXUsIHU2NF90b191c2VyX3B0cihhcmdzLT52YWx1ZSksCi0tIAoyLjIyLjAK
-Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdm
-eCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xp
-c3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeA==
+
+--===============1171696737==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="hdhbdmdeetjebe3m"
+Content-Disposition: inline
+
+
+--hdhbdmdeetjebe3m
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+
+Hi Dave, Daniel,
+
+Here is a drm-misc-next-fixes PR, with two fixes that should go in
+this current merge window.
+
+Thanks!
+Maxime
+
+drm-misc-next-fixes-2019-09-18:
+  - One fix for the KMS object lifetime checks with DP drivers
+  - One revert for an ADV7511 probe breakage on older systems
+The following changes since commit 88537ddbbe4c755e193aa220a306395edf08a4cf:
+
+  drm/mcde: Fix DSI transfers (2019-09-04 22:05:34 +0200)
+
+are available in the Git repository at:
+
+  git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-next-fixes-2019-09-18
+
+for you to fetch changes up to e0f32f78e51b9989ee89f608fd0dd10e9c230652:
+
+  drm/kms: Duct-tape for mode object lifetime checks (2019-09-18 11:27:18 +0200)
+
+----------------------------------------------------------------
+  - One fix for the KMS object lifetime checks with DP drivers
+  - One revert for an ADV7511 probe breakage on older systems
+
+----------------------------------------------------------------
+Daniel Vetter (1):
+      drm/kms: Duct-tape for mode object lifetime checks
+
+Rob Clark (1):
+      Revert "drm/bridge: adv7511: Attach to DSI host at probe time"
+
+ drivers/gpu/drm/bridge/adv7511/adv7511_drv.c | 12 +++---------
+ drivers/gpu/drm/drm_drv.c                    |  4 ++--
+ drivers/gpu/drm/drm_mode_object.c            |  4 ++--
+ 3 files changed, 7 insertions(+), 13 deletions(-)
+
+--hdhbdmdeetjebe3m
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXYI6lwAKCRDj7w1vZxhR
+xX60AQCD5qDLS+sWMA0CNUy3iLBFNAAvhMNR8OgdplwBE7OktwEAuFQ2zoExcdxt
+aE1E9/29O0C0Sn7fpHIe5nltZByb1g4=
+=1Flv
+-----END PGP SIGNATURE-----
+
+--hdhbdmdeetjebe3m--
+
+--===============1171696737==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
+IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
+
+--===============1171696737==--
