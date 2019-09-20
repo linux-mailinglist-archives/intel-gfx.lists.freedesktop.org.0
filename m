@@ -1,45 +1,45 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B153B98C6
-	for <lists+intel-gfx@lfdr.de>; Fri, 20 Sep 2019 23:09:51 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6594FB98CA
+	for <lists+intel-gfx@lfdr.de>; Fri, 20 Sep 2019 23:10:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8A8516FE00;
-	Fri, 20 Sep 2019 21:09:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A9B0C6FE03;
+	Fri, 20 Sep 2019 21:10:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BA31D6FE00
- for <intel-gfx@lists.freedesktop.org>; Fri, 20 Sep 2019 21:09:48 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6B89F6FE02
+ for <intel-gfx@lists.freedesktop.org>; Fri, 20 Sep 2019 21:10:31 +0000 (UTC)
 X-Amp-Result: UNKNOWN
 X-Amp-Original-Verdict: FILE UNKNOWN
 X-Amp-File-Uploaded: False
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
  by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 20 Sep 2019 14:09:48 -0700
+ 20 Sep 2019 14:10:31 -0700
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="5.64,530,1559545200"; 
- d="p7s'?scan'208";a="217768484"
-Received: from fmsmsx108.amr.corp.intel.com ([10.18.124.206])
- by fmsmga002.fm.intel.com with ESMTP; 20 Sep 2019 14:09:48 -0700
-Received: from fmsmsx124.amr.corp.intel.com (10.18.125.39) by
- FMSMSX108.amr.corp.intel.com (10.18.124.206) with Microsoft SMTP Server (TLS)
- id 14.3.439.0; Fri, 20 Sep 2019 14:09:47 -0700
+ d="p7s'?scan'208";a="387729436"
+Received: from fmsmsx106.amr.corp.intel.com ([10.18.124.204])
+ by fmsmga005.fm.intel.com with ESMTP; 20 Sep 2019 14:10:30 -0700
+Received: from fmsmsx157.amr.corp.intel.com (10.18.116.73) by
+ FMSMSX106.amr.corp.intel.com (10.18.124.204) with Microsoft SMTP Server (TLS)
+ id 14.3.439.0; Fri, 20 Sep 2019 14:10:30 -0700
 Received: from fmsmsx103.amr.corp.intel.com ([169.254.2.82]) by
- fmsmsx124.amr.corp.intel.com ([169.254.8.170]) with mapi id 14.03.0439.000;
- Fri, 20 Sep 2019 14:09:47 -0700
+ FMSMSX157.amr.corp.intel.com ([169.254.14.249]) with mapi id 14.03.0439.000;
+ Fri, 20 Sep 2019 14:10:29 -0700
 From: "Summers, Stuart" <stuart.summers@intel.com>
-To: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "tvrtko.ursulin@linux.intel.com" <tvrtko.ursulin@linux.intel.com>
-Thread-Topic: [PATCH] drm/i915: Allow set context SSEU on platforms after
- gen 11
-Thread-Index: AQHVbrgEhHE9NHyT+U+tROnbEloXMac1h1qA
-Date: Fri, 20 Sep 2019 21:09:46 +0000
-Message-ID: <794c7d3a4b88d6ff53dc186b342da99575510f86.camel@intel.com>
+To: "Ceraolo Spurio, Daniele" <daniele.ceraolospurio@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Thread-Topic: [Intel-gfx] [PATCH] drm/i915: Allow set context SSEU on
+ platforms after gen 11
+Thread-Index: AQHVbkbQpFa4ZumGXE6b1aUBkMmaOacyWv4AgAMtcYA=
+Date: Fri, 20 Sep 2019 21:10:29 +0000
+Message-ID: <3e0b17cb08f190b7cc1530df2d5ce386827008be.camel@intel.com>
 References: <20190918173121.183132-1-stuart.summers@intel.com>
- <9b3a76d3-f961-95d3-7396-8b638a1cc935@linux.intel.com>
-In-Reply-To: <9b3a76d3-f961-95d3-7396-8b638a1cc935@linux.intel.com>
+ <23b52537-1d81-eca9-87c7-ffefc1c8936e@intel.com>
+In-Reply-To: <23b52537-1d81-eca9-87c7-ffefc1c8936e@intel.com>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: yes
@@ -60,43 +60,39 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============1453236649=="
+Content-Type: multipart/mixed; boundary="===============2107315795=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1453236649==
+--===============2107315795==
 Content-Language: en-US
 Content-Type: multipart/signed; micalg=sha-1;
-	protocol="application/x-pkcs7-signature"; boundary="=-NszlpsZLlE/vGFsPDpMh"
+	protocol="application/x-pkcs7-signature"; boundary="=-PNTnNia3pEZKSjKru13I"
 
---=-NszlpsZLlE/vGFsPDpMh
+--=-PNTnNia3pEZKSjKru13I
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, 2019-09-19 at 08:00 +0100, Tvrtko Ursulin wrote:
-> On 18/09/2019 18:31, Stuart Summers wrote:
-> > Bugzilla: https://bugs.freedesktop.org/show_bug.cgi?id=3D110559
+On Wed, 2019-09-18 at 13:39 -0700, Daniele Ceraolo Spurio wrote:
 >=20
-> Unless there was some discussion I missed we can't just turn it on
-> to=20
-> work around a SKIP in IGT. Feature was deliberately limited to
-> Icelake=20
-> and even there just to a sub-set of possible configurations.
+> On 9/18/19 10:31 AM, Stuart Summers wrote:
+> > Bugzilla: https://bugs.freedesktop.org/show_bug.cgi?id=3D110559
+> >=20
+>=20
+> What's the planned usage here? TGL HW only supports slice-level=20
+> power-gating and with only 1 slice on TGL we don't really have a
+> choice=20
+> of what to program, do we?
 
-No conversation was missed, or at least none I was a part of. Is there
-a reason we don't allow this on future platforms?
-
-We do claim powergate support on TGL, so I assumed it would be good to
-take this path on that platform. Maybe I'm misunderstanding something
-here though.
+Well, we do claim powergate support on TGL, so I assumed we'd want to
+enable this path. Maybe I'm missing something though. Had a similar
+response to Tvrtko.
 
 Thanks,
 Stuart
 
 >=20
-> Regards,
->=20
-> Tvrtko
+> Daniele
 >=20
 > > Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
 > > Signed-off-by: Stuart Summers <stuart.summers@intel.com>
@@ -121,7 +117,7 @@ Stuart
 > >   	if (copy_from_user(&user_sseu, u64_to_user_ptr(args->value),
 > >=20
 
---=-NszlpsZLlE/vGFsPDpMh
+--=-PNTnNia3pEZKSjKru13I
 Content-Type: application/x-pkcs7-signature; name="smime.p7s"
 Content-Disposition: attachment; filename="smime.p7s"
 Content-Transfer-Encoding: base64
@@ -177,18 +173,18 @@ CC/N7V8U9yFZx8akWREb8lJYDl9KypirEsufleiew26CWrwcbmdlldDCFS6/HDGCAhcwggITAgEB
 MIGQMHkxCzAJBgNVBAYTAlVTMQswCQYDVQQIEwJDQTEUMBIGA1UEBxMLU2FudGEgQ2xhcmExGjAY
 BgNVBAoTEUludGVsIENvcnBvcmF0aW9uMSswKQYDVQQDEyJJbnRlbCBFeHRlcm5hbCBCYXNpYyBJ
 c3N1aW5nIENBIDRCAhMzAAB04Th3owY0UbEUAAAAAHThMAkGBSsOAwIaBQCgXTAYBgkqhkiG9w0B
-CQMxCwYJKoZIhvcNAQcBMBwGCSqGSIb3DQEJBTEPFw0xOTA5MjAyMTA5NDNaMCMGCSqGSIb3DQEJ
-BDEWBBS3+15BQCiRtt15IHKM1R5EOspCIzANBgkqhkiG9w0BAQEFAASCAQB3FGbgebziv23i3roh
-uzcSL0TcwTrpFEilBHo5yL5tvkrEPSzdvWX4jn6l/PQ0fO/7ZTuyjfU2tgMpydTA4cHQqpHDexYK
-zMHwDTLV/A5/s8jgG3YDXg7DY0jkYDwOTAwvXHDZmuSBKwkmgjsdSzHbQMkbRVN/c22+lXh3RiPe
-uH9YZbTsgYUalaa+O5CcVsNYMi8D+OSItKeuOp+E+zj1kigtPnL9GAfCiWsdYqaqqcGbAZovwm6G
-e1brsFxj4nLqDf3wjFwAe9wy2iQyEHs0n1cq0isQMSYkUlo2AyZJtffYt/VUd5bX1tIhZRTKmp3+
-gFiv7To/tGtRQAPLq1pWAAAAAAAA
+CQMxCwYJKoZIhvcNAQcBMBwGCSqGSIb3DQEJBTEPFw0xOTA5MjAyMTEwMjVaMCMGCSqGSIb3DQEJ
+BDEWBBQgNPc0abmEKEqhXMbSJ01Em8fx7jANBgkqhkiG9w0BAQEFAASCAQAp90fbCL8/hgfnS0nw
+RbSEU7UPXv0fP9WOEM9/sZgT4mkKaR+OIiyt1o5y01rQaagVTM6sMFxK6Bj1ljP2j3EgW/NHbIGr
++wWAfVRr3nsuqV8G2rAF82AxO7c6C0ZA/4T2WMJEfhsGR/vLRu/xIJ2dBqahIfGUmKvCVMeT2/0l
+rGJ0XZAndYbQcz6oz6nxL4eixhe9ZKl6NMdCorrx4VP3iUUE+k1+6R1+zcAUbD3vD4/RnfqbQCsn
+E6QsctsQga4xAr8u43ZGqayisxjAe46KWE3kRGAQ5moVh2oxAYzinIa16DHRHj95bdZAkYWTHYSp
+b0dKfzR6w4MIxus44VjuAAAAAAAA
 
 
---=-NszlpsZLlE/vGFsPDpMh--
+--=-PNTnNia3pEZKSjKru13I--
 
---===============1453236649==
+--===============2107315795==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -198,4 +194,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
 IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
 dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
 
---===============1453236649==--
+--===============2107315795==--
