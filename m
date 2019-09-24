@@ -2,39 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1717DBD117
-	for <lists+intel-gfx@lfdr.de>; Tue, 24 Sep 2019 19:58:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8934ABD2A3
+	for <lists+intel-gfx@lfdr.de>; Tue, 24 Sep 2019 21:29:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 520366EAC3;
-	Tue, 24 Sep 2019 17:58:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0C1A26EAF6;
+	Tue, 24 Sep 2019 19:29:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7EF6E6EAC3
- for <intel-gfx@lists.freedesktop.org>; Tue, 24 Sep 2019 17:58:29 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-X-Amp-File-Uploaded: False
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 24 Sep 2019 10:58:29 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.64,544,1559545200"; d="scan'208";a="340156263"
-Received: from labuser-z97x-ud5h.jf.intel.com (HELO intel.com) ([10.54.75.49])
- by orsmga004.jf.intel.com with ESMTP; 24 Sep 2019 10:58:28 -0700
-Date: Tue, 24 Sep 2019 10:59:57 -0700
-From: Manasi Navare <manasi.d.navare@intel.com>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Message-ID: <20190924175957.GA24437@intel.com>
-References: <20190922170807.12436-1-manasi.d.navare@intel.com>
- <20190922170807.12436-3-manasi.d.navare@intel.com>
- <2f260ee7-617d-da80-9ca1-9b7d138966d3@linux.intel.com>
+Received: from mx1.riseup.net (mx1.riseup.net [198.252.153.129])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4A6716EAF1;
+ Tue, 24 Sep 2019 19:29:08 +0000 (UTC)
+Received: from bell.riseup.net (bell-pn.riseup.net [10.0.1.178])
+ (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+ (Client CN "*.riseup.net",
+ Issuer "COMODO RSA Domain Validation Secure Server CA" (verified OK))
+ by mx1.riseup.net (Postfix) with ESMTPS id 0D0901B91C2;
+ Tue, 24 Sep 2019 12:29:08 -0700 (PDT)
+X-Riseup-User-ID: 9B303D2645E7B7D16966C5D4D924D93BEE67E6BD21EE57D2BD3339EC23879DA9
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+ by bell.riseup.net (Postfix) with ESMTPSA id 70B5522528A;
+ Tue, 24 Sep 2019 12:29:07 -0700 (PDT)
+From: Francisco Jerez <currojerez@riseup.net>
+To: Jani Nikula <jani.nikula@intel.com>, dri-devel@lists.freedesktop.org
+In-Reply-To: <f6f65ca7e27e949533e8cd1f43c61ecac73c658e.1569329774.git.jani.nikula@intel.com>
+References: <cover.1569329774.git.jani.nikula@intel.com>
+ <f6f65ca7e27e949533e8cd1f43c61ecac73c658e.1569329774.git.jani.nikula@intel.com>
+Date: Tue, 24 Sep 2019 12:29:22 -0700
+Message-ID: <875zlhwl0t.fsf@riseup.net>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <2f260ee7-617d-da80-9ca1-9b7d138966d3@linux.intel.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-Subject: Re: [Intel-gfx] [PATCH v3 3/6] drm/i915/display/icl: HW state
- readout for transcoder port sync config
+X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=riseup.net; s=squak; 
+ t=1569353348; bh=r+ypQCu5HAXnnweK0R8etsn44RguOiDdOTUwhNroSDI=;
+ h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
+ b=YwNToPdo/KBdlWUry6EWBr6LLxzRrz69b1L5FOV7krCD9y+BO5x5dHj3Gva1BG7Lb
+ 8yhaeRa0wCA7KeFGywijVr3g4ZZrxoSivz6SWod0qzgHLoGMPlBZ6zHAa6JRH6aDdA
+ AqGdMgV18oQR1NN3BDSgedGEkZn/ZI6LAKQQbdQ8=
+Subject: Re: [Intel-gfx] [PATCH v2 4/9] drm/i2c/sil164: use
+ drm_debug_enabled() to check for debug categories
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -47,97 +51,76 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: jani.nikula@intel.com, intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============2013384877=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gVHVlLCBTZXAgMjQsIDIwMTkgYXQgMDU6Mzg6MDBQTSArMDIwMCwgTWFhcnRlbiBMYW5raG9y
-c3Qgd3JvdGU6Cj4gT3AgMjItMDktMjAxOSBvbSAxOTowOCBzY2hyZWVmIE1hbmFzaSBOYXZhcmU6
-Cj4gPiBBZnRlciB0aGUgc3RhdGUgaXMgY29tbWl0dGVkLCB3ZSByZWFkb3V0IHRoZSBIVyByZWdp
-c3RlcnMgYW5kIGNvbXBhcmUKPiA+IHRoZSBIVyBzdGF0ZSB3aXRoIHRoZSBTVyBzdGF0ZSB0aGF0
-IHdlIGp1c3QgY29tbWl0dGVkLgo+ID4gRm9yIFRyYW5zY2RvZXIgcG9ydCBzeW5jLCB3ZSBhZGQg
-bWFzdGVyX3RyYW5zY29kZXIgYW5kIHRoZQo+ID4gc2FsdmVzIGJpdG1hc2sgdG8gdGhlIGNydGNf
-c3RhdGUsIGhlbmNlIHdlIG5lZWQgdG8gcmVhZCB0aG9zZSBkdXJpbmcKPiA+IHRoZSBIVyBzdGF0
-ZSByZWFkb3V0IHRvIGF2b2lkIHBpcGUgc3RhdGUgbWlzbWF0Y2guCj4gPgo+ID4gdjQ6Cj4gPiAq
-IEdldCBwb3dlciBkb21haW5zIGluIG1hc3RlciBsb29wIGZvciBnZXRfY29uZmlnIChWaWxsZSkK
-PiA+IHYzOgo+ID4gKiBBZGQgVFJBTlNDT0RFUl9EIChNYWFydGVuKQo+ID4gKiB2MyBSZXZpZXdl
-ZC1ieTogTWFhcnRlbiBMYW5raG9yc3QgPG1hYXJ0ZW4ubGFua2hvcnN0QGxpbnV4LmludGVsLmNv
-bT4KPiA+IHYyOgo+ID4gKiBBZGQgVHJhbnNjb2Rlcl9EIGFuZCBNSVNTSU5HX0NBU0UgKE1hYXJ0
-ZW4pCj4gPgo+ID4gQ2M6IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRl
-bC5jb20+Cj4gPiBDYzogTWFhcnRlbiBMYW5raG9yc3QgPG1hYXJ0ZW4ubGFua2hvcnN0QGxpbnV4
-LmludGVsLmNvbT4KPiA+IENjOiBNYXR0IFJvcGVyIDxtYXR0aGV3LmQucm9wZXJAaW50ZWwuY29t
-Pgo+ID4gQ2M6IEphbmkgTmlrdWxhIDxqYW5pLm5pa3VsYUBpbnRlbC5jb20+Cj4gPiBTaWduZWQt
-b2ZmLWJ5OiBNYW5hc2kgTmF2YXJlIDxtYW5hc2kuZC5uYXZhcmVAaW50ZWwuY29tPgo+ID4gLS0t
-Cj4gPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMgfCA2OSAr
-KysrKysrKysrKysrKysrKysrKwo+ID4gIDEgZmlsZSBjaGFuZ2VkLCA2OSBpbnNlcnRpb25zKCsp
-Cj4gPgo+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxf
-ZGlzcGxheS5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMK
-PiA+IGluZGV4IDFhZTVlYWZlMjg5Mi4uNzExOTg3ZWI0ZTllIDEwMDY0NAo+ID4gLS0tIGEvZHJp
-dmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMKPiA+ICsrKyBiL2RyaXZl
-cnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jCj4gPiBAQCAtMTA0NzAsNiAr
-MTA0NzAsNzIgQEAgc3RhdGljIHZvaWQgaGFzd2VsbF9nZXRfZGRpX3BvcnRfc3RhdGUoc3RydWN0
-IGludGVsX2NydGMgKmNydGMsCj4gPiAgCX0KPiA+ICB9Cj4gPiAgCj4gPiArc3RhdGljIGVudW0g
-dHJhbnNjb2RlciB0cmFuc2NvZGVyX21hc3RlcihzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2
-X3ByaXYsCj4gPiArCQkJCQkgZW51bSB0cmFuc2NvZGVyIGNwdV90cmFuc2NvZGVyKQo+ID4gK3sK
-PiA+ICsJdTMyIHRyYW5zX3BvcnRfc3luYywgbWFzdGVyX3NlbGVjdDsKPiA+ICsKPiA+ICsJdHJh
-bnNfcG9ydF9zeW5jID0gSTkxNV9SRUFEKFRSQU5TX0RESV9GVU5DX0NUTDIoY3B1X3RyYW5zY29k
-ZXIpKTsKPiA+ICsKPiA+ICsJaWYgKCh0cmFuc19wb3J0X3N5bmMgJiBQT1JUX1NZTkNfTU9ERV9F
-TkFCTEUpID09IDApCj4gPiArCQlyZXR1cm4gSU5WQUxJRF9UUkFOU0NPREVSOwo+ID4gKwo+ID4g
-KwltYXN0ZXJfc2VsZWN0ID0gdHJhbnNfcG9ydF9zeW5jICYKPiA+ICsJCQlQT1JUX1NZTkNfTU9E
-RV9NQVNURVJfU0VMRUNUX01BU0s7Cj4gPiArCXN3aXRjaCAobWFzdGVyX3NlbGVjdCkgewo+ID4g
-KwljYXNlIDE6Cj4gPiArCQlyZXR1cm4gVFJBTlNDT0RFUl9BOwo+ID4gKwljYXNlIDI6Cj4gPiAr
-CQlyZXR1cm4gVFJBTlNDT0RFUl9COwo+ID4gKwljYXNlIDM6Cj4gPiArCQlyZXR1cm4gVFJBTlND
-T0RFUl9DOwo+ID4gKwljYXNlIDQ6Cj4gPiArCQlyZXR1cm4gVFJBTlNDT0RFUl9EOwo+ID4gKwlk
-ZWZhdWx0Ogo+ID4gKwkJTUlTU0lOR19DQVNFKG1hc3Rlcl9zZWxlY3QpOwo+ID4gKwl9Cj4gPiAr
-Cj4gPiArCXJldHVybiBJTlZBTElEX1RSQU5TQ09ERVI7Cj4gQ291bGQgbW92ZSB0aGlzIHJldHVy
-biB1cCB0byBkZWZhdWx0LiA6KQoKWWVzIHdpbGwgZG8gdGhpcwoKPiA+ICt9Cj4gPiArCj4gPiAr
-c3RhdGljIHZvaWQgaWNlbGFrZV9nZXRfdHJhbnNfcG9ydF9zeW5jX2NvbmZpZyhzdHJ1Y3QgaW50
-ZWxfY3J0YyAqY3J0YywKPiA+ICsJCQkJCSAgICAgICBzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZSAq
-cGlwZV9jb25maWcpCj4gPiArewo+ID4gKwlzdHJ1Y3QgZHJtX2RldmljZSAqZGV2ID0gY3J0Yy0+
-YmFzZS5kZXY7Cj4gPiArCXN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJpdiA9IHRvX2k5
-MTUoZGV2KTsKPiA+ICsJdTMyIHRyYW5zY29kZXJzOwo+ID4gKwllbnVtIHRyYW5zY29kZXIgY3B1
-X3RyYW5zY29kZXI7Cj4gPiArCj4gPiArCXBpcGVfY29uZmlnLT5tYXN0ZXJfdHJhbnNjb2RlciA9
-IHRyYW5zY29kZXJfbWFzdGVyKGRldl9wcml2LAo+ID4gKwkJCQkJCQkgICBwaXBlX2NvbmZpZy0+
-Y3B1X3RyYW5zY29kZXIpOwo+ID4gKwlpZiAocGlwZV9jb25maWctPm1hc3Rlcl90cmFuc2NvZGVy
-ICE9IElOVkFMSURfVFJBTlNDT0RFUikgewo+ID4gKwkJcGlwZV9jb25maWctPnN5bmNfbW9kZV9z
-bGF2ZXNfbWFzayA9IDA7Cj4gPiArCQlyZXR1cm47Cj4gPiArCX0KPiA+ICsKPiAKPiBJdCBjb3Vs
-ZCBzdGlsbCBiZSB1c2VmdWwgdG8gZ28gdGhyb3VnaCB0aGUgbG9vcCBiZWxvdyBhbnl3YXksIGlu
-IGNhc2Ugd2UgbWVzc2VkIHVwLiBXZSBhcmUgcmVhZGluZyBvdXQgZnJvbSBodyBhZnRlciBhbGwu
-Cj4KClRoZSBsb29wIGJlbG93IHdpbGwgYmUgY2FsbGVkIGFsd2F5cyBpbiBjYXNlIG9mIHRoZSBI
-VyBzdGF0ZSByZWFkb3V0IGZvciBtYXN0ZXIsIGluIGNhc2Ugb2YgdGhlIHNsYXZlIGl0IHdpbGwg
-ZXhlY3V0ZQp0aGUgZmlycyBwYXJ0LCBnZXQgdGhlIG1hc3RlciB0cmFuc2NvZGVyIGFuZCByZXR1
-cm4sIHdoeSBkbyB3ZSBuZWVkIHRvIGNhbGwgdGhlIGxvb3AgYmVsb3cgZm9yIHNsYXZlPyBXaHkg
-Y2FudCB3ZSBqdXN0IHJldHVybiBoZXJlCmFzIGluIHRoZSBjb2RlPwogCj4gQW5kIHRoZW4gYWxz
-byBhZGQgdGhpcyBhcyBhIFBJUEVfQ09ORl9DSEVDS19YIGNoZWNrIHRvIHBpcGVfY29uZmlnX2Nv
-bXBhcmUoKS4KPiAKClRoaXMgaXMgYWxyZWFkeSBhZGRlZCBpbiBwaXBlX2NvbmZpZ19jb21wYXJl
-KCkgaW4gdGhlIHBhdGNoIHRoYXQgYWRkcyB0aGVzZSB0d28gbWFzdGVyX3RyYW5zIGFuZCBzbGF2
-ZV9iaXRtYXNrIHRvIHRoZSBjcnRjIHN0YXRlCgpNYW5hc2kKCj4gV2l0aCB0aGF0IGZpeGVkIGFu
-ZCBDSSBoYXBweSwKPiAKPiBSZXZpZXdlZC1ieTogTWFhcnRlbiBMYW5raG9yc3QgPG1hYXJ0ZW4u
-bGFua2hvcnN0QGxpbnV4LmludGVsLmNvbT4KPiAKPiA+ICsJdHJhbnNjb2RlcnMgPSBCSVQoVFJB
-TlNDT0RFUl9BKSB8Cj4gPiArCQlCSVQoVFJBTlNDT0RFUl9CKSB8Cj4gPiArCQlCSVQoVFJBTlND
-T0RFUl9DKSB8Cj4gPiArCQlCSVQoVFJBTlNDT0RFUl9EKTsKPiA+ICsJZm9yX2VhY2hfY3B1X3Ry
-YW5zY29kZXJfbWFza2VkKGRldl9wcml2LCBjcHVfdHJhbnNjb2RlciwgdHJhbnNjb2RlcnMpIHsK
-PiA+ICsJCWVudW0gaW50ZWxfZGlzcGxheV9wb3dlcl9kb21haW4gcG93ZXJfZG9tYWluOwo+ID4g
-KwkJaW50ZWxfd2FrZXJlZl90IHRyYW5zX3dha2VyZWY7Cj4gPiArCj4gPiArCQlwb3dlcl9kb21h
-aW4gPSBQT1dFUl9ET01BSU5fVFJBTlNDT0RFUihjcHVfdHJhbnNjb2Rlcik7Cj4gPiArCQl0cmFu
-c193YWtlcmVmID0gaW50ZWxfZGlzcGxheV9wb3dlcl9nZXRfaWZfZW5hYmxlZChkZXZfcHJpdiwK
-PiA+ICsJCQkJCQkJCSAgIHBvd2VyX2RvbWFpbik7Cj4gPiArCj4gPiArCQlpZiAoIXRyYW5zX3dh
-a2VyZWYpCj4gPiArCQkJY29udGludWU7Cj4gPiArCj4gPiArCQlpZiAodHJhbnNjb2Rlcl9tYXN0
-ZXIoZGV2X3ByaXYsIGNwdV90cmFuc2NvZGVyKSA9PQo+ID4gKwkJICAgIHBpcGVfY29uZmlnLT5j
-cHVfdHJhbnNjb2RlcikKPiA+ICsJCQlwaXBlX2NvbmZpZy0+c3luY19tb2RlX3NsYXZlc19tYXNr
-IHw9IEJJVChjcHVfdHJhbnNjb2Rlcik7Cj4gPiArCj4gPiArCQlpbnRlbF9kaXNwbGF5X3Bvd2Vy
-X3B1dChkZXZfcHJpdiwgcG93ZXJfZG9tYWluLCB0cmFuc193YWtlcmVmKTsKPiA+ICsJfQo+ID4g
-K30KPiA+ICsKPiA+ICBzdGF0aWMgYm9vbCBoYXN3ZWxsX2dldF9waXBlX2NvbmZpZyhzdHJ1Y3Qg
-aW50ZWxfY3J0YyAqY3J0YywKPiA+ICAJCQkJICAgIHN0cnVjdCBpbnRlbF9jcnRjX3N0YXRlICpw
-aXBlX2NvbmZpZykKPiA+ICB7Cj4gPiBAQCAtMTA1NjYsNiArMTA2MzIsOSBAQCBzdGF0aWMgYm9v
-bCBoYXN3ZWxsX2dldF9waXBlX2NvbmZpZyhzdHJ1Y3QgaW50ZWxfY3J0YyAqY3J0YywKPiA+ICAJ
-CXBpcGVfY29uZmlnLT5waXhlbF9tdWx0aXBsaWVyID0gMTsKPiA+ICAJfQo+ID4gIAo+ID4gKwlp
-ZiAoSU5URUxfR0VOKGRldl9wcml2KSA+PSAxMSkKPiA+ICsJCWljZWxha2VfZ2V0X3RyYW5zX3Bv
-cnRfc3luY19jb25maWcoY3J0YywgcGlwZV9jb25maWcpOwo+ID4gKwo+ID4gIG91dDoKPiA+ICAJ
-Zm9yX2VhY2hfcG93ZXJfZG9tYWluKHBvd2VyX2RvbWFpbiwgcG93ZXJfZG9tYWluX21hc2spCj4g
-PiAgCQlpbnRlbF9kaXNwbGF5X3Bvd2VyX3B1dChkZXZfcHJpdiwKPiAKPiAKX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlz
-dApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0
-b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
+--===============2013384877==
+Content-Type: multipart/signed; boundary="==-=-=";
+	micalg=pgp-sha256; protocol="application/pgp-signature"
+
+--==-=-=
+Content-Type: multipart/mixed; boundary="=-=-="
+
+--=-=-=
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+Jani Nikula <jani.nikula@intel.com> writes:
+
+> Allow better abstraction of the drm_debug global variable in the
+> future. No functional changes.
+>
+> Cc: Francisco Jerez <currojerez@riseup.net>
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+
+Reviewed-by: Francisco Jerez <currojerez@riseup.net>
+
+> ---
+>  drivers/gpu/drm/i2c/sil164_drv.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/i2c/sil164_drv.c b/drivers/gpu/drm/i2c/sil16=
+4_drv.c
+> index 8bcf0d199145..a839f78a4c8a 100644
+> --- a/drivers/gpu/drm/i2c/sil164_drv.c
+> +++ b/drivers/gpu/drm/i2c/sil164_drv.c
+> @@ -44,7 +44,7 @@ struct sil164_priv {
+>  	((struct sil164_priv *)to_encoder_slave(x)->slave_priv)
+>=20=20
+>  #define sil164_dbg(client, format, ...) do {				\
+> -		if (drm_debug & DRM_UT_KMS)				\
+> +		if (drm_debug_enabled(DRM_UT_KMS))			\
+>  			dev_printk(KERN_DEBUG, &client->dev,		\
+>  				   "%s: " format, __func__, ## __VA_ARGS__); \
+>  	} while (0)
+> --=20
+> 2.20.1
+
+--=-=-=--
+
+--==-=-=
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEAREIAB0WIQST8OekYz69PM20/4aDmTidfVK/WwUCXYpukgAKCRCDmTidfVK/
+Wwk2AP9czE/Zy6605yld8+eJTJZXt9KmRG/kGEo7qD2X2BP+uAD+NVJk0nWVB3/+
+GfvNGXqe3MXcs4OGswWjzLEYELln0D4=
+=yQVN
+-----END PGP SIGNATURE-----
+--==-=-=--
+
+--===============2013384877==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
+IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
+
+--===============2013384877==--
