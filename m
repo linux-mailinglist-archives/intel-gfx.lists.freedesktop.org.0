@@ -1,33 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 98DFABEF76
-	for <lists+intel-gfx@lfdr.de>; Thu, 26 Sep 2019 12:21:37 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3600DBEF81
+	for <lists+intel-gfx@lfdr.de>; Thu, 26 Sep 2019 12:24:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DBD4C6ED3D;
-	Thu, 26 Sep 2019 10:21:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D841D89471;
+	Thu, 26 Sep 2019 10:24:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B62766ED3D
- for <intel-gfx@lists.freedesktop.org>; Thu, 26 Sep 2019 10:21:34 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6DE6F8938C
+ for <intel-gfx@lists.freedesktop.org>; Thu, 26 Sep 2019 10:24:44 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from localhost (unverified [78.156.65.138]) 
  by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 18624662-1500050 for multiple; Thu, 26 Sep 2019 11:21:01 +0100
+ 18624739-1500050 for multiple; Thu, 26 Sep 2019 11:24:38 +0100
 MIME-Version: 1.0
 To: =?utf-8?q?Micha=C5=82_Winiarski?= <michal.winiarski@intel.com>,
  intel-gfx@lists.freedesktop.org
 From: Chris Wilson <chris@chris-wilson.co.uk>
-In-Reply-To: <20190926100635.9416-1-michal.winiarski@intel.com>
+In-Reply-To: <20190926100635.9416-5-michal.winiarski@intel.com>
 References: <20190926100635.9416-1-michal.winiarski@intel.com>
-Message-ID: <156949325827.4979.12043969359953110233@skylake-alporthouse-com>
+ <20190926100635.9416-5-michal.winiarski@intel.com>
+Message-ID: <156949347527.4979.7717512491168660113@skylake-alporthouse-com>
 User-Agent: alot/0.6
-Date: Thu, 26 Sep 2019 11:20:58 +0100
-Subject: Re: [Intel-gfx] [PATCH 1/6] drm/i915: Define explicit wedged on
- init reset state
+Date: Thu, 26 Sep 2019 11:24:35 +0100
+Subject: Re: [Intel-gfx] [PATCH 5/6] drm/i915: Don't use scratch in WA batch.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -45,30 +45,18 @@ Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-UXVvdGluZyBNaWNoYcWCIFdpbmlhcnNraSAoMjAxOS0wOS0yNiAxMTowNjozMCkKPiBXZSdyZSBj
-dXJyZW50bHkgdXNpbmcgc2NyYXRjaCBwcmVzZW5jZSBhcyBhIHdheSBvZiBpZGVudGlmeWluZyB0
-aGF0IHdlCj4gZW50ZXJlZCB3ZWRnZWQgc3RhdGUgYXQgZHJpdmVyIGluaXRpYWxpemF0aW9uIHRp
-bWUuCj4gTGV0J3MgdXNlIGEgc2VwYXJhdGUgZmxhZyByYXRoZXIgdGhhbiByZWx5IG9uIHNjcmF0
-Y2guCj4gCj4gU2lnbmVkLW9mZi1ieTogTWljaGHFgiBXaW5pYXJza2kgPG1pY2hhbC53aW5pYXJz
-a2lAaW50ZWwuY29tPgo+IENjOiBDaHJpcyBXaWxzb24gPGNocmlzQGNocmlzLXdpbHNvbi5jby51
-az4KPiBDYzogTWlrYSBLdW9wcGFsYSA8bWlrYS5rdW9wcGFsYUBsaW51eC5pbnRlbC5jb20+Cj4g
-LS0tCj4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX3Jlc2V0LmMgICAgICAgfCAxMSAr
-KysrKysrKysrLQo+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRlbF9yZXNldC5oICAgICAg
-IHwgIDkgKysrKysrKysrCj4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX3Jlc2V0X3R5
-cGVzLmggfCAgNiArKysrKysKPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9nZW0uYyAgICAg
-ICAgICAgICB8ICAyICstCj4gIDQgZmlsZXMgY2hhbmdlZCwgMjYgaW5zZXJ0aW9ucygrKSwgMiBk
-ZWxldGlvbnMoLSkKPiAKPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50
-ZWxfcmVzZXQuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX3Jlc2V0LmMKPiBpbmRl
-eCBhZTY4YzM3ODZmNjMuLjBmMTUzNGFjODIzZiAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL2dwdS9k
-cm0vaTkxNS9ndC9pbnRlbF9yZXNldC5jCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3Qv
-aW50ZWxfcmVzZXQuYwo+IEBAIC04MTEsNyArODExLDggQEAgc3RhdGljIGJvb2wgX19pbnRlbF9n
-dF91bnNldF93ZWRnZWQoc3RydWN0IGludGVsX2d0ICpndCkKPiAgICAgICAgIGlmICghdGVzdF9i
-aXQoSTkxNV9XRURHRUQsICZndC0+cmVzZXQuZmxhZ3MpKQo+ICAgICAgICAgICAgICAgICByZXR1
-cm4gdHJ1ZTsKPiAgCj4gLSAgICAgICBpZiAoIWd0LT5zY3JhdGNoKSAvKiBOZXZlciBmdWxsIGlu
-aXRpYWxpc2VkLCByZWNvdmVyeSBpbXBvc3NpYmxlICovCj4gKyAgICAgICAvKiBOZXZlciBmdWxs
-bHkgaW5pdGlhbGlzZWQsIHJlY292ZXJ5IGltcG9zc2libGUgKi8KCllvdSB3ZW50IG9uZSAnbCcg
-dG9vIGZhciBpbiB0aGUgY29ycmVjdGlvbi4KCk9rLCBoYXJkIHRvIGFyZ3VlIGFnYWluc3QuClJl
-dmlld2VkLWJ5OiBDaHJpcyBXaWxzb24gPGNocmlzQGNocmlzLXdpbHNvbi5jby51az4KLUNocmlz
-Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdm
-eCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xp
-c3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeA==
+UXVvdGluZyBNaWNoYcWCIFdpbmlhcnNraSAoMjAxOS0wOS0yNiAxMTowNjozNCkKPiBXZSdyZSBj
+dXJyZW50bHkgZG9pbmcgb25lIHdvcmthcm91bmQgd2hlcmUgd2UncmUgdXNpbmcgc2NyYXRjaCBh
+cyBhCj4gdGVtcG9yYXJ5IHN0b3JhZ2UgcGxhY2UsIHdoaWxlIHdlJ3JlIG92ZXJ3cml0aW5nIHRo
+ZSB2YWx1ZSBvZiBvbmUKPiByZWdpc3RlciB3aXRoIHNvbWUga25vd24gY29uc3RhbnQgdmFsdWUg
+aW4gb3JkZXIgdG8gcGVyZm9ybSBhCj4gd29ya2Fyb3VuZC4KPiBXaGlsZSB3ZSBjb3VsZCBqdXN0
+IGRvIHNpbWlsYXIgdGhpbmcgd2l0aCBDU19HUFIgcmVnaXN0ZXIKPiBhbmQgTUlfTE9BRF9SRUdJ
+U1RFUl9SRUcgaW5zdGVhZCBvZiBzY3JhdGNoLCBzaW5jZSB3ZSB3b3VsZCB1c2UgQ1NfR1BSCj4g
+YW55d2F5cywgbGV0J3MganVzdCBkcm9wIHRoZSBjb25zdGFudCB2YWx1ZXMgYW5kIGRvIHRoZSBi
+aXRvcHMgdXNpbmcKPiBNSV9NQVRILgoKSSdkIGxpa2UgdG8gaGF2ZSB5b3VyIGNvbmZpcm1hdGlv
+biB0aGF0IHRoZSB3L2EgYmF0Y2ggaXMgZXhlY3V0ZWQgYmVmb3JlCnRoZSBDU19HUFIgYXJlIHJl
+c3RvcmVkIGZyb20gdGhlIGNvbnRleHQgaW1hZ2UsIGFuZCBJJ20gZ29pbmcgdG8gd2FpdApmb3Ig
+Z2VtX2N0eF9pc29sYXRpb24gdmVyaWZpY2F0aW9uIDotcAotQ2hyaXMKX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJ
+bnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Au
+b3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
