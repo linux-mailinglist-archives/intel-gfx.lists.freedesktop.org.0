@@ -1,34 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 46637C0240
-	for <lists+intel-gfx@lfdr.de>; Fri, 27 Sep 2019 11:26:26 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 79AF3C0263
+	for <lists+intel-gfx@lfdr.de>; Fri, 27 Sep 2019 11:30:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 287796EED5;
-	Fri, 27 Sep 2019 09:26:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8A98A6EED7;
+	Fri, 27 Sep 2019 09:30:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 74BCF6EED6
- for <intel-gfx@lists.freedesktop.org>; Fri, 27 Sep 2019 09:26:22 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 18636613-1500050 for multiple; Fri, 27 Sep 2019 10:26:21 +0100
-MIME-Version: 1.0
-To: Ramalingam C <ramalingam.c@intel.com>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-In-Reply-To: <20190927091256.GA16255@intel.com>
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E67FE6EED2
+ for <intel-gfx@lists.freedesktop.org>; Fri, 27 Sep 2019 09:30:38 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by orsmga106.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 27 Sep 2019 02:30:38 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.64,554,1559545200"; d="scan'208";a="190264452"
+Received: from ramaling-i9x.iind.intel.com (HELO intel.com) ([10.99.66.154])
+ by fmsmga007.fm.intel.com with ESMTP; 27 Sep 2019 02:30:36 -0700
+Date: Fri, 27 Sep 2019 15:00:27 +0530
+From: Ramalingam C <ramalingam.c@intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>
+Message-ID: <20190927093026.GC16255@intel.com>
 References: <20190926052135.29911-1-ramalingam.c@intel.com>
  <20190926052135.29911-3-ramalingam.c@intel.com>
  <1d52529c-9ecf-6525-43f5-1d2bd5f506a2@linux.intel.com>
  <156948920849.4979.66777122380313478@skylake-alporthouse-com>
  <20190927091256.GA16255@intel.com>
-Message-ID: <156957637765.32596.12482435949580328098@skylake-alporthouse-com>
-User-Agent: alot/0.6
-Date: Fri, 27 Sep 2019 10:26:17 +0100
+ <156957637765.32596.12482435949580328098@skylake-alporthouse-com>
+MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <156957637765.32596.12482435949580328098@skylake-alporthouse-com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Subject: Re: [Intel-gfx] [PATCH 3/3] drm/i915: FB backing gem obj should
  reside in LMEM
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -50,15 +57,18 @@ Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-UXVvdGluZyBSYW1hbGluZ2FtIEMgKDIwMTktMDktMjcgMTA6MTI6NTcpCj4gT24gMjAxOS0wOS0y
-NiBhdCAxMDoxMzoyOCArMDEwMCwgQ2hyaXMgV2lsc29uIHdyb3RlOgo+ID4gVGhpcyB3b3VsZCBi
-ZSBhIHBhcnQgb2YgcGluX3RvX2Rpc3BsYXk/IFRoYXQncyB3aGVyZSB3ZSBkbyB0aGUgb3RoZXIK
-PiA+IGNvbnZlcnNpb25zIHJlcXVpcmVkIGZvciBzY2Fub3V0IG9iamVjdHMuCj4gCj4gSSB3aWxs
-IHJlbG9vayB0aHJvdWdoIGl0IGNocmlzLiBCdXQgSSBhbSBqdXN0IHdvbmRlcmluZyB3aGVuIHRo
-ZSBGQiBpcwo+IGNyZWF0ZWQvZGVzdHJveWVkIGl0c2VsZiBjb3VsZCB3ZSBmaXgvcmVsZWFzZSB0
-aGUgbWVtb3J5IHJlZ2lvbiByZXF1aXJlZD8KClRoYXQgd291bGQgYmUgYXR5cGljYWw7IHdlIGdl
-bmVyYWxseSBvbmx5IHJlc3RyaWN0IHRoZSB1c2VyIG9wdGlvbnMgd2hpbGUKaXQgaXMgYXR0YWNo
-ZWQgdG8gSFcsIGFuZCBlcnIgb24gdGhlIHNpZGUgb2YgbGF6aW5lc3MuCi1DaHJpcwpfX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGlu
-ZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVl
-ZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZng=
+T24gMjAxOS0wOS0yNyBhdCAxMDoyNjoxNyArMDEwMCwgQ2hyaXMgV2lsc29uIHdyb3RlOgo+IFF1
+b3RpbmcgUmFtYWxpbmdhbSBDICgyMDE5LTA5LTI3IDEwOjEyOjU3KQo+ID4gT24gMjAxOS0wOS0y
+NiBhdCAxMDoxMzoyOCArMDEwMCwgQ2hyaXMgV2lsc29uIHdyb3RlOgo+ID4gPiBUaGlzIHdvdWxk
+IGJlIGEgcGFydCBvZiBwaW5fdG9fZGlzcGxheT8gVGhhdCdzIHdoZXJlIHdlIGRvIHRoZSBvdGhl
+cgo+ID4gPiBjb252ZXJzaW9ucyByZXF1aXJlZCBmb3Igc2Nhbm91dCBvYmplY3RzLgo+ID4gCj4g
+PiBJIHdpbGwgcmVsb29rIHRocm91Z2ggaXQgY2hyaXMuIEJ1dCBJIGFtIGp1c3Qgd29uZGVyaW5n
+IHdoZW4gdGhlIEZCIGlzCj4gPiBjcmVhdGVkL2Rlc3Ryb3llZCBpdHNlbGYgY291bGQgd2UgZml4
+L3JlbGVhc2UgdGhlIG1lbW9yeSByZWdpb24gcmVxdWlyZWQ/Cj4gCj4gVGhhdCB3b3VsZCBiZSBh
+dHlwaWNhbDsgd2UgZ2VuZXJhbGx5IG9ubHkgcmVzdHJpY3QgdGhlIHVzZXIgb3B0aW9ucyB3aGls
+ZQo+IGl0IGlzIGF0dGFjaGVkIHRvIEhXLCBhbmQgZXJyIG9uIHRoZSBzaWRlIG9mIGxhemluZXNz
+LgpJIHdpbGwgZXhwbG9yZSB0aGUgcGluX3RvX2RpcGxheSBwYXRoLiBUaGFua3MgQ2hyaXMhCgot
+UmFtCj4gLUNocmlzCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9y
+ZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdm
+eA==
