@@ -2,31 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 37503C3263
-	for <lists+intel-gfx@lfdr.de>; Tue,  1 Oct 2019 13:23:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 03D65C32D6
+	for <lists+intel-gfx@lfdr.de>; Tue,  1 Oct 2019 13:43:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EBAE86E618;
-	Tue,  1 Oct 2019 11:23:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D1B5089D89;
+	Tue,  1 Oct 2019 11:43:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 644C76E614;
- Tue,  1 Oct 2019 11:23:29 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 5E573A3DED;
- Tue,  1 Oct 2019 11:23:29 +0000 (UTC)
+Received: from atrey.karlin.mff.cuni.cz (atrey.karlin.mff.cuni.cz
+ [195.113.26.193])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CB2B689D89
+ for <intel-gfx@lists.freedesktop.org>; Tue,  1 Oct 2019 11:43:31 +0000 (UTC)
+Received: by atrey.karlin.mff.cuni.cz (Postfix, from userid 512)
+ id DD30F804C4; Tue,  1 Oct 2019 13:43:15 +0200 (CEST)
+Date: Tue, 1 Oct 2019 13:43:30 +0200
+From: Pavel Machek <pavel@ucw.cz>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Message-ID: <20191001114329.GA4381@amd>
+References: <20190930184707.GA5703@amd>
+ <87eezwdctl.fsf@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Date: Tue, 01 Oct 2019 11:23:29 -0000
-Message-ID: <20191001112329.21991.42255@emeril.freedesktop.org>
-References: <20190930141842.15075-1-jani.nikula@intel.com>
-X-Patchwork-Hint: ignore
-In-Reply-To: <20190930141842.15075-1-jani.nikula@intel.com>
-Subject: [Intel-gfx] =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_lib/?=
- =?utf-8?q?string-choice=3A_add_yesno=28=29=2C_onoff=28=29=2C_enableddisab?=
- =?utf-8?b?bGVkKCksIHBsdXJhbCgpIGhlbHBlcnMgKHJldjIp?=
+In-Reply-To: <87eezwdctl.fsf@intel.com>
+User-Agent: Mutt/1.5.23 (2014-03-12)
+Subject: Re: [Intel-gfx] DDC on Thinkpad x220
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -39,91 +37,109 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: intel-gfx@lists.freedesktop.org, kernel list <linux-kernel@vger.kernel.org>
+Content-Type: multipart/mixed; boundary="===============1378816626=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-PT0gU2VyaWVzIERldGFpbHMgPT0KClNlcmllczogbGliL3N0cmluZy1jaG9pY2U6IGFkZCB5ZXNu
-bygpLCBvbm9mZigpLCBlbmFibGVkZGlzYWJsZWQoKSwgcGx1cmFsKCkgaGVscGVycyAocmV2MikK
-VVJMICAgOiBodHRwczovL3BhdGNod29yay5mcmVlZGVza3RvcC5vcmcvc2VyaWVzLzY3NDA1LwpT
-dGF0ZSA6IHN1Y2Nlc3MKCj09IFN1bW1hcnkgPT0KCkNJIEJ1ZyBMb2cgLSBjaGFuZ2VzIGZyb20g
-Q0lfRFJNXzY5ODEgLT4gUGF0Y2h3b3JrXzE0NjAyCj09PT09PT09PT09PT09PT09PT09PT09PT09
-PT09PT09PT09PT09PT09PT09PT09PT09PT0KClN1bW1hcnkKLS0tLS0tLQoKICAqKlNVQ0NFU1Mq
-KgoKICBObyByZWdyZXNzaW9ucyBmb3VuZC4KCiAgRXh0ZXJuYWwgVVJMOiBodHRwczovL2ludGVs
-LWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlwL1BhdGNod29ya18xNDYwMi9pbmRleC5odG1sCgpL
-bm93biBpc3N1ZXMKLS0tLS0tLS0tLS0tCgogIEhlcmUgYXJlIHRoZSBjaGFuZ2VzIGZvdW5kIGlu
-IFBhdGNod29ya18xNDYwMiB0aGF0IGNvbWUgZnJvbSBrbm93biBpc3N1ZXM6CgojIyMgSUdUIGNo
-YW5nZXMgIyMjCgojIyMjIElzc3VlcyBoaXQgIyMjIwoKICAqIGlndEBwcmltZV9idXN5QGJhc2lj
-LXdhaXQtYWZ0ZXItZGVmYXVsdDoKICAgIC0gZmktaWNsLXUzOiAgICAgICAgICBbUEFTU11bMV0g
-LT4gW0RNRVNHLVdBUk5dWzJdIChbZmRvIzEwNzcyNF0pICsxIHNpbWlsYXIgaXNzdWUKICAgWzFd
-OiBodHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlwL0NJX0RSTV82OTgxL2Zp
-LWljbC11My9pZ3RAcHJpbWVfYnVzeUBiYXNpYy13YWl0LWFmdGVyLWRlZmF1bHQuaHRtbAogICBb
-Ml06IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAvUGF0Y2h3b3JrXzE0
-NjAyL2ZpLWljbC11My9pZ3RAcHJpbWVfYnVzeUBiYXNpYy13YWl0LWFmdGVyLWRlZmF1bHQuaHRt
-bAoKICAKIyMjIyBQb3NzaWJsZSBmaXhlcyAjIyMjCgogICogaWd0QGdlbV9jdHhfY3JlYXRlQGJh
-c2ljLWZpbGVzOgogICAgLSBmaS1jbWwtdTI6ICAgICAgICAgIFtJTkNPTVBMRVRFXVszXSAoW2Zk
-byMxMTA1NjZdKSAtPiBbUEFTU11bNF0KICAgWzNdOiBodHRwczovL2ludGVsLWdmeC1jaS4wMS5v
-cmcvdHJlZS9kcm0tdGlwL0NJX0RSTV82OTgxL2ZpLWNtbC11Mi9pZ3RAZ2VtX2N0eF9jcmVhdGVA
-YmFzaWMtZmlsZXMuaHRtbAogICBbNF06IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVl
-L2RybS10aXAvUGF0Y2h3b3JrXzE0NjAyL2ZpLWNtbC11Mi9pZ3RAZ2VtX2N0eF9jcmVhdGVAYmFz
-aWMtZmlsZXMuaHRtbAogICAgLSBmaS1pY2wtdTI6ICAgICAgICAgIFtJTkNPTVBMRVRFXVs1XSAo
-W2ZkbyMxMDc3MTNdIC8gW2ZkbyMxMDkxMDBdKSAtPiBbUEFTU11bNl0KICAgWzVdOiBodHRwczov
-L2ludGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlwL0NJX0RSTV82OTgxL2ZpLWljbC11Mi9p
-Z3RAZ2VtX2N0eF9jcmVhdGVAYmFzaWMtZmlsZXMuaHRtbAogICBbNl06IGh0dHBzOi8vaW50ZWwt
-Z2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAvUGF0Y2h3b3JrXzE0NjAyL2ZpLWljbC11Mi9pZ3RA
-Z2VtX2N0eF9jcmVhdGVAYmFzaWMtZmlsZXMuaHRtbAoKICAqIGlndEBnZW1fbW1hcF9ndHRAYmFz
-aWMtcmVhZC1uby1wcmVmYXVsdDoKICAgIC0gZmktaWNsLXUzOiAgICAgICAgICBbRE1FU0ctV0FS
-Tl1bN10gKFtmZG8jMTA3NzI0XSkgLT4gW1BBU1NdWzhdICsxIHNpbWlsYXIgaXNzdWUKICAgWzdd
-OiBodHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlwL0NJX0RSTV82OTgxL2Zp
-LWljbC11My9pZ3RAZ2VtX21tYXBfZ3R0QGJhc2ljLXJlYWQtbm8tcHJlZmF1bHQuaHRtbAogICBb
-OF06IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAvUGF0Y2h3b3JrXzE0
-NjAyL2ZpLWljbC11My9pZ3RAZ2VtX21tYXBfZ3R0QGJhc2ljLXJlYWQtbm8tcHJlZmF1bHQuaHRt
-bAoKICAqIGlndEBnZW1fc3luY0BiYXNpYy1hbGw6CiAgICAtIHtmaS10Z2wtdX06ICAgICAgICAg
-W0ZBSUxdWzldIChbZmRvIzExMTg3MV0pIC0+IFtQQVNTXVsxMF0KICAgWzldOiBodHRwczovL2lu
-dGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlwL0NJX0RSTV82OTgxL2ZpLXRnbC11L2lndEBn
-ZW1fc3luY0BiYXNpYy1hbGwuaHRtbAogICBbMTBdOiBodHRwczovL2ludGVsLWdmeC1jaS4wMS5v
-cmcvdHJlZS9kcm0tdGlwL1BhdGNod29ya18xNDYwMi9maS10Z2wtdS9pZ3RAZ2VtX3N5bmNAYmFz
-aWMtYWxsLmh0bWwKCiAgKiBpZ3RAaTkxNV9tb2R1bGVfbG9hZEByZWxvYWQ6CiAgICAtIGZpLWlj
-bC11MzogICAgICAgICAgW0RNRVNHLVdBUk5dWzExXSAoW2ZkbyMxMDc3MjRdIC8gW2ZkbyMxMTEy
-MTRdKSAtPiBbUEFTU11bMTJdCiAgIFsxMV06IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90
-cmVlL2RybS10aXAvQ0lfRFJNXzY5ODEvZmktaWNsLXUzL2lndEBpOTE1X21vZHVsZV9sb2FkQHJl
-bG9hZC5odG1sCiAgIFsxMl06IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10
-aXAvUGF0Y2h3b3JrXzE0NjAyL2ZpLWljbC11My9pZ3RAaTkxNV9tb2R1bGVfbG9hZEByZWxvYWQu
-aHRtbAoKICAqIGlndEBrbXNfY2hhbWVsaXVtQGhkbWktaHBkLWZhc3Q6CiAgICAtIGZpLWtibC03
-NTAwdTogICAgICAgW0ZBSUxdWzEzXSAoW2ZkbyMxMTE0MDddKSAtPiBbUEFTU11bMTRdCiAgIFsx
-M106IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAvQ0lfRFJNXzY5ODEv
-Zmkta2JsLTc1MDB1L2lndEBrbXNfY2hhbWVsaXVtQGhkbWktaHBkLWZhc3QuaHRtbAogICBbMTRd
-OiBodHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlwL1BhdGNod29ya18xNDYw
-Mi9maS1rYmwtNzUwMHUvaWd0QGttc19jaGFtZWxpdW1AaGRtaS1ocGQtZmFzdC5odG1sCgogIAog
-IHtuYW1lfTogVGhpcyBlbGVtZW50IGlzIHN1cHByZXNzZWQuIFRoaXMgbWVhbnMgaXQgaXMgaWdu
-b3JlZCB3aGVuIGNvbXB1dGluZwogICAgICAgICAgdGhlIHN0YXR1cyBvZiB0aGUgZGlmZmVyZW5j
-ZSAoU1VDQ0VTUywgV0FSTklORywgb3IgRkFJTFVSRSkuCgogIFtmZG8jMTA3NzEzXTogaHR0cHM6
-Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MTA3NzEzCiAgW2ZkbyMxMDc3
-MjRdOiBodHRwczovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD0xMDc3MjQK
-ICBbZmRvIzEwOTEwMF06IGh0dHBzOi8vYnVncy5mcmVlZGVza3RvcC5vcmcvc2hvd19idWcuY2dp
-P2lkPTEwOTEwMAogIFtmZG8jMTEwNTY2XTogaHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9z
-aG93X2J1Zy5jZ2k/aWQ9MTEwNTY2CiAgW2ZkbyMxMTEyMTRdOiBodHRwczovL2J1Z3MuZnJlZWRl
-c2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD0xMTEyMTQKICBbZmRvIzExMTQwN106IGh0dHBzOi8v
-YnVncy5mcmVlZGVza3RvcC5vcmcvc2hvd19idWcuY2dpP2lkPTExMTQwNwogIFtmZG8jMTExODcx
-XTogaHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MTExODcxCgoK
-UGFydGljaXBhdGluZyBob3N0cyAoNDggLT4gNDYpCi0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLQoKICBBZGRpdGlvbmFsICgyKTogZmktY21sLWggZmktYndyLTIxNjAgCiAgTWlzc2luZyAg
-ICAoNCk6IGZpLWN0Zy1wODYwMCBmaS1ieXQtY2xhcHBlciBmaS1pbGstbTU0MCBmaS1ic3ctY3lh
-biAKCgpCdWlsZCBjaGFuZ2VzCi0tLS0tLS0tLS0tLS0KCiAgKiBDSTogQ0ktMjAxOTA1MjkgLT4g
-Tm9uZQogICogTGludXg6IENJX0RSTV82OTgxIC0+IFBhdGNod29ya18xNDYwMgoKICBDSS0yMDE5
-MDUyOTogMjAxOTA1MjkKICBDSV9EUk1fNjk4MTogM2I5MDQ2ZjU2YTA5MjQxNTg0ODRhMGFhZGRk
-MWFhM2ExOTYwYWM2NSBAIGdpdDovL2Fub25naXQuZnJlZWRlc2t0b3Aub3JnL2dmeC1jaS9saW51
-eAogIElHVF81MjA4OiBjMDEzMWI0ZjEzMmFjZjI4N2Q5ZDA1YjBmNTA3ODAwM2QzMTU5ZTFjIEAg
-Z2l0Oi8vYW5vbmdpdC5mcmVlZGVza3RvcC5vcmcveG9yZy9hcHAvaW50ZWwtZ3B1LXRvb2xzCiAg
-UGF0Y2h3b3JrXzE0NjAyOiBmZjI4OWIwYWE1NjFhNTc5NTc1ZmNmM2ViMDgyNzU5M2U1ZTg0ZjU2
-IEAgZ2l0Oi8vYW5vbmdpdC5mcmVlZGVza3RvcC5vcmcvZ2Z4LWNpL2xpbnV4CgoKPT0gTGludXgg
-Y29tbWl0cyA9PQoKZmYyODliMGFhNTYxIHN0cmluZy1jaG9pY2U6IGFkZCB5ZXNubygpLCBvbm9m
-ZigpLCBlbmFibGVkZGlzYWJsZWQoKSwgcGx1cmFsKCkgaGVscGVycwoKPT0gTG9ncyA9PQoKRm9y
-IG1vcmUgZGV0YWlscyBzZWU6IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10
-aXAvUGF0Y2h3b3JrXzE0NjAyL2luZGV4Lmh0bWwKX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4v
-bGlzdGluZm8vaW50ZWwtZ2Z4
+
+--===============1378816626==
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="3V7upXqbjpZ4EhLz"
+Content-Disposition: inline
+
+
+--3V7upXqbjpZ4EhLz
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Tue 2019-10-01 12:39:34, Jani Nikula wrote:
+> On Mon, 30 Sep 2019, Pavel Machek <pavel@ucw.cz> wrote:
+> > Hi!
+> >
+> > Thinkpad X220 should be new enough machine to talk DDC to the
+> > monitors, right? And my monitor has DDC enable/disable in the menu, so
+> > it should support it, too...
+> >
+> > But I don't have /dev/i2c* and did not figure out how to talk to the
+> > monitor. Is the support there in the kernel? What do I need to enable
+> > it?
+>=20
+> # modprobe i2c-dev
+
+Thanks!
+
+I enabled I2C_CHARDEV, and installed ddccontrol:
+
+c   ddccontrol                      - program to control monitor
+
+I can read parameters of Dell monitor on VGA:
+
+sudo ddccontrol dev:/dev/i2c-1 -c -d
+/usr/share/ddccontrol-db/monitor/DELA013.xml
+Control 0x10: +/79/100   [???] -- brightness
+Control 0x12: +/63/100   [???] -- contrast
+
+Unfortunately the Fujitsu monitor does not seem to
+communicate. Fujitsu is my main monitor :-(.
+
+pavel@duo:~$ sudo ddccontrol dev:/dev/i2c-4 -c -d
+ddccontrol version 0.4.2
+Copyright 2004-2005 Oleg I. Vdovikin (oleg@cs.msu.su)
+Copyright 2004-2006 Nicolas Boichat (nicolas@boichat.ch)
+This program comes with ABSOLUTELY NO WARRANTY.
+You may redistribute copies of this program under the terms of the GNU
+General Public License.
+
+Reading EDID and initializing DDC/CI at bus dev:/dev/i2c-4...
+ioctl(): No such device or address
+ioctl returned -1
+ioctl(): No such device or address
+ioctl returned -1
+ioctl(): No such device or address
+ioctl returned -1
+I/O warning : failed to load external entity
+"/usr/share/ddccontrol-db/monitor/FUS080A.xml"
+Document not parsed successfully.
+ioctl(): No such device or address
+ioctl returned -1
+
+DDC/CI at dev:/dev/i2c-4 is unusable (-1).
+If your graphics card need it, please check all the required kernel
+modules are loaded (i2c-dev, and your framebuffer driver).
+
+Any further hints?
+
+Thanks and best regards,
+								Pavel
+--=20
+(english) http://www.livejournal.com/~pavelmachek
+(cesky, pictures) http://atrey.karlin.mff.cuni.cz/~pavel/picture/horses/blo=
+g.html
+
+--3V7upXqbjpZ4EhLz
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: Digital signature
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1
+
+iEYEARECAAYFAl2TO+EACgkQMOfwapXb+vIh4QCdFDvDzV3QA1YJOk5R9U6nxemF
+HEsAnjEXcNYjfaMOB2RxofefvCvrZxEe
+=yDeJ
+-----END PGP SIGNATURE-----
+
+--3V7upXqbjpZ4EhLz--
+
+--===============1378816626==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
+IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
+
+--===============1378816626==--
