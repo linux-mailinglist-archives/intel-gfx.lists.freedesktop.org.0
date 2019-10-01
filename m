@@ -2,31 +2,27 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E963C31AF
-	for <lists+intel-gfx@lfdr.de>; Tue,  1 Oct 2019 12:43:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 73045C31BF
+	for <lists+intel-gfx@lfdr.de>; Tue,  1 Oct 2019 12:51:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C2CAC6E5F5;
-	Tue,  1 Oct 2019 10:43:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AC2866E5FE;
+	Tue,  1 Oct 2019 10:51:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 5065F6E5F5;
- Tue,  1 Oct 2019 10:43:10 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 48EFDA41FB;
- Tue,  1 Oct 2019 10:43:10 +0000 (UTC)
+Received: from atrey.karlin.mff.cuni.cz (atrey.karlin.mff.cuni.cz
+ [195.113.26.193])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 18B5F6E5FE
+ for <intel-gfx@lists.freedesktop.org>; Tue,  1 Oct 2019 10:51:07 +0000 (UTC)
+Received: by atrey.karlin.mff.cuni.cz (Postfix, from userid 512)
+ id 7EA5280498; Tue,  1 Oct 2019 12:50:48 +0200 (CEST)
+Date: Tue, 1 Oct 2019 12:51:02 +0200
+From: Pavel Machek <pavel@ucw.cz>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Message-ID: <20191001105102.GA4442@amd>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Date: Tue, 01 Oct 2019 10:43:10 -0000
-Message-ID: <20191001104310.21993.67752@emeril.freedesktop.org>
-References: <20190930141842.15075-1-jani.nikula@intel.com>
-X-Patchwork-Hint: ignore
-In-Reply-To: <20190930141842.15075-1-jani.nikula@intel.com>
-Subject: [Intel-gfx] =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_f?=
- =?utf-8?q?or_lib/string-choice=3A_add_yesno=28=29=2C_onoff=28=29=2C_enabl?=
- =?utf-8?q?eddisabled=28=29=2C_plural=28=29_helpers_=28rev2=29?=
+User-Agent: Mutt/1.5.23 (2014-03-12)
+Subject: [Intel-gfx] 5.4-rc1 on Thinkpad x220: graphics regression,
+ it "snows" on digital output
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -39,22 +35,76 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: intel-gfx@lists.freedesktop.org, kernel list <linux-kernel@vger.kernel.org>
+Content-Type: multipart/mixed; boundary="===============1722692999=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-PT0gU2VyaWVzIERldGFpbHMgPT0KClNlcmllczogbGliL3N0cmluZy1jaG9pY2U6IGFkZCB5ZXNu
-bygpLCBvbm9mZigpLCBlbmFibGVkZGlzYWJsZWQoKSwgcGx1cmFsKCkgaGVscGVycyAocmV2MikK
-VVJMICAgOiBodHRwczovL3BhdGNod29yay5mcmVlZGVza3RvcC5vcmcvc2VyaWVzLzY3NDA1LwpT
-dGF0ZSA6IHdhcm5pbmcKCj09IFN1bW1hcnkgPT0KCiQgZGltIGNoZWNrcGF0Y2ggb3JpZ2luL2Ry
-bS10aXAKZmYyODliMGFhNTYxIHN0cmluZy1jaG9pY2U6IGFkZCB5ZXNubygpLCBvbm9mZigpLCBl
-bmFibGVkZGlzYWJsZWQoKSwgcGx1cmFsKCkgaGVscGVycwotOjE1NTogV0FSTklORzpGSUxFX1BB
-VEhfQ0hBTkdFUzogYWRkZWQsIG1vdmVkIG9yIGRlbGV0ZWQgZmlsZShzKSwgZG9lcyBNQUlOVEFJ
-TkVSUyBuZWVkIHVwZGF0aW5nPwojMTU1OiAKbmV3IGZpbGUgbW9kZSAxMDA2NDQKCnRvdGFsOiAw
-IGVycm9ycywgMSB3YXJuaW5ncywgMCBjaGVja3MsIDExNiBsaW5lcyBjaGVja2VkCgpfX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGlu
-ZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVl
-ZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZng=
+
+--===============1722692999==
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="qDbXVdCdHGoSgWSk"
+Content-Disposition: inline
+
+
+--qDbXVdCdHGoSgWSk
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+Hi!
+
+When 5.4-rc1 is booted on thinkpad X220 I get "snow" and other
+artefacts on digital output.
+
+00:02.0 VGA compatible controller: Intel Corporation 2nd Generation
+Core Processor Family Integrated Graphics Controller (rev 09)
+
+It already snows when kernel is booting, snow continues in X.
+
+HDMI1 connected primary 1920x1080+0+0 (normal left inverted right x
+axis y axis) 478mm x 268mm
+   1920x1080     60.00*+
+
+
+Snow continues in other video modes:
+
+pavel@duo:~$  xrandr --output HDMI1 --mode 1024x768
+pavel@duo:~$
+
+VGA output appears normal.
+
+Any ideas?
+
+Best regards,
+									Pavel
+--=20
+(english) http://www.livejournal.com/~pavelmachek
+(cesky, pictures) http://atrey.karlin.mff.cuni.cz/~pavel/picture/horses/blo=
+g.html
+
+--qDbXVdCdHGoSgWSk
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: Digital signature
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1
+
+iEYEARECAAYFAl2TL5YACgkQMOfwapXb+vIcUACdEniC2D2dL2MVXRONfTE+X3NS
+NscAn12L+nQU3Q3mdoa61oyqu0Z7AluS
+=cSp1
+-----END PGP SIGNATURE-----
+
+--qDbXVdCdHGoSgWSk--
+
+--===============1722692999==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
+IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
+
+--===============1722692999==--
