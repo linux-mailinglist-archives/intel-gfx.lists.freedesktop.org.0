@@ -2,43 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 27BC7C3FBA
-	for <lists+intel-gfx@lfdr.de>; Tue,  1 Oct 2019 20:22:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A0800C3FEC
+	for <lists+intel-gfx@lfdr.de>; Tue,  1 Oct 2019 20:34:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DE0AF6E873;
-	Tue,  1 Oct 2019 18:22:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C8F196E87B;
+	Tue,  1 Oct 2019 18:34:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 182F46E873
- for <intel-gfx@lists.freedesktop.org>; Tue,  1 Oct 2019 18:22:21 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 704246E87B
+ for <intel-gfx@lists.freedesktop.org>; Tue,  1 Oct 2019 18:34:31 +0000 (UTC)
 X-Amp-Result: UNKNOWN
 X-Amp-Original-Verdict: FILE UNKNOWN
 X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 01 Oct 2019 11:22:20 -0700
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 01 Oct 2019 11:34:30 -0700
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="5.64,571,1559545200"; 
- d="gz'50?scan'50,208,50";a="366427382"
+ d="gz'50?scan'50,208,50";a="190682742"
 Received: from lkp-server01.sh.intel.com (HELO lkp-server01) ([10.239.97.150])
- by orsmga005.jf.intel.com with ESMTP; 01 Oct 2019 11:22:18 -0700
+ by fmsmga008.fm.intel.com with ESMTP; 01 Oct 2019 11:34:29 -0700
 Received: from kbuild by lkp-server01 with local (Exim 4.89)
  (envelope-from <lkp@intel.com>)
- id 1iFMmv-000BZ6-Py; Wed, 02 Oct 2019 02:22:17 +0800
-Date: Wed, 2 Oct 2019 02:21:44 +0800
+ id 1iFMyi-0004QP-W5; Wed, 02 Oct 2019 02:34:28 +0800
+Date: Wed, 2 Oct 2019 02:34:25 +0800
 From: kbuild test robot <lkp@intel.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>
-Message-ID: <201910020247.EwxTqUtk%lkp@intel.com>
-References: <20191001135403.2026-1-chris@chris-wilson.co.uk>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>
+Message-ID: <201910020217.gFzvcoCU%lkp@intel.com>
+References: <20191001154629.11063-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
-Content-Type: multipart/mixed; boundary="ivs3aiumkthrssnl"
+Content-Type: multipart/mixed; boundary="2aiydvolnwdivpyz"
 Content-Disposition: inline
-In-Reply-To: <20191001135403.2026-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20191001154629.11063-1-ville.syrjala@linux.intel.com>
 X-Patchwork-Hint: ignore
 User-Agent: NeoMutt/20170113 (1.7.2)
-Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915: Use a modparam to restrict
- exposed engines
+Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915: Limit MST modes based on
+ plane size too
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -56,11 +56,11 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
---ivs3aiumkthrssnl
+--2aiydvolnwdivpyz
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 
-Hi Chris,
+Hi Ville,
 
 Thank you for the patch! Yet something to improve:
 
@@ -70,7 +70,7 @@ Thank you for the patch! Yet something to improve:
 improve the system. BTW, we also suggest to use '--base' option to specify the
 base tree in git format-patch, please see https://stackoverflow.com/a/37406982]
 
-url:    https://github.com/0day-ci/linux/commits/Chris-Wilson/drm-i915-Use-a-modparam-to-restrict-exposed-engines/20191002-003226
+url:    https://github.com/0day-ci/linux/commits/Ville-Syrjala/drm-i915-Limit-MST-modes-based-on-plane-size-too/20191002-010404
 base:   git://anongit.freedesktop.org/drm-intel for-linux-next
 config: i386-randconfig-a002-201939 (attached as .config)
 compiler: gcc-5 (Ubuntu 5.5.0-12ubuntu1) 5.5.0 20171010
@@ -83,201 +83,61 @@ Reported-by: kbuild test robot <lkp@intel.com>
 
 All errors (new ones prefixed by >>):
 
-   drivers/gpu/drm/i915/i915_gem.c: In function 'i915_gem_init':
->> drivers/gpu/drm/i915/i915_gem.c:1411:3: error: implicit declaration of function 'intel_gt_set_wedged_on_init' [-Werror=implicit-function-declaration]
-      intel_gt_set_wedged_on_init(&dev_priv->gt);
-      ^
+   drivers/gpu/drm/i915/display/intel_dp_mst.c: In function 'intel_dp_mst_mode_valid':
+>> drivers/gpu/drm/i915/display/intel_dp_mst.c:449:9: error: implicit declaration of function 'intel_mode_valid_max_plane_size' [-Werror=implicit-function-declaration]
+     return intel_mode_valid_max_plane_size(dev_priv, mode);
+            ^
    cc1: some warnings being treated as errors
 
-vim +/intel_gt_set_wedged_on_init +1411 drivers/gpu/drm/i915/i915_gem.c
+vim +/intel_mode_valid_max_plane_size +449 drivers/gpu/drm/i915/display/intel_dp_mst.c
 
-  1405	
-  1406	int i915_gem_init(struct drm_i915_private *dev_priv)
-  1407	{
-  1408		int ret;
-  1409	
-  1410		if (!RUNTIME_INFO(dev_priv)->num_engines) {
-> 1411			intel_gt_set_wedged_on_init(&dev_priv->gt);
-  1412			return 0;
-  1413		}
-  1414	
-  1415		/* We need to fallback to 4K pages if host doesn't support huge gtt. */
-  1416		if (intel_vgpu_active(dev_priv) && !intel_vgpu_has_huge_gtt(dev_priv))
-  1417			mkwrite_device_info(dev_priv)->page_sizes =
-  1418				I915_GTT_PAGE_SIZE_4K;
-  1419	
-  1420		intel_timelines_init(dev_priv);
-  1421	
-  1422		ret = i915_gem_init_userptr(dev_priv);
-  1423		if (ret)
-  1424			return ret;
-  1425	
-  1426		intel_uc_fetch_firmwares(&dev_priv->gt.uc);
-  1427		intel_wopcm_init(&dev_priv->wopcm);
-  1428	
-  1429		/* This is just a security blanket to placate dragons.
-  1430		 * On some systems, we very sporadically observe that the first TLBs
-  1431		 * used by the CS may be stale, despite us poking the TLB reset. If
-  1432		 * we hold the forcewake during initialisation these problems
-  1433		 * just magically go away.
-  1434		 */
-  1435		mutex_lock(&dev_priv->drm.struct_mutex);
-  1436		intel_uncore_forcewake_get(&dev_priv->uncore, FORCEWAKE_ALL);
-  1437	
-  1438		ret = i915_init_ggtt(dev_priv);
-  1439		if (ret) {
-  1440			GEM_BUG_ON(ret == -EIO);
-  1441			goto err_unlock;
-  1442		}
-  1443	
-  1444		ret = i915_gem_init_scratch(dev_priv,
-  1445					    IS_GEN(dev_priv, 2) ? SZ_256K : PAGE_SIZE);
-  1446		if (ret) {
-  1447			GEM_BUG_ON(ret == -EIO);
-  1448			goto err_ggtt;
-  1449		}
-  1450	
-  1451		ret = intel_engines_setup(dev_priv);
-  1452		if (ret) {
-  1453			GEM_BUG_ON(ret == -EIO);
-  1454			goto err_unlock;
-  1455		}
-  1456	
-  1457		ret = i915_gem_contexts_init(dev_priv);
-  1458		if (ret) {
-  1459			GEM_BUG_ON(ret == -EIO);
-  1460			goto err_scratch;
-  1461		}
-  1462	
-  1463		ret = intel_engines_init(dev_priv);
-  1464		if (ret) {
-  1465			GEM_BUG_ON(ret == -EIO);
-  1466			goto err_context;
-  1467		}
-  1468	
-  1469		intel_init_gt_powersave(dev_priv);
-  1470	
-  1471		intel_uc_init(&dev_priv->gt.uc);
-  1472	
-  1473		ret = i915_gem_init_hw(dev_priv);
-  1474		if (ret)
-  1475			goto err_uc_init;
-  1476	
-  1477		/* Only when the HW is re-initialised, can we replay the requests */
-  1478		ret = intel_gt_resume(&dev_priv->gt);
-  1479		if (ret)
-  1480			goto err_init_hw;
-  1481	
-  1482		/*
-  1483		 * Despite its name intel_init_clock_gating applies both display
-  1484		 * clock gating workarounds; GT mmio workarounds and the occasional
-  1485		 * GT power context workaround. Worse, sometimes it includes a context
-  1486		 * register workaround which we need to apply before we record the
-  1487		 * default HW state for all contexts.
-  1488		 *
-  1489		 * FIXME: break up the workarounds and apply them at the right time!
-  1490		 */
-  1491		intel_init_clock_gating(dev_priv);
-  1492	
-  1493		ret = intel_engines_verify_workarounds(dev_priv);
-  1494		if (ret)
-  1495			goto err_gt;
-  1496	
-  1497		ret = __intel_engines_record_defaults(dev_priv);
-  1498		if (ret)
-  1499			goto err_gt;
-  1500	
-  1501		ret = i915_inject_load_error(dev_priv, -ENODEV);
-  1502		if (ret)
-  1503			goto err_gt;
-  1504	
-  1505		ret = i915_inject_load_error(dev_priv, -EIO);
-  1506		if (ret)
-  1507			goto err_gt;
-  1508	
-  1509		intel_uncore_forcewake_put(&dev_priv->uncore, FORCEWAKE_ALL);
-  1510		mutex_unlock(&dev_priv->drm.struct_mutex);
-  1511	
-  1512		return 0;
-  1513	
-  1514		/*
-  1515		 * Unwinding is complicated by that we want to handle -EIO to mean
-  1516		 * disable GPU submission but keep KMS alive. We want to mark the
-  1517		 * HW as irrevisibly wedged, but keep enough state around that the
-  1518		 * driver doesn't explode during runtime.
-  1519		 */
-  1520	err_gt:
-  1521		mutex_unlock(&dev_priv->drm.struct_mutex);
-  1522	
-  1523		intel_gt_set_wedged(&dev_priv->gt);
-  1524		i915_gem_suspend(dev_priv);
-  1525		i915_gem_suspend_late(dev_priv);
-  1526	
-  1527		i915_gem_drain_workqueue(dev_priv);
-  1528	
-  1529		mutex_lock(&dev_priv->drm.struct_mutex);
-  1530	err_init_hw:
-  1531		intel_uc_fini_hw(&dev_priv->gt.uc);
-  1532	err_uc_init:
-  1533		if (ret != -EIO) {
-  1534			intel_uc_fini(&dev_priv->gt.uc);
-  1535			intel_cleanup_gt_powersave(dev_priv);
-  1536			intel_engines_cleanup(dev_priv);
-  1537		}
-  1538	err_context:
-  1539		if (ret != -EIO)
-  1540			i915_gem_contexts_fini(dev_priv);
-  1541	err_scratch:
-  1542		i915_gem_fini_scratch(dev_priv);
-  1543	err_ggtt:
-  1544	err_unlock:
-  1545		intel_uncore_forcewake_put(&dev_priv->uncore, FORCEWAKE_ALL);
-  1546		mutex_unlock(&dev_priv->drm.struct_mutex);
-  1547	
-  1548		if (ret != -EIO) {
-  1549			intel_uc_cleanup_firmwares(&dev_priv->gt.uc);
-  1550			i915_gem_cleanup_userptr(dev_priv);
-  1551			intel_timelines_fini(dev_priv);
-  1552		}
-  1553	
-  1554		if (ret == -EIO) {
-  1555			mutex_lock(&dev_priv->drm.struct_mutex);
-  1556	
-  1557			/*
-  1558			 * Allow engines or uC initialisation to fail by marking the GPU
-  1559			 * as wedged. But we only want to do this when the GPU is angry,
-  1560			 * for all other failure, such as an allocation failure, bail.
-  1561			 */
-  1562			if (!intel_gt_is_wedged(&dev_priv->gt)) {
-  1563				i915_probe_error(dev_priv,
-  1564						 "Failed to initialize GPU, declaring it wedged!\n");
-  1565				intel_gt_set_wedged(&dev_priv->gt);
-  1566			}
-  1567	
-  1568			/* Minimal basic recovery for KMS */
-  1569			ret = i915_ggtt_enable_hw(dev_priv);
-  1570			i915_gem_restore_gtt_mappings(dev_priv);
-  1571			i915_gem_restore_fences(dev_priv);
-  1572			intel_init_clock_gating(dev_priv);
-  1573	
-  1574			mutex_unlock(&dev_priv->drm.struct_mutex);
-  1575		}
-  1576	
-  1577		i915_gem_drain_freed_objects(dev_priv);
-  1578		return ret;
-  1579	}
-  1580	
+   416	
+   417	static enum drm_mode_status
+   418	intel_dp_mst_mode_valid(struct drm_connector *connector,
+   419				struct drm_display_mode *mode)
+   420	{
+   421		struct drm_i915_private *dev_priv = to_i915(connector->dev);
+   422		struct intel_connector *intel_connector = to_intel_connector(connector);
+   423		struct intel_dp *intel_dp = intel_connector->mst_port;
+   424		int max_dotclk = to_i915(connector->dev)->max_dotclk_freq;
+   425		int max_rate, mode_rate, max_lanes, max_link_clock;
+   426	
+   427		if (drm_connector_is_unregistered(connector))
+   428			return MODE_ERROR;
+   429	
+   430		if (mode->flags & DRM_MODE_FLAG_DBLSCAN)
+   431			return MODE_NO_DBLESCAN;
+   432	
+   433		max_link_clock = intel_dp_max_link_rate(intel_dp);
+   434		max_lanes = intel_dp_max_lane_count(intel_dp);
+   435	
+   436		max_rate = intel_dp_max_data_rate(max_link_clock, max_lanes);
+   437		mode_rate = intel_dp_link_required(mode->clock, 18);
+   438	
+   439		/* TODO - validate mode against available PBN for link */
+   440		if (mode->clock < 10000)
+   441			return MODE_CLOCK_LOW;
+   442	
+   443		if (mode->flags & DRM_MODE_FLAG_DBLCLK)
+   444			return MODE_H_ILLEGAL;
+   445	
+   446		if (mode_rate > max_rate || mode->clock > max_dotclk)
+   447			return MODE_CLOCK_HIGH;
+   448	
+ > 449		return intel_mode_valid_max_plane_size(dev_priv, mode);
+   450	}
+   451	
 
 ---
 0-DAY kernel test infrastructure                Open Source Technology Center
 https://lists.01.org/pipermail/kbuild-all                   Intel Corporation
 
---ivs3aiumkthrssnl
+--2aiydvolnwdivpyz
 Content-Type: application/gzip
 Content-Disposition: attachment; filename=".config.gz"
 Content-Transfer-Encoding: base64
 
-H4sICLKWk10AAy5jb25maWcAlDzbctw2su/7FVPOS1JbSXSxFZ9zSg8gCHKQIQgaAEczekEp
+H4sICP2Yk10AAy5jb25maWcAlDzbctw2su/7FVPOS1JbSXSxFZ9zSg8gCHKQIQgaAEczekEp
 8tirWlvyGUm78d+fboAXgAQne1Ip29PdaNwafUODP/zthxV5fXn6evfycH/35cv31efD4+F4
 93L4uPr08OXwP6tcrmppVizn5hcgrh4eX//89eHy/dXq3S+Xv5z9fLy/XG0Ox8fDlxV9evz0
 8PkVWj88Pf7th7/B/z8A8Os3YHT879Xn+/uf361+bP94fXx5hdbvoPX5xav7ef6TB6wuzs5/
@@ -939,7 +799,7 @@ h01atPbrwhHFfBfFsi3mNYZRYbbgNXclG+YNHDh711/rC3znlzSsqw5xFIbR8MgRmStzT3t4
 fW74xGgI0yvGpWj8BqOBBp3s98loMj+Rwd0joMWeB8WqDHTJ8Jit1Naayn1XLThjnXWh0PxK
 VCJPVJpsDbrJ1ir4j2ussL3ilaXw/wFQ7l1CzCsCAA==
 
---ivs3aiumkthrssnl
+--2aiydvolnwdivpyz
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -949,4 +809,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
 IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
 dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
 
---ivs3aiumkthrssnl--
+--2aiydvolnwdivpyz--
