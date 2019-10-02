@@ -2,64 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 792BEC8A6E
-	for <lists+intel-gfx@lfdr.de>; Wed,  2 Oct 2019 16:05:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3BDAAC8A97
+	for <lists+intel-gfx@lfdr.de>; Wed,  2 Oct 2019 16:09:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 94619897EB;
-	Wed,  2 Oct 2019 14:05:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 971D1890D4;
+	Wed,  2 Oct 2019 14:09:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-qk1-x742.google.com (mail-qk1-x742.google.com
- [IPv6:2607:f8b0:4864:20::742])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B359789715;
- Wed,  2 Oct 2019 14:05:19 +0000 (UTC)
-Received: by mail-qk1-x742.google.com with SMTP id x134so15114909qkb.0;
- Wed, 02 Oct 2019 07:05:19 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:mime-version
- :content-disposition:user-agent;
- bh=MPq5XvWYyG+QTyn+vm0iUraemW1tBZKA+C2/b10gM9A=;
- b=AhFLz+NYTiCOtFQB2TKGtMCjotyHysVaKPbLqCBDsfPoFhCAx0TKMiyafaycKOEVWh
- 88m1nJZs/4CqzP295zrxeSW4wqGX7QIQe/zdStDQcu9nDmGGCC71rbvDq7bgQtYUrgFk
- NGA9A8i7xm2XUK05APROX6dIsDulvRshTX0e7xWhNrRlAhWVUd4P1bcUJI/b2zob8cQM
- Mbe9Dz0+s9uSc2mAMfPAfMf0GtNOKsh8iWs5KP0kUiWtq3LnJ8wMES9bd5ywwkXOo4SC
- vcHNe0fSlwXjdDsQHQANyQZQs3kRkQixiJso+xaurmwcF7zD3ycZloKACvOgyZZt5nl6
- t8/w==
-X-Gm-Message-State: APjAAAWMC/BTSUK3ganrLEzObdZomqrtTivQnGG7+STQrZkz65MGH9n0
- SX3kJcDHsltntuQKN6xFtAs=
-X-Google-Smtp-Source: APXvYqzOQ3sxj3tGzqUztNfd/ZTnqw3nHag6A7wTgTBddqa0WtrmSAtpghMC4A4zzCPVUzk3fte8yw==
-X-Received: by 2002:a37:642:: with SMTP id 63mr3861495qkg.29.1570025118685;
- Wed, 02 Oct 2019 07:05:18 -0700 (PDT)
-Received: from smtp.gmail.com ([132.205.230.13])
- by smtp.gmail.com with ESMTPSA id m125sm10075076qkd.3.2019.10.02.07.05.17
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 02 Oct 2019 07:05:17 -0700 (PDT)
-Date: Wed, 2 Oct 2019 11:05:16 -0300
-From: Rodrigo Siqueira <rodrigosiqueiramelo@gmail.com>
-To: Keith Packard <keithp@keithp.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>,
- Chris Wilson <chris@chris-wilson.co.uk>, Daniel Vetter <daniel@ffwll.ch>,
- Maxime Ripard <maxime.ripard@bootlin.com>,
- Sean Paul <sean@poorly.run>, David Airlie <airlied@linux.ie>,
- Pekka Paalanen <pekka.paalanen@collabora.com>
-Message-ID: <20191002140516.adeyj3htylimmlmg@smtp.gmail.com>
-MIME-Version: 1.0
-User-Agent: NeoMutt/20180716
-X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20161025;
- h=date:from:to:cc:subject:message-id:mime-version:content-disposition
- :user-agent;
- bh=MPq5XvWYyG+QTyn+vm0iUraemW1tBZKA+C2/b10gM9A=;
- b=prwhLR9SfxtMz/sDh0Fm4R8ehuNjWiOg/6PaoDg1gmyjWdulJrzUCrY5oM4uE7pQ9W
- 6LM6oZTz5er6MeMwkCmjC98No3bJrF+R61Ng97aAUaCQZ19rwQjVwHoslpgHCBNkorNb
- PBLsY48zcPUwpEYM5I7KU4jWJ05joBTFbdkQui3dn/9kU4O8sPFS8zxlVtKlWkaQzwYZ
- JexBoraBbkaPAd6bQOo7NDLVZVDlhD1WY+ZBKKOUE0fbi/q3yk52fqiXnL/AxCV66jsx
- CDQ7o9L7M9aTfzu4/NRWOhg1FTU568XSn2+GYW1vzkuey1OlEQsKyPobB7wMc7Pqi8kj
- qxvw==
-Subject: [Intel-gfx] [PATCH V6] drm/drm_vblank: Change EINVAL by the correct
- errno
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BD0F5890D4
+ for <intel-gfx@lists.freedesktop.org>; Wed,  2 Oct 2019 14:09:13 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 02 Oct 2019 07:09:13 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.64,574,1559545200"; d="scan'208";a="194889997"
+Received: from ideak-desk.fi.intel.com ([10.237.68.142])
+ by orsmga003.jf.intel.com with ESMTP; 02 Oct 2019 07:09:11 -0700
+From: Imre Deak <imre.deak@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed,  2 Oct 2019 17:08:08 +0300
+Message-Id: <20191002140808.12000-1-imre.deak@intel.com>
+X-Mailer: git-send-email 2.17.1
+Subject: [Intel-gfx] [PATCH] drm/i915/tgl: Add the Thunderbolt PLL divider
+ values
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -72,157 +40,62 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, kernel-janitors@vger.kernel.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============0732860560=="
+Cc: Mika Westerberg <mika.westerberg@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
---===============0732860560==
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="rl7p723dixcepzft"
-Content-Disposition: inline
-
-
---rl7p723dixcepzft
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-For historical reasons, the function drm_wait_vblank_ioctl always return
--EINVAL if something gets wrong. This scenario limits the flexibility
-for the userspace to make detailed verification of any problem and take
-some action. In particular, the validation of =E2=80=9Cif (!dev->irq_enable=
-d)=E2=80=9D
-in the drm_wait_vblank_ioctl is responsible for checking if the driver
-support vblank or not. If the driver does not support VBlank, the
-function drm_wait_vblank_ioctl returns EINVAL, which does not represent
-the real issue; this patch changes this behavior by return EOPNOTSUPP.
-Additionally, drm_crtc_get_sequence_ioctl and
-drm_crtc_queue_sequence_ioctl, also returns EINVAL if vblank is not
-supported; this patch also changes the return value to EOPNOTSUPP in
-these functions. Lastly, these functions are invoked by libdrm, which is
-used by many compositors; because of this, it is important to check if
-this change breaks any compositor. In this sense, the following projects
-were examined:
-
-* Drm-hwcomposer
-* Kwin
-* Sway
-* Wlroots
-* Wayland
-* Weston
-* Mutter
-* Xorg (67 different drivers)
-
-For each repository the verification happened in three steps:
-
-* Update the main branch
-* Look for any occurrence of "drmCrtcQueueSequence",
-  "drmCrtcGetSequence", and "drmWaitVBlank" with the command git grep -n
-  "STRING".
-* Look in the git history of the project with the command
-git log -S<STRING>
-
-None of the above projects validate the use of EINVAL when using
-drmWaitVBlank(), which make safe, at least for these projects, to change
-the return values. On the other hand, mesa and xserver project uses
-drmCrtcQueueSequence() and drmCrtcGetSequence(); this change is harmless
-for both projects.
-
-Change since V5 (Pekka Paalanen):
- - Check if the change also affects Mutter
-
-Change since V4 (Daniel):
- - Also return EOPNOTSUPP in drm_crtc_[get|queue]_sequence_ioctl
-
-Change since V3:
- - Return EINVAL for _DRM_VBLANK_SIGNAL (Daniel)
-
-Change since V2:
- Daniel Vetter and Chris Wilson
- - Replace ENOTTY by EOPNOTSUPP
- - Return EINVAL if the parameters are wrong
-
-Cc: Keith Packard <keithp@keithp.com>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Cc: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Daniel Vetter <daniel@ffwll.ch>
-Cc: Pekka Paalanen <pekka.paalanen@collabora.com>
-Signed-off-by: Rodrigo Siqueira <rodrigosiqueiramelo@gmail.com>
----
- drivers/gpu/drm/drm_vblank.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
-
-diff --git a/drivers/gpu/drm/drm_vblank.c b/drivers/gpu/drm/drm_vblank.c
-index 9c6899758bc9..71cf2633ac58 100644
---- a/drivers/gpu/drm/drm_vblank.c
-+++ b/drivers/gpu/drm/drm_vblank.c
-@@ -1610,7 +1610,7 @@ int drm_wait_vblank_ioctl(struct drm_device *dev, voi=
-d *data,
- 	unsigned int flags, pipe, high_pipe;
-=20
- 	if (!dev->irq_enabled)
--		return -EINVAL;
-+		return -EOPNOTSUPP;
-=20
- 	if (vblwait->request.type & _DRM_VBLANK_SIGNAL)
- 		return -EINVAL;
-@@ -1876,7 +1876,7 @@ int drm_crtc_get_sequence_ioctl(struct drm_device *de=
-v, void *data,
- 		return -EOPNOTSUPP;
-=20
- 	if (!dev->irq_enabled)
--		return -EINVAL;
-+		return -EOPNOTSUPP;
-=20
- 	crtc =3D drm_crtc_find(dev, file_priv, get_seq->crtc_id);
- 	if (!crtc)
-@@ -1934,7 +1934,7 @@ int drm_crtc_queue_sequence_ioctl(struct drm_device *=
-dev, void *data,
- 		return -EOPNOTSUPP;
-=20
- 	if (!dev->irq_enabled)
--		return -EINVAL;
-+		return -EOPNOTSUPP;
-=20
- 	crtc =3D drm_crtc_find(dev, file_priv, queue_seq->crtc_id);
- 	if (!crtc)
---=20
-2.23.0
-
---rl7p723dixcepzft
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAEBCgAdFiEE4tZ+ii1mjMCMQbfkWJzP/comvP8FAl2UrpsACgkQWJzP/com
-vP9Bgw/7B/I5MWK+6MLQD5y+0VUQythB5k6k9wovD2C56y3E0D5IOxknr7iX5xTb
-nNCZCFN8Ks4Zd3lhBRxcHMbetf+CwhvaWSRBhpxfptOSCeJK18WKADoULmTfgii3
-DUeQsN5Ohr79ftYn89vb8TrsoGnAYXFFaCtlfT6IE7iUYw8kAAgIKJ5ngexvwMlt
-MNvluV1MJVaE6kEet73dUbcW25kCwksR+tuSk1GK5w5F1reX6n3m8FAkdMSdVyPU
-DcRHEv3q3D7d3jCGmFfj16MiqxQFBhyN7rjk36kZxNysfLm/mzyfxTl7LiCkUDkI
-jmfZvIww+HHuU3I9D/4yORqfcuGNVHwVdT0IgzYx+RdpOmYej7SlhW2Nur/oP0Du
-vKbyKtoXFGQ2tBAAWVEyPeLeVYUgO3Yczn7qHbbnQflnDGCLhof3V64CtvXjzvCK
-vMrrwTqC8lDF7l9Fm84AFX1whua8+pU7xS99NNyPzmXMLkT37kgDaAHUBzrCKoHM
-mwilQUmgiDLw7n8HTmCYkomWIGK4G3sMii/df4vqQoOEeyYjG3CrzGuXYzNBYamy
-bXqpI2jQUy/hYLg2l9/vgVAvBatIeWEcGsej/+NhssUB4vTMlA1YUqwobJUnnA6e
-5PsyKjJus9M5WJDCfJSfn+DSYUpA2+t/MRWwiS0xZGCl4ebAc90=
-=nh5K
------END PGP SIGNATURE-----
-
---rl7p723dixcepzft--
-
---===============0732860560==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
-IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
-
---===============0732860560==--
+VGhlIFRodW5kZXJib2x0IFBMTCBkaXZpZGVyIHZhbHVlcyBvbiBUR0wgZGlmZmVyIGZyb20gdGhl
+IElDTCBvbmVzLAp1cGRhdGUgdGhlIFBMTCBwYXJhbWV0ZXIgY2FsY3VsYXRpb24gZnVuY3Rpb24g
+YWNjb3JkaW5nbHkuCgpCc3BlYzogNDkyMDQKCkNjOiBKb3NlIFNvdXphIDxqb3NlLnNvdXphQGlu
+dGVsLmNvbT4KQ2M6IENsaW50b24gQSBUYXlsb3IgPGNsaW50b24uYS50YXlsb3JAaW50ZWwuY29t
+PgpDYzogTHVjYXMgRGUgTWFyY2hpIDxsdWNhcy5kZW1hcmNoaUBpbnRlbC5jb20+CkNjOiBNaWth
+IFdlc3RlcmJlcmcgPG1pa2Eud2VzdGVyYmVyZ0BpbnRlbC5jb20+ClRlc3RlZC1ieTogTWlrYSBX
+ZXN0ZXJiZXJnIDxtaWthLndlc3RlcmJlcmdAaW50ZWwuY29tPgpTaWduZWQtb2ZmLWJ5OiBJbXJl
+IERlYWsgPGltcmUuZGVha0BpbnRlbC5jb20+Ci0tLQogZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlz
+cGxheS9pbnRlbF9kcGxsX21nci5jIHwgNTEgKysrKysrKysrKysrKysrKysrLQogMSBmaWxlIGNo
+YW5nZWQsIDQ5IGluc2VydGlvbnMoKyksIDIgZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEvZHJp
+dmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcGxsX21nci5jIGIvZHJpdmVycy9ncHUv
+ZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcGxsX21nci5jCmluZGV4IGJlNjlhMjM0NDI5NC4uN2Iw
+YjE4ZDk1YjA3IDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVs
+X2RwbGxfbWdyLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcGxs
+X21nci5jCkBAIC0yNTIwLDYgKzI1MjAsMjQgQEAgc3RhdGljIGNvbnN0IHN0cnVjdCBza2xfd3Jw
+bGxfcGFyYW1zIGljbF90YnRfcGxsXzE5XzJNSHpfdmFsdWVzID0gewogCS5wZGl2ID0gMHg0IC8q
+IDUgKi8sIC5rZGl2ID0gMSwgLnFkaXZfbW9kZSA9IDAsIC5xZGl2X3JhdGlvID0gMCwKIH07CiAK
+K3N0YXRpYyBjb25zdCBzdHJ1Y3Qgc2tsX3dycGxsX3BhcmFtcyB0Z2xfdGJ0X3BsbF8xOV8yTUh6
+X3ZhbHVlcyA9IHsKKwkuZGNvX2ludGVnZXIgPSAweDU0LCAuZGNvX2ZyYWN0aW9uID0gMHgzMDAw
+LAorCS8qIHRoZSBmb2xsb3dpbmcgcGFyYW1zIGFyZSB1bnVzZWQgKi8KKwkucGRpdiA9IDAsIC5r
+ZGl2ID0gMCwgLnFkaXZfbW9kZSA9IDAsIC5xZGl2X3JhdGlvID0gMCwKK307CisKK3N0YXRpYyBj
+b25zdCBzdHJ1Y3Qgc2tsX3dycGxsX3BhcmFtcyB0Z2xfdGJ0X3BsbF8yNE1Iel92YWx1ZXMgPSB7
+CisJLmRjb19pbnRlZ2VyID0gMHg0MywgLmRjb19mcmFjdGlvbiA9IDB4NDAwMCwKKwkvKiB0aGUg
+Zm9sbG93aW5nIHBhcmFtcyBhcmUgdW51c2VkICovCisJLnBkaXYgPSAwLCAua2RpdiA9IDAsIC5x
+ZGl2X21vZGUgPSAwLCAucWRpdl9yYXRpbyA9IDAsCit9OworCitzdGF0aWMgY29uc3Qgc3RydWN0
+IHNrbF93cnBsbF9wYXJhbXMgdGdsX3RidF9wbGxfMjVNSHpfdmFsdWVzID0geworCS5kY29faW50
+ZWdlciA9IDB4NDAsIC5kY29fZnJhY3Rpb24gPSAweDY2NjYsCisJLyogdGhlIGZvbGxvd2luZyBw
+YXJhbXMgYXJlIHVudXNlZCAqLworCS5wZGl2ID0gMCwgLmtkaXYgPSAwLCAucWRpdl9tb2RlID0g
+MCwgLnFkaXZfcmF0aW8gPSAwLAorfTsKKwogc3RhdGljIGJvb2wgaWNsX2NhbGNfZHBfY29tYm9f
+cGxsKHN0cnVjdCBpbnRlbF9jcnRjX3N0YXRlICpjcnRjX3N0YXRlLAogCQkJCSAgc3RydWN0IHNr
+bF93cnBsbF9wYXJhbXMgKnBsbF9wYXJhbXMpCiB7CkBAIC0yNTQ3LDggKzI1NjUsMzcgQEAgc3Rh
+dGljIGJvb2wgaWNsX2NhbGNfdGJ0X3BsbChzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZSAqY3J0Y19z
+dGF0ZSwKIHsKIAlzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYgPSB0b19pOTE1KGNy
+dGNfc3RhdGUtPmJhc2UuY3J0Yy0+ZGV2KTsKIAotCSpwbGxfcGFyYW1zID0gZGV2X3ByaXYtPmNk
+Y2xrLmh3LnJlZiA9PSAyNDAwMCA/Ci0JCQlpY2xfdGJ0X3BsbF8yNE1Iel92YWx1ZXMgOiBpY2xf
+dGJ0X3BsbF8xOV8yTUh6X3ZhbHVlczsKKwlpZiAoSU5URUxfR0VOKGRldl9wcml2KSA+PSAxMikg
+eworCQlzd2l0Y2ggKGRldl9wcml2LT5jZGNsay5ody5yZWYpIHsKKwkJZGVmYXVsdDoKKwkJCU1J
+U1NJTkdfQ0FTRShkZXZfcHJpdi0+Y2RjbGsuaHcucmVmKTsKKwkJCS8qIGZhbGwtdGhyb3VnaCAq
+LworCQljYXNlIDE5MjAwOgorCQljYXNlIDM4NDAwOgorCQkJKnBsbF9wYXJhbXMgPSB0Z2xfdGJ0
+X3BsbF8xOV8yTUh6X3ZhbHVlczsKKwkJCWJyZWFrOworCQljYXNlIDI0MDAwOgorCQkJKnBsbF9w
+YXJhbXMgPSB0Z2xfdGJ0X3BsbF8yNE1Iel92YWx1ZXM7CisJCQlicmVhazsKKwkJY2FzZSAyNTAw
+MDoKKwkJCSpwbGxfcGFyYW1zID0gdGdsX3RidF9wbGxfMjVNSHpfdmFsdWVzOworCQkJYnJlYWs7
+CisJCX0KKwl9IGVsc2UgeworCQlzd2l0Y2ggKGRldl9wcml2LT5jZGNsay5ody5yZWYpIHsKKwkJ
+ZGVmYXVsdDoKKwkJCU1JU1NJTkdfQ0FTRShkZXZfcHJpdi0+Y2RjbGsuaHcucmVmKTsKKwkJCS8q
+IGZhbGwtdGhyb3VnaCAqLworCQljYXNlIDE5MjAwOgorCQljYXNlIDM4NDAwOgorCQkJKnBsbF9w
+YXJhbXMgPSBpY2xfdGJ0X3BsbF8xOV8yTUh6X3ZhbHVlczsKKwkJCWJyZWFrOworCQljYXNlIDI0
+MDAwOgorCQkJKnBsbF9wYXJhbXMgPSBpY2xfdGJ0X3BsbF8yNE1Iel92YWx1ZXM7CisJCQlicmVh
+azsKKwkJfQorCX0KKwogCXJldHVybiB0cnVlOwogfQogCi0tIAoyLjE3LjEKCl9fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxp
+c3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNr
+dG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeA==
