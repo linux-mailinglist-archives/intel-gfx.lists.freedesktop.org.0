@@ -1,37 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 22973C978F
-	for <lists+intel-gfx@lfdr.de>; Thu,  3 Oct 2019 06:59:01 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 60BA4C9790
+	for <lists+intel-gfx@lfdr.de>; Thu,  3 Oct 2019 06:59:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C8F1A6E1B2;
-	Thu,  3 Oct 2019 04:58:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1934B6E1B7;
+	Thu,  3 Oct 2019 04:59:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E26B06E0D2;
- Wed,  2 Oct 2019 20:06:07 +0000 (UTC)
-Received: from localhost (lfbn-1-10718-76.w90-89.abo.wanadoo.fr [90.89.68.76])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256
- bits)) (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id 2FF3520673;
- Wed,  2 Oct 2019 20:06:07 +0000 (UTC)
-Date: Wed, 2 Oct 2019 22:06:04 +0200
-From: Maxime Ripard <mripard@kernel.org>
-To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
-Message-ID: <20191002200604.gjae7xjtdaj3j3ga@gilmour>
-MIME-Version: 1.0
-User-Agent: NeoMutt/20180716
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2F1016E03C;
+ Thu,  3 Oct 2019 01:43:13 +0000 (UTC)
+Received: from paulmck-ThinkPad-P72.home (50-39-105-78.bvtn.or.frontiernet.net
+ [50.39.105.78])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+ (No client certificate requested)
+ by mail.kernel.org (Postfix) with ESMTPSA id 78982222CA;
+ Thu,  3 Oct 2019 01:43:12 +0000 (UTC)
+From: paulmck@kernel.org
+To: rcu@vger.kernel.org
+Date: Wed,  2 Oct 2019 18:43:04 -0700
+Message-Id: <20191003014310.13262-3-paulmck@kernel.org>
+X-Mailer: git-send-email 2.9.5
+In-Reply-To: <20191003014153.GA13156@paulmck-ThinkPad-P72>
+References: <20191003014153.GA13156@paulmck-ThinkPad-P72>
 X-Mailman-Approved-At: Thu, 03 Oct 2019 04:58:58 +0000
 X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=kernel.org; s=default; t=1570046767;
- bh=2aPHFtPN6iUzeP2+lcEyZrBAVzXvmoNKn+fGxscx/CU=;
- h=Date:From:To:Cc:Subject:From;
- b=NP7jVLbpqHfbqFSS+QNzxEyObL17wqpoqUnemkkSeUByQ6KO8XDN3S0ofr3LU3SAm
- jkEHkeQPd9vgI2QlZ23Fb7pEmIowVtyVQBMitNj0AZ1YJTpZ07jOd5fmDm1T/1f86Y
- ev4075fNv5UIWruh4DwB7yzGS0OhmlPPNE5ZLWic=
-Subject: [Intel-gfx] [PULL] drm-misc-fixes
+ d=kernel.org; s=default; t=1570066992;
+ bh=pecg14+rqKCe9+MU1znEqt1dgbZQC6DApkD13yS7z0k=;
+ h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+ b=aR9o0x1NHONIbxPoNOj8+Ux2ZBnn1MPxi/Eaxd2edaSTIw39ipumC3Ndu4BXSFyag
+ 7fSr1WKYBdYOcypMBAqTPl1y4f/M7W09FmEOoeFeg1kOl/FnKZ/PvU9nzUhm//Smok
+ Za9vci8Sk49LJWA2iNQ8Knf/e7tHAtyDSW+QF1uQ=
+Subject: [Intel-gfx] [PATCH tip/core/rcu 3/9] drivers/gpu: Replace
+ rcu_swap_protected() with rcu_replace()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -44,97 +47,46 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Maxime Ripard <mripard@kernel.org>, intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============2038586636=="
+Cc: peterz@infradead.org, fweisbec@gmail.com, jiangshanlai@gmail.com,
+ dri-devel@lists.freedesktop.org, oleg@redhat.com, dhowells@redhat.com,
+ edumazet@google.com, joel@joelfernandes.org, mingo@kernel.org,
+ David Airlie <airlied@linux.ie>, dipankar@in.ibm.com,
+ "Paul E. McKenney" <paulmck@kernel.org>, intel-gfx@lists.freedesktop.org,
+ josh@joshtriplett.org, mathieu.desnoyers@efficios.com, rostedt@goodmis.org,
+ tglx@linutronix.de, linux-kernel@vger.kernel.org, akpm@linux-foundation.org
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
---===============2038586636==
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="jimwcdgiduu3jw2w"
-Content-Disposition: inline
-
-
---jimwcdgiduu3jw2w
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-
-Hi Dave, Daniel,
-
-I hope that you enjoy XDC if you could make it this year :)
-
-Here's the first round of fixes for drm-misc
-
-Maxime
-
-drm-misc-fixes-2019-10-02:
- - One include fix for tilcdc
- - A memory leak fix for Komeda
- - Some fixes for resources cleanups with writeback
-The following changes since commit 54ecb8f7028c5eb3d740bb82b0f1d90f2df63c5c:
-
-  Linux 5.4-rc1 (2019-09-30 10:35:40 -0700)
-
-are available in the Git repository at:
-
-  git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-fixes-2019-10-02
-
-for you to fetch changes up to 6347ee48ab4b344ca5005e48c0e82189ef9a9614:
-
-  Merge drm-misc-next-fixes-2019-10-02 into drm-misc-fixes (2019-10-02 21:48:02 +0200)
-
-----------------------------------------------------------------
- - One include fix for tilcdc
- - A memory leak fix for Komeda
- - Some fixes for resources cleanups with writeback
-
-----------------------------------------------------------------
-Arnd Bergmann (1):
-      drm/tilcdc: include linux/pinctrl/consumer.h again
-
-Lowry Li (Arm Technology China) (2):
-      drm: Free the writeback_job when it with an empty fb
-      drm: Clear the fence pointer when writeback job signaled
-
-Maxime Ripard (2):
-      Merge drm/drm-fixes into drm-misc-fixes
-      Merge drm-misc-next-fixes-2019-10-02 into drm-misc-fixes
-
-Navid Emamdoost (1):
-      drm/komeda: prevent memory leak in komeda_wb_connector_add
-
- .../drm/arm/display/komeda/komeda_wb_connector.c   |  7 ++++---
- drivers/gpu/drm/arm/malidp_mw.c                    |  4 ++--
- drivers/gpu/drm/drm_atomic.c                       | 13 ++++++++----
- drivers/gpu/drm/drm_writeback.c                    | 23 ++++++++++++++--------
- drivers/gpu/drm/rcar-du/rcar_du_writeback.c        |  4 ++--
- drivers/gpu/drm/tilcdc/tilcdc_tfp410.c             |  1 +
- drivers/gpu/drm/vc4/vc4_txp.c                      |  5 ++---
- 7 files changed, 35 insertions(+), 22 deletions(-)
-
---jimwcdgiduu3jw2w
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXZUDLAAKCRDj7w1vZxhR
-xb3cAQCAnIp/mk2GCXUU6WIIRcrobp9IArnQ3vtECadw+LElLAD/RLhErlBh6VKo
-WA7oRtsx7KVQOOeQtZ5XYn9iY+NqwwI=
-=aH9h
------END PGP SIGNATURE-----
-
---jimwcdgiduu3jw2w--
-
---===============2038586636==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
-IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
-
---===============2038586636==--
+RnJvbTogIlBhdWwgRS4gTWNLZW5uZXkiIDxwYXVsbWNrQGtlcm5lbC5vcmc+CgpUaGlzIGNvbW1p
+dCByZXBsYWNlcyB0aGUgdXNlIG9mIHJjdV9zd2FwX3Byb3RlY3RlZCgpIHdpdGggdGhlIG1vcmUK
+aW50dWl0aXZlbHkgYXBwZWFsaW5nIHJjdV9yZXBsYWNlKCkgYXMgYSBzdGVwIHRvd2FyZHMgcmVt
+b3ZpbmcKcmN1X3N3YXBfcHJvdGVjdGVkKCkuCgpMaW5rOiBodHRwczovL2xvcmUua2VybmVsLm9y
+Zy9sa21sL0NBSGstPXdpQXNKTHcxZWdGRUU9WjctR0d0TTZ3Y3Z0eXl0WFpBMStCSHF0YTRnZzZI
+d0BtYWlsLmdtYWlsLmNvbS8KUmVwb3J0ZWQtYnk6IExpbnVzIFRvcnZhbGRzIDx0b3J2YWxkc0Bs
+aW51eC1mb3VuZGF0aW9uLm9yZz4KU2lnbmVkLW9mZi1ieTogUGF1bCBFLiBNY0tlbm5leSA8cGF1
+bG1ja0BrZXJuZWwub3JnPgpDYzogSmFuaSBOaWt1bGEgPGphbmkubmlrdWxhQGxpbnV4LmludGVs
+LmNvbT4KQ2M6IEpvb25hcyBMYWh0aW5lbiA8am9vbmFzLmxhaHRpbmVuQGxpbnV4LmludGVsLmNv
+bT4KQ2M6IFJvZHJpZ28gVml2aSA8cm9kcmlnby52aXZpQGludGVsLmNvbT4KQ2M6IERhdmlkIEFp
+cmxpZSA8YWlybGllZEBsaW51eC5pZT4KQ2M6IERhbmllbCBWZXR0ZXIgPGRhbmllbEBmZndsbC5j
+aD4KQ2M6IENocmlzIFdpbHNvbiA8Y2hyaXNAY2hyaXMtd2lsc29uLmNvLnVrPgpDYzogVHZydGtv
+IFVyc3VsaW4gPHR2cnRrby51cnN1bGluQGludGVsLmNvbT4KQ2M6IDxpbnRlbC1nZnhAbGlzdHMu
+ZnJlZWRlc2t0b3Aub3JnPgpDYzogPGRyaS1kZXZlbEBsaXN0cy5mcmVlZGVza3RvcC5vcmc+Ci0t
+LQogZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX2NvbnRleHQuYyB8IDIgKy0KIDEg
+ZmlsZSBjaGFuZ2VkLCAxIGluc2VydGlvbigrKSwgMSBkZWxldGlvbigtKQoKZGlmZiAtLWdpdCBh
+L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9jb250ZXh0LmMgYi9kcml2ZXJzL2dw
+dS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1fY29udGV4dC5jCmluZGV4IDFjZGZlMDUuLmM1YzIyYzQg
+MTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9jb250ZXh0LmMK
+KysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX2NvbnRleHQuYwpAQCAtMTYy
+OSw3ICsxNjI5LDcgQEAgc2V0X2VuZ2luZXMoc3RydWN0IGk5MTVfZ2VtX2NvbnRleHQgKmN0eCwK
+IAkJaTkxNV9nZW1fY29udGV4dF9zZXRfdXNlcl9lbmdpbmVzKGN0eCk7CiAJZWxzZQogCQlpOTE1
+X2dlbV9jb250ZXh0X2NsZWFyX3VzZXJfZW5naW5lcyhjdHgpOwotCXJjdV9zd2FwX3Byb3RlY3Rl
+ZChjdHgtPmVuZ2luZXMsIHNldC5lbmdpbmVzLCAxKTsKKwlzZXQuZW5naW5lcyA9IHJjdV9yZXBs
+YWNlKGN0eC0+ZW5naW5lcywgc2V0LmVuZ2luZXMsIDEpOwogCW11dGV4X3VubG9jaygmY3R4LT5l
+bmdpbmVzX211dGV4KTsKIAogCWNhbGxfcmN1KCZzZXQuZW5naW5lcy0+cmN1LCBmcmVlX2VuZ2lu
+ZXNfcmN1KTsKLS0gCjIuOS41CgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVz
+a3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9p
+bnRlbC1nZng=
