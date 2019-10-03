@@ -1,33 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE0DFCAF97
-	for <lists+intel-gfx@lfdr.de>; Thu,  3 Oct 2019 21:53:54 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C0DD3CAF9D
+	for <lists+intel-gfx@lfdr.de>; Thu,  3 Oct 2019 21:56:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4DEE26EA75;
-	Thu,  3 Oct 2019 19:53:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1033C6EA76;
+	Thu,  3 Oct 2019 19:56:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B82296EA75
- for <intel-gfx@lists.freedesktop.org>; Thu,  3 Oct 2019 19:53:51 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5FC056EA76
+ for <intel-gfx@lists.freedesktop.org>; Thu,  3 Oct 2019 19:56:02 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from localhost (unverified [78.156.65.138]) 
  by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 18714730-1500050 for multiple; Thu, 03 Oct 2019 20:53:43 +0100
+ 18714741-1500050 for multiple; Thu, 03 Oct 2019 20:56:00 +0100
 MIME-Version: 1.0
-To: Matthew Auld <matthew.auld@intel.com>, intel-gfx@lists.freedesktop.org
 From: Chris Wilson <chris@chris-wilson.co.uk>
-In-Reply-To: <20191003192444.10113-15-matthew.auld@intel.com>
-References: <20191003192444.10113-1-matthew.auld@intel.com>
- <20191003192444.10113-15-matthew.auld@intel.com>
-Message-ID: <157013242128.12925.17301740650352004336@skylake-alporthouse-com>
 User-Agent: alot/0.6
-Date: Thu, 03 Oct 2019 20:53:41 +0100
-Subject: Re: [Intel-gfx] [PATCH v2 14/22] drm/i915: define
- HAS_MAPPABLE_APERTURE
+To: Matthew Auld <matthew.auld@intel.com>, intel-gfx@lists.freedesktop.org
+References: <20191003192444.10113-1-matthew.auld@intel.com>
+ <20191003192444.10113-20-matthew.auld@intel.com>
+In-Reply-To: <20191003192444.10113-20-matthew.auld@intel.com>
+Message-ID: <157013255769.12925.3275211921517044581@skylake-alporthouse-com>
+Date: Thu, 03 Oct 2019 20:55:57 +0100
+Subject: Re: [Intel-gfx] [PATCH v2 19/22] drm/i915: don't allocate the ring
+ in stolen if we lack aperture
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -45,24 +45,28 @@ Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-UXVvdGluZyBNYXR0aGV3IEF1bGQgKDIwMTktMTAtMDMgMjA6MjQ6MzYpCj4gRnJvbTogRGFuaWVs
-ZSBDZXJhb2xvIFNwdXJpbyA8ZGFuaWVsZS5jZXJhb2xvc3B1cmlvQGludGVsLmNvbT4KPiAKPiBU
-aGUgZm9sbG93aW5nIHBhdGNoZXMgaW4gdGhlIHNlcmllcyB3aWxsIHVzZSBpdCB0byBhdm9pZCBj
-ZXJ0YWluCj4gb3BlcmF0aW9ucyB3aGVuIGFwZXJ0dXJlIGlzIG5vdCBhdmFpbGFibGUgaW4gSFcu
-Cj4gCj4gU2lnbmVkLW9mZi1ieTogRGFuaWVsZSBDZXJhb2xvIFNwdXJpbyA8ZGFuaWVsZS5jZXJh
-b2xvc3B1cmlvQGludGVsLmNvbT4KPiBDYzogTWF0dGhldyBBdWxkIDxtYXR0aGV3LmF1bGRAaW50
-ZWwuY29tPgo+IC0tLQo+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2Rydi5oIHwgMiArKwo+
-ICAxIGZpbGUgY2hhbmdlZCwgMiBpbnNlcnRpb25zKCspCj4gCj4gZGlmZiAtLWdpdCBhL2RyaXZl
-cnMvZ3B1L2RybS9pOTE1L2k5MTVfZHJ2LmggYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2Ry
-di5oCj4gaW5kZXggMmM1Y2IyZmVkYTI3Li43ODI0YTMxZWU0NDggMTAwNjQ0Cj4gLS0tIGEvZHJp
-dmVycy9ncHUvZHJtL2k5MTUvaTkxNV9kcnYuaAo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1
-L2k5MTVfZHJ2LmgKPiBAQCAtMjExOSw2ICsyMTE5LDggQEAgSVNfU1VCUExBVEZPUk0oY29uc3Qg
-c3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmk5MTUsCj4gICNkZWZpbmUgT1ZFUkxBWV9ORUVEU19Q
-SFlTSUNBTChkZXZfcHJpdikgXAo+ICAgICAgICAgICAgICAgICAoSU5URUxfSU5GTyhkZXZfcHJp
-diktPmRpc3BsYXkub3ZlcmxheV9uZWVkc19waHlzaWNhbCkKPiAgCj4gKyNkZWZpbmUgSEFTX01B
-UFBBQkxFX0FQRVJUVVJFKGRldl9wcml2KSAoZGV2X3ByaXYtPmdndHQubWFwcGFibGVfZW5kID4g
-MCkKCkknbSBqdXN0IG5vdCBsaWtpbmcgdHlpbmcgdGhpcyB0byBpOTE1IGFuZCBub3QgZ2d0dC4g
-OnwKQWxzbyAoZGV2X3ByaXYpCi1DaHJpcwpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5m
-cmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0
-aW5mby9pbnRlbC1nZng=
+UXVvdGluZyBNYXR0aGV3IEF1bGQgKDIwMTktMTAtMDMgMjA6MjQ6NDEpCj4gU2luY2Ugd2UgaGF2
+ZSBubyB3YXkgYWNjZXNzIGl0IGZyb20gdGhlIENQVS4gRm9yIHN1Y2ggY2FzZXMganVzdAo+IGZh
+bGxiYWNrIHRvIGludGVybmFsIG9iamVjdHMuCj4gCj4gU2lnbmVkLW9mZi1ieTogTWF0dGhldyBB
+dWxkIDxtYXR0aGV3LmF1bGRAaW50ZWwuY29tPgo+IC0tLQo+ICBkcml2ZXJzL2dwdS9kcm0vaTkx
+NS9ndC9pbnRlbF9yaW5nYnVmZmVyLmMgfCA0ICsrKy0KPiAgMSBmaWxlIGNoYW5nZWQsIDMgaW5z
+ZXJ0aW9ucygrKSwgMSBkZWxldGlvbigtKQo+IAo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9k
+cm0vaTkxNS9ndC9pbnRlbF9yaW5nYnVmZmVyLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9p
+bnRlbF9yaW5nYnVmZmVyLmMKPiBpbmRleCBlMjIwYzA5YzZmMzIuLmM0OGYxZDIwYWY1ZiAxMDA2
+NDQKPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRlbF9yaW5nYnVmZmVyLmMKPiAr
+KysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRlbF9yaW5nYnVmZmVyLmMKPiBAQCAtMTI3
+Myw3ICsxMjczLDkgQEAgc3RhdGljIHN0cnVjdCBpOTE1X3ZtYSAqY3JlYXRlX3Jpbmdfdm1hKHN0
+cnVjdCBpOTE1X2dndHQgKmdndHQsIGludCBzaXplKQogICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgXgpUaGVyZSdzIGEgZ2d0dCBy
+aWdodCB0aGVyZSAtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQoKPiAgICAg
+ICAgIHN0cnVjdCBkcm1faTkxNV9nZW1fb2JqZWN0ICpvYmo7Cj4gICAgICAgICBzdHJ1Y3QgaTkx
+NV92bWEgKnZtYTsKPiAgCj4gLSAgICAgICBvYmogPSBpOTE1X2dlbV9vYmplY3RfY3JlYXRlX3N0
+b2xlbihpOTE1LCBzaXplKTsKPiArICAgICAgIG9iaiA9IEVSUl9QVFIoLUVOT0RFVik7Cj4gKyAg
+ICAgICBpZiAoSEFTX01BUFBBQkxFX0FQRVJUVVJFKGk5MTUpKQo+ICsgICAgICAgICAgICAgICBv
+YmogPSBpOTE1X2dlbV9vYmplY3RfY3JlYXRlX3N0b2xlbihpOTE1LCBzaXplKTsKPiAgICAgICAg
+IGlmIChJU19FUlIob2JqKSkKPiAgICAgICAgICAgICAgICAgb2JqID0gaTkxNV9nZW1fb2JqZWN0
+X2NyZWF0ZV9pbnRlcm5hbChpOTE1LCBzaXplKTsKPiAgICAgICAgIGlmIChJU19FUlIob2JqKSkK
+PiAtLSAKPiAyLjIwLjEKPiAKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0
+b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50
+ZWwtZ2Z4
