@@ -2,31 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 19743CA80B
-	for <lists+intel-gfx@lfdr.de>; Thu,  3 Oct 2019 19:04:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E5AF3CAB78
+	for <lists+intel-gfx@lfdr.de>; Thu,  3 Oct 2019 19:31:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EEEFA6EA29;
-	Thu,  3 Oct 2019 17:04:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D3D596E2A3;
+	Thu,  3 Oct 2019 17:31:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 00F8E6EA28;
- Thu,  3 Oct 2019 17:04:49 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id ED620A0093;
- Thu,  3 Oct 2019 17:04:48 +0000 (UTC)
+Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E21C96E0C6;
+ Thu,  3 Oct 2019 07:26:41 +0000 (UTC)
+Received: from localhost (lfbn-1-10718-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256
+ bits)) (No client certificate requested)
+ by mail.kernel.org (Postfix) with ESMTPSA id 1339C21A4C;
+ Thu,  3 Oct 2019 07:26:40 +0000 (UTC)
+Date: Thu, 3 Oct 2019 09:26:38 +0200
+From: Maxime Ripard <mripard@kernel.org>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Message-ID: <20191003072638.anj5dc435y2s3ybn@gilmour>
+References: <20191002200604.gjae7xjtdaj3j3ga@gilmour>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Thu, 03 Oct 2019 17:04:48 -0000
-Message-ID: <20191003170448.3223.55640@emeril.freedesktop.org>
-References: <20191003093639.10186-1-chris@chris-wilson.co.uk>
-X-Patchwork-Hint: ignore
-In-Reply-To: <20191003093639.10186-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_seri?=
- =?utf-8?q?es_starting_with_=5Bv3=5D_dma-fence=3A_Serialise_signal_enablin?=
- =?utf-8?q?g_=28dma=5Ffence=5Fenable=5Fsw=5Fsignaling=29_=28rev9=29?=
+In-Reply-To: <20191002200604.gjae7xjtdaj3j3ga@gilmour>
+User-Agent: NeoMutt/20180716
+X-Mailman-Approved-At: Thu, 03 Oct 2019 17:31:17 +0000
+X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=kernel.org; s=default; t=1570087601;
+ bh=QR4Uir5QA5yuAA0UG6T3OR8FxwWOArKmjP/PGhrEXfk=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=fFEPsTVIuYD0EzB8aJcsc+9MD23x04NtDZrzZ6QMagt/T14njDiK8F76RV+4Thk+S
+ ZHUL/nGcE3HLtHRTthkFK5ikilnfm6kyiAV0SDA4fPRW0+UNzaXEhn9cRuZzJcQGCm
+ 2g2DVRa+CkXOPE5clz0+vpuGBZPwTJlvuUKENGfs=
+Subject: Re: [Intel-gfx] [PULL] drm-misc-fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -39,86 +46,67 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: dim-tools@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============0784206659=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-PT0gU2VyaWVzIERldGFpbHMgPT0KClNlcmllczogc2VyaWVzIHN0YXJ0aW5nIHdpdGggW3YzXSBk
-bWEtZmVuY2U6IFNlcmlhbGlzZSBzaWduYWwgZW5hYmxpbmcgKGRtYV9mZW5jZV9lbmFibGVfc3df
-c2lnbmFsaW5nKSAocmV2OSkKVVJMICAgOiBodHRwczovL3BhdGNod29yay5mcmVlZGVza3RvcC5v
-cmcvc2VyaWVzLzY3NTI5LwpTdGF0ZSA6IHN1Y2Nlc3MKCj09IFN1bW1hcnkgPT0KCkNJIEJ1ZyBM
-b2cgLSBjaGFuZ2VzIGZyb20gQ0lfRFJNXzY5OTggLT4gUGF0Y2h3b3JrXzE0NjUyCj09PT09PT09
-PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0KClN1bW1hcnkKLS0t
-LS0tLQoKICAqKlNVQ0NFU1MqKgoKICBObyByZWdyZXNzaW9ucyBmb3VuZC4KCiAgRXh0ZXJuYWwg
-VVJMOiBodHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlwL1BhdGNod29ya18x
-NDY1Mi9pbmRleC5odG1sCgpLbm93biBpc3N1ZXMKLS0tLS0tLS0tLS0tCgogIEhlcmUgYXJlIHRo
-ZSBjaGFuZ2VzIGZvdW5kIGluIFBhdGNod29ya18xNDY1MiB0aGF0IGNvbWUgZnJvbSBrbm93biBp
-c3N1ZXM6CgojIyMgSUdUIGNoYW5nZXMgIyMjCgojIyMjIElzc3VlcyBoaXQgIyMjIwoKICAqIGln
-dEBnZW1fZXhlY19zdXNwZW5kQGJhc2ljLXMzOgogICAgLSBmaS1zbmItMjYwMDogICAgICAgIFtQ
-QVNTXVsxXSAtPiBbRE1FU0ctV0FSTl1bMl0gKFtmZG8jMTAyMzY1XSkKICAgWzFdOiBodHRwczov
-L2ludGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlwL0NJX0RSTV82OTk4L2ZpLXNuYi0yNjAw
-L2lndEBnZW1fZXhlY19zdXNwZW5kQGJhc2ljLXMzLmh0bWwKICAgWzJdOiBodHRwczovL2ludGVs
-LWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlwL1BhdGNod29ya18xNDY1Mi9maS1zbmItMjYwMC9p
-Z3RAZ2VtX2V4ZWNfc3VzcGVuZEBiYXNpYy1zMy5odG1sCgogIAojIyMjIFBvc3NpYmxlIGZpeGVz
-ICMjIyMKCiAgKiBpZ3RAZ2VtX2V4ZWNfZ3R0ZmlsbEBiYXNpYzoKICAgIC0gZmktYXBsLWd1Yzog
-ICAgICAgICBbRE1FU0ctV0FSTl1bM10gKFtmZG8jMTA5Mzg1XSAvIFtmZG8jMTExNjUyIF0pIC0+
-IFtQQVNTXVs0XQogICBbM106IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10
-aXAvQ0lfRFJNXzY5OTgvZmktYXBsLWd1Yy9pZ3RAZ2VtX2V4ZWNfZ3R0ZmlsbEBiYXNpYy5odG1s
-CiAgIFs0XTogaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9QYXRjaHdv
-cmtfMTQ2NTIvZmktYXBsLWd1Yy9pZ3RAZ2VtX2V4ZWNfZ3R0ZmlsbEBiYXNpYy5odG1sCgogICog
-aWd0QGttc19jaGFtZWxpdW1AaGRtaS1ocGQtZmFzdDoKICAgIC0gZmktaWNsLXUyOiAgICAgICAg
-ICBbRkFJTF1bNV0gKFtmZG8jMTA5NDgzXSkgLT4gW1BBU1NdWzZdCiAgIFs1XTogaHR0cHM6Ly9p
-bnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9DSV9EUk1fNjk5OC9maS1pY2wtdTIvaWd0
-QGttc19jaGFtZWxpdW1AaGRtaS1ocGQtZmFzdC5odG1sCiAgIFs2XTogaHR0cHM6Ly9pbnRlbC1n
-ZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9QYXRjaHdvcmtfMTQ2NTIvZmktaWNsLXUyL2lndEBr
-bXNfY2hhbWVsaXVtQGhkbWktaHBkLWZhc3QuaHRtbAoKICAKICBbZmRvIzEwMjM2NV06IGh0dHBz
-Oi8vYnVncy5mcmVlZGVza3RvcC5vcmcvc2hvd19idWcuY2dpP2lkPTEwMjM2NQogIFtmZG8jMTA5
-Mzg1XTogaHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MTA5Mzg1
-CiAgW2ZkbyMxMDk0ODNdOiBodHRwczovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNn
-aT9pZD0xMDk0ODMKICBbZmRvIzExMTY1MiBdOiBodHRwczovL2J1Z3MuZnJlZWRlc2t0b3Aub3Jn
-L3Nob3dfYnVnLmNnaT9pZD0xMTE2NTIgCgoKUGFydGljaXBhdGluZyBob3N0cyAoNTEgLT4gNDIp
-Ci0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQoKICBNaXNzaW5nICAgICg5KTogZmktaWxr
-LW01NDAgZmktaHN3LTQyMDB1IGZpLWJ5dC1zcXVhd2tzIGZpLWJzdy1jeWFuIGZpLWJ5dC1jbGFw
-cGVyIGZpLXBudi1kNTEwIGZpLWljbC15IGZpLWJzdy1rZWZrYSBmaS1iZHctc2FtdXMgCgoKQnVp
-bGQgY2hhbmdlcwotLS0tLS0tLS0tLS0tCgogICogQ0k6IENJLTIwMTkwNTI5IC0+IE5vbmUKICAq
-IExpbnV4OiBDSV9EUk1fNjk5OCAtPiBQYXRjaHdvcmtfMTQ2NTIKCiAgQ0ktMjAxOTA1Mjk6IDIw
-MTkwNTI5CiAgQ0lfRFJNXzY5OTg6IGZkNDQ5NzZiZmY3YWUzY2RmNzIyNDVhYzMzZDkyZDIxODZl
-NTdlOWIgQCBnaXQ6Ly9hbm9uZ2l0LmZyZWVkZXNrdG9wLm9yZy9nZngtY2kvbGludXgKICBJR1Rf
-NTIxMDogNzRmNTUxMTlmOTkyMGI2NTk5NjUzNTIxMGEwOTE0Nzk5NzgwNDEzNiBAIGdpdDovL2Fu
-b25naXQuZnJlZWRlc2t0b3Aub3JnL3hvcmcvYXBwL2ludGVsLWdwdS10b29scwogIFBhdGNod29y
-a18xNDY1MjogMTc1MWRiMmFjYjcwM2QzY2I1YjA4NjQwMTQyZDg1YjY0YWUzZmEyNCBAIGdpdDov
-L2Fub25naXQuZnJlZWRlc2t0b3Aub3JnL2dmeC1jaS9saW51eAoKCj09IExpbnV4IGNvbW1pdHMg
-PT0KCjE3NTFkYjJhY2I3MCBkcm0vaTkxNTogRHJvcCBzdHJ1Y3RfbXV0ZXggZnJvbSBhcm91bmQg
-R0VNIGluaXRpYWxpc2F0aW9uCjU0NTM2NjRlZDA1NiBkcm0vaTkxNS9zZWxmdGVzdHM6IERyb3Ag
-dmVzdGlnYWwgc3RydWN0X211dGV4IGd1YXJkcwplOTlhMzJmNjUxN2YgZHJtL2k5MTU6IERyb3Ag
-c3RydWN0X211dGV4IGZyb20gc3VzcGVuZCBzdGF0ZSBzYXZlL3Jlc3RvcmUKNWMzZmNjNzVmYjZk
-IGRybS9pOTE1OiBSZW1vdmUgc3RydWN0X211dGV4IGd1YXJkIGZvciBkZWJ1Z2ZzL29wcmVnaW9u
-CmVhNmYzMGJkNWM0MCBkcm0vaTkxNTogRHJvcCBzdHJ1Y3RfbXV0ZXggZ3VhcmQgZnJvbSBkZWJ1
-Z2ZzL2ZyYW1lYnVmZmVyX2luZm8KZjhjYmQxNzU0NjlmIGRybS9pOTE1L292ZXJsYXk6IERyb3Ag
-c3RydWN0X211dGV4IGd1YXJkCjM4MGRlZjY2MzU0YyBkcm0vaTkxNTogTW92ZSBjb250ZXh0IG1h
-bmFnZW1lbnQgdW5kZXIgR0VNCmY1ZjI2NGExNjFkMSBkcm0vaTkxNTogUmVtb3ZlIGxvZ2ljYWwg
-SFcgSUQKNjhmMmUyNmE5ZTlkIGRybS9pOTE1OiBNb3ZlIGdsb2JhbCBhY3Rpdml0eSB0cmFja2lu
-ZyBmcm9tIEdFTSB0byBHVAoxNzFhZTAxNTZhYTggZHJtL2k5MTU6IE1vdmUgcmVxdWVzdCBydW50
-aW1lIG1hbmFnZW1lbnQgb250byBndApjNTVmYzYwNDZjY2IgZHJtL2k5MTUvZ2VtOiBSZXRpcmUg
-ZGlyZWN0bHkgZm9yIG1tYXAtb2Zmc2V0IHNocmlua2luZwpkODJiNWViZjdmOWEgZHJtL2k5MTU6
-IE1lcmdlIHdhaXRfZm9yX3RpbWVsaW5lcyB3aXRoIHJldGlyZV9yZXF1ZXN0CjNjNTgxOWE3NDgz
-ZSBkcm0vaTkxNTogUmVtb3ZlIHRoZSBHRU0gaWRsZSB3b3JrZXIKMTVhMjZlNGFjYmRkIGRybS9p
-OTE1OiBEcm9wIHN0cnVjdF9tdXRleCBmcm9tIGFyb3VuZCBpOTE1X3JldGlyZV9yZXF1ZXN0cygp
-CjYzYWQxZGEwMDA0NiBkcm0vaTkxNTogTW92ZSBpZGxlIGJhcnJpZXIgY2xlYW51cCBpbnRvIGVu
-Z2luZS1wbQpkM2FiYWFlN2E1ZDUgZHJtL2k5MTU6IENvb3JkaW5hdGUgaTkxNV9hY3RpdmUgd2l0
-aCBpdHMgb3duIG11dGV4CmJhZjI4ZmU3YjNkNyBkcm0vaTkxNTogUHVzaCB0aGUgaTkxNV9hY3Rp
-dmUucmV0aXJlIGludG8gYSB3b3JrZXIKNjZkMWY5NjFhODM0IGRybS9pOTE1OiBQdWxsIGk5MTVf
-dm1hX3BpbiB1bmRlciB0aGUgdm0tPm11dGV4CjBlZGJiODQ2MzNkMCBkcm0vaTkxNTogTWFyayB1
-cCBhZGRyZXNzIHNwYWNlcyB0aGF0IG1heSBuZWVkIHRvIGFsbG9jYXRlCjMzZGYzYTM1OWZkMCBk
-cm0vaTkxNTogT25seSB0cmFjayBib3VuZCBlbGVtZW50cyBvZiB0aGUgR1RUCjQwZTExNzgwMDRh
-ZSBkcm0vbW06IFBhY2sgYWxsb2NhdGVkL3NjYW5uZWQgYm9vbGVhbiBpbnRvIGEgYml0ZmllbGQK
-ZDhlYTU1NGU3NmFiIGRtYS1mZW5jZTogU2VyaWFsaXNlIHNpZ25hbCBlbmFibGluZyAoZG1hX2Zl
-bmNlX2VuYWJsZV9zd19zaWduYWxpbmcpCgo9PSBMb2dzID09CgpGb3IgbW9yZSBkZXRhaWxzIHNl
-ZTogaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9QYXRjaHdvcmtfMTQ2
-NTIvaW5kZXguaHRtbApfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5v
-cmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1n
-Zng=
+
+--===============0784206659==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="ljzcyyxudgt7bax5"
+Content-Disposition: inline
+
+
+--ljzcyyxudgt7bax5
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+
+Hi,
+
+On Wed, Oct 02, 2019 at 10:06:04PM +0200, Maxime Ripard wrote:
+> Hi Dave, Daniel,
+>
+> I hope that you enjoy XDC if you could make it this year :)
+>
+> Here's the first round of fixes for drm-misc
+>
+> Maxime
+>
+> drm-misc-fixes-2019-10-02:
+>  - One include fix for tilcdc
+>  - A memory leak fix for Komeda
+>  - Some fixes for resources cleanups with writeback
+
+So it turns out that while that tag was pushed, I forgot to push the
+branch first, and now we have a conflict.
+
+Let's drop this PR, I'll do another one.
+
+Maxime
+
+--ljzcyyxudgt7bax5
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXZWirgAKCRDj7w1vZxhR
+xYLyAQDEaPqZF8CrG4OUvALk4W65TGSlW3f4xXvfxfPsj8McCAD/dzJkJEhbUX5A
+slC1Mal7RMu2vtsATYKrnUWjQF6G5wI=
+=/Zge
+-----END PGP SIGNATURE-----
+
+--ljzcyyxudgt7bax5--
+
+--===============0784206659==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
+IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
+
+--===============0784206659==--
