@@ -1,32 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B654CD3B0
-	for <lists+intel-gfx@lfdr.de>; Sun,  6 Oct 2019 18:50:27 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1208FCD3AB
+	for <lists+intel-gfx@lfdr.de>; Sun,  6 Oct 2019 18:50:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 56CA56E40F;
-	Sun,  6 Oct 2019 16:50:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5C00389DE1;
+	Sun,  6 Oct 2019 16:50:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6564E895B5
- for <intel-gfx@lists.freedesktop.org>; Sun,  6 Oct 2019 16:50:17 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B34296E41D
+ for <intel-gfx@lists.freedesktop.org>; Sun,  6 Oct 2019 16:50:16 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 18742841-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 18742842-1500050 
  for multiple; Sun, 06 Oct 2019 17:50:04 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Sun,  6 Oct 2019 17:49:53 +0100
-Message-Id: <20191006165002.30312-3-chris@chris-wilson.co.uk>
+Date: Sun,  6 Oct 2019 17:49:54 +0100
+Message-Id: <20191006165002.30312-4-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.23.0
 In-Reply-To: <20191006165002.30312-1-chris@chris-wilson.co.uk>
 References: <20191006165002.30312-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 03/12] drm/i915/gt: Restore dropped
- 'interruptible' flag
+Subject: [Intel-gfx] [PATCH 04/12] drm/i915/gt: Treat a busy timeline as
+ 'active' while waiting
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -44,22 +44,26 @@ Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-TG9zdCBpbiB0aGUgcmViYXNpbmcgd2FzIFR2cnRrbydzIHJlbWluZGVyIHRoYXQgd2UgbmVlZCB0
-byBrZWVwIGFuCnVuaW50ZXJydXB0aWJsZSB3YWl0IGFyb3VuZCBmb3IgdGhlIElyb25sYWtlIFZU
-LWQgdy9hCgpTaWduZWQtb2ZmLWJ5OiBDaHJpcyBXaWxzb24gPGNocmlzQGNocmlzLXdpbHNvbi5j
-by51az4KQ2M6IFR2cnRrbyBVcnN1bGluIDx0dnJ0a28udXJzdWxpbkBpbnRlbC5jb20+Ci0tLQog
-ZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfZ3RfcmVxdWVzdHMuYyB8IDIgKy0KIDEgZmls
-ZSBjaGFuZ2VkLCAxIGluc2VydGlvbigrKSwgMSBkZWxldGlvbigtKQoKZGlmZiAtLWdpdCBhL2Ry
-aXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX2d0X3JlcXVlc3RzLmMgYi9kcml2ZXJzL2dwdS9k
-cm0vaTkxNS9ndC9pbnRlbF9ndF9yZXF1ZXN0cy5jCmluZGV4IDhhZWQ4OWZkMmNkYy4uZDY5ZTc4
-NDc4ZWVhIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRlbF9ndF9yZXF1
-ZXN0cy5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX2d0X3JlcXVlc3RzLmMK
-QEAgLTQ4LDcgKzQ4LDcgQEAgbG9uZyBpbnRlbF9ndF9yZXRpcmVfcmVxdWVzdHNfdGltZW91dChz
-dHJ1Y3QgaW50ZWxfZ3QgKmd0LCBsb25nIHRpbWVvdXQpCiAJCQlmZW5jZSA9IGk5MTVfYWN0aXZl
-X2ZlbmNlX2dldCgmdGwtPmxhc3RfcmVxdWVzdCk7CiAJCQlpZiAoZmVuY2UpIHsKIAkJCQl0aW1l
-b3V0ID0gZG1hX2ZlbmNlX3dhaXRfdGltZW91dChmZW5jZSwKLQkJCQkJCQkJIHRydWUsCisJCQkJ
-CQkJCSBpbnRlcnJ1cHRpYmxlLAogCQkJCQkJCQkgdGltZW91dCk7CiAJCQkJZG1hX2ZlbmNlX3B1
-dChmZW5jZSk7CiAJCQl9Ci0tIAoyLjIzLjAKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3Rz
-LmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xp
-c3RpbmZvL2ludGVsLWdmeA==
+SWYgd2UgY2Fubm90IGNsYWltIHRoZSB0aW1lbGluZS0+bXV0ZXggd2hpbGUgcHJlcGFyaW5nIGZv
+ciBhIHdhaXQgb24gaXQsCndlIGhhdmUgdG8gc2tpcCB0aGUgdGltZWxpbmUuIEluIGRvaW5nIHNv
+LCB0cmVhdCBpdCBhcyBhY3RpdmUgc28gdGhhdAp1bmRlciBhIGludGVsX2d0X3dhaXRfZm9yX2lk
+bGUoKSBsb29wLCB3ZSByZXBlYXQgdGhlIHdhaXQgYWZ0ZXIKc2NoZWR1bGluZyBhd2F5LgoKU2ln
+bmVkLW9mZi1ieTogQ2hyaXMgV2lsc29uIDxjaHJpc0BjaHJpcy13aWxzb24uY28udWs+CkNjOiBU
+dnJ0a28gVXJzdWxpbiA8dHZydGtvLnVyc3VsaW5AaW50ZWwuY29tPgotLS0KIGRyaXZlcnMvZ3B1
+L2RybS9pOTE1L2d0L2ludGVsX2d0X3JlcXVlc3RzLmMgfCA0ICsrKy0KIDEgZmlsZSBjaGFuZ2Vk
+LCAzIGluc2VydGlvbnMoKyksIDEgZGVsZXRpb24oLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dw
+dS9kcm0vaTkxNS9ndC9pbnRlbF9ndF9yZXF1ZXN0cy5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUv
+Z3QvaW50ZWxfZ3RfcmVxdWVzdHMuYwppbmRleCBkNjllNzg0NzhlZWEuLmNhNjA2Yjc5ZmQ1ZSAx
+MDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfZ3RfcmVxdWVzdHMuYwor
+KysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRlbF9ndF9yZXF1ZXN0cy5jCkBAIC0zNCw4
+ICszNCwxMCBAQCBsb25nIGludGVsX2d0X3JldGlyZV9yZXF1ZXN0c190aW1lb3V0KHN0cnVjdCBp
+bnRlbF9ndCAqZ3QsIGxvbmcgdGltZW91dCkKIAogCXNwaW5fbG9ja19pcnFzYXZlKCZ0aW1lbGlu
+ZXMtPmxvY2ssIGZsYWdzKTsKIAlsaXN0X2Zvcl9lYWNoX2VudHJ5X3NhZmUodGwsIHRuLCAmdGlt
+ZWxpbmVzLT5hY3RpdmVfbGlzdCwgbGluaykgewotCQlpZiAoIW11dGV4X3RyeWxvY2soJnRsLT5t
+dXRleCkpCisJCWlmICghbXV0ZXhfdHJ5bG9jaygmdGwtPm11dGV4KSkgeworCQkJYWN0aXZlX2Nv
+dW50Kys7IC8qIHJlcG9ydCBidXN5IHRvIGNhbGxlciwgdHJ5IGFnYWluPyAqLwogCQkJY29udGlu
+dWU7CisJCX0KIAogCQlpbnRlbF90aW1lbGluZV9nZXQodGwpOwogCQlHRU1fQlVHX09OKCF0bC0+
+YWN0aXZlX2NvdW50KTsKLS0gCjIuMjMuMAoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMu
+ZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlz
+dGluZm8vaW50ZWwtZ2Z4
