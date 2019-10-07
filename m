@@ -2,21 +2,21 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8CF77CDE8B
-	for <lists+intel-gfx@lfdr.de>; Mon,  7 Oct 2019 11:58:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EFE1DCDE8C
+	for <lists+intel-gfx@lfdr.de>; Mon,  7 Oct 2019 11:59:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3441789CC1;
-	Mon,  7 Oct 2019 09:58:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 61CC46E513;
+	Mon,  7 Oct 2019 09:59:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B262189CC1
- for <intel-gfx@lists.freedesktop.org>; Mon,  7 Oct 2019 09:58:26 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 658EA6E513
+ for <intel-gfx@lists.freedesktop.org>; Mon,  7 Oct 2019 09:59:13 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from localhost (unverified [78.156.65.138]) 
  by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 18749025-1500050 for multiple; Mon, 07 Oct 2019 10:58:21 +0100
+ 18749034-1500050 for multiple; Mon, 07 Oct 2019 10:59:07 +0100
 MIME-Version: 1.0
 To: Abdiel Janulgue <abdiel.janulgue@linux.intel.com>,
  intel-gfx@lists.freedesktop.org
@@ -24,9 +24,9 @@ From: Chris Wilson <chris@chris-wilson.co.uk>
 In-Reply-To: <20191007091920.2176-3-abdiel.janulgue@linux.intel.com>
 References: <20191007091920.2176-1-abdiel.janulgue@linux.intel.com>
  <20191007091920.2176-3-abdiel.janulgue@linux.intel.com>
-Message-ID: <157044229962.2661.6994247372786082540@skylake-alporthouse-com>
+Message-ID: <157044234579.2661.13706266546827730732@skylake-alporthouse-com>
 User-Agent: alot/0.6
-Date: Mon, 07 Oct 2019 10:58:19 +0100
+Date: Mon, 07 Oct 2019 10:59:05 +0100
 Subject: Re: [Intel-gfx] [PATCH v2 3/5] drm/i915: Introduce
  DRM_I915_GEM_MMAP_OFFSET
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -47,11 +47,20 @@ Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-UXVvdGluZyBBYmRpZWwgSmFudWxndWUgKDIwMTktMTAtMDcgMTA6MTk6MTgpCj4gIGVudW0gaTkx
-NV9tbWFwX3R5cGUgewo+ICAgICAgICAgSTkxNV9NTUFQX1RZUEVfR1RUID0gMCwKPiArICAgICAg
-IEk5MTVfTU1BUF9UWVBFX09GRlNFVF9XQywKPiArICAgICAgIEk5MTVfTU1BUF9UWVBFX09GRlNF
-VF9XQiwKPiArICAgICAgIEk5MTVfTU1BUF9UWVBFX09GRlNFVF9VQywKCl9PRkZTRVRfIGlzIHdv
-cnNlIHRoYW4gcmVkdW5kYW50LgotQ2hyaXMKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMu
-ZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlz
-dGluZm8vaW50ZWwtZ2Z4
+UXVvdGluZyBBYmRpZWwgSmFudWxndWUgKDIwMTktMTAtMDcgMTA6MTk6MTgpCj4gZGlmZiAtLWdp
+dCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZHJ2LmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkx
+NS9pOTE1X2Rydi5jCj4gaW5kZXggY2M3MGFiYTZhYzI2Li45MTgyZGE1NzE4MmIgMTAwNjQ0Cj4g
+LS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9kcnYuYwo+ICsrKyBiL2RyaXZlcnMvZ3B1
+L2RybS9pOTE1L2k5MTVfZHJ2LmMKPiBAQCAtMjY5Niw3ICsyNjk2LDcgQEAgc3RhdGljIGNvbnN0
+IHN0cnVjdCBkcm1faW9jdGxfZGVzYyBpOTE1X2lvY3Rsc1tdID0gewo+ICAgICAgICAgRFJNX0lP
+Q1RMX0RFRl9EUlYoSTkxNV9HRU1fUFJFQUQsIGk5MTVfZ2VtX3ByZWFkX2lvY3RsLCBEUk1fUkVO
+REVSX0FMTE9XKSwKPiAgICAgICAgIERSTV9JT0NUTF9ERUZfRFJWKEk5MTVfR0VNX1BXUklURSwg
+aTkxNV9nZW1fcHdyaXRlX2lvY3RsLCBEUk1fUkVOREVSX0FMTE9XKSwKPiAgICAgICAgIERSTV9J
+T0NUTF9ERUZfRFJWKEk5MTVfR0VNX01NQVAsIGk5MTVfZ2VtX21tYXBfaW9jdGwsIERSTV9SRU5E
+RVJfQUxMT1cpLAo+IC0gICAgICAgRFJNX0lPQ1RMX0RFRl9EUlYoSTkxNV9HRU1fTU1BUF9HVFQs
+IGk5MTVfZ2VtX21tYXBfZ3R0X2lvY3RsLCBEUk1fUkVOREVSX0FMTE9XKSwKPiArICAgICAgIERS
+TV9JT0NUTF9ERUZfRFJWKEk5MTVfR0VNX01NQVBfT0ZGU0VULCBpOTE1X2dlbV9tbWFwX2d0dF9p
+b2N0bCwgRFJNX1JFTkRFUl9BTExPVyksCgpBaGVtLgotQ2hyaXMKX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRl
+bC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
+L21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
