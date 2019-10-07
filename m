@@ -2,77 +2,47 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id AFDC3CEAC9
-	for <lists+intel-gfx@lfdr.de>; Mon,  7 Oct 2019 19:38:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 194C2CEB4E
+	for <lists+intel-gfx@lfdr.de>; Mon,  7 Oct 2019 19:58:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 45CA76E629;
-	Mon,  7 Oct 2019 17:38:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 08D5B6E6C3;
+	Mon,  7 Oct 2019 17:58:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-1.mimecast.com (us-smtp-2.mimecast.com
- [207.211.31.81])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A363B6E629
- for <intel-gfx@lists.freedesktop.org>; Mon,  7 Oct 2019 17:38:40 +0000 (UTC)
-Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com
- [209.85.160.197]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-325-NBPmTKn-N0yhezzymjHnPQ-1; Mon, 07 Oct 2019 13:38:37 -0400
-Received: by mail-qt1-f197.google.com with SMTP id d6so2048950qtn.2
- for <intel-gfx@lists.freedesktop.org>; Mon, 07 Oct 2019 10:38:37 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
- :references:user-agent:mime-version:content-transfer-encoding;
- bh=KcieA/2Xt6/7cG4p7yFwF153nHVTb/aDWMfjqMJALPY=;
- b=I28Jd08VZ0d2bNTBPll+NdQfqqC2Qa7ZWdi59dnwHgbNFseiy+HNFJrO5aQIlEGYdn
- aCor/k9QG7bftjiBGUxie8ocAJYRO0FLAYGzHYvQ/erbEmsLIhNNJaSznGfDpcoJYqnq
- On/62WbpFyhM4yBxBAEFU+NrpVGfzSqA2EuLWS5r0RBQqUW1kpnkQ+/ORZniMtPiF8bW
- vMvLUTftKGk+nZHo2v1QD99b9z09zYZ6NAJa6DJ04nC55/EF1XgFJFokJL7oHoC8pNR8
- VLvDVdj0Ur2MNO6jDqOq5D8zGb143IrX0j0sX/QfwdgI8+aXfHNSUy+UoH7Da7FuZgH0
- tLmQ==
-X-Gm-Message-State: APjAAAXsyRxOBnfytiGV/TtvjFeucCTsvsRhK0NrgQvdfHhDQ06PSLJJ
- BSZhlSYTB2vQgaimkO240JHXzotqDWJ3Wua2/Kr0bEfNKcronPcdWX53QjXQ0RlbNTPgNgaRWZV
- ih5jDi0U4Wtc+3y5LuDeFC9oFoR89
-X-Received: by 2002:a37:9d53:: with SMTP id g80mr24111489qke.67.1570469916977; 
- Mon, 07 Oct 2019 10:38:36 -0700 (PDT)
-X-Google-Smtp-Source: APXvYqzWZtSJJOqNn4spAi2Ge280yxxf1P6qRyg6ze5DowmWzG37A58TUJyjB720s9PTBdIeZfGUNg==
-X-Received: by 2002:a37:9d53:: with SMTP id g80mr24111454qke.67.1570469916659; 
- Mon, 07 Oct 2019 10:38:36 -0700 (PDT)
-Received: from desoxy (c-24-61-245-152.hsd1.ma.comcast.net. [24.61.245.152])
- by smtp.gmail.com with ESMTPSA id j2sm8281468qki.15.2019.10.07.10.38.35
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 07 Oct 2019 10:38:36 -0700 (PDT)
-Message-ID: <75105bb4d3c4ea37aaf53144be5d644f998f3626.camel@redhat.com>
-From: Adam Jackson <ajax@redhat.com>
-To: Jani Nikula <jani.nikula@intel.com>, 
- "20191004215851.31446-1-shawn.c.lee@intel.com"
- <20191004215851.31446-1-shawn.c.lee@intel.com>, 
- "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>, "dri-devel@lists.freedesktop.org"
- <dri-devel@lists.freedesktop.org>
-Date: Mon, 07 Oct 2019 13:38:34 -0400
-In-Reply-To: <877e5gj52f.fsf@intel.com>
-References: <20191004215851.31446-1-shawn.c.lee@intel.com>
- <33dcaf669eae3acfc3b716e68b69c0fe76dd2dbc.camel@redhat.com>
- <87d0fce4mh.fsf@intel.com>
- <D42A2A322A1FCA4089E30E9A9BA36AC65D6A9C66@PGSMSX111.gar.corp.intel.com>
- <877e5gj52f.fsf@intel.com>
-User-Agent: Evolution 3.34.0 (3.34.0-1.fc31)
+Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8B1E36E12D;
+ Mon,  7 Oct 2019 17:30:07 +0000 (UTC)
+Received: from mail-lj1-f175.google.com (mail-lj1-f175.google.com
+ [209.85.208.175])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+ (No client certificate requested)
+ by mail.kernel.org (Postfix) with ESMTPSA id 13DA521655;
+ Mon,  7 Oct 2019 17:30:07 +0000 (UTC)
+Received: by mail-lj1-f175.google.com with SMTP id l21so14589437lje.4;
+ Mon, 07 Oct 2019 10:30:06 -0700 (PDT)
+X-Gm-Message-State: APjAAAW11g164FCpgSrdGTI+HI4XoTlnHXHjY1KWw5IsAjfibnhtJ2d6
+ 6pYUhf2bDy9ccVedqUF9dSDSj6pmniEbN96kP90=
+X-Google-Smtp-Source: APXvYqwmBhQ/7r1sccn69bdteEM2oYrlVQ4Im2gzzv/FHBYneH2khccdbHlxPWXIpivEwoFLYEN1637fU1HLJrcElvg=
+X-Received: by 2002:a2e:9159:: with SMTP id q25mr376354ljg.225.1570469405263; 
+ Mon, 07 Oct 2019 10:30:05 -0700 (PDT)
 MIME-Version: 1.0
-X-MC-Unique: NBPmTKn-N0yhezzymjHnPQ-1
-X-Mimecast-Spam-Score: 0
-X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=redhat.com; 
- s=mimecast20190719; t=1570469919;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=utDzNVc5Po9Srf0wYPq3tnhKS2BoqIcfwjc0diQPbJM=;
- b=i3IB/KVaGN5GXYTBn0iwVptK8OxCu4vQ67e99jjmHMp0s9ZBsPmrxg5bsAb8OBqSFRAflr
- 4gqdUQEUB/VSKcSqf6OMp2+pGpDotGc44Q4wW0bfLseZa2pK1s77oxSzaU6Oagp/+MaL3A
- Ny2D2BQOqL0jBapDxy+y4omldrUTVQg=
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: customize DPCD brightness control
- for specific panel
+References: <20191004144549.3567-1-krzk@kernel.org> <87sgo4hjii.fsf@intel.com>
+ <CADnq5_MqGehpWwOAxYg0T2x3qXisqmae2uGG5dijQX+Aa4NsoQ@mail.gmail.com>
+In-Reply-To: <CADnq5_MqGehpWwOAxYg0T2x3qXisqmae2uGG5dijQX+Aa4NsoQ@mail.gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Date: Mon, 7 Oct 2019 19:29:54 +0200
+X-Gmail-Original-Message-ID: <CAJKOXPeVFeSDpxPv-rDywCafWbN3mivtcM3UQX_+wZkyPcZwPQ@mail.gmail.com>
+Message-ID: <CAJKOXPeVFeSDpxPv-rDywCafWbN3mivtcM3UQX_+wZkyPcZwPQ@mail.gmail.com>
+To: Alex Deucher <alexdeucher@gmail.com>
+X-Mailman-Approved-At: Mon, 07 Oct 2019 17:58:46 +0000
+X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=kernel.org; s=default; t=1570469407;
+ bh=7BgONx2fxTCBerkz+kZbipHG1ITh4B74FEdi9hVq484=;
+ h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+ b=qWQvAQdNF/Y5LcuOkgQNFbrOYyT9zV8nGvQWGIalDCdrCIVR6/XSgL48CyNJqeOpW
+ wkoJhtMz7y3IYD01mP1Wrjl9bN977MFW9mehzUiNsgxus43IHZn6NsBgmCM2nRA94W
+ gP8kq+CEaHsP6v680i7rvL8uFTY1XraSbw5To80E=
+Subject: Re: [Intel-gfx] [PATCH TRIVIAL v2] gpu: Fix Kconfig indentation
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -85,49 +55,33 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Chiou, Cooper" <cooper.chiou@intel.com>,
- Gustavo Padovan <gustavo@padovan.org>
+Cc: amd-gfx list <amd-gfx@lists.freedesktop.org>,
+ Jiri Kosina <trivial@kernel.org>, lima@lists.freedesktop.org,
+ David Airlie <airlied@linux.ie>, nouveau <nouveau@lists.freedesktop.org>,
+ Maling list - DRI developers <dri-devel@lists.freedesktop.org>,
+ LKML <linux-kernel@vger.kernel.org>, Maxime Ripard <mripard@kernel.org>,
+ linux-rockchip@lists.infradead.org,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gTW9uLCAyMDE5LTEwLTA3IGF0IDEyOjA4ICswMzAwLCBKYW5pIE5pa3VsYSB3cm90ZToKCj4g
-VGhlIHByb2JsZW0gd2l0aCB0aGUgRURJRCBxdWlya3MgaXMgdGhhdCBleHBvc2luZyB0aGUgcXVp
-cmtzIHN0aWNrcyBvdXQKPiBsaWtlIGEgc29yZSB0aHVtYi4gVGh1cyBmYXIgYWxsIG9mIGl0IGhh
-cyBiZWVuIGNvbnRhaW5lZCBpbiBkcm1fZWRpZC5jCj4gYW5kIHRoZXkgYWZmZWN0IGhvdyB0aGUg
-RURJRCBnZXRzIHBhcnNlZCwgZm9yIGFsbCBkcml2ZXJzLiBPYnZpb3VzbHkKPiB0aGlzIGNvdWxk
-IGJlIGNoYW5nZWQsIGJ1dCBpcyBpdCB0aGUgcmlnaHQgdGhpbmcgdG8gZG8/Cj4gCj4gV2hhdCBJ
-IHN1Z2dlc3RlZCB3YXMsIGNoZWNrIHRoZSBPVUkgb25seSwgYW5kIGlmIGl0IG1hdGNoZXMsIGRv
-Cj4gbW9yZS4gUGVyaGFwcyB0aGVyZSdzIHNvbWV0aGluZyBpbiB0aGUgMHgzMDAgcmFuZ2Ugb2Yg
-RFBDRCBvZmZzZXRzIHRoYXQKPiB5b3UgY2FuIHJlYWQ/IE9yIHBlcmhhcHMgeW91IG5lZWQgdG8g
-d3JpdGUgdGhlIHNvdXJjZSBPVUkgZmlyc3QsIGFuZAo+IHRoZW4gZG8gdGhhdC4KCk15IGlzc3Vl
-IGlzbid0IHJlYWxseSB3aXRoIGlkZW50aWZ5aW5nIHRoZSBwYW5lbCBmcm9tIEVESUQgcmF0aGVy
-IHRoYW4KRFBDRCwgd2hpY2hldmVyIGlkZW50aWZpZXIgaXMgbW9zdCBzcGVjaWZpYyBpcyBwcm9i
-YWJseSB0aGUgYmVzdCB0aGluZwp0byB1c2UuIEl0J3MgbW9yZSB0aGF0IHRoaXMgcXVpcmsgaXMg
-aWRlbnRpZmllZCBpbiBjb21tb24gY29kZSBidXQgb25seQphcHBsaWVkIGluIG9uZSBkcml2ZXIu
-IElmIHRoaXMgcGFuZWwgd2VyZSBldmVyIHRvIGJlIGF0dGFjaGVkIHRvIHNvbWUKb3RoZXIgc291
-cmNlLCB0aGV5IG1pZ2h0IHdlbGwgd2FudCB0byBhcHBseSB0aGUgc2FtZSBraW5kIG9mIGZpeC4g
-TXkKKGFkbWl0dGVkbHkgbmHDr3ZlKSByZWFkaW5nIG9mIHRoZSBPVUkgaGFuZHNoYWtlIHByb2Nl
-c3MgaXMgdGhhdCB3aGVuCnRoZSBzb3VyY2UgZGV2aWNlIHdyaXRlcyBhbiBPVUkgdG8gRFBfU09V
-UkNFX09VSSBpdCBpcyB0ZWxsaW5nIHRoZSBzaW5rCiJJJ20gYWJvdXQgdG8gaXNzdWUgY29tbWFu
-ZHMgdGhhdCBjb25mb3JtIHRvIF90aGlzXyB2ZW5kb3IncyBvd24KY29udmVudGlvbnMiLiBJZiB0
-aGF0IGNvbnZlbnRpb24gY29tbXVuaWNhdGVzIGluZm9ybWF0aW9uIHRoYXQgaXMKZW50aXJlbHkg
-Y29udGFpbmVkIHdpdGhpbiBBVVhDSCB0cmFuc2FjdGlvbnMgKGFuZCBkb2Vzbid0LCBmb3IgZXhh
-bXBsZSwKcmVxdWlyZSBsb29raW5nIGF0IHNvbWUgb3RoZXIgc3RyYXBwaW5nIHBpbiBvciBleHRl
-cm5hbCBkZXZpY2UpIHRoZW4gaW4KcHJpbmNpcGxlIGl0IGRvZXNuJ3QgbWF0dGVyIGlmIHRoZSBz
-b3VyY2UgZGV2aWNlICJtYXRjaGVzIiB0aGF0IE9VSTsgaXQKd291bGQgYmUgbGVnYWwgZm9yIGFu
-IEFNRCBHUFUgdG8gd3JpdGUgdGhlIHNhbWUgc2VxdWVuY2UgYW5kIGV4cGVjdCB0aGUKc2FtZSBy
-ZWFjdGlvbiwgc2hvdWxkIHRoYXQgcGFuZWwgYmUgYXR0YWNoZWQgdG8gYW4gQU1EIEdQVS4KClNv
-LCBpdCB3b3VsZCBiZSBuaWNlIHRvIGtub3cgZXhhY3RseSB3aGF0IHRoYXQgcHJvdG9jb2wgaXMg
-bWVhbnQgdG8gZG8sCmlmIGl0IGFwcGxpZXMgb25seSB0byB0aGlzIHNwZWNpZmljIHBhbmVsIG9y
-IGFueXRoaW5nIGVsc2Ugd2l0aCB0aGUKc2FtZSBUQ09OLCBob3cgb25lIHdvdWxkIGlkZW50aWZ5
-IHN1Y2ggVENPTnMgaW4gdGhlIHdpbGQgb3RoZXIgdGhhbgpFRElELCBpZiBpdCByZWxpZXMgb24g
-YW4gZXh0ZXJuYWwgUFdNIG9yIHNvbWV0aGluZywgZXRjLiBBbmQgaXQgbWlnaHQKbWFrZSBzZW5z
-ZSBmb3Igbm93IHRvIG1ha2UgdGhpcyBhIChzaHVkZGVyKSBkcml2ZXItc3BlY2lmaWMgRURJRCBx
-dWlyawpyYXRoZXIgdGhhbiBtYXRjaCBieSBEUENELCBhdCBsZWFzdCB1bnRpbCB3ZSBrbm93IGlm
-IHRoZSBwYW5lbCBpcyBldmVyCnNlZW4gYXR0YWNoZWQgdG8gb3RoZXIgc291cmNlIGRldmljZXMg
-YW5kIGlmIHRoZSBPVUkgY29udmVudGlvbiBpcwpzZWxmLWNvbnRhaW5lZC4KCi0gYWpheAoKX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1h
-aWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMu
-ZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
+T24gTW9uLCA3IE9jdCAyMDE5IGF0IDE4OjA5LCBBbGV4IERldWNoZXIgPGFsZXhkZXVjaGVyQGdt
+YWlsLmNvbT4gd3JvdGU6Cj4KPiBPbiBNb24sIE9jdCA3LCAyMDE5IGF0IDc6MzkgQU0gSmFuaSBO
+aWt1bGEgPGphbmkubmlrdWxhQGxpbnV4LmludGVsLmNvbT4gd3JvdGU6Cj4gPgo+ID4gT24gRnJp
+LCAwNCBPY3QgMjAxOSwgS3J6eXN6dG9mIEtvemxvd3NraSA8a3J6a0BrZXJuZWwub3JnPiB3cm90
+ZToKPiA+ID4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L0tjb25maWcgICAgICAgICAgICAgfCAgMTIg
+Ky0KPiA+ID4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L0tjb25maWcuZGVidWcgICAgICAgfCAxNDQg
+KysrKysrKysrKystLS0tLS0tLS0tLS0KPiA+Cj4gPiBQbGVhc2Ugc3BsaXQgdGhlc2Ugb3V0IHRv
+IGEgc2VwYXJhdGUgcGF0Y2guIENhbid0IHNwZWFrIGZvciBvdGhlcnMsIGJ1dAo+ID4gdGhlIHBh
+dGNoIGxvb2tzIGxpa2UgaXQnbGwgYmUgY29uZmxpY3RzIGdhbG9yZSBhbmQgYSBwcm9ibGVtIHRv
+IG1hbmFnZQo+ID4gaWYgbWVyZ2VkIGluIG9uZSBiaWcgbHVtcC4KPgo+IFllcywgaXQgd291bGQg
+YmUgbmljZSB0byBoYXZlIHRoZSBhbWQgcGF0Y2ggc2VwYXJhdGUgYXMgd2VsbC4KCkknbGwgc3Bs
+aXQgdGhlIEFNRCBhbmQgaTkxNSBhbHRob3VnaCBJIGFtIG5vdCBzdXJlIGlmIGl0IGlzIHNlbnNl
+IHRvCnNwbGl0IHN1Y2ggdHJpdmlhbCBwYXRjaCBwZXIgZWFjaCBkcml2ZXIuCgpCZXN0IHJlZ2Fy
+ZHMsCktyenlzenRvZgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5v
+cmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1n
+Zng=
