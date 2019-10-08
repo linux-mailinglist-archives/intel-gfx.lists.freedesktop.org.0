@@ -1,41 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 43D58D0434
-	for <lists+intel-gfx@lfdr.de>; Wed,  9 Oct 2019 01:36:21 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 667B3D0436
+	for <lists+intel-gfx@lfdr.de>; Wed,  9 Oct 2019 01:38:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8E8186E8B4;
-	Tue,  8 Oct 2019 23:36:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AEF226E8B6;
+	Tue,  8 Oct 2019 23:38:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 451A96E8B4
- for <intel-gfx@lists.freedesktop.org>; Tue,  8 Oct 2019 23:36:18 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 08 Oct 2019 16:36:17 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.67,273,1566889200"; d="scan'208";a="183888994"
-Received: from mdroper-desk1.fm.intel.com (HELO
- mdroper-desk1.amr.corp.intel.com) ([10.1.27.135])
- by orsmga007.jf.intel.com with ESMTP; 08 Oct 2019 16:36:17 -0700
-Date: Tue, 8 Oct 2019 16:36:43 -0700
-From: Matt Roper <matthew.d.roper@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Message-ID: <20191008233643.GF10780@mdroper-desk1.amr.corp.intel.com>
-References: <20191008211716.8391-1-matthew.d.roper@intel.com>
- <20191008223448.4048.19962@emeril.freedesktop.org>
+Received: from ozlabs.org (bilbo.ozlabs.org [IPv6:2401:3900:2:1::2])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 06F856E8B6;
+ Tue,  8 Oct 2019 23:38:34 +0000 (UTC)
+Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
+ SHA256) (No client certificate requested)
+ by mail.ozlabs.org (Postfix) with ESMTPSA id 46nv1M3pwyz9sPL;
+ Wed,  9 Oct 2019 10:38:31 +1100 (AEDT)
+Date: Wed, 9 Oct 2019 10:38:30 +1100
+From: Stephen Rothwell <sfr@canb.auug.org.au>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>, Intel Graphics
+ <intel-gfx@lists.freedesktop.org>, Dave Airlie <airlied@linux.ie>, DRI
+ <dri-devel@lists.freedesktop.org>
+Message-ID: <20191009103830.0b75dbb5@canb.auug.org.au>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20191008223448.4048.19962@emeril.freedesktop.org>
-User-Agent: Mutt/1.12.1 (2019-06-15)
-Subject: Re: [Intel-gfx] 
- =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Catch_GTT_fault_errors_for_gen11+_planes?=
+X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=canb.auug.org.au; s=201702; t=1570577912;
+ bh=1lm8mYQPJzPKDhit1Mo4RGEcsekl2gAaPnzcVPSg8Kc=;
+ h=Date:From:To:Cc:Subject:From;
+ b=W4sgBgjRAs1uMxPyDwilr2XyPJu8Kd3VendqHI5I/LNoH9HRtFnFOMO6X/2rC1TgU
+ 6r4bWFEq3QIYPsp2uggQu9RWNPQYhBDa5Y/KVzWjk5Kv+3effK4wA/niIEqHvOOxaf
+ sHRdqJ+A+8kyNslxgtGlX+CvJwoscjzWEo0e+27Q4C7EwpvZEWFoAABPGHX0gsvIJn
+ I27wHx81r4y5FcDfro0cOJ/a0D2mNKpoDwFg4tXchTvzwGere1c+ghLu6StSdQzQuU
+ LK8ttSP08+QZAsb9N2jxtceaiSAU7KjDur2v7YjD8LqQTSP/ig1xaVOImP3w1Yr93t
+ 39LVOWPoFno0w==
+Subject: [Intel-gfx] linux-next: manual merge of the drm-misc tree with the
+ drm tree
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -48,97 +49,127 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Jani Nikula <jani.nikula@intel.com>,
+ Linux Next Mailing List <linux-next@vger.kernel.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ Gerd Hoffmann <kraxel@redhat.com>
+Content-Type: multipart/mixed; boundary="===============0704864165=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gVHVlLCBPY3QgMDgsIDIwMTkgYXQgMTA6MzQ6NDhQTSArMDAwMCwgUGF0Y2h3b3JrIHdyb3Rl
-Ogo+ID09IFNlcmllcyBEZXRhaWxzID09Cj4gCj4gU2VyaWVzOiBkcm0vaTkxNTogQ2F0Y2ggR1RU
-IGZhdWx0IGVycm9ycyBmb3IgZ2VuMTErIHBsYW5lcwo+IFVSTCAgIDogaHR0cHM6Ly9wYXRjaHdv
-cmsuZnJlZWRlc2t0b3Aub3JnL3Nlcmllcy82Nzc1Mi8KPiBTdGF0ZSA6IGZhaWx1cmUKPiAKPiA9
-PSBTdW1tYXJ5ID09Cj4gCj4gQ0kgQnVnIExvZyAtIGNoYW5nZXMgZnJvbSBDSV9EUk1fNzAzNiAt
-PiBQYXRjaHdvcmtfMTQ3MTAKPiA9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
-PT09PT09PT09PT09PT09Cj4gCj4gU3VtbWFyeQo+IC0tLS0tLS0KPiAKPiAgICoqRkFJTFVSRSoq
-Cj4gCj4gICBTZXJpb3VzIHVua25vd24gY2hhbmdlcyBjb21pbmcgd2l0aCBQYXRjaHdvcmtfMTQ3
-MTAgYWJzb2x1dGVseSBuZWVkIHRvIGJlCj4gICB2ZXJpZmllZCBtYW51YWxseS4KPiAgIAo+ICAg
-SWYgeW91IHRoaW5rIHRoZSByZXBvcnRlZCBjaGFuZ2VzIGhhdmUgbm90aGluZyB0byBkbyB3aXRo
-IHRoZSBjaGFuZ2VzCj4gICBpbnRyb2R1Y2VkIGluIFBhdGNod29ya18xNDcxMCwgcGxlYXNlIG5v
-dGlmeSB5b3VyIGJ1ZyB0ZWFtIHRvIGFsbG93IHRoZW0KPiAgIHRvIGRvY3VtZW50IHRoaXMgbmV3
-IGZhaWx1cmUgbW9kZSwgd2hpY2ggd2lsbCByZWR1Y2UgZmFsc2UgcG9zaXRpdmVzIGluIENJLgo+
-IAo+ICAgRXh0ZXJuYWwgVVJMOiBodHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0t
-dGlwL1BhdGNod29ya18xNDcxMC9pbmRleC5odG1sCj4gCj4gUG9zc2libGUgbmV3IGlzc3Vlcwo+
-IC0tLS0tLS0tLS0tLS0tLS0tLS0KPiAKPiAgIEhlcmUgYXJlIHRoZSB1bmtub3duIGNoYW5nZXMg
-dGhhdCBtYXkgaGF2ZSBiZWVuIGludHJvZHVjZWQgaW4gUGF0Y2h3b3JrXzE0NzEwOgo+IAo+ICMj
-IyBJR1QgY2hhbmdlcyAjIyMKPiAKPiAjIyMjIFBvc3NpYmxlIHJlZ3Jlc3Npb25zICMjIyMKPiAK
-PiAgICogaWd0QGk5MTVfc2VsZnRlc3RAbGl2ZV9jb2hlcmVuY3k6Cj4gICAgIC0gZmktc2tsLWxt
-ZW06ICAgICAgICBbUEFTU11bMV0gLT4gW1RJTUVPVVRdWzJdCj4gICAgWzFdOiBodHRwczovL2lu
-dGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlwL0NJX0RSTV83MDM2L2ZpLXNrbC1sbWVtL2ln
-dEBpOTE1X3NlbGZ0ZXN0QGxpdmVfY29oZXJlbmN5Lmh0bWwKPiAgICBbMl06IGh0dHBzOi8vaW50
-ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAvUGF0Y2h3b3JrXzE0NzEwL2ZpLXNrbC1sbWVt
-L2lndEBpOTE1X3NlbGZ0ZXN0QGxpdmVfY29oZXJlbmN5Lmh0bWwKCkdFTV9CVUdfT04oZ3QtPmF3
-YWtlKSwgbm90IHJlbGF0ZWQgdG8gY2hlY2tpbmcgZXh0cmEgZGlzcGxheSBpbnRlcnJ1cHQKYml0
-cyBpbiB0aGlzIHBhdGNoLiAgV2lsbCByZXF1ZXN0IGEgcmUtdGVzdC4KCgpNYXR0Cgo+IAo+ICAg
-Cj4gS25vd24gaXNzdWVzCj4gLS0tLS0tLS0tLS0tCj4gCj4gICBIZXJlIGFyZSB0aGUgY2hhbmdl
-cyBmb3VuZCBpbiBQYXRjaHdvcmtfMTQ3MTAgdGhhdCBjb21lIGZyb20ga25vd24gaXNzdWVzOgo+
-IAo+ICMjIyBJR1QgY2hhbmdlcyAjIyMKPiAKPiAjIyMjIElzc3VlcyBoaXQgIyMjIwo+IAo+ICAg
-KiBpZ3RAZ2VtX2N0eF9jcmVhdGVAYmFzaWMtZmlsZXM6Cj4gICAgIC0gZmktYnh0LWRzaTogICAg
-ICAgICBbUEFTU11bM10gLT4gW0lOQ09NUExFVEVdWzRdIChbZmRvIzEwMzkyN10pCj4gICAgWzNd
-OiBodHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlwL0NJX0RSTV83MDM2L2Zp
-LWJ4dC1kc2kvaWd0QGdlbV9jdHhfY3JlYXRlQGJhc2ljLWZpbGVzLmh0bWwKPiAgICBbNF06IGh0
-dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAvUGF0Y2h3b3JrXzE0NzEwL2Zp
-LWJ4dC1kc2kvaWd0QGdlbV9jdHhfY3JlYXRlQGJhc2ljLWZpbGVzLmh0bWwKPiAKPiAgICogaWd0
-QGdlbV9leGVjX3N1c3BlbmRAYmFzaWMtczQtZGV2aWNlczoKPiAgICAgLSBmaS1pY2wtdTM6ICAg
-ICAgICAgIFtQQVNTXVs1XSAtPiBbRE1FU0ctV0FSTl1bNl0gKFtmZG8jMTA3NzI0XSkKPiAgICBb
-NV06IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAvQ0lfRFJNXzcwMzYv
-ZmktaWNsLXUzL2lndEBnZW1fZXhlY19zdXNwZW5kQGJhc2ljLXM0LWRldmljZXMuaHRtbAo+ICAg
-IFs2XTogaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9QYXRjaHdvcmtf
-MTQ3MTAvZmktaWNsLXUzL2lndEBnZW1fZXhlY19zdXNwZW5kQGJhc2ljLXM0LWRldmljZXMuaHRt
-bAo+IAo+ICAgCj4gIyMjIyBQb3NzaWJsZSBmaXhlcyAjIyMjCj4gCj4gICAqIGlndEBnZW1fY3R4
-X3N3aXRjaEByY3MwOgo+ICAgICAtIGZpLWNtbC11MjogICAgICAgICAgW0lOQ09NUExFVEVdWzdd
-IChbZmRvIzExMDU2Nl0pIC0+IFtQQVNTXVs4XQo+ICAgIFs3XTogaHR0cHM6Ly9pbnRlbC1nZngt
-Y2kuMDEub3JnL3RyZWUvZHJtLXRpcC9DSV9EUk1fNzAzNi9maS1jbWwtdTIvaWd0QGdlbV9jdHhf
-c3dpdGNoQHJjczAuaHRtbAo+ICAgIFs4XTogaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3Ry
-ZWUvZHJtLXRpcC9QYXRjaHdvcmtfMTQ3MTAvZmktY21sLXUyL2lndEBnZW1fY3R4X3N3aXRjaEBy
-Y3MwLmh0bWwKPiAKPiAgICogaWd0QGdlbV90aWxlZF9ibGl0c0BiYXNpYzoKPiAgICAgLSBmaS1p
-Y2wtdTM6ICAgICAgICAgIFtETUVTRy1XQVJOXVs5XSAoW2ZkbyMxMDc3MjRdKSAtPiBbUEFTU11b
-MTBdCj4gICAgWzldOiBodHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlwL0NJ
-X0RSTV83MDM2L2ZpLWljbC11My9pZ3RAZ2VtX3RpbGVkX2JsaXRzQGJhc2ljLmh0bWwKPiAgICBb
-MTBdOiBodHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlwL1BhdGNod29ya18x
-NDcxMC9maS1pY2wtdTMvaWd0QGdlbV90aWxlZF9ibGl0c0BiYXNpYy5odG1sCj4gCj4gICAqIGln
-dEBpOTE1X21vZHVsZV9sb2FkQHJlbG9hZDoKPiAgICAgLSBmaS1ibGItZTY4NTA6ICAgICAgIFtJ
-TkNPTVBMRVRFXVsxMV0gKFtmZG8jMTA3NzE4XSkgLT4gW1BBU1NdWzEyXQo+ICAgIFsxMV06IGh0
-dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAvQ0lfRFJNXzcwMzYvZmktYmxi
-LWU2ODUwL2lndEBpOTE1X21vZHVsZV9sb2FkQHJlbG9hZC5odG1sCj4gICAgWzEyXTogaHR0cHM6
-Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9QYXRjaHdvcmtfMTQ3MTAvZmktYmxi
-LWU2ODUwL2lndEBpOTE1X21vZHVsZV9sb2FkQHJlbG9hZC5odG1sCj4gCj4gICAKPiAgIHtuYW1l
-fTogVGhpcyBlbGVtZW50IGlzIHN1cHByZXNzZWQuIFRoaXMgbWVhbnMgaXQgaXMgaWdub3JlZCB3
-aGVuIGNvbXB1dGluZwo+ICAgICAgICAgICB0aGUgc3RhdHVzIG9mIHRoZSBkaWZmZXJlbmNlIChT
-VUNDRVNTLCBXQVJOSU5HLCBvciBGQUlMVVJFKS4KPiAKPiAgIFtmZG8jMTAzOTI3XTogaHR0cHM6
-Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MTAzOTI3Cj4gICBbZmRvIzEw
-NjEwN106IGh0dHBzOi8vYnVncy5mcmVlZGVza3RvcC5vcmcvc2hvd19idWcuY2dpP2lkPTEwNjEw
-Nwo+ICAgW2ZkbyMxMDc3MThdOiBodHRwczovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVn
-LmNnaT9pZD0xMDc3MTgKPiAgIFtmZG8jMTA3NzI0XTogaHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9w
-Lm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MTA3NzI0Cj4gICBbZmRvIzExMDU2Nl06IGh0dHBzOi8vYnVn
-cy5mcmVlZGVza3RvcC5vcmcvc2hvd19idWcuY2dpP2lkPTExMDU2Ngo+ICAgW2ZkbyMxMTEwNDVd
-OiBodHRwczovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD0xMTEwNDUKPiAK
-PiAKPiBQYXJ0aWNpcGF0aW5nIGhvc3RzICg1MSAtPiA0MykKPiAtLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0KPiAKPiAgIE1pc3NpbmcgICAgKDgpOiBmaS1rYmwtc29yYWthIGZpLWlsay1t
-NTQwIGZpLXRnbC11IGZpLWhzdy00MjAwdSBmaS1ieXQtc3F1YXdrcyBmaS1pY2wteSBmaS1ieXQt
-Y2xhcHBlciBmaS1iZHctc2FtdXMgCj4gCj4gCj4gQnVpbGQgY2hhbmdlcwo+IC0tLS0tLS0tLS0t
-LS0KPiAKPiAgICogQ0k6IENJLTIwMTkwNTI5IC0+IE5vbmUKPiAgICogTGludXg6IENJX0RSTV83
-MDM2IC0+IFBhdGNod29ya18xNDcxMAo+IAo+ICAgQ0ktMjAxOTA1Mjk6IDIwMTkwNTI5Cj4gICBD
-SV9EUk1fNzAzNjogYTFiOWM2NzIzZmFlZWMyZWUwNDRlMjhhOGU3ZThmZmU1YWE0MzRhMCBAIGdp
-dDovL2Fub25naXQuZnJlZWRlc2t0b3Aub3JnL2dmeC1jaS9saW51eAo+ICAgSUdUXzUyMTg6IDg2
-OWVkMWVlMGI3MWNlMTdmMGE4NjQ1MTI0ODhmOGIxYTZjYjg1NDUgQCBnaXQ6Ly9hbm9uZ2l0LmZy
-ZWVkZXNrdG9wLm9yZy94b3JnL2FwcC9pbnRlbC1ncHUtdG9vbHMKPiAgIFBhdGNod29ya18xNDcx
-MDogYTE5OWRkZWM5ZDg4NzI4N2I3NGVhYWM1ZTcyM2IwMjE2OTA5NDM1MyBAIGdpdDovL2Fub25n
-aXQuZnJlZWRlc2t0b3Aub3JnL2dmeC1jaS9saW51eAo+IAo+IAo+ID09IExpbnV4IGNvbW1pdHMg
-PT0KPiAKPiBhMTk5ZGRlYzlkODggZHJtL2k5MTU6IENhdGNoIEdUVCBmYXVsdCBlcnJvcnMgZm9y
-IGdlbjExKyBwbGFuZXMKPiAKPiA9PSBMb2dzID09Cj4gCj4gRm9yIG1vcmUgZGV0YWlscyBzZWU6
-IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAvUGF0Y2h3b3JrXzE0NzEw
-L2luZGV4Lmh0bWwKCi0tIApNYXR0IFJvcGVyCkdyYXBoaWNzIFNvZnR3YXJlIEVuZ2luZWVyClZU
-VC1PU0dDIFBsYXRmb3JtIEVuYWJsZW1lbnQKSW50ZWwgQ29ycG9yYXRpb24KKDkxNikgMzU2LTI3
-OTUKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwt
-Z2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8v
-bGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
+--===============0704864165==
+Content-Type: multipart/signed; boundary="Sig_/_/zJcqceIEDcW/o/wfX083J";
+ protocol="application/pgp-signature"; micalg=pgp-sha256
+
+--Sig_/_/zJcqceIEDcW/o/wfX083J
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
+
+Hi all,
+
+Today's linux-next merge of the drm-misc tree got a conflict in:
+
+  drivers/gpu/drm/i915/i915_drv.c
+
+between commit:
+
+  2d6f6f359fd8 ("drm/i915: add i915_driver_modeset_remove()")
+
+from the drm tree and commit:
+
+  f2521f7731ed ("drm/i915: switch to drm_fb_helper_remove_conflicting_pci_f=
+ramebuffers")
+
+from the drm-misc tree.
+
+I fixed it up (see below) and can carry the fix as necessary. This
+is now fixed as far as linux-next is concerned, but any non trivial
+conflicts should be mentioned to your upstream maintainer when your tree
+is submitted for merging.  You may also want to consider cooperating
+with the maintainer of the conflicting tree to minimise any particularly
+complex conflicts.
+
+--=20
+Cheers,
+Stephen Rothwell
+
+diff --cc drivers/gpu/drm/i915/i915_drv.c
+index 15abad5c2d62,1c4ff8b5b0a2..000000000000
+--- a/drivers/gpu/drm/i915/i915_drv.c
++++ b/drivers/gpu/drm/i915/i915_drv.c
+@@@ -350,44 -422,6 +350,19 @@@ out
+  	return ret;
+  }
+ =20
+- static int i915_kick_out_firmware_fb(struct drm_i915_private *dev_priv)
+- {
+- 	struct apertures_struct *ap;
+- 	struct pci_dev *pdev =3D dev_priv->drm.pdev;
+- 	struct i915_ggtt *ggtt =3D &dev_priv->ggtt;
+- 	bool primary;
+- 	int ret;
+-=20
+- 	ap =3D alloc_apertures(1);
+- 	if (!ap)
+- 		return -ENOMEM;
+-=20
+- 	ap->ranges[0].base =3D ggtt->gmadr.start;
+- 	ap->ranges[0].size =3D ggtt->mappable_end;
+-=20
+- 	primary =3D
+- 		pdev->resource[PCI_ROM_RESOURCE].flags & IORESOURCE_ROM_SHADOW;
+-=20
+- 	ret =3D drm_fb_helper_remove_conflicting_framebuffers(ap, "inteldrmfb", =
+primary);
+-=20
+- 	kfree(ap);
+-=20
+- 	return ret;
+- }
+-=20
+ +static void i915_driver_modeset_remove(struct drm_i915_private *i915)
+ +{
+ +	intel_modeset_driver_remove(i915);
+ +
+ +	intel_bios_driver_remove(i915);
+ +
+ +	i915_switcheroo_unregister(i915);
+ +
+ +	intel_vga_unregister(i915);
+ +
+ +	intel_csr_ucode_fini(i915);
+ +}
+ +
+  static void intel_init_dpio(struct drm_i915_private *dev_priv)
+  {
+  	/*
+
+--Sig_/_/zJcqceIEDcW/o/wfX083J
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAl2dHfYACgkQAVBC80lX
+0GwyhAf/ebekB2v3yeFzeOUNfR+hb/RMJVxhfa8dyuaoqO8jX8X+QuyDPM0ZoyZ1
+M/MMTW1aEcPn4c+1j9u/ctM92gklAaJGVYmhM+mRN0Jk2zt1+7oZ9tewCXDSFtiv
+63EVFP3/L75/38bhe7PVyGkDWo8hBgteXVc06+MY+ZTQpqLCt69u86RqVTCvo5ss
+hbNjJBVZW9hAcXMYF3bfxDByFDDCku+FysGkBPj2TG5tndGY08CHURV7tXipdHb4
+psKyOZdwKPwJCyZxaFuti1kCAAX53HJBswWZ9rIlcUASXwp+rOmabO33PrPCErBZ
+/PhBPCa4dyaU6v5hRH/6IyEbJAhudg==
+=UVGC
+-----END PGP SIGNATURE-----
+
+--Sig_/_/zJcqceIEDcW/o/wfX083J--
+
+--===============0704864165==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
+IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
+
+--===============0704864165==--
