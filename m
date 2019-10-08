@@ -1,33 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A4E9BD0410
-	for <lists+intel-gfx@lfdr.de>; Wed,  9 Oct 2019 01:26:39 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0DFB4D042F
+	for <lists+intel-gfx@lfdr.de>; Wed,  9 Oct 2019 01:33:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6CD366E8B0;
-	Tue,  8 Oct 2019 23:26:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4ADDD6E8B2;
+	Tue,  8 Oct 2019 23:33:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 789546E8B0
- for <intel-gfx@lists.freedesktop.org>; Tue,  8 Oct 2019 23:26:35 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 18770998-1500050 for multiple; Wed, 09 Oct 2019 00:26:30 +0100
+X-Greylist: delayed 86554 seconds by postgrey-1.36 at gabe;
+ Tue, 08 Oct 2019 23:33:24 UTC
+Received: from ozlabs.org (ozlabs.org [IPv6:2401:3900:2:1::2])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 382E36E8B2;
+ Tue,  8 Oct 2019 23:33:24 +0000 (UTC)
+Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
+ SHA256) (No client certificate requested)
+ by mail.ozlabs.org (Postfix) with ESMTPSA id 46ntvJ56D9z9sPL;
+ Wed,  9 Oct 2019 10:33:15 +1100 (AEDT)
+Date: Wed, 9 Oct 2019 10:33:15 +1100
+From: Stephen Rothwell <sfr@canb.auug.org.au>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>, Intel Graphics
+ <intel-gfx@lists.freedesktop.org>, Dave Airlie <airlied@linux.ie>, DRI
+ <dri-devel@lists.freedesktop.org>
+Message-ID: <20191009103315.2f51e079@canb.auug.org.au>
 MIME-Version: 1.0
-From: Chris Wilson <chris@chris-wilson.co.uk>
-User-Agent: alot/0.6
-To: Lionel Landwerlin <lionel.g.landwerlin@intel.com>,
- intel-gfx@lists.freedesktop.org
-References: <20191008214021.5120-1-chris@chris-wilson.co.uk>
- <5820c846-bbf9-95af-5fb9-cdd1b09ad86a@intel.com>
-In-Reply-To: <5820c846-bbf9-95af-5fb9-cdd1b09ad86a@intel.com>
-Message-ID: <157057718910.16129.12259740531839959143@skylake-alporthouse-com>
-Date: Wed, 09 Oct 2019 00:26:29 +0100
-Subject: Re: [Intel-gfx] Reconfigurable OA queries
+X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=canb.auug.org.au; s=201702; t=1570577600;
+ bh=fCLq555CwsBdqSzNieFbT3yrcFvZ41mOJHpYKXLuEEk=;
+ h=Date:From:To:Cc:Subject:From;
+ b=kNyrXxEEy+s6GUEsPHqrCt1SsWqkv2V8WnRI98eGaBKtXJLJdtrHpaijx4vD32OH+
+ tBCU/BXR6DCnkCBzMejqLrvWOmYLU4CwjQRkUD47HJbkHyy3dZhbl8KDVu4EzqhPRg
+ DuHvY1usvbNtiojl78qd0leCOnXgMWrtKRJFW54bXxSZQv6eUBQ4mltZxtk3LGUUA+
+ XMk3ZxX4Ue0tvTlO5YuZIsUI0NidWXtu/FseB+igHF9CJ62nAdrIwAi5pqgZ1s/GXz
+ /pJUkNodm3Qmuxdlt0sWAl629X/ghl5RNWXG2SvT4XcrfFRJIejyjxkw/all4oJH5r
+ viVf/on8Sne+A==
+Subject: [Intel-gfx] linux-next: manual merge of the drm-misc tree with the
+ drm tree
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -40,30 +51,88 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Linux Next Mailing List <linux-next@vger.kernel.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: multipart/mixed; boundary="===============1147492816=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-UXVvdGluZyBMaW9uZWwgTGFuZHdlcmxpbiAoMjAxOS0xMC0wOSAwMDoxNDo0MSkKPiBPbiAwOS8x
-MC8yMDE5IDAwOjQwLCBDaHJpcyBXaWxzb24gd3JvdGU6Cj4gPiBUaGlzIGlzIExpb25lbCdzIHdv
-cmsgdG8gZW5hYmxlIE9BIGZvciBWdWxrYW4sIGdyZWF0bHkgYmFzdGFyZGlzZWQgb24KPiA+IHRv
-cCBvZiB0aGUgc3RydWN0X211dGV4IHJlbW92YWwuIEl0IGNsYWltcyB0byBiZSBkb2luZyB0aGUg
-cmlnaHQKPiA+IHRoaW5nLi4uCj4gPiAtQ2hyaXMKPiA+Cj4gPgo+IFRoYW5rcyBhIGxvdCBvZiBw
-aWNraW5nIHRoaXMgdXAuCj4gCj4gSSdtIGF3YXJlIG9mIGFuIGlzc3VlIHdpdGggcGF0Y2ggOSBh
-cyBJIGNhbiBzZWUgcmVxdWVzdHMgd2l0aCBwZXJmIAo+IHF1ZXJpZXMgYmVpbmcgcHJlZW1wdGVk
-LiBMb29raW5nIGludG8gdGhhdCwgYnV0IG5vdCBxdWl0ZSB0aGVyZSB5ZXQuCgpPdXRzaWRlIG9m
-IHRoZSBtYXNraW5nIGlzc3VlIHdoZXJlIGEgbGF0ZXIgcmVxdWVzdCBvbiB0aGUgc2FtZSBjb250
-ZXh0CndpbGwgbWFzayB0aGUgbm9wcmVlbXB0IHJlcXVlc3QsIGlmIHRoYXQgbm9wcmVlbXB0IGZs
-YWcgaXMgc2V0IG9uIHRoZQpsYXN0IHN1Ym1pdHRlZCByZXF1ZXN0IHRvIEVMU1BbMF0sIHdlIHdp
-bGwgbm90IGFsbG93IHRoYXQgY29udGV4dCB0byBiZQpwcmVlbXB0ZWQgYmVmb3JlIHdlIGNvbnNp
-ZGVyIHRoZSByZXF1ZXN0IHRvIGJlIGNvbXBsZXRlZC4KCj4gSSB0aGluayB0aGVyZSBpcyBhIGRl
-cGVuZGVuY3kgaXNzdWUgd2l0aCBwYXRjaCA4LiBXZSBhbHNvIHVzZSAKPiBjbGlwcmVjdHNfcHRy
-IGZvciBmZW5jZXMuCgpIbW0sIEkgd2FzIGV4cGVjdGluZyB0aGUgZmxhZyB2YWxpZGF0aW9uIHRv
-IGJlIGluIHRoZSBmaXJzdCBwYXRjaCB0byBhZGQKZXh0ZW5zaW9uIHBhcnNpbmcsIGJ1dCB3ZSBh
-cmUgbWlzc2luZyB0aGUgdGVzdCBpZiBib3RoIGZsYWdzIGFyZSBzZXQsCnJlamVjdCB0aGUgZXhl
-Y2J1Zi4KCj4gSWYgd2Ugc3RhcnQgcmV1c2luZyBpdCBmb3IgZXh0ZW5kZWQgcGFyYW1ldGVycywg
-d2UgbmVlZCB0byBtYWtlIGZlbmNlcyAKPiB0aGUgZmlyc3QgZXh0ZW5kZWQgcGFyYW0uCgpXaHk/
-Ci1DaHJpcwpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJ
-bnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0
-cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZng=
+--===============1147492816==
+Content-Type: multipart/signed; boundary="Sig_/17ltTepqDW3c3omnX4kN7Pe";
+ protocol="application/pgp-signature"; micalg=pgp-sha256
+
+--Sig_/17ltTepqDW3c3omnX4kN7Pe
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
+
+Hi all,
+
+Today's linux-next merge of the drm-misc tree got a conflict in:
+
+  drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+
+between commit:
+
+  8a9a982767b7 ("drm/i915: use a separate context for gpu relocs")
+
+from the drm tree and commit:
+
+  4ee92c7149da ("drm/mm: Convert drm_mm_node booleans to bitops")
+
+from the drm-misc tree.
+
+I fixed it up (see below) and can carry the fix as necessary. This
+is now fixed as far as linux-next is concerned, but any non trivial
+conflicts should be mentioned to your upstream maintainer when your tree
+is submitted for merging.  You may also want to consider cooperating
+with the maintainer of the conflicting tree to minimise any particularly
+complex conflicts.
+
+--=20
+Cheers,
+Stephen Rothwell
+
+diff --cc drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+index e8ddc2320efa,493f07806b08..000000000000
+--- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+@@@ -908,8 -902,7 +908,8 @@@ static void reloc_cache_init(struct rel
+  	cache->use_64bit_reloc =3D HAS_64BIT_RELOC(i915);
+  	cache->has_fence =3D cache->gen < 4;
+  	cache->needs_unfenced =3D INTEL_INFO(i915)->unfenced_needs_alignment;
+- 	cache->node.allocated =3D false;
++ 	cache->node.flags =3D 0;
+ +	cache->ce =3D NULL;
+  	cache->rq =3D NULL;
+  	cache->rq_size =3D 0;
+  }
+
+--Sig_/17ltTepqDW3c3omnX4kN7Pe
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAl2dHLsACgkQAVBC80lX
+0GyUDwf8DQY+OK3S0jTEKtPrN9FJni3BxWGnlJpZVm9VEKhrVjMKXG3jyvRf/td5
+FkO8KaQA0Xp0wzpW3aa3fkX7upqcay0MUtW1UVbGmujGJm7puWf34caBRYVUv8uZ
+KLANW8GNcfY7t+SiB4HGr0pKRXH3FI5dDCEIlvmpb18Lrvv8bubQIuWyarn43+Oh
+0Ie/366XKJJhT/tZPCVgwk6UKEEHDXenh3KeAzNhf43/JTZA1NytPqovvLGsr7ls
+2mikO2tfzWAs4jxXCcXday5JP3HF+OBOO18SrNuPMbZMwGT1XDSb32kqE1uzuMHu
+NhKK/OIaUOBBsq4txKSGWdmc6qyjqQ==
+=xhhf
+-----END PGP SIGNATURE-----
+
+--Sig_/17ltTepqDW3c3omnX4kN7Pe--
+
+--===============1147492816==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
+IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
+
+--===============1147492816==--
