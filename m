@@ -1,37 +1,39 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9988DCF261
-	for <lists+intel-gfx@lfdr.de>; Tue,  8 Oct 2019 08:05:37 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 73BA5CF2FD
+	for <lists+intel-gfx@lfdr.de>; Tue,  8 Oct 2019 08:52:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4588A89F3B;
-	Tue,  8 Oct 2019 06:05:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1EA9B6E1B1;
+	Tue,  8 Oct 2019 06:52:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AE86489E4C;
- Tue,  8 Oct 2019 06:05:31 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C0A346E1B2
+ for <intel-gfx@lists.freedesktop.org>; Tue,  8 Oct 2019 06:52:02 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 07 Oct 2019 23:05:14 -0700
+ by orsmga105.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 07 Oct 2019 23:52:01 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.67,269,1566889200"; d="scan'208";a="206577319"
+X-IronPort-AV: E=Sophos;i="5.67,269,1566889200"; d="scan'208";a="206584113"
 Received: from wpross-mobl.ger.corp.intel.com (HELO localhost) ([10.252.55.86])
- by fmsmga001.fm.intel.com with ESMTP; 07 Oct 2019 23:05:09 -0700
+ by fmsmga001.fm.intel.com with ESMTP; 07 Oct 2019 23:51:59 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>, Alex Deucher <alexdeucher@gmail.com>
-In-Reply-To: <CAJKOXPeVFeSDpxPv-rDywCafWbN3mivtcM3UQX_+wZkyPcZwPQ@mail.gmail.com>
+To: Patchwork <patchwork@emeril.freedesktop.org>,
+ Krzysztof Kozlowski <krzk@kernel.org>
+In-Reply-To: <20191007192756.14083.71406@emeril.freedesktop.org>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20191004144549.3567-1-krzk@kernel.org> <87sgo4hjii.fsf@intel.com>
- <CADnq5_MqGehpWwOAxYg0T2x3qXisqmae2uGG5dijQX+Aa4NsoQ@mail.gmail.com>
- <CAJKOXPeVFeSDpxPv-rDywCafWbN3mivtcM3UQX_+wZkyPcZwPQ@mail.gmail.com>
-Date: Tue, 08 Oct 2019 09:05:49 +0300
-Message-ID: <87v9szdb5u.fsf@intel.com>
+References: <20191007173346.9379-1-krzk@kernel.org>
+ <20191007192756.14083.71406@emeril.freedesktop.org>
+Date: Tue, 08 Oct 2019 09:52:40 +0300
+Message-ID: <87pnj7d8zr.fsf@intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH TRIVIAL v2] gpu: Fix Kconfig indentation
+Subject: Re: [Intel-gfx] 
+ =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBk?=
+ =?utf-8?q?rm/i915=3A_Fix_Kconfig_indentation?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -44,43 +46,36 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: amd-gfx list <amd-gfx@lists.freedesktop.org>,
- Jiri Kosina <trivial@kernel.org>, lima@lists.freedesktop.org,
- David Airlie <airlied@linux.ie>, nouveau <nouveau@lists.freedesktop.org>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- LKML <linux-kernel@vger.kernel.org>, Maxime Ripard <mripard@kernel.org>,
- linux-rockchip@lists.infradead.org,
- Maling list - DRI developers <dri-devel@lists.freedesktop.org>,
- linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gTW9uLCAwNyBPY3QgMjAxOSwgS3J6eXN6dG9mIEtvemxvd3NraSA8a3J6a0BrZXJuZWwub3Jn
-PiB3cm90ZToKPiBPbiBNb24sIDcgT2N0IDIwMTkgYXQgMTg6MDksIEFsZXggRGV1Y2hlciA8YWxl
-eGRldWNoZXJAZ21haWwuY29tPiB3cm90ZToKPj4KPj4gT24gTW9uLCBPY3QgNywgMjAxOSBhdCA3
-OjM5IEFNIEphbmkgTmlrdWxhIDxqYW5pLm5pa3VsYUBsaW51eC5pbnRlbC5jb20+IHdyb3RlOgo+
-PiA+Cj4+ID4gT24gRnJpLCAwNCBPY3QgMjAxOSwgS3J6eXN6dG9mIEtvemxvd3NraSA8a3J6a0Br
-ZXJuZWwub3JnPiB3cm90ZToKPj4gPiA+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9LY29uZmlnICAg
-ICAgICAgICAgIHwgIDEyICstCj4+ID4gPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvS2NvbmZpZy5k
-ZWJ1ZyAgICAgICB8IDE0NCArKysrKysrKysrKy0tLS0tLS0tLS0tLQo+PiA+Cj4+ID4gUGxlYXNl
-IHNwbGl0IHRoZXNlIG91dCB0byBhIHNlcGFyYXRlIHBhdGNoLiBDYW4ndCBzcGVhayBmb3Igb3Ro
-ZXJzLCBidXQKPj4gPiB0aGUgcGF0Y2ggbG9va3MgbGlrZSBpdCdsbCBiZSBjb25mbGljdHMgZ2Fs
-b3JlIGFuZCBhIHByb2JsZW0gdG8gbWFuYWdlCj4+ID4gaWYgbWVyZ2VkIGluIG9uZSBiaWcgbHVt
-cC4KPj4KPj4gWWVzLCBpdCB3b3VsZCBiZSBuaWNlIHRvIGhhdmUgdGhlIGFtZCBwYXRjaCBzZXBh
-cmF0ZSBhcyB3ZWxsLgo+Cj4gSSdsbCBzcGxpdCB0aGUgQU1EIGFuZCBpOTE1IGFsdGhvdWdoIEkg
-YW0gbm90IHN1cmUgaWYgaXQgaXMgc2Vuc2UgdG8KPiBzcGxpdCBzdWNoIHRyaXZpYWwgcGF0Y2gg
-cGVyIGVhY2ggZHJpdmVyLgoKVGhhbmtzLgoKU2VlIE1BSU5UQUlORVJTLCBtYW55IG9mIHRoZSBk
-cml2ZXJzIGFyZSBtYWludGFpbmVkIGluIHRoZSBzYW1lIGRybS1taXNjCnJlcG8sIGFuZCBpdCBt
-YWtlcyBubyBkaWZmZXJlbmNlIHRvIHNwbGl0IHRob3NlLgoKSW4gZ2VuZXJhbCBpdCdzLCB3ZWxs
-LCB0cml2aWFsIHRvIHNwbGl0IHVwIHBhdGNoZXMgbGlrZSB0aGlzIHBlciBkcml2ZXIKb3IgcmVw
-bywgYnV0IG5vdCBzcGxpdHRpbmcgaXQgdXAgZ2VuZXJhdGVzIGV4dHJhIGJ1c3l3b3JrIGluIG1h
-bmFnaW5nCmNvbmZsaWN0cyB1bnRpbCBzb21lIGNvbW1vbiBtZXJnZS9iYWNrbWVyZ2UgaGFwcGVu
-cy4gV2UganVzdCB3YW50IHRvCmFwcGx5IHRoZSBwYXRjaCBhbmQgZm9yZ2V0IGFib3V0IGl0LCBp
-bnN0ZWFkIG9mIGRlYWxpbmcgd2l0aCBhIHRyaXZpYWwKd2hpdGVzcGFjZSBjbGVhbnVwIG1hbnkg
-dGltZXMgb3Zlci4KCkJSLApKYW5pLgoKCi0tIApKYW5pIE5pa3VsYSwgSW50ZWwgT3BlbiBTb3Vy
-Y2UgR3JhcGhpY3MgQ2VudGVyCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNr
-dG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2lu
-dGVsLWdmeA==
+T24gTW9uLCAwNyBPY3QgMjAxOSwgUGF0Y2h3b3JrIDxwYXRjaHdvcmtAZW1lcmlsLmZyZWVkZXNr
+dG9wLm9yZz4gd3JvdGU6Cj4gPT0gU2VyaWVzIERldGFpbHMgPT0KPgo+IFNlcmllczogZHJtL2k5
+MTU6IEZpeCBLY29uZmlnIGluZGVudGF0aW9uCj4gVVJMICAgOiBodHRwczovL3BhdGNod29yay5m
+cmVlZGVza3RvcC5vcmcvc2VyaWVzLzY3NzA3Lwo+IFN0YXRlIDogZmFpbHVyZQo+Cj4gPT0gU3Vt
+bWFyeSA9PQo+Cj4gQXBwbHlpbmc6IGRybS9pOTE1OiBGaXggS2NvbmZpZyBpbmRlbnRhdGlvbgo+
+IFVzaW5nIGluZGV4IGluZm8gdG8gcmVjb25zdHJ1Y3QgYSBiYXNlIHRyZWUuLi4KPiBNCWRyaXZl
+cnMvZ3B1L2RybS9pOTE1L0tjb25maWcuZGVidWcKPiBGYWxsaW5nIGJhY2sgdG8gcGF0Y2hpbmcg
+YmFzZSBhbmQgMy13YXkgbWVyZ2UuLi4KPiBBdXRvLW1lcmdpbmcgZHJpdmVycy9ncHUvZHJtL2k5
+MTUvS2NvbmZpZy5kZWJ1Zwo+IENPTkZMSUNUIChjb250ZW50KTogTWVyZ2UgY29uZmxpY3QgaW4g
+ZHJpdmVycy9ncHUvZHJtL2k5MTUvS2NvbmZpZy5kZWJ1Zwo+IGVycm9yOiBGYWlsZWQgdG8gbWVy
+Z2UgaW4gdGhlIGNoYW5nZXMuCj4gaGludDogVXNlICdnaXQgYW0gLS1zaG93LWN1cnJlbnQtcGF0
+Y2gnIHRvIHNlZSB0aGUgZmFpbGVkIHBhdGNoCj4gUGF0Y2ggZmFpbGVkIGF0IDAwMDEgZHJtL2k5
+MTU6IEZpeCBLY29uZmlnIGluZGVudGF0aW9uCj4gV2hlbiB5b3UgaGF2ZSByZXNvbHZlZCB0aGlz
+IHByb2JsZW0sIHJ1biAiZ2l0IGFtIC0tY29udGludWUiLgo+IElmIHlvdSBwcmVmZXIgdG8gc2tp
+cCB0aGlzIHBhdGNoLCBydW4gImdpdCBhbSAtLXNraXAiIGluc3RlYWQuCj4gVG8gcmVzdG9yZSB0
+aGUgb3JpZ2luYWwgYnJhbmNoIGFuZCBzdG9wIHBhdGNoaW5nLCBydW4gImdpdCBhbSAtLWFib3J0
+Ii4KClRoaXMgY29uZmxpY3QgaXMgZHVlIHRvIGEgQ0ktb25seSBjb21taXQgaW4gZHJtLXRpcCB0
+aGF0J3Mgbm90IGhlYWRlZApmb3IgdXBzdHJlYW0uIEV5ZWJhbGxlZCB0aGUgcGF0Y2gsIGdpdCBz
+aG93IC13IGluZGljYXRlcyBubyBjaGFuZ2VzLCBzbwphcHBsaWVkIHRvIGRybS1pbnRlbC1uZXh0
+LXF1ZXVlZC4gVGhhbmtzIGZvciB0aGUgcGF0Y2guCgpCUiwKSmFuaS4KCgoKPgo+IF9fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCj4gSW50ZWwtZ2Z4IG1haWxp
+bmcgbGlzdAo+IEludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKPiBodHRwczovL2xpc3Rz
+LmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAoKLS0gCkphbmkgTmlr
+dWxhLCBJbnRlbCBPcGVuIFNvdXJjZSBHcmFwaGljcyBDZW50ZXIKX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRl
+bC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
+L21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
