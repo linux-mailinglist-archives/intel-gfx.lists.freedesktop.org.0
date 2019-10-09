@@ -1,31 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C13FAD0A1F
-	for <lists+intel-gfx@lfdr.de>; Wed,  9 Oct 2019 10:48:58 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 385AED0A5F
+	for <lists+intel-gfx@lfdr.de>; Wed,  9 Oct 2019 10:57:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3C48B6E2EA;
-	Wed,  9 Oct 2019 08:48:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E9B5B6E938;
+	Wed,  9 Oct 2019 08:57:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id D876A6E2EA;
- Wed,  9 Oct 2019 08:48:54 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id D1DFCA0087;
- Wed,  9 Oct 2019 08:48:54 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3056B6E938;
+ Wed,  9 Oct 2019 08:57:19 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 09 Oct 2019 01:57:18 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.67,273,1566889200"; 
+ d="scan'208,217";a="184001141"
+Received: from kmsmsx154.gar.corp.intel.com ([172.21.73.14])
+ by orsmga007.jf.intel.com with ESMTP; 09 Oct 2019 01:57:16 -0700
+Received: from pgsmsx111.gar.corp.intel.com ([169.254.2.128]) by
+ KMSMSX154.gar.corp.intel.com ([169.254.12.220]) with mapi id 14.03.0439.000;
+ Wed, 9 Oct 2019 16:57:15 +0800
+From: "Lee, Shawn C" <shawn.c.lee@intel.com>
+To: "'intel-gfx@lists.freedesktop.org'" <intel-gfx@lists.freedesktop.org>,
+ "'dri-devel@lists.freedesktop.org'" <dri-devel@lists.freedesktop.org>
+Thread-Topic: RE: [PATCH] drm/i915: customize DPCD brightness control for
+ specific panel
+Thread-Index: AdV+f1DdGBFpEF8mQXeiCCESFx9j2Q==
+Date: Wed, 9 Oct 2019 08:57:15 +0000
+Message-ID: <D42A2A322A1FCA4089E30E9A9BA36AC65D6ACADD@PGSMSX111.gar.corp.intel.com>
+Accept-Language: zh-TW, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-product: dlpe-windows
+dlp-version: 11.2.0.6
+dlp-reaction: no-action
+x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiYjcxNWNhODktYTBlYi00ZGUwLTk4ZGEtZGQzYWQxMjQ0ZDE0IiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX05UIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE3LjEwLjE4MDQuNDkiLCJUcnVzdGVkTGFiZWxIYXNoIjoiamNOQ0FySjRzUGRWb0FZdFJuTXdCdjV0aFRjMXBMOURlME5weXA2aHJUUzYzaUdtZHNYSHJYMnF1M3QzTitQXC8ifQ==
+x-ctpclassification: CTP_NT
+x-originating-ip: [172.30.20.205]
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matt Roper" <matthew.d.roper@intel.com>
-Date: Wed, 09 Oct 2019 08:48:54 -0000
-Message-ID: <20191009084854.31952.36552@emeril.freedesktop.org>
-References: <20191008211716.8391-1-matthew.d.roper@intel.com>
-X-Patchwork-Hint: ignore
-In-Reply-To: <20191008211716.8391-1-matthew.d.roper@intel.com>
-Subject: [Intel-gfx] =?utf-8?q?=E2=9C=93_Fi=2ECI=2EIGT=3A_success_for_drm/?=
- =?utf-8?q?i915=3A_Catch_GTT_fault_errors_for_gen11+_planes_=28rev2=29?=
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: customize DPCD brightness control
+ for specific panel
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -38,265 +58,257 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: "20191004215851.31446-1-shawn.c.lee@intel.com"
+ <20191004215851.31446-1-shawn.c.lee@intel.com>
+Cc: "Nikula, Jani" <jani.nikula@intel.com>, "Chiou,
+ Cooper" <cooper.chiou@intel.com>, 'Adam Jackson' <ajax@redhat.com>,
+ 'Gustavo Padovan' <gustavo@padovan.org>
+Content-Type: multipart/mixed; boundary="===============1774373342=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-PT0gU2VyaWVzIERldGFpbHMgPT0KClNlcmllczogZHJtL2k5MTU6IENhdGNoIEdUVCBmYXVsdCBl
-cnJvcnMgZm9yIGdlbjExKyBwbGFuZXMgKHJldjIpClVSTCAgIDogaHR0cHM6Ly9wYXRjaHdvcmsu
-ZnJlZWRlc2t0b3Aub3JnL3Nlcmllcy82Nzc1Mi8KU3RhdGUgOiBzdWNjZXNzCgo9PSBTdW1tYXJ5
-ID09CgpDSSBCdWcgTG9nIC0gY2hhbmdlcyBmcm9tIENJX0RSTV83MDM3X2Z1bGwgLT4gUGF0Y2h3
-b3JrXzE0NzEzX2Z1bGwKPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
-PT09PT09PT09PQoKU3VtbWFyeQotLS0tLS0tCgogICoqU1VDQ0VTUyoqCgogIE5vIHJlZ3Jlc3Np
-b25zIGZvdW5kLgoKICAKCktub3duIGlzc3VlcwotLS0tLS0tLS0tLS0KCiAgSGVyZSBhcmUgdGhl
-IGNoYW5nZXMgZm91bmQgaW4gUGF0Y2h3b3JrXzE0NzEzX2Z1bGwgdGhhdCBjb21lIGZyb20ga25v
-d24gaXNzdWVzOgoKIyMjIElHVCBjaGFuZ2VzICMjIwoKIyMjIyBJc3N1ZXMgaGl0ICMjIyMKCiAg
-KiBpZ3RAZ2VtX2V4ZWNfYmFsYW5jZXJAc21va2U6CiAgICAtIHNoYXJkLWljbGI6ICAgICAgICAg
-W1BBU1NdWzFdIC0+IFtTS0lQXVsyXSAoW2ZkbyMxMTA4NTRdKQogICBbMV06IGh0dHBzOi8vaW50
-ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAvQ0lfRFJNXzcwMzcvc2hhcmQtaWNsYjEvaWd0
-QGdlbV9leGVjX2JhbGFuY2VyQHNtb2tlLmh0bWwKICAgWzJdOiBodHRwczovL2ludGVsLWdmeC1j
-aS4wMS5vcmcvdHJlZS9kcm0tdGlwL1BhdGNod29ya18xNDcxMy9zaGFyZC1pY2xiNS9pZ3RAZ2Vt
-X2V4ZWNfYmFsYW5jZXJAc21va2UuaHRtbAoKICAqIGlndEBnZW1fZXhlY19zY2hlZHVsZUB3aWRl
-LWJzZDoKICAgIC0gc2hhcmQtaWNsYjogICAgICAgICBbUEFTU11bM10gLT4gW1NLSVBdWzRdIChb
-ZmRvIzExMTMyNV0pICs0IHNpbWlsYXIgaXNzdWVzCiAgIFszXTogaHR0cHM6Ly9pbnRlbC1nZngt
-Y2kuMDEub3JnL3RyZWUvZHJtLXRpcC9DSV9EUk1fNzAzNy9zaGFyZC1pY2xiMy9pZ3RAZ2VtX2V4
-ZWNfc2NoZWR1bGVAd2lkZS1ic2QuaHRtbAogICBbNF06IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAx
-Lm9yZy90cmVlL2RybS10aXAvUGF0Y2h3b3JrXzE0NzEzL3NoYXJkLWljbGIyL2lndEBnZW1fZXhl
-Y19zY2hlZHVsZUB3aWRlLWJzZC5odG1sCgogICogaWd0QGdlbV9mZW5jZV90aHJhc2hAYm8td3Jp
-dGUtdmVyaWZ5LXg6CiAgICAtIHNoYXJkLWljbGI6ICAgICAgICAgW1BBU1NdWzVdIC0+IFtJTkNP
-TVBMRVRFXVs2XSAoW2ZkbyMxMDc3MTNdKQogICBbNV06IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAx
-Lm9yZy90cmVlL2RybS10aXAvQ0lfRFJNXzcwMzcvc2hhcmQtaWNsYjUvaWd0QGdlbV9mZW5jZV90
-aHJhc2hAYm8td3JpdGUtdmVyaWZ5LXguaHRtbAogICBbNl06IGh0dHBzOi8vaW50ZWwtZ2Z4LWNp
-LjAxLm9yZy90cmVlL2RybS10aXAvUGF0Y2h3b3JrXzE0NzEzL3NoYXJkLWljbGI0L2lndEBnZW1f
-ZmVuY2VfdGhyYXNoQGJvLXdyaXRlLXZlcmlmeS14Lmh0bWwKCiAgKiBpZ3RAZ2VtX3VzZXJwdHJf
-YmxpdHNAbWFwLWZpeGVkLWludmFsaWRhdGUtYnVzeToKICAgIC0gc2hhcmQtaHN3OiAgICAgICAg
-ICBbUEFTU11bN10gLT4gW0RNRVNHLVdBUk5dWzhdIChbZmRvIzExMTg3MF0pICsxIHNpbWlsYXIg
-aXNzdWUKICAgWzddOiBodHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlwL0NJ
-X0RSTV83MDM3L3NoYXJkLWhzdzEvaWd0QGdlbV91c2VycHRyX2JsaXRzQG1hcC1maXhlZC1pbnZh
-bGlkYXRlLWJ1c3kuaHRtbAogICBbOF06IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVl
-L2RybS10aXAvUGF0Y2h3b3JrXzE0NzEzL3NoYXJkLWhzdzEvaWd0QGdlbV91c2VycHRyX2JsaXRz
-QG1hcC1maXhlZC1pbnZhbGlkYXRlLWJ1c3kuaHRtbAoKICAqIGlndEBnZW1fdXNlcnB0cl9ibGl0
-c0BzeW5jLXVubWFwLWN5Y2xlczoKICAgIC0gc2hhcmQtc25iOiAgICAgICAgICBbUEFTU11bOV0g
-LT4gW0RNRVNHLVdBUk5dWzEwXSAoW2ZkbyMxMTE4NzBdKSArMSBzaW1pbGFyIGlzc3VlCiAgIFs5
-XTogaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9DSV9EUk1fNzAzNy9z
-aGFyZC1zbmI0L2lndEBnZW1fdXNlcnB0cl9ibGl0c0BzeW5jLXVubWFwLWN5Y2xlcy5odG1sCiAg
-IFsxMF06IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAvUGF0Y2h3b3Jr
-XzE0NzEzL3NoYXJkLXNuYjEvaWd0QGdlbV91c2VycHRyX2JsaXRzQHN5bmMtdW5tYXAtY3ljbGVz
-Lmh0bWwKCiAgKiBpZ3RAaTkxNV9zZWxmdGVzdEBsaXZlX2hhbmdjaGVjazoKICAgIC0gc2hhcmQt
-aWNsYjogICAgICAgICBbUEFTU11bMTFdIC0+IFtJTkNPTVBMRVRFXVsxMl0gKFtmZG8jMTA3NzEz
-XSAvIFtmZG8jMTA4NTY5XSkKICAgWzExXTogaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3Ry
-ZWUvZHJtLXRpcC9DSV9EUk1fNzAzNy9zaGFyZC1pY2xiNC9pZ3RAaTkxNV9zZWxmdGVzdEBsaXZl
-X2hhbmdjaGVjay5odG1sCiAgIFsxMl06IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVl
-L2RybS10aXAvUGF0Y2h3b3JrXzE0NzEzL3NoYXJkLWljbGI2L2lndEBpOTE1X3NlbGZ0ZXN0QGxp
-dmVfaGFuZ2NoZWNrLmh0bWwKCiAgKiBpZ3RAa21zX2J1c3lAZXh0ZW5kZWQtbW9kZXNldC1oYW5n
-LW5ld2ZiLXJlbmRlci1hOgogICAgLSBzaGFyZC1hcGw6ICAgICAgICAgIFtQQVNTXVsxM10gLT4g
-W0lOQ09NUExFVEVdWzE0XSAoW2ZkbyMxMDM5MjddKQogICBbMTNdOiBodHRwczovL2ludGVsLWdm
-eC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlwL0NJX0RSTV83MDM3L3NoYXJkLWFwbDEvaWd0QGttc19i
-dXN5QGV4dGVuZGVkLW1vZGVzZXQtaGFuZy1uZXdmYi1yZW5kZXItYS5odG1sCiAgIFsxNF06IGh0
-dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAvUGF0Y2h3b3JrXzE0NzEzL3No
-YXJkLWFwbDMvaWd0QGttc19idXN5QGV4dGVuZGVkLW1vZGVzZXQtaGFuZy1uZXdmYi1yZW5kZXIt
-YS5odG1sCgogICogaWd0QGttc19mbGlwQDJ4LWZsaXAtdnMtZXhwaXJlZC12Ymxhbms6CiAgICAt
-IHNoYXJkLWdsazogICAgICAgICAgW1BBU1NdWzE1XSAtPiBbRkFJTF1bMTZdIChbZmRvIzEwNTM2
-M10pCiAgIFsxNV06IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAvQ0lf
-RFJNXzcwMzcvc2hhcmQtZ2xrNS9pZ3RAa21zX2ZsaXBAMngtZmxpcC12cy1leHBpcmVkLXZibGFu
-ay5odG1sCiAgIFsxNl06IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAv
-UGF0Y2h3b3JrXzE0NzEzL3NoYXJkLWdsazEvaWd0QGttc19mbGlwQDJ4LWZsaXAtdnMtZXhwaXJl
-ZC12YmxhbmsuaHRtbAoKICAqIGlndEBrbXNfZnJvbnRidWZmZXJfdHJhY2tpbmdAZmJjcHNyLTFw
-LXByaW1zY3JuLXNwci1pbmRmYi1kcmF3LXJlbmRlcjoKICAgIC0gc2hhcmQtaWNsYjogICAgICAg
-ICBbUEFTU11bMTddIC0+IFtGQUlMXVsxOF0gKFtmZG8jMTAzMTY3XSkgKzQgc2ltaWxhciBpc3N1
-ZXMKICAgWzE3XTogaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9DSV9E
-Uk1fNzAzNy9zaGFyZC1pY2xiNi9pZ3RAa21zX2Zyb250YnVmZmVyX3RyYWNraW5nQGZiY3Bzci0x
-cC1wcmltc2Nybi1zcHItaW5kZmItZHJhdy1yZW5kZXIuaHRtbAogICBbMThdOiBodHRwczovL2lu
-dGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlwL1BhdGNod29ya18xNDcxMy9zaGFyZC1pY2xi
-Ni9pZ3RAa21zX2Zyb250YnVmZmVyX3RyYWNraW5nQGZiY3Bzci0xcC1wcmltc2Nybi1zcHItaW5k
-ZmItZHJhdy1yZW5kZXIuaHRtbAoKICAqIGlndEBrbXNfcHNyQHBzcjJfcHJpbWFyeV9tbWFwX2d0
-dDoKICAgIC0gc2hhcmQtaWNsYjogICAgICAgICBbUEFTU11bMTldIC0+IFtTS0lQXVsyMF0gKFtm
-ZG8jMTA5NDQxXSkgKzEgc2ltaWxhciBpc3N1ZQogICBbMTldOiBodHRwczovL2ludGVsLWdmeC1j
-aS4wMS5vcmcvdHJlZS9kcm0tdGlwL0NJX0RSTV83MDM3L3NoYXJkLWljbGIyL2lndEBrbXNfcHNy
-QHBzcjJfcHJpbWFyeV9tbWFwX2d0dC5odG1sCiAgIFsyMF06IGh0dHBzOi8vaW50ZWwtZ2Z4LWNp
-LjAxLm9yZy90cmVlL2RybS10aXAvUGF0Y2h3b3JrXzE0NzEzL3NoYXJkLWljbGI1L2lndEBrbXNf
-cHNyQHBzcjJfcHJpbWFyeV9tbWFwX2d0dC5odG1sCgogICogaWd0QGttc19zZXRtb2RlQGJhc2lj
-OgogICAgLSBzaGFyZC1rYmw6ICAgICAgICAgIFtQQVNTXVsyMV0gLT4gW0ZBSUxdWzIyXSAoW2Zk
-byM5OTkxMl0pCiAgIFsyMV06IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10
-aXAvQ0lfRFJNXzcwMzcvc2hhcmQta2JsNy9pZ3RAa21zX3NldG1vZGVAYmFzaWMuaHRtbAogICBb
-MjJdOiBodHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlwL1BhdGNod29ya18x
-NDcxMy9zaGFyZC1rYmw3L2lndEBrbXNfc2V0bW9kZUBiYXNpYy5odG1sCgogICogaWd0QGttc192
-YmxhbmtAcGlwZS1hLXRzLWNvbnRpbnVhdGlvbi1zdXNwZW5kOgogICAgLSBzaGFyZC1hcGw6ICAg
-ICAgICAgIFtQQVNTXVsyM10gLT4gW0RNRVNHLVdBUk5dWzI0XSAoW2ZkbyMxMDg1NjZdKSArMyBz
-aW1pbGFyIGlzc3VlcwogICBbMjNdOiBodHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9k
-cm0tdGlwL0NJX0RSTV83MDM3L3NoYXJkLWFwbDgvaWd0QGttc192YmxhbmtAcGlwZS1hLXRzLWNv
-bnRpbnVhdGlvbi1zdXNwZW5kLmh0bWwKICAgWzI0XTogaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEu
-b3JnL3RyZWUvZHJtLXRpcC9QYXRjaHdvcmtfMTQ3MTMvc2hhcmQtYXBsNC9pZ3RAa21zX3ZibGFu
-a0BwaXBlLWEtdHMtY29udGludWF0aW9uLXN1c3BlbmQuaHRtbAoKICAqIGlndEBwcmltZV92Z2Vt
-QGZlbmNlLXdhaXQtYnNkMjoKICAgIC0gc2hhcmQtaWNsYjogICAgICAgICBbUEFTU11bMjVdIC0+
-IFtTS0lQXVsyNl0gKFtmZG8jMTA5Mjc2XSkgKzE5IHNpbWlsYXIgaXNzdWVzCiAgIFsyNV06IGh0
-dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAvQ0lfRFJNXzcwMzcvc2hhcmQt
-aWNsYjEvaWd0QHByaW1lX3ZnZW1AZmVuY2Utd2FpdC1ic2QyLmh0bWwKICAgWzI2XTogaHR0cHM6
-Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9QYXRjaHdvcmtfMTQ3MTMvc2hhcmQt
-aWNsYjMvaWd0QHByaW1lX3ZnZW1AZmVuY2Utd2FpdC1ic2QyLmh0bWwKCiAgCiMjIyMgUG9zc2li
-bGUgZml4ZXMgIyMjIwoKICAqIGlndEBnZW1fY3R4X3NoYXJlZEBleGVjLXNpbmdsZS10aW1lbGlu
-ZS1ic2Q6CiAgICAtIHNoYXJkLWljbGI6ICAgICAgICAgW1NLSVBdWzI3XSAoW2ZkbyMxMTA4NDFd
-KSAtPiBbUEFTU11bMjhdCiAgIFsyN106IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVl
-L2RybS10aXAvQ0lfRFJNXzcwMzcvc2hhcmQtaWNsYjEvaWd0QGdlbV9jdHhfc2hhcmVkQGV4ZWMt
-c2luZ2xlLXRpbWVsaW5lLWJzZC5odG1sCiAgIFsyOF06IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAx
-Lm9yZy90cmVlL2RybS10aXAvUGF0Y2h3b3JrXzE0NzEzL3NoYXJkLWljbGI3L2lndEBnZW1fY3R4
-X3NoYXJlZEBleGVjLXNpbmdsZS10aW1lbGluZS1ic2QuaHRtbAoKICAqIGlndEBnZW1fZWlvQHN1
-c3BlbmQ6CiAgICAtIHNoYXJkLWFwbDogICAgICAgICAgW0lOQ09NUExFVEVdWzI5XSAoW2ZkbyMx
-MDM5MjddKSAtPiBbUEFTU11bMzBdCiAgIFsyOV06IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9y
-Zy90cmVlL2RybS10aXAvQ0lfRFJNXzcwMzcvc2hhcmQtYXBsMi9pZ3RAZ2VtX2Vpb0BzdXNwZW5k
-Lmh0bWwKICAgWzMwXTogaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9Q
-YXRjaHdvcmtfMTQ3MTMvc2hhcmQtYXBsNy9pZ3RAZ2VtX2Vpb0BzdXNwZW5kLmh0bWwKCiAgKiBp
-Z3RAZ2VtX2V4ZWNfc2NoZWR1bGVAb3V0LW9yZGVyLWJzZDE6CiAgICAtIHNoYXJkLWljbGI6ICAg
-ICAgICAgW1NLSVBdWzMxXSAoW2ZkbyMxMDkyNzZdKSAtPiBbUEFTU11bMzJdICs3IHNpbWlsYXIg
-aXNzdWVzCiAgIFszMV06IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAv
-Q0lfRFJNXzcwMzcvc2hhcmQtaWNsYjUvaWd0QGdlbV9leGVjX3NjaGVkdWxlQG91dC1vcmRlci1i
-c2QxLmh0bWwKICAgWzMyXTogaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRp
-cC9QYXRjaHdvcmtfMTQ3MTMvc2hhcmQtaWNsYjIvaWd0QGdlbV9leGVjX3NjaGVkdWxlQG91dC1v
-cmRlci1ic2QxLmh0bWwKCiAgKiBpZ3RAZ2VtX2V4ZWNfc2NoZWR1bGVAcHJlZW1wdC1vdGhlci1j
-aGFpbi1ic2Q6CiAgICAtIHNoYXJkLWljbGI6ICAgICAgICAgW1NLSVBdWzMzXSAoW2ZkbyMxMTEz
-MjVdKSAtPiBbUEFTU11bMzRdICsyIHNpbWlsYXIgaXNzdWVzCiAgIFszM106IGh0dHBzOi8vaW50
-ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAvQ0lfRFJNXzcwMzcvc2hhcmQtaWNsYjEvaWd0
-QGdlbV9leGVjX3NjaGVkdWxlQHByZWVtcHQtb3RoZXItY2hhaW4tYnNkLmh0bWwKICAgWzM0XTog
-aHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9QYXRjaHdvcmtfMTQ3MTMv
-c2hhcmQtaWNsYjUvaWd0QGdlbV9leGVjX3NjaGVkdWxlQHByZWVtcHQtb3RoZXItY2hhaW4tYnNk
-Lmh0bWwKCiAgKiBpZ3RAZ2VtX3VzZXJwdHJfYmxpdHNAZG1hYnVmLXN5bmM6CiAgICAtIHNoYXJk
-LXNuYjogICAgICAgICAgW0RNRVNHLVdBUk5dWzM1XSAoW2ZkbyMxMTE4NzBdKSAtPiBbUEFTU11b
-MzZdICsxIHNpbWlsYXIgaXNzdWUKICAgWzM1XTogaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3Jn
-L3RyZWUvZHJtLXRpcC9DSV9EUk1fNzAzNy9zaGFyZC1zbmIyL2lndEBnZW1fdXNlcnB0cl9ibGl0
-c0BkbWFidWYtc3luYy5odG1sCiAgIFszNl06IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90
-cmVlL2RybS10aXAvUGF0Y2h3b3JrXzE0NzEzL3NoYXJkLXNuYjcvaWd0QGdlbV91c2VycHRyX2Js
-aXRzQGRtYWJ1Zi1zeW5jLmh0bWwKCiAgKiBpZ3RAZ2VtX3VzZXJwdHJfYmxpdHNAZG1hYnVmLXVu
-c3luYzoKICAgIC0gc2hhcmQtaHN3OiAgICAgICAgICBbRE1FU0ctV0FSTl1bMzddIChbZmRvIzEx
-MTg3MF0pIC0+IFtQQVNTXVszOF0gKzEgc2ltaWxhciBpc3N1ZQogICBbMzddOiBodHRwczovL2lu
-dGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlwL0NJX0RSTV83MDM3L3NoYXJkLWhzdzIvaWd0
-QGdlbV91c2VycHRyX2JsaXRzQGRtYWJ1Zi11bnN5bmMuaHRtbAogICBbMzhdOiBodHRwczovL2lu
-dGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlwL1BhdGNod29ya18xNDcxMy9zaGFyZC1oc3cy
-L2lndEBnZW1fdXNlcnB0cl9ibGl0c0BkbWFidWYtdW5zeW5jLmh0bWwKCiAgKiBpZ3RAaTkxNV9z
-dXNwZW5kQHN5c2ZzLXJlYWRlcjoKICAgIC0gc2hhcmQtYXBsOiAgICAgICAgICBbRE1FU0ctV0FS
-Tl1bMzldIChbZmRvIzEwODU2Nl0pIC0+IFtQQVNTXVs0MF0gKzYgc2ltaWxhciBpc3N1ZXMKICAg
-WzM5XTogaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9DSV9EUk1fNzAz
-Ny9zaGFyZC1hcGw3L2lndEBpOTE1X3N1c3BlbmRAc3lzZnMtcmVhZGVyLmh0bWwKICAgWzQwXTog
-aHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9QYXRjaHdvcmtfMTQ3MTMv
-c2hhcmQtYXBsOC9pZ3RAaTkxNV9zdXNwZW5kQHN5c2ZzLXJlYWRlci5odG1sCgogICogaWd0QGtt
-c19idXN5QGV4dGVuZGVkLW1vZGVzZXQtaGFuZy1uZXdmYi1yZW5kZXItYToKICAgIC0gc2hhcmQt
-aWNsYjogICAgICAgICBbSU5DT01QTEVURV1bNDFdIChbZmRvIzEwNzcxM10pIC0+IFtQQVNTXVs0
-Ml0KICAgWzQxXTogaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9DSV9E
-Uk1fNzAzNy9zaGFyZC1pY2xiNy9pZ3RAa21zX2J1c3lAZXh0ZW5kZWQtbW9kZXNldC1oYW5nLW5l
-d2ZiLXJlbmRlci1hLmh0bWwKICAgWzQyXTogaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3Ry
-ZWUvZHJtLXRpcC9QYXRjaHdvcmtfMTQ3MTMvc2hhcmQtaWNsYjMvaWd0QGttc19idXN5QGV4dGVu
-ZGVkLW1vZGVzZXQtaGFuZy1uZXdmYi1yZW5kZXItYS5odG1sCgogICogaWd0QGttc19jdXJzb3Jf
-Y3JjQHBpcGUtYy1jdXJzb3ItMjU2eDg1LW9mZnNjcmVlbjoKICAgIC0gc2hhcmQtc2tsOiAgICAg
-ICAgICBbRkFJTF1bNDNdIChbZmRvIzEwMzIzMl0pIC0+IFtQQVNTXVs0NF0KICAgWzQzXTogaHR0
-cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9DSV9EUk1fNzAzNy9zaGFyZC1z
-a2w4L2lndEBrbXNfY3Vyc29yX2NyY0BwaXBlLWMtY3Vyc29yLTI1Nng4NS1vZmZzY3JlZW4uaHRt
-bAogICBbNDRdOiBodHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlwL1BhdGNo
-d29ya18xNDcxMy9zaGFyZC1za2w1L2lndEBrbXNfY3Vyc29yX2NyY0BwaXBlLWMtY3Vyc29yLTI1
-Nng4NS1vZmZzY3JlZW4uaHRtbAoKICAqIGlndEBrbXNfZnJvbnRidWZmZXJfdHJhY2tpbmdAZmJj
-LTFwLW9mZnNjcmVuLXByaS1pbmRmYi1kcmF3LW1tYXAtY3B1OgogICAgLSB7c2hhcmQtdGdsYn06
-ICAgICAgIFtJTkNPTVBMRVRFXVs0NV0gLT4gW1BBU1NdWzQ2XSArMSBzaW1pbGFyIGlzc3VlCiAg
-IFs0NV06IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAvQ0lfRFJNXzcw
-Mzcvc2hhcmQtdGdsYjIvaWd0QGttc19mcm9udGJ1ZmZlcl90cmFja2luZ0BmYmMtMXAtb2Zmc2Ny
-ZW4tcHJpLWluZGZiLWRyYXctbW1hcC1jcHUuaHRtbAogICBbNDZdOiBodHRwczovL2ludGVsLWdm
-eC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlwL1BhdGNod29ya18xNDcxMy9zaGFyZC10Z2xiMi9pZ3RA
-a21zX2Zyb250YnVmZmVyX3RyYWNraW5nQGZiYy0xcC1vZmZzY3Jlbi1wcmktaW5kZmItZHJhdy1t
-bWFwLWNwdS5odG1sCgogICogaWd0QGttc19mcm9udGJ1ZmZlcl90cmFja2luZ0BmYmMtMXAtb2Zm
-c2NyZW4tcHJpLXNocmZiLWRyYXctcHdyaXRlOgogICAgLSBzaGFyZC1pY2xiOiAgICAgICAgIFtG
-QUlMXVs0N10gKFtmZG8jMTAzMTY3XSkgLT4gW1BBU1NdWzQ4XSArNCBzaW1pbGFyIGlzc3Vlcwog
-ICBbNDddOiBodHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlwL0NJX0RSTV83
-MDM3L3NoYXJkLWljbGIyL2lndEBrbXNfZnJvbnRidWZmZXJfdHJhY2tpbmdAZmJjLTFwLW9mZnNj
-cmVuLXByaS1zaHJmYi1kcmF3LXB3cml0ZS5odG1sCiAgIFs0OF06IGh0dHBzOi8vaW50ZWwtZ2Z4
-LWNpLjAxLm9yZy90cmVlL2RybS10aXAvUGF0Y2h3b3JrXzE0NzEzL3NoYXJkLWljbGIzL2lndEBr
-bXNfZnJvbnRidWZmZXJfdHJhY2tpbmdAZmJjLTFwLW9mZnNjcmVuLXByaS1zaHJmYi1kcmF3LXB3
-cml0ZS5odG1sCgogICogaWd0QGttc19wbGFuZV9hbHBoYV9ibGVuZEBwaXBlLWItY29uc3RhbnQt
-YWxwaGEtbWluOgogICAgLSBzaGFyZC1za2w6ICAgICAgICAgIFtGQUlMXVs0OV0gKFtmZG8jMTA4
-MTQ1XSkgLT4gW1BBU1NdWzUwXQogICBbNDldOiBodHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcv
-dHJlZS9kcm0tdGlwL0NJX0RSTV83MDM3L3NoYXJkLXNrbDUvaWd0QGttc19wbGFuZV9hbHBoYV9i
-bGVuZEBwaXBlLWItY29uc3RhbnQtYWxwaGEtbWluLmh0bWwKICAgWzUwXTogaHR0cHM6Ly9pbnRl
-bC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9QYXRjaHdvcmtfMTQ3MTMvc2hhcmQtc2tsOC9p
-Z3RAa21zX3BsYW5lX2FscGhhX2JsZW5kQHBpcGUtYi1jb25zdGFudC1hbHBoYS1taW4uaHRtbAoK
-ICAqIGlndEBrbXNfcGxhbmVfYWxwaGFfYmxlbmRAcGlwZS1jLWNvdmVyYWdlLTdlZmM6CiAgICAt
-IHNoYXJkLXNrbDogICAgICAgICAgW0ZBSUxdWzUxXSAoW2ZkbyMxMDgxNDVdIC8gW2ZkbyMxMTA0
-MDNdKSAtPiBbUEFTU11bNTJdCiAgIFs1MV06IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90
-cmVlL2RybS10aXAvQ0lfRFJNXzcwMzcvc2hhcmQtc2tsOC9pZ3RAa21zX3BsYW5lX2FscGhhX2Js
-ZW5kQHBpcGUtYy1jb3ZlcmFnZS03ZWZjLmh0bWwKICAgWzUyXTogaHR0cHM6Ly9pbnRlbC1nZngt
-Y2kuMDEub3JnL3RyZWUvZHJtLXRpcC9QYXRjaHdvcmtfMTQ3MTMvc2hhcmQtc2tsNS9pZ3RAa21z
-X3BsYW5lX2FscGhhX2JsZW5kQHBpcGUtYy1jb3ZlcmFnZS03ZWZjLmh0bWwKCiAgKiBpZ3RAa21z
-X3BzckBwc3IyX3Nwcml0ZV9tbWFwX2d0dDoKICAgIC0gc2hhcmQtaWNsYjogICAgICAgICBbU0tJ
-UF1bNTNdIChbZmRvIzEwOTQ0MV0pIC0+IFtQQVNTXVs1NF0KICAgWzUzXTogaHR0cHM6Ly9pbnRl
-bC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9DSV9EUk1fNzAzNy9zaGFyZC1pY2xiMy9pZ3RA
-a21zX3BzckBwc3IyX3Nwcml0ZV9tbWFwX2d0dC5odG1sCiAgIFs1NF06IGh0dHBzOi8vaW50ZWwt
-Z2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAvUGF0Y2h3b3JrXzE0NzEzL3NoYXJkLWljbGIyL2ln
-dEBrbXNfcHNyQHBzcjJfc3ByaXRlX21tYXBfZ3R0Lmh0bWwKCiAgKiBpZ3RAa21zX3ZibGFua0Bw
-aXBlLWItdHMtY29udGludWF0aW9uLWRwbXMtc3VzcGVuZDoKICAgIC0ge3NoYXJkLXRnbGJ9OiAg
-ICAgICBbSU5DT01QTEVURV1bNTVdIChbZmRvIzExMTgzMl0gLyBbZmRvIzExMTg1MF0pIC0+IFtQ
-QVNTXVs1Nl0KICAgWzU1XTogaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRp
-cC9DSV9EUk1fNzAzNy9zaGFyZC10Z2xiMi9pZ3RAa21zX3ZibGFua0BwaXBlLWItdHMtY29udGlu
-dWF0aW9uLWRwbXMtc3VzcGVuZC5odG1sCiAgIFs1Nl06IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAx
-Lm9yZy90cmVlL2RybS10aXAvUGF0Y2h3b3JrXzE0NzEzL3NoYXJkLXRnbGI2L2lndEBrbXNfdmJs
-YW5rQHBpcGUtYi10cy1jb250aW51YXRpb24tZHBtcy1zdXNwZW5kLmh0bWwKCiAgCiMjIyMgV2Fy
-bmluZ3MgIyMjIwoKICAqIGlndEBnZW1fbW9jc19zZXR0aW5nc0Btb2NzLWlzb2xhdGlvbi1ic2Qy
-OgogICAgLSBzaGFyZC1pY2xiOiAgICAgICAgIFtGQUlMXVs1N10gKFtmZG8jMTExMzMwXSkgLT4g
-W1NLSVBdWzU4XSAoW2ZkbyMxMDkyNzZdKQogICBbNTddOiBodHRwczovL2ludGVsLWdmeC1jaS4w
-MS5vcmcvdHJlZS9kcm0tdGlwL0NJX0RSTV83MDM3L3NoYXJkLWljbGIxL2lndEBnZW1fbW9jc19z
-ZXR0aW5nc0Btb2NzLWlzb2xhdGlvbi1ic2QyLmh0bWwKICAgWzU4XTogaHR0cHM6Ly9pbnRlbC1n
-ZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9QYXRjaHdvcmtfMTQ3MTMvc2hhcmQtaWNsYjMvaWd0
-QGdlbV9tb2NzX3NldHRpbmdzQG1vY3MtaXNvbGF0aW9uLWJzZDIuaHRtbAoKICAqIGlndEBnZW1f
-bW9jc19zZXR0aW5nc0Btb2NzLXNldHRpbmdzLWJzZDI6CiAgICAtIHNoYXJkLWljbGI6ICAgICAg
-ICAgW1NLSVBdWzU5XSAoW2ZkbyMxMDkyNzZdKSAtPiBbRkFJTF1bNjBdIChbZmRvIzExMTMzMF0p
-ICsxIHNpbWlsYXIgaXNzdWUKICAgWzU5XTogaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3Ry
-ZWUvZHJtLXRpcC9DSV9EUk1fNzAzNy9zaGFyZC1pY2xiNi9pZ3RAZ2VtX21vY3Nfc2V0dGluZ3NA
-bW9jcy1zZXR0aW5ncy1ic2QyLmh0bWwKICAgWzYwXTogaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEu
-b3JnL3RyZWUvZHJtLXRpcC9QYXRjaHdvcmtfMTQ3MTMvc2hhcmQtaWNsYjEvaWd0QGdlbV9tb2Nz
-X3NldHRpbmdzQG1vY3Mtc2V0dGluZ3MtYnNkMi5odG1sCgogICogaWd0QGttc19wbGFuZUBwbGFu
-ZS1wYW5uaW5nLWJvdHRvbS1yaWdodC1zdXNwZW5kLXBpcGUtYS1wbGFuZXM6CiAgICAtIHNoYXJk
-LWFwbDogICAgICAgICAgW0RNRVNHLVdBUk5dWzYxXSAoW2ZkbyMxMDg1NjZdKSAtPiBbSU5DT01Q
-TEVURV1bNjJdIChbZmRvIzEwMzkyN10pCiAgIFs2MV06IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAx
-Lm9yZy90cmVlL2RybS10aXAvQ0lfRFJNXzcwMzcvc2hhcmQtYXBsNi9pZ3RAa21zX3BsYW5lQHBs
-YW5lLXBhbm5pbmctYm90dG9tLXJpZ2h0LXN1c3BlbmQtcGlwZS1hLXBsYW5lcy5odG1sCiAgIFs2
-Ml06IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAvUGF0Y2h3b3JrXzE0
-NzEzL3NoYXJkLWFwbDcvaWd0QGttc19wbGFuZUBwbGFuZS1wYW5uaW5nLWJvdHRvbS1yaWdodC1z
-dXNwZW5kLXBpcGUtYS1wbGFuZXMuaHRtbAoKICAKICB7bmFtZX06IFRoaXMgZWxlbWVudCBpcyBz
-dXBwcmVzc2VkLiBUaGlzIG1lYW5zIGl0IGlzIGlnbm9yZWQgd2hlbiBjb21wdXRpbmcKICAgICAg
-ICAgIHRoZSBzdGF0dXMgb2YgdGhlIGRpZmZlcmVuY2UgKFNVQ0NFU1MsIFdBUk5JTkcsIG9yIEZB
-SUxVUkUpLgoKICBbZmRvIzEwMzE2N106IGh0dHBzOi8vYnVncy5mcmVlZGVza3RvcC5vcmcvc2hv
-d19idWcuY2dpP2lkPTEwMzE2NwogIFtmZG8jMTAzMjMyXTogaHR0cHM6Ly9idWdzLmZyZWVkZXNr
-dG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MTAzMjMyCiAgW2ZkbyMxMDM5MjddOiBodHRwczovL2J1
-Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD0xMDM5MjcKICBbZmRvIzEwNTM2M106
-IGh0dHBzOi8vYnVncy5mcmVlZGVza3RvcC5vcmcvc2hvd19idWcuY2dpP2lkPTEwNTM2MwogIFtm
-ZG8jMTA3NzEzXTogaHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9
-MTA3NzEzCiAgW2ZkbyMxMDgxNDVdOiBodHRwczovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3df
-YnVnLmNnaT9pZD0xMDgxNDUKICBbZmRvIzEwODU2Nl06IGh0dHBzOi8vYnVncy5mcmVlZGVza3Rv
-cC5vcmcvc2hvd19idWcuY2dpP2lkPTEwODU2NgogIFtmZG8jMTA4NTY5XTogaHR0cHM6Ly9idWdz
-LmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MTA4NTY5CiAgW2ZkbyMxMDkyNzZdOiBo
-dHRwczovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD0xMDkyNzYKICBbZmRv
-IzEwOTQ0MV06IGh0dHBzOi8vYnVncy5mcmVlZGVza3RvcC5vcmcvc2hvd19idWcuY2dpP2lkPTEw
-OTQ0MQogIFtmZG8jMTEwNDAzXTogaHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1
-Zy5jZ2k/aWQ9MTEwNDAzCiAgW2ZkbyMxMTA4NDFdOiBodHRwczovL2J1Z3MuZnJlZWRlc2t0b3Au
-b3JnL3Nob3dfYnVnLmNnaT9pZD0xMTA4NDEKICBbZmRvIzExMDg1NF06IGh0dHBzOi8vYnVncy5m
-cmVlZGVza3RvcC5vcmcvc2hvd19idWcuY2dpP2lkPTExMDg1NAogIFtmZG8jMTExMzI1XTogaHR0
-cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MTExMzI1CiAgW2ZkbyMx
-MTEzMzBdOiBodHRwczovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD0xMTEz
-MzAKICBbZmRvIzExMTgzMl06IGh0dHBzOi8vYnVncy5mcmVlZGVza3RvcC5vcmcvc2hvd19idWcu
-Y2dpP2lkPTExMTgzMgogIFtmZG8jMTExODUwXTogaHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9y
-Zy9zaG93X2J1Zy5jZ2k/aWQ9MTExODUwCiAgW2ZkbyMxMTE4NzBdOiBodHRwczovL2J1Z3MuZnJl
-ZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD0xMTE4NzAKICBbZmRvIzk5OTEyXTogaHR0cHM6
-Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9OTk5MTIKCgpQYXJ0aWNpcGF0
-aW5nIGhvc3RzICgxMSAtPiAxMSkKLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tCgogIE5v
-IGNoYW5nZXMgaW4gcGFydGljaXBhdGluZyBob3N0cwoKCkJ1aWxkIGNoYW5nZXMKLS0tLS0tLS0t
-LS0tLQoKICAqIENJOiBDSS0yMDE5MDUyOSAtPiBOb25lCiAgKiBMaW51eDogQ0lfRFJNXzcwMzcg
-LT4gUGF0Y2h3b3JrXzE0NzEzCgogIENJLTIwMTkwNTI5OiAyMDE5MDUyOQogIENJX0RSTV83MDM3
-OiA0ZmY1OTBkNjZmNDU2MjY2MTUwYzJjNDJjMTk0ZjYyMzM4NTY5MTQwIEAgZ2l0Oi8vYW5vbmdp
-dC5mcmVlZGVza3RvcC5vcmcvZ2Z4LWNpL2xpbnV4CiAgSUdUXzUyMTg6IDg2OWVkMWVlMGI3MWNl
-MTdmMGE4NjQ1MTI0ODhmOGIxYTZjYjg1NDUgQCBnaXQ6Ly9hbm9uZ2l0LmZyZWVkZXNrdG9wLm9y
-Zy94b3JnL2FwcC9pbnRlbC1ncHUtdG9vbHMKICBQYXRjaHdvcmtfMTQ3MTM6IDVkNWQxODFhOGVl
-OGYwMDJhZDIyMzc4MTQ0NmI5MWU4YzVmNzI3ZjYgQCBnaXQ6Ly9hbm9uZ2l0LmZyZWVkZXNrdG9w
-Lm9yZy9nZngtY2kvbGludXgKICBwaWdsaXRfNDUwOTogZmRjNWE0Y2ExMTEyNGFiODQxM2M3OTg4
-ODk2ZWVjNGM5NzMzNjY5NCBAIGdpdDovL2Fub25naXQuZnJlZWRlc2t0b3Aub3JnL3BpZ2xpdAoK
-PT0gTG9ncyA9PQoKRm9yIG1vcmUgZGV0YWlscyBzZWU6IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAx
-Lm9yZy90cmVlL2RybS10aXAvUGF0Y2h3b3JrXzE0NzEzL2luZGV4Lmh0bWwKX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlz
-dApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0
-b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
+--===============1774373342==
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_D42A2A322A1FCA4089E30E9A9BA36AC65D6ACADDPGSMSX111garcor_"
+
+--_000_D42A2A322A1FCA4089E30E9A9BA36AC65D6ACADDPGSMSX111garcor_
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+On Tue, 08 Oct 2019, Jani Nikula <jani.nikula@intel.com> wrote:
+>On Mon, 07 Oct 2019, Adam Jackson <ajax@redhat.com> wrote:
+>> On Mon, 2019-10-07 at 12:08 +0300, Jani Nikula wrote:
+>>
+>>> The problem with the EDID quirks is that exposing the quirks sticks out
+>>> like a sore thumb. Thus far all of it has been contained in drm_edid.c
+>>> and they affect how the EDID gets parsed, for all drivers. Obviously
+>>> this could be changed, but is it the right thing to do?
+>>>
+>>> What I suggested was, check the OUI only, and if it matches, do
+>>> more. Perhaps there's something in the 0x300 range of DPCD offsets that
+>>> you can read? Or perhaps you need to write the source OUI first, and
+>>> then do that.
+>>
+>> My issue isn't really with identifying the panel from EDID rather than
+>> DPCD, whichever identifier is most specific is probably the best thing
+>> to use. It's more that this quirk is identified in common code but only
+>> applied in one driver. If this panel were ever to be attached to some
+>> other source, they might well want to apply the same kind of fix. My
+>> (admittedly na=EFve) reading of the OUI handshake process is that when
+>> the source device writes an OUI to DP_SOURCE_OUI it is telling the sink
+>> "I'm about to issue commands that conform to _this_ vendor's own
+>> conventions". If that convention communicates information that is
+>> entirely contained within AUXCH transactions (and doesn't, for example,
+>> require looking at some other strapping pin or external device) then in
+>> principle it doesn't matter if the source device "matches" that OUI; it
+>> would be legal for an AMD GPU to write the same sequence and expect the
+>> same reaction, should that panel be attached to an AMD GPU.
+>>
+>> So, it would be nice to know exactly what that protocol is meant to do,
+>> if it applies only to this specific panel or anything else with the
+>> same TCON, how one would identify such TCONs in the wild other than
+>> EDID, if it relies on an external PWM or something, etc. And it might
+>> make sense for now to make this a (shudder) driver-specific EDID quirk
+>> rather than match by DPCD, at least until we know if the panel is ever
+>> seen attached to other source devices and if the OUI convention is
+>> self-contained.
+>
+>Thanks for clarifying. Pretty much agreed, unfortunately also on the
+>"would be nice to know more" part...
+>
+>If this were to be an EDID quirk after all, I wonder if it would be
+>better to store the parsed quirks to, say, struct drm_display_info, and
+>have a drm_connector_has_quirk() function similar to drm_dp_has_quirk().
+>
+>This would also allow us to not return quirks from
+>drm_add_display_info(), which would arguably clean up the interface.
+>
+>BR,
+>Jani.
+
+Thanks for advice! I've already update patch V2. Driver will check sink OUI
+and confirm TCON's capability to decide to enable this method or not.
+It depends on TCON's feature description and does not export EDID quirk.
+
+Best regards,
+Shawn
+
+
+--_000_D42A2A322A1FCA4089E30E9A9BA36AC65D6ACADDPGSMSX111garcor_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:PMingLiU;
+	panose-1:2 1 6 1 0 1 1 1 1 1;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:"\@PMingLiU";
+	panose-1:2 1 6 1 0 1 1 1 1 1;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">On Tue, 08 Oct 2019, Jani Nikula &lt;jani.nikula@int=
+el.com&gt; wrote:<o:p></o:p></p>
+<p class=3D"MsoNormal">&gt;On Mon, 07 Oct 2019, Adam Jackson &lt;ajax@redha=
+t.com&gt; wrote:<o:p></o:p></p>
+<p class=3D"MsoNormal">&gt;&gt; On Mon, 2019-10-07 at 12:08 &#43;0300, Jani=
+ Nikula wrote:<o:p></o:p></p>
+<p class=3D"MsoNormal">&gt;&gt;<o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">&gt;&gt;&gt; The problem with the EDID quirks is tha=
+t exposing the quirks sticks out<o:p></o:p></p>
+<p class=3D"MsoNormal">&gt;&gt;&gt; like a sore thumb. Thus far all of it h=
+as been contained in drm_edid.c<o:p></o:p></p>
+<p class=3D"MsoNormal">&gt;&gt;&gt; and they affect how the EDID gets parse=
+d, for all drivers. Obviously<o:p></o:p></p>
+<p class=3D"MsoNormal">&gt;&gt;&gt; this could be changed, but is it the ri=
+ght thing to do?<o:p></o:p></p>
+<p class=3D"MsoNormal">&gt;&gt;&gt; <o:p></o:p></p>
+<p class=3D"MsoNormal">&gt;&gt;&gt; What I suggested was, check the OUI onl=
+y, and if it matches, do<o:p></o:p></p>
+<p class=3D"MsoNormal">&gt;&gt;&gt; more. Perhaps there's something in the =
+0x300 range of DPCD offsets that<o:p></o:p></p>
+<p class=3D"MsoNormal">&gt;&gt;&gt; you can read? Or perhaps you need to wr=
+ite the source OUI first, and<o:p></o:p></p>
+<p class=3D"MsoNormal">&gt;&gt;&gt; then do that.<o:p></o:p></p>
+<p class=3D"MsoNormal">&gt;&gt;<o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">&gt;&gt; My issue isn't really with identifying the =
+panel from EDID rather than<o:p></o:p></p>
+<p class=3D"MsoNormal">&gt;&gt; DPCD, whichever identifier is most specific=
+ is probably the best thing<o:p></o:p></p>
+<p class=3D"MsoNormal">&gt;&gt; to use. It's more that this quirk is identi=
+fied in common code but only<o:p></o:p></p>
+<p class=3D"MsoNormal">&gt;&gt; applied in one driver. If this panel were e=
+ver to be attached to some<o:p></o:p></p>
+<p class=3D"MsoNormal">&gt;&gt; other source, they might well want to apply=
+ the same kind of fix. My<o:p></o:p></p>
+<p class=3D"MsoNormal">&gt;&gt; (admittedly na=EFve) reading of the OUI han=
+dshake process is that when<o:p></o:p></p>
+<p class=3D"MsoNormal">&gt;&gt; the source device writes an OUI to DP_SOURC=
+E_OUI it is telling the sink<o:p></o:p></p>
+<p class=3D"MsoNormal">&gt;&gt; &quot;I'm about to issue commands that conf=
+orm to _this_ vendor's own<o:p></o:p></p>
+<p class=3D"MsoNormal">&gt;&gt; conventions&quot;. If that convention commu=
+nicates information that is<o:p></o:p></p>
+<p class=3D"MsoNormal">&gt;&gt; entirely contained within AUXCH transaction=
+s (and doesn't, for example,<o:p></o:p></p>
+<p class=3D"MsoNormal">&gt;&gt; require looking at some other strapping pin=
+ or external device) then in<o:p></o:p></p>
+<p class=3D"MsoNormal">&gt;&gt; principle it doesn't matter if the source d=
+evice &quot;matches&quot; that OUI; it<o:p></o:p></p>
+<p class=3D"MsoNormal">&gt;&gt; would be legal for an AMD GPU to write the =
+same sequence and expect the<o:p></o:p></p>
+<p class=3D"MsoNormal">&gt;&gt; same reaction, should that panel be attache=
+d to an AMD GPU.<o:p></o:p></p>
+<p class=3D"MsoNormal">&gt;&gt;<o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">&gt;&gt; So, it would be nice to know exactly what t=
+hat protocol is meant to do,<o:p></o:p></p>
+<p class=3D"MsoNormal">&gt;&gt; if it applies only to this specific panel o=
+r anything else with the<o:p></o:p></p>
+<p class=3D"MsoNormal">&gt;&gt; same TCON, how one would identify such TCON=
+s in the wild other than<o:p></o:p></p>
+<p class=3D"MsoNormal">&gt;&gt; EDID, if it relies on an external PWM or so=
+mething, etc. And it might<o:p></o:p></p>
+<p class=3D"MsoNormal">&gt;&gt; make sense for now to make this a (shudder)=
+ driver-specific EDID quirk<o:p></o:p></p>
+<p class=3D"MsoNormal">&gt;&gt; rather than match by DPCD, at least until w=
+e know if the panel is ever<o:p></o:p></p>
+<p class=3D"MsoNormal">&gt;&gt; seen attached to other source devices and i=
+f the OUI convention is<o:p></o:p></p>
+<p class=3D"MsoNormal">&gt;&gt; self-contained.<o:p></o:p></p>
+<p class=3D"MsoNormal">&gt;<o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">&gt;Thanks for clarifying. Pretty much agreed, unfor=
+tunately also on the<o:p></o:p></p>
+<p class=3D"MsoNormal">&gt;&quot;would be nice to know more&quot; part...<o=
+:p></o:p></p>
+<p class=3D"MsoNormal">&gt;<o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">&gt;If this were to be an EDID quirk after all, I wo=
+nder if it would be<o:p></o:p></p>
+<p class=3D"MsoNormal">&gt;better to store the parsed quirks to, say, struc=
+t drm_display_info, and<o:p></o:p></p>
+<p class=3D"MsoNormal">&gt;have a drm_connector_has_quirk() function simila=
+r to drm_dp_has_quirk().<o:p></o:p></p>
+<p class=3D"MsoNormal">&gt;<o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">&gt;This would also allow us to not return quirks fr=
+om<o:p></o:p></p>
+<p class=3D"MsoNormal">&gt;drm_add_display_info(), which would arguably cle=
+an up the interface.<o:p></o:p></p>
+<p class=3D"MsoNormal">&gt;<o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">&gt;BR,<o:p></o:p></p>
+<p class=3D"MsoNormal">&gt;Jani.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Thanks for advice! I've already update patch V2. Dri=
+ver will check sink OUI<o:p></o:p></p>
+<p class=3D"MsoNormal">and confirm TCON's capability to decide to enable th=
+is method or not.<o:p></o:p></p>
+<p class=3D"MsoNormal">It depends on TCON's feature description and does no=
+t export EDID quirk.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Best regards,<o:p></o:p></p>
+<p class=3D"MsoNormal">Shawn<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+</body>
+</html>
+
+--_000_D42A2A322A1FCA4089E30E9A9BA36AC65D6ACADDPGSMSX111garcor_--
+
+--===============1774373342==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
+IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
+
+--===============1774373342==--
