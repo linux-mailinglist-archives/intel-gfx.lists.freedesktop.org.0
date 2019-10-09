@@ -1,31 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 91A5FD04C1
-	for <lists+intel-gfx@lfdr.de>; Wed,  9 Oct 2019 02:28:08 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1397ED04CE
+	for <lists+intel-gfx@lfdr.de>; Wed,  9 Oct 2019 02:36:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0CC026E8C4;
-	Wed,  9 Oct 2019 00:28:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 50D8B6E8C5;
+	Wed,  9 Oct 2019 00:36:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 2132A6E8C4;
- Wed,  9 Oct 2019 00:28:05 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 1B30CA0093;
- Wed,  9 Oct 2019 00:28:05 +0000 (UTC)
+Received: from ozlabs.org (ozlabs.org [IPv6:2401:3900:2:1::2])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 096366E8C2;
+ Wed,  9 Oct 2019 00:36:01 +0000 (UTC)
+Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
+ SHA256) (No client certificate requested)
+ by mail.ozlabs.org (Postfix) with ESMTPSA id 46nwHf173jz9sDB;
+ Wed,  9 Oct 2019 11:35:58 +1100 (AEDT)
+Date: Wed, 9 Oct 2019 11:35:57 +1100
+From: Stephen Rothwell <sfr@canb.auug.org.au>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>, Intel Graphics
+ <intel-gfx@lists.freedesktop.org>, DRI <dri-devel@lists.freedesktop.org>,
+ Alex Deucher <alexdeucher@gmail.com>
+Message-ID: <20191009113557.41ced49e@canb.auug.org.au>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matt Roper" <matthew.d.roper@intel.com>
-Date: Wed, 09 Oct 2019 00:28:05 -0000
-Message-ID: <20191009002805.4049.30352@emeril.freedesktop.org>
-References: <20191008211716.8391-1-matthew.d.roper@intel.com>
-X-Patchwork-Hint: ignore
-In-Reply-To: <20191008211716.8391-1-matthew.d.roper@intel.com>
-Subject: [Intel-gfx] =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_drm/?=
- =?utf-8?q?i915=3A_Catch_GTT_fault_errors_for_gen11+_planes_=28rev2=29?=
+X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=canb.auug.org.au; s=201702; t=1570581359;
+ bh=hjJjL/ozQrg33SwOSe/5cE0JrIJlL2UK7Xv7UiyjKvU=;
+ h=Date:From:To:Cc:Subject:From;
+ b=Q5c1fMRcW2DjlwospuJTfTmx6lD90/9vQLamOPSg49xJbmdptqXpRhjYu4jVllD36
+ 8zE0swWHmMB688MmGmzrACzpEA8CZXJ1nJZX9b0wfCUxt4qYEvRKAro2TIVQkKV3GR
+ L1Y418l2N7+ABK/4SjHuJJYX4vxzSlC6tztgI6ep6oHuA4/Y+Yf4DfEbZ35QyiF+0t
+ RNHPcgZkGr3RL0uCpxSWul8wZXFtPSa0uGTYQ5Ul7JB4UrVU4Qn/7Guf7VXjHNMJvT
+ i5dZFv0l5JqlHyG7qimG9xWJs2qQ41K4VI5v7tk5fKG56dsyYxwNO+6Tmv47pbIfCu
+ +Hk9hQknr/p3w==
+Subject: [Intel-gfx] linux-next: build failure after merge of the drm-misc
+ tree
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -38,69 +49,129 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Sam Ravnborg <sam@ravnborg.org>,
+ Linux Next Mailing List <linux-next@vger.kernel.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: multipart/mixed; boundary="===============1234786272=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-PT0gU2VyaWVzIERldGFpbHMgPT0KClNlcmllczogZHJtL2k5MTU6IENhdGNoIEdUVCBmYXVsdCBl
-cnJvcnMgZm9yIGdlbjExKyBwbGFuZXMgKHJldjIpClVSTCAgIDogaHR0cHM6Ly9wYXRjaHdvcmsu
-ZnJlZWRlc2t0b3Aub3JnL3Nlcmllcy82Nzc1Mi8KU3RhdGUgOiBzdWNjZXNzCgo9PSBTdW1tYXJ5
-ID09CgpDSSBCdWcgTG9nIC0gY2hhbmdlcyBmcm9tIENJX0RSTV83MDM3IC0+IFBhdGNod29ya18x
-NDcxMwo9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
-CgpTdW1tYXJ5Ci0tLS0tLS0KCiAgKipTVUNDRVNTKioKCiAgTm8gcmVncmVzc2lvbnMgZm91bmQu
-CgogIEV4dGVybmFsIFVSTDogaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRp
-cC9QYXRjaHdvcmtfMTQ3MTMvaW5kZXguaHRtbAoKS25vd24gaXNzdWVzCi0tLS0tLS0tLS0tLQoK
-ICBIZXJlIGFyZSB0aGUgY2hhbmdlcyBmb3VuZCBpbiBQYXRjaHdvcmtfMTQ3MTMgdGhhdCBjb21l
-IGZyb20ga25vd24gaXNzdWVzOgoKIyMjIElHVCBjaGFuZ2VzICMjIwoKIyMjIyBJc3N1ZXMgaGl0
-ICMjIyMKCiAgKiBpZ3RAZ2VtX2Jhc2ljQGNyZWF0ZS1jbG9zZToKICAgIC0gZmktaWNsLXUzOiAg
-ICAgICAgICBbUEFTU11bMV0gLT4gW0RNRVNHLVdBUk5dWzJdIChbZmRvIzEwNzcyNF0pICsxIHNp
-bWlsYXIgaXNzdWUKICAgWzFdOiBodHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0t
-dGlwL0NJX0RSTV83MDM3L2ZpLWljbC11My9pZ3RAZ2VtX2Jhc2ljQGNyZWF0ZS1jbG9zZS5odG1s
-CiAgIFsyXTogaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9QYXRjaHdv
-cmtfMTQ3MTMvZmktaWNsLXUzL2lndEBnZW1fYmFzaWNAY3JlYXRlLWNsb3NlLmh0bWwKCiAgKiBp
-Z3RAa21zX2NoYW1lbGl1bUBkcC1lZGlkLXJlYWQ6CiAgICAtIGZpLWljbC11MjogICAgICAgICAg
-W1BBU1NdWzNdIC0+IFtETUVTRy1XQVJOXVs0XSAoW2ZkbyMxMDYxMDddKSArMSBzaW1pbGFyIGlz
-c3VlCiAgIFszXTogaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9DSV9E
-Uk1fNzAzNy9maS1pY2wtdTIvaWd0QGttc19jaGFtZWxpdW1AZHAtZWRpZC1yZWFkLmh0bWwKICAg
-WzRdOiBodHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlwL1BhdGNod29ya18x
-NDcxMy9maS1pY2wtdTIvaWd0QGttc19jaGFtZWxpdW1AZHAtZWRpZC1yZWFkLmh0bWwKCiAgCiMj
-IyMgUG9zc2libGUgZml4ZXMgIyMjIwoKICAqIGlndEBnZW1fZXhlY19ndHRmaWxsQGJhc2ljOgog
-ICAgLSB7ZmktdGdsLXV9OiAgICAgICAgIFtJTkNPTVBMRVRFXVs1XSAoW2ZkbyMxMTE1OTNdKSAt
-PiBbUEFTU11bNl0KICAgWzVdOiBodHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0t
-dGlwL0NJX0RSTV83MDM3L2ZpLXRnbC11L2lndEBnZW1fZXhlY19ndHRmaWxsQGJhc2ljLmh0bWwK
-ICAgWzZdOiBodHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlwL1BhdGNod29y
-a18xNDcxMy9maS10Z2wtdS9pZ3RAZ2VtX2V4ZWNfZ3R0ZmlsbEBiYXNpYy5odG1sCgogICogaWd0
-QGdlbV90aWxlZF9mZW5jZV9ibGl0c0BiYXNpYzoKICAgIC0gZmktaWNsLXUzOiAgICAgICAgICBb
-RE1FU0ctV0FSTl1bN10gKFtmZG8jMTA3NzI0XSkgLT4gW1BBU1NdWzhdCiAgIFs3XTogaHR0cHM6
-Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9DSV9EUk1fNzAzNy9maS1pY2wtdTMv
-aWd0QGdlbV90aWxlZF9mZW5jZV9ibGl0c0BiYXNpYy5odG1sCiAgIFs4XTogaHR0cHM6Ly9pbnRl
-bC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9QYXRjaHdvcmtfMTQ3MTMvZmktaWNsLXUzL2ln
-dEBnZW1fdGlsZWRfZmVuY2VfYmxpdHNAYmFzaWMuaHRtbAoKICAKICB7bmFtZX06IFRoaXMgZWxl
-bWVudCBpcyBzdXBwcmVzc2VkLiBUaGlzIG1lYW5zIGl0IGlzIGlnbm9yZWQgd2hlbiBjb21wdXRp
-bmcKICAgICAgICAgIHRoZSBzdGF0dXMgb2YgdGhlIGRpZmZlcmVuY2UgKFNVQ0NFU1MsIFdBUk5J
-TkcsIG9yIEZBSUxVUkUpLgoKICBbZmRvIzEwMzE2N106IGh0dHBzOi8vYnVncy5mcmVlZGVza3Rv
-cC5vcmcvc2hvd19idWcuY2dpP2lkPTEwMzE2NwogIFtmZG8jMTA2MTA3XTogaHR0cHM6Ly9idWdz
-LmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MTA2MTA3CiAgW2ZkbyMxMDc3MjRdOiBo
-dHRwczovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD0xMDc3MjQKICBbZmRv
-IzExMTU5M106IGh0dHBzOi8vYnVncy5mcmVlZGVza3RvcC5vcmcvc2hvd19idWcuY2dpP2lkPTEx
-MTU5MwoKClBhcnRpY2lwYXRpbmcgaG9zdHMgKDUwIC0+IDQ1KQotLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0KCiAgQWRkaXRpb25hbCAoMSk6IGZpLWljbC1kc2kgCiAgTWlzc2luZyAgICAo
-Nik6IGZpLWlsay1tNTQwIGZpLWhzdy00MjAwdSBmaS1ieXQtc3F1YXdrcyBmaS1pY2wteSBmaS1i
-eXQtY2xhcHBlciBmaS1iZHctc2FtdXMgCgoKQnVpbGQgY2hhbmdlcwotLS0tLS0tLS0tLS0tCgog
-ICogQ0k6IENJLTIwMTkwNTI5IC0+IE5vbmUKICAqIExpbnV4OiBDSV9EUk1fNzAzNyAtPiBQYXRj
-aHdvcmtfMTQ3MTMKCiAgQ0ktMjAxOTA1Mjk6IDIwMTkwNTI5CiAgQ0lfRFJNXzcwMzc6IDRmZjU5
-MGQ2NmY0NTYyNjYxNTBjMmM0MmMxOTRmNjIzMzg1NjkxNDAgQCBnaXQ6Ly9hbm9uZ2l0LmZyZWVk
-ZXNrdG9wLm9yZy9nZngtY2kvbGludXgKICBJR1RfNTIxODogODY5ZWQxZWUwYjcxY2UxN2YwYTg2
-NDUxMjQ4OGY4YjFhNmNiODU0NSBAIGdpdDovL2Fub25naXQuZnJlZWRlc2t0b3Aub3JnL3hvcmcv
-YXBwL2ludGVsLWdwdS10b29scwogIFBhdGNod29ya18xNDcxMzogNWQ1ZDE4MWE4ZWU4ZjAwMmFk
-MjIzNzgxNDQ2YjkxZThjNWY3MjdmNiBAIGdpdDovL2Fub25naXQuZnJlZWRlc2t0b3Aub3JnL2dm
-eC1jaS9saW51eAoKCj09IExpbnV4IGNvbW1pdHMgPT0KCjVkNWQxODFhOGVlOCBkcm0vaTkxNTog
-Q2F0Y2ggR1RUIGZhdWx0IGVycm9ycyBmb3IgZ2VuMTErIHBsYW5lcwoKPT0gTG9ncyA9PQoKRm9y
-IG1vcmUgZGV0YWlscyBzZWU6IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10
-aXAvUGF0Y2h3b3JrXzE0NzEzL2luZGV4Lmh0bWwKX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4v
-bGlzdGluZm8vaW50ZWwtZ2Z4
+--===============1234786272==
+Content-Type: multipart/signed; boundary="Sig_/fCeB9E99v+6r5u9dD0w7vTz";
+ protocol="application/pgp-signature"; micalg=pgp-sha256
+
+--Sig_/fCeB9E99v+6r5u9dD0w7vTz
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
+
+Hi all,
+
+After merging the drm-misc tree, today's linux-next build (x86_64
+allmodconfig) failed like this:
+
+In file included from drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_module.c:25:
+drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_priv.h:40:10: fatal error: drm/drm=
+P.h: No such file or directory
+   40 | #include <drm/drmP.h>
+      |          ^~~~~~~~~~~~
+In file included from drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_chardev.c:38:
+drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_priv.h:40:10: fatal error: drm/drm=
+P.h: No such file or directory
+   40 | #include <drm/drmP.h>
+      |          ^~~~~~~~~~~~
+In file included from drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_device.c:26:
+drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_priv.h:40:10: fatal error: drm/drm=
+P.h: No such file or directory
+   40 | #include <drm/drmP.h>
+      |          ^~~~~~~~~~~~
+In file included from drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_topology.c:3=
+4:
+drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_priv.h:40:10: fatal error: drm/drm=
+P.h: No such file or directory
+   40 | #include <drm/drmP.h>
+      |          ^~~~~~~~~~~~
+
+
+Caused by commit
+
+  4e98f871bcff ("drm: delete drmP.h + drm_os_linux.h")
+
+interacting with commit
+
+  6b855f7b83d2 ("drm/amdkfd: Check against device cgroup")
+
+from the amdgpu tree.
+
+I added the following merge fix patch for today:
+
+From: Stephen Rothwell <sfr@canb.auug.org.au>
+Date: Wed, 9 Oct 2019 11:24:38 +1100
+Subject: [PATCH] drm/amdkfd: update for drmP.h removal
+
+Signed-off-by: Stephen Rothwell <sfr@canb.auug.org.au>
+---
+ drivers/gpu/drm/amd/amdkfd/kfd_priv.h | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_priv.h b/drivers/gpu/drm/amd/am=
+dkfd/kfd_priv.h
+index b8b4485c8f74..41bc0428bfc0 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
+@@ -37,7 +37,9 @@
+ #include <linux/kref.h>
+ #include <linux/sysfs.h>
+ #include <linux/device_cgroup.h>
+-#include <drm/drmP.h>
++#include <drm/drm_file.h>
++#include <drm/drm_drv.h>
++#include <drm/drm_device.h>
+ #include <kgd_kfd_interface.h>
+=20
+ #include "amd_shared.h"
+@@ -49,8 +51,6 @@
+ /* GPU ID hash width in bits */
+ #define KFD_GPU_ID_HASH_WIDTH 16
+=20
+-struct drm_device;
+-
+ /* Use upper bits of mmap offset to store KFD driver specific information.
+  * BITS[63:62] - Encode MMAP type
+  * BITS[61:46] - Encode gpu_id. To identify to which GPU the offset belong=
+s to
+--=20
+2.23.0
+
+--=20
+Cheers,
+Stephen Rothwell
+
+--Sig_/fCeB9E99v+6r5u9dD0w7vTz
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAl2dK20ACgkQAVBC80lX
+0Gxn3gf+IeA2Y+XMWHNmZjY3J/ZSjXHuL2Fk4IL8EYqsPnnO3a7bgqa06ZbtfepV
+ai4XV/7ox+aTGpSXiR5nDAxW9iJSavwGWDT+25V60542eBSijPOkCqSeKza27yL0
+HSpjg+1ZKfY/pbN2oyBKoSbvO22NQGA0hy4K6hUuzYA00KzFLd6b/7LiX2461qeW
+0uA7DpyHc+Fw3D8kprrYnmI+0xPpM/ZyVtvDtMPVpoAPobQJB6DNYjroxsdiRPqb
+jp4dBlxBVMHCOSqbMIe6KnyF6/+NwSxsHvw6fiTDCvwMBkszFZwTWaNiW5tyvpLi
+GgTYESuyuDaEIXT64VFFz0wjhNdmJg==
+=mmD0
+-----END PGP SIGNATURE-----
+
+--Sig_/fCeB9E99v+6r5u9dD0w7vTz--
+
+--===============1234786272==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
+IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
+
+--===============1234786272==--
