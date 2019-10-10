@@ -2,31 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 26064D1D1E
-	for <lists+intel-gfx@lfdr.de>; Thu, 10 Oct 2019 02:07:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6CFEBD1D5E
+	for <lists+intel-gfx@lfdr.de>; Thu, 10 Oct 2019 02:22:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DE4AB6EA73;
-	Thu, 10 Oct 2019 00:07:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3EEC26EA74;
+	Thu, 10 Oct 2019 00:22:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id F0D396E329;
- Thu, 10 Oct 2019 00:07:47 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id E5606A0094;
- Thu, 10 Oct 2019 00:07:47 +0000 (UTC)
+Received: from ozlabs.org (bilbo.ozlabs.org [203.11.71.1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 42A896EA74;
+ Thu, 10 Oct 2019 00:22:56 +0000 (UTC)
+Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
+ SHA256) (No client certificate requested)
+ by mail.ozlabs.org (Postfix) with ESMTPSA id 46pWy251BKz9s7T;
+ Thu, 10 Oct 2019 11:22:49 +1100 (AEDT)
+Date: Thu, 10 Oct 2019 11:22:49 +1100
+From: Stephen Rothwell <sfr@canb.auug.org.au>
+To: Dave Airlie <airlied@linux.ie>, Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Jani Nikula <jani.nikula@linux.intel.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Intel Graphics <intel-gfx@lists.freedesktop.org>, DRI
+ <dri-devel@lists.freedesktop.org>
+Message-ID: <20191010112249.720989aa@canb.auug.org.au>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Thu, 10 Oct 2019 00:07:47 -0000
-Message-ID: <20191010000747.31952.66768@emeril.freedesktop.org>
-References: <20191009211947.6815-1-chris@chris-wilson.co.uk>
-X-Patchwork-Hint: ignore
-In-Reply-To: <20191009211947.6815-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_f?=
- =?utf-8?q?or_series_starting_with_=5B1/9=5D_drm/i915/perf=3A_store_the_as?=
- =?utf-8?q?sociated_engine_of_a_stream?=
+X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=canb.auug.org.au; s=201702; t=1570666973;
+ bh=7+fjtYqa172Ftzt3UBW5VOoZd1S9i31z/HZVdVxdAZ0=;
+ h=Date:From:To:Cc:Subject:From;
+ b=EhPM9H9Cwzep0HCSliuIfx+P2uR+uy6coKqispWQSTVxbJW5kvWl81W0ZL5R19dT4
+ TLfMrbeITvv0MkitjTxaA/tb+y2u59dmaZ/eRaa3rdZ6ODWDrH9jq9Eu2WpXFYfPXO
+ Pet0clnSfsaiLvL0Calao53LlLEffJeLTny6B69ZbWb2rO6hTw7JEOJnHQYM092iFL
+ NggyZaab0LLrn/6Y0688JJBf3MlBMcHXz+uN1DcQCZ2Ii3+QoDhqGOGRRP6IOqezxy
+ U//FxX5Z+0N7hC219Z5py2S2/AoaGbxukj23BDrv1RiwKJFhb1ebdOAN59w/pb5xjQ
+ hECYVDcP6oLwQ==
+Subject: [Intel-gfx] linux-next: build failure after merge of the drm tree
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -39,68 +50,91 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Linux Next Mailing List <linux-next@vger.kernel.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: multipart/mixed; boundary="===============0233907250=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-PT0gU2VyaWVzIERldGFpbHMgPT0KClNlcmllczogc2VyaWVzIHN0YXJ0aW5nIHdpdGggWzEvOV0g
-ZHJtL2k5MTUvcGVyZjogc3RvcmUgdGhlIGFzc29jaWF0ZWQgZW5naW5lIG9mIGEgc3RyZWFtClVS
-TCAgIDogaHR0cHM6Ly9wYXRjaHdvcmsuZnJlZWRlc2t0b3Aub3JnL3Nlcmllcy82NzgwNC8KU3Rh
-dGUgOiB3YXJuaW5nCgo9PSBTdW1tYXJ5ID09CgokIGRpbSBjaGVja3BhdGNoIG9yaWdpbi9kcm0t
-dGlwCmJmMmIwZTA5OTYxOSBkcm0vaTkxNS9wZXJmOiBzdG9yZSB0aGUgYXNzb2NpYXRlZCBlbmdp
-bmUgb2YgYSBzdHJlYW0KNDcyNmJiMjJlYzZmIGRybS9pOTE1L3BlcmY6IGludHJvZHVjZSBhIHZl
-cnNpb25pbmcgb2YgdGhlIGk5MTUtcGVyZiB1YXBpCjYzNWJiODZiNzYzOCBkcm0vaTkxNS9wZXJm
-OiBhbGxvdyBmb3IgQ1MgT0EgY29uZmlncyB0byBiZSBjcmVhdGVkIGxhemlseQowYzg4YmI3NWNk
-OTIgZHJtL2k5MTU6IGFkZCBzdXBwb3J0IGZvciBwZXJmIGNvbmZpZ3VyYXRpb24gcXVlcmllcwoz
-N2Q1MzdkYjQzZmIgZHJtL2k5MTUvcGVyZjogaW1wbGVtZW50IGFjdGl2ZSB3YWl0IGZvciBub2Eg
-Y29uZmlndXJhdGlvbnMKLTo0NTogQ0hFQ0s6U1BBQ0lORzogc3BhY2VzIHByZWZlcnJlZCBhcm91
-bmQgdGhhdCAnPDwnIChjdHg6VnhWKQojNDU6IEZJTEU6IGRyaXZlcnMvZ3B1L2RybS9pOTE1L2d0
-L2ludGVsX2dwdV9jb21tYW5kcy5oOjIyODoKKyNkZWZpbmUgICBQSVBFX0NPTlRST0xfV1JJVEVf
-VElNRVNUQU1QCQkJKDM8PDE0KQogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAJCQkgIF4KCi06MTc5OiBDSEVDSzpPUEVOX0VOREVEX0xJTkU6IExpbmVzIHNob3VsZCBub3Qg
-ZW5kIHdpdGggYSAnKCcKIzE3OTogRklMRTogZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9wZXJm
-LmM6MTU2NzoKKwkJRElWNjRfVTY0X1JPVU5EX1VQKAoKLToyMTM6IENIRUNLOk1VTFRJUExFX0FT
-U0lHTk1FTlRTOiBtdWx0aXBsZSBhc3NpZ25tZW50cyBzaG91bGQgYmUgYXZvaWRlZAojMjEzOiBG
-SUxFOiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3BlcmYuYzoxNjAxOgorCWJhdGNoID0gY3Mg
-PSBpOTE1X2dlbV9vYmplY3RfcGluX21hcChibywgSTkxNV9NQVBfV0IpOwoKLToyMjE6IENIRUNL
-Ok9QRU5fRU5ERURfTElORTogTGluZXMgc2hvdWxkIG5vdCBlbmQgd2l0aCBhICcoJwojMjIxOiBG
-SUxFOiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3BlcmYuYzoxNjA5OgorCQljcyA9IHNhdmVf
-cmVzdG9yZV9yZWdpc3RlcigKCi06MjI0OiBDSEVDSzpPUEVOX0VOREVEX0xJTkU6IExpbmVzIHNo
-b3VsZCBub3QgZW5kIHdpdGggYSAnKCcKIzIyNDogRklMRTogZHJpdmVycy9ncHUvZHJtL2k5MTUv
-aTkxNV9wZXJmLmM6MTYxMjoKKwljcyA9IHNhdmVfcmVzdG9yZV9yZWdpc3RlcigKCi06MzI2OiBD
-SEVDSzpPUEVOX0VOREVEX0xJTkU6IExpbmVzIHNob3VsZCBub3QgZW5kIHdpdGggYSAnKCcKIzMy
-NjogRklMRTogZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9wZXJmLmM6MTcxNDoKKwkJY3MgPSBz
-YXZlX3Jlc3RvcmVfcmVnaXN0ZXIoCgotOjMyOTogQ0hFQ0s6T1BFTl9FTkRFRF9MSU5FOiBMaW5l
-cyBzaG91bGQgbm90IGVuZCB3aXRoIGEgJygnCiMzMjk6IEZJTEU6IGRyaXZlcnMvZ3B1L2RybS9p
-OTE1L2k5MTVfcGVyZi5jOjE3MTc6CisJY3MgPSBzYXZlX3Jlc3RvcmVfcmVnaXN0ZXIoCgotOjQ0
-NjogV0FSTklORzpGSUxFX1BBVEhfQ0hBTkdFUzogYWRkZWQsIG1vdmVkIG9yIGRlbGV0ZWQgZmls
-ZShzKSwgZG9lcyBNQUlOVEFJTkVSUyBuZWVkIHVwZGF0aW5nPwojNDQ2OiAKbmV3IGZpbGUgbW9k
-ZSAxMDA2NDQKCi06NDUxOiBXQVJOSU5HOlNQRFhfTElDRU5TRV9UQUc6IE1pc3Npbmcgb3IgbWFs
-Zm9ybWVkIFNQRFgtTGljZW5zZS1JZGVudGlmaWVyIHRhZyBpbiBsaW5lIDEKIzQ1MTogRklMRTog
-ZHJpdmVycy9ncHUvZHJtL2k5MTUvc2VsZnRlc3RzL2k5MTVfcGVyZi5jOjE6CisvKgoKLTo0NTI6
-IFdBUk5JTkc6U1BEWF9MSUNFTlNFX1RBRzogTWlzcGxhY2VkIFNQRFgtTGljZW5zZS1JZGVudGlm
-aWVyIHRhZyAtIHVzZSBsaW5lIDEgaW5zdGVhZAojNDUyOiBGSUxFOiBkcml2ZXJzL2dwdS9kcm0v
-aTkxNS9zZWxmdGVzdHMvaTkxNV9wZXJmLmM6MjoKKyAqIFNQRFgtTGljZW5zZS1JZGVudGlmaWVy
-OiBNSVQKCnRvdGFsOiAwIGVycm9ycywgMyB3YXJuaW5ncywgNyBjaGVja3MsIDU5MCBsaW5lcyBj
-aGVja2VkCmM4YzAxYmRmNWMwMiBkcm0vaTkxNS9wZXJmOiBleGVjdXRlIE9BIGNvbmZpZ3VyYXRp
-b24gZnJvbSBjb21tYW5kIHN0cmVhbQowNDdjZTI0YjBmOTEgZHJtL2k5MTUvcGVyZjogQWxsb3cg
-ZHluYW1pYyByZWNvbmZpZ3VyYXRpb24gb2YgdGhlIE9BIHN0cmVhbQo1ZDEyNDZlZjBiOTMgZHJt
-L2k5MTUvcGVyZjogYWxsb3cgaG9sZGluZyBwcmVlbXB0aW9uIG9uIGZpbHRlcmVkIGN0eAplM2Yy
-ZGNkMjY5OTggZHJtL2k5MTUvZXhlY2xpc3RzOiBQcmV2ZW50IG1lcmdpbmcgcmVxdWVzdHMgd2l0
-aCBjb25mbGljdGluZyBmbGFncwotOjE0OiBXQVJOSU5HOkNPTU1JVF9MT0dfTE9OR19MSU5FOiBQ
-b3NzaWJsZSB1bndyYXBwZWQgY29tbWl0IGRlc2NyaXB0aW9uIChwcmVmZXIgYSBtYXhpbXVtIDc1
-IGNoYXJzIHBlciBsaW5lKQojMTQ6IApSZWZlcmVuY2VzOiAyYTk4ZjRlNjViYmEgKCJkcm0vaTkx
-NTogYWRkIGluZnJhc3RydWN0dXJlIHRvIGhvbGQgb2ZmIHByZWVtcHRpb24gb24gYSByZXF1ZXN0
-IikKCi06MTQ6IEVSUk9SOkdJVF9DT01NSVRfSUQ6IFBsZWFzZSB1c2UgZ2l0IGNvbW1pdCBkZXNj
-cmlwdGlvbiBzdHlsZSAnY29tbWl0IDwxMisgY2hhcnMgb2Ygc2hhMT4gKCI8dGl0bGUgbGluZT4i
-KScgLSBpZTogJ2NvbW1pdCAyYTk4ZjRlNjViYmEgKCJkcm0vaTkxNTogYWRkIGluZnJhc3RydWN0
-dXJlIHRvIGhvbGQgb2ZmIHByZWVtcHRpb24gb24gYSByZXF1ZXN0IiknCiMxNDogClJlZmVyZW5j
-ZXM6IDJhOThmNGU2NWJiYSAoImRybS9pOTE1OiBhZGQgaW5mcmFzdHJ1Y3R1cmUgdG8gaG9sZCBv
-ZmYgcHJlZW1wdGlvbiBvbiBhIHJlcXVlc3QiKQoKdG90YWw6IDEgZXJyb3JzLCAxIHdhcm5pbmdz
-LCAwIGNoZWNrcywgOSBsaW5lcyBjaGVja2VkCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0
-cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9s
-aXN0aW5mby9pbnRlbC1nZng=
+--===============0233907250==
+Content-Type: multipart/signed; boundary="Sig_/lIT/TpjrrNf6nF9Pwa/PMRX";
+ protocol="application/pgp-signature"; micalg=pgp-sha256
+
+--Sig_/lIT/TpjrrNf6nF9Pwa/PMRX
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
+
+Hi all,
+
+After merging the drm tree, today's linux-next build (x86_64 allmodconfig)
+failed like this:
+
+In file included from drivers/gpu/drm/i915/i915_vma.h:35,
+                 from drivers/gpu/drm/i915/gt/uc/intel_guc.h:17,
+                 from drivers/gpu/drm/i915/gt/uc/intel_uc.h:9,
+                 from drivers/gpu/drm/i915/gt/intel_gt_types.h:16,
+                 from drivers/gpu/drm/i915/i915_drv.h:81,
+                 from drivers/gpu/drm/i915/i915_getparam.c:7:
+drivers/gpu/drm/i915/gem/i915_gem_object.h:174:1: error: redefinition of 'i=
+915_gem_object_never_bind_ggtt'
+  174 | i915_gem_object_never_bind_ggtt(const struct drm_i915_gem_object *o=
+bj)
+      | ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+drivers/gpu/drm/i915/gem/i915_gem_object.h:168:1: note: previous definition=
+ of 'i915_gem_object_never_bind_ggtt' was here
+  168 | i915_gem_object_never_bind_ggtt(const struct drm_i915_gem_object *o=
+bj)
+      | ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Caused by the automatic merge of commit
+
+  3a1fea6d2353 ("drm/i915/userptr: Never allow userptr into the mappable GG=
+TT")
+
+from the drm-intel-fixes tree and commits
+
+  a4311745bba9 ("drm/i915/userptr: Never allow userptr into the mappable GG=
+TT")
+  3cbad5d77749 ("drm/i915/gem: Refactor tests on obj->ops->flags")
+
+from the drm tree.
+
+I fixed it up by removing the extra definition.  This sort of thing will
+keep happening as longs as bugs are fixed in your development trees
+and then cherry-picked back into your -fixes trees.  This practise also
+causes quite a few unnecessary conflicts that each have to be checked
+and merged by hand.
+
+--=20
+Cheers,
+Stephen Rothwell
+
+--Sig_/lIT/TpjrrNf6nF9Pwa/PMRX
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAl2eedkACgkQAVBC80lX
+0GyOYgf/f4qvlGy3OVWVxHDAOJjjxnAAWRG3u5oxfmagSZsi3NjqV9aGPzQXJk0P
+YoPfZv35qqfSSTB3Ao9XTUbij2nI5/76mq7oPp/0/43MLyeun+/pPQlyZ4sPp7qi
+eddvMCPvRfF6PjH2R12zeopTsT6HtXp5Gfo2E+tLxGrxjWEKQbq8HZFsZEnN3sZx
+T88Nu7zJ4grx8043pf8ZqVAMTQmKkaNHtZC33ZPNKsiFSt2UzyNxiD8ukKnkm1st
+6iVAcfe3Mw/ZVWIQHt2z8KWMPrBzhZo7LXoJtD2bem1LlP0bLC9E4WmQWIjzvWcu
+IfMKQdFmfnpWffH5pe/C5OPucH10ng==
+=3MwN
+-----END PGP SIGNATURE-----
+
+--Sig_/lIT/TpjrrNf6nF9Pwa/PMRX--
+
+--===============0233907250==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
+IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
+
+--===============0233907250==--
