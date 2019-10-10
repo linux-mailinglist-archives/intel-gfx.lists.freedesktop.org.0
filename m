@@ -2,31 +2,35 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1B03DD27A4
-	for <lists+intel-gfx@lfdr.de>; Thu, 10 Oct 2019 13:00:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3EB97D27BB
+	for <lists+intel-gfx@lfdr.de>; Thu, 10 Oct 2019 13:07:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D6AEB6EAF7;
-	Thu, 10 Oct 2019 11:00:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C67E46EAFA;
+	Thu, 10 Oct 2019 11:07:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 23C7B6EAF7
- for <intel-gfx@lists.freedesktop.org>; Thu, 10 Oct 2019 10:59:58 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 18789340-1500050 for multiple; Thu, 10 Oct 2019 11:59:27 +0100
+Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 315396EAF9;
+ Thu, 10 Oct 2019 11:07:01 +0000 (UTC)
+Received: from localhost (lfbn-1-10718-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256
+ bits)) (No client certificate requested)
+ by mail.kernel.org (Postfix) with ESMTPSA id 6B103206A1;
+ Thu, 10 Oct 2019 11:07:00 +0000 (UTC)
+Date: Thu, 10 Oct 2019 12:51:37 +0200
+From: Maxime Ripard <mripard@kernel.org>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Message-ID: <20191010105137.j6juxht5dsobgxph@gilmour>
 MIME-Version: 1.0
-To: intel-gfx@lists.freedesktop.org
-From: Chris Wilson <chris@chris-wilson.co.uk>
-In-Reply-To: <20191010103657.6961-1-chris@chris-wilson.co.uk>
-References: <20191010103657.6961-1-chris@chris-wilson.co.uk>
-Message-ID: <157070516530.28494.17682393079022551478@skylake-alporthouse-com>
-User-Agent: alot/0.6
-Date: Thu, 10 Oct 2019 11:59:25 +0100
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/selftests: Check that registers
- are preserved between virtual engines
+User-Agent: NeoMutt/20180716
+X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=kernel.org; s=default; t=1570705620;
+ bh=XIXoGht5sAkYqNe6zJvv60n25EPc7Wgsn4jWbF/FKuc=;
+ h=Date:From:To:Cc:Subject:From;
+ b=c9q3fGK8SdbMUgKefRjFZPyI9lHzXF1pSZz/RNPloZZLVMc99ywffcKdpf/V4sgTy
+ n32VExRkIHBX+RnlM7HwiWTizcPJ6td6v9mhuJCk/MC8TgnEg3HXx9J1zeHDZlkboD
+ nCOcYuI/DqU7Ixh8ZpEzTdwULkDwxNzdcAuXmaAo=
+Subject: [Intel-gfx] [PULL] drm-misc-fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -39,16 +43,91 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Maxime Ripard <mripard@kernel.org>, intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============1194463732=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-UXVvdGluZyBDaHJpcyBXaWxzb24gKDIwMTktMTAtMTAgMTE6MzY6NTcpCj4gTWFrZSBzdXJlIHRo
-YXQgd2UgY29weSBhY3Jvc3MgdGhlIHJlZ2lzdGVycyBmcm9tIG9uZSBlbmdpbmUgdG8gdGhlIG5l
-eHQsCj4gYXMgd2UgaG9wIGFyb3VuZCBhIHZpcnR1YWwgZW5naW5lLgoKTG9va2luZyBhdCBCcm9h
-ZHdlbGwncyBIVyBjb250ZXh0IGltYWdlLCB0aGVyZSBhcmUgbm8gR1BSIHJlZ2lzdGVycyBmb3IK
-eGNzLiBXZWlyZC4KLUNocmlzCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNr
-dG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2lu
-dGVsLWdmeA==
+
+--===============1194463732==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="qltvgbtpm3xthqog"
+Content-Disposition: inline
+
+
+--qltvgbtpm3xthqog
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+
+Hi Dave, Daniel,
+
+Here's this week drm-misc-fixes PR, dealing mostly with SPI probing
+related issues.
+
+Maxime
+
+drm-misc-fixes-2019-10-10:
+Short summary of fixes pull (less than what git shortlog provides):
+- SPI Aliases fixes for panels
+- One fix for the tc358767 bridge dealing with visual artifacts
+The following changes since commit b6559bf3ac32acfe34e17c73d68581e7f7415785:
+
+  Merge drm-misc-next-fixes-2019-10-02 into drm-misc-fixes (2019-10-03 10:00:13 +0200)
+
+are available in the Git repository at:
+
+  git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-fixes-2019-10-10
+
+for you to fetch changes up to fd70c7755bf0172ddd33b558aef69c322de3b5cf:
+
+  drm/bridge: tc358767: fix max_tu_symbol value (2019-10-10 11:15:45 +0200)
+
+----------------------------------------------------------------
+Short summary of fixes pull (less than what git shortlog provides):
+- SPI Aliases fixes for panels
+- One fix for the tc358767 bridge dealing with visual artifacts
+
+----------------------------------------------------------------
+Laurent Pinchart (5):
+      drm/panel: lg-lb035q02: Fix SPI alias
+      drm/panel: nec-nl8048hl11: Fix SPI alias
+      drm/panel: sony-acx565akm: Fix SPI alias
+      drm/panel: tpo-td028ttec1: Fix SPI alias
+      drm/panel: tpo-td043mtea1: Fix SPI alias
+
+Tomi Valkeinen (1):
+      drm/bridge: tc358767: fix max_tu_symbol value
+
+ drivers/gpu/drm/bridge/tc358767.c            | 7 ++++++-
+ drivers/gpu/drm/panel/panel-lg-lb035q02.c    | 9 ++++++++-
+ drivers/gpu/drm/panel/panel-nec-nl8048hl11.c | 9 ++++++++-
+ drivers/gpu/drm/panel/panel-sony-acx565akm.c | 9 ++++++++-
+ drivers/gpu/drm/panel/panel-tpo-td028ttec1.c | 3 +--
+ drivers/gpu/drm/panel/panel-tpo-td043mtea1.c | 9 ++++++++-
+ 6 files changed, 39 insertions(+), 7 deletions(-)
+
+--qltvgbtpm3xthqog
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXZ8NOQAKCRDj7w1vZxhR
+xXzTAPwPco7KW0PYaAHi0RfRrD5AAZcjhDcGL3s2gCz5d2DkzQEA7NoRN9dHqSo4
+a6Es/Oi+gpwslvGiKZgCJwS766TPkws=
+=u4qv
+-----END PGP SIGNATURE-----
+
+--qltvgbtpm3xthqog--
+
+--===============1194463732==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
+IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
+
+--===============1194463732==--
