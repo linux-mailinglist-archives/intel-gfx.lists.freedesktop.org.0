@@ -2,29 +2,35 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC2FAD3D78
-	for <lists+intel-gfx@lfdr.de>; Fri, 11 Oct 2019 12:34:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 762D1D3D96
+	for <lists+intel-gfx@lfdr.de>; Fri, 11 Oct 2019 12:40:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 24EEA6EBFD;
-	Fri, 11 Oct 2019 10:34:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7DB256E082;
+	Fri, 11 Oct 2019 10:40:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BA6226EBFD
- for <intel-gfx@lists.freedesktop.org>; Fri, 11 Oct 2019 10:34:03 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D7E026E02D
+ for <intel-gfx@lists.freedesktop.org>; Fri, 11 Oct 2019 10:40:39 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
-Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 18801929-1500050 
- for multiple; Fri, 11 Oct 2019 11:33:47 +0100
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri, 11 Oct 2019 11:33:45 +0100
-Message-Id: <20191011103345.26013-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.23.0
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 18802040-1500050 for multiple; Fri, 11 Oct 2019 11:40:36 +0100
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/execlists: Only mark incomplete
- requests as -EIO on cancelling
+From: Chris Wilson <chris@chris-wilson.co.uk>
+User-Agent: alot/0.6
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+References: <20191010071434.31195-1-chris@chris-wilson.co.uk>
+ <20191010071434.31195-7-chris@chris-wilson.co.uk>
+ <e9b171f6-be40-fb86-99e0-3bfe5f69404e@linux.intel.com>
+ <157078895887.31572.554920387990865677@skylake-alporthouse-com>
+In-Reply-To: <157078895887.31572.554920387990865677@skylake-alporthouse-com>
+Message-ID: <157079043370.31572.9736235499221341873@skylake-alporthouse-com>
+Date: Fri, 11 Oct 2019 11:40:33 +0100
+Subject: Re: [Intel-gfx] [PATCH 07/10] drm/i915/execlists: Cancel banned
+ contexts on schedule-out
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -42,24 +48,22 @@ Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T25seSB0aGUgcmVxdWVzdHMgdGhhdCBoYXZlIG5vdCBjb21wbGV0ZWQgZG8gd2Ugd2FudCB0byBj
-aGFuZ2UgdGhlCnN0YXR1cyBvZiB0byBzaWduYWwgdGhlIC1FSU8gd2hlbiBjYW5jZWxsaW5nIHRo
-ZSBpbmZsaWdodCBzZXQgb2YgcmVxdWVzdHMKdXBvbiB3ZWRnaW5nLgoKUmVwb3J0ZWQtYnk6IFR2
-cnRrbyBVcnN1bGluIDx0dnJ0a28udXJzdWxpbkBpbnRlbC5jb20+ClNpZ25lZC1vZmYtYnk6IENo
-cmlzIFdpbHNvbiA8Y2hyaXNAY2hyaXMtd2lsc29uLmNvLnVrPgpDYzogVHZydGtvIFVyc3VsaW4g
-PHR2cnRrby51cnN1bGluQGludGVsLmNvbT4KLS0tCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9p
-bnRlbF9scmMuYyB8IDggKysrKysrLS0KIDEgZmlsZSBjaGFuZ2VkLCA2IGluc2VydGlvbnMoKyks
-IDIgZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50
-ZWxfbHJjLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRlbF9scmMuYwppbmRleCBiMDA0
-OTljYzc1ODYuLjFmNDc3MjMyOTAyMSAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUv
-Z3QvaW50ZWxfbHJjLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfbHJjLmMK
-QEAgLTI0Nyw4ICsyNDcsMTIgQEAgc3RhdGljIHZvaWQgX19jb250ZXh0X3Bpbl9yZWxlYXNlKHN0
-cnVjdCBpbnRlbF9jb250ZXh0ICpjZSkKIAogc3RhdGljIHZvaWQgbWFya19laW8oc3RydWN0IGk5
-MTVfcmVxdWVzdCAqcnEpCiB7Ci0JaWYgKCFpOTE1X3JlcXVlc3Rfc2lnbmFsZWQocnEpKQotCQlk
-bWFfZmVuY2Vfc2V0X2Vycm9yKCZycS0+ZmVuY2UsIC1FSU8pOworCWlmIChpOTE1X3JlcXVlc3Rf
-Y29tcGxldGVkKHJxKSkKKwkJcmV0dXJuOworCisJR0VNX0JVR19PTihpOTE1X3JlcXVlc3Rfc2ln
-bmFsZWQocnEpKTsKKworCWRtYV9mZW5jZV9zZXRfZXJyb3IoJnJxLT5mZW5jZSwgLUVJTyk7CiAJ
-aTkxNV9yZXF1ZXN0X21hcmtfY29tcGxldGUocnEpOwogfQogCi0tIAoyLjIzLjAKCl9fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5n
-IGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVk
-ZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeA==
+UXVvdGluZyBDaHJpcyBXaWxzb24gKDIwMTktMTAtMTEgMTE6MTU6NTgpCj4gUXVvdGluZyBUdnJ0
+a28gVXJzdWxpbiAoMjAxOS0xMC0xMSAxMDo0NzoyNikKPiA+ID4gKyAgICAgaWYgKHVubGlrZWx5
+KGk5MTVfZ2VtX2NvbnRleHRfaXNfYmFubmVkKGNlLT5nZW1fY29udGV4dCkpKQo+ID4gPiArICAg
+ICAgICAgICAgIGNhbmNlbF9hY3RpdmUocnEsIGVuZ2luZSk7Cj4gPiAKPiA+IE9yIHlvdSBhcmUg
+Y291bnRpbmcgdGhpcyBpcyBhbHJlYWR5IHRoZSBsYXN0IHJ1bm5hYmxlIHJlcXVlc3QgZnJvbSB0
+aGlzIAo+ID4gY29udGV4dCBkdWUgY29hbGVzY2luZz8gSXQgd291bGRuJ3Qgd29yayBpZiBmb3Ig
+YW55IHJlYXNvbiBjb2FsZXNjaW5nIAo+ID4gd291bGQgYmUgcHJldmVudGVkLiBFaXRoZXIgd2l0
+aCBHVlQsIG9yIEkgaGFkIHNvbWUgaWRlYXMgdG8gcHJldmVudCAKPiA+IGNvYWxlc2NpbmcgZm9y
+IGNvbnRleHRzIHdoZXJlIHdhdGNoZG9nIGlzIGVuYWJsZWQgaW4gdGhlIGZ1dHVyZS4gSW4gCj4g
+PiB3aGljaCBjYXNlIHRoaXMgd291bGQgYmUgYSBoaWRkZW4gZ290Y2hhLiBNYXliZSBhbGwgdGhh
+dCdzIG5lZWRlZCBpbiAKPiA+IG1hcmtfY29tcGxldGUgaXMgYWxzbyB0byBsb29rIHRvd2FyZHMg
+dGhlIGVuZCBvZiB0aGUgbGlzdD8KPiAKPiBJJ20gbm90IGZvbGxvd2luZy4gV2UgYXJlIGxvb2tp
+bmcgYXQgdGhlIGNvbnRleHQgaGVyZSwgd2hpY2ggaXMgdHJhY2sgYnkKPiB0aGUgbGFzdCByZXF1
+ZXN0IHN1Ym1pdHRlZCBmb3IgdGhhdCBjb250ZXh0LgoKT2ggSSBzZWUsIHlvdSB3ZXJlIHBvaW50
+aW5nIG91dCB0aGF0IEkgaGFkIG5vdCB3YWxrZWQgYmFjayBhbG9uZyB0aGUgY29udGV4dAp0byBm
+aW5kIHRoZSBpbmNvbXBsZXRlIHJlcXVlc3QgZm9yIGNvcnJlY3QgcGF0Y2hpbmcuCi1DaHJpcwpf
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZngg
+bWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0
+cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZng=
