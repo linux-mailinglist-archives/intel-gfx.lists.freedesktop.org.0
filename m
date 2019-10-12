@@ -1,27 +1,29 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 19609D4E72
-	for <lists+intel-gfx@lfdr.de>; Sat, 12 Oct 2019 11:09:19 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 47B8BD4E77
+	for <lists+intel-gfx@lfdr.de>; Sat, 12 Oct 2019 11:11:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E131B6E466;
-	Sat, 12 Oct 2019 09:09:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 953C56E46D;
+	Sat, 12 Oct 2019 09:11:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CBF406E466
- for <intel-gfx@lists.freedesktop.org>; Sat, 12 Oct 2019 09:09:14 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E727F6E46F
+ for <intel-gfx@lists.freedesktop.org>; Sat, 12 Oct 2019 09:11:06 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 18812762-1500050 
- for multiple; Sat, 12 Oct 2019 10:08:56 +0100
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 18812792-1500050 
+ for multiple; Sat, 12 Oct 2019 10:10:58 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Sat, 12 Oct 2019 10:08:54 +0100
-Message-Id: <20191012090854.18037-1-chris@chris-wilson.co.uk>
+Date: Sat, 12 Oct 2019 10:10:56 +0100
+Message-Id: <20191012091056.28686-1-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.23.0
+In-Reply-To: <20191012090854.18037-1-chris@chris-wilson.co.uk>
+References: <20191012090854.18037-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
 Subject: [Intel-gfx] [PATCH] drm/i915/perf: Prefer using the pinned_ctx for
  emitting delays on config
@@ -50,7 +52,7 @@ ZHdlcmxpbiA8bGlvbmVsLmcubGFuZHdlcmxpbkBpbnRlbC5jb20+Ci0tLQogZHJpdmVycy9ncHUv
 ZHJtL2k5MTUvaTkxNV9wZXJmLmMgfCA5ICsrKysrKystLQogMSBmaWxlIGNoYW5nZWQsIDcgaW5z
 ZXJ0aW9ucygrKSwgMiBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0v
 aTkxNS9pOTE1X3BlcmYuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfcGVyZi5jCmluZGV4
-IDc0ZjUwMTIwYzE1MS4uOTU5YjZjMzQxOTM0IDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0v
+IDc0ZjUwMTIwYzE1MS4uYjRlMjMzMmQzNWNiIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0v
 aTkxNS9pOTE1X3BlcmYuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3BlcmYuYwpA
 QCAtMTkwMyw2ICsxOTAzLDExIEBAIHN0YXRpYyBpbnQgZW1pdF9vYV9jb25maWcoc3RydWN0IGk5
 MTVfcGVyZl9zdHJlYW0gKnN0cmVhbSwKIAlyZXR1cm4gZXJyOwogfQogCitzdGF0aWMgc3RydWN0
@@ -68,9 +70,9 @@ ZXRyaWNfc2V0KHN0cnVjdCBpOTE1X3BlcmZfc3RyZWFtICpzdHJlYW0pCkBAIC0yMjg2LDcgKzIy
 OTEsNyBAQCBzdGF0aWMgaW50IGdlbjhfZW5hYmxlX21ldHJpY19zZXQoc3RydWN0IGk5MTVfcGVy
 Zl9zdHJlYW0gKnN0cmVhbSkKIAlpZiAocmV0KQogCQlyZXR1cm4gcmV0OwogCi0JcmV0dXJuIGVt
 aXRfb2FfY29uZmlnKHN0cmVhbSwgc3RyZWFtLT5lbmdpbmUtPmtlcm5lbF9jb250ZXh0KTsKKwly
-ZXR1cm4gZW1pdF9vYV9jb25maWcoc3RyZWFtLCBvYV9jb250ZXh0KHN0cmVhbWEpKTsKIH0KIAog
-c3RhdGljIHZvaWQgZ2VuOF9kaXNhYmxlX21ldHJpY19zZXQoc3RydWN0IGk5MTVfcGVyZl9zdHJl
-YW0gKnN0cmVhbSkKLS0gCjIuMjMuMAoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJl
-ZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGlu
-Zm8vaW50ZWwtZ2Z4
+ZXR1cm4gZW1pdF9vYV9jb25maWcoc3RyZWFtLCBvYV9jb250ZXh0KHN0cmVhbSkpOwogfQogCiBz
+dGF0aWMgdm9pZCBnZW44X2Rpc2FibGVfbWV0cmljX3NldChzdHJ1Y3QgaTkxNV9wZXJmX3N0cmVh
+bSAqc3RyZWFtKQotLSAKMi4yMy4wCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVl
+ZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5m
+by9pbnRlbC1nZng=
