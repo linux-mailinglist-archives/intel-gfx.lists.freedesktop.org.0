@@ -2,21 +2,21 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9620BD5F23
-	for <lists+intel-gfx@lfdr.de>; Mon, 14 Oct 2019 11:41:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 13433D5F31
+	for <lists+intel-gfx@lfdr.de>; Mon, 14 Oct 2019 11:42:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E063A6E20F;
-	Mon, 14 Oct 2019 09:41:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E8AA66E20B;
+	Mon, 14 Oct 2019 09:42:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E9FDE6E20F
- for <intel-gfx@lists.freedesktop.org>; Mon, 14 Oct 2019 09:41:07 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1F0F86E20B
+ for <intel-gfx@lists.freedesktop.org>; Mon, 14 Oct 2019 09:42:53 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from localhost (unverified [78.156.65.138]) 
  by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 18829164-1500050 for multiple; Mon, 14 Oct 2019 10:41:05 +0100
+ 18829194-1500050 for multiple; Mon, 14 Oct 2019 10:42:51 +0100
 MIME-Version: 1.0
 From: Chris Wilson <chris@chris-wilson.co.uk>
 User-Agent: alot/0.6
@@ -25,8 +25,8 @@ To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
 References: <20191013203012.25208-1-chris@chris-wilson.co.uk>
  <6a6df2f0-9bed-fc54-2322-f2b6c250a30d@linux.intel.com>
 In-Reply-To: <6a6df2f0-9bed-fc54-2322-f2b6c250a30d@linux.intel.com>
-Message-ID: <157104606340.18859.18244611984814432108@skylake-alporthouse-com>
-Date: Mon, 14 Oct 2019 10:41:03 +0100
+Message-ID: <157104616940.18859.13460506292917922984@skylake-alporthouse-com>
+Date: Mon, 14 Oct 2019 10:42:49 +0100
 Subject: Re: [Intel-gfx] [PATCH] drm/i915/execlists: Tweak virtual
  unsubmission
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -91,19 +91,10 @@ Y3RpdmUgPSBycTsKPiA+ICAgICAgICAgICAgICAgfSBlbHNlIHsKPiA+ICsgICAgICAgICAgICAg
 ICAgICAgICBzdHJ1Y3QgaW50ZWxfZW5naW5lX2NzICpvd25lciA9IHJxLT5od19jb250ZXh0LT5l
 bmdpbmU7Cj4gCj4gSSBndWVzcyB0aGVyZSBpcyBzb21lIGJlbmVmaXQgaW4gZG9pbmcgZmV3ZXIg
 b3BlcmF0aW9ucyBhcyBsb25nIGFzIHdlIAo+IGFyZSBmaXhpbmcgdGhlIGVuZ2luZSBhbnl3YXkg
-KGF0IHRoZSBtb21lbnQgYXQgbGVhc3QpLgo+IAo+IEhvd2V2ZXIgb24gdGhpcyBicmFuY2ggaGVy
-ZSB0aGUgY29uY2VybiB3YXMgcmVxdWVzdCBjb21wbGV0aW9uIHJhY2luZyAKPiB3aXRoIHByZWVt
-cHRpb24gaGFuZGxpbmcgYW5kIHdpdGggdGhpcyBjaGFuZ2UgdGhlIGJyZWFkY3J1bWIgd2lsbCBu
-b3QgCj4gZ2V0IGNhbmNlbGVkIGFueSBsb25nZXIgYW5kIG1heSBnZXQgc2lnbmFsZWQgb24gdGhl
-IHZpcnR1YWwgZW5naW5lLiAKPiBXaGljaCB0aGVuIGxlYWRzIHRvIHRoZSBleHBsb3Npb24gdGhp
-cyBicmFuY2ggZml4ZWQuIEF0IGxlYXN0IHRoYXQncyAKPiB3aGF0IEkgcmVtZW1iZXJlZCBpbiBj
-b21iaW5hdGlvbiB3aXRoIHRoZSBjb21tZW50IGJlbG93Li4KCk5vLCB3ZSBkb24ndCBjaGFuZ2Ug
-YmFjayB0byB0aGUgdmlydHVhbCBlbmdpbmUsIHNvIHRoYXQgaXMgbm90IGFuIGlzc3VlLgpUaGUg
-cHJvYmxlbSB3YXMgb25seSBiZWNhdXNlIG9mIHRoZSBycS0+ZW5naW5lID0gb3duZXIgd2hlcmUg
-dGhlCmJyZWFkY3J1bWJzIHdlcmUgc3RpbGwgb24gdGhlIHByZXZpb3VzIGVuZ2luZSBsaXN0cyBh
-bmQgYXNzdW1lZCB0byBiZQp1bmRlciB0aGF0IGVuZ2luZS0+YnJlYWRjcnVtYnMubG9jayAoYnV0
-IHdvdWxkIGluIGZ1dHVyZSBiZSBhc3N1bWVkIHRvIGJlCnVuZGVyIHJxLT5lbmdpbmUtPmJyZWFk
-Y3J1bWJzLmxvY2spLgotQ2hyaXMKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRl
-c2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8v
-aW50ZWwtZ2Z4
+KGF0IHRoZSBtb21lbnQgYXQgbGVhc3QpLgoKSXQgYWxzbyBhZGRlZCBhIGJpdCBvZiBjb25zaXN0
+ZW5jeSB0byBob3cgd2UgZGV0ZWN0IHZpcnR1YWwgZW5naW5lCmR1cmluZyBpOTE1X3JlcXVlc3Qg
+Y29uc3RydWN0aW9uIChlLmcuIF9faTkxNV9yZXF1ZXN0X2FkZF90b190aW1lbGluZSksCkkgbGlr
+ZWQgdGhhdC4KLUNocmlzCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9w
+Lm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVs
+LWdmeA==
