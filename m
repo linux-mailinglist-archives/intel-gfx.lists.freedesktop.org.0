@@ -2,32 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9BC8BD845C
-	for <lists+intel-gfx@lfdr.de>; Wed, 16 Oct 2019 01:18:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9267FD8468
+	for <lists+intel-gfx@lfdr.de>; Wed, 16 Oct 2019 01:22:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 606B26E8AC;
-	Tue, 15 Oct 2019 23:18:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E0E6389CD8;
+	Tue, 15 Oct 2019 23:22:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3104E6E8AC
- for <intel-gfx@lists.freedesktop.org>; Tue, 15 Oct 2019 23:18:14 +0000 (UTC)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 663C189CD8
+ for <intel-gfx@lists.freedesktop.org>; Tue, 15 Oct 2019 23:22:41 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 15 Oct 2019 16:18:08 -0700
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 15 Oct 2019 16:22:40 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.67,301,1566889200"; d="scan'208";a="198777753"
+X-IronPort-AV: E=Sophos;i="5.67,301,1566889200"; d="scan'208";a="347247923"
 Received: from labuser-z97x-ud5h.jf.intel.com ([10.54.75.49])
- by orsmga003.jf.intel.com with ESMTP; 15 Oct 2019 16:18:08 -0700
+ by orsmga004.jf.intel.com with ESMTP; 15 Oct 2019 16:22:40 -0700
 From: Manasi Navare <manasi.d.navare@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 15 Oct 2019 16:20:09 -0700
-Message-Id: <20191015232009.27008-1-manasi.d.navare@intel.com>
+Date: Tue, 15 Oct 2019 16:24:43 -0700
+Message-Id: <20191015232443.27088-1-manasi.d.navare@intel.com>
 X-Mailer: git-send-email 2.19.1
-In-Reply-To: <20191015230519.15022-1-manasi.d.navare@intel.com>
-References: <20191015230519.15022-1-manasi.d.navare@intel.com>
+In-Reply-To: <20191015230519.15022-2-manasi.d.navare@intel.com>
+References: <20191015230519.15022-2-manasi.d.navare@intel.com>
 MIME-Version: 1.0
 Subject: [Intel-gfx] [PATCH v9 1/6] drm/i915/display/icl: Save Master
  transcoder in slave's crtc_state for Transcoder Port Sync
