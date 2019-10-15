@@ -1,60 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DFB06D723A
-	for <lists+intel-gfx@lfdr.de>; Tue, 15 Oct 2019 11:26:06 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 09E5BD723E
+	for <lists+intel-gfx@lfdr.de>; Tue, 15 Oct 2019 11:26:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6B7616E79C;
-	Tue, 15 Oct 2019 09:26:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F38096E799;
+	Tue, 15 Oct 2019 09:26:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mx1.suse.de (mx2.suse.de [195.135.220.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 463F26E799;
- Tue, 15 Oct 2019 09:26:01 +0000 (UTC)
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-Received: from relay2.suse.de (unknown [195.135.220.254])
- by mx1.suse.de (Postfix) with ESMTP id 489D9AC59;
- Tue, 15 Oct 2019 09:25:59 +0000 (UTC)
-To: Tim.Bird@sony.com, jani.nikula@linux.intel.com, changbin.du@gmail.com,
- corbet@lwn.net
-References: <20191013055359.23312-1-changbin.du@gmail.com>
- <875zkrd7nq.fsf@intel.com>
- <ECADFF3FD767C149AD96A924E7EA6EAF977CAF09@USCULXMSG01.am.sony.com>
-From: Thomas Zimmermann <tzimmermann@suse.de>
-Autocrypt: addr=tzimmermann@suse.de; keydata=
- mQENBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
- XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
- BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
- hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
- 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
- AAG0J1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPokBVAQTAQgAPhYh
- BHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJbOdLgAhsDBQkDwmcABQsJCAcCBhUKCQgLAgQWAgMB
- Ah4BAheAAAoJEGgNwR1TC3ojR80H/jH+vYavwQ+TvO8ksXL9JQWc3IFSiGpuSVXLCdg62AmR
- irxW+qCwNncNQyb9rd30gzdectSkPWL3KSqEResBe24IbA5/jSkPweJasgXtfhuyoeCJ6PXo
- clQQGKIoFIAEv1s8l0ggPZswvCinegl1diyJXUXmdEJRTWYAtxn/atut1o6Giv6D2qmYbXN7
- mneMC5MzlLaJKUtoH7U/IjVw1sx2qtxAZGKVm4RZxPnMCp9E1MAr5t4dP5gJCIiqsdrVqI6i
- KupZstMxstPU//azmz7ZWWxT0JzgJqZSvPYx/SATeexTYBP47YFyri4jnsty2ErS91E6H8os
- Bv6pnSn7eAq5AQ0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRH
- UE9eosYbT6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgT
- RjP+qbU63Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+R
- dhgATnWWGKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zb
- ehDda8lvhFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r
- 12+lqdsAEQEAAYkBPAQYAQgAJhYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJbOdLgAhsMBQkD
- wmcAAAoJEGgNwR1TC3ojpfcIAInwP5OlcEKokTnHCiDTz4Ony4GnHRP2fXATQZCKxmu4AJY2
- h9ifw9Nf2TjCZ6AMvC3thAN0rFDj55N9l4s1CpaDo4J+0fkrHuyNacnT206CeJV1E7NYntxU
- n+LSiRrOdywn6erjxRi9EYTVLCHcDhBEjKmFZfg4AM4GZMWX1lg0+eHbd5oL1as28WvvI/uI
- aMyV8RbyXot1r/8QLlWldU3NrTF5p7TMU2y3ZH2mf5suSKHAMtbE4jKJ8ZHFOo3GhLgjVrBW
- HE9JXO08xKkgD+w6v83+nomsEuf6C6LYrqY/tsZvyEX6zN8CtirPdPWu/VXNRYAl/lat7lSI
- 3H26qrE=
-Message-ID: <7e7557b5-469f-3e63-6254-53dab2d7234a@suse.de>
-Date: Tue, 15 Oct 2019 11:25:53 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.1.1
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A0EFC6E799
+ for <intel-gfx@lists.freedesktop.org>; Tue, 15 Oct 2019 09:26:02 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 15 Oct 2019 02:26:02 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.67,298,1566889200"; d="scan'208";a="395471112"
+Received: from thrakatuluk.fi.intel.com (HELO thrakatuluk) ([10.237.68.154])
+ by fmsmga005.fm.intel.com with ESMTP; 15 Oct 2019 02:26:00 -0700
+Received: from platvala by thrakatuluk with local (Exim 4.91)
+ (envelope-from <petri.latvala@intel.com>)
+ id 1iKJ5b-0005iI-Ou; Tue, 15 Oct 2019 12:25:59 +0300
+Date: Tue, 15 Oct 2019 12:25:59 +0300
+From: Petri Latvala <petri.latvala@intel.com>
+To: Arkadiusz Hiler <arkadiusz.hiler@intel.com>
+Message-ID: <20191015092559.GL4019@platvala-desk.ger.corp.intel.com>
+Mail-Followup-To: Arkadiusz Hiler <arkadiusz.hiler@intel.com>,
+ Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>,
+ Tomi Sarvela <tomi.p.sarvela@intel.com>,
+ intel-gfx@lists.freedesktop.org
+References: <20191008161441.12721-1-ville.syrjala@linux.intel.com>
+ <20191009211223.31953.33664@emeril.freedesktop.org>
+ <20191014192342.GX1208@intel.com>
+ <20191015064120.74viwroedbapwmgx@ahiler-desk1.fi.intel.com>
 MIME-Version: 1.0
-In-Reply-To: <ECADFF3FD767C149AD96A924E7EA6EAF977CAF09@USCULXMSG01.am.sony.com>
-Subject: Re: [Intel-gfx] [PATCH] kernel-doc: rename the kernel-doc directive
- 'functions' to 'specific'
+Content-Disposition: inline
+In-Reply-To: <20191015064120.74viwroedbapwmgx@ahiler-desk1.fi.intel.com>
+X-Patchwork-Hint: comment
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] 
+ =?utf-8?b?4pyXIEZpLkNJLklHVDogZmFpbHVyZSBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5B1/9=5D_drm/i915=3A_Expose_10=3A10=3A10_XRG?=
+ =?utf-8?q?B_formats_on_SNB-BDW_sprites_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -67,145 +58,113 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-doc@vger.kernel.org, linux-pci@vger.kernel.org,
- linux-fpga@vger.kernel.org, linux-usb@vger.kernel.org,
- linux-wireless@vger.kernel.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, linux-mm@kvack.org,
- linux-crypto@vger.kernel.org, linux-kselftest@vger.kernel.org,
- intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============2089644799=="
+Cc: Tomi Sarvela <tomi.p.sarvela@intel.com>, intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---===============2089644799==
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="xhqojG6Suv0J68B6aAC9CpKobUD0Yg8Vm"
-
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---xhqojG6Suv0J68B6aAC9CpKobUD0Yg8Vm
-Content-Type: multipart/mixed; boundary="e6U1SKLtu8YetFMprVb1L54zX2NmQYBjI";
- protected-headers="v1"
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: Tim.Bird@sony.com, jani.nikula@linux.intel.com, changbin.du@gmail.com,
- corbet@lwn.net
-Cc: linux-doc@vger.kernel.org, linux-pci@vger.kernel.org,
- linux-fpga@vger.kernel.org, linux-usb@vger.kernel.org,
- linux-wireless@vger.kernel.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, linux-mm@kvack.org,
- linux-crypto@vger.kernel.org, linux-kselftest@vger.kernel.org,
- intel-gfx@lists.freedesktop.org
-Message-ID: <7e7557b5-469f-3e63-6254-53dab2d7234a@suse.de>
-Subject: Re: [PATCH] kernel-doc: rename the kernel-doc directive 'functions'
- to 'specific'
-References: <20191013055359.23312-1-changbin.du@gmail.com>
- <875zkrd7nq.fsf@intel.com>
- <ECADFF3FD767C149AD96A924E7EA6EAF977CAF09@USCULXMSG01.am.sony.com>
-In-Reply-To: <ECADFF3FD767C149AD96A924E7EA6EAF977CAF09@USCULXMSG01.am.sony.com>
-
---e6U1SKLtu8YetFMprVb1L54zX2NmQYBjI
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: quoted-printable
-
-Hi
-
-Am 14.10.19 um 22:48 schrieb Tim.Bird@sony.com:
->=20
->=20
->> -----Original Message-----
->> From: Jani Nikula on October 13, 2019 11:00 PM
->> On Sun, 13 Oct 2019, Changbin Du <changbin.du@gmail.com> wrote:
->>> The 'functions' directive is not only for functions, but also works f=
-or
->>> structs/unions. So the name is misleading. This patch renames it to
->>> 'specific', so now we have export/internal/specific directives to lim=
-it
->>> the functions/types to be included in documentation. Meanwhile we
->> improved
->>> the warning message.
->>
->> Agreed on "functions" being less than perfect. It directly exposes the=
-
->> idiosyncrasies of scripts/kernel-doc. I'm not sure "specific" is any
->> better, though.
->=20
-> I strongly agree with this.  'specific' IMHO, has no semantic value and=
-
-> I'd rather just leave the only-sometimes-wrong 'functions' than convert=
-
-> to something that obscures the meaning always.
->=20
->>
->> Perhaps "symbols" would be more self-explanatory. Or, actually make
->> "functions" only work on functions, and add a separate keyword for oth=
-er
->> stuff. *shrug*
-> My preference would be to use 'symbols'.  I tried to come up with somet=
-hing
-> but 'symbols' is better than anything I came up with.
-
-Maybe 'interfaces' or 'artifacts'. The term 'symbols' is just as
-imprecise as 'functions'.
-
-Best regards
-Thomas
-
->>
->> Seems like the patch is way too big. I'd probably add "symbols" (or
->> whatever) as a synonym for "functions" for starters, and convert
->> documents piecemeal, and finally drop the old one.
->>
->> The scripts/kernel-doc change should be a patch of its own.
-> Agreed on these two points as well.
->=20
-> Just adding my 2 cents.
->  -- Tim
-> _______________________________________________
-> dri-devel mailing list
-> dri-devel@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/dri-devel
->=20
-
---=20
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Maxfeldstr. 5, 90409 N=C3=BCrnberg, Germany
-(HRB 36809, AG N=C3=BCrnberg)
-Gesch=C3=A4ftsf=C3=BChrer: Felix Imend=C3=B6rffer
-
-
---e6U1SKLtu8YetFMprVb1L54zX2NmQYBjI--
-
---xhqojG6Suv0J68B6aAC9CpKobUD0Yg8Vm
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEEchf7rIzpz2NEoWjlaA3BHVMLeiMFAl2lkKUACgkQaA3BHVML
-eiPfCAf/W0bkytCWyMq99ercABUIKnlOK53TBUZ9NR3Teor0EJtwx1giKdxBOLbe
-qAjTTABU3EcEtmCxmmsKLUEyDrBEmK+/T4YDbASwYt9qSRZQ5rJXRY7RrTsiIfkF
-TWYe27RbVMt7Vn4UC1f1FsShMPxv6fIrpyNoXtB8cCE/aFSLpdPafv0zNxvHFBe+
-SnDdVv+dR767Yhm8etpDlgpFtAD03PTH4hN+ZD9dLD/qgJh7NQiI1zyirt2ns6kv
-2RhyIDmEVltSEhgVDCMg+LOZG41UNmIqpjgNEUF1ReeJeYX3MecovgE4mdzYA4TD
-7q4r9GeyLGeoqsEUu0A4mGRY+ZBZ8g==
-=b8IK
------END PGP SIGNATURE-----
-
---xhqojG6Suv0J68B6aAC9CpKobUD0Yg8Vm--
-
---===============2089644799==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
-IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
-
---===============2089644799==--
+T24gVHVlLCBPY3QgMTUsIDIwMTkgYXQgMDk6NDE6MjBBTSArMDMwMCwgQXJrYWRpdXN6IEhpbGVy
+IHdyb3RlOgo+IE9uIE1vbiwgT2N0IDE0LCAyMDE5IGF0IDEwOjIzOjQyUE0gKzAzMDAsIFZpbGxl
+IFN5cmrDpGzDpCB3cm90ZToKPiA+IE9uIFdlZCwgT2N0IDA5LCAyMDE5IGF0IDA5OjEyOjIzUE0g
+LTAwMDAsIFBhdGNod29yayB3cm90ZToKPiA+ID4gPT0gU2VyaWVzIERldGFpbHMgPT0KPiA+ID4g
+Cj4gPiA+IFNlcmllczogc2VyaWVzIHN0YXJ0aW5nIHdpdGggWzEvOV0gZHJtL2k5MTU6IEV4cG9z
+ZSAxMDoxMDoxMCBYUkdCIGZvcm1hdHMgb24gU05CLUJEVyBzcHJpdGVzIChyZXYyKQo+ID4gPiBV
+UkwgICA6IGh0dHBzOi8vcGF0Y2h3b3JrLmZyZWVkZXNrdG9wLm9yZy9zZXJpZXMvNjc3NDEvCj4g
+PiA+IFN0YXRlIDogZmFpbHVyZQo+ID4gPiAKPiA+ID4gPT0gU3VtbWFyeSA9PQo+ID4gPiAKPiA+
+ID4gQ0kgQnVnIExvZyAtIGNoYW5nZXMgZnJvbSBDSV9EUk1fNzA0Ml9mdWxsIC0+IFBhdGNod29y
+a18xNDcyNV9mdWxsCj4gPiA+ID09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
+PT09PT09PT09PT09PT0KPiA+ID4gCj4gPiA+IFN1bW1hcnkKPiA+ID4gLS0tLS0tLQo+ID4gPiAK
+PiA+ID4gICAqKkZBSUxVUkUqKgo+ID4gPiAKPiA+ID4gICBTZXJpb3VzIHVua25vd24gY2hhbmdl
+cyBjb21pbmcgd2l0aCBQYXRjaHdvcmtfMTQ3MjVfZnVsbCBhYnNvbHV0ZWx5IG5lZWQgdG8gYmUK
+PiA+ID4gICB2ZXJpZmllZCBtYW51YWxseS4KPiA+ID4gICAKPiA+ID4gICBJZiB5b3UgdGhpbmsg
+dGhlIHJlcG9ydGVkIGNoYW5nZXMgaGF2ZSBub3RoaW5nIHRvIGRvIHdpdGggdGhlIGNoYW5nZXMK
+PiA+ID4gICBpbnRyb2R1Y2VkIGluIFBhdGNod29ya18xNDcyNV9mdWxsLCBwbGVhc2Ugbm90aWZ5
+IHlvdXIgYnVnIHRlYW0gdG8gYWxsb3cgdGhlbQo+ID4gPiAgIHRvIGRvY3VtZW50IHRoaXMgbmV3
+IGZhaWx1cmUgbW9kZSwgd2hpY2ggd2lsbCByZWR1Y2UgZmFsc2UgcG9zaXRpdmVzIGluIENJLgo+
+ID4gPiAKPiA+ID4gICAKPiA+ID4gCj4gPiA+IFBvc3NpYmxlIG5ldyBpc3N1ZXMKPiA+ID4gLS0t
+LS0tLS0tLS0tLS0tLS0tLQo+ID4gPiAKPiA+ID4gICBIZXJlIGFyZSB0aGUgdW5rbm93biBjaGFu
+Z2VzIHRoYXQgbWF5IGhhdmUgYmVlbiBpbnRyb2R1Y2VkIGluIFBhdGNod29ya18xNDcyNV9mdWxs
+Ogo+ID4gPiAKPiA+ID4gIyMjIElHVCBjaGFuZ2VzICMjIwo+ID4gPiAKPiA+ID4gIyMjIyBQb3Nz
+aWJsZSByZWdyZXNzaW9ucyAjIyMjCj4gPiA+IAo+ID4gPiAgICogaWd0QGdlbV9laW9AaW4tZmxp
+Z2h0LTF1czoKPiA+ID4gICAgIC0gc2hhcmQtc25iOiAgICAgICAgICBbUEFTU11bMV0gLT4gW0ZB
+SUxdWzJdCj4gPiA+ICAgIFsxXTogaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJt
+LXRpcC9DSV9EUk1fNzA0Mi9zaGFyZC1zbmI3L2lndEBnZW1fZWlvQGluLWZsaWdodC0xdXMuaHRt
+bAo+ID4gPiAgICBbMl06IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAv
+UGF0Y2h3b3JrXzE0NzI1L3NoYXJkLXNuYjcvaWd0QGdlbV9laW9AaW4tZmxpZ2h0LTF1cy5odG1s
+Cj4gPiA+IAo+ID4gPiAgICogaWd0QGttc19wbGFuZUBwaXhlbC1mb3JtYXQtcGlwZS1hLXBsYW5l
+czoKPiA+ID4gICAgIC0gc2hhcmQtaWNsYjogICAgICAgICBbUEFTU11bM10gLT4gW0ZBSUxdWzRd
+ICsxMyBzaW1pbGFyIGlzc3Vlcwo+ID4gPiAgICBbM106IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAx
+Lm9yZy90cmVlL2RybS10aXAvQ0lfRFJNXzcwNDIvc2hhcmQtaWNsYjcvaWd0QGttc19wbGFuZUBw
+aXhlbC1mb3JtYXQtcGlwZS1hLXBsYW5lcy5odG1sCj4gPiA+ICAgIFs0XTogaHR0cHM6Ly9pbnRl
+bC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9QYXRjaHdvcmtfMTQ3MjUvc2hhcmQtaWNsYjgv
+aWd0QGttc19wbGFuZUBwaXhlbC1mb3JtYXQtcGlwZS1hLXBsYW5lcy5odG1sCj4gPiAKPiA+IElH
+VC1WZXJzaW9uOiAxLjI0LWdlNTAxNzQxZgo+ID4gLi4uCj4gPiBUZXN0aW5nIGZvcm1hdCBBUjMw
+KDB4MzAzMzUyNDEpIC8gbW9kaWZpZXIgMHgxMDAwMDAwMDAwMDAwMDMgb24gQS4wCj4gPiAoa21z
+X3BsYW5lOjE0MTEpIGlndF9mYi1DUklUSUNBTDogQ29udmVyc2lvbiBub3QgaW1wbGVtZW50ZWQg
+KGZyb20gZm9ybWF0IDB4MzAzMzUyNDEgdG8gMHg3ODQ2NDc0OSkKPiA+IAo+ID4gRFJNX0ZPUk1B
+VF9BUkdCMjEwMTAxMCA9ICAweDMwMzM1MjQxCj4gPiBJR1RfRk9STUFUX0ZMT0FUID0gMHg3ODQ2
+NDc0OQo+ID4gCj4gPiB7IC5uYW1lID0gIkFSR0IyMTAxMDEwIiwgLmRlcHRoID0gMzAsIC5kcm1f
+aWQgPSBEUk1fRk9STUFUX0FSR0IyMTAxMDEwLAo+ID4gICAucGl4bWFuX2lkID0gUElYTUFOX2Ey
+cjEwZzEwYjEwLAo+ID4gCj4gPiB7IC5uYW1lID0gIklHVC1GTE9BVCIsIC5kZXB0aCA9IC0xLCAu
+ZHJtX2lkID0gSUdUX0ZPUk1BVF9GTE9BVCwKPiA+ICAgLnBpeG1hbl9pZCA9IFBJWE1BTl9yZ2Jh
+X2Zsb2F0LAo+ID4gCj4gPiBpZiAoKGRybV9mb3JtYXRfdG9fcGl4bWFuKGN2dC0+c3JjLmZiLT5k
+cm1fZm9ybWF0KSAhPSBQSVhNQU5faW52YWxpZCkgJiYKPiA+ICAgICAoZHJtX2Zvcm1hdF90b19w
+aXhtYW4oY3Z0LT5kc3QuZmItPmRybV9mb3JtYXQpICE9IFBJWE1BTl9pbnZhbGlkKSkgewo+ID4g
+CWNudmVydF9waXhtYW4oY3Z0KTsKPiA+IAlyZXR1cm47Cj4gPiAuLi4KPiA+IGlndF9hc3NlcnRf
+ZihmYWxzZSwgIkNvbnZlcnNpb24gbm90IGltcGxlbWVudGVkIC4uLik7Cj4gPiAKPiA+IFNvIHd0
+Zj8KPiA+IAo+ID4gQXJlIHdlIHNvbWVob3cgY29tcGlsaW5nIGlndCB3aXRoIGFuIG9sZCBwaXht
+YW4gY2F1c2luZwo+ID4gICNpZiBQSVhNQU5fVkVSU0lPTiA8IFBJWE1BTl9WRVJTSU9OX0VOQ09E
+RSgwLCAzNiwgMCkKPiA+ICAjZGVmaW5lIFBJWE1BTl9yZ2JhX2Zsb2F0IFBJWE1BTl9pbnZhbGlk
+Cj4gPiAgI2VuZGlmCj4gPiB0byBoYXBwZW4/Cj4gCj4gb29mLCBzZWVtcyBsaWtlIHRoZSBidWls
+ZGluZyBtYWNoaW5lIGdvdCBkb3duZ3JhZGVkIHNvbWVob3cKPiAKPiBjaS13b3JrZXIxOn4kIGRw
+a2cgLWwgJypwaXhtYW4qJwo+IERlc2lyZWQ9VW5rbm93bi9JbnN0YWxsL1JlbW92ZS9QdXJnZS9I
+b2xkCj4gfCBTdGF0dXM9Tm90L0luc3QvQ29uZi1maWxlcy9VbnBhY2tlZC9oYWxGLWNvbmYvSGFs
+Zi1pbnN0L3RyaWctYVdhaXQvVHJpZy1wZW5kCj4gfC8gRXJyPz0obm9uZSkvUmVpbnN0LXJlcXVp
+cmVkIChTdGF0dXMsRXJyOiB1cHBlcmNhc2U9YmFkKQo+IHx8LyBOYW1lICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICBWZXJzaW9uICAgICAgICAgICAgICAgICAgICAg
+IEFyY2hpdGVjdHVyZSAgICAgICAgICAgICAgICAgRGVzY3JpcHRpb24KPiArKystPT09PT09PT09
+PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0tPT09PT09PT09PT09PT09PT09
+PT09PT09PT09PS09PT09PT09PT09PT09PT09PT09PT09PT09PT09LT09PT09PT09PT09PT09PT09
+PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
+PT09PT09PT09PT09PT09PT09PT09PT09PQo+IGlpICBsaWJwaXhtYW4tMS0wOmFtZDY0ICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAwLjM0LjAtMiAgICAgICAgICAgICAgICAgICAgIGFtZDY0
+ICAgICAgICAgICAgICAgICAgICAgICAgcGl4ZWwtbWFuaXB1bGF0aW9uIGxpYnJhcnkgZm9yIFgg
+YW5kIGNhaXJvCj4gaWkgIGxpYnBpeG1hbi0xLWRldjphbWQ2NCAgICAgICAgICAgICAgICAgICAg
+ICAgICAgIDAuMzQuMC0yICAgICAgICAgICAgICAgICAgICAgYW1kNjQgICAgICAgICAgICAgICAg
+ICAgICAgICBwaXhlbC1tYW5pcHVsYXRpb24gbGlicmFyeSBmb3IgWCBhbmQgY2Fpcm8gKGRldmVs
+b3BtZW50IGZpbGVzKQo+IAo+IHRoYXQncyBiYWQuLi4KPiAKPiA+IEJ1dCB0aGUgcmVmZXJlbmNl
+IHJ1biBzaG93cyBpdCB0ZXN0aW5nIGFsbCB0aGUgZmFuY3kgWVVWIGZvcm1hdHMgc28KPiA+IEkg
+ZG9uJ3QgdGhpbmsgdGhhdCBjYW4gYmUgdGhlIGNhc2UuCj4gCj4gVGhhdCdzIHRoZSB3ZWlyZCBi
+aXQuLi4KPiAKPiBBbnl3YXkgdGhlIGJ1aWxkaW5nIG1hY2hpbmUgbmVlZHMgdXBkYXRpbmcgYW5k
+IGFwdC1tYXJrIGhvbGQuCj4gVGhpcyBjYW4gY2F1c2UgZmFsbG91dCBhbmQgd2UgbmVlZCB0byBm
+aWxlIGJ1Z3MgdG8gbGltaXQgdGhlIG5vaXNlLgo+IAo+IFRoZXJlIGlzIHF1aXRlIHNvbWUgcXVl
+dWUgcmlnaHQgbm93LCBidXQgaG9wZWZ1bGx5IGJ5IHRvbW9ycm93IGl0IHdpbGwKPiBiZSBkcmFp
+bmVkLiBJJ2xsIGRvIHRoZSBuZWNlc3NhcnkgdXBkYXRlcyBhbmQgZm9yY2UgSUdUIHJ1biB0byBz
+ZWUgd2hhdAo+IGlzIGdvaW5nIHRvIGhhcHBlbiBpbiB0aGUgbW9ybmluZy4gVGhlbiBJJ2xsIHJl
+cnVuIHRoaXMgc2VyaWVzLgo+IAoKCkkgZG9uJ3QgdGhpbmsgdGhlIGJ1aWxkZXIgZXZlciBoYWQg
+YSBoaWdoZXIgdmVyc2lvbi4KClRoZSBmYW5jeSBZVVYgZm9ybWF0cyB3b3JrIGJlY2F1c2UgdGhl
+IHJ1bnRpbWUgbGliIGlzIG5ldyBlbm91Z2gsIGFuZAp0aGUgYnVpbGQtdGltZSBjaGVja3MgZm9y
+IHRob3NlIGFyZSBhcyBzdWNoOgoKI2lmIENBSVJPX1ZFUlNJT04gPCBDQUlST19WRVJTSU9OX0VO
+Q09ERSgxLCAxNywgMikKLyoKICogV2UgbmVlZCBjYWlybyAxLjE3LjIgdG8gdXNlIEhEUiBmb3Jt
+YXRzLCBidXQgdGhlIG9ubHkgdGhpbmcgYWRkZWQgaXMgYSB2YWx1ZQogKiB0byBjYWlyb19mb3Jt
+YXRfdC4KICoKICogVG8gcHJldmVudCBnb2luZyBvdXRzaWRlIHRoZSBlbnVtLCBtYWtlIGNhaXJv
+X2Zvcm1hdF90IGFuIGludCBhbmQgZGVmaW5lCiAqIG91cnNlbHZlcy4KKi8KCiNkZWZpbmUJQ0FJ
+Uk9fRk9STUFUX1JHQjk2RiAoNikKI2RlZmluZQlDQUlST19GT1JNQVRfUkdCQTEyOEYgKDcpCiNk
+ZWZpbmUJY2Fpcm9fZm9ybWF0X3QgaW50CiNlbmRpZgoKCiAgYW5kCgoKaWd0X3NraXBfb25fZihz
+dGF0dXMgPT0gQ0FJUk9fU1RBVFVTX0lOVkFMSURfRk9STUFUICYmCgkgICAgICBjYWlyb192ZXJz
+aW9uKCkgPCBDQUlST19WRVJTSU9OX0VOQ09ERSgxLCAxNywgMiksCgkgICAgICAiQ2Fpcm8gdmVy
+c2lvbiB0b28gb2xkLCBuZWVkIDEuMTcuMiwgaGF2ZSAlc1xuIiwKCSAgICAgIGNhaXJvX3ZlcnNp
+b25fc3RyaW5nKCkpOwoKaWd0X3NraXBfb25fZihzdGF0dXMgPT0gQ0FJUk9fU1RBVFVTX05PX01F
+TU9SWSAmJgoJICAgICAgcGl4bWFuX3ZlcnNpb24oKSA8IFBJWE1BTl9WRVJTSU9OX0VOQ09ERSgw
+LCAzNiwgMCksCgkgICAgICAiUGl4bWFuIHZlcnNpb24gdG9vIG9sZCwgbmVlZCAwLjM2LjAsIGhh
+dmUgJXNcbiIsCgkgICAgICBwaXhtYW5fdmVyc2lvbl9zdHJpbmcoKSk7CgoKCgpJbiBvdGhlciB3
+b3JkcywgdGhlIGJhY2t3YXJkcyBjb21wYXRpYmlsaXR5IGZvciB0aGUgZmFuY3kgWVVWIGZvcm1h
+dHMKYXQgYnVpbGQtdGltZSB3YXMgZWFzeSB0byBzbmVhayBpbiBieSBkZWZpbmluZyBzb21lIHZh
+bHVlcywgaXMgdGhhdApwb3NzaWJsZSB0byBkbyB3aXRoIHRoZSAxMGJwYyBzdHVmZj8gUElYTUFO
+X3JnYmFfZmxvYXQgc2VlbXMgdG8gYmUKanVzdCBQSVhNQU5fRk9STUFUX0JZVEUoMTI4LCBQSVhN
+QU5fVFlQRV9SR0JBX0ZMT0FULDMyLDMyLDMyLDMyKSwKd2hlcmUgUElYTUFOX1RZUEVfUkdCQV9G
+TE9BVCBpcyAxMS4KCgotLSAKUGV0cmkgTGF0dmFsYQpfX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBs
+aXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1h
+bi9saXN0aW5mby9pbnRlbC1nZng=
