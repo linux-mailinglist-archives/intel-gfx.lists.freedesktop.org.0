@@ -1,39 +1,64 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E362D7FE1
-	for <lists+intel-gfx@lfdr.de>; Tue, 15 Oct 2019 21:19:58 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B27F5D8036
+	for <lists+intel-gfx@lfdr.de>; Tue, 15 Oct 2019 21:26:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1E9DB6E3BB;
-	Tue, 15 Oct 2019 19:19:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B735388F93;
+	Tue, 15 Oct 2019 19:26:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8DFB16E3BB
- for <intel-gfx@lists.freedesktop.org>; Tue, 15 Oct 2019 19:19:54 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga106.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 15 Oct 2019 12:19:54 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.67,300,1566889200"; d="scan'208";a="208240667"
-Received: from mcretu-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.56.150])
- by fmsmga001.fm.intel.com with ESMTP; 15 Oct 2019 12:19:51 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Vandita Kulkarni <vandita.kulkarni@intel.com>,
- intel-gfx@lists.freedesktop.org
-In-Reply-To: <20191014110122.31923-5-vandita.kulkarni@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20191014110122.31923-1-vandita.kulkarni@intel.com>
- <20191014110122.31923-5-vandita.kulkarni@intel.com>
-Date: Tue, 15 Oct 2019 22:20:50 +0300
-Message-ID: <87pnixak8d.fsf@intel.com>
+Received: from mail-wr1-x444.google.com (mail-wr1-x444.google.com
+ [IPv6:2a00:1450:4864:20::444])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C56D36E826;
+ Tue, 15 Oct 2019 14:37:24 +0000 (UTC)
+Received: by mail-wr1-x444.google.com with SMTP id j18so24169523wrq.10;
+ Tue, 15 Oct 2019 07:37:24 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to:user-agent;
+ bh=neBsjR3UuUvIqjWSRW2rTQl/yD7xf9xUmzZJeouSucY=;
+ b=ibHSF06CcCsIZomQ1iCRMbnAQ0Lw40rRy6YwacpAFQQ97NdXNgrKEcBfiD5f9Wef1X
+ 0xaK//4azH/iWfpUGeOBOmkCIn/AQKCnEWmsnwlTeKACQrCKLJdUWFus7lfL+ge6F/eF
+ 2asTRrIdrTrQH1mG6b/nQ3SsDCLd3y6CH21M0QCHfFHofcEkcdt7E7CtoxQC3ROG1WI/
+ 0xF3q9nybi+OZ/DDjHGq5dKgSGmD3zwAtF8CrjbkibasMRPRDsuzpmiLIkdRHKXAJ/hS
+ yFMTU4MlKlAZATMX55FEKFiPsll2KEIvNKlH+fG3ocNZ4mUkiiNyHL0muBgQkyBNxwFC
+ eb4Q==
+X-Gm-Message-State: APjAAAXOKa9qXCUc52uxeatRqDy1hNa6q9X6VMm3AbSnXrbeYCRfB20t
+ y/tcXA9iyt2jd1jIwtDM2OK219YUoBkPFA==
+X-Google-Smtp-Source: APXvYqzV3/RVLumtjzKMF39X/kb+3GTjFjA6Zi36mjTbF3VD42lPRp342ZlZGPdL0S+AnrxMQCU2bw==
+X-Received: by 2002:a5d:674e:: with SMTP id l14mr29799012wrw.45.1571150243309; 
+ Tue, 15 Oct 2019 07:37:23 -0700 (PDT)
+Received: from localhost ([51.15.41.238])
+ by smtp.gmail.com with ESMTPSA id r20sm29954681wrg.61.2019.10.15.07.37.22
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 15 Oct 2019 07:37:22 -0700 (PDT)
+Date: Tue, 15 Oct 2019 15:37:20 +0100
+From: Stefan Hajnoczi <stefanha@gmail.com>
+To: Jason Wang <jasowang@redhat.com>
+Message-ID: <20191015143720.GA13108@stefanha-x1.localdomain>
+References: <20191011081557.28302-1-jasowang@redhat.com>
+ <20191014174946.GC5359@stefanha-x1.localdomain>
+ <6d12ad8f-8137-e07d-d735-da59a326e8ed@redhat.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [RFC 4/7] drm/i915/dsi: Helper to find dsi encoder
- in cmd mode
+In-Reply-To: <6d12ad8f-8137-e07d-d735-da59a326e8ed@redhat.com>
+User-Agent: Mutt/1.12.1 (2019-06-15)
+X-Mailman-Approved-At: Tue, 15 Oct 2019 19:26:09 +0000
+X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20161025;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to:user-agent;
+ bh=neBsjR3UuUvIqjWSRW2rTQl/yD7xf9xUmzZJeouSucY=;
+ b=Ha/JGsd50SAmjoukDYzVJ+uuPpyS6R2PO/eaw9gkiIRIoM/HGQIlw9cEAjxcehLXgX
+ xtPrKatNFAft1UWxIzn3Defz+Km3jvCRPXTsAq9Pq3ufY6HVgJoOWyGxGPfjPvEdYCas
+ nmFfVEj8/OM25w2meSCjx2zxPPI1LmHgXKvgVJTMlwuYyyzncaqGB6hSe47Jkm2BmDdE
+ 7Q1oVk61trb1ophCLz3TyIvG+5B4wxLnGIWfh8XXAXF2YWMuNcBZpEq+5iu4OQD/KM2o
+ pmgr9RP7X7EJ6h82CRMMDcjBoylZdxySRDcK25cQYOVMInHl93hoNZ/0PIMDNaEQWzXg
+ 37Ig==
+Subject: Re: [Intel-gfx] [PATCH V3 0/7] mdev based hardware virtio
+ offloading support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -46,64 +71,118 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: christophe.de.dinechin@gmail.com, kvm@vger.kernel.org, mst@redhat.com,
+ airlied@linux.ie, heiko.carstens@de.ibm.com, dri-devel@lists.freedesktop.org,
+ virtualization@lists.linux-foundation.org, kwankhede@nvidia.com,
+ rob.miller@broadcom.com, linux-s390@vger.kernel.org, sebott@linux.ibm.com,
+ lulu@redhat.com, eperezma@redhat.com, pasic@linux.ibm.com,
+ borntraeger@de.ibm.com, haotian.wang@sifive.com, cunming.liang@intel.com,
+ farman@linux.ibm.com, idos@mellanox.com, gor@linux.ibm.com,
+ intel-gfx@lists.freedesktop.org, xiao.w.wang@intel.com, freude@linux.ibm.com,
+ parav@mellanox.com, zhihong.wang@intel.com,
+ intel-gvt-dev@lists.freedesktop.org, akrowiak@linux.ibm.com,
+ oberpar@linux.ibm.com, tiwei.bie@intel.com, netdev@vger.kernel.org,
+ cohuck@redhat.com, linux-kernel@vger.kernel.org, maxime.coquelin@redhat.com,
+ lingshan.zhu@intel.com
+Content-Type: multipart/mixed; boundary="===============0120928369=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gTW9uLCAxNCBPY3QgMjAxOSwgVmFuZGl0YSBLdWxrYXJuaSA8dmFuZGl0YS5rdWxrYXJuaUBp
-bnRlbC5jb20+IHdyb3RlOgo+IEZyb206IE1hZGhhdiBDaGF1aGFuIDxtYWRoYXYuY2hhdWhhbkBp
-bnRlbC5jb20+Cj4KPiBUaGlzIHBhdGNoIGFkZHMgYSBoZWxwZXIgZnVuY3Rpb24gdG8gZmluZCBl
-bmNvZGVyCj4gaWYgRFNJIGlzIG9wZXJhdGluZyBpbiBjb21tYW5kIG1vZGUuIFRoaXMgZnVuY3Rp
-b24KPiB3aWxsIGJlIHVzZWQgd2hpbGUgZW5hYmxpbmcvZGlzYWJsaW5nIFRFIGludGVycnVwdHMK
-PiBmb3IgRFNJLgo+Cj4gU2lnbmVkLW9mZi1ieTogTWFkaGF2IENoYXVoYW4gPG1hZGhhdi5jaGF1
-aGFuQGludGVsLmNvbT4KPiBTaWduZWQtb2ZmLWJ5OiBWYW5kaXRhIEt1bGthcm5pIDx2YW5kaXRh
-Lmt1bGthcm5pQGludGVsLmNvbT4KPiAtLS0KPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxh
-eS9pY2xfZHNpLmMgICB8IDE3ICsrKysrKysrKysrKysrKysrCj4gIGRyaXZlcnMvZ3B1L2RybS9p
-OTE1L2Rpc3BsYXkvaW50ZWxfZHNpLmggfCAgMyArKysKPiAgMiBmaWxlcyBjaGFuZ2VkLCAyMCBp
-bnNlcnRpb25zKCspCj4KPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxh
-eS9pY2xfZHNpLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ljbF9kc2kuYwo+IGlu
-ZGV4IDVkZDllZWJhYjZiMS4uODc3NzQ2NDE2ZTUyIDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1
-L2RybS9pOTE1L2Rpc3BsYXkvaWNsX2RzaS5jCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUv
-ZGlzcGxheS9pY2xfZHNpLmMKPiBAQCAtNzMsNiArNzMsMjMgQEAgc3RhdGljIGVudW0gdHJhbnNj
-b2RlciBkc2lfcG9ydF90b190cmFuc2NvZGVyKGVudW0gcG9ydCBwb3J0KQo+ICAJCXJldHVybiBU
-UkFOU0NPREVSX0RTSV8xOwo+ICB9Cj4gIAo+ICtzdHJ1Y3QgaW50ZWxfZW5jb2RlciAqZ2VuMTFf
-ZHNpX2ZpbmRfY21kX21vZGVfZW5jb2RlcihzdHJ1Y3QgaW50ZWxfY3J0YyAqY3J0YykKPiArewo+
-ICsJc3RydWN0IGRybV9kZXZpY2UgKmRldiA9IGNydGMtPmJhc2UuZGV2Owo+ICsJc3RydWN0IGlu
-dGVsX2VuY29kZXIgKmVuY29kZXI7Cj4gKwlzdHJ1Y3QgaW50ZWxfZHNpICppbnRlbF9kc2k7Cj4g
-Kwo+ICsJZm9yX2VhY2hfZW5jb2Rlcl9vbl9jcnRjKGRldiwgJmNydGMtPmJhc2UsIGVuY29kZXIp
-IHsKPiArCQlpZiAoZW5jb2Rlci0+dHlwZSAhPSBJTlRFTF9PVVRQVVRfRFNJKQo+ICsJCQljb250
-aW51ZTsKPiArCQlpbnRlbF9kc2kgPSBlbmNfdG9faW50ZWxfZHNpKCZlbmNvZGVyLT5iYXNlKTsK
-PiArCQlpZiAoaW50ZWxfZHNpLT5vcGVyYXRpb25fbW9kZSA9PSBJTlRFTF9EU0lfQ09NTUFORF9N
-T0RFKQo+ICsJCQlyZXR1cm4gZW5jb2RlcjsKPiArCX0KPiArCj4gKwlyZXR1cm4gTlVMTDsKPiAr
-fQoKVGhpcyBtYXkgYmUgYSBiaXQgaGFyc2gsIGJ1dCBldmVyeXRoaW5nIHRoYXQgZmVlbHMgd3Jv
-bmcgYWJvdXQgdGhlCmZvbGxvd2luZyBwYXRjaGVzIHByZXR0eSBtdWNoIGJvaWxzIGRvd24gdG8g
-dGhpcyBmdW5jdGlvbi4gSXQgbWF5IGdldAp0aGUgam9iIGRvbmUsIGFuZCBJIGRvbid0IGhhdmUg
-YSBiZXR0ZXIgc3VnZ2VzdGlvbiBvbiBob3cgdG8gYWNjb21wbGlzaAp0aGlzIHJpZ2h0IG5vdy4g
-QnV0IGl0IHNlZW1zIGxpa2Ugd2Ugc2hvdWxkbid0IGhhdmUgdG8gZG8gYW55dGhpbmcgbGlrZQp0
-aGlzLCBhbmQgbWFrZXMgeW91IGZlZWwgbGlrZSB0aGVyZSdzIHNvbWV0aGluZyB3cm9uZyB3aXRo
-IHRoZSBkZXNpZ24uCgpJdCB3b3VsZCBiZSBncmVhdCB0byBiZSBhYmxlIHRvIGhhbmRsZSB0aGlz
-IHVzaW5nIGNydGMgc3RhdGUsIGJ1dCBhbGFzCnRoZSB2YmxhbmsgZW5hYmxlIGhvb2sgb25seSBn
-ZXRzIHBhc3NlZCBhIHN0cnVjdCBkcm1fY3J0YyAqLiAoUGF0Y2ggNwpjb3VsZCBlYXNpbHkgc3dp
-dGNoIHRvIHVzaW5nIGNydGMgc3RhdGUsIGJ1dCBuZWVkIHRvIGFsc28gc29sdmUgcGF0Y2gKNS4p
-CgpJJ2xsIGdldCBiYWNrIHRvIHlvdSBvbiB0aGlzIGxhdGVyLCBidXQgaW4gdGhlIG1lYW4gdGlt
-ZSAtIFZpbGxlLCBkbyB5b3UKaGF2ZSBhbnkgaWRlYXM/CgoKQlIsCkphbmkuCgoKPiArCj4gIHN0
-YXRpYyB2b2lkIHdhaXRfZm9yX2NtZHNfZGlzcGF0Y2hlZF90b19wYW5lbChzdHJ1Y3QgaW50ZWxf
-ZW5jb2RlciAqZW5jb2RlcikKPiAgewo+ICAJc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9w
-cml2ID0gdG9faTkxNShlbmNvZGVyLT5iYXNlLmRldik7Cj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMv
-Z3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHNpLmggYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9k
-aXNwbGF5L2ludGVsX2RzaS5oCj4gaW5kZXggYjE1YmU1ODE0NTk5Li4wNzFkYWQ3ZWUwNGEgMTAw
-NjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kc2kuaAo+ICsr
-KyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHNpLmgKPiBAQCAtMjAxLDYg
-KzIwMSw5IEBAIHUzMiBieHRfZHNpX2dldF9wY2xrKHN0cnVjdCBpbnRlbF9lbmNvZGVyICplbmNv
-ZGVyLAo+ICAJCSAgICAgc3RydWN0IGludGVsX2NydGNfc3RhdGUgKmNvbmZpZyk7Cj4gIHZvaWQg
-Ynh0X2RzaV9yZXNldF9jbG9ja3Moc3RydWN0IGludGVsX2VuY29kZXIgKmVuY29kZXIsIGVudW0g
-cG9ydCBwb3J0KTsKPiAgCj4gKy8qIGljbF9kc2kuYyAqLwo+ICtzdHJ1Y3QgaW50ZWxfZW5jb2Rl
-ciAqZ2VuMTFfZHNpX2ZpbmRfY21kX21vZGVfZW5jb2RlcihzdHJ1Y3QgaW50ZWxfY3J0YyAqY3J0
-Yyk7Cj4gKwo+ICAvKiBpbnRlbF9kc2lfdmJ0LmMgKi8KPiAgYm9vbCBpbnRlbF9kc2lfdmJ0X2lu
-aXQoc3RydWN0IGludGVsX2RzaSAqaW50ZWxfZHNpLCB1MTYgcGFuZWxfaWQpOwo+ICB2b2lkIGlu
-dGVsX2RzaV92YnRfZXhlY19zZXF1ZW5jZShzdHJ1Y3QgaW50ZWxfZHNpICppbnRlbF9kc2ksCgot
-LSAKSmFuaSBOaWt1bGEsIEludGVsIE9wZW4gU291cmNlIEdyYXBoaWNzIENlbnRlcgpfX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGlu
-ZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVl
-ZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZng=
+
+--===============0120928369==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="ew6BAiZeqk4r7MaW"
+Content-Disposition: inline
+
+
+--ew6BAiZeqk4r7MaW
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Tue, Oct 15, 2019 at 11:37:17AM +0800, Jason Wang wrote:
+>=20
+> On 2019/10/15 =E4=B8=8A=E5=8D=881:49, Stefan Hajnoczi wrote:
+> > On Fri, Oct 11, 2019 at 04:15:50PM +0800, Jason Wang wrote:
+> > > There are hardware that can do virtio datapath offloading while having
+> > > its own control path. This path tries to implement a mdev based
+> > > unified API to support using kernel virtio driver to drive those
+> > > devices. This is done by introducing a new mdev transport for virtio
+> > > (virtio_mdev) and register itself as a new kind of mdev driver. Then
+> > > it provides a unified way for kernel virtio driver to talk with mdev
+> > > device implementation.
+> > >=20
+> > > Though the series only contains kernel driver support, the goal is to
+> > > make the transport generic enough to support userspace drivers. This
+> > > means vhost-mdev[1] could be built on top as well by resuing the
+> > > transport.
+> > >=20
+> > > A sample driver is also implemented which simulate a virito-net
+> > > loopback ethernet device on top of vringh + workqueue. This could be
+> > > used as a reference implementation for real hardware driver.
+> > >=20
+> > > Consider mdev framework only support VFIO device and driver right now,
+> > > this series also extend it to support other types. This is done
+> > > through introducing class id to the device and pairing it with
+> > > id_talbe claimed by the driver. On top, this seris also decouple
+> > > device specific parents ops out of the common ones.
+> > I was curious so I took a quick look and posted comments.
+> >=20
+> > I guess this driver runs inside the guest since it registers virtio
+> > devices?
+>=20
+>=20
+> It could run in either guest or host. But the main focus is to run in the
+> host then we can use virtio drivers in containers.
+>=20
+>=20
+> >=20
+> > If this is used with physical PCI devices that support datapath
+> > offloading then how are physical devices presented to the guest without
+> > SR-IOV?
+>=20
+>=20
+> We will do control path meditation through vhost-mdev[1] and vhost-vfio[2=
+].
+> Then we will present a full virtio compatible ethernet device for guest.
+>=20
+> SR-IOV is not a must, any mdev device that implements the API defined in
+> patch 5 can be used by this framework.
+
+What I'm trying to understand is: if you want to present a virtio-pci
+device to the guest (e.g. using vhost-mdev or vhost-vfio), then how is
+that related to this patch series?
+
+Does this mean this patch series is useful mostly for presenting virtio
+devices to containers or the host?
+
+Stefan
+
+--ew6BAiZeqk4r7MaW
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEEhpWov9P5fNqsNXdanKSrs4Grc8gFAl2l2aAACgkQnKSrs4Gr
+c8ji7wf9FHyYry8VO4FqVBdQWMz/h/mmNTgeyBCpCasw+joJ3LRHOyyGPsu2BiOX
+IhAuZvK3azvtP7vh1etYaoBrCPmyFBTh2UXsIYoGK1qpUzPNkB7nuGYTBPJgZbxd
+jmJNDjc9wrrn9sWBJjkJaFYSjEDfob63FtUG2VM6f109LXI4bTyt03KqS1tZ75Hi
+SSjVt95GYQ1xENjKUcVqV9ULwfsv0Wz/WQ2XIvn8Oij7NK9bKHWl3HLirrUE62FP
+y6/3Y2fKKhes58jmY09L37Ym625X95M//6g2WYv+uR5rTTfo7jQBlLZ1tklwNY/k
+X8Sw0iHJKxZjvZqItbu49kJtRJwm9g==
+=nOrh
+-----END PGP SIGNATURE-----
+
+--ew6BAiZeqk4r7MaW--
+
+--===============0120928369==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
+IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
+
+--===============0120928369==--
