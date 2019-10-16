@@ -1,33 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F98DD91ED
-	for <lists+intel-gfx@lfdr.de>; Wed, 16 Oct 2019 15:03:46 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 39053D91F4
+	for <lists+intel-gfx@lfdr.de>; Wed, 16 Oct 2019 15:04:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A46466E974;
-	Wed, 16 Oct 2019 13:03:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7BDD56E977;
+	Wed, 16 Oct 2019 13:04:41 +0000 (UTC)
 X-Original-To: Intel-gfx@lists.freedesktop.org
 Delivered-To: Intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D3B896E974
- for <Intel-gfx@lists.freedesktop.org>; Wed, 16 Oct 2019 13:03:42 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6D4246E977
+ for <Intel-gfx@lists.freedesktop.org>; Wed, 16 Oct 2019 13:04:40 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from localhost (unverified [78.156.65.138]) 
  by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 18857148-1500050 for multiple; Wed, 16 Oct 2019 14:03:36 +0100
+ 18857166-1500050 for multiple; Wed, 16 Oct 2019 14:04:30 +0100
 MIME-Version: 1.0
 To: Intel-gfx@lists.freedesktop.org,
  Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
 From: Chris Wilson <chris@chris-wilson.co.uk>
-In-Reply-To: <20191016122843.9429-2-tvrtko.ursulin@linux.intel.com>
+In-Reply-To: <20191016122843.9429-3-tvrtko.ursulin@linux.intel.com>
 References: <20191016122843.9429-1-tvrtko.ursulin@linux.intel.com>
- <20191016122843.9429-2-tvrtko.ursulin@linux.intel.com>
-Message-ID: <157123101407.22469.10360475997002619905@skylake-alporthouse-com>
+ <20191016122843.9429-3-tvrtko.ursulin@linux.intel.com>
+Message-ID: <157123106817.22469.9547825717469026401@skylake-alporthouse-com>
 User-Agent: alot/0.6
-Date: Wed, 16 Oct 2019 14:03:34 +0100
-Subject: Re: [Intel-gfx] [PATCH 2/3] drm/i915: Store engine mask in intel_gt
+Date: Wed, 16 Oct 2019 14:04:28 +0100
+Subject: Re: [Intel-gfx] [PATCH 3/3] drm/i915: Pass in intel_gt at some
+ for_each_engine sites
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -45,36 +46,15 @@ Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-UXVvdGluZyBUdnJ0a28gVXJzdWxpbiAoMjAxOS0xMC0xNiAxMzoyODo0MikKPiBGcm9tOiBUdnJ0
-a28gVXJzdWxpbiA8dHZydGtvLnVyc3VsaW5AaW50ZWwuY29tPgo+IAo+IE1lZGl1bSB0ZXJtIGdv
-YWwgaXMgdG8gZWxpbWluYXRlIHRoZSBpOTE1LT5lbmdpbmVbXSBhcnJheSBhbmQgdG8gZ2V0IHRo
-ZXJlCj4gd2UgaGF2ZSByZWNlbnRseSBpbnRyb2R1Y2VkIGVxdWl2YWxlbnQgYXJyYXkgaW4gaW50
-ZWxfZ3QuIE5vdyB3ZSBuZWVkIHRvCj4gbWlncmF0ZSB0aGUgY29kZSBmdXJ0aGVyIHRvd2FyZHMg
-dGhpcyBzdGF0ZS4KPiAKPiBUbyBhbGxvdyBmb3JfZWFjaF9lbmdpbmVfbWFza2VkIGNhbGwgc2l0
-ZXMgdG8gcGFzcyBpbiBndCBpbnN0ZWFkIG9mIGk5MTUKPiB3ZSBuZWVkIHRvIGhhdmUgYSBjb3B5
-IG9mIElOVEVMX0lORk8oKS0+ZW5naW5lX21hc2sgaW4gaW50ZWxfZ3QuCj4gCj4gRm9yIHRoaXMg
-dG8gd29yayB3ZSBhbHNvIG5lZWQgdG8gdXNlIGVuZ2luZS0+aWQgYXMgaW5kZXggd2hlbiBwb3B1
-bGF0aW5nCj4gdGhlIGd0LT5lbmdpbmVbXSBhcnJheS4KPiAKPiBTaWduZWQtb2ZmLWJ5OiBUdnJ0
-a28gVXJzdWxpbiA8dHZydGtvLnVyc3VsaW5AaW50ZWwuY29tPgo+IENjOiBDaHJpcyBXaWxzb24g
-PGNocmlzQGNocmlzLXdpbHNvbi5jby51az4KPiAtLS0KPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUv
-Z3QvaW50ZWxfZW5naW5lX3VzZXIuYyB8IDQgKystLQo+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9n
-dC9pbnRlbF9ndC5jICAgICAgICAgIHwgNSArKysrKwo+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9n
-dC9pbnRlbF9ndC5oICAgICAgICAgIHwgMSArCj4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2lu
-dGVsX2d0X3R5cGVzLmggICAgfCA0ICsrKysKPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9k
-cnYuYyAgICAgICAgICAgICB8IDIgKysKPiAgNSBmaWxlcyBjaGFuZ2VkLCAxNCBpbnNlcnRpb25z
-KCspLCAyIGRlbGV0aW9ucygtKQo+IAo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkx
-NS9ndC9pbnRlbF9lbmdpbmVfdXNlci5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxf
-ZW5naW5lX3VzZXIuYwo+IGluZGV4IDc3Y2Q1ZGU4MzkzMC4uMDk5YWJhZTg2MGVjIDEwMDY0NAo+
-IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX2VuZ2luZV91c2VyLmMKPiArKysg
-Yi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRlbF9lbmdpbmVfdXNlci5jCj4gQEAgLTE4Myw4
-ICsxODMsOCBAQCBzdGF0aWMgdm9pZCBhZGRfbGVnYWN5X3Jpbmcoc3RydWN0IGxlZ2FjeV9yaW5n
-ICpyaW5nLAo+ICAgICAgICAgaWYgKHVubGlrZWx5KGlkeCA9PSAtMSkpCj4gICAgICAgICAgICAg
-ICAgIHJldHVybjsKPiAgCj4gLSAgICAgICBHRU1fQlVHX09OKGlkeCA+PSBBUlJBWV9TSVpFKHJp
-bmctPmd0LT5lbmdpbmUpKTsKPiAtICAgICAgIHJpbmctPmd0LT5lbmdpbmVbaWR4XSA9IGVuZ2lu
-ZTsKClRoaXMgaXMgdXNlZCBmb3IgdGhlIGxlZ2FjeSB1YXBpIG1hcHBpbmcuIFNvIHdlIG5lZWQg
-dG8gYWRqdXN0IHRoZSBsb29wCmluIGk5MTVfZ2VtX2NvbnRleHQuYzo6ZGVmYXVsdF9lbmdpbmVz
-KCkgdG8gdXNlIGVuZ2luZS0+bGVnYWN5X2lkeAppbnN0ZWFkIG9mIGlkLiBBbmQgYWxsIG90aGVy
-IHVzZXJzIG9mIGVuZ2luZS0+bGVnYWN5X2lkeCBhcmUgbm93CmJhY2t3YXJkcy4KLUNocmlzCl9f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBt
-YWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3Rz
-LmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeA==
+UXVvdGluZyBUdnJ0a28gVXJzdWxpbiAoMjAxOS0xMC0xNiAxMzoyODo0MykKPiBGcm9tOiBUdnJ0
+a28gVXJzdWxpbiA8dHZydGtvLnVyc3VsaW5AaW50ZWwuY29tPgo+IAo+IFdoZXJlIHRoZSBmdW5j
+dGlvbiwgb3IgY29kZSBzZWdtZW50LCBvcGVyYXRlcyBvbiBpbnRlbF9ndCwgd2UgbmVlZCB0bwo+
+IHN0YXJ0IHBhc3NpbmcgaXQgaW5zdGVhZCBvZiBpOTE1IHRvIGZvcl9lYWNoX2VuZ2luZShfbWFz
+a2VkKS4KPiAKPiBUaGlzIGlzIGFub3RoZXIgcGFydGlhbCBzdGVwIGluIG1pZ3JhdGlvbiBvZiBp
+OTE1LT5lbmdpbmVzW10gdG8KPiBndC0+ZW5naW5lc1tdLgo+IAo+IFNpZ25lZC1vZmYtYnk6IFR2
+cnRrbyBVcnN1bGluIDx0dnJ0a28udXJzdWxpbkBpbnRlbC5jb20+Cj4gQ2M6IENocmlzIFdpbHNv
+biA8Y2hyaXNAY2hyaXMtd2lsc29uLmNvLnVrPgpSZXZpZXdlZC1ieTogQ2hyaXMgV2lsc29uIDxj
+aHJpc0BjaHJpcy13aWxzb24uY28udWs+Ci1DaHJpcwpfX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBs
+aXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1h
+bi9saXN0aW5mby9pbnRlbC1nZng=
