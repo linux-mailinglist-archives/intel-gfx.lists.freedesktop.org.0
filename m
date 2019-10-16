@@ -2,30 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3859DD90C8
-	for <lists+intel-gfx@lfdr.de>; Wed, 16 Oct 2019 14:26:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9263CD90DC
+	for <lists+intel-gfx@lfdr.de>; Wed, 16 Oct 2019 14:28:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 938526E0B8;
-	Wed, 16 Oct 2019 12:26:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F0D776E243;
+	Wed, 16 Oct 2019 12:28:47 +0000 (UTC)
 X-Original-To: Intel-gfx@lists.freedesktop.org
 Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6F9AA6E0B8
- for <Intel-gfx@lists.freedesktop.org>; Wed, 16 Oct 2019 12:26:05 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 42CED6E243
+ for <Intel-gfx@lists.freedesktop.org>; Wed, 16 Oct 2019 12:28:47 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 16 Oct 2019 05:26:04 -0700
-X-IronPort-AV: E=Sophos;i="5.67,303,1566889200"; d="scan'208";a="202057048"
-Received: from dwiesing-mobl.ger.corp.intel.com (HELO localhost)
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 16 Oct 2019 05:28:46 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.67,303,1566889200"; d="scan'208";a="200044625"
+Received: from dwiesing-mobl.ger.corp.intel.com (HELO localhost.localdomain)
  ([10.252.31.172])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 16 Oct 2019 05:26:03 -0700
+ by orsmga006.jf.intel.com with ESMTP; 16 Oct 2019 05:28:45 -0700
 From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
 To: Intel-gfx@lists.freedesktop.org
-Date: Wed, 16 Oct 2019 13:25:55 +0100
-Message-Id: <20191016122557.9315-1-tvrtko.ursulin@linux.intel.com>
+Date: Wed, 16 Oct 2019 13:28:41 +0100
+Message-Id: <20191016122843.9429-1-tvrtko.ursulin@linux.intel.com>
 X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
 Subject: [Intel-gfx] [PATCH 1/3] drm/i915: Make i915_gem_load_power_context
