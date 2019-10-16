@@ -2,41 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 02028D84C0
-	for <lists+intel-gfx@lfdr.de>; Wed, 16 Oct 2019 02:22:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A6B8ED850F
+	for <lists+intel-gfx@lfdr.de>; Wed, 16 Oct 2019 02:48:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A5DD96E0A5;
-	Wed, 16 Oct 2019 00:22:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 63AB189EB8;
+	Wed, 16 Oct 2019 00:48:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from ozlabs.org (bilbo.ozlabs.org [IPv6:2401:3900:2:1::2])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 76D186E0A5;
- Wed, 16 Oct 2019 00:22:18 +0000 (UTC)
-Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
- SHA256) (No client certificate requested)
- by mail.ozlabs.org (Postfix) with ESMTPSA id 46tCfW6rWQz9sPJ;
- Wed, 16 Oct 2019 11:22:11 +1100 (AEDT)
-Date: Wed, 16 Oct 2019 11:22:07 +1100
-From: Stephen Rothwell <sfr@canb.auug.org.au>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>, Intel Graphics
- <intel-gfx@lists.freedesktop.org>, DRI <dri-devel@lists.freedesktop.org>,
- Alex Deucher <alexdeucher@gmail.com>
-Message-ID: <20191016112207.1ade14af@canb.auug.org.au>
+Received: from bombadil.infradead.org (bombadil.infradead.org
+ [IPv6:2607:7c80:54:e::133])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 961BB89EB8;
+ Wed, 16 Oct 2019 00:48:28 +0000 (UTC)
+Received: from willy by bombadil.infradead.org with local (Exim 4.92.3 #3 (Red
+ Hat Linux)) id 1iKXUD-0005ri-Tc; Wed, 16 Oct 2019 00:48:21 +0000
+Date: Tue, 15 Oct 2019 17:48:21 -0700
+From: Matthew Wilcox <willy@infradead.org>
+To: Changbin Du <changbin.du@gmail.com>
+Message-ID: <20191016004821.GI32665@bombadil.infradead.org>
+References: <20191013055359.23312-1-changbin.du@gmail.com>
+ <875zkrd7nq.fsf@intel.com>
+ <ECADFF3FD767C149AD96A924E7EA6EAF977CAF09@USCULXMSG01.am.sony.com>
+ <7e7557b5-469f-3e63-6254-53dab2d7234a@suse.de>
+ <20191015115439.GE32665@bombadil.infradead.org>
+ <20191016000322.7dnuwvxqtdbg7clq@mail.google.com>
 MIME-Version: 1.0
-X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=canb.auug.org.au; s=201702; t=1571185334;
- bh=fICVJGuNS3bs+KiWjPO5lU2cScptU1yWcytJuD4e3jM=;
- h=Date:From:To:Cc:Subject:From;
- b=QD0lc7HXYcvqED72HzmtPQmlz9qHGn8KzxyzRF+2HqZHiobpwEywt9Fp1eG0j7/Oq
- H9C6GQRugZDTQLxv6rAuYHk1ySuUS/NxA4fZZmnGnJZk73/EuE+4QqeBCBhTp+o3+7
- FcSjTcsja8dZ3FlhtRENOwL/qPaFMRAsqbWnCw90qDRoJPKvJqnYGVTyKm/I5Rb3FX
- fO4bfC+GP1/JcexG2LF3QXwooWsF9K4hGyZozXM+PIviaKcKpOTLSMMpcLybKjoiqJ
- iTqNBtfxyvscYGpUUFCdmpCqeGPa16K//5P78zUHVxOVVKpz70A0xjn/K1gETOMOyh
- dj++ekFbDcqKg==
-Subject: [Intel-gfx] linux-next: build failure after merge of the drm-misc
- tree
+Content-Disposition: inline
+In-Reply-To: <20191016000322.7dnuwvxqtdbg7clq@mail.google.com>
+User-Agent: Mutt/1.12.1 (2019-06-15)
+X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt;
+ c=relaxed/relaxed; 
+ d=infradead.org; s=bombadil.20170209; h=In-Reply-To:Content-Type:MIME-Version
+ :References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+ Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+ Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+ List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=pf6bbQYx9hUE+6rFYONnUuY9TK+2idQNGK21XGkY2xo=; b=qU7sjU5uXXip0NogETsugUAi3
+ jtRE/3LcBLi9RdoLLx/XlPfCCqP/SEyUzVoQs8WqvIypx8a18jDctjkK4Re6BQG2NHTAYVe2clHx9
+ Fc3+P2BkHiuODGY67O+nE61aVcc/8GpDa/jzNwRrmBaE2id/NXw+dKOwpSr6xQnMsQ4fuePOFe+js
+ JIH8ZaatXc+A7TE44A1jvUJ6kUvX7Z+zadosMUcWzpR9cy44tC5hgJou/w2EXK7tpk4l7WdxUdnN+
+ jZ8v5qs2XXayMAz4jgQI/jbaEXemK0icN8biguipxmOtXSmNRCQ8+4zKpkdeeh7JWzTQO0Suarzpb
+ TMB4py35Q==;
+Subject: Re: [Intel-gfx] [PATCH] kernel-doc: rename the kernel-doc directive
+ 'functions' to 'specific'
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -49,105 +56,34 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Sam Ravnborg <sam@ravnborg.org>,
- Linux Next Mailing List <linux-next@vger.kernel.org>,
- Huang Rui <ray.huang@amd.com>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: multipart/mixed; boundary="===============0283576026=="
+Cc: linux-usb@vger.kernel.org, linux-kselftest@vger.kernel.org,
+ linux-doc@vger.kernel.org, linux-pci@vger.kernel.org, Tim.Bird@sony.com,
+ corbet@lwn.net, linux-wireless@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-mm@kvack.org, dri-devel@lists.freedesktop.org,
+ Thomas Zimmermann <tzimmermann@suse.de>, intel-gfx@lists.freedesktop.org,
+ linux-fpga@vger.kernel.org, linux-crypto@vger.kernel.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0283576026==
-Content-Type: multipart/signed; boundary="Sig_/b45Yv514vY6HvJhcejDLP60";
- protocol="application/pgp-signature"; micalg=pgp-sha256
-
---Sig_/b45Yv514vY6HvJhcejDLP60
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
-
-Hi all,
-
-After merging the drm-misc tree, today's linux-next build (x86_64
-allmodconfig) failed like this:
-
-drivers/gpu/drm/amd/amdgpu/amdgpu_tmz.c:23:10: fatal error: drm/drmP.h: No =
-such file or directory
-   23 | #include <drm/drmP.h>
-      |          ^~~~~~~~~~~~
-
-Caused by commit
-
-  4e98f871bcff ("drm: delete drmP.h + drm_os_linux.h")
-
-interacting with commit
-
-  8b8c294c5d37 ("drm/amdgpu: add function to check tmz capability (v4)")
-
-from the amdgpu tree.
-
-I applied the following merge fix patch for today (which should also
-apply to the amdgpu tree).
-
-From: Stephen Rothwell <sfr@canb.auug.org.au>
-Date: Wed, 16 Oct 2019 11:17:32 +1100
-Subject: [PATCH] drm/amdgpu: fix up for amdgpu_tmz.c and removal of drm/drm=
-P.h
-
-Signed-off-by: Stephen Rothwell <sfr@canb.auug.org.au>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_tmz.c | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_tmz.c b/drivers/gpu/drm/amd/=
-amdgpu/amdgpu_tmz.c
-index 14a55003dd81..823527a0fa47 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_tmz.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_tmz.c
-@@ -20,7 +20,10 @@
-  * OTHER DEALINGS IN THE SOFTWARE.
-  */
-=20
--#include <drm/drmP.h>
-+#include <linux/device.h>
-+
-+#include <drm/amd_asic_type.h>
-+
- #include "amdgpu.h"
- #include "amdgpu_tmz.h"
-=20
---=20
-2.23.0
-
---=20
-Cheers,
-Stephen Rothwell
-
---Sig_/b45Yv514vY6HvJhcejDLP60
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAl2mYq8ACgkQAVBC80lX
-0GzbvAgAjVrdaS3BxJgL/ZhI6W5Dl4/de02drOW58MW77Z9y4KLI+Uo+Cr2Ewx67
-vAszj64+9rKq7M9IDbtmAmf3GFEC+YdrUFawA6uQwCsywLgmPy+7SLk2N4WMBAYX
-Grc35svjMzCgMRDZB9ZFqRxp5ik2i+loP3yc23ZL0DEs0aYb+Ybg3LCggjmZ/uRu
-ePZjdDp3qzEIhMNl6roeLyrgF7IPeUVuKhsIVlCGnfbGTDJSvawuvTcChgmAtfDg
-S1LMtTmdPW1nPkaY/6IAe+WgN4GplhE1j7neo/gH2iH0FmmZfz1Z/HZ0wDuVtEfb
-TFaOm1Akog2c1oS+Kmbisy7Nwld/TA==
-=f+bE
------END PGP SIGNATURE-----
-
---Sig_/b45Yv514vY6HvJhcejDLP60--
-
---===============0283576026==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
-IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
-
---===============0283576026==--
+T24gV2VkLCBPY3QgMTYsIDIwMTkgYXQgMDg6MDM6MjRBTSArMDgwMCwgQ2hhbmdiaW4gRHUgd3Jv
+dGU6Cj4gT24gVHVlLCBPY3QgMTUsIDIwMTkgYXQgMDQ6NTQ6MzlBTSAtMDcwMCwgTWF0dGhldyBX
+aWxjb3ggd3JvdGU6Cj4gPiBPbiBUdWUsIE9jdCAxNSwgMjAxOSBhdCAxMToyNTo1M0FNICswMjAw
+LCBUaG9tYXMgWmltbWVybWFubiB3cm90ZToKPiA+ID4gPiBNeSBwcmVmZXJlbmNlIHdvdWxkIGJl
+IHRvIHVzZSAnc3ltYm9scycuICBJIHRyaWVkIHRvIGNvbWUgdXAgd2l0aCBzb21ldGhpbmcKPiA+
+ID4gPiBidXQgJ3N5bWJvbHMnIGlzIGJldHRlciB0aGFuIGFueXRoaW5nIEkgY2FtZSB1cCB3aXRo
+Lgo+ID4gPiAKPiA+ID4gTWF5YmUgJ2ludGVyZmFjZXMnIG9yICdhcnRpZmFjdHMnLiBUaGUgdGVy
+bSAnc3ltYm9scycgaXMganVzdCBhcwo+ID4gPiBpbXByZWNpc2UgYXMgJ2Z1bmN0aW9ucycuCj4g
+PiAKPiA+IEkgc3VnZ2VzdGVkICdpZGVudGlmaWVyJyBiZWNhdXNlIHRoYXQncyB0aGUgdGVybSB1
+c2VkIGluIHRoZSBDIHNwZWMgKDYuMi4xKToKPiA+IAo+ID4gOiBBbiBpZGVudGlmaWVyIGNhbiBk
+ZW5vdGUgYW4gb2JqZWN0OyBhIGZ1bmN0aW9uOyBhIHRhZyBvciBhIG1lbWJlcgo+ID4gOiBvZiBh
+IHN0cnVjdHVyZSwgdW5pb24sIG9yIGVudW1lcmF0aW9uOyBhIHR5cGVkZWYgbmFtZTsgYSBsYWJl
+bCBuYW1lOwo+ID4gOiBhIG1hY3JvIG5hbWU7IG9yIGEgbWFjcm8gcGFyYW1ldGVyLgo+Cj4gSSBh
+bHNvIHByZWZlciB0aGlzIG9uZSBub3cuIEkgd2FzIGxvb2tpbmcgZm9yIHNvbWV0aGluZyBsaWtl
+IHRoaXMuIE15IG9yaWdpbmFsCj4gaWRlYSBpcyAncHJvdG90eXBlJywgYnV0IHRoYXQgaXMgb25s
+eSBmb3IgZnVuY3Rpb24uCgpXZSBjb3VsZCBhbHNvIGdvIHdpdGggJ2RlY2xhcmF0aW9uJyBvciAn
+ZGVmaW5pdGlvbicuICBCdXQgSSBwcmVmZXIKJ2lkZW50aWZpZXInLgpfX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0Cklu
+dGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5v
+cmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZng=
