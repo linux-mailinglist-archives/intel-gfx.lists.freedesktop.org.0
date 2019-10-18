@@ -2,39 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8BAB8DC730
-	for <lists+intel-gfx@lfdr.de>; Fri, 18 Oct 2019 16:20:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 52289DC778
+	for <lists+intel-gfx@lfdr.de>; Fri, 18 Oct 2019 16:36:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B632D6EB68;
-	Fri, 18 Oct 2019 14:20:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CDAEF6E10F;
+	Fri, 18 Oct 2019 14:36:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mx1.redhat.com (mx1.redhat.com [209.132.183.28])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A3F936EB64;
- Fri, 18 Oct 2019 14:20:27 +0000 (UTC)
-Received: from smtp.corp.redhat.com (int-mx08.intmail.prod.int.phx2.redhat.com
- [10.5.11.23])
- (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
- (No client certificate requested)
- by mx1.redhat.com (Postfix) with ESMTPS id 778C7C057F2C;
- Fri, 18 Oct 2019 14:20:26 +0000 (UTC)
-Received: from gondolin (dhcp-192-202.str.redhat.com [10.33.192.202])
- by smtp.corp.redhat.com (Postfix) with ESMTP id 45C8519D70;
- Fri, 18 Oct 2019 14:20:10 +0000 (UTC)
-Date: Fri, 18 Oct 2019 16:20:07 +0200
-From: Cornelia Huck <cohuck@redhat.com>
-To: Jason Wang <jasowang@redhat.com>
-Message-ID: <20191018162007.31631039.cohuck@redhat.com>
-In-Reply-To: <20191017104836.32464-6-jasowang@redhat.com>
-References: <20191017104836.32464-1-jasowang@redhat.com>
- <20191017104836.32464-6-jasowang@redhat.com>
-Organization: Red Hat GmbH
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 46CDE6E10F
+ for <intel-gfx@lists.freedesktop.org>; Fri, 18 Oct 2019 14:36:00 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 18 Oct 2019 07:35:59 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.67,312,1566889200"; 
+ d="p7s'?scan'208";a="208639851"
+Received: from fmsmsx108.amr.corp.intel.com ([10.18.124.206])
+ by orsmga002.jf.intel.com with ESMTP; 18 Oct 2019 07:35:59 -0700
+Received: from fmsmsx162.amr.corp.intel.com (10.18.125.71) by
+ FMSMSX108.amr.corp.intel.com (10.18.124.206) with Microsoft SMTP Server (TLS)
+ id 14.3.439.0; Fri, 18 Oct 2019 07:35:58 -0700
+Received: from fmsmsx103.amr.corp.intel.com ([169.254.2.173]) by
+ fmsmsx162.amr.corp.intel.com ([169.254.5.176]) with mapi id 14.03.0439.000;
+ Fri, 18 Oct 2019 07:35:58 -0700
+From: "Summers, Stuart" <stuart.summers@intel.com>
+To: "Ceraolo Spurio, Daniele" <daniele.ceraolospurio@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Thread-Topic: [Intel-gfx] [PATCH] drm/i915: Do not end i915 batch buffers
+ prematurely
+Thread-Index: AQHVhSIrNfs6TH/4rkS2NMkX3qC2gadf0p6AgAEbKIA=
+Date: Fri, 18 Oct 2019 14:35:58 +0000
+Message-ID: <70976af39eb9769c89b682bfdf66b264e8d60b6d.camel@intel.com>
+References: <20191017193719.137439-1-stuart.summers@intel.com>
+ <3b118644-e952-b5ff-10f2-5b071cd15351@intel.com>
+In-Reply-To: <3b118644-e952-b5ff-10f2-5b071cd15351@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: yes
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.165.21.197]
 MIME-Version: 1.0
-X-Scanned-By: MIMEDefang 2.84 on 10.5.11.23
-X-Greylist: Sender IP whitelisted, not delayed by milter-greylist-4.5.16
- (mx1.redhat.com [10.5.110.32]); Fri, 18 Oct 2019 14:20:27 +0000 (UTC)
-Subject: Re: [Intel-gfx] [PATCH V4 5/6] virtio: introduce a mdev based
- transport
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Do not end i915 batch buffers
+ prematurely
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -47,64 +60,148 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: stefanha@redhat.com, christophe.de.dinechin@gmail.com, kvm@vger.kernel.org,
- mst@redhat.com, airlied@linux.ie, heiko.carstens@de.ibm.com,
- dri-devel@lists.freedesktop.org, virtualization@lists.linux-foundation.org,
- kwankhede@nvidia.com, rob.miller@broadcom.com, linux-s390@vger.kernel.org,
- sebott@linux.ibm.com, lulu@redhat.com, eperezma@redhat.com,
- pasic@linux.ibm.com, borntraeger@de.ibm.com, haotian.wang@sifive.com,
- cunming.liang@intel.com, farman@linux.ibm.com, idos@mellanox.com,
- gor@linux.ibm.com, intel-gfx@lists.freedesktop.org, xiao.w.wang@intel.com,
- freude@linux.ibm.com, parav@mellanox.com, zhihong.wang@intel.com,
- intel-gvt-dev@lists.freedesktop.org, akrowiak@linux.ibm.com,
- oberpar@linux.ibm.com, tiwei.bie@intel.com, netdev@vger.kernel.org,
- linux-kernel@vger.kernel.org, maxime.coquelin@redhat.com,
- lingshan.zhu@intel.com
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1930110581=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gVGh1LCAxNyBPY3QgMjAxOSAxODo0ODozNSArMDgwMApKYXNvbiBXYW5nIDxqYXNvd2FuZ0By
-ZWRoYXQuY29tPiB3cm90ZToKCj4gVGhpcyBwYXRjaCBpbnRyb2R1Y2VzIGEgbmV3IG1kZXYgdHJh
-bnNwb3J0IGZvciB2aXJ0aW8uIFRoaXMgaXMgdXNlZCB0bwo+IHVzZSBrZXJuZWwgdmlydGlvIGRy
-aXZlciB0byBkcml2ZSB0aGUgbWVkaWF0ZWQgZGV2aWNlIHRoYXQgaXMgY2FwYWJsZQo+IG9mIHBv
-cHVsYXRpbmcgdmlydHF1ZXVlIGRpcmVjdGx5Lgo+IAo+IEEgbmV3IHZpcnRpby1tZGV2IGRyaXZl
-ciB3aWxsIGJlIHJlZ2lzdGVyZWQgdG8gdGhlIG1kZXYgYnVzLCB3aGVuIGEKPiBuZXcgdmlydGlv
-LW1kZXYgZGV2aWNlIGlzIHByb2JlZCwgaXQgd2lsbCByZWdpc3RlciB0aGUgZGV2aWNlIHdpdGgK
-PiBtZGV2IGJhc2VkIGNvbmZpZyBvcHMuIFRoaXMgbWVhbnMgaXQgaXMgYSBzb2Z0d2FyZSB0cmFu
-c3BvcnQgYmV0d2Vlbgo+IG1kZXYgZHJpdmVyIGFuZCBtZGV2IGRldmljZS4gVGhlIHRyYW5zcG9y
-dCB3YXMgaW1wbGVtZW50ZWQgdGhyb3VnaAo+IGRldmljZSBzcGVjaWZpYyBvcHMgd2hpY2ggaXMg
-YSBwYXJ0IG9mIG1kZXZfcGFyZW50X29wcyBub3cuCj4gCj4gU2lnbmVkLW9mZi1ieTogSmFzb24g
-V2FuZyA8amFzb3dhbmdAcmVkaGF0LmNvbT4KPiAtLS0KPiAgZHJpdmVycy92aXJ0aW8vS2NvbmZp
-ZyAgICAgICB8ICAgNyArCj4gIGRyaXZlcnMvdmlydGlvL01ha2VmaWxlICAgICAgfCAgIDEgKwo+
-ICBkcml2ZXJzL3ZpcnRpby92aXJ0aW9fbWRldi5jIHwgNDA5ICsrKysrKysrKysrKysrKysrKysr
-KysrKysrKysrKysrKysrCj4gIDMgZmlsZXMgY2hhbmdlZCwgNDE3IGluc2VydGlvbnMoKykKCigu
-Li4pCgo+ICtzdGF0aWMgaW50IHZpcnRpb19tZGV2X3Byb2JlKHN0cnVjdCBkZXZpY2UgKmRldikK
-PiArewo+ICsJc3RydWN0IG1kZXZfZGV2aWNlICptZGV2ID0gbWRldl9mcm9tX2RldihkZXYpOwo+
-ICsJY29uc3Qgc3RydWN0IHZpcnRpb19tZGV2X2RldmljZV9vcHMgKm9wcyA9IG1kZXZfZ2V0X2Rl
-dl9vcHMobWRldik7Cj4gKwlzdHJ1Y3QgdmlydGlvX21kZXZfZGV2aWNlICp2bV9kZXY7Cj4gKwlp
-bnQgcmM7Cj4gKwo+ICsJdm1fZGV2ID0gZGV2bV9remFsbG9jKGRldiwgc2l6ZW9mKCp2bV9kZXYp
-LCBHRlBfS0VSTkVMKTsKPiArCWlmICghdm1fZGV2KQo+ICsJCXJldHVybiAtRU5PTUVNOwo+ICsK
-PiArCXZtX2Rldi0+dmRldi5kZXYucGFyZW50ID0gZGV2Owo+ICsJdm1fZGV2LT52ZGV2LmRldi5y
-ZWxlYXNlID0gdmlydGlvX21kZXZfcmVsZWFzZV9kZXY7Cj4gKwl2bV9kZXYtPnZkZXYuY29uZmln
-ID0gJnZpcnRpb19tZGV2X2NvbmZpZ19vcHM7Cj4gKwl2bV9kZXYtPm1kZXYgPSBtZGV2Owo+ICsJ
-SU5JVF9MSVNUX0hFQUQoJnZtX2Rldi0+dmlydHF1ZXVlcyk7Cj4gKwlzcGluX2xvY2tfaW5pdCgm
-dm1fZGV2LT5sb2NrKTsKPiArCj4gKwl2bV9kZXYtPnZlcnNpb24gPSBvcHMtPmdldF9tZGV2X2Zl
-YXR1cmVzKG1kZXYpOwo+ICsJaWYgKHZtX2Rldi0+dmVyc2lvbiAhPSBWSVJUSU9fTURFVl9GX1ZF
-UlNJT05fMSkgewo+ICsJCWRldl9lcnIoZGV2LCAiVklSVElPX01ERVZfRl9WRVJTSU9OXzEgaXMg
-bWFuZGF0b3J5XG4iKTsKPiArCQlyZXR1cm4gLUVOWElPOwo+ICsJfQoKSG0sIHNvIGhvdyBpcyB0
-aGF0IG1kZXYgZmVhdHVyZXMgaW50ZXJmYWNlIHN1cHBvc2VkIHRvIHdvcms/IElmClZJUlRJT19N
-REVWX0ZfVkVSU0lPTl8xIGlzIGEgYml0LCBJIHdvdWxkIGV4cGVjdCB0aGlzIGNvZGUgdG8gdGVz
-dCBmb3IKaXRzIHByZXNlbmNlLCBhbmQgbm90IGZvciBpZGVudGl0eS4KCldoYXQgd2lsbCBoYXBw
-ZW4gaWYgd2UgY29tZSB1cCB3aXRoIGEgdmVyc2lvbiAyPyBJZiB0aGlzIGlzIGJhY2t3YXJkcwpj
-b21wYXRpYmxlLCB3aWxsIGJvdGggdmVyc2lvbiAyIGFuZCB2ZXJzaW9uIDEgYmUgc2V0PwoKPiAr
-Cj4gKwl2bV9kZXYtPnZkZXYuaWQuZGV2aWNlID0gb3BzLT5nZXRfZGV2aWNlX2lkKG1kZXYpOwo+
-ICsJaWYgKHZtX2Rldi0+dmRldi5pZC5kZXZpY2UgPT0gMCkKPiArCQlyZXR1cm4gLUVOT0RFVjsK
-PiArCj4gKwl2bV9kZXYtPnZkZXYuaWQudmVuZG9yID0gb3BzLT5nZXRfdmVuZG9yX2lkKG1kZXYp
-Owo+ICsJcmMgPSByZWdpc3Rlcl92aXJ0aW9fZGV2aWNlKCZ2bV9kZXYtPnZkZXYpOwo+ICsJaWYg
-KHJjKQo+ICsJCXB1dF9kZXZpY2UoZGV2KTsKPiArCWVsc2UKPiArCQlkZXZfc2V0X2RydmRhdGEo
-ZGV2LCB2bV9kZXYpOwo+ICsKPiArCXJldHVybiByYzsKPiArfQoKKC4uLikKX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlz
-dApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0
-b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
+--===============1930110581==
+Content-Language: en-US
+Content-Type: multipart/signed; micalg=sha-1;
+	protocol="application/x-pkcs7-signature"; boundary="=-1gJRkkzulQULDxuxJ4XJ"
+
+--=-1gJRkkzulQULDxuxJ4XJ
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+On Thu, 2019-10-17 at 14:42 -0700, Daniele Ceraolo Spurio wrote:
+>=20
+> On 10/17/19 12:37 PM, Stuart Summers wrote:
+> > During engine initialization in i915 load, the batch buffers
+> > being used to set up the initial context are being prematurely
+> > ended. In most scenarios, this does not cause a problem, but
+>=20
+> That's not a batch that we add the BBEND to, that's the context
+> itself.
+
+True.
+
+>=20
+> > in the rare event the engine expects the context to be added
+> > without an explicit MI_BATCH_BUFFER_END instruction, do not
+> > insert this instruction prematurely.
+> >=20
+>=20
+> We only add the BBEND when there is no state to restore, so why
+> would=20
+> the engine expect to execute a bunch of no-ops?
+
+That is also true. Seems like an unlikely situation. Let me dig a bit
+more before coming back here.
+
+Thanks,
+Stuart
+
+>=20
+> Daniele
+>=20
+> > Signed-off-by: Stuart Summers <stuart.summers@intel.com>
+> > ---
+> >   drivers/gpu/drm/i915/gt/intel_lrc.c | 2 +-
+> >   1 file changed, 1 insertion(+), 1 deletion(-)
+> >=20
+> > diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c
+> > b/drivers/gpu/drm/i915/gt/intel_lrc.c
+> > index e9fe9f79cedd..ec067c29ac65 100644
+> > --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
+> > +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+> > @@ -3805,7 +3805,7 @@ populate_lr_context(struct intel_context *ce,
+> >   	/* The second page of the context object contains some fields
+> > which must
+> >   	 * be set up prior to the first execution. */
+> >   	regs =3D vaddr + LRC_STATE_PN * PAGE_SIZE;
+> > -	execlists_init_reg_state(regs, ce, engine, ring, inhibit);
+> > +	execlists_init_reg_state(regs, ce, engine, ring, false);
+> >   	if (inhibit)
+> >   		regs[CTX_CONTEXT_CONTROL] |=3D
+> >   			_MASKED_BIT_ENABLE(CTX_CTRL_ENGINE_CTX_RESTORE_
+> > INHIBIT);
+> >=20
+
+--=-1gJRkkzulQULDxuxJ4XJ
+Content-Type: application/x-pkcs7-signature; name="smime.p7s"
+Content-Disposition: attachment; filename="smime.p7s"
+Content-Transfer-Encoding: base64
+
+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
+PwuHX1mRETAlwqXCZa6ba8eraUCltlCb/ZiEk9UFRVLjbLNPh9IYOi+sWkS6n5CovLKAqhMCAwEA
+AaOCAjMwggIvMB0GA1UdDgQWBBSgeYqvLV4nBaCUzAXLr0TeMJYR5zAfBgNVHSMEGDAWgBTaQSOc
+Wo9xr1eDPiDT42XbDMsL2zBlBgNVHR8EXjBcMFqgWKBWhlRodHRwOi8vd3d3LmludGVsLmNvbS9y
+ZXBvc2l0b3J5L0NSTC9JbnRlbCUyMEV4dGVybmFsJTIwQmFzaWMlMjBJc3N1aW5nJTIwQ0ElMjA0
+Qi5jcmwwgZ8GCCsGAQUFBwEBBIGSMIGPMCIGCCsGAQUFBzABhhZodHRwOi8vb2NzcC5pbnRlbC5j
+b20vMGkGCCsGAQUFBzAChl1odHRwOi8vd3d3LmludGVsLmNvbS9yZXBvc2l0b3J5L2NlcnRpZmlj
+YXRlcy9JbnRlbCUyMEV4dGVybmFsJTIwQmFzaWMlMjBJc3N1aW5nJTIwQ0ElMjA0Qi5jcnQwCwYD
+VR0PBAQDAgeAMDwGCSsGAQQBgjcVBwQvMC0GJSsGAQQBgjcVCIbDjHWEmeVRg/2BKIWOn1OCkcAJ
+Z4HevTmV8EMCAWQCAQkwHwYDVR0lBBgwFgYIKwYBBQUHAwQGCisGAQQBgjcKAwwwKQYJKwYBBAGC
+NxUKBBwwGjAKBggrBgEFBQcDBDAMBgorBgEEAYI3CgMMME0GA1UdEQRGMESgKAYKKwYBBAGCNxQC
+A6AaDBhzdHVhcnQuc3VtbWVyc0BpbnRlbC5jb22BGHN0dWFydC5zdW1tZXJzQGludGVsLmNvbTAN
+BgkqhkiG9w0BAQUFAAOCAQEAfyIC7rzSi6S8O+sdH384K8zyeMRJnl6vR7whl9PuEat+BkKpoxHn
+jQ0SFyF/cyI4lH/n938Pm3/Ctq0Z5GTldX6hhxxcLAR0qbk6AQU0Cq2nYMlZfX4FUz3FRsazbjTW
+1qObcvPRUAVScaa7SRGdensvbNV++pN1XqEdc++szxo58UzPaEgDlHIe2sEIVXnFkHnJv0ikRHG3
+urcA1bdj7Rac7dJBeQOQMdZEGmrWWmmbJzvk3OmoK9tKN7wcErQSdlqyYOMLesPfa7YNyLFYEJQd
+CC/N7V8U9yFZx8akWREb8lJYDl9KypirEsufleiew26CWrwcbmdlldDCFS6/HDGCAhcwggITAgEB
+MIGQMHkxCzAJBgNVBAYTAlVTMQswCQYDVQQIEwJDQTEUMBIGA1UEBxMLU2FudGEgQ2xhcmExGjAY
+BgNVBAoTEUludGVsIENvcnBvcmF0aW9uMSswKQYDVQQDEyJJbnRlbCBFeHRlcm5hbCBCYXNpYyBJ
+c3N1aW5nIENBIDRCAhMzAAB04Th3owY0UbEUAAAAAHThMAkGBSsOAwIaBQCgXTAYBgkqhkiG9w0B
+CQMxCwYJKoZIhvcNAQcBMBwGCSqGSIb3DQEJBTEPFw0xOTEwMTgxNDM1NTVaMCMGCSqGSIb3DQEJ
+BDEWBBQCmL7Prq7dJv8R0pi5aEZDYtnFijANBgkqhkiG9w0BAQEFAASCAQCQJLkdlIUGvKiio2r4
+jKKCNGa/HGqLHilc0slz/ZpP8pd0MYgATeHdWojFPK7B1EKoQnfdfyMun4BGEDuPfWQr7Y9rprNt
+f9Unbby5cDlRNny5cI4yjC5eEnfWNsRZ9SfDjolSHkwqX2AQMKeTWb0RoAthHii5zrO4v+u8wDg9
+0ZATMWdHlCzwtDQiDxNewv8jI1pJwcVFkw4JIMKkGfhFTqDd9WHeRmNB4/cUrWYi+SpYa7CB5v02
+tJnBLpuSOJ8dXM8bPklFxbOLRWYUMAzpp812+FLm2iEntaQlI9buaJ/xOAvJ9PhkKIStGpoJt6ig
+AiD6qR1iBtLJ/127zoJqAAAAAAAA
+
+
+--=-1gJRkkzulQULDxuxJ4XJ--
+
+--===============1930110581==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
+IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
+
+--===============1930110581==--
