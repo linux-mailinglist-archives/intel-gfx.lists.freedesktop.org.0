@@ -2,32 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C5B7DD50D
-	for <lists+intel-gfx@lfdr.de>; Sat, 19 Oct 2019 00:46:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A239DD510
+	for <lists+intel-gfx@lfdr.de>; Sat, 19 Oct 2019 00:49:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C85216E02D;
-	Fri, 18 Oct 2019 22:46:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ECB0F6E03F;
+	Fri, 18 Oct 2019 22:48:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4551A6E02D
- for <intel-gfx@lists.freedesktop.org>; Fri, 18 Oct 2019 22:46:19 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ADCE66E03F
+ for <intel-gfx@lists.freedesktop.org>; Fri, 18 Oct 2019 22:48:58 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from localhost (unverified [78.156.65.138]) 
  by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 18888023-1500050 for multiple; Fri, 18 Oct 2019 23:46:16 +0100
+ 18888033-1500050 for multiple; Fri, 18 Oct 2019 23:48:50 +0100
 MIME-Version: 1.0
-From: Chris Wilson <chris@chris-wilson.co.uk>
-User-Agent: alot/0.6
 To: Matthew Auld <matthew.auld@intel.com>, intel-gfx@lists.freedesktop.org
+From: Chris Wilson <chris@chris-wilson.co.uk>
+In-Reply-To: <20191018165558.18518-3-matthew.auld@intel.com>
 References: <20191018165558.18518-1-matthew.auld@intel.com>
- <20191018165558.18518-4-matthew.auld@intel.com>
-In-Reply-To: <20191018165558.18518-4-matthew.auld@intel.com>
-Message-ID: <157143877470.10963.4590513764886232001@skylake-alporthouse-com>
-Date: Fri, 18 Oct 2019 23:46:14 +0100
-Subject: Re: [Intel-gfx] [PATCH 4/6] drm/i915/selftests: add write-dword
- test for LMEM
+ <20191018165558.18518-3-matthew.auld@intel.com>
+Message-ID: <157143892816.10963.17212755271912143015@skylake-alporthouse-com>
+User-Agent: alot/0.6
+Date: Fri, 18 Oct 2019 23:48:48 +0100
+Subject: Re: [Intel-gfx] [PATCH 3/6] drm/i915/lmem: support kernel mapping
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -45,13 +44,16 @@ Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-UXVvdGluZyBNYXR0aGV3IEF1bGQgKDIwMTktMTAtMTggMTc6NTU6NTYpCj4gU2ltcGxlIHRlc3Qg
-d3JpdGluZyB0byBkd29yZHMgYWNyb3NzIGFuIG9iamVjdCwgdXNpbmcgdmFyaW91cyBlbmdpbmVz
-IGluCj4gYSByYW5kb21pemVkIG9yZGVyLCBjaGVja2luZyB0aGF0IG91ciB3cml0ZXMgbGFuZCBm
-cm9tIHRoZSBjcHUuCj4gCj4gU2lnbmVkLW9mZi1ieTogTWF0dGhldyBBdWxkIDxtYXR0aGV3LmF1
-bGRAaW50ZWwuY29tPgoKTG9va3MgbGlrZSBhIGdvb2QgYmFzZSB0byBidWlsZCB1cG9uLCBhbmQg
-Z2l2ZXMgYSB1c2VmdWwgc2FuaXR5IGNoZWNrLgpSZXZpZXdlZC1ieTogQ2hyaXMgV2lsc29uIDxj
-aHJpc0BjaHJpcy13aWxzb24uY28udWs+Ci1DaHJpcwpfX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBs
-aXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1h
-bi9saXN0aW5mby9pbnRlbC1nZng=
+UXVvdGluZyBNYXR0aGV3IEF1bGQgKDIwMTktMTAtMTggMTc6NTU6NTUpCj4gRnJvbTogQWJkaWVs
+IEphbnVsZ3VlIDxhYmRpZWwuamFudWxndWVAbGludXguaW50ZWwuY29tPgo+IAo+IFdlIGNhbiBj
+cmVhdGUgTE1FTSBvYmplY3RzLCBidXQgd2UgYWxzbyBuZWVkIHRvIHN1cHBvcnQgbWFwcGluZyB0
+aGVtCj4gaW50byBrZXJuZWwgc3BhY2UgZm9yIGludGVybmFsIHVzZS4KPiAKPiBTaWduZWQtb2Zm
+LWJ5OiBBYmRpZWwgSmFudWxndWUgPGFiZGllbC5qYW51bGd1ZUBsaW51eC5pbnRlbC5jb20+Cj4g
+U2lnbmVkLW9mZi1ieTogTWF0dGhldyBBdWxkIDxtYXR0aGV3LmF1bGRAaW50ZWwuY29tPgo+IFNp
+Z25lZC1vZmYtYnk6IFN0ZXZlIEhhbXBzb24gPHN0ZXZlbi50LmhhbXBzb25AaW50ZWwuY29tPgo+
+IENjOiBKb29uYXMgTGFodGluZW4gPGpvb25hcy5sYWh0aW5lbkBsaW51eC5pbnRlbC5jb20+CgpP
+aywgdGhhdCBzZWVtcyB0byBiZSBhcyBzaW1wbGUgYXMgaXQgY2FuIGJlIGRvbmUuClJldmlld2Vk
+LWJ5OiBDaHJpcyBXaWxzb24gPGNocmlzQGNocmlzLXdpbHNvbi5jby51az4KLUNocmlzCl9fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWls
+aW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeA==
