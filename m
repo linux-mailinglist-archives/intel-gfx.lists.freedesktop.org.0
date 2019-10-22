@@ -2,33 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 51751E0192
-	for <lists+intel-gfx@lfdr.de>; Tue, 22 Oct 2019 12:06:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3601CE0195
+	for <lists+intel-gfx@lfdr.de>; Tue, 22 Oct 2019 12:07:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BDC816E52A;
-	Tue, 22 Oct 2019 10:06:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 819416E530;
+	Tue, 22 Oct 2019 10:07:27 +0000 (UTC)
 X-Original-To: Intel-gfx@lists.freedesktop.org
 Delivered-To: Intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EE5AC6E52A
- for <Intel-gfx@lists.freedesktop.org>; Tue, 22 Oct 2019 10:06:11 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 22D096E530
+ for <Intel-gfx@lists.freedesktop.org>; Tue, 22 Oct 2019 10:07:25 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from localhost (unverified [78.156.65.138]) 
  by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 18922694-1500050 for multiple; Tue, 22 Oct 2019 11:06:04 +0100
+ 18922713-1500050 for multiple; Tue, 22 Oct 2019 11:07:01 +0100
 MIME-Version: 1.0
 From: Chris Wilson <chris@chris-wilson.co.uk>
 User-Agent: alot/0.6
 To: Intel-gfx@lists.freedesktop.org,
  Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
 References: <20191022094726.3001-1-tvrtko.ursulin@linux.intel.com>
- <20191022094726.3001-9-tvrtko.ursulin@linux.intel.com>
-In-Reply-To: <20191022094726.3001-9-tvrtko.ursulin@linux.intel.com>
-Message-ID: <157173876105.2684.1405560307687788908@skylake-alporthouse-com>
-Date: Tue, 22 Oct 2019 11:06:01 +0100
-Subject: Re: [Intel-gfx] [PATCH 08/12] drm/i915/selftests: Convert eviction
- selftests to gt/ggtt
+ <20191022094726.3001-10-tvrtko.ursulin@linux.intel.com>
+In-Reply-To: <20191022094726.3001-10-tvrtko.ursulin@linux.intel.com>
+Message-ID: <157173881854.2684.1655793066159946058@skylake-alporthouse-com>
+Date: Tue, 22 Oct 2019 11:06:58 +0100
+Subject: Re: [Intel-gfx] [PATCH 09/12] drm/i915/selftests: Use GT engines in
+ mock_gem_device
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -46,15 +46,12 @@ Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-UXVvdGluZyBUdnJ0a28gVXJzdWxpbiAoMjAxOS0xMC0yMiAxMDo0NzoyMikKPiBGcm9tOiBUdnJ0
-a28gVXJzdWxpbiA8dHZydGtvLnVyc3VsaW5AaW50ZWwuY29tPgo+IAo+IENvbnZlcnQgdGhlIHRl
-c3QgY29kZSB0byB3b3JrIGRpcmVjdGx5IG9uIHdoYXQgaXQgbmVlZHMgcmF0aGVyIHRoYW4KPiBn
-b2luZyB0aHJvdWdoIHRoZSB0b3AtbGV2ZWwgaTkxNS4KPiAKPiBUaGlzIGVuYWJsZXMgYW5vdGhl
-ciBuYXR1cmFsIHVzYWdlIGZvciBmb3JfZWFjaF9lbmdpbmUoLi4sIGd0LCAuLikuCj4gCj4gU2ln
-bmVkLW9mZi1ieTogVHZydGtvIFVyc3VsaW4gPHR2cnRrby51cnN1bGluQGludGVsLmNvbT4KCkFs
-c28gaTkxNV9nZW1fZ3R0L2V2aWN0IHRoZW1zZWx2ZXMgbmVlZCB0byBiZSBjb21wYXJ0bWVudGFs
-aXNlZCBiZXR0ZXIsCnNvIHRoaXMgaXMgZXZlbiBtb3JlIG5hdHVyYWwgdGhhbiBpdCBsb29rcyA6
-KQoKUmV2aWV3ZWQtYnk6IENocmlzIFdpbHNvbiA8Y2hyaXNAY2hyaXMtd2lsc29uLmNvLnVrPgot
-Q2hyaXMKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50
-ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBz
-Oi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
+UXVvdGluZyBUdnJ0a28gVXJzdWxpbiAoMjAxOS0xMC0yMiAxMDo0NzoyMykKPiBGcm9tOiBUdnJ0
+a28gVXJzdWxpbiA8dHZydGtvLnVyc3VsaW5AaW50ZWwuY29tPgo+IAo+IEp1c3QgZnJlZWluZyB1
+cCB0d28gbW9yZSBjYWxsIHNpdGVzIGZyb20gcGFzc2luZyBpbiBpOTE1IHRvCj4gZm9yX2VhY2hf
+ZW5naW5lLgo+IAo+IFNpZ25lZC1vZmYtYnk6IFR2cnRrbyBVcnN1bGluIDx0dnJ0a28udXJzdWxp
+bkBpbnRlbC5jb20+CgpPaywgd2UgcmVhbGx5IHNob3VsZCBkbyBhIGd0L21vY2tfZ3QuYy4uLgpS
+ZXZpZXdlZC1ieTogQ2hyaXMgV2lsc29uIDxjaHJpc0BjaHJpcy13aWxzb24uY28udWs+Ci1DaHJp
+cwpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1n
+ZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9s
+aXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZng=
