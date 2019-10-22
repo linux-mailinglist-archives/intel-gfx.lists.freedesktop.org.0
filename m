@@ -2,33 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3601CE0195
-	for <lists+intel-gfx@lfdr.de>; Tue, 22 Oct 2019 12:07:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DC7EEE019D
+	for <lists+intel-gfx@lfdr.de>; Tue, 22 Oct 2019 12:09:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 819416E530;
-	Tue, 22 Oct 2019 10:07:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 52D2A6E53C;
+	Tue, 22 Oct 2019 10:09:05 +0000 (UTC)
 X-Original-To: Intel-gfx@lists.freedesktop.org
 Delivered-To: Intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 22D096E530
- for <Intel-gfx@lists.freedesktop.org>; Tue, 22 Oct 2019 10:07:25 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 961226E53C
+ for <Intel-gfx@lists.freedesktop.org>; Tue, 22 Oct 2019 10:09:03 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from localhost (unverified [78.156.65.138]) 
  by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 18922713-1500050 for multiple; Tue, 22 Oct 2019 11:07:01 +0100
+ 18922739-1500050 for multiple; Tue, 22 Oct 2019 11:08:39 +0100
 MIME-Version: 1.0
 From: Chris Wilson <chris@chris-wilson.co.uk>
 User-Agent: alot/0.6
 To: Intel-gfx@lists.freedesktop.org,
  Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
 References: <20191022094726.3001-1-tvrtko.ursulin@linux.intel.com>
- <20191022094726.3001-10-tvrtko.ursulin@linux.intel.com>
-In-Reply-To: <20191022094726.3001-10-tvrtko.ursulin@linux.intel.com>
-Message-ID: <157173881854.2684.1655793066159946058@skylake-alporthouse-com>
-Date: Tue, 22 Oct 2019 11:06:58 +0100
-Subject: Re: [Intel-gfx] [PATCH 09/12] drm/i915/selftests: Use GT engines in
- mock_gem_device
+ <20191022094726.3001-11-tvrtko.ursulin@linux.intel.com>
+In-Reply-To: <20191022094726.3001-11-tvrtko.ursulin@linux.intel.com>
+Message-ID: <157173891623.2684.2080652109309737647@skylake-alporthouse-com>
+Date: Tue, 22 Oct 2019 11:08:36 +0100
+Subject: Re: [Intel-gfx] [PATCH 10/12] drm/i915/selftests: Use GT engines in
+ igt_live_test
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -46,12 +46,14 @@ Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-UXVvdGluZyBUdnJ0a28gVXJzdWxpbiAoMjAxOS0xMC0yMiAxMDo0NzoyMykKPiBGcm9tOiBUdnJ0
-a28gVXJzdWxpbiA8dHZydGtvLnVyc3VsaW5AaW50ZWwuY29tPgo+IAo+IEp1c3QgZnJlZWluZyB1
-cCB0d28gbW9yZSBjYWxsIHNpdGVzIGZyb20gcGFzc2luZyBpbiBpOTE1IHRvCj4gZm9yX2VhY2hf
-ZW5naW5lLgo+IAo+IFNpZ25lZC1vZmYtYnk6IFR2cnRrbyBVcnN1bGluIDx0dnJ0a28udXJzdWxp
-bkBpbnRlbC5jb20+CgpPaywgd2UgcmVhbGx5IHNob3VsZCBkbyBhIGd0L21vY2tfZ3QuYy4uLgpS
-ZXZpZXdlZC1ieTogQ2hyaXMgV2lsc29uIDxjaHJpc0BjaHJpcy13aWxzb24uY28udWs+Ci1DaHJp
-cwpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1n
-ZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9s
-aXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZng=
+UXVvdGluZyBUdnJ0a28gVXJzdWxpbiAoMjAxOS0xMC0yMiAxMDo0NzoyNCkKPiBGcm9tOiBUdnJ0
+a28gVXJzdWxpbiA8dHZydGtvLnVyc3VsaW5AaW50ZWwuY29tPgo+IAo+IEZyZWVzIHVwIHR3byBj
+YWxsIHNpdGVzIGZyb20gcGFzc2luZyBpOTE1IHRvIGZvcl9lYWNoX2VuZ2luZS4KPiAKPiBTaWdu
+ZWQtb2ZmLWJ5OiBUdnJ0a28gVXJzdWxpbiA8dHZydGtvLnVyc3VsaW5AaW50ZWwuY29tPgoKT2su
+IEkndmUgYmVlbiBsb29raW5nIGF0IG1ha2luZyB0aGlzIGludGVsX2d0IGNlbnRyaWMsIGFuZCBv
+dXIKZGlzY3Vzc2lvbnMgbGVhZCB0byBjb25zaWRlciBib3RoIGEgZ2xvYmFsIEdFTSB2YXJpYW50
+IGFuZCBhIGxvY2FsIGd0CnZhcmlhbnQuIEZvciBsYXRlci4KUmV2aWV3ZWQtYnk6IENocmlzIFdp
+bHNvbiA8Y2hyaXNAY2hyaXMtd2lsc29uLmNvLnVrPgotQ2hyaXMKX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRl
+bC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
+L21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
