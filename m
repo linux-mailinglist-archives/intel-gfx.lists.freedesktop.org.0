@@ -1,38 +1,64 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8BB59E1329
-	for <lists+intel-gfx@lfdr.de>; Wed, 23 Oct 2019 09:32:34 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F8F9E1332
+	for <lists+intel-gfx@lfdr.de>; Wed, 23 Oct 2019 09:34:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 62D176E979;
-	Wed, 23 Oct 2019 07:32:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4F4686E97B;
+	Wed, 23 Oct 2019 07:34:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7C48F6E973;
- Wed, 23 Oct 2019 07:32:28 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 23 Oct 2019 00:32:27 -0700
-X-IronPort-AV: E=Sophos;i="5.68,220,1569308400"; d="scan'208";a="191749425"
-Received: from jnikula-mobl3.fi.intel.com (HELO localhost) ([10.237.66.161])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 23 Oct 2019 00:32:24 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: David Lechner <david@lechnology.com>, dri-devel@lists.freedesktop.org
-In-Reply-To: <406d7ec4-f5b1-2ba4-a0ae-05fef4ab38b1@lechnology.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1571738674.git.jani.nikula@intel.com>
- <c14255c3cecea4d2c593ff4edd5e8134ab7568d3.1571738674.git.jani.nikula@intel.com>
- <406d7ec4-f5b1-2ba4-a0ae-05fef4ab38b1@lechnology.com>
-Date: Wed, 23 Oct 2019 10:32:21 +0300
-Message-ID: <87a79rgbne.fsf@intel.com>
+Received: from mail-lf1-x144.google.com (mail-lf1-x144.google.com
+ [IPv6:2a00:1450:4864:20::144])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DDD5A6E97B;
+ Wed, 23 Oct 2019 07:34:16 +0000 (UTC)
+Received: by mail-lf1-x144.google.com with SMTP id y127so15222324lfc.0;
+ Wed, 23 Oct 2019 00:34:16 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:in-reply-to
+ :references:mime-version;
+ bh=2uqZjkBzuw4+/o0y2AVTI7MhPJ8t5LI2JQ2vi8QfGgA=;
+ b=qEZyq0hEcHAFFZxO1REyo+Nyb7vR+R+k2hQ9AG7N1l2N/F0RAZBi6dJ0ktvDOSZ0YY
+ 4T+8/Ah1ZmpWc7bjmG7R+dzsa7HTOoV+U07zW8xnEX5Mdk4IPU4+35O9uwJ3HW2sr8la
+ H+z10U27Zxbqxq5x/TuLiFuHQw485aImo34s28lJ5u/jg1YZGu7R8n2k6DCAhLXBnE8m
+ o6eoU4qFAWH7IonbNJ301QcBnjffB6fzE7yqU77WDdXwXfE1kA45FlwPWWoj9cD6Zf2B
+ ljCi2QbECRLNf1pW/SeoM8XbJRf93/m4aXEXYTLKtrHBTQ9NYhfcUEKmKDh0ihvRyNeb
+ /tSg==
+X-Gm-Message-State: APjAAAWjwPKgzIwWj/sCYW0uYNqFRh+EPdA9N93p9kls+R2phWTpqMDS
+ 7voiY9x63kpchAia79dtH9k=
+X-Google-Smtp-Source: APXvYqxT30DXxrnxy0Sf+B0F+7d7yTPzqhCa0bjzr7lAzZT05Y1GLlxrkLV1xmJUBOYaaD3V7vUtfg==
+X-Received: by 2002:a19:ac01:: with SMTP id g1mr21420504lfc.141.1571816055124; 
+ Wed, 23 Oct 2019 00:34:15 -0700 (PDT)
+Received: from eldfell.localdomain ([194.136.85.206])
+ by smtp.gmail.com with ESMTPSA id e2sm640783lfc.2.2019.10.23.00.34.14
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 23 Oct 2019 00:34:14 -0700 (PDT)
+Date: Wed, 23 Oct 2019 10:34:05 +0300
+From: Pekka Paalanen <ppaalanen@gmail.com>
+To: "Sharma, Shashank" <shashank.sharma@intel.com>
+Message-ID: <20191023103405.3815a311@eldfell.localdomain>
+In-Reply-To: <2f6668c0-ea32-2028-165c-a1b89893dc2a@intel.com>
+References: <20191022095946.29354-1-shashank.sharma@intel.com>
+ <20191022095946.29354-2-shashank.sharma@intel.com>
+ <20191022122034.GJ1208@intel.com>
+ <2f6668c0-ea32-2028-165c-a1b89893dc2a@intel.com>
+X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 4/5] drm/dsi: rename
- MIPI_DCS_SET_PARTIAL_AREA to MIPI_DCS_SET_PARTIAL_ROWS
+X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20161025;
+ h=date:from:to:cc:subject:message-id:in-reply-to:references
+ :mime-version;
+ bh=2uqZjkBzuw4+/o0y2AVTI7MhPJ8t5LI2JQ2vi8QfGgA=;
+ b=R7KwN9WeJZhdoz36SJ1MMaFaKCKhokjDj8X2FtPVqiN6PglEgzdhVleVPRxh6ByeW3
+ L5XRu+OiF/jRzes+PfvdjBtYrw0v6MDriL9Q4Im036GGasoUQ5MBWf0+6izHgzG0PrcW
+ LsUBBNIM+AHl4ghfqHQgkAgVlQckX4LFigipSHjWGDD7DlEOTUROQ28pHDY0xDIoU1RC
+ qMxCJuErnP8gTm/5HUrYCxylt4Asr/A3ufUrcVZMcHKCS4gYn5C+TN2ePNO8AkSBARJv
+ vR6K+62D1ZfLN2KKSc1zYRxplHR6lnSS4qClAahtxmxgESTIa31O6UrDxqpkP6x7zaN6
+ bs7w==
+Subject: Re: [Intel-gfx] [PATCH 1/3] drm: Introduce scaling filter mode
+ property
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -45,30 +71,125 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============1943034074=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gVHVlLCAyMiBPY3QgMjAxOSwgRGF2aWQgTGVjaG5lciA8ZGF2aWRAbGVjaG5vbG9neS5jb20+
-IHdyb3RlOgo+IE9uIDEwLzIyLzE5IDU6MDkgQU0sIEphbmkgTmlrdWxhIHdyb3RlOgo+PiBUaGUg
-RENTIGNvbW1hbmQgaGFzIGJlZW4gbmFtZWQgU0VUX1BBUlRJQUxfUk9XUyBpbiB0aGUgRENTIHNw
-ZWMgc2luY2UKPj4gdjEuMDIsIGZvciBtb3JlIHRoYW4gYSBkZWNhZGUuIFJlbmFtZSB0aGUgZW51
-bWVyYXRpb24gdG8gbWF0Y2ggdGhlIHNwZWMuCj4+IAo+PiBDYzogRGF2aWQgTGVjaG5lciA8ZGF2
-aWRAbGVjaG5vbG9neS5jb20+Cj4+IENjOiBWYW5kaXRhIEt1bGthcm5pIDx2YW5kaXRhLmt1bGth
-cm5pQGludGVsLmNvbT4KPj4gU2lnbmVkLW9mZi1ieTogSmFuaSBOaWt1bGEgPGphbmkubmlrdWxh
-QGludGVsLmNvbT4KPj4gLS0tCj4KPiBJIGd1ZXNzIGFsbCBvZiBteSBkb2N1bWVudHMgYXJlIG9s
-ZCBhbmQgc2F5IHNldF9wYXJ0aWFsX2FyZWEsIGJ1dCBJIHdpbGwKPiB0YWtlIHlvdXIgd29yZCBm
-b3IgaXQuCj4KPiBJdCBjb3VsZCBiZSBoZWxwZnVsIHRvIGxlYXZlIGEgY29tbWVudCBpbiB0aGUg
-Y29kZSBhYm91dCB0aGUgcmVuYW1pbmcKPiBzbyB0aGF0IGlmIHBlb3BsZSB3aXRoIG9sZCBkb2Nz
-IHNlYXJjaCBmb3IgU0VUX1BBUlRJQUxfQVJFQSwgdGhleSBjYW4KPiBzdGlsbCBmaW5kIGl0LgoK
-U29tZXRoaW5nIGxpa2UgdGhpcz8KCglNSVBJX0RDU19TRVRfUEFSVElBTF9ST1dTCT0gMHgzMCwJ
-CS8qIGFrYSBNSVBJX0RDU19TRVRfUEFSVElBTF9BUkVBICovCgpJdCdzIGFsc28gYSBwb3NzaWJp
-bGl0eSB0byBkZWZpbmUgYm90aDoKCglNSVBJX0RDU19TRVRfUEFSVElBTF9BUkVBCT0gMHgzMCwJ
-CS8qIF9ST1dTIHNpbmNlIE1JUEkgRENTIDEuMDIgKi8KCU1JUElfRENTX1NFVF9QQVJUSUFMX1JP
-V1MJPSAweDMwLAoKSSBkb24ndCBtaW5kIGVpdGhlciB3YXkuCgpCUiwKSmFuaS4KCgotLSAKSmFu
-aSBOaWt1bGEsIEludGVsIE9wZW4gU291cmNlIEdyYXBoaWNzIENlbnRlcgpfX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0
-CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3Rv
-cC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZng=
+--===============1943034074==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ boundary="Sig_/ztLmTX5EpB=3FoV4D4yv=h9"; protocol="application/pgp-signature"
+
+--Sig_/ztLmTX5EpB=3FoV4D4yv=h9
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+On Tue, 22 Oct 2019 20:48:02 +0530
+"Sharma, Shashank" <shashank.sharma@intel.com> wrote:
+
+> Hello Ville,
+>=20
+> Thanks for the comments, mine inline.
+>=20
+>=20
+> On 10/22/2019 5:50 PM, Ville Syrj=C3=A4l=C3=A4 wrote:
+> > On Tue, Oct 22, 2019 at 03:29:44PM +0530, Shashank Sharma wrote: =20
+> >> This patch adds a scaling filter mode porperty
+> >> to allow:
+> >> - A driver/HW to showcase it's scaling filter capabilities.
+> >> - A userspace to pick a desired effect while scaling.
+> >>
+> >> This option will be particularly useful in the scenarios where
+> >> Integer mode scaling is possible, and a UI client wants to pick
+> >> filters like Nearest-neighbor applied for non-blurry outputs.
+> >>
+> >> There was a RFC patch series published, to discus the request to enable
+> >> Integer mode scaling by some of the gaming communities, which can be
+> >> found here:
+> >> https://patchwork.freedesktop.org/series/66175/
+> >>
+> >> Signed-off-by: Shashank Sharma <shashank.sharma@intel.com>
+> >> ---
+> >>   drivers/gpu/drm/drm_atomic_uapi.c |  4 ++++
+> >>   include/drm/drm_crtc.h            | 26 ++++++++++++++++++++++++++
+> >>   include/drm/drm_mode_config.h     |  6 ++++++
+> >>   3 files changed, 36 insertions(+)
+
+...
+
+> >> diff --git a/include/drm/drm_crtc.h b/include/drm/drm_crtc.h
+> >> index 5e9b15a0e8c5..94c5509474a8 100644
+> >> --- a/include/drm/drm_crtc.h
+> >> +++ b/include/drm/drm_crtc.h
+> >> @@ -58,6 +58,25 @@ struct device_node;
+> >>   struct dma_fence;
+> >>   struct edid;
+> >>  =20
+> >> +enum drm_scaling_filters {
+> >> +	DRM_SCALING_FILTER_DEFAULT,
+> >> +	DRM_SCALING_FILTER_MEDIUM,
+> >> +	DRM_SCALING_FILTER_BILINEAR,
+> >> +	DRM_SCALING_FILTER_NN, =20
+> > Please use real words. =20
+> Yes, I saw that coming. It was getting difficult with the 80 char stuff,=
+=20
+> it was even more difficult while using it :). But let me see how better=20
+> can I do here.
+> >> +	DRM_SCALING_FILTER_NN_IS_ONLY, =20
+> > Not a big fan of this. I'd just add the explicit nearest filter
+> > and leave the decision whether to use it to userspace. =20
+> Agree, that's also one option. I was thinking to make it convenient for=20
+> userspace,=C2=A0 For example if a compositor just want to checkout NN onl=
+y=20
+> when its beneficial (like old gaming scenarios) but doesn't have enough=20
+> information (or intent), it can leave it to kernel too. But I agree,=20
+> this can cause corner cases. Let's discuss and see if we need it at all,=
+=20
+> as you mentioned.
+
+Hi,
+
+how could the kernel have more information or knowledge of intent than
+a display server? I cannot see how, because everything the kernel gets
+comes through the display server.
+
+I agree with Ville here.
+
+
+Thanks,
+pq
+
+--Sig_/ztLmTX5EpB=3FoV4D4yv=h9
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCAAdFiEEJQjwWQChkWOYOIONI1/ltBGqqqcFAl2wAm0ACgkQI1/ltBGq
+qqe+qw//QxdazE2Ikh9/ETm6+qbPFpeLqbmf54X/CFi/1wfhxz94ZRb35qrnrFZj
+vsmkvE7LaBJm8WlwZ/EfHAl6NzCAoh/goHPIAeod3ETbiXy7+eA6VryhszseX1ay
+QUm33F4AV4WGd2PbpKh8WE5zZWGzpxw/98RMybFaug2OJN58juPM1XPqe6f3BQ9J
+RZyxOZEGCjKiPyujmGzNbOwZkF6t2waUgD2PGxVUrTiNoAmUyAJAPSIqYPRPoNBK
+NRksNADFWCzXz06zmIHQpbVijHGXm+uZof9PKbVWJCtGIT2kbqE54UCdORTPogG9
+rsOFuRuoezyWCc73j90RMgiR/y3Yaa1OL4kyOoUVMsKq9BxlDpdkIWjE9Mc5LV3G
+tF+kmAaKwQoLOlCSlmYrJMI8SSy89QK/MNGcs9DZK/WldXghIlMyqOMWamcD2cw0
+u5jmTo5m3IEUqr7tk886zKmPI+JgVr4JLOpoe2z0Q4surw6mbzRGM+Uw6zhkvu+9
+2N2P2sQ7P4x/ZUEiH0+lk58xAJnWi6jUZCil/D1+iXr4mbAS/3SFWNsB+YXsHOCy
+9fD2WI8nWL5IB4F5Oa7WD8awsA6z7Cv15UoR399V1qd6Ur212zpbgNHPSk01jelw
+IMwgukaKECCSvCjGxEjzZbK6hosjIilrRxLCo8Hkqq3EqFgkKJQ=
+=fHcr
+-----END PGP SIGNATURE-----
+
+--Sig_/ztLmTX5EpB=3FoV4D4yv=h9--
+
+--===============1943034074==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
+IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
+
+--===============1943034074==--
