@@ -1,36 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1439DE18F9
-	for <lists+intel-gfx@lfdr.de>; Wed, 23 Oct 2019 13:26:49 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9590EE199E
+	for <lists+intel-gfx@lfdr.de>; Wed, 23 Oct 2019 14:09:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 241316EA45;
-	Wed, 23 Oct 2019 11:26:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9C3326EA5B;
+	Wed, 23 Oct 2019 12:09:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 60CAA6EA45;
- Wed, 23 Oct 2019 11:26:46 +0000 (UTC)
-Received: from localhost (lfbn-1-10718-76.w90-89.abo.wanadoo.fr [90.89.68.76])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256
- bits)) (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id B26CF2064A;
- Wed, 23 Oct 2019 11:26:45 +0000 (UTC)
-Date: Wed, 23 Oct 2019 13:26:43 +0200
-From: Maxime Ripard <mripard@kernel.org>
-To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
-Message-ID: <20191023112643.evpp6f23mpjwdsn4@gilmour>
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B54926EA5B
+ for <intel-gfx@lists.freedesktop.org>; Wed, 23 Oct 2019 12:09:02 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 23 Oct 2019 05:09:02 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.68,220,1569308400"; d="scan'208";a="188232463"
+Received: from turrican.fi.intel.com ([10.237.72.77])
+ by orsmga007.jf.intel.com with ESMTP; 23 Oct 2019 05:09:00 -0700
+From: =?UTF-8?q?Tapani=20P=C3=A4lli?= <tapani.palli@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 23 Oct 2019 15:06:18 +0300
+Message-Id: <20191023120618.5344-1-tapani.palli@intel.com>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-User-Agent: NeoMutt/20180716
-X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=kernel.org; s=default; t=1571830006;
- bh=bipDpsb0i80MZA1CPFS1Du8tF7D+Q+oWAUciIIS+rVE=;
- h=Date:From:To:Cc:Subject:From;
- b=PMd6C1ezRzNDHzoSW96GZT3pKuEX/FkyuvZcDRM5lWartBGJGyU33sBqL/lO+qoBr
- Q5MwjLOqFgI9qF7lDaP9Yxst8Y4+wTtOMSYGmhB5kD+BXsxpS+oKWtRGmLj/DALRXi
- oXUX0JYqjAsZx9vmBL0WMzyOMP0EkOG7zaPKstJo=
-Subject: [Intel-gfx] [PULL] drm-misc-fixes
+Subject: [Intel-gfx] [PATCH] drm/i915/tgl: whitelist
+ PS_(DEPTH|INVOCATION)_COUNT
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -43,79 +41,35 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Maxime Ripard <mripard@kernel.org>, intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============1942951916=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
---===============1942951916==
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="hlkt5whda7en65t5"
-Content-Disposition: inline
-
-
---hlkt5whda7en65t5
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-
-Hi Daniel, Dave,
-
-Here is this week's drm-misc-fixes PR.
-
-Thanks!
-Maxime
-
-drm-misc-fixes-2019-10-23:
-Two fixes for komeda, one for typos and one to prevent an hardware issue
-when flushing inactive pipes
-The following changes since commit 5b3ec8134f5f9fa1ed0a538441a495521078bbee:
-
-  drm/panfrost: Handle resetting on timeout better (2019-10-15 11:38:22 -0500)
-
-are available in the Git repository at:
-
-  git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-fixes-2019-10-23
-
-for you to fetch changes up to 8ae501e295cce9bc6e0dd82d5204a1d5faef44f8:
-
-  drm/komeda: Fix typos in komeda_splitter_validate (2019-10-21 14:50:51 +0100)
-
-----------------------------------------------------------------
-Two fixes for komeda, one for typos and one to prevent an hardware issue
-when flushing inactive pipes
-
-----------------------------------------------------------------
-Mihail Atanassov (2):
-      drm/komeda: Don't flush inactive pipes
-      drm/komeda: Fix typos in komeda_splitter_validate
-
- drivers/gpu/drm/arm/display/komeda/komeda_kms.c            | 3 ++-
- drivers/gpu/drm/arm/display/komeda/komeda_pipeline_state.c | 4 ++--
- 2 files changed, 4 insertions(+), 3 deletions(-)
-
---hlkt5whda7en65t5
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXbA48wAKCRDj7w1vZxhR
-xYjCAQD1FwoRNKM0klfTt0zGfKu2M9fwPj+DI3IuOTdMsXa6vAD/YeYv50ezX5rY
-yM2EW5qoek1/OHnxnK5Ldwx5Ke2gjg4=
-=x71e
------END PGP SIGNATURE-----
-
---hlkt5whda7en65t5--
-
---===============1942951916==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
-IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
-
---===============1942951916==--
+QXMgd2l0aCBjb21taXQgM2ZlMDEwN2U0NWFiLCB0aGlzIGNoYW5nZSBmaXhlcyBtdWx0aXBsZSB0
+ZXN0cyB0aGF0IGFyZQp1c2luZyB0aGUgaW52b2NhdGlvbiBjb3VudHMuIERvY3VtZW50YXRpb24g
+ZG9lc24ndCBsaXN0IHRoZSB3b3JrYXJvdW5kCmZvciBUR0wgYnV0IGFwcGx5aW5nIGl0IGZpeGVz
+IHRoZSB0ZXN0cy4KClNpZ25lZC1vZmYtYnk6IFRhcGFuaSBQw6RsbGkgPHRhcGFuaS5wYWxsaUBp
+bnRlbC5jb20+Ci0tLQogZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfd29ya2Fyb3VuZHMu
+YyB8IDIwICsrKysrKysrKysrKysrKysrKysrCiAxIGZpbGUgY2hhbmdlZCwgMjAgaW5zZXJ0aW9u
+cygrKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX3dvcmthcm91
+bmRzLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRlbF93b3JrYXJvdW5kcy5jCmluZGV4
+IGFmOGE4MTgzMTU0YS4uODZkZWQyMDNiMmRkIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0v
+aTkxNS9ndC9pbnRlbF93b3JrYXJvdW5kcy5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0
+L2ludGVsX3dvcmthcm91bmRzLmMKQEAgLTEyMTUsNiArMTIxNSwyNiBAQCBzdGF0aWMgdm9pZCBp
+Y2xfd2hpdGVsaXN0X2J1aWxkKHN0cnVjdCBpbnRlbF9lbmdpbmVfY3MgKmVuZ2luZSkKIAogc3Rh
+dGljIHZvaWQgdGdsX3doaXRlbGlzdF9idWlsZChzdHJ1Y3QgaW50ZWxfZW5naW5lX2NzICplbmdp
+bmUpCiB7CisJc3RydWN0IGk5MTVfd2FfbGlzdCAqdyA9ICZlbmdpbmUtPndoaXRlbGlzdDsKKwor
+CXN3aXRjaCAoZW5naW5lLT5jbGFzcykgeworCWNhc2UgUkVOREVSX0NMQVNTOgorCQkvKgorCQkg
+KiBXYUFsbG93UE1EZXB0aEFuZEludm9jYXRpb25Db3VudEFjY2Vzc0Zyb21VTUQ6dGdsCisJCSAq
+CisJCSAqIFRoaXMgY292ZXJzIDQgcmVnaXN0ZXJzIHdoaWNoIGFyZSBuZXh0IHRvIG9uZSBhbm90
+aGVyIDoKKwkJICogICAtIFBTX0lOVk9DQVRJT05fQ09VTlQKKwkJICogICAtIFBTX0lOVk9DQVRJ
+T05fQ09VTlRfVURXCisJCSAqICAgLSBQU19ERVBUSF9DT1VOVAorCQkgKiAgIC0gUFNfREVQVEhf
+Q09VTlRfVURXCisJCSAqLworCQl3aGl0ZWxpc3RfcmVnX2V4dCh3LCBQU19JTlZPQ0FUSU9OX0NP
+VU5ULAorCQkJCSAgUklOR19GT1JDRV9UT19OT05QUklWX0FDQ0VTU19SRCB8CisJCQkJICBSSU5H
+X0ZPUkNFX1RPX05PTlBSSVZfUkFOR0VfNCk7CisJCWJyZWFrOworCWRlZmF1bHQ6CisJCWJyZWFr
+OworCX0KIH0KIAogdm9pZCBpbnRlbF9lbmdpbmVfaW5pdF93aGl0ZWxpc3Qoc3RydWN0IGludGVs
+X2VuZ2luZV9jcyAqZW5naW5lKQotLSAKMi4yMS4wCgpfX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBs
+aXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1h
+bi9saXN0aW5mby9pbnRlbC1nZng=
