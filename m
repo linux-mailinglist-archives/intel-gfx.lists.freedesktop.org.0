@@ -2,44 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 146A9E22F7
-	for <lists+intel-gfx@lfdr.de>; Wed, 23 Oct 2019 20:59:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 48C66E2332
+	for <lists+intel-gfx@lfdr.de>; Wed, 23 Oct 2019 21:13:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DBA436EB7A;
-	Wed, 23 Oct 2019 18:59:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 447786EB7D;
+	Wed, 23 Oct 2019 19:13:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 84F4E6EB7A
- for <intel-gfx@lists.freedesktop.org>; Wed, 23 Oct 2019 18:59:06 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 126866EB7D
+ for <intel-gfx@lists.freedesktop.org>; Wed, 23 Oct 2019 19:13:20 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 23 Oct 2019 11:59:05 -0700
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 23 Oct 2019 12:13:19 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.68,221,1569308400"; 
- d="scan'208,217";a="209979415"
-Received: from cbackhau-mobl1.ger.corp.intel.com (HELO [10.252.56.64])
- ([10.252.56.64])
- by fmsmga001.fm.intel.com with ESMTP; 23 Oct 2019 11:59:04 -0700
-To: Mika Kuoppala <mika.kuoppala@linux.intel.com>,
- =?UTF-8?Q?Tapani_P=c3=a4lli?= <tapani.palli@intel.com>,
- intel-gfx@lists.freedesktop.org
-References: <20191023120618.5344-1-tapani.palli@intel.com>
- <87d0enl9ui.fsf@gaia.fi.intel.com>
-From: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
-Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way,
- Swindon SN3 1RJ
-Message-ID: <fb16d56f-b78e-0f5b-f771-c26e0ee41707@intel.com>
-Date: Wed, 23 Oct 2019 21:59:03 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
-MIME-Version: 1.0
-In-Reply-To: <87d0enl9ui.fsf@gaia.fi.intel.com>
+X-IronPort-AV: E=Sophos;i="5.68,221,1569308400"; d="scan'208";a="202086478"
+Received: from fmsmsx105.amr.corp.intel.com ([10.18.124.203])
+ by orsmga006.jf.intel.com with ESMTP; 23 Oct 2019 12:13:19 -0700
+Received: from fmsmsx162.amr.corp.intel.com (10.18.125.71) by
+ FMSMSX105.amr.corp.intel.com (10.18.124.203) with Microsoft SMTP Server (TLS)
+ id 14.3.439.0; Wed, 23 Oct 2019 12:13:10 -0700
+Received: from fmsmsx116.amr.corp.intel.com ([169.254.2.25]) by
+ fmsmsx162.amr.corp.intel.com ([169.254.5.176]) with mapi id 14.03.0439.000;
+ Wed, 23 Oct 2019 12:13:10 -0700
+From: "Souza, Jose" <jose.souza@intel.com>
+To: "Nikula, Jani" <jani.nikula@intel.com>, "C, Ramalingam"
+ <ramalingam.c@intel.com>
+Thread-Topic: [Intel-gfx] [PATCH 1/5] drm/i915/display: Handle fused off
+ display correctly
+Thread-Index: AQHVhhX2p/va/fG4t0aGs9nEZrPLFKdoseYAgAABSQCAAGHNgA==
+Date: Wed, 23 Oct 2019 19:13:10 +0000
+Message-ID: <e5a51bc90ffa1e9ed285a3f0f2a89e321e400484.camel@intel.com>
+References: <20191019004124.371929-1-jose.souza@intel.com>
+ <20191023131830.GA22201@intel.com> <87k18vegud.fsf@intel.com>
+In-Reply-To: <87k18vegud.fsf@intel.com>
+Accept-Language: en-US
 Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/tgl: whitelist
- PS_(DEPTH|INVOCATION)_COUNT
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.24.9.135]
+Content-ID: <9C41CCEB74C56F4CB8CBBE1B14460301@intel.com>
+MIME-Version: 1.0
+Subject: Re: [Intel-gfx] [PATCH 1/5] drm/i915/display: Handle fused off
+ display correctly
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -52,216 +59,103 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============0244870833=="
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, "De
+ Marchi, Lucas" <lucas.demarchi@intel.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This is a multi-part message in MIME format.
---===============0244870833==
-Content-Type: multipart/alternative;
- boundary="------------FAD3A9424535686823AEBCB9"
-Content-Language: en-US
-
-This is a multi-part message in MIME format.
---------------FAD3A9424535686823AEBCB9
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
-
-On 23/10/2019 19:12, Mika Kuoppala wrote:
-> Tapani Pälli <tapani.palli@intel.com> writes:
->
->> As with commit 3fe0107e45ab, this change fixes multiple tests that are
->> using the invocation counts. Documentation doesn't list the workaround
->> for TGL but applying it fixes the tests.
->>
->> Signed-off-by: Tapani Pälli <tapani.palli@intel.com>
->> ---
->>   drivers/gpu/drm/i915/gt/intel_workarounds.c | 20 ++++++++++++++++++++
->>   1 file changed, 20 insertions(+)
->>
->> diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
->> index af8a8183154a..86ded203b2dd 100644
->> --- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
->> +++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
->> @@ -1215,6 +1215,26 @@ static void icl_whitelist_build(struct intel_engine_cs *engine)
->>   
->>   static void tgl_whitelist_build(struct intel_engine_cs *engine)
->>   {
->> +	struct i915_wa_list *w = &engine->whitelist;
->> +
->> +	switch (engine->class) {
->> +	case RENDER_CLASS:
->> +		/*
->> +		 * WaAllowPMDepthAndInvocationCountAccessFromUMD:tgl
-> Tried to find info about this but failed.
-
-
-It probably got renamed, it started with CFL stepping C+ and wasn't 
-listed for ICL.
-
-¯\_(ツ)_/¯
-
-
--Lionel
-
->
->> +		 *
->> +		 * This covers 4 registers which are next to one another :
->> +		 *   - PS_INVOCATION_COUNT
->> +		 *   - PS_INVOCATION_COUNT_UDW
->> +		 *   - PS_DEPTH_COUNT
->> +		 *   - PS_DEPTH_COUNT_UDW
->> +		 */
->> +		whitelist_reg_ext(w, PS_INVOCATION_COUNT,
->> +				  RING_FORCE_TO_NONPRIV_ACCESS_RD |
->> +				  RING_FORCE_TO_NONPRIV_RANGE_4);
-> The register spec is identical with gen11 so ok to whitelist.
->
-> Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
->
->> +		break;
->> +	default:
->> +		break;
->> +	}
->>   }
->>   
->>   void intel_engine_init_whitelist(struct intel_engine_cs *engine)
->> -- 
->> 2.21.0
->>
->> _______________________________________________
->> Intel-gfx mailing list
->> Intel-gfx@lists.freedesktop.org
->> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
-
-
---------------FAD3A9424535686823AEBCB9
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 8bit
-
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  </head>
-  <body text="#000000" bgcolor="#FFFFFF">
-    <div class="moz-cite-prefix">On 23/10/2019 19:12, Mika Kuoppala
-      wrote:<br>
-    </div>
-    <blockquote type="cite" cite="mid:87d0enl9ui.fsf@gaia.fi.intel.com">
-      <pre class="moz-quote-pre" wrap="">Tapani Pälli <a class="moz-txt-link-rfc2396E" href="mailto:tapani.palli@intel.com">&lt;tapani.palli@intel.com&gt;</a> writes:
-
-</pre>
-      <blockquote type="cite">
-        <pre class="moz-quote-pre" wrap="">As with commit 3fe0107e45ab, this change fixes multiple tests that are
-using the invocation counts. Documentation doesn't list the workaround
-for TGL but applying it fixes the tests.
-
-Signed-off-by: Tapani Pälli <a class="moz-txt-link-rfc2396E" href="mailto:tapani.palli@intel.com">&lt;tapani.palli@intel.com&gt;</a>
----
- drivers/gpu/drm/i915/gt/intel_workarounds.c | 20 ++++++++++++++++++++
- 1 file changed, 20 insertions(+)
-
-diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-index af8a8183154a..86ded203b2dd 100644
---- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
-+++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-@@ -1215,6 +1215,26 @@ static void icl_whitelist_build(struct intel_engine_cs *engine)
- 
- static void tgl_whitelist_build(struct intel_engine_cs *engine)
- {
-+	struct i915_wa_list *w = &amp;engine-&gt;whitelist;
-+
-+	switch (engine-&gt;class) {
-+	case RENDER_CLASS:
-+		/*
-+		 * WaAllowPMDepthAndInvocationCountAccessFromUMD:tgl
-</pre>
-      </blockquote>
-      <pre class="moz-quote-pre" wrap="">
-Tried to find info about this but failed.</pre>
-    </blockquote>
-    <p><br>
-    </p>
-    <p>It probably got renamed, it started with CFL stepping C+ and
-      wasn't listed for ICL.</p>
-    <p><span style="color: rgb(0, 0, 0); font-family: &quot;helvetica
-        neue&quot;, Helvetica, Arial, sans-serif; font-size: 16px;
-        font-style: normal; font-variant-ligatures: normal;
-        font-variant-caps: normal; font-weight: 400; letter-spacing:
-        normal; orphans: 2; text-align: start; text-indent: 0px;
-        text-transform: none; white-space: normal; widows: 2;
-        word-spacing: 0px; -webkit-text-stroke-width: 0px;
-        text-decoration-style: initial; text-decoration-color: initial;
-        display: inline !important; float: none;">¯\_(ツ)_/¯</span></p>
-    <p><br>
-    </p>
-    <p>-Lionel<br>
-    </p>
-    <blockquote type="cite" cite="mid:87d0enl9ui.fsf@gaia.fi.intel.com">
-      <pre class="moz-quote-pre" wrap="">
-
-</pre>
-      <blockquote type="cite">
-        <pre class="moz-quote-pre" wrap="">+		 *
-+		 * This covers 4 registers which are next to one another :
-+		 *   - PS_INVOCATION_COUNT
-+		 *   - PS_INVOCATION_COUNT_UDW
-+		 *   - PS_DEPTH_COUNT
-+		 *   - PS_DEPTH_COUNT_UDW
-+		 */
-+		whitelist_reg_ext(w, PS_INVOCATION_COUNT,
-+				  RING_FORCE_TO_NONPRIV_ACCESS_RD |
-+				  RING_FORCE_TO_NONPRIV_RANGE_4);
-</pre>
-      </blockquote>
-      <pre class="moz-quote-pre" wrap="">
-The register spec is identical with gen11 so ok to whitelist.
-
-Reviewed-by: Mika Kuoppala <a class="moz-txt-link-rfc2396E" href="mailto:mika.kuoppala@linux.intel.com">&lt;mika.kuoppala@linux.intel.com&gt;</a>
-
-</pre>
-      <blockquote type="cite">
-        <pre class="moz-quote-pre" wrap="">+		break;
-+	default:
-+		break;
-+	}
- }
- 
- void intel_engine_init_whitelist(struct intel_engine_cs *engine)
--- 
-2.21.0
-
-_______________________________________________
-Intel-gfx mailing list
-<a class="moz-txt-link-abbreviated" href="mailto:Intel-gfx@lists.freedesktop.org">Intel-gfx@lists.freedesktop.org</a>
-<a class="moz-txt-link-freetext" href="https://lists.freedesktop.org/mailman/listinfo/intel-gfx">https://lists.freedesktop.org/mailman/listinfo/intel-gfx</a>
-</pre>
-      </blockquote>
-      <pre class="moz-quote-pre" wrap="">_______________________________________________
-Intel-gfx mailing list
-<a class="moz-txt-link-abbreviated" href="mailto:Intel-gfx@lists.freedesktop.org">Intel-gfx@lists.freedesktop.org</a>
-<a class="moz-txt-link-freetext" href="https://lists.freedesktop.org/mailman/listinfo/intel-gfx">https://lists.freedesktop.org/mailman/listinfo/intel-gfx</a></pre>
-    </blockquote>
-    <p><br>
-    </p>
-  </body>
-</html>
-
---------------FAD3A9424535686823AEBCB9--
-
---===============0244870833==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
-IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
-
---===============0244870833==--
+T24gV2VkLCAyMDE5LTEwLTIzIGF0IDE2OjIzICswMzAwLCBKYW5pIE5pa3VsYSB3cm90ZToNCj4g
+T24gV2VkLCAyMyBPY3QgMjAxOSwgUmFtYWxpbmdhbSBDIDxyYW1hbGluZ2FtLmNAaW50ZWwuY29t
+PiB3cm90ZToNCj4gPiBPbiAyMDE5LTEwLTE4IGF0IDE3OjQxOjIwIC0wNzAwLCBKb3PDqSBSb2Jl
+cnRvIGRlIFNvdXphIHdyb3RlOg0KPiA+ID4gSWYgYWxsIHBpcGVzIGFyZSBmdXNlZCBvZmYgaXQg
+bWVhbnMgdGhhdCBkaXNwbGF5IGlzIGRpc2FibGVkLA0KPiA+ID4gc2ltaWxhcg0KPiA+ID4gbGlr
+ZSB3ZSBoYW5kbGUgZm9yIEdFTiA3IGFuZCA4IHJpZ2h0IGFib3ZlIGJ1dCBmb3IgR0VOOSsgc3Bl
+Yw0KPiA+ID4gc2F5cw0KPiA+ID4gdGhhdCBoYXJkd2FyZSB3aWxsIG92ZXJyaWRlIHRoZSBwaXBl
+IG91dHB1dCB0byBhIHNvbGlkIGNvbG9yLCBzbw0KPiA+ID4gc29tZSBkaXNwbGF5IGlzIHRoZXJl
+IGFuZCBtYXliZSB3ZSB3b3VsZCBuZWVkIHRvIHNodXRkb3duIGRpc3BsYXkNCj4gPiA+IHRvIHNh
+dmUgcG93ZXIsIHNvIHNldHRpbmcgZGlzYWJsZV9kaXNwbGF5ID0gdHJ1ZSwgdG8ga2VlcA0KPiA+
+ID4gY29uc2lzdGVudA0KPiA+ID4gdG8gSEFTX0RJU1BMQVkoKSBhbmQgSU5URUxfRElTUExBWV9F
+TkFCTEVEKCkuDQo+ID4gPiANCj4gPiA+IEluIGFkZGl0aW9uIHRvIGhhdmUgYWxsIHBpcGVzIGZ1
+c2VkIG9mZiwgR0VOL2Rpc3BsYXkgOSBoYXZlIHRoZQ0KPiA+ID4gYml0IDMwICJJbnRlcm5hbCBE
+aXNwbGF5IERpc2FibGUiLCBub3Qgc3VyZSBpZiBhbGwgcGlwZXMgd2lsbCBiZQ0KPiA+ID4gc2V0
+DQo+ID4gPiBhcyB1bmZ1c2VkIHdoZW4gdGhpcyBiaXQgaXMgc2V0IHNvIGhhbmRsaW5nIGJvdGgu
+DQo+ID4gPiANCj4gPiA+IENjOiBKYW5pIE5pa3VsYSA8amFuaS5uaWt1bGFAaW50ZWwuY29tPg0K
+PiA+ID4gQ2M6IEx1Y2FzIERlIE1hcmNoaSA8bHVjYXMuZGVtYXJjaGlAaW50ZWwuY29tPg0KPiA+
+ID4gQ2M6IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5jb20+DQo+
+ID4gPiBDYzogTWFydGluIFBlcmVzIDxtYXJ0aW4ucGVyZXNAbGludXguaW50ZWwuY29tPg0KPiA+
+ID4gU2lnbmVkLW9mZi1ieTogSm9zw6kgUm9iZXJ0byBkZSBTb3V6YSA8am9zZS5zb3V6YUBpbnRl
+bC5jb20+DQo+ID4gPiAtLS0NCj4gPiA+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3JlZy5o
+ICAgICAgICAgIHwgMjEgKysrKysrKysrKystLS0tLS0tDQo+ID4gPiAtLS0NCj4gPiA+ICBkcml2
+ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9kZXZpY2VfaW5mby5jIHwgMTQgKysrKysrKysrKy0tLS0N
+Cj4gPiA+ICAyIGZpbGVzIGNoYW5nZWQsIDIxIGluc2VydGlvbnMoKyksIDE0IGRlbGV0aW9ucygt
+KQ0KPiA+ID4gDQo+ID4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9y
+ZWcuaA0KPiA+ID4gYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3JlZy5oDQo+ID4gPiBpbmRl
+eCA4NTVkYjg4ODUxNmMuLjZlM2FlNmU5Y2JiOCAxMDA2NDQNCj4gPiA+IC0tLSBhL2RyaXZlcnMv
+Z3B1L2RybS9pOTE1L2k5MTVfcmVnLmgNCj4gPiA+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1
+L2k5MTVfcmVnLmgNCj4gPiA+IEBAIC03NjUxLDE2ICs3NjUxLDE3IEBAIGVudW0gew0KPiA+ID4g
+ICNkZWZpbmUgICBNQVNLX1dBS0VNRU0JCQkoMSA8PCAxMykNCj4gPiA+ICAjZGVmaW5lICAgQ05M
+X0RESV9DTE9DS19SRUdfQUNDRVNTX09OCSgxIDw8IDcpDQo+ID4gPiAgDQo+ID4gPiAtI2RlZmlu
+ZSBTS0xfREZTTQkJCV9NTUlPKDB4NTEwMDApDQo+ID4gPiAtI2RlZmluZSBTS0xfREZTTV9DRENM
+S19MSU1JVF9NQVNLCSgzIDw8IDIzKQ0KPiA+ID4gLSNkZWZpbmUgU0tMX0RGU01fQ0RDTEtfTElN
+SVRfNjc1CSgwIDw8IDIzKQ0KPiA+ID4gLSNkZWZpbmUgU0tMX0RGU01fQ0RDTEtfTElNSVRfNTQw
+CSgxIDw8IDIzKQ0KPiA+ID4gLSNkZWZpbmUgU0tMX0RGU01fQ0RDTEtfTElNSVRfNDUwCSgyIDw8
+IDIzKQ0KPiA+ID4gLSNkZWZpbmUgU0tMX0RGU01fQ0RDTEtfTElNSVRfMzM3XzUJKDMgPDwgMjMp
+DQo+ID4gPiAtI2RlZmluZSBTS0xfREZTTV9QSVBFX0FfRElTQUJMRQkJKDEgPDwgMzApDQo+ID4g
+PiAtI2RlZmluZSBTS0xfREZTTV9QSVBFX0JfRElTQUJMRQkJKDEgPDwgMjEpDQo+ID4gPiAtI2Rl
+ZmluZSBTS0xfREZTTV9QSVBFX0NfRElTQUJMRQkJKDEgPDwgMjgpDQo+ID4gPiAtI2RlZmluZSBU
+R0xfREZTTV9QSVBFX0RfRElTQUJMRQkJKDEgPDwgMjIpDQo+ID4gPiArI2RlZmluZSBTS0xfREZT
+TQkJCQlfTU1JTygweDUxMDAwKQ0KPiA+ID4gKyNkZWZpbmUgU0tMX0RGU01fSU5URVJOQUxfRElT
+UExBWV9ESVNBQkxFCSgxIDw8IDMwKQ0KPiA+ID4gKyNkZWZpbmUgU0tMX0RGU01fQ0RDTEtfTElN
+SVRfTUFTSwkJKDMgPDwgMjMpDQo+ID4gPiArI2RlZmluZSBTS0xfREZTTV9DRENMS19MSU1JVF82
+NzUJCSgwIDw8IDIzKQ0KPiA+ID4gKyNkZWZpbmUgU0tMX0RGU01fQ0RDTEtfTElNSVRfNTQwCQko
+MSA8PCAyMykNCj4gPiA+ICsjZGVmaW5lIFNLTF9ERlNNX0NEQ0xLX0xJTUlUXzQ1MAkJKDIgPDwg
+MjMpDQo+ID4gPiArI2RlZmluZSBTS0xfREZTTV9DRENMS19MSU1JVF8zMzdfNQkJKDMgPDwgMjMp
+DQo+ID4gPiArI2RlZmluZSBTS0xfREZTTV9QSVBFX0FfRElTQUJMRQkJCSgxIDw8IDMwKQ0KPiA+
+ID4gKyNkZWZpbmUgU0tMX0RGU01fUElQRV9CX0RJU0FCTEUJCQkoMSA8PCAyMSkNCj4gPiA+ICsj
+ZGVmaW5lIFNLTF9ERlNNX1BJUEVfQ19ESVNBQkxFCQkJKDEgPDwgMjgpDQo+ID4gPiArI2RlZmlu
+ZSBUR0xfREZTTV9QSVBFX0RfRElTQUJMRQkJCSgxIDw8IDIyKQ0KPiA+ID4gIA0KPiA+ID4gICNk
+ZWZpbmUgU0tMX0RTU00JCQkJX01NSU8oMHg1MTAwNCkNCj4gPiA+ICAjZGVmaW5lIENOTF9EU1NN
+X0NEQ0xLX1BMTF9SRUZDTEtfMjRNSHoJCSgxIDw8IDMxKQ0KPiA+ID4gZGlmZiAtLWdpdCBhL2Ry
+aXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX2RldmljZV9pbmZvLmMNCj4gPiA+IGIvZHJpdmVycy9n
+cHUvZHJtL2k5MTUvaW50ZWxfZGV2aWNlX2luZm8uYw0KPiA+ID4gaW5kZXggODVlNDgwYmRjNjcz
+Li44ZDY0OTJhZmRkNmEgMTAwNjQ0DQo+ID4gPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9p
+bnRlbF9kZXZpY2VfaW5mby5jDQo+ID4gPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRl
+bF9kZXZpY2VfaW5mby5jDQo+ID4gPiBAQCAtOTcyLDE1ICs5NzIsMjEgQEAgdm9pZCBpbnRlbF9k
+ZXZpY2VfaW5mb19ydW50aW1lX2luaXQoc3RydWN0DQo+ID4gPiBkcm1faTkxNV9wcml2YXRlICpk
+ZXZfcHJpdikNCj4gPiA+ICAJCQllbmFibGVkX21hc2sgJj0gfkJJVChQSVBFX0QpOw0KPiA+ID4g
+IA0KPiA+ID4gIAkJLyoNCj4gPiA+IC0JCSAqIEF0IGxlYXN0IG9uZSBwaXBlIHNob3VsZCBiZSBl
+bmFibGVkIGFuZCBpZiB0aGVyZSBhcmUNCj4gPiA+IC0JCSAqIGRpc2FibGVkIHBpcGVzLCB0aGV5
+IHNob3VsZCBiZSB0aGUgbGFzdCBvbmVzLCB3aXRoDQo+ID4gPiBubyBob2xlcw0KPiA+ID4gLQkJ
+ICogaW4gdGhlIG1hc2suDQo+ID4gPiArCQkgKiBJZiB0aGVyZSBhcmUgZGlzYWJsZWQgcGlwZXMs
+IHRoZXkgc2hvdWxkIGJlIHRoZSBsYXN0DQo+ID4gPiBvbmVzLA0KPiA+ID4gKwkJICogd2l0aCBu
+byBob2xlcyBpbiB0aGUgbWFzay4NCj4gPiA+ICAJCSAqLw0KPiA+ID4gLQkJaWYgKGVuYWJsZWRf
+bWFzayA9PSAwIHx8ICFpc19wb3dlcl9vZl8yKGVuYWJsZWRfbWFzayArDQo+ID4gPiAxKSkNCj4g
+PiA+ICsJCWlmIChlbmFibGVkX21hc2sgJiYgIWlzX3Bvd2VyX29mXzIoZW5hYmxlZF9tYXNrICsg
+MSkpDQo+ID4gPiAgCQkJRFJNX0VSUk9SKCJpbnZhbGlkIHBpcGUgZnVzZSBjb25maWd1cmF0aW9u
+Og0KPiA+ID4gZW5hYmxlZF9tYXNrPTB4JXhcbiIsDQo+ID4gPiAgCQkJCSAgZW5hYmxlZF9tYXNr
+KTsNCj4gPiA+ICAJCWVsc2UNCj4gPiA+ICAJCQlpbmZvLT5waXBlX21hc2sgPSBlbmFibGVkX21h
+c2s7DQo+ID4gPiArDQo+ID4gPiArCQlpZiAoKElOVEVMX0dFTihkZXZfcHJpdikgPT0gOSAmJg0K
+PiA+ID4gIUlTX0dFTUlOSUxBS0UoZGV2X3ByaXYpKSAmJg0KPiA+ID4gKwkJICAgIChkZnNtICYg
+U0tMX0RGU01fSU5URVJOQUxfRElTUExBWV9ESVNBQkxFKSkNCj4gPiA+ICsJCQlpOTE1X21vZHBh
+cmFtcy5kaXNhYmxlX2Rpc3BsYXkgPSB0cnVlOw0KPiA+ID4gKw0KPiA+ID4gKwkJaWYgKCFlbmFi
+bGVkX21hc2spDQo+ID4gPiArCQkJaTkxNV9tb2RwYXJhbXMuZGlzYWJsZV9kaXNwbGF5ID0gdHJ1
+ZTsNCj4gPiBEbyB3ZSByZWFsbHkgbmVlZCB0byBzZXQgdGhlIGRpc2FibGVfZGlzcGxheSBoZXJl
+PyBvbiBHZW4gNyBhbmQgOA0KPiA+IHdoZW4NCj4gPiBpdCBpcyBmdXNlZCBvZmYsIHdlIHdlcmUg
+c2V0dGluZyBwaXBlX21hc2sgdG8gMC4gd2h5IHRoYXQgd29udCB3b3JrDQo+ID4gaGVyZT8NCj4g
+PiANCj4gPiBJTlRFTF9OVU1fUElQRVMgYW5kIEhBU19ESVNQTEFZIGJvdGggYXJlIGJhc2VkIG9u
+IHBpcGVfbWFzayBvbmx5Lg0KDQpMaWtlIHNhaWQgaW4gdGhlIGNvbW1pdCBkZXNjcmlwdGlvbiwg
+R0VOOSsgZXZlbiB3aGVuIGZ1c2VkIG9mZiB0aGUgcGlwZQ0Kc3RpbGwgb3V0cHV0cyBzb21lIHNv
+bGlkIGNvbG9yIHNvIGluIGZ1dHVyZSB3ZSB3b3VsZCBuZWVkIHRvIHNodXQgaXQNCmRvd24gdXNp
+bmcgSU5URUxfRElTUExBWV9FTkFCTEVEKCkuDQoNCj4gDQo+IEluZGVlZCB0aGF0J3Mgb25lIG9m
+IHRoZSBwcm9ibGVtYXRpYyBmZWF0dXJlcyBvZiB0aGUgcGF0Y2g7IHRoZQ0KPiAtPnBpcGVfbWFz
+ayB3b24ndCByZWZsZWN0IHJlYWxpdHkuIEJ1dCB0aGVuIElOVEVMX0RJU1BMQVlfRU5BQkxFRCgp
+DQo+IGFzc3VtZXMgeW91ICpkbyogaGF2ZSBkaXNwbGF5Li4uDQoNCkluIHRoZSBvdGhlciBjb21t
+ZW50IHRoYXQgeW91IGxlZnQsIHlvdSBzYWlkIHRoYXQgeW91IGRvbid0IGxpa2UgdGhlDQppZGVh
+IG9mIGNoYW5nZSBtb2R1bGUgcGFyYW1ldGVycywgc28gdGhlIG90aGVyIG9wdGlvbiB3b3VsZCBi
+ZSBhZGQgYQ0KaGFzX2Rpc3BsYXkgdG8gaW50ZWxfZGV2aWNlX2luZm8sIHdoYXQgZG8geW91IHRo
+aW5rPw0KDQo+IA0KPiBCUiwNCj4gSmFuaS4NCj4gDQo+IA0KPiANCl9fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50
+ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9y
+Zy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeA==
