@@ -2,61 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D7AA5E2F4A
-	for <lists+intel-gfx@lfdr.de>; Thu, 24 Oct 2019 12:43:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5FA27E2F4C
+	for <lists+intel-gfx@lfdr.de>; Thu, 24 Oct 2019 12:43:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 26BE06E222;
-	Thu, 24 Oct 2019 10:43:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A42D06E229;
+	Thu, 24 Oct 2019 10:43:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-x343.google.com (mail-wm1-x343.google.com
- [IPv6:2a00:1450:4864:20::343])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B61CB6E226;
- Thu, 24 Oct 2019 10:43:31 +0000 (UTC)
-Received: by mail-wm1-x343.google.com with SMTP id g24so2239739wmh.5;
- Thu, 24 Oct 2019 03:43:31 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to:user-agent;
- bh=pdyyflbsTfc80kcXiRl5w9Rkm+kwovm66WV1jNmysKc=;
- b=UuzCK24f6EL2LB9CrOwwbtJkyLs8a/iqZhDghOWWrqH2sIDVH0BzfIkat10XN6CO0L
- SdIU4jHVNdZGHokHlMi6m7XC+DbSRMSnC14KoPJBOKhxjf02fuLQbC20Ir+Gkl3bjtch
- jpvNU5vyJoH5eGhsAthymOv2KzuNUaAJjNZw2ssiwNxGA6/faMUWyqdyucrTpYNEploA
- nzJXocc+Cn41NwNpvtLpxTccLMP9prCa+uiGRfcYMbURicuqcL49V3dlkkCv0dVcgX2a
- scgqLtJodULHcSadzYOFcHnO1yWO5OvmM4ylwTwRATrOOVNmgTN5EQhN+Rr7qCnsCBN9
- tVaw==
-X-Gm-Message-State: APjAAAVv64OhDbAZYkQyFLadSyaw9Mx4E9EfeQLWDRZ1PQmQFo+6zvPb
- SRnYjIGfC7+tAe2ztZHlMEk=
-X-Google-Smtp-Source: APXvYqyihsmK83dpE9xlfy5Oz4ufzhOoZ/9p0EpO6X0Yb2FHhQTL+jCwgDJd/YFRRmHnyM7r33ZOxA==
-X-Received: by 2002:a1c:2884:: with SMTP id o126mr4596059wmo.153.1571913810231; 
- Thu, 24 Oct 2019 03:43:30 -0700 (PDT)
-Received: from localhost (p2E5BE2CE.dip0.t-ipconnect.de. [46.91.226.206])
- by smtp.gmail.com with ESMTPSA id 6sm2366761wmd.36.2019.10.24.03.43.28
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 24 Oct 2019 03:43:29 -0700 (PDT)
-Date: Thu, 24 Oct 2019 12:43:28 +0200
-From: Thierry Reding <thierry.reding@gmail.com>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>
-Message-ID: <20191024104328.GD2825247@ulmo>
-References: <20191023144953.28190-1-daniel.vetter@ffwll.ch>
- <20191024104055.GC2825247@ulmo>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 30E806E226;
+ Thu, 24 Oct 2019 10:43:46 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 2A603A363E;
+ Thu, 24 Oct 2019 10:43:46 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <20191024104055.GC2825247@ulmo>
-User-Agent: Mutt/1.12.2 (2019-09-21)
-X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20161025;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to:user-agent;
- bh=pdyyflbsTfc80kcXiRl5w9Rkm+kwovm66WV1jNmysKc=;
- b=NWis688YlrK1giWhRdrZVdcKI4xGQ1eFvf/CHo8xCtUTvfKAQxWe6zLUba+cRv2syC
- S7mbz4ewb9uO4nW/sUQsR/7ildA1vTvQ2Jp9NlzQLVwKxcmmy16kMztUxqhPFVJCBM7l
- z3Uu1MsT2ZSQTC47rD7gOErigvhuKCM7pkVv8WuWdD2/6WVucVuZxjiiwHePLliy85TR
- u/HiP2QoJdSH0/NAubFfecY0zql4S0L7TU56nA1TtVFQXFllAEPd/l4Q7wwOWXUnelac
- df3y7VrbhC3iaWXqRDDQyk2v/Vn94pCEhnYqV3yiYEG1djKwcPYh4+SVUbLufjyfeHr4
- HIDw==
-Subject: Re: [Intel-gfx] [PATCH 1/2] drm/property: Enforce more lifetime
- rules
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Thu, 24 Oct 2019 10:43:46 -0000
+Message-ID: <20191024104346.27072.62565@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20191024071139.31917-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20191024071139.31917-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_f?=
+ =?utf-8?q?or_drm/i915/gt=3A_Split_intel=5Fring=5Fsubmission_=28rev3=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -69,118 +38,42 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@intel.com>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Rajat Jain <rajatja@google.com>,
- DRI Development <dri-devel@lists.freedesktop.org>
-Content-Type: multipart/mixed; boundary="===============0508955160=="
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
---===============0508955160==
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="IMjqdzrDRly81ofr"
-Content-Disposition: inline
-
-
---IMjqdzrDRly81ofr
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Thu, Oct 24, 2019 at 12:40:55PM +0200, Thierry Reding wrote:
-> On Wed, Oct 23, 2019 at 04:49:52PM +0200, Daniel Vetter wrote:
-> > Properties can't be attached after registering, userspace would get
-> > confused (no one bothers to reprobe really).
-> >=20
-> > - Add kerneldoc
-> > - Enforce this with some checks. This needs a somewhat ugly check
-> >   since connectors can be added later on, but we still need to attach
-> >   all properties before they go public.
-> >=20
-> > Note that we already enforce that properties themselves are created
-> > before the entire device is registered.
-> >=20
-> > Cc: Jani Nikula <jani.nikula@linux.intel.com>
-> > Cc: Rajat Jain <rajatja@google.com>
-> > Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
-> > ---
-> >  drivers/gpu/drm/drm_mode_object.c | 14 ++++++++++++++
-> >  1 file changed, 14 insertions(+)
-> >=20
-> > diff --git a/drivers/gpu/drm/drm_mode_object.c b/drivers/gpu/drm/drm_mo=
-de_object.c
-> > index 6a23e36ed4fe..35c2719407a8 100644
-> > --- a/drivers/gpu/drm/drm_mode_object.c
-> > +++ b/drivers/gpu/drm/drm_mode_object.c
-> > @@ -224,12 +224,26 @@ EXPORT_SYMBOL(drm_mode_object_get);
-> >   * This attaches the given property to the modeset object with the giv=
-en initial
-> >   * value. Currently this function cannot fail since the properties are=
- stored in
-> >   * a statically sized array.
-> > + *
-> > + * Note that all properties must be attached before the object itself =
-is
-> > + * registered and accessible from userspace.
-> >   */
-> >  void drm_object_attach_property(struct drm_mode_object *obj,
-> >  				struct drm_property *property,
-> >  				uint64_t init_val)
-> >  {
-> >  	int count =3D obj->properties->count;
-> > +	struct drm_device *dev =3D property->dev;
-> > +
-> > +
-> > +	if (obj->type =3D=3D DRM_MODE_OBJECT_CONNECTOR) {
-> > +		struct drm_connector *connector =3D obj_to_connector(obj);
-> > +
-> > +		WARN_ON(!dev->driver->load &&
-> > +			connector->registration_state =3D=3D DRM_CONNECTOR_REGISTERED);
-> > +	} else {
-> > +		WARN_ON(!dev->driver->load && dev->registered);
-> > +	}
->=20
-> I'm not sure I understand why dev->driver->load needs to be a special
-> case. Don't the same rules apply for those drivers as well?
-
-Nevermind, I just noticed that drm_dev_register() sets dev->registered
-to true before calling the driver's ->load() implementation, so makes
-sense:
-
-Reviewed-by: Thierry Reding <treding@nvidia.com>
-
---IMjqdzrDRly81ofr
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAl2xgE8ACgkQ3SOs138+
-s6GoHRAAt5SgmFydTcDRVGtoNHviA8Vkk7JcGJhQeI0WqxCo/W/ExFL2Fp073Gw6
-5qAHcPQeSfZLTaDPcjrW7GYphPNjRqxk4SgOdZBx+XojugjZpfl1dOov859Q74KI
-IQoVdyvCykfRTV0q8IeQKhP8iG8pOR8xctUSYfXBpHf6ofM6BPakZ/m0Tyjg8JL/
-lZTzrmAs1o3Ibn3VPkYj6nPWV6JqjBWVJbHXMHATvOSuRFtNjGMS5kxauLem49lT
-ZasJ/GS3OMmY0/9d2Ig0dVYslMbiJSJ45jFIOOn0Ui8ypPyz3eSQeOu0CwLPWetP
-cS/B+EwIGWxsVNcLKtJG3EkJcn8PhNvPJ50S5QczvwvewGjuGyL+sSZPqczDwnDQ
-BGnfI3HiUVG4lnl9ZI0+n+z7bz4IX98ayApdN0hmuO2GqdrWnxdhpzEqA2H6dcCp
-FGEPsfg0LFRHzv/JhJStneXsfaiPYbnkLW1EfiihmV6UcNgTzmyw3bKlTdQkBCHs
-fWvzXxswRgH5+XelGr6bpLY4ONkE1jQUGK24tYyKv8KbrsCnkjgh92OkD6APCfDP
-xk2guviDzbLcrBxb2sVwKqQmxiHZeaH17IQ8H2/AFKOI/trGOOaFFco2jz4JZdN1
-icEDKgLf5Y06PseJTrGarrRt1+lMqfZNyPnGw1IPW9REJKuHNb4=
-=99+O
------END PGP SIGNATURE-----
-
---IMjqdzrDRly81ofr--
-
---===============0508955160==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
-IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
-
---===============0508955160==--
+PT0gU2VyaWVzIERldGFpbHMgPT0KClNlcmllczogZHJtL2k5MTUvZ3Q6IFNwbGl0IGludGVsX3Jp
+bmdfc3VibWlzc2lvbiAocmV2MykKVVJMICAgOiBodHRwczovL3BhdGNod29yay5mcmVlZGVza3Rv
+cC5vcmcvc2VyaWVzLzY4NDkxLwpTdGF0ZSA6IHdhcm5pbmcKCj09IFN1bW1hcnkgPT0KCiQgZGlt
+IGNoZWNrcGF0Y2ggb3JpZ2luL2RybS10aXAKOTdlYjYxNjkxMGIzIGRybS9pOTE1L2d0OiBTcGxp
+dCBpbnRlbF9yaW5nX3N1Ym1pc3Npb24KLTozNjA6IFdBUk5JTkc6RklMRV9QQVRIX0NIQU5HRVM6
+IGFkZGVkLCBtb3ZlZCBvciBkZWxldGVkIGZpbGUocyksIGRvZXMgTUFJTlRBSU5FUlMgbmVlZCB1
+cGRhdGluZz8KIzM2MDogCm5ldyBmaWxlIG1vZGUgMTAwNjQ0CgotOjM2NTogV0FSTklORzpTUERY
+X0xJQ0VOU0VfVEFHOiBNaXNzaW5nIG9yIG1hbGZvcm1lZCBTUERYLUxpY2Vuc2UtSWRlbnRpZmll
+ciB0YWcgaW4gbGluZSAxCiMzNjU6IEZJTEU6IGRyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVs
+X3JpbmcuYzoxOgorLyoKCi06MzY2OiBXQVJOSU5HOlNQRFhfTElDRU5TRV9UQUc6IE1pc3BsYWNl
+ZCBTUERYLUxpY2Vuc2UtSWRlbnRpZmllciB0YWcgLSB1c2UgbGluZSAxIGluc3RlYWQKIzM2Njog
+RklMRTogZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfcmluZy5jOjI6CisgKiBTUERYLUxp
+Y2Vuc2UtSWRlbnRpZmllcjogTUlUCgotOjY5MjogV0FSTklORzpTUERYX0xJQ0VOU0VfVEFHOiBN
+aXNzaW5nIG9yIG1hbGZvcm1lZCBTUERYLUxpY2Vuc2UtSWRlbnRpZmllciB0YWcgaW4gbGluZSAx
+CiM2OTI6IEZJTEU6IGRyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX3JpbmcuaDoxOgorLyoK
+Ci06NjkzOiBXQVJOSU5HOlNQRFhfTElDRU5TRV9UQUc6IE1pc3BsYWNlZCBTUERYLUxpY2Vuc2Ut
+SWRlbnRpZmllciB0YWcgLSB1c2UgbGluZSAxIGluc3RlYWQKIzY5MzogRklMRTogZHJpdmVycy9n
+cHUvZHJtL2k5MTUvZ3QvaW50ZWxfcmluZy5oOjI6CisgKiBTUERYLUxpY2Vuc2UtSWRlbnRpZmll
+cjogTUlUCgotOjc2NzogV0FSTklORzpMSU5FX1NQQUNJTkc6IE1pc3NpbmcgYSBibGFuayBsaW5l
+IGFmdGVyIGRlY2xhcmF0aW9ucwojNzY3OiBGSUxFOiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9p
+bnRlbF9yaW5nLmg6NzY6CisJdTMyIG9mZnNldCA9IGFkZHIgLSBycS0+cmluZy0+dmFkZHI7CisJ
+R0VNX0JVR19PTihvZmZzZXQgPiBycS0+cmluZy0+c2l6ZSk7CgotOjExNzM6IFdBUk5JTkc6U1BE
+WF9MSUNFTlNFX1RBRzogTWlzc2luZyBvciBtYWxmb3JtZWQgU1BEWC1MaWNlbnNlLUlkZW50aWZp
+ZXIgdGFnIGluIGxpbmUgMQojMTE3MzogRklMRTogZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50
+ZWxfcmluZ190eXBlcy5oOjE6CisvKgoKLToxMTc0OiBXQVJOSU5HOlNQRFhfTElDRU5TRV9UQUc6
+IE1pc3BsYWNlZCBTUERYLUxpY2Vuc2UtSWRlbnRpZmllciB0YWcgLSB1c2UgbGluZSAxIGluc3Rl
+YWQKIzExNzQ6IEZJTEU6IGRyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX3JpbmdfdHlwZXMu
+aDoyOgorICogU1BEWC1MaWNlbnNlLUlkZW50aWZpZXI6IE1JVAoKdG90YWw6IDAgZXJyb3JzLCA4
+IHdhcm5pbmdzLCAwIGNoZWNrcywgMTIwMSBsaW5lcyBjaGVja2VkCgpfX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0Cklu
+dGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5v
+cmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZng=
