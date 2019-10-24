@@ -1,31 +1,61 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5AE60E2F3C
-	for <lists+intel-gfx@lfdr.de>; Thu, 24 Oct 2019 12:39:31 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2ECC3E2F40
+	for <lists+intel-gfx@lfdr.de>; Thu, 24 Oct 2019 12:41:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AF9366E21A;
-	Thu, 24 Oct 2019 10:39:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 289CE6E221;
+	Thu, 24 Oct 2019 10:41:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 030986E21A;
- Thu, 24 Oct 2019 10:39:28 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id F15CBA47E1;
- Thu, 24 Oct 2019 10:39:27 +0000 (UTC)
+Received: from mail-wr1-x443.google.com (mail-wr1-x443.google.com
+ [IPv6:2a00:1450:4864:20::443])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CB5D76E221;
+ Thu, 24 Oct 2019 10:40:59 +0000 (UTC)
+Received: by mail-wr1-x443.google.com with SMTP id c2so20259526wrr.10;
+ Thu, 24 Oct 2019 03:40:59 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to:user-agent;
+ bh=VYH3uk/OA0VCb8L6LYUadY8bkyeEqe533iRXkfv2fac=;
+ b=r30iEhzYf/nBpGNzpfKNxsIVmvLqnkfoZd0cen98XMft5lm08A/wSD/e8/mi1ivMHv
+ oBgHA2BMxDigHrsjesqf4MeNmyqRiI6EJJi+HLGwdQIJ5B7d6zyDAHa8IukOxL5p6bDU
+ Wludb7EYoCgggiY2c8ZmLQOvzJO4QdYOw2YE4QCWX/UF7IOU/XBCmee5sYdIbbfCfSUQ
+ v2r9JaLh5YfInR6LC8yWTX6P8zwDHBhJLqRZz3hYoep34wc7YvhQe759qqtbRhxfBgt4
+ 0us5RSDwc3Z+hXaJ5kSohr53yQCqbD5TuxzcstE6rk3j/aOdD5gbRVMf+R8C409cxsSR
+ JcgA==
+X-Gm-Message-State: APjAAAV+JxQ3/3o/+vgO5stcrljsrZY3hgvxyHHqwNaP/vsGQgWnlYqr
+ lXA89eH/IUat38A1s/k1TWg=
+X-Google-Smtp-Source: APXvYqz9KRo3NE3wAdLP+gl+yPbSJt9aJTtPDQDxtiZn2wTLOCjGvT0B7u2uKxwqBlozuAOdfdE8LA==
+X-Received: by 2002:a5d:6246:: with SMTP id m6mr3358445wrv.262.1571913658182; 
+ Thu, 24 Oct 2019 03:40:58 -0700 (PDT)
+Received: from localhost (p2E5BE2CE.dip0.t-ipconnect.de. [46.91.226.206])
+ by smtp.gmail.com with ESMTPSA id c16sm12287631wrw.32.2019.10.24.03.40.56
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 24 Oct 2019 03:40:56 -0700 (PDT)
+Date: Thu, 24 Oct 2019 12:40:55 +0200
+From: Thierry Reding <thierry.reding@gmail.com>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>
+Message-ID: <20191024104055.GC2825247@ulmo>
+References: <20191023144953.28190-1-daniel.vetter@ffwll.ch>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Tvrtko Ursulin" <tvrtko.ursulin@linux.intel.com>
-Date: Thu, 24 Oct 2019 10:39:27 -0000
-Message-ID: <20191024103927.27072.69859@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20191024093440.32280-1-tvrtko.ursulin@linux.intel.com>
-In-Reply-To: <20191024093440.32280-1-tvrtko.ursulin@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_drm/?=
- =?utf-8?q?i915=3A_Convert_PAT_setup_to_uncore_mmio?=
+In-Reply-To: <20191023144953.28190-1-daniel.vetter@ffwll.ch>
+User-Agent: Mutt/1.12.2 (2019-09-21)
+X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20161025;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to:user-agent;
+ bh=VYH3uk/OA0VCb8L6LYUadY8bkyeEqe533iRXkfv2fac=;
+ b=SAHXRs88l8fzGKi6Q+VkzvfpeXv+WvRVtz2HSK3Ky5ax+SvbeoKvu43WbXo8bCDAor
+ DhroDTPbkAEBwQu6wgFnTn4C4r5E3vcEuALjSHDQYZ5RmRoxltzOPF78IYHutw53GPzx
+ hg+NsMozei0bKKdGUZbx6EZUmmAiO9ko+sCugx/vS7UDcU11uTSu/jSDEuzHDEz5p+zo
+ vZDGEDqyTcZ7IitfH/9WPyDxHtPkoRz8E+nR/PGXeUQssNYdtVm3gzueohcymbIartNC
+ l33F9MP4QS7xK6LqlH3l4gaL0DBtsMBckgYY5NkPtM9E3MOJXxEZ3eAEpv86iXk/6tnN
+ aDPw==
+Subject: Re: [Intel-gfx] [PATCH 1/2] drm/property: Enforce more lifetime
+ rules
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -38,104 +68,123 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Daniel Vetter <daniel.vetter@intel.com>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Rajat Jain <rajatja@google.com>,
+ DRI Development <dri-devel@lists.freedesktop.org>
+Content-Type: multipart/mixed; boundary="===============0395988913=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-PT0gU2VyaWVzIERldGFpbHMgPT0KClNlcmllczogZHJtL2k5MTU6IENvbnZlcnQgUEFUIHNldHVw
-IHRvIHVuY29yZSBtbWlvClVSTCAgIDogaHR0cHM6Ly9wYXRjaHdvcmsuZnJlZWRlc2t0b3Aub3Jn
-L3Nlcmllcy82ODUwMy8KU3RhdGUgOiBzdWNjZXNzCgo9PSBTdW1tYXJ5ID09CgpDSSBCdWcgTG9n
-IC0gY2hhbmdlcyBmcm9tIENJX0RSTV83MTY5IC0+IFBhdGNod29ya18xNDk2Mgo9PT09PT09PT09
-PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09CgpTdW1tYXJ5Ci0tLS0t
-LS0KCiAgKipTVUNDRVNTKioKCiAgTm8gcmVncmVzc2lvbnMgZm91bmQuCgogIEV4dGVybmFsIFVS
-TDogaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9QYXRjaHdvcmtfMTQ5
-NjIvaW5kZXguaHRtbAoKS25vd24gaXNzdWVzCi0tLS0tLS0tLS0tLQoKICBIZXJlIGFyZSB0aGUg
-Y2hhbmdlcyBmb3VuZCBpbiBQYXRjaHdvcmtfMTQ5NjIgdGhhdCBjb21lIGZyb20ga25vd24gaXNz
-dWVzOgoKIyMjIElHVCBjaGFuZ2VzICMjIwoKIyMjIyBJc3N1ZXMgaGl0ICMjIyMKCiAgKiBpZ3RA
-aTkxNV9zZWxmdGVzdEBsaXZlX2dlbV9jb250ZXh0czoKICAgIC0gZmktY2ZsLTgxMDl1OiAgICAg
-ICBbUEFTU11bMV0gLT4gW0RNRVNHLUZBSUxdWzJdIChbZmRvIzExMjA1MCBdKQogICBbMV06IGh0
-dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAvQ0lfRFJNXzcxNjkvZmktY2Zs
-LTgxMDl1L2lndEBpOTE1X3NlbGZ0ZXN0QGxpdmVfZ2VtX2NvbnRleHRzLmh0bWwKICAgWzJdOiBo
-dHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlwL1BhdGNod29ya18xNDk2Mi9m
-aS1jZmwtODEwOXUvaWd0QGk5MTVfc2VsZnRlc3RAbGl2ZV9nZW1fY29udGV4dHMuaHRtbAoKICAK
-IyMjIyBQb3NzaWJsZSBmaXhlcyAjIyMjCgogICogaWd0QGdlbV9jcHVfcmVsb2NAYmFzaWM6CiAg
-ICAtIGZpLWljbC11MzogICAgICAgICAgW0RNRVNHLVdBUk5dWzNdIChbZmRvIzEwNzcyNF0pIC0+
-IFtQQVNTXVs0XQogICBbM106IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10
-aXAvQ0lfRFJNXzcxNjkvZmktaWNsLXUzL2lndEBnZW1fY3B1X3JlbG9jQGJhc2ljLmh0bWwKICAg
-WzRdOiBodHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlwL1BhdGNod29ya18x
-NDk2Mi9maS1pY2wtdTMvaWd0QGdlbV9jcHVfcmVsb2NAYmFzaWMuaHRtbAoKICAqIGlndEBnZW1f
-Y3R4X2NyZWF0ZUBiYXNpYy1maWxlczoKICAgIC0gZmktYnh0LWRzaTogICAgICAgICBbSU5DT01Q
-TEVURV1bNV0gKFtmZG8jMTAzOTI3XSkgLT4gW1BBU1NdWzZdCiAgIFs1XTogaHR0cHM6Ly9pbnRl
-bC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9DSV9EUk1fNzE2OS9maS1ieHQtZHNpL2lndEBn
-ZW1fY3R4X2NyZWF0ZUBiYXNpYy1maWxlcy5odG1sCiAgIFs2XTogaHR0cHM6Ly9pbnRlbC1nZngt
-Y2kuMDEub3JnL3RyZWUvZHJtLXRpcC9QYXRjaHdvcmtfMTQ5NjIvZmktYnh0LWRzaS9pZ3RAZ2Vt
-X2N0eF9jcmVhdGVAYmFzaWMtZmlsZXMuaHRtbAogICAgLSB7ZmktdGdsLXUyfTogICAgICAgIFtJ
-TkNPTVBMRVRFXVs3XSAoW2ZkbyMxMTE3MzVdKSAtPiBbUEFTU11bOF0KICAgWzddOiBodHRwczov
-L2ludGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlwL0NJX0RSTV83MTY5L2ZpLXRnbC11Mi9p
-Z3RAZ2VtX2N0eF9jcmVhdGVAYmFzaWMtZmlsZXMuaHRtbAogICBbOF06IGh0dHBzOi8vaW50ZWwt
-Z2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAvUGF0Y2h3b3JrXzE0OTYyL2ZpLXRnbC11Mi9pZ3RA
-Z2VtX2N0eF9jcmVhdGVAYmFzaWMtZmlsZXMuaHRtbAoKICAqIGlndEBnZW1fY3R4X3N3aXRjaEBs
-ZWdhY3ktcmVuZGVyOgogICAgLSBmaS1hcGwtZ3VjOiAgICAgICAgIFtJTkNPTVBMRVRFXVs5XSAo
-W2ZkbyMxMDM5MjddIC8gW2ZkbyMxMTEzODFdKSAtPiBbUEFTU11bMTBdCiAgIFs5XTogaHR0cHM6
-Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9DSV9EUk1fNzE2OS9maS1hcGwtZ3Vj
-L2lndEBnZW1fY3R4X3N3aXRjaEBsZWdhY3ktcmVuZGVyLmh0bWwKICAgWzEwXTogaHR0cHM6Ly9p
-bnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9QYXRjaHdvcmtfMTQ5NjIvZmktYXBsLWd1
-Yy9pZ3RAZ2VtX2N0eF9zd2l0Y2hAbGVnYWN5LXJlbmRlci5odG1sCiAgICAtIGZpLWljbC11Mzog
-ICAgICAgICAgW0lOQ09NUExFVEVdWzExXSAoW2ZkbyMxMDc3MTNdIC8gW2ZkbyMxMTEzODFdKSAt
-PiBbUEFTU11bMTJdCiAgIFsxMV06IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2Ry
-bS10aXAvQ0lfRFJNXzcxNjkvZmktaWNsLXUzL2lndEBnZW1fY3R4X3N3aXRjaEBsZWdhY3ktcmVu
-ZGVyLmh0bWwKICAgWzEyXTogaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRp
-cC9QYXRjaHdvcmtfMTQ5NjIvZmktaWNsLXUzL2lndEBnZW1fY3R4X3N3aXRjaEBsZWdhY3ktcmVu
-ZGVyLmh0bWwKCiAgKiBpZ3RAZ2VtX2V4ZWNfY3JlYXRlQGJhc2ljOgogICAgLSBmaS1pY2wtdTI6
-ICAgICAgICAgIFtJTkNPTVBMRVRFXVsxM10gKFtmZG8jMTA3NzEzXSkgLT4gW1BBU1NdWzE0XQog
-ICBbMTNdOiBodHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlwL0NJX0RSTV83
-MTY5L2ZpLWljbC11Mi9pZ3RAZ2VtX2V4ZWNfY3JlYXRlQGJhc2ljLmh0bWwKICAgWzE0XTogaHR0
-cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9QYXRjaHdvcmtfMTQ5NjIvZmkt
-aWNsLXUyL2lndEBnZW1fZXhlY19jcmVhdGVAYmFzaWMuaHRtbAoKICAqIGlndEBpOTE1X3NlbGZ0
-ZXN0QGxpdmVfaGFuZ2NoZWNrOgogICAgLSB7ZmktaWNsLXU0fTogICAgICAgIFtJTkNPTVBMRVRF
-XVsxNV0gKFtmZG8jMTA3NzEzXSAvIFtmZG8jMTA4NTY5XSkgLT4gW1BBU1NdWzE2XQogICBbMTVd
-OiBodHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlwL0NJX0RSTV83MTY5L2Zp
-LWljbC11NC9pZ3RAaTkxNV9zZWxmdGVzdEBsaXZlX2hhbmdjaGVjay5odG1sCiAgIFsxNl06IGh0
-dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAvUGF0Y2h3b3JrXzE0OTYyL2Zp
-LWljbC11NC9pZ3RAaTkxNV9zZWxmdGVzdEBsaXZlX2hhbmdjaGVjay5odG1sCgogIAojIyMjIFdh
-cm5pbmdzICMjIyMKCiAgKiBpZ3RAa21zX2NoYW1lbGl1bUBoZG1pLWhwZC1mYXN0OgogICAgLSBm
-aS1rYmwtNzUwMHU6ICAgICAgIFtGQUlMXVsxN10gKFtmZG8jMTExNDA3XSkgLT4gW0ZBSUxdWzE4
-XSAoW2ZkbyMxMTEwNDVdIC8gW2ZkbyMxMTEwOTZdKQogICBbMTddOiBodHRwczovL2ludGVsLWdm
-eC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlwL0NJX0RSTV83MTY5L2ZpLWtibC03NTAwdS9pZ3RAa21z
-X2NoYW1lbGl1bUBoZG1pLWhwZC1mYXN0Lmh0bWwKICAgWzE4XTogaHR0cHM6Ly9pbnRlbC1nZngt
-Y2kuMDEub3JnL3RyZWUvZHJtLXRpcC9QYXRjaHdvcmtfMTQ5NjIvZmkta2JsLTc1MDB1L2lndEBr
-bXNfY2hhbWVsaXVtQGhkbWktaHBkLWZhc3QuaHRtbAoKICAKICB7bmFtZX06IFRoaXMgZWxlbWVu
-dCBpcyBzdXBwcmVzc2VkLiBUaGlzIG1lYW5zIGl0IGlzIGlnbm9yZWQgd2hlbiBjb21wdXRpbmcK
-ICAgICAgICAgIHRoZSBzdGF0dXMgb2YgdGhlIGRpZmZlcmVuY2UgKFNVQ0NFU1MsIFdBUk5JTkcs
-IG9yIEZBSUxVUkUpLgoKICBbZmRvIzEwMzkyN106IGh0dHBzOi8vYnVncy5mcmVlZGVza3RvcC5v
-cmcvc2hvd19idWcuY2dpP2lkPTEwMzkyNwogIFtmZG8jMTA3NzEzXTogaHR0cHM6Ly9idWdzLmZy
-ZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MTA3NzEzCiAgW2ZkbyMxMDc3MjRdOiBodHRw
-czovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD0xMDc3MjQKICBbZmRvIzEw
-ODU2OV06IGh0dHBzOi8vYnVncy5mcmVlZGVza3RvcC5vcmcvc2hvd19idWcuY2dpP2lkPTEwODU2
-OQogIFtmZG8jMTExMDQ1XTogaHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5j
-Z2k/aWQ9MTExMDQ1CiAgW2ZkbyMxMTEwOTZdOiBodHRwczovL2J1Z3MuZnJlZWRlc2t0b3Aub3Jn
-L3Nob3dfYnVnLmNnaT9pZD0xMTEwOTYKICBbZmRvIzExMTM4MV06IGh0dHBzOi8vYnVncy5mcmVl
-ZGVza3RvcC5vcmcvc2hvd19idWcuY2dpP2lkPTExMTM4MQogIFtmZG8jMTExNDA3XTogaHR0cHM6
-Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MTExNDA3CiAgW2ZkbyMxMTE3
-MzVdOiBodHRwczovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD0xMTE3MzUK
-ICBbZmRvIzExMjA1MCBdOiBodHRwczovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNn
-aT9pZD0xMTIwNTAgCgoKUGFydGljaXBhdGluZyBob3N0cyAoNTIgLT4gNDUpCi0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLQoKICBNaXNzaW5nICAgICg3KTogZmktaWxrLW01NDAgZmktaHN3
-LTQyMDB1IGZpLWJ5dC1zcXVhd2tzIGZpLWJzdy1jeWFuIGZpLWljbC15IGZpLWJ5dC1jbGFwcGVy
-IGZpLWJkdy1zYW11cyAKCgpCdWlsZCBjaGFuZ2VzCi0tLS0tLS0tLS0tLS0KCiAgKiBDSTogQ0kt
-MjAxOTA1MjkgLT4gTm9uZQogICogTGludXg6IENJX0RSTV83MTY5IC0+IFBhdGNod29ya18xNDk2
-MgoKICBDSS0yMDE5MDUyOTogMjAxOTA1MjkKICBDSV9EUk1fNzE2OTogNTZiNDRiZjVhNjE2OWQ3
-ZmQ2MDE0MmI4M2Q0Yjc3NmUxMjRjZjliYyBAIGdpdDovL2Fub25naXQuZnJlZWRlc2t0b3Aub3Jn
-L2dmeC1jaS9saW51eAogIElHVF81MjM2OiA4MTUzYjk1YjUzYmRlZjI2ZDJjM2UzMTgxOTdkMTc0
-ZTk4MmI0MjY1IEAgZ2l0Oi8vYW5vbmdpdC5mcmVlZGVza3RvcC5vcmcveG9yZy9hcHAvaW50ZWwt
-Z3B1LXRvb2xzCiAgUGF0Y2h3b3JrXzE0OTYyOiBiMDRkMDBlNzUwYjZiNGZiMDMyMjIzMTJkNTk1
-ZTYxNDM1N2JhNjg2IEAgZ2l0Oi8vYW5vbmdpdC5mcmVlZGVza3RvcC5vcmcvZ2Z4LWNpL2xpbnV4
-CgoKPT0gTGludXggY29tbWl0cyA9PQoKYjA0ZDAwZTc1MGI2IGRybS9pOTE1OiBDb252ZXJ0IFBB
-VCBzZXR1cCB0byB1bmNvcmUgbW1pbwoKPT0gTG9ncyA9PQoKRm9yIG1vcmUgZGV0YWlscyBzZWU6
-IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAvUGF0Y2h3b3JrXzE0OTYy
-L2luZGV4Lmh0bWwKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
-Cmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
+
+--===============0395988913==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="oJ71EGRlYNjSvfq7"
+Content-Disposition: inline
+
+
+--oJ71EGRlYNjSvfq7
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Wed, Oct 23, 2019 at 04:49:52PM +0200, Daniel Vetter wrote:
+> Properties can't be attached after registering, userspace would get
+> confused (no one bothers to reprobe really).
+>=20
+> - Add kerneldoc
+> - Enforce this with some checks. This needs a somewhat ugly check
+>   since connectors can be added later on, but we still need to attach
+>   all properties before they go public.
+>=20
+> Note that we already enforce that properties themselves are created
+> before the entire device is registered.
+>=20
+> Cc: Jani Nikula <jani.nikula@linux.intel.com>
+> Cc: Rajat Jain <rajatja@google.com>
+> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+> ---
+>  drivers/gpu/drm/drm_mode_object.c | 14 ++++++++++++++
+>  1 file changed, 14 insertions(+)
+>=20
+> diff --git a/drivers/gpu/drm/drm_mode_object.c b/drivers/gpu/drm/drm_mode=
+_object.c
+> index 6a23e36ed4fe..35c2719407a8 100644
+> --- a/drivers/gpu/drm/drm_mode_object.c
+> +++ b/drivers/gpu/drm/drm_mode_object.c
+> @@ -224,12 +224,26 @@ EXPORT_SYMBOL(drm_mode_object_get);
+>   * This attaches the given property to the modeset object with the given=
+ initial
+>   * value. Currently this function cannot fail since the properties are s=
+tored in
+>   * a statically sized array.
+> + *
+> + * Note that all properties must be attached before the object itself is
+> + * registered and accessible from userspace.
+>   */
+>  void drm_object_attach_property(struct drm_mode_object *obj,
+>  				struct drm_property *property,
+>  				uint64_t init_val)
+>  {
+>  	int count =3D obj->properties->count;
+> +	struct drm_device *dev =3D property->dev;
+> +
+> +
+> +	if (obj->type =3D=3D DRM_MODE_OBJECT_CONNECTOR) {
+> +		struct drm_connector *connector =3D obj_to_connector(obj);
+> +
+> +		WARN_ON(!dev->driver->load &&
+> +			connector->registration_state =3D=3D DRM_CONNECTOR_REGISTERED);
+> +	} else {
+> +		WARN_ON(!dev->driver->load && dev->registered);
+> +	}
+
+I'm not sure I understand why dev->driver->load needs to be a special
+case. Don't the same rules apply for those drivers as well?
+
+Thierry
+
+> =20
+>  	if (count =3D=3D DRM_OBJECT_MAX_PROPERTY) {
+>  		WARN(1, "Failed to attach object property (type: 0x%x). Please "
+> --=20
+> 2.23.0
+>=20
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--oJ71EGRlYNjSvfq7
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAl2xf7cACgkQ3SOs138+
+s6Eqyg//X8jV9x+ptZswm38ia70GCzqBDpS0lXvc7gkope9PX4W+LlQqRi+crgiP
+XdFyEg34nm7asdjIWimmnyUp8w00zH+KX3n+J3D4tSPnjn1pl91vKBQbLA4/nIjC
+bBkMhvZB5HZhoR+Z8peJLDnWuIlDqSr2lJe8Afi6SupUtVauQgDzmtXUTBLF4HxF
+nGS72jAYYfLKTVyjdGtw1Xww6DOq+Iwcdy9BrLl4k+ft05s0VoCCSoGWLMcI9jY5
+fW9v9h6XbgnErJ9lJ5Mjkdm+33JbKR4oE3+QpLR1ADhJWWrjY6WtUOlcQSrjOFOG
+DIKZal+/9ScFbhZOCxN+GTlNZGE0Un2Ay2ARcQIBxYEYxro8jDf+jEnvuito9GKa
+N6+ljAWgGHYoeGeX32tMEqxlGPTV6lH3OrFSvs4A2h9foNmker8jHMGCBCWY+QgN
+miCD5EwnhxxDnyKqEUY+/VMWjJ+l+n3ciAH0QG4zSu+pGUpMW+IlTiWsgdeMWj10
+QtsQ/5YU4KueDyQDM/w3HznmXmpuKzuMeOF8U178tjcz2lGmiVapUNGGqCAzYW9F
+Nl2bPkipOxN5rwnzXoOcJw5ah3fAO2u4R8XRxQLZzsg2L9rsciOEW2BUtnjemjit
+ngZSiI3YrFdXu6q2MQMu20LYYUtwvejcPH/y41HeTf+KQjqHhR4=
+=glqR
+-----END PGP SIGNATURE-----
+
+--oJ71EGRlYNjSvfq7--
+
+--===============0395988913==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
+IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
+
+--===============0395988913==--
