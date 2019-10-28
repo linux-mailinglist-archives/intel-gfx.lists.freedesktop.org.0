@@ -1,38 +1,57 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90B3DE706A
-	for <lists+intel-gfx@lfdr.de>; Mon, 28 Oct 2019 12:31:01 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8FB85E707B
+	for <lists+intel-gfx@lfdr.de>; Mon, 28 Oct 2019 12:34:11 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D700D6E5E1;
-	Mon, 28 Oct 2019 11:30:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3010C6E5E8;
+	Mon, 28 Oct 2019 11:34:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9DCC86E5E8
- for <intel-gfx@lists.freedesktop.org>; Mon, 28 Oct 2019 11:30:54 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 28 Oct 2019 04:30:53 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.68,239,1569308400"; d="scan'208";a="205157059"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by FMSMGA003.fm.intel.com with SMTP; 28 Oct 2019 04:30:51 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 28 Oct 2019 13:30:51 +0200
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon, 28 Oct 2019 13:30:36 +0200
-Message-Id: <20191028113036.27553-6-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.21.0
-In-Reply-To: <20191028113036.27553-1-ville.syrjala@linux.intel.com>
-References: <20191028113036.27553-1-ville.syrjala@linux.intel.com>
+Received: from mail-vk1-xa42.google.com (mail-vk1-xa42.google.com
+ [IPv6:2607:f8b0:4864:20::a42])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BE2236E5E8
+ for <intel-gfx@lists.freedesktop.org>; Mon, 28 Oct 2019 11:34:07 +0000 (UTC)
+Received: by mail-vk1-xa42.google.com with SMTP id r85so1930674vke.3
+ for <intel-gfx@lists.freedesktop.org>; Mon, 28 Oct 2019 04:34:07 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=pMXSa83VBhTSeSWp2KyFoQfvuK/rCrIRr6iBYBKWszE=;
+ b=sVQl9HKfLqaHtsf7kEtDAWom02IuvHnfnDHsR/H5MiAqPu+cP+/I+8fEris9eiPxKi
+ hch28qSoZa+r5CNORNdvXYzUYHzQ2qSIDh+wCXw1BEFZQldKf19oh5n0b6IbDWuUK3EY
+ JMk+cNlycMXsPXcXfUw6Qwz1lTY6+9CxM3aXhd2ApmXLA7iz+XLM1/x5p2tgIaww98bN
+ 1QFCd5eQajN2pogZuvvsXb+/N9OUsN5JzYAkrgqS63WevG+XSrXoqt3mF+c4mZwbT2PD
+ 9pAdWzWRy0HgnI3Ou9WaflxQxiDz8f96eN+77nu+ADKG4rg32NZhOOMsk0rlaVNmUFb8
+ K64w==
+X-Gm-Message-State: APjAAAUa4IaKR1232KBu8iximyYyYmMxp1QHiLy2+qpPXUbUaOjaycEn
+ sSNsyOevrojwEQb4jLBG+e0/GPhGAi6dD6UUqpI=
+X-Google-Smtp-Source: APXvYqzQGIoeP+aWvhbMLYVQ2YktgyIo4yfVlpDeioR6ZPSRP87QxrFIWj9bGeAUMqGuHWXwnsqQa/7+VlBQaBrBquY=
+X-Received: by 2002:a1f:8d4c:: with SMTP id p73mr7930889vkd.78.1572262446602; 
+ Mon, 28 Oct 2019 04:34:06 -0700 (PDT)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 6/6] drm/i915: Protect overlay colorkey macro
- arguments
+References: <20191027225808.19437-1-chris@chris-wilson.co.uk>
+ <20191027225808.19437-4-chris@chris-wilson.co.uk>
+In-Reply-To: <20191027225808.19437-4-chris@chris-wilson.co.uk>
+From: Matthew Auld <matthew.william.auld@gmail.com>
+Date: Mon, 28 Oct 2019 11:33:39 +0000
+Message-ID: <CAM0jSHNuU6ruov94AFA88poqD0NiV7xW1-y66DpNornnLBETeQ@mail.gmail.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>
+X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc;
+ bh=pMXSa83VBhTSeSWp2KyFoQfvuK/rCrIRr6iBYBKWszE=;
+ b=FrBZpjx1zrMq888c2zvLs0CsyXcJnt+WiDcpdgKb0TflXCzmzFP2TNG1Fm5VaWLjwi
+ n9ns2e6qmaYTjyAeUxZH+zua5Cl3jdZVogMAr+VCkyX5erCVosRuiM0c9rL0rtewXr7z
+ YXc9M3extH5119BFg8oGl9judQ2v2aLFDk6mVSgT+ifjo7DQv3VbV7ZYW2w6U9IhJwMy
+ DyqIiCQPSeQWl/qRi4058exj7yWn+HgqiClcb4RfXxV8uuyobAm1xL88HPhATdYJsysX
+ 6+0J6UPT7ybZc1QYK3OuhQ7wfLEQeTCgV7FiqfhcLtQ5sxuN8wad61h3EiEVvbwL+cIE
+ Ejow==
+Subject: Re: [Intel-gfx] [PATCH 4/5] drm/i915/selftests: Use a random engine
+ for GEM coherency tests
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -45,37 +64,20 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Matthew Auld <matthew.auld@intel.com>
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-RnJvbTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KClB1
-dCB0aGUgY3VzdG9tYXJ5ICgpIGFyb3VuZCB0aGUgbWFjcm8gYXJndW1lbnQgaW4gdGhlIG92ZXJs
-YXkKY29sb3JrZXkgbWFjcm9zLiBBbmQgd2hpbGUgYXQgc3dpdGNoIHRvIHVzaW5nIGEgY29uc2lz
-dGVudApjYXNlIGZvciB0aGUgaGV4IGNvbnN0YW50cy4KClNpZ25lZC1vZmYtYnk6IFZpbGxlIFN5
-cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5jb20+Ci0tLQogZHJpdmVycy9ncHUv
-ZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9vdmVybGF5LmMgfCA4ICsrKystLS0tCiAxIGZpbGUgY2hh
-bmdlZCwgNCBpbnNlcnRpb25zKCspLCA0IGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBhL2RyaXZl
-cnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfb3ZlcmxheS5jIGIvZHJpdmVycy9ncHUvZHJt
-L2k5MTUvZGlzcGxheS9pbnRlbF9vdmVybGF5LmMKaW5kZXggMzI0MWNjOThlMjUxLi40YmMwN2Mx
-MDU3ZTIgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfb3Zl
-cmxheS5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfb3ZlcmxheS5j
-CkBAIC0xMDMsMTMgKzEwMywxMyBAQAogI2RlZmluZSBDTEtfUkdCMTVfTUFTSwkJMHgwNzA3MDcK
-IAogI2RlZmluZSBSR0IzMF9UT19DT0xPUktFWShjKSBcCi0JKCgoYyAmIDB4M0ZDMDAwMDApID4+
-IDYpIHwgKChjICYgMHgwMDBGRjAwMCkgPj4gNCkgfCAoKGMgJiAweDAwMDAwM0ZDKSA+PiAyKSkK
-KwkoKCgoYykgJiAweDNmYzAwMDAwKSA+PiA2KSB8ICgoKGMpICYgMHgwMDBmZjAwMCkgPj4gNCkg
-fCAoKChjKSAmIDB4MDAwMDAzZmMpID4+IDIpKQogI2RlZmluZSBSR0IxNl9UT19DT0xPUktFWShj
-KSBcCi0JKCgoYyAmIDB4RjgwMCkgPDwgOCkgfCAoKGMgJiAweDA3RTApIDw8IDUpIHwgKChjICYg
-MHgwMDFGKSA8PCAzKSkKKwkoKCgoYykgJiAweGY4MDApIDw8IDgpIHwgKCgoYykgJiAweDA3ZTAp
-IDw8IDUpIHwgKCgoYykgJiAweDAwMWYpIDw8IDMpKQogI2RlZmluZSBSR0IxNV9UT19DT0xPUktF
-WShjKSBcCi0JKCgoYyAmIDB4N2MwMCkgPDwgOSkgfCAoKGMgJiAweDAzRTApIDw8IDYpIHwgKChj
-ICYgMHgwMDFGKSA8PCAzKSkKKwkoKCgoYykgJiAweDdjMDApIDw8IDkpIHwgKCgoYykgJiAweDAz
-ZTApIDw8IDYpIHwgKCgoYykgJiAweDAwMWYpIDw8IDMpKQogI2RlZmluZSBSR0I4SV9UT19DT0xP
-UktFWShjKSBcCi0JKCgoYyAmIDB4RkYpIDw8IDE2KSB8ICgoYyAmIDBYRkYpIDw8IDgpIHwgKChj
-ICYgMHhGRikgPDwgMCkpCisJKCgoKGMpICYgMHhmZikgPDwgMTYpIHwgKCgoYykgJiAweGZmKSA8
-PCA4KSB8ICgoKGMpICYgMHhmZikgPDwgMCkpCiAKIC8qIG92ZXJsYXkgZmxpcCBhZGRyIGZsYWcg
-Ki8KICNkZWZpbmUgT0ZDX1VQREFURQkJMHgxCi0tIAoyLjIxLjAKCl9fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50
-ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9y
-Zy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeA==
+T24gU3VuLCAyNyBPY3QgMjAxOSBhdCAyMjo1OCwgQ2hyaXMgV2lsc29uIDxjaHJpc0BjaHJpcy13
+aWxzb24uY28udWs+IHdyb3RlOgo+Cj4gU2VsZWN0IGEgcmFuZG9tIHVzZXIgYWNjZXNzaWJsZSBl
+bmdpbmUgZm9yIGNoZWNraW5nIGNvaGVyZW5jeSByZXN1bHRzLgo+IFdoaWxlIHdlIHNob3VsZCBj
+aGVjayBhbGwgZW5naW5lcywgd2UgdXNlIGEgcmFuZG9tIHNlbGVjdGlvbiBzbyB0aGF0Cj4gb3Zl
+ciByZXBlYXRlZCBydW5zIHdlIGNvdmVyIGFsbC4KPgo+IFNpZ25lZC1vZmYtYnk6IENocmlzIFdp
+bHNvbiA8Y2hyaXNAY2hyaXMtd2lsc29uLmNvLnVrPgpSZXZpZXdlZC1ieTogTWF0dGhldyBBdWxk
+IDxtYXR0aGV3LmF1bGRAaW50ZWwuY29tPgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5m
+cmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0
+aW5mby9pbnRlbC1nZng=
