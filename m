@@ -1,32 +1,36 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 93A1CE73E5
-	for <lists+intel-gfx@lfdr.de>; Mon, 28 Oct 2019 15:43:14 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3186EE7410
+	for <lists+intel-gfx@lfdr.de>; Mon, 28 Oct 2019 15:53:44 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 320136E869;
-	Mon, 28 Oct 2019 14:43:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 207D16E8D6;
+	Mon, 28 Oct 2019 14:53:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id E4F496E869;
- Mon, 28 Oct 2019 14:43:10 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id DCD4BA47E9;
- Mon, 28 Oct 2019 14:43:10 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C91636E8D7
+ for <intel-gfx@lists.freedesktop.org>; Mon, 28 Oct 2019 14:53:40 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 28 Oct 2019 07:53:40 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.68,240,1569308400"; d="scan'208";a="350698608"
+Received: from gaia.fi.intel.com ([10.237.72.192])
+ by orsmga004.jf.intel.com with ESMTP; 28 Oct 2019 07:53:39 -0700
+Received: by gaia.fi.intel.com (Postfix, from userid 1000)
+ id 743535C1EB8; Mon, 28 Oct 2019 16:52:46 +0200 (EET)
+From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20191028142652.1987-1-chris@chris-wilson.co.uk>
+References: <20191028142652.1987-1-chris@chris-wilson.co.uk>
+Date: Mon, 28 Oct 2019 16:52:46 +0200
+Message-ID: <871ruw7wht.fsf@gaia.fi.intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
-Date: Mon, 28 Oct 2019 14:43:10 -0000
-Message-ID: <20191028144310.26855.52068@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20191028113036.27553-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20191028113036.27553-1-ville.syrjala@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_f?=
- =?utf-8?q?or_series_starting_with_=5B1/6=5D_drm/i915=3A_Fix_i845/i865_cur?=
- =?utf-8?q?sor_width?=
+Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915/selftests: Initialise ret
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -39,43 +43,34 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-PT0gU2VyaWVzIERldGFpbHMgPT0KClNlcmllczogc2VyaWVzIHN0YXJ0aW5nIHdpdGggWzEvNl0g
-ZHJtL2k5MTU6IEZpeCBpODQ1L2k4NjUgY3Vyc29yIHdpZHRoClVSTCAgIDogaHR0cHM6Ly9wYXRj
-aHdvcmsuZnJlZWRlc2t0b3Aub3JnL3Nlcmllcy82ODY0Ni8KU3RhdGUgOiB3YXJuaW5nCgo9PSBT
-dW1tYXJ5ID09CgokIGRpbSBjaGVja3BhdGNoIG9yaWdpbi9kcm0tdGlwCjRkYTAxOGY0OTg1NSBk
-cm0vaTkxNTogRml4IGk4NDUvaTg2NSBjdXJzb3Igd2lkdGgKMTljZGUyMTc1MmZhIGRybS9pOTE1
-OiBGaXggbWF4IGN1cnNvciBzaXplIGZvciBpOTE1Zy9nbQplOGJkODkwNDhjOWEgZHJtL2k5MTU6
-IEZpeCBvdmVybGF5IGNvbG9ya2V5IGZvciAzMGJwcCBhbmQgOGJwcAotOjI2OiBDSEVDSzpNQUNS
-T19BUkdfUkVVU0U6IE1hY3JvIGFyZ3VtZW50IHJldXNlICdjJyAtIHBvc3NpYmxlIHNpZGUtZWZm
-ZWN0cz8KIzI2OiBGSUxFOiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX292ZXJs
-YXkuYzoxMDU6CisjZGVmaW5lIFJHQjMwX1RPX0NPTE9SS0VZKGMpIFwKKwkoKChjICYgMHgzRkMw
-MDAwMCkgPj4gNikgfCAoKGMgJiAweDAwMEZGMDAwKSA+PiA0KSB8ICgoYyAmIDB4MDAwMDAzRkMp
-ID4+IDIpKQoKLToyNjogQ0hFQ0s6TUFDUk9fQVJHX1BSRUNFREVOQ0U6IE1hY3JvIGFyZ3VtZW50
-ICdjJyBtYXkgYmUgYmV0dGVyIGFzICcoYyknIHRvIGF2b2lkIHByZWNlZGVuY2UgaXNzdWVzCiMy
-NjogRklMRTogZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9vdmVybGF5LmM6MTA1
-OgorI2RlZmluZSBSR0IzMF9UT19DT0xPUktFWShjKSBcCisJKCgoYyAmIDB4M0ZDMDAwMDApID4+
-IDYpIHwgKChjICYgMHgwMDBGRjAwMCkgPj4gNCkgfCAoKGMgJiAweDAwMDAwM0ZDKSA+PiAyKSkK
-Ci06MzI6IENIRUNLOk1BQ1JPX0FSR19SRVVTRTogTWFjcm8gYXJndW1lbnQgcmV1c2UgJ2MnIC0g
-cG9zc2libGUgc2lkZS1lZmZlY3RzPwojMzI6IEZJTEU6IGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rp
-c3BsYXkvaW50ZWxfb3ZlcmxheS5jOjExMToKKyNkZWZpbmUgUkdCOElfVE9fQ09MT1JLRVkoYykg
-XAorCSgoKGMgJiAweEZGKSA8PCAxNikgfCAoKGMgJiAwWEZGKSA8PCA4KSB8ICgoYyAmIDB4RkYp
-IDw8IDApKQoKLTozMjogQ0hFQ0s6TUFDUk9fQVJHX1BSRUNFREVOQ0U6IE1hY3JvIGFyZ3VtZW50
-ICdjJyBtYXkgYmUgYmV0dGVyIGFzICcoYyknIHRvIGF2b2lkIHByZWNlZGVuY2UgaXNzdWVzCiMz
-MjogRklMRTogZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9vdmVybGF5LmM6MTEx
-OgorI2RlZmluZSBSR0I4SV9UT19DT0xPUktFWShjKSBcCisJKCgoYyAmIDB4RkYpIDw8IDE2KSB8
-ICgoYyAmIDBYRkYpIDw8IDgpIHwgKChjICYgMHhGRikgPDwgMCkpCgp0b3RhbDogMCBlcnJvcnMs
-IDAgd2FybmluZ3MsIDQgY2hlY2tzLCAzNyBsaW5lcyBjaGVja2VkCmRiMGUxYTAyODQ5ZiBkcm0v
-aTkxNTogQ29uZmlndXJlIG92ZXJsYXkgY2Nfb3V0IHByZWNpc2lvbiBiYXNlZCBvbiBjcnRjIGdh
-bW1hIGNvbmZpZwpjN2JkMWQ5NDRhNGIgZHJtL2k5MTU6IEVuYWJsZSBwaXBlIGdhbW1hIGZvciB0
-aGUgb3ZlcmxheQpmZjJlMDA2Y2Y1OGIgZHJtL2k5MTU6IFByb3RlY3Qgb3ZlcmxheSBjb2xvcmtl
-eSBtYWNybyBhcmd1bWVudHMKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNr
-dG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2lu
-dGVsLWdmeA==
+Q2hyaXMgV2lsc29uIDxjaHJpc0BjaHJpcy13aWxzb24uY28udWs+IHdyaXRlczoKCj4gS2VlcCBz
+bWF0Y2ggcXVpZXQsCj4KPiBkcml2ZXJzL2dwdS9kcm0vaTkxNS8vZ2VtL3NlbGZ0ZXN0cy9pOTE1
+X2dlbV9jb250ZXh0LmM6MTI2OCBfX2lndF9jdHhfc3NldSgpIGVycm9yOiB1bmluaXRpYWxpemVk
+IHN5bWJvbCAncmV0Jy4KPiBkcml2ZXJzL2dwdS9kcm0vaTkxNS8vZ2VtL3NlbGZ0ZXN0cy9pOTE1
+X2dlbV9jb250ZXh0LmM6MTI4MCBfX2lndF9jdHhfc3NldSgpIGVycm9yOiB1bmluaXRpYWxpemVk
+IHN5bWJvbCAncmV0Jy4KPgo+IFNpZ25lZC1vZmYtYnk6IENocmlzIFdpbHNvbiA8Y2hyaXNAY2hy
+aXMtd2lsc29uLmNvLnVrPgoKUmV2aWV3ZWQtYnk6IE1pa2EgS3VvcHBhbGEgPG1pa2Eua3VvcHBh
+bGFAbGludXguaW50ZWwuY29tPgoKPiAtLS0KPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL3Nl
+bGZ0ZXN0cy9pOTE1X2dlbV9jb250ZXh0LmMgfCAyICstCj4gIDEgZmlsZSBjaGFuZ2VkLCAxIGlu
+c2VydGlvbigrKSwgMSBkZWxldGlvbigtKQo+Cj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2Ry
+bS9pOTE1L2dlbS9zZWxmdGVzdHMvaTkxNV9nZW1fY29udGV4dC5jIGIvZHJpdmVycy9ncHUvZHJt
+L2k5MTUvZ2VtL3NlbGZ0ZXN0cy9pOTE1X2dlbV9jb250ZXh0LmMKPiBpbmRleCBkMWQ4NzNmMjMz
+MzguLmM2ZTYxNTY0YmI1ZSAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0v
+c2VsZnRlc3RzL2k5MTVfZ2VtX2NvbnRleHQuYwo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1
+L2dlbS9zZWxmdGVzdHMvaTkxNV9nZW1fY29udGV4dC5jCj4gQEAgLTExODgsNyArMTE4OCw3IEBA
+IF9faWd0X2N0eF9zc2V1KHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICppOTE1LAo+ICB7Cj4gIAlz
+dHJ1Y3QgZHJtX2k5MTVfZ2VtX29iamVjdCAqb2JqOwo+ICAJaW50IGluc3QgPSAwOwo+IC0JaW50
+IHJldDsKPiArCWludCByZXQgPSAwOwo+ICAKPiAgCWlmIChJTlRFTF9HRU4oaTkxNSkgPCA5IHx8
+ICFSVU5USU1FX0lORk8oaTkxNSktPnNzZXUuaGFzX3NsaWNlX3BnKQo+ICAJCXJldHVybiAwOwo+
+IC0tIAo+IDIuMjQuMC5yYzEKPgo+IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fCj4gSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdAo+IEludGVsLWdmeEBsaXN0cy5m
+cmVlZGVza3RvcC5vcmcKPiBodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xp
+c3RpbmZvL2ludGVsLWdmeApfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3Rv
+cC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRl
+bC1nZng=
