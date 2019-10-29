@@ -1,37 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D186E82DC
-	for <lists+intel-gfx@lfdr.de>; Tue, 29 Oct 2019 09:00:40 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id CA400E82EB
+	for <lists+intel-gfx@lfdr.de>; Tue, 29 Oct 2019 09:05:29 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C49056E110;
-	Tue, 29 Oct 2019 08:00:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 45E8388E26;
+	Tue, 29 Oct 2019 08:05:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from ms.lwn.net (ms.lwn.net [45.79.88.28])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1B2516E10A;
- Tue, 29 Oct 2019 08:00:35 +0000 (UTC)
-Received: from localhost.localdomain (localhost [127.0.0.1])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by ms.lwn.net (Postfix) with ESMTPSA id 30A994FA;
- Tue, 29 Oct 2019 08:00:30 +0000 (UTC)
-Date: Tue, 29 Oct 2019 02:00:27 -0600
-From: Jonathan Corbet <corbet@lwn.net>
-To: Changbin Du <changbin.du@gmail.com>
-Message-ID: <20191029020027.516a6bce@lwn.net>
-In-Reply-To: <20191029003120.llve32crfw63ovpw@mail.google.com>
-References: <20191020131717.28990-1-changbin.du@gmail.com>
- <20191024121940.1d6a64df@lwn.net> <87woctb9cj.fsf@intel.com>
- <20191025144802.uixg2crhw6h7gghq@mail.google.com>
- <87v9s99q9l.fsf@intel.com>
- <20191029003120.llve32crfw63ovpw@mail.google.com>
-Organization: LWN.net
-X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-redhat-linux-gnu)
-MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v2] kernel-doc: rename the kernel-doc
- directive 'functions' to 'identifiers'
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 465956E115
+ for <intel-gfx@lists.freedesktop.org>; Tue, 29 Oct 2019 08:05:24 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 29 Oct 2019 01:05:23 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.68,243,1569308400"; d="scan'208";a="202768234"
+Received: from shawnle1-build-machine.itwn.intel.com ([10.5.253.9])
+ by orsmga003.jf.intel.com with ESMTP; 29 Oct 2019 01:05:22 -0700
+From: Lee Shawn C <shawn.c.lee@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 30 Oct 2019 00:04:06 +0800
+Message-Id: <20191029160407.21178-1-shawn.c.lee@intel.com>
+X-Mailer: git-send-email 2.17.1
+Subject: [Intel-gfx] [PATCH v6 1/2] drm/i915/cml: Remove unsupport PCI ID
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -44,24 +39,40 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Matthew Wilcox <willy@infradead.org>, dri-devel@lists.freedesktop.org,
- Thomas Zimmermann <tzimmermann@suse.de>, linux-doc@vger.kernel.org,
- linux-pci@vger.kernel.org, linux-fpga@vger.kernel.org,
- linux-usb@vger.kernel.org, linux-wireless@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-mm@kvack.org, linux-crypto@vger.kernel.org,
- linux-kselftest@vger.kernel.org, intel-gfx@lists.freedesktop.org
+Cc: Cooper Chiou <cooper.chiou@intel.com>, Jani Nikula <jani.nikula@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>
+MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gVHVlLCAyOSBPY3QgMjAxOSAwODozMToyMiArMDgwMApDaGFuZ2JpbiBEdSA8Y2hhbmdiaW4u
-ZHVAZ21haWwuY29tPiB3cm90ZToKCj4gSGVyZSBweXRob24gaXMgZGlmZmVyZW50IGZyb20gQy4g
-Qm90aCBlbXB0eSBzdHJpbmcgYW5kIE5vbmUgYXJlIEZhbHNlIGluIHB5dGhvbi4KPiBOb3RlIHN1
-Y2ggY29uZGl0aW9uIGlzIGNvbW1vbiBpbiBweXRob24uCgpUcmVhdGluZyBib3RoIGFzIGEgRmFs
-c2UgdmFsdWUgaXMgcmVhc29uYWJseSBjb21tb24uICBUcmVhdGluZyB0aGVtCmVsc2V3aGVyZSBp
-biB0aGUgc2FtZSBjb2RlIGJsb2NrIGFzIHNlcGFyYXRlIHZhbHVlcyBpcyBsZXNzCnNvOyB0aGF0
-J3MgdGhlIHBhcnQgSSB3b3VsZCBwcmVmZXIgdG8gYXZvaWQuCgpUaGFua3MsCgpqb24KX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxp
-bmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJl
-ZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
+Y29tbWl0ICdhN2I0ZGVlYjAyYjkgKCJkcm0vaTkxNS9jbWw6IEFkZCBDTUwgUENJIElEUyknCmlu
+dHJvZHVjZWQgbmV3IFBDSSBJRCB0aGF0IENNTCBzdXBwb3J0LiBCdXQgc29tZSBQQ0kKSURzIHdl
+cmUgcmVtb3ZlZCBmcm9tIENNTCBJRHMgaW4gQlNwZWMuCgp2MjogcmVtb3ZlIHNvbWUgaW5hY2N1
+cmF0ZSBkZXNjcmlwdGlvbnMuCnYzOiBmaXggdHlwby4KdjQ6IGFkZCBtaXNzaW5nIHZlcnNpb24g
+bnVtYmVyLgp2NTogbm8gdXBkYXRlLgp2NjogdXBkYXRlIHBhdGNoIGNvbW1lbnQuCgpDYzogUm9k
+cmlnbyBWaXZpIDxyb2RyaWdvLnZpdmlAaW50ZWwuY29tPgpDYzogSmFuaSBOaWt1bGEgPGphbmku
+bmlrdWxhQGludGVsLmNvbT4KQ2M6IEx1Y2FzIERlIE1hcmNoaSA8bHVjYXMuZGVtYXJjaGlAaW50
+ZWwuY29tPgpDYzogQW51c2hhIFNyaXZhdHNhIDxhbnVzaGEuc3JpdmF0c2FAaW50ZWwuY29tPgpD
+YzogQ29vcGVyIENoaW91IDxjb29wZXIuY2hpb3VAaW50ZWwuY29tPgpTaWduZWQtb2ZmLWJ5OiBM
+ZWUgU2hhd24gQyA8c2hhd24uYy5sZWVAaW50ZWwuY29tPgotLS0KIGluY2x1ZGUvZHJtL2k5MTVf
+cGNpaWRzLmggfCA0IC0tLS0KIDEgZmlsZSBjaGFuZ2VkLCA0IGRlbGV0aW9ucygtKQoKZGlmZiAt
+LWdpdCBhL2luY2x1ZGUvZHJtL2k5MTVfcGNpaWRzLmggYi9pbmNsdWRlL2RybS9pOTE1X3BjaWlk
+cy5oCmluZGV4IGE3MGM5ODJkZGZmOS4uNTZlODIzY2RjNzE3IDEwMDY0NAotLS0gYS9pbmNsdWRl
+L2RybS9pOTE1X3BjaWlkcy5oCisrKyBiL2luY2x1ZGUvZHJtL2k5MTVfcGNpaWRzLmgKQEAgLTQ0
+OCw5ICs0NDgsNyBAQAogI2RlZmluZSBJTlRFTF9DTUxfR1QxX0lEUyhpbmZvKQlcCiAJSU5URUxf
+VkdBX0RFVklDRSgweDlCMjEsIGluZm8pLCBcCiAJSU5URUxfVkdBX0RFVklDRSgweDlCQUEsIGlu
+Zm8pLCBcCi0JSU5URUxfVkdBX0RFVklDRSgweDlCQUIsIGluZm8pLCBcCiAJSU5URUxfVkdBX0RF
+VklDRSgweDlCQUMsIGluZm8pLCBcCi0JSU5URUxfVkdBX0RFVklDRSgweDlCQTAsIGluZm8pLCBc
+CiAJSU5URUxfVkdBX0RFVklDRSgweDlCQTUsIGluZm8pLCBcCiAJSU5URUxfVkdBX0RFVklDRSgw
+eDlCQTgsIGluZm8pLCBcCiAJSU5URUxfVkdBX0RFVklDRSgweDlCQTQsIGluZm8pLCBcCkBAIC00
+NjAsOSArNDU4LDcgQEAKICNkZWZpbmUgSU5URUxfQ01MX0dUMl9JRFMoaW5mbykJXAogCUlOVEVM
+X1ZHQV9ERVZJQ0UoMHg5QjQxLCBpbmZvKSwgXAogCUlOVEVMX1ZHQV9ERVZJQ0UoMHg5QkNBLCBp
+bmZvKSwgXAotCUlOVEVMX1ZHQV9ERVZJQ0UoMHg5QkNCLCBpbmZvKSwgXAogCUlOVEVMX1ZHQV9E
+RVZJQ0UoMHg5QkNDLCBpbmZvKSwgXAotCUlOVEVMX1ZHQV9ERVZJQ0UoMHg5QkMwLCBpbmZvKSwg
+XAogCUlOVEVMX1ZHQV9ERVZJQ0UoMHg5QkM1LCBpbmZvKSwgXAogCUlOVEVMX1ZHQV9ERVZJQ0Uo
+MHg5QkM4LCBpbmZvKSwgXAogCUlOVEVMX1ZHQV9ERVZJQ0UoMHg5QkM0LCBpbmZvKSwgXAotLSAK
+Mi4xNy4xCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJ
+bnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0
+cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZng=
