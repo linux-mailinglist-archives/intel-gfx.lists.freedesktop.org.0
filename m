@@ -1,30 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED16FEA7EE
-	for <lists+intel-gfx@lfdr.de>; Thu, 31 Oct 2019 00:59:46 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id D48E2EA844
+	for <lists+intel-gfx@lfdr.de>; Thu, 31 Oct 2019 01:33:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9F4B16EBBD;
-	Wed, 30 Oct 2019 23:59:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8D0D86EBC5;
+	Thu, 31 Oct 2019 00:33:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9BBA16EBBB;
- Wed, 30 Oct 2019 23:59:42 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19026083-1500050 
- for multiple; Wed, 30 Oct 2019 23:59:35 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 30 Oct 2019 23:59:34 +0000
-Message-Id: <20191030235934.4705-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.24.0.rc1
+Received: from ozlabs.org (ozlabs.org [IPv6:2401:3900:2:1::2])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 114B36EBC3;
+ Thu, 31 Oct 2019 00:33:23 +0000 (UTC)
+Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
+ SHA256) (No client certificate requested)
+ by mail.ozlabs.org (Postfix) with ESMTPSA id 473RBP0fDjz9sPn;
+ Thu, 31 Oct 2019 11:33:16 +1100 (AEDT)
+Date: Thu, 31 Oct 2019 11:33:15 +1100
+From: Stephen Rothwell <sfr@canb.auug.org.au>
+To: Dave Airlie <airlied@linux.ie>, Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Jani Nikula <jani.nikula@linux.intel.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Intel Graphics <intel-gfx@lists.freedesktop.org>, DRI
+ <dri-devel@lists.freedesktop.org>
+Message-ID: <20191031113315.4183cc7a@canb.auug.org.au>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH i-g-t] i915/gem_ctx_persistence: Sanitycheck
- execbuf state harder for 'queued'
+X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=canb.auug.org.au; s=201702; t=1572481998;
+ bh=7XKqZHnloBwk2IBLtvDjt9PATonWlXhD8i+mH9h8ki4=;
+ h=Date:From:To:Cc:Subject:From;
+ b=QO/HGZ/JR7M0dLAkQjlU2V8OQSfKpRMEyP7fINchZe1oRYJPYjPQFeSZFu8tJLAzS
+ MOCJ7JX0eTopvA0yO6w3Iq4VfkdWuqtGS+z8GD6351oN/DfxxEfep5QD+lcrjyrXVC
+ h2sX8H7Kj+9Wvx7/F6QMHY2H79UP7MdFJvfsWYCjhGY5AcXCEVOxoim4IMwPSz/xPg
+ HOEN6v0iLfuAOKWmxjxcrlIwOzlkX+IWN+4nBJowZdGBanGjOC0HMPd1kjlAu3i+2U
+ 2GxDGhQolVVzgmD+TMTU38s+F6jbWYeYZgj/I9d9DB/5gJtxWovgeVZVzx06/dmDUH
+ 7Mwk2tOPsZkoA==
+Subject: [Intel-gfx] linux-next: manual merge of the drm tree with the
+ drm-intel-fixes tree
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -37,40 +51,123 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: igt-dev@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Linux Next Mailing List <linux-next@vger.kernel.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: multipart/mixed; boundary="===============0079377927=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-QW5kIGluaXRpYWxpc2UgZmVuY2UgdG8gLTEgdG8gYXZvaWQgY2xvc2luZyBzdGRpbiAoZmQ6MCkh
-CgpTaWduZWQtb2ZmLWJ5OiBDaHJpcyBXaWxzb24gPGNocmlzQGNocmlzLXdpbHNvbi5jby51az4K
-LS0tCiB0ZXN0cy9pOTE1L2dlbV9jdHhfcGVyc2lzdGVuY2UuYyB8IDEyICsrKysrKystLS0tLQog
-MSBmaWxlIGNoYW5nZWQsIDcgaW5zZXJ0aW9ucygrKSwgNSBkZWxldGlvbnMoLSkKCmRpZmYgLS1n
-aXQgYS90ZXN0cy9pOTE1L2dlbV9jdHhfcGVyc2lzdGVuY2UuYyBiL3Rlc3RzL2k5MTUvZ2VtX2N0
-eF9wZXJzaXN0ZW5jZS5jCmluZGV4IDkyNzNkYTE1OS4uZmE2ZWU3NTE2IDEwMDY0NAotLS0gYS90
-ZXN0cy9pOTE1L2dlbV9jdHhfcGVyc2lzdGVuY2UuYworKysgYi90ZXN0cy9pOTE1L2dlbV9jdHhf
-cGVyc2lzdGVuY2UuYwpAQCAtMzYzLDEwICszNjMsMTAgQEAgc3RhdGljIHZvaWQgdGVzdF9ub25w
-ZXJzaXN0ZW50X2ZpbGUoaW50IGk5MTUpCiAKIHN0YXRpYyB2b2lkIHRlc3Rfbm9ucGVyc2lzdGVu
-dF9xdWV1ZWQoaW50IGk5MTUsIHVuc2lnbmVkIGludCBlbmdpbmUpCiB7Ci0JaW50IGNvdW50ID0g
-Z2VtX21lYXN1cmVfcmluZ19pbmZsaWdodChpOTE1LCBlbmdpbmUsIDApOworCWNvbnN0IGludCBj
-b3VudCA9IGdlbV9tZWFzdXJlX3JpbmdfaW5mbGlnaHQoaTkxNSwgZW5naW5lLCAwKTsKIAlpZ3Rf
-c3Bpbl90ICpzcGluOworCWludCBmZW5jZSA9IC0xOwogCXVpbnQzMl90IGN0eDsKLQlpbnQgZmVu
-Y2U7CiAKIAkvKgogCSAqIE5vdCBvbmx5IG11c3QgdGhlIGltbWVkaWF0ZSBiYXRjaCBiZSBjYW5j
-ZWxsZWQsIGJ1dApAQCAtMzgzLDEwICszODMsMTMgQEAgc3RhdGljIHZvaWQgdGVzdF9ub25wZXJz
-aXN0ZW50X3F1ZXVlZChpbnQgaTkxNSwgdW5zaWduZWQgaW50IGVuZ2luZSkKIAkJCSAgICAuZmxh
-Z3MgPSBJR1RfU1BJTl9GRU5DRV9PVVQpOwogCiAJZm9yIChpbnQgaSA9IDA7IGkgPCBjb3VudCAt
-IDE7IGkrKykgeworCQlzcGluLT5leGVjYnVmLnJzdmQyID0gMDsKIAkJaWYgKGZlbmNlICE9IC0x
-KQogCQkJY2xvc2UoZmVuY2UpOwotCQlzcGluLT5leGVjYnVmLnJzdmQyID0gMDsKKworCQlpZ3Rf
-YXNzZXJ0KHNwaW4tPmV4ZWNidWYuZmxhZ3MgJiBJOTE1X0VYRUNfRkVOQ0VfT1VUKTsKIAkJZ2Vt
-X2V4ZWNidWZfd3IoaTkxNSwgJnNwaW4tPmV4ZWNidWYpOworCiAJCWlndF9hc3NlcnQoc3Bpbi0+
-ZXhlY2J1Zi5yc3ZkMik7CiAJCWZlbmNlID0gc3Bpbi0+ZXhlY2J1Zi5yc3ZkMiA+PiAzMjsKIAl9
-CkBAIC0zOTYsOCArMzk5LDcgQEAgc3RhdGljIHZvaWQgdGVzdF9ub25wZXJzaXN0ZW50X3F1ZXVl
-ZChpbnQgaTkxNSwgdW5zaWduZWQgaW50IGVuZ2luZSkKIAlpZ3RfYXNzZXJ0X2VxKHN5bmNfZmVu
-Y2Vfd2FpdChmZW5jZSwgTVNFQ19QRVJfU0VDIC8gNSksIDApOwogCWlndF9hc3NlcnRfZXEoc3lu
-Y19mZW5jZV9zdGF0dXMoZmVuY2UpLCAtRUlPKTsKIAotCXNwaW4tPmhhbmRsZSA9IDA7Ci0JaWd0
-X3NwaW5fZnJlZSgtMSwgc3Bpbik7CisJaWd0X3NwaW5fZnJlZShpOTE1LCBzcGluKTsKIH0KIAog
-c3RhdGljIHZvaWQgc2VuZGZkKGludCBzb2NrZXQsIGludCBmZCkKLS0gCjIuMjQuMC5yYzEKCl9f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBt
-YWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3Rz
-LmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeA==
+--===============0079377927==
+Content-Type: multipart/signed; boundary="Sig_/BtWu1.KVQ8+eonL8skrO/=1";
+ protocol="application/pgp-signature"; micalg=pgp-sha256
+
+--Sig_/BtWu1.KVQ8+eonL8skrO/=1
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
+
+Hi all,
+
+Today's linux-next merge of the drm tree got a conflict in:
+
+  drivers/gpu/drm/i915/i915_drv.h
+
+between commit:
+
+  59cd826fb5e7 ("drm/i915: Fix PCH reference clock for FDI on HSW/BDW")
+
+from the drm-intel-fixes tree and commit:
+
+  7d423af9bfb1 ("drm/i915: Implement a better i945gm vblank irq vs. C-state=
+s workaround")
+
+from the drm tree.
+
+I fixed it up (see below) and can carry the fix as necessary. This
+is now fixed as far as linux-next is concerned, but any non trivial
+conflicts should be mentioned to your upstream maintainer when your tree
+is submitted for merging.  You may also want to consider cooperating
+with the maintainer of the conflicting tree to minimise any particularly
+complex conflicts.
+
+--=20
+Cheers,
+Stephen Rothwell
+
+diff --cc drivers/gpu/drm/i915/i915_drv.h
+index 953e1d12c23c,8882c0908c3b..000000000000
+--- a/drivers/gpu/drm/i915/i915_drv.h
++++ b/drivers/gpu/drm/i915/i915_drv.h
+@@@ -1704,34 -1339,17 +1339,19 @@@ struct drm_i915_private=20
+  	struct {
+  		struct notifier_block pm_notifier;
+ =20
+- 		/**
+- 		 * We leave the user IRQ off as much as possible,
+- 		 * but this means that requests will finish and never
+- 		 * be retired once the system goes idle. Set a timer to
+- 		 * fire periodically while the ring is running. When it
+- 		 * fires, go retire requests.
+- 		 */
+- 		struct delayed_work retire_work;
+-=20
+- 		/**
+- 		 * When we detect an idle GPU, we want to turn on
+- 		 * powersaving features. So once we see that there
+- 		 * are no more requests outstanding and no more
+- 		 * arrive within a small period of time, we fire
+- 		 * off the idle_work.
+- 		 */
+- 		struct work_struct idle_work;
++ 		struct i915_gem_contexts {
++ 			spinlock_t lock; /* locks list */
++ 			struct list_head list;
++=20
++ 			struct llist_head free_list;
++ 			struct work_struct free_work;
++ 		} contexts;
+  	} gem;
+ =20
+ +	u8 pch_ssc_use;
+ +
+- 	/* For i945gm vblank irq vs. C3 workaround */
+- 	struct {
+- 		struct work_struct work;
+- 		struct pm_qos_request pm_qos;
+- 		u8 c3_disable_latency;
+- 		u8 enabled;
+- 	} i945gm_vblank;
++ 	/* For i915gm/i945gm vblank irq workaround */
++ 	u8 vblank_enabled;
+ =20
+  	/* perform PHY state sanity checks? */
+  	bool chv_phy_assert[2];
+
+--Sig_/BtWu1.KVQ8+eonL8skrO/=1
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAl26K8sACgkQAVBC80lX
+0GxUEwgAiDEmYOtenUVKBbWMrzG1aiD02DfLijRCRAcO4iGSyNppuavCHiYQZSby
+uzhK0MPlJ9Ge/0YpTW4GypSZb2m5XEzXb1+CcJ/NosWtEDnhoE8kgDBaXj7gB3iO
+TFBq02QFOFI4PBFzesNGOcFaomWl5LjmSeDsahcXKRQW2Gqr/7QP0DQz3m4TgOCa
+Ktqll1tnVzFx2TAD9/gl7NXrodcz1OjYn5iBb4A9hSONWLgqqY1ESVhEVwgqaCTF
+d5FABgxepuQJlqkAhwSV8dgOHsVdR6Tzx4lQEKisuW6r7J1CUZUPLvBARmauTPwV
+8WrXwdTFygDYxHaT40rp/icxc/bPZw==
+=RKfl
+-----END PGP SIGNATURE-----
+
+--Sig_/BtWu1.KVQ8+eonL8skrO/=1--
+
+--===============0079377927==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
+IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
+
+--===============0079377927==--
