@@ -2,42 +2,37 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 78369EB06E
-	for <lists+intel-gfx@lfdr.de>; Thu, 31 Oct 2019 13:40:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 35616EB14A
+	for <lists+intel-gfx@lfdr.de>; Thu, 31 Oct 2019 14:35:09 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C0B3A6EC2D;
-	Thu, 31 Oct 2019 12:40:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7AFB06EE96;
+	Thu, 31 Oct 2019 13:35:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3756B6EC2D
- for <intel-gfx@lists.freedesktop.org>; Thu, 31 Oct 2019 12:40:39 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E9A6C6EE96
+ for <intel-gfx@lists.freedesktop.org>; Thu, 31 Oct 2019 13:35:05 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 31 Oct 2019 05:40:38 -0700
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 31 Oct 2019 06:35:05 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.68,250,1569308400"; d="scan'208";a="199002817"
-Received: from irsmsx151.ger.corp.intel.com ([163.33.192.59])
- by fmsmga008.fm.intel.com with ESMTP; 31 Oct 2019 05:40:38 -0700
-Received: from ahiler-desk1.fi.intel.com (10.237.68.143) by
- IRSMSX151.ger.corp.intel.com (163.33.192.59) with Microsoft SMTP Server (TLS)
- id 14.3.439.0; Thu, 31 Oct 2019 12:40:37 +0000
-Date: Thu, 31 Oct 2019 14:40:35 +0200
-From: Arkadiusz Hiler <arkadiusz.hiler@intel.com>
-To: Matthew Auld <matthew.william.auld@gmail.com>
-Message-ID: <20191031124035.g2grwflwdu5wfobe@ahiler-desk1.fi.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-X-Patchwork-Hint: comment
-References: <20191029165134.28567-1-matthew.auld@intel.com>
- <CAM0jSHO3McVPWCLszV30bp2wydF0TDB4pGriW05ZVBPBg0Tuuw@mail.gmail.com>
+X-IronPort-AV: E=Sophos;i="5.68,250,1569308400"; d="scan'208";a="225693192"
+Received: from gaia.fi.intel.com ([10.237.72.192])
+ by fmsmga004.fm.intel.com with ESMTP; 31 Oct 2019 06:35:04 -0700
+Received: by gaia.fi.intel.com (Postfix, from userid 1000)
+ id B4EC85C1E15; Thu, 31 Oct 2019 15:34:08 +0200 (EET)
+From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20191031094259.23028-1-chris@chris-wilson.co.uk>
+References: <20191031094212.22896-1-chris@chris-wilson.co.uk>
+ <20191031094259.23028-1-chris@chris-wilson.co.uk>
+Date: Thu, 31 Oct 2019 15:34:08 +0200
+Message-ID: <874kzpkpin.fsf@gaia.fi.intel.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <CAM0jSHO3McVPWCLszV30bp2wydF0TDB4pGriW05ZVBPBg0Tuuw@mail.gmail.com>
-X-Originating-IP: [10.237.68.143]
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/lmem: add the fake lmem region
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/selftests: Assert that the
+ idle_pulse is sent
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -50,32 +45,37 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Matthew Auld <matthew.auld@intel.com>
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gV2VkLCBPY3QgMzAsIDIwMTkgYXQgMTA6MjI6MzdQTSArMDAwMCwgTWF0dGhldyBBdWxkIHdy
-b3RlOgo+IE9uIFR1ZSwgMjkgT2N0IDIwMTkgYXQgMTY6NTEsIE1hdHRoZXcgQXVsZCA8bWF0dGhl
-dy5hdWxkQGludGVsLmNvbT4gd3JvdGU6Cj4gPgo+ID4gSW50ZW5kZWQgZm9yIHVwc3RyZWFtIHRl
-c3Rpbmcgc28gdGhhdCB3ZSBjYW4gc3RpbGwgZXhlcmNpc2UgdGhlIExNRU0KPiA+IHBsdW1iaW5n
-IGFuZCAhaTkxNV9nZ3R0X2hhc19hcGVydHVyZSBwYXRocy4gU21va2UgdGVzdGVkIG9uIFNrdWxs
-IENhbnlvbgo+ID4gZGV2aWNlLiBUaGlzIHdvcmtzIGJ5IGFsbG9jYXRpbmcgYW4gaW50ZWxfbWVt
-b3J5X3JlZ2lvbiBmb3IgYSByZXNlcnZlZAo+ID4gcG9ydGlvbiBvZiBzeXN0ZW0gbWVtb3J5LCB3
-aGljaCB3ZSB0cmVhdCBsaWtlIExNRU0uIEZvciB0aGUgTE1FTUJBUiB3ZQo+ID4gc3RlYWwgdGhl
-IGFwZXJ0dXJlIGFuZCAxOjEgaXQgbWFwIHRvIHRoZSBzdG9sZW4gcmVnaW9uLgo+ID4KPiA+IFRv
-IGVuYWJsZSBzaW1wbHkgc2V0IHRoZSBpOTE1IG1vZHBhcmFtIGZha2VfbG1lbV9zdGFydD0gb24g
-dGhlIGtlcm5lbAo+ID4gY21kbGluZSB3aXRoIHRoZSBzdGFydCBvZiByZXNlcnZlZCByZWdpb24o
-c2VlIG1lbW1hcD0pLiBUaGUgc2l6ZSBvZiB0aGUKPiA+IHJlZ2lvbiB3ZSBjYW4gdXNlIGlzIGRl
-dGVybWluZWQgYnkgdGhlIHNpemUgb2YgdGhlIG1hcHBhYmxlIGFwZXJ0dXJlLCBzbwo+ID4gdGhl
-IHNpemUgb2YgcmVzZXJ2ZWQgcmVnaW9uIHNob3VsZCBiZSA+PSBtYXBwYWJsZV9lbmQuIEZvciBu
-b3cgd2Ugb25seQo+ID4gZW5hYmxlIGZvciB0aGUgc2VsZnRlc3RzLiBEZXBlbmRzIG9uIENPTkZJ
-R19EUk1fSTkxNV9VTlNUQUJMRSBiZWluZwo+ID4gZW5hYmxlZC4KPiA+Cj4gPiBlZy4gbWVtbWFw
-PTJHJDE2RyBpOTE1LmZha2VfbG1lbV9zdGFydD0weDQwMDAwMDAwMAo+IAo+IEhpIEFyZWssCj4g
-Cj4gV291bGQgeW91IGJlIGFibGUgdG8gdXBkYXRlIHRoZSBmaS1za2wtbG1lbSBrZXJuZWwgY21k
-IGxpbmUgd2l0aAo+IHMvaTkxNV9mYWtlX2xtZW1fc3RhcnQvaTkxNS5mYWtlX2xtZW1fc3RhcnQ/
-Cgpkb25lCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCklu
-dGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRw
-czovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeA==
+Q2hyaXMgV2lsc29uIDxjaHJpc0BjaHJpcy13aWxzb24uY28udWs+IHdyaXRlczoKCj4gV2hlbiBj
+aGVja2luZyB0aGUgaGVhcnRiZWF0IHB1bHNlLCB3ZSBleHBlY3QgaXQgdG8gaGF2ZSBiZWVuIHNl
+bnQgYnkgdGhlCj4gdGltZSB3ZSBoYXZlIHNsZXB0LiBXZSBjYW4gdmVyaWZ5IHRoaXMgYnkgY2hl
+Y2tpbmcgdGhlIGVuZ2luZSBzZXJpYWwKPiBudW1iZXIgdG8gc2VlIGlmIHRoYXQgbWF0Y2hlcyB0
+aGUgcHJlZGljdGVkIHB1bHNlIHNlcmlhbC4gSXQgd2lsbCBhbHdheXMKPiBiZSB0cnVlIGlmLCBh
+bmQgb25seSBpZiwgdGhlIHB1bHNlIHdhcyBzZW50IGJ5IGl0c2VsZiAoYXMgZGVzaWduZWQgYnkK
+PiB0aGUgdGVzdCkuCj4KPiBTaWduZWQtb2ZmLWJ5OiBDaHJpcyBXaWxzb24gPGNocmlzQGNocmlz
+LXdpbHNvbi5jby51az4KPiAtLS0KPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3Qvc2VsZnRlc3Rf
+ZW5naW5lX2hlYXJ0YmVhdC5jIHwgMiArKwo+ICAxIGZpbGUgY2hhbmdlZCwgMiBpbnNlcnRpb25z
+KCspCj4KPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3Qvc2VsZnRlc3RfZW5n
+aW5lX2hlYXJ0YmVhdC5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3Qvc2VsZnRlc3RfZW5naW5l
+X2hlYXJ0YmVhdC5jCj4gaW5kZXggOWU3Mzc2YjU5MmU1Li4wN2EyZmZmZTE2YTEgMTAwNjQ0Cj4g
+LS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3Qvc2VsZnRlc3RfZW5naW5lX2hlYXJ0YmVhdC5j
+Cj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3Qvc2VsZnRlc3RfZW5naW5lX2hlYXJ0YmVh
+dC5jCj4gQEAgLTk3LDYgKzk3LDggQEAgc3RhdGljIGludCBfX2xpdmVfaWRsZV9wdWxzZShzdHJ1
+Y3QgaW50ZWxfZW5naW5lX2NzICplbmdpbmUsCj4gIAkJZ290byBvdXQ7Cj4gIAl9Cj4gIAo+ICsJ
+R0VNX0JVR19PTihSRUFEX09OQ0UoZW5naW5lLT5zZXJpYWwpICE9IGVuZ2luZS0+d2FrZXJlZl9z
+ZXJpYWwpOwo+ICsKClllcyB0aGUgd2FrZXJlZl9zZXJpYWwgc2VlbXMgdG8gYmUgb3VyIGxvY2Fs
+IGNvcHkuCgpSZXZpZXdlZC1ieTogTWlrYSBLdW9wcGFsYSA8bWlrYS5rdW9wcGFsYUBsaW51eC5p
+bnRlbC5jb20+CgpUaGUgZXh0cmEgc3BhY2Ugb24gc3RhcnRpbmcgdGhlIHN1YnRlc3RzLCBhdCB0
+aGUgZW5kIG9mCnRoZSBmaWxlLCBjYXVnaHQgbXkgZXllLgoKPiAgCXB1bHNlX3VubG9ja193YWl0
+KHApOyAvKiBzeW5jaHJvbml6ZSB3aXRoIHRoZSByZXRpcmVtZW50IGNhbGxiYWNrICovCj4gIAo+
+ICAJaWYgKCFpOTE1X2FjdGl2ZV9pc19pZGxlKCZwLT5hY3RpdmUpKSB7Cj4gLS0gCj4gMi4yNC4w
+LnJjMQo+Cj4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18K
+PiBJbnRlbC1nZnggbWFpbGluZyBsaXN0Cj4gSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9y
+Zwo+IGh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwt
+Z2Z4Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVs
+LWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczov
+L2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeA==
