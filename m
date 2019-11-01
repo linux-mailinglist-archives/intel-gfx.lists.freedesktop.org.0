@@ -1,57 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AFE37EC0E2
-	for <lists+intel-gfx@lfdr.de>; Fri,  1 Nov 2019 10:56:23 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3FA45EC109
+	for <lists+intel-gfx@lfdr.de>; Fri,  1 Nov 2019 11:08:25 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1E7C76F7A8;
-	Fri,  1 Nov 2019 09:56:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A529F6E1D8;
+	Fri,  1 Nov 2019 10:08:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-vs1-f65.google.com (mail-vs1-f65.google.com
- [209.85.217.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9D0986E1DE
- for <intel-gfx@lists.freedesktop.org>; Fri,  1 Nov 2019 09:56:20 +0000 (UTC)
-Received: by mail-vs1-f65.google.com with SMTP id 190so1459582vss.8
- for <intel-gfx@lists.freedesktop.org>; Fri, 01 Nov 2019 02:56:20 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=Y5ZVUxCUpmyvd/4fTsOKKB1I6+75xGeNKY9zQMV14uI=;
- b=dhlReuZore9n/vQnY5CKk9WV/Fn+nQFK/S2g3PbGYZPqHWeRl48pOxH5vghd+MD/73
- 6+FpBmWb1VAPk0zXZdXss2lxsyr06e9xDCVPSSqGrrlTxRkQBVNMWMTMIfyKQaXkuEPI
- 0XGVQwuegNzmBSL6AzLxjf+ISC0NhYEOx9WW3YJmOqB7ScBy/LikGtkAlTaaDTMmVoPR
- tWcxvM4w5njn8T/jTSQvcwaqmMBqHRWWQ2tbkJQUy545tVGxzDqBwFmXVMwZlNaJS3iN
- kPiHX17868pmRXckrDCD/dI93W+R3IML8Y0PwUduXmtCb7Sp1JeZigt/5tPS3Hz2ON23
- K/cQ==
-X-Gm-Message-State: APjAAAUwMwUSMQKWzjzPgcozJzf+FikLWEaCwlfZx52JuIPgaol2iHxV
- LbB6vypS7NwtUTHlGJG0Xqf77Zrn2bkdAGhMf+M=
-X-Google-Smtp-Source: APXvYqwdHbEGCghRzYlGhetwZO60n5LCV7letF3sOLrLQE0FrNe94i59ZZgmDz/JYFuDvu5OHOixxO8l6Dm+viq/jI0=
-X-Received: by 2002:a05:6102:21b4:: with SMTP id
- i20mr4049932vsb.164.1572602119515; 
- Fri, 01 Nov 2019 02:55:19 -0700 (PDT)
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 99F046E1D8
+ for <intel-gfx@lists.freedesktop.org>; Fri,  1 Nov 2019 10:08:22 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19043805-1500050 
+ for multiple; Fri, 01 Nov 2019 09:51:48 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri,  1 Nov 2019 09:51:47 +0000
+Message-Id: <20191101095147.9769-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.24.0.rc2
 MIME-Version: 1.0
-References: <20191101084940.31838-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20191101084940.31838-1-chris@chris-wilson.co.uk>
-From: Matthew Auld <matthew.william.auld@gmail.com>
-Date: Fri, 1 Nov 2019 09:54:53 +0000
-Message-ID: <CAM0jSHMdOOKHROKgGm0hAUP4XSL+Fp02bQL-gFuUJ2N3AaH-1A@mail.gmail.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>
-X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc;
- bh=Y5ZVUxCUpmyvd/4fTsOKKB1I6+75xGeNKY9zQMV14uI=;
- b=Zd0f1Yu/EB0RZxw8Z0EI8x/+Bkxli2CwkCs2Re4qRWQvVJoGSbDDdcFuhjhpUSjH6J
- zsQC44olzwQzscjyqAueK+yG1H1jk6oLweXQBsU9frE5w7qQrnZ8UN7nSuzMa5sjvQZS
- EUHzuHQsmlBwHFB0CQFeNCsj8Aicc8GKDVEHrd7SAkF5O3FTnIyeGM8L8OgUDf/9C4sz
- S3eFeR5IPzmZEKmVyXD3lLiE4vHOJiYglFxceSVkpbi9LPrUwPZDRtuJpR7P/vi8148R
- V89lUzXJ6irUZLTiuz2xUCPNEZJsR6/TUSZjCsftEqQWfFER8e+pkrCmP8d/iaAVpMTR
- IFXg==
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/selftests: Start kthreads before
- stopping
+Subject: [Intel-gfx] [PATCH] drm/i915/lmem: Check against i915_selftest only
+ under CONFIG_SELFTEST
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -64,24 +37,31 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Matthew Auld <matthew.auld@intel.com>
+Cc: Matthew Auld <matthew.auld@intel.com>
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gRnJpLCAxIE5vdiAyMDE5IGF0IDA4OjUwLCBDaHJpcyBXaWxzb24gPGNocmlzQGNocmlzLXdp
-bHNvbi5jby51az4gd3JvdGU6Cj4KPiBBbiBpbnRlcmVzdGluZyBvYnNlcnZhdGlvbiBtYWRlIHdp
-dGggb3VyIHBhcmFsbGVsIHNlbGZ0ZXN0cyB3YXMgdGhhdCBvbgo+IG91ciBzbWFsbC9zaW5nbGUg
-Y3B1IHN5c3RlbXMgd2Ugd291bGQgY2FsbCBrdGhyZWFkX3N0b3AoKSBiZWZvcmUgdGhlCj4ga3Ro
-cmVhZHMgd2VyZSBzcGF3bmVkLiBJZiB0aGlzIGhhcHBlbnMsIHRoZSBrdGhyZWFkIGlzIG5ldmVy
-IHJ1biBhdCBhbGw7Cj4gY29tcGxldGVseSBieXBhc3NpbmcgdGhlIHRlc3QuCj4KPiBBIHNpbXBs
-ZSB5aWVsZCgpIGZyb20gdGhlIHBhcmVudCB3aWxsIGVuc3VyZSB0aGF0IGFsbCBjaGlsZHJlbiBo
-YXZlIHRoZQo+IG9wcG9ydHVuaXR5IHRvIHN0YXJ0IGJlZm9yZSB3ZSByZWFwIHRoZW0uCj4KPiBT
-aWduZWQtb2ZmLWJ5OiBDaHJpcyBXaWxzb24gPGNocmlzQGNocmlzLXdpbHNvbi5jby51az4KPiBD
-YzogTWF0dGhldyBBdWxkIDxtYXR0aGV3LmF1bGRAaW50ZWwuY29tPgpSZXZpZXdlZC1ieTogTWF0
-dGhldyBBdWxkIDxtYXR0aGV3LmF1bGRAaW50ZWwuY29tPgpfX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdm
-eEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFp
-bG1hbi9saXN0aW5mby9pbnRlbC1nZng=
+VGhlIGkxOTVfc2VsZnRlc3QgbW9kdWxlIHBhcmFtZXRlcnMgb25seSBleGlzdCB3aGVuCkNPTkZJ
+R19EUk1fSTkxNV9TRUxGVEVTVCBpcyBzZXQuCgpTaWduZWQtb2ZmLWJ5OiBDaHJpcyBXaWxzb24g
+PGNocmlzQGNocmlzLXdpbHNvbi5jby51az4KQ2M6IE1hdHRoZXcgQXVsZCA8bWF0dGhldy5hdWxk
+QGludGVsLmNvbT4KLS0tCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2Rydi5jIHwgMiArKwog
+MSBmaWxlIGNoYW5nZWQsIDIgaW5zZXJ0aW9ucygrKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1
+L2RybS9pOTE1L2k5MTVfZHJ2LmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2Rydi5jCmlu
+ZGV4IDQ4MGUyMDU0ZjYyOC4uMzM0MDQ4NWMxMmUzIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9k
+cm0vaTkxNS9pOTE1X2Rydi5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZHJ2LmMK
+QEAgLTE0ODcsNiArMTQ4Nyw3IEBAIGludCBpOTE1X2RyaXZlcl9wcm9iZShzdHJ1Y3QgcGNpX2Rl
+diAqcGRldiwgY29uc3Qgc3RydWN0IHBjaV9kZXZpY2VfaWQgKmVudCkKIAkgKiBDaGVjayBpZiB3
+ZSBzdXBwb3J0IGZha2UgTE1FTSAtLSBmb3Igbm93IHdlIG9ubHkgdW5sZWFzaCB0aGlzIGZvcgog
+CSAqIHRoZSBsaXZlIHNlbGZ0ZXN0cyh0ZXN0LWFuZC1leGl0KS4KIAkgKi8KKyNpZiBJU19FTkFC
+TEVEKENPTkZJR19EUk1fSTkxNV9TRUxGVEVTVCkKIAlpZiAoSVNfRU5BQkxFRChDT05GSUdfRFJN
+X0k5MTVfVU5TVEFCTEVfRkFLRV9MTUVNKSkgewogCQlpZiAoSU5URUxfR0VOKGRldl9wcml2KSA+
+PSA5ICYmIGk5MTVfc2VsZnRlc3QubGl2ZSA8IDAgJiYKIAkJICAgIGk5MTVfbW9kcGFyYW1zLmZh
+a2VfbG1lbV9zdGFydCkgewpAQCAtMTQ5Nyw2ICsxNDk4LDcgQEAgaW50IGk5MTVfZHJpdmVyX3By
+b2JlKHN0cnVjdCBwY2lfZGV2ICpwZGV2LCBjb25zdCBzdHJ1Y3QgcGNpX2RldmljZV9pZCAqZW50
+KQogCQkJR0VNX0JVR19PTighSVNfREdGWChkZXZfcHJpdikpOwogCQl9CiAJfQorI2VuZGlmCiAK
+IAlyZXQgPSBwY2lfZW5hYmxlX2RldmljZShwZGV2KTsKIAlpZiAocmV0KQotLSAKMi4yNC4wLnJj
+MgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwt
+Z2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8v
+bGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
