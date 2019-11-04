@@ -2,60 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE235EE3C2
-	for <lists+intel-gfx@lfdr.de>; Mon,  4 Nov 2019 16:29:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D2337EE3D5
+	for <lists+intel-gfx@lfdr.de>; Mon,  4 Nov 2019 16:31:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 575AD6E588;
-	Mon,  4 Nov 2019 15:29:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3AE376E58E;
+	Mon,  4 Nov 2019 15:31:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x441.google.com (mail-wr1-x441.google.com
- [IPv6:2a00:1450:4864:20::441])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4F9EE6E588;
- Mon,  4 Nov 2019 15:29:37 +0000 (UTC)
-Received: by mail-wr1-x441.google.com with SMTP id o28so17564129wro.7;
- Mon, 04 Nov 2019 07:29:37 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to:user-agent;
- bh=K2KxcuvMsR79mkzjRZlmgg9V8DgWtD2GqEBNjfB88vQ=;
- b=pts7KXUVnL586rxyvQAGymqehC/VpsDrEGWXKKvYH0wq5eGtSWk3n/ZQKRP4R0slKh
- n2Xy63JDDJKSEecNrb8eTD3limQPD0FKMD2irgc/bQD7ExdI3nfsY4wPQBhe5unkRbE2
- kLgXjKMvCcNGNWCx8tNSYW3RvQ+V22nCGm2GH/OM0Q0okETiHg2MUUB7ockBf9FKQCrs
- SRNhplamJT6jFWXs3xEOGqqZQz+G56vbK0kFEoR57fyiroB4CefGfoO9J3FaTDCRfxY0
- mzRyf2kVRJq4DDUCRU0lhlxoKmmDXziQXtmhhuWccvSkZjwSoCQdwjaKtLN3yuWyELB5
- TjFg==
-X-Gm-Message-State: APjAAAXJj9s7OwCScf7Qqz6pYTaU92UiolvjssY3m3JO8sz86+fsovyO
- TR0KtrbjfGqDLeroa25B67ZSLGtm
-X-Google-Smtp-Source: APXvYqxdWkQ4ypgSqC6RF/+F5/y5jgc9wmmx+Q7gv1dokKT0TegwDL7FUGRcmlg3vR+5bj3kjIw3gA==
-X-Received: by 2002:a5d:55c7:: with SMTP id i7mr24817818wrw.371.1572881375833; 
- Mon, 04 Nov 2019 07:29:35 -0800 (PST)
-Received: from localhost (p2E5BE2CE.dip0.t-ipconnect.de. [46.91.226.206])
- by smtp.gmail.com with ESMTPSA id r3sm36481613wre.29.2019.11.04.07.29.34
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 04 Nov 2019 07:29:34 -0800 (PST)
-Date: Mon, 4 Nov 2019 16:29:33 +0100
-From: Thierry Reding <thierry.reding@gmail.com>
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8BB386E58E
+ for <intel-gfx@lists.freedesktop.org>; Mon,  4 Nov 2019 15:31:33 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 04 Nov 2019 07:31:31 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.68,267,1569308400"; d="scan'208";a="213564334"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by orsmga002.jf.intel.com with SMTP; 04 Nov 2019 07:31:29 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Mon, 04 Nov 2019 17:31:28 +0200
+Date: Mon, 4 Nov 2019 17:31:28 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
 To: Jani Nikula <jani.nikula@intel.com>
-Message-ID: <20191104152933.GC1602887@ulmo>
-References: <20191028150047.22048-1-jani.nikula@intel.com>
- <20191028150047.22048-3-jani.nikula@intel.com>
+Message-ID: <20191104153128.GK1208@intel.com>
+References: <20191101142024.13877-1-jani.nikula@intel.com>
 MIME-Version: 1.0
-In-Reply-To: <20191028150047.22048-3-jani.nikula@intel.com>
-User-Agent: Mutt/1.12.2 (2019-09-21)
-X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20161025;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to:user-agent;
- bh=K2KxcuvMsR79mkzjRZlmgg9V8DgWtD2GqEBNjfB88vQ=;
- b=XyvIRZ2yv9az2z+pMDfCLPZHv0zj1U25TsGYRKOjKQsD5Poq5aV6B9S3Rfe0BVOsro
- aqvXrCyMzLSs5ql6LM/x4nsZqI8buBt8NaweJJrShJ6bPpVc5H4koUNWc56Jo7cxLaGS
- eHiTFJ0SRT0l3DGPpOFbbuqWTChsfJA+nh79+qKtJ3Kw1kzF/KF1OILNYzSxSGrIIuaO
- lWqLW/MRAlWi3Ck0DaM2AicXLgy9GOhzNTlSU5/mqrrG0jFqzogs/d24DKvdzA7Pcy11
- RWef6EibUobCtuNuaKBenB+kPKdnHYevHxO6OmeEPPhT0Jo/hxPCxExz4IExfBoME1Il
- LDQw==
-Subject: Re: [Intel-gfx] [PATCH v2 3/5] drm/dsi: add missing DSI DCS commands
+Content-Disposition: inline
+In-Reply-To: <20191101142024.13877-1-jani.nikula@intel.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH v2] drm/i915: update rawclk also on resume
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -68,122 +46,55 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============2000811433=="
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
---===============2000811433==
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="Fig2xvG2VGoz8o/s"
-Content-Disposition: inline
-
-
---Fig2xvG2VGoz8o/s
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Mon, Oct 28, 2019 at 05:00:45PM +0200, Jani Nikula wrote:
-> Update from the DCS specification.
->=20
-> Cc: Vandita Kulkarni <vandita.kulkarni@intel.com>
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-> ---
->  include/video/mipi_display.h | 10 ++++++++++
->  1 file changed, 10 insertions(+)
->=20
-> diff --git a/include/video/mipi_display.h b/include/video/mipi_display.h
-> index 6b6390dfa203..928f8c4b6658 100644
-> --- a/include/video/mipi_display.h
-> +++ b/include/video/mipi_display.h
-> @@ -79,7 +79,9 @@ enum {
->  enum {
->  	MIPI_DCS_NOP			=3D 0x00,
->  	MIPI_DCS_SOFT_RESET		=3D 0x01,
-> +	MIPI_DCS_GET_COMPRESSION_MODE	=3D 0x03,
->  	MIPI_DCS_GET_DISPLAY_ID		=3D 0x04,
-> +	MIPI_DCS_GET_ERROR_COUNT_ON_DSI	=3D 0x05,
->  	MIPI_DCS_GET_RED_CHANNEL	=3D 0x06,
->  	MIPI_DCS_GET_GREEN_CHANNEL	=3D 0x07,
->  	MIPI_DCS_GET_BLUE_CHANNEL	=3D 0x08,
-> @@ -94,6 +96,8 @@ enum {
->  	MIPI_DCS_EXIT_SLEEP_MODE	=3D 0x11,
->  	MIPI_DCS_ENTER_PARTIAL_MODE	=3D 0x12,
->  	MIPI_DCS_ENTER_NORMAL_MODE	=3D 0x13,
-> +	MIPI_DCS_GET_IMAGE_CHECKSUM_RGB	=3D 0x14,
-> +	MIPI_DCS_GET_IMAGE_CHECKSUM_CT	=3D 0x15,
->  	MIPI_DCS_EXIT_INVERT_MODE	=3D 0x20,
->  	MIPI_DCS_ENTER_INVERT_MODE	=3D 0x21,
->  	MIPI_DCS_SET_GAMMA_CURVE	=3D 0x26,
-> @@ -105,6 +109,7 @@ enum {
->  	MIPI_DCS_WRITE_LUT		=3D 0x2D,
->  	MIPI_DCS_READ_MEMORY_START	=3D 0x2E,
->  	MIPI_DCS_SET_PARTIAL_AREA	=3D 0x30,
-> +	MIPI_DCS_SET_PARTIAL_COLUMNS	=3D 0x31,
->  	MIPI_DCS_SET_SCROLL_AREA	=3D 0x33,
->  	MIPI_DCS_SET_TEAR_OFF		=3D 0x34,
->  	MIPI_DCS_SET_TEAR_ON		=3D 0x35,
-> @@ -114,7 +119,10 @@ enum {
->  	MIPI_DCS_ENTER_IDLE_MODE	=3D 0x39,
->  	MIPI_DCS_SET_PIXEL_FORMAT	=3D 0x3A,
->  	MIPI_DCS_WRITE_MEMORY_CONTINUE	=3D 0x3C,
-> +	MIPI_DCS_SET_3D_CONTROL		=3D 0x3D,
->  	MIPI_DCS_READ_MEMORY_CONTINUE	=3D 0x3E,
-> +	MIPI_DCS_GET_3D_CONTROL		=3D 0x3F,
-> +	MIPI_DCS_SET_VSYNC_TIMING	=3D 0x40,
->  	MIPI_DCS_SET_TEAR_SCANLINE	=3D 0x44,
->  	MIPI_DCS_GET_SCANLINE		=3D 0x45,
->  	MIPI_DCS_SET_DISPLAY_BRIGHTNESS =3D 0x51,		/* MIPI DCS 1.3 */
-> @@ -126,7 +134,9 @@ enum {
->  	MIPI_DCS_SET_CABC_MIN_BRIGHTNESS =3D 0x5E,	/* MIPI DCS 1.3 */
->  	MIPI_DCS_GET_CABC_MIN_BRIGHTNESS =3D 0x5F,	/* MIPI DCS 1.3 */
->  	MIPI_DCS_READ_DDB_START		=3D 0xA1,
-> +	MIPI_DCS_READ_PPS_START		=3D 0xA2,
->  	MIPI_DCS_READ_DDB_CONTINUE	=3D 0xA8,
-> +	MIPI_DCS_READ_PPS_CONTINUE	=3D 0xA9,
->  };
-> =20
->  /* MIPI DCS pixel formats */
-> --=20
-> 2.20.1
-
-I only have a copy of DCS 1.2, which doesn't seem to have these values.
-Let me see if I can find a more updated version.
-
-Thierry
-
---Fig2xvG2VGoz8o/s
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAl3AQ90ACgkQ3SOs138+
-s6GN0A/+MT8SM17Trcby7MBsnDtUZ/YfcYgZr+gVQ5oWS4sOs7bAAO7HcZPGokQi
-BMsX5sNj0KYPaHVf9S2LCOK6zQusdxBmUXPkSYEC0WatfpQXQHWmCOZIxaOiBSB2
-GCH8ayRw1J9UCYaaQOMqXgwmDpNo3ZGk9IT0NlUJRMOjOShoFcjUUYclbT8RqwKm
-JoRf+IQcF6WrzVibIsK0UNLv3nMyhnA9yTKf9L+Li/FSg2DB+EImlHTERq9oNYvK
-M8i498C7UM4Gw3g5XByMgIK3S+egYsrYKW5m4xJhhHe1rq32lCzoZIJeEb9Gr7ES
-4QKfcftl0eZ7PCsSmojCtJRB5dOcVk8RWfTr/hf0qJZM35E2ne65g5lUdSIInMmW
-SAzIriZ/XsACmGtQWKuhtrlwHJ2LUTxMthxdIGzAdxJNHCv7IZk8bLcjafRwy/2t
-wVHCnLSonz/UZlvoeHJFWyc2G0BADULi3sZkO4UCIXot3O85mNycZW3//OgGECG3
-Y3rCFmn0KEo7N+SZLIK8r509BI7cLjDe8u/wbqy1W3YXCyq7QFCA7HwDs+AcXqmQ
-ew9S0mFn8Xcat08c2lY/91RKraBLUbxRNxWQDCSM+CGTyBYRVsrWWt3EQomcrZcd
-wi7nV/9OF/xw+nKfpJr7C6vpDO1zirGSPP7lLWfyJ05Q3e1nsl8=
-=xGHW
------END PGP SIGNATURE-----
-
---Fig2xvG2VGoz8o/s--
-
---===============2000811433==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
-IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
-
---===============2000811433==--
+T24gRnJpLCBOb3YgMDEsIDIwMTkgYXQgMDQ6MjA6MjRQTSArMDIwMCwgSmFuaSBOaWt1bGEgd3Jv
+dGU6Cj4gU2luY2UgQ05QIGl0J3MgcG9zc2libGUgZm9yIHJhd2NsayB0byBoYXZlIHR3byBkaWZm
+ZXJlbnQgdmFsdWVzLCAxOS4yCj4gYW5kIDI0IE1Iei4gSWYgdGhlIHZhbHVlIGluZGljYXRlZCBi
+eSBTRlVTRV9TVFJBUCByZWdpc3RlciBpcyBkaWZmZXJlbnQKPiBmcm9tIHRoZSBwb3dlciBvbiBk
+ZWZhdWx0IGZvciBQQ0hfUkFXQ0xLX0ZSRVEsIHdlJ2xsIGVuZCB1cCBoYXZpbmcgYQo+IG1pc21h
+dGNoIGJldHdlZW4gdGhlIHJhd2NsayBoYXJkd2FyZSBhbmQgc29mdHdhcmUgc3RhdGVzIGFmdGVy
+Cj4gc3VzcGVuZC9yZXN1bWUuIE9uIHByZXZpb3VzIHBsYXRmb3JtcyB0aGlzIHVzZWQgdG8gd29y
+ayBieSBhY2NpZGVudCwKPiBiZWNhdXNlIHRoZSBwb3dlciBvbiBkZWZhdWx0cyB3b3JrZWQganVz
+dCBmaW5lLgo+IAo+IFVwZGF0ZSB0aGUgcmF3Y2xrIGFsc28gb24gcmVzdW1lLiBUaGUgbmF0dXJh
+bCBwbGFjZSB0byBkbyB0aGlzIHdvdWxkIGJlCj4gaW50ZWxfbW9kZXNldF9pbml0X2h3KCksIGhv
+d2V2ZXIgVkxWL0NIViBuZWVkIGl0IGRvbmUgYmVmb3JlCj4gaW50ZWxfcG93ZXJfZG9tYWluc19p
+bml0X2h3KCkuIFRodXMgcHV0IGl0IHRoZXJlIGV2ZW4gaWYgaXQgZmVlbHMKPiBzbGlnaHRseSBv
+dXQgb2YgcGxhY2UuCj4gCj4gdjI6IENhbGwgaW50ZWxfdXBkYXRlX3Jhd2NsY2soKSBpbiBpbnRl
+bF9wb3dlcl9kb21haW5zX2luaXRfaHcoKSBmb3IgYWxsCj4gICAgIHBsYXRmb3JtcyAoVmlsbGUp
+Lgo+IAo+IFJlcG9ydGVkLWJ5OiBTaGF3biBMZWUgPHNoYXduLmMubGVlQGludGVsLmNvbT4KPiBD
+YzogU2hhd24gTGVlIDxzaGF3bi5jLmxlZUBpbnRlbC5jb20+Cj4gQ2M6IFZpbGxlIFN5cmphbGEg
+PHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwuY29tPgo+IFNpZ25lZC1vZmYtYnk6IEphbmkgTmlr
+dWxhIDxqYW5pLm5pa3VsYUBpbnRlbC5jb20+CgpSZXZpZXdlZC1ieTogVmlsbGUgU3lyasOkbMOk
+IDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KCj4gLS0tCj4gIGRyaXZlcnMvZ3B1L2Ry
+bS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheV9wb3dlci5jIHwgMyArKysKPiAgZHJpdmVycy9n
+cHUvZHJtL2k5MTUvaTkxNV9kcnYuYyAgICAgICAgICAgICAgICAgICAgfCAzIC0tLQo+ICAyIGZp
+bGVzIGNoYW5nZWQsIDMgaW5zZXJ0aW9ucygrKSwgMyBkZWxldGlvbnMoLSkKPiAKPiBkaWZmIC0t
+Z2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5X3Bvd2VyLmMg
+Yi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXlfcG93ZXIuYwo+IGlu
+ZGV4IDcwN2FjMTEwZTI3MS4uY2UxYjY0ZjRkZDQ0IDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1
+L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheV9wb3dlci5jCj4gKysrIGIvZHJpdmVycy9n
+cHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5X3Bvd2VyLmMKPiBAQCAtNTAxNSw2ICs1
+MDE1LDkgQEAgdm9pZCBpbnRlbF9wb3dlcl9kb21haW5zX2luaXRfaHcoc3RydWN0IGRybV9pOTE1
+X3ByaXZhdGUgKmk5MTUsIGJvb2wgcmVzdW1lKQo+ICAKPiAgCXBvd2VyX2RvbWFpbnMtPmluaXRp
+YWxpemluZyA9IHRydWU7Cj4gIAo+ICsJLyogTXVzdCBoYXBwZW4gYmVmb3JlIHBvd2VyIGRvbWFp
+biBpbml0IG9uIFZMVi9DSFYgKi8KPiArCWludGVsX3VwZGF0ZV9yYXdjbGsoaTkxNSk7Cj4gKwo+
+ICAJaWYgKElOVEVMX0dFTihpOTE1KSA+PSAxMSkgewo+ICAJCWljbF9kaXNwbGF5X2NvcmVfaW5p
+dChpOTE1LCByZXN1bWUpOwo+ICAJfSBlbHNlIGlmIChJU19DQU5OT05MQUtFKGk5MTUpKSB7Cj4g
+ZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZHJ2LmMgYi9kcml2ZXJzL2dw
+dS9kcm0vaTkxNS9pOTE1X2Rydi5jCj4gaW5kZXggMzM0MDQ4NWMxMmUzLi43MTk0NDM5OWRjZmMg
+MTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9kcnYuYwo+ICsrKyBiL2Ry
+aXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZHJ2LmMKPiBAQCAtMjk2LDkgKzI5Niw2IEBAIHN0YXRp
+YyBpbnQgaTkxNV9kcml2ZXJfbW9kZXNldF9wcm9iZShzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAq
+aTkxNSkKPiAgCWlmIChyZXQpCj4gIAkJZ290byBjbGVhbnVwX3ZnYV9jbGllbnQ7Cj4gIAo+IC0J
+LyogbXVzdCBoYXBwZW4gYmVmb3JlIGludGVsX3Bvd2VyX2RvbWFpbnNfaW5pdF9odygpIG9uIFZM
+Vi9DSFYgKi8KPiAtCWludGVsX3VwZGF0ZV9yYXdjbGsoaTkxNSk7Cj4gLQo+ICAJaW50ZWxfcG93
+ZXJfZG9tYWluc19pbml0X2h3KGk5MTUsIGZhbHNlKTsKPiAgCj4gIAlpbnRlbF9jc3JfdWNvZGVf
+aW5pdChpOTE1KTsKPiAtLSAKPiAyLjIwLjEKCi0tIApWaWxsZSBTeXJqw6Rsw6QKSW50ZWwKX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1h
+aWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMu
+ZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
