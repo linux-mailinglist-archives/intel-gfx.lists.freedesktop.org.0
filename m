@@ -1,29 +1,29 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (unknown [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B8F77ED2C5
-	for <lists+intel-gfx@lfdr.de>; Sun,  3 Nov 2019 10:51:58 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 74DA6EDB1D
+	for <lists+intel-gfx@lfdr.de>; Mon,  4 Nov 2019 10:02:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CC1CD6E04A;
-	Sun,  3 Nov 2019 09:51:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B63E96E1A2;
+	Mon,  4 Nov 2019 09:02:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 20AC36E04A
- for <intel-gfx@lists.freedesktop.org>; Sun,  3 Nov 2019 09:51:52 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5D9A76E1A5
+ for <intel-gfx@lists.freedesktop.org>; Mon,  4 Nov 2019 09:02:32 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19063525-1500050 
- for multiple; Sun, 03 Nov 2019 09:51:45 +0000
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19070796-1500050 
+ for multiple; Mon, 04 Nov 2019 09:01:59 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Sun,  3 Nov 2019 09:51:45 +0000
-Message-Id: <20191103095145.13243-1-chris@chris-wilson.co.uk>
+Date: Mon,  4 Nov 2019 09:01:57 +0000
+Message-Id: <20191104090158.2959-1-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.24.0.rc2
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/gt: Drop false assertion on
+Subject: [Intel-gfx] [PATCH 1/2] drm/i915/gt: Drop false assertion on
  user_forcewake
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
