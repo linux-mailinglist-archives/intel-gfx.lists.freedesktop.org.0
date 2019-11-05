@@ -1,22 +1,22 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DDC76F07A1
-	for <lists+intel-gfx@lfdr.de>; Tue,  5 Nov 2019 22:04:19 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id C7BF5F07F1
+	for <lists+intel-gfx@lfdr.de>; Tue,  5 Nov 2019 22:13:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9D8D56E143;
-	Tue,  5 Nov 2019 21:04:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F2AE26E144;
+	Tue,  5 Nov 2019 21:13:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3FC2A6E140;
- Tue,  5 Nov 2019 21:04:14 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 43E086E144;
+ Tue,  5 Nov 2019 21:13:53 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from localhost (unverified [78.156.65.138]) 
  by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 19094600-1500050 for multiple; Tue, 05 Nov 2019 21:04:00 +0000
+ 19094675-1500050 for multiple; Tue, 05 Nov 2019 21:13:39 +0000
 MIME-Version: 1.0
 To: Daniel Vetter <daniel.vetter@ffwll.ch>
 From: Chris Wilson <chris@chris-wilson.co.uk>
@@ -24,9 +24,9 @@ In-Reply-To: <CAKMK7uFW7PqFjcci4SdLGMoSK6gqMK-gPU0OHpoJFjVZJnYT=w@mail.gmail.com
 References: <20191105193829.11599-1-daniel.vetter@ffwll.ch>
  <157298628160.18566.1185169568557179711@skylake-alporthouse-com>
  <CAKMK7uFW7PqFjcci4SdLGMoSK6gqMK-gPU0OHpoJFjVZJnYT=w@mail.gmail.com>
-Message-ID: <157298783823.18566.1258256854276209816@skylake-alporthouse-com>
+Message-ID: <157298841686.18566.729698423669886628@skylake-alporthouse-com>
 User-Agent: alot/0.6
-Date: Tue, 05 Nov 2019 21:03:58 +0000
+Date: Tue, 05 Nov 2019 21:13:36 +0000
 Subject: Re: [Intel-gfx] [PATCH] drm/i915: Don't select BROKEN
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
@@ -81,9 +81,10 @@ biBhbnkgb2ZmaWNpYWwKPiB0cmVlLiBCZWNhdXNlIGlmIHlvdSBhbGxvdyBhdXRvYnVpbGRlcnMg
 dG8gZW5hYmxlIENPTkZJR19CUk9LRU4sIG5vCj4gbWF0dGVyIGhvdyB3ZWxsIGhpZGRlbiwgdGhl
 eSdsbCBhbGwgYnJlYWsuIFlvdSBjYW4gYWxzbyBqdXN0IHJldmVydCBteQo+IHBhdGNoIHRoYXQg
 RGF2ZSBwdXNoZWQgdG8gZHJtLW5leHQgKHRvIGdldCB1cyBiYWNrIGludG8gdGhlIGxpbnV4LW5l
-eHQKPiBjbHViKS4KCkJ1dCB3ZSd2ZSBleHBsaWNpdGx5IHRyaWVkIHRvIHN0b3AgYXV0b2J1aWxk
-ZXJzIGZyb20gc2VsZWN0aW5nIGl0IGluIHRoZQpmaXJzdCBwbGFjZS4gVGhhdCBJIHRoaW5rIGlz
-IGEgcHJvYmxlbSBhbGwgb2YgaXRzIG93bi4KLUNocmlzCl9fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4
-QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWls
-bWFuL2xpc3RpbmZvL2ludGVsLWdmeA==
+eHQKPiBjbHViKS4KCkZ3aXcsIEkgdGhpbmsgdGhlIHJldmVydCBpbiBjb3JlLWZvci1DSSBpcyBy
+ZWFzb25hYmxlLCBhcyB0aGF0IGdpdmVzCmRldnMgdGhlIGFiaWxpdHkgdG8gdG9nZ2xlIG9uIHRo
+ZSBoaWRkZW4gbWVudXMsIHdoaWxlIGF0IHRoZSBzYW1lIHRpbWUKcmVxdWlyaW5nIHRoZW0gdG8g
+aGF2ZSB0aGUgbWluaW1hbCBkZWJ1ZyBzZXR1cC4KLUNocmlzCl9fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwt
+Z2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9t
+YWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeA==
