@@ -1,40 +1,62 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8526AEF85C
-	for <lists+intel-gfx@lfdr.de>; Tue,  5 Nov 2019 10:14:28 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id CD6C2EF86E
+	for <lists+intel-gfx@lfdr.de>; Tue,  5 Nov 2019 10:18:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CD67F6E93D;
-	Tue,  5 Nov 2019 09:14:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 256F96E941;
+	Tue,  5 Nov 2019 09:18:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 710306E93D;
- Tue,  5 Nov 2019 09:14:25 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 05 Nov 2019 01:14:24 -0800
-X-IronPort-AV: E=Sophos;i="5.68,270,1569308400"; d="scan'208";a="195756290"
-Received: from jlahtine-desk.ger.corp.intel.com (HELO localhost)
- ([10.252.31.180])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 05 Nov 2019 01:14:23 -0800
+Received: from mail-wm1-x342.google.com (mail-wm1-x342.google.com
+ [IPv6:2a00:1450:4864:20::342])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B3CA76E941;
+ Tue,  5 Nov 2019 09:18:05 +0000 (UTC)
+Received: by mail-wm1-x342.google.com with SMTP id t26so15145957wmi.4;
+ Tue, 05 Nov 2019 01:18:05 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to:user-agent;
+ bh=NgeFOXmcMb1cRqZHuYDm9yp+yHng7Ih1kOOmU8LVwUI=;
+ b=TSjfglPUv7s3Foq2/KaC8cMmS717LBTuinqhL/SZm1O/ogsHg2ZeTIxFs1sjtmvjea
+ zWzwV1j5ZuZdDvPKvT17rf/l1xFO0t8I4cicxvuEtu0ujawfz0bqQMRNBq8ohBJiF2Tj
+ a3b3GqfhbBJoRB1F8OOvYzNyevIt5Na1zVX5VpLJcVmYfppDLbe6JZlofSV3fuDr68CE
+ WzrHwJVIu+P32R2HutELz7GuV0lwdqeJEbk0vGk1yBlVadW65atZvBvQWohLyvZ0vqmj
+ SnIdaAW//oCDsu30atvxwNJimh4jqm+xCFeNUs5O0F7iVMt5zSl3DYREziSD8/NCnaS8
+ sDkg==
+X-Gm-Message-State: APjAAAUEvak5yx0/9EYoGZxAr1hppi0PgSlSe4QGSQTYbglkFrybMRek
+ mz0CAz2vD2qyWYTKB3Lunej8d4yJ
+X-Google-Smtp-Source: APXvYqzDV6OjAzO41sAUrCEOwqP0HscHSsMrG3TNcu1EaZwsCE77t9sphuacyEgJA4nptBx4142geA==
+X-Received: by 2002:a05:600c:295:: with SMTP id
+ 21mr3051453wmk.43.1572945484193; 
+ Tue, 05 Nov 2019 01:18:04 -0800 (PST)
+Received: from localhost (p2E5BE2CE.dip0.t-ipconnect.de. [46.91.226.206])
+ by smtp.gmail.com with ESMTPSA id m3sm21060127wrb.67.2019.11.05.01.18.02
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 05 Nov 2019 01:18:02 -0800 (PST)
+Date: Tue, 5 Nov 2019 10:18:01 +0100
+From: Thierry Reding <thierry.reding@gmail.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Message-ID: <20191105091801.GA1607358@ulmo>
+References: <20191028150047.22048-1-jani.nikula@intel.com>
+ <20191028150047.22048-3-jani.nikula@intel.com>
 MIME-Version: 1.0
-To: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>,
- igt-dev@lists.freedesktop.org
-From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-In-Reply-To: <20191104171330.24821-2-janusz.krzysztofik@linux.intel.com>
-References: <20191104171330.24821-1-janusz.krzysztofik@linux.intel.com>
- <20191104171330.24821-2-janusz.krzysztofik@linux.intel.com>
-Message-ID: <157294526047.9970.6373970441637977552@jlahtine-desk.ger.corp.intel.com>
-User-Agent: alot/0.7
-Date: Tue, 05 Nov 2019 11:14:20 +0200
-Subject: Re: [Intel-gfx] [igt-dev] [PATCH i-g-t v5 1/4] lib/i915: Add
- minimum GTT alignment helper
+In-Reply-To: <20191028150047.22048-3-jani.nikula@intel.com>
+User-Agent: Mutt/1.12.2 (2019-09-21)
+X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20161025;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to:user-agent;
+ bh=NgeFOXmcMb1cRqZHuYDm9yp+yHng7Ih1kOOmU8LVwUI=;
+ b=jO2cggmNR+ZhoqHaOKYu5rbh+1Z0QG/p7U2HQbLdgn34VG1Nntp3k75/9QvEJMiAJW
+ sUK46GnQ82qifTX97hacJrbZUWsUD4Q8b5bFXfLKefB5xJOUnP+wDeYVQKz3XDth6A0O
+ EF0+7mm34SuAkawvapX685MBkf8ZDdE9vC6fzPmunL02JL8HW9P1zs68h29evEoJJgm8
+ AXYn+DZnr9VEEWPDu8fIiRY9q6ZVk38lxAlKJOhOXIux0NbdHAXmtddHG///rzTRCCcn
+ oOFvGT5eBgdppskfr07l3zsIvhRHrZntXPoUw/dt9HK82C4SPRfgUtCgdShp3Er0TVW+
+ 7M+A==
+Subject: Re: [Intel-gfx] [PATCH v2 3/5] drm/dsi: add missing DSI DCS commands
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -47,90 +69,125 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============1559622229=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-UXVvdGluZyBKYW51c3ogS3J6eXN6dG9maWsgKDIwMTktMTEtMDQgMTk6MTM6MjcpCj4gU29tZSB0
-ZXN0cyBhc3N1bWUgNGtCIG9mZnNldCBhbGlnbm1lbnQgd2hpbGUgdXNpbmcgc29mdHBpbi4gIFRo
-YXQKPiBhc3N1bXB0aW9uIG1heSBiZSB3cm9uZyBvbiBmdXR1cmUgR0VNIGJhY2tlbmRzIHdpdGgg
-cG9zc2libHkgbGFyZ2VyCj4gbWluaW11bSBwYWdlIHNpemVzLiAgQXMgYSByZXN1bHQsIHRob3Nl
-IHRlc3RzIG1heSBlaXRoZXIgZmFpbCBvbgo+IHNvZnRwaW4gYXQgb2Zmc2V0cyB3aGljaCBhcmUg
-aW5jb3JyZWN0bHkgYWxpZ25lZCwgbWF5IHNpbGVudGx5IHNraXAKPiBzdWNoIGluY29ycmVjdGx5
-IGFsaWduZWQgYWRkcmVzc2VzIGFzc3VtaW5nIHRoZW0gb2NjdXBpZWQgYnkgb3RoZXIKPiB1c2Vy
-cywgb3IgbWF5IGFsd2F5cyBzdWNjZWVkIHdoZW4gZXhhbWluaW5nIGludmFsaWQgdXNlIHBhdHRl
-cm5zLgo+IAo+IFByb3ZpZGUgYSBoZWxwZXIgZnVuY3Rpb24gdGhhdCBkZXRlY3RzIG1pbmltdW0g
-R1RUIGFsaWdubWVudC4gIFRlc3RzCj4gbWF5IHVzZSBpdCB0byBjYWxjdWxhdGUgc29mdHBpbiBv
-ZmZzZXRzIHZhbGlkIG9uIGFjdHVhbGx5IHVzZWQgYmFja2luZwo+IHN0b3JlLgo+IAo+IEFsc28g
-ZXhwb3NlIGEgbmV3IG9iamVjdCB2YWxpZGF0aW9uIGhlbHBlciBqdXN0IGNyZWF0ZWQsIGl0IG1h
-eSBiZQo+IHVzZWZ1bCBmb3IgY2hlY2tpbmcgaWYgYSBzaGFyZWQgR1RUIGFkZHJlc3MgaXMgbm90
-IHJlc2VydmVkLCBmb3IKPiBleGFtcGxlLgo+IAo+IHYyOiBSZW5hbWUgdGhlIGhlbHBlciwgdXNl
-ICdtaW5pbXVtIEdUVCBhbGlnbm1lbnQnIHRlcm0gYWNyb3NzIHRoZQo+ICAgICBjaGFuZ2UgKENo
-cmlzKSwKPiAgIC0gdXNlIGVycm9yIG51bWJlcnMgdG8gZGlzdGluZ3Vpc2ggYmV0d2VlbiBpbnZh
-bGlkIG9mZnNldHMgYW5kCj4gICAgIGFkZHJlc3NlcyBvY2N1cGllZCBieSBvdGhlciB1c2VycywK
-PiAgIC0gc2ltcGxpZnkgdGhlIGNvZGUgKENocmlzKS4KPiB2MzogUHV0IHRoZSBjb2RlIHVuZGVy
-IGxpYi9pOTE1Lywgbm90IGluIGxpYi9pb2N0bF93cmFwcGVycy5jIChDaHJpcyksCj4gICAtIHZh
-bGlkYXRlIG9iamVjdHMgd2l0aCBhbiBpbnZhbGlkIHJlbG9jIGFwcGxpZWQgc28gZXhlY2J1ZiBy
-ZXF1ZXN0cwo+ICAgICBjYWxsZWQgb25seSBmb3IgdmFsaWRhdGlvbiBwdXJwb3NlcyBhcmUgYWN0
-dWFsbHkgbm90IGVtaXR0ZWQgdG8gR1BVCj4gICAgIChDaHJpcyksCj4gICAtIG1vdmUgb2JqZWN0
-IHZhbGlkYXRpb24gY29kZSB0byBhIHNlcGFyYXRlIGhlbHBlci4KPiAKPiBTaWduZWQtb2ZmLWJ5
-OiBKYW51c3ogS3J6eXN6dG9maWsgPGphbnVzei5rcnp5c3p0b2Zpa0BsaW51eC5pbnRlbC5jb20+
-Cj4gQ2M6IENocmlzIFdpbHNvbiA8Y2hyaXNAY2hyaXMtd2lsc29uLmNvLnVrPgo+IENjOiBEYW5p
-ZWxlIENlcmFvbG8gU3B1cmlvIDxkYW5pZWxlLmNlcmFvbG9zcHVyaW9AaW50ZWwuY29tPgo+IENj
-OiBTdHVhcnQgU3VtbWVycyA8c3R1YXJ0LnN1bW1lcnNAaW50ZWwuY29tPgoKPFNOSVA+Cgo+ICtp
-bnQgZ2VtX2d0dF92YWxpZGF0ZV9vYmplY3QoaW50IGZkLCBzdHJ1Y3QgZHJtX2k5MTVfZ2VtX2V4
-ZWNfb2JqZWN0MiAqb2JqKQo+ICt7Cj4gKyAgICAgICBzdHJ1Y3QgZHJtX2k5MTVfZ2VtX3JlbG9j
-YXRpb25fZW50cnkgcmVsb2M7Cj4gKyAgICAgICBzdHJ1Y3QgZHJtX2k5MTVfZ2VtX2V4ZWNidWZm
-ZXIyIGV4ZWNidWY7Cj4gKyAgICAgICBjb25zdCB1aW50MzJfdCBiYmUgPSBNSV9CQVRDSF9CVUZG
-RVJfRU5EOwo+ICsgICAgICAgdWludHB0cl90IG9sZF9yZWxvYzsKPiArICAgICAgIGludCBvbGRf
-Y291bnQsIGVycjsKPiArCj4gKyAgICAgICBtZW1zZXQoJnJlbG9jLCAwLCBzaXplb2YocmVsb2Mp
-KTsKPiArICAgICAgIG1lbXNldCgmZXhlY2J1ZiwgMCwgc2l6ZW9mKGV4ZWNidWYpKTsKPiArCj4g
-KyAgICAgICAvKiB1c2UgaW52YWxpZCByZWxvYyB0byBzYXZlIHJlcXVlc3QgZW1pc3Npb24gKi8K
-PiArICAgICAgIG9sZF9yZWxvYyA9IG9iai0+cmVsb2NzX3B0cjsKPiArICAgICAgIG9sZF9jb3Vu
-dCA9IG9iai0+cmVsb2NhdGlvbl9jb3VudDsKPiArICAgICAgIG9iai0+cmVsb2NzX3B0ciA9IHRv
-X3VzZXJfcG9pbnRlcigmcmVsb2MpOwo+ICsgICAgICAgb2JqLT5yZWxvY2F0aW9uX2NvdW50ID0g
-MTsKPiArICAgICAgIGdlbV93cml0ZShmZCwgb2JqLT5oYW5kbGUsIDAsICZiYmUsIHNpemVvZihi
-YmUpKTsKCkRvbid0IHVzZSByZWxvY2F0aW9ucyBmb3IgYW55dGhpbmcgbmV3LiBBbHNvLCBkb24n
-dCBkZXBlbmQgb24gc3VjaApxdWlyayBiZWhhdmlvciBhcyB0byBrZXJuZWwgdmFsaWRhdGluZyBw
-YXJhbWV0ZXJzIGluIGNlcnRhaW4gb3JkZXIuCgo+ICtpbnQgZ2VtX2d0dF9taW5fYWxpZ25tZW50
-X29yZGVyKGludCBmZCkKPiArewo+ICsgICAgICAgc3RydWN0IGRybV9pOTE1X2dlbV9leGVjX29i
-amVjdDIgb2JqOwo+ICsgICAgICAgaW50IG9yZGVyOwo+ICsKPiArICAgICAgIC8qIG5vIHNvZnRw
-aW4gPT4gNGtCIHBhZ2Ugc2l6ZSAqLwo+ICsgICAgICAgaWYgKCFnZW1faGFzX3NvZnRwaW4oZmQp
-KQo+ICsgICAgICAgICAgICAgICByZXR1cm4gMTI7Cj4gKwo+ICsgICAgICAgbWVtc2V0KCZvYmos
-IDAsIHNpemVvZihvYmopKTsKPiArCj4gKyAgICAgICBvYmouaGFuZGxlID0gZ2VtX2NyZWF0ZShm
-ZCwgNDA5Nik7Cj4gKyAgICAgICBvYmouZmxhZ3MgPSBFWEVDX09CSkVDVF9QSU5ORUQgfCBFWEVD
-X09CSkVDVF9TVVBQT1JUU180OEJfQUREUkVTUzsKCkRlZmF1bHQgd2lsbCBiZSBzeXN0ZW0gbWVt
-b3J5LCBzbyBpdCdzIHVuY2xlYXIgd2hhdCB0aGlzIHdvdWxkIGVzdGFibGlzaC4KCkp1c3QgdXNl
-IFBDSSBJRCB0byBkZXRlY3QgdGhpcy4gSXQncyBub3QgZ29pbmcgdG8gYmUgZHluYW1pYyB3aXRo
-aW4gYQpkZXZpY2UuIFRoaXMganVzdCBhZGRzIGV4dHJhIHN0YXJ0dXAgY29zdCBmb3IgZGV0ZWN0
-aW5nIHNvbWV0aGluZyB0aGF0CmlzIG5vdCBkeW5hbWljLgoKPiArLyoKPiArICogQ29weXJpZ2h0
-IMKpIDIwMTkgSW50ZWwgQ29ycG9yYXRpb24KPiArICoKPiArICogUGVybWlzc2lvbiBpcyBoZXJl
-YnkgZ3JhbnRlZCwgZnJlZSBvZiBjaGFyZ2UsIHRvIGFueSBwZXJzb24gb2J0YWluaW5nIGEKPiAr
-ICogY29weSBvZiB0aGlzIHNvZnR3YXJlIGFuZCBhc3NvY2lhdGVkIGRvY3VtZW50YXRpb24gZmls
-ZXMgKHRoZSAiU29mdHdhcmUiKSwKPiArICogdG8gZGVhbCBpbiB0aGUgU29mdHdhcmUgd2l0aG91
-dCByZXN0cmljdGlvbiwgaW5jbHVkaW5nIHdpdGhvdXQgbGltaXRhdGlvbgo+ICsgKiB0aGUgcmln
-aHRzIHRvIHVzZSwgY29weSwgbW9kaWZ5LCBtZXJnZSwgcHVibGlzaCwgZGlzdHJpYnV0ZSwgc3Vi
-bGljZW5zZSwKPiArICogYW5kL29yIHNlbGwgY29waWVzIG9mIHRoZSBTb2Z0d2FyZSwgYW5kIHRv
-IHBlcm1pdCBwZXJzb25zIHRvIHdob20gdGhlCj4gKyAqIFNvZnR3YXJlIGlzIGZ1cm5pc2hlZCB0
-byBkbyBzbywgc3ViamVjdCB0byB0aGUgZm9sbG93aW5nIGNvbmRpdGlvbnM6Cj4gKyAqCj4gKyAq
-IFRoZSBhYm92ZSBjb3B5cmlnaHQgbm90aWNlIGFuZCB0aGlzIHBlcm1pc3Npb24gbm90aWNlIChp
-bmNsdWRpbmcgdGhlIG5leHQKPiArICogcGFyYWdyYXBoKSBzaGFsbCBiZSBpbmNsdWRlZCBpbiBh
-bGwgY29waWVzIG9yIHN1YnN0YW50aWFsIHBvcnRpb25zIG9mIHRoZQo+ICsgKiBTb2Z0d2FyZS4K
-PiArICoKPiArICogVEhFIFNPRlRXQVJFIElTIFBST1ZJREVEICJBUyBJUyIsIFdJVEhPVVQgV0FS
-UkFOVFkgT0YgQU5ZIEtJTkQsIEVYUFJFU1MgT1IKPiArICogSU1QTElFRCwgSU5DTFVESU5HIEJV
-VCBOT1QgTElNSVRFRCBUTyBUSEUgV0FSUkFOVElFUyBPRiBNRVJDSEFOVEFCSUxJVFksCj4gKyAq
-IEZJVE5FU1MgRk9SIEEgUEFSVElDVUxBUiBQVVJQT1NFIEFORCBOT05JTkZSSU5HRU1FTlQuICBJ
-TiBOTyBFVkVOVCBTSEFMTAo+ICsgKiBUSEUgQVVUSE9SUyBPUiBDT1BZUklHSFQgSE9MREVSUyBC
-RSBMSUFCTEUgRk9SIEFOWSBDTEFJTSwgREFNQUdFUyBPUiBPVEhFUgo+ICsgKiBMSUFCSUxJVFks
-IFdIRVRIRVIgSU4gQU4gQUNUSU9OIE9GIENPTlRSQUNULCBUT1JUIE9SIE9USEVSV0lTRSwgQVJJ
-U0lORwo+ICsgKiBGUk9NLCBPVVQgT0YgT1IgSU4gQ09OTkVDVElPTiBXSVRIIFRIRSBTT0ZUV0FS
-RSBPUiBUSEUgVVNFIE9SIE9USEVSIERFQUxJTkdTCj4gKyAqIElOIFRIRSBTT0ZUV0FSRS4KPiAr
-ICoKPiArICogQXV0aG9yczoKPiArICogICAgRXJpYyBBbmhvbHQgPGVyaWNAYW5ob2x0Lm5ldD4K
-PiArICogICAgRGFuaWVsIFZldHRlciA8ZGFuaWVsLnZldHRlckBmZndsbC5jaD4KPiArICoKPiAr
-ICovCgpQbGVhc2UgZG9uJ3QgYmxpbmRseSBjb3B5ICJBdXRob3JzOiIgYXJvdW5kIGluIHRoZSBj
-b2RlLgoKUmVnYXJkcywgSm9vbmFzCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVk
-ZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZv
-L2ludGVsLWdmeA==
+
+--===============1559622229==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="KsGdsel6WgEHnImy"
+Content-Disposition: inline
+
+
+--KsGdsel6WgEHnImy
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Mon, Oct 28, 2019 at 05:00:45PM +0200, Jani Nikula wrote:
+> Update from the DCS specification.
+>=20
+> Cc: Vandita Kulkarni <vandita.kulkarni@intel.com>
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> ---
+>  include/video/mipi_display.h | 10 ++++++++++
+>  1 file changed, 10 insertions(+)
+>=20
+> diff --git a/include/video/mipi_display.h b/include/video/mipi_display.h
+> index 6b6390dfa203..928f8c4b6658 100644
+> --- a/include/video/mipi_display.h
+> +++ b/include/video/mipi_display.h
+> @@ -79,7 +79,9 @@ enum {
+>  enum {
+>  	MIPI_DCS_NOP			=3D 0x00,
+>  	MIPI_DCS_SOFT_RESET		=3D 0x01,
+> +	MIPI_DCS_GET_COMPRESSION_MODE	=3D 0x03,
+>  	MIPI_DCS_GET_DISPLAY_ID		=3D 0x04,
+> +	MIPI_DCS_GET_ERROR_COUNT_ON_DSI	=3D 0x05,
+>  	MIPI_DCS_GET_RED_CHANNEL	=3D 0x06,
+>  	MIPI_DCS_GET_GREEN_CHANNEL	=3D 0x07,
+>  	MIPI_DCS_GET_BLUE_CHANNEL	=3D 0x08,
+> @@ -94,6 +96,8 @@ enum {
+>  	MIPI_DCS_EXIT_SLEEP_MODE	=3D 0x11,
+>  	MIPI_DCS_ENTER_PARTIAL_MODE	=3D 0x12,
+>  	MIPI_DCS_ENTER_NORMAL_MODE	=3D 0x13,
+> +	MIPI_DCS_GET_IMAGE_CHECKSUM_RGB	=3D 0x14,
+> +	MIPI_DCS_GET_IMAGE_CHECKSUM_CT	=3D 0x15,
+>  	MIPI_DCS_EXIT_INVERT_MODE	=3D 0x20,
+>  	MIPI_DCS_ENTER_INVERT_MODE	=3D 0x21,
+>  	MIPI_DCS_SET_GAMMA_CURVE	=3D 0x26,
+> @@ -105,6 +109,7 @@ enum {
+>  	MIPI_DCS_WRITE_LUT		=3D 0x2D,
+>  	MIPI_DCS_READ_MEMORY_START	=3D 0x2E,
+>  	MIPI_DCS_SET_PARTIAL_AREA	=3D 0x30,
+> +	MIPI_DCS_SET_PARTIAL_COLUMNS	=3D 0x31,
+>  	MIPI_DCS_SET_SCROLL_AREA	=3D 0x33,
+>  	MIPI_DCS_SET_TEAR_OFF		=3D 0x34,
+>  	MIPI_DCS_SET_TEAR_ON		=3D 0x35,
+> @@ -114,7 +119,10 @@ enum {
+>  	MIPI_DCS_ENTER_IDLE_MODE	=3D 0x39,
+>  	MIPI_DCS_SET_PIXEL_FORMAT	=3D 0x3A,
+>  	MIPI_DCS_WRITE_MEMORY_CONTINUE	=3D 0x3C,
+> +	MIPI_DCS_SET_3D_CONTROL		=3D 0x3D,
+>  	MIPI_DCS_READ_MEMORY_CONTINUE	=3D 0x3E,
+> +	MIPI_DCS_GET_3D_CONTROL		=3D 0x3F,
+> +	MIPI_DCS_SET_VSYNC_TIMING	=3D 0x40,
+>  	MIPI_DCS_SET_TEAR_SCANLINE	=3D 0x44,
+>  	MIPI_DCS_GET_SCANLINE		=3D 0x45,
+>  	MIPI_DCS_SET_DISPLAY_BRIGHTNESS =3D 0x51,		/* MIPI DCS 1.3 */
+> @@ -126,7 +134,9 @@ enum {
+>  	MIPI_DCS_SET_CABC_MIN_BRIGHTNESS =3D 0x5E,	/* MIPI DCS 1.3 */
+>  	MIPI_DCS_GET_CABC_MIN_BRIGHTNESS =3D 0x5F,	/* MIPI DCS 1.3 */
+>  	MIPI_DCS_READ_DDB_START		=3D 0xA1,
+> +	MIPI_DCS_READ_PPS_START		=3D 0xA2,
+>  	MIPI_DCS_READ_DDB_CONTINUE	=3D 0xA8,
+> +	MIPI_DCS_READ_PPS_CONTINUE	=3D 0xA9,
+>  };
+> =20
+>  /* MIPI DCS pixel formats */
+
+Okay, found a copy of DCS v1.4 and the above matches the specification,
+so:
+
+Reviewed-by: Thierry Reding <treding@nvidia.com>
+
+Does it perhaps make sense to add comments about the version number that
+these were introduced with?
+
+Thierry
+
+--KsGdsel6WgEHnImy
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAl3BPj8ACgkQ3SOs138+
+s6Gl5A//WP8vPygrsK6Psc7SQq6VaGta/c0tpKaBj7cqSXtcdRVzNvTMnkKFi55a
+maJkt4ZFnC2QMOwy6QEaOBcu+bor4cOGadU6u5YbuU2NUq+dwCVm2GaaEntPCSXR
+zuc+uaTwGWK53krKcKyAYe1vl8GllKUQ8U7JCMi4hHBVTQAbbrxuMQlCkW/m20ba
+iaX9g/9ieUbEsnU5tTTakMr0cqUTQg8oYgBCHyjUGXEqIHKwdp8bN5mXv7836Npr
+gd7F463d1Fsv9vafx6Vi2xanFeR56V7vKgMD2av5H8xNfWoMRP/6RBbuET86+kwX
+M1vmY/Ju7PHM/clxlX0veHftq2m3E3r48p7yb3Pmua+0Scpz+6IZUfeQKrBqdXFv
+ng0WOA+GdPkjy8w3ZZcru/lribjC6ofTMxIVjMj2Ximj7lhrTqUXoRaNlwd6sXVp
+Zl5My5gVDvim9rpfm/NbtXpaVel2J8asxoXqIhigJPcoRMK0z/PGwjv8bwXKBBYM
+XhWoSLljIan3feXWXARYveETBLeOs8lX12gUdKRv2z3vuWTuUJcMRjfIdZ3Rf670
+aABp3kHvyx0bzx4iMA2vmuRUITajQ7dI9pKjt2xIubczcBLAVsE1Alu1vbqYKgMo
+2ldG3Da5cihUQhmOhJw3A1Gh6NOjS8rCQDxRJWLRsCLD6PBIwAg=
+=zDRI
+-----END PGP SIGNATURE-----
+
+--KsGdsel6WgEHnImy--
+
+--===============1559622229==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
+IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
+
+--===============1559622229==--
