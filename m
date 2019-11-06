@@ -2,30 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DCEEBF13D9
-	for <lists+intel-gfx@lfdr.de>; Wed,  6 Nov 2019 11:26:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 96150F1429
+	for <lists+intel-gfx@lfdr.de>; Wed,  6 Nov 2019 11:43:03 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 090466ECBB;
-	Wed,  6 Nov 2019 10:26:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D5A476E1B5;
+	Wed,  6 Nov 2019 10:43:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 545036ECBB;
- Wed,  6 Nov 2019 10:26:53 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 276F26E1B5;
+ Wed,  6 Nov 2019 10:43:00 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from localhost (unverified [78.156.65.138]) 
  by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 19099629-1500050 for multiple; Wed, 06 Nov 2019 10:26:50 +0000
+ 19099862-1500050 for multiple; Wed, 06 Nov 2019 10:42:52 +0000
 MIME-Version: 1.0
 To: Daniel Vetter <daniel@ffwll.ch>
 From: Chris Wilson <chris@chris-wilson.co.uk>
-In-Reply-To: <20191106101950.GE23790@phenom.ffwll.local>
+In-Reply-To: <157303600842.24928.8883426579845207112@skylake-alporthouse-com>
 References: <20191106100716.18181-1-chris@chris-wilson.co.uk>
  <20191106101950.GE23790@phenom.ffwll.local>
-Message-ID: <157303600842.24928.8883426579845207112@skylake-alporthouse-com>
+ <157303600842.24928.8883426579845207112@skylake-alporthouse-com>
+Message-ID: <157303697006.24928.6564122275201085833@skylake-alporthouse-com>
 User-Agent: alot/0.6
-Date: Wed, 06 Nov 2019 10:26:48 +0000
+Date: Wed, 06 Nov 2019 10:42:50 +0000
 Subject: Re: [Intel-gfx] [PATCH 1/3] drm: Expose a method for creating
  anonymous struct file around drm_minor
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -46,23 +47,31 @@ Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-UXVvdGluZyBEYW5pZWwgVmV0dGVyICgyMDE5LTExLTA2IDEwOjE5OjUwKQo+IE9uIFdlZCwgTm92
-IDA2LCAyMDE5IGF0IDEwOjA3OjE0QU0gKzAwMDAsIENocmlzIFdpbHNvbiB3cm90ZToKPiA+IFNv
-bWV0aW1lcyB3ZSBuZWVkIHRvIGNyZWF0ZSBhIHN0cnVjdCBmaWxlIHRvIHdyYXAgYSBkcm1fZGV2
-aWNlLCBhcyBpdAo+ID4gdGhlIHVzZXIgd2VyZSB0byBoYXZlIG9wZW5lZCAvZGV2L2RyaS9jYXJk
-MCBidXQgdG8gZG8gc28gYW5vbnltb3VzbHkKPiA+IChpLmUuIGZvciBpbnRlcm5hbCB1c2UpLiBQ
-cm92aWRlIGEgdXRpbGl0eSBtZXRob2QgdG8gY3JlYXRlIGEgc3RydWN0Cj4gPiBmaWxlIHdpdGgg
-dGhlIGRybV9kZXZpY2UtPmRyaXZlci5mb3BzLCB0aGF0IHdyYXAgdGhlIGRybV9kZXZpY2UuCj4g
-PiAKPiA+IFNpZ25lZC1vZmYtYnk6IENocmlzIFdpbHNvbiA8Y2hyaXNAY2hyaXMtd2lsc29uLmNv
-LnVrPgo+IAo+IEZvciBwcm9wZXIgaW50ZXJuYWwgYWNjZXNzIHdlIGFscmVhZHkgaGF2ZSBkcm1f
-Y2xpZW50X29wZW4sIHNvIEkgdGhpbmsKPiB0aGlzIGhhcyBsaW1pdGVkIChidXQgZ29vZCB1c2Up
-IGluIHNlbGZ0ZXN0cyBvbmx5LiBTbwo+IEVYUE9SVF9TWU1CT0xfRk9SX1RFU1RTX09OTFkgcGx1
-cyBtYXliZSBhIGNsZWFyZXIgbmFtZSBmb3IgdGhlIGludGVuZGVkCj4gdXNlIGxpa2UgZHJtX2Zp
-bGVfbW9ja19vcGVuPwoKSSBmb3VuZCB0aGUgZXhhbXBsZSBpbiBkcm1fZ2VtX3ByaW1lX21tYXAo
-KSB0aGF0IHdhcyBkb2luZyB0aGUgc2FtZSB0cmljaywKYW5kIHRoZSB0cmljayBvZiBiZWluZyBh
-YmxlIHRvIGluc3RhbnRpYXRlIG5ldyBzdHJ1Y3QgZmlsZSBhbmQgaW5zdGFsbCBhCmZkIHdoZW5l
-dmVyIHNlZW1zIGxpa2UgaXQgd2lsbCBjb21lIGluIGhhbmR5Li4uIEp1c3QgbGFja2luZyB0aGUg
-dGhpcmQKdXNlciBhdCB0aGUgbW9tZW50IHRvIGNsYWltIGdlbmVyYWxpdHkuCi1DaHJpcwpfX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFp
-bGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZng=
+UXVvdGluZyBDaHJpcyBXaWxzb24gKDIwMTktMTEtMDYgMTA6MjY6NDgpCj4gUXVvdGluZyBEYW5p
+ZWwgVmV0dGVyICgyMDE5LTExLTA2IDEwOjE5OjUwKQo+ID4gT24gV2VkLCBOb3YgMDYsIDIwMTkg
+YXQgMTA6MDc6MTRBTSArMDAwMCwgQ2hyaXMgV2lsc29uIHdyb3RlOgo+ID4gPiBTb21ldGltZXMg
+d2UgbmVlZCB0byBjcmVhdGUgYSBzdHJ1Y3QgZmlsZSB0byB3cmFwIGEgZHJtX2RldmljZSwgYXMg
+aXQKPiA+ID4gdGhlIHVzZXIgd2VyZSB0byBoYXZlIG9wZW5lZCAvZGV2L2RyaS9jYXJkMCBidXQg
+dG8gZG8gc28gYW5vbnltb3VzbHkKPiA+ID4gKGkuZS4gZm9yIGludGVybmFsIHVzZSkuIFByb3Zp
+ZGUgYSB1dGlsaXR5IG1ldGhvZCB0byBjcmVhdGUgYSBzdHJ1Y3QKPiA+ID4gZmlsZSB3aXRoIHRo
+ZSBkcm1fZGV2aWNlLT5kcml2ZXIuZm9wcywgdGhhdCB3cmFwIHRoZSBkcm1fZGV2aWNlLgo+ID4g
+PiAKPiA+ID4gU2lnbmVkLW9mZi1ieTogQ2hyaXMgV2lsc29uIDxjaHJpc0BjaHJpcy13aWxzb24u
+Y28udWs+Cj4gPiAKPiA+IEZvciBwcm9wZXIgaW50ZXJuYWwgYWNjZXNzIHdlIGFscmVhZHkgaGF2
+ZSBkcm1fY2xpZW50X29wZW4sIHNvIEkgdGhpbmsKPiA+IHRoaXMgaGFzIGxpbWl0ZWQgKGJ1dCBn
+b29kIHVzZSkgaW4gc2VsZnRlc3RzIG9ubHkuIFNvCj4gPiBFWFBPUlRfU1lNQk9MX0ZPUl9URVNU
+U19PTkxZIHBsdXMgbWF5YmUgYSBjbGVhcmVyIG5hbWUgZm9yIHRoZSBpbnRlbmRlZAo+ID4gdXNl
+IGxpa2UgZHJtX2ZpbGVfbW9ja19vcGVuPwo+IAo+IEkgZm91bmQgdGhlIGV4YW1wbGUgaW4gZHJt
+X2dlbV9wcmltZV9tbWFwKCkgdGhhdCB3YXMgZG9pbmcgdGhlIHNhbWUgdHJpY2ssCj4gYW5kIHRo
+ZSB0cmljayBvZiBiZWluZyBhYmxlIHRvIGluc3RhbnRpYXRlIG5ldyBzdHJ1Y3QgZmlsZSBhbmQg
+aW5zdGFsbCBhCj4gZmQgd2hlbmV2ZXIgc2VlbXMgbGlrZSBpdCB3aWxsIGNvbWUgaW4gaGFuZHku
+Li4gSnVzdCBsYWNraW5nIHRoZSB0aGlyZAo+IHVzZXIgYXQgdGhlIG1vbWVudCB0byBjbGFpbSBn
+ZW5lcmFsaXR5LgoKVGhlIGNsb3Nlc3QgZXhhbXBsZSBJIGZvdW5kIGluIHRoZSBzcGlyaXQgb2Yg
+Y3JlYXRpbmcgYSBuZXcgZHJtX2RldmljZQpzdHJ1Y3QgZmlsZSBhbmQgaW5zdGFsbGluZyBpdCBp
+cyBkcm1fbW9kZV9jcmVhdGVfbGVhc2VfaW9jdGwoKSB0aGF0IHVzZXMKZmlsZV9jbG9uZV9vcGVu
+KCkgZm9yIHRoaXMgcHVycG9zZS4gVGhlIGFyZ3VtZW50IHRoZXJlIHdvdWxkIGJlIHdoZXRoZXIK
+Y2xvbmluZyB0aGUgKGZpbGUtPmZfcGF0aCwgZmlsZS0+Zl9mbGFncywgZmlsZS0+Zl9jcmVkKSBp
+cyBhcHByb3ByaWF0ZQp2ZXJzdXMgYW4gYW5vbnltb3VzIGlub2RlLiBJIHRoaW5rIGNsb25pbmcg
+dGhlIGNyZWRlbnRpYWxzIHNlZW1zIGNvcnJlY3QKZm9yIGxlYXNpbmcuCi1DaHJpcwpfX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGlu
+ZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVl
+ZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZng=
