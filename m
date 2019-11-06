@@ -2,37 +2,34 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A282F115B
-	for <lists+intel-gfx@lfdr.de>; Wed,  6 Nov 2019 09:44:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 119CDF1177
+	for <lists+intel-gfx@lfdr.de>; Wed,  6 Nov 2019 09:53:06 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3F5126EC58;
-	Wed,  6 Nov 2019 08:44:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6E1C06E198;
+	Wed,  6 Nov 2019 08:53:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5CE2A6E1C0;
- Wed,  6 Nov 2019 08:44:09 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-X-Amp-File-Uploaded: False
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 06 Nov 2019 00:44:08 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.68,274,1569308400"; 
- d="asc'?scan'208";a="205770424"
-Received: from zhen-hp.sh.intel.com (HELO zhen-hp) ([10.239.13.116])
- by orsmga006.jf.intel.com with ESMTP; 06 Nov 2019 00:44:06 -0800
-Date: Wed, 6 Nov 2019 16:43:49 +0800
-From: Zhenyu Wang <zhenyuw@linux.intel.com>
-To: Pan Bian <bianpan2016@163.com>
-Message-ID: <20191106084349.GB4196@zhen-hp.sh.intel.com>
-References: <1573025467-18278-1-git-send-email-bianpan2016@163.com>
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DEEAB6E198
+ for <intel-gfx@lists.freedesktop.org>; Wed,  6 Nov 2019 08:53:02 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 19098267-1500050 for multiple; Wed, 06 Nov 2019 08:53:00 +0000
 MIME-Version: 1.0
-In-Reply-To: <1573025467-18278-1-git-send-email-bianpan2016@163.com>
-User-Agent: Mutt/1.10.0 (2018-05-17)
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/gvt: fix dropping obj reference
- twice
+To: Niranjan Vishwanathapura <niranjana.vishwanathapura@intel.com>
+From: Chris Wilson <chris@chris-wilson.co.uk>
+In-Reply-To: <20191106021641.GF19940@nvishwa1-DESK.sc.intel.com>
+References: <20191106000205.22480-1-niranjana.vishwanathapura@intel.com>
+ <20191106000205.22480-4-niranjana.vishwanathapura@intel.com>
+ <157300060718.21573.2346937645489800091@skylake-alporthouse-com>
+ <20191106021641.GF19940@nvishwa1-DESK.sc.intel.com>
+Message-ID: <157303037798.18566.12503418453281213801@skylake-alporthouse-com>
+User-Agent: alot/0.6
+Date: Wed, 06 Nov 2019 08:52:58 +0000
+Subject: Re: [Intel-gfx] [PATCH 3/3] drm/i915: Use rcu_dereference for rcu
+ protected pointer
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -45,92 +42,45 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: Zhenyu Wang <zhenyuw@linux.intel.com>
-Cc: David Airlie <airlied@linux.ie>, intel-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- intel-gvt-dev@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============1450891671=="
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
---===============1450891671==
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="kXdP64Ggrk/fb43R"
-Content-Disposition: inline
-
-
---kXdP64Ggrk/fb43R
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On 2019.11.06 15:31:07 +0800, Pan Bian wrote:
-> The reference count of obj will be decremented twice if error occurs
-> in dma_buf_fd(). Additionally, attempting to read the reference count of
-> obj after dropping reference may lead to a use after free bug. Here, we
-> drop obj's reference until it is not used.
->=20
-> Signed-off-by: Pan Bian <bianpan2016@163.com>
-> ---
->  drivers/gpu/drm/i915/gvt/dmabuf.c | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/i915/gvt/dmabuf.c b/drivers/gpu/drm/i915/gvt=
-/dmabuf.c
-> index 13044c027f27..4bfaefdf548d 100644
-> --- a/drivers/gpu/drm/i915/gvt/dmabuf.c
-> +++ b/drivers/gpu/drm/i915/gvt/dmabuf.c
-> @@ -498,8 +498,6 @@ int intel_vgpu_get_dmabuf(struct intel_vgpu *vgpu, un=
-signed int dmabuf_id)
->  		goto out_free_gem;
->  	}
-> =20
-> -	i915_gem_object_put(obj);
-> -
->  	ret =3D dma_buf_fd(dmabuf, DRM_CLOEXEC | DRM_RDWR);
->  	if (ret < 0) {
->  		gvt_vgpu_err("create dma-buf fd failed ret:%d\n", ret);
-> @@ -524,6 +522,8 @@ int intel_vgpu_get_dmabuf(struct intel_vgpu *vgpu, un=
-signed int dmabuf_id)
->  		    file_count(dmabuf->file),
->  		    kref_read(&obj->base.refcount));
-> =20
-> +	i915_gem_object_put(obj);
-> +
->  	return dmabuf_fd;
-> =20
->  out_free_dmabuf:
-
-Looks fine to me. Thanks!
-
-Reviewed-by: Zhenyu Wang <zhenyuw@linux.intel.com>
-
---=20
-Open Source Technology Center, Intel ltd.
-
-$gpg --keyserver wwwkeys.pgp.net --recv-keys 4D781827
-
---kXdP64Ggrk/fb43R
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iF0EARECAB0WIQTXuabgHDW6LPt9CICxBBozTXgYJwUCXcKHxQAKCRCxBBozTXgY
-J4mOAJ9LQBbGYBz26qSqTKOjlyHG7O92MQCgh6qkF9/0GTRd05GChiCic5//yLQ=
-=6K7k
------END PGP SIGNATURE-----
-
---kXdP64Ggrk/fb43R--
-
---===============1450891671==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
-IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
-
---===============1450891671==--
+UXVvdGluZyBOaXJhbmphbiBWaXNod2FuYXRoYXB1cmEgKDIwMTktMTEtMDYgMDI6MTY6NDIpCj4g
+T24gV2VkLCBOb3YgMDYsIDIwMTkgYXQgMTI6MzY6NDdBTSArMDAwMCwgQ2hyaXMgV2lsc29uIHdy
+b3RlOgo+ID5RdW90aW5nIE5pcmFuamFuYSBWaXNod2FuYXRoYXB1cmEgKDIwMTktMTEtMDYgMDA6
+MDI6MDUpCj4gPj4gJ2N0eFwtPnZtJyBpcyByY3UgcHJvdGVjdGVkLCBzbyB1c2UgcmN1X2RlcmVm
+ZXJlbmNlIGluc2lkZQo+ID4+IHJlYWQgc2lkZSBjcml0aWNhbCBzZWN0aW9uLiBJdCBmaXhlcyBh
+IHNwYXJzZSB3YXJuaW5nLgo+ID4+Cj4gPj4gQ2M6IENocmlzIFAgV2lsc29uIDxjaHJpcy5wLndp
+bHNvbkBpbnRlbC5jb20+Cj4gPj4gU2lnbmVkLW9mZi1ieTogTmlyYW5qYW5hIFZpc2h3YW5hdGhh
+cHVyYSA8bmlyYW5qYW5hLnZpc2h3YW5hdGhhcHVyYUBpbnRlbC5jb20+Cj4gPj4gLS0tCj4gPj4g
+IGRyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9jb250ZXh0LmMgfCA5ICsrKysrLS0t
+LQo+ID4+ICAxIGZpbGUgY2hhbmdlZCwgNSBpbnNlcnRpb25zKCspLCA0IGRlbGV0aW9ucygtKQo+
+ID4+Cj4gPj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9j
+b250ZXh0LmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1fY29udGV4dC5jCj4g
+Pj4gaW5kZXggZGU2ZTU1YWY4MmNmLi5kM2E2MjJmNjBmZDkgMTAwNjQ0Cj4gPj4gLS0tIGEvZHJp
+dmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX2NvbnRleHQuYwo+ID4+ICsrKyBiL2RyaXZl
+cnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9jb250ZXh0LmMKPiA+PiBAQCAtMTAwMiwxMiAr
+MTAwMiwxMyBAQCBzdGF0aWMgaW50IGdldF9wcGd0dChzdHJ1Y3QgZHJtX2k5MTVfZmlsZV9wcml2
+YXRlICpmaWxlX3ByaXYsCj4gPj4gICAgICAgICBzdHJ1Y3QgaTkxNV9hZGRyZXNzX3NwYWNlICp2
+bTsKPiA+PiAgICAgICAgIGludCByZXQ7Cj4gPj4KPiA+PiAtICAgICAgIGlmICghcmN1X2FjY2Vz
+c19wb2ludGVyKGN0eC0+dm0pKQo+ID4+IC0gICAgICAgICAgICAgICByZXR1cm4gLUVOT0RFVjsK
+PiA+Cj4gPlRoaXMgaXMgY29ycmVjdGx5IHNlcmlhbGlzZWQgYnkgdGhlIGNhbGxlci4KPiAKPiBP
+aywgaXMgdGhpcyB3b3J0aCBmaXhpbmcgdGhlIHNwYXJzZSB3YXJuaW5nPwoKICBDSEVDSyAgIGRy
+aXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9jb250ZXh0LmMKZHJpdmVycy9ncHUvZHJt
+L2k5MTUvZ2VtL2k5MTVfZ2VtX2NvbnRleHQuYzoyMDg3OjE3OiBlcnJvcjogYmFkIGludGVnZXIg
+Y29uc3RhbnQgZXhwcmVzc2lvbgpkcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1fY29u
+dGV4dC5jOjIwODg6MTc6IGVycm9yOiBiYWQgaW50ZWdlciBjb25zdGFudCBleHByZXNzaW9uCmRy
+aXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9jb250ZXh0LmM6MjA4OToxNzogZXJyb3I6
+IGJhZCBpbnRlZ2VyIGNvbnN0YW50IGV4cHJlc3Npb24KZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2Vt
+L2k5MTVfZ2VtX2NvbnRleHQuYzoyMDkwOjE3OiBlcnJvcjogYmFkIGludGVnZXIgY29uc3RhbnQg
+ZXhwcmVzc2lvbgpkcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1fY29udGV4dC5jOjIw
+OTE6MTc6IGVycm9yOiBiYWQgaW50ZWdlciBjb25zdGFudCBleHByZXNzaW9uCmRyaXZlcnMvZ3B1
+L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9jb250ZXh0LmM6MjA5MjoxNzogZXJyb3I6IGJhZCBpbnRl
+Z2VyIGNvbnN0YW50IGV4cHJlc3Npb24KCk9kZC4KClN1cmUsIGZvciBjb3JyZWN0bmVzcyBzZWUg
+Y2xvbmVfdm0oKS4KLUNocmlzCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNr
+dG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2lu
+dGVsLWdmeA==
