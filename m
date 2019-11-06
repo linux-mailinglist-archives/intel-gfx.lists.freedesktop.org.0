@@ -1,35 +1,38 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 177D3F1150
-	for <lists+intel-gfx@lfdr.de>; Wed,  6 Nov 2019 09:40:40 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A282F115B
+	for <lists+intel-gfx@lfdr.de>; Wed,  6 Nov 2019 09:44:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3FBD16EC53;
-	Wed,  6 Nov 2019 08:40:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3F5126EC58;
+	Wed,  6 Nov 2019 08:44:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 597506EC53
- for <intel-gfx@lists.freedesktop.org>; Wed,  6 Nov 2019 08:40:36 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 19098144-1500050 for multiple; Wed, 06 Nov 2019 08:40:27 +0000
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5CE2A6E1C0;
+ Wed,  6 Nov 2019 08:44:09 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 06 Nov 2019 00:44:08 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.68,274,1569308400"; 
+ d="asc'?scan'208";a="205770424"
+Received: from zhen-hp.sh.intel.com (HELO zhen-hp) ([10.239.13.116])
+ by orsmga006.jf.intel.com with ESMTP; 06 Nov 2019 00:44:06 -0800
+Date: Wed, 6 Nov 2019 16:43:49 +0800
+From: Zhenyu Wang <zhenyuw@linux.intel.com>
+To: Pan Bian <bianpan2016@163.com>
+Message-ID: <20191106084349.GB4196@zhen-hp.sh.intel.com>
+References: <1573025467-18278-1-git-send-email-bianpan2016@163.com>
 MIME-Version: 1.0
-To: Niranjan Vishwanathapura <niranjana.vishwanathapura@intel.com>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-In-Reply-To: <20191106021444.GE19940@nvishwa1-DESK.sc.intel.com>
-References: <20191106000205.22480-1-niranjana.vishwanathapura@intel.com>
- <20191106000205.22480-3-niranjana.vishwanathapura@intel.com>
- <157300063402.21573.3655512947994232648@skylake-alporthouse-com>
- <20191106021444.GE19940@nvishwa1-DESK.sc.intel.com>
-Message-ID: <157302962541.18566.12786289249361711097@skylake-alporthouse-com>
-User-Agent: alot/0.6
-Date: Wed, 06 Nov 2019 08:40:25 +0000
-Subject: Re: [Intel-gfx] [PATCH 2/3] drm/i915: Check for ips_mchdev being
- NULL
+In-Reply-To: <1573025467-18278-1-git-send-email-bianpan2016@163.com>
+User-Agent: Mutt/1.10.0 (2018-05-17)
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/gvt: fix dropping obj reference
+ twice
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -42,24 +45,92 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: Zhenyu Wang <zhenyuw@linux.intel.com>
+Cc: David Airlie <airlied@linux.ie>, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ intel-gvt-dev@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============1450891671=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-UXVvdGluZyBOaXJhbmphbiBWaXNod2FuYXRoYXB1cmEgKDIwMTktMTEtMDYgMDI6MTQ6NDUpCj4g
-T24gV2VkLCBOb3YgMDYsIDIwMTkgYXQgMTI6Mzc6MTRBTSArMDAwMCwgQ2hyaXMgV2lsc29uIHdy
-b3RlOgo+ID5RdW90aW5nIE5pcmFuamFuYSBWaXNod2FuYXRoYXB1cmEgKDIwMTktMTEtMDYgMDA6
-MDI6MDQpCj4gPj4gR3VhcmQgYWdhaW5zdCB1bmluaXRhbGl6ZWQgKE5VTEwpIGlwc19tY2hkZXYg
-YmVmb3JlCj4gPj4gZGVyZWZlcmVuY2luZy4KPiA+Cj4gPkJlY2F1c2U/Cj4gCj4gSSBhbSBzZWVp
-bmcgc29tZSBleHBvcnRlZCBmdW5jdGlvbnMgbGlrZSBpOTE1X3JlYWRfbWNoX3ZhbCgpIHRoYXQg
-dHJ5IHRvCj4gZGVyZWZlcmVuY2UgaXBzX21jaGRldiB2aWEgbWNoZGV2X2dldCgpLiBJIGRvbid0
-IGtub3cgZnVsbCB1c2FnZSBoZXJlLAo+IGJ1dCBwcm9iYWJseSBtYWtlIHRoZXNlIEFQSXMgZmFp
-bCBzYWZlPwoKQXJlIHlvdSBhbHNvIGdvaW5nIHRvIG1ha2UgdGhvc2UgZnVuY3Rpb25zIHNhZmUg
-d2hlbiB0aGUgbW9kdWxlIGlzbid0CnRoZXJlPyBJZiB0aGF0IG1vZHVsZSBpbnRlcmZhY2UgaXMg
-dXNlZCBvdXRzaWRlIG9mIHRoZSByZWdpc3RyYXRpb24KcGVyaW9kLCB0aGVuIHRoZSBiaW5kaW5n
-IHdpdGggdGhlIGNhbGxlciB3ZW50IGhvcnJpYmx5IGFzdHJheS4KLUNocmlzCl9fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxp
-c3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNr
-dG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeA==
+
+--===============1450891671==
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="kXdP64Ggrk/fb43R"
+Content-Disposition: inline
+
+
+--kXdP64Ggrk/fb43R
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On 2019.11.06 15:31:07 +0800, Pan Bian wrote:
+> The reference count of obj will be decremented twice if error occurs
+> in dma_buf_fd(). Additionally, attempting to read the reference count of
+> obj after dropping reference may lead to a use after free bug. Here, we
+> drop obj's reference until it is not used.
+>=20
+> Signed-off-by: Pan Bian <bianpan2016@163.com>
+> ---
+>  drivers/gpu/drm/i915/gvt/dmabuf.c | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/i915/gvt/dmabuf.c b/drivers/gpu/drm/i915/gvt=
+/dmabuf.c
+> index 13044c027f27..4bfaefdf548d 100644
+> --- a/drivers/gpu/drm/i915/gvt/dmabuf.c
+> +++ b/drivers/gpu/drm/i915/gvt/dmabuf.c
+> @@ -498,8 +498,6 @@ int intel_vgpu_get_dmabuf(struct intel_vgpu *vgpu, un=
+signed int dmabuf_id)
+>  		goto out_free_gem;
+>  	}
+> =20
+> -	i915_gem_object_put(obj);
+> -
+>  	ret =3D dma_buf_fd(dmabuf, DRM_CLOEXEC | DRM_RDWR);
+>  	if (ret < 0) {
+>  		gvt_vgpu_err("create dma-buf fd failed ret:%d\n", ret);
+> @@ -524,6 +522,8 @@ int intel_vgpu_get_dmabuf(struct intel_vgpu *vgpu, un=
+signed int dmabuf_id)
+>  		    file_count(dmabuf->file),
+>  		    kref_read(&obj->base.refcount));
+> =20
+> +	i915_gem_object_put(obj);
+> +
+>  	return dmabuf_fd;
+> =20
+>  out_free_dmabuf:
+
+Looks fine to me. Thanks!
+
+Reviewed-by: Zhenyu Wang <zhenyuw@linux.intel.com>
+
+--=20
+Open Source Technology Center, Intel ltd.
+
+$gpg --keyserver wwwkeys.pgp.net --recv-keys 4D781827
+
+--kXdP64Ggrk/fb43R
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iF0EARECAB0WIQTXuabgHDW6LPt9CICxBBozTXgYJwUCXcKHxQAKCRCxBBozTXgY
+J4mOAJ9LQBbGYBz26qSqTKOjlyHG7O92MQCgh6qkF9/0GTRd05GChiCic5//yLQ=
+=6K7k
+-----END PGP SIGNATURE-----
+
+--kXdP64Ggrk/fb43R--
+
+--===============1450891671==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
+IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
+
+--===============1450891671==--
