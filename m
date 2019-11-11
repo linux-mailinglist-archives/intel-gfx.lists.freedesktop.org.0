@@ -2,30 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B1AF3F832C
-	for <lists+intel-gfx@lfdr.de>; Tue, 12 Nov 2019 00:02:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EFDBCF832D
+	for <lists+intel-gfx@lfdr.de>; Tue, 12 Nov 2019 00:03:18 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 020F16E063;
-	Mon, 11 Nov 2019 23:02:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5CEFC6E0AA;
+	Mon, 11 Nov 2019 23:03:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 80B996E063;
- Mon, 11 Nov 2019 23:02:50 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id CD1F86E0AA;
+ Mon, 11 Nov 2019 23:03:15 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 73B4FA0096;
- Mon, 11 Nov 2019 23:02:50 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id C714AA0096;
+ Mon, 11 Nov 2019 23:03:15 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Matt Roper" <matthew.d.roper@intel.com>
-Date: Mon, 11 Nov 2019 23:02:50 -0000
-Message-ID: <157351337044.29961.6376242222868507701@emeril.freedesktop.org>
+Date: Mon, 11 Nov 2019 23:03:15 -0000
+Message-ID: <157351339581.29961.2856571785498531589@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20191111203730.czdgdkrfh2mxd7jt@ldmartin-desk1>
 In-Reply-To: <20191111203730.czdgdkrfh2mxd7jt@ldmartin-desk1>
-Subject: [Intel-gfx] =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_f?=
- =?utf-8?q?or_drm/i915/tgl=3A_MOCS_table_fixes_=28rev2=29?=
+Subject: [Intel-gfx] =?utf-8?q?=E2=9C=97_Fi=2ECI=2ESPARSE=3A_warning_for_d?=
+ =?utf-8?q?rm/i915/tgl=3A_MOCS_table_fixes_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -47,13 +47,11 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 PT0gU2VyaWVzIERldGFpbHMgPT0KClNlcmllczogZHJtL2k5MTUvdGdsOiBNT0NTIHRhYmxlIGZp
 eGVzIChyZXYyKQpVUkwgICA6IGh0dHBzOi8vcGF0Y2h3b3JrLmZyZWVkZXNrdG9wLm9yZy9zZXJp
-ZXMvNjkzMTIvClN0YXRlIDogd2FybmluZwoKPT0gU3VtbWFyeSA9PQoKJCBkaW0gY2hlY2twYXRj
-aCBvcmlnaW4vZHJtLXRpcAoyYzVkN2NiZTU4YjkgZHJtL2k5MTUvdGdsOiBNT0NTIHRhYmxlIGZp
-eGVzCi06NzI6IENIRUNLOkxJTkVfU1BBQ0lORzogUGxlYXNlIHVzZSBhIGJsYW5rIGxpbmUgYWZ0
-ZXIgZnVuY3Rpb24vc3RydWN0L3VuaW9uL2VudW0gZGVjbGFyYXRpb25zCiM3MjogRklMRTogZHJp
-dmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfbW9jcy5jOjI4NjoKIH07CisjcHJhZ21hIEdDQyBk
-aWFnbm9zdGljIHBvcAoKdG90YWw6IDAgZXJyb3JzLCAwIHdhcm5pbmdzLCAxIGNoZWNrcywgNDIg
-bGluZXMgY2hlY2tlZAoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Au
-b3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwt
-Z2Z4
+ZXMvNjkzMTIvClN0YXRlIDogd2FybmluZwoKPT0gU3VtbWFyeSA9PQoKJCBkaW0gc3BhcnNlIG9y
+aWdpbi9kcm0tdGlwClNwYXJzZSB2ZXJzaW9uOiB2MC42LjAKQ29tbWl0OiBkcm0vaTkxNS90Z2w6
+IE1PQ1MgdGFibGUgZml4ZXMKLQorZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfbW9jcy5j
+OjI1NTo5OiB3YXJuaW5nOiBJbml0aWFsaXplciBlbnRyeSBkZWZpbmVkIHR3aWNlCitkcml2ZXJz
+L2dwdS9kcm0vaTkxNS9ndC9pbnRlbF9tb2NzLmM6MjU4Ojk6ICAgYWxzbyBkZWZpbmVkIGhlcmUK
+Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdm
+eCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xp
+c3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeA==
