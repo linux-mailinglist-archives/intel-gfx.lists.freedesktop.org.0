@@ -1,37 +1,37 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 37664F886B
-	for <lists+intel-gfx@lfdr.de>; Tue, 12 Nov 2019 07:19:12 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E3D2F8873
+	for <lists+intel-gfx@lfdr.de>; Tue, 12 Nov 2019 07:21:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 82C0A6E0E3;
-	Tue, 12 Nov 2019 06:19:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B2C5C6E364;
+	Tue, 12 Nov 2019 06:21:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EE0B36E0E3;
- Tue, 12 Nov 2019 06:19:08 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E10226E359;
+ Tue, 12 Nov 2019 06:21:03 +0000 (UTC)
 X-Amp-Result: UNKNOWN
 X-Amp-Original-Verdict: FILE UNKNOWN
 X-Amp-File-Uploaded: False
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 11 Nov 2019 22:19:07 -0800
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 11 Nov 2019 22:21:03 -0800
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="5.68,295,1569308400"; 
- d="asc'?scan'208";a="207011456"
+ d="asc'?scan'208";a="213985980"
 Received: from zhen-hp.sh.intel.com (HELO zhen-hp) ([10.239.13.116])
- by orsmga003.jf.intel.com with ESMTP; 11 Nov 2019 22:19:05 -0800
-Date: Tue, 12 Nov 2019 14:18:34 +0800
+ by fmsmga001.fm.intel.com with ESMTP; 11 Nov 2019 22:21:01 -0800
+Date: Tue, 12 Nov 2019 14:20:32 +0800
 From: Zhenyu Wang <zhenyuw@linux.intel.com>
 To: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
  Jani Nikula <jani.nikula@intel.com>,
  "Vivi, Rodrigo" <rodrigo.vivi@intel.com>
-Message-ID: <20191112061834.GN4196@zhen-hp.sh.intel.com>
+Message-ID: <20191112062032.GO4196@zhen-hp.sh.intel.com>
 MIME-Version: 1.0
 User-Agent: Mutt/1.10.0 (2018-05-17)
-Subject: [Intel-gfx] [PULL] gvt-fixes
+Subject: [Intel-gfx] [PULL] gvt-next-fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -48,18 +48,18 @@ Reply-To: Zhenyu Wang <zhenyuw@linux.intel.com>
 Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
  intel-gvt-dev <intel-gvt-dev@lists.freedesktop.org>, "Lv,
  Zhiyuan" <zhiyuan.lv@intel.com>, "Yuan, Hang" <hang.yuan@intel.com>
-Content-Type: multipart/mixed; boundary="===============1266061310=="
+Content-Type: multipart/mixed; boundary="===============2116149302=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
---===============1266061310==
+--===============2116149302==
 Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="EMQjp+MvU6EBGjHc"
+	protocol="application/pgp-signature"; boundary="xtmLDbP6TiKhntQb"
 Content-Disposition: inline
 
 
---EMQjp+MvU6EBGjHc
+--xtmLDbP6TiKhntQb
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
@@ -67,53 +67,56 @@ Content-Transfer-Encoding: quoted-printable
 
 Hi,
 
-Here's one GVT dmabuf reference drop fix from Pan Bian.
+Here's one fix to remove PVINFO read in initial state for extra
+warning messages in debug.
 
 Thanks
 --
-The following changes since commit ee2c5ef8a9d640ee1617ec97b84fe2f634284e51:
+The following changes since commit d9dace9438945e7c13d91e62927c5c6c88a37ee5:
 
-  drm/i915/dp: Do not switch aux to TBT mode for non-TC ports (2019-11-04 1=
-3:24:14 -0800)
+  drm/i915/selftests: Add intel_gt_suspend_prepare (2019-11-05 16:06:25 +02=
+00)
 
 are available in the Git repository at:
 
-  https://github.com/intel/gvt-linux.git tags/gvt-fixes-2019-11-12
+  https://github.com/intel/gvt-linux.git tags/gvt-next-fixes-2019-11-12
 
-for you to fetch changes up to 41d931459b53e32c67a1f8838d1e6826a69ee745:
+for you to fetch changes up to 83faaf074e6d1ca4d1441aded0d3f01bce413479:
 
-  drm/i915/gvt: fix dropping obj reference twice (2019-11-08 11:04:07 +0800)
-
-----------------------------------------------------------------
-gvt-fixes-2019-11-12
-
-- Fix dmabuf reference drop (Pan)
+  drm/i915/gvt: Stop initializing pvinfo through reading mmio (2019-11-08 1=
+1:08:07 +0800)
 
 ----------------------------------------------------------------
-Pan Bian (1):
-      drm/i915/gvt: fix dropping obj reference twice
+gvt-next-fixes-2019-11-12
 
- drivers/gpu/drm/i915/gvt/dmabuf.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+- Remove PVINFO read for initial state (Tina)
+
+----------------------------------------------------------------
+Tina Zhang (1):
+      drm/i915/gvt: Stop initializing pvinfo through reading mmio
+
+ drivers/gpu/drm/i915/gvt/handlers.c | 4 ++++
+ 1 file changed, 4 insertions(+)
+
 
 --=20
 Open Source Technology Center, Intel ltd.
 
 $gpg --keyserver wwwkeys.pgp.net --recv-keys 4D781827
 
---EMQjp+MvU6EBGjHc
+--xtmLDbP6TiKhntQb
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iF0EARECAB0WIQTXuabgHDW6LPt9CICxBBozTXgYJwUCXcpOugAKCRCxBBozTXgY
-J2EsAJ9DolsLvLI6+lJxODHXPiO+Bt/PUgCgihHoerEHEF913VYRUT9nva9RAQo=
-=paTe
+iF0EARECAB0WIQTXuabgHDW6LPt9CICxBBozTXgYJwUCXcpPMAAKCRCxBBozTXgY
+J4QRAJ43LN3hAo8uVsIBivCmPXEy9HAQ1wCdF+WL6QCDcP5wXESGMBmb/pFJDdU=
+=PVt+
 -----END PGP SIGNATURE-----
 
---EMQjp+MvU6EBGjHc--
+--xtmLDbP6TiKhntQb--
 
---===============1266061310==
+--===============2116149302==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -123,4 +126,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
 IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
 dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
 
---===============1266061310==--
+--===============2116149302==--
