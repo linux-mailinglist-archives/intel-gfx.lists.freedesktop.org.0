@@ -2,30 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B187DF9D8C
-	for <lists+intel-gfx@lfdr.de>; Tue, 12 Nov 2019 23:58:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5538BF9DE9
+	for <lists+intel-gfx@lfdr.de>; Wed, 13 Nov 2019 00:15:02 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1600089135;
-	Tue, 12 Nov 2019 22:58:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E4AB66E02B;
+	Tue, 12 Nov 2019 23:14:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id B8A216EC1F;
- Tue, 12 Nov 2019 22:57:55 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 497E2A0075;
- Tue, 12 Nov 2019 22:57:55 +0000 (UTC)
+Received: from mx1.riseup.net (mx1.riseup.net [198.252.153.129])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4410D6E02B
+ for <intel-gfx@lists.freedesktop.org>; Tue, 12 Nov 2019 23:14:59 +0000 (UTC)
+Received: from bell.riseup.net (bell-pn.riseup.net [10.0.1.178])
+ (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+ (Client CN "*.riseup.net",
+ Issuer "Sectigo RSA Domain Validation Secure Server CA" (not verified))
+ by mx1.riseup.net (Postfix) with ESMTPS id 47CNr26lY2zDqX5;
+ Tue, 12 Nov 2019 15:14:58 -0800 (PST)
+X-Riseup-User-ID: 16835BD9D91A203AD0E1AC66A4C006267B0B82E4A7E915AE9318FE84DDCCADAD
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+ by bell.riseup.net (Postfix) with ESMTPSA id 47CNr23jFGzJqRq;
+ Tue, 12 Nov 2019 15:14:58 -0800 (PST)
+From: Francisco Jerez <currojerez@riseup.net>
+To: Matt Roper <matthew.d.roper@intel.com>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20191112224757.25116-1-matthew.d.roper@intel.com>
+References: <20191112224757.25116-1-matthew.d.roper@intel.com>
+Date: Tue, 12 Nov 2019 15:15:28 -0800
+Message-ID: <87h838znxr.fsf@riseup.net>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Tue, 12 Nov 2019 22:57:55 -0000
-Message-ID: <157359947527.31293.14139894561237313964@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20191112135454.21062-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20191112135454.21062-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?q?=E2=9C=97_Fi=2ECI=2EBAT=3A_failure_for_drm/?=
- =?utf-8?q?i915=3A_Flush_all_user_surfaces_prior_to_first_use_=28rev5=29?=
+X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=riseup.net; s=squak; 
+ t=1573600499; bh=mKohBKcB17DzFUh1LG8sdJKvqxWO/pjuOPV3LvYAI7E=;
+ h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
+ b=F8LJhROpkOzmqmxJme85o7lvryv8jUhemeyVIiBTX8AH53X23HvdAyQBTQNWfTMaR
+ oRlQuH/BFogf3jaQhx9S9l4MGbBjQmXSygbdpxaqps2ClLiFxoL/VyBTZ0qPt2u03b
+ kOqO6siiYyEQMFGfvA4OivwnlM3z977YyYAVA4JY=
+Subject: Re: [Intel-gfx] [PATCH v3 1/2] Revert "drm/i915/ehl: Update MOCS
+ table for EHL"
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -38,84 +50,105 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Content-Type: multipart/mixed; boundary="===============1201575050=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-PT0gU2VyaWVzIERldGFpbHMgPT0KClNlcmllczogZHJtL2k5MTU6IEZsdXNoIGFsbCB1c2VyIHN1
-cmZhY2VzIHByaW9yIHRvIGZpcnN0IHVzZSAocmV2NSkKVVJMICAgOiBodHRwczovL3BhdGNod29y
-ay5mcmVlZGVza3RvcC5vcmcvc2VyaWVzLzYzODcxLwpTdGF0ZSA6IGZhaWx1cmUKCj09IFN1bW1h
-cnkgPT0KCkNJIEJ1ZyBMb2cgLSBjaGFuZ2VzIGZyb20gQ0lfRFJNXzczMjMgLT4gUGF0Y2h3b3Jr
-XzE1MjQyCj09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
-PT0KClN1bW1hcnkKLS0tLS0tLQoKICAqKkZBSUxVUkUqKgoKICBTZXJpb3VzIHVua25vd24gY2hh
-bmdlcyBjb21pbmcgd2l0aCBQYXRjaHdvcmtfMTUyNDIgYWJzb2x1dGVseSBuZWVkIHRvIGJlCiAg
-dmVyaWZpZWQgbWFudWFsbHkuCiAgCiAgSWYgeW91IHRoaW5rIHRoZSByZXBvcnRlZCBjaGFuZ2Vz
-IGhhdmUgbm90aGluZyB0byBkbyB3aXRoIHRoZSBjaGFuZ2VzCiAgaW50cm9kdWNlZCBpbiBQYXRj
-aHdvcmtfMTUyNDIsIHBsZWFzZSBub3RpZnkgeW91ciBidWcgdGVhbSB0byBhbGxvdyB0aGVtCiAg
-dG8gZG9jdW1lbnQgdGhpcyBuZXcgZmFpbHVyZSBtb2RlLCB3aGljaCB3aWxsIHJlZHVjZSBmYWxz
-ZSBwb3NpdGl2ZXMgaW4gQ0kuCgogIEV4dGVybmFsIFVSTDogaHR0cHM6Ly9pbnRlbC1nZngtY2ku
-MDEub3JnL3RyZWUvZHJtLXRpcC9QYXRjaHdvcmtfMTUyNDIvaW5kZXguaHRtbAoKUG9zc2libGUg
-bmV3IGlzc3VlcwotLS0tLS0tLS0tLS0tLS0tLS0tCgogIEhlcmUgYXJlIHRoZSB1bmtub3duIGNo
-YW5nZXMgdGhhdCBtYXkgaGF2ZSBiZWVuIGludHJvZHVjZWQgaW4gUGF0Y2h3b3JrXzE1MjQyOgoK
-IyMjIElHVCBjaGFuZ2VzICMjIwoKIyMjIyBQb3NzaWJsZSByZWdyZXNzaW9ucyAjIyMjCgogICog
-aWd0QGk5MTVfcG1fcnBtQG1vZHVsZS1yZWxvYWQ6CiAgICAtIGZpLXNrbC1sbWVtOiAgICAgICAg
-W1BBU1NdWzFdIC0+IFtETUVTRy1XQVJOXVsyXQogICBbMV06IGh0dHBzOi8vaW50ZWwtZ2Z4LWNp
-LjAxLm9yZy90cmVlL2RybS10aXAvQ0lfRFJNXzczMjMvZmktc2tsLWxtZW0vaWd0QGk5MTVfcG1f
-cnBtQG1vZHVsZS1yZWxvYWQuaHRtbAogICBbMl06IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9y
-Zy90cmVlL2RybS10aXAvUGF0Y2h3b3JrXzE1MjQyL2ZpLXNrbC1sbWVtL2lndEBpOTE1X3BtX3Jw
-bUBtb2R1bGUtcmVsb2FkLmh0bWwKCiAgCktub3duIGlzc3VlcwotLS0tLS0tLS0tLS0KCiAgSGVy
-ZSBhcmUgdGhlIGNoYW5nZXMgZm91bmQgaW4gUGF0Y2h3b3JrXzE1MjQyIHRoYXQgY29tZSBmcm9t
-IGtub3duIGlzc3VlczoKCiMjIyBJR1QgY2hhbmdlcyAjIyMKCiMjIyMgSXNzdWVzIGhpdCAjIyMj
-CgogICogaWd0QGttc19zZXRtb2RlQGJhc2ljLWNsb25lLXNpbmdsZS1jcnRjOgogICAgLSBmaS1z
-a2wtNjc3MGhxOiAgICAgIFtQQVNTXVszXSAtPiBbV0FSTl1bNF0gKFtmZG8jMTEyMjUyXSkKICAg
-WzNdOiBodHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlwL0NJX0RSTV83MzIz
-L2ZpLXNrbC02NzcwaHEvaWd0QGttc19zZXRtb2RlQGJhc2ljLWNsb25lLXNpbmdsZS1jcnRjLmh0
-bWwKICAgWzRdOiBodHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlwL1BhdGNo
-d29ya18xNTI0Mi9maS1za2wtNjc3MGhxL2lndEBrbXNfc2V0bW9kZUBiYXNpYy1jbG9uZS1zaW5n
-bGUtY3J0Yy5odG1sCgogIAojIyMjIFBvc3NpYmxlIGZpeGVzICMjIyMKCiAgKiBpZ3RAZ2VtX21t
-YXBfZ3R0QGJhc2ljLWNvcHk6CiAgICAtIGZpLWdsay1kc2k6ICAgICAgICAgW0lOQ09NUExFVEVd
-WzVdIChbZmRvIzEwMzM1OV0gLyBbay5vcmcjMTk4MTMzXSkgLT4gW1BBU1NdWzZdCiAgIFs1XTog
-aHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9DSV9EUk1fNzMyMy9maS1n
-bGstZHNpL2lndEBnZW1fbW1hcF9ndHRAYmFzaWMtY29weS5odG1sCiAgIFs2XTogaHR0cHM6Ly9p
-bnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9QYXRjaHdvcmtfMTUyNDIvZmktZ2xrLWRz
-aS9pZ3RAZ2VtX21tYXBfZ3R0QGJhc2ljLWNvcHkuaHRtbAoKICAqIGlndEBpOTE1X21vZHVsZV9s
-b2FkQHJlbG9hZC13aXRoLWZhdWx0LWluamVjdGlvbjoKICAgIC0ge2ZpLWtibC03NTYwdX06ICAg
-ICBbRE1FU0ctV0FSTl1bN10gLT4gW1BBU1NdWzhdCiAgIFs3XTogaHR0cHM6Ly9pbnRlbC1nZngt
-Y2kuMDEub3JnL3RyZWUvZHJtLXRpcC9DSV9EUk1fNzMyMy9maS1rYmwtNzU2MHUvaWd0QGk5MTVf
-bW9kdWxlX2xvYWRAcmVsb2FkLXdpdGgtZmF1bHQtaW5qZWN0aW9uLmh0bWwKICAgWzhdOiBodHRw
-czovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlwL1BhdGNod29ya18xNTI0Mi9maS1r
-YmwtNzU2MHUvaWd0QGk5MTVfbW9kdWxlX2xvYWRAcmVsb2FkLXdpdGgtZmF1bHQtaW5qZWN0aW9u
-Lmh0bWwKCiAgKiBpZ3RAa21zX2ZsaXBAYmFzaWMtZmxpcC12cy13Zl92Ymxhbms6CiAgICAtIGZp
-LXNrbC02NzcwaHE6ICAgICAgW0RNRVNHLVdBUk5dWzldIChbZmRvIzEwNTU0MV0pIC0+IFtQQVNT
-XVsxMF0KICAgWzldOiBodHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlwL0NJ
-X0RSTV83MzIzL2ZpLXNrbC02NzcwaHEvaWd0QGttc19mbGlwQGJhc2ljLWZsaXAtdnMtd2ZfdmJs
-YW5rLmh0bWwKICAgWzEwXTogaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRp
-cC9QYXRjaHdvcmtfMTUyNDIvZmktc2tsLTY3NzBocS9pZ3RAa21zX2ZsaXBAYmFzaWMtZmxpcC12
-cy13Zl92YmxhbmsuaHRtbAoKICAKICB7bmFtZX06IFRoaXMgZWxlbWVudCBpcyBzdXBwcmVzc2Vk
-LiBUaGlzIG1lYW5zIGl0IGlzIGlnbm9yZWQgd2hlbiBjb21wdXRpbmcKICAgICAgICAgIHRoZSBz
-dGF0dXMgb2YgdGhlIGRpZmZlcmVuY2UgKFNVQ0NFU1MsIFdBUk5JTkcsIG9yIEZBSUxVUkUpLgoK
-ICBbZmRvIzEwMzM1OV06IGh0dHBzOi8vYnVncy5mcmVlZGVza3RvcC5vcmcvc2hvd19idWcuY2dp
-P2lkPTEwMzM1OQogIFtmZG8jMTA1NTQxXTogaHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9z
-aG93X2J1Zy5jZ2k/aWQ9MTA1NTQxCiAgW2ZkbyMxMTIyNTJdOiBodHRwczovL2J1Z3MuZnJlZWRl
-c2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD0xMTIyNTIKICBbay5vcmcjMTk4MTMzXTogaHR0cHM6
-Ly9idWd6aWxsYS5rZXJuZWwub3JnL3Nob3dfYnVnLmNnaT9pZD0xOTgxMzMKCgpQYXJ0aWNpcGF0
-aW5nIGhvc3RzICg1MSAtPiA0NSkKLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tCgogIE1p
-c3NpbmcgICAgKDYpOiBmaS1pbGstbTU0MCBmaS1oc3ctNDIwMHUgZmktYnl0LXNxdWF3a3MgZmkt
-YnN3LWN5YW4gZmktYnl0LWNsYXBwZXIgZmktc2tsLTY2MDB1IAoKCkJ1aWxkIGNoYW5nZXMKLS0t
-LS0tLS0tLS0tLQoKICAqIENJOiBDSS0yMDE5MDUyOSAtPiBOb25lCiAgKiBMaW51eDogQ0lfRFJN
-XzczMjMgLT4gUGF0Y2h3b3JrXzE1MjQyCgogIENJLTIwMTkwNTI5OiAyMDE5MDUyOQogIENJX0RS
-TV83MzIzOiBhYWMyNDRmMjNiZjFlYWY5ODZjNWRmOWU1Mjk4NjNiMzRlNTJiZWU4IEAgZ2l0Oi8v
-YW5vbmdpdC5mcmVlZGVza3RvcC5vcmcvZ2Z4LWNpL2xpbnV4CiAgSUdUXzUyNzM6IDYwMjAwM2Mz
-ZDc1MWM3MmZjMzA5YTBlNjRkNDE5M2Y2ZGE3MjBmNmIgQCBnaXQ6Ly9hbm9uZ2l0LmZyZWVkZXNr
-dG9wLm9yZy94b3JnL2FwcC9pbnRlbC1ncHUtdG9vbHMKICBQYXRjaHdvcmtfMTUyNDI6IDgyOWZm
-MTQzYTViYTYzZjUxMmRiZjU0MTkzYzYyMDQ0ZTlmZjA5ZTcgQCBnaXQ6Ly9hbm9uZ2l0LmZyZWVk
-ZXNrdG9wLm9yZy9nZngtY2kvbGludXgKCgo9PSBMaW51eCBjb21taXRzID09Cgo4MjlmZjE0M2E1
-YmEgZHJtL2k5MTU6IEZsdXNoIGFsbCB1c2VyIHN1cmZhY2VzIHByaW9yIHRvIGZpcnN0IHVzZQoK
-PT0gTG9ncyA9PQoKRm9yIG1vcmUgZGV0YWlscyBzZWU6IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAx
-Lm9yZy90cmVlL2RybS10aXAvUGF0Y2h3b3JrXzE1MjQyL2luZGV4Lmh0bWwKX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlz
-dApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0
-b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
+--===============1201575050==
+Content-Type: multipart/signed; boundary="==-=-=";
+	micalg=pgp-sha256; protocol="application/pgp-signature"
+
+--==-=-=
+Content-Type: multipart/mixed; boundary="=-=-="
+
+--=-=-=
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+Matt Roper <matthew.d.roper@intel.com> writes:
+
+> This reverts commit f4071997f1de016780ec6b79c63d90cd5886ee83.
+>
+> These extra EHL entries won't behave as expected without a bit more work
+> on the kernel side so let's drop them until that kernel work has had a
+> chance to land.  Userspace trying to use these new entries won't get the
+> advantage of the new functionality these entries are meant to provide,
+> but at least it won't misbehave.
+>
+> When we do add these back in the future, we'll probably want to
+> explicitly use separate tables for ICL and EHL so that userspace
+> software that mistakenly uses these entries (which are undefined on ICL)
+> sees the same behavior it sees with all the other undefined entries.
+>
+> Cc: Francisco Jerez <francisco.jerez.plata@intel.com>
+> Cc: Jon Bloomfield <jon.bloomfield@intel.com>
+> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+> Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+
+I think f4071997f1de016780ec6b79c63d90cd5886ee83 has hit a few kernel
+releases already.  Wouldn't it make sense to CC stable?
+
+Patch is:
+
+Reviewed-by: Francisco Jerez <currojerez@riseup.net>
+
+> ---
+>  drivers/gpu/drm/i915/gt/intel_mocs.c | 8 --------
+>  1 file changed, 8 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/gt/intel_mocs.c b/drivers/gpu/drm/i915/=
+gt/intel_mocs.c
+> index 6e881c735b20..06e2adbf27be 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_mocs.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_mocs.c
+> @@ -200,14 +200,6 @@ static const struct drm_i915_mocs_entry broxton_mocs=
+_table[] =3D {
+>  	MOCS_ENTRY(15, \
+>  		   LE_3_WB | LE_TC_1_LLC | LE_LRUM(2) | LE_AOM(1), \
+>  		   L3_3_WB), \
+> -	/* Bypass LLC - Uncached (EHL+) */ \
+> -	MOCS_ENTRY(16, \
+> -		   LE_1_UC | LE_TC_1_LLC | LE_SCF(1), \
+> -		   L3_1_UC), \
+> -	/* Bypass LLC - L3 (Read-Only) (EHL+) */ \
+> -	MOCS_ENTRY(17, \
+> -		   LE_1_UC | LE_TC_1_LLC | LE_SCF(1), \
+> -		   L3_3_WB), \
+>  	/* Self-Snoop - L3 + LLC */ \
+>  	MOCS_ENTRY(18, \
+>  		   LE_3_WB | LE_TC_1_LLC | LE_LRUM(3) | LE_SSE(3), \
+> --=20
+> 2.21.0
+>
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--=-=-=--
+
+--==-=-=
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEAREIAB0WIQST8OekYz69PM20/4aDmTidfVK/WwUCXcs9EAAKCRCDmTidfVK/
+WwhcAQCeUIVr4XEJKJPRx/GdXudUJ9NKQvklqPJVxyOqvWxcagD7BQmS3FnlL3kX
+LpHcg65r5OoPVhnHoQIdVQ66wMUTPTM=
+=2ojo
+-----END PGP SIGNATURE-----
+--==-=-=--
+
+--===============1201575050==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
+IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
+
+--===============1201575050==--
