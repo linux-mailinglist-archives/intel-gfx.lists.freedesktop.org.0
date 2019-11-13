@@ -2,31 +2,35 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A6975FB216
-	for <lists+intel-gfx@lfdr.de>; Wed, 13 Nov 2019 15:05:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 50BF5FB28A
+	for <lists+intel-gfx@lfdr.de>; Wed, 13 Nov 2019 15:26:53 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8B2E66ED15;
-	Wed, 13 Nov 2019 14:05:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D6F626ED3D;
+	Wed, 13 Nov 2019 14:26:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EA0956ED15;
- Wed, 13 Nov 2019 14:05:03 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19188054-1500050 
- for multiple; Wed, 13 Nov 2019 14:04:48 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 13 Nov 2019 14:04:47 +0000
-Message-Id: <20191113140447.11664-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.24.0
-In-Reply-To: <20191113135505.11426-1-chris@chris-wilson.co.uk>
-References: <20191113135505.11426-1-chris@chris-wilson.co.uk>
+Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5DC396ED36;
+ Wed, 13 Nov 2019 14:26:48 +0000 (UTC)
+Received: from localhost (lfbn-1-10718-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256
+ bits)) (No client certificate requested)
+ by mail.kernel.org (Postfix) with ESMTPSA id B1B70222C9;
+ Wed, 13 Nov 2019 14:26:47 +0000 (UTC)
+Date: Wed, 13 Nov 2019 15:26:45 +0100
+From: Maxime Ripard <mripard@kernel.org>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Message-ID: <20191113142645.GA967172@gilmour.lan>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH i-g-t] i915/gem_create: Check for cache bypass
- around zeroed pages
+User-Agent: Mutt/1.12.1 (2019-06-15)
+X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=kernel.org; s=default; t=1573655208;
+ bh=jQcMxVxTh8e3rcJ9n8BUVRaPcyBYltdYRGDB4x3AeT8=;
+ h=Date:From:To:Cc:Subject:From;
+ b=fYquv2UhbBy+Zh7+T6ys2wZFR7Bw0e2TAASJ9QHl64fysW7gBdQFyfNPSEXUkPz4j
+ Xo2c5Gs7GAwJ9WR4wohvub5dvMkNlmU74BW4m5bSGfof3mDPZkqdPBiY3qVqfHU3HX
+ GeYMqS832GmeJRrZn52xieuxhn05Bd43AHqniKvI=
+Subject: [Intel-gfx] [PULL] drm-misc-fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -39,60 +43,74 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: igt-dev@lists.freedesktop.org, Matthew Auld <matthew.auld@intel.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Maxime Ripard <mripard@kernel.org>, intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============1928212721=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Q2hlY2sgdGhhdCBldmVuIGlmIHVzZXJzcGFjZSB0cmllcyB0byBzbmVhayBhcm91bmQgdGhlIENQ
-VSBjYWNoZXMgb2YgaXRzCnplcm9lZCBwYWdlcywgaXQgc2VlcyBub3RoaW5nIGJ1dCB6ZXJvZXMu
-CgpTdWdnZXN0ZWQtYnk6IEpvb25hcyBMYWh0aW5lbiA8am9vbmFzLmxhaHRpbmVuQGxpbnV4Lmlu
-dGVsLmNvbT4KU2lnbmVkLW9mZi1ieTogQ2hyaXMgV2lsc29uIDxjaHJpc0BjaHJpcy13aWxzb24u
-Y28udWs+CkNjOiBKb29uYXMgTGFodGluZW4gPGpvb25hcy5sYWh0aW5lbkBsaW51eC5pbnRlbC5j
-b20+CkNjOiBNYXR0aGV3IEF1bGQgPG1hdHRoZXcuYXVsZEBpbnRlbC5jb20+Ci0tLQogdGVzdHMv
-aTkxNS9nZW1fY3JlYXRlLmMgfCA0OCArKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysr
-Ky0tLS0tLQogMSBmaWxlIGNoYW5nZWQsIDQyIGluc2VydGlvbnMoKyksIDYgZGVsZXRpb25zKC0p
-CgpkaWZmIC0tZ2l0IGEvdGVzdHMvaTkxNS9nZW1fY3JlYXRlLmMgYi90ZXN0cy9pOTE1L2dlbV9j
-cmVhdGUuYwppbmRleCBhZWQ3ZDFjZWMuLjZjMDg4MjBlMiAxMDA2NDQKLS0tIGEvdGVzdHMvaTkx
-NS9nZW1fY3JlYXRlLmMKKysrIGIvdGVzdHMvaTkxNS9nZW1fY3JlYXRlLmMKQEAgLTU1LDggKzU1
-LDEwIEBACiAjaW5jbHVkZSAiaW50ZWxfaW8uaCIKICNpbmNsdWRlICJpbnRlbF9jaGlwc2V0Lmgi
-CiAjaW5jbHVkZSAiaWd0X2F1eC5oIgorI2luY2x1ZGUgImlndF94ODYuaCIKICNpbmNsdWRlICJk
-cm10ZXN0LmgiCiAjaW5jbHVkZSAiZHJtLmgiCisjaW5jbHVkZSAiaTkxNS9nZW1fbW1hbi5oIgog
-I2luY2x1ZGUgImk5MTVfZHJtLmgiCiAKIElHVF9URVNUX0RFU0NSSVBUSU9OKCJUaGlzIGlzIGEg
-dGVzdCBmb3IgdGhlIGV4dGVuZGVkICYgb2xkIGdlbV9jcmVhdGUgaW9jdGwsIgpAQCAtMTg4LDEx
-ICsxOTAsMTMgQEAgc3RhdGljIHZvaWQgKnRocmVhZF9jbGVhcih2b2lkICpkYXRhKQogewogCXN0
-cnVjdCB0aHJlYWRfY2xlYXIgKmFyZyA9IGRhdGE7CiAJdW5zaWduZWQgbG9uZyBjaGVja2VkID0g
-MDsKKwllbnVtIHsgUFJXLCBHVFQsIFdDLCBXQiwgX19MQVNUX18gfSBtb2RlID0gUFJXOwogCWlu
-dCBpOTE1ID0gYXJnLT5pOTE1OwogCiAJaWd0X3VudGlsX3RpbWVvdXQoYXJnLT50aW1lb3V0KSB7
-CiAJCXN0cnVjdCBkcm1faTkxNV9nZW1fY3JlYXRlIGNyZWF0ZSA9IHt9OwogCQl1aW50NjRfdCBu
-cGFnZXM7CisJCXZvaWQgKnB0ciA9IE5VTEw7CiAKIAkJbnBhZ2VzID0gcmFuZG9tKCk7CiAJCW5w
-YWdlcyA8PD0gMzI7CkBAIC0yMDEsMTggKzIwNSw1MCBAQCBzdGF0aWMgdm9pZCAqdGhyZWFkX2Ns
-ZWFyKHZvaWQgKmRhdGEpCiAJCWNyZWF0ZS5zaXplID0gbnBhZ2VzIDw8IDEyOwogCiAJCWNyZWF0
-ZV9pb2N0bChpOTE1LCAmY3JlYXRlKTsKLQkJZm9yICh1aW50NjRfdCBwYWdlID0gMDsgcGFnZSA8
-IG5wYWdlczsgcGFnZSsrKSB7Ci0JCQl1aW50NjRfdCB4OworCQlzd2l0Y2ggKG1vZGUpIHsKKwkJ
-Y2FzZSBfX0xBU1RfXzoKKwkJY2FzZSBQUlc6CisJCQlicmVhazsKKwkJY2FzZSBXQjoKKwkJCXB0
-ciA9IF9fZ2VtX21tYXBfX2NwdShpOTE1LCBjcmVhdGUuaGFuZGxlLAorCQkJCQkgICAgICAwLCBj
-cmVhdGUuc2l6ZSwgUFJPVF9SRUFEKTsKKwkJCWJyZWFrOworCQljYXNlIFdDOgorCQkJcHRyID0g
-X19nZW1fbW1hcF9fd2MoaTkxNSwgY3JlYXRlLmhhbmRsZSwKKwkJCQkJICAgICAwLCBjcmVhdGUu
-c2l6ZSwgUFJPVF9SRUFEKTsKKwkJCWJyZWFrOworCQljYXNlIEdUVDoKKwkJCXB0ciA9IF9fZ2Vt
-X21tYXBfX2d0dChpOTE1LCBjcmVhdGUuaGFuZGxlLAorCQkJCQkgICAgICBjcmVhdGUuc2l6ZSwg
-UFJPVF9SRUFEKTsKKwkJCWJyZWFrOworCQl9CisJCS8qIE5vIHNldC1kb21haW5zIGFzIHdlIGFy
-ZSBiZWluZyBhcyBuYXVnaHR5IGFzIHBvc3NpYmxlICovCiAKLQkJCWdlbV9yZWFkKGk5MTUsIGNy
-ZWF0ZS5oYW5kbGUsCi0JCQkJIHBhZ2UgKiA0MDk2ICsgKHBhZ2UgJSAoNDA5NiAtIHNpemVvZih4
-KSkpLAotCQkJCSAmeCwgc2l6ZW9mKHgpKTsKLQkJCWlndF9hc3NlcnRfZXFfdTY0KHgsIDApOwor
-CQlmb3IgKHVpbnQ2NF90IHBhZ2UgPSAwOyBwYWdlIDwgbnBhZ2VzOyBwYWdlKyspIHsKKwkJCXVp
-bnQ2NF90IHhbOF0gPSB7CisJCQkJcGFnZSAqIDQwOTYgKworCQkJCXNpemVvZih4KSAqICgocGFn
-ZSAlICg0MDk2IC0gc2l6ZW9mKHgpKSAvIHNpemVvZih4KSkpCisJCQl9OworCisJCQlpZiAoIXB0
-cikKKwkJCQlnZW1fcmVhZChpOTE1LCBjcmVhdGUuaGFuZGxlLCB4WzBdLCB4LCBzaXplb2YoeCkp
-OworCQkJZWxzZSBpZiAocGFnZSAmIDEpCisJCQkJaWd0X21lbWNweV9mcm9tX3djKHgsIHB0ciAr
-IHhbMF0sIHNpemVvZih4KSk7CisJCQllbHNlCisJCQkJbWVtY3B5KHgsIHB0ciArIHhbMF0sIHNp
-emVvZih4KSk7CisKKwkJCWZvciAoaW50IGkgPSAwOyBpIDwgQVJSQVlfU0laRSh4KTsgaSsrKQor
-CQkJCWlndF9hc3NlcnRfZXFfdTY0KHhbaV0sIDApOwogCQl9CisJCWlmIChwdHIpCisJCQltdW5t
-YXAocHRyLCBjcmVhdGUuc2l6ZSk7CiAJCWdlbV9jbG9zZShpOTE1LCBjcmVhdGUuaGFuZGxlKTsK
-IAkJY2hlY2tlZCArPSBucGFnZXM7CiAKIAkJYXRvbWljX2ZldGNoX2FkZCgmYXJnLT5tYXgsIG5w
-YWdlcyk7CisKKwkJaWYgKCsrbW9kZSA9PSBfX0xBU1RfXykKKwkJCW1vZGUgPSBQUlc7CiAJfQog
-CiAJcmV0dXJuICh2b2lkICopKHVpbnRwdHJfdCljaGVja2VkOwotLSAKMi4yNC4wCgpfX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGlu
-ZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVl
-ZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZng=
+
+--===============1928212721==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="FCuugMFkClbJLl1L"
+Content-Disposition: inline
+
+
+--FCuugMFkClbJLl1L
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+
+Hi Dave, Daniel,
+
+Here's a PR for this week's drm-misc-fixes.
+
+Maxime
+
+drm-misc-fixes-2019-11-13:
+- One fix to the dotclock dividers range for sun4i
+The following changes since commit 105401b659b7eb9cb42d6b5b75d5c049ad4b3dca:
+
+  drm/shmem: Add docbook comments for drm_gem_shmem_object madvise fields (2019-11-06 17:57:42 -0600)
+
+are available in the Git repository at:
+
+  git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-fixes-2019-11-13
+
+for you to fetch changes up to 0b8e7bbde5e7e2c419567e1ee29587dae3b78ee3:
+
+  drm/sun4i: tcon: Set min division of TCON0_DCLK to 1. (2019-11-13 15:20:33 +0100)
+
+----------------------------------------------------------------
+- One fix to the dotclock dividers range for sun4i
+
+----------------------------------------------------------------
+Yunhao Tian (1):
+      drm/sun4i: tcon: Set min division of TCON0_DCLK to 1.
+
+ drivers/gpu/drm/sun4i/sun4i_tcon.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+--FCuugMFkClbJLl1L
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXcwSpQAKCRDj7w1vZxhR
+xYPhAP46zWBSPkN4Hbmy6giypiuN4BLkIS7CUbkCb+/F4m6a9QD/SBl/NdJf8Z82
+mmcIBmmrybjG8UqpTCedPeRxgFi97wA=
+=d6IC
+-----END PGP SIGNATURE-----
+
+--FCuugMFkClbJLl1L--
+
+--===============1928212721==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
+IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
+
+--===============1928212721==--
