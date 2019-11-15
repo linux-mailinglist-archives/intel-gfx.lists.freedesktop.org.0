@@ -1,31 +1,61 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 27AE9FDB6D
-	for <lists+intel-gfx@lfdr.de>; Fri, 15 Nov 2019 11:32:26 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 65ECFFDBB5
+	for <lists+intel-gfx@lfdr.de>; Fri, 15 Nov 2019 11:50:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 30B606E43B;
-	Fri, 15 Nov 2019 10:32:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1239F6E42F;
+	Fri, 15 Nov 2019 10:50:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 07B1A6E446;
- Fri, 15 Nov 2019 10:32:23 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 01BE6A0134;
- Fri, 15 Nov 2019 10:32:22 +0000 (UTC)
+Received: from mail-lj1-x241.google.com (mail-lj1-x241.google.com
+ [IPv6:2a00:1450:4864:20::241])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1BA426E41B;
+ Fri, 15 Nov 2019 10:50:02 +0000 (UTC)
+Received: by mail-lj1-x241.google.com with SMTP id y23so10170211ljh.10;
+ Fri, 15 Nov 2019 02:50:02 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:in-reply-to
+ :references:mime-version;
+ bh=ea9zLnFHS1AZW10VY451V5LQgt4RUuv83Kk6EMC907E=;
+ b=tShwu6j+6GoHG1fD9oC+5CExE4BIp60/gZJOwnePYJ4tUbcNRlG7t2P4KSjNcsBFEb
+ XmSAtBGFBrcKWrmz3fQbFZFaAIZUjvLxNtdDC1allZ1jU/mqVv6fsCS/BOjbWhwu3JnT
+ knryEC6v73zcLrNXBtKHkwTulSUL9ffMDkIPP8mOHNVR6v7sXqiaDX2U7cJx2Q+WT/kQ
+ gJDf5r0yuN080NcnlBULkLY4t+ZBKChAJ9T/99LLS/VNe+7VeBCYIZ3MhmIrYo2jzqm0
+ 9mxIxA7L05fm94wDsefiMdevy0liEwQvZ+kRo5/wHccdsV2YiN9rrE/t2IZIrYSYD0Lm
+ ZefQ==
+X-Gm-Message-State: APjAAAXY1eOIuj1bHQyoZQWeB749iNuKGdV9q9sOSyoDXBciMzTEGFRH
+ wOOa+QjRBOohdCm4SzlRqHs=
+X-Google-Smtp-Source: APXvYqwAZJeBt6D4+2W0WiUgmYXrcfrzYi8ETiitGlXEvtXhNaNvEHsgpvdPvD+BKfSF/EH4c0iolg==
+X-Received: by 2002:a2e:6a10:: with SMTP id f16mr11056805ljc.100.1573815000277; 
+ Fri, 15 Nov 2019 02:50:00 -0800 (PST)
+Received: from eldfell.localdomain ([194.136.85.206])
+ by smtp.gmail.com with ESMTPSA id u7sm4196665lfg.65.2019.11.15.02.49.59
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 15 Nov 2019 02:49:59 -0800 (PST)
+Date: Fri, 15 Nov 2019 12:49:44 +0200
+From: Pekka Paalanen <ppaalanen@gmail.com>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>
+Message-ID: <20191115124944.25e31d63@eldfell.localdomain>
+In-Reply-To: <20191115092120.4445-2-daniel.vetter@ffwll.ch>
+References: <20191115092120.4445-1-daniel.vetter@ffwll.ch>
+ <20191115092120.4445-2-daniel.vetter@ffwll.ch>
+X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Fri, 15 Nov 2019 10:32:22 -0000
-Message-ID: <157381394297.3301.10256674606481881683@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20191115100901.701071-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20191115100901.701071-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_f?=
- =?utf-8?q?or_drm/i915/gt=3A_Track_engine_round-trip_times_=28rev3=29?=
+X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20161025;
+ h=date:from:to:cc:subject:message-id:in-reply-to:references
+ :mime-version;
+ bh=ea9zLnFHS1AZW10VY451V5LQgt4RUuv83Kk6EMC907E=;
+ b=nIWkbiYlidvBWUjTA/RjpwSrKKXSYWm7BgUv8e6WSAxJxRrA8NIyD96m5CgJZYjrR6
+ FFl3GeE+2OlVJdBWQtATJJ4lLm6478L532w9ew0L0HW/a9546DEIuUikPNPD9X5REYKA
+ RmE4NZcShuo4wRDLhevmyhZ2Y7po9AfNfqSuIssspm6cjIlxrC78htqdY977mhu7hB/v
+ Cbk4Y4SFqsAu94BiJ//gfvze07I4TUjXqgV8zDGpOB3Peg+5WXesBXqn13+0KmSW5aKo
+ bDYo6RUb2jKMRWpQMS9/0jrqx1qtrLmC8BP6p9uVak4GpXF4qIWYFU07jXRq/ozirSB7
+ kG3w==
+Subject: Re: [Intel-gfx] [PATCH 1/8] drm/fb: More paranoia in addfb checks
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -38,26 +68,121 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Daniel Vetter <daniel.vetter@intel.com>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ DRI Development <dri-devel@lists.freedesktop.org>
+Content-Type: multipart/mixed; boundary="===============1020235613=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-PT0gU2VyaWVzIERldGFpbHMgPT0KClNlcmllczogZHJtL2k5MTUvZ3Q6IFRyYWNrIGVuZ2luZSBy
-b3VuZC10cmlwIHRpbWVzIChyZXYzKQpVUkwgICA6IGh0dHBzOi8vcGF0Y2h3b3JrLmZyZWVkZXNr
-dG9wLm9yZy9zZXJpZXMvNjk1MTMvClN0YXRlIDogd2FybmluZwoKPT0gU3VtbWFyeSA9PQoKJCBk
-aW0gY2hlY2twYXRjaCBvcmlnaW4vZHJtLXRpcAo5NjNhMDhhMDBhN2UgZHJtL2k5MTUvZ3Q6IFRy
-YWNrIGVuZ2luZSByb3VuZC10cmlwIHRpbWVzCi06MTQ6IFdBUk5JTkc6VFlQT19TUEVMTElORzog
-J3ByZWVtcHRhYmxlJyBtYXkgYmUgbWlzc3BlbGxlZCAtIHBlcmhhcHMgJ3ByZWVtcHRpYmxlJz8K
-IzE0OiAKdGhlIGVuZ2luZSBpcyBpZGxlIGF0IHRoaXMgcG9pbnQsIGFuZCB0aGUgcHVsc2UgaXMg
-bm9uLXByZWVtcHRhYmxlLCBzbwoKLToyMjogRVJST1I6R0lUX0NPTU1JVF9JRDogUGxlYXNlIHVz
-ZSBnaXQgY29tbWl0IGRlc2NyaXB0aW9uIHN0eWxlICdjb21taXQgPDEyKyBjaGFycyBvZiBzaGEx
-PiAoIjx0aXRsZSBsaW5lPiIpJyAtIGllOiAnY29tbWl0IDdlMzRmNGU0YWFkMyAoImRybS9pOTE1
-L2dlbjgrOiBBZGQgUkM2IENUWCBjb3JydXB0aW9uIFdBIiknCiMyMjogClJlZmVyZW5jZXM6IDdl
-MzRmNGU0YWFkMyAoImRybS9pOTE1L2dlbjgrOiBBZGQgUkM2IENUWCBjb3JydXB0aW9uIFdBIikK
-CnRvdGFsOiAxIGVycm9ycywgMSB3YXJuaW5ncywgMCBjaGVja3MsIDE1NiBsaW5lcyBjaGVja2Vk
-CgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1n
-ZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9s
-aXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZng=
+--===============1020235613==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ boundary="Sig_/isEOVCvveAkT4r=oyK/C6kr"; protocol="application/pgp-signature"
+
+--Sig_/isEOVCvveAkT4r=oyK/C6kr
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
+
+On Fri, 15 Nov 2019 10:21:13 +0100
+Daniel Vetter <daniel.vetter@ffwll.ch> wrote:
+
+> - Our limit is uint32_t, make that explicit.
+>=20
+> - Untangle the one overflow check, I think (but not sure) that with
+>   all three together you could overflow the uint64_t and it'd look
+>   cool again. Hence two steps. Also go with the more common (and imo
+>   safer approach) of reducing the range we accept, instead of trying
+>   to compute the overflow in high enough precision.
+>=20
+> - The above would blow up if we get a 0 pitches, so check for that
+>   too, but only if block_size is a thing.
+>=20
+> Cc: Pekka Paalanen <pekka.paalanen@collabora.co.uk>
+> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+> ---
+>  drivers/gpu/drm/drm_framebuffer.c | 17 +++++++++++------
+>  1 file changed, 11 insertions(+), 6 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/drm_framebuffer.c b/drivers/gpu/drm/drm_fram=
+ebuffer.c
+> index 57564318ceea..3141c6ed6dd2 100644
+> --- a/drivers/gpu/drm/drm_framebuffer.c
+> +++ b/drivers/gpu/drm/drm_framebuffer.c
+> @@ -214,15 +214,20 @@ static int framebuffer_check(struct drm_device *dev,
+>  			return -EINVAL;
+>  		}
+> =20
+> -		if (min_pitch > UINT_MAX)
+> +		if (min_pitch > U8_MAX)
+
+This looks odd, but I don't know what min_pitch is or why it should be
+limited to 255(?). What's with the U8, should it not be U32?
+
+>  			return -ERANGE;
+> =20
+> -		if ((uint64_t) height * r->pitches[i] + r->offsets[i] > UINT_MAX)
+> -			return -ERANGE;
+> +		if (block_size) {
+> +			if (r->pitches[i] < min_pitch) {
+> +				DRM_DEBUG_KMS("bad pitch %u for plane %d\n", r->pitches[i], i);
+> +				return -EINVAL;
+> +			}
+> =20
+> -		if (block_size && r->pitches[i] < min_pitch) {
+> -			DRM_DEBUG_KMS("bad pitch %u for plane %d\n", r->pitches[i], i);
+> -			return -EINVAL;
+> +			if (height > U8_MAX / r->pitches[i])
+> +				return -ERANGE;
+> +
+> +			if (r->offsets[i] > U8_MAX / r->pitches[i] - height)
+
+Aside from the U8 again, this looks strange too. You want to check that
+offset + height * pitch does not exceed MAX?
+
+Wouldn't that be height > (MAX - offset) / pitch for bad?
+
+If offset cannot be negative, this could also replace height > U8_MAX /
+r->pitches[i].
+
+> +				return -ERANGE;
+>  		}
+> =20
+>  		if (r->modifier[i] && !(r->flags & DRM_MODE_FB_MODIFIERS)) {
+
+Thanks,
+pq
+
+--Sig_/isEOVCvveAkT4r=oyK/C6kr
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCAAdFiEEJQjwWQChkWOYOIONI1/ltBGqqqcFAl3OgsgACgkQI1/ltBGq
+qqfu1A/+LMeAvBfMrsDU9bqy6FW1FEv938rdKt/NjWPl99rfWQbilZYxlW4KITru
+lJ8ErQ6IUhVB1EDGQrQtkbqk9s/Q4a3qY8L41pYJ2e2TedS+5Tcu3emYhweKAkX2
+qJUbbfO2IoRMG09F2Xow1NkND1vOWZGOZbiZCGxihXTIzOiFu0MRvCqpUXyGlOCC
+yTEF1NKofNS19s9rIiRAZGshwtMNXak52+sM97ls3NhnGhsEFuilCTe0jD6IBfVi
+UYpKpRRtVMiG4Q2gYq0lgHsWl7tYaFKKLZq0LguVZAIGfPDJdmjj7bPSpnVEYWaq
+vAVyKyN1xKJbSvd0nph3c6KZqRyLw3EiJ3UyTUjHgDNPLxBCgtdTAr4O44a7MqnV
+mdJNf2i/fTcKe/83jGvW9kiC7n0Muce4nM76+brxtkbI57OB0C2o+F61mMMj/V/m
+5Uf5gJBuwxIEHJEdTr0m3ohF8wAZEp7m34j//hxhmylnTcDRNBqHTgRKSn+AkIEP
+sJD6z/e7E69a6kPrvM6xYkhXag+zEOXQ17qQMWijl1sMuiEmZxzk33/EVLGR42ES
+prz2hXlOX36ZfPAEatspOotut5+rt9LzLaQhz37DAwQEDkwXkWSqu+SJZ/YlJ3eH
+B2BsrtWuMgLV5Xs/WEITmOhoZeOzAgxzCJeBCcb8aC/B8y/VAp0=
+=CoGY
+-----END PGP SIGNATURE-----
+
+--Sig_/isEOVCvveAkT4r=oyK/C6kr--
+
+--===============1020235613==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
+IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
+
+--===============1020235613==--
