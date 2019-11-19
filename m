@@ -1,44 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2EE03102D31
-	for <lists+intel-gfx@lfdr.de>; Tue, 19 Nov 2019 21:05:50 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 42CB3102D7C
+	for <lists+intel-gfx@lfdr.de>; Tue, 19 Nov 2019 21:23:59 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 01B3B6E3C4;
-	Tue, 19 Nov 2019 20:05:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 34FC16E096;
+	Tue, 19 Nov 2019 20:23:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 855B16E393
- for <intel-gfx@lists.freedesktop.org>; Tue, 19 Nov 2019 20:05:46 +0000 (UTC)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 772906E8E2
+ for <intel-gfx@lists.freedesktop.org>; Tue, 19 Nov 2019 20:23:55 +0000 (UTC)
 X-Amp-Result: UNKNOWN
 X-Amp-Original-Verdict: FILE UNKNOWN
 X-Amp-File-Uploaded: False
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 19 Nov 2019 12:05:46 -0800
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by orsmga106.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 19 Nov 2019 12:23:54 -0800
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="5.69,219,1571727600"; 
- d="gz'50?scan'50,208,50";a="204505893"
+ d="gz'50?scan'50,208,50";a="406577096"
 Received: from lkp-server01.sh.intel.com (HELO lkp-server01) ([10.239.97.150])
- by fmsmga008.fm.intel.com with ESMTP; 19 Nov 2019 12:05:44 -0800
+ by fmsmga005.fm.intel.com with ESMTP; 19 Nov 2019 12:23:52 -0800
 Received: from kbuild by lkp-server01 with local (Exim 4.89)
  (envelope-from <lkp@intel.com>)
- id 1iX9ku-0003Oq-3f; Wed, 20 Nov 2019 04:05:44 +0800
-Date: Wed, 20 Nov 2019 04:05:08 +0800
+ id 1iXA2S-0009Aq-GB; Wed, 20 Nov 2019 04:23:52 +0800
+Date: Wed, 20 Nov 2019 04:23:30 +0800
 From: kbuild test robot <lkp@intel.com>
 To: Vandita Kulkarni <vandita.kulkarni@intel.com>
-Message-ID: <201911200415.FwxROgO0%lkp@intel.com>
-References: <20191119123316.5094-5-vandita.kulkarni@intel.com>
+Message-ID: <201911200436.S9npEYVh%lkp@intel.com>
+References: <20191119123316.5094-7-vandita.kulkarni@intel.com>
 MIME-Version: 1.0
-Content-Type: multipart/mixed; boundary="myz6myfv32gqcuvi"
+Content-Type: multipart/mixed; boundary="ea6gj7fbwtwn3o7v"
 Content-Disposition: inline
-In-Reply-To: <20191119123316.5094-5-vandita.kulkarni@intel.com>
+In-Reply-To: <20191119123316.5094-7-vandita.kulkarni@intel.com>
 X-Patchwork-Hint: ignore
 User-Agent: NeoMutt/20170113 (1.7.2)
-Subject: Re: [Intel-gfx] [V3 4/8] drm/i915/dsi: Add check for periodic
- command mode
+Subject: Re: [Intel-gfx] [V3 6/8] drm/i915/dsi: Configure TE interrupt for
+ cmd mode
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -57,15 +57,15 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
---myz6myfv32gqcuvi
+--ea6gj7fbwtwn3o7v
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 
 Hi Vandita,
 
-Thank you for the patch! Perhaps something to improve:
+Thank you for the patch! Yet something to improve:
 
-[auto build test WARNING on drm-intel/for-linux-next]
+[auto build test ERROR on drm-intel/for-linux-next]
 [cannot apply to v5.4-rc8 next-20191118]
 [if your patch is applied to the wrong git tree, please drop us a note to help
 improve the system. BTW, we also suggest to use '--base' option to specify the
@@ -82,155 +82,118 @@ reproduce:
 If you fix the issue, kindly add following tag
 Reported-by: kbuild test robot <lkp@intel.com>
 
-All warnings (new ones prefixed by >>):
+All error/warnings (new ones prefixed by >>):
 
-   drivers/gpu/drm/i915/display/icl_dsi.c: In function 'gen11_dsi_configure_transcoder':
-   drivers/gpu/drm/i915/display/icl_dsi.c:718:11: error: 'TE_SOURCE_GPIO' undeclared (first use in this function); did you mean 'DP_SOURCE_OUI'?
-       tmp |= TE_SOURCE_GPIO;
-              ^~~~~~~~~~~~~~
-              DP_SOURCE_OUI
-   drivers/gpu/drm/i915/display/icl_dsi.c:718:11: note: each undeclared identifier is reported only once for each function it appears in
-   drivers/gpu/drm/i915/display/icl_dsi.c: In function 'gen11_dsi_config_util_pin':
-   drivers/gpu/drm/i915/display/icl_dsi.c:999:10: error: 'UTIL_PIN_DIRECTION_INPUT' undeclared (first use in this function); did you mean 'UTIL_PIN_PIPE_MASK'?
-      tmp |= UTIL_PIN_DIRECTION_INPUT;
-             ^~~~~~~~~~~~~~~~~~~~~~~~
-             UTIL_PIN_PIPE_MASK
    In file included from drivers/gpu/drm/i915/display/intel_display_types.h:46:0,
-                    from drivers/gpu/drm/i915/display/intel_dsi.h:30,
-                    from drivers/gpu/drm/i915/display/icl_dsi.c:35:
-   drivers/gpu/drm/i915/display/icl_dsi.c: In function 'gen11_dsi_deconfigure_trancoder':
-   drivers/gpu/drm/i915/display/icl_dsi.c:1164:20: error: implicit declaration of function 'DSI_CMD_FRMCTL'; did you mean 'DSI_CMD_RXCTL'? [-Werror=implicit-function-declaration]
-       tmp = I915_READ(DSI_CMD_FRMCTL(port));
-                       ^
+                    from drivers/gpu/drm/i915/i915_irq.c:39:
+   drivers/gpu/drm/i915/i915_irq.c: In function 'gen11_dsi_configure_te':
+>> drivers/gpu/drm/i915/i915_irq.c:2590:19: error: implicit declaration of function 'DSI_INTR_MASK_REG'; did you mean 'TSFS_INTR_MASK'? [-Werror=implicit-function-declaration]
+     tmp =  I915_READ(DSI_INTR_MASK_REG(port));
+                      ^
    drivers/gpu/drm/i915/i915_drv.h:1979:45: note: in definition of macro '__I915_REG_OP'
      intel_uncore_##op__(&(dev_priv__)->uncore, __VA_ARGS__)
                                                 ^~~~~~~~~~~
-   drivers/gpu/drm/i915/display/icl_dsi.c:1164:10: note: in expansion of macro 'I915_READ'
-       tmp = I915_READ(DSI_CMD_FRMCTL(port));
-             ^~~~~~~~~
+>> drivers/gpu/drm/i915/i915_irq.c:2590:9: note: in expansion of macro 'I915_READ'
+     tmp =  I915_READ(DSI_INTR_MASK_REG(port));
+            ^~~~~~~~~
    drivers/gpu/drm/i915/i915_drv.h:1981:57: error: incompatible type for argument 2 of 'intel_uncore_read'
     #define I915_READ(reg__)  __I915_REG_OP(read, dev_priv, (reg__))
                                                             ^
    drivers/gpu/drm/i915/i915_drv.h:1979:45: note: in definition of macro '__I915_REG_OP'
      intel_uncore_##op__(&(dev_priv__)->uncore, __VA_ARGS__)
                                                 ^~~~~~~~~~~
-   drivers/gpu/drm/i915/display/icl_dsi.c:1164:10: note: in expansion of macro 'I915_READ'
-       tmp = I915_READ(DSI_CMD_FRMCTL(port));
-             ^~~~~~~~~
+>> drivers/gpu/drm/i915/i915_irq.c:2590:9: note: in expansion of macro 'I915_READ'
+     tmp =  I915_READ(DSI_INTR_MASK_REG(port));
+            ^~~~~~~~~
    In file included from drivers/gpu/drm/i915/gt/uc/intel_guc.h:9:0,
                     from drivers/gpu/drm/i915/gt/uc/intel_uc.h:9,
                     from drivers/gpu/drm/i915/gt/intel_gt_types.h:16,
                     from drivers/gpu/drm/i915/i915_drv.h:81,
                     from drivers/gpu/drm/i915/display/intel_display_types.h:46,
-                    from drivers/gpu/drm/i915/display/intel_dsi.h:30,
-                    from drivers/gpu/drm/i915/display/icl_dsi.c:35:
+                    from drivers/gpu/drm/i915/i915_irq.c:39:
    drivers/gpu/drm/i915/intel_uncore.h:287:22: note: expected 'i915_reg_t {aka struct <anonymous>}' but argument is of type 'int'
     static inline u##x__ intel_uncore_##name__(struct intel_uncore *uncore, \
                          ^
    drivers/gpu/drm/i915/intel_uncore.h:302:1: note: in expansion of macro '__uncore_read'
     __uncore_read(read, 32, l, true)
     ^~~~~~~~~~~~~
-   drivers/gpu/drm/i915/display/icl_dsi.c:1165:12: error: 'DSI_PERIODIC_FRAME_UPDATE_ENABLE' undeclared (first use in this function); did you mean 'GEN6_MBCTL_BME_UPDATE_ENABLE'?
-       tmp &= ~DSI_PERIODIC_FRAME_UPDATE_ENABLE;
-               ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-               GEN6_MBCTL_BME_UPDATE_ENABLE
+>> drivers/gpu/drm/i915/i915_irq.c:2592:11: error: 'DSI_TE_EVENT' undeclared (first use in this function); did you mean 'DEFINE_EVENT'?
+      tmp &= ~DSI_TE_EVENT;
+              ^~~~~~~~~~~~
+              DEFINE_EVENT
+   drivers/gpu/drm/i915/i915_irq.c:2592:11: note: each undeclared identifier is reported only once for each function it appears in
    In file included from drivers/gpu/drm/i915/display/intel_display_types.h:46:0,
-                    from drivers/gpu/drm/i915/display/intel_dsi.h:30,
-                    from drivers/gpu/drm/i915/display/icl_dsi.c:35:
+                    from drivers/gpu/drm/i915/i915_irq.c:39:
    drivers/gpu/drm/i915/i915_drv.h:1982:65: error: incompatible type for argument 2 of 'intel_uncore_write'
     #define I915_WRITE(reg__, val__) __I915_REG_OP(write, dev_priv, (reg__), (val__))
                                                                     ^
    drivers/gpu/drm/i915/i915_drv.h:1979:45: note: in definition of macro '__I915_REG_OP'
      intel_uncore_##op__(&(dev_priv__)->uncore, __VA_ARGS__)
                                                 ^~~~~~~~~~~
-   drivers/gpu/drm/i915/display/icl_dsi.c:1166:4: note: in expansion of macro 'I915_WRITE'
-       I915_WRITE(DSI_CMD_FRMCTL(port), tmp);
-       ^~~~~~~~~~
+>> drivers/gpu/drm/i915/i915_irq.c:2596:2: note: in expansion of macro 'I915_WRITE'
+     I915_WRITE(DSI_INTR_MASK_REG(port), tmp);
+     ^~~~~~~~~~
    In file included from drivers/gpu/drm/i915/gt/uc/intel_guc.h:9:0,
                     from drivers/gpu/drm/i915/gt/uc/intel_uc.h:9,
                     from drivers/gpu/drm/i915/gt/intel_gt_types.h:16,
                     from drivers/gpu/drm/i915/i915_drv.h:81,
                     from drivers/gpu/drm/i915/display/intel_display_types.h:46,
-                    from drivers/gpu/drm/i915/display/intel_dsi.h:30,
-                    from drivers/gpu/drm/i915/display/icl_dsi.c:35:
+                    from drivers/gpu/drm/i915/i915_irq.c:39:
    drivers/gpu/drm/i915/intel_uncore.h:294:20: note: expected 'i915_reg_t {aka struct <anonymous>}' but argument is of type 'int'
     static inline void intel_uncore_##name__(struct intel_uncore *uncore, \
                        ^
    drivers/gpu/drm/i915/intel_uncore.h:308:1: note: in expansion of macro '__uncore_write'
     __uncore_write(write, 32, l, true)
     ^~~~~~~~~~~~~~
-   drivers/gpu/drm/i915/display/icl_dsi.c: In function 'gen11_dsi_is_periodic_cmd_mode':
-   drivers/gpu/drm/i915/display/icl_dsi.c:1318:16: error: 'DSI_PERIODIC_FRAME_UPDATE_ENABLE' undeclared (first use in this function); did you mean 'GEN6_MBCTL_BME_UPDATE_ENABLE'?
-     return (val & DSI_PERIODIC_FRAME_UPDATE_ENABLE);
-                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-                   GEN6_MBCTL_BME_UPDATE_ENABLE
-   drivers/gpu/drm/i915/display/icl_dsi.c: In function 'gen11_dsi_get_config':
-   drivers/gpu/drm/i915/display/icl_dsi.c:1341:14: error: 'struct intel_crtc_state' has no member named 'hw'
-      pipe_config->hw.adjusted_mode.private_flags |=
-                 ^~
-   drivers/gpu/drm/i915/display/icl_dsi.c: In function 'gen11_dsi_compute_config':
-   drivers/gpu/drm/i915/display/icl_dsi.c:1374:13: error: 'struct intel_crtc_state' has no member named 'hw'
-     pipe_config->hw.adjusted_mode.private_flags &=
-                ^~
-   drivers/gpu/drm/i915/display/icl_dsi.c: In function 'gen11_dsi_is_periodic_cmd_mode':
->> drivers/gpu/drm/i915/display/icl_dsi.c:1319:1: warning: control reaches end of non-void function [-Wreturn-type]
-    }
-    ^
+   drivers/gpu/drm/i915/i915_irq.c: In function 'gen8_de_irq_postinstall':
+>> drivers/gpu/drm/i915/i915_irq.c:3401:22: error: 'DSI0_TE' undeclared (first use in this function)
+       de_port_masked |= DSI0_TE | DSI1_TE;
+                         ^~~~~~~
+>> drivers/gpu/drm/i915/i915_irq.c:3401:32: error: 'DSI1_TE' undeclared (first use in this function); did you mean 'DSI0_TE'?
+       de_port_masked |= DSI0_TE | DSI1_TE;
+                                   ^~~~~~~
+                                   DSI0_TE
    cc1: some warnings being treated as errors
 
-vim +1319 drivers/gpu/drm/i915/display/icl_dsi.c
+vim +2590 drivers/gpu/drm/i915/i915_irq.c
 
-  1305	
-  1306	bool gen11_dsi_is_periodic_cmd_mode(struct drm_i915_private *dev_priv,
-  1307					    struct intel_dsi *intel_dsi)
-  1308	{
-  1309		u32 val;
-  1310		enum transcoder dsi_trans;
-  1311	
-  1312		if (intel_dsi->ports == BIT(PORT_B))
-  1313			dsi_trans = TRANSCODER_DSI_1;
-  1314		else
-  1315			dsi_trans = TRANSCODER_DSI_0;
-  1316	
-  1317		val = I915_READ(DSI_TRANS_FUNC_CONF(dsi_trans));
-  1318		return (val & DSI_PERIODIC_FRAME_UPDATE_ENABLE);
-> 1319	}
-  1320	
-  1321	static void gen11_dsi_get_config(struct intel_encoder *encoder,
-  1322					 struct intel_crtc_state *pipe_config)
-  1323	{
-  1324		struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
-  1325		struct intel_crtc *crtc = to_intel_crtc(pipe_config->base.crtc);
-  1326		struct intel_dsi *intel_dsi = enc_to_intel_dsi(&encoder->base);
-  1327	
-  1328		/* FIXME: adapt icl_ddi_clock_get() for DSI and use that? */
-  1329		pipe_config->port_clock =
-  1330			cnl_calc_wrpll_link(dev_priv, &pipe_config->dpll_hw_state);
-  1331	
-  1332		pipe_config->base.adjusted_mode.crtc_clock = intel_dsi->pclk;
-  1333		if (intel_dsi->dual_link)
-  1334			pipe_config->base.adjusted_mode.crtc_clock *= 2;
-  1335	
-  1336		gen11_dsi_get_timings(encoder, pipe_config);
-  1337		pipe_config->output_types |= BIT(INTEL_OUTPUT_DSI);
-  1338		pipe_config->pipe_bpp = bdw_get_pipemisc_bpp(crtc);
-  1339	
-  1340		if (gen11_dsi_is_periodic_cmd_mode(dev_priv, intel_dsi))
-> 1341			pipe_config->hw.adjusted_mode.private_flags |=
-  1342						I915_MODE_FLAG_DSI_PERIODIC_CMD_MODE;
-  1343	}
-  1344	
+  2574	
+  2575	static bool gen11_dsi_configure_te(struct drm_i915_private *dev_priv,
+  2576					   struct drm_display_mode *mode, bool enable)
+  2577	{
+  2578		enum port port;
+  2579		u32 tmp;
+  2580	
+  2581		if (!(mode->private_flags &
+  2582		    (I915_MODE_FLAG_DSI_USE_TE1 | I915_MODE_FLAG_DSI_USE_TE0)))
+  2583			return false;
+  2584	
+  2585		if (mode->private_flags & I915_MODE_FLAG_DSI_USE_TE1)
+  2586			port = PORT_B;
+  2587		else
+  2588			port = PORT_A;
+  2589	
+> 2590		tmp =  I915_READ(DSI_INTR_MASK_REG(port));
+  2591		if (enable)
+> 2592			tmp &= ~DSI_TE_EVENT;
+  2593		else
+  2594			tmp |= DSI_TE_EVENT;
+  2595	
+> 2596		I915_WRITE(DSI_INTR_MASK_REG(port), tmp);
+  2597		return true;
+  2598	}
+  2599	
 
 ---
 0-DAY kernel test infrastructure                 Open Source Technology Center
 https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org Intel Corporation
 
---myz6myfv32gqcuvi
+--ea6gj7fbwtwn3o7v
 Content-Type: application/gzip
 Content-Disposition: attachment; filename=".config.gz"
 Content-Transfer-Encoding: base64
 
-H4sICNJH1F0AAy5jb25maWcAlFzdctw2sr7PU0w5N0ltJZEtRfE5p3QBgiAHGYKgAXBGoxuW
+H4sICAlN1F0AAy5jb25maWcAlFzdctw2sr7PU0w5N0ltJZEtRfE5p3QBgiAHGYKgAXBGoxuW
 Io8d1dqSdyRt4rc/3QBBAiQ4SbZSaw0aaPw1ur9uNPjtN9+uyMvz4+fb5/u720+fvq4+Hh4O
 x9vnw/vVh/tPh/9b5XJVS7NiOTc/QuXq/uHlz5/uz99ern7+8eLHsx+Od7+sNofjw+HTij4+
 fLj/+AKt7x8fvvn2G/jvWyj8/AUYHf939fHu7odfVt/lh9/ubx9Wv9jWry++d39BXSrrgpcd
@@ -753,7 +716,7 @@ hhmV2fwVU1ccruzwe86H+k3MmLpjUoKWPX2TZdbXq9aLwOS+vqhAcXHVyUNIuw65kqA8XOYd
 6QuNy2VkZCiZDjRa5foTc7rHrBqYiOPN+bEzlZrAGKaOiJkNPmKAN+VlBKiVAodX20i3JsK5
 OWME9oiMEkuJAYpsrvtqlFBbUlscjYqDDvczKwLsynUGET0JPYzraqdUiP8HgPyPxQbZAQA=
 
---myz6myfv32gqcuvi
+--ea6gj7fbwtwn3o7v
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -763,4 +726,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
 IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
 dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
 
---myz6myfv32gqcuvi--
+--ea6gj7fbwtwn3o7v--
