@@ -2,43 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 42CB3102D7C
-	for <lists+intel-gfx@lfdr.de>; Tue, 19 Nov 2019 21:23:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C8431102DD8
+	for <lists+intel-gfx@lfdr.de>; Tue, 19 Nov 2019 22:01:02 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 34FC16E096;
-	Tue, 19 Nov 2019 20:23:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9A5F86E393;
+	Tue, 19 Nov 2019 21:01:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 772906E8E2
- for <intel-gfx@lists.freedesktop.org>; Tue, 19 Nov 2019 20:23:55 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B8CBC6E393
+ for <intel-gfx@lists.freedesktop.org>; Tue, 19 Nov 2019 21:00:59 +0000 (UTC)
 X-Amp-Result: UNKNOWN
 X-Amp-Original-Verdict: FILE UNKNOWN
 X-Amp-File-Uploaded: False
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
  by orsmga106.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 19 Nov 2019 12:23:54 -0800
+ 19 Nov 2019 13:00:58 -0800
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="5.69,219,1571727600"; 
- d="gz'50?scan'50,208,50";a="406577096"
+ d="gz'50?scan'50,208,50";a="407895776"
 Received: from lkp-server01.sh.intel.com (HELO lkp-server01) ([10.239.97.150])
- by fmsmga005.fm.intel.com with ESMTP; 19 Nov 2019 12:23:52 -0800
+ by fmsmga006.fm.intel.com with ESMTP; 19 Nov 2019 13:00:57 -0800
 Received: from kbuild by lkp-server01 with local (Exim 4.89)
  (envelope-from <lkp@intel.com>)
- id 1iXA2S-0009Aq-GB; Wed, 20 Nov 2019 04:23:52 +0800
-Date: Wed, 20 Nov 2019 04:23:30 +0800
+ id 1iXAcK-0003UG-Jd; Wed, 20 Nov 2019 05:00:56 +0800
+Date: Wed, 20 Nov 2019 05:00:10 +0800
 From: kbuild test robot <lkp@intel.com>
 To: Vandita Kulkarni <vandita.kulkarni@intel.com>
-Message-ID: <201911200436.S9npEYVh%lkp@intel.com>
-References: <20191119123316.5094-7-vandita.kulkarni@intel.com>
+Message-ID: <201911200447.LJt444di%lkp@intel.com>
+References: <20191119123316.5094-8-vandita.kulkarni@intel.com>
 MIME-Version: 1.0
-Content-Type: multipart/mixed; boundary="ea6gj7fbwtwn3o7v"
+Content-Type: multipart/mixed; boundary="gzc4ryhs6amnewuq"
 Content-Disposition: inline
-In-Reply-To: <20191119123316.5094-7-vandita.kulkarni@intel.com>
+In-Reply-To: <20191119123316.5094-8-vandita.kulkarni@intel.com>
 X-Patchwork-Hint: ignore
 User-Agent: NeoMutt/20170113 (1.7.2)
-Subject: Re: [Intel-gfx] [V3 6/8] drm/i915/dsi: Configure TE interrupt for
- cmd mode
+Subject: Re: [Intel-gfx] [V3 7/8] drm/i915/dsi: Add TE handler for dsi cmd
+ mode.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -57,7 +57,7 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
---ea6gj7fbwtwn3o7v
+--gzc4ryhs6amnewuq
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 
@@ -82,18 +82,90 @@ reproduce:
 If you fix the issue, kindly add following tag
 Reported-by: kbuild test robot <lkp@intel.com>
 
-All error/warnings (new ones prefixed by >>):
+All errors (new ones prefixed by >>):
 
+   drivers/gpu/drm/i915/i915_irq.c: In function 'gen11_dsi_te_interrupt_handler':
+>> drivers/gpu/drm/i915/i915_irq.c:2252:24: error: 'DSI1_TE' undeclared (first use in this function)
+     port = ((te_trigger & DSI1_TE && val) || (te_trigger & DSI0_TE)) ?
+                           ^~~~~~~
+   drivers/gpu/drm/i915/i915_irq.c:2252:24: note: each undeclared identifier is reported only once for each function it appears in
+>> drivers/gpu/drm/i915/i915_irq.c:2252:57: error: 'DSI0_TE' undeclared (first use in this function); did you mean 'DSI1_TE'?
+     port = ((te_trigger & DSI1_TE && val) || (te_trigger & DSI0_TE)) ?
+                                                            ^~~~~~~
+                                                            DSI1_TE
+   In file included from drivers/gpu/drm/i915/display/intel_display_types.h:46:0,
+                    from drivers/gpu/drm/i915/i915_irq.c:39:
+>> drivers/gpu/drm/i915/i915_irq.c:2283:18: error: implicit declaration of function 'DSI_INTR_IDENT_REG'; did you mean 'GEN11_INTR_IDENTITY_REG'? [-Werror=implicit-function-declaration]
+     tmp = I915_READ(DSI_INTR_IDENT_REG(port));
+                     ^
+   drivers/gpu/drm/i915/i915_drv.h:1979:45: note: in definition of macro '__I915_REG_OP'
+     intel_uncore_##op__(&(dev_priv__)->uncore, __VA_ARGS__)
+                                                ^~~~~~~~~~~
+   drivers/gpu/drm/i915/i915_irq.c:2283:8: note: in expansion of macro 'I915_READ'
+     tmp = I915_READ(DSI_INTR_IDENT_REG(port));
+           ^~~~~~~~~
+   drivers/gpu/drm/i915/i915_drv.h:1981:57: error: incompatible type for argument 2 of 'intel_uncore_read'
+    #define I915_READ(reg__)  __I915_REG_OP(read, dev_priv, (reg__))
+                                                            ^
+   drivers/gpu/drm/i915/i915_drv.h:1979:45: note: in definition of macro '__I915_REG_OP'
+     intel_uncore_##op__(&(dev_priv__)->uncore, __VA_ARGS__)
+                                                ^~~~~~~~~~~
+   drivers/gpu/drm/i915/i915_irq.c:2283:8: note: in expansion of macro 'I915_READ'
+     tmp = I915_READ(DSI_INTR_IDENT_REG(port));
+           ^~~~~~~~~
+   In file included from drivers/gpu/drm/i915/gt/uc/intel_guc.h:9:0,
+                    from drivers/gpu/drm/i915/gt/uc/intel_uc.h:9,
+                    from drivers/gpu/drm/i915/gt/intel_gt_types.h:16,
+                    from drivers/gpu/drm/i915/i915_drv.h:81,
+                    from drivers/gpu/drm/i915/display/intel_display_types.h:46,
+                    from drivers/gpu/drm/i915/i915_irq.c:39:
+   drivers/gpu/drm/i915/intel_uncore.h:287:22: note: expected 'i915_reg_t {aka struct <anonymous>}' but argument is of type 'int'
+    static inline u##x__ intel_uncore_##name__(struct intel_uncore *uncore, \
+                         ^
+   drivers/gpu/drm/i915/intel_uncore.h:302:1: note: in expansion of macro '__uncore_read'
+    __uncore_read(read, 32, l, true)
+    ^~~~~~~~~~~~~
+   In file included from drivers/gpu/drm/i915/display/intel_display_types.h:46:0,
+                    from drivers/gpu/drm/i915/i915_irq.c:39:
+   drivers/gpu/drm/i915/i915_drv.h:1982:65: error: incompatible type for argument 2 of 'intel_uncore_write'
+    #define I915_WRITE(reg__, val__) __I915_REG_OP(write, dev_priv, (reg__), (val__))
+                                                                    ^
+   drivers/gpu/drm/i915/i915_drv.h:1979:45: note: in definition of macro '__I915_REG_OP'
+     intel_uncore_##op__(&(dev_priv__)->uncore, __VA_ARGS__)
+                                                ^~~~~~~~~~~
+   drivers/gpu/drm/i915/i915_irq.c:2284:2: note: in expansion of macro 'I915_WRITE'
+     I915_WRITE(DSI_INTR_IDENT_REG(port), tmp);
+     ^~~~~~~~~~
+   In file included from drivers/gpu/drm/i915/gt/uc/intel_guc.h:9:0,
+                    from drivers/gpu/drm/i915/gt/uc/intel_uc.h:9,
+                    from drivers/gpu/drm/i915/gt/intel_gt_types.h:16,
+                    from drivers/gpu/drm/i915/i915_drv.h:81,
+                    from drivers/gpu/drm/i915/display/intel_display_types.h:46,
+                    from drivers/gpu/drm/i915/i915_irq.c:39:
+   drivers/gpu/drm/i915/intel_uncore.h:294:20: note: expected 'i915_reg_t {aka struct <anonymous>}' but argument is of type 'int'
+    static inline void intel_uncore_##name__(struct intel_uncore *uncore, \
+                       ^
+   drivers/gpu/drm/i915/intel_uncore.h:308:1: note: in expansion of macro '__uncore_write'
+    __uncore_write(write, 32, l, true)
+    ^~~~~~~~~~~~~~
+   drivers/gpu/drm/i915/i915_irq.c: In function 'gen8_de_irq_handler':
+   drivers/gpu/drm/i915/i915_irq.c:2354:23: error: 'DSI0_TE' undeclared (first use in this function)
+        tmp_mask = iir & (DSI0_TE | DSI1_TE);
+                          ^~~~~~~
+   drivers/gpu/drm/i915/i915_irq.c:2354:33: error: 'DSI1_TE' undeclared (first use in this function); did you mean 'DSI0_TE'?
+        tmp_mask = iir & (DSI0_TE | DSI1_TE);
+                                    ^~~~~~~
+                                    DSI0_TE
    In file included from drivers/gpu/drm/i915/display/intel_display_types.h:46:0,
                     from drivers/gpu/drm/i915/i915_irq.c:39:
    drivers/gpu/drm/i915/i915_irq.c: In function 'gen11_dsi_configure_te':
->> drivers/gpu/drm/i915/i915_irq.c:2590:19: error: implicit declaration of function 'DSI_INTR_MASK_REG'; did you mean 'TSFS_INTR_MASK'? [-Werror=implicit-function-declaration]
+   drivers/gpu/drm/i915/i915_irq.c:2654:19: error: implicit declaration of function 'DSI_INTR_MASK_REG'; did you mean 'TSFS_INTR_MASK'? [-Werror=implicit-function-declaration]
      tmp =  I915_READ(DSI_INTR_MASK_REG(port));
                       ^
    drivers/gpu/drm/i915/i915_drv.h:1979:45: note: in definition of macro '__I915_REG_OP'
      intel_uncore_##op__(&(dev_priv__)->uncore, __VA_ARGS__)
                                                 ^~~~~~~~~~~
->> drivers/gpu/drm/i915/i915_irq.c:2590:9: note: in expansion of macro 'I915_READ'
+   drivers/gpu/drm/i915/i915_irq.c:2654:9: note: in expansion of macro 'I915_READ'
      tmp =  I915_READ(DSI_INTR_MASK_REG(port));
             ^~~~~~~~~
    drivers/gpu/drm/i915/i915_drv.h:1981:57: error: incompatible type for argument 2 of 'intel_uncore_read'
@@ -102,7 +174,7 @@ All error/warnings (new ones prefixed by >>):
    drivers/gpu/drm/i915/i915_drv.h:1979:45: note: in definition of macro '__I915_REG_OP'
      intel_uncore_##op__(&(dev_priv__)->uncore, __VA_ARGS__)
                                                 ^~~~~~~~~~~
->> drivers/gpu/drm/i915/i915_irq.c:2590:9: note: in expansion of macro 'I915_READ'
+   drivers/gpu/drm/i915/i915_irq.c:2654:9: note: in expansion of macro 'I915_READ'
      tmp =  I915_READ(DSI_INTR_MASK_REG(port));
             ^~~~~~~~~
    In file included from drivers/gpu/drm/i915/gt/uc/intel_guc.h:9:0,
@@ -117,83 +189,84 @@ All error/warnings (new ones prefixed by >>):
    drivers/gpu/drm/i915/intel_uncore.h:302:1: note: in expansion of macro '__uncore_read'
     __uncore_read(read, 32, l, true)
     ^~~~~~~~~~~~~
->> drivers/gpu/drm/i915/i915_irq.c:2592:11: error: 'DSI_TE_EVENT' undeclared (first use in this function); did you mean 'DEFINE_EVENT'?
+   drivers/gpu/drm/i915/i915_irq.c:2656:11: error: 'DSI_TE_EVENT' undeclared (first use in this function); did you mean 'DEFINE_EVENT'?
       tmp &= ~DSI_TE_EVENT;
               ^~~~~~~~~~~~
               DEFINE_EVENT
-   drivers/gpu/drm/i915/i915_irq.c:2592:11: note: each undeclared identifier is reported only once for each function it appears in
    In file included from drivers/gpu/drm/i915/display/intel_display_types.h:46:0,
                     from drivers/gpu/drm/i915/i915_irq.c:39:
    drivers/gpu/drm/i915/i915_drv.h:1982:65: error: incompatible type for argument 2 of 'intel_uncore_write'
-    #define I915_WRITE(reg__, val__) __I915_REG_OP(write, dev_priv, (reg__), (val__))
-                                                                    ^
-   drivers/gpu/drm/i915/i915_drv.h:1979:45: note: in definition of macro '__I915_REG_OP'
-     intel_uncore_##op__(&(dev_priv__)->uncore, __VA_ARGS__)
-                                                ^~~~~~~~~~~
->> drivers/gpu/drm/i915/i915_irq.c:2596:2: note: in expansion of macro 'I915_WRITE'
-     I915_WRITE(DSI_INTR_MASK_REG(port), tmp);
-     ^~~~~~~~~~
-   In file included from drivers/gpu/drm/i915/gt/uc/intel_guc.h:9:0,
-                    from drivers/gpu/drm/i915/gt/uc/intel_uc.h:9,
-                    from drivers/gpu/drm/i915/gt/intel_gt_types.h:16,
-                    from drivers/gpu/drm/i915/i915_drv.h:81,
-                    from drivers/gpu/drm/i915/display/intel_display_types.h:46,
-                    from drivers/gpu/drm/i915/i915_irq.c:39:
-   drivers/gpu/drm/i915/intel_uncore.h:294:20: note: expected 'i915_reg_t {aka struct <anonymous>}' but argument is of type 'int'
-    static inline void intel_uncore_##name__(struct intel_uncore *uncore, \
-                       ^
-   drivers/gpu/drm/i915/intel_uncore.h:308:1: note: in expansion of macro '__uncore_write'
-    __uncore_write(write, 32, l, true)
-    ^~~~~~~~~~~~~~
-   drivers/gpu/drm/i915/i915_irq.c: In function 'gen8_de_irq_postinstall':
->> drivers/gpu/drm/i915/i915_irq.c:3401:22: error: 'DSI0_TE' undeclared (first use in this function)
-       de_port_masked |= DSI0_TE | DSI1_TE;
-                         ^~~~~~~
->> drivers/gpu/drm/i915/i915_irq.c:3401:32: error: 'DSI1_TE' undeclared (first use in this function); did you mean 'DSI0_TE'?
-       de_port_masked |= DSI0_TE | DSI1_TE;
-                                   ^~~~~~~
-                                   DSI0_TE
-   cc1: some warnings being treated as errors
 
-vim +2590 drivers/gpu/drm/i915/i915_irq.c
+vim +/DSI1_TE +2252 drivers/gpu/drm/i915/i915_irq.c
 
-  2574	
-  2575	static bool gen11_dsi_configure_te(struct drm_i915_private *dev_priv,
-  2576					   struct drm_display_mode *mode, bool enable)
-  2577	{
-  2578		enum port port;
-  2579		u32 tmp;
-  2580	
-  2581		if (!(mode->private_flags &
-  2582		    (I915_MODE_FLAG_DSI_USE_TE1 | I915_MODE_FLAG_DSI_USE_TE0)))
-  2583			return false;
-  2584	
-  2585		if (mode->private_flags & I915_MODE_FLAG_DSI_USE_TE1)
-  2586			port = PORT_B;
-  2587		else
-  2588			port = PORT_A;
-  2589	
-> 2590		tmp =  I915_READ(DSI_INTR_MASK_REG(port));
-  2591		if (enable)
-> 2592			tmp &= ~DSI_TE_EVENT;
-  2593		else
-  2594			tmp |= DSI_TE_EVENT;
-  2595	
-> 2596		I915_WRITE(DSI_INTR_MASK_REG(port), tmp);
-  2597		return true;
-  2598	}
-  2599	
+  2232	
+  2233	void gen11_dsi_te_interrupt_handler(struct drm_i915_private *dev_priv,
+  2234					    u32 te_trigger)
+  2235	{
+  2236		enum pipe pipe = INVALID_PIPE;
+  2237		enum transcoder dsi_trans;
+  2238		enum port port;
+  2239		u32 val, tmp;
+  2240	
+  2241		/*
+  2242		 * Incase of dual link, TE comes from DSI_1
+  2243		 * this is to check if dual link is enabled
+  2244		 */
+  2245		val = I915_READ(TRANS_DDI_FUNC_CTL2(TRANSCODER_DSI_0));
+  2246		val &= PORT_SYNC_MODE_ENABLE;
+  2247	
+  2248		/*
+  2249		 * if dual link is enabled, then read DSI_0
+  2250		 * transcoder registers
+  2251		 */
+> 2252		port = ((te_trigger & DSI1_TE && val) || (te_trigger & DSI0_TE)) ?
+  2253							  PORT_A : PORT_B;
+  2254		dsi_trans = (port == PORT_A) ? TRANSCODER_DSI_0 : TRANSCODER_DSI_1;
+  2255	
+  2256		/* Check if DSI configured in command mode */
+  2257		val = I915_READ(DSI_TRANS_FUNC_CONF(dsi_trans));
+  2258		val = (val & OP_MODE_MASK) >> 28;
+  2259	
+  2260		if (val) {
+  2261			DRM_ERROR("DSI trancoder not configured in command mode\n");
+  2262			return;
+  2263		}
+  2264	
+  2265		/* Get PIPE for handling VBLANK event */
+  2266		val = I915_READ(TRANS_DDI_FUNC_CTL(dsi_trans));
+  2267		switch (val & TRANS_DDI_EDP_INPUT_MASK) {
+  2268		case TRANS_DDI_EDP_INPUT_A_ON:
+  2269			pipe = PIPE_A;
+  2270			break;
+  2271		case TRANS_DDI_EDP_INPUT_B_ONOFF:
+  2272			pipe = PIPE_B;
+  2273			break;
+  2274		case TRANS_DDI_EDP_INPUT_C_ONOFF:
+  2275			pipe = PIPE_C;
+  2276			break;
+  2277		default:
+  2278			DRM_ERROR("Invalid PIPE\n");
+  2279		}
+  2280	
+  2281		/* clear TE in dsi IIR */
+  2282		port = (te_trigger & DSI1_TE) ? PORT_B : PORT_A;
+> 2283		tmp = I915_READ(DSI_INTR_IDENT_REG(port));
+  2284		I915_WRITE(DSI_INTR_IDENT_REG(port), tmp);
+  2285	
+  2286		drm_handle_vblank(&dev_priv->drm, pipe);
+  2287	}
+  2288	
 
 ---
 0-DAY kernel test infrastructure                 Open Source Technology Center
 https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org Intel Corporation
 
---ea6gj7fbwtwn3o7v
+--gzc4ryhs6amnewuq
 Content-Type: application/gzip
 Content-Disposition: attachment; filename=".config.gz"
 Content-Transfer-Encoding: base64
 
-H4sICAlN1F0AAy5jb25maWcAlFzdctw2sr7PU0w5N0ltJZEtRfE5p3QBgiAHGYKgAXBGoxuW
+H4sICONR1F0AAy5jb25maWcAlFzdctw2sr7PU0w5N0ltJZEtRfE5p3QBgiAHGYKgAXBGoxuW
 Io8d1dqSdyRt4rc/3QBBAiQ4SbZSaw0aaPw1ur9uNPjtN9+uyMvz4+fb5/u720+fvq4+Hh4O
 x9vnw/vVh/tPh/9b5XJVS7NiOTc/QuXq/uHlz5/uz99ern7+8eLHsx+Od7+sNofjw+HTij4+
 fLj/+AKt7x8fvvn2G/jvWyj8/AUYHf939fHu7odfVt/lh9/ubx9Wv9jWry++d39BXSrrgpcd
@@ -716,7 +789,7 @@ hhmV2fwVU1ccruzwe86H+k3MmLpjUoKWPX2TZdbXq9aLwOS+vqhAcXHVyUNIuw65kqA8XOYd
 6QuNy2VkZCiZDjRa5foTc7rHrBqYiOPN+bEzlZrAGKaOiJkNPmKAN+VlBKiVAodX20i3JsK5
 OWME9oiMEkuJAYpsrvtqlFBbUlscjYqDDvczKwLsynUGET0JPYzraqdUiP8HgPyPxQbZAQA=
 
---ea6gj7fbwtwn3o7v
+--gzc4ryhs6amnewuq
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -726,4 +799,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
 IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
 dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
 
---ea6gj7fbwtwn3o7v--
+--gzc4ryhs6amnewuq--
