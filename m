@@ -2,51 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7934F103E01
-	for <lists+intel-gfx@lfdr.de>; Wed, 20 Nov 2019 16:08:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3EC55103E05
+	for <lists+intel-gfx@lfdr.de>; Wed, 20 Nov 2019 16:10:39 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DDEF46E614;
-	Wed, 20 Nov 2019 15:08:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 906576E60A;
+	Wed, 20 Nov 2019 15:10:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 720C16E614
- for <intel-gfx@lists.freedesktop.org>; Wed, 20 Nov 2019 15:08:51 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F0AF56E60A
+ for <intel-gfx@lists.freedesktop.org>; Wed, 20 Nov 2019 15:10:35 +0000 (UTC)
 X-Amp-Result: UNKNOWN
 X-Amp-Original-Verdict: FILE UNKNOWN
 X-Amp-File-Uploaded: False
 Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 20 Nov 2019 07:08:50 -0800
+ by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 20 Nov 2019 07:10:35 -0800
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="5.69,222,1571727600"; 
- d="p7s'?scan'208";a="196883503"
+ d="p7s'?scan'208";a="196884166"
 Received: from fmsmsx108.amr.corp.intel.com ([10.18.124.206])
- by orsmga007.jf.intel.com with ESMTP; 20 Nov 2019 07:08:50 -0800
-Received: from fmsmsx157.amr.corp.intel.com (10.18.116.73) by
+ by orsmga007.jf.intel.com with ESMTP; 20 Nov 2019 07:10:35 -0800
+Received: from FMSMSX109.amr.corp.intel.com (10.18.116.9) by
  FMSMSX108.amr.corp.intel.com (10.18.124.206) with Microsoft SMTP Server (TLS)
- id 14.3.439.0; Wed, 20 Nov 2019 07:08:50 -0800
+ id 14.3.439.0; Wed, 20 Nov 2019 07:10:35 -0800
 Received: from fmsmsx106.amr.corp.intel.com ([169.254.5.77]) by
- FMSMSX157.amr.corp.intel.com ([169.254.14.160]) with mapi id 14.03.0439.000;
- Wed, 20 Nov 2019 07:08:49 -0800
+ FMSMSX109.amr.corp.intel.com ([169.254.15.65]) with mapi id 14.03.0439.000;
+ Wed, 20 Nov 2019 07:10:34 -0800
 From: "Summers, Stuart" <stuart.summers@intel.com>
 To: "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>
-Thread-Topic: [Intel-gfx] [PATCH] drm/i915: Do not initialize display BW
- when display not available
-Thread-Index: AQHVnz8sHty5RvvHjUmqfYlVxMsL7qeUYiKAgABOSwA=
-Date: Wed, 20 Nov 2019 15:08:49 +0000
-Message-ID: <441e75344bd756477a0655d8b0758db76e137fe9.camel@intel.com>
-References: <20191120011016.18049-1-stuart.summers@intel.com>
- <20191120102833.GF1208@intel.com>
-In-Reply-To: <20191120102833.GF1208@intel.com>
+Thread-Topic: [Intel-gfx] [PATCH] Skip MCHBAR queries when display is not
+ available
+Thread-Index: AQHVnzusqsEDoHGi70uNBxHQO9qb0KeUYOCAgABQEYA=
+Date: Wed, 20 Nov 2019 15:10:33 +0000
+Message-ID: <e3634516d2f38fc06b96f953e0eb1e08f80915a3.camel@intel.com>
+References: <20191120004505.149516-1-stuart.summers@intel.com>
+ <20191120102357.GE1208@intel.com>
+In-Reply-To: <20191120102357.GE1208@intel.com>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: yes
 X-MS-TNEF-Correlator: 
 x-originating-ip: [10.165.21.197]
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Do not initialize display BW when
- display not available
+Subject: Re: [Intel-gfx] [PATCH] Skip MCHBAR queries when display is not
+ available
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -60,66 +60,58 @@ List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Content-Type: multipart/mixed; boundary="===============1988969306=="
+Content-Type: multipart/mixed; boundary="===============0412767959=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1988969306==
+--===============0412767959==
 Content-Language: en-US
 Content-Type: multipart/signed; micalg=sha-1;
-	protocol="application/x-pkcs7-signature"; boundary="=-mNWw2f4MEZFIY+GO3y0w"
+	protocol="application/x-pkcs7-signature"; boundary="=-C7CwiWnxxyk/gL15tsGU"
 
---=-mNWw2f4MEZFIY+GO3y0w
+--=-C7CwiWnxxyk/gL15tsGU
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, 2019-11-20 at 12:28 +0200, Ville Syrj=C3=A4l=C3=A4 wrote:
-> On Tue, Nov 19, 2019 at 05:10:16PM -0800, Stuart Summers wrote:
-> > When display is not available, finding the memory bandwidth
-> > available
-> > for display is not useful. Skip this sequence here.
-> >=20
-> > References: HSDES 1209978255
-> >=20
-> > Signed-off-by: Stuart Summers <stuart.summers@intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_bw.c | 3 +++
-> >  1 file changed, 3 insertions(+)
-> >=20
-> > diff --git a/drivers/gpu/drm/i915/display/intel_bw.c
-> > b/drivers/gpu/drm/i915/display/intel_bw.c
-> > index 3f6e29f61323..86e75e858008 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_bw.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_bw.c
-> > @@ -264,6 +264,9 @@ static unsigned int icl_max_bw(struct
-> > drm_i915_private *dev_priv,
-> > =20
-> >  void intel_bw_init_hw(struct drm_i915_private *dev_priv)
-> >  {
-> > +	if (!HAS_DISPLAY(dev_priv))
-> > +		return;
-> > +
+On Wed, 2019-11-20 at 12:23 +0200, Ville Syrj=C3=A4l=C3=A4 wrote:
+> On Tue, Nov 19, 2019 at 04:45:05PM -0800, Stuart Summers wrote:
+> > Platforms without display do not map the MCHBAR MMIO into the GFX
+> > device BAR. Skip this sequence when display is not available.
 >=20
-> It might make sense to catch this somewhere higher up. But seems OK
-> for
-> now until people figure out what HAS_DISPLAY actually means.
-
-We could reorganize this, but for now this is called in
-driver_hw_probe, so I figured it was better to allow this routine to
-handle the valid/invalid case itself rather than having the caller make
-that determination.
-
+> Slightly odd decision to hide this stuff in hw, but fine by me
+> since we need this only for display bandwidth/watermark stuff.
 >=20
 > Reviewed-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 
-Thanks for the review!
+Yeah, although there could be other implications to leaving this out
+depending on the hardware implementation.
+
+Thanks for the review here Ville!
 
 -Stuart
 
 >=20
-> >  	if (IS_GEN(dev_priv, 12))
-> >  		icl_get_bw_info(dev_priv, &tgl_sa_info);
-> >  	else if (IS_GEN(dev_priv, 11))
+> >=20
+> > Signed-off-by: Stuart Summers <stuart.summers@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/i915_drv.c | 2 +-
+> >  1 file changed, 1 insertion(+), 1 deletion(-)
+> >=20
+> > diff --git a/drivers/gpu/drm/i915/i915_drv.c
+> > b/drivers/gpu/drm/i915/i915_drv.c
+> > index 8d7049792d62..f509d826fcc7 100644
+> > --- a/drivers/gpu/drm/i915/i915_drv.c
+> > +++ b/drivers/gpu/drm/i915/i915_drv.c
+> > @@ -1052,7 +1052,7 @@ intel_get_dram_info(struct drm_i915_private
+> > *dev_priv)
+> >  	 */
+> >  	dram_info->is_16gb_dimm =3D !IS_GEN9_LP(dev_priv);
+> > =20
+> > -	if (INTEL_GEN(dev_priv) < 9)
+> > +	if (INTEL_GEN(dev_priv) < 9 || !HAS_DISPLAY(dev_priv))
+> >  		return;
+> > =20
+> >  	if (IS_GEN9_LP(dev_priv))
 > > --=20
 > > 2.22.0
 > >=20
@@ -130,7 +122,7 @@ Thanks for the review!
 >=20
 >=20
 
---=-mNWw2f4MEZFIY+GO3y0w
+--=-C7CwiWnxxyk/gL15tsGU
 Content-Type: application/x-pkcs7-signature; name="smime.p7s"
 Content-Disposition: attachment; filename="smime.p7s"
 Content-Transfer-Encoding: base64
@@ -186,18 +178,18 @@ CC/N7V8U9yFZx8akWREb8lJYDl9KypirEsufleiew26CWrwcbmdlldDCFS6/HDGCAhcwggITAgEB
 MIGQMHkxCzAJBgNVBAYTAlVTMQswCQYDVQQIEwJDQTEUMBIGA1UEBxMLU2FudGEgQ2xhcmExGjAY
 BgNVBAoTEUludGVsIENvcnBvcmF0aW9uMSswKQYDVQQDEyJJbnRlbCBFeHRlcm5hbCBCYXNpYyBJ
 c3N1aW5nIENBIDRCAhMzAAB04Th3owY0UbEUAAAAAHThMAkGBSsOAwIaBQCgXTAYBgkqhkiG9w0B
-CQMxCwYJKoZIhvcNAQcBMBwGCSqGSIb3DQEJBTEPFw0xOTExMjAxNTA4NDZaMCMGCSqGSIb3DQEJ
-BDEWBBTMr42QOnw0dK/p9/A60vEMzzMXhjANBgkqhkiG9w0BAQEFAASCAQCPQNdvxf7WYe1pQTb7
-TFrsCfrnuD3rLo6TqyFScmwhYO6VqHhbn9sI7iMqJfUl2yVvg7DErVw6dAlATbXF4MyLN4ZjhE4W
-0+eUHegqjVN2wrRaq4BtqT4VfyB88sUVteEMTxvUyfS6E00fLN9d1hcKNEdS7lo7OuxbHarMWbwr
-JSuZYAhcbG0hcLWKmFMSwnSKq4xSJ6wVWrverLtLEaI9INsgE8S1xYiQTuBb8EYHgTrF9gh6uMXl
-HK1EUaepPUP2MOQRZ3OaqCbELe9rmg3W2w2m5RiZVPxGWSL/wGRSb3aKJUPSmaKiid5mR5I6xnoL
-sLOp0cc4XNrMZY/VyuziAAAAAAAA
+CQMxCwYJKoZIhvcNAQcBMBwGCSqGSIb3DQEJBTEPFw0xOTExMjAxNTEwMzFaMCMGCSqGSIb3DQEJ
+BDEWBBREjIVUYubOLyTrNfDDf5ET/dTDQzANBgkqhkiG9w0BAQEFAASCAQCqgbYg+DB2Uz/UojeM
+jOz3TxBwdTE3hebCatWTffVMSy0yzcccNphKcXnM1puz+KNkjI3O9WiwSpqjxBXmesW23/cn4mlp
+6Tm0ZsXIh+7ptnO4rIoVJLcMX20GuJjmC6H0jvoWYfiGxvH6g4Uk+6fHxrwP6cGu5jRSNvQ4BzLk
+jrtfOdHkPNIwewk5DsKr5tKDBodQZNRAj/+iZ3Y5I/YH20mENrQwoSGLZ+52xKSlQCbCnfbM7BUo
+JfzCJej0LwDfBB5mxE6YOfoY2k8dMcY70GsU7FaEUu4myxRyozrOaE1nAC1SEdV6hfRVUfeUkPw/
+3L2FLIRaQp6Dc/jjGvL7AAAAAAAA
 
 
---=-mNWw2f4MEZFIY+GO3y0w--
+--=-C7CwiWnxxyk/gL15tsGU--
 
---===============1988969306==
+--===============0412767959==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -207,4 +199,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
 IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
 dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
 
---===============1988969306==--
+--===============0412767959==--
