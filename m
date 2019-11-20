@@ -1,65 +1,39 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EBFFE10456A
-	for <lists+intel-gfx@lfdr.de>; Wed, 20 Nov 2019 21:59:24 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B7B38104541
+	for <lists+intel-gfx@lfdr.de>; Wed, 20 Nov 2019 21:37:53 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C62A16E857;
-	Wed, 20 Nov 2019 20:59:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CD48D6E51A;
+	Wed, 20 Nov 2019 20:37:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 799 seconds by postgrey-1.36 at gabe;
- Wed, 20 Nov 2019 20:06:09 UTC
-Received: from omr2.cc.vt.edu (omr2.cc.ipv6.vt.edu
- [IPv6:2607:b400:92:8400:0:33:fb76:806e])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A132F6E622
- for <intel-gfx@lists.freedesktop.org>; Wed, 20 Nov 2019 20:06:09 +0000 (UTC)
-Received: from mr4.cc.vt.edu (mr4.cc.vt.edu
- [IPv6:2607:b400:92:8300:0:7b:e2b1:6a29])
- by omr2.cc.vt.edu (8.14.4/8.14.4) with ESMTP id xAKJqnZU006233
- for <intel-gfx@lists.freedesktop.org>; Wed, 20 Nov 2019 14:52:49 -0500
-Received: from mail-qv1-f72.google.com (mail-qv1-f72.google.com
- [209.85.219.72])
- by mr4.cc.vt.edu (8.14.7/8.14.7) with ESMTP id xAKJqi1Z032560
- for <intel-gfx@lists.freedesktop.org>; Wed, 20 Nov 2019 14:52:49 -0500
-Received: by mail-qv1-f72.google.com with SMTP id n15so519086qvm.18
- for <intel-gfx@lists.freedesktop.org>; Wed, 20 Nov 2019 11:52:49 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:sender:from:to:cc:subject:mime-version
- :content-transfer-encoding:date:message-id;
- bh=Pcz0vZsBN6EW4lKcg2ho+YDFFW6RUHvYufWFKuIJyxQ=;
- b=RAMBTs2Goqwlm+JqIk/0xMHQac362xjVKYWO1ayAIaX9JW0Jj377qYeDlU+EXOhuz5
- mCqjFw1IzUmYE1gmN65amvqxHqeOwnlv5alGuZjFZHycqDFUI0GYYUdH9O0fw5ZkqPW/
- TJpLnSo4IbPVOvN9wPkG0r28UcqF0F8fpy12nVcR6MKDSl5P43R9au0TPJew8mI5P9Fe
- 3LRAqklmUs4FSTrxWnh0+/UoI56CYPLiebFMXm9BVfGY3tM47MZxkBAcn66EJiM5GAlC
- U2r0U3kUrCnvff7zin9inmM25FmLkjrndeWvCLBcfYq1Wlg6BGzqw0IOWBb4j8SnDHLy
- Rlqg==
-X-Gm-Message-State: APjAAAXFEn+cnGrx9RP0zOHQ11LOWLcZiei2XZWQ6IfouBrsB1LWUw7i
- lpxJjKr28L6gD5I1/uP8MrTDWxdG/j62GW/Ee9OFnmrfGGhHJxU0zQcToMqreeA1deyApv1Sc7G
- SmhvoquQ4eExLERP2u4Ao2/0dSPLFeqqDYthoAS4=
-X-Received: by 2002:ac8:3946:: with SMTP id t6mr2269425qtb.278.1574279563647; 
- Wed, 20 Nov 2019 11:52:43 -0800 (PST)
-X-Google-Smtp-Source: APXvYqxe7C1h6tJTtd0SA5Jkuld5APhArQsh7ntYw8a3ee9nAIjC9zXPsti0I9UFb/qDeXbPmYQxtw==
-X-Received: by 2002:ac8:3946:: with SMTP id t6mr2269374qtb.278.1574279562910; 
- Wed, 20 Nov 2019 11:52:42 -0800 (PST)
-Received: from turing-police ([2601:5c0:c001:c9e1::359])
- by smtp.gmail.com with ESMTPSA id y29sm62197qtc.8.2019.11.20.11.52.41
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 20 Nov 2019 11:52:41 -0800 (PST)
-From: "Valdis =?utf-8?Q?Kl=c4=93tnieks?=" <valdis.kletnieks@vt.edu>
-X-Google-Original-From: "Valdis =?utf-8?Q?Kl=c4=93tnieks?="
- <Valdis.Kletnieks@vt.edu>
-X-Mailer: exmh version 2.9.0 11/07/2018 with nmh-1.7+dev
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-Mime-Version: 1.0
-Date: Wed, 20 Nov 2019 14:52:40 -0500
-Message-ID: <65415.1574279560@turing-police>
-X-Mailman-Approved-At: Wed, 20 Nov 2019 20:59:21 +0000
-Subject: [Intel-gfx] linux-next - DEBUG_MUTEX=y causes message flood
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9748D6E7B0
+ for <intel-gfx@lists.freedesktop.org>; Wed, 20 Nov 2019 20:37:49 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 20 Nov 2019 12:37:49 -0800
+X-IronPort-AV: E=Sophos;i="5.69,223,1571727600"; d="scan'208";a="200863792"
+Received: from zimmerma-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.249.32.60])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 20 Nov 2019 12:37:47 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: "Kulkarni\, Vandita" <vandita.kulkarni@intel.com>,
+ "intel-gfx\@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+In-Reply-To: <57510F3E2013164E925CD03ED7512A3B809C0187@BGSMSX108.gar.corp.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <cover.1573831924.git.jani.nikula@intel.com>
+ <07e3cf54bf97c714019d36cee45f04e31496baf0.1573831924.git.jani.nikula@intel.com>
+ <57510F3E2013164E925CD03ED7512A3B809C0187@BGSMSX108.gar.corp.intel.com>
+Date: Wed, 20 Nov 2019 22:37:59 +0200
+Message-ID: <87sgmigu6w.fsf@intel.com>
+MIME-Version: 1.0
+Subject: Re: [Intel-gfx] [PATCH v2 10/10] drm/i915/dsi: add support for DSC
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -72,173 +46,219 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============0961440017=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0961440017==
-Content-Type: multipart/signed; boundary="==_Exmh_1574279560_2911P";
-	 micalg=pgp-sha1; protocol="application/pgp-signature"
-Content-Transfer-Encoding: 7bit
-
---==_Exmh_1574279560_2911P
-Content-Type: text/plain; charset=us-ascii
-
-I haven't narrowed down when this started, other than "sometime between
-10/23 and 11/13".  Looks to me like something in the i915/DRM arena doesn't
-play nice with mutex debugging.
-
-The system still acts fine, but my /var partition filled up due to gigabytes
-of the following two warning calls repeating over and over.  I'm not sure what
-triggers it, except that I know that it doesn't start when the Gnome login screen
-is displaying, but something after I login starts it complaining.
-
-Nov 17 22:13:16 turing-police kernel: [  163.835592] ------------[ cut here ]------------
-Nov 17 22:13:16 turing-police kernel: [  163.835712] WARNING: CPU: 0 PID: 0 at kernel/locking/mutex.c:1419 mutex_trylock+0x13a/0x150
-Nov 17 22:13:16 turing-police kernel: [  163.835717] Modules linked in: fuse nf_log_ipv6 ts_bm nf_log_ipv4 nf_log_common xt_string xt_LOG bpfilter sunrpc algif_hash algif_skcipher af_alg bnep vfat fat ath3k btusb btrtl btbcm btintel bluetooth ecdh_generic ecc uas intel_rapl_msr rtsx_pci_sdmmc ath9k ath9k_common ath9k_hw intel_rapl_common intel_soc_dts_thermal intel_soc_dts_iosf intel_powerclamp crct10dif_pclmul crc32_pclmul crc32c_intel ghash_clmulni_intel cryptd serio_raw snd_hda_codec_realtek snd_hda_codec_hdmi ath rtsx_pci bfq fan toshiba_acpi toshiba_bluetooth mei_txe industrialio pwm_lpss_platform i2c_hid rfkill_gpio pwm_lpss sch_fq_codel
-Nov 17 22:13:16 turing-police kernel: [  163.835795] CPU: 0 PID: 0 Comm: swapper/0 Tainted: G                T 5.4.0-rc7-next-20191113-dirty #701
-Nov 17 22:13:16 turing-police kernel: [  163.835799] Hardware name: TOSHIBA Satellite C55-B/ZBWAA, BIOS 5.00 07/23/2015
-Nov 17 22:13:16 turing-police kernel: [  163.835806] RIP: 0010:mutex_trylock+0x13a/0x150
-Nov 17 22:13:16 turing-police kernel: [  163.835813] Code: 7b 70 45 31 c9 41 b8 01 00 00 00 31 c9 ba 01 00 00 00 31 f6 e8 87 5e 21 ff 58 48 8d 65 e8 b8 01 00 00 00 5b 41 5c 41 5d 5d c3 <0f> 0b e9 f7 fe ff ff 66 66 2e 0f 1f 84 00 00 00 00 00 0f 1f 40 00
-Nov 17 22:13:16 turing-police kernel: [  163.835817] RSP: 0018:ffff989080003d70 EFLAGS: 00010006
-Nov 17 22:13:16 turing-police kernel: [  163.835823] RAX: 0000000080010002 RBX: ffff974932946e08 RCX: 00000000ffffffff
-Nov 17 22:13:16 turing-police kernel: [  163.835828] RDX: ffffffffb4a2b900 RSI: ffff974934107c88 RDI: ffff974932946e08
-Nov 17 22:13:16 turing-police kernel: [  163.835832] RBP: ffff989080003d90 R08: 0000000000000000 R09: 0000000000000000
-Nov 17 22:13:16 turing-police kernel: [  163.835837] R10: 0000000000000000 R11: 0000000000000000 R12: ffff974932946e00
-Nov 17 22:13:16 turing-police kernel: [  163.835841] R13: ffff989080003e18 R14: ffff989080003e08 R15: ffff97493333ae08
-Nov 17 22:13:16 turing-police kernel: [  163.835846] FS:  0000000000000000(0000) GS:ffff974937800000(0000) knlGS:0000000000000000
-Nov 17 22:13:16 turing-police kernel: [  163.835850] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-Nov 17 22:13:16 turing-police kernel: [  163.835855] CR2: 0000560c069bc708 CR3: 0000000088a24000 CR4: 00000000001006f0
-Nov 17 22:13:16 turing-police kernel: [  163.835859] Call Trace:
-Nov 17 22:13:16 turing-police kernel: [  163.835864]  <IRQ>
-Nov 17 22:13:16 turing-police kernel: [  163.835878]  active_retire+0x36/0x70
-Nov 17 22:13:16 turing-police kernel: [  163.835886]  node_retire+0x19/0x20
-Nov 17 22:13:16 turing-police kernel: [  163.835898]  intel_engine_breadcrumbs_irq+0x296/0x410
-Nov 17 22:13:16 turing-police kernel: [  163.835924]  gen6_gt_irq_handler+0x5e/0x130
-Nov 17 22:13:16 turing-police kernel: [  163.835935]  valleyview_irq_handler+0x2a1/0x2e0
-Nov 17 22:13:16 turing-police kernel: [  163.835956]  __handle_irq_event_percpu+0x40/0x2c0
-Nov 17 22:13:16 turing-police kernel: [  163.835962]  ? handle_irq_event+0x2c/0x53
-Nov 17 22:13:16 turing-police kernel: [  163.835977]  handle_irq_event_percpu+0x32/0x90
-Nov 17 22:13:16 turing-police kernel: [  163.835990]  handle_irq_event+0x34/0x53
-Nov 17 22:13:16 turing-police kernel: [  163.836002]  handle_edge_irq+0x95/0x1d0
-Nov 17 22:13:16 turing-police kernel: [  163.836012]  do_IRQ+0x83/0x190
-Nov 17 22:13:16 turing-police kernel: [  163.836023]  common_interrupt+0xf/0xf
-Nov 17 22:13:16 turing-police kernel: [  163.836029]  </IRQ>
-Nov 17 22:13:16 turing-police kernel: [  163.836036] RIP: 0010:cpuidle_enter_state+0xc3/0x610
-Nov 17 22:13:16 turing-police kernel: [  163.836041] Code: 00 00 31 ff e8 3e 0b 65 ff 80 7d c0 00 74 12 9c 58 f6 c4 02 0f 85 6e 03 00 00 31 ff e8 66 ff 6c ff e8 11 93 73 ff fb 45 85 ed <0f> 88 b4 02 00 00 4d 63 f5 49 83 fe 09 0f 87 83 04 00 00 49 6b c6
-Nov 17 22:13:16 turing-police kernel: [  163.836046] RSP: 0018:ffffffffb4a03d80 EFLAGS: 00000206 ORIG_RAX: ffffffffffffffdc
-Nov 17 22:13:16 turing-police kernel: [  163.836052] RAX: ffffffffb4a2b900 RBX: ffffb8907fa10030 RCX: 0000000000000000
-Nov 17 22:13:16 turing-police kernel: [  163.836056] RDX: 0000000000000019 RSI: 0000000000000006 RDI: ffffffffb4a2b900
-Nov 17 22:13:16 turing-police kernel: [  163.836060] RBP: ffffffffb4a03dd0 R08: 000000262554d345 R09: 0000000000000000
-Nov 17 22:13:16 turing-police kernel: [  163.836065] R10: 0000000000000000 R11: 0000000000000000 R12: ffffffffb4b76560
-Nov 17 22:13:16 turing-police kernel: [  163.836069] R13: 0000000000000003 R14: 0000000000000003 R15: 0000000000000003
-Nov 17 22:13:16 turing-police kernel: [  163.836111]  cpuidle_enter+0x29/0x40
-Nov 17 22:13:16 turing-police kernel: [  163.836122]  call_cpuidle+0x36/0x60
-Nov 17 22:13:16 turing-police kernel: [  163.836132]  do_idle+0x1c0/0x210
-Nov 17 22:13:16 turing-police kernel: [  163.836149]  cpu_startup_entry+0x1b/0x1d
-Nov 17 22:13:16 turing-police kernel: [  163.836158]  rest_init+0x1bf/0x2eb
-Nov 17 22:13:16 turing-police kernel: [  163.836170]  arch_call_rest_init+0x11/0x63
-Nov 17 22:13:16 turing-police kernel: [  163.836179]  start_kernel+0x7bf/0x7ef
-Nov 17 22:13:16 turing-police kernel: [  163.836194]  x86_64_start_reservations+0x4f/0x70
-Nov 17 22:13:16 turing-police kernel: [  163.836204]  x86_64_start_kernel+0x7b/0x9e
-Nov 17 22:13:16 turing-police kernel: [  163.836214]  secondary_startup_64+0xa4/0xb0
-Nov 17 22:13:16 turing-police kernel: [  163.836242] irq event stamp: 451082
-Nov 17 22:13:16 turing-police kernel: [  163.836249] hardirqs last  enabled at (451079): [<ffffffffb3b09bff>] cpuidle_enter_state+0xbf/0x610
-Nov 17 22:13:16 turing-police kernel: [  163.836254] hardirqs last disabled at (451080): [<ffffffffb3002e6a>] trace_hardirqs_off_thunk+0x1a/0x1c
-Nov 17 22:13:16 turing-police kernel: [  163.836261] softirqs last  enabled at (451082): [<ffffffffb3116f1c>] _local_bh_enable+0x1c/0x30
-Nov 17 22:13:16 turing-police kernel: [  163.836267] softirqs last disabled at (451081): [<ffffffffb31174f0>] irq_enter+0x50/0x70
-Nov 17 22:13:16 turing-police kernel: [  163.836272] ---[ end trace 2e91f38e14c84d13 ]---
-Nov 17 22:13:16 turing-police kernel: [  163.836341] ------------[ cut here ]------------
-Nov 17 22:13:16 turing-police kernel: [  163.836455] WARNING: CPU: 0 PID: 0 at kernel/locking/mutex.c:737 mutex_unlock+0x27/0x40
-Nov 17 22:13:16 turing-police kernel: [  163.836459] Modules linked in: fuse nf_log_ipv6 ts_bm nf_log_ipv4 nf_log_common xt_string xt_LOG bpfilter sunrpc algif_hash algif_skcipher af_alg bnep vfat fat ath3k btusb btrtl btbcm btintel bluetooth ecdh_generic ecc uas intel_rapl_msr rtsx_pci_sdmmc ath9k ath9k_common ath9k_hw intel_rapl_common intel_soc_dts_thermal intel_soc_dts_iosf intel_powerclamp crct10dif_pclmul crc32_pclmul crc32c_intel ghash_clmulni_intel cryptd serio_raw snd_hda_codec_realtek snd_hda_codec_hdmi ath rtsx_pci bfq fan toshiba_acpi toshiba_bluetooth mei_txe industrialio pwm_lpss_platform i2c_hid rfkill_gpio pwm_lpss sch_fq_codel
-Nov 17 22:13:16 turing-police kernel: [  163.836518] CPU: 0 PID: 0 Comm: swapper/0 Tainted: G        W       T 5.4.0-rc7-next-20191113-dirty #701
-Nov 17 22:13:16 turing-police kernel: [  163.836522] Hardware name: TOSHIBA Satellite C55-B/ZBWAA, BIOS 5.00 07/23/2015
-Nov 17 22:13:16 turing-police kernel: [  163.836528] RIP: 0010:mutex_unlock+0x27/0x40
-Nov 17 22:13:16 turing-police kernel: [  163.836533] Code: 00 00 00 55 48 89 e5 41 54 49 89 fc 65 8b 05 d8 a6 09 4c a9 00 ff 1f 00 75 10 48 8b 75 08 4c 89 e7 e8 fd fc ff ff 41 5c 5d c3 <0f> 0b 48 8b 75 08 4c 89 e7 e8 eb fc ff ff 41 5c 5d c3 0f 1f 80 00
-Nov 17 22:13:16 turing-police kernel: [  163.836538] RSP: 0018:ffff989080003d50 EFLAGS: 00010006
-Nov 17 22:13:16 turing-police kernel: [  163.836543] RAX: 0000000080010002 RBX: ffff974934107c88 RCX: 00000000ffffffff
-Nov 17 22:13:16 turing-police kernel: [  163.836548] RDX: ffffffffb4a2b900 RSI: ffff974932946e78 RDI: ffff974932946e08
-Nov 17 22:13:16 turing-police kernel: [  163.836552] RBP: ffff989080003d58 R08: 0000002625672d76 R09: 0000000000000000
-Nov 17 22:13:16 turing-police kernel: [  163.836557] R10: 0000000000000001 R11: 0000000000000000 R12: ffff974932946e08
-Nov 17 22:13:16 turing-police kernel: [  163.836561] R13: ffff974932946e00 R14: ffff989080003e08 R15: ffff97493333ae08
-Nov 17 22:13:16 turing-police kernel: [  163.836566] FS:  0000000000000000(0000) GS:ffff974937800000(0000) knlGS:0000000000000000
-Nov 17 22:13:16 turing-police kernel: [  163.836571] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-Nov 17 22:13:16 turing-police kernel: [  163.836575] CR2: 0000560c069bc708 CR3: 0000000088a24000 CR4: 00000000001006f0
-Nov 17 22:13:16 turing-police kernel: [  163.836579] Call Trace:
-Nov 17 22:13:16 turing-police kernel: [  163.836583]  <IRQ>
-Nov 17 22:13:16 turing-police kernel: [  163.836593]  __active_retire+0x67/0x140
-Nov 17 22:13:16 turing-police kernel: [  163.836605]  active_retire+0x5f/0x70
-Nov 17 22:13:16 turing-police kernel: [  163.836614]  node_retire+0x19/0x20
-Nov 17 22:13:16 turing-police kernel: [  163.836622]  intel_engine_breadcrumbs_irq+0x296/0x410
-Nov 17 22:13:16 turing-police kernel: [  163.836649]  gen6_gt_irq_handler+0x5e/0x130
-Nov 17 22:13:16 turing-police kernel: [  163.836659]  valleyview_irq_handler+0x2a1/0x2e0
-Nov 17 22:13:16 turing-police kernel: [  163.836679]  __handle_irq_event_percpu+0x40/0x2c0
-Nov 17 22:13:16 turing-police kernel: [  163.836685]  ? handle_irq_event+0x2c/0x53
-Nov 17 22:13:16 turing-police kernel: [  163.836699]  handle_irq_event_percpu+0x32/0x90
-Nov 17 22:13:16 turing-police kernel: [  163.836712]  handle_irq_event+0x34/0x53
-Nov 17 22:13:16 turing-police kernel: [  163.836723]  handle_edge_irq+0x95/0x1d0
-Nov 17 22:13:16 turing-police kernel: [  163.836733]  do_IRQ+0x83/0x190
-Nov 17 22:13:16 turing-police kernel: [  163.836743]  common_interrupt+0xf/0xf
-Nov 17 22:13:16 turing-police kernel: [  163.836749]  </IRQ>
-Nov 17 22:13:16 turing-police kernel: [  163.836756] RIP: 0010:cpuidle_enter_state+0xc3/0x610
-Nov 17 22:13:16 turing-police kernel: [  163.836761] Code: 00 00 31 ff e8 3e 0b 65 ff 80 7d c0 00 74 12 9c 58 f6 c4 02 0f 85 6e 03 00 00 31 ff e8 66 ff 6c ff e8 11 93 73 ff fb 45 85 ed <0f> 88 b4 02 00 00 4d 63 f5 49 83 fe 09 0f 87 83 04 00 00 49 6b c6
-Nov 17 22:13:16 turing-police kernel: [  163.836766] RSP: 0018:ffffffffb4a03d80 EFLAGS: 00000206 ORIG_RAX: ffffffffffffffdc
-Nov 17 22:13:16 turing-police kernel: [  163.836772] RAX: ffffffffb4a2b900 RBX: ffffb8907fa10030 RCX: 0000000000000000
-Nov 17 22:13:16 turing-police kernel: [  163.836776] RDX: 0000000000000019 RSI: 0000000000000006 RDI: ffffffffb4a2b900
-Nov 17 22:13:16 turing-police kernel: [  163.836780] RBP: ffffffffb4a03dd0 R08: 000000262554d345 R09: 0000000000000000
-Nov 17 22:13:16 turing-police kernel: [  163.836785] R10: 0000000000000000 R11: 0000000000000000 R12: ffffffffb4b76560
-Nov 17 22:13:16 turing-police kernel: [  163.836789] R13: 0000000000000003 R14: 0000000000000003 R15: 0000000000000003
-Nov 17 22:13:16 turing-police kernel: [  163.836829]  cpuidle_enter+0x29/0x40
-Nov 17 22:13:16 turing-police kernel: [  163.836840]  call_cpuidle+0x36/0x60
-Nov 17 22:13:16 turing-police kernel: [  163.836850]  do_idle+0x1c0/0x210
-Nov 17 22:13:16 turing-police kernel: [  163.836867]  cpu_startup_entry+0x1b/0x1d
-Nov 17 22:13:16 turing-police kernel: [  163.836875]  rest_init+0x1bf/0x2eb
-Nov 17 22:13:16 turing-police kernel: [  163.836886]  arch_call_rest_init+0x11/0x63
-Nov 17 22:13:16 turing-police kernel: [  163.836895]  start_kernel+0x7bf/0x7ef
-Nov 17 22:13:16 turing-police kernel: [  163.836910]  x86_64_start_reservations+0x4f/0x70
-Nov 17 22:13:16 turing-police kernel: [  163.836920]  x86_64_start_kernel+0x7b/0x9e
-Nov 17 22:13:16 turing-police kernel: [  163.836929]  secondary_startup_64+0xa4/0xb0
-Nov 17 22:13:16 turing-police kernel: [  163.836956] irq event stamp: 451082
-Nov 17 22:13:16 turing-police kernel: [  163.836963] hardirqs last  enabled at (451079): [<ffffffffb3b09bff>] cpuidle_enter_state+0xbf/0x610
-Nov 17 22:13:16 turing-police kernel: [  163.836969] hardirqs last disabled at (451080): [<ffffffffb3002e6a>] trace_hardirqs_off_thunk+0x1a/0x1c
-Nov 17 22:13:16 turing-police kernel: [  163.836974] softirqs last  enabled at (451082): [<ffffffffb3116f1c>] _local_bh_enable+0x1c/0x30
-Nov 17 22:13:16 turing-police kernel: [  163.836980] softirqs last disabled at (451081): [<ffffffffb31174f0>] irq_enter+0x50/0x70
-Nov 17 22:13:16 turing-police kernel: [  163.836984] ---[ end trace 2e91f38e14c84d14 ]---
-
-
---==_Exmh_1574279560_2911P
-Content-Type: application/pgp-signature
-
------BEGIN PGP SIGNATURE-----
-Comment: Exmh version 2.9.0 11/07/2018
-
-iQIVAwUBXdWZiAdmEQWDXROgAQI8og/8DpiSVsYLap0idVZopDEkDMnHqkEBdJAA
-FR+qgCTAGAr3toAZZKAO3PKUfb73aALKOusUtv6XXJ6Z4MUgJnbDr/ZKzoA/9/Gq
-MDVei2xiipbUOQDVhhFUVZStJbLXBA+9J4G1nARKuGzTB5o9jCYcJKxCB9OxhF5Q
-QGy4kDJie0F+irFYaFTT4Tbs7L2mUxEtP2Ls6j7sDaC15LI5cbPCMpwd5XdAKAiW
-6ekOoiDb+1p2FWkTpxMDHymu4F0o/xwRzyGJT9nXM4VT+BBtdozLs/iQJvRJs8d4
-Bm/inzDqdCm2njDItytdRWXAvjCPWw9wDocgHPqUyT7hyn8XnP5cwpaBvhhQkWzq
-4VS42+Jnl1dc+udb6TCdSkAkOheqZW3EyqH3wo6iXpD4PB1sFYOpD9T+6ORh1jle
-lSyiAb8arwvOm73ziP+ZdDViFGpC7DFodk2vu4Cow5Ow1ICU1OY/qHTA+9fAYXHt
-NegB9WPiYAnFM73Pws7+fHVYl8CSxStyZz0nI40stWhNkoKaRC7eWpzBpmVQFIwB
-ky9fAxl66tXt7Y4A49p17y5cT2+EWB7olAkZQ94X4qLyvDFVlyrEF8sFbssNmdBZ
-vjbnASo+Bh1niyKSrV+vzlaamv3JcRVpP7Zl/KBPONG8hZfKM2xjJnA482noogUO
-MFEhgb/tNKA=
-=t+5I
------END PGP SIGNATURE-----
-
---==_Exmh_1574279560_2911P--
-
---===============0961440017==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
-IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
-
---===============0961440017==--
+T24gV2VkLCAyMCBOb3YgMjAxOSwgIkt1bGthcm5pLCBWYW5kaXRhIiA8dmFuZGl0YS5rdWxrYXJu
+aUBpbnRlbC5jb20+IHdyb3RlOgo+PiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQo+PiBGcm9t
+OiBKYW5pIE5pa3VsYSA8amFuaS5uaWt1bGFAaW50ZWwuY29tPgo+PiBTZW50OiBGcmlkYXksIE5v
+dmVtYmVyIDE1LCAyMDE5IDk6MDQgUE0KPj4gVG86IGludGVsLWdmeEBsaXN0cy5mcmVlZGVza3Rv
+cC5vcmcKPj4gQ2M6IE5pa3VsYSwgSmFuaSA8amFuaS5uaWt1bGFAaW50ZWwuY29tPjsgS3Vsa2Fy
+bmksIFZhbmRpdGEKPj4gPHZhbmRpdGEua3Vsa2FybmlAaW50ZWwuY29tPjsgdmlsbGUuc3lyamFs
+YUBsaW51eC5pbnRlbC5jb20KPj4gU3ViamVjdDogW1BBVENIIHYyIDEwLzEwXSBkcm0vaTkxNS9k
+c2k6IGFkZCBzdXBwb3J0IGZvciBEU0MKPj4gCj4+IEVuYWJsZSBEU0MgZm9yIERTSSwgaWYgc3Bl
+Y2lmaWVkIGluIFZCVC4KPj4gCj4+IFRoaXMgaXMgbm93IGV4Y2Vzc2l2ZWx5IGR5bmFtaWMsIGJl
+aW5nIGVuYWJsZWQgYXQgY29tcHV0ZSBjb25maWcuIEkgZG9uJ3QKPj4gZXhwZWN0IHVzIHRvIG5l
+ZWQgdG8gc3dpdGNoIGJldHdlZW4gRFNDIGFuZCBub24tRFNDIGZvciB0aGUgc2FtZSBwYW5lbC4K
+Pj4gQ2FyZ28gY3VsdGluZyB0aGUgRFAgRFNDIHNob3dzLgo+PiAKPj4gTW9kZSB2YWxpZCBsYWNr
+cyBhIHNlbnNpYmxlIGltcGxlbWVudGF0aW9uLCBhcyBkb2VzIGdldCBjb25maWcuCj4+IAo+PiB2
+MzogdGFrZSBjb21wcmVzc2VkIGJwcCBpbnRvIGFjY291bnQKPj4gCj4+IHYyOiBOdWtlIGNvbm5f
+c3RhdGUtPm1heF9yZXF1ZXN0ZWRfYnBjLCBpdCdzIG5vdCB1c2VkIG9uIERTSQo+PiAKPj4gU2ln
+bmVkLW9mZi1ieTogSmFuaSBOaWt1bGEgPGphbmkubmlrdWxhQGludGVsLmNvbT4KPj4gCj4+IC0t
+LQo+PiAKPj4gVGhlIGJ1cnN0IG1vZGUgc3R1ZmYgd3J0IERTQyBhcmUgc3RpbGwgd2hhdGV2ZXIs
+IGJ1dCBhdCBsZWFzdCB3ZSBzaG91bGQgYmUKPj4gdGFraW5nIERTQyBiZXR0ZXIgaW50byBhY2Nv
+dW50IGluIHBvcnQgY2xvY2sgY2FsY3VsYXRpb25zLgo+PiAtLS0KPj4gIGRyaXZlcnMvZ3B1L2Ry
+bS9pOTE1L2Rpc3BsYXkvaWNsX2RzaS5jIHwgMTEzICsrKysrKysrKysrKysrKysrKysrLS0tLS0K
+Pj4gIDEgZmlsZSBjaGFuZ2VkLCA5NCBpbnNlcnRpb25zKCspLCAxOSBkZWxldGlvbnMoLSkKPj4g
+Cj4+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ljbF9kc2kuYwo+
+PiBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaWNsX2RzaS5jCj4+IGluZGV4IGQ1NzZm
+MjljZWY3NS4uZGM4NzEzNGY1YzI3IDEwMDY0NAo+PiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkx
+NS9kaXNwbGF5L2ljbF9kc2kuYwo+PiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5
+L2ljbF9kc2kuYwo+PiBAQCAtMzQsNiArMzQsNyBAQAo+PiAgI2luY2x1ZGUgImludGVsX2RkaS5o
+Igo+PiAgI2luY2x1ZGUgImludGVsX2RzaS5oIgo+PiAgI2luY2x1ZGUgImludGVsX3BhbmVsLmgi
+Cj4+ICsjaW5jbHVkZSAiaW50ZWxfdmRzYy5oIgo+PiAKPj4gIHN0YXRpYyBpbmxpbmUgaW50IGhl
+YWRlcl9jcmVkaXRzX2F2YWlsYWJsZShzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYs
+Cj4+ICAJCQkJCSAgIGVudW0gdHJhbnNjb2RlciBkc2lfdHJhbnMpCj4+IEBAIC0zMDIsMTcgKzMw
+MywyMiBAQCBzdGF0aWMgdm9pZCBjb25maWd1cmVfZHVhbF9saW5rX21vZGUoc3RydWN0Cj4+IGlu
+dGVsX2VuY29kZXIgKmVuY29kZXIsICB9Cj4+IAo+PiAgLyogYWthIERTSSA4WCBjbG9jayAqLwo+
+PiAtc3RhdGljIGludCBhZmVfY2xrKHN0cnVjdCBpbnRlbF9lbmNvZGVyICplbmNvZGVyKQo+PiAr
+c3RhdGljIGludCBhZmVfY2xrKHN0cnVjdCBpbnRlbF9lbmNvZGVyICplbmNvZGVyLAo+PiArCQkg
+ICBjb25zdCBzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZSAqY3J0Y19zdGF0ZSkKPj4gIHsKPj4gIAlz
+dHJ1Y3QgaW50ZWxfZHNpICppbnRlbF9kc2kgPSBlbmNfdG9faW50ZWxfZHNpKCZlbmNvZGVyLT5i
+YXNlKTsKPj4gIAlpbnQgYnBwOwo+PiAKPj4gLQlicHAgPSBtaXBpX2RzaV9waXhlbF9mb3JtYXRf
+dG9fYnBwKGludGVsX2RzaS0+cGl4ZWxfZm9ybWF0KTsKPj4gKwlpZiAoY3J0Y19zdGF0ZS0+ZHNj
+LmNvbXByZXNzaW9uX2VuYWJsZSkKPj4gKwkJYnBwID0gY3J0Y19zdGF0ZS0+ZHNjLmNvbXByZXNz
+ZWRfYnBwOwo+PiArCWVsc2UKPj4gKwkJYnBwID0gbWlwaV9kc2lfcGl4ZWxfZm9ybWF0X3RvX2Jw
+cChpbnRlbF9kc2ktCj4+ID5waXhlbF9mb3JtYXQpOwo+PiAKPj4gIAlyZXR1cm4gRElWX1JPVU5E
+X0NMT1NFU1QoaW50ZWxfZHNpLT5wY2xrICogYnBwLCBpbnRlbF9kc2ktCj4+ID5sYW5lX2NvdW50
+KTsgIH0KPj4gCj4+IC1zdGF0aWMgdm9pZCBnZW4xMV9kc2lfcHJvZ3JhbV9lc2NfY2xrX2Rpdihz
+dHJ1Y3QgaW50ZWxfZW5jb2RlciAqZW5jb2RlcikKPj4gK3N0YXRpYyB2b2lkIGdlbjExX2RzaV9w
+cm9ncmFtX2VzY19jbGtfZGl2KHN0cnVjdCBpbnRlbF9lbmNvZGVyICplbmNvZGVyLAo+PiArCQkJ
+CQkgIGNvbnN0IHN0cnVjdCBpbnRlbF9jcnRjX3N0YXRlCj4+ICpjcnRjX3N0YXRlKQo+PiAgewo+
+PiAgCXN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJpdiA9IHRvX2k5MTUoZW5jb2Rlci0+
+YmFzZS5kZXYpOwo+PiAgCXN0cnVjdCBpbnRlbF9kc2kgKmludGVsX2RzaSA9IGVuY190b19pbnRl
+bF9kc2koJmVuY29kZXItPmJhc2UpOyBAQCAtCj4+IDMyMCw3ICszMjYsNyBAQCBzdGF0aWMgdm9p
+ZCBnZW4xMV9kc2lfcHJvZ3JhbV9lc2NfY2xrX2RpdihzdHJ1Y3QKPj4gaW50ZWxfZW5jb2RlciAq
+ZW5jb2RlcikKPj4gIAlpbnQgYWZlX2Nsa19raHo7Cj4+ICAJdTMyIGVzY19jbGtfZGl2X207Cj4+
+IAo+PiAtCWFmZV9jbGtfa2h6ID0gYWZlX2NsayhlbmNvZGVyKTsKPj4gKwlhZmVfY2xrX2toeiA9
+IGFmZV9jbGsoZW5jb2RlciwgY3J0Y19zdGF0ZSk7Cj4+ICAJZXNjX2Nsa19kaXZfbSA9IERJVl9S
+T1VORF9VUChhZmVfY2xrX2toeiwgRFNJX01BWF9FU0NfQ0xLKTsKPj4gCj4+ICAJZm9yX2VhY2hf
+ZHNpX3BvcnQocG9ydCwgaW50ZWxfZHNpLT5wb3J0cykgeyBAQCAtNDk4LDcgKzUwNCw5IEBACj4+
+IHN0YXRpYyB2b2lkIGdlbjExX2RzaV9lbmFibGVfZGRpX2J1ZmZlcihzdHJ1Y3QgaW50ZWxfZW5j
+b2RlciAqZW5jb2RlcikKPj4gIAl9Cj4+ICB9Cj4+IAo+PiAtc3RhdGljIHZvaWQgZ2VuMTFfZHNp
+X3NldHVwX2RwaHlfdGltaW5ncyhzdHJ1Y3QgaW50ZWxfZW5jb2RlciAqZW5jb2RlcikKPj4gK3N0
+YXRpYyB2b2lkCj4+ICtnZW4xMV9kc2lfc2V0dXBfZHBoeV90aW1pbmdzKHN0cnVjdCBpbnRlbF9l
+bmNvZGVyICplbmNvZGVyLAo+PiArCQkJICAgICBjb25zdCBzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0
+ZSAqY3J0Y19zdGF0ZSkKPj4gIHsKPj4gIAlzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3By
+aXYgPSB0b19pOTE1KGVuY29kZXItPmJhc2UuZGV2KTsKPj4gIAlzdHJ1Y3QgaW50ZWxfZHNpICpp
+bnRlbF9kc2kgPSBlbmNfdG9faW50ZWxfZHNpKCZlbmNvZGVyLT5iYXNlKTsgQEAgLQo+PiA1Mzks
+NyArNTQ3LDcgQEAgc3RhdGljIHZvaWQgZ2VuMTFfZHNpX3NldHVwX2RwaHlfdGltaW5ncyhzdHJ1
+Y3QKPj4gaW50ZWxfZW5jb2RlciAqZW5jb2RlcikKPj4gIAkgKiBsZWF2ZSBhbGwgZmllbGRzIGF0
+IEhXIGRlZmF1bHQgdmFsdWVzLgo+PiAgCSAqLwo+PiAgCWlmIChJU19HRU4oZGV2X3ByaXYsIDEx
+KSkgewo+PiAtCQlpZiAoYWZlX2NsayhlbmNvZGVyKSA8PSA4MDAwMDApIHsKPj4gKwkJaWYgKGFm
+ZV9jbGsoZW5jb2RlciwgY3J0Y19zdGF0ZSkgPD0gODAwMDAwKSB7Cj4+ICAJCQlmb3JfZWFjaF9k
+c2lfcG9ydChwb3J0LCBpbnRlbF9kc2ktPnBvcnRzKSB7Cj4+ICAJCQkJdG1wID0KPj4gSTkxNV9S
+RUFEKERQSFlfVEFfVElNSU5HX1BBUkFNKHBvcnQpKTsKPj4gIAkJCQl0bXAgJj0gflRBX1NVUkVf
+TUFTSzsKPj4gQEAgLTY0OSw3ICs2NTcsNyBAQCBnZW4xMV9kc2lfY29uZmlndXJlX3RyYW5zY29k
+ZXIoc3RydWN0IGludGVsX2VuY29kZXIKPj4gKmVuY29kZXIsCj4+ICAJCQl0bXAgfD0gRU9UUF9E
+SVNBQkxFRDsKPj4gCj4+ICAJCS8qIGVuYWJsZSBsaW5rIGNhbGlicmF0aW9uIGlmIGZyZXEgPiAx
+LjVHYnBzICovCj4+IC0JCWlmIChhZmVfY2xrKGVuY29kZXIpID49IDE1MDAgKiAxMDAwKSB7Cj4+
+ICsJCWlmIChhZmVfY2xrKGVuY29kZXIsIHBpcGVfY29uZmlnKSA+PSAxNTAwICogMTAwMCkgewo+
+PiAgCQkJdG1wICY9IH5MSU5LX0NBTElCUkFUSU9OX01BU0s7Cj4+ICAJCQl0bXAgfD0gQ0FMSUJS
+QVRJT05fRU5BQkxFRF9JTklUSUFMX09OTFk7Cj4+ICAJCX0KPj4gQEAgLTkxNSw3ICs5MjMsOCBA
+QCBzdGF0aWMgdm9pZCBnZW4xMV9kc2lfZW5hYmxlX3RyYW5zY29kZXIoc3RydWN0Cj4+IGludGVs
+X2VuY29kZXIgKmVuY29kZXIpCj4+ICAJfQo+PiAgfQo+PiAKPj4gLXN0YXRpYyB2b2lkIGdlbjEx
+X2RzaV9zZXR1cF90aW1lb3V0cyhzdHJ1Y3QgaW50ZWxfZW5jb2RlciAqZW5jb2RlcikKPj4gK3N0
+YXRpYyB2b2lkIGdlbjExX2RzaV9zZXR1cF90aW1lb3V0cyhzdHJ1Y3QgaW50ZWxfZW5jb2RlciAq
+ZW5jb2RlciwKPj4gKwkJCQkgICAgIGNvbnN0IHN0cnVjdCBpbnRlbF9jcnRjX3N0YXRlICpjcnRj
+X3N0YXRlKQo+PiAgewo+PiAgCXN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJpdiA9IHRv
+X2k5MTUoZW5jb2Rlci0+YmFzZS5kZXYpOwo+PiAgCXN0cnVjdCBpbnRlbF9kc2kgKmludGVsX2Rz
+aSA9IGVuY190b19pbnRlbF9kc2koJmVuY29kZXItPmJhc2UpOyBAQCAtCj4+IDkzMCw3ICs5Mzks
+NyBAQCBzdGF0aWMgdm9pZCBnZW4xMV9kc2lfc2V0dXBfdGltZW91dHMoc3RydWN0IGludGVsX2Vu
+Y29kZXIKPj4gKmVuY29kZXIpCj4+ICAJICogVElNRV9OUyA9IChCWVRFX0NMS19DT1VOVCAqIDgg
+KiAxMF42KS8gQml0cmF0ZQo+PiAgCSAqIEVTQ0FQRV9DTEtfQ09VTlQgID0gVElNRV9OUy9FU0Nf
+Q0xLX05TCj4+ICAJICovCj4+IC0JZGl2aXNvciA9IGludGVsX2RzaV90bHB4X25zKGludGVsX2Rz
+aSkgKiBhZmVfY2xrKGVuY29kZXIpICogMTAwMDsKPj4gKwlkaXZpc29yID0gaW50ZWxfZHNpX3Rs
+cHhfbnMoaW50ZWxfZHNpKSAqIGFmZV9jbGsoZW5jb2RlciwgY3J0Y19zdGF0ZSkKPj4gKyogMTAw
+MDsKPj4gIAltdWwgPSA4ICogMTAwMDAwMDsKPj4gIAloc190eF90aW1lb3V0ID0gRElWX1JPVU5E
+X1VQKGludGVsX2RzaS0+aHNfdHhfdGltZW91dCAqIG11bCwKPj4gIAkJCQkgICAgIGRpdmlzb3Ip
+Owo+PiBAQCAtOTY2LDcgKzk3NSw3IEBAIHN0YXRpYyB2b2lkIGdlbjExX2RzaV9zZXR1cF90aW1l
+b3V0cyhzdHJ1Y3QKPj4gaW50ZWxfZW5jb2RlciAqZW5jb2RlcikKPj4gCj4+ICBzdGF0aWMgdm9p
+ZAo+PiAgZ2VuMTFfZHNpX2VuYWJsZV9wb3J0X2FuZF9waHkoc3RydWN0IGludGVsX2VuY29kZXIg
+KmVuY29kZXIsCj4+IC0JCQkgICAgICBjb25zdCBzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZSAqcGlw
+ZV9jb25maWcpCj4+ICsJCQkgICAgICBjb25zdCBzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZSAqY3J0
+Y19zdGF0ZSkKPj4gIHsKPj4gIAlzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYgPSB0
+b19pOTE1KGVuY29kZXItPmJhc2UuZGV2KTsKPj4gCj4+IEBAIC05ODMsMTMgKzk5MiwxMyBAQCBn
+ZW4xMV9kc2lfZW5hYmxlX3BvcnRfYW5kX3BoeShzdHJ1Y3QKPj4gaW50ZWxfZW5jb2RlciAqZW5j
+b2RlciwKPj4gIAlnZW4xMV9kc2lfZW5hYmxlX2RkaV9idWZmZXIoZW5jb2Rlcik7Cj4+IAo+PiAg
+CS8qIHNldHVwIEQtUEhZIHRpbWluZ3MgKi8KPj4gLQlnZW4xMV9kc2lfc2V0dXBfZHBoeV90aW1p
+bmdzKGVuY29kZXIpOwo+PiArCWdlbjExX2RzaV9zZXR1cF9kcGh5X3RpbWluZ3MoZW5jb2Rlciwg
+Y3J0Y19zdGF0ZSk7Cj4+IAo+PiAgCS8qIHN0ZXAgNGg6IHNldHVwIERTSSBwcm90b2NvbCB0aW1l
+b3V0cyAqLwo+PiAtCWdlbjExX2RzaV9zZXR1cF90aW1lb3V0cyhlbmNvZGVyKTsKPj4gKwlnZW4x
+MV9kc2lfc2V0dXBfdGltZW91dHMoZW5jb2RlciwgY3J0Y19zdGF0ZSk7Cj4+IAo+PiAgCS8qIFN0
+ZXAgKDRoLCA0aSwgNGosIDRrKTogQ29uZmlndXJlIHRyYW5zY29kZXIgKi8KPj4gLQlnZW4xMV9k
+c2lfY29uZmlndXJlX3RyYW5zY29kZXIoZW5jb2RlciwgcGlwZV9jb25maWcpOwo+PiArCWdlbjEx
+X2RzaV9jb25maWd1cmVfdHJhbnNjb2RlcihlbmNvZGVyLCBjcnRjX3N0YXRlKTsKPj4gCj4+ICAJ
+LyogU3RlcCA0bDogR2F0ZSBEREkgY2xvY2tzICovCj4+ICAJaWYgKElTX0dFTihkZXZfcHJpdiwg
+MTEpKQo+PiBAQCAtMTAzNiwxNCArMTA0NSwxNCBAQCBzdGF0aWMgdm9pZCBnZW4xMV9kc2lfcG93
+ZXJ1cF9wYW5lbChzdHJ1Y3QKPj4gaW50ZWxfZW5jb2RlciAqZW5jb2RlcikgIH0KPj4gCj4+ICBz
+dGF0aWMgdm9pZCBnZW4xMV9kc2lfcHJlX3BsbF9lbmFibGUoc3RydWN0IGludGVsX2VuY29kZXIg
+KmVuY29kZXIsCj4+IC0JCQkJICAgICBjb25zdCBzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZSAqcGlw
+ZV9jb25maWcsCj4+ICsJCQkJICAgICBjb25zdCBzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZSAqY3J0
+Y19zdGF0ZSwKPj4gIAkJCQkgICAgIGNvbnN0IHN0cnVjdCBkcm1fY29ubmVjdG9yX3N0YXRlCj4+
+ICpjb25uX3N0YXRlKSAgewo+PiAgCS8qIHN0ZXAyOiBlbmFibGUgSU8gcG93ZXIgKi8KPj4gIAln
+ZW4xMV9kc2lfZW5hYmxlX2lvX3Bvd2VyKGVuY29kZXIpOwo+PiAKPj4gIAkvKiBzdGVwMzogZW5h
+YmxlIERTSSBQTEwgKi8KPj4gLQlnZW4xMV9kc2lfcHJvZ3JhbV9lc2NfY2xrX2RpdihlbmNvZGVy
+KTsKPj4gKwlnZW4xMV9kc2lfcHJvZ3JhbV9lc2NfY2xrX2RpdihlbmNvZGVyLCBjcnRjX3N0YXRl
+KTsKPj4gIH0KPj4gCj4+ICBzdGF0aWMgdm9pZCBnZW4xMV9kc2lfcHJlX2VuYWJsZShzdHJ1Y3Qg
+aW50ZWxfZW5jb2RlciAqZW5jb2RlciwgQEAgLQo+PiAxMDYxLDYgKzEwNzAsOSBAQCBzdGF0aWMg
+dm9pZCBnZW4xMV9kc2lfcHJlX2VuYWJsZShzdHJ1Y3QgaW50ZWxfZW5jb2Rlcgo+PiAqZW5jb2Rl
+ciwKPj4gIAkvKiBzdGVwNTogcHJvZ3JhbSBhbmQgcG93ZXJ1cCBwYW5lbCAqLwo+PiAgCWdlbjEx
+X2RzaV9wb3dlcnVwX3BhbmVsKGVuY29kZXIpOwo+PiAKPj4gKwkvKiBGSVhNRTogbG9jYXRpb24/
+ICovCj4+ICsJaW50ZWxfZHNjX2VuYWJsZShlbmNvZGVyLCBwaXBlX2NvbmZpZyk7Cj4+ICsKPj4g
+IAkvKiBzdGVwNmM6IGNvbmZpZ3VyZSB0cmFuc2NvZGVyIHRpbWluZ3MgKi8KPj4gIAlnZW4xMV9k
+c2lfc2V0X3RyYW5zY29kZXJfdGltaW5ncyhlbmNvZGVyLCBwaXBlX2NvbmZpZyk7Cj4+IAo+PiBA
+QCAtMTIyMiw2ICsxMjM0LDEzIEBAIHN0YXRpYyB2b2lkIGdlbjExX2RzaV9kaXNhYmxlKHN0cnVj
+dAo+PiBpbnRlbF9lbmNvZGVyICplbmNvZGVyLAo+PiAgCWdlbjExX2RzaV9kaXNhYmxlX2lvX3Bv
+d2VyKGVuY29kZXIpOwo+PiAgfQo+PiAKPj4gK3N0YXRpYyBlbnVtIGRybV9tb2RlX3N0YXR1cyBn
+ZW4xMV9kc2lfbW9kZV92YWxpZChzdHJ1Y3QKPj4gZHJtX2Nvbm5lY3RvciAqY29ubmVjdG9yLAo+
+PiArCQkJCQkJIHN0cnVjdCBkcm1fZGlzcGxheV9tb2RlCj4+ICptb2RlKQo+PiArewo+PiArCS8q
+IEZJWE1FOiBEU0M/ICovCj4+ICsJcmV0dXJuIGludGVsX2RzaV9tb2RlX3ZhbGlkKGNvbm5lY3Rv
+ciwgbW9kZSk7IH0KPj4gKwo+PiAgc3RhdGljIHZvaWQgZ2VuMTFfZHNpX2dldF90aW1pbmdzKHN0
+cnVjdCBpbnRlbF9lbmNvZGVyICplbmNvZGVyLAo+PiAgCQkJCSAgc3RydWN0IGludGVsX2NydGNf
+c3RhdGUgKnBpcGVfY29uZmlnKSAgeyBAQCAtCj4+IDEyNjksNiArMTI4OCw1MyBAQCBzdGF0aWMg
+dm9pZCBnZW4xMV9kc2lfZ2V0X2NvbmZpZyhzdHJ1Y3QgaW50ZWxfZW5jb2Rlcgo+PiAqZW5jb2Rl
+ciwKPj4gIAlwaXBlX2NvbmZpZy0+cGlwZV9icHAgPSBiZHdfZ2V0X3BpcGVtaXNjX2JwcChjcnRj
+KTsgIH0KPj4gCj4+ICtzdGF0aWMgaW50IGdlbjExX2RzaV9kc2NfY29tcHV0ZV9jb25maWcoc3Ry
+dWN0IGludGVsX2VuY29kZXIgKmVuY29kZXIsCj4+ICsJCQkJCXN0cnVjdCBpbnRlbF9jcnRjX3N0
+YXRlICpwaXBlX2NvbmZpZykgewo+PiArCXN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJp
+diA9IHRvX2k5MTUoZW5jb2Rlci0+YmFzZS5kZXYpOwo+PiArCXN0cnVjdCBkcm1fZHNjX2NvbmZp
+ZyAqdmRzY19jZmcgPSAmcGlwZV9jb25maWctPmRzYy5jb25maWc7Cj4+ICsJc3RydWN0IGRybV9k
+aXNwbGF5X21vZGUgKmFkanVzdGVkX21vZGUgPSAmcGlwZV9jb25maWctCj4+ID5ody5hZGp1c3Rl
+ZF9tb2RlOwo+PiArCWludCBkc2NfbWF4X2JwYyA9IElOVEVMX0dFTihkZXZfcHJpdikgPj0gMTIg
+PyAxMiA6IDEwOwo+PiArCWJvb2wgdXNlX2RzYzsKPj4gKwlpbnQgcmV0Owo+PiArCj4+ICsJdXNl
+X2RzYyA9IGludGVsX2Jpb3NfZ2V0X2RzY19wYXJhbXMoZW5jb2RlciwgcGlwZV9jb25maWcsCj4+
+IGRzY19tYXhfYnBjKTsKPj4gKwlpZiAoIXVzZV9kc2MpCj4+ICsJCXJldHVybiAwOwo+PiArCj4+
+ICsJaWYgKHBpcGVfY29uZmlnLT5waXBlX2JwcCA8IDggKiAzKQo+PiArCQlyZXR1cm4gLUVJTlZB
+TDsKPj4gKwo+PiArCWlmIChhZGp1c3RlZF9tb2RlLT5jcnRjX2Nsb2NrID4gZGV2X3ByaXYtPm1h
+eF9jZGNsa19mcmVxKSB7Cj4+ICsJCWlmIChwaXBlX2NvbmZpZy0+ZHNjLnNsaWNlX2NvdW50ID4g
+MSkgewo+PiArCQkJcGlwZV9jb25maWctPmRzYy5kc2Nfc3BsaXQgPSB0cnVlOwo+PiArCQl9IGVs
+c2Ugewo+PiArCQkJRFJNX0RFQlVHX0tNUygiQ2Fubm90IHNwbGl0IHN0cmVhbSB0byB1c2UgMgo+
+PiBWRFNDIGluc3RhbmNlc1xuIik7Cj4+ICsJCQlyZXR1cm4gLUVJTlZBTDsKPj4gKwkJfQo+PiAr
+CX0KPj4gKwo+PiArCXZkc2NfY2ZnLT5jb252ZXJ0X3JnYiA9IGZhbHNlOwo+PiArCj4+ICsJcmV0
+ID0gaW50ZWxfZHNjX2NvbXB1dGVfcGFyYW1zKGVuY29kZXIsIHBpcGVfY29uZmlnKTsKPj4gKwlp
+ZiAocmV0KQo+PiArCQlyZXR1cm4gcmV0Owo+PiArCj4+ICsJLyogRFNJIHNwZWNpZmljIHNhbml0
+eSBjaGVja3Mgb24gdGhlIGNvbW1vbiBjb2RlICovCj4+ICsJV0FSTl9PTih2ZHNjX2NmZy0+dmJy
+X2VuYWJsZSk7Cj4+ICsJV0FSTl9PTih2ZHNjX2NmZy0+cGljX3dpZHRoICUgdmRzY19jZmctPnNs
+aWNlX3dpZHRoKTsKPj4gKwlXQVJOX09OKHZkc2NfY2ZnLT5zbGljZV9oZWlnaHQgPCA4KTsKPj4g
+KwlXQVJOX09OKHZkc2NfY2ZnLT5waWNfaGVpZ2h0ICUgdmRzY19jZmctPnNsaWNlX2hlaWdodCk7
+Cj4+ICsKPj4gKwlyZXQgPSBkcm1fZHNjX2NvbXB1dGVfcmNfcGFyYW1ldGVycyh2ZHNjX2NmZyk7
+Cj4+ICsJaWYgKHJldCkKPj4gKwkJcmV0dXJuIHJldDsKPj4gKwo+PiArCXBpcGVfY29uZmlnLT5k
+c2MuY29tcHJlc3Npb25fZW5hYmxlID0gdHJ1ZTsKPj4gKwo+PiArCXJldHVybiAwOwo+PiArfQo+
+PiArCj4+ICBzdGF0aWMgaW50IGdlbjExX2RzaV9jb21wdXRlX2NvbmZpZyhzdHJ1Y3QgaW50ZWxf
+ZW5jb2RlciAqZW5jb2RlciwKPj4gIAkJCQkgICAgc3RydWN0IGludGVsX2NydGNfc3RhdGUgKnBp
+cGVfY29uZmlnLAo+PiAgCQkJCSAgICBzdHJ1Y3QgZHJtX2Nvbm5lY3Rvcl9zdGF0ZSAqY29ubl9z
+dGF0ZSkKPj4gQEAgLTEzMDAsNyArMTM2NiwxMSBAQCBzdGF0aWMgaW50IGdlbjExX2RzaV9jb21w
+dXRlX2NvbmZpZyhzdHJ1Y3QKPj4gaW50ZWxfZW5jb2RlciAqZW5jb2RlciwKPj4gIAkJcGlwZV9j
+b25maWctPnBpcGVfYnBwID0gMTg7Cj4KPiBUUkFOU19EU0lfRlVOQ19DT05GIHJlZ2lzdGVyIG5l
+ZWRzIHRvIGJlIHVwZGF0ZWQgd2l0aCBwaXhlbCBmb3JtYXQgYXMKPiBjb21wcmVzc2VkKDB4NikK
+CkFic29sdXRlbHksIHRoaXMgd2FzIGEgYml0IG9mIGEgZmFjZXBhbG0gZm9yIG1lLCBhcyB3ZWxs
+IGFzIHRoZQpob3Jpem9udGFsIHRpbWluZyBjaGFuZ2VzLiBUaGFua3MgZm9yIGNhdGNoaW5nLgoK
+T24gdGhhdCBub3RlLCBidXJzdCBtb2RlIGlzIGFsc28gYnJva2VuIGZvciBJQ0wgRFNJLCBidXQg
+dGhhdCdzIGFub3RoZXIKd29ycnkgZm9yIGFub3RoZXIgZGF5LgoKPiBTaG91bGQgd2UgYmUgaGF2
+aW5nIHBpcGVfY29uZmlnLT5vdXRwdXRfZm9ybWF0ID0gY29tcHJlc3NlZCA/CgpObywgSSB0aGlu
+ayB3ZSBuZWVkIHRoZSByZWFsIHZhbHVlIHRoZXJlIGZvciBhY3R1YWwgcHJlLURTQyBlbmdpbmUg
+cGlwZQpzdHVmZi4KCkknbGwgc2VuZCBhIGNvdXBsZSBvZiBtb3JlIHBhdGNoZXMgaW4gcmVwbHkg
+dG8gdGhlIGNvdmVyIGxldHRlciBmb3IKdGVzdGluZy4gVGhleSdsbCBuZWVkIHRvIGJlIG1hZGUg
+cGFydCBvZiB0aGUgc2VyaWVzIGJldHRlciBidXQgSSdtIHRvbwp0aXJlZCBub3cuCgpCUiwKSmFu
+aS4KCgo+Cj4gVGhhbmtzLAo+IFZhbmRpdGEKPj4gCj4+ICAJcGlwZV9jb25maWctPmNsb2NrX3Nl
+dCA9IHRydWU7Cj4+IC0JcGlwZV9jb25maWctPnBvcnRfY2xvY2sgPSBhZmVfY2xrKGVuY29kZXIp
+IC8gNTsKPj4gKwo+PiArCWlmIChnZW4xMV9kc2lfZHNjX2NvbXB1dGVfY29uZmlnKGVuY29kZXIs
+IHBpcGVfY29uZmlnKSkKPj4gKwkJRFJNX0RFQlVHX0tNUygiQXR0ZW1wdGluZyB0byB1c2UgRFND
+IGZhaWxlZFxuIik7Cj4+ICsKPj4gKwlwaXBlX2NvbmZpZy0+cG9ydF9jbG9jayA9IGFmZV9jbGso
+ZW5jb2RlciwgcGlwZV9jb25maWcpIC8gNTsKPj4gCj4+ICAJcmV0dXJuIDA7Cj4+ICB9Cj4+IEBA
+IC0xMzA4LDggKzEzNzgsMTMgQEAgc3RhdGljIGludCBnZW4xMV9kc2lfY29tcHV0ZV9jb25maWco
+c3RydWN0Cj4+IGludGVsX2VuY29kZXIgKmVuY29kZXIsICBzdGF0aWMgdm9pZCBnZW4xMV9kc2lf
+Z2V0X3Bvd2VyX2RvbWFpbnMoc3RydWN0Cj4+IGludGVsX2VuY29kZXIgKmVuY29kZXIsCj4+ICAJ
+CQkJCXN0cnVjdCBpbnRlbF9jcnRjX3N0YXRlICpjcnRjX3N0YXRlKSAgewo+PiAtCWdldF9kc2lf
+aW9fcG93ZXJfZG9tYWlucyh0b19pOTE1KGVuY29kZXItPmJhc2UuZGV2KSwKPj4gLQkJCQkgZW5j
+X3RvX2ludGVsX2RzaSgmZW5jb2Rlci0+YmFzZSkpOwo+PiArCXN0cnVjdCBkcm1faTkxNV9wcml2
+YXRlICppOTE1ID0gdG9faTkxNShlbmNvZGVyLT5iYXNlLmRldik7Cj4+ICsKPj4gKwlnZXRfZHNp
+X2lvX3Bvd2VyX2RvbWFpbnMoaTkxNSwgZW5jX3RvX2ludGVsX2RzaSgmZW5jb2Rlci0KPj4gPmJh
+c2UpKTsKPj4gKwo+PiArCWlmIChjcnRjX3N0YXRlLT5kc2MuY29tcHJlc3Npb25fZW5hYmxlKQo+
+PiArCQlpbnRlbF9kaXNwbGF5X3Bvd2VyX2dldChpOTE1LAo+PiArCj4+IAlpbnRlbF9kc2NfcG93
+ZXJfZG9tYWluKGNydGNfc3RhdGUpKTsKPj4gIH0KPj4gCj4+ICBzdGF0aWMgYm9vbCBnZW4xMV9k
+c2lfZ2V0X2h3X3N0YXRlKHN0cnVjdCBpbnRlbF9lbmNvZGVyICplbmNvZGVyLCBAQCAtCj4+IDEz
+NzksNyArMTQ1NCw3IEBAIHN0YXRpYyBjb25zdCBzdHJ1Y3QgZHJtX2Nvbm5lY3Rvcl9mdW5jcwo+
+PiBnZW4xMV9kc2lfY29ubmVjdG9yX2Z1bmNzID0gewo+PiAKPj4gIHN0YXRpYyBjb25zdCBzdHJ1
+Y3QgZHJtX2Nvbm5lY3Rvcl9oZWxwZXJfZnVuY3MKPj4gZ2VuMTFfZHNpX2Nvbm5lY3Rvcl9oZWxw
+ZXJfZnVuY3MgPSB7Cj4+ICAJLmdldF9tb2RlcyA9IGludGVsX2RzaV9nZXRfbW9kZXMsCj4+IC0J
+Lm1vZGVfdmFsaWQgPSBpbnRlbF9kc2lfbW9kZV92YWxpZCwKPj4gKwkubW9kZV92YWxpZCA9IGdl
+bjExX2RzaV9tb2RlX3ZhbGlkLAo+PiAgCS5hdG9taWNfY2hlY2sgPSBpbnRlbF9kaWdpdGFsX2Nv
+bm5lY3Rvcl9hdG9taWNfY2hlY2ssCj4+ICB9Owo+PiAKPj4gLS0KPj4gMi4yMC4xCj4KCi0tIApK
+YW5pIE5pa3VsYSwgSW50ZWwgT3BlbiBTb3VyY2UgR3JhcGhpY3MgQ2VudGVyCl9fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxp
+c3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNr
+dG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeA==
