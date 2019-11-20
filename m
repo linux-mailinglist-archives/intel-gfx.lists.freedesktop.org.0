@@ -2,44 +2,44 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F397F104266
-	for <lists+intel-gfx@lfdr.de>; Wed, 20 Nov 2019 18:47:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3758D104278
+	for <lists+intel-gfx@lfdr.de>; Wed, 20 Nov 2019 18:49:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 483376E78E;
-	Wed, 20 Nov 2019 17:47:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 76DFC6E9D8;
+	Wed, 20 Nov 2019 17:49:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8AB8B6E78E
- for <intel-gfx@lists.freedesktop.org>; Wed, 20 Nov 2019 17:47:51 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A021D6E9D8
+ for <intel-gfx@lists.freedesktop.org>; Wed, 20 Nov 2019 17:49:32 +0000 (UTC)
 X-Amp-Result: UNKNOWN
 X-Amp-Original-Verdict: FILE UNKNOWN
 X-Amp-File-Uploaded: False
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 20 Nov 2019 09:47:50 -0800
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 20 Nov 2019 09:48:30 -0800
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="5.69,222,1571727600"; 
- d="p7s'?scan'208";a="357508904"
-Received: from fmsmsx104.amr.corp.intel.com ([10.18.124.202])
- by orsmga004.jf.intel.com with ESMTP; 20 Nov 2019 09:47:50 -0800
-Received: from fmsmsx155.amr.corp.intel.com (10.18.116.71) by
- fmsmsx104.amr.corp.intel.com (10.18.124.202) with Microsoft SMTP Server (TLS)
- id 14.3.439.0; Wed, 20 Nov 2019 09:47:49 -0800
+ d="p7s'?scan'208";a="200802153"
+Received: from fmsmsx103.amr.corp.intel.com ([10.18.124.201])
+ by orsmga008.jf.intel.com with ESMTP; 20 Nov 2019 09:48:29 -0800
+Received: from fmsmsx153.amr.corp.intel.com (10.18.125.6) by
+ FMSMSX103.amr.corp.intel.com (10.18.124.201) with Microsoft SMTP Server (TLS)
+ id 14.3.439.0; Wed, 20 Nov 2019 09:48:27 -0800
 Received: from fmsmsx106.amr.corp.intel.com ([169.254.5.77]) by
- FMSMSX155.amr.corp.intel.com ([169.254.5.120]) with mapi id 14.03.0439.000;
- Wed, 20 Nov 2019 09:47:49 -0800
+ FMSMSX153.amr.corp.intel.com ([169.254.9.238]) with mapi id 14.03.0439.000;
+ Wed, 20 Nov 2019 09:48:27 -0800
 From: "Summers, Stuart" <stuart.summers@intel.com>
 To: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
  "chris@chris-wilson.co.uk" <chris@chris-wilson.co.uk>
 Thread-Topic: [Intel-gfx] [PATCH] drm/i915: Extend reset modparam to domain
  resets
-Thread-Index: AQHVn8j1KkgewZNJl0iCscDEMyvhdaeU2wwAgAAAugA=
-Date: Wed, 20 Nov 2019 17:47:49 +0000
-Message-ID: <50feeccaeb4c356438e452ad9796beb4a3b9a7eb.camel@intel.com>
+Thread-Index: AQHVn8j1KkgewZNJl0iCscDEMyvhdaeU2zaAgAAAvIA=
+Date: Wed, 20 Nov 2019 17:48:26 +0000
+Message-ID: <f84985831560f7f11ee635112aca92b2056b5eb0.camel@intel.com>
 References: <20191120173642.70109-1-stuart.summers@intel.com>
- <157427191055.13839.12283806936365484394@skylake-alporthouse-com>
-In-Reply-To: <157427191055.13839.12283806936365484394@skylake-alporthouse-com>
+ <157427194503.13839.17582339985399321176@skylake-alporthouse-com>
+In-Reply-To: <157427194503.13839.17582339985399321176@skylake-alporthouse-com>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: yes
@@ -60,16 +60,16 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============0060657176=="
+Content-Type: multipart/mixed; boundary="===============1081671694=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0060657176==
+--===============1081671694==
 Content-Language: en-US
 Content-Type: multipart/signed; micalg=sha-1;
-	protocol="application/x-pkcs7-signature"; boundary="=-6/0ieXHnd2D7hJYzcu+8"
+	protocol="application/x-pkcs7-signature"; boundary="=-3LORaUyDkbTnDlijTESN"
 
---=-6/0ieXHnd2D7hJYzcu+8
+--=-3LORaUyDkbTnDlijTESN
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
@@ -80,21 +80,38 @@ On Wed, 2019-11-20 at 17:45 +0000, Chris Wilson wrote:
 > > an unlikely situation where writes are accepted but register
 > > values are never cleared, as this can result in GPU wedges
 > > in these cases.
+> >=20
+> > Signed-off-by: Stuart Summers <stuart.summers@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/gt/intel_reset.c | 13 +++++++++++++
+> >  1 file changed, 13 insertions(+)
+> >=20
+> > diff --git a/drivers/gpu/drm/i915/gt/intel_reset.c
+> > b/drivers/gpu/drm/i915/gt/intel_reset.c
+> > index 0388f9375366..0454e01e063c 100644
+> > --- a/drivers/gpu/drm/i915/gt/intel_reset.c
+> > +++ b/drivers/gpu/drm/i915/gt/intel_reset.c
+> > @@ -270,6 +270,12 @@ static int gen6_hw_domain_reset(struct
+> > intel_gt *gt, u32 hw_domain_mask)
+> >         struct intel_uncore *uncore =3D gt->uncore;
+> >         int err;
+> > =20
+> > +       if (!i915_modparams.reset) {
+> > +               DRM_DEBUG_DRIVER("Skipping 0x%08x engines reset\n",
+> > +                                hw_domain_mask);
+> > +               return 0;
 >=20
-> Is there no way to store the HW details in the uncore or gt?
-> Even if that is a big old parse modparams at probe, the flow here
-> should
-> follow HW.
+> And it should be -ENODEV. Factor that into your plans :)
 
-Hm.. that does make sense. That might take a rework of some of this
-reset logic though. Is that the route we want to go?
+Heh, again, might require some rework although I can see the intention
+here.
 
 Thanks,
 Stuart
 
 > -Chris
 
---=-6/0ieXHnd2D7hJYzcu+8
+--=-3LORaUyDkbTnDlijTESN
 Content-Type: application/x-pkcs7-signature; name="smime.p7s"
 Content-Disposition: attachment; filename="smime.p7s"
 Content-Transfer-Encoding: base64
@@ -150,18 +167,18 @@ CC/N7V8U9yFZx8akWREb8lJYDl9KypirEsufleiew26CWrwcbmdlldDCFS6/HDGCAhcwggITAgEB
 MIGQMHkxCzAJBgNVBAYTAlVTMQswCQYDVQQIEwJDQTEUMBIGA1UEBxMLU2FudGEgQ2xhcmExGjAY
 BgNVBAoTEUludGVsIENvcnBvcmF0aW9uMSswKQYDVQQDEyJJbnRlbCBFeHRlcm5hbCBCYXNpYyBJ
 c3N1aW5nIENBIDRCAhMzAAB04Th3owY0UbEUAAAAAHThMAkGBSsOAwIaBQCgXTAYBgkqhkiG9w0B
-CQMxCwYJKoZIhvcNAQcBMBwGCSqGSIb3DQEJBTEPFw0xOTExMjAxNzQ3NDZaMCMGCSqGSIb3DQEJ
-BDEWBBTBCo3pGmPFXH2RI7VIbNFFgrmyQDANBgkqhkiG9w0BAQEFAASCAQCbD1+HXrm1uzVdn+zU
-vzAmMm9uN4Niv3E9DfIuF5EGv2ZxtCPsPNkwMpb22wF4kGhsLtHnAbteMK/8f1xmv/i0/JZOXFsk
-exvAE5oWJiWkm2OdCyKgMA4UIZfCj7Mffo6F8U10ecqFeOI9MyAF1u4iRJ4SZ9D+LDCjuzivRNqz
-sDPKap21diQ3IujoOMS2TZL092rDN75jnJT2KsM5V3ZdC3PEQdky9sz5hywUJs+SSyTMzCpGHj7A
-05OqXHk/7L+Zev/a/CxTouHCzHP71fZLEzdfRZgEqAdUO4CcHEjwIs7LNRw9ZedPzYqVctTy1bC+
-Pm7fTyrdON5xZJ9C0ZU1AAAAAAAA
+CQMxCwYJKoZIhvcNAQcBMBwGCSqGSIb3DQEJBTEPFw0xOTExMjAxNzQ4MjNaMCMGCSqGSIb3DQEJ
+BDEWBBTK4JjbPg5piskYdwVfRlqSf4DdbjANBgkqhkiG9w0BAQEFAASCAQAi4Jj7J8TwcCYH5soH
+zu41kQB6oPDKpX1RL6vqJ1DQeI46ytHE4UsBWZZIK3twtaJjNK91FskOfPave2KAsBxXuUiNHbj4
+j/MlZq2/pBQdaAdvQiiAcgE7u72r/WLlHWaZ2QUrAgbM3V4bHkx7PQggCaQ7C8rkGuERBg1EE/f8
+p1YCua3qMVdF7bvHxAFKh8R+UmFsgKPn/vIS+5wQZBAMRCENvmRAx6dDBFB9FGoy2OUhfiR0WM0i
+MadeViZUTXx15iW+GD4AhpBxeUH7Cp9MC2q2ELp70JYGwU/JQEgTV8fI10QBbnGiREQUE9B9LOXn
+3/hIzdS/1ci2IKBd2vieAAAAAAAA
 
 
---=-6/0ieXHnd2D7hJYzcu+8--
+--=-3LORaUyDkbTnDlijTESN--
 
---===============0060657176==
+--===============1081671694==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -171,4 +188,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
 IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
 dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
 
---===============0060657176==--
+--===============1081671694==--
