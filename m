@@ -1,30 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DCD2E10425C
-	for <lists+intel-gfx@lfdr.de>; Wed, 20 Nov 2019 18:45:52 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id F397F104266
+	for <lists+intel-gfx@lfdr.de>; Wed, 20 Nov 2019 18:47:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5139B6E90D;
-	Wed, 20 Nov 2019 17:45:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 483376E78E;
+	Wed, 20 Nov 2019 17:47:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 942BC6E90D
- for <intel-gfx@lists.freedesktop.org>; Wed, 20 Nov 2019 17:45:49 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 19275931-1500050 for multiple; Wed, 20 Nov 2019 17:45:48 +0000
-MIME-Version: 1.0
-From: Chris Wilson <chris@chris-wilson.co.uk>
-User-Agent: alot/0.6
-To: Stuart Summers <stuart.summers@intel.com>, intel-gfx@lists.freedesktop.org
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8AB8B6E78E
+ for <intel-gfx@lists.freedesktop.org>; Wed, 20 Nov 2019 17:47:51 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 20 Nov 2019 09:47:50 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.69,222,1571727600"; 
+ d="p7s'?scan'208";a="357508904"
+Received: from fmsmsx104.amr.corp.intel.com ([10.18.124.202])
+ by orsmga004.jf.intel.com with ESMTP; 20 Nov 2019 09:47:50 -0800
+Received: from fmsmsx155.amr.corp.intel.com (10.18.116.71) by
+ fmsmsx104.amr.corp.intel.com (10.18.124.202) with Microsoft SMTP Server (TLS)
+ id 14.3.439.0; Wed, 20 Nov 2019 09:47:49 -0800
+Received: from fmsmsx106.amr.corp.intel.com ([169.254.5.77]) by
+ FMSMSX155.amr.corp.intel.com ([169.254.5.120]) with mapi id 14.03.0439.000;
+ Wed, 20 Nov 2019 09:47:49 -0800
+From: "Summers, Stuart" <stuart.summers@intel.com>
+To: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "chris@chris-wilson.co.uk" <chris@chris-wilson.co.uk>
+Thread-Topic: [Intel-gfx] [PATCH] drm/i915: Extend reset modparam to domain
+ resets
+Thread-Index: AQHVn8j1KkgewZNJl0iCscDEMyvhdaeU2wwAgAAAugA=
+Date: Wed, 20 Nov 2019 17:47:49 +0000
+Message-ID: <50feeccaeb4c356438e452ad9796beb4a3b9a7eb.camel@intel.com>
 References: <20191120173642.70109-1-stuart.summers@intel.com>
-In-Reply-To: <20191120173642.70109-1-stuart.summers@intel.com>
-Message-ID: <157427194503.13839.17582339985399321176@skylake-alporthouse-com>
-Date: Wed, 20 Nov 2019 17:45:45 +0000
+ <157427191055.13839.12283806936365484394@skylake-alporthouse-com>
+In-Reply-To: <157427191055.13839.12283806936365484394@skylake-alporthouse-com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: yes
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.165.21.197]
+MIME-Version: 1.0
 Subject: Re: [Intel-gfx] [PATCH] drm/i915: Extend reset modparam to domain
  resets
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -39,31 +60,115 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0060657176=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-UXVvdGluZyBTdHVhcnQgU3VtbWVycyAoMjAxOS0xMS0yMCAxNzozNjo0MikKPiBJbiB0aGUgZXZl
-bnQgYSBwbGF0Zm9ybSBkb2VzIG5vdCBwcm9wZXJseSBpbXBsZW1lbnQgcmVzZXQsCj4gZG8gbm90
-IGdvIHRocm91Z2ggcmVzZXQgZmxvd3MgZm9yIGVuZ2luZSBkb21haW5zIHRvIGF2b2lkCj4gYW4g
-dW5saWtlbHkgc2l0dWF0aW9uIHdoZXJlIHdyaXRlcyBhcmUgYWNjZXB0ZWQgYnV0IHJlZ2lzdGVy
-Cj4gdmFsdWVzIGFyZSBuZXZlciBjbGVhcmVkLCBhcyB0aGlzIGNhbiByZXN1bHQgaW4gR1BVIHdl
-ZGdlcwo+IGluIHRoZXNlIGNhc2VzLgo+IAo+IFNpZ25lZC1vZmYtYnk6IFN0dWFydCBTdW1tZXJz
-IDxzdHVhcnQuc3VtbWVyc0BpbnRlbC5jb20+Cj4gLS0tCj4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1
-L2d0L2ludGVsX3Jlc2V0LmMgfCAxMyArKysrKysrKysrKysrCj4gIDEgZmlsZSBjaGFuZ2VkLCAx
-MyBpbnNlcnRpb25zKCspCj4gCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0
-L2ludGVsX3Jlc2V0LmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRlbF9yZXNldC5jCj4g
-aW5kZXggMDM4OGY5Mzc1MzY2Li4wNDU0ZTAxZTA2M2MgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9n
-cHUvZHJtL2k5MTUvZ3QvaW50ZWxfcmVzZXQuYwo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1
-L2d0L2ludGVsX3Jlc2V0LmMKPiBAQCAtMjcwLDYgKzI3MCwxMiBAQCBzdGF0aWMgaW50IGdlbjZf
-aHdfZG9tYWluX3Jlc2V0KHN0cnVjdCBpbnRlbF9ndCAqZ3QsIHUzMiBod19kb21haW5fbWFzaykK
-PiAgICAgICAgIHN0cnVjdCBpbnRlbF91bmNvcmUgKnVuY29yZSA9IGd0LT51bmNvcmU7Cj4gICAg
-ICAgICBpbnQgZXJyOwo+ICAKPiArICAgICAgIGlmICghaTkxNV9tb2RwYXJhbXMucmVzZXQpIHsK
-PiArICAgICAgICAgICAgICAgRFJNX0RFQlVHX0RSSVZFUigiU2tpcHBpbmcgMHglMDh4IGVuZ2lu
-ZXMgcmVzZXRcbiIsCj4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgaHdfZG9tYWlu
-X21hc2spOwo+ICsgICAgICAgICAgICAgICByZXR1cm4gMDsKCkFuZCBpdCBzaG91bGQgYmUgLUVO
-T0RFVi4gRmFjdG9yIHRoYXQgaW50byB5b3VyIHBsYW5zIDopCi1DaHJpcwpfX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0
-CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3Rv
-cC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZng=
+--===============0060657176==
+Content-Language: en-US
+Content-Type: multipart/signed; micalg=sha-1;
+	protocol="application/x-pkcs7-signature"; boundary="=-6/0ieXHnd2D7hJYzcu+8"
+
+--=-6/0ieXHnd2D7hJYzcu+8
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+On Wed, 2019-11-20 at 17:45 +0000, Chris Wilson wrote:
+> Quoting Stuart Summers (2019-11-20 17:36:42)
+> > In the event a platform does not properly implement reset,
+> > do not go through reset flows for engine domains to avoid
+> > an unlikely situation where writes are accepted but register
+> > values are never cleared, as this can result in GPU wedges
+> > in these cases.
+>=20
+> Is there no way to store the HW details in the uncore or gt?
+> Even if that is a big old parse modparams at probe, the flow here
+> should
+> follow HW.
+
+Hm.. that does make sense. That might take a rework of some of this
+reset logic though. Is that the route we want to go?
+
+Thanks,
+Stuart
+
+> -Chris
+
+--=-6/0ieXHnd2D7hJYzcu+8
+Content-Type: application/x-pkcs7-signature; name="smime.p7s"
+Content-Disposition: attachment; filename="smime.p7s"
+Content-Transfer-Encoding: base64
+
+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
+PwuHX1mRETAlwqXCZa6ba8eraUCltlCb/ZiEk9UFRVLjbLNPh9IYOi+sWkS6n5CovLKAqhMCAwEA
+AaOCAjMwggIvMB0GA1UdDgQWBBSgeYqvLV4nBaCUzAXLr0TeMJYR5zAfBgNVHSMEGDAWgBTaQSOc
+Wo9xr1eDPiDT42XbDMsL2zBlBgNVHR8EXjBcMFqgWKBWhlRodHRwOi8vd3d3LmludGVsLmNvbS9y
+ZXBvc2l0b3J5L0NSTC9JbnRlbCUyMEV4dGVybmFsJTIwQmFzaWMlMjBJc3N1aW5nJTIwQ0ElMjA0
+Qi5jcmwwgZ8GCCsGAQUFBwEBBIGSMIGPMCIGCCsGAQUFBzABhhZodHRwOi8vb2NzcC5pbnRlbC5j
+b20vMGkGCCsGAQUFBzAChl1odHRwOi8vd3d3LmludGVsLmNvbS9yZXBvc2l0b3J5L2NlcnRpZmlj
+YXRlcy9JbnRlbCUyMEV4dGVybmFsJTIwQmFzaWMlMjBJc3N1aW5nJTIwQ0ElMjA0Qi5jcnQwCwYD
+VR0PBAQDAgeAMDwGCSsGAQQBgjcVBwQvMC0GJSsGAQQBgjcVCIbDjHWEmeVRg/2BKIWOn1OCkcAJ
+Z4HevTmV8EMCAWQCAQkwHwYDVR0lBBgwFgYIKwYBBQUHAwQGCisGAQQBgjcKAwwwKQYJKwYBBAGC
+NxUKBBwwGjAKBggrBgEFBQcDBDAMBgorBgEEAYI3CgMMME0GA1UdEQRGMESgKAYKKwYBBAGCNxQC
+A6AaDBhzdHVhcnQuc3VtbWVyc0BpbnRlbC5jb22BGHN0dWFydC5zdW1tZXJzQGludGVsLmNvbTAN
+BgkqhkiG9w0BAQUFAAOCAQEAfyIC7rzSi6S8O+sdH384K8zyeMRJnl6vR7whl9PuEat+BkKpoxHn
+jQ0SFyF/cyI4lH/n938Pm3/Ctq0Z5GTldX6hhxxcLAR0qbk6AQU0Cq2nYMlZfX4FUz3FRsazbjTW
+1qObcvPRUAVScaa7SRGdensvbNV++pN1XqEdc++szxo58UzPaEgDlHIe2sEIVXnFkHnJv0ikRHG3
+urcA1bdj7Rac7dJBeQOQMdZEGmrWWmmbJzvk3OmoK9tKN7wcErQSdlqyYOMLesPfa7YNyLFYEJQd
+CC/N7V8U9yFZx8akWREb8lJYDl9KypirEsufleiew26CWrwcbmdlldDCFS6/HDGCAhcwggITAgEB
+MIGQMHkxCzAJBgNVBAYTAlVTMQswCQYDVQQIEwJDQTEUMBIGA1UEBxMLU2FudGEgQ2xhcmExGjAY
+BgNVBAoTEUludGVsIENvcnBvcmF0aW9uMSswKQYDVQQDEyJJbnRlbCBFeHRlcm5hbCBCYXNpYyBJ
+c3N1aW5nIENBIDRCAhMzAAB04Th3owY0UbEUAAAAAHThMAkGBSsOAwIaBQCgXTAYBgkqhkiG9w0B
+CQMxCwYJKoZIhvcNAQcBMBwGCSqGSIb3DQEJBTEPFw0xOTExMjAxNzQ3NDZaMCMGCSqGSIb3DQEJ
+BDEWBBTBCo3pGmPFXH2RI7VIbNFFgrmyQDANBgkqhkiG9w0BAQEFAASCAQCbD1+HXrm1uzVdn+zU
+vzAmMm9uN4Niv3E9DfIuF5EGv2ZxtCPsPNkwMpb22wF4kGhsLtHnAbteMK/8f1xmv/i0/JZOXFsk
+exvAE5oWJiWkm2OdCyKgMA4UIZfCj7Mffo6F8U10ecqFeOI9MyAF1u4iRJ4SZ9D+LDCjuzivRNqz
+sDPKap21diQ3IujoOMS2TZL092rDN75jnJT2KsM5V3ZdC3PEQdky9sz5hywUJs+SSyTMzCpGHj7A
+05OqXHk/7L+Zev/a/CxTouHCzHP71fZLEzdfRZgEqAdUO4CcHEjwIs7LNRw9ZedPzYqVctTy1bC+
+Pm7fTyrdON5xZJ9C0ZU1AAAAAAAA
+
+
+--=-6/0ieXHnd2D7hJYzcu+8--
+
+--===============0060657176==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
+IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
+
+--===============0060657176==--
