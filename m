@@ -2,39 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B3F6103782
-	for <lists+intel-gfx@lfdr.de>; Wed, 20 Nov 2019 11:28:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 53CDF1037A4
+	for <lists+intel-gfx@lfdr.de>; Wed, 20 Nov 2019 11:34:59 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C12926E1A7;
-	Wed, 20 Nov 2019 10:28:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9F61F6E203;
+	Wed, 20 Nov 2019 10:34:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 651086E1A7
- for <intel-gfx@lists.freedesktop.org>; Wed, 20 Nov 2019 10:28:37 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-X-Amp-File-Uploaded: False
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 20 Nov 2019 02:28:36 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,221,1571727600"; d="scan'208";a="204781190"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by fmsmga007.fm.intel.com with SMTP; 20 Nov 2019 02:28:34 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 20 Nov 2019 12:28:33 +0200
-Date: Wed, 20 Nov 2019 12:28:33 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Stuart Summers <stuart.summers@intel.com>
-Message-ID: <20191120102833.GF1208@intel.com>
-References: <20191120011016.18049-1-stuart.summers@intel.com>
+Received: from mail-vk1-xa41.google.com (mail-vk1-xa41.google.com
+ [IPv6:2607:f8b0:4864:20::a41])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DF3F26E1BC
+ for <intel-gfx@lists.freedesktop.org>; Wed, 20 Nov 2019 10:34:54 +0000 (UTC)
+Received: by mail-vk1-xa41.google.com with SMTP id s4so3745491vkk.12
+ for <intel-gfx@lists.freedesktop.org>; Wed, 20 Nov 2019 02:34:54 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=Gi6PEodcWJ+oAzKkqgi5/BeYR4D5IxvWlDsQE9j1GDw=;
+ b=bnCgqUMyLF6c0ndgIUt5sGfO9xaEnp8qs67Q5/K3mMPJeHSqSuosZqszH/knuXnAj8
+ nPzeNtHzIUe+nAwBS/IdFNrDjfaO1VsG68IVZkYht8LNRtT8+/sz7iwyZGPeDmsXKFJb
+ +r/vzPjwpvDUKV8p1beW8JHrgyZNwUgzsAn+jq+SFaHGJW0OloijD/GC5w2WgJTbdUmm
+ vpg+ddqg1gHGieiyf8oqcdaowAFsWWkLrbG0kkrbHXgr1a2a1Tm6A8r6cdrfgQknvEfK
+ 0h08zb9w+RliWlDcwFtiIJdf0vI9NOF5Y7r58MlmbmbMjixu1ywskNK/N6HCQ/3YGoU1
+ QvaA==
+X-Gm-Message-State: APjAAAVRRKBT2uLicpr2C/5zYTugIxihPRDghO2Yhon2RuTB6c3WjiSj
+ yNWziKDAS7eZ3DscbQKCs9isH0qytOEj6+8NC0FGGwF1
+X-Google-Smtp-Source: APXvYqw07lhK2iGeAPwev8chPgfCrLPHbJJyqrEFFXNNf4faTwUxeDO+cec9+WrUZCAY3jUc2WTsH3k7W8pCT5mCtmE=
+X-Received: by 2002:ac5:cddc:: with SMTP id u28mr758778vkn.12.1574246093847;
+ Wed, 20 Nov 2019 02:34:53 -0800 (PST)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20191120011016.18049-1-stuart.summers@intel.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Do not initialize display BW when
- display not available
+References: <20191120093302.3723715-1-chris@chris-wilson.co.uk>
+ <20191120102741.3734346-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20191120102741.3734346-1-chris@chris-wilson.co.uk>
+From: Matthew Auld <matthew.william.auld@gmail.com>
+Date: Wed, 20 Nov 2019 10:34:27 +0000
+Message-ID: <CAM0jSHOCxtNXVjWOec_hcNx=LCKgWvmR2BiJNdLMvXz3pZUhXg@mail.gmail.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>
+X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc;
+ bh=Gi6PEodcWJ+oAzKkqgi5/BeYR4D5IxvWlDsQE9j1GDw=;
+ b=ev18AsbXQklfUfUX2ft2mWjHkRE0/0G8HArc6zHP548biRMtsnts8nf6nUCLEWLuJH
+ ULo09tznK5+CSCofQVIEypWAJvEO+vOJpgUzk/23K25BXRderF791lRdO6t3FGR5Kps9
+ QLl5z5NjkW9kDXMKmlA7oOkThUoGLeSbT6fsURSBtbzSilReu+H7OQO+/E3R0lMF465A
+ 66ciiyrNFJR6I6nezISF/cde+qrm8t0uulRph0sBGMsq1e7Qe41/cPk9zkDtyvIJsssI
+ r+5imvw4qrgm2H7HnKTcSA+6IRjsWto7Tkx91pmGKFQk1qh2a2GEbYuEK8UGMYhbKPEk
+ xfUg==
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/selftests: Take a ref to the
+ request we wait upon
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -47,36 +64,21 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Matthew Auld <matthew.auld@intel.com>
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gVHVlLCBOb3YgMTksIDIwMTkgYXQgMDU6MTA6MTZQTSAtMDgwMCwgU3R1YXJ0IFN1bW1lcnMg
-d3JvdGU6Cj4gV2hlbiBkaXNwbGF5IGlzIG5vdCBhdmFpbGFibGUsIGZpbmRpbmcgdGhlIG1lbW9y
-eSBiYW5kd2lkdGggYXZhaWxhYmxlCj4gZm9yIGRpc3BsYXkgaXMgbm90IHVzZWZ1bC4gU2tpcCB0
-aGlzIHNlcXVlbmNlIGhlcmUuCj4gCj4gUmVmZXJlbmNlczogSFNERVMgMTIwOTk3ODI1NQo+IAo+
-IFNpZ25lZC1vZmYtYnk6IFN0dWFydCBTdW1tZXJzIDxzdHVhcnQuc3VtbWVyc0BpbnRlbC5jb20+
-Cj4gLS0tCj4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfYncuYyB8IDMgKysr
-Cj4gIDEgZmlsZSBjaGFuZ2VkLCAzIGluc2VydGlvbnMoKykKPiAKPiBkaWZmIC0tZ2l0IGEvZHJp
-dmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9idy5jIGIvZHJpdmVycy9ncHUvZHJtL2k5
-MTUvZGlzcGxheS9pbnRlbF9idy5jCj4gaW5kZXggM2Y2ZTI5ZjYxMzIzLi44NmU3NWU4NTgwMDgg
-MTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9idy5jCj4g
-KysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9idy5jCj4gQEAgLTI2NCw2
-ICsyNjQsOSBAQCBzdGF0aWMgdW5zaWduZWQgaW50IGljbF9tYXhfYncoc3RydWN0IGRybV9pOTE1
-X3ByaXZhdGUgKmRldl9wcml2LAo+ICAKPiAgdm9pZCBpbnRlbF9id19pbml0X2h3KHN0cnVjdCBk
-cm1faTkxNV9wcml2YXRlICpkZXZfcHJpdikKPiAgewo+ICsJaWYgKCFIQVNfRElTUExBWShkZXZf
-cHJpdikpCj4gKwkJcmV0dXJuOwo+ICsKCkl0IG1pZ2h0IG1ha2Ugc2Vuc2UgdG8gY2F0Y2ggdGhp
-cyBzb21ld2hlcmUgaGlnaGVyIHVwLiBCdXQgc2VlbXMgT0sgZm9yCm5vdyB1bnRpbCBwZW9wbGUg
-ZmlndXJlIG91dCB3aGF0IEhBU19ESVNQTEFZIGFjdHVhbGx5IG1lYW5zLgoKUmV2aWV3ZWQtYnk6
-IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5jb20+Cgo+ICAJaWYg
-KElTX0dFTihkZXZfcHJpdiwgMTIpKQo+ICAJCWljbF9nZXRfYndfaW5mbyhkZXZfcHJpdiwgJnRn
-bF9zYV9pbmZvKTsKPiAgCWVsc2UgaWYgKElTX0dFTihkZXZfcHJpdiwgMTEpKQo+IC0tIAo+IDIu
-MjIuMAo+IAo+IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-Cj4gSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdAo+IEludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5v
-cmcKPiBodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVs
-LWdmeAoKLS0gClZpbGxlIFN5cmrDpGzDpApJbnRlbApfX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBs
-aXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1h
-bi9saXN0aW5mby9pbnRlbC1nZng=
+T24gV2VkLCAyMCBOb3YgMjAxOSBhdCAxMDoyOCwgQ2hyaXMgV2lsc29uIDxjaHJpc0BjaHJpcy13
+aWxzb24uY28udWs+IHdyb3RlOgo+Cj4gaTkxNV9yZXF1ZXN0X2FkZCgpIGNvbnN1bWVzIHRoZSBw
+YXNzZWQgaW4gcmVmZXJlbmNlIHRvIHRoZSBpOTE1X3JlcXVlc3QsCj4gc28gaWYgdGhlIHNlbGZ0
+ZXN0IGNhbGxlciB3aXNoZXMgdG8gd2FpdCB1cG9uIGl0IGFmdGVyd2FyZHMsIGl0IG5lZWRzIHRv
+Cj4gdGFrZSBhIHJlZmVyZW5jZSBmb3IgaXRzZWxmLgo+Cj4gU2lnbmVkLW9mZi1ieTogQ2hyaXMg
+V2lsc29uIDxjaHJpc0BjaHJpcy13aWxzb24uY28udWs+Cj4gQ2M6IE1hdHRoZXcgQXVsZCA8bWF0
+dGhldy5hdWxkQGludGVsLmNvbT4KUmV2aWV3ZWQtYnk6IE1hdHRoZXcgQXVsZCA8bWF0dGhldy5h
+dWxkQGludGVsLmNvbT4KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Au
+b3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwt
+Z2Z4
