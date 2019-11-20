@@ -1,32 +1,39 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6FD2F103A97
-	for <lists+intel-gfx@lfdr.de>; Wed, 20 Nov 2019 14:01:02 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B3427103AD1
+	for <lists+intel-gfx@lfdr.de>; Wed, 20 Nov 2019 14:16:31 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B37B16E584;
-	Wed, 20 Nov 2019 13:01:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EF5D56E59B;
+	Wed, 20 Nov 2019 13:16:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 8D1F56E581;
- Wed, 20 Nov 2019 13:00:59 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 8532BA0009;
- Wed, 20 Nov 2019 13:00:59 +0000 (UTC)
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 90AAA6E566;
+ Wed, 20 Nov 2019 13:16:25 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 20 Nov 2019 05:16:24 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.69,222,1571727600"; d="scan'208";a="408111075"
+Received: from cdonitzk-mobl1.ger.corp.intel.com (HELO [10.249.32.229])
+ ([10.249.32.229])
+ by fmsmga006.fm.intel.com with ESMTP; 20 Nov 2019 05:16:21 -0800
+To: Jani Nikula <jani.nikula@intel.com>, Sean Paul <sean@poorly.run>,
+ Maxime Ripard <mripard@kernel.org>
+References: <87tv7a4eq3.fsf@intel.com> <87v9rm1q63.fsf@intel.com>
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Message-ID: <44c6a588-af34-2acd-40b3-b9d82c35226b@linux.intel.com>
+Date: Wed, 20 Nov 2019 14:16:21 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Hans de Goede" <hdegoede@redhat.com>
-Date: Wed, 20 Nov 2019 13:00:59 -0000
-Message-ID: <157425485954.19985.17030437390764026569@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20191119151818.67531-1-hdegoede@redhat.com>
-In-Reply-To: <20191119151818.67531-1-hdegoede@redhat.com>
-Subject: [Intel-gfx] =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_f?=
- =?utf-8?q?or_drm/i915_/_LPSS_/_mfd=3A_Select_correct_PWM_controller_to_us?=
- =?utf-8?q?e_based_on_VBT_=28rev2=29?=
+In-Reply-To: <87v9rm1q63.fsf@intel.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PULL] topic/drm-mipi-dsi-dsc-updates
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -39,26 +46,22 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: dim-tools@lists.freedesktop.org, Daniel Vetter <daniel.vetter@ffwll.ch>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Andrzej Hajda <a.hajda@samsung.com>, Vinay Simha BN <simhavcs@gmail.com>,
+ Thierry Reding <treding@nvidia.com>
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-PT0gU2VyaWVzIERldGFpbHMgPT0KClNlcmllczogZHJtL2k5MTUgLyBMUFNTIC8gbWZkOiBTZWxl
-Y3QgY29ycmVjdCBQV00gY29udHJvbGxlciB0byB1c2UgYmFzZWQgb24gVkJUIChyZXYyKQpVUkwg
-ICA6IGh0dHBzOi8vcGF0Y2h3b3JrLmZyZWVkZXNrdG9wLm9yZy9zZXJpZXMvNjk2ODYvClN0YXRl
-IDogd2FybmluZwoKPT0gU3VtbWFyeSA9PQoKJCBkaW0gY2hlY2twYXRjaCBvcmlnaW4vZHJtLXRp
-cApmODZiZGVjZjNiMTcgQUNQSSAvIExQU1M6IFJlbmFtZSBwd21fYmFja2xpZ2h0IHB3bS1sb29r
-dXAgdG8gcHdtX3NvY19iYWNrbGlnaHQKMWI2NWFhNjY2MjM2IG1mZDogaW50ZWxfc29jX3BtaWM6
-IFJlbmFtZSBwd21fYmFja2xpZ2h0IHB3bS1sb29rdXAgdG8gcHdtX3BtaWNfYmFja2xpZ2h0Ci06
-NDg6IFdBUk5JTkc6TE9OR19MSU5FOiBsaW5lIG92ZXIgMTAwIGNoYXJhY3RlcnMKIzQ4OiBGSUxF
-OiBkcml2ZXJzL21mZC9pbnRlbF9zb2NfcG1pY19jb3JlLmM6NDE6CisJUFdNX0xPT0tVUCgiY3J5
-c3RhbF9jb3ZlX3B3bSIsIDAsICIwMDAwOjAwOjAyLjAiLCAicHdtX3BtaWNfYmFja2xpZ2h0Iiwg
-MCwgUFdNX1BPTEFSSVRZX05PUk1BTCksCgp0b3RhbDogMCBlcnJvcnMsIDEgd2FybmluZ3MsIDAg
-Y2hlY2tzLCA4IGxpbmVzIGNoZWNrZWQKMmJjYTdhMTc0Njc0IGRybS9pOTE1OiBEU0k6IHNlbGVj
-dCBjb3JyZWN0IFBXTSBjb250cm9sbGVyIHRvIHVzZSBiYXNlZCBvbiB0aGUgVkJUCgpfX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGlu
-ZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVl
-ZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZng=
+T3AgMTQtMTEtMjAxOSBvbSAxNTozNSBzY2hyZWVmIEphbmkgTmlrdWxhOgo+IE9uIE1vbiwgMTEg
+Tm92IDIwMTksIEphbmkgTmlrdWxhIDxqYW5pLm5pa3VsYUBpbnRlbC5jb20+IHdyb3RlOgo+PiBI
+aSBTZWFuLCBNYWFydGVuIGFuZCBNYXhpbWUgLQo+Pgo+PiBIZXJlJ3MgdGhlIHRvcGljIGJyYW5j
+aCBhYm91dCBEU0kgY2hhbmdlcyBhcyBJIHdyb3RlIGluIFsxXS4gT25jZSB5b3UndmUKPj4gcHVs
+bGVkIHRoaXMgaW4gZHJtLW1pc2MsIEknbGwgZm9sbG93IHN1aXQgaW4gaTkxNS4KPiBQaW5nLgo+
+Cj4gRldJVyBEYW5pZWwgYWNrZWQgdGhlIGFwcHJvYWNoIG9uIElSQy4KPgo+IEJSLAo+IEphbmku
+Cj4KPgpQdXNoZWQsIHRoYW5rcy4gOikKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJl
+ZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGlu
+Zm8vaW50ZWwtZ2Z4
