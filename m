@@ -1,30 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 610C7104784
-	for <lists+intel-gfx@lfdr.de>; Thu, 21 Nov 2019 01:27:28 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1307710478A
+	for <lists+intel-gfx@lfdr.de>; Thu, 21 Nov 2019 01:31:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DE8D76EAA4;
-	Thu, 21 Nov 2019 00:27:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 85F016E125;
+	Thu, 21 Nov 2019 00:31:10 +0000 (UTC)
 X-Original-To: Intel-GFX@lists.freedesktop.org
 Delivered-To: Intel-GFX@lists.freedesktop.org
 Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E914A6EAA4
- for <Intel-GFX@lists.freedesktop.org>; Thu, 21 Nov 2019 00:27:23 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F3E1E6E125
+ for <Intel-GFX@lists.freedesktop.org>; Thu, 21 Nov 2019 00:31:08 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
  by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 20 Nov 2019 16:27:23 -0800
+ 20 Nov 2019 16:31:08 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,223,1571727600"; d="scan'208";a="204904310"
+X-IronPort-AV: E=Sophos;i="5.69,223,1571727600"; d="scan'208";a="290134959"
 Received: from relo-linux-5.jf.intel.com ([10.165.21.134])
- by fmsmga008.fm.intel.com with ESMTP; 20 Nov 2019 16:27:23 -0800
+ by orsmga001.jf.intel.com with ESMTP; 20 Nov 2019 16:31:07 -0800
 From: John.C.Harrison@Intel.com
 To: Intel-GFX@Lists.FreeDesktop.Org
-Date: Wed, 20 Nov 2019 16:27:23 -0800
-Message-Id: <20191121002723.33133-1-John.C.Harrison@Intel.com>
+Date: Wed, 20 Nov 2019 16:31:08 -0800
+Message-Id: <20191121003108.34633-1-John.C.Harrison@Intel.com>
 X-Mailer: git-send-email 2.21.0.5.gaeb582a983
 MIME-Version: 1.0
 Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way,
