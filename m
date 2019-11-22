@@ -2,31 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9958B106783
-	for <lists+intel-gfx@lfdr.de>; Fri, 22 Nov 2019 09:07:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3993510678A
+	for <lists+intel-gfx@lfdr.de>; Fri, 22 Nov 2019 09:09:24 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A7E5589C80;
-	Fri, 22 Nov 2019 08:07:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6D44089CA1;
+	Fri, 22 Nov 2019 08:09:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 9B02489C51;
- Fri, 22 Nov 2019 08:07:39 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 8CF1FA0138;
- Fri, 22 Nov 2019 08:07:39 +0000 (UTC)
+Received: from mx1.suse.de (mx2.suse.de [195.135.220.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A81D689C51;
+ Fri, 22 Nov 2019 08:09:18 +0000 (UTC)
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.220.254])
+ by mx1.suse.de (Postfix) with ESMTP id 25DC8B369;
+ Fri, 22 Nov 2019 08:09:17 +0000 (UTC)
+To: Daniel Vetter <daniel.vetter@ffwll.ch>,
+ DRI Development <dri-devel@lists.freedesktop.org>
+References: <20191115092120.4445-1-daniel.vetter@ffwll.ch>
+ <20191115092120.4445-8-daniel.vetter@ffwll.ch>
+From: Thomas Zimmermann <tzimmermann@suse.de>
+Autocrypt: addr=tzimmermann@suse.de; keydata=
+ mQENBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
+ XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
+ BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
+ hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
+ 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
+ AAG0J1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPokBVAQTAQgAPhYh
+ BHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJbOdLgAhsDBQkDwmcABQsJCAcCBhUKCQgLAgQWAgMB
+ Ah4BAheAAAoJEGgNwR1TC3ojR80H/jH+vYavwQ+TvO8ksXL9JQWc3IFSiGpuSVXLCdg62AmR
+ irxW+qCwNncNQyb9rd30gzdectSkPWL3KSqEResBe24IbA5/jSkPweJasgXtfhuyoeCJ6PXo
+ clQQGKIoFIAEv1s8l0ggPZswvCinegl1diyJXUXmdEJRTWYAtxn/atut1o6Giv6D2qmYbXN7
+ mneMC5MzlLaJKUtoH7U/IjVw1sx2qtxAZGKVm4RZxPnMCp9E1MAr5t4dP5gJCIiqsdrVqI6i
+ KupZstMxstPU//azmz7ZWWxT0JzgJqZSvPYx/SATeexTYBP47YFyri4jnsty2ErS91E6H8os
+ Bv6pnSn7eAq5AQ0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRH
+ UE9eosYbT6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgT
+ RjP+qbU63Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+R
+ dhgATnWWGKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zb
+ ehDda8lvhFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r
+ 12+lqdsAEQEAAYkBPAQYAQgAJhYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJbOdLgAhsMBQkD
+ wmcAAAoJEGgNwR1TC3ojpfcIAInwP5OlcEKokTnHCiDTz4Ony4GnHRP2fXATQZCKxmu4AJY2
+ h9ifw9Nf2TjCZ6AMvC3thAN0rFDj55N9l4s1CpaDo4J+0fkrHuyNacnT206CeJV1E7NYntxU
+ n+LSiRrOdywn6erjxRi9EYTVLCHcDhBEjKmFZfg4AM4GZMWX1lg0+eHbd5oL1as28WvvI/uI
+ aMyV8RbyXot1r/8QLlWldU3NrTF5p7TMU2y3ZH2mf5suSKHAMtbE4jKJ8ZHFOo3GhLgjVrBW
+ HE9JXO08xKkgD+w6v83+nomsEuf6C6LYrqY/tsZvyEX6zN8CtirPdPWu/VXNRYAl/lat7lSI
+ 3H26qrE=
+Message-ID: <52e29495-db21-cbbd-c4af-46b5060b3fb4@suse.de>
+Date: Fri, 22 Nov 2019 09:09:15 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.2.0
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Fri, 22 Nov 2019 08:07:39 -0000
-Message-ID: <157441005952.23771.18430321321801412964@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20191122070238.576748-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20191122070238.576748-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_drm/?=
- =?utf-8?q?i915=3A_Use_a_ctor_for_TYPESAFE=5FBY=5FRCU_i915=5Frequest_=28re?=
- =?utf-8?b?djIp?=
+In-Reply-To: <20191115092120.4445-8-daniel.vetter@ffwll.ch>
+Subject: Re: [Intel-gfx] [PATCH 7/8] drm/hibmc: Use drm_gem_fb_create
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -39,74 +65,292 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Daniel Vetter <daniel.vetter@intel.com>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>
+Content-Type: multipart/mixed; boundary="===============0356340354=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-PT0gU2VyaWVzIERldGFpbHMgPT0KClNlcmllczogZHJtL2k5MTU6IFVzZSBhIGN0b3IgZm9yIFRZ
-UEVTQUZFX0JZX1JDVSBpOTE1X3JlcXVlc3QgKHJldjIpClVSTCAgIDogaHR0cHM6Ly9wYXRjaHdv
-cmsuZnJlZWRlc2t0b3Aub3JnL3Nlcmllcy82OTgyNC8KU3RhdGUgOiBzdWNjZXNzCgo9PSBTdW1t
-YXJ5ID09CgpDSSBCdWcgTG9nIC0gY2hhbmdlcyBmcm9tIENJX0RSTV83NDAyIC0+IFBhdGNod29y
-a18xNTM4OQo9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
-PT09CgpTdW1tYXJ5Ci0tLS0tLS0KCiAgKipTVUNDRVNTKioKCiAgTm8gcmVncmVzc2lvbnMgZm91
-bmQuCgogIEV4dGVybmFsIFVSTDogaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJt
-LXRpcC9QYXRjaHdvcmtfMTUzODkvaW5kZXguaHRtbAoKS25vd24gaXNzdWVzCi0tLS0tLS0tLS0t
-LQoKICBIZXJlIGFyZSB0aGUgY2hhbmdlcyBmb3VuZCBpbiBQYXRjaHdvcmtfMTUzODkgdGhhdCBj
-b21lIGZyb20ga25vd24gaXNzdWVzOgoKIyMjIElHVCBjaGFuZ2VzICMjIwoKIyMjIyBJc3N1ZXMg
-aGl0ICMjIyMKCiAgKiBpZ3RAaTkxNV9tb2R1bGVfbG9hZEByZWxvYWQtd2l0aC1mYXVsdC1pbmpl
-Y3Rpb246CiAgICAtIGZpLWJzdy1uaWNrOiAgICAgICAgW1BBU1NdWzFdIC0+IFtJTkNPTVBMRVRF
-XVsyXSAoW2ZkbyMxMDU4NzZdKQogICBbMV06IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90
-cmVlL2RybS10aXAvQ0lfRFJNXzc0MDIvZmktYnN3LW5pY2svaWd0QGk5MTVfbW9kdWxlX2xvYWRA
-cmVsb2FkLXdpdGgtZmF1bHQtaW5qZWN0aW9uLmh0bWwKICAgWzJdOiBodHRwczovL2ludGVsLWdm
-eC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlwL1BhdGNod29ya18xNTM4OS9maS1ic3ctbmljay9pZ3RA
-aTkxNV9tb2R1bGVfbG9hZEByZWxvYWQtd2l0aC1mYXVsdC1pbmplY3Rpb24uaHRtbAoKICAqIGln
-dEBrbXNfY2hhbWVsaXVtQGhkbWktaHBkLWZhc3Q6CiAgICAtIGZpLWtibC03NTAwdTogICAgICAg
-W1BBU1NdWzNdIC0+IFtGQUlMXVs0XSAoW2ZkbyMxMTEwNDVdIC8gW2ZkbyMxMTEwOTZdKQogICBb
-M106IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAvQ0lfRFJNXzc0MDIv
-Zmkta2JsLTc1MDB1L2lndEBrbXNfY2hhbWVsaXVtQGhkbWktaHBkLWZhc3QuaHRtbAogICBbNF06
-IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAvUGF0Y2h3b3JrXzE1Mzg5
-L2ZpLWtibC03NTAwdS9pZ3RAa21zX2NoYW1lbGl1bUBoZG1pLWhwZC1mYXN0Lmh0bWwKCiAgCiMj
-IyMgUG9zc2libGUgZml4ZXMgIyMjIwoKICAqIGlndEBpOTE1X21vZHVsZV9sb2FkQHJlbG9hZC13
-aXRoLWZhdWx0LWluamVjdGlvbjoKICAgIC0ge2ZpLWtibC03NTYwdX06ICAgICBbSU5DT01QTEVU
-RV1bNV0gKFtmZG8jMTA5OTY0XSAvIFtmZG8jMTEyMjk4XSkgLT4gW1BBU1NdWzZdCiAgIFs1XTog
-aHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9DSV9EUk1fNzQwMi9maS1r
-YmwtNzU2MHUvaWd0QGk5MTVfbW9kdWxlX2xvYWRAcmVsb2FkLXdpdGgtZmF1bHQtaW5qZWN0aW9u
-Lmh0bWwKICAgWzZdOiBodHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlwL1Bh
-dGNod29ya18xNTM4OS9maS1rYmwtNzU2MHUvaWd0QGk5MTVfbW9kdWxlX2xvYWRAcmVsb2FkLXdp
-dGgtZmF1bHQtaW5qZWN0aW9uLmh0bWwKCiAgKiBpZ3RAa21zX2Zyb250YnVmZmVyX3RyYWNraW5n
-QGJhc2ljOgogICAgLSBmaS1pY2wtdTI6ICAgICAgICAgIFtGQUlMXVs3XSAoW2ZkbyMxMDMxNjdd
-KSAtPiBbUEFTU11bOF0KICAgWzddOiBodHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9k
-cm0tdGlwL0NJX0RSTV83NDAyL2ZpLWljbC11Mi9pZ3RAa21zX2Zyb250YnVmZmVyX3RyYWNraW5n
-QGJhc2ljLmh0bWwKICAgWzhdOiBodHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0t
-dGlwL1BhdGNod29ya18xNTM4OS9maS1pY2wtdTIvaWd0QGttc19mcm9udGJ1ZmZlcl90cmFja2lu
-Z0BiYXNpYy5odG1sCgogIAogIHtuYW1lfTogVGhpcyBlbGVtZW50IGlzIHN1cHByZXNzZWQuIFRo
-aXMgbWVhbnMgaXQgaXMgaWdub3JlZCB3aGVuIGNvbXB1dGluZwogICAgICAgICAgdGhlIHN0YXR1
-cyBvZiB0aGUgZGlmZmVyZW5jZSAoU1VDQ0VTUywgV0FSTklORywgb3IgRkFJTFVSRSkuCgogIFtm
-ZG8jMTAzMTY3XTogaHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9
-MTAzMTY3CiAgW2ZkbyMxMDU4NzZdOiBodHRwczovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3df
-YnVnLmNnaT9pZD0xMDU4NzYKICBbZmRvIzEwOTk2NF06IGh0dHBzOi8vYnVncy5mcmVlZGVza3Rv
-cC5vcmcvc2hvd19idWcuY2dpP2lkPTEwOTk2NAogIFtmZG8jMTExMDQ1XTogaHR0cHM6Ly9idWdz
-LmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MTExMDQ1CiAgW2ZkbyMxMTEwOTZdOiBo
-dHRwczovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD0xMTEwOTYKICBbZmRv
-IzExMjI5OF06IGh0dHBzOi8vYnVncy5mcmVlZGVza3RvcC5vcmcvc2hvd19idWcuY2dpP2lkPTEx
-MjI5OAoKClBhcnRpY2lwYXRpbmcgaG9zdHMgKDUwIC0+IDQ0KQotLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0KCiAgQWRkaXRpb25hbCAoMSk6IGZpLWJzdy1uMzA1MCAKICBNaXNzaW5nICAg
-ICg3KTogZmktaWxrLW01NDAgZmktaHN3LTQyMDB1IGZpLWJ5dC1zcXVhd2tzIGZpLWJzdy1jeWFu
-IGZpLWN0Zy1wODYwMCBmaS1ieXQtY2xhcHBlciBmaS1iZHctc2FtdXMgCgoKQnVpbGQgY2hhbmdl
-cwotLS0tLS0tLS0tLS0tCgogICogQ0k6IENJLTIwMTkwNTI5IC0+IE5vbmUKICAqIExpbnV4OiBD
-SV9EUk1fNzQwMiAtPiBQYXRjaHdvcmtfMTUzODkKCiAgQ0ktMjAxOTA1Mjk6IDIwMTkwNTI5CiAg
-Q0lfRFJNXzc0MDI6IGQ1ZjA4NDVjNGI5MmM1ODI2ZDYzYjc2Zjg5ODY2NDkyZTA5MzVjMWIgQCBn
-aXQ6Ly9hbm9uZ2l0LmZyZWVkZXNrdG9wLm9yZy9nZngtY2kvbGludXgKICBJR1RfNTI5OTogNjVm
-ZWQ2YTc5YWRlYTE0ZjdiZWY2ZDU1NTMwZGE0N2Q3NzMxZDM3MCBAIGdpdDovL2Fub25naXQuZnJl
-ZWRlc2t0b3Aub3JnL3hvcmcvYXBwL2ludGVsLWdwdS10b29scwogIFBhdGNod29ya18xNTM4OTog
-N2FlYTQzNjlkOGIyOTViNjI4MGQzMzI3ZTdjNjEyNDRmZTZiN2JiZSBAIGdpdDovL2Fub25naXQu
-ZnJlZWRlc2t0b3Aub3JnL2dmeC1jaS9saW51eAoKCj09IExpbnV4IGNvbW1pdHMgPT0KCjdhZWE0
-MzY5ZDhiMiBkcm0vaTkxNTogVXNlIGEgY3RvciBmb3IgVFlQRVNBRkVfQllfUkNVIGk5MTVfcmVx
-dWVzdAoKPT0gTG9ncyA9PQoKRm9yIG1vcmUgZGV0YWlscyBzZWU6IGh0dHBzOi8vaW50ZWwtZ2Z4
-LWNpLjAxLm9yZy90cmVlL2RybS10aXAvUGF0Y2h3b3JrXzE1Mzg5L2luZGV4Lmh0bWwKX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxp
-bmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJl
-ZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--===============0356340354==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="q7oyimPqNFQQsrWd0Si0u2FzsNm5Qt1H7"
+
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--q7oyimPqNFQQsrWd0Si0u2FzsNm5Qt1H7
+Content-Type: multipart/mixed; boundary="YtgsIMdgkWEp2Y4E96nq3ZJ4MbKYoHygx";
+ protected-headers="v1"
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>,
+ DRI Development <dri-devel@lists.freedesktop.org>
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Daniel Vetter <daniel.vetter@intel.com>
+Message-ID: <52e29495-db21-cbbd-c4af-46b5060b3fb4@suse.de>
+Subject: Re: [PATCH 7/8] drm/hibmc: Use drm_gem_fb_create
+References: <20191115092120.4445-1-daniel.vetter@ffwll.ch>
+ <20191115092120.4445-8-daniel.vetter@ffwll.ch>
+In-Reply-To: <20191115092120.4445-8-daniel.vetter@ffwll.ch>
+
+--YtgsIMdgkWEp2Y4E96nq3ZJ4MbKYoHygx
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: quoted-printable
+
+Hi
+
+Am 15.11.19 um 10:21 schrieb Daniel Vetter:
+> Again we could delete a lot more if we'd switch over to the generic
+> fbdev stuff.
+
+Actually, I do have patches for this since forever. I didn't post them
+yet as I couldn't test them. Maybe I should post them and see what
+people say.
+
+Best regards
+Thomas
+
+>=20
+> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+> ---
+>  .../gpu/drm/hisilicon/hibmc/hibmc_drm_de.c    |  4 +-
+>  .../gpu/drm/hisilicon/hibmc/hibmc_drm_drv.h   | 11 +---
+>  .../gpu/drm/hisilicon/hibmc/hibmc_drm_fbdev.c |  5 +-
+>  drivers/gpu/drm/hisilicon/hibmc/hibmc_ttm.c   | 62 +++++--------------=
+
+>  4 files changed, 19 insertions(+), 63 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/hisilicon/hibmc/hibmc_drm_de.c b/drivers/g=
+pu/drm/hisilicon/hibmc/hibmc_drm_de.c
+> index 6527a97f68a3..2d0920ec4554 100644
+> --- a/drivers/gpu/drm/hisilicon/hibmc/hibmc_drm_de.c
+> +++ b/drivers/gpu/drm/hisilicon/hibmc/hibmc_drm_de.c
+> @@ -99,14 +99,12 @@ static void hibmc_plane_atomic_update(struct drm_pl=
+ane *plane,
+>  	s64 gpu_addr =3D 0;
+>  	unsigned int line_l;
+>  	struct hibmc_drm_private *priv =3D plane->dev->dev_private;
+> -	struct hibmc_framebuffer *hibmc_fb;
+>  	struct drm_gem_vram_object *gbo;
+> =20
+>  	if (!state->fb)
+>  		return;
+> =20
+> -	hibmc_fb =3D to_hibmc_framebuffer(state->fb);
+> -	gbo =3D drm_gem_vram_of_gem(hibmc_fb->obj);
+> +	gbo =3D drm_gem_vram_of_gem(fb->obj[0]);
+> =20
+>  	gpu_addr =3D drm_gem_vram_offset(gbo);
+>  	if (WARN_ON_ONCE(gpu_addr < 0))
+> diff --git a/drivers/gpu/drm/hisilicon/hibmc/hibmc_drm_drv.h b/drivers/=
+gpu/drm/hisilicon/hibmc/hibmc_drm_drv.h
+> index e58ecd7edcf8..ab5b4a4a2095 100644
+> --- a/drivers/gpu/drm/hisilicon/hibmc/hibmc_drm_drv.h
+> +++ b/drivers/gpu/drm/hisilicon/hibmc/hibmc_drm_drv.h
+> @@ -20,14 +20,9 @@
+>  struct drm_device;
+>  struct drm_gem_object;
+> =20
+> -struct hibmc_framebuffer {
+> -	struct drm_framebuffer fb;
+> -	struct drm_gem_object *obj;
+> -};
+> -
+>  struct hibmc_fbdev {
+>  	struct drm_fb_helper helper; /* must be first */
+> -	struct hibmc_framebuffer *fb;
+> +	struct drm_framebuffer *fb;
+>  	int size;
+>  };
+> =20
+> @@ -47,8 +42,6 @@ struct hibmc_drm_private {
+>  	struct hibmc_fbdev *fbdev;
+>  };
+> =20
+> -#define to_hibmc_framebuffer(x) container_of(x, struct hibmc_framebuff=
+er, fb)
+> -
+>  void hibmc_set_power_mode(struct hibmc_drm_private *priv,
+>  			  unsigned int power_mode);
+>  void hibmc_set_current_gate(struct hibmc_drm_private *priv,
+> @@ -61,7 +54,7 @@ void hibmc_fbdev_fini(struct hibmc_drm_private *priv)=
+;
+> =20
+>  int hibmc_gem_create(struct drm_device *dev, u32 size, bool iskernel,
+>  		     struct drm_gem_object **obj);
+> -struct hibmc_framebuffer *
+> +struct drm_framebuffer *
+>  hibmc_framebuffer_init(struct drm_device *dev,
+>  		       const struct drm_mode_fb_cmd2 *mode_cmd,
+>  		       struct drm_gem_object *obj);
+> diff --git a/drivers/gpu/drm/hisilicon/hibmc/hibmc_drm_fbdev.c b/driver=
+s/gpu/drm/hisilicon/hibmc/hibmc_drm_fbdev.c
+> index b4c1cea051e8..446aeedc9e29 100644
+> --- a/drivers/gpu/drm/hisilicon/hibmc/hibmc_drm_fbdev.c
+> +++ b/drivers/gpu/drm/hisilicon/hibmc/hibmc_drm_fbdev.c
+> @@ -141,15 +141,14 @@ static int hibmc_drm_fb_create(struct drm_fb_help=
+er *helper,
+> =20
+>  static void hibmc_fbdev_destroy(struct hibmc_fbdev *fbdev)
+>  {
+> -	struct hibmc_framebuffer *gfb =3D fbdev->fb;
+>  	struct drm_fb_helper *fbh =3D &fbdev->helper;
+> =20
+>  	drm_fb_helper_unregister_fbi(fbh);
+> =20
+>  	drm_fb_helper_fini(fbh);
+> =20
+> -	if (gfb)
+> -		drm_framebuffer_put(&gfb->fb);
+> +	if (fbdev->fb)
+> +		drm_framebuffer_put(fbdev->fb);
+>  }
+> =20
+>  static const struct drm_fb_helper_funcs hibmc_fbdev_helper_funcs =3D {=
+
+> diff --git a/drivers/gpu/drm/hisilicon/hibmc/hibmc_ttm.c b/drivers/gpu/=
+drm/hisilicon/hibmc/hibmc_ttm.c
+> index 21b684eab5c9..386033b0d3a2 100644
+> --- a/drivers/gpu/drm/hisilicon/hibmc/hibmc_ttm.c
+> +++ b/drivers/gpu/drm/hisilicon/hibmc/hibmc_ttm.c
+> @@ -16,6 +16,7 @@
+>  #include <drm/drm_atomic_helper.h>
+>  #include <drm/drm_gem.h>
+>  #include <drm/drm_gem_vram_helper.h>
+> +#include <drm/drm_gem_framebuffer_helper.h>
+>  #include <drm/drm_print.h>
+> =20
+>  #include "hibmc_drm_drv.h"
+> @@ -97,74 +98,39 @@ int hibmc_dumb_create(struct drm_file *file, struct=
+ drm_device *dev,
+>  	return 0;
+>  }
+> =20
+> -static void hibmc_user_framebuffer_destroy(struct drm_framebuffer *fb)=
+
+> -{
+> -	struct hibmc_framebuffer *hibmc_fb =3D to_hibmc_framebuffer(fb);
+> -
+> -	drm_gem_object_put_unlocked(hibmc_fb->obj);
+> -	drm_framebuffer_cleanup(fb);
+> -	kfree(hibmc_fb);
+> -}
+> -
+>  static const struct drm_framebuffer_funcs hibmc_fb_funcs =3D {
+> -	.destroy =3D hibmc_user_framebuffer_destroy,
+> +	.destroy	=3D drm_gem_fb_destroy,
+> +	.create_handle	=3D drm_gem_fb_create_handle,
+>  };
+> =20
+> -struct hibmc_framebuffer *
+> +struct drm_framebuffer *
+>  hibmc_framebuffer_init(struct drm_device *dev,
+>  		       const struct drm_mode_fb_cmd2 *mode_cmd,
+>  		       struct drm_gem_object *obj)
+>  {
+> -	struct hibmc_framebuffer *hibmc_fb;
+> +	struct drm_framebuffer *fb;
+>  	int ret;
+> =20
+> -	hibmc_fb =3D kzalloc(sizeof(*hibmc_fb), GFP_KERNEL);
+> -	if (!hibmc_fb) {
+> -		DRM_ERROR("failed to allocate hibmc_fb\n");
+> +	fb =3D kzalloc(sizeof(*fb), GFP_KERNEL);
+> +	if (!fb) {
+> +		DRM_ERROR("failed to allocate fb\n");
+>  		return ERR_PTR(-ENOMEM);
+>  	}
+> =20
+> -	drm_helper_mode_fill_fb_struct(dev, &hibmc_fb->fb, mode_cmd);
+> -	hibmc_fb->obj =3D obj;
+> -	ret =3D drm_framebuffer_init(dev, &hibmc_fb->fb, &hibmc_fb_funcs);
+> +	drm_helper_mode_fill_fb_struct(dev, fb, mode_cmd);
+> +	fb->obj[0] =3D obj;
+> +	ret =3D drm_framebuffer_init(dev, fb, &hibmc_fb_funcs);
+>  	if (ret) {
+>  		DRM_ERROR("drm_framebuffer_init failed: %d\n", ret);
+> -		kfree(hibmc_fb);
+> +		kfree(fb);
+>  		return ERR_PTR(ret);
+>  	}
+> =20
+> -	return hibmc_fb;
+> -}
+> -
+> -static struct drm_framebuffer *
+> -hibmc_user_framebuffer_create(struct drm_device *dev,
+> -			      struct drm_file *filp,
+> -			      const struct drm_mode_fb_cmd2 *mode_cmd)
+> -{
+> -	struct drm_gem_object *obj;
+> -	struct hibmc_framebuffer *hibmc_fb;
+> -
+> -	DRM_DEBUG_DRIVER("%dx%d, format %c%c%c%c\n",
+> -			 mode_cmd->width, mode_cmd->height,
+> -			 (mode_cmd->pixel_format) & 0xff,
+> -			 (mode_cmd->pixel_format >> 8)  & 0xff,
+> -			 (mode_cmd->pixel_format >> 16) & 0xff,
+> -			 (mode_cmd->pixel_format >> 24) & 0xff);
+> -
+> -	obj =3D drm_gem_object_lookup(filp, mode_cmd->handles[0]);
+> -	if (!obj)
+> -		return ERR_PTR(-ENOENT);
+> -
+> -	hibmc_fb =3D hibmc_framebuffer_init(dev, mode_cmd, obj);
+> -	if (IS_ERR(hibmc_fb)) {
+> -		drm_gem_object_put_unlocked(obj);
+> -		return ERR_PTR((long)hibmc_fb);
+> -	}
+> -	return &hibmc_fb->fb;
+> +	return fb;
+>  }
+> =20
+>  const struct drm_mode_config_funcs hibmc_mode_funcs =3D {
+>  	.atomic_check =3D drm_atomic_helper_check,
+>  	.atomic_commit =3D drm_atomic_helper_commit,
+> -	.fb_create =3D hibmc_user_framebuffer_create,
+> +	.fb_create =3D drm_gem_fb_create,
+>  };
+>=20
+
+--=20
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Maxfeldstr. 5, 90409 N=C3=BCrnberg, Germany
+(HRB 36809, AG N=C3=BCrnberg)
+Gesch=C3=A4ftsf=C3=BChrer: Felix Imend=C3=B6rffer
+
+
+--YtgsIMdgkWEp2Y4E96nq3ZJ4MbKYoHygx--
+
+--q7oyimPqNFQQsrWd0Si0u2FzsNm5Qt1H7
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEEchf7rIzpz2NEoWjlaA3BHVMLeiMFAl3Xl6sACgkQaA3BHVML
+eiMykQgArAGyndubwf5TAHwznrmnr30HRDpDSlyK3CPJpgJ/6mliVzF0VlP8ASFC
+r0B8RZEzn8ydiEHq1nhlg87dQcTwxQXS2yYop0wUFzOfUIT+UafeHWO4xb1WL+Iv
+Hk/8fVskfXoKB+RBZGjHX6yUgY+/KRe8DD357+BRRLwcsyvMD6FasW6eMjsEhHpl
+GyPAVoUM+o5hvu2i4wNzWQ57Lfddr8kNwv024XBtSD+k3/EsUcB3aKuOm/0Xml/o
+Ngr1SC0FksnhwSjGnHzq3vPLltKmwTIlo1efNV1QNq2fhCzzCauWMsF0BA3UeFlS
+/YfOqNsrfUjiLNGyG5QX9VuMnWY+SQ==
+=h92z
+-----END PGP SIGNATURE-----
+
+--q7oyimPqNFQQsrWd0Si0u2FzsNm5Qt1H7--
+
+--===============0356340354==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
+IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
+
+--===============0356340354==--
