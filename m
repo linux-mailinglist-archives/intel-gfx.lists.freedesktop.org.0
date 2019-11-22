@@ -1,57 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7FDD51067A3
-	for <lists+intel-gfx@lfdr.de>; Fri, 22 Nov 2019 09:16:23 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C6E71068AA
+	for <lists+intel-gfx@lfdr.de>; Fri, 22 Nov 2019 10:13:11 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3AF016F4E5;
-	Fri, 22 Nov 2019 08:16:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 342676F509;
+	Fri, 22 Nov 2019 09:13:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mx1.suse.de (mx2.suse.de [195.135.220.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A2DE96F4E0;
- Fri, 22 Nov 2019 08:16:17 +0000 (UTC)
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-Received: from relay2.suse.de (unknown [195.135.220.254])
- by mx1.suse.de (Postfix) with ESMTP id 1E8D7AEA7;
- Fri, 22 Nov 2019 08:16:16 +0000 (UTC)
-To: Daniel Vetter <daniel.vetter@ffwll.ch>,
- DRI Development <dri-devel@lists.freedesktop.org>
+Received: from mail-oi1-x241.google.com (mail-oi1-x241.google.com
+ [IPv6:2607:f8b0:4864:20::241])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 631A86F504
+ for <intel-gfx@lists.freedesktop.org>; Fri, 22 Nov 2019 09:13:05 +0000 (UTC)
+Received: by mail-oi1-x241.google.com with SMTP id m193so5935047oig.0
+ for <intel-gfx@lists.freedesktop.org>; Fri, 22 Nov 2019 01:13:05 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc:content-transfer-encoding;
+ bh=fCDRPFIJJO/oD6ufYEeRv8qAtI+e6uhTU/DFtZtALNU=;
+ b=B2+6M+pp7vHM0c0yAA+x7jOM4QdpEyth6SkILUAZO1PE4u+FBgz8wxZcR+0K4KBLI1
+ ogmYP9hDT2Bg6Bf8GaSLVSBNYhFoiaWUTxZ7wBpf29yUH3NdJxXa73+T7h5KPGHA5BT4
+ UomO0OjxBh6Kn9gKTIIplRAKUBzhB5wEiWhq7vDiUW5bVSpiA85LugFV/muPHh06kkRs
+ 8Vjq5aB7PtKenALIKZ0utn8fVFlo5wD4/TFUOnpyl+yu1MXbU87w3FCa7lcVnc0CjojJ
+ 04Y7JBnSrGooF7VOruGlXhLaBW9WBtmG508VesFB9TnxLCKnRAkUOHLl+g7ofYmFakJK
+ JcgA==
+X-Gm-Message-State: APjAAAVqbi++14Dm0Ay99R4RuPJwv4Wwgw+dmgtEn35N6m8e12ZrFHD/
+ 4JBlOQDWl4cHASl8uRMUb1Hcbjc5dtop57JlWKp+BQ==
+X-Google-Smtp-Source: APXvYqyYbLdqss2wBLAVqodDBI7Pvz/VijHc5EkKz1/3wguyxXwi4dGXUdsvuKA2KL/+DXIgWr38P6zWHYGOSpN5cMw=
+X-Received: by 2002:aca:b805:: with SMTP id i5mr11791657oif.110.1574413984428; 
+ Fri, 22 Nov 2019 01:13:04 -0800 (PST)
+MIME-Version: 1.0
 References: <20191115092120.4445-1-daniel.vetter@ffwll.ch>
  <20191115092120.4445-8-daniel.vetter@ffwll.ch>
-From: Thomas Zimmermann <tzimmermann@suse.de>
-Autocrypt: addr=tzimmermann@suse.de; keydata=
- mQENBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
- XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
- BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
- hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
- 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
- AAG0J1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPokBVAQTAQgAPhYh
- BHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJbOdLgAhsDBQkDwmcABQsJCAcCBhUKCQgLAgQWAgMB
- Ah4BAheAAAoJEGgNwR1TC3ojR80H/jH+vYavwQ+TvO8ksXL9JQWc3IFSiGpuSVXLCdg62AmR
- irxW+qCwNncNQyb9rd30gzdectSkPWL3KSqEResBe24IbA5/jSkPweJasgXtfhuyoeCJ6PXo
- clQQGKIoFIAEv1s8l0ggPZswvCinegl1diyJXUXmdEJRTWYAtxn/atut1o6Giv6D2qmYbXN7
- mneMC5MzlLaJKUtoH7U/IjVw1sx2qtxAZGKVm4RZxPnMCp9E1MAr5t4dP5gJCIiqsdrVqI6i
- KupZstMxstPU//azmz7ZWWxT0JzgJqZSvPYx/SATeexTYBP47YFyri4jnsty2ErS91E6H8os
- Bv6pnSn7eAq5AQ0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRH
- UE9eosYbT6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgT
- RjP+qbU63Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+R
- dhgATnWWGKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zb
- ehDda8lvhFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r
- 12+lqdsAEQEAAYkBPAQYAQgAJhYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJbOdLgAhsMBQkD
- wmcAAAoJEGgNwR1TC3ojpfcIAInwP5OlcEKokTnHCiDTz4Ony4GnHRP2fXATQZCKxmu4AJY2
- h9ifw9Nf2TjCZ6AMvC3thAN0rFDj55N9l4s1CpaDo4J+0fkrHuyNacnT206CeJV1E7NYntxU
- n+LSiRrOdywn6erjxRi9EYTVLCHcDhBEjKmFZfg4AM4GZMWX1lg0+eHbd5oL1as28WvvI/uI
- aMyV8RbyXot1r/8QLlWldU3NrTF5p7TMU2y3ZH2mf5suSKHAMtbE4jKJ8ZHFOo3GhLgjVrBW
- HE9JXO08xKkgD+w6v83+nomsEuf6C6LYrqY/tsZvyEX6zN8CtirPdPWu/VXNRYAl/lat7lSI
- 3H26qrE=
-Message-ID: <282c9881-6134-5d82-c408-ee90986ef123@suse.de>
-Date: Fri, 22 Nov 2019 09:16:12 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.2.0
-MIME-Version: 1.0
-In-Reply-To: <20191115092120.4445-8-daniel.vetter@ffwll.ch>
+ <282c9881-6134-5d82-c408-ee90986ef123@suse.de>
+In-Reply-To: <282c9881-6134-5d82-c408-ee90986ef123@suse.de>
+From: Daniel Vetter <daniel.vetter@ffwll.ch>
+Date: Fri, 22 Nov 2019 10:12:53 +0100
+Message-ID: <CAKMK7uGR4YZ0h=ctgr+9QfWgu8L2He+YijvHFqSdf7SVmxrHhw@mail.gmail.com>
+To: Thomas Zimmermann <tzimmermann@suse.de>
+X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ffwll.ch; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc:content-transfer-encoding;
+ bh=fCDRPFIJJO/oD6ufYEeRv8qAtI+e6uhTU/DFtZtALNU=;
+ b=dqmHUMRv8xbETtK5Pb9N95FXtLq4lXe1N8kEb4mHDdXQ9sUnW6McaSI1RoAAC5VVac
+ DKWsVyu6GLXWSmJshWtEUtscfW6d1vO5qn5Ah7yP9JPGb6aUK57RMj1wUQ1RDL/g5R8b
+ BjPY5NhoOBxUCmIRhiMgJxgt2POVwmnGAKDFE=
 Subject: Re: [Intel-gfx] [PATCH 7/8] drm/hibmc: Use drm_gem_fb_create
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
@@ -66,291 +62,161 @@ List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: Daniel Vetter <daniel.vetter@intel.com>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>
-Content-Type: multipart/mixed; boundary="===============0565830320=="
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ DRI Development <dri-devel@lists.freedesktop.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---===============0565830320==
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="8AaJKugCtQ94cnD2cI6E06hAoB1Fr6FlG"
-
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---8AaJKugCtQ94cnD2cI6E06hAoB1Fr6FlG
-Content-Type: multipart/mixed; boundary="3u6xVeBCtpXgK3CNF8gRLX247NGhe8iVa";
- protected-headers="v1"
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>,
- DRI Development <dri-devel@lists.freedesktop.org>
-Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Daniel Vetter <daniel.vetter@intel.com>
-Message-ID: <282c9881-6134-5d82-c408-ee90986ef123@suse.de>
-Subject: Re: [PATCH 7/8] drm/hibmc: Use drm_gem_fb_create
-References: <20191115092120.4445-1-daniel.vetter@ffwll.ch>
- <20191115092120.4445-8-daniel.vetter@ffwll.ch>
-In-Reply-To: <20191115092120.4445-8-daniel.vetter@ffwll.ch>
-
---3u6xVeBCtpXgK3CNF8gRLX247NGhe8iVa
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: quoted-printable
-
-Hi
-
-Am 15.11.19 um 10:21 schrieb Daniel Vetter:
-> Again we could delete a lot more if we'd switch over to the generic
-> fbdev stuff.
->=20
-> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
-
-There's one comment below. Except for that,
-
-Acked-by: Thomas Zimmermann <tzimmermann@suse.de>
-
-> ---
->  .../gpu/drm/hisilicon/hibmc/hibmc_drm_de.c    |  4 +-
->  .../gpu/drm/hisilicon/hibmc/hibmc_drm_drv.h   | 11 +---
->  .../gpu/drm/hisilicon/hibmc/hibmc_drm_fbdev.c |  5 +-
->  drivers/gpu/drm/hisilicon/hibmc/hibmc_ttm.c   | 62 +++++--------------=
-
->  4 files changed, 19 insertions(+), 63 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/hisilicon/hibmc/hibmc_drm_de.c b/drivers/g=
-pu/drm/hisilicon/hibmc/hibmc_drm_de.c
-> index 6527a97f68a3..2d0920ec4554 100644
-> --- a/drivers/gpu/drm/hisilicon/hibmc/hibmc_drm_de.c
-> +++ b/drivers/gpu/drm/hisilicon/hibmc/hibmc_drm_de.c
-> @@ -99,14 +99,12 @@ static void hibmc_plane_atomic_update(struct drm_pl=
-ane *plane,
->  	s64 gpu_addr =3D 0;
->  	unsigned int line_l;
->  	struct hibmc_drm_private *priv =3D plane->dev->dev_private;
-> -	struct hibmc_framebuffer *hibmc_fb;
->  	struct drm_gem_vram_object *gbo;
-> =20
->  	if (!state->fb)
->  		return;
-> =20
-> -	hibmc_fb =3D to_hibmc_framebuffer(state->fb);
-> -	gbo =3D drm_gem_vram_of_gem(hibmc_fb->obj);
-> +	gbo =3D drm_gem_vram_of_gem(fb->obj[0]);
-
-There's no fb in this function. You have to use state->fb,
-
-> =20
->  	gpu_addr =3D drm_gem_vram_offset(gbo);
->  	if (WARN_ON_ONCE(gpu_addr < 0))
-> diff --git a/drivers/gpu/drm/hisilicon/hibmc/hibmc_drm_drv.h b/drivers/=
-gpu/drm/hisilicon/hibmc/hibmc_drm_drv.h
-> index e58ecd7edcf8..ab5b4a4a2095 100644
-> --- a/drivers/gpu/drm/hisilicon/hibmc/hibmc_drm_drv.h
-> +++ b/drivers/gpu/drm/hisilicon/hibmc/hibmc_drm_drv.h
-> @@ -20,14 +20,9 @@
->  struct drm_device;
->  struct drm_gem_object;
-> =20
-> -struct hibmc_framebuffer {
-> -	struct drm_framebuffer fb;
-> -	struct drm_gem_object *obj;
-> -};
-> -
->  struct hibmc_fbdev {
->  	struct drm_fb_helper helper; /* must be first */
-> -	struct hibmc_framebuffer *fb;
-> +	struct drm_framebuffer *fb;
->  	int size;
->  };
-> =20
-> @@ -47,8 +42,6 @@ struct hibmc_drm_private {
->  	struct hibmc_fbdev *fbdev;
->  };
-> =20
-> -#define to_hibmc_framebuffer(x) container_of(x, struct hibmc_framebuff=
-er, fb)
-> -
->  void hibmc_set_power_mode(struct hibmc_drm_private *priv,
->  			  unsigned int power_mode);
->  void hibmc_set_current_gate(struct hibmc_drm_private *priv,
-> @@ -61,7 +54,7 @@ void hibmc_fbdev_fini(struct hibmc_drm_private *priv)=
-;
-> =20
->  int hibmc_gem_create(struct drm_device *dev, u32 size, bool iskernel,
->  		     struct drm_gem_object **obj);
-> -struct hibmc_framebuffer *
-> +struct drm_framebuffer *
->  hibmc_framebuffer_init(struct drm_device *dev,
->  		       const struct drm_mode_fb_cmd2 *mode_cmd,
->  		       struct drm_gem_object *obj);
-> diff --git a/drivers/gpu/drm/hisilicon/hibmc/hibmc_drm_fbdev.c b/driver=
-s/gpu/drm/hisilicon/hibmc/hibmc_drm_fbdev.c
-> index b4c1cea051e8..446aeedc9e29 100644
-> --- a/drivers/gpu/drm/hisilicon/hibmc/hibmc_drm_fbdev.c
-> +++ b/drivers/gpu/drm/hisilicon/hibmc/hibmc_drm_fbdev.c
-> @@ -141,15 +141,14 @@ static int hibmc_drm_fb_create(struct drm_fb_help=
-er *helper,
-> =20
->  static void hibmc_fbdev_destroy(struct hibmc_fbdev *fbdev)
->  {
-> -	struct hibmc_framebuffer *gfb =3D fbdev->fb;
->  	struct drm_fb_helper *fbh =3D &fbdev->helper;
-> =20
->  	drm_fb_helper_unregister_fbi(fbh);
-> =20
->  	drm_fb_helper_fini(fbh);
-> =20
-> -	if (gfb)
-> -		drm_framebuffer_put(&gfb->fb);
-> +	if (fbdev->fb)
-> +		drm_framebuffer_put(fbdev->fb);
->  }
-> =20
->  static const struct drm_fb_helper_funcs hibmc_fbdev_helper_funcs =3D {=
-
-> diff --git a/drivers/gpu/drm/hisilicon/hibmc/hibmc_ttm.c b/drivers/gpu/=
-drm/hisilicon/hibmc/hibmc_ttm.c
-> index 21b684eab5c9..386033b0d3a2 100644
-> --- a/drivers/gpu/drm/hisilicon/hibmc/hibmc_ttm.c
-> +++ b/drivers/gpu/drm/hisilicon/hibmc/hibmc_ttm.c
-> @@ -16,6 +16,7 @@
->  #include <drm/drm_atomic_helper.h>
->  #include <drm/drm_gem.h>
->  #include <drm/drm_gem_vram_helper.h>
-> +#include <drm/drm_gem_framebuffer_helper.h>
->  #include <drm/drm_print.h>
-> =20
->  #include "hibmc_drm_drv.h"
-> @@ -97,74 +98,39 @@ int hibmc_dumb_create(struct drm_file *file, struct=
- drm_device *dev,
->  	return 0;
->  }
-> =20
-> -static void hibmc_user_framebuffer_destroy(struct drm_framebuffer *fb)=
-
-> -{
-> -	struct hibmc_framebuffer *hibmc_fb =3D to_hibmc_framebuffer(fb);
-> -
-> -	drm_gem_object_put_unlocked(hibmc_fb->obj);
-> -	drm_framebuffer_cleanup(fb);
-> -	kfree(hibmc_fb);
-> -}
-> -
->  static const struct drm_framebuffer_funcs hibmc_fb_funcs =3D {
-> -	.destroy =3D hibmc_user_framebuffer_destroy,
-> +	.destroy	=3D drm_gem_fb_destroy,
-> +	.create_handle	=3D drm_gem_fb_create_handle,
->  };
-> =20
-> -struct hibmc_framebuffer *
-> +struct drm_framebuffer *
->  hibmc_framebuffer_init(struct drm_device *dev,
->  		       const struct drm_mode_fb_cmd2 *mode_cmd,
->  		       struct drm_gem_object *obj)
->  {
-> -	struct hibmc_framebuffer *hibmc_fb;
-> +	struct drm_framebuffer *fb;
->  	int ret;
-> =20
-> -	hibmc_fb =3D kzalloc(sizeof(*hibmc_fb), GFP_KERNEL);
-> -	if (!hibmc_fb) {
-> -		DRM_ERROR("failed to allocate hibmc_fb\n");
-> +	fb =3D kzalloc(sizeof(*fb), GFP_KERNEL);
-> +	if (!fb) {
-> +		DRM_ERROR("failed to allocate fb\n");
->  		return ERR_PTR(-ENOMEM);
->  	}
-> =20
-> -	drm_helper_mode_fill_fb_struct(dev, &hibmc_fb->fb, mode_cmd);
-> -	hibmc_fb->obj =3D obj;
-> -	ret =3D drm_framebuffer_init(dev, &hibmc_fb->fb, &hibmc_fb_funcs);
-> +	drm_helper_mode_fill_fb_struct(dev, fb, mode_cmd);
-> +	fb->obj[0] =3D obj;
-> +	ret =3D drm_framebuffer_init(dev, fb, &hibmc_fb_funcs);
->  	if (ret) {
->  		DRM_ERROR("drm_framebuffer_init failed: %d\n", ret);
-> -		kfree(hibmc_fb);
-> +		kfree(fb);
->  		return ERR_PTR(ret);
->  	}
-> =20
-> -	return hibmc_fb;
-> -}
-> -
-> -static struct drm_framebuffer *
-> -hibmc_user_framebuffer_create(struct drm_device *dev,
-> -			      struct drm_file *filp,
-> -			      const struct drm_mode_fb_cmd2 *mode_cmd)
-> -{
-> -	struct drm_gem_object *obj;
-> -	struct hibmc_framebuffer *hibmc_fb;
-> -
-> -	DRM_DEBUG_DRIVER("%dx%d, format %c%c%c%c\n",
-> -			 mode_cmd->width, mode_cmd->height,
-> -			 (mode_cmd->pixel_format) & 0xff,
-> -			 (mode_cmd->pixel_format >> 8)  & 0xff,
-> -			 (mode_cmd->pixel_format >> 16) & 0xff,
-> -			 (mode_cmd->pixel_format >> 24) & 0xff);
-> -
-> -	obj =3D drm_gem_object_lookup(filp, mode_cmd->handles[0]);
-> -	if (!obj)
-> -		return ERR_PTR(-ENOENT);
-> -
-> -	hibmc_fb =3D hibmc_framebuffer_init(dev, mode_cmd, obj);
-> -	if (IS_ERR(hibmc_fb)) {
-> -		drm_gem_object_put_unlocked(obj);
-> -		return ERR_PTR((long)hibmc_fb);
-> -	}
-> -	return &hibmc_fb->fb;
-> +	return fb;
->  }
-> =20
->  const struct drm_mode_config_funcs hibmc_mode_funcs =3D {
->  	.atomic_check =3D drm_atomic_helper_check,
->  	.atomic_commit =3D drm_atomic_helper_commit,
-> -	.fb_create =3D hibmc_user_framebuffer_create,
-> +	.fb_create =3D drm_gem_fb_create,
->  };
->=20
-
---=20
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Maxfeldstr. 5, 90409 N=C3=BCrnberg, Germany
-(HRB 36809, AG N=C3=BCrnberg)
-Gesch=C3=A4ftsf=C3=BChrer: Felix Imend=C3=B6rffer
-
-
---3u6xVeBCtpXgK3CNF8gRLX247NGhe8iVa--
-
---8AaJKugCtQ94cnD2cI6E06hAoB1Fr6FlG
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEEchf7rIzpz2NEoWjlaA3BHVMLeiMFAl3XmUwACgkQaA3BHVML
-eiN8QggAgvmQjP1jGSg8b67MmvYn0Fs6wHtMPKcAz/WgOYzIraDfZqYyD48EsRiB
-f0gHordVutx6brCdR57OwBNMC8/4kfTrXuHY4RbuAp1Kp8suoTLr7F2qSrj7TsPW
-dfFIOSFbaSv7LbaLO8jbjDcptr9Wmfqr46biFS/3fXDEeEW8l6dTN213rCUy5Whv
-MKQRT7OwHdxKpEPPRy6zOLWBM20gBQyCr77Z0JJhVdAR3bqj8Xuh5MMioe5mK5Zm
-2hAisV8M01srJqghbhJHm/UKujufRNEJBzCqRE/00llUyuN5gti9a6WtxApGyuXz
-US769tXOvKDJhpdSQqxp7vcrUGeTlQ==
-=uSfK
------END PGP SIGNATURE-----
-
---8AaJKugCtQ94cnD2cI6E06hAoB1Fr6FlG--
-
---===============0565830320==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
-IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
-
---===============0565830320==--
+T24gRnJpLCBOb3YgMjIsIDIwMTkgYXQgOToxNiBBTSBUaG9tYXMgWmltbWVybWFubiA8dHppbW1l
+cm1hbm5Ac3VzZS5kZT4gd3JvdGU6Cj4KPiBIaQo+Cj4gQW0gMTUuMTEuMTkgdW0gMTA6MjEgc2No
+cmllYiBEYW5pZWwgVmV0dGVyOgo+ID4gQWdhaW4gd2UgY291bGQgZGVsZXRlIGEgbG90IG1vcmUg
+aWYgd2UnZCBzd2l0Y2ggb3ZlciB0byB0aGUgZ2VuZXJpYwo+ID4gZmJkZXYgc3R1ZmYuCj4gPgo+
+ID4gU2lnbmVkLW9mZi1ieTogRGFuaWVsIFZldHRlciA8ZGFuaWVsLnZldHRlckBpbnRlbC5jb20+
+Cj4KPiBUaGVyZSdzIG9uZSBjb21tZW50IGJlbG93LiBFeGNlcHQgZm9yIHRoYXQsCj4KPiBBY2tl
+ZC1ieTogVGhvbWFzIFppbW1lcm1hbm4gPHR6aW1tZXJtYW5uQHN1c2UuZGU+Cj4KPiA+IC0tLQo+
+ID4gIC4uLi9ncHUvZHJtL2hpc2lsaWNvbi9oaWJtYy9oaWJtY19kcm1fZGUuYyAgICB8ICA0ICst
+Cj4gPiAgLi4uL2dwdS9kcm0vaGlzaWxpY29uL2hpYm1jL2hpYm1jX2RybV9kcnYuaCAgIHwgMTEg
+Ky0tLQo+ID4gIC4uLi9ncHUvZHJtL2hpc2lsaWNvbi9oaWJtYy9oaWJtY19kcm1fZmJkZXYuYyB8
+ICA1ICstCj4gPiAgZHJpdmVycy9ncHUvZHJtL2hpc2lsaWNvbi9oaWJtYy9oaWJtY190dG0uYyAg
+IHwgNjIgKysrKystLS0tLS0tLS0tLS0tLQo+ID4gIDQgZmlsZXMgY2hhbmdlZCwgMTkgaW5zZXJ0
+aW9ucygrKSwgNjMgZGVsZXRpb25zKC0pCj4gPgo+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1
+L2RybS9oaXNpbGljb24vaGlibWMvaGlibWNfZHJtX2RlLmMgYi9kcml2ZXJzL2dwdS9kcm0vaGlz
+aWxpY29uL2hpYm1jL2hpYm1jX2RybV9kZS5jCj4gPiBpbmRleCA2NTI3YTk3ZjY4YTMuLjJkMDky
+MGVjNDU1NCAxMDA2NDQKPiA+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9oaXNpbGljb24vaGlibWMv
+aGlibWNfZHJtX2RlLmMKPiA+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9oaXNpbGljb24vaGlibWMv
+aGlibWNfZHJtX2RlLmMKPiA+IEBAIC05OSwxNCArOTksMTIgQEAgc3RhdGljIHZvaWQgaGlibWNf
+cGxhbmVfYXRvbWljX3VwZGF0ZShzdHJ1Y3QgZHJtX3BsYW5lICpwbGFuZSwKPiA+ICAgICAgIHM2
+NCBncHVfYWRkciA9IDA7Cj4gPiAgICAgICB1bnNpZ25lZCBpbnQgbGluZV9sOwo+ID4gICAgICAg
+c3RydWN0IGhpYm1jX2RybV9wcml2YXRlICpwcml2ID0gcGxhbmUtPmRldi0+ZGV2X3ByaXZhdGU7
+Cj4gPiAtICAgICBzdHJ1Y3QgaGlibWNfZnJhbWVidWZmZXIgKmhpYm1jX2ZiOwo+ID4gICAgICAg
+c3RydWN0IGRybV9nZW1fdnJhbV9vYmplY3QgKmdibzsKPiA+Cj4gPiAgICAgICBpZiAoIXN0YXRl
+LT5mYikKPiA+ICAgICAgICAgICAgICAgcmV0dXJuOwo+ID4KPiA+IC0gICAgIGhpYm1jX2ZiID0g
+dG9faGlibWNfZnJhbWVidWZmZXIoc3RhdGUtPmZiKTsKPiA+IC0gICAgIGdibyA9IGRybV9nZW1f
+dnJhbV9vZl9nZW0oaGlibWNfZmItPm9iaik7Cj4gPiArICAgICBnYm8gPSBkcm1fZ2VtX3ZyYW1f
+b2ZfZ2VtKGZiLT5vYmpbMF0pOwo+Cj4gVGhlcmUncyBubyBmYiBpbiB0aGlzIGZ1bmN0aW9uLiBZ
+b3UgaGF2ZSB0byB1c2Ugc3RhdGUtPmZiLAoKVWgsIGhpYm1jIGlzIHRoZSBvbmUgZHJpdmVyIHRo
+YXQgZG9lc24ndCBjb21waWxlIG9uIGFybTMyIDotLyBJJ2xsCmRyb3AgbXkgcGF0Y2ggaGVyZSBh
+bmQgdGFrZSBhIGxvb2sgYXQgeW91ciBzZXJpZXMgYW5kIHRyeSB0byByZXZpZXcKaXQuIFRoZW4g
+aW1vIHdhaXQgMiB3ZWVrcyBvciBzbyBmb3Igc29tZXQgdGVzdGluZyBmcm9tIG1haW50YWluZXJz
+LAphbmQgcHVzaCBlaXRoZXIgd2F5LiBJZiBpdCB3b3JrcyBncmVhdCwgaWYgaXQgYnJlYWtzIHlv
+dSBoYXZlIHlvdXIKdGVzdGVyIHRoZW4gOi0pCi1EYW5pZWwKCj4KPiA+Cj4gPiAgICAgICBncHVf
+YWRkciA9IGRybV9nZW1fdnJhbV9vZmZzZXQoZ2JvKTsKPiA+ICAgICAgIGlmIChXQVJOX09OX09O
+Q0UoZ3B1X2FkZHIgPCAwKSkKPiA+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaGlzaWxp
+Y29uL2hpYm1jL2hpYm1jX2RybV9kcnYuaCBiL2RyaXZlcnMvZ3B1L2RybS9oaXNpbGljb24vaGli
+bWMvaGlibWNfZHJtX2Rydi5oCj4gPiBpbmRleCBlNThlY2Q3ZWRjZjguLmFiNWI0YTRhMjA5NSAx
+MDA2NDQKPiA+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9oaXNpbGljb24vaGlibWMvaGlibWNfZHJt
+X2Rydi5oCj4gPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaGlzaWxpY29uL2hpYm1jL2hpYm1jX2Ry
+bV9kcnYuaAo+ID4gQEAgLTIwLDE0ICsyMCw5IEBACj4gPiAgc3RydWN0IGRybV9kZXZpY2U7Cj4g
+PiAgc3RydWN0IGRybV9nZW1fb2JqZWN0Owo+ID4KPiA+IC1zdHJ1Y3QgaGlibWNfZnJhbWVidWZm
+ZXIgewo+ID4gLSAgICAgc3RydWN0IGRybV9mcmFtZWJ1ZmZlciBmYjsKPiA+IC0gICAgIHN0cnVj
+dCBkcm1fZ2VtX29iamVjdCAqb2JqOwo+ID4gLX07Cj4gPiAtCj4gPiAgc3RydWN0IGhpYm1jX2Zi
+ZGV2IHsKPiA+ICAgICAgIHN0cnVjdCBkcm1fZmJfaGVscGVyIGhlbHBlcjsgLyogbXVzdCBiZSBm
+aXJzdCAqLwo+ID4gLSAgICAgc3RydWN0IGhpYm1jX2ZyYW1lYnVmZmVyICpmYjsKPiA+ICsgICAg
+IHN0cnVjdCBkcm1fZnJhbWVidWZmZXIgKmZiOwo+ID4gICAgICAgaW50IHNpemU7Cj4gPiAgfTsK
+PiA+Cj4gPiBAQCAtNDcsOCArNDIsNiBAQCBzdHJ1Y3QgaGlibWNfZHJtX3ByaXZhdGUgewo+ID4g
+ICAgICAgc3RydWN0IGhpYm1jX2ZiZGV2ICpmYmRldjsKPiA+ICB9Owo+ID4KPiA+IC0jZGVmaW5l
+IHRvX2hpYm1jX2ZyYW1lYnVmZmVyKHgpIGNvbnRhaW5lcl9vZih4LCBzdHJ1Y3QgaGlibWNfZnJh
+bWVidWZmZXIsIGZiKQo+ID4gLQo+ID4gIHZvaWQgaGlibWNfc2V0X3Bvd2VyX21vZGUoc3RydWN0
+IGhpYm1jX2RybV9wcml2YXRlICpwcml2LAo+ID4gICAgICAgICAgICAgICAgICAgICAgICAgdW5z
+aWduZWQgaW50IHBvd2VyX21vZGUpOwo+ID4gIHZvaWQgaGlibWNfc2V0X2N1cnJlbnRfZ2F0ZShz
+dHJ1Y3QgaGlibWNfZHJtX3ByaXZhdGUgKnByaXYsCj4gPiBAQCAtNjEsNyArNTQsNyBAQCB2b2lk
+IGhpYm1jX2ZiZGV2X2Zpbmkoc3RydWN0IGhpYm1jX2RybV9wcml2YXRlICpwcml2KTsKPiA+Cj4g
+PiAgaW50IGhpYm1jX2dlbV9jcmVhdGUoc3RydWN0IGRybV9kZXZpY2UgKmRldiwgdTMyIHNpemUs
+IGJvb2wgaXNrZXJuZWwsCj4gPiAgICAgICAgICAgICAgICAgICAgc3RydWN0IGRybV9nZW1fb2Jq
+ZWN0ICoqb2JqKTsKPiA+IC1zdHJ1Y3QgaGlibWNfZnJhbWVidWZmZXIgKgo+ID4gK3N0cnVjdCBk
+cm1fZnJhbWVidWZmZXIgKgo+ID4gIGhpYm1jX2ZyYW1lYnVmZmVyX2luaXQoc3RydWN0IGRybV9k
+ZXZpY2UgKmRldiwKPiA+ICAgICAgICAgICAgICAgICAgICAgIGNvbnN0IHN0cnVjdCBkcm1fbW9k
+ZV9mYl9jbWQyICptb2RlX2NtZCwKPiA+ICAgICAgICAgICAgICAgICAgICAgIHN0cnVjdCBkcm1f
+Z2VtX29iamVjdCAqb2JqKTsKPiA+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaGlzaWxp
+Y29uL2hpYm1jL2hpYm1jX2RybV9mYmRldi5jIGIvZHJpdmVycy9ncHUvZHJtL2hpc2lsaWNvbi9o
+aWJtYy9oaWJtY19kcm1fZmJkZXYuYwo+ID4gaW5kZXggYjRjMWNlYTA1MWU4Li40NDZhZWVkYzll
+MjkgMTAwNjQ0Cj4gPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaGlzaWxpY29uL2hpYm1jL2hpYm1j
+X2RybV9mYmRldi5jCj4gPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaGlzaWxpY29uL2hpYm1jL2hp
+Ym1jX2RybV9mYmRldi5jCj4gPiBAQCAtMTQxLDE1ICsxNDEsMTQgQEAgc3RhdGljIGludCBoaWJt
+Y19kcm1fZmJfY3JlYXRlKHN0cnVjdCBkcm1fZmJfaGVscGVyICpoZWxwZXIsCj4gPgo+ID4gIHN0
+YXRpYyB2b2lkIGhpYm1jX2ZiZGV2X2Rlc3Ryb3koc3RydWN0IGhpYm1jX2ZiZGV2ICpmYmRldikK
+PiA+ICB7Cj4gPiAtICAgICBzdHJ1Y3QgaGlibWNfZnJhbWVidWZmZXIgKmdmYiA9IGZiZGV2LT5m
+YjsKPiA+ICAgICAgIHN0cnVjdCBkcm1fZmJfaGVscGVyICpmYmggPSAmZmJkZXYtPmhlbHBlcjsK
+PiA+Cj4gPiAgICAgICBkcm1fZmJfaGVscGVyX3VucmVnaXN0ZXJfZmJpKGZiaCk7Cj4gPgo+ID4g
+ICAgICAgZHJtX2ZiX2hlbHBlcl9maW5pKGZiaCk7Cj4gPgo+ID4gLSAgICAgaWYgKGdmYikKPiA+
+IC0gICAgICAgICAgICAgZHJtX2ZyYW1lYnVmZmVyX3B1dCgmZ2ZiLT5mYik7Cj4gPiArICAgICBp
+ZiAoZmJkZXYtPmZiKQo+ID4gKyAgICAgICAgICAgICBkcm1fZnJhbWVidWZmZXJfcHV0KGZiZGV2
+LT5mYik7Cj4gPiAgfQo+ID4KPiA+ICBzdGF0aWMgY29uc3Qgc3RydWN0IGRybV9mYl9oZWxwZXJf
+ZnVuY3MgaGlibWNfZmJkZXZfaGVscGVyX2Z1bmNzID0gewo+ID4gZGlmZiAtLWdpdCBhL2RyaXZl
+cnMvZ3B1L2RybS9oaXNpbGljb24vaGlibWMvaGlibWNfdHRtLmMgYi9kcml2ZXJzL2dwdS9kcm0v
+aGlzaWxpY29uL2hpYm1jL2hpYm1jX3R0bS5jCj4gPiBpbmRleCAyMWI2ODRlYWI1YzkuLjM4NjAz
+M2IwZDNhMiAxMDA2NDQKPiA+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9oaXNpbGljb24vaGlibWMv
+aGlibWNfdHRtLmMKPiA+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9oaXNpbGljb24vaGlibWMvaGli
+bWNfdHRtLmMKPiA+IEBAIC0xNiw2ICsxNiw3IEBACj4gPiAgI2luY2x1ZGUgPGRybS9kcm1fYXRv
+bWljX2hlbHBlci5oPgo+ID4gICNpbmNsdWRlIDxkcm0vZHJtX2dlbS5oPgo+ID4gICNpbmNsdWRl
+IDxkcm0vZHJtX2dlbV92cmFtX2hlbHBlci5oPgo+ID4gKyNpbmNsdWRlIDxkcm0vZHJtX2dlbV9m
+cmFtZWJ1ZmZlcl9oZWxwZXIuaD4KPiA+ICAjaW5jbHVkZSA8ZHJtL2RybV9wcmludC5oPgo+ID4K
+PiA+ICAjaW5jbHVkZSAiaGlibWNfZHJtX2Rydi5oIgo+ID4gQEAgLTk3LDc0ICs5OCwzOSBAQCBp
+bnQgaGlibWNfZHVtYl9jcmVhdGUoc3RydWN0IGRybV9maWxlICpmaWxlLCBzdHJ1Y3QgZHJtX2Rl
+dmljZSAqZGV2LAo+ID4gICAgICAgcmV0dXJuIDA7Cj4gPiAgfQo+ID4KPiA+IC1zdGF0aWMgdm9p
+ZCBoaWJtY191c2VyX2ZyYW1lYnVmZmVyX2Rlc3Ryb3koc3RydWN0IGRybV9mcmFtZWJ1ZmZlciAq
+ZmIpCj4gPiAtewo+ID4gLSAgICAgc3RydWN0IGhpYm1jX2ZyYW1lYnVmZmVyICpoaWJtY19mYiA9
+IHRvX2hpYm1jX2ZyYW1lYnVmZmVyKGZiKTsKPiA+IC0KPiA+IC0gICAgIGRybV9nZW1fb2JqZWN0
+X3B1dF91bmxvY2tlZChoaWJtY19mYi0+b2JqKTsKPiA+IC0gICAgIGRybV9mcmFtZWJ1ZmZlcl9j
+bGVhbnVwKGZiKTsKPiA+IC0gICAgIGtmcmVlKGhpYm1jX2ZiKTsKPiA+IC19Cj4gPiAtCj4gPiAg
+c3RhdGljIGNvbnN0IHN0cnVjdCBkcm1fZnJhbWVidWZmZXJfZnVuY3MgaGlibWNfZmJfZnVuY3Mg
+PSB7Cj4gPiAtICAgICAuZGVzdHJveSA9IGhpYm1jX3VzZXJfZnJhbWVidWZmZXJfZGVzdHJveSwK
+PiA+ICsgICAgIC5kZXN0cm95ICAgICAgICA9IGRybV9nZW1fZmJfZGVzdHJveSwKPiA+ICsgICAg
+IC5jcmVhdGVfaGFuZGxlICA9IGRybV9nZW1fZmJfY3JlYXRlX2hhbmRsZSwKPiA+ICB9Owo+ID4K
+PiA+IC1zdHJ1Y3QgaGlibWNfZnJhbWVidWZmZXIgKgo+ID4gK3N0cnVjdCBkcm1fZnJhbWVidWZm
+ZXIgKgo+ID4gIGhpYm1jX2ZyYW1lYnVmZmVyX2luaXQoc3RydWN0IGRybV9kZXZpY2UgKmRldiwK
+PiA+ICAgICAgICAgICAgICAgICAgICAgIGNvbnN0IHN0cnVjdCBkcm1fbW9kZV9mYl9jbWQyICpt
+b2RlX2NtZCwKPiA+ICAgICAgICAgICAgICAgICAgICAgIHN0cnVjdCBkcm1fZ2VtX29iamVjdCAq
+b2JqKQo+ID4gIHsKPiA+IC0gICAgIHN0cnVjdCBoaWJtY19mcmFtZWJ1ZmZlciAqaGlibWNfZmI7
+Cj4gPiArICAgICBzdHJ1Y3QgZHJtX2ZyYW1lYnVmZmVyICpmYjsKPiA+ICAgICAgIGludCByZXQ7
+Cj4gPgo+ID4gLSAgICAgaGlibWNfZmIgPSBremFsbG9jKHNpemVvZigqaGlibWNfZmIpLCBHRlBf
+S0VSTkVMKTsKPiA+IC0gICAgIGlmICghaGlibWNfZmIpIHsKPiA+IC0gICAgICAgICAgICAgRFJN
+X0VSUk9SKCJmYWlsZWQgdG8gYWxsb2NhdGUgaGlibWNfZmJcbiIpOwo+ID4gKyAgICAgZmIgPSBr
+emFsbG9jKHNpemVvZigqZmIpLCBHRlBfS0VSTkVMKTsKPiA+ICsgICAgIGlmICghZmIpIHsKPiA+
+ICsgICAgICAgICAgICAgRFJNX0VSUk9SKCJmYWlsZWQgdG8gYWxsb2NhdGUgZmJcbiIpOwo+ID4g
+ICAgICAgICAgICAgICByZXR1cm4gRVJSX1BUUigtRU5PTUVNKTsKPiA+ICAgICAgIH0KPiA+Cj4g
+PiAtICAgICBkcm1faGVscGVyX21vZGVfZmlsbF9mYl9zdHJ1Y3QoZGV2LCAmaGlibWNfZmItPmZi
+LCBtb2RlX2NtZCk7Cj4gPiAtICAgICBoaWJtY19mYi0+b2JqID0gb2JqOwo+ID4gLSAgICAgcmV0
+ID0gZHJtX2ZyYW1lYnVmZmVyX2luaXQoZGV2LCAmaGlibWNfZmItPmZiLCAmaGlibWNfZmJfZnVu
+Y3MpOwo+ID4gKyAgICAgZHJtX2hlbHBlcl9tb2RlX2ZpbGxfZmJfc3RydWN0KGRldiwgZmIsIG1v
+ZGVfY21kKTsKPiA+ICsgICAgIGZiLT5vYmpbMF0gPSBvYmo7Cj4gPiArICAgICByZXQgPSBkcm1f
+ZnJhbWVidWZmZXJfaW5pdChkZXYsIGZiLCAmaGlibWNfZmJfZnVuY3MpOwo+ID4gICAgICAgaWYg
+KHJldCkgewo+ID4gICAgICAgICAgICAgICBEUk1fRVJST1IoImRybV9mcmFtZWJ1ZmZlcl9pbml0
+IGZhaWxlZDogJWRcbiIsIHJldCk7Cj4gPiAtICAgICAgICAgICAgIGtmcmVlKGhpYm1jX2ZiKTsK
+PiA+ICsgICAgICAgICAgICAga2ZyZWUoZmIpOwo+ID4gICAgICAgICAgICAgICByZXR1cm4gRVJS
+X1BUUihyZXQpOwo+ID4gICAgICAgfQo+ID4KPiA+IC0gICAgIHJldHVybiBoaWJtY19mYjsKPiA+
+IC19Cj4gPiAtCj4gPiAtc3RhdGljIHN0cnVjdCBkcm1fZnJhbWVidWZmZXIgKgo+ID4gLWhpYm1j
+X3VzZXJfZnJhbWVidWZmZXJfY3JlYXRlKHN0cnVjdCBkcm1fZGV2aWNlICpkZXYsCj4gPiAtICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgc3RydWN0IGRybV9maWxlICpmaWxwLAo+ID4gLSAgICAg
+ICAgICAgICAgICAgICAgICAgICAgIGNvbnN0IHN0cnVjdCBkcm1fbW9kZV9mYl9jbWQyICptb2Rl
+X2NtZCkKPiA+IC17Cj4gPiAtICAgICBzdHJ1Y3QgZHJtX2dlbV9vYmplY3QgKm9iajsKPiA+IC0g
+ICAgIHN0cnVjdCBoaWJtY19mcmFtZWJ1ZmZlciAqaGlibWNfZmI7Cj4gPiAtCj4gPiAtICAgICBE
+Uk1fREVCVUdfRFJJVkVSKCIlZHglZCwgZm9ybWF0ICVjJWMlYyVjXG4iLAo+ID4gLSAgICAgICAg
+ICAgICAgICAgICAgICBtb2RlX2NtZC0+d2lkdGgsIG1vZGVfY21kLT5oZWlnaHQsCj4gPiAtICAg
+ICAgICAgICAgICAgICAgICAgIChtb2RlX2NtZC0+cGl4ZWxfZm9ybWF0KSAmIDB4ZmYsCj4gPiAt
+ICAgICAgICAgICAgICAgICAgICAgIChtb2RlX2NtZC0+cGl4ZWxfZm9ybWF0ID4+IDgpICAmIDB4
+ZmYsCj4gPiAtICAgICAgICAgICAgICAgICAgICAgIChtb2RlX2NtZC0+cGl4ZWxfZm9ybWF0ID4+
+IDE2KSAmIDB4ZmYsCj4gPiAtICAgICAgICAgICAgICAgICAgICAgIChtb2RlX2NtZC0+cGl4ZWxf
+Zm9ybWF0ID4+IDI0KSAmIDB4ZmYpOwo+ID4gLQo+ID4gLSAgICAgb2JqID0gZHJtX2dlbV9vYmpl
+Y3RfbG9va3VwKGZpbHAsIG1vZGVfY21kLT5oYW5kbGVzWzBdKTsKPiA+IC0gICAgIGlmICghb2Jq
+KQo+ID4gLSAgICAgICAgICAgICByZXR1cm4gRVJSX1BUUigtRU5PRU5UKTsKPiA+IC0KPiA+IC0g
+ICAgIGhpYm1jX2ZiID0gaGlibWNfZnJhbWVidWZmZXJfaW5pdChkZXYsIG1vZGVfY21kLCBvYmop
+Owo+ID4gLSAgICAgaWYgKElTX0VSUihoaWJtY19mYikpIHsKPiA+IC0gICAgICAgICAgICAgZHJt
+X2dlbV9vYmplY3RfcHV0X3VubG9ja2VkKG9iaik7Cj4gPiAtICAgICAgICAgICAgIHJldHVybiBF
+UlJfUFRSKChsb25nKWhpYm1jX2ZiKTsKPiA+IC0gICAgIH0KPiA+IC0gICAgIHJldHVybiAmaGli
+bWNfZmItPmZiOwo+ID4gKyAgICAgcmV0dXJuIGZiOwo+ID4gIH0KPiA+Cj4gPiAgY29uc3Qgc3Ry
+dWN0IGRybV9tb2RlX2NvbmZpZ19mdW5jcyBoaWJtY19tb2RlX2Z1bmNzID0gewo+ID4gICAgICAg
+LmF0b21pY19jaGVjayA9IGRybV9hdG9taWNfaGVscGVyX2NoZWNrLAo+ID4gICAgICAgLmF0b21p
+Y19jb21taXQgPSBkcm1fYXRvbWljX2hlbHBlcl9jb21taXQsCj4gPiAtICAgICAuZmJfY3JlYXRl
+ID0gaGlibWNfdXNlcl9mcmFtZWJ1ZmZlcl9jcmVhdGUsCj4gPiArICAgICAuZmJfY3JlYXRlID0g
+ZHJtX2dlbV9mYl9jcmVhdGUsCj4gPiAgfTsKPiA+Cj4KPiAtLQo+IFRob21hcyBaaW1tZXJtYW5u
+Cj4gR3JhcGhpY3MgRHJpdmVyIERldmVsb3Blcgo+IFNVU0UgU29mdHdhcmUgU29sdXRpb25zIEdl
+cm1hbnkgR21iSAo+IE1heGZlbGRzdHIuIDUsIDkwNDA5IE7DvHJuYmVyZywgR2VybWFueQo+IChI
+UkIgMzY4MDksIEFHIE7DvHJuYmVyZykKPiBHZXNjaMOkZnRzZsO8aHJlcjogRmVsaXggSW1lbmTD
+tnJmZmVyCj4KCgotLSAKRGFuaWVsIFZldHRlcgpTb2Z0d2FyZSBFbmdpbmVlciwgSW50ZWwgQ29y
+cG9yYXRpb24KKzQxICgwKSA3OSAzNjUgNTcgNDggLSBodHRwOi8vYmxvZy5mZndsbC5jaApfX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFp
+bGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZng=
