@@ -1,37 +1,36 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 30896105F0F
-	for <lists+intel-gfx@lfdr.de>; Fri, 22 Nov 2019 04:34:24 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1168E105F25
+	for <lists+intel-gfx@lfdr.de>; Fri, 22 Nov 2019 05:03:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E44BA6F4D3;
-	Fri, 22 Nov 2019 03:34:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F34D36F4D6;
+	Fri, 22 Nov 2019 04:03:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7211E6F4D2;
- Fri, 22 Nov 2019 03:34:20 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 94EF46F4D4
+ for <intel-gfx@lists.freedesktop.org>; Fri, 22 Nov 2019 04:03:08 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga106.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 21 Nov 2019 19:34:19 -0800
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 21 Nov 2019 20:03:08 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,228,1571727600"; 
- d="asc'?scan'208";a="238457598"
-Received: from zhen-hp.sh.intel.com (HELO zhen-hp) ([10.239.13.116])
- by fmsmga002.fm.intel.com with ESMTP; 21 Nov 2019 19:34:17 -0800
-Date: Fri, 22 Nov 2019 11:33:25 +0800
-From: Zhenyu Wang <zhenyuw@linux.intel.com>
-To: "Vivi, Rodrigo" <rodrigo.vivi@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Jani Nikula <jani.nikula@intel.com>
-Message-ID: <20191122033325.GY4196@zhen-hp.sh.intel.com>
+X-IronPort-AV: E=Sophos;i="5.69,228,1571727600"; d="scan'208";a="205288575"
+Received: from ramaling-i9x.iind.intel.com ([10.99.66.154])
+ by fmsmga008.fm.intel.com with ESMTP; 21 Nov 2019 20:03:06 -0800
+From: Ramalingam C <ramalingam.c@intel.com>
+To: intel-gfx <intel-gfx@lists.freedesktop.org>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ Chris Wilson <chris@chris-wilson.co.uk>
+Date: Fri, 22 Nov 2019 09:32:25 +0530
+Message-Id: <20191122040226.15933-1-ramalingam.c@intel.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-User-Agent: Mutt/1.10.0 (2018-05-17)
-Subject: [Intel-gfx] [PULL] gvt-fixes
+Subject: [Intel-gfx] [PATCH 0/1] Wa_1604555607 implementation and
+ verification skip
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -44,88 +43,18 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: Zhenyu Wang <zhenyuw@linux.intel.com>
-Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
- intel-gvt-dev <intel-gvt-dev@lists.freedesktop.org>, "Lv,
- Zhiyuan" <zhiyuan.lv@intel.com>, "Yuan, Hang" <hang.yuan@intel.com>
-Content-Type: multipart/mixed; boundary="===============0804825928=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
---===============0804825928==
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="/9R6240woFu/reHS"
-Content-Disposition: inline
-
-
---/9R6240woFu/reHS
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-
-Hi,
-
-Yesterday Alex reported one windows guest failure with older windows
-driver version that was missed in our validation, as newer windows
-driver version doesn't use MI_ATOMIC to trigger the issue. This one
-fixes the failure.
-
-I'm not sure if this can still catch up 5.4, but it's cc stable anyway.
-
-Thanks.
---
-The following changes since commit 41d931459b53e32c67a1f8838d1e6826a69ee745:
-
-  drm/i915/gvt: fix dropping obj reference twice (2019-11-08 11:04:07 +0800)
-
-are available in the Git repository at:
-
-  https://github.com/intel/gvt-linux tags/gvt-fixes-2019-11-22
-
-for you to fetch changes up to a40c273d80f6aff28e619cdcd4b34e9080034c70:
-
-  drm/i915/gvt: Fix cmd length check for MI_ATOMIC (2019-11-22 10:54:19 +08=
-00)
-
-----------------------------------------------------------------
-gvt-fixes-2019-11-22
-
-- Fix MI_ATOMIC cmd parser for length (Zhenyu)
-
-----------------------------------------------------------------
-Zhenyu Wang (1):
-      drm/i915/gvt: Fix cmd length check for MI_ATOMIC
-
- drivers/gpu/drm/i915/gvt/cmd_parser.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
-
---=20
-Open Source Technology Center, Intel ltd.
-
-$gpg --keyserver wwwkeys.pgp.net --recv-keys 4D781827
-
---/9R6240woFu/reHS
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iF0EARECAB0WIQTXuabgHDW6LPt9CICxBBozTXgYJwUCXddXBQAKCRCxBBozTXgY
-J/HlAJ9SDfRW+tjM7I5v5TybLNEi6YRsRQCfXWNBEq8xTuv5iMyhPKrEKznr+qY=
-=63Vl
------END PGP SIGNATURE-----
-
---/9R6240woFu/reHS--
-
---===============0804825928==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
-IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
-
---===============0804825928==--
+SW1wbGVtZW50cyB0aGUgV2FfMTYwNDU1NTYwNyBhbmQgc2tpcHMgaXRzIHZlcmlmaWNhdGlvbiBh
+cyB0aGUgRkZfTU9ERTIKcmVnaXN0ZXIgaXMgd3JpdGUgb25seSB0aWxsIFRHTCBCMC4KCk1pY2hl
+bCBUaGllcnJ5ICgxKToKICBkcm0vaTkxNS90Z2w6IEltcGxlbWVudCBXYV8xNjA0NTU1NjA3Cgog
+ZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfd29ya2Fyb3VuZHMuYyB8IDM0ICsrKysrKysr
+KysrKysrKysrKy0tLQogZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9yZWcuaCAgICAgICAgICAg
+ICB8ICA0ICsrKwogMiBmaWxlcyBjaGFuZ2VkLCAzNCBpbnNlcnRpb25zKCspLCA0IGRlbGV0aW9u
+cygtKQoKLS0gCjIuMjAuMQoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0
+b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50
+ZWwtZ2Z4
