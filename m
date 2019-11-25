@@ -2,68 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E84471092A9
-	for <lists+intel-gfx@lfdr.de>; Mon, 25 Nov 2019 18:13:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C6F5A10927C
+	for <lists+intel-gfx@lfdr.de>; Mon, 25 Nov 2019 18:01:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A03EE89C63;
-	Mon, 25 Nov 2019 17:13:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A1A69898C2;
+	Mon, 25 Nov 2019 17:01:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 452 seconds by postgrey-1.36 at gabe;
- Mon, 25 Nov 2019 09:51:12 UTC
-Received: from new4-smtp.messagingengine.com (new4-smtp.messagingengine.com
- [66.111.4.230])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D53BA6E087;
- Mon, 25 Nov 2019 09:51:12 +0000 (UTC)
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
- by mailnew.nyi.internal (Postfix) with ESMTP id 60ED0654E;
- Mon, 25 Nov 2019 04:43:39 -0500 (EST)
-Received: from mailfrontend1 ([10.202.2.162])
- by compute3.internal (MEProxy); Mon, 25 Nov 2019 04:43:39 -0500
-X-ME-Sender: <xms:SqLbXbKg2D3AdsxWTT4Cz_Zs6c6A2KyohBFzrdhXoxvr-mpVMlvuow>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedufedrudeiuddgtdekucetufdoteggodetrfdotf
- fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
- uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
- cujfgurhepfffhvffukfggtggufgesghdtreertdervdenucfhrhhomhepofgrgihimhgv
- ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucffohhmrghinh
- epfhhrvggvuggvshhkthhophdrohhrghenucfkphepledtrdekledrieekrdejieenucfr
- rghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggthhenucevlh
- hushhtvghrufhiiigvpedt
-X-ME-Proxy: <xmx:SqLbXQHW7LH5gEtM8vuzD5j3nJIfcdSwfh5cY86rUYlnLD36jNYdfA>
- <xmx:SqLbXUAKtY87ak_D4hMX32Yf0h_MFsreP1nDxMzN-FMWcv9NzRlz0w>
- <xmx:SqLbXS2nzHdfJiCrQtEZ46EEMNj4NB2tuVo1aNhbUwBH5ZYxCNjUOg>
- <xmx:S6LbXazfs8TuXHLusmYzrRVVk_XcohppASXvmK3Y2WfdTI2G9Zan8g>
-Received: from localhost (lfbn-1-10718-76.w90-89.abo.wanadoo.fr [90.89.68.76])
- by mail.messagingengine.com (Postfix) with ESMTPA id D3F7E80060;
- Mon, 25 Nov 2019 04:43:37 -0500 (EST)
-Date: Mon, 25 Nov 2019 10:43:36 +0100
-From: Maxime Ripard <maxime@cerno.tech>
-To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
-Message-ID: <20191125094336.GA14723@gilmour.lan>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 406D7898C2;
+ Mon, 25 Nov 2019 17:01:53 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 377BAA00FD;
+ Mon, 25 Nov 2019 17:01:53 +0000 (UTC)
 MIME-Version: 1.0
-User-Agent: Mutt/1.12.1 (2019-06-15)
-X-Mailman-Approved-At: Mon, 25 Nov 2019 17:13:20 +0000
-X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=cerno.tech; h=
- date:from:to:cc:subject:message-id:mime-version:content-type; s=
- fm1; bh=XkNywTc9gruksO9sm0YQAKTqetVf+Vc977MnuPemwDs=; b=jpWnFJ/D
- BDbLTJ0GL5PD1O4X6pthzdHCPfIW/vpw1ZOQCHiM/z2/X6B7o5wm8/xTNn8DrfsH
- e9vfiXzGePAOagbkXGro7NRuw6ElNw/TWnqcZexxX/EouGEGRdDyGM0SXDaLpX/A
- M0QU8yWPJJpOJVb4C6TuFC1GUKpERDlVa08ZulIIQT1kpuOgmet75pr0dGX10evX
- 4ybO2uE3nOKEzmgGh/gQWoWdskpVboYxQc7oOM1TpGd8JAo56QnJcdqqL5tKtYz2
- jIsjPL0cXCCqmLolnldnrjnHH/+tIySDPeF+KaapEt3RkKaW68xqzoqRSx4goEvy
- Qy5xxvxPw0/jaw==
-X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:content-type:date:from:message-id
- :mime-version:subject:to:x-me-proxy:x-me-proxy:x-me-sender
- :x-me-sender:x-sasl-enc; s=fm1; bh=XkNywTc9gruksO9sm0YQAKTqetVf+
- Vc977MnuPemwDs=; b=UOKux26gOvbSV9kcGqAIa3UFsAp2sLzndzLgCkB4MhOGE
- wB0CYmH8wg13YFT/nclMKVJQhidZw/c/hzx2/9tdVTDa2ucBTyWwxTZaEbyr0UmG
- NSFtaECvCuXj4tWoaohumkKKtcXfSaoN4Wjd1HIg2OXCJDy0yYfifOwrKN4+i0MC
- 7CwePbsivc0XnBMLV1UFcp3IP5J1PSS+xGKudlNba5bkF4uudPcIA0z9PowvAWTV
- PMnrVM3+77IbKB0pEzN6I4Bup0ymEpk2imdoqSNhEZaZ8Le11SF4BPcpONLoU5wo
- sZxdceIsQqf4Nt8k81WgvYDtLsMASHsqadGSWC7JA==
-Subject: [Intel-gfx] [PULL] drm-misc-fixes
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Stanislav Lisovskiy" <stanislav.lisovskiy@intel.com>
+Date: Mon, 25 Nov 2019 17:01:53 -0000
+Message-ID: <157470131319.15532.15154144390739232460@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20191125160800.14740-1-stanislav.lisovskiy@intel.com>
+In-Reply-To: <20191125160800.14740-1-stanislav.lisovskiy@intel.com>
+Subject: [Intel-gfx] =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_f?=
+ =?utf-8?q?or_drm/i915=3A_Support_more_QGV_points_=28rev4=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -76,83 +38,22 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Maxime Ripard <mripard@kernel.org>, intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============0458414819=="
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
---===============0458414819==
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="45Z9DzgjV8m4Oswq"
-Content-Disposition: inline
-
-
---45Z9DzgjV8m4Oswq
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-
-Hi Dave, Daniel,
-
-Here are a few lates fixes for drm-misc-fixes. Obviously, it's not
-going to make it into 5.4, but it'd be great if they were in the
-upcoming PR.
-
-Thanks!
-Maxime
-
-drm-misc-fixes-2019-11-25:
- - A fix for a memory leak in the dma-buf support
- - One in mcde DSI support that leads to a pointer dereference
-The following changes since commit 0b8e7bbde5e7e2c419567e1ee29587dae3b78ee3:
-
-  drm/sun4i: tcon: Set min division of TCON0_DCLK to 1. (2019-11-13 15:20:33 +0100)
-
-are available in the Git repository at:
-
-  git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-fixes-2019-11-25
-
-for you to fetch changes up to 6645d42d79d33e8a9fe262660a75d5f4556bbea9:
-
-  dma-buf: Fix memory leak in sync_file_merge() (2019-11-25 10:21:33 +0100)
-
-----------------------------------------------------------------
- - A fix for a memory leak in the dma-buf support
- - One in mcde DSI support that leads to a pointer dereference
-
-----------------------------------------------------------------
-Navid Emamdoost (1):
-      dma-buf: Fix memory leak in sync_file_merge()
-
-Stephan Gerhold (1):
-      drm/mcde: dsi: Fix invalid pointer dereference if panel cannot be found
-
- drivers/dma-buf/sync_file.c     | 2 +-
- drivers/gpu/drm/mcde/mcde_dsi.c | 6 ++++--
- 2 files changed, 5 insertions(+), 3 deletions(-)
-
---45Z9DzgjV8m4Oswq
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXduiSAAKCRDj7w1vZxhR
-xft4AP0fSM1aIsxywcu6b/kA8sFCJMV9rWlgqH0MMCVEE8LSrgD7BnRxTYQ0GDn3
-riZ8Ob7Z4+0jMQgBsLUU3qKar8pqnQw=
-=pe7d
------END PGP SIGNATURE-----
-
---45Z9DzgjV8m4Oswq--
-
---===============0458414819==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
-IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
-
---===============0458414819==--
+PT0gU2VyaWVzIERldGFpbHMgPT0KClNlcmllczogZHJtL2k5MTU6IFN1cHBvcnQgbW9yZSBRR1Yg
+cG9pbnRzIChyZXY0KQpVUkwgICA6IGh0dHBzOi8vcGF0Y2h3b3JrLmZyZWVkZXNrdG9wLm9yZy9z
+ZXJpZXMvNjk4ODYvClN0YXRlIDogd2FybmluZwoKPT0gU3VtbWFyeSA9PQoKJCBkaW0gY2hlY2tw
+YXRjaCBvcmlnaW4vZHJtLXRpcApkOTkzYTMyOWQ0NzUgZHJtL2k5MTU6IFN1cHBvcnQgbW9yZSBR
+R1YgcG9pbnRzCi06NDU6IENIRUNLOkJSQUNFUzogYnJhY2VzIHt9IHNob3VsZCBiZSB1c2VkIG9u
+IGFsbCBhcm1zIG9mIHRoaXMgc3RhdGVtZW50CiM0NTogRklMRTogZHJpdmVycy9ncHUvZHJtL2k5
+MTUvZGlzcGxheS9pbnRlbF9idy5jOjI3OToKKwlpZiAoSU5URUxfR0VOKGRldl9wcml2KSA+PSAx
+MSkgewpbLi4uXQorCQl9ClsuLi5dCgp0b3RhbDogMCBlcnJvcnMsIDAgd2FybmluZ3MsIDEgY2hl
+Y2tzLCA1NyBsaW5lcyBjaGVja2VkCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVl
+ZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5m
+by9pbnRlbC1nZng=
