@@ -2,39 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 95BE1108E4A
-	for <lists+intel-gfx@lfdr.de>; Mon, 25 Nov 2019 13:54:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 207C5108E4D
+	for <lists+intel-gfx@lfdr.de>; Mon, 25 Nov 2019 13:55:38 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E975589F41;
-	Mon, 25 Nov 2019 12:54:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 753B689F47;
+	Mon, 25 Nov 2019 12:55:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 17C2589F41
- for <intel-gfx@lists.freedesktop.org>; Mon, 25 Nov 2019 12:54:13 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga106.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 25 Nov 2019 04:54:12 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,241,1571727600"; d="scan'208";a="260392954"
-Received: from zeliteleevi.tm.intel.com ([10.237.55.130])
- by FMSMGA003.fm.intel.com with ESMTP; 25 Nov 2019 04:54:11 -0800
-Date: Mon, 25 Nov 2019 14:54:11 +0200 (EET)
-From: Kai Vehmanen <kai.vehmanen@linux.intel.com>
-X-X-Sender: kvehmane@zeliteleevi
-To: =?ISO-8859-15?Q?Ville_Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-In-Reply-To: <20191122140151.GM1208@intel.com>
-Message-ID: <alpine.DEB.2.21.1911251453400.16459@zeliteleevi>
-References: <20191122134603.11496-1-kai.vehmanen@linux.intel.com>
- <20191122140151.GM1208@intel.com>
-User-Agent: Alpine 2.21 (DEB 202 2017-01-01)
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7 02160 Espoo
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 2E68689F45;
+ Mon, 25 Nov 2019 12:55:36 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 261E4A011B;
+ Mon, 25 Nov 2019 12:55:36 +0000 (UTC)
 MIME-Version: 1.0
-Content-Type: multipart/mixed; boundary="8323329-2016423879-1574686452=:16459"
-Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915/dp: fix DP audio for PORT_A on
- gen12+
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Mon, 25 Nov 2019 12:55:36 -0000
+Message-ID: <157468653615.15531.12072262714287069127@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20191125105858.1718307-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20191125105858.1718307-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_f?=
+ =?utf-8?q?or_series_starting_with_=5BCI=2C1/3=5D_drm/i915=3A_Serialise_wi?=
+ =?utf-8?q?th_engine-pm_around_requests_on_the_kernel=5Fcontext?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -47,45 +39,32 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-  This message is in MIME format.  The first part should be readable text,
-  while the remaining parts are likely unreadable without MIME-aware tools.
-
---8323329-2016423879-1574686452=:16459
-Content-Type: text/plain; charset=iso-8859-1
-Content-Transfer-Encoding: 8BIT
-
-Hi,
-
-On Fri, 22 Nov 2019, Ville Syrjälä wrote:
-
-> > -	if (IS_G4X(dev_priv) || port == PORT_A)
-> > +	if (IS_G4X(dev_priv) || (INTEL_GEN(dev_priv) < 12 && port == PORT_A))
-> 
-> Getting a bit messy.
-> 
-> Hoovering that into something like
-> static bool intel_dp_port_has_audio(struct intel_encoder *encoder);
-> or
-> static bool intel_dp_port_has_audio(struct drm_i915_private *dev_priv, enum port port);
-> might be nice.
-
-thanks for the review! I went for the latter option in the v2 I just
-sent out.
-
-Br, Kai
-
---8323329-2016423879-1574686452=:16459
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
-IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
-
---8323329-2016423879-1574686452=:16459--
+PT0gU2VyaWVzIERldGFpbHMgPT0KClNlcmllczogc2VyaWVzIHN0YXJ0aW5nIHdpdGggW0NJLDEv
+M10gZHJtL2k5MTU6IFNlcmlhbGlzZSB3aXRoIGVuZ2luZS1wbSBhcm91bmQgcmVxdWVzdHMgb24g
+dGhlIGtlcm5lbF9jb250ZXh0ClVSTCAgIDogaHR0cHM6Ly9wYXRjaHdvcmsuZnJlZWRlc2t0b3Au
+b3JnL3Nlcmllcy82OTk3NS8KU3RhdGUgOiB3YXJuaW5nCgo9PSBTdW1tYXJ5ID09CgokIGRpbSBj
+aGVja3BhdGNoIG9yaWdpbi9kcm0tdGlwCmEzNDlkYmIyOWRjNyBkcm0vaTkxNTogU2VyaWFsaXNl
+IHdpdGggZW5naW5lLXBtIGFyb3VuZCByZXF1ZXN0cyBvbiB0aGUga2VybmVsX2NvbnRleHQKNmM1
+MzkxOWM4YTdiIGRybS9pOTE1L2d0OiBBZGFwdCBlbmdpbmVfcGFyayBzeW5jaHJvbmlzYXRpb24g
+cnVsZXMgZm9yIGVuZ2luZV9yZXRpcmUKNTcxMWMyMDE0ZmJkIGRybS9pOTE1L2d0OiBTY2hlZHVs
+ZSByZXF1ZXN0IHJldGlyZW1lbnQgd2hlbiB0aW1lbGluZSBpZGxlcwotOjI5OiBFUlJPUjpHSVRf
+Q09NTUlUX0lEOiBQbGVhc2UgdXNlIGdpdCBjb21taXQgZGVzY3JpcHRpb24gc3R5bGUgJ2NvbW1p
+dCA8MTIrIGNoYXJzIG9mIHNoYTE+ICgiPHRpdGxlIGxpbmU+IiknIC0gaWU6ICdjb21taXQgN2Uz
+NGY0ZTRhYWQzICgiZHJtL2k5MTUvZ2VuOCs6IEFkZCBSQzYgQ1RYIGNvcnJ1cHRpb24gV0EiKScK
+IzI5OiAKUmVmZXJlbmNlczogN2UzNGY0ZTRhYWQzICgiZHJtL2k5MTUvZ2VuOCs6IEFkZCBSQzYg
+Q1RYIGNvcnJ1cHRpb24gV0EiKQoKLTozMDogRVJST1I6R0lUX0NPTU1JVF9JRDogUGxlYXNlIHVz
+ZSBnaXQgY29tbWl0IGRlc2NyaXB0aW9uIHN0eWxlICdjb21taXQgPDEyKyBjaGFycyBvZiBzaGEx
+PiAoIjx0aXRsZSBsaW5lPiIpJyAtIGllOiAnY29tbWl0IDIyNDhhMjgzODRmZSAoImRybS9pOTE1
+L2dlbjgrOiBBZGQgUkM2IENUWCBjb3JydXB0aW9uIFdBIiknCiMzMDogClJlZmVyZW5jZXM6IDIy
+NDhhMjgzODRmZSAoImRybS9pOTE1L2dlbjgrOiBBZGQgUkM2IENUWCBjb3JydXB0aW9uIFdBIikK
+CnRvdGFsOiAyIGVycm9ycywgMCB3YXJuaW5ncywgMCBjaGVja3MsIDE4OCBsaW5lcyBjaGVja2Vk
+CgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1n
+ZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9s
+aXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZng=
