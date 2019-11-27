@@ -1,71 +1,61 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 96E2D10C098
-	for <lists+intel-gfx@lfdr.de>; Thu, 28 Nov 2019 00:27:01 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 41C7E10C097
+	for <lists+intel-gfx@lfdr.de>; Thu, 28 Nov 2019 00:27:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6C2086E5D3;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0A7776E5D1;
 	Wed, 27 Nov 2019 23:26:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com
- [91.207.212.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B83026E0E7;
- Wed, 27 Nov 2019 10:19:50 +0000 (UTC)
-Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
- by mx08-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id
- xARACEKl032390; Wed, 27 Nov 2019 11:19:45 +0100
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
- by mx08-00178001.pphosted.com with ESMTP id 2whcxyb02g-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Wed, 27 Nov 2019 11:19:45 +0100
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
- by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id C3437100038;
- Wed, 27 Nov 2019 11:19:43 +0100 (CET)
-Received: from Webmail-eu.st.com (sfhdag3node2.st.com [10.75.127.8])
- by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id D89A42B1204;
- Wed, 27 Nov 2019 11:19:43 +0100 (CET)
-Received: from SFHDAG3NODE3.st.com (10.75.127.9) by SFHDAG3NODE2.st.com
- (10.75.127.8) with Microsoft SMTP Server (TLS) id 15.0.1347.2; Wed, 27 Nov
- 2019 11:19:43 +0100
-Received: from SFHDAG3NODE3.st.com ([fe80::3507:b372:7648:476]) by
- SFHDAG3NODE3.st.com ([fe80::3507:b372:7648:476%20]) with mapi id
- 15.00.1347.000; Wed, 27 Nov 2019 11:19:43 +0100
-From: Benjamin GAIGNARD <benjamin.gaignard@st.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
-Thread-Topic: [PATCH v2 0/4] drm/rect: Bugfixes and selftests
-Thread-Index: AQHVoV4rvcqC7LXnL0+ymN9eOefFSqeexN0A
-Date: Wed, 27 Nov 2019 10:19:43 +0000
-Message-ID: <1de171dd-4f31-c941-ed7c-18be62110960@st.com>
-References: <20191122175623.13565-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20191122175623.13565-1-ville.syrjala@linux.intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
-x-ms-exchange-messagesentrepresentingtype: 1
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [10.75.127.49]
-Content-ID: <48AB6043FB9D074BBBBFC73EEB3FEFDF@st.com>
+Received: from mail-wr1-x442.google.com (mail-wr1-x442.google.com
+ [IPv6:2a00:1450:4864:20::442])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2BC1889590
+ for <intel-gfx@lists.freedesktop.org>; Wed, 27 Nov 2019 21:07:34 +0000 (UTC)
+Received: by mail-wr1-x442.google.com with SMTP id y11so25295970wrt.6
+ for <intel-gfx@lists.freedesktop.org>; Wed, 27 Nov 2019 13:07:34 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:mime-version
+ :content-transfer-encoding;
+ bh=coWiwVZDe/0ZH60zoRJ9JqxM4QyHRi3Sl7aJhUkMp8U=;
+ b=BdOBtcEBv+PaeqF2JHr6GaDt5oygmBmKkWBjWTVVXQ5sCAe1mtrgdLxgcaPyMWaO5i
+ SklSR8za9x0/ZHMCUZtkig9nplzZGpj1Ujr7eB3gXQ8il2m7riGFZyhg8V0qa4hrOOwD
+ RmRkYCe2I5q41B8tk9qoTFa8ZBoyrJU105kVLGOkHBYJh0TfQkcl99SxrEh9UH8CIZxR
+ MvCXZReA7NPpr4zBVeVvLj4axbzU8l8SkO+GC5bbdZPhO8T5g6WC2Ve49Ouo4NHmrKg3
+ InQSQJvp4n9SVTbg9kzzNOMQnug0bsc3bLyxq6jtJxPF2nhphr4W28m9CkcAMhDDdDFO
+ LxMA==
+X-Gm-Message-State: APjAAAVi2Wruq2U5MtUjyQ1C5nDMjLnba9kQrnwOl6pRUlJ3+6q8N4B5
+ uiX+wjGNDZFzbbvCLNFzGn0=
+X-Google-Smtp-Source: APXvYqwCcf6lrfbyxf0FnaoxbFMmjjmtYONAFgeiZdoyDOaLZ8zjzPJZjPf4gC1dEECK8vqqddkfpg==
+X-Received: by 2002:adf:ef49:: with SMTP id c9mr23892307wrp.292.1574888852880; 
+ Wed, 27 Nov 2019 13:07:32 -0800 (PST)
+Received: from heavensdoor (84-222-110-112.adsl-wholesale.clienti.tiscali.it.
+ [84.222.110.112])
+ by smtp.gmail.com with ESMTPSA id z6sm21454590wro.18.2019.11.27.13.07.31
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 27 Nov 2019 13:07:32 -0800 (PST)
+Date: Wed, 27 Nov 2019 22:07:27 +0100
+From: Alessio Turchi <alessio.turchi@gmail.com>
+To: jon.bloomfield@intel.com
+Message-ID: <20191127220727.580c9cdb@heavensdoor>
+X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.95,18.0.572
- definitions=2019-11-27_02:2019-11-27,2019-11-27 signatures=0
 X-Mailman-Approved-At: Wed, 27 Nov 2019 23:26:57 +0000
 X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=st.com; h=from : to : cc : subject
- : date : message-id : references : in-reply-to : content-type : content-id
- : content-transfer-encoding : mime-version; s=STMicroelectronics;
- bh=omru2UOTLjxmL2ZzimkB3bZ5DNgfuLy5WGvEkQPlpTE=;
- b=jd8wYx50DRSN8QIQJD5K1OpRHKTAo816xUKfs6ytGDbz8+czkex8pTZJrQ9mMioNFdZL
- 9O9wJSGHF7F3PZe8lsTs3b/yre9zCopg2+8Nzf4iknokxvZdg/gB8Pm7uajDbQVjMhJp
- ien7BDc3nyABiIQCOgs0GNV9WhcNXDeW6Ep+jN4Ka/V6aerEmadQULi/zvLM3oXGmMc1
- z+iJS7pNWrZxkn0rECvpzT7YjEkhzuJXiTMZn8LyckwX5LQgcIBu93koyoiJeLS9b71t
- dlCYpNQhqLgEkt7qT5bktAJgY8eye/khWaGR1DvkQeWPbmFyDfodSyX9HMPYp2+H6xFi fg== 
-Subject: Re: [Intel-gfx] [PATCH v2 0/4] drm/rect: Bugfixes and selftests
+ d=gmail.com; s=20161025;
+ h=date:from:to:cc:subject:message-id:mime-version
+ :content-transfer-encoding;
+ bh=coWiwVZDe/0ZH60zoRJ9JqxM4QyHRi3Sl7aJhUkMp8U=;
+ b=czKXYSCb2QdX7f99mQr7gxUYP/eTv3WVBp7x5c0Vmtf/PeyOVfja9M7Bj67yOZa1QK
+ LBB44gmJcyK3FXflzcXvfB1d0t0IG32YJWRg+Ehs2v2p4qurrYg8SYa2gRUf90oIDEwu
+ L5dc9LiUK1x4QUiH3QJ3f7gsdl9CJR1z6wR8hDre5SJttettY6gIjwhp0xnTsClwPiZS
+ X9D8GEhqiTxDLjSAJKkk/iDzRTSSO3bYP1AJGa+tc7j3f+mNy9W4xo/+q4VERsQc/gJ8
+ 6hxRYq4p57rCIeAuJG1gxcI6iHIT/WI0wY/8uWvo+PGbZwXDutU4+pEjPVEivWnnweeH
+ 7z5A==
+Subject: [Intel-gfx] Kernel >=5.3.11 hangs intel GPU and 5.4.0 freezes
+ completely
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -78,33 +68,26 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-DQpPbiAxMS8yMi8xOSA2OjU2IFBNLCBWaWxsZSBTeXJqYWxhIHdyb3RlOg0KPiBGcm9tOiBWaWxs
-ZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwuY29tPg0KPg0KPiBNeSBlYXJs
-aWVyIGZpeGVzIGZvciBkcm1fcmVjdCArIGRpdi1ieS16ZXJvIGZpeCArIHNvbWUNCj4gc2VsZnRl
-c3RzIHRoYXQgRGFuaWVsIHJlcXVlc3RlZC4NCj4NCj4gQ2M6IE1hYXJ0ZW4gTGFua2hvcnN0IDxt
-YWFydGVuLmxhbmtob3JzdEBsaW51eC5pbnRlbC5jb20+DQo+IENjOiBCZW5qYW1pbiBHYWlnbmFy
-ZCA8YmVuamFtaW4uZ2FpZ25hcmRAc3QuY29tPg0KPiBDYzogRGFuaWVsIFZldHRlciA8ZGFuaWVs
-QGZmd2xsLmNoPg0KDQpUaGFua3MgdG8gaGF2ZSBoYW5kbGUgdGhpcy4NCg0KUmV2aWV3ZWQtYnk6
-IEJlbmphbWluIEdhaWduYXJkIDxiZW5qYW1pbi5nYWlnbmFyZEBzdC5jb20+DQo+DQo+IFZpbGxl
-IFN5cmrDpGzDpCAoNCk6DQo+ICAgIGRybS9yZWN0OiBBdm9pZCBkaXZpc2lvbiBieSB6ZXJvDQo+
-ICAgIGRybS9yZWN0OiBLZWVwIHRoZSBzY2FsZWQgY2xpcCBib3VuZGVkDQo+ICAgIGRybS9yZWN0
-OiBLZWVwIHRoZSBjbGlwcGVkIGRzdCByZWN0YW5nbGUgaW4gcGxhY2UNCj4gICAgZHJtL3NlbGZ0
-ZXN0czogQWRkIGRybV9yZWN0IHNlbGZ0ZXN0cw0KPg0KPiAgIGRyaXZlcnMvZ3B1L2RybS9kcm1f
-cmVjdC5jICAgICAgICAgICAgICAgICAgICB8ICAzNiArLS0NCj4gICBkcml2ZXJzL2dwdS9kcm0v
-c2VsZnRlc3RzL01ha2VmaWxlICAgICAgICAgICAgfCAgIDMgKy0NCj4gICAuLi4vZ3B1L2RybS9z
-ZWxmdGVzdHMvZHJtX21vZGVzZXRfc2VsZnRlc3RzLmggfCAgIDQgKw0KPiAgIC4uLi9kcm0vc2Vs
-ZnRlc3RzL3Rlc3QtZHJtX21vZGVzZXRfY29tbW9uLmggICB8ICAgNyArDQo+ICAgZHJpdmVycy9n
-cHUvZHJtL3NlbGZ0ZXN0cy90ZXN0LWRybV9yZWN0LmMgICAgIHwgMjIwICsrKysrKysrKysrKysr
-KysrKw0KPiAgIGluY2x1ZGUvZHJtL2RybV9yZWN0LmggICAgICAgICAgICAgICAgICAgICAgICB8
-ICAgMiArDQo+ICAgNiBmaWxlcyBjaGFuZ2VkLCAyNTcgaW5zZXJ0aW9ucygrKSwgMTUgZGVsZXRp
-b25zKC0pDQo+ICAgY3JlYXRlIG1vZGUgMTAwNjQ0IGRyaXZlcnMvZ3B1L2RybS9zZWxmdGVzdHMv
-dGVzdC1kcm1fcmVjdC5jDQo+Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNr
-dG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2lu
-dGVsLWdmeA==
+SSBqdXN0IGZpbGVkIGEgYnVnIG9uIHRoZSBrZXJuZWwgYnVnemlsbGEgYWJvdXQgdGhlIGZhY3Qg
+dGhhdCBjb21taXQKNzdmYzkxMDBmYzU3NjhjYTAxY2EyZGQyY2M1YTUxNWE0NzIzYTU4YSwgd2hp
+Y2ggeW91IGF1dGhvcmVkLCBoYW5ncyB0aGUKaW50ZWwgZ3B1LgpJIGp1c3QgZGlzY292ZXJlZCB0
+aGF0IHRoaXMgZG9lc24ndCBoYXBwZW4gYW55bW9yZSB1bmRlciA1LjQuMCwgaW5zdGVhZAp0aGlz
+IGtlcm5lbCBqdXN0IGZyZWV6ZSBjb21wbGV0ZWx5IHRoZSBub3RlYm9vay4KCllvdSBjYW4gZmlu
+ZCBtb3JlIGluZm8gaGVyZToKaHR0cHM6Ly9idWd6aWxsYS5rZXJuZWwub3JnL3Nob3dfYnVnLmNn
+aT9pZD0yMDU1NDUKaHR0cHM6Ly9idWdzLmdlbnRvby5vcmcvNzAwNzgyCmh0dHBzOi8vZm9ydW1z
+LmdlbnRvby5vcmcvdmlld3RvcGljLXAtODM5MjkxMC5odG1sIzgzOTI5MTAKCkknbSB3cml0aW5n
+IHlvdSBiZWNhdXNlIEkgd2FzIHN1Z2dlc3RlZCB0byB3cml0ZSBkaXJlY3RseSB0byB5b3UuCkNv
+dWxkIHlvdSBwbGVhc2UgbG9vayBpbnRvIHRoaXM/CgpUaGFua3MsCkFsZXNzaW8gVHVyY2hpCgot
+LSAKLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0KQWxlc3NpbyBUdXJjaGksIFBoLkQuCklOQUYgLSBPc3NlcnZhdG9y
+aW8gQXN0cm9maXNpY28gZGkgQXJjZXRyaQpMYXJnbyBFbnJpY28gRmVybWkgNSwgNTAxMjUgRmly
+ZW56ZSwgSXRhbHkKUGhvbmU6ICgrMzkpMDU1Mjc1MjMzMQpfX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdm
+eEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFp
+bG1hbi9saXN0aW5mby9pbnRlbC1nZng=
