@@ -2,34 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D4B731120F6
-	for <lists+intel-gfx@lfdr.de>; Wed,  4 Dec 2019 02:15:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D1CD1120D9
+	for <lists+intel-gfx@lfdr.de>; Wed,  4 Dec 2019 02:05:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0CBA16E882;
-	Wed,  4 Dec 2019 01:15:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 898DA6E87D;
+	Wed,  4 Dec 2019 01:05:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from huawei.com (szxga05-in.huawei.com [45.249.212.191])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8D0E76E072;
- Wed,  4 Dec 2019 01:04:28 +0000 (UTC)
-Received: from DGGEMS411-HUB.china.huawei.com (unknown [172.30.72.60])
- by Forcepoint Email with ESMTP id ACC5A1C5290A53DC4202;
- Wed,  4 Dec 2019 09:04:24 +0800 (CST)
-Received: from localhost.localdomain.localdomain (10.175.113.25) by
- DGGEMS411-HUB.china.huawei.com (10.3.19.211) with Microsoft SMTP Server id
- 14.3.439.0; Wed, 4 Dec 2019 09:04:14 +0800
-From: Mao Wenan <maowenan@huawei.com>
-To: <jani.nikula@linux.intel.com>, <joonas.lahtinen@linux.intel.com>,
- <rodrigo.vivi@intel.com>, <airlied@linux.ie>, <daniel@ffwll.ch>
-Date: Wed, 4 Dec 2019 09:01:54 +0800
-Message-ID: <20191204010154.152396-1-maowenan@huawei.com>
-X-Mailer: git-send-email 2.20.1
-MIME-Version: 1.0
-X-Originating-IP: [10.175.113.25]
-X-CFilter-Loop: Reflected
-X-Mailman-Approved-At: Wed, 04 Dec 2019 01:15:52 +0000
-Subject: [Intel-gfx] [PATCH -next] drm/i915/perf: drop pointless static
- qualifier in i915_perf_add_config_ioctl()
+Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CEC016E0A1;
+ Wed,  4 Dec 2019 01:05:24 +0000 (UTC)
+Received: from localhost (unknown [40.117.208.15])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by mail.kernel.org (Postfix) with ESMTPSA id 5A66C20656;
+ Wed,  4 Dec 2019 01:05:24 +0000 (UTC)
+Date: Wed, 04 Dec 2019 01:05:23 +0000
+From: Sasha Levin <sashal@kernel.org>
+To: Sasha Levin <sashal@kernel.org>
+To: Sean Paul <sean@poorly.run>
+To: Sean Paul <seanpaul@chromium.org>
+To: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+In-Reply-To: <20191203173638.94919-2-sean@poorly.run>
+References: <20191203173638.94919-2-sean@poorly.run>
+Message-Id: <20191204010524.5A66C20656@mail.kernel.org>
+X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=kernel.org; s=default; t=1575421524;
+ bh=k2dC7aIpYF9V4GO3R75VIvHtMkvHHXxRQSDpTRZ316o=;
+ h=Date:From:To:To:To:To:Cc:Cc:Cc:Cc:Cc:Cc:Cc:Cc:Cc:Cc:Subject:
+ In-Reply-To:References:From;
+ b=xX+PS+cT2RFEz9cNDga0CAeq9w7kycEMjDEYJU/kIqAiD4D5XKiBwDoRbld+0eHHk
+ T1D11CEpOXcfRJiE5MaSGHwATmc8Pm7aauZVXd5NMCwtkLIypoc5LC0zGOtHliTsuI
+ BkDql1QuImquI7rz7Be5c8CnDWClQK+2r17ci/M4=
+Subject: Re: [Intel-gfx] [PATCH 01/11] drm/i915: Fix sha_text population code
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -42,29 +47,24 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, kernel-janitors@vger.kernel.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- Mao Wenan <maowenan@huawei.com>, Hulk Robot <hulkci@huawei.com>
+Cc: , Daniel Vetter <daniel.vetter@ffwll.ch>, intel-gfx@lists.freedesktop.org,
+ Ramalingam C <ramalingm.c@intel.com>, Sean Paul <seanpaul@chromium.org>,
+ stable@vger.kernel.org
+MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-VGhlcmUgaXMgbm8gbmVlZCB0byBoYXZlIHRoZSAnVCAqdicgdmFyaWFibGUgc3RhdGljCnNpbmNl
-IG5ldyB2YWx1ZSBhbHdheXMgYmUgYXNzaWduZWQgYmVmb3JlIHVzZSBpdC4KClJlcG9ydGVkLWJ5
-OiBIdWxrIFJvYm90IDxodWxrY2lAaHVhd2VpLmNvbT4KU2lnbmVkLW9mZi1ieTogTWFvIFdlbmFu
-IDxtYW93ZW5hbkBodWF3ZWkuY29tPgotLS0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfcGVy
-Zi5jIHwgMiArLQogMSBmaWxlIGNoYW5nZWQsIDEgaW5zZXJ0aW9uKCspLCAxIGRlbGV0aW9uKC0p
-CgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9wZXJmLmMgYi9kcml2ZXJz
-L2dwdS9kcm0vaTkxNS9pOTE1X3BlcmYuYwppbmRleCA2NWQ3YzJlNTk5ZGUuLjcwMGY2YTlmMmZm
-YiAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9wZXJmLmMKKysrIGIvZHJp
-dmVycy9ncHUvZHJtL2k5MTUvaTkxNV9wZXJmLmMKQEAgLTM5NTUsNyArMzk1NSw3IEBAIGludCBp
-OTE1X3BlcmZfYWRkX2NvbmZpZ19pb2N0bChzdHJ1Y3QgZHJtX2RldmljZSAqZGV2LCB2b2lkICpk
-YXRhLAogCXN0cnVjdCBpOTE1X3BlcmYgKnBlcmYgPSAmdG9faTkxNShkZXYpLT5wZXJmOwogCXN0
-cnVjdCBkcm1faTkxNV9wZXJmX29hX2NvbmZpZyAqYXJncyA9IGRhdGE7CiAJc3RydWN0IGk5MTVf
-b2FfY29uZmlnICpvYV9jb25maWcsICp0bXA7Ci0Jc3RhdGljIHN0cnVjdCBpOTE1X29hX3JlZyAq
-cmVnczsKKwlzdHJ1Y3QgaTkxNV9vYV9yZWcgKnJlZ3M7CiAJaW50IGVyciwgaWQ7CiAKIAlpZiAo
-IXBlcmYtPmk5MTUpIHsKLS0gCjIuMjAuMQoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMu
-ZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlz
-dGluZm8vaW50ZWwtZ2Z4
+SGksCgpbVGhpcyBpcyBhbiBhdXRvbWF0ZWQgZW1haWxdCgpUaGlzIGNvbW1pdCBoYXMgYmVlbiBw
+cm9jZXNzZWQgYmVjYXVzZSBpdCBjb250YWlucyBhICJGaXhlczoiIHRhZywKZml4aW5nIGNvbW1p
+dDogZWU1ZTVlN2E1ZTBmICgiZHJtL2k5MTU6IEFkZCBIRENQIGZyYW1ld29yayArIGJhc2UgaW1w
+bGVtZW50YXRpb24iKS4KClRoZSBib3QgaGFzIHRlc3RlZCB0aGUgZm9sbG93aW5nIHRyZWVzOiB2
+NS40LjEsIHY1LjMuMTQsIHY0LjE5Ljg3LgoKdjUuNC4xOiBCdWlsZCBPSyEKdjUuMy4xNDogQnVp
+bGQgT0shCnY0LjE5Ljg3OiBGYWlsZWQgdG8gYXBwbHkhIFBvc3NpYmxlIGRlcGVuZGVuY2llczoK
+ICAgIFVuYWJsZSB0byBjYWxjdWxhdGUKCgpOT1RFOiBUaGUgcGF0Y2ggd2lsbCBub3QgYmUgcXVl
+dWVkIHRvIHN0YWJsZSB0cmVlcyB1bnRpbCBpdCBpcyB1cHN0cmVhbS4KCkhvdyBzaG91bGQgd2Ug
+cHJvY2VlZCB3aXRoIHRoaXMgcGF0Y2g/CgotLSAKVGhhbmtzLApTYXNoYQpfX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0
+CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3Rv
+cC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZng=
