@@ -1,66 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D8DD3114EF3
-	for <lists+intel-gfx@lfdr.de>; Fri,  6 Dec 2019 11:22:10 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 64703114F7F
+	for <lists+intel-gfx@lfdr.de>; Fri,  6 Dec 2019 11:55:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 268746F9B4;
-	Fri,  6 Dec 2019 10:22:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 547386F9CA;
+	Fri,  6 Dec 2019 10:55:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-1.mimecast.com (us-smtp-delivery-1.mimecast.com
- [207.211.31.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2F6E06F9B9
- for <intel-gfx@lists.freedesktop.org>; Fri,  6 Dec 2019 10:22:08 +0000 (UTC)
-Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
- [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-145-mG1Qb4gPNYOp7hybu0Rm2g-1; Fri, 06 Dec 2019 05:22:03 -0500
-Received: from smtp.corp.redhat.com (int-mx08.intmail.prod.int.phx2.redhat.com
- [10.5.11.23])
- (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
- (No client certificate requested)
- by mimecast-mx01.redhat.com (Postfix) with ESMTPS id C4726800D5F;
- Fri,  6 Dec 2019 10:22:01 +0000 (UTC)
-Received: from sirius.home.kraxel.org (ovpn-116-67.ams2.redhat.com
- [10.36.116.67])
- by smtp.corp.redhat.com (Postfix) with ESMTP id 5698919C4F;
- Fri,  6 Dec 2019 10:22:01 +0000 (UTC)
-Received: by sirius.home.kraxel.org (Postfix, from userid 1000)
- id 5D90516E18; Fri,  6 Dec 2019 11:22:00 +0100 (CET)
-Date: Fri, 6 Dec 2019 11:22:00 +0100
-From: Gerd Hoffmann <kraxel@redhat.com>
-To: dri-devel@lists.freedesktop.org, robh@kernel.org,
- intel-gfx@lists.freedesktop.org,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, David Airlie <airlied@linux.ie>,
- Christian Koenig <christian.koenig@amd.com>, Huang Rui <ray.huang@amd.com>,
- open list <linux-kernel@vger.kernel.org>
-Message-ID: <20191206102200.6osisct57n424ujn@sirius.home.kraxel.org>
-References: <20191127092523.5620-1-kraxel@redhat.com>
- <20191127092523.5620-2-kraxel@redhat.com>
- <20191128113930.yhckvneecpvfhlls@sirius.home.kraxel.org>
- <20191205221523.GN624164@phenom.ffwll.local>
- <20191206100724.ukzdyaym3ltcyfaa@sirius.home.kraxel.org>
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AED406F9CA
+ for <intel-gfx@lists.freedesktop.org>; Fri,  6 Dec 2019 10:55:49 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19482514-1500050 
+ for multiple; Fri, 06 Dec 2019 10:55:29 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri,  6 Dec 2019 10:55:23 +0000
+Message-Id: <20191206105527.1130413-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.24.0
 MIME-Version: 1.0
-In-Reply-To: <20191206100724.ukzdyaym3ltcyfaa@sirius.home.kraxel.org>
-X-Scanned-By: MIMEDefang 2.84 on 10.5.11.23
-X-MC-Unique: mG1Qb4gPNYOp7hybu0Rm2g-1
-X-Mimecast-Spam-Score: 0
-Content-Disposition: inline
-X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=redhat.com; 
- s=mimecast20190719; t=1575627727;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=oPXPVF5DYoU7fv7fbWpSb9qOw8HQXQZZ77OFuUMIvww=;
- b=TV+y7iCrC9Nt0v+os9as0jp/kcob5dN6cyj30aEk7bgiSZ5BLrTu8o1Jt7s9VBzM6gwoK1
- KGrW0PdgmVm6/eoDKJHTCVkXPKGNNB2FrqKBCIEtAI8Dz1E3dgt8+ZW6ozLAhrCs7RxLhf
- wrSBPx/qNfy1UBCNYUl4W5Z8yY9OMBU=
-Subject: Re: [Intel-gfx] [PATCH v3 1/2] drm: call drm_gem_object_funcs.mmap
- with fake offset
+Subject: [Intel-gfx] [PATCH 1/5] drm/i915/gem: Flush the pwrite through the
+ chipset before signaling
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -73,23 +37,32 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: matthew.auld@intel.com
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gRnJpLCBEZWMgMDYsIDIwMTkgYXQgMTE6MDc6MjRBTSArMDEwMCwgR2VyZCBIb2ZmbWFubiB3
-cm90ZToKPiBPbiBUaHUsIERlYyAwNSwgMjAxOSBhdCAxMToxNToyM1BNICswMTAwLCBEYW5pZWwg
-VmV0dGVyIHdyb3RlOgo+ID4gTG9va3MgbGlrZSB1bnJlbGF0ZWQgZmx1a2VzLCB0aGlzIGhhcHBl
-bnMgb2NjYXNpb25hbGx5LiBJZiB5b3UncmUgcGFyYW5vaWQKPiA+IGhpdCB0aGUgcmV0ZXN0IGJ1
-dHRvbiBvbiBwYXRjaHdvcmsgdG8gZG91YmxlLWNoZWNrLgo+ID4gLURhbmllbAo+IAo+IEd1ZXNz
-IHlvdSBraWNrZWQgQ0k/ICBKdXN0IGdvdCBDSSBtYWlscywgbm93IHJlcG9ydGluZyBzdWNjZXNz
-LCB3aXRob3V0Cj4gZG9pbmcgYW55dGhpbmcuICBTbyBJJ2xsIGdvIHB1c2ggdjMgdG8gbWlzYy1u
-ZXh0LgoKT29wcywgc3Bva2UgdG9vIHNvb24uICBOZXh0IG1haWwgYXJyaXZlZC4gIEZpLkNJLkJB
-VCB3b3JrcywgYnV0CkZpLkNJLklHVCBzdGlsbCBmYWlscy4KCldoZXJlIGlzIHRoZSAidGVzdCBh
-Z2FpbiIgYnV0dG9uPyAgQ2FuIEkgcmUtcnVuIHRoZSB0ZXN0cyBvbiB2Mj8gIFJpZ2h0Cm5vdyBJ
-IHRlbmQgdG8gY29tbWl0IHYyIHRvIGhhdmUgYSBmaXggY29tbWl0dGVkLCB0aGVuIGdvIGZpZ3Vy
-ZSB3aHkgdjMKZmFpbHMgLi4uCgpjaGVlcnMsCiAgR2VyZAoKX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1n
-ZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21h
-aWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
+QmVmb3JlIHdlIHNpZ25hbCB0aGUgZmVuY2UgdG8gaW5kaWNhdGUgY29tcGxldGlvbiwgZW5zdXJl
+IHRoZSBwd3JpdGUKdGhyb3VnaCB0aGUgaW5kaXJlY3QgR0dUVCBpcyBjb2hlcmVudCAoYXMgYmVz
+dCBhcyB3ZSBrbm93KSBpbiBtZW1vcnkuCkFueSBsaXN0ZW5lcnMgdG8gdGhlIGZlbmNlIG1heSBz
+dGFydCBpbW1lZGlhdGVseSBhbmQgc2FtcGxlIGZyb20gdGhlCmJhY2tpbmcgc3RvcmUgcHJpb3Ig
+dG8gdGhlIHdyaXRlcyBiZWluZyBwb3N0ZWQsIHRodXMgc2VlaW5nIHN0YWxlIGRhdGEuCgpTaWdu
+ZWQtb2ZmLWJ5OiBDaHJpcyBXaWxzb24gPGNocmlzQGNocmlzLXdpbHNvbi5jby51az4KLS0tCiBk
+cml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2dlbS5jIHwgMyArKy0KIDEgZmlsZSBjaGFuZ2VkLCAy
+IGluc2VydGlvbnMoKyksIDEgZGVsZXRpb24oLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9k
+cm0vaTkxNS9pOTE1X2dlbS5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9nZW0uYwppbmRl
+eCA5OGI2NWI3MThlMWEuLjkxOWQzYTcyM2M1MCAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJt
+L2k5MTUvaTkxNV9nZW0uYworKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2dlbS5jCkBA
+IC02NzAsMTEgKzY3MCwxMiBAQCBpOTE1X2dlbV9ndHRfcHdyaXRlX2Zhc3Qoc3RydWN0IGRybV9p
+OTE1X2dlbV9vYmplY3QgKm9iaiwKIAkJdXNlcl9kYXRhICs9IHBhZ2VfbGVuZ3RoOwogCQlvZmZz
+ZXQgKz0gcGFnZV9sZW5ndGg7CiAJfQorCisJaW50ZWxfZ3RfZmx1c2hfZ2d0dF93cml0ZXMoZ2d0
+dC0+dm0uZ3QpOwogCWludGVsX2Zyb250YnVmZmVyX2ZsdXNoKG9iai0+ZnJvbnRidWZmZXIsIE9S
+SUdJTl9DUFUpOwogCiAJaTkxNV9nZW1fb2JqZWN0X3VubG9ja19mZW5jZShvYmosIGZlbmNlKTsK
+IG91dF91bnBpbjoKLQlpbnRlbF9ndF9mbHVzaF9nZ3R0X3dyaXRlcyhnZ3R0LT52bS5ndCk7CiAJ
+aWYgKGRybV9tbV9ub2RlX2FsbG9jYXRlZCgmbm9kZSkpIHsKIAkJZ2d0dC0+dm0uY2xlYXJfcmFu
+Z2UoJmdndHQtPnZtLCBub2RlLnN0YXJ0LCBub2RlLnNpemUpOwogCQlyZW1vdmVfbWFwcGFibGVf
+bm9kZShnZ3R0LCAmbm9kZSk7Ci0tIAoyLjI0LjAKCl9fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxp
+c3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFu
+L2xpc3RpbmZvL2ludGVsLWdmeA==
