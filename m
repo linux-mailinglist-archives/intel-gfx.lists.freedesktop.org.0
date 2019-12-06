@@ -1,22 +1,22 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D42C115076
-	for <lists+intel-gfx@lfdr.de>; Fri,  6 Dec 2019 13:32:44 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id AAE23115078
+	for <lists+intel-gfx@lfdr.de>; Fri,  6 Dec 2019 13:33:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 65C896E082;
-	Fri,  6 Dec 2019 12:32:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 242846F9F2;
+	Fri,  6 Dec 2019 12:33:36 +0000 (UTC)
 X-Original-To: Intel-gfx@lists.freedesktop.org
 Delivered-To: Intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 126F56E082
- for <Intel-gfx@lists.freedesktop.org>; Fri,  6 Dec 2019 12:32:40 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EA9C26F9F2
+ for <Intel-gfx@lists.freedesktop.org>; Fri,  6 Dec 2019 12:33:34 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from localhost (unverified [78.156.65.138]) 
  by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 19483970-1500050 for multiple; Fri, 06 Dec 2019 12:32:26 +0000
+ 19483993-1500050 for multiple; Fri, 06 Dec 2019 12:33:27 +0000
 MIME-Version: 1.0
 To: Intel-gfx@lists.freedesktop.org,
  Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
@@ -24,9 +24,9 @@ From: Chris Wilson <chris@chris-wilson.co.uk>
 In-Reply-To: <20191129105436.20100-1-tvrtko.ursulin@linux.intel.com>
 References: <157495798936.8489.15571641017234842307@skylake-alporthouse-com>
  <20191129105436.20100-1-tvrtko.ursulin@linux.intel.com>
-Message-ID: <157563554404.8823.10550311749695088810@skylake-alporthouse-com>
+Message-ID: <157563560536.8823.15559955937234677158@skylake-alporthouse-com>
 User-Agent: alot/0.6
-Date: Fri, 06 Dec 2019 12:32:24 +0000
+Date: Fri, 06 Dec 2019 12:33:25 +0000
 Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/pmu: Report frequency as zero
  while GPU is sleeping
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -66,9 +66,10 @@ UFUgaXMKPiBhd2FrZS4gQXMgYSBjb25zZXF1ZW5jZSByZXBvcnRlZCBmcmVxdWVuY2llcyBjb3Vs
 ZCBiZSByZXBvcnRlZCBhcyBiZWxvdwo+IHRoZSBHUFUgcmVwb3J0ZWQgbWluaW11bSBidXQgdGhh
 dCBzaG91bGQgYmUgbXVjaCBsZXNzIGNvbmZ1c2luZyB0aGF0IHRoZQo+IGN1cnJlbnQgc2l0dWF0
 aW9uLgo+IAo+IHYyOgo+ICAqIFNwbGl0IG91dCBlYXJseSBleGl0IGNvbmRpdGlvbnMgZm9yIHJl
-YWRhYmlsaXR5LiAoQ2hyaXMpCj4gCj4gU2lnbmVkLW9mZi1ieTogVHZydGtvIFVyc3VsaW4gPHR2
-cnRrby51cnN1bGluQGludGVsLmNvbT4KPiBSZXZpZXdlZC1ieTogQ2hyaXMgV2lsc29uIDxjaHJp
-c0BjaHJpcy13aWxzb24uY28udWs+CgpJJ20gaGFwcHkgaWYgeW91IGFyZSBoYXBweS4uLgotQ2hy
-aXMKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwt
-Z2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8v
-bGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
+YWRhYmlsaXR5LiAoQ2hyaXMpCj4gCgpDbG9zZXM6IGh0dHBzOi8vZ2l0bGFiLmZyZWVkZXNrdG9w
+Lm9yZy9kcm0vaW50ZWwvaXNzdWVzLzY3NQo+IFNpZ25lZC1vZmYtYnk6IFR2cnRrbyBVcnN1bGlu
+IDx0dnJ0a28udXJzdWxpbkBpbnRlbC5jb20+Cj4gUmV2aWV3ZWQtYnk6IENocmlzIFdpbHNvbiA8
+Y2hyaXNAY2hyaXMtd2lsc29uLmNvLnVrPgotQ2hyaXMKX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhA
+bGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxt
+YW4vbGlzdGluZm8vaW50ZWwtZ2Z4
