@@ -1,46 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3668D117995
-	for <lists+intel-gfx@lfdr.de>; Mon,  9 Dec 2019 23:42:33 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 20D131179A6
+	for <lists+intel-gfx@lfdr.de>; Mon,  9 Dec 2019 23:48:03 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5C0756E581;
-	Mon,  9 Dec 2019 22:42:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 490BA6E584;
+	Mon,  9 Dec 2019 22:48:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from ozlabs.org (bilbo.ozlabs.org [IPv6:2401:3900:2:1::2])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8169E6E581
- for <intel-gfx@lists.freedesktop.org>; Mon,  9 Dec 2019 22:42:28 +0000 (UTC)
-Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
- SHA256) (No client certificate requested)
- by mail.ozlabs.org (Postfix) with ESMTPSA id 47Wyr05W3yz9sP3;
- Tue, 10 Dec 2019 09:42:24 +1100 (AEDT)
-Date: Tue, 10 Dec 2019 09:42:24 +1100
-From: Stephen Rothwell <sfr@canb.auug.org.au>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>, Jani Nikula
- <jani.nikula@linux.intel.com>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Intel Graphics <intel-gfx@lists.freedesktop.org>, DRI
- <dri-devel@lists.freedesktop.org>
-Message-ID: <20191210094224.4a294cb7@canb.auug.org.au>
-In-Reply-To: <20191210093957.5120f717@canb.auug.org.au>
-References: <20191210093957.5120f717@canb.auug.org.au>
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2D2046E584
+ for <intel-gfx@lists.freedesktop.org>; Mon,  9 Dec 2019 22:48:00 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 19519169-1500050 for multiple; Mon, 09 Dec 2019 22:47:31 +0000
 MIME-Version: 1.0
-X-Mailman-Original-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=canb.auug.org.au; s=201702; t=1575931345;
- bh=rbtrLmd0Sl7CbXlL69awNUOL+vEJxT9RgQ4V++Z3lTw=;
- h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
- b=CGi9lb9AMLz5/qrcyCh8+E3Wg9bApr/23NuDOy9kbB5sRuSokoR7dM1ByVQtZTVZf
- 6Wu9D3vb8vKFSXmksXG6GUXsA2DevwNnayjkQ9GUxoQJ0LD2sDXr9atXX4TFjFc4uf
- 6BK9WHEMp8ErFxZuRRI88wat4ILFMgXFdXWRrXxPpqppchMguCe086R9cqUK/Emygj
- QoP6bYEbTA87MXDnXg64CkMNjgOHKApsDDACxSdMt+Rkn2P2yWiLMPTwoLIm7dufE8
- W+lIyE2eIYNwv8Uhzl+koBBVMPQ40MJLVNrDcqRCksEfsZfZe6wjJpGdi73DRQMLz4
- D1FzKNeflKa8Q==
-Subject: Re: [Intel-gfx] linux-next: build failure after merge of the
- drm-intel tree
+To: Andi Shyti <andi@etezian.org>, Intel GFX <intel-gfx@lists.freedesktop.org>
+From: Chris Wilson <chris@chris-wilson.co.uk>
+In-Reply-To: <20191209223556.3897-3-andi@etezian.org>
+References: <20191209223556.3897-1-andi@etezian.org>
+ <20191209223556.3897-3-andi@etezian.org>
+Message-ID: <157593165124.10362.5965422754664744456@skylake-alporthouse-com>
+User-Agent: alot/0.6
+Date: Mon, 09 Dec 2019 22:47:31 +0000
+Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915/gt: Move power management
+ debugfs files into gt
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.23
 Precedence: list
@@ -53,142 +40,20 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Dave Airlie <airlied@linux.ie>,
-	Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-	S@freedesktop.org,
-	Linux Next Mailing List <linux-next@vger.kernel.org>,
-	Qian Cai <cai@lca.pw>, Ingo Molnar <mingo@kernel.org>
-Content-Type: multipart/mixed; boundary="===============1197969749=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1197969749==
-Content-Type: multipart/signed; boundary="Sig_/Uy=O+1BroOoggdNM6mX.EEp";
- protocol="application/pgp-signature"; micalg=pgp-sha256
-
---Sig_/Uy=O+1BroOoggdNM6mX.EEp
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
-
-Hi all,
-
-[Just adding Dave Airlie to the cc list]
-
-On Tue, 10 Dec 2019 09:39:57 +1100 Stephen Rothwell <sfr@canb.auug.org.au> =
-wrote:
->
-> After merging the drm-intel tree, today's linux-next build (x86_64
-> allmodconfig) failed like this:
->=20
-> In file included from include/linux/spinlock_types.h:18,
->                  from include/linux/mutex.h:16,
->                  from include/linux/kernfs.h:12,
->                  from include/linux/sysfs.h:16,
->                  from include/linux/kobject.h:20,
->                  from include/linux/of.h:17,
->                  from include/linux/irqdomain.h:35,
->                  from include/linux/acpi.h:13,
->                  from drivers/gpu/drm/i915/i915_drv.c:30:
-> drivers/gpu/drm/i915/gem/i915_gem_object.h: In function 'i915_gem_object_=
-pin_pages':
-> include/linux/lockdep.h:635:2: error: too many arguments to function 'loc=
-k_release'
->   635 |  lock_release(&(lock)->dep_map, 0, _THIS_IP_);  \
->       |  ^~~~~~~~~~~~
-> drivers/gpu/drm/i915/gem/i915_gem_object.h:294:2: note: in expansion of m=
-acro 'might_lock_nested'
->   294 |  might_lock_nested(&obj->mm.lock, I915_MM_GET_PAGES);
->       |  ^~~~~~~~~~~~~~~~~
-> include/linux/lockdep.h:352:13: note: declared here
->   352 | extern void lock_release(struct lockdep_map *lock, unsigned long =
-ip);
->       |             ^~~~~~~~~~~~
-> In file included from include/linux/spinlock_types.h:18,
->                  from include/linux/spinlock.h:83,
->                  from include/linux/mmzone.h:8,
->                  from include/linux/gfp.h:6,
->                  from include/linux/slab.h:15,
->                  from drivers/gpu/drm/i915/i915_irq.c:32:
-> drivers/gpu/drm/i915/gem/i915_gem_object.h: In function 'i915_gem_object_=
-pin_pages':
-> include/linux/lockdep.h:635:2: error: too many arguments to function 'loc=
-k_release'
->   635 |  lock_release(&(lock)->dep_map, 0, _THIS_IP_);  \
->       |  ^~~~~~~~~~~~
-> drivers/gpu/drm/i915/gem/i915_gem_object.h:294:2: note: in expansion of m=
-acro 'might_lock_nested'
->   294 |  might_lock_nested(&obj->mm.lock, I915_MM_GET_PAGES);
->       |  ^~~~~~~~~~~~~~~~~
-> include/linux/lockdep.h:352:13: note: declared here
->   352 | extern void lock_release(struct lockdep_map *lock, unsigned long =
-ip);
->       |             ^~~~~~~~~~~~
->=20
-> Caused by commit
->=20
->   e692b4021a2e ("lockdep: add might_lock_nested()")
->=20
-> interacting with commit
->=20
->   5facae4f3549 ("locking/lockdep: Remove unused @nested argument from loc=
-k_release()")
->=20
-> from Linus' tree.
->=20
-> I have applied the following merge fix patch for today:
->=20
-> From: Stephen Rothwell <sfr@canb.auug.org.au>
-> Date: Tue, 10 Dec 2019 09:37:07 +1100
-> Subject: [PATCH] lockdep: fix up for lock_release API change
->=20
-> ---
->  include/linux/lockdep.h | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->=20
-> diff --git a/include/linux/lockdep.h b/include/linux/lockdep.h
-> index 5bbfd5866081..664f52c6dd4c 100644
-> --- a/include/linux/lockdep.h
-> +++ b/include/linux/lockdep.h
-> @@ -632,7 +632,7 @@ do {									\
->  	typecheck(struct lockdep_map *, &(lock)->dep_map);		\
->  	lock_acquire(&(lock)->dep_map, subclass, 0, 1, 1, NULL,		\
->  		     _THIS_IP_);					\
-> -	lock_release(&(lock)->dep_map, 0, _THIS_IP_);		\
-> +	lock_release(&(lock)->dep_map, _THIS_IP_);			\
->  } while (0)
-> =20
->  #define lockdep_assert_irqs_enabled()	do {				\
-
---=20
-Cheers,
-Stephen Rothwell
-
---Sig_/Uy=O+1BroOoggdNM6mX.EEp
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAl3uzdAACgkQAVBC80lX
-0GxcGQf/RijDSkbB4Vye8LPtcAVqvQNGx8CN+LZj1IZ34iwjePiCTl3n/mGYF1u2
-AxleCuDemMObna8edGEBjOvtAa50ifDYKJqs0py6zo7J6vJmdT7EOC1llQcUxUfr
-FrwIAYmCKCeMehekQ60Bzl38zCot+CmdCbZPelPFDthjVPyOC7nubzdsH1FtFpUL
-Dmozh08UN2X7q/ne75+EXpsuPmG2pPpi2VDpsl6SYPLLvn9OFmTQD69hpC0ztsqs
-MU4iXvIWXty+4YO1PyIqE4S3Wooq4xM8lF/A0PPNLdLMYQYHlaFuqkVn7p2JugZB
-UDc5JaMXxK6NVD/9deRYknmv78fmHg==
-=T9L2
------END PGP SIGNATURE-----
-
---Sig_/Uy=O+1BroOoggdNM6mX.EEp--
-
---===============1197969749==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
-IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
-
---===============1197969749==--
+UXVvdGluZyBBbmRpIFNoeXRpICgyMDE5LTEyLTA5IDIyOjM1OjU2KQo+ICtpbnQgaW50ZWxfZ3Rf
+cG1fZGVidWdmc19yZWdpc3RlcihzdHJ1Y3QgaW50ZWxfZ3QgKmd0KQo+ICt7Cj4gKyAgICAgICBz
+dHJ1Y3QgZHJtX21pbm9yICptaW5vciA9IGd0LT5pOTE1LT5kcm0ucHJpbWFyeTsKPiArCj4gKyAg
+ICAgICByZXR1cm4gZHJtX2RlYnVnZnNfY3JlYXRlX2ZpbGVzKGk5MTVfZ3RfcG1fZGVidWdmc19s
+aXN0LAo+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBBUlJBWV9TSVpF
+KGk5MTVfZ3RfcG1fZGVidWdmc19saXN0KSwKPiArICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgbWlub3ItPmRlYnVnZnNfcm9vdCwgbWlub3IpOwoKWW91IG1pc3NlZCBhIHZp
+dGFsIHRyaWNrIHRvIHBhc3MgdGhlIGd0IGFzIG91ciBwcml2YXRlLiBIaW50IGRvbid0IHVzZQpk
+cm1fZGVidWdmc19jcmVhdGVfZmlsZXMoKSBwZXIgc2UuCi1DaHJpcwpfX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0Cklu
+dGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5v
+cmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZng=
