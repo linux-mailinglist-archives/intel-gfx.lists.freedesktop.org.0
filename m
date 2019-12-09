@@ -1,31 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4DDD4117C2A
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 Dec 2019 01:09:36 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 679BD117C3A
+	for <lists+intel-gfx@lfdr.de>; Tue, 10 Dec 2019 01:16:43 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8A3176E5A4;
-	Tue, 10 Dec 2019 00:09:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CB5686E1E6;
+	Tue, 10 Dec 2019 00:16:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 3D62B6E214;
- Tue, 10 Dec 2019 00:09:32 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 6DAB5A0073;
- Mon,  9 Dec 2019 23:33:46 +0000 (UTC)
-MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Andi Shyti" <andi@etezian.org>
-Date: Mon, 09 Dec 2019 23:33:46 -0000
-Message-ID: <157593442641.14782.17672729599105158074@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
+X-Greylist: delayed 5699 seconds by postgrey-1.36 at gabe;
+ Tue, 10 Dec 2019 00:16:39 UTC
+Received: from 3.mo5.mail-out.ovh.net (3.mo5.mail-out.ovh.net [46.105.40.108])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E71636E1E6
+ for <intel-gfx@lists.freedesktop.org>; Tue, 10 Dec 2019 00:16:39 +0000 (UTC)
+Received: from player690.ha.ovh.net (unknown [10.108.57.211])
+ by mo5.mail-out.ovh.net (Postfix) with ESMTP id 7248F25CD80
+ for <intel-gfx@lists.freedesktop.org>; Tue, 10 Dec 2019 00:38:57 +0100 (CET)
+Received: from etezian.org (net-37-116-49-191.cust.vodafonedsl.it
+ [37.116.49.191]) (Authenticated sender: andi@etezian.org)
+ by player690.ha.ovh.net (Postfix) with ESMTPSA id C082BCF93B5C;
+ Mon,  9 Dec 2019 23:38:53 +0000 (UTC)
+Date: Tue, 10 Dec 2019 01:39:05 +0200
+From: Andi Shyti <andi@etezian.org>
+To: Chris Wilson <chris@chris-wilson.co.uk>
+Message-ID: <20191209233905.GA1617@jack.zhora.eu>
 References: <20191209223556.3897-1-andi@etezian.org>
-In-Reply-To: <20191209223556.3897-1-andi@etezian.org>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_Some_debugfs_enhancements?=
+ <20191209223556.3897-3-andi@etezian.org>
+ <157593165124.10362.5965422754664744456@skylake-alporthouse-com>
+MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <157593165124.10362.5965422754664744456@skylake-alporthouse-com>
+User-Agent: Mutt/1.12.2 (2019-09-21)
+X-Ovh-Tracer-Id: 15785398172987081225
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: -100
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedufedrudelvddgtdekucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepfffhvffukfhfgggtuggjfgesthdtredttdervdenucfhrhhomheptehnughiucfuhhihthhiuceorghnughisegvthgviihirghnrdhorhhgqeenucfkpheptddrtddrtddrtddpfeejrdduudeirdegledrudeludenucfrrghrrghmpehmohguvgepshhmthhpqdhouhhtpdhhvghlohepphhlrgihvghrieeltddrhhgrrdhovhhhrdhnvghtpdhinhgvtheptddrtddrtddrtddpmhgrihhlfhhrohhmpegrnhguihesvghtvgiiihgrnhdrohhrghdprhgtphhtthhopehinhhtvghlqdhgfhigsehlihhsthhsrdhfrhgvvgguvghskhhtohhprdhorhhgnecuvehluhhsthgvrhfuihiivgeptd
+Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915/gt: Move power management
+ debugfs files into gt
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,91 +50,31 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Intel GFX <intel-gfx@lists.freedesktop.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+> > +int intel_gt_pm_debugfs_register(struct intel_gt *gt)
+> > +{
+> > +       struct drm_minor *minor = gt->i915->drm.primary;
+> > +
+> > +       return drm_debugfs_create_files(i915_gt_pm_debugfs_list,
+> > +                                       ARRAY_SIZE(i915_gt_pm_debugfs_list),
+> > +                                       minor->debugfs_root, minor);
+> 
+> You missed a vital trick to pass the gt as our private. Hint don't use
+> drm_debugfs_create_files() per se.
 
-Series: Some debugfs enhancements
-URL   : https://patchwork.freedesktop.org/series/70658/
-State : warning
+I knew this comment would come, but, after some thoughts, it felt
+like this was the less drastic approach (because at the end
+nothing really changes :) ).
 
-== Summary ==
+I will improve it in v2, along with the renaming in patch 1.
 
-$ dim checkpatch origin/drm-tip
-112b55276b89 drm/i915/rps: Add frequency translation helpers
-77e7a15ebe7b drm/i915/gt: Move power management debugfs files into gt
--:24: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#24: 
-new file mode 100644
-
--:29: WARNING:SPDX_LICENSE_TAG: Missing or malformed SPDX-License-Identifier tag in line 1
-#29: FILE: drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c:1:
-+/*
-
--:30: WARNING:SPDX_LICENSE_TAG: Misplaced SPDX-License-Identifier tag - use line 1 instead
-#30: FILE: drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c:2:
-+ * SPDX-License-Identifier: MIT
-
--:121: CHECK:BRACES: braces {} should be used on all arms of this statement
-#121: FILE: drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c:93:
-+		if (INTEL_GEN(i915) >= 9)
-[...]
-+		else {
-[...]
-
--:123: CHECK:BRACES: Unbalanced braces around else statement
-#123: FILE: drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c:95:
-+		else {
-
--:442: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#442: FILE: drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c:414:
-+		gen9_powergate_enable = intel_uncore_read(uncore,
-+						GEN9_PG_ENABLE);
-
--:444: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#444: FILE: drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c:416:
-+		gen9_powergate_status = intel_uncore_read(uncore,
-+						GEN9_PWRGT_DOMAIN_STATUS);
-
--:457: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#457: FILE: drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c:429:
-+		seq_printf(m, "Render Well Gating Enabled: %s\n",
-+			yesno(gen9_powergate_enable & GEN9_RENDER_PG_ENABLE));
-
--:459: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#459: FILE: drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c:431:
-+		seq_printf(m, "Media Well Gating Enabled: %s\n",
-+			yesno(gen9_powergate_enable & GEN9_MEDIA_PG_ENABLE));
-
--:466: CHECK:CAMELCASE: Avoid CamelCase: <GEN6_RCn_MASK>
-#466: FILE: drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c:438:
-+	switch (gt_core_status & GEN6_RCn_MASK) {
-
--:491: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#491: FILE: drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c:463:
-+		seq_printf(m, "Render Power Well: %s\n",
-+			(gen9_powergate_status &
-
--:494: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#494: FILE: drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c:466:
-+		seq_printf(m, "Media Power Well: %s\n",
-+			(gen9_powergate_status &
-
--:628: WARNING:SPDX_LICENSE_TAG: Missing or malformed SPDX-License-Identifier tag in line 1
-#628: FILE: drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.h:1:
-+/*
-
--:629: WARNING:SPDX_LICENSE_TAG: Misplaced SPDX-License-Identifier tag - use line 1 instead
-#629: FILE: drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.h:2:
-+ * SPDX-License-Identifier: MIT
-
-total: 0 errors, 5 warnings, 9 checks, 1287 lines checked
-
+Thanks Chris,
+Andi
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
