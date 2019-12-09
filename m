@@ -1,31 +1,35 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C64E4117C37
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 Dec 2019 01:15:09 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 86B45117D52
+	for <lists+intel-gfx@lfdr.de>; Tue, 10 Dec 2019 02:42:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AA6FE89DA4;
-	Tue, 10 Dec 2019 00:15:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9FACB6E5A3;
+	Tue, 10 Dec 2019 01:42:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 90FF989728;
- Tue, 10 Dec 2019 00:14:59 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 055BCA47DF;
- Tue, 10 Dec 2019 00:14:59 +0000 (UTC)
+X-Greylist: delayed 3606 seconds by postgrey-1.36 at gabe;
+ Tue, 10 Dec 2019 01:42:52 UTC
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0FD466E5A3
+ for <intel-gfx@lists.freedesktop.org>; Tue, 10 Dec 2019 01:42:51 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 19519444-1500050 for multiple; Mon, 09 Dec 2019 23:25:53 +0000
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Andi Shyti" <andi@etezian.org>
-Date: Tue, 10 Dec 2019 00:14:58 -0000
-Message-ID: <157593689899.18784.14209552082976693101@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
+To: Andi Shyti <andi@etezian.org>, Intel GFX <intel-gfx@lists.freedesktop.org>
+From: Chris Wilson <chris@chris-wilson.co.uk>
+In-Reply-To: <20191209223556.3897-2-andi@etezian.org>
 References: <20191209223556.3897-1-andi@etezian.org>
-In-Reply-To: <20191209223556.3897-1-andi@etezian.org>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgU29t?=
- =?utf-8?q?e_debugfs_enhancements?=
+ <20191209223556.3897-2-andi@etezian.org>
+Message-ID: <157593395225.10362.12592210425691459593@skylake-alporthouse-com>
+User-Agent: alot/0.6
+Date: Mon, 09 Dec 2019 23:25:52 +0000
+Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915/rps: Add frequency translation
+ helpers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,135 +42,67 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Quoting Andi Shyti (2019-12-09 22:35:55)
+> From: Andi Shyti <andi.shyti@intel.com>
+> 
+> Add two helpers that for reading the actual GT's frequency. The
+> two helpers are:
+> 
+>  - intel_cagf_read: reads the frequency and returns it not
+>    normalized
+> 
+>  - intel_cagf_freq_read: provides the frequency in Hz.
+> 
+> Use the above helpers in sysfs and debugfs.
+> 
+> Signed-off-by: Andi Shyti <andi.shyti@intel.com>
+> ---
+>  drivers/gpu/drm/i915/gt/intel_rps.c | 22 ++++++++++++++++++++++
+>  drivers/gpu/drm/i915/gt/intel_rps.h |  2 ++
+>  drivers/gpu/drm/i915/i915_debugfs.c | 21 +++++----------------
+>  drivers/gpu/drm/i915/i915_sysfs.c   | 14 ++------------
+>  4 files changed, 31 insertions(+), 28 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gt/intel_rps.c b/drivers/gpu/drm/i915/gt/intel_rps.c
+> index 08a38a3b90b0..72c3dd976e32 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_rps.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_rps.c
+> @@ -1682,6 +1682,28 @@ u32 intel_get_cagf(struct intel_rps *rps, u32 rpstat)
+>         return  cagf;
+>  }
+>  
+> +u32 intel_cagf_read(struct intel_rps *rps)
+> +{
+> +       struct drm_i915_private *i915 = rps_to_i915(rps);
+> +       u32 freq;
+> +
+> +       if (IS_VALLEYVIEW(i915) || IS_CHERRYVIEW(i915)) {
+> +               vlv_punit_get(i915);
+> +               freq = vlv_punit_read(i915, PUNIT_REG_GPU_FREQ_STS);
+> +               vlv_punit_put(i915);
+> +
+> +               return (freq >> 8) & 0xff;
+> +       }
+> +
+> +       return intel_get_cagf(rps, intel_uncore_read(rps_to_gt(rps)->uncore,
+> +                                                    GEN6_RPSTAT1));
+> +}
+> +
+> +u32 intel_cagf_freq_read(struct intel_rps *rps)
+> +{
+> +       return intel_gpu_freq(rps, intel_cagf_read(rps));
 
-Series: Some debugfs enhancements
-URL   : https://patchwork.freedesktop.org/series/70658/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_7523 -> Patchwork_15661
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15661/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_15661 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live_gem_contexts:
-    - fi-cfl-8700k:       [PASS][1] -> [DMESG-FAIL][2] ([i915#730])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7523/fi-cfl-8700k/igt@i915_selftest@live_gem_contexts.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15661/fi-cfl-8700k/igt@i915_selftest@live_gem_contexts.html
-    - fi-hsw-peppy:       [PASS][3] -> [INCOMPLETE][4] ([i915#694])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7523/fi-hsw-peppy/igt@i915_selftest@live_gem_contexts.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15661/fi-hsw-peppy/igt@i915_selftest@live_gem_contexts.html
-    - fi-byt-n2820:       [PASS][5] -> [INCOMPLETE][6] ([i915#45])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7523/fi-byt-n2820/igt@i915_selftest@live_gem_contexts.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15661/fi-byt-n2820/igt@i915_selftest@live_gem_contexts.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_ctx_create@basic-files:
-    - {fi-tgl-guc}:       [INCOMPLETE][7] ([fdo#111735]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7523/fi-tgl-guc/igt@gem_ctx_create@basic-files.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15661/fi-tgl-guc/igt@gem_ctx_create@basic-files.html
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-skl-lmem:        [DMESG-WARN][9] ([i915#592]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7523/fi-skl-lmem/igt@i915_pm_rpm@module-reload.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15661/fi-skl-lmem/igt@i915_pm_rpm@module-reload.html
-
-  * igt@i915_selftest@live_blt:
-    - fi-ivb-3770:        [DMESG-FAIL][11] ([i915#725]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7523/fi-ivb-3770/igt@i915_selftest@live_blt.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15661/fi-ivb-3770/igt@i915_selftest@live_blt.html
-    - fi-hsw-4770:        [DMESG-FAIL][13] -> [PASS][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7523/fi-hsw-4770/igt@i915_selftest@live_blt.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15661/fi-hsw-4770/igt@i915_selftest@live_blt.html
-
-  * igt@kms_chamelium@hdmi-hpd-fast:
-    - fi-kbl-7500u:       [FAIL][15] ([fdo#111096] / [i915#323]) -> [PASS][16]
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7523/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15661/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
-
-  
-#### Warnings ####
-
-  * igt@gem_exec_suspend@basic-s3:
-    - fi-kbl-x1275:       [DMESG-WARN][17] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][18] ([i915#62] / [i915#92]) +6 similar issues
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7523/fi-kbl-x1275/igt@gem_exec_suspend@basic-s3.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15661/fi-kbl-x1275/igt@gem_exec_suspend@basic-s3.html
-
-  * igt@kms_flip@basic-flip-vs-modeset:
-    - fi-kbl-x1275:       [DMESG-WARN][19] ([i915#62] / [i915#92]) -> [DMESG-WARN][20] ([i915#62] / [i915#92] / [i915#95]) +4 similar issues
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7523/fi-kbl-x1275/igt@kms_flip@basic-flip-vs-modeset.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15661/fi-kbl-x1275/igt@kms_flip@basic-flip-vs-modeset.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#111096]: https://bugs.freedesktop.org/show_bug.cgi?id=111096
-  [fdo#111735]: https://bugs.freedesktop.org/show_bug.cgi?id=111735
-  [i915#323]: https://gitlab.freedesktop.org/drm/intel/issues/323
-  [i915#45]: https://gitlab.freedesktop.org/drm/intel/issues/45
-  [i915#592]: https://gitlab.freedesktop.org/drm/intel/issues/592
-  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
-  [i915#694]: https://gitlab.freedesktop.org/drm/intel/issues/694
-  [i915#725]: https://gitlab.freedesktop.org/drm/intel/issues/725
-  [i915#730]: https://gitlab.freedesktop.org/drm/intel/issues/730
-  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
-  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
-
-
-Participating hosts (52 -> 46)
-------------------------------
-
-  Missing    (6): fi-ilk-m540 fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-kbl-7560u fi-byt-clapper 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_7523 -> Patchwork_15661
-
-  CI-20190529: 20190529
-  CI_DRM_7523: bbcf5f94e2ae795beec14cba06533ff3a9971cc0 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5341: 5fe683cdebde2d77d16ffc42c9fdf29a9f95bb82 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_15661: 77e7a15ebe7b411500d202075ef23f08948992a4 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-77e7a15ebe7b drm/i915/gt: Move power management debugfs files into gt
-112b55276b89 drm/i915/rps: Add frequency translation helpers
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15661/index.html
+Thinking about this far too much, this should be something along the
+lines of
+	intel_rps_read_actual_frequency(struct intel_rps *rps)
+since it operates on the intel_rps object and
+	intel_rps_read_cagf()
+-Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
