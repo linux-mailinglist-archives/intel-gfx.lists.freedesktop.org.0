@@ -1,31 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6859F117C07
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 Dec 2019 01:04:39 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4DDD4117C2A
+	for <lists+intel-gfx@lfdr.de>; Tue, 10 Dec 2019 01:09:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 275836E211;
-	Tue, 10 Dec 2019 00:04:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8A3176E5A4;
+	Tue, 10 Dec 2019 00:09:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id BDF106E1E6;
- Tue, 10 Dec 2019 00:04:32 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 3D62B6E214;
+ Tue, 10 Dec 2019 00:09:32 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id C7A53A7DFC;
- Mon,  9 Dec 2019 23:29:27 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 6DAB5A0073;
+ Mon,  9 Dec 2019 23:33:46 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
-Date: Mon, 09 Dec 2019 23:29:27 -0000
-Message-ID: <157593416781.14784.16211572497866300447@emeril.freedesktop.org>
+To: "Andi Shyti" <andi@etezian.org>
+Date: Mon, 09 Dec 2019 23:33:46 -0000
+Message-ID: <157593442641.14782.17672729599105158074@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20191209213909.5402-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20191209213909.5402-1-ville.syrjala@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Implement_pps_w/a_=231124_for_bxt+?=
+References: <20191209223556.3897-1-andi@etezian.org>
+In-Reply-To: <20191209223556.3897-1-andi@etezian.org>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_Some_debugfs_enhancements?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,136 +47,82 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: drm/i915: Implement pps w/a #1124 for bxt+
-URL   : https://patchwork.freedesktop.org/series/70655/
-State : failure
+Series: Some debugfs enhancements
+URL   : https://patchwork.freedesktop.org/series/70658/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_7523 -> Patchwork_15659
-====================================================
+$ dim checkpatch origin/drm-tip
+112b55276b89 drm/i915/rps: Add frequency translation helpers
+77e7a15ebe7b drm/i915/gt: Move power management debugfs files into gt
+-:24: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#24: 
+new file mode 100644
 
-Summary
--------
+-:29: WARNING:SPDX_LICENSE_TAG: Missing or malformed SPDX-License-Identifier tag in line 1
+#29: FILE: drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c:1:
++/*
 
-  **FAILURE**
+-:30: WARNING:SPDX_LICENSE_TAG: Misplaced SPDX-License-Identifier tag - use line 1 instead
+#30: FILE: drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c:2:
++ * SPDX-License-Identifier: MIT
 
-  Serious unknown changes coming with Patchwork_15659 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_15659, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
+-:121: CHECK:BRACES: braces {} should be used on all arms of this statement
+#121: FILE: drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c:93:
++		if (INTEL_GEN(i915) >= 9)
+[...]
++		else {
+[...]
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15659/index.html
+-:123: CHECK:BRACES: Unbalanced braces around else statement
+#123: FILE: drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c:95:
++		else {
 
-Possible new issues
--------------------
+-:442: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#442: FILE: drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c:414:
++		gen9_powergate_enable = intel_uncore_read(uncore,
++						GEN9_PG_ENABLE);
 
-  Here are the unknown changes that may have been introduced in Patchwork_15659:
+-:444: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#444: FILE: drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c:416:
++		gen9_powergate_status = intel_uncore_read(uncore,
++						GEN9_PWRGT_DOMAIN_STATUS);
 
-### IGT changes ###
+-:457: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#457: FILE: drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c:429:
++		seq_printf(m, "Render Well Gating Enabled: %s\n",
++			yesno(gen9_powergate_enable & GEN9_RENDER_PG_ENABLE));
 
-#### Possible regressions ####
+-:459: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#459: FILE: drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c:431:
++		seq_printf(m, "Media Well Gating Enabled: %s\n",
++			yesno(gen9_powergate_enable & GEN9_MEDIA_PG_ENABLE));
 
-  * igt@gem_wait@basic-busy-all:
-    - fi-ivb-3770:        [PASS][1] -> [FAIL][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7523/fi-ivb-3770/igt@gem_wait@basic-busy-all.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15659/fi-ivb-3770/igt@gem_wait@basic-busy-all.html
+-:466: CHECK:CAMELCASE: Avoid CamelCase: <GEN6_RCn_MASK>
+#466: FILE: drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c:438:
++	switch (gt_core_status & GEN6_RCn_MASK) {
 
-  
-Known issues
-------------
+-:491: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#491: FILE: drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c:463:
++		seq_printf(m, "Render Power Well: %s\n",
++			(gen9_powergate_status &
 
-  Here are the changes found in Patchwork_15659 that come from known issues:
+-:494: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#494: FILE: drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c:466:
++		seq_printf(m, "Media Power Well: %s\n",
++			(gen9_powergate_status &
 
-### IGT changes ###
+-:628: WARNING:SPDX_LICENSE_TAG: Missing or malformed SPDX-License-Identifier tag in line 1
+#628: FILE: drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.h:1:
++/*
 
-#### Issues hit ####
+-:629: WARNING:SPDX_LICENSE_TAG: Misplaced SPDX-License-Identifier tag - use line 1 instead
+#629: FILE: drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.h:2:
++ * SPDX-License-Identifier: MIT
 
-  * igt@gem_sync@basic-each:
-    - fi-tgl-y:           [PASS][3] -> [INCOMPLETE][4] ([i915#707])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7523/fi-tgl-y/igt@gem_sync@basic-each.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15659/fi-tgl-y/igt@gem_sync@basic-each.html
+total: 0 errors, 5 warnings, 9 checks, 1287 lines checked
 
-  * igt@i915_selftest@live_gem_contexts:
-    - fi-hsw-peppy:       [PASS][5] -> [INCOMPLETE][6] ([i915#694])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7523/fi-hsw-peppy/igt@i915_selftest@live_gem_contexts.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15659/fi-hsw-peppy/igt@i915_selftest@live_gem_contexts.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_exec_gttfill@basic:
-    - {fi-tgl-u}:         [INCOMPLETE][7] ([fdo#111593]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7523/fi-tgl-u/igt@gem_exec_gttfill@basic.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15659/fi-tgl-u/igt@gem_exec_gttfill@basic.html
-
-  * igt@i915_selftest@live_blt:
-    - fi-ivb-3770:        [DMESG-FAIL][9] ([i915#725]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7523/fi-ivb-3770/igt@i915_selftest@live_blt.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15659/fi-ivb-3770/igt@i915_selftest@live_blt.html
-    - fi-hsw-4770:        [DMESG-FAIL][11] -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7523/fi-hsw-4770/igt@i915_selftest@live_blt.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15659/fi-hsw-4770/igt@i915_selftest@live_blt.html
-
-  
-#### Warnings ####
-
-  * igt@gem_exec_suspend@basic-s0:
-    - fi-kbl-x1275:       [DMESG-WARN][13] ([i915#62] / [i915#92]) -> [DMESG-WARN][14] ([i915#62] / [i915#92] / [i915#95]) +4 similar issues
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7523/fi-kbl-x1275/igt@gem_exec_suspend@basic-s0.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15659/fi-kbl-x1275/igt@gem_exec_suspend@basic-s0.html
-
-  * igt@gem_exec_suspend@basic-s4-devices:
-    - fi-kbl-x1275:       [DMESG-WARN][15] ([fdo#107139] / [i915#62] / [i915#92]) -> [DMESG-WARN][16] ([fdo#107139] / [i915#62] / [i915#92] / [i915#95])
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7523/fi-kbl-x1275/igt@gem_exec_suspend@basic-s4-devices.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15659/fi-kbl-x1275/igt@gem_exec_suspend@basic-s4-devices.html
-
-  * igt@kms_cursor_legacy@basic-flip-after-cursor-atomic:
-    - fi-kbl-x1275:       [DMESG-WARN][17] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][18] ([i915#62] / [i915#92]) +3 similar issues
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7523/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15659/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#107139]: https://bugs.freedesktop.org/show_bug.cgi?id=107139
-  [fdo#111593]: https://bugs.freedesktop.org/show_bug.cgi?id=111593
-  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
-  [i915#694]: https://gitlab.freedesktop.org/drm/intel/issues/694
-  [i915#707]: https://gitlab.freedesktop.org/drm/intel/issues/707
-  [i915#725]: https://gitlab.freedesktop.org/drm/intel/issues/725
-  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
-  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
-
-
-Participating hosts (52 -> 44)
-------------------------------
-
-  Missing    (8): fi-tgl-guc fi-ilk-m540 fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-whl-u fi-kbl-7560u fi-byt-clapper 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_7523 -> Patchwork_15659
-
-  CI-20190529: 20190529
-  CI_DRM_7523: bbcf5f94e2ae795beec14cba06533ff3a9971cc0 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5341: 5fe683cdebde2d77d16ffc42c9fdf29a9f95bb82 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_15659: 1a3b9aeca5bacf40843d0ca3e35ad1d174908a55 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-1a3b9aeca5ba drm/i915: Implement pps w/a #1124 for bxt+
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15659/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
