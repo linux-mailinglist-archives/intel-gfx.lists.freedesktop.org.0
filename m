@@ -2,45 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B1B4D11893A
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 Dec 2019 14:09:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A903D118920
+	for <lists+intel-gfx@lfdr.de>; Tue, 10 Dec 2019 14:06:17 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B373F6E10A;
-	Tue, 10 Dec 2019 13:09:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7477E6E0C9;
+	Tue, 10 Dec 2019 13:06:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 427 seconds by postgrey-1.36 at gabe;
- Tue, 10 Dec 2019 13:09:14 UTC
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2942D6E10A
- for <intel-gfx@lists.freedesktop.org>; Tue, 10 Dec 2019 13:09:14 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-X-Amp-File-Uploaded: False
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 10 Dec 2019 05:02:07 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,299,1571727600"; d="scan'208";a="264542790"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by FMSMGA003.fm.intel.com with SMTP; 10 Dec 2019 05:02:05 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 10 Dec 2019 15:02:04 +0200
-Date: Tue, 10 Dec 2019 15:02:04 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: "Souza, Jose" <jose.souza@intel.com>
-Message-ID: <20191210130204.GZ1208@intel.com>
-References: <20191207011832.422566-1-jose.souza@intel.com>
- <20191209164044.GU1208@intel.com>
- <0871ad3238ca3e73c3bf0150725ba7ba75ed3e5f.camel@intel.com>
- <20191209194335.GX1208@intel.com>
- <1451ebc8f0a1c6b85d41cfde9d7cfb0ab26689b8.camel@intel.com>
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E23136E0C9
+ for <intel-gfx@lists.freedesktop.org>; Tue, 10 Dec 2019 13:06:13 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 19526738-1500050 for multiple; Tue, 10 Dec 2019 13:06:08 +0000
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <1451ebc8f0a1c6b85d41cfde9d7cfb0ab26689b8.camel@intel.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH 1/4] drm/i915/tgl: Select master transcoder
- for MST stream
+From: Chris Wilson <chris@chris-wilson.co.uk>
+User-Agent: alot/0.6
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+References: <20191204211703.4073569-1-chris@chris-wilson.co.uk>
+ <96a8b2f2-c93c-07b9-285d-5503b5aad128@linux.intel.com>
+In-Reply-To: <96a8b2f2-c93c-07b9-285d-5503b5aad128@linux.intel.com>
+Message-ID: <157598316862.15362.4737947399484296954@skylake-alporthouse-com>
+Date: Tue, 10 Dec 2019 13:06:08 +0000
+Subject: Re: [Intel-gfx] [PATCH v3] drm/i915: Copy across scheduler
+ behaviour flags across submit fences
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,168 +41,257 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "De Marchi, Lucas" <lucas.demarchi@intel.com>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Dec 10, 2019 at 02:16:23AM +0000, Souza, Jose wrote:
-> On Mon, 2019-12-09 at 21:43 +0200, Ville Syrj=E4l=E4 wrote:
-> > On Mon, Dec 09, 2019 at 06:45:43PM +0000, Souza, Jose wrote:
-> > > On Mon, 2019-12-09 at 18:40 +0200, Ville Syrj=E4l=E4 wrote:
-> > > > On Fri, Dec 06, 2019 at 05:18:29PM -0800, Jos=E9 Roberto de Souza
-> > > > wrote:
-> > > > > On TGL the blending of all the streams have moved from DDI to
-> > > > > transcoder, so now every transcoder working over the same MST
-> > > > > port
-> > > > > must
-> > > > > send its stream to a master transcoder and master will send to
-> > > > > DDI
-> > > > > respecting the time slots.
-> > > > > =
+Quoting Tvrtko Ursulin (2019-12-10 12:41:36)
+> 
+> On 04/12/2019 21:17, Chris Wilson wrote:
+> > We want the bonded request to have the same scheduler properties as its
+> > master so that it is placed at the same depth in the queue. For example,
+> > consider we have requests A, B and B', where B & B' are a bonded pair to
+> > run in parallel on two engines.
+> > 
+> >       A -> B
+> >                    \- B'
+> > 
+> > B will run after A and so may be scheduled on an idle engine and wait on
+> > A using a semaphore. B' sees B being executed and so enters the queue on
+> > the same engine as A. As B' did not inherit the semaphore-chain from B,
+> > it may have higher precedence than A and so preempts execution. However,
+> > B' then sits on a semaphore waiting for B, who is waiting for A, who is
+> > blocked by B.
+> > 
+> > Ergo B' needs to inherit the scheduler properties from B (i.e. the
+> > semaphore chain) so that it is scheduled with the same priority as B and
+> > will not be executed ahead of Bs dependencies.
+> 
+> It makes sense in general to inherit, although in this example why would 
+> B' not be preempted by A, once it starts blocking on the semaphore? I am 
+> thinking more and more we should not have priorities imply strict order.
 
-> > > > > So here adding all the CRTCs that shares the same MST stream if
-> > > > > needed and computing their state again, it will pick the first
-> > > > > transcoder among the ones in the same stream to be master.
-> > > > > =
+Even if we model ourselves after CFS, we still have exceptional
+schedulers like RR or DEADLINE. So priority inversion will remain an
+issue, and the way we are tackling that is by tracking dependencies.
 
-> > > > > Most of the time skl_commit_modeset_enables() enables pipes in
-> > > > > a
-> > > > > crescent order but due DDB overlapping it might not happen,
-> > > > > this
-> > > > > scenario will be handled in the next patch.
-> > > > > =
+And which semaphore do you mean? Ours or userspace? Both are ultimately
+effectively countered by timeslicing, the question is how to decide when
+to slice and how to order slices.
 
-> > > > > BSpec: 50493
-> > > > > BSpec: 49190
-> > > > > Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> > > > > Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-> > > > > Signed-off-by: Jos=E9 Roberto de Souza <jose.souza@intel.com>
-> > > > > ---
-> > > > >  drivers/gpu/drm/i915/display/intel_ddi.c      |  14 +-
-> > > > >  drivers/gpu/drm/i915/display/intel_display.c  |  15 +-
-> > > > >  .../drm/i915/display/intel_display_types.h    |   3 +
-> > > > >  drivers/gpu/drm/i915/display/intel_dp_mst.c   | 163
-> > > > > ++++++++++++++++++
-> > > > >  drivers/gpu/drm/i915/display/intel_dp_mst.h   |   5 +
-> > > > >  5 files changed, 196 insertions(+), 4 deletions(-)
-> > > > > =
+Anyway the old joke about this being a 'prescheduler' still applies -- we
+don't yet have a scheduler worthy of the name.
 
-> > > > > diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c
-> > > > > b/drivers/gpu/drm/i915/display/intel_ddi.c
-> > > > > index 3cacb1e279c1..be5bc506d4d3 100644
-> > > > > --- a/drivers/gpu/drm/i915/display/intel_ddi.c
-> > > > > +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-> > > > > @@ -1903,8 +1903,13 @@
-> > > > > intel_ddi_transcoder_func_reg_val_get(const
-> > > > > struct intel_crtc_state *crtc_state)
-> > > > >  		temp |=3D TRANS_DDI_MODE_SELECT_DP_MST;
-> > > > >  		temp |=3D DDI_PORT_WIDTH(crtc_state->lane_count);
-> > > > >  =
+> > Furthermore, to prevent the priorities changing via the expose fence on
+> > B', we need to couple in the dependencies for PI. This requires us to
+> > relax our sanity-checks that dependencies are strictly in order.
+> > 
+> > Fixes: ee1136908e9b ("drm/i915/execlists: Virtual engine bonding")
+> > Testcase: igt/gem_exec_balancer/bonded-chain
+> > Testcase: igt/gem_exec_balancer/bonded-semaphore
+> > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> > Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> > ---
+> > Due to deep ELSP submission, the bonded pair may be submitted long
+> > before its master reaches ELSP[0] -- we need to wait in the pairs as we
+> > are no longer relying on the user to do so.
+> > ---
+> >   drivers/gpu/drm/i915/i915_request.c   | 115 ++++++++++++++++++++------
+> >   drivers/gpu/drm/i915/i915_scheduler.c |   1 -
+> >   2 files changed, 90 insertions(+), 26 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
+> > index 3109b8a79b9f..b0f0cfef1eb1 100644
+> > --- a/drivers/gpu/drm/i915/i915_request.c
+> > +++ b/drivers/gpu/drm/i915/i915_request.c
+> > @@ -300,11 +300,11 @@ void i915_request_retire_upto(struct i915_request *rq)
+> >   }
+> >   
+> >   static int
+> > -__i915_request_await_execution(struct i915_request *rq,
+> > -                            struct i915_request *signal,
+> > -                            void (*hook)(struct i915_request *rq,
+> > -                                         struct dma_fence *signal),
+> > -                            gfp_t gfp)
+> > +__await_execution(struct i915_request *rq,
+> > +               struct i915_request *signal,
+> > +               void (*hook)(struct i915_request *rq,
+> > +                            struct dma_fence *signal),
+> > +               gfp_t gfp)
+> >   {
+> >       struct execute_cb *cb;
+> >   
+> > @@ -341,6 +341,8 @@ __i915_request_await_execution(struct i915_request *rq,
+> >       }
+> >       spin_unlock_irq(&signal->lock);
+> >   
+> > +     /* Copy across semaphore status as we need the same behaviour */
+> > +     rq->sched.flags |= signal->sched.flags;
+> >       return 0;
+> >   }
+> >   
+> > @@ -824,31 +826,21 @@ already_busywaiting(struct i915_request *rq)
+> >   }
+> >   
+> >   static int
+> > -emit_semaphore_wait(struct i915_request *to,
+> > -                 struct i915_request *from,
+> > -                 gfp_t gfp)
+> > +__emit_semaphore_wait(struct i915_request *to,
+> > +                   struct i915_request *from,
+> > +                   u32 seqno)
+> >   {
+> >       const int has_token = INTEL_GEN(to->i915) >= 12;
+> >       u32 hwsp_offset;
+> > -     int len;
+> > +     int len, err;
+> >       u32 *cs;
+> >   
+> >       GEM_BUG_ON(INTEL_GEN(to->i915) < 8);
+> >   
+> > -     /* Just emit the first semaphore we see as request space is limited. */
+> > -     if (already_busywaiting(to) & from->engine->mask)
+> > -             goto await_fence;
+> > -
+> > -     if (i915_request_await_start(to, from) < 0)
+> > -             goto await_fence;
+> > -
+> > -     /* Only submit our spinner after the signaler is running! */
+> > -     if (__i915_request_await_execution(to, from, NULL, gfp))
+> > -             goto await_fence;
+> > -
+> >       /* We need to pin the signaler's HWSP until we are finished reading. */
+> > -     if (intel_timeline_read_hwsp(from, to, &hwsp_offset))
+> > -             goto await_fence;
+> > +     err = intel_timeline_read_hwsp(from, to, &hwsp_offset);
+> > +     if (err)
+> > +             return err;
+> >   
+> >       len = 4;
+> >       if (has_token)
+> > @@ -871,7 +863,7 @@ emit_semaphore_wait(struct i915_request *to,
+> >                MI_SEMAPHORE_POLL |
+> >                MI_SEMAPHORE_SAD_GTE_SDD) +
+> >               has_token;
+> > -     *cs++ = from->fence.seqno;
+> > +     *cs++ = seqno;
+> >       *cs++ = hwsp_offset;
+> >       *cs++ = 0;
+> >       if (has_token) {
+> > @@ -880,6 +872,28 @@ emit_semaphore_wait(struct i915_request *to,
+> >       }
+> >   
+> >       intel_ring_advance(to, cs);
+> > +     return 0;
+> > +}
+> > +
+> > +static int
+> > +emit_semaphore_wait(struct i915_request *to,
+> > +                 struct i915_request *from,
+> > +                 gfp_t gfp)
+> > +{
+> > +     /* Just emit the first semaphore we see as request space is limited. */
+> > +     if (already_busywaiting(to) & from->engine->mask)
+> > +             goto await_fence;
+> > +
+> > +     if (i915_request_await_start(to, from) < 0)
+> > +             goto await_fence;
+> > +
+> > +     /* Only submit our spinner after the signaler is running! */
+> > +     if (__await_execution(to, from, NULL, gfp))
+> > +             goto await_fence;
+> > +
+> > +     if (__emit_semaphore_wait(to, from, from->fence.seqno))
+> > +             goto await_fence;
+> > +
+> >       to->sched.semaphores |= from->engine->mask;
+> >       to->sched.flags |= I915_SCHED_HAS_SEMAPHORE_CHAIN;
+> >       return 0;
+> > @@ -993,6 +1007,58 @@ i915_request_await_dma_fence(struct i915_request *rq, struct dma_fence *fence)
+> >       return 0;
+> >   }
+> >   
+> > +static bool intel_timeline_sync_has_start(struct intel_timeline *tl,
+> > +                                       struct dma_fence *fence)
+> > +{
+> > +     return __intel_timeline_sync_is_later(tl,
+> > +                                           fence->context,
+> > +                                           fence->seqno - 1);
+> > +}
+> > +
+> > +static int intel_timeline_sync_set_start(struct intel_timeline *tl,
+> > +                                      const struct dma_fence *fence)
+> > +{
+> > +     return __intel_timeline_sync_set(tl, fence->context, fence->seqno - 1);
+> > +}
+> > +
+> > +static int
+> > +__i915_request_await_execution(struct i915_request *to,
+> > +                            struct i915_request *from,
+> > +                            void (*hook)(struct i915_request *rq,
+> > +                                         struct dma_fence *signal))
+> > +{
+> > +     int err;
+> > +
+> > +     /* Submit both requests at the same time */
+> > +     err = __await_execution(to, from, hook, I915_FENCE_GFP);
+> > +     if (err)
+> > +             return err;
+> > +
+> > +     if (!to->engine->schedule)
+> > +             return 0;
+> 
+> Hm is this about scheduler or preemption?
 
-> > > > > -		if (INTEL_GEN(dev_priv) >=3D 12)
-> > > > > -			temp |=3D
-> > > > > TRANS_DDI_MST_TRANSPORT_SELECT(crtc_state->cpu_transcoder);
-> > > > > +		if (INTEL_GEN(dev_priv) >=3D 12) {
-> > > > > +			enum transcoder master;
-> > > > > +
-> > > > > +			master =3D crtc_state-
-> > > > > >mst_master_transcoder;
-> > > > > +			WARN_ON(master =3D=3D INVALID_TRANSCODER);
-> > > > =
+It's about dependency tracking, and the lack of it.
+ 
+> > +
+> > +     /* Squash repeated depenendices to the same timelines */
+> 
+> typo in dependencies
+> 
+> > +     if (intel_timeline_sync_has_start(i915_request_timeline(to),
+> > +                                       &from->fence))
+> > +             return 0;
+> > +
+> > +     /* Ensure both start together [after all semaphores in signal] */
+> > +     if (intel_engine_has_semaphores(to->engine))
+> > +             err =__emit_semaphore_wait(to, from, from->fence.seqno - 1);
+> 
+> So the only thing preventing B' getting onto the same engine as A, as 
+> soon as B enters a different engine, is the priority order?
 
-> > > > I'd drop the WARN_ON(). If we keep adding these for every little
-> > > > thing
-> > > > we'll drown in them.
-> > > > =
+No. Now B' has a dependency on A, so B' is always after A.
+ 
+> And if I am reading this correctly, change relative to current state is 
+> to let B' in, but spin on a semaphore, where currently we let it execute 
+> the actual payload.
+> 
+> It's possible that we do need this if we said we would guarantee bonded 
+> request would not execute before it's master. Have we made this 
+> guarantee when discussing the uAPI? We must had..
 
-> > > > > +			temp |=3D
-> > > > > TRANS_DDI_MST_TRANSPORT_SELECT(master);
-> > > > > +		}
-> > > > >  	} else {
-> > > > >  		temp |=3D TRANS_DDI_MODE_SELECT_DP_SST;
-> > > > >  		temp |=3D DDI_PORT_WIDTH(crtc_state->lane_count);
-> > > > > @@ -4372,6 +4377,11 @@ void intel_ddi_get_config(struct
-> > > > > intel_encoder *encoder,
-> > > > >  		pipe_config->output_types |=3D
-> > > > > BIT(INTEL_OUTPUT_DP_MST);
-> > > > >  		pipe_config->lane_count =3D
-> > > > >  			((temp & DDI_PORT_WIDTH_MASK) >>
-> > > > > DDI_PORT_WIDTH_SHIFT) + 1;
-> > > > > +
-> > > > > +		if (INTEL_GEN(dev_priv) >=3D 12)
-> > > > > +			pipe_config->mst_master_transcoder =3D
-> > > > > +					REG_FIELD_GET(TRANS_DDI
-> > > > > _MST_TRA
-> > > > > NSPORT_SELECT_MASK, temp);
-> > > > > +
-> > > > >  		intel_dp_get_m_n(intel_crtc, pipe_config);
-> > > > >  		break;
-> > > > >  	default:
-> > > > > diff --git a/drivers/gpu/drm/i915/display/intel_display.c
-> > > > > b/drivers/gpu/drm/i915/display/intel_display.c
-> > > > > index 821ba8053f9d..f89494c849ce 100644
-> > > > > --- a/drivers/gpu/drm/i915/display/intel_display.c
-> > > > > +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> > > > > @@ -46,6 +46,7 @@
-> > > > >  #include "display/intel_crt.h"
-> > > > >  #include "display/intel_ddi.h"
-> > > > >  #include "display/intel_dp.h"
-> > > > > +#include "display/intel_dp_mst.h"
-> > > > >  #include "display/intel_dsi.h"
-> > > > >  #include "display/intel_dvo.h"
-> > > > >  #include "display/intel_gmbus.h"
-> > > > > @@ -12542,6 +12543,11 @@ static void
-> > > > > intel_dump_pipe_config(const
-> > > > > struct intel_crtc_state *pipe_config,
-> > > > >  			      pipe_config->csc_mode,
-> > > > > pipe_config-
-> > > > > > gamma_mode,
-> > > > >  			      pipe_config->gamma_enable,
-> > > > > pipe_config-
-> > > > > > csc_enable);
-> > > > >  =
+We did not make that guarantee as the assumption was that all fences for
+B would be passed to B'. However, the since fence slot for IN/SUBMIT
+precludes that (I was thinking you could just merge them, but the
+interpretation of the merged fence would still be from the IN/SUBMIT
+flag), and we haven't extended syncobj yet.
 
-> > > > > +	if (INTEL_GEN(dev_priv) >=3D 12 &&
-> > > > > +	    intel_crtc_has_type(pipe_config,
-> > > > > INTEL_OUTPUT_DP_MST))
-> > > > =
+We can completely invalidate that argument by the simple use of an
+FENCE_OUT for B'. That gives us a massive hole in the PI tree, and
+userspace deadlocks galore.
+ 
+> But with no semaphores i915_request_await_start can not offer this hard 
+> guarantee which then sounds like a problem. Do we need to only allow 
+> bonding where we have semaphores?
 
-> > > > Could probably print this unconditionally to keep the code less
-> > > > messy.
-> > > =
-
-> > > I'm not setting mst_master_transcoder =3D INVALID_TRANSCODER in the
-> > > other
-> > > code paths, so it would print transcoder A for HDMI, DP SST and to
-> > > DP
-> > > MST in gen < 12.
-> > > That is fine? Should I add mst_master_transcoder =3D
-> > > INVALID_TRANSCODER
-> > > to all those code paths? For me the best option is keep this
-> > > checks.
-> > =
-
-> > I think setting to invalid would be nice.
-> > =
-
-> > With https://patchwork.freedesktop.org/series/69129/
-> > we could even do it in a nice central place just the once.
-> =
-
-> Awesome, just rvb it.
-> It still apply without conflicts and compile, moving this MST patches
-> on top.
-
-Thanks. Oh, now I remember. That series didn't pass BAT. The fix for
-that is the remainder of https://patchwork.freedesktop.org/series/69366/
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
+No. If we don't have semaphores, then we aren't using semaphores in B.
+So then B and B' are scheduled to start the payload at the same time,
+since they have the same fences. Coordination of the payload itself is
+beyond our control -- we've just made sure that all dependencies are met
+before the payload began.
+-Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
