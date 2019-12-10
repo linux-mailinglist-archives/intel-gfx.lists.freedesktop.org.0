@@ -1,36 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A622119061
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 Dec 2019 20:12:49 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0EFBC119070
+	for <lists+intel-gfx@lfdr.de>; Tue, 10 Dec 2019 20:17:22 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BC1C36E90D;
-	Tue, 10 Dec 2019 19:12:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 68FB16E90E;
+	Tue, 10 Dec 2019 19:17:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 426 seconds by postgrey-1.36 at gabe;
- Tue, 10 Dec 2019 19:12:45 UTC
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5ED156E158
- for <intel-gfx@lists.freedesktop.org>; Tue, 10 Dec 2019 19:12:45 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga105.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 10 Dec 2019 11:05:38 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,300,1571727600"; d="scan'208";a="207401193"
-Received: from fei-dev-host.jf.intel.com ([10.7.198.158])
- by orsmga008.jf.intel.com with ESMTP; 10 Dec 2019 11:05:37 -0800
-From: fei.yang@intel.com
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 10 Dec 2019 11:04:49 -0800
-Message-Id: <20191210190449.56734-1-fei.yang@intel.com>
-X-Mailer: git-send-email 2.23.0
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id B729A6E158;
+ Tue, 10 Dec 2019 19:17:18 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id AD638A47DA;
+ Tue, 10 Dec 2019 19:17:18 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/userptr: Try to acquire the page lock
- around set_page_dirty()
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Tue, 10 Dec 2019 19:17:18 -0000
+Message-ID: <157600543868.23231.14469661738485396811@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20191210115502.3767070-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20191210115502.3767070-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/selftests=3A_Show_the_i915=5Factive_on_failure?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -43,92 +38,136 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Fei Yang <fei.yang@intel.com>
+== Series Details ==
 
-This is a backport of cee7fb437edcdb2f9f8affa959e274997f5dca4d to linux-4.4.y
+Series: drm/i915/selftests: Show the i915_active on failure
+URL   : https://patchwork.freedesktop.org/series/70683/
+State : success
 
-set_page_dirty says:
+== Summary ==
 
-	For pages with a mapping this should be done under the page lock
-	for the benefit of asynchronous memory errors who prefer a
-	consistent dirty state. This rule can be broken in some special
-	cases, but should be better not to.
+CI Bug Log - changes from CI_DRM_7532 -> Patchwork_15666
+====================================================
 
-Under those rules, it is only safe for us to use the plain set_page_dirty
-calls for shmemfs/anonymous memory. Userptr may be used with real
-mappings and so needs to use the locked version (set_page_dirty_lock).
+Summary
+-------
 
-However, following a try_to_unmap() we may want to remove the userptr and
-so call put_pages(). However, try_to_unmap() acquires the page lock and
-so we must avoid recursively locking the pages ourselves -- which means
-that we cannot safely acquire the lock around set_page_dirty(). Since we
-can't be sure of the lock, we have to risk skip dirtying the page, or
-else risk calling set_page_dirty() without a lock and so risk fs
-corruption.
+  **SUCCESS**
 
-Bugzilla: https://bugzilla.kernel.org/show_bug.cgi?id=203317
-Bugzilla: https://bugs.freedesktop.org/show_bug.cgi?id=112012
-Fixes: 5cc9ed4b9a7a ("drm/i915: Introduce mapping of user pages into video memory (userptr) ioctl")
-References: cb6d7c7dc7ff ("drm/i915/userptr: Acquire the page lock around set_page_dirty()")
-References: 505a8ec7e11a ("Revert "drm/i915/userptr: Acquire the page lock around set_page_dirty()"")
-References: 6dcc693bc57f ("ext4: warn when page is dirtied without buffers")
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
-Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Cc: stable@vger.kernel.org
-Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-Link: https://patchwork.freedesktop.org/patch/msgid/20191111133205.11590-1-chris@chris-wilson.co.uk
-(cherry picked from commit 0d4bbe3d407f79438dc4f87943db21f7134cfc65)
-Signed-off-by: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-(cherry picked from commit cee7fb437edcdb2f9f8affa959e274997f5dca4d)
-Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
----
- drivers/gpu/drm/i915/i915_gem_userptr.c | 22 +++++++++++++++++++++-
- 1 file changed, 21 insertions(+), 1 deletion(-)
+  No regressions found.
 
-diff --git a/drivers/gpu/drm/i915/i915_gem_userptr.c b/drivers/gpu/drm/i915/i915_gem_userptr.c
-index b02113b57d51..6ba5846655ac 100644
---- a/drivers/gpu/drm/i915/i915_gem_userptr.c
-+++ b/drivers/gpu/drm/i915/i915_gem_userptr.c
-@@ -764,8 +764,28 @@ i915_gem_userptr_put_pages(struct drm_i915_gem_object *obj)
- 	for_each_sg_page(obj->pages->sgl, &sg_iter, obj->pages->nents, 0) {
- 		struct page *page = sg_page_iter_page(&sg_iter);
- 
--		if (obj->dirty)
-+		if (obj->dirty && trylock_page(page)) {
-+			/*
-+			 * As this may not be anonymous memory (e.g. shmem)
-+			 * but exist on a real mapping, we have to lock
-+			 * the page in order to dirty it -- holding
-+			 * the page reference is not sufficient to
-+			 * prevent the inode from being truncated.
-+			 * Play safe and take the lock.
-+			 *
-+			 * However...!
-+			 *
-+			 * The mmu-notifier can be invalidated for a
-+			 * migrate_page, that is alreadying holding the lock
-+			 * on the page. Such a try_to_unmap() will result
-+			 * in us calling put_pages() and so recursively try
-+			 * to lock the page. We avoid that deadlock with
-+			 * a trylock_page() and in exchange we risk missing
-+			 * some page dirtying.
-+			 */
- 			set_page_dirty(page);
-+			unlock_page(page);
-+		}
- 
- 		mark_page_accessed(page);
- 		page_cache_release(page);
--- 
-2.23.0
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15666/index.html
 
+Known issues
+------------
+
+  Here are the changes found in Patchwork_15666 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live_blt:
+    - fi-hsw-4770r:       [PASS][1] -> [DMESG-FAIL][2] ([i915#725])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7532/fi-hsw-4770r/igt@i915_selftest@live_blt.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15666/fi-hsw-4770r/igt@i915_selftest@live_blt.html
+
+  * igt@i915_selftest@live_requests:
+    - fi-hsw-4770:        [PASS][3] -> [INCOMPLETE][4] ([i915#773])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7532/fi-hsw-4770/igt@i915_selftest@live_requests.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15666/fi-hsw-4770/igt@i915_selftest@live_requests.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_exec_parallel@basic:
+    - {fi-tgl-u}:         [INCOMPLETE][5] ([i915#476]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7532/fi-tgl-u/igt@gem_exec_parallel@basic.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15666/fi-tgl-u/igt@gem_exec_parallel@basic.html
+
+  * igt@i915_selftest@live_blt:
+    - fi-bsw-n3050:       [DMESG-FAIL][7] ([i915#723]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7532/fi-bsw-n3050/igt@i915_selftest@live_blt.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15666/fi-bsw-n3050/igt@i915_selftest@live_blt.html
+    - fi-ivb-3770:        [DMESG-FAIL][9] ([i915#725]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7532/fi-ivb-3770/igt@i915_selftest@live_blt.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15666/fi-ivb-3770/igt@i915_selftest@live_blt.html
+    - fi-byt-j1900:       [DMESG-FAIL][11] ([i915#725]) -> [PASS][12]
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7532/fi-byt-j1900/igt@i915_selftest@live_blt.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15666/fi-byt-j1900/igt@i915_selftest@live_blt.html
+
+  
+#### Warnings ####
+
+  * igt@gem_exec_suspend@basic-s4-devices:
+    - fi-kbl-x1275:       [DMESG-WARN][13] ([fdo#107139] / [i915#62] / [i915#92]) -> [DMESG-WARN][14] ([fdo#107139] / [i915#62] / [i915#92] / [i915#95])
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7532/fi-kbl-x1275/igt@gem_exec_suspend@basic-s4-devices.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15666/fi-kbl-x1275/igt@gem_exec_suspend@basic-s4-devices.html
+
+  * igt@i915_selftest@live_gem_contexts:
+    - fi-hsw-peppy:       [INCOMPLETE][15] ([i915#694]) -> [DMESG-FAIL][16] ([i915#722])
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7532/fi-hsw-peppy/igt@i915_selftest@live_gem_contexts.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15666/fi-hsw-peppy/igt@i915_selftest@live_gem_contexts.html
+
+  * igt@kms_busy@basic-flip-pipe-b:
+    - fi-kbl-x1275:       [DMESG-WARN][17] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][18] ([i915#62] / [i915#92]) +7 similar issues
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7532/fi-kbl-x1275/igt@kms_busy@basic-flip-pipe-b.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15666/fi-kbl-x1275/igt@kms_busy@basic-flip-pipe-b.html
+
+  * igt@kms_flip@basic-flip-vs-modeset:
+    - fi-kbl-x1275:       [DMESG-WARN][19] ([i915#62] / [i915#92]) -> [DMESG-WARN][20] ([i915#62] / [i915#92] / [i915#95]) +6 similar issues
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7532/fi-kbl-x1275/igt@kms_flip@basic-flip-vs-modeset.html
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15666/fi-kbl-x1275/igt@kms_flip@basic-flip-vs-modeset.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#107139]: https://bugs.freedesktop.org/show_bug.cgi?id=107139
+  [i915#476]: https://gitlab.freedesktop.org/drm/intel/issues/476
+  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
+  [i915#694]: https://gitlab.freedesktop.org/drm/intel/issues/694
+  [i915#707]: https://gitlab.freedesktop.org/drm/intel/issues/707
+  [i915#722]: https://gitlab.freedesktop.org/drm/intel/issues/722
+  [i915#723]: https://gitlab.freedesktop.org/drm/intel/issues/723
+  [i915#725]: https://gitlab.freedesktop.org/drm/intel/issues/725
+  [i915#773]: https://gitlab.freedesktop.org/drm/intel/issues/773
+  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
+  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
+
+
+Participating hosts (55 -> 47)
+------------------------------
+
+  Missing    (8): fi-icl-1065g7 fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_7532 -> Patchwork_15666
+
+  CI-20190529: 20190529
+  CI_DRM_7532: 2004c1c9d9669c6722274d5cf62f8f2b00720d57 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5341: 5fe683cdebde2d77d16ffc42c9fdf29a9f95bb82 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_15666: 3a82512b4bafdf9227357d2a77bf6798c92deabe @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+3a82512b4baf drm/i915/selftests: Show the i915_active on failure
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15666/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
