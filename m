@@ -1,42 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1B383118B67
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 Dec 2019 15:46:20 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id F1E28118BEE
+	for <lists+intel-gfx@lfdr.de>; Tue, 10 Dec 2019 16:04:18 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 208726E8F4;
-	Tue, 10 Dec 2019 14:46:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4C4116E096;
+	Tue, 10 Dec 2019 15:04:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 301 seconds by postgrey-1.36 at gabe;
- Tue, 10 Dec 2019 14:46:14 UTC
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E34AF6E8F4
- for <intel-gfx@lists.freedesktop.org>; Tue, 10 Dec 2019 14:46:14 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 075156E096
+ for <intel-gfx@lists.freedesktop.org>; Tue, 10 Dec 2019 15:04:14 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 10 Dec 2019 06:46:14 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,300,1571727600"; d="scan'208";a="244867884"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by fmsmga002.fm.intel.com with SMTP; 10 Dec 2019 06:46:11 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 10 Dec 2019 16:46:11 +0200
-Date: Tue, 10 Dec 2019 16:46:11 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Message-ID: <20191210144611.GB1208@intel.com>
-References: <20191210144105.3239-1-ville.syrjala@linux.intel.com>
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 10 Dec 2019 07:04:14 -0800
+X-IronPort-AV: E=Sophos;i="5.69,300,1571727600"; d="scan'208";a="207304733"
+Received: from jmcrann-mobl1.ger.corp.intel.com (HELO [10.252.9.248])
+ ([10.252.9.248])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/AES256-SHA;
+ 10 Dec 2019 07:04:13 -0800
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+References: <20191204211703.4073569-1-chris@chris-wilson.co.uk>
+ <96a8b2f2-c93c-07b9-285d-5503b5aad128@linux.intel.com>
+ <157598316862.15362.4737947399484296954@skylake-alporthouse-com>
+ <9f260ea1-cbdb-dcec-5d9d-3c0fe5bcb8b9@linux.intel.com>
+ <157598814877.15362.9225366099148093860@skylake-alporthouse-com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <3d5a5b98-574b-bb03-bf3b-2254efcad170@linux.intel.com>
+Date: Tue, 10 Dec 2019 15:04:11 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20191210144105.3239-1-ville.syrjala@linux.intel.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH v2 0/6] drm/i915: Some cleanup near the SKL
- wm/ddb area
+In-Reply-To: <157598814877.15362.9225366099148093860@skylake-alporthouse-com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH v3] drm/i915: Copy across scheduler
+ behaviour flags across submit fences
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,56 +51,103 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Dec 10, 2019 at 04:41:01PM +0200, Ville Syrjala wrote:
-> From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> =
 
-> Rebased leftovers from my earlier series to nuke the dirty_pipes junk.
-> =
+On 10/12/2019 14:29, Chris Wilson wrote:
+> Quoting Tvrtko Ursulin (2019-12-10 14:12:31)
+>>
+>> On 10/12/2019 13:06, Chris Wilson wrote:
+>>> Quoting Tvrtko Ursulin (2019-12-10 12:41:36)
+>>>>
+>>>> On 04/12/2019 21:17, Chris Wilson wrote:
+>>>>> +static int
+>>>>> +__i915_request_await_execution(struct i915_request *to,
+>>>>> +                            struct i915_request *from,
+>>>>> +                            void (*hook)(struct i915_request *rq,
+>>>>> +                                         struct dma_fence *signal))
+>>>>> +{
+>>>>> +     int err;
+>>>>> +
+>>>>> +     /* Submit both requests at the same time */
+>>>>> +     err = __await_execution(to, from, hook, I915_FENCE_GFP);
+>>>>> +     if (err)
+>>>>> +             return err;
+>>>>> +
+>>>>> +     if (!to->engine->schedule)
+>>>>> +             return 0;
+>>>>
+>>>> Hm is this about scheduler or preemption?
+>>>
+>>> It's about dependency tracking, and the lack of it.
+>>>    
+>>>>> +
+>>>>> +     /* Squash repeated depenendices to the same timelines */
+>>>>
+>>>> typo in dependencies
+>>>>
+>>>>> +     if (intel_timeline_sync_has_start(i915_request_timeline(to),
+>>>>> +                                       &from->fence))
+>>>>> +             return 0;
+>>>>> +
+>>>>> +     /* Ensure both start together [after all semaphores in signal] */
+>>>>> +     if (intel_engine_has_semaphores(to->engine))
+>>>>> +             err =__emit_semaphore_wait(to, from, from->fence.seqno - 1);
+>>>>
+>>>> So the only thing preventing B' getting onto the same engine as A, as
+>>>> soon as B enters a different engine, is the priority order?
+>>>
+>>> No. Now B' has a dependency on A, so B' is always after A.
+>>
+>> Yes, true.
+>>
+>>>> And if I am reading this correctly, change relative to current state is
+>>>> to let B' in, but spin on a semaphore, where currently we let it execute
+>>>> the actual payload.
+>>>>
+>>>> It's possible that we do need this if we said we would guarantee bonded
+>>>> request would not execute before it's master. Have we made this
+>>>> guarantee when discussing the uAPI? We must had..
+>>>
+>>> We did not make that guarantee as the assumption was that all fences for
+>>> B would be passed to B'. However, the since fence slot for IN/SUBMIT
+>>
+>> I think we must have made a guarantee B' won't start executing before B.
+>> That is kind of the central point. Only thing we did not do is
+>> guarantee/made effort to start B' together with B. But guarantee got
+>> defeated by ELSP and later timeslicing/preemption.
+> 
+> According to the implementation, we did not ;)
+> 
+> I agree that the stronger coordination makes more sense for the API, and
+> the inheritance of dependencies I think is crucial for exported fences.
+>   
+>> Previously, miss was if B was in ELSP[1] B' could be put in ELSP[0]
+>> (different engines). Which is wrong. And with timeslicing/preemption
+>> even more so.
+> 
+> It wasn't actually an oversight :) My understanding was that B' payload
+> would not start before B payload via user semaphores, so I wrote it off
+> as a bad bubble.
+> 
+> The oversight, imo, is that we shouldn't rely on userspace for this and
+> with the current implementation it is easy to lose PI.
+>   
+>> So having await_started or semaphore looks correct in that respect. And
+>> scheduler deps cover the A in chain. So I think it's good with this patch.
+> 
+> Agreed.
 
-> Cc: Jos=E9 Roberto de Souza <jose.souza@intel.com>
-> Cc: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-> =
+For correctness you don't think if !scheduler early return should happen 
+after the semaphore and await_start insertion? I know that where we have 
+ELSP we have scheduler so maybe it is moot point.
 
-> Ville Syrj=E4l=E4 (6):
->   drm/i915: Streamline skl_commit_modeset_enables()
->   drm/i915: Polish WM_LINETIME register stuff
->   drm/i915: Move linetime wms into the crtc state
->   drm/i915: Nuke skl wm.dirty_pipes bitmask
->   drm/i915: Kill struct skl_ddb_allocation
->   drm/i915: Implement pps w/a #1124 for bxt+
+Regards,
 
-Drat. Last two aren't part of the series. Time to see how badly patchwork
-reacts to this one...
-
-> =
-
->  drivers/gpu/drm/i915/display/intel_display.c  | 170 +++++++++++----
->  .../drm/i915/display/intel_display_power.c    |  28 +--
->  .../drm/i915/display/intel_display_power.h    |   2 +-
->  .../drm/i915/display/intel_display_types.h    |  11 +-
->  drivers/gpu/drm/i915/display/intel_dp.c       |  11 +
->  drivers/gpu/drm/i915/gvt/handlers.c           |   6 +-
->  drivers/gpu/drm/i915/i915_drv.h               |  14 +-
->  drivers/gpu/drm/i915/i915_reg.h               |  14 +-
->  drivers/gpu/drm/i915/intel_pm.c               | 202 +++---------------
->  drivers/gpu/drm/i915/intel_pm.h               |   4 +-
->  10 files changed, 187 insertions(+), 275 deletions(-)
-> =
-
-> -- =
-
-> 2.23.0
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
+Tvrtko
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
