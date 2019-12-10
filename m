@@ -1,29 +1,35 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6FC1F11853C
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 Dec 2019 11:37:22 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B73D118581
+	for <lists+intel-gfx@lfdr.de>; Tue, 10 Dec 2019 11:51:11 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4B7406E89A;
-	Tue, 10 Dec 2019 10:37:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 79E496E8A5;
+	Tue, 10 Dec 2019 10:51:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 307 seconds by postgrey-1.36 at gabe;
- Tue, 10 Dec 2019 10:37:14 UTC
-Received: from mblankhorst.nl (mblankhorst.nl [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D39B989F61
- for <intel-gfx@lists.freedesktop.org>; Tue, 10 Dec 2019 10:37:14 +0000 (UTC)
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D13116E8A5
+ for <intel-gfx@lists.freedesktop.org>; Tue, 10 Dec 2019 10:51:08 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 10 Dec 2019 02:51:07 -0800
+X-IronPort-AV: E=Sophos;i="5.69,299,1571727600"; d="scan'208";a="203148640"
+Received: from rmoran-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.252.35.46])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 10 Dec 2019 02:51:05 -0800
+From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 10 Dec 2019 11:32:04 +0100
-Message-Id: <20191210103204.3564263-8-maarten.lankhorst@linux.intel.com>
-X-Mailer: git-send-email 2.24.0
-In-Reply-To: <20191210103204.3564263-1-maarten.lankhorst@linux.intel.com>
-References: <20191210103204.3564263-1-maarten.lankhorst@linux.intel.com>
+Date: Tue, 10 Dec 2019 12:50:44 +0200
+Message-Id: <cover.1575974743.git.jani.nikula@intel.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 7/7] drm/i915: Use per object locking instead of
- struct_mutex for execbuf
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Subject: [Intel-gfx] [v4.1 00/16] drm/i915/dsi: enable DSC
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,316 +42,60 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: jani.nikula@intel.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Now that we changed execbuf submission slightly to allow us to do all
-pinning in one place, we can now simply replace the struct_mutex lock
-with ww versions. All we have to do is a separate path for -EDEADLK
-handling, which needs to unpin all gem bo's before dropping the lock,
-then starting over.
+v4.1 of https://patchwork.freedesktop.org/series/69540/
 
-This finally allows us to do parallel submission.
+I screwed up the state readout, need to check for source support for DSC
+(d'oh!) and that the relevant domain has power (d'oh!). CI to the
+rescue.
 
-Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
----
- .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 103 +++++++++---------
- drivers/gpu/drm/i915/i915_cmd_parser.c        |  15 +--
- 2 files changed, 51 insertions(+), 67 deletions(-)
+Added patch 7 and updated patch 8 to fix this. Didn't trust patchwork to
+figure this out by replying to the previous version, so unfortunately
+you'll get the whole series. Only slightly modified so series v4.1. ;)
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-index 1f41c245665a..f32a3faeb450 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-@@ -249,6 +249,8 @@ struct i915_execbuffer {
- 	/** list of vma that have execobj.relocation_count */
- 	struct list_head relocs;
- 
-+	struct i915_gem_ww_ctx ww;
-+
- 	/**
- 	 * Track the most recently used object for relocations, as we
- 	 * frequently have to perform multiple relocations within the same
-@@ -833,6 +835,10 @@ static int eb_validate_vmas(struct i915_execbuffer *eb)
- 		struct eb_vma *ev = &eb->vma[i];
- 		struct i915_vma *vma = ev->vma;
- 
-+		err = i915_gem_object_lock(vma->obj, &eb->ww);
-+		if (err)
-+			return err;
-+
- 		if (eb_pin_vma(eb, entry, ev)) {
- 			if (entry->offset != vma->node.start) {
- 				entry->offset = vma->node.start | UPDATE;
-@@ -1143,7 +1149,7 @@ static int reloc_move_to_gpu(struct i915_request *rq, struct i915_vma *vma)
- 	struct drm_i915_gem_object *obj = vma->obj;
- 	int err;
- 
--	i915_vma_lock(vma);
-+	assert_vma_held(vma);
- 
- 	if (obj->cache_dirty & ~obj->cache_coherent)
- 		i915_gem_clflush_object(obj, 0);
-@@ -1153,8 +1159,6 @@ static int reloc_move_to_gpu(struct i915_request *rq, struct i915_vma *vma)
- 	if (err == 0)
- 		err = i915_vma_move_to_active(vma, rq, EXEC_OBJECT_WRITE);
- 
--	i915_vma_unlock(vma);
--
- 	return err;
- }
- 
-@@ -1212,11 +1216,10 @@ static int __reloc_gpu_alloc(struct i915_execbuffer *eb,
- 	if (err)
- 		goto skip_request;
- 
--	i915_vma_lock(batch);
-+	assert_vma_held(batch);
- 	err = i915_request_await_object(rq, batch->obj, false);
- 	if (err == 0)
- 		err = i915_vma_move_to_active(batch, rq, 0);
--	i915_vma_unlock(batch);
- 	if (err)
- 		goto skip_request;
- 
-@@ -1709,7 +1712,10 @@ static int eb_lock_and_parse_cmdbuffer(struct i915_execbuffer *eb)
- 	if (IS_ERR(pool))
- 		return PTR_ERR(pool);
- 
--	err = eb_parse(eb, pool);
-+	err = i915_gem_object_lock(pool->obj, &eb->ww);
-+	if (!err)
-+		err = eb_parse(eb, pool);
-+
- 	if (err)
- 		intel_engine_pool_put(pool);
- 
-@@ -1718,7 +1724,6 @@ static int eb_lock_and_parse_cmdbuffer(struct i915_execbuffer *eb)
- 
- static noinline int eb_relocate_slow(struct i915_execbuffer *eb)
- {
--	struct drm_device *dev = &eb->i915->drm;
- 	bool have_copy = false;
- 	struct eb_vma *ev;
- 	int err = 0;
-@@ -1731,7 +1736,7 @@ static noinline int eb_relocate_slow(struct i915_execbuffer *eb)
- 
- 	/* We may process another execbuffer during the unlock... */
- 	eb_release_vmas(eb);
--	mutex_unlock(&dev->struct_mutex);
-+	i915_gem_ww_ctx_fini(&eb->ww);
- 
- 	/*
- 	 * We take 3 passes through the slowpatch.
-@@ -1756,20 +1761,17 @@ static noinline int eb_relocate_slow(struct i915_execbuffer *eb)
- 		err = 0;
- 	}
- 	if (err) {
--		mutex_lock(&dev->struct_mutex);
-+		i915_gem_ww_ctx_init(&eb->ww, true);
- 		goto out;
- 	}
- 
- 	/* A frequent cause for EAGAIN are currently unavailable client pages */
- 	flush_workqueue(eb->i915->mm.userptr_wq);
- 
--	err = mutex_lock_interruptible(&dev->struct_mutex);
--	if (err) {
--		mutex_lock(&dev->struct_mutex);
--		goto out;
--	}
-+	i915_gem_ww_ctx_init(&eb->ww, true);
- 
- 	/* reacquire the objects */
-+repeat_validate:
- 	err = eb_validate_vmas(eb);
- 	if (err)
- 		goto err;
-@@ -1802,6 +1804,13 @@ static noinline int eb_relocate_slow(struct i915_execbuffer *eb)
- 	 */
- 
- err:
-+	if (err == -EDEADLK) {
-+		eb_release_vmas(eb);
-+		err = i915_gem_ww_ctx_backoff(&eb->ww);
-+		if (!err)
-+			goto repeat_validate;
-+	}
-+
- 	if (err == -EAGAIN)
- 		goto repeat;
- 
-@@ -1834,10 +1843,19 @@ static int eb_relocate_and_parse_cmdbuf(struct i915_execbuffer *eb)
- 	if (err)
- 		return err;
- 
-+retry:
- 	err = eb_validate_vmas(eb);
- 	if (!err)
- 		err = eb_lock_and_parse_cmdbuffer(eb);
--	if (err)
-+
-+	if (err == -EDEADLK) {
-+		err = i915_gem_ww_ctx_backoff(&eb->ww);
-+		if (err)
-+			return err;
-+
-+		goto retry;
-+	}
-+	else if (err)
- 		goto slow;
- 
- 	/* The objects are in their final locations, apply the relocations. */
-@@ -1853,43 +1871,26 @@ static int eb_relocate_and_parse_cmdbuf(struct i915_execbuffer *eb)
- 	return 0;
- 
- slow:
--	return eb_relocate_slow(eb);
-+	err = eb_relocate_slow(eb);
-+	if (err)
-+		/*
-+		 * If the user expects the execobject.offset and
-+		 * reloc.presumed_offset to be an exact match,
-+		 * as for using NO_RELOC, then we cannot update
-+		 * the execobject.offset until we have completed
-+		 * relocation.
-+		 */
-+		eb->args->flags &= ~__EXEC_HAS_RELOC;
-+
-+	return err;
- }
- 
- static int eb_move_to_gpu(struct i915_execbuffer *eb)
- {
- 	const unsigned int count = eb->buffer_count;
--	struct ww_acquire_ctx acquire;
--	unsigned int i;
-+	unsigned int i = count;
- 	int err = 0;
- 
--	ww_acquire_init(&acquire, &reservation_ww_class);
--
--	for (i = 0; i < count; i++) {
--		struct eb_vma *ev = &eb->vma[i];
--		struct i915_vma *vma = ev->vma;
--
--		err = ww_mutex_lock_interruptible(&vma->resv->lock, &acquire);
--		if (err == -EDEADLK) {
--			GEM_BUG_ON(i == 0);
--			do {
--				int j = i - 1;
--
--				ww_mutex_unlock(&eb->vma[j].vma->resv->lock);
--
--				swap(eb->vma[i],  eb->vma[j]);
--			} while (--i);
--
--			err = ww_mutex_lock_slow_interruptible(&vma->resv->lock,
--							       &acquire);
--		}
--		if (err == -EALREADY)
--			err = 0;
--		if (err)
--			break;
--	}
--	ww_acquire_done(&acquire);
--
- 	while (i--) {
- 		struct eb_vma *ev = &eb->vma[i];
- 		struct i915_vma *vma = ev->vma;
-@@ -1934,15 +1935,12 @@ static int eb_move_to_gpu(struct i915_execbuffer *eb)
- 		if (err == 0)
- 			err = i915_vma_move_to_active(vma, eb->request, flags);
- 
--		i915_vma_unlock(vma);
--
- 		__eb_unreserve_vma(vma, flags);
- 		if (unlikely(flags & __EXEC_OBJECT_HAS_REF))
- 			i915_vma_put(vma);
- 
- 		ev->vma = NULL;
- 	}
--	ww_acquire_fini(&acquire);
- 
- 	if (unlikely(err))
- 		goto err_skip;
-@@ -2589,14 +2587,14 @@ i915_gem_do_execbuffer(struct drm_device *dev,
- 	if (unlikely(err))
- 		goto err_context;
- 
--	err = mutex_lock_interruptible(&dev->struct_mutex);
--	if (err)
--		goto err_engine;
-+	i915_gem_ww_ctx_init(&eb.ww, true);
- 
- 	err = eb_relocate_and_parse_cmdbuf(&eb);
- 	if (err)
- 		goto err_vma;
- 
-+	ww_acquire_done(&eb.ww.ctx);
-+
- 	/*
- 	 * snb/ivb/vlv conflate the "batch in ppgtt" bit with the "non-secure
- 	 * batch" bit. Hence we need to pin secure batches into the global gtt.
-@@ -2701,8 +2699,7 @@ i915_gem_do_execbuffer(struct drm_device *dev,
- err_vma:
- 	if (eb.exec)
- 		eb_release_vmas(&eb);
--	mutex_unlock(&dev->struct_mutex);
--err_engine:
-+	i915_gem_ww_ctx_fini(&eb.ww);
- 	eb_unpin_engine(&eb);
- err_context:
- 	i915_gem_context_put(eb.gem_context);
-diff --git a/drivers/gpu/drm/i915/i915_cmd_parser.c b/drivers/gpu/drm/i915/i915_cmd_parser.c
-index f91c6d214634..f5e821bf5d59 100644
---- a/drivers/gpu/drm/i915/i915_cmd_parser.c
-+++ b/drivers/gpu/drm/i915/i915_cmd_parser.c
-@@ -1136,31 +1136,19 @@ static u32 *copy_batch(struct drm_i915_gem_object *dst_obj,
- 	void *dst, *src;
- 	int ret;
- 
--	ret = i915_gem_object_lock_interruptible(dst_obj, NULL);
-+	ret = i915_gem_object_prepare_write(dst_obj, &dst_needs_clflush);
- 	if (ret)
- 		return ERR_PTR(ret);
- 
--	ret = i915_gem_object_prepare_write(dst_obj, &dst_needs_clflush);
--	if (ret) {
--		i915_gem_object_unlock(dst_obj);
--		return ERR_PTR(ret);
--	}
--
- 	dst = i915_gem_object_pin_map(dst_obj, I915_MAP_FORCE_WB);
- 	i915_gem_object_finish_access(dst_obj);
--	i915_gem_object_unlock(dst_obj);
- 
- 	if (IS_ERR(dst))
- 		return dst;
- 
--	ret = i915_gem_object_lock_interruptible(src_obj, NULL);
--	if (ret)
--		return ERR_PTR(ret);
--
- 	ret = i915_gem_object_prepare_read(src_obj, &src_needs_clflush);
- 	if (ret) {
- 		i915_gem_object_unpin_map(dst_obj);
--		i915_gem_object_unlock(src_obj);
- 		return ERR_PTR(ret);
- 	}
- 
-@@ -1209,7 +1197,6 @@ static u32 *copy_batch(struct drm_i915_gem_object *dst_obj,
- 	}
- 
- 	i915_gem_object_finish_access(src_obj);
--	i915_gem_object_unlock(src_obj);
- 
- 	/* dst_obj is returned with vmap pinned */
- 	*needs_clflush_after = dst_needs_clflush & CLFLUSH_AFTER;
+BR,
+Jani.
+
+
+Jani Nikula (15):
+  drm/i915/bios: pass devdata to parse_ddi_port
+  drm/i915/bios: parse compression parameters block
+  drm/i915/bios: add support for querying DSC details for encoder
+  drm/i915/dsc: move DP specific compute params to intel_dp.c
+  drm/i915/dsc: move slice height calculation to encoder
+  drm/i915/dsc: add support for computing and writing PPS for DSI
+    encoders
+  drm/i915/dsc: make DSC source support helper generic
+  drm/i915/dsc: add basic hardware state readout support
+  drm/i915/dsi: set pipe_bpp on ICL configure config
+  drm/i915/dsi: abstract afe_clk calculation
+  drm/i915/dsi: use afe_clk() instead of intel_dsi_bitrate()
+  drm/i915/dsi: take compression into account in afe_clk()
+  drm/i915/dsi: use compressed pixel format with DSC
+  drm/i915/dsi: account for DSC in horizontal timings
+  drm/i915/dsi: add support for DSC
+
+Vandita Kulkarni (1):
+  drm/i915/dsi: Fix state mismatch warns for horizontal timings with DSC
+
+ drivers/gpu/drm/i915/display/icl_dsi.c        | 198 ++++++++++++++----
+ drivers/gpu/drm/i915/display/intel_bios.c     | 167 ++++++++++++++-
+ drivers/gpu/drm/i915/display/intel_bios.h     |   5 +
+ drivers/gpu/drm/i915/display/intel_ddi.c      |   2 +
+ drivers/gpu/drm/i915/display/intel_display.c  |   4 +
+ drivers/gpu/drm/i915/display/intel_dp.c       |  86 ++++++--
+ drivers/gpu/drm/i915/display/intel_vbt_defs.h |   2 +-
+ drivers/gpu/drm/i915/display/intel_vdsc.c     | 140 ++++++++-----
+ drivers/gpu/drm/i915/display/intel_vdsc.h     |   4 +
+ 9 files changed, 484 insertions(+), 124 deletions(-)
+
 -- 
-2.24.0
+2.20.1
 
 _______________________________________________
 Intel-gfx mailing list
