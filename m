@@ -1,35 +1,35 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 812591192A9
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 Dec 2019 22:04:20 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 14DAA11948C
+	for <lists+intel-gfx@lfdr.de>; Tue, 10 Dec 2019 22:16:31 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C488689DB9;
-	Tue, 10 Dec 2019 21:04:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1FB886E95C;
+	Tue, 10 Dec 2019 21:16:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 36A5089DB9
- for <intel-gfx@lists.freedesktop.org>; Tue, 10 Dec 2019 21:04:17 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 19532583-1500050 for multiple; Tue, 10 Dec 2019 21:04:00 +0000
+X-Greylist: delayed 426 seconds by postgrey-1.36 at gabe;
+ Tue, 10 Dec 2019 21:16:28 UTC
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 44C2A6E95C
+ for <intel-gfx@lists.freedesktop.org>; Tue, 10 Dec 2019 21:16:28 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 10 Dec 2019 13:09:22 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.69,300,1571727600"; d="scan'208";a="244990512"
+Received: from dceraolo-linux.fm.intel.com ([10.1.27.145])
+ by fmsmga002.fm.intel.com with ESMTP; 10 Dec 2019 13:09:21 -0800
+From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue, 10 Dec 2019 13:09:14 -0800
+Message-Id: <20191210210919.30846-1-daniele.ceraolospurio@intel.com>
+X-Mailer: git-send-email 2.23.0
 MIME-Version: 1.0
-To: Michal Wajdeczko <michal.wajdeczko@intel.com>,
- intel-gfx@lists.freedesktop.org
-From: Chris Wilson <chris@chris-wilson.co.uk>
-In-Reply-To: <op.0cloqgv8xaggs7@mwajdecz-mobl1.ger.corp.intel.com>
-References: <20191210204744.65276-1-michal.wajdeczko@intel.com>
- <20191210204744.65276-2-michal.wajdeczko@intel.com>
- <157601131366.17013.13933214786705317799@skylake-alporthouse-com>
- <op.0cloqgv8xaggs7@mwajdecz-mobl1.ger.corp.intel.com>
-Message-ID: <157601184076.17013.1410871918506938192@skylake-alporthouse-com>
-User-Agent: alot/0.6
-Date: Tue, 10 Dec 2019 21:04:00 +0000
-Subject: Re: [Intel-gfx] [RFC 1/4] drm/i915/uc: Add ops to intel_uc
+Subject: [Intel-gfx] [PATCH 0/5] Simplify GuC communication handling
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,36 +47,39 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Michal Wajdeczko (2019-12-10 21:02:30)
-> On Tue, 10 Dec 2019 21:55:13 +0100, Chris Wilson  
-> <chris@chris-wilson.co.uk> wrote:
-> 
-> > Quoting Michal Wajdeczko (2019-12-10 20:47:41)
-> >> @@ -628,3 +651,15 @@ int intel_uc_runtime_resume(struct intel_uc *uc)
-> >>          */
-> >>         return __uc_resume(uc, true);
-> >>  }
-> >> +
-> >> +const struct intel_uc_ops uc_ops_none = {
-> >> +};
-> >> +
-> >> +const struct intel_uc_ops uc_ops_off = {
-> >> +       .init_hw = __uc_check_hw,
-> >> +};
-> >> +
-> >> +const struct intel_uc_ops uc_ops_on = {
-> >> +       .init_hw = __uc_init_hw,
-> >> +       .fini_hw = __uc_fini_hw,
-> >> +};
-> >
-> > No externs in the headers, so should these be static?
-> 
-> but then forwards from top of the file will not work.
-> and early_init will have to be moved here as well.
-> doable, but wanted to minimize diffs during rfc phase.
+Since H2G communication will be in the hot path of GuC submission,
+the main aim of this series is to get rid of the function pointers to
+speed things up and avoid retpolines (in case the compiler decides
+they're required). While at it, simplify the general communication
+enabling/disabling by removing support for multiple channels since
+it is extremely unlikely that we'll ever use more than one.
 
-static forward decls.
--Chris
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Cc: John Harrison <John.C.Harrison@Intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
+
+Daniele Ceraolo Spurio (5):
+  drm/i915/guc: Merge communication_stop and communication_disable
+  drm/i915/guc/ct: stop expecting multiple CT channels
+  drm/i915/guc: remove function pointers for send/receive calls
+  drm/i915/guc: unify notify() functions
+  HAX: force enable_guc=2 and WA i915#571
+
+ drivers/gpu/drm/i915/gt/intel_gt_irq.c        |   2 +-
+ drivers/gpu/drm/i915/gt/selftest_gt_pm.c      |   9 +
+ drivers/gpu/drm/i915/gt/uc/intel_guc.c        |  43 +--
+ drivers/gpu/drm/i915/gt/uc/intel_guc.h        |  41 +--
+ drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c     | 298 +++++++-----------
+ drivers/gpu/drm/i915/gt/uc/intel_guc_ct.h     |  55 ++--
+ drivers/gpu/drm/i915/gt/uc/intel_guc_log.c    |   6 +-
+ .../gpu/drm/i915/gt/uc/intel_guc_submission.c |   1 -
+ drivers/gpu/drm/i915/gt/uc/intel_uc.c         |  36 +--
+ drivers/gpu/drm/i915/i915_params.h            |   2 +-
+ 10 files changed, 186 insertions(+), 307 deletions(-)
+
+-- 
+2.23.0
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
