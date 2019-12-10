@@ -1,41 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id F05D81180FA
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 Dec 2019 08:00:28 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9737A11811E
+	for <lists+intel-gfx@lfdr.de>; Tue, 10 Dec 2019 08:13:32 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 68AF989AB5;
-	Tue, 10 Dec 2019 07:00:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CB3F36E820;
+	Tue, 10 Dec 2019 07:13:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 427 seconds by postgrey-1.36 at gabe;
- Tue, 10 Dec 2019 07:00:21 UTC
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 801178999A;
- Tue, 10 Dec 2019 07:00:21 +0000 (UTC)
+X-Greylist: delayed 426 seconds by postgrey-1.36 at gabe;
+ Tue, 10 Dec 2019 07:13:26 UTC
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D61EE6E820
+ for <intel-gfx@lists.freedesktop.org>; Tue, 10 Dec 2019 07:13:26 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga106.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 09 Dec 2019 22:53:14 -0800
-X-IronPort-AV: E=Sophos;i="5.69,298,1571727600"; d="scan'208";a="203087366"
-Received: from wwisnei1-mobl.ger.corp.intel.com (HELO localhost)
- ([10.249.33.29])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 09 Dec 2019 22:53:11 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Kirti Wankhede <kwankhede@nvidia.com>, dri-devel@lists.freedesktop.org,
- linux-fbdev@vger.kernel.org
-In-Reply-To: <0d5434e0-3d86-bbb8-6377-94e00b4f0d78@nvidia.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1575390740.git.jani.nikula@intel.com>
- <ddb10df1316ef585930cda7718643a580f4fe37b.1575390741.git.jani.nikula@intel.com>
- <87tv694myu.fsf@intel.com> <0d5434e0-3d86-bbb8-6377-94e00b4f0d78@nvidia.com>
-Date: Tue, 10 Dec 2019 08:53:15 +0200
-Message-ID: <87wob4vfhg.fsf@intel.com>
-MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v3 11/12] samples: vfio-mdev: constify fb ops
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 09 Dec 2019 23:06:20 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.69,298,1571727600"; d="scan'208";a="215469636"
+Received: from shawnle1-build-machine.itwn.intel.com ([10.5.253.9])
+ by orsmga003.jf.intel.com with ESMTP; 09 Dec 2019 23:06:18 -0800
+From: Lee Shawn C <shawn.c.lee@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue, 10 Dec 2019 23:04:14 +0800
+Message-Id: <20191210150415.10705-1-shawn.c.lee@intel.com>
+X-Mailer: git-send-email 2.17.1
+Subject: [Intel-gfx] [PATCH] drm/i915/cml: Remove unsupport PCI ID
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,59 +41,54 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>, intel-gfx@lists.freedesktop.org,
- kvm@vger.kernel.org
+Cc: Jani Nikula <jani.nikula@intel.com>, Cooper Chiou <cooper.chiou@intel.com>
+MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 10 Dec 2019, Kirti Wankhede <kwankhede@nvidia.com> wrote:
-> On 12/9/2019 7:31 PM, Jani Nikula wrote:
->> On Tue, 03 Dec 2019, Jani Nikula <jani.nikula@intel.com> wrote:
->>> Now that the fbops member of struct fb_info is const, we can start
->>> making the ops const as well.
->>>
->>> v2: fix	typo (Christophe de Dinechin)
->>>
->>> Cc: Kirti Wankhede <kwankhede@nvidia.com>
->>> Cc: kvm@vger.kernel.org
->>> Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
->>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->> 
->> Kirti, may I have your ack to merge this through drm-misc please?
->> 
->> BR,
->> Jani.
->> 
->>> ---
->>>   samples/vfio-mdev/mdpy-fb.c | 2 +-
->>>   1 file changed, 1 insertion(+), 1 deletion(-)
->>>
->>> diff --git a/samples/vfio-mdev/mdpy-fb.c b/samples/vfio-mdev/mdpy-fb.c
->>> index 2719bb259653..21dbf63d6e41 100644
->>> --- a/samples/vfio-mdev/mdpy-fb.c
->>> +++ b/samples/vfio-mdev/mdpy-fb.c
->>> @@ -86,7 +86,7 @@ static void mdpy_fb_destroy(struct fb_info *info)
->>>   		iounmap(info->screen_base);
->>>   }
->>>   
->>> -static struct fb_ops mdpy_fb_ops = {
->>> +static const struct fb_ops mdpy_fb_ops = {
->>>   	.owner		= THIS_MODULE,
->>>   	.fb_destroy	= mdpy_fb_destroy,
->>>   	.fb_setcolreg	= mdpy_fb_setcolreg,
->> 
->
-> Acked-by : Kirti Wankhede <kwankhede@nvidia.com>
+commit 'a7b4deeb02b9 ("drm/i915/cml: Add CML PCI IDS)'
+introduced new PCI ID that CML support. But some PCI
+IDs were removed in BSpec for CML. This patch is used
+to eliminate the unsed ID.
 
-Thanks, pushed to drm-misc-next.
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Jani Nikula <jani.nikula@intel.com>
+Cc: Anusha Srivatsa <anusha.srivatsa@intel.com>
+Cc: Cooper Chiou <cooper.chiou@intel.com>
+Signed-off-by: Lee Shawn C <shawn.c.lee@intel.com>
+---
+ include/drm/i915_pciids.h | 4 ----
+ 1 file changed, 4 deletions(-)
 
-BR,
-Jani.
-
+diff --git a/include/drm/i915_pciids.h b/include/drm/i915_pciids.h
+index 3e26a9178aaf..92873c3957c8 100644
+--- a/include/drm/i915_pciids.h
++++ b/include/drm/i915_pciids.h
+@@ -448,9 +448,7 @@
+ #define INTEL_CML_GT1_IDS(info)	\
+ 	INTEL_VGA_DEVICE(0x9B21, info), \
+ 	INTEL_VGA_DEVICE(0x9BAA, info), \
+-	INTEL_VGA_DEVICE(0x9BAB, info), \
+ 	INTEL_VGA_DEVICE(0x9BAC, info), \
+-	INTEL_VGA_DEVICE(0x9BA0, info), \
+ 	INTEL_VGA_DEVICE(0x9BA5, info), \
+ 	INTEL_VGA_DEVICE(0x9BA8, info), \
+ 	INTEL_VGA_DEVICE(0x9BA4, info), \
+@@ -460,9 +458,7 @@
+ #define INTEL_CML_GT2_IDS(info)	\
+ 	INTEL_VGA_DEVICE(0x9B41, info), \
+ 	INTEL_VGA_DEVICE(0x9BCA, info), \
+-	INTEL_VGA_DEVICE(0x9BCB, info), \
+ 	INTEL_VGA_DEVICE(0x9BCC, info), \
+-	INTEL_VGA_DEVICE(0x9BC0, info), \
+ 	INTEL_VGA_DEVICE(0x9BC5, info), \
+ 	INTEL_VGA_DEVICE(0x9BC8, info), \
+ 	INTEL_VGA_DEVICE(0x9BC4, info), \
 -- 
-Jani Nikula, Intel Open Source Graphics Center
+2.17.1
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
