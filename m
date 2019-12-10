@@ -2,34 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A09311811F
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 Dec 2019 08:13:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D61F01181A5
+	for <lists+intel-gfx@lfdr.de>; Tue, 10 Dec 2019 09:03:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 480886E822;
-	Tue, 10 Dec 2019 07:13:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F2FE9899FF;
+	Tue, 10 Dec 2019 08:03:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A178C6E820
- for <intel-gfx@lists.freedesktop.org>; Tue, 10 Dec 2019 07:13:28 +0000 (UTC)
+X-Greylist: delayed 427 seconds by postgrey-1.36 at gabe;
+ Tue, 10 Dec 2019 08:03:10 UTC
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 25BD6899FF
+ for <intel-gfx@lists.freedesktop.org>; Tue, 10 Dec 2019 08:03:10 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 09 Dec 2019 23:06:22 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,298,1571727600"; d="scan'208";a="215469648"
-Received: from shawnle1-build-machine.itwn.intel.com ([10.5.253.9])
- by orsmga003.jf.intel.com with ESMTP; 09 Dec 2019 23:06:21 -0800
-From: Lee Shawn C <shawn.c.lee@intel.com>
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 09 Dec 2019 23:56:02 -0800
+X-IronPort-AV: E=Sophos;i="5.69,299,1571727600"; d="scan'208";a="207191749"
+Received: from wwisnei1-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.249.33.29])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 09 Dec 2019 23:56:00 -0800
+From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 10 Dec 2019 23:04:15 +0800
-Message-Id: <20191210150415.10705-2-shawn.c.lee@intel.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20191210150415.10705-1-shawn.c.lee@intel.com>
-References: <20191210150415.10705-1-shawn.c.lee@intel.com>
-Subject: [Intel-gfx] [PATCH 2/2] drm/i915/cml: Separate U series pci id from
- origianl list.
+In-Reply-To: <583761dfb63e63f7b5d5ae5fccee91c84d57a548.1575907078.git.jani.nikula@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <cover.1575907078.git.jani.nikula@intel.com>
+ <583761dfb63e63f7b5d5ae5fccee91c84d57a548.1575907078.git.jani.nikula@intel.com>
+Date: Tue, 10 Dec 2019 09:56:04 +0200
+Message-ID: <87tv68vckr.fsf@intel.com>
+MIME-Version: 1.0
+Subject: Re: [Intel-gfx] [PATCH v4 07/15] drm/i915/dsc: add basic hardware
+ state readout support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,109 +47,128 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>, Cooper Chiou <cooper.chiou@intel.com>
-MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-U series device need different DDI buffer setup for eDP
-and DP. If driver did not recognize ULT id proerply.
-The setting for H and S series would be used.
+On Mon, 09 Dec 2019, Jani Nikula <jani.nikula@intel.com> wrote:
+> Add basic hardware state readout for DSC, and check the most relevant
+> details in the state checker.
+>
+> As a side effect, this should also get the power domains for the enabled
+> DSC on takeover, and subsequently disable DSC if it's not needed.
 
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Jani Nikula <jani.nikula@intel.com>
-Cc: Anusha Srivatsa <anusha.srivatsa@intel.com>
-Cc: Cooper Chiou <cooper.chiou@intel.com>
-Signed-off-by: Lee Shawn C <shawn.c.lee@intel.com>
----
- drivers/gpu/drm/i915/i915_pci.c          |  2 ++
- drivers/gpu/drm/i915/intel_device_info.c |  2 ++
- include/drm/i915_pciids.h                | 20 +++++++++++++-------
- 3 files changed, 17 insertions(+), 7 deletions(-)
+This was hasty...
 
-diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
-index bba6b50e6beb..877560b1031e 100644
---- a/drivers/gpu/drm/i915/i915_pci.c
-+++ b/drivers/gpu/drm/i915/i915_pci.c
-@@ -897,6 +897,8 @@ static const struct pci_device_id pciidlist[] = {
- 	INTEL_WHL_U_GT3_IDS(&intel_coffeelake_gt3_info),
- 	INTEL_CML_GT1_IDS(&intel_coffeelake_gt1_info),
- 	INTEL_CML_GT2_IDS(&intel_coffeelake_gt2_info),
-+	INTEL_CML_U_GT1_IDS(&intel_coffeelake_gt1_info),
-+	INTEL_CML_U_GT2_IDS(&intel_coffeelake_gt2_info),
- 	INTEL_CNL_IDS(&intel_cannonlake_info),
- 	INTEL_ICL_11_IDS(&intel_icelake_11_info),
- 	INTEL_EHL_IDS(&intel_elkhartlake_info),
-diff --git a/drivers/gpu/drm/i915/intel_device_info.c b/drivers/gpu/drm/i915/intel_device_info.c
-index 2cde0bac27d3..1acb5db77431 100644
---- a/drivers/gpu/drm/i915/intel_device_info.c
-+++ b/drivers/gpu/drm/i915/intel_device_info.c
-@@ -829,6 +829,8 @@ static const u16 subplatform_ult_ids[] = {
- 	INTEL_WHL_U_GT1_IDS(0),
- 	INTEL_WHL_U_GT2_IDS(0),
- 	INTEL_WHL_U_GT3_IDS(0),
-+	INTEL_CML_U_GT1_IDS(0),
-+	INTEL_CML_U_GT2_IDS(0),
- };
- 
- static const u16 subplatform_ulx_ids[] = {
-diff --git a/include/drm/i915_pciids.h b/include/drm/i915_pciids.h
-index 92873c3957c8..1d2c12219f44 100644
---- a/include/drm/i915_pciids.h
-+++ b/include/drm/i915_pciids.h
-@@ -446,19 +446,18 @@
- 
- /* CML GT1 */
- #define INTEL_CML_GT1_IDS(info)	\
--	INTEL_VGA_DEVICE(0x9B21, info), \
--	INTEL_VGA_DEVICE(0x9BAA, info), \
--	INTEL_VGA_DEVICE(0x9BAC, info), \
- 	INTEL_VGA_DEVICE(0x9BA5, info), \
- 	INTEL_VGA_DEVICE(0x9BA8, info), \
- 	INTEL_VGA_DEVICE(0x9BA4, info), \
- 	INTEL_VGA_DEVICE(0x9BA2, info)
- 
-+#define INTEL_CML_U_GT1_IDS(info) \
-+	INTEL_VGA_DEVICE(0x9B21, info), \
-+	INTEL_VGA_DEVICE(0x9BAA, info), \
-+	INTEL_VGA_DEVICE(0x9BAC, info)
-+
- /* CML GT2 */
- #define INTEL_CML_GT2_IDS(info)	\
--	INTEL_VGA_DEVICE(0x9B41, info), \
--	INTEL_VGA_DEVICE(0x9BCA, info), \
--	INTEL_VGA_DEVICE(0x9BCC, info), \
- 	INTEL_VGA_DEVICE(0x9BC5, info), \
- 	INTEL_VGA_DEVICE(0x9BC8, info), \
- 	INTEL_VGA_DEVICE(0x9BC4, info), \
-@@ -467,6 +466,11 @@
- 	INTEL_VGA_DEVICE(0x9BE6, info), \
- 	INTEL_VGA_DEVICE(0x9BF6, info)
- 
-+#define INTEL_CML_U_GT2_IDS(info) \
-+	INTEL_VGA_DEVICE(0x9B41, info), \
-+	INTEL_VGA_DEVICE(0x9BCA, info), \
-+	INTEL_VGA_DEVICE(0x9BCC, info)
-+
- #define INTEL_KBL_IDS(info) \
- 	INTEL_KBL_GT1_IDS(info), \
- 	INTEL_KBL_GT2_IDS(info), \
-@@ -532,7 +536,9 @@
- 	INTEL_WHL_U_GT3_IDS(info), \
- 	INTEL_AML_CFL_GT2_IDS(info), \
- 	INTEL_CML_GT1_IDS(info), \
--	INTEL_CML_GT2_IDS(info)
-+	INTEL_CML_GT2_IDS(info), \
-+	INTEL_CML_U_GT1_IDS(info), \
-+	INTEL_CML_U_GT2_IDS(info)
- 
- /* CNL */
- #define INTEL_CNL_PORT_F_IDS(info) \
+Need to check for source DSC support and DSC power domain power before
+readout. Duh.
+
+BR,
+Jani.
+
+
+>
+> Cc: Manasi Navare <manasi.d.navare@intel.com>
+> Cc: Vandita Kulkarni <vandita.kulkarni@intel.com>
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_ddi.c     |  2 ++
+>  drivers/gpu/drm/i915/display/intel_display.c |  4 +++
+>  drivers/gpu/drm/i915/display/intel_vdsc.c    | 36 ++++++++++++++++++++
+>  drivers/gpu/drm/i915/display/intel_vdsc.h    |  2 ++
+>  4 files changed, 44 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+> index 3cacb1e279c1..98964d127cd1 100644
+> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+> @@ -4291,6 +4291,8 @@ void intel_ddi_get_config(struct intel_encoder *encoder,
+>  	if (WARN_ON(transcoder_is_dsi(cpu_transcoder)))
+>  		return;
+>  
+> +	intel_dsc_get_config(encoder, pipe_config);
+> +
+>  	temp = I915_READ(TRANS_DDI_FUNC_CTL(cpu_transcoder));
+>  	if (temp & TRANS_DDI_PHSYNC)
+>  		flags |= DRM_MODE_FLAG_PHSYNC;
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> index 3190aa27ffdc..4fd34d2cba4f 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -13316,6 +13316,10 @@ intel_pipe_config_compare(const struct intel_crtc_state *current_config,
+>  	PIPE_CONF_CHECK_I(sync_mode_slaves_mask);
+>  	PIPE_CONF_CHECK_I(master_transcoder);
+>  
+> +	PIPE_CONF_CHECK_I(dsc.compression_enable);
+> +	PIPE_CONF_CHECK_I(dsc.dsc_split);
+> +	PIPE_CONF_CHECK_I(dsc.compressed_bpp);
+> +
+>  #undef PIPE_CONF_CHECK_X
+>  #undef PIPE_CONF_CHECK_I
+>  #undef PIPE_CONF_CHECK_BOOL
+> diff --git a/drivers/gpu/drm/i915/display/intel_vdsc.c b/drivers/gpu/drm/i915/display/intel_vdsc.c
+> index 7bd727129a8f..4c1b1c5c55ff 100644
+> --- a/drivers/gpu/drm/i915/display/intel_vdsc.c
+> +++ b/drivers/gpu/drm/i915/display/intel_vdsc.c
+> @@ -845,6 +845,42 @@ static void intel_dsc_pps_configure(struct intel_encoder *encoder,
+>  	}
+>  }
+>  
+> +void intel_dsc_get_config(struct intel_encoder *encoder,
+> +			  struct intel_crtc_state *crtc_state)
+> +{
+> +	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+> +	struct drm_dsc_config *vdsc_cfg = &crtc_state->dsc.config;
+> +	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+> +	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
+> +	enum pipe pipe = crtc->pipe;
+> +	u32 dss_ctl1, dss_ctl2, val;
+> +
+> +	if (crtc_state->cpu_transcoder == TRANSCODER_EDP) {
+> +		dss_ctl1 = I915_READ(DSS_CTL1);
+> +		dss_ctl2 = I915_READ(DSS_CTL2);
+> +	} else {
+> +		dss_ctl1 = I915_READ(ICL_PIPE_DSS_CTL1(pipe));
+> +		dss_ctl2 = I915_READ(ICL_PIPE_DSS_CTL2(pipe));
+> +	}
+> +
+> +	crtc_state->dsc.compression_enable = dss_ctl2 & LEFT_BRANCH_VDSC_ENABLE;
+> +	if (!crtc_state->dsc.compression_enable)
+> +		return;
+> +
+> +	crtc_state->dsc.dsc_split = (dss_ctl2 & RIGHT_BRANCH_VDSC_ENABLE) &&
+> +		(dss_ctl1 & JOINER_ENABLE);
+> +
+> +	/* FIXME: add more state readout as needed */
+> +
+> +	/* PPS1 */
+> +	if (cpu_transcoder == TRANSCODER_EDP)
+> +		val = I915_READ(DSCA_PICTURE_PARAMETER_SET_1);
+> +	else
+> +		val = I915_READ(ICL_DSC0_PICTURE_PARAMETER_SET_1(pipe));
+> +	vdsc_cfg->bits_per_pixel = val;
+> +	crtc_state->dsc.compressed_bpp = vdsc_cfg->bits_per_pixel >> 4;
+> +}
+> +
+>  static void intel_dsc_dsi_pps_write(struct intel_encoder *encoder,
+>  				    const struct intel_crtc_state *crtc_state)
+>  {
+> diff --git a/drivers/gpu/drm/i915/display/intel_vdsc.h b/drivers/gpu/drm/i915/display/intel_vdsc.h
+> index 4ed2256750c3..541c28a9e158 100644
+> --- a/drivers/gpu/drm/i915/display/intel_vdsc.h
+> +++ b/drivers/gpu/drm/i915/display/intel_vdsc.h
+> @@ -14,6 +14,8 @@ void intel_dsc_enable(struct intel_encoder *encoder,
+>  void intel_dsc_disable(const struct intel_crtc_state *crtc_state);
+>  int intel_dsc_compute_params(struct intel_encoder *encoder,
+>  			     struct intel_crtc_state *pipe_config);
+> +void intel_dsc_get_config(struct intel_encoder *encoder,
+> +			  struct intel_crtc_state *crtc_state);
+>  enum intel_display_power_domain
+>  intel_dsc_power_domain(const struct intel_crtc_state *crtc_state);
+
 -- 
-2.17.1
-
+Jani Nikula, Intel Open Source Graphics Center
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
