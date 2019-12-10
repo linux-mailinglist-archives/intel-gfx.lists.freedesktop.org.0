@@ -2,40 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3ADDE118C44
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 Dec 2019 16:15:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F93D118C5F
+	for <lists+intel-gfx@lfdr.de>; Tue, 10 Dec 2019 16:20:31 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7F7796E0FC;
-	Tue, 10 Dec 2019 15:15:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8951889CB2;
+	Tue, 10 Dec 2019 15:20:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 07B766E0FC
- for <intel-gfx@lists.freedesktop.org>; Tue, 10 Dec 2019 15:15:52 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C71276E10F
+ for <intel-gfx@lists.freedesktop.org>; Tue, 10 Dec 2019 15:20:27 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 10 Dec 2019 07:15:52 -0800
-X-IronPort-AV: E=Sophos;i="5.69,300,1571727600"; d="scan'208";a="207308251"
+ by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 10 Dec 2019 07:20:27 -0800
+X-IronPort-AV: E=Sophos;i="5.69,300,1571727600"; d="scan'208";a="207309356"
 Received: from jmcrann-mobl1.ger.corp.intel.com (HELO [10.252.9.248])
  ([10.252.9.248])
  by orsmga008-auth.jf.intel.com with ESMTP/TLS/AES256-SHA;
- 10 Dec 2019 07:15:51 -0800
+ 10 Dec 2019 07:20:26 -0800
 To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-References: <20191204211703.4073569-1-chris@chris-wilson.co.uk>
- <20191210151332.3902215-1-chris@chris-wilson.co.uk>
+References: <20191210133719.3874455-1-chris@chris-wilson.co.uk>
 From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
 Organization: Intel Corporation UK Plc
-Message-ID: <483ec7a4-ee5b-99e2-7e40-6e357adcac88@linux.intel.com>
-Date: Tue, 10 Dec 2019 15:15:49 +0000
+Message-ID: <5464825b-9c04-cf7c-3909-450470cf5bbf@linux.intel.com>
+Date: Tue, 10 Dec 2019 15:20:24 +0000
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.9.0
 MIME-Version: 1.0
-In-Reply-To: <20191210151332.3902215-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20191210133719.3874455-1-chris@chris-wilson.co.uk>
 Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH v5] drm/i915: Copy across scheduler
- behaviour flags across submit fences
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/gem: Wait on unbind barriers when
+ invalidating userptr
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,233 +53,54 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
-On 10/12/2019 15:13, Chris Wilson wrote:
-> We want the bonded request to have the same scheduler properties as its
-> master so that it is placed at the same depth in the queue. For example,
-> consider we have requests A, B and B', where B & B' are a bonded pair to
-> run in parallel on two engines.
+On 10/12/2019 13:37, Chris Wilson wrote:
+> When we are told we have to drop all references to userptr, wait for any
+> barriers required for unbinding.
 > 
-> 	A -> B
->       	     \- B'
+> <4> [2055.808787] WARNING: CPU: 3 PID: 6239 at mm/mmu_notifier.c:472 __mmu_notifier_invalidate_range_start+0x1f2/0x250
+> <4> [2055.808792] Modules linked in: vgem mei_hdcp snd_hda_codec_hdmi snd_hda_codec_realtek snd_hda_codec_generic x86_pkg_temp_thermal coretemp crct10dif_pclmul crc32_pclmul ghash_clmulni_intel r8169 lpc_ich realtek i915 snd_hda_intel snd_intel_dspcfg snd_hda_codec snd_hwdep snd_hda_core pinctrl_broxton snd_pcm pinctrl_intel mei_me intel_lpss_pci mei prime_numbers [last unloaded: vgem]
+> <4> [2055.808834] CPU: 3 PID: 6239 Comm: gem_userptr_bli Tainted: G     U            5.5.0-rc1-CI-CI_DRM_7522+ #1
+> <4> [2055.808839] Hardware name:  /NUC6CAYB, BIOS AYAPLCEL.86A.0049.2018.0508.1356 05/08/2018
+> <4> [2055.808847] RIP: 0010:__mmu_notifier_invalidate_range_start+0x1f2/0x250
+> <4> [2055.808853] Code: c2 48 c7 c7 70 17 2e 82 44 89 45 d4 48 8b 70 28 e8 ec 01 ef ff 41 f6 46 20 01 44 8b 45 d4 75 0a 41 83 f8 f5 44 89 7d d4 74 89 <0f> 0b 44 89 45 d4 eb 81 0f 0b 49 8b 46 18 49 8b 76 10 4c 89 ff 48
+> <4> [2055.808858] RSP: 0018:ffffc90002937d40 EFLAGS: 00010202
+> <4> [2055.808865] RAX: 0000000000000061 RBX: ffff8882703a33e0 RCX: 0000000000000001
+> <4> [2055.808870] RDX: 0000000000000000 RSI: ffff888277da8cb8 RDI: 00000000ffffffff
+> <4> [2055.808874] RBP: ffffc90002937d70 R08: 00000000fffffff5 R09: 0000000000000000
+> <4> [2055.808879] R10: 0000000000000000 R11: 0000000000000000 R12: 0000000000000001
+> <4> [2055.808884] R13: ffffffff822e1716 R14: ffffc90002937d80 R15: 00000000fffffff5
+> <4> [2055.808890] FS:  00007fda75004e40(0000) GS:ffff888277d80000(0000) knlGS:0000000000000000
+> <4> [2055.808895] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+> <4> [2055.808900] CR2: 000055ad72ec3000 CR3: 00000002697b2000 CR4: 00000000003406e0
+> <4> [2055.808904] Call Trace:
+> <4> [2055.808920]  unmap_vmas+0x13e/0x150
+> <4> [2055.808937]  unmap_region+0xa3/0x100
+> <4> [2055.808964]  __do_munmap+0x26d/0x490
+> <4> [2055.808980]  __vm_munmap+0x66/0xc0
+> <4> [2055.808994]  __x64_sys_munmap+0x12/0x20
+> <4> [2055.809001]  do_syscall_64+0x4f/0x220
 > 
-> B will run after A and so may be scheduled on an idle engine and wait on
-> A using a semaphore. B' sees B being executed and so enters the queue on
-> the same engine as A. As B' did not inherit the semaphore-chain from B,
-> it may have higher precedence than A and so preempts execution. However,
-> B' then sits on a semaphore waiting for B, who is waiting for A, who is
-> blocked by B.
-> 
-> Ergo B' needs to inherit the scheduler properties from B (i.e. the
-> semaphore chain) so that it is scheduled with the same priority as B and
-> will not be executed ahead of Bs dependencies.
-> 
-> Furthermore, to prevent the priorities changing via the expose fence on
-> B', we need to couple in the dependencies for PI. This requires us to
-> relax our sanity-checks that dependencies are strictly in order.
-> 
-> v2: Synchronise (B, B') execution on all platforms, regardless of using
-> a scheduler, any no-op syncs should be elided.
-> 
-> Fixes: ee1136908e9b ("drm/i915/execlists: Virtual engine bonding")
-> Closes: https://gitlab.freedesktop.org/drm/intel/issues/464
-> Testcase: igt/gem_exec_balancer/bonded-chain
-> Testcase: igt/gem_exec_balancer/bonded-semaphore
+> Closes: https://gitlab.freedesktop.org/drm/intel/issues/771
 > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 > ---
->   drivers/gpu/drm/i915/i915_request.c   | 114 ++++++++++++++++++++------
->   drivers/gpu/drm/i915/i915_scheduler.c |   1 -
->   2 files changed, 89 insertions(+), 26 deletions(-)
+>   drivers/gpu/drm/i915/gem/i915_gem_userptr.c | 3 ++-
+>   1 file changed, 2 insertions(+), 1 deletion(-)
 > 
-> diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
-> index ddc6c311349c..a6238c626a16 100644
-> --- a/drivers/gpu/drm/i915/i915_request.c
-> +++ b/drivers/gpu/drm/i915/i915_request.c
-> @@ -300,11 +300,11 @@ void i915_request_retire_upto(struct i915_request *rq)
->   }
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_userptr.c b/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
+> index 54ebc7ab71bc..f7f66c62cf0e 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
+> @@ -129,7 +129,8 @@ userptr_mn_invalidate_range_start(struct mmu_notifier *_mn,
+>   		spin_unlock(&mn->lock);
 >   
->   static int
-> -__i915_request_await_execution(struct i915_request *rq,
-> -			       struct i915_request *signal,
-> -			       void (*hook)(struct i915_request *rq,
-> -					    struct dma_fence *signal),
-> -			       gfp_t gfp)
-> +__await_execution(struct i915_request *rq,
-> +		  struct i915_request *signal,
-> +		  void (*hook)(struct i915_request *rq,
-> +			       struct dma_fence *signal),
-> +		  gfp_t gfp)
->   {
->   	struct execute_cb *cb;
->   
-> @@ -341,6 +341,8 @@ __i915_request_await_execution(struct i915_request *rq,
->   	}
->   	spin_unlock_irq(&signal->lock);
->   
-> +	/* Copy across semaphore status as we need the same behaviour */
-> +	rq->sched.flags |= signal->sched.flags;
->   	return 0;
->   }
->   
-> @@ -824,31 +826,21 @@ already_busywaiting(struct i915_request *rq)
->   }
->   
->   static int
-> -emit_semaphore_wait(struct i915_request *to,
-> -		    struct i915_request *from,
-> -		    gfp_t gfp)
-> +__emit_semaphore_wait(struct i915_request *to,
-> +		      struct i915_request *from,
-> +		      u32 seqno)
->   {
->   	const int has_token = INTEL_GEN(to->i915) >= 12;
->   	u32 hwsp_offset;
-> -	int len;
-> +	int len, err;
->   	u32 *cs;
->   
->   	GEM_BUG_ON(INTEL_GEN(to->i915) < 8);
->   
-> -	/* Just emit the first semaphore we see as request space is limited. */
-> -	if (already_busywaiting(to) & from->engine->mask)
-> -		goto await_fence;
-> -
-> -	if (i915_request_await_start(to, from) < 0)
-> -		goto await_fence;
-> -
-> -	/* Only submit our spinner after the signaler is running! */
-> -	if (__i915_request_await_execution(to, from, NULL, gfp))
-> -		goto await_fence;
-> -
->   	/* We need to pin the signaler's HWSP until we are finished reading. */
-> -	if (intel_timeline_read_hwsp(from, to, &hwsp_offset))
-> -		goto await_fence;
-> +	err = intel_timeline_read_hwsp(from, to, &hwsp_offset);
-> +	if (err)
-> +		return err;
->   
->   	len = 4;
->   	if (has_token)
-> @@ -871,7 +863,7 @@ emit_semaphore_wait(struct i915_request *to,
->   		 MI_SEMAPHORE_POLL |
->   		 MI_SEMAPHORE_SAD_GTE_SDD) +
->   		has_token;
-> -	*cs++ = from->fence.seqno;
-> +	*cs++ = seqno;
->   	*cs++ = hwsp_offset;
->   	*cs++ = 0;
->   	if (has_token) {
-> @@ -880,6 +872,28 @@ emit_semaphore_wait(struct i915_request *to,
->   	}
->   
->   	intel_ring_advance(to, cs);
-> +	return 0;
-> +}
-> +
-> +static int
-> +emit_semaphore_wait(struct i915_request *to,
-> +		    struct i915_request *from,
-> +		    gfp_t gfp)
-> +{
-> +	/* Just emit the first semaphore we see as request space is limited. */
-> +	if (already_busywaiting(to) & from->engine->mask)
-> +		goto await_fence;
-> +
-> +	if (i915_request_await_start(to, from) < 0)
-> +		goto await_fence;
-> +
-> +	/* Only submit our spinner after the signaler is running! */
-> +	if (__await_execution(to, from, NULL, gfp))
-> +		goto await_fence;
-> +
-> +	if (__emit_semaphore_wait(to, from, from->fence.seqno))
-> +		goto await_fence;
-> +
->   	to->sched.semaphores |= from->engine->mask;
->   	to->sched.flags |= I915_SCHED_HAS_SEMAPHORE_CHAIN;
->   	return 0;
-> @@ -995,6 +1009,57 @@ i915_request_await_dma_fence(struct i915_request *rq, struct dma_fence *fence)
->   	return 0;
->   }
->   
-> +static bool intel_timeline_sync_has_start(struct intel_timeline *tl,
-> +					  struct dma_fence *fence)
-> +{
-> +	return __intel_timeline_sync_is_later(tl,
-> +					      fence->context,
-> +					      fence->seqno - 1);
-> +}
-> +
-> +static int intel_timeline_sync_set_start(struct intel_timeline *tl,
-> +					 const struct dma_fence *fence)
-> +{
-> +	return __intel_timeline_sync_set(tl, fence->context, fence->seqno - 1);
-> +}
-> +
-> +static int
-> +__i915_request_await_execution(struct i915_request *to,
-> +			       struct i915_request *from,
-> +			       void (*hook)(struct i915_request *rq,
-> +					    struct dma_fence *signal))
-> +{
-> +	int err;
-> +
-> +	/* Submit both requests at the same time */
-> +	err = __await_execution(to, from, hook, I915_FENCE_GFP);
-> +	if (err)
-> +		return err;
-> +
-> +	/* Squash repeated depenendices to the same timelines */
-> +	if (intel_timeline_sync_has_start(i915_request_timeline(to),
-> +					  &from->fence))
-> +		return 0;
-> +
-> +	/* Ensure both start together [after all semaphores in signal] */
-> +	if (intel_engine_has_semaphores(to->engine))
-> +		err = __emit_semaphore_wait(to, from, from->fence.seqno - 1);
-> +	else
-> +		err = i915_request_await_start(to, from);
-> +	if (err < 0)
-> +		return err;
-> +
-> +	/* Couple the dependency tree for PI on this exposed to->fence */
-> +	if (to->engine->schedule) {
-> +		err = i915_sched_node_add_dependency(&to->sched, &from->sched);
-> +		if (err < 0)
-> +			return err;
-> +	}
-> +
-> +	return intel_timeline_sync_set_start(i915_request_timeline(to),
-> +					     &from->fence);
-> +}
-> +
->   int
->   i915_request_await_execution(struct i915_request *rq,
->   			     struct dma_fence *fence,
-> @@ -1030,8 +1095,7 @@ i915_request_await_execution(struct i915_request *rq,
->   		if (dma_fence_is_i915(fence))
->   			ret = __i915_request_await_execution(rq,
->   							     to_request(fence),
-> -							     hook,
-> -							     I915_FENCE_GFP);
-> +							     hook);
->   		else
->   			ret = i915_sw_fence_await_dma_fence(&rq->submit, fence,
->   							    I915_FENCE_TIMEOUT,
-> diff --git a/drivers/gpu/drm/i915/i915_scheduler.c b/drivers/gpu/drm/i915/i915_scheduler.c
-> index 1937a26d412f..2bc2aa46a1b9 100644
-> --- a/drivers/gpu/drm/i915/i915_scheduler.c
-> +++ b/drivers/gpu/drm/i915/i915_scheduler.c
-> @@ -484,7 +484,6 @@ void i915_sched_node_fini(struct i915_sched_node *node)
->   	 * so we may be called out-of-order.
->   	 */
->   	list_for_each_entry_safe(dep, tmp, &node->signalers_list, signal_link) {
-> -		GEM_BUG_ON(!node_signaled(dep->signaler));
->   		GEM_BUG_ON(!list_empty(&dep->dfs_link));
->   
->   		list_del(&dep->wait_link);
+>   		ret = i915_gem_object_unbind(obj,
+> -					     I915_GEM_OBJECT_UNBIND_ACTIVE);
+> +					     I915_GEM_OBJECT_UNBIND_ACTIVE |
+> +					     I915_GEM_OBJECT_UNBIND_BARRIER);
+>   		if (ret == 0)
+>   			ret = __i915_gem_object_put_pages(obj);
+>   		i915_gem_object_put(obj);
 > 
-
 
 Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 
