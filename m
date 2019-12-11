@@ -1,36 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9AF8311A84F
-	for <lists+intel-gfx@lfdr.de>; Wed, 11 Dec 2019 10:56:32 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F01611A803
+	for <lists+intel-gfx@lfdr.de>; Wed, 11 Dec 2019 10:47:16 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EC4106EAEF;
-	Wed, 11 Dec 2019 09:56:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 733936EAE3;
+	Wed, 11 Dec 2019 09:47:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 427 seconds by postgrey-1.36 at gabe;
- Wed, 11 Dec 2019 09:56:29 UTC
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 842CF6EAEE;
- Wed, 11 Dec 2019 09:56:29 +0000 (UTC)
+X-Greylist: delayed 328 seconds by postgrey-1.36 at gabe;
+ Wed, 11 Dec 2019 09:47:13 UTC
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 55A9C6EAE3
+ for <intel-gfx@lists.freedesktop.org>; Wed, 11 Dec 2019 09:47:13 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 11 Dec 2019 01:49:21 -0800
-X-IronPort-AV: E=Sophos;i="5.69,301,1571727600"; d="scan'208";a="363544981"
-Received: from jkrzyszt-desk.igk.intel.com ([172.22.244.17])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 11 Dec 2019 01:49:20 -0800
-From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-To: igt-dev@lists.freedesktop.org
-Date: Wed, 11 Dec 2019 10:42:43 +0100
-Message-Id: <20191211094243.6939-1-janusz.krzysztofik@linux.intel.com>
-X-Mailer: git-send-email 2.21.0
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 11 Dec 2019 01:44:08 -0800
+X-IronPort-AV: E=Sophos;i="5.69,301,1571727600"; d="scan'208";a="203494112"
+Received: from jlahtine-desk.ger.corp.intel.com (HELO localhost)
+ ([10.252.9.238])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 11 Dec 2019 01:44:06 -0800
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH i-g-t] tests/prime_vgem: Give meaningful
- messages on SKIP
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+In-Reply-To: <20191207170110.2200142-3-chris@chris-wilson.co.uk>
+References: <20191207170110.2200142-1-chris@chris-wilson.co.uk>
+ <20191207170110.2200142-3-chris@chris-wilson.co.uk>
+Message-ID: <157605744398.10520.7795812825546409798@jlahtine-desk.ger.corp.intel.com>
+User-Agent: alot/0.7
+Date: Wed, 11 Dec 2019 11:44:04 +0200
+Subject: Re: [Intel-gfx] [PATCH 3/8] drm/i915: Simplify error escape from
+ cmdparser
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -43,60 +48,21 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Messages displayed on SKIPs introduced by commit 92caadb4e551
-("tests/prime_vgem: Skip basic-read/write subtests if not supported")
-don't inform clearly enough that those SKIPs are expected behavior.
-Fix it.
+Quoting Chris Wilson (2019-12-07 19:01:05)
+> We need to flush the destination buffer, even on error, to maintain
+> consistent cache state. Thereby removing the jump on error past the
+> clear, and reducing the loop-escape mechanism to a mere break.
+> 
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 
-Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-Cc: Ewelina Musial <ewelina.musial@intel.com>
----
- tests/prime_vgem.c | 9 ++++++---
- 1 file changed, 6 insertions(+), 3 deletions(-)
+Reviewed-by: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
 
-diff --git a/tests/prime_vgem.c b/tests/prime_vgem.c
-index 6595818c..3bdb2300 100644
---- a/tests/prime_vgem.c
-+++ b/tests/prime_vgem.c
-@@ -46,7 +46,8 @@ static void test_read(int vgem, int i915)
- 	handle = prime_fd_to_handle(i915, dmabuf);
- 	close(dmabuf);
- 
--	igt_skip_on(__gem_read(i915, handle, 0, &i, sizeof(i)));
-+	igt_skip_on_f(__gem_read(i915, handle, 0, &i, sizeof(i)),
-+		      "PREAD from dma-buf not supported on this hardware\n");
- 
- 	ptr = vgem_mmap(vgem, &scratch, PROT_WRITE);
- 	for (i = 0; i < 1024; i++)
-@@ -83,7 +84,8 @@ static void test_fence_read(int i915, int vgem)
- 	handle = prime_fd_to_handle(i915, dmabuf);
- 	close(dmabuf);
- 
--	igt_skip_on(__gem_read(i915, handle, 0, &i, sizeof(i)));
-+	igt_skip_on_f(__gem_read(i915, handle, 0, &i, sizeof(i)),
-+		      "PREAD from dma-buf not supported on this hardware\n");
- 
- 	igt_fork(child, 1) {
- 		close(master[0]);
-@@ -195,7 +197,8 @@ static void test_write(int vgem, int i915)
- 	handle = prime_fd_to_handle(i915, dmabuf);
- 	close(dmabuf);
- 
--	igt_skip_on(__gem_write(i915, handle, 0, &i, sizeof(i)));
-+	igt_skip_on_f(__gem_write(i915, handle, 0, &i, sizeof(i)),
-+		      "PWRITE to dma-buf not supported on this hardware\n");
- 
- 	ptr = vgem_mmap(vgem, &scratch, PROT_READ);
- 	gem_close(vgem, scratch.handle);
--- 
-2.21.0
-
+Regards, Joonas
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
