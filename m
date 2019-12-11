@@ -1,32 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C2CF911AC99
-	for <lists+intel-gfx@lfdr.de>; Wed, 11 Dec 2019 14:58:04 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E351F11ACE5
+	for <lists+intel-gfx@lfdr.de>; Wed, 11 Dec 2019 15:04:20 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CB1246EB59;
-	Wed, 11 Dec 2019 13:58:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1F4D46EB5B;
+	Wed, 11 Dec 2019 14:04:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 07EF26EB58;
- Wed, 11 Dec 2019 13:58:01 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id F2138A00FD;
- Wed, 11 Dec 2019 13:58:00 +0000 (UTC)
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9B2466EB5B
+ for <intel-gfx@lists.freedesktop.org>; Wed, 11 Dec 2019 14:04:16 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 11 Dec 2019 06:04:15 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.69,301,1571727600"; d="scan'208";a="215933738"
+Received: from irvmail001.ir.intel.com ([163.33.26.43])
+ by orsmga003.jf.intel.com with ESMTP; 11 Dec 2019 06:04:14 -0800
+Received: from mwajdecz-mobl1.ger.corp.intel.com
+ (mwajdecz-mobl1.ger.corp.intel.com [10.249.135.169])
+ by irvmail001.ir.intel.com (8.14.3/8.13.6/MailSET/Hub) with ESMTP id
+ xBBE4CeB003419; Wed, 11 Dec 2019 14:04:13 GMT
+To: intel-gfx@lists.freedesktop.org, "Daniele Ceraolo Spurio"
+ <daniele.ceraolospurio@intel.com>
+References: <20191210210919.30846-1-daniele.ceraolospurio@intel.com>
+ <20191210210919.30846-4-daniele.ceraolospurio@intel.com>
+Date: Wed, 11 Dec 2019 15:04:12 +0100
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Wed, 11 Dec 2019 13:58:00 -0000
-Message-ID: <157607268096.30627.14891037283497241502@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20191211110437.4082687-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20191211110437.4082687-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5BCI=2C1/5=5D_drm/i915=3A_Fix_cmdparser_drm?=
- =?utf-8?q?=2Edebug?=
+From: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
+Message-ID: <op.0cmz1amzxaggs7@mwajdecz-mobl1.ger.corp.intel.com>
+In-Reply-To: <20191210210919.30846-4-daniele.ceraolospurio@intel.com>
+User-Agent: Opera Mail/1.0 (Win32)
+Subject: Re: [Intel-gfx] [PATCH 3/5] drm/i915/guc: remove function pointers
+ for send/receive calls
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,158 +49,357 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"; DelSp="yes"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Tue, 10 Dec 2019 22:09:17 +0100, Daniele Ceraolo Spurio  
+<daniele.ceraolospurio@intel.com> wrote:
 
-Series: series starting with [CI,1/5] drm/i915: Fix cmdparser drm.debug
-URL   : https://patchwork.freedesktop.org/series/70751/
-State : failure
+> Since we started using CT buffers on all gens, the function pointers can
+> only be set to either the _nop() or the _ct() functions. Since the
+> _nop() case applies to when the CT are disabled, we can just handle that
+> case in the _ct() functions and call them directly.
+>
+> Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+> Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+> Cc: John Harrison <John.C.Harrison@Intel.com>
+> Cc: Matthew Brost <matthew.brost@intel.com>
+> ---
+>  drivers/gpu/drm/i915/gt/intel_gt_irq.c        |  2 +-
+>  drivers/gpu/drm/i915/gt/uc/intel_guc.c        | 22 +++-----------
+>  drivers/gpu/drm/i915/gt/uc/intel_guc.h        | 29 -------------------
+>  drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c     | 14 +++++++--
+>  drivers/gpu/drm/i915/gt/uc/intel_guc_ct.h     | 17 +++++++++--
+>  drivers/gpu/drm/i915/gt/uc/intel_guc_log.c    |  6 ++--
+>  .../gpu/drm/i915/gt/uc/intel_guc_submission.c |  1 -
+>  drivers/gpu/drm/i915/gt/uc/intel_uc.c         | 18 ++++--------
+>  8 files changed, 40 insertions(+), 69 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_irq.c  
+> b/drivers/gpu/drm/i915/gt/intel_gt_irq.c
+> index 332b12a574fb..3183b4426c7b 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_gt_irq.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_gt_irq.c
+> @@ -16,7 +16,7 @@
+>  static void guc_irq_handler(struct intel_guc *guc, u16 iir)
+>  {
+>  	if (iir & GUC_INTR_GUC2HOST)
+> -		intel_guc_to_host_event_handler(guc);
+> +		intel_guc_to_host_event_handler_ct(guc);
+>  }
+> static void
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc.c  
+> b/drivers/gpu/drm/i915/gt/uc/intel_guc.c
+> index 922a19635d20..eb94635eeecd 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc.c
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.c
+> @@ -177,8 +177,6 @@ void intel_guc_init_early(struct intel_guc *guc)
+> 	mutex_init(&guc->send_mutex);
+>  	spin_lock_init(&guc->irq_lock);
+> -	guc->send = intel_guc_send_nop;
+> -	guc->handler = intel_guc_to_host_event_handler_nop;
+>  	if (INTEL_GEN(i915) >= 11) {
+>  		guc->notify = gen11_guc_raise_irq;
+>  		guc->interrupts.reset = gen11_reset_guc_interrupts;
+> @@ -403,18 +401,6 @@ void intel_guc_fini(struct intel_guc *guc)
+>  	intel_uc_fw_cleanup_fetch(&guc->fw);
+>  }
+> -int intel_guc_send_nop(struct intel_guc *guc, const u32 *action, u32  
+> len,
+> -		       u32 *response_buf, u32 response_buf_size)
+> -{
+> -	WARN(1, "Unexpected send: action=%#x\n", *action);
+> -	return -ENODEV;
+> -}
+> -
+> -void intel_guc_to_host_event_handler_nop(struct intel_guc *guc)
+> -{
+> -	WARN(1, "Unexpected event: no suitable handler\n");
+> -}
+> -
+>  /*
+>   * This function implements the MMIO based host to GuC interface.
+>   */
+> @@ -515,7 +501,7 @@ int intel_guc_sample_forcewake(struct intel_guc *guc)
+>  		/* bit 0 and 1 are for Render and Media domain separately */
+>  		action[1] = GUC_FORCEWAKE_RENDER | GUC_FORCEWAKE_MEDIA;
+> -	return intel_guc_send(guc, action, ARRAY_SIZE(action));
+> +	return intel_guc_send_ct(guc, action, ARRAY_SIZE(action));
+>  }
+> /**
+> @@ -536,7 +522,7 @@ int intel_guc_auth_huc(struct intel_guc *guc, u32  
+> rsa_offset)
+>  		rsa_offset
+>  	};
+> -	return intel_guc_send(guc, action, ARRAY_SIZE(action));
+> +	return intel_guc_send_ct(guc, action, ARRAY_SIZE(action));
+>  }
+> /**
+> @@ -573,7 +559,7 @@ int intel_guc_suspend(struct intel_guc *guc)
+>  	intel_uncore_write(uncore, SOFT_SCRATCH(14),
+>  			   INTEL_GUC_SLEEP_STATE_INVALID_MASK);
+> -	ret = intel_guc_send(guc, action, ARRAY_SIZE(action));
+> +	ret = intel_guc_send_ct(guc, action, ARRAY_SIZE(action));
+>  	if (ret)
+>  		return ret;
+> @@ -625,7 +611,7 @@ int intel_guc_resume(struct intel_guc *guc)
+>  	if (!intel_guc_submission_is_enabled(guc))
+>  		return 0;
+> -	return intel_guc_send(guc, action, ARRAY_SIZE(action));
+> +	return intel_guc_send_ct(guc, action, ARRAY_SIZE(action));
+>  }
+> /**
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc.h  
+> b/drivers/gpu/drm/i915/gt/uc/intel_guc.h
+> index cd09c912e361..c0b32db1c6ad 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc.h
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.h
+> @@ -70,40 +70,15 @@ struct intel_guc {
+>  	/* To serialize the intel_guc_send actions */
+>  	struct mutex send_mutex;
+> -	/* GuC's FW specific send function */
+> -	int (*send)(struct intel_guc *guc, const u32 *data, u32 len,
+> -		    u32 *response_buf, u32 response_buf_size);
+> -
+> -	/* GuC's FW specific event handler function */
+> -	void (*handler)(struct intel_guc *guc);
+> -
+>  	/* GuC's FW specific notify function */
+>  	void (*notify)(struct intel_guc *guc);
+>  };
+> -static
+> -inline int intel_guc_send(struct intel_guc *guc, const u32 *action, u32  
+> len)
+> -{
+> -	return guc->send(guc, action, len, NULL, 0);
+> -}
+> -
+> -static inline int
+> -intel_guc_send_and_receive(struct intel_guc *guc, const u32 *action,  
+> u32 len,
+> -			   u32 *response_buf, u32 response_buf_size)
+> -{
+> -	return guc->send(guc, action, len, response_buf, response_buf_size);
+> -}
 
-== Summary ==
+instead of dropping above inlines, I would rather just change them to:
 
-CI Bug Log - changes from CI_DRM_7540 -> Patchwork_15688
-====================================================
+	return intel_guc_ct_send(&guc->ct, ...);
 
-Summary
--------
+a) we will not have to change existing callers
+b) we will maintain modularity (separation of ct code)
 
-  **FAILURE**
+> -
+>  static inline void intel_guc_notify(struct intel_guc *guc)
+>  {
+>  	guc->notify(guc);
+>  }
+> -static inline void intel_guc_to_host_event_handler(struct intel_guc  
+> *guc)
+> -{
+> -	guc->handler(guc);
 
-  Serious unknown changes coming with Patchwork_15688 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_15688, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
+	intel_guc_ct_event_handler(&guc->ct); ?
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15688/index.html
+> -}
+> -
+>  /* GuC addresses above GUC_GGTT_TOP also don't map through the GTT */
+>  #define GUC_GGTT_TOP	0xFEE00000
+> @@ -136,12 +111,8 @@ void intel_guc_init_send_regs(struct intel_guc  
+> *guc);
+>  void intel_guc_write_params(struct intel_guc *guc);
+>  int intel_guc_init(struct intel_guc *guc);
+>  void intel_guc_fini(struct intel_guc *guc);
+> -int intel_guc_send_nop(struct intel_guc *guc, const u32 *action, u32  
+> len,
+> -		       u32 *response_buf, u32 response_buf_size);
+>  int intel_guc_send_mmio(struct intel_guc *guc, const u32 *action, u32  
+> len,
+>  			u32 *response_buf, u32 response_buf_size);
+> -void intel_guc_to_host_event_handler(struct intel_guc *guc);
+> -void intel_guc_to_host_event_handler_nop(struct intel_guc *guc);
+>  int intel_guc_to_host_process_recv_msg(struct intel_guc *guc,
+>  				       const u32 *payload, u32 len);
+>  int intel_guc_sample_forcewake(struct intel_guc *guc);
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c  
+> b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
+> index 96ce6d74f0b2..60b19f83e153 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
+> @@ -515,13 +515,19 @@ static int ct_send(struct intel_guc_ct *ct,
+>  /*
+>   * Command Transport (CT) buffer based GuC send function.
+>   */
+> -int intel_guc_send_ct(struct intel_guc *guc, const u32 *action, u32 len,
+> -		      u32 *response_buf, u32 response_buf_size)
+> +int intel_guc_send_and_receive_ct(struct intel_guc *guc, const u32  
+> *action,
 
-Possible new issues
--------------------
+to have proper modularization, this should be:
 
-  Here are the unknown changes that may have been introduced in Patchwork_15688:
+	intel_guc_ct_send_and_receive(struct intel_guc_ct *ct, ...
+or
+	intel_guc_ct_send(struct intel_guc_ct *ct, ...
 
-### IGT changes ###
+> +				  u32 len, u32 *response_buf,
+> +				  u32 response_buf_size)
+>  {
+>  	struct intel_guc_ct *ct = &guc->ct;
+>  	u32 status = ~0; /* undefined */
+>  	int ret;
+> +	if (unlikely(!ct->enabled)) {
+> +		WARN(1, "Unexpected send: action=%#x\n", *action);
+> +		return -ENODEV;
+> +	}
+> +
+>  	mutex_lock(&guc->send_mutex);
+> 	ret = ct_send(ct, action, len, response_buf, response_buf_size,  
+> &status);
+> @@ -799,8 +805,10 @@ void intel_guc_to_host_event_handler_ct(struct  
+> intel_guc *guc)
+>  	u32 msg[GUC_CT_MSG_LEN_MASK + 1]; /* one extra dw for the header */
+>  	int err = 0;
+> -	if (!ct->enabled)
+> +	if (!ct->enabled) {
+> +		WARN(1, "Unexpected event: no suitable handler\n");
 
-#### Possible regressions ####
+hmm, there is a handler, but CTB is not working ;)
 
-  * igt@gem_sync@basic-store-all:
-    - fi-tgl-y:           NOTRUN -> [INCOMPLETE][1]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15688/fi-tgl-y/igt@gem_sync@basic-store-all.html
+>  		return;
+> +	}
+> 	do {
+>  		err = ctb_read(ctb, msg);
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.h  
+> b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.h
+> index 4bb1d1fcc860..929483b1f013 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.h
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.h
+> @@ -66,8 +66,21 @@ void intel_guc_ct_fini(struct intel_guc_ct *ct);
+>  int intel_guc_ct_enable(struct intel_guc_ct *ct);
+>  void intel_guc_ct_disable(struct intel_guc_ct *ct);
+> -int intel_guc_send_ct(struct intel_guc *guc, const u32 *action, u32 len,
+> -		      u32 *response_buf, u32 response_buf_size);
+> +static inline bool intel_guc_ct_enabled(struct intel_guc_ct *ct)
+> +{
+> +	return ct->enabled;
+> +}
+> +
+> +int
+> +intel_guc_send_and_receive_ct(struct intel_guc *guc, const u32 *action,  
+> u32 len,
+> +			      u32 *response_buf, u32 response_buf_size);
+> +
+> +static inline int
+> +intel_guc_send_ct(struct intel_guc *guc, const u32 *action, u32 len)
+> +{
+> +	return intel_guc_send_and_receive_ct(guc, action, len, NULL, 0);
+> +}
+> +
+>  void intel_guc_to_host_event_handler_ct(struct intel_guc *guc);
+> #endif /* _INTEL_GUC_CT_H_ */
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_log.c  
+> b/drivers/gpu/drm/i915/gt/uc/intel_guc_log.c
+> index caed0d57e704..5938127fb129 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_log.c
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_log.c
+> @@ -27,7 +27,7 @@ static int guc_action_flush_log_complete(struct  
+> intel_guc *guc)
+>  		INTEL_GUC_ACTION_LOG_BUFFER_FILE_FLUSH_COMPLETE
+>  	};
+> -	return intel_guc_send(guc, action, ARRAY_SIZE(action));
+> +	return intel_guc_send_ct(guc, action, ARRAY_SIZE(action));
+>  }
+> static int guc_action_flush_log(struct intel_guc *guc)
+> @@ -37,7 +37,7 @@ static int guc_action_flush_log(struct intel_guc *guc)
+>  		0
+>  	};
+> -	return intel_guc_send(guc, action, ARRAY_SIZE(action));
+> +	return intel_guc_send_ct(guc, action, ARRAY_SIZE(action));
+>  }
+> static int guc_action_control_log(struct intel_guc *guc, bool enable,
+> @@ -52,7 +52,7 @@ static int guc_action_control_log(struct intel_guc  
+> *guc, bool enable,
+> 	GEM_BUG_ON(verbosity > GUC_LOG_VERBOSITY_MAX);
+> -	return intel_guc_send(guc, action, ARRAY_SIZE(action));
+> +	return intel_guc_send_ct(guc, action, ARRAY_SIZE(action));
+>  }
+> static inline struct intel_guc *log_to_guc(struct intel_guc_log *log)
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c  
+> b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> index 172220e83079..fd7008bb128c 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> @@ -43,7 +43,6 @@
+>   * Firmware writes a success/fail code back to the action register after
+>   * processes the request. The kernel driver polls waiting for this  
+> update and
+>   * then proceeds.
+> - * See intel_guc_send()
+>   *
+>   * Work Items:
+>   * There are several types of work items that the host may place into a
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc.c  
+> b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
+> index 7566af8ab46e..18a5eaf3052c 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_uc.c
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
+> @@ -123,6 +123,11 @@ static void __uc_free_load_err_log(struct intel_uc  
+> *uc)
+>  		i915_gem_object_put(log);
+>  }
+> +static inline bool guc_communication_enabled(struct intel_guc *guc)
+> +{
+> +	return intel_guc_ct_enabled(&guc->ct);
+> +}
 
-  * igt@i915_selftest@live_gem_contexts:
-    - fi-cfl-guc:         [PASS][2] -> [DMESG-FAIL][3]
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7540/fi-cfl-guc/igt@i915_selftest@live_gem_contexts.html
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15688/fi-cfl-guc/igt@i915_selftest@live_gem_contexts.html
+if this is really needed, please move to intel_guc.h
 
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_15688 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-skl-6770hq:      [PASS][4] -> [FAIL][5] ([i915#178])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7540/fi-skl-6770hq/igt@i915_pm_rpm@module-reload.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15688/fi-skl-6770hq/igt@i915_pm_rpm@module-reload.html
-
-  * igt@i915_selftest@live_blt:
-    - fi-ivb-3770:        [PASS][6] -> [DMESG-FAIL][7] ([i915#725])
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7540/fi-ivb-3770/igt@i915_selftest@live_blt.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15688/fi-ivb-3770/igt@i915_selftest@live_blt.html
-
-  * igt@kms_busy@basic-flip-pipe-a:
-    - fi-icl-u2:          [PASS][8] -> [TIMEOUT][9] ([i915#449])
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7540/fi-icl-u2/igt@kms_busy@basic-flip-pipe-a.html
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15688/fi-icl-u2/igt@kms_busy@basic-flip-pipe-a.html
-
-  * igt@kms_chamelium@hdmi-hpd-fast:
-    - fi-kbl-7500u:       [PASS][10] -> [FAIL][11] ([fdo#111407])
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7540/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15688/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live_blt:
-    - fi-hsw-4770:        [DMESG-FAIL][12] ([i915#725]) -> [PASS][13]
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7540/fi-hsw-4770/igt@i915_selftest@live_blt.html
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15688/fi-hsw-4770/igt@i915_selftest@live_blt.html
-
-  * igt@i915_selftest@live_hangcheck:
-    - fi-icl-u3:          [INCOMPLETE][14] ([fdo#108569] / [i915#140]) -> [PASS][15]
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7540/fi-icl-u3/igt@i915_selftest@live_hangcheck.html
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15688/fi-icl-u3/igt@i915_selftest@live_hangcheck.html
-
-  
-#### Warnings ####
-
-  * igt@gem_exec_suspend@basic-s3:
-    - fi-kbl-x1275:       [DMESG-WARN][16] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][17] ([i915#62] / [i915#92]) +4 similar issues
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7540/fi-kbl-x1275/igt@gem_exec_suspend@basic-s3.html
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15688/fi-kbl-x1275/igt@gem_exec_suspend@basic-s3.html
-
-  * igt@kms_busy@basic-flip-pipe-b:
-    - fi-kbl-x1275:       [DMESG-WARN][18] ([i915#62] / [i915#92]) -> [DMESG-WARN][19] ([i915#62] / [i915#92] / [i915#95]) +4 similar issues
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7540/fi-kbl-x1275/igt@kms_busy@basic-flip-pipe-b.html
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15688/fi-kbl-x1275/igt@kms_busy@basic-flip-pipe-b.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#108569]: https://bugs.freedesktop.org/show_bug.cgi?id=108569
-  [fdo#111407]: https://bugs.freedesktop.org/show_bug.cgi?id=111407
-  [i915#140]: https://gitlab.freedesktop.org/drm/intel/issues/140
-  [i915#178]: https://gitlab.freedesktop.org/drm/intel/issues/178
-  [i915#449]: https://gitlab.freedesktop.org/drm/intel/issues/449
-  [i915#476]: https://gitlab.freedesktop.org/drm/intel/issues/476
-  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
-  [i915#725]: https://gitlab.freedesktop.org/drm/intel/issues/725
-  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
-  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
-
-
-Participating hosts (53 -> 46)
-------------------------------
-
-  Additional (1): fi-tgl-y 
-  Missing    (8): fi-hsw-4770r fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_7540 -> Patchwork_15688
-
-  CI-20190529: 20190529
-  CI_DRM_7540: f7af732973915f9e52e939c0a8046f2eb8c6db63 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5343: e3664f8ce1f9152712b32e9bfa1e4ec93ffa5349 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_15688: fa5e1faeee3f31fd63c7ab6a4e11d029ad4ff51c @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-fa5e1faeee3f drm/i915: Align start for memcpy_from_wc
-2c1527f75ee4 drm/i915/gem: Tidy up error handling for eb_parse()
-37ab9c58f463 drm/i915: Simplify error escape from cmdparser
-d6fc56037549 drm/i915: Remove redundant parameters from intel_engine_cmd_parser
-932afa9f6249 drm/i915: Fix cmdparser drm.debug
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15688/index.html
+> +
+>  /*
+>   * Events triggered while CT buffers are disabled are logged in the  
+> SCRATCH_15
+>   * register using the same bits used in the CT message payload. Since  
+> our
+> @@ -158,7 +163,7 @@ static void guc_handle_mmio_msg(struct intel_guc  
+> *guc)
+>  	struct drm_i915_private *i915 = guc_to_gt(guc)->i915;
+> 	/* we need communication to be enabled to reply to GuC */
+> -	GEM_BUG_ON(guc->handler == intel_guc_to_host_event_handler_nop);
+> +	GEM_BUG_ON(!guc_communication_enabled(guc));
+> 	if (!guc->mmio_msg)
+>  		return;
+> @@ -185,11 +190,6 @@ static void guc_disable_interrupts(struct intel_guc  
+> *guc)
+>  	guc->interrupts.disable(guc);
+>  }
+> -static inline bool guc_communication_enabled(struct intel_guc *guc)
+> -{
+> -	return guc->send != intel_guc_send_nop;
+> -}
+> -
+>  static int guc_enable_communication(struct intel_guc *guc)
+>  {
+>  	struct drm_i915_private *i915 = guc_to_gt(guc)->i915;
+> @@ -205,9 +205,6 @@ static int guc_enable_communication(struct intel_guc  
+> *guc)
+>  	if (ret)
+>  		return ret;
+> -	guc->send = intel_guc_send_ct;
+> -	guc->handler = intel_guc_to_host_event_handler_ct;
+> -
+>  	/* check for mmio messages received before/during the CT enable */
+>  	guc_get_mmio_msg(guc);
+>  	guc_handle_mmio_msg(guc);
+> @@ -235,9 +232,6 @@ static void guc_disable_communication(struct  
+> intel_guc *guc)
+> 	guc_disable_interrupts(guc);
+> -	guc->send = intel_guc_send_nop;
+> -	guc->handler = intel_guc_to_host_event_handler_nop;
+> -
+>  	intel_guc_ct_disable(&guc->ct);
+> 	/*
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
