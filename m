@@ -1,31 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 453DE11BDC7
-	for <lists+intel-gfx@lfdr.de>; Wed, 11 Dec 2019 21:19:05 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6416211BDDE
+	for <lists+intel-gfx@lfdr.de>; Wed, 11 Dec 2019 21:30:17 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A90066E10D;
-	Wed, 11 Dec 2019 20:19:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 01BE26E06B;
+	Wed, 11 Dec 2019 20:30:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id BEAFD6E10D;
- Wed, 11 Dec 2019 20:19:01 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id BA5AAA363B;
- Wed, 11 Dec 2019 20:19:01 +0000 (UTC)
+X-Greylist: delayed 346 seconds by postgrey-1.36 at gabe;
+ Wed, 11 Dec 2019 20:30:12 UTC
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C26956E06B
+ for <intel-gfx@lists.freedesktop.org>; Wed, 11 Dec 2019 20:30:12 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 11 Dec 2019 12:25:23 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.69,303,1571727600"; d="scan'208";a="225664174"
+Received: from cataylo2-ubuntu18-10.jf.intel.com (HELO [10.7.199.54])
+ ([10.7.199.54])
+ by orsmga002.jf.intel.com with ESMTP; 11 Dec 2019 12:25:22 -0800
+To: intel-gfx@lists.freedesktop.org
+References: <20191206071422.27138-1-lucas.demarchi@intel.com>
+ <20191206071422.27138-2-lucas.demarchi@intel.com>
+From: Clinton Taylor <Clinton.A.Taylor@intel.com>
+Message-ID: <d60e6ec2-feb0-1dde-7574-29d284b6e114@intel.com>
+Date: Wed, 11 Dec 2019 12:25:22 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?b?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Date: Wed, 11 Dec 2019 20:19:01 -0000
-Message-ID: <157609554176.30627.14723530883711919147@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20191210144105.3239-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20191210144105.3239-1-ville.syrjala@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Some_cleanup_near_the_SKL_wm/ddb_area_=28rev4=29?=
+In-Reply-To: <20191206071422.27138-2-lucas.demarchi@intel.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH 2/3] drm/i915/display: use clk_off name to
+ avoid double negation
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,121 +49,49 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
 
-Series: drm/i915: Some cleanup near the SKL wm/ddb area (rev4)
-URL   : https://patchwork.freedesktop.org/series/67930/
-State : success
+On 12/5/19 11:14 PM, Lucas De Marchi wrote:
+> Instead of "ungated" use the same name for the variable as the bitfield,
+> making it clearer what's the intent of the checks.
+>
+> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+> ---
+>   drivers/gpu/drm/i915/display/intel_ddi.c | 8 +++-----
+>   1 file changed, 3 insertions(+), 5 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+> index 3433b0bf4f44..586a0019b9c7 100644
+> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+> @@ -3012,12 +3012,10 @@ static void icl_sanitize_port_clk_off(struct drm_i915_private *dev_priv,
+>   	val = I915_READ(ICL_DPCLKA_CFGCR0);
+>   	for_each_port_masked(port, port_mask) {
+>   		enum phy phy = intel_port_to_phy(dev_priv, port);
+> +		bool ddi_clk_off = val & icl_dpclka_cfgcr0_clk_off(dev_priv,
+> +								   phy);
+>   
+> -		bool ddi_clk_ungated = !(val &
+> -					 icl_dpclka_cfgcr0_clk_off(dev_priv,
+> -								   phy));
+> -
+> -		if (ddi_clk_needed == ddi_clk_ungated)
+> +		if (ddi_clk_needed == !ddi_clk_off)
+>   			continue;
+>   
+>   		/*
 
-== Summary ==
+Sanity prevails.
 
-CI Bug Log - changes from CI_DRM_7543 -> Patchwork_15693
-====================================================
+Reviewed-by: Clint Taylor
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15693/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_15693 that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-skl-6770hq:      [FAIL][1] ([i915#178]) -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7543/fi-skl-6770hq/igt@i915_pm_rpm@module-reload.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15693/fi-skl-6770hq/igt@i915_pm_rpm@module-reload.html
-
-  * igt@i915_selftest@live_requests:
-    - fi-hsw-4770:        [INCOMPLETE][3] ([i915#773]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7543/fi-hsw-4770/igt@i915_selftest@live_requests.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15693/fi-hsw-4770/igt@i915_selftest@live_requests.html
-
-  * igt@kms_busy@basic-flip-pipe-a:
-    - fi-kbl-soraka:      [DMESG-WARN][5] ([i915#95]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7543/fi-kbl-soraka/igt@kms_busy@basic-flip-pipe-a.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15693/fi-kbl-soraka/igt@kms_busy@basic-flip-pipe-a.html
-
-  * igt@kms_chamelium@hdmi-hpd-fast:
-    - fi-kbl-7500u:       [FAIL][7] ([fdo#111096] / [i915#323]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7543/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15693/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
-
-  
-#### Warnings ####
-
-  * igt@i915_selftest@live_gem_contexts:
-    - fi-byt-n2820:       [DMESG-FAIL][9] ([i915#722]) -> [INCOMPLETE][10] ([i915#45])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7543/fi-byt-n2820/igt@i915_selftest@live_gem_contexts.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15693/fi-byt-n2820/igt@i915_selftest@live_gem_contexts.html
-
-  * igt@kms_busy@basic-flip-pipe-a:
-    - fi-kbl-x1275:       [DMESG-WARN][11] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][12] ([i915#62] / [i915#92]) +6 similar issues
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7543/fi-kbl-x1275/igt@kms_busy@basic-flip-pipe-a.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15693/fi-kbl-x1275/igt@kms_busy@basic-flip-pipe-a.html
-
-  * igt@kms_busy@basic-flip-pipe-b:
-    - fi-kbl-x1275:       [DMESG-WARN][13] ([i915#62] / [i915#92]) -> [DMESG-WARN][14] ([i915#62] / [i915#92] / [i915#95]) +6 similar issues
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7543/fi-kbl-x1275/igt@kms_busy@basic-flip-pipe-b.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15693/fi-kbl-x1275/igt@kms_busy@basic-flip-pipe-b.html
-
-  
-  [fdo#111096]: https://bugs.freedesktop.org/show_bug.cgi?id=111096
-  [i915#178]: https://gitlab.freedesktop.org/drm/intel/issues/178
-  [i915#323]: https://gitlab.freedesktop.org/drm/intel/issues/323
-  [i915#45]: https://gitlab.freedesktop.org/drm/intel/issues/45
-  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
-  [i915#722]: https://gitlab.freedesktop.org/drm/intel/issues/722
-  [i915#773]: https://gitlab.freedesktop.org/drm/intel/issues/773
-  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
-  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
+-Clint
 
 
-Participating hosts (51 -> 45)
-------------------------------
-
-  Additional (1): fi-tgl-y 
-  Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_7543 -> Patchwork_15693
-
-  CI-20190529: 20190529
-  CI_DRM_7543: 91752f80df9b582561be6bbac12ef780b12f606c @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5345: 9e0c82b6d70065db894ececf2be8de372e983cf0 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_15693: cdf87f3344feb85d6caeae76996aeebf3f985b3d @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-cdf87f3344fe drm/i915: Nuke skl wm.dirty_pipes bitmask
-9cc8ae13c86b drm/i915: Move linetime wms into the crtc state
-6f0f126e1146 drm/i915: Polish WM_LINETIME register stuff
-7e8583214760 drm/i915: Streamline skl_commit_modeset_enables()
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15693/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
