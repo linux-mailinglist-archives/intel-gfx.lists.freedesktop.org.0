@@ -1,35 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B119D11BF48
-	for <lists+intel-gfx@lfdr.de>; Wed, 11 Dec 2019 22:33:46 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 42FBD11BF4F
+	for <lists+intel-gfx@lfdr.de>; Wed, 11 Dec 2019 22:35:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1BE286EBF8;
-	Wed, 11 Dec 2019 21:33:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AA0066EBFA;
+	Wed, 11 Dec 2019 21:34:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 236366EBF8
- for <intel-gfx@lists.freedesktop.org>; Wed, 11 Dec 2019 21:33:42 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3926289BA1
+ for <intel-gfx@lists.freedesktop.org>; Wed, 11 Dec 2019 21:34:57 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from localhost (unverified [78.156.65.138]) 
  by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 19547394-1500050 for multiple; Wed, 11 Dec 2019 21:33:12 +0000
+ 19547400-1500050 for multiple; Wed, 11 Dec 2019 21:34:05 +0000
 MIME-Version: 1.0
-To: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
- intel-gfx@lists.freedesktop.org
+To: Andi Shyti <andi.shyti@intel.com>
 From: Chris Wilson <chris@chris-wilson.co.uk>
-In-Reply-To: <157609925197.27099.7914911837320369934@skylake-alporthouse-com>
-References: <20191211211244.7831-1-daniele.ceraolospurio@intel.com>
- <20191211211244.7831-2-daniele.ceraolospurio@intel.com>
- <157609925197.27099.7914911837320369934@skylake-alporthouse-com>
-Message-ID: <157609999216.27099.10632108353946439815@skylake-alporthouse-com>
+In-Reply-To: <20191211212559.GA1730@intel.intel>
+References: <20191210180111.3958558-1-chris@chris-wilson.co.uk>
+ <20191211212559.GA1730@intel.intel>
+Message-ID: <157610004579.27099.17645489831063212428@skylake-alporthouse-com>
 User-Agent: alot/0.6
-Date: Wed, 11 Dec 2019 21:33:12 +0000
-Subject: Re: [Intel-gfx] [RFC 1/5] drm/i915: introduce logical_ring and
- lr_context naming
+Date: Wed, 11 Dec 2019 21:34:05 +0000
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/gt: Disable manual rc6 for
+ Braswell/Baytrail
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,24 +40,46 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Chris Wilson (2019-12-11 21:20:52)
-> Quoting Daniele Ceraolo Spurio (2019-12-11 21:12:40)
-> > +static void lr_context_init_reg_state(u32 *reg_state,
-> > +                                     const struct intel_context *ce,
-> > +                                     const struct intel_engine_cs *engine,
-> > +                                     const struct intel_ring *ring,
-> > +                                     bool close);
+Quoting Andi Shyti (2019-12-11 21:25:59)
+> Hi Chris,
 > 
-> lrc. lrc should just be the register offsets and default context image.
+> > The initial investigated showed that while the PCU on Braswell/Baytrail
+> > controlled RC6 itself. setting the software RC6 request made no
+> > difference. Further testing reveals though that it causes a delay in the
+> > PCU on enabling RC6.
+> > 
+> > Closes: https://gitlab.freedesktop.org/drm/intel/issues/763
+> > Fixes: 730eaeb52426 ("drm/i915/gt: Manual rc6 entry upon parking")
+> > Testcase: igt/perf/rc6-disable
+> > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> > Cc: Andi Shyti <andi.shyti@intel.com>
+> > Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+> > Cc: Imre Deak <imre.deak@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/gt/intel_rc6.c | 3 +++
+> >  1 file changed, 3 insertions(+)
+> > 
+> > diff --git a/drivers/gpu/drm/i915/gt/intel_rc6.c b/drivers/gpu/drm/i915/gt/intel_rc6.c
+> > index 4dc82196b285..8ec2b7725141 100644
+> > --- a/drivers/gpu/drm/i915/gt/intel_rc6.c
+> > +++ b/drivers/gpu/drm/i915/gt/intel_rc6.c
+> > @@ -612,6 +612,9 @@ void intel_rc6_park(struct intel_rc6 *rc6)
+> >               return;
+> >       }
+> >  
+> > +     if (!(rc6->ctl_enable & GEN6_RC_CTL_RC6_ENABLE))
+> > +             return;
+> > +
+> 
+> Huh? I didn't think this could be necessary! Nice catch!
 
-Fwiw, I also put the w/a batch buffers into intel_lrc.c as they seemed
-HW/lrc specific as opposed to being specialised for submission --
-although we may want to do that at some point.
+Bah, CI takes all the credit. Stupid, stupid PCU.
 -Chris
 _______________________________________________
 Intel-gfx mailing list
