@@ -2,32 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 42FBD11BF4F
-	for <lists+intel-gfx@lfdr.de>; Wed, 11 Dec 2019 22:35:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1B51911BF49
+	for <lists+intel-gfx@lfdr.de>; Wed, 11 Dec 2019 22:34:16 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AA0066EBFA;
-	Wed, 11 Dec 2019 21:34:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5B2456EBF9;
+	Wed, 11 Dec 2019 21:34:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3926289BA1
- for <intel-gfx@lists.freedesktop.org>; Wed, 11 Dec 2019 21:34:57 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 19547400-1500050 for multiple; Wed, 11 Dec 2019 21:34:05 +0000
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C525F6EBF9
+ for <intel-gfx@lists.freedesktop.org>; Wed, 11 Dec 2019 21:34:12 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 11 Dec 2019 13:34:12 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.69,303,1571727600"; d="scan'208";a="388077755"
+Received: from dceraolo-linux.fm.intel.com (HELO [10.1.27.145]) ([10.1.27.145])
+ by orsmga005.jf.intel.com with ESMTP; 11 Dec 2019 13:34:11 -0800
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+References: <20191211211244.7831-1-daniele.ceraolospurio@intel.com>
+ <20191211211244.7831-4-daniele.ceraolospurio@intel.com>
+ <157609936238.27099.9225483018528537974@skylake-alporthouse-com>
+From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Message-ID: <de7d8199-70b8-9a69-1e84-a6b55f3a43ee@intel.com>
+Date: Wed, 11 Dec 2019 13:34:20 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-To: Andi Shyti <andi.shyti@intel.com>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-In-Reply-To: <20191211212559.GA1730@intel.intel>
-References: <20191210180111.3958558-1-chris@chris-wilson.co.uk>
- <20191211212559.GA1730@intel.intel>
-Message-ID: <157610004579.27099.17645489831063212428@skylake-alporthouse-com>
-User-Agent: alot/0.6
-Date: Wed, 11 Dec 2019 21:34:05 +0000
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/gt: Disable manual rc6 for
- Braswell/Baytrail
+In-Reply-To: <157609936238.27099.9225483018528537974@skylake-alporthouse-com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [RFC 3/5] drm/i915: split out virtual engine code
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,47 +46,30 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Andi Shyti (2019-12-11 21:25:59)
-> Hi Chris,
-> 
-> > The initial investigated showed that while the PCU on Braswell/Baytrail
-> > controlled RC6 itself. setting the software RC6 request made no
-> > difference. Further testing reveals though that it causes a delay in the
-> > PCU on enabling RC6.
-> > 
-> > Closes: https://gitlab.freedesktop.org/drm/intel/issues/763
-> > Fixes: 730eaeb52426 ("drm/i915/gt: Manual rc6 entry upon parking")
-> > Testcase: igt/perf/rc6-disable
-> > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> > Cc: Andi Shyti <andi.shyti@intel.com>
-> > Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-> > Cc: Imre Deak <imre.deak@intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/gt/intel_rc6.c | 3 +++
-> >  1 file changed, 3 insertions(+)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/gt/intel_rc6.c b/drivers/gpu/drm/i915/gt/intel_rc6.c
-> > index 4dc82196b285..8ec2b7725141 100644
-> > --- a/drivers/gpu/drm/i915/gt/intel_rc6.c
-> > +++ b/drivers/gpu/drm/i915/gt/intel_rc6.c
-> > @@ -612,6 +612,9 @@ void intel_rc6_park(struct intel_rc6 *rc6)
-> >               return;
-> >       }
-> >  
-> > +     if (!(rc6->ctl_enable & GEN6_RC_CTL_RC6_ENABLE))
-> > +             return;
-> > +
-> 
-> Huh? I didn't think this could be necessary! Nice catch!
 
-Bah, CI takes all the credit. Stupid, stupid PCU.
--Chris
+
+On 12/11/19 1:22 PM, Chris Wilson wrote:
+> Quoting Daniele Ceraolo Spurio (2019-12-11 21:12:42)
+>> Having the virtual engine handling in its own file will make it easier
+>> call it from or modify for the GuC implementation without leaking the
+>> changes in the context management or execlists submission paths.
+> 
+> No. The virtual engine is tightly coupled into the execlists, it is not
+> the starting point for a general veng.
+> -Chris
+> 
+
+What's the issue from your POV? We've been using it with little changes 
+for GuC submission and IMO it flows relatively well, mainly just using a 
+different tasklet and slightly different cops (need to call into GuC for 
+pin/unpin).
+
+Daniele
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
