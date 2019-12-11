@@ -1,41 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A62C311A4BB
-	for <lists+intel-gfx@lfdr.de>; Wed, 11 Dec 2019 07:53:45 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id E458611A4AE
+	for <lists+intel-gfx@lfdr.de>; Wed, 11 Dec 2019 07:46:57 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E21516E9E6;
-	Wed, 11 Dec 2019 06:53:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5FD606E9C6;
+	Wed, 11 Dec 2019 06:46:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 426 seconds by postgrey-1.36 at gabe;
- Wed, 11 Dec 2019 06:53:40 UTC
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A5F5B6E1D5;
- Wed, 11 Dec 2019 06:53:40 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DB6936E9C6
+ for <intel-gfx@lists.freedesktop.org>; Wed, 11 Dec 2019 06:46:53 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 10 Dec 2019 22:46:33 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,301,1571727600"; d="scan'208";a="245129289"
-Received: from plaxmina-desktop.iind.intel.com ([10.106.124.119])
- by fmsmga002.fm.intel.com with ESMTP; 10 Dec 2019 22:46:29 -0800
-Date: Wed, 11 Dec 2019 12:10:41 +0530
-From: "Bharadiya,Pankaj" <pankaj.laxminarayan.bharadiya@intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-Message-ID: <20191211064041.GA3339@plaxmina-desktop.iind.intel.com>
-References: <20191209143921.9240-1-pankaj.laxminarayan.bharadiya@intel.com>
- <20191211055739.uxe46chnhkc2byul@ldmartin-desk1>
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 10 Dec 2019 22:46:53 -0800
+X-IronPort-AV: E=Sophos;i="5.69,301,1571727600"; d="scan'208";a="207567959"
+Received: from amondald-mobl.amr.corp.intel.com (HELO localhost)
+ ([10.249.35.51])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 10 Dec 2019 22:46:49 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+In-Reply-To: <157598608411.9435.15464881874218047518@jlahtine-desk.ger.corp.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <cover.1575302334.git.jani.nikula@intel.com>
+ <46e0b2530f37cb0226006231e273a37aecf98461.1575302334.git.jani.nikula@intel.com>
+ <157598608411.9435.15464881874218047518@jlahtine-desk.ger.corp.intel.com>
+Date: Wed, 11 Dec 2019 08:46:47 +0200
+Message-ID: <877e33l5pk.fsf@intel.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20191211055739.uxe46chnhkc2byul@ldmartin-desk1>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/display: cleanup intel_bw_state on
- i915 module removal
+Subject: Re: [Intel-gfx] [PATCH 04/10] drm/i915: add display engine uncore
+ helpers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,115 +47,52 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Dec 10, 2019 at 09:57:39PM -0800, Lucas De Marchi wrote:
-> On Mon, Dec 09, 2019 at 08:09:02PM +0530, Pankaj Bharadiya wrote:
-> >intel_bw_state allocated memory is not getting freed even after
-> >module removal.
-> >
-> >kmemleak reported backtrace:
-> >
-> >   [<0000000079019739>] kmemdup+0x17/0x40
-> >   [<00000000d58c1b9d>] intel_bw_duplicate_state+0x1b/0x40 [i915]
-> >   [<000000007423ed0c>] drm_atomic_get_private_obj_state+0xca/0x140
-> >   [<00000000100e3533>] intel_bw_atomic_check+0x133/0x350 [i915]
-> >   [<00000000126d0e0c>] intel_atomic_check+0x1ab7/0x20d0 [i915]
-> >   [<00000000d5dfc004>] drm_atomic_check_only+0x563/0x810
-> >   [<00000000c9379611>] drm_atomic_commit+0xe/0x50
-> >   [<00000000ec82b765>] drm_atomic_helper_disable_all+0x133/0x160
-> >   [<000000003c44760c>] drm_atomic_helper_shutdown+0x65/0xc0
-> >   [<00000000414e3e5c>] i915_driver_remove+0xcb/0x130 [i915]
-> >   [<00000000f8544c2a>] i915_pci_remove+0x19/0x40 [i915]
-> >   [<000000002dcbd148>] pci_device_remove+0x36/0xb0
-> >   [<000000003c8c6b0a>] device_release_driver_internal+0xe0/0x1c0
-> >   [<00000000580e9566>] unbind_store+0xc3/0x120
-> >   [<00000000869d0df5>] kernfs_fop_write+0x104/0x190
-> >   [<000000004dc1a355>] vfs_write+0xb9/0x1d0
-> 
-> what I find strange in this is that the last state was allocated by the
-> "driver remove" code path.
-> 
-> >
-> >Call the drm_atomic_private_obj_fini(), which inturn calls the
-> >intel_bw_destroy_state() to make sure the intel_bw_state memory is
-> >freed properly.
-> >
-> >Signed-off-by: Pankaj Bharadiya <pankaj.laxminarayan.bharadiya@intel.com>
-> >---
-> >drivers/gpu/drm/i915/display/intel_bw.c      | 5 +++++
-> >drivers/gpu/drm/i915/display/intel_bw.h      | 1 +
-> >drivers/gpu/drm/i915/display/intel_display.c | 2 ++
-> >3 files changed, 8 insertions(+)
-> >
-> >diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
-> >index dcb66a33be9b..b228671d5a5d 100644
-> >--- a/drivers/gpu/drm/i915/display/intel_bw.c
-> >+++ b/drivers/gpu/drm/i915/display/intel_bw.c
-> >@@ -486,3 +486,8 @@ int intel_bw_init(struct drm_i915_private *dev_priv)
-> >
-> >	return 0;
-> >}
-> >+
-> >+void intel_bw_cleanup(struct drm_i915_private *dev_priv)
-> >+{
-> >+	drm_atomic_private_obj_fini(&dev_priv->bw_obj);
-> >+}
-> >diff --git a/drivers/gpu/drm/i915/display/intel_bw.h b/drivers/gpu/drm/i915/display/intel_bw.h
-> >index 9db10af012f4..20b9ad241802 100644
-> >--- a/drivers/gpu/drm/i915/display/intel_bw.h
-> >+++ b/drivers/gpu/drm/i915/display/intel_bw.h
-> >@@ -25,6 +25,7 @@ struct intel_bw_state {
-> >
-> >void intel_bw_init_hw(struct drm_i915_private *dev_priv);
-> >int intel_bw_init(struct drm_i915_private *dev_priv);
-> >+void intel_bw_cleanup(struct drm_i915_private *dev_priv);
-> >int intel_bw_atomic_check(struct intel_atomic_state *state);
-> >void intel_bw_crtc_update(struct intel_bw_state *bw_state,
-> >			  const struct intel_crtc_state *crtc_state);
-> >diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> >index 3190aa27ffdc..756eb90b1bb1 100644
-> >--- a/drivers/gpu/drm/i915/display/intel_display.c
-> >+++ b/drivers/gpu/drm/i915/display/intel_display.c
-> >@@ -17912,6 +17912,8 @@ void intel_modeset_driver_remove(struct drm_i915_private *i915)
-> >
-> >	intel_gmbus_teardown(i915);
-> >
-> >+	intel_bw_cleanup(i915);
-> 
-> This doesn't seem to match the (reverse) order of
-> intel_modeset_init()... but it's actually the gmbus_teardown() that is
-> out of place. Did you check if it's not a wrong shutdown ordering?
->
-
-In intel_modeset_init(), intel_gmbus_setup() happens after
-intel_bw_init().
-I think the patch follows the reverse ordering properly.
-Am I missing anything?
-
-Thanks,
-Pankaj
-
-> thanks
-> Lucas De Marchi
-> 
-> >+
-> >	destroy_workqueue(i915->flip_wq);
-> >	destroy_workqueue(i915->modeset_wq);
-> >
-> >-- 
-> >2.23.0
-> >
-> >_______________________________________________
-> >Intel-gfx mailing list
-> >Intel-gfx@lists.freedesktop.org
-> >https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gVHVlLCAxMCBEZWMgMjAxOSwgSm9vbmFzIExhaHRpbmVuIDxqb29uYXMubGFodGluZW5AbGlu
+dXguaW50ZWwuY29tPiB3cm90ZToKPiBRdW90aW5nIEphbmkgTmlrdWxhICgyMDE5LTEyLTAyIDE4
+OjAwOjUyKQo+PiBBZGQgY29udmVuaWVuY2UgaGVscGVycyBmb3IgdGhlIG1vc3QgY29tbW9uIHVu
+Y29yZSBvcGVyYXRpb25zIHdpdGgKPj4gc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKiBhcyBjb250
+ZXh0IHJhdGhlciB0aGFuIHN0cnVjdCBpbnRlbF91bmNvcmUgKi4KPj4gCj4+IFRoZSBnb2FsIGlz
+IHRvIHJlcGxhY2UgYWxsIGluc3RhbmNlcyBvZiBJOTE1X1JFQUQoKSwKPj4gSTkxNV9QT1NUSU5H
+X1JFQUQoKSwgSTkxNV9XUklURSgpLCBJOTE1X1JFQURfRlcoKSwgYW5kIEk5MTVfV1JJVEVfRlco
+KQo+PiBpbiBkaXNwbGF5LyB3aXRoIHRoZXNlLCB0byBmaW5hbGx5IGJlIGFibGUgdG8gZ2V0IHJp
+ZCBvZiB0aGUgaW1wbGljaXQKPj4gZGV2X3ByaXYgbG9jYWwgcGFyYW1ldGVyIHVzZS4KPj4gCj4+
+IFRoZSBpZGVhIGlzIHRoYXQgYW55IG5vbi11MzIgcmVhZHMgb3Igd3JpdGVzIGFyZSBzcGVjaWFs
+IGVub3VnaCB0aGF0Cj4+IHRoZXkgY2FuIHVzZSB0aGUgaW50ZWxfdW5jb3JlXyogZnVuY3Rpb25z
+IGRpcmVjdGx5Lgo+PiAKPj4gdjI6Cj4+IC0gcmVuYW1lIHRoZSBmaWxlIGludGVsX2RlLmgKPj4g
+LSBtb3ZlIGludGVsX2RlX3dhaXRfZm9yXyogdGhlcmUgdG9vCj4+IC0gYWxzbyBhZGQgZGUgZncg
+aGVscGVycwo+PiAKPj4gQ2M6IENocmlzIFdpbHNvbiA8Y2hyaXNAY2hyaXMtd2lsc29uLmNvLnVr
+Pgo+PiBDYzogRGFuaWVsZSBDZXJhb2xvIFNwdXJpbyA8ZGFuaWVsZS5jZXJhb2xvc3B1cmlvQGlu
+dGVsLmNvbT4KPj4gQ2M6IEpvb25hcyBMYWh0aW5lbiA8am9vbmFzLmxhaHRpbmVuQGxpbnV4Lmlu
+dGVsLmNvbT4KPj4gQ2M6IEx1Y2FzIERlIE1hcmNoaSA8bHVjYXMuZGVtYXJjaGlAaW50ZWwuY29t
+Pgo+PiBDYzogUm9kcmlnbyBWaXZpIDxyb2RyaWdvLnZpdmlAaW50ZWwuY29tPgo+PiBDYzogVmls
+bGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KPj4gU2lnbmVkLW9m
+Zi1ieTogSmFuaSBOaWt1bGEgPGphbmkubmlrdWxhQGludGVsLmNvbT4KPj4gLS0tCj4+ICBkcml2
+ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RlLmggICAgICAgfCA3MiArKysrKysrKysr
+KysrKysrKysrCj4+ICAuLi4vZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5X3R5cGVzLmgg
+ICAgfCAgMSArCj4+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2Rydi5oICAgICAgICAgICAg
+ICAgfCAxNCAtLS0tCj4+ICAzIGZpbGVzIGNoYW5nZWQsIDczIGluc2VydGlvbnMoKyksIDE0IGRl
+bGV0aW9ucygtKQo+PiAgY3JlYXRlIG1vZGUgMTAwNjQ0IGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rp
+c3BsYXkvaW50ZWxfZGUuaAo+PiAKPj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1
+L2Rpc3BsYXkvaW50ZWxfZGUuaCBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxf
+ZGUuaAo+PiBuZXcgZmlsZSBtb2RlIDEwMDY0NAo+PiBpbmRleCAwMDAwMDAwMDAwMDAuLjAwZGEx
+MGJmMzVmNQo+PiAtLS0gL2Rldi9udWxsCj4+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rp
+c3BsYXkvaW50ZWxfZGUuaAo+PiBAQCAtMCwwICsxLDcyIEBACj4+ICsvKiBTUERYLUxpY2Vuc2Ut
+SWRlbnRpZmllcjogTUlUICovCj4+ICsvKgo+PiArICogQ29weXJpZ2h0IMKpIDIwMTkgSW50ZWwg
+Q29ycG9yYXRpb24KPj4gKyAqLwo+PiArCj4+ICsjaWZuZGVmIF9fSU5URUxfREVfSF9fCj4+ICsj
+ZGVmaW5lIF9fSU5URUxfREVfSF9fCj4+ICsKPj4gKyNpbmNsdWRlICJpOTE1X2Rydi5oIgo+PiAr
+I2luY2x1ZGUgImk5MTVfcmVnLmgiCj4+ICsjaW5jbHVkZSAiaW50ZWxfdW5jb3JlLmgiCj4+ICsK
+Pj4gK3N0YXRpYyBpbmxpbmUgdTMyCj4+ICtpbnRlbF9kZV9yZWFkKHN0cnVjdCBkcm1faTkxNV9w
+cml2YXRlICppOTE1LCBpOTE1X3JlZ190IHJlZykKPgo+IElzIHRoZSBwbGFuIHRvIGhhdmUgc3Ry
+dWN0IGludGVsX2RlIGluc2lkZSBpOTE1IGFuZCB0aGVuIGhhdmUgdGhhdCBhcwo+IHRoZSBwcmlt
+ZSBwYXJhbWV0ZXIgZ29pbmcgZm9yd2FyZD8KCk5vLiBUaGUgcGxhbiBpcyB0byBrZWVwIGk5MTUg
+YXMgdGhlIHByaW1lIHBhcmFtZXRlciBmb3IgZGlzcGxheS4KCkJSLApKYW5pLgoKCi0tIApKYW5p
+IE5pa3VsYSwgSW50ZWwgT3BlbiBTb3VyY2UgR3JhcGhpY3MgQ2VudGVyCl9fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QK
+SW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9w
+Lm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
