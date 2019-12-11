@@ -2,37 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A00E711B86F
-	for <lists+intel-gfx@lfdr.de>; Wed, 11 Dec 2019 17:20:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8004611B892
+	for <lists+intel-gfx@lfdr.de>; Wed, 11 Dec 2019 17:23:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 668E36EB80;
-	Wed, 11 Dec 2019 16:20:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DAA076EB81;
+	Wed, 11 Dec 2019 16:23:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2FD806EB80
- for <intel-gfx@lists.freedesktop.org>; Wed, 11 Dec 2019 16:20:02 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 47B736EB7E;
+ Wed, 11 Dec 2019 16:23:27 +0000 (UTC)
+X-Amp-Result: UNSCANNABLE
 X-Amp-File-Uploaded: False
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 11 Dec 2019 08:20:02 -0800
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 11 Dec 2019 08:23:26 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,301,1571727600"; d="scan'208";a="238604573"
-Received: from cwilso3-mobl.fi.intel.com (HELO localhost) ([10.252.9.125])
- by fmsmga004.fm.intel.com with ESMTP; 11 Dec 2019 08:20:00 -0800
+X-IronPort-AV: E=Sophos;i="5.69,301,1571727600"; d="scan'208";a="264926006"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by FMSMGA003.fm.intel.com with SMTP; 11 Dec 2019 08:23:23 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Wed, 11 Dec 2019 18:23:22 +0200
+Date: Wed, 11 Dec 2019 18:23:22 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Colin King <colin.king@canonical.com>
+Message-ID: <20191211162322.GL1208@intel.com>
+References: <20191210142349.333171-1-colin.king@canonical.com>
 MIME-Version: 1.0
-From: Chris Wilson <chris.p.wilson@intel.com>
-User-Agent: alot/0.6
-To: Venkata Sandeep Dhanalakota <venkata.s.dhanalakota@intel.com>,
- intel-gfx@lists.freedesktop.org
-References: <20191211160724.26467-1-venkata.s.dhanalakota@intel.com>
- <20191211160724.26467-2-venkata.s.dhanalakota@intel.com>
- <157608104352.27099.375715424760562558@skylake-alporthouse-com>
-In-Reply-To: <157608104352.27099.375715424760562558@skylake-alporthouse-com>
-Message-ID: <157608119873.27099.4590993229485525575@skylake-alporthouse-com>
-Date: Wed, 11 Dec 2019 16:19:58 +0000
-Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915: Make warned variable private
+Content-Disposition: inline
+In-Reply-To: <20191210142349.333171-1-colin.king@canonical.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH][next] drm/i915: remove redundant checks for
+ a null fb pointer
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,38 +46,68 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: David Airlie <airlied@linux.ie>, intel-gfx@lists.freedesktop.org,
+ kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Chris Wilson (2019-12-11 16:17:23)
-> Quoting Venkata Sandeep Dhanalakota (2019-12-11 16:07:24)
-> > Make each instance to report the hang only once.
-> > 
-> > Cc: Sudeep Dutt <sudeep.dutt@intel.com>
-> > Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> > Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
-> > Cc: Chris Wilson <chris@chris-wilson.co.uk>
-> > Cc: Jani Nikula <jani.nikula@intel.com>
-> > Signed-off-by: Venkata Sandeep Dhanalakota <venkata.s.dhanalakota@intel.com>
-> 
-> I still don't think so, since the we only want to pester the _user_ once
-> to file a bug, and that is irrespective of the device.
+On Tue, Dec 10, 2019 at 02:23:49PM +0000, Colin King wrote:
+> From: Colin Ian King <colin.king@canonical.com>
+> =
 
-Or to put it another way, the dmesg stream is global and this is a flag
-around that stream.
--Chris
----------------------------------------------------------------------
-Intel Corporation (UK) Limited
-Registered No. 1134945 (England)
-Registered Office: Pipers Way, Swindon SN3 1RJ
-VAT No: 860 2173 47
+> A prior check and return when pointer fb is null makes
+> subsequent null checks on fb redundant.  Remove the redundant
+> null checks.
+> =
 
-This e-mail and any attachments may contain confidential material for
-the sole use of the intended recipient(s). Any review or distribution
-by others is strictly prohibited. If you are not the intended
-recipient, please contact the sender and delete all copies.
+> Addresses-Coverity: ("Logically dead code")
+> Signed-off-by: Colin Ian King <colin.king@canonical.com>
+> ---
+>  drivers/gpu/drm/i915/i915_debugfs.c | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+> =
+
+> diff --git a/drivers/gpu/drm/i915/i915_debugfs.c b/drivers/gpu/drm/i915/i=
+915_debugfs.c
+> index 062e5bef637a..a48478be6e8f 100644
+> --- a/drivers/gpu/drm/i915/i915_debugfs.c
+> +++ b/drivers/gpu/drm/i915/i915_debugfs.c
+> @@ -2600,8 +2600,8 @@ static void intel_plane_hw_info(struct seq_file *m,=
+ struct intel_plane *plane)
+>  		       plane_state->hw.rotation);
+>  =
+
+>  	seq_printf(m, "\t\thw: fb=3D%d,%s,%dx%d, visible=3D%s, src=3D" DRM_RECT=
+_FP_FMT ", dst=3D" DRM_RECT_FMT ", rotation=3D%s\n",
+> -		   fb ? fb->base.id : 0, fb ? format_name.str : "n/a",
+> -		   fb ? fb->width : 0, fb ? fb->height : 0,
+> +		   fb->base.id, format_name.str,
+> +		   fb->width, fb->height,
+
+Thanks.
+
+Pushed to drm-intel-next-queued.
+
+>  		   yesno(plane_state->uapi.visible),
+>  		   DRM_RECT_FP_ARG(&plane_state->uapi.src),
+>  		   DRM_RECT_ARG(&plane_state->uapi.dst),
+> -- =
+
+> 2.24.0
+> =
+
+> _______________________________________________
+> dri-devel mailing list
+> dri-devel@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/dri-devel
+
+-- =
+
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
