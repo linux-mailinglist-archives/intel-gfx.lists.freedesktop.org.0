@@ -2,31 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A74211ABFE
-	for <lists+intel-gfx@lfdr.de>; Wed, 11 Dec 2019 14:23:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0286A11AC2B
+	for <lists+intel-gfx@lfdr.de>; Wed, 11 Dec 2019 14:38:23 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 739DC6EB4E;
-	Wed, 11 Dec 2019 13:23:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D23756EB50;
+	Wed, 11 Dec 2019 13:38:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 199B26EAFE;
- Wed, 11 Dec 2019 13:23:20 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 111EEA0075;
- Wed, 11 Dec 2019 13:23:20 +0000 (UTC)
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 769AC6EB50
+ for <intel-gfx@lists.freedesktop.org>; Wed, 11 Dec 2019 13:38:17 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19541271-1500050 
+ for multiple; Wed, 11 Dec 2019 13:37:55 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 11 Dec 2019 13:37:55 +0000
+Message-Id: <20191211133756.60392-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.24.0
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Wed, 11 Dec 2019 13:23:20 -0000
-Message-ID: <157607060004.30628.11062382988143384411@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20191211110437.4082687-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20191211110437.4082687-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_series_starting_with_=5BCI=2C1/5=5D_drm/i915=3A_Fix_cmdpars?=
- =?utf-8?q?er_drm=2Edebug?=
+Subject: [Intel-gfx] [PATCH 1/2] drm/i915/gt: Mark context->state vma as
+ active while pinned
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,32 +37,59 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+As we use the active state to keep the vma alive while we are reading
+its contents during GPU error capture, we need to mark the
+context->state vma as active during execution if we want to include it
+in the error state.
 
-Series: series starting with [CI,1/5] drm/i915: Fix cmdparser drm.debug
-URL   : https://patchwork.freedesktop.org/series/70751/
-State : warning
+Reported-by: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
+Fixes: b1e3177bd1d8 ("drm/i915: Coordinate i915_active with its own mutex")
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Cc: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
+---
+ drivers/gpu/drm/i915/gt/intel_context.c | 9 +++++++++
+ 1 file changed, 9 insertions(+)
 
-== Summary ==
-
-$ dim checkpatch origin/drm-tip
-932afa9f6249 drm/i915: Fix cmdparser drm.debug
-d6fc56037549 drm/i915: Remove redundant parameters from intel_engine_cmd_parser
-37ab9c58f463 drm/i915: Simplify error escape from cmdparser
-2c1527f75ee4 drm/i915/gem: Tidy up error handling for eb_parse()
-fa5e1faeee3f drm/i915: Align start for memcpy_from_wc
--:46: WARNING:AVOID_BUG: Avoid crashing the kernel - try using WARN_ON & recovery code rather than BUG() or BUG_ON()
-#46: FILE: drivers/gpu/drm/i915/i915_memcpy.c:31:
-+#define CI_BUG_ON(expr) BUG_ON(expr)
-
-total: 0 errors, 1 warnings, 0 checks, 133 lines checked
+diff --git a/drivers/gpu/drm/i915/gt/intel_context.c b/drivers/gpu/drm/i915/gt/intel_context.c
+index 61c39e943f69..f7e2f3af007a 100644
+--- a/drivers/gpu/drm/i915/gt/intel_context.c
++++ b/drivers/gpu/drm/i915/gt/intel_context.c
+@@ -120,6 +120,10 @@ static int __context_pin_state(struct i915_vma *vma)
+ 	if (err)
+ 		return err;
+ 
++	err = i915_active_acquire(&vma->active);
++	if (err)
++		goto err_unpin;
++
+ 	/*
+ 	 * And mark it as a globally pinned object to let the shrinker know
+ 	 * it cannot reclaim the object until we release it.
+@@ -128,11 +132,16 @@ static int __context_pin_state(struct i915_vma *vma)
+ 	vma->obj->mm.dirty = true;
+ 
+ 	return 0;
++
++err_unpin:
++	i915_vma_unpin(vma);
++	return err;
+ }
+ 
+ static void __context_unpin_state(struct i915_vma *vma)
+ {
+ 	i915_vma_make_shrinkable(vma);
++	i915_active_release(&vma->active);
+ 	__i915_vma_unpin(vma);
+ }
+ 
+-- 
+2.24.0
 
 _______________________________________________
 Intel-gfx mailing list
