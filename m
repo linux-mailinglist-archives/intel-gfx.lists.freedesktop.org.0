@@ -2,31 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1CFFF119FD2
-	for <lists+intel-gfx@lfdr.de>; Wed, 11 Dec 2019 01:19:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AC4B6119FDE
+	for <lists+intel-gfx@lfdr.de>; Wed, 11 Dec 2019 01:24:25 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 03B156EA24;
-	Wed, 11 Dec 2019 00:19:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B27086E9B6;
+	Wed, 11 Dec 2019 00:24:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id CA2426EA23;
- Wed, 11 Dec 2019 00:19:26 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id BF580A47DF;
- Wed, 11 Dec 2019 00:19:26 +0000 (UTC)
+Received: from mail-lj1-x242.google.com (mail-lj1-x242.google.com
+ [IPv6:2a00:1450:4864:20::242])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D83F86E9B3
+ for <intel-gfx@lists.freedesktop.org>; Wed, 11 Dec 2019 00:24:20 +0000 (UTC)
+Received: by mail-lj1-x242.google.com with SMTP id a13so21925687ljm.10
+ for <intel-gfx@lists.freedesktop.org>; Tue, 10 Dec 2019 16:24:20 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=FzptMs7UZH6tl5XnB4UdAl95BzHbDkNlnuDcD9QRDL8=;
+ b=cLhiqiuP6lKc2NY83ihPT47G3f+3QK4gZxKFKmw65nI/bJUTPbL1OjQ3/4EllNePCM
+ OBINPY2S7VQ49MkrBdTCMtAjDl6tcNokO7M8rS2kQtWpfU0g+d3zdtKiOMkYGsyKmOr8
+ JkZOg0YTxCt4YVjkOhCNImrhQDKtSjw6qYJNLuE8MQtu9GkRGEiq08YmpoX0yD2p5qPQ
+ D/sdqJRrkY1E0EaTMYyDhsblV9geNYlSdkpSKp8bRuByL3iYs0NdjZbsWTlKq1WwXOPo
+ kiJ8wMZb9xBnMw9ZnPAq1XrFyhqAluKOJjgBE0OSi8dd4m32SO0dsx7U/6aP4NqAZLoN
+ MH9w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=FzptMs7UZH6tl5XnB4UdAl95BzHbDkNlnuDcD9QRDL8=;
+ b=kg22R7zkSSoqg9wafjg1MUe1IGzbk2uaqV3/+bmExkg4TpKf4rtZC1VDO2GcokKCFO
+ PcDNSillO34bNWJJxJDF7TfLJl7uOM5Ir34fixHOM+utFx+9Gwz8RgEd++/KwzDSwR8g
+ GO7MY2T16riwYcXdGz1KR7mLn5w5G2MbY9hnrfFQuuEY8ynUGYbN2t4il/uAZUqL+1x2
+ +PXdMA9+RgjXJeufNM9/wZqBn/MSDnptM+ZiVAsyKahfz6x9Tba+T7ye0iolbOSpW+5Q
+ wHfMSCsQADi5LQA7BP1SCdOqnT/z5PnjG6xGwZnZhVPxFIWry2F2iO4nyYtOxUWpuD5D
+ WWfg==
+X-Gm-Message-State: APjAAAUWhnJ5fuOFPChc0dN+IiGmIsvcFVG24BAGyCJkztoGf8vRTYm8
+ l8iNU1zU9fhZiQ+7YtWz82k2qedqEVIDlRT2HZJrzw==
+X-Google-Smtp-Source: APXvYqxunEspa1cPku2zi+O3v5VP7+hdM/iiNVHSELvrW9FMmlBlF5UcunUZT+DJ74s0UyP/7ItRKxU/YAJNU6q4iw0=
+X-Received: by 2002:a2e:9587:: with SMTP id w7mr74491ljh.42.1576023859174;
+ Tue, 10 Dec 2019 16:24:19 -0800 (PST)
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Colin King" <colin.king@canonical.com>
-Date: Wed, 11 Dec 2019 00:19:26 -0000
-Message-ID: <157602356675.30690.5037929145266109357@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20191210144535.341977-1-colin.king@canonical.com>
-In-Reply-To: <20191210144535.341977-1-colin.king@canonical.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
- =?utf-8?q?/i915/display=3A_remove_duplicated_assignment_to_pointer_crtc?=
- =?utf-8?q?=5Fstate?=
+References: <20191129185836.2789-1-hdegoede@redhat.com>
+ <20191129185836.2789-3-hdegoede@redhat.com>
+ <CACRpkdbRb-LF2tNN-ueo=tKuJc+u4B7Y20+BCyqnN7wYbm8y7Q@mail.gmail.com>
+ <87wobfj65b.fsf@intel.com> <47c36b75-bc30-502b-7f8d-035cf2348fc4@redhat.com>
+In-Reply-To: <47c36b75-bc30-502b-7f8d-035cf2348fc4@redhat.com>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Wed, 11 Dec 2019 01:24:07 +0100
+Message-ID: <CACRpkdaJGZsJpYu3cgQCeWuJD1y9CQyzuk_VYfGfAT8WC=_1VA@mail.gmail.com>
+To: Hans de Goede <hdegoede@redhat.com>
+Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915/vlv_dsi: Control panel and
+ backlight enable GPIOs on BYT
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,154 +64,76 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: ACPI Devel Maling List <linux-acpi@vger.kernel.org>,
+ "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+ intel-gfx <intel-gfx@lists.freedesktop.org>,
+ Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+ "open list:DRM PANEL DRIVERS" <dri-devel@lists.freedesktop.org>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Mika Westerberg <mika.westerberg@linux.intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Mon, Dec 2, 2019 at 4:49 PM Hans de Goede <hdegoede@redhat.com> wrote:
 
-Series: drm/i915/display: remove duplicated assignment to pointer crtc_state
-URL   : https://patchwork.freedesktop.org/series/70695/
-State : failure
+> There is only one problem, currently is is not possible to
+> unregister a mapping added with pinctrl_register_mappings
+> and the i915 driver is typically a module which can be unloaded
+> and I believe actually is unloaded as part of the i915 CI.
+>
+> pinctrl_register_mappings copies the passed in mapping, but
+> it is a shallow copy, so it contains pointers to the modules
+> const segment and we do not want to re-add another copy of
+> the mapping when the module loads a second time.
+>
+> Fixing this is easy though, there already is a pinctrl_unregister_map()
+> function, we just need to export it so that the i915 driver can
+> remove the mapping when it is unbound.
+>
+> Linus would exporting this function be ok with you?
 
-== Summary ==
+Yep!
 
-CI Bug Log - changes from CI_DRM_7533 -> Patchwork_15671
-====================================================
+> Linus, question what is the purpose of the "dupping" / shallow
+> copying of the argument passed to pinctrl_register_map ?
 
-Summary
--------
+The initial commit contained this comment later removed:
 
-  **FAILURE**
++       /*
++        * Make a copy of the map array - string pointers will end up in the
++        * kernel const section anyway so these do not need to be deep copied.
++        */
 
-  Serious unknown changes coming with Patchwork_15671 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_15671, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
+The use was to free up memory for platforms using boardfiles
+with a gazillion variants and huge pin control tables, so these
+could be marked  __initdata and discarded after boot.
+As the strings would anyway stay around we didn't need to
+deep copy.
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15671/index.html
+See for example in arch/arm/mach-u300/core.c
+static struct pinctrl_map __initdata u300_pinmux_map[]
 
-Possible new issues
--------------------
+> Since
+> it is shallow the mem for any pointers contained within there need
+> to be kept around by the caller, so why not let the caller keep
+> the pinctrl_map struct itself around too?
 
-  Here are the unknown changes that may have been introduced in Patchwork_15671:
+So the strings will be kept around because the kernel can't get
+rid of strings. (Yeah it is silly, should haven been fixed ages
+ago, but not by me, haha :)
 
-### IGT changes ###
+> If we are going to export pinctrl_unregister_map() we need to make it
+> do the right thing for dupped maps too, we can just store the dup flag
+> in struct pinctrl_maps. So this is easy, but I wonder if we cannot
+> get rid of the dupping all together ?
 
-#### Possible regressions ####
+Maybe ... I don't know. What do you think? I suppose you could
+make u300 crash if you do that.
 
-  * igt@i915_selftest@live_blt:
-    - fi-ivb-3770:        [PASS][1] -> [DMESG-FAIL][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7533/fi-ivb-3770/igt@i915_selftest@live_blt.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15671/fi-ivb-3770/igt@i915_selftest@live_blt.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_15671 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_pm_rpm@basic-rte:
-    - fi-icl-dsi:         [PASS][3] -> [INCOMPLETE][4] ([i915#140] / [i915#189])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7533/fi-icl-dsi/igt@i915_pm_rpm@basic-rte.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15671/fi-icl-dsi/igt@i915_pm_rpm@basic-rte.html
-
-  * igt@i915_selftest@live_gem_contexts:
-    - fi-ivb-3770:        [PASS][5] -> [DMESG-FAIL][6] ([i915#722])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7533/fi-ivb-3770/igt@i915_selftest@live_gem_contexts.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15671/fi-ivb-3770/igt@i915_selftest@live_gem_contexts.html
-    - fi-cfl-8700k:       [PASS][7] -> [INCOMPLETE][8] ([i915#424])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7533/fi-cfl-8700k/igt@i915_selftest@live_gem_contexts.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15671/fi-cfl-8700k/igt@i915_selftest@live_gem_contexts.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_mmap_gtt@basic-small-bo:
-    - fi-icl-dsi:         [DMESG-WARN][9] ([i915#109]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7533/fi-icl-dsi/igt@gem_mmap_gtt@basic-small-bo.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15671/fi-icl-dsi/igt@gem_mmap_gtt@basic-small-bo.html
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-skl-6770hq:      [FAIL][11] ([i915#178]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7533/fi-skl-6770hq/igt@i915_pm_rpm@module-reload.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15671/fi-skl-6770hq/igt@i915_pm_rpm@module-reload.html
-    - fi-kbl-guc:         [FAIL][13] ([i915#579]) -> [PASS][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7533/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15671/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html
-
-  * igt@i915_selftest@live_gem_contexts:
-    - fi-hsw-peppy:       [INCOMPLETE][15] ([i915#694]) -> [PASS][16]
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7533/fi-hsw-peppy/igt@i915_selftest@live_gem_contexts.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15671/fi-hsw-peppy/igt@i915_selftest@live_gem_contexts.html
-
-  * igt@i915_selftest@live_gt_heartbeat:
-    - fi-bsw-kefka:       [DMESG-FAIL][17] -> [PASS][18]
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7533/fi-bsw-kefka/igt@i915_selftest@live_gt_heartbeat.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15671/fi-bsw-kefka/igt@i915_selftest@live_gt_heartbeat.html
-
-  
-#### Warnings ####
-
-  * igt@kms_flip@basic-flip-vs-modeset:
-    - fi-kbl-x1275:       [DMESG-WARN][19] ([i915#62] / [i915#92]) -> [DMESG-WARN][20] ([i915#62] / [i915#92] / [i915#95]) +7 similar issues
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7533/fi-kbl-x1275/igt@kms_flip@basic-flip-vs-modeset.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15671/fi-kbl-x1275/igt@kms_flip@basic-flip-vs-modeset.html
-
-  * igt@kms_pipe_crc_basic@read-crc-pipe-a:
-    - fi-kbl-x1275:       [DMESG-WARN][21] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][22] ([i915#62] / [i915#92]) +2 similar issues
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7533/fi-kbl-x1275/igt@kms_pipe_crc_basic@read-crc-pipe-a.html
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15671/fi-kbl-x1275/igt@kms_pipe_crc_basic@read-crc-pipe-a.html
-
-  
-  [i915#109]: https://gitlab.freedesktop.org/drm/intel/issues/109
-  [i915#140]: https://gitlab.freedesktop.org/drm/intel/issues/140
-  [i915#178]: https://gitlab.freedesktop.org/drm/intel/issues/178
-  [i915#189]: https://gitlab.freedesktop.org/drm/intel/issues/189
-  [i915#424]: https://gitlab.freedesktop.org/drm/intel/issues/424
-  [i915#579]: https://gitlab.freedesktop.org/drm/intel/issues/579
-  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
-  [i915#694]: https://gitlab.freedesktop.org/drm/intel/issues/694
-  [i915#722]: https://gitlab.freedesktop.org/drm/intel/issues/722
-  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
-  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
-
-
-Participating hosts (53 -> 45)
-------------------------------
-
-  Additional (2): fi-tgl-u fi-tgl-y 
-  Missing    (10): fi-icl-1065g7 fi-tgl-guc fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-bwr-2160 fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_7533 -> Patchwork_15671
-
-  CI-20190529: 20190529
-  CI_DRM_7533: 5f07735eaf4b5debe7c2d70908388af179a11d1f @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5341: 5fe683cdebde2d77d16ffc42c9fdf29a9f95bb82 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_15671: aed8d3314daaf80e76dafc8539a9aaca16fd2e16 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-aed8d3314daa drm/i915/display: remove duplicated assignment to pointer crtc_state
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15671/index.html
+Yours,
+Linus Walleij
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
