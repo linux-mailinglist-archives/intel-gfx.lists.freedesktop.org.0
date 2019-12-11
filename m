@@ -1,78 +1,77 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 63CF711BA69
-	for <lists+intel-gfx@lfdr.de>; Wed, 11 Dec 2019 18:36:05 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4728311BA7F
+	for <lists+intel-gfx@lfdr.de>; Wed, 11 Dec 2019 18:38:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8C15C6EB52;
-	Wed, 11 Dec 2019 17:36:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0441C6EB9E;
+	Wed, 11 Dec 2019 17:38:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 383 seconds by postgrey-1.36 at gabe;
- Wed, 11 Dec 2019 17:36:03 UTC
-Received: from us-smtp-delivery-1.mimecast.com (us-smtp-2.mimecast.com
- [205.139.110.61])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1C3586EB97
- for <intel-gfx@lists.freedesktop.org>; Wed, 11 Dec 2019 17:36:03 +0000 (UTC)
+Received: from us-smtp-1.mimecast.com (us-smtp-delivery-1.mimecast.com
+ [205.139.110.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2BEDC6EB9D
+ for <intel-gfx@lists.freedesktop.org>; Wed, 11 Dec 2019 17:38:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1576085762;
+ s=mimecast20190719; t=1576085929;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=vI8I5D2EV8LAbTP9+6YHyR2VwUD8YON5WoS15ZKn6BU=;
- b=A0tt0DWx4u0Rl1jhLkr5HTGtLAEdYtG+qKbx1z5OccUfFkBYHwC3wuYcpko9BqH7J24IQF
- g4y9jdH3u901Y4K5QRQ7um6jKAWgtbgKRo3Uitqk0oZZL9GHUDq202NL63xQOubtsAUsSW
- Ekqq0Y4d933VTfLunMT1RH9oDcQkK54=
-Received: from mail-wm1-f69.google.com (mail-wm1-f69.google.com
- [209.85.128.69]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-400-2uC791cJOuuJkjwc3tMzJA-1; Wed, 11 Dec 2019 12:29:36 -0500
-Received: by mail-wm1-f69.google.com with SMTP id b131so2615312wmd.9
- for <intel-gfx@lists.freedesktop.org>; Wed, 11 Dec 2019 09:29:35 -0800 (PST)
+ bh=Y12wlbSvkuEx6hrDq4ife4K7ITZLnh8SGNBP1jLgnxg=;
+ b=SjS0b9/Mf8Rf78nuz3uj9ZrjqVj6/90UXiOKyLg/s3PDbebTWBYfDOb8/vXLAstDEtO5tl
+ 0oZGLC/Kgcj6fV8bvYQlig+UKo8iHOoZxTRqRXxyA6yQ2dAcQ7EKr/4kP+PhylUvI51m/B
+ kZWp3zCb/p0RjZDtiMNGHldIY2T1lWk=
+Received: from mail-wr1-f69.google.com (mail-wr1-f69.google.com
+ [209.85.221.69]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-440-VIfHh3DqPXapJVEZ4XFw7A-1; Wed, 11 Dec 2019 12:32:39 -0500
+Received: by mail-wr1-f69.google.com with SMTP id f15so10785977wrr.2
+ for <intel-gfx@lists.freedesktop.org>; Wed, 11 Dec 2019 09:32:38 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:subject:to:cc:references:from:message-id:date
  :user-agent:mime-version:in-reply-to:content-language
  :content-transfer-encoding;
- bh=vI8I5D2EV8LAbTP9+6YHyR2VwUD8YON5WoS15ZKn6BU=;
- b=Pk1t7AIwfVwGD4s14fZvMQgmtig1QjhN7PPYfwtjBMrSVYgAlCR5MA62srr9Y/Kdpk
- l75m3oVVVOxNL8q3qW94vH0mNskN1XHwiT2tMMMTctA/HUw/w9GTn19EcLkBmoEoKTEW
- zaRB7NlxpmMRVdLPjpcy4e2JLaeR0N5cDhcbnmzhfBY18f2V8opR1CW3REK4s4CcBsWj
- QgySKsLSW4VlG5XulXMnk660mHCKI06ELc+4rYdMfFTo4/LPMjsXZ0Hd4/riO9JeuSfR
- kgMr9ezEQ9AjeFa3HFgj9S6IEAETiQHbZ2Lzy3z/pM7ZBUMCKPdUaWsUbT/iFcCvv3DW
- sTAA==
-X-Gm-Message-State: APjAAAXDgsphoWlvHQO/QqEOqD3g8Lp7IprrHRUuoj46tr3bv5D5LO4W
- uI7RfM7HsOG+lcaUMd8eCQ0Yq39MzyetNiNLNHjoFLY5zkxUi44JJtQgADE8JVNikNpIwVmRttw
- 4GedEURKFUjSdD4xVfDDmxtddn5OG
-X-Received: by 2002:a05:600c:1009:: with SMTP id
- c9mr1085117wmc.162.1576085374777; 
- Wed, 11 Dec 2019 09:29:34 -0800 (PST)
-X-Google-Smtp-Source: APXvYqwFyxoSJsKNCNIv6f3WTGZdy9wp3MAZBIA3/ejS8RZrpH+PBacqBplsEXpPCpmEEkcb9GT0/Q==
-X-Received: by 2002:a05:600c:1009:: with SMTP id
- c9mr1085091wmc.162.1576085374559; 
- Wed, 11 Dec 2019 09:29:34 -0800 (PST)
+ bh=Y12wlbSvkuEx6hrDq4ife4K7ITZLnh8SGNBP1jLgnxg=;
+ b=sTkPOOKxNLZJs7xd3QK0AelgUOZiSUEEoPBRCyPwmQh5eTM+GpWtoiZkEKJw+D4vsS
+ onRXv6O34c3kgSmMmP6qOkZ9UX64HOLXF8MzKck8r7kDpa1lCjGGB8W5aRwtOTSBbjRe
+ LFB+EVR9WPyCPonWi9f4z8skBmbsTscPvwAA7TtuzgjnKRqsrZ/V9S13y5ZlRdfgz9cy
+ 4dyozvePJBCAdHHp7PmUlh1VWg8UNJMYZMShlTEaYE2VLcmrjNNKe3unCC//cVW/IGVu
+ aIuXvf4+1TmEVDedSRnV+bXM2JmLcn5h9qK6gpsFfsHfmycoDTctNHtcbVEwIMS6ukSH
+ v78g==
+X-Gm-Message-State: APjAAAWuEHKGgaRNI7aPsNTFn5SM0S1FMWSS/6O9WbKhOh1E/9zyZp9T
+ Ji/L5/98bmHFEPsVAAAz0dAK1pPj+BOF6raffhpOjT5rUgzX9T7LGcJiAMFKYIk+BM7OPlqbO4b
+ WfF3XVcOn+Ux+UXWNVu20G/ACBI+l
+X-Received: by 2002:adf:df90:: with SMTP id z16mr1036611wrl.273.1576085558006; 
+ Wed, 11 Dec 2019 09:32:38 -0800 (PST)
+X-Google-Smtp-Source: APXvYqyJNDISSzLaekbps4PPe/Y5SFMhSF7OjIT8TamyAaUOOzgveUOLSuGFFwaNrhfYHhJrY6DB/A==
+X-Received: by 2002:adf:df90:: with SMTP id z16mr1036575wrl.273.1576085557720; 
+ Wed, 11 Dec 2019 09:32:37 -0800 (PST)
 Received: from shalem.localdomain
  (2001-1c00-0c0c-fe00-7e79-4dac-39d0-9c14.cable.dynamic.v6.ziggo.nl.
  [2001:1c00:c0c:fe00:7e79:4dac:39d0:9c14])
- by smtp.gmail.com with ESMTPSA id p5sm2875224wrt.79.2019.12.11.09.29.33
+ by smtp.gmail.com with ESMTPSA id o185sm2736280wmb.40.2019.12.11.09.32.36
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 11 Dec 2019 09:29:33 -0800 (PST)
-To: Lee Jones <lee.jones@linaro.org>
-References: <20191119151818.67531-1-hdegoede@redhat.com>
- <20191119151818.67531-3-hdegoede@redhat.com> <20191210085111.GQ3468@dell>
+ Wed, 11 Dec 2019 09:32:37 -0800 (PST)
+To: Linus Walleij <linus.walleij@linaro.org>
+References: <20191129185836.2789-1-hdegoede@redhat.com>
+ <20191129185836.2789-3-hdegoede@redhat.com>
+ <CACRpkdbRb-LF2tNN-ueo=tKuJc+u4B7Y20+BCyqnN7wYbm8y7Q@mail.gmail.com>
+ <87wobfj65b.fsf@intel.com> <47c36b75-bc30-502b-7f8d-035cf2348fc4@redhat.com>
+ <CACRpkdaJGZsJpYu3cgQCeWuJD1y9CQyzuk_VYfGfAT8WC=_1VA@mail.gmail.com>
 From: Hans de Goede <hdegoede@redhat.com>
-Message-ID: <a05e5a2b-568e-2b0d-0293-aa937c590a74@redhat.com>
-Date: Wed, 11 Dec 2019 18:29:32 +0100
+Message-ID: <4bc1d1ac-b3c7-4ea5-9150-bc1b9cffb963@redhat.com>
+Date: Wed, 11 Dec 2019 18:32:36 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.2.2
 MIME-Version: 1.0
-In-Reply-To: <20191210085111.GQ3468@dell>
+In-Reply-To: <CACRpkdaJGZsJpYu3cgQCeWuJD1y9CQyzuk_VYfGfAT8WC=_1VA@mail.gmail.com>
 Content-Language: en-US
-X-MC-Unique: 2uC791cJOuuJkjwc3tMzJA-1
+X-MC-Unique: VIfHh3DqPXapJVEZ4XFw7A-1
 X-Mimecast-Spam-Score: 0
-Subject: Re: [Intel-gfx] [PATCH 2/3] mfd: intel_soc_pmic: Rename
- pwm_backlight pwm-lookup to pwm_pmic_backlight
+Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915/vlv_dsi: Control panel and
+ backlight enable GPIOs on BYT
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -85,67 +84,83 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
- "Rafael J . Wysocki" <rjw@rjwysocki.net>, linux-kernel@vger.kernel.org,
- linux-acpi@vger.kernel.org, dri-devel@lists.freedesktop.org,
+Cc: ACPI Devel Maling List <linux-acpi@vger.kernel.org>,
+ "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+ intel-gfx <intel-gfx@lists.freedesktop.org>,
+ Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+ "open list:DRM PANEL DRIVERS" <dri-devel@lists.freedesktop.org>,
  Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Len Brown <lenb@kernel.org>
+ Mika Westerberg <mika.westerberg@linux.intel.com>
 Content-Transfer-Encoding: 7bit
 Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Lee,
+Hi,
 
-On 10-12-2019 09:51, Lee Jones wrote:
-> On Tue, 19 Nov 2019, Hans de Goede wrote:
+On 11-12-2019 01:24, Linus Walleij wrote:
+> On Mon, Dec 2, 2019 at 4:49 PM Hans de Goede <hdegoede@redhat.com> wrote:
 > 
->> At least Bay Trail (BYT) and Cherry Trail (CHT) devices can use 1 of 2
->> different PWM controllers for controlling the LCD's backlight brightness.
+>> There is only one problem, currently is is not possible to
+>> unregister a mapping added with pinctrl_register_mappings
+>> and the i915 driver is typically a module which can be unloaded
+>> and I believe actually is unloaded as part of the i915 CI.
 >>
->> Either the one integrated into the PMIC or the one integrated into the
->> SoC (the 1st LPSS PWM controller).
+>> pinctrl_register_mappings copies the passed in mapping, but
+>> it is a shallow copy, so it contains pointers to the modules
+>> const segment and we do not want to re-add another copy of
+>> the mapping when the module loads a second time.
 >>
->> So far in the LPSS code on BYT we have skipped registering the LPSS PWM
->> controller "pwm_backlight" lookup entry when a Crystal Cove PMIC is
->> present, assuming that in this case the PMIC PWM controller will be used.
+>> Fixing this is easy though, there already is a pinctrl_unregister_map()
+>> function, we just need to export it so that the i915 driver can
+>> remove the mapping when it is unbound.
 >>
->> On CHT we have been relying on only 1 of the 2 PWM controllers being
->> enabled in the DSDT at the same time; and always registered the lookup.
->>
->> So far this has been working, but the correct way to determine which PWM
->> controller needs to be used is by checking a bit in the VBT table and
->> recently I've learned about 2 different BYT devices:
->> Point of View MOBII TAB-P800W
->> Acer Switch 10 SW5-012
->>
->> Which use a Crystal Cove PMIC, yet the LCD is connected to the SoC/LPSS
->> PWM controller (and the VBT correctly indicates this), so here our old
->> heuristics fail.
->>
->> Since only the i915 driver has access to the VBT, this commit renames
->> the "pwm_backlight" lookup entries for the Crystal Cove PMIC's PWM
->> controller to "pwm_pmic_backlight" so that the i915 driver can do a
->> pwm_get() for the right controller depending on the VBT bit, instead of
->> the i915 driver relying on a "pwm_backlight" lookup getting registered
->> which magically points to the right controller.
->>
->> Signed-off-by: Hans de Goede <hdegoede@redhat.com>
->> ---
->>   drivers/mfd/intel_soc_pmic_core.c | 2 +-
->>   1 file changed, 1 insertion(+), 1 deletion(-)
+>> Linus would exporting this function be ok with you?
 > 
-> For my own reference:
->    Acked-for-MFD-by: Lee Jones <lee.jones@linaro.org>
+> Yep!
+> 
+>> Linus, question what is the purpose of the "dupping" / shallow
+>> copying of the argument passed to pinctrl_register_map ?
+> 
+> The initial commit contained this comment later removed:
+> 
+> +       /*
+> +        * Make a copy of the map array - string pointers will end up in the
+> +        * kernel const section anyway so these do not need to be deep copied.
+> +        */
+> 
+> The use was to free up memory for platforms using boardfiles
+> with a gazillion variants and huge pin control tables, so these
+> could be marked  __initdata and discarded after boot.
+> As the strings would anyway stay around we didn't need to
+> deep copy.
+> 
+> See for example in arch/arm/mach-u300/core.c
+> static struct pinctrl_map __initdata u300_pinmux_map[]
+> 
+>> Since
+>> it is shallow the mem for any pointers contained within there need
+>> to be kept around by the caller, so why not let the caller keep
+>> the pinctrl_map struct itself around too?
+> 
+> So the strings will be kept around because the kernel can't get
+> rid of strings. (Yeah it is silly, should haven been fixed ages
+> ago, but not by me, haha :)
+> 
+>> If we are going to export pinctrl_unregister_map() we need to make it
+>> do the right thing for dupped maps too, we can just store the dup flag
+>> in struct pinctrl_maps. So this is easy, but I wonder if we cannot
+>> get rid of the dupping all together ?
+> 
+> Maybe ... I don't know. What do you think? I suppose you could
+> make u300 crash if you do that.
 
-As mentioned in the cover-letter, to avoid breaking bi-sectability
-as well as to avoid breaking the intel-gfx CI we need to merge this series
-in one go through one tree. Specifically through the drm-intel tree.
-Is that ok with you ?
+I've prepared a patch which makes pinctrl_register_mappings remember
+if the mapping is dupped or not (store the dup value in struct pinctrl_maps);
+and which modifies pinctrl_unregister_map() to do the right thing
+depending on the stored dup value.
 
-If this is ok with you, then you do not have to do anything, I will just push
-the entire series to drm-intel. drivers/mfd/intel_soc_pmic_core.c
-does not see much changes so I do not expect this to lead to any conflicts.
+I still need to test the new series and then I will post it.
 
 Regards,
 
