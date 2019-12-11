@@ -2,15 +2,15 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 443AA11BEDA
-	for <lists+intel-gfx@lfdr.de>; Wed, 11 Dec 2019 22:12:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E96911BED9
+	for <lists+intel-gfx@lfdr.de>; Wed, 11 Dec 2019 22:12:48 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9DB566EBD7;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9FCC16EBDF;
 	Wed, 11 Dec 2019 21:12:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 970706EBD7
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D4C406EBD7
  for <intel-gfx@lists.freedesktop.org>; Wed, 11 Dec 2019 21:12:43 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
@@ -18,16 +18,19 @@ Received: from orsmga006.jf.intel.com ([10.7.209.51])
  by orsmga106.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
  11 Dec 2019 13:12:42 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,303,1571727600"; d="scan'208";a="215904948"
+X-IronPort-AV: E=Sophos;i="5.69,303,1571727600"; d="scan'208";a="215904958"
 Received: from dceraolo-linux.fm.intel.com ([10.1.27.145])
- by orsmga006.jf.intel.com with ESMTP; 11 Dec 2019 13:12:40 -0800
+ by orsmga006.jf.intel.com with ESMTP; 11 Dec 2019 13:12:41 -0800
 From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed, 11 Dec 2019 13:12:39 -0800
-Message-Id: <20191211211244.7831-1-daniele.ceraolospurio@intel.com>
+Date: Wed, 11 Dec 2019 13:12:40 -0800
+Message-Id: <20191211211244.7831-2-daniele.ceraolospurio@intel.com>
 X-Mailer: git-send-email 2.23.0
+In-Reply-To: <20191211211244.7831-1-daniele.ceraolospurio@intel.com>
+References: <20191211211244.7831-1-daniele.ceraolospurio@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [RFC 0/5] Split up intel_lrc.c
+Subject: [Intel-gfx] [RFC 1/5] drm/i915: introduce logical_ring and
+ lr_context naming
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,74 +48,443 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The new GuC submission code will get rid of the execlists emulation and
-move towards being a more independent submission flow. However, given
-that the HW underneath is still the same, the generic engine HW setup
-and context handling can be shared between the GuC and execlists
-submission paths. Currently, the execlists submission code and the more
-generic handlers are mixed together in intel_lrc.c, which makes code
-sharing trickier and makes it harder to isolate the 2 submission
-mechanisms. Therefore, this series proposes to split the intel_lrc file
-to divide the common parts from the submission-specific ones. Apart from
-execlists submission and context management, the virtual engine code has
-also been split in a generic part to be re-used and a back-end specific
-one.
+Ahead of splitting out the code specific to execlists submission to its
+own file, we can re-organize the code within the intel_lrc file to make
+that separation clearer. To achieve this, a number of functions have
+been split/renamed using the "logical_ring" and "lr_context" naming,
+respectively for engine-related setup and lrc management.
 
-The status of the intel_lrc.c file gets a bit more confusing in the
-first patch as execlists_* and lr_context_* functions are mixed
-together, but that is solved at the end of the series when all the
-execlists_* code is moved away.
-
-I'm not too sure where the functions to emit commands in the ring belong
-to, because most of them are common but there will be some small
-differences between the GuC and execlist paths (e.g. no busywait with
-the GuC). I've left them in intel_lrc.c for now, with a plan to
-reconsider once the new GuC code lands and it becomes clearer what the
-differences are.
-
-Very lightly tested.
-
+Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 Cc: Chris Wilson <chris@chris-wilson.co.uk>
 Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
 Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: John Harrison <john.c.harrison@intel.com>
+---
+ drivers/gpu/drm/i915/gt/intel_lrc.c    | 154 ++++++++++++++-----------
+ drivers/gpu/drm/i915/gt/selftest_lrc.c |  12 +-
+ 2 files changed, 93 insertions(+), 73 deletions(-)
 
-Daniele Ceraolo Spurio (4):
-  drm/i915: introduce logical_ring and lr_context naming
-  drm/i915: split out virtual engine code
-  drm/i915: move execlists selftests to their own file
-  drm/i915: introduce intel_execlists_submission.<c/h>
-
-Matthew Brost (1):
-  drm/i915: Move struct intel_virtual_engine to its own header
-
- drivers/gpu/drm/i915/Makefile                 |    2 +
- drivers/gpu/drm/i915/gem/i915_gem_context.c   |    5 +-
- .../drm/i915/gem/selftests/igt_gem_utils.c    |   27 +
- .../drm/i915/gem/selftests/igt_gem_utils.h    |    3 +
- drivers/gpu/drm/i915/gt/intel_engine_cs.c     |    1 +
- drivers/gpu/drm/i915/gt/intel_engine_pool.c   |    1 +
- .../drm/i915/gt/intel_execlists_submission.c  | 2485 ++++++++++++
- .../drm/i915/gt/intel_execlists_submission.h  |   58 +
- drivers/gpu/drm/i915/gt/intel_lrc.c           | 3132 +--------------
- drivers/gpu/drm/i915/gt/intel_lrc.h           |   59 +-
- .../gpu/drm/i915/gt/intel_virtual_engine.c    |  360 ++
- .../gpu/drm/i915/gt/intel_virtual_engine.h    |   48 +
- .../drm/i915/gt/intel_virtual_engine_types.h  |   57 +
- drivers/gpu/drm/i915/gt/selftest_execlists.c  | 3316 ++++++++++++++++
- drivers/gpu/drm/i915/gt/selftest_lrc.c        | 3346 +----------------
- drivers/gpu/drm/i915/gt/selftest_mocs.c       |   30 +-
- .../gpu/drm/i915/gt/uc/intel_guc_submission.c |    1 +
- drivers/gpu/drm/i915/gvt/scheduler.c          |    1 +
- drivers/gpu/drm/i915/i915_perf.c              |    1 +
- 19 files changed, 6547 insertions(+), 6386 deletions(-)
- create mode 100644 drivers/gpu/drm/i915/gt/intel_execlists_submission.c
- create mode 100644 drivers/gpu/drm/i915/gt/intel_execlists_submission.h
- create mode 100644 drivers/gpu/drm/i915/gt/intel_virtual_engine.c
- create mode 100644 drivers/gpu/drm/i915/gt/intel_virtual_engine.h
- create mode 100644 drivers/gpu/drm/i915/gt/intel_virtual_engine_types.h
- create mode 100644 drivers/gpu/drm/i915/gt/selftest_execlists.c
-
+diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+index 929f6bae4eba..6d6148e11fd0 100644
+--- a/drivers/gpu/drm/i915/gt/intel_lrc.c
++++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+@@ -228,17 +228,17 @@ static struct virtual_engine *to_virtual_engine(struct intel_engine_cs *engine)
+ 	return container_of(engine, struct virtual_engine, base);
+ }
+ 
+-static int __execlists_context_alloc(struct intel_context *ce,
+-				     struct intel_engine_cs *engine);
+-
+-static void execlists_init_reg_state(u32 *reg_state,
+-				     const struct intel_context *ce,
+-				     const struct intel_engine_cs *engine,
+-				     const struct intel_ring *ring,
+-				     bool close);
++static int lr_context_alloc(struct intel_context *ce,
++			    struct intel_engine_cs *engine);
++
++static void lr_context_init_reg_state(u32 *reg_state,
++				      const struct intel_context *ce,
++				      const struct intel_engine_cs *engine,
++				      const struct intel_ring *ring,
++				      bool close);
+ static void
+-__execlists_update_reg_state(const struct intel_context *ce,
+-			     const struct intel_engine_cs *engine);
++lr_context_update_reg_state(const struct intel_context *ce,
++			    const struct intel_engine_cs *engine);
+ 
+ static void mark_eio(struct i915_request *rq)
+ {
+@@ -1035,8 +1035,8 @@ execlists_check_context(const struct intel_context *ce,
+ 	WARN_ONCE(!valid, "Invalid lrc state found before submission\n");
+ }
+ 
+-static void restore_default_state(struct intel_context *ce,
+-				  struct intel_engine_cs *engine)
++static void lr_context_restore_default_state(struct intel_context *ce,
++					     struct intel_engine_cs *engine)
+ {
+ 	u32 *regs = ce->lrc_reg_state;
+ 
+@@ -1045,7 +1045,7 @@ static void restore_default_state(struct intel_context *ce,
+ 		       engine->pinned_default_state + LRC_STATE_PN * PAGE_SIZE,
+ 		       engine->context_size - PAGE_SIZE);
+ 
+-	execlists_init_reg_state(regs, ce, engine, ce->ring, false);
++	lr_context_init_reg_state(regs, ce, engine, ce->ring, false);
+ }
+ 
+ static void reset_active(struct i915_request *rq,
+@@ -1081,8 +1081,8 @@ static void reset_active(struct i915_request *rq,
+ 	intel_ring_update_space(ce->ring);
+ 
+ 	/* Scrub the context image to prevent replaying the previous batch */
+-	restore_default_state(ce, engine);
+-	__execlists_update_reg_state(ce, engine);
++	lr_context_restore_default_state(ce, engine);
++	lr_context_update_reg_state(ce, engine);
+ 
+ 	/* We've switched away, so this should be a no-op, but intent matters */
+ 	ce->lrc_desc |= CTX_DESC_FORCE_RESTORE;
+@@ -2378,7 +2378,7 @@ static void execlists_submit_request(struct i915_request *request)
+ 	spin_unlock_irqrestore(&engine->active.lock, flags);
+ }
+ 
+-static void __execlists_context_fini(struct intel_context *ce)
++static void lr_context_fini(struct intel_context *ce)
+ {
+ 	intel_ring_put(ce->ring);
+ 	i915_vma_put(ce->state);
+@@ -2392,7 +2392,7 @@ static void execlists_context_destroy(struct kref *kref)
+ 	GEM_BUG_ON(intel_context_is_pinned(ce));
+ 
+ 	if (ce->state)
+-		__execlists_context_fini(ce);
++		lr_context_fini(ce);
+ 
+ 	intel_context_fini(ce);
+ 	intel_context_free(ce);
+@@ -2423,7 +2423,7 @@ check_redzone(const void *vaddr, const struct intel_engine_cs *engine)
+ 			     engine->name);
+ }
+ 
+-static void execlists_context_unpin(struct intel_context *ce)
++static void intel_lr_context_unpin(struct intel_context *ce)
+ {
+ 	check_redzone((void *)ce->lrc_reg_state - LRC_STATE_PN * PAGE_SIZE,
+ 		      ce->engine);
+@@ -2433,8 +2433,8 @@ static void execlists_context_unpin(struct intel_context *ce)
+ }
+ 
+ static void
+-__execlists_update_reg_state(const struct intel_context *ce,
+-			     const struct intel_engine_cs *engine)
++lr_context_update_reg_state(const struct intel_context *ce,
++			    const struct intel_engine_cs *engine)
+ {
+ 	struct intel_ring *ring = ce->ring;
+ 	u32 *regs = ce->lrc_reg_state;
+@@ -2456,8 +2456,7 @@ __execlists_update_reg_state(const struct intel_context *ce,
+ }
+ 
+ static int
+-__execlists_context_pin(struct intel_context *ce,
+-			struct intel_engine_cs *engine)
++lr_context_pin(struct intel_context *ce, struct intel_engine_cs *engine)
+ {
+ 	void *vaddr;
+ 	int ret;
+@@ -2479,7 +2478,7 @@ __execlists_context_pin(struct intel_context *ce,
+ 
+ 	ce->lrc_desc = lrc_descriptor(ce, engine);
+ 	ce->lrc_reg_state = vaddr + LRC_STATE_PN * PAGE_SIZE;
+-	__execlists_update_reg_state(ce, engine);
++	lr_context_update_reg_state(ce, engine);
+ 
+ 	return 0;
+ 
+@@ -2491,12 +2490,12 @@ __execlists_context_pin(struct intel_context *ce,
+ 
+ static int execlists_context_pin(struct intel_context *ce)
+ {
+-	return __execlists_context_pin(ce, ce->engine);
++	return lr_context_pin(ce, ce->engine);
+ }
+ 
+ static int execlists_context_alloc(struct intel_context *ce)
+ {
+-	return __execlists_context_alloc(ce, ce->engine);
++	return lr_context_alloc(ce, ce->engine);
+ }
+ 
+ static void execlists_context_reset(struct intel_context *ce)
+@@ -2518,14 +2517,14 @@ static void execlists_context_reset(struct intel_context *ce)
+ 	 * simplicity, we just zero everything out.
+ 	 */
+ 	intel_ring_reset(ce->ring, 0);
+-	__execlists_update_reg_state(ce, ce->engine);
++	lr_context_update_reg_state(ce, ce->engine);
+ }
+ 
+ static const struct intel_context_ops execlists_context_ops = {
+ 	.alloc = execlists_context_alloc,
+ 
+ 	.pin = execlists_context_pin,
+-	.unpin = execlists_context_unpin,
++	.unpin = intel_lr_context_unpin,
+ 
+ 	.enter = intel_context_enter_engine,
+ 	.exit = intel_context_exit_engine,
+@@ -2912,7 +2911,33 @@ static int intel_init_workaround_bb(struct intel_engine_cs *engine)
+ 	return ret;
+ }
+ 
+-static void enable_execlists(struct intel_engine_cs *engine)
++static int logical_ring_init(struct intel_engine_cs *engine)
++{
++	int ret;
++
++	ret = intel_engine_init_common(engine);
++	if (ret)
++		return ret;
++
++	if (intel_init_workaround_bb(engine))
++		/*
++		 * We continue even if we fail to initialize WA batch
++		 * because we only expect rare glitches but nothing
++		 * critical to prevent us from using GPU
++		 */
++		DRM_ERROR("WA batch buffer initialization failed\n");
++
++	return 0;
++}
++
++static void logical_ring_destroy(struct intel_engine_cs *engine)
++{
++	intel_engine_cleanup_common(engine);
++	lrc_destroy_wa_ctx(engine);
++	kfree(engine);
++}
++
++static void logical_ring_enable(struct intel_engine_cs *engine)
+ {
+ 	u32 mode;
+ 
+@@ -2946,7 +2971,7 @@ static bool unexpected_starting_state(struct intel_engine_cs *engine)
+ 	return unexpected;
+ }
+ 
+-static int execlists_resume(struct intel_engine_cs *engine)
++static int logical_ring_resume(struct intel_engine_cs *engine)
+ {
+ 	intel_engine_apply_workarounds(engine);
+ 	intel_engine_apply_whitelist(engine);
+@@ -2961,7 +2986,7 @@ static int execlists_resume(struct intel_engine_cs *engine)
+ 		intel_engine_dump(engine, &p, NULL);
+ 	}
+ 
+-	enable_execlists(engine);
++	logical_ring_enable(engine);
+ 
+ 	return 0;
+ }
+@@ -3037,8 +3062,8 @@ static void reset_csb_pointers(struct intel_engine_cs *engine)
+ 			       &execlists->csb_status[reset_value]);
+ }
+ 
+-static void __execlists_reset_reg_state(const struct intel_context *ce,
+-					const struct intel_engine_cs *engine)
++static void lr_context_reset_reg_state(const struct intel_context *ce,
++				       const struct intel_engine_cs *engine)
+ {
+ 	u32 *regs = ce->lrc_reg_state;
+ 	int x;
+@@ -3131,14 +3156,14 @@ static void __execlists_reset(struct intel_engine_cs *engine, bool stalled)
+ 	 * to recreate its own state.
+ 	 */
+ 	GEM_BUG_ON(!intel_context_is_pinned(ce));
+-	restore_default_state(ce, engine);
++	lr_context_restore_default_state(ce, engine);
+ 
+ out_replay:
+ 	GEM_TRACE("%s replay {head:%04x, tail:%04x}\n",
+ 		  engine->name, ce->ring->head, ce->ring->tail);
+ 	intel_ring_update_space(ce->ring);
+-	__execlists_reset_reg_state(ce, engine);
+-	__execlists_update_reg_state(ce, engine);
++	lr_context_reset_reg_state(ce, engine);
++	lr_context_update_reg_state(ce, engine);
+ 	ce->lrc_desc |= CTX_DESC_FORCE_RESTORE; /* paranoid: GPU was reset! */
+ 
+ unwind:
+@@ -3788,9 +3813,7 @@ static void execlists_destroy(struct intel_engine_cs *engine)
+ {
+ 	execlists_shutdown(engine);
+ 
+-	intel_engine_cleanup_common(engine);
+-	lrc_destroy_wa_ctx(engine);
+-	kfree(engine);
++	logical_ring_destroy(engine);
+ }
+ 
+ static void
+@@ -3799,7 +3822,7 @@ logical_ring_default_vfuncs(struct intel_engine_cs *engine)
+ 	/* Default vfuncs which can be overriden by each engine. */
+ 
+ 	engine->destroy = execlists_destroy;
+-	engine->resume = execlists_resume;
++	engine->resume = logical_ring_resume;
+ 
+ 	engine->reset.prepare = execlists_reset_prepare;
+ 	engine->reset.reset = execlists_reset;
+@@ -3872,6 +3895,15 @@ static void rcs_submission_override(struct intel_engine_cs *engine)
+ 	}
+ }
+ 
++static void logical_ring_setup(struct intel_engine_cs *engine)
++{
++	logical_ring_default_vfuncs(engine);
++	logical_ring_default_irqs(engine);
++
++	if (engine->class == RENDER_CLASS)
++		rcs_submission_override(engine);
++}
++
+ int intel_execlists_submission_setup(struct intel_engine_cs *engine)
+ {
+ 	tasklet_init(&engine->execlists.tasklet,
+@@ -3879,11 +3911,7 @@ int intel_execlists_submission_setup(struct intel_engine_cs *engine)
+ 	timer_setup(&engine->execlists.timer, execlists_timeslice, 0);
+ 	timer_setup(&engine->execlists.preempt, execlists_preempt, 0);
+ 
+-	logical_ring_default_vfuncs(engine);
+-	logical_ring_default_irqs(engine);
+-
+-	if (engine->class == RENDER_CLASS)
+-		rcs_submission_override(engine);
++	logical_ring_setup(engine);
+ 
+ 	return 0;
+ }
+@@ -3896,18 +3924,10 @@ int intel_execlists_submission_init(struct intel_engine_cs *engine)
+ 	u32 base = engine->mmio_base;
+ 	int ret;
+ 
+-	ret = intel_engine_init_common(engine);
++	ret = logical_ring_init(engine);
+ 	if (ret)
+ 		return ret;
+ 
+-	if (intel_init_workaround_bb(engine))
+-		/*
+-		 * We continue even if we fail to initialize WA batch
+-		 * because we only expect rare glitches but nothing
+-		 * critical to prevent us from using GPU
+-		 */
+-		DRM_ERROR("WA batch buffer initialization failed\n");
+-
+ 	if (HAS_LOGICAL_RING_ELSQ(i915)) {
+ 		execlists->submit_reg = uncore->regs +
+ 			i915_mmio_reg_offset(RING_EXECLIST_SQ_CONTENTS(base));
+@@ -4033,11 +4053,11 @@ static struct i915_ppgtt *vm_alias(struct i915_address_space *vm)
+ 		return i915_vm_to_ppgtt(vm);
+ }
+ 
+-static void execlists_init_reg_state(u32 *regs,
+-				     const struct intel_context *ce,
+-				     const struct intel_engine_cs *engine,
+-				     const struct intel_ring *ring,
+-				     bool close)
++static void lr_context_init_reg_state(u32 *regs,
++				      const struct intel_context *ce,
++				      const struct intel_engine_cs *engine,
++				      const struct intel_ring *ring,
++				      bool close)
+ {
+ 	/*
+ 	 * A context is actually a big batch buffer with several
+@@ -4105,7 +4125,7 @@ populate_lr_context(struct intel_context *ce,
+ 	/* The second page of the context object contains some fields which must
+ 	 * be set up prior to the first execution. */
+ 	regs = vaddr + LRC_STATE_PN * PAGE_SIZE;
+-	execlists_init_reg_state(regs, ce, engine, ring, inhibit);
++	lr_context_init_reg_state(regs, ce, engine, ring, inhibit);
+ 	if (inhibit)
+ 		regs[CTX_CONTEXT_CONTROL] |=
+ 			_MASKED_BIT_ENABLE(CTX_CTRL_ENGINE_CTX_RESTORE_INHIBIT);
+@@ -4117,8 +4137,8 @@ populate_lr_context(struct intel_context *ce,
+ 	return ret;
+ }
+ 
+-static int __execlists_context_alloc(struct intel_context *ce,
+-				     struct intel_engine_cs *engine)
++static int lr_context_alloc(struct intel_context *ce,
++			    struct intel_engine_cs *engine)
+ {
+ 	struct drm_i915_gem_object *ctx_obj;
+ 	struct intel_ring *ring;
+@@ -4212,7 +4232,7 @@ static void virtual_context_destroy(struct kref *kref)
+ 	GEM_BUG_ON(__tasklet_is_scheduled(&ve->base.execlists.tasklet));
+ 
+ 	if (ve->context.state)
+-		__execlists_context_fini(&ve->context);
++		lr_context_fini(&ve->context);
+ 	intel_context_fini(&ve->context);
+ 
+ 	kfree(ve->bonds);
+@@ -4252,7 +4272,7 @@ static int virtual_context_pin(struct intel_context *ce)
+ 	int err;
+ 
+ 	/* Note: we must use a real engine class for setting up reg state */
+-	err = __execlists_context_pin(ce, ve->siblings[0]);
++	err = lr_context_pin(ce, ve->siblings[0]);
+ 	if (err)
+ 		return err;
+ 
+@@ -4284,7 +4304,7 @@ static void virtual_context_exit(struct intel_context *ce)
+ 
+ static const struct intel_context_ops virtual_context_ops = {
+ 	.pin = virtual_context_pin,
+-	.unpin = execlists_context_unpin,
++	.unpin = intel_lr_context_unpin,
+ 
+ 	.enter = virtual_context_enter,
+ 	.exit = virtual_context_exit,
+@@ -4602,7 +4622,7 @@ intel_execlists_create_virtual(struct i915_gem_context *ctx,
+ 
+ 	ve->base.flags |= I915_ENGINE_IS_VIRTUAL;
+ 
+-	err = __execlists_context_alloc(&ve->context, siblings[0]);
++	err = lr_context_alloc(&ve->context, siblings[0]);
+ 	if (err)
+ 		goto err_put;
+ 
+@@ -4792,13 +4812,13 @@ void intel_lr_context_reset(struct intel_engine_cs *engine,
+ 	 * to recreate its own state.
+ 	 */
+ 	if (scrub)
+-		restore_default_state(ce, engine);
++		lr_context_restore_default_state(ce, engine);
+ 
+ 	/* Rerun the request; its payload has been neutered (if guilty). */
+ 	ce->ring->head = head;
+ 	intel_ring_update_space(ce->ring);
+ 
+-	__execlists_update_reg_state(ce, engine);
++	lr_context_update_reg_state(ce, engine);
+ }
+ 
+ bool
+diff --git a/drivers/gpu/drm/i915/gt/selftest_lrc.c b/drivers/gpu/drm/i915/gt/selftest_lrc.c
+index ac8b9116d307..b4537497c3be 100644
+--- a/drivers/gpu/drm/i915/gt/selftest_lrc.c
++++ b/drivers/gpu/drm/i915/gt/selftest_lrc.c
+@@ -169,7 +169,7 @@ static int live_unlite_restore(struct intel_gt *gt, int prio)
+ 		}
+ 		GEM_BUG_ON(!ce[1]->ring->size);
+ 		intel_ring_reset(ce[1]->ring, ce[1]->ring->size / 2);
+-		__execlists_update_reg_state(ce[1], engine);
++		lr_context_update_reg_state(ce[1], engine);
+ 
+ 		rq[0] = igt_spinner_create_request(&spin, ce[0], MI_ARB_CHECK);
+ 		if (IS_ERR(rq[0])) {
+@@ -3406,11 +3406,11 @@ static int live_lrc_layout(void *arg)
+ 		hw += LRC_STATE_PN * PAGE_SIZE / sizeof(*hw);
+ 
+ 		lrc = memset(mem, 0, PAGE_SIZE);
+-		execlists_init_reg_state(lrc,
+-					 engine->kernel_context,
+-					 engine,
+-					 engine->kernel_context->ring,
+-					 true);
++		lr_context_init_reg_state(lrc,
++					  engine->kernel_context,
++					  engine,
++					  engine->kernel_context->ring,
++					  true);
+ 
+ 		dw = 0;
+ 		do {
 -- 
 2.23.0
 
