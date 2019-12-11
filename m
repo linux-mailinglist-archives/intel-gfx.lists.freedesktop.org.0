@@ -1,33 +1,35 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2729911B758
-	for <lists+intel-gfx@lfdr.de>; Wed, 11 Dec 2019 17:07:28 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id D08F411B759
+	for <lists+intel-gfx@lfdr.de>; Wed, 11 Dec 2019 17:07:29 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 73ED26E900;
+	by gabe.freedesktop.org (Postfix) with ESMTP id B32846EB72;
 	Wed, 11 Dec 2019 16:07:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5F5826E900
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8A2A36EB72
  for <intel-gfx@lists.freedesktop.org>; Wed, 11 Dec 2019 16:07:25 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from fmsmga006.fm.intel.com ([10.253.24.20])
  by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 11 Dec 2019 08:07:24 -0800
+ 11 Dec 2019 08:07:25 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,301,1571727600"; d="scan'208";a="414904270"
+X-IronPort-AV: E=Sophos;i="5.69,301,1571727600"; d="scan'208";a="414904272"
 Received: from linux.fm.intel.com ([10.1.27.42])
  by fmsmga006.fm.intel.com with ESMTP; 11 Dec 2019 08:07:24 -0800
 From: Venkata Sandeep Dhanalakota <venkata.s.dhanalakota@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed, 11 Dec 2019 08:07:23 -0800
-Message-Id: <20191211160724.26467-1-venkata.s.dhanalakota@intel.com>
+Date: Wed, 11 Dec 2019 08:07:24 -0800
+Message-Id: <20191211160724.26467-2-venkata.s.dhanalakota@intel.com>
 X-Mailer: git-send-email 2.21.0.5.gaeb582a983
+In-Reply-To: <20191211160724.26467-1-venkata.s.dhanalakota@intel.com>
+References: <20191211160724.26467-1-venkata.s.dhanalakota@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 1/2] drm/i915/perf: Register sysctl path globally
+Subject: [Intel-gfx] [PATCH 2/2] drm/i915: Make warned variable private
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,8 +48,7 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-We do not require to register the sysctl paths per instance,
-so making registration global.
+Make each instance to report the hang only once.
 
 Cc: Sudeep Dutt <sudeep.dutt@intel.com>
 Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
@@ -56,57 +57,44 @@ Cc: Chris Wilson <chris@chris-wilson.co.uk>
 Cc: Jani Nikula <jani.nikula@intel.com>
 Signed-off-by: Venkata Sandeep Dhanalakota <venkata.s.dhanalakota@intel.com>
 ---
- drivers/gpu/drm/i915/i915_perf.c       | 10 ++++++++--
- drivers/gpu/drm/i915/i915_perf_types.h |  1 -
- 2 files changed, 8 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/i915/i915_drv.h       | 2 ++
+ drivers/gpu/drm/i915/i915_gpu_error.c | 3 +--
+ 2 files changed, 3 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
-index 8d2e37949f46..426d04214a5d 100644
---- a/drivers/gpu/drm/i915/i915_perf.c
-+++ b/drivers/gpu/drm/i915/i915_perf.c
-@@ -387,6 +387,8 @@ struct i915_oa_config_bo {
- 	struct i915_vma *vma;
- };
+diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+index ce130e1f1e47..8e35f92f914e 100644
+--- a/drivers/gpu/drm/i915/i915_drv.h
++++ b/drivers/gpu/drm/i915/i915_drv.h
+@@ -1284,6 +1284,8 @@ struct drm_i915_private {
+ 	/* Mutex to protect the above hdcp component related values. */
+ 	struct mutex hdcp_comp_mutex;
  
-+static struct ctl_table_header *sysctl_header;
++	bool warned;
 +
- static enum hrtimer_restart oa_poll_check_timer_cb(struct hrtimer *hrtimer);
- 
- void i915_oa_config_release(struct kref *ref)
-@@ -4345,7 +4347,8 @@ void i915_perf_init(struct drm_i915_private *i915)
- 
- 		oa_sample_rate_hard_limit = 1000 *
- 			(RUNTIME_INFO(i915)->cs_timestamp_frequency_khz / 2);
--		perf->sysctl_header = register_sysctl_table(dev_root);
-+		if (!sysctl_header)
-+			sysctl_header = register_sysctl_table(dev_root);
- 
- 		mutex_init(&perf->metrics_lock);
- 		idr_init(&perf->metrics_idr);
-@@ -4395,7 +4398,10 @@ void i915_perf_fini(struct drm_i915_private *i915)
- 	idr_for_each(&perf->metrics_idr, destroy_config, perf);
- 	idr_destroy(&perf->metrics_idr);
- 
--	unregister_sysctl_table(perf->sysctl_header);
-+	if (sysctl_header) {
-+		unregister_sysctl_table(sysctl_header);
-+		sysctl_header = NULL;
-+	}
- 
- 	memset(&perf->ops, 0, sizeof(perf->ops));
- 	perf->i915 = NULL;
-diff --git a/drivers/gpu/drm/i915/i915_perf_types.h b/drivers/gpu/drm/i915/i915_perf_types.h
-index 74ddc20a0d37..45e581455f5d 100644
---- a/drivers/gpu/drm/i915/i915_perf_types.h
-+++ b/drivers/gpu/drm/i915/i915_perf_types.h
-@@ -380,7 +380,6 @@ struct i915_perf {
- 	struct drm_i915_private *i915;
- 
- 	struct kobject *metrics_kobj;
--	struct ctl_table_header *sysctl_header;
+ 	I915_SELFTEST_DECLARE(struct i915_selftest_stash selftest;)
  
  	/*
- 	 * Lock associated with adding/modifying/removing OA configs
+diff --git a/drivers/gpu/drm/i915/i915_gpu_error.c b/drivers/gpu/drm/i915/i915_gpu_error.c
+index 8374d50c0770..ea282d9a9a3a 100644
+--- a/drivers/gpu/drm/i915/i915_gpu_error.c
++++ b/drivers/gpu/drm/i915/i915_gpu_error.c
+@@ -1785,7 +1785,6 @@ void i915_capture_error_state(struct drm_i915_private *i915,
+ 			      intel_engine_mask_t engine_mask,
+ 			      const char *msg)
+ {
+-	static bool warned;
+ 	struct i915_gpu_state *error;
+ 	unsigned long flags;
+ 
+@@ -1815,7 +1814,7 @@ void i915_capture_error_state(struct drm_i915_private *i915,
+ 		return;
+ 	}
+ 
+-	if (!xchg(&warned, true) &&
++	if (!xchg(&i915->warned, true) &&
+ 	    ktime_get_real_seconds() - DRIVER_TIMESTAMP < DAY_AS_SECONDS(180)) {
+ 		pr_info("GPU hangs can indicate a bug anywhere in the entire gfx stack, including userspace.\n");
+ 		pr_info("Please file a _new_ bug report on bugs.freedesktop.org against DRI -> DRM/Intel\n");
 -- 
 2.21.0.5.gaeb582a983
 
