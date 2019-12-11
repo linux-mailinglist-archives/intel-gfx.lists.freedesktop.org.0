@@ -1,40 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE9C511B811
-	for <lists+intel-gfx@lfdr.de>; Wed, 11 Dec 2019 17:12:20 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 75CAE11B831
+	for <lists+intel-gfx@lfdr.de>; Wed, 11 Dec 2019 17:13:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D5B6B6E110;
-	Wed, 11 Dec 2019 16:12:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C7AFF6EB7A;
+	Wed, 11 Dec 2019 16:13:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C04F46E110
- for <intel-gfx@lists.freedesktop.org>; Wed, 11 Dec 2019 16:12:16 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EB6A86EB7A
+ for <intel-gfx@lists.freedesktop.org>; Wed, 11 Dec 2019 16:13:32 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 11 Dec 2019 08:12:15 -0800
+ by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 11 Dec 2019 08:13:32 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,301,1571727600"; d="scan'208";a="414905804"
-Received: from linux.fm.intel.com (HELO intel.com) ([10.1.27.42])
- by fmsmga006.fm.intel.com with ESMTP; 11 Dec 2019 08:12:15 -0800
-Date: Wed, 11 Dec 2019 08:12:15 -0800
-From: Venkata Sandeep Dhanalakota <venkata.s.dhanalakota@intel.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>
-Message-ID: <20191211161215.GD47225@intel.com>
-References: <20191211150204.133471-1-chris@chris-wilson.co.uk>
- <20191211155908.GC47225@intel.com>
- <157608042677.27099.2108685443689165611@skylake-alporthouse-com>
+X-IronPort-AV: E=Sophos;i="5.69,301,1571727600"; d="scan'208";a="414906142"
+Received: from vbacanux-wtg.ger.corp.intel.com (HELO [10.249.32.158])
+ ([10.249.32.158])
+ by fmsmga006.fm.intel.com with ESMTP; 11 Dec 2019 08:13:31 -0800
+To: Venkata Sandeep Dhanalakota <venkata.s.dhanalakota@intel.com>,
+ intel-gfx@lists.freedesktop.org
+References: <20191211160724.26467-1-venkata.s.dhanalakota@intel.com>
+From: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
+Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way,
+ Swindon SN3 1RJ
+Message-ID: <b15af748-5abe-2c9b-c5e8-28d574709951@intel.com>
+Date: Wed, 11 Dec 2019 18:13:40 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.2.2
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <157608042677.27099.2108685443689165611@skylake-alporthouse-com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Use the i915_device name for
- identifying our request fences
+In-Reply-To: <20191211160724.26467-1-venkata.s.dhanalakota@intel.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915/perf: Register sysctl path
+ globally
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,52 +49,89 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
+Cc: chris.p.wilson@intel.com
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 19/12/11 04:07, Chris Wilson wrote:
-> Quoting Venkata Sandeep Dhanalakota (2019-12-11 15:59:09)
-> > On 19/12/11 03:02, Chris Wilson wrote:
-> > > Use the dev_name(i915) to identify the requests for debugging, so we can
-> > > tell different device timelines apart.
-> > > 
-> > > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> > > Cc: Venkata Sandeep Dhanalakota <venkata.s.dhanalakota@intel.com>
-> > > ---
-> > >  drivers/gpu/drm/i915/i915_request.c | 2 +-
-> > >  1 file changed, 1 insertion(+), 1 deletion(-)
-> > > 
-> > > diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
-> > > index a6238c626a16..9646e02edea3 100644
-> > > --- a/drivers/gpu/drm/i915/i915_request.c
-> > > +++ b/drivers/gpu/drm/i915/i915_request.c
-> > > @@ -57,7 +57,7 @@ static struct i915_global_request {
-> > >  
-> > >  static const char *i915_fence_get_driver_name(struct dma_fence *fence)
-> > >  {
-> > > -     return "i915";
-> > > +     return dev_name(to_request(fence)->i915->drm.dev);
-> > >  }
-> > >  
-> > Sure, should we also update i915_fence_get_timeline_name() 
-> > return to_request(fence)->gem_context->name ?:
-> > i915_fence_get_driver_name(fence);
-> 
-> No need really. It's either a user context or a kernel context, the less
-> said to userspace about internals the better. It will be presented as
-> 
-> 00:00:02.00 i915::[i915] (or something like that)
-> 
-> If you would rather that "[i915]" be "[k]" or probably better yet "["
-> DRIVER_NAME "]"
-got it, having "[i915]" makes sense.
+On 11/12/2019 18:07, Venkata Sandeep Dhanalakota wrote:
+> We do not require to register the sysctl paths per instance,
+> so making registration global.
+>
+> Cc: Sudeep Dutt <sudeep.dutt@intel.com>
+> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
+> Cc: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Jani Nikula <jani.nikula@intel.com>
+> Signed-off-by: Venkata Sandeep Dhanalakota <venkata.s.dhanalakota@intel.com>
 
-Reviewed-by: Venkata Sandeep Dhanalakota
-<venkata.s.dhanalakota@intel.com>
-> -Chris
+
+Not sure what the pattern should be like for global settings like this one.
+
+Anyway it's definitely required going forward :
+
+
+Reviewed-by: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
+
+
+Thanks!
+
+
+> ---
+>   drivers/gpu/drm/i915/i915_perf.c       | 10 ++++++++--
+>   drivers/gpu/drm/i915/i915_perf_types.h |  1 -
+>   2 files changed, 8 insertions(+), 3 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
+> index 8d2e37949f46..426d04214a5d 100644
+> --- a/drivers/gpu/drm/i915/i915_perf.c
+> +++ b/drivers/gpu/drm/i915/i915_perf.c
+> @@ -387,6 +387,8 @@ struct i915_oa_config_bo {
+>   	struct i915_vma *vma;
+>   };
+>   
+> +static struct ctl_table_header *sysctl_header;
+> +
+>   static enum hrtimer_restart oa_poll_check_timer_cb(struct hrtimer *hrtimer);
+>   
+>   void i915_oa_config_release(struct kref *ref)
+> @@ -4345,7 +4347,8 @@ void i915_perf_init(struct drm_i915_private *i915)
+>   
+>   		oa_sample_rate_hard_limit = 1000 *
+>   			(RUNTIME_INFO(i915)->cs_timestamp_frequency_khz / 2);
+> -		perf->sysctl_header = register_sysctl_table(dev_root);
+> +		if (!sysctl_header)
+> +			sysctl_header = register_sysctl_table(dev_root);
+>   
+>   		mutex_init(&perf->metrics_lock);
+>   		idr_init(&perf->metrics_idr);
+> @@ -4395,7 +4398,10 @@ void i915_perf_fini(struct drm_i915_private *i915)
+>   	idr_for_each(&perf->metrics_idr, destroy_config, perf);
+>   	idr_destroy(&perf->metrics_idr);
+>   
+> -	unregister_sysctl_table(perf->sysctl_header);
+> +	if (sysctl_header) {
+> +		unregister_sysctl_table(sysctl_header);
+> +		sysctl_header = NULL;
+> +	}
+>   
+>   	memset(&perf->ops, 0, sizeof(perf->ops));
+>   	perf->i915 = NULL;
+> diff --git a/drivers/gpu/drm/i915/i915_perf_types.h b/drivers/gpu/drm/i915/i915_perf_types.h
+> index 74ddc20a0d37..45e581455f5d 100644
+> --- a/drivers/gpu/drm/i915/i915_perf_types.h
+> +++ b/drivers/gpu/drm/i915/i915_perf_types.h
+> @@ -380,7 +380,6 @@ struct i915_perf {
+>   	struct drm_i915_private *i915;
+>   
+>   	struct kobject *metrics_kobj;
+> -	struct ctl_table_header *sysctl_header;
+>   
+>   	/*
+>   	 * Lock associated with adding/modifying/removing OA configs
+
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
