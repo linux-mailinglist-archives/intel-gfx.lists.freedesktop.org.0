@@ -1,39 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E313111BFBB
-	for <lists+intel-gfx@lfdr.de>; Wed, 11 Dec 2019 23:22:38 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E8FF811BFE7
+	for <lists+intel-gfx@lfdr.de>; Wed, 11 Dec 2019 23:35:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 974896E857;
-	Wed, 11 Dec 2019 22:22:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 171206EC05;
+	Wed, 11 Dec 2019 22:34:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 687356E857
- for <intel-gfx@lists.freedesktop.org>; Wed, 11 Dec 2019 22:22:34 +0000 (UTC)
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 439AB89DC9
+ for <intel-gfx@lists.freedesktop.org>; Wed, 11 Dec 2019 22:34:57 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 11 Dec 2019 14:22:32 -0800
+ by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 11 Dec 2019 14:34:56 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,303,1571727600"; d="scan'208";a="388091416"
-Received: from cwilso3-mobl.fi.intel.com (HELO localhost) ([10.252.9.125])
- by orsmga005.jf.intel.com with ESMTP; 11 Dec 2019 14:22:31 -0800
+X-IronPort-AV: E=Sophos;i="5.69,303,1571727600"; d="scan'208";a="388094597"
+Received: from dceraolo-linux.fm.intel.com (HELO [10.1.27.145]) ([10.1.27.145])
+ by orsmga005.jf.intel.com with ESMTP; 11 Dec 2019 14:34:56 -0800
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+References: <20191211211244.7831-1-daniele.ceraolospurio@intel.com>
+ <20191211211244.7831-6-daniele.ceraolospurio@intel.com>
+ <157609988550.27099.9421610954504392154@skylake-alporthouse-com>
+From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Message-ID: <062ab6cc-ca22-d2cb-7b73-ef5516b04cc3@intel.com>
+Date: Wed, 11 Dec 2019 14:35:05 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-From: Chris Wilson <chris.p.wilson@intel.com>
-In-Reply-To: <20191211222013.7ih3g34qqxr35qcg@ldmartin-desk1>
-References: <20191211160724.26467-1-venkata.s.dhanalakota@intel.com>
- <20191211160724.26467-2-venkata.s.dhanalakota@intel.com>
- <157608104352.27099.375715424760562558@skylake-alporthouse-com>
- <157608119873.27099.4590993229485525575@skylake-alporthouse-com>
- <20191211222013.7ih3g34qqxr35qcg@ldmartin-desk1>
-Message-ID: <157610294963.27099.3258025461579867777@skylake-alporthouse-com>
-User-Agent: alot/0.6
-Date: Wed, 11 Dec 2019 22:22:29 +0000
-Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915: Make warned variable private
+In-Reply-To: <157609988550.27099.9421610954504392154@skylake-alporthouse-com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [RFC 5/5] drm/i915: introduce
+ intel_execlists_submission.<c/h>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,45 +47,65 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Lucas De Marchi (2019-12-11 22:20:13)
-> On Wed, Dec 11, 2019 at 04:19:58PM +0000, Chris Wilson wrote:
-> >Quoting Chris Wilson (2019-12-11 16:17:23)
-> >> Quoting Venkata Sandeep Dhanalakota (2019-12-11 16:07:24)
-> >> > Make each instance to report the hang only once.
-> >> >
-> >> > Cc: Sudeep Dutt <sudeep.dutt@intel.com>
-> >> > Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> >> > Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
-> >> > Cc: Chris Wilson <chris@chris-wilson.co.uk>
-> >> > Cc: Jani Nikula <jani.nikula@intel.com>
-> >> > Signed-off-by: Venkata Sandeep Dhanalakota <venkata.s.dhanalakota@intel.com>
-> >>
-> >> I still don't think so, since the we only want to pester the _user_ once
-> >> to file a bug, and that is irrespective of the device.
-> >
-> >Or to put it another way, the dmesg stream is global and this is a flag
-> >around that stream.
+<snip>
+
+
+>> +
+>> +struct i915_request *
+>> +execlists_unwind_incomplete_requests(struct intel_engine_execlists *execlists)
 > 
-> maybe we could use WARN_ONCE()?
+> There should be no exports from this file... Did you not also make
+> guc_submission standalone?
+> 
 
-It's not a warning and doesn't justify being one.
--Chris
----------------------------------------------------------------------
-Intel Corporation (UK) Limited
-Registered No. 1134945 (England)
-Registered Office: Pipers Way, Swindon SN3 1RJ
-VAT No: 860 2173 47
+The new GuC submission code will have its own 
+_unwind_incomplete_requests function, just didn't seem worth it copying 
+this to the GuC file now to make this static and get rid of it later. 
+The current version of the GuC patches (being worked on by Matt) is also 
+not yet fully standalone, but we're moving into that direction.
 
-This e-mail and any attachments may contain confidential material for
-the sole use of the intended recipient(s). Any review or distribution
-by others is strictly prohibited. If you are not the intended
-recipient, please contact the sender and delete all copies.
+
+<snip>
+
+>> +bool
+>> +intel_engine_in_execlists_submission_mode(const struct intel_engine_cs *engine)
+>> +{
+>> +       return engine->set_default_submission ==
+>> +              intel_execlists_set_default_submission;
+>> +}
+> 
+> The breadcrumb submission code is specialised to execlists and should
+> not be shared (leaves emit_flush, emit_bb_start as common
+> gen8_submission.c). The reset code is specialised to execlists and should not
+> be shared. The virtual engine is specialised to execlists and should not
+> be shared. Even submit_request should be distinct between guc and
+> execlists, especially request_alloc (which you may like to put on the
+> context_ops rather than engine)
+> -Chris
+> 
+
+engine->reset.*, request_alloc and submit_request have all been moved to 
+execlists_submission.c in this patch, with the aim of not sharing them.
+
+For the virtual engine, I've moved the submission related chunks to 
+execlists_submission.c as well (see the new 
+intel_execlists_virtual_submission_init, although I could probably move 
+a few extra bits in there). As I mentioned on the other reply, other 
+parts do seem quite generic to me, but let's keep this chunk of the 
+discussion on the other thread.
+
+Regarding the breadcrumb code, IMO we do still want to share most of it 
+(seqno writing, interrupt, MI_ARB_CHECK, wa_tail), but we most likely 
+won't need the preempt_busywait. Given this, it didn't feel right to me 
+to move the relevant code out of the file until we get some more mature 
+GuC code to make a cleaner call.
+
+Daniele
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
