@@ -1,31 +1,39 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 809BD11A474
-	for <lists+intel-gfx@lfdr.de>; Wed, 11 Dec 2019 07:26:52 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5916C11A497
+	for <lists+intel-gfx@lfdr.de>; Wed, 11 Dec 2019 07:39:16 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6BBDC6E1BB;
-	Wed, 11 Dec 2019 06:26:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 757126E9CE;
+	Wed, 11 Dec 2019 06:39:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id AED6D6E1BB;
- Wed, 11 Dec 2019 06:26:49 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id A5E2DA0096;
- Wed, 11 Dec 2019 06:26:49 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 46EEA6E9CE
+ for <intel-gfx@lists.freedesktop.org>; Wed, 11 Dec 2019 06:39:12 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 10 Dec 2019 22:39:11 -0800
+X-IronPort-AV: E=Sophos;i="5.69,301,1571727600"; d="scan'208";a="207566250"
+Received: from amondald-mobl.amr.corp.intel.com (HELO localhost)
+ ([10.249.35.51])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 10 Dec 2019 22:39:10 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: Manasi Navare <manasi.d.navare@intel.com>
+In-Reply-To: <20191210231328.GB12192@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <cover.1575974743.git.jani.nikula@intel.com>
+ <3fb018cf9bd9a4c275aab389b6ec0f2a4e938bb9.1575974743.git.jani.nikula@intel.com>
+ <20191210231328.GB12192@intel.com>
+Date: Wed, 11 Dec 2019 08:39:07 +0200
+Message-ID: <87d0cvl62c.fsf@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Lionel Landwerlin" <lionel.g.landwerlin@intel.com>
-Date: Wed, 11 Dec 2019 06:26:49 -0000
-Message-ID: <157604560965.30694.15576439534143256869@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20191210233453.183910-1-lionel.g.landwerlin@intel.com>
-In-Reply-To: <20191210233453.183910-1-lionel.g.landwerlin@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/i915=3A_timeline_semaphore_support?=
+Subject: Re: [Intel-gfx] [v4.1 08/16] drm/i915/dsc: add basic hardware state
+ readout support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,37 +46,162 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Tue, 10 Dec 2019, Manasi Navare <manasi.d.navare@intel.com> wrote:
+> On Tue, Dec 10, 2019 at 12:50:52PM +0200, Jani Nikula wrote:
+>> Add basic hardware state readout for DSC, and check the most relevant
+>> details in the state checker.
+>> 
+>> v2:
+>> - check for DSC power before reading its state
+>> - check if source supports DSC at all
+>> 
+>> As a side effect, this should also get the power domains for the enabled
+>> DSC on takeover, and subsequently disable DSC if it's not needed.
+>> 
+>> Cc: Manasi Navare <manasi.d.navare@intel.com>
+>> Cc: Vandita Kulkarni <vandita.kulkarni@intel.com>
+>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>
+> This looks great, thank you for adding the readout. And we should
+> add more DSC parameters in the readout soon like Ville had suggested
+> adding all the PPS readout, but for now:
 
-Series: drm/i915: timeline semaphore support
-URL   : https://patchwork.freedesktop.org/series/70728/
-State : warning
+Agreed, this is the start.
 
-== Summary ==
+> Reviewed-by: Manasi Navare <manasi.d.navare@intel.com>
 
-$ dim checkpatch origin/drm-tip
-0a6c609da1ff drm/i915: introduce a mechanism to extend execbuf2
--:141: CHECK:SPACING: spaces preferred around that '<<' (ctx:VxV)
-#141: FILE: include/uapi/drm/i915_drm.h:1204:
-+#define __I915_EXEC_UNKNOWN_FLAGS (-(I915_EXEC_USE_EXTENSIONS<<1))
-                                                              ^
+Thanks for the reviews!
 
-total: 0 errors, 0 warnings, 1 checks, 113 lines checked
-73393ec5545d drm/i915: add syncobj timeline support
--:25: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#25: 
-    https://lists.freedesktop.org/archives/dri-devel/2019-August/229287.html
+BR,
+Jani.
 
-total: 0 errors, 1 warnings, 0 checks, 541 lines checked
-cbd4c7dfd3a3 drm/i915: peel dma-fence-chains wait fences
+>
+> Manasi
+>
+>> ---
+>>  drivers/gpu/drm/i915/display/intel_ddi.c     |  2 +
+>>  drivers/gpu/drm/i915/display/intel_display.c |  4 ++
+>>  drivers/gpu/drm/i915/display/intel_vdsc.c    | 49 ++++++++++++++++++++
+>>  drivers/gpu/drm/i915/display/intel_vdsc.h    |  2 +
+>>  4 files changed, 57 insertions(+)
+>> 
+>> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+>> index 3e81c54c349e..5b6f32517c75 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+>> @@ -4294,6 +4294,8 @@ void intel_ddi_get_config(struct intel_encoder *encoder,
+>>  	if (WARN_ON(transcoder_is_dsi(cpu_transcoder)))
+>>  		return;
+>>  
+>> +	intel_dsc_get_config(encoder, pipe_config);
+>> +
+>>  	temp = I915_READ(TRANS_DDI_FUNC_CTL(cpu_transcoder));
+>>  	if (temp & TRANS_DDI_PHSYNC)
+>>  		flags |= DRM_MODE_FLAG_PHSYNC;
+>> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+>> index 1d2fad1610ef..5a4bd37863e3 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_display.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+>> @@ -13301,6 +13301,10 @@ intel_pipe_config_compare(const struct intel_crtc_state *current_config,
+>>  	PIPE_CONF_CHECK_I(sync_mode_slaves_mask);
+>>  	PIPE_CONF_CHECK_I(master_transcoder);
+>>  
+>> +	PIPE_CONF_CHECK_I(dsc.compression_enable);
+>> +	PIPE_CONF_CHECK_I(dsc.dsc_split);
+>> +	PIPE_CONF_CHECK_I(dsc.compressed_bpp);
+>> +
+>>  #undef PIPE_CONF_CHECK_X
+>>  #undef PIPE_CONF_CHECK_I
+>>  #undef PIPE_CONF_CHECK_BOOL
+>> diff --git a/drivers/gpu/drm/i915/display/intel_vdsc.c b/drivers/gpu/drm/i915/display/intel_vdsc.c
+>> index a1b0f7cf1a96..ed9048140937 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_vdsc.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_vdsc.c
+>> @@ -864,6 +864,55 @@ static void intel_dsc_pps_configure(struct intel_encoder *encoder,
+>>  	}
+>>  }
+>>  
+>> +void intel_dsc_get_config(struct intel_encoder *encoder,
+>> +			  struct intel_crtc_state *crtc_state)
+>> +{
+>> +	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+>> +	struct drm_dsc_config *vdsc_cfg = &crtc_state->dsc.config;
+>> +	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+>> +	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
+>> +	enum pipe pipe = crtc->pipe;
+>> +	enum intel_display_power_domain power_domain;
+>> +	intel_wakeref_t wakeref;
+>> +	u32 dss_ctl1, dss_ctl2, val;
+>> +
+>> +	if (!intel_dsc_source_support(encoder, crtc_state))
+>> +		return;
+>> +
+>> +	power_domain = intel_dsc_power_domain(crtc_state);
+>> +
+>> +	wakeref = intel_display_power_get_if_enabled(dev_priv, power_domain);
+>> +	if (!wakeref)
+>> +		return;
+>> +
+>> +	if (crtc_state->cpu_transcoder == TRANSCODER_EDP) {
+>> +		dss_ctl1 = I915_READ(DSS_CTL1);
+>> +		dss_ctl2 = I915_READ(DSS_CTL2);
+>> +	} else {
+>> +		dss_ctl1 = I915_READ(ICL_PIPE_DSS_CTL1(pipe));
+>> +		dss_ctl2 = I915_READ(ICL_PIPE_DSS_CTL2(pipe));
+>> +	}
+>> +
+>> +	crtc_state->dsc.compression_enable = dss_ctl2 & LEFT_BRANCH_VDSC_ENABLE;
+>> +	if (!crtc_state->dsc.compression_enable)
+>> +		goto out;
+>> +
+>> +	crtc_state->dsc.dsc_split = (dss_ctl2 & RIGHT_BRANCH_VDSC_ENABLE) &&
+>> +		(dss_ctl1 & JOINER_ENABLE);
+>> +
+>> +	/* FIXME: add more state readout as needed */
+>> +
+>> +	/* PPS1 */
+>> +	if (cpu_transcoder == TRANSCODER_EDP)
+>> +		val = I915_READ(DSCA_PICTURE_PARAMETER_SET_1);
+>> +	else
+>> +		val = I915_READ(ICL_DSC0_PICTURE_PARAMETER_SET_1(pipe));
+>> +	vdsc_cfg->bits_per_pixel = val;
+>> +	crtc_state->dsc.compressed_bpp = vdsc_cfg->bits_per_pixel >> 4;
+>> +out:
+>> +	intel_display_power_put(dev_priv, power_domain, wakeref);
+>> +}
+>> +
+>>  static void intel_dsc_dsi_pps_write(struct intel_encoder *encoder,
+>>  				    const struct intel_crtc_state *crtc_state)
+>>  {
+>> diff --git a/drivers/gpu/drm/i915/display/intel_vdsc.h b/drivers/gpu/drm/i915/display/intel_vdsc.h
+>> index e6e9f5b5c6ff..4dd6bbf35e42 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_vdsc.h
+>> +++ b/drivers/gpu/drm/i915/display/intel_vdsc.h
+>> @@ -16,6 +16,8 @@ void intel_dsc_enable(struct intel_encoder *encoder,
+>>  void intel_dsc_disable(const struct intel_crtc_state *crtc_state);
+>>  int intel_dsc_compute_params(struct intel_encoder *encoder,
+>>  			     struct intel_crtc_state *pipe_config);
+>> +void intel_dsc_get_config(struct intel_encoder *encoder,
+>> +			  struct intel_crtc_state *crtc_state);
+>>  enum intel_display_power_domain
+>>  intel_dsc_power_domain(const struct intel_crtc_state *crtc_state);
+>>  
+>> -- 
+>> 2.20.1
+>> 
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 
+-- 
+Jani Nikula, Intel Open Source Graphics Center
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
