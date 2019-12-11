@@ -1,40 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 14E6511DB8E
-	for <lists+intel-gfx@lfdr.de>; Fri, 13 Dec 2019 02:16:45 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id BBA7011DBB6
+	for <lists+intel-gfx@lfdr.de>; Fri, 13 Dec 2019 02:32:53 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9A1376E237;
-	Fri, 13 Dec 2019 01:16:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DD2CB6E0FA;
+	Fri, 13 Dec 2019 01:32:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EE75A6E237
- for <intel-gfx@lists.freedesktop.org>; Fri, 13 Dec 2019 01:16:41 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-X-Amp-File-Uploaded: False
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 12 Dec 2019 17:16:41 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,307,1571727600"; d="scan'208";a="415476819"
-Received: from labuser-z97x-ud5h.jf.intel.com (HELO intel.com) ([10.54.75.49])
- by fmsmga006.fm.intel.com with ESMTP; 12 Dec 2019 17:16:40 -0800
-Date: Thu, 12 Dec 2019 17:18:02 -0800
-From: Manasi Navare <manasi.d.navare@intel.com>
-To: Matt Roper <matthew.d.roper@intel.com>
-Message-ID: <20191213011802.GF24342@intel.com>
-References: <20191211211425.17821-1-manasi.d.navare@intel.com>
- <20191211211425.17821-2-manasi.d.navare@intel.com>
- <20191213003232.GR85422@mdroper-desk1.amr.corp.intel.com>
+Received: from protonic.nl (protonic.xs4all.nl [83.163.252.89])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 1A9516E19C;
+ Wed, 11 Dec 2019 08:35:36 +0000 (UTC)
+Received: from webmail.promanet.nl (edge2.prtnl [192.168.1.170])
+ by sparta (Postfix) with ESMTP id B678944A004C;
+ Wed, 11 Dec 2019 09:35:33 +0100 (CET)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20191213003232.GR85422@mdroper-desk1.amr.corp.intel.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-Subject: Re: [Intel-gfx] [PATCH 1/3] drm/i915/dp: Make sure all tiled
- connectors get added to the state with full modeset
+Date: Wed, 11 Dec 2019 09:35:35 +0100
+From: robin <robin@protonic.nl>
+To: Jani Nikula <jani.nikula@intel.com>
+In-Reply-To: <87pngx4muv.fsf@intel.com>
+References: <cover.1575390740.git.jani.nikula@intel.com>
+ <31c18e3ce9d6962aabda4799b3051039ff591c92.1575390741.git.jani.nikula@intel.com>
+ <87pngx4muv.fsf@intel.com>
+Message-ID: <7c78b5c7421f75c2afdeb4b3a15c8a09@protonic.nl>
+X-Sender: robin@protonic.nl
+User-Agent: Roundcube Webmail/1.3.6
+X-Mailman-Approved-At: Fri, 13 Dec 2019 01:32:50 +0000
+Subject: Re: [Intel-gfx] [PATCH v3 12/12] auxdisplay: constify fb ops
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,209 +40,34 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: Miguel Ojeda Sandonis <miguel.ojeda.sandonis@gmail.com>,
+ linux-fbdev@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, Daniel Vetter <daniel.vetter@ffwll.ch>
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Dec 12, 2019 at 04:32:32PM -0800, Matt Roper wrote:
-> On Wed, Dec 11, 2019 at 01:14:23PM -0800, Manasi Navare wrote:
-> > In case of tiled displays, all the tiles are linke dto each other
-> =
+Hello Jani,
 
-> Minor typo on "linked to" here.
+On 2019-12-09 15:03, Jani Nikula wrote:
+> On Tue, 03 Dec 2019, Jani Nikula <jani.nikula@intel.com> wrote:
+>> Now that the fbops member of struct fb_info is const, we can start
+>> making the ops const as well.
+>> 
+>> Cc: Miguel Ojeda Sandonis <miguel.ojeda.sandonis@gmail.com>
+>> Cc: Robin van der Gracht <robin@protonic.nl>
+>> Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
+>> Reviewed-by: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
+>> Acked-by: Robin van der Gracht <robin@protonic.nl>
+>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> 
+> Miguel, Robin, just to err on the safe side, were you both okay with me
+> merging this through drm-misc? Not very likely to conflict badly.
 
-I will fix it
+ht16k33 driver hasn't seen much change lately, should be fine.
 
-> =
-
-> > for transcoder port sync. So in intel_atomic_check() we need to make
-> > sure that we add all the tiles to the modeset and if one of the
-> > tiles needs a full modeset then mark all other tiles for a full modeset.
-> > =
-
-> > Suggested-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> > Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> > Cc: Jos=E9 Roberto de Souza <jose.souza@intel.com>
-> > Bugzilla: https://gitlab.freedesktop.org/drm/intel/issues/5
-> =
-
-> I think we're moving to "Closes:" as the annotation here now that it's
-> not actually a bugzilla bug database anymore.
-
-Ok cool, will change that to Closes
-
-> =
-
-> > Signed-off-by: Manasi Navare <manasi.d.navare@intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_display.c | 78 ++++++++++++++++++++
-> >  1 file changed, 78 insertions(+)
-> > =
-
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu=
-/drm/i915/display/intel_display.c
-> > index 803993a01ca7..7263eaa66cda 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> > @@ -14066,6 +14066,80 @@ static int intel_atomic_check_crtcs(struct int=
-el_atomic_state *state)
-> >  	return 0;
-> >  }
-> >  =
-
-> > +static int
-> > +intel_dp_modeset_all_tiles(struct drm_i915_private *dev_priv,
-> > +			   struct intel_atomic_state *state, int tile_grp_id)
-> > +{
-> > +	struct drm_connector *conn_iter;
-> > +	struct drm_connector_list_iter conn_list_iter;
-> > +	struct drm_crtc_state *crtc_state;
-> > +
-> > +	drm_connector_list_iter_begin(&dev_priv->drm, &conn_list_iter);
-> > +	drm_for_each_connector_iter(conn_iter, &conn_list_iter) {
-> > +		struct drm_connector_state *conn_iter_state;
-> > +
-> > +		if (!conn_iter->has_tile)
-> > +			continue;
-> > +		conn_iter_state =3D drm_atomic_get_connector_state(&state->base,
-> > +								 conn_iter);
-> > +		if (IS_ERR(conn_iter_state)) {
-> > +			drm_connector_list_iter_end(&conn_list_iter);
-> > +			return PTR_ERR(conn_iter_state);
-> > +		}
-> > +
-> > +		if (!conn_iter_state->crtc)
-> > +			continue;
-> > +
-> > +		if (conn_iter->tile_group->id !=3D tile_grp_id)
-> > +			continue;
-> > +
-> > +		crtc_state =3D drm_atomic_get_crtc_state(&state->base, conn_iter_sta=
-te->crtc);
-> > +		if (IS_ERR(crtc_state)) {
-> > +			drm_connector_list_iter_end(&conn_list_iter);
-> > +			return PTR_ERR(conn_iter_state);
-> > +		}
-> > +		crtc_state->mode_changed =3D true;
-> > +	}
-> > +	drm_connector_list_iter_end(&conn_list_iter);
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static int
-> > +intel_dp_atomic_trans_port_sync_check(struct drm_i915_private *dev_pri=
-v,
-> > +				      struct intel_atomic_state *state)
-> > +{
-> > +	struct drm_connector *connector;
-> > +	struct drm_crtc_state *crtc_state;
-> > +	struct drm_connector_state *connector_state;
-> > +	int i, ret, tile_grp_id =3D 0;
-> > +
-> > +	if (INTEL_GEN(dev_priv) < 11)
-> > +		return 0;
-> > +
-> > +	/* Is tiled, mark all other tiled CRTCs as needing a modeset */
-> > +	for_each_new_connector_in_state(&state->base, connector, connector_st=
-ate, i) {
-> > +		if (!connector->has_tile)
-> > +			continue;
-> > +		if (connector_state->crtc &&
-> > +		    tile_grp_id !=3D connector->tile_group->id) {
-> > +			crtc_state =3D drm_atomic_get_new_crtc_state(&state->base,
-> > +								   connector_state->crtc);
-> > +			if (!drm_atomic_crtc_needs_modeset(crtc_state))
-> > +				continue;
-> > +
-> > +			tile_grp_id =3D connector->tile_group->id;
-> > +		} else
-> =
-
-> Minor kernel coding style violation; if we use {} on one branch of an
-> if, we need to use them on all.
->
-
-Yes i got a checkpatch check warning, will fix it
- =
-
-> > +			continue;
-> > +
-> > +		ret =3D intel_dp_modeset_all_tiles(dev_priv, state, tile_grp_id);
-> > +		if (ret)
-> > +			return ret;
-> > +	}
-> > +
-> > +	return 0;
-> > +}
-> > +
-> >  /**
-> >   * intel_atomic_check - validate state object
-> >   * @dev: drm device
-> > @@ -14093,6 +14167,10 @@ static int intel_atomic_check(struct drm_devic=
-e *dev,
-> >  	if (ret)
-> >  		goto fail;
-> >  =
-
-> > +	ret =3D intel_dp_atomic_trans_port_sync_check(dev_priv, state);
-> > +	if (ret)
-> > +		goto fail;
-> =
-
-> Should this happen before the drm_atomic_helper_check_modeset() just
-> above (or should we re-call that function if we flag the other tile as
-> needing a modeset)?  The kerneldoc on that function says:
-> =
-
-> """
-> Drivers which set &drm_crtc_state.mode_changed [...] _must_ call this
-> function afterwards after that change. It is permitted to call this
-> function multiple times for the same update ...
-> """
->
-
-IMO, here infact it makes sense to call my function after the drm_atomic_he=
-lper_check_modeset()
-because it directly sets the new_crtc_state->mode_changed to true for all t=
-iles if 1 of them needs
-a full modeset.
-And whether that one tile needs a full modeset or not will be decided based=
- on mode changed for that set
-in drm_atomic_helper_check_modeset.
-
-Manasi
- =
-
-> =
-
-> Matt
-> =
-
-> > +
-> >  	for_each_oldnew_intel_crtc_in_state(state, crtc, old_crtc_state,
-> >  					    new_crtc_state, i) {
-> >  		if (!needs_modeset(new_crtc_state)) {
-> > -- =
-
-> > 2.19.1
-> > =
-
-> > _______________________________________________
-> > Intel-gfx mailing list
-> > Intel-gfx@lists.freedesktop.org
-> > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-> =
-
-> -- =
-
-> Matt Roper
-> Graphics Software Engineer
-> VTT-OSGC Platform Enablement
-> Intel Corporation
-> (916) 356-2795
+Robin
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
