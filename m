@@ -2,33 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C0D9711BF30
-	for <lists+intel-gfx@lfdr.de>; Wed, 11 Dec 2019 22:26:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 858F011BF45
+	for <lists+intel-gfx@lfdr.de>; Wed, 11 Dec 2019 22:33:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0FEC56EBF5;
-	Wed, 11 Dec 2019 21:26:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BFB1B6EC02;
+	Wed, 11 Dec 2019 21:33:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7B3F46EBF5
- for <intel-gfx@lists.freedesktop.org>; Wed, 11 Dec 2019 21:26:11 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 19547352-1500050 for multiple; Wed, 11 Dec 2019 21:26:02 +0000
+X-Greylist: delayed 427 seconds by postgrey-1.36 at gabe;
+ Wed, 11 Dec 2019 21:33:10 UTC
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0D3256EBF9
+ for <intel-gfx@lists.freedesktop.org>; Wed, 11 Dec 2019 21:33:10 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 11 Dec 2019 13:26:02 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.69,303,1571727600"; d="scan'208";a="296390397"
+Received: from akuriata-mobl.ger.corp.intel.com (HELO intel.intel)
+ ([10.252.21.24])
+ by orsmga001.jf.intel.com with ESMTP; 11 Dec 2019 13:26:00 -0800
+Date: Wed, 11 Dec 2019 23:25:59 +0200
+From: Andi Shyti <andi.shyti@intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>
+Message-ID: <20191211212559.GA1730@intel.intel>
+References: <20191210180111.3958558-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-To: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
- intel-gfx@lists.freedesktop.org
-From: Chris Wilson <chris@chris-wilson.co.uk>
-In-Reply-To: <20191211211244.7831-5-daniele.ceraolospurio@intel.com>
-References: <20191211211244.7831-1-daniele.ceraolospurio@intel.com>
- <20191211211244.7831-5-daniele.ceraolospurio@intel.com>
-Message-ID: <157609956224.27099.17515091979474568822@skylake-alporthouse-com>
-User-Agent: alot/0.6
-Date: Wed, 11 Dec 2019 21:26:02 +0000
-Subject: Re: [Intel-gfx] [RFC 4/5] drm/i915: move execlists selftests to
- their own file
+Content-Disposition: inline
+In-Reply-To: <20191210180111.3958558-1-chris@chris-wilson.co.uk>
+User-Agent: Mutt/1.12.2 (2019-09-21)
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/gt: Disable manual rc6 for
+ Braswell/Baytrail
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,107 +48,54 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Daniele Ceraolo Spurio (2019-12-11 21:12:43)
-> Done ahead of splitting the lrc file as well, to keep that patch
-> smaller. Just a straight copy, with the exception of create_scratch()
-> that has been made common to avoid having 3 instances of it.
+Hi Chris,
+
+> The initial investigated showed that while the PCU on Braswell/Baytrail
+> controlled RC6 itself. setting the software RC6 request made no
+> difference. Further testing reveals though that it causes a delay in the
+> PCU on enabling RC6.
 > 
-> Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-> Cc: Chris Wilson <chris@chris-wilson.co.uk>
-> Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-> Cc: Matthew Brost <matthew.brost@intel.com>
+> Closes: https://gitlab.freedesktop.org/drm/intel/issues/763
+> Fixes: 730eaeb52426 ("drm/i915/gt: Manual rc6 entry upon parking")
+> Testcase: igt/perf/rc6-disable
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Andi Shyti <andi.shyti@intel.com>
+> Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+> Cc: Imre Deak <imre.deak@intel.com>
 > ---
->  .../drm/i915/gem/selftests/igt_gem_utils.c    |   27 +
->  .../drm/i915/gem/selftests/igt_gem_utils.h    |    3 +
->  drivers/gpu/drm/i915/gt/intel_lrc.c           |    1 +
->  drivers/gpu/drm/i915/gt/selftest_execlists.c  | 3316 ++++++++++++++++
->  drivers/gpu/drm/i915/gt/selftest_lrc.c        | 3333 +----------------
->  drivers/gpu/drm/i915/gt/selftest_mocs.c       |   30 +-
->  6 files changed, 3351 insertions(+), 3359 deletions(-)
->  create mode 100644 drivers/gpu/drm/i915/gt/selftest_execlists.c
+>  drivers/gpu/drm/i915/gt/intel_rc6.c | 3 +++
+>  1 file changed, 3 insertions(+)
 > 
-> diff --git a/drivers/gpu/drm/i915/gem/selftests/igt_gem_utils.c b/drivers/gpu/drm/i915/gem/selftests/igt_gem_utils.c
-> index 6718da20f35d..88109333cb79 100644
-> --- a/drivers/gpu/drm/i915/gem/selftests/igt_gem_utils.c
-> +++ b/drivers/gpu/drm/i915/gem/selftests/igt_gem_utils.c
-> @@ -15,6 +15,33 @@
+> diff --git a/drivers/gpu/drm/i915/gt/intel_rc6.c b/drivers/gpu/drm/i915/gt/intel_rc6.c
+> index 4dc82196b285..8ec2b7725141 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_rc6.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_rc6.c
+> @@ -612,6 +612,9 @@ void intel_rc6_park(struct intel_rc6 *rc6)
+>  		return;
+>  	}
 >  
->  #include "i915_request.h"
->  
-> +struct i915_vma *igt_create_scratch(struct intel_gt *gt)
+> +	if (!(rc6->ctl_enable & GEN6_RC_CTL_RC6_ENABLE))
+> +		return;
+> +
 
-_ggtt_scratch(size, coherency, pin) ?
+Huh? I didn't think this could be necessary! Nice catch!
 
-As it stands, it's not general enough...
+Acked-by: Andi Shyti <andi.shyti@intel.com>
 
-> +{
-> +       struct drm_i915_gem_object *obj;
-> +       struct i915_vma *vma;
-> +       int err;
-> +
-> +       obj = i915_gem_object_create_internal(gt->i915, PAGE_SIZE);
-> +       if (IS_ERR(obj))
-> +               return ERR_CAST(obj);
-> +
-> +       i915_gem_object_set_cache_coherency(obj, I915_CACHING_CACHED);
-> +
-> +       vma = i915_vma_instance(obj, &gt->ggtt->vm, NULL);
-> +       if (IS_ERR(vma)) {
-> +               i915_gem_object_put(obj);
-> +               return vma;
-> +       }
-> +
-> +       err = i915_vma_pin(vma, 0, 0, PIN_GLOBAL);
-> +       if (err) {
-> +               i915_gem_object_put(obj);
-> +               return ERR_PTR(err);
-> +       }
-> +
-> +       return vma;
-> +}
-> +
->  struct i915_request *
->  igt_request_alloc(struct i915_gem_context *ctx, struct intel_engine_cs *engine)
->  {
-> diff --git a/drivers/gpu/drm/i915/gem/selftests/igt_gem_utils.h b/drivers/gpu/drm/i915/gem/selftests/igt_gem_utils.h
-> index 4221cf84d175..aae781f59cfc 100644
-> --- a/drivers/gpu/drm/i915/gem/selftests/igt_gem_utils.h
-> +++ b/drivers/gpu/drm/i915/gem/selftests/igt_gem_utils.h
-> @@ -15,6 +15,9 @@ struct i915_vma;
->  
->  struct intel_context;
->  struct intel_engine_cs;
-> +struct intel_gt;
-> +
-> +struct i915_vma *igt_create_scratch(struct intel_gt *gt);
->  
->  struct i915_request *
->  igt_request_alloc(struct i915_gem_context *ctx, struct intel_engine_cs *engine);
-> diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-> index 3afae9a44911..fbdd3bdd06f1 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-> @@ -4446,4 +4446,5 @@ intel_engine_in_execlists_submission_mode(const struct intel_engine_cs *engine)
->  
->  #if IS_ENABLED(CONFIG_DRM_I915_SELFTEST)
->  #include "selftest_lrc.c"
-> +#include "selftest_execlists.c"
->  #endif
-> diff --git a/drivers/gpu/drm/i915/gt/selftest_execlists.c b/drivers/gpu/drm/i915/gt/selftest_execlists.c
-> new file mode 100644
-> index 000000000000..b58a4feb2ec4
-> --- /dev/null
-> +++ b/drivers/gpu/drm/i915/gt/selftest_execlists.c
+Thanks,
+Andi
 
-Note that many if not all (there are a few where the guc being a black
-box we cannot poke at internals) of these should also be used for guc
-submission as a BAT.
--Chris
+>  	/* Turn off the HW timers and go directly to rc6 */
+>  	set(uncore, GEN6_RC_CONTROL, GEN6_RC_CTL_RC6_ENABLE);
+>  	set(uncore, GEN6_RC_STATE, 0x4 << RC_SW_TARGET_STATE_SHIFT);
+> -- 
+> 2.24.0
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
