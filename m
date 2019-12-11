@@ -1,77 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4728311BA7F
-	for <lists+intel-gfx@lfdr.de>; Wed, 11 Dec 2019 18:38:55 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id C914111BAB9
+	for <lists+intel-gfx@lfdr.de>; Wed, 11 Dec 2019 18:55:01 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0441C6EB9E;
-	Wed, 11 Dec 2019 17:38:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2E7146EBA2;
+	Wed, 11 Dec 2019 17:54:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-1.mimecast.com (us-smtp-delivery-1.mimecast.com
- [205.139.110.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2BEDC6EB9D
- for <intel-gfx@lists.freedesktop.org>; Wed, 11 Dec 2019 17:38:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1576085929;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=Y12wlbSvkuEx6hrDq4ife4K7ITZLnh8SGNBP1jLgnxg=;
- b=SjS0b9/Mf8Rf78nuz3uj9ZrjqVj6/90UXiOKyLg/s3PDbebTWBYfDOb8/vXLAstDEtO5tl
- 0oZGLC/Kgcj6fV8bvYQlig+UKo8iHOoZxTRqRXxyA6yQ2dAcQ7EKr/4kP+PhylUvI51m/B
- kZWp3zCb/p0RjZDtiMNGHldIY2T1lWk=
-Received: from mail-wr1-f69.google.com (mail-wr1-f69.google.com
- [209.85.221.69]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-440-VIfHh3DqPXapJVEZ4XFw7A-1; Wed, 11 Dec 2019 12:32:39 -0500
-Received: by mail-wr1-f69.google.com with SMTP id f15so10785977wrr.2
- for <intel-gfx@lists.freedesktop.org>; Wed, 11 Dec 2019 09:32:38 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:message-id:date
- :user-agent:mime-version:in-reply-to:content-language
- :content-transfer-encoding;
- bh=Y12wlbSvkuEx6hrDq4ife4K7ITZLnh8SGNBP1jLgnxg=;
- b=sTkPOOKxNLZJs7xd3QK0AelgUOZiSUEEoPBRCyPwmQh5eTM+GpWtoiZkEKJw+D4vsS
- onRXv6O34c3kgSmMmP6qOkZ9UX64HOLXF8MzKck8r7kDpa1lCjGGB8W5aRwtOTSBbjRe
- LFB+EVR9WPyCPonWi9f4z8skBmbsTscPvwAA7TtuzgjnKRqsrZ/V9S13y5ZlRdfgz9cy
- 4dyozvePJBCAdHHp7PmUlh1VWg8UNJMYZMShlTEaYE2VLcmrjNNKe3unCC//cVW/IGVu
- aIuXvf4+1TmEVDedSRnV+bXM2JmLcn5h9qK6gpsFfsHfmycoDTctNHtcbVEwIMS6ukSH
- v78g==
-X-Gm-Message-State: APjAAAWuEHKGgaRNI7aPsNTFn5SM0S1FMWSS/6O9WbKhOh1E/9zyZp9T
- Ji/L5/98bmHFEPsVAAAz0dAK1pPj+BOF6raffhpOjT5rUgzX9T7LGcJiAMFKYIk+BM7OPlqbO4b
- WfF3XVcOn+Ux+UXWNVu20G/ACBI+l
-X-Received: by 2002:adf:df90:: with SMTP id z16mr1036611wrl.273.1576085558006; 
- Wed, 11 Dec 2019 09:32:38 -0800 (PST)
-X-Google-Smtp-Source: APXvYqyJNDISSzLaekbps4PPe/Y5SFMhSF7OjIT8TamyAaUOOzgveUOLSuGFFwaNrhfYHhJrY6DB/A==
-X-Received: by 2002:adf:df90:: with SMTP id z16mr1036575wrl.273.1576085557720; 
- Wed, 11 Dec 2019 09:32:37 -0800 (PST)
-Received: from shalem.localdomain
- (2001-1c00-0c0c-fe00-7e79-4dac-39d0-9c14.cable.dynamic.v6.ziggo.nl.
- [2001:1c00:c0c:fe00:7e79:4dac:39d0:9c14])
- by smtp.gmail.com with ESMTPSA id o185sm2736280wmb.40.2019.12.11.09.32.36
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 11 Dec 2019 09:32:37 -0800 (PST)
-To: Linus Walleij <linus.walleij@linaro.org>
-References: <20191129185836.2789-1-hdegoede@redhat.com>
- <20191129185836.2789-3-hdegoede@redhat.com>
- <CACRpkdbRb-LF2tNN-ueo=tKuJc+u4B7Y20+BCyqnN7wYbm8y7Q@mail.gmail.com>
- <87wobfj65b.fsf@intel.com> <47c36b75-bc30-502b-7f8d-035cf2348fc4@redhat.com>
- <CACRpkdaJGZsJpYu3cgQCeWuJD1y9CQyzuk_VYfGfAT8WC=_1VA@mail.gmail.com>
-From: Hans de Goede <hdegoede@redhat.com>
-Message-ID: <4bc1d1ac-b3c7-4ea5-9150-bc1b9cffb963@redhat.com>
-Date: Wed, 11 Dec 2019 18:32:36 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.2.2
+X-Greylist: delayed 426 seconds by postgrey-1.36 at gabe;
+ Wed, 11 Dec 2019 17:54:58 UTC
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 46C9B89EBD
+ for <intel-gfx@lists.freedesktop.org>; Wed, 11 Dec 2019 17:54:58 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 11 Dec 2019 09:47:51 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.69,302,1571727600"; d="scan'208";a="388015021"
+Received: from dceraolo-linux.fm.intel.com (HELO [10.1.27.145]) ([10.1.27.145])
+ by orsmga005.jf.intel.com with ESMTP; 11 Dec 2019 09:47:50 -0800
+To: Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ intel-gfx@lists.freedesktop.org
+References: <20191210210919.30846-1-daniele.ceraolospurio@intel.com>
+ <20191210210919.30846-3-daniele.ceraolospurio@intel.com>
+ <op.0cmy2cskxaggs7@mwajdecz-mobl1.ger.corp.intel.com>
+From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Message-ID: <26eeb171-3d64-fb90-1750-3064a8676508@intel.com>
+Date: Wed, 11 Dec 2019 09:47:59 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-In-Reply-To: <CACRpkdaJGZsJpYu3cgQCeWuJD1y9CQyzuk_VYfGfAT8WC=_1VA@mail.gmail.com>
+In-Reply-To: <op.0cmy2cskxaggs7@mwajdecz-mobl1.ger.corp.intel.com>
 Content-Language: en-US
-X-MC-Unique: VIfHh3DqPXapJVEZ4XFw7A-1
-X-Mimecast-Spam-Score: 0
-Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915/vlv_dsi: Control panel and
- backlight enable GPIOs on BYT
+Subject: Re: [Intel-gfx] [PATCH 2/5] drm/i915/guc/ct: stop expecting
+ multiple CT channels
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -84,88 +50,695 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: ACPI Devel Maling List <linux-acpi@vger.kernel.org>,
- "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
- intel-gfx <intel-gfx@lists.freedesktop.org>,
- Bartosz Golaszewski <bgolaszewski@baylibre.com>,
- "open list:DRM PANEL DRIVERS" <dri-devel@lists.freedesktop.org>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Mika Westerberg <mika.westerberg@linux.intel.com>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-15"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi,
 
-On 11-12-2019 01:24, Linus Walleij wrote:
-> On Mon, Dec 2, 2019 at 4:49 PM Hans de Goede <hdegoede@redhat.com> wrote:
-> 
->> There is only one problem, currently is is not possible to
->> unregister a mapping added with pinctrl_register_mappings
->> and the i915 driver is typically a module which can be unloaded
->> and I believe actually is unloaded as part of the i915 CI.
+
+On 12/11/19 5:43 AM, Michal Wajdeczko wrote:
+> On Tue, 10 Dec 2019 22:09:16 +0100, Daniele Ceraolo Spurio =
+
+> <daniele.ceraolospurio@intel.com> wrote:
+> =
+
+>> The GuC supports having multiple CT buffer pairs and we designed our
+>> implementation with that in mind. However, the different channels are not
+>> processed in parallel within the GuC, so there is very little advantage
+>> in having multiple channels (independent locks?), compared to the
+>> drawbacks (one channel can starve the other if messages keep being
+>> submitted to it). Given this, it is unlikely we'll ever add a second
+>> channel and therefore we can simplify our code by removing the
+>> flexibility.
 >>
->> pinctrl_register_mappings copies the passed in mapping, but
->> it is a shallow copy, so it contains pointers to the modules
->> const segment and we do not want to re-add another copy of
->> the mapping when the module loads a second time.
+>> Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+>> Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+>> Cc: John Harrison <John.C.Harrison@Intel.com>
+>> Cc: Matthew Brost <matthew.brost@intel.com>
+>> ---
+>> =A0drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c | 276 +++++++++-------------
+>> =A0drivers/gpu/drm/i915/gt/uc/intel_guc_ct.h |=A0 39 +--
+>> =A02 files changed, 118 insertions(+), 197 deletions(-)
 >>
->> Fixing this is easy though, there already is a pinctrl_unregister_map()
->> function, we just need to export it so that the i915 driver can
->> remove the mapping when it is unbound.
->>
->> Linus would exporting this function be ok with you?
-> 
-> Yep!
-> 
->> Linus, question what is the purpose of the "dupping" / shallow
->> copying of the argument passed to pinctrl_register_map ?
-> 
-> The initial commit contained this comment later removed:
-> 
-> +       /*
-> +        * Make a copy of the map array - string pointers will end up in the
-> +        * kernel const section anyway so these do not need to be deep copied.
-> +        */
-> 
-> The use was to free up memory for platforms using boardfiles
-> with a gazillion variants and huge pin control tables, so these
-> could be marked  __initdata and discarded after boot.
-> As the strings would anyway stay around we didn't need to
-> deep copy.
-> 
-> See for example in arch/arm/mach-u300/core.c
-> static struct pinctrl_map __initdata u300_pinmux_map[]
-> 
->> Since
->> it is shallow the mem for any pointers contained within there need
->> to be kept around by the caller, so why not let the caller keep
->> the pinctrl_map struct itself around too?
-> 
-> So the strings will be kept around because the kernel can't get
-> rid of strings. (Yeah it is silly, should haven been fixed ages
-> ago, but not by me, haha :)
-> 
->> If we are going to export pinctrl_unregister_map() we need to make it
->> do the right thing for dupped maps too, we can just store the dup flag
->> in struct pinctrl_maps. So this is easy, but I wonder if we cannot
->> get rid of the dupping all together ?
-> 
-> Maybe ... I don't know. What do you think? I suppose you could
-> make u300 crash if you do that.
+>> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c =
 
-I've prepared a patch which makes pinctrl_register_mappings remember
-if the mapping is dupped or not (store the dup value in struct pinctrl_maps);
-and which modifies pinctrl_unregister_map() to do the right thing
-depending on the stored dup value.
+>> b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
+>> index f74ba4750a94..96ce6d74f0b2 100644
+>> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
+>> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
+>> @@ -37,13 +37,10 @@ static void ct_incoming_request_worker_func(struct =
 
-I still need to test the new series and then I will post it.
+>> work_struct *w);
+>> =A0 */
+>> =A0void intel_guc_ct_init_early(struct intel_guc_ct *ct)
+>> =A0{
+>> -=A0=A0=A0 /* we're using static channel owners */
+>> -=A0=A0=A0 ct->host_channel.owner =3D CTB_OWNER_HOST;
+>> -
+>> -=A0=A0=A0 spin_lock_init(&ct->lock);
+>> -=A0=A0=A0 INIT_LIST_HEAD(&ct->pending_requests);
+>> -=A0=A0=A0 INIT_LIST_HEAD(&ct->incoming_requests);
+>> -=A0=A0=A0 INIT_WORK(&ct->worker, ct_incoming_request_worker_func);
+>> +=A0=A0=A0 spin_lock_init(&ct->requests.lock);
+>> +=A0=A0=A0 INIT_LIST_HEAD(&ct->requests.pending);
+>> +=A0=A0=A0 INIT_LIST_HEAD(&ct->requests.incoming);
+>> +=A0=A0=A0 INIT_WORK(&ct->requests.worker, ct_incoming_request_worker_fu=
+nc);
+>> =A0}
+>> static inline struct intel_guc *ct_to_guc(struct intel_guc_ct *ct)
+>> @@ -64,14 +61,14 @@ static inline const char =
 
-Regards,
+>> *guc_ct_buffer_type_to_str(u32 type)
+>> =A0}
+>> static void guc_ct_buffer_desc_init(struct guc_ct_buffer_desc *desc,
+>> -=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 u32 cmds_addr=
+, u32 size, u32 owner)
+>> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 u32 cmds_addr=
+, u32 size)
+>> =A0{
+>> -=A0=A0=A0 CT_DEBUG_DRIVER("CT: desc %p init addr=3D%#x size=3D%u owner=
+=3D%u\n",
+>> -=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 desc, cmds_addr, size, owner);
+>> +=A0=A0=A0 CT_DEBUG_DRIVER("CT: desc %p init addr=3D%#x size=3D%u\n",
+>> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 desc, cmds_addr, size);
+> =
 
-Hans
+> please drop %p
+> =
 
+
+You mean just leave the cmds_addr and size?
+
+>> =A0=A0=A0=A0 memset(desc, 0, sizeof(*desc));
+>> =A0=A0=A0=A0 desc->addr =3D cmds_addr;
+>> =A0=A0=A0=A0 desc->size =3D size;
+>> -=A0=A0=A0 desc->owner =3D owner;
+>> +=A0=A0=A0 desc->owner =3D CTB_OWNER_HOST;
+>> =A0}
+>> static void guc_ct_buffer_desc_reset(struct guc_ct_buffer_desc *desc)
+>> @@ -104,12 +101,11 @@ static int guc_action_register_ct_buffer(struct =
+
+>> intel_guc *guc,
+>> =A0}
+>> static int guc_action_deregister_ct_buffer(struct intel_guc *guc,
+>> -=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 u32 =
+owner,
+>> =A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 u3=
+2 type)
+>> =A0{
+>> =A0=A0=A0=A0 u32 action[] =3D {
+>> =A0=A0=A0=A0=A0=A0=A0=A0 INTEL_GUC_ACTION_DEREGISTER_COMMAND_TRANSPORT_B=
+UFFER,
+>> -=A0=A0=A0=A0=A0=A0=A0 owner,
+>> +=A0=A0=A0=A0=A0=A0=A0 CTB_OWNER_HOST,
+>> =A0=A0=A0=A0=A0=A0=A0=A0 type
+>> =A0=A0=A0=A0 };
+>> =A0=A0=A0=A0 int err;
+>> @@ -117,19 +113,28 @@ static int =
+
+>> guc_action_deregister_ct_buffer(struct intel_guc *guc,
+>> =A0=A0=A0=A0 /* Can't use generic send(), CT deregistration must go over=
+ MMIO */
+>> =A0=A0=A0=A0 err =3D intel_guc_send_mmio(guc, action, ARRAY_SIZE(action)=
+, NULL, 0);
+>> =A0=A0=A0=A0 if (err)
+>> -=A0=A0=A0=A0=A0=A0=A0 DRM_ERROR("CT: deregister %s buffer failed; owner=
+=3D%d err=3D%d\n",
+>> -=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 guc_ct_buffer_type_to_str(type)=
+, owner, err);
+>> +=A0=A0=A0=A0=A0=A0=A0 DRM_ERROR("CT: deregister %s buffer failed; err=
+=3D%d\n",
+>> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 guc_ct_buffer_type_to_str(type)=
+, err);
+>> =A0=A0=A0=A0 return err;
+>> =A0}
+>> -static int ctch_init(struct intel_guc *guc,
+>> -=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 struct intel_guc_ct_channel *ctch)
+>> +/**
+>> + * intel_guc_ct_init - Init CT communication
+> =
+
+> maybe to match other descriptions:
+> =
+
+> "intel_guc_ct_init - Init buffer based communication"
+> =
+
+>> + * @ct: pointer to CT struct
+>> + *
+>> + * Allocate memory required for communication via
+>> + * the CT channel.
+> =
+
+> CT channel ? maybe
+> =
+
+> "Allocate memory required for buffer based communication"
+> =
+
+
+ok for both
+
+> =
+
+>> + *
+>> + * Return: 0 on success, a negative errno code on failure.
+>> + */
+>> +int intel_guc_ct_init(struct intel_guc_ct *ct)
+>> =A0{
+>> +=A0=A0=A0 struct intel_guc *guc =3D ct_to_guc(ct);
+>> =A0=A0=A0=A0 void *blob;
+>> =A0=A0=A0=A0 int err;
+>> =A0=A0=A0=A0 int i;
+>> -=A0=A0=A0 GEM_BUG_ON(ctch->vma);
+>> +=A0=A0=A0 GEM_BUG_ON(ct->vma);
+>> =A0=A0=A0=A0/* We allocate 1 page to hold both descriptors and both buff=
+ers.
+>> =A0=A0=A0=A0=A0 *=A0=A0=A0=A0=A0=A0 ___________.....................
+>> @@ -153,57 +158,67 @@ static int ctch_init(struct intel_guc *guc,
+>> =A0=A0=A0=A0=A0 * other code will need updating as well.
+>> =A0=A0=A0=A0=A0 */
+>> -=A0=A0=A0 err =3D intel_guc_allocate_and_map_vma(guc, PAGE_SIZE, &ctch-=
+>vma, =
+
+>> &blob);
+>> +=A0=A0=A0 err =3D intel_guc_allocate_and_map_vma(guc, PAGE_SIZE, &ct->v=
+ma, =
+
+>> &blob);
+>> =A0=A0=A0=A0 if (err) {
+>> -=A0=A0=A0=A0=A0=A0=A0 CT_DEBUG_DRIVER("CT: channel %d initialization fa=
+iled; =
+
+>> err=3D%d\n",
+>> -=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 ctch->owner, err);
+>> +=A0=A0=A0=A0=A0=A0=A0 DRM_ERROR("CT: channel allocation failed; err=3D%=
+d\n", err);
+>> =A0=A0=A0=A0=A0=A0=A0=A0 return err;
+>> =A0=A0=A0=A0 }
+>> =A0=A0=A0=A0CT_DEBUG_DRIVER("CT: vma base=3D%#x\n",
+>> -=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 intel_guc_ggtt_offset(guc, ctch->vma)=
+);
+>> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 intel_guc_ggtt_offset(guc, ct->vma));
+>> =A0=A0=A0=A0/* store pointers to desc and cmds */
+>> -=A0=A0=A0 for (i =3D 0; i < ARRAY_SIZE(ctch->ctbs); i++) {
+>> -=A0=A0=A0=A0=A0=A0=A0 GEM_BUG_ON((i !=3D CTB_SEND) && (i !=3D CTB_RECV)=
+);
+>> -=A0=A0=A0=A0=A0=A0=A0 ctch->ctbs[i].desc =3D blob + PAGE_SIZE/4 * i;
+>> -=A0=A0=A0=A0=A0=A0=A0 ctch->ctbs[i].cmds =3D blob + PAGE_SIZE/4 * i + P=
+AGE_SIZE/2;
+>> +=A0=A0=A0 for (i =3D 0; i < ARRAY_SIZE(ct->ctbs); i++) {
+>> +=A0=A0=A0=A0=A0=A0=A0 GEM_BUG_ON((i !=3D=A0 CTB_SEND) && (i !=3D CTB_RE=
+CV));
+>> +=A0=A0=A0=A0=A0=A0=A0 ct->ctbs[i].desc =3D blob + PAGE_SIZE/4 * i;
+>> +=A0=A0=A0=A0=A0=A0=A0 ct->ctbs[i].cmds =3D blob + PAGE_SIZE/4 * i + PAG=
+E_SIZE/2;
+>> =A0=A0=A0=A0 }
+>> =A0=A0=A0=A0return 0;
+>> =A0}
+>> -static void ctch_fini(struct intel_guc *guc,
+>> -=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 struct intel_guc_ct_channel *ct=
+ch)
+>> +/**
+>> + * intel_guc_ct_fini - Fini CT communication
+>> + * @ct: pointer to CT struct
+>> + *
+>> + * Deallocate memory required for communication via
+>> + * the CT channel.
+>> + */
+>> +void intel_guc_ct_fini(struct intel_guc_ct *ct)
+>> =A0{
+>> -=A0=A0=A0 GEM_BUG_ON(ctch->enabled);
+>> +=A0=A0=A0 GEM_BUG_ON(ct->enabled);
+>> -=A0=A0=A0 i915_vma_unpin_and_release(&ctch->vma, I915_VMA_RELEASE_MAP);
+>> +=A0=A0=A0 i915_vma_unpin_and_release(&ct->vma, I915_VMA_RELEASE_MAP);
+>> =A0}
+>> -static int ctch_enable(struct intel_guc *guc,
+>> -=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 struct intel_guc_ct_channel =
+*ctch)
+>> +/**
+>> + * intel_guc_ct_enable - Enable buffer based command transport.
+>> + * @ct: pointer to CT struct
+>> + *
+>> + * Return: 0 on success, a negative errno code on failure.
+>> + */
+>> +int intel_guc_ct_enable(struct intel_guc_ct *ct)
+>> =A0{
+>> +=A0=A0=A0 struct intel_guc *guc =3D ct_to_guc(ct);
+>> =A0=A0=A0=A0 u32 base;
+>> =A0=A0=A0=A0 int err;
+>> =A0=A0=A0=A0 int i;
+>> -=A0=A0=A0 GEM_BUG_ON(!ctch->vma);
+>> -
+>> -=A0=A0=A0 GEM_BUG_ON(ctch->enabled);
+>> +=A0=A0=A0 if (ct->enabled)
+>> +=A0=A0=A0=A0=A0=A0=A0 return 0;
+> =
+
+> btw, do we still need this check?
+> =
+
+
+I don't think so, AFAICS we only call intel_guc_ct_enable from =
+
+guc_enable_communication(), which already has a BUG_ON if communication =
+
+is already enabled. I'll get rid of it, but I'll split that change in a =
+
+separate patch.
+
+>> =A0=A0=A0=A0/* vma should be already allocated and map'ed */
+>> -=A0=A0=A0 base =3D intel_guc_ggtt_offset(guc, ctch->vma);
+>> +=A0=A0=A0 GEM_BUG_ON(!ct->vma);
+>> +=A0=A0=A0 base =3D intel_guc_ggtt_offset(guc, ct->vma);
+>> =A0=A0=A0=A0/* (re)initialize descriptors
+>> =A0=A0=A0=A0=A0 * cmds buffers are in the second half of the blob page
+>> =A0=A0=A0=A0=A0 */
+>> -=A0=A0=A0 for (i =3D 0; i < ARRAY_SIZE(ctch->ctbs); i++) {
+>> +=A0=A0=A0 for (i =3D 0; i < ARRAY_SIZE(ct->ctbs); i++) {
+>> =A0=A0=A0=A0=A0=A0=A0=A0 GEM_BUG_ON((i !=3D CTB_SEND) && (i !=3D CTB_REC=
+V));
+>> -=A0=A0=A0=A0=A0=A0=A0 guc_ct_buffer_desc_init(ctch->ctbs[i].desc,
+>> +=A0=A0=A0=A0=A0=A0=A0 guc_ct_buffer_desc_init(ct->ctbs[i].desc,
+>> =A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 base + PAGE=
+_SIZE/4 * i + PAGE_SIZE/2,
+>> -=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 PAGE_SIZE/4,
+>> -=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 ctch->owner);
+>> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 PAGE_SIZE/4);
+>> =A0=A0=A0=A0 }
+>> =A0=A0=A0=A0/* register buffers, starting wirh RECV buffer
+>> @@ -221,40 +236,43 @@ static int ctch_enable(struct intel_guc *guc,
+>> =A0=A0=A0=A0 if (unlikely(err))
+>> =A0=A0=A0=A0=A0=A0=A0=A0 goto err_deregister;
+>> -=A0=A0=A0 ctch->enabled =3D true;
+>> +=A0=A0=A0 ct->enabled =3D true;
+>> =A0=A0=A0=A0return 0;
+>> err_deregister:
+>> =A0=A0=A0=A0 guc_action_deregister_ct_buffer(guc,
+>> -=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 ctch->owner,
+>> =A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 INTEL_GUC_C=
+T_BUFFER_TYPE_RECV);
+>> =A0err_out:
+>> -=A0=A0=A0 DRM_ERROR("CT: can't open channel %d; err=3D%d\n", ctch->owne=
+r, err);
+>> +=A0=A0=A0 DRM_ERROR("CT: can't open channel; err=3D%d\n", err);
+>> =A0=A0=A0=A0 return err;
+>> =A0}
+>> -static void ctch_disable(struct intel_guc *guc,
+>> -=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 struct intel_guc_ct_channel *ctch)
+>> +/**
+>> + * intel_guc_ct_disable - Disable buffer based command transport.
+>> + * @ct: pointer to CT struct
+>> + */
+>> +void intel_guc_ct_disable(struct intel_guc_ct *ct)
+>> =A0{
+>> -=A0=A0=A0 GEM_BUG_ON(!ctch->enabled);
+>> +=A0=A0=A0 struct intel_guc *guc =3D ct_to_guc(ct);
+>> -=A0=A0=A0 ctch->enabled =3D false;
+>> +=A0=A0=A0 if (!ct->enabled)
+>> +=A0=A0=A0=A0=A0=A0=A0 return;
+>> +
+>> +=A0=A0=A0 ct->enabled =3D false;
+>> =A0=A0=A0=A0if (intel_guc_is_running(guc)) {
+>> =A0=A0=A0=A0=A0=A0=A0=A0 guc_action_deregister_ct_buffer(guc,
+>> -=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 c=
+tch->owner,
+>> =A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
+ INTEL_GUC_CT_BUFFER_TYPE_SEND);
+>> =A0=A0=A0=A0=A0=A0=A0=A0 guc_action_deregister_ct_buffer(guc,
+>> -=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 c=
+tch->owner,
+>> =A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
+ INTEL_GUC_CT_BUFFER_TYPE_RECV);
+>> =A0=A0=A0=A0 }
+>> =A0}
+>> -static u32 ctch_get_next_fence(struct intel_guc_ct_channel *ctch)
+>> +static u32 ct_get_next_fence(struct intel_guc_ct *ct)
+>> =A0{
+>> =A0=A0=A0=A0 /* For now it's trivial */
+>> -=A0=A0=A0 return ++ctch->next_fence;
+>> +=A0=A0=A0 return ++ct->next_fence;
+>> =A0}
+>> /**
+>> @@ -427,35 +445,34 @@ static int wait_for_ct_request_update(struct =
+
+>> ct_request *req, u32 *status)
+>> =A0=A0=A0=A0 return err;
+>> =A0}
+>> -static int ctch_send(struct intel_guc_ct *ct,
+>> -=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 struct intel_guc_ct_channel *ctch,
+>> -=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 const u32 *action,
+>> -=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 u32 len,
+>> -=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 u32 *response_buf,
+>> -=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 u32 response_buf_size,
+>> -=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 u32 *status)
+>> +static int ct_send(struct intel_guc_ct *ct,
+>> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 const u32 *action,
+>> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 u32 len,
+>> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 u32 *response_buf,
+>> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 u32 response_buf_size,
+>> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 u32 *status)
+>> =A0{
+>> -=A0=A0=A0 struct intel_guc_ct_buffer *ctb =3D &ctch->ctbs[CTB_SEND];
+>> +=A0=A0=A0 struct intel_guc_ct_buffer *ctb =3D &ct->ctbs[CTB_SEND];
+>> =A0=A0=A0=A0 struct guc_ct_buffer_desc *desc =3D ctb->desc;
+>> =A0=A0=A0=A0 struct ct_request request;
+>> =A0=A0=A0=A0 unsigned long flags;
+>> =A0=A0=A0=A0 u32 fence;
+>> =A0=A0=A0=A0 int err;
+>> -=A0=A0=A0 GEM_BUG_ON(!ctch->enabled);
+>> +=A0=A0=A0 GEM_BUG_ON(!ct->enabled);
+>> =A0=A0=A0=A0 GEM_BUG_ON(!len);
+>> =A0=A0=A0=A0 GEM_BUG_ON(len & ~GUC_CT_MSG_LEN_MASK);
+>> =A0=A0=A0=A0 GEM_BUG_ON(!response_buf && response_buf_size);
+>> -=A0=A0=A0 fence =3D ctch_get_next_fence(ctch);
+>> +=A0=A0=A0 fence =3D ct_get_next_fence(ct);
+>> =A0=A0=A0=A0 request.fence =3D fence;
+>> =A0=A0=A0=A0 request.status =3D 0;
+>> =A0=A0=A0=A0 request.response_len =3D response_buf_size;
+>> =A0=A0=A0=A0 request.response_buf =3D response_buf;
+>> -=A0=A0=A0 spin_lock_irqsave(&ct->lock, flags);
+>> -=A0=A0=A0 list_add_tail(&request.link, &ct->pending_requests);
+>> -=A0=A0=A0 spin_unlock_irqrestore(&ct->lock, flags);
+>> +=A0=A0=A0 spin_lock_irqsave(&ct->requests.lock, flags);
+>> +=A0=A0=A0 list_add_tail(&request.link, &ct->requests.pending);
+>> +=A0=A0=A0 spin_unlock_irqrestore(&ct->requests.lock, flags);
+>> =A0=A0=A0=A0err =3D ctb_write(ctb, action, len, fence, !!response_buf);
+>> =A0=A0=A0=A0 if (unlikely(err))
+>> @@ -488,9 +505,9 @@ static int ctch_send(struct intel_guc_ct *ct,
+>> =A0=A0=A0=A0 }
+>> unlink:
+>> -=A0=A0=A0 spin_lock_irqsave(&ct->lock, flags);
+>> +=A0=A0=A0 spin_lock_irqsave(&ct->requests.lock, flags);
+>> =A0=A0=A0=A0 list_del(&request.link);
+>> -=A0=A0=A0 spin_unlock_irqrestore(&ct->lock, flags);
+>> +=A0=A0=A0 spin_unlock_irqrestore(&ct->requests.lock, flags);
+>> =A0=A0=A0=A0return err;
+>> =A0}
+>> @@ -502,14 +519,12 @@ int intel_guc_send_ct(struct intel_guc *guc, =
+
+>> const u32 *action, u32 len,
+>> =A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 u32 *response_buf, u32 respon=
+se_buf_size)
+>> =A0{
+>> =A0=A0=A0=A0 struct intel_guc_ct *ct =3D &guc->ct;
+>> -=A0=A0=A0 struct intel_guc_ct_channel *ctch =3D &ct->host_channel;
+>> =A0=A0=A0=A0 u32 status =3D ~0; /* undefined */
+>> =A0=A0=A0=A0 int ret;
+>> =A0=A0=A0=A0mutex_lock(&guc->send_mutex);
+>> -=A0=A0=A0 ret =3D ctch_send(ct, ctch, action, len, response_buf, =
+
+>> response_buf_size,
+>> -=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 &status);
+>> +=A0=A0=A0 ret =3D ct_send(ct, action, len, response_buf, response_buf_s=
+ize, =
+
+>> &status);
+>> =A0=A0=A0=A0 if (unlikely(ret < 0)) {
+>> =A0=A0=A0=A0=A0=A0=A0=A0 DRM_ERROR("CT: send action %#X failed; err=3D%d=
+ status=3D%#X\n",
+>> =A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 action[0], ret, status);
+>> @@ -640,8 +655,8 @@ static int ct_handle_response(struct intel_guc_ct =
+
+>> *ct, const u32 *msg)
+>> =A0=A0=A0=A0CT_DEBUG_DRIVER("CT: response fence %u status %#x\n", fence,=
+ status);
+>> -=A0=A0=A0 spin_lock(&ct->lock);
+>> -=A0=A0=A0 list_for_each_entry(req, &ct->pending_requests, link) {
+>> +=A0=A0=A0 spin_lock(&ct->requests.lock);
+>> +=A0=A0=A0 list_for_each_entry(req, &ct->requests.pending, link) {
+>> =A0=A0=A0=A0=A0=A0=A0=A0 if (unlikely(fence !=3D req->fence)) {
+>> =A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 CT_DEBUG_DRIVER("CT: request %u awa=
+its response\n",
+>> =A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 req->fence);
+>> @@ -659,7 +674,7 @@ static int ct_handle_response(struct intel_guc_ct =
+
+>> *ct, const u32 *msg)
+>> =A0=A0=A0=A0=A0=A0=A0=A0 found =3D true;
+>> =A0=A0=A0=A0=A0=A0=A0=A0 break;
+>> =A0=A0=A0=A0 }
+>> -=A0=A0=A0 spin_unlock(&ct->lock);
+>> +=A0=A0=A0 spin_unlock(&ct->requests.lock);
+>> =A0=A0=A0=A0if (!found)
+>> =A0=A0=A0=A0=A0=A0=A0=A0 DRM_ERROR("CT: unsolicited response %*ph\n", 4 =
+* msglen, msg);
+>> @@ -697,13 +712,13 @@ static bool ct_process_incoming_requests(struct =
+
+>> intel_guc_ct *ct)
+>> =A0=A0=A0=A0 u32 *payload;
+>> =A0=A0=A0=A0 bool done;
+>> -=A0=A0=A0 spin_lock_irqsave(&ct->lock, flags);
+>> -=A0=A0=A0 request =3D list_first_entry_or_null(&ct->incoming_requests,
+>> +=A0=A0=A0 spin_lock_irqsave(&ct->requests.lock, flags);
+>> +=A0=A0=A0 request =3D list_first_entry_or_null(&ct->requests.incoming,
+>> =A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 st=
+ruct ct_incoming_request, link);
+>> =A0=A0=A0=A0 if (request)
+>> =A0=A0=A0=A0=A0=A0=A0=A0 list_del(&request->link);
+>> -=A0=A0=A0 done =3D !!list_empty(&ct->incoming_requests);
+>> -=A0=A0=A0 spin_unlock_irqrestore(&ct->lock, flags);
+>> +=A0=A0=A0 done =3D !!list_empty(&ct->requests.incoming);
+>> +=A0=A0=A0 spin_unlock_irqrestore(&ct->requests.lock, flags);
+>> =A0=A0=A0=A0if (!request)
+>> =A0=A0=A0=A0=A0=A0=A0=A0 return true;
+>> @@ -721,12 +736,13 @@ static bool ct_process_incoming_requests(struct =
+
+>> intel_guc_ct *ct)
+>> static void ct_incoming_request_worker_func(struct work_struct *w)
+>> =A0{
+>> -=A0=A0=A0 struct intel_guc_ct *ct =3D container_of(w, struct intel_guc_=
+ct, =
+
+>> worker);
+>> +=A0=A0=A0 struct intel_guc_ct *ct =3D
+>> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 container_of(w, struct intel_guc_ct, =
+requests.worker);
+>> =A0=A0=A0=A0 bool done;
+>> =A0=A0=A0=A0done =3D ct_process_incoming_requests(ct);
+>> =A0=A0=A0=A0 if (!done)
+>> -=A0=A0=A0=A0=A0=A0=A0 queue_work(system_unbound_wq, &ct->worker);
+>> +=A0=A0=A0=A0=A0=A0=A0 queue_work(system_unbound_wq, &ct->requests.worke=
+r);
+>> =A0}
+>> /**
+>> @@ -764,22 +780,26 @@ static int ct_handle_request(struct intel_guc_ct =
+
+>> *ct, const u32 *msg)
+>> =A0=A0=A0=A0 }
+>> =A0=A0=A0=A0 memcpy(request->msg, msg, 4 * msglen);
+>> -=A0=A0=A0 spin_lock_irqsave(&ct->lock, flags);
+>> -=A0=A0=A0 list_add_tail(&request->link, &ct->incoming_requests);
+>> -=A0=A0=A0 spin_unlock_irqrestore(&ct->lock, flags);
+>> +=A0=A0=A0 spin_lock_irqsave(&ct->requests.lock, flags);
+>> +=A0=A0=A0 list_add_tail(&request->link, &ct->requests.incoming);
+>> +=A0=A0=A0 spin_unlock_irqrestore(&ct->requests.lock, flags);
+>> -=A0=A0=A0 queue_work(system_unbound_wq, &ct->worker);
+>> +=A0=A0=A0 queue_work(system_unbound_wq, &ct->requests.worker);
+>> =A0=A0=A0=A0 return 0;
+>> =A0}
+>> -static void ct_process_host_channel(struct intel_guc_ct *ct)
+>> +/*
+>> + * When we're communicating with the GuC over CT, GuC uses events
+>> + * to notify us about new messages being posted on the RECV buffer.
+>> + */
+>> +void intel_guc_to_host_event_handler_ct(struct intel_guc *guc)
+>> =A0{
+>> -=A0=A0=A0 struct intel_guc_ct_channel *ctch =3D &ct->host_channel;
+>> -=A0=A0=A0 struct intel_guc_ct_buffer *ctb =3D &ctch->ctbs[CTB_RECV];
+>> +=A0=A0=A0 struct intel_guc_ct *ct =3D &guc->ct;
+>> +=A0=A0=A0 struct intel_guc_ct_buffer *ctb =3D &ct->ctbs[CTB_RECV];
+>> =A0=A0=A0=A0 u32 msg[GUC_CT_MSG_LEN_MASK + 1]; /* one extra dw for the h=
+eader */
+>> =A0=A0=A0=A0 int err =3D 0;
+>> -=A0=A0=A0 if (!ctch->enabled)
+>> +=A0=A0=A0 if (!ct->enabled)
+>> =A0=A0=A0=A0=A0=A0=A0=A0 return;
+>> =A0=A0=A0=A0do {
+>> @@ -798,87 +818,3 @@ static void ct_process_host_channel(struct =
+
+>> intel_guc_ct *ct)
+>> =A0=A0=A0=A0=A0=A0=A0=A0 ctb->desc->is_in_error =3D 1;
+>> =A0=A0=A0=A0 }
+>> =A0}
+>> -
+>> -/*
+>> - * When we're communicating with the GuC over CT, GuC uses events
+>> - * to notify us about new messages being posted on the RECV buffer.
+>> - */
+>> -void intel_guc_to_host_event_handler_ct(struct intel_guc *guc)
+>> -{
+>> -=A0=A0=A0 struct intel_guc_ct *ct =3D &guc->ct;
+>> -
+>> -=A0=A0=A0 ct_process_host_channel(ct);
+>> -}
+>> -
+>> -/**
+>> - * intel_guc_ct_init - Init CT communication
+>> - * @ct: pointer to CT struct
+>> - *
+>> - * Allocate memory required for communication via
+>> - * the CT channel.
+>> - *
+>> - * Return: 0 on success, a negative errno code on failure.
+>> - */
+>> -int intel_guc_ct_init(struct intel_guc_ct *ct)
+>> -{
+>> -=A0=A0=A0 struct intel_guc *guc =3D ct_to_guc(ct);
+>> -=A0=A0=A0 struct intel_guc_ct_channel *ctch =3D &ct->host_channel;
+>> -=A0=A0=A0 int err;
+>> -
+>> -=A0=A0=A0 err =3D ctch_init(guc, ctch);
+>> -=A0=A0=A0 if (unlikely(err)) {
+>> -=A0=A0=A0=A0=A0=A0=A0 DRM_ERROR("CT: can't open channel %d; err=3D%d\n",
+>> -=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 ctch->owner, err);
+>> -=A0=A0=A0=A0=A0=A0=A0 return err;
+>> -=A0=A0=A0 }
+>> -
+>> -=A0=A0=A0 GEM_BUG_ON(!ctch->vma);
+>> -=A0=A0=A0 return 0;
+>> -}
+>> -
+>> -/**
+>> - * intel_guc_ct_fini - Fini CT communication
+>> - * @ct: pointer to CT struct
+>> - *
+>> - * Deallocate memory required for communication via
+>> - * the CT channel.
+>> - */
+>> -void intel_guc_ct_fini(struct intel_guc_ct *ct)
+>> -{
+>> -=A0=A0=A0 struct intel_guc *guc =3D ct_to_guc(ct);
+>> -=A0=A0=A0 struct intel_guc_ct_channel *ctch =3D &ct->host_channel;
+>> -
+>> -=A0=A0=A0 ctch_fini(guc, ctch);
+>> -}
+>> -
+>> -/**
+>> - * intel_guc_ct_enable - Enable buffer based command transport.
+>> - * @ct: pointer to CT struct
+>> - *
+>> - * Return: 0 on success, a negative errno code on failure.
+>> - */
+>> -int intel_guc_ct_enable(struct intel_guc_ct *ct)
+>> -{
+>> -=A0=A0=A0 struct intel_guc *guc =3D ct_to_guc(ct);
+>> -=A0=A0=A0 struct intel_guc_ct_channel *ctch =3D &ct->host_channel;
+>> -
+>> -=A0=A0=A0 if (ctch->enabled)
+>> -=A0=A0=A0=A0=A0=A0=A0 return 0;
+>> -
+>> -=A0=A0=A0 return ctch_enable(guc, ctch);
+>> -}
+>> -
+>> -/**
+>> - * intel_guc_ct_disable - Disable buffer based command transport.
+>> - * @ct: pointer to CT struct
+>> - */
+>> -void intel_guc_ct_disable(struct intel_guc_ct *ct)
+>> -{
+>> -=A0=A0=A0 struct intel_guc *guc =3D ct_to_guc(ct);
+>> -=A0=A0=A0 struct intel_guc_ct_channel *ctch =3D &ct->host_channel;
+>> -
+>> -=A0=A0=A0 if (!ctch->enabled)
+>> -=A0=A0=A0=A0=A0=A0=A0 return;
+>> -
+>> -=A0=A0=A0 ctch_disable(guc, ctch);
+>> -}
+>> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.h =
+
+>> b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.h
+>> index 77c80d6cc25d..4bb1d1fcc860 100644
+>> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.h
+>> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.h
+>> @@ -35,44 +35,29 @@ struct intel_guc_ct_buffer {
+>> =A0=A0=A0=A0 u32 *cmds;
+>> =A0};
+>> +
+>> =A0/** Represents pair of command transport buffers.
+> =
+
+> intel_guc_ct is now little more that old ctch
+> =
+
+>> =A0 *
+>> =A0 * Buffers go in pairs to allow bi-directional communication.
+>> =A0 * To simplify the code we place both of them in the same vma.
+>> =A0 * Buffers from the same pair must share unique owner id.
+> =
+
+> we'll have only one pair and one fixed owner,
+> maybe worth to rephrase whole description ?
+> =
+
+
+ok
+
+>> - *
+>> - * @vma: pointer to the vma with pair of CT buffers
+>> - * @ctbs: buffers for sending(0) and receiving(1) commands
+>> - * @owner: unique identifier
+>> - * @next_fence: fence to be used with next send command
+>> =A0 */
+>> -struct intel_guc_ct_channel {
+>> +struct intel_guc_ct {
+>> =A0=A0=A0=A0 struct i915_vma *vma;
+>> -=A0=A0=A0 struct intel_guc_ct_buffer ctbs[2];
+>> -=A0=A0=A0 u32 owner;
+>> -=A0=A0=A0 u32 next_fence;
+>> =A0=A0=A0=A0 bool enabled;
+>> -};
+>> -/** Holds all command transport channels.
+>> - *
+>> - * @host_channel: main channel used by the host
+>> - */
+>> -struct intel_guc_ct {
+>> -=A0=A0=A0 struct intel_guc_ct_channel host_channel;
+>> -=A0=A0=A0 /* other channels are tbd */
+>> -
+>> -=A0=A0=A0 /** @lock: protects pending requests list */
+>> -=A0=A0=A0 spinlock_t lock;
+>> -
+>> -=A0=A0=A0 /** @pending_requests: list of requests waiting for response =
+*/
+>> -=A0=A0=A0 struct list_head pending_requests;
+>> +=A0=A0=A0 /* buffers for sending(0) and receiving(1) commands */
+>> +=A0=A0=A0 struct intel_guc_ct_buffer ctbs[2];
+>> -=A0=A0=A0 /** @incoming_requests: list of incoming requests */
+>> -=A0=A0=A0 struct list_head incoming_requests;
+>> +=A0=A0=A0 /* fence to be used with next send command */
+>> +=A0=A0=A0 u32 next_fence;
+> =
+
+> fence is only used while sending requests,
+> so maybe move it under below requests struct ?
+> =
+
+>> -=A0=A0=A0 /** @worker: worker for handling incoming requests */
+>> -=A0=A0=A0 struct work_struct worker;
+>> +=A0=A0=A0 struct {
+>> +=A0=A0=A0=A0=A0=A0=A0 spinlock_t lock; /* protects pending requests lis=
+t */
+>> +=A0=A0=A0=A0=A0=A0=A0 struct list_head pending; /* requests waiting for=
+ response */
+>> +=A0=A0=A0=A0=A0=A0=A0 struct list_head incoming; /* incoming requests */
+>> +=A0=A0=A0=A0=A0=A0=A0 struct work_struct worker; /* handler for incomin=
+g requests */
+>> +=A0=A0=A0 } requests;
+> =
+
+> maybe above change should be in separate patch to make diff smaller?
+> =
+
+
+You mean split this in one patch to merge the CT and CTCH structures and =
+
+one to move some fields inside the requests sub-structure?
+
+Daniele
+
+>> =A0};
+>> void intel_guc_ct_init_early(struct intel_guc_ct *ct);
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
