@@ -2,31 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F86711A525
-	for <lists+intel-gfx@lfdr.de>; Wed, 11 Dec 2019 08:34:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6540311A535
+	for <lists+intel-gfx@lfdr.de>; Wed, 11 Dec 2019 08:40:11 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 508546E9D7;
-	Wed, 11 Dec 2019 07:34:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CED7E6EA04;
+	Wed, 11 Dec 2019 07:40:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id A052D6E9D7;
- Wed, 11 Dec 2019 07:34:12 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id C78A76E9F8;
+ Wed, 11 Dec 2019 07:40:08 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 96D31A363B;
- Wed, 11 Dec 2019 07:34:12 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id BE1EEA0075;
+ Wed, 11 Dec 2019 07:40:08 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Jos=C3=A9_Roberto_de_Souza?= <jose.souza@intel.com>
-Date: Wed, 11 Dec 2019 07:34:12 -0000
-Message-ID: <157604965258.30689.16998234666005480594@emeril.freedesktop.org>
+To: "Abdiel Janulgue" <abdiel.janulgue@linux.intel.com>
+Date: Wed, 11 Dec 2019 07:40:08 -0000
+Message-ID: <157605000877.30694.14703520167409153805@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20191211020858.423049-1-jose.souza@intel.com>
-In-Reply-To: <20191211020858.423049-1-jose.souza@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBz?=
- =?utf-8?q?eries_starting_with_=5Bv2=2C01/11=5D_drm=3A_Add_=5F=5Fdrm=5Fato?=
- =?utf-8?b?bWljX2hlbHBlcl9jcnRjX3N0YXRlX3Jlc2V0KCkgJiBjby4=?=
+References: <20191211055907.8398-1-abdiel.janulgue@linux.intel.com>
+In-Reply-To: <20191211055907.8398-1-abdiel.janulgue@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915=3A_Add_lmem_fault_handler_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,26 +47,27 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: series starting with [v2,01/11] drm: Add __drm_atomic_helper_crtc_state_reset() & co.
-URL   : https://patchwork.freedesktop.org/series/70730/
-State : failure
+Series: drm/i915: Add lmem fault handler (rev2)
+URL   : https://patchwork.freedesktop.org/series/70485/
+State : warning
 
 == Summary ==
 
-Applying: drm: Add __drm_atomic_helper_crtc_state_reset() & co.
-Applying: drm/i915: s/intel_crtc/crtc/ in intel_crtc_init()
-Applying: drm/i915: Introduce intel_crtc_{alloc, free}()
-Applying: drm/i915: Introduce intel_crtc_state_reset()
-Applying: drm/i915: Introduce intel_plane_state_reset()
-Applying: drm/i915/display: Share intel_connector_needs_modeset()
-Applying: drm/i915/tgl: Select master transcoder for MST stream
-error: sha1 information is lacking or useless (drivers/gpu/drm/i915/display/intel_display.c).
-error: could not build fake ancestor
-hint: Use 'git am --show-current-patch' to see the failed patch
-Patch failed at 0007 drm/i915/tgl: Select master transcoder for MST stream
-When you have resolved this problem, run "git am --continue".
-If you prefer to skip this patch, run "git am --skip" instead.
-To restore the original branch and stop patching, run "git am --abort".
+$ dim checkpatch origin/drm-tip
+391e63451f37 drm/i915: Add lmem fault handler
+-:151: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#151: FILE: drivers/gpu/drm/i915/gem/i915_gem_mman.c:701:
++       .fault = vm_fault_lmem,$
+
+-:152: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#152: FILE: drivers/gpu/drm/i915/gem/i915_gem_mman.c:702:
++       .open = vm_open,$
+
+-:153: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#153: FILE: drivers/gpu/drm/i915/gem/i915_gem_mman.c:703:
++       .close = vm_close,$
+
+total: 0 errors, 3 warnings, 0 checks, 301 lines checked
 
 _______________________________________________
 Intel-gfx mailing list
