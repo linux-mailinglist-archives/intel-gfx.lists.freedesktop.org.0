@@ -2,41 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8704511ABC5
-	for <lists+intel-gfx@lfdr.de>; Wed, 11 Dec 2019 14:12:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4857F11ABD3
+	for <lists+intel-gfx@lfdr.de>; Wed, 11 Dec 2019 14:16:47 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BA9D36EB42;
-	Wed, 11 Dec 2019 13:12:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2A19E6EB47;
+	Wed, 11 Dec 2019 13:16:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D7A156EB42
- for <intel-gfx@lists.freedesktop.org>; Wed, 11 Dec 2019 13:12:42 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 49A2E6EB47
+ for <intel-gfx@lists.freedesktop.org>; Wed, 11 Dec 2019 13:16:44 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 11 Dec 2019 05:12:42 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,301,1571727600"; d="scan'208";a="225519739"
-Received: from irvmail001.ir.intel.com ([163.33.26.43])
- by orsmga002.jf.intel.com with ESMTP; 11 Dec 2019 05:12:40 -0800
-Received: from mwajdecz-mobl1.ger.corp.intel.com
- (mwajdecz-mobl1.ger.corp.intel.com [10.249.135.169])
- by irvmail001.ir.intel.com (8.14.3/8.13.6/MailSET/Hub) with ESMTP id
- xBBDCduI024833; Wed, 11 Dec 2019 13:12:39 GMT
-To: intel-gfx@lists.freedesktop.org, "Daniele Ceraolo Spurio"
- <daniele.ceraolospurio@intel.com>
-References: <20191210210919.30846-1-daniele.ceraolospurio@intel.com>
- <20191210210919.30846-2-daniele.ceraolospurio@intel.com>
-Date: Wed, 11 Dec 2019 14:12:39 +0100
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 11 Dec 2019 05:16:43 -0800
+X-IronPort-AV: E=Sophos;i="5.69,301,1571727600"; d="scan'208";a="215776153"
+Received: from jlahtine-desk.ger.corp.intel.com (HELO localhost)
+ ([10.252.9.238])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 11 Dec 2019 05:16:41 -0800
 MIME-Version: 1.0
-From: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
-Message-ID: <op.0cmxndtyxaggs7@mwajdecz-mobl1.ger.corp.intel.com>
-In-Reply-To: <20191210210919.30846-2-daniele.ceraolospurio@intel.com>
-User-Agent: Opera Mail/1.0 (Win32)
-Subject: Re: [Intel-gfx] [PATCH 1/5] drm/i915/guc: Merge communication_stop
- and communication_disable
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org, 
+ Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+In-Reply-To: <20191207170110.2200142-7-chris@chris-wilson.co.uk>
+References: <20191207170110.2200142-1-chris@chris-wilson.co.uk>
+ <20191207170110.2200142-7-chris@chris-wilson.co.uk>
+Message-ID: <157607019890.10520.12614892186595671587@jlahtine-desk.ger.corp.intel.com>
+User-Agent: alot/0.7
+Date: Wed, 11 Dec 2019 15:16:39 +0200
+Subject: Re: [Intel-gfx] [PATCH 7/8] drm/i915: Asynchronous cmdparser
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,36 +47,100 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"; DelSp="yes"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 10 Dec 2019 22:09:15 +0100, Daniele Ceraolo Spurio  
-<daniele.ceraolospurio@intel.com> wrote:
++ Daniel/Maarten for the dma_resv
 
-> The only difference from the GuC POV between guc_communication_stop and
-> guc_communication_disable is that the former can be called after GuC
-> has been reset. Instead of having two separate paths, we can just skip
-> the call into GuC in the disabling path and re-use that.
->
-> Note that by using the disable() path instead of the stop() one there
-> are two additional changes in SW side for the stop path:
->
-> - interrupts are now disabled before disabling the CT, which is ok
->   because we do not want interrupts with CT disabled;
-> - guc_get_mmio_msg() is called in the stop case as well, which is ok
->   because if there are errors before the reset we do want to record
->   them.
->
-> Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-> Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-> Cc: John Harrison <John.C.Harrison@Intel.com>
-> Cc: Matthew Brost <matthew.brost@intel.com>
-> ---
+Quoting Chris Wilson (2019-12-07 19:01:09)
+> Execute the cmdparser asynchronously as part of the submission pipeline.
+> Using our dma-fences, we can schedule execution after an asynchronous
+> piece of work, so we move the cmdparser out from under the struct_mutex
+> inside execbuf as run it as part of the submission pipeline. The same
+> security rules apply, we copy the user batch before validation and
+> userspace cannot touch the validation shadow. The only caveat is that we
+> will do request construction before we complete cmdparsing and so we
+> cannot know the outcome of the validation step until later -- so the
+> execbuf ioctl does not report -EINVAL directly, but we must cancel
+> execution of the request and flag the error on the out-fence.
+> 
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 
-Reviewed-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+<SNIP>
 
+> +static const struct dma_fence_work_ops eb_parse_ops = {
+> +       .name = "parse",
+
+I'm noticing all our dma_fence_work_ops are named very briefly.
+
+.name = "eb_parse" might be in order.
+
+> +       .work = __eb_parse,
+> +};
+> +
+> +static int eb_parse_pipeline(struct i915_execbuffer *eb,
+> +                            struct i915_vma *shadow)
+> +{
+> +       struct eb_parse_work *pw;
+> +       int err;
+> +
+> +       pw = kzalloc(sizeof(*pw), GFP_KERNEL);
+> +       if (!pw)
+> +               return -ENOMEM;
+> +
+> +       dma_fence_work_init(&pw->base, &eb_parse_ops);
+> +
+> +       pw->engine = eb->engine;
+> +       pw->batch = eb->batch;
+> +       pw->batch_offset = eb->batch_start_offset;
+> +       pw->batch_length = eb->batch_len;
+> +       pw->shadow = shadow;
+> +
+> +       dma_resv_lock(pw->batch->resv, NULL);
+> +       err = dma_resv_reserve_shared(pw->batch->resv, 1);
+> +       if (err) {
+> +               dma_resv_unlock(pw->batch->resv);
+> +               kfree(pw);
+> +               return err;
+> +       }
+> +
+> +       err = i915_sw_fence_await_reservation(&pw->base.chain,
+> +                                             pw->batch->resv, NULL, false,
+> +                                             0, I915_FENCE_GFP);
+> +       if (err < 0) {
+
+Onion teardown to dedupe code.
+
+> +               dma_resv_unlock(pw->batch->resv);
+> +               kfree(pw);
+> +               return err;
+> +       }
+> +
+> +       dma_resv_add_shared_fence(pw->batch->resv, &pw->base.dma);
+> +       dma_resv_unlock(pw->batch->resv);
+> +
+> +       dma_resv_lock(shadow->resv, NULL);
+> +       dma_resv_add_excl_fence(shadow->resv, &pw->base.dma);
+> +       dma_resv_unlock(shadow->resv);
+> +
+> +       dma_fence_work_commit(&pw->base);
+> +       return 0;
+> +}
+
+After de-duping, I think this is just fine as far as the fences come.
+
+Kernel wouldn't initiate any requests in need of cmd parsing and some
+work needs to be waited upon to free memory, the cmdparser will fail
+gracefully as the only allocation is __GFP_RETRY_MAYFAIL.
+
+The rest looks fine to me, too. We probably want another set of eyes
+to also ack the clflushing correctness.
+
+Reviewed-by: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+
+Regards, Joonas
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
