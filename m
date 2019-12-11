@@ -1,33 +1,35 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B24711BF10
-	for <lists+intel-gfx@lfdr.de>; Wed, 11 Dec 2019 22:22:55 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id B31A411BF15
+	for <lists+intel-gfx@lfdr.de>; Wed, 11 Dec 2019 22:23:21 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C9E636EBF0;
-	Wed, 11 Dec 2019 21:22:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1D12C6EBF6;
+	Wed, 11 Dec 2019 21:23:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 456CA6EBF0
- for <intel-gfx@lists.freedesktop.org>; Wed, 11 Dec 2019 21:22:52 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 19547328-1500050 for multiple; Wed, 11 Dec 2019 21:22:42 +0000
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 58E4C6EBF1;
+ Wed, 11 Dec 2019 21:23:17 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 11 Dec 2019 13:23:15 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.69,303,1571727600"; d="scan'208";a="413649620"
+Received: from labuser-z97x-ud5h.jf.intel.com ([10.54.75.49])
+ by fmsmga005.fm.intel.com with ESMTP; 11 Dec 2019 13:23:15 -0800
+From: Manasi Navare <manasi.d.navare@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org
+Date: Wed, 11 Dec 2019 13:24:32 -0800
+Message-Id: <20191211212433.18185-1-manasi.d.navare@intel.com>
+X-Mailer: git-send-email 2.19.1
 MIME-Version: 1.0
-To: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
- intel-gfx@lists.freedesktop.org
-From: Chris Wilson <chris@chris-wilson.co.uk>
-In-Reply-To: <20191211211244.7831-4-daniele.ceraolospurio@intel.com>
-References: <20191211211244.7831-1-daniele.ceraolospurio@intel.com>
- <20191211211244.7831-4-daniele.ceraolospurio@intel.com>
-Message-ID: <157609936238.27099.9225483018528537974@skylake-alporthouse-com>
-User-Agent: alot/0.6
-Date: Wed, 11 Dec 2019 21:22:42 +0000
-Subject: Re: [Intel-gfx] [RFC 3/5] drm/i915: split out virtual engine code
+Subject: [Intel-gfx] [PATCH 1/2] drm: Handle connector tile support only for
+ modes that match tile size
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,20 +42,39 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Jani Nikula <jani.nikula@intel.com>, Dave Airlie <airlied@redhat.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Daniele Ceraolo Spurio (2019-12-11 21:12:42)
-> Having the virtual engine handling in its own file will make it easier
-> call it from or modify for the GuC implementation without leaking the
-> changes in the context management or execlists submission paths.
-
-No. The virtual engine is tightly coupled into the execlists, it is not
-the starting point for a general veng.
--Chris
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+RFJNIEZiIGRyaXZlciBleHBlY3RzIG11bHRpcGxlIENSVENzIGlmIGl0IHNlZXMgY29ubmVjdG9y
+LT5oYXNfdGlsZQppcyBzZXQsIGJ1dCB3ZSBuZWVkIHRvIGhhbmRsZSB0aWxlIHN1cHBvcnQgYW5k
+IGxvb2sgZm9yIG11bHRpcGxlIENSVENzCm9ubHkgZm9yIHRoZSBtb2RlcyB0aGF0IG1hdGNoIHRo
+ZSB0aWxlIHNpemUuIFRoZSBvdGhlciBtb2RlcyBzaG91bGQKYmUgYWJsZSB0byBiZSBkaXNwbGF5
+ZWQgd2l0aG91dCB0aWxlIHN1cHBvcnQgb3IgdWlzbmcgc2luZ2xlIENSVEMuCgpUaGlzIHBhdGNo
+IGFkZHMgdGhlIGNoZWNrIHRvIG1hdGNoIHRoZSB0aWxlIHNpemUgd2l0aCByZXF1ZXN0ZWQgbW9k
+ZQp0byBoYW5kbGUgdGhlIHRpbGUgc3VwcG9ydC4KCkNjOiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxl
+LnN5cmphbGFAbGludXguaW50ZWwuY29tPgpDYzogTWFhcnRlbiBMYW5raG9yc3QgPG1hYXJ0ZW4u
+bGFua2hvcnN0QGxpbnV4LmludGVsLmNvbT4KQ2M6IEphbmkgTmlrdWxhIDxqYW5pLm5pa3VsYUBp
+bnRlbC5jb20+CkNjOiBEYXZlIEFpcmxpZSA8YWlybGllZEByZWRoYXQuY29tPgpTaWduZWQtb2Zm
+LWJ5OiBNYW5hc2kgTmF2YXJlIDxtYW5hc2kuZC5uYXZhcmVAaW50ZWwuY29tPgotLS0KIGRyaXZl
+cnMvZ3B1L2RybS9kcm1fZmJfaGVscGVyLmMgfCA0ICsrKy0KIDEgZmlsZSBjaGFuZ2VkLCAzIGlu
+c2VydGlvbnMoKyksIDEgZGVsZXRpb24oLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0v
+ZHJtX2ZiX2hlbHBlci5jIGIvZHJpdmVycy9ncHUvZHJtL2RybV9mYl9oZWxwZXIuYwppbmRleCBm
+YjliZmYwZjQ1ODEuLjQ5NzgzNjM3MTRhOSAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2Ry
+bV9mYl9oZWxwZXIuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vZHJtX2ZiX2hlbHBlci5jCkBAIC0x
+NTU4LDcgKzE1NTgsOSBAQCBzdGF0aWMgaW50IGRybV9mYl9oZWxwZXJfc2luZ2xlX2ZiX3Byb2Jl
+KHN0cnVjdCBkcm1fZmJfaGVscGVyICpmYl9oZWxwZXIsCiAJCWZvciAoaiA9IDA7IGogPCBtb2Rl
+X3NldC0+bnVtX2Nvbm5lY3RvcnM7IGorKykgewogCQkJc3RydWN0IGRybV9jb25uZWN0b3IgKmNv
+bm5lY3RvciA9IG1vZGVfc2V0LT5jb25uZWN0b3JzW2pdOwogCi0JCQlpZiAoY29ubmVjdG9yLT5o
+YXNfdGlsZSkgeworCQkJaWYgKGNvbm5lY3Rvci0+aGFzX3RpbGUgJiYKKwkJCSAgICBkZXNpcmVk
+X21vZGUtPmhkaXNwbGF5ID09IGNvbm5lY3Rvci0+dGlsZV9oX3NpemUgJiYKKwkJCSAgICBkZXNp
+cmVkX21vZGUtPnZkaXNwbGF5ID09IGNvbm5lY3Rvci0+dGlsZV92X3NpemUpIHsKIAkJCQlsYXN0
+aCA9IChjb25uZWN0b3ItPnRpbGVfaF9sb2MgPT0gKGNvbm5lY3Rvci0+bnVtX2hfdGlsZSAtIDEp
+KTsKIAkJCQlsYXN0diA9IChjb25uZWN0b3ItPnRpbGVfdl9sb2MgPT0gKGNvbm5lY3Rvci0+bnVt
+X3ZfdGlsZSAtIDEpKTsKIAkJCQkvKiBjbG9uaW5nIHRvIG11bHRpcGxlIHRpbGVzIGlzIGp1c3Qg
+Y3JhenktdGFsaywgc286ICovCi0tIAoyLjE5LjEKCl9fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxp
+c3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFu
+L2xpc3RpbmZvL2ludGVsLWdmeAo=
