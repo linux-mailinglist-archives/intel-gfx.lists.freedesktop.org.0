@@ -2,30 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C7A711C221
-	for <lists+intel-gfx@lfdr.de>; Thu, 12 Dec 2019 02:27:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C27D411C239
+	for <lists+intel-gfx@lfdr.de>; Thu, 12 Dec 2019 02:33:48 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 265396EC25;
-	Thu, 12 Dec 2019 01:27:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 862526EC27;
+	Thu, 12 Dec 2019 01:33:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id E046C6EC25;
- Thu, 12 Dec 2019 01:27:16 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 1E4FF6EC27;
+ Thu, 12 Dec 2019 01:33:44 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id D16A6A01BB;
- Thu, 12 Dec 2019 01:27:16 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 0DA09A0119;
+ Thu, 12 Dec 2019 01:33:44 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Daniele Ceraolo Spurio" <daniele.ceraolospurio@intel.com>
-Date: Thu, 12 Dec 2019 01:27:16 -0000
-Message-ID: <157611403682.32009.5308576617975510727@emeril.freedesktop.org>
+To: =?utf-8?q?Jos=C3=A9_Roberto_de_Souza?= <jose.souza@intel.com>
+Date: Thu, 12 Dec 2019 01:33:44 -0000
+Message-ID: <157611442402.32008.11003333358905503696@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20191211211244.7831-1-daniele.ceraolospurio@intel.com>
-In-Reply-To: <20191211211244.7831-1-daniele.ceraolospurio@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_Split_up_intel=5Flrc=2Ec?=
+References: <20191211184526.142413-1-jose.souza@intel.com>
+In-Reply-To: <20191211184526.142413-1-jose.souza@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5Bv2=2Crebased=2C01/11=5D_drm=3A_Add_=5F=5Fd?=
+ =?utf-8?b?cm1fYXRvbWljX2hlbHBlcl9jcnRjX3N0YXRlX3Jlc2V0KCkgJiBjby4=?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,131 +48,165 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: Split up intel_lrc.c
-URL   : https://patchwork.freedesktop.org/series/70787/
-State : warning
+Series: series starting with [v2,rebased,01/11] drm: Add __drm_atomic_helper_crtc_state_reset() & co.
+URL   : https://patchwork.freedesktop.org/series/70775/
+State : failure
 
 == Summary ==
 
-$ dim checkpatch origin/drm-tip
-4fa85f63db3e drm/i915: introduce logical_ring and lr_context naming
-e25d3a53a30a drm/i915: Move struct intel_virtual_engine to its own header
--:306: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#306: 
-new file mode 100644
+CI Bug Log - changes from CI_DRM_7545 -> Patchwork_15698
+====================================================
 
--:311: WARNING:SPDX_LICENSE_TAG: Missing or malformed SPDX-License-Identifier tag in line 1
-#311: FILE: drivers/gpu/drm/i915/gt/intel_virtual_engine_types.h:1:
-+/*
+Summary
+-------
 
--:312: WARNING:SPDX_LICENSE_TAG: Misplaced SPDX-License-Identifier tag - use line 1 instead
-#312: FILE: drivers/gpu/drm/i915/gt/intel_virtual_engine_types.h:2:
-+ * SPDX-License-Identifier: MIT
+  **FAILURE**
 
-total: 0 errors, 3 warnings, 0 checks, 318 lines checked
-c172772b81db drm/i915: split out virtual engine code
--:669: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#669: 
-new file mode 100644
+  Serious unknown changes coming with Patchwork_15698 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_15698, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
 
--:674: WARNING:SPDX_LICENSE_TAG: Missing or malformed SPDX-License-Identifier tag in line 1
-#674: FILE: drivers/gpu/drm/i915/gt/intel_virtual_engine.c:1:
-+/*
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15698/index.html
 
--:675: WARNING:SPDX_LICENSE_TAG: Misplaced SPDX-License-Identifier tag - use line 1 instead
-#675: FILE: drivers/gpu/drm/i915/gt/intel_virtual_engine.c:2:
-+ * SPDX-License-Identifier: MIT
+Possible new issues
+-------------------
 
--:1039: WARNING:SPDX_LICENSE_TAG: Missing or malformed SPDX-License-Identifier tag in line 1
-#1039: FILE: drivers/gpu/drm/i915/gt/intel_virtual_engine.h:1:
-+/*
+  Here are the unknown changes that may have been introduced in Patchwork_15698:
 
--:1040: WARNING:SPDX_LICENSE_TAG: Misplaced SPDX-License-Identifier tag - use line 1 instead
-#1040: FILE: drivers/gpu/drm/i915/gt/intel_virtual_engine.h:2:
-+ * SPDX-License-Identifier: MIT
+### IGT changes ###
 
--:1073: CHECK:LINE_SPACING: Please don't use multiple blank lines
-#1073: FILE: drivers/gpu/drm/i915/gt/intel_virtual_engine.h:35:
-+
-+
+#### Possible regressions ####
 
-total: 0 errors, 5 warnings, 1 checks, 1052 lines checked
-331b2734b611 drm/i915: move execlists selftests to their own file
--:78: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#78: 
-new file mode 100644
+  * igt@gem_exec_suspend@basic-s0:
+    - fi-skl-lmem:        [PASS][1] -> [DMESG-WARN][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7545/fi-skl-lmem/igt@gem_exec_suspend@basic-s0.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15698/fi-skl-lmem/igt@gem_exec_suspend@basic-s0.html
 
--:83: WARNING:SPDX_LICENSE_TAG: Missing or malformed SPDX-License-Identifier tag in line 1
-#83: FILE: drivers/gpu/drm/i915/gt/selftest_execlists.c:1:
-+/*
+  
+Known issues
+------------
 
--:84: WARNING:SPDX_LICENSE_TAG: Misplaced SPDX-License-Identifier tag - use line 1 instead
-#84: FILE: drivers/gpu/drm/i915/gt/selftest_execlists.c:2:
-+ * SPDX-License-Identifier: MIT
+  Here are the changes found in Patchwork_15698 that come from known issues:
 
--:468: WARNING:LONG_LINE: line over 100 characters
-#468: FILE: drivers/gpu/drm/i915/gt/selftest_execlists.c:386:
-+			      2 * RUNTIME_INFO(outer->i915)->num_engines * (count + 2) * (count + 3)) < 0) {
+### IGT changes ###
 
--:2120: WARNING:LINE_SPACING: Missing a blank line after declarations
-#2120: FILE: drivers/gpu/drm/i915/gt/selftest_execlists.c:2038:
-+		struct igt_live_test t;
-+		IGT_TIMEOUT(end_time);
+#### Issues hit ####
 
--:2489: WARNING:LINE_SPACING: Missing a blank line after declarations
-#2489: FILE: drivers/gpu/drm/i915/gt/selftest_execlists.c:2407:
-+	struct preempt_smoke *smoke = arg;
-+	IGT_TIMEOUT(end_time);
+  * igt@i915_pm_rpm@module-reload:
+    - fi-skl-lmem:        [PASS][3] -> [DMESG-WARN][4] ([i915#592])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7545/fi-skl-lmem/igt@i915_pm_rpm@module-reload.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15698/fi-skl-lmem/igt@i915_pm_rpm@module-reload.html
 
--:2536: WARNING:YIELD: Using yield() is generally wrong. See yield() kernel-doc (sched/core.c)
-#2536: FILE: drivers/gpu/drm/i915/gt/selftest_execlists.c:2454:
-+	yield(); /* start all threads before we kthread_stop() */
+  * igt@i915_selftest@live_gem_contexts:
+    - fi-hsw-peppy:       [PASS][5] -> [DMESG-FAIL][6] ([i915#722])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7545/fi-hsw-peppy/igt@i915_selftest@live_gem_contexts.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15698/fi-hsw-peppy/igt@i915_selftest@live_gem_contexts.html
 
--:2563: WARNING:LINE_SPACING: Missing a blank line after declarations
-#2563: FILE: drivers/gpu/drm/i915/gt/selftest_execlists.c:2481:
-+	enum intel_engine_id id;
-+	IGT_TIMEOUT(end_time);
+  * igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size:
+    - fi-skl-6700k2:      [PASS][7] -> [FAIL][8] ([i915#697]) +7 similar issues
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7545/fi-skl-6700k2/igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15698/fi-skl-6700k2/igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size.html
 
-total: 0 errors, 8 warnings, 0 checks, 6770 lines checked
-7865d27bced8 drm/i915: introduce intel_execlists_submission.<c/h>
--:40: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#40: 
-new file mode 100644
+  
+#### Possible fixes ####
 
--:45: WARNING:SPDX_LICENSE_TAG: Missing or malformed SPDX-License-Identifier tag in line 1
-#45: FILE: drivers/gpu/drm/i915/gt/intel_execlists_submission.c:1:
-+/*
+  * igt@gem_exec_parallel@basic:
+    - {fi-tgl-guc}:       [INCOMPLETE][9] ([i915#476]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7545/fi-tgl-guc/igt@gem_exec_parallel@basic.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15698/fi-tgl-guc/igt@gem_exec_parallel@basic.html
 
--:46: WARNING:SPDX_LICENSE_TAG: Misplaced SPDX-License-Identifier tag - use line 1 instead
-#46: FILE: drivers/gpu/drm/i915/gt/intel_execlists_submission.c:2:
-+ * SPDX-License-Identifier: MIT
+  * igt@i915_selftest@live_blt:
+    - fi-ivb-3770:        [DMESG-FAIL][11] ([i915#725]) -> [PASS][12]
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7545/fi-ivb-3770/igt@i915_selftest@live_blt.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15698/fi-ivb-3770/igt@i915_selftest@live_blt.html
 
--:139: WARNING:MEMORY_BARRIER: memory barrier without comment
-#139: FILE: drivers/gpu/drm/i915/gt/intel_execlists_submission.c:95:
-+		wmb();
+  
+#### Warnings ####
 
--:290: WARNING:FUNCTION_ARGUMENTS: function definition argument 'pl' should also have an identifier name
-#290: FILE: drivers/gpu/drm/i915/gt/intel_execlists_submission.c:246:
-+	struct list_head *uninitialized_var(pl);
+  * igt@i915_module_load@reload:
+    - fi-icl-u2:          [DMESG-WARN][13] ([i915#109] / [i915#289]) -> [DMESG-WARN][14] ([i915#289])
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7545/fi-icl-u2/igt@i915_module_load@reload.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15698/fi-icl-u2/igt@i915_module_load@reload.html
 
--:1355: WARNING:LONG_LINE: line over 100 characters
-#1355: FILE: drivers/gpu/drm/i915/gt/intel_execlists_submission.c:1311:
-+					*port = execlists_schedule_in(last, port - execlists->pending);
+  * igt@i915_selftest@live_blt:
+    - fi-hsw-4770:        [DMESG-FAIL][15] ([i915#725]) -> [DMESG-FAIL][16] ([i915#553] / [i915#725])
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7545/fi-hsw-4770/igt@i915_selftest@live_blt.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15698/fi-hsw-4770/igt@i915_selftest@live_blt.html
 
--:1957: WARNING:MEMORY_BARRIER: memory barrier without comment
-#1957: FILE: drivers/gpu/drm/i915/gt/intel_execlists_submission.c:1913:
-+	mb();
+  * igt@kms_chamelium@hdmi-hpd-fast:
+    - fi-kbl-7500u:       [FAIL][17] ([fdo#111096] / [i915#323]) -> [FAIL][18] ([fdo#111407])
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7545/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15698/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
 
--:2536: WARNING:SPDX_LICENSE_TAG: Missing or malformed SPDX-License-Identifier tag in line 1
-#2536: FILE: drivers/gpu/drm/i915/gt/intel_execlists_submission.h:1:
-+/*
+  * igt@kms_flip@basic-flip-vs-modeset:
+    - fi-kbl-x1275:       [DMESG-WARN][19] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][20] ([i915#62] / [i915#92]) +4 similar issues
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7545/fi-kbl-x1275/igt@kms_flip@basic-flip-vs-modeset.html
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15698/fi-kbl-x1275/igt@kms_flip@basic-flip-vs-modeset.html
 
--:2537: WARNING:SPDX_LICENSE_TAG: Misplaced SPDX-License-Identifier tag - use line 1 instead
-#2537: FILE: drivers/gpu/drm/i915/gt/intel_execlists_submission.h:2:
-+ * SPDX-License-Identifier: MIT
+  * igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a:
+    - fi-kbl-x1275:       [DMESG-WARN][21] ([i915#62] / [i915#92]) -> [DMESG-WARN][22] ([i915#62] / [i915#92] / [i915#95]) +6 similar issues
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7545/fi-kbl-x1275/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a.html
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15698/fi-kbl-x1275/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a.html
 
-total: 0 errors, 9 warnings, 0 checks, 5312 lines checked
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
 
+  [fdo#111096]: https://bugs.freedesktop.org/show_bug.cgi?id=111096
+  [fdo#111407]: https://bugs.freedesktop.org/show_bug.cgi?id=111407
+  [fdo#111593]: https://bugs.freedesktop.org/show_bug.cgi?id=111593
+  [i915#109]: https://gitlab.freedesktop.org/drm/intel/issues/109
+  [i915#289]: https://gitlab.freedesktop.org/drm/intel/issues/289
+  [i915#323]: https://gitlab.freedesktop.org/drm/intel/issues/323
+  [i915#476]: https://gitlab.freedesktop.org/drm/intel/issues/476
+  [i915#553]: https://gitlab.freedesktop.org/drm/intel/issues/553
+  [i915#592]: https://gitlab.freedesktop.org/drm/intel/issues/592
+  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
+  [i915#697]: https://gitlab.freedesktop.org/drm/intel/issues/697
+  [i915#722]: https://gitlab.freedesktop.org/drm/intel/issues/722
+  [i915#725]: https://gitlab.freedesktop.org/drm/intel/issues/725
+  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
+  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
+
+
+Participating hosts (52 -> 45)
+------------------------------
+
+  Missing    (7): fi-hsw-4770r fi-ilk-m540 fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_7545 -> Patchwork_15698
+
+  CI-20190529: 20190529
+  CI_DRM_7545: b1b808dff985c3c2050b20771050453589a60ca3 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5346: 466b0e6cbcbaccff012b484d1fd7676364b37b93 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_15698: 9ce3848ce1da398b379b9f0d5bf510f165477546 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+9ce3848ce1da drm/i915/display: Add comment to a function that probably can be removed
+9a502ffecff0 drm/i915/display: Check if pipe fastset is allowed by external dependencies
+4fd1645b537e drm/i915/dp: Fix MST disable sequences
+4660a66d3618 drm/i915/display: Always enables MST master pipe first
+7d2b979eb74b drm/i915/tgl: Select master transcoder for MST stream
+fd3979e2bdfb drm/i915/display: Share intel_connector_needs_modeset()
+956214292dd1 drm/i915: Introduce intel_plane_state_reset()
+0222e03a8c5d drm/i915: Introduce intel_crtc_state_reset()
+f0a7c707f4d4 drm/i915: Introduce intel_crtc_{alloc, free}()
+b4dc3af1b862 drm/i915: s/intel_crtc/crtc/ in intel_crtc_init()
+d3b79f9dd591 drm: Add __drm_atomic_helper_crtc_state_reset() & co.
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15698/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
