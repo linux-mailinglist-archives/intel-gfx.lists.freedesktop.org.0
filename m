@@ -1,40 +1,29 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1302311CA47
-	for <lists+intel-gfx@lfdr.de>; Thu, 12 Dec 2019 11:09:41 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A357A11CA7C
+	for <lists+intel-gfx@lfdr.de>; Thu, 12 Dec 2019 11:21:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 604096ECF7;
-	Thu, 12 Dec 2019 10:09:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 44E4E6ED03;
+	Thu, 12 Dec 2019 10:21:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 32E866ECF1
- for <intel-gfx@lists.freedesktop.org>; Thu, 12 Dec 2019 10:09:38 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 12 Dec 2019 02:09:37 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,305,1571727600"; d="scan'208";a="225859132"
-Received: from maenach-mobl1.ger.corp.intel.com (HELO [10.252.51.42])
- ([10.252.51.42])
- by orsmga002.jf.intel.com with ESMTP; 12 Dec 2019 02:09:36 -0800
-To: Manasi Navare <manasi.d.navare@intel.com>
-References: <20191114160522.9699-1-maarten.lankhorst@linux.intel.com>
- <20191212002752.GC19224@intel.com>
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Message-ID: <3a05c8d1-8be2-0c91-8b3b-ca7ea16d8f4d@linux.intel.com>
-Date: Thu, 12 Dec 2019 11:09:36 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1323C6ED00
+ for <intel-gfx@lists.freedesktop.org>; Thu, 12 Dec 2019 10:21:32 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19552153-1500050 
+ for multiple; Thu, 12 Dec 2019 10:21:12 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu, 12 Dec 2019 10:21:12 +0000
+Message-Id: <20191212102114.1134931-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.24.0
 MIME-Version: 1.0
-In-Reply-To: <20191212002752.GC19224@intel.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH 01/11] HAX to make DSC work on the icelake
- test system
+Subject: [Intel-gfx] [PATCH v2 1/3] drm/i915: Use EAGAIN for trylock failures
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,40 +36,52 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Op 12-12-2019 om 01:27 schreef Manasi Navare:
-> On Thu, Nov 14, 2019 at 05:05:12PM +0100, Maarten Lankhorst wrote:
->> DSC is available on the display emulator, but not set in DPCD.
->> Override the entries to allow bigjoiner testing.
-> In general for these hacks for specific emulator, can we base it on certain i915 parameter like
-> dsc_emaulator or something to override these values else we might actually affect DSC
-> behaviour for the actual dsc panels.
->
->> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
->> ---
->>  drivers/gpu/drm/drm_dp_helper.c | 4 ++--
->>  include/drm/drm_dp_helper.h     | 1 +
->>  2 files changed, 3 insertions(+), 2 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/drm_dp_helper.c b/drivers/gpu/drm/drm_dp_helper.c
->> index 2c7870aef469..3d6038f35ea2 100644
->> --- a/drivers/gpu/drm/drm_dp_helper.c
->> +++ b/drivers/gpu/drm/drm_dp_helper.c
->> @@ -1261,7 +1261,7 @@ u8 drm_dp_dsc_sink_max_slice_count(const u8 dsc_dpcd[DP_DSC_RECEIVER_CAP_SIZE],
->>  		if (slice_cap1 & DP_DSC_4_PER_DP_DSC_SINK)
->>  			return 4;
->>  		if (slice_cap1 & DP_DSC_2_PER_DP_DSC_SINK)
->> -			return 2;
->> +			return 4;
-> Is this also needed for the big joiner since it doesnt return 4 slice count?
->
-> Manasi
-This patch is not for upstream, just a hack to make it work on the tgl with the emulator.
+While not good behaviour, it is, however, established behaviour that we
+can punt EAGAIN to userspace if we need to retry the ioctl. When trying
+to acquire a mutex, prefer to use EAGAIN to propagate losing the race
+so that if it does end up back in userspace, we try again.
+
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+---
+ drivers/gpu/drm/i915/gt/intel_timeline.c | 2 +-
+ drivers/gpu/drm/i915/i915_request.c      | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/gt/intel_timeline.c b/drivers/gpu/drm/i915/gt/intel_timeline.c
+index 038e05a6336c..d71aafb66d6e 100644
+--- a/drivers/gpu/drm/i915/gt/intel_timeline.c
++++ b/drivers/gpu/drm/i915/gt/intel_timeline.c
+@@ -527,7 +527,7 @@ int intel_timeline_read_hwsp(struct i915_request *from,
+ 
+ 	GEM_BUG_ON(rcu_access_pointer(to->timeline) == tl);
+ 
+-	err = -EBUSY;
++	err = -EAGAIN;
+ 	if (mutex_trylock(&tl->mutex)) {
+ 		struct intel_timeline_cacheline *cl = from->hwsp_cacheline;
+ 
+diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
+index 51bb8a0812a1..fb8738987aeb 100644
+--- a/drivers/gpu/drm/i915/i915_request.c
++++ b/drivers/gpu/drm/i915/i915_request.c
+@@ -783,7 +783,7 @@ i915_request_await_start(struct i915_request *rq, struct i915_request *signal)
+ 	if (!tl) /* already started or maybe even completed */
+ 		return 0;
+ 
+-	fence = ERR_PTR(-EBUSY);
++	fence = ERR_PTR(-EAGAIN);
+ 	if (mutex_trylock(&tl->mutex)) {
+ 		fence = NULL;
+ 		if (!i915_request_started(signal) &&
+-- 
+2.24.0
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
