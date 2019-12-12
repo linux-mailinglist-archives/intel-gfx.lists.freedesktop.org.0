@@ -2,33 +2,37 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D79611CD71
-	for <lists+intel-gfx@lfdr.de>; Thu, 12 Dec 2019 13:50:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EF54911CD74
+	for <lists+intel-gfx@lfdr.de>; Thu, 12 Dec 2019 13:50:41 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6C8F46ED37;
-	Thu, 12 Dec 2019 12:50:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 436256E0E3;
+	Thu, 12 Dec 2019 12:50:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A42C66ED3C
- for <intel-gfx@lists.freedesktop.org>; Thu, 12 Dec 2019 12:50:17 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0CE396ED35;
+ Thu, 12 Dec 2019 12:50:38 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
 X-Amp-File-Uploaded: False
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 12 Dec 2019 04:43:13 -0800
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 12 Dec 2019 04:50:37 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,305,1571727600"; d="scan'208";a="265205349"
-Received: from slisovsk-lenovo-ideapad-720s-13ikb.fi.intel.com ([10.237.72.89])
- by FMSMGA003.fm.intel.com with ESMTP; 12 Dec 2019 04:43:11 -0800
-From: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 12 Dec 2019 14:40:15 +0200
-Message-Id: <20191212124015.24077-4-stanislav.lisovskiy@intel.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20191212124015.24077-1-stanislav.lisovskiy@intel.com>
-References: <20191212124015.24077-1-stanislav.lisovskiy@intel.com>
-Subject: [Intel-gfx] [PATCH v12 3/3] drm/i915: Enable SAGV support for Gen12
+X-IronPort-AV: E=Sophos;i="5.69,306,1571727600"; d="scan'208";a="216274823"
+Received: from emusial-desk.igk.intel.com (HELO localhost) ([172.28.172.70])
+ by orsmga003.jf.intel.com with ESMTP; 12 Dec 2019 04:50:36 -0800
+Date: Thu, 12 Dec 2019 13:50:35 +0100
+From: Ewelina Musial <ewelina.musial@intel.com>
+To: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+Message-ID: <20191212125035.GA12385@emusial-desk.ger.corp.intel.com>
+References: <20191211094243.6939-1-janusz.krzysztofik@linux.intel.com>
+MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <20191211094243.6939-1-janusz.krzysztofik@linux.intel.com>
+User-Agent: Mutt/1.12.1 (2019-06-15)
+Subject: Re: [Intel-gfx] [PATCH i-g-t] tests/prime_vgem: Give meaningful
+ messages on SKIP
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,38 +45,63 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-MIME-Version: 1.0
+Cc: igt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Flip the switch and enable SAGV support
-for Gen12 also.
+On Wed, Dec 11, 2019 at 10:42:43AM +0100, Janusz Krzysztofik wrote:
+> Messages displayed on SKIPs introduced by commit 92caadb4e551
+> ("tests/prime_vgem: Skip basic-read/write subtests if not supported")
+> don't inform clearly enough that those SKIPs are expected behavior.
+> Fix it.
+> 
+> Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+> Cc: Ewelina Musial <ewelina.musial@intel.com>
+> ---
+>  tests/prime_vgem.c | 9 ++++++---
+>  1 file changed, 6 insertions(+), 3 deletions(-)
+> 
+> diff --git a/tests/prime_vgem.c b/tests/prime_vgem.c
+> index 6595818c..3bdb2300 100644
+> --- a/tests/prime_vgem.c
+> +++ b/tests/prime_vgem.c
+> @@ -46,7 +46,8 @@ static void test_read(int vgem, int i915)
+>  	handle = prime_fd_to_handle(i915, dmabuf);
+>  	close(dmabuf);
+>  
+> -	igt_skip_on(__gem_read(i915, handle, 0, &i, sizeof(i)));
+> +	igt_skip_on_f(__gem_read(i915, handle, 0, &i, sizeof(i)),
+> +		      "PREAD from dma-buf not supported on this hardware\n");
+>  
+>  	ptr = vgem_mmap(vgem, &scratch, PROT_WRITE);
+>  	for (i = 0; i < 1024; i++)
+> @@ -83,7 +84,8 @@ static void test_fence_read(int i915, int vgem)
+>  	handle = prime_fd_to_handle(i915, dmabuf);
+>  	close(dmabuf);
+>  
+> -	igt_skip_on(__gem_read(i915, handle, 0, &i, sizeof(i)));
+> +	igt_skip_on_f(__gem_read(i915, handle, 0, &i, sizeof(i)),
+> +		      "PREAD from dma-buf not supported on this hardware\n");
+>  
+>  	igt_fork(child, 1) {
+>  		close(master[0]);
+> @@ -195,7 +197,8 @@ static void test_write(int vgem, int i915)
+>  	handle = prime_fd_to_handle(i915, dmabuf);
+>  	close(dmabuf);
+>  
+> -	igt_skip_on(__gem_write(i915, handle, 0, &i, sizeof(i)));
+> +	igt_skip_on_f(__gem_write(i915, handle, 0, &i, sizeof(i)),
+> +		      "PWRITE to dma-buf not supported on this hardware\n");
+>  
+>  	ptr = vgem_mmap(vgem, &scratch, PROT_READ);
+>  	gem_close(vgem, scratch.handle);
+> -- 
+> 2.21.0
+> 
 
-Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
----
- drivers/gpu/drm/i915/intel_pm.c | 4 ----
- 1 file changed, 4 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel_pm.c
-index c3a8b3a8afb0..cf323e0781a8 100644
---- a/drivers/gpu/drm/i915/intel_pm.c
-+++ b/drivers/gpu/drm/i915/intel_pm.c
-@@ -3633,10 +3633,6 @@ static bool skl_needs_memory_bw_wa(struct drm_i915_private *dev_priv)
- bool
- intel_has_sagv(struct drm_i915_private *dev_priv)
- {
--	/* HACK! */
--	if (IS_GEN(dev_priv, 12))
--		return false;
--
- 	return (IS_GEN9_BC(dev_priv) || INTEL_GEN(dev_priv) >= 10) &&
- 		dev_priv->sagv_status != I915_SAGV_NOT_CONTROLLED;
- }
--- 
-2.17.1
-
+Reviewed-by: Ewelina Musial <ewelina.musial@intel.com>
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
