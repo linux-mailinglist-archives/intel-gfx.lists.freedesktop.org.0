@@ -1,55 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0AC1011D7E4
-	for <lists+intel-gfx@lfdr.de>; Thu, 12 Dec 2019 21:30:11 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B4F811D7EC
+	for <lists+intel-gfx@lfdr.de>; Thu, 12 Dec 2019 21:35:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F2E02898A4;
-	Thu, 12 Dec 2019 20:30:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 237AB882AF;
+	Thu, 12 Dec 2019 20:34:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-1.mimecast.com (us-smtp-2.mimecast.com
- [205.139.110.61])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 21AF888F94
- for <intel-gfx@lists.freedesktop.org>; Thu, 12 Dec 2019 20:29:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1576182596;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=fQ46nvUqunNbgCF9mSFvcSSkOg8dmX0iy8J423hZNsI=;
- b=Pe43prGmyAD9VSE6kKokRKggN0+1qpDQ5+qTL19xGkKnFnSd0BnPGim3IDEHmUlqD904Rs
- nMuzJkGyXkRD6oZQz5OpKnC7CUI07/Q5tzldkM+MDZhOqZzAWQFXEjbpKd9EKUl9Lbf/wB
- dc8fSDukBoDf7yxWGcGwlHEE2vV6p2o=
-Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
- [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-192-SJs83rnLMfigynXO0g7Fjg-1; Thu, 12 Dec 2019 15:29:55 -0500
-Received: from smtp.corp.redhat.com (int-mx04.intmail.prod.int.phx2.redhat.com
- [10.5.11.14])
- (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
- (No client certificate requested)
- by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 5B6C1100551A;
- Thu, 12 Dec 2019 20:29:54 +0000 (UTC)
-Received: from shalem.localdomain.com (unknown [10.36.118.3])
- by smtp.corp.redhat.com (Postfix) with ESMTP id E8E255D9C9;
- Thu, 12 Dec 2019 20:29:52 +0000 (UTC)
-From: Hans de Goede <hdegoede@redhat.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>
-Date: Thu, 12 Dec 2019 21:29:49 +0100
-Message-Id: <20191212202949.190451-2-hdegoede@redhat.com>
-In-Reply-To: <20191212202949.190451-1-hdegoede@redhat.com>
-References: <20191212202949.190451-1-hdegoede@redhat.com>
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 15EEE6E0AC;
+ Thu, 12 Dec 2019 20:34:55 +0000 (UTC)
+X-Amp-Result: UNSCANNABLE
+X-Amp-File-Uploaded: False
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 12 Dec 2019 12:34:55 -0800
+X-IronPort-AV: E=Sophos;i="5.69,307,1571727600"; d="scan'208";a="216234875"
+Received: from ldmartin-desk1.jf.intel.com (HELO ldmartin-desk1)
+ ([10.24.11.18])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 12 Dec 2019 12:34:55 -0800
+Date: Thu, 12 Dec 2019 12:34:49 -0800
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Matt Roper <matthew.d.roper@intel.com>
+Message-ID: <20191212203449.e5ztqbkk7ljj2qqa@ldmartin-desk1>
+X-Patchwork-Hint: ignore
+References: <20191209143921.9240-1-pankaj.laxminarayan.bharadiya@intel.com>
+ <20191211055739.uxe46chnhkc2byul@ldmartin-desk1>
+ <20191211064041.GA3339@plaxmina-desktop.iind.intel.com>
+ <20191212002250.357dhphi3clst7qy@ldmartin-desk1>
+ <20191212173717.GG85422@mdroper-desk1.amr.corp.intel.com>
 MIME-Version: 1.0
-X-Scanned-By: MIMEDefang 2.79 on 10.5.11.14
-X-MC-Unique: SJs83rnLMfigynXO0g7Fjg-1
-X-Mimecast-Spam-Score: 0
-Subject: [Intel-gfx] [PATCH 2/2] drm/i915: Add invert-brightness quirk for
- Thundersoft TST178 tablet
+Content-Disposition: inline
+In-Reply-To: <20191212173717.GG85422@mdroper-desk1.amr.corp.intel.com>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/display: cleanup intel_bw_state on
+ i915 module removal
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,54 +49,153 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
- dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
+Cc: David Airlie <airlied@linux.ie>, dri-devel@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The Thundersoft TST178 tablet uses a DSI panel with an external PWM
-controller (as all DSI panels do). But unlike other DSI panels a duty-cycle
-of 100% turns the backlight off and 0% sets it to maximum brightness.
+On Thu, Dec 12, 2019 at 09:37:17AM -0800, Matt Roper wrote:
+>On Wed, Dec 11, 2019 at 04:22:50PM -0800, Lucas De Marchi wrote:
+>> On Wed, Dec 11, 2019 at 12:10:41PM +0530, Bharadiya,Pankaj wrote:
+>> > On Tue, Dec 10, 2019 at 09:57:39PM -0800, Lucas De Marchi wrote:
+>> > > On Mon, Dec 09, 2019 at 08:09:02PM +0530, Pankaj Bharadiya wrote:
+>> > > >intel_bw_state allocated memory is not getting freed even after
+>> > > >module removal.
+>> > > >
+>> > > >kmemleak reported backtrace:
+>> > > >
+>> > > >   [<0000000079019739>] kmemdup+0x17/0x40
+>> > > >   [<00000000d58c1b9d>] intel_bw_duplicate_state+0x1b/0x40 [i915]
+>> > > >   [<000000007423ed0c>] drm_atomic_get_private_obj_state+0xca/0x140
+>> > > >   [<00000000100e3533>] intel_bw_atomic_check+0x133/0x350 [i915]
+>> > > >   [<00000000126d0e0c>] intel_atomic_check+0x1ab7/0x20d0 [i915]
+>> > > >   [<00000000d5dfc004>] drm_atomic_check_only+0x563/0x810
+>> > > >   [<00000000c9379611>] drm_atomic_commit+0xe/0x50
+>> > > >   [<00000000ec82b765>] drm_atomic_helper_disable_all+0x133/0x160
+>> > > >   [<000000003c44760c>] drm_atomic_helper_shutdown+0x65/0xc0
+>> > > >   [<00000000414e3e5c>] i915_driver_remove+0xcb/0x130 [i915]
+>> > > >   [<00000000f8544c2a>] i915_pci_remove+0x19/0x40 [i915]
+>> > > >   [<000000002dcbd148>] pci_device_remove+0x36/0xb0
+>> > > >   [<000000003c8c6b0a>] device_release_driver_internal+0xe0/0x1c0
+>> > > >   [<00000000580e9566>] unbind_store+0xc3/0x120
+>> > > >   [<00000000869d0df5>] kernfs_fop_write+0x104/0x190
+>> > > >   [<000000004dc1a355>] vfs_write+0xb9/0x1d0
+>> > >
+>> > > what I find strange in this is that the last state was allocated by the
+>> > > "driver remove" code path.
+>> > >
+>> > > >
+>> > > >Call the drm_atomic_private_obj_fini(), which inturn calls the
+>> > > >intel_bw_destroy_state() to make sure the intel_bw_state memory is
+>> > > >freed properly.
+>> > > >
+>> > > >Signed-off-by: Pankaj Bharadiya <pankaj.laxminarayan.bharadiya@intel.com>
+>> > > >---
+>> > > >drivers/gpu/drm/i915/display/intel_bw.c      | 5 +++++
+>> > > >drivers/gpu/drm/i915/display/intel_bw.h      | 1 +
+>> > > >drivers/gpu/drm/i915/display/intel_display.c | 2 ++
+>> > > >3 files changed, 8 insertions(+)
+>> > > >
+>> > > >diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
+>> > > >index dcb66a33be9b..b228671d5a5d 100644
+>> > > >--- a/drivers/gpu/drm/i915/display/intel_bw.c
+>> > > >+++ b/drivers/gpu/drm/i915/display/intel_bw.c
+>> > > >@@ -486,3 +486,8 @@ int intel_bw_init(struct drm_i915_private *dev_priv)
+>> > > >
+>> > > >	return 0;
+>> > > >}
+>> > > >+
+>> > > >+void intel_bw_cleanup(struct drm_i915_private *dev_priv)
+>> > > >+{
+>> > > >+	drm_atomic_private_obj_fini(&dev_priv->bw_obj);
+>> > > >+}
+>> > > >diff --git a/drivers/gpu/drm/i915/display/intel_bw.h b/drivers/gpu/drm/i915/display/intel_bw.h
+>> > > >index 9db10af012f4..20b9ad241802 100644
+>> > > >--- a/drivers/gpu/drm/i915/display/intel_bw.h
+>> > > >+++ b/drivers/gpu/drm/i915/display/intel_bw.h
+>> > > >@@ -25,6 +25,7 @@ struct intel_bw_state {
+>> > > >
+>> > > >void intel_bw_init_hw(struct drm_i915_private *dev_priv);
+>> > > >int intel_bw_init(struct drm_i915_private *dev_priv);
+>> > > >+void intel_bw_cleanup(struct drm_i915_private *dev_priv);
+>> > > >int intel_bw_atomic_check(struct intel_atomic_state *state);
+>> > > >void intel_bw_crtc_update(struct intel_bw_state *bw_state,
+>> > > >			  const struct intel_crtc_state *crtc_state);
+>> > > >diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+>> > > >index 3190aa27ffdc..756eb90b1bb1 100644
+>> > > >--- a/drivers/gpu/drm/i915/display/intel_display.c
+>> > > >+++ b/drivers/gpu/drm/i915/display/intel_display.c
+>> > > >@@ -17912,6 +17912,8 @@ void intel_modeset_driver_remove(struct drm_i915_private *i915)
+>> > > >
+>> > > >	intel_gmbus_teardown(i915);
+>> > > >
+>> > > >+	intel_bw_cleanup(i915);
+>> > >
+>> > > This doesn't seem to match the (reverse) order of
+>> > > intel_modeset_init()... but it's actually the gmbus_teardown() that is
+>> > > out of place. Did you check if it's not a wrong shutdown ordering?
+>> > >
+>> >
+>> > In intel_modeset_init(), intel_gmbus_setup() happens after
+>> > intel_bw_init().
+>> > I think the patch follows the reverse ordering properly.
+>> > Am I missing anything?
+>>
+>> I said it seems that it's the gmbus_teardown() that is out of place.
+>> Have you seen my comment above? Why are we duplicating the bw_state on
+>> the module-remove code path?
+>
+>I think that part is legitimate.  Part of the module remove sequence
+>does an atomic commit to turn everything off.  During atomic
+>transactions, we create duplicates of all modesetting state objects can
+>be modified; if/when the transaction succeeds, those duplicates are
+>swapped into the actual driver state and the old objects are destroyed.
+>Thus in cases like this where we forget to destroy a private object
+>state, that leaked state structure will be the one allocated during the
+>very last atomic transaction that happened (i.e., on the driver teardown
+>codepath).
 
-I've checked the VBT and there is a BDB_LVDS_BACKLIGHT section, but
-it does not set the active_low_pwm flag. This tablet re-uses the main
-PCI vendor and product ids for the subsystem ids, so I see no other option
-then to add a DMI based quirk to fix this.
+humn, that makes sense. The new duplicate state will replace the
+previous one and hence why we see it in the backtrace, rather than one
+allocated previously.
 
-Note that the PWM backlight code in intel_panel.c currently does not honor
-the vbt.active_low_pwm flag, but that does not matter in this case.
+thanks
+Lucas De Marchi
 
-Signed-off-by: Hans de Goede <hdegoede@redhat.com>
----
- drivers/gpu/drm/i915/display/intel_quirks.c | 10 ++++++++++
- 1 file changed, 10 insertions(+)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_quirks.c b/drivers/gpu/drm/i915/display/intel_quirks.c
-index 399b1542509f..54dba152ead8 100644
---- a/drivers/gpu/drm/i915/display/intel_quirks.c
-+++ b/drivers/gpu/drm/i915/display/intel_quirks.c
-@@ -82,6 +82,16 @@ static const struct intel_dmi_quirk intel_dmi_quirks[] = {
- 					    DMI_MATCH(DMI_PRODUCT_NAME, ""),
- 				},
- 			},
-+			{
-+				.callback = intel_dmi_reverse_brightness,
-+				.ident = "Thundersoft TST178 tablet",
-+				/* DMI strings are too generic, also match on BIOS date */
-+				.matches = {DMI_EXACT_MATCH(DMI_BOARD_VENDOR, "AMI Corporation"),
-+					    DMI_EXACT_MATCH(DMI_BOARD_NAME, "Aptio CRB"),
-+					    DMI_EXACT_MATCH(DMI_PRODUCT_NAME, "To be filled by O.E.M."),
-+					    DMI_EXACT_MATCH(DMI_BIOS_DATE, "04/15/2014"),
-+				},
-+			},
- 			{ }  /* terminating entry */
- 		},
- 		.hook = quirk_invert_brightness,
--- 
-2.23.0
-
+>
+>
+>Matt
+>
+>>
+>> Lucas De Marchi
+>>
+>> >
+>> > Thanks,
+>> > Pankaj
+>> >
+>> > > thanks
+>> > > Lucas De Marchi
+>> > >
+>> > > >+
+>> > > >	destroy_workqueue(i915->flip_wq);
+>> > > >	destroy_workqueue(i915->modeset_wq);
+>> > > >
+>> > > >--
+>> > > >2.23.0
+>> > > >
+>> > > >_______________________________________________
+>> > > >Intel-gfx mailing list
+>> > > >Intel-gfx@lists.freedesktop.org
+>> > > >https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+>
+>-- 
+>Matt Roper
+>Graphics Software Engineer
+>VTT-OSGC Platform Enablement
+>Intel Corporation
+>(916) 356-2795
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
