@@ -2,28 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2666611D956
-	for <lists+intel-gfx@lfdr.de>; Thu, 12 Dec 2019 23:29:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C614D11D97E
+	for <lists+intel-gfx@lfdr.de>; Thu, 12 Dec 2019 23:38:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 445F46E218;
-	Thu, 12 Dec 2019 22:29:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3337C6E225;
+	Thu, 12 Dec 2019 22:38:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6A3806E218
- for <intel-gfx@lists.freedesktop.org>; Thu, 12 Dec 2019 22:29:08 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19560980-1500050 
- for <intel-gfx@lists.freedesktop.org>; Thu, 12 Dec 2019 22:29:03 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 12 Dec 2019 22:29:05 +0000
-Message-Id: <20191212222905.1661186-1-chris@chris-wilson.co.uk>
+X-Greylist: delayed 1200 seconds by postgrey-1.36 at gabe;
+ Thu, 12 Dec 2019 22:38:02 UTC
+Received: from 4.mo2.mail-out.ovh.net (4.mo2.mail-out.ovh.net [87.98.172.75])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4ADAB6E225
+ for <intel-gfx@lists.freedesktop.org>; Thu, 12 Dec 2019 22:38:02 +0000 (UTC)
+Received: from player798.ha.ovh.net (unknown [10.108.35.128])
+ by mo2.mail-out.ovh.net (Postfix) with ESMTP id 8703A1B73C0
+ for <intel-gfx@lists.freedesktop.org>; Thu, 12 Dec 2019 23:01:34 +0100 (CET)
+Received: from etezian.org (net-37-116-49-191.cust.vodafonedsl.it
+ [37.116.49.191]) (Authenticated sender: andi@etezian.org)
+ by player798.ha.ovh.net (Postfix) with ESMTPSA id E1C08D45BC96;
+ Thu, 12 Dec 2019 22:01:29 +0000 (UTC)
+From: Andi Shyti <andi@etezian.org>
+To: Intel GFX <intel-gfx@lists.freedesktop.org>
+Date: Fri, 13 Dec 2019 00:01:20 +0200
+Message-Id: <20191212220121.17852-2-andi@etezian.org>
 X-Mailer: git-send-email 2.24.0
+In-Reply-To: <20191212220121.17852-1-andi@etezian.org>
+References: <20191212220121.17852-1-andi@etezian.org>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [CI] drm/i915/gt: Set vm again after MI_SET_CONTEXT
+X-Ovh-Tracer-Id: 13312077552317022813
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: -100
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedufedrudeljedgudehjecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfqggfjpdevjffgvefmvefgnecuuegrihhlohhuthemucehtddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefhvffufffkofgjfhgggfestdekredtredttdenucfhrhhomheptehnughiucfuhhihthhiuceorghnughisegvthgviihirghnrdhorhhgqeenucfkpheptddrtddrtddrtddpfeejrdduudeirdegledrudeludenucfrrghrrghmpehmohguvgepshhmthhpqdhouhhtpdhhvghlohepphhlrgihvghrjeelkedrhhgrrdhovhhhrdhnvghtpdhinhgvtheptddrtddrtddrtddpmhgrihhlfhhrohhmpegrnhguihesvghtvgiiihgrnhdrohhrghdprhgtphhtthhopehinhhtvghlqdhgfhigsehlihhsthhsrdhfrhgvvgguvghskhhtohhprdhorhhgnecuvehluhhsthgvrhfuihiivgeptd
+Subject: [Intel-gfx] [PATCH v2 1/2] drm/i915/rps: Add frequency translation
+ helpers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,171 +52,147 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Reloading the PD after MI_SET_CONTEXT, along with copious amounts of
-flushes, so far is making Baytrail more content.
+From: Andi Shyti <andi.shyti@intel.com>
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Add two helpers that for reading the actual GT's frequency. The
+two helpers are:
+
+ - intel_rps_read_cagf: reads the frequency and returns it not
+   normalized
+
+ - intel_rps_read_actual_frequency: provides the frequency in Hz.
+
+Use the above helpers in sysfs and debugfs.
+
+Signed-off-by: Andi Shyti <andi.shyti@intel.com>
 ---
- .../gpu/drm/i915/gt/intel_ring_submission.c   | 100 ++++++++----------
- 1 file changed, 45 insertions(+), 55 deletions(-)
+ drivers/gpu/drm/i915/gt/intel_rps.c | 22 ++++++++++++++++++++++
+ drivers/gpu/drm/i915/gt/intel_rps.h |  2 ++
+ drivers/gpu/drm/i915/i915_debugfs.c | 21 +++++----------------
+ drivers/gpu/drm/i915/i915_sysfs.c   | 14 ++------------
+ 4 files changed, 31 insertions(+), 28 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_ring_submission.c b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
-index 5c22ca6f998a..6d896ff52125 100644
---- a/drivers/gpu/drm/i915/gt/intel_ring_submission.c
-+++ b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
-@@ -1372,11 +1372,13 @@ static int load_pd_dir(struct i915_request *rq,
- 	const struct intel_engine_cs * const engine = rq->engine;
- 	u32 *cs;
- 
--	cs = intel_ring_begin(rq, 12);
-+	cs = intel_ring_begin(rq, 16);
- 	if (IS_ERR(cs))
- 		return PTR_ERR(cs);
- 
--	*cs++ = MI_LOAD_REGISTER_IMM(1);
-+	*cs++ = MI_LOAD_REGISTER_IMM(2);
-+	*cs++ = i915_mmio_reg_offset(RING_INSTPM(engine->mmio_base));
-+	*cs++ = _MASKED_BIT_ENABLE(INSTPM_TLB_INVALIDATE);
- 	*cs++ = i915_mmio_reg_offset(RING_PP_DIR_DCLV(engine->mmio_base));
- 	*cs++ = valid;
- 
-@@ -1385,9 +1387,11 @@ static int load_pd_dir(struct i915_request *rq,
- 	*cs++ = intel_gt_scratch_offset(rq->engine->gt,
- 					INTEL_GT_SCRATCH_FIELD_DEFAULT);
- 
--	*cs++ = MI_LOAD_REGISTER_IMM(1);
-+	*cs++ = MI_LOAD_REGISTER_IMM(2);
- 	*cs++ = i915_mmio_reg_offset(RING_PP_DIR_BASE(engine->mmio_base));
- 	*cs++ = px_base(ppgtt->pd)->ggtt_offset << 10;
-+	*cs++ = i915_mmio_reg_offset(RING_INSTPM(engine->mmio_base));
-+	*cs++ = _MASKED_BIT_ENABLE(INSTPM_TLB_INVALIDATE);
- 
- 	/* Stall until the page table load is complete? */
- 	*cs++ = MI_STORE_REGISTER_MEM | MI_SRM_LRM_GLOBAL_GTT;
-@@ -1400,25 +1404,6 @@ static int load_pd_dir(struct i915_request *rq,
- 	return rq->engine->emit_flush(rq, EMIT_FLUSH);
+diff --git a/drivers/gpu/drm/i915/gt/intel_rps.c b/drivers/gpu/drm/i915/gt/intel_rps.c
+index 106c9fce9d6c..05ec4bcbd6ef 100644
+--- a/drivers/gpu/drm/i915/gt/intel_rps.c
++++ b/drivers/gpu/drm/i915/gt/intel_rps.c
+@@ -1682,6 +1682,28 @@ u32 intel_get_cagf(struct intel_rps *rps, u32 rpstat)
+ 	return  cagf;
  }
  
--static int flush_tlb(struct i915_request *rq)
--{
--	const struct intel_engine_cs * const engine = rq->engine;
--	u32 *cs;
--
--	cs = intel_ring_begin(rq, 4);
--	if (IS_ERR(cs))
--		return PTR_ERR(cs);
--
--	*cs++ = MI_LOAD_REGISTER_IMM(1);
--	*cs++ = i915_mmio_reg_offset(RING_INSTPM(engine->mmio_base));
--	*cs++ = _MASKED_BIT_ENABLE(INSTPM_TLB_INVALIDATE);
--
--	*cs++ = MI_NOOP;
--	intel_ring_advance(rq, cs);
--
--	return 0;
--}
--
- static inline int mi_set_context(struct i915_request *rq, u32 flags)
- {
- 	struct drm_i915_private *i915 = rq->i915;
-@@ -1591,52 +1576,53 @@ static int remap_l3(struct i915_request *rq)
- 	return 0;
- }
- 
--static int switch_context(struct i915_request *rq)
-+static int switch_mm(struct i915_request *rq, struct i915_address_space *vm)
- {
--	struct intel_context *ce = rq->hw_context;
--	struct i915_address_space *vm = vm_alias(ce);
--	u32 hw_flags = 0;
- 	int ret;
- 
--	GEM_BUG_ON(HAS_EXECLISTS(rq->i915));
-+	if (!vm)
-+		return 0;
- 
--	if (vm) {
--		/*
--		 * Not only do we need a full barrier (post-sync write) after
--		 * invalidating the TLBs, but we need to wait a little bit
--		 * longer. Whether this is merely delaying us, or the
--		 * subsequent flush is a key part of serialising with the
--		 * post-sync op, this extra pass appears vital before a
--		 * mm switch!
--		 */
--		ret = rq->engine->emit_flush(rq, EMIT_INVALIDATE);
--		if (ret)
--			return ret;
-+	/*
-+	 * Not only do we need a full barrier (post-sync write) after
-+	 * invalidating the TLBs, but we need to wait a little bit
-+	 * longer. Whether this is merely delaying us, or the
-+	 * subsequent flush is a key part of serialising with the
-+	 * post-sync op, this extra pass appears vital before a
-+	 * mm switch!
-+	 */
-+	ret = rq->engine->emit_flush(rq, EMIT_INVALIDATE);
-+	if (ret)
-+		return ret;
-+	ret = load_pd_dir(rq, i915_vm_to_ppgtt(vm), PP_DIR_DCLV_2G);
-+	if (ret)
-+		return ret;
- 
--		ret = flush_tlb(rq);
--		if (ret)
--			return ret;
-+	ret = rq->engine->emit_flush(rq, EMIT_FLUSH);
-+	if (ret)
-+		return ret;
- 
--		ret = load_pd_dir(rq, i915_vm_to_ppgtt(vm), 0);
--		if (ret)
--			return ret;
-+	ret = rq->engine->emit_flush(rq, EMIT_INVALIDATE);
-+	if (ret)
-+		return ret;
- 
--		ret = load_pd_dir(rq, i915_vm_to_ppgtt(vm), PP_DIR_DCLV_2G);
--		if (ret)
--			return ret;
-+	return load_pd_dir(rq, i915_vm_to_ppgtt(vm), PP_DIR_DCLV_2G);
-+}
- 
--		ret = flush_tlb(rq);
--		if (ret)
--			return ret;
-+static int switch_context(struct i915_request *rq)
++u32 intel_rps_read_cagf(struct intel_rps *rps)
 +{
-+	struct intel_context *ce = rq->hw_context;
-+	struct i915_address_space *vm = vm_alias(ce);
-+	int ret;
++	struct drm_i915_private *i915 = rps_to_i915(rps);
++	u32 freq;
++
++	if (IS_VALLEYVIEW(i915) || IS_CHERRYVIEW(i915)) {
++		vlv_punit_get(i915);
++		freq = vlv_punit_read(i915, PUNIT_REG_GPU_FREQ_STS);
++		vlv_punit_put(i915);
++
++		return (freq >> 8) & 0xff;
++	}
++
++	return intel_get_cagf(rps, intel_uncore_read(rps_to_gt(rps)->uncore,
++						     GEN6_RPSTAT1));
++}
++
++u32 intel_rps_read_actual_frequency(struct intel_rps *rps)
++{
++	return intel_gpu_freq(rps, intel_rps_read_cagf(rps));
++}
++
+ /* External interface for intel_ips.ko */
  
--		ret = rq->engine->emit_flush(rq, EMIT_INVALIDATE);
--		if (ret)
--			return ret;
+ static struct drm_i915_private __rcu *ips_mchdev;
+diff --git a/drivers/gpu/drm/i915/gt/intel_rps.h b/drivers/gpu/drm/i915/gt/intel_rps.h
+index 9518c66c9792..bd12a63ecd4a 100644
+--- a/drivers/gpu/drm/i915/gt/intel_rps.h
++++ b/drivers/gpu/drm/i915/gt/intel_rps.h
+@@ -30,6 +30,8 @@ void intel_rps_mark_interactive(struct intel_rps *rps, bool interactive);
+ int intel_gpu_freq(struct intel_rps *rps, int val);
+ int intel_freq_opcode(struct intel_rps *rps, int val);
+ u32 intel_get_cagf(struct intel_rps *rps, u32 rpstat1);
++u32 intel_rps_read_cagf(struct intel_rps *rps);
++u32 intel_rps_read_actual_frequency(struct intel_rps *rps);
+ 
+ void gen5_rps_irq_handler(struct intel_rps *rps);
+ void gen6_rps_irq_handler(struct intel_rps *rps, u32 pm_iir);
+diff --git a/drivers/gpu/drm/i915/i915_debugfs.c b/drivers/gpu/drm/i915/i915_debugfs.c
+index 9cd5ce5bc93b..3ec26b6a48c1 100644
+--- a/drivers/gpu/drm/i915/i915_debugfs.c
++++ b/drivers/gpu/drm/i915/i915_debugfs.c
+@@ -881,7 +881,7 @@ static int i915_frequency_info(struct seq_file *m, void *unused)
+ 		rpdownei = I915_READ(GEN6_RP_CUR_DOWN_EI) & GEN6_CURIAVG_MASK;
+ 		rpcurdown = I915_READ(GEN6_RP_CUR_DOWN) & GEN6_CURBSYTAVG_MASK;
+ 		rpprevdown = I915_READ(GEN6_RP_PREV_DOWN) & GEN6_CURBSYTAVG_MASK;
+-		cagf = intel_gpu_freq(rps, intel_get_cagf(rps, rpstat));
++		cagf = intel_rps_read_actual_frequency(rps);
+ 
+ 		intel_uncore_forcewake_put(&dev_priv->uncore, FORCEWAKE_ALL);
+ 
+@@ -1623,21 +1623,11 @@ static int i915_rps_boost_info(struct seq_file *m, void *data)
+ {
+ 	struct drm_i915_private *dev_priv = node_to_i915(m->private);
+ 	struct intel_rps *rps = &dev_priv->gt.rps;
+-	u32 act_freq = rps->cur_freq;
++	u32 act_freq;
+ 	intel_wakeref_t wakeref;
+ 
+-	with_intel_runtime_pm_if_in_use(&dev_priv->runtime_pm, wakeref) {
+-		if (IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv)) {
+-			vlv_punit_get(dev_priv);
+-			act_freq = vlv_punit_read(dev_priv,
+-						  PUNIT_REG_GPU_FREQ_STS);
+-			vlv_punit_put(dev_priv);
+-			act_freq = (act_freq >> 8) & 0xff;
+-		} else {
+-			act_freq = intel_get_cagf(rps,
+-						  I915_READ(GEN6_RPSTAT1));
+-		}
 -	}
-+	GEM_BUG_ON(HAS_EXECLISTS(rq->i915));
++	with_intel_runtime_pm_if_in_use(&dev_priv->runtime_pm, wakeref)
++		act_freq = intel_rps_read_actual_frequency(rps);
  
- 	if (ce->state) {
-+		u32 hw_flags;
-+
- 		GEM_BUG_ON(rq->engine->id != RCS0);
+ 	seq_printf(m, "RPS enabled? %d\n", rps->enabled);
+ 	seq_printf(m, "GPU busy? %s\n", yesno(dev_priv->gt.awake));
+@@ -1645,8 +1635,7 @@ static int i915_rps_boost_info(struct seq_file *m, void *data)
+ 		   atomic_read(&rps->num_waiters));
+ 	seq_printf(m, "Interactive? %d\n", READ_ONCE(rps->power.interactive));
+ 	seq_printf(m, "Frequency requested %d, actual %d\n",
+-		   intel_gpu_freq(rps, rps->cur_freq),
+-		   intel_gpu_freq(rps, act_freq));
++		   intel_gpu_freq(rps, rps->cur_freq), act_freq);
+ 	seq_printf(m, "  min hard:%d, soft:%d; max soft:%d, hard:%d\n",
+ 		   intel_gpu_freq(rps, rps->min_freq),
+ 		   intel_gpu_freq(rps, rps->min_freq_softlimit),
+diff --git a/drivers/gpu/drm/i915/i915_sysfs.c b/drivers/gpu/drm/i915/i915_sysfs.c
+index 65476909d1bf..5e0f9f217a5d 100644
+--- a/drivers/gpu/drm/i915/i915_sysfs.c
++++ b/drivers/gpu/drm/i915/i915_sysfs.c
+@@ -265,20 +265,10 @@ static ssize_t gt_act_freq_mhz_show(struct device *kdev,
+ 	u32 freq;
  
-+		hw_flags = 0;
- 		if (!test_bit(CONTEXT_VALID_BIT, &ce->flags))
- 			hw_flags = MI_RESTORE_INHIBIT;
+ 	wakeref = intel_runtime_pm_get(&dev_priv->runtime_pm);
+-
+-	if (IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv)) {
+-		vlv_punit_get(dev_priv);
+-		freq = vlv_punit_read(dev_priv, PUNIT_REG_GPU_FREQ_STS);
+-		vlv_punit_put(dev_priv);
+-
+-		freq = (freq >> 8) & 0xff;
+-	} else {
+-		freq = intel_get_cagf(rps, I915_READ(GEN6_RPSTAT1));
+-	}
+-
++	freq = intel_rps_read_actual_frequency(rps);
+ 	intel_runtime_pm_put(&dev_priv->runtime_pm, wakeref);
  
-@@ -1645,6 +1631,10 @@ static int switch_context(struct i915_request *rq)
- 			return ret;
- 	}
+-	return snprintf(buf, PAGE_SIZE, "%d\n", intel_gpu_freq(rps, freq));
++	return snprintf(buf, PAGE_SIZE, "%d\n", freq);
+ }
  
-+	ret = switch_mm(rq, vm);
-+	if (ret)
-+		return ret;
-+
- 	ret = remap_l3(rq);
- 	if (ret)
- 		return ret;
+ static ssize_t gt_cur_freq_mhz_show(struct device *kdev,
 -- 
 2.24.0
 
