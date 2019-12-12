@@ -2,34 +2,148 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B6ADE11C66F
-	for <lists+intel-gfx@lfdr.de>; Thu, 12 Dec 2019 08:35:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E7E911C6C8
+	for <lists+intel-gfx@lfdr.de>; Thu, 12 Dec 2019 09:07:31 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B789B6EC6F;
-	Thu, 12 Dec 2019 07:35:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 80A396EC67;
+	Thu, 12 Dec 2019 08:07:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 51EE06EC6F
- for <intel-gfx@lists.freedesktop.org>; Thu, 12 Dec 2019 07:35:23 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 11 Dec 2019 23:35:22 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,305,1571727600"; d="scan'208";a="413787301"
-Received: from linux.fm.intel.com ([10.1.27.42])
- by fmsmga005.fm.intel.com with ESMTP; 11 Dec 2019 23:35:22 -0800
-From: Venkata Sandeep Dhanalakota <venkata.s.dhanalakota@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 11 Dec 2019 23:35:22 -0800
-Message-Id: <20191212073522.27785-2-venkata.s.dhanalakota@intel.com>
-X-Mailer: git-send-email 2.21.0.5.gaeb582a983
-In-Reply-To: <20191212073522.27785-1-venkata.s.dhanalakota@intel.com>
-References: <20191212073522.27785-1-venkata.s.dhanalakota@intel.com>
+Received: from EUR02-VE1-obe.outbound.protection.outlook.com
+ (mail-ve1eur02on060b.outbound.protection.outlook.com
+ [IPv6:2a01:111:f400:fe06::60b])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 681056EC67;
+ Thu, 12 Dec 2019 08:07:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=armh.onmicrosoft.com; 
+ s=selector2-armh-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=qu1YOSTQks6jo5UQ+KTVaFjlXKVAfPjyHK5x1s3Bw1k=;
+ b=dUjhcHyPkUsOFRGKArbuIKzZRobd2vkyZCvUW9IEIMJlau2ExwEdXnxXt6dxKWNwEhYtFr0vSxXi5loN8tMt4OeG9TwulSYW9V+fqoIkKwy9GxPflHfUdu0qfl04yFmdRPNQ7w6+TpFY09vk++dMi0us4u9ujLOm/j6hddE+Vgs=
+Received: from VI1PR08CA0118.eurprd08.prod.outlook.com (2603:10a6:800:d4::20)
+ by AM0PR08MB3506.eurprd08.prod.outlook.com (2603:10a6:208:db::13)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2538.17; Thu, 12 Dec
+ 2019 08:07:23 +0000
+Received: from AM5EUR03FT009.eop-EUR03.prod.protection.outlook.com
+ (2a01:111:f400:7e08::200) by VI1PR08CA0118.outlook.office365.com
+ (2603:10a6:800:d4::20) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2538.15 via Frontend
+ Transport; Thu, 12 Dec 2019 08:07:22 +0000
+Authentication-Results: spf=pass (sender IP is 63.35.35.123)
+ smtp.mailfrom=arm.com; lists.freedesktop.org; dkim=pass (signature was
+ verified) header.d=armh.onmicrosoft.com;lists.freedesktop.org;
+ dmarc=bestguesspass action=none header.from=arm.com;
+Received-SPF: Pass (protection.outlook.com: domain of arm.com designates
+ 63.35.35.123 as permitted sender) receiver=protection.outlook.com;
+ client-ip=63.35.35.123; helo=64aa7808-outbound-1.mta.getcheckrecipient.com;
+Received: from 64aa7808-outbound-1.mta.getcheckrecipient.com (63.35.35.123) by
+ AM5EUR03FT009.mail.protection.outlook.com (10.152.16.110) with
+ Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2495.18 via Frontend Transport; Thu, 12 Dec 2019 08:07:21 +0000
+Received: ("Tessian outbound 45a30426f8e4:v37");
+ Thu, 12 Dec 2019 08:07:21 +0000
+X-CheckRecipientChecked: true
+X-CR-MTA-CID: b0bd13607b18e190
+X-CR-MTA-TID: 64aa7808
+Received: from 74f596649c84.1
+ by 64aa7808-outbound-1.mta.getcheckrecipient.com id
+ 5E8851C5-D5C5-4916-98B7-20C7CD1A620B.1; 
+ Thu, 12 Dec 2019 08:07:16 +0000
+Received: from EUR02-HE1-obe.outbound.protection.outlook.com
+ by 64aa7808-outbound-1.mta.getcheckrecipient.com with ESMTPS id 74f596649c84.1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384);
+ Thu, 12 Dec 2019 08:07:16 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=H9rO5TL5jouYnd0/zag3tzqk+Gi6X6T4aJsDCq/xN9oh9gq7XIg0VNV0J2PjQNHkBheN24+B2/slfSqhQRyyJQdG6+pzX5MmqYj8r+xkfve177BIyBOoQCii+kVAlJMtMu1WanF2veDcpRgDh1SGofEYdl1+Xj4jX0icR79I8XUP55Ss3n+YgN74UY1N92F1g8S4pNdP3gtk4nt9Crq/VKVy6VPHIKEQ2uyOKWkSbFOVPK3AGPdpwAfbXscAHkerYdwqmcBhut7T9IIlitgyyHkoyb8Jgm0g6Nk6UGMmjCDeInhRe/bp8vdsvwI/3qIszFRpTW353QUiCgyjpNDLhw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=qu1YOSTQks6jo5UQ+KTVaFjlXKVAfPjyHK5x1s3Bw1k=;
+ b=Rk34QY+fC2l2q+yp2GaXmER8zETXPQR0kz9dDQAUy4SneAnFLo+Amo2U3anbxyVyFbJVEhlwbQcb8W0tjihvcWkO/CHJ4y3BNMfW6FmY5On2aZbUUI0SOVnnWqSHQH8G4iA45beWZhq+d9lqypJgwzm8AZq6l5rv3757/FAf0LkE7E2w83jHOSt3kpwGmxqrvt2IrJCaML6jNTY29uy++oLSkYrOxzSxRSv3xPTIwlIKscctqnak/YeDZK1l3oFiCQbf+SOX/12YgP5q28/UZh1Z6lTLzE+zJqEzPCyXIEXqi0I5ojJ9/vdLeq1KiLGtLWjntonT9bA9PC1k/ELfpw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=arm.com; dmarc=pass action=none header.from=arm.com; dkim=pass
+ header.d=arm.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=armh.onmicrosoft.com; 
+ s=selector2-armh-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=qu1YOSTQks6jo5UQ+KTVaFjlXKVAfPjyHK5x1s3Bw1k=;
+ b=dUjhcHyPkUsOFRGKArbuIKzZRobd2vkyZCvUW9IEIMJlau2ExwEdXnxXt6dxKWNwEhYtFr0vSxXi5loN8tMt4OeG9TwulSYW9V+fqoIkKwy9GxPflHfUdu0qfl04yFmdRPNQ7w6+TpFY09vk++dMi0us4u9ujLOm/j6hddE+Vgs=
+Received: from VE1PR08MB5006.eurprd08.prod.outlook.com (10.255.159.31) by
+ VE1PR08MB4800.eurprd08.prod.outlook.com (10.255.114.10) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2538.15; Thu, 12 Dec 2019 08:07:13 +0000
+Received: from VE1PR08MB5006.eurprd08.prod.outlook.com
+ ([fe80::f984:b0c7:bce9:144e]) by VE1PR08MB5006.eurprd08.prod.outlook.com
+ ([fe80::f984:b0c7:bce9:144e%2]) with mapi id 15.20.2538.016; Thu, 12 Dec 2019
+ 08:07:13 +0000
+From: "james qian wang (Arm Technology China)" <james.qian.wang@arm.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Thread-Topic: [6/8] drm/atomic: convert to drm device based logging
+Thread-Index: AQHVsMMpB7r+kRwlM0yYloFnaPd0Gg==
+Date: Thu, 12 Dec 2019 08:07:13 +0000
+Message-ID: <20191212080707.GA14875@jamwan02-TSP300>
+References: <20191210123050.8799-6-jani.nikula@intel.com>
+In-Reply-To: <20191210123050.8799-6-jani.nikula@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+user-agent: Mutt/1.10.1 (2018-07-13)
+x-originating-ip: [113.29.88.7]
+x-clientproxiedby: HK0PR01CA0051.apcprd01.prod.exchangelabs.com
+ (2603:1096:203:a6::15) To VE1PR08MB5006.eurprd08.prod.outlook.com
+ (2603:10a6:803:113::31)
+Authentication-Results-Original: spf=none (sender IP is )
+ smtp.mailfrom=james.qian.wang@arm.com; 
+x-ms-exchange-messagesentrepresentingtype: 1
+x-ms-publictraffictype: Email
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-Office365-Filtering-Correlation-Id: fa450f59-61c2-4b91-aef8-08d77eda50bf
+X-MS-TrafficTypeDiagnostic: VE1PR08MB4800:|AM0PR08MB3506:
+X-Microsoft-Antispam-PRVS: <AM0PR08MB350637377F53FFD0688D27C4B3550@AM0PR08MB3506.eurprd08.prod.outlook.com>
+x-checkrecipientrouted: true
+x-ms-oob-tlc-oobclassifiers: OLM:175;OLM:175;
+x-forefront-prvs: 0249EFCB0B
+X-Forefront-Antispam-Report-Untrusted: SFV:NSPM;
+ SFS:(10009020)(7916004)(4636009)(39860400002)(136003)(366004)(346002)(376002)(396003)(199004)(189003)(66946007)(66446008)(54906003)(66476007)(66556008)(64756008)(478600001)(6512007)(316002)(52116002)(81166006)(81156014)(30864003)(8676002)(33716001)(1076003)(8936002)(9686003)(5660300002)(4326008)(86362001)(6506007)(6486002)(33656002)(71200400001)(186003)(2906002)(26005)(6916009)(55236004)(579004);
+ DIR:OUT; SFP:1101; SCL:1; SRVR:VE1PR08MB4800;
+ H:VE1PR08MB5006.eurprd08.prod.outlook.com; FPR:; SPF:None; LANG:en;
+ PTR:InfoNoRecords; A:1; MX:1; 
+received-spf: None (protection.outlook.com: arm.com does not designate
+ permitted sender hosts)
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam-Untrusted: BCL:0;
+X-Microsoft-Antispam-Message-Info-Original: v7MqtrMrVsSPkH4kw3x8CuQl6TqoFQyE6tl8wtXRZS14Z68bufWCLMOWcsEkcy1RbK/IDyEKqTJZmntvdpw4Lue0CvEwFuk82GSfQ6gg/lgg6ZxU1CjfzOxzjZqUReA4xZBZDOZR3t0bUfmX5nGLCOwXXI3I37TfkYtE8mBrC8OwMDb9RjTyJfKK6FAnw6OtOpWNKlXAOR1aHtqicartRgf7Bqc7Telemjcsz8KchyLHEZ2mEPWaxhhKnVllYgKUwagyAb9Gv+ALZJXTxooT8tAG9UWwLhP4wSboFds0l3YNrxCL/dhWoW6vVcd7zDzUsRgvdwJbxDUdg8HulDswTif0diIl3bODgrg4KqIfvatcYf++EabSkvo7Pphy4MNp6IZL2fO6HVMFUJYaRPmXu9F8lt0et5bGsIunGeIpCbBPme5s7FamayZ8iMEAaoh7
+x-ms-exchange-transport-forked: True
+Content-ID: <B925C96131B3C74CB1704C68FA7EE546@eurprd08.prod.outlook.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 2/2] drm/i915: Tag GEM_TRACE with device name
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VE1PR08MB4800
+Original-Authentication-Results: spf=none (sender IP is )
+ smtp.mailfrom=james.qian.wang@arm.com; 
+X-EOPAttributedMessage: 0
+X-MS-Exchange-Transport-CrossTenantHeadersStripped: AM5EUR03FT009.eop-EUR03.prod.protection.outlook.com
+X-Forefront-Antispam-Report: CIP:63.35.35.123; IPV:CAL; SCL:-1; CTRY:IE;
+ EFV:NLI; SFV:NSPM;
+ SFS:(10009020)(7916004)(4636009)(396003)(39860400002)(136003)(346002)(376002)(189003)(199004)(186003)(81156014)(1076003)(26005)(86362001)(81166006)(6506007)(336012)(5660300002)(4326008)(450100002)(8676002)(76130400001)(6486002)(2906002)(70206006)(70586007)(54906003)(316002)(6862004)(6512007)(33656002)(8936002)(9686003)(30864003)(26826003)(478600001)(356004)(33716001)(36906005);
+ DIR:OUT; SFP:1101; SCL:1; SRVR:AM0PR08MB3506;
+ H:64aa7808-outbound-1.mta.getcheckrecipient.com; FPR:; SPF:Pass; LANG:en;
+ PTR:ec2-63-35-35-123.eu-west-1.compute.amazonaws.com; MX:1; A:1; 
+X-MS-Office365-Filtering-Correlation-Id-Prvs: 51887f3d-12e2-421e-6ab0-08d77eda4ba0
+NoDisclaimer: True
+X-Forefront-PRVS: 0249EFCB0B
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: KSPWnfF/qx0Yr6/By14GV9S1VoWOnb1F4tP2Ks1a893jLjL9YfUnbtgzwtaynXePvfhHZNNion79KtTn0tRjcMp81jkclLaMm7vC4q21S6LBjdJgcMesFV61dO7nREBTRA/F35Vy3DP6FxAVFLJThdK9huxu9P+lz3jYBimMc/IKnk/R8G0BrJ0Fnm3NubTS5BnGIsRyqAe1C6OOv2kGKLdtB/aYSijMlt/LwDRy4j155yhGJMWfQNcySM8JoCH2e42e8/jsrB124eH2c2U1w2Io6fgRfJ/O8JymGJWkxuTmT/zg/s3WUgtHpfRMJjD8I6fllzrnoOlViSJmH8MUFtDrc7CFlot1ANRKYXacdyYZWu1DgVpdW58AQ+pZBnzFUlEbn9HYYyMthxImkduKyr39V5CPe8YpLi11yl2WtjBsHEC5yAX99iNAPhliWY6R
+X-OriginatorOrg: arm.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Dec 2019 08:07:21.7913 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: fa450f59-61c2-4b91-aef8-08d77eda50bf
+X-MS-Exchange-CrossTenant-Id: f34e5979-57d9-4aaa-ad4d-b122a662184d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=f34e5979-57d9-4aaa-ad4d-b122a662184d; Ip=[63.35.35.123];
+ Helo=[64aa7808-outbound-1.mta.getcheckrecipient.com]
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR08MB3506
+Subject: Re: [Intel-gfx] [6/8] drm/atomic: convert to drm device based
+ logging
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,618 +156,541 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: chris.p.wilson@intel.com
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ nd <nd@arm.com>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Adding device name to trace makes debugging easier,
-when dealing with multiple gpus.
+On Tue, Dec 10, 2019 at 02:30:48PM +0200, Jani Nikula wrote:
+> Prefer drm_dbg_atomic().
+> 
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> ---
+>  drivers/gpu/drm/drm_agpsupport.c |   4 +-
+>  drivers/gpu/drm/drm_atomic.c     | 187 +++++++++++++++++--------------
+>  2 files changed, 102 insertions(+), 89 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/drm_agpsupport.c b/drivers/gpu/drm/drm_agpsupport.c
+> index 4c7ad46fdd21..cd675e58de50 100644
+> --- a/drivers/gpu/drm/drm_agpsupport.c
+> +++ b/drivers/gpu/drm/drm_agpsupport.c
+> @@ -330,8 +330,8 @@ int drm_agp_bind(struct drm_device *dev, struct drm_agp_binding *request)
+>  	if (retcode)
+>  		return retcode;
+>  	entry->bound = dev->agp->base + (page << PAGE_SHIFT);
+> -	DRM_DEBUG("base = 0x%lx entry->bound = 0x%lx\n",
+> -		  dev->agp->base, entry->bound);
+> +	drm_dbg_core(dev, "base = 0x%lx entry->bound = 0x%lx\n",
+> +		     dev->agp->base, entry->bound);
+>  	return 0;
+>  }
+>  EXPORT_SYMBOL(drm_agp_bind);
+> diff --git a/drivers/gpu/drm/drm_atomic.c b/drivers/gpu/drm/drm_atomic.c
+> index 14aeaf736321..8494b1c29bf0 100644
+> --- a/drivers/gpu/drm/drm_atomic.c
+> +++ b/drivers/gpu/drm/drm_atomic.c
+> @@ -99,7 +99,7 @@ drm_atomic_state_init(struct drm_device *dev, struct drm_atomic_state *state)
+>  
+>  	state->dev = dev;
+>  
+> -	DRM_DEBUG_ATOMIC("Allocated atomic state %p\n", state);
+> +	drm_dbg_atomic(dev, "Allocated atomic state %p\n", state);
+>  
+>  	return 0;
+>  fail:
+> @@ -150,7 +150,7 @@ void drm_atomic_state_default_clear(struct drm_atomic_state *state)
+>  	struct drm_mode_config *config = &dev->mode_config;
+>  	int i;
+>  
+> -	DRM_DEBUG_ATOMIC("Clearing atomic state %p\n", state);
+> +	drm_dbg_atomic(dev, "Clearing atomic state %p\n", state);
+>  
+>  	for (i = 0; i < state->num_connector; i++) {
+>  		struct drm_connector *connector = state->connectors[i].ptr;
+> @@ -256,11 +256,12 @@ EXPORT_SYMBOL(drm_atomic_state_clear);
+>  void __drm_atomic_state_free(struct kref *ref)
+>  {
+>  	struct drm_atomic_state *state = container_of(ref, typeof(*state), ref);
+> -	struct drm_mode_config *config = &state->dev->mode_config;
+> +	struct drm_device *dev = state->dev;
+> +	struct drm_mode_config *config = &dev->mode_config;
+>  
+>  	drm_atomic_state_clear(state);
+>  
+> -	DRM_DEBUG_ATOMIC("Freeing atomic state %p\n", state);
+> +	drm_dbg_atomic(dev, "Freeing atomic state %p\n", state);
+>  
+>  	if (config->funcs->atomic_state_free) {
+>  		config->funcs->atomic_state_free(state);
+> @@ -290,8 +291,9 @@ struct drm_crtc_state *
+>  drm_atomic_get_crtc_state(struct drm_atomic_state *state,
+>  			  struct drm_crtc *crtc)
+>  {
+> -	int ret, index = drm_crtc_index(crtc);
+> +	struct drm_device *dev = state->dev;
+>  	struct drm_crtc_state *crtc_state;
+> +	int ret, index = drm_crtc_index(crtc);
+>  
+>  	WARN_ON(!state->acquire_ctx);
+>  
+> @@ -313,8 +315,8 @@ drm_atomic_get_crtc_state(struct drm_atomic_state *state,
+>  	state->crtcs[index].ptr = crtc;
+>  	crtc_state->state = state;
+>  
+> -	DRM_DEBUG_ATOMIC("Added [CRTC:%d:%s] %p state to %p\n",
+> -			 crtc->base.id, crtc->name, crtc_state, state);
+> +	drm_dbg_atomic(dev, "Added [CRTC:%d:%s] %p state to %p\n",
+> +		       crtc->base.id, crtc->name, crtc_state, state);
+>  
+>  	return crtc_state;
+>  }
+> @@ -324,6 +326,7 @@ static int drm_atomic_crtc_check(const struct drm_crtc_state *old_crtc_state,
+>  				 const struct drm_crtc_state *new_crtc_state)
+>  {
+>  	struct drm_crtc *crtc = new_crtc_state->crtc;
+> +	struct drm_device *dev = crtc->dev;
+>  
+>  	/* NOTE: we explicitly don't enforce constraints such as primary
+>  	 * layer covering entire screen, since that is something we want
+> @@ -334,25 +337,25 @@ static int drm_atomic_crtc_check(const struct drm_crtc_state *old_crtc_state,
+>  	 */
+>  
+>  	if (new_crtc_state->active && !new_crtc_state->enable) {
+> -		DRM_DEBUG_ATOMIC("[CRTC:%d:%s] active without enabled\n",
+> -				 crtc->base.id, crtc->name);
+> +		drm_dbg_atomic(dev, "[CRTC:%d:%s] active without enabled\n",
+> +			       crtc->base.id, crtc->name);
 
-Cc: Sudeep Dutt <sudeep.dutt@intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Jani Nikula <jani.nikula@intel.com>
-Signed-off-by: Venkata Sandeep Dhanalakota <venkata.s.dhanalakota@intel.com>
----
- drivers/gpu/drm/i915/gem/i915_gem_pm.c        |  4 +-
- drivers/gpu/drm/i915/gt/intel_context.c       | 11 ++--
- drivers/gpu/drm/i915/gt/intel_engine_cs.c     |  7 +--
- drivers/gpu/drm/i915/gt/intel_engine_pm.c     |  6 +--
- drivers/gpu/drm/i915/gt/intel_gt_pm.c         | 12 ++---
- drivers/gpu/drm/i915/gt/intel_lrc.c           | 50 ++++++++++++-------
- drivers/gpu/drm/i915/gt/intel_reset.c         | 23 +++++----
- .../gpu/drm/i915/gt/intel_ring_submission.c   | 11 ++--
- drivers/gpu/drm/i915/gt/selftest_hangcheck.c  |  6 ++-
- .../gpu/drm/i915/gt/uc/intel_guc_submission.c |  8 +--
- drivers/gpu/drm/i915/i915_request.c           | 15 ++++--
- 11 files changed, 92 insertions(+), 61 deletions(-)
+Can we add a new dedicated print level for these atomic check error msg,
+In practice we more care about the atomic check errors, it is annoy to
+pick it out from (so many) DRM_DEBUG_ATOMIC() msgs.
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_pm.c b/drivers/gpu/drm/i915/gem/i915_gem_pm.c
-index f88ee1317bb4..037f2eb0b77b 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_pm.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_pm.c
-@@ -13,7 +13,7 @@
- 
- void i915_gem_suspend(struct drm_i915_private *i915)
- {
--	GEM_TRACE("\n");
-+	GEM_TRACE("[%s]\n", dev_name(i915->drm.dev));
- 
- 	intel_wakeref_auto(&i915->ggtt.userfault_wakeref, 0);
- 	flush_workqueue(i915->wq);
-@@ -99,7 +99,7 @@ void i915_gem_suspend_late(struct drm_i915_private *i915)
- 
- void i915_gem_resume(struct drm_i915_private *i915)
- {
--	GEM_TRACE("\n");
-+	GEM_TRACE("[%s]\n", dev_name(i915->drm.dev));
- 
- 	intel_uncore_forcewake_get(&i915->uncore, FORCEWAKE_ALL);
- 
-diff --git a/drivers/gpu/drm/i915/gt/intel_context.c b/drivers/gpu/drm/i915/gt/intel_context.c
-index 61c39e943f69..5b3f05b29365 100644
---- a/drivers/gpu/drm/i915/gt/intel_context.c
-+++ b/drivers/gpu/drm/i915/gt/intel_context.c
-@@ -68,8 +68,9 @@ int __intel_context_do_pin(struct intel_context *ce)
- 		if (err)
- 			goto err;
- 
--		GEM_TRACE("%s context:%llx pin ring:{head:%04x, tail:%04x}\n",
--			  ce->engine->name, ce->timeline->fence_context,
-+		GEM_TRACE("[%s] %s context:%llx pin ring:{head:%04x, tail:%04x}\n",
-+			  dev_name(ce->engine->i915->drm.dev), ce->engine->name,
-+			  ce->timeline->fence_context,
- 			  ce->ring->head, ce->ring->tail);
- 
- 		i915_gem_context_get(ce->gem_context); /* for ctx->ppgtt */
-@@ -98,7 +99,8 @@ void intel_context_unpin(struct intel_context *ce)
- 	mutex_lock_nested(&ce->pin_mutex, SINGLE_DEPTH_NESTING);
- 
- 	if (likely(atomic_dec_and_test(&ce->pin_count))) {
--		GEM_TRACE("%s context:%llx retire\n",
-+		GEM_TRACE("[%s] %s context:%llx retire\n",
-+			  dev_name(ce->engine->i915->drm.dev),
- 			  ce->engine->name, ce->timeline->fence_context);
- 
- 		ce->ops->unpin(ce);
-@@ -141,7 +143,8 @@ static void __intel_context_retire(struct i915_active *active)
- {
- 	struct intel_context *ce = container_of(active, typeof(*ce), active);
- 
--	GEM_TRACE("%s context:%llx retire\n",
-+	GEM_TRACE("[%s] %s context:%llx retire\n",
-+		  dev_name(ce->engine->i915->drm.dev),
- 		  ce->engine->name, ce->timeline->fence_context);
- 
- 	set_bit(CONTEXT_VALID_BIT, &ce->flags);
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-index 49473c25916c..a25947e8026f 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-+++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-@@ -912,7 +912,7 @@ int intel_engine_stop_cs(struct intel_engine_cs *engine)
- 	if (INTEL_GEN(engine->i915) < 3)
- 		return -ENODEV;
- 
--	GEM_TRACE("%s\n", engine->name);
-+	GEM_TRACE("[%s] %s\n",dev_name(engine->i915->drm.dev), engine->name);
- 
- 	intel_uncore_write_fw(uncore, mode, _MASKED_BIT_ENABLE(STOP_RING));
- 
-@@ -921,7 +921,8 @@ int intel_engine_stop_cs(struct intel_engine_cs *engine)
- 					 mode, MODE_IDLE, MODE_IDLE,
- 					 1000, stop_timeout(engine),
- 					 NULL)) {
--		GEM_TRACE("%s: timed out on STOP_RING -> IDLE\n", engine->name);
-+		GEM_TRACE("[%s] %s: timed out on STOP_RING -> IDLE\n",
-+			  dev_name(engine->i915->drm.dev), engine->name);
- 		err = -ETIMEDOUT;
- 	}
- 
-@@ -933,7 +934,7 @@ int intel_engine_stop_cs(struct intel_engine_cs *engine)
- 
- void intel_engine_cancel_stop_cs(struct intel_engine_cs *engine)
- {
--	GEM_TRACE("%s\n", engine->name);
-+	GEM_TRACE("[%s] %s\n",dev_name(engine->i915->drm.dev), engine->name);
- 
- 	ENGINE_WRITE_FW(engine, RING_MI_MODE, _MASKED_BIT_DISABLE(STOP_RING));
- }
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine_pm.c b/drivers/gpu/drm/i915/gt/intel_engine_pm.c
-index 889eb37e386a..e355b29eb21d 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine_pm.c
-+++ b/drivers/gpu/drm/i915/gt/intel_engine_pm.c
-@@ -21,7 +21,7 @@ static int __engine_unpark(struct intel_wakeref *wf)
- 		container_of(wf, typeof(*engine), wakeref);
- 	void *map;
- 
--	GEM_TRACE("%s\n", engine->name);
-+	GEM_TRACE("[%s] %s\n", dev_name(engine->i915->drm.dev), engine->name);
- 
- 	intel_gt_pm_get(engine->gt);
- 
-@@ -80,7 +80,7 @@ __queue_and_release_pm(struct i915_request *rq,
- {
- 	struct intel_gt_timelines *timelines = &engine->gt->timelines;
- 
--	GEM_TRACE("%s\n", engine->name);
-+	GEM_TRACE("[%s] %s\n", dev_name(engine->i915->drm.dev), engine->name);
- 
- 	/*
- 	 * We have to serialise all potential retirement paths with our
-@@ -204,7 +204,7 @@ static int __engine_park(struct intel_wakeref *wf)
- 	if (!switch_to_kernel_context(engine))
- 		return -EBUSY;
- 
--	GEM_TRACE("%s\n", engine->name);
-+	GEM_TRACE("[%s] %s\n", dev_name(engine->i915->drm.dev), engine->name);
- 
- 	call_idle_barriers(engine); /* cleanup after wedging */
- 
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_pm.c b/drivers/gpu/drm/i915/gt/intel_gt_pm.c
-index ecde67a75e32..e8ebb38fdd38 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt_pm.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_pm.c
-@@ -43,7 +43,7 @@ static int __gt_unpark(struct intel_wakeref *wf)
- 	struct intel_gt *gt = container_of(wf, typeof(*gt), wakeref);
- 	struct drm_i915_private *i915 = gt->i915;
- 
--	GEM_TRACE("\n");
-+	GEM_TRACE("[%s]\n", dev_name(i915->drm.dev));
- 
- 	i915_globals_unpark();
- 
-@@ -76,7 +76,7 @@ static int __gt_park(struct intel_wakeref *wf)
- 	intel_wakeref_t wakeref = fetch_and_zero(&gt->awake);
- 	struct drm_i915_private *i915 = gt->i915;
- 
--	GEM_TRACE("\n");
-+	GEM_TRACE("[%s]\n", dev_name(i915->drm.dev));
- 
- 	intel_gt_park_requests(gt);
- 
-@@ -188,7 +188,7 @@ int intel_gt_resume(struct intel_gt *gt)
- 	enum intel_engine_id id;
- 	int err = 0;
- 
--	GEM_TRACE("\n");
-+	GEM_TRACE("[%s] \n", dev_name(gt->i915->drm.dev));
- 
- 	/*
- 	 * After resume, we may need to poke into the pinned kernel
-@@ -301,19 +301,19 @@ void intel_gt_suspend_late(struct intel_gt *gt)
- 
- 	intel_gt_sanitize(gt, false);
- 
--	GEM_TRACE("\n");
-+	GEM_TRACE("[%s]\n", dev_name(gt->i915->drm.dev));
- }
- 
- void intel_gt_runtime_suspend(struct intel_gt *gt)
- {
- 	intel_uc_runtime_suspend(&gt->uc);
- 
--	GEM_TRACE("\n");
-+	GEM_TRACE("[%s]\n", dev_name(gt->i915->drm.dev));
- }
- 
- int intel_gt_runtime_resume(struct intel_gt *gt)
- {
--	GEM_TRACE("\n");
-+	GEM_TRACE("[%s]\n", dev_name(gt->i915->drm.dev));
- 
- 	intel_gt_init_swizzling(gt);
- 
-diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-index 929f6bae4eba..094e42600636 100644
---- a/drivers/gpu/drm/i915/gt/intel_lrc.c
-+++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-@@ -1069,8 +1069,9 @@ static void reset_active(struct i915_request *rq,
- 	 * remain correctly ordered. And we defer to __i915_request_submit()
- 	 * so that all asynchronous waits are correctly handled.
- 	 */
--	GEM_TRACE("%s(%s): { rq=%llx:%lld }\n",
--		  __func__, engine->name, rq->fence.context, rq->fence.seqno);
-+	GEM_TRACE("%s [%s] (%s): { rq=%llx:%lld }\n",
-+		  __func__, dev_name(engine->i915->drm.dev), engine->name,
-+		  rq->fence.context, rq->fence.seqno);
- 
- 	/* On resubmission of the active request, payload will be scrubbed */
- 	if (i915_request_completed(rq))
-@@ -1274,7 +1275,8 @@ trace_ports(const struct intel_engine_execlists *execlists,
- 	if (!ports[0])
- 		return;
- 
--	GEM_TRACE("%s: %s { %llx:%lld%s, %llx:%lld }\n",
-+	GEM_TRACE("[%s]%s: %s { %llx:%lld%s, %llx:%lld }\n",
-+		  dev_name(engine->i915->drm.dev),
- 		  engine->name, msg,
- 		  ports[0]->fence.context,
- 		  ports[0]->fence.seqno,
-@@ -1700,7 +1702,8 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
- 	last = last_active(execlists);
- 	if (last) {
- 		if (need_preempt(engine, last, rb)) {
--			GEM_TRACE("%s: preempting last=%llx:%lld, prio=%d, hint=%d\n",
-+			GEM_TRACE("[%s] %s: preempting last=%llx:%lld, prio=%d, hint=%d\n",
-+				  dev_name(engine->i915->drm.dev),
- 				  engine->name,
- 				  last->fence.context,
- 				  last->fence.seqno,
-@@ -1735,7 +1738,8 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
- 			last = NULL;
- 		} else if (need_timeslice(engine, last) &&
- 			   timer_expired(&engine->execlists.timer)) {
--			GEM_TRACE("%s: expired last=%llx:%lld, prio=%d, hint=%d\n",
-+			GEM_TRACE("[%s] %s: expired last=%llx:%lld, prio=%d, hint=%d\n",
-+				  dev_name(engine->i915->drm.dev),
- 				  engine->name,
- 				  last->fence.context,
- 				  last->fence.seqno,
-@@ -1817,7 +1821,8 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
- 				return; /* leave this for another */
- 			}
- 
--			GEM_TRACE("%s: virtual rq=%llx:%lld%s, new engine? %s\n",
-+			GEM_TRACE("[%s] %s: virtual rq=%llx:%lld%s, new engine? %s\n",
-+				  dev_name(engine->i915->drm.dev),
- 				  engine->name,
- 				  rq->fence.context,
- 				  rq->fence.seqno,
-@@ -1980,7 +1985,8 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
- 	 * interrupt for secondary ports).
- 	 */
- 	execlists->queue_priority_hint = queue_prio(execlists);
--	GEM_TRACE("%s: queue_priority_hint:%d, submit:%s\n",
-+	GEM_TRACE("[%s] %s: queue_priority_hint:%d, submit:%s\n",
-+		  dev_name(engine->i915->drm.dev),
- 		  engine->name, execlists->queue_priority_hint,
- 		  yesno(submit));
- 
-@@ -2131,7 +2137,9 @@ static void process_csb(struct intel_engine_cs *engine)
- 	 */
- 	head = execlists->csb_head;
- 	tail = READ_ONCE(*execlists->csb_write);
--	GEM_TRACE("%s cs-irq head=%d, tail=%d\n", engine->name, head, tail);
-+	GEM_TRACE("[%s] %s cs-irq head=%d, tail=%d\n",
-+		  dev_name(engine->i915->drm.dev), engine->name,
-+		  head, tail);
- 	if (unlikely(head == tail))
- 		return;
- 
-@@ -2169,8 +2177,8 @@ static void process_csb(struct intel_engine_cs *engine)
- 		 * status notifier.
- 		 */
- 
--		GEM_TRACE("%s csb[%d]: status=0x%08x:0x%08x\n",
--			  engine->name, head,
-+		GEM_TRACE("[%s] %s csb[%d]: status=0x%08x:0x%08x\n",
-+			  dev_name(engine->i915->drm.dev), engine->name, head,
- 			  buf[2 * head + 0], buf[2 * head + 1]);
- 
- 		if (INTEL_GEN(engine->i915) >= 12)
-@@ -2262,7 +2270,8 @@ static noinline void preempt_reset(struct intel_engine_cs *engine)
- 	/* Mark this tasklet as disabled to avoid waiting for it to complete */
- 	tasklet_disable_nosync(&engine->execlists.tasklet);
- 
--	GEM_TRACE("%s: preempt timeout %lu+%ums\n",
-+	GEM_TRACE("[%s] %s: preempt timeout %lu+%ums\n",
-+		  dev_name(engine->i915->drm.dev),
- 		  engine->name,
- 		  READ_ONCE(engine->props.preempt_timeout_ms),
- 		  jiffies_to_msecs(jiffies - engine->execlists.preempt.expires));
-@@ -2971,8 +2980,8 @@ static void execlists_reset_prepare(struct intel_engine_cs *engine)
- 	struct intel_engine_execlists * const execlists = &engine->execlists;
- 	unsigned long flags;
- 
--	GEM_TRACE("%s: depth<-%d\n", engine->name,
--		  atomic_read(&execlists->tasklet.count));
-+	GEM_TRACE("[%s] %s: depth<-%d\n", dev_name(engine->i915->drm.dev),
-+		  engine->name, atomic_read(&execlists->tasklet.count));
- 
- 	/*
- 	 * Prevent request submission to the hardware until we have
-@@ -3134,7 +3143,8 @@ static void __execlists_reset(struct intel_engine_cs *engine, bool stalled)
- 	restore_default_state(ce, engine);
- 
- out_replay:
--	GEM_TRACE("%s replay {head:%04x, tail:%04x}\n",
-+	GEM_TRACE("[%s] %s replay {head:%04x, tail:%04x}\n",
-+		  dev_name(engine->i915->drm.dev),
- 		  engine->name, ce->ring->head, ce->ring->tail);
- 	intel_ring_update_space(ce->ring);
- 	__execlists_reset_reg_state(ce, engine);
-@@ -3151,7 +3161,7 @@ static void execlists_reset(struct intel_engine_cs *engine, bool stalled)
- {
- 	unsigned long flags;
- 
--	GEM_TRACE("%s\n", engine->name);
-+	GEM_TRACE("[%s] %s\n", dev_name(engine->i915->drm.dev), engine->name);
- 
- 	spin_lock_irqsave(&engine->active.lock, flags);
- 
-@@ -3172,7 +3182,7 @@ static void execlists_cancel_requests(struct intel_engine_cs *engine)
- 	struct rb_node *rb;
- 	unsigned long flags;
- 
--	GEM_TRACE("%s\n", engine->name);
-+	GEM_TRACE("[%s] %s\n", dev_name(engine->i915->drm.dev), engine->name);
- 
- 	/*
- 	 * Before we call engine->cancel_requests(), we should have exclusive
-@@ -3259,7 +3269,7 @@ static void execlists_reset_finish(struct intel_engine_cs *engine)
- 	if (__tasklet_enable(&execlists->tasklet))
- 		/* And kick in case we missed a new request submission. */
- 		tasklet_hi_schedule(&execlists->tasklet);
--	GEM_TRACE("%s: depth->%d\n", engine->name,
-+	GEM_TRACE("[%s] %s: depth->%d\n", dev_name(engine->i915->drm.dev), engine->name,
- 		  atomic_read(&execlists->tasklet.count));
- }
- 
-@@ -4309,7 +4319,8 @@ static intel_engine_mask_t virtual_submission_mask(struct virtual_engine *ve)
- 		mask = ve->siblings[0]->mask;
- 	}
- 
--	GEM_TRACE("%s: rq=%llx:%lld, mask=%x, prio=%d\n",
-+	GEM_TRACE("[%s] %s: rq=%llx:%lld, mask=%x, prio=%d\n",
-+		  dev_name(ve->base.i915->drm.dev),
- 		  ve->base.name,
- 		  rq->fence.context, rq->fence.seqno,
- 		  mask, ve->base.execlists.queue_priority_hint);
-@@ -4403,7 +4414,8 @@ static void virtual_submit_request(struct i915_request *rq)
- 	struct i915_request *old;
- 	unsigned long flags;
- 
--	GEM_TRACE("%s: rq=%llx:%lld\n",
-+	GEM_TRACE("[%s] %s: rq=%llx:%lld\n",
-+		  dev_name(ve->base.i915->drm.dev),
- 		  ve->base.name,
- 		  rq->fence.context,
- 		  rq->fence.seqno);
-diff --git a/drivers/gpu/drm/i915/gt/intel_reset.c b/drivers/gpu/drm/i915/gt/intel_reset.c
-index 8408cb84e52c..fbf503d5d1ef 100644
---- a/drivers/gpu/drm/i915/gt/intel_reset.c
-+++ b/drivers/gpu/drm/i915/gt/intel_reset.c
-@@ -126,7 +126,8 @@ static void context_mark_innocent(struct i915_gem_context *ctx)
- 
- void __i915_request_reset(struct i915_request *rq, bool guilty)
- {
--	GEM_TRACE("%s rq=%llx:%lld, guilty? %s\n",
-+	GEM_TRACE("[%s] %s rq=%llx:%lld, guilty? %s\n",
-+		  dev_name(rq->engine->i915->drm.dev),
- 		  rq->engine->name,
- 		  rq->fence.context,
- 		  rq->fence.seqno,
-@@ -604,7 +605,8 @@ int __intel_gt_reset(struct intel_gt *gt, intel_engine_mask_t engine_mask)
- 	 */
- 	intel_uncore_forcewake_get(gt->uncore, FORCEWAKE_ALL);
- 	for (retry = 0; ret == -ETIMEDOUT && retry < retries; retry++) {
--		GEM_TRACE("engine_mask=%x\n", engine_mask);
-+		GEM_TRACE("[%s] engine_mask=%x\n", dev_name(gt->i915->drm.dev),
-+			  engine_mask);
- 		preempt_disable();
- 		ret = reset(gt, engine_mask, retry);
- 		preempt_enable();
-@@ -762,7 +764,8 @@ static void nop_submit_request(struct i915_request *request)
- 	struct intel_engine_cs *engine = request->engine;
- 	unsigned long flags;
- 
--	GEM_TRACE("%s fence %llx:%lld -> -EIO\n",
-+	GEM_TRACE("[%s] %s fence %llx:%lld -> -EIO\n",
-+		  dev_name(engine->i915->drm.dev),
- 		  engine->name, request->fence.context, request->fence.seqno);
- 	dma_fence_set_error(&request->fence, -EIO);
- 
-@@ -790,7 +793,7 @@ static void __intel_gt_set_wedged(struct intel_gt *gt)
- 			intel_engine_dump(engine, &p, "%s\n", engine->name);
- 	}
- 
--	GEM_TRACE("start\n");
-+	GEM_TRACE("[%s] start\n", dev_name(gt->i915->drm.dev));
- 
- 	/*
- 	 * First, stop submission to hw, but do not yet complete requests by
-@@ -820,7 +823,7 @@ static void __intel_gt_set_wedged(struct intel_gt *gt)
- 
- 	reset_finish(gt, awake);
- 
--	GEM_TRACE("end\n");
-+	GEM_TRACE("[%s] end\n", dev_name(gt->i915->drm.dev));
- }
- 
- void intel_gt_set_wedged(struct intel_gt *gt)
-@@ -846,7 +849,7 @@ static bool __intel_gt_unset_wedged(struct intel_gt *gt)
- 	if (test_bit(I915_WEDGED_ON_INIT, &gt->reset.flags))
- 		return false;
- 
--	GEM_TRACE("start\n");
-+	GEM_TRACE("[%s] start\n", dev_name(gt->i915->drm.dev));
- 
- 	/*
- 	 * Before unwedging, make sure that all pending operations
-@@ -908,7 +911,7 @@ static bool __intel_gt_unset_wedged(struct intel_gt *gt)
- 	 */
- 	intel_engines_reset_default_submission(gt);
- 
--	GEM_TRACE("end\n");
-+	GEM_TRACE("[%s] end\n", dev_name(gt->i915->drm.dev));
- 
- 	smp_mb__before_atomic(); /* complete takeover before enabling execbuf */
- 	clear_bit(I915_WEDGED, &gt->reset.flags);
-@@ -983,7 +986,8 @@ void intel_gt_reset(struct intel_gt *gt,
- 	intel_engine_mask_t awake;
- 	int ret;
- 
--	GEM_TRACE("flags=%lx\n", gt->reset.flags);
-+	GEM_TRACE("[%s] flags=%lx\n", dev_name(gt->i915->drm.dev),
-+		  gt->reset.flags);
- 
- 	might_sleep();
- 	GEM_BUG_ON(!test_bit(I915_RESET_BACKOFF, &gt->reset.flags));
-@@ -1089,7 +1093,8 @@ int intel_engine_reset(struct intel_engine_cs *engine, const char *msg)
- 	bool uses_guc = intel_engine_in_guc_submission_mode(engine);
- 	int ret;
- 
--	GEM_TRACE("%s flags=%lx\n", engine->name, gt->reset.flags);
-+	GEM_TRACE("[%s] %s flags=%lx\n", dev_name(engine->i915->drm.dev),
-+		  engine->name, gt->reset.flags);
- 	GEM_BUG_ON(!test_bit(I915_RESET_ENGINE + engine->id, &gt->reset.flags));
- 
- 	if (!intel_engine_pm_get_if_awake(engine))
-diff --git a/drivers/gpu/drm/i915/gt/intel_ring_submission.c b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
-index 5c22ca6f998a..90cf5eedc228 100644
---- a/drivers/gpu/drm/i915/gt/intel_ring_submission.c
-+++ b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
-@@ -632,7 +632,8 @@ static int xcs_resume(struct intel_engine_cs *engine)
- 	struct intel_ring *ring = engine->legacy.ring;
- 	int ret = 0;
- 
--	GEM_TRACE("%s: ring:{HEAD:%04x, TAIL:%04x}\n",
-+	GEM_TRACE("[%s] %s: ring:{HEAD:%04x, TAIL:%04x}\n",
-+		  dev_name(engine->i915->drm.dev),
- 		  engine->name, ring->head, ring->tail);
- 
- 	intel_uncore_forcewake_get(engine->uncore, FORCEWAKE_ALL);
-@@ -746,10 +747,11 @@ static void reset_prepare(struct intel_engine_cs *engine)
- 	 *
- 	 * FIXME: Wa for more modern gens needs to be validated
- 	 */
--	GEM_TRACE("%s\n", engine->name);
-+	GEM_TRACE("[%s] %s\n", dev_name(engine->i915->drm.dev), engine->name);
- 
- 	if (intel_engine_stop_cs(engine))
--		GEM_TRACE("%s: timed out on STOP_RING\n", engine->name);
-+		GEM_TRACE("[%s] %s: timed out on STOP_RING\n", dev_name(engine->i915->drm.dev),
-+			  engine->name);
- 
- 	intel_uncore_write_fw(uncore,
- 			      RING_HEAD(base),
-@@ -765,7 +767,8 @@ static void reset_prepare(struct intel_engine_cs *engine)
- 
- 	/* Check acts as a post */
- 	if (intel_uncore_read_fw(uncore, RING_HEAD(base)))
--		GEM_TRACE("%s: ring head [%x] not parked\n",
-+		GEM_TRACE("[%s] %s: ring head [%x] not parked\n",
-+			  dev_name(engine->i915->drm.dev),
- 			  engine->name,
- 			  intel_uncore_read_fw(uncore, RING_HEAD(base)));
- }
-diff --git a/drivers/gpu/drm/i915/gt/selftest_hangcheck.c b/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
-index d155c9374453..b6cd26eaca08 100644
---- a/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
-@@ -678,7 +678,8 @@ static int active_request_put(struct i915_request *rq)
- 		return 0;
- 
- 	if (i915_request_wait(rq, 0, 5 * HZ) < 0) {
--		GEM_TRACE("%s timed out waiting for completion of fence %llx:%lld\n",
-+		GEM_TRACE("[%s] %s timed out waiting for completion of fence %llx:%lld\n",
-+			  dev_name(rq->engine->i915->drm.dev),
- 			  rq->engine->name,
- 			  rq->fence.context,
- 			  rq->fence.seqno);
-@@ -1568,7 +1569,8 @@ static int __igt_atomic_reset_engine(struct intel_engine_cs *engine,
- 	struct tasklet_struct * const t = &engine->execlists.tasklet;
- 	int err;
- 
--	GEM_TRACE("i915_reset_engine(%s:%s) under %s\n",
-+	GEM_TRACE("[%s] i915_reset_engine(%s:%s) under %s\n",
-+		  dev_name(engine->i915->drm.dev),
- 		  engine->name, mode, p->name);
- 
- 	tasklet_disable(t);
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-index 172220e83079..e184746dc370 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-@@ -375,7 +375,7 @@ static void guc_reset_prepare(struct intel_engine_cs *engine)
- {
- 	struct intel_engine_execlists * const execlists = &engine->execlists;
- 
--	GEM_TRACE("%s\n", engine->name);
-+	GEM_TRACE("[%s] %s\n", dev_name(engine->i915->drm.dev), engine->name);
- 
- 	/*
- 	 * Prevent request submission to the hardware until we have
-@@ -434,7 +434,7 @@ static void guc_cancel_requests(struct intel_engine_cs *engine)
- 	struct rb_node *rb;
- 	unsigned long flags;
- 
--	GEM_TRACE("%s\n", engine->name);
-+	GEM_TRACE("[%s] %s\n", dev_name(engine->i915->drm.dev), engine->name);
- 
- 	/*
- 	 * Before we call engine->cancel_requests(), we should have exclusive
-@@ -495,8 +495,8 @@ static void guc_reset_finish(struct intel_engine_cs *engine)
- 		/* And kick in case we missed a new request submission. */
- 		tasklet_hi_schedule(&execlists->tasklet);
- 
--	GEM_TRACE("%s: depth->%d\n", engine->name,
--		  atomic_read(&execlists->tasklet.count));
-+	GEM_TRACE("[%s] %s: depth->%d\n", dev_name(engine->i915->drm.dev),
-+		  engine->name, atomic_read(&execlists->tasklet.count));
- }
- 
- /*
-diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
-index a6238c626a16..14242a14d9f9 100644
---- a/drivers/gpu/drm/i915/i915_request.c
-+++ b/drivers/gpu/drm/i915/i915_request.c
-@@ -223,7 +223,8 @@ bool i915_request_retire(struct i915_request *rq)
- 	if (!i915_request_completed(rq))
- 		return false;
- 
--	GEM_TRACE("%s fence %llx:%lld, current %d\n",
-+	GEM_TRACE("[%s] %s fence %llx:%lld, current %d\n",
-+		  dev_name(rq->engine->i915->drm.dev),
- 		  rq->engine->name,
- 		  rq->fence.context, rq->fence.seqno,
- 		  hwsp_seqno(rq));
-@@ -287,7 +288,8 @@ void i915_request_retire_upto(struct i915_request *rq)
- 	struct intel_timeline * const tl = i915_request_timeline(rq);
- 	struct i915_request *tmp;
- 
--	GEM_TRACE("%s fence %llx:%lld, current %d\n",
-+	GEM_TRACE("[%s] %s fence %llx:%lld, current %d\n",
-+		  dev_name(rq->engine->i915->drm.dev),
- 		  rq->engine->name,
- 		  rq->fence.context, rq->fence.seqno,
- 		  hwsp_seqno(rq));
-@@ -351,7 +353,8 @@ bool __i915_request_submit(struct i915_request *request)
- 	struct intel_engine_cs *engine = request->engine;
- 	bool result = false;
- 
--	GEM_TRACE("%s fence %llx:%lld, current %d\n",
-+	GEM_TRACE("[%s] %s fence %llx:%lld, current %d\n",
-+		  dev_name(engine->i915->drm.dev),
- 		  engine->name,
- 		  request->fence.context, request->fence.seqno,
- 		  hwsp_seqno(request));
-@@ -443,7 +446,8 @@ void __i915_request_unsubmit(struct i915_request *request)
- {
- 	struct intel_engine_cs *engine = request->engine;
- 
--	GEM_TRACE("%s fence %llx:%lld, current %d\n",
-+	GEM_TRACE("[%s] %s fence %llx:%lld, current %d\n",
-+		  dev_name(engine->i915->drm.dev),
- 		  engine->name,
- 		  request->fence.context, request->fence.seqno,
- 		  hwsp_seqno(request));
-@@ -1261,7 +1265,8 @@ struct i915_request *__i915_request_commit(struct i915_request *rq)
- 	struct intel_ring *ring = rq->ring;
- 	u32 *cs;
- 
--	GEM_TRACE("%s fence %llx:%lld\n",
-+	GEM_TRACE("[%s] %s fence %llx:%lld\n",
-+		  dev_name(engine->i915->drm.dev),
- 		  engine->name, rq->fence.context, rq->fence.seqno);
- 
- 	/*
--- 
-2.21.0.5.gaeb582a983
+Thanks
+James
 
+>  		return -EINVAL;
+>  	}
+>  
+>  	/* The state->enable vs. state->mode_blob checks can be WARN_ON,
+>  	 * as this is a kernel-internal detail that userspace should never
+>  	 * be able to trigger. */
+> -	if (drm_core_check_feature(crtc->dev, DRIVER_ATOMIC) &&
+> +	if (drm_core_check_feature(dev, DRIVER_ATOMIC) &&
+>  	    WARN_ON(new_crtc_state->enable && !new_crtc_state->mode_blob)) {
+> -		DRM_DEBUG_ATOMIC("[CRTC:%d:%s] enabled without mode blob\n",
+> -				 crtc->base.id, crtc->name);
+> +		drm_dbg_atomic(dev, "[CRTC:%d:%s] enabled without mode blob\n",
+> +			       crtc->base.id, crtc->name);
+>  		return -EINVAL;
+>  	}
+>  
+> -	if (drm_core_check_feature(crtc->dev, DRIVER_ATOMIC) &&
+> +	if (drm_core_check_feature(dev, DRIVER_ATOMIC) &&
+>  	    WARN_ON(!new_crtc_state->enable && new_crtc_state->mode_blob)) {
+> -		DRM_DEBUG_ATOMIC("[CRTC:%d:%s] disabled with mode blob\n",
+> -				 crtc->base.id, crtc->name);
+> +		drm_dbg_atomic(dev, "[CRTC:%d:%s] disabled with mode blob\n",
+> +			       crtc->base.id, crtc->name);
+>  		return -EINVAL;
+>  	}
+>  
+> @@ -368,8 +371,8 @@ static int drm_atomic_crtc_check(const struct drm_crtc_state *old_crtc_state,
+>  	 */
+>  	if (new_crtc_state->event &&
+>  	    !new_crtc_state->active && !old_crtc_state->active) {
+> -		DRM_DEBUG_ATOMIC("[CRTC:%d:%s] requesting event but off\n",
+> -				 crtc->base.id, crtc->name);
+> +		drm_dbg_atomic(dev, "[CRTC:%d:%s] requesting event but off\n",
+> +			       crtc->base.id, crtc->name);
+>  		return -EINVAL;
+>  	}
+>  
+> @@ -402,6 +405,7 @@ static void drm_atomic_crtc_print_state(struct drm_printer *p,
+>  static int drm_atomic_connector_check(struct drm_connector *connector,
+>  		struct drm_connector_state *state)
+>  {
+> +	struct drm_device *dev = connector->dev;
+>  	struct drm_crtc_state *crtc_state;
+>  	struct drm_writeback_job *writeback_job = state->writeback_job;
+>  	const struct drm_display_info *info = &connector->display_info;
+> @@ -414,8 +418,8 @@ static int drm_atomic_connector_check(struct drm_connector *connector,
+>  		return 0;
+>  
+>  	if (writeback_job->fb && !state->crtc) {
+> -		DRM_DEBUG_ATOMIC("[CONNECTOR:%d:%s] framebuffer without CRTC\n",
+> -				 connector->base.id, connector->name);
+> +		drm_dbg_atomic(dev, "[CONNECTOR:%d:%s] framebuffer without CRTC\n",
+> +			       connector->base.id, connector->name);
+>  		return -EINVAL;
+>  	}
+>  
+> @@ -424,16 +428,16 @@ static int drm_atomic_connector_check(struct drm_connector *connector,
+>  								state->crtc);
+>  
+>  	if (writeback_job->fb && !crtc_state->active) {
+> -		DRM_DEBUG_ATOMIC("[CONNECTOR:%d:%s] has framebuffer, but [CRTC:%d] is off\n",
+> -				 connector->base.id, connector->name,
+> -				 state->crtc->base.id);
+> +		drm_dbg_atomic(dev, "[CONNECTOR:%d:%s] has framebuffer, but [CRTC:%d] is off\n",
+> +			       connector->base.id, connector->name,
+> +			       state->crtc->base.id);
+>  		return -EINVAL;
+>  	}
+>  
+>  	if (!writeback_job->fb) {
+>  		if (writeback_job->out_fence) {
+> -			DRM_DEBUG_ATOMIC("[CONNECTOR:%d:%s] requesting out-fence without framebuffer\n",
+> -					 connector->base.id, connector->name);
+> +			drm_dbg_atomic(dev, "[CONNECTOR:%d:%s] requesting out-fence without framebuffer\n",
+> +				       connector->base.id, connector->name);
+>  			return -EINVAL;
+>  		}
+>  
+> @@ -463,8 +467,9 @@ struct drm_plane_state *
+>  drm_atomic_get_plane_state(struct drm_atomic_state *state,
+>  			  struct drm_plane *plane)
+>  {
+> -	int ret, index = drm_plane_index(plane);
+> +	struct drm_device *dev = state->dev;
+>  	struct drm_plane_state *plane_state;
+> +	int ret, index = drm_plane_index(plane);
+>  
+>  	WARN_ON(!state->acquire_ctx);
+>  
+> @@ -491,8 +496,8 @@ drm_atomic_get_plane_state(struct drm_atomic_state *state,
+>  	state->planes[index].new_state = plane_state;
+>  	plane_state->state = state;
+>  
+> -	DRM_DEBUG_ATOMIC("Added [PLANE:%d:%s] %p state to %p\n",
+> -			 plane->base.id, plane->name, plane_state, state);
+> +	drm_dbg_atomic(dev, "Added [PLANE:%d:%s] %p state to %p\n",
+> +		       plane->base.id, plane->name, plane_state, state);
+>  
+>  	if (plane_state->crtc) {
+>  		struct drm_crtc_state *crtc_state;
+> @@ -539,6 +544,7 @@ static int drm_atomic_plane_check(const struct drm_plane_state *old_plane_state,
+>  				  const struct drm_plane_state *new_plane_state)
+>  {
+>  	struct drm_plane *plane = new_plane_state->plane;
+> +	struct drm_device *dev = plane->dev;
+>  	struct drm_crtc *crtc = new_plane_state->crtc;
+>  	const struct drm_framebuffer *fb = new_plane_state->fb;
+>  	unsigned int fb_width, fb_height;
+> @@ -548,12 +554,12 @@ static int drm_atomic_plane_check(const struct drm_plane_state *old_plane_state,
+>  
+>  	/* either *both* CRTC and FB must be set, or neither */
+>  	if (crtc && !fb) {
+> -		DRM_DEBUG_ATOMIC("[PLANE:%d:%s] CRTC set but no FB\n",
+> -				 plane->base.id, plane->name);
+> +		drm_dbg_atomic(dev, "[PLANE:%d:%s] CRTC set but no FB\n",
+> +			       plane->base.id, plane->name);
+>  		return -EINVAL;
+>  	} else if (fb && !crtc) {
+> -		DRM_DEBUG_ATOMIC("[PLANE:%d:%s] FB set but no CRTC\n",
+> -				 plane->base.id, plane->name);
+> +		drm_dbg_atomic(dev, "[PLANE:%d:%s] FB set but no CRTC\n",
+> +			       plane->base.id, plane->name);
+>  		return -EINVAL;
+>  	}
+>  
+> @@ -563,9 +569,9 @@ static int drm_atomic_plane_check(const struct drm_plane_state *old_plane_state,
+>  
+>  	/* Check whether this plane is usable on this CRTC */
+>  	if (!(plane->possible_crtcs & drm_crtc_mask(crtc))) {
+> -		DRM_DEBUG_ATOMIC("Invalid [CRTC:%d:%s] for [PLANE:%d:%s]\n",
+> -				 crtc->base.id, crtc->name,
+> -				 plane->base.id, plane->name);
+> +		drm_dbg_atomic(dev, "Invalid [CRTC:%d:%s] for [PLANE:%d:%s]\n",
+> +			       crtc->base.id, crtc->name,
+> +			       plane->base.id, plane->name);
+>  		return -EINVAL;
+>  	}
+>  
+> @@ -574,11 +580,11 @@ static int drm_atomic_plane_check(const struct drm_plane_state *old_plane_state,
+>  					   fb->modifier);
+>  	if (ret) {
+>  		struct drm_format_name_buf format_name;
+> -		DRM_DEBUG_ATOMIC("[PLANE:%d:%s] invalid pixel format %s, modifier 0x%llx\n",
+> -				 plane->base.id, plane->name,
+> -				 drm_get_format_name(fb->format->format,
+> -						     &format_name),
+> -				 fb->modifier);
+> +		drm_dbg_atomic(dev, "[PLANE:%d:%s] invalid pixel format %s, modifier 0x%llx\n",
+> +			       plane->base.id, plane->name,
+> +			       drm_get_format_name(fb->format->format,
+> +						   &format_name),
+> +			       fb->modifier);
+>  		return ret;
+>  	}
+>  
+> @@ -587,10 +593,10 @@ static int drm_atomic_plane_check(const struct drm_plane_state *old_plane_state,
+>  	    new_plane_state->crtc_x > INT_MAX - (int32_t) new_plane_state->crtc_w ||
+>  	    new_plane_state->crtc_h > INT_MAX ||
+>  	    new_plane_state->crtc_y > INT_MAX - (int32_t) new_plane_state->crtc_h) {
+> -		DRM_DEBUG_ATOMIC("[PLANE:%d:%s] invalid CRTC coordinates %ux%u+%d+%d\n",
+> -				 plane->base.id, plane->name,
+> -				 new_plane_state->crtc_w, new_plane_state->crtc_h,
+> -				 new_plane_state->crtc_x, new_plane_state->crtc_y);
+> +		drm_dbg_atomic(dev, "[PLANE:%d:%s] invalid CRTC coordinates %ux%u+%d+%d\n",
+> +			       plane->base.id, plane->name,
+> +			       new_plane_state->crtc_w, new_plane_state->crtc_h,
+> +			       new_plane_state->crtc_x, new_plane_state->crtc_y);
+>  		return -ERANGE;
+>  	}
+>  
+> @@ -602,18 +608,18 @@ static int drm_atomic_plane_check(const struct drm_plane_state *old_plane_state,
+>  	    new_plane_state->src_x > fb_width - new_plane_state->src_w ||
+>  	    new_plane_state->src_h > fb_height ||
+>  	    new_plane_state->src_y > fb_height - new_plane_state->src_h) {
+> -		DRM_DEBUG_ATOMIC("[PLANE:%d:%s] invalid source coordinates "
+> -				 "%u.%06ux%u.%06u+%u.%06u+%u.%06u (fb %ux%u)\n",
+> -				 plane->base.id, plane->name,
+> -				 new_plane_state->src_w >> 16,
+> -				 ((new_plane_state->src_w & 0xffff) * 15625) >> 10,
+> -				 new_plane_state->src_h >> 16,
+> -				 ((new_plane_state->src_h & 0xffff) * 15625) >> 10,
+> -				 new_plane_state->src_x >> 16,
+> -				 ((new_plane_state->src_x & 0xffff) * 15625) >> 10,
+> -				 new_plane_state->src_y >> 16,
+> -				 ((new_plane_state->src_y & 0xffff) * 15625) >> 10,
+> -				 fb->width, fb->height);
+> +		drm_dbg_atomic(dev, "[PLANE:%d:%s] invalid source coordinates "
+> +			       "%u.%06ux%u.%06u+%u.%06u+%u.%06u (fb %ux%u)\n",
+> +			       plane->base.id, plane->name,
+> +			       new_plane_state->src_w >> 16,
+> +			       ((new_plane_state->src_w & 0xffff) * 15625) >> 10,
+> +			       new_plane_state->src_h >> 16,
+> +			       ((new_plane_state->src_h & 0xffff) * 15625) >> 10,
+> +			       new_plane_state->src_x >> 16,
+> +			       ((new_plane_state->src_x & 0xffff) * 15625) >> 10,
+> +			       new_plane_state->src_y >> 16,
+> +			       ((new_plane_state->src_y & 0xffff) * 15625) >> 10,
+> +			       fb->width, fb->height);
+>  		return -ENOSPC;
+>  	}
+>  
+> @@ -628,9 +634,9 @@ static int drm_atomic_plane_check(const struct drm_plane_state *old_plane_state,
+>  		    clips->y1 < 0 ||
+>  		    clips->x2 > fb_width ||
+>  		    clips->y2 > fb_height) {
+> -			DRM_DEBUG_ATOMIC("[PLANE:%d:%s] invalid damage clip %d %d %d %d\n",
+> -					 plane->base.id, plane->name, clips->x1,
+> -					 clips->y1, clips->x2, clips->y2);
+> +			drm_dbg_atomic(dev, "[PLANE:%d:%s] invalid damage clip %d %d %d %d\n",
+> +				       plane->base.id, plane->name, clips->x1,
+> +				       clips->y1, clips->x2, clips->y2);
+>  			return -EINVAL;
+>  		}
+>  		clips++;
+> @@ -638,8 +644,8 @@ static int drm_atomic_plane_check(const struct drm_plane_state *old_plane_state,
+>  	}
+>  
+>  	if (plane_switching_crtc(old_plane_state, new_plane_state)) {
+> -		DRM_DEBUG_ATOMIC("[PLANE:%d:%s] switching CRTC directly\n",
+> -				 plane->base.id, plane->name);
+> +		drm_dbg_atomic(dev, "[PLANE:%d:%s] switching CRTC directly\n",
+> +			       plane->base.id, plane->name);
+>  		return -EINVAL;
+>  	}
+>  
+> @@ -766,6 +772,7 @@ struct drm_private_state *
+>  drm_atomic_get_private_obj_state(struct drm_atomic_state *state,
+>  				 struct drm_private_obj *obj)
+>  {
+> +	struct drm_device *dev = state->dev;
+>  	int index, num_objs, i, ret;
+>  	size_t size;
+>  	struct __drm_private_objs_state *arr;
+> @@ -801,8 +808,8 @@ drm_atomic_get_private_obj_state(struct drm_atomic_state *state,
+>  
+>  	state->num_private_objs = num_objs;
+>  
+> -	DRM_DEBUG_ATOMIC("Added new private object %p state %p to %p\n",
+> -			 obj, obj_state, state);
+> +	drm_dbg_atomic(dev, "Added new private object %p state %p to %p\n",
+> +		       obj, obj_state, state);
+>  
+>  	return obj_state;
+>  }
+> @@ -940,6 +947,7 @@ struct drm_connector_state *
+>  drm_atomic_get_connector_state(struct drm_atomic_state *state,
+>  			  struct drm_connector *connector)
+>  {
+> +	struct drm_device *dev = state->dev;
+>  	int ret, index;
+>  	struct drm_mode_config *config = &connector->dev->mode_config;
+>  	struct drm_connector_state *connector_state;
+> @@ -981,9 +989,9 @@ drm_atomic_get_connector_state(struct drm_atomic_state *state,
+>  	state->connectors[index].ptr = connector;
+>  	connector_state->state = state;
+>  
+> -	DRM_DEBUG_ATOMIC("Added [CONNECTOR:%d:%s] %p state to %p\n",
+> -			 connector->base.id, connector->name,
+> -			 connector_state, state);
+> +	drm_dbg_atomic(dev, "Added [CONNECTOR:%d:%s] %p state to %p\n",
+> +		       connector->base.id, connector->name,
+> +		       connector_state, state);
+>  
+>  	if (connector_state->crtc) {
+>  		struct drm_crtc_state *crtc_state;
+> @@ -1036,7 +1044,8 @@ int
+>  drm_atomic_add_affected_connectors(struct drm_atomic_state *state,
+>  				   struct drm_crtc *crtc)
+>  {
+> -	struct drm_mode_config *config = &state->dev->mode_config;
+> +	struct drm_device *dev = state->dev;
+> +	struct drm_mode_config *config = &dev->mode_config;
+>  	struct drm_connector *connector;
+>  	struct drm_connector_state *conn_state;
+>  	struct drm_connector_list_iter conn_iter;
+> @@ -1051,8 +1060,8 @@ drm_atomic_add_affected_connectors(struct drm_atomic_state *state,
+>  	if (ret)
+>  		return ret;
+>  
+> -	DRM_DEBUG_ATOMIC("Adding all current connectors for [CRTC:%d:%s] to %p\n",
+> -			 crtc->base.id, crtc->name, state);
+> +	drm_dbg_atomic(dev, "Adding all current connectors for [CRTC:%d:%s] to %p\n",
+> +		       crtc->base.id, crtc->name, state);
+>  
+>  	/*
+>  	 * Changed connectors are already in @state, so only need to look
+> @@ -1099,14 +1108,15 @@ int
+>  drm_atomic_add_affected_planes(struct drm_atomic_state *state,
+>  			       struct drm_crtc *crtc)
+>  {
+> +	struct drm_device *dev = state->dev;
+>  	const struct drm_crtc_state *old_crtc_state =
+>  		drm_atomic_get_old_crtc_state(state, crtc);
+>  	struct drm_plane *plane;
+>  
+>  	WARN_ON(!drm_atomic_get_new_crtc_state(state, crtc));
+>  
+> -	DRM_DEBUG_ATOMIC("Adding all current planes for [CRTC:%d:%s] to %p\n",
+> -			 crtc->base.id, crtc->name, state);
+> +	drm_dbg_atomic(dev, "Adding all current planes for [CRTC:%d:%s] to %p\n",
+> +		       crtc->base.id, crtc->name, state);
+>  
+>  	drm_for_each_plane_mask(plane, state->dev, old_crtc_state->plane_mask) {
+>  		struct drm_plane_state *plane_state =
+> @@ -1144,13 +1154,13 @@ int drm_atomic_check_only(struct drm_atomic_state *state)
+>  	struct drm_connector_state *conn_state;
+>  	int i, ret = 0;
+>  
+> -	DRM_DEBUG_ATOMIC("checking %p\n", state);
+> +	drm_dbg_atomic(dev, "checking %p\n", state);
+>  
+>  	for_each_oldnew_plane_in_state(state, plane, old_plane_state, new_plane_state, i) {
+>  		ret = drm_atomic_plane_check(old_plane_state, new_plane_state);
+>  		if (ret) {
+> -			DRM_DEBUG_ATOMIC("[PLANE:%d:%s] atomic core check failed\n",
+> -					 plane->base.id, plane->name);
+> +			drm_dbg_atomic(dev, "[PLANE:%d:%s] atomic core check failed\n",
+> +				       plane->base.id, plane->name);
+>  			return ret;
+>  		}
+>  	}
+> @@ -1158,8 +1168,8 @@ int drm_atomic_check_only(struct drm_atomic_state *state)
+>  	for_each_oldnew_crtc_in_state(state, crtc, old_crtc_state, new_crtc_state, i) {
+>  		ret = drm_atomic_crtc_check(old_crtc_state, new_crtc_state);
+>  		if (ret) {
+> -			DRM_DEBUG_ATOMIC("[CRTC:%d:%s] atomic core check failed\n",
+> -					 crtc->base.id, crtc->name);
+> +			drm_dbg_atomic(dev, "[CRTC:%d:%s] atomic core check failed\n",
+> +				       crtc->base.id, crtc->name);
+>  			return ret;
+>  		}
+>  	}
+> @@ -1167,8 +1177,8 @@ int drm_atomic_check_only(struct drm_atomic_state *state)
+>  	for_each_new_connector_in_state(state, conn, conn_state, i) {
+>  		ret = drm_atomic_connector_check(conn, conn_state);
+>  		if (ret) {
+> -			DRM_DEBUG_ATOMIC("[CONNECTOR:%d:%s] atomic core check failed\n",
+> -					 conn->base.id, conn->name);
+> +			drm_dbg_atomic(dev, "[CONNECTOR:%d:%s] atomic core check failed\n",
+> +				       conn->base.id, conn->name);
+>  			return ret;
+>  		}
+>  	}
+> @@ -1177,8 +1187,8 @@ int drm_atomic_check_only(struct drm_atomic_state *state)
+>  		ret = config->funcs->atomic_check(state->dev, state);
+>  
+>  		if (ret) {
+> -			DRM_DEBUG_ATOMIC("atomic driver check for %p failed: %d\n",
+> -					 state, ret);
+> +			drm_dbg_atomic(dev, "atomic driver check for %p failed: %d\n",
+> +				       state, ret);
+>  			return ret;
+>  		}
+>  	}
+> @@ -1186,8 +1196,8 @@ int drm_atomic_check_only(struct drm_atomic_state *state)
+>  	if (!state->allow_modeset) {
+>  		for_each_new_crtc_in_state(state, crtc, new_crtc_state, i) {
+>  			if (drm_atomic_crtc_needs_modeset(new_crtc_state)) {
+> -				DRM_DEBUG_ATOMIC("[CRTC:%d:%s] requires full modeset\n",
+> -						 crtc->base.id, crtc->name);
+> +				drm_dbg_atomic(dev, "[CRTC:%d:%s] requires full modeset\n",
+> +					       crtc->base.id, crtc->name);
+>  				return -EINVAL;
+>  			}
+>  		}
+> @@ -1213,14 +1223,15 @@ EXPORT_SYMBOL(drm_atomic_check_only);
+>   */
+>  int drm_atomic_commit(struct drm_atomic_state *state)
+>  {
+> -	struct drm_mode_config *config = &state->dev->mode_config;
+> +	struct drm_device *dev = state->dev;
+> +	struct drm_mode_config *config = &dev->mode_config;
+>  	int ret;
+>  
+>  	ret = drm_atomic_check_only(state);
+>  	if (ret)
+>  		return ret;
+>  
+> -	DRM_DEBUG_ATOMIC("committing %p\n", state);
+> +	drm_dbg_atomic(dev, "committing %p\n", state);
+>  
+>  	return config->funcs->atomic_commit(state->dev, state, false);
+>  }
+> @@ -1242,14 +1253,15 @@ EXPORT_SYMBOL(drm_atomic_commit);
+>   */
+>  int drm_atomic_nonblocking_commit(struct drm_atomic_state *state)
+>  {
+> -	struct drm_mode_config *config = &state->dev->mode_config;
+> +	struct drm_device *dev = state->dev;
+> +	struct drm_mode_config *config = &dev->mode_config;
+>  	int ret;
+>  
+>  	ret = drm_atomic_check_only(state);
+>  	if (ret)
+>  		return ret;
+>  
+> -	DRM_DEBUG_ATOMIC("committing %p nonblocking\n", state);
+> +	drm_dbg_atomic(dev, "committing %p nonblocking\n", state);
+>  
+>  	return config->funcs->atomic_commit(state->dev, state, true);
+>  }
+> @@ -1425,7 +1437,8 @@ EXPORT_SYMBOL(__drm_atomic_helper_set_config);
+>  
+>  void drm_atomic_print_state(const struct drm_atomic_state *state)
+>  {
+> -	struct drm_printer p = drm_info_printer(state->dev->dev);
+> +	struct drm_device *dev = state->dev;
+> +	struct drm_printer p = drm_info_printer(dev->dev);
+>  	struct drm_plane *plane;
+>  	struct drm_plane_state *plane_state;
+>  	struct drm_crtc *crtc;
+> @@ -1434,7 +1447,7 @@ void drm_atomic_print_state(const struct drm_atomic_state *state)
+>  	struct drm_connector_state *connector_state;
+>  	int i;
+>  
+> -	DRM_DEBUG_ATOMIC("checking %p\n", state);
+> +	drm_dbg_atomic(dev, "checking %p\n", state);
+>  
+>  	for_each_new_plane_in_state(state, plane, plane_state, i)
+>  		drm_atomic_plane_print_state(&p, plane_state);
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
