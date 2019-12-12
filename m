@@ -2,38 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E08C411D8D2
-	for <lists+intel-gfx@lfdr.de>; Thu, 12 Dec 2019 22:53:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 722C011D8D3
+	for <lists+intel-gfx@lfdr.de>; Thu, 12 Dec 2019 22:53:48 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 78BA86E20D;
-	Thu, 12 Dec 2019 21:53:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DC55F6E20F;
+	Thu, 12 Dec 2019 21:53:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from asavdk3.altibox.net (asavdk3.altibox.net [109.247.116.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8BA806E101;
- Thu, 12 Dec 2019 21:53:08 +0000 (UTC)
-Received: from ravnborg.org (unknown [158.248.194.18])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by asavdk3.altibox.net (Postfix) with ESMTPS id D1C2820030;
- Thu, 12 Dec 2019 22:53:04 +0100 (CET)
-Date: Thu, 12 Dec 2019 22:53:03 +0100
-From: Sam Ravnborg <sam@ravnborg.org>
-To: Jani Nikula <jani.nikula@intel.com>
-Message-ID: <20191212215303.GA11520@ravnborg.org>
-References: <20191210123050.8799-1-jani.nikula@intel.com>
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7B3DF6E20F
+ for <intel-gfx@lists.freedesktop.org>; Thu, 12 Dec 2019 21:53:45 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 12 Dec 2019 13:53:45 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.69,307,1571727600"; d="scan'208";a="226074762"
+Received: from irvmail001.ir.intel.com ([163.33.26.43])
+ by orsmga002.jf.intel.com with ESMTP; 12 Dec 2019 13:53:43 -0800
+Received: from mwajdecz-mobl1.ger.corp.intel.com
+ (mwajdecz-mobl1.ger.corp.intel.com [10.249.150.184])
+ by irvmail001.ir.intel.com (8.14.3/8.13.6/MailSET/Hub) with ESMTP id
+ xBCLrgB7016198; Thu, 12 Dec 2019 21:53:42 GMT
+To: intel-gfx@lists.freedesktop.org, "Daniele Ceraolo Spurio"
+ <daniele.ceraolospurio@intel.com>
+References: <20191210204744.65276-1-michal.wajdeczko@intel.com>
+ <20191210204744.65276-2-michal.wajdeczko@intel.com>
+ <0623f63e-372d-1047-896c-379e428ec6da@intel.com>
+Date: Thu, 12 Dec 2019 22:53:41 +0100
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20191210123050.8799-1-jani.nikula@intel.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.3 cv=eMA9ckh1 c=1 sm=1 tr=0
- a=UWs3HLbX/2nnQ3s7vZ42gw==:117 a=UWs3HLbX/2nnQ3s7vZ42gw==:17
- a=jpOVt7BSZ2e4Z31A5e1TngXxSK0=:19 a=8nJEP1OIZ-IA:10 a=7gkXJVJtAAAA:8
- a=QyXUC8HyAAAA:8 a=WwEPFlQGcVPyZ2Fg1gUA:9 a=wPNLvfGTeEIA:10
- a=E9Po1WZjFZOl8hwRPBS3:22
-Subject: Re: [Intel-gfx] [PATCH 1/8] drm/print: introduce new struct
- drm_device based logging macros
+From: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
+Message-ID: <op.0cpgfrnfxaggs7@mwajdecz-mobl1.ger.corp.intel.com>
+In-Reply-To: <0623f63e-372d-1047-896c-379e428ec6da@intel.com>
+User-Agent: Opera Mail/1.0 (Win32)
+Subject: Re: [Intel-gfx] [RFC 1/4] drm/i915/uc: Add ops to intel_uc
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,234 +49,189 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"; DelSp="yes"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Jani.
+On Thu, 12 Dec 2019 01:23:33 +0100, Daniele Ceraolo Spurio  
+<daniele.ceraolospurio@intel.com> wrote:
 
-On Tue, Dec 10, 2019 at 02:30:43PM +0200, Jani Nikula wrote:
-> Add new struct drm_device based logging macros modeled after the core
-> kernel device based logging macros. These would be preferred over the
-> drm printk and struct device based macros in drm code, where possible.
-> =
+>
+>
+> On 12/10/19 12:47 PM, Michal Wajdeczko wrote:
+>> Instead of spreading multiple conditionals across the uC code
+>> to find out current mode of uC operation, start using predefined
+>> set of function pointers that reflect that mode.
+>>  Begin with pair of init_hw/fini_hw functions that are responsible
+>> for uC hardware initialization and cleanup.
+>>  Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+>> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+>> Cc: Chris Wilson <chris@chris-wilson.co.uk>
+>> Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+>> ---
+>>   drivers/gpu/drm/i915/gt/uc/intel_uc.c | 49 +++++++++++++++++++++++----
+>>   drivers/gpu/drm/i915/gt/uc/intel_uc.h | 23 +++++++++++--
+>>   2 files changed, 63 insertions(+), 9 deletions(-)
+>>  diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc.c  
+>> b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
+>> index c6519066a0f6..e3d1359f9719 100644
+>> --- a/drivers/gpu/drm/i915/gt/uc/intel_uc.c
+>> +++ b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
+>> @@ -12,6 +12,10 @@
+>>     #include "i915_drv.h"
+>>   +extern const struct intel_uc_ops uc_ops_none;
+>> +extern const struct intel_uc_ops uc_ops_off;
+>> +extern const struct intel_uc_ops uc_ops_on;
+>> +
+>>   /* Reset GuC providing us with fresh state for both GuC and HuC.
+>>    */
+>>   static int __intel_uc_reset_hw(struct intel_uc *uc)
+>> @@ -89,6 +93,13 @@ void intel_uc_init_early(struct intel_uc *uc)
+>>   	intel_huc_init_early(&uc->huc);
+>>     	__confirm_options(uc);
+>> +
+>> +	if (intel_uc_uses_guc(uc))
+>> +		uc->ops = &uc_ops_on;
+>> +	else if (intel_uc_supports_guc(uc))
+>> +		uc->ops = &uc_ops_off;
+>> +	else
+>> +		uc->ops = &uc_ops_none;
+>>   }
+>>     void intel_uc_driver_late_release(struct intel_uc *uc)
+>> @@ -413,24 +424,36 @@ static bool uc_is_wopcm_locked(struct intel_uc  
+>> *uc)
+>>   	       (intel_uncore_read(uncore, DMA_GUC_WOPCM_OFFSET) &  
+>> GUC_WOPCM_OFFSET_VALID);
+>>   }
+>>   -int intel_uc_init_hw(struct intel_uc *uc)
+>> +static int __uc_check_hw(struct intel_uc *uc)
+>> +{
+>> +	GEM_BUG_ON(!intel_uc_supports_guc(uc));
+>> +
+>> +	/*
+>> +	 * We can silently continue without GuC only if it was never enabled
+>> +	 * before on this system after reboot, otherwise we risk GPU hangs.
+>> +	 * To check if GuC was loaded before we look at WOPCM registers.
+>> +	 */
+>> +	if (uc_is_wopcm_locked(uc))
+>> +		return -EIO;
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static int __uc_init_hw(struct intel_uc *uc)
+>>   {
+>>   	struct drm_i915_private *i915 = uc_to_gt(uc)->i915;
+>>   	struct intel_guc *guc = &uc->guc;
+>>   	struct intel_huc *huc = &uc->huc;
+>>   	int ret, attempts;
+>>   -	if (!intel_uc_supports_guc(uc))
+>> -		return 0;
+>> +	GEM_BUG_ON(!intel_uc_supports_guc(uc));
+>> +	GEM_BUG_ON(!intel_uc_uses_guc(uc));
+>>     	/*
+>>   	 * We can silently continue without GuC only if it was never enabled
+>>   	 * before on this system after reboot, otherwise we risk GPU hangs.
+>>   	 * To check if GuC was loaded before we look at WOPCM registers.
+>>   	 */
+>> -	if (!intel_uc_uses_guc(uc) && !uc_is_wopcm_locked(uc))
+>> -		return 0;
+>> -
+>>   	if (!intel_uc_fw_is_available(&guc->fw)) {
+>>   		ret = uc_is_wopcm_locked(uc) ||
+>>   		      intel_uc_fw_is_overridden(&guc->fw) ||
+>> @@ -528,7 +551,7 @@ int intel_uc_init_hw(struct intel_uc *uc)
+>>   	return -EIO;
+>>   }
+>>   -void intel_uc_fini_hw(struct intel_uc *uc)
+>> +static void __uc_fini_hw(struct intel_uc *uc)
+>>   {
+>>   	struct intel_guc *guc = &uc->guc;
+>>   @@ -628,3 +651,15 @@ int intel_uc_runtime_resume(struct intel_uc *uc)
+>>   	 */
+>>   	return __uc_resume(uc, true);
+>>   }
+>> +
+>> +const struct intel_uc_ops uc_ops_none = {
+>> +};
+>> +
+>> +const struct intel_uc_ops uc_ops_off = {
+>> +	.init_hw = __uc_check_hw,
+>> +};
+>> +
+>
+> I'm not sold on having both uc_ops_off and uc_ops_none and I'd prefer  
+> them to be merged into one.
+> AFAICS, the only things you  do in uc_ops_off are __intel_uc_reset_hw  
+> and __uc_check_hw. __intel_uc_reset_hw shouldn't be needed, we do a GT  
+> reset when we come up and we're not touching the microcontrollers if  
+> intel_uc_uses_guc is false, so there should be no need to reset them.  
+> for __uc_check_hw, we can add an early return if !intel_uc_supports_guc  
+> so it is callable on all platforms and add it to uc_ops_none.
 
-> We have existing drm specific struct device based logging functions, but
-> they are too verbose to use for two main reasons:
-> =
+I can drop uc_reset_hw from ops.off, but I would keep both off|none
+separate as otherwise we are blurring the idea of having dedicated
+ops without runtime checks (next step of such "merging/simplification"
+approach would be temptation to add more checks into existing ops,
+rather then preparing dedicated one). Note that we may soon add
+ops to other components and we should be consistent on usage model.
 
->  * The names are unnecessarily long, for example DRM_DEV_DEBUG_KMS().
-> =
+Michal
 
->  * The use of struct device over struct drm_device is too generic for
->    most users, leading to an extra dereference.
-> =
-
-> For example:
-> =
-
-> 	DRM_DEV_DEBUG_KMS(drm->dev, "Hello, world\n");
-> =
-
-> vs.
-> =
-
-> 	drm_dbg_kms(drm, "Hello, world\n");
-> =
-
-> It's a matter of taste, but the SHOUTING UPPERCASE has been argued to be
-> less readable than lowercase.
-> =
-
-> Some names are changed from old DRM names to be based on the core kernel
-> logging functions. For example, NOTE -> notice, ERROR -> err, DEBUG ->
-> dbg.
-> =
-
-> Due to the conflation of DRM_DEBUG and DRM_DEBUG_DRIVER macro use
-> (DRM_DEBUG is used widely in drivers though it's supposed to be a core
-> debugging category), they are named as drm_dbg_core and drm_dbg,
-> respectively.
-> =
-
-> The drm_err and _once/_ratelimited variants no longer include the
-> function name in order to be able to use the core device based logging
-> macros. Arguably this is not a significant change; error messages should
-> not be so common to be only distinguishable by the function name.
-> =
-
-> Ratelimited debug logging macros are to be added later.
-> =
-
-> Cc: Sam Ravnborg <sam@ravnborg.org>
-> Acked-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> Acked-by: Sean Paul <sean@poorly.run>
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-
-To my sensitive eyes the lower case variants are much preferable.
-
-As a follow-up it could be nice to clean up drm_print.h:
-- Make it obvious that the old variants are deprecated
-- Let the old variants use the new variants - to make it obvious they
-  are obsolete wrappers.
-- Add some intro that explains for newbies when to use what variant
-
-And then add a todo item - so we can get some janitorials to help with the
-conversion to the new varaints.
-
-
-For logging we have three cases:
-- We have a drm_device pointer - nicely covered by this patchset
-- We have a device * - what do we do here?
-- We have no pointers to device nor drm_device - what do we do here?
-
-Would it be OK to consider drm variants for all the above - so we get
-consistent prefix on logging?
-
-Idea:
-
-drm_<level>[_system] - example: drm_info(drm_device *, ..) or drm_info_core=
-(drm_device *, ..)
-
-drm_dev_<level>[_system] - example: drm_dev_info(device *, ..)
-
-drm_pr_<level>[_system] - example: drm_pr_info(..)
-
-level could be info, info_once, info_ratelimited and so on for dbg, err,
-notice, warn
-
-With the above I can see we can make a clean shift to drm based logging.
-And we do not need to mix different ways to log stuf.
-
-The preferred:
-drm_info()
-drm_dev_info()
-drm_pr_info()
-
-versus:
-drm_info()
-dev_info()
-pr_info()
-
-The patch is OK without the suggested change, but see this as
-suggestions for improvements.
-So patch as is has my:
-Acked-by: Sam Ravnborg <sam@ravnborg.org>
-
-
-	Sam
-
-
-> =
-
-> ---
-> =
-
-> With something like this, I think i915 could start migrating to
-> drm_device based logging. I have a hard time convincing myself or anyone
-> about migrating to the DRM_DEV_* variants.
-> ---
->  include/drm/drm_print.h | 65 +++++++++++++++++++++++++++++++++++++++++
->  1 file changed, 65 insertions(+)
-> =
-
-> diff --git a/include/drm/drm_print.h b/include/drm/drm_print.h
-> index 085a9685270c..8f99d389792d 100644
-> --- a/include/drm/drm_print.h
-> +++ b/include/drm/drm_print.h
-> @@ -322,6 +322,8 @@ static inline bool drm_debug_enabled(enum drm_debug_c=
-ategory category)
->  =
-
->  /*
->   * struct device based logging
-> + *
-> + * Prefer drm_device based logging over device or prink based logging.
->   */
->  =
-
->  __printf(3, 4)
-> @@ -417,8 +419,71 @@ void drm_dev_dbg(const struct device *dev, enum drm_=
-debug_category category,
->  	_DRM_DEV_DEFINE_DEBUG_RATELIMITED(dev, DRM_UT_PRIME,		\
->  					  fmt, ##__VA_ARGS__)
->  =
-
-> +/*
-> + * struct drm_device based logging
-> + *
-> + * Prefer drm_device based logging over device or prink based logging.
-> + */
-> +
-> +/* Helper for struct drm_device based logging. */
-> +#define __drm_printk(drm, level, type, fmt, ...)			\
-> +	dev_##level##type((drm)->dev, "[drm] " fmt, ##__VA_ARGS__)
-> +
-> +
-> +#define drm_info(drm, fmt, ...)					\
-> +	__drm_printk((drm), info,, fmt, ##__VA_ARGS__)
-> +
-> +#define drm_notice(drm, fmt, ...)				\
-> +	__drm_printk((drm), notice,, fmt, ##__VA_ARGS__)
-> +
-> +#define drm_warn(drm, fmt, ...)					\
-> +	__drm_printk((drm), warn,, fmt, ##__VA_ARGS__)
-> +
-> +#define drm_err(drm, fmt, ...)					\
-> +	__drm_printk((drm), err,, "*ERROR* " fmt, ##__VA_ARGS__)
-> +
-> +
-> +#define drm_info_once(drm, fmt, ...)				\
-> +	__drm_printk((drm), info, _once, fmt, ##__VA_ARGS__)
-> +
-> +#define drm_notice_once(drm, fmt, ...)				\
-> +	__drm_printk((drm), notice, _once, fmt, ##__VA_ARGS__)
-> +
-> +#define drm_warn_once(drm, fmt, ...)				\
-> +	__drm_printk((drm), warn, _once, fmt, ##__VA_ARGS__)
-> +
-> +#define drm_err_once(drm, fmt, ...)				\
-> +	__drm_printk((drm), err, _once, "*ERROR* " fmt, ##__VA_ARGS__)
-> +
-> +
-> +#define drm_err_ratelimited(drm, fmt, ...)				\
-> +	__drm_printk((drm), err, _ratelimited, "*ERROR* " fmt, ##__VA_ARGS__)
-> +
-> +
-> +#define drm_dbg_core(drm, fmt, ...)					\
-> +	drm_dev_dbg((drm)->dev, DRM_UT_CORE, fmt, ##__VA_ARGS__)
-> +#define drm_dbg(drm, fmt, ...)						\
-> +	drm_dev_dbg((drm)->dev, DRM_UT_DRIVER, fmt, ##__VA_ARGS__)
-> +#define drm_dbg_kms(drm, fmt, ...)					\
-> +	drm_dev_dbg((drm)->dev, DRM_UT_KMS, fmt, ##__VA_ARGS__)
-> +#define drm_dbg_prime(drm, fmt, ...)					\
-> +	drm_dev_dbg((drm)->dev, DRM_UT_PRIME, fmt, ##__VA_ARGS__)
-> +#define drm_dbg_atomic(drm, fmt, ...)					\
-> +	drm_dev_dbg((drm)->dev, DRM_UT_ATOMIC, fmt, ##__VA_ARGS__)
-> +#define drm_dbg_vbl(drm, fmt, ...)					\
-> +	drm_dev_dbg((drm)->dev, DRM_UT_VBL, fmt, ##__VA_ARGS__)
-> +#define drm_dbg_state(drm, fmt, ...)					\
-> +	drm_dev_dbg((drm)->dev, DRM_UT_STATE, fmt, ##__VA_ARGS__)
-> +#define drm_dbg_lease(drm, fmt, ...)					\
-> +	drm_dev_dbg((drm)->dev, DRM_UT_LEASE, fmt, ##__VA_ARGS__)
-> +#define drm_dbg_dp(drm, fmt, ...)					\
-> +	drm_dev_dbg((drm)->dev, DRM_UT_DP, fmt, ##__VA_ARGS__)
-> +
-> +
->  /*
->   * printk based logging
-> + *
-> + * Prefer drm_device based logging over device or prink based logging.
->   */
->  =
-
->  __printf(2, 3)
-> -- =
-
-> 2.20.1
+>
+> Daniele
+>
+>> +const struct intel_uc_ops uc_ops_on = {
+>> +	.init_hw = __uc_init_hw,
+>> +	.fini_hw = __uc_fini_hw,
+>> +};
+>> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc.h  
+>> b/drivers/gpu/drm/i915/gt/uc/intel_uc.h
+>> index 527995c21196..36643e17a09e 100644
+>> --- a/drivers/gpu/drm/i915/gt/uc/intel_uc.h
+>> +++ b/drivers/gpu/drm/i915/gt/uc/intel_uc.h
+>> @@ -10,7 +10,15 @@
+>>   #include "intel_huc.h"
+>>   #include "i915_params.h"
+>>   +struct intel_uc;
+>> +
+>> +struct intel_uc_ops {
+>> +	int (*init_hw)(struct intel_uc *uc);
+>> +	void (*fini_hw)(struct intel_uc *uc);
+>> +};
+>> +
+>>   struct intel_uc {
+>> +	struct intel_uc_ops const *ops;
+>>   	struct intel_guc guc;
+>>   	struct intel_huc huc;
+>>   @@ -25,8 +33,6 @@ void intel_uc_fetch_firmwares(struct intel_uc *uc);
+>>   void intel_uc_cleanup_firmwares(struct intel_uc *uc);
+>>   void intel_uc_sanitize(struct intel_uc *uc);
+>>   void intel_uc_init(struct intel_uc *uc);
+>> -int intel_uc_init_hw(struct intel_uc *uc);
+>> -void intel_uc_fini_hw(struct intel_uc *uc);
+>>   void intel_uc_fini(struct intel_uc *uc);
+>>   void intel_uc_reset_prepare(struct intel_uc *uc);
+>>   void intel_uc_suspend(struct intel_uc *uc);
+>> @@ -64,4 +70,17 @@ static inline bool intel_uc_uses_huc(struct intel_uc  
+>> *uc)
+>>   	return intel_huc_is_enabled(&uc->huc);
+>>   }
+>>   +static inline int intel_uc_init_hw(struct intel_uc *uc)
+>> +{
+>> +	if (uc->ops->init_hw)
+>> +		return uc->ops->init_hw(uc);
+>> +	return 0;
+>> +}
+>> +
+>> +static inline void intel_uc_fini_hw(struct intel_uc *uc)
+>> +{
+>> +	if (uc->ops->fini_hw)
+>> +		uc->ops->fini_hw(uc);
+>> +}
+>> +
+>>   #endif
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
