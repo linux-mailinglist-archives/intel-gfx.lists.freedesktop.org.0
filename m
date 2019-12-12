@@ -1,32 +1,57 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 789A411CF40
-	for <lists+intel-gfx@lfdr.de>; Thu, 12 Dec 2019 15:05:54 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7BD7E11CF26
+	for <lists+intel-gfx@lfdr.de>; Thu, 12 Dec 2019 15:04:44 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 500E06ED74;
-	Thu, 12 Dec 2019 14:05:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C22836ED67;
+	Thu, 12 Dec 2019 14:04:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 296526ED7E
- for <intel-gfx@lists.freedesktop.org>; Thu, 12 Dec 2019 14:05:35 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19555639-1500050 
- for multiple; Thu, 12 Dec 2019 14:05:00 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 12 Dec 2019 14:04:37 +0000
-Message-Id: <20191212140459.1307617-11-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.24.0
-In-Reply-To: <20191212140459.1307617-1-chris@chris-wilson.co.uk>
-References: <20191212140459.1307617-1-chris@chris-wilson.co.uk>
+Received: from mail-yw1-xc43.google.com (mail-yw1-xc43.google.com
+ [IPv6:2607:f8b0:4864:20::c43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8A7F66ED69
+ for <intel-gfx@lists.freedesktop.org>; Thu, 12 Dec 2019 14:04:39 +0000 (UTC)
+Received: by mail-yw1-xc43.google.com with SMTP id 192so801208ywy.0
+ for <intel-gfx@lists.freedesktop.org>; Thu, 12 Dec 2019 06:04:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=poorly.run; s=google;
+ h=date:from:to:cc:subject:message-id:mime-version:content-disposition
+ :user-agent; bh=QhoTimPNvUHtF4G/YQIFrnbKGTtI6y52ps3VPMiqmho=;
+ b=FTmINJcFP3tdJJXAr+PyHF7DFztgt6kLHEPm5o6v7jp62QXM8lrykdX9t8JNdBppiC
+ h2VbjhHDaig6vwV7L9tGAEvtVjGe8nC3A2xyo5eWGI3VpqmyiR7QgFO40XHFvevZKsCv
+ Eeo50Cie7p4JftaBx2YzNbplLxB0q+992SJYcWj4lgo0hNtf8bwBWbJxQSmg+2e4PMmi
+ j0hLiXLOhPgcRrCufZrAWuQKYHDJ/sX7Q7JdA86FzaRaKQ8kfkBCy0dlelat8eidVWlj
+ NkkCMV2lCE/AX0Sa345IqKDTPTieb8Udcto+vuAAgY5Hm0pQaRxcwZx6+KsQ7K3I4NeR
+ HG7w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:mime-version
+ :content-disposition:user-agent;
+ bh=QhoTimPNvUHtF4G/YQIFrnbKGTtI6y52ps3VPMiqmho=;
+ b=JayKGJoDj60gcyxkMXydGZTLVgh3UAX9LVoWzUYgLXsY//BNkxRba++9JLP5ENwW+8
+ LdTkqZWO8ApSVZ6rAd9SP7csiP73wba4G+8AVmpFQFhARtWUhfG/dtU4fbWPOeYXpp9q
+ uzETAt2h83rUBExLZM4qdus8SQbUY1/UQVFKalR9wIHchssf9/pY537GiHVVIz9Gbxip
+ PD0iLThqzFnL/uj2xOCxmuEjRlZR5DD0b43WuSJ5hWW447k2i/5OKz7hrf4Kyheh24S1
+ ByU6ubastMp7rHmpdzbaHAqy5KhZ8qU3wH3s8vo3kaz1+HE8K0HEaFPQOm3mj9BrLyEw
+ v28A==
+X-Gm-Message-State: APjAAAW1rIvjE9Pzen9xMY/wZMzqNT2JIGaC718mX46dp9TQH6ySGhng
+ YsaqtaPEu7d4gdLpVkh2sjeFUw==
+X-Google-Smtp-Source: APXvYqyBRrIAwhRyJ81WNxMSHIIBpTOYhjbJDuPCFoDjQYTQ6gT7GEk+U/en3HKEeGINuhEuhWnn0g==
+X-Received: by 2002:a0d:d44c:: with SMTP id w73mr4155687ywd.492.1576159478688; 
+ Thu, 12 Dec 2019 06:04:38 -0800 (PST)
+Received: from localhost ([2620:0:1013:11:1e1:4760:6ce4:fc64])
+ by smtp.gmail.com with ESMTPSA id d9sm2689910ywh.55.2019.12.12.06.04.37
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 12 Dec 2019 06:04:37 -0800 (PST)
+Date: Thu, 12 Dec 2019 09:04:37 -0500
+From: Sean Paul <sean@poorly.run>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Message-ID: <20191212140145.GA145200@art_vandelay>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 11/33] drm/i915/selftests: Impose a timeout for
- request submission
+Content-Disposition: inline
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: [Intel-gfx] [PULL] drm-misc-next-fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,79 +64,77 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Maxime Ripard <mripard@kernel.org>, Steven Price <steven.price@arm.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>, intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Avoid spinning indefinitely waiting for the request to be submitted, and
-instead apply a timeout. A secondary benefit is that the error message
-will show which suspect is blocked.
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
----
- drivers/gpu/drm/i915/gt/selftest_lrc.c | 26 +++++++++++++++++++++-----
- 1 file changed, 21 insertions(+), 5 deletions(-)
+Hi Dave and Daniel,
+I realized there were a few leftovers from -next-fixes which should find
+their way to drm-fixes.
 
-diff --git a/drivers/gpu/drm/i915/gt/selftest_lrc.c b/drivers/gpu/drm/i915/gt/selftest_lrc.c
-index 54bce282717a..3976198eff37 100644
---- a/drivers/gpu/drm/i915/gt/selftest_lrc.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_lrc.c
-@@ -532,13 +532,19 @@ static struct i915_request *nop_request(struct intel_engine_cs *engine)
- 	return rq;
- }
- 
--static void wait_for_submit(struct intel_engine_cs *engine,
--			    struct i915_request *rq)
-+static int wait_for_submit(struct intel_engine_cs *engine,
-+			   struct i915_request *rq,
-+			   unsigned long timeout)
- {
-+	timeout += jiffies;
- 	do {
- 		cond_resched();
- 		intel_engine_flush_submission(engine);
--	} while (!i915_request_is_active(rq));
-+		if (i915_request_is_active(rq))
-+			return 0;
-+	} while (time_before(jiffies, timeout));
-+
-+	return -ETIME;
- }
- 
- static long timeslice_threshold(const struct intel_engine_cs *engine)
-@@ -606,7 +612,12 @@ static int live_timeslice_queue(void *arg)
- 			goto err_heartbeat;
- 		}
- 		engine->schedule(rq, &attr);
--		wait_for_submit(engine, rq);
-+		err = wait_for_submit(engine, rq, HZ / 2);
-+		if (err) {
-+			pr_err("%s: Timed out trying to submit semaphores\n",
-+			       engine->name);
-+			goto err_rq;
-+		}
- 
- 		/* ELSP[1]: nop request */
- 		nop = nop_request(engine);
-@@ -614,8 +625,13 @@ static int live_timeslice_queue(void *arg)
- 			err = PTR_ERR(nop);
- 			goto err_rq;
- 		}
--		wait_for_submit(engine, nop);
-+		err = wait_for_submit(engine, nop, HZ / 2);
- 		i915_request_put(nop);
-+		if (err) {
-+			pr_err("%s: Timed out trying to submit nop\n",
-+			       engine->name);
-+			goto err_rq;
-+		}
- 
- 		GEM_BUG_ON(i915_request_completed(rq));
- 		GEM_BUG_ON(execlists_active(&engine->execlists) != rq);
+Sean
+
+
+drm-misc-next-fixes-2019-12-12:
+-mgag200: more startadd mitigation (Thomas)
+-panfrost: devfreq fix + several memory fixes (Steven, Boris)
+
+Cc: Boris Brezillon <boris.brezillon@collabora.com>
+Cc: Steven Price <steven.price@arm.com>
+Cc: Thomas Zimmermann <tzimmermann@suse.de>
+
+Cheers, Sean
+
+
+The following changes since commit e5a6ca27eb72c67533ddfc11c06df84beaa167fa:
+
+  drm/dp_mst: Correct the bug in drm_dp_update_payload_part1() (2019-12-04 15:31:16 -0500)
+
+are available in the Git repository at:
+
+  git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-next-fixes-2019-12-12
+
+for you to fetch changes up to 0a5239985a3bc084738851afdf3fceb7d5651b0c:
+
+  drm/panfrost: Open/close the perfcnt BO (2019-12-06 11:06:20 -0600)
+
+----------------------------------------------------------------
+-mgag200: more startadd mitigation (Thomas)
+-panfrost: devfreq fix + several memory fixes (Steven, Boris)
+
+Cc: Boris Brezillon <boris.brezillon@collabora.com>
+Cc: Steven Price <steven.price@arm.com>
+Cc: Thomas Zimmermann <tzimmermann@suse.de>
+
+----------------------------------------------------------------
+Boris Brezillon (4):
+      drm/panfrost: Fix a race in panfrost_ioctl_madvise()
+      drm/panfrost: Fix a BO leak in panfrost_ioctl_mmap_bo()
+      drm/panfrost: Fix a race in panfrost_gem_free_object()
+      drm/panfrost: Open/close the perfcnt BO
+
+Steven Price (1):
+      drm/panfrost: devfreq: Round frequencies to OPPs
+
+Thomas Zimmermann (1):
+      drm/mgag200: Flag all G200 SE A machines as broken wrt <startadd>
+
+ drivers/gpu/drm/mgag200/mgag200_drv.c       |  3 +--
+ drivers/gpu/drm/panfrost/panfrost_devfreq.c | 19 ++++++-------------
+ drivers/gpu/drm/panfrost/panfrost_drv.c     | 20 +++++++++++---------
+ drivers/gpu/drm/panfrost/panfrost_gem.c     | 19 ++++++++++++-------
+ drivers/gpu/drm/panfrost/panfrost_gem.h     |  4 ++++
+ drivers/gpu/drm/panfrost/panfrost_perfcnt.c | 23 ++++++++++++++---------
+ drivers/gpu/drm/panfrost/panfrost_perfcnt.h |  2 +-
+ 7 files changed, 49 insertions(+), 41 deletions(-)
+
 -- 
-2.24.0
-
+Sean Paul, Software Engineer, Google / Chromium OS
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
