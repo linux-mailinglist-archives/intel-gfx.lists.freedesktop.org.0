@@ -2,31 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8242C11CAFB
-	for <lists+intel-gfx@lfdr.de>; Thu, 12 Dec 2019 11:34:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AB57211CB39
+	for <lists+intel-gfx@lfdr.de>; Thu, 12 Dec 2019 11:46:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DF0C26ED11;
-	Thu, 12 Dec 2019 10:34:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7447E6E054;
+	Thu, 12 Dec 2019 10:46:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 6AC9E6ED11;
- Thu, 12 Dec 2019 10:34:37 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 62B3FA0118;
- Thu, 12 Dec 2019 10:34:37 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0DA376E054
+ for <intel-gfx@lists.freedesktop.org>; Thu, 12 Dec 2019 10:46:47 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 12 Dec 2019 02:46:47 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.69,305,1571727600"; d="scan'208";a="220667034"
+Received: from irvmail001.ir.intel.com ([163.33.26.43])
+ by fmsmga001.fm.intel.com with ESMTP; 12 Dec 2019 02:46:46 -0800
+Received: from mwajdecz-mobl1.ger.corp.intel.com
+ (mwajdecz-mobl1.ger.corp.intel.com [10.249.151.90])
+ by irvmail001.ir.intel.com (8.14.3/8.13.6/MailSET/Hub) with ESMTP id
+ xBCAkiqh020671; Thu, 12 Dec 2019 10:46:44 GMT
+To: intel-gfx@lists.freedesktop.org, "Chris Wilson" <chris@chris-wilson.co.uk>
+References: <20191212072737.884335-1-chris@chris-wilson.co.uk>
+Date: Thu, 12 Dec 2019 11:46:44 +0100
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Thu, 12 Dec 2019 10:34:37 -0000
-Message-ID: <157614687740.32007.9020262161386254357@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20191211230858.599030-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20191211230858.599030-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5BCI=2C1/3=5D_drm/i915/gem=3A_Prepare_gen7_c?=
- =?utf-8?q?mdparser_for_async_execution_=28rev2=29?=
+From: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
+Message-ID: <op.0colj6ytxaggs7@mwajdecz-mobl1.ger.corp.intel.com>
+In-Reply-To: <20191212072737.884335-1-chris@chris-wilson.co.uk>
+User-Agent: Opera Mail/1.0 (Win32)
+Subject: Re: [Intel-gfx] [CI 1/2] drm/i915/uc: Ignore maybe-unused
+ debug-only i915 local
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,114 +47,56 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"; DelSp="yes"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Thu, 12 Dec 2019 08:27:36 +0100, Chris Wilson  
+<chris@chris-wilson.co.uk> wrote:
 
-Series: series starting with [CI,1/3] drm/i915/gem: Prepare gen7 cmdparser for async execution (rev2)
-URL   : https://patchwork.freedesktop.org/series/70793/
-State : success
+> As the i915 local in __force_fw_fetch_failures() may not be used in a
+> non-debug build, tell the compiler to ignore it and not throw waarning.
 
-== Summary ==
+typo
 
-CI Bug Log - changes from CI_DRM_7549 -> Patchwork_15711
-====================================================
+>
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+> ---
+>  drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c | 2 ++
+>  1 file changed, 2 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c  
+> b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
+> index b6aedee46f9e..4d02e06480e5 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
+> @@ -254,6 +254,8 @@ static void __force_fw_fetch_failures(struct  
+> intel_uc_fw *uc_fw, int e)
+>  		uc_fw->minor_ver_wanted = 0;
+>  		uc_fw->user_overridden = true;
+>  	}
+> +
+> +	(void)i915;
 
-Summary
--------
+to avoid such mistakes in the future, I would rather fix inject macro:
 
-  **SUCCESS**
+diff --git a/drivers/gpu/drm/i915/i915_utils.h  
+b/drivers/gpu/drm/i915/i915_utils.h
+index 04139ba1191e..b0ade76bec90 100644
+--- a/drivers/gpu/drm/i915/i915_utils.h
++++ b/drivers/gpu/drm/i915/i915_utils.h
+@@ -69,7 +69,7 @@ bool i915_error_injected(void);
 
-  No regressions found.
+  #else
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15711/index.html
+-#define i915_inject_probe_error(_i915, _err) 0
++#define i915_inject_probe_error(i915, e) ({ BUILD_BUG_ON_INVALID(i915);  
+0; })
+  #define i915_error_injected() false
 
-Known issues
-------------
-
-  Here are the changes found in Patchwork_15711 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live_requests:
-    - fi-hsw-4770:        [PASS][1] -> [INCOMPLETE][2] ([i915#773])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7549/fi-hsw-4770/igt@i915_selftest@live_requests.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15711/fi-hsw-4770/igt@i915_selftest@live_requests.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live_blt:
-    - fi-ivb-3770:        [DMESG-FAIL][3] ([i915#563]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7549/fi-ivb-3770/igt@i915_selftest@live_blt.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15711/fi-ivb-3770/igt@i915_selftest@live_blt.html
-
-  * igt@i915_selftest@live_hangcheck:
-    - fi-icl-u3:          [INCOMPLETE][5] ([fdo#108569] / [i915#140]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7549/fi-icl-u3/igt@i915_selftest@live_hangcheck.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15711/fi-icl-u3/igt@i915_selftest@live_hangcheck.html
-
-  
-#### Warnings ####
-
-  * igt@kms_flip@basic-flip-vs-modeset:
-    - fi-kbl-x1275:       [DMESG-WARN][7] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][8] ([i915#62] / [i915#92]) +6 similar issues
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7549/fi-kbl-x1275/igt@kms_flip@basic-flip-vs-modeset.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15711/fi-kbl-x1275/igt@kms_flip@basic-flip-vs-modeset.html
-
-  * igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a:
-    - fi-kbl-x1275:       [DMESG-WARN][9] ([i915#62] / [i915#92]) -> [DMESG-WARN][10] ([i915#62] / [i915#92] / [i915#95]) +5 similar issues
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7549/fi-kbl-x1275/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15711/fi-kbl-x1275/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#108569]: https://bugs.freedesktop.org/show_bug.cgi?id=108569
-  [fdo#111735]: https://bugs.freedesktop.org/show_bug.cgi?id=111735
-  [i915#140]: https://gitlab.freedesktop.org/drm/intel/issues/140
-  [i915#563]: https://gitlab.freedesktop.org/drm/intel/issues/563
-  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
-  [i915#773]: https://gitlab.freedesktop.org/drm/intel/issues/773
-  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
-  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
-
-
-Participating hosts (48 -> 42)
-------------------------------
-
-  Missing    (6): fi-tgl-guc fi-ilk-m540 fi-byt-squawks fi-bsw-cyan fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_7549 -> Patchwork_15711
-
-  CI-20190529: 20190529
-  CI_DRM_7549: 9573e1b7d1cb54cc984cf5c4f93a743641d868da @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5346: 466b0e6cbcbaccff012b484d1fd7676364b37b93 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_15711: a92e46053683835a90bec6e06c0c8b6195271cb8 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-a92e46053683 HAX: Use aliasing-ppgtt for gen7
-784ce6859873 drm/i915/gem: Asynchronous cmdparser
-fdffce2183ab drm/i915/gem: Prepare gen7 cmdparser for async execution
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15711/index.html
+  #endif
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
