@@ -1,61 +1,61 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 19B6811D6B9
-	for <lists+intel-gfx@lfdr.de>; Thu, 12 Dec 2019 20:03:18 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0994111D6B7
+	for <lists+intel-gfx@lfdr.de>; Thu, 12 Dec 2019 20:03:17 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 743506E182;
-	Thu, 12 Dec 2019 19:02:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5E84C6E161;
+	Thu, 12 Dec 2019 19:02:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-yb1-xb41.google.com (mail-yb1-xb41.google.com
- [IPv6:2607:f8b0:4864:20::b41])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7D6C56E13F
- for <intel-gfx@lists.freedesktop.org>; Thu, 12 Dec 2019 19:02:48 +0000 (UTC)
-Received: by mail-yb1-xb41.google.com with SMTP id n196so881423ybg.7
- for <intel-gfx@lists.freedesktop.org>; Thu, 12 Dec 2019 11:02:48 -0800 (PST)
+Received: from mail-yw1-xc43.google.com (mail-yw1-xc43.google.com
+ [IPv6:2607:f8b0:4864:20::c43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 996AC6E157
+ for <intel-gfx@lists.freedesktop.org>; Thu, 12 Dec 2019 19:02:49 +0000 (UTC)
+Received: by mail-yw1-xc43.google.com with SMTP id h126so965ywc.6
+ for <intel-gfx@lists.freedesktop.org>; Thu, 12 Dec 2019 11:02:49 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=poorly.run; s=google;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=Oa84zF+WebiMyTfc+t89Owfn/Vfz8GM8mvYnEiKOOKM=;
- b=QNXrrqENg/wcyEWaKuccQPnztRCAYccfxOLIuevfNuC9ipE4g4uRpMyQdfbMvjeO8l
- QuFjjIJrDBDhsdItqOX6MiHHt4d5HdHlBD5X3fr65VmZiy3RQ0gpMXjq0PS2bFNpkJ42
- 66PYvandsNl4suOGS/t5SlbmxS8+8AGQg7V0bzFMfOQH9aVtZszq3eyNHYhswmefiTIl
- u6gAfDM44wvSfKEteVknNg87StA1oDLvjUIDcwEcAB/fXg2XN1Ekj2L+U9reaBNpuoEo
- ms2h3RxEjdEflE73rER1xUIHfw5yiUH5StFhw5tGCKCTHkpP696wLegmRXSKJMql0u5x
- Jo8A==
+ bh=Xy1B17lfksb5dTRjY2EQ5pYtmhnJCTlU3dPWT1o5MgQ=;
+ b=TF3cFP3rQ3dU9HYNjNEde/BojFbZ3ffmLrA3D3tZY7kgZhC4kzVBokqj/xd9YYCrZj
+ ShACeY9MN2ahq7GkNBFNu0JiQm3aAf/uzbz6749CEpsgHv8ouUMqJSxGXhv/G9O/qrF4
+ X0fPxYQUve+wwLEuyXogJod/euAMzIPuXIIRB79A7MCeLhqFSx0vMFS29YoHMvO0f48j
+ GabX960qf4rpMh7zqjhfLtvHyYN+63SI5EaY7VJTqSr5Yc02uVCQwt0zV0oXtj/oKn8U
+ 6CIU2GO7lyEkIcbBi/keczWWLOFOnJ9f7hwQCjqWyqOC3XHv1AndlJz0K3poIXqMnriX
+ K/yg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=Oa84zF+WebiMyTfc+t89Owfn/Vfz8GM8mvYnEiKOOKM=;
- b=eMAIs/jzYkkGJk/SFW+h66J9rXeoQmDso5TGwuy6Os+ZsQrXlHAK/xlOJ+7UmKMEGF
- 7xQdR7XO4pX5NMiIWeEfaPXQii01i1yfvsMQfbOXkXA48aueDPEYHnUsckgHHWtw1gkr
- mt1fYooy9SitWRjjfeQJ5J6VkGFDMwLtwb4fOyaoo/JHE3GFib942DxgILq86vlGsn6b
- Qhb2Lm7N/QVQQHK1cph7h0cHyiHOzhbgc8fh1cPPkh0y3ENU19Q9X9Xxn4qUAsHtZqKR
- LcwufnYb+wed3lXk4c1CE2TKCH69k1tY4pZvjP1TnM3k4sY5gYmYwEIV0B08Oo9GrE6R
- n3Aw==
-X-Gm-Message-State: APjAAAXb+kub3Q+i8TptgcxbUNCGUz6hDt1m8j4uYKz4Xr+vA3eWe0MO
- 9A3gxje4Do0qy3elaAfq47exqw==
-X-Google-Smtp-Source: APXvYqx6g6CCKSjC27mMv0tzkd7S6ZOikOouCSbV8k/WlTlFGjV8HyledrDbinI2VrLtmeBFnCHT9Q==
-X-Received: by 2002:a25:69c2:: with SMTP id e185mr3512216ybc.103.1576177367389; 
- Thu, 12 Dec 2019 11:02:47 -0800 (PST)
+ bh=Xy1B17lfksb5dTRjY2EQ5pYtmhnJCTlU3dPWT1o5MgQ=;
+ b=NcryLgtWLhYXDfjHXnzvW1E+T74UAOir+ogpXXcMDLKlyvphDz1oJ2mv6NboawiHC8
+ SRk9OyzVjnnDyxFnRoZ1Q7ibycxyK/c8IVzjMlbkE3pJL1t7hLJoifkzbUvt/hfKA2Yr
+ eZJOmlDyd+k/4omrZQM4ZM1NnCqldaUgZxXoVwCYN2GaivXslMrX97AQf8UvmAaxaxFu
+ f35xuTy54NWHBhqUBsh3Ke+1CNYbYo0hyOsFF1Ph8lmN4q3sSF5x+C8QrPnv1tNaTF+a
+ Wxs2kDyLmEB8UJF3ONMJJ7k8MMUgTSbqGoroa3quJryL0OkEsYggP6Nlhom7DWYizytb
+ q7hw==
+X-Gm-Message-State: APjAAAXqNa0ORos1opPndyjI+eCyECLcO9RkRx6Jy4XXxRUkGghiFLHu
+ DPoZe0OrAqgeMxWm9TYvOv44Tg==
+X-Google-Smtp-Source: APXvYqyymfckhQiM/plSY4ngq6/ShZfrEwmMqB4WPneiBgn9HDYai69oUeTsmM+h+pzKhM8bqsVNrg==
+X-Received: by 2002:a0d:dbce:: with SMTP id d197mr5112422ywe.260.1576177368823; 
+ Thu, 12 Dec 2019 11:02:48 -0800 (PST)
 Received: from localhost ([2620:0:1013:11:1e1:4760:6ce4:fc64])
- by smtp.gmail.com with ESMTPSA id s31sm2912442ywa.30.2019.12.12.11.02.46
+ by smtp.gmail.com with ESMTPSA id i84sm3020122ywc.43.2019.12.12.11.02.48
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 12 Dec 2019 11:02:46 -0800 (PST)
+ Thu, 12 Dec 2019 11:02:48 -0800 (PST)
 From: Sean Paul <sean@poorly.run>
 To: dri-devel@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
-Date: Thu, 12 Dec 2019 14:02:28 -0500
-Message-Id: <20191212190230.188505-11-sean@poorly.run>
+Date: Thu, 12 Dec 2019 14:02:29 -0500
+Message-Id: <20191212190230.188505-12-sean@poorly.run>
 X-Mailer: git-send-email 2.24.1.735.g03f4e72817-goog
 In-Reply-To: <20191212190230.188505-1-sean@poorly.run>
 References: <20191212190230.188505-1-sean@poorly.run>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v2 10/12] drm/i915: Use ddi_update_pipe in
- intel_dp_mst
+Subject: [Intel-gfx] [PATCH v2 11/12] drm/i915: Expose HDCP shim functions
+ from dp for use by dp_mst
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,77 +76,145 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Sean Paul <seanpaul@chromium.org>
 
-In order to act upon content_protection property changes, we'll need to
-implement the .update_pipe() hook. We can re-use intel_ddi_update_pipe
-for this
+These functions are all the same for dp and dp_mst, so expose them for
+use by the dp_mst hdcp implementation.
 
 Signed-off-by: Sean Paul <seanpaul@chromium.org>
-Link: https://patchwork.freedesktop.org/patch/msgid/20191203173638.94919-10-sean@poorly.run #v1
+Link: https://patchwork.freedesktop.org/patch/msgid/20191203173638.94919-11-sean@poorly.run #v1
 
 Changes in v2:
 -none
 ---
- drivers/gpu/drm/i915/display/intel_ddi.c    | 9 +++++----
- drivers/gpu/drm/i915/display/intel_dp.h     | 6 ++++++
- drivers/gpu/drm/i915/display/intel_dp_mst.c | 1 +
- 3 files changed, 12 insertions(+), 4 deletions(-)
+ .../drm/i915/display/intel_display_types.h    | 22 +++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_dp.c       | 14 ++----------
+ 2 files changed, 24 insertions(+), 12 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-index ea8dd8dbc445..3742c5dbd8b4 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-@@ -4097,9 +4097,9 @@ static void intel_ddi_update_pipe_dp(struct intel_encoder *encoder,
- 	intel_panel_update_backlight(encoder, crtc_state, conn_state);
+diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+index ac5af925e403..b9e1f4638ff2 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_types.h
++++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+@@ -1636,4 +1636,26 @@ static inline u32 intel_plane_ggtt_offset(const struct intel_plane_state *state)
+ 	return i915_ggtt_offset(state->vma);
  }
  
--static void intel_ddi_update_pipe(struct intel_encoder *encoder,
--				  const struct intel_crtc_state *crtc_state,
--				  const struct drm_connector_state *conn_state)
-+void intel_ddi_update_pipe(struct intel_encoder *encoder,
-+			   const struct intel_crtc_state *crtc_state,
-+			   const struct drm_connector_state *conn_state)
++int intel_dp_hdcp_write_an_aksv(struct intel_digital_port *intel_dig_port,
++				u8 *an);
++int intel_dp_hdcp_read_bksv(struct intel_digital_port *intel_dig_port,
++			    u8 *bksv);
++int intel_dp_hdcp_read_bstatus(struct intel_digital_port *intel_dig_port,
++				      u8 *bstatus);
++int intel_dp_hdcp_read_bcaps(struct intel_digital_port *intel_dig_port,
++			     u8 *bcaps);
++int intel_dp_hdcp_repeater_present(struct intel_digital_port *intel_dig_port,
++				   bool *repeater_present);
++int intel_dp_hdcp_read_ri_prime(struct intel_digital_port *intel_dig_port,
++				u8 *ri_prime);
++int intel_dp_hdcp_read_ksv_ready(struct intel_digital_port *intel_dig_port,
++				 bool *ksv_ready);
++int intel_dp_hdcp_read_ksv_fifo(struct intel_digital_port *intel_dig_port,
++				int num_downstream, u8 *ksv_fifo);
++int intel_dp_hdcp_read_v_prime_part(struct intel_digital_port *intel_dig_port,
++				    int i, u32 *part);
++bool intel_dp_hdcp_check_link(struct intel_digital_port *intel_dig_port);
++int intel_dp_hdcp_capable(struct intel_digital_port *intel_dig_port,
++			  bool *hdcp_capable);
++
+ #endif /*  __INTEL_DISPLAY_TYPES_H__ */
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index 155067657e23..3d62b1b7224e 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -5915,7 +5915,6 @@ static void intel_dp_hdcp_wait_for_cp_irq(struct intel_hdcp *hdcp, int timeout)
+ 		DRM_DEBUG_KMS("Timedout at waiting for CP_IRQ\n");
+ }
+ 
+-static
+ int intel_dp_hdcp_write_an_aksv(struct intel_digital_port *intel_dig_port,
+ 				u8 *an)
  {
- 	struct intel_connector *connector =
- 				to_intel_connector(conn_state->connector);
-@@ -4109,7 +4109,8 @@ static void intel_ddi_update_pipe(struct intel_encoder *encoder,
- 			 conn_state->content_protection !=
- 			 DRM_MODE_CONTENT_PROTECTION_UNDESIRED);
- 
--	if (!intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI))
-+	if (!intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI) &&
-+	    !intel_encoder_is_mst(encoder))
- 		intel_ddi_update_pipe_dp(encoder, crtc_state, conn_state);
- 
- 	/*
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.h b/drivers/gpu/drm/i915/display/intel_dp.h
-index 3da166054788..db732b432809 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.h
-+++ b/drivers/gpu/drm/i915/display/intel_dp.h
-@@ -123,6 +123,12 @@ static inline unsigned int intel_dp_unused_lane_mask(int lane_count)
- 	return ~((1 << lane_count) - 1) & 0xf;
+@@ -5947,8 +5946,7 @@ int intel_dp_hdcp_write_an_aksv(struct intel_digital_port *intel_dig_port,
+ 	return 0;
  }
  
-+
- u32 intel_dp_mode_to_fec_clock(u32 mode_clock);
+-static int intel_dp_hdcp_read_bksv(struct intel_digital_port *intel_dig_port,
+-				   u8 *bksv)
++int intel_dp_hdcp_read_bksv(struct intel_digital_port *intel_dig_port, u8 *bksv)
+ {
+ 	ssize_t ret;
+ 	ret = drm_dp_dpcd_read(&intel_dig_port->dp.aux, DP_AUX_HDCP_BKSV, bksv,
+@@ -5960,7 +5958,7 @@ static int intel_dp_hdcp_read_bksv(struct intel_digital_port *intel_dig_port,
+ 	return 0;
+ }
  
-+/* Shared between intel_dp and intel_dp_mst */
-+void intel_ddi_update_pipe(struct intel_encoder *encoder,
-+			   const struct intel_crtc_state *crtc_state,
-+			   const struct drm_connector_state *conn_state);
-+
- #endif /* __INTEL_DP_H__ */
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-index 926e49f449a6..fbd9a6c543e7 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-@@ -655,6 +655,7 @@ intel_dp_create_fake_mst_encoder(struct intel_digital_port *intel_dig_port, enum
- 	intel_encoder->compute_config = intel_dp_mst_compute_config;
- 	intel_encoder->disable = intel_mst_disable_dp;
- 	intel_encoder->post_disable = intel_mst_post_disable_dp;
-+	intel_encoder->update_pipe = intel_ddi_update_pipe;
- 	intel_encoder->pre_pll_enable = intel_mst_pre_pll_enable_dp;
- 	intel_encoder->post_pll_disable = intel_mst_post_pll_disable_dp;
- 	intel_encoder->pre_enable = intel_mst_pre_enable_dp;
+-static int intel_dp_hdcp_read_bstatus(struct intel_digital_port *intel_dig_port,
++int intel_dp_hdcp_read_bstatus(struct intel_digital_port *intel_dig_port,
+ 				      u8 *bstatus)
+ {
+ 	ssize_t ret;
+@@ -5978,7 +5976,6 @@ static int intel_dp_hdcp_read_bstatus(struct intel_digital_port *intel_dig_port,
+ 	return 0;
+ }
+ 
+-static
+ int intel_dp_hdcp_read_bcaps(struct intel_digital_port *intel_dig_port,
+ 			     u8 *bcaps)
+ {
+@@ -5994,7 +5991,6 @@ int intel_dp_hdcp_read_bcaps(struct intel_digital_port *intel_dig_port,
+ 	return 0;
+ }
+ 
+-static
+ int intel_dp_hdcp_repeater_present(struct intel_digital_port *intel_dig_port,
+ 				   bool *repeater_present)
+ {
+@@ -6009,7 +6005,6 @@ int intel_dp_hdcp_repeater_present(struct intel_digital_port *intel_dig_port,
+ 	return 0;
+ }
+ 
+-static
+ int intel_dp_hdcp_read_ri_prime(struct intel_digital_port *intel_dig_port,
+ 				u8 *ri_prime)
+ {
+@@ -6023,7 +6018,6 @@ int intel_dp_hdcp_read_ri_prime(struct intel_digital_port *intel_dig_port,
+ 	return 0;
+ }
+ 
+-static
+ int intel_dp_hdcp_read_ksv_ready(struct intel_digital_port *intel_dig_port,
+ 				 bool *ksv_ready)
+ {
+@@ -6039,7 +6033,6 @@ int intel_dp_hdcp_read_ksv_ready(struct intel_digital_port *intel_dig_port,
+ 	return 0;
+ }
+ 
+-static
+ int intel_dp_hdcp_read_ksv_fifo(struct intel_digital_port *intel_dig_port,
+ 				int num_downstream, u8 *ksv_fifo)
+ {
+@@ -6062,7 +6055,6 @@ int intel_dp_hdcp_read_ksv_fifo(struct intel_digital_port *intel_dig_port,
+ 	return 0;
+ }
+ 
+-static
+ int intel_dp_hdcp_read_v_prime_part(struct intel_digital_port *intel_dig_port,
+ 				    int i, u32 *part)
+ {
+@@ -6090,7 +6082,6 @@ int intel_dp_hdcp_toggle_signalling(struct intel_digital_port *intel_dig_port,
+ 	return 0;
+ }
+ 
+-static
+ bool intel_dp_hdcp_check_link(struct intel_digital_port *intel_dig_port)
+ {
+ 	ssize_t ret;
+@@ -6106,7 +6097,6 @@ bool intel_dp_hdcp_check_link(struct intel_digital_port *intel_dig_port)
+ 	return !(bstatus & (DP_BSTATUS_LINK_FAILURE | DP_BSTATUS_REAUTH_REQ));
+ }
+ 
+-static
+ int intel_dp_hdcp_capable(struct intel_digital_port *intel_dig_port,
+ 			  bool *hdcp_capable)
+ {
 -- 
 Sean Paul, Software Engineer, Google / Chromium OS
 
