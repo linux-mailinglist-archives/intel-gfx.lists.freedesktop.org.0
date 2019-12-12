@@ -1,78 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B1BC311D83B
-	for <lists+intel-gfx@lfdr.de>; Thu, 12 Dec 2019 21:58:50 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 321EB11D853
+	for <lists+intel-gfx@lfdr.de>; Thu, 12 Dec 2019 22:12:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 99A366E1F1;
-	Thu, 12 Dec 2019 20:58:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 91B8F6E1EE;
+	Thu, 12 Dec 2019 21:12:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from youngberry.canonical.com (youngberry.canonical.com
- [91.189.89.112])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 164D66E1ED;
- Thu, 12 Dec 2019 20:58:43 +0000 (UTC)
-Received: from [82.43.126.140] (helo=[192.168.0.10])
- by youngberry.canonical.com with esmtpsa
- (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128) (Exim 4.86_2)
- (envelope-from <colin.king@canonical.com>)
- id 1ifVXl-0007y4-Ib; Thu, 12 Dec 2019 20:58:41 +0000
-To: Chris Wilson <chris@chris-wilson.co.uk>
-References: <1d2c3c9d-5f11-db41-68ef-61ff9ec601cb@canonical.com>
- <157618313562.7396.11949995525623174493@skylake-alporthouse-com>
-From: Colin Ian King <colin.king@canonical.com>
-Autocrypt: addr=colin.king@canonical.com; prefer-encrypt=mutual; keydata=
- mQINBE6TJCgBEACo6nMNvy06zNKj5tiwDsXXS+LhT+LwtEsy9EnraKYXAf2xwazcICSjX06e
- fanlyhB0figzQO0n/tP7BcfMVNG7n1+DC71mSyRK1ZERcG1523ajvdZOxbBCTvTitYOy3bjs
- +LXKqeVMhK3mRvdTjjmVpWnWqJ1LL+Hn12ysDVVfkbtuIm2NoaSEC8Ae8LSSyCMecd22d9Pn
- LR4UeFgrWEkQsqROq6ZDJT9pBLGe1ZS0pVGhkRyBP9GP65oPev39SmfAx9R92SYJygCy0pPv
- BMWKvEZS/7bpetPNx6l2xu9UvwoeEbpzUvH26PHO3DDAv0ynJugPCoxlGPVf3zcfGQxy3oty
- dNTWkP6Wh3Q85m+AlifgKZudjZLrO6c+fAw/jFu1UMjNuyhgShtFU7NvEzL3RqzFf9O1qM2m
- uj83IeFQ1FZ65QAiCdTa3npz1vHc7N4uEQBUxyXgXfCI+A5yDnjHwzU0Y3RYS52TA3nfa08y
- LGPLTf5wyAREkFYou20vh5vRvPASoXx6auVf1MuxokDShVhxLpryBnlKCobs4voxN54BUO7m
- zuERXN8kadsxGFzItAyfKYzEiJrpUB1yhm78AecDyiPlMjl99xXk0zs9lcKriaByVUv/NsyJ
- FQj/kmdxox3XHi9K29kopFszm1tFiDwCFr/xumbZcMY17Yi2bQARAQABtCVDb2xpbiBLaW5n
- IDxjb2xpbi5raW5nQGNhbm9uaWNhbC5jb20+iQI2BBMBCAAhBQJOkyQoAhsDBQsJCAcDBRUK
- CQgLBRYCAwEAAh4BAheAAAoJEGjCh9/GqAImsBcP9i6C/qLewfi7iVcOwqF9avfGzOPf7CVr
- n8CayQnlWQPchmGKk6W2qgnWI2YLIkADh53TS0VeSQ7Tetj8f1gV75eP0Sr/oT/9ovn38QZ2
- vN8hpZp0GxOUrzkvvPjpH+zdmKSaUsHGp8idfPpZX7XeBO0yojAs669+3BrnBcU5wW45SjSV
- nfmVj1ZZj3/yBunb+hgNH1QRcm8ZPICpjvSsGFClTdB4xu2AR28eMiL/TTg9k8Gt72mOvhf0
- fS0/BUwcP8qp1TdgOFyiYpI8CGyzbfwwuGANPSupGaqtIRVf+/KaOdYUM3dx/wFozZb93Kws
- gXR4z6tyvYCkEg3x0Xl9BoUUyn9Jp5e6FOph2t7TgUvv9dgQOsZ+V9jFJplMhN1HPhuSnkvP
- 5/PrX8hNOIYuT/o1AC7K5KXQmr6hkkxasjx16PnCPLpbCF5pFwcXc907eQ4+b/42k+7E3fDA
- Erm9blEPINtt2yG2UeqEkL+qoebjFJxY9d4r8PFbEUWMT+t3+dmhr/62NfZxrB0nTHxDVIia
- u8xM+23iDRsymnI1w0R78yaa0Eea3+f79QsoRW27Kvu191cU7QdW1eZm05wO8QUvdFagVVdW
- Zg2DE63Fiin1AkGpaeZG9Dw8HL3pJAJiDe0KOpuq9lndHoGHs3MSa3iyQqpQKzxM6sBXWGfk
- EkK5Ag0ETpMkKAEQAMX6HP5zSoXRHnwPCIzwz8+inMW7mJ60GmXSNTOCVoqExkopbuUCvinN
- 4Tg+AnhnBB3R1KTHreFGoz3rcV7fmJeut6CWnBnGBtsaW5Emmh6gZbO5SlcTpl7QDacgIUuT
- v1pgewVHCcrKiX0zQDJkcK8FeLUcB2PXuJd6sJg39kgsPlI7R0OJCXnvT/VGnd3XPSXXoO4K
- cr5fcjsZPxn0HdYCvooJGI/Qau+imPHCSPhnX3WY/9q5/WqlY9cQA8tUC+7mgzt2VMjFft1h
- rp/CVybW6htm+a1d4MS4cndORsWBEetnC6HnQYwuC4bVCOEg9eXMTv88FCzOHnMbE+PxxHzW
- 3Gzor/QYZGcis+EIiU6hNTwv4F6fFkXfW6611JwfDUQCAHoCxF3B13xr0BH5d2EcbNB6XyQb
- IGngwDvnTyKHQv34wE+4KtKxxyPBX36Z+xOzOttmiwiFWkFp4c2tQymHAV70dsZTBB5Lq06v
- 6nJs601Qd6InlpTc2mjd5mRZUZ48/Y7i+vyuNVDXFkwhYDXzFRotO9VJqtXv8iqMtvS4xPPo
- 2DtJx6qOyDE7gnfmk84IbyDLzlOZ3k0p7jorXEaw0bbPN9dDpw2Sh9TJAUZVssK119DJZXv5
- 2BSc6c+GtMqkV8nmWdakunN7Qt/JbTcKlbH3HjIyXBy8gXDaEto5ABEBAAGJAh8EGAEIAAkF
- Ak6TJCgCGwwACgkQaMKH38aoAiZ4lg/+N2mkx5vsBmcsZVd3ys3sIsG18w6RcJZo5SGMxEBj
- t1UgyIXWI9lzpKCKIxKx0bskmEyMy4tPEDSRfZno/T7p1mU7hsM4owi/ic0aGBKP025Iok9G
- LKJcooP/A2c9dUV0FmygecRcbIAUaeJ27gotQkiJKbi0cl2gyTRlolKbC3R23K24LUhYfx4h
- pWj8CHoXEJrOdHO8Y0XH7059xzv5oxnXl2SD1dqA66INnX+vpW4TD2i+eQNPgfkECzKzGj+r
- KRfhdDZFBJj8/e131Y0t5cu+3Vok1FzBwgQqBnkA7dhBsQm3V0R8JTtMAqJGmyOcL+JCJAca
- 3Yi81yLyhmYzcRASLvJmoPTsDp2kZOdGr05Dt8aGPRJL33Jm+igfd8EgcDYtG6+F8MCBOult
- TTAu+QAijRPZv1KhEJXwUSke9HZvzo1tNTlY3h6plBsBufELu0mnqQvHZmfa5Ay99dF+dL1H
- WNp62+mTeHsX6v9EACH4S+Cw9Q1qJElFEu9/1vFNBmGY2vDv14gU2xEiS2eIvKiYl/b5Y85Q
- QLOHWV8up73KK5Qq/6bm4BqVd1rKGI9un8kezUQNGBKre2KKs6wquH8oynDP/baoYxEGMXBg
- GF/qjOC6OY+U7kNUW3N/A7J3M2VdOTLu3hVTzJMZdlMmmsg74azvZDV75dUigqXcwjE=
-Message-ID: <820d0c95-dbd2-3ccf-eeed-ea70d4f5342f@canonical.com>
-Date: Thu, 12 Dec 2019 20:58:39 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.2.2
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 1354B6E1EE;
+ Thu, 12 Dec 2019 21:12:31 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 0A37FA0BA8;
+ Thu, 12 Dec 2019 21:12:31 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <157618313562.7396.11949995525623174493@skylake-alporthouse-com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] drm/i915: Use the i915_device name for identifying
- our, request fences
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Sean Paul" <sean@poorly.run>
+Date: Thu, 12 Dec 2019 21:12:31 -0000
+Message-ID: <157618515101.32007.6962263130484092183@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20191212190230.188505-1-sean@poorly.run>
+In-Reply-To: <20191212190230.188505-1-sean@poorly.run>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915=3A_Add_support_for_HDCP_1=2E4_over_MST_connectors_?=
+ =?utf-8?b?KHJldjIp?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -85,44 +39,85 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 12/12/2019 20:38, Chris Wilson wrote:
-> Quoting Colin Ian King (2019-12-12 19:53:33)
->> Hi,
->>
->> Static analysis with Coverity has picked up an issue with the following
->> commit:
->>
->> commit 65c29dbb19b2451990c5c477fef7ada3b8218f05
->> Author: Chris Wilson <chris@chris-wilson.co.uk>
->> Date:   Wed Dec 11 15:02:04 2019 +0000
->>
->>     drm/i915: Use the i915_device name for identifying our request fences
->>
->> In source drivers/gpu/drm/i915/i915_request.c and function
->> i915_fence_get_timeline_name there is the following:
->>
->>         return to_request(fence)->gem_context->name ?: "[" DRIVER_NAME "]";
->>
->> However name is an array: char name[TASK_COMM_LEN + 8], so it can never
->> be null, so the ternary operator will always return name and will never
->> reaturn "[" DRIVER_NAME "]".  Should it instead be checking if name[0]
->> is '\0' instead?
-> 
-> It's older than that patch, we made it a char[] some time ago. There's a
-> patch pending to make it conditional on ce->gem_context instead.
-> -Chris
-> 
-Ah, thanks for looking into that.
+== Series Details ==
 
-Colin
+Series: drm/i915: Add support for HDCP 1.4 over MST connectors (rev2)
+URL   : https://patchwork.freedesktop.org/series/70393/
+State : warning
+
+== Summary ==
+
+$ dim checkpatch origin/drm-tip
+4f25d7348ece drm/i915: Fix sha_text population code
+-:53: WARNING:LINE_SPACING: Missing a blank line after declarations
+#53: FILE: drivers/gpu/drm/i915/display/intel_hdcp.c:340:
++			u8 off = ((sizeof(sha_text) - j - 1 - sha_leftovers) * 8);
++			sha_text |= ksv[j] << off;
+
+total: 0 errors, 1 warnings, 0 checks, 59 lines checked
+ab50e164f964 drm/i915: Clear the repeater bit on HDCP disable
+b16968ebee0e drm/i915: WARN if HDCP signalling is enabled upon disable
+2ef309e174b5 drm/i915: Intercept Aksv writes in the aux hooks
+135b02f35aa2 drm/i915: Use the cpu_transcoder in intel_hdcp to toggle HDCP signalling
+03cad2db95dc drm/i915: Factor out hdcp->value assignments
+-:59: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#59: FILE: drivers/gpu/drm/i915/display/intel_hdcp.c:905:
++			intel_hdcp_update_value(connector,
++				DRM_MODE_CONTENT_PROTECTION_ENABLED, true);
+
+-:104: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#104: FILE: drivers/gpu/drm/i915/display/intel_hdcp.c:1747:
++			intel_hdcp_update_value(connector,
++					DRM_MODE_CONTENT_PROTECTION_ENABLED,
+
+-:116: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#116: FILE: drivers/gpu/drm/i915/display/intel_hdcp.c:1761:
++			intel_hdcp_update_value(connector,
++					DRM_MODE_CONTENT_PROTECTION_ENABLED,
+
+-:128: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#128: FILE: drivers/gpu/drm/i915/display/intel_hdcp.c:1778:
++		intel_hdcp_update_value(connector,
++				DRM_MODE_CONTENT_PROTECTION_DESIRED, true);
+
+total: 0 errors, 0 warnings, 4 checks, 138 lines checked
+46a30f077469 drm/i915: Protect workers against disappearing connectors
+5cf2459e1ab8 drm/i915: Don't fully disable HDCP on a port if multiple pipes are using it
+d1165847a339 drm/i915: Support DP MST in enc_to_dig_port() function
+f03715af66e3 drm/i915: Use ddi_update_pipe in intel_dp_mst
+-:51: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#51: FILE: drivers/gpu/drm/i915/display/intel_dp.h:126:
+ 
++
+
+total: 0 errors, 0 warnings, 1 checks, 40 lines checked
+42978bd3f621 drm/i915: Expose HDCP shim functions from dp for use by dp_mst
+-:29: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#29: FILE: drivers/gpu/drm/i915/display/intel_display_types.h:1644:
++int intel_dp_hdcp_read_bstatus(struct intel_digital_port *intel_dig_port,
++				      u8 *bstatus);
+
+-:75: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#75: FILE: drivers/gpu/drm/i915/display/intel_dp.c:5962:
++int intel_dp_hdcp_read_bstatus(struct intel_digital_port *intel_dig_port,
+ 				      u8 *bstatus)
+
+total: 0 errors, 0 warnings, 2 checks, 106 lines checked
+33b2dcba156f drm/i915: Add HDCP 1.4 support for MST connectors
+-:144: WARNING:LINE_SPACING: Missing a blank line after declarations
+#144: FILE: drivers/gpu/drm/i915/display/intel_dp_mst.c:659:
++		int ret = intel_hdcp_init(intel_connector, &intel_dp_hdcp_shim);
++		if (ret)
+
+total: 0 errors, 1 warnings, 0 checks, 124 lines checked
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
