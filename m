@@ -1,32 +1,35 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id ABA7511D8EC
-	for <lists+intel-gfx@lfdr.de>; Thu, 12 Dec 2019 22:58:17 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 98FAB11D90E
+	for <lists+intel-gfx@lfdr.de>; Thu, 12 Dec 2019 23:10:09 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 786EF6E216;
-	Thu, 12 Dec 2019 21:58:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 73F7589C21;
+	Thu, 12 Dec 2019 22:10:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8341B6E217
- for <intel-gfx@lists.freedesktop.org>; Thu, 12 Dec 2019 21:58:13 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19560839-1500050 
- for <intel-gfx@lists.freedesktop.org>; Thu, 12 Dec 2019 21:58:06 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 12 Dec 2019 21:58:08 +0000
-Message-Id: <20191212215808.1660798-2-chris@chris-wilson.co.uk>
+Received: from 9.mo69.mail-out.ovh.net (9.mo69.mail-out.ovh.net [46.105.56.78])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0BA5E89C21
+ for <intel-gfx@lists.freedesktop.org>; Thu, 12 Dec 2019 22:10:06 +0000 (UTC)
+Received: from player773.ha.ovh.net (unknown [10.108.35.210])
+ by mo69.mail-out.ovh.net (Postfix) with ESMTP id 2D93B74E3C
+ for <intel-gfx@lists.freedesktop.org>; Thu, 12 Dec 2019 23:01:29 +0100 (CET)
+Received: from etezian.org (net-37-116-49-191.cust.vodafonedsl.it
+ [37.116.49.191]) (Authenticated sender: andi@etezian.org)
+ by player773.ha.ovh.net (Postfix) with ESMTPSA id 4299DD3BAFC6;
+ Thu, 12 Dec 2019 22:01:25 +0000 (UTC)
+From: Andi Shyti <andi@etezian.org>
+To: Intel GFX <intel-gfx@lists.freedesktop.org>
+Date: Fri, 13 Dec 2019 00:01:19 +0200
+Message-Id: <20191212220121.17852-1-andi@etezian.org>
 X-Mailer: git-send-email 2.24.0
-In-Reply-To: <20191212215808.1660798-1-chris@chris-wilson.co.uk>
-References: <20191212215808.1660798-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [CI 2/2] drm/i915/gt: Mark ring->vma as active while
- pinned
+X-Ovh-Tracer-Id: 13310388700099166813
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: -100
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedufedrudeljedgudehiecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfqggfjpdevjffgvefmvefgnecuuegrihhlohhuthemucehtddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefhvffufffkofgggfestdekredtredttdenucfhrhhomheptehnughiucfuhhihthhiuceorghnughisegvthgviihirghnrdhorhhgqeenucfkpheptddrtddrtddrtddpfeejrdduudeirdegledrudeludenucfrrghrrghmpehmohguvgepshhmthhpqdhouhhtpdhhvghlohepphhlrgihvghrjeejfedrhhgrrdhovhhhrdhnvghtpdhinhgvtheptddrtddrtddrtddpmhgrihhlfhhrohhmpegrnhguihesvghtvgiiihgrnhdrohhrghdprhgtphhtthhopehinhhtvghlqdhgfhigsehlihhsthhsrdhfrhgvvgguvghskhhtohhprdhorhhgnecuvehluhhsthgvrhfuihiivgeptd
+Subject: [Intel-gfx] [PATCH v2 0/2] Some debugfs enhancements
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,63 +47,47 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-As we use the active state to keep the vma alive while we are reading
-its contents during GPU error capture, we need to mark the
-ring->vma as active during execution if we want to include the rinbuffer
-in the error state.
+From: Andi Shyti <andi.shyti@intel.com>
 
-Reported-by: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
-Fixes: b1e3177bd1d8 ("drm/i915: Coordinate i915_active with its own mutex")
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-Cc: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
-Acked-by: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
----
- drivers/gpu/drm/i915/gt/intel_ring.c | 10 +++++++++-
- 1 file changed, 9 insertions(+), 1 deletion(-)
+Hi,
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_ring.c b/drivers/gpu/drm/i915/gt/intel_ring.c
-index 374b28f13ca0..7a27264150b9 100644
---- a/drivers/gpu/drm/i915/gt/intel_ring.c
-+++ b/drivers/gpu/drm/i915/gt/intel_ring.c
-@@ -45,6 +45,10 @@ int intel_ring_pin(struct intel_ring *ring)
- 	if (unlikely(ret))
- 		goto err_unpin;
- 
-+	ret = i915_active_acquire(&vma->active);
-+	if (ret)
-+		goto err_ring;
-+
- 	if (i915_vma_is_map_and_fenceable(vma))
- 		addr = (void __force *)i915_vma_pin_iomap(vma);
- 	else
-@@ -52,7 +56,7 @@ int intel_ring_pin(struct intel_ring *ring)
- 					       i915_coherent_map_type(vma->vm->i915));
- 	if (IS_ERR(addr)) {
- 		ret = PTR_ERR(addr);
--		goto err_ring;
-+		goto err_active;
- 	}
- 
- 	i915_vma_make_unshrinkable(vma);
-@@ -63,6 +67,8 @@ int intel_ring_pin(struct intel_ring *ring)
- 	ring->vaddr = addr;
- 	return 0;
- 
-+err_active:
-+	i915_active_release(&vma->active);
- err_ring:
- 	i915_vma_unpin(vma);
- err_unpin:
-@@ -93,6 +99,8 @@ void intel_ring_unpin(struct intel_ring *ring)
- 		i915_gem_object_unpin_map(vma->obj);
- 
- 	i915_vma_make_purgeable(vma);
-+
-+	i915_active_release(&vma->active);
- 	i915_vma_unpin(vma);
- }
- 
+this two patches are few debugfs improvements. The first adds
+some helpers for reading the GT frequency, while the second patch
+moves all the power management debufs functions into gt/
+
+Thanks,
+Andi
+
+Changelog:
+==========
+v1-v2:
+ - renamed functions from
+	intel_cagf_freq_read to intel_rps_read_actual_frequency
+	intel_cagf_read to intel_rps_read_cagf
+ - created an independent gt/ directory in debugfs
+(Thanks Chris!)
+
+Andi Shyti (2):
+  drm/i915/rps: Add frequency translation helpers
+  drm/i915/gt: Move power management debug files into a gt aware debugfs
+
+ drivers/gpu/drm/i915/Makefile            |   2 +
+ drivers/gpu/drm/i915/gt/debugfs_gt.c     |  19 +
+ drivers/gpu/drm/i915/gt/debugfs_gt.h     |  13 +
+ drivers/gpu/drm/i915/gt/debugfs_pm.c     | 593 ++++++++++++++++++++++
+ drivers/gpu/drm/i915/gt/debugfs_pm.h     |  16 +
+ drivers/gpu/drm/i915/gt/intel_gt_types.h |   3 +
+ drivers/gpu/drm/i915/gt/intel_rps.c      |  22 +
+ drivers/gpu/drm/i915/gt/intel_rps.h      |   2 +
+ drivers/gpu/drm/i915/i915_debugfs.c      | 596 +----------------------
+ drivers/gpu/drm/i915/i915_debugfs.h      |   9 +
+ drivers/gpu/drm/i915/i915_sysfs.c        |  14 +-
+ 11 files changed, 690 insertions(+), 599 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/gt/debugfs_gt.c
+ create mode 100644 drivers/gpu/drm/i915/gt/debugfs_gt.h
+ create mode 100644 drivers/gpu/drm/i915/gt/debugfs_pm.c
+ create mode 100644 drivers/gpu/drm/i915/gt/debugfs_pm.h
+
 -- 
 2.24.0
 
