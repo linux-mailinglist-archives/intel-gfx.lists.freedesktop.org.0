@@ -1,61 +1,61 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B98D411D6A5
-	for <lists+intel-gfx@lfdr.de>; Thu, 12 Dec 2019 20:02:54 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 154B011D6A3
+	for <lists+intel-gfx@lfdr.de>; Thu, 12 Dec 2019 20:02:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 048786E122;
-	Thu, 12 Dec 2019 19:02:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7FD3F6E10B;
+	Thu, 12 Dec 2019 19:02:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-yb1-xb44.google.com (mail-yb1-xb44.google.com
- [IPv6:2607:f8b0:4864:20::b44])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A907D6E0FB
- for <intel-gfx@lists.freedesktop.org>; Thu, 12 Dec 2019 19:02:37 +0000 (UTC)
-Received: by mail-yb1-xb44.google.com with SMTP id d34so877730yba.10
- for <intel-gfx@lists.freedesktop.org>; Thu, 12 Dec 2019 11:02:37 -0800 (PST)
+Received: from mail-yb1-xb42.google.com (mail-yb1-xb42.google.com
+ [IPv6:2607:f8b0:4864:20::b42])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F0E426E10B
+ for <intel-gfx@lists.freedesktop.org>; Thu, 12 Dec 2019 19:02:38 +0000 (UTC)
+Received: by mail-yb1-xb42.google.com with SMTP id 63so887367yba.2
+ for <intel-gfx@lists.freedesktop.org>; Thu, 12 Dec 2019 11:02:38 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=poorly.run; s=google;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=h0egt0JF3BBaO6WdEMgj9OmFassmcCaVwLOw/Q8+8Ig=;
- b=SHJUYkdQXFIy7lhSOlGEt4N5lRi54RBmiuC1/wvPLbJPQdGP4+0qs0kcR03YfyUDsV
- kvnNq6grLvRnzgt1X0VhyaF2celBuey0NkyLNxLW/7k2uYpp7HMiyvNgfyYnCev/VBwa
- trV6aCHWZhzQVVQXMmG/Ig+nQLmfjtnnlnJ0IU+a90Bfgv2eNcsh1w55Bp5JGFH+Chjr
- L4I2vM8/zrgZ5pqpNZGVy4OGuFvGRPEbN4HoCQc4yT/JbQ8+z9VVnnDQl8LrgpnWwELF
- pZX2tWycjVoOJnafgIyjS3kVHB+esUoA+m7jNBSK1IX5QJSA4l/IgVD+fSdOicdJf87u
- 7fXw==
+ bh=dzTlbSPDk2anKhVKTtI0sy9Z4bmPlFZnqKLkyDoxCLI=;
+ b=Ue/LjwPF/HGXT/QEAAelM/jdEwb5xnEhipI18HUy2f+/Ov/alm0wWJYhyHlRPykHXO
+ H1IyCMw9Bu7uli8HvT+kNFuxeAvIo4+5/wTYmzLwFS5bWt8qydhLIG3Qqp6iIgJ1tNXb
+ OXitrTqx5/oCeKTMROsHhkDUDm1ngx+H1AelO/2076xD2a41iNsbGphYNNCZFedG/OGb
+ LFJFov6oM6ZFfHjvQyGy3Hx8Ell6GADI6E+gV9bj+2w7i/Rtjipv/ynmvSgRqVxGBu94
+ shuTBC63kL50lKmvm6G0M739W4zTGBNd1QG37d+7E44iUb2P/uPqV8tqlHVBQczQQuI9
+ Ryjw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=h0egt0JF3BBaO6WdEMgj9OmFassmcCaVwLOw/Q8+8Ig=;
- b=s+1fyg1fSNEOnE6hp3qqpumWYSj7eTQqVRATUa2M00KH+p9an8xeKOY8RlXf0t5A5j
- k8fryuceztzosTueybjhRQy2nXE9Q/A7gsBJQ4DPc5t/p52sKKd5dq21OZ0aD+jR6oPW
- 8RiGRV9ygPbbhPR7L8JGgE/m2VgPaNfP1AEFXrm6SvcR0hWgGbe/UOFnGOyGZgGZ6Bpu
- A3u22fT9Pz+KuQ0dRkEbS/5OsQGgai/vCtFwPhPXGf45x52XbQQLg77a8WDqYe0h8kvV
- PphM+iFM9kiPp7DnrCuBZmnP/GQzE8drlGH1HuTpWkwU5XMdnfC0perltMS0WdAqi8nM
- As8Q==
-X-Gm-Message-State: APjAAAUymSLCWuYJzHUR7pAISwK0fFwxLafVLskzdegC0MJNf+jri/B/
- u3mTWGWlgJExvDDEGI6Le9A5yw==
-X-Google-Smtp-Source: APXvYqxTLrnFF6DesdMGBQCsHLYXvOIO4H7H7tXnoUlpTgcZRRHBNuvB3iFuGq/JTG5n86eh2+8xgg==
-X-Received: by 2002:a25:6385:: with SMTP id x127mr5367068ybb.468.1576177356773; 
- Thu, 12 Dec 2019 11:02:36 -0800 (PST)
+ bh=dzTlbSPDk2anKhVKTtI0sy9Z4bmPlFZnqKLkyDoxCLI=;
+ b=lxp1xpM3bb1HWBMk2C+JnjAYUy5j8lKZUCcAoV3rwxRQ/GJjVX3t4Sa6+rvV6ryK28
+ xpbNdfL5m2jUWBbBKcB326tR6DohIP98ZMh81MDQdjEZNC5U4iryhm8OJ4bXdMaCcZ0B
+ Kcakw/a8CJLlnpO0oJm04ZT6YeIZpUjde8Qutbi6UqsEkPExchdkDE+S+cgX37iL5/qk
+ PElEekKszR/ZyczoI61J9c87Hh1egVtSvEDe7RDFjBqvOsBtHhaiJdxOpRh4D27tfuN3
+ GYzharCTEcA3CZC+6Jr4DYJBEtV1bL53x51cyH3m1eAQglXVJNDy78q2ihkA2qRIISBN
+ gFvQ==
+X-Gm-Message-State: APjAAAVxECKoh68JO8PLBEeHezU0K1er6DbfvKmPwetWcRGj1k2Gqr5n
+ 62i3lex+fa9Bc5AfDKR6UwSf1w==
+X-Google-Smtp-Source: APXvYqwoJwF8xw8EvbWXFz0Bmc2FmjGXQUm8aA+PsNQUVW8bHd/RveWdG6usYEx36RrzzoD4UvVGpw==
+X-Received: by 2002:a25:b95:: with SMTP id 143mr4074489ybl.182.1576177358050; 
+ Thu, 12 Dec 2019 11:02:38 -0800 (PST)
 Received: from localhost ([2620:0:1013:11:1e1:4760:6ce4:fc64])
- by smtp.gmail.com with ESMTPSA id k23sm538820ywk.17.2019.12.12.11.02.35
+ by smtp.gmail.com with ESMTPSA id a202sm2987296ywe.8.2019.12.12.11.02.37
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 12 Dec 2019 11:02:36 -0800 (PST)
+ Thu, 12 Dec 2019 11:02:37 -0800 (PST)
 From: Sean Paul <sean@poorly.run>
 To: dri-devel@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
-Date: Thu, 12 Dec 2019 14:02:20 -0500
-Message-Id: <20191212190230.188505-3-sean@poorly.run>
+Date: Thu, 12 Dec 2019 14:02:21 -0500
+Message-Id: <20191212190230.188505-4-sean@poorly.run>
 X-Mailer: git-send-email 2.24.1.735.g03f4e72817-goog
 In-Reply-To: <20191212190230.188505-1-sean@poorly.run>
 References: <20191212190230.188505-1-sean@poorly.run>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v2 02/12] drm/i915: Clear the repeater bit on
- HDCP disable
+Subject: [Intel-gfx] [PATCH v2 03/12] drm/i915: WARN if HDCP signalling is
+ enabled upon disable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,63 +68,31 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: daniel.vetter@ffwll.ch, Sean Paul <seanpaul@chromium.org>,
- stable@vger.kernel.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: daniel.vetter@ffwll.ch, Sean Paul <seanpaul@chromium.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Sean Paul <seanpaul@chromium.org>
-
-On HDCP disable, clear the repeater bit. This ensures if we connect a
-non-repeater sink after a repeater, the bit is in the state we expect.
-
-Fixes: ee5e5e7a5e0f ("drm/i915: Add HDCP framework + base implementation")
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Ramalingam C <ramalingam.c@intel.com>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
-Cc: Sean Paul <seanpaul@chromium.org>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Cc: <stable@vger.kernel.org> # v4.17+
-Signed-off-by: Sean Paul <seanpaul@chromium.org>
-
-Changes in v2:
--Added to the set
----
- drivers/gpu/drm/i915/display/intel_hdcp.c | 5 +++++
- 1 file changed, 5 insertions(+)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
-index eaab9008feef..c4394c8e10eb 100644
---- a/drivers/gpu/drm/i915/display/intel_hdcp.c
-+++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
-@@ -773,6 +773,7 @@ static int _intel_hdcp_disable(struct intel_connector *connector)
- 	struct intel_digital_port *intel_dig_port = conn_to_dig_port(connector);
- 	enum port port = intel_dig_port->base.port;
- 	enum transcoder cpu_transcoder = hdcp->cpu_transcoder;
-+	u32 repeater_ctl;
- 	int ret;
- 
- 	DRM_DEBUG_KMS("[%s:%d] HDCP is being disabled...\n",
-@@ -787,6 +788,10 @@ static int _intel_hdcp_disable(struct intel_connector *connector)
- 		return -ETIMEDOUT;
- 	}
- 
-+	repeater_ctl = intel_hdcp_get_repeater_ctl(dev_priv, cpu_transcoder,
-+						   port);
-+	I915_WRITE(HDCP_REP_CTL, I915_READ(HDCP_REP_CTL) & ~repeater_ctl);
-+
- 	ret = hdcp->shim->toggle_signalling(intel_dig_port, false);
- 	if (ret) {
- 		DRM_ERROR("Failed to disable HDCP signalling\n");
--- 
-Sean Paul, Software Engineer, Google / Chromium OS
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+RnJvbTogU2VhbiBQYXVsIDxzZWFucGF1bEBjaHJvbWl1bS5vcmc+CgpIRENQIHNpZ25hbGxpbmcg
+c2hvdWxkIG5vdCBiZSBsZWZ0IG9uLCBXQVJOIGlmIGl0IGlzCgpDYzogVmlsbGUgU3lyasOkbMOk
+IDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KQ2M6IERhbmllbCBWZXR0ZXIgPGRhbmll
+bC52ZXR0ZXJAZmZ3bGwuY2g+ClNpZ25lZC1vZmYtYnk6IFNlYW4gUGF1bCA8c2VhbnBhdWxAY2hy
+b21pdW0ub3JnPgoKQ2hhbmdlcyBpbiB2MjoKLSBBZGRlZCB0byB0aGUgc2V0IGluIGxpZXUgb2Yg
+anVzdCBjbGVhcmluZyB0aGUgYml0Ci0tLQogZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9p
+bnRlbF9kZGkuYyB8IDIgKysKIDEgZmlsZSBjaGFuZ2VkLCAyIGluc2VydGlvbnMoKykKCmRpZmYg
+LS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RkaS5jIGIvZHJpdmVy
+cy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kZGkuYwppbmRleCA1YjZmMzI1MTdjNzUuLjRh
+NWJkZjNlZjUxZCAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRl
+bF9kZGkuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RkaS5jCkBA
+IC0xOTUxLDYgKzE5NTEsOCBAQCB2b2lkIGludGVsX2RkaV9kaXNhYmxlX3RyYW5zY29kZXJfZnVu
+Yyhjb25zdCBzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZSAqY3J0Y19zdGF0ZQogCWk5MTVfcmVnX3Qg
+cmVnID0gVFJBTlNfRERJX0ZVTkNfQ1RMKGNwdV90cmFuc2NvZGVyKTsKIAl1MzIgdmFsID0gSTkx
+NV9SRUFEKHJlZyk7CiAKKwlXQVJOX09OKHZhbCAmIFRSQU5TX0RESV9IRENQX1NJR05BTExJTkcp
+OworCiAJaWYgKElOVEVMX0dFTihkZXZfcHJpdikgPj0gMTIpIHsKIAkJdmFsICY9IH4oVFJBTlNf
+RERJX0ZVTkNfRU5BQkxFIHwgVEdMX1RSQU5TX0RESV9QT1JUX01BU0sgfAogCQkJIFRSQU5TX0RE
+SV9EUF9WQ19QQVlMT0FEX0FMTE9DKTsKLS0gClNlYW4gUGF1bCwgU29mdHdhcmUgRW5naW5lZXIs
+IEdvb2dsZSAvIENocm9taXVtIE9TCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVl
+ZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5m
+by9pbnRlbC1nZngK
