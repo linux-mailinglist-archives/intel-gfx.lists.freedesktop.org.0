@@ -1,61 +1,78 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A49A311D6BA
-	for <lists+intel-gfx@lfdr.de>; Thu, 12 Dec 2019 20:03:18 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C9F7111D6BB
+	for <lists+intel-gfx@lfdr.de>; Thu, 12 Dec 2019 20:03:19 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2F8516E183;
-	Thu, 12 Dec 2019 19:02:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B7DD06E17B;
+	Thu, 12 Dec 2019 19:02:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-yb1-xb44.google.com (mail-yb1-xb44.google.com
- [IPv6:2607:f8b0:4864:20::b44])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1DB186E157
- for <intel-gfx@lists.freedesktop.org>; Thu, 12 Dec 2019 19:02:51 +0000 (UTC)
-Received: by mail-yb1-xb44.google.com with SMTP id o63so890676ybc.0
- for <intel-gfx@lists.freedesktop.org>; Thu, 12 Dec 2019 11:02:51 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=poorly.run; s=google;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=ej6S5sZ/3O8dkLj3JltBoet6OIw7CY2Bx8qpK10wdc0=;
- b=R/xR6sEQHjkTWFCjK2z4zn+IZ1+I7dOWk+aZYDoAyHmrsIn2nqRhQZZWSNO1Tpj5tz
- hrOZgTPhd9jBKJknRJ/UDdql2vF2ovw7xDTg5kdNu4NUU48dMuqzJaqTNInYVC7UUSBx
- QSHO9sYoT9EqwdGk9VPWWC6w91PHGtVknU5Y5Y7/LxlumL0thW17HWAN66DEMjXCUyjt
- igBUcklMIqioUT1h6ZNclkuB0mwq67YFPf/YoPC7L5+qjo2Air/BsCbQa03RyJB0MHEl
- 1tnfQNBknl+ZeI2G0f9d8/y9HqOonpTKL+EJ8mW+LtBk/voZEsKODfw98u1U/qV9UfkT
- q2TA==
+Received: from us-smtp-delivery-1.mimecast.com (us-smtp-1.mimecast.com
+ [205.139.110.61])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 463096E156
+ for <intel-gfx@lists.freedesktop.org>; Thu, 12 Dec 2019 19:02:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1576177377;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=2g3fZhcsSrRGHzfeL8zuc2n1XDVEZgXCmHzHbk4+Fz4=;
+ b=IqQ4i2Q5lka6sCuZIQLo9zQeFGtIQKHxiITJqYN3Q+JjbQuWWt1mGfZZ8gILnbPm3hLcTQ
+ YVsvUR6dom9CEpKTqZq1dIFecA8dDPBZ3UsGGm8ezZlPnO383iatxHBw7PUB/KErlG+q2r
+ IczO7qH7I+XkDz3EebwtrJzjGIHw3pY=
+Received: from mail-wr1-f72.google.com (mail-wr1-f72.google.com
+ [209.85.221.72]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-414-QUODPs23NFiv-CyNznFSIg-1; Thu, 12 Dec 2019 14:02:55 -0500
+Received: by mail-wr1-f72.google.com with SMTP id k18so1389214wrw.9
+ for <intel-gfx@lists.freedesktop.org>; Thu, 12 Dec 2019 11:02:55 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=ej6S5sZ/3O8dkLj3JltBoet6OIw7CY2Bx8qpK10wdc0=;
- b=T6GNQtgeQLcZSeWEHSknBqjzXeq8BcNWL4THLpsRQSY4EEvs1OVW0uIdPiGWI2F8yP
- Qp0InzAJyVGUoc/cMew51YoqD2HZTb8mzH8kCDvaICTqjKXG/yoO5D63xri+Ed1iqDj+
- F8A8IB0xl246LAB5fUGyJNshsbj78QVaKtR9xl2hUMKZzcQeLNfA6cj4gghQi/Xy4Dmt
- OLkQ0hyHuoiDEfBTtWXHGR9AZuAjRhlc1e9hOKhDghy4sCypNi+aH1+D3nzz4Y+PuzGy
- 2v6bMcz1l00QrNHDQDTtNlMF4moYJYJ9sfzWT/F3aD9/qIBnawkgoMwEouM6x27AOjP6
- bMQA==
-X-Gm-Message-State: APjAAAWe7ZQkpCCOYnepcjmUVbgf/KyTbQtvpGYBdvYDWo5zNVgYNE9h
- MHJ7c4SMkXhDC2mVH81R27BDFxTJSiR5SQ==
-X-Google-Smtp-Source: APXvYqxMZ73UTCjMjXsP9gyC44UB30QnyyVt+mnYbnGy29codOJHmT2J6zysxHTSOfsRMdoYjiZZRg==
-X-Received: by 2002:a25:41c3:: with SMTP id o186mr5649947yba.471.1576177370098; 
- Thu, 12 Dec 2019 11:02:50 -0800 (PST)
-Received: from localhost ([2620:0:1013:11:1e1:4760:6ce4:fc64])
- by smtp.gmail.com with ESMTPSA id e204sm2993462ywe.92.2019.12.12.11.02.49
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 12 Dec 2019 11:02:49 -0800 (PST)
-From: Sean Paul <sean@poorly.run>
-To: dri-devel@lists.freedesktop.org,
-	intel-gfx@lists.freedesktop.org
-Date: Thu, 12 Dec 2019 14:02:30 -0500
-Message-Id: <20191212190230.188505-13-sean@poorly.run>
-X-Mailer: git-send-email 2.24.1.735.g03f4e72817-goog
-In-Reply-To: <20191212190230.188505-1-sean@poorly.run>
-References: <20191212190230.188505-1-sean@poorly.run>
+ h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+ :user-agent:mime-version:in-reply-to:content-language
+ :content-transfer-encoding;
+ bh=2g3fZhcsSrRGHzfeL8zuc2n1XDVEZgXCmHzHbk4+Fz4=;
+ b=HEBW8xb9jittBHYjNcR1w+uZol3q7/9yfDL52BPY9/d3OBFdUFUGMaH+UUdQil0i6q
+ sL8otGKVauM7ivTYEjwhAK7hzAp2TdmTBzrX9fUMgbLUsMHn3yLk+kY1BbAvPRKVkwR4
+ f8xSt7YMVSJQY3LYBaYPZvqzxYoztkgM5Y0rHPNGSf+yqMNK2aEGppLXWwkbUxeIFurX
+ D3F8g0Pfp9mujYpJxNZaE1t/yj/t10XqkOofsmXxCs2ClfW9VFSEZYiODfPgm+J+ousu
+ OvoXA90obtItsEAjWKsvOGKXJVpBHtosIoF0vmw7walrPfoScP6PwjpiYjLJqvHzR8/O
+ Vq3g==
+X-Gm-Message-State: APjAAAUyV2aUgDQuCeXhHjfNMk5KxaTklFuigh7V/jjAIw59fACdjpaw
+ pimZXi8p25ZZD1DqVR0YBzVaUuP27K7zKJty+9Hip0NKeNrFvIJeg8UoRYe7t8wdz2UShQMdxNX
+ icC8qefy/aSOjNuc6s10Q/9yGkk8B
+X-Received: by 2002:a1c:ab85:: with SMTP id u127mr8067557wme.40.1576177374271; 
+ Thu, 12 Dec 2019 11:02:54 -0800 (PST)
+X-Google-Smtp-Source: APXvYqzQukJStmxmoEoaxXikD5ciYQ5z/yOZy47VSl9amElYeQjqTK2KA5kfBGOBwBV7OX3cgJ0QIw==
+X-Received: by 2002:a1c:ab85:: with SMTP id u127mr8067516wme.40.1576177373951; 
+ Thu, 12 Dec 2019 11:02:53 -0800 (PST)
+Received: from shalem.localdomain
+ (2001-1c00-0c0c-fe00-7e79-4dac-39d0-9c14.cable.dynamic.v6.ziggo.nl.
+ [2001:1c00:c0c:fe00:7e79:4dac:39d0:9c14])
+ by smtp.gmail.com with ESMTPSA id e18sm7016654wrr.95.2019.12.12.11.02.52
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Thu, 12 Dec 2019 11:02:53 -0800 (PST)
+To: Lee Jones <lee.jones@linaro.org>
+References: <20191119151818.67531-1-hdegoede@redhat.com>
+ <20191119151818.67531-3-hdegoede@redhat.com> <20191210085111.GQ3468@dell>
+ <a05e5a2b-568e-2b0d-0293-aa937c590a74@redhat.com>
+ <20191212084546.GA3468@dell>
+ <d22e9a04-da09-0f41-a78e-ac17a947650a@redhat.com>
+ <20191212155209.GC3468@dell>
+From: Hans de Goede <hdegoede@redhat.com>
+Message-ID: <4d07445d-98b1-f23c-0aac-07709b45df78@redhat.com>
+Date: Thu, 12 Dec 2019 20:02:51 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.2.2
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v2 12/12] drm/i915: Add HDCP 1.4 support for MST
- connectors
+In-Reply-To: <20191212155209.GC3468@dell>
+Content-Language: en-US
+X-MC-Unique: QUODPs23NFiv-CyNznFSIg-1
+X-Mimecast-Spam-Score: 0
+Subject: Re: [Intel-gfx] [PATCH 2/3] mfd: intel_soc_pmic: Rename
+ pwm_backlight pwm-lookup to pwm_pmic_backlight
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,164 +85,118 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: daniel.vetter@ffwll.ch, Sean Paul <seanpaul@chromium.org>
-Content-Type: text/plain; charset="us-ascii"
+Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
+ "Rafael J . Wysocki" <rjw@rjwysocki.net>, linux-kernel@vger.kernel.org,
+ linux-acpi@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Len Brown <lenb@kernel.org>
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Sean Paul <seanpaul@chromium.org>
+Hi,
 
-Now that all the groundwork has been laid, we can turn on HDCP 1.4 over
-MST. Everything except for toggling the HDCP signalling and HDCP 2.2
-support is the same as the DP case, so we'll re-use those callbacks
+On 12-12-2019 16:52, Lee Jones wrote:
+> On Thu, 12 Dec 2019, Hans de Goede wrote:
+> 
+>> Hi,
+>>
+>> On 12-12-2019 09:45, Lee Jones wrote:
+>>> On Wed, 11 Dec 2019, Hans de Goede wrote:
+>>>
+>>>> Hi Lee,
+>>>>
+>>>> On 10-12-2019 09:51, Lee Jones wrote:
+>>>>> On Tue, 19 Nov 2019, Hans de Goede wrote:
+>>>>>
+>>>>>> At least Bay Trail (BYT) and Cherry Trail (CHT) devices can use 1 of 2
+>>>>>> different PWM controllers for controlling the LCD's backlight brightness.
+>>>>>>
+>>>>>> Either the one integrated into the PMIC or the one integrated into the
+>>>>>> SoC (the 1st LPSS PWM controller).
+>>>>>>
+>>>>>> So far in the LPSS code on BYT we have skipped registering the LPSS PWM
+>>>>>> controller "pwm_backlight" lookup entry when a Crystal Cove PMIC is
+>>>>>> present, assuming that in this case the PMIC PWM controller will be used.
+>>>>>>
+>>>>>> On CHT we have been relying on only 1 of the 2 PWM controllers being
+>>>>>> enabled in the DSDT at the same time; and always registered the lookup.
+>>>>>>
+>>>>>> So far this has been working, but the correct way to determine which PWM
+>>>>>> controller needs to be used is by checking a bit in the VBT table and
+>>>>>> recently I've learned about 2 different BYT devices:
+>>>>>> Point of View MOBII TAB-P800W
+>>>>>> Acer Switch 10 SW5-012
+>>>>>>
+>>>>>> Which use a Crystal Cove PMIC, yet the LCD is connected to the SoC/LPSS
+>>>>>> PWM controller (and the VBT correctly indicates this), so here our old
+>>>>>> heuristics fail.
+>>>>>>
+>>>>>> Since only the i915 driver has access to the VBT, this commit renames
+>>>>>> the "pwm_backlight" lookup entries for the Crystal Cove PMIC's PWM
+>>>>>> controller to "pwm_pmic_backlight" so that the i915 driver can do a
+>>>>>> pwm_get() for the right controller depending on the VBT bit, instead of
+>>>>>> the i915 driver relying on a "pwm_backlight" lookup getting registered
+>>>>>> which magically points to the right controller.
+>>>>>>
+>>>>>> Signed-off-by: Hans de Goede <hdegoede@redhat.com>
+>>>>>> ---
+>>>>>>     drivers/mfd/intel_soc_pmic_core.c | 2 +-
+>>>>>>     1 file changed, 1 insertion(+), 1 deletion(-)
+>>>>>
+>>>>> For my own reference:
+>>>>>      Acked-for-MFD-by: Lee Jones <lee.jones@linaro.org>
+>>>>
+>>>> As mentioned in the cover-letter, to avoid breaking bi-sectability
+>>>> as well as to avoid breaking the intel-gfx CI we need to merge this series
+>>>> in one go through one tree. Specifically through the drm-intel tree.
+>>>> Is that ok with you ?
+>>>>
+>>>> If this is ok with you, then you do not have to do anything, I will just push
+>>>> the entire series to drm-intel. drivers/mfd/intel_soc_pmic_core.c
+>>>> does not see much changes so I do not expect this to lead to any conflicts.
+>>>
+>>> It's fine, so long as a minimal immutable pull-request is provided.
+>>> Whether it's pulled or not will depend on a number of factors, but it
+>>> needs to be an option.
+>>
+>> The way the drm subsys works that is not really a readily available
+>> option. The struct definition which this patch changes a single line in
+>> has not been touched since 2015-06-26 so I really doubt we will get a
+>> conflict from this.
+> 
+> Always with the exceptions ...
+> 
+> OOI, why does this *have* to go through the DRM tree?
 
-Signed-off-by: Sean Paul <seanpaul@chromium.org>
-Link: https://patchwork.freedesktop.org/patch/msgid/20191203173638.94919-12-sean@poorly.run #v1
+This patch renames the name used to lookup the pwm controller from
+"pwm_backlight" to "pwm_pmic_backlight" because there are 2 possible
+pwm controllers which may be used, one in the SoC itself and one
+in the PMIC. Which controller should be used is described in a table
+in the Video BIOS, so another part of this series adds this code to
+the i915 driver:
 
-Changes in v2:
-- Toggle HDCP from encoder disable/enable
-- Don't disable HDCP on MST connector destroy, leave that for encoder
-  disable, just ensure the check_work routine isn't running any longer
----
- drivers/gpu/drm/i915/display/intel_dp_mst.c | 89 +++++++++++++++++++++
- 1 file changed, 89 insertions(+)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-index fbd9a6c543e7..1e08ce751abe 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-@@ -36,6 +36,7 @@
- #include "intel_dp.h"
- #include "intel_dp_mst.h"
- #include "intel_dpio_phy.h"
-+#include "intel_hdcp.h"
- 
- static int intel_dp_mst_compute_link_config(struct intel_encoder *encoder,
- 					    struct intel_crtc_state *crtc_state,
-@@ -215,6 +216,8 @@ static void intel_mst_disable_dp(struct intel_encoder *encoder,
- 
- 	DRM_DEBUG_KMS("active links %d\n", intel_dp->active_mst_links);
- 
-+	intel_hdcp_disable(intel_mst->connector);
-+
- 	drm_dp_mst_reset_vcpi_slots(&intel_dp->mst_mgr, connector->port);
- 
- 	ret = drm_dp_update_payload_part1(&intel_dp->mst_mgr);
-@@ -378,6 +381,13 @@ static void intel_mst_enable_dp(struct intel_encoder *encoder,
- 	drm_dp_update_payload_part2(&intel_dp->mst_mgr);
- 	if (pipe_config->has_audio)
- 		intel_audio_codec_enable(encoder, pipe_config, conn_state);
-+
-+	/* Enable hdcp if it's desired */
-+	if (conn_state->content_protection ==
-+	    DRM_MODE_CONTENT_PROTECTION_DESIRED)
-+		intel_hdcp_enable(to_intel_connector(conn_state->connector),
-+				  pipe_config->cpu_transcoder,
-+				  (u8)conn_state->hdcp_content_type);
- }
- 
- static bool intel_dp_mst_enc_get_hw_state(struct intel_encoder *encoder,
-@@ -522,11 +532,84 @@ static bool intel_dp_mst_get_hw_state(struct intel_connector *connector)
- 	return false;
- }
- 
-+static int
-+intel_dp_mst_hdcp_toggle_signalling(struct intel_digital_port *intel_dig_port,
-+				    enum transcoder cpu_transcoder,
-+				    bool enable)
-+{
-+	int ret;
-+
-+	ret = intel_ddi_toggle_hdcp_signalling(&intel_dig_port->base,
-+					       cpu_transcoder, enable);
-+	if (ret)
-+		DRM_DEBUG_KMS("%s HDCP signalling failed (%d)\n",
-+			      enable ? "Enable" : "Disable", ret);
-+	return ret;
-+}
-+
-+static
-+int intel_dp_mst_hdcp2_write_msg(struct intel_digital_port *intel_dig_port,
-+				 void *buf, size_t size)
-+{
-+	return -EOPNOTSUPP;
-+}
-+
-+static
-+int intel_dp_mst_hdcp2_read_msg(struct intel_digital_port *intel_dig_port,
-+				u8 msg_id, void *buf, size_t size)
-+{
-+	return -EOPNOTSUPP;
-+}
-+
-+static int
-+intel_dp_mst_hdcp2_config_stream_type(struct intel_digital_port *intel_dig_port,
-+				      bool is_repeater, u8 content_type)
-+{
-+	return -EOPNOTSUPP;
-+}
-+
-+static
-+int intel_dp_mst_hdcp2_check_link(struct intel_digital_port *intel_dig_port)
-+{
-+	return -EOPNOTSUPP;
-+}
-+
-+static
-+int intel_dp_mst_hdcp2_capable(struct intel_digital_port *intel_dig_port,
-+			       bool *capable)
-+{
-+	*capable = false;
-+	return 0;
-+}
-+
-+static const struct intel_hdcp_shim intel_dp_hdcp_shim = {
-+	.write_an_aksv = intel_dp_hdcp_write_an_aksv,
-+	.read_bksv = intel_dp_hdcp_read_bksv,
-+	.read_bstatus = intel_dp_hdcp_read_bstatus,
-+	.repeater_present = intel_dp_hdcp_repeater_present,
-+	.read_ri_prime = intel_dp_hdcp_read_ri_prime,
-+	.read_ksv_ready = intel_dp_hdcp_read_ksv_ready,
-+	.read_ksv_fifo = intel_dp_hdcp_read_ksv_fifo,
-+	.read_v_prime_part = intel_dp_hdcp_read_v_prime_part,
-+	.toggle_signalling = intel_dp_mst_hdcp_toggle_signalling,
-+	.check_link = intel_dp_hdcp_check_link,
-+	.hdcp_capable = intel_dp_hdcp_capable,
-+
-+	.write_2_2_msg = intel_dp_mst_hdcp2_write_msg,
-+	.read_2_2_msg = intel_dp_mst_hdcp2_read_msg,
-+	.config_stream_type = intel_dp_mst_hdcp2_config_stream_type,
-+	.check_2_2_link = intel_dp_mst_hdcp2_check_link,
-+	.hdcp_2_2_capable = intel_dp_mst_hdcp2_capable,
-+
-+	.protocol = HDCP_PROTOCOL_DP,
-+};
-+
- static struct drm_connector *intel_dp_add_mst_connector(struct drm_dp_mst_topology_mgr *mgr, struct drm_dp_mst_port *port, const char *pathprop)
- {
- 	struct intel_dp *intel_dp = container_of(mgr, struct intel_dp, mst_mgr);
- 	struct intel_digital_port *intel_dig_port = dp_to_dig_port(intel_dp);
- 	struct drm_device *dev = intel_dig_port->base.base.dev;
-+	struct intel_encoder *intel_encoder = &intel_dig_port->base;
- 	struct drm_i915_private *dev_priv = to_i915(dev);
- 	struct intel_connector *intel_connector;
- 	struct drm_connector *connector;
-@@ -571,6 +654,12 @@ static struct drm_connector *intel_dp_add_mst_connector(struct drm_dp_mst_topolo
- 	intel_attach_force_audio_property(connector);
- 	intel_attach_broadcast_rgb_property(connector);
- 
-+	if (is_hdcp_supported(dev_priv, intel_encoder->port)) {
-+		int ret = intel_hdcp_init(intel_connector, &intel_dp_hdcp_shim);
-+		if (ret)
-+			DRM_DEBUG_KMS("HDCP init failed, skipping.\n");
+-	panel->backlight.pwm = pwm_get(dev->dev, "pwm_backlight");
++	/* Get the right PWM chip for DSI backlight according to VBT */
++	if (dev_priv->vbt.dsi.config->pwm_blc == PPS_BLC_PMIC) {
++		panel->backlight.pwm = pwm_get(dev->dev, "pwm_pmic_backlight");
++		desc = "PMIC";
++	} else {
++		panel->backlight.pwm = pwm_get(dev->dev, "pwm_soc_backlight");
++		desc = "SoC";
 +	}
-+
- 	/*
- 	 * Reuse the prop from the SST connector because we're
- 	 * not allowed to create new props after device registration.
--- 
-Sean Paul, Software Engineer, Google / Chromium OS
+
+So both not to break bisectability, but also so as to not break the extensive
+CI system which is used to test the i915 driver we need the MFD change doing
+the rename to go upstrream through the same tree as the i915 change.
+
+I have even considered just squashing the 2 commits together as having only 1
+present, but not the other breaks stuff left and right.
+
+Regards,
+
+Hans
 
 _______________________________________________
 Intel-gfx mailing list
