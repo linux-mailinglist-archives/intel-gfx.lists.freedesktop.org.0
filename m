@@ -2,40 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4FE0111C140
-	for <lists+intel-gfx@lfdr.de>; Thu, 12 Dec 2019 01:23:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D7EB211C13F
+	for <lists+intel-gfx@lfdr.de>; Thu, 12 Dec 2019 01:23:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A99D96EC1C;
-	Thu, 12 Dec 2019 00:23:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4E5E06EC1B;
+	Thu, 12 Dec 2019 00:23:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 367F36EC1C;
- Thu, 12 Dec 2019 00:23:48 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 59CDE6EC1B
+ for <intel-gfx@lists.freedesktop.org>; Thu, 12 Dec 2019 00:23:26 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga105.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 11 Dec 2019 16:23:47 -0800
-X-IronPort-AV: E=Sophos;i="5.69,303,1571727600"; d="scan'208";a="296430806"
-Received: from ldmartin-desk1.jf.intel.com (HELO ldmartin-desk1)
- ([10.24.11.18])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 11 Dec 2019 16:23:47 -0800
-Date: Wed, 11 Dec 2019 16:22:50 -0800
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: "Bharadiya,Pankaj" <pankaj.laxminarayan.bharadiya@intel.com>
-Message-ID: <20191212002250.357dhphi3clst7qy@ldmartin-desk1>
-X-Patchwork-Hint: ignore
-References: <20191209143921.9240-1-pankaj.laxminarayan.bharadiya@intel.com>
- <20191211055739.uxe46chnhkc2byul@ldmartin-desk1>
- <20191211064041.GA3339@plaxmina-desktop.iind.intel.com>
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 11 Dec 2019 16:23:25 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.69,303,1571727600"; d="scan'208";a="388117701"
+Received: from dceraolo-linux.fm.intel.com (HELO [10.1.27.145]) ([10.1.27.145])
+ by orsmga005.jf.intel.com with ESMTP; 11 Dec 2019 16:23:24 -0800
+To: Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ intel-gfx@lists.freedesktop.org
+References: <20191210204744.65276-1-michal.wajdeczko@intel.com>
+ <20191210204744.65276-2-michal.wajdeczko@intel.com>
+From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Message-ID: <0623f63e-372d-1047-896c-379e428ec6da@intel.com>
+Date: Wed, 11 Dec 2019 16:23:33 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20191211064041.GA3339@plaxmina-desktop.iind.intel.com>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/display: cleanup intel_bw_state on
- i915 module removal
+In-Reply-To: <20191210204744.65276-2-michal.wajdeczko@intel.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [RFC 1/4] drm/i915/uc: Add ops to intel_uc
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,122 +46,187 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org
 Content-Transfer-Encoding: 7bit
 Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Dec 11, 2019 at 12:10:41PM +0530, Bharadiya,Pankaj wrote:
->On Tue, Dec 10, 2019 at 09:57:39PM -0800, Lucas De Marchi wrote:
->> On Mon, Dec 09, 2019 at 08:09:02PM +0530, Pankaj Bharadiya wrote:
->> >intel_bw_state allocated memory is not getting freed even after
->> >module removal.
->> >
->> >kmemleak reported backtrace:
->> >
->> >   [<0000000079019739>] kmemdup+0x17/0x40
->> >   [<00000000d58c1b9d>] intel_bw_duplicate_state+0x1b/0x40 [i915]
->> >   [<000000007423ed0c>] drm_atomic_get_private_obj_state+0xca/0x140
->> >   [<00000000100e3533>] intel_bw_atomic_check+0x133/0x350 [i915]
->> >   [<00000000126d0e0c>] intel_atomic_check+0x1ab7/0x20d0 [i915]
->> >   [<00000000d5dfc004>] drm_atomic_check_only+0x563/0x810
->> >   [<00000000c9379611>] drm_atomic_commit+0xe/0x50
->> >   [<00000000ec82b765>] drm_atomic_helper_disable_all+0x133/0x160
->> >   [<000000003c44760c>] drm_atomic_helper_shutdown+0x65/0xc0
->> >   [<00000000414e3e5c>] i915_driver_remove+0xcb/0x130 [i915]
->> >   [<00000000f8544c2a>] i915_pci_remove+0x19/0x40 [i915]
->> >   [<000000002dcbd148>] pci_device_remove+0x36/0xb0
->> >   [<000000003c8c6b0a>] device_release_driver_internal+0xe0/0x1c0
->> >   [<00000000580e9566>] unbind_store+0xc3/0x120
->> >   [<00000000869d0df5>] kernfs_fop_write+0x104/0x190
->> >   [<000000004dc1a355>] vfs_write+0xb9/0x1d0
->>
->> what I find strange in this is that the last state was allocated by the
->> "driver remove" code path.
->>
->> >
->> >Call the drm_atomic_private_obj_fini(), which inturn calls the
->> >intel_bw_destroy_state() to make sure the intel_bw_state memory is
->> >freed properly.
->> >
->> >Signed-off-by: Pankaj Bharadiya <pankaj.laxminarayan.bharadiya@intel.com>
->> >---
->> >drivers/gpu/drm/i915/display/intel_bw.c      | 5 +++++
->> >drivers/gpu/drm/i915/display/intel_bw.h      | 1 +
->> >drivers/gpu/drm/i915/display/intel_display.c | 2 ++
->> >3 files changed, 8 insertions(+)
->> >
->> >diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
->> >index dcb66a33be9b..b228671d5a5d 100644
->> >--- a/drivers/gpu/drm/i915/display/intel_bw.c
->> >+++ b/drivers/gpu/drm/i915/display/intel_bw.c
->> >@@ -486,3 +486,8 @@ int intel_bw_init(struct drm_i915_private *dev_priv)
->> >
->> >	return 0;
->> >}
->> >+
->> >+void intel_bw_cleanup(struct drm_i915_private *dev_priv)
->> >+{
->> >+	drm_atomic_private_obj_fini(&dev_priv->bw_obj);
->> >+}
->> >diff --git a/drivers/gpu/drm/i915/display/intel_bw.h b/drivers/gpu/drm/i915/display/intel_bw.h
->> >index 9db10af012f4..20b9ad241802 100644
->> >--- a/drivers/gpu/drm/i915/display/intel_bw.h
->> >+++ b/drivers/gpu/drm/i915/display/intel_bw.h
->> >@@ -25,6 +25,7 @@ struct intel_bw_state {
->> >
->> >void intel_bw_init_hw(struct drm_i915_private *dev_priv);
->> >int intel_bw_init(struct drm_i915_private *dev_priv);
->> >+void intel_bw_cleanup(struct drm_i915_private *dev_priv);
->> >int intel_bw_atomic_check(struct intel_atomic_state *state);
->> >void intel_bw_crtc_update(struct intel_bw_state *bw_state,
->> >			  const struct intel_crtc_state *crtc_state);
->> >diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
->> >index 3190aa27ffdc..756eb90b1bb1 100644
->> >--- a/drivers/gpu/drm/i915/display/intel_display.c
->> >+++ b/drivers/gpu/drm/i915/display/intel_display.c
->> >@@ -17912,6 +17912,8 @@ void intel_modeset_driver_remove(struct drm_i915_private *i915)
->> >
->> >	intel_gmbus_teardown(i915);
->> >
->> >+	intel_bw_cleanup(i915);
->>
->> This doesn't seem to match the (reverse) order of
->> intel_modeset_init()... but it's actually the gmbus_teardown() that is
->> out of place. Did you check if it's not a wrong shutdown ordering?
->>
->
->In intel_modeset_init(), intel_gmbus_setup() happens after
->intel_bw_init().
->I think the patch follows the reverse ordering properly.
->Am I missing anything?
 
-I said it seems that it's the gmbus_teardown() that is out of place.
-Have you seen my comment above? Why are we duplicating the bw_state on
-the module-remove code path?
 
-Lucas De Marchi
+On 12/10/19 12:47 PM, Michal Wajdeczko wrote:
+> Instead of spreading multiple conditionals across the uC code
+> to find out current mode of uC operation, start using predefined
+> set of function pointers that reflect that mode.
+> 
+> Begin with pair of init_hw/fini_hw functions that are responsible
+> for uC hardware initialization and cleanup.
+> 
+> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+> Cc: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+> ---
+>   drivers/gpu/drm/i915/gt/uc/intel_uc.c | 49 +++++++++++++++++++++++----
+>   drivers/gpu/drm/i915/gt/uc/intel_uc.h | 23 +++++++++++--
+>   2 files changed, 63 insertions(+), 9 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc.c b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
+> index c6519066a0f6..e3d1359f9719 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_uc.c
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
+> @@ -12,6 +12,10 @@
+>   
+>   #include "i915_drv.h"
+>   
+> +extern const struct intel_uc_ops uc_ops_none;
+> +extern const struct intel_uc_ops uc_ops_off;
+> +extern const struct intel_uc_ops uc_ops_on;
+> +
+>   /* Reset GuC providing us with fresh state for both GuC and HuC.
+>    */
+>   static int __intel_uc_reset_hw(struct intel_uc *uc)
+> @@ -89,6 +93,13 @@ void intel_uc_init_early(struct intel_uc *uc)
+>   	intel_huc_init_early(&uc->huc);
+>   
+>   	__confirm_options(uc);
+> +
+> +	if (intel_uc_uses_guc(uc))
+> +		uc->ops = &uc_ops_on;
+> +	else if (intel_uc_supports_guc(uc))
+> +		uc->ops = &uc_ops_off;
+> +	else
+> +		uc->ops = &uc_ops_none;
+>   }
+>   
+>   void intel_uc_driver_late_release(struct intel_uc *uc)
+> @@ -413,24 +424,36 @@ static bool uc_is_wopcm_locked(struct intel_uc *uc)
+>   	       (intel_uncore_read(uncore, DMA_GUC_WOPCM_OFFSET) & GUC_WOPCM_OFFSET_VALID);
+>   }
+>   
+> -int intel_uc_init_hw(struct intel_uc *uc)
+> +static int __uc_check_hw(struct intel_uc *uc)
+> +{
+> +	GEM_BUG_ON(!intel_uc_supports_guc(uc));
+> +
+> +	/*
+> +	 * We can silently continue without GuC only if it was never enabled
+> +	 * before on this system after reboot, otherwise we risk GPU hangs.
+> +	 * To check if GuC was loaded before we look at WOPCM registers.
+> +	 */
+> +	if (uc_is_wopcm_locked(uc))
+> +		return -EIO;
+> +
+> +	return 0;
+> +}
+> +
+> +static int __uc_init_hw(struct intel_uc *uc)
+>   {
+>   	struct drm_i915_private *i915 = uc_to_gt(uc)->i915;
+>   	struct intel_guc *guc = &uc->guc;
+>   	struct intel_huc *huc = &uc->huc;
+>   	int ret, attempts;
+>   
+> -	if (!intel_uc_supports_guc(uc))
+> -		return 0;
+> +	GEM_BUG_ON(!intel_uc_supports_guc(uc));
+> +	GEM_BUG_ON(!intel_uc_uses_guc(uc));
+>   
+>   	/*
+>   	 * We can silently continue without GuC only if it was never enabled
+>   	 * before on this system after reboot, otherwise we risk GPU hangs.
+>   	 * To check if GuC was loaded before we look at WOPCM registers.
+>   	 */
+> -	if (!intel_uc_uses_guc(uc) && !uc_is_wopcm_locked(uc))
+> -		return 0;
+> -
+>   	if (!intel_uc_fw_is_available(&guc->fw)) {
+>   		ret = uc_is_wopcm_locked(uc) ||
+>   		      intel_uc_fw_is_overridden(&guc->fw) ||
+> @@ -528,7 +551,7 @@ int intel_uc_init_hw(struct intel_uc *uc)
+>   	return -EIO;
+>   }
+>   
+> -void intel_uc_fini_hw(struct intel_uc *uc)
+> +static void __uc_fini_hw(struct intel_uc *uc)
+>   {
+>   	struct intel_guc *guc = &uc->guc;
+>   
+> @@ -628,3 +651,15 @@ int intel_uc_runtime_resume(struct intel_uc *uc)
+>   	 */
+>   	return __uc_resume(uc, true);
+>   }
+> +
+> +const struct intel_uc_ops uc_ops_none = {
+> +};
+> +
+> +const struct intel_uc_ops uc_ops_off = {
+> +	.init_hw = __uc_check_hw,
+> +};
+> +
 
->
->Thanks,
->Pankaj
->
->> thanks
->> Lucas De Marchi
->>
->> >+
->> >	destroy_workqueue(i915->flip_wq);
->> >	destroy_workqueue(i915->modeset_wq);
->> >
->> >--
->> >2.23.0
->> >
->> >_______________________________________________
->> >Intel-gfx mailing list
->> >Intel-gfx@lists.freedesktop.org
->> >https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+I'm not sold on having both uc_ops_off and uc_ops_none and I'd prefer 
+them to be merged into one.
+AFAICS, the only things you  do in uc_ops_off are __intel_uc_reset_hw 
+and __uc_check_hw. __intel_uc_reset_hw shouldn't be needed, we do a GT 
+reset when we come up and we're not touching the microcontrollers if 
+intel_uc_uses_guc is false, so there should be no need to reset them. 
+for __uc_check_hw, we can add an early return if !intel_uc_supports_guc 
+so it is callable on all platforms and add it to uc_ops_none.
+
+Daniele
+
+> +const struct intel_uc_ops uc_ops_on = {
+> +	.init_hw = __uc_init_hw,
+> +	.fini_hw = __uc_fini_hw,
+> +};
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc.h b/drivers/gpu/drm/i915/gt/uc/intel_uc.h
+> index 527995c21196..36643e17a09e 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_uc.h
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_uc.h
+> @@ -10,7 +10,15 @@
+>   #include "intel_huc.h"
+>   #include "i915_params.h"
+>   
+> +struct intel_uc;
+> +
+> +struct intel_uc_ops {
+> +	int (*init_hw)(struct intel_uc *uc);
+> +	void (*fini_hw)(struct intel_uc *uc);
+> +};
+> +
+>   struct intel_uc {
+> +	struct intel_uc_ops const *ops;
+>   	struct intel_guc guc;
+>   	struct intel_huc huc;
+>   
+> @@ -25,8 +33,6 @@ void intel_uc_fetch_firmwares(struct intel_uc *uc);
+>   void intel_uc_cleanup_firmwares(struct intel_uc *uc);
+>   void intel_uc_sanitize(struct intel_uc *uc);
+>   void intel_uc_init(struct intel_uc *uc);
+> -int intel_uc_init_hw(struct intel_uc *uc);
+> -void intel_uc_fini_hw(struct intel_uc *uc);
+>   void intel_uc_fini(struct intel_uc *uc);
+>   void intel_uc_reset_prepare(struct intel_uc *uc);
+>   void intel_uc_suspend(struct intel_uc *uc);
+> @@ -64,4 +70,17 @@ static inline bool intel_uc_uses_huc(struct intel_uc *uc)
+>   	return intel_huc_is_enabled(&uc->huc);
+>   }
+>   
+> +static inline int intel_uc_init_hw(struct intel_uc *uc)
+> +{
+> +	if (uc->ops->init_hw)
+> +		return uc->ops->init_hw(uc);
+> +	return 0;
+> +}
+> +
+> +static inline void intel_uc_fini_hw(struct intel_uc *uc)
+> +{
+> +	if (uc->ops->fini_hw)
+> +		uc->ops->fini_hw(uc);
+> +}
+> +
+>   #endif
+> 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
