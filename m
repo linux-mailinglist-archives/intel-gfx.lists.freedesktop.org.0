@@ -2,36 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90CCE11CCEA
-	for <lists+intel-gfx@lfdr.de>; Thu, 12 Dec 2019 13:19:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C220711CD3F
+	for <lists+intel-gfx@lfdr.de>; Thu, 12 Dec 2019 13:34:16 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 15ACE6ED25;
-	Thu, 12 Dec 2019 12:19:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1F43C6ED29;
+	Thu, 12 Dec 2019 12:34:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3830F6ED25
- for <intel-gfx@lists.freedesktop.org>; Thu, 12 Dec 2019 12:19:14 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by orsmga105.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 12 Dec 2019 04:19:13 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,305,1571727600"; d="scan'208";a="220682256"
-Received: from irvmail001.ir.intel.com ([163.33.26.43])
- by fmsmga001.fm.intel.com with ESMTP; 12 Dec 2019 04:19:12 -0800
-Received: from mwajdecz-MOBL1.ger.corp.intel.com
- (mwajdecz-mobl1.ger.corp.intel.com [10.249.151.90])
- by irvmail001.ir.intel.com (8.14.3/8.13.6/MailSET/Hub) with ESMTP id
- xBCCJBr2012013; Thu, 12 Dec 2019 12:19:11 GMT
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7EEC36ED29
+ for <intel-gfx@lists.freedesktop.org>; Thu, 12 Dec 2019 12:34:13 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19554358-1500050 
+ for multiple; Thu, 12 Dec 2019 12:33:54 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 12 Dec 2019 12:19:03 +0000
-Message-Id: <20191212121903.72524-1-michal.wajdeczko@intel.com>
-X-Mailer: git-send-email 2.21.0.windows.1
+Date: Thu, 12 Dec 2019 12:33:55 +0000
+Message-Id: <20191212123355.1246460-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.24.0
+In-Reply-To: <20191212102114.1134931-2-chris@chris-wilson.co.uk>
+References: <20191212102114.1134931-2-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915: Improve i915_inject_probe_error macro
+Subject: [Intel-gfx] [PATCH v2] drm/i915: Eliminate the trylock for awaiting
+ an earlier request
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,32 +44,80 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On non-debug builds we were not using i915 param and thus
-we may cause "unused variable" warning/error if caller was
-not using i915 elsewhere. Let compiler see this param.
+We currently use an error-prone mutex_trylock to grab another timeline
+to find an earlier request along it. However, with a bit of a
+sleight-of-hand, we can reduce the mutex_trylock to a spin_lock on the
+immediate request and careful pointer chasing to acquire a reference on
+the previous request.
 
-Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
-Reviewed-by: Chris Wilson <chris@chris-wilson.co.uk>
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 ---
- drivers/gpu/drm/i915/i915_utils.h | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/i915/i915_request.c | 39 ++++++++++++++++-------------
+ 1 file changed, 21 insertions(+), 18 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/i915_utils.h b/drivers/gpu/drm/i915/i915_utils.h
-index 04139ba1191e..b0ade76bec90 100644
---- a/drivers/gpu/drm/i915/i915_utils.h
-+++ b/drivers/gpu/drm/i915/i915_utils.h
-@@ -69,7 +69,7 @@ bool i915_error_injected(void);
+diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
+index fb8738987aeb..f513747ff027 100644
+--- a/drivers/gpu/drm/i915/i915_request.c
++++ b/drivers/gpu/drm/i915/i915_request.c
+@@ -768,34 +768,37 @@ i915_request_create(struct intel_context *ce)
+ static int
+ i915_request_await_start(struct i915_request *rq, struct i915_request *signal)
+ {
+-	struct intel_timeline *tl;
+ 	struct dma_fence *fence;
+ 	int err;
  
- #else
+ 	GEM_BUG_ON(i915_request_timeline(rq) ==
+ 		   rcu_access_pointer(signal->timeline));
  
--#define i915_inject_probe_error(_i915, _err) 0
-+#define i915_inject_probe_error(i915, e) ({ BUILD_BUG_ON_INVALID(i915); 0; })
- #define i915_error_injected() false
++	fence = NULL;
+ 	rcu_read_lock();
+-	tl = rcu_dereference(signal->timeline);
+-	if (i915_request_started(signal) || !kref_get_unless_zero(&tl->kref))
+-		tl = NULL;
+-	rcu_read_unlock();
+-	if (!tl) /* already started or maybe even completed */
+-		return 0;
++	spin_lock_irq(&signal->lock);
++	if (!i915_request_started(signal) &&
++	    !list_is_first(&signal->link,
++			   &rcu_dereference(signal->timeline)->requests)) {
++		struct i915_request *prev = list_prev_entry(signal, link);
  
- #endif
+-	fence = ERR_PTR(-EAGAIN);
+-	if (mutex_trylock(&tl->mutex)) {
+-		fence = NULL;
+-		if (!i915_request_started(signal) &&
+-		    !list_is_first(&signal->link, &tl->requests)) {
+-			signal = list_prev_entry(signal, link);
+-			fence = dma_fence_get(&signal->fence);
++		/*
++		 * Peek at the request before us in the timeline. That
++		 * request will only be valid before it is retired, so
++		 * after acquiring a reference to it, confirm that it is
++		 * still part of the signaler's timeline.
++		 */
++		if (i915_request_get_rcu(prev)) {
++			if (list_next_entry(prev, link) == signal)
++				fence = &prev->fence;
++			else
++				i915_request_put(prev);
+ 		}
+-		mutex_unlock(&tl->mutex);
+ 	}
+-	intel_timeline_put(tl);
+-	if (IS_ERR_OR_NULL(fence))
+-		return PTR_ERR_OR_ZERO(fence);
++	spin_unlock_irq(&signal->lock);
++	rcu_read_unlock();
++	if (!fence)
++		return 0;
+ 
+ 	err = 0;
+ 	if (intel_timeline_sync_is_later(i915_request_timeline(rq), fence))
 -- 
-2.19.2
+2.24.0
 
 _______________________________________________
 Intel-gfx mailing list
