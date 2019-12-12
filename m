@@ -2,41 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CDA5D11C126
-	for <lists+intel-gfx@lfdr.de>; Thu, 12 Dec 2019 01:13:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4FE0111C140
+	for <lists+intel-gfx@lfdr.de>; Thu, 12 Dec 2019 01:23:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 662D96EC16;
-	Thu, 12 Dec 2019 00:13:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A99D96EC1C;
+	Thu, 12 Dec 2019 00:23:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F12896EC16
- for <intel-gfx@lists.freedesktop.org>; Thu, 12 Dec 2019 00:12:58 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 367F36EC1C;
+ Thu, 12 Dec 2019 00:23:48 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
 X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 11 Dec 2019 16:12:58 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,303,1571727600"; d="scan'208";a="388115853"
-Received: from dceraolo-linux.fm.intel.com (HELO [10.1.27.145]) ([10.1.27.145])
- by orsmga005.jf.intel.com with ESMTP; 11 Dec 2019 16:12:58 -0800
-To: Chris Wilson <chris@chris-wilson.co.uk>,
- Michal Wajdeczko <michal.wajdeczko@intel.com>,
- intel-gfx@lists.freedesktop.org
-References: <20191210204744.65276-1-michal.wajdeczko@intel.com>
- <20191210204744.65276-5-michal.wajdeczko@intel.com>
- <157601163956.17013.379009805423126881@skylake-alporthouse-com>
-From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Message-ID: <548f2efb-4f0d-e49b-8bd3-e881c4f3ad1d@intel.com>
-Date: Wed, 11 Dec 2019 16:13:07 -0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orsmga105.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 11 Dec 2019 16:23:47 -0800
+X-IronPort-AV: E=Sophos;i="5.69,303,1571727600"; d="scan'208";a="296430806"
+Received: from ldmartin-desk1.jf.intel.com (HELO ldmartin-desk1)
+ ([10.24.11.18])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 11 Dec 2019 16:23:47 -0800
+Date: Wed, 11 Dec 2019 16:22:50 -0800
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: "Bharadiya,Pankaj" <pankaj.laxminarayan.bharadiya@intel.com>
+Message-ID: <20191212002250.357dhphi3clst7qy@ldmartin-desk1>
+X-Patchwork-Hint: ignore
+References: <20191209143921.9240-1-pankaj.laxminarayan.bharadiya@intel.com>
+ <20191211055739.uxe46chnhkc2byul@ldmartin-desk1>
+ <20191211064041.GA3339@plaxmina-desktop.iind.intel.com>
 MIME-Version: 1.0
-In-Reply-To: <157601163956.17013.379009805423126881@skylake-alporthouse-com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [RFC 4/4] drm/i915/uc: Add sanitize to to
- intel_uc_ops
+Content-Disposition: inline
+In-Reply-To: <20191211064041.GA3339@plaxmina-desktop.iind.intel.com>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/display: cleanup intel_bw_state on
+ i915 module removal
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,37 +48,122 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: David Airlie <airlied@linux.ie>, dri-devel@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org
 Content-Transfer-Encoding: 7bit
 Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Wed, Dec 11, 2019 at 12:10:41PM +0530, Bharadiya,Pankaj wrote:
+>On Tue, Dec 10, 2019 at 09:57:39PM -0800, Lucas De Marchi wrote:
+>> On Mon, Dec 09, 2019 at 08:09:02PM +0530, Pankaj Bharadiya wrote:
+>> >intel_bw_state allocated memory is not getting freed even after
+>> >module removal.
+>> >
+>> >kmemleak reported backtrace:
+>> >
+>> >   [<0000000079019739>] kmemdup+0x17/0x40
+>> >   [<00000000d58c1b9d>] intel_bw_duplicate_state+0x1b/0x40 [i915]
+>> >   [<000000007423ed0c>] drm_atomic_get_private_obj_state+0xca/0x140
+>> >   [<00000000100e3533>] intel_bw_atomic_check+0x133/0x350 [i915]
+>> >   [<00000000126d0e0c>] intel_atomic_check+0x1ab7/0x20d0 [i915]
+>> >   [<00000000d5dfc004>] drm_atomic_check_only+0x563/0x810
+>> >   [<00000000c9379611>] drm_atomic_commit+0xe/0x50
+>> >   [<00000000ec82b765>] drm_atomic_helper_disable_all+0x133/0x160
+>> >   [<000000003c44760c>] drm_atomic_helper_shutdown+0x65/0xc0
+>> >   [<00000000414e3e5c>] i915_driver_remove+0xcb/0x130 [i915]
+>> >   [<00000000f8544c2a>] i915_pci_remove+0x19/0x40 [i915]
+>> >   [<000000002dcbd148>] pci_device_remove+0x36/0xb0
+>> >   [<000000003c8c6b0a>] device_release_driver_internal+0xe0/0x1c0
+>> >   [<00000000580e9566>] unbind_store+0xc3/0x120
+>> >   [<00000000869d0df5>] kernfs_fop_write+0x104/0x190
+>> >   [<000000004dc1a355>] vfs_write+0xb9/0x1d0
+>>
+>> what I find strange in this is that the last state was allocated by the
+>> "driver remove" code path.
+>>
+>> >
+>> >Call the drm_atomic_private_obj_fini(), which inturn calls the
+>> >intel_bw_destroy_state() to make sure the intel_bw_state memory is
+>> >freed properly.
+>> >
+>> >Signed-off-by: Pankaj Bharadiya <pankaj.laxminarayan.bharadiya@intel.com>
+>> >---
+>> >drivers/gpu/drm/i915/display/intel_bw.c      | 5 +++++
+>> >drivers/gpu/drm/i915/display/intel_bw.h      | 1 +
+>> >drivers/gpu/drm/i915/display/intel_display.c | 2 ++
+>> >3 files changed, 8 insertions(+)
+>> >
+>> >diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
+>> >index dcb66a33be9b..b228671d5a5d 100644
+>> >--- a/drivers/gpu/drm/i915/display/intel_bw.c
+>> >+++ b/drivers/gpu/drm/i915/display/intel_bw.c
+>> >@@ -486,3 +486,8 @@ int intel_bw_init(struct drm_i915_private *dev_priv)
+>> >
+>> >	return 0;
+>> >}
+>> >+
+>> >+void intel_bw_cleanup(struct drm_i915_private *dev_priv)
+>> >+{
+>> >+	drm_atomic_private_obj_fini(&dev_priv->bw_obj);
+>> >+}
+>> >diff --git a/drivers/gpu/drm/i915/display/intel_bw.h b/drivers/gpu/drm/i915/display/intel_bw.h
+>> >index 9db10af012f4..20b9ad241802 100644
+>> >--- a/drivers/gpu/drm/i915/display/intel_bw.h
+>> >+++ b/drivers/gpu/drm/i915/display/intel_bw.h
+>> >@@ -25,6 +25,7 @@ struct intel_bw_state {
+>> >
+>> >void intel_bw_init_hw(struct drm_i915_private *dev_priv);
+>> >int intel_bw_init(struct drm_i915_private *dev_priv);
+>> >+void intel_bw_cleanup(struct drm_i915_private *dev_priv);
+>> >int intel_bw_atomic_check(struct intel_atomic_state *state);
+>> >void intel_bw_crtc_update(struct intel_bw_state *bw_state,
+>> >			  const struct intel_crtc_state *crtc_state);
+>> >diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+>> >index 3190aa27ffdc..756eb90b1bb1 100644
+>> >--- a/drivers/gpu/drm/i915/display/intel_display.c
+>> >+++ b/drivers/gpu/drm/i915/display/intel_display.c
+>> >@@ -17912,6 +17912,8 @@ void intel_modeset_driver_remove(struct drm_i915_private *i915)
+>> >
+>> >	intel_gmbus_teardown(i915);
+>> >
+>> >+	intel_bw_cleanup(i915);
+>>
+>> This doesn't seem to match the (reverse) order of
+>> intel_modeset_init()... but it's actually the gmbus_teardown() that is
+>> out of place. Did you check if it's not a wrong shutdown ordering?
+>>
+>
+>In intel_modeset_init(), intel_gmbus_setup() happens after
+>intel_bw_init().
+>I think the patch follows the reverse ordering properly.
+>Am I missing anything?
 
+I said it seems that it's the gmbus_teardown() that is out of place.
+Have you seen my comment above? Why are we duplicating the bw_state on
+the module-remove code path?
 
-On 12/10/19 1:00 PM, Chris Wilson wrote:
-> Quoting Michal Wajdeczko (2019-12-10 20:47:44)
->> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc.h b/drivers/gpu/drm/i915/gt/uc/intel_uc.h
->> index 2bd8326130f1..3410d35f8b0c 100644
->> --- a/drivers/gpu/drm/i915/gt/uc/intel_uc.h
->> +++ b/drivers/gpu/drm/i915/gt/uc/intel_uc.h
->> @@ -19,6 +19,7 @@ struct intel_uc_ops {
->>          void (*fini)(struct intel_uc *uc);
->>          int (*init_hw)(struct intel_uc *uc);
->>          void (*fini_hw)(struct intel_uc *uc);
->> +       int (*sanitize)(struct intel_uc *uc);
-> 
-> In the order of ops, first?
-> 
-> The series looks sane. Looks a bit overkill, but if you can convince
-> Daniele of your vision, fine by me.
-> -Chris
-> 
+Lucas De Marchi
 
-I've had a quick chat with Michal about this and, when also considering 
-some of the upcoming stuff, it does definitely make sense to me to 
-switch to ops.
-
-Daniele
+>
+>Thanks,
+>Pankaj
+>
+>> thanks
+>> Lucas De Marchi
+>>
+>> >+
+>> >	destroy_workqueue(i915->flip_wq);
+>> >	destroy_workqueue(i915->modeset_wq);
+>> >
+>> >--
+>> >2.23.0
+>> >
+>> >_______________________________________________
+>> >Intel-gfx mailing list
+>> >Intel-gfx@lists.freedesktop.org
+>> >https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
