@@ -2,38 +2,28 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4EA4A11D1A9
-	for <lists+intel-gfx@lfdr.de>; Thu, 12 Dec 2019 17:00:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 926D411D1C8
+	for <lists+intel-gfx@lfdr.de>; Thu, 12 Dec 2019 17:04:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B7D9C89022;
-	Thu, 12 Dec 2019 16:00:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 015E16E1BA;
+	Thu, 12 Dec 2019 16:04:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6C02A89022
- for <intel-gfx@lists.freedesktop.org>; Thu, 12 Dec 2019 16:00:51 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-X-Amp-File-Uploaded: False
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 12 Dec 2019 08:00:48 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,306,1571727600"; d="scan'208";a="216156470"
-Received: from invictus.jf.intel.com (HELO InViCtUs) ([10.54.75.159])
- by orsmga006.jf.intel.com with ESMTP; 12 Dec 2019 08:00:48 -0800
-Date: Thu, 12 Dec 2019 08:00:58 -0800
-From: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AE2386E1BA
+ for <intel-gfx@lists.freedesktop.org>; Thu, 12 Dec 2019 16:04:24 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19557245-1500050 
+ for <intel-gfx@lists.freedesktop.org>; Thu, 12 Dec 2019 16:04:19 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Message-ID: <20191212160058.GE21507@InViCtUs>
-References: <20191126002635.5779-1-radhakrishna.sripada@intel.com>
- <20191126002635.5779-6-radhakrishna.sripada@intel.com>
+Date: Thu, 12 Dec 2019 16:04:21 +0000
+Message-Id: <20191212160421.1631908-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.24.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20191126002635.5779-6-radhakrishna.sripada@intel.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH v7 5/7] drm/i915: Extract framebufer CCS
- offset checks into a function
+Subject: [Intel-gfx] [CI] drm/i915/gt: Set vm again after MI_SET_CONTEXT
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,134 +36,72 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: ville.syrjala@intel.com, nanley.g.chery@intel.com,
- dhinakaran.pandiyan@intel.com
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Nov 25, 2019 at 04:26:33PM -0800, Radhakrishna Sripada wrote:
-> From: Dhinakaran Pandiyan <dhinakaran.pandiyan@intel.com>
-> =
+Reloading the PD after MI_SET_CONTEXT, along with copious amounts of
+flushes, so far is making Baytrail more content.
 
-> intel_fill_fb_info() has grown quite large and wrapping the offset checks
-> into a separate function makes the loop a bit easier to follow.
-> =
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+---
+ .../gpu/drm/i915/gt/intel_ring_submission.c   | 25 +++++++++++++++----
+ 1 file changed, 20 insertions(+), 5 deletions(-)
 
-> Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> Cc: Matt Roper <matthew.d.roper@intel.com>
-Reviewed-by: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
-> Signed-off-by: Dhinakaran Pandiyan <dhinakaran.pandiyan@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_display.c | 69 ++++++++++++--------
->  1 file changed, 40 insertions(+), 29 deletions(-)
-> =
+diff --git a/drivers/gpu/drm/i915/gt/intel_ring_submission.c b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
+index 5c22ca6f998a..336eb3f864c9 100644
+--- a/drivers/gpu/drm/i915/gt/intel_ring_submission.c
++++ b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
+@@ -1609,11 +1609,7 @@ static int switch_context(struct i915_request *rq)
+ 		 * post-sync op, this extra pass appears vital before a
+ 		 * mm switch!
+ 		 */
+-		ret = rq->engine->emit_flush(rq, EMIT_INVALIDATE);
+-		if (ret)
+-			return ret;
+-
+-		ret = flush_tlb(rq);
++		ret = rq->engine->emit_flush(rq, EMIT_FLUSH);
+ 		if (ret)
+ 			return ret;
+ 
+@@ -1632,6 +1628,7 @@ static int switch_context(struct i915_request *rq)
+ 		ret = rq->engine->emit_flush(rq, EMIT_INVALIDATE);
+ 		if (ret)
+ 			return ret;
++
+ 	}
+ 
+ 	if (ce->state) {
+@@ -1645,6 +1642,24 @@ static int switch_context(struct i915_request *rq)
+ 			return ret;
+ 	}
+ 
++	if (vm) {
++		ret = rq->engine->emit_flush(rq, EMIT_FLUSH);
++		if (ret)
++			return ret;
++
++		ret = load_pd_dir(rq, i915_vm_to_ppgtt(vm), PP_DIR_DCLV_2G);
++		if (ret)
++			return ret;
++
++		ret = flush_tlb(rq);
++		if (ret)
++			return ret;
++
++		ret = rq->engine->emit_flush(rq, EMIT_INVALIDATE);
++		if (ret)
++			return ret;
++	}
++
+ 	ret = remap_l3(rq);
+ 	if (ret)
+ 		return ret;
+-- 
+2.24.0
 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/d=
-rm/i915/display/intel_display.c
-> index 1ef1988b9e12..6c4274c1564d 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -2742,6 +2742,43 @@ static bool intel_plane_needs_remap(const struct i=
-ntel_plane_state *plane_state)
->  	return stride > max_stride;
->  }
->  =
-
-> +static int
-> +intel_fb_check_ccs_xy(struct drm_framebuffer *fb, int x, int y)
-> +{
-> +	struct intel_framebuffer *intel_fb =3D to_intel_framebuffer(fb);
-> +	int hsub =3D fb->format->hsub;
-> +	int vsub =3D fb->format->vsub;
-> +	int tile_width, tile_height;
-> +	int ccs_x, ccs_y;
-> +	int main_x, main_y;
-> +
-> +	intel_tile_dims(fb, 1, &tile_width, &tile_height);
-> +
-> +	tile_width *=3D hsub;
-> +	tile_height *=3D vsub;
-> +
-> +	ccs_x =3D (x * hsub) % tile_width;
-> +	ccs_y =3D (y * vsub) % tile_height;
-> +	main_x =3D intel_fb->normal[0].x % tile_width;
-> +	main_y =3D intel_fb->normal[0].y % tile_height;
-> +
-> +	/*
-> +	 * CCS doesn't have its own x/y offset register, so the intra CCS tile
-> +	 * x/y offsets must match between CCS and the main surface.
-> +	 */
-> +	if (main_x !=3D ccs_x || main_y !=3D ccs_y) {
-> +		DRM_DEBUG_KMS("Bad CCS x/y (main %d,%d ccs %d,%d) full (main %d,%d ccs=
- %d,%d)\n",
-> +			      main_x, main_y,
-> +			      ccs_x, ccs_y,
-> +			      intel_fb->normal[0].x,
-> +			      intel_fb->normal[0].y,
-> +			      x, y);
-> +		return -EINVAL;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
->  static int
->  intel_fill_fb_info(struct drm_i915_private *dev_priv,
->  		   struct drm_framebuffer *fb)
-> @@ -2773,35 +2810,9 @@ intel_fill_fb_info(struct drm_i915_private *dev_pr=
-iv,
->  		}
->  =
-
->  		if (is_ccs_modifier(fb->modifier) && i =3D=3D 1) {
-> -			int hsub =3D fb->format->hsub;
-> -			int vsub =3D fb->format->vsub;
-> -			int tile_width, tile_height;
-> -			int main_x, main_y;
-> -			int ccs_x, ccs_y;
-> -
-> -			intel_tile_dims(fb, i, &tile_width, &tile_height);
-> -
-> -			tile_width *=3D hsub;
-> -			tile_height *=3D vsub;
-> -
-> -			ccs_x =3D (x * hsub) % tile_width;
-> -			ccs_y =3D (y * vsub) % tile_height;
-> -			main_x =3D intel_fb->normal[0].x % tile_width;
-> -			main_y =3D intel_fb->normal[0].y % tile_height;
-> -
-> -			/*
-> -			 * CCS doesn't have its own x/y offset register, so the intra CCS tile
-> -			 * x/y offsets must match between CCS and the main surface.
-> -			 */
-> -			if (main_x !=3D ccs_x || main_y !=3D ccs_y) {
-> -				DRM_DEBUG_KMS("Bad CCS x/y (main %d,%d ccs %d,%d) full (main %d,%d c=
-cs %d,%d)\n",
-> -					      main_x, main_y,
-> -					      ccs_x, ccs_y,
-> -					      intel_fb->normal[0].x,
-> -					      intel_fb->normal[0].y,
-> -					      x, y);
-> -				return -EINVAL;
-> -			}
-> +			ret =3D intel_fb_check_ccs_xy(fb, x, y);
-> +			if (ret)
-> +				return ret;
->  		}
->  =
-
->  		/*
-> -- =
-
-> 2.20.1
-> =
-
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
