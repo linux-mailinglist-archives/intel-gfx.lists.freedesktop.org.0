@@ -1,32 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A20E511C945
-	for <lists+intel-gfx@lfdr.de>; Thu, 12 Dec 2019 10:37:31 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9873811CA2D
+	for <lists+intel-gfx@lfdr.de>; Thu, 12 Dec 2019 11:05:22 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CC4A96ECEB;
-	Thu, 12 Dec 2019 09:37:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E715F6ECF4;
+	Thu, 12 Dec 2019 10:05:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 7C7766ECEB;
- Thu, 12 Dec 2019 09:37:27 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id DC6996ECF1;
+ Thu, 12 Dec 2019 10:05:18 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 74EC4A0138;
- Thu, 12 Dec 2019 09:37:27 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id D4A1AA0087;
+ Thu, 12 Dec 2019 10:05:18 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris.p.wilson@intel.com>
-Date: Thu, 12 Dec 2019 09:37:27 -0000
-Message-ID: <157614344745.32008.13278013982881832903@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Thu, 12 Dec 2019 10:05:18 -0000
+Message-ID: <157614511886.32010.8622268408370893002@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20191212073522.27785-1-venkata.s.dhanalakota@intel.com>
-In-Reply-To: <20191212073522.27785-1-venkata.s.dhanalakota@intel.com>
+References: <20191211230858.599030-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20191211230858.599030-1-chris@chris-wilson.co.uk>
 Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_series_starting_with_=5B1/2=5D_drm/i915/perf=3A_Register_sy?=
- =?utf-8?q?sctl_path_globally_=28rev2=29?=
+ =?utf-8?q?for_series_starting_with_=5BCI=2C1/3=5D_drm/i915/gem=3A_Prepare?=
+ =?utf-8?q?_gen7_cmdparser_for_async_execution_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,37 +48,21 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: series starting with [1/2] drm/i915/perf: Register sysctl path globally (rev2)
-URL   : https://patchwork.freedesktop.org/series/70802/
+Series: series starting with [CI,1/3] drm/i915/gem: Prepare gen7 cmdparser for async execution (rev2)
+URL   : https://patchwork.freedesktop.org/series/70793/
 State : warning
 
 == Summary ==
 
 $ dim checkpatch origin/drm-tip
-bea21235639b drm/i915/perf: Register sysctl path globally
-9755ac8c9861 drm/i915: Tag GEM_TRACE with device name
--:21: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'e__' - possible side-effects?
-#21: FILE: drivers/gpu/drm/i915/gt/intel_engine.h:32:
-+#define ENGINE_TRACE(e__, fmt, ...) do {				\
-+	typecheck(struct intel_engine_cs, *(e__));			\
-+	GEM_TRACE("%s %s: " fmt, 					\
-+		  dev_name((e__)->i915->drm.dev),			\
-+		  (e__)->name,						\
-+		  ##__VA_ARGS__);					\
-+} while (0)
+fdffce2183ab drm/i915/gem: Prepare gen7 cmdparser for async execution
+784ce6859873 drm/i915/gem: Asynchronous cmdparser
+a92e46053683 HAX: Use aliasing-ppgtt for gen7
+-:8: WARNING:COMMIT_MESSAGE: Missing commit description - Add an appropriate one
 
--:23: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
-#23: FILE: drivers/gpu/drm/i915/gt/intel_engine.h:34:
-+^IGEM_TRACE("%s %s: " fmt, ^I^I^I^I^I\$
+-:28: ERROR:MISSING_SIGN_OFF: Missing Signed-off-by: line(s)
 
--:364: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#364: FILE: drivers/gpu/drm/i915/gt/intel_ring_submission.c:769:
-+		ENGINE_TRACE(engine, "ring head [%x] not parked\n",
- 			  intel_uncore_read_fw(uncore, RING_HEAD(base)));
-
--:399: ERROR:MISSING_SIGN_OFF: Missing Signed-off-by: line(s)
-
-total: 1 errors, 1 warnings, 2 checks, 329 lines checked
+total: 1 errors, 1 warnings, 0 checks, 16 lines checked
 
 _______________________________________________
 Intel-gfx mailing list
