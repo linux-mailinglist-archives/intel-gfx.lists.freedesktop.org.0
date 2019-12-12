@@ -1,32 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B62CB11CF44
-	for <lists+intel-gfx@lfdr.de>; Thu, 12 Dec 2019 15:05:57 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A1AF611CF3D
+	for <lists+intel-gfx@lfdr.de>; Thu, 12 Dec 2019 15:05:48 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F3B786ED87;
-	Thu, 12 Dec 2019 14:05:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1C18F6ED71;
+	Thu, 12 Dec 2019 14:05:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EB9086ED75
- for <intel-gfx@lists.freedesktop.org>; Thu, 12 Dec 2019 14:05:35 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 64B566ED6C
+ for <intel-gfx@lists.freedesktop.org>; Thu, 12 Dec 2019 14:05:32 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19555634-1500050 
- for multiple; Thu, 12 Dec 2019 14:04:59 +0000
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19555635-1500050 
+ for multiple; Thu, 12 Dec 2019 14:05:00 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 12 Dec 2019 14:04:33 +0000
-Message-Id: <20191212140459.1307617-7-chris@chris-wilson.co.uk>
+Date: Thu, 12 Dec 2019 14:04:34 +0000
+Message-Id: <20191212140459.1307617-8-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.24.0
 In-Reply-To: <20191212140459.1307617-1-chris@chris-wilson.co.uk>
 References: <20191212140459.1307617-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 07/33] drm/i915/gt: Mark up ips_mchdev pointer
- access
+Subject: [Intel-gfx] [PATCH 08/33] drm/i915/gt: Mark context->state vma as
+ active while pinned
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,26 +44,50 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-drivers/gpu/drm/i915/gt/intel_rps.c:1726:24: error: incompatible types in comparison expression (different address spaces):
-drivers/gpu/drm/i915/gt/intel_rps.c:1726:24:    struct drm_i915_private [noderef] <asn:4> *
-drivers/gpu/drm/i915/gt/intel_rps.c:1726:24:    struct drm_i915_private *
+As we use the active state to keep the vma alive while we are reading
+its contents during GPU error capture, we need to mark the
+context->state vma as active during execution if we want to include it
+in the error state.
 
+Reported-by: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
+Fixes: b1e3177bd1d8 ("drm/i915: Coordinate i915_active with its own mutex")
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Cc: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
 ---
- drivers/gpu/drm/i915/gt/intel_rps.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/i915/gt/intel_context.c | 9 +++++++++
+ 1 file changed, 9 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_rps.c b/drivers/gpu/drm/i915/gt/intel_rps.c
-index fd01e4100fc1..106c9fce9d6c 100644
---- a/drivers/gpu/drm/i915/gt/intel_rps.c
-+++ b/drivers/gpu/drm/i915/gt/intel_rps.c
-@@ -1723,7 +1723,7 @@ void intel_rps_driver_register(struct intel_rps *rps)
+diff --git a/drivers/gpu/drm/i915/gt/intel_context.c b/drivers/gpu/drm/i915/gt/intel_context.c
+index 61c39e943f69..f7e2f3af007a 100644
+--- a/drivers/gpu/drm/i915/gt/intel_context.c
++++ b/drivers/gpu/drm/i915/gt/intel_context.c
+@@ -120,6 +120,10 @@ static int __context_pin_state(struct i915_vma *vma)
+ 	if (err)
+ 		return err;
  
- void intel_rps_driver_unregister(struct intel_rps *rps)
++	err = i915_active_acquire(&vma->active);
++	if (err)
++		goto err_unpin;
++
+ 	/*
+ 	 * And mark it as a globally pinned object to let the shrinker know
+ 	 * it cannot reclaim the object until we release it.
+@@ -128,11 +132,16 @@ static int __context_pin_state(struct i915_vma *vma)
+ 	vma->obj->mm.dirty = true;
+ 
+ 	return 0;
++
++err_unpin:
++	i915_vma_unpin(vma);
++	return err;
+ }
+ 
+ static void __context_unpin_state(struct i915_vma *vma)
  {
--	if (ips_mchdev == rps_to_i915(rps))
-+	if (rcu_access_pointer(ips_mchdev) == rps_to_i915(rps))
- 		rcu_assign_pointer(ips_mchdev, NULL);
+ 	i915_vma_make_shrinkable(vma);
++	i915_active_release(&vma->active);
+ 	__i915_vma_unpin(vma);
  }
  
 -- 
