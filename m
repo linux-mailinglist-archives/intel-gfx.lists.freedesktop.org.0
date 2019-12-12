@@ -1,37 +1,35 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7090311CEB3
-	for <lists+intel-gfx@lfdr.de>; Thu, 12 Dec 2019 14:47:40 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1DF7311CEB9
+	for <lists+intel-gfx@lfdr.de>; Thu, 12 Dec 2019 14:48:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 241F66ED5E;
-	Thu, 12 Dec 2019 13:47:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4BAEA6ED5F;
+	Thu, 12 Dec 2019 13:48:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E8F666ED5E
- for <intel-gfx@lists.freedesktop.org>; Thu, 12 Dec 2019 13:47:36 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 773596ED5F
+ for <intel-gfx@lists.freedesktop.org>; Thu, 12 Dec 2019 13:48:33 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 12 Dec 2019 05:47:36 -0800
-X-IronPort-AV: E=Sophos;i="5.69,306,1571727600"; d="scan'208";a="208088582"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga105.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 12 Dec 2019 05:48:32 -0800
+X-IronPort-AV: E=Sophos;i="5.69,306,1571727600"; d="scan'208";a="203957337"
 Received: from jnikula-mobl3.fi.intel.com (HELO localhost) ([10.237.66.161])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 12 Dec 2019 05:47:33 -0800
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 12 Dec 2019 05:48:31 -0800
 From: Jani Nikula <jani.nikula@intel.com>
-To: Jani Nikula <jani.nikula@intel.com>,
-	intel-gfx@lists.freedesktop.org
-Date: Thu, 12 Dec 2019 15:47:28 +0200
-Message-Id: <20191212134728.18432-1-jani.nikula@intel.com>
-X-Mailer: git-send-email 2.20.1
+To: intel-gfx@lists.freedesktop.org
 In-Reply-To: <cover.1576081155.git.jani.nikula@intel.com>
-References: <cover.1576081155.git.jani.nikula@intel.com>
-MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Subject: [Intel-gfx] [PATCH 3/2] drm/i915/dsc: fix DSC power domains for DSI
+References: <cover.1576081155.git.jani.nikula@intel.com>
+Date: Thu, 12 Dec 2019 15:48:28 +0200
+Message-ID: <87imml3b9v.fsf@intel.com>
+MIME-Version: 1.0
+Subject: Re: [Intel-gfx] [PATCH 0/2] drm/i915/dsc: fixes for ICL DSI DSC
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,63 +42,27 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Rml4IHNldmVyYWwgaXNzdWVzIHdpdGggRFNDIHBvd2VyIGRvbWFpbnMgdGhhdCBkaWQgbm90IHRh
-a2UgRFNJCnRyYW5zY29kZXJzIGludG8gYWNjb3VudDoKCi0gT24gVEdMKyB3ZSBuZWVkIHRvIHVz
-ZSBQVzIgZm9yIERTQyBvbiBwaXBlIEEsIG5vdCB0cmFuc2NvZGVyIEEuIFRoZXJlCiAgaXMgbm8g
-bG9uZ2VyIGFuIGVEUCB0cmFuc2NvZGVyLCBidXQgdGhlcmUgYXJlIHR3byBEU0kgdHJhbnNjb2Rl
-cnMKICB3aGljaCBtYXkgYmUgY29ubmVjdGVkIHRvIHBpcGUgQS4KCi0gT24gVEdMKyB3ZSBuZWVk
-IHRvIHVzZSB0aGUgcGlwZSwgbm90IHRyYW5zY29kZXIsIHBvd2VyIGRvbWFpbnMgZm9yIERTQwog
-IG9uIHBpcGVzIG90aGVyIHRoYW4gQS4gQWdhaW4sIHRoZXJlIGFyZSBEU0kgdHJhbnNjb2RlcnMu
-CgotIE9uIElDTCB3ZSBuZWVkIHRvIHVzZSBQVzIgZm9yIERTQyBhbHNvIGZvciBEU0kgdHJhbnNj
-b2RlcnMsIG5vdCBqdXN0CiAgZm9yIHRoZSBlRFAgdHJhbnNjb2Rlci4KClVzaW5nIGlzX3BpcGVf
-ZHNjKCkgYWxzbyBhZGRzIHRoZSB3YXJuaW5nIGFib3V0IElDTCBwaXBlIEEgRFNDLCB3aGljaApk
-b2VzIG5vdCBleGlzdC4KCkNjOiBKb3PDqSBSb2JlcnRvIGRlIFNvdXphIDxqb3NlLnNvdXphQGlu
-dGVsLmNvbT4KQ2M6IE1hbmFzaSBOYXZhcmUgPG1hbmFzaS5kLm5hdmFyZUBpbnRlbC5jb20+CkNj
-OiBWYW5kaXRhIEt1bGthcm5pIDx2YW5kaXRhLmt1bGthcm5pQGludGVsLmNvbT4KU2lnbmVkLW9m
-Zi1ieTogSmFuaSBOaWt1bGEgPGphbmkubmlrdWxhQGludGVsLmNvbT4KLS0tCiBkcml2ZXJzL2dw
-dS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Zkc2MuYyB8IDI4ICsrKysrKysrKysrKy0tLS0tLS0t
-LS0tCiAxIGZpbGUgY2hhbmdlZCwgMTUgaW5zZXJ0aW9ucygrKSwgMTMgZGVsZXRpb25zKC0pCgpk
-aWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF92ZHNjLmMgYi9k
-cml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Zkc2MuYwppbmRleCA0MTcxOGY3MjE0
-ODQuLjZiYWIwOGRiNWQ3NSAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxh
-eS9pbnRlbF92ZHNjLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF92
-ZHNjLmMKQEAgLTQ2OSwyNSArNDY5LDI3IEBAIGludCBpbnRlbF9kc2NfY29tcHV0ZV9wYXJhbXMo
-c3RydWN0IGludGVsX2VuY29kZXIgKmVuY29kZXIsCiBlbnVtIGludGVsX2Rpc3BsYXlfcG93ZXJf
-ZG9tYWluCiBpbnRlbF9kc2NfcG93ZXJfZG9tYWluKGNvbnN0IHN0cnVjdCBpbnRlbF9jcnRjX3N0
-YXRlICpjcnRjX3N0YXRlKQogewotCXN0cnVjdCBkcm1faTkxNV9wcml2YXRlICppOTE1ID0gdG9f
-aTkxNShjcnRjX3N0YXRlLT51YXBpLmNydGMtPmRldik7Ci0JZW51bSB0cmFuc2NvZGVyIGNwdV90
-cmFuc2NvZGVyID0gY3J0Y19zdGF0ZS0+Y3B1X3RyYW5zY29kZXI7CisJc3RydWN0IGludGVsX2Ny
-dGMgKmNydGMgPSB0b19pbnRlbF9jcnRjKGNydGNfc3RhdGUtPnVhcGkuY3J0Yyk7CisJc3RydWN0
-IGRybV9pOTE1X3ByaXZhdGUgKmk5MTUgPSB0b19pOTE1KGNydGMtPmJhc2UuZGV2KTsKKwllbnVt
-IHBpcGUgcGlwZSA9IGNydGMtPnBpcGU7CiAKIAkvKgotCSAqIE9uIElDTCBWRFNDL2pvaW5pbmcg
-Zm9yIGVEUCB0cmFuc2NvZGVyIHVzZXMgYSBzZXBhcmF0ZSBwb3dlciB3ZWxsLAotCSAqIFBXMi4g
-VGhpcyByZXF1aXJlcyBQT1dFUl9ET01BSU5fVFJBTlNDT0RFUl9WRFNDX1BXMiBwb3dlciBkb21h
-aW4uCi0JICogRm9yIGFueSBvdGhlciB0cmFuc2NvZGVyLCBWRFNDL2pvaW5pbmcgdXNlcyB0aGUg
-cG93ZXIgd2VsbCBhc3NvY2lhdGVkCi0JICogd2l0aCB0aGUgcGlwZS90cmFuc2NvZGVyIGluIHVz
-ZS4gSGVuY2UgYW5vdGhlciByZWZlcmVuY2Ugb24gdGhlCi0JICogdHJhbnNjb2RlciBwb3dlciBk
-b21haW4gd2lsbCBzdWZmaWNlLgorCSAqIFZEU0Mvam9pbmluZyB1c2VzIGEgc2VwYXJhdGUgcG93
-ZXIgd2VsbCwgUFcyLCBhbmQgcmVxdWlyZXMKKwkgKiBQT1dFUl9ET01BSU5fVFJBTlNDT0RFUl9W
-RFNDX1BXMiBwb3dlciBkb21haW4gaW4gdHdvIGNhc2VzOgogCSAqCi0JICogT24gVEdMIHdlIGhh
-dmUgdGhlIHNhbWUgbWFwcGluZywgYnV0IGZvciB0cmFuc2NvZGVyIEEgKHRoZSBzcGVjaWFsCi0J
-ICogVFJBTlNDT0RFUl9FRFAgaXMgZ29uZSkuCisJICogIC0gSUNMIGVEUC9EU0kgdHJhbnNjb2Rl
-cgorCSAqICAtIFRHTCBwaXBlIEEKKwkgKgorCSAqIEZvciBhbnkgb3RoZXIgcGlwZSwgVkRTQy9q
-b2luaW5nIHVzZXMgdGhlIHBvd2VyIHdlbGwgYXNzb2NpYXRlZCB3aXRoCisJICogdGhlIHBpcGUg
-aW4gdXNlLiBIZW5jZSBhbm90aGVyIHJlZmVyZW5jZSBvbiB0aGUgcGlwZSBwb3dlciBkb21haW4K
-KwkgKiB3aWxsIHN1ZmZpY2UuIChFeGNlcHQgbm8gVkRTQy9qb2luaW5nIG9uIElDTCBwaXBlIEEu
-KQogCSAqLwotCWlmIChJTlRFTF9HRU4oaTkxNSkgPj0gMTIgJiYgY3B1X3RyYW5zY29kZXIgPT0g
-VFJBTlNDT0RFUl9BKQotCQlyZXR1cm4gUE9XRVJfRE9NQUlOX1RSQU5TQ09ERVJfVkRTQ19QVzI7
-Ci0JZWxzZSBpZiAoY3B1X3RyYW5zY29kZXIgPT0gVFJBTlNDT0RFUl9FRFApCisJaWYgKElOVEVM
-X0dFTihpOTE1KSA+PSAxMiAmJiBwaXBlID09IFBJUEVfQSkKIAkJcmV0dXJuIFBPV0VSX0RPTUFJ
-Tl9UUkFOU0NPREVSX1ZEU0NfUFcyOworCWVsc2UgaWYgKGlzX3BpcGVfZHNjKGNydGNfc3RhdGUp
-KQorCQlyZXR1cm4gUE9XRVJfRE9NQUlOX1BJUEUocGlwZSk7CiAJZWxzZQotCQlyZXR1cm4gUE9X
-RVJfRE9NQUlOX1RSQU5TQ09ERVIoY3B1X3RyYW5zY29kZXIpOworCQlyZXR1cm4gUE9XRVJfRE9N
-QUlOX1RSQU5TQ09ERVJfVkRTQ19QVzI7CiB9CiAKIHN0YXRpYyB2b2lkIGludGVsX2RzY19wcHNf
-Y29uZmlndXJlKHN0cnVjdCBpbnRlbF9lbmNvZGVyICplbmNvZGVyLAotLSAKMi4yMC4xCgpfX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFp
-bGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
+On Wed, 11 Dec 2019, Jani Nikula <jani.nikula@intel.com> wrote:
+> This should bring the fi-icl-dsi host on CI back online. It's using the
+> wrong registers for DSC.
+
+Confirmed by [1] for fi-icl-dsi.
+
+BR,
+Jani.
+
+
+[1] https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15709/index.html?
+
+
+-- 
+Jani Nikula, Intel Open Source Graphics Center
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
