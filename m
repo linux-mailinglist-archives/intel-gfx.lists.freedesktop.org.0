@@ -2,29 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F63211D8EB
-	for <lists+intel-gfx@lfdr.de>; Thu, 12 Dec 2019 22:58:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id ABA7511D8EC
+	for <lists+intel-gfx@lfdr.de>; Thu, 12 Dec 2019 22:58:17 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 22DD86E215;
-	Thu, 12 Dec 2019 21:58:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 786EF6E216;
+	Thu, 12 Dec 2019 21:58:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CB9126E215
- for <intel-gfx@lists.freedesktop.org>; Thu, 12 Dec 2019 21:58:11 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8341B6E217
+ for <intel-gfx@lists.freedesktop.org>; Thu, 12 Dec 2019 21:58:13 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19560838-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19560839-1500050 
  for <intel-gfx@lists.freedesktop.org>; Thu, 12 Dec 2019 21:58:06 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 12 Dec 2019 21:58:07 +0000
-Message-Id: <20191212215808.1660798-1-chris@chris-wilson.co.uk>
+Date: Thu, 12 Dec 2019 21:58:08 +0000
+Message-Id: <20191212215808.1660798-2-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.24.0
+In-Reply-To: <20191212215808.1660798-1-chris@chris-wilson.co.uk>
+References: <20191212215808.1660798-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [CI 1/2] drm/i915/gt: Mark context->state vma as active
- while pinned
+Subject: [Intel-gfx] [CI 2/2] drm/i915/gt: Mark ring->vma as active while
+ pinned
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,7 +46,7 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 As we use the active state to keep the vma alive while we are reading
 its contents during GPU error capture, we need to mark the
-context->state vma as active during execution if we want to include it
+ring->vma as active during execution if we want to include the rinbuffer
 in the error state.
 
 Reported-by: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
@@ -54,39 +56,49 @@ Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 Cc: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
 Acked-by: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
 ---
- drivers/gpu/drm/i915/gt/intel_context.c | 9 +++++++++
- 1 file changed, 9 insertions(+)
+ drivers/gpu/drm/i915/gt/intel_ring.c | 10 +++++++++-
+ 1 file changed, 9 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_context.c b/drivers/gpu/drm/i915/gt/intel_context.c
-index 61c39e943f69..f7e2f3af007a 100644
---- a/drivers/gpu/drm/i915/gt/intel_context.c
-+++ b/drivers/gpu/drm/i915/gt/intel_context.c
-@@ -120,6 +120,10 @@ static int __context_pin_state(struct i915_vma *vma)
- 	if (err)
- 		return err;
+diff --git a/drivers/gpu/drm/i915/gt/intel_ring.c b/drivers/gpu/drm/i915/gt/intel_ring.c
+index 374b28f13ca0..7a27264150b9 100644
+--- a/drivers/gpu/drm/i915/gt/intel_ring.c
++++ b/drivers/gpu/drm/i915/gt/intel_ring.c
+@@ -45,6 +45,10 @@ int intel_ring_pin(struct intel_ring *ring)
+ 	if (unlikely(ret))
+ 		goto err_unpin;
  
-+	err = i915_active_acquire(&vma->active);
-+	if (err)
-+		goto err_unpin;
++	ret = i915_active_acquire(&vma->active);
++	if (ret)
++		goto err_ring;
 +
- 	/*
- 	 * And mark it as a globally pinned object to let the shrinker know
- 	 * it cannot reclaim the object until we release it.
-@@ -128,11 +132,16 @@ static int __context_pin_state(struct i915_vma *vma)
- 	vma->obj->mm.dirty = true;
+ 	if (i915_vma_is_map_and_fenceable(vma))
+ 		addr = (void __force *)i915_vma_pin_iomap(vma);
+ 	else
+@@ -52,7 +56,7 @@ int intel_ring_pin(struct intel_ring *ring)
+ 					       i915_coherent_map_type(vma->vm->i915));
+ 	if (IS_ERR(addr)) {
+ 		ret = PTR_ERR(addr);
+-		goto err_ring;
++		goto err_active;
+ 	}
  
+ 	i915_vma_make_unshrinkable(vma);
+@@ -63,6 +67,8 @@ int intel_ring_pin(struct intel_ring *ring)
+ 	ring->vaddr = addr;
  	return 0;
-+
-+err_unpin:
-+	i915_vma_unpin(vma);
-+	return err;
- }
  
- static void __context_unpin_state(struct i915_vma *vma)
- {
- 	i915_vma_make_shrinkable(vma);
++err_active:
 +	i915_active_release(&vma->active);
- 	__i915_vma_unpin(vma);
+ err_ring:
+ 	i915_vma_unpin(vma);
+ err_unpin:
+@@ -93,6 +99,8 @@ void intel_ring_unpin(struct intel_ring *ring)
+ 		i915_gem_object_unpin_map(vma->obj);
+ 
+ 	i915_vma_make_purgeable(vma);
++
++	i915_active_release(&vma->active);
+ 	i915_vma_unpin(vma);
  }
  
 -- 
