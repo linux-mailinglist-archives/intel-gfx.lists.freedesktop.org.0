@@ -2,34 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F309C11D615
-	for <lists+intel-gfx@lfdr.de>; Thu, 12 Dec 2019 19:44:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2839111D61F
+	for <lists+intel-gfx@lfdr.de>; Thu, 12 Dec 2019 19:45:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9C6E26E0E2;
-	Thu, 12 Dec 2019 18:44:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 896586E0E0;
+	Thu, 12 Dec 2019 18:45:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 732826E0E0
- for <intel-gfx@lists.freedesktop.org>; Thu, 12 Dec 2019 18:44:23 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga106.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 12 Dec 2019 10:44:22 -0800
-X-IronPort-AV: E=Sophos;i="5.69,306,1571727600"; d="scan'208";a="204063433"
-Received: from unknown (HELO pachecof-ubuntu.fm.intel.com) ([10.1.27.25])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-SHA;
- 12 Dec 2019 10:44:22 -0800
-From: Fernando Pacheco <fernando.pacheco@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 12 Dec 2019 10:43:59 -0800
-Message-Id: <20191212184359.16280-2-fernando.pacheco@intel.com>
-X-Mailer: git-send-email 2.24.0
-In-Reply-To: <20191212184359.16280-1-fernando.pacheco@intel.com>
-References: <20191212184359.16280-1-fernando.pacheco@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id D8EDD8987A;
+ Thu, 12 Dec 2019 18:45:26 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id D16F1A47DF;
+ Thu, 12 Dec 2019 18:45:26 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 2/2] HAX: force enable_guc=2 and WA i915#571
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Thu, 12 Dec 2019 18:45:26 -0000
+Message-ID: <157617632685.32008.17467292006997828155@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20191212151409.1631067-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20191212151409.1631067-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
+ =?utf-8?q?/i915/display=3A_Silence_powerell_debug?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,73 +38,164 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+== Series Details ==
 
-To get a full run with GuC loading and HuC auth enabled.
+Series: drm/i915/display: Silence powerell debug
+URL   : https://patchwork.freedesktop.org/series/70836/
+State : failure
 
-Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
----
- drivers/gpu/drm/i915/gt/selftest_gt_pm.c | 9 +++++++++
- drivers/gpu/drm/i915/i915_params.h       | 2 +-
- 2 files changed, 10 insertions(+), 1 deletion(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/gt/selftest_gt_pm.c b/drivers/gpu/drm/i915/gt/selftest_gt_pm.c
-index 09ff8e4f88af..86b176c887b4 100644
---- a/drivers/gpu/drm/i915/gt/selftest_gt_pm.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_gt_pm.c
-@@ -12,8 +12,11 @@ static int live_gt_resume(void *arg)
- {
- 	struct intel_gt *gt = arg;
- 	IGT_TIMEOUT(end_time);
-+	intel_wakeref_t wakeref;
- 	int err;
- 
-+	wakeref = intel_runtime_pm_get(gt->uncore->rpm);
-+
- 	/* Do several suspend/resume cycles to check we don't explode! */
- 	do {
- 		intel_gt_suspend_prepare(gt);
-@@ -26,6 +29,10 @@ static int live_gt_resume(void *arg)
- 			break;
- 		}
- 
-+		err = intel_gt_init_hw(gt);
-+		if (err)
-+			break;
-+
- 		err = intel_gt_resume(gt);
- 		if (err)
- 			break;
-@@ -45,6 +52,8 @@ static int live_gt_resume(void *arg)
- 		}
- 	} while (!__igt_timeout(end_time, NULL));
- 
-+	intel_runtime_pm_put(gt->uncore->rpm, wakeref);
-+
- 	return err;
- }
- 
-diff --git a/drivers/gpu/drm/i915/i915_params.h b/drivers/gpu/drm/i915/i915_params.h
-index 31b88f297fbc..acda9f2a1207 100644
---- a/drivers/gpu/drm/i915/i915_params.h
-+++ b/drivers/gpu/drm/i915/i915_params.h
-@@ -54,7 +54,7 @@ struct drm_printer;
- 	param(int, disable_power_well, -1) \
- 	param(int, enable_ips, 1) \
- 	param(int, invert_brightness, 0) \
--	param(int, enable_guc, 0) \
-+	param(int, enable_guc, 2) \
- 	param(int, guc_log_level, -1) \
- 	param(char *, guc_firmware_path, NULL) \
- 	param(char *, huc_firmware_path, NULL) \
--- 
-2.24.0
+CI Bug Log - changes from CI_DRM_7551 -> Patchwork_15724
+====================================================
 
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with Patchwork_15724 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_15724, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15724/index.html
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_15724:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@gem_close_race@basic-threads:
+    - fi-byt-j1900:       [PASS][1] -> [TIMEOUT][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7551/fi-byt-j1900/igt@gem_close_race@basic-threads.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15724/fi-byt-j1900/igt@gem_close_race@basic-threads.html
+
+  * igt@runner@aborted:
+    - fi-byt-j1900:       NOTRUN -> [FAIL][3]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15724/fi-byt-j1900/igt@runner@aborted.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_15724 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live_gem_contexts:
+    - fi-cfl-8700k:       [PASS][4] -> [INCOMPLETE][5] ([i915#424])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7551/fi-cfl-8700k/igt@i915_selftest@live_gem_contexts.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15724/fi-cfl-8700k/igt@i915_selftest@live_gem_contexts.html
+    - fi-byt-n2820:       [PASS][6] -> [DMESG-FAIL][7] ([i915#722])
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7551/fi-byt-n2820/igt@i915_selftest@live_gem_contexts.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15724/fi-byt-n2820/igt@i915_selftest@live_gem_contexts.html
+
+  * igt@i915_selftest@live_requests:
+    - fi-ivb-3770:        [PASS][8] -> [INCOMPLETE][9] ([i915#773])
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7551/fi-ivb-3770/igt@i915_selftest@live_requests.html
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15724/fi-ivb-3770/igt@i915_selftest@live_requests.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_sync@basic-each:
+    - {fi-tgl-u}:         [INCOMPLETE][10] ([i915#472] / [i915#707]) -> [PASS][11]
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7551/fi-tgl-u/igt@gem_sync@basic-each.html
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15724/fi-tgl-u/igt@gem_sync@basic-each.html
+
+  * igt@i915_selftest@live_gem_contexts:
+    - fi-hsw-peppy:       [DMESG-FAIL][12] ([i915#722]) -> [PASS][13]
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7551/fi-hsw-peppy/igt@i915_selftest@live_gem_contexts.html
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15724/fi-hsw-peppy/igt@i915_selftest@live_gem_contexts.html
+
+  * igt@kms_chamelium@hdmi-edid-read:
+    - fi-kbl-7500u:       [FAIL][14] ([i915#217]) -> [PASS][15]
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7551/fi-kbl-7500u/igt@kms_chamelium@hdmi-edid-read.html
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15724/fi-kbl-7500u/igt@kms_chamelium@hdmi-edid-read.html
+
+  * igt@kms_chamelium@hdmi-hpd-fast:
+    - fi-kbl-7500u:       [FAIL][16] ([fdo#111096] / [i915#323]) -> [PASS][17]
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7551/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15724/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+
+  
+#### Warnings ####
+
+  * igt@gem_exec_suspend@basic-s0:
+    - fi-kbl-x1275:       [DMESG-WARN][18] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][19] ([i915#62] / [i915#92]) +6 similar issues
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7551/fi-kbl-x1275/igt@gem_exec_suspend@basic-s0.html
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15724/fi-kbl-x1275/igt@gem_exec_suspend@basic-s0.html
+
+  * igt@gem_exec_suspend@basic-s4-devices:
+    - fi-kbl-x1275:       [DMESG-WARN][20] ([fdo#107139] / [i915#62] / [i915#92]) -> [DMESG-WARN][21] ([fdo#107139] / [i915#62] / [i915#92] / [i915#95])
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7551/fi-kbl-x1275/igt@gem_exec_suspend@basic-s4-devices.html
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15724/fi-kbl-x1275/igt@gem_exec_suspend@basic-s4-devices.html
+
+  * igt@i915_pm_rpm@basic-pci-d3-state:
+    - fi-kbl-x1275:       [DMESG-WARN][22] ([i915#62] / [i915#92]) -> [DMESG-WARN][23] ([i915#62] / [i915#92] / [i915#95]) +4 similar issues
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7551/fi-kbl-x1275/igt@i915_pm_rpm@basic-pci-d3-state.html
+   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15724/fi-kbl-x1275/igt@i915_pm_rpm@basic-pci-d3-state.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#107139]: https://bugs.freedesktop.org/show_bug.cgi?id=107139
+  [fdo#111096]: https://bugs.freedesktop.org/show_bug.cgi?id=111096
+  [i915#217]: https://gitlab.freedesktop.org/drm/intel/issues/217
+  [i915#323]: https://gitlab.freedesktop.org/drm/intel/issues/323
+  [i915#424]: https://gitlab.freedesktop.org/drm/intel/issues/424
+  [i915#472]: https://gitlab.freedesktop.org/drm/intel/issues/472
+  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
+  [i915#707]: https://gitlab.freedesktop.org/drm/intel/issues/707
+  [i915#722]: https://gitlab.freedesktop.org/drm/intel/issues/722
+  [i915#773]: https://gitlab.freedesktop.org/drm/intel/issues/773
+  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
+  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
+
+
+Participating hosts (52 -> 46)
+------------------------------
+
+  Additional (1): fi-gdg-551 
+  Missing    (7): fi-icl-1065g7 fi-ilk-m540 fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_7551 -> Patchwork_15724
+
+  CI-20190529: 20190529
+  CI_DRM_7551: e60aa4ffc106f910452d28f2ea49ae2ff44d85d5 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5346: 466b0e6cbcbaccff012b484d1fd7676364b37b93 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_15724: a375381ab8b7d5f4724a717fa0eedab9b125776b @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+a375381ab8b7 drm/i915/display: Silence powerell debug
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15724/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
