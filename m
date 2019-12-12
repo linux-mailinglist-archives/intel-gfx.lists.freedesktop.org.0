@@ -1,32 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3ECC711CF35
-	for <lists+intel-gfx@lfdr.de>; Thu, 12 Dec 2019 15:05:42 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8EAC511CF4B
+	for <lists+intel-gfx@lfdr.de>; Thu, 12 Dec 2019 15:06:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F2D556ED6C;
-	Thu, 12 Dec 2019 14:05:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D4A976ED81;
+	Thu, 12 Dec 2019 14:06:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 230F96ED78
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AC4E36ED75
  for <intel-gfx@lists.freedesktop.org>; Thu, 12 Dec 2019 14:05:34 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19555637-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19555638-1500050 
  for multiple; Thu, 12 Dec 2019 14:05:00 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 12 Dec 2019 14:04:35 +0000
-Message-Id: <20191212140459.1307617-9-chris@chris-wilson.co.uk>
+Date: Thu, 12 Dec 2019 14:04:36 +0000
+Message-Id: <20191212140459.1307617-10-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.24.0
 In-Reply-To: <20191212140459.1307617-1-chris@chris-wilson.co.uk>
 References: <20191212140459.1307617-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 09/33] drm/i915/gt: Mark ring->vma as active
- while pinned
+Subject: [Intel-gfx] [PATCH 10/33] drm/i915/selftests: Disable heartbeats
+ around long queues
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,62 +44,146 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-As we use the active state to keep the vma alive while we are reading
-its contents during GPU error capture, we need to mark the
-ring->vma as active during execution if we want to include the rinbuffer
-in the error state.
+For some execlists scheduler tests we assume very precise layout of the
+inflight queue and become angry if the heartbeat interferes by
+reprioritising our contexts (because we happen to be using the same
+engine->kernel_context for our test).
 
-Reported-by: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
-Fixes: b1e3177bd1d8 ("drm/i915: Coordinate i915_active with its own mutex")
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-Cc: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
 ---
- drivers/gpu/drm/i915/gt/intel_ring.c | 10 +++++++++-
- 1 file changed, 9 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/gt/selftest_lrc.c | 42 +++++++++++++++++++++-----
+ 1 file changed, 34 insertions(+), 8 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_ring.c b/drivers/gpu/drm/i915/gt/intel_ring.c
-index 374b28f13ca0..7a27264150b9 100644
---- a/drivers/gpu/drm/i915/gt/intel_ring.c
-+++ b/drivers/gpu/drm/i915/gt/intel_ring.c
-@@ -45,6 +45,10 @@ int intel_ring_pin(struct intel_ring *ring)
- 	if (unlikely(ret))
- 		goto err_unpin;
- 
-+	ret = i915_active_acquire(&vma->active);
-+	if (ret)
-+		goto err_ring;
-+
- 	if (i915_vma_is_map_and_fenceable(vma))
- 		addr = (void __force *)i915_vma_pin_iomap(vma);
- 	else
-@@ -52,7 +56,7 @@ int intel_ring_pin(struct intel_ring *ring)
- 					       i915_coherent_map_type(vma->vm->i915));
- 	if (IS_ERR(addr)) {
- 		ret = PTR_ERR(addr);
--		goto err_ring;
-+		goto err_active;
- 	}
- 
- 	i915_vma_make_unshrinkable(vma);
-@@ -63,6 +67,8 @@ int intel_ring_pin(struct intel_ring *ring)
- 	ring->vaddr = addr;
- 	return 0;
- 
-+err_active:
-+	i915_active_release(&vma->active);
- err_ring:
- 	i915_vma_unpin(vma);
- err_unpin:
-@@ -93,6 +99,8 @@ void intel_ring_unpin(struct intel_ring *ring)
- 		i915_gem_object_unpin_map(vma->obj);
- 
- 	i915_vma_make_purgeable(vma);
-+
-+	i915_active_release(&vma->active);
- 	i915_vma_unpin(vma);
+diff --git a/drivers/gpu/drm/i915/gt/selftest_lrc.c b/drivers/gpu/drm/i915/gt/selftest_lrc.c
+index ac8b9116d307..54bce282717a 100644
+--- a/drivers/gpu/drm/i915/gt/selftest_lrc.c
++++ b/drivers/gpu/drm/i915/gt/selftest_lrc.c
+@@ -50,6 +50,24 @@ static struct i915_vma *create_scratch(struct intel_gt *gt)
+ 	return vma;
  }
  
++static void engine_heartbeat_disable(struct intel_engine_cs *engine,
++				     unsigned long *saved)
++{
++	*saved = engine->props.heartbeat_interval_ms;
++	engine->props.heartbeat_interval_ms = 0;
++
++	intel_engine_pm_get(engine);
++	intel_engine_park_heartbeat(engine);
++}
++
++static void engine_heartbeat_enable(struct intel_engine_cs *engine,
++				    unsigned long saved)
++{
++	intel_engine_pm_put(engine);
++
++	engine->props.heartbeat_interval_ms = saved;
++}
++
+ static int live_sanitycheck(void *arg)
+ {
+ 	struct intel_gt *gt = arg;
+@@ -128,6 +146,7 @@ static int live_unlite_restore(struct intel_gt *gt, int prio)
+ 		struct intel_context *ce[2] = {};
+ 		struct i915_request *rq[2];
+ 		struct igt_live_test t;
++		unsigned long saved;
+ 		int n;
+ 
+ 		if (prio && !intel_engine_has_preemption(engine))
+@@ -140,6 +159,7 @@ static int live_unlite_restore(struct intel_gt *gt, int prio)
+ 			err = -EIO;
+ 			break;
+ 		}
++		engine_heartbeat_disable(engine, &saved);
+ 
+ 		for (n = 0; n < ARRAY_SIZE(ce); n++) {
+ 			struct intel_context *tmp;
+@@ -247,6 +267,7 @@ static int live_unlite_restore(struct intel_gt *gt, int prio)
+ 			intel_context_put(ce[n]);
+ 		}
+ 
++		engine_heartbeat_enable(engine, saved);
+ 		if (igt_live_test_end(&t))
+ 			err = -EIO;
+ 		if (err)
+@@ -468,12 +489,16 @@ static int live_timeslice_preempt(void *arg)
+ 		enum intel_engine_id id;
+ 
+ 		for_each_engine(engine, gt, id) {
++			unsigned long saved;
++
+ 			if (!intel_engine_has_preemption(engine))
+ 				continue;
+ 
+ 			memset(vaddr, 0, PAGE_SIZE);
+ 
++			engine_heartbeat_disable(engine, &saved);
+ 			err = slice_semaphore_queue(engine, vma, count);
++			engine_heartbeat_enable(engine, saved);
+ 			if (err)
+ 				goto err_pin;
+ 
+@@ -566,17 +591,19 @@ static int live_timeslice_queue(void *arg)
+ 			.priority = I915_USER_PRIORITY(I915_PRIORITY_MAX),
+ 		};
+ 		struct i915_request *rq, *nop;
++		unsigned long saved;
+ 
+ 		if (!intel_engine_has_preemption(engine))
+ 			continue;
+ 
++		engine_heartbeat_disable(engine, &saved);
+ 		memset(vaddr, 0, PAGE_SIZE);
+ 
+ 		/* ELSP[0]: semaphore wait */
+ 		rq = semaphore_queue(engine, vma, 0);
+ 		if (IS_ERR(rq)) {
+ 			err = PTR_ERR(rq);
+-			goto err_pin;
++			goto err_heartbeat;
+ 		}
+ 		engine->schedule(rq, &attr);
+ 		wait_for_submit(engine, rq);
+@@ -585,8 +612,7 @@ static int live_timeslice_queue(void *arg)
+ 		nop = nop_request(engine);
+ 		if (IS_ERR(nop)) {
+ 			err = PTR_ERR(nop);
+-			i915_request_put(rq);
+-			goto err_pin;
++			goto err_rq;
+ 		}
+ 		wait_for_submit(engine, nop);
+ 		i915_request_put(nop);
+@@ -596,10 +622,8 @@ static int live_timeslice_queue(void *arg)
+ 
+ 		/* Queue: semaphore signal, matching priority as semaphore */
+ 		err = release_queue(engine, vma, 1, effective_prio(rq));
+-		if (err) {
+-			i915_request_put(rq);
+-			goto err_pin;
+-		}
++		if (err)
++			goto err_rq;
+ 
+ 		intel_engine_flush_submission(engine);
+ 		if (!READ_ONCE(engine->execlists.timer.expires) &&
+@@ -630,12 +654,14 @@ static int live_timeslice_queue(void *arg)
+ 			memset(vaddr, 0xff, PAGE_SIZE);
+ 			err = -EIO;
+ 		}
++err_rq:
+ 		i915_request_put(rq);
++err_heartbeat:
++		engine_heartbeat_enable(engine, saved);
+ 		if (err)
+ 			break;
+ 	}
+ 
+-err_pin:
+ 	i915_vma_unpin(vma);
+ err_map:
+ 	i915_gem_object_unpin_map(obj);
 -- 
 2.24.0
 
