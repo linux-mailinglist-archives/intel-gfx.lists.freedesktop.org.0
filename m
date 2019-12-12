@@ -2,31 +2,34 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C220711CD3F
-	for <lists+intel-gfx@lfdr.de>; Thu, 12 Dec 2019 13:34:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E341811CD70
+	for <lists+intel-gfx@lfdr.de>; Thu, 12 Dec 2019 13:50:22 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1F43C6ED29;
-	Thu, 12 Dec 2019 12:34:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1338F6ED3B;
+	Thu, 12 Dec 2019 12:50:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7EEC36ED29
- for <intel-gfx@lists.freedesktop.org>; Thu, 12 Dec 2019 12:34:13 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19554358-1500050 
- for multiple; Thu, 12 Dec 2019 12:33:54 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
+X-Greylist: delayed 427 seconds by postgrey-1.36 at gabe;
+ Thu, 12 Dec 2019 12:50:14 UTC
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E1C3D6ED32
+ for <intel-gfx@lists.freedesktop.org>; Thu, 12 Dec 2019 12:50:14 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 12 Dec 2019 04:43:07 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.69,305,1571727600"; d="scan'208";a="265205331"
+Received: from slisovsk-lenovo-ideapad-720s-13ikb.fi.intel.com ([10.237.72.89])
+ by FMSMGA003.fm.intel.com with ESMTP; 12 Dec 2019 04:43:05 -0800
+From: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 12 Dec 2019 12:33:55 +0000
-Message-Id: <20191212123355.1246460-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.24.0
-In-Reply-To: <20191212102114.1134931-2-chris@chris-wilson.co.uk>
-References: <20191212102114.1134931-2-chris@chris-wilson.co.uk>
+Date: Thu, 12 Dec 2019 14:40:12 +0200
+Message-Id: <20191212124015.24077-1-stanislav.lisovskiy@intel.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v2] drm/i915: Eliminate the trylock for awaiting
- an earlier request
+Subject: [Intel-gfx] [PATCH v12 0/3] Refactor Gen11+ SAGV support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,80 +47,33 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-We currently use an error-prone mutex_trylock to grab another timeline
-to find an earlier request along it. However, with a bit of a
-sleight-of-hand, we can reduce the mutex_trylock to a spin_lock on the
-immediate request and careful pointer chasing to acquire a reference on
-the previous request.
+For Gen11+ platforms BSpec suggests disabling specific
+QGV points separately, depending on bandwidth limitations
+and current display configuration. Thus it required adding
+a new PCode request for disabling QGV points and some
+refactoring of already existing SAGV code.
+Also had to refactor intel_can_enable_sagv function,
+as current seems to be outdated and using skl specific
+workarounds, also not following BSpec for Gen11+.
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
----
- drivers/gpu/drm/i915/i915_request.c | 39 ++++++++++++++++-------------
- 1 file changed, 21 insertions(+), 18 deletions(-)
+Stanislav Lisovskiy (3):
+  drm/i915: Refactor intel_can_enable_sagv
+  drm/i915: Restrict qgv points which don't have enough bandwidth.
+  drm/i915: Enable SAGV support for Gen12
 
-diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
-index fb8738987aeb..f513747ff027 100644
---- a/drivers/gpu/drm/i915/i915_request.c
-+++ b/drivers/gpu/drm/i915/i915_request.c
-@@ -768,34 +768,37 @@ i915_request_create(struct intel_context *ce)
- static int
- i915_request_await_start(struct i915_request *rq, struct i915_request *signal)
- {
--	struct intel_timeline *tl;
- 	struct dma_fence *fence;
- 	int err;
- 
- 	GEM_BUG_ON(i915_request_timeline(rq) ==
- 		   rcu_access_pointer(signal->timeline));
- 
-+	fence = NULL;
- 	rcu_read_lock();
--	tl = rcu_dereference(signal->timeline);
--	if (i915_request_started(signal) || !kref_get_unless_zero(&tl->kref))
--		tl = NULL;
--	rcu_read_unlock();
--	if (!tl) /* already started or maybe even completed */
--		return 0;
-+	spin_lock_irq(&signal->lock);
-+	if (!i915_request_started(signal) &&
-+	    !list_is_first(&signal->link,
-+			   &rcu_dereference(signal->timeline)->requests)) {
-+		struct i915_request *prev = list_prev_entry(signal, link);
- 
--	fence = ERR_PTR(-EAGAIN);
--	if (mutex_trylock(&tl->mutex)) {
--		fence = NULL;
--		if (!i915_request_started(signal) &&
--		    !list_is_first(&signal->link, &tl->requests)) {
--			signal = list_prev_entry(signal, link);
--			fence = dma_fence_get(&signal->fence);
-+		/*
-+		 * Peek at the request before us in the timeline. That
-+		 * request will only be valid before it is retired, so
-+		 * after acquiring a reference to it, confirm that it is
-+		 * still part of the signaler's timeline.
-+		 */
-+		if (i915_request_get_rcu(prev)) {
-+			if (list_next_entry(prev, link) == signal)
-+				fence = &prev->fence;
-+			else
-+				i915_request_put(prev);
- 		}
--		mutex_unlock(&tl->mutex);
- 	}
--	intel_timeline_put(tl);
--	if (IS_ERR_OR_NULL(fence))
--		return PTR_ERR_OR_ZERO(fence);
-+	spin_unlock_irq(&signal->lock);
-+	rcu_read_unlock();
-+	if (!fence)
-+		return 0;
- 
- 	err = 0;
- 	if (intel_timeline_sync_is_later(i915_request_timeline(rq), fence))
+ drivers/gpu/drm/i915/display/intel_bw.c       | 144 ++++--
+ drivers/gpu/drm/i915/display/intel_bw.h       |   2 +
+ drivers/gpu/drm/i915/display/intel_display.c  |  98 +++-
+ .../drm/i915/display/intel_display_types.h    |  12 +
+ drivers/gpu/drm/i915/i915_drv.h               |  11 +
+ drivers/gpu/drm/i915/i915_reg.h               |   5 +
+ drivers/gpu/drm/i915/intel_pm.c               | 422 +++++++++++++++---
+ drivers/gpu/drm/i915/intel_pm.h               |   1 +
+ drivers/gpu/drm/i915/intel_sideband.c         |  27 +-
+ 9 files changed, 626 insertions(+), 96 deletions(-)
+
 -- 
-2.24.0
+2.17.1
 
 _______________________________________________
 Intel-gfx mailing list
