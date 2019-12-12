@@ -1,39 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8FA8511D180
-	for <lists+intel-gfx@lfdr.de>; Thu, 12 Dec 2019 16:53:30 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D6B6711D190
+	for <lists+intel-gfx@lfdr.de>; Thu, 12 Dec 2019 16:56:34 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C3CD96E199;
-	Thu, 12 Dec 2019 15:53:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3ED1B6E1A7;
+	Thu, 12 Dec 2019 15:56:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 35DDB6E1A5
- for <intel-gfx@lists.freedesktop.org>; Thu, 12 Dec 2019 15:53:28 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-X-Amp-File-Uploaded: False
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 12 Dec 2019 07:53:27 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,306,1571727600"; d="scan'208";a="216154204"
-Received: from invictus.jf.intel.com (HELO InViCtUs) ([10.54.75.159])
- by orsmga006.jf.intel.com with ESMTP; 12 Dec 2019 07:53:26 -0800
-Date: Thu, 12 Dec 2019 07:53:37 -0800
-From: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Message-ID: <20191212155337.GC21507@InViCtUs>
-References: <20191126002635.5779-1-radhakrishna.sripada@intel.com>
- <20191126002635.5779-4-radhakrishna.sripada@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 5990B6E1A5;
+ Thu, 12 Dec 2019 15:56:32 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 5111CA47DF;
+ Thu, 12 Dec 2019 15:56:32 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20191126002635.5779-4-radhakrishna.sripada@intel.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH v7 3/7] drm/i915: Move CCS stride alignment
- W/A inside intel_fb_stride_alignment
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Abdiel Janulgue" <abdiel.janulgue@linux.intel.com>
+Date: Thu, 12 Dec 2019 15:56:32 -0000
+Message-ID: <157616619230.32009.7488294855001286655@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20191212113438.5412-1-abdiel.janulgue@linux.intel.com>
+In-Reply-To: <20191212113438.5412-1-abdiel.janulgue@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915=3A_Add_lmem_fault_handler_=28rev3=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,94 +38,37 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: ville.syrjala@intel.com, nanley.g.chery@intel.com,
- dhinakaran.pandiyan@intel.com
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Nov 25, 2019 at 04:26:31PM -0800, Radhakrishna Sripada wrote:
-> From: Dhinakaran Pandiyan <dhinakaran.pandiyan@intel.com>
-> =
+== Series Details ==
 
-> Easier to read if all the alignment changes are in one place and contained
-> within a function.
-> =
+Series: drm/i915: Add lmem fault handler (rev3)
+URL   : https://patchwork.freedesktop.org/series/70485/
+State : warning
 
-> Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> Cc: Matt Roper <matthew.d.roper@intel.com>
-Reviewed-by: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
-> Signed-off-by: Dhinakaran Pandiyan <dhinakaran.pandiyan@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_display.c | 31 ++++++++++----------
->  1 file changed, 16 insertions(+), 15 deletions(-)
-> =
+== Summary ==
 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/d=
-rm/i915/display/intel_display.c
-> index 2a4593afbe86..85f009500344 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -2611,7 +2611,22 @@ intel_fb_stride_alignment(const struct drm_framebu=
-ffer *fb, int color_plane)
->  		else
->  			return 64;
->  	} else {
-> -		return intel_tile_width_bytes(fb, color_plane);
-> +		u32 tile_width =3D intel_tile_width_bytes(fb, color_plane);
-> +
-> +		/*
-> +		 * Display WA #0531: skl,bxt,kbl,glk
-> +		 *
-> +		 * Render decompression and plane width > 3840
-> +		 * combined with horizontal panning requires the
-> +		 * plane stride to be a multiple of 4. We'll just
-> +		 * require the entire fb to accommodate that to avoid
-> +		 * potential runtime errors at plane configuration time.
-> +		 */
-> +		if (IS_GEN(dev_priv, 9) && is_ccs_modifier(fb->modifier) &&
-> +		    color_plane =3D=3D 0 && fb->width > 3840)
-> +			tile_width *=3D 4;
-> +
-> +		return tile_width;
->  	}
->  }
->  =
+$ dim checkpatch origin/drm-tip
+4dfb09a5684c drm/i915: Add lmem fault handler
+-:146: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#146: FILE: drivers/gpu/drm/i915/gem/i915_gem_mman.c:701:
++       .fault = vm_fault_iomem,$
 
-> @@ -16463,20 +16478,6 @@ static int intel_framebuffer_init(struct intel_f=
-ramebuffer *intel_fb,
->  		}
->  =
+-:147: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#147: FILE: drivers/gpu/drm/i915/gem/i915_gem_mman.c:702:
++       .open = vm_open,$
 
->  		stride_alignment =3D intel_fb_stride_alignment(fb, i);
-> -
-> -		/*
-> -		 * Display WA #0531: skl,bxt,kbl,glk
-> -		 *
-> -		 * Render decompression and plane width > 3840
-> -		 * combined with horizontal panning requires the
-> -		 * plane stride to be a multiple of 4. We'll just
-> -		 * require the entire fb to accommodate that to avoid
-> -		 * potential runtime errors at plane configuration time.
-> -		 */
-> -		if (IS_GEN(dev_priv, 9) && i =3D=3D 0 && fb->width > 3840 &&
-> -		    is_ccs_modifier(fb->modifier))
-> -			stride_alignment *=3D 4;
-> -
->  		if (fb->pitches[i] & (stride_alignment - 1)) {
->  			DRM_DEBUG_KMS("plane %d pitch (%d) must be at least %u byte aligned\n=
-",
->  				      i, fb->pitches[i], stride_alignment);
-> -- =
+-:148: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#148: FILE: drivers/gpu/drm/i915/gem/i915_gem_mman.c:703:
++       .close = vm_close,$
 
-> 2.20.1
-> =
+total: 0 errors, 3 warnings, 0 checks, 354 lines checked
 
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
