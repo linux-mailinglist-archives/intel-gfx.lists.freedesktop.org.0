@@ -1,41 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB37A11D879
-	for <lists+intel-gfx@lfdr.de>; Thu, 12 Dec 2019 22:22:06 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2AA0D11D887
+	for <lists+intel-gfx@lfdr.de>; Thu, 12 Dec 2019 22:28:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EC7B96E1F3;
-	Thu, 12 Dec 2019 21:22:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 97EC86E1F5;
+	Thu, 12 Dec 2019 21:28:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8AB0C6E1F3
- for <intel-gfx@lists.freedesktop.org>; Thu, 12 Dec 2019 21:22:02 +0000 (UTC)
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7625B6E1F5
+ for <intel-gfx@lists.freedesktop.org>; Thu, 12 Dec 2019 21:28:34 +0000 (UTC)
 X-Amp-Result: UNKNOWN
 X-Amp-Original-Verdict: FILE UNKNOWN
 X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 12 Dec 2019 13:22:01 -0800
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 12 Dec 2019 13:28:33 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,307,1571727600"; d="scan'208";a="208234244"
+X-IronPort-AV: E=Sophos;i="5.69,307,1571727600"; d="scan'208";a="204106543"
 Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by orsmga008.jf.intel.com with SMTP; 12 Dec 2019 13:21:58 -0800
+ by orsmga007.jf.intel.com with SMTP; 12 Dec 2019 13:28:31 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 12 Dec 2019 23:21:57 +0200
-Date: Thu, 12 Dec 2019 23:21:57 +0200
+ Thu, 12 Dec 2019 23:28:30 +0200
+Date: Thu, 12 Dec 2019 23:28:30 +0200
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
 To: =?iso-8859-1?Q?Jos=E9?= Roberto de Souza <jose.souza@intel.com>
-Message-ID: <20191212212157.GV1208@intel.com>
+Message-ID: <20191212212830.GW1208@intel.com>
 References: <20191211184526.142413-1-jose.souza@intel.com>
- <20191211184526.142413-8-jose.souza@intel.com>
+ <20191211184526.142413-10-jose.souza@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20191211184526.142413-8-jose.souza@intel.com>
+In-Reply-To: <20191211184526.142413-10-jose.souza@intel.com>
 User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH v2 rebased 08/11] drm/i915/display: Always
- enables MST master pipe first
+Subject: Re: [Intel-gfx] [PATCH v2 rebased 10/11] drm/i915/display: Check if
+ pipe fastset is allowed by external dependencies
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,194 +48,132 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, Lucas De Marchi <lucas.demarchi@intel.com>
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Dec 11, 2019 at 10:45:23AM -0800, Jos=E9 Roberto de Souza wrote:
-> Due to DDB overlaps the pipe enabling sequence is not always crescent.
-> As the previous patch selects the smallest pipe/transcoder in the MST
-> stream to be master and it needs to be enabled first this changes
-> were needed to guarantee that.
+On Wed, Dec 11, 2019 at 10:45:25AM -0800, Jos=E9 Roberto de Souza wrote:
+> Check if fastset is allowed by external dependencies like other pipes
+> and transcoders.
 > =
 
-> So first lets enable all pipes that did not needed a fullmodeset so
-> it don't have any external dependency, this ones can overlap with
-> each other ddb allocations.
-> =
-
-> Then on the second loop it will enable all the pipes that needs a
-> modeset and don't depends on other pipes like MST master
-> pipe/transcoder.
-> =
-
-> Then finally all the pipes that needs a modeset and have dependency
-> on other pipes.
+> Right now it only forces a fullmodeset when the MST master transcoder
+> did not changed but the pipe of the master transcoder needs a
+> fullmodeset so all slaves also needs to do a fullmodeset.
+> But it will probably be need for port sync as well.
 > =
 
 > Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 > Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> Cc: Matt Roper <matthew.d.roper@intel.com>
 > Cc: Manasi Navare <manasi.d.navare@intel.com>
 > Signed-off-by: Jos=E9 Roberto de Souza <jose.souza@intel.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_display.c | 77 ++++++++++++++------
->  1 file changed, 56 insertions(+), 21 deletions(-)
+>  drivers/gpu/drm/i915/display/intel_display.c | 41 ++++++++++++++++++++
+>  1 file changed, 41 insertions(+)
 > =
 
 > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/d=
 rm/i915/display/intel_display.c
-> index 1cecce2f54f8..fa58b396e084 100644
+> index 092412b10d7c..0c24d7dfa152 100644
 > --- a/drivers/gpu/drm/i915/display/intel_display.c
 > +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -14566,18 +14566,24 @@ static void skl_commit_modeset_enables(struct i=
-ntel_atomic_state *state)
->  	/*
->  	 * Whenever the number of active pipes changes, we need to make sure we
->  	 * update the pipes in the right order so that their ddb allocations
-> -	 * never overlap with eachother inbetween CRTC updates. Otherwise we'll
-> +	 * never overlap with each other between CRTC updates. Otherwise we'll
->  	 * cause pipe underruns and other bad stuff.
-> +	 *
-> +	 * So first lets enable all pipes that did not needed a fullmodeset so
-> +	 * it don't have any external dependency
->  	 */
->  	do {
->  		progress =3D false;
+> @@ -13930,11 +13930,52 @@ static int calc_watermark_data(struct intel_ato=
+mic_state *state)
+>  	return 0;
+>  }
 >  =
 
-> -		for_each_oldnew_intel_crtc_in_state(state, crtc, old_crtc_state, new_c=
-rtc_state, i) {
-> -			enum pipe pipe =3D crtc->pipe;
-> -			bool vbl_wait =3D false;
-> -			bool modeset =3D needs_modeset(new_crtc_state);
-> +		for_each_oldnew_intel_crtc_in_state(state, crtc, old_crtc_state,
-> +						    new_crtc_state, i) {
-> +			bool vbl_wait;
+> +/**
+> + * Check if fastset is allowed by external dependencies like other pipes=
+ and
+> + * transcoders.
+> + *
+> + * Right now it only forces a fullmodeset when the MST master transcoder=
+ did
+> + * not changed but the pipe of the master transcoder needs a fullmodeset=
+ so
+> + * all slaves also needs to do a fullmodeset.
+> + */
+> +static bool
+> +intel_crtc_check_external_dependencies_fastset(const struct intel_crtc_s=
+tate *old_crtc_state,
+> +					       struct intel_crtc_state *new_crtc_state)
+> +{
+> +	struct intel_atomic_state *state =3D to_intel_atomic_state(new_crtc_sta=
+te->uapi.state);
+> +	struct drm_i915_private *dev_priv =3D to_i915(new_crtc_state->uapi.crtc=
+->dev);
+> +	struct intel_crtc_state *new_crtc_state_iter;
+> +	struct intel_crtc *crtc_iter;
+> +	int i;
 > +
-> +			if (updated & BIT(crtc->pipe) ||
-> +			    !new_crtc_state->hw.active)
-> +				continue;
->  =
-
-> -			if (updated & BIT(crtc->pipe) || !new_crtc_state->hw.active)
-> +			if (needs_modeset(new_crtc_state))
->  				continue;
->  =
-
->  			if (skl_ddb_allocation_overlaps(&new_crtc_state->wm.skl.ddb,
-> @@ -14585,7 +14591,7 @@ static void skl_commit_modeset_enables(struct int=
-el_atomic_state *state)
->  							INTEL_NUM_PIPES(dev_priv), i))
->  				continue;
->  =
-
-> -			updated |=3D BIT(pipe);
-> +			updated |=3D BIT(crtc->pipe);
->  			entries[i] =3D new_crtc_state->wm.skl.ddb;
->  =
-
->  			/*
-> @@ -14596,30 +14602,59 @@ static void skl_commit_modeset_enables(struct i=
-ntel_atomic_state *state)
->  			 */
->  			if (!skl_ddb_entry_equal(&new_crtc_state->wm.skl.ddb,
->  						 &old_crtc_state->wm.skl.ddb) &&
-> -			    !modeset &&
->  			    state->wm_results.dirty_pipes !=3D updated)
-
-I have a feeling this part is already broken. However I just pushed the
-patch to change this to a local dirty_pipes mask. I think what we could
-now do on top is split that into eg. update_pipes+modeset_pipes
-bitmasks.
-
-Then the first loop just does its thing until update_pipes is
-empty. And this check here we can replace with just something like:
-
-if (!ddb_equal() &&
-    (update_pipes | modeset_pipes) !=3D 0)
-
-And throw out all modeset checks here because we've already
-encoded that in update_pipes vs. modeset_pipes.
-
->  				vbl_wait =3D true;
->  =
-
-> -			if (modeset && is_trans_port_sync_mode(new_crtc_state)) {
-> -				if (is_trans_port_sync_master(new_crtc_state))
-> -					intel_update_trans_port_sync_crtcs(crtc,
-> -									   state,
-> -									   old_crtc_state,
-> -									   new_crtc_state);
-> -				else
-> -					continue;
-> -			} else {
-> -				intel_update_crtc(crtc, state, old_crtc_state,
-> -						  new_crtc_state);
-> -			}
-> +			intel_update_crtc(crtc, state, old_crtc_state,
-> +					  new_crtc_state);
->  =
-
->  			if (vbl_wait)
-> -				intel_wait_for_vblank(dev_priv, pipe);
-> +				intel_wait_for_vblank(dev_priv, crtc->pipe);
->  =
-
->  			progress =3D true;
->  		}
->  	} while (progress);
->  =
-
-> +	/*
-> +	 * Enabling all pipes that needs a modeset and do not depends on other
-> +	 * pipes
-> +	 */
-> +	for_each_oldnew_intel_crtc_in_state(state, crtc, old_crtc_state,
-> +					    new_crtc_state, i) {
-> +		if (updated & BIT(crtc->pipe) || !new_crtc_state->hw.active)
+> +	if (INTEL_GEN(dev_priv) < 12)
+> +		return true;
+> +
+> +	if (!intel_crtc_has_type(old_crtc_state, INTEL_OUTPUT_DP_MST) ||
+> +	    intel_dp_mst_is_master_trans(new_crtc_state))
+> +		return true;
+> +
+> +	for_each_new_intel_crtc_in_state(state, crtc_iter, new_crtc_state_iter,=
+ i) {
+> +		if (new_crtc_state_iter->cpu_transcoder !=3D
+> +		    new_crtc_state->mst_master_transcoder)
 > +			continue;
 > +
-> +		if (intel_dp_mst_is_slave_trans(new_crtc_state) ||
-> +		    is_trans_port_sync_slave(new_crtc_state))
-> +			continue;
-> +
-> +		updated |=3D BIT(crtc->pipe);
-
-I think we should update entries[] still in these lopps + WARN_ON(ddb_overl=
-aps).
-
-> +
-> +		if (is_trans_port_sync_mode(new_crtc_state))
-> +			intel_update_trans_port_sync_crtcs(crtc, state,
-> +							   old_crtc_state,
-> +							   new_crtc_state);
-> +		else
-> +			intel_update_crtc(crtc, state, old_crtc_state,
-> +					  new_crtc_state);
+> +		return !needs_modeset(new_crtc_state_iter);
 > +	}
 > +
-> +	/*
-> +	 * Finally enable all pipes that needs a modeset and depends on
-> +	 * other pipes, right now it is only MST slaves as both port sync slave
-> +	 * and master are enabled together
-> +	 */
-> +	for_each_oldnew_intel_crtc_in_state(state, crtc, old_crtc_state,
-> +					    new_crtc_state, i) {
-> +		if (updated & BIT(crtc->pipe) || !new_crtc_state->hw.active)
-> +			continue;
+> +	DRM_ERROR("Master MST transcoder of pipe not found\n");
+> +	return false;
+> +}
 > +
-> +		if (is_trans_port_sync_slave(new_crtc_state))
-> +			continue;
+>  static void intel_crtc_check_fastset(const struct intel_crtc_state *old_=
+crtc_state,
+>  				     struct intel_crtc_state *new_crtc_state)
+>  {
+>  	if (!intel_pipe_config_compare(old_crtc_state, new_crtc_state, true))
+>  		return;
+> +	if (!intel_crtc_check_external_dependencies_fastset(old_crtc_state,
+> +							    new_crtc_state))
+> +		return;
+
+I don't think this will work. We've not yet .compute_config()'d
+everything so the master assignments are still up in the air.
+
+I think we need the logic higher up in intel_atomic_check():
+
+for_each_crtc()
+	compute_config()
+	if (can_fastset())
+		needs_modeset=3Dfalse
+		update_pipe=3Dtrue;
+	}
+}
+
+for_each_crtc()
+	if (mst_slave && master.needs_modeset() {
+		needs_modeset=3Dtrue;
+		update_pipe=3Dfalse;
+	}
+
+for_each_crtc()
+	if (update_pipe)
+		copy_over_old_state();
+
+	=
+
++ we should probably rename/split update_pipes or add some
+lkind of needs_fastset() wrapper to make this less confusing.
+
+
 > +
-> +		intel_update_crtc(crtc, state, old_crtc_state, new_crtc_state);
-> +	}
-> +
->  	/* If 2nd DBuf slice is no more required disable it */
->  	if (INTEL_GEN(dev_priv) >=3D 11 && required_slices < hw_enabled_slices)
->  		icl_dbuf_slices_update(dev_priv, required_slices);
+>  =
+
+>  	new_crtc_state->uapi.mode_changed =3D false;
+>  	new_crtc_state->update_pipe =3D true;
 > -- =
 
 > 2.24.1
