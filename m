@@ -1,42 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D9E711D42D
-	for <lists+intel-gfx@lfdr.de>; Thu, 12 Dec 2019 18:37:23 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 560D511D449
+	for <lists+intel-gfx@lfdr.de>; Thu, 12 Dec 2019 18:43:14 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DE8BD6E05A;
-	Thu, 12 Dec 2019 17:37:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 35A006E051;
+	Thu, 12 Dec 2019 17:43:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 703816E05A
- for <intel-gfx@lists.freedesktop.org>; Thu, 12 Dec 2019 17:37:18 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-X-Amp-File-Uploaded: False
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 12 Dec 2019 09:37:18 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,306,1571727600"; d="scan'208";a="265282409"
-Received: from mdroper-desk1.fm.intel.com (HELO
- mdroper-desk1.amr.corp.intel.com) ([10.1.27.64])
- by FMSMGA003.fm.intel.com with ESMTP; 12 Dec 2019 09:37:17 -0800
-Date: Thu, 12 Dec 2019 09:37:17 -0800
-From: Matt Roper <matthew.d.roper@intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-Message-ID: <20191212173717.GG85422@mdroper-desk1.amr.corp.intel.com>
-References: <20191209143921.9240-1-pankaj.laxminarayan.bharadiya@intel.com>
- <20191211055739.uxe46chnhkc2byul@ldmartin-desk1>
- <20191211064041.GA3339@plaxmina-desktop.iind.intel.com>
- <20191212002250.357dhphi3clst7qy@ldmartin-desk1>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id EEED16E051;
+ Thu, 12 Dec 2019 17:43:09 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id E5FEFA0075;
+ Thu, 12 Dec 2019 17:43:09 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20191212002250.357dhphi3clst7qy@ldmartin-desk1>
-User-Agent: Mutt/1.12.1 (2019-06-15)
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/display: cleanup intel_bw_state on
- i915 module removal
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Stanislav Lisovskiy" <stanislav.lisovskiy@intel.com>
+Date: Thu, 12 Dec 2019 17:43:09 -0000
+Message-ID: <157617258991.32008.10549637386255229204@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20191212124015.24077-1-stanislav.lisovskiy@intel.com>
+In-Reply-To: <20191212124015.24077-1-stanislav.lisovskiy@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgUmVm?=
+ =?utf-8?q?actor_Gen11+_SAGV_support_=28rev13=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,144 +38,146 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Dec 11, 2019 at 04:22:50PM -0800, Lucas De Marchi wrote:
-> On Wed, Dec 11, 2019 at 12:10:41PM +0530, Bharadiya,Pankaj wrote:
-> > On Tue, Dec 10, 2019 at 09:57:39PM -0800, Lucas De Marchi wrote:
-> > > On Mon, Dec 09, 2019 at 08:09:02PM +0530, Pankaj Bharadiya wrote:
-> > > >intel_bw_state allocated memory is not getting freed even after
-> > > >module removal.
-> > > >
-> > > >kmemleak reported backtrace:
-> > > >
-> > > >   [<0000000079019739>] kmemdup+0x17/0x40
-> > > >   [<00000000d58c1b9d>] intel_bw_duplicate_state+0x1b/0x40 [i915]
-> > > >   [<000000007423ed0c>] drm_atomic_get_private_obj_state+0xca/0x140
-> > > >   [<00000000100e3533>] intel_bw_atomic_check+0x133/0x350 [i915]
-> > > >   [<00000000126d0e0c>] intel_atomic_check+0x1ab7/0x20d0 [i915]
-> > > >   [<00000000d5dfc004>] drm_atomic_check_only+0x563/0x810
-> > > >   [<00000000c9379611>] drm_atomic_commit+0xe/0x50
-> > > >   [<00000000ec82b765>] drm_atomic_helper_disable_all+0x133/0x160
-> > > >   [<000000003c44760c>] drm_atomic_helper_shutdown+0x65/0xc0
-> > > >   [<00000000414e3e5c>] i915_driver_remove+0xcb/0x130 [i915]
-> > > >   [<00000000f8544c2a>] i915_pci_remove+0x19/0x40 [i915]
-> > > >   [<000000002dcbd148>] pci_device_remove+0x36/0xb0
-> > > >   [<000000003c8c6b0a>] device_release_driver_internal+0xe0/0x1c0
-> > > >   [<00000000580e9566>] unbind_store+0xc3/0x120
-> > > >   [<00000000869d0df5>] kernfs_fop_write+0x104/0x190
-> > > >   [<000000004dc1a355>] vfs_write+0xb9/0x1d0
-> > > 
-> > > what I find strange in this is that the last state was allocated by the
-> > > "driver remove" code path.
-> > > 
-> > > >
-> > > >Call the drm_atomic_private_obj_fini(), which inturn calls the
-> > > >intel_bw_destroy_state() to make sure the intel_bw_state memory is
-> > > >freed properly.
-> > > >
-> > > >Signed-off-by: Pankaj Bharadiya <pankaj.laxminarayan.bharadiya@intel.com>
-> > > >---
-> > > >drivers/gpu/drm/i915/display/intel_bw.c      | 5 +++++
-> > > >drivers/gpu/drm/i915/display/intel_bw.h      | 1 +
-> > > >drivers/gpu/drm/i915/display/intel_display.c | 2 ++
-> > > >3 files changed, 8 insertions(+)
-> > > >
-> > > >diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
-> > > >index dcb66a33be9b..b228671d5a5d 100644
-> > > >--- a/drivers/gpu/drm/i915/display/intel_bw.c
-> > > >+++ b/drivers/gpu/drm/i915/display/intel_bw.c
-> > > >@@ -486,3 +486,8 @@ int intel_bw_init(struct drm_i915_private *dev_priv)
-> > > >
-> > > >	return 0;
-> > > >}
-> > > >+
-> > > >+void intel_bw_cleanup(struct drm_i915_private *dev_priv)
-> > > >+{
-> > > >+	drm_atomic_private_obj_fini(&dev_priv->bw_obj);
-> > > >+}
-> > > >diff --git a/drivers/gpu/drm/i915/display/intel_bw.h b/drivers/gpu/drm/i915/display/intel_bw.h
-> > > >index 9db10af012f4..20b9ad241802 100644
-> > > >--- a/drivers/gpu/drm/i915/display/intel_bw.h
-> > > >+++ b/drivers/gpu/drm/i915/display/intel_bw.h
-> > > >@@ -25,6 +25,7 @@ struct intel_bw_state {
-> > > >
-> > > >void intel_bw_init_hw(struct drm_i915_private *dev_priv);
-> > > >int intel_bw_init(struct drm_i915_private *dev_priv);
-> > > >+void intel_bw_cleanup(struct drm_i915_private *dev_priv);
-> > > >int intel_bw_atomic_check(struct intel_atomic_state *state);
-> > > >void intel_bw_crtc_update(struct intel_bw_state *bw_state,
-> > > >			  const struct intel_crtc_state *crtc_state);
-> > > >diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> > > >index 3190aa27ffdc..756eb90b1bb1 100644
-> > > >--- a/drivers/gpu/drm/i915/display/intel_display.c
-> > > >+++ b/drivers/gpu/drm/i915/display/intel_display.c
-> > > >@@ -17912,6 +17912,8 @@ void intel_modeset_driver_remove(struct drm_i915_private *i915)
-> > > >
-> > > >	intel_gmbus_teardown(i915);
-> > > >
-> > > >+	intel_bw_cleanup(i915);
-> > > 
-> > > This doesn't seem to match the (reverse) order of
-> > > intel_modeset_init()... but it's actually the gmbus_teardown() that is
-> > > out of place. Did you check if it's not a wrong shutdown ordering?
-> > > 
-> > 
-> > In intel_modeset_init(), intel_gmbus_setup() happens after
-> > intel_bw_init().
-> > I think the patch follows the reverse ordering properly.
-> > Am I missing anything?
-> 
-> I said it seems that it's the gmbus_teardown() that is out of place.
-> Have you seen my comment above? Why are we duplicating the bw_state on
-> the module-remove code path?
+== Series Details ==
 
-I think that part is legitimate.  Part of the module remove sequence
-does an atomic commit to turn everything off.  During atomic
-transactions, we create duplicates of all modesetting state objects can
-be modified; if/when the transaction succeeds, those duplicates are
-swapped into the actual driver state and the old objects are destroyed.
-Thus in cases like this where we forget to destroy a private object
-state, that leaked state structure will be the one allocated during the
-very last atomic transaction that happened (i.e., on the driver teardown
-codepath).
+Series: Refactor Gen11+ SAGV support (rev13)
+URL   : https://patchwork.freedesktop.org/series/68028/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_7551 -> Patchwork_15721
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15721/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_15721 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live_blt:
+    - fi-hsw-4770r:       [PASS][1] -> [DMESG-FAIL][2] ([i915#725])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7551/fi-hsw-4770r/igt@i915_selftest@live_blt.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15721/fi-hsw-4770r/igt@i915_selftest@live_blt.html
+
+  * igt@i915_selftest@live_gem_contexts:
+    - fi-byt-j1900:       [PASS][3] -> [INCOMPLETE][4] ([i915#45])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7551/fi-byt-j1900/igt@i915_selftest@live_gem_contexts.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15721/fi-byt-j1900/igt@i915_selftest@live_gem_contexts.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_sync@basic-many-each:
+    - {fi-tgl-guc}:       [INCOMPLETE][5] ([i915#707]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7551/fi-tgl-guc/igt@gem_sync@basic-many-each.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15721/fi-tgl-guc/igt@gem_sync@basic-many-each.html
+
+  * igt@i915_selftest@live_blt:
+    - fi-hsw-4770:        [DMESG-FAIL][7] ([i915#553] / [i915#725]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7551/fi-hsw-4770/igt@i915_selftest@live_blt.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15721/fi-hsw-4770/igt@i915_selftest@live_blt.html
+
+  * igt@kms_chamelium@hdmi-edid-read:
+    - fi-kbl-7500u:       [FAIL][9] ([i915#217]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7551/fi-kbl-7500u/igt@kms_chamelium@hdmi-edid-read.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15721/fi-kbl-7500u/igt@kms_chamelium@hdmi-edid-read.html
+
+  
+#### Warnings ####
+
+  * igt@gem_exec_suspend@basic-s4-devices:
+    - fi-kbl-x1275:       [DMESG-WARN][11] ([fdo#107139] / [i915#62] / [i915#92]) -> [DMESG-WARN][12] ([fdo#107139] / [i915#62] / [i915#92] / [i915#95])
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7551/fi-kbl-x1275/igt@gem_exec_suspend@basic-s4-devices.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15721/fi-kbl-x1275/igt@gem_exec_suspend@basic-s4-devices.html
+
+  * igt@i915_selftest@live_gem_contexts:
+    - fi-hsw-peppy:       [DMESG-FAIL][13] ([i915#722]) -> [INCOMPLETE][14] ([i915#694])
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7551/fi-hsw-peppy/igt@i915_selftest@live_gem_contexts.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15721/fi-hsw-peppy/igt@i915_selftest@live_gem_contexts.html
+
+  * igt@kms_chamelium@hdmi-hpd-fast:
+    - fi-kbl-7500u:       [FAIL][15] ([fdo#111096] / [i915#323]) -> [FAIL][16] ([fdo#111407])
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7551/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15721/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+
+  * igt@kms_flip@basic-flip-vs-modeset:
+    - fi-kbl-x1275:       [DMESG-WARN][17] ([i915#62] / [i915#92]) -> [DMESG-WARN][18] ([i915#62] / [i915#92] / [i915#95]) +3 similar issues
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7551/fi-kbl-x1275/igt@kms_flip@basic-flip-vs-modeset.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15721/fi-kbl-x1275/igt@kms_flip@basic-flip-vs-modeset.html
+
+  * igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a:
+    - fi-kbl-x1275:       [DMESG-WARN][19] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][20] ([i915#62] / [i915#92]) +2 similar issues
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7551/fi-kbl-x1275/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a.html
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15721/fi-kbl-x1275/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#107139]: https://bugs.freedesktop.org/show_bug.cgi?id=107139
+  [fdo#111096]: https://bugs.freedesktop.org/show_bug.cgi?id=111096
+  [fdo#111407]: https://bugs.freedesktop.org/show_bug.cgi?id=111407
+  [i915#217]: https://gitlab.freedesktop.org/drm/intel/issues/217
+  [i915#323]: https://gitlab.freedesktop.org/drm/intel/issues/323
+  [i915#45]: https://gitlab.freedesktop.org/drm/intel/issues/45
+  [i915#553]: https://gitlab.freedesktop.org/drm/intel/issues/553
+  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
+  [i915#694]: https://gitlab.freedesktop.org/drm/intel/issues/694
+  [i915#707]: https://gitlab.freedesktop.org/drm/intel/issues/707
+  [i915#722]: https://gitlab.freedesktop.org/drm/intel/issues/722
+  [i915#725]: https://gitlab.freedesktop.org/drm/intel/issues/725
+  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
+  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
 
 
-Matt
+Participating hosts (52 -> 46)
+------------------------------
 
-> 
-> Lucas De Marchi
-> 
-> > 
-> > Thanks,
-> > Pankaj
-> > 
-> > > thanks
-> > > Lucas De Marchi
-> > > 
-> > > >+
-> > > >	destroy_workqueue(i915->flip_wq);
-> > > >	destroy_workqueue(i915->modeset_wq);
-> > > >
-> > > >--
-> > > >2.23.0
-> > > >
-> > > >_______________________________________________
-> > > >Intel-gfx mailing list
-> > > >Intel-gfx@lists.freedesktop.org
-> > > >https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+  Additional (1): fi-gdg-551 
+  Missing    (7): fi-icl-1065g7 fi-ilk-m540 fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
 
--- 
-Matt Roper
-Graphics Software Engineer
-VTT-OSGC Platform Enablement
-Intel Corporation
-(916) 356-2795
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_7551 -> Patchwork_15721
+
+  CI-20190529: 20190529
+  CI_DRM_7551: e60aa4ffc106f910452d28f2ea49ae2ff44d85d5 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5346: 466b0e6cbcbaccff012b484d1fd7676364b37b93 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_15721: 7171528b4b10e691a554e2bc359b2491402b9b26 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+7171528b4b10 drm/i915: Enable SAGV support for Gen12
+e9f893ee788f drm/i915: Restrict qgv points which don't have enough bandwidth.
+38b8ca097735 drm/i915: Refactor intel_can_enable_sagv
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15721/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
