@@ -1,32 +1,37 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE87911C83E
-	for <lists+intel-gfx@lfdr.de>; Thu, 12 Dec 2019 09:31:46 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A047E11C843
+	for <lists+intel-gfx@lfdr.de>; Thu, 12 Dec 2019 09:33:42 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 12E5F6ECAF;
-	Thu, 12 Dec 2019 08:31:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 365616ECAE;
+	Thu, 12 Dec 2019 08:33:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id E0C726ECAC;
- Thu, 12 Dec 2019 08:31:43 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id D900BA01BB;
- Thu, 12 Dec 2019 08:31:43 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 86C146ECAB;
+ Thu, 12 Dec 2019 08:33:34 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga105.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 12 Dec 2019 00:33:33 -0800
+X-IronPort-AV: E=Sophos;i="5.69,305,1571727600"; d="scan'208";a="207997332"
+Received: from lenovo-x280.ger.corp.intel.com (HELO localhost) ([10.252.35.33])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 12 Dec 2019 00:33:31 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: "james qian wang \(Arm Technology China\)" <james.qian.wang@arm.com>
+In-Reply-To: <20191212080707.GA14875@jamwan02-TSP300>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20191210123050.8799-6-jani.nikula@intel.com>
+ <20191212080707.GA14875@jamwan02-TSP300>
+Date: Thu, 12 Dec 2019 10:33:31 +0200
+Message-ID: <87zhfy0wpw.fsf@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Thu, 12 Dec 2019 08:31:43 -0000
-Message-ID: <157613950388.32007.16062544662476336829@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20191212072737.884335-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20191212072737.884335-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5BCI=2C1/2=5D_drm/i915/uc=3A_Ignore_maybe-un?=
- =?utf-8?q?used_debug-only_i915_local?=
+Subject: Re: [Intel-gfx] [6/8] drm/atomic: convert to drm device based
+ logging
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,184 +44,553 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ nd <nd@arm.com>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Thu, 12 Dec 2019, "james qian wang (Arm Technology China)" <james.qian.wang@arm.com> wrote:
+> On Tue, Dec 10, 2019 at 02:30:48PM +0200, Jani Nikula wrote:
+>> Prefer drm_dbg_atomic().
+>> 
+>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>> ---
+>>  drivers/gpu/drm/drm_agpsupport.c |   4 +-
+>>  drivers/gpu/drm/drm_atomic.c     | 187 +++++++++++++++++--------------
+>>  2 files changed, 102 insertions(+), 89 deletions(-)
+>> 
+>> diff --git a/drivers/gpu/drm/drm_agpsupport.c b/drivers/gpu/drm/drm_agpsupport.c
+>> index 4c7ad46fdd21..cd675e58de50 100644
+>> --- a/drivers/gpu/drm/drm_agpsupport.c
+>> +++ b/drivers/gpu/drm/drm_agpsupport.c
+>> @@ -330,8 +330,8 @@ int drm_agp_bind(struct drm_device *dev, struct drm_agp_binding *request)
+>>  	if (retcode)
+>>  		return retcode;
+>>  	entry->bound = dev->agp->base + (page << PAGE_SHIFT);
+>> -	DRM_DEBUG("base = 0x%lx entry->bound = 0x%lx\n",
+>> -		  dev->agp->base, entry->bound);
+>> +	drm_dbg_core(dev, "base = 0x%lx entry->bound = 0x%lx\n",
+>> +		     dev->agp->base, entry->bound);
+>>  	return 0;
+>>  }
+>>  EXPORT_SYMBOL(drm_agp_bind);
+>> diff --git a/drivers/gpu/drm/drm_atomic.c b/drivers/gpu/drm/drm_atomic.c
+>> index 14aeaf736321..8494b1c29bf0 100644
+>> --- a/drivers/gpu/drm/drm_atomic.c
+>> +++ b/drivers/gpu/drm/drm_atomic.c
+>> @@ -99,7 +99,7 @@ drm_atomic_state_init(struct drm_device *dev, struct drm_atomic_state *state)
+>>  
+>>  	state->dev = dev;
+>>  
+>> -	DRM_DEBUG_ATOMIC("Allocated atomic state %p\n", state);
+>> +	drm_dbg_atomic(dev, "Allocated atomic state %p\n", state);
+>>  
+>>  	return 0;
+>>  fail:
+>> @@ -150,7 +150,7 @@ void drm_atomic_state_default_clear(struct drm_atomic_state *state)
+>>  	struct drm_mode_config *config = &dev->mode_config;
+>>  	int i;
+>>  
+>> -	DRM_DEBUG_ATOMIC("Clearing atomic state %p\n", state);
+>> +	drm_dbg_atomic(dev, "Clearing atomic state %p\n", state);
+>>  
+>>  	for (i = 0; i < state->num_connector; i++) {
+>>  		struct drm_connector *connector = state->connectors[i].ptr;
+>> @@ -256,11 +256,12 @@ EXPORT_SYMBOL(drm_atomic_state_clear);
+>>  void __drm_atomic_state_free(struct kref *ref)
+>>  {
+>>  	struct drm_atomic_state *state = container_of(ref, typeof(*state), ref);
+>> -	struct drm_mode_config *config = &state->dev->mode_config;
+>> +	struct drm_device *dev = state->dev;
+>> +	struct drm_mode_config *config = &dev->mode_config;
+>>  
+>>  	drm_atomic_state_clear(state);
+>>  
+>> -	DRM_DEBUG_ATOMIC("Freeing atomic state %p\n", state);
+>> +	drm_dbg_atomic(dev, "Freeing atomic state %p\n", state);
+>>  
+>>  	if (config->funcs->atomic_state_free) {
+>>  		config->funcs->atomic_state_free(state);
+>> @@ -290,8 +291,9 @@ struct drm_crtc_state *
+>>  drm_atomic_get_crtc_state(struct drm_atomic_state *state,
+>>  			  struct drm_crtc *crtc)
+>>  {
+>> -	int ret, index = drm_crtc_index(crtc);
+>> +	struct drm_device *dev = state->dev;
+>>  	struct drm_crtc_state *crtc_state;
+>> +	int ret, index = drm_crtc_index(crtc);
+>>  
+>>  	WARN_ON(!state->acquire_ctx);
+>>  
+>> @@ -313,8 +315,8 @@ drm_atomic_get_crtc_state(struct drm_atomic_state *state,
+>>  	state->crtcs[index].ptr = crtc;
+>>  	crtc_state->state = state;
+>>  
+>> -	DRM_DEBUG_ATOMIC("Added [CRTC:%d:%s] %p state to %p\n",
+>> -			 crtc->base.id, crtc->name, crtc_state, state);
+>> +	drm_dbg_atomic(dev, "Added [CRTC:%d:%s] %p state to %p\n",
+>> +		       crtc->base.id, crtc->name, crtc_state, state);
+>>  
+>>  	return crtc_state;
+>>  }
+>> @@ -324,6 +326,7 @@ static int drm_atomic_crtc_check(const struct drm_crtc_state *old_crtc_state,
+>>  				 const struct drm_crtc_state *new_crtc_state)
+>>  {
+>>  	struct drm_crtc *crtc = new_crtc_state->crtc;
+>> +	struct drm_device *dev = crtc->dev;
+>>  
+>>  	/* NOTE: we explicitly don't enforce constraints such as primary
+>>  	 * layer covering entire screen, since that is something we want
+>> @@ -334,25 +337,25 @@ static int drm_atomic_crtc_check(const struct drm_crtc_state *old_crtc_state,
+>>  	 */
+>>  
+>>  	if (new_crtc_state->active && !new_crtc_state->enable) {
+>> -		DRM_DEBUG_ATOMIC("[CRTC:%d:%s] active without enabled\n",
+>> -				 crtc->base.id, crtc->name);
+>> +		drm_dbg_atomic(dev, "[CRTC:%d:%s] active without enabled\n",
+>> +			       crtc->base.id, crtc->name);
+>
+> Can we add a new dedicated print level for these atomic check error msg,
+> In practice we more care about the atomic check errors, it is annoy to
+> pick it out from (so many) DRM_DEBUG_ATOMIC() msgs.
 
-Series: series starting with [CI,1/2] drm/i915/uc: Ignore maybe-unused debug-only i915 local
-URL   : https://patchwork.freedesktop.org/series/70800/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_7548 -> Patchwork_15708
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15708/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_15708 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live_gem_contexts:
-    - fi-cfl-8700k:       [PASS][1] -> [DMESG-FAIL][2] ([i915#623])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7548/fi-cfl-8700k/igt@i915_selftest@live_gem_contexts.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15708/fi-cfl-8700k/igt@i915_selftest@live_gem_contexts.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_exec_gttfill@basic:
-    - {fi-tgl-u}:         [INCOMPLETE][3] ([fdo#111593]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7548/fi-tgl-u/igt@gem_exec_gttfill@basic.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15708/fi-tgl-u/igt@gem_exec_gttfill@basic.html
-
-  * igt@gem_sync@basic-each:
-    - {fi-tgl-guc}:       [INCOMPLETE][5] ([i915#707]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7548/fi-tgl-guc/igt@gem_sync@basic-each.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15708/fi-tgl-guc/igt@gem_sync@basic-each.html
-
-  * igt@i915_selftest@live_gem_contexts:
-    - fi-byt-j1900:       [DMESG-FAIL][7] ([i915#722]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7548/fi-byt-j1900/igt@i915_selftest@live_gem_contexts.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15708/fi-byt-j1900/igt@i915_selftest@live_gem_contexts.html
-    - fi-hsw-peppy:       [INCOMPLETE][9] ([i915#694]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7548/fi-hsw-peppy/igt@i915_selftest@live_gem_contexts.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15708/fi-hsw-peppy/igt@i915_selftest@live_gem_contexts.html
-
-  * igt@i915_selftest@live_gt_pm:
-    - fi-kbl-7500u:       [DMESG-FAIL][11] -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7548/fi-kbl-7500u/igt@i915_selftest@live_gt_pm.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15708/fi-kbl-7500u/igt@i915_selftest@live_gt_pm.html
-    - fi-glk-dsi:         [DMESG-FAIL][13] -> [PASS][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7548/fi-glk-dsi/igt@i915_selftest@live_gt_pm.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15708/fi-glk-dsi/igt@i915_selftest@live_gt_pm.html
-    - fi-skl-6700k2:      [DMESG-FAIL][15] -> [PASS][16]
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7548/fi-skl-6700k2/igt@i915_selftest@live_gt_pm.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15708/fi-skl-6700k2/igt@i915_selftest@live_gt_pm.html
-    - fi-whl-u:           [DMESG-FAIL][17] -> [PASS][18]
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7548/fi-whl-u/igt@i915_selftest@live_gt_pm.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15708/fi-whl-u/igt@i915_selftest@live_gt_pm.html
-    - fi-bxt-dsi:         [DMESG-FAIL][19] -> [PASS][20]
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7548/fi-bxt-dsi/igt@i915_selftest@live_gt_pm.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15708/fi-bxt-dsi/igt@i915_selftest@live_gt_pm.html
-    - fi-skl-6600u:       [DMESG-FAIL][21] -> [PASS][22]
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7548/fi-skl-6600u/igt@i915_selftest@live_gt_pm.html
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15708/fi-skl-6600u/igt@i915_selftest@live_gt_pm.html
-    - fi-cml-u2:          [DMESG-FAIL][23] -> [PASS][24]
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7548/fi-cml-u2/igt@i915_selftest@live_gt_pm.html
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15708/fi-cml-u2/igt@i915_selftest@live_gt_pm.html
-    - fi-apl-guc:         [DMESG-FAIL][25] -> [PASS][26]
-   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7548/fi-apl-guc/igt@i915_selftest@live_gt_pm.html
-   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15708/fi-apl-guc/igt@i915_selftest@live_gt_pm.html
-    - fi-kbl-8809g:       [DMESG-FAIL][27] -> [PASS][28]
-   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7548/fi-kbl-8809g/igt@i915_selftest@live_gt_pm.html
-   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15708/fi-kbl-8809g/igt@i915_selftest@live_gt_pm.html
-    - fi-cfl-8700k:       [DMESG-FAIL][29] -> [PASS][30]
-   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7548/fi-cfl-8700k/igt@i915_selftest@live_gt_pm.html
-   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15708/fi-cfl-8700k/igt@i915_selftest@live_gt_pm.html
-    - fi-kbl-r:           [DMESG-FAIL][31] -> [PASS][32]
-   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7548/fi-kbl-r/igt@i915_selftest@live_gt_pm.html
-   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15708/fi-kbl-r/igt@i915_selftest@live_gt_pm.html
-    - fi-kbl-guc:         [DMESG-FAIL][33] -> [PASS][34]
-   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7548/fi-kbl-guc/igt@i915_selftest@live_gt_pm.html
-   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15708/fi-kbl-guc/igt@i915_selftest@live_gt_pm.html
-    - fi-skl-guc:         [DMESG-FAIL][35] -> [PASS][36]
-   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7548/fi-skl-guc/igt@i915_selftest@live_gt_pm.html
-   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15708/fi-skl-guc/igt@i915_selftest@live_gt_pm.html
-    - fi-bdw-5557u:       [DMESG-FAIL][37] -> [PASS][38]
-   [37]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7548/fi-bdw-5557u/igt@i915_selftest@live_gt_pm.html
-   [38]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15708/fi-bdw-5557u/igt@i915_selftest@live_gt_pm.html
-    - fi-skl-lmem:        [DMESG-FAIL][39] -> [PASS][40]
-   [39]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7548/fi-skl-lmem/igt@i915_selftest@live_gt_pm.html
-   [40]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15708/fi-skl-lmem/igt@i915_selftest@live_gt_pm.html
-    - fi-skl-6770hq:      [DMESG-FAIL][41] -> [PASS][42]
-   [41]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7548/fi-skl-6770hq/igt@i915_selftest@live_gt_pm.html
-   [42]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15708/fi-skl-6770hq/igt@i915_selftest@live_gt_pm.html
-
-  * igt@kms_chamelium@hdmi-hpd-fast:
-    - fi-kbl-7500u:       [FAIL][43] ([fdo#111407]) -> [PASS][44]
-   [43]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7548/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
-   [44]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15708/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
-
-  
-#### Warnings ####
-
-  * igt@i915_selftest@live_blt:
-    - fi-ivb-3770:        [DMESG-FAIL][45] ([i915#563]) -> [DMESG-FAIL][46] ([i915#770])
-   [45]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7548/fi-ivb-3770/igt@i915_selftest@live_blt.html
-   [46]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15708/fi-ivb-3770/igt@i915_selftest@live_blt.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:
-    - fi-kbl-x1275:       [DMESG-WARN][47] ([i915#62] / [i915#92]) -> [DMESG-WARN][48] ([i915#62] / [i915#92] / [i915#95]) +4 similar issues
-   [47]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7548/fi-kbl-x1275/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
-   [48]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15708/fi-kbl-x1275/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
-
-  * igt@kms_pipe_crc_basic@hang-read-crc-pipe-a:
-    - fi-kbl-x1275:       [DMESG-WARN][49] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][50] ([i915#62] / [i915#92]) +3 similar issues
-   [49]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7548/fi-kbl-x1275/igt@kms_pipe_crc_basic@hang-read-crc-pipe-a.html
-   [50]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15708/fi-kbl-x1275/igt@kms_pipe_crc_basic@hang-read-crc-pipe-a.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#111407]: https://bugs.freedesktop.org/show_bug.cgi?id=111407
-  [fdo#111593]: https://bugs.freedesktop.org/show_bug.cgi?id=111593
-  [i915#563]: https://gitlab.freedesktop.org/drm/intel/issues/563
-  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
-  [i915#623]: https://gitlab.freedesktop.org/drm/intel/issues/623
-  [i915#694]: https://gitlab.freedesktop.org/drm/intel/issues/694
-  [i915#707]: https://gitlab.freedesktop.org/drm/intel/issues/707
-  [i915#722]: https://gitlab.freedesktop.org/drm/intel/issues/722
-  [i915#770]: https://gitlab.freedesktop.org/drm/intel/issues/770
-  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
-  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
+Please let's try to converge on the patches at hand instead of diverging
+to things that are unrelated to what this patch series tries to achieve.
 
 
-Participating hosts (49 -> 43)
-------------------------------
+BR,
+Jani.
 
-  Missing    (6): fi-ilk-m540 fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
+>
+> Thanks
+> James
+>
+>>  		return -EINVAL;
+>>  	}
+>>  
+>>  	/* The state->enable vs. state->mode_blob checks can be WARN_ON,
+>>  	 * as this is a kernel-internal detail that userspace should never
+>>  	 * be able to trigger. */
+>> -	if (drm_core_check_feature(crtc->dev, DRIVER_ATOMIC) &&
+>> +	if (drm_core_check_feature(dev, DRIVER_ATOMIC) &&
+>>  	    WARN_ON(new_crtc_state->enable && !new_crtc_state->mode_blob)) {
+>> -		DRM_DEBUG_ATOMIC("[CRTC:%d:%s] enabled without mode blob\n",
+>> -				 crtc->base.id, crtc->name);
+>> +		drm_dbg_atomic(dev, "[CRTC:%d:%s] enabled without mode blob\n",
+>> +			       crtc->base.id, crtc->name);
+>>  		return -EINVAL;
+>>  	}
+>>  
+>> -	if (drm_core_check_feature(crtc->dev, DRIVER_ATOMIC) &&
+>> +	if (drm_core_check_feature(dev, DRIVER_ATOMIC) &&
+>>  	    WARN_ON(!new_crtc_state->enable && new_crtc_state->mode_blob)) {
+>> -		DRM_DEBUG_ATOMIC("[CRTC:%d:%s] disabled with mode blob\n",
+>> -				 crtc->base.id, crtc->name);
+>> +		drm_dbg_atomic(dev, "[CRTC:%d:%s] disabled with mode blob\n",
+>> +			       crtc->base.id, crtc->name);
+>>  		return -EINVAL;
+>>  	}
+>>  
+>> @@ -368,8 +371,8 @@ static int drm_atomic_crtc_check(const struct drm_crtc_state *old_crtc_state,
+>>  	 */
+>>  	if (new_crtc_state->event &&
+>>  	    !new_crtc_state->active && !old_crtc_state->active) {
+>> -		DRM_DEBUG_ATOMIC("[CRTC:%d:%s] requesting event but off\n",
+>> -				 crtc->base.id, crtc->name);
+>> +		drm_dbg_atomic(dev, "[CRTC:%d:%s] requesting event but off\n",
+>> +			       crtc->base.id, crtc->name);
+>>  		return -EINVAL;
+>>  	}
+>>  
+>> @@ -402,6 +405,7 @@ static void drm_atomic_crtc_print_state(struct drm_printer *p,
+>>  static int drm_atomic_connector_check(struct drm_connector *connector,
+>>  		struct drm_connector_state *state)
+>>  {
+>> +	struct drm_device *dev = connector->dev;
+>>  	struct drm_crtc_state *crtc_state;
+>>  	struct drm_writeback_job *writeback_job = state->writeback_job;
+>>  	const struct drm_display_info *info = &connector->display_info;
+>> @@ -414,8 +418,8 @@ static int drm_atomic_connector_check(struct drm_connector *connector,
+>>  		return 0;
+>>  
+>>  	if (writeback_job->fb && !state->crtc) {
+>> -		DRM_DEBUG_ATOMIC("[CONNECTOR:%d:%s] framebuffer without CRTC\n",
+>> -				 connector->base.id, connector->name);
+>> +		drm_dbg_atomic(dev, "[CONNECTOR:%d:%s] framebuffer without CRTC\n",
+>> +			       connector->base.id, connector->name);
+>>  		return -EINVAL;
+>>  	}
+>>  
+>> @@ -424,16 +428,16 @@ static int drm_atomic_connector_check(struct drm_connector *connector,
+>>  								state->crtc);
+>>  
+>>  	if (writeback_job->fb && !crtc_state->active) {
+>> -		DRM_DEBUG_ATOMIC("[CONNECTOR:%d:%s] has framebuffer, but [CRTC:%d] is off\n",
+>> -				 connector->base.id, connector->name,
+>> -				 state->crtc->base.id);
+>> +		drm_dbg_atomic(dev, "[CONNECTOR:%d:%s] has framebuffer, but [CRTC:%d] is off\n",
+>> +			       connector->base.id, connector->name,
+>> +			       state->crtc->base.id);
+>>  		return -EINVAL;
+>>  	}
+>>  
+>>  	if (!writeback_job->fb) {
+>>  		if (writeback_job->out_fence) {
+>> -			DRM_DEBUG_ATOMIC("[CONNECTOR:%d:%s] requesting out-fence without framebuffer\n",
+>> -					 connector->base.id, connector->name);
+>> +			drm_dbg_atomic(dev, "[CONNECTOR:%d:%s] requesting out-fence without framebuffer\n",
+>> +				       connector->base.id, connector->name);
+>>  			return -EINVAL;
+>>  		}
+>>  
+>> @@ -463,8 +467,9 @@ struct drm_plane_state *
+>>  drm_atomic_get_plane_state(struct drm_atomic_state *state,
+>>  			  struct drm_plane *plane)
+>>  {
+>> -	int ret, index = drm_plane_index(plane);
+>> +	struct drm_device *dev = state->dev;
+>>  	struct drm_plane_state *plane_state;
+>> +	int ret, index = drm_plane_index(plane);
+>>  
+>>  	WARN_ON(!state->acquire_ctx);
+>>  
+>> @@ -491,8 +496,8 @@ drm_atomic_get_plane_state(struct drm_atomic_state *state,
+>>  	state->planes[index].new_state = plane_state;
+>>  	plane_state->state = state;
+>>  
+>> -	DRM_DEBUG_ATOMIC("Added [PLANE:%d:%s] %p state to %p\n",
+>> -			 plane->base.id, plane->name, plane_state, state);
+>> +	drm_dbg_atomic(dev, "Added [PLANE:%d:%s] %p state to %p\n",
+>> +		       plane->base.id, plane->name, plane_state, state);
+>>  
+>>  	if (plane_state->crtc) {
+>>  		struct drm_crtc_state *crtc_state;
+>> @@ -539,6 +544,7 @@ static int drm_atomic_plane_check(const struct drm_plane_state *old_plane_state,
+>>  				  const struct drm_plane_state *new_plane_state)
+>>  {
+>>  	struct drm_plane *plane = new_plane_state->plane;
+>> +	struct drm_device *dev = plane->dev;
+>>  	struct drm_crtc *crtc = new_plane_state->crtc;
+>>  	const struct drm_framebuffer *fb = new_plane_state->fb;
+>>  	unsigned int fb_width, fb_height;
+>> @@ -548,12 +554,12 @@ static int drm_atomic_plane_check(const struct drm_plane_state *old_plane_state,
+>>  
+>>  	/* either *both* CRTC and FB must be set, or neither */
+>>  	if (crtc && !fb) {
+>> -		DRM_DEBUG_ATOMIC("[PLANE:%d:%s] CRTC set but no FB\n",
+>> -				 plane->base.id, plane->name);
+>> +		drm_dbg_atomic(dev, "[PLANE:%d:%s] CRTC set but no FB\n",
+>> +			       plane->base.id, plane->name);
+>>  		return -EINVAL;
+>>  	} else if (fb && !crtc) {
+>> -		DRM_DEBUG_ATOMIC("[PLANE:%d:%s] FB set but no CRTC\n",
+>> -				 plane->base.id, plane->name);
+>> +		drm_dbg_atomic(dev, "[PLANE:%d:%s] FB set but no CRTC\n",
+>> +			       plane->base.id, plane->name);
+>>  		return -EINVAL;
+>>  	}
+>>  
+>> @@ -563,9 +569,9 @@ static int drm_atomic_plane_check(const struct drm_plane_state *old_plane_state,
+>>  
+>>  	/* Check whether this plane is usable on this CRTC */
+>>  	if (!(plane->possible_crtcs & drm_crtc_mask(crtc))) {
+>> -		DRM_DEBUG_ATOMIC("Invalid [CRTC:%d:%s] for [PLANE:%d:%s]\n",
+>> -				 crtc->base.id, crtc->name,
+>> -				 plane->base.id, plane->name);
+>> +		drm_dbg_atomic(dev, "Invalid [CRTC:%d:%s] for [PLANE:%d:%s]\n",
+>> +			       crtc->base.id, crtc->name,
+>> +			       plane->base.id, plane->name);
+>>  		return -EINVAL;
+>>  	}
+>>  
+>> @@ -574,11 +580,11 @@ static int drm_atomic_plane_check(const struct drm_plane_state *old_plane_state,
+>>  					   fb->modifier);
+>>  	if (ret) {
+>>  		struct drm_format_name_buf format_name;
+>> -		DRM_DEBUG_ATOMIC("[PLANE:%d:%s] invalid pixel format %s, modifier 0x%llx\n",
+>> -				 plane->base.id, plane->name,
+>> -				 drm_get_format_name(fb->format->format,
+>> -						     &format_name),
+>> -				 fb->modifier);
+>> +		drm_dbg_atomic(dev, "[PLANE:%d:%s] invalid pixel format %s, modifier 0x%llx\n",
+>> +			       plane->base.id, plane->name,
+>> +			       drm_get_format_name(fb->format->format,
+>> +						   &format_name),
+>> +			       fb->modifier);
+>>  		return ret;
+>>  	}
+>>  
+>> @@ -587,10 +593,10 @@ static int drm_atomic_plane_check(const struct drm_plane_state *old_plane_state,
+>>  	    new_plane_state->crtc_x > INT_MAX - (int32_t) new_plane_state->crtc_w ||
+>>  	    new_plane_state->crtc_h > INT_MAX ||
+>>  	    new_plane_state->crtc_y > INT_MAX - (int32_t) new_plane_state->crtc_h) {
+>> -		DRM_DEBUG_ATOMIC("[PLANE:%d:%s] invalid CRTC coordinates %ux%u+%d+%d\n",
+>> -				 plane->base.id, plane->name,
+>> -				 new_plane_state->crtc_w, new_plane_state->crtc_h,
+>> -				 new_plane_state->crtc_x, new_plane_state->crtc_y);
+>> +		drm_dbg_atomic(dev, "[PLANE:%d:%s] invalid CRTC coordinates %ux%u+%d+%d\n",
+>> +			       plane->base.id, plane->name,
+>> +			       new_plane_state->crtc_w, new_plane_state->crtc_h,
+>> +			       new_plane_state->crtc_x, new_plane_state->crtc_y);
+>>  		return -ERANGE;
+>>  	}
+>>  
+>> @@ -602,18 +608,18 @@ static int drm_atomic_plane_check(const struct drm_plane_state *old_plane_state,
+>>  	    new_plane_state->src_x > fb_width - new_plane_state->src_w ||
+>>  	    new_plane_state->src_h > fb_height ||
+>>  	    new_plane_state->src_y > fb_height - new_plane_state->src_h) {
+>> -		DRM_DEBUG_ATOMIC("[PLANE:%d:%s] invalid source coordinates "
+>> -				 "%u.%06ux%u.%06u+%u.%06u+%u.%06u (fb %ux%u)\n",
+>> -				 plane->base.id, plane->name,
+>> -				 new_plane_state->src_w >> 16,
+>> -				 ((new_plane_state->src_w & 0xffff) * 15625) >> 10,
+>> -				 new_plane_state->src_h >> 16,
+>> -				 ((new_plane_state->src_h & 0xffff) * 15625) >> 10,
+>> -				 new_plane_state->src_x >> 16,
+>> -				 ((new_plane_state->src_x & 0xffff) * 15625) >> 10,
+>> -				 new_plane_state->src_y >> 16,
+>> -				 ((new_plane_state->src_y & 0xffff) * 15625) >> 10,
+>> -				 fb->width, fb->height);
+>> +		drm_dbg_atomic(dev, "[PLANE:%d:%s] invalid source coordinates "
+>> +			       "%u.%06ux%u.%06u+%u.%06u+%u.%06u (fb %ux%u)\n",
+>> +			       plane->base.id, plane->name,
+>> +			       new_plane_state->src_w >> 16,
+>> +			       ((new_plane_state->src_w & 0xffff) * 15625) >> 10,
+>> +			       new_plane_state->src_h >> 16,
+>> +			       ((new_plane_state->src_h & 0xffff) * 15625) >> 10,
+>> +			       new_plane_state->src_x >> 16,
+>> +			       ((new_plane_state->src_x & 0xffff) * 15625) >> 10,
+>> +			       new_plane_state->src_y >> 16,
+>> +			       ((new_plane_state->src_y & 0xffff) * 15625) >> 10,
+>> +			       fb->width, fb->height);
+>>  		return -ENOSPC;
+>>  	}
+>>  
+>> @@ -628,9 +634,9 @@ static int drm_atomic_plane_check(const struct drm_plane_state *old_plane_state,
+>>  		    clips->y1 < 0 ||
+>>  		    clips->x2 > fb_width ||
+>>  		    clips->y2 > fb_height) {
+>> -			DRM_DEBUG_ATOMIC("[PLANE:%d:%s] invalid damage clip %d %d %d %d\n",
+>> -					 plane->base.id, plane->name, clips->x1,
+>> -					 clips->y1, clips->x2, clips->y2);
+>> +			drm_dbg_atomic(dev, "[PLANE:%d:%s] invalid damage clip %d %d %d %d\n",
+>> +				       plane->base.id, plane->name, clips->x1,
+>> +				       clips->y1, clips->x2, clips->y2);
+>>  			return -EINVAL;
+>>  		}
+>>  		clips++;
+>> @@ -638,8 +644,8 @@ static int drm_atomic_plane_check(const struct drm_plane_state *old_plane_state,
+>>  	}
+>>  
+>>  	if (plane_switching_crtc(old_plane_state, new_plane_state)) {
+>> -		DRM_DEBUG_ATOMIC("[PLANE:%d:%s] switching CRTC directly\n",
+>> -				 plane->base.id, plane->name);
+>> +		drm_dbg_atomic(dev, "[PLANE:%d:%s] switching CRTC directly\n",
+>> +			       plane->base.id, plane->name);
+>>  		return -EINVAL;
+>>  	}
+>>  
+>> @@ -766,6 +772,7 @@ struct drm_private_state *
+>>  drm_atomic_get_private_obj_state(struct drm_atomic_state *state,
+>>  				 struct drm_private_obj *obj)
+>>  {
+>> +	struct drm_device *dev = state->dev;
+>>  	int index, num_objs, i, ret;
+>>  	size_t size;
+>>  	struct __drm_private_objs_state *arr;
+>> @@ -801,8 +808,8 @@ drm_atomic_get_private_obj_state(struct drm_atomic_state *state,
+>>  
+>>  	state->num_private_objs = num_objs;
+>>  
+>> -	DRM_DEBUG_ATOMIC("Added new private object %p state %p to %p\n",
+>> -			 obj, obj_state, state);
+>> +	drm_dbg_atomic(dev, "Added new private object %p state %p to %p\n",
+>> +		       obj, obj_state, state);
+>>  
+>>  	return obj_state;
+>>  }
+>> @@ -940,6 +947,7 @@ struct drm_connector_state *
+>>  drm_atomic_get_connector_state(struct drm_atomic_state *state,
+>>  			  struct drm_connector *connector)
+>>  {
+>> +	struct drm_device *dev = state->dev;
+>>  	int ret, index;
+>>  	struct drm_mode_config *config = &connector->dev->mode_config;
+>>  	struct drm_connector_state *connector_state;
+>> @@ -981,9 +989,9 @@ drm_atomic_get_connector_state(struct drm_atomic_state *state,
+>>  	state->connectors[index].ptr = connector;
+>>  	connector_state->state = state;
+>>  
+>> -	DRM_DEBUG_ATOMIC("Added [CONNECTOR:%d:%s] %p state to %p\n",
+>> -			 connector->base.id, connector->name,
+>> -			 connector_state, state);
+>> +	drm_dbg_atomic(dev, "Added [CONNECTOR:%d:%s] %p state to %p\n",
+>> +		       connector->base.id, connector->name,
+>> +		       connector_state, state);
+>>  
+>>  	if (connector_state->crtc) {
+>>  		struct drm_crtc_state *crtc_state;
+>> @@ -1036,7 +1044,8 @@ int
+>>  drm_atomic_add_affected_connectors(struct drm_atomic_state *state,
+>>  				   struct drm_crtc *crtc)
+>>  {
+>> -	struct drm_mode_config *config = &state->dev->mode_config;
+>> +	struct drm_device *dev = state->dev;
+>> +	struct drm_mode_config *config = &dev->mode_config;
+>>  	struct drm_connector *connector;
+>>  	struct drm_connector_state *conn_state;
+>>  	struct drm_connector_list_iter conn_iter;
+>> @@ -1051,8 +1060,8 @@ drm_atomic_add_affected_connectors(struct drm_atomic_state *state,
+>>  	if (ret)
+>>  		return ret;
+>>  
+>> -	DRM_DEBUG_ATOMIC("Adding all current connectors for [CRTC:%d:%s] to %p\n",
+>> -			 crtc->base.id, crtc->name, state);
+>> +	drm_dbg_atomic(dev, "Adding all current connectors for [CRTC:%d:%s] to %p\n",
+>> +		       crtc->base.id, crtc->name, state);
+>>  
+>>  	/*
+>>  	 * Changed connectors are already in @state, so only need to look
+>> @@ -1099,14 +1108,15 @@ int
+>>  drm_atomic_add_affected_planes(struct drm_atomic_state *state,
+>>  			       struct drm_crtc *crtc)
+>>  {
+>> +	struct drm_device *dev = state->dev;
+>>  	const struct drm_crtc_state *old_crtc_state =
+>>  		drm_atomic_get_old_crtc_state(state, crtc);
+>>  	struct drm_plane *plane;
+>>  
+>>  	WARN_ON(!drm_atomic_get_new_crtc_state(state, crtc));
+>>  
+>> -	DRM_DEBUG_ATOMIC("Adding all current planes for [CRTC:%d:%s] to %p\n",
+>> -			 crtc->base.id, crtc->name, state);
+>> +	drm_dbg_atomic(dev, "Adding all current planes for [CRTC:%d:%s] to %p\n",
+>> +		       crtc->base.id, crtc->name, state);
+>>  
+>>  	drm_for_each_plane_mask(plane, state->dev, old_crtc_state->plane_mask) {
+>>  		struct drm_plane_state *plane_state =
+>> @@ -1144,13 +1154,13 @@ int drm_atomic_check_only(struct drm_atomic_state *state)
+>>  	struct drm_connector_state *conn_state;
+>>  	int i, ret = 0;
+>>  
+>> -	DRM_DEBUG_ATOMIC("checking %p\n", state);
+>> +	drm_dbg_atomic(dev, "checking %p\n", state);
+>>  
+>>  	for_each_oldnew_plane_in_state(state, plane, old_plane_state, new_plane_state, i) {
+>>  		ret = drm_atomic_plane_check(old_plane_state, new_plane_state);
+>>  		if (ret) {
+>> -			DRM_DEBUG_ATOMIC("[PLANE:%d:%s] atomic core check failed\n",
+>> -					 plane->base.id, plane->name);
+>> +			drm_dbg_atomic(dev, "[PLANE:%d:%s] atomic core check failed\n",
+>> +				       plane->base.id, plane->name);
+>>  			return ret;
+>>  		}
+>>  	}
+>> @@ -1158,8 +1168,8 @@ int drm_atomic_check_only(struct drm_atomic_state *state)
+>>  	for_each_oldnew_crtc_in_state(state, crtc, old_crtc_state, new_crtc_state, i) {
+>>  		ret = drm_atomic_crtc_check(old_crtc_state, new_crtc_state);
+>>  		if (ret) {
+>> -			DRM_DEBUG_ATOMIC("[CRTC:%d:%s] atomic core check failed\n",
+>> -					 crtc->base.id, crtc->name);
+>> +			drm_dbg_atomic(dev, "[CRTC:%d:%s] atomic core check failed\n",
+>> +				       crtc->base.id, crtc->name);
+>>  			return ret;
+>>  		}
+>>  	}
+>> @@ -1167,8 +1177,8 @@ int drm_atomic_check_only(struct drm_atomic_state *state)
+>>  	for_each_new_connector_in_state(state, conn, conn_state, i) {
+>>  		ret = drm_atomic_connector_check(conn, conn_state);
+>>  		if (ret) {
+>> -			DRM_DEBUG_ATOMIC("[CONNECTOR:%d:%s] atomic core check failed\n",
+>> -					 conn->base.id, conn->name);
+>> +			drm_dbg_atomic(dev, "[CONNECTOR:%d:%s] atomic core check failed\n",
+>> +				       conn->base.id, conn->name);
+>>  			return ret;
+>>  		}
+>>  	}
+>> @@ -1177,8 +1187,8 @@ int drm_atomic_check_only(struct drm_atomic_state *state)
+>>  		ret = config->funcs->atomic_check(state->dev, state);
+>>  
+>>  		if (ret) {
+>> -			DRM_DEBUG_ATOMIC("atomic driver check for %p failed: %d\n",
+>> -					 state, ret);
+>> +			drm_dbg_atomic(dev, "atomic driver check for %p failed: %d\n",
+>> +				       state, ret);
+>>  			return ret;
+>>  		}
+>>  	}
+>> @@ -1186,8 +1196,8 @@ int drm_atomic_check_only(struct drm_atomic_state *state)
+>>  	if (!state->allow_modeset) {
+>>  		for_each_new_crtc_in_state(state, crtc, new_crtc_state, i) {
+>>  			if (drm_atomic_crtc_needs_modeset(new_crtc_state)) {
+>> -				DRM_DEBUG_ATOMIC("[CRTC:%d:%s] requires full modeset\n",
+>> -						 crtc->base.id, crtc->name);
+>> +				drm_dbg_atomic(dev, "[CRTC:%d:%s] requires full modeset\n",
+>> +					       crtc->base.id, crtc->name);
+>>  				return -EINVAL;
+>>  			}
+>>  		}
+>> @@ -1213,14 +1223,15 @@ EXPORT_SYMBOL(drm_atomic_check_only);
+>>   */
+>>  int drm_atomic_commit(struct drm_atomic_state *state)
+>>  {
+>> -	struct drm_mode_config *config = &state->dev->mode_config;
+>> +	struct drm_device *dev = state->dev;
+>> +	struct drm_mode_config *config = &dev->mode_config;
+>>  	int ret;
+>>  
+>>  	ret = drm_atomic_check_only(state);
+>>  	if (ret)
+>>  		return ret;
+>>  
+>> -	DRM_DEBUG_ATOMIC("committing %p\n", state);
+>> +	drm_dbg_atomic(dev, "committing %p\n", state);
+>>  
+>>  	return config->funcs->atomic_commit(state->dev, state, false);
+>>  }
+>> @@ -1242,14 +1253,15 @@ EXPORT_SYMBOL(drm_atomic_commit);
+>>   */
+>>  int drm_atomic_nonblocking_commit(struct drm_atomic_state *state)
+>>  {
+>> -	struct drm_mode_config *config = &state->dev->mode_config;
+>> +	struct drm_device *dev = state->dev;
+>> +	struct drm_mode_config *config = &dev->mode_config;
+>>  	int ret;
+>>  
+>>  	ret = drm_atomic_check_only(state);
+>>  	if (ret)
+>>  		return ret;
+>>  
+>> -	DRM_DEBUG_ATOMIC("committing %p nonblocking\n", state);
+>> +	drm_dbg_atomic(dev, "committing %p nonblocking\n", state);
+>>  
+>>  	return config->funcs->atomic_commit(state->dev, state, true);
+>>  }
+>> @@ -1425,7 +1437,8 @@ EXPORT_SYMBOL(__drm_atomic_helper_set_config);
+>>  
+>>  void drm_atomic_print_state(const struct drm_atomic_state *state)
+>>  {
+>> -	struct drm_printer p = drm_info_printer(state->dev->dev);
+>> +	struct drm_device *dev = state->dev;
+>> +	struct drm_printer p = drm_info_printer(dev->dev);
+>>  	struct drm_plane *plane;
+>>  	struct drm_plane_state *plane_state;
+>>  	struct drm_crtc *crtc;
+>> @@ -1434,7 +1447,7 @@ void drm_atomic_print_state(const struct drm_atomic_state *state)
+>>  	struct drm_connector_state *connector_state;
+>>  	int i;
+>>  
+>> -	DRM_DEBUG_ATOMIC("checking %p\n", state);
+>> +	drm_dbg_atomic(dev, "checking %p\n", state);
+>>  
+>>  	for_each_new_plane_in_state(state, plane, plane_state, i)
+>>  		drm_atomic_plane_print_state(&p, plane_state);
 
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_7548 -> Patchwork_15708
-
-  CI-20190529: 20190529
-  CI_DRM_7548: 406e570d4e8be08530c7a7cad1e593d5347d1577 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5346: 466b0e6cbcbaccff012b484d1fd7676364b37b93 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_15708: 6f7d167a53ce832dfc5decab188615bf685b2b46 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-6f7d167a53ce drm/i915/gt: Only ignore rc6 parking for PCU on byt/bsw
-e8de3f351d94 drm/i915/uc: Ignore maybe-unused debug-only i915 local
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15708/index.html
+-- 
+Jani Nikula, Intel Open Source Graphics Center
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
