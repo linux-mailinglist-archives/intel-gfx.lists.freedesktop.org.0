@@ -1,32 +1,38 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F2C4B11C62E
-	for <lists+intel-gfx@lfdr.de>; Thu, 12 Dec 2019 08:11:16 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C2A6D11C64E
+	for <lists+intel-gfx@lfdr.de>; Thu, 12 Dec 2019 08:18:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BF9E56EC66;
-	Thu, 12 Dec 2019 07:11:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 981AC6EC63;
+	Thu, 12 Dec 2019 07:18:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id C6ADA6EC63;
- Thu, 12 Dec 2019 07:11:13 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id BBB28A0119;
- Thu, 12 Dec 2019 07:11:13 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 701C26EC63
+ for <intel-gfx@lists.freedesktop.org>; Thu, 12 Dec 2019 07:18:51 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 11 Dec 2019 23:18:50 -0800
+X-IronPort-AV: E=Sophos;i="5.69,305,1571727600"; d="scan'208";a="207976446"
+Received: from lenovo-x280.ger.corp.intel.com (HELO localhost) ([10.252.35.33])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 11 Dec 2019 23:18:48 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: Manasi Navare <manasi.d.navare@intel.com>
+In-Reply-To: <20191211220837.GE12192@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <cover.1576081155.git.jani.nikula@intel.com>
+ <01bcddcdf397b1c8eb859ed18ebe023fb64383d9.1576081155.git.jani.nikula@intel.com>
+ <20191211220837.GE12192@intel.com>
+Date: Thu, 12 Dec 2019 09:18:48 +0200
+Message-ID: <87h8262eqv.fsf@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Thu, 12 Dec 2019 07:11:13 -0000
-Message-ID: <157613467374.32009.1270187321026179888@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20191212014629.854076-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20191212014629.854076-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5B1/3=5D_drm/i915=3A_Use_EAGAIN_for_trylock_?=
- =?utf-8?q?failures?=
+Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915/dsc: fix DSC register
+ selection for ICL DSI transcoders
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,166 +45,275 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Wed, 11 Dec 2019, Manasi Navare <manasi.d.navare@intel.com> wrote:
+> On Wed, Dec 11, 2019 at 06:23:46PM +0200, Jani Nikula wrote:
+>> ICL eDP and DSI transcoders have a DSC engine separate from the
+>> pipe. Abstract the register selection and fix it for ICL.
+>> 
+>> Add a warning for pipe A DSC on ICL; it does not exist.
+>> 
+>> Cc: Manasi Navare <manasi.d.navare@intel.com>
+>> Cc: Vandita Kulkarni <vandita.kulkarni@intel.com>
+>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>> ---
+>>  drivers/gpu/drm/i915/display/intel_vdsc.c | 58 +++++++++++++++--------
+>>  1 file changed, 38 insertions(+), 20 deletions(-)
+>> 
+>> diff --git a/drivers/gpu/drm/i915/display/intel_vdsc.c b/drivers/gpu/drm/i915/display/intel_vdsc.c
+>> index ed9048140937..e6f60be9ee84 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_vdsc.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_vdsc.c
+>> @@ -353,6 +353,26 @@ bool intel_dsc_source_support(struct intel_encoder *encoder,
+>>  	return false;
+>>  }
+>>  
+>> +static bool is_pipe_dsc(const struct intel_crtc_state *crtc_state)
+>> +{
+>> +	const struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+>> +	const struct drm_i915_private *i915 = to_i915(crtc->base.dev);
+>> +	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
+>> +
+>> +	if (INTEL_GEN(i915) >= 12)
+>> +		return true;
+>> +
+>> +	if (cpu_transcoder == TRANSCODER_EDP ||
+>> +	    cpu_transcoder == TRANSCODER_DSI_0 ||
+>> +	    cpu_transcoder == TRANSCODER_DSI_1)
+>> +		return false;
+>> +
+>> +	/* There's no pipe A DSC engine on ICL */
+>> +	WARN_ON(crtc->pipe == PIPE_A);
+>> +
+>> +	return true;
+>> +}
+>> +
+>
+> So for >=Gen12, it will always go to the else part in PPS configure and use
+> ICL_DSC0_PICTURE_PARAMETER_SET_1 register per pipe.
 
-Series: series starting with [1/3] drm/i915: Use EAGAIN for trylock failures
-URL   : https://patchwork.freedesktop.org/series/70797/
-State : failure
+FWIW, this was already the case for gen 12+, because there's no eDP
+transcoder.
 
-== Summary ==
+> Right now this only calculates register addresses for PIPE_B and PIPE_C for ICL but
+> no register defs for DSC_PPS for GEN >=12
+>
+> As far as the selection logic this patch looks good and will work for <12 GEN , but it will
+> currently fail for DSC on >=12
+>
+> Lucas, Jose - Is thsi something anyone's looking at adding?
 
-CI Bug Log - changes from CI_DRM_7547 -> Patchwork_15707
-====================================================
+Oh, I failed to mention how subtle this is. It does work fine on all
+pipes on gen 12+. It's just that with pipe A, the index becomes (PIPE_A
+- PIPE_B) = -1, and it extrapolates the correct register offset, the
+other direction than usually.
 
-Summary
--------
+You see, gen 12 only has pipe DSC, with a DSC engine added to pipe A
+too, and no eDP/DSI specific DSC like ICL.
 
-  **FAILURE**
+Sure, the register definitions need an update, it's ugly and misleading,
+but it's not really broken for gen 12 pipe A. :)
 
-  Serious unknown changes coming with Patchwork_15707 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_15707, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15707/index.html
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_15707:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@i915_selftest@live_gt_pm:
-    - fi-kbl-x1275:       NOTRUN -> [DMESG-FAIL][1]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15707/fi-kbl-x1275/igt@i915_selftest@live_gt_pm.html
-    - fi-skl-6770hq:      NOTRUN -> [DMESG-FAIL][2]
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15707/fi-skl-6770hq/igt@i915_selftest@live_gt_pm.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_15707 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live_gem_contexts:
-    - fi-cfl-8700k:       [PASS][3] -> [INCOMPLETE][4] ([i915#424])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7547/fi-cfl-8700k/igt@i915_selftest@live_gem_contexts.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15707/fi-cfl-8700k/igt@i915_selftest@live_gem_contexts.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_exec_create@basic:
-    - fi-ivb-3770:        [FAIL][5] -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7547/fi-ivb-3770/igt@gem_exec_create@basic.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15707/fi-ivb-3770/igt@gem_exec_create@basic.html
-
-  * igt@i915_selftest@live_blt:
-    - fi-hsw-4770r:       [DMESG-FAIL][7] ([i915#725]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7547/fi-hsw-4770r/igt@i915_selftest@live_blt.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15707/fi-hsw-4770r/igt@i915_selftest@live_blt.html
-
-  * igt@i915_selftest@live_gem_contexts:
-    - fi-byt-j1900:       [INCOMPLETE][9] ([i915#45]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7547/fi-byt-j1900/igt@i915_selftest@live_gem_contexts.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15707/fi-byt-j1900/igt@i915_selftest@live_gem_contexts.html
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - fi-hsw-peppy:       [DMESG-WARN][11] ([i915#44]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7547/fi-hsw-peppy/igt@kms_frontbuffer_tracking@basic.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15707/fi-hsw-peppy/igt@kms_frontbuffer_tracking@basic.html
-
-  
-#### Warnings ####
-
-  * igt@i915_pm_rpm@basic-rte:
-    - fi-kbl-guc:         [FAIL][13] ([i915#704]) -> [SKIP][14] ([fdo#109271])
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7547/fi-kbl-guc/igt@i915_pm_rpm@basic-rte.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15707/fi-kbl-guc/igt@i915_pm_rpm@basic-rte.html
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-icl-u2:          [DMESG-WARN][15] ([i915#289]) -> [DMESG-WARN][16] ([i915#109] / [i915#289])
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7547/fi-icl-u2/igt@i915_pm_rpm@module-reload.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15707/fi-icl-u2/igt@i915_pm_rpm@module-reload.html
-
-  * igt@i915_selftest@live_blt:
-    - fi-hsw-4770:        [DMESG-FAIL][17] ([i915#553] / [i915#725]) -> [DMESG-FAIL][18] ([i915#725])
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7547/fi-hsw-4770/igt@i915_selftest@live_blt.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15707/fi-hsw-4770/igt@i915_selftest@live_blt.html
-
-  * igt@kms_busy@basic-flip-pipe-b:
-    - fi-kbl-x1275:       [DMESG-WARN][19] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][20] ([i915#62] / [i915#92]) +4 similar issues
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7547/fi-kbl-x1275/igt@kms_busy@basic-flip-pipe-b.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15707/fi-kbl-x1275/igt@kms_busy@basic-flip-pipe-b.html
-
-  * igt@kms_cursor_legacy@basic-flip-after-cursor-legacy:
-    - fi-kbl-x1275:       [DMESG-WARN][21] ([i915#62] / [i915#92]) -> [DMESG-WARN][22] ([i915#62] / [i915#92] / [i915#95]) +2 similar issues
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7547/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15707/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#111593]: https://bugs.freedesktop.org/show_bug.cgi?id=111593
-  [i915#109]: https://gitlab.freedesktop.org/drm/intel/issues/109
-  [i915#289]: https://gitlab.freedesktop.org/drm/intel/issues/289
-  [i915#424]: https://gitlab.freedesktop.org/drm/intel/issues/424
-  [i915#435]: https://gitlab.freedesktop.org/drm/intel/issues/435
-  [i915#44]: https://gitlab.freedesktop.org/drm/intel/issues/44
-  [i915#45]: https://gitlab.freedesktop.org/drm/intel/issues/45
-  [i915#553]: https://gitlab.freedesktop.org/drm/intel/issues/553
-  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
-  [i915#704]: https://gitlab.freedesktop.org/drm/intel/issues/704
-  [i915#725]: https://gitlab.freedesktop.org/drm/intel/issues/725
-  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
-  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
+BR,
+Jani.
 
 
-Participating hosts (50 -> 44)
-------------------------------
+>
+> Regards
+> Manasi
+>
+>>  int intel_dsc_compute_params(struct intel_encoder *encoder,
+>>  			     struct intel_crtc_state *pipe_config)
+>>  {
+>> @@ -471,7 +491,6 @@ static void intel_dsc_pps_configure(struct intel_encoder *encoder,
+>>  	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+>>  	const struct drm_dsc_config *vdsc_cfg = &crtc_state->dsc.config;
+>>  	enum pipe pipe = crtc->pipe;
+>> -	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
+>>  	u32 pps_val = 0;
+>>  	u32 rc_buf_thresh_dword[4];
+>>  	u32 rc_range_params_dword[8];
+>> @@ -492,7 +511,7 @@ static void intel_dsc_pps_configure(struct intel_encoder *encoder,
+>>  	if (vdsc_cfg->vbr_enable)
+>>  		pps_val |= DSC_VBR_ENABLE;
+>>  	DRM_INFO("PPS0 = 0x%08x\n", pps_val);
+>> -	if (cpu_transcoder == TRANSCODER_EDP) {
+>> +	if (!is_pipe_dsc(crtc_state)) {
+>>  		I915_WRITE(DSCA_PICTURE_PARAMETER_SET_0, pps_val);
+>>  		/*
+>>  		 * If 2 VDSC instances are needed, configure PPS for second
+>> @@ -511,7 +530,7 @@ static void intel_dsc_pps_configure(struct intel_encoder *encoder,
+>>  	pps_val = 0;
+>>  	pps_val |= DSC_BPP(vdsc_cfg->bits_per_pixel);
+>>  	DRM_INFO("PPS1 = 0x%08x\n", pps_val);
+>> -	if (cpu_transcoder == TRANSCODER_EDP) {
+>> +	if (!is_pipe_dsc(crtc_state)) {
+>>  		I915_WRITE(DSCA_PICTURE_PARAMETER_SET_1, pps_val);
+>>  		/*
+>>  		 * If 2 VDSC instances are needed, configure PPS for second
+>> @@ -531,7 +550,7 @@ static void intel_dsc_pps_configure(struct intel_encoder *encoder,
+>>  	pps_val |= DSC_PIC_HEIGHT(vdsc_cfg->pic_height) |
+>>  		DSC_PIC_WIDTH(vdsc_cfg->pic_width / num_vdsc_instances);
+>>  	DRM_INFO("PPS2 = 0x%08x\n", pps_val);
+>> -	if (cpu_transcoder == TRANSCODER_EDP) {
+>> +	if (!is_pipe_dsc(crtc_state)) {
+>>  		I915_WRITE(DSCA_PICTURE_PARAMETER_SET_2, pps_val);
+>>  		/*
+>>  		 * If 2 VDSC instances are needed, configure PPS for second
+>> @@ -551,7 +570,7 @@ static void intel_dsc_pps_configure(struct intel_encoder *encoder,
+>>  	pps_val |= DSC_SLICE_HEIGHT(vdsc_cfg->slice_height) |
+>>  		DSC_SLICE_WIDTH(vdsc_cfg->slice_width);
+>>  	DRM_INFO("PPS3 = 0x%08x\n", pps_val);
+>> -	if (cpu_transcoder == TRANSCODER_EDP) {
+>> +	if (!is_pipe_dsc(crtc_state)) {
+>>  		I915_WRITE(DSCA_PICTURE_PARAMETER_SET_3, pps_val);
+>>  		/*
+>>  		 * If 2 VDSC instances are needed, configure PPS for second
+>> @@ -571,7 +590,7 @@ static void intel_dsc_pps_configure(struct intel_encoder *encoder,
+>>  	pps_val |= DSC_INITIAL_XMIT_DELAY(vdsc_cfg->initial_xmit_delay) |
+>>  		DSC_INITIAL_DEC_DELAY(vdsc_cfg->initial_dec_delay);
+>>  	DRM_INFO("PPS4 = 0x%08x\n", pps_val);
+>> -	if (cpu_transcoder == TRANSCODER_EDP) {
+>> +	if (!is_pipe_dsc(crtc_state)) {
+>>  		I915_WRITE(DSCA_PICTURE_PARAMETER_SET_4, pps_val);
+>>  		/*
+>>  		 * If 2 VDSC instances are needed, configure PPS for second
+>> @@ -591,7 +610,7 @@ static void intel_dsc_pps_configure(struct intel_encoder *encoder,
+>>  	pps_val |= DSC_SCALE_INC_INT(vdsc_cfg->scale_increment_interval) |
+>>  		DSC_SCALE_DEC_INT(vdsc_cfg->scale_decrement_interval);
+>>  	DRM_INFO("PPS5 = 0x%08x\n", pps_val);
+>> -	if (cpu_transcoder == TRANSCODER_EDP) {
+>> +	if (!is_pipe_dsc(crtc_state)) {
+>>  		I915_WRITE(DSCA_PICTURE_PARAMETER_SET_5, pps_val);
+>>  		/*
+>>  		 * If 2 VDSC instances are needed, configure PPS for second
+>> @@ -613,7 +632,7 @@ static void intel_dsc_pps_configure(struct intel_encoder *encoder,
+>>  		DSC_FLATNESS_MIN_QP(vdsc_cfg->flatness_min_qp) |
+>>  		DSC_FLATNESS_MAX_QP(vdsc_cfg->flatness_max_qp);
+>>  	DRM_INFO("PPS6 = 0x%08x\n", pps_val);
+>> -	if (cpu_transcoder == TRANSCODER_EDP) {
+>> +	if (!is_pipe_dsc(crtc_state)) {
+>>  		I915_WRITE(DSCA_PICTURE_PARAMETER_SET_6, pps_val);
+>>  		/*
+>>  		 * If 2 VDSC instances are needed, configure PPS for second
+>> @@ -633,7 +652,7 @@ static void intel_dsc_pps_configure(struct intel_encoder *encoder,
+>>  	pps_val |= DSC_SLICE_BPG_OFFSET(vdsc_cfg->slice_bpg_offset) |
+>>  		DSC_NFL_BPG_OFFSET(vdsc_cfg->nfl_bpg_offset);
+>>  	DRM_INFO("PPS7 = 0x%08x\n", pps_val);
+>> -	if (cpu_transcoder == TRANSCODER_EDP) {
+>> +	if (!is_pipe_dsc(crtc_state)) {
+>>  		I915_WRITE(DSCA_PICTURE_PARAMETER_SET_7, pps_val);
+>>  		/*
+>>  		 * If 2 VDSC instances are needed, configure PPS for second
+>> @@ -653,7 +672,7 @@ static void intel_dsc_pps_configure(struct intel_encoder *encoder,
+>>  	pps_val |= DSC_FINAL_OFFSET(vdsc_cfg->final_offset) |
+>>  		DSC_INITIAL_OFFSET(vdsc_cfg->initial_offset);
+>>  	DRM_INFO("PPS8 = 0x%08x\n", pps_val);
+>> -	if (cpu_transcoder == TRANSCODER_EDP) {
+>> +	if (!is_pipe_dsc(crtc_state)) {
+>>  		I915_WRITE(DSCA_PICTURE_PARAMETER_SET_8, pps_val);
+>>  		/*
+>>  		 * If 2 VDSC instances are needed, configure PPS for second
+>> @@ -673,7 +692,7 @@ static void intel_dsc_pps_configure(struct intel_encoder *encoder,
+>>  	pps_val |= DSC_RC_MODEL_SIZE(DSC_RC_MODEL_SIZE_CONST) |
+>>  		DSC_RC_EDGE_FACTOR(DSC_RC_EDGE_FACTOR_CONST);
+>>  	DRM_INFO("PPS9 = 0x%08x\n", pps_val);
+>> -	if (cpu_transcoder == TRANSCODER_EDP) {
+>> +	if (!is_pipe_dsc(crtc_state)) {
+>>  		I915_WRITE(DSCA_PICTURE_PARAMETER_SET_9, pps_val);
+>>  		/*
+>>  		 * If 2 VDSC instances are needed, configure PPS for second
+>> @@ -695,7 +714,7 @@ static void intel_dsc_pps_configure(struct intel_encoder *encoder,
+>>  		DSC_RC_TARGET_OFF_HIGH(DSC_RC_TGT_OFFSET_HI_CONST) |
+>>  		DSC_RC_TARGET_OFF_LOW(DSC_RC_TGT_OFFSET_LO_CONST);
+>>  	DRM_INFO("PPS10 = 0x%08x\n", pps_val);
+>> -	if (cpu_transcoder == TRANSCODER_EDP) {
+>> +	if (!is_pipe_dsc(crtc_state)) {
+>>  		I915_WRITE(DSCA_PICTURE_PARAMETER_SET_10, pps_val);
+>>  		/*
+>>  		 * If 2 VDSC instances are needed, configure PPS for second
+>> @@ -718,7 +737,7 @@ static void intel_dsc_pps_configure(struct intel_encoder *encoder,
+>>  		DSC_SLICE_ROW_PER_FRAME(vdsc_cfg->pic_height /
+>>  					vdsc_cfg->slice_height);
+>>  	DRM_INFO("PPS16 = 0x%08x\n", pps_val);
+>> -	if (cpu_transcoder == TRANSCODER_EDP) {
+>> +	if (!is_pipe_dsc(crtc_state)) {
+>>  		I915_WRITE(DSCA_PICTURE_PARAMETER_SET_16, pps_val);
+>>  		/*
+>>  		 * If 2 VDSC instances are needed, configure PPS for second
+>> @@ -742,7 +761,7 @@ static void intel_dsc_pps_configure(struct intel_encoder *encoder,
+>>  		DRM_INFO(" RC_BUF_THRESH%d = 0x%08x\n", i,
+>>  			 rc_buf_thresh_dword[i / 4]);
+>>  	}
+>> -	if (cpu_transcoder == TRANSCODER_EDP) {
+>> +	if (!is_pipe_dsc(crtc_state)) {
+>>  		I915_WRITE(DSCA_RC_BUF_THRESH_0, rc_buf_thresh_dword[0]);
+>>  		I915_WRITE(DSCA_RC_BUF_THRESH_0_UDW, rc_buf_thresh_dword[1]);
+>>  		I915_WRITE(DSCA_RC_BUF_THRESH_1, rc_buf_thresh_dword[2]);
+>> @@ -791,7 +810,7 @@ static void intel_dsc_pps_configure(struct intel_encoder *encoder,
+>>  		DRM_INFO(" RC_RANGE_PARAM_%d = 0x%08x\n", i,
+>>  			 rc_range_params_dword[i / 2]);
+>>  	}
+>> -	if (cpu_transcoder == TRANSCODER_EDP) {
+>> +	if (!is_pipe_dsc(crtc_state)) {
+>>  		I915_WRITE(DSCA_RC_RANGE_PARAMETERS_0,
+>>  			   rc_range_params_dword[0]);
+>>  		I915_WRITE(DSCA_RC_RANGE_PARAMETERS_0_UDW,
+>> @@ -870,7 +889,6 @@ void intel_dsc_get_config(struct intel_encoder *encoder,
+>>  	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+>>  	struct drm_dsc_config *vdsc_cfg = &crtc_state->dsc.config;
+>>  	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+>> -	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
+>>  	enum pipe pipe = crtc->pipe;
+>>  	enum intel_display_power_domain power_domain;
+>>  	intel_wakeref_t wakeref;
+>> @@ -885,7 +903,7 @@ void intel_dsc_get_config(struct intel_encoder *encoder,
+>>  	if (!wakeref)
+>>  		return;
+>>  
+>> -	if (crtc_state->cpu_transcoder == TRANSCODER_EDP) {
+>> +	if (!is_pipe_dsc(crtc_state)) {
+>>  		dss_ctl1 = I915_READ(DSS_CTL1);
+>>  		dss_ctl2 = I915_READ(DSS_CTL2);
+>>  	} else {
+>> @@ -903,7 +921,7 @@ void intel_dsc_get_config(struct intel_encoder *encoder,
+>>  	/* FIXME: add more state readout as needed */
+>>  
+>>  	/* PPS1 */
+>> -	if (cpu_transcoder == TRANSCODER_EDP)
+>> +	if (!is_pipe_dsc(crtc_state))
+>>  		val = I915_READ(DSCA_PICTURE_PARAMETER_SET_1);
+>>  	else
+>>  		val = I915_READ(ICL_DSC0_PICTURE_PARAMETER_SET_1(pipe));
+>> @@ -975,7 +993,7 @@ void intel_dsc_enable(struct intel_encoder *encoder,
+>>  	else
+>>  		intel_dsc_dp_pps_write(encoder, crtc_state);
+>>  
+>> -	if (crtc_state->cpu_transcoder == TRANSCODER_EDP) {
+>> +	if (!is_pipe_dsc(crtc_state)) {
+>>  		dss_ctl1_reg = DSS_CTL1;
+>>  		dss_ctl2_reg = DSS_CTL2;
+>>  	} else {
+>> @@ -1002,7 +1020,7 @@ void intel_dsc_disable(const struct intel_crtc_state *old_crtc_state)
+>>  	if (!old_crtc_state->dsc.compression_enable)
+>>  		return;
+>>  
+>> -	if (old_crtc_state->cpu_transcoder == TRANSCODER_EDP) {
+>> +	if (!is_pipe_dsc(old_crtc_state)) {
+>>  		dss_ctl1_reg = DSS_CTL1;
+>>  		dss_ctl2_reg = DSS_CTL2;
+>>  	} else {
+>> -- 
+>> 2.20.1
+>> 
 
-  Missing    (6): fi-ilk-m540 fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_7547 -> Patchwork_15707
-
-  CI-20190529: 20190529
-  CI_DRM_7547: e0c7239f747c14879732b0e94c9bbe816b7a241a @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5346: 466b0e6cbcbaccff012b484d1fd7676364b37b93 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_15707: e28fc2d4756a281f67df516445068e735a2fdd07 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-e28fc2d4756a drm/i915/gt: Eliminate the trylock for reading a timeline's hwsp
-5a9b3b6fb2d6 drm/i915/gt: Pull intel_timeline.requests list under a spinlock
-3b91b31e1dd2 drm/i915: Use EAGAIN for trylock failures
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15707/index.html
+-- 
+Jani Nikula, Intel Open Source Graphics Center
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
