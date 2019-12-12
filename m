@@ -1,42 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 549E211D77E
-	for <lists+intel-gfx@lfdr.de>; Thu, 12 Dec 2019 20:55:08 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id F3F8611D79B
+	for <lists+intel-gfx@lfdr.de>; Thu, 12 Dec 2019 21:02:04 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A05D26E1B5;
-	Thu, 12 Dec 2019 19:55:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 61C566E1C0;
+	Thu, 12 Dec 2019 20:02:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 65E4A6E1B5
- for <intel-gfx@lists.freedesktop.org>; Thu, 12 Dec 2019 19:55:05 +0000 (UTC)
+X-Greylist: delayed 425 seconds by postgrey-1.36 at gabe;
+ Thu, 12 Dec 2019 20:02:00 UTC
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EBBD56E1C0
+ for <intel-gfx@lists.freedesktop.org>; Thu, 12 Dec 2019 20:02:00 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 12 Dec 2019 11:55:04 -0800
+ by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 12 Dec 2019 11:54:54 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,306,1571727600"; d="scan'208";a="216224704"
+X-IronPort-AV: E=Sophos;i="5.69,306,1571727600"; d="scan'208";a="216224633"
 Received: from rcoelln-mobl4.ger.corp.intel.com (HELO [10.252.35.32])
  ([10.252.35.32])
- by orsmga006.jf.intel.com with ESMTP; 12 Dec 2019 11:55:03 -0800
+ by orsmga006.jf.intel.com with ESMTP; 12 Dec 2019 11:54:53 -0800
 To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
 References: <20191212140459.1307617-1-chris@chris-wilson.co.uk>
- <20191212140459.1307617-9-chris@chris-wilson.co.uk>
+ <20191212140459.1307617-8-chris@chris-wilson.co.uk>
 From: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
 Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way,
  Swindon SN3 1RJ
-Message-ID: <84c255bb-6da8-14b6-3012-f639acf2d532@intel.com>
-Date: Thu, 12 Dec 2019 21:55:14 +0200
+Message-ID: <c3296483-db08-d747-7b80-ee2ca686f38b@intel.com>
+Date: Thu, 12 Dec 2019 21:55:04 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.3.0
 MIME-Version: 1.0
-In-Reply-To: <20191212140459.1307617-9-chris@chris-wilson.co.uk>
+In-Reply-To: <20191212140459.1307617-8-chris@chris-wilson.co.uk>
 Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH 09/33] drm/i915/gt: Mark ring->vma as active
- while pinned
+Subject: Re: [Intel-gfx] [PATCH 08/33] drm/i915/gt: Mark context->state vma
+ as active while pinned
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,7 +59,7 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 On 12/12/2019 16:04, Chris Wilson wrote:
 > As we use the active state to keep the vma alive while we are reading
 > its contents during GPU error capture, we need to mark the
-> ring->vma as active during execution if we want to include the rinbuffer
+> context->state vma as active during execution if we want to include it
 > in the error state.
 >
 > Reported-by: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
@@ -67,49 +69,39 @@ On 12/12/2019 16:04, Chris Wilson wrote:
 > Cc: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
 Acked-by: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
 > ---
->   drivers/gpu/drm/i915/gt/intel_ring.c | 10 +++++++++-
->   1 file changed, 9 insertions(+), 1 deletion(-)
+>   drivers/gpu/drm/i915/gt/intel_context.c | 9 +++++++++
+>   1 file changed, 9 insertions(+)
 >
-> diff --git a/drivers/gpu/drm/i915/gt/intel_ring.c b/drivers/gpu/drm/i915/gt/intel_ring.c
-> index 374b28f13ca0..7a27264150b9 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_ring.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_ring.c
-> @@ -45,6 +45,10 @@ int intel_ring_pin(struct intel_ring *ring)
->   	if (unlikely(ret))
->   		goto err_unpin;
+> diff --git a/drivers/gpu/drm/i915/gt/intel_context.c b/drivers/gpu/drm/i915/gt/intel_context.c
+> index 61c39e943f69..f7e2f3af007a 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_context.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_context.c
+> @@ -120,6 +120,10 @@ static int __context_pin_state(struct i915_vma *vma)
+>   	if (err)
+>   		return err;
 >   
-> +	ret = i915_active_acquire(&vma->active);
-> +	if (ret)
-> +		goto err_ring;
+> +	err = i915_active_acquire(&vma->active);
+> +	if (err)
+> +		goto err_unpin;
 > +
->   	if (i915_vma_is_map_and_fenceable(vma))
->   		addr = (void __force *)i915_vma_pin_iomap(vma);
->   	else
-> @@ -52,7 +56,7 @@ int intel_ring_pin(struct intel_ring *ring)
->   					       i915_coherent_map_type(vma->vm->i915));
->   	if (IS_ERR(addr)) {
->   		ret = PTR_ERR(addr);
-> -		goto err_ring;
-> +		goto err_active;
->   	}
+>   	/*
+>   	 * And mark it as a globally pinned object to let the shrinker know
+>   	 * it cannot reclaim the object until we release it.
+> @@ -128,11 +132,16 @@ static int __context_pin_state(struct i915_vma *vma)
+>   	vma->obj->mm.dirty = true;
 >   
->   	i915_vma_make_unshrinkable(vma);
-> @@ -63,6 +67,8 @@ int intel_ring_pin(struct intel_ring *ring)
->   	ring->vaddr = addr;
 >   	return 0;
->   
-> +err_active:
-> +	i915_active_release(&vma->active);
->   err_ring:
->   	i915_vma_unpin(vma);
->   err_unpin:
-> @@ -93,6 +99,8 @@ void intel_ring_unpin(struct intel_ring *ring)
->   		i915_gem_object_unpin_map(vma->obj);
->   
->   	i915_vma_make_purgeable(vma);
 > +
+> +err_unpin:
+> +	i915_vma_unpin(vma);
+> +	return err;
+>   }
+>   
+>   static void __context_unpin_state(struct i915_vma *vma)
+>   {
+>   	i915_vma_make_shrinkable(vma);
 > +	i915_active_release(&vma->active);
->   	i915_vma_unpin(vma);
+>   	__i915_vma_unpin(vma);
 >   }
 >   
 
