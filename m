@@ -1,40 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA62411EE37
-	for <lists+intel-gfx@lfdr.de>; Sat, 14 Dec 2019 00:09:51 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2875511EE69
+	for <lists+intel-gfx@lfdr.de>; Sat, 14 Dec 2019 00:24:42 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7441D6EE0B;
-	Fri, 13 Dec 2019 23:09:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C3CAB6E039;
+	Fri, 13 Dec 2019 23:24:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 52ECD6EE0B
- for <intel-gfx@lists.freedesktop.org>; Fri, 13 Dec 2019 23:09:48 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F2C116E039;
+ Fri, 13 Dec 2019 23:24:36 +0000 (UTC)
 X-Amp-Result: UNKNOWN
 X-Amp-Original-Verdict: FILE UNKNOWN
 X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 13 Dec 2019 15:09:47 -0800
-X-IronPort-AV: E=Sophos;i="5.69,311,1571727600"; d="scan'208";a="208606886"
-Received: from ldmartin-desk1.jf.intel.com (HELO ldmartin-desk1)
- ([10.24.11.18])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 13 Dec 2019 15:09:47 -0800
-Date: Fri, 13 Dec 2019 15:09:41 -0800
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: "Souza, Jose" <jose.souza@intel.com>
-Message-ID: <20191213230941.wdw6v44z3zdxv5oi@ldmartin-desk1>
-X-Patchwork-Hint: ignore
-References: <20191211110844.2996-1-jani.nikula@intel.com>
- <8d87dfbc5cfb8290a8a66e448abb1a9942237c58.camel@intel.com>
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 13 Dec 2019 15:24:35 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.69,311,1571727600"; d="scan'208";a="297066984"
+Received: from nvishwa1-desk.sc.intel.com ([10.3.160.185])
+ by orsmga001.jf.intel.com with ESMTP; 13 Dec 2019 15:24:35 -0800
+Date: Fri, 13 Dec 2019 15:13:23 -0800
+From: Niranjan Vishwanathapura <niranjana.vishwanathapura@intel.com>
+To: Jason Ekstrand <jason@jlekstrand.net>
+Message-ID: <20191213231322.GS14488@nvishwa1-DESK.sc.intel.com>
+References: <20191213215614.24558-1-niranjana.vishwanathapura@intel.com>
+ <20191213215614.24558-3-niranjana.vishwanathapura@intel.com>
+ <CAOFGe95rC8A4SuwWtd1tbikw8HGm-TU52_O8iBSJKpDyY0gWNw@mail.gmail.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <8d87dfbc5cfb8290a8a66e448abb1a9942237c58.camel@intel.com>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/dsi: fix pipe D readout for DSI
- transcoders
+In-Reply-To: <CAOFGe95rC8A4SuwWtd1tbikw8HGm-TU52_O8iBSJKpDyY0gWNw@mail.gmail.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+Subject: Re: [Intel-gfx] [RFC v2 02/12] drm/i915/svm: Runtime (RT) allocator
+ support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,56 +47,98 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Nikula, Jani" <jani.nikula@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"; Format="flowed"
+Cc: "Graunke, Kenneth W" <kenneth.w.graunke@intel.com>,
+ Intel GFX <intel-gfx@lists.freedesktop.org>, sanjay.k.kumar@intel.com,
+ Maling list - DRI developers <dri-devel@lists.freedesktop.org>,
+ Jason Ekstrand <jason.ekstrand@intel.com>, dave.hansen@intel.com,
+ jglisse@redhat.com, jgg@mellanox.com, Daniel Vetter <daniel.vetter@intel.com>,
+ dan.j.williams@intel.com, ira.weiny@intel.com
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Dec 11, 2019 at 05:55:23PM +0000, Jose Souza wrote:
->On Wed, 2019-12-11 at 13:08 +0200, Jani Nikula wrote:
->> Commit 4d89adc7b56f ("drm/i915/display/dsi: Add support to pipe D")
->> added pipe D support for DSI, but failed to update the state readout.
->>
+On Fri, Dec 13, 2019 at 04:58:42PM -0600, Jason Ekstrand wrote:
 >
->Reviewed-by: Jos=E9 Roberto de Souza <jose.souza@intel.com>
+>     +/**
+>     + * struct drm_i915_gem_vm_bind
+>     + *
+>     + * Bind an object in a vm's page table.
+>
+>   First off, this is something I've wanted for a while for Vulkan, it's just
+>   never made its way high enough up the priority list.  However, it's going
+>   to have to come one way or another soon.  I'm glad to see kernel API for
+>   this being proposed.
+>   I do, however, have a few high-level comments/questions about the API:
+>    1. In order to be useful for sparse memory support, the API has to go the
+>   other way around so that it binds a VA range to a range within the BO.  It
+>   also needs to be able to handle overlapping where two different VA ranges
+>   may map to the same underlying bytes in the BO.  This likely means that
+>   unbind needs to also take a VA range and only unbind that range.
+>    2. If this is going to be useful for managing GL's address space where we
+>   have lots of BOs, we probably want it to take a list of ranges so we
+>   aren't making one ioctl for each thing we want to bind.
 
+Hi Jason,
 
-pushed, thanks.
+Yah, some of these requirements came up.
+They are not being done here due to time and effort involved in defining
+those requirements, implementing and validating.
 
-Lucas De Marchi
+However, this ioctl can be extended in a backward compatible way to handle
+those requirements if required.
+
+>    3. Why are there no ways to synchronize this with anything?  For binding,
+>   this probably isn't really needed as long as the VA range you're binding
+>   is empty.  However, if you want to move bindings around or unbind
+>   something, the only option is to block in userspace and then call
+>   bind/unbind.  This can be done but it means even more threads in the UMD
+>   which is unpleasant.  One could argue that that's more or less what the
+>   kernel is going to have to do so we may as well do it in userspace. 
+>   However, I'm not 100% convinced that's true.
+>   --Jason
+>
+
+Yah, that is the thought.
+But as SVM feature evolves, I think we can consider handling some such cases
+if hadling those in driver does make whole lot sense. 
+
+Thanks,
+Niranjana
 
 >
->> Fixes: 4d89adc7b56f ("drm/i915/display/dsi: Add support to pipe D")
->> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
->> Cc: Jos=E9 Roberto de Souza <jose.souza@intel.com>
->> Cc: Vandita Kulkarni <vandita.kulkarni@intel.com>
->> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->> ---
->>  drivers/gpu/drm/i915/display/intel_display.c | 3 +++
->>  1 file changed, 3 insertions(+)
->>
->> diff --git a/drivers/gpu/drm/i915/display/intel_display.c
->> b/drivers/gpu/drm/i915/display/intel_display.c
->> index 5a4bd37863e3..3e0874e1b0f2 100644
->> --- a/drivers/gpu/drm/i915/display/intel_display.c
->> +++ b/drivers/gpu/drm/i915/display/intel_display.c
->> @@ -10431,6 +10431,9 @@ static bool hsw_get_transcoder_state(struct
->> intel_crtc *crtc,
->>  		case TRANS_DDI_EDP_INPUT_C_ONOFF:
->>  			trans_pipe =3D PIPE_C;
->>  			break;
->> +		case TRANS_DDI_EDP_INPUT_D_ONOFF:
->> +			trans_pipe =3D PIPE_D;
->> +			break;
->>  		}
->>
->>  		if (trans_pipe =3D=3D crtc->pipe) {
->_______________________________________________
->Intel-gfx mailing list
->Intel-gfx@lists.freedesktop.org
->https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+>     + */
+>     +struct drm_i915_gem_vm_bind {
+>     +       /** VA start to bind **/
+>     +       __u64 start;
+>     +
+>     +       /** Type of memory to [un]bind **/
+>     +       __u32 type;
+>     +#define I915_GEM_VM_BIND_SVM_OBJ      0
+>     +
+>     +       /** Object handle to [un]bind for I915_GEM_VM_BIND_SVM_OBJ type
+>     **/
+>     +       __u32 handle;
+>     +
+>     +       /** vm to [un]bind **/
+>     +       __u32 vm_id;
+>     +
+>     +       /** Flags **/
+>     +       __u32 flags;
+>     +#define I915_GEM_VM_BIND_UNBIND      (1 << 0)
+>     +#define I915_GEM_VM_BIND_READONLY    (1 << 1)
+>     +};
+>     +
+>      #if defined(__cplusplus)
+>      }
+>      #endif
+>     --
+>     2.21.0.rc0.32.g243a4c7e27
+>
+>     _______________________________________________
+>     Intel-gfx mailing list
+>     Intel-gfx@lists.freedesktop.org
+>     https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
