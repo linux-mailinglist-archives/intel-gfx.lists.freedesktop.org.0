@@ -2,34 +2,37 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8AE8B11E448
-	for <lists+intel-gfx@lfdr.de>; Fri, 13 Dec 2019 14:05:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 64AA711E484
+	for <lists+intel-gfx@lfdr.de>; Fri, 13 Dec 2019 14:24:46 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5E3B26E82B;
-	Fri, 13 Dec 2019 13:05:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D29656E85B;
+	Fri, 13 Dec 2019 13:24:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4C83B6E81E
- for <intel-gfx@lists.freedesktop.org>; Fri, 13 Dec 2019 13:05:34 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3D82E6E82C
+ for <intel-gfx@lists.freedesktop.org>; Fri, 13 Dec 2019 13:24:43 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga106.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 13 Dec 2019 05:05:28 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,309,1571727600"; d="scan'208";a="388664570"
-Received: from slisovsk-lenovo-ideapad-720s-13ikb.fi.intel.com ([10.237.72.89])
- by orsmga005.jf.intel.com with ESMTP; 13 Dec 2019 05:05:26 -0800
-From: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri, 13 Dec 2019 15:02:28 +0200
-Message-Id: <20191213130228.29509-5-stanislav.lisovskiy@intel.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20191213130228.29509-1-stanislav.lisovskiy@intel.com>
-References: <20191213130228.29509-1-stanislav.lisovskiy@intel.com>
-Subject: [Intel-gfx] [PATCH v8 4/4] drm/i915: Correctly map DBUF slices to
- pipes
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 13 Dec 2019 05:24:42 -0800
+X-IronPort-AV: E=Sophos;i="5.69,309,1571727600"; d="scan'208";a="208457238"
+Received: from jlahtine-desk.ger.corp.intel.com (HELO localhost)
+ ([10.252.10.37])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 13 Dec 2019 05:24:41 -0800
+MIME-Version: 1.0
+In-Reply-To: <20191212014629.854076-1-chris@chris-wilson.co.uk>
+References: <20191212014629.854076-1-chris@chris-wilson.co.uk>
+From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Date: Fri, 13 Dec 2019 15:24:38 +0200
+Message-ID: <157624347875.11099.17890739674383604441@jlahtine-desk.ger.corp.intel.com>
+User-Agent: alot/0.8.1
+Subject: Re: [Intel-gfx] [PATCH 1/3] drm/i915: Use EAGAIN for trylock
+ failures
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,339 +45,23 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Added proper DBuf slice mapping to correspondent
-pipes, depending on pipe configuration as stated
-in BSpec.
+Quoting Chris Wilson (2019-12-12 03:46:27)
+> While not good behaviour, it is, however, established behaviour that we
+> can punt EAGAIN to userspace if we need to retry the ioctl. When trying
+> to acquire a mutex, prefer to use EAGAIN to propagate losing the race
+> so that if it does end up back in userspace, we try again.
+> 
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 
-v2:
-    - Remove unneeded braces
-    - Stop using macro for DBuf assignments as
-      it seems to reduce readability.
+Reviewed-by: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
 
-v3: Start using enabled slices mask in dev_priv
-
-v4: Renamed "enabled_slices" used in dev_priv
-    to "enabled_dbuf_slices_mask"(Matt Roper)
-
-Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
----
- drivers/gpu/drm/i915/intel_pm.c | 226 ++++++++++++++++++++++++++++++--
- 1 file changed, 216 insertions(+), 10 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel_pm.c
-index 111bcafd6e4c..a13052b2c2ef 100644
---- a/drivers/gpu/drm/i915/intel_pm.c
-+++ b/drivers/gpu/drm/i915/intel_pm.c
-@@ -3832,13 +3832,30 @@ bool intel_can_enable_sagv(struct intel_atomic_state *state)
- 	return true;
- }
- 
-+/*
-+ * Calculate initial DBuf slice offset, based on slice size
-+ * and mask(i.e if slice size is 1024 and second slice is enabled
-+ * offset would be 1024)
-+ */
-+static u32 icl_get_first_dbuf_slice_offset(u32 dbuf_slice_mask,
-+					   u32 slice_size, u32 ddb_size)
-+{
-+	u32 offset = 0;
-+
-+	if (!dbuf_slice_mask)
-+		return 0;
-+
-+	offset = (ffs(dbuf_slice_mask) - 1) * slice_size;
-+
-+	WARN_ON(offset >= ddb_size);
-+	return offset;
-+}
-+
- static u16 intel_get_ddb_size(struct drm_i915_private *dev_priv,
- 			      const struct intel_crtc_state *crtc_state,
- 			      const u64 total_data_rate,
- 			      const int num_active)
- {
--	struct drm_atomic_state *state = crtc_state->uapi.state;
--	struct intel_atomic_state *intel_state = to_intel_atomic_state(state);
- 	u16 ddb_size = INTEL_INFO(dev_priv)->ddb_size;
- 
- 	WARN_ON(ddb_size == 0);
-@@ -3846,12 +3863,13 @@ static u16 intel_get_ddb_size(struct drm_i915_private *dev_priv,
- 	if (INTEL_GEN(dev_priv) < 11)
- 		return ddb_size - 4; /* 4 blocks for bypass path allocation */
- 
--	intel_state->enabled_dbuf_slices_mask = DBUF_S1_BIT;
--	ddb_size /= 2;
--
- 	return ddb_size;
- }
- 
-+u32 i915_possible_dbuf_slices(struct drm_i915_private *dev_priv,
-+			      int pipe, u32 active_pipes,
-+			      const struct intel_crtc_state *crtc_state);
-+
- static void
- skl_ddb_get_pipe_allocation_limits(struct drm_i915_private *dev_priv,
- 				   const struct intel_crtc_state *crtc_state,
-@@ -3866,7 +3884,14 @@ skl_ddb_get_pipe_allocation_limits(struct drm_i915_private *dev_priv,
- 	u32 pipe_width = 0, total_width = 0, width_before_pipe = 0;
- 	enum pipe for_pipe = to_intel_crtc(for_crtc)->pipe;
- 	u16 ddb_size;
-+	u32 ddb_range_size;
- 	u32 i;
-+	u32 dbuf_slice_mask;
-+	u32 active_pipes;
-+	u32 offset;
-+	u32 slice_size;
-+	u32 total_slice_mask;
-+	u32 start, end;
- 
- 	if (WARN_ON(!state) || !crtc_state->hw.active) {
- 		alloc->start = 0;
-@@ -3875,14 +3900,19 @@ skl_ddb_get_pipe_allocation_limits(struct drm_i915_private *dev_priv,
- 		return;
- 	}
- 
--	if (intel_state->active_pipe_changes)
-+	if (intel_state->active_pipe_changes) {
- 		*num_active = hweight8(intel_state->active_pipes);
--	else
-+		active_pipes = intel_state->active_pipes;
-+	} else {
- 		*num_active = hweight8(dev_priv->active_pipes);
-+		active_pipes = dev_priv->active_pipes;
-+	}
- 
- 	ddb_size = intel_get_ddb_size(dev_priv, crtc_state, total_data_rate,
- 				      *num_active);
- 
-+	slice_size = ddb_size / INTEL_INFO(dev_priv)->num_supported_dbuf_slices;
-+
- 	/*
- 	 * If the state doesn't change the active CRTC's or there is no
- 	 * modeset request, then there's no need to recalculate;
-@@ -3900,18 +3930,68 @@ skl_ddb_get_pipe_allocation_limits(struct drm_i915_private *dev_priv,
- 		return;
- 	}
- 
-+	/*
-+	 * Get allowed DBuf slices for correspondent pipe and platform.
-+	 */
-+	dbuf_slice_mask = i915_possible_dbuf_slices(dev_priv, for_pipe,
-+						    active_pipes, crtc_state);
-+
-+	DRM_DEBUG_KMS("DBuf slice mask %x pipe %d active pipes %x\n",
-+		      dbuf_slice_mask,
-+		      for_pipe, active_pipes);
-+
-+	/*
-+	 * Figure out at which DBuf slice we start, i.e if we start at Dbuf S2
-+	 * and slice size is 1024, the offset would be 1024
-+	 */
-+	offset = icl_get_first_dbuf_slice_offset(dbuf_slice_mask,
-+						 slice_size, ddb_size);
-+
-+	/*
-+	 * Figure out total size of allowed DBuf slices, which is basically
-+	 * a number of allowed slices for that pipe multiplied by slice size.
-+	 * Inside of this
-+	 * range ddb entries are still allocated in proportion to display width.
-+	 */
-+	ddb_range_size = hweight8(dbuf_slice_mask) * slice_size;
-+
- 	/*
- 	 * Watermark/ddb requirement highly depends upon width of the
- 	 * framebuffer, So instead of allocating DDB equally among pipes
- 	 * distribute DDB based on resolution/width of the display.
- 	 */
-+	total_slice_mask = dbuf_slice_mask;
- 	for_each_new_intel_crtc_in_state(intel_state, crtc, crtc_state, i) {
- 		const struct drm_display_mode *adjusted_mode =
- 			&crtc_state->hw.adjusted_mode;
- 		enum pipe pipe = crtc->pipe;
- 		int hdisplay, vdisplay;
-+		u32 pipe_dbuf_slice_mask =
-+					i915_possible_dbuf_slices(dev_priv,
-+								  pipe,
-+								  active_pipes,
-+								  crtc_state);
-+
-+		if (!crtc_state->hw.active)
-+			continue;
-+
-+		/*
-+		 * According to BSpec pipe can share one dbuf slice with another
-+		 * pipes or pipe can use multiple dbufs, in both cases we
-+		 * account for other pipes only if they have exactly same mask.
-+		 * However we need to account how many slices we should enable
-+		 * in total.
-+		 */
-+		total_slice_mask |= pipe_dbuf_slice_mask;
- 
--		if (!crtc_state->hw.enable)
-+		/*
-+		 * Do not account pipes using other slice sets
-+		 * luckily as of current BSpec slice sets do not partially
-+		 * intersect(pipes share either same one slice or same slice set
-+		 * i.e no partial intersection), so it is enough to check for
-+		 * equality for now.
-+		 */
-+		if (dbuf_slice_mask != pipe_dbuf_slice_mask)
- 			continue;
- 
- 		drm_mode_get_hv_timing(adjusted_mode, &hdisplay, &vdisplay);
-@@ -3923,8 +4003,19 @@ skl_ddb_get_pipe_allocation_limits(struct drm_i915_private *dev_priv,
- 			pipe_width = hdisplay;
- 	}
- 
--	alloc->start = ddb_size * width_before_pipe / total_width;
--	alloc->end = ddb_size * (width_before_pipe + pipe_width) / total_width;
-+	intel_state->enabled_dbuf_slices_mask = total_slice_mask;
-+
-+	start = ddb_range_size * width_before_pipe / total_width;
-+	end = ddb_range_size * (width_before_pipe + pipe_width) / total_width;
-+
-+	alloc->start = offset + start;
-+	alloc->end = offset + end;
-+
-+	DRM_DEBUG_KMS("Pipe %d ddb %d-%d\n", for_pipe,
-+		      alloc->start, alloc->end);
-+	DRM_DEBUG_KMS("Enabled ddb slices mask %x num supported %d\n",
-+		      intel_state->enabled_dbuf_slices_mask,
-+		      INTEL_INFO(dev_priv)->num_supported_dbuf_slices);
- }
- 
- static int skl_compute_wm_params(const struct intel_crtc_state *crtc_state,
-@@ -4094,6 +4185,121 @@ skl_plane_downscale_amount(const struct intel_crtc_state *crtc_state,
- 	return mul_fixed16(downscale_w, downscale_h);
- }
- 
-+struct dbuf_slice_conf_entry {
-+	u32 active_pipes;
-+	u32 dbuf_mask[I915_MAX_PIPES];
-+};
-+
-+/*
-+ * Table taken from Bspec 12716
-+ * Pipes do have some preferred DBuf slice affinity,
-+ * plus there are some hardcoded requirements on how
-+ * those should be distributed for multipipe scenarios.
-+ * For more DBuf slices algorithm can get even more messy
-+ * and less readable, so decided to use a table almost
-+ * as is from BSpec itself - that way it is at least easier
-+ * to compare, change and check.
-+ */
-+static struct dbuf_slice_conf_entry icl_allowed_dbufs[] = {
-+	{ BIT(PIPE_A), { DBUF_S1_BIT, 0, 0, 0 } },
-+	{ BIT(PIPE_B), { 0, DBUF_S1_BIT, 0, 0 } },
-+	{ BIT(PIPE_C), { 0, 0, DBUF_S2_BIT, 0 } },
-+	{ BIT(PIPE_A) | BIT(PIPE_B), { DBUF_S1_BIT, DBUF_S2_BIT, 0, 0 } },
-+	{ BIT(PIPE_A) | BIT(PIPE_C), { DBUF_S1_BIT, 0, DBUF_S2_BIT, 0 } },
-+	{ BIT(PIPE_B) | BIT(PIPE_C), { 0, DBUF_S1_BIT, DBUF_S2_BIT, 0 } },
-+	{ BIT(PIPE_A) | BIT(PIPE_B) | BIT(PIPE_C),
-+		{ DBUF_S1_BIT, DBUF_S1_BIT, DBUF_S2_BIT, 0 } }
-+};
-+
-+/*
-+ * Table taken from Bspec 49255
-+ * Pipes do have some preferred DBuf slice affinity,
-+ * plus there are some hardcoded requirements on how
-+ * those should be distributed for multipipe scenarios.
-+ * For more DBuf slices algorithm can get even more messy
-+ * and less readable, so decided to use a table almost
-+ * as is from BSpec itself - that way it is at least easier
-+ * to compare, change and check.
-+ */
-+static struct dbuf_slice_conf_entry tgl_allowed_dbufs[] = {
-+	{ BIT(PIPE_A), { DBUF_S1_BIT | DBUF_S2_BIT, 0, 0, 0 } },
-+	{ BIT(PIPE_B), { 0, DBUF_S1_BIT | DBUF_S2_BIT, 0, 0 } },
-+	{ BIT(PIPE_C), { 0, 0, DBUF_S1_BIT | DBUF_S2_BIT, 0 } },
-+	{ BIT(PIPE_D), { 0, 0, 0, DBUF_S1_BIT | DBUF_S2_BIT } },
-+	{ BIT(PIPE_A) | BIT(PIPE_B), { DBUF_S2_BIT, DBUF_S1_BIT, 0, 0 } },
-+	{ BIT(PIPE_A) | BIT(PIPE_C), { DBUF_S1_BIT, 0, DBUF_S2_BIT, 0 } },
-+	{ BIT(PIPE_A) | BIT(PIPE_D), { DBUF_S1_BIT, 0, 0, DBUF_S2_BIT } },
-+	{ BIT(PIPE_B) | BIT(PIPE_C), { 0, DBUF_S1_BIT, DBUF_S2_BIT, 0 } },
-+	{ BIT(PIPE_B) | BIT(PIPE_D), { 0, DBUF_S1_BIT, 0, DBUF_S2_BIT } },
-+	{ BIT(PIPE_C) | BIT(PIPE_D), { 0, 0, DBUF_S2_BIT, DBUF_S2_BIT } },
-+	{ BIT(PIPE_A) | BIT(PIPE_B) | BIT(PIPE_C),
-+		{ DBUF_S1_BIT, DBUF_S1_BIT, DBUF_S2_BIT, 0 } },
-+	{ BIT(PIPE_A) | BIT(PIPE_B) | BIT(PIPE_D),
-+		{ DBUF_S1_BIT, DBUF_S1_BIT, 0, DBUF_S2_BIT } },
-+	{ BIT(PIPE_A) | BIT(PIPE_C) | BIT(PIPE_D),
-+		{ DBUF_S1_BIT, 0, DBUF_S2_BIT, DBUF_S2_BIT } },
-+	{ BIT(PIPE_B) | BIT(PIPE_C) | BIT(PIPE_D),
-+		{ 0, DBUF_S1_BIT, DBUF_S2_BIT, DBUF_S2_BIT } },
-+	{ BIT(PIPE_A) | BIT(PIPE_B) | BIT(PIPE_C) | BIT(PIPE_D),
-+		{ DBUF_S1_BIT, DBUF_S1_BIT, DBUF_S2_BIT, DBUF_S2_BIT } },
-+};
-+
-+static u32 i915_find_pipe_conf(int pipe,
-+			       u32 active_pipes,
-+			       const struct dbuf_slice_conf_entry *dbuf_slices,
-+			       int size)
-+{
-+	int i;
-+
-+	for (i = 0; i < size; i++) {
-+		if (dbuf_slices[i].active_pipes == active_pipes)
-+			return dbuf_slices[i].dbuf_mask[pipe];
-+	}
-+	return 0;
-+}
-+
-+/*
-+ * This function finds an entry with same enabled pipe configuration and
-+ * returns correspondent DBuf slice mask as stated in BSpec for particular
-+ * platform.
-+ */
-+static u32 icl_possible_dbuf_slices(int pipe,
-+				    u32 active_pipes,
-+				    const struct intel_crtc_state *crtc_state)
-+{
-+	return i915_find_pipe_conf(pipe, active_pipes,
-+				   icl_allowed_dbufs,
-+				   ARRAY_SIZE(icl_allowed_dbufs));
-+}
-+
-+static u32 tgl_possible_dbuf_slices(int pipe,
-+				    u32 active_pipes,
-+				    const struct intel_crtc_state *crtc_state)
-+{
-+	return i915_find_pipe_conf(pipe, active_pipes,
-+				   tgl_allowed_dbufs,
-+				   ARRAY_SIZE(tgl_allowed_dbufs));
-+}
-+
-+u32 i915_possible_dbuf_slices(struct drm_i915_private *dev_priv,
-+			      int pipe, u32 active_pipes,
-+			      const struct intel_crtc_state *crtc_state)
-+{
-+	if (IS_GEN(dev_priv, 11))
-+		return icl_possible_dbuf_slices(pipe,
-+						active_pipes,
-+						crtc_state);
-+	else if (IS_GEN(dev_priv, 12))
-+		return tgl_possible_dbuf_slices(pipe,
-+						active_pipes,
-+						crtc_state);
-+	/*
-+	 * For anything else just return one slice yet.
-+	 * Should be extended for other platforms.
-+	 */
-+	return DBUF_S1_BIT;
-+}
-+
- static u64
- skl_plane_relative_data_rate(const struct intel_crtc_state *crtc_state,
- 			     const struct intel_plane_state *plane_state,
--- 
-2.17.1
-
+Regards, Joonas
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
