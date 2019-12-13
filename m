@@ -1,34 +1,29 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A02311E7E8
-	for <lists+intel-gfx@lfdr.de>; Fri, 13 Dec 2019 17:17:25 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9947911E76D
+	for <lists+intel-gfx@lfdr.de>; Fri, 13 Dec 2019 17:03:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8124A6EB05;
-	Fri, 13 Dec 2019 16:17:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E25CD6EAF2;
+	Fri, 13 Dec 2019 16:03:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0C6F66EB05
- for <intel-gfx@lists.freedesktop.org>; Fri, 13 Dec 2019 16:17:21 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga106.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 13 Dec 2019 08:17:20 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,309,1571727600"; d="scan'208";a="246178888"
-Received: from vandita-desktop.iind.intel.com ([10.223.74.218])
- by fmsmga002.fm.intel.com with ESMTP; 13 Dec 2019 08:17:18 -0800
-From: Vandita Kulkarni <vandita.kulkarni@intel.com>
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F26DD6EAF2
+ for <intel-gfx@lists.freedesktop.org>; Fri, 13 Dec 2019 16:03:52 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19569982-1500050 
+ for <intel-gfx@lists.freedesktop.org>; Fri, 13 Dec 2019 16:03:48 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri, 13 Dec 2019 21:15:15 +0530
-Message-Id: <20191213154515.12121-1-vandita.kulkarni@intel.com>
-X-Mailer: git-send-email 2.21.0.5.gaeb582a
+Date: Fri, 13 Dec 2019 16:03:47 +0000
+Message-Id: <20191213160347.1789004-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.24.0
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915: Fix WARN_ON condition for cursor
- plane ddb allocation
+Subject: [Intel-gfx] [CI] drm/i915: Use EAGAIN for trylock failures
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,30 +36,56 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-SW4gc29tZSBjYXNlcyBtaW5fZGRiX2FsbG9jIGNhbiBiZSBVMTZfTUFYLCBleGNsdWRlIGl0CmZy
-b20gdGhlIFdBUk5fT04uCgpGaXhlczogMTBhN2UwN2I2OGI5ICgiZHJtL2k5MTU6IE1ha2Ugc3Vy
-ZSBjdXJzb3IgaGFzIGVub3VnaCBkZGIgZm9yIHRoZSBzZWxlY3RlZCB3bSBsZXZlbCIpClN1Z2dl
-c3RlZC1ieTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4K
-U2lnbmVkLW9mZi1ieTogVmFuZGl0YSBLdWxrYXJuaSA8dmFuZGl0YS5rdWxrYXJuaUBpbnRlbC5j
-b20+Ci0tLQogZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfcG0uYyB8IDYgKysrKy0tCiAxIGZp
-bGUgY2hhbmdlZCwgNCBpbnNlcnRpb25zKCspLCAyIGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBh
-L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX3BtLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9p
-bnRlbF9wbS5jCmluZGV4IGNjYmJkZjRhNmFhYi4uY2VjNGZhNzk0MjJjIDEwMDY0NAotLS0gYS9k
-cml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9wbS5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1
-L2ludGVsX3BtLmMKQEAgLTQzMTIsOCArNDMxMiwxMCBAQCBza2xfYWxsb2NhdGVfcGlwZV9kZGIo
-c3RydWN0IGludGVsX2NydGNfc3RhdGUgKmNydGNfc3RhdGUsCiAJCQkJJmNydGNfc3RhdGUtPndt
-LnNrbC5vcHRpbWFsLnBsYW5lc1twbGFuZV9pZF07CiAKIAkJCWlmIChwbGFuZV9pZCA9PSBQTEFO
-RV9DVVJTT1IpIHsKLQkJCQlpZiAoV0FSTl9PTih3bS0+d21bbGV2ZWxdLm1pbl9kZGJfYWxsb2Mg
-PgotCQkJCQkgICAgdG90YWxbUExBTkVfQ1VSU09SXSkpIHsKKwkJCQlpZiAod20tPndtW2xldmVs
-XS5taW5fZGRiX2FsbG9jID4KKwkJCQkgICAgdG90YWxbUExBTkVfQ1VSU09SXSkgeworCQkJCQlX
-QVJOX09OKHdtLT53bVtsZXZlbF0ubWluX2RkYl9hbGxvYyAhPQorCQkJCQkJVTE2X01BWCk7CiAJ
-CQkJCWJsb2NrcyA9IFUzMl9NQVg7CiAJCQkJCWJyZWFrOwogCQkJCX0KLS0gCjIuMjEuMC41Lmdh
-ZWI1ODJhCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJ
-bnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0
-cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
+While not good behaviour, it is, however, established behaviour that we
+can punt EAGAIN to userspace if we need to retry the ioctl. When trying
+to acquire a mutex, prefer to use EAGAIN to propagate losing the race
+so that if it does end up back in userspace, we try again.
+
+Fixes: c81471f5e95c ("drm/i915: Copy across scheduler behaviour flags across submit fences")
+Closes: https://gitlab.freedesktop.org/drm/intel/issues/800
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Reviewed-by: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+---
+ drivers/gpu/drm/i915/gt/intel_timeline.c | 2 +-
+ drivers/gpu/drm/i915/i915_request.c      | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/gt/intel_timeline.c b/drivers/gpu/drm/i915/gt/intel_timeline.c
+index 038e05a6336c..d71aafb66d6e 100644
+--- a/drivers/gpu/drm/i915/gt/intel_timeline.c
++++ b/drivers/gpu/drm/i915/gt/intel_timeline.c
+@@ -527,7 +527,7 @@ int intel_timeline_read_hwsp(struct i915_request *from,
+ 
+ 	GEM_BUG_ON(rcu_access_pointer(to->timeline) == tl);
+ 
+-	err = -EBUSY;
++	err = -EAGAIN;
+ 	if (mutex_trylock(&tl->mutex)) {
+ 		struct intel_timeline_cacheline *cl = from->hwsp_cacheline;
+ 
+diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
+index 51bb8a0812a1..fb8738987aeb 100644
+--- a/drivers/gpu/drm/i915/i915_request.c
++++ b/drivers/gpu/drm/i915/i915_request.c
+@@ -783,7 +783,7 @@ i915_request_await_start(struct i915_request *rq, struct i915_request *signal)
+ 	if (!tl) /* already started or maybe even completed */
+ 		return 0;
+ 
+-	fence = ERR_PTR(-EBUSY);
++	fence = ERR_PTR(-EAGAIN);
+ 	if (mutex_trylock(&tl->mutex)) {
+ 		fence = NULL;
+ 		if (!i915_request_started(signal) &&
+-- 
+2.24.0
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
