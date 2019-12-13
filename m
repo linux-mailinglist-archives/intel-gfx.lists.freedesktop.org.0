@@ -2,40 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7CBDA11E8E1
-	for <lists+intel-gfx@lfdr.de>; Fri, 13 Dec 2019 18:06:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7107011E8EB
+	for <lists+intel-gfx@lfdr.de>; Fri, 13 Dec 2019 18:08:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E47FF6EB54;
-	Fri, 13 Dec 2019 17:06:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5B5A36EB58;
+	Fri, 13 Dec 2019 17:08:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D40086EB54
- for <intel-gfx@lists.freedesktop.org>; Fri, 13 Dec 2019 17:06:05 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B191C6EB58
+ for <intel-gfx@lists.freedesktop.org>; Fri, 13 Dec 2019 17:08:30 +0000 (UTC)
 X-Amp-Result: UNKNOWN
 X-Amp-Original-Verdict: FILE UNKNOWN
 X-Amp-File-Uploaded: False
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga106.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 13 Dec 2019 09:06:05 -0800
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 13 Dec 2019 09:08:29 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,309,1571727600"; d="scan'208";a="211497156"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by fmsmga008.fm.intel.com with SMTP; 13 Dec 2019 09:06:02 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 13 Dec 2019 19:06:01 +0200
-Date: Fri, 13 Dec 2019 19:06:01 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>
-Message-ID: <20191213170601.GB1208@intel.com>
-References: <20191213152823.26817-1-ville.syrjala@linux.intel.com>
- <157625247338.7535.668231195608100084@skylake-alporthouse-com>
+X-IronPort-AV: E=Sophos;i="5.69,309,1571727600"; d="scan'208";a="415695102"
+Received: from mdroper-desk1.fm.intel.com (HELO
+ mdroper-desk1.amr.corp.intel.com) ([10.1.27.64])
+ by fmsmga006.fm.intel.com with ESMTP; 13 Dec 2019 09:08:28 -0800
+Date: Fri, 13 Dec 2019 09:08:28 -0800
+From: Matt Roper <matthew.d.roper@intel.com>
+To: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+Message-ID: <20191213170828.GB85422@mdroper-desk1.amr.corp.intel.com>
+References: <20191213130228.29509-1-stanislav.lisovskiy@intel.com>
+ <20191213130228.29509-3-stanislav.lisovskiy@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <157625247338.7535.668231195608100084@skylake-alporthouse-com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Add device name to display
- tracepoints
+In-Reply-To: <20191213130228.29509-3-stanislav.lisovskiy@intel.com>
+User-Agent: Mutt/1.12.1 (2019-06-15)
+Subject: Re: [Intel-gfx] [PATCH v8 2/4] drm/i915: Move dbuf slice update to
+ proper place
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,71 +48,131 @@ List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Dec 13, 2019 at 03:54:33PM +0000, Chris Wilson wrote:
-> Quoting Ville Syrjala (2019-12-13 15:28:23)
-> > From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> > =
+On Fri, Dec 13, 2019 at 03:02:26PM +0200, Stanislav Lisovskiy wrote:
+> Current DBuf slices update wasn't done in proper
+> plane, especially its "post" part, which should
 
-> > Include dev_name() in the tracpoints so one can filter based on
-> > the device.
-> > =
+Oh, I forgot to point it out on my previous review, but I think you
+meant "place" here rather than "plane?"  I was very confused about what
+we were supposedly doing on the wrong display plane until I figured out
+it was a typo.  :-)
 
-> > Example:
-> > echo 'dev=3D=3D"0000:00:02.0"' > events/i915/intel_cpu_fifo_underrun/fi=
-lter
-> > =
 
-> > TODO: maybe don't both specifying the field name always and just
-> >       make it 'dev' (or whatever) always?
-> > TODO: add for other tracpoints too if this is deemed good enough
-> > =
+Matt
 
-> > Suggested-by: Chris Wilson <chris@chris-wilson.co.uk>
-> > Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/i915_trace.h | 96 +++++++++++++++++++++----------
-> >  1 file changed, 65 insertions(+), 31 deletions(-)
-> > =
+> disable those only once vblank had passed and
+> all other changes are committed.
+> 
+> v2: Fix to use dev_priv and intel_atomic_state
+>     instead of skl_ddb_values
+>     (to be nuked in Villes patch)
+> 
+> v3: Renamed "enabled_slices" to "enabled_dbuf_slices_num"
+>     (Matt Roper)
+> 
+> Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+> Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_display.c | 38 ++++++++++++++------
+>  1 file changed, 28 insertions(+), 10 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> index 62e33bca7014..0e09d0c23b1d 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -14546,13 +14546,33 @@ static void intel_update_trans_port_sync_crtcs(struct intel_crtc *crtc,
+>  				       state);
+>  }
+>  
+> +static void icl_dbuf_slice_pre_update(struct intel_atomic_state *state)
+> +{
+> +	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
+> +	u8 hw_enabled_slices = dev_priv->enabled_dbuf_slices_num;
+> +	u8 required_slices = state->enabled_dbuf_slices_num;
+> +
+> +	/* If 2nd DBuf slice required, enable it here */
+> +	if (INTEL_GEN(dev_priv) >= 11 && required_slices > hw_enabled_slices)
+> +		icl_dbuf_slices_update(dev_priv, required_slices);
+> +}
+> +
+> +static void icl_dbuf_slice_post_update(struct intel_atomic_state *state)
+> +{
+> +	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
+> +	u8 hw_enabled_slices = dev_priv->enabled_dbuf_slices_num;
+> +	u8 required_slices = state->enabled_dbuf_slices_num;
+> +
+> +	/* If 2nd DBuf slice is no more required disable it */
+> +	if (INTEL_GEN(dev_priv) >= 11 && required_slices < hw_enabled_slices)
+> +		icl_dbuf_slices_update(dev_priv, required_slices);
+> +}
+> +
+>  static void skl_commit_modeset_enables(struct intel_atomic_state *state)
+>  {
+>  	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
+>  	struct intel_crtc *crtc;
+>  	struct intel_crtc_state *old_crtc_state, *new_crtc_state;
+> -	u8 hw_enabled_slices = dev_priv->enabled_dbuf_slices_num;
+> -	u8 required_slices = state->enabled_dbuf_slices_num;
+>  	struct skl_ddb_entry entries[I915_MAX_PIPES] = {};
+>  	u8 dirty_pipes = 0;
+>  	int i;
+> @@ -14565,10 +14585,6 @@ static void skl_commit_modeset_enables(struct intel_atomic_state *state)
+>  			dirty_pipes |= BIT(crtc->pipe);
+>  	}
+>  
+> -	/* If 2nd DBuf slice required, enable it here */
+> -	if (INTEL_GEN(dev_priv) >= 11 && required_slices > hw_enabled_slices)
+> -		icl_dbuf_slices_update(dev_priv, required_slices);
+> -
+>  	/*
+>  	 * Whenever the number of active pipes changes, we need to make sure we
+>  	 * update the pipes in the right order so that their ddb allocations
+> @@ -14617,10 +14633,6 @@ static void skl_commit_modeset_enables(struct intel_atomic_state *state)
+>  				intel_wait_for_vblank(dev_priv, pipe);
+>  		}
+>  	}
+> -
+> -	/* If 2nd DBuf slice is no more required disable it */
+> -	if (INTEL_GEN(dev_priv) >= 11 && required_slices < hw_enabled_slices)
+> -		icl_dbuf_slices_update(dev_priv, required_slices);
+>  }
+>  
+>  static void intel_atomic_helper_free_state(struct drm_i915_private *dev_priv)
+> @@ -14750,6 +14762,9 @@ static void intel_atomic_commit_tail(struct intel_atomic_state *state)
+>  	if (state->modeset)
+>  		intel_encoders_update_prepare(state);
+>  
+> +	/* Enable all new slices, we might need */
+> +	icl_dbuf_slice_pre_update(state);
+> +
+>  	/* Now enable the clocks, plane, pipe, and connectors that we set up. */
+>  	dev_priv->display.commit_modeset_enables(state);
+>  
+> @@ -14825,6 +14840,9 @@ static void intel_atomic_commit_tail(struct intel_atomic_state *state)
+>  	if (state->modeset && intel_can_enable_sagv(state))
+>  		intel_enable_sagv(dev_priv);
+>  
+> +	/* Disable all slices, we don't need */
+> +	icl_dbuf_slice_post_update(state);
+> +
+>  	drm_atomic_helper_commit_hw_done(&state->base);
+>  
+>  	if (state->modeset) {
+> -- 
+> 2.17.1
+> 
 
-> > diff --git a/drivers/gpu/drm/i915/i915_trace.h b/drivers/gpu/drm/i915/i=
-915_trace.h
-> > index 7ef7a1e1664c..8931b6756f44 100644
-> > --- a/drivers/gpu/drm/i915/i915_trace.h
-> > +++ b/drivers/gpu/drm/i915/i915_trace.h
-> > @@ -20,11 +20,18 @@
-> >  =
-
-> >  /* watermark/fifo updates */
-> >  =
-
-> > +#define __dev_name_i915(field, i915) __string(field, dev_name((i915)->=
-drm.dev))
-> > +#define __dev_name_crtc(field, crtc) __string(field, dev_name((crtc)->=
-base.dev->dev))
-> > +#define __assign_dev_name_i915(field, i915) __assign_str(field, dev_na=
-me((i915)->drm.dev))
-> > +#define __assign_dev_name_crtc(field, crtc) __assign_str(field, dev_na=
-me((crtc)->base.dev->dev))
-> > +#define __get_dev_name(field) __get_str(field)
-> =
-
-> Storing the string is quite expensive, I thought. Can we stash the i915
-> and stringify in the TP_printk? Or is stashing the string the secret for
-> the dev=3D=3D filter?
-
-Last time I stashed a pointer in there people complained that it can
-disappear before being consumed and cause a very theoretical oops.
-But I guess we could stash just the pci devfn and whatnot.
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
+-- 
+Matt Roper
+Graphics Software Engineer
+VTT-OSGC Platform Enablement
+Intel Corporation
+(916) 356-2795
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
