@@ -2,68 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9545E11E2A8
-	for <lists+intel-gfx@lfdr.de>; Fri, 13 Dec 2019 12:19:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 780E711E28A
+	for <lists+intel-gfx@lfdr.de>; Fri, 13 Dec 2019 12:11:31 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 00E5A6E4F3;
-	Fri, 13 Dec 2019 11:19:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 15EA76E45F;
+	Fri, 13 Dec 2019 11:11:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from userp2120.oracle.com (userp2120.oracle.com [156.151.31.85])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 10E656E4F3
- for <intel-gfx@lists.freedesktop.org>; Fri, 13 Dec 2019 11:19:05 +0000 (UTC)
-Received: from pps.filterd (userp2120.oracle.com [127.0.0.1])
- by userp2120.oracle.com (8.16.0.27/8.16.0.27) with SMTP id xBD9hwsR136015;
- Fri, 13 Dec 2019 09:49:56 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com;
- h=date : from : to : cc
- : subject : message-id : mime-version : content-type : in-reply-to;
- s=corp-2019-08-05; bh=KLopqxMi7M/B0qcpC/dJbgi+ckc8OHBzkcW24nCAyTc=;
- b=PSwgECE4e0vun8eiHAjnE0yUqS7TlppjEA229Yhxn48CThXiEPHqCVFgEQ0uI/DuEHVV
- LUWsQbIXW5FNBzbud9i8Ix+XfIQ9NiSULO30dEYI2S0om7M3AbFnupDCO3D/MSgrh5GH
- d79+j63S8LqTlTQg/C1xNGm+FMWGmsTJ+GMH0WfBObup9MPha2X7zHG8r+YUP8Jzml23
- J1PcLZXER0vbwJC5sXI4rNUN1PZRCD6BgN8OoEJhV/IHw1ak0mJwcZzwIUxG0ZoogsR7
- u5e4EzxnLCm47IpCpvObpB4lQe1+Lzem1JFCP4MJU3Bkm1ad6arRcCZl534D3ukbvB48 Aw== 
-Received: from userp3020.oracle.com (userp3020.oracle.com [156.151.31.79])
- by userp2120.oracle.com with ESMTP id 2wr4qs02dt-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
- Fri, 13 Dec 2019 09:49:56 +0000
-Received: from pps.filterd (userp3020.oracle.com [127.0.0.1])
- by userp3020.oracle.com (8.16.0.27/8.16.0.27) with SMTP id xBD9mrNG115963;
- Fri, 13 Dec 2019 09:49:55 GMT
-Received: from userv0122.oracle.com (userv0122.oracle.com [156.151.31.75])
- by userp3020.oracle.com with ESMTP id 2wumsbd07f-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
- Fri, 13 Dec 2019 09:49:55 +0000
-Received: from abhmp0005.oracle.com (abhmp0005.oracle.com [141.146.116.11])
- by userv0122.oracle.com (8.14.4/8.14.4) with ESMTP id xBD9nrBC027103;
- Fri, 13 Dec 2019 09:49:53 GMT
-Received: from kadam (/129.205.23.165) by default (Oracle Beehive Gateway v4.0)
- with ESMTP ; Fri, 13 Dec 2019 01:49:52 -0800
-Date: Fri, 13 Dec 2019 12:49:46 +0300
-From: Dan Carpenter <dan.carpenter@oracle.com>
-To: kbuild@lists.01.org, Abdiel Janulgue <abdiel.janulgue@linux.intel.com>
-Message-ID: <20191213094946.GA2407@kadam>
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F35606E4A2;
+ Fri, 13 Dec 2019 11:11:23 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 13 Dec 2019 03:11:23 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.69,309,1571727600"; d="scan'208";a="414254853"
+Received: from ramaling-i9x.iind.intel.com (HELO intel.com) ([10.99.66.154])
+ by fmsmga005.fm.intel.com with ESMTP; 13 Dec 2019 03:11:22 -0800
+Date: Fri, 13 Dec 2019 16:40:33 +0530
+From: Ramalingam C <ramalingam.c@intel.com>
+To: Sean Paul <sean@poorly.run>
+Message-ID: <20191213111033.GF3829@intel.com>
+References: <20191212190230.188505-1-sean@poorly.run>
+ <20191212190230.188505-8-sean@poorly.run>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20191211055907.8398-1-abdiel.janulgue@linux.intel.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9469
- signatures=668685
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 suspectscore=0
- malwarescore=0
- phishscore=0 bulkscore=0 spamscore=0 mlxscore=0 mlxlogscore=999
- adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.0.1-1911140001 definitions=main-1912130078
-X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9469
- signatures=668685
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0
- priorityscore=1501 malwarescore=0
- suspectscore=0 phishscore=0 bulkscore=0 spamscore=0 clxscore=1011
- lowpriorityscore=0 mlxscore=0 impostorscore=0 mlxlogscore=999 adultscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.0.1-1911140001
- definitions=main-1912130078
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Add lmem fault handler
+In-Reply-To: <20191212190230.188505-8-sean@poorly.run>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH v2 07/12] drm/i915: Protect workers against
+ disappearing connectors
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,78 +46,118 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, kbuild-all@lists.01.org,
- Matthew Auld <matthew.auld@intel.com>
+Cc: daniel.vetter@ffwll.ch, intel-gfx@lists.freedesktop.org,
+ Sean Paul <seanpaul@chromium.org>, dri-devel@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Abdiel,
+On 2019-12-12 at 14:02:25 -0500, Sean Paul wrote:
+> From: Sean Paul <seanpaul@chromium.org>
+> 
+> This patch adds some protection against connectors being destroyed
+> before the HDCP workers are finished.
+> 
+> For check_work, we do a synchronous cancel after the connector is
+> unregistered which will ensure that it is finished before destruction.
+> 
+> In the case of prop_work, we can't do a synchronous wait since it needs
+> to take connection_mutex which could cause deadlock. Instead, we'll take
+> a reference on the connector when scheduling prop_work and give it up
+> once we're done.
+> 
+> Signed-off-by: Sean Paul <seanpaul@chromium.org>
+Will there be an instance where prop_work is scheduled but before
+execution cancelled from the queue itself? This will leak the connector
+reference.
 
-Thank you for the patch! Perhaps something to improve:
+Atleast hdcp stack is not requesting for such action. So Looks good to me.
 
-[auto build test WARNING on drm-intel/for-linux-next]
-[also build test WARNING on drm-tip/drm-tip next-20191210]
-[if your patch is applied to the wrong git tree, please drop us a note to help
-improve the system. BTW, we also suggest to use '--base' option to specify the
-base tree in git format-patch, please see https://stackoverflow.com/a/37406982]
-
-url:    https://github.com/0day-ci/linux/commits/Abdiel-Janulgue/drm-i915-Add-lmem-fault-handler/20191212-031235
-base:   git://anongit.freedesktop.org/drm-intel for-linux-next
-
-If you fix the issue, kindly add following tag
-Reported-by: kbuild test robot <lkp@intel.com>
-Reported-by: Dan Carpenter <dan.carpenter@oracle.com>
-
-smatch warnings:
-drivers/gpu/drm/i915/gem/i915_gem_lmem.c:40 vm_fault_lmem() error: uninitialized symbol 'vmf_ret'.
-
-# https://github.com/0day-ci/linux/commit/527bcb2414222221b5b3cea4909756095ae07d6a
-git remote add linux-review https://github.com/0day-ci/linux
-git remote update linux-review
-git checkout 527bcb2414222221b5b3cea4909756095ae07d6a
-vim +/vmf_ret +40 drivers/gpu/drm/i915/gem/i915_gem_lmem.c
-
-527bcb24142222 Abdiel Janulgue 2019-12-11  12  vm_fault_t vm_fault_lmem(struct vm_fault *vmf)
-527bcb24142222 Abdiel Janulgue 2019-12-11  13  {
-527bcb24142222 Abdiel Janulgue 2019-12-11  14  	struct vm_area_struct *area = vmf->vma;
-527bcb24142222 Abdiel Janulgue 2019-12-11  15  	struct i915_mmap_offset *priv = area->vm_private_data;
-527bcb24142222 Abdiel Janulgue 2019-12-11  16  	struct drm_i915_gem_object *obj = priv->obj;
-527bcb24142222 Abdiel Janulgue 2019-12-11  17  	unsigned long size = area->vm_end - area->vm_start;
-527bcb24142222 Abdiel Janulgue 2019-12-11  18  	bool write = area->vm_flags & VM_WRITE;
-527bcb24142222 Abdiel Janulgue 2019-12-11  19  	vm_fault_t vmf_ret;
-                                                ^^^^^^^^^^^^^^^^^^^
-
-527bcb24142222 Abdiel Janulgue 2019-12-11  20  	int i, ret;
-527bcb24142222 Abdiel Janulgue 2019-12-11  21  
-527bcb24142222 Abdiel Janulgue 2019-12-11  22  	/* Sanity check that we allow writing into this object */
-527bcb24142222 Abdiel Janulgue 2019-12-11  23  	if (i915_gem_object_is_readonly(obj) && write)
-527bcb24142222 Abdiel Janulgue 2019-12-11  24  		return VM_FAULT_SIGBUS;
-527bcb24142222 Abdiel Janulgue 2019-12-11  25  
-527bcb24142222 Abdiel Janulgue 2019-12-11  26  	ret = i915_gem_object_pin_pages(obj);
-527bcb24142222 Abdiel Janulgue 2019-12-11  27  	if (ret)
-527bcb24142222 Abdiel Janulgue 2019-12-11  28  		return i915_error_to_vmf_fault(ret);
-527bcb24142222 Abdiel Janulgue 2019-12-11  29  
-527bcb24142222 Abdiel Janulgue 2019-12-11  30  	for (i = 0; i < size >> PAGE_SHIFT; i++) {
-
-Can size be less than a page?
-
-527bcb24142222 Abdiel Janulgue 2019-12-11  31  		vmf_ret = vmf_insert_pfn(area,
-527bcb24142222 Abdiel Janulgue 2019-12-11  32  					 (unsigned long)area->vm_start + i * PAGE_SIZE,
-527bcb24142222 Abdiel Janulgue 2019-12-11  33  					 i915_gem_object_lmem_io_pfn(obj, i));
-527bcb24142222 Abdiel Janulgue 2019-12-11  34  		if (vmf_ret != VM_FAULT_NOPAGE)
-527bcb24142222 Abdiel Janulgue 2019-12-11  35  			break;
-527bcb24142222 Abdiel Janulgue 2019-12-11  36  	}
-527bcb24142222 Abdiel Janulgue 2019-12-11  37  
-527bcb24142222 Abdiel Janulgue 2019-12-11  38  	i915_gem_object_unpin_pages(obj);
-527bcb24142222 Abdiel Janulgue 2019-12-11  39  
-527bcb24142222 Abdiel Janulgue 2019-12-11 @40  	return vmf_ret;
-527bcb24142222 Abdiel Janulgue 2019-12-11  41  }
-
----
-0-DAY kernel test infrastructure                 Open Source Technology Center
-https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org Intel Corporation
+Reviewed-by: Ramalingam C <ramalingam.c@intel.com>
+> 
+> Changes in v2:
+> - Added to the set
+> ---
+>  drivers/gpu/drm/i915/display/intel_hdcp.c | 38 ++++++++++++++++++++---
+>  1 file changed, 33 insertions(+), 5 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
+> index 798e7e1a19fc..c79dca2c74d1 100644
+> --- a/drivers/gpu/drm/i915/display/intel_hdcp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
+> @@ -863,8 +863,10 @@ static void intel_hdcp_update_value(struct intel_connector *connector,
+>  		return;
+>  
+>  	hdcp->value = value;
+> -	if (update_property)
+> +	if (update_property) {
+> +		drm_connector_get(&connector->base);
+>  		schedule_work(&hdcp->prop_work);
+> +	}
+>  }
+>  
+>  /* Implements Part 3 of the HDCP authorization procedure */
+> @@ -954,6 +956,8 @@ static void intel_hdcp_prop_work(struct work_struct *work)
+>  
+>  	mutex_unlock(&hdcp->mutex);
+>  	drm_modeset_unlock(&dev->mode_config.connection_mutex);
+> +
+> +	drm_connector_put(&connector->base);
+>  }
+>  
+>  bool is_hdcp_supported(struct drm_i915_private *dev_priv, enum port port)
+> @@ -1802,6 +1806,9 @@ static void intel_hdcp_check_work(struct work_struct *work)
+>  					       check_work);
+>  	struct intel_connector *connector = intel_hdcp_to_connector(hdcp);
+>  
+> +	if (drm_connector_is_unregistered(&connector->base))
+> +		return;
+> +
+>  	if (!intel_hdcp2_check_link(connector))
+>  		schedule_delayed_work(&hdcp->check_work,
+>  				      DRM_HDCP2_CHECK_PERIOD_MS);
+> @@ -2076,12 +2083,33 @@ void intel_hdcp_component_fini(struct drm_i915_private *dev_priv)
+>  
+>  void intel_hdcp_cleanup(struct intel_connector *connector)
+>  {
+> -	if (!connector->hdcp.shim)
+> +	struct intel_hdcp *hdcp = &connector->hdcp;
+> +
+> +	if (!hdcp->shim)
+>  		return;
+>  
+> -	mutex_lock(&connector->hdcp.mutex);
+> -	kfree(connector->hdcp.port_data.streams);
+> -	mutex_unlock(&connector->hdcp.mutex);
+> +	WARN_ON(!drm_connector_is_unregistered(&connector->base));
+> +
+> +	/*
+> +	 * Now that the connector is unregistered, check_work won't be run, but
+> +	 * cancel any outstanding instances of it
+> +	 */
+> +	cancel_delayed_work_sync(&hdcp->check_work);
+> +
+> +	/*
+> +	 * We don't cancel prop_work in the same way as check_work since it
+> +	 * requires connection_mutex which could be held while calling this
+> +	 * function. Instead, we rely on the connector references grabbed before
+> +	 * scheduling prop_work to ensure the connector is alive when prop_work
+> +	 * is run. So if we're in the destroy path (which is where this
+> +	 * function should be called), we're "guaranteed" that prop_work is not
+> +	 * active (tl;dr This Should Never Happen).
+> +	 */
+> +	WARN_ON(work_pending(&hdcp->prop_work));
+> +
+> +	mutex_lock(&hdcp->mutex);
+> +	kfree(hdcp->port_data.streams);
+> +	mutex_unlock(&hdcp->mutex);
+>  }
+>  
+>  void intel_hdcp_atomic_check(struct drm_connector *connector,
+> -- 
+> Sean Paul, Software Engineer, Google / Chromium OS
+> 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
