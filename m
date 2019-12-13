@@ -1,31 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6827611E8D8
-	for <lists+intel-gfx@lfdr.de>; Fri, 13 Dec 2019 18:01:55 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id CB0E711E8DE
+	for <lists+intel-gfx@lfdr.de>; Fri, 13 Dec 2019 18:03:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C94ED89CC4;
-	Fri, 13 Dec 2019 17:01:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 27F906EB46;
+	Fri, 13 Dec 2019 17:03:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 166C089C49;
- Fri, 13 Dec 2019 17:01:53 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 127F6A0BA8;
- Fri, 13 Dec 2019 17:01:53 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AE2766EB46
+ for <intel-gfx@lists.freedesktop.org>; Fri, 13 Dec 2019 17:03:24 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 13 Dec 2019 09:03:23 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.69,309,1571727600"; d="scan'208";a="204375544"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by orsmga007.jf.intel.com with SMTP; 13 Dec 2019 09:03:20 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 13 Dec 2019 19:03:20 +0200
+Date: Fri, 13 Dec 2019 19:03:20 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Vandita Kulkarni <vandita.kulkarni@intel.com>
+Message-ID: <20191213170320.GA1208@intel.com>
+References: <20191213154515.12121-1-vandita.kulkarni@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Andi Shyti" <andi@etezian.org>
-Date: Fri, 13 Dec 2019 17:01:53 -0000
-Message-ID: <157625651307.23797.6754947368062328255@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20191213124549.28412-1-andi@etezian.org>
-In-Reply-To: <20191213124549.28412-1-andi@etezian.org>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
- =?utf-8?q?Some_debugfs_enhancements_=28rev3=29?=
+Content-Disposition: inline
+In-Reply-To: <20191213154515.12121-1-vandita.kulkarni@intel.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Fix WARN_ON condition for cursor
+ plane ddb allocation
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,29 +47,68 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: jani.nikula@intel.com, intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Fri, Dec 13, 2019 at 09:15:15PM +0530, Vandita Kulkarni wrote:
+> In some cases min_ddb_alloc can be U16_MAX, exclude it
+> from the WARN_ON.
 
-Series: Some debugfs enhancements (rev3)
-URL   : https://patchwork.freedesktop.org/series/70658/
-State : warning
+The two cases I think are:
+latency[level]=3D=3D0 or wm[level].res_lines>31
 
-== Summary ==
+You said you hit the latter case.
 
-$ dim sparse origin/drm-tip
-Sparse version: v0.6.0
-Commit: drm/i915/rps: Add frequency translation helpers
-Okay!
+May want to mention those in the commit message.
 
-Commit: drm/i915/gt: Move power management debug files into a gt aware debugfs
-+drivers/gpu/drm/i915/gt/debugfs_gt.c:9:5: warning: symbol 'debugfs_gt_init' was not declared. Should it be static?
+> =
 
+> Fixes: 10a7e07b68b9 ("drm/i915: Make sure cursor has enough ddb for the s=
+elected wm level")
+> Suggested-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> Signed-off-by: Vandita Kulkarni <vandita.kulkarni@intel.com>
+> ---
+>  drivers/gpu/drm/i915/intel_pm.c | 6 ++++--
+>  1 file changed, 4 insertions(+), 2 deletions(-)
+> =
+
+> diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel=
+_pm.c
+> index ccbbdf4a6aab..cec4fa79422c 100644
+> --- a/drivers/gpu/drm/i915/intel_pm.c
+> +++ b/drivers/gpu/drm/i915/intel_pm.c
+> @@ -4312,8 +4312,10 @@ skl_allocate_pipe_ddb(struct intel_crtc_state *crt=
+c_state,
+>  				&crtc_state->wm.skl.optimal.planes[plane_id];
+>  =
+
+>  			if (plane_id =3D=3D PLANE_CURSOR) {
+> -				if (WARN_ON(wm->wm[level].min_ddb_alloc >
+> -					    total[PLANE_CURSOR])) {
+> +				if (wm->wm[level].min_ddb_alloc >
+> +				    total[PLANE_CURSOR]) {
+> +					WARN_ON(wm->wm[level].min_ddb_alloc !=3D
+> +						U16_MAX);
+>  					blocks =3D U32_MAX;
+
+The line wraps make this look rather ugly. Might be better to just
+ignore the 80col limit here.
+
+Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+
+>  					break;
+>  				}
+> -- =
+
+> 2.21.0.5.gaeb582a
+
+-- =
+
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
