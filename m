@@ -1,39 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F05311DD1A
-	for <lists+intel-gfx@lfdr.de>; Fri, 13 Dec 2019 05:22:17 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C39211DD1D
+	for <lists+intel-gfx@lfdr.de>; Fri, 13 Dec 2019 05:22:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AACAC6E266;
-	Fri, 13 Dec 2019 04:22:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 761DF6E26C;
+	Fri, 13 Dec 2019 04:22:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9AE646E26C
- for <intel-gfx@lists.freedesktop.org>; Fri, 13 Dec 2019 04:22:14 +0000 (UTC)
-X-Amp-Result: UNSCANNABLE
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 60D026E26C
+ for <intel-gfx@lists.freedesktop.org>; Fri, 13 Dec 2019 04:22:47 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
 X-Amp-File-Uploaded: False
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga106.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 12 Dec 2019 20:22:14 -0800
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 12 Dec 2019 20:22:22 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,308,1571727600"; d="scan'208";a="226169359"
+X-IronPort-AV: E=Sophos;i="5.69,308,1571727600"; d="scan'208";a="296810776"
 Received: from mdroper-desk1.fm.intel.com (HELO
  mdroper-desk1.amr.corp.intel.com) ([10.1.27.64])
- by orsmga002.jf.intel.com with ESMTP; 12 Dec 2019 20:22:13 -0800
-Date: Thu, 12 Dec 2019 20:22:13 -0800
+ by orsmga001.jf.intel.com with ESMTP; 12 Dec 2019 20:22:21 -0800
+Date: Thu, 12 Dec 2019 20:22:21 -0800
 From: Matt Roper <matthew.d.roper@intel.com>
 To: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-Message-ID: <20191213042213.GW85422@mdroper-desk1.amr.corp.intel.com>
+Message-ID: <20191213042221.GX85422@mdroper-desk1.amr.corp.intel.com>
 References: <20191129133709.24397-1-stanislav.lisovskiy@intel.com>
- <20191129133709.24397-2-stanislav.lisovskiy@intel.com>
+ <20191129133709.24397-3-stanislav.lisovskiy@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20191129133709.24397-2-stanislav.lisovskiy@intel.com>
+In-Reply-To: <20191129133709.24397-3-stanislav.lisovskiy@intel.com>
 User-Agent: Mutt/1.12.1 (2019-06-15)
-Subject: Re: [Intel-gfx] [PATCH v7 1/4] drm/i915: Remove skl_ddl_allocation
- struct
+Subject: Re: [Intel-gfx] [PATCH v7 2/4] drm/i915: Move dbuf slice update to
+ proper place
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,325 +53,108 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Nov 29, 2019 at 03:37:06PM +0200, Stanislav Lisovskiy wrote:
-> Current consensus that it is redundant as
-> we already have skl_ddb_values struct out there,
-> also this struct contains only single member
-> which makes it unnecessary.
+On Fri, Nov 29, 2019 at 03:37:07PM +0200, Stanislav Lisovskiy wrote:
+> Current DBuf slices update wasn't done in proper
+> plane, especially its "post" part, which should
+> disable those only once vblank had passed and
+> all other changes are committed.
 > 
-> v2: As dirty_pipes soon going to be nuked away
->     from skl_ddb_values, evacuating enabled_slices
->     to safer in dev_priv.
+> v2: Fix to use dev_priv and intel_atomic_state
+>     instead of skl_ddb_values
+>     (to be nuked in Villes patch)
 > 
 > Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+
+Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+
 > ---
->  drivers/gpu/drm/i915/display/intel_display.c  | 16 ++++-----
->  .../drm/i915/display/intel_display_power.c    |  8 ++---
->  .../drm/i915/display/intel_display_types.h    |  3 ++
->  drivers/gpu/drm/i915/i915_drv.h               |  7 ++--
->  drivers/gpu/drm/i915/intel_pm.c               | 34 ++++++++-----------
->  drivers/gpu/drm/i915/intel_pm.h               |  6 ++--
->  6 files changed, 34 insertions(+), 40 deletions(-)
+>  drivers/gpu/drm/i915/display/intel_display.c | 38 ++++++++++++++------
+>  1 file changed, 28 insertions(+), 10 deletions(-)
 > 
 > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> index 53dc310a5f6d..dda43e3dcdbf 100644
+> index dda43e3dcdbf..db0830745f25 100644
 > --- a/drivers/gpu/drm/i915/display/intel_display.c
 > +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -13393,14 +13393,13 @@ static void verify_wm_state(struct intel_crtc *crtc,
->  	struct skl_hw_state {
->  		struct skl_ddb_entry ddb_y[I915_MAX_PLANES];
->  		struct skl_ddb_entry ddb_uv[I915_MAX_PLANES];
-> -		struct skl_ddb_allocation ddb;
->  		struct skl_pipe_wm wm;
->  	} *hw;
-> -	struct skl_ddb_allocation *sw_ddb;
->  	struct skl_pipe_wm *sw_wm;
->  	struct skl_ddb_entry *hw_ddb_entry, *sw_ddb_entry;
->  	const enum pipe pipe = crtc->pipe;
->  	int plane, level, max_level = ilk_wm_max_level(dev_priv);
-> +	u8 hw_enabled_slices;
+> @@ -14637,6 +14637,28 @@ static void intel_update_trans_port_sync_crtcs(struct intel_crtc *crtc,
+>  				       state);
+>  }
 >  
->  	if (INTEL_GEN(dev_priv) < 9 || !new_crtc_state->hw.active)
->  		return;
-> @@ -13414,14 +13413,13 @@ static void verify_wm_state(struct intel_crtc *crtc,
->  
->  	skl_pipe_ddb_get_hw_state(crtc, hw->ddb_y, hw->ddb_uv);
->  
-> -	skl_ddb_get_hw_state(dev_priv, &hw->ddb);
-> -	sw_ddb = &dev_priv->wm.skl_hw.ddb;
-> +	hw_enabled_slices = intel_enabled_dbuf_slices_num(dev_priv);
->  
->  	if (INTEL_GEN(dev_priv) >= 11 &&
-> -	    hw->ddb.enabled_slices != sw_ddb->enabled_slices)
-> +	    hw_enabled_slices != dev_priv->enabled_slices)
->  		DRM_ERROR("mismatch in DBUF Slices (expected %u, got %u)\n",
-> -			  sw_ddb->enabled_slices,
-> -			  hw->ddb.enabled_slices);
-> +			  dev_priv->enabled_slices,
-> +			  hw_enabled_slices);
->  
->  	/* planes */
->  	for_each_universal_plane(dev_priv, pipe, plane) {
-> @@ -14647,8 +14645,8 @@ static void skl_commit_modeset_enables(struct intel_atomic_state *state)
+> +static void icl_dbuf_slice_pre_update(struct intel_atomic_state *state)
+> +{
+> +	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
+> +	u8 hw_enabled_slices = dev_priv->enabled_slices;
+> +	u8 required_slices = state->enabled_slices;
+> +
+> +	/* If 2nd DBuf slice required, enable it here */
+> +	if (INTEL_GEN(dev_priv) >= 11 && required_slices > hw_enabled_slices)
+> +		icl_dbuf_slices_update(dev_priv, required_slices);
+> +}
+> +
+> +static void icl_dbuf_slice_post_update(struct intel_atomic_state *state)
+> +{
+> +	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
+> +	u8 hw_enabled_slices = dev_priv->enabled_slices;
+> +	u8 required_slices = state->enabled_slices;
+> +
+> +	/* If 2nd DBuf slice is no more required disable it */
+> +	if (INTEL_GEN(dev_priv) >= 11 && required_slices < hw_enabled_slices)
+> +		icl_dbuf_slices_update(dev_priv, required_slices);
+> +}
+> +
+>  static void skl_commit_modeset_enables(struct intel_atomic_state *state)
+>  {
+>  	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
+> @@ -14645,8 +14667,6 @@ static void skl_commit_modeset_enables(struct intel_atomic_state *state)
 >  	unsigned int updated = 0;
 >  	bool progress;
 >  	int i;
-> -	u8 hw_enabled_slices = dev_priv->wm.skl_hw.ddb.enabled_slices;
-> -	u8 required_slices = state->wm_results.ddb.enabled_slices;
-> +	u8 hw_enabled_slices = dev_priv->enabled_slices;
-> +	u8 required_slices = state->enabled_slices;
+> -	u8 hw_enabled_slices = dev_priv->enabled_slices;
+> -	u8 required_slices = state->enabled_slices;
 >  	struct skl_ddb_entry entries[I915_MAX_PIPES] = {};
 >  
 >  	for_each_oldnew_intel_crtc_in_state(state, crtc, old_crtc_state, new_crtc_state, i)
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
-> index ce1b64f4dd44..4c3ede73e863 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_power.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
-> @@ -4264,7 +4264,7 @@ static u8 intel_dbuf_max_slices(struct drm_i915_private *dev_priv)
->  void icl_dbuf_slices_update(struct drm_i915_private *dev_priv,
->  			    u8 req_slices)
->  {
-> -	const u8 hw_enabled_slices = dev_priv->wm.skl_hw.ddb.enabled_slices;
-> +	const u8 hw_enabled_slices = dev_priv->enabled_slices;
->  	bool ret;
+> @@ -14654,10 +14674,6 @@ static void skl_commit_modeset_enables(struct intel_atomic_state *state)
+>  		if (new_crtc_state->hw.active)
+>  			entries[i] = old_crtc_state->wm.skl.ddb;
 >  
->  	if (req_slices > intel_dbuf_max_slices(dev_priv)) {
-> @@ -4281,7 +4281,7 @@ void icl_dbuf_slices_update(struct drm_i915_private *dev_priv,
->  		ret = intel_dbuf_slice_set(dev_priv, DBUF_CTL_S2, false);
->  
->  	if (ret)
-> -		dev_priv->wm.skl_hw.ddb.enabled_slices = req_slices;
-> +		dev_priv->enabled_slices = req_slices;
->  }
->  
->  static void icl_dbuf_enable(struct drm_i915_private *dev_priv)
-> @@ -4300,7 +4300,7 @@ static void icl_dbuf_enable(struct drm_i915_private *dev_priv)
->  		 * FIXME: for now pretend that we only have 1 slice, see
->  		 * intel_enabled_dbuf_slices_num().
->  		 */
-> -		dev_priv->wm.skl_hw.ddb.enabled_slices = 1;
-> +		dev_priv->enabled_slices = 1;
->  }
->  
->  static void icl_dbuf_disable(struct drm_i915_private *dev_priv)
-> @@ -4319,7 +4319,7 @@ static void icl_dbuf_disable(struct drm_i915_private *dev_priv)
->  		 * FIXME: for now pretend that the first slice is always
->  		 * enabled, see intel_enabled_dbuf_slices_num().
->  		 */
-> -		dev_priv->wm.skl_hw.ddb.enabled_slices = 1;
-> +		dev_priv->enabled_slices = 1;
->  }
->  
->  static void icl_mbus_init(struct drm_i915_private *dev_priv)
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-> index 83ea04149b77..5eaeaf487a01 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> @@ -517,6 +517,9 @@ struct intel_atomic_state {
->  	/* Gen9+ only */
->  	struct skl_ddb_values wm_results;
->  
-> +	/* Number of enabled DBuf slices */
-> +	u8 enabled_slices;
-> +
->  	struct i915_sw_fence commit_ready;
->  
->  	struct llist_node freed;
-> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-> index fdae5a919bc8..195629a37a61 100644
-> --- a/drivers/gpu/drm/i915/i915_drv.h
-> +++ b/drivers/gpu/drm/i915/i915_drv.h
-> @@ -798,13 +798,8 @@ static inline bool skl_ddb_entry_equal(const struct skl_ddb_entry *e1,
->  	return false;
->  }
->  
-> -struct skl_ddb_allocation {
-> -	u8 enabled_slices; /* GEN11 has configurable 2 slices */
-> -};
+> -	/* If 2nd DBuf slice required, enable it here */
+> -	if (INTEL_GEN(dev_priv) >= 11 && required_slices > hw_enabled_slices)
+> -		icl_dbuf_slices_update(dev_priv, required_slices);
 > -
->  struct skl_ddb_values {
->  	unsigned dirty_pipes;
-> -	struct skl_ddb_allocation ddb;
->  };
-
-Seems strange to have a single entry structure (especially one that
-isn't even a "DDB value" as the name implies).  Do you kill dirty_pipes
-somewhere later in this series?  I didn't see it from a quick skim.
-
->  
->  struct skl_wm_level {
-> @@ -1215,6 +1210,8 @@ struct drm_i915_private {
->  		bool distrust_bios_wm;
->  	} wm;
->  
-> +	u8 enabled_slices; /* GEN11 has configurable 2 slices */
-
-Intel hardware has long used the terms "slice" and "subslice" for the
-way EUs are grouped on the GT side.  Now that this is pulled out from
-the substructs that gave it additional context, I think we need to
-rename this to something like 'enabled_dbuf_slices' to avoid confusion
-with the more widespread meaning of the word 'slice.'  Same for
-intel_atomic_state farther up.
-
-> +
->  	struct dram_info {
->  		bool valid;
->  		bool is_16gb_dimm;
-> diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel_pm.c
-> index 5aad9d49a528..a93b4385de4b 100644
-> --- a/drivers/gpu/drm/i915/intel_pm.c
-> +++ b/drivers/gpu/drm/i915/intel_pm.c
-> @@ -3599,7 +3599,7 @@ bool ilk_disable_lp_wm(struct drm_device *dev)
->  	return _ilk_disable_lp_wm(dev_priv, WM_DIRTY_LP_ALL);
->  }
->  
-> -static u8 intel_enabled_dbuf_slices_num(struct drm_i915_private *dev_priv)
-> +u8 intel_enabled_dbuf_slices_num(struct drm_i915_private *dev_priv)
->  {
->  	u8 enabled_slices;
->  
-> @@ -3822,9 +3822,10 @@ bool intel_can_enable_sagv(struct intel_atomic_state *state)
->  static u16 intel_get_ddb_size(struct drm_i915_private *dev_priv,
->  			      const struct intel_crtc_state *crtc_state,
->  			      const u64 total_data_rate,
-> -			      const int num_active,
-> -			      struct skl_ddb_allocation *ddb)
-> +			      const int num_active)
->  {
-> +	struct drm_atomic_state *state = crtc_state->uapi.state;
-> +	struct intel_atomic_state *intel_state = to_intel_atomic_state(state);
->  	const struct drm_display_mode *adjusted_mode;
->  	u64 total_data_bw;
->  	u16 ddb_size = INTEL_INFO(dev_priv)->ddb_size;
-> @@ -3846,9 +3847,9 @@ static u16 intel_get_ddb_size(struct drm_i915_private *dev_priv,
->  	 * - should validate we stay within the hw bandwidth limits
->  	 */
->  	if (0 && (num_active > 1 || total_data_bw >= GBps(12))) {
-> -		ddb->enabled_slices = 2;
-> +		intel_state->enabled_slices = 2;
->  	} else {
-> -		ddb->enabled_slices = 1;
-> +		intel_state->enabled_slices = 1;
->  		ddb_size /= 2;
->  	}
->  
-> @@ -3859,7 +3860,6 @@ static void
->  skl_ddb_get_pipe_allocation_limits(struct drm_i915_private *dev_priv,
->  				   const struct intel_crtc_state *crtc_state,
->  				   const u64 total_data_rate,
-> -				   struct skl_ddb_allocation *ddb,
->  				   struct skl_ddb_entry *alloc, /* out */
->  				   int *num_active /* out */)
->  {
-> @@ -3885,7 +3885,7 @@ skl_ddb_get_pipe_allocation_limits(struct drm_i915_private *dev_priv,
->  		*num_active = hweight8(dev_priv->active_pipes);
->  
->  	ddb_size = intel_get_ddb_size(dev_priv, crtc_state, total_data_rate,
-> -				      *num_active, ddb);
-> +				      *num_active);
->  
 >  	/*
->  	 * If the state doesn't change the active CRTC's or there is no
-> @@ -4046,10 +4046,9 @@ void skl_pipe_ddb_get_hw_state(struct intel_crtc *crtc,
->  	intel_display_power_put(dev_priv, power_domain, wakeref);
+>  	 * Whenever the number of active pipes changes, we need to make sure we
+>  	 * update the pipes in the right order so that their ddb allocations
+> @@ -14714,10 +14730,6 @@ static void skl_commit_modeset_enables(struct intel_atomic_state *state)
+>  			progress = true;
+>  		}
+>  	} while (progress);
+> -
+> -	/* If 2nd DBuf slice is no more required disable it */
+> -	if (INTEL_GEN(dev_priv) >= 11 && required_slices < hw_enabled_slices)
+> -		icl_dbuf_slices_update(dev_priv, required_slices);
 >  }
 >  
-> -void skl_ddb_get_hw_state(struct drm_i915_private *dev_priv,
-> -			  struct skl_ddb_allocation *ddb /* out */)
-> +void skl_ddb_get_hw_state(struct drm_i915_private *dev_priv)
->  {
-> -	ddb->enabled_slices = intel_enabled_dbuf_slices_num(dev_priv);
-> +	dev_priv->enabled_slices = intel_enabled_dbuf_slices_num(dev_priv);
->  }
+>  static void intel_atomic_helper_free_state(struct drm_i915_private *dev_priv)
+> @@ -14847,6 +14859,9 @@ static void intel_atomic_commit_tail(struct intel_atomic_state *state)
+>  	if (state->modeset)
+>  		intel_encoders_update_prepare(state);
 >  
->  /*
-> @@ -4226,8 +4225,7 @@ icl_get_total_relative_data_rate(struct intel_crtc_state *crtc_state,
->  }
+> +	/* Enable all new slices, we might need */
+> +	icl_dbuf_slice_pre_update(state);
+> +
+>  	/* Now enable the clocks, plane, pipe, and connectors that we set up. */
+>  	dev_priv->display.commit_modeset_enables(state);
 >  
->  static int
-> -skl_allocate_pipe_ddb(struct intel_crtc_state *crtc_state,
-> -		      struct skl_ddb_allocation *ddb /* out */)
-> +skl_allocate_pipe_ddb(struct intel_crtc_state *crtc_state)
->  {
->  	struct drm_atomic_state *state = crtc_state->uapi.state;
->  	struct drm_crtc *crtc = crtc_state->uapi.crtc;
-> @@ -4269,7 +4267,7 @@ skl_allocate_pipe_ddb(struct intel_crtc_state *crtc_state,
+> @@ -14906,6 +14921,9 @@ static void intel_atomic_commit_tail(struct intel_atomic_state *state)
+>  	if (state->modeset && intel_can_enable_sagv(state))
+>  		intel_enable_sagv(dev_priv);
 >  
+> +	/* Disable all slices, we don't need */
+> +	icl_dbuf_slice_post_update(state);
+> +
+>  	drm_atomic_helper_commit_hw_done(&state->base);
 >  
->  	skl_ddb_get_pipe_allocation_limits(dev_priv, crtc_state, total_data_rate,
-> -					   ddb, alloc, &num_active);
-> +					   alloc, &num_active);
->  	alloc_size = skl_ddb_entry_size(alloc);
->  	if (alloc_size == 0)
->  		return 0;
-> @@ -5183,18 +5181,17 @@ skl_ddb_add_affected_planes(const struct intel_crtc_state *old_crtc_state,
->  static int
->  skl_compute_ddb(struct intel_atomic_state *state)
->  {
-> -	const struct drm_i915_private *dev_priv = to_i915(state->base.dev);
-> -	struct skl_ddb_allocation *ddb = &state->wm_results.ddb;
-> +	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
->  	struct intel_crtc_state *old_crtc_state;
->  	struct intel_crtc_state *new_crtc_state;
->  	struct intel_crtc *crtc;
->  	int ret, i;
->  
-> -	memcpy(ddb, &dev_priv->wm.skl_hw.ddb, sizeof(*ddb));
-> +	state->enabled_slices = dev_priv->enabled_slices;
->  
->  	for_each_oldnew_intel_crtc_in_state(state, crtc, old_crtc_state,
->  					    new_crtc_state, i) {
-> -		ret = skl_allocate_pipe_ddb(new_crtc_state, ddb);
-> +		ret = skl_allocate_pipe_ddb(new_crtc_state);
->  		if (ret)
->  			return ret;
->  
-> @@ -5666,11 +5663,10 @@ void skl_pipe_wm_get_hw_state(struct intel_crtc *crtc,
->  void skl_wm_get_hw_state(struct drm_i915_private *dev_priv)
->  {
->  	struct skl_ddb_values *hw = &dev_priv->wm.skl_hw;
-> -	struct skl_ddb_allocation *ddb = &dev_priv->wm.skl_hw.ddb;
->  	struct intel_crtc *crtc;
->  	struct intel_crtc_state *crtc_state;
->  
-> -	skl_ddb_get_hw_state(dev_priv, ddb);
-> +	skl_ddb_get_hw_state(dev_priv);
-
-At this point you might as well replace this with a direct call to
-intel_enabled_dbuf_slices_num() and drop the skl_ddb_get_hw_state()
-completely.
-
->  	for_each_intel_crtc(&dev_priv->drm, crtc) {
->  		crtc_state = to_intel_crtc_state(crtc->base.state);
->  
-> diff --git a/drivers/gpu/drm/i915/intel_pm.h b/drivers/gpu/drm/i915/intel_pm.h
-> index b579c724b915..4aafae4c8e0d 100644
-> --- a/drivers/gpu/drm/i915/intel_pm.h
-> +++ b/drivers/gpu/drm/i915/intel_pm.h
-> @@ -17,8 +17,8 @@ struct intel_atomic_state;
->  struct intel_crtc;
->  struct intel_crtc_state;
->  struct intel_plane;
-> -struct skl_ddb_allocation;
->  struct skl_ddb_entry;
-> +struct skl_ddb_values;
->  struct skl_pipe_wm;
->  struct skl_wm_level;
->  
-> @@ -33,11 +33,11 @@ void g4x_wm_get_hw_state(struct drm_i915_private *dev_priv);
->  void vlv_wm_get_hw_state(struct drm_i915_private *dev_priv);
->  void ilk_wm_get_hw_state(struct drm_i915_private *dev_priv);
->  void skl_wm_get_hw_state(struct drm_i915_private *dev_priv);
-> +u8 intel_enabled_dbuf_slices_num(struct drm_i915_private *dev_priv);
->  void skl_pipe_ddb_get_hw_state(struct intel_crtc *crtc,
->  			       struct skl_ddb_entry *ddb_y,
->  			       struct skl_ddb_entry *ddb_uv);
-> -void skl_ddb_get_hw_state(struct drm_i915_private *dev_priv,
-> -			  struct skl_ddb_allocation *ddb /* out */);
-> +void skl_ddb_get_hw_state(struct drm_i915_private *dev_priv);
->  void skl_pipe_wm_get_hw_state(struct intel_crtc *crtc,
->  			      struct skl_pipe_wm *out);
->  void g4x_wm_sanitize(struct drm_i915_private *dev_priv);
+>  	if (state->modeset) {
 > -- 
 > 2.17.1
 > 
