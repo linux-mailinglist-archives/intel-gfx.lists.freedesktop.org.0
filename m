@@ -1,32 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 48FCF11EBC7
-	for <lists+intel-gfx@lfdr.de>; Fri, 13 Dec 2019 21:22:29 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 092E311EBD6
+	for <lists+intel-gfx@lfdr.de>; Fri, 13 Dec 2019 21:28:57 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7BA036EDAD;
-	Fri, 13 Dec 2019 20:22:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E79506EDB5;
+	Fri, 13 Dec 2019 20:28:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 44B756EDAD;
- Fri, 13 Dec 2019 20:22:25 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 3D97AA0091;
- Fri, 13 Dec 2019 20:22:25 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 571D16EDB5
+ for <intel-gfx@lists.freedesktop.org>; Fri, 13 Dec 2019 20:28:52 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 13 Dec 2019 12:28:51 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.69,311,1571727600"; d="scan'208";a="211474318"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by fmsmga007.fm.intel.com with SMTP; 13 Dec 2019 12:28:49 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 13 Dec 2019 22:28:49 +0200
+Date: Fri, 13 Dec 2019 22:28:49 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Manasi Navare <manasi.d.navare@intel.com>
+Message-ID: <20191213202849.GF1208@intel.com>
+References: <20191211211425.17821-1-manasi.d.navare@intel.com>
+ <20191211211425.17821-3-manasi.d.navare@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Date: Fri, 13 Dec 2019 20:22:25 -0000
-Message-ID: <157626854523.23800.10055479299189447494@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20191210123050.8799-1-jani.nikula@intel.com>
-In-Reply-To: <20191210123050.8799-1-jani.nikula@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5B1/8=5D_drm/print=3A_introduce_new_struct_d?=
- =?utf-8?q?rm=5Fdevice_based_logging_macros_=28rev3=29?=
+Content-Disposition: inline
+In-Reply-To: <20191211211425.17821-3-manasi.d.navare@intel.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH 2/3] drm/i915/dp: Make port sync mode
+ assignments only if all tiles present
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,129 +48,132 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Wed, Dec 11, 2019 at 01:14:24PM -0800, Manasi Navare wrote:
+> Add an extra check before making master slave assignments for tiled
+> displays to make sure we make these assignments only if all tiled
+> connectors are present. If not then initialize the state to defaults
+> so it does a normal non tiled modeset without transcoder port sync.
+> =
 
-Series: series starting with [1/8] drm/print: introduce new struct drm_device based logging macros (rev3)
-URL   : https://patchwork.freedesktop.org/series/70685/
-State : success
+> Bugzilla: https://gitlab.freedesktop.org/drm/intel/issues/5
+> Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> Signed-off-by: Manasi Navare <manasi.d.navare@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_display.c | 28 ++++++++++++++++++--
+>  1 file changed, 26 insertions(+), 2 deletions(-)
+> =
 
-== Summary ==
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/d=
+rm/i915/display/intel_display.c
+> index 7263eaa66cda..c0a2dab3fe67 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -12048,6 +12048,12 @@ static bool c8_planes_changed(const struct intel=
+_crtc_state *new_crtc_state)
+>  	return !old_crtc_state->c8_planes !=3D !new_crtc_state->c8_planes;
+>  }
+>  =
 
-CI Bug Log - changes from CI_DRM_7561 -> Patchwork_15749
-====================================================
+> +static void initialize_trans_port_sync_mode_state(struct intel_crtc_stat=
+e *crtc_state)
+> +{
+> +	crtc_state->master_transcoder =3D INVALID_TRANSCODER;
+> +	crtc_state->sync_mode_slaves_mask =3D 0;
+> +}
+> +
+>  static int icl_add_sync_mode_crtcs(struct intel_crtc_state *crtc_state)
+>  {
+>  	struct drm_crtc *crtc =3D crtc_state->uapi.crtc;
+> @@ -12059,11 +12065,22 @@ static int icl_add_sync_mode_crtcs(struct intel=
+_crtc_state *crtc_state)
+>  	struct drm_crtc *master_crtc =3D NULL;
+>  	struct drm_crtc_state *master_crtc_state;
+>  	struct intel_crtc_state *master_pipe_config;
+> -	int i, tile_group_id;
+> +	int i, tile_group_id =3D 0, num_tiled_conns =3D 0;
+>  =
 
-Summary
--------
+>  	if (INTEL_GEN(dev_priv) < 11)
+>  		return 0;
+>  =
 
-  **SUCCESS**
+> +	/* If all tiles not present do not make master slave assignments
+> +	 * Here we assume all tiles belong to the same tile group for now.
+> +	 */
+> +	for_each_new_connector_in_state(&state->base, connector, connector_stat=
+e, i) {
+> +		if (connector->has_tile) {
+> +			if (!tile_group_id)
+> +				tile_group_id =3D connector->tile_group->id;
 
-  No regressions found.
+Isn't 0 a valid tile group id?
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15749/index.html
+> +			num_tiled_conns++;
+> +		}
 
-Known issues
-------------
+This whole thing looks confused. Should it not just look for the same
+tile group as what the current connector belongs to?
 
-  Here are the changes found in Patchwork_15749 that come from known issues:
+> +	}
+> +
+>  	/*
+>  	 * In case of tiled displays there could be one or more slaves but ther=
+e is
+>  	 * only one master. Lets make the CRTC used by the connector correspond=
+ing
+> @@ -12077,8 +12094,15 @@ static int icl_add_sync_mode_crtcs(struct intel_=
+crtc_state *crtc_state)
+>  		if (!connector->has_tile)
+>  			continue;
+>  		if (crtc_state->hw.mode.hdisplay !=3D connector->tile_h_size ||
+> -		    crtc_state->hw.mode.vdisplay !=3D connector->tile_v_size)
+> +		    crtc_state->hw.mode.vdisplay !=3D connector->tile_v_size) {
+> +			initialize_trans_port_sync_mode_state(crtc_state);
+>  			return 0;
+> +		}
+> +		if (connector->tile_group->id =3D=3D tile_group_id &&
+> +		    num_tiled_conns < connector->num_h_tile * connector->num_v_tile) {
+> +			initialize_trans_port_sync_mode_state(crtc_state);
+> +			return 0;
+> +		}
+>  		if (connector->tile_h_loc =3D=3D connector->num_h_tile - 1 &&
+>  		    connector->tile_v_loc =3D=3D connector->num_v_tile - 1)
+>  			continue;
 
-### IGT changes ###
+This whole thing seems kinda overly complicated. I suggest it should
+just blindly go through all connectors of the same tile group and pick
+the lowest transcoder as the master, which is the logic Jose is using
+for MST. Except I guess we have to special case the EDP transcoder
+for port sync since it can't be a slave. So a simple numeric comparison
+won't quite do like used for MST.
 
-#### Issues hit ####
+And then we should probably move this thing to the encoder
+.compute_config(). I suppose it should look in the end something like:
 
-  * igt@kms_setmode@basic-clone-single-crtc:
-    - fi-kbl-x1275:       [PASS][1] -> [DMESG-WARN][2] ([i915#62] / [i915#92])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7561/fi-kbl-x1275/igt@kms_setmode@basic-clone-single-crtc.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15749/fi-kbl-x1275/igt@kms_setmode@basic-clone-single-crtc.html
+compute_config() {
+	...
+	crtc_state->master =3D compute_master_transcoder();
+	crtc_state->slaves =3D 0;
+	if (master_transcoder =3D=3D cpu_transcoder)
+		crtc_state->master =3D INVALID;
+		crtc_state->slave =3D compute_slave_transcoders();
+	}
+}
 
-  
-#### Possible fixes ####
+That keeps it very readable and avoids the confusing stuff of
+comptue_config() for one pipe randomly mutating the states of
+the other pipes.
 
-  * igt@gem_exec_suspend@basic-s4-devices:
-    - {fi-tgl-u}:         [INCOMPLETE][3] ([i915#460]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7561/fi-tgl-u/igt@gem_exec_suspend@basic-s4-devices.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15749/fi-tgl-u/igt@gem_exec_suspend@basic-s4-devices.html
+-- =
 
-  * igt@gem_sync@basic-store-all:
-    - fi-tgl-y:           [INCOMPLETE][5] -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7561/fi-tgl-y/igt@gem_sync@basic-store-all.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15749/fi-tgl-y/igt@gem_sync@basic-store-all.html
-
-  * igt@i915_selftest@live_blt:
-    - fi-hsw-4770r:       [DMESG-FAIL][7] ([i915#553] / [i915#725]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7561/fi-hsw-4770r/igt@i915_selftest@live_blt.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15749/fi-hsw-4770r/igt@i915_selftest@live_blt.html
-
-  * igt@i915_selftest@live_gem_contexts:
-    - fi-cfl-8700k:       [DMESG-FAIL][9] ([i915#730]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7561/fi-cfl-8700k/igt@i915_selftest@live_gem_contexts.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15749/fi-cfl-8700k/igt@i915_selftest@live_gem_contexts.html
-
-  
-#### Warnings ####
-
-  * igt@gem_exec_suspend@basic-s0:
-    - fi-kbl-x1275:       [DMESG-WARN][11] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][12] ([i915#62] / [i915#92]) +4 similar issues
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7561/fi-kbl-x1275/igt@gem_exec_suspend@basic-s0.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15749/fi-kbl-x1275/igt@gem_exec_suspend@basic-s0.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:
-    - fi-kbl-x1275:       [DMESG-WARN][13] ([i915#62] / [i915#92]) -> [DMESG-WARN][14] ([i915#62] / [i915#92] / [i915#95]) +6 similar issues
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7561/fi-kbl-x1275/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15749/fi-kbl-x1275/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#111593]: https://bugs.freedesktop.org/show_bug.cgi?id=111593
-  [i915#460]: https://gitlab.freedesktop.org/drm/intel/issues/460
-  [i915#553]: https://gitlab.freedesktop.org/drm/intel/issues/553
-  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
-  [i915#725]: https://gitlab.freedesktop.org/drm/intel/issues/725
-  [i915#730]: https://gitlab.freedesktop.org/drm/intel/issues/730
-  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
-  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
-
-
-Participating hosts (55 -> 47)
-------------------------------
-
-  Missing    (8): fi-icl-1065g7 fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_7561 -> Patchwork_15749
-
-  CI-20190529: 20190529
-  CI_DRM_7561: defef87d82a872aa888a857583a2a9d7245661af @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5349: 048f58513d8b8ec6bb307a939f0ac959bc0f0e10 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_15749: 97cb51cfd41213d708cbde41a42c1fd64d18aa88 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-97cb51cfd412 drm/i915/wopcm: convert to drm device based logging
-39839157ae6f drm/i915/uc: convert to drm device based logging
-dea0baf56927 drm/atomic: convert to drm device based logging
-1ab5b849bf17 drm/mipi-dbi: convert to drm device based logging
-82e3e24464fc drm/gem-fb-helper: convert to drm device based logging
-bcf9d3cbc0bb drm/fb-helper: convert to drm device based logging
-6e1203c54013 drm/client: convert to drm device based logging
-2ccbb2bd92a4 drm/print: introduce new struct drm_device based logging macros
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15749/index.html
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
