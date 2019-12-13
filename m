@@ -2,38 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 53AAB11E21D
-	for <lists+intel-gfx@lfdr.de>; Fri, 13 Dec 2019 11:37:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D208711E234
+	for <lists+intel-gfx@lfdr.de>; Fri, 13 Dec 2019 11:41:46 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B22B46E427;
-	Fri, 13 Dec 2019 10:37:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0FAEA6E448;
+	Fri, 13 Dec 2019 10:41:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 595A36E427;
- Fri, 13 Dec 2019 10:37:51 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 096DE6E43F;
+ Fri, 13 Dec 2019 10:41:40 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 13 Dec 2019 02:37:50 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,309,1571727600"; d="scan'208";a="415602524"
-Received: from ramaling-i9x.iind.intel.com (HELO intel.com) ([10.99.66.154])
- by fmsmga006.fm.intel.com with ESMTP; 13 Dec 2019 02:37:46 -0800
-Date: Fri, 13 Dec 2019 16:07:00 +0530
-From: Ramalingam C <ramalingam.c@intel.com>
-To: Sean Paul <sean@poorly.run>
-Message-ID: <20191213103700.GC3829@intel.com>
-References: <20191212190230.188505-1-sean@poorly.run>
- <20191212190230.188505-4-sean@poorly.run>
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 13 Dec 2019 02:41:39 -0800
+X-IronPort-AV: E=Sophos;i="5.69,309,1571727600"; d="scan'208";a="204291289"
+Received: from jnikula-mobl3.fi.intel.com (HELO localhost) ([10.237.66.161])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 13 Dec 2019 02:41:36 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: Hans Verkuil <hverkuil@xs4all.nl>, dri-devel@lists.freedesktop.org,
+ linux-fbdev@vger.kernel.org
+In-Reply-To: <966b9db7-b6c2-d3a2-0842-574186418860@xs4all.nl>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <cover.1575390740.git.jani.nikula@intel.com>
+ <71794337f8611271f2c1fdb3882119a58e743a87.1575390741.git.jani.nikula@intel.com>
+ <966b9db7-b6c2-d3a2-0842-574186418860@xs4all.nl>
+Date: Fri, 13 Dec 2019 12:41:33 +0200
+Message-ID: <87a77w33tu.fsf@intel.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20191212190230.188505-4-sean@poorly.run>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH v2 03/12] drm/i915: WARN if HDCP signalling
- is enabled upon disable
+Subject: Re: [Intel-gfx] [PATCH v3 10/12] media: constify fb ops across all
+ drivers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,35 +46,97 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: daniel.vetter@ffwll.ch, intel-gfx@lists.freedesktop.org,
- Sean Paul <seanpaul@chromium.org>, dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>, intel-gfx@lists.freedesktop.org,
+ Andy Walls <awalls@md.metrocast.net>, Sakari Ailus <sakari.ailus@iki.fi>,
+ linux-media@vger.kernel.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gMjAxOS0xMi0xMiBhdCAxNDowMjoyMSAtMDUwMCwgU2VhbiBQYXVsIHdyb3RlOgo+IEZyb206
-IFNlYW4gUGF1bCA8c2VhbnBhdWxAY2hyb21pdW0ub3JnPgo+IAo+IEhEQ1Agc2lnbmFsbGluZyBz
-aG91bGQgbm90IGJlIGxlZnQgb24sIFdBUk4gaWYgaXQgaXMKTEdUTQoKUmV2aWV3ZWQtYnk6IFJh
-bWFsaW5nYW0gQyA8cmFtYWxpbmdhbS5jQGludGVsLmNvbT4KPiAKPiBDYzogVmlsbGUgU3lyasOk
-bMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KPiBDYzogRGFuaWVsIFZldHRlciA8
-ZGFuaWVsLnZldHRlckBmZndsbC5jaD4KPiBTaWduZWQtb2ZmLWJ5OiBTZWFuIFBhdWwgPHNlYW5w
-YXVsQGNocm9taXVtLm9yZz4KPiAKPiBDaGFuZ2VzIGluIHYyOgo+IC0gQWRkZWQgdG8gdGhlIHNl
-dCBpbiBsaWV1IG9mIGp1c3QgY2xlYXJpbmcgdGhlIGJpdAo+IC0tLQo+ICBkcml2ZXJzL2dwdS9k
-cm0vaTkxNS9kaXNwbGF5L2ludGVsX2RkaS5jIHwgMiArKwo+ICAxIGZpbGUgY2hhbmdlZCwgMiBp
-bnNlcnRpb25zKCspCj4gCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3Bs
-YXkvaW50ZWxfZGRpLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RkaS5j
-Cj4gaW5kZXggNWI2ZjMyNTE3Yzc1Li40YTViZGYzZWY1MWQgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVy
-cy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kZGkuYwo+ICsrKyBiL2RyaXZlcnMvZ3B1L2Ry
-bS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGRpLmMKPiBAQCAtMTk1MSw2ICsxOTUxLDggQEAgdm9pZCBp
-bnRlbF9kZGlfZGlzYWJsZV90cmFuc2NvZGVyX2Z1bmMoY29uc3Qgc3RydWN0IGludGVsX2NydGNf
-c3RhdGUgKmNydGNfc3RhdGUKPiAgCWk5MTVfcmVnX3QgcmVnID0gVFJBTlNfRERJX0ZVTkNfQ1RM
-KGNwdV90cmFuc2NvZGVyKTsKPiAgCXUzMiB2YWwgPSBJOTE1X1JFQUQocmVnKTsKPiAgCj4gKwlX
-QVJOX09OKHZhbCAmIFRSQU5TX0RESV9IRENQX1NJR05BTExJTkcpOwo+ICsKPiAgCWlmIChJTlRF
-TF9HRU4oZGV2X3ByaXYpID49IDEyKSB7Cj4gIAkJdmFsICY9IH4oVFJBTlNfRERJX0ZVTkNfRU5B
-QkxFIHwgVEdMX1RSQU5TX0RESV9QT1JUX01BU0sgfAo+ICAJCQkgVFJBTlNfRERJX0RQX1ZDX1BB
-WUxPQURfQUxMT0MpOwo+IC0tIAo+IFNlYW4gUGF1bCwgU29mdHdhcmUgRW5naW5lZXIsIEdvb2ds
-ZSAvIENocm9taXVtIE9TCj4gCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNr
-dG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2lu
-dGVsLWdmeAo=
+On Thu, 12 Dec 2019, Hans Verkuil <hverkuil@xs4all.nl> wrote:
+> On 12/3/19 5:38 PM, Jani Nikula wrote:
+>> Now that the fbops member of struct fb_info is const, we can start
+>> making the ops const as well.
+>> 
+>> Remove the redundant fbops assignments while at it.
+>> 
+>> v2:
+>> - actually add const in vivid
+>> - fix typo (Christophe de Dinechin)
+>> 
+>> Cc: Hans Verkuil <hverkuil@xs4all.nl>
+>> Cc: Andy Walls <awalls@md.metrocast.net>
+>> Cc: linux-media@vger.kernel.org
+>> Cc: ivtv-devel@ivtvdriver.org
+>> Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
+>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>
+> Acked-by: Hans Verkuil <hverkuil-cisco@xs4all.nl>
+
+Pushed to drm-misc-next, thanks for the reviews and acks.
+
+BR,
+Jani.
+
+>
+> Thanks!
+>
+> 	Hans
+>
+>> ---
+>>  drivers/media/pci/ivtv/ivtvfb.c          | 3 +--
+>>  drivers/media/platform/vivid/vivid-osd.c | 3 +--
+>>  2 files changed, 2 insertions(+), 4 deletions(-)
+>> 
+>> diff --git a/drivers/media/pci/ivtv/ivtvfb.c b/drivers/media/pci/ivtv/ivtvfb.c
+>> index 95a56cce9b65..f2922b554b09 100644
+>> --- a/drivers/media/pci/ivtv/ivtvfb.c
+>> +++ b/drivers/media/pci/ivtv/ivtvfb.c
+>> @@ -925,7 +925,7 @@ static int ivtvfb_blank(int blank_mode, struct fb_info *info)
+>>  	return 0;
+>>  }
+>>  
+>> -static struct fb_ops ivtvfb_ops = {
+>> +static const struct fb_ops ivtvfb_ops = {
+>>  	.owner = THIS_MODULE,
+>>  	.fb_write       = ivtvfb_write,
+>>  	.fb_check_var   = ivtvfb_check_var,
+>> @@ -1049,7 +1049,6 @@ static int ivtvfb_init_vidmode(struct ivtv *itv)
+>>  
+>>  	oi->ivtvfb_info.node = -1;
+>>  	oi->ivtvfb_info.flags = FBINFO_FLAG_DEFAULT;
+>> -	oi->ivtvfb_info.fbops = &ivtvfb_ops;
+>>  	oi->ivtvfb_info.par = itv;
+>>  	oi->ivtvfb_info.var = oi->ivtvfb_defined;
+>>  	oi->ivtvfb_info.fix = oi->ivtvfb_fix;
+>> diff --git a/drivers/media/platform/vivid/vivid-osd.c b/drivers/media/platform/vivid/vivid-osd.c
+>> index f2e789bdf4a6..fbaec8acc161 100644
+>> --- a/drivers/media/platform/vivid/vivid-osd.c
+>> +++ b/drivers/media/platform/vivid/vivid-osd.c
+>> @@ -244,7 +244,7 @@ static int vivid_fb_blank(int blank_mode, struct fb_info *info)
+>>  	return 0;
+>>  }
+>>  
+>> -static struct fb_ops vivid_fb_ops = {
+>> +static const struct fb_ops vivid_fb_ops = {
+>>  	.owner = THIS_MODULE,
+>>  	.fb_check_var   = vivid_fb_check_var,
+>>  	.fb_set_par     = vivid_fb_set_par,
+>> @@ -311,7 +311,6 @@ static int vivid_fb_init_vidmode(struct vivid_dev *dev)
+>>  
+>>  	dev->fb_info.node = -1;
+>>  	dev->fb_info.flags = FBINFO_FLAG_DEFAULT;
+>> -	dev->fb_info.fbops = &vivid_fb_ops;
+>>  	dev->fb_info.par = dev;
+>>  	dev->fb_info.var = dev->fb_defined;
+>>  	dev->fb_info.fix = dev->fb_fix;
+>> 
+>
+
+-- 
+Jani Nikula, Intel Open Source Graphics Center
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
