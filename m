@@ -1,40 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB0E711E8DE
-	for <lists+intel-gfx@lfdr.de>; Fri, 13 Dec 2019 18:03:27 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7CBDA11E8E1
+	for <lists+intel-gfx@lfdr.de>; Fri, 13 Dec 2019 18:06:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 27F906EB46;
-	Fri, 13 Dec 2019 17:03:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E47FF6EB54;
+	Fri, 13 Dec 2019 17:06:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AE2766EB46
- for <intel-gfx@lists.freedesktop.org>; Fri, 13 Dec 2019 17:03:24 +0000 (UTC)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D40086EB54
+ for <intel-gfx@lists.freedesktop.org>; Fri, 13 Dec 2019 17:06:05 +0000 (UTC)
 X-Amp-Result: UNKNOWN
 X-Amp-Original-Verdict: FILE UNKNOWN
 X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 13 Dec 2019 09:03:23 -0800
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga106.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 13 Dec 2019 09:06:05 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,309,1571727600"; d="scan'208";a="204375544"
+X-IronPort-AV: E=Sophos;i="5.69,309,1571727600"; d="scan'208";a="211497156"
 Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by orsmga007.jf.intel.com with SMTP; 13 Dec 2019 09:03:20 -0800
+ by fmsmga008.fm.intel.com with SMTP; 13 Dec 2019 09:06:02 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 13 Dec 2019 19:03:20 +0200
-Date: Fri, 13 Dec 2019 19:03:20 +0200
+ Fri, 13 Dec 2019 19:06:01 +0200
+Date: Fri, 13 Dec 2019 19:06:01 +0200
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Vandita Kulkarni <vandita.kulkarni@intel.com>
-Message-ID: <20191213170320.GA1208@intel.com>
-References: <20191213154515.12121-1-vandita.kulkarni@intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>
+Message-ID: <20191213170601.GB1208@intel.com>
+References: <20191213152823.26817-1-ville.syrjala@linux.intel.com>
+ <157625247338.7535.668231195608100084@skylake-alporthouse-com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20191213154515.12121-1-vandita.kulkarni@intel.com>
+In-Reply-To: <157625247338.7535.668231195608100084@skylake-alporthouse-com>
 User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Fix WARN_ON condition for cursor
- plane ddb allocation
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Add device name to display
+ tracepoints
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,63 +48,67 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com, intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Dec 13, 2019 at 09:15:15PM +0530, Vandita Kulkarni wrote:
-> In some cases min_ddb_alloc can be U16_MAX, exclude it
-> from the WARN_ON.
+On Fri, Dec 13, 2019 at 03:54:33PM +0000, Chris Wilson wrote:
+> Quoting Ville Syrjala (2019-12-13 15:28:23)
+> > From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > =
 
-The two cases I think are:
-latency[level]=3D=3D0 or wm[level].res_lines>31
+> > Include dev_name() in the tracpoints so one can filter based on
+> > the device.
+> > =
 
-You said you hit the latter case.
+> > Example:
+> > echo 'dev=3D=3D"0000:00:02.0"' > events/i915/intel_cpu_fifo_underrun/fi=
+lter
+> > =
 
-May want to mention those in the commit message.
+> > TODO: maybe don't both specifying the field name always and just
+> >       make it 'dev' (or whatever) always?
+> > TODO: add for other tracpoints too if this is deemed good enough
+> > =
 
+> > Suggested-by: Chris Wilson <chris@chris-wilson.co.uk>
+> > Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/i915_trace.h | 96 +++++++++++++++++++++----------
+> >  1 file changed, 65 insertions(+), 31 deletions(-)
+> > =
+
+> > diff --git a/drivers/gpu/drm/i915/i915_trace.h b/drivers/gpu/drm/i915/i=
+915_trace.h
+> > index 7ef7a1e1664c..8931b6756f44 100644
+> > --- a/drivers/gpu/drm/i915/i915_trace.h
+> > +++ b/drivers/gpu/drm/i915/i915_trace.h
+> > @@ -20,11 +20,18 @@
+> >  =
+
+> >  /* watermark/fifo updates */
+> >  =
+
+> > +#define __dev_name_i915(field, i915) __string(field, dev_name((i915)->=
+drm.dev))
+> > +#define __dev_name_crtc(field, crtc) __string(field, dev_name((crtc)->=
+base.dev->dev))
+> > +#define __assign_dev_name_i915(field, i915) __assign_str(field, dev_na=
+me((i915)->drm.dev))
+> > +#define __assign_dev_name_crtc(field, crtc) __assign_str(field, dev_na=
+me((crtc)->base.dev->dev))
+> > +#define __get_dev_name(field) __get_str(field)
 > =
 
-> Fixes: 10a7e07b68b9 ("drm/i915: Make sure cursor has enough ddb for the s=
-elected wm level")
-> Suggested-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> Signed-off-by: Vandita Kulkarni <vandita.kulkarni@intel.com>
-> ---
->  drivers/gpu/drm/i915/intel_pm.c | 6 ++++--
->  1 file changed, 4 insertions(+), 2 deletions(-)
-> =
+> Storing the string is quite expensive, I thought. Can we stash the i915
+> and stringify in the TP_printk? Or is stashing the string the secret for
+> the dev=3D=3D filter?
 
-> diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel=
-_pm.c
-> index ccbbdf4a6aab..cec4fa79422c 100644
-> --- a/drivers/gpu/drm/i915/intel_pm.c
-> +++ b/drivers/gpu/drm/i915/intel_pm.c
-> @@ -4312,8 +4312,10 @@ skl_allocate_pipe_ddb(struct intel_crtc_state *crt=
-c_state,
->  				&crtc_state->wm.skl.optimal.planes[plane_id];
->  =
-
->  			if (plane_id =3D=3D PLANE_CURSOR) {
-> -				if (WARN_ON(wm->wm[level].min_ddb_alloc >
-> -					    total[PLANE_CURSOR])) {
-> +				if (wm->wm[level].min_ddb_alloc >
-> +				    total[PLANE_CURSOR]) {
-> +					WARN_ON(wm->wm[level].min_ddb_alloc !=3D
-> +						U16_MAX);
->  					blocks =3D U32_MAX;
-
-The line wraps make this look rather ugly. Might be better to just
-ignore the 80col limit here.
-
-Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-
->  					break;
->  				}
-> -- =
-
-> 2.21.0.5.gaeb582a
+Last time I stashed a pointer in there people complained that it can
+disappear before being consumed and cause a very theoretical oops.
+But I guess we could stash just the pci devfn and whatnot.
 
 -- =
 
