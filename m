@@ -2,55 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2AC6711ED03
-	for <lists+intel-gfx@lfdr.de>; Fri, 13 Dec 2019 22:40:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 550DA11ED1F
+	for <lists+intel-gfx@lfdr.de>; Fri, 13 Dec 2019 22:43:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7E63A6EDD9;
-	Fri, 13 Dec 2019 21:40:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 36FB56EDDE;
+	Fri, 13 Dec 2019 21:43:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-lj1-x241.google.com (mail-lj1-x241.google.com
- [IPv6:2a00:1450:4864:20::241])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BDED96EDD1
- for <intel-gfx@lists.freedesktop.org>; Fri, 13 Dec 2019 21:40:17 +0000 (UTC)
-Received: by mail-lj1-x241.google.com with SMTP id s22so234356ljs.7
- for <intel-gfx@lists.freedesktop.org>; Fri, 13 Dec 2019 13:40:17 -0800 (PST)
+Received: from mail-lj1-x242.google.com (mail-lj1-x242.google.com
+ [IPv6:2a00:1450:4864:20::242])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 50E056EDDD
+ for <intel-gfx@lists.freedesktop.org>; Fri, 13 Dec 2019 21:43:23 +0000 (UTC)
+Received: by mail-lj1-x242.google.com with SMTP id r19so266040ljg.3
+ for <intel-gfx@lists.freedesktop.org>; Fri, 13 Dec 2019 13:43:23 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=anholt-net.20150623.gappssmtp.com; s=20150623;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=BFwDG2MYVSxwjtoxPSh4lpuO+A2kFnUi1WWJsTtLfl4=;
- b=XPtRvT4HoRCyXWna51SLY/F2wFwiSQss2qJ0pbwKfSwNupS/SOWIIATssih9T/YXCl
- 4IXYxnZ6s/c30SbSiYJuYkykTZwdnghcbt74Y2FSToizbomZnAufrQwDs3rQJlzv2ABa
- SvTqCB2WdohyrjqXCd82DU6UiupKwPthMAwAPQU7g+lF9nVRUNhnjqHBtTCUjRbYTYzI
- dYg4V5pmcW4XROGCxm5dTGOlHEqbpcEnNjJiv6+cVmrPE48gXXTK4ABIHEow9FLHKbkB
- LpktECzva4mou2fRds1VU6M8F4rBfOtkFkK9WLWVhcC4s9YxO6Wh3pPXfSSJ91mJCxZ/
- JPuw==
+ :cc; bh=d1dqZmlN6wtZ4Bk73UD3YMJdSI9oY7E0XauOGfRocNg=;
+ b=FNIzZBTGcAGwQtyQWIHTc2FT4kaoV+xoI1SVwsFZwZGywnVyK/R2P8vDiTsQ7UO6rZ
+ PNHSxkGmFQDtJ/vS2irNWLlfp8YTB7euE3Ps6Wnc3jxwLp+nd3ccNGsBu9yV4VMfoTE6
+ sqycY542dafg1VVA2HvsewuvcdReGVGgRQVxjSqdSosxaNtg5Hb01NUwD3mvEwF5AkbF
+ z0S6b6joCxTic6WCyTaDYeDG+PoAB4bJWQSzocBaRMdqL4E0qG1Pc4RYipiSJ9q6JuH9
+ jiEqfgJLyjCDOzzDS1Ashx1nBwUAj3MKY7E6mibyI8/+L/NUxNAsRO3WVYigXT/kItHt
+ Oe9g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=BFwDG2MYVSxwjtoxPSh4lpuO+A2kFnUi1WWJsTtLfl4=;
- b=TbaVgYNhhpw0gCp9hbcfEnJSNWfDOkzGy9wzm9sFMjoB+iJdWgmTha59FU+fLCMi49
- y45uZ4K+yF/vkrRE/raDGt2RTs+DKJcmfBhqwYzw0yDBObtq2sJPdHS0/4LAn8OV9f+e
- Dc1DBg4gtcUaXG0+cLNt65lorxcpWqscxaWBs02hOK+/+AAFelnTMMET6v/lnR25C/Vg
- hq9OjkIbN2dhdYuVWm+/zV+KePHBjlH4mpcUbce2GBRFfRbi3p+/szQtphUcezN2w0h+
- e5dailcCE1dW/+S/5dlAVhB7yXh2q07LqlY+dhfz7XrJDwUxcSpAqo2H0rSVhM4MiLEH
- tOtg==
-X-Gm-Message-State: APjAAAUbS/rdtLb2V2piIt2aZkbg/+hAwsOWqGzH3YLx2OMavIOQfnO6
- HdN5PINHkJ1FOyl+pWL/I8PFszfa3Cj149rOqULy0g==
-X-Google-Smtp-Source: APXvYqyFJ1cg7nunhp8NhBIUmsFrQJKeTzNK7xDyjUp3CnRoSGUe88NfOdkb6dyH2jBAnSpTF4ofo7qM6ioa4PtH08c=
-X-Received: by 2002:a2e:9e16:: with SMTP id e22mr10535184ljk.220.1576273216096; 
- Fri, 13 Dec 2019 13:40:16 -0800 (PST)
+ bh=d1dqZmlN6wtZ4Bk73UD3YMJdSI9oY7E0XauOGfRocNg=;
+ b=LLuZ46+cPT998z/jF073x/Aw5Joj75U32aFDsrkK/AfQTON/QXCzefq8adoRMo8T/+
+ Tb3TD5LX5XQElGDFNVpmf9tWuN469geitSkxRaUvaxexw5k0HMvtuOjr7kiBq9i4EsOz
+ 6v4P0vEGlpjVvWrECTnK+xi+S7QKv5Lc+MJni5mg17B1NbYwZALV+/0ORHLBCWq2Is4/
+ zrw6lFfXg+kGT71fO2eAVWO7x2q/O5tvbBqqn48STvu1N2zSbW5+h6E2w3RVyytxGIb0
+ VXopi980rcjsCnzg1NW5KCRu2YYzWplTh3DaDregxfgQ3bkQ1xvOKSU13BGRAX0ibMsk
+ wVOQ==
+X-Gm-Message-State: APjAAAX2CTP8YrEmdde5sroE6iKlPBpQK+FQV0EWB2I5krrF+kjMfLPB
+ 4pTqbpKUOudRkWHn9CPkupO9bjluyApisqzsx9Nprg==
+X-Google-Smtp-Source: APXvYqxrwXpFensePEvAhUtMCpBDyxM2AkB/737EJXgxOA60qb+ARhLag7tWVkc4+QmWh8ooFkeutE74P47rtVf8EZs=
+X-Received: by 2002:a2e:808a:: with SMTP id i10mr10469003ljg.151.1576273401824; 
+ Fri, 13 Dec 2019 13:43:21 -0800 (PST)
 MIME-Version: 1.0
 References: <20191125094356.161941-1-daniel.vetter@ffwll.ch>
- <20191125094356.161941-5-daniel.vetter@ffwll.ch>
- <20191213201013.GM624164@phenom.ffwll.local>
-In-Reply-To: <20191213201013.GM624164@phenom.ffwll.local>
+ <20191125094356.161941-4-daniel.vetter@ffwll.ch>
+ <20191213200848.GL624164@phenom.ffwll.local>
+In-Reply-To: <20191213200848.GL624164@phenom.ffwll.local>
 From: Eric Anholt <eric@anholt.net>
-Date: Fri, 13 Dec 2019 13:40:24 -0800
-Message-ID: <CADaigPW509VU1QrU0j53D6Re9cC-2j2P3iaj8OiaXR_3da7c2g@mail.gmail.com>
+Date: Fri, 13 Dec 2019 13:43:30 -0800
+Message-ID: <CADaigPXxgiWSd20BkVFXXxcqDrwY0yGmqgQM+0G0X0mob8nt8g@mail.gmail.com>
 To: Daniel Vetter <daniel@ffwll.ch>
-Subject: Re: [Intel-gfx] [PATCH 4/4] drm/vc4: Use dma_resv locking wrappers
+Subject: Re: [Intel-gfx] [PATCH 3/4] drm/msm: Use dma_resv locking wrappers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,85 +66,75 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
  Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
  DRI Development <dri-devel@lists.freedesktop.org>,
- Daniel Vetter <daniel.vetter@intel.com>
+ linux-arm-msm@vger.kernel.org, Daniel Vetter <daniel.vetter@intel.com>,
+ freedreno@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Dec 13, 2019 at 12:10 PM Daniel Vetter <daniel@ffwll.ch> wrote:
+On Fri, Dec 13, 2019 at 12:08 PM Daniel Vetter <daniel@ffwll.ch> wrote:
 >
-> On Mon, Nov 25, 2019 at 10:43:56AM +0100, Daniel Vetter wrote:
+> On Mon, Nov 25, 2019 at 10:43:55AM +0100, Daniel Vetter wrote:
 > > I'll add more fancy logic to them soon, so everyone really has to use
 > > them. Plus they already provide some nice additional debug
 > > infrastructure on top of direct ww_mutex usage for the fences tracked
 > > by dma_resv.
 > >
 > > Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+> > Cc: Rob Clark <robdclark@gmail.com>
+> > Cc: Sean Paul <sean@poorly.run>
+> > Cc: linux-arm-msm@vger.kernel.org
+> > Cc: freedreno@lists.freedesktop.org
 >
 > Ping for some review/acks.
 >
 > Thanks, Daniel
 >
 > > ---
-> >  drivers/gpu/drm/vc4/vc4_gem.c | 11 +++++------
-> >  1 file changed, 5 insertions(+), 6 deletions(-)
+> >  drivers/gpu/drm/msm/msm_gem_submit.c | 10 +++++-----
+> >  1 file changed, 5 insertions(+), 5 deletions(-)
 > >
-> > diff --git a/drivers/gpu/drm/vc4/vc4_gem.c b/drivers/gpu/drm/vc4/vc4_gem.c
-> > index 7a06cb6e31c5..e1cfc3ccd05a 100644
-> > --- a/drivers/gpu/drm/vc4/vc4_gem.c
-> > +++ b/drivers/gpu/drm/vc4/vc4_gem.c
-> > @@ -568,7 +568,7 @@ vc4_unlock_bo_reservations(struct drm_device *dev,
-> >       for (i = 0; i < exec->bo_count; i++) {
-> >               struct drm_gem_object *bo = &exec->bo[i]->base;
+> > diff --git a/drivers/gpu/drm/msm/msm_gem_submit.c b/drivers/gpu/drm/msm/msm_gem_submit.c
+> > index 7d04c47d0023..385d4965a8d0 100644
+> > --- a/drivers/gpu/drm/msm/msm_gem_submit.c
+> > +++ b/drivers/gpu/drm/msm/msm_gem_submit.c
+> > @@ -157,7 +157,7 @@ static void submit_unlock_unpin_bo(struct msm_gem_submit *submit,
+> >               msm_gem_unpin_iova(&msm_obj->base, submit->aspace);
 > >
-> > -             ww_mutex_unlock(&bo->resv->lock);
-> > +             dma_resv_unlock(bo->resv);
-> >       }
+> >       if (submit->bos[i].flags & BO_LOCKED)
+> > -             ww_mutex_unlock(&msm_obj->base.resv->lock);
+> > +             dma_resv_unlock(msm_obj->base.resv);
 > >
-> >       ww_acquire_fini(acquire_ctx);
-> > @@ -595,8 +595,7 @@ vc4_lock_bo_reservations(struct drm_device *dev,
-> >  retry:
-> >       if (contended_lock != -1) {
-> >               bo = &exec->bo[contended_lock]->base;
-> > -             ret = ww_mutex_lock_slow_interruptible(&bo->resv->lock,
-> > -                                                    acquire_ctx);
-> > +             ret = dma_resv_lock_slow_interruptible(bo->resv, acquire_ctx);
-> >               if (ret) {
-> >                       ww_acquire_done(acquire_ctx);
-> >                       return ret;
-> > @@ -609,19 +608,19 @@ vc4_lock_bo_reservations(struct drm_device *dev,
+> >       if (backoff && !(submit->bos[i].flags & BO_VALID))
+> >               submit->bos[i].iova = 0;
+> > @@ -180,8 +180,8 @@ static int submit_lock_objects(struct msm_gem_submit *submit)
+> >               contended = i;
 > >
-> >               bo = &exec->bo[i]->base;
-> >
-> > -             ret = ww_mutex_lock_interruptible(&bo->resv->lock, acquire_ctx);
-> > +             ret = dma_resv_lock_interruptible(bo->resv, acquire_ctx);
-> >               if (ret) {
-> >                       int j;
-> >
-> >                       for (j = 0; j < i; j++) {
-> >                               bo = &exec->bo[j]->base;
-> > -                             ww_mutex_unlock(&bo->resv->lock);
-> > +                             dma_resv_unlock(bo->resv);
-> >                       }
-> >
-> >                       if (contended_lock != -1 && contended_lock >= i) {
-> >                               bo = &exec->bo[contended_lock]->base;
-> >
-> > -                             ww_mutex_unlock(&bo->resv->lock);
-> > +                             dma_resv_unlock(bo->resv);
-> >                       }
-> >
-> >                       if (ret == -EDEADLK) {
+> >               if (!(submit->bos[i].flags & BO_LOCKED)) {
+> > -                     ret = ww_mutex_lock_interruptible(&msm_obj->base.resv->lock,
+> > -                                     &submit->ticket);
+> > +                     ret = dma_resv_lock_interruptible(msm_obj->base.resv,
+> > +                                                       &submit->ticket);
+> >                       if (ret)
+> >                               goto fail;
+> >                       submit->bos[i].flags |= BO_LOCKED;
+> > @@ -202,8 +202,8 @@ static int submit_lock_objects(struct msm_gem_submit *submit)
+> >       if (ret == -EDEADLK) {
+> >               struct msm_gem_object *msm_obj = submit->bos[contended].obj;
+> >               /* we lost out in a seqno race, lock and retry.. */
+> > -             ret = ww_mutex_lock_slow_interruptible(&msm_obj->base.resv->lock,
+> > -                             &submit->ticket);
+> > +             ret = dma_resv_lock_slow_interruptible(msm_obj->base.resv,
+> > +                                                    &submit->ticket);
+> >               if (!ret) {
+> >                       submit->bos[contended].flags |= BO_LOCKED;
+> >                       slow_locked = contended;
 > > --
 > > 2.24.0
 > >
 
-Assuming they're supposed to be exactly equivalent currently,
-
-Acked-by: Eric Anholt <eric@anholt.net>
-
-but we should really just be using drm_gem_lock_reservations()
+Reviewed-by: Eric Anholt <eric@anholt.net>
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
