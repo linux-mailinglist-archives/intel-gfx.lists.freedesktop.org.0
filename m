@@ -2,43 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E97FE11EC4B
-	for <lists+intel-gfx@lfdr.de>; Fri, 13 Dec 2019 21:57:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6594911EBF2
+	for <lists+intel-gfx@lfdr.de>; Fri, 13 Dec 2019 21:38:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 66D2C6EDC1;
-	Fri, 13 Dec 2019 20:57:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 485946EDB7;
+	Fri, 13 Dec 2019 20:38:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 4534 seconds by postgrey-1.36 at gabe;
- Fri, 13 Dec 2019 20:57:07 UTC
-Received: from 16.mo6.mail-out.ovh.net (16.mo6.mail-out.ovh.net
- [87.98.139.208])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E94FA6EDC1
- for <intel-gfx@lists.freedesktop.org>; Fri, 13 Dec 2019 20:57:07 +0000 (UTC)
-Received: from player770.ha.ovh.net (unknown [10.108.57.188])
- by mo6.mail-out.ovh.net (Postfix) with ESMTP id 2A0971F4AB0
- for <intel-gfx@lists.freedesktop.org>; Fri, 13 Dec 2019 20:41:30 +0100 (CET)
-Received: from etezian.org (net-37-116-49-191.cust.vodafonedsl.it
- [37.116.49.191]) (Authenticated sender: andi@etezian.org)
- by player770.ha.ovh.net (Postfix) with ESMTPSA id 5E691D481938;
- Fri, 13 Dec 2019 19:41:25 +0000 (UTC)
-Date: Fri, 13 Dec 2019 21:41:29 +0200
-From: Andi Shyti <andi@etezian.org>
-To: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Message-ID: <20191213194129.GC5108@jack.zhora.eu>
-References: <20191213183736.31992-1-andi@etezian.org>
- <20191213183736.31992-3-andi@etezian.org>
- <op.0cq3bxq3xaggs7@mwajdecz-mobl1.ger.corp.intel.com>
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8D5C06EDB7
+ for <intel-gfx@lists.freedesktop.org>; Fri, 13 Dec 2019 20:38:50 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga105.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 13 Dec 2019 12:38:49 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.69,311,1571727600"; d="scan'208";a="211547576"
+Received: from labuser-z97x-ud5h.jf.intel.com (HELO intel.com) ([10.54.75.49])
+ by fmsmga008.fm.intel.com with ESMTP; 13 Dec 2019 12:38:49 -0800
+Date: Fri, 13 Dec 2019 12:40:13 -0800
+From: Manasi Navare <manasi.d.navare@intel.com>
+To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+Message-ID: <20191213204012.GE19224@intel.com>
+References: <20191211211425.17821-1-manasi.d.navare@intel.com>
+ <20191211211425.17821-4-manasi.d.navare@intel.com>
+ <20191213200637.GE1208@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <op.0cq3bxq3xaggs7@mwajdecz-mobl1.ger.corp.intel.com>
-User-Agent: Mutt/1.12.2 (2019-09-21)
-X-Ovh-Tracer-Id: 16819255762392760935
-X-VR-SPAMSTATE: OK
-X-VR-SPAMSCORE: -100
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedufedrudelledguddvkecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfqggfjpdevjffgvefmvefgnecuuegrihhlohhuthemucehtddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpeffhffvuffkfhggtggujggfsehttdertddtredvnecuhfhrohhmpeetnhguihcuufhhhihtihcuoegrnhguihesvghtvgiiihgrnhdrohhrgheqnecukfhppedtrddtrddtrddtpdefjedrudduiedrgeelrdduledunecurfgrrhgrmhepmhhouggvpehsmhhtphdqohhuthdphhgvlhhopehplhgrhigvrhejjedtrdhhrgdrohhvhhdrnhgvthdpihhnvghtpedtrddtrddtrddtpdhmrghilhhfrhhomheprghnughisegvthgviihirghnrdhorhhgpdhrtghpthhtohepihhnthgvlhdqghhfgieslhhishhtshdrfhhrvggvuggvshhkthhophdrohhrghenucevlhhushhtvghrufhiiigvpedt
-Subject: Re: [Intel-gfx] [PATCH v4 2/2] drm/i915/gt: Move power management
- debug files into a gt aware debugfs
+In-Reply-To: <20191213200637.GE1208@intel.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+Subject: Re: [Intel-gfx] [PATCH 3/3] drm/i915/dp: Disable Port sync mode
+ correctly on teardown
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,48 +47,69 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel GFX <intel-gfx@lists.freedesktop.org>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Michal,
+On Fri, Dec 13, 2019 at 10:06:37PM +0200, Ville Syrj=E4l=E4 wrote:
+> On Wed, Dec 11, 2019 at 01:14:25PM -0800, Manasi Navare wrote:
+> > While clearing the Ports ync mode enable and master select bits
+> > we need to make sure that we perform a RMW for disable else
+> > it sets the other bits casuing unwanted sideeffects.
+> > =
 
-> > @@ -75,6 +75,8 @@ i915-$(CONFIG_PERF_EVENTS) += i915_pmu.o
-> >  # "Graphics Technology" (aka we talk to the gpu)
-> >  obj-y += gt/
-> >  gt-y += \
-> > +	gt/debugfs_gt.o \
-> > +	gt/debugfs_pm.o \
-> 
-> hm, maybe this should be:
-> 	gt/intel_gt_debugfs.o
-> and
-> 	gt/intel_pm_debugfs.o
+> > Bugzilla: https://gitlab.freedesktop.org/drm/intel/issues/5
+> > Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > Cc: Jani Nikula <jani.nikula@intel.com>
+> > Fixes: 51528afe7c5e ("drm/i915/display/icl: Disable transcoder port syn=
+c as part of crtc_disable() sequence")
+> > Signed-off-by: Manasi Navare <manasi.d.navare@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_display.c | 3 ++-
+> >  1 file changed, 2 insertions(+), 1 deletion(-)
+> > =
 
-this was actually the name I wanted to give it originally, but
-meantime I also wanted to have the debugfs files alphabetically
-sorted in sequence, like the selftest_* files (I can imagine in
-the future having more debugfs files).
+> > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu=
+/drm/i915/display/intel_display.c
+> > index c0a2dab3fe67..3fccda0f1f36 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_display.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> > @@ -4599,7 +4599,8 @@ static void icl_disable_transcoder_port_sync(cons=
+t struct intel_crtc_state *old_
+> >  		      transcoder_name(old_crtc_state->cpu_transcoder));
+> >  =
 
-Maybe intel_debugfs_gt.c/intel_debugfs_pm.c would be a good
-compromise?
+> >  	reg =3D TRANS_DDI_FUNC_CTL2(old_crtc_state->cpu_transcoder);
+> > -	trans_ddi_func_ctl2_val =3D ~(PORT_SYNC_MODE_ENABLE |
+> > +	trans_ddi_func_ctl2_val =3D I915_READ(reg);
+> > +	trans_ddi_func_ctl2_val &=3D ~(PORT_SYNC_MODE_ENABLE |
+> >  				    PORT_SYNC_MODE_MASTER_SELECT_MASK);
+> >  	I915_WRITE(reg, trans_ddi_func_ctl2_val);
+> =
 
-> > @@ -0,0 +1,22 @@
-> > +/* SPDX-License-Identifier: MIT */
-> 
-> in .c SPDX shall start with //
+> I915_WRITE(TRANS_DDI_FUNC_CTL2, 0);
 
-I agree this is the "official" way of doing it, and I also read
-some discussions about it in this mailing list. But however I do
-it, I know someone won't like it. I checked the style in this
-directory and tried to keep it conform to the "gt way".
+So not even consider the other values that might have been set in this reg?
+You would prefer setting this to 0 directly?
+Right now i do see that no other bits are set, but things can change when we
+start using DSI port sync mode or genlock mode etc.
 
-If no one will reject it because of it, I will send a v5 with '//'.
+Manasi
 
-Thanks for the review,
-Andi
+> =
+
+> >  }
+> > -- =
+
+> > 2.19.1
+> =
+
+> -- =
+
+> Ville Syrj=E4l=E4
+> Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
