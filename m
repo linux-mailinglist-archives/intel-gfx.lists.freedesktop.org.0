@@ -1,32 +1,36 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4DE4311EB2A
-	for <lists+intel-gfx@lfdr.de>; Fri, 13 Dec 2019 20:40:23 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F78E11EB31
+	for <lists+intel-gfx@lfdr.de>; Fri, 13 Dec 2019 20:48:19 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DBF536EC3F;
-	Fri, 13 Dec 2019 19:40:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8E2AB6EC42;
+	Fri, 13 Dec 2019 19:48:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 088B36EC3F;
- Fri, 13 Dec 2019 19:40:20 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id E6A3DA011A;
- Fri, 13 Dec 2019 19:40:19 +0000 (UTC)
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6FAD06EC42
+ for <intel-gfx@lists.freedesktop.org>; Fri, 13 Dec 2019 19:48:16 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 19572424-1500050 for multiple; Fri, 13 Dec 2019 19:47:54 +0000
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Date: Fri, 13 Dec 2019 19:40:19 -0000
-Message-ID: <157626601992.23797.14332716380172922308@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20191210123050.8799-1-jani.nikula@intel.com>
-In-Reply-To: <20191210123050.8799-1-jani.nikula@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_series_starting_with_=5B1/8=5D_drm/print=3A_introduce_new_s?=
- =?utf-8?q?truct_drm=5Fdevice_based_logging_macros_=28rev3=29?=
+To: Andi Shyti <andi@etezian.org>,
+ Michal Wajdeczko <michal.wajdeczko@intel.com>
+From: Chris Wilson <chris@chris-wilson.co.uk>
+In-Reply-To: <20191213194129.GC5108@jack.zhora.eu>
+References: <20191213183736.31992-1-andi@etezian.org>
+ <20191213183736.31992-3-andi@etezian.org>
+ <op.0cq3bxq3xaggs7@mwajdecz-mobl1.ger.corp.intel.com>
+ <20191213194129.GC5108@jack.zhora.eu>
+Message-ID: <157626647152.7535.6702950422683821773@skylake-alporthouse-com>
+User-Agent: alot/0.6
+Date: Fri, 13 Dec 2019 19:47:51 +0000
+Subject: Re: [Intel-gfx] [PATCH v4 2/2] drm/i915/gt: Move power management
+ debug files into a gt aware debugfs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,77 +43,52 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Intel GFX <intel-gfx@lists.freedesktop.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Quoting Andi Shyti (2019-12-13 19:41:29)
+> Hi Michal,
+> 
+> > > @@ -75,6 +75,8 @@ i915-$(CONFIG_PERF_EVENTS) += i915_pmu.o
+> > >  # "Graphics Technology" (aka we talk to the gpu)
+> > >  obj-y += gt/
+> > >  gt-y += \
+> > > +   gt/debugfs_gt.o \
+> > > +   gt/debugfs_pm.o \
+> > 
+> > hm, maybe this should be:
+> >       gt/intel_gt_debugfs.o
+> > and
+> >       gt/intel_pm_debugfs.o
+> 
+> this was actually the name I wanted to give it originally, but
+> meantime I also wanted to have the debugfs files alphabetically
+> sorted in sequence, like the selftest_* files (I can imagine in
+> the future having more debugfs files).
+> 
+> Maybe intel_debugfs_gt.c/intel_debugfs_pm.c would be a good
+> compromise?
 
-Series: series starting with [1/8] drm/print: introduce new struct drm_device based logging macros (rev3)
-URL   : https://patchwork.freedesktop.org/series/70685/
-State : warning
+I don't mind, your argument that we will partition these files off
+under gt-${CONFIG_DEBUGFS} += gt/debugfs_*.o was convincing.
 
-== Summary ==
+> 
+> > > @@ -0,0 +1,22 @@
+> > > +/* SPDX-License-Identifier: MIT */
+> > 
+> > in .c SPDX shall start with //
+> 
+> I agree this is the "official" way of doing it, and I also read
+> some discussions about it in this mailing list. But however I do
+> it, I know someone won't like it. I checked the style in this
+> directory and tried to keep it conform to the "gt way".
 
-$ dim checkpatch origin/drm-tip
-2ccbb2bd92a4 drm/print: introduce new struct drm_device based logging macros
--:83: CHECK:LINE_SPACING: Please don't use multiple blank lines
-#83: FILE: include/drm/drm_print.h:432:
-+
-+
-
--:85: ERROR:SPACING: space required after that ',' (ctx:VxO)
-#85: FILE: include/drm/drm_print.h:434:
-+	__drm_printk((drm), info,, fmt, ##__VA_ARGS__)
- 	                        ^
-
--:88: ERROR:SPACING: space required after that ',' (ctx:VxO)
-#88: FILE: include/drm/drm_print.h:437:
-+	__drm_printk((drm), notice,, fmt, ##__VA_ARGS__)
- 	                          ^
-
--:91: ERROR:SPACING: space required after that ',' (ctx:VxO)
-#91: FILE: include/drm/drm_print.h:440:
-+	__drm_printk((drm), warn,, fmt, ##__VA_ARGS__)
- 	                        ^
-
--:94: ERROR:SPACING: space required after that ',' (ctx:VxO)
-#94: FILE: include/drm/drm_print.h:443:
-+	__drm_printk((drm), err,, "*ERROR* " fmt, ##__VA_ARGS__)
- 	                       ^
-
--:96: CHECK:LINE_SPACING: Please don't use multiple blank lines
-#96: FILE: include/drm/drm_print.h:445:
-+
-+
-
--:109: CHECK:LINE_SPACING: Please don't use multiple blank lines
-#109: FILE: include/drm/drm_print.h:458:
-+
-+
-
--:113: CHECK:LINE_SPACING: Please don't use multiple blank lines
-#113: FILE: include/drm/drm_print.h:462:
-+
-+
-
--:133: CHECK:LINE_SPACING: Please don't use multiple blank lines
-#133: FILE: include/drm/drm_print.h:482:
-+
-+
-
-total: 4 errors, 0 warnings, 5 checks, 79 lines checked
-6e1203c54013 drm/client: convert to drm device based logging
-bcf9d3cbc0bb drm/fb-helper: convert to drm device based logging
-82e3e24464fc drm/gem-fb-helper: convert to drm device based logging
-1ab5b849bf17 drm/mipi-dbi: convert to drm device based logging
-dea0baf56927 drm/atomic: convert to drm device based logging
-39839157ae6f drm/i915/uc: convert to drm device based logging
-97cb51cfd412 drm/i915/wopcm: convert to drm device based logging
-
+Shrug. I don't like the coding style violation, so leave it up to
+someone who insists to do treewide changes.
+-Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
