@@ -2,31 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 574DC11E104
-	for <lists+intel-gfx@lfdr.de>; Fri, 13 Dec 2019 10:41:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A45F811E1D5
+	for <lists+intel-gfx@lfdr.de>; Fri, 13 Dec 2019 11:20:57 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C25EB6E2E4;
-	Fri, 13 Dec 2019 09:41:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 96A116E329;
+	Fri, 13 Dec 2019 10:20:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 9F8206E2E4;
- Fri, 13 Dec 2019 09:41:28 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 03F96A0138;
- Fri, 13 Dec 2019 09:41:27 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F3C6A6E313;
+ Fri, 13 Dec 2019 10:20:52 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 13 Dec 2019 02:20:52 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.69,309,1571727600"; d="scan'208";a="208419276"
+Received: from ramaling-i9x.iind.intel.com (HELO intel.com) ([10.99.66.154])
+ by orsmga008.jf.intel.com with ESMTP; 13 Dec 2019 02:20:48 -0800
+Date: Fri, 13 Dec 2019 15:50:01 +0530
+From: Ramalingam C <ramalingam.c@intel.com>
+To: Sean Paul <sean@poorly.run>
+Message-ID: <20191213101959.GA3829@intel.com>
+References: <20191212190230.188505-1-sean@poorly.run>
+ <20191212190230.188505-2-sean@poorly.run>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Venkata Sandeep Dhanalakota" <venkata.s.dhanalakota@intel.com>
-Date: Fri, 13 Dec 2019 09:41:27 -0000
-Message-ID: <157623008701.23799.14422093189961021899@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20191213091239.67408-1-venkata.s.dhanalakota@intel.com>
-In-Reply-To: <20191213091239.67408-1-venkata.s.dhanalakota@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5B1/2=5D_drm/i915/perf=3A_Register_sysctl_pa?=
- =?utf-8?q?th_globally?=
+Content-Disposition: inline
+In-Reply-To: <20191212190230.188505-2-sean@poorly.run>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH v2 01/12] drm/i915: Fix sha_text population
+ code
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,130 +46,141 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: daniel.vetter@ffwll.ch, intel-gfx@lists.freedesktop.org,
+ Sean Paul <seanpaul@chromium.org>, dri-devel@lists.freedesktop.org,
+ stable@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On 2019-12-12 at 14:02:19 -0500, Sean Paul wrote:
+> From: Sean Paul <seanpaul@chromium.org>
+> 
+> This patch fixes a few bugs:
+> 
+> 1- We weren't taking into account sha_leftovers when adding multiple
+>    ksvs to sha_text. As such, we were or'ing the end of ksv[j - 1] with
+>    the beginning of ksv[j]
+> 
+> 2- In the sha_leftovers == 2 and sha_leftovers == 3 case, bstatus was
+>    being placed on the wrong half of sha_text, overlapping the leftover
+>    ksv value
+> 
+> 3- In the sha_leftovers == 2 case, we need to manually terminate the
+>    byte stream with 0x80 since the hardware doesn't have enough room to
+>    add it after writing M0
+> 
+> The upside is that all of the "HDCP supported" HDMI repeaters I could
+> find on Amazon just strip HDCP anyways, so it turns out to be _really_
+> hard to hit any of these cases without an MST hub, which is not (yet)
+> supported. Oh, and the sha_leftovers == 1 case works perfectly!
 
-Series: series starting with [1/2] drm/i915/perf: Register sysctl path globally
-URL   : https://patchwork.freedesktop.org/series/70871/
-State : success
+Yes. The repeaters tested at our side too with sha_leftovers = 1 with
+mostly ksv count of 1. non availability of the repeaters is killer here.
+> 
+> Fixes: ee5e5e7a5e0f ("drm/i915: Add HDCP framework + base implementation")
+> Cc: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Ramalingam C <ramalingam.c@intel.com>
+> Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
+> Cc: Sean Paul <seanpaul@chromium.org>
+> Cc: Jani Nikula <jani.nikula@linux.intel.com>
+> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> Cc: intel-gfx@lists.freedesktop.org
+> Cc: <stable@vger.kernel.org> # v4.17+
+> Signed-off-by: Sean Paul <seanpaul@chromium.org>
+> Link: https://patchwork.freedesktop.org/patch/msgid/20191203173638.94919-2-sean@poorly.run #v1
+> 
+> Changes in v2:
+> -None
+> ---
+>  drivers/gpu/drm/i915/display/intel_hdcp.c | 25 +++++++++++++++++------
+>  include/drm/drm_hdcp.h                    |  3 +++
+>  2 files changed, 22 insertions(+), 6 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
+> index 0fdbd39f6641..eaab9008feef 100644
+> --- a/drivers/gpu/drm/i915/display/intel_hdcp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
+> @@ -335,8 +335,10 @@ int intel_hdcp_validate_v_prime(struct intel_connector *connector,
+>  
+>  		/* Fill up the empty slots in sha_text and write it out */
+>  		sha_empty = sizeof(sha_text) - sha_leftovers;
+> -		for (j = 0; j < sha_empty; j++)
+> -			sha_text |= ksv[j] << ((sizeof(sha_text) - j - 1) * 8);
+> +		for (j = 0; j < sha_empty; j++) {
+> +			u8 off = ((sizeof(sha_text) - j - 1 - sha_leftovers) * 8);
+Didn't hit this as ksv count was 1 mostly with sha_leftovers = 1.
+Thanks for fixing it.
+> +			sha_text |= ksv[j] << off;
+> +		}
+>  
+>  		ret = intel_write_sha_text(dev_priv, sha_text);
+>  		if (ret < 0)
+> @@ -426,7 +428,7 @@ int intel_hdcp_validate_v_prime(struct intel_connector *connector,
+>  	} else if (sha_leftovers == 2) {
+>  		/* Write 32 bits of text */
+>  		I915_WRITE(HDCP_REP_CTL, rep_ctl | HDCP_SHA1_TEXT_32);
+> -		sha_text |= bstatus[0] << 24 | bstatus[1] << 16;
+> +		sha_text |= bstatus[0] << 8 | bstatus[1];
+>  		ret = intel_write_sha_text(dev_priv, sha_text);
+>  		if (ret < 0)
+>  			return ret;
+> @@ -440,16 +442,27 @@ int intel_hdcp_validate_v_prime(struct intel_connector *connector,
+>  				return ret;
+>  			sha_idx += sizeof(sha_text);
+>  		}
+> +
+> +		/*
+> +		 * Terminate the SHA-1 stream by hand. For the other leftover
+> +		 * cases this is appended by the hardware.
+> +		 */
+> +		I915_WRITE(HDCP_REP_CTL, rep_ctl | HDCP_SHA1_TEXT_32);
+> +		sha_text = DRM_HDCP_SHA1_TERMINATOR << 24;
+> +		ret = intel_write_sha_text(dev_priv, sha_text);
+> +		if (ret < 0)
+> +			return ret;
+> +		sha_idx += sizeof(sha_text);
+>  	} else if (sha_leftovers == 3) {
+> -		/* Write 32 bits of text */
+> +		/* Write 32 bits of text (filled from LSB) */
+>  		I915_WRITE(HDCP_REP_CTL, rep_ctl | HDCP_SHA1_TEXT_32);
+> -		sha_text |= bstatus[0] << 24;
+> +		sha_text |= bstatus[0];
 
-== Summary ==
+Looks good to me though this path never been exercised. Hopefully MST
+will do it.
 
-CI Bug Log - changes from CI_DRM_7556 -> Patchwork_15738
-====================================================
+Reviewed-by: Ramalingam C <ramalingam.c@intel.com>
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15738/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_15738 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live_blt:
-    - fi-ivb-3770:        [PASS][1] -> [DMESG-FAIL][2] ([i915#770])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7556/fi-ivb-3770/igt@i915_selftest@live_blt.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15738/fi-ivb-3770/igt@i915_selftest@live_blt.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_close_race@basic-threads:
-    - fi-byt-n2820:       [TIMEOUT][3] ([i915#816]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7556/fi-byt-n2820/igt@gem_close_race@basic-threads.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15738/fi-byt-n2820/igt@gem_close_race@basic-threads.html
-
-  * igt@gem_exec_gttfill@basic:
-    - {fi-tgl-guc}:       [INCOMPLETE][5] ([fdo#111593]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7556/fi-tgl-guc/igt@gem_exec_gttfill@basic.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15738/fi-tgl-guc/igt@gem_exec_gttfill@basic.html
-
-  * igt@i915_selftest@live_gem_contexts:
-    - fi-cfl-guc:         [INCOMPLETE][7] ([fdo#106070] / [i915#424]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7556/fi-cfl-guc/igt@i915_selftest@live_gem_contexts.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15738/fi-cfl-guc/igt@i915_selftest@live_gem_contexts.html
-
-  * igt@kms_chamelium@hdmi-hpd-fast:
-    - fi-kbl-7500u:       [FAIL][9] ([fdo#111407]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7556/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15738/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
-
-  
-#### Warnings ####
-
-  * igt@gem_close_race@basic-threads:
-    - fi-byt-j1900:       [TIMEOUT][11] -> [TIMEOUT][12] ([i915#816])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7556/fi-byt-j1900/igt@gem_close_race@basic-threads.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15738/fi-byt-j1900/igt@gem_close_race@basic-threads.html
-
-  * igt@i915_module_load@reload-with-fault-injection:
-    - fi-kbl-x1275:       [DMESG-WARN][13] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][14] ([i915#62] / [i915#92])
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7556/fi-kbl-x1275/igt@i915_module_load@reload-with-fault-injection.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15738/fi-kbl-x1275/igt@i915_module_load@reload-with-fault-injection.html
-
-  * igt@kms_pipe_crc_basic@hang-read-crc-pipe-a:
-    - fi-kbl-x1275:       [DMESG-WARN][15] ([i915#62] / [i915#92]) -> [DMESG-WARN][16] ([i915#62] / [i915#92] / [i915#95]) +8 similar issues
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7556/fi-kbl-x1275/igt@kms_pipe_crc_basic@hang-read-crc-pipe-a.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15738/fi-kbl-x1275/igt@kms_pipe_crc_basic@hang-read-crc-pipe-a.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#106070]: https://bugs.freedesktop.org/show_bug.cgi?id=106070
-  [fdo#111407]: https://bugs.freedesktop.org/show_bug.cgi?id=111407
-  [fdo#111593]: https://bugs.freedesktop.org/show_bug.cgi?id=111593
-  [i915#424]: https://gitlab.freedesktop.org/drm/intel/issues/424
-  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
-  [i915#770]: https://gitlab.freedesktop.org/drm/intel/issues/770
-  [i915#816]: https://gitlab.freedesktop.org/drm/intel/issues/816
-  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
-  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
-
-
-Participating hosts (42 -> 47)
-------------------------------
-
-  Additional (11): fi-bdw-5557u fi-skl-guc fi-icl-u2 fi-whl-u fi-icl-u3 fi-icl-y fi-skl-lmem fi-kbl-7560u fi-icl-guc fi-icl-dsi fi-kbl-r 
-  Missing    (6): fi-icl-1065g7 fi-ilk-m540 fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_7556 -> Patchwork_15738
-
-  CI-20190529: 20190529
-  CI_DRM_7556: cf70b6f71886f9ca726093db29be61264cb031b6 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5348: 91983e0f209738ddae7931f71803566eb1dcb9e0 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_15738: a35b4a55e2aa74abc9c9a60d9d77de332db29594 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-a35b4a55e2aa drm/i915: Introduce new macros for tracing
-59ac00e2ba5e drm/i915/perf: Register sysctl path globally
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15738/index.html
+>  		ret = intel_write_sha_text(dev_priv, sha_text);
+>  		if (ret < 0)
+>  			return ret;
+>  		sha_idx += sizeof(sha_text);
+>  
+> -		/* Write 8 bits of text, 24 bits of M0 */
+> +		/* Write 8 bits of text (filled from LSB), 24 bits of M0 */
+>  		I915_WRITE(HDCP_REP_CTL, rep_ctl | HDCP_SHA1_TEXT_8);
+>  		ret = intel_write_sha_text(dev_priv, bstatus[1]);
+>  		if (ret < 0)
+> diff --git a/include/drm/drm_hdcp.h b/include/drm/drm_hdcp.h
+> index 06a11202a097..20498c822204 100644
+> --- a/include/drm/drm_hdcp.h
+> +++ b/include/drm/drm_hdcp.h
+> @@ -29,6 +29,9 @@
+>  /* Slave address for the HDCP registers in the receiver */
+>  #define DRM_HDCP_DDC_ADDR			0x3A
+>  
+> +/* Value to use at the end of the SHA-1 bytestream used for repeaters */
+> +#define DRM_HDCP_SHA1_TERMINATOR		0x80
+> +
+>  /* HDCP register offsets for HDMI/DVI devices */
+>  #define DRM_HDCP_DDC_BKSV			0x00
+>  #define DRM_HDCP_DDC_RI_PRIME			0x08
+> -- 
+> Sean Paul, Software Engineer, Google / Chromium OS
+> 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
