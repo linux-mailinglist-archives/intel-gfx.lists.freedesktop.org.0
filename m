@@ -2,38 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4782311E9B3
-	for <lists+intel-gfx@lfdr.de>; Fri, 13 Dec 2019 19:04:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2415C11E9BA
+	for <lists+intel-gfx@lfdr.de>; Fri, 13 Dec 2019 19:06:16 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 974376EB8F;
-	Fri, 13 Dec 2019 18:04:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5A81C6EBBD;
+	Fri, 13 Dec 2019 18:06:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4C5886EB8F
- for <intel-gfx@lists.freedesktop.org>; Fri, 13 Dec 2019 18:04:24 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5F6246EBC2
+ for <intel-gfx@lists.freedesktop.org>; Fri, 13 Dec 2019 18:06:13 +0000 (UTC)
+X-Amp-Result: UNSCANNABLE
 X-Amp-File-Uploaded: False
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by orsmga106.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 13 Dec 2019 10:04:20 -0800
-X-IronPort-AV: E=Sophos;i="5.69,309,1571727600"; d="scan'208";a="211442222"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 13 Dec 2019 10:06:07 -0800
+X-IronPort-AV: E=Sophos;i="5.69,309,1571727600"; d="scan'208";a="216507407"
 Received: from ldmartin-desk1.jf.intel.com (HELO ldmartin-desk1)
  ([10.24.11.18])
- by fmsmga007-auth.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 13 Dec 2019 10:04:20 -0800
-Date: Fri, 13 Dec 2019 10:04:13 -0800
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 13 Dec 2019 10:06:07 -0800
+Date: Fri, 13 Dec 2019 10:06:01 -0800
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: Matt Roper <matthew.d.roper@intel.com>
-Message-ID: <20191213180413.jhdyagrg2tys77dr@ldmartin-desk1>
+Message-ID: <20191213180601.yvi35bse6mdyx5ab@ldmartin-desk1>
 X-Patchwork-Hint: ignore
-References: <20191213001511.678070-1-matthew.d.roper@intel.com>
- <20191213001511.678070-3-matthew.d.roper@intel.com>
+References: <20191213001511.678070-4-matthew.d.roper@intel.com>
+ <20191213010600.701315-1-matthew.d.roper@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20191213001511.678070-3-matthew.d.roper@intel.com>
-Subject: Re: [Intel-gfx] [PATCH v3 2/3] drm/i915/tgl: Drop Wa#1178
+In-Reply-To: <20191213010600.701315-1-matthew.d.roper@intel.com>
+Subject: Re: [Intel-gfx] [PATCH v4 3/3] drm/i915/icl: Cleanup combo PHY aux
+ power well handlers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,84 +52,83 @@ Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Dec 12, 2019 at 04:15:10PM -0800, Matt Roper wrote:
->The TGL workaround database no longer shows Wa #1178 (or anything
->similar under different workaround names/numbers) so we should be able
->to drop it.  In fact Swati just discovered that applying this workaround
->is the root cause of some power well enable failures we've been seeing
->in CI (gitlab issue 498).
+On Thu, Dec 12, 2019 at 05:06:00PM -0800, Matt Roper wrote:
+>Now that the combo PHY aux power well handlers are used exclusively on
+>Icelake, we can drop a bunch of the extra tests.
 >
->Once we stop applying this WA, TGL no longer utilizes any of the special
->handling provided by icl_combo_phy_aux_power_well_ops so we can just
->drop back to using the standard hsw-style power well ops instead.
+>v2: Don't try to use intel_uncore_rmw for register updates yet; there's
+>    pending display uncore patches that need to land first.  (Lucas)
 >
->v3: Drop now-unused _TGL_AUX_ANAOVRD1_C definition too.  (Lucas)
+>v3: Drop the combo phy assertion.  It was backward before, but doesn't
+>    seem terribly necessary.  I'm keeping the IS_ICELAKE assertion
+>    though since we often copy/paste/modify the power well tables when
+>    defining new platforms and it's too easy to cargo cult the
+>    ICL-specific handling to new platforms that shouldn't use it.
+>    (Lucas)
 >
->Closes: https://gitlab.freedesktop.org/drm/intel/issues/498
->Fixes: deea06b47574 ("drm/i915/tgl: apply Display WA #1178 to fix type C dongles")
+>v4: Fix build; forgot to commit all the changes.  (CI)
+>
 >Cc: Lucas De Marchi <lucas.demarchi@intel.com>
->Cc: Swati Sharma <swati2.sharma@intel.com>
->Cc: Imre Deak <imre.deak@intel.com>
 >Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
->Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>  # v1
+>---
+> .../drm/i915/display/intel_display_power.c    | 20 +++++++------------
+> 1 file changed, 7 insertions(+), 13 deletions(-)
+>
+>diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
+>index 52f2332e0ab8..d59539002aaa 100644
+>--- a/drivers/gpu/drm/i915/display/intel_display_power.c
+>+++ b/drivers/gpu/drm/i915/display/intel_display_power.c
+>@@ -418,7 +418,8 @@ icl_combo_phy_aux_power_well_enable(struct drm_i915_private *dev_priv,
+> 	int pw_idx = power_well->desc->hsw.idx;
+> 	enum phy phy = ICL_AUX_PW_TO_PHY(pw_idx);
+> 	u32 val;
+>-	int wa_idx_max;
+>+
+>+	WARN_ON(!IS_ICELAKE(dev_priv));
+>
+> 	val = I915_READ(regs->driver);
+> 	I915_WRITE(regs->driver, val | HSW_PWR_WELL_CTL_REQ(pw_idx));
+>@@ -430,14 +431,7 @@ icl_combo_phy_aux_power_well_enable(struct drm_i915_private *dev_priv,
+>
+> 	hsw_wait_for_power_well_enable(dev_priv, power_well);
+>
+>-	/* Display WA #1178: icl, tgl */
 
-still stands on this rev
+this comment must stay
+
+Otherwise
+
+
+Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
 
 Lucas De Marchi
 
->---
-> drivers/gpu/drm/i915/display/intel_display_power.c | 6 +++---
-> drivers/gpu/drm/i915/i915_reg.h                    | 4 +---
-> 2 files changed, 4 insertions(+), 6 deletions(-)
+>-	if (IS_TIGERLAKE(dev_priv))
+>-		wa_idx_max = ICL_PW_CTL_IDX_AUX_C;
+>-	else
+>-		wa_idx_max = ICL_PW_CTL_IDX_AUX_B;
+>-
+>-	if (!IS_ELKHARTLAKE(dev_priv) &&
+>-	    pw_idx >= ICL_PW_CTL_IDX_AUX_A && pw_idx <= wa_idx_max &&
+>+	if (pw_idx >= ICL_PW_CTL_IDX_AUX_A && pw_idx <= ICL_PW_CTL_IDX_AUX_B &&
+> 	    !intel_bios_is_port_edp(dev_priv, (enum port)phy)) {
+> 		val = I915_READ(ICL_AUX_ANAOVRD1(pw_idx));
+> 		val |= ICL_AUX_ANAOVRD1_ENABLE | ICL_AUX_ANAOVRD1_LDO_BYPASS;
+>@@ -454,10 +448,10 @@ icl_combo_phy_aux_power_well_disable(struct drm_i915_private *dev_priv,
+> 	enum phy phy = ICL_AUX_PW_TO_PHY(pw_idx);
+> 	u32 val;
 >
->diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
->index cf34427cc840..52f2332e0ab8 100644
->--- a/drivers/gpu/drm/i915/display/intel_display_power.c
->+++ b/drivers/gpu/drm/i915/display/intel_display_power.c
->@@ -3977,7 +3977,7 @@ static const struct i915_power_well_desc tgl_power_wells[] = {
-> 	{
-> 		.name = "AUX A",
-> 		.domains = TGL_AUX_A_IO_POWER_DOMAINS,
->-		.ops = &icl_combo_phy_aux_power_well_ops,
->+		.ops = &hsw_power_well_ops,
-> 		.id = DISP_PW_ID_NONE,
-> 		{
-> 			.hsw.regs = &icl_aux_power_well_regs,
->@@ -3987,7 +3987,7 @@ static const struct i915_power_well_desc tgl_power_wells[] = {
-> 	{
-> 		.name = "AUX B",
-> 		.domains = TGL_AUX_B_IO_POWER_DOMAINS,
->-		.ops = &icl_combo_phy_aux_power_well_ops,
->+		.ops = &hsw_power_well_ops,
-> 		.id = DISP_PW_ID_NONE,
-> 		{
-> 			.hsw.regs = &icl_aux_power_well_regs,
->@@ -3997,7 +3997,7 @@ static const struct i915_power_well_desc tgl_power_wells[] = {
-> 	{
-> 		.name = "AUX C",
-> 		.domains = TGL_AUX_C_IO_POWER_DOMAINS,
->-		.ops = &icl_combo_phy_aux_power_well_ops,
->+		.ops = &hsw_power_well_ops,
-> 		.id = DISP_PW_ID_NONE,
-> 		{
-> 			.hsw.regs = &icl_aux_power_well_regs,
->diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
->index 17f9dd3bda72..cbb4689af432 100644
->--- a/drivers/gpu/drm/i915/i915_reg.h
->+++ b/drivers/gpu/drm/i915/i915_reg.h
->@@ -9437,11 +9437,9 @@ enum skl_power_gate {
-> #define _ICL_AUX_REG_IDX(pw_idx)	((pw_idx) - ICL_PW_CTL_IDX_AUX_A)
-> #define _ICL_AUX_ANAOVRD1_A		0x162398
-> #define _ICL_AUX_ANAOVRD1_B		0x6C398
->-#define _TGL_AUX_ANAOVRD1_C		0x160398
-> #define ICL_AUX_ANAOVRD1(pw_idx)	_MMIO(_PICK(_ICL_AUX_REG_IDX(pw_idx), \
-> 						    _ICL_AUX_ANAOVRD1_A, \
->-						    _ICL_AUX_ANAOVRD1_B, \
->-						    _TGL_AUX_ANAOVRD1_C))
->+						    _ICL_AUX_ANAOVRD1_B))
-> #define   ICL_AUX_ANAOVRD1_LDO_BYPASS	(1 << 7)
-> #define   ICL_AUX_ANAOVRD1_ENABLE	(1 << 0)
+>-	if (INTEL_GEN(dev_priv) < 12) {
+>-		val = I915_READ(ICL_PORT_CL_DW12(phy));
+>-		I915_WRITE(ICL_PORT_CL_DW12(phy), val & ~ICL_LANE_ENABLE_AUX);
+>-	}
+>+	WARN_ON(!IS_ICELAKE(dev_priv));
+>+
+>+	val = I915_READ(ICL_PORT_CL_DW12(phy));
+>+	I915_WRITE(ICL_PORT_CL_DW12(phy), val & ~ICL_LANE_ENABLE_AUX);
 >
+> 	val = I915_READ(regs->driver);
+> 	I915_WRITE(regs->driver, val & ~HSW_PWR_WELL_CTL_REQ(pw_idx));
 >-- 
 >2.23.0
 >
