@@ -1,40 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C082811DB49
-	for <lists+intel-gfx@lfdr.de>; Fri, 13 Dec 2019 01:52:24 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 55BBA11DB6F
+	for <lists+intel-gfx@lfdr.de>; Fri, 13 Dec 2019 02:03:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1C33A6E250;
-	Fri, 13 Dec 2019 00:52:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4AA5D6E248;
+	Fri, 13 Dec 2019 01:03:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D0B5D6E250
- for <intel-gfx@lists.freedesktop.org>; Fri, 13 Dec 2019 00:52:21 +0000 (UTC)
-X-Amp-Result: UNSCANNABLE
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 137716E248
+ for <intel-gfx@lists.freedesktop.org>; Fri, 13 Dec 2019 01:03:08 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
 X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga106.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 12 Dec 2019 16:52:21 -0800
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 12 Dec 2019 17:03:07 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,307,1571727600"; d="scan'208";a="208289189"
-Received: from labuser-z97x-ud5h.jf.intel.com (HELO intel.com) ([10.54.75.49])
- by orsmga008.jf.intel.com with ESMTP; 12 Dec 2019 16:52:21 -0800
-Date: Thu, 12 Dec 2019 16:53:43 -0800
-From: Manasi Navare <manasi.d.navare@intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Message-ID: <20191213005342.GD24342@intel.com>
-References: <cover.1576081155.git.jani.nikula@intel.com>
- <01bcddcdf397b1c8eb859ed18ebe023fb64383d9.1576081155.git.jani.nikula@intel.com>
- <20191211220837.GE12192@intel.com> <87h8262eqv.fsf@intel.com>
- <20191212220510.GC24342@intel.com>
+X-IronPort-AV: E=Sophos;i="5.69,307,1571727600"; d="scan'208";a="239141111"
+Received: from mdroper-desk1.fm.intel.com (HELO
+ mdroper-desk1.amr.corp.intel.com) ([10.1.27.64])
+ by fmsmga004.fm.intel.com with ESMTP; 12 Dec 2019 17:03:07 -0800
+Date: Thu, 12 Dec 2019 17:03:07 -0800
+From: Matt Roper <matthew.d.roper@intel.com>
+To: Manasi Navare <manasi.d.navare@intel.com>
+Message-ID: <20191213010307.GS85422@mdroper-desk1.amr.corp.intel.com>
+References: <20191211211425.17821-1-manasi.d.navare@intel.com>
+ <20191211211425.17821-3-manasi.d.navare@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20191212220510.GC24342@intel.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915/dsc: fix DSC register
- selection for ICL DSI transcoders
+In-Reply-To: <20191211211425.17821-3-manasi.d.navare@intel.com>
+User-Agent: Mutt/1.12.1 (2019-06-15)
+Subject: Re: [Intel-gfx] [PATCH 2/3] drm/i915/dp: Make port sync mode
+ assignments only if all tiles present
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,292 +48,138 @@ List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Dec 12, 2019 at 02:05:10PM -0800, Manasi Navare wrote:
-> On Thu, Dec 12, 2019 at 09:18:48AM +0200, Jani Nikula wrote:
-> > On Wed, 11 Dec 2019, Manasi Navare <manasi.d.navare@intel.com> wrote:
-> > > On Wed, Dec 11, 2019 at 06:23:46PM +0200, Jani Nikula wrote:
-> > >> ICL eDP and DSI transcoders have a DSC engine separate from the
-> > >> pipe. Abstract the register selection and fix it for ICL.
-> > >> 
-> > >> Add a warning for pipe A DSC on ICL; it does not exist.
-> > >> 
-> > >> Cc: Manasi Navare <manasi.d.navare@intel.com>
-> > >> Cc: Vandita Kulkarni <vandita.kulkarni@intel.com>
-> > >> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-> > >> ---
-> > >>  drivers/gpu/drm/i915/display/intel_vdsc.c | 58 +++++++++++++++--------
-> > >>  1 file changed, 38 insertions(+), 20 deletions(-)
-> > >> 
-> > >> diff --git a/drivers/gpu/drm/i915/display/intel_vdsc.c b/drivers/gpu/drm/i915/display/intel_vdsc.c
-> > >> index ed9048140937..e6f60be9ee84 100644
-> > >> --- a/drivers/gpu/drm/i915/display/intel_vdsc.c
-> > >> +++ b/drivers/gpu/drm/i915/display/intel_vdsc.c
-> > >> @@ -353,6 +353,26 @@ bool intel_dsc_source_support(struct intel_encoder *encoder,
-> > >>  	return false;
-> > >>  }
-> > >>  
-> > >> +static bool is_pipe_dsc(const struct intel_crtc_state *crtc_state)
-> > >> +{
-> > >> +	const struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-> > >> +	const struct drm_i915_private *i915 = to_i915(crtc->base.dev);
-> > >> +	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
-> > >> +
-> > >> +	if (INTEL_GEN(i915) >= 12)
-> > >> +		return true;
-> > >> +
-> > >> +	if (cpu_transcoder == TRANSCODER_EDP ||
-> > >> +	    cpu_transcoder == TRANSCODER_DSI_0 ||
-> > >> +	    cpu_transcoder == TRANSCODER_DSI_1)
-> > >> +		return false;
-> > >> +
-> > >> +	/* There's no pipe A DSC engine on ICL */
-> > >> +	WARN_ON(crtc->pipe == PIPE_A);
-> > >> +
-> > >> +	return true;
-> > >> +}
-> > >> +
-> > >
-> > > So for >=Gen12, it will always go to the else part in PPS configure and use
-> > > ICL_DSC0_PICTURE_PARAMETER_SET_1 register per pipe.
-> > 
-> > FWIW, this was already the case for gen 12+, because there's no eDP
-> > transcoder.
-> > 
-> > > Right now this only calculates register addresses for PIPE_B and PIPE_C for ICL but
-> > > no register defs for DSC_PPS for GEN >=12
-> > >
-> > > As far as the selection logic this patch looks good and will work for <12 GEN , but it will
-> > > currently fail for DSC on >=12
-> > >
-> > > Lucas, Jose - Is thsi something anyone's looking at adding?
-> > 
-> > Oh, I failed to mention how subtle this is. It does work fine on all
-> > pipes on gen 12+. It's just that with pipe A, the index becomes (PIPE_A
-> > - PIPE_B) = -1, and it extrapolates the correct register offset, the
-> > other direction than usually.
-> > 
-> > You see, gen 12 only has pipe DSC, with a DSC engine added to pipe A
-> > too, and no eDP/DSI specific DSC like ICL.
-> > 
-> > Sure, the register definitions need an update, it's ugly and misleading,
-> > but it's not really broken for gen 12 pipe A. :)
-> > 
-> > BR,
-> > Jani.
-> 
-> Okay, it will work for Pipe A agreed but IMO still broken for Pipe D that also has DSC now.
-> Are you looking at fixing this for all pipes?
-> 
-> Manasi
+On Wed, Dec 11, 2019 at 01:14:24PM -0800, Manasi Navare wrote:
+> Add an extra check before making master slave assignments for tiled
+> displays to make sure we make these assignments only if all tiled
+> connectors are present. If not then initialize the state to defaults
+> so it does a normal non tiled modeset without transcoder port sync.
+> =
 
-Actually I just did the register offsets calculations for DSC0_PPS and DSC1_PPS registers on TGL:
-And yes it does still work to give correct offsets for Pipe A-D but at some point we should
-rewrite it to look less of magic
+> Bugzilla: https://gitlab.freedesktop.org/drm/intel/issues/5
+> Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> Signed-off-by: Manasi Navare <manasi.d.navare@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_display.c | 28 ++++++++++++++++++--
+>  1 file changed, 26 insertions(+), 2 deletions(-)
+> =
 
-Manasi
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/d=
+rm/i915/display/intel_display.c
+> index 7263eaa66cda..c0a2dab3fe67 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -12048,6 +12048,12 @@ static bool c8_planes_changed(const struct intel=
+_crtc_state *new_crtc_state)
+>  	return !old_crtc_state->c8_planes !=3D !new_crtc_state->c8_planes;
+>  }
+>  =
 
-> > 
-> > 
-> > >
-> > > Regards
-> > > Manasi
-> > >
-> > >>  int intel_dsc_compute_params(struct intel_encoder *encoder,
-> > >>  			     struct intel_crtc_state *pipe_config)
-> > >>  {
-> > >> @@ -471,7 +491,6 @@ static void intel_dsc_pps_configure(struct intel_encoder *encoder,
-> > >>  	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
-> > >>  	const struct drm_dsc_config *vdsc_cfg = &crtc_state->dsc.config;
-> > >>  	enum pipe pipe = crtc->pipe;
-> > >> -	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
-> > >>  	u32 pps_val = 0;
-> > >>  	u32 rc_buf_thresh_dword[4];
-> > >>  	u32 rc_range_params_dword[8];
-> > >> @@ -492,7 +511,7 @@ static void intel_dsc_pps_configure(struct intel_encoder *encoder,
-> > >>  	if (vdsc_cfg->vbr_enable)
-> > >>  		pps_val |= DSC_VBR_ENABLE;
-> > >>  	DRM_INFO("PPS0 = 0x%08x\n", pps_val);
-> > >> -	if (cpu_transcoder == TRANSCODER_EDP) {
-> > >> +	if (!is_pipe_dsc(crtc_state)) {
-> > >>  		I915_WRITE(DSCA_PICTURE_PARAMETER_SET_0, pps_val);
-> > >>  		/*
-> > >>  		 * If 2 VDSC instances are needed, configure PPS for second
-> > >> @@ -511,7 +530,7 @@ static void intel_dsc_pps_configure(struct intel_encoder *encoder,
-> > >>  	pps_val = 0;
-> > >>  	pps_val |= DSC_BPP(vdsc_cfg->bits_per_pixel);
-> > >>  	DRM_INFO("PPS1 = 0x%08x\n", pps_val);
-> > >> -	if (cpu_transcoder == TRANSCODER_EDP) {
-> > >> +	if (!is_pipe_dsc(crtc_state)) {
-> > >>  		I915_WRITE(DSCA_PICTURE_PARAMETER_SET_1, pps_val);
-> > >>  		/*
-> > >>  		 * If 2 VDSC instances are needed, configure PPS for second
-> > >> @@ -531,7 +550,7 @@ static void intel_dsc_pps_configure(struct intel_encoder *encoder,
-> > >>  	pps_val |= DSC_PIC_HEIGHT(vdsc_cfg->pic_height) |
-> > >>  		DSC_PIC_WIDTH(vdsc_cfg->pic_width / num_vdsc_instances);
-> > >>  	DRM_INFO("PPS2 = 0x%08x\n", pps_val);
-> > >> -	if (cpu_transcoder == TRANSCODER_EDP) {
-> > >> +	if (!is_pipe_dsc(crtc_state)) {
-> > >>  		I915_WRITE(DSCA_PICTURE_PARAMETER_SET_2, pps_val);
-> > >>  		/*
-> > >>  		 * If 2 VDSC instances are needed, configure PPS for second
-> > >> @@ -551,7 +570,7 @@ static void intel_dsc_pps_configure(struct intel_encoder *encoder,
-> > >>  	pps_val |= DSC_SLICE_HEIGHT(vdsc_cfg->slice_height) |
-> > >>  		DSC_SLICE_WIDTH(vdsc_cfg->slice_width);
-> > >>  	DRM_INFO("PPS3 = 0x%08x\n", pps_val);
-> > >> -	if (cpu_transcoder == TRANSCODER_EDP) {
-> > >> +	if (!is_pipe_dsc(crtc_state)) {
-> > >>  		I915_WRITE(DSCA_PICTURE_PARAMETER_SET_3, pps_val);
-> > >>  		/*
-> > >>  		 * If 2 VDSC instances are needed, configure PPS for second
-> > >> @@ -571,7 +590,7 @@ static void intel_dsc_pps_configure(struct intel_encoder *encoder,
-> > >>  	pps_val |= DSC_INITIAL_XMIT_DELAY(vdsc_cfg->initial_xmit_delay) |
-> > >>  		DSC_INITIAL_DEC_DELAY(vdsc_cfg->initial_dec_delay);
-> > >>  	DRM_INFO("PPS4 = 0x%08x\n", pps_val);
-> > >> -	if (cpu_transcoder == TRANSCODER_EDP) {
-> > >> +	if (!is_pipe_dsc(crtc_state)) {
-> > >>  		I915_WRITE(DSCA_PICTURE_PARAMETER_SET_4, pps_val);
-> > >>  		/*
-> > >>  		 * If 2 VDSC instances are needed, configure PPS for second
-> > >> @@ -591,7 +610,7 @@ static void intel_dsc_pps_configure(struct intel_encoder *encoder,
-> > >>  	pps_val |= DSC_SCALE_INC_INT(vdsc_cfg->scale_increment_interval) |
-> > >>  		DSC_SCALE_DEC_INT(vdsc_cfg->scale_decrement_interval);
-> > >>  	DRM_INFO("PPS5 = 0x%08x\n", pps_val);
-> > >> -	if (cpu_transcoder == TRANSCODER_EDP) {
-> > >> +	if (!is_pipe_dsc(crtc_state)) {
-> > >>  		I915_WRITE(DSCA_PICTURE_PARAMETER_SET_5, pps_val);
-> > >>  		/*
-> > >>  		 * If 2 VDSC instances are needed, configure PPS for second
-> > >> @@ -613,7 +632,7 @@ static void intel_dsc_pps_configure(struct intel_encoder *encoder,
-> > >>  		DSC_FLATNESS_MIN_QP(vdsc_cfg->flatness_min_qp) |
-> > >>  		DSC_FLATNESS_MAX_QP(vdsc_cfg->flatness_max_qp);
-> > >>  	DRM_INFO("PPS6 = 0x%08x\n", pps_val);
-> > >> -	if (cpu_transcoder == TRANSCODER_EDP) {
-> > >> +	if (!is_pipe_dsc(crtc_state)) {
-> > >>  		I915_WRITE(DSCA_PICTURE_PARAMETER_SET_6, pps_val);
-> > >>  		/*
-> > >>  		 * If 2 VDSC instances are needed, configure PPS for second
-> > >> @@ -633,7 +652,7 @@ static void intel_dsc_pps_configure(struct intel_encoder *encoder,
-> > >>  	pps_val |= DSC_SLICE_BPG_OFFSET(vdsc_cfg->slice_bpg_offset) |
-> > >>  		DSC_NFL_BPG_OFFSET(vdsc_cfg->nfl_bpg_offset);
-> > >>  	DRM_INFO("PPS7 = 0x%08x\n", pps_val);
-> > >> -	if (cpu_transcoder == TRANSCODER_EDP) {
-> > >> +	if (!is_pipe_dsc(crtc_state)) {
-> > >>  		I915_WRITE(DSCA_PICTURE_PARAMETER_SET_7, pps_val);
-> > >>  		/*
-> > >>  		 * If 2 VDSC instances are needed, configure PPS for second
-> > >> @@ -653,7 +672,7 @@ static void intel_dsc_pps_configure(struct intel_encoder *encoder,
-> > >>  	pps_val |= DSC_FINAL_OFFSET(vdsc_cfg->final_offset) |
-> > >>  		DSC_INITIAL_OFFSET(vdsc_cfg->initial_offset);
-> > >>  	DRM_INFO("PPS8 = 0x%08x\n", pps_val);
-> > >> -	if (cpu_transcoder == TRANSCODER_EDP) {
-> > >> +	if (!is_pipe_dsc(crtc_state)) {
-> > >>  		I915_WRITE(DSCA_PICTURE_PARAMETER_SET_8, pps_val);
-> > >>  		/*
-> > >>  		 * If 2 VDSC instances are needed, configure PPS for second
-> > >> @@ -673,7 +692,7 @@ static void intel_dsc_pps_configure(struct intel_encoder *encoder,
-> > >>  	pps_val |= DSC_RC_MODEL_SIZE(DSC_RC_MODEL_SIZE_CONST) |
-> > >>  		DSC_RC_EDGE_FACTOR(DSC_RC_EDGE_FACTOR_CONST);
-> > >>  	DRM_INFO("PPS9 = 0x%08x\n", pps_val);
-> > >> -	if (cpu_transcoder == TRANSCODER_EDP) {
-> > >> +	if (!is_pipe_dsc(crtc_state)) {
-> > >>  		I915_WRITE(DSCA_PICTURE_PARAMETER_SET_9, pps_val);
-> > >>  		/*
-> > >>  		 * If 2 VDSC instances are needed, configure PPS for second
-> > >> @@ -695,7 +714,7 @@ static void intel_dsc_pps_configure(struct intel_encoder *encoder,
-> > >>  		DSC_RC_TARGET_OFF_HIGH(DSC_RC_TGT_OFFSET_HI_CONST) |
-> > >>  		DSC_RC_TARGET_OFF_LOW(DSC_RC_TGT_OFFSET_LO_CONST);
-> > >>  	DRM_INFO("PPS10 = 0x%08x\n", pps_val);
-> > >> -	if (cpu_transcoder == TRANSCODER_EDP) {
-> > >> +	if (!is_pipe_dsc(crtc_state)) {
-> > >>  		I915_WRITE(DSCA_PICTURE_PARAMETER_SET_10, pps_val);
-> > >>  		/*
-> > >>  		 * If 2 VDSC instances are needed, configure PPS for second
-> > >> @@ -718,7 +737,7 @@ static void intel_dsc_pps_configure(struct intel_encoder *encoder,
-> > >>  		DSC_SLICE_ROW_PER_FRAME(vdsc_cfg->pic_height /
-> > >>  					vdsc_cfg->slice_height);
-> > >>  	DRM_INFO("PPS16 = 0x%08x\n", pps_val);
-> > >> -	if (cpu_transcoder == TRANSCODER_EDP) {
-> > >> +	if (!is_pipe_dsc(crtc_state)) {
-> > >>  		I915_WRITE(DSCA_PICTURE_PARAMETER_SET_16, pps_val);
-> > >>  		/*
-> > >>  		 * If 2 VDSC instances are needed, configure PPS for second
-> > >> @@ -742,7 +761,7 @@ static void intel_dsc_pps_configure(struct intel_encoder *encoder,
-> > >>  		DRM_INFO(" RC_BUF_THRESH%d = 0x%08x\n", i,
-> > >>  			 rc_buf_thresh_dword[i / 4]);
-> > >>  	}
-> > >> -	if (cpu_transcoder == TRANSCODER_EDP) {
-> > >> +	if (!is_pipe_dsc(crtc_state)) {
-> > >>  		I915_WRITE(DSCA_RC_BUF_THRESH_0, rc_buf_thresh_dword[0]);
-> > >>  		I915_WRITE(DSCA_RC_BUF_THRESH_0_UDW, rc_buf_thresh_dword[1]);
-> > >>  		I915_WRITE(DSCA_RC_BUF_THRESH_1, rc_buf_thresh_dword[2]);
-> > >> @@ -791,7 +810,7 @@ static void intel_dsc_pps_configure(struct intel_encoder *encoder,
-> > >>  		DRM_INFO(" RC_RANGE_PARAM_%d = 0x%08x\n", i,
-> > >>  			 rc_range_params_dword[i / 2]);
-> > >>  	}
-> > >> -	if (cpu_transcoder == TRANSCODER_EDP) {
-> > >> +	if (!is_pipe_dsc(crtc_state)) {
-> > >>  		I915_WRITE(DSCA_RC_RANGE_PARAMETERS_0,
-> > >>  			   rc_range_params_dword[0]);
-> > >>  		I915_WRITE(DSCA_RC_RANGE_PARAMETERS_0_UDW,
-> > >> @@ -870,7 +889,6 @@ void intel_dsc_get_config(struct intel_encoder *encoder,
-> > >>  	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
-> > >>  	struct drm_dsc_config *vdsc_cfg = &crtc_state->dsc.config;
-> > >>  	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-> > >> -	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
-> > >>  	enum pipe pipe = crtc->pipe;
-> > >>  	enum intel_display_power_domain power_domain;
-> > >>  	intel_wakeref_t wakeref;
-> > >> @@ -885,7 +903,7 @@ void intel_dsc_get_config(struct intel_encoder *encoder,
-> > >>  	if (!wakeref)
-> > >>  		return;
-> > >>  
-> > >> -	if (crtc_state->cpu_transcoder == TRANSCODER_EDP) {
-> > >> +	if (!is_pipe_dsc(crtc_state)) {
-> > >>  		dss_ctl1 = I915_READ(DSS_CTL1);
-> > >>  		dss_ctl2 = I915_READ(DSS_CTL2);
-> > >>  	} else {
-> > >> @@ -903,7 +921,7 @@ void intel_dsc_get_config(struct intel_encoder *encoder,
-> > >>  	/* FIXME: add more state readout as needed */
-> > >>  
-> > >>  	/* PPS1 */
-> > >> -	if (cpu_transcoder == TRANSCODER_EDP)
-> > >> +	if (!is_pipe_dsc(crtc_state))
-> > >>  		val = I915_READ(DSCA_PICTURE_PARAMETER_SET_1);
-> > >>  	else
-> > >>  		val = I915_READ(ICL_DSC0_PICTURE_PARAMETER_SET_1(pipe));
-> > >> @@ -975,7 +993,7 @@ void intel_dsc_enable(struct intel_encoder *encoder,
-> > >>  	else
-> > >>  		intel_dsc_dp_pps_write(encoder, crtc_state);
-> > >>  
-> > >> -	if (crtc_state->cpu_transcoder == TRANSCODER_EDP) {
-> > >> +	if (!is_pipe_dsc(crtc_state)) {
-> > >>  		dss_ctl1_reg = DSS_CTL1;
-> > >>  		dss_ctl2_reg = DSS_CTL2;
-> > >>  	} else {
-> > >> @@ -1002,7 +1020,7 @@ void intel_dsc_disable(const struct intel_crtc_state *old_crtc_state)
-> > >>  	if (!old_crtc_state->dsc.compression_enable)
-> > >>  		return;
-> > >>  
-> > >> -	if (old_crtc_state->cpu_transcoder == TRANSCODER_EDP) {
-> > >> +	if (!is_pipe_dsc(old_crtc_state)) {
-> > >>  		dss_ctl1_reg = DSS_CTL1;
-> > >>  		dss_ctl2_reg = DSS_CTL2;
-> > >>  	} else {
-> > >> -- 
-> > >> 2.20.1
-> > >> 
-> > 
-> > -- 
-> > Jani Nikula, Intel Open Source Graphics Center
+> +static void initialize_trans_port_sync_mode_state(struct intel_crtc_stat=
+e *crtc_state)
+
+"reset" rather than "initialize" might be more consistent with similar
+things elsewhere in the driver?
+
+> +{
+> +	crtc_state->master_transcoder =3D INVALID_TRANSCODER;
+> +	crtc_state->sync_mode_slaves_mask =3D 0;
+> +}
+> +
+>  static int icl_add_sync_mode_crtcs(struct intel_crtc_state *crtc_state)
+>  {
+>  	struct drm_crtc *crtc =3D crtc_state->uapi.crtc;
+> @@ -12059,11 +12065,22 @@ static int icl_add_sync_mode_crtcs(struct intel=
+_crtc_state *crtc_state)
+>  	struct drm_crtc *master_crtc =3D NULL;
+>  	struct drm_crtc_state *master_crtc_state;
+>  	struct intel_crtc_state *master_pipe_config;
+> -	int i, tile_group_id;
+> +	int i, tile_group_id =3D 0, num_tiled_conns =3D 0;
+>  =
+
+>  	if (INTEL_GEN(dev_priv) < 11)
+>  		return 0;
+>  =
+
+> +	/* If all tiles not present do not make master slave assignments
+
+This comment seems like it should go farther down the function; this
+block isn't directly responsible for master/slave assignments, so it's a
+bit confusing here.  Also, you might want to clarify what "present"
+means in this case.  E.g., explain that since you've already added all
+tiles of the same monitor to the transaction (earlier in
+intel_atomic_check), then if the number of tiles in the tile group is
+smaller than the size of the tile group it means that at least one of
+the tiles isn't active.
+
+> +	 * Here we assume all tiles belong to the same tile group for now.
+
+Should this sentence be a FIXME:?  If we plug in 2x 2-tile monitors on
+TGL, this would be problematic, right?
+
+The logic changes seem correct (if we assume that only a single tiled
+monitor is in use), so
+
+Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+
+
+Matt
+
+> +	 */
+> +	for_each_new_connector_in_state(&state->base, connector, connector_stat=
+e, i) {
+> +		if (connector->has_tile) {
+> +			if (!tile_group_id)
+> +				tile_group_id =3D connector->tile_group->id;
+> +			num_tiled_conns++;
+> +		}
+> +	}
+> +
+>  	/*
+>  	 * In case of tiled displays there could be one or more slaves but ther=
+e is
+>  	 * only one master. Lets make the CRTC used by the connector correspond=
+ing
+> @@ -12077,8 +12094,15 @@ static int icl_add_sync_mode_crtcs(struct intel_=
+crtc_state *crtc_state)
+>  		if (!connector->has_tile)
+>  			continue;
+>  		if (crtc_state->hw.mode.hdisplay !=3D connector->tile_h_size ||
+> -		    crtc_state->hw.mode.vdisplay !=3D connector->tile_v_size)
+> +		    crtc_state->hw.mode.vdisplay !=3D connector->tile_v_size) {
+> +			initialize_trans_port_sync_mode_state(crtc_state);
+>  			return 0;
+> +		}
+> +		if (connector->tile_group->id =3D=3D tile_group_id &&
+> +		    num_tiled_conns < connector->num_h_tile * connector->num_v_tile) {
+> +			initialize_trans_port_sync_mode_state(crtc_state);
+> +			return 0;
+> +		}
+>  		if (connector->tile_h_loc =3D=3D connector->num_h_tile - 1 &&
+>  		    connector->tile_v_loc =3D=3D connector->num_v_tile - 1)
+>  			continue;
+> -- =
+
+> 2.19.1
+> =
+
 > _______________________________________________
 > Intel-gfx mailing list
 > Intel-gfx@lists.freedesktop.org
 > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+-- =
+
+Matt Roper
+Graphics Software Engineer
+VTT-OSGC Platform Enablement
+Intel Corporation
+(916) 356-2795
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
