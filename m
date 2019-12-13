@@ -2,50 +2,68 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C4D411DF68
-	for <lists+intel-gfx@lfdr.de>; Fri, 13 Dec 2019 09:27:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0DF5211DF6B
+	for <lists+intel-gfx@lfdr.de>; Fri, 13 Dec 2019 09:27:52 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B21D86E2CF;
-	Fri, 13 Dec 2019 08:27:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 00C436E2D5;
+	Fri, 13 Dec 2019 08:27:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 96B916E2CF
- for <intel-gfx@lists.freedesktop.org>; Fri, 13 Dec 2019 08:27:36 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 13 Dec 2019 00:27:36 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,309,1571727600"; d="scan'208";a="208387906"
-Received: from irsmsx107.ger.corp.intel.com ([163.33.3.99])
- by orsmga008.jf.intel.com with ESMTP; 13 Dec 2019 00:27:34 -0800
-Received: from irsmsx155.ger.corp.intel.com (163.33.192.3) by
- IRSMSX107.ger.corp.intel.com (163.33.3.99) with Microsoft SMTP Server (TLS)
- id 14.3.439.0; Fri, 13 Dec 2019 08:27:33 +0000
-Received: from irsmsx105.ger.corp.intel.com ([169.254.7.165]) by
- irsmsx155.ger.corp.intel.com ([169.254.14.75]) with mapi id 14.03.0439.000;
- Fri, 13 Dec 2019 08:27:33 +0000
-From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
-To: "Roper, Matthew D" <matthew.d.roper@intel.com>
-Thread-Topic: [PATCH v7 1/4] drm/i915: Remove skl_ddl_allocation struct
-Thread-Index: AQHVprqMZe+L6nS+ZUivtogW01eGpae3jFSAgABDwYA=
-Date: Fri, 13 Dec 2019 08:27:32 +0000
-Message-ID: <4ac6433a0a08505a48439fe60d559de3a8563227.camel@intel.com>
-References: <20191129133709.24397-1-stanislav.lisovskiy@intel.com>
- <20191129133709.24397-2-stanislav.lisovskiy@intel.com>
- <20191213042213.GW85422@mdroper-desk1.amr.corp.intel.com>
-In-Reply-To: <20191213042213.GW85422@mdroper-desk1.amr.corp.intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.237.72.89]
-Content-ID: <CB9302CA06B24140ABF8F29F1F4C17D0@intel.com>
+Received: from mail-wm1-x343.google.com (mail-wm1-x343.google.com
+ [IPv6:2a00:1450:4864:20::343])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 258A06E2D6
+ for <intel-gfx@lists.freedesktop.org>; Fri, 13 Dec 2019 08:27:46 +0000 (UTC)
+Received: by mail-wm1-x343.google.com with SMTP id w8so2100692wmd.3
+ for <intel-gfx@lists.freedesktop.org>; Fri, 13 Dec 2019 00:27:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:content-transfer-encoding:in-reply-to
+ :user-agent; bh=JwuoHfqD4FyIs4KF1Ipmu8G5TBEwPS2a5x2rk/31xck=;
+ b=RZu/Wv0m4HqQgb7kZHHwyZiV72yCDHClDTjqRYig6G327C22KOVE23Gl4QlWIk4J9g
+ /mTwG/EcWHHf9sYXXpPtTpllj8NvhWZ9k5SsV4jgWzE2uqeHWssPggXoaT2gjyI8wre+
+ VqxL2RAU5YTssHRWil1Gz4l8a8O18PLMhlz0Fd0EfGvTrga/wRtXo8/VzsNwEzcaJc2o
+ kCgWLQL7844S7BROBTksqLxNyH5Y12iS0O9bHQi+v4QV3BqAKqGVjvm8V1yufjNHj3vI
+ SyFI8XHa40wO7C8ZTiULcUMVsX8duH9Oq530Z+8L5UrJXOxugLt6sFTO3yrlOsl2a4f/
+ pvOg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:content-transfer-encoding
+ :in-reply-to:user-agent;
+ bh=JwuoHfqD4FyIs4KF1Ipmu8G5TBEwPS2a5x2rk/31xck=;
+ b=jdHPPsa8APocGQAPDcc0JE7KOpVl2whAJsUBT4BiKUDKcuSdfJ8TtmqDhzxzAw0fZX
+ df6Ggep3/Lwk3KY+aB/oxtkrx2aKU2CTpICDGW3LHYplz8zJ+mW4jwqX5xamJMjDMhUu
+ yv+Uhc+wcyafK14hFDh++bihFpBWkFoBFCOssJLSi6Tch/khtYfOd4RK5I8jZ7KfNMko
+ j3MYoGjGZw9ZMvAm2nbvKQzx8oz28/SBi+dn4Y22tKdZDwE4OGpHB5M71BIvh7A/kUys
+ gfoBu+SXuJlN6T5i/Ms/fCGrwI1C7hhHEqt5QdUYLqAnTnpmPq2b9+lI0Odrfiv4w/RO
+ Bcqg==
+X-Gm-Message-State: APjAAAWmgpRX0DFv4j2njFXhT9GNSSc27G9knoA/e7z9HR9CuUeg97U6
+ inP5KBcJ2FuMpLvJpFezi1T4kg==
+X-Google-Smtp-Source: APXvYqw9NFR6SJCU7qpurkLNw/ZkJfL008Kue/7hzmCvNYuR/i+XEHjDwK63wFSkZZdj2Cmg0QgOSw==
+X-Received: by 2002:a1c:7918:: with SMTP id l24mr12505169wme.125.1576225664505; 
+ Fri, 13 Dec 2019 00:27:44 -0800 (PST)
+Received: from dell ([95.149.164.71])
+ by smtp.gmail.com with ESMTPSA id a133sm225770wme.29.2019.12.13.00.27.43
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 13 Dec 2019 00:27:43 -0800 (PST)
+Date: Fri, 13 Dec 2019 08:27:34 +0000
+From: Lee Jones <lee.jones@linaro.org>
+To: Hans de Goede <hdegoede@redhat.com>
+Message-ID: <20191213082734.GE3468@dell>
+References: <20191119151818.67531-1-hdegoede@redhat.com>
+ <20191119151818.67531-3-hdegoede@redhat.com>
+ <20191210085111.GQ3468@dell>
+ <a05e5a2b-568e-2b0d-0293-aa937c590a74@redhat.com>
+ <20191212084546.GA3468@dell>
+ <d22e9a04-da09-0f41-a78e-ac17a947650a@redhat.com>
+ <20191212155209.GC3468@dell>
+ <4d07445d-98b1-f23c-0aac-07709b45df78@redhat.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v7 1/4] drm/i915: Remove skl_ddl_allocation
- struct
+Content-Disposition: inline
+In-Reply-To: <4d07445d-98b1-f23c-0aac-07709b45df78@redhat.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH 2/3] mfd: intel_soc_pmic: Rename
+ pwm_backlight pwm-lookup to pwm_pmic_backlight
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,398 +76,105 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
+ "Rafael J . Wysocki" <rjw@rjwysocki.net>, linux-kernel@vger.kernel.org,
+ linux-acpi@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Len Brown <lenb@kernel.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 2019-12-12 at 20:22 -0800, Matt Roper wrote:
-> On Fri, Nov 29, 2019 at 03:37:06PM +0200, Stanislav Lisovskiy wrote:
-> > Current consensus that it is redundant as
-> > we already have skl_ddb_values struct out there,
-> > also this struct contains only single member
-> > which makes it unnecessary.
-> > 
-> > v2: As dirty_pipes soon going to be nuked away
-> >     from skl_ddb_values, evacuating enabled_slices
-> >     to safer in dev_priv.
-> > 
-> > Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_display.c  | 16 ++++-----
-> >  .../drm/i915/display/intel_display_power.c    |  8 ++---
-> >  .../drm/i915/display/intel_display_types.h    |  3 ++
-> >  drivers/gpu/drm/i915/i915_drv.h               |  7 ++--
-> >  drivers/gpu/drm/i915/intel_pm.c               | 34 ++++++++-------
-> > ----
-> >  drivers/gpu/drm/i915/intel_pm.h               |  6 ++--
-> >  6 files changed, 34 insertions(+), 40 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display.c
-> > b/drivers/gpu/drm/i915/display/intel_display.c
-> > index 53dc310a5f6d..dda43e3dcdbf 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> > @@ -13393,14 +13393,13 @@ static void verify_wm_state(struct
-> > intel_crtc *crtc,
-> >  	struct skl_hw_state {
-> >  		struct skl_ddb_entry ddb_y[I915_MAX_PLANES];
-> >  		struct skl_ddb_entry ddb_uv[I915_MAX_PLANES];
-> > -		struct skl_ddb_allocation ddb;
-> >  		struct skl_pipe_wm wm;
-> >  	} *hw;
-> > -	struct skl_ddb_allocation *sw_ddb;
-> >  	struct skl_pipe_wm *sw_wm;
-> >  	struct skl_ddb_entry *hw_ddb_entry, *sw_ddb_entry;
-> >  	const enum pipe pipe = crtc->pipe;
-> >  	int plane, level, max_level = ilk_wm_max_level(dev_priv);
-> > +	u8 hw_enabled_slices;
-> >  
-> >  	if (INTEL_GEN(dev_priv) < 9 || !new_crtc_state->hw.active)
-> >  		return;
-> > @@ -13414,14 +13413,13 @@ static void verify_wm_state(struct
-> > intel_crtc *crtc,
-> >  
-> >  	skl_pipe_ddb_get_hw_state(crtc, hw->ddb_y, hw->ddb_uv);
-> >  
-> > -	skl_ddb_get_hw_state(dev_priv, &hw->ddb);
-> > -	sw_ddb = &dev_priv->wm.skl_hw.ddb;
-> > +	hw_enabled_slices = intel_enabled_dbuf_slices_num(dev_priv);
-> >  
-> >  	if (INTEL_GEN(dev_priv) >= 11 &&
-> > -	    hw->ddb.enabled_slices != sw_ddb->enabled_slices)
-> > +	    hw_enabled_slices != dev_priv->enabled_slices)
-> >  		DRM_ERROR("mismatch in DBUF Slices (expected %u, got
-> > %u)\n",
-> > -			  sw_ddb->enabled_slices,
-> > -			  hw->ddb.enabled_slices);
-> > +			  dev_priv->enabled_slices,
-> > +			  hw_enabled_slices);
-> >  
-> >  	/* planes */
-> >  	for_each_universal_plane(dev_priv, pipe, plane) {
-> > @@ -14647,8 +14645,8 @@ static void
-> > skl_commit_modeset_enables(struct intel_atomic_state *state)
-> >  	unsigned int updated = 0;
-> >  	bool progress;
-> >  	int i;
-> > -	u8 hw_enabled_slices = dev_priv->wm.skl_hw.ddb.enabled_slices;
-> > -	u8 required_slices = state->wm_results.ddb.enabled_slices;
-> > +	u8 hw_enabled_slices = dev_priv->enabled_slices;
-> > +	u8 required_slices = state->enabled_slices;
-> >  	struct skl_ddb_entry entries[I915_MAX_PIPES] = {};
-> >  
-> >  	for_each_oldnew_intel_crtc_in_state(state, crtc,
-> > old_crtc_state, new_crtc_state, i)
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c
-> > b/drivers/gpu/drm/i915/display/intel_display_power.c
-> > index ce1b64f4dd44..4c3ede73e863 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display_power.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
-> > @@ -4264,7 +4264,7 @@ static u8 intel_dbuf_max_slices(struct
-> > drm_i915_private *dev_priv)
-> >  void icl_dbuf_slices_update(struct drm_i915_private *dev_priv,
-> >  			    u8 req_slices)
-> >  {
-> > -	const u8 hw_enabled_slices = dev_priv-
-> > >wm.skl_hw.ddb.enabled_slices;
-> > +	const u8 hw_enabled_slices = dev_priv->enabled_slices;
-> >  	bool ret;
-> >  
-> >  	if (req_slices > intel_dbuf_max_slices(dev_priv)) {
-> > @@ -4281,7 +4281,7 @@ void icl_dbuf_slices_update(struct
-> > drm_i915_private *dev_priv,
-> >  		ret = intel_dbuf_slice_set(dev_priv, DBUF_CTL_S2,
-> > false);
-> >  
-> >  	if (ret)
-> > -		dev_priv->wm.skl_hw.ddb.enabled_slices = req_slices;
-> > +		dev_priv->enabled_slices = req_slices;
-> >  }
-> >  
-> >  static void icl_dbuf_enable(struct drm_i915_private *dev_priv)
-> > @@ -4300,7 +4300,7 @@ static void icl_dbuf_enable(struct
-> > drm_i915_private *dev_priv)
-> >  		 * FIXME: for now pretend that we only have 1 slice,
-> > see
-> >  		 * intel_enabled_dbuf_slices_num().
-> >  		 */
-> > -		dev_priv->wm.skl_hw.ddb.enabled_slices = 1;
-> > +		dev_priv->enabled_slices = 1;
-> >  }
-> >  
-> >  static void icl_dbuf_disable(struct drm_i915_private *dev_priv)
-> > @@ -4319,7 +4319,7 @@ static void icl_dbuf_disable(struct
-> > drm_i915_private *dev_priv)
-> >  		 * FIXME: for now pretend that the first slice is
-> > always
-> >  		 * enabled, see intel_enabled_dbuf_slices_num().
-> >  		 */
-> > -		dev_priv->wm.skl_hw.ddb.enabled_slices = 1;
-> > +		dev_priv->enabled_slices = 1;
-> >  }
-> >  
-> >  static void icl_mbus_init(struct drm_i915_private *dev_priv)
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h
-> > b/drivers/gpu/drm/i915/display/intel_display_types.h
-> > index 83ea04149b77..5eaeaf487a01 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> > +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> > @@ -517,6 +517,9 @@ struct intel_atomic_state {
-> >  	/* Gen9+ only */
-> >  	struct skl_ddb_values wm_results;
-> >  
-> > +	/* Number of enabled DBuf slices */
-> > +	u8 enabled_slices;
-> > +
-> >  	struct i915_sw_fence commit_ready;
-> >  
-> >  	struct llist_node freed;
-> > diff --git a/drivers/gpu/drm/i915/i915_drv.h
-> > b/drivers/gpu/drm/i915/i915_drv.h
-> > index fdae5a919bc8..195629a37a61 100644
-> > --- a/drivers/gpu/drm/i915/i915_drv.h
-> > +++ b/drivers/gpu/drm/i915/i915_drv.h
-> > @@ -798,13 +798,8 @@ static inline bool skl_ddb_entry_equal(const
-> > struct skl_ddb_entry *e1,
-> >  	return false;
-> >  }
-> >  
-> > -struct skl_ddb_allocation {
-> > -	u8 enabled_slices; /* GEN11 has configurable 2 slices */
-> > -};
-> > -
-> >  struct skl_ddb_values {
-> >  	unsigned dirty_pipes;
-> > -	struct skl_ddb_allocation ddb;
-> >  };
-> 
-> Seems strange to have a single entry structure (especially one that
-> isn't even a "DDB value" as the name implies).  Do you kill
-> dirty_pipes
-> somewhere later in this series?  I didn't see it from a quick skim.
-
-Those dirty pipes are going to be nuked in Villes series, I guess then
-the whole skl_ddb_values struct will be then removed completely. 
-I would remove it myself however Villes patches need to land, where
-he gets rid of dirty_pipes usage.
-
-> 
-> >  
-> >  struct skl_wm_level {
-> > @@ -1215,6 +1210,8 @@ struct drm_i915_private {
-> >  		bool distrust_bios_wm;
-> >  	} wm;
-> >  
-> > +	u8 enabled_slices; /* GEN11 has configurable 2 slices */
-> 
-> Intel hardware has long used the terms "slice" and "subslice" for the
-> way EUs are grouped on the GT side.  Now that this is pulled out from
-> the substructs that gave it additional context, I think we need to
-> rename this to something like 'enabled_dbuf_slices' to avoid
-> confusion
-> with the more widespread meaning of the word 'slice.'  Same for
-> intel_atomic_state farther up.
-
-Absolutely agree. I was just a bit confused as I have also
-num_supported_dbuf_slices in dev_info, which indicates how much we
-theoretically support, which is now named properly, what made
-me think that I've renamed that one already..
-
-However now probably we will have also "enabled_dbuf_slices_mask" here.
-
-> 
-> > +
-> >  	struct dram_info {
-> >  		bool valid;
-> >  		bool is_16gb_dimm;
-> > diff --git a/drivers/gpu/drm/i915/intel_pm.c
-> > b/drivers/gpu/drm/i915/intel_pm.c
-> > index 5aad9d49a528..a93b4385de4b 100644
-> > --- a/drivers/gpu/drm/i915/intel_pm.c
-> > +++ b/drivers/gpu/drm/i915/intel_pm.c
-> > @@ -3599,7 +3599,7 @@ bool ilk_disable_lp_wm(struct drm_device
-> > *dev)
-> >  	return _ilk_disable_lp_wm(dev_priv, WM_DIRTY_LP_ALL);
-> >  }
-> >  
-> > -static u8 intel_enabled_dbuf_slices_num(struct drm_i915_private
-> > *dev_priv)
-> > +u8 intel_enabled_dbuf_slices_num(struct drm_i915_private
-> > *dev_priv)
-> >  {
-> >  	u8 enabled_slices;
-> >  
-> > @@ -3822,9 +3822,10 @@ bool intel_can_enable_sagv(struct
-> > intel_atomic_state *state)
-> >  static u16 intel_get_ddb_size(struct drm_i915_private *dev_priv,
-> >  			      const struct intel_crtc_state
-> > *crtc_state,
-> >  			      const u64 total_data_rate,
-> > -			      const int num_active,
-> > -			      struct skl_ddb_allocation *ddb)
-> > +			      const int num_active)
-> >  {
-> > +	struct drm_atomic_state *state = crtc_state->uapi.state;
-> > +	struct intel_atomic_state *intel_state =
-> > to_intel_atomic_state(state);
-> >  	const struct drm_display_mode *adjusted_mode;
-> >  	u64 total_data_bw;
-> >  	u16 ddb_size = INTEL_INFO(dev_priv)->ddb_size;
-> > @@ -3846,9 +3847,9 @@ static u16 intel_get_ddb_size(struct
-> > drm_i915_private *dev_priv,
-> >  	 * - should validate we stay within the hw bandwidth limits
-> >  	 */
-> >  	if (0 && (num_active > 1 || total_data_bw >= GBps(12))) {
-> > -		ddb->enabled_slices = 2;
-> > +		intel_state->enabled_slices = 2;
-> >  	} else {
-> > -		ddb->enabled_slices = 1;
-> > +		intel_state->enabled_slices = 1;
-> >  		ddb_size /= 2;
-> >  	}
-> >  
-> > @@ -3859,7 +3860,6 @@ static void
-> >  skl_ddb_get_pipe_allocation_limits(struct drm_i915_private
-> > *dev_priv,
-> >  				   const struct intel_crtc_state
-> > *crtc_state,
-> >  				   const u64 total_data_rate,
-> > -				   struct skl_ddb_allocation *ddb,
-> >  				   struct skl_ddb_entry *alloc, /* out
-> > */
-> >  				   int *num_active /* out */)
-> >  {
-> > @@ -3885,7 +3885,7 @@ skl_ddb_get_pipe_allocation_limits(struct
-> > drm_i915_private *dev_priv,
-> >  		*num_active = hweight8(dev_priv->active_pipes);
-> >  
-> >  	ddb_size = intel_get_ddb_size(dev_priv, crtc_state,
-> > total_data_rate,
-> > -				      *num_active, ddb);
-> > +				      *num_active);
-> >  
-> >  	/*
-> >  	 * If the state doesn't change the active CRTC's or there is no
-> > @@ -4046,10 +4046,9 @@ void skl_pipe_ddb_get_hw_state(struct
-> > intel_crtc *crtc,
-> >  	intel_display_power_put(dev_priv, power_domain, wakeref);
-> >  }
-> >  
-> > -void skl_ddb_get_hw_state(struct drm_i915_private *dev_priv,
-> > -			  struct skl_ddb_allocation *ddb /* out */)
-> > +void skl_ddb_get_hw_state(struct drm_i915_private *dev_priv)
-> >  {
-> > -	ddb->enabled_slices = intel_enabled_dbuf_slices_num(dev_priv);
-> > +	dev_priv->enabled_slices =
-> > intel_enabled_dbuf_slices_num(dev_priv);
-> >  }
-> >  
-> >  /*
-> > @@ -4226,8 +4225,7 @@ icl_get_total_relative_data_rate(struct
-> > intel_crtc_state *crtc_state,
-> >  }
-> >  
-> >  static int
-> > -skl_allocate_pipe_ddb(struct intel_crtc_state *crtc_state,
-> > -		      struct skl_ddb_allocation *ddb /* out */)
-> > +skl_allocate_pipe_ddb(struct intel_crtc_state *crtc_state)
-> >  {
-> >  	struct drm_atomic_state *state = crtc_state->uapi.state;
-> >  	struct drm_crtc *crtc = crtc_state->uapi.crtc;
-> > @@ -4269,7 +4267,7 @@ skl_allocate_pipe_ddb(struct intel_crtc_state
-> > *crtc_state,
-> >  
-> >  
-> >  	skl_ddb_get_pipe_allocation_limits(dev_priv, crtc_state,
-> > total_data_rate,
-> > -					   ddb, alloc, &num_active);
-> > +					   alloc, &num_active);
-> >  	alloc_size = skl_ddb_entry_size(alloc);
-> >  	if (alloc_size == 0)
-> >  		return 0;
-> > @@ -5183,18 +5181,17 @@ skl_ddb_add_affected_planes(const struct
-> > intel_crtc_state *old_crtc_state,
-> >  static int
-> >  skl_compute_ddb(struct intel_atomic_state *state)
-> >  {
-> > -	const struct drm_i915_private *dev_priv = to_i915(state-
-> > >base.dev);
-> > -	struct skl_ddb_allocation *ddb = &state->wm_results.ddb;
-> > +	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
-> >  	struct intel_crtc_state *old_crtc_state;
-> >  	struct intel_crtc_state *new_crtc_state;
-> >  	struct intel_crtc *crtc;
-> >  	int ret, i;
-> >  
-> > -	memcpy(ddb, &dev_priv->wm.skl_hw.ddb, sizeof(*ddb));
-> > +	state->enabled_slices = dev_priv->enabled_slices;
-> >  
-> >  	for_each_oldnew_intel_crtc_in_state(state, crtc,
-> > old_crtc_state,
-> >  					    new_crtc_state, i) {
-> > -		ret = skl_allocate_pipe_ddb(new_crtc_state, ddb);
-> > +		ret = skl_allocate_pipe_ddb(new_crtc_state);
-> >  		if (ret)
-> >  			return ret;
-> >  
-> > @@ -5666,11 +5663,10 @@ void skl_pipe_wm_get_hw_state(struct
-> > intel_crtc *crtc,
-> >  void skl_wm_get_hw_state(struct drm_i915_private *dev_priv)
-> >  {
-> >  	struct skl_ddb_values *hw = &dev_priv->wm.skl_hw;
-> > -	struct skl_ddb_allocation *ddb = &dev_priv->wm.skl_hw.ddb;
-> >  	struct intel_crtc *crtc;
-> >  	struct intel_crtc_state *crtc_state;
-> >  
-> > -	skl_ddb_get_hw_state(dev_priv, ddb);
-> > +	skl_ddb_get_hw_state(dev_priv);
-> 
-> At this point you might as well replace this with a direct call to
-> intel_enabled_dbuf_slices_num() and drop the skl_ddb_get_hw_state()
-> completely.
-> 
-> >  	for_each_intel_crtc(&dev_priv->drm, crtc) {
-> >  		crtc_state = to_intel_crtc_state(crtc->base.state);
-> >  
-> > diff --git a/drivers/gpu/drm/i915/intel_pm.h
-> > b/drivers/gpu/drm/i915/intel_pm.h
-> > index b579c724b915..4aafae4c8e0d 100644
-> > --- a/drivers/gpu/drm/i915/intel_pm.h
-> > +++ b/drivers/gpu/drm/i915/intel_pm.h
-> > @@ -17,8 +17,8 @@ struct intel_atomic_state;
-> >  struct intel_crtc;
-> >  struct intel_crtc_state;
-> >  struct intel_plane;
-> > -struct skl_ddb_allocation;
-> >  struct skl_ddb_entry;
-> > +struct skl_ddb_values;
-> >  struct skl_pipe_wm;
-> >  struct skl_wm_level;
-> >  
-> > @@ -33,11 +33,11 @@ void g4x_wm_get_hw_state(struct
-> > drm_i915_private *dev_priv);
-> >  void vlv_wm_get_hw_state(struct drm_i915_private *dev_priv);
-> >  void ilk_wm_get_hw_state(struct drm_i915_private *dev_priv);
-> >  void skl_wm_get_hw_state(struct drm_i915_private *dev_priv);
-> > +u8 intel_enabled_dbuf_slices_num(struct drm_i915_private
-> > *dev_priv);
-> >  void skl_pipe_ddb_get_hw_state(struct intel_crtc *crtc,
-> >  			       struct skl_ddb_entry *ddb_y,
-> >  			       struct skl_ddb_entry *ddb_uv);
-> > -void skl_ddb_get_hw_state(struct drm_i915_private *dev_priv,
-> > -			  struct skl_ddb_allocation *ddb /* out */);
-> > +void skl_ddb_get_hw_state(struct drm_i915_private *dev_priv);
-> >  void skl_pipe_wm_get_hw_state(struct intel_crtc *crtc,
-> >  			      struct skl_pipe_wm *out);
-> >  void g4x_wm_sanitize(struct drm_i915_private *dev_priv);
-> > -- 
-> > 2.17.1
-> > 
-> 
-> 
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gVGh1LCAxMiBEZWMgMjAxOSwgSGFucyBkZSBHb2VkZSB3cm90ZToKCj4gSGksCj4gCj4gT24g
+MTItMTItMjAxOSAxNjo1MiwgTGVlIEpvbmVzIHdyb3RlOgo+ID4gT24gVGh1LCAxMiBEZWMgMjAx
+OSwgSGFucyBkZSBHb2VkZSB3cm90ZToKPiA+IAo+ID4gPiBIaSwKPiA+ID4gCj4gPiA+IE9uIDEy
+LTEyLTIwMTkgMDk6NDUsIExlZSBKb25lcyB3cm90ZToKPiA+ID4gPiBPbiBXZWQsIDExIERlYyAy
+MDE5LCBIYW5zIGRlIEdvZWRlIHdyb3RlOgo+ID4gPiA+IAo+ID4gPiA+ID4gSGkgTGVlLAo+ID4g
+PiA+ID4gCj4gPiA+ID4gPiBPbiAxMC0xMi0yMDE5IDA5OjUxLCBMZWUgSm9uZXMgd3JvdGU6Cj4g
+PiA+ID4gPiA+IE9uIFR1ZSwgMTkgTm92IDIwMTksIEhhbnMgZGUgR29lZGUgd3JvdGU6Cj4gPiA+
+ID4gPiA+IAo+ID4gPiA+ID4gPiA+IEF0IGxlYXN0IEJheSBUcmFpbCAoQllUKSBhbmQgQ2hlcnJ5
+IFRyYWlsIChDSFQpIGRldmljZXMgY2FuIHVzZSAxIG9mIDIKPiA+ID4gPiA+ID4gPiBkaWZmZXJl
+bnQgUFdNIGNvbnRyb2xsZXJzIGZvciBjb250cm9sbGluZyB0aGUgTENEJ3MgYmFja2xpZ2h0IGJy
+aWdodG5lc3MuCj4gPiA+ID4gPiA+ID4gCj4gPiA+ID4gPiA+ID4gRWl0aGVyIHRoZSBvbmUgaW50
+ZWdyYXRlZCBpbnRvIHRoZSBQTUlDIG9yIHRoZSBvbmUgaW50ZWdyYXRlZCBpbnRvIHRoZQo+ID4g
+PiA+ID4gPiA+IFNvQyAodGhlIDFzdCBMUFNTIFBXTSBjb250cm9sbGVyKS4KPiA+ID4gPiA+ID4g
+PiAKPiA+ID4gPiA+ID4gPiBTbyBmYXIgaW4gdGhlIExQU1MgY29kZSBvbiBCWVQgd2UgaGF2ZSBz
+a2lwcGVkIHJlZ2lzdGVyaW5nIHRoZSBMUFNTIFBXTQo+ID4gPiA+ID4gPiA+IGNvbnRyb2xsZXIg
+InB3bV9iYWNrbGlnaHQiIGxvb2t1cCBlbnRyeSB3aGVuIGEgQ3J5c3RhbCBDb3ZlIFBNSUMgaXMK
+PiA+ID4gPiA+ID4gPiBwcmVzZW50LCBhc3N1bWluZyB0aGF0IGluIHRoaXMgY2FzZSB0aGUgUE1J
+QyBQV00gY29udHJvbGxlciB3aWxsIGJlIHVzZWQuCj4gPiA+ID4gPiA+ID4gCj4gPiA+ID4gPiA+
+ID4gT24gQ0hUIHdlIGhhdmUgYmVlbiByZWx5aW5nIG9uIG9ubHkgMSBvZiB0aGUgMiBQV00gY29u
+dHJvbGxlcnMgYmVpbmcKPiA+ID4gPiA+ID4gPiBlbmFibGVkIGluIHRoZSBEU0RUIGF0IHRoZSBz
+YW1lIHRpbWU7IGFuZCBhbHdheXMgcmVnaXN0ZXJlZCB0aGUgbG9va3VwLgo+ID4gPiA+ID4gPiA+
+IAo+ID4gPiA+ID4gPiA+IFNvIGZhciB0aGlzIGhhcyBiZWVuIHdvcmtpbmcsIGJ1dCB0aGUgY29y
+cmVjdCB3YXkgdG8gZGV0ZXJtaW5lIHdoaWNoIFBXTQo+ID4gPiA+ID4gPiA+IGNvbnRyb2xsZXIg
+bmVlZHMgdG8gYmUgdXNlZCBpcyBieSBjaGVja2luZyBhIGJpdCBpbiB0aGUgVkJUIHRhYmxlIGFu
+ZAo+ID4gPiA+ID4gPiA+IHJlY2VudGx5IEkndmUgbGVhcm5lZCBhYm91dCAyIGRpZmZlcmVudCBC
+WVQgZGV2aWNlczoKPiA+ID4gPiA+ID4gPiBQb2ludCBvZiBWaWV3IE1PQklJIFRBQi1QODAwVwo+
+ID4gPiA+ID4gPiA+IEFjZXIgU3dpdGNoIDEwIFNXNS0wMTIKPiA+ID4gPiA+ID4gPiAKPiA+ID4g
+PiA+ID4gPiBXaGljaCB1c2UgYSBDcnlzdGFsIENvdmUgUE1JQywgeWV0IHRoZSBMQ0QgaXMgY29u
+bmVjdGVkIHRvIHRoZSBTb0MvTFBTUwo+ID4gPiA+ID4gPiA+IFBXTSBjb250cm9sbGVyIChhbmQg
+dGhlIFZCVCBjb3JyZWN0bHkgaW5kaWNhdGVzIHRoaXMpLCBzbyBoZXJlIG91ciBvbGQKPiA+ID4g
+PiA+ID4gPiBoZXVyaXN0aWNzIGZhaWwuCj4gPiA+ID4gPiA+ID4gCj4gPiA+ID4gPiA+ID4gU2lu
+Y2Ugb25seSB0aGUgaTkxNSBkcml2ZXIgaGFzIGFjY2VzcyB0byB0aGUgVkJULCB0aGlzIGNvbW1p
+dCByZW5hbWVzCj4gPiA+ID4gPiA+ID4gdGhlICJwd21fYmFja2xpZ2h0IiBsb29rdXAgZW50cmll
+cyBmb3IgdGhlIENyeXN0YWwgQ292ZSBQTUlDJ3MgUFdNCj4gPiA+ID4gPiA+ID4gY29udHJvbGxl
+ciB0byAicHdtX3BtaWNfYmFja2xpZ2h0IiBzbyB0aGF0IHRoZSBpOTE1IGRyaXZlciBjYW4gZG8g
+YQo+ID4gPiA+ID4gPiA+IHB3bV9nZXQoKSBmb3IgdGhlIHJpZ2h0IGNvbnRyb2xsZXIgZGVwZW5k
+aW5nIG9uIHRoZSBWQlQgYml0LCBpbnN0ZWFkIG9mCj4gPiA+ID4gPiA+ID4gdGhlIGk5MTUgZHJp
+dmVyIHJlbHlpbmcgb24gYSAicHdtX2JhY2tsaWdodCIgbG9va3VwIGdldHRpbmcgcmVnaXN0ZXJl
+ZAo+ID4gPiA+ID4gPiA+IHdoaWNoIG1hZ2ljYWxseSBwb2ludHMgdG8gdGhlIHJpZ2h0IGNvbnRy
+b2xsZXIuCj4gPiA+ID4gPiA+ID4gCj4gPiA+ID4gPiA+ID4gU2lnbmVkLW9mZi1ieTogSGFucyBk
+ZSBHb2VkZSA8aGRlZ29lZGVAcmVkaGF0LmNvbT4KPiA+ID4gPiA+ID4gPiAtLS0KPiA+ID4gPiA+
+ID4gPiAgICAgZHJpdmVycy9tZmQvaW50ZWxfc29jX3BtaWNfY29yZS5jIHwgMiArLQo+ID4gPiA+
+ID4gPiA+ICAgICAxIGZpbGUgY2hhbmdlZCwgMSBpbnNlcnRpb24oKyksIDEgZGVsZXRpb24oLSkK
+PiA+ID4gPiA+ID4gCj4gPiA+ID4gPiA+IEZvciBteSBvd24gcmVmZXJlbmNlOgo+ID4gPiA+ID4g
+PiAgICAgIEFja2VkLWZvci1NRkQtYnk6IExlZSBKb25lcyA8bGVlLmpvbmVzQGxpbmFyby5vcmc+
+Cj4gPiA+ID4gPiAKPiA+ID4gPiA+IEFzIG1lbnRpb25lZCBpbiB0aGUgY292ZXItbGV0dGVyLCB0
+byBhdm9pZCBicmVha2luZyBiaS1zZWN0YWJpbGl0eQo+ID4gPiA+ID4gYXMgd2VsbCBhcyB0byBh
+dm9pZCBicmVha2luZyB0aGUgaW50ZWwtZ2Z4IENJIHdlIG5lZWQgdG8gbWVyZ2UgdGhpcyBzZXJp
+ZXMKPiA+ID4gPiA+IGluIG9uZSBnbyB0aHJvdWdoIG9uZSB0cmVlLiBTcGVjaWZpY2FsbHkgdGhy
+b3VnaCB0aGUgZHJtLWludGVsIHRyZWUuCj4gPiA+ID4gPiBJcyB0aGF0IG9rIHdpdGggeW91ID8K
+PiA+ID4gPiA+IAo+ID4gPiA+ID4gSWYgdGhpcyBpcyBvayB3aXRoIHlvdSwgdGhlbiB5b3UgZG8g
+bm90IGhhdmUgdG8gZG8gYW55dGhpbmcsIEkgd2lsbCBqdXN0IHB1c2gKPiA+ID4gPiA+IHRoZSBl
+bnRpcmUgc2VyaWVzIHRvIGRybS1pbnRlbC4gZHJpdmVycy9tZmQvaW50ZWxfc29jX3BtaWNfY29y
+ZS5jCj4gPiA+ID4gPiBkb2VzIG5vdCBzZWUgbXVjaCBjaGFuZ2VzIHNvIEkgZG8gbm90IGV4cGVj
+dCB0aGlzIHRvIGxlYWQgdG8gYW55IGNvbmZsaWN0cy4KPiA+ID4gPiAKPiA+ID4gPiBJdCdzIGZp
+bmUsIHNvIGxvbmcgYXMgYSBtaW5pbWFsIGltbXV0YWJsZSBwdWxsLXJlcXVlc3QgaXMgcHJvdmlk
+ZWQuCj4gPiA+ID4gV2hldGhlciBpdCdzIHB1bGxlZCBvciBub3Qgd2lsbCBkZXBlbmQgb24gYSBu
+dW1iZXIgb2YgZmFjdG9ycywgYnV0IGl0Cj4gPiA+ID4gbmVlZHMgdG8gYmUgYW4gb3B0aW9uLgo+
+ID4gPiAKPiA+ID4gVGhlIHdheSB0aGUgZHJtIHN1YnN5cyB3b3JrcyB0aGF0IGlzIG5vdCByZWFs
+bHkgYSByZWFkaWx5IGF2YWlsYWJsZQo+ID4gPiBvcHRpb24uIFRoZSBzdHJ1Y3QgZGVmaW5pdGlv
+biB3aGljaCB0aGlzIHBhdGNoIGNoYW5nZXMgYSBzaW5nbGUgbGluZSBpbgo+ID4gPiBoYXMgbm90
+IGJlZW4gdG91Y2hlZCBzaW5jZSAyMDE1LTA2LTI2IHNvIEkgcmVhbGx5IGRvdWJ0IHdlIHdpbGwg
+Z2V0IGEKPiA+ID4gY29uZmxpY3QgZnJvbSB0aGlzLgo+ID4gCj4gPiBBbHdheXMgd2l0aCB0aGUg
+ZXhjZXB0aW9ucyAuLi4KPiA+IAo+ID4gT09JLCB3aHkgZG9lcyB0aGlzICpoYXZlKiB0byBnbyB0
+aHJvdWdoIHRoZSBEUk0gdHJlZT8KPiAKPiBUaGlzIHBhdGNoIHJlbmFtZXMgdGhlIG5hbWUgdXNl
+ZCB0byBsb29rdXAgdGhlIHB3bSBjb250cm9sbGVyIGZyb20KPiAicHdtX2JhY2tsaWdodCIgdG8g
+InB3bV9wbWljX2JhY2tsaWdodCIgYmVjYXVzZSB0aGVyZSBhcmUgMiBwb3NzaWJsZQo+IHB3bSBj
+b250cm9sbGVycyB3aGljaCBtYXkgYmUgdXNlZCwgb25lIGluIHRoZSBTb0MgaXRzZWxmIGFuZCBv
+bmUKPiBpbiB0aGUgUE1JQy4gV2hpY2ggY29udHJvbGxlciBzaG91bGQgYmUgdXNlZCBpcyBkZXNj
+cmliZWQgaW4gYSB0YWJsZQo+IGluIHRoZSBWaWRlbyBCSU9TLCBzbyBhbm90aGVyIHBhcnQgb2Yg
+dGhpcyBzZXJpZXMgYWRkcyB0aGlzIGNvZGUgdG8KPiB0aGUgaTkxNSBkcml2ZXI6Cj4gCj4gLQlw
+YW5lbC0+YmFja2xpZ2h0LnB3bSA9IHB3bV9nZXQoZGV2LT5kZXYsICJwd21fYmFja2xpZ2h0Iik7
+Cj4gKwkvKiBHZXQgdGhlIHJpZ2h0IFBXTSBjaGlwIGZvciBEU0kgYmFja2xpZ2h0IGFjY29yZGlu
+ZyB0byBWQlQgKi8KPiArCWlmIChkZXZfcHJpdi0+dmJ0LmRzaS5jb25maWctPnB3bV9ibGMgPT0g
+UFBTX0JMQ19QTUlDKSB7Cj4gKwkJcGFuZWwtPmJhY2tsaWdodC5wd20gPSBwd21fZ2V0KGRldi0+
+ZGV2LCAicHdtX3BtaWNfYmFja2xpZ2h0Iik7Cj4gKwkJZGVzYyA9ICJQTUlDIjsKPiArCX0gZWxz
+ZSB7Cj4gKwkJcGFuZWwtPmJhY2tsaWdodC5wd20gPSBwd21fZ2V0KGRldi0+ZGV2LCAicHdtX3Nv
+Y19iYWNrbGlnaHQiKTsKPiArCQlkZXNjID0gIlNvQyI7Cj4gKwl9Cj4gCj4gU28gYm90aCBub3Qg
+dG8gYnJlYWsgYmlzZWN0YWJpbGl0eSwgYnV0IGFsc28gc28gYXMgdG8gbm90IGJyZWFrIHRoZSBl
+eHRlbnNpdmUKPiBDSSBzeXN0ZW0gd2hpY2ggaXMgdXNlZCB0byB0ZXN0IHRoZSBpOTE1IGRyaXZl
+ciB3ZSBuZWVkIHRoZSBNRkQgY2hhbmdlIGRvaW5nCj4gdGhlIHJlbmFtZSB0byBnbyB1cHN0cnJl
+YW0gdGhyb3VnaCB0aGUgc2FtZSB0cmVlIGFzIHRoZSBpOTE1IGNoYW5nZS4KPiAKPiBJIGhhdmUg
+ZXZlbiBjb25zaWRlcmVkIGp1c3Qgc3F1YXNoaW5nIHRoZSAyIGNvbW1pdHMgdG9nZXRoZXIgYXMg
+aGF2aW5nIG9ubHkgMQo+IHByZXNlbnQsIGJ1dCBub3QgdGhlIG90aGVyIGJyZWFrcyBzdHVmZiBs
+ZWZ0IGFuZCByaWdodC4KClRoYXQgZG9lc24ndCBhbnN3ZXIgdGhlIHF1ZXN0aW9uLgoKV2h5IGRv
+IHRoZXkgYWxsICpoYXZlKiB0byBnbyBpbiB2aWEgdGhlIERSTSB0cmVlIHNwZWNpZmljYWxseT8K
+Ci0tIApMZWUgSm9uZXMgW+adjueQvOaWr10KTGluYXJvIFNlcnZpY2VzIFRlY2huaWNhbCBMZWFk
+CkxpbmFyby5vcmcg4pSCIE9wZW4gc291cmNlIHNvZnR3YXJlIGZvciBBUk0gU29DcwpGb2xsb3cg
+TGluYXJvOiBGYWNlYm9vayB8IFR3aXR0ZXIgfCBCbG9nCl9fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4
+QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWls
+bWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
