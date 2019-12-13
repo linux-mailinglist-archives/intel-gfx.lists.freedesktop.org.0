@@ -1,41 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6EAE311EE74
-	for <lists+intel-gfx@lfdr.de>; Sat, 14 Dec 2019 00:26:17 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id AA62411EE37
+	for <lists+intel-gfx@lfdr.de>; Sat, 14 Dec 2019 00:09:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B61186EE0E;
-	Fri, 13 Dec 2019 23:26:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7441D6EE0B;
+	Fri, 13 Dec 2019 23:09:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 6598 seconds by postgrey-1.36 at gabe;
- Fri, 13 Dec 2019 23:26:14 UTC
-Received: from 19.mo7.mail-out.ovh.net (19.mo7.mail-out.ovh.net
- [178.33.251.118])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 45C2B6EE0E
- for <intel-gfx@lists.freedesktop.org>; Fri, 13 Dec 2019 23:26:14 +0000 (UTC)
-Received: from player792.ha.ovh.net (unknown [10.108.42.170])
- by mo7.mail-out.ovh.net (Postfix) with ESMTP id 685B3141EF0
- for <intel-gfx@lists.freedesktop.org>; Fri, 13 Dec 2019 22:01:00 +0100 (CET)
-Received: from etezian.org (net-37-116-49-191.cust.vodafonedsl.it
- [37.116.49.191]) (Authenticated sender: andi@etezian.org)
- by player792.ha.ovh.net (Postfix) with ESMTPSA id 3DB44D415A52;
- Fri, 13 Dec 2019 21:00:53 +0000 (UTC)
-From: Andi Shyti <andi@etezian.org>
-To: Intel GFX <intel-gfx@lists.freedesktop.org>
-Date: Fri, 13 Dec 2019 23:00:49 +0200
-Message-Id: <20191213210050.33611-2-andi@etezian.org>
-X-Mailer: git-send-email 2.24.0
-In-Reply-To: <20191213210050.33611-1-andi@etezian.org>
-References: <20191213210050.33611-1-andi@etezian.org>
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 52ECD6EE0B
+ for <intel-gfx@lists.freedesktop.org>; Fri, 13 Dec 2019 23:09:48 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 13 Dec 2019 15:09:47 -0800
+X-IronPort-AV: E=Sophos;i="5.69,311,1571727600"; d="scan'208";a="208606886"
+Received: from ldmartin-desk1.jf.intel.com (HELO ldmartin-desk1)
+ ([10.24.11.18])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 13 Dec 2019 15:09:47 -0800
+Date: Fri, 13 Dec 2019 15:09:41 -0800
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: "Souza, Jose" <jose.souza@intel.com>
+Message-ID: <20191213230941.wdw6v44z3zdxv5oi@ldmartin-desk1>
+X-Patchwork-Hint: ignore
+References: <20191211110844.2996-1-jani.nikula@intel.com>
+ <8d87dfbc5cfb8290a8a66e448abb1a9942237c58.camel@intel.com>
 MIME-Version: 1.0
-X-Ovh-Tracer-Id: 18161891400647950941
-X-VR-SPAMSTATE: OK
-X-VR-SPAMSCORE: -100
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedufedrudelledgudeggecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfqggfjpdevjffgvefmvefgnecuuegrihhlohhuthemucehtddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefhvffufffkofgjfhgggfestdekredtredttdenucfhrhhomheptehnughiucfuhhihthhiuceorghnughisegvthgviihirghnrdhorhhgqeenucfkpheptddrtddrtddrtddpfeejrdduudeirdegledrudeludenucfrrghrrghmpehmohguvgepshhmthhpqdhouhhtpdhhvghlohepphhlrgihvghrjeelvddrhhgrrdhovhhhrdhnvghtpdhinhgvtheptddrtddrtddrtddpmhgrihhlfhhrohhmpegrnhguihesvghtvgiiihgrnhdrohhrghdprhgtphhtthhopehinhhtvghlqdhgfhigsehlihhsthhsrdhfrhgvvgguvghskhhtohhprdhorhhgnecuvehluhhsthgvrhfuihiivgeptd
-Subject: [Intel-gfx] [PATCH v5 1/2] drm/i915/rps: Add frequency translation
- helpers
+Content-Disposition: inline
+In-Reply-To: <8d87dfbc5cfb8290a8a66e448abb1a9942237c58.camel@intel.com>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/dsi: fix pipe D readout for DSI
+ transcoders
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,164 +47,56 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: "Nikula, Jani" <jani.nikula@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Andi Shyti <andi.shyti@intel.com>
+On Wed, Dec 11, 2019 at 05:55:23PM +0000, Jose Souza wrote:
+>On Wed, 2019-12-11 at 13:08 +0200, Jani Nikula wrote:
+>> Commit 4d89adc7b56f ("drm/i915/display/dsi: Add support to pipe D")
+>> added pipe D support for DSI, but failed to update the state readout.
+>>
+>
+>Reviewed-by: Jos=E9 Roberto de Souza <jose.souza@intel.com>
 
-Add two helpers that for reading the actual GT's frequency. The
-two helpers are:
 
- - intel_rps_read_cagf: reads the frequency and returns it not
-   normalized
+pushed, thanks.
 
- - intel_rps_read_actual_frequency: provides the frequency in Hz.
+Lucas De Marchi
 
-Use the above helpers in sysfs and debugfs.
-
-Signed-off-by: Andi Shyti <andi.shyti@intel.com>
-Reviewed-by: Chris Wilson <chris@chris-wilson.co.uk>
----
- drivers/gpu/drm/i915/gt/intel_rps.c | 30 +++++++++++++++++++++++++++++
- drivers/gpu/drm/i915/gt/intel_rps.h |  2 ++
- drivers/gpu/drm/i915/i915_debugfs.c | 21 +++++---------------
- drivers/gpu/drm/i915/i915_sysfs.c   | 14 ++------------
- 4 files changed, 39 insertions(+), 28 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/gt/intel_rps.c b/drivers/gpu/drm/i915/gt/intel_rps.c
-index 106c9fce9d6c..370a11819d6f 100644
---- a/drivers/gpu/drm/i915/gt/intel_rps.c
-+++ b/drivers/gpu/drm/i915/gt/intel_rps.c
-@@ -1682,6 +1682,36 @@ u32 intel_get_cagf(struct intel_rps *rps, u32 rpstat)
- 	return  cagf;
- }
- 
-+u32 intel_rps_read_cagf(struct intel_rps *rps)
-+{
-+	struct drm_i915_private *i915 = rps_to_i915(rps);
-+	u32 freq;
-+
-+	if (IS_VALLEYVIEW(i915) || IS_CHERRYVIEW(i915)) {
-+		vlv_punit_get(i915);
-+		freq = vlv_punit_read(i915, PUNIT_REG_GPU_FREQ_STS);
-+		vlv_punit_put(i915);
-+
-+		return (freq >> 8) & 0xff;
-+	}
-+
-+	return intel_get_cagf(rps, intel_uncore_read(rps_to_gt(rps)->uncore,
-+						     GEN6_RPSTAT1));
-+}
-+
-+u32 intel_rps_read_actual_frequency(struct intel_rps *rps)
-+{
-+	struct intel_runtime_pm *rpm = rps_to_gt(rps)->uncore->rpm;
-+	intel_wakeref_t wakeref;
-+	int freq;
-+
-+	wakeref = intel_runtime_pm_get(rpm);
-+	freq = intel_gpu_freq(rps, intel_rps_read_cagf(rps));
-+	intel_runtime_pm_put(rpm, wakeref);
-+
-+	return freq;
-+}
-+
- /* External interface for intel_ips.ko */
- 
- static struct drm_i915_private __rcu *ips_mchdev;
-diff --git a/drivers/gpu/drm/i915/gt/intel_rps.h b/drivers/gpu/drm/i915/gt/intel_rps.h
-index 9518c66c9792..bd12a63ecd4a 100644
---- a/drivers/gpu/drm/i915/gt/intel_rps.h
-+++ b/drivers/gpu/drm/i915/gt/intel_rps.h
-@@ -30,6 +30,8 @@ void intel_rps_mark_interactive(struct intel_rps *rps, bool interactive);
- int intel_gpu_freq(struct intel_rps *rps, int val);
- int intel_freq_opcode(struct intel_rps *rps, int val);
- u32 intel_get_cagf(struct intel_rps *rps, u32 rpstat1);
-+u32 intel_rps_read_cagf(struct intel_rps *rps);
-+u32 intel_rps_read_actual_frequency(struct intel_rps *rps);
- 
- void gen5_rps_irq_handler(struct intel_rps *rps);
- void gen6_rps_irq_handler(struct intel_rps *rps, u32 pm_iir);
-diff --git a/drivers/gpu/drm/i915/i915_debugfs.c b/drivers/gpu/drm/i915/i915_debugfs.c
-index 9cd5ce5bc93b..3ec26b6a48c1 100644
---- a/drivers/gpu/drm/i915/i915_debugfs.c
-+++ b/drivers/gpu/drm/i915/i915_debugfs.c
-@@ -881,7 +881,7 @@ static int i915_frequency_info(struct seq_file *m, void *unused)
- 		rpdownei = I915_READ(GEN6_RP_CUR_DOWN_EI) & GEN6_CURIAVG_MASK;
- 		rpcurdown = I915_READ(GEN6_RP_CUR_DOWN) & GEN6_CURBSYTAVG_MASK;
- 		rpprevdown = I915_READ(GEN6_RP_PREV_DOWN) & GEN6_CURBSYTAVG_MASK;
--		cagf = intel_gpu_freq(rps, intel_get_cagf(rps, rpstat));
-+		cagf = intel_rps_read_actual_frequency(rps);
- 
- 		intel_uncore_forcewake_put(&dev_priv->uncore, FORCEWAKE_ALL);
- 
-@@ -1623,21 +1623,11 @@ static int i915_rps_boost_info(struct seq_file *m, void *data)
- {
- 	struct drm_i915_private *dev_priv = node_to_i915(m->private);
- 	struct intel_rps *rps = &dev_priv->gt.rps;
--	u32 act_freq = rps->cur_freq;
-+	u32 act_freq;
- 	intel_wakeref_t wakeref;
- 
--	with_intel_runtime_pm_if_in_use(&dev_priv->runtime_pm, wakeref) {
--		if (IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv)) {
--			vlv_punit_get(dev_priv);
--			act_freq = vlv_punit_read(dev_priv,
--						  PUNIT_REG_GPU_FREQ_STS);
--			vlv_punit_put(dev_priv);
--			act_freq = (act_freq >> 8) & 0xff;
--		} else {
--			act_freq = intel_get_cagf(rps,
--						  I915_READ(GEN6_RPSTAT1));
--		}
--	}
-+	with_intel_runtime_pm_if_in_use(&dev_priv->runtime_pm, wakeref)
-+		act_freq = intel_rps_read_actual_frequency(rps);
- 
- 	seq_printf(m, "RPS enabled? %d\n", rps->enabled);
- 	seq_printf(m, "GPU busy? %s\n", yesno(dev_priv->gt.awake));
-@@ -1645,8 +1635,7 @@ static int i915_rps_boost_info(struct seq_file *m, void *data)
- 		   atomic_read(&rps->num_waiters));
- 	seq_printf(m, "Interactive? %d\n", READ_ONCE(rps->power.interactive));
- 	seq_printf(m, "Frequency requested %d, actual %d\n",
--		   intel_gpu_freq(rps, rps->cur_freq),
--		   intel_gpu_freq(rps, act_freq));
-+		   intel_gpu_freq(rps, rps->cur_freq), act_freq);
- 	seq_printf(m, "  min hard:%d, soft:%d; max soft:%d, hard:%d\n",
- 		   intel_gpu_freq(rps, rps->min_freq),
- 		   intel_gpu_freq(rps, rps->min_freq_softlimit),
-diff --git a/drivers/gpu/drm/i915/i915_sysfs.c b/drivers/gpu/drm/i915/i915_sysfs.c
-index 65476909d1bf..5e0f9f217a5d 100644
---- a/drivers/gpu/drm/i915/i915_sysfs.c
-+++ b/drivers/gpu/drm/i915/i915_sysfs.c
-@@ -265,20 +265,10 @@ static ssize_t gt_act_freq_mhz_show(struct device *kdev,
- 	u32 freq;
- 
- 	wakeref = intel_runtime_pm_get(&dev_priv->runtime_pm);
--
--	if (IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv)) {
--		vlv_punit_get(dev_priv);
--		freq = vlv_punit_read(dev_priv, PUNIT_REG_GPU_FREQ_STS);
--		vlv_punit_put(dev_priv);
--
--		freq = (freq >> 8) & 0xff;
--	} else {
--		freq = intel_get_cagf(rps, I915_READ(GEN6_RPSTAT1));
--	}
--
-+	freq = intel_rps_read_actual_frequency(rps);
- 	intel_runtime_pm_put(&dev_priv->runtime_pm, wakeref);
- 
--	return snprintf(buf, PAGE_SIZE, "%d\n", intel_gpu_freq(rps, freq));
-+	return snprintf(buf, PAGE_SIZE, "%d\n", freq);
- }
- 
- static ssize_t gt_cur_freq_mhz_show(struct device *kdev,
--- 
-2.24.0
-
+>
+>> Fixes: 4d89adc7b56f ("drm/i915/display/dsi: Add support to pipe D")
+>> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+>> Cc: Jos=E9 Roberto de Souza <jose.souza@intel.com>
+>> Cc: Vandita Kulkarni <vandita.kulkarni@intel.com>
+>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>> ---
+>>  drivers/gpu/drm/i915/display/intel_display.c | 3 +++
+>>  1 file changed, 3 insertions(+)
+>>
+>> diff --git a/drivers/gpu/drm/i915/display/intel_display.c
+>> b/drivers/gpu/drm/i915/display/intel_display.c
+>> index 5a4bd37863e3..3e0874e1b0f2 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_display.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+>> @@ -10431,6 +10431,9 @@ static bool hsw_get_transcoder_state(struct
+>> intel_crtc *crtc,
+>>  		case TRANS_DDI_EDP_INPUT_C_ONOFF:
+>>  			trans_pipe =3D PIPE_C;
+>>  			break;
+>> +		case TRANS_DDI_EDP_INPUT_D_ONOFF:
+>> +			trans_pipe =3D PIPE_D;
+>> +			break;
+>>  		}
+>>
+>>  		if (trans_pipe =3D=3D crtc->pipe) {
+>_______________________________________________
+>Intel-gfx mailing list
+>Intel-gfx@lists.freedesktop.org
+>https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
