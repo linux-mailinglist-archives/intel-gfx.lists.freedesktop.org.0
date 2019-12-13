@@ -1,34 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 98B0511E733
-	for <lists+intel-gfx@lfdr.de>; Fri, 13 Dec 2019 16:59:04 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A02311E7E8
+	for <lists+intel-gfx@lfdr.de>; Fri, 13 Dec 2019 17:17:25 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0006C6E914;
-	Fri, 13 Dec 2019 15:59:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8124A6EB05;
+	Fri, 13 Dec 2019 16:17:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E0BE96E914
- for <intel-gfx@lists.freedesktop.org>; Fri, 13 Dec 2019 15:59:01 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 19569855-1500050 for multiple; Fri, 13 Dec 2019 15:58:59 +0000
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0C6F66EB05
+ for <intel-gfx@lists.freedesktop.org>; Fri, 13 Dec 2019 16:17:21 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by orsmga106.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 13 Dec 2019 08:17:20 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.69,309,1571727600"; d="scan'208";a="246178888"
+Received: from vandita-desktop.iind.intel.com ([10.223.74.218])
+ by fmsmga002.fm.intel.com with ESMTP; 13 Dec 2019 08:17:18 -0800
+From: Vandita Kulkarni <vandita.kulkarni@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri, 13 Dec 2019 21:15:15 +0530
+Message-Id: <20191213154515.12121-1-vandita.kulkarni@intel.com>
+X-Mailer: git-send-email 2.21.0.5.gaeb582a
 MIME-Version: 1.0
-From: Chris Wilson <chris@chris-wilson.co.uk>
-User-Agent: alot/0.6
-To: Venkata Sandeep Dhanalakota <venkata.s.dhanalakota@intel.com>,
- intel-gfx@lists.freedesktop.org
-References: <20191213155152.69182-1-venkata.s.dhanalakota@intel.com>
- <20191213155152.69182-2-venkata.s.dhanalakota@intel.com>
-In-Reply-To: <20191213155152.69182-2-venkata.s.dhanalakota@intel.com>
-Message-ID: <157625273637.7535.568994149336171117@skylake-alporthouse-com>
-Date: Fri, 13 Dec 2019 15:58:56 +0000
-Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915: Introduce new macros for
- tracing
+Subject: [Intel-gfx] [PATCH] drm/i915: Fix WARN_ON condition for cursor
+ plane ddb allocation
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,28 +41,30 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: jani.nikula@intel.com
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Venkata Sandeep Dhanalakota (2019-12-13 15:51:52)
-> New macros ENGINE_TRACE(), CE_TRACE(), RQ_TRACE() and
-> GT_TRACE() are introduce to tag device name and engine
-> name with contexts and requests tracing in i915.
-> 
-> Cc: Sudeep Dutt <sudeep.dutt@intel.com>
-> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
-> Cc: Chris Wilson <chris@chris-wilson.co.uk>
-> Cc: Jani Nikula <jani.nikula@intel.com>
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> Signed-off-by: Venkata Sandeep Dhanalakota <venkata.s.dhanalakota@intel.com>
-Reviewed-by: Chris Wilson <chris@chris-wilson.co.uk>
-
-That is a nice improvement!
--Chris
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+SW4gc29tZSBjYXNlcyBtaW5fZGRiX2FsbG9jIGNhbiBiZSBVMTZfTUFYLCBleGNsdWRlIGl0CmZy
+b20gdGhlIFdBUk5fT04uCgpGaXhlczogMTBhN2UwN2I2OGI5ICgiZHJtL2k5MTU6IE1ha2Ugc3Vy
+ZSBjdXJzb3IgaGFzIGVub3VnaCBkZGIgZm9yIHRoZSBzZWxlY3RlZCB3bSBsZXZlbCIpClN1Z2dl
+c3RlZC1ieTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4K
+U2lnbmVkLW9mZi1ieTogVmFuZGl0YSBLdWxrYXJuaSA8dmFuZGl0YS5rdWxrYXJuaUBpbnRlbC5j
+b20+Ci0tLQogZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfcG0uYyB8IDYgKysrKy0tCiAxIGZp
+bGUgY2hhbmdlZCwgNCBpbnNlcnRpb25zKCspLCAyIGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBh
+L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX3BtLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9p
+bnRlbF9wbS5jCmluZGV4IGNjYmJkZjRhNmFhYi4uY2VjNGZhNzk0MjJjIDEwMDY0NAotLS0gYS9k
+cml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9wbS5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1
+L2ludGVsX3BtLmMKQEAgLTQzMTIsOCArNDMxMiwxMCBAQCBza2xfYWxsb2NhdGVfcGlwZV9kZGIo
+c3RydWN0IGludGVsX2NydGNfc3RhdGUgKmNydGNfc3RhdGUsCiAJCQkJJmNydGNfc3RhdGUtPndt
+LnNrbC5vcHRpbWFsLnBsYW5lc1twbGFuZV9pZF07CiAKIAkJCWlmIChwbGFuZV9pZCA9PSBQTEFO
+RV9DVVJTT1IpIHsKLQkJCQlpZiAoV0FSTl9PTih3bS0+d21bbGV2ZWxdLm1pbl9kZGJfYWxsb2Mg
+PgotCQkJCQkgICAgdG90YWxbUExBTkVfQ1VSU09SXSkpIHsKKwkJCQlpZiAod20tPndtW2xldmVs
+XS5taW5fZGRiX2FsbG9jID4KKwkJCQkgICAgdG90YWxbUExBTkVfQ1VSU09SXSkgeworCQkJCQlX
+QVJOX09OKHdtLT53bVtsZXZlbF0ubWluX2RkYl9hbGxvYyAhPQorCQkJCQkJVTE2X01BWCk7CiAJ
+CQkJCWJsb2NrcyA9IFUzMl9NQVg7CiAJCQkJCWJyZWFrOwogCQkJCX0KLS0gCjIuMjEuMC41Lmdh
+ZWI1ODJhCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJ
+bnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0
+cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
