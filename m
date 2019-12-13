@@ -1,32 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7FBC711DB8C
-	for <lists+intel-gfx@lfdr.de>; Fri, 13 Dec 2019 02:13:27 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 14E6511DB8E
+	for <lists+intel-gfx@lfdr.de>; Fri, 13 Dec 2019 02:16:45 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E8DD76E255;
-	Fri, 13 Dec 2019 01:13:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9A1376E237;
+	Fri, 13 Dec 2019 01:16:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 1C6906E243;
- Fri, 13 Dec 2019 01:13:24 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 148DDA0138;
- Fri, 13 Dec 2019 01:13:24 +0000 (UTC)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EE75A6E237
+ for <intel-gfx@lists.freedesktop.org>; Fri, 13 Dec 2019 01:16:41 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 12 Dec 2019 17:16:41 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.69,307,1571727600"; d="scan'208";a="415476819"
+Received: from labuser-z97x-ud5h.jf.intel.com (HELO intel.com) ([10.54.75.49])
+ by fmsmga006.fm.intel.com with ESMTP; 12 Dec 2019 17:16:40 -0800
+Date: Thu, 12 Dec 2019 17:18:02 -0800
+From: Manasi Navare <manasi.d.navare@intel.com>
+To: Matt Roper <matthew.d.roper@intel.com>
+Message-ID: <20191213011802.GF24342@intel.com>
+References: <20191211211425.17821-1-manasi.d.navare@intel.com>
+ <20191211211425.17821-2-manasi.d.navare@intel.com>
+ <20191213003232.GR85422@mdroper-desk1.amr.corp.intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Fri, 13 Dec 2019 01:13:24 -0000
-Message-ID: <157619960405.23800.1041780125371932418@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20191213001713.1741810-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20191213001713.1741810-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5BCI=2C1/2=5D_drm/i915/gt=3A_Mark_context-?=
- =?utf-8?q?=3Estate_vma_as_active_while_pinned?=
+Content-Disposition: inline
+In-Reply-To: <20191213003232.GR85422@mdroper-desk1.amr.corp.intel.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+Subject: Re: [Intel-gfx] [PATCH 1/3] drm/i915/dp: Make sure all tiled
+ connectors get added to the state with full modeset
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,243 +47,209 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Thu, Dec 12, 2019 at 04:32:32PM -0800, Matt Roper wrote:
+> On Wed, Dec 11, 2019 at 01:14:23PM -0800, Manasi Navare wrote:
+> > In case of tiled displays, all the tiles are linke dto each other
+> =
 
-Series: series starting with [CI,1/2] drm/i915/gt: Mark context->state vma as active while pinned
-URL   : https://patchwork.freedesktop.org/series/70860/
-State : failure
+> Minor typo on "linked to" here.
 
-== Summary ==
+I will fix it
 
-CI Bug Log - changes from CI_DRM_7554 -> Patchwork_15735
-====================================================
+> =
 
-Summary
--------
+> > for transcoder port sync. So in intel_atomic_check() we need to make
+> > sure that we add all the tiles to the modeset and if one of the
+> > tiles needs a full modeset then mark all other tiles for a full modeset.
+> > =
 
-  **FAILURE**
+> > Suggested-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > Cc: Jos=E9 Roberto de Souza <jose.souza@intel.com>
+> > Bugzilla: https://gitlab.freedesktop.org/drm/intel/issues/5
+> =
 
-  Serious unknown changes coming with Patchwork_15735 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_15735, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
+> I think we're moving to "Closes:" as the annotation here now that it's
+> not actually a bugzilla bug database anymore.
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15735/index.html
+Ok cool, will change that to Closes
 
-Possible new issues
--------------------
+> =
 
-  Here are the unknown changes that may have been introduced in Patchwork_15735:
+> > Signed-off-by: Manasi Navare <manasi.d.navare@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_display.c | 78 ++++++++++++++++++++
+> >  1 file changed, 78 insertions(+)
+> > =
 
-### IGT changes ###
+> > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu=
+/drm/i915/display/intel_display.c
+> > index 803993a01ca7..7263eaa66cda 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_display.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> > @@ -14066,6 +14066,80 @@ static int intel_atomic_check_crtcs(struct int=
+el_atomic_state *state)
+> >  	return 0;
+> >  }
+> >  =
 
-#### Possible regressions ####
+> > +static int
+> > +intel_dp_modeset_all_tiles(struct drm_i915_private *dev_priv,
+> > +			   struct intel_atomic_state *state, int tile_grp_id)
+> > +{
+> > +	struct drm_connector *conn_iter;
+> > +	struct drm_connector_list_iter conn_list_iter;
+> > +	struct drm_crtc_state *crtc_state;
+> > +
+> > +	drm_connector_list_iter_begin(&dev_priv->drm, &conn_list_iter);
+> > +	drm_for_each_connector_iter(conn_iter, &conn_list_iter) {
+> > +		struct drm_connector_state *conn_iter_state;
+> > +
+> > +		if (!conn_iter->has_tile)
+> > +			continue;
+> > +		conn_iter_state =3D drm_atomic_get_connector_state(&state->base,
+> > +								 conn_iter);
+> > +		if (IS_ERR(conn_iter_state)) {
+> > +			drm_connector_list_iter_end(&conn_list_iter);
+> > +			return PTR_ERR(conn_iter_state);
+> > +		}
+> > +
+> > +		if (!conn_iter_state->crtc)
+> > +			continue;
+> > +
+> > +		if (conn_iter->tile_group->id !=3D tile_grp_id)
+> > +			continue;
+> > +
+> > +		crtc_state =3D drm_atomic_get_crtc_state(&state->base, conn_iter_sta=
+te->crtc);
+> > +		if (IS_ERR(crtc_state)) {
+> > +			drm_connector_list_iter_end(&conn_list_iter);
+> > +			return PTR_ERR(conn_iter_state);
+> > +		}
+> > +		crtc_state->mode_changed =3D true;
+> > +	}
+> > +	drm_connector_list_iter_end(&conn_list_iter);
+> > +
+> > +	return 0;
+> > +}
+> > +
+> > +static int
+> > +intel_dp_atomic_trans_port_sync_check(struct drm_i915_private *dev_pri=
+v,
+> > +				      struct intel_atomic_state *state)
+> > +{
+> > +	struct drm_connector *connector;
+> > +	struct drm_crtc_state *crtc_state;
+> > +	struct drm_connector_state *connector_state;
+> > +	int i, ret, tile_grp_id =3D 0;
+> > +
+> > +	if (INTEL_GEN(dev_priv) < 11)
+> > +		return 0;
+> > +
+> > +	/* Is tiled, mark all other tiled CRTCs as needing a modeset */
+> > +	for_each_new_connector_in_state(&state->base, connector, connector_st=
+ate, i) {
+> > +		if (!connector->has_tile)
+> > +			continue;
+> > +		if (connector_state->crtc &&
+> > +		    tile_grp_id !=3D connector->tile_group->id) {
+> > +			crtc_state =3D drm_atomic_get_new_crtc_state(&state->base,
+> > +								   connector_state->crtc);
+> > +			if (!drm_atomic_crtc_needs_modeset(crtc_state))
+> > +				continue;
+> > +
+> > +			tile_grp_id =3D connector->tile_group->id;
+> > +		} else
+> =
 
-  * igt@gem_exec_suspend@basic-s0:
-    - fi-kbl-r:           [PASS][1] -> [INCOMPLETE][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7554/fi-kbl-r/igt@gem_exec_suspend@basic-s0.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15735/fi-kbl-r/igt@gem_exec_suspend@basic-s0.html
-    - fi-kbl-8809g:       [PASS][3] -> [INCOMPLETE][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7554/fi-kbl-8809g/igt@gem_exec_suspend@basic-s0.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15735/fi-kbl-8809g/igt@gem_exec_suspend@basic-s0.html
-    - fi-kbl-guc:         [PASS][5] -> [INCOMPLETE][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7554/fi-kbl-guc/igt@gem_exec_suspend@basic-s0.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15735/fi-kbl-guc/igt@gem_exec_suspend@basic-s0.html
-    - fi-skl-6600u:       [PASS][7] -> [INCOMPLETE][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7554/fi-skl-6600u/igt@gem_exec_suspend@basic-s0.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15735/fi-skl-6600u/igt@gem_exec_suspend@basic-s0.html
-    - fi-blb-e6850:       [PASS][9] -> [INCOMPLETE][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7554/fi-blb-e6850/igt@gem_exec_suspend@basic-s0.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15735/fi-blb-e6850/igt@gem_exec_suspend@basic-s0.html
-    - fi-hsw-4770r:       NOTRUN -> [INCOMPLETE][11]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15735/fi-hsw-4770r/igt@gem_exec_suspend@basic-s0.html
-    - fi-cfl-8700k:       [PASS][12] -> [INCOMPLETE][13]
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7554/fi-cfl-8700k/igt@gem_exec_suspend@basic-s0.html
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15735/fi-cfl-8700k/igt@gem_exec_suspend@basic-s0.html
-    - fi-ivb-3770:        [PASS][14] -> [INCOMPLETE][15]
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7554/fi-ivb-3770/igt@gem_exec_suspend@basic-s0.html
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15735/fi-ivb-3770/igt@gem_exec_suspend@basic-s0.html
-    - fi-whl-u:           [PASS][16] -> [INCOMPLETE][17]
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7554/fi-whl-u/igt@gem_exec_suspend@basic-s0.html
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15735/fi-whl-u/igt@gem_exec_suspend@basic-s0.html
-    - fi-cfl-guc:         [PASS][18] -> [INCOMPLETE][19]
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7554/fi-cfl-guc/igt@gem_exec_suspend@basic-s0.html
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15735/fi-cfl-guc/igt@gem_exec_suspend@basic-s0.html
-    - fi-hsw-4770:        [PASS][20] -> [INCOMPLETE][21]
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7554/fi-hsw-4770/igt@gem_exec_suspend@basic-s0.html
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15735/fi-hsw-4770/igt@gem_exec_suspend@basic-s0.html
-    - fi-kbl-7500u:       [PASS][22] -> [INCOMPLETE][23]
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7554/fi-kbl-7500u/igt@gem_exec_suspend@basic-s0.html
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15735/fi-kbl-7500u/igt@gem_exec_suspend@basic-s0.html
-    - fi-kbl-soraka:      [PASS][24] -> [INCOMPLETE][25]
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7554/fi-kbl-soraka/igt@gem_exec_suspend@basic-s0.html
-   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15735/fi-kbl-soraka/igt@gem_exec_suspend@basic-s0.html
-    - fi-snb-2520m:       [PASS][26] -> [INCOMPLETE][27]
-   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7554/fi-snb-2520m/igt@gem_exec_suspend@basic-s0.html
-   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15735/fi-snb-2520m/igt@gem_exec_suspend@basic-s0.html
-    - fi-hsw-peppy:       [PASS][28] -> [INCOMPLETE][29]
-   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7554/fi-hsw-peppy/igt@gem_exec_suspend@basic-s0.html
-   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15735/fi-hsw-peppy/igt@gem_exec_suspend@basic-s0.html
-    - fi-ilk-650:         [PASS][30] -> [INCOMPLETE][31]
-   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7554/fi-ilk-650/igt@gem_exec_suspend@basic-s0.html
-   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15735/fi-ilk-650/igt@gem_exec_suspend@basic-s0.html
+> Minor kernel coding style violation; if we use {} on one branch of an
+> if, we need to use them on all.
+>
 
-  * igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a:
-    - fi-bwr-2160:        [PASS][32] -> [INCOMPLETE][33]
-   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7554/fi-bwr-2160/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a.html
-   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15735/fi-bwr-2160/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a.html
+Yes i got a checkpatch check warning, will fix it
+ =
 
-  
-#### Warnings ####
+> > +			continue;
+> > +
+> > +		ret =3D intel_dp_modeset_all_tiles(dev_priv, state, tile_grp_id);
+> > +		if (ret)
+> > +			return ret;
+> > +	}
+> > +
+> > +	return 0;
+> > +}
+> > +
+> >  /**
+> >   * intel_atomic_check - validate state object
+> >   * @dev: drm device
+> > @@ -14093,6 +14167,10 @@ static int intel_atomic_check(struct drm_devic=
+e *dev,
+> >  	if (ret)
+> >  		goto fail;
+> >  =
 
-  * igt@gem_exec_suspend@basic-s0:
-    - fi-kbl-x1275:       [DMESG-WARN][34] ([i915#62] / [i915#92] / [i915#95]) -> [INCOMPLETE][35]
-   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7554/fi-kbl-x1275/igt@gem_exec_suspend@basic-s0.html
-   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15735/fi-kbl-x1275/igt@gem_exec_suspend@basic-s0.html
+> > +	ret =3D intel_dp_atomic_trans_port_sync_check(dev_priv, state);
+> > +	if (ret)
+> > +		goto fail;
+> =
 
-  
-Known issues
-------------
+> Should this happen before the drm_atomic_helper_check_modeset() just
+> above (or should we re-call that function if we flag the other tile as
+> needing a modeset)?  The kerneldoc on that function says:
+> =
 
-  Here are the changes found in Patchwork_15735 that come from known issues:
+> """
+> Drivers which set &drm_crtc_state.mode_changed [...] _must_ call this
+> function afterwards after that change. It is permitted to call this
+> function multiple times for the same update ...
+> """
+>
 
-### IGT changes ###
+IMO, here infact it makes sense to call my function after the drm_atomic_he=
+lper_check_modeset()
+because it directly sets the new_crtc_state->mode_changed to true for all t=
+iles if 1 of them needs
+a full modeset.
+And whether that one tile needs a full modeset or not will be decided based=
+ on mode changed for that set
+in drm_atomic_helper_check_modeset.
 
-#### Issues hit ####
+Manasi
+ =
 
-  * igt@gem_exec_suspend@basic-s0:
-    - fi-skl-lmem:        [PASS][36] -> [INCOMPLETE][37] ([i915#198])
-   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7554/fi-skl-lmem/igt@gem_exec_suspend@basic-s0.html
-   [37]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15735/fi-skl-lmem/igt@gem_exec_suspend@basic-s0.html
-    - fi-bsw-nick:        [PASS][38] -> [INCOMPLETE][39] ([i915#392])
-   [38]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7554/fi-bsw-nick/igt@gem_exec_suspend@basic-s0.html
-   [39]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15735/fi-bsw-nick/igt@gem_exec_suspend@basic-s0.html
-    - fi-skl-6770hq:      [PASS][40] -> [INCOMPLETE][41] ([i915#198])
-   [40]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7554/fi-skl-6770hq/igt@gem_exec_suspend@basic-s0.html
-   [41]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15735/fi-skl-6770hq/igt@gem_exec_suspend@basic-s0.html
-    - fi-bdw-5557u:       [PASS][42] -> [INCOMPLETE][43] ([i915#146])
-   [42]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7554/fi-bdw-5557u/igt@gem_exec_suspend@basic-s0.html
-   [43]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15735/fi-bdw-5557u/igt@gem_exec_suspend@basic-s0.html
-    - fi-bsw-kefka:       [PASS][44] -> [INCOMPLETE][45] ([i915#392])
-   [44]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7554/fi-bsw-kefka/igt@gem_exec_suspend@basic-s0.html
-   [45]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15735/fi-bsw-kefka/igt@gem_exec_suspend@basic-s0.html
-    - fi-apl-guc:         [PASS][46] -> [INCOMPLETE][47] ([fdo#103927])
-   [46]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7554/fi-apl-guc/igt@gem_exec_suspend@basic-s0.html
-   [47]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15735/fi-apl-guc/igt@gem_exec_suspend@basic-s0.html
-    - fi-skl-6700k2:      [PASS][48] -> [INCOMPLETE][49] ([i915#198])
-   [48]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7554/fi-skl-6700k2/igt@gem_exec_suspend@basic-s0.html
-   [49]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15735/fi-skl-6700k2/igt@gem_exec_suspend@basic-s0.html
-    - fi-icl-y:           [PASS][50] -> [INCOMPLETE][51] ([i915#140])
-   [50]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7554/fi-icl-y/igt@gem_exec_suspend@basic-s0.html
-   [51]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15735/fi-icl-y/igt@gem_exec_suspend@basic-s0.html
-    - fi-bsw-n3050:       [PASS][52] -> [INCOMPLETE][53] ([i915#392])
-   [52]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7554/fi-bsw-n3050/igt@gem_exec_suspend@basic-s0.html
-   [53]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15735/fi-bsw-n3050/igt@gem_exec_suspend@basic-s0.html
-    - fi-skl-guc:         [PASS][54] -> [INCOMPLETE][55] ([i915#198])
-   [54]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7554/fi-skl-guc/igt@gem_exec_suspend@basic-s0.html
-   [55]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15735/fi-skl-guc/igt@gem_exec_suspend@basic-s0.html
-    - fi-icl-u3:          [PASS][56] -> [INCOMPLETE][57] ([i915#140])
-   [56]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7554/fi-icl-u3/igt@gem_exec_suspend@basic-s0.html
-   [57]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15735/fi-icl-u3/igt@gem_exec_suspend@basic-s0.html
-    - fi-cml-s:           [PASS][58] -> [INCOMPLETE][59] ([i915#283])
-   [58]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7554/fi-cml-s/igt@gem_exec_suspend@basic-s0.html
-   [59]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15735/fi-cml-s/igt@gem_exec_suspend@basic-s0.html
-    - fi-byt-j1900:       [PASS][60] -> [INCOMPLETE][61] ([i915#45])
-   [60]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7554/fi-byt-j1900/igt@gem_exec_suspend@basic-s0.html
-   [61]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15735/fi-byt-j1900/igt@gem_exec_suspend@basic-s0.html
-    - fi-bxt-dsi:         [PASS][62] -> [INCOMPLETE][63] ([fdo#103927])
-   [62]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7554/fi-bxt-dsi/igt@gem_exec_suspend@basic-s0.html
-   [63]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15735/fi-bxt-dsi/igt@gem_exec_suspend@basic-s0.html
-    - fi-icl-guc:         [PASS][64] -> [INCOMPLETE][65] ([i915#140])
-   [64]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7554/fi-icl-guc/igt@gem_exec_suspend@basic-s0.html
-   [65]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15735/fi-icl-guc/igt@gem_exec_suspend@basic-s0.html
-    - fi-cml-u2:          [PASS][66] -> [INCOMPLETE][67] ([i915#283])
-   [66]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7554/fi-cml-u2/igt@gem_exec_suspend@basic-s0.html
-   [67]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15735/fi-cml-u2/igt@gem_exec_suspend@basic-s0.html
-    - fi-pnv-d510:        [PASS][68] -> [INCOMPLETE][69] ([i915#299])
-   [68]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7554/fi-pnv-d510/igt@gem_exec_suspend@basic-s0.html
-   [69]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15735/fi-pnv-d510/igt@gem_exec_suspend@basic-s0.html
-    - fi-glk-dsi:         [PASS][70] -> [INCOMPLETE][71] ([i915#58] / [k.org#198133])
-   [70]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7554/fi-glk-dsi/igt@gem_exec_suspend@basic-s0.html
-   [71]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15735/fi-glk-dsi/igt@gem_exec_suspend@basic-s0.html
-    - fi-icl-u2:          [PASS][72] -> [INCOMPLETE][73] ([i915#140])
-   [72]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7554/fi-icl-u2/igt@gem_exec_suspend@basic-s0.html
-   [73]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15735/fi-icl-u2/igt@gem_exec_suspend@basic-s0.html
-    - fi-elk-e7500:       [PASS][74] -> [INCOMPLETE][75] ([i915#66])
-   [74]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7554/fi-elk-e7500/igt@gem_exec_suspend@basic-s0.html
-   [75]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15735/fi-elk-e7500/igt@gem_exec_suspend@basic-s0.html
-    - fi-snb-2600:        [PASS][76] -> [INCOMPLETE][77] ([i915#82])
-   [76]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7554/fi-snb-2600/igt@gem_exec_suspend@basic-s0.html
-   [77]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15735/fi-snb-2600/igt@gem_exec_suspend@basic-s0.html
-    - fi-byt-n2820:       [PASS][78] -> [INCOMPLETE][79] ([i915#45])
-   [78]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7554/fi-byt-n2820/igt@gem_exec_suspend@basic-s0.html
-   [79]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15735/fi-byt-n2820/igt@gem_exec_suspend@basic-s0.html
+> =
 
-  * igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a:
-    - fi-gdg-551:         [PASS][80] -> [INCOMPLETE][81] ([i915#172])
-   [80]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7554/fi-gdg-551/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a.html
-   [81]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15735/fi-gdg-551/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a.html
+> Matt
+> =
 
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
+> > +
+> >  	for_each_oldnew_intel_crtc_in_state(state, crtc, old_crtc_state,
+> >  					    new_crtc_state, i) {
+> >  		if (!needs_modeset(new_crtc_state)) {
+> > -- =
 
-  [fdo#103927]: https://bugs.freedesktop.org/show_bug.cgi?id=103927
-  [fdo#111593]: https://bugs.freedesktop.org/show_bug.cgi?id=111593
-  [i915#140]: https://gitlab.freedesktop.org/drm/intel/issues/140
-  [i915#146]: https://gitlab.freedesktop.org/drm/intel/issues/146
-  [i915#172]: https://gitlab.freedesktop.org/drm/intel/issues/172
-  [i915#198]: https://gitlab.freedesktop.org/drm/intel/issues/198
-  [i915#283]: https://gitlab.freedesktop.org/drm/intel/issues/283
-  [i915#299]: https://gitlab.freedesktop.org/drm/intel/issues/299
-  [i915#392]: https://gitlab.freedesktop.org/drm/intel/issues/392
-  [i915#45]: https://gitlab.freedesktop.org/drm/intel/issues/45
-  [i915#476]: https://gitlab.freedesktop.org/drm/intel/issues/476
-  [i915#58]: https://gitlab.freedesktop.org/drm/intel/issues/58
-  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
-  [i915#66]: https://gitlab.freedesktop.org/drm/intel/issues/66
-  [i915#82]: https://gitlab.freedesktop.org/drm/intel/issues/82
-  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
-  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
-  [k.org#198133]: https://bugzilla.kernel.org/show_bug.cgi?id=198133
+> > 2.19.1
+> > =
 
+> > _______________________________________________
+> > Intel-gfx mailing list
+> > Intel-gfx@lists.freedesktop.org
+> > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+> =
 
-Participating hosts (52 -> 46)
-------------------------------
+> -- =
 
-  Additional (1): fi-hsw-4770r 
-  Missing    (7): fi-icl-1065g7 fi-ilk-m540 fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_7554 -> Patchwork_15735
-
-  CI-20190529: 20190529
-  CI_DRM_7554: b8870a9cb78bb11f21414804940fadc47ac848dd @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5346: 466b0e6cbcbaccff012b484d1fd7676364b37b93 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_15735: 557f1ef9f865e7a0a68e0f492a6a0f37fce90f8d @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-557f1ef9f865 drm/i915/gt: Mark ring->vma as active while pinned
-8bcac6718bba drm/i915/gt: Mark context->state vma as active while pinned
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15735/index.html
+> Matt Roper
+> Graphics Software Engineer
+> VTT-OSGC Platform Enablement
+> Intel Corporation
+> (916) 356-2795
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
