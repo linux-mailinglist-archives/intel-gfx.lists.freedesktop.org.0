@@ -1,43 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED4C911E001
-	for <lists+intel-gfx@lfdr.de>; Fri, 13 Dec 2019 09:56:00 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2CA5211E05D
+	for <lists+intel-gfx@lfdr.de>; Fri, 13 Dec 2019 10:12:46 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3A8BA89E47;
-	Fri, 13 Dec 2019 08:55:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EDFC56E2D6;
+	Fri, 13 Dec 2019 09:12:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3AB7389E47
- for <intel-gfx@lists.freedesktop.org>; Fri, 13 Dec 2019 08:55:58 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8BA956E2CD
+ for <intel-gfx@lists.freedesktop.org>; Fri, 13 Dec 2019 09:12:40 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
  by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 13 Dec 2019 00:55:56 -0800
+ 13 Dec 2019 01:12:40 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,309,1571727600"; d="scan'208";a="204265228"
-Received: from fractal.fi.intel.com ([10.237.72.198])
- by orsmga007.jf.intel.com with ESMTP; 13 Dec 2019 00:55:55 -0800
-To: Manasi Navare <manasi.d.navare@intel.com>, intel-gfx@lists.freedesktop.org
-References: <20191211212433.18185-1-manasi.d.navare@intel.com>
- <157611880961.32008.16220670685103356969@emeril.freedesktop.org>
- <20191212212845.GA24342@intel.com>
-From: Tomi Sarvela <tomi.p.sarvela@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Message-ID: <db330426-2263-b095-8019-9e9415c25901@intel.com>
-Date: Fri, 13 Dec 2019 10:54:55 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.2.2
+X-IronPort-AV: E=Sophos;i="5.69,309,1571727600"; d="scan'208";a="226229094"
+Received: from linux.fm.intel.com ([10.1.27.42])
+ by orsmga002.jf.intel.com with ESMTP; 13 Dec 2019 01:12:39 -0800
+From: Venkata Sandeep Dhanalakota <venkata.s.dhanalakota@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri, 13 Dec 2019 01:12:38 -0800
+Message-Id: <20191213091239.67408-1-venkata.s.dhanalakota@intel.com>
+X-Mailer: git-send-email 2.21.0.5.gaeb582a983
 MIME-Version: 1.0
-In-Reply-To: <20191212212845.GA24342@intel.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] 
- =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5B1/2=5D_drm=3A_Handle_connector_tile_suppor?=
- =?utf-8?q?t_only_for_modes_that_match_tile_size?=
+Subject: [Intel-gfx] [PATCH 1/2] drm/i915/perf: Register sysctl path globally
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,65 +40,150 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: chris.p.wilson@intel.com
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 12/12/19 11:28 PM, Manasi Navare wrote:
-> The KBL failure does not look related to the changes in this patch series.
-> Tomi, could you confirm if this is a false negative?
-> 
-> Manasi
+We do not require to register the sysctl paths per instance,
+so making registration global.
 
-The failures with the patchset seem same as all the other results from 
-live_gt_pm: just that kbl-x1275 hasn't been ticked to the bugfilter, 
-probably because it hasn't survived the test before (module_reload).
+v2: make sysctl path register and unregister function driver
+    specific (Tvrtko and Lucas).
 
-I've triggered shard-run for this series.
+Cc: Sudeep Dutt <sudeep.dutt@intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Jani Nikula <jani.nikula@intel.com>
+Signed-off-by: Venkata Sandeep Dhanalakota <venkata.s.dhanalakota@intel.com>
+---
+ drivers/gpu/drm/i915/i915_pci.c        |  9 ++++++++-
+ drivers/gpu/drm/i915/i915_perf.c       | 18 ++++++++++++++----
+ drivers/gpu/drm/i915/i915_perf.h       |  2 ++
+ drivers/gpu/drm/i915/i915_perf_types.h |  1 -
+ 4 files changed, 24 insertions(+), 6 deletions(-)
 
-Tomi
-
-> On Thu, Dec 12, 2019 at 02:46:49AM +0000, Patchwork wrote:
->> == Series Details ==
->>
->> Series: series starting with [1/2] drm: Handle connector tile support only for modes that match tile size
->> URL   : https://patchwork.freedesktop.org/series/70790/
->> State : failure
->>
->> == Summary ==
->>
->> CI Bug Log - changes from CI_DRM_7545 -> Patchwork_15701
->> ====================================================
->>
->> Summary
->> -------
->>
->>    **FAILURE**
-
->>    External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15701/index.html
->>
->> Possible new issues
->> -------------------
->>
->>    Here are the unknown changes that may have been introduced in Patchwork_15701:
->>
->> ### IGT changes ###
->>
->> #### Possible regressions ####
->>
->>    * igt@i915_selftest@live_gt_pm:
->>      - fi-kbl-x1275:       NOTRUN -> [DMESG-FAIL][1]
->>     [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15701/fi-kbl-x1275/igt@i915_selftest@live_gt_pm.html
-
->>
->> == Logs ==
->>
->> For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15701/index.html
-
-
+diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
+index bba6b50e6beb..4b33128070da 100644
+--- a/drivers/gpu/drm/i915/i915_pci.c
++++ b/drivers/gpu/drm/i915/i915_pci.c
+@@ -30,6 +30,7 @@
+ #include "display/intel_fbdev.h"
+ 
+ #include "i915_drv.h"
++#include "i915_perf.h"
+ #include "i915_globals.h"
+ #include "i915_selftest.h"
+ 
+@@ -1051,7 +1052,12 @@ static int __init i915_init(void)
+ 		return 0;
+ 	}
+ 
+-	return pci_register_driver(&i915_pci_driver);
++	err = pci_register_driver(&i915_pci_driver);
++	if (err)
++		return err;
++
++	i915_perf_sysctl_register();
++	return 0;
+ }
+ 
+ static void __exit i915_exit(void)
+@@ -1059,6 +1065,7 @@ static void __exit i915_exit(void)
+ 	if (!i915_pci_driver.driver.owner)
+ 		return;
+ 
++	i915_perf_sysctl_unregister();
+ 	pci_unregister_driver(&i915_pci_driver);
+ 	i915_globals_exit();
+ }
+diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
+index 8d2e37949f46..4abd7623ef2d 100644
+--- a/drivers/gpu/drm/i915/i915_perf.c
++++ b/drivers/gpu/drm/i915/i915_perf.c
+@@ -387,6 +387,8 @@ struct i915_oa_config_bo {
+ 	struct i915_vma *vma;
+ };
+ 
++static struct ctl_table_header *sysctl_header;
++
+ static enum hrtimer_restart oa_poll_check_timer_cb(struct hrtimer *hrtimer);
+ 
+ void i915_oa_config_release(struct kref *ref)
+@@ -4228,7 +4230,7 @@ static struct ctl_table dev_root[] = {
+ };
+ 
+ /**
+- * i915_perf_init - initialize i915-perf state on module load
++ * i915_perf_init - initialize i915-perf state on module bind
+  * @i915: i915 device instance
+  *
+  * Initializes i915-perf state without exposing anything to userspace.
+@@ -4345,7 +4347,6 @@ void i915_perf_init(struct drm_i915_private *i915)
+ 
+ 		oa_sample_rate_hard_limit = 1000 *
+ 			(RUNTIME_INFO(i915)->cs_timestamp_frequency_khz / 2);
+-		perf->sysctl_header = register_sysctl_table(dev_root);
+ 
+ 		mutex_init(&perf->metrics_lock);
+ 		idr_init(&perf->metrics_idr);
+@@ -4381,6 +4382,17 @@ static int destroy_config(int id, void *p, void *data)
+ 	return 0;
+ }
+ 
++void i915_perf_sysctl_register(void)
++{
++	sysctl_header = register_sysctl_table(dev_root);
++}
++
++void i915_perf_sysctl_unregister(void)
++{
++	if (sysctl_header)
++		unregister_sysctl_table(sysctl_header);
++}
++
+ /**
+  * i915_perf_fini - Counter part to i915_perf_init()
+  * @i915: i915 device instance
+@@ -4395,8 +4407,6 @@ void i915_perf_fini(struct drm_i915_private *i915)
+ 	idr_for_each(&perf->metrics_idr, destroy_config, perf);
+ 	idr_destroy(&perf->metrics_idr);
+ 
+-	unregister_sysctl_table(perf->sysctl_header);
+-
+ 	memset(&perf->ops, 0, sizeof(perf->ops));
+ 	perf->i915 = NULL;
+ }
+diff --git a/drivers/gpu/drm/i915/i915_perf.h b/drivers/gpu/drm/i915/i915_perf.h
+index 4ceebce72060..882fdd0a7680 100644
+--- a/drivers/gpu/drm/i915/i915_perf.h
++++ b/drivers/gpu/drm/i915/i915_perf.h
+@@ -23,6 +23,8 @@ void i915_perf_fini(struct drm_i915_private *i915);
+ void i915_perf_register(struct drm_i915_private *i915);
+ void i915_perf_unregister(struct drm_i915_private *i915);
+ int i915_perf_ioctl_version(void);
++void i915_perf_sysctl_register(void);
++void i915_perf_sysctl_unregister(void);
+ 
+ int i915_perf_open_ioctl(struct drm_device *dev, void *data,
+ 			 struct drm_file *file);
+diff --git a/drivers/gpu/drm/i915/i915_perf_types.h b/drivers/gpu/drm/i915/i915_perf_types.h
+index 74ddc20a0d37..45e581455f5d 100644
+--- a/drivers/gpu/drm/i915/i915_perf_types.h
++++ b/drivers/gpu/drm/i915/i915_perf_types.h
+@@ -380,7 +380,6 @@ struct i915_perf {
+ 	struct drm_i915_private *i915;
+ 
+ 	struct kobject *metrics_kobj;
+-	struct ctl_table_header *sysctl_header;
+ 
+ 	/*
+ 	 * Lock associated with adding/modifying/removing OA configs
 -- 
-Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+2.21.0.5.gaeb582a983
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
