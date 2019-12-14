@@ -2,31 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 127C111EF95
-	for <lists+intel-gfx@lfdr.de>; Sat, 14 Dec 2019 02:38:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3DBF811EFE3
+	for <lists+intel-gfx@lfdr.de>; Sat, 14 Dec 2019 03:07:06 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EF96A6EE2D;
-	Sat, 14 Dec 2019 01:38:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DF12F6E08A;
+	Sat, 14 Dec 2019 02:07:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 9BD3E6E2F9;
- Sat, 14 Dec 2019 01:38:09 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 83A9A6E072;
+ Sat, 14 Dec 2019 02:07:02 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 942D1A01BB;
- Sat, 14 Dec 2019 01:38:09 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 75234A363B;
+ Sat, 14 Dec 2019 02:07:02 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Sat, 14 Dec 2019 01:38:09 -0000
-Message-ID: <157628748958.13805.12567503265299483696@emeril.freedesktop.org>
+To: "Andi Shyti" <andi@etezian.org>
+Date: Sat, 14 Dec 2019 02:07:02 -0000
+Message-ID: <157628922245.13803.2550187429024585617@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20191213223140.1830738-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20191213223140.1830738-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/i915/gem=3A_Serialise_object_before_changing_cache-leve?=
- =?utf-8?q?l?=
+References: <20191213210050.33611-1-andi@etezian.org>
+In-Reply-To: <20191213210050.33611-1-andi@etezian.org>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBT?=
+ =?utf-8?q?ome_debugfs_enhancements_=28rev5=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,19 +47,32 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: drm/i915/gem: Serialise object before changing cache-level
-URL   : https://patchwork.freedesktop.org/series/70917/
-State : warning
+Series: Some debugfs enhancements (rev5)
+URL   : https://patchwork.freedesktop.org/series/70658/
+State : failure
 
 == Summary ==
 
-$ dim checkpatch origin/drm-tip
-30034c200ed3 drm/i915/gem: Serialise object before changing cache-level
--:8: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 8b1c78e06e61 ("drm/i915: Avoid calling i915_gem_object_unbind holding object lock")'
-#8: 
-8b1c78e06e61 ("drm/i915: Avoid calling i915_gem_object_unbind holding
-
-total: 1 errors, 0 warnings, 0 checks, 13 lines checked
+Applying: drm/i915/rps: Add frequency translation helpers
+Using index info to reconstruct a base tree...
+M	drivers/gpu/drm/i915/gt/intel_rps.c
+M	drivers/gpu/drm/i915/gt/intel_rps.h
+M	drivers/gpu/drm/i915/i915_debugfs.c
+M	drivers/gpu/drm/i915/i915_sysfs.c
+Falling back to patching base and 3-way merge...
+Auto-merging drivers/gpu/drm/i915/i915_sysfs.c
+CONFLICT (content): Merge conflict in drivers/gpu/drm/i915/i915_sysfs.c
+Auto-merging drivers/gpu/drm/i915/i915_debugfs.c
+CONFLICT (content): Merge conflict in drivers/gpu/drm/i915/i915_debugfs.c
+Auto-merging drivers/gpu/drm/i915/gt/intel_rps.h
+CONFLICT (content): Merge conflict in drivers/gpu/drm/i915/gt/intel_rps.h
+Auto-merging drivers/gpu/drm/i915/gt/intel_rps.c
+error: Failed to merge in the changes.
+hint: Use 'git am --show-current-patch' to see the failed patch
+Patch failed at 0001 drm/i915/rps: Add frequency translation helpers
+When you have resolved this problem, run "git am --continue".
+If you prefer to skip this patch, run "git am --skip" instead.
+To restore the original branch and stop patching, run "git am --abort".
 
 _______________________________________________
 Intel-gfx mailing list
