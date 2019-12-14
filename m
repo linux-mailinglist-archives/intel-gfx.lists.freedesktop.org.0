@@ -2,37 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A13311EE9B
-	for <lists+intel-gfx@lfdr.de>; Sat, 14 Dec 2019 00:39:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1021211EEF3
+	for <lists+intel-gfx@lfdr.de>; Sat, 14 Dec 2019 01:01:33 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 019726EE15;
-	Fri, 13 Dec 2019 23:39:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0601C6E0E6;
+	Sat, 14 Dec 2019 00:01:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0EC3B6EE11;
- Fri, 13 Dec 2019 23:39:00 +0000 (UTC)
-X-Amp-Result: UNSCANNABLE
-X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga106.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 13 Dec 2019 15:39:00 -0800
-X-IronPort-AV: E=Sophos;i="5.69,311,1571727600"; d="scan'208";a="204473980"
-Received: from ldmartin-desk1.jf.intel.com (HELO ldmartin-desk1)
- ([10.24.11.18])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 13 Dec 2019 15:39:00 -0800
-Date: Fri, 13 Dec 2019 15:38:53 -0800
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>
-Message-ID: <20191213233853.eefala2yj2sibvx2@ldmartin-desk1>
-X-Patchwork-Hint: ignore
-References: <20191107142417.11107-1-ville.syrjala@linux.intel.com>
+Received: from mail-wm1-x343.google.com (mail-wm1-x343.google.com
+ [IPv6:2a00:1450:4864:20::343])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C17CC6E0E6
+ for <intel-gfx@lists.freedesktop.org>; Sat, 14 Dec 2019 00:01:29 +0000 (UTC)
+Received: by mail-wm1-x343.google.com with SMTP id q9so557558wmj.5
+ for <intel-gfx@lists.freedesktop.org>; Fri, 13 Dec 2019 16:01:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:content-transfer-encoding:in-reply-to
+ :user-agent; bh=mHgw1ZcDJF/uaOqo2Uf1yZFWVybb4SNnH1sWk6TnMB8=;
+ b=duSN7bv0xdjWWPVVjGHWqgLC5xNVjNgzGjEEa0x1K+K0tEijNPJ/XsbRBXVFTSgu3H
+ UkesZV1Hf0le6aIcYbdEKVH4HxdU6BN7VXlRH6tqhRPYT9FbTOkCBr1CaFbX9+2tfWqI
+ YbARyjCbxpAKUPlYQ60b/GJYkDjaX5/DL/Ko0=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:content-transfer-encoding
+ :in-reply-to:user-agent;
+ bh=mHgw1ZcDJF/uaOqo2Uf1yZFWVybb4SNnH1sWk6TnMB8=;
+ b=hkCAG8hY0w0Sa9p1Am6wuxtiMr32wOPEs7/pOjizf0dLPiR2G0P9RW8sPEllGHCK+J
+ DR4bgnQF+S6wsR3pES0H36aHmidX5Sf6U43yNYqtsZjUydE+1DaEBpPIuaX5rwtZ0rgT
+ Hcx1rHt4BNt6xgX1WG/wwYuOFkoPq120O94pOaLY6xLxS1+2diIh+ZmBfBoQnGZ81chj
+ BEXnSzcACbNwe256vnalA80ZgMLPyeTtlEIMXsHjFQ1PYehg83N3tVD73e3+1xSf9cMA
+ GqGmq0I8bIdKtZnNsITqKC327uun2oFASgzl0lMp2XJ8xnD9EHr3zPYeAzmW+A02Nrhl
+ JP3g==
+X-Gm-Message-State: APjAAAXYKpBKzinYBxe2zROfjXjJIhNuiSzNHvm+0VVmxxhGjE7tOO8g
+ IlqwKg9NjAAR/nZT3d40SyCyAg==
+X-Google-Smtp-Source: APXvYqwxHgFPLNfIZfJCyVFQUmkD7ynYr66fpU740/fS6zvb23m/rPBq14YLU/ZSNDmbXPp7IWgr6Q==
+X-Received: by 2002:a05:600c:108a:: with SMTP id
+ e10mr15521769wmd.38.1576281688335; 
+ Fri, 13 Dec 2019 16:01:28 -0800 (PST)
+Received: from phenom.ffwll.local ([2a02:168:564b:0:7567:bb67:3d7f:f863])
+ by smtp.gmail.com with ESMTPSA id d6sm11910773wmb.6.2019.12.13.16.01.27
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 13 Dec 2019 16:01:27 -0800 (PST)
+Date: Sat, 14 Dec 2019 01:01:25 +0100
+From: Daniel Vetter <daniel@ffwll.ch>
+To: "Li, Juston" <juston.li@intel.com>
+Message-ID: <20191214000125.GO624164@phenom.ffwll.local>
+References: <20191003183125.4520-1-juston.li@intel.com>
+ <20191213213603.GK1208@intel.com>
+ <aa2c2e05adc88b77b4a571cfb85517d7377afaa3.camel@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20191107142417.11107-1-ville.syrjala@linux.intel.com>
-Subject: Re: [Intel-gfx] [PATCH 1/5] drm: Add
- __drm_atomic_helper_crtc_state_reset() & co.
+In-Reply-To: <aa2c2e05adc88b77b4a571cfb85517d7377afaa3.camel@intel.com>
+X-Operating-System: Linux phenom 5.3.0-2-amd64 
+User-Agent: Mutt/1.12.2 (2019-09-21)
+Subject: Re: [Intel-gfx] [RESEND PATCH v2] drm: Add getfb2 ioctl
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,207 +69,215 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "daniels@collabora.com" <daniels@collabora.com>
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Nov 07, 2019 at 04:24:13PM +0200, Ville Syrj=E4l=E4 wrote:
->From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
->
->Annoyingly __drm_atomic_helper_crtc_reset() does two
->totally separate things:
->a) reset the state to defaults values
->b) assign the crtc->state pointer
->
->I just want a) without the b) so let's split out part
->a) into __drm_atomic_helper_crtc_state_reset(). And
->of course we'll do the same thing for planes and connectors.
->
->Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
->---
-> drivers/gpu/drm/drm_atomic_state_helper.c | 70 ++++++++++++++++++++---
-> include/drm/drm_atomic_state_helper.h     |  6 ++
-> 2 files changed, 67 insertions(+), 9 deletions(-)
->
->diff --git a/drivers/gpu/drm/drm_atomic_state_helper.c b/drivers/gpu/drm/d=
-rm_atomic_state_helper.c
->index d0a937fb0c56..a972068d58cf 100644
->--- a/drivers/gpu/drm/drm_atomic_state_helper.c
->+++ b/drivers/gpu/drm/drm_atomic_state_helper.c
->@@ -57,6 +57,22 @@
->  * for these functions.
->  */
->
->+/**
->+ * __drm_atomic_helper_crtc_state_reset - reset the CRTC state
->+ * @crtc_state: atomic CRTC state, must not be NULL
->+ * @crtc: CRTC object, must not be NULL
->+ *
->+ * Initializes the newly allocated @crtc_state with default
->+ * values. This is useful for drivers that subclass the CRTC state.
->+ */
->+void
->+__drm_atomic_helper_crtc_state_reset(struct drm_crtc_state *crtc_state,
->+				     struct drm_crtc *crtc)
->+{
->+	crtc_state->crtc =3D crtc;
->+}
->+EXPORT_SYMBOL(__drm_atomic_helper_crtc_state_reset);
->+
-> /**
->  * __drm_atomic_helper_crtc_reset - reset state on CRTC
->  * @crtc: drm CRTC
->@@ -74,7 +90,7 @@ __drm_atomic_helper_crtc_reset(struct drm_crtc *crtc,
-> 			       struct drm_crtc_state *crtc_state)
-> {
-> 	if (crtc_state)
->-		crtc_state->crtc =3D crtc;
->+		__drm_atomic_helper_crtc_state_reset(crtc_state, crtc);
->
-> 	crtc->state =3D crtc_state;
-> }
->@@ -212,23 +228,43 @@ void drm_atomic_helper_crtc_destroy_state(struct drm=
-_crtc *crtc,
-> EXPORT_SYMBOL(drm_atomic_helper_crtc_destroy_state);
->
-> /**
->- * __drm_atomic_helper_plane_reset - resets planes state to default values
->+ * __drm_atomic_helper_plane_state_reset - resets plane state to default =
-values
->+ * @plane_state: atomic plane state, must not be NULL
->  * @plane: plane object, must not be NULL
->- * @state: atomic plane state, must not be NULL
->  *
->- * Initializes plane state to default. This is useful for drivers that su=
-bclass
->- * the plane state.
->+ * Initializes the newly allocated @plane_state with default
->+ * values. This is useful for drivers that subclass the CRTC state.
->  */
->-void __drm_atomic_helper_plane_reset(struct drm_plane *plane,
->-				     struct drm_plane_state *state)
->+void __drm_atomic_helper_plane_state_reset(struct drm_plane_state *state,
->+					   struct drm_plane *plane)
-> {
-> 	state->plane =3D plane;
-> 	state->rotation =3D DRM_MODE_ROTATE_0;
->
-> 	state->alpha =3D DRM_BLEND_ALPHA_OPAQUE;
-> 	state->pixel_blend_mode =3D DRM_MODE_BLEND_PREMULTI;
->+}
->+EXPORT_SYMBOL(__drm_atomic_helper_plane_state_reset);
->
->-	plane->state =3D state;
->+/**
->+ * __drm_atomic_helper_plane_reset - reset state on plane
->+ * @plane: drm plane
->+ * @plane_state: plane state to assign
->+ *
->+ * Initializes the newly allocated @plane_state and assigns it to
->+ * the &drm_crtc->state pointer of @plane, usually required when
->+ * initializing the drivers or when called from the &drm_plane_funcs.reset
->+ * hook.
->+ *
->+ * This is useful for drivers that subclass the plane state.
->+ */
->+void __drm_atomic_helper_plane_reset(struct drm_plane *plane,
->+				     struct drm_plane_state *plane_state)
->+{
->+	if (plane_state)
->+		__drm_atomic_helper_plane_state_reset(plane_state, plane);
->+
->+	plane->state =3D plane_state;
-> }
-> EXPORT_SYMBOL(__drm_atomic_helper_plane_reset);
->
->@@ -335,6 +371,22 @@ void drm_atomic_helper_plane_destroy_state(struct drm=
-_plane *plane,
-> }
-> EXPORT_SYMBOL(drm_atomic_helper_plane_destroy_state);
->
->+/**
->+ * __drm_atomic_helper_connector_state_reset - reset the connector state
->+ * @conn__state: atomic connector state, must not be NULL
+On Fri, Dec 13, 2019 at 10:52:03PM +0000, Li, Juston wrote:
+> On Fri, 2019-12-13 at 23:36 +0200, Ville Syrj=E4l=E4 wrote:
+> > On Thu, Oct 03, 2019 at 11:31:25AM -0700, Juston Li wrote:
+> > > From: Daniel Stone <daniels@collabora.com>
+> > > =
 
-typo here, otherwise
+> > > getfb2 allows us to pass multiple planes and modifiers, just like
+> > > addfb2
+> > > over addfb.
+> > > =
 
+> > > Changes since v1:
+> > >  - unused modifiers set to 0 instead of DRM_FORMAT_MOD_INVALID
+> > >  - update ioctl number
+> > > =
 
-Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
+> > > Signed-off-by: Daniel Stone <daniels@collabora.com>
+> > > Signed-off-by: Juston Li <juston.li@intel.com>
+> > > ---
+> > >  drivers/gpu/drm/drm_crtc_internal.h |   2 +
+> > >  drivers/gpu/drm/drm_framebuffer.c   | 110
+> > > ++++++++++++++++++++++++++++
+> > >  drivers/gpu/drm/drm_ioctl.c         |   1 +
+> > >  include/uapi/drm/drm.h              |   2 +
+> > >  4 files changed, 115 insertions(+)
+> > > =
 
-Lucas De Marchi
+> > > diff --git a/drivers/gpu/drm/drm_crtc_internal.h
+> > > b/drivers/gpu/drm/drm_crtc_internal.h
+> > > index c7d5e4c21423..16f2413403aa 100644
+> > > --- a/drivers/gpu/drm/drm_crtc_internal.h
+> > > +++ b/drivers/gpu/drm/drm_crtc_internal.h
+> > > @@ -216,6 +216,8 @@ int drm_mode_rmfb_ioctl(struct drm_device *dev,
+> > >  			void *data, struct drm_file *file_priv);
+> > >  int drm_mode_getfb(struct drm_device *dev,
+> > >  		   void *data, struct drm_file *file_priv);
+> > > +int drm_mode_getfb2_ioctl(struct drm_device *dev,
+> > > +			  void *data, struct drm_file *file_priv);
+> > >  int drm_mode_dirtyfb_ioctl(struct drm_device *dev,
+> > >  			   void *data, struct drm_file *file_priv);
+> > >  =
 
->+ * @connector: connectotr object, must not be NULL
->+ *
->+ * Initializes the newly allocated @conn_state with default
->+ * values. This is useful for drivers that subclass the connector state.
->+ */
->+void
->+__drm_atomic_helper_connector_state_reset(struct drm_connector_state *con=
-n_state,
->+					  struct drm_connector *connector)
->+{
->+	conn_state->connector =3D connector;
->+}
->+EXPORT_SYMBOL(__drm_atomic_helper_connector_state_reset);
->+
-> /**
->  * __drm_atomic_helper_connector_reset - reset state on connector
->  * @connector: drm connector
->@@ -352,7 +404,7 @@ __drm_atomic_helper_connector_reset(struct drm_connect=
-or *connector,
-> 				    struct drm_connector_state *conn_state)
-> {
-> 	if (conn_state)
->-		conn_state->connector =3D connector;
->+		__drm_atomic_helper_connector_state_reset(conn_state, connector);
->
-> 	connector->state =3D conn_state;
-> }
->diff --git a/include/drm/drm_atomic_state_helper.h b/include/drm/drm_atomi=
-c_state_helper.h
->index e4577cc11689..8171dea4cc22 100644
->--- a/include/drm/drm_atomic_state_helper.h
->+++ b/include/drm/drm_atomic_state_helper.h
->@@ -37,6 +37,8 @@ struct drm_private_state;
-> struct drm_modeset_acquire_ctx;
-> struct drm_device;
->
->+void __drm_atomic_helper_crtc_state_reset(struct drm_crtc_state *state,
->+					  struct drm_crtc *crtc);
-> void __drm_atomic_helper_crtc_reset(struct drm_crtc *crtc,
-> 				    struct drm_crtc_state *state);
-> void drm_atomic_helper_crtc_reset(struct drm_crtc *crtc);
->@@ -48,6 +50,8 @@ void __drm_atomic_helper_crtc_destroy_state(struct drm_c=
-rtc_state *state);
-> void drm_atomic_helper_crtc_destroy_state(struct drm_crtc *crtc,
-> 					  struct drm_crtc_state *state);
->
->+void __drm_atomic_helper_plane_state_reset(struct drm_plane_state *state,
->+					   struct drm_plane *plane);
-> void __drm_atomic_helper_plane_reset(struct drm_plane *plane,
-> 				     struct drm_plane_state *state);
-> void drm_atomic_helper_plane_reset(struct drm_plane *plane);
->@@ -59,6 +63,8 @@ void __drm_atomic_helper_plane_destroy_state(struct drm_=
-plane_state *state);
-> void drm_atomic_helper_plane_destroy_state(struct drm_plane *plane,
-> 					  struct drm_plane_state *state);
->
->+void __drm_atomic_helper_connector_state_reset(struct drm_connector_state=
- *conn_state,
->+					       struct drm_connector *connector);
-> void __drm_atomic_helper_connector_reset(struct drm_connector *connector,
-> 					 struct drm_connector_state *conn_state);
-> void drm_atomic_helper_connector_reset(struct drm_connector *connector);
->-- =
+> > > diff --git a/drivers/gpu/drm/drm_framebuffer.c
+> > > b/drivers/gpu/drm/drm_framebuffer.c
+> > > index 57564318ceea..6db54f177443 100644
+> > > --- a/drivers/gpu/drm/drm_framebuffer.c
+> > > +++ b/drivers/gpu/drm/drm_framebuffer.c
+> > > @@ -31,6 +31,7 @@
+> > >  #include <drm/drm_file.h>
+> > >  #include <drm/drm_fourcc.h>
+> > >  #include <drm/drm_framebuffer.h>
+> > > +#include <drm/drm_gem.h>
+> > >  #include <drm/drm_print.h>
+> > >  #include <drm/drm_util.h>
+> > >  =
 
->2.23.0
->
->_______________________________________________
->Intel-gfx mailing list
->Intel-gfx@lists.freedesktop.org
->https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+> > > @@ -548,7 +549,116 @@ int drm_mode_getfb(struct drm_device *dev,
+> > >  =
+
+> > >  out:
+> > >  	drm_framebuffer_put(fb);
+> > > +	return ret;
+> > > +}
+> > > +
+> > > +/**
+> > > + * drm_mode_getfb2 - get extended FB info
+> > > + * @dev: drm device for the ioctl
+> > > + * @data: data pointer for the ioctl
+> > > + * @file_priv: drm file for the ioctl call
+> > > + *
+> > > + * Lookup the FB given its ID and return info about it.
+> > > + *
+> > > + * Called by the user via ioctl.
+> > > + *
+> > > + * Returns:
+> > > + * Zero on success, negative errno on failure.
+> > > + */
+> > > +int drm_mode_getfb2_ioctl(struct drm_device *dev,
+> > > +			  void *data, struct drm_file *file_priv)
+> > > +{
+> > > +	struct drm_mode_fb_cmd2 *r =3D data;
+> > > +	struct drm_framebuffer *fb;
+> > > +	unsigned int i;
+> > > +	int ret;
+> > > +
+> > > +	if (!drm_core_check_feature(dev, DRIVER_MODESET))
+> > > +		return -EINVAL;
+> > > +
+> > > +	fb =3D drm_framebuffer_lookup(dev, file_priv, r->fb_id);
+> > > +	if (!fb)
+> > > +		return -ENOENT;
+> > > +
+> > > +	/* For multi-plane framebuffers, we require the driver to place
+> > > the
+> > > +	 * GEM objects directly in the drm_framebuffer. For single-
+> > > plane
+> > > +	 * framebuffers, we can fall back to create_handle.
+> > > +	 */
+> > > +	if (!fb->obj[0] &&
+> > > +	    (fb->format->num_planes > 1 || !fb->funcs->create_handle))
+> > > {
+> > > +		ret =3D -ENODEV;
+> > > +		goto out;
+> > > +	}
+> > > +
+> > > +	r->height =3D fb->height;
+> > > +	r->width =3D fb->width;
+> > > +	r->pixel_format =3D fb->format->format;
+> > > +
+> > > +	r->flags =3D 0;
+> > > +	if (dev->mode_config.allow_fb_modifiers)
+> > > +		r->flags |=3D DRM_MODE_FB_MODIFIERS;
+> > > +
+> > > +	for (i =3D 0; i < ARRAY_SIZE(r->handles); i++) {
+> > > +		r->handles[i] =3D 0;
+> > > +		r->pitches[i] =3D 0;
+> > > +		r->offsets[i] =3D 0;
+> > > +		r->modifier[i] =3D 0;
+> > > +	}
+> > >  =
+
+> > > +	for (i =3D 0; i < fb->format->num_planes; i++) {
+> > > +		int j;
+> > > +
+> > > +		r->pitches[i] =3D fb->pitches[i];
+> > > +		r->offsets[i] =3D fb->offsets[i];
+> > > +		if (dev->mode_config.allow_fb_modifiers)
+> > > +			r->modifier[i] =3D fb->modifier;
+> > > +
+> > > +		/* If we reuse the same object for multiple planes,
+> > > also
+> > > +		 * return the same handle.
+> > > +		 */
+> > > +		for (j =3D 0; j < i; j++) {
+> > > +			if (fb->obj[i] =3D=3D fb->obj[j]) {
+> > > +				r->handles[i] =3D r->handles[j];
+> > > +				break;
+> > > +			}
+> > > +		}
+> > > +
+> > > +		if (r->handles[i])
+> > > +			continue;
+> > > +
+> > > +		if (fb->obj[i]) {
+> > > +			ret =3D drm_gem_handle_create(file_priv, fb-
+> > > >obj[i],
+> > > +						    &r->handles[i]);
+> > > +		} else {
+> > > +			WARN_ON(i > 0);
+> > > +			ret =3D fb->funcs->create_handle(fb, file_priv,
+> > > +						       &r->handles[i]);
+> > > +		}
+> > =
+
+> > getfb1 doesn't allow non-master/root to see the handles. Here we
+> > don't
+> > seem to have that same protection?
+> =
+
+> Hmm yeah sorry I missed the protections handling.
+> I think we can just set the getfb2 ioctl flags as
+> DRM_MASTER|DRM_ROOT_ONLY
+
+Since this was missed, can you pls extend the igt to test for this? Iirc
+the getfb igt makes sure non-root doesn't get this ...
+
+Also for consistency I think doing the same as getfb would be good. Fewer
+surprises.
+-Daniel
+
+> =
+
+> > > +
+> > > +		if (ret !=3D 0)
+> > > +			goto out;
+> > =
+
+> > Could be just 'break;' and then we wouldn't even need the label.
+> =
+
+> Will do.
+> =
+
+> > =
+
+> > Rest lgtm.
+> > =
+
+> =
+
+> Much appreciated
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+-- =
+
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
