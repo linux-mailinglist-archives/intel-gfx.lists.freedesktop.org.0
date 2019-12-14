@@ -1,59 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E52611EF41
-	for <lists+intel-gfx@lfdr.de>; Sat, 14 Dec 2019 01:36:36 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B70111EF69
+	for <lists+intel-gfx@lfdr.de>; Sat, 14 Dec 2019 01:52:59 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ACED96E113;
-	Sat, 14 Dec 2019 00:36:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EB0EF6E055;
+	Sat, 14 Dec 2019 00:52:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com
- [IPv6:2a00:1450:4864:20::52d])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3800A6E0F3
- for <intel-gfx@lists.freedesktop.org>; Sat, 14 Dec 2019 00:36:32 +0000 (UTC)
-Received: by mail-ed1-x52d.google.com with SMTP id f8so585882edv.2
- for <intel-gfx@lists.freedesktop.org>; Fri, 13 Dec 2019 16:36:32 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=jlekstrand-net.20150623.gappssmtp.com; s=20150623;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=x/criWtzZlOjZheKwE9PCVhsk8+Ysl3vn28deIs8Fmc=;
- b=wIb/dt+LozdXDVD8TP94IBQPkqvX4l04jltprjZhcExPynCppLhFbDrZzDS/8jykVc
- JEe61ZRUSSB6PLMyG41G96JSxR8gYFNENVB3kPkxXuPtQJ1fI7m1bgO55AIoYC2neNlZ
- J4nJ59Bu3B8giBlHmD/+LbONwBHAfL7DqnGSKfNxgQiyvx1Ocn8IHhVcEFfI/fUKV2Az
- jQqYvuOfvnLWFzqpVzkRH+jRbAzGejfpoFuXWdO4PXun2fddqYQdzstEI5VNQotRl9hC
- CmY4eqveMwp4q+vW0KYYiKFEKgmgfv3hvF0dtU6nZqrBdcc7d+H0NKZb1a2fcChVHTCy
- cQ1g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=x/criWtzZlOjZheKwE9PCVhsk8+Ysl3vn28deIs8Fmc=;
- b=JIDftngtZ6Waw7IpApFFGVJ2SQfnr4xYJzOfjj97r1B9j6BZxyusFBKRKreBFJxP9b
- j2XYMEdUYcpNcaT+bsjqetmqE1FZhOeDOPw3nRFMRD6/VM6vn/yjfbrYeOadluf7lL5F
- fPP/gNyJxDUlEiBQbKZZoRS8Wrd8750ukBkD3AzbiYCZfe9sfVjI057mmmM0RYMjoYXL
- BkxsrLmWED4CvoWKGUN/u5oGOj0jRJzYMxh4NbziEoTkNvPTEh5kvFkukgOQNBamkuZH
- z2coCbemPt1GMJnz3tz+GgxH6tcKjO6SO6y/wcclFHObcylO8dObS9OFxW8OTEc0c4IT
- aKwQ==
-X-Gm-Message-State: APjAAAXcshLakll1BIWAMV7HRiFMypay18c0T+kfVGysH9v7glWSzM88
- sUa7Z9SArdjeetEk+2KT5ISSEBQYa6jGxxuGA9s7AQ==
-X-Google-Smtp-Source: APXvYqwwBg3fUitkYIjnPjCvEQxF9+iANNbWUxw2cSGepuAu2zPYLDHcSR+y5SIZjsSh0lSt0CTVzGVTH4Z3kMqrId8=
-X-Received: by 2002:a05:6402:355:: with SMTP id
- r21mr6300220edw.60.1576283790581; 
- Fri, 13 Dec 2019 16:36:30 -0800 (PST)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 76D096E055
+ for <intel-gfx@lists.freedesktop.org>; Sat, 14 Dec 2019 00:52:54 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga106.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 13 Dec 2019 16:52:53 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.69,311,1571727600"; d="scan'208";a="265679230"
+Received: from mdroper-desk1.fm.intel.com (HELO
+ mdroper-desk1.amr.corp.intel.com) ([10.1.27.64])
+ by FMSMGA003.fm.intel.com with ESMTP; 13 Dec 2019 16:52:53 -0800
+Date: Fri, 13 Dec 2019 16:52:52 -0800
+From: Matt Roper <matthew.d.roper@intel.com>
+To: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+Message-ID: <20191214005252.GG85422@mdroper-desk1.amr.corp.intel.com>
+References: <20191213130228.29509-1-stanislav.lisovskiy@intel.com>
+ <20191213130228.29509-5-stanislav.lisovskiy@intel.com>
 MIME-Version: 1.0
-References: <20191213215614.24558-1-niranjana.vishwanathapura@intel.com>
- <20191213215614.24558-3-niranjana.vishwanathapura@intel.com>
- <CAOFGe95rC8A4SuwWtd1tbikw8HGm-TU52_O8iBSJKpDyY0gWNw@mail.gmail.com>
- <20191213231322.GS14488@nvishwa1-DESK.sc.intel.com>
-In-Reply-To: <20191213231322.GS14488@nvishwa1-DESK.sc.intel.com>
-From: Jason Ekstrand <jason@jlekstrand.net>
-Date: Fri, 13 Dec 2019 18:36:19 -0600
-Message-ID: <CAOFGe97yh5CGTwoP-f3wRGWoTLuWMvMwYFc5Hx3KOkT9XkOxkw@mail.gmail.com>
-To: Niranjan Vishwanathapura <niranjana.vishwanathapura@intel.com>
-Subject: Re: [Intel-gfx] [RFC v2 02/12] drm/i915/svm: Runtime (RT) allocator
- support
+Content-Disposition: inline
+In-Reply-To: <20191213130228.29509-5-stanislav.lisovskiy@intel.com>
+User-Agent: Mutt/1.12.1 (2019-06-15)
+Subject: Re: [Intel-gfx] [PATCH v8 4/4] drm/i915: Correctly map DBUF slices
+ to pipes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,312 +47,409 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Graunke, Kenneth W" <kenneth.w.graunke@intel.com>,
- Intel GFX <intel-gfx@lists.freedesktop.org>, sanjay.k.kumar@intel.com,
- Maling list - DRI developers <dri-devel@lists.freedesktop.org>,
- Jason Ekstrand <jason.ekstrand@intel.com>, dave.hansen@intel.com,
- jglisse@redhat.com, jgg@mellanox.com, Daniel Vetter <daniel.vetter@intel.com>,
- dan.j.williams@intel.com, ira.weiny@intel.com
-Content-Type: multipart/mixed; boundary="===============1060324036=="
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1060324036==
-Content-Type: multipart/alternative; boundary="000000000000673a1905999f2b46"
+On Fri, Dec 13, 2019 at 03:02:28PM +0200, Stanislav Lisovskiy wrote:
+> Added proper DBuf slice mapping to correspondent
+> pipes, depending on pipe configuration as stated
+> in BSpec.
+> 
+> v2:
+>     - Remove unneeded braces
+>     - Stop using macro for DBuf assignments as
+>       it seems to reduce readability.
+> 
+> v3: Start using enabled slices mask in dev_priv
+> 
+> v4: Renamed "enabled_slices" used in dev_priv
+>     to "enabled_dbuf_slices_mask"(Matt Roper)
+> 
+> Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+> ---
+>  drivers/gpu/drm/i915/intel_pm.c | 226 ++++++++++++++++++++++++++++++--
+>  1 file changed, 216 insertions(+), 10 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel_pm.c
+> index 111bcafd6e4c..a13052b2c2ef 100644
+> --- a/drivers/gpu/drm/i915/intel_pm.c
+> +++ b/drivers/gpu/drm/i915/intel_pm.c
+> @@ -3832,13 +3832,30 @@ bool intel_can_enable_sagv(struct intel_atomic_state *state)
+>  	return true;
+>  }
+>  
+> +/*
+> + * Calculate initial DBuf slice offset, based on slice size
+> + * and mask(i.e if slice size is 1024 and second slice is enabled
+> + * offset would be 1024)
+> + */
+> +static u32 icl_get_first_dbuf_slice_offset(u32 dbuf_slice_mask,
+> +					   u32 slice_size, u32 ddb_size)
+> +{
 
---000000000000673a1905999f2b46
-Content-Type: text/plain; charset="UTF-8"
+It might be worth just passing the mask + dev_priv to this function and
+let it get slice_size / ddb_size on its own to keep the logic simpler at
+the callsite.
 
-On Fri, Dec 13, 2019 at 5:24 PM Niranjan Vishwanathapura <
-niranjana.vishwanathapura@intel.com> wrote:
+> +	u32 offset = 0;
+> +
+> +	if (!dbuf_slice_mask)
+> +		return 0;
+> +
+> +	offset = (ffs(dbuf_slice_mask) - 1) * slice_size;
+> +
+> +	WARN_ON(offset >= ddb_size);
+> +	return offset;
+> +}
+> +
+>  static u16 intel_get_ddb_size(struct drm_i915_private *dev_priv,
+>  			      const struct intel_crtc_state *crtc_state,
+>  			      const u64 total_data_rate,
+>  			      const int num_active)
 
-> On Fri, Dec 13, 2019 at 04:58:42PM -0600, Jason Ekstrand wrote:
-> >
-> >     +/**
-> >     + * struct drm_i915_gem_vm_bind
-> >     + *
-> >     + * Bind an object in a vm's page table.
-> >
-> >   First off, this is something I've wanted for a while for Vulkan, it's
-> just
-> >   never made its way high enough up the priority list.  However, it's
-> going
-> >   to have to come one way or another soon.  I'm glad to see kernel API
-> for
-> >   this being proposed.
-> >   I do, however, have a few high-level comments/questions about the API:
-> >    1. In order to be useful for sparse memory support, the API has to go
-> the
-> >   other way around so that it binds a VA range to a range within the
-> BO.  It
-> >   also needs to be able to handle overlapping where two different VA
-> ranges
-> >   may map to the same underlying bytes in the BO.  This likely means that
-> >   unbind needs to also take a VA range and only unbind that range.
-> >    2. If this is going to be useful for managing GL's address space
-> where we
-> >   have lots of BOs, we probably want it to take a list of ranges so we
-> >   aren't making one ioctl for each thing we want to bind.
->
-> Hi Jason,
->
-> Yah, some of these requirements came up.
->
+I probably should have mentioned it on the previous patch, but most of
+these parameters are no longer needed now.
 
-Yes, I have raised them every single time an API like this has come across
-my e-mail inbox for years and they continue to get ignored.  Why are we
-landing an API that we know isn't the API we want especially when it's
-pretty obvious roughly what the API we want is?  It may be less time in the
-short term, but long-term it means two ioctls and two implementations in
-i915, IGT tests for both code paths, and code in all UMDs to call one or
-the other depending on what kernel you're running on, and we have to
-maintain all that code going forward forever.  Sure, that's a price we pay
-today for a variety of things but that's because they all seemed like the
-right thing at the time.  Landing the wrong API when we know it's the wrong
-API seems foolish.
+>  {
+> -	struct drm_atomic_state *state = crtc_state->uapi.state;
+> -	struct intel_atomic_state *intel_state = to_intel_atomic_state(state);
+>  	u16 ddb_size = INTEL_INFO(dev_priv)->ddb_size;
+>  
+>  	WARN_ON(ddb_size == 0);
+> @@ -3846,12 +3863,13 @@ static u16 intel_get_ddb_size(struct drm_i915_private *dev_priv,
+>  	if (INTEL_GEN(dev_priv) < 11)
+>  		return ddb_size - 4; /* 4 blocks for bypass path allocation */
+>  
+> -	intel_state->enabled_dbuf_slices_mask = DBUF_S1_BIT;
+> -	ddb_size /= 2;
+> -
+>  	return ddb_size;
+>  }
+>  
+> +u32 i915_possible_dbuf_slices(struct drm_i915_private *dev_priv,
+> +			      int pipe, u32 active_pipes,
+> +			      const struct intel_crtc_state *crtc_state);
+> +
+>  static void
+>  skl_ddb_get_pipe_allocation_limits(struct drm_i915_private *dev_priv,
+>  				   const struct intel_crtc_state *crtc_state,
+> @@ -3866,7 +3884,14 @@ skl_ddb_get_pipe_allocation_limits(struct drm_i915_private *dev_priv,
+>  	u32 pipe_width = 0, total_width = 0, width_before_pipe = 0;
+>  	enum pipe for_pipe = to_intel_crtc(for_crtc)->pipe;
+>  	u16 ddb_size;
+> +	u32 ddb_range_size;
+>  	u32 i;
+> +	u32 dbuf_slice_mask;
+> +	u32 active_pipes;
+> +	u32 offset;
+> +	u32 slice_size;
+> +	u32 total_slice_mask;
+> +	u32 start, end;
+>  
+>  	if (WARN_ON(!state) || !crtc_state->hw.active) {
+>  		alloc->start = 0;
+> @@ -3875,14 +3900,19 @@ skl_ddb_get_pipe_allocation_limits(struct drm_i915_private *dev_priv,
+>  		return;
+>  	}
+>  
+> -	if (intel_state->active_pipe_changes)
+> +	if (intel_state->active_pipe_changes) {
+>  		*num_active = hweight8(intel_state->active_pipes);
+> -	else
+> +		active_pipes = intel_state->active_pipes;
+> +	} else {
+>  		*num_active = hweight8(dev_priv->active_pipes);
+> +		active_pipes = dev_priv->active_pipes;
+> +	}
 
-They are not being done here due to time and effort involved in defining
-> those requirements, implementing and validating.
->
+Might be slightly more intuitive to move the num_active assignment
+outside the 'if' as
 
-For #1, yes, it would require more effort but for #2, it really doesn't
-take any extra effort to make it take an array...
+        *num_active = hweight8(active_pipes);
+
+Up to you; doesn't really matter.
+
+>  
+>  	ddb_size = intel_get_ddb_size(dev_priv, crtc_state, total_data_rate,
+>  				      *num_active);
+>  
+> +	slice_size = ddb_size / INTEL_INFO(dev_priv)->num_supported_dbuf_slices;
+> +
+>  	/*
+>  	 * If the state doesn't change the active CRTC's or there is no
+>  	 * modeset request, then there's no need to recalculate;
+> @@ -3900,18 +3930,68 @@ skl_ddb_get_pipe_allocation_limits(struct drm_i915_private *dev_priv,
+>  		return;
+>  	}
+>  
+> +	/*
+> +	 * Get allowed DBuf slices for correspondent pipe and platform.
+> +	 */
+> +	dbuf_slice_mask = i915_possible_dbuf_slices(dev_priv, for_pipe,
+> +						    active_pipes, crtc_state);
+> +
+> +	DRM_DEBUG_KMS("DBuf slice mask %x pipe %d active pipes %x\n",
+> +		      dbuf_slice_mask,
+> +		      for_pipe, active_pipes);
+> +
+> +	/*
+> +	 * Figure out at which DBuf slice we start, i.e if we start at Dbuf S2
+> +	 * and slice size is 1024, the offset would be 1024
+> +	 */
+> +	offset = icl_get_first_dbuf_slice_offset(dbuf_slice_mask,
+> +						 slice_size, ddb_size);
+> +
+> +	/*
+> +	 * Figure out total size of allowed DBuf slices, which is basically
+> +	 * a number of allowed slices for that pipe multiplied by slice size.
+> +	 * Inside of this
+> +	 * range ddb entries are still allocated in proportion to display width.
+> +	 */
+> +	ddb_range_size = hweight8(dbuf_slice_mask) * slice_size;
+> +
+>  	/*
+>  	 * Watermark/ddb requirement highly depends upon width of the
+>  	 * framebuffer, So instead of allocating DDB equally among pipes
+>  	 * distribute DDB based on resolution/width of the display.
+>  	 */
+> +	total_slice_mask = dbuf_slice_mask;
+>  	for_each_new_intel_crtc_in_state(intel_state, crtc, crtc_state, i) {
+>  		const struct drm_display_mode *adjusted_mode =
+>  			&crtc_state->hw.adjusted_mode;
+>  		enum pipe pipe = crtc->pipe;
+>  		int hdisplay, vdisplay;
+> +		u32 pipe_dbuf_slice_mask =
+> +					i915_possible_dbuf_slices(dev_priv,
+> +								  pipe,
+> +								  active_pipes,
+> +								  crtc_state);
+> +
+> +		if (!crtc_state->hw.active)
+> +			continue;
+
+You might want to do this check before we go through the bother of
+executing i915_possible_dbuf_slices.
+
+> +
+> +		/*
+> +		 * According to BSpec pipe can share one dbuf slice with another
+> +		 * pipes or pipe can use multiple dbufs, in both cases we
+> +		 * account for other pipes only if they have exactly same mask.
+> +		 * However we need to account how many slices we should enable
+> +		 * in total.
+> +		 */
+> +		total_slice_mask |= pipe_dbuf_slice_mask;
+>  
+> -		if (!crtc_state->hw.enable)
+> +		/*
+> +		 * Do not account pipes using other slice sets
+> +		 * luckily as of current BSpec slice sets do not partially
+> +		 * intersect(pipes share either same one slice or same slice set
+> +		 * i.e no partial intersection), so it is enough to check for
+> +		 * equality for now.
+> +		 */
+> +		if (dbuf_slice_mask != pipe_dbuf_slice_mask)
+>  			continue;
+>  
+>  		drm_mode_get_hv_timing(adjusted_mode, &hdisplay, &vdisplay);
+> @@ -3923,8 +4003,19 @@ skl_ddb_get_pipe_allocation_limits(struct drm_i915_private *dev_priv,
+>  			pipe_width = hdisplay;
+>  	}
+>  
+> -	alloc->start = ddb_size * width_before_pipe / total_width;
+> -	alloc->end = ddb_size * (width_before_pipe + pipe_width) / total_width;
+> +	intel_state->enabled_dbuf_slices_mask = total_slice_mask;
+> +
+> +	start = ddb_range_size * width_before_pipe / total_width;
+> +	end = ddb_range_size * (width_before_pipe + pipe_width) / total_width;
+
+I found it a bit confusing that "total_slice_mask" is a mask of all
+active CRTCs, whereas total_width is only the width of the subset of
+active CRTCs that share our slice mask (i.e., different meanings of
+"total").  I think the logic here is correct, but some variable renaming
+might make it more obvious what's going on?
 
 
-> However, this ioctl can be extended in a backward compatible way to handle
-> those requirements if required.
->
-> >    3. Why are there no ways to synchronize this with anything?  For
-> binding,
-> >   this probably isn't really needed as long as the VA range you're
-> binding
-> >   is empty.  However, if you want to move bindings around or unbind
-> >   something, the only option is to block in userspace and then call
-> >   bind/unbind.  This can be done but it means even more threads in the
-> UMD
-> >   which is unpleasant.  One could argue that that's more or less what the
-> >   kernel is going to have to do so we may as well do it in userspace.
-> >   However, I'm not 100% convinced that's true.
-> >   --Jason
-> >
->
-> Yah, that is the thought.
-> But as SVM feature evolves, I think we can consider handling some such
-> cases
-> if hadling those in driver does make whole lot sense.
->
+> +
+> +	alloc->start = offset + start;
+> +	alloc->end = offset + end;
+> +
+> +	DRM_DEBUG_KMS("Pipe %d ddb %d-%d\n", for_pipe,
+> +		      alloc->start, alloc->end);
+> +	DRM_DEBUG_KMS("Enabled ddb slices mask %x num supported %d\n",
+> +		      intel_state->enabled_dbuf_slices_mask,
+> +		      INTEL_INFO(dev_priv)->num_supported_dbuf_slices);
+>  }
+>  
+>  static int skl_compute_wm_params(const struct intel_crtc_state *crtc_state,
+> @@ -4094,6 +4185,121 @@ skl_plane_downscale_amount(const struct intel_crtc_state *crtc_state,
+>  	return mul_fixed16(downscale_w, downscale_h);
+>  }
+>  
+> +struct dbuf_slice_conf_entry {
+> +	u32 active_pipes;
+> +	u32 dbuf_mask[I915_MAX_PIPES];
+> +};
+> +
+> +/*
+> + * Table taken from Bspec 12716
+> + * Pipes do have some preferred DBuf slice affinity,
+> + * plus there are some hardcoded requirements on how
+> + * those should be distributed for multipipe scenarios.
+> + * For more DBuf slices algorithm can get even more messy
+> + * and less readable, so decided to use a table almost
+> + * as is from BSpec itself - that way it is at least easier
+> + * to compare, change and check.
+> + */
+> +static struct dbuf_slice_conf_entry icl_allowed_dbufs[] = {
+> +	{ BIT(PIPE_A), { DBUF_S1_BIT, 0, 0, 0 } },
+> +	{ BIT(PIPE_B), { 0, DBUF_S1_BIT, 0, 0 } },
+> +	{ BIT(PIPE_C), { 0, 0, DBUF_S2_BIT, 0 } },
+> +	{ BIT(PIPE_A) | BIT(PIPE_B), { DBUF_S1_BIT, DBUF_S2_BIT, 0, 0 } },
+> +	{ BIT(PIPE_A) | BIT(PIPE_C), { DBUF_S1_BIT, 0, DBUF_S2_BIT, 0 } },
+> +	{ BIT(PIPE_B) | BIT(PIPE_C), { 0, DBUF_S1_BIT, DBUF_S2_BIT, 0 } },
+> +	{ BIT(PIPE_A) | BIT(PIPE_B) | BIT(PIPE_C),
+> +		{ DBUF_S1_BIT, DBUF_S1_BIT, DBUF_S2_BIT, 0 } }
 
-Sparse binding exists as a feature.  It's been in D3D for some time and
-it's in Vulkan.  We pretty much know what the requirements are.  If you go
-look at how it's supposed to work in Vulkan, you have a binding queue and
-it waits on semaphores before [un]binding and signals semaphores after
-[un]binding.  The biggest problem from an API (as opposed to
-implementation) POV with doing that in i915 is that we have too many
-synchronization primitives to choose from. :-(
+I believe it's legal to leave ending array elements out of definitions,
+in which case they'll just be 0.  So you can drop the fourth element of
+all these dbuf_mask arrays since that's more intuitive given these
+platforms only actually have three pipes.
 
---Jason
+> +};
+> +
+> +/*
+> + * Table taken from Bspec 49255
+> + * Pipes do have some preferred DBuf slice affinity,
+> + * plus there are some hardcoded requirements on how
+> + * those should be distributed for multipipe scenarios.
+> + * For more DBuf slices algorithm can get even more messy
+> + * and less readable, so decided to use a table almost
+> + * as is from BSpec itself - that way it is at least easier
+> + * to compare, change and check.
+> + */
+> +static struct dbuf_slice_conf_entry tgl_allowed_dbufs[] = {
+> +	{ BIT(PIPE_A), { DBUF_S1_BIT | DBUF_S2_BIT, 0, 0, 0 } },
+> +	{ BIT(PIPE_B), { 0, DBUF_S1_BIT | DBUF_S2_BIT, 0, 0 } },
+> +	{ BIT(PIPE_C), { 0, 0, DBUF_S1_BIT | DBUF_S2_BIT, 0 } },
+> +	{ BIT(PIPE_D), { 0, 0, 0, DBUF_S1_BIT | DBUF_S2_BIT } },
+> +	{ BIT(PIPE_A) | BIT(PIPE_B), { DBUF_S2_BIT, DBUF_S1_BIT, 0, 0 } },
+> +	{ BIT(PIPE_A) | BIT(PIPE_C), { DBUF_S1_BIT, 0, DBUF_S2_BIT, 0 } },
+> +	{ BIT(PIPE_A) | BIT(PIPE_D), { DBUF_S1_BIT, 0, 0, DBUF_S2_BIT } },
+> +	{ BIT(PIPE_B) | BIT(PIPE_C), { 0, DBUF_S1_BIT, DBUF_S2_BIT, 0 } },
+> +	{ BIT(PIPE_B) | BIT(PIPE_D), { 0, DBUF_S1_BIT, 0, DBUF_S2_BIT } },
+> +	{ BIT(PIPE_C) | BIT(PIPE_D), { 0, 0, DBUF_S2_BIT, DBUF_S2_BIT } },
+                                             ^^^^^^^^^^^
+I think this one is supposed to be S1 for pipe C.
 
 
+> +	{ BIT(PIPE_A) | BIT(PIPE_B) | BIT(PIPE_C),
+> +		{ DBUF_S1_BIT, DBUF_S1_BIT, DBUF_S2_BIT, 0 } },
+> +	{ BIT(PIPE_A) | BIT(PIPE_B) | BIT(PIPE_D),
+> +		{ DBUF_S1_BIT, DBUF_S1_BIT, 0, DBUF_S2_BIT } },
+> +	{ BIT(PIPE_A) | BIT(PIPE_C) | BIT(PIPE_D),
+> +		{ DBUF_S1_BIT, 0, DBUF_S2_BIT, DBUF_S2_BIT } },
+> +	{ BIT(PIPE_B) | BIT(PIPE_C) | BIT(PIPE_D),
+> +		{ 0, DBUF_S1_BIT, DBUF_S2_BIT, DBUF_S2_BIT } },
+> +	{ BIT(PIPE_A) | BIT(PIPE_B) | BIT(PIPE_C) | BIT(PIPE_D),
+> +		{ DBUF_S1_BIT, DBUF_S1_BIT, DBUF_S2_BIT, DBUF_S2_BIT } },
+> +};
+> +
+> +static u32 i915_find_pipe_conf(int pipe,
+> +			       u32 active_pipes,
+> +			       const struct dbuf_slice_conf_entry *dbuf_slices,
+> +			       int size)
+> +{
+> +	int i;
+> +
+> +	for (i = 0; i < size; i++) {
+> +		if (dbuf_slices[i].active_pipes == active_pipes)
+> +			return dbuf_slices[i].dbuf_mask[pipe];
+> +	}
+> +	return 0;
+> +}
+> +
+> +/*
+> + * This function finds an entry with same enabled pipe configuration and
+> + * returns correspondent DBuf slice mask as stated in BSpec for particular
+> + * platform.
+> + */
+> +static u32 icl_possible_dbuf_slices(int pipe,
+> +				    u32 active_pipes,
+> +				    const struct intel_crtc_state *crtc_state)
+> +{
+> +	return i915_find_pipe_conf(pipe, active_pipes,
+> +				   icl_allowed_dbufs,
+> +				   ARRAY_SIZE(icl_allowed_dbufs));
 
-> Thanks,
-> Niranjana
->
-> >
-> >     + */
-> >     +struct drm_i915_gem_vm_bind {
-> >     +       /** VA start to bind **/
-> >     +       __u64 start;
-> >     +
-> >     +       /** Type of memory to [un]bind **/
-> >     +       __u32 type;
-> >     +#define I915_GEM_VM_BIND_SVM_OBJ      0
-> >     +
-> >     +       /** Object handle to [un]bind for I915_GEM_VM_BIND_SVM_OBJ
-> type
-> >     **/
-> >     +       __u32 handle;
-> >     +
-> >     +       /** vm to [un]bind **/
-> >     +       __u32 vm_id;
-> >     +
-> >     +       /** Flags **/
-> >     +       __u32 flags;
-> >     +#define I915_GEM_VM_BIND_UNBIND      (1 << 0)
-> >     +#define I915_GEM_VM_BIND_READONLY    (1 << 1)
-> >     +};
-> >     +
-> >      #if defined(__cplusplus)
-> >      }
-> >      #endif
-> >     --
-> >     2.21.0.rc0.32.g243a4c7e27
-> >
-> >     _______________________________________________
-> >     Intel-gfx mailing list
-> >     Intel-gfx@lists.freedesktop.org
-> >     https://lists.freedesktop.org/mailman/listinfo/intel-gfx
->
+Should we be handling the <88.8% pipe ratio stuff here?  I.e., an extra
+condition that if # pipes == 1 and the pipe ratio is less than 88.8%,
+return both S1 and S2?  Or will that come in a future patch (in which
+case a TODO/FIXME comment might be appropriate)?
 
---000000000000673a1905999f2b46
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail=
-_attr">On Fri, Dec 13, 2019 at 5:24 PM Niranjan Vishwanathapura &lt;<a href=
-=3D"mailto:niranjana.vishwanathapura@intel.com">niranjana.vishwanathapura@i=
-ntel.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D=
-"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-le=
-ft:1ex">On Fri, Dec 13, 2019 at 04:58:42PM -0600, Jason Ekstrand wrote:<br>
-&gt;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0+/**<br>
-&gt;=C2=A0 =C2=A0 =C2=A0+ * struct drm_i915_gem_vm_bind<br>
-&gt;=C2=A0 =C2=A0 =C2=A0+ *<br>
-&gt;=C2=A0 =C2=A0 =C2=A0+ * Bind an object in a vm&#39;s page table.<br>
-&gt;<br>
-&gt;=C2=A0 =C2=A0First off, this is something I&#39;ve wanted for a while f=
-or Vulkan, it&#39;s just<br>
-&gt;=C2=A0 =C2=A0never made its way high enough up the priority list.=C2=A0=
- However, it&#39;s going<br>
-&gt;=C2=A0 =C2=A0to have to come one way or another soon.=C2=A0 I&#39;m gla=
-d to see kernel API for<br>
-&gt;=C2=A0 =C2=A0this being proposed.<br>
-&gt;=C2=A0 =C2=A0I do, however, have a few high-level comments/questions ab=
-out the API:<br>
-&gt;=C2=A0 =C2=A0 1. In order to be useful for sparse memory support, the A=
-PI has to go the<br>
-&gt;=C2=A0 =C2=A0other way around so that it binds a VA range to a range wi=
-thin the BO.=C2=A0 It<br>
-&gt;=C2=A0 =C2=A0also needs to be able to handle overlapping where two diff=
-erent VA ranges<br>
-&gt;=C2=A0 =C2=A0may map to the same underlying bytes in the BO.=C2=A0 This=
- likely means that<br>
-&gt;=C2=A0 =C2=A0unbind needs to also take a VA range and only unbind that =
-range.<br>
-&gt;=C2=A0 =C2=A0 2. If this is going to be useful for managing GL&#39;s ad=
-dress space where we<br>
-&gt;=C2=A0 =C2=A0have lots of BOs, we probably want it to take a list of ra=
-nges so we<br>
-&gt;=C2=A0 =C2=A0aren&#39;t making one ioctl for each thing we want to bind=
-.<br>
-<br>
-Hi Jason,<br>
-<br>
-Yah, some of these requirements came up.<br></blockquote><div>=C2=A0</div><=
-div>Yes, I have raised them every single time an API like this has come acr=
-oss my e-mail inbox for years and they continue to get ignored.=C2=A0 Why a=
-re we landing an API that we know isn&#39;t the API we want especially when=
- it&#39;s pretty obvious roughly what the API we want is?=C2=A0 It may be l=
-ess time in the short term, but long-term it means two ioctls and two imple=
-mentations in i915, IGT tests for both code paths, and code in all UMDs to =
-call one or the other depending on what kernel you&#39;re running on, and w=
-e have to maintain all that code going forward forever.=C2=A0 Sure, that&#3=
-9;s a price we pay today for a variety of things but that&#39;s because the=
-y all seemed like the right thing at the time.=C2=A0 Landing the wrong API =
-when we know it&#39;s the wrong API seems foolish.<br></div><div><br></div>=
-<blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-=
-left:1px solid rgb(204,204,204);padding-left:1ex">
-They are not being done here due to time and effort involved in defining<br=
->
-those requirements, implementing and validating.<br></blockquote><div><br><=
-/div><div>For #1, yes, it would require more effort but for #2, it really d=
-oesn&#39;t take any extra effort to make it take an array...<br></div><div>=
-=C2=A0</div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0=
-.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
-However, this ioctl can be extended in a backward compatible way to handle<=
-br>
-those requirements if required.<br>
-<br>
-&gt;=C2=A0 =C2=A0 3. Why are there no ways to synchronize this with anythin=
-g?=C2=A0 For binding,<br>
-&gt;=C2=A0 =C2=A0this probably isn&#39;t really needed as long as the VA ra=
-nge you&#39;re binding<br>
-&gt;=C2=A0 =C2=A0is empty.=C2=A0 However, if you want to move bindings arou=
-nd or unbind<br>
-&gt;=C2=A0 =C2=A0something, the only option is to block in userspace and th=
-en call<br>
-&gt;=C2=A0 =C2=A0bind/unbind.=C2=A0 This can be done but it means even more=
- threads in the UMD<br>
-&gt;=C2=A0 =C2=A0which is unpleasant.=C2=A0 One could argue that that&#39;s=
- more or less what the<br>
-&gt;=C2=A0 =C2=A0kernel is going to have to do so we may as well do it in u=
-serspace. <br>
-&gt;=C2=A0 =C2=A0However, I&#39;m not 100% convinced that&#39;s true.<br>
-&gt;=C2=A0 =C2=A0--Jason<br>
-&gt;<br>
-<br>
-Yah, that is the thought.<br>
-But as SVM feature evolves, I think we can consider handling some such case=
-s<br>
-if hadling those in driver does make whole lot sense. <br></blockquote><div=
-><br></div><div>Sparse binding exists as a feature.=C2=A0 It&#39;s been in =
-D3D for some time and it&#39;s in Vulkan.=C2=A0 We pretty much know what th=
-e requirements are.=C2=A0 If you go look at how it&#39;s supposed to work i=
-n Vulkan, you have a binding queue and it waits on semaphores before [un]bi=
-nding and signals semaphores after [un]binding.=C2=A0 The biggest problem f=
-rom an API (as opposed to implementation) POV with doing that in i915 is th=
-at we have too many synchronization primitives to choose from. :-(</div><di=
-v><br></div><div>--Jason<br></div><div><br></div><div>=C2=A0</div><blockquo=
-te class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px =
-solid rgb(204,204,204);padding-left:1ex">
-Thanks,<br>
-Niranjana<br>
-<br>
-&gt;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0+ */<br>
-&gt;=C2=A0 =C2=A0 =C2=A0+struct drm_i915_gem_vm_bind {<br>
-&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0/** VA start to bind **=
-/<br>
-&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0__u64 start;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0+<br>
-&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0/** Type of memory to [=
-un]bind **/<br>
-&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0__u32 type;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0+#define I915_GEM_VM_BIND_SVM_OBJ=C2=A0 =C2=A0 =C2=
-=A0 0<br>
-&gt;=C2=A0 =C2=A0 =C2=A0+<br>
-&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0/** Object handle to [u=
-n]bind for I915_GEM_VM_BIND_SVM_OBJ type<br>
-&gt;=C2=A0 =C2=A0 =C2=A0**/<br>
-&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0__u32 handle;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0+<br>
-&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0/** vm to [un]bind **/<=
-br>
-&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0__u32 vm_id;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0+<br>
-&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0/** Flags **/<br>
-&gt;=C2=A0 =C2=A0 =C2=A0+=C2=A0 =C2=A0 =C2=A0 =C2=A0__u32 flags;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0+#define I915_GEM_VM_BIND_UNBIND=C2=A0 =C2=A0 =C2=
-=A0 (1 &lt;&lt; 0)<br>
-&gt;=C2=A0 =C2=A0 =C2=A0+#define I915_GEM_VM_BIND_READONLY=C2=A0 =C2=A0 (1 =
-&lt;&lt; 1)<br>
-&gt;=C2=A0 =C2=A0 =C2=A0+};<br>
-&gt;=C2=A0 =C2=A0 =C2=A0+<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 #if defined(__cplusplus)<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 }<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 #endif<br>
-&gt;=C2=A0 =C2=A0 =C2=A0--<br>
-&gt;=C2=A0 =C2=A0 =C2=A02.21.0.rc0.32.g243a4c7e27<br>
-&gt;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0_______________________________________________<br>
-&gt;=C2=A0 =C2=A0 =C2=A0Intel-gfx mailing list<br>
-&gt;=C2=A0 =C2=A0 =C2=A0<a href=3D"mailto:Intel-gfx@lists.freedesktop.org" =
-target=3D"_blank">Intel-gfx@lists.freedesktop.org</a><br>
-&gt;=C2=A0 =C2=A0 =C2=A0<a href=3D"https://lists.freedesktop.org/mailman/li=
-stinfo/intel-gfx" rel=3D"noreferrer" target=3D"_blank">https://lists.freede=
-sktop.org/mailman/listinfo/intel-gfx</a><br>
-</blockquote></div></div>
+> +}
+> +
+> +static u32 tgl_possible_dbuf_slices(int pipe,
+> +				    u32 active_pipes,
+> +				    const struct intel_crtc_state *crtc_state)
+> +{
+> +	return i915_find_pipe_conf(pipe, active_pipes,
+> +				   tgl_allowed_dbufs,
+> +				   ARRAY_SIZE(tgl_allowed_dbufs));
+> +}
 
---000000000000673a1905999f2b46--
+Seems like these two functions (as currently written) are so simple that
+we can just invoke i915_find_pipe_conf directly in
+i915_possible_dbuf_slices.  Might also be worth considering using an
+empty table entry as a terminator rather than requiring than an explicit
+length be passed.
 
---===============1060324036==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+> +
+> +u32 i915_possible_dbuf_slices(struct drm_i915_private *dev_priv,
 
+This can be static I think?
+
+> +			      int pipe, u32 active_pipes,
+> +			      const struct intel_crtc_state *crtc_state)
+> +{
+> +	if (IS_GEN(dev_priv, 11))
+> +		return icl_possible_dbuf_slices(pipe,
+> +						active_pipes,
+> +						crtc_state);
+> +	else if (IS_GEN(dev_priv, 12))
+> +		return tgl_possible_dbuf_slices(pipe,
+> +						active_pipes,
+> +						crtc_state);
+> +	/*
+> +	 * For anything else just return one slice yet.
+> +	 * Should be extended for other platforms.
+> +	 */
+> +	return DBUF_S1_BIT;
+> +}
+
+None of the three functions above seem to actually use crtc_state, so I
+think we can drop that parameter.
+
+
+> +
+>  static u64
+>  skl_plane_relative_data_rate(const struct intel_crtc_state *crtc_state,
+>  			     const struct intel_plane_state *plane_state,
+> -- 
+> 2.17.1
+> 
+
+-- 
+Matt Roper
+Graphics Software Engineer
+VTT-OSGC Platform Enablement
+Intel Corporation
+(916) 356-2795
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1060324036==--
