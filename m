@@ -1,31 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 77B1E11EFF9
-	for <lists+intel-gfx@lfdr.de>; Sat, 14 Dec 2019 03:21:17 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 68F2411EFFC
+	for <lists+intel-gfx@lfdr.de>; Sat, 14 Dec 2019 03:27:21 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 440686E0A1;
-	Sat, 14 Dec 2019 02:21:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 58CB06E072;
+	Sat, 14 Dec 2019 02:27:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id DBD0F6E072;
- Sat, 14 Dec 2019 02:21:13 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id D36A6A0114;
- Sat, 14 Dec 2019 02:21:13 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 40D7E6E072
+ for <intel-gfx@lists.freedesktop.org>; Sat, 14 Dec 2019 02:27:17 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 13 Dec 2019 18:27:16 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.69,312,1571727600"; d="scan'208";a="211616923"
+Received: from labuser-z97x-ud5h.jf.intel.com (HELO intel.com) ([10.54.75.49])
+ by fmsmga008.fm.intel.com with ESMTP; 13 Dec 2019 18:27:16 -0800
+Date: Fri, 13 Dec 2019 18:28:40 -0800
+From: Manasi Navare <manasi.d.navare@intel.com>
+To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+Message-ID: <20191214022836.GH19224@intel.com>
+References: <20191211211425.17821-1-manasi.d.navare@intel.com>
+ <20191211211425.17821-2-manasi.d.navare@intel.com>
+ <20191213200549.GD1208@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Sat, 14 Dec 2019 02:21:13 -0000
-Message-ID: <157629007383.13804.17205462151103309947@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20191213223140.1830738-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20191213223140.1830738-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/gem=3A_Serialise_object_before_changing_cache-level?=
+Content-Disposition: inline
+In-Reply-To: <20191213200549.GD1208@intel.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+Subject: Re: [Intel-gfx] [PATCH 1/3] drm/i915/dp: Make sure all tiled
+ connectors get added to the state with full modeset
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,140 +47,197 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Fri, Dec 13, 2019 at 10:05:49PM +0200, Ville Syrj=E4l=E4 wrote:
+> On Wed, Dec 11, 2019 at 01:14:23PM -0800, Manasi Navare wrote:
+> > In case of tiled displays, all the tiles are linke dto each other
+> > for transcoder port sync. So in intel_atomic_check() we need to make
+> > sure that we add all the tiles to the modeset and if one of the
+> > tiles needs a full modeset then mark all other tiles for a full modeset.
+> > =
 
-Series: drm/i915/gem: Serialise object before changing cache-level
-URL   : https://patchwork.freedesktop.org/series/70917/
-State : success
+> > Suggested-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > Cc: Jos=E9 Roberto de Souza <jose.souza@intel.com>
+> > Bugzilla: https://gitlab.freedesktop.org/drm/intel/issues/5
+> > Signed-off-by: Manasi Navare <manasi.d.navare@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_display.c | 78 ++++++++++++++++++++
+> >  1 file changed, 78 insertions(+)
+> > =
 
-== Summary ==
+> > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu=
+/drm/i915/display/intel_display.c
+> > index 803993a01ca7..7263eaa66cda 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_display.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> > @@ -14066,6 +14066,80 @@ static int intel_atomic_check_crtcs(struct int=
+el_atomic_state *state)
+> >  	return 0;
+> >  }
+> >  =
 
-CI Bug Log - changes from CI_DRM_7566 -> Patchwork_15758
-====================================================
+> > +static int
+> > +intel_dp_modeset_all_tiles(struct drm_i915_private *dev_priv,
+> > +			   struct intel_atomic_state *state, int tile_grp_id)
+> > +{
+> > +	struct drm_connector *conn_iter;
+> 'connector'
+> > +	struct drm_connector_list_iter conn_list_iter;
+> > +	struct drm_crtc_state *crtc_state;
+> =
 
-Summary
--------
+> crtc_state has needlessly wide scope.
+> =
 
-  **SUCCESS**
+> > +
+> > +	drm_connector_list_iter_begin(&dev_priv->drm, &conn_list_iter);
+> > +	drm_for_each_connector_iter(conn_iter, &conn_list_iter) {
+> > +		struct drm_connector_state *conn_iter_state;
+> =
 
-  No regressions found.
+> 'conn_state' is the most popular name.
+> =
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15758/index.html
+> > +
+> > +		if (!conn_iter->has_tile)
+> > +			continue;
+> > +		conn_iter_state =3D drm_atomic_get_connector_state(&state->base,
+> > +								 conn_iter);
+> > +		if (IS_ERR(conn_iter_state)) {
+> > +			drm_connector_list_iter_end(&conn_list_iter);
+> > +			return PTR_ERR(conn_iter_state);
+> > +		}
+> > +
+> > +		if (!conn_iter_state->crtc)
+> > +			continue;
+> > +
+> > +		if (conn_iter->tile_group->id !=3D tile_grp_id)
+> > +			continue;
+> =
 
-Known issues
-------------
+> The tile group check should be part of the same if with the has_tile
+> check.
+> =
 
-  Here are the changes found in Patchwork_15758 that come from known issues:
+> > +
+> > +		crtc_state =3D drm_atomic_get_crtc_state(&state->base, conn_iter_sta=
+te->crtc);
+> > +		if (IS_ERR(crtc_state)) {
+> > +			drm_connector_list_iter_end(&conn_list_iter);
+> > +			return PTR_ERR(conn_iter_state);
+> > +		}
+> > +		crtc_state->mode_changed =3D true;
+> > +	}
+> > +	drm_connector_list_iter_end(&conn_list_iter);
+> > +
+> > +	return 0;
+> > +}
+> > +
+> > +static int
+> > +intel_dp_atomic_trans_port_sync_check(struct drm_i915_private *dev_pri=
+v,
+> =
 
-### IGT changes ###
+> Pointless variable. Can be extracted from the atomic state.
+> =
 
-#### Issues hit ####
+> > +				      struct intel_atomic_state *state)
+> > +{
+> > +	struct drm_connector *connector;
+> > +	struct drm_crtc_state *crtc_state;
+> > +	struct drm_connector_state *connector_state;
+> > +	int i, ret, tile_grp_id =3D 0;
+> =
 
-  * igt@i915_selftest@live_blt:
-    - fi-bsw-nick:        [PASS][1] -> [DMESG-FAIL][2] ([i915#723])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7566/fi-bsw-nick/igt@i915_selftest@live_blt.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15758/fi-bsw-nick/igt@i915_selftest@live_blt.html
+> tile_grp_id is rather pointless. crtc_state and ret can move into
+> tighter scope. And the next suggestion allows you to kill crtc_state
+> entirely...
 
-  
-#### Possible fixes ####
+Its not clear why tile_grp_id is pointless, I am using tile_grp_id for the =
+first connector with has_tile
+and I make sure that I dont enter into the loop to check modeset again for =
+the connector with
+same tile_grp_id because we have already set its mode changed to true in in=
+tel_dp_modeset_all_tiles()
 
-  * igt@gem_close_race@basic-threads:
-    - fi-byt-n2820:       [TIMEOUT][3] ([i915#816]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7566/fi-byt-n2820/igt@gem_close_race@basic-threads.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15758/fi-byt-n2820/igt@gem_close_race@basic-threads.html
+How can I achieve this instead?
 
-  * igt@gem_exec_gttfill@basic:
-    - {fi-tgl-u}:         [INCOMPLETE][5] ([fdo#111593]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7566/fi-tgl-u/igt@gem_exec_gttfill@basic.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15758/fi-tgl-u/igt@gem_exec_gttfill@basic.html
+Manasi
 
-  * igt@gem_sync@basic-all:
-    - fi-tgl-y:           [INCOMPLETE][7] ([i915#470]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7566/fi-tgl-y/igt@gem_sync@basic-all.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15758/fi-tgl-y/igt@gem_sync@basic-all.html
+> =
 
-  * igt@i915_selftest@live_gem_contexts:
-    - fi-skl-lmem:        [INCOMPLETE][9] ([i915#424]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7566/fi-skl-lmem/igt@i915_selftest@live_gem_contexts.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15758/fi-skl-lmem/igt@i915_selftest@live_gem_contexts.html
-    - fi-hsw-peppy:       [INCOMPLETE][11] ([i915#694]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7566/fi-hsw-peppy/igt@i915_selftest@live_gem_contexts.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15758/fi-hsw-peppy/igt@i915_selftest@live_gem_contexts.html
+> > +
+> > +	if (INTEL_GEN(dev_priv) < 11)
+> > +		return 0;
+> > +
+> > +	/* Is tiled, mark all other tiled CRTCs as needing a modeset */
+> > +	for_each_new_connector_in_state(&state->base, connector, connector_st=
+ate, i) {
+> > +		if (!connector->has_tile)
+> > +			continue;
+> > +		if (connector_state->crtc &&
+> > +		    tile_grp_id !=3D connector->tile_group->id) {
+> > +			crtc_state =3D drm_atomic_get_new_crtc_state(&state->base,
+> > +								   connector_state->crtc);
+> > +			if (!drm_atomic_crtc_needs_modeset(crtc_state))
+> > +				continue;
+> =
 
-  * igt@i915_selftest@live_requests:
-    - fi-hsw-4770:        [INCOMPLETE][13] ([i915#773]) -> [PASS][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7566/fi-hsw-4770/igt@i915_selftest@live_requests.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15758/fi-hsw-4770/igt@i915_selftest@live_requests.html
+> This should to be able to be shortened to just intel_connector_needs_mode=
+set().
+> =
 
-  
-#### Warnings ####
+> > +
+> > +			tile_grp_id =3D connector->tile_group->id;
+> > +		} else
+> > +			continue;
+> > +
+> > +		ret =3D intel_dp_modeset_all_tiles(dev_priv, state, tile_grp_id);
+> > +		if (ret)
+> > +			return ret;
+> > +	}
+> > +
+> > +	return 0;
+> > +}
+> > +
+> >  /**
+> >   * intel_atomic_check - validate state object
+> >   * @dev: drm device
+> > @@ -14093,6 +14167,10 @@ static int intel_atomic_check(struct drm_devic=
+e *dev,
+> >  	if (ret)
+> >  		goto fail;
+> >  =
 
-  * igt@i915_selftest@live_gem_contexts:
-    - fi-byt-j1900:       [DMESG-FAIL][15] ([i915#722]) -> [INCOMPLETE][16] ([i915#45])
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7566/fi-byt-j1900/igt@i915_selftest@live_gem_contexts.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15758/fi-byt-j1900/igt@i915_selftest@live_gem_contexts.html
+> > +	ret =3D intel_dp_atomic_trans_port_sync_check(dev_priv, state);
+> > +	if (ret)
+> > +		goto fail;
+> =
 
-  * igt@kms_busy@basic-flip-pipe-b:
-    - fi-kbl-x1275:       [DMESG-WARN][17] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][18] ([i915#62] / [i915#92]) +3 similar issues
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7566/fi-kbl-x1275/igt@kms_busy@basic-flip-pipe-b.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15758/fi-kbl-x1275/igt@kms_busy@basic-flip-pipe-b.html
+> We should probably do this from the connector .atomic_check() hook if
+> Jose is going to do the MST thing that way. But no real problem doing
+> here I think.
+> =
 
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:
-    - fi-kbl-x1275:       [DMESG-WARN][19] ([i915#62] / [i915#92]) -> [DMESG-WARN][20] ([i915#62] / [i915#92] / [i915#95]) +9 similar issues
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7566/fi-kbl-x1275/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15758/fi-kbl-x1275/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
+> > +
+> >  	for_each_oldnew_intel_crtc_in_state(state, crtc, old_crtc_state,
+> >  					    new_crtc_state, i) {
+> >  		if (!needs_modeset(new_crtc_state)) {
+> > -- =
 
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
+> > 2.19.1
+> =
 
-  [fdo#111593]: https://bugs.freedesktop.org/show_bug.cgi?id=111593
-  [i915#424]: https://gitlab.freedesktop.org/drm/intel/issues/424
-  [i915#45]: https://gitlab.freedesktop.org/drm/intel/issues/45
-  [i915#470]: https://gitlab.freedesktop.org/drm/intel/issues/470
-  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
-  [i915#694]: https://gitlab.freedesktop.org/drm/intel/issues/694
-  [i915#722]: https://gitlab.freedesktop.org/drm/intel/issues/722
-  [i915#723]: https://gitlab.freedesktop.org/drm/intel/issues/723
-  [i915#773]: https://gitlab.freedesktop.org/drm/intel/issues/773
-  [i915#816]: https://gitlab.freedesktop.org/drm/intel/issues/816
-  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
-  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
+> -- =
 
-
-Participating hosts (54 -> 47)
-------------------------------
-
-  Additional (1): fi-hsw-4770r 
-  Missing    (8): fi-icl-1065g7 fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_7566 -> Patchwork_15758
-
-  CI-20190529: 20190529
-  CI_DRM_7566: 87c99602f2beb1b0ee7bdb3310bf12133f4d3f7f @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5349: 048f58513d8b8ec6bb307a939f0ac959bc0f0e10 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_15758: 30034c200ed3b908d3f5fb2e93ad5889db8ff2d9 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-30034c200ed3 drm/i915/gem: Serialise object before changing cache-level
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15758/index.html
+> Ville Syrj=E4l=E4
+> Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
