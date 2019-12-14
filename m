@@ -2,58 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 53DDD11EF04
-	for <lists+intel-gfx@lfdr.de>; Sat, 14 Dec 2019 01:10:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E92811EF0E
+	for <lists+intel-gfx@lfdr.de>; Sat, 14 Dec 2019 01:15:10 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A26F46E03C;
-	Sat, 14 Dec 2019 00:10:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2A7026EE28;
+	Sat, 14 Dec 2019 00:15:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x444.google.com (mail-wr1-x444.google.com
- [IPv6:2a00:1450:4864:20::444])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 251816E03C
- for <intel-gfx@lists.freedesktop.org>; Sat, 14 Dec 2019 00:10:22 +0000 (UTC)
-Received: by mail-wr1-x444.google.com with SMTP id y11so566431wrt.6
- for <intel-gfx@lists.freedesktop.org>; Fri, 13 Dec 2019 16:10:22 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to:user-agent;
- bh=8QA93E86Fd5/SNtUhg6z1385N12mNPAjE27/8RO9foM=;
- b=e1XYtXuQpPL89ZNtvJHcKGgrThSfgD2qpHTmKZYLXBeispsj2kY5zqMaPcQ4K4u1VG
- tLEvovjlvn3cfgbuT/LBP0QxBVdQzBcoBfGPgCLZsv9otURmGgod74oe1pK8mYqbfsvO
- MI+RhyU9FFSgWtu56PBoy9XmOBnoCIRAyo/Qo=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to:user-agent;
- bh=8QA93E86Fd5/SNtUhg6z1385N12mNPAjE27/8RO9foM=;
- b=pwxp1cQy2PlSaLmBX9a4uYPaqw0/DIlTI+1DlhBUseJzmZalxdBcdCjTujV33N2AtT
- Oz9905916fOqfuJsn4ov0qWfVPFQZ0aZ2H1L6dm1tsY9EMKEEi7ozAD82zyzfHrwvVl9
- Eu9trS6GieM4rcmXCOSOiEL/SdR05t8vQ+8HTYjx5vaKpcUQ1M8N7Vfiy4xxnua4H2g9
- Pw3KYd3pS3QZR//Nzbd0i4jtJvzU96VuPvz8Brzy/UgX0McxwXqOvqmiXLASXc+9mQ5v
- cV21VKGIPb5k2uOBMUP6HR0CHVsS8+q6E+fZLZnfyFkyS/VJDPI5zCcU7BiDpbgTV8+T
- xeYA==
-X-Gm-Message-State: APjAAAWeU0m3TsQUJB2cB1IXJoeId23ClX4Zz9qlz9C6HUUvygBaesL6
- OuJEBgmtqEiMBqSksmnxWqWQuA==
-X-Google-Smtp-Source: APXvYqzkJilEP+k/UY4kR35AcCnEdzAYcGQziJNIqAEI/smOrJplTFVLC66GhXwZSH6633of3GMl4Q==
-X-Received: by 2002:adf:dc06:: with SMTP id t6mr15884562wri.378.1576282220803; 
- Fri, 13 Dec 2019 16:10:20 -0800 (PST)
-Received: from phenom.ffwll.local ([2a02:168:564b:0:7567:bb67:3d7f:f863])
- by smtp.gmail.com with ESMTPSA id k16sm12343423wru.0.2019.12.13.16.10.19
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 13 Dec 2019 16:10:20 -0800 (PST)
-Date: Sat, 14 Dec 2019 01:10:18 +0100
-From: Daniel Vetter <daniel@ffwll.ch>
-To: DRI Development <dri-devel@lists.freedesktop.org>
-Message-ID: <20191214001018.GQ624164@phenom.ffwll.local>
-References: <20191125094356.161941-1-daniel.vetter@ffwll.ch>
- <20191125094356.161941-3-daniel.vetter@ffwll.ch>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 627F16EE27
+ for <intel-gfx@lists.freedesktop.org>; Sat, 14 Dec 2019 00:15:05 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 13 Dec 2019 16:15:03 -0800
+X-IronPort-AV: E=Sophos;i="5.69,311,1571727600"; d="scan'208";a="364447614"
+Received: from ldmartin-desk1.jf.intel.com (HELO ldmartin-desk1)
+ ([10.24.11.18])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 13 Dec 2019 16:15:02 -0800
+Date: Fri, 13 Dec 2019 16:14:55 -0800
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Message-ID: <20191214001455.quhvzgedzsl5oenq@ldmartin-desk1>
+X-Patchwork-Hint: ignore
+References: <20191211184526.142413-1-jose.souza@intel.com>
+ <20191211184526.142413-6-jose.souza@intel.com>
+ <20191212155249.GQ1208@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20191125094356.161941-3-daniel.vetter@ffwll.ch>
-X-Operating-System: Linux phenom 5.3.0-2-amd64 
-User-Agent: Mutt/1.12.2 (2019-09-21)
-Subject: Re: [Intel-gfx] [PATCH 2/4] drm/i915: Use dma_resv locking wrappers
+In-Reply-To: <20191212155249.GQ1208@intel.com>
+Subject: Re: [Intel-gfx] [PATCH v2 rebased 06/11] drm/i915/display: Share
+ intel_connector_needs_modeset()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,77 +48,254 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>, Daniel Vetter <daniel.vetter@ffwll.ch>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Matthew Auld <matthew.auld@intel.com>, Daniel Vetter <daniel.vetter@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: intel-gfx@lists.freedesktop.org
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Nov 25, 2019 at 10:43:54AM +0100, Daniel Vetter wrote:
-> I'll add more fancy logic to them soon, so everyone really has to use
-> them. Plus they already provide some nice additional debug
-> infrastructure on top of direct ww_mutex usage for the fences tracked
-> by dma_resv.
-> 
-> Aside: We might want to create wrappers for i915_vma locking of the
-> ->resv like we have for the i915_gem_bo itself already.
-> 
-> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
-> Cc: Chris Wilson <chris@chris-wilson.co.uk>
-> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> Cc: Matthew Auld <matthew.auld@intel.com>
-> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-> Cc: Jani Nikula <jani.nikula@intel.com>
-> ---
+On Thu, Dec 12, 2019 at 05:52:49PM +0200, Ville Syrj=E4l=E4 wrote:
+>On Wed, Dec 11, 2019 at 10:45:21AM -0800, Jos=E9 Roberto de Souza wrote:
+>> intel_connector_needs_modeset() will be used outside of
+>> intel_display.c in a future patch so it would only be necessary to
+>> remove the state and add the prototype to the header file.
+>>
+>> But while at it, I simplified the arguments and changed to intel
+>> types and moved it to a better place intel_atomic.c.
+>>
+>> That allowed us to convert the whole
+>> intel_encoders_update_prepare/complete to intel type too.
+>>
+>> No behavior changes intended here.
+>>
+>> Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+>> Signed-off-by: Jos=E9 Roberto de Souza <jose.souza@intel.com>
+>> ---
+>>  drivers/gpu/drm/i915/display/intel_atomic.c  | 32 ++++++++++++
+>>  drivers/gpu/drm/i915/display/intel_atomic.h  |  3 ++
+>>  drivers/gpu/drm/i915/display/intel_display.c | 53 ++++++--------------
+>>  3 files changed, 51 insertions(+), 37 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/i915/display/intel_atomic.c b/drivers/gpu/d=
+rm/i915/display/intel_atomic.c
+>> index fd0026fc3618..6e93a39a6fec 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_atomic.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_atomic.c
+>> @@ -174,6 +174,38 @@ intel_digital_connector_duplicate_state(struct drm_=
+connector *connector)
+>>  	return &state->base;
+>>  }
+>>
+>> +/**
+>> + * intel_digital_connector_needs_modeset - check if connector needs a m=
+odeset
+>> + */
+>> +bool
+>> +intel_digital_connector_needs_modeset(struct intel_atomic_state *state,
+>
+>Why "digital"? Oh because intel_atomic_get_old_connector_state() return
+>a ditgital_connector_state. A bit surprising.
+>
+>I suggest using just drm_connector_state here to keep this function
+>totally generic.
+>
+>> +				      struct intel_connector *connector)
+>> +{
+>> +	struct intel_digital_connector_state *old_connector_state, *new_connec=
+tor_state;
+>> +	struct intel_crtc *old_crtc, *new_crtc;
+>> +	struct intel_crtc_state *new_crtc_state;
+>> +
+>> +	old_connector_state =3D intel_atomic_get_old_connector_state(state,
+>> +								   connector);
+>
+>Could be done when declaring the variable. Dunno which is prettier
+>though.
+>
+>> +	if (old_connector_state->base.crtc)
+>> +		old_crtc =3D to_intel_crtc(old_connector_state->base.crtc);
+>> +	else
+>> +		old_crtc =3D NULL;
+>
+>Simple
+>old_crtc =3D to_intel_crtc(old_connector_state->base.crtc);
+>will do. Can be done when declaring the variable as well.
+>
+>> +
+>> +	new_connector_state =3D intel_atomic_get_new_connector_state(state,
+>> +								   connector);
+>> +	if (new_connector_state->base.crtc) {
+>> +		new_crtc =3D to_intel_crtc(new_connector_state->base.crtc);
+>
+>ditto.
+>
+>> +		new_crtc_state =3D intel_atomic_get_new_crtc_state(state, new_crtc);
+>
+>Then this just becomes
+>if (new_crtc)
+>	new_crtc_state =3D ...;
+>
+>Or maybe
+>new_crtc_state =3D new_crtc ? get : NULL;
+>but that could be a bit ugly.
+>
+>
+>> +	} else {
+>> +		new_crtc_state =3D NULL;
+>> +		new_crtc =3D NULL;
+>> +	}
+>> +
+>> +	return new_crtc !=3D old_crtc ||
+>> +	       (new_crtc && drm_atomic_crtc_needs_modeset(&new_crtc_state->uap=
+i));
+>
+>Hmm. In fact this function could be one of those special cases where we
+>might even want to use all drm_ types internally since we don't actually
+>need anything else.
 
-Maarten/Chris, should I drop this one or keep? I guess this will all
-change anyway rsn ...
--Daniel
+so... do you mean to bring intel_connector_needs_modeset() as is?
 
->  drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c | 6 +++---
->  1 file changed, 3 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-> index 7a87e8270460..7b8f4ebd9986 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-> @@ -1848,7 +1848,7 @@ static int eb_move_to_gpu(struct i915_execbuffer *eb)
->  	for (i = 0; i < count; i++) {
->  		struct i915_vma *vma = eb->vma[i];
->  
-> -		err = ww_mutex_lock_interruptible(&vma->resv->lock, &acquire);
-> +		err = dma_resv_lock_interruptible(vma->resv, &acquire);
->  		if (!err)
->  			continue;
->  
-> @@ -1859,7 +1859,7 @@ static int eb_move_to_gpu(struct i915_execbuffer *eb)
->  			do {
->  				int j = i - 1;
->  
-> -				ww_mutex_unlock(&eb->vma[j]->resv->lock);
-> +				dma_resv_unlock(eb->vma[j]->resv);
->  
->  				swap(eb->flags[i], eb->flags[j]);
->  				swap(eb->vma[i],  eb->vma[j]);
-> @@ -1868,7 +1868,7 @@ static int eb_move_to_gpu(struct i915_execbuffer *eb)
->  			GEM_BUG_ON(vma != eb->vma[0]);
->  			vma->exec_flags = &eb->flags[0];
->  
-> -			err = ww_mutex_lock_slow_interruptible(&vma->resv->lock,
-> +			err = dma_resv_lock_slow_interruptible(vma->resv,
->  							       &acquire);
->  		}
->  		if (err)
-> -- 
-> 2.24.0
-> 
+Lucas De Marchi
 
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+>
+>> +}
+>> +
+>>  /**
+>>   * intel_crtc_duplicate_state - duplicate crtc state
+>>   * @crtc: drm crtc
+>> diff --git a/drivers/gpu/drm/i915/display/intel_atomic.h b/drivers/gpu/d=
+rm/i915/display/intel_atomic.h
+>> index 7b49623419ba..ba9cc29a5865 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_atomic.h
+>> +++ b/drivers/gpu/drm/i915/display/intel_atomic.h
+>> @@ -17,6 +17,7 @@ struct drm_device;
+>>  struct drm_i915_private;
+>>  struct drm_property;
+>>  struct intel_atomic_state;
+>> +struct intel_connector;
+>>  struct intel_crtc;
+>>  struct intel_crtc_state;
+>>
+>> @@ -32,6 +33,8 @@ int intel_digital_connector_atomic_check(struct drm_co=
+nnector *conn,
+>>  					 struct drm_atomic_state *state);
+>>  struct drm_connector_state *
+>>  intel_digital_connector_duplicate_state(struct drm_connector *connector=
+);
+>> +bool intel_digital_connector_needs_modeset(struct intel_atomic_state *s=
+tate,
+>> +					   struct intel_connector *connector);
+>>
+>>  struct drm_crtc_state *intel_crtc_duplicate_state(struct drm_crtc *crtc=
+);
+>>  void intel_crtc_destroy_state(struct drm_crtc *crtc,
+>> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/=
+drm/i915/display/intel_display.c
+>> index b4e44d3cd275..39b00a19d752 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_display.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+>> @@ -6185,71 +6185,50 @@ intel_connector_primary_encoder(struct intel_con=
+nector *connector)
+>>  	return encoder;
+>>  }
+>>
+>> -static bool
+>> -intel_connector_needs_modeset(struct intel_atomic_state *state,
+>> -			      const struct drm_connector_state *old_conn_state,
+>> -			      const struct drm_connector_state *new_conn_state)
+>> -{
+>> -	struct intel_crtc *old_crtc =3D old_conn_state->crtc ?
+>> -				      to_intel_crtc(old_conn_state->crtc) : NULL;
+>> -	struct intel_crtc *new_crtc =3D new_conn_state->crtc ?
+>> -				      to_intel_crtc(new_conn_state->crtc) : NULL;
+>> -
+>> -	return new_crtc !=3D old_crtc ||
+>> -	       (new_crtc &&
+>> -		needs_modeset(intel_atomic_get_new_crtc_state(state, new_crtc)));
+>> -}
+>> -
+>>  static void intel_encoders_update_prepare(struct intel_atomic_state *st=
+ate)
+>>  {
+>> -	struct drm_connector_state *old_conn_state;
+>> -	struct drm_connector_state *new_conn_state;
+>> -	struct drm_connector *conn;
+>> +	struct intel_digital_connector_state *new_connector_state;
+>> +	struct intel_connector *connector;
+>>  	int i;
+>>
+>> -	for_each_oldnew_connector_in_state(&state->base, conn,
+>> -					   old_conn_state, new_conn_state, i) {
+>> +	for_each_new_intel_connector_in_state(state, connector,
+>> +					      new_connector_state, i) {
+>>  		struct intel_encoder *encoder;
+>>  		struct intel_crtc *crtc;
+>>
+>> -		if (!intel_connector_needs_modeset(state,
+>> -						   old_conn_state,
+>> -						   new_conn_state))
+>> +		if (!intel_digital_connector_needs_modeset(state, connector))
+>>  			continue;
+>>
+>> -		encoder =3D intel_connector_primary_encoder(to_intel_connector(conn));
+>> +		encoder =3D intel_connector_primary_encoder(connector);
+>>  		if (!encoder->update_prepare)
+>>  			continue;
+>>
+>> -		crtc =3D new_conn_state->crtc ?
+>> -			to_intel_crtc(new_conn_state->crtc) : NULL;
+>> +		crtc =3D new_connector_state->base.crtc ?
+>> +			to_intel_crtc(new_connector_state->base.crtc) : NULL;
+>>  		encoder->update_prepare(state, encoder, crtc);
+>>  	}
+>>  }
+>>
+>>  static void intel_encoders_update_complete(struct intel_atomic_state *s=
+tate)
+>>  {
+>> -	struct drm_connector_state *old_conn_state;
+>> -	struct drm_connector_state *new_conn_state;
+>> -	struct drm_connector *conn;
+>> +	struct intel_digital_connector_state *new_connector_state;
+>> +	struct intel_connector *connector;
+>>  	int i;
+>>
+>> -	for_each_oldnew_connector_in_state(&state->base, conn,
+>> -					   old_conn_state, new_conn_state, i) {
+>> +	for_each_new_intel_connector_in_state(state, connector,
+>> +					      new_connector_state, i) {
+>>  		struct intel_encoder *encoder;
+>>  		struct intel_crtc *crtc;
+>>
+>> -		if (!intel_connector_needs_modeset(state,
+>> -						   old_conn_state,
+>> -						   new_conn_state))
+>> +		if (!intel_digital_connector_needs_modeset(state, connector))
+>>  			continue;
+>>
+>> -		encoder =3D intel_connector_primary_encoder(to_intel_connector(conn));
+>> +		encoder =3D intel_connector_primary_encoder(connector);
+>>  		if (!encoder->update_complete)
+>>  			continue;
+>>
+>> -		crtc =3D new_conn_state->crtc ?
+>> -			to_intel_crtc(new_conn_state->crtc) : NULL;
+>> +		crtc =3D new_connector_state->base.crtc ?
+>> +			to_intel_crtc(new_connector_state->base.crtc) : NULL;
+>>  		encoder->update_complete(state, encoder, crtc);
+>>  	}
+>>  }
+>> --
+>> 2.24.1
+>
+>-- =
+
+>Ville Syrj=E4l=E4
+>Intel
+>_______________________________________________
+>Intel-gfx mailing list
+>Intel-gfx@lists.freedesktop.org
+>https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
