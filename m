@@ -2,30 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6389B11F033
-	for <lists+intel-gfx@lfdr.de>; Sat, 14 Dec 2019 05:53:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1B27311F0A5
+	for <lists+intel-gfx@lfdr.de>; Sat, 14 Dec 2019 08:04:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DBEE66E301;
-	Sat, 14 Dec 2019 04:53:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E9F986E31E;
+	Sat, 14 Dec 2019 07:04:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 1833C6E2E3;
- Sat, 14 Dec 2019 04:53:16 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 4EDCC6E530;
+ Sat, 14 Dec 2019 07:04:33 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 083ACA0091;
- Sat, 14 Dec 2019 04:53:16 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 465E1A0BCB;
+ Sat, 14 Dec 2019 07:04:33 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Mika Kahola" <mika.kahola@intel.com>
-Date: Sat, 14 Dec 2019 04:53:16 -0000
-Message-ID: <157629919600.13804.5078388811414663232@emeril.freedesktop.org>
+To: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
+Date: Sat, 14 Dec 2019 07:04:33 -0000
+Message-ID: <157630707325.13804.18376699192623841926@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20191213112748.14506-1-mika.kahola@intel.com>
-In-Reply-To: <20191213112748.14506-1-mika.kahola@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLklHVDogZmFpbHVyZSBmb3IgZHJt?=
- =?utf-8?q?/i915/display=3A_Read_DP_link_status_with_DRM_helper_function?=
+References: <20191213130228.29509-1-stanislav.lisovskiy@intel.com>
+In-Reply-To: <20191213130228.29509-1-stanislav.lisovskiy@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLklHVDogZmFpbHVyZSBmb3IgRW5h?=
+ =?utf-8?q?ble_second_DBuf_slice_for_ICL_and_TGL_=28rev8=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,13 +47,13 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: drm/i915/display: Read DP link status with DRM helper function
-URL   : https://patchwork.freedesktop.org/series/70878/
+Series: Enable second DBuf slice for ICL and TGL (rev8)
+URL   : https://patchwork.freedesktop.org/series/70059/
 State : failure
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_7558_full -> Patchwork_15741_full
+CI Bug Log - changes from CI_DRM_7558_full -> Patchwork_15742_full
 ====================================================
 
 Summary
@@ -61,11 +61,11 @@ Summary
 
   **FAILURE**
 
-  Serious unknown changes coming with Patchwork_15741_full absolutely need to be
+  Serious unknown changes coming with Patchwork_15742_full absolutely need to be
   verified manually.
   
   If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_15741_full, please notify your bug team to allow them
+  introduced in Patchwork_15742_full, please notify your bug team to allow them
   to document this new failure mode, which will reduce false positives in CI.
 
   
@@ -73,7 +73,7 @@ Summary
 Possible new issues
 -------------------
 
-  Here are the unknown changes that may have been introduced in Patchwork_15741_full:
+  Here are the unknown changes that may have been introduced in Patchwork_15742_full:
 
 ### IGT changes ###
 
@@ -81,7 +81,7 @@ Possible new issues
 
   * igt@runner@aborted:
     - shard-apl:          NOTRUN -> [FAIL][1]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15741/shard-apl1/igt@runner@aborted.html
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15742/shard-apl8/igt@runner@aborted.html
 
   
 #### Suppressed ####
@@ -89,377 +89,967 @@ Possible new issues
   The following results come from untrusted machines, tests, or statuses.
   They do not affect the overall result.
 
-  * {igt@gen7_exec_parse@oacontrol-tracking}:
-    - shard-tglb:         NOTRUN -> [SKIP][2] +2 similar issues
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15741/shard-tglb2/igt@gen7_exec_parse@oacontrol-tracking.html
-
   * {igt@gen9_exec_parse@allowed-single}:
-    - shard-apl:          [PASS][3] -> [DMESG-WARN][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7558/shard-apl1/igt@gen9_exec_parse@allowed-single.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15741/shard-apl1/igt@gen9_exec_parse@allowed-single.html
+    - shard-skl:          [PASS][2] -> [DMESG-WARN][3]
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7558/shard-skl5/igt@gen9_exec_parse@allowed-single.html
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15742/shard-skl4/igt@gen9_exec_parse@allowed-single.html
+
+  * {igt@gen9_exec_parse@bb-chained}:
+    - shard-iclb:         NOTRUN -> [SKIP][4] +1 similar issue
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15742/shard-iclb6/igt@gen9_exec_parse@bb-chained.html
+
+  * {igt@gen9_exec_parse@bb-start-param}:
+    - shard-tglb:         NOTRUN -> [SKIP][5] +3 similar issues
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15742/shard-tglb5/igt@gen9_exec_parse@bb-start-param.html
 
   
-Known issues
-------------
 
-  Here are the changes found in Patchwork_15741_full that come from known issues:
+### Piglit changes ###
 
-### IGT changes ###
+#### Possible regressions ####
 
-#### Issues hit ####
-
-  * igt@gem_ctx_persistence@rcs0-mixed-process:
-    - shard-skl:          [PASS][5] -> [FAIL][6] ([i915#679])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7558/shard-skl2/igt@gem_ctx_persistence@rcs0-mixed-process.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15741/shard-skl9/igt@gem_ctx_persistence@rcs0-mixed-process.html
-
-  * igt@gem_exec_parallel@vcs1:
-    - shard-tglb:         [PASS][7] -> [INCOMPLETE][8] ([fdo#111593])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7558/shard-tglb3/igt@gem_exec_parallel@vcs1.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15741/shard-tglb4/igt@gem_exec_parallel@vcs1.html
-
-  * igt@gem_exec_schedule@independent-bsd:
-    - shard-iclb:         [PASS][9] -> [SKIP][10] ([fdo#112146])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7558/shard-iclb8/igt@gem_exec_schedule@independent-bsd.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15741/shard-iclb4/igt@gem_exec_schedule@independent-bsd.html
-
-  * igt@gem_exec_schedule@preempt-queue-blt:
-    - shard-tglb:         [PASS][11] -> [INCOMPLETE][12] ([fdo#111677])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7558/shard-tglb4/igt@gem_exec_schedule@preempt-queue-blt.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15741/shard-tglb6/igt@gem_exec_schedule@preempt-queue-blt.html
-
-  * igt@gem_exec_schedule@preempt-queue-contexts-bsd1:
-    - shard-iclb:         [PASS][13] -> [SKIP][14] ([fdo#109276]) +7 similar issues
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7558/shard-iclb1/igt@gem_exec_schedule@preempt-queue-contexts-bsd1.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15741/shard-iclb6/igt@gem_exec_schedule@preempt-queue-contexts-bsd1.html
-
-  * igt@gem_exec_schedule@preempt-queue-contexts-chain-vebox:
-    - shard-tglb:         [PASS][15] -> [INCOMPLETE][16] ([fdo#111606] / [fdo#111677])
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7558/shard-tglb7/igt@gem_exec_schedule@preempt-queue-contexts-chain-vebox.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15741/shard-tglb6/igt@gem_exec_schedule@preempt-queue-contexts-chain-vebox.html
-
-  * igt@gem_exec_suspend@basic-s0:
-    - shard-tglb:         [PASS][17] -> [INCOMPLETE][18] ([i915#472])
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7558/shard-tglb4/igt@gem_exec_suspend@basic-s0.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15741/shard-tglb8/igt@gem_exec_suspend@basic-s0.html
-
-  * igt@gem_persistent_relocs@forked-thrashing:
-    - shard-tglb:         [PASS][19] -> [TIMEOUT][20] ([i915#530])
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7558/shard-tglb8/igt@gem_persistent_relocs@forked-thrashing.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15741/shard-tglb5/igt@gem_persistent_relocs@forked-thrashing.html
-
-  * igt@gem_softpin@noreloc-s3:
-    - shard-tglb:         [PASS][21] -> [INCOMPLETE][22] ([i915#456])
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7558/shard-tglb7/igt@gem_softpin@noreloc-s3.html
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15741/shard-tglb8/igt@gem_softpin@noreloc-s3.html
-
-  * igt@gem_userptr_blits@sync-unmap-cycles:
-    - shard-snb:          [PASS][23] -> [DMESG-WARN][24] ([fdo#111870]) +1 similar issue
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7558/shard-snb4/igt@gem_userptr_blits@sync-unmap-cycles.html
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15741/shard-snb2/igt@gem_userptr_blits@sync-unmap-cycles.html
-
-  * igt@i915_pm_dc@dc5-dpms:
-    - shard-skl:          [PASS][25] -> [INCOMPLETE][26] ([i915#198])
-   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7558/shard-skl10/igt@i915_pm_dc@dc5-dpms.html
-   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15741/shard-skl2/igt@i915_pm_dc@dc5-dpms.html
-
-  * igt@i915_selftest@live_gt_timelines:
-    - shard-tglb:         [PASS][27] -> [INCOMPLETE][28] ([i915#455])
-   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7558/shard-tglb6/igt@i915_selftest@live_gt_timelines.html
-   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15741/shard-tglb5/igt@i915_selftest@live_gt_timelines.html
-
-  * igt@kms_color@pipe-a-ctm-0-5:
-    - shard-skl:          [PASS][29] -> [DMESG-WARN][30] ([i915#109])
-   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7558/shard-skl3/igt@kms_color@pipe-a-ctm-0-5.html
-   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15741/shard-skl5/igt@kms_color@pipe-a-ctm-0-5.html
-
-  * igt@kms_cursor_crc@pipe-c-cursor-256x256-sliding:
-    - shard-skl:          [PASS][31] -> [FAIL][32] ([i915#54])
-   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7558/shard-skl5/igt@kms_cursor_crc@pipe-c-cursor-256x256-sliding.html
-   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15741/shard-skl2/igt@kms_cursor_crc@pipe-c-cursor-256x256-sliding.html
-
-  * igt@kms_draw_crc@draw-method-xrgb2101010-render-ytiled:
-    - shard-skl:          [PASS][33] -> [INCOMPLETE][34] ([i915#646] / [i915#667])
-   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7558/shard-skl2/igt@kms_draw_crc@draw-method-xrgb2101010-render-ytiled.html
-   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15741/shard-skl7/igt@kms_draw_crc@draw-method-xrgb2101010-render-ytiled.html
-
-  * igt@kms_fbcon_fbt@fbc-suspend:
-    - shard-tglb:         [PASS][35] -> [INCOMPLETE][36] ([i915#435] / [i915#456] / [i915#460])
-   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7558/shard-tglb4/igt@kms_fbcon_fbt@fbc-suspend.html
-   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15741/shard-tglb8/igt@kms_fbcon_fbt@fbc-suspend.html
-
-  * igt@kms_flip@flip-vs-suspend:
-    - shard-hsw:          [PASS][37] -> [INCOMPLETE][38] ([i915#61])
-   [37]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7558/shard-hsw1/igt@kms_flip@flip-vs-suspend.html
-   [38]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15741/shard-hsw5/igt@kms_flip@flip-vs-suspend.html
-
-  * igt@kms_frontbuffer_tracking@fbc-suspend:
-    - shard-tglb:         [PASS][39] -> [INCOMPLETE][40] ([i915#456] / [i915#460] / [i915#474])
-   [39]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7558/shard-tglb2/igt@kms_frontbuffer_tracking@fbc-suspend.html
-   [40]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15741/shard-tglb7/igt@kms_frontbuffer_tracking@fbc-suspend.html
-
-  * igt@kms_plane@pixel-format-pipe-b-planes:
-    - shard-skl:          [PASS][41] -> [INCOMPLETE][42] ([fdo#112347] / [fdo#112391] / [i915#648] / [i915#667])
-   [41]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7558/shard-skl5/igt@kms_plane@pixel-format-pipe-b-planes.html
-   [42]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15741/shard-skl6/igt@kms_plane@pixel-format-pipe-b-planes.html
-
-  * igt@kms_plane@pixel-format-pipe-c-planes-source-clamping:
-    - shard-iclb:         [PASS][43] -> [INCOMPLETE][44] ([i915#140] / [i915#246])
-   [43]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7558/shard-iclb4/igt@kms_plane@pixel-format-pipe-c-planes-source-clamping.html
-   [44]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15741/shard-iclb2/igt@kms_plane@pixel-format-pipe-c-planes-source-clamping.html
-
-  * igt@kms_plane@plane-panning-bottom-right-suspend-pipe-b-planes:
-    - shard-tglb:         [PASS][45] -> [INCOMPLETE][46] ([i915#456] / [i915#460])
-   [45]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7558/shard-tglb6/igt@kms_plane@plane-panning-bottom-right-suspend-pipe-b-planes.html
-   [46]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15741/shard-tglb5/igt@kms_plane@plane-panning-bottom-right-suspend-pipe-b-planes.html
-
-  * igt@kms_plane@plane-panning-bottom-right-suspend-pipe-c-planes:
-    - shard-apl:          [PASS][47] -> [DMESG-WARN][48] ([i915#180])
-   [47]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7558/shard-apl1/igt@kms_plane@plane-panning-bottom-right-suspend-pipe-c-planes.html
-   [48]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15741/shard-apl1/igt@kms_plane@plane-panning-bottom-right-suspend-pipe-c-planes.html
-
-  * igt@kms_psr2_su@page_flip:
-    - shard-iclb:         [PASS][49] -> [SKIP][50] ([fdo#109642] / [fdo#111068])
-   [49]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7558/shard-iclb2/igt@kms_psr2_su@page_flip.html
-   [50]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15741/shard-iclb1/igt@kms_psr2_su@page_flip.html
-
-  * igt@kms_psr@psr2_dpms:
-    - shard-iclb:         [PASS][51] -> [SKIP][52] ([fdo#109441]) +1 similar issue
-   [51]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7558/shard-iclb2/igt@kms_psr@psr2_dpms.html
-   [52]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15741/shard-iclb4/igt@kms_psr@psr2_dpms.html
-
-  * igt@kms_vblank@pipe-a-ts-continuation-suspend:
-    - shard-kbl:          [PASS][53] -> [DMESG-WARN][54] ([i915#180]) +2 similar issues
-   [53]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7558/shard-kbl6/igt@kms_vblank@pipe-a-ts-continuation-suspend.html
-   [54]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15741/shard-kbl7/igt@kms_vblank@pipe-a-ts-continuation-suspend.html
-
-  * igt@perf_pmu@busy-no-semaphores-vcs1:
-    - shard-iclb:         [PASS][55] -> [SKIP][56] ([fdo#112080]) +3 similar issues
-   [55]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7558/shard-iclb4/igt@perf_pmu@busy-no-semaphores-vcs1.html
-   [56]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15741/shard-iclb8/igt@perf_pmu@busy-no-semaphores-vcs1.html
+  * spec@glsl-1.30@execution@texelfetch@fs-texelfetch-isampler1darray (NEW):
+    - pig-hsw-4770r:      NOTRUN -> [FAIL][6] +1321 similar issues
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15742/pig-hsw-4770r/spec@glsl-1.30@execution@texelfetch@fs-texelfetch-isampler1darray.html
 
   
-#### Possible fixes ####
+New tests
+---------
 
-  * igt@gem_ctx_isolation@bcs0-s3:
-    - shard-apl:          [DMESG-WARN][57] ([i915#180]) -> [PASS][58] +1 similar issue
-   [57]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7558/shard-apl1/igt@gem_ctx_isolation@bcs0-s3.html
-   [58]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15741/shard-apl3/igt@gem_ctx_isolation@bcs0-s3.html
+  New tests have been introduced between CI_DRM_7558_full and Patchwork_15742_full:
 
-  * igt@gem_ctx_persistence@vcs1-cleanup:
-    - shard-iclb:         [SKIP][59] ([fdo#109276] / [fdo#112080]) -> [PASS][60] +1 similar issue
-   [59]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7558/shard-iclb8/igt@gem_ctx_persistence@vcs1-cleanup.html
-   [60]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15741/shard-iclb2/igt@gem_ctx_persistence@vcs1-cleanup.html
+### New Piglit tests (1010) ###
 
-  * igt@gem_exec_gttfill@basic:
-    - shard-tglb:         [INCOMPLETE][61] ([fdo#111593]) -> [PASS][62]
-   [61]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7558/shard-tglb8/igt@gem_exec_gttfill@basic.html
-   [62]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15741/shard-tglb4/igt@gem_exec_gttfill@basic.html
+  * hiz@hiz-depth-read-window-stencil1:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.08] s
 
-  * igt@gem_persistent_relocs@forked-thrashing:
-    - shard-glk:          [INCOMPLETE][63] ([i915#530] / [i915#58] / [k.org#198133]) -> [PASS][64]
-   [63]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7558/shard-glk7/igt@gem_persistent_relocs@forked-thrashing.html
-   [64]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15741/shard-glk7/igt@gem_persistent_relocs@forked-thrashing.html
+  * object namespace pollution@texture with glbitmap:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.24] s
 
-  * igt@gem_sync@basic-store-each:
-    - shard-tglb:         [INCOMPLETE][65] ([i915#435] / [i915#472]) -> [PASS][66]
-   [65]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7558/shard-tglb9/igt@gem_sync@basic-store-each.html
-   [66]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15741/shard-tglb2/igt@gem_sync@basic-store-each.html
+  * object namespace pollution@texture with glclear:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.19] s
 
-  * igt@gem_tiled_blits@interruptible:
-    - shard-hsw:          [FAIL][67] -> [PASS][68]
-   [67]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7558/shard-hsw4/igt@gem_tiled_blits@interruptible.html
-   [68]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15741/shard-hsw4/igt@gem_tiled_blits@interruptible.html
+  * object namespace pollution@texture with glcleartexsubimage:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.18] s
 
-  * igt@gem_userptr_blits@map-fixed-invalidate-busy-gup:
-    - shard-snb:          [DMESG-WARN][69] ([fdo#111870]) -> [PASS][70] +1 similar issue
-   [69]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7558/shard-snb7/igt@gem_userptr_blits@map-fixed-invalidate-busy-gup.html
-   [70]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15741/shard-snb7/igt@gem_userptr_blits@map-fixed-invalidate-busy-gup.html
+  * shaders@glsl-fs-floor:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.12] s
 
-  * igt@gem_workarounds@suspend-resume-context:
-    - shard-tglb:         [INCOMPLETE][71] ([i915#456] / [i915#460]) -> [PASS][72] +1 similar issue
-   [71]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7558/shard-tglb3/igt@gem_workarounds@suspend-resume-context.html
-   [72]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15741/shard-tglb8/igt@gem_workarounds@suspend-resume-context.html
+  * shaders@glsl-fs-texture2dproj-2:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.13] s
 
-  * igt@gem_workarounds@suspend-resume-fd:
-    - shard-kbl:          [DMESG-WARN][73] ([i915#180]) -> [PASS][74] +1 similar issue
-   [73]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7558/shard-kbl2/igt@gem_workarounds@suspend-resume-fd.html
-   [74]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15741/shard-kbl1/igt@gem_workarounds@suspend-resume-fd.html
+  * spec@!opengl 1.2@copyteximage 3d:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.32] s
 
-  * igt@i915_selftest@mock_sanitycheck:
-    - shard-skl:          [DMESG-WARN][75] ([i915#747]) -> [PASS][76]
-   [75]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7558/shard-skl2/igt@i915_selftest@mock_sanitycheck.html
-   [76]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15741/shard-skl9/igt@i915_selftest@mock_sanitycheck.html
-    - shard-snb:          [DMESG-WARN][77] ([i915#747]) -> [PASS][78]
-   [77]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7558/shard-snb4/igt@i915_selftest@mock_sanitycheck.html
-   [78]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15741/shard-snb1/igt@i915_selftest@mock_sanitycheck.html
+  * spec@!opengl 1.2@getteximage-targets 3d:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.14] s
 
-  * igt@kms_color@pipe-a-ctm-0-75:
-    - shard-skl:          [DMESG-WARN][79] ([i915#109]) -> [PASS][80]
-   [79]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7558/shard-skl4/igt@kms_color@pipe-a-ctm-0-75.html
-   [80]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15741/shard-skl10/igt@kms_color@pipe-a-ctm-0-75.html
+  * spec@!opengl 1.2@levelclamp:
+    - Statuses : 1 fail(s)
+    - Exec time: [4.79] s
 
-  * igt@kms_cursor_crc@pipe-b-cursor-64x64-onscreen:
-    - shard-skl:          [FAIL][81] ([i915#54]) -> [PASS][82]
-   [81]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7558/shard-skl5/igt@kms_cursor_crc@pipe-b-cursor-64x64-onscreen.html
-   [82]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15741/shard-skl6/igt@kms_cursor_crc@pipe-b-cursor-64x64-onscreen.html
+  * spec@!opengl 1.2@lodclamp:
+    - Statuses : 1 fail(s)
+    - Exec time: [4.74] s
 
-  * igt@kms_draw_crc@draw-method-xrgb8888-render-ytiled:
-    - shard-tglb:         [INCOMPLETE][83] ([fdo#112393] / [i915#667]) -> [PASS][84]
-   [83]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7558/shard-tglb1/igt@kms_draw_crc@draw-method-xrgb8888-render-ytiled.html
-   [84]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15741/shard-tglb8/igt@kms_draw_crc@draw-method-xrgb8888-render-ytiled.html
+  * spec@!opengl 1.2@mipmap-setup:
+    - Statuses : 1 fail(s)
+    - Exec time: [4.53] s
 
-  * igt@kms_flip@flip-vs-suspend-interruptible:
-    - shard-tglb:         [INCOMPLETE][85] ([i915#456] / [i915#460] / [i915#516]) -> [PASS][86]
-   [85]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7558/shard-tglb7/igt@kms_flip@flip-vs-suspend-interruptible.html
-   [86]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15741/shard-tglb6/igt@kms_flip@flip-vs-suspend-interruptible.html
+  * spec@!opengl 1.2@tex3d:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.27] s
 
-  * igt@kms_plane@plane-panning-bottom-right-suspend-pipe-b-planes:
-    - shard-skl:          [INCOMPLETE][87] ([i915#69]) -> [PASS][88]
-   [87]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7558/shard-skl4/igt@kms_plane@plane-panning-bottom-right-suspend-pipe-b-planes.html
-   [88]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15741/shard-skl3/igt@kms_plane@plane-panning-bottom-right-suspend-pipe-b-planes.html
+  * spec@!opengl 1.2@texture-packed-formats:
+    - Statuses : 1 fail(s)
+    - Exec time: [2.37] s
 
-  * igt@kms_plane_alpha_blend@pipe-a-constant-alpha-min:
-    - shard-skl:          [FAIL][89] ([fdo#108145]) -> [PASS][90]
-   [89]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7558/shard-skl9/igt@kms_plane_alpha_blend@pipe-a-constant-alpha-min.html
-   [90]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15741/shard-skl3/igt@kms_plane_alpha_blend@pipe-a-constant-alpha-min.html
+  * spec@!opengl 1.3@tex-border-1:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.08] s
 
-  * igt@kms_plane_alpha_blend@pipe-b-coverage-7efc:
-    - shard-skl:          [FAIL][91] ([fdo#108145] / [i915#265]) -> [PASS][92]
-   [91]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7558/shard-skl7/igt@kms_plane_alpha_blend@pipe-b-coverage-7efc.html
-   [92]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15741/shard-skl4/igt@kms_plane_alpha_blend@pipe-b-coverage-7efc.html
+  * spec@!opengl 1.4@draw-batch:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.08] s
 
-  * igt@kms_psr@psr2_cursor_mmap_cpu:
-    - shard-iclb:         [SKIP][93] ([fdo#109441]) -> [PASS][94]
-   [93]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7558/shard-iclb8/igt@kms_psr@psr2_cursor_mmap_cpu.html
-   [94]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15741/shard-iclb2/igt@kms_psr@psr2_cursor_mmap_cpu.html
+  * spec@!opengl 1.4@gl-1.4-dlist-multidrawarrays:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.11] s
 
-  * igt@kms_setmode@basic:
-    - shard-apl:          [FAIL][95] ([i915#31]) -> [PASS][96]
-   [95]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7558/shard-apl3/igt@kms_setmode@basic.html
-   [96]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15741/shard-apl8/igt@kms_setmode@basic.html
+  * spec@!opengl 1.4@gl-1.4-polygon-offset:
+    - Statuses : 1 incomplete(s)
+    - Exec time: [0.0] s
 
-  * igt@perf@disabled-read-error:
-    - shard-hsw:          [INCOMPLETE][97] ([i915#61]) -> [PASS][98]
-   [97]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7558/shard-hsw5/igt@perf@disabled-read-error.html
-   [98]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15741/shard-hsw1/igt@perf@disabled-read-error.html
+  * spec@!opengl 1.4@tex-miplevel-selection-lod:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.17] s
 
-  * igt@perf_pmu@busy-idle-check-all-vcs1:
-    - shard-iclb:         [SKIP][99] ([fdo#112080]) -> [PASS][100] +8 similar issues
-   [99]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7558/shard-iclb3/igt@perf_pmu@busy-idle-check-all-vcs1.html
-   [100]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15741/shard-iclb2/igt@perf_pmu@busy-idle-check-all-vcs1.html
+  * spec@!opengl 1.4@tex-miplevel-selection-lod-bias:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.13] s
 
-  * igt@prime_vgem@fence-wait-bsd2:
-    - shard-iclb:         [SKIP][101] ([fdo#109276]) -> [PASS][102] +7 similar issues
-   [101]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7558/shard-iclb8/igt@prime_vgem@fence-wait-bsd2.html
-   [102]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15741/shard-iclb4/igt@prime_vgem@fence-wait-bsd2.html
+  * spec@!opengl 1.5@depth-tex-compare:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.28] s
 
-  
-#### Warnings ####
+  * spec@!opengl 1.5@draw-vertices:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.21] s
 
-  * igt@gem_ctx_isolation@vcs1-nonpriv-switch:
-    - shard-iclb:         [FAIL][103] ([IGT#28]) -> [SKIP][104] ([fdo#109276] / [fdo#112080])
-   [103]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7558/shard-iclb1/igt@gem_ctx_isolation@vcs1-nonpriv-switch.html
-   [104]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15741/shard-iclb6/igt@gem_ctx_isolation@vcs1-nonpriv-switch.html
+  * spec@!opengl 1.5@draw-vertices-user:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.18] s
 
-  * igt@gem_tiled_blits@normal:
-    - shard-hsw:          [FAIL][105] -> [FAIL][106] ([i915#818])
-   [105]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7558/shard-hsw8/igt@gem_tiled_blits@normal.html
-   [106]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15741/shard-hsw6/igt@gem_tiled_blits@normal.html
+  * spec@!opengl 2.0@attribs:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.68] s
 
-  * igt@kms_atomic_transition@6x-modeset-transitions-nonblocking-fencing:
-    - shard-tglb:         [SKIP][107] ([fdo#112016] / [fdo#112021]) -> [SKIP][108] ([fdo#112021]) +1 similar issue
-   [107]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7558/shard-tglb3/igt@kms_atomic_transition@6x-modeset-transitions-nonblocking-fencing.html
-   [108]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15741/shard-tglb9/igt@kms_atomic_transition@6x-modeset-transitions-nonblocking-fencing.html
+  * spec@!opengl 2.0@depth-tex-modes-glsl:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.11] s
 
-  * igt@kms_dp_dsc@basic-dsc-enable-edp:
-    - shard-iclb:         [DMESG-WARN][109] ([fdo#107724]) -> [SKIP][110] ([fdo#109349])
-   [109]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7558/shard-iclb2/igt@kms_dp_dsc@basic-dsc-enable-edp.html
-   [110]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15741/shard-iclb1/igt@kms_dp_dsc@basic-dsc-enable-edp.html
+  * spec@!opengl 2.0@gl-2.0-two-sided-stencil:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.12] s
 
-  * igt@kms_plane@pixel-format-pipe-b-planes-source-clamping:
-    - shard-skl:          [INCOMPLETE][111] ([fdo#112347] / [fdo#112391] / [i915#648] / [i915#667]) -> [INCOMPLETE][112] ([fdo#112347] / [i915#648] / [i915#667])
-   [111]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7558/shard-skl10/igt@kms_plane@pixel-format-pipe-b-planes-source-clamping.html
-   [112]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15741/shard-skl1/igt@kms_plane@pixel-format-pipe-b-planes-source-clamping.html
+  * spec@!opengl 2.0@max-samplers:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.53] s
 
-  * igt@kms_psr@psr2_suspend:
-    - shard-tglb:         [INCOMPLETE][113] ([i915#456] / [i915#460]) -> [DMESG-WARN][114] ([i915#402])
-   [113]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7558/shard-tglb5/igt@kms_psr@psr2_suspend.html
-   [114]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15741/shard-tglb4/igt@kms_psr@psr2_suspend.html
+  * spec@!opengl 2.0@max-samplers border:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.45] s
 
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
+  * spec@!opengl 2.0@stencil-twoside:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.14] s
 
-  [IGT#28]: https://gitlab.freedesktop.org/drm/igt-gpu-tools/issues/28
-  [fdo#107724]: https://bugs.freedesktop.org/show_bug.cgi?id=107724
-  [fdo#108145]: https://bugs.freedesktop.org/show_bug.cgi?id=108145
-  [fdo#109276]: https://bugs.freedesktop.org/show_bug.cgi?id=109276
-  [fdo#109349]: https://bugs.freedesktop.org/show_bug.cgi?id=109349
-  [fdo#109441]: https://bugs.freedesktop.org/show_bug.cgi?id=109441
-  [fdo#109642]: https://bugs.freedesktop.org/show_bug.cgi?id=109642
-  [fdo#111068]: https://bugs.freedesktop.org/show_bug.cgi?id=111068
-  [fdo#111593]: https://bugs.freedesktop.org/show_bug.cgi?id=111593
-  [fdo#111606]: https://bugs.freedesktop.org/show_bug.cgi?id=111606
-  [fdo#111677]: https://bugs.freedesktop.org/show_bug.cgi?id=111677
-  [fdo#111870]: https://bugs.freedesktop.org/show_bug.cgi?id=111870
-  [fdo#112016]: https://bugs.freedesktop.org/show_bug.cgi?id=112016
-  [fdo#112021]: https://bugs.freedesktop.org/show_bug.cgi?id=112021
-  [fdo#112080]: https://bugs.freedesktop.org/show_bug.cgi?id=112080
-  [fdo#112146]: https://bugs.freedesktop.org/show_bug.cgi?id=112146
-  [fdo#112347]: https://bugs.freedesktop.org/show_bug.cgi?id=112347
-  [fdo#112391]: https://bugs.freedesktop.org/show_bug.cgi?id=112391
-  [fdo#112393]: https://bugs.freedesktop.org/show_bug.cgi?id=112393
-  [i915#109]: https://gitlab.freedesktop.org/drm/intel/issues/109
-  [i915#140]: https://gitlab.freedesktop.org/drm/intel/issues/140
-  [i915#180]: https://gitlab.freedesktop.org/drm/intel/issues/180
-  [i915#198]: https://gitlab.freedesktop.org/drm/intel/issues/198
-  [i915#246]: https://gitlab.freedesktop.org/drm/intel/issues/246
-  [i915#265]: https://gitlab.freedesktop.org/drm/intel/issues/265
-  [i915#31]: https://gitlab.freedesktop.org/drm/intel/issues/31
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
-  [i915#435]: https://gitlab.freedesktop.org/drm/intel/issues/435
-  [i915#455]: https://gitlab.freedesktop.org/drm/intel/issues/455
-  [i915#456]: https://gitlab.freedesktop.org/drm/intel/issues/456
-  [i915#460]: https://gitlab.freedesktop.org/drm/intel/issues/460
-  [i915#472]: https://gitlab.freedesktop.org/drm/intel/issues/472
-  [i915#474]: https://gitlab.freedesktop.org/drm/intel/issues/474
-  [i915#516]: https://gitlab.freedesktop.org/drm/intel/issues/516
-  [i915#530]: https://gitlab.freedesktop.org/drm/intel/issues/530
-  [i915#54]: https://gitlab.freedesktop.org/drm/intel/issues/54
-  [i915#58]: https://gitlab.freedesktop.org/drm/intel/issues/58
-  [i915#61]: https://gitlab.freedesktop.org/drm/intel/issues/61
-  [i915#646]: https://gitlab.freedesktop.org/drm/intel/issues/646
-  [i915#648]: https://gitlab.freedesktop.org/drm/intel/issues/648
-  [i915#667]: https://gitlab.freedesktop.org/drm/intel/issues/667
-  [i915#679]: https://gitlab.freedesktop.org/drm/intel/issues/679
-  [i915#69]: https://gitlab.freedesktop.org/drm/intel/issues/69
-  [i915#747]: https://gitlab.freedesktop.org/drm/intel/issues/747
-  [i915#818]: https://gitlab.freedesktop.org/drm/intel/issues/818
-  [k.org#198133]: https://bugzilla.kernel.org/show_bug.cgi?id=198133
+  * spec@!opengl 2.0@tex3d-npot:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.13] s
 
+  * spec@!opengl 2.0@vertex-program-two-side enabled front back back2:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.12] s
 
-Participating hosts (10 -> 9)
-------------------------------
+  * spec@!opengl 2.0@vertex-program-two-side enabled front front2 back2:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.08] s
 
-  Missing    (1): pig-glk-j5005 
+  * spec@!opengl 2.1@pbo:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.21] s
 
+  * spec@!opengl 3.0@attribs:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.25] s
 
-Build changes
--------------
+  * spec@!opengl 3.0@clearbuffer-depth:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.13] s
 
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_7558 -> Patchwork_15741
+  * spec@!opengl 3.0@clearbuffer-depth-stencil:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.18] s
 
-  CI-20190529: 20190529
-  CI_DRM_7558: 1adb846ba2ead1c3f7bb7ed753e11f7d9ee28688 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5349: 048f58513d8b8ec6bb307a939f0ac959bc0f0e10 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_15741: bfc254f9adf54eb52561e9b019f5ff84b038f09e @ git://anongit.freedesktop.org/gfx-ci/linux
-  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.freedesktop.org/piglit
+  * spec@!opengl 3.0@clearbuffer-display-lists:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.08] s
+
+  * spec@!opengl 3.0@clearbuffer-mixed-format:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.11] s
+
+  * spec@!opengl 3.0@clearbuffer-stencil:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.18] s
+
+  * spec@!opengl 3.0@gl-3.0-texture-integer:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.08] s
+
+  * spec@!opengl 3.0@render-integer:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.23] s
+
+  * spec@!opengl 3.0@sampler-cube-shadow:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.08] s
+
+  * spec@!opengl 3.2@coord-replace-doesnt-eliminate-frag-tex-coords:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.56] s
+
+  * spec@!opengl 3.2@layered-rendering@clear-color-all-types cube_map_array mipmapped:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.08] s
+
+  * spec@!opengl 3.2@layered-rendering@framebuffertexture:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.08] s
+
+  * spec@!opengl 3.2@layered-rendering@gl-layer:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.08] s
+
+  * spec@!opengl 3.2@layered-rendering@gl-layer-cube-map:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.09] s
+
+  * spec@!opengl 3.2@layered-rendering@gl-layer-render:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.11] s
+
+  * spec@!opengl 3.2@layered-rendering@gl-layer-render-clipped:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.07] s
+
+  * spec@3dfx_texture_compression_fxt1@compressedteximage gl_compressed_rgba_fxt1_3dfx:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.16] s
+
+  * spec@3dfx_texture_compression_fxt1@fbo-generatemipmap-formats:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.23] s
+
+  * spec@3dfx_texture_compression_fxt1@fxt1-teximage:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.08] s
+
+  * spec@amd_shader_trinary_minmax@execution@built-in-functions@fs-mid3-ivec2-ivec2-ivec2:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.14] s
+
+  * spec@amd_shader_trinary_minmax@execution@built-in-functions@fs-min3-int-int-int:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.14] s
+
+  * spec@arb_arrays_of_arrays@execution@sampler@fs-initializer-const-index:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.15] s
+
+  * spec@arb_base_instance@arb_base_instance-drawarrays:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.14] s
+
+  * spec@arb_blend_func_extended@arb_blend_func_extended-fbo-extended-blend:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.16] s
+
+  * spec@arb_blend_func_extended@arb_blend_func_extended-fbo-extended-blend-explicit:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.13] s
+
+  * spec@arb_blend_func_extended@arb_blend_func_extended-fbo-extended-blend-explicit_gles3:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.13] s
+
+  * spec@arb_blend_func_extended@arb_blend_func_extended-fbo-extended-blend_gles3:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.13] s
+
+  * spec@arb_clear_texture@arb_clear_texture-base-formats:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.11] s
+
+  * spec@arb_clip_control@arb_clip_control-clip-control:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.22] s
+
+  * spec@arb_clip_control@arb_clip_control-depth-precision:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.16] s
+
+  * spec@arb_clip_control@arb_clip_control-viewport:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.11] s
+
+  * spec@arb_color_buffer_float@gl_rgba16f-render:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.71] s
+
+  * spec@arb_color_buffer_float@gl_rgba16f-render-fog:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.76] s
+
+  * spec@arb_color_buffer_float@gl_rgba16f-render-sanity:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.18] s
+
+  * spec@arb_color_buffer_float@gl_rgba16f-render-sanity-fog:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.18] s
+
+  * spec@arb_color_buffer_float@gl_rgba32f-render:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.64] s
+
+  * spec@arb_color_buffer_float@gl_rgba32f-render-fog:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.65] s
+
+  * spec@arb_color_buffer_float@gl_rgba32f-render-sanity:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.17] s
+
+  * spec@arb_color_buffer_float@gl_rgba8-render:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.52] s
+
+  * spec@arb_color_buffer_float@gl_rgba8-render-fog:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.74] s
+
+  * spec@arb_color_buffer_float@gl_rgba8-render-sanity:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.16] s
+
+  * spec@arb_color_buffer_float@gl_rgba8-render-sanity-fog:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.17] s
+
+  * spec@arb_color_buffer_float@gl_rgba8_snorm-probepixel:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.14] s
+
+  * spec@arb_color_buffer_float@gl_rgba8_snorm-render:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.81] s
+
+  * spec@arb_color_buffer_float@gl_rgba8_snorm-render-fog:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.77] s
+
+  * spec@arb_color_buffer_float@gl_rgba8_snorm-render-sanity:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.20] s
+
+  * spec@arb_color_buffer_float@gl_rgba8_snorm-render-sanity-fog:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.17] s
+
+  * spec@arb_color_buffer_float@mixed-mrt:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.11] s
+
+  * spec@arb_compute_shader@render-and-compute:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.10] s
+
+  * spec@arb_copy_buffer@overlap:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.11] s
+
+  * spec@arb_copy_image@arb_copy_image-format-swizzle:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.26] s
+
+  * spec@arb_copy_image@arb_copy_image-formats --samples=2:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.44] s
+
+  * spec@arb_copy_image@arb_copy_image-formats --samples=4:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.45] s
+
+  * spec@arb_copy_image@arb_copy_image-targets gl_texture_1d_array 32 1 12 gl_texture_2d_array 32 16 18 11 0 3 5 9 7 14 1 8:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.21] s
+
+  * spec@arb_copy_image@arb_copy_image-targets gl_texture_1d_array 32 1 12 gl_texture_3d 32 16 18 11 0 3 5 9 2 14 1 7:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.17] s
+
+  * spec@arb_copy_image@arb_copy_image-targets gl_texture_1d_array 32 1 12 gl_texture_cube_map 32 32 6 11 0 3 5 17 2 14 1 3:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.14] s
+
+  * spec@arb_copy_image@arb_copy_image-targets gl_texture_1d_array 32 1 12 gl_texture_cube_map_array 32 32 18 11 0 3 5 17 2 14 1 7:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.20] s
+
+  * spec@arb_copy_image@arb_copy_image-targets gl_texture_2d 32 32 1 gl_texture_1d_array 32 1 16 11 2 0 5 0 7 14 1 1:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.12] s
+
+  * spec@arb_copy_image@arb_copy_image-targets gl_texture_2d 32 32 1 gl_texture_2d 32 16 1 11 12 0 5 7 0 14 9 1:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.10] s
+
+  * spec@arb_copy_image@arb_copy_image-targets gl_texture_2d 32 32 1 gl_texture_3d 32 16 18 11 5 0 5 9 7 14 7 1:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.12] s
+
+  * spec@arb_copy_image@arb_copy_image-targets gl_texture_2d_array 32 32 15 gl_texture_2d_array 32 16 15 11 12 5 5 7 2 14 9 9:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.13] s
+
+  * spec@arb_copy_image@arb_copy_image-targets gl_texture_2d_array 32 32 15 gl_texture_3d 32 16 18 11 5 2 5 9 7 14 7 11:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.20] s
+
+  * spec@arb_copy_image@arb_copy_image-targets gl_texture_2d_array 32 32 15 gl_texture_cube_map_array 32 32 18 11 5 2 5 9 7 14 7 11:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.28] s
+
+  * spec@arb_copy_image@arb_copy_image-targets gl_texture_3d 32 32 17 gl_texture_1d 32 1 1 11 23 7 5 0 0 14 1 1:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.13] s
+
+  * spec@arb_copy_image@arb_copy_image-targets gl_texture_3d 32 32 17 gl_texture_1d_array 32 1 16 11 2 5 5 0 7 14 1 7:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.16] s
+
+  * spec@arb_copy_image@arb_copy_image-targets gl_texture_3d 32 32 17 gl_texture_2d 32 16 1 11 12 13 5 7 0 14 7 1:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.11] s
+
+  * spec@arb_copy_image@arb_copy_image-targets gl_texture_3d 32 32 17 gl_texture_2d_array 32 16 15 11 12 5 5 3 2 14 13 9:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.28] s
+
+  * spec@arb_copy_image@arb_copy_image-targets gl_texture_3d 32 32 17 gl_texture_3d 32 16 18 11 5 2 5 9 7 14 7 11:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.19] s
+
+  * spec@arb_copy_image@arb_copy_image-targets gl_texture_3d 32 32 17 gl_texture_cube_map_array 16 16 18 11 5 2 5 9 7 5 7 11:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.46] s
+
+  * spec@arb_copy_image@arb_copy_image-targets gl_texture_cube_map 32 32 6 gl_texture_1d 32 1 1 11 23 3 5 0 0 14 1 1:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.11] s
+
+  * spec@arb_copy_image@arb_copy_image-targets gl_texture_cube_map 32 32 6 gl_texture_2d_array 32 16 15 11 12 1 5 3 2 14 11 4:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.17] s
+
+  * spec@arb_copy_image@arb_copy_image-targets gl_texture_cube_map 32 32 6 gl_texture_3d 32 16 18 11 5 0 5 9 7 14 7 4:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.18] s
+
+  * spec@arb_copy_image@arb_copy_image-targets gl_texture_cube_map 32 32 6 gl_texture_cube_map_array 32 32 18 11 5 1 5 9 9 14 7 5:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.20] s
+
+  * spec@arb_copy_image@arb_copy_image-targets gl_texture_cube_map_array 32 32 18 gl_texture_1d 32 1 1 11 23 7 5 0 0 14 1 1:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.13] s
+
+  * spec@arb_copy_image@arb_copy_image-targets gl_texture_cube_map_array 32 32 18 gl_texture_1d_array 32 1 16 11 2 5 5 0 7 14 1 7:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.13] s
+
+  * spec@arb_copy_image@arb_copy_image-targets gl_texture_cube_map_array 32 32 18 gl_texture_2d_array 32 16 15 11 12 5 5 1 2 14 15 9:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.23] s
+
+  * spec@arb_copy_image@arb_copy_image-targets gl_texture_cube_map_array 32 32 18 gl_texture_3d 32 16 18 11 5 2 5 9 7 14 7 11:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.23] s
+
+  * spec@arb_copy_image@arb_copy_image-targets gl_texture_cube_map_array 32 32 18 gl_texture_cube_map 16 16 6 11 5 1 5 9 2 5 7 3:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.15] s
+
+  * spec@arb_copy_image@arb_copy_image-targets gl_texture_cube_map_array 32 32 18 gl_texture_cube_map_array 16 16 18 11 5 2 5 9 7 5 7 11:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.17] s
+
+  * spec@arb_copy_image@arb_copy_image-targets gl_texture_rectangle 32 32 1 gl_texture_rectangle 32 16 1 11 12 0 5 7 0 14 9 1:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.12] s
+
+  * spec@arb_depth_buffer_float@depthstencil-render-miplevels 1024 d=s=z32f_s8:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.48] s
+
+  * spec@arb_depth_buffer_float@depthstencil-render-miplevels 1024 s=d=z32f_s8:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.49] s
+
+  * spec@arb_depth_buffer_float@depthstencil-render-miplevels 146 d=z32f:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.11] s
+
+  * spec@arb_depth_buffer_float@depthstencil-render-miplevels 146 d=z32f_s=z24_s8:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.09] s
+
+  * spec@arb_depth_buffer_float@depthstencil-render-miplevels 273 d=z32f_s=z24_s8:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.09] s
+
+  * spec@arb_depth_buffer_float@depthstencil-render-miplevels 273 s=z24_s8_d=z32f:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.11] s
+
+  * spec@arb_depth_buffer_float@depthstencil-render-miplevels 292 s=z24_s8_d=z32f:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.12] s
+
+  * spec@arb_depth_buffer_float@depthstencil-render-miplevels 585 d=z32f_s=z24_s8:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.17] s
+
+  * spec@arb_depth_buffer_float@depthstencil-render-miplevels 585 s=z24_s8_d=z32f:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.17] s
+
+  * spec@arb_depth_buffer_float@fbo-clear-formats stencil:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.44] s
+
+  * spec@arb_depth_buffer_float@texwrap formats:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.14] s
+
+  * spec@arb_depth_texture@depth-tex-modes:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.17] s
+
+  * spec@arb_depth_texture@depthstencil-render-miplevels 1024 d=z24:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.14] s
+
+  * spec@arb_depth_texture@depthstencil-render-miplevels 146 d=z24:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.10] s
+
+  * spec@arb_depth_texture@depthstencil-render-miplevels 273 d=z24:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.10] s
+
+  * spec@arb_depth_texture@depthstencil-render-miplevels 292 d=z16:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.08] s
+
+  * spec@arb_depth_texture@depthstencil-render-miplevels 292 d=z24:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.11] s
+
+  * spec@arb_depth_texture@depthstencil-render-miplevels 585 d=z16:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.09] s
+
+  * spec@arb_depth_texture@texdepth:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.11] s
+
+  * spec@arb_depth_texture@texwrap formats offset:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.12] s
+
+  * spec@arb_direct_state_access@gettextureimage-targets:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.16] s
+
+  * spec@arb_direct_state_access@textures-storage:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.12] s
+
+  * spec@arb_draw_elements_base_vertex@arb_draw_elements_base_vertex-drawelements:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.20] s
+
+  * spec@arb_draw_elements_base_vertex@arb_draw_elements_base_vertex-drawelements-instanced:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.17] s
+
+  * spec@arb_draw_elements_base_vertex@arb_draw_elements_base_vertex-drawelements-user_varrays:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.22] s
+
+  * spec@arb_fragment_program@fp-long-alu:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.14] s
+
+  * spec@arb_framebuffer_object@fbo-blit-stretch:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.24] s
+
+  * spec@arb_framebuffer_object@fbo-drawbuffers-none glblendfunci:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.10] s
+
+  * spec@arb_framebuffer_object@fbo-drawbuffers-none glblitframebuffer:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.10] s
+
+  * spec@arb_framebuffer_object@fbo-drawbuffers-none use_frag_out:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.12] s
+
+  * spec@arb_framebuffer_object@fbo-generatemipmap-3d:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.22] s
+
+  * spec@arb_framebuffer_object@fbo-mipmap-copypix:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.45] s
+
+  * spec@arb_framebuffer_srgb@framebuffer-srgb:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.08] s
+
+  * spec@arb_get_texture_sub_image@arb_get_texture_sub_image-get:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.70] s
+
+  * spec@arb_gpu_shader5@execution@ubo_array_indexing@vs-array-nonconst:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.17] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-r-0-float-2d:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.67] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-r-0-float-2darray:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.52] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-r-0-float-2drect:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.71] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-r-0-float-cube:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.58] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-r-0-float-cubearray:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.69] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-r-0-int-2d:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.57] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-r-0-int-2darray:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.61] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-r-0-int-2drect:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.62] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-r-0-int-cube:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.65] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-r-0-int-cubearray:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.74] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-r-0-uint-2d:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.57] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-r-0-uint-2darray:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.80] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-r-0-uint-2drect:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.71] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-r-0-unorm-2d:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.38] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-r-0-unorm-2darray:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.70] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-r-0-unorm-2drect:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.65] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-r-0-unorm-cube:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.65] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-r-0-unorm-cubearray:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.71] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-rg-0-float-2d:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.76] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-rg-0-float-2darray:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.70] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-rg-0-float-2drect:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.68] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-rg-0-float-cube:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.53] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-rg-0-float-cubearray:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.65] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-rg-0-int-2d:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.63] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-rg-0-int-2darray:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.64] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-rg-0-int-2drect:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.65] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-rg-0-int-cube:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.70] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-rg-0-int-cubearray:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.70] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-rg-0-uint-2d:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.50] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-rg-0-uint-2darray:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.67] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-rg-0-uint-2drect:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.77] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-rg-0-uint-cube:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.63] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-rg-0-unorm-2d:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.66] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-rg-0-unorm-2darray:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.65] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-rg-0-unorm-2drect:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.67] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-rg-0-unorm-cube:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.56] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-rg-0-unorm-cubearray:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.66] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-rg-1-float-2d:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.72] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-rg-1-float-2darray:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.74] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-rg-1-float-2drect:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.70] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-rg-1-float-cube:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.64] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-rg-1-float-cubearray:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.60] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-rg-1-int-2d:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.69] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-rg-1-int-2drect:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.64] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-rg-1-int-cube:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.55] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-rg-1-int-cubearray:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.64] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-rg-1-uint-2d:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.74] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-rg-1-uint-2darray:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.76] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-rg-1-uint-2drect:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.57] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-rg-1-uint-cube:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.79] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-rg-1-uint-cubearray:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.68] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-rg-1-unorm-2d:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.66] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-rg-1-unorm-2darray:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.76] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-rg-1-unorm-2drect:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.56] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-rg-1-unorm-cube:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.65] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-rg-1-unorm-cubearray:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.70] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-rgb-0-float-2d:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.73] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-rgb-0-float-2darray:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.70] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-rgb-0-float-2drect:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.62] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-rgb-0-float-cube:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.62] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-rgb-0-int-2d:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.66] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-rgb-0-int-2drect:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.78] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-rgb-0-int-cube:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.64] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-rgb-0-uint-2d:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.61] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-rgb-0-uint-2darray:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.75] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-rgb-0-uint-2drect:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.68] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-rgb-0-uint-cube:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.69] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-rgb-0-uint-cubearray:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.74] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-rgb-0-unorm-2d:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.64] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-rgb-0-unorm-2darray:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.64] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-rgb-0-unorm-2drect:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.64] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-rgb-0-unorm-cube:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.68] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-rgb-0-unorm-cubearray:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.68] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-rgb-1-float-2darray:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.59] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-rgb-1-float-2drect:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.72] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-rgb-1-float-cube:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.79] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-rgb-1-int-2d:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.66] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-rgb-1-int-2drect:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.50] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-rgb-1-uint-2d:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.78] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-rgb-1-uint-2darray:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.75] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-rgb-1-uint-2drect:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.69] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-rgb-1-uint-cube:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.67] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-rgb-1-uint-cubearray:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.68] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-rgb-1-unorm-2d:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.62] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-rgb-1-unorm-2darray:
+    - Statuses : 1 fail(s)
 
 == Logs ==
 
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15741/index.html
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15742/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
