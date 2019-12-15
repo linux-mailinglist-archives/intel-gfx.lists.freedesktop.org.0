@@ -2,30 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D97D411F733
-	for <lists+intel-gfx@lfdr.de>; Sun, 15 Dec 2019 11:42:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B435D12087F
+	for <lists+intel-gfx@lfdr.de>; Mon, 16 Dec 2019 15:23:19 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 489558993B;
-	Sun, 15 Dec 2019 10:42:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3DDBD6E5AB;
+	Mon, 16 Dec 2019 14:23:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 6E10C8912F;
- Sun, 15 Dec 2019 10:42:38 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 74259A363B;
- Sun, 15 Dec 2019 10:42:37 +0000 (UTC)
+Received: from mail-wm1-x343.google.com (mail-wm1-x343.google.com
+ [IPv6:2a00:1450:4864:20::343])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 491A589E41
+ for <intel-gfx@lists.freedesktop.org>; Sun, 15 Dec 2019 11:12:34 +0000 (UTC)
+Received: by mail-wm1-x343.google.com with SMTP id b72so1467960wme.4
+ for <intel-gfx@lists.freedesktop.org>; Sun, 15 Dec 2019 03:12:34 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=cc:from:subject:message-id:date:user-agent:mime-version
+ :content-language:content-transfer-encoding;
+ bh=qkkNFqeyAIwklJYbtYabco2RToGyJ5DO1xbuBCGm8P0=;
+ b=pwrEyNbmBoAyCnUr6HBeuHHhK3DeLWI8Af6jaZA4NT4MAw5L+Jd4xw8oUJ7qBVbPuM
+ Q05+yh3Gn/vPWYtdjsv7xciAiG5O27Aq+CUEWcDi+2yl6TQslX9idQZIvQnmHNN3VjtQ
+ lAqClDMxYU35gv4PMtiya/1pfZDrSBho2+tbJfia++QUOOAPVVG6GXdVhhtDlMTph2OA
+ olu2uTJRx/S9gY/gHqRSj2Njcsy4dq9NrmwZYlRgvQ0eKuz5RmbydHznkJaCzDVl6HjV
+ Amr7dV63XiLTnkOEBVFM4IgOgzjvRGEmAtDjId2TvqI/69S5j9ueVU2JGpOSSpJVuoYP
+ bv6Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:cc:from:subject:message-id:date:user-agent
+ :mime-version:content-language:content-transfer-encoding;
+ bh=qkkNFqeyAIwklJYbtYabco2RToGyJ5DO1xbuBCGm8P0=;
+ b=kPSIhhsHmYoFvReaqPrM9hkqAR7zMk8PBaagz98swrNlyGVTVR2k0SD6qj6Im3FI1H
+ +QOkXRq+B14+7ebbmBI3wDJVn7vQTxDC8wqZPjBsN5CCfIjNyXrjeXqaT1medXgOzF7V
+ arwGiHaqsMzzYroK7f+tPMVvqwG9V31EUrAd54taEnSP+hE6Ii1klhQZhc93+ryYm/IG
+ 02KhS95SZDM4VG4RCiVNM1mqC7DEUmZuuYqk8lXHA64AIhB842DaqiCAJQ+1K0aKf+jR
+ Daz3UkylW10B0To3zEAkK4QhWrhonGUQ8giTrXSevK1l05JWyjLWccx6jXcVn+XdSxPu
+ SFMw==
+X-Gm-Message-State: APjAAAUftu4H1JzwIexacaRqeLkyC3E2LnZ83RnKk+Gs5Z5j3UBF/oCI
+ MT3BCmYtcyuWUeqMM95H9Y/DMujV
+X-Google-Smtp-Source: APXvYqxpjLp74ozRL+ZtccyfrwuJtcB9wEaN06tBtVxvu8mF0nlUBcDDXsLuN03kaBNmjymDa5VlZA==
+X-Received: by 2002:a1c:9acf:: with SMTP id
+ c198mr11772111wme.175.1576408352272; 
+ Sun, 15 Dec 2019 03:12:32 -0800 (PST)
+Received: from [192.168.2.202] (pD9EA3D69.dip0.t-ipconnect.de.
+ [217.234.61.105])
+ by smtp.gmail.com with ESMTPSA id i11sm17479832wrs.10.2019.12.15.03.12.30
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Sun, 15 Dec 2019 03:12:31 -0800 (PST)
+From: Maximilian Luz <luzmaximilian@gmail.com>
+Message-ID: <3d1744d1-5161-d377-7c3b-2e907060e3f8@gmail.com>
+Date: Sun, 15 Dec 2019 12:12:28 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.3.0
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Sun, 15 Dec 2019 10:42:37 -0000
-Message-ID: <157640655744.27846.14103009188045470650@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20191214211241.2243420-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20191214211241.2243420-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Unpin_vma-=3Eobj_on_early_error_=28rev3=29?=
+Content-Language: en-US
+X-Mailman-Approved-At: Mon, 16 Dec 2019 14:23:12 +0000
+Subject: [Intel-gfx] Plans for i915 GuC Submission with regards to IPTS/ME
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,169 +68,94 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
+Cc: Dorian Stoll <dorian.stoll@tmsp.io>, intel-gfx@lists.freedesktop.org
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Hello,
 
-Series: drm/i915: Unpin vma->obj on early error (rev3)
-URL   : https://patchwork.freedesktop.org/series/70935/
-State : failure
+I am working together with a small team of volunteers on a project that
+aims to make Linux usable on Microsoft Surface devices (linux-surface).
+The touchscreens of these devices use Intel Precise Touch & Stylus
+(IPTS) technology, which makes use of the GPU (through GuC submission)
+to process touch input events. Since IPTS is not supported by upstream
+Linux, the linux-surface project relies on kernel patches and
+out-of-tree drivers to make it work properly under Linux.
 
-== Summary ==
+The driver we are currently using was written by an Intel employee back
+in 2016, and has since been somewhat updated and maintained by
+linux-surface.  However, due to how the IPTS hardware works, the driver
+has to use GuC submission to setup the connections between the GPU and
+the Intel ME / touch controller. This is made possible by patching an
+IPTS-specific API into the i915 driver that allows the IPTS driver to
+issue commands to the GuC.
 
-CI Bug Log - changes from CI_DRM_7568 -> Patchwork_15764
-====================================================
+Now, starting with Linux 5.3, a bunch of changes were done to the i915
+driver that made it impossible for us to use the IPTS driver like we did
+before.  First, GuC submission got disabled, and recently there was a
+list of patches sent to this mailing list that removes the GuC APIs that
+we have been using entirely. We have a rough understanding about how the
+hardware works, but for the most part, the connection between the
+various parts of IPTS (ME, GuC) is a giant black-box for us.
 
-Summary
--------
+Currently the way that IPTS and the driver work is like this:
 
-  **FAILURE**
+- the IPTS driver allocates a GuC client a doorbell, and a bunch of
+   touch input / output buffers, and passes the addresses to the ME
 
-  Serious unknown changes coming with Patchwork_15764 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_15764, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
+- the driver loads a vendor specific firmware file and uploads it to the
+   GPU
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15764/index.html
+- the ME fills up the touch input buffer, and rings the GuC doorbell
 
-Possible new issues
--------------------
+- the firmware that was uploaded to the GPU processes the data from the
+   input buffer into HID events, and saves them into the output buffers
 
-  Here are the unknown changes that may have been introduced in Patchwork_15764:
+- the IPTS driver polls for changes in those buffers and relays the
+   contents into the kernels HID subsystem
 
-### IGT changes ###
+Is there any chance that you have an idea about if it will be possible
+to update the IPTS driver that is out there to work with the new GuC API
+that is coming into i915, and how we might have to go about that?
 
-#### Possible regressions ####
+As you see, the most part of this happens in the firmware, and the
+driver just sets up the messaging framework around it. This makes it
+hard for us to think of a possible solution without having a deep
+understanding and insight into the hardware.
 
-  * igt@gem_exec_create@basic:
-    - fi-bsw-kefka:       [PASS][1] -> [DMESG-WARN][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7568/fi-bsw-kefka/igt@gem_exec_create@basic.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15764/fi-bsw-kefka/igt@gem_exec_create@basic.html
-    - fi-glk-dsi:         [PASS][3] -> [DMESG-WARN][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7568/fi-glk-dsi/igt@gem_exec_create@basic.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15764/fi-glk-dsi/igt@gem_exec_create@basic.html
-    - fi-bsw-nick:        [PASS][5] -> [DMESG-WARN][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7568/fi-bsw-nick/igt@gem_exec_create@basic.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15764/fi-bsw-nick/igt@gem_exec_create@basic.html
-    - fi-kbl-8809g:       [PASS][7] -> [DMESG-WARN][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7568/fi-kbl-8809g/igt@gem_exec_create@basic.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15764/fi-kbl-8809g/igt@gem_exec_create@basic.html
-    - fi-skl-guc:         [PASS][9] -> [DMESG-WARN][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7568/fi-skl-guc/igt@gem_exec_create@basic.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15764/fi-skl-guc/igt@gem_exec_create@basic.html
-    - fi-kbl-guc:         [PASS][11] -> [DMESG-WARN][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7568/fi-kbl-guc/igt@gem_exec_create@basic.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15764/fi-kbl-guc/igt@gem_exec_create@basic.html
-    - fi-snb-2520m:       [PASS][13] -> [DMESG-WARN][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7568/fi-snb-2520m/igt@gem_exec_create@basic.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15764/fi-snb-2520m/igt@gem_exec_create@basic.html
-    - fi-apl-guc:         [PASS][15] -> [DMESG-WARN][16]
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7568/fi-apl-guc/igt@gem_exec_create@basic.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15764/fi-apl-guc/igt@gem_exec_create@basic.html
-    - fi-bxt-dsi:         [PASS][17] -> [DMESG-WARN][18]
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7568/fi-bxt-dsi/igt@gem_exec_create@basic.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15764/fi-bxt-dsi/igt@gem_exec_create@basic.html
-    - fi-kbl-soraka:      [PASS][19] -> [DMESG-WARN][20]
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7568/fi-kbl-soraka/igt@gem_exec_create@basic.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15764/fi-kbl-soraka/igt@gem_exec_create@basic.html
+Another problem is that, except for the very latest generation of
+Surface devices that was released some weeks ago, all devices that use
+IPTS are either Skylake or Kabylake. While researching about this, we
+found some comments, stating that any form of GuC submission might only
+be supported on Icelake in the future. A patch
+(https://patchwork.freedesktop.org/patch/335793/) on the other hand
+reads like it would be re-enabled on all devices. Can you clarify if GuC
+is intended to be re-enabled on all (Gen9+) devices?
 
-  * igt@gem_exec_suspend@basic:
-    - fi-hsw-peppy:       [PASS][21] -> [DMESG-WARN][22]
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7568/fi-hsw-peppy/igt@gem_exec_suspend@basic.html
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15764/fi-hsw-peppy/igt@gem_exec_suspend@basic.html
-    - fi-snb-2600:        [PASS][23] -> [DMESG-WARN][24]
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7568/fi-snb-2600/igt@gem_exec_suspend@basic.html
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15764/fi-snb-2600/igt@gem_exec_suspend@basic.html
-    - fi-bsw-n3050:       [PASS][25] -> [DMESG-WARN][26]
-   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7568/fi-bsw-n3050/igt@gem_exec_suspend@basic.html
-   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15764/fi-bsw-n3050/igt@gem_exec_suspend@basic.html
+We hope you can provide us with any help in getting this updated to
+support future Linux releases. The Surface devices are pretty good
+hardware-wise, and it would be great to continue to use them under Linux
+with a working touchscreen.
 
-  * igt@gem_exec_suspend@basic-s0:
-    - fi-hsw-4770r:       [PASS][27] -> [DMESG-WARN][28]
-   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7568/fi-hsw-4770r/igt@gem_exec_suspend@basic-s0.html
-   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15764/fi-hsw-4770r/igt@gem_exec_suspend@basic-s0.html
-    - fi-ivb-3770:        [PASS][29] -> [DMESG-WARN][30]
-   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7568/fi-ivb-3770/igt@gem_exec_suspend@basic-s0.html
-   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15764/fi-ivb-3770/igt@gem_exec_suspend@basic-s0.html
-    - fi-byt-j1900:       [PASS][31] -> [DMESG-WARN][32]
-   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7568/fi-byt-j1900/igt@gem_exec_suspend@basic-s0.html
-   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15764/fi-byt-j1900/igt@gem_exec_suspend@basic-s0.html
+Regards,
+Maximilian Luz
 
-  * igt@gem_exec_suspend@basic-s4-devices:
-    - fi-hsw-4770:        [PASS][33] -> [DMESG-WARN][34]
-   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7568/fi-hsw-4770/igt@gem_exec_suspend@basic-s4-devices.html
-   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15764/fi-hsw-4770/igt@gem_exec_suspend@basic-s4-devices.html
+---
 
-  * igt@i915_selftest@live_gtt:
-    - fi-byt-n2820:       [PASS][35] -> [DMESG-WARN][36]
-   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7568/fi-byt-n2820/igt@i915_selftest@live_gtt.html
-   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15764/fi-byt-n2820/igt@i915_selftest@live_gtt.html
+Various links that might provide more insight into the IPTS side:
 
-  * igt@runner@aborted:
-    - fi-bsw-kefka:       NOTRUN -> [FAIL][37]
-   [37]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15764/fi-bsw-kefka/igt@runner@aborted.html
-    - fi-hsw-4770r:       NOTRUN -> [FAIL][38]
-   [38]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15764/fi-hsw-4770r/igt@runner@aborted.html
-    - fi-hsw-peppy:       NOTRUN -> [FAIL][39]
-   [39]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15764/fi-hsw-peppy/igt@runner@aborted.html
-    - fi-bsw-nick:        NOTRUN -> [FAIL][40]
-   [40]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15764/fi-bsw-nick/igt@runner@aborted.html
-    - fi-kbl-8809g:       NOTRUN -> [FAIL][41]
-   [41]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15764/fi-kbl-8809g/igt@runner@aborted.html
-    - fi-snb-2520m:       NOTRUN -> [FAIL][42]
-   [42]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15764/fi-snb-2520m/igt@runner@aborted.html
-    - fi-apl-guc:         NOTRUN -> [FAIL][43]
-   [43]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15764/fi-apl-guc/igt@runner@aborted.html
-    - fi-kbl-soraka:      NOTRUN -> [FAIL][44]
-   [44]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15764/fi-kbl-soraka/igt@runner@aborted.html
-    - fi-hsw-4770:        NOTRUN -> [FAIL][45]
-   [45]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15764/fi-hsw-4770/igt@runner@aborted.html
-    - fi-kbl-guc:         NOTRUN -> [FAIL][46]
-   [46]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15764/fi-kbl-guc/igt@runner@aborted.html
-    - fi-ivb-3770:        NOTRUN -> [FAIL][47]
-   [47]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15764/fi-ivb-3770/igt@runner@aborted.html
-    - fi-bxt-dsi:         NOTRUN -> [FAIL][48]
-   [48]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15764/fi-bxt-dsi/igt@runner@aborted.html
-    - fi-byt-j1900:       NOTRUN -> [FAIL][49]
-   [49]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15764/fi-byt-j1900/igt@runner@aborted.html
-    - fi-bsw-n3050:       NOTRUN -> [FAIL][50]
-   [50]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15764/fi-bsw-n3050/igt@runner@aborted.html
+- Original IPTS implementation:
+     https://github.com/ipts-linux-org/ipts-linux-new
 
-  
+- Updated version of IPTS, with support* for linux 5.3:
+     https://github.com/qzed/linux-surface-kernel/tree/v5.3-surface-devel/drivers/misc/ipts
 
-
-Participating hosts (35 -> 27)
-------------------------------
-
-  Missing    (8): fi-icl-1065g7 fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_7568 -> Patchwork_15764
-
-  CI-20190529: 20190529
-  CI_DRM_7568: 243d577ae8401244d29960cc5106c58036d962cc @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5349: 048f58513d8b8ec6bb307a939f0ac959bc0f0e10 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_15764: 14dd75a8fa73fbb7dc58a1c4cb4b809df9ae65d2 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-14dd75a8fa73 drm/i915: Unpin vma->obj on early error
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15764/index.html
+   * Support for 5.3 is currently done by porting the i915 driver from 5.2 to
+     the newer kernel, since it still supports GuC submission. It is an _awful_
+     hack but none of us had time to really dive into this issue back then, and
+     this seemed like the easiest solution.
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
