@@ -2,55 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0684411F91A
-	for <lists+intel-gfx@lfdr.de>; Sun, 15 Dec 2019 17:38:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0CBDB120885
+	for <lists+intel-gfx@lfdr.de>; Mon, 16 Dec 2019 15:23:23 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 496746E11D;
-	Sun, 15 Dec 2019 16:38:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 804B36E5B2;
+	Mon, 16 Dec 2019 14:23:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-1.mimecast.com (us-smtp-delivery-1.mimecast.com
- [205.139.110.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A48BC6E116
- for <intel-gfx@lists.freedesktop.org>; Sun, 15 Dec 2019 16:38:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1576427910;
+X-Greylist: delayed 581 seconds by postgrey-1.36 at gabe;
+ Sun, 15 Dec 2019 16:52:12 UTC
+Received: from mail.klausen.dk (mail.klausen.dk [IPv6:2001:470:1f0b:1730::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E7D9789FE8
+ for <intel-gfx@lists.freedesktop.org>; Sun, 15 Dec 2019 16:52:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=klausen.dk; s=dkim;
+ t=1576428147;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:
+ to:to:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=5+TqmbLQzQ/VhWvgbcbh43ilbcLxJUlh83NZxjX7V3s=;
- b=EEFAU2zA1leboDailNX4nm1ylLvv+gVPQR3MGMe4dp3+rNEUCsvE+c29PtGVl0TxfCItZ0
- nFr8q+8m0shDbBRhYy6GP2iTRmhnQN9ZglZtaJaMcBPZFp0YbxIXFkIwgVTjY+KC9vNPk4
- 7m8n1kUg9CIHUNmVHm22Y237veX0zFA=
-Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
- [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-270-blklPJ6EOpycc36DK-BbdA-1; Sun, 15 Dec 2019 11:38:27 -0500
-X-MC-Unique: blklPJ6EOpycc36DK-BbdA-1
-Received: from smtp.corp.redhat.com (int-mx04.intmail.prod.int.phx2.redhat.com
- [10.5.11.14])
- (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
- (No client certificate requested)
- by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 9BA1E477;
- Sun, 15 Dec 2019 16:38:25 +0000 (UTC)
-Received: from shalem.localdomain.com (ovpn-116-49.ams2.redhat.com
- [10.36.116.49])
- by smtp.corp.redhat.com (Postfix) with ESMTP id 9A6EB5D9C9;
- Sun, 15 Dec 2019 16:38:23 +0000 (UTC)
-From: Hans de Goede <hdegoede@redhat.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
- Lee Jones <lee.jones@linaro.org>, Linus Walleij <linus.walleij@linaro.org>
-Date: Sun, 15 Dec 2019 17:38:10 +0100
-Message-Id: <20191215163810.52356-6-hdegoede@redhat.com>
-In-Reply-To: <20191215163810.52356-1-hdegoede@redhat.com>
-References: <20191215163810.52356-1-hdegoede@redhat.com>
+ bh=8mMPEy9N/qcdyoZbAyvHBPRwmcgXO5Eg3DtC9IDLE8I=;
+ b=n+wiXGmE6NLiHwrSJGnQgvwTVhZ7ANuwXmAXYHxjZsSEyy7DWuwjkOV8gtkJ7G1JSBsLIn
+ XqPeKWePly6EuNdts1zyPJf74kqnjy181Zfa03KbCQuZWa/IlMSodYZeTWRVBwXASm/bjL
+ JY208W7OpUoY36rqqD7B0g01uZDroYs=
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+References: <20191209023215.3519970-1-chris@chris-wilson.co.uk>
+From: Kristian Klausen <kristian@klausen.dk>
+Message-ID: <79b8320f-1be2-0452-4bbb-074d6c28e33d@klausen.dk>
+Date: Sun, 15 Dec 2019 17:42:25 +0100
 MIME-Version: 1.0
-X-Scanned-By: MIMEDefang 2.79 on 10.5.11.14
-Subject: [Intel-gfx] [PATCH 5/5] drm/i915/dsi: Control panel and backlight
- enable GPIOs on BYT
+In-Reply-To: <20191209023215.3519970-1-chris@chris-wilson.co.uk>
+Content-Language: en-US
+X-Mailman-Approved-At: Mon, 16 Dec 2019 14:23:12 +0000
+Subject: Re: [Intel-gfx] drm/i915/gt: Detect if we miss WaIdleLiteRestore
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,191 +46,142 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx <intel-gfx@lists.freedesktop.org>, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, linux-gpio@vger.kernel.org
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Bay Trail devices the MIPI power on/off sequences for DSI LCD panels
-do not control the LCD panel- and backlight-enable GPIOs. So far, when
-the VBT indicates we should use the SoC for backlight control, we have
-been relying on these GPIOs being configured as output and driven high by
-the Video BIOS (GOP) when it initializes the panel.
-
-This does not work when the device is booted with a HDMI monitor connected
-as then the GOP will initialize the HDMI instead of the panel, leaving the
-panel black, even though the i915 driver tries to output an image to it.
-
-Likewise on some device-models when the GOP does not initialize the DSI
-panel it also leaves the mux of the PWM0 pin in generic GPIO mode instead
-of muxing it to the PWM controller.
-
-This commit makes the DSI code control the SoC GPIOs for panel- and
-backlight-enable on BYT, when the VBT indicates the SoC should be used
-
-for backlight control. It also ensures that the PWM0 pin is muxed to the
-PWM controller in this case.
-
-This fixes the LCD panel not lighting up on various devices when booted
-with a HDMI monitor connected. This has been tested to fix this on the
-following devices:
-
-Peaq C1010
-Point of View MOBII TAB-P800W
-Point of View MOBII TAB-P1005W
-Terra Pad 1061
-Yours Y8W81
-
-Signed-off-by: Hans de Goede <hdegoede@redhat.com>
----
- drivers/gpu/drm/i915/display/intel_dsi.h     |  3 +-
- drivers/gpu/drm/i915/display/intel_dsi_vbt.c | 63 ++++++++++++++++++++
- 2 files changed, 65 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_dsi.h b/drivers/gpu/drm/i915/display/intel_dsi.h
-index 675771ea91aa..7481a5aa3084 100644
---- a/drivers/gpu/drm/i915/display/intel_dsi.h
-+++ b/drivers/gpu/drm/i915/display/intel_dsi.h
-@@ -45,8 +45,9 @@ struct intel_dsi {
- 	struct intel_dsi_host *dsi_hosts[I915_MAX_PORTS];
- 	intel_wakeref_t io_wakeref[I915_MAX_PORTS];
- 
--	/* GPIO Desc for CRC based Panel control */
-+	/* GPIO Desc for panel and backlight control */
- 	struct gpio_desc *gpio_panel;
-+	struct gpio_desc *gpio_backlight;
- 
- 	struct intel_connector *attached_connector;
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_dsi_vbt.c b/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
-index 847f04eec2a1..bd007d4f86e2 100644
---- a/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
-+++ b/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
-@@ -27,6 +27,8 @@
- #include <linux/gpio/consumer.h>
- #include <linux/gpio/machine.h>
- #include <linux/mfd/intel_soc_pmic.h>
-+#include <linux/pinctrl/consumer.h>
-+#include <linux/pinctrl/machine.h>
- #include <linux/slab.h>
- 
- #include <asm/intel-mid.h>
-@@ -525,11 +527,15 @@ void intel_dsi_vbt_exec_sequence(struct intel_dsi *intel_dsi,
- {
- 	if (seq_id == MIPI_SEQ_POWER_ON && intel_dsi->gpio_panel)
- 		gpiod_set_value_cansleep(intel_dsi->gpio_panel, 1);
-+	if (seq_id == MIPI_SEQ_BACKLIGHT_ON && intel_dsi->gpio_backlight)
-+		gpiod_set_value_cansleep(intel_dsi->gpio_backlight, 1);
- 
- 	intel_dsi_vbt_exec(intel_dsi, seq_id);
- 
- 	if (seq_id == MIPI_SEQ_POWER_OFF && intel_dsi->gpio_panel)
- 		gpiod_set_value_cansleep(intel_dsi->gpio_panel, 0);
-+	if (seq_id == MIPI_SEQ_BACKLIGHT_OFF && intel_dsi->gpio_backlight)
-+		gpiod_set_value_cansleep(intel_dsi->gpio_backlight, 0);
- }
- 
- void intel_dsi_msleep(struct intel_dsi *intel_dsi, int msec)
-@@ -688,6 +694,8 @@ bool intel_dsi_vbt_init(struct intel_dsi *intel_dsi, u16 panel_id)
- /*
-  * On some BYT/CHT devs some sequences are incomplete and we need to manually
-  * control some GPIOs. We need to add a GPIO lookup table before we get these.
-+ * If the GOP did not initialize the panel (HDMI inserted) we may need to also
-+ * change the pinmux for the SoC's PWM0 pin from GPIO to PWM.
-  */
- static struct gpiod_lookup_table pmic_panel_gpio_table = {
- 	/* Intel GFX is consumer */
-@@ -699,23 +707,68 @@ static struct gpiod_lookup_table pmic_panel_gpio_table = {
- 	},
- };
- 
-+static struct gpiod_lookup_table soc_panel_gpio_table = {
-+	.dev_id = "0000:00:02.0",
-+	.table = {
-+	  GPIO_LOOKUP("INT33FC:01", 10, "backlight", GPIO_ACTIVE_HIGH),
-+	  GPIO_LOOKUP("INT33FC:01", 11, "panel", GPIO_ACTIVE_HIGH),
-+	  { },
-+	},
-+};
-+
-+static const struct pinctrl_map soc_pwm_pinctrl_map[] = {
-+	PIN_MAP_MUX_GROUP("0000:00:02.0", "soc_pwm0", "INT33FC:00",
-+			  "pwm0_grp", "pwm"),
-+};
-+
- void intel_dsi_vbt_gpio_init(struct intel_dsi *intel_dsi, bool panel_is_on)
- {
- 	struct drm_device *dev = intel_dsi->base.base.dev;
- 	struct drm_i915_private *dev_priv = to_i915(dev);
- 	struct mipi_config *mipi_config = dev_priv->vbt.dsi.config;
- 	enum gpiod_flags flags = panel_is_on ? GPIOD_OUT_HIGH : GPIOD_OUT_LOW;
-+	bool want_backlight_gpio = false;
-+	bool want_panel_gpio = false;
-+	struct pinctrl *pinctrl;
-+	int ret;
- 
- 	if ((IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv)) &&
- 	    (mipi_config->pwm_blc == PPS_BLC_PMIC)) {
- 		gpiod_add_lookup_table(&pmic_panel_gpio_table);
-+		want_panel_gpio = true;
-+	}
-+
-+	if (IS_VALLEYVIEW(dev_priv) && mipi_config->pwm_blc == PPS_BLC_SOC) {
-+		gpiod_add_lookup_table(&soc_panel_gpio_table);
-+		want_panel_gpio = true;
-+		want_backlight_gpio = true;
- 
-+		/* Ensure PWM0 pin is muxed as PWM instead of GPIO */
-+		ret = pinctrl_register_mappings(soc_pwm_pinctrl_map, 1);
-+		if (ret)
-+			DRM_ERROR("Failed to register pwm0 pinmux mapping\n");
-+
-+		pinctrl = devm_pinctrl_get_select(dev->dev, "soc_pwm0");
-+		if (IS_ERR(pinctrl))
-+			DRM_ERROR("Failed to set pinmux to PWM\n");
-+	}
-+
-+	if (want_panel_gpio) {
- 		intel_dsi->gpio_panel = gpiod_get(dev->dev, "panel", flags);
- 		if (IS_ERR(intel_dsi->gpio_panel)) {
- 			DRM_ERROR("Failed to own gpio for panel control\n");
- 			intel_dsi->gpio_panel = NULL;
- 		}
- 	}
-+
-+	if (want_backlight_gpio) {
-+		intel_dsi->gpio_backlight =
-+			gpiod_get(dev->dev, "backlight", flags);
-+		if (IS_ERR(intel_dsi->gpio_backlight)) {
-+			DRM_ERROR("Failed to own gpio for backlight control\n");
-+			intel_dsi->gpio_backlight = NULL;
-+		}
-+	}
- }
- 
- void intel_dsi_vbt_gpio_cleanup(struct intel_dsi *intel_dsi)
-@@ -729,7 +782,17 @@ void intel_dsi_vbt_gpio_cleanup(struct intel_dsi *intel_dsi)
- 		intel_dsi->gpio_panel = NULL;
- 	}
- 
-+	if (intel_dsi->gpio_backlight) {
-+		gpiod_put(intel_dsi->gpio_backlight);
-+		intel_dsi->gpio_backlight = NULL;
-+	}
-+
- 	if ((IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv)) &&
- 	    (mipi_config->pwm_blc == PPS_BLC_PMIC))
- 		gpiod_remove_lookup_table(&pmic_panel_gpio_table);
-+
-+	if (IS_VALLEYVIEW(dev_priv) && mipi_config->pwm_blc == PPS_BLC_SOC) {
-+		pinctrl_unregister_mappings(soc_pwm_pinctrl_map);
-+		gpiod_remove_lookup_table(&soc_panel_gpio_table);
-+	}
- }
--- 
-2.23.0
+On 09.12.2019 03.32, Chris Wilson wrote:
+> In order to avoid confusing the HW, we must never submit an empty ring
+> during lite-restore, that is we should always advance the RING_TAIL
+> before submitting to stay ahead of the RING_HEAD.
+>
+> Normally this is prevented by keeping a couple of spare NOPs in the
+> request->wa_tail so that on resubmission we can advance the tail. This
+> relies on the request only being resubmitted once, which is the normal
+> condition as it is seen once for ELSP[1] and then later in ELSP[0]. On
+> preemption, the requests are unwound and the tail reset back to the
+> normal end point (as we know the request is incomplete and therefore its
+> RING_HEAD is even earlier).
+>
+> However, if this w/a should fail we would try and resubmit the request
+> with the RING_TAIL already set to the location of this request's wa_tail
+> potentially causing a GPU hang. We can spot when we do try and
+> incorrectly resubmit without advancing the RING_TAIL and spare any
+> embarrassment by forcing the context restore.
+>
+> In the case of preempt-to-busy, we leave the requests running on the HW
+> while we unwind. As the ring is still live, we cannot rewind our
+> rq->tail without forcing a reload so leave it set to rq->wa_tail and
+> only force a reload if we resubmit after a lite-restore. (Normally, the
+> forced reload will be a part of the preemption event.)
+Is there any plans to backport this to the stable kernels?
+> Fixes: 22b7a426bbe1 ("drm/i915/execlists: Preempt-to-busy")
+> Closes: https://gitlab.freedesktop.org/drm/intel/issues/673
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> ---
+>   drivers/gpu/drm/i915/gt/intel_lrc.c | 46 +++++++++++++----------------
+>   1 file changed, 21 insertions(+), 25 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+> index c7ea8a055005..929f6bae4eba 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+> @@ -845,12 +845,6 @@ static const u8 *reg_offsets(const struct intel_engine_cs *engine)
+>   	}
+>   }
+>   
+> -static void unwind_wa_tail(struct i915_request *rq)
+> -{
+> -	rq->tail = intel_ring_wrap(rq->ring, rq->wa_tail - WA_TAIL_BYTES);
+> -	assert_ring_tail_valid(rq->ring, rq->tail);
+> -}
+> -
+>   static struct i915_request *
+>   __unwind_incomplete_requests(struct intel_engine_cs *engine)
+>   {
+> @@ -863,12 +857,10 @@ __unwind_incomplete_requests(struct intel_engine_cs *engine)
+>   	list_for_each_entry_safe_reverse(rq, rn,
+>   					 &engine->active.requests,
+>   					 sched.link) {
+> -
+>   		if (i915_request_completed(rq))
+>   			continue; /* XXX */
+>   
+>   		__i915_request_unsubmit(rq);
+> -		unwind_wa_tail(rq);
+>   
+>   		/*
+>   		 * Push the request back into the queue for later resubmission.
+> @@ -1216,13 +1208,29 @@ execlists_schedule_out(struct i915_request *rq)
+>   	i915_request_put(rq);
+>   }
+>   
+> -static u64 execlists_update_context(const struct i915_request *rq)
+> +static u64 execlists_update_context(struct i915_request *rq)
+>   {
+>   	struct intel_context *ce = rq->hw_context;
+> -	u64 desc;
+> +	u64 desc = ce->lrc_desc;
+> +	u32 tail;
+>   
+> -	ce->lrc_reg_state[CTX_RING_TAIL] =
+> -		intel_ring_set_tail(rq->ring, rq->tail);
+> +	/*
+> +	 * WaIdleLiteRestore:bdw,skl
+> +	 *
+> +	 * We should never submit the context with the same RING_TAIL twice
+> +	 * just in case we submit an empty ring, which confuses the HW.
+> +	 *
+> +	 * We append a couple of NOOPs (gen8_emit_wa_tail) after the end of
+> +	 * the normal request to be able to always advance the RING_TAIL on
+> +	 * subsequent resubmissions (for lite restore). Should that fail us,
+> +	 * and we try and submit the same tail again, force the context
+> +	 * reload.
+> +	 */
+> +	tail = intel_ring_set_tail(rq->ring, rq->tail);
+> +	if (unlikely(ce->lrc_reg_state[CTX_RING_TAIL] == tail))
+> +		desc |= CTX_DESC_FORCE_RESTORE;
+> +	ce->lrc_reg_state[CTX_RING_TAIL] = tail;
+> +	rq->tail = rq->wa_tail;
+>   
+>   	/*
+>   	 * Make sure the context image is complete before we submit it to HW.
+> @@ -1236,13 +1244,11 @@ static u64 execlists_update_context(const struct i915_request *rq)
+>   	 */
+>   	wmb();
+>   
+> -	desc = ce->lrc_desc;
+> -	ce->lrc_desc &= ~CTX_DESC_FORCE_RESTORE;
+> -
+>   	/* Wa_1607138340:tgl */
+>   	if (IS_TGL_REVID(rq->i915, TGL_REVID_A0, TGL_REVID_A0))
+>   		desc |= CTX_DESC_FORCE_RESTORE;
+>   
+> +	ce->lrc_desc &= ~CTX_DESC_FORCE_RESTORE;
+>   	return desc;
+>   }
+>   
+> @@ -1776,16 +1782,6 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
+>   
+>   				return;
+>   			}
+> -
+> -			/*
+> -			 * WaIdleLiteRestore:bdw,skl
+> -			 * Apply the wa NOOPs to prevent
+> -			 * ring:HEAD == rq:TAIL as we resubmit the
+> -			 * request. See gen8_emit_fini_breadcrumb() for
+> -			 * where we prepare the padding after the
+> -			 * end of the request.
+> -			 */
+> -			last->tail = last->wa_tail;
+>   		}
+>   	}
+>   
 
 _______________________________________________
 Intel-gfx mailing list
