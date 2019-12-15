@@ -2,30 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC7E211F906
-	for <lists+intel-gfx@lfdr.de>; Sun, 15 Dec 2019 17:32:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6AE0E11F90F
+	for <lists+intel-gfx@lfdr.de>; Sun, 15 Dec 2019 17:38:24 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 13BEE6E127;
-	Sun, 15 Dec 2019 16:32:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 24EEC6E0FE;
+	Sun, 15 Dec 2019 16:38:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id D1AA76E0F0;
- Sun, 15 Dec 2019 16:32:31 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id C9EF3A0075;
- Sun, 15 Dec 2019 16:32:31 +0000 (UTC)
+Received: from us-smtp-delivery-1.mimecast.com (us-smtp-1.mimecast.com
+ [207.211.31.81])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7905E6E0FE
+ for <intel-gfx@lists.freedesktop.org>; Sun, 15 Dec 2019 16:38:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1576427898;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=0xv0+3tSKNk/ps0C2flwuIl5hdVqRnVV8Q2tM73ssjw=;
+ b=GC1ZhOuufuckqRfgWBmgFqKFi1hL/2gpuFaU0ctVJkge2Tprz0mjqo2j06fQxE6K793vOu
+ r1cGH+cNKHtDpsCRmWDfvT/xO0Gn7Cnt2kC9M7gAWioaOeAkky1IG0yuw9tOLzkHhOLos/
+ hSNREAKhzngQ3XY9rp6Egxip8GW+5yM=
+Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
+ [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-29-5CKBZr4SNwe0EMgtsxAapA-1; Sun, 15 Dec 2019 11:38:16 -0500
+X-MC-Unique: 5CKBZr4SNwe0EMgtsxAapA-1
+Received: from smtp.corp.redhat.com (int-mx04.intmail.prod.int.phx2.redhat.com
+ [10.5.11.14])
+ (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+ (No client certificate requested)
+ by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 30625477;
+ Sun, 15 Dec 2019 16:38:14 +0000 (UTC)
+Received: from shalem.localdomain.com (ovpn-116-49.ams2.redhat.com
+ [10.36.116.49])
+ by smtp.corp.redhat.com (Postfix) with ESMTP id 08C605D9C9;
+ Sun, 15 Dec 2019 16:38:11 +0000 (UTC)
+From: Hans de Goede <hdegoede@redhat.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
+ Lee Jones <lee.jones@linaro.org>, Linus Walleij <linus.walleij@linaro.org>
+Date: Sun, 15 Dec 2019 17:38:05 +0100
+Message-Id: <20191215163810.52356-1-hdegoede@redhat.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Sun, 15 Dec 2019 16:32:31 -0000
-Message-ID: <157642755179.27848.11318908695818516343@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20191215154735.2336512-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20191215154735.2336512-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/gt=3A_Set_vm_again_after_MI=5FSET=5FCONTEXT_=28rev8=29?=
+X-Scanned-By: MIMEDefang 2.79 on 10.5.11.14
+Subject: [Intel-gfx] [PATCH 0/5] drm/i915/dsi: Control panel and backlight
+ enable GPIOs from VBT
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,97 +60,50 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx <intel-gfx@lists.freedesktop.org>, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, linux-gpio@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Hi All,
 
-Series: drm/i915/gt: Set vm again after MI_SET_CONTEXT (rev8)
-URL   : https://patchwork.freedesktop.org/series/70839/
-State : success
+This is a new (completely rewritten) version of my patches to make the
+i915 code control the SoC panel- and backlight-enable GPIOs on Bay Trail
+devices when the VBT indicates that the SoC should be used for backlight
+control. This fixes the panel not lighting up on various devices when
+booted with a HDMI monitor connected, in which case the firmware skips
+initializing the panel as it inits the HDMI instead.
 
-== Summary ==
+This series has been tested on; and fixes this issue on; the following models:
 
-CI Bug Log - changes from CI_DRM_7569 -> Patchwork_15771
-====================================================
+Peaq C1010
+Point of View MOBII TAB-P800W
+Point of View MOBII TAB-P1005W
+Terra Pad 1061
+Thundersoft TST178
+Yours Y8W81
 
-Summary
--------
+Linus, this series starts with the already discussed pinctrl change to
+export the function to unregister a pinctrl-map. We can either merge this
+through drm-intel, or you could pick it up and then provide an immutable
+branch with it for merging into drm-intel-next. Which option do you prefer?
 
-  **SUCCESS**
+Lee, I know you don't like this, but unfortunately this series introcudes
+some (other) changes to drivers/mfd/intel_soc_pmic_core.c. The GPIO subsys
+allows only one mapping-table per consumer, so in hindsight adding the code
+which adds the mapping for the PMIC panel-enable pin to the PMIC mfd driver
+was a mistake, as the PMIC code is a provider where as mapping-tables are
+per consumer. The 4th patch fixes this by moving the mapping-table to the
+i915 code, so that we can also add mappings for some of the pins on the SoC
+itself. Since this whole series makes change to the i915 code I plan to
+merge this mfd change to the drm-intel tree.
 
-  No regressions found.
+Regards,
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15771/index.html
+Hans
 
-Known issues
-------------
-
-  Here are the changes found in Patchwork_15771 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_close_race@basic-threads:
-    - fi-byt-n2820:       [PASS][1] -> [TIMEOUT][2] ([i915#816])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7569/fi-byt-n2820/igt@gem_close_race@basic-threads.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15771/fi-byt-n2820/igt@gem_close_race@basic-threads.html
-
-  * igt@i915_selftest@live_blt:
-    - fi-hsw-4770:        [PASS][3] -> [DMESG-FAIL][4] ([i915#725])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7569/fi-hsw-4770/igt@i915_selftest@live_blt.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15771/fi-hsw-4770/igt@i915_selftest@live_blt.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_close_race@basic-threads:
-    - fi-byt-j1900:       [TIMEOUT][5] ([i915#816]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7569/fi-byt-j1900/igt@gem_close_race@basic-threads.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15771/fi-byt-j1900/igt@gem_close_race@basic-threads.html
-
-  * igt@kms_flip@basic-flip-vs-dpms:
-    - fi-apl-guc:         [DMESG-WARN][7] ([i915#180]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7569/fi-apl-guc/igt@kms_flip@basic-flip-vs-dpms.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15771/fi-apl-guc/igt@kms_flip@basic-flip-vs-dpms.html
-
-  
-  [i915#180]: https://gitlab.freedesktop.org/drm/intel/issues/180
-  [i915#725]: https://gitlab.freedesktop.org/drm/intel/issues/725
-  [i915#816]: https://gitlab.freedesktop.org/drm/intel/issues/816
-
-
-Participating hosts (34 -> 25)
-------------------------------
-
-  Additional (1): fi-elk-e7500 
-  Missing    (10): fi-icl-1065g7 fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-snb-2520m fi-ctg-p8600 fi-byt-clapper fi-bdw-samus fi-snb-2600 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_7569 -> Patchwork_15771
-
-  CI-20190529: 20190529
-  CI_DRM_7569: 62c2abc0df8983aba79ba093413683c44e9c4748 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5349: 048f58513d8b8ec6bb307a939f0ac959bc0f0e10 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_15771: 269072098380643a0acc960e5bb702c0f4f8afec @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-269072098380 drm/i915/gt: Set vm again after MI_SET_CONTEXT
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15771/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
