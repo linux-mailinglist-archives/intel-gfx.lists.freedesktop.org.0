@@ -1,32 +1,54 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id F18F311FB7D
-	for <lists+intel-gfx@lfdr.de>; Sun, 15 Dec 2019 22:27:13 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 38FC711FB81
+	for <lists+intel-gfx@lfdr.de>; Sun, 15 Dec 2019 22:33:19 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 33CE46E170;
-	Sun, 15 Dec 2019 21:27:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E15E689E0C;
+	Sun, 15 Dec 2019 21:33:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 1BBA66E15B;
- Sun, 15 Dec 2019 21:27:10 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 13C79A0BA8;
- Sun, 15 Dec 2019 21:27:10 +0000 (UTC)
+Received: from us-smtp-1.mimecast.com (us-smtp-delivery-1.mimecast.com
+ [207.211.31.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D2A0589E8C
+ for <intel-gfx@lists.freedesktop.org>; Sun, 15 Dec 2019 21:33:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1576445593;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=wlgoT8tVMvuPYevJ9s7K4tjH+ipQ2fBdw3M/my+wFhw=;
+ b=idgjLH07bdDcNhUZOs40wYMXGGGosZpHp2/bRtywu1d1WITmYXXhQAdbIi8fgnjcRjz+HC
+ 0qqgJrx5cjtIpfQU6s2UB3+z6uSCLM9VXn5we9A1Ivz163kdVZn8HpqlPEZqI/fHqE3q7H
+ Seq44NgNunsu3iL/LLMbIXPWPmz4SZA=
+Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
+ [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-215-fkjYyRF8P0ibZpymBqtSWg-1; Sun, 15 Dec 2019 16:33:12 -0500
+Received: from smtp.corp.redhat.com (int-mx06.intmail.prod.int.phx2.redhat.com
+ [10.5.11.16])
+ (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+ (No client certificate requested)
+ by mimecast-mx01.redhat.com (Postfix) with ESMTPS id A00181005502;
+ Sun, 15 Dec 2019 21:33:10 +0000 (UTC)
+Received: from shalem.localdomain.com (ovpn-116-49.ams2.redhat.com
+ [10.36.116.49])
+ by smtp.corp.redhat.com (Postfix) with ESMTP id 11CC75C28C;
+ Sun, 15 Dec 2019 21:33:08 +0000 (UTC)
+From: Hans de Goede <hdegoede@redhat.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
+ intel-gfx <intel-gfx@lists.freedesktop.org>
+Date: Sun, 15 Dec 2019 22:33:06 +0100
+Message-Id: <20191215213307.689830-1-hdegoede@redhat.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Sun, 15 Dec 2019 21:27:10 -0000
-Message-ID: <157644523005.27847.3258117541095051887@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20191215212132.2377178-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20191215212132.2377178-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/i915/gt=3A_Set_vm_again_after_MI=5FSET=5FCONTEXT_=28rev?=
- =?utf-8?b?MTIp?=
+X-Scanned-By: MIMEDefang 2.79 on 10.5.11.16
+X-MC-Unique: fkjYyRF8P0ibZpymBqtSWg-1
+X-Mimecast-Spam-Score: 0
+Subject: [Intel-gfx] [PATCH 1/2] drm/i915/dsi: Remove readback of panel
+ orientation on BYT / CHT
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,32 +61,115 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Commit 82daca297506 ("drm/i915: Add "panel orientation" property to the
+panel connector, v6.") uses hardware state readback to determine if the
+GOP is rotating the image by 180 degrees to compensate for upside-down
+mounted panels.
 
-Series: drm/i915/gt: Set vm again after MI_SET_CONTEXT (rev12)
-URL   : https://patchwork.freedesktop.org/series/70839/
-State : warning
+When I wrote that commit I tried to find the VBT bits the GOP used to
+decide to rotate the image, but I could not find them. Back then I only
+looked at the rotation bits in struct mipi_config and these read 0 on
+the 1 BYT device I have with an upside-down mounted panel
+(a GP-electronic T701 tablet). While working on a similar problem on a
+BYT device with an eDP panel I noticed that the new
+intel_dsi_get_panel_orientation() helper which gets used on newer
+SoCs (Apollo-Lake, etc.) checks the rotate_180 bit in the
+BDB_GENERAL_FEATURES VBT block.
 
-== Summary ==
+I've checked and this bit indeed is set on the GP-electronic T701 tablet,
+so using the generic intel_dsi_get_panel_orientation() helper there does
+the right thing without needing any extra readback of hw state.
 
-$ dim checkpatch origin/drm-tip
-2ff7f1e21ea4 drm/i915/gt: Set vm again after MI_SET_CONTEXT
--:169: WARNING:MEMORY_BARRIER: memory barrier without comment
-#169: FILE: drivers/gpu/drm/i915/i915_gem_gtt.c:1712:
-+	mb();
+This commit removes the special handling of the panel orientation for
+DSI panels on BYT/CHT devices, bringing the handling in line with the
+handling of DSI panels on other devices.
 
--:172: WARNING:MEMORY_BARRIER: memory barrier without comment
-#172: FILE: drivers/gpu/drm/i915/i915_gem_gtt.c:1715:
-+	mb();
+Signed-off-by: Hans de Goede <hdegoede@redhat.com>
+---
+ drivers/gpu/drm/i915/display/vlv_dsi.c | 55 +-------------------------
+ 1 file changed, 1 insertion(+), 54 deletions(-)
 
-total: 0 errors, 2 warnings, 0 checks, 154 lines checked
+diff --git a/drivers/gpu/drm/i915/display/vlv_dsi.c b/drivers/gpu/drm/i915/display/vlv_dsi.c
+index 0ca49b1604c6..18f7616e6c27 100644
+--- a/drivers/gpu/drm/i915/display/vlv_dsi.c
++++ b/drivers/gpu/drm/i915/display/vlv_dsi.c
+@@ -1563,59 +1563,6 @@ static const struct drm_connector_funcs intel_dsi_connector_funcs = {
+ 	.atomic_duplicate_state = intel_digital_connector_duplicate_state,
+ };
+ 
+-static enum drm_panel_orientation
+-vlv_dsi_get_hw_panel_orientation(struct intel_connector *connector)
+-{
+-	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
+-	struct intel_encoder *encoder = connector->encoder;
+-	enum intel_display_power_domain power_domain;
+-	enum drm_panel_orientation orientation;
+-	struct intel_plane *plane;
+-	struct intel_crtc *crtc;
+-	intel_wakeref_t wakeref;
+-	enum pipe pipe;
+-	u32 val;
+-
+-	if (!encoder->get_hw_state(encoder, &pipe))
+-		return DRM_MODE_PANEL_ORIENTATION_UNKNOWN;
+-
+-	crtc = intel_get_crtc_for_pipe(dev_priv, pipe);
+-	plane = to_intel_plane(crtc->base.primary);
+-
+-	power_domain = POWER_DOMAIN_PIPE(pipe);
+-	wakeref = intel_display_power_get_if_enabled(dev_priv, power_domain);
+-	if (!wakeref)
+-		return DRM_MODE_PANEL_ORIENTATION_UNKNOWN;
+-
+-	val = I915_READ(DSPCNTR(plane->i9xx_plane));
+-
+-	if (!(val & DISPLAY_PLANE_ENABLE))
+-		orientation = DRM_MODE_PANEL_ORIENTATION_UNKNOWN;
+-	else if (val & DISPPLANE_ROTATE_180)
+-		orientation = DRM_MODE_PANEL_ORIENTATION_BOTTOM_UP;
+-	else
+-		orientation = DRM_MODE_PANEL_ORIENTATION_NORMAL;
+-
+-	intel_display_power_put(dev_priv, power_domain, wakeref);
+-
+-	return orientation;
+-}
+-
+-static enum drm_panel_orientation
+-vlv_dsi_get_panel_orientation(struct intel_connector *connector)
+-{
+-	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
+-	enum drm_panel_orientation orientation;
+-
+-	if (IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv)) {
+-		orientation = vlv_dsi_get_hw_panel_orientation(connector);
+-		if (orientation != DRM_MODE_PANEL_ORIENTATION_UNKNOWN)
+-			return orientation;
+-	}
+-
+-	return intel_dsi_get_panel_orientation(connector);
+-}
+-
+ static void vlv_dsi_add_properties(struct intel_connector *connector)
+ {
+ 	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
+@@ -1633,7 +1580,7 @@ static void vlv_dsi_add_properties(struct intel_connector *connector)
+ 		connector->base.state->scaling_mode = DRM_MODE_SCALE_ASPECT;
+ 
+ 		connector->base.display_info.panel_orientation =
+-			vlv_dsi_get_panel_orientation(connector);
++			intel_dsi_get_panel_orientation(connector);
+ 		drm_connector_init_panel_orientation_property(
+ 				&connector->base,
+ 				connector->panel.fixed_mode->hdisplay,
+-- 
+2.23.0
 
 _______________________________________________
 Intel-gfx mailing list
