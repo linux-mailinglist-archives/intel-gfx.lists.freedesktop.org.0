@@ -1,31 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F2C011FB49
-	for <lists+intel-gfx@lfdr.de>; Sun, 15 Dec 2019 22:00:58 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 072A911FB54
+	for <lists+intel-gfx@lfdr.de>; Sun, 15 Dec 2019 22:03:20 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4BD1F89C3B;
-	Sun, 15 Dec 2019 21:00:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C81AB6E14F;
+	Sun, 15 Dec 2019 21:03:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id D674D89C1C;
- Sun, 15 Dec 2019 21:00:55 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 49BA26E094;
+ Sun, 15 Dec 2019 21:03:17 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id C515EA00C7;
- Sun, 15 Dec 2019 21:00:55 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 41E0EA00C7;
+ Sun, 15 Dec 2019 21:03:17 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Stanislav Lisovskiy" <stanislav.lisovskiy@intel.com>
-Date: Sun, 15 Dec 2019 21:00:55 -0000
-Message-ID: <157644365578.27848.493046156421945614@emeril.freedesktop.org>
+Date: Sun, 15 Dec 2019 21:03:17 -0000
+Message-ID: <157644379724.27848.6478914382124692031@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20191215205210.31667-1-stanislav.lisovskiy@intel.com>
 In-Reply-To: <20191215205210.31667-1-stanislav.lisovskiy@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_Enable_second_DBuf_slice_for_ICL_and_TGL_=28rev9=29?=
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?Enable_second_DBuf_slice_for_ICL_and_TGL_=28rev9=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,16 +53,20 @@ State : warning
 
 == Summary ==
 
-$ dim checkpatch origin/drm-tip
-16c87005933e drm/i915: Remove skl_ddl_allocation struct
-a31132e7881c drm/i915: Move dbuf slice update to proper place
-033eb182c302 drm/i915: Manipulate DBuf slices properly
--:306: CHECK:MACRO_ARG_PRECEDENCE: Macro argument 'X' may be better as '(X)' to avoid precedence issues
-#306: FILE: drivers/gpu/drm/i915/i915_reg.h:7763:
-+#define DBUF_CTL_S(X)	(X == 1 ? DBUF_CTL_S1 : DBUF_CTL_S2)
+$ dim sparse origin/drm-tip
+Sparse version: v0.6.0
+Commit: drm/i915: Remove skl_ddl_allocation struct
+Okay!
 
-total: 0 errors, 0 warnings, 1 checks, 330 lines checked
-5540cb82cfb6 drm/i915: Correctly map DBUF slices to pipes
+Commit: drm/i915: Move dbuf slice update to proper place
+Okay!
+
+Commit: drm/i915: Manipulate DBuf slices properly
+Okay!
+
+Commit: drm/i915: Correctly map DBUF slices to pipes
+-
++drivers/gpu/drm/i915/intel_pm.c:4294:5: warning: symbol 'i915_possible_dbuf_slices' was not declared. Should it be static?
 
 _______________________________________________
 Intel-gfx mailing list
