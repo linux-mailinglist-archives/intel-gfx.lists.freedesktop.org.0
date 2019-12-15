@@ -1,26 +1,26 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4779A11F843
-	for <lists+intel-gfx@lfdr.de>; Sun, 15 Dec 2019 16:05:11 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2918811F86E
+	for <lists+intel-gfx@lfdr.de>; Sun, 15 Dec 2019 16:24:03 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9AC096E02F;
-	Sun, 15 Dec 2019 15:05:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2391F6E096;
+	Sun, 15 Dec 2019 15:24:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D08256E02F
- for <intel-gfx@lists.freedesktop.org>; Sun, 15 Dec 2019 15:05:07 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 510526E096
+ for <intel-gfx@lists.freedesktop.org>; Sun, 15 Dec 2019 15:23:58 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19586418-1500050 
- for <intel-gfx@lists.freedesktop.org>; Sun, 15 Dec 2019 15:05:03 +0000
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19586537-1500050 
+ for <intel-gfx@lists.freedesktop.org>; Sun, 15 Dec 2019 15:23:55 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Sun, 15 Dec 2019 15:05:03 +0000
-Message-Id: <20191215150503.2336131-1-chris@chris-wilson.co.uk>
+Date: Sun, 15 Dec 2019 15:23:55 +0000
+Message-Id: <20191215152355.2336325-1-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.24.0
 MIME-Version: 1.0
 Subject: [Intel-gfx] [CI] drm/i915/gt: Set vm again after MI_SET_CONTEXT
@@ -46,11 +46,11 @@ flushes, so far is making Baytrail more content.
 
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 ---
- .../gpu/drm/i915/gt/intel_ring_submission.c   | 105 +++++++-----------
- 1 file changed, 43 insertions(+), 62 deletions(-)
+ .../gpu/drm/i915/gt/intel_ring_submission.c   | 103 +++++++-----------
+ 1 file changed, 40 insertions(+), 63 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/gt/intel_ring_submission.c b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
-index 30ba67c9abe9..cbb80ea320a5 100644
+index 30ba67c9abe9..fd2ed910a41f 100644
 --- a/drivers/gpu/drm/i915/gt/intel_ring_submission.c
 +++ b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
 @@ -1370,23 +1370,31 @@ static int load_pd_dir(struct i915_request *rq,
@@ -94,7 +94,7 @@ index 30ba67c9abe9..cbb80ea320a5 100644
  
  	/* Stall until the page table load is complete? */
  	*cs++ = MI_STORE_REGISTER_MEM | MI_SRM_LRM_GLOBAL_GTT;
-@@ -1396,26 +1404,11 @@ static int load_pd_dir(struct i915_request *rq,
+@@ -1396,26 +1404,7 @@ static int load_pd_dir(struct i915_request *rq,
  
  	intel_ring_advance(rq, cs);
  
@@ -116,16 +116,13 @@ index 30ba67c9abe9..cbb80ea320a5 100644
 -
 -	*cs++ = MI_NOOP;
 -	intel_ring_advance(rq, cs);
-+	ret = engine->emit_flush(rq, EMIT_INVALIDATE);
-+	if (ret)
-+		return ret;
- 
+-
 -	return 0;
 +	return engine->emit_flush(rq, EMIT_FLUSH);
  }
  
  static inline int mi_set_context(struct i915_request *rq, u32 flags)
-@@ -1590,52 +1583,40 @@ static int remap_l3(struct i915_request *rq)
+@@ -1590,52 +1579,40 @@ static int remap_l3(struct i915_request *rq)
  	return 0;
  }
  
