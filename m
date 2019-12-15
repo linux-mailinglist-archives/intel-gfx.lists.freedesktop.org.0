@@ -2,30 +2,28 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9ABDB11F766
-	for <lists+intel-gfx@lfdr.de>; Sun, 15 Dec 2019 12:21:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5AA9D11F7A6
+	for <lists+intel-gfx@lfdr.de>; Sun, 15 Dec 2019 13:19:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B622F6E419;
-	Sun, 15 Dec 2019 11:21:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 324F36E04A;
+	Sun, 15 Dec 2019 12:19:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8D5D96E419
- for <intel-gfx@lists.freedesktop.org>; Sun, 15 Dec 2019 11:21:49 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4CA826E04A
+ for <intel-gfx@lists.freedesktop.org>; Sun, 15 Dec 2019 12:19:51 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19585075-1500050 
- for multiple; Sun, 15 Dec 2019 11:21:42 +0000
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19585503-1500050 
+ for <intel-gfx@lists.freedesktop.org>; Sun, 15 Dec 2019 12:19:48 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Sun, 15 Dec 2019 11:21:41 +0000
-Message-Id: <20191215112141.2333110-1-chris@chris-wilson.co.uk>
+Date: Sun, 15 Dec 2019 12:19:47 +0000
+Message-Id: <20191215121947.2333519-1-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.24.0
-In-Reply-To: <20191214211241.2243420-1-chris@chris-wilson.co.uk>
-References: <20191214211241.2243420-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915: Unpin vma->obj on early error
+Subject: [Intel-gfx] [CI] drm/i915/gt: Set vm again after MI_SET_CONTEXT
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -43,153 +41,171 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-If we inherit an error along the fence chain, we skip the main work
-callback and go straight to the error. In the case of the vma bind
-worker, we only dropped the pinned pages from the worker.
-
-In the process, make sure we call the release earlier rather than wait
-until the final reference to the fence is dropped (as a reference is
-kept while being listened upon).
+Reloading the PD after MI_SET_CONTEXT, along with copious amounts of
+flushes, so far is making Baytrail more content.
 
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 ---
- drivers/gpu/drm/i915/gem/i915_gem_clflush.c | 11 ++++-------
- drivers/gpu/drm/i915/i915_sw_fence_work.c   | 15 ++++++++++-----
- drivers/gpu/drm/i915/i915_vma.c             | 17 +++++++++++++----
- 3 files changed, 27 insertions(+), 16 deletions(-)
+ .../gpu/drm/i915/gt/intel_ring_submission.c   | 100 ++++++++----------
+ 1 file changed, 45 insertions(+), 55 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_clflush.c b/drivers/gpu/drm/i915/gem/i915_gem_clflush.c
-index b9f504ba3b32..5448efa77710 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_clflush.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_clflush.c
-@@ -26,27 +26,24 @@ static void __do_clflush(struct drm_i915_gem_object *obj)
- static int clflush_work(struct dma_fence_work *base)
- {
- 	struct clflush *clflush = container_of(base, typeof(*clflush), base);
--	struct drm_i915_gem_object *obj = fetch_and_zero(&clflush->obj);
-+	struct drm_i915_gem_object *obj = clflush->obj;
- 	int err;
+diff --git a/drivers/gpu/drm/i915/gt/intel_ring_submission.c b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
+index 30ba67c9abe9..10aa61e15a60 100644
+--- a/drivers/gpu/drm/i915/gt/intel_ring_submission.c
++++ b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
+@@ -1371,11 +1371,13 @@ static int load_pd_dir(struct i915_request *rq,
+ 	const struct intel_engine_cs * const engine = rq->engine;
+ 	u32 *cs;
  
- 	err = i915_gem_object_pin_pages(obj);
- 	if (err)
--		goto put;
-+		return err;
+-	cs = intel_ring_begin(rq, 12);
++	cs = intel_ring_begin(rq, 16);
+ 	if (IS_ERR(cs))
+ 		return PTR_ERR(cs);
  
- 	__do_clflush(obj);
- 	i915_gem_object_unpin_pages(obj);
+-	*cs++ = MI_LOAD_REGISTER_IMM(1);
++	*cs++ = MI_LOAD_REGISTER_IMM(2);
++	*cs++ = i915_mmio_reg_offset(RING_INSTPM(engine->mmio_base));
++	*cs++ = _MASKED_BIT_ENABLE(INSTPM_TLB_INVALIDATE);
+ 	*cs++ = i915_mmio_reg_offset(RING_PP_DIR_DCLV(engine->mmio_base));
+ 	*cs++ = valid;
  
--put:
--	i915_gem_object_put(obj);
--	return err;
-+	return 0;
+@@ -1384,9 +1386,11 @@ static int load_pd_dir(struct i915_request *rq,
+ 	*cs++ = intel_gt_scratch_offset(rq->engine->gt,
+ 					INTEL_GT_SCRATCH_FIELD_DEFAULT);
+ 
+-	*cs++ = MI_LOAD_REGISTER_IMM(1);
++	*cs++ = MI_LOAD_REGISTER_IMM(2);
+ 	*cs++ = i915_mmio_reg_offset(RING_PP_DIR_BASE(engine->mmio_base));
+ 	*cs++ = px_base(ppgtt->pd)->ggtt_offset << 10;
++	*cs++ = i915_mmio_reg_offset(RING_INSTPM(engine->mmio_base));
++	*cs++ = _MASKED_BIT_ENABLE(INSTPM_TLB_INVALIDATE);
+ 
+ 	/* Stall until the page table load is complete? */
+ 	*cs++ = MI_STORE_REGISTER_MEM | MI_SRM_LRM_GLOBAL_GTT;
+@@ -1399,25 +1403,6 @@ static int load_pd_dir(struct i915_request *rq,
+ 	return rq->engine->emit_flush(rq, EMIT_FLUSH);
  }
  
- static void clflush_release(struct dma_fence_work *base)
- {
- 	struct clflush *clflush = container_of(base, typeof(*clflush), base);
- 
--	if (clflush->obj)
--		i915_gem_object_put(clflush->obj);
-+	i915_gem_object_put(clflush->obj);
- }
- 
- static const struct dma_fence_work_ops clflush_ops = {
-diff --git a/drivers/gpu/drm/i915/i915_sw_fence_work.c b/drivers/gpu/drm/i915/i915_sw_fence_work.c
-index 8538ee7a521d..997b2998f1f2 100644
---- a/drivers/gpu/drm/i915/i915_sw_fence_work.c
-+++ b/drivers/gpu/drm/i915/i915_sw_fence_work.c
-@@ -6,6 +6,13 @@
- 
- #include "i915_sw_fence_work.h"
- 
-+static void fence_complete(struct dma_fence_work *f)
-+{
-+	if (f->ops->release)
-+		f->ops->release(f);
-+	dma_fence_signal(&f->dma);
-+}
-+
- static void fence_work(struct work_struct *work)
- {
- 	struct dma_fence_work *f = container_of(work, typeof(*f), work);
-@@ -14,7 +21,8 @@ static void fence_work(struct work_struct *work)
- 	err = f->ops->work(f);
- 	if (err)
- 		dma_fence_set_error(&f->dma, err);
--	dma_fence_signal(&f->dma);
-+
-+	fence_complete(f);
- 	dma_fence_put(&f->dma);
- }
- 
-@@ -32,7 +40,7 @@ fence_notify(struct i915_sw_fence *fence, enum i915_sw_fence_notify state)
- 			dma_fence_get(&f->dma);
- 			queue_work(system_unbound_wq, &f->work);
- 		} else {
--			dma_fence_signal(&f->dma);
-+			fence_complete(f);
- 		}
- 		break;
- 
-@@ -60,9 +68,6 @@ static void fence_release(struct dma_fence *fence)
- {
- 	struct dma_fence_work *f = container_of(fence, typeof(*f), dma);
- 
--	if (f->ops->release)
--		f->ops->release(f);
+-static int flush_tlb(struct i915_request *rq)
+-{
+-	const struct intel_engine_cs * const engine = rq->engine;
+-	u32 *cs;
 -
- 	i915_sw_fence_fini(&f->chain);
- 
- 	BUILD_BUG_ON(offsetof(typeof(*f), dma));
-diff --git a/drivers/gpu/drm/i915/i915_vma.c b/drivers/gpu/drm/i915/i915_vma.c
-index 6794c742fbbf..878975b37a45 100644
---- a/drivers/gpu/drm/i915/i915_vma.c
-+++ b/drivers/gpu/drm/i915/i915_vma.c
-@@ -292,6 +292,7 @@ i915_vma_instance(struct drm_i915_gem_object *obj,
- struct i915_vma_work {
- 	struct dma_fence_work base;
- 	struct i915_vma *vma;
-+	struct drm_i915_gem_object *pin;
- 	enum i915_cache_level cache_level;
- 	unsigned int flags;
- };
-@@ -306,15 +307,21 @@ static int __vma_bind(struct dma_fence_work *work)
- 	if (err)
- 		atomic_or(I915_VMA_ERROR, &vma->flags);
- 
--	if (vma->obj)
--		__i915_gem_object_unpin_pages(vma->obj);
+-	cs = intel_ring_begin(rq, 4);
+-	if (IS_ERR(cs))
+-		return PTR_ERR(cs);
 -
- 	return err;
+-	*cs++ = MI_LOAD_REGISTER_IMM(1);
+-	*cs++ = i915_mmio_reg_offset(RING_INSTPM(engine->mmio_base));
+-	*cs++ = _MASKED_BIT_ENABLE(INSTPM_TLB_INVALIDATE);
+-
+-	*cs++ = MI_NOOP;
+-	intel_ring_advance(rq, cs);
+-
+-	return 0;
+-}
+-
+ static inline int mi_set_context(struct i915_request *rq, u32 flags)
+ {
+ 	struct drm_i915_private *i915 = rq->i915;
+@@ -1590,52 +1575,53 @@ static int remap_l3(struct i915_request *rq)
+ 	return 0;
  }
  
-+static void __vma_release(struct dma_fence_work *work)
-+{
-+	struct i915_vma_work *vw = container_of(work, typeof(*vw), base);
-+
-+	if (vw->pin)
-+		__i915_gem_object_unpin_pages(vw->pin);
+-static int switch_context(struct i915_request *rq)
++static int switch_mm(struct i915_request *rq, struct i915_address_space *vm)
+ {
+-	struct intel_context *ce = rq->hw_context;
+-	struct i915_address_space *vm = vm_alias(ce);
+-	u32 hw_flags = 0;
+ 	int ret;
+ 
+-	GEM_BUG_ON(HAS_EXECLISTS(rq->i915));
++	if (!vm)
++		return 0;
+ 
+-	if (vm) {
+-		/*
+-		 * Not only do we need a full barrier (post-sync write) after
+-		 * invalidating the TLBs, but we need to wait a little bit
+-		 * longer. Whether this is merely delaying us, or the
+-		 * subsequent flush is a key part of serialising with the
+-		 * post-sync op, this extra pass appears vital before a
+-		 * mm switch!
+-		 */
+-		ret = rq->engine->emit_flush(rq, EMIT_INVALIDATE);
+-		if (ret)
+-			return ret;
++	/*
++	 * Not only do we need a full barrier (post-sync write) after
++	 * invalidating the TLBs, but we need to wait a little bit
++	 * longer. Whether this is merely delaying us, or the
++	 * subsequent flush is a key part of serialising with the
++	 * post-sync op, this extra pass appears vital before a
++	 * mm switch!
++	 */
++	ret = rq->engine->emit_flush(rq, EMIT_INVALIDATE);
++	if (ret)
++		return ret;
++	ret = load_pd_dir(rq, i915_vm_to_ppgtt(vm), PP_DIR_DCLV_2G);
++	if (ret)
++		return ret;
+ 
+-		ret = flush_tlb(rq);
+-		if (ret)
+-			return ret;
++	ret = rq->engine->emit_flush(rq, EMIT_FLUSH);
++	if (ret)
++		return ret;
+ 
+-		ret = load_pd_dir(rq, i915_vm_to_ppgtt(vm), 0);
+-		if (ret)
+-			return ret;
++	ret = rq->engine->emit_flush(rq, EMIT_INVALIDATE);
++	if (ret)
++		return ret;
+ 
+-		ret = load_pd_dir(rq, i915_vm_to_ppgtt(vm), PP_DIR_DCLV_2G);
+-		if (ret)
+-			return ret;
++	return load_pd_dir(rq, i915_vm_to_ppgtt(vm), PP_DIR_DCLV_2G);
 +}
+ 
+-		ret = flush_tlb(rq);
+-		if (ret)
+-			return ret;
++static int switch_context(struct i915_request *rq)
++{
++	struct intel_context *ce = rq->hw_context;
++	struct i915_address_space *vm = vm_alias(ce);
++	int ret;
+ 
+-		ret = rq->engine->emit_flush(rq, EMIT_INVALIDATE);
+-		if (ret)
+-			return ret;
+-	}
++	GEM_BUG_ON(HAS_EXECLISTS(rq->i915));
+ 
+ 	if (ce->state) {
++		u32 hw_flags;
 +
- static const struct dma_fence_work_ops bind_ops = {
- 	.name = "bind",
- 	.work = __vma_bind,
-+	.release = __vma_release,
- };
+ 		GEM_BUG_ON(rq->engine->id != RCS0);
  
- struct i915_vma_work *i915_vma_work(void)
-@@ -395,8 +402,10 @@ int i915_vma_bind(struct i915_vma *vma,
- 		i915_active_set_exclusive(&vma->active, &work->base.dma);
- 		work->base.dma.error = 0; /* enable the queue_work() */
++		hw_flags = 0;
+ 		if (!test_bit(CONTEXT_VALID_BIT, &ce->flags))
+ 			hw_flags = MI_RESTORE_INHIBIT;
  
--		if (vma->obj)
-+		if (vma->obj) {
- 			__i915_gem_object_pin_pages(vma->obj);
-+			work->pin = vma->obj;
-+		}
- 	} else {
- 		GEM_BUG_ON((bind_flags & ~vma_flags) & vma->vm->bind_async_flags);
- 		ret = vma->ops->bind_vma(vma, cache_level, bind_flags);
+@@ -1644,6 +1630,10 @@ static int switch_context(struct i915_request *rq)
+ 			return ret;
+ 	}
+ 
++	ret = switch_mm(rq, vm);
++	if (ret)
++		return ret;
++
+ 	ret = remap_l3(rq);
+ 	if (ret)
+ 		return ret;
 -- 
 2.24.0
 
