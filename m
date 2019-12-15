@@ -2,28 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D3F7B11F935
-	for <lists+intel-gfx@lfdr.de>; Sun, 15 Dec 2019 17:47:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C6B2D11F936
+	for <lists+intel-gfx@lfdr.de>; Sun, 15 Dec 2019 17:48:06 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CBA9D6E109;
-	Sun, 15 Dec 2019 16:47:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 24A5A6E11C;
+	Sun, 15 Dec 2019 16:48:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4C9D56E11C
- for <intel-gfx@lists.freedesktop.org>; Sun, 15 Dec 2019 16:47:52 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19587035-1500050 
- for <intel-gfx@lists.freedesktop.org>; Sun, 15 Dec 2019 16:47:48 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Sun, 15 Dec 2019 16:47:48 +0000
-Message-Id: <20191215164748.2363784-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.24.0
+Received: from us-smtp-1.mimecast.com (us-smtp-delivery-1.mimecast.com
+ [207.211.31.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A42806E11C
+ for <intel-gfx@lists.freedesktop.org>; Sun, 15 Dec 2019 16:48:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1576428483;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=m3iQRIJRLhTxolZygug22RdGlQz4O6Dlaob0fA4Etms=;
+ b=IKL9KWH+AKmeDNjfvOGplOas+RfFp4xMCE3uSY+Ulu6XaGRnof01IWkwpSlR80jRiQ698a
+ RornYcd/QINFEUAab1PEVjhlr+8+sSVn0tUZKuajAnslsD2mAGrlcoJFa2tP4TleSQnp4Q
+ 4w9Ra/zMUaueCBPtIrZqlea1Uy8T0Ao=
+Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
+ [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-187-wWGSdrZfNj-vF4rTXWPAJQ-1; Sun, 15 Dec 2019 11:48:00 -0500
+Received: from smtp.corp.redhat.com (int-mx06.intmail.prod.int.phx2.redhat.com
+ [10.5.11.16])
+ (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+ (No client certificate requested)
+ by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 25F691800D63;
+ Sun, 15 Dec 2019 16:47:59 +0000 (UTC)
+Received: from shalem.localdomain.com (ovpn-116-49.ams2.redhat.com
+ [10.36.116.49])
+ by smtp.corp.redhat.com (Postfix) with ESMTP id 532015C1D6;
+ Sun, 15 Dec 2019 16:47:58 +0000 (UTC)
+From: Hans de Goede <hdegoede@redhat.com>
+To: intel-gfx <intel-gfx@lists.freedesktop.org>
+Date: Sun, 15 Dec 2019 17:47:57 +0100
+Message-Id: <20191215164757.53130-1-hdegoede@redhat.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [CI] drm/i915/gt: Set vm again after MI_SET_CONTEXT
+X-Scanned-By: MIMEDefang 2.79 on 10.5.11.16
+X-MC-Unique: wWGSdrZfNj-vF4rTXWPAJQ-1
+X-Mimecast-Spam-Score: 0
+Subject: [Intel-gfx] [CI] drm/i915: opregion: set opregion chpd value to
+ indicate the driver handles hotplug
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,182 +57,94 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Reloading the PD after MI_SET_CONTEXT, along with copious amounts of
-flushes, so far is making Baytrail more content.
-
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
----
- .../gpu/drm/i915/gt/intel_ring_submission.c   | 113 ++++++++----------
- 1 file changed, 50 insertions(+), 63 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/gt/intel_ring_submission.c b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
-index 30ba67c9abe9..073da495b8f9 100644
---- a/drivers/gpu/drm/i915/gt/intel_ring_submission.c
-+++ b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
-@@ -1371,51 +1371,31 @@ static int load_pd_dir(struct i915_request *rq,
- 	const struct intel_engine_cs * const engine = rq->engine;
- 	u32 *cs;
- 
--	cs = intel_ring_begin(rq, 12);
-+	cs = intel_ring_begin(rq, 14);
- 	if (IS_ERR(cs))
- 		return PTR_ERR(cs);
- 
--	*cs++ = MI_LOAD_REGISTER_IMM(1);
-+	*cs++ = MI_LOAD_REGISTER_IMM(5);
-+	*cs++ = i915_mmio_reg_offset(RING_INSTPM(engine->mmio_base));
-+	*cs++ = _MASKED_BIT_ENABLE(INSTPM_TLB_INVALIDATE);
- 	*cs++ = i915_mmio_reg_offset(RING_PP_DIR_DCLV(engine->mmio_base));
- 	*cs++ = valid;
--
--	*cs++ = MI_STORE_REGISTER_MEM | MI_SRM_LRM_GLOBAL_GTT;
--	*cs++ = i915_mmio_reg_offset(RING_PP_DIR_DCLV(engine->mmio_base));
--	*cs++ = intel_gt_scratch_offset(rq->engine->gt,
--					INTEL_GT_SCRATCH_FIELD_DEFAULT);
--
--	*cs++ = MI_LOAD_REGISTER_IMM(1);
-+	*cs++ = i915_mmio_reg_offset(RING_PP_DIR_DCLV(engine->mmio_base)) + 4;
-+	*cs++ = 0;
- 	*cs++ = i915_mmio_reg_offset(RING_PP_DIR_BASE(engine->mmio_base));
- 	*cs++ = px_base(ppgtt->pd)->ggtt_offset << 10;
-+	*cs++ = i915_mmio_reg_offset(RING_INSTPM(engine->mmio_base));
-+	*cs++ = _MASKED_BIT_ENABLE(INSTPM_TLB_INVALIDATE);
- 
- 	/* Stall until the page table load is complete? */
- 	*cs++ = MI_STORE_REGISTER_MEM | MI_SRM_LRM_GLOBAL_GTT;
- 	*cs++ = i915_mmio_reg_offset(RING_PP_DIR_BASE(engine->mmio_base));
--	*cs++ = intel_gt_scratch_offset(rq->engine->gt,
-+	*cs++ = intel_gt_scratch_offset(engine->gt,
- 					INTEL_GT_SCRATCH_FIELD_DEFAULT);
- 
- 	intel_ring_advance(rq, cs);
- 
--	return rq->engine->emit_flush(rq, EMIT_FLUSH);
--}
--
--static int flush_tlb(struct i915_request *rq)
--{
--	const struct intel_engine_cs * const engine = rq->engine;
--	u32 *cs;
--
--	cs = intel_ring_begin(rq, 4);
--	if (IS_ERR(cs))
--		return PTR_ERR(cs);
--
--	*cs++ = MI_LOAD_REGISTER_IMM(1);
--	*cs++ = i915_mmio_reg_offset(RING_INSTPM(engine->mmio_base));
--	*cs++ = _MASKED_BIT_ENABLE(INSTPM_TLB_INVALIDATE);
--
--	*cs++ = MI_NOOP;
--	intel_ring_advance(rq, cs);
--
--	return 0;
-+	return engine->emit_flush(rq, EMIT_FLUSH);
- }
- 
- static inline int mi_set_context(struct i915_request *rq, u32 flags)
-@@ -1590,52 +1570,59 @@ static int remap_l3(struct i915_request *rq)
- 	return 0;
- }
- 
--static int switch_context(struct i915_request *rq)
-+static int switch_mm(struct i915_request *rq, struct i915_address_space *vm)
- {
--	struct intel_context *ce = rq->hw_context;
--	struct i915_address_space *vm = vm_alias(ce);
--	u32 hw_flags = 0;
-+	const struct intel_engine_cs * const engine = rq->engine;
- 	int ret;
- 
--	GEM_BUG_ON(HAS_EXECLISTS(rq->i915));
-+	if (!vm)
-+		return 0;
- 
--	if (vm) {
--		/*
--		 * Not only do we need a full barrier (post-sync write) after
--		 * invalidating the TLBs, but we need to wait a little bit
--		 * longer. Whether this is merely delaying us, or the
--		 * subsequent flush is a key part of serialising with the
--		 * post-sync op, this extra pass appears vital before a
--		 * mm switch!
--		 */
--		ret = rq->engine->emit_flush(rq, EMIT_INVALIDATE);
--		if (ret)
--			return ret;
-+	ret = engine->emit_flush(rq, EMIT_FLUSH);
-+	if (ret)
-+		return ret;
- 
--		ret = flush_tlb(rq);
--		if (ret)
--			return ret;
-+	ret = engine->emit_flush(rq, EMIT_INVALIDATE);
-+	if (ret)
-+		return ret;
- 
--		ret = load_pd_dir(rq, i915_vm_to_ppgtt(vm), 0);
--		if (ret)
--			return ret;
-+	/*
-+	 * Not only do we need a full barrier (post-sync write) after
-+	 * invalidating the TLBs, but we need to wait a little bit
-+	 * longer. Whether this is merely delaying us, or the
-+	 * subsequent flush is a key part of serialising with the
-+	 * post-sync op, this extra pass appears vital before a
-+	 * mm switch!
-+	 */
-+	ret = load_pd_dir(rq, i915_vm_to_ppgtt(vm), PP_DIR_DCLV_2G);
-+	if (ret)
-+		return ret;
- 
--		ret = load_pd_dir(rq, i915_vm_to_ppgtt(vm), PP_DIR_DCLV_2G);
--		if (ret)
--			return ret;
-+	ret = engine->emit_flush(rq, EMIT_INVALIDATE);
-+	if (ret)
-+		return ret;
- 
--		ret = flush_tlb(rq);
--		if (ret)
--			return ret;
-+	return engine->emit_flush(rq, EMIT_FLUSH);
-+}
- 
--		ret = rq->engine->emit_flush(rq, EMIT_INVALIDATE);
--		if (ret)
--			return ret;
--	}
-+static int switch_context(struct i915_request *rq)
-+{
-+	struct intel_context *ce = rq->hw_context;
-+	struct i915_address_space *vm = vm_alias(ce);
-+	int ret;
-+
-+	GEM_BUG_ON(HAS_EXECLISTS(rq->i915));
-+
-+	ret = switch_mm(rq, vm);
-+	if (ret)
-+		return ret;
- 
- 	if (ce->state) {
-+		u32 hw_flags;
-+
- 		GEM_BUG_ON(rq->engine->id != RCS0);
- 
-+		hw_flags = 0;
- 		if (!test_bit(CONTEXT_VALID_BIT, &ce->flags))
- 			hw_flags = MI_RESTORE_INHIBIT;
- 
--- 
-2.24.0
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+QWNjb3JkaW5nIHRvIGJvdGggdGhlIG9sZCBhY3BpX2lnZF9vcHJlZ2lvbl9zcGVjXzAucGRmIGFu
+ZCB0aGUgbmV3ZXIKc2tsX29wcmVnaW9uX3JldjBwNS5wZGYgb3ByZWdpb24gc3BlY2lmaWNhdGlv
+biBkb2N1bWVudHMsIGlmIGEgZHJpdmVyCmhhbmRsZXMgaG90cGx1ZyBldmVudHMgaXRzZWxmLCBp
+dCBzaG91bGQgc2V0IHRoZSBvcHJlZ2lvbiBDSFBEIGZpZWxkIHRvCjEgdG8gaW5kaWNhdGUgdGhp
+cyBhbmQgdGhlIGZpcm13YXJlIHNob3VsZCByZXNwb25kIHRvIHRoaXMgYnkgbm8gbG9uZ2VyCnNl
+bmRpbmcgQUNQSSAweDAwIG5vdGlmaWNhdGlvbiBldmVudHMgb24gZS5nLiBsaWQtc3RhdGUgY2hh
+bmdlcy4KClNwZWNpZmljYWxseSBza2xfb3ByZWdpb25fcmV2MHA1LnBkZiBzdGF0ZXMgdGhpZCBp
+biB0aGUgZG9jdW1lbnRhdGlvbiBvZgp0aGUgQ0hQRCB3b3JkOiAiUmUtZW51bWVyYXRpb24gdHJp
+Z2dlciBsb2dpYyBpbiBTeXN0ZW0gQklPUyBNVVNUIGJlCmRpc2FibGVkIGZvciBhbGwgdGhlIE9w
+ZXJhdGluZyBTeXN0ZW1zIHN1cHBvcnRpbmcgSG90LVBsdWcKKGUuZy4sIFdpbmRvd3MqIExvbmdo
+b3JuIGFuZCBhYm92ZSkuIiBOb3RlIHRoZSBNVVNUIGluIHRoZXJlLgoKV2UgaWdub3JlIHRoZXNl
+IG5vdGlmaWNhdGlvbnMsIHNvIHRoaXMgc2hvdWxkIG5vdCBiZSBhIHByb2JsZW0gYnV0IG1hbnkK
+cmVjZW50IERTVERzIHNlZW0gdG8gYWxsIGhhdmUgdGhlIHNhbWUgY29weS1wYXN0ZWQgYnVnIGlu
+IHRoZSBHTk9UKCkgQU1MCmZ1bmN0aW9uIHdoaWNoIGlzIHVzZWQgdG8gc2VuZCB0aGVzZSBub3Rp
+ZmljYXRpb25zLiBXaW5kb3dzIGxpa2VseSBkb2VzIG5vdApoaXQgdGhpcyBidWcgYXMgaXQgcHJl
+c3VtYWJseSBjb3JyZWN0eSBzZXRzIENIUEQgdG8gMS4KCkhlcmUgaXMgYW4gZXhhbXBsZSBvZiB0
+aGUgYnJva2VuIEdOT1QoKSBtZXRob2Q6CgogICAgICAgICAgICBNZXRob2QgKEdOT1QsIDIsIE5v
+dFNlcmlhbGl6ZWQpCiAgICAgICAgICAgIHsKICAgICAgICAgICAgICAgIC4uLgogICAgICAgICAg
+ICAgICAgQ0VWVCA9IEFyZzAKICAgICAgICAgICAgICAgIENTVFMgPSAweDAzCiAgICAgICAgICAg
+ICAgICBJZiAoKChDSFBEID09IFplcm8pICYmIChBcmcxID09IFplcm8pKSkKICAgICAgICAgICAg
+ICAgIHsKICAgICAgICAgICAgICAgICAgICBJZiAoKChPU1lTID4gMHgwN0QwKSB8fCAoT1NZUyA8
+IDB4MDdENikpKQogICAgICAgICAgICAgICAgICAgIHsKICAgICAgICAgICAgICAgICAgICAgICAg
+Tm90aWZ5IChQQ0kwLCBBcmcxKQogICAgICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgICAg
+ICAgICBFbHNlCiAgICAgICAgICAgICAgICAgICAgewogICAgICAgICAgICAgICAgICAgICAgICBO
+b3RpZnkgKEdGWDAsIEFyZzEpCiAgICAgICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgICAg
+fQogICAgICAgICAgICAgICAgLi4uCgpOb3RpY2UgdGhhdCB0aGUgY29uZGl0aW9uIGZvciB0aGUg
+SWYgaXMgYWx3YXlzIHRydWUgSSBiZWxpZXZlIHRoYXQgdGhlCnx8IGxpa2UgbmVlZHMgdG8gYmUg
+YW4gJiYsIGJ1dCB0aGVyZSBpcyBub3RoaW5nIHdlIGNhbiBkbyBhYm91dCB0aGlzIGFuZAppbiBt
+eSBvd24gRFNEVCBhcmNoaXZlIDU1IG9mIHRoZSA5MyBEU0RUcyBoYXZlIHRoaXMgaXNzdWUuCgpX
+aGVuIHRoZSBpZiBpcyB0cnVlIHRoZSBub3RpZmljYXRpb24gZ2V0cyBzZW5kIHRvIHRoZSBQQ0kg
+cm9vdCBpbnN0ZWFkCm9mIG9ubHkgdG8gdGhlIEdGWDAgZGV2aWNlLiBUaGlzIGNhdXNlcyBMaW51
+eCB0byByZS1lbnVtZXJhdGUgUENJIGRldmljZXMKd2hlbmV2ZXIgdGhlIExJRCBvcGVucyAvIGNs
+b3NlcywgbGVhZGluZyB0byB1bmV4cGVjdGVkIG1lc3NhZ2VzIGluIGRtZXNnOgoKU3VzcGVuZCB0
+aHJvdWdoIGxpZCBjbG9zZToKWyAgMzEzLjU5ODE5OV0gaW50ZWxfYXRvbWlzcDJfcG0gMDAwMDow
+MDowMy4wOiBSZWZ1c2VkIHRvIGNoYW5nZSBwb3dlciBzdGF0ZSwgY3VycmVudGx5IGluIEQzClsg
+IDMxMy42NjQ0NTNdIGludGVsX2F0b21pc3AyX3BtIDAwMDA6MDA6MDMuMDogUmVmdXNlZCB0byBj
+aGFuZ2UgcG93ZXIgc3RhdGUsIGN1cnJlbnRseSBpbiBEMwpbICAzMTMuNzM3OTgyXSBwY2lfYnVz
+IDAwMDA6MDE6IEFsbG9jYXRpbmcgcmVzb3VyY2VzClsgIDMxMy43MzgwMzZdIHBjaWVwb3J0IDAw
+MDA6MDA6MWMuMDogYnJpZGdlIHdpbmRvdyBbaW8gIDB4MTAwMC0weDBmZmZdIHRvIFtidXMgMDFd
+IGFkZF9zaXplIDEwMDAKWyAgMzEzLjczODA1MV0gcGNpZXBvcnQgMDAwMDowMDoxYy4wOiBicmlk
+Z2Ugd2luZG93IFttZW0gMHgwMDEwMDAwMC0weDAwMGZmZmZmIDY0Yml0IHByZWZdIHRvIFtidXMg
+MDFdIGFkZF9zaXplIDIwMDAwMCBhZGRfYWxpZ24gMTAwMDAwClsgIDMxMy43MzgxMTFdIHBjaWVw
+b3J0IDAwMDA6MDA6MWMuMDogQkFSIDE1OiBhc3NpZ25lZCBbbWVtIDB4OTEwMDAwMDAtMHg5MTFm
+ZmZmZiA2NGJpdCBwcmVmXQpbICAzMTMuNzM4MTI4XSBwY2llcG9ydCAwMDAwOjAwOjFjLjA6IEJB
+UiAxMzogYXNzaWduZWQgW2lvICAweDEwMDAtMHgxZmZmXQoKUmVzdW1lOgpbICA4MTMuNjIzODk0
+XSBwY2kgMDAwMDowMDowMy4wOiBbODA4NjoyMmI4XSB0eXBlIDAwIGNsYXNzIDB4MDQ4MDAwClsg
+IDgxMy42MjM5NTVdIHBjaSAwMDAwOjAwOjAzLjA6IHJlZyAweDEwOiBbbWVtIDB4MDAwMDAwMDAt
+MHgwMDNmZmZmZl0KWyAgODEzLjYzMDQ3N10gcGNpIDAwMDA6MDA6MDMuMDogQkFSIDA6IGFzc2ln
+bmVkIFttZW0gMHg5MWMwMDAwMC0weDkxZmZmZmZmXQpbICA4NTQuNTc5MTAxXSBpbnRlbF9hdG9t
+aXNwMl9wbSAwMDAwOjAwOjAzLjA6IFJlZnVzZWQgdG8gY2hhbmdlIHBvd2VyIHN0YXRlLCBjdXJy
+ZW50bHkgaW4gRDMKCkFuZCBtb3JlIGltcG9ydGFudGx5IHRoaXMgcmUtZW51bWVyYXRpb24gcmFj
+ZXMgd2l0aCBzdXNwZW5kL3Jlc3VtZSBjYXVzaW5nCmVudW1lcmF0aW9uIHRvIG5vdCBiZSBjb21w
+bGV0ZSAgd2hlbiBhc3NlcnRfaXNwX3Bvd2VyX2dhdGVkKCkgZnJvbQpkcml2ZXJzL2dwdS9kcm0v
+aTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXlfcG93ZXIuYyBydW5zLiBUaGlzIGNhdXNlcwp0aGUg
+IXBjaV9kZXZfcHJlc2VudChpc3BfaWRzKSBjaGVjayBpbiBhc3NlcnRfaXNwX3Bvd2VyX2dhdGVk
+KCkgdG8gZmFpbAptYWtpbmcgdGhlIGNvbmRpdGlvbiBmb3IgdGhlIFdBUk4gdHJ1ZSwgbGVhZGlu
+ZyB0bzoKClsgIDgxMy4zMjc4ODZdIC0tLS0tLS0tLS0tLVsgY3V0IGhlcmUgXS0tLS0tLS0tLS0t
+LQpbICA4MTMuMzI3ODk4XSBJU1Agbm90IHBvd2VyIGdhdGVkClsgIDgxMy4zMjgwMjhdIFdBUk5J
+Tkc6IENQVTogMiBQSUQ6IDIzMTcgYXQgZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRl
+bF9kaXNwbGF5X3Bvd2VyLmM6NDg3MCBpbnRlbF9kaXNwbGF5X3ByaW50X2Vycm9yX3N0YXRlKzB4
+MmI5OC8weDNhODAgW2k5MTVdCi4uLgpbICA4MTMuMzI4NTk5XSAtLS1bIGVuZCB0cmFjZSBmMDFl
+ODFiNTk5NTk2Nzc0IF0tLS0KClRoaXMgY29tbWl0IGZpeGVzIHRoZSB1bndhbnRlZCBBQ1BJIG5v
+dGlmaWNhdGlvbiBvbiB0aGUgUENJIHJvb3QgZGV2aWNlCmJ5IHNldHRpbmcgQ0hQRCB0byAxLCBz
+byB0aGF0IHRoZSBicm9rZW4gaWYgY29uZGl0aW9uIGluIHRoZSBBTUwgbmV2ZXIKZ2V0cyBjaGVj
+a2VkIGFzIG5vdGlmaWNhdGlvbnMgb2YgdHlwZSAweDAwIGFyZSBkaXNhYmxlZCBhbHRvZ2V0aGVy
+LgoKUmV2aWV3ZWQtYnk6IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRl
+bC5jb20+ClNpZ25lZC1vZmYtYnk6IEhhbnMgZGUgR29lZGUgPGhkZWdvZWRlQHJlZGhhdC5jb20+
+Ci0tLQogZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9vcHJlZ2lvbi5jIHwgNyAr
+KysrKysrCiAxIGZpbGUgY2hhbmdlZCwgNyBpbnNlcnRpb25zKCspCgpkaWZmIC0tZ2l0IGEvZHJp
+dmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9vcHJlZ2lvbi5jIGIvZHJpdmVycy9ncHUv
+ZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9vcHJlZ2lvbi5jCmluZGV4IDk2OWFkZTYyMzY5MS4uZTU5
+YjQ5OTJiYTFiIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVs
+X29wcmVnaW9uLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9vcHJl
+Z2lvbi5jCkBAIC05NDEsNiArOTQxLDEzIEBAIGludCBpbnRlbF9vcHJlZ2lvbl9zZXR1cChzdHJ1
+Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYpCiAJaWYgKG1ib3hlcyAmIE1CT1hfQUNQSSkg
+ewogCQlEUk1fREVCVUdfRFJJVkVSKCJQdWJsaWMgQUNQSSBtZXRob2RzIHN1cHBvcnRlZFxuIik7
+CiAJCW9wcmVnaW9uLT5hY3BpID0gYmFzZSArIE9QUkVHSU9OX0FDUElfT0ZGU0VUOworCQkvKgor
+CQkgKiBJbmRpY2F0ZSB3ZSBoYW5kbGUgbW9uaXRvciBob3RwbHVnIGV2ZW50cyBvdXJzZWx2ZXMg
+c28gd2UgZG8KKwkJICogbm90IG5lZWQgQUNQSSBub3RpZmljYXRpb25zIGZvciB0aGVtLiBEaXNh
+YmxpbmcgdGhlc2UgYXZvaWRzCisJCSAqIHRyaWdnZXJpbmcgdGhlIEFNTCBjb2RlIGRvaW5nIHRo
+ZSBub3RpZmF0aW9uLCB3aGljaCBtYXkgYmUKKwkJICogYnJva2VuIGFzIFdpbmRvd3MgYWxzbyBz
+ZWVtcyB0byBkaXNhYmxlIHRoZXNlLgorCQkgKi8KKwkJb3ByZWdpb24tPmFjcGktPmNocGQgPSAx
+OwogCX0KIAogCWlmIChtYm94ZXMgJiBNQk9YX1NXU0NJKSB7Ci0tIAoyLjIzLjAKCl9fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5n
+IGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVk
+ZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
