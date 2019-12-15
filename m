@@ -1,29 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A9FF611F8D4
-	for <lists+intel-gfx@lfdr.de>; Sun, 15 Dec 2019 17:21:56 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id BC7E211F906
+	for <lists+intel-gfx@lfdr.de>; Sun, 15 Dec 2019 17:32:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DBE696E0DC;
-	Sun, 15 Dec 2019 16:21:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 13BEE6E127;
+	Sun, 15 Dec 2019 16:32:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AFEE76E0DC
- for <intel-gfx@lists.freedesktop.org>; Sun, 15 Dec 2019 16:21:52 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19586875-1500050 
- for <intel-gfx@lists.freedesktop.org>; Sun, 15 Dec 2019 16:21:48 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Sun, 15 Dec 2019 16:21:48 +0000
-Message-Id: <20191215162148.2363606-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.24.0
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id D1AA76E0F0;
+ Sun, 15 Dec 2019 16:32:31 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id C9EF3A0075;
+ Sun, 15 Dec 2019 16:32:31 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [CI] drm/i915/gt: Set vm again after MI_SET_CONTEXT
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Sun, 15 Dec 2019 16:32:31 -0000
+Message-ID: <157642755179.27848.11318908695818516343@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20191215154735.2336512-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20191215154735.2336512-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/gt=3A_Set_vm_again_after_MI=5FSET=5FCONTEXT_=28rev8=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,180 +38,97 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Reloading the PD after MI_SET_CONTEXT, along with copious amounts of
-flushes, so far is making Baytrail more content.
+== Series Details ==
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
----
- .../gpu/drm/i915/gt/intel_ring_submission.c   | 111 ++++++++----------
- 1 file changed, 50 insertions(+), 61 deletions(-)
+Series: drm/i915/gt: Set vm again after MI_SET_CONTEXT (rev8)
+URL   : https://patchwork.freedesktop.org/series/70839/
+State : success
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_ring_submission.c b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
-index 30ba67c9abe9..02e3c08fa233 100644
---- a/drivers/gpu/drm/i915/gt/intel_ring_submission.c
-+++ b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
-@@ -1371,50 +1371,30 @@ static int load_pd_dir(struct i915_request *rq,
- 	const struct intel_engine_cs * const engine = rq->engine;
- 	u32 *cs;
- 
--	cs = intel_ring_begin(rq, 12);
-+	cs = intel_ring_begin(rq, 14);
- 	if (IS_ERR(cs))
- 		return PTR_ERR(cs);
- 
--	*cs++ = MI_LOAD_REGISTER_IMM(1);
-+	*cs++ = MI_LOAD_REGISTER_IMM(5);
-+	*cs++ = i915_mmio_reg_offset(RING_INSTPM(engine->mmio_base));
-+	*cs++ = _MASKED_BIT_ENABLE(INSTPM_TLB_INVALIDATE);
- 	*cs++ = i915_mmio_reg_offset(RING_PP_DIR_DCLV(engine->mmio_base));
- 	*cs++ = valid;
--
--	*cs++ = MI_STORE_REGISTER_MEM | MI_SRM_LRM_GLOBAL_GTT;
--	*cs++ = i915_mmio_reg_offset(RING_PP_DIR_DCLV(engine->mmio_base));
--	*cs++ = intel_gt_scratch_offset(rq->engine->gt,
--					INTEL_GT_SCRATCH_FIELD_DEFAULT);
--
--	*cs++ = MI_LOAD_REGISTER_IMM(1);
-+	*cs++ = i915_mmio_reg_offset(RING_PP_DIR_DCLV(engine->mmio_base)) + 4;
-+	*cs++ = 0;
- 	*cs++ = i915_mmio_reg_offset(RING_PP_DIR_BASE(engine->mmio_base));
- 	*cs++ = px_base(ppgtt->pd)->ggtt_offset << 10;
-+	*cs++ = i915_mmio_reg_offset(RING_INSTPM(engine->mmio_base));
-+	*cs++ = _MASKED_BIT_ENABLE(INSTPM_TLB_INVALIDATE);
- 
- 	/* Stall until the page table load is complete? */
- 	*cs++ = MI_STORE_REGISTER_MEM | MI_SRM_LRM_GLOBAL_GTT;
- 	*cs++ = i915_mmio_reg_offset(RING_PP_DIR_BASE(engine->mmio_base));
--	*cs++ = intel_gt_scratch_offset(rq->engine->gt,
-+	*cs++ = intel_gt_scratch_offset(engine->gt,
- 					INTEL_GT_SCRATCH_FIELD_DEFAULT);
- 
- 	intel_ring_advance(rq, cs);
- 
--	return rq->engine->emit_flush(rq, EMIT_FLUSH);
--}
--
--static int flush_tlb(struct i915_request *rq)
--{
--	const struct intel_engine_cs * const engine = rq->engine;
--	u32 *cs;
--
--	cs = intel_ring_begin(rq, 4);
--	if (IS_ERR(cs))
--		return PTR_ERR(cs);
--
--	*cs++ = MI_LOAD_REGISTER_IMM(1);
--	*cs++ = i915_mmio_reg_offset(RING_INSTPM(engine->mmio_base));
--	*cs++ = _MASKED_BIT_ENABLE(INSTPM_TLB_INVALIDATE);
--
--	*cs++ = MI_NOOP;
--	intel_ring_advance(rq, cs);
--
- 	return 0;
- }
- 
-@@ -1590,52 +1570,61 @@ static int remap_l3(struct i915_request *rq)
- 	return 0;
- }
- 
--static int switch_context(struct i915_request *rq)
-+static int switch_mm(struct i915_request *rq, struct i915_address_space *vm)
- {
--	struct intel_context *ce = rq->hw_context;
--	struct i915_address_space *vm = vm_alias(ce);
--	u32 hw_flags = 0;
--	int ret;
--
--	GEM_BUG_ON(HAS_EXECLISTS(rq->i915));
-+	const struct intel_engine_cs * const engine = rq->engine;
-+	int ret, i;
- 
--	if (vm) {
--		/*
--		 * Not only do we need a full barrier (post-sync write) after
--		 * invalidating the TLBs, but we need to wait a little bit
--		 * longer. Whether this is merely delaying us, or the
--		 * subsequent flush is a key part of serialising with the
--		 * post-sync op, this extra pass appears vital before a
--		 * mm switch!
--		 */
--		ret = rq->engine->emit_flush(rq, EMIT_INVALIDATE);
--		if (ret)
--			return ret;
-+	if (!vm)
-+		return 0;
- 
--		ret = flush_tlb(rq);
--		if (ret)
--			return ret;
-+	ret = engine->emit_flush(rq, EMIT_FLUSH);
-+	if (ret)
-+		return ret;
- 
--		ret = load_pd_dir(rq, i915_vm_to_ppgtt(vm), 0);
--		if (ret)
--			return ret;
-+	ret = engine->emit_flush(rq, EMIT_INVALIDATE);
-+	if (ret)
-+		return ret;
- 
-+	/*
-+	 * Not only do we need a full barrier (post-sync write) after
-+	 * invalidating the TLBs, but we need to wait a little bit
-+	 * longer. Whether this is merely delaying us, or the
-+	 * subsequent flush is a key part of serialising with the
-+	 * post-sync op, this extra pass appears vital before a
-+	 * mm switch!
-+	 */
-+	for (i = 0; i < 8; i++) {
- 		ret = load_pd_dir(rq, i915_vm_to_ppgtt(vm), PP_DIR_DCLV_2G);
- 		if (ret)
- 			return ret;
-+	}
- 
--		ret = flush_tlb(rq);
--		if (ret)
--			return ret;
-+	ret = engine->emit_flush(rq, EMIT_INVALIDATE);
-+	if (ret)
-+		return ret;
- 
--		ret = rq->engine->emit_flush(rq, EMIT_INVALIDATE);
--		if (ret)
--			return ret;
--	}
-+	return engine->emit_flush(rq, EMIT_FLUSH);
-+}
-+
-+static int switch_context(struct i915_request *rq)
-+{
-+	struct intel_context *ce = rq->hw_context;
-+	struct i915_address_space *vm = vm_alias(ce);
-+	int ret;
-+
-+	GEM_BUG_ON(HAS_EXECLISTS(rq->i915));
-+
-+	ret = switch_mm(rq, vm);
-+	if (ret)
-+		return ret;
- 
- 	if (ce->state) {
-+		u32 hw_flags;
-+
- 		GEM_BUG_ON(rq->engine->id != RCS0);
- 
-+		hw_flags = 0;
- 		if (!test_bit(CONTEXT_VALID_BIT, &ce->flags))
- 			hw_flags = MI_RESTORE_INHIBIT;
- 
--- 
-2.24.0
+== Summary ==
 
+CI Bug Log - changes from CI_DRM_7569 -> Patchwork_15771
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15771/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_15771 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_close_race@basic-threads:
+    - fi-byt-n2820:       [PASS][1] -> [TIMEOUT][2] ([i915#816])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7569/fi-byt-n2820/igt@gem_close_race@basic-threads.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15771/fi-byt-n2820/igt@gem_close_race@basic-threads.html
+
+  * igt@i915_selftest@live_blt:
+    - fi-hsw-4770:        [PASS][3] -> [DMESG-FAIL][4] ([i915#725])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7569/fi-hsw-4770/igt@i915_selftest@live_blt.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15771/fi-hsw-4770/igt@i915_selftest@live_blt.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_close_race@basic-threads:
+    - fi-byt-j1900:       [TIMEOUT][5] ([i915#816]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7569/fi-byt-j1900/igt@gem_close_race@basic-threads.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15771/fi-byt-j1900/igt@gem_close_race@basic-threads.html
+
+  * igt@kms_flip@basic-flip-vs-dpms:
+    - fi-apl-guc:         [DMESG-WARN][7] ([i915#180]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7569/fi-apl-guc/igt@kms_flip@basic-flip-vs-dpms.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15771/fi-apl-guc/igt@kms_flip@basic-flip-vs-dpms.html
+
+  
+  [i915#180]: https://gitlab.freedesktop.org/drm/intel/issues/180
+  [i915#725]: https://gitlab.freedesktop.org/drm/intel/issues/725
+  [i915#816]: https://gitlab.freedesktop.org/drm/intel/issues/816
+
+
+Participating hosts (34 -> 25)
+------------------------------
+
+  Additional (1): fi-elk-e7500 
+  Missing    (10): fi-icl-1065g7 fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-snb-2520m fi-ctg-p8600 fi-byt-clapper fi-bdw-samus fi-snb-2600 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_7569 -> Patchwork_15771
+
+  CI-20190529: 20190529
+  CI_DRM_7569: 62c2abc0df8983aba79ba093413683c44e9c4748 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5349: 048f58513d8b8ec6bb307a939f0ac959bc0f0e10 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_15771: 269072098380643a0acc960e5bb702c0f4f8afec @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+269072098380 drm/i915/gt: Set vm again after MI_SET_CONTEXT
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15771/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
