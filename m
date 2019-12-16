@@ -1,41 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B6745120FB8
-	for <lists+intel-gfx@lfdr.de>; Mon, 16 Dec 2019 17:40:21 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 57653120FB0
+	for <lists+intel-gfx@lfdr.de>; Mon, 16 Dec 2019 17:38:59 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 19546891E2;
-	Mon, 16 Dec 2019 16:40:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BAE716E81C;
+	Mon, 16 Dec 2019 16:38:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6C881891E2
- for <intel-gfx@lists.freedesktop.org>; Mon, 16 Dec 2019 16:40:19 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5D57C6E81C
+ for <intel-gfx@lists.freedesktop.org>; Mon, 16 Dec 2019 16:38:56 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
 X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
  by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 16 Dec 2019 08:40:18 -0800
-X-IronPort-AV: E=Sophos;i="5.69,322,1571727600"; d="scan'208";a="209357954"
-Received: from dtriolet-mobl1.ger.corp.intel.com (HELO [10.251.84.191])
- ([10.251.84.191])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/AES256-SHA;
- 16 Dec 2019 08:40:18 -0800
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-References: <20191212014629.854076-1-chris@chris-wilson.co.uk>
- <20191212014629.854076-3-chris@chris-wilson.co.uk>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <51acf694-2cb2-1044-e761-8ed0c43d4cc4@linux.intel.com>
-Date: Mon, 16 Dec 2019 16:40:15 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
+ 16 Dec 2019 08:38:55 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.69,322,1571727600"; d="scan'208";a="266299178"
+Received: from labuser-z97x-ud5h.jf.intel.com (HELO intel.com) ([10.54.75.49])
+ by FMSMGA003.fm.intel.com with ESMTP; 16 Dec 2019 08:38:55 -0800
+Date: Mon, 16 Dec 2019 08:40:24 -0800
+From: Manasi Navare <manasi.d.navare@intel.com>
+To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+Message-ID: <20191216164023.GA17177@intel.com>
+References: <20191211211425.17821-1-manasi.d.navare@intel.com>
+ <20191211211425.17821-2-manasi.d.navare@intel.com>
+ <20191213200549.GD1208@intel.com>
+ <20191214022836.GH19224@intel.com>
+ <20191216120343.GM1208@intel.com>
 MIME-Version: 1.0
-In-Reply-To: <20191212014629.854076-3-chris@chris-wilson.co.uk>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH 3/3] drm/i915/gt: Eliminate the trylock for
- reading a timeline's hwsp
+Content-Disposition: inline
+In-Reply-To: <20191216120343.GM1208@intel.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+Subject: Re: [Intel-gfx] [PATCH 1/3] drm/i915/dp: Make sure all tiled
+ connectors get added to the state with full modeset
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,94 +49,188 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Mon, Dec 16, 2019 at 02:03:43PM +0200, Ville Syrj=E4l=E4 wrote:
+> On Fri, Dec 13, 2019 at 06:28:40PM -0800, Manasi Navare wrote:
+> > On Fri, Dec 13, 2019 at 10:05:49PM +0200, Ville Syrj=E4l=E4 wrote:
+> > > On Wed, Dec 11, 2019 at 01:14:23PM -0800, Manasi Navare wrote:
+> > > > In case of tiled displays, all the tiles are linke dto each other
+> > > > for transcoder port sync. So in intel_atomic_check() we need to make
+> > > > sure that we add all the tiles to the modeset and if one of the
+> > > > tiles needs a full modeset then mark all other tiles for a full mod=
+eset.
+> > > > =
 
-On 12/12/2019 01:46, Chris Wilson wrote:
-> As we stash a pointer to the HWSP cacheline on the request, when reading
-> it we only need confirm that the cacheline is still valid by checking
-> that the request and timeline are still intact.
-> 
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> ---
->   drivers/gpu/drm/i915/gt/intel_timeline.c | 38 ++++++++----------------
->   1 file changed, 13 insertions(+), 25 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gt/intel_timeline.c b/drivers/gpu/drm/i915/gt/intel_timeline.c
-> index 728da39e8ace..566ce19bb0ea 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_timeline.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_timeline.c
-> @@ -515,6 +515,7 @@ int intel_timeline_read_hwsp(struct i915_request *from,
->   			     struct i915_request *to,
->   			     u32 *hwsp)
->   {
-> +	struct intel_timeline_cacheline *cl = from->hwsp_cacheline;
->   	struct intel_timeline *tl;
->   	int err;
->   
-> @@ -527,33 +528,20 @@ int intel_timeline_read_hwsp(struct i915_request *from,
->   		return 1;
->   
->   	GEM_BUG_ON(rcu_access_pointer(to->timeline) == tl);
-> -
-> -	err = -EAGAIN;
-> -	if (mutex_trylock(&tl->mutex)) {
-> -		struct intel_timeline_cacheline *cl = from->hwsp_cacheline;
-> -
-> -		if (i915_request_completed(from)) {
-> -			err = 1;
-> -			goto unlock;
-> -		}
-> -
-> -		err = cacheline_ref(cl, to);
-> -		if (err)
-> -			goto unlock;
-> -
-> -		if (likely(cl == tl->hwsp_cacheline)) {
-> -			*hwsp = tl->hwsp_offset;
-> -		} else { /* across a seqno wrap, recover the original offset */
-> -			*hwsp = i915_ggtt_offset(cl->hwsp->vma) +
-> -				ptr_unmask_bits(cl->vaddr, CACHELINE_BITS) *
-> -				CACHELINE_BYTES;
-> -		}
-> -
-> -unlock:
-> -		mutex_unlock(&tl->mutex);
-> +	err = cacheline_ref(cl, to);
-> +	if (err)
-> +		goto out;
-> +
-> +	*hwsp = tl->hwsp_offset;
-> +	if (unlikely(cl != READ_ONCE(tl->hwsp_cacheline))) {
-> +		/* across a seqno wrap, recover the original offset */
-> +		*hwsp = i915_ggtt_offset(cl->hwsp->vma) +
-> +			ptr_unmask_bits(cl->vaddr, CACHELINE_BITS) *
-> +			CACHELINE_BYTES;
+> > > > Suggested-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > > > Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > > > Cc: Jos=E9 Roberto de Souza <jose.souza@intel.com>
+> > > > Bugzilla: https://gitlab.freedesktop.org/drm/intel/issues/5
+> > > > Signed-off-by: Manasi Navare <manasi.d.navare@intel.com>
+> > > > ---
+> > > >  drivers/gpu/drm/i915/display/intel_display.c | 78 ++++++++++++++++=
+++++
+> > > >  1 file changed, 78 insertions(+)
+> > > > =
 
-There is some confusion here (for me) which timeline is which. "From" 
-timeline is which is unlocked now and cl and tl come from it. And that 
-is the signaling request.
+> > > > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers=
+/gpu/drm/i915/display/intel_display.c
+> > > > index 803993a01ca7..7263eaa66cda 100644
+> > > > --- a/drivers/gpu/drm/i915/display/intel_display.c
+> > > > +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> > > > @@ -14066,6 +14066,80 @@ static int intel_atomic_check_crtcs(struct=
+ intel_atomic_state *state)
+> > > >  	return 0;
+> > > >  }
+> > > >  =
 
-It is just RCU which guarantees it is safe to dereference the timeline 
-on this request?
+> > > > +static int
+> > > > +intel_dp_modeset_all_tiles(struct drm_i915_private *dev_priv,
+> > > > +			   struct intel_atomic_state *state, int tile_grp_id)
+> > > > +{
+> > > > +	struct drm_connector *conn_iter;
+> > > 'connector'
+> > > > +	struct drm_connector_list_iter conn_list_iter;
+> > > > +	struct drm_crtc_state *crtc_state;
+> > > =
 
-Regards,
+> > > crtc_state has needlessly wide scope.
+> > > =
 
-Tvrtko
+> > > > +
+> > > > +	drm_connector_list_iter_begin(&dev_priv->drm, &conn_list_iter);
+> > > > +	drm_for_each_connector_iter(conn_iter, &conn_list_iter) {
+> > > > +		struct drm_connector_state *conn_iter_state;
+> > > =
 
->   	}
-> -	intel_timeline_put(tl);
->   
-> +out:
-> +	intel_timeline_put(tl);
->   	return err;
->   }
->   
-> 
+> > > 'conn_state' is the most popular name.
+> > > =
+
+> > > > +
+> > > > +		if (!conn_iter->has_tile)
+> > > > +			continue;
+> > > > +		conn_iter_state =3D drm_atomic_get_connector_state(&state->base,
+> > > > +								 conn_iter);
+> > > > +		if (IS_ERR(conn_iter_state)) {
+> > > > +			drm_connector_list_iter_end(&conn_list_iter);
+> > > > +			return PTR_ERR(conn_iter_state);
+> > > > +		}
+> > > > +
+> > > > +		if (!conn_iter_state->crtc)
+> > > > +			continue;
+> > > > +
+> > > > +		if (conn_iter->tile_group->id !=3D tile_grp_id)
+> > > > +			continue;
+> > > =
+
+> > > The tile group check should be part of the same if with the has_tile
+> > > check.
+> > > =
+
+> > > > +
+> > > > +		crtc_state =3D drm_atomic_get_crtc_state(&state->base, conn_iter=
+_state->crtc);
+> > > > +		if (IS_ERR(crtc_state)) {
+> > > > +			drm_connector_list_iter_end(&conn_list_iter);
+> > > > +			return PTR_ERR(conn_iter_state);
+> > > > +		}
+> > > > +		crtc_state->mode_changed =3D true;
+> > > > +	}
+> > > > +	drm_connector_list_iter_end(&conn_list_iter);
+> > > > +
+> > > > +	return 0;
+> > > > +}
+> > > > +
+> > > > +static int
+> > > > +intel_dp_atomic_trans_port_sync_check(struct drm_i915_private *dev=
+_priv,
+> > > =
+
+> > > Pointless variable. Can be extracted from the atomic state.
+> > > =
+
+> > > > +				      struct intel_atomic_state *state)
+> > > > +{
+> > > > +	struct drm_connector *connector;
+> > > > +	struct drm_crtc_state *crtc_state;
+> > > > +	struct drm_connector_state *connector_state;
+> > > > +	int i, ret, tile_grp_id =3D 0;
+> > > =
+
+> > > tile_grp_id is rather pointless. crtc_state and ret can move into
+> > > tighter scope. And the next suggestion allows you to kill crtc_state
+> > > entirely...
+> > =
+
+> > Its not clear why tile_grp_id is pointless, I am using tile_grp_id for =
+the first connector with has_tile
+> > and I make sure that I dont enter into the loop to check modeset again =
+for the connector with
+> > same tile_grp_id because we have already set its mode changed to true i=
+n intel_dp_modeset_all_tiles()
+> > =
+
+> > How can I achieve this instead?
+> =
+
+> =
+
+> Instead of =
+
+> foo()
+> {
+> 	tile_grp_id =3D 0;
+> =
+
+> 	for_each() {
+> 		tile_grp_id =3D conn->tile_grp_id;
+> =
+
+> 		intel_dp_modeset_all_tiles(tile_grp_id);
+> 	}
+> }
+> =
+
+> you just do
+> foo()
+> {
+> 	for_each() {
+> 		intel_dp_modeset_all_tiles(conn->tile_grp_id);
+> 	}
+> }
+
+Yes I understand that we can pass the conn->tile_grp_id directly. But curre=
+ntly I am using tile_grp_id in for_each(), to call intel_dp_modeset_all_til=
+es()
+only if that cnnector is from a differnt tile grp id else continue.
+
+foo()
+{
+	for_each() {
+		if(tile_grp_id !=3D conn->tile_grp_id)
+			intel_dpmodeset_all_tiles();
+		else
+			continue;
+	}
+}
+
+calling intel_dp_modeset_all_tiles() for all tiles is kind of redundant. Ho=
+w can I do this with your suggestion, or do you think
+we should call intel_dp_modeset_all_tiles for each connector anyway and it =
+shouldnt matter?
+
+Regards
+Manasi
+> =
+
+> -- =
+
+> Ville Syrj=E4l=E4
+> Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
