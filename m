@@ -1,41 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7859111FC5E
-	for <lists+intel-gfx@lfdr.de>; Mon, 16 Dec 2019 01:51:55 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9ECE411FC74
+	for <lists+intel-gfx@lfdr.de>; Mon, 16 Dec 2019 02:10:11 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B8F886E420;
-	Mon, 16 Dec 2019 00:51:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8273989CAF;
+	Mon, 16 Dec 2019 01:10:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from ozlabs.org (ozlabs.org [IPv6:2401:3900:2:1::2])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 077796E420
- for <intel-gfx@lists.freedesktop.org>; Mon, 16 Dec 2019 00:51:49 +0000 (UTC)
-Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
- SHA256) (No client certificate requested)
- by mail.ozlabs.org (Postfix) with ESMTPSA id 47bjQT4Mwwz9sNH;
- Mon, 16 Dec 2019 11:51:45 +1100 (AEDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=canb.auug.org.au;
- s=201702; t=1576457505;
- bh=barIgZhfjdNaSR9zBtj2KFrVq4xY0e5qWMY9AxtpYqY=;
- h=Date:From:To:Cc:Subject:From;
- b=MpW1QRXKX9RFkxvglPSI06kUY0h7nF2FWLtfVi+zJRuT59YycQjQMDeDVqRqirLxx
- bM3mlmsh7UzanCbbuptc6EW+cth9WbS1NvNVYtQkfrbhaAjL1RE4qveSiuFqEQnhMe
- rLbs5byUaRmdIgJWpHOnsdtryYahmNIYoAR5LMnT3bttY/PTqdxHybnXrdsQDSz7QN
- 06wER/JDj8sthx2goX1f3vg6UXxmz100jNT26hfQkTEW6VJtfEGGllEjk5xvhkJaR+
- NDd31o4Qcj1flI/zZOtwtI2akvvKb7dChFVPCJkl30VJAWkUAE1prO5xc4agnenNZg
- QLF/ZT8KKtTcQ==
-Date: Mon, 16 Dec 2019 11:51:45 +1100
-From: Stephen Rothwell <sfr@canb.auug.org.au>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>, Intel Graphics
- <intel-gfx@lists.freedesktop.org>, DRI <dri-devel@lists.freedesktop.org>
-Message-ID: <20191216115145.4f5cc123@canb.auug.org.au>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id F25B389CA0;
+ Mon, 16 Dec 2019 01:10:07 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id D7FD7A00C7;
+ Mon, 16 Dec 2019 01:10:07 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] linux-next: manual merge of the drm-misc tree with
- Linus' tree
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Mon, 16 Dec 2019 01:10:07 -0000
+Message-ID: <157645860786.5613.11339771513278539981@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20191216002501.2406334-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20191216002501.2406334-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/gt=3A_Set_vm_again_after_MI=5FSET=5FCONTEXT_=28rev14=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,110 +38,99 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Linux Next Mailing List <linux-next@vger.kernel.org>,
- Sean Paul <seanpaul@chromium.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: multipart/mixed; boundary="===============1827310497=="
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1827310497==
-Content-Type: multipart/signed; boundary="Sig_/frIcPPG8WbhjeYa/mWDsggn";
- protocol="application/pgp-signature"; micalg=pgp-sha256
+== Series Details ==
 
---Sig_/frIcPPG8WbhjeYa/mWDsggn
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
+Series: drm/i915/gt: Set vm again after MI_SET_CONTEXT (rev14)
+URL   : https://patchwork.freedesktop.org/series/70839/
+State : success
 
-Hi all,
+== Summary ==
 
-Today's linux-next merge of the drm-misc tree got a conflict in:
+CI Bug Log - changes from CI_DRM_7569 -> Patchwork_15781
+====================================================
 
-  include/drm/drm_dp_mst_helper.h
+Summary
+-------
 
-between commit:
+  **SUCCESS**
 
-  14692a3637d4 ("drm/dp_mst: Add probe_lock")
+  No regressions found.
 
-from the Linus' tree and commit:
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15781/index.html
 
-  f79489074c59 ("drm/dp_mst: Clear all payload id tables downstream when in=
-itializing")
+Known issues
+------------
 
-from the drm-misc tree.
+  Here are the changes found in Patchwork_15781 that come from known issues:
 
-I fixed it up (see below) and can carry the fix as necessary. This
-is now fixed as far as linux-next is concerned, but any non trivial
-conflicts should be mentioned to your upstream maintainer when your tree
-is submitted for merging.  You may also want to consider cooperating
-with the maintainer of the conflicting tree to minimise any particularly
-complex conflicts.
+### IGT changes ###
 
---=20
-Cheers,
-Stephen Rothwell
+#### Possible fixes ####
 
-diff --cc include/drm/drm_dp_mst_helper.h
-index d5fc90b30487,a448d701dc7e..000000000000
---- a/include/drm/drm_dp_mst_helper.h
-+++ b/include/drm/drm_dp_mst_helper.h
-@@@ -565,18 -495,18 +566,25 @@@ struct drm_dp_mst_topology_mgr=20
-  	 */
-  	struct mutex lock;
- =20
- +	/**
- +	 * @probe_lock: Prevents @work and @up_req_work, the only writers of
- +	 * &drm_dp_mst_port.mstb and &drm_dp_mst_branch.ports, from racing
- +	 * while they update the topology.
- +	 */
- +	struct mutex probe_lock;
- +
-  	/**
-- 	 * @mst_state: If this manager is enabled for an MST capable port. False
-- 	 * if no MST sink/branch devices is connected.
-+ 	 * @mst_state: If this manager is enabled for an MST capable port.
-+ 	 * False if no MST sink/branch devices is connected.
-  	 */
-- 	bool mst_state;
-+ 	bool mst_state : 1;
-+=20
-+ 	/**
-+ 	 * @payload_id_table_cleared: Whether or not we've cleared the payload
-+ 	 * ID table for @mst_primary. Protected by @lock.
-+ 	 */
-+ 	bool payload_id_table_cleared : 1;
-+=20
-  	/**
-  	 * @mst_primary: Pointer to the primary/first branch device.
-  	 */
+  * igt@i915_selftest@live_blt:
+    - fi-ivb-3770:        [DMESG-FAIL][1] ([i915#725]) -> [PASS][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7569/fi-ivb-3770/igt@i915_selftest@live_blt.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15781/fi-ivb-3770/igt@i915_selftest@live_blt.html
 
---Sig_/frIcPPG8WbhjeYa/mWDsggn
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
+  * igt@i915_selftest@live_gem_contexts:
+    - fi-byt-n2820:       [INCOMPLETE][3] ([i915#45]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7569/fi-byt-n2820/igt@i915_selftest@live_gem_contexts.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15781/fi-byt-n2820/igt@i915_selftest@live_gem_contexts.html
 
------BEGIN PGP SIGNATURE-----
+  * igt@kms_flip@basic-flip-vs-dpms:
+    - fi-apl-guc:         [DMESG-WARN][5] ([i915#180]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7569/fi-apl-guc/igt@kms_flip@basic-flip-vs-dpms.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15781/fi-apl-guc/igt@kms_flip@basic-flip-vs-dpms.html
 
-iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAl321SEACgkQAVBC80lX
-0GxkGggAlbCXpG7jCrvVDB2pJnRYmmHYGa9snqllJr3avUva39HJgOEHVcZKjNou
-zbOWU2JW9iWxm7n5ar3bFomH+r3/tE1T1/KmxTKF+PmFSKAzptMyeJ4MM8D+iZb7
-cyu3+jG0bOouRrwNrdGV5UD4WHig9KR67geBY6a6iIheMk9J3j+ngR0obs9D89iZ
-9A08yTnaYEdqjwnBgQLF85N3PCdygZ01FGjXypM98yxGtDQhCbVV78ybJBJGJR97
-eZB3CNimqXjU5ExSnd6/sEifeF+6jxnzv5B+S2nChf6nUdMSvSegXGFhktIKg18W
-TC4XZ+bFPFiCQj+tEgpqk/WsqCybOA==
-=3+Ni
------END PGP SIGNATURE-----
+  
+#### Warnings ####
 
---Sig_/frIcPPG8WbhjeYa/mWDsggn--
+  * igt@i915_selftest@live_gem_contexts:
+    - fi-hsw-peppy:       [DMESG-FAIL][7] ([i915#722]) -> [INCOMPLETE][8] ([i915#694])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7569/fi-hsw-peppy/igt@i915_selftest@live_gem_contexts.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15781/fi-hsw-peppy/igt@i915_selftest@live_gem_contexts.html
 
---===============1827310497==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+  
+  [i915#180]: https://gitlab.freedesktop.org/drm/intel/issues/180
+  [i915#45]: https://gitlab.freedesktop.org/drm/intel/issues/45
+  [i915#694]: https://gitlab.freedesktop.org/drm/intel/issues/694
+  [i915#722]: https://gitlab.freedesktop.org/drm/intel/issues/722
+  [i915#725]: https://gitlab.freedesktop.org/drm/intel/issues/725
 
+
+Participating hosts (34 -> 22)
+------------------------------
+
+  Missing    (12): fi-icl-1065g7 fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-snb-2520m fi-kbl-guc fi-ctg-p8600 fi-cfl-8109u fi-byt-clapper fi-bdw-samus fi-snb-2600 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_7569 -> Patchwork_15781
+
+  CI-20190529: 20190529
+  CI_DRM_7569: 62c2abc0df8983aba79ba093413683c44e9c4748 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5349: 048f58513d8b8ec6bb307a939f0ac959bc0f0e10 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_15781: f243dd7bf717b7edef90710ff072f856f72e5c3a @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+f243dd7bf717 drm/i915/gt: Set vm again after MI_SET_CONTEXT
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15781/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1827310497==--
