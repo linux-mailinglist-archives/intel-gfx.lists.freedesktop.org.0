@@ -1,32 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B56D712121A
-	for <lists+intel-gfx@lfdr.de>; Mon, 16 Dec 2019 18:49:19 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 373DE121268
+	for <lists+intel-gfx@lfdr.de>; Mon, 16 Dec 2019 18:52:43 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 29F856E850;
-	Mon, 16 Dec 2019 17:49:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 767EF6E851;
+	Mon, 16 Dec 2019 17:52:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 033056E850;
- Mon, 16 Dec 2019 17:49:16 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id EFDE3A0091;
- Mon, 16 Dec 2019 17:49:15 +0000 (UTC)
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4FF7A6E858
+ for <intel-gfx@lists.freedesktop.org>; Mon, 16 Dec 2019 17:52:39 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19598726-1500050 
+ for multiple; Mon, 16 Dec 2019 17:52:21 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon, 16 Dec 2019 17:52:20 +0000
+Message-Id: <20191216175220.2788298-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.24.0
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?b?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Date: Mon, 16 Dec 2019 17:49:15 -0000
-Message-ID: <157651855595.5614.10414830536938314809@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20191213195217.15168-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20191213195217.15168-1-ville.syrjala@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5B1/5=5D_drm/i915=3A_Call_hsw=5Ffdi=5Flink?=
- =?utf-8?b?X3RyYWluKCkgZGlyZWN0bHkoKSAocmV2Mik=?=
+Subject: [Intel-gfx] [PATCH v2] drm/i915/gt: Eliminate the trylock for
+ reading a timeline's hwsp
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,129 +37,177 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+As we stash a pointer to the HWSP cacheline on the request, when reading
+it we only need confirm that the cacheline is still valid by checking
+that the request and timeline are still intact.
 
-Series: series starting with [1/5] drm/i915: Call hsw_fdi_link_train() directly() (rev2)
-URL   : https://patchwork.freedesktop.org/series/70905/
-State : success
+v2: Protect hwsp_cachline with RCU
 
-== Summary ==
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+---
+ drivers/gpu/drm/i915/gt/intel_timeline.c | 59 +++++++++++-------------
+ drivers/gpu/drm/i915/i915_request.c      |  4 +-
+ drivers/gpu/drm/i915/i915_request.h      |  5 +-
+ 3 files changed, 30 insertions(+), 38 deletions(-)
 
-CI Bug Log - changes from CI_DRM_7574 -> Patchwork_15788
-====================================================
+diff --git a/drivers/gpu/drm/i915/gt/intel_timeline.c b/drivers/gpu/drm/i915/gt/intel_timeline.c
+index d71aafb66d6e..6da3f4af9614 100644
+--- a/drivers/gpu/drm/i915/gt/intel_timeline.c
++++ b/drivers/gpu/drm/i915/gt/intel_timeline.c
+@@ -25,10 +25,14 @@ struct intel_timeline_hwsp {
+ 
+ struct intel_timeline_cacheline {
+ 	struct i915_active active;
++
+ 	struct intel_timeline_hwsp *hwsp;
+ 	void *vaddr;
+ #define CACHELINE_BITS 6
+ #define CACHELINE_FREE CACHELINE_BITS
++	u32 offset;
++
++	struct rcu_head rcu;
+ };
+ 
+ static struct i915_vma *__hwsp_alloc(struct intel_gt *gt)
+@@ -133,7 +137,7 @@ static void __idle_cacheline_free(struct intel_timeline_cacheline *cl)
+ 	__idle_hwsp_free(cl->hwsp, ptr_unmask_bits(cl->vaddr, CACHELINE_BITS));
+ 
+ 	i915_active_fini(&cl->active);
+-	kfree(cl);
++	kfree_rcu(cl, rcu);
+ }
+ 
+ __i915_active_call
+@@ -177,6 +181,8 @@ cacheline_alloc(struct intel_timeline_hwsp *hwsp, unsigned int cacheline)
+ 	i915_vma_get(hwsp->vma);
+ 	cl->hwsp = hwsp;
+ 	cl->vaddr = page_pack_bits(vaddr, cacheline);
++	cl->offset =
++		i915_ggtt_offset(cl->hwsp->vma) + cacheline * CACHELINE_BYTES;
+ 
+ 	i915_active_init(&cl->active, __cacheline_active, __cacheline_retire);
+ 
+@@ -514,46 +520,33 @@ int intel_timeline_read_hwsp(struct i915_request *from,
+ 			     struct i915_request *to,
+ 			     u32 *hwsp)
+ {
+-	struct intel_timeline *tl;
++	struct intel_timeline_cacheline *cl;
+ 	int err;
+ 
++	GEM_BUG_ON(!rcu_access_pointer(from->hwsp_cacheline));
++
+ 	rcu_read_lock();
+-	tl = rcu_dereference(from->timeline);
+-	if (i915_request_completed(from) || !kref_get_unless_zero(&tl->kref))
+-		tl = NULL;
++	cl = rcu_dereference(from->hwsp_cacheline);
++	if (unlikely(!i915_active_acquire_if_busy(&cl->active)))
++		goto unlock; /* seqno wrapped and completed! */
++	if (unlikely(i915_request_completed(from)))
++		goto release;
+ 	rcu_read_unlock();
+-	if (!tl) /* already completed */
+-		return 1;
+-
+-	GEM_BUG_ON(rcu_access_pointer(to->timeline) == tl);
+-
+-	err = -EAGAIN;
+-	if (mutex_trylock(&tl->mutex)) {
+-		struct intel_timeline_cacheline *cl = from->hwsp_cacheline;
+-
+-		if (i915_request_completed(from)) {
+-			err = 1;
+-			goto unlock;
+-		}
+ 
+-		err = cacheline_ref(cl, to);
+-		if (err)
+-			goto unlock;
++	err = cacheline_ref(cl, to);
++	if (err)
++		goto out;
+ 
+-		if (likely(cl == tl->hwsp_cacheline)) {
+-			*hwsp = tl->hwsp_offset;
+-		} else { /* across a seqno wrap, recover the original offset */
+-			*hwsp = i915_ggtt_offset(cl->hwsp->vma) +
+-				ptr_unmask_bits(cl->vaddr, CACHELINE_BITS) *
+-				CACHELINE_BYTES;
+-		}
++	*hwsp = cl->offset;
++out:
++	i915_active_release(&cl->active);
++	return err;
+ 
++release:
++	i915_active_release(&cl->active);
+ unlock:
+-		mutex_unlock(&tl->mutex);
+-	}
+-	intel_timeline_put(tl);
+-
+-	return err;
++	rcu_read_unlock();
++	return 1;
+ }
+ 
+ void intel_timeline_unpin(struct intel_timeline *tl)
+diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
+index a59b803aef92..269470d3527a 100644
+--- a/drivers/gpu/drm/i915/i915_request.c
++++ b/drivers/gpu/drm/i915/i915_request.c
+@@ -655,9 +655,9 @@ __i915_request_create(struct intel_context *ce, gfp_t gfp)
+ 	rq->execution_mask = ce->engine->mask;
+ 	rq->flags = 0;
+ 
+-	rcu_assign_pointer(rq->timeline, tl);
++	RCU_INIT_POINTER(rq->timeline, tl);
++	RCU_INIT_POINTER(rq->hwsp_cacheline, tl->hwsp_cacheline);
+ 	rq->hwsp_seqno = tl->hwsp_seqno;
+-	rq->hwsp_cacheline = tl->hwsp_cacheline;
+ 
+ 	rq->rcustate = get_state_synchronize_rcu(); /* acts as smp_mb() */
+ 
+diff --git a/drivers/gpu/drm/i915/i915_request.h b/drivers/gpu/drm/i915/i915_request.h
+index a561b8efe869..aa38290eea3d 100644
+--- a/drivers/gpu/drm/i915/i915_request.h
++++ b/drivers/gpu/drm/i915/i915_request.h
+@@ -30,6 +30,7 @@
+ 
+ #include "gt/intel_context_types.h"
+ #include "gt/intel_engine_types.h"
++#include "gt/intel_timeline_types.h"
+ 
+ #include "i915_gem.h"
+ #include "i915_scheduler.h"
+@@ -41,8 +42,6 @@
+ struct drm_file;
+ struct drm_i915_gem_object;
+ struct i915_request;
+-struct intel_timeline;
+-struct intel_timeline_cacheline;
+ 
+ struct i915_capture_list {
+ 	struct i915_capture_list *next;
+@@ -183,7 +182,7 @@ struct i915_request {
+ 	 * inside the timeline's HWSP vma, but it is only valid while this
+ 	 * request has not completed and guarded by the timeline mutex.
+ 	 */
+-	struct intel_timeline_cacheline *hwsp_cacheline;
++	struct intel_timeline_cacheline __rcu *hwsp_cacheline;
+ 
+ 	/** Position in the ring of the start of the request */
+ 	u32 head;
+-- 
+2.24.0
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15788/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_15788 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - fi-hsw-peppy:       [PASS][1] -> [DMESG-WARN][2] ([i915#44])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7574/fi-hsw-peppy/igt@kms_frontbuffer_tracking@basic.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15788/fi-hsw-peppy/igt@kms_frontbuffer_tracking@basic.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_close_race@basic-threads:
-    - fi-byt-j1900:       [TIMEOUT][3] ([i915#816]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7574/fi-byt-j1900/igt@gem_close_race@basic-threads.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15788/fi-byt-j1900/igt@gem_close_race@basic-threads.html
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-skl-6770hq:      [FAIL][5] ([i915#178]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7574/fi-skl-6770hq/igt@i915_pm_rpm@module-reload.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15788/fi-skl-6770hq/igt@i915_pm_rpm@module-reload.html
-
-  * igt@i915_selftest@live_blt:
-    - fi-hsw-4770r:       [DMESG-FAIL][7] ([i915#725]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7574/fi-hsw-4770r/igt@i915_selftest@live_blt.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15788/fi-hsw-4770r/igt@i915_selftest@live_blt.html
-
-  * igt@kms_chamelium@hdmi-hpd-fast:
-    - fi-kbl-7500u:       [FAIL][9] ([fdo#111096] / [i915#323]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7574/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15788/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
-
-  
-#### Warnings ####
-
-  * igt@kms_flip@basic-flip-vs-modeset:
-    - fi-kbl-x1275:       [DMESG-WARN][11] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][12] ([i915#62] / [i915#92]) +5 similar issues
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7574/fi-kbl-x1275/igt@kms_flip@basic-flip-vs-modeset.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15788/fi-kbl-x1275/igt@kms_flip@basic-flip-vs-modeset.html
-
-  * igt@kms_pipe_crc_basic@hang-read-crc-pipe-a:
-    - fi-kbl-x1275:       [DMESG-WARN][13] ([i915#62] / [i915#92]) -> [DMESG-WARN][14] ([i915#62] / [i915#92] / [i915#95]) +2 similar issues
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7574/fi-kbl-x1275/igt@kms_pipe_crc_basic@hang-read-crc-pipe-a.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15788/fi-kbl-x1275/igt@kms_pipe_crc_basic@hang-read-crc-pipe-a.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#111096]: https://bugs.freedesktop.org/show_bug.cgi?id=111096
-  [fdo#111593]: https://bugs.freedesktop.org/show_bug.cgi?id=111593
-  [i915#178]: https://gitlab.freedesktop.org/drm/intel/issues/178
-  [i915#323]: https://gitlab.freedesktop.org/drm/intel/issues/323
-  [i915#44]: https://gitlab.freedesktop.org/drm/intel/issues/44
-  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
-  [i915#725]: https://gitlab.freedesktop.org/drm/intel/issues/725
-  [i915#816]: https://gitlab.freedesktop.org/drm/intel/issues/816
-  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
-  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
-
-
-Participating hosts (53 -> 47)
-------------------------------
-
-  Additional (1): fi-hsw-4770 
-  Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_7574 -> Patchwork_15788
-
-  CI-20190529: 20190529
-  CI_DRM_7574: 950244ca586c6f0efe243bf8c505c01ea5e579fa @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5349: 048f58513d8b8ec6bb307a939f0ac959bc0f0e10 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_15788: 3ff0b7b16527049cb26d8260f396b54cd6e5a966 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-3ff0b7b16527 drm/i915: Move stuff from haswell_crtc_disable() into encoder .post_disable()
-4baf5a937d54 drm/i915: Pass old crtc state to intel_crtc_vblank_off()
-6145a2f10995 drm/i915: Pass old crtc state to skylake_scaler_disable()
-5df8a8696c1c drm/i915: Nuke .post_pll_disable() for DDI platforms
-15c75f453649 drm/i915: Call hsw_fdi_link_train() directly()
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15788/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
