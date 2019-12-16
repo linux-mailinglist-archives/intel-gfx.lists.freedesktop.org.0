@@ -2,50 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B1697121B01
-	for <lists+intel-gfx@lfdr.de>; Mon, 16 Dec 2019 21:42:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D2DA4121B03
+	for <lists+intel-gfx@lfdr.de>; Mon, 16 Dec 2019 21:43:41 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 80B3D6E888;
-	Mon, 16 Dec 2019 20:42:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 253766E889;
+	Mon, 16 Dec 2019 20:43:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B80F86E888
- for <intel-gfx@lists.freedesktop.org>; Mon, 16 Dec 2019 20:42:31 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 16 Dec 2019 12:42:31 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,322,1571727600"; d="scan'208";a="217545697"
-Received: from fmsmsx104.amr.corp.intel.com ([10.18.124.202])
- by orsmga003.jf.intel.com with ESMTP; 16 Dec 2019 12:42:30 -0800
-Received: from fmsmsx121.amr.corp.intel.com (10.18.125.36) by
- fmsmsx104.amr.corp.intel.com (10.18.124.202) with Microsoft SMTP Server (TLS)
- id 14.3.439.0; Mon, 16 Dec 2019 12:42:28 -0800
-Received: from fmsmsx117.amr.corp.intel.com ([169.254.3.123]) by
- fmsmsx121.amr.corp.intel.com ([169.254.6.239]) with mapi id 14.03.0439.000;
- Mon, 16 Dec 2019 12:42:28 -0800
-From: "Souza, Jose" <jose.souza@intel.com>
-To: "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [PATCH 2/5] drm/i915: Nuke .post_pll_disable() for DDI platforms
-Thread-Index: AQHVse7WEy7qss3tU0ie018tKFi1Oae9xN+A
-Date: Mon, 16 Dec 2019 20:42:27 +0000
-Message-ID: <729d49873a3d9ec6e0903cbd66405e7b0b097c12.camel@intel.com>
-References: <20191213195217.15168-1-ville.syrjala@linux.intel.com>
- <20191213195217.15168-2-ville.syrjala@linux.intel.com>
-In-Reply-To: <20191213195217.15168-2-ville.syrjala@linux.intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.254.102.104]
-Content-ID: <75611505B9C4C245BB5B43E3F26A4771@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id A93BF6E889;
+ Mon, 16 Dec 2019 20:43:38 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 9F815A363B;
+ Mon, 16 Dec 2019 20:43:38 +0000 (UTC)
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 2/5] drm/i915: Nuke .post_pll_disable() for
- DDI platforms
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matt Roper" <matthew.d.roper@intel.com>
+Date: Mon, 16 Dec 2019 20:43:38 -0000
+Message-ID: <157652901864.5613.6581894871076144340@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20191213001511.678070-1-matthew.d.roper@intel.com>
+In-Reply-To: <20191213001511.678070-1-matthew.d.roper@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLklHVDogZmFpbHVyZSBmb3IgQVVY?=
+ =?utf-8?q?_power_well_fixes_=28rev4=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,117 +38,1045 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gRnJpLCAyMDE5LTEyLTEzIGF0IDIxOjUyICswMjAwLCBWaWxsZSBTeXJqYWxhIHdyb3RlOg0K
-PiBGcm9tOiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwuY29tPg0K
-PiANCj4gSFNXKyBwbGF0Zm9ybXMgY2FsbCBlbmNvZGVyIC5wb3N0X2Rpc2FibGUoKSBhbmQgLnBv
-c3RfcGxsX2Rpc2FibGUoKQ0KPiBiYWNrIHRvIGJhY2suIEFuZCBzaW5jZSB3ZSBkb24ndCBldmVu
-IGRpc2FibGUgdGhlIFBMTCBpbiBiZXR3ZWVuDQo+IGxldCdzIGp1c3QgbW92ZSBldmVyeXRoaW5n
-IGludG8gLnBvc3RfZGlzYWJsZSgpLg0KPiANCj4gaW50ZWxfZHBfbXN0IGRvZXMgZm9yd2FyZCB0
-aGUgLnBvc3RfZGlzYWJsZSgpIGNhbGwgdG8gaW50ZWxfZGRpIGF0DQo+IHRoZSB2ZXJ5IGVuZCBv
-ZiBpdHMgb3duIC5wb3N0X2Rpc2FibGUoKSBob29rLCBzbyB0aGlzIHRpbWUgTVNUDQo+IEkgc2hv
-dWxkbid0IGV2ZW4gYnJlYWsgTVNUIGJ5IGFjY2lkZW50Lg0KDQpSZXZpZXdlZC1ieTogSm9zw6kg
-Um9iZXJ0byBkZSBTb3V6YSA8am9zZS5zb3V6YUBpbnRlbC5jb20+DQoNCj4gDQo+IENjOiBKb3PD
-qSBSb2JlcnRvIGRlIFNvdXphIDxqb3NlLnNvdXphQGludGVsLmNvbT4NCj4gQ2M6IE1hbmFzaSBO
-YXZhcmUgPG1hbmFzaS5kLm5hdmFyZUBpbnRlbC5jb20+DQo+IFNpZ25lZC1vZmYtYnk6IFZpbGxl
-IFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5jb20+DQo+IC0tLQ0KPiAgZHJp
-dmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kZGkuYyAgICAgfCAyOSArKysrKysrLS0t
-LS0tLS0tLS0NCj4gLS0NCj4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlz
-cGxheS5jIHwgIDIgLS0NCj4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHBf
-bXN0LmMgIHwgMTUgLS0tLS0tLS0tLQ0KPiAgMyBmaWxlcyBjaGFuZ2VkLCAxMCBpbnNlcnRpb25z
-KCspLCAzNiBkZWxldGlvbnMoLSkNCj4gDQo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0v
-aTkxNS9kaXNwbGF5L2ludGVsX2RkaS5jDQo+IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxh
-eS9pbnRlbF9kZGkuYw0KPiBpbmRleCA5NGY4YmM0Y2QzMzUuLmNhYzBiZTQ3ZTUwMCAxMDA2NDQN
-Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kZGkuYw0KPiArKysg
-Yi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RkaS5jDQo+IEBAIC0zODU2LDYg
-KzM4NTYsOSBAQCBzdGF0aWMgdm9pZCBpbnRlbF9kZGlfcG9zdF9kaXNhYmxlKHN0cnVjdA0KPiBp
-bnRlbF9lbmNvZGVyICplbmNvZGVyLA0KPiAgCQkJCSAgIGNvbnN0IHN0cnVjdCBkcm1fY29ubmVj
-dG9yX3N0YXRlDQo+ICpvbGRfY29ubl9zdGF0ZSkNCj4gIHsNCj4gIAlzdHJ1Y3QgZHJtX2k5MTVf
-cHJpdmF0ZSAqZGV2X3ByaXYgPSB0b19pOTE1KGVuY29kZXItPmJhc2UuZGV2KTsNCj4gKwlzdHJ1
-Y3QgaW50ZWxfZGlnaXRhbF9wb3J0ICpkaWdfcG9ydCA9IGVuY190b19kaWdfcG9ydCgmZW5jb2Rl
-ci0NCj4gPmJhc2UpOw0KPiArCWVudW0gcGh5IHBoeSA9IGludGVsX3BvcnRfdG9fcGh5KGRldl9w
-cml2LCBlbmNvZGVyLT5wb3J0KTsNCj4gKwlib29sIGlzX3RjX3BvcnQgPSBpbnRlbF9waHlfaXNf
-dGMoZGV2X3ByaXYsIHBoeSk7DQo+ICANCj4gIAkvKg0KPiAgCSAqIFdoZW4gY2FsbGVkIGZyb20g
-RFAgTVNUIGNvZGU6DQo+IEBAIC0zODc5LDYgKzM4ODIsMTMgQEAgc3RhdGljIHZvaWQgaW50ZWxf
-ZGRpX3Bvc3RfZGlzYWJsZShzdHJ1Y3QNCj4gaW50ZWxfZW5jb2RlciAqZW5jb2RlciwNCj4gIA0K
-PiAgCWlmIChJTlRFTF9HRU4oZGV2X3ByaXYpID49IDExKQ0KPiAgCQlpY2xfdW5tYXBfcGxsc190
-b19wb3J0cyhlbmNvZGVyKTsNCj4gKw0KPiArCWlmIChpbnRlbF9jcnRjX2hhc19kcF9lbmNvZGVy
-KG9sZF9jcnRjX3N0YXRlKSB8fCBpc190Y19wb3J0KQ0KPiArCQlpbnRlbF9kaXNwbGF5X3Bvd2Vy
-X3B1dF91bmNoZWNrZWQoZGV2X3ByaXYsDQo+ICsJCQkJCQkgIGludGVsX2RkaV9tYWluX2xpbmtf
-YQ0KPiB1eF9kb21haW4oZGlnX3BvcnQpKTsNCj4gKw0KPiArCWlmIChpc190Y19wb3J0KQ0KPiAr
-CQlpbnRlbF90Y19wb3J0X3B1dF9saW5rKGRpZ19wb3J0KTsNCj4gIH0NCj4gIA0KPiAgdm9pZCBp
-bnRlbF9kZGlfZmRpX3Bvc3RfZGlzYWJsZShzdHJ1Y3QgaW50ZWxfZW5jb2RlciAqZW5jb2RlciwN
-Cj4gQEAgLTQxOTEsMjQgKzQyMDEsNiBAQCBpbnRlbF9kZGlfcHJlX3BsbF9lbmFibGUoc3RydWN0
-IGludGVsX2VuY29kZXINCj4gKmVuY29kZXIsDQo+ICAJCQkJCQljcnRjX3N0YXRlLQ0KPiA+bGFu
-ZV9sYXRfb3B0aW1fbWFzayk7DQo+ICB9DQo+ICANCj4gLXN0YXRpYyB2b2lkDQo+IC1pbnRlbF9k
-ZGlfcG9zdF9wbGxfZGlzYWJsZShzdHJ1Y3QgaW50ZWxfZW5jb2RlciAqZW5jb2RlciwNCj4gLQkJ
-CSAgIGNvbnN0IHN0cnVjdCBpbnRlbF9jcnRjX3N0YXRlICpjcnRjX3N0YXRlLA0KPiAtCQkJICAg
-Y29uc3Qgc3RydWN0IGRybV9jb25uZWN0b3Jfc3RhdGUNCj4gKmNvbm5fc3RhdGUpDQo+IC17DQo+
-IC0Jc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2ID0gdG9faTkxNShlbmNvZGVyLT5i
-YXNlLmRldik7DQo+IC0Jc3RydWN0IGludGVsX2RpZ2l0YWxfcG9ydCAqZGlnX3BvcnQgPSBlbmNf
-dG9fZGlnX3BvcnQoJmVuY29kZXItDQo+ID5iYXNlKTsNCj4gLQllbnVtIHBoeSBwaHkgPSBpbnRl
-bF9wb3J0X3RvX3BoeShkZXZfcHJpdiwgZW5jb2Rlci0+cG9ydCk7DQo+IC0JYm9vbCBpc190Y19w
-b3J0ID0gaW50ZWxfcGh5X2lzX3RjKGRldl9wcml2LCBwaHkpOw0KPiAtDQo+IC0JaWYgKGludGVs
-X2NydGNfaGFzX2RwX2VuY29kZXIoY3J0Y19zdGF0ZSkgfHwgaXNfdGNfcG9ydCkNCj4gLQkJaW50
-ZWxfZGlzcGxheV9wb3dlcl9wdXRfdW5jaGVja2VkKGRldl9wcml2LA0KPiAtCQkJCQkJICBpbnRl
-bF9kZGlfbWFpbl9saW5rX2ENCj4gdXhfZG9tYWluKGRpZ19wb3J0KSk7DQo+IC0NCj4gLQlpZiAo
-aXNfdGNfcG9ydCkNCj4gLQkJaW50ZWxfdGNfcG9ydF9wdXRfbGluayhkaWdfcG9ydCk7DQo+IC19
-DQo+IC0NCj4gIHN0YXRpYyB2b2lkIGludGVsX2RkaV9wcmVwYXJlX2xpbmtfcmV0cmFpbihzdHJ1
-Y3QgaW50ZWxfZHANCj4gKmludGVsX2RwKQ0KPiAgew0KPiAgCXN0cnVjdCBpbnRlbF9kaWdpdGFs
-X3BvcnQgKmludGVsX2RpZ19wb3J0ID0NCj4gZHBfdG9fZGlnX3BvcnQoaW50ZWxfZHApOw0KPiBA
-QCAtNDc5NSw3ICs0Nzg3LDYgQEAgdm9pZCBpbnRlbF9kZGlfaW5pdChzdHJ1Y3QgZHJtX2k5MTVf
-cHJpdmF0ZQ0KPiAqZGV2X3ByaXYsIGVudW0gcG9ydCBwb3J0KQ0KPiAgCWVuY29kZXItPmNvbXB1
-dGVfY29uZmlnID0gaW50ZWxfZGRpX2NvbXB1dGVfY29uZmlnOw0KPiAgCWVuY29kZXItPmVuYWJs
-ZSA9IGludGVsX2VuYWJsZV9kZGk7DQo+ICAJZW5jb2Rlci0+cHJlX3BsbF9lbmFibGUgPSBpbnRl
-bF9kZGlfcHJlX3BsbF9lbmFibGU7DQo+IC0JZW5jb2Rlci0+cG9zdF9wbGxfZGlzYWJsZSA9IGlu
-dGVsX2RkaV9wb3N0X3BsbF9kaXNhYmxlOw0KPiAgCWVuY29kZXItPnByZV9lbmFibGUgPSBpbnRl
-bF9kZGlfcHJlX2VuYWJsZTsNCj4gIAllbmNvZGVyLT5kaXNhYmxlID0gaW50ZWxfZGlzYWJsZV9k
-ZGk7DQo+ICAJZW5jb2Rlci0+cG9zdF9kaXNhYmxlID0gaW50ZWxfZGRpX3Bvc3RfZGlzYWJsZTsN
-Cj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxh
-eS5jDQo+IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMNCj4g
-aW5kZXggOGFlZDY3ZDJjMTA1Li40YWRjZDc1MTM4NGUgMTAwNjQ0DQo+IC0tLSBhL2RyaXZlcnMv
-Z3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jDQo+ICsrKyBiL2RyaXZlcnMvZ3B1
-L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jDQo+IEBAIC02NzY3LDggKzY3NjcsNiBA
-QCBzdGF0aWMgdm9pZCBoYXN3ZWxsX2NydGNfZGlzYWJsZShzdHJ1Y3QNCj4gaW50ZWxfYXRvbWlj
-X3N0YXRlICpzdGF0ZSwNCj4gIAkJaXJvbmxha2VfcGZpdF9kaXNhYmxlKG9sZF9jcnRjX3N0YXRl
-KTsNCj4gIA0KPiAgCWludGVsX2VuY29kZXJzX3Bvc3RfZGlzYWJsZShzdGF0ZSwgY3J0Yyk7DQo+
-IC0NCj4gLQlpbnRlbF9lbmNvZGVyc19wb3N0X3BsbF9kaXNhYmxlKHN0YXRlLCBjcnRjKTsNCj4g
-IH0NCj4gIA0KPiAgc3RhdGljIHZvaWQgaTl4eF9wZml0X2VuYWJsZShjb25zdCBzdHJ1Y3QgaW50
-ZWxfY3J0Y19zdGF0ZQ0KPiAqY3J0Y19zdGF0ZSkNCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1
-L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHBfbXN0LmMNCj4gYi9kcml2ZXJzL2dwdS9kcm0vaTkx
-NS9kaXNwbGF5L2ludGVsX2RwX21zdC5jDQo+IGluZGV4IDkyNmU0OWY0NDlhNi4uOGJkYmIxNTc5
-OWVlIDEwMDY0NA0KPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rw
-X21zdC5jDQo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHBfbXN0
-LmMNCj4gQEAgLTI4NiwyMCArMjg2LDYgQEAgc3RhdGljIHZvaWQgaW50ZWxfbXN0X3ByZV9wbGxf
-ZW5hYmxlX2RwKHN0cnVjdA0KPiBpbnRlbF9lbmNvZGVyICplbmNvZGVyLA0KPiAgCQkJCQkJICAg
-IHBpcGVfY29uZmlnLCBOVUxMKTsNCj4gIH0NCj4gIA0KPiAtc3RhdGljIHZvaWQgaW50ZWxfbXN0
-X3Bvc3RfcGxsX2Rpc2FibGVfZHAoc3RydWN0IGludGVsX2VuY29kZXINCj4gKmVuY29kZXIsDQo+
-IC0JCQkJCSAgY29uc3Qgc3RydWN0IGludGVsX2NydGNfc3RhdGUNCj4gKm9sZF9jcnRjX3N0YXRl
-LA0KPiAtCQkJCQkgIGNvbnN0IHN0cnVjdA0KPiBkcm1fY29ubmVjdG9yX3N0YXRlICpvbGRfY29u
-bl9zdGF0ZSkNCj4gLXsNCj4gLQlzdHJ1Y3QgaW50ZWxfZHBfbXN0X2VuY29kZXIgKmludGVsX21z
-dCA9IGVuY190b19tc3QoJmVuY29kZXItDQo+ID5iYXNlKTsNCj4gLQlzdHJ1Y3QgaW50ZWxfZGln
-aXRhbF9wb3J0ICppbnRlbF9kaWdfcG9ydCA9IGludGVsX21zdC0+cHJpbWFyeTsNCj4gLQlzdHJ1
-Y3QgaW50ZWxfZHAgKmludGVsX2RwID0gJmludGVsX2RpZ19wb3J0LT5kcDsNCj4gLQ0KPiAtCWlm
-IChpbnRlbF9kcC0+YWN0aXZlX21zdF9saW5rcyA9PSAwKQ0KPiAtCQlpbnRlbF9kaWdfcG9ydC0+
-YmFzZS5wb3N0X3BsbF9kaXNhYmxlKCZpbnRlbF9kaWdfcG9ydC0NCj4gPmJhc2UsDQo+IC0JCQkJ
-CQkgICAgICBvbGRfY3J0Y19zdGF0ZSwNCj4gLQkJCQkJCSAgICAgIG9sZF9jb25uX3N0YXRlKTsN
-Cj4gLX0NCj4gLQ0KPiAgc3RhdGljIHZvaWQgaW50ZWxfbXN0X3ByZV9lbmFibGVfZHAoc3RydWN0
-IGludGVsX2VuY29kZXIgKmVuY29kZXIsDQo+ICAJCQkJICAgIGNvbnN0IHN0cnVjdCBpbnRlbF9j
-cnRjX3N0YXRlDQo+ICpwaXBlX2NvbmZpZywNCj4gIAkJCQkgICAgY29uc3Qgc3RydWN0IGRybV9j
-b25uZWN0b3Jfc3RhdGUNCj4gKmNvbm5fc3RhdGUpDQo+IEBAIC02NTYsNyArNjQyLDYgQEAgaW50
-ZWxfZHBfY3JlYXRlX2Zha2VfbXN0X2VuY29kZXIoc3RydWN0DQo+IGludGVsX2RpZ2l0YWxfcG9y
-dCAqaW50ZWxfZGlnX3BvcnQsIGVudW0NCj4gIAlpbnRlbF9lbmNvZGVyLT5kaXNhYmxlID0gaW50
-ZWxfbXN0X2Rpc2FibGVfZHA7DQo+ICAJaW50ZWxfZW5jb2Rlci0+cG9zdF9kaXNhYmxlID0gaW50
-ZWxfbXN0X3Bvc3RfZGlzYWJsZV9kcDsNCj4gIAlpbnRlbF9lbmNvZGVyLT5wcmVfcGxsX2VuYWJs
-ZSA9IGludGVsX21zdF9wcmVfcGxsX2VuYWJsZV9kcDsNCj4gLQlpbnRlbF9lbmNvZGVyLT5wb3N0
-X3BsbF9kaXNhYmxlID0NCj4gaW50ZWxfbXN0X3Bvc3RfcGxsX2Rpc2FibGVfZHA7DQo+ICAJaW50
-ZWxfZW5jb2Rlci0+cHJlX2VuYWJsZSA9IGludGVsX21zdF9wcmVfZW5hYmxlX2RwOw0KPiAgCWlu
-dGVsX2VuY29kZXItPmVuYWJsZSA9IGludGVsX21zdF9lbmFibGVfZHA7DQo+ICAJaW50ZWxfZW5j
-b2Rlci0+Z2V0X2h3X3N0YXRlID0gaW50ZWxfZHBfbXN0X2VuY19nZXRfaHdfc3RhdGU7DQpfX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFp
-bGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
+== Series Details ==
+
+Series: AUX power well fixes (rev4)
+URL   : https://patchwork.freedesktop.org/series/70857/
+State : failure
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_7554_full -> Patchwork_15737_full
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with Patchwork_15737_full absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_15737_full, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_15737_full:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@perf_pmu@busy-vecs0:
+    - shard-skl:          [PASS][1] -> ([INCOMPLETE][2], [PASS][3])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7554/shard-skl9/igt@perf_pmu@busy-vecs0.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15737/shard-skl8/igt@perf_pmu@busy-vecs0.html
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15737/shard-skl3/igt@perf_pmu@busy-vecs0.html
+
+  
+
+### Piglit changes ###
+
+#### Possible regressions ####
+
+  * spec@glsl-1.30@execution@texelfetch@fs-texelfetch-isampler1darray (NEW):
+    - {pig-hsw-4770r}:    NOTRUN -> [FAIL][4] +907 similar issues
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15737/pig-hsw-4770r/spec@glsl-1.30@execution@texelfetch@fs-texelfetch-isampler1darray.html
+
+  
+New tests
+---------
+
+  New tests have been introduced between CI_DRM_7554_full and Patchwork_15737_full:
+
+### New Piglit tests (916) ###
+
+  * hiz@hiz-depth-read-fbo-d24-s8:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.10] s
+
+  * object namespace pollution@texture with glclear:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.16] s
+
+  * object namespace pollution@texture with glgeneratemipmap:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.13] s
+
+  * object namespace pollution@texture with gltexsubimage2d:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.25] s
+
+  * spec@!opengl 1.1@teximage-colors gl_alpha:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.25] s
+
+  * spec@!opengl 1.1@teximage-colors gl_alpha12:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.30] s
+
+  * spec@!opengl 1.1@teximage-colors gl_alpha16:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.31] s
+
+  * spec@!opengl 1.1@teximage-colors gl_alpha4:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.39] s
+
+  * spec@!opengl 1.1@teximage-colors gl_alpha8:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.34] s
+
+  * spec@!opengl 1.1@teximage-colors gl_luminance:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.32] s
+
+  * spec@!opengl 1.1@teximage-colors gl_luminance12:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.35] s
+
+  * spec@!opengl 1.1@teximage-colors gl_luminance12_alpha12:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.32] s
+
+  * spec@!opengl 1.1@teximage-colors gl_luminance12_alpha4:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.30] s
+
+  * spec@!opengl 1.1@teximage-colors gl_luminance16:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.28] s
+
+  * spec@!opengl 1.1@teximage-colors gl_luminance16_alpha16:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.28] s
+
+  * spec@!opengl 1.1@teximage-colors gl_luminance4:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.36] s
+
+  * spec@!opengl 1.1@teximage-colors gl_luminance4_alpha4:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.31] s
+
+  * spec@!opengl 1.1@teximage-colors gl_luminance6_alpha2:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.35] s
+
+  * spec@!opengl 1.1@teximage-colors gl_luminance8:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.34] s
+
+  * spec@!opengl 1.1@teximage-colors gl_luminance8_alpha8:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.36] s
+
+  * spec@!opengl 1.1@teximage-colors gl_luminance_alpha:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.34] s
+
+  * spec@!opengl 1.1@teximage-colors gl_rgb10_a2:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.31] s
+
+  * spec@!opengl 1.1@teximage-colors gl_rgb16_snorm:
+    - Statuses : 1 fail(s)
+    - Exec time: [5.20] s
+
+  * spec@!opengl 1.1@teximage-colors gl_rgb16f:
+    - Statuses : 1 fail(s)
+    - Exec time: [5.18] s
+
+  * spec@!opengl 1.1@teximage-colors gl_rgb32f:
+    - Statuses : 1 fail(s)
+    - Exec time: [5.21] s
+
+  * spec@!opengl 1.1@teximage-colors gl_rgb5_a1:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.29] s
+
+  * spec@!opengl 1.1@teximage-colors gl_rgba:
+    - Statuses : 1 fail(s)
+    - Exec time: [5.15] s
+
+  * spec@!opengl 1.1@teximage-colors gl_rgba12:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.34] s
+
+  * spec@!opengl 1.1@teximage-colors gl_rgba16:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.29] s
+
+  * spec@!opengl 1.1@teximage-colors gl_rgba16_snorm:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.26] s
+
+  * spec@!opengl 1.1@teximage-colors gl_rgba2:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.31] s
+
+  * spec@!opengl 1.1@teximage-colors gl_rgba32f:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.25] s
+
+  * spec@!opengl 1.1@teximage-colors gl_rgba4:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.33] s
+
+  * spec@!opengl 1.1@teximage-colors gl_rgba8:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.27] s
+
+  * spec@!opengl 1.1@teximage-colors gl_rgba8_snorm:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.30] s
+
+  * spec@!opengl 1.1@teximage-colors gl_sluminance8:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.33] s
+
+  * spec@!opengl 1.1@teximage-colors gl_sluminance8_alpha8:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.31] s
+
+  * spec@!opengl 1.1@teximage-colors gl_srgb8_alpha8:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.33] s
+
+  * spec@!opengl 1.2@copyteximage 3d:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.32] s
+
+  * spec@!opengl 1.2@getteximage-targets 3d:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.12] s
+
+  * spec@!opengl 1.2@levelclamp:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.22] s
+
+  * spec@!opengl 1.2@lodclamp:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.22] s
+
+  * spec@!opengl 1.2@tex3d:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.09] s
+
+  * spec@!opengl 1.2@texture-packed-formats:
+    - Statuses : 1 fail(s)
+    - Exec time: [2.27] s
+
+  * spec@!opengl 1.2@texwrap 3d:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.10] s
+
+  * spec@!opengl 1.2@texwrap 3d proj:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.12] s
+
+  * spec@!opengl 1.4@gl-1.4-dlist-multidrawarrays:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.13] s
+
+  * spec@!opengl 1.4@gl-1.4-polygon-offset:
+    - Statuses : 1 incomplete(s)
+    - Exec time: [0.0] s
+
+  * spec@!opengl 1.4@tex-miplevel-selection-lod:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.17] s
+
+  * spec@!opengl 1.4@tex-miplevel-selection-lod-bias:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.06] s
+
+  * spec@!opengl 1.5@depth-tex-compare:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.29] s
+
+  * spec@!opengl 1.5@draw-vertices:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.18] s
+
+  * spec@!opengl 1.5@draw-vertices-user:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.16] s
+
+  * spec@!opengl 2.0@attribs:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.63] s
+
+  * spec@!opengl 2.0@depth-tex-modes-glsl:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.18] s
+
+  * spec@!opengl 2.0@gl-2.0-two-sided-stencil:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.10] s
+
+  * spec@!opengl 2.0@max-samplers:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.46] s
+
+  * spec@!opengl 2.0@max-samplers border:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.46] s
+
+  * spec@!opengl 2.0@stencil-twoside:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.19] s
+
+  * spec@!opengl 2.0@tex3d-npot:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.19] s
+
+  * spec@!opengl 2.1@pbo:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.24] s
+
+  * spec@!opengl 3.0@attribs:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.24] s
+
+  * spec@!opengl 3.0@bound-resource-limits:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.14] s
+
+  * spec@!opengl 3.0@clearbuffer-depth:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.16] s
+
+  * spec@!opengl 3.0@clearbuffer-depth-stencil:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.25] s
+
+  * spec@!opengl 3.0@clearbuffer-display-lists:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.09] s
+
+  * spec@!opengl 3.0@clearbuffer-mixed-format:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.10] s
+
+  * spec@!opengl 3.0@clearbuffer-stencil:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.13] s
+
+  * spec@!opengl 3.0@gl-3.0-texture-integer:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.12] s
+
+  * spec@!opengl 3.0@render-integer:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.25] s
+
+  * spec@!opengl 3.0@sampler-cube-shadow:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.14] s
+
+  * spec@!opengl 3.2@coord-replace-doesnt-eliminate-frag-tex-coords:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.50] s
+
+  * spec@!opengl 3.2@layered-rendering@clear-color-all-types 1d_array single_level:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.08] s
+
+  * spec@!opengl 3.2@layered-rendering@clear-color-all-types cube_map mipmapped:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.11] s
+
+  * spec@!opengl 3.2@layered-rendering@clear-color-all-types cube_map single_level:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.08] s
+
+  * spec@!opengl 3.2@layered-rendering@framebuffertexture:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.11] s
+
+  * spec@!opengl 3.2@layered-rendering@gl-layer-render-clipped:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.07] s
+
+  * spec@!opengl 3.2@layered-rendering@gl-layer-render-storage:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.14] s
+
+  * spec@3dfx_texture_compression_fxt1@fxt1-teximage:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.08] s
+
+  * spec@arb_arrays_of_arrays@execution@atomic_counters@vs-indirect-index:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.10] s
+
+  * spec@arb_base_instance@arb_base_instance-drawarrays:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.13] s
+
+  * spec@arb_blend_func_extended@arb_blend_func_extended-fbo-extended-blend:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.16] s
+
+  * spec@arb_blend_func_extended@arb_blend_func_extended-fbo-extended-blend-explicit:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.14] s
+
+  * spec@arb_blend_func_extended@arb_blend_func_extended-fbo-extended-blend-explicit_gles3:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.19] s
+
+  * spec@arb_blend_func_extended@arb_blend_func_extended-fbo-extended-blend_gles3:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.14] s
+
+  * spec@arb_clip_control@arb_clip_control-viewport:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.12] s
+
+  * spec@arb_color_buffer_float@gl_rgba16f-probepixel:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.10] s
+
+  * spec@arb_color_buffer_float@gl_rgba16f-render:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.70] s
+
+  * spec@arb_color_buffer_float@gl_rgba16f-render-fog:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.74] s
+
+  * spec@arb_color_buffer_float@gl_rgba16f-render-sanity-fog:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.19] s
+
+  * spec@arb_color_buffer_float@gl_rgba32f-drawpixels:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.10] s
+
+  * spec@arb_color_buffer_float@gl_rgba32f-probepixel:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.10] s
+
+  * spec@arb_color_buffer_float@gl_rgba32f-render:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.64] s
+
+  * spec@arb_color_buffer_float@gl_rgba32f-render-fog:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.63] s
+
+  * spec@arb_color_buffer_float@gl_rgba32f-render-sanity:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.17] s
+
+  * spec@arb_color_buffer_float@gl_rgba8-render:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.65] s
+
+  * spec@arb_color_buffer_float@gl_rgba8-render-fog:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.67] s
+
+  * spec@arb_color_buffer_float@gl_rgba8-render-sanity-fog:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.15] s
+
+  * spec@arb_color_buffer_float@gl_rgba8_snorm-render:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.72] s
+
+  * spec@arb_color_buffer_float@gl_rgba8_snorm-render-fog:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.80] s
+
+  * spec@arb_color_buffer_float@gl_rgba8_snorm-render-sanity:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.20] s
+
+  * spec@arb_color_buffer_float@gl_rgba8_snorm-render-sanity-fog:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.16] s
+
+  * spec@arb_compute_shader@render-and-compute:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.14] s
+
+  * spec@arb_copy_buffer@overlap:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.14] s
+
+  * spec@arb_copy_buffer@targets:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.17] s
+
+  * spec@arb_copy_image@arb_copy_image-format-swizzle:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.24] s
+
+  * spec@arb_copy_image@arb_copy_image-formats --samples=2:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.53] s
+
+  * spec@arb_copy_image@arb_copy_image-formats --samples=4:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.58] s
+
+  * spec@arb_copy_image@arb_copy_image-targets gl_texture_1d 32 1 1 gl_texture_cube_map 32 32 6 11 0 0 5 13 4 14 1 1:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.13] s
+
+  * spec@arb_copy_image@arb_copy_image-targets gl_texture_1d_array 32 1 12 gl_texture_2d_array 32 16 18 11 0 3 5 9 7 14 1 8:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.22] s
+
+  * spec@arb_copy_image@arb_copy_image-targets gl_texture_1d_array 32 1 12 gl_texture_3d 32 16 18 11 0 3 5 9 2 14 1 7:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.23] s
+
+  * spec@arb_copy_image@arb_copy_image-targets gl_texture_1d_array 32 1 12 gl_texture_cube_map_array 32 32 18 11 0 3 5 17 2 14 1 7:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.23] s
+
+  * spec@arb_copy_image@arb_copy_image-targets gl_texture_2d 32 32 1 gl_texture_2d_array 32 16 15 11 12 0 5 7 12 14 8 1:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.16] s
+
+  * spec@arb_copy_image@arb_copy_image-targets gl_texture_2d_array 32 32 15 gl_texture_2d_array 32 16 15 11 12 5 5 7 2 14 9 9:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.19] s
+
+  * spec@arb_copy_image@arb_copy_image-targets gl_texture_2d_array 32 32 15 gl_texture_3d 32 16 18 11 5 2 5 9 7 14 7 11:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.18] s
+
+  * spec@arb_copy_image@arb_copy_image-targets gl_texture_2d_array 32 32 15 gl_texture_cube_map 32 32 6 11 5 1 5 9 2 14 7 3:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.18] s
+
+  * spec@arb_copy_image@arb_copy_image-targets gl_texture_2d_array 32 32 15 gl_texture_cube_map_array 32 32 18 11 5 2 5 9 7 14 7 11:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.16] s
+
+  * spec@arb_copy_image@arb_copy_image-targets gl_texture_3d 32 32 17 gl_texture_1d 32 1 1 11 23 7 5 0 0 14 1 1:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.18] s
+
+  * spec@arb_copy_image@arb_copy_image-targets gl_texture_3d 32 32 17 gl_texture_2d 32 16 1 11 12 13 5 7 0 14 7 1:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.15] s
+
+  * spec@arb_copy_image@arb_copy_image-targets gl_texture_3d 32 32 17 gl_texture_2d_array 32 16 15 11 12 5 5 3 2 14 13 9:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.18] s
+
+  * spec@arb_copy_image@arb_copy_image-targets gl_texture_3d 32 32 17 gl_texture_3d 32 16 18 11 5 2 5 9 7 14 7 11:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.20] s
+
+  * spec@arb_copy_image@arb_copy_image-targets gl_texture_3d 32 32 17 gl_texture_cube_map_array 16 16 18 11 5 2 5 9 7 5 7 11:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.31] s
+
+  * spec@arb_copy_image@arb_copy_image-targets gl_texture_3d 32 32 17 gl_texture_rectangle 32 16 1 11 12 13 5 7 0 14 9 1:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.12] s
+
+  * spec@arb_copy_image@arb_copy_image-targets gl_texture_cube_map 32 32 6 gl_texture_1d_array 32 1 16 11 2 3 5 0 7 14 1 2:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.15] s
+
+  * spec@arb_copy_image@arb_copy_image-targets gl_texture_cube_map 32 32 6 gl_texture_cube_map_array 32 32 18 11 5 1 5 9 9 14 7 5:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.24] s
+
+  * spec@arb_copy_image@arb_copy_image-targets gl_texture_cube_map_array 32 32 18 gl_texture_1d 32 1 1 11 23 7 5 0 0 14 1 1:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.15] s
+
+  * spec@arb_copy_image@arb_copy_image-targets gl_texture_cube_map_array 32 32 18 gl_texture_2d_array 32 16 15 11 12 5 5 1 2 14 15 9:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.25] s
+
+  * spec@arb_copy_image@arb_copy_image-targets gl_texture_cube_map_array 32 32 18 gl_texture_3d 32 16 18 11 5 2 5 9 7 14 7 11:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.20] s
+
+  * spec@arb_copy_image@arb_copy_image-targets gl_texture_cube_map_array 32 32 18 gl_texture_cube_map_array 16 16 18 11 5 2 5 9 7 5 7 11:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.20] s
+
+  * spec@arb_copy_image@arb_copy_image-targets gl_texture_cube_map_array 32 32 18 gl_texture_rectangle 32 16 1 11 12 13 5 7 0 14 6 1:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.12] s
+
+  * spec@arb_copy_image@arb_copy_image-texview:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.12] s
+
+  * spec@arb_depth_buffer_float@depthstencil-render-miplevels 1024 d=z32f_s8_s=z24_s8:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.50] s
+
+  * spec@arb_depth_buffer_float@depthstencil-render-miplevels 273 d=z32f:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.09] s
+
+  * spec@arb_depth_buffer_float@depthstencil-render-miplevels 273 d=z32f_s8:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.10] s
+
+  * spec@arb_depth_buffer_float@depthstencil-render-miplevels 273 d=z32f_s=z24_s8:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.11] s
+
+  * spec@arb_depth_buffer_float@depthstencil-render-miplevels 273 s=z24_s8_d=z32f_s8:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.10] s
+
+  * spec@arb_depth_buffer_float@depthstencil-render-miplevels 292 d=z32f_s=z24_s8:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.10] s
+
+  * spec@arb_depth_buffer_float@depthstencil-render-miplevels 292 s=z24_s8_d=z32f:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.11] s
+
+  * spec@arb_depth_buffer_float@depthstencil-render-miplevels 585 d=z32f:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.09] s
+
+  * spec@arb_depth_buffer_float@depthstencil-render-miplevels 585 d=z32f_s=z24_s8:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.17] s
+
+  * spec@arb_depth_buffer_float@fbo-clear-formats stencil:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.44] s
+
+  * spec@arb_depth_texture@depth-tex-modes:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.16] s
+
+  * spec@arb_depth_texture@depthstencil-render-miplevels 1024 d=z24:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.12] s
+
+  * spec@arb_depth_texture@depthstencil-render-miplevels 146 d=z16:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.10] s
+
+  * spec@arb_depth_texture@depthstencil-render-miplevels 273 d=z16:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.08] s
+
+  * spec@arb_depth_texture@depthstencil-render-miplevels 273 d=z24:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.08] s
+
+  * spec@arb_depth_texture@depthstencil-render-miplevels 292 d=z16:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.09] s
+
+  * spec@arb_depth_texture@depthstencil-render-miplevels 292 d=z24:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.08] s
+
+  * spec@arb_depth_texture@depthstencil-render-miplevels 585 d=z16:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.11] s
+
+  * spec@arb_depth_texture@depthstencil-render-miplevels 585 d=z24:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.11] s
+
+  * spec@arb_depth_texture@fbo-depth-gl_depth_component16-copypixels:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.11] s
+
+  * spec@arb_depth_texture@texdepth:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.07] s
+
+  * spec@arb_direct_state_access@copytexturesubimage:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.12] s
+
+  * spec@arb_direct_state_access@getcompressedtextureimage:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.16] s
+
+  * spec@arb_direct_state_access@gettextureimage-targets:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.17] s
+
+  * spec@arb_draw_elements_base_vertex@arb_draw_elements_base_vertex-drawelements:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.17] s
+
+  * spec@arb_draw_elements_base_vertex@arb_draw_elements_base_vertex-drawelements-instanced:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.18] s
+
+  * spec@arb_draw_elements_base_vertex@arb_draw_elements_base_vertex-drawelements-user_varrays:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.19] s
+
+  * spec@arb_draw_elements_base_vertex@arb_draw_elements_base_vertex-negative-index:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.15] s
+
+  * spec@arb_explicit_attrib_location@overlapping-locations-input-attribs shader:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.07] s
+
+  * spec@arb_fragment_program@fp-lit-src-equals-dst:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.10] s
+
+  * spec@arb_fragment_program@fp-long-alu:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.18] s
+
+  * spec@arb_fragment_program@sparse-samplers:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.10] s
+
+  * spec@arb_framebuffer_no_attachments@arb_framebuffer_no_attachments-query:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.12] s
+
+  * spec@arb_framebuffer_object@fbo-blit-stretch:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.23] s
+
+  * spec@arb_framebuffer_object@fbo-generatemipmap-3d:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.20] s
+
+  * spec@arb_framebuffer_object@fbo-generatemipmap-3d rgb9_e5:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.16] s
+
+  * spec@arb_framebuffer_object@fbo-generatemipmap-cubemap rgb9_e5:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.21] s
+
+  * spec@arb_framebuffer_object@fbo-mipmap-copypix:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.39] s
+
+  * spec@arb_framebuffer_srgb@fbo-fast-clear:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.14] s
+
+  * spec@arb_get_texture_sub_image@arb_get_texture_sub_image-get:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.68] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-r-0-float-2d:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.62] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-r-0-float-2darray:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.58] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-r-0-float-2drect:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.66] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-r-0-float-cube:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.66] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-r-0-float-cubearray:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.67] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-r-0-int-2d:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.75] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-r-0-int-2darray:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.67] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-r-0-int-2drect:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.75] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-r-0-int-cube:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.65] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-r-0-int-cubearray:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.67] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-r-0-uint-2d:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.66] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-r-0-uint-2darray:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.67] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-r-0-uint-2drect:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.64] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-r-0-unorm-2d:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.77] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-r-0-unorm-2darray:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.80] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-r-0-unorm-2drect:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.72] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-r-0-unorm-cube:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.57] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-r-0-unorm-cubearray:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.70] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-rg-0-float-2d:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.76] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-rg-0-float-2darray:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.72] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-rg-0-float-2drect:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.73] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-rg-0-float-cube:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.76] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-rg-0-float-cubearray:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.67] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-rg-0-int-2d:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.72] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-rg-0-int-2darray:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.66] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-rg-0-int-2drect:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.57] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-rg-0-int-cube:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.78] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-rg-0-int-cubearray:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.72] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-rg-0-uint-2d:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.64] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-rg-0-uint-2darray:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.69] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-rg-0-uint-2drect:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.68] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-rg-0-uint-cube:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.81] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-rg-0-unorm-2d:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.83] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-rg-0-unorm-2darray:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.67] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-rg-0-unorm-2drect:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.65] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-rg-0-unorm-cube:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.62] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-rg-0-unorm-cubearray:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.67] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-rg-1-float-2d:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.69] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-rg-1-float-2darray:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.71] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-rg-1-float-2drect:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.66] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-rg-1-float-cube:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.69] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-rg-1-float-cubearray:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.61] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-rg-1-int-2d:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.60] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-rg-1-int-2drect:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.70] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-rg-1-int-cube:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.61] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-rg-1-int-cubearray:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.65] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-rg-1-uint-2d:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.69] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-rg-1-uint-2darray:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.71] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-rg-1-uint-2drect:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.64] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-rg-1-uint-cube:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.77] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-rg-1-uint-cubearray:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.63] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-rg-1-unorm-2d:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.67] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-rg-1-unorm-2darray:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.73] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-rg-1-unorm-2drect:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.75] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-rg-1-unorm-cube:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.61] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-rg-1-unorm-cubearray:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.62] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-rgb-0-float-2d:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.50] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-rgb-0-float-2darray:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.59] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-rgb-0-float-2drect:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.72] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-rgb-0-float-cube:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.63] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-rgb-0-int-2d:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.60] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-rgb-0-int-2drect:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.59] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-rgb-0-int-cube:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.76] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-rgb-0-unorm-2d:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.69] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-rgb-0-unorm-2darray:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.66] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-rgb-0-unorm-2drect:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.64] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-rgb-0-unorm-cube:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.70] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-rgb-0-unorm-cubearray:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.60] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-rgb-1-float-2darray:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.61] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-rgb-1-float-2drect:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.76] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-rgb-1-float-cube:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.68] s
+
+  * spec@arb_gpu_s
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15737/index.html
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
