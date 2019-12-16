@@ -1,32 +1,45 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B499A1210DE
-	for <lists+intel-gfx@lfdr.de>; Mon, 16 Dec 2019 18:07:15 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9915E12115E
+	for <lists+intel-gfx@lfdr.de>; Mon, 16 Dec 2019 18:11:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1CFA06E837;
-	Mon, 16 Dec 2019 17:07:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E056C6E83E;
+	Mon, 16 Dec 2019 17:11:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 3DF396E836;
- Mon, 16 Dec 2019 17:07:12 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 33C08A010F;
- Mon, 16 Dec 2019 17:07:12 +0000 (UTC)
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7D0A06E83E
+ for <intel-gfx@lists.freedesktop.org>; Mon, 16 Dec 2019 17:11:24 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 16 Dec 2019 09:11:23 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.69,322,1571727600"; d="scan'208";a="266310685"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by FMSMGA003.fm.intel.com with SMTP; 16 Dec 2019 09:11:21 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Mon, 16 Dec 2019 19:11:20 +0200
+Date: Mon, 16 Dec 2019 19:11:20 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Manasi Navare <manasi.d.navare@intel.com>
+Message-ID: <20191216171120.GY1208@intel.com>
+References: <20191211211425.17821-1-manasi.d.navare@intel.com>
+ <20191211211425.17821-2-manasi.d.navare@intel.com>
+ <20191213200549.GD1208@intel.com>
+ <20191214022836.GH19224@intel.com>
+ <20191216120343.GM1208@intel.com>
+ <20191216164023.GA17177@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Hans de Goede" <hdegoede@redhat.com>
-Date: Mon, 16 Dec 2019 17:07:12 -0000
-Message-ID: <157651603220.5613.10666633587170290848@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20191216115158.862404-1-hdegoede@redhat.com>
-In-Reply-To: <20191216115158.862404-1-hdegoede@redhat.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/connector=3A_Add_support_for_specifying_panel=5Forientation_on?=
- =?utf-8?q?_the_kernel_cmdline?=
+Content-Disposition: inline
+In-Reply-To: <20191216164023.GA17177@intel.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH 1/3] drm/i915/dp: Make sure all tiled
+ connectors get added to the state with full modeset
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,120 +52,202 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Mon, Dec 16, 2019 at 08:40:24AM -0800, Manasi Navare wrote:
+> On Mon, Dec 16, 2019 at 02:03:43PM +0200, Ville Syrj=E4l=E4 wrote:
+> > On Fri, Dec 13, 2019 at 06:28:40PM -0800, Manasi Navare wrote:
+> > > On Fri, Dec 13, 2019 at 10:05:49PM +0200, Ville Syrj=E4l=E4 wrote:
+> > > > On Wed, Dec 11, 2019 at 01:14:23PM -0800, Manasi Navare wrote:
+> > > > > In case of tiled displays, all the tiles are linke dto each other
+> > > > > for transcoder port sync. So in intel_atomic_check() we need to m=
+ake
+> > > > > sure that we add all the tiles to the modeset and if one of the
+> > > > > tiles needs a full modeset then mark all other tiles for a full m=
+odeset.
+> > > > > =
 
-Series: drm/connector: Add support for specifying panel_orientation on the kernel cmdline
-URL   : https://patchwork.freedesktop.org/series/70975/
-State : success
+> > > > > Suggested-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > > > > Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > > > > Cc: Jos=E9 Roberto de Souza <jose.souza@intel.com>
+> > > > > Bugzilla: https://gitlab.freedesktop.org/drm/intel/issues/5
+> > > > > Signed-off-by: Manasi Navare <manasi.d.navare@intel.com>
+> > > > > ---
+> > > > >  drivers/gpu/drm/i915/display/intel_display.c | 78 ++++++++++++++=
+++++++
+> > > > >  1 file changed, 78 insertions(+)
+> > > > > =
 
-== Summary ==
+> > > > > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drive=
+rs/gpu/drm/i915/display/intel_display.c
+> > > > > index 803993a01ca7..7263eaa66cda 100644
+> > > > > --- a/drivers/gpu/drm/i915/display/intel_display.c
+> > > > > +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> > > > > @@ -14066,6 +14066,80 @@ static int intel_atomic_check_crtcs(stru=
+ct intel_atomic_state *state)
+> > > > >  	return 0;
+> > > > >  }
+> > > > >  =
 
-CI Bug Log - changes from CI_DRM_7574 -> Patchwork_15787
-====================================================
+> > > > > +static int
+> > > > > +intel_dp_modeset_all_tiles(struct drm_i915_private *dev_priv,
+> > > > > +			   struct intel_atomic_state *state, int tile_grp_id)
+> > > > > +{
+> > > > > +	struct drm_connector *conn_iter;
+> > > > 'connector'
+> > > > > +	struct drm_connector_list_iter conn_list_iter;
+> > > > > +	struct drm_crtc_state *crtc_state;
+> > > > =
 
-Summary
--------
+> > > > crtc_state has needlessly wide scope.
+> > > > =
 
-  **SUCCESS**
+> > > > > +
+> > > > > +	drm_connector_list_iter_begin(&dev_priv->drm, &conn_list_iter);
+> > > > > +	drm_for_each_connector_iter(conn_iter, &conn_list_iter) {
+> > > > > +		struct drm_connector_state *conn_iter_state;
+> > > > =
 
-  No regressions found.
+> > > > 'conn_state' is the most popular name.
+> > > > =
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15787/index.html
+> > > > > +
+> > > > > +		if (!conn_iter->has_tile)
+> > > > > +			continue;
+> > > > > +		conn_iter_state =3D drm_atomic_get_connector_state(&state->bas=
+e,
+> > > > > +								 conn_iter);
+> > > > > +		if (IS_ERR(conn_iter_state)) {
+> > > > > +			drm_connector_list_iter_end(&conn_list_iter);
+> > > > > +			return PTR_ERR(conn_iter_state);
+> > > > > +		}
+> > > > > +
+> > > > > +		if (!conn_iter_state->crtc)
+> > > > > +			continue;
+> > > > > +
+> > > > > +		if (conn_iter->tile_group->id !=3D tile_grp_id)
+> > > > > +			continue;
+> > > > =
 
-Known issues
-------------
+> > > > The tile group check should be part of the same if with the has_tile
+> > > > check.
+> > > > =
 
-  Here are the changes found in Patchwork_15787 that come from known issues:
+> > > > > +
+> > > > > +		crtc_state =3D drm_atomic_get_crtc_state(&state->base, conn_it=
+er_state->crtc);
+> > > > > +		if (IS_ERR(crtc_state)) {
+> > > > > +			drm_connector_list_iter_end(&conn_list_iter);
+> > > > > +			return PTR_ERR(conn_iter_state);
+> > > > > +		}
+> > > > > +		crtc_state->mode_changed =3D true;
+> > > > > +	}
+> > > > > +	drm_connector_list_iter_end(&conn_list_iter);
+> > > > > +
+> > > > > +	return 0;
+> > > > > +}
+> > > > > +
+> > > > > +static int
+> > > > > +intel_dp_atomic_trans_port_sync_check(struct drm_i915_private *d=
+ev_priv,
+> > > > =
 
-### IGT changes ###
+> > > > Pointless variable. Can be extracted from the atomic state.
+> > > > =
 
-#### Issues hit ####
+> > > > > +				      struct intel_atomic_state *state)
+> > > > > +{
+> > > > > +	struct drm_connector *connector;
+> > > > > +	struct drm_crtc_state *crtc_state;
+> > > > > +	struct drm_connector_state *connector_state;
+> > > > > +	int i, ret, tile_grp_id =3D 0;
+> > > > =
 
-  * igt@gem_close_race@basic-threads:
-    - fi-byt-n2820:       [PASS][1] -> [TIMEOUT][2] ([i915#816])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7574/fi-byt-n2820/igt@gem_close_race@basic-threads.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15787/fi-byt-n2820/igt@gem_close_race@basic-threads.html
+> > > > tile_grp_id is rather pointless. crtc_state and ret can move into
+> > > > tighter scope. And the next suggestion allows you to kill crtc_state
+> > > > entirely...
+> > > =
 
-  
-#### Possible fixes ####
+> > > Its not clear why tile_grp_id is pointless, I am using tile_grp_id fo=
+r the first connector with has_tile
+> > > and I make sure that I dont enter into the loop to check modeset agai=
+n for the connector with
+> > > same tile_grp_id because we have already set its mode changed to true=
+ in intel_dp_modeset_all_tiles()
+> > > =
 
-  * igt@i915_pm_rpm@module-reload:
-    - fi-skl-6770hq:      [FAIL][3] ([i915#178]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7574/fi-skl-6770hq/igt@i915_pm_rpm@module-reload.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15787/fi-skl-6770hq/igt@i915_pm_rpm@module-reload.html
+> > > How can I achieve this instead?
+> > =
 
-  * igt@i915_selftest@live_blt:
-    - fi-hsw-4770r:       [DMESG-FAIL][5] ([i915#725]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7574/fi-hsw-4770r/igt@i915_selftest@live_blt.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15787/fi-hsw-4770r/igt@i915_selftest@live_blt.html
+> > =
 
-  * igt@kms_chamelium@hdmi-hpd-fast:
-    - fi-kbl-7500u:       [FAIL][7] ([fdo#111096] / [i915#323]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7574/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15787/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+> > Instead of =
 
-  
-#### Warnings ####
+> > foo()
+> > {
+> > 	tile_grp_id =3D 0;
+> > =
 
-  * igt@kms_flip@basic-flip-vs-modeset:
-    - fi-kbl-x1275:       [DMESG-WARN][9] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][10] ([i915#62] / [i915#92]) +5 similar issues
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7574/fi-kbl-x1275/igt@kms_flip@basic-flip-vs-modeset.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15787/fi-kbl-x1275/igt@kms_flip@basic-flip-vs-modeset.html
+> > 	for_each() {
+> > 		tile_grp_id =3D conn->tile_grp_id;
+> > =
 
-  * igt@kms_flip@basic-flip-vs-wf_vblank:
-    - fi-kbl-x1275:       [DMESG-WARN][11] ([i915#62] / [i915#92]) -> [DMESG-WARN][12] ([i915#62] / [i915#92] / [i915#95]) +2 similar issues
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7574/fi-kbl-x1275/igt@kms_flip@basic-flip-vs-wf_vblank.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15787/fi-kbl-x1275/igt@kms_flip@basic-flip-vs-wf_vblank.html
+> > 		intel_dp_modeset_all_tiles(tile_grp_id);
+> > 	}
+> > }
+> > =
 
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
+> > you just do
+> > foo()
+> > {
+> > 	for_each() {
+> > 		intel_dp_modeset_all_tiles(conn->tile_grp_id);
+> > 	}
+> > }
+> =
 
-  [fdo#111096]: https://bugs.freedesktop.org/show_bug.cgi?id=111096
-  [i915#178]: https://gitlab.freedesktop.org/drm/intel/issues/178
-  [i915#323]: https://gitlab.freedesktop.org/drm/intel/issues/323
-  [i915#476]: https://gitlab.freedesktop.org/drm/intel/issues/476
-  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
-  [i915#725]: https://gitlab.freedesktop.org/drm/intel/issues/725
-  [i915#816]: https://gitlab.freedesktop.org/drm/intel/issues/816
-  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
-  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
+> Yes I understand that we can pass the conn->tile_grp_id directly. But cur=
+rently I am using tile_grp_id in for_each(), to call intel_dp_modeset_all_t=
+iles()
+> only if that cnnector is from a differnt tile grp id else continue.
+> =
 
+> foo()
+> {
+> 	for_each() {
+> 		if(tile_grp_id !=3D conn->tile_grp_id)
+> 			intel_dpmodeset_all_tiles();
+> 		else
+> 			continue;
+> 	}
+> }
+> =
 
-Participating hosts (53 -> 46)
-------------------------------
+> calling intel_dp_modeset_all_tiles() for all tiles is kind of redundant. =
+How can I do this with your suggestion, or do you think
+> we should call intel_dp_modeset_all_tiles for each connector anyway and i=
+t shouldnt matter?
 
-  Additional (1): fi-hsw-4770 
-  Missing    (8): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-tgl-y fi-byt-clapper fi-bdw-samus 
+Yes if that connector is tiled.
 
+Eg. if you have something like
+connector A: tile group 1
+connector B: tile group 2
+connector C: tile group 3
+connector D: tile group 2
 
-Build changes
--------------
+then your single tile_grp_id variable doesn't work anyway. You'd need
+track which tile groups you've already handled and skip those. But
+much easier to just blindly plow ahead.
 
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_7574 -> Patchwork_15787
+-- =
 
-  CI-20190529: 20190529
-  CI_DRM_7574: 950244ca586c6f0efe243bf8c505c01ea5e579fa @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5349: 048f58513d8b8ec6bb307a939f0ac959bc0f0e10 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_15787: 874c08fe92f2f8f25178d40f120502ec393057af @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-874c08fe92f2 drm/connector: Hookup the new drm_cmdline_mode panel_orientation member
-0adf9e2ded45 drm/connector: Split out orientation quirk detection (v2)
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15787/index.html
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
