@@ -2,31 +2,34 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B34C120FEE
-	for <lists+intel-gfx@lfdr.de>; Mon, 16 Dec 2019 17:46:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id F3A72121017
+	for <lists+intel-gfx@lfdr.de>; Mon, 16 Dec 2019 17:52:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E1BBD6E826;
-	Mon, 16 Dec 2019 16:46:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 607DB6E82D;
+	Mon, 16 Dec 2019 16:52:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id D19176E817;
- Mon, 16 Dec 2019 16:46:21 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id CC74CA00C7;
- Mon, 16 Dec 2019 16:46:21 +0000 (UTC)
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CFB2C6E82F
+ for <intel-gfx@lists.freedesktop.org>; Mon, 16 Dec 2019 16:52:12 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 19597936-1500050 for multiple; Mon, 16 Dec 2019 16:52:08 +0000
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Hans de Goede" <hdegoede@redhat.com>
-Date: Mon, 16 Dec 2019 16:46:21 -0000
-Message-ID: <157651478183.5611.2273121166590420403@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20191215213307.689830-1-hdegoede@redhat.com>
-In-Reply-To: <20191215213307.689830-1-hdegoede@redhat.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5B1/2=5D_drm/i915/dsi=3A_Remove_readback_of_?=
- =?utf-8?q?panel_orientation_on_BYT_/_CHT_=28rev2=29?=
+From: Chris Wilson <chris@chris-wilson.co.uk>
+User-Agent: alot/0.6
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+References: <20191212014629.854076-1-chris@chris-wilson.co.uk>
+ <20191212014629.854076-3-chris@chris-wilson.co.uk>
+ <51acf694-2cb2-1044-e761-8ed0c43d4cc4@linux.intel.com>
+In-Reply-To: <51acf694-2cb2-1044-e761-8ed0c43d4cc4@linux.intel.com>
+Message-ID: <157651512745.2428.15264335764010300099@skylake-alporthouse-com>
+Date: Mon, 16 Dec 2019 16:52:07 +0000
+Subject: Re: [Intel-gfx] [PATCH 3/3] drm/i915/gt: Eliminate the trylock for
+ reading a timeline's hwsp
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,127 +42,89 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Quoting Tvrtko Ursulin (2019-12-16 16:40:15)
+> 
+> On 12/12/2019 01:46, Chris Wilson wrote:
+> > As we stash a pointer to the HWSP cacheline on the request, when reading
+> > it we only need confirm that the cacheline is still valid by checking
+> > that the request and timeline are still intact.
+> > 
+> > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> > Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> > ---
+> >   drivers/gpu/drm/i915/gt/intel_timeline.c | 38 ++++++++----------------
+> >   1 file changed, 13 insertions(+), 25 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/i915/gt/intel_timeline.c b/drivers/gpu/drm/i915/gt/intel_timeline.c
+> > index 728da39e8ace..566ce19bb0ea 100644
+> > --- a/drivers/gpu/drm/i915/gt/intel_timeline.c
+> > +++ b/drivers/gpu/drm/i915/gt/intel_timeline.c
+> > @@ -515,6 +515,7 @@ int intel_timeline_read_hwsp(struct i915_request *from,
+> >                            struct i915_request *to,
+> >                            u32 *hwsp)
+> >   {
+> > +     struct intel_timeline_cacheline *cl = from->hwsp_cacheline;
+> >       struct intel_timeline *tl;
+> >       int err;
+> >   
+> > @@ -527,33 +528,20 @@ int intel_timeline_read_hwsp(struct i915_request *from,
+> >               return 1;
+> >   
+> >       GEM_BUG_ON(rcu_access_pointer(to->timeline) == tl);
+> > -
+> > -     err = -EAGAIN;
+> > -     if (mutex_trylock(&tl->mutex)) {
+> > -             struct intel_timeline_cacheline *cl = from->hwsp_cacheline;
+> > -
+> > -             if (i915_request_completed(from)) {
+> > -                     err = 1;
+> > -                     goto unlock;
+> > -             }
+> > -
+> > -             err = cacheline_ref(cl, to);
+> > -             if (err)
+> > -                     goto unlock;
+> > -
+> > -             if (likely(cl == tl->hwsp_cacheline)) {
+> > -                     *hwsp = tl->hwsp_offset;
+> > -             } else { /* across a seqno wrap, recover the original offset */
+> > -                     *hwsp = i915_ggtt_offset(cl->hwsp->vma) +
+> > -                             ptr_unmask_bits(cl->vaddr, CACHELINE_BITS) *
+> > -                             CACHELINE_BYTES;
+> > -             }
+> > -
+> > -unlock:
+> > -             mutex_unlock(&tl->mutex);
+> > +     err = cacheline_ref(cl, to);
+> > +     if (err)
+> > +             goto out;
+> > +
+> > +     *hwsp = tl->hwsp_offset;
+> > +     if (unlikely(cl != READ_ONCE(tl->hwsp_cacheline))) {
+> > +             /* across a seqno wrap, recover the original offset */
+> > +             *hwsp = i915_ggtt_offset(cl->hwsp->vma) +
+> > +                     ptr_unmask_bits(cl->vaddr, CACHELINE_BITS) *
+> > +                     CACHELINE_BYTES;
+> 
+> There is some confusion here (for me) which timeline is which. "From" 
+> timeline is which is unlocked now and cl and tl come from it. And that 
+> is the signaling request.
+> 
+> It is just RCU which guarantees it is safe to dereference the timeline 
+> on this request?
 
-Series: series starting with [1/2] drm/i915/dsi: Remove readback of panel orientation on BYT / CHT (rev2)
-URL   : https://patchwork.freedesktop.org/series/70952/
-State : success
+from->timeline looks reasonable. It's cacheline_ref(cl) that is hairy. I
+was thinking that cacheline_ref() was actually a
+i915_active_acquire_if_busy(), but it is not. And even if it were, we
+need RCU protection on the cl.
 
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_7574 -> Patchwork_15786
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15786/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_15786 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_module_load@reload-no-display:
-    - fi-skl-lmem:        [PASS][1] -> [DMESG-WARN][2] ([i915#592])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7574/fi-skl-lmem/igt@i915_module_load@reload-no-display.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15786/fi-skl-lmem/igt@i915_module_load@reload-no-display.html
-
-  * igt@i915_selftest@live_blt:
-    - fi-ivb-3770:        [PASS][3] -> [DMESG-FAIL][4] ([i915#725])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7574/fi-ivb-3770/igt@i915_selftest@live_blt.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15786/fi-ivb-3770/igt@i915_selftest@live_blt.html
-
-  * igt@i915_selftest@live_gem_contexts:
-    - fi-hsw-peppy:       [PASS][5] -> [DMESG-FAIL][6] ([i915#722])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7574/fi-hsw-peppy/igt@i915_selftest@live_gem_contexts.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15786/fi-hsw-peppy/igt@i915_selftest@live_gem_contexts.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-skl-6770hq:      [FAIL][7] ([i915#178]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7574/fi-skl-6770hq/igt@i915_pm_rpm@module-reload.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15786/fi-skl-6770hq/igt@i915_pm_rpm@module-reload.html
-
-  * igt@kms_chamelium@hdmi-hpd-fast:
-    - fi-kbl-7500u:       [FAIL][9] ([fdo#111096] / [i915#323]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7574/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15786/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
-
-  
-#### Warnings ####
-
-  * igt@kms_busy@basic-flip-pipe-b:
-    - fi-kbl-x1275:       [DMESG-WARN][11] ([i915#62] / [i915#92]) -> [DMESG-WARN][12] ([i915#62] / [i915#92] / [i915#95]) +3 similar issues
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7574/fi-kbl-x1275/igt@kms_busy@basic-flip-pipe-b.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15786/fi-kbl-x1275/igt@kms_busy@basic-flip-pipe-b.html
-
-  * igt@kms_flip@basic-flip-vs-modeset:
-    - fi-kbl-x1275:       [DMESG-WARN][13] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][14] ([i915#62] / [i915#92]) +4 similar issues
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7574/fi-kbl-x1275/igt@kms_flip@basic-flip-vs-modeset.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15786/fi-kbl-x1275/igt@kms_flip@basic-flip-vs-modeset.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#111096]: https://bugs.freedesktop.org/show_bug.cgi?id=111096
-  [fdo#111593]: https://bugs.freedesktop.org/show_bug.cgi?id=111593
-  [i915#178]: https://gitlab.freedesktop.org/drm/intel/issues/178
-  [i915#323]: https://gitlab.freedesktop.org/drm/intel/issues/323
-  [i915#592]: https://gitlab.freedesktop.org/drm/intel/issues/592
-  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
-  [i915#707]: https://gitlab.freedesktop.org/drm/intel/issues/707
-  [i915#722]: https://gitlab.freedesktop.org/drm/intel/issues/722
-  [i915#725]: https://gitlab.freedesktop.org/drm/intel/issues/725
-  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
-  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
-
-
-Participating hosts (53 -> 45)
-------------------------------
-
-  Additional (1): fi-hsw-4770 
-  Missing    (9): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-blb-e6850 fi-tgl-y fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_7574 -> Patchwork_15786
-
-  CI-20190529: 20190529
-  CI_DRM_7574: 950244ca586c6f0efe243bf8c505c01ea5e579fa @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5349: 048f58513d8b8ec6bb307a939f0ac959bc0f0e10 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_15786: 668ae1782e77fe0fd8056e7936b76c08139112b7 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-668ae1782e77 drm/i915/dp: Use BDB_GENERAL_FEATURES VBT block info for builtin panel-orientation
-795b7491bcca drm/i915/dsi: Remove readback of panel orientation on BYT / CHT
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15786/index.html
+Hmm. 
+-Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
