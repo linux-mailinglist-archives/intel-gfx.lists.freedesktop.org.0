@@ -1,37 +1,36 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 273EE120250
-	for <lists+intel-gfx@lfdr.de>; Mon, 16 Dec 2019 11:27:24 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 89376120252
+	for <lists+intel-gfx@lfdr.de>; Mon, 16 Dec 2019 11:27:46 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7AFD96E488;
-	Mon, 16 Dec 2019 10:27:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CD1E36E489;
+	Mon, 16 Dec 2019 10:27:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1C4CA6E487;
- Mon, 16 Dec 2019 10:27:21 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga106.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 16 Dec 2019 02:27:20 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,321,1571727600"; d="scan'208";a="217125383"
-Received: from gaia.fi.intel.com ([10.237.72.192])
- by orsmga006.jf.intel.com with ESMTP; 16 Dec 2019 02:27:18 -0800
-Received: by gaia.fi.intel.com (Postfix, from userid 1000)
- id 47B535C0AF5; Mon, 16 Dec 2019 12:27:07 +0200 (EET)
-From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20191212102924.1194130-1-chris@chris-wilson.co.uk>
-References: <20191212102924.1194130-1-chris@chris-wilson.co.uk>
-Date: Mon, 16 Dec 2019 12:27:07 +0200
-Message-ID: <878sncr2f8.fsf@gaia.fi.intel.com>
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DFEF86E487;
+ Mon, 16 Dec 2019 10:27:42 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 19593043-1500050 for multiple; Mon, 16 Dec 2019 10:27:39 +0000
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH i-g-t] i915: Rename gem_exec_parse and
- gem_exec_parse_blt
+To: Lionel Landwerlin <lionel.g.landwerlin@intel.com>,
+ intel-gfx@lists.freedesktop.org
+From: Chris Wilson <chris@chris-wilson.co.uk>
+In-Reply-To: <24ba122e-1213-f230-86b5-152b916833b3@intel.com>
+References: <20191216093433.2517697-1-chris@chris-wilson.co.uk>
+ <3b79edfe-673a-9cb7-d8a0-7bf5b54748c8@intel.com>
+ <157649017142.2285.5855880084447200659@skylake-alporthouse-com>
+ <24ba122e-1213-f230-86b5-152b916833b3@intel.com>
+Message-ID: <157649205822.2285.1111290120487433485@skylake-alporthouse-com>
+User-Agent: alot/0.6
+Date: Mon, 16 Dec 2019 10:27:38 +0000
+Subject: Re: [Intel-gfx] [igt-dev] [PATCH i-g-t] i915/perf: Skip OA testing
+ on systems too old
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,84 +49,59 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Chris Wilson <chris@chris-wilson.co.uk> writes:
+Quoting Lionel Landwerlin (2019-12-16 10:06:53)
+> On 16/12/2019 11:56, Chris Wilson wrote:
+> 
+>     Quoting Lionel Landwerlin (2019-12-16 09:46:56)
+> 
+>         On 16/12/2019 11:34, Chris Wilson wrote:
+> 
+>             Don't flat out fail if the system doesn't support OA, just skip.
+> 
+>             Closes: https://gitlab.freedesktop.org/drm/intel/issues/834
+>             Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+>             ---
+>               tests/perf.c | 4 +---
+>               1 file changed, 1 insertion(+), 3 deletions(-)
+> 
+>             diff --git a/tests/perf.c b/tests/perf.c
+>             index f5dd6051e..12f552743 100644
+>             --- a/tests/perf.c
+>             +++ b/tests/perf.c
+>             @@ -884,11 +884,9 @@ init_sys_info(void)
+>                   const char *test_set_uuid = NULL;
+>                   char buf[256];
+> 
+>             -     igt_assert_neq(devid, 0);
+>             -
+>                   timestamp_frequency = get_cs_timestamp_frequency();
+>                   igt_debug("timestamp_frequency = %lu\n", timestamp_frequency);
+>             -     igt_assert_neq(timestamp_frequency, 0);
+>             +     igt_require(timestamp_frequency);
+> 
+> 
+>         This requires a kernel version more recent (4.16) than when perf support
+>         was added (4.13).
+> 
+>         Is this what you intended?
+> 
+>     You have a fatal assert there. I am just changing it so that it skips
+>     when not supported as no testing is being performed.
+>     -Chris
+> 
+> I think there might be a problem in i915 if this returns 0.
 
-> The cmdparser tests are tied to the generation, so rename the tests to
-> indicate that and remove the ambiguity that they are more generic tests.
->
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+It should return 0 for gen3 before Pineview.
 
-Acked-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+However, since it returns i915->rawclk_freq on pnv and g4x, it should
+have a value except that i915->cs_timestamp_freq is set in
+intel_device_info_runtime_init (i915_driver_hw_probe) before the
+rawclk_freq is set (i915_driver_modeset_probe).
 
-> ---
->  tests/Makefile.sources                                 | 8 ++++----
->  tests/i915/{gem_exec_parse.c => gen7_exec_parse.c}     | 0
->  tests/i915/{gem_exec_parse_blt.c => gen9_exec_parse.c} | 0
->  tests/intel-ci/blacklist.txt                           | 2 +-
->  tests/meson.build                                      | 4 ++--
->  5 files changed, 7 insertions(+), 7 deletions(-)
->  rename tests/i915/{gem_exec_parse.c => gen7_exec_parse.c} (100%)
->  rename tests/i915/{gem_exec_parse_blt.c => gen9_exec_parse.c} (100%)
->
-> diff --git a/tests/Makefile.sources b/tests/Makefile.sources
-> index 2893f9bc0..806eb02d0 100644
-> --- a/tests/Makefile.sources
-> +++ b/tests/Makefile.sources
-> @@ -241,11 +241,11 @@ gem_exec_parallel_SOURCES = i915/gem_exec_parallel.c
->  TESTS_progs += gem_exec_params
->  gem_exec_params_SOURCES = i915/gem_exec_params.c
->  
-> -TESTS_progs += gem_exec_parse
-> -gem_exec_parse_SOURCES = i915/gem_exec_parse.c
-> +TESTS_progs += gen7_exec_parse
-> +gen7_exec_parse_SOURCES = i915/gen7_exec_parse.c
->  
-> -TESTS_progs += gem_exec_parse_blt
-> -gem_exec_parse_blt_SOURCES = i915/gem_exec_parse_blt.c
-> +TESTS_progs += gen9_exec_parse
-> +gen9_exec_parse_SOURCES = i915/gen9_exec_parse.c
->  
->  TESTS_progs += gem_exec_reloc
->  gem_exec_reloc_SOURCES = i915/gem_exec_reloc.c
-> diff --git a/tests/i915/gem_exec_parse.c b/tests/i915/gen7_exec_parse.c
-> similarity index 100%
-> rename from tests/i915/gem_exec_parse.c
-> rename to tests/i915/gen7_exec_parse.c
-> diff --git a/tests/i915/gem_exec_parse_blt.c b/tests/i915/gen9_exec_parse.c
-> similarity index 100%
-> rename from tests/i915/gem_exec_parse_blt.c
-> rename to tests/i915/gen9_exec_parse.c
-> diff --git a/tests/intel-ci/blacklist.txt b/tests/intel-ci/blacklist.txt
-> index 4bca1b6c5..a48163c68 100644
-> --- a/tests/intel-ci/blacklist.txt
-> +++ b/tests/intel-ci/blacklist.txt
-> @@ -77,7 +77,7 @@ igt@gem_write_read_ring_switch(@.*)?
->  ###############################################
->  # GEM: Not worth fixing
->  ###############################################
-> -igt@gem_exec_parse@.*lri.*
-> +igt@gen7_exec_parse@.*lri.*
->  ###############################################
->  # There are no DRRS capable displays in CI lab
->  ###############################################
-> diff --git a/tests/meson.build b/tests/meson.build
-> index d931cc372..570de5459 100644
-> --- a/tests/meson.build
-> +++ b/tests/meson.build
-> @@ -147,8 +147,8 @@ i915_progs = [
->  	'gem_exec_nop',
->  	'gem_exec_parallel',
->  	'gem_exec_params',
-> -	'gem_exec_parse',
-> -	'gem_exec_parse_blt',
-> +	'gen7_exec_parse',
-> +	'gen9_exec_parse',
->  	'gem_exec_reloc',
->  	'gem_exec_reuse',
->  	'gem_exec_schedule',
-> -- 
-> 2.24.0
+Not sure the best approach to straighten out that mess... Just delaying
+setting cs_timestamp_freq to i915_driver_register seems to be the best
+idea.
+-Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
