@@ -1,38 +1,76 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F1306120326
-	for <lists+intel-gfx@lfdr.de>; Mon, 16 Dec 2019 12:03:01 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B7DA120362
+	for <lists+intel-gfx@lfdr.de>; Mon, 16 Dec 2019 12:11:40 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 028CA6E4C4;
-	Mon, 16 Dec 2019 11:02:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2CDF26E4C5;
+	Mon, 16 Dec 2019 11:11:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 926416E4BB;
- Mon, 16 Dec 2019 11:02:56 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 19593542-1500050 for multiple; Mon, 16 Dec 2019 11:02:53 +0000
+Received: from us-smtp-1.mimecast.com (us-smtp-delivery-1.mimecast.com
+ [205.139.110.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0335F6E4C5
+ for <intel-gfx@lists.freedesktop.org>; Mon, 16 Dec 2019 11:11:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1576494695;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=WjOUTFpOi6Gu4d+B9mMstxxsH+1mt4QNI2pngEePaBo=;
+ b=P/jCrwoVUgSuRPZ0wEoMSKFN5dladWd8opE3ZpD/VNx9IDHniBn6Wa1Elw8EDWwTofUa+s
+ tUneswKjaVOVeq/I85dTNWALicBxwZG8A6FDzH3YEHIOzAKs7aPZjs4ULe6ufAtWc71WBp
+ uD/jURIiFCDT/thlQEsqetCCLDjm1UY=
+Received: from mail-wm1-f69.google.com (mail-wm1-f69.google.com
+ [209.85.128.69]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-150-m4xKM2YVNDKBV8gS5v8PkA-1; Mon, 16 Dec 2019 06:11:34 -0500
+Received: by mail-wm1-f69.google.com with SMTP id v12so300029wmj.1
+ for <intel-gfx@lists.freedesktop.org>; Mon, 16 Dec 2019 03:11:34 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+ :user-agent:mime-version:in-reply-to:content-language
+ :content-transfer-encoding;
+ bh=WjOUTFpOi6Gu4d+B9mMstxxsH+1mt4QNI2pngEePaBo=;
+ b=mCs0T7QMFyM5Dv+QhV7xBGv8aUNdwyhqVwMTQFX7u9/9zCZ7CianZ6ytxOOPufd0fO
+ yZPiL/Qyw6JQhCGhLqi++QpEg53yKulZz+YK5yyeciH5EP+HPtrvA1gay6jPEBUkFSjl
+ r0EHJnnqhY4uxxhava7VEO0nwwI7tVwc+NGC/L6Ti304C6m1xlfv6VH6Y0dqRq2Qg6BZ
+ GCoqvIhJr6JaYeMtiEovBsRBiIHdWGQnPZNdxVjg2V8iXQVPhfjWODsJYQTQ8rlb8lM7
+ TUTGJZEnYl6DHyToW9p2eLGwDlAbeYtBYTSa9lRU/MixnHhXtn08bq39xJTisViky2ho
+ HY7w==
+X-Gm-Message-State: APjAAAVnQlnGHNWSGn/bzl3DaAb2fy4M/0jW0lFVbsqaqA9OR/FiDwxk
+ 20IEhvnIL8Tpr7eo0t0TR9mjViN9OrJPFp2lj5qTNWNEylpNUaDxDPgW5Pi946ym6SXLrSOfY/R
+ usEZlNLFMulEWraEv/Sfgi5zhYUT7
+X-Received: by 2002:a1c:7dc4:: with SMTP id
+ y187mr28955309wmc.161.1576494693445; 
+ Mon, 16 Dec 2019 03:11:33 -0800 (PST)
+X-Google-Smtp-Source: APXvYqz95JVS+9hzCpx2tUeBC+2E8wF70N/Kg5EXyntvwnCxuCB6OinaKV46tDHhavo+POTw6isKJw==
+X-Received: by 2002:a1c:7dc4:: with SMTP id
+ y187mr28955289wmc.161.1576494693250; 
+ Mon, 16 Dec 2019 03:11:33 -0800 (PST)
+Received: from shalem.localdomain
+ (2001-1c00-0c0c-fe00-7e79-4dac-39d0-9c14.cable.dynamic.v6.ziggo.nl.
+ [2001:1c00:c0c:fe00:7e79:4dac:39d0:9c14])
+ by smtp.gmail.com with ESMTPSA id x18sm20950368wrr.75.2019.12.16.03.11.32
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Mon, 16 Dec 2019 03:11:32 -0800 (PST)
+To: Linus Walleij <linus.walleij@linaro.org>
+References: <20191215163810.52356-1-hdegoede@redhat.com>
+ <CACRpkdarJ5chDfgc5F=ntzG1pw7kchtzp0Upp+OH9CH6WLnvXw@mail.gmail.com>
+From: Hans de Goede <hdegoede@redhat.com>
+Message-ID: <1474a983-3e22-d59b-255a-edd3a41f0967@redhat.com>
+Date: Mon, 16 Dec 2019 12:11:31 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.2.2
 MIME-Version: 1.0
-To: Lionel Landwerlin <lionel.g.landwerlin@intel.com>,
- intel-gfx@lists.freedesktop.org
-From: Chris Wilson <chris@chris-wilson.co.uk>
-In-Reply-To: <b7aaba89-5922-2427-f53d-c11350365ffa@intel.com>
-References: <20191216093433.2517697-1-chris@chris-wilson.co.uk>
- <3b79edfe-673a-9cb7-d8a0-7bf5b54748c8@intel.com>
- <157649017142.2285.5855880084447200659@skylake-alporthouse-com>
- <24ba122e-1213-f230-86b5-152b916833b3@intel.com>
- <157649205822.2285.1111290120487433485@skylake-alporthouse-com>
- <b7aaba89-5922-2427-f53d-c11350365ffa@intel.com>
-Message-ID: <157649417185.2428.9685146186524712541@skylake-alporthouse-com>
-User-Agent: alot/0.6
-Date: Mon, 16 Dec 2019 11:02:51 +0000
-Subject: Re: [Intel-gfx] [igt-dev] [PATCH i-g-t] i915/perf: Skip OA testing
- on systems too old
+In-Reply-To: <CACRpkdarJ5chDfgc5F=ntzG1pw7kchtzp0Upp+OH9CH6WLnvXw@mail.gmail.com>
+Content-Language: en-US
+X-MC-Unique: m4xKM2YVNDKBV8gS5v8PkA-1
+X-Mimecast-Spam-Score: 0
+Subject: Re: [Intel-gfx] [PATCH 0/5] drm/i915/dsi: Control panel and
+ backlight enable GPIOs from VBT
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,79 +83,54 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: igt-dev@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
+Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+ "open list:DRM PANEL DRIVERS" <dri-devel@lists.freedesktop.org>,
+ Lee Jones <lee.jones@linaro.org>
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Lionel Landwerlin (2019-12-16 10:41:40)
-> On 16/12/2019 12:27, Chris Wilson wrote:
-> > Quoting Lionel Landwerlin (2019-12-16 10:06:53)
-> >> On 16/12/2019 11:56, Chris Wilson wrote:
-> >>
-> >>      Quoting Lionel Landwerlin (2019-12-16 09:46:56)
-> >>
-> >>          On 16/12/2019 11:34, Chris Wilson wrote:
-> >>
-> >>              Don't flat out fail if the system doesn't support OA, just skip.
-> >>
-> >>              Closes: https://gitlab.freedesktop.org/drm/intel/issues/834
-> >>              Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> >>              ---
-> >>                tests/perf.c | 4 +---
-> >>                1 file changed, 1 insertion(+), 3 deletions(-)
-> >>
-> >>              diff --git a/tests/perf.c b/tests/perf.c
-> >>              index f5dd6051e..12f552743 100644
-> >>              --- a/tests/perf.c
-> >>              +++ b/tests/perf.c
-> >>              @@ -884,11 +884,9 @@ init_sys_info(void)
-> >>                    const char *test_set_uuid = NULL;
-> >>                    char buf[256];
-> >>
-> >>              -     igt_assert_neq(devid, 0);
-> >>              -
-> >>                    timestamp_frequency = get_cs_timestamp_frequency();
-> >>                    igt_debug("timestamp_frequency = %lu\n", timestamp_frequency);
-> >>              -     igt_assert_neq(timestamp_frequency, 0);
-> >>              +     igt_require(timestamp_frequency);
-> >>
-> >>
-> >>          This requires a kernel version more recent (4.16) than when perf support
-> >>          was added (4.13).
-> >>
-> >>          Is this what you intended?
-> >>
-> >>      You have a fatal assert there. I am just changing it so that it skips
-> >>      when not supported as no testing is being performed.
-> >>      -Chris
-> >>
-> >> I think there might be a problem in i915 if this returns 0.
-> > It should return 0 for gen3 before Pineview.
-> >
-> > However, since it returns i915->rawclk_freq on pnv and g4x, it should
-> > have a value except that i915->cs_timestamp_freq is set in
-> > intel_device_info_runtime_init (i915_driver_hw_probe) before the
-> > rawclk_freq is set (i915_driver_modeset_probe).
-> >
-> > Not sure the best approach to straighten out that mess... Just delaying
-> > setting cs_timestamp_freq to i915_driver_register seems to be the best
-> > idea.
-> > -Chris
-> 
-> That's what I remember reading from old specs (cs timestamp = a factor 
-> of rawclk).
-> 
-> So I was expecting to always get a value.
-> 
-> 
-> Can we call intel_update_rawclk() in read_timestamp_frequency() just for 
-> the <= gen4 case?
+Hi,
 
-It's only defined for g4x & pnv and later. It doesn't cover earlier
-gen4/gen3/gen2, so still we have 0.
--Chris
+On 16-12-2019 11:26, Linus Walleij wrote:
+> On Sun, Dec 15, 2019 at 5:38 PM Hans de Goede <hdegoede@redhat.com> wrote:
+> 
+>> Linus, this series starts with the already discussed pinctrl change to
+>> export the function to unregister a pinctrl-map. We can either merge this
+>> through drm-intel, or you could pick it up and then provide an immutable
+>> branch with it for merging into drm-intel-next. Which option do you prefer?
+> 
+> I have created an immutable branch with these changes and pulled it
+> to my "devel" branch for v5.6:
+> https://git.kernel.org/pub/scm/linux/kernel/git/linusw/linux-pinctrl.git/log/?h=ib-pinctrl-unreg-mappings
+
+Ugh, taking one last look at the "pinctrl: Export pinctrl_unregister_mappings"
+patch it is no good, sorry.
+
+I just realized that if the mapping has been dupped, the if (maps_node->maps == map)
+check will never be true, because maps_node->maps is the return value from kmemdup
+and map is the map originally passed in while registering.
+
+Linus, can you please drop this from your -next ?
+
+So I see 2 options:
+1) Add an orig_map member to maps_node and use that in the comparison,
+this is IMHO somewhat ugly
+
+2) Add a new pinctrl_register_mappings_no_dup helper and document in
+pinctrl_unregister_mappings kdoc that it can only be used together
+with the no_dup variant.
+
+I believe that 2 is by far the best option. Linus do you agree or
+do you have any other suggestions?
+
+Regards,
+
+Hans
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
