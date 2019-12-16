@@ -2,58 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 19025121B3C
-	for <lists+intel-gfx@lfdr.de>; Mon, 16 Dec 2019 21:51:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A107121B53
+	for <lists+intel-gfx@lfdr.de>; Mon, 16 Dec 2019 21:53:38 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 02D986E892;
-	Mon, 16 Dec 2019 20:51:48 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-1.mimecast.com (us-smtp-delivery-1.mimecast.com
- [207.211.31.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4F84B6E898
- for <intel-gfx@lists.freedesktop.org>; Mon, 16 Dec 2019 20:51:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1576529505;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=EPtGGtbmK8Ua4ihCISYN9ulc/oNUQiVsk18eHaZb2Ok=;
- b=VgOK8j7ttnXwYUbvSiO0vL4FQx38uhLu11uiQ4qLKBNA3AA4Xcz4lFis6IXiKnlbmlU9U5
- 2iVrKEHX6JSkXO7E0a/s6KL02M3jglDWRLijLrr22kRbVQE4yOfME8FgRc7KSZRlbwPWtS
- ITo2vPDOSaQFVwZIPtBfFOcsbBPJ62Q=
-Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
- [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-239-kAMdGsJIPkyoA21YfKjQVw-1; Mon, 16 Dec 2019 15:51:41 -0500
-X-MC-Unique: kAMdGsJIPkyoA21YfKjQVw-1
-Received: from smtp.corp.redhat.com (int-mx07.intmail.prod.int.phx2.redhat.com
- [10.5.11.22])
- (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
- (No client certificate requested)
- by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 12B67800D5B;
- Mon, 16 Dec 2019 20:51:40 +0000 (UTC)
-Received: from shalem.localdomain.com (ovpn-116-96.ams2.redhat.com
- [10.36.116.96])
- by smtp.corp.redhat.com (Postfix) with ESMTP id D35201001B00;
- Mon, 16 Dec 2019 20:51:37 +0000 (UTC)
-From: Hans de Goede <hdegoede@redhat.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
- intel-gfx <intel-gfx@lists.freedesktop.org>,
- Lee Jones <lee.jones@linaro.org>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Linus Walleij <linus.walleij@linaro.org>
-Date: Mon, 16 Dec 2019 21:51:22 +0100
-Message-Id: <20191216205122.1850923-6-hdegoede@redhat.com>
-In-Reply-To: <20191216205122.1850923-1-hdegoede@redhat.com>
-References: <20191216205122.1850923-1-hdegoede@redhat.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 621BF6E088;
+	Mon, 16 Dec 2019 20:53:36 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 114AB6E088
+ for <Intel-gfx@lists.freedesktop.org>; Mon, 16 Dec 2019 20:53:34 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 19601234-1500050 for multiple; Mon, 16 Dec 2019 20:53:07 +0000
 MIME-Version: 1.0
-X-Scanned-By: MIMEDefang 2.84 on 10.5.11.22
-Subject: [Intel-gfx] [PATCH v2 5/5] drm/i915/dsi: Control panel and
- backlight enable GPIOs on BYT
+To: Intel-gfx@lists.freedesktop.org,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+From: Chris Wilson <chris@chris-wilson.co.uk>
+In-Reply-To: <20191216182032.22265-1-tvrtko.ursulin@linux.intel.com>
+References: <20191216182032.22265-1-tvrtko.ursulin@linux.intel.com>
+Message-ID: <157652958683.2428.15355243435364299446@skylake-alporthouse-com>
+User-Agent: alot/0.6
+Date: Mon, 16 Dec 2019 20:53:06 +0000
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/pmu: Ensure monotonic rc6
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,130 +39,89 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- linux-gpio@vger.kernel.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gQmF5IFRyYWlsIGRldmljZXMgdGhlIE1JUEkgcG93ZXIgb24vb2ZmIHNlcXVlbmNlcyBmb3Ig
-RFNJIExDRCBwYW5lbHMKZG8gbm90IGNvbnRyb2wgdGhlIExDRCBwYW5lbC0gYW5kIGJhY2tsaWdo
-dC1lbmFibGUgR1BJT3MuIFNvIGZhciwgd2hlbgp0aGUgVkJUIGluZGljYXRlcyB3ZSBzaG91bGQg
-dXNlIHRoZSBTb0MgZm9yIGJhY2tsaWdodCBjb250cm9sLCB3ZSBoYXZlCmJlZW4gcmVseWluZyBv
-biB0aGVzZSBHUElPcyBiZWluZyBjb25maWd1cmVkIGFzIG91dHB1dCBhbmQgZHJpdmVuIGhpZ2gg
-YnkKdGhlIFZpZGVvIEJJT1MgKEdPUCkgd2hlbiBpdCBpbml0aWFsaXplcyB0aGUgcGFuZWwuCgpU
-aGlzIGRvZXMgbm90IHdvcmsgd2hlbiB0aGUgZGV2aWNlIGlzIGJvb3RlZCB3aXRoIGEgSERNSSBt
-b25pdG9yIGNvbm5lY3RlZAphcyB0aGVuIHRoZSBHT1Agd2lsbCBpbml0aWFsaXplIHRoZSBIRE1J
-IGluc3RlYWQgb2YgdGhlIHBhbmVsLCBsZWF2aW5nIHRoZQpwYW5lbCBibGFjaywgZXZlbiB0aG91
-Z2ggdGhlIGk5MTUgZHJpdmVyIHRyaWVzIHRvIG91dHB1dCBhbiBpbWFnZSB0byBpdC4KCkxpa2V3
-aXNlIG9uIHNvbWUgZGV2aWNlLW1vZGVscyB3aGVuIHRoZSBHT1AgZG9lcyBub3QgaW5pdGlhbGl6
-ZSB0aGUgRFNJCnBhbmVsIGl0IGFsc28gbGVhdmVzIHRoZSBtdXggb2YgdGhlIFBXTTAgcGluIGlu
-IGdlbmVyaWMgR1BJTyBtb2RlIGluc3RlYWQKb2YgbXV4aW5nIGl0IHRvIHRoZSBQV00gY29udHJv
-bGxlci4KClRoaXMgY29tbWl0IG1ha2VzIHRoZSBEU0kgY29kZSBjb250cm9sIHRoZSBTb0MgR1BJ
-T3MgZm9yIHBhbmVsLSBhbmQKYmFja2xpZ2h0LWVuYWJsZSBvbiBCWVQsIHdoZW4gdGhlIFZCVCBp
-bmRpY2F0ZXMgdGhlIFNvQyBzaG91bGQgYmUgdXNlZAoKZm9yIGJhY2tsaWdodCBjb250cm9sLiBJ
-dCBhbHNvIGVuc3VyZXMgdGhhdCB0aGUgUFdNMCBwaW4gaXMgbXV4ZWQgdG8gdGhlClBXTSBjb250
-cm9sbGVyIGluIHRoaXMgY2FzZS4KClRoaXMgZml4ZXMgdGhlIExDRCBwYW5lbCBub3QgbGlnaHRp
-bmcgdXAgb24gdmFyaW91cyBkZXZpY2VzIHdoZW4gYm9vdGVkCndpdGggYSBIRE1JIG1vbml0b3Ig
-Y29ubmVjdGVkLiBUaGlzIGhhcyBiZWVuIHRlc3RlZCB0byBmaXggdGhpcyBvbiB0aGUKZm9sbG93
-aW5nIGRldmljZXM6CgpQZWFxIEMxMDEwClBvaW50IG9mIFZpZXcgTU9CSUkgVEFCLVA4MDBXClBv
-aW50IG9mIFZpZXcgTU9CSUkgVEFCLVAxMDA1VwpUZXJyYSBQYWQgMTA2MQpZb3VycyBZOFc4MQoK
-UmV2aWV3ZWQtYnk6IExpbnVzIFdhbGxlaWogPGxpbnVzLndhbGxlaWpAbGluYXJvLm9yZz4KUmV2
-aWV3ZWQtYnk6IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5jb20+
-ClNpZ25lZC1vZmYtYnk6IEhhbnMgZGUgR29lZGUgPGhkZWdvZWRlQHJlZGhhdC5jb20+Ci0tLQog
-ZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kc2kuaCAgICAgfCAgMyArLQogZHJp
-dmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kc2lfdmJ0LmMgfCA2NCArKysrKysrKysr
-KysrKysrKysrKwogMiBmaWxlcyBjaGFuZ2VkLCA2NiBpbnNlcnRpb25zKCspLCAxIGRlbGV0aW9u
-KC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kc2ku
-aCBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHNpLmgKaW5kZXggNjc1Nzcx
-ZWE5MWFhLi43NDgxYTVhYTMwODQgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rp
-c3BsYXkvaW50ZWxfZHNpLmgKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRl
-bF9kc2kuaApAQCAtNDUsOCArNDUsOSBAQCBzdHJ1Y3QgaW50ZWxfZHNpIHsKIAlzdHJ1Y3QgaW50
-ZWxfZHNpX2hvc3QgKmRzaV9ob3N0c1tJOTE1X01BWF9QT1JUU107CiAJaW50ZWxfd2FrZXJlZl90
-IGlvX3dha2VyZWZbSTkxNV9NQVhfUE9SVFNdOwogCi0JLyogR1BJTyBEZXNjIGZvciBDUkMgYmFz
-ZWQgUGFuZWwgY29udHJvbCAqLworCS8qIEdQSU8gRGVzYyBmb3IgcGFuZWwgYW5kIGJhY2tsaWdo
-dCBjb250cm9sICovCiAJc3RydWN0IGdwaW9fZGVzYyAqZ3Bpb19wYW5lbDsKKwlzdHJ1Y3QgZ3Bp
-b19kZXNjICpncGlvX2JhY2tsaWdodDsKIAogCXN0cnVjdCBpbnRlbF9jb25uZWN0b3IgKmF0dGFj
-aGVkX2Nvbm5lY3RvcjsKIApkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxh
-eS9pbnRlbF9kc2lfdmJ0LmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rz
-aV92YnQuYwppbmRleCA4OTU1OGNjZjc5YzguLjAwMzIxNjFlMGY3NiAxMDA2NDQKLS0tIGEvZHJp
-dmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kc2lfdmJ0LmMKKysrIGIvZHJpdmVycy9n
-cHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kc2lfdmJ0LmMKQEAgLTI3LDYgKzI3LDggQEAKICNp
-bmNsdWRlIDxsaW51eC9ncGlvL2NvbnN1bWVyLmg+CiAjaW5jbHVkZSA8bGludXgvZ3Bpby9tYWNo
-aW5lLmg+CiAjaW5jbHVkZSA8bGludXgvbWZkL2ludGVsX3NvY19wbWljLmg+CisjaW5jbHVkZSA8
-bGludXgvcGluY3RybC9jb25zdW1lci5oPgorI2luY2x1ZGUgPGxpbnV4L3BpbmN0cmwvbWFjaGlu
-ZS5oPgogI2luY2x1ZGUgPGxpbnV4L3NsYWIuaD4KIAogI2luY2x1ZGUgPGFzbS9pbnRlbC1taWQu
-aD4KQEAgLTUyNSwxMSArNTI3LDE1IEBAIHZvaWQgaW50ZWxfZHNpX3ZidF9leGVjX3NlcXVlbmNl
-KHN0cnVjdCBpbnRlbF9kc2kgKmludGVsX2RzaSwKIHsKIAlpZiAoc2VxX2lkID09IE1JUElfU0VR
-X1BPV0VSX09OICYmIGludGVsX2RzaS0+Z3Bpb19wYW5lbCkKIAkJZ3Bpb2Rfc2V0X3ZhbHVlX2Nh
-bnNsZWVwKGludGVsX2RzaS0+Z3Bpb19wYW5lbCwgMSk7CisJaWYgKHNlcV9pZCA9PSBNSVBJX1NF
-UV9CQUNLTElHSFRfT04gJiYgaW50ZWxfZHNpLT5ncGlvX2JhY2tsaWdodCkKKwkJZ3Bpb2Rfc2V0
-X3ZhbHVlX2NhbnNsZWVwKGludGVsX2RzaS0+Z3Bpb19iYWNrbGlnaHQsIDEpOwogCiAJaW50ZWxf
-ZHNpX3ZidF9leGVjKGludGVsX2RzaSwgc2VxX2lkKTsKIAogCWlmIChzZXFfaWQgPT0gTUlQSV9T
-RVFfUE9XRVJfT0ZGICYmIGludGVsX2RzaS0+Z3Bpb19wYW5lbCkKIAkJZ3Bpb2Rfc2V0X3ZhbHVl
-X2NhbnNsZWVwKGludGVsX2RzaS0+Z3Bpb19wYW5lbCwgMCk7CisJaWYgKHNlcV9pZCA9PSBNSVBJ
-X1NFUV9CQUNLTElHSFRfT0ZGICYmIGludGVsX2RzaS0+Z3Bpb19iYWNrbGlnaHQpCisJCWdwaW9k
-X3NldF92YWx1ZV9jYW5zbGVlcChpbnRlbF9kc2ktPmdwaW9fYmFja2xpZ2h0LCAwKTsKIH0KIAog
-dm9pZCBpbnRlbF9kc2lfbXNsZWVwKHN0cnVjdCBpbnRlbF9kc2kgKmludGVsX2RzaSwgaW50IG1z
-ZWMpCkBAIC02ODgsNiArNjk0LDggQEAgYm9vbCBpbnRlbF9kc2lfdmJ0X2luaXQoc3RydWN0IGlu
-dGVsX2RzaSAqaW50ZWxfZHNpLCB1MTYgcGFuZWxfaWQpCiAvKgogICogT24gc29tZSBCWVQvQ0hU
-IGRldnMgc29tZSBzZXF1ZW5jZXMgYXJlIGluY29tcGxldGUgYW5kIHdlIG5lZWQgdG8gbWFudWFs
-bHkKICAqIGNvbnRyb2wgc29tZSBHUElPcy4gV2UgbmVlZCB0byBhZGQgYSBHUElPIGxvb2t1cCB0
-YWJsZSBiZWZvcmUgd2UgZ2V0IHRoZXNlLgorICogSWYgdGhlIEdPUCBkaWQgbm90IGluaXRpYWxp
-emUgdGhlIHBhbmVsIChIRE1JIGluc2VydGVkKSB3ZSBtYXkgbmVlZCB0byBhbHNvCisgKiBjaGFu
-Z2UgdGhlIHBpbm11eCBmb3IgdGhlIFNvQydzIFBXTTAgcGluIGZyb20gR1BJTyB0byBQV00uCiAg
-Ki8KIHN0YXRpYyBzdHJ1Y3QgZ3Bpb2RfbG9va3VwX3RhYmxlIHBtaWNfcGFuZWxfZ3Bpb190YWJs
-ZSA9IHsKIAkvKiBJbnRlbCBHRlggaXMgY29uc3VtZXIgKi8KQEAgLTY5OSwyMyArNzA3LDY5IEBA
-IHN0YXRpYyBzdHJ1Y3QgZ3Bpb2RfbG9va3VwX3RhYmxlIHBtaWNfcGFuZWxfZ3Bpb190YWJsZSA9
-IHsKIAl9LAogfTsKIAorc3RhdGljIHN0cnVjdCBncGlvZF9sb29rdXBfdGFibGUgc29jX3BhbmVs
-X2dwaW9fdGFibGUgPSB7CisJLmRldl9pZCA9ICIwMDAwOjAwOjAyLjAiLAorCS50YWJsZSA9IHsK
-KwkJR1BJT19MT09LVVAoIklOVDMzRkM6MDEiLCAxMCwgImJhY2tsaWdodCIsIEdQSU9fQUNUSVZF
-X0hJR0gpLAorCQlHUElPX0xPT0tVUCgiSU5UMzNGQzowMSIsIDExLCAicGFuZWwiLCBHUElPX0FD
-VElWRV9ISUdIKSwKKwkJeyB9CisJfSwKK307CisKK3N0YXRpYyBjb25zdCBzdHJ1Y3QgcGluY3Ry
-bF9tYXAgc29jX3B3bV9waW5jdHJsX21hcFtdID0geworCVBJTl9NQVBfTVVYX0dST1VQKCIwMDAw
-OjAwOjAyLjAiLCAic29jX3B3bTAiLCAiSU5UMzNGQzowMCIsCisJCQkgICJwd20wX2dycCIsICJw
-d20iKSwKK307CisKIHZvaWQgaW50ZWxfZHNpX3ZidF9ncGlvX2luaXQoc3RydWN0IGludGVsX2Rz
-aSAqaW50ZWxfZHNpLCBib29sIHBhbmVsX2lzX29uKQogewogCXN0cnVjdCBkcm1fZGV2aWNlICpk
-ZXYgPSBpbnRlbF9kc2ktPmJhc2UuYmFzZS5kZXY7CiAJc3RydWN0IGRybV9pOTE1X3ByaXZhdGUg
-KmRldl9wcml2ID0gdG9faTkxNShkZXYpOwogCXN0cnVjdCBtaXBpX2NvbmZpZyAqbWlwaV9jb25m
-aWcgPSBkZXZfcHJpdi0+dmJ0LmRzaS5jb25maWc7CiAJZW51bSBncGlvZF9mbGFncyBmbGFncyA9
-IHBhbmVsX2lzX29uID8gR1BJT0RfT1VUX0hJR0ggOiBHUElPRF9PVVRfTE9XOworCWJvb2wgd2Fu
-dF9iYWNrbGlnaHRfZ3BpbyA9IGZhbHNlOworCWJvb2wgd2FudF9wYW5lbF9ncGlvID0gZmFsc2U7
-CisJc3RydWN0IHBpbmN0cmwgKnBpbmN0cmw7CisJaW50IHJldDsKIAogCWlmICgoSVNfVkFMTEVZ
-VklFVyhkZXZfcHJpdikgfHwgSVNfQ0hFUlJZVklFVyhkZXZfcHJpdikpICYmCiAJICAgIG1pcGlf
-Y29uZmlnLT5wd21fYmxjID09IFBQU19CTENfUE1JQykgewogCQlncGlvZF9hZGRfbG9va3VwX3Rh
-YmxlKCZwbWljX3BhbmVsX2dwaW9fdGFibGUpOworCQl3YW50X3BhbmVsX2dwaW8gPSB0cnVlOwor
-CX0KKworCWlmIChJU19WQUxMRVlWSUVXKGRldl9wcml2KSAmJiBtaXBpX2NvbmZpZy0+cHdtX2Js
-YyA9PSBQUFNfQkxDX1NPQykgeworCQlncGlvZF9hZGRfbG9va3VwX3RhYmxlKCZzb2NfcGFuZWxf
-Z3Bpb190YWJsZSk7CisJCXdhbnRfcGFuZWxfZ3BpbyA9IHRydWU7CisJCXdhbnRfYmFja2xpZ2h0
-X2dwaW8gPSB0cnVlOwogCisJCS8qIEVuc3VyZSBQV00wIHBpbiBpcyBtdXhlZCBhcyBQV00gaW5z
-dGVhZCBvZiBHUElPICovCisJCXJldCA9IHBpbmN0cmxfcmVnaXN0ZXJfbWFwcGluZ3Moc29jX3B3
-bV9waW5jdHJsX21hcCwKKwkJCQkJICAgICBBUlJBWV9TSVpFKHNvY19wd21fcGluY3RybF9tYXAp
-KTsKKwkJaWYgKHJldCkKKwkJCURSTV9FUlJPUigiRmFpbGVkIHRvIHJlZ2lzdGVyIHB3bTAgcGlu
-bXV4IG1hcHBpbmdcbiIpOworCisJCXBpbmN0cmwgPSBkZXZtX3BpbmN0cmxfZ2V0X3NlbGVjdChk
-ZXYtPmRldiwgInNvY19wd20wIik7CisJCWlmIChJU19FUlIocGluY3RybCkpCisJCQlEUk1fRVJS
-T1IoIkZhaWxlZCB0byBzZXQgcGlubXV4IHRvIFBXTVxuIik7CisJfQorCisJaWYgKHdhbnRfcGFu
-ZWxfZ3BpbykgewogCQlpbnRlbF9kc2ktPmdwaW9fcGFuZWwgPSBncGlvZF9nZXQoZGV2LT5kZXYs
-ICJwYW5lbCIsIGZsYWdzKTsKIAkJaWYgKElTX0VSUihpbnRlbF9kc2ktPmdwaW9fcGFuZWwpKSB7
-CiAJCQlEUk1fRVJST1IoIkZhaWxlZCB0byBvd24gZ3BpbyBmb3IgcGFuZWwgY29udHJvbFxuIik7
-CiAJCQlpbnRlbF9kc2ktPmdwaW9fcGFuZWwgPSBOVUxMOwogCQl9CiAJfQorCisJaWYgKHdhbnRf
-YmFja2xpZ2h0X2dwaW8pIHsKKwkJaW50ZWxfZHNpLT5ncGlvX2JhY2tsaWdodCA9CisJCQlncGlv
-ZF9nZXQoZGV2LT5kZXYsICJiYWNrbGlnaHQiLCBmbGFncyk7CisJCWlmIChJU19FUlIoaW50ZWxf
-ZHNpLT5ncGlvX2JhY2tsaWdodCkpIHsKKwkJCURSTV9FUlJPUigiRmFpbGVkIHRvIG93biBncGlv
-IGZvciBiYWNrbGlnaHQgY29udHJvbFxuIik7CisJCQlpbnRlbF9kc2ktPmdwaW9fYmFja2xpZ2h0
-ID0gTlVMTDsKKwkJfQorCX0KIH0KIAogdm9pZCBpbnRlbF9kc2lfdmJ0X2dwaW9fY2xlYW51cChz
-dHJ1Y3QgaW50ZWxfZHNpICppbnRlbF9kc2kpCkBAIC03MjksNyArNzgzLDE3IEBAIHZvaWQgaW50
-ZWxfZHNpX3ZidF9ncGlvX2NsZWFudXAoc3RydWN0IGludGVsX2RzaSAqaW50ZWxfZHNpKQogCQlp
-bnRlbF9kc2ktPmdwaW9fcGFuZWwgPSBOVUxMOwogCX0KIAorCWlmIChpbnRlbF9kc2ktPmdwaW9f
-YmFja2xpZ2h0KSB7CisJCWdwaW9kX3B1dChpbnRlbF9kc2ktPmdwaW9fYmFja2xpZ2h0KTsKKwkJ
-aW50ZWxfZHNpLT5ncGlvX2JhY2tsaWdodCA9IE5VTEw7CisJfQorCiAJaWYgKChJU19WQUxMRVlW
-SUVXKGRldl9wcml2KSB8fCBJU19DSEVSUllWSUVXKGRldl9wcml2KSkgJiYKIAkgICAgbWlwaV9j
-b25maWctPnB3bV9ibGMgPT0gUFBTX0JMQ19QTUlDKQogCQlncGlvZF9yZW1vdmVfbG9va3VwX3Rh
-YmxlKCZwbWljX3BhbmVsX2dwaW9fdGFibGUpOworCisJaWYgKElTX1ZBTExFWVZJRVcoZGV2X3By
-aXYpICYmIG1pcGlfY29uZmlnLT5wd21fYmxjID09IFBQU19CTENfU09DKSB7CisJCXBpbmN0cmxf
-dW5yZWdpc3Rlcl9tYXBwaW5ncyhzb2NfcHdtX3BpbmN0cmxfbWFwKTsKKwkJZ3Bpb2RfcmVtb3Zl
-X2xvb2t1cF90YWJsZSgmc29jX3BhbmVsX2dwaW9fdGFibGUpOworCX0KIH0KLS0gCjIuMjMuMAoK
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
-IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+Quoting Tvrtko Ursulin (2019-12-16 18:20:32)
+> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> 
+> Avoid rc6 counter going backward in close to 0% RC6 scenarios like:
+> 
+>     15.005477996        114,246,613 ns   i915/rc6-residency/
+>     16.005876662            667,657 ns   i915/rc6-residency/
+>     17.006131417              7,286 ns   i915/rc6-residency/
+>     18.006615031 18,446,744,073,708,914,688 ns   i915/rc6-residency/
+>     19.007158361 18,446,744,073,709,447,168 ns   i915/rc6-residency/
+>     20.007806498                  0 ns   i915/rc6-residency/
+>     21.008227495          1,440,403 ns   i915/rc6-residency/
+> 
+> There are two aspects to this fix.
+> 
+> First is not assuming rc6 value zero means GT is asleep since that can
+> also mean GPU is fully busy and we do not want to enter the estimation
+> path in that case.
+> 
+> Second is ensuring monotonicity on the estimation path itself. I suspect
+> what is happening is with extremely rapid park/unpark cycles we get no
+> updates on the real rc6 and therefore have to careful not to
+> unconditionally trust use last known real rc6 when creating a new
+> estimation.
+> 
+> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> Fixes: 16ffe73c186b ("drm/i915/pmu: Use GT parked for estimating RC6 while asleep")
+> Cc: Chris Wilson <chris@chris-wilson.co.uk>
+> ---
+>  drivers/gpu/drm/i915/i915_pmu.c | 10 +++++++---
+>  1 file changed, 7 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/i915_pmu.c b/drivers/gpu/drm/i915/i915_pmu.c
+> index 5f2adfbf85be..c4581d8fc9ce 100644
+> --- a/drivers/gpu/drm/i915/i915_pmu.c
+> +++ b/drivers/gpu/drm/i915/i915_pmu.c
+> @@ -158,7 +158,10 @@ static u64 __pmu_estimate_rc6(struct i915_pmu *pmu)
+>         val = ktime_since(pmu->sleep_last);
+>         val += pmu->sample[__I915_SAMPLE_RC6].cur;
+>  
+> -       pmu->sample[__I915_SAMPLE_RC6_ESTIMATED].cur = val;
+> +       if (val > pmu->sample[__I915_SAMPLE_RC6_ESTIMATED].cur)
+> +               pmu->sample[__I915_SAMPLE_RC6_ESTIMATED].cur = val;
+> +       else
+> +               val = pmu->sample[__I915_SAMPLE_RC6_ESTIMATED].cur;
+
+Still feels a bit hodged-podged, as we should now be able to serialise
+park/unpark of the rc6 counters and our sampling.
+
+>         return val;
+>  }
+> @@ -185,17 +188,18 @@ static u64 get_rc6(struct intel_gt *gt)
+>         struct drm_i915_private *i915 = gt->i915;
+>         struct i915_pmu *pmu = &i915->pmu;
+>         unsigned long flags;
+> +       bool awake = false;
+>         u64 val;
+>  
+> -       val = 0;
+>         if (intel_gt_pm_get_if_awake(gt)) {
+>                 val = __get_rc6(gt);
+>                 intel_gt_pm_put_async(gt);
+> +               awake = true;
+>         }
+>  
+>         spin_lock_irqsave(&pmu->lock, flags);
+>  
+> -       if (val)
+> +       if (awake)
+>                 val = __pmu_update_rc6(pmu, val);
+>         else
+>                 val = __pmu_estimate_rc6(pmu);
+
+Just on the off-chance it returns 0 in the next thousand years.
+
+Reviewed-by: Chris Wilson <chris@chris-wilson.co.uk>
+-Chris
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
