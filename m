@@ -1,45 +1,56 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9915E12115E
-	for <lists+intel-gfx@lfdr.de>; Mon, 16 Dec 2019 18:11:27 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id F17B2121161
+	for <lists+intel-gfx@lfdr.de>; Mon, 16 Dec 2019 18:12:16 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E056C6E83E;
-	Mon, 16 Dec 2019 17:11:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5F3266E840;
+	Mon, 16 Dec 2019 17:12:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7D0A06E83E
- for <intel-gfx@lists.freedesktop.org>; Mon, 16 Dec 2019 17:11:24 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DCDB96E83F
+ for <intel-gfx@lists.freedesktop.org>; Mon, 16 Dec 2019 17:12:13 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 16 Dec 2019 09:11:23 -0800
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 16 Dec 2019 09:12:13 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,322,1571727600"; d="scan'208";a="266310685"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by FMSMGA003.fm.intel.com with SMTP; 16 Dec 2019 09:11:21 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 16 Dec 2019 19:11:20 +0200
-Date: Mon, 16 Dec 2019 19:11:20 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Manasi Navare <manasi.d.navare@intel.com>
-Message-ID: <20191216171120.GY1208@intel.com>
-References: <20191211211425.17821-1-manasi.d.navare@intel.com>
- <20191211211425.17821-2-manasi.d.navare@intel.com>
- <20191213200549.GD1208@intel.com>
- <20191214022836.GH19224@intel.com>
- <20191216120343.GM1208@intel.com>
- <20191216164023.GA17177@intel.com>
+X-IronPort-AV: E=Sophos;i="5.69,322,1571727600"; d="scan'208";a="415144339"
+Received: from linux.intel.com ([10.54.29.200])
+ by fmsmga005.fm.intel.com with ESMTP; 16 Dec 2019 09:12:12 -0800
+Received: from [10.251.95.214] (abudanko-mobl.ccr.corp.intel.com
+ [10.251.95.214])
+ by linux.intel.com (Postfix) with ESMTP id 30029580342;
+ Mon, 16 Dec 2019 09:12:03 -0800 (PST)
+To: "Lubashev, Igor" <ilubashe@akamai.com>,
+ Peter Zijlstra <peterz@infradead.org>,
+ Arnaldo Carvalho de Melo <acme@kernel.org>, Ingo Molnar <mingo@redhat.com>,
+ "jani.nikula@linux.intel.com" <jani.nikula@linux.intel.com>,
+ "joonas.lahtinen@linux.intel.com" <joonas.lahtinen@linux.intel.com>,
+ "rodrigo.vivi@intel.com" <rodrigo.vivi@intel.com>,
+ Alexei Starovoitov <ast@kernel.org>,
+ "james.bottomley@hansenpartnership.com"
+ <james.bottomley@hansenpartnership.com>,
+ "benh@kernel.crashing.org" <benh@kernel.crashing.org>,
+ Casey Schaufler <casey@schaufler-ca.com>, "serge@hallyn.com"
+ <serge@hallyn.com>, James Morris <jmorris@namei.org>
+References: <26101427-c0a3-db9f-39e9-9e5f4ddd009c@linux.intel.com>
+ <fd6ffb43-ed43-14cd-b286-6ab4b199155b@linux.intel.com>
+ <9316a1ab21f6441eb2b421acb818a2a1@ustx2ex-dag1mb6.msg.corp.akamai.com>
+From: Alexey Budankov <alexey.budankov@linux.intel.com>
+Organization: Intel Corp.
+Message-ID: <c471a28b-6620-9b0a-4b6e-43f4956202cd@linux.intel.com>
+Date: Mon, 16 Dec 2019 20:12:02 +0300
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.1
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20191216164023.GA17177@intel.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH 1/3] drm/i915/dp: Make sure all tiled
- connectors get added to the state with full modeset
+In-Reply-To: <9316a1ab21f6441eb2b421acb818a2a1@ustx2ex-dag1mb6.msg.corp.akamai.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH v2 2/7] perf/core: open access for
+ CAP_SYS_PERFMON privileged process
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,202 +63,90 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: Song Liu <songliubraving@fb.com>, Andi Kleen <ak@linux.intel.com>,
+ Kees Cook <keescook@chromium.org>,
+ "linux-parisc@vger.kernel.org" <linux-parisc@vger.kernel.org>,
+ Jann Horn <jannh@google.com>,
+ Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+ "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ linux-kernel <linux-kernel@vger.kernel.org>,
+ Stephane Eranian <eranian@google.com>,
+ "linux-perf-users@vger.kernel.org" <linux-perf-users@vger.kernel.org>,
+ "selinux@vger.kernel.org" <selinux@vger.kernel.org>,
+ "linux-security-module@vger.kernel.org"
+ <linux-security-module@vger.kernel.org>, Namhyung Kim <namhyung@kernel.org>,
+ Thomas Gleixner <tglx@linutronix.de>,
+ "bgregg@netflix.com" <bgregg@netflix.com>, Jiri Olsa <jolsa@redhat.com>,
+ "bpf@vger.kernel.org" <bpf@vger.kernel.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Dec 16, 2019 at 08:40:24AM -0800, Manasi Navare wrote:
-> On Mon, Dec 16, 2019 at 02:03:43PM +0200, Ville Syrj=E4l=E4 wrote:
-> > On Fri, Dec 13, 2019 at 06:28:40PM -0800, Manasi Navare wrote:
-> > > On Fri, Dec 13, 2019 at 10:05:49PM +0200, Ville Syrj=E4l=E4 wrote:
-> > > > On Wed, Dec 11, 2019 at 01:14:23PM -0800, Manasi Navare wrote:
-> > > > > In case of tiled displays, all the tiles are linke dto each other
-> > > > > for transcoder port sync. So in intel_atomic_check() we need to m=
-ake
-> > > > > sure that we add all the tiles to the modeset and if one of the
-> > > > > tiles needs a full modeset then mark all other tiles for a full m=
-odeset.
-> > > > > =
 
-> > > > > Suggested-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> > > > > Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> > > > > Cc: Jos=E9 Roberto de Souza <jose.souza@intel.com>
-> > > > > Bugzilla: https://gitlab.freedesktop.org/drm/intel/issues/5
-> > > > > Signed-off-by: Manasi Navare <manasi.d.navare@intel.com>
-> > > > > ---
-> > > > >  drivers/gpu/drm/i915/display/intel_display.c | 78 ++++++++++++++=
-++++++
-> > > > >  1 file changed, 78 insertions(+)
-> > > > > =
+On 16.12.2019 19:12, Lubashev, Igor wrote:
+> On Mon, Dec 16, 2019 at 2:15 AM, Alexey Budankov <alexey.budankov@linux.intel.com> wrote:
+>>
+>> Open access to perf_events monitoring for CAP_SYS_PERFMON privileged
+>> processes.
+>> For backward compatibility reasons access to perf_events subsystem remains
+>> open for CAP_SYS_ADMIN privileged processes but CAP_SYS_ADMIN usage
+>> for secure perf_events monitoring is discouraged with respect to
+>> CAP_SYS_PERFMON capability.
+>>
+>> Signed-off-by: Alexey Budankov <alexey.budankov@linux.intel.com>
+>> ---
+>>  include/linux/perf_event.h | 9 ++++++---
+>>  1 file changed, 6 insertions(+), 3 deletions(-)
+>>
+>> diff --git a/include/linux/perf_event.h b/include/linux/perf_event.h index
+>> 34c7c6910026..52313d2cc343 100644
+>> --- a/include/linux/perf_event.h
+>> +++ b/include/linux/perf_event.h
+>> @@ -1285,7 +1285,8 @@ static inline int perf_is_paranoid(void)
+>>
+>>  static inline int perf_allow_kernel(struct perf_event_attr *attr)  {
+>> -	if (sysctl_perf_event_paranoid > 1 && !capable(CAP_SYS_ADMIN))
+>> +	if (sysctl_perf_event_paranoid > 1 &&
+>> +	   !(capable(CAP_SYS_PERFMON) || capable(CAP_SYS_ADMIN)))
+>>  		return -EACCES;
+>>
+>>  	return security_perf_event_open(attr, PERF_SECURITY_KERNEL); @@
+>> -1293,7 +1294,8 @@ static inline int perf_allow_kernel(struct
+>> perf_event_attr *attr)
+>>
+>>  static inline int perf_allow_cpu(struct perf_event_attr *attr)  {
+>> -	if (sysctl_perf_event_paranoid > 0 && !capable(CAP_SYS_ADMIN))
+>> +	if (sysctl_perf_event_paranoid > 0 &&
+>> +	    !(capable(CAP_SYS_PERFMON) || capable(CAP_SYS_ADMIN)))
+>>  		return -EACCES;
+>>
+>>  	return security_perf_event_open(attr, PERF_SECURITY_CPU); @@ -
+>> 1301,7 +1303,8 @@ static inline int perf_allow_cpu(struct perf_event_attr
+>> *attr)
+>>
+>>  static inline int perf_allow_tracepoint(struct perf_event_attr *attr)  {
+>> -	if (sysctl_perf_event_paranoid > -1 && !capable(CAP_SYS_ADMIN))
+>> +	if (sysctl_perf_event_paranoid > -1 &&
+>> +	    !(capable(CAP_SYS_PERFMON) || capable(CAP_SYS_ADMIN)))
+>>  		return -EPERM;
+>>
+>>  	return security_perf_event_open(attr, PERF_SECURITY_TRACEPOINT);
+>> --
+>> 2.20.1
+> 
+> Thanks.  I like the idea of CAP_SYS_PERFMON that does not require CAP_SYS_ADMIN.  It makes granting users ability to run perf a bit safer.
+> 
+> I see a lot of "(capable(CAP_SYS_PERFMON) || capable(CAP_SYS_ADMIN)" constructs now.  Maybe wrapping it in an " inline bool perfmon_capable()" defined somewhere (like in /include/linux/capability.h)?
 
-> > > > > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drive=
-rs/gpu/drm/i915/display/intel_display.c
-> > > > > index 803993a01ca7..7263eaa66cda 100644
-> > > > > --- a/drivers/gpu/drm/i915/display/intel_display.c
-> > > > > +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> > > > > @@ -14066,6 +14066,80 @@ static int intel_atomic_check_crtcs(stru=
-ct intel_atomic_state *state)
-> > > > >  	return 0;
-> > > > >  }
-> > > > >  =
+Sounds reasonable, thanks!
 
-> > > > > +static int
-> > > > > +intel_dp_modeset_all_tiles(struct drm_i915_private *dev_priv,
-> > > > > +			   struct intel_atomic_state *state, int tile_grp_id)
-> > > > > +{
-> > > > > +	struct drm_connector *conn_iter;
-> > > > 'connector'
-> > > > > +	struct drm_connector_list_iter conn_list_iter;
-> > > > > +	struct drm_crtc_state *crtc_state;
-> > > > =
+~Alexey
 
-> > > > crtc_state has needlessly wide scope.
-> > > > =
-
-> > > > > +
-> > > > > +	drm_connector_list_iter_begin(&dev_priv->drm, &conn_list_iter);
-> > > > > +	drm_for_each_connector_iter(conn_iter, &conn_list_iter) {
-> > > > > +		struct drm_connector_state *conn_iter_state;
-> > > > =
-
-> > > > 'conn_state' is the most popular name.
-> > > > =
-
-> > > > > +
-> > > > > +		if (!conn_iter->has_tile)
-> > > > > +			continue;
-> > > > > +		conn_iter_state =3D drm_atomic_get_connector_state(&state->bas=
-e,
-> > > > > +								 conn_iter);
-> > > > > +		if (IS_ERR(conn_iter_state)) {
-> > > > > +			drm_connector_list_iter_end(&conn_list_iter);
-> > > > > +			return PTR_ERR(conn_iter_state);
-> > > > > +		}
-> > > > > +
-> > > > > +		if (!conn_iter_state->crtc)
-> > > > > +			continue;
-> > > > > +
-> > > > > +		if (conn_iter->tile_group->id !=3D tile_grp_id)
-> > > > > +			continue;
-> > > > =
-
-> > > > The tile group check should be part of the same if with the has_tile
-> > > > check.
-> > > > =
-
-> > > > > +
-> > > > > +		crtc_state =3D drm_atomic_get_crtc_state(&state->base, conn_it=
-er_state->crtc);
-> > > > > +		if (IS_ERR(crtc_state)) {
-> > > > > +			drm_connector_list_iter_end(&conn_list_iter);
-> > > > > +			return PTR_ERR(conn_iter_state);
-> > > > > +		}
-> > > > > +		crtc_state->mode_changed =3D true;
-> > > > > +	}
-> > > > > +	drm_connector_list_iter_end(&conn_list_iter);
-> > > > > +
-> > > > > +	return 0;
-> > > > > +}
-> > > > > +
-> > > > > +static int
-> > > > > +intel_dp_atomic_trans_port_sync_check(struct drm_i915_private *d=
-ev_priv,
-> > > > =
-
-> > > > Pointless variable. Can be extracted from the atomic state.
-> > > > =
-
-> > > > > +				      struct intel_atomic_state *state)
-> > > > > +{
-> > > > > +	struct drm_connector *connector;
-> > > > > +	struct drm_crtc_state *crtc_state;
-> > > > > +	struct drm_connector_state *connector_state;
-> > > > > +	int i, ret, tile_grp_id =3D 0;
-> > > > =
-
-> > > > tile_grp_id is rather pointless. crtc_state and ret can move into
-> > > > tighter scope. And the next suggestion allows you to kill crtc_state
-> > > > entirely...
-> > > =
-
-> > > Its not clear why tile_grp_id is pointless, I am using tile_grp_id fo=
-r the first connector with has_tile
-> > > and I make sure that I dont enter into the loop to check modeset agai=
-n for the connector with
-> > > same tile_grp_id because we have already set its mode changed to true=
- in intel_dp_modeset_all_tiles()
-> > > =
-
-> > > How can I achieve this instead?
-> > =
-
-> > =
-
-> > Instead of =
-
-> > foo()
-> > {
-> > 	tile_grp_id =3D 0;
-> > =
-
-> > 	for_each() {
-> > 		tile_grp_id =3D conn->tile_grp_id;
-> > =
-
-> > 		intel_dp_modeset_all_tiles(tile_grp_id);
-> > 	}
-> > }
-> > =
-
-> > you just do
-> > foo()
-> > {
-> > 	for_each() {
-> > 		intel_dp_modeset_all_tiles(conn->tile_grp_id);
-> > 	}
-> > }
-> =
-
-> Yes I understand that we can pass the conn->tile_grp_id directly. But cur=
-rently I am using tile_grp_id in for_each(), to call intel_dp_modeset_all_t=
-iles()
-> only if that cnnector is from a differnt tile grp id else continue.
-> =
-
-> foo()
-> {
-> 	for_each() {
-> 		if(tile_grp_id !=3D conn->tile_grp_id)
-> 			intel_dpmodeset_all_tiles();
-> 		else
-> 			continue;
-> 	}
-> }
-> =
-
-> calling intel_dp_modeset_all_tiles() for all tiles is kind of redundant. =
-How can I do this with your suggestion, or do you think
-> we should call intel_dp_modeset_all_tiles for each connector anyway and i=
-t shouldnt matter?
-
-Yes if that connector is tiled.
-
-Eg. if you have something like
-connector A: tile group 1
-connector B: tile group 2
-connector C: tile group 3
-connector D: tile group 2
-
-then your single tile_grp_id variable doesn't work anyway. You'd need
-track which tile groups you've already handled and skip those. But
-much easier to just blindly plow ahead.
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
+> 
+> - Igor
+> 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
