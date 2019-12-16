@@ -1,40 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1AD5D121C4B
-	for <lists+intel-gfx@lfdr.de>; Mon, 16 Dec 2019 23:06:46 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 363B3121C43
+	for <lists+intel-gfx@lfdr.de>; Mon, 16 Dec 2019 23:01:10 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2BA2C6E8B3;
-	Mon, 16 Dec 2019 22:06:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 56BFA6E8B2;
+	Mon, 16 Dec 2019 22:01:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 16CD26E8B3
- for <intel-gfx@lists.freedesktop.org>; Mon, 16 Dec 2019 22:06:42 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2492C6E8B2
+ for <intel-gfx@lists.freedesktop.org>; Mon, 16 Dec 2019 22:01:07 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 16 Dec 2019 13:23:55 -0800
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 16 Dec 2019 14:01:06 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,323,1571727600"; d="scan'208";a="212349828"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by fmsmga008.fm.intel.com with SMTP; 16 Dec 2019 13:23:53 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 16 Dec 2019 23:23:52 +0200
-Date: Mon, 16 Dec 2019 23:23:52 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Vandita Kulkarni <vandita.kulkarni@intel.com>
-Message-ID: <20191216212352.GB1208@intel.com>
-References: <20191216080619.10945-1-vandita.kulkarni@intel.com>
+X-IronPort-AV: E=Sophos;i="5.69,323,1571727600"; d="scan'208";a="205257690"
+Received: from fmsmsx106.amr.corp.intel.com ([10.18.124.204])
+ by orsmga007.jf.intel.com with ESMTP; 16 Dec 2019 14:01:05 -0800
+Received: from fmsmsx122.amr.corp.intel.com (10.18.125.37) by
+ FMSMSX106.amr.corp.intel.com (10.18.124.204) with Microsoft SMTP Server (TLS)
+ id 14.3.439.0; Mon, 16 Dec 2019 14:01:05 -0800
+Received: from fmsmsx117.amr.corp.intel.com ([169.254.3.123]) by
+ fmsmsx122.amr.corp.intel.com ([169.254.5.113]) with mapi id 14.03.0439.000;
+ Mon, 16 Dec 2019 14:01:05 -0800
+From: "Souza, Jose" <jose.souza@intel.com>
+To: "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Thread-Topic: [PATCH 3/5] drm/i915: Pass old crtc state to
+ skylake_scaler_disable()
+Thread-Index: AQHVse7av+mbZGMu50G9GmTfi3rc+ae92tgA
+Date: Mon, 16 Dec 2019 22:01:03 +0000
+Message-ID: <223ebe29ce74f7fa5b6d2234d88fece382e26821.camel@intel.com>
+References: <20191213195217.15168-1-ville.syrjala@linux.intel.com>
+ <20191213195217.15168-3-ville.syrjala@linux.intel.com>
+In-Reply-To: <20191213195217.15168-3-ville.syrjala@linux.intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.251.15.215]
+Content-ID: <AD41F3CBC2EF8440868719E32BD47480@intel.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20191216080619.10945-1-vandita.kulkarni@intel.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Fix WARN_ON condition for cursor
- plane ddb allocation
+Subject: Re: [Intel-gfx] [PATCH 3/5] drm/i915: Pass old crtc state to
+ skylake_scaler_disable()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,60 +59,41 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com, intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Dec 16, 2019 at 01:36:19PM +0530, Vandita Kulkarni wrote:
-> In some cases like latency[level]=3D=3D0, wm[level].res_lines>31,
-> min_ddb_alloc can be U16_MAX, exclude it from the WARN_ON.
-> =
-
-> v2: Specify the cases in which we hit U16_MAX, indentation (Ville)
-> =
-
-> Fixes: 10a7e07b68b9 ("drm/i915: Make sure cursor has enough ddb for the s=
-elected wm level")
-> Suggested-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> Signed-off-by: Vandita Kulkarni <vandita.kulkarni@intel.com>
-> Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> ---
->  drivers/gpu/drm/i915/intel_pm.c | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
-> =
-
-> diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel=
-_pm.c
-> index ccbbdf4a6aab..7cdca06be3bd 100644
-> --- a/drivers/gpu/drm/i915/intel_pm.c
-> +++ b/drivers/gpu/drm/i915/intel_pm.c
-> @@ -4312,8 +4312,8 @@ skl_allocate_pipe_ddb(struct intel_crtc_state *crtc=
-_state,
->  				&crtc_state->wm.skl.optimal.planes[plane_id];
->  =
-
->  			if (plane_id =3D=3D PLANE_CURSOR) {
-> -				if (WARN_ON(wm->wm[level].min_ddb_alloc >
-> -					    total[PLANE_CURSOR])) {
-> +				if (wm->wm[level].min_ddb_alloc > total[PLANE_CURSOR]) {
-> +					WARN_ON(wm->wm[level].min_ddb_alloc !=3D U16_MAX);
-
-Pushed to dinq. Thanks for the patch.
-
->  					blocks =3D U32_MAX;
->  					break;
->  				}
-> -- =
-
-> 2.21.0.5.gaeb582a
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gRnJpLCAyMDE5LTEyLTEzIGF0IDIxOjUyICswMjAwLCBWaWxsZSBTeXJqYWxhIHdyb3RlOg0K
+PiBGcm9tOiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwuY29tPg0K
+PiANCj4gVG8gbWFrZSBsaWZlIGVhc2llciBpbiB0aGUgZnV0dXJlIGxldCdzIHBhc3MgdGhlIG9s
+ZCBjcnRjIHN0YXRlDQo+IHRvIHNreWxha2Vfc2NhbGVyX2Rpc2FibGUoKSBqdXN0IGxpa2Ugd2Ug
+YWxyZWFkeSBkbyBmb3INCj4gZm9yIGl0cyBhbmNlc3RvciBpcm9ubGFrZV9wZml0X2Rpc2FibGUo
+KS4NCj4gDQoNCk9rYXkgdGhpcyBoZWxwcyB0aGUgbGFzdCBwYXRjaA0KUmV2aWV3ZWQtYnk6IEpv
+c8OpIFJvYmVydG8gZGUgU291emEgPGpvc2Uuc291emFAaW50ZWwuY29tPg0KDQo+IENjOiBKb3PD
+qSBSb2JlcnRvIGRlIFNvdXphIDxqb3NlLnNvdXphQGludGVsLmNvbT4NCj4gQ2M6IE1hbmFzaSBO
+YXZhcmUgPG1hbmFzaS5kLm5hdmFyZUBpbnRlbC5jb20+DQo+IFNpZ25lZC1vZmYtYnk6IFZpbGxl
+IFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5jb20+DQo+IC0tLQ0KPiAgZHJp
+dmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMgfCA1ICsrKy0tDQo+ICAx
+IGZpbGUgY2hhbmdlZCwgMyBpbnNlcnRpb25zKCspLCAyIGRlbGV0aW9ucygtKQ0KPiANCj4gZGlm
+ZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jDQo+
+IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMNCj4gaW5kZXgg
+NGFkY2Q3NTEzODRlLi4zMGYyNzdhYTIyOGYgMTAwNjQ0DQo+IC0tLSBhL2RyaXZlcnMvZ3B1L2Ry
+bS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jDQo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9p
+OTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jDQo+IEBAIC01NzY5LDggKzU3NjksOSBAQCBzdGF0
+aWMgaW50IHNrbF91cGRhdGVfc2NhbGVyX3BsYW5lKHN0cnVjdA0KPiBpbnRlbF9jcnRjX3N0YXRl
+ICpjcnRjX3N0YXRlLA0KPiAgCXJldHVybiAwOw0KPiAgfQ0KPiAgDQo+IC1zdGF0aWMgdm9pZCBz
+a3lsYWtlX3NjYWxlcl9kaXNhYmxlKHN0cnVjdCBpbnRlbF9jcnRjICpjcnRjKQ0KPiArc3RhdGlj
+IHZvaWQgc2t5bGFrZV9zY2FsZXJfZGlzYWJsZShjb25zdCBzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0
+ZQ0KPiAqb2xkX2NydGNfc3RhdGUpDQo+ICB7DQo+ICsJc3RydWN0IGludGVsX2NydGMgKmNydGMg
+PSB0b19pbnRlbF9jcnRjKG9sZF9jcnRjX3N0YXRlLQ0KPiA+dWFwaS5jcnRjKTsNCj4gIAlpbnQg
+aTsNCj4gIA0KPiAgCWZvciAoaSA9IDA7IGkgPCBjcnRjLT5udW1fc2NhbGVyczsgaSsrKQ0KPiBA
+QCAtNjc2Miw3ICs2NzYzLDcgQEAgc3RhdGljIHZvaWQgaGFzd2VsbF9jcnRjX2Rpc2FibGUoc3Ry
+dWN0DQo+IGludGVsX2F0b21pY19zdGF0ZSAqc3RhdGUsDQo+ICAJaW50ZWxfZHNjX2Rpc2FibGUo
+b2xkX2NydGNfc3RhdGUpOw0KPiAgDQo+ICAJaWYgKElOVEVMX0dFTihkZXZfcHJpdikgPj0gOSkN
+Cj4gLQkJc2t5bGFrZV9zY2FsZXJfZGlzYWJsZShjcnRjKTsNCj4gKwkJc2t5bGFrZV9zY2FsZXJf
+ZGlzYWJsZShvbGRfY3J0Y19zdGF0ZSk7DQo+ICAJZWxzZQ0KPiAgCQlpcm9ubGFrZV9wZml0X2Rp
+c2FibGUob2xkX2NydGNfc3RhdGUpOw0KPiAgDQpfX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0
+cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9s
+aXN0aW5mby9pbnRlbC1nZngK
