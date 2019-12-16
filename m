@@ -2,30 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9ECE411FC74
-	for <lists+intel-gfx@lfdr.de>; Mon, 16 Dec 2019 02:10:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A49D011FC89
+	for <lists+intel-gfx@lfdr.de>; Mon, 16 Dec 2019 02:23:42 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8273989CAF;
-	Mon, 16 Dec 2019 01:10:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 308FC6E16D;
+	Mon, 16 Dec 2019 01:23:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id F25B389CA0;
- Mon, 16 Dec 2019 01:10:07 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id D7FD7A00C7;
- Mon, 16 Dec 2019 01:10:07 +0000 (UTC)
+Received: from ozlabs.org (bilbo.ozlabs.org [IPv6:2401:3900:2:1::2])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A6F716E16D;
+ Mon, 16 Dec 2019 01:23:36 +0000 (UTC)
+Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
+ SHA256) (No client certificate requested)
+ by mail.ozlabs.org (Postfix) with ESMTPSA id 47bk784hz8z9sP6;
+ Mon, 16 Dec 2019 12:23:32 +1100 (AEDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=canb.auug.org.au;
+ s=201702; t=1576459414;
+ bh=bFoEp0Oze1uoHC2r3Fp1CEYcJF/UHb71fRXsGtfYZIY=;
+ h=Date:From:To:Cc:Subject:From;
+ b=isCPi/8AXANwUAv7CIHOP3YyUqe1M13CxS7FNwVn5LSnOYxaShAHu6U4KV7L8BEiI
+ kCBNwYRS40ivvFQUmwcR7LZjzhhddVeBBkJaPj1MkaMBsBgoGVDQwvqOwxNW6G96x/
+ 0+LbVYrLtZhQo12LRpH75E0gr4AkkwSfufYRTZjnL1KceqqeJ11wUU82rC+vaKg32Q
+ 3KyGMKSI0kfWHS4dz62eEMLjq15DkSfKyOWtklUXKi44Ng1u2FmxDh/V3xrHIiNnC8
+ 4C6DjdvGRFSa27gZ1U9G2vVNi7pLyVNp2L0QmhRfYIRxqQn8zBilHXJhk19SZxz36s
+ Zbp884+wsJXZA==
+Date: Mon, 16 Dec 2019 12:23:31 +1100
+From: Stephen Rothwell <sfr@canb.auug.org.au>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>, Intel Graphics
+ <intel-gfx@lists.freedesktop.org>, DRI <dri-devel@lists.freedesktop.org>
+Message-ID: <20191216122331.43c766f1@canb.auug.org.au>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Mon, 16 Dec 2019 01:10:07 -0000
-Message-ID: <157645860786.5613.11339771513278539981@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20191216002501.2406334-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20191216002501.2406334-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/gt=3A_Set_vm_again_after_MI=5FSET=5FCONTEXT_=28rev14=29?=
+Subject: [Intel-gfx] linux-next: build failure after merge of the drm-misc
+ tree
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,99 +48,119 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Wolfram Sang <wsa@the-dreams.de>,
+ Wolfram Sang <wsa+renesas@sang-engineering.com>,
+ Linux Next Mailing List <linux-next@vger.kernel.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ Icenowy Zheng <icenowy@aosc.io>
+Content-Type: multipart/mixed; boundary="===============0860081388=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+--===============0860081388==
+Content-Type: multipart/signed; boundary="Sig_/zeyYGkAXi=.XMxUHhTLcnmI";
+ protocol="application/pgp-signature"; micalg=pgp-sha256
 
-Series: drm/i915/gt: Set vm again after MI_SET_CONTEXT (rev14)
-URL   : https://patchwork.freedesktop.org/series/70839/
-State : success
+--Sig_/zeyYGkAXi=.XMxUHhTLcnmI
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
-== Summary ==
+Hi all,
 
-CI Bug Log - changes from CI_DRM_7569 -> Patchwork_15781
-====================================================
+After merging the drm-misc tree, today's linux-next build (x86_64
+allmodconfig) failed like this:
 
-Summary
--------
+drivers/gpu/drm/bridge/analogix/analogix-anx6345.c: In function 'anx6345_i2=
+c_probe':
+drivers/gpu/drm/bridge/analogix/analogix-anx6345.c:738:30: error: implicit =
+declaration of function 'i2c_new_dummy' [-Werror=3Dimplicit-function-declar=
+ation]
+  738 |    anx6345->i2c_clients[i] =3D i2c_new_dummy(client->adapter,
+      |                              ^~~~~~~~~~~~~
+drivers/gpu/drm/bridge/analogix/analogix-anx6345.c:738:28: warning: assignm=
+ent to 'struct i2c_client *' from 'int' makes pointer from integer without =
+a cast [-Wint-conversion]
+  738 |    anx6345->i2c_clients[i] =3D i2c_new_dummy(client->adapter,
+      |                            ^
 
-  **SUCCESS**
+Caused by commit
 
-  No regressions found.
+  6aa192698089 ("drm/bridge: Add Analogix anx6345 support")
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15781/index.html
+interacting with commit
 
-Known issues
-------------
+  2c2f00ab1641 ("i2c: remove i2c_new_dummy() API")
 
-  Here are the changes found in Patchwork_15781 that come from known issues:
+=46rom Linus' tree.
 
-### IGT changes ###
+I have applied the following fix up patch for today:
 
-#### Possible fixes ####
+From: Stephen Rothwell <sfr@canb.auug.org.au>
+Date: Mon, 16 Dec 2019 12:11:19 +1100
+Subject: [PATCH] drm/bridge: fix up for removal of i2c_new_dummy()
 
-  * igt@i915_selftest@live_blt:
-    - fi-ivb-3770:        [DMESG-FAIL][1] ([i915#725]) -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7569/fi-ivb-3770/igt@i915_selftest@live_blt.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15781/fi-ivb-3770/igt@i915_selftest@live_blt.html
+Signed-off-by: Stephen Rothwell <sfr@canb.auug.org.au>
+---
+ drivers/gpu/drm/bridge/analogix/analogix-anx6345.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-  * igt@i915_selftest@live_gem_contexts:
-    - fi-byt-n2820:       [INCOMPLETE][3] ([i915#45]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7569/fi-byt-n2820/igt@i915_selftest@live_gem_contexts.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15781/fi-byt-n2820/igt@i915_selftest@live_gem_contexts.html
+diff --git a/drivers/gpu/drm/bridge/analogix/analogix-anx6345.c b/drivers/g=
+pu/drm/bridge/analogix/analogix-anx6345.c
+index 9917ce0d86a0..56f55c53abfd 100644
+--- a/drivers/gpu/drm/bridge/analogix/analogix-anx6345.c
++++ b/drivers/gpu/drm/bridge/analogix/analogix-anx6345.c
+@@ -735,13 +735,13 @@ static int anx6345_i2c_probe(struct i2c_client *clien=
+t,
+ 	/* Map slave addresses of ANX6345 */
+ 	for (i =3D 0; i < I2C_NUM_ADDRESSES; i++) {
+ 		if (anx6345_i2c_addresses[i] >> 1 !=3D client->addr)
+-			anx6345->i2c_clients[i] =3D i2c_new_dummy(client->adapter,
++			anx6345->i2c_clients[i] =3D i2c_new_dummy_device(client->adapter,
+ 						anx6345_i2c_addresses[i] >> 1);
+ 		else
+ 			anx6345->i2c_clients[i] =3D client;
+=20
+-		if (!anx6345->i2c_clients[i]) {
+-			err =3D -ENOMEM;
++		if (IS_ERR(anx6345->i2c_clients[i])) {
++			err =3D PTR_ERR(anx6345->i2c_clients[i]);
+ 			DRM_ERROR("Failed to reserve I2C bus %02x\n",
+ 				  anx6345_i2c_addresses[i]);
+ 			goto err_unregister_i2c;
+--=20
+2.24.0
 
-  * igt@kms_flip@basic-flip-vs-dpms:
-    - fi-apl-guc:         [DMESG-WARN][5] ([i915#180]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7569/fi-apl-guc/igt@kms_flip@basic-flip-vs-dpms.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15781/fi-apl-guc/igt@kms_flip@basic-flip-vs-dpms.html
+--=20
+Cheers,
+Stephen Rothwell
 
-  
-#### Warnings ####
+--Sig_/zeyYGkAXi=.XMxUHhTLcnmI
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
 
-  * igt@i915_selftest@live_gem_contexts:
-    - fi-hsw-peppy:       [DMESG-FAIL][7] ([i915#722]) -> [INCOMPLETE][8] ([i915#694])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7569/fi-hsw-peppy/igt@i915_selftest@live_gem_contexts.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15781/fi-hsw-peppy/igt@i915_selftest@live_gem_contexts.html
+-----BEGIN PGP SIGNATURE-----
 
-  
-  [i915#180]: https://gitlab.freedesktop.org/drm/intel/issues/180
-  [i915#45]: https://gitlab.freedesktop.org/drm/intel/issues/45
-  [i915#694]: https://gitlab.freedesktop.org/drm/intel/issues/694
-  [i915#722]: https://gitlab.freedesktop.org/drm/intel/issues/722
-  [i915#725]: https://gitlab.freedesktop.org/drm/intel/issues/725
+iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAl323JMACgkQAVBC80lX
+0GxN4QgAj7cSKYl22karaXz89XosCJqL4gvGd9bkeZ5Xb+s0IxEa+wWqHBlypzSK
+CgwKRM52IvdDillgu4OrUswwU3uOnGVwpDzhaAEPud2MlVHwW8FUVpVWXMS/R0T9
+ioq2BZghynAVV4bk7BtJbqGT4/NWyLOLqMNRJc87ab314NQ/ndHVhND9dRRnarka
+iDuQJA9LeT8a2nAVjK7h3eaX2kwBVOARZuOY5nODMeRyKzaYyWo4RVn4B5bCR+gY
+wBugDDotCKnOgI3ZwdLySA9A5cPbySMuIXK5d30QDptp6vH0YzbI8nFc+/S7XFQm
+RnTk93uuVVln84h0daNEeovw8VE/nQ==
+=ycV+
+-----END PGP SIGNATURE-----
 
+--Sig_/zeyYGkAXi=.XMxUHhTLcnmI--
 
-Participating hosts (34 -> 22)
-------------------------------
+--===============0860081388==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
-  Missing    (12): fi-icl-1065g7 fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-snb-2520m fi-kbl-guc fi-ctg-p8600 fi-cfl-8109u fi-byt-clapper fi-bdw-samus fi-snb-2600 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_7569 -> Patchwork_15781
-
-  CI-20190529: 20190529
-  CI_DRM_7569: 62c2abc0df8983aba79ba093413683c44e9c4748 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5349: 048f58513d8b8ec6bb307a939f0ac959bc0f0e10 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_15781: f243dd7bf717b7edef90710ff072f856f72e5c3a @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-f243dd7bf717 drm/i915/gt: Set vm again after MI_SET_CONTEXT
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15781/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0860081388==--
