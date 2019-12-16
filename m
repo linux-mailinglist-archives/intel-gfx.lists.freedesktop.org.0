@@ -2,34 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F3A72121017
-	for <lists+intel-gfx@lfdr.de>; Mon, 16 Dec 2019 17:52:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D73B121025
+	for <lists+intel-gfx@lfdr.de>; Mon, 16 Dec 2019 17:53:23 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 607DB6E82D;
-	Mon, 16 Dec 2019 16:52:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C2A186E830;
+	Mon, 16 Dec 2019 16:53:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CFB2C6E82F
- for <intel-gfx@lists.freedesktop.org>; Mon, 16 Dec 2019 16:52:12 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4085E6E830
+ for <intel-gfx@lists.freedesktop.org>; Mon, 16 Dec 2019 16:53:20 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 19597936-1500050 for multiple; Mon, 16 Dec 2019 16:52:08 +0000
-MIME-Version: 1.0
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19597950-1500050 
+ for <intel-gfx@lists.freedesktop.org>; Mon, 16 Dec 2019 16:53:16 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
-User-Agent: alot/0.6
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-References: <20191212014629.854076-1-chris@chris-wilson.co.uk>
- <20191212014629.854076-3-chris@chris-wilson.co.uk>
- <51acf694-2cb2-1044-e761-8ed0c43d4cc4@linux.intel.com>
-In-Reply-To: <51acf694-2cb2-1044-e761-8ed0c43d4cc4@linux.intel.com>
-Message-ID: <157651512745.2428.15264335764010300099@skylake-alporthouse-com>
-Date: Mon, 16 Dec 2019 16:52:07 +0000
-Subject: Re: [Intel-gfx] [PATCH 3/3] drm/i915/gt: Eliminate the trylock for
- reading a timeline's hwsp
+To: intel-gfx@lists.freedesktop.org
+Date: Mon, 16 Dec 2019 16:53:17 +0000
+Message-Id: <20191216165317.2742896-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.24.0
+MIME-Version: 1.0
+Subject: [Intel-gfx] [CI] drm/i915: Eliminate the trylock for awaiting an
+ earlier request
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,84 +42,82 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Tvrtko Ursulin (2019-12-16 16:40:15)
-> 
-> On 12/12/2019 01:46, Chris Wilson wrote:
-> > As we stash a pointer to the HWSP cacheline on the request, when reading
-> > it we only need confirm that the cacheline is still valid by checking
-> > that the request and timeline are still intact.
-> > 
-> > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> > Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> > ---
-> >   drivers/gpu/drm/i915/gt/intel_timeline.c | 38 ++++++++----------------
-> >   1 file changed, 13 insertions(+), 25 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/gt/intel_timeline.c b/drivers/gpu/drm/i915/gt/intel_timeline.c
-> > index 728da39e8ace..566ce19bb0ea 100644
-> > --- a/drivers/gpu/drm/i915/gt/intel_timeline.c
-> > +++ b/drivers/gpu/drm/i915/gt/intel_timeline.c
-> > @@ -515,6 +515,7 @@ int intel_timeline_read_hwsp(struct i915_request *from,
-> >                            struct i915_request *to,
-> >                            u32 *hwsp)
-> >   {
-> > +     struct intel_timeline_cacheline *cl = from->hwsp_cacheline;
-> >       struct intel_timeline *tl;
-> >       int err;
-> >   
-> > @@ -527,33 +528,20 @@ int intel_timeline_read_hwsp(struct i915_request *from,
-> >               return 1;
-> >   
-> >       GEM_BUG_ON(rcu_access_pointer(to->timeline) == tl);
-> > -
-> > -     err = -EAGAIN;
-> > -     if (mutex_trylock(&tl->mutex)) {
-> > -             struct intel_timeline_cacheline *cl = from->hwsp_cacheline;
-> > -
-> > -             if (i915_request_completed(from)) {
-> > -                     err = 1;
-> > -                     goto unlock;
-> > -             }
-> > -
-> > -             err = cacheline_ref(cl, to);
-> > -             if (err)
-> > -                     goto unlock;
-> > -
-> > -             if (likely(cl == tl->hwsp_cacheline)) {
-> > -                     *hwsp = tl->hwsp_offset;
-> > -             } else { /* across a seqno wrap, recover the original offset */
-> > -                     *hwsp = i915_ggtt_offset(cl->hwsp->vma) +
-> > -                             ptr_unmask_bits(cl->vaddr, CACHELINE_BITS) *
-> > -                             CACHELINE_BYTES;
-> > -             }
-> > -
-> > -unlock:
-> > -             mutex_unlock(&tl->mutex);
-> > +     err = cacheline_ref(cl, to);
-> > +     if (err)
-> > +             goto out;
-> > +
-> > +     *hwsp = tl->hwsp_offset;
-> > +     if (unlikely(cl != READ_ONCE(tl->hwsp_cacheline))) {
-> > +             /* across a seqno wrap, recover the original offset */
-> > +             *hwsp = i915_ggtt_offset(cl->hwsp->vma) +
-> > +                     ptr_unmask_bits(cl->vaddr, CACHELINE_BITS) *
-> > +                     CACHELINE_BYTES;
-> 
-> There is some confusion here (for me) which timeline is which. "From" 
-> timeline is which is unlocked now and cl and tl come from it. And that 
-> is the signaling request.
-> 
-> It is just RCU which guarantees it is safe to dereference the timeline 
-> on this request?
+We currently use an error-prone mutex_trylock to grab another timeline
+to find an earlier request along it. However, with a bit of a
+sleight-of-hand, we can reduce the mutex_trylock to a spin_lock on the
+immediate request and careful pointer chasing to acquire a reference on
+the previous request.
 
-from->timeline looks reasonable. It's cacheline_ref(cl) that is hairy. I
-was thinking that cacheline_ref() was actually a
-i915_active_acquire_if_busy(), but it is not. And even if it were, we
-need RCU protection on the cl.
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+---
+ drivers/gpu/drm/i915/i915_request.c | 39 ++++++++++++++++-------------
+ 1 file changed, 21 insertions(+), 18 deletions(-)
 
-Hmm. 
--Chris
+diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
+index af2f78e040d7..a59b803aef92 100644
+--- a/drivers/gpu/drm/i915/i915_request.c
++++ b/drivers/gpu/drm/i915/i915_request.c
+@@ -756,34 +756,37 @@ i915_request_create(struct intel_context *ce)
+ static int
+ i915_request_await_start(struct i915_request *rq, struct i915_request *signal)
+ {
+-	struct intel_timeline *tl;
+ 	struct dma_fence *fence;
+ 	int err;
+ 
+ 	GEM_BUG_ON(i915_request_timeline(rq) ==
+ 		   rcu_access_pointer(signal->timeline));
+ 
++	fence = NULL;
+ 	rcu_read_lock();
+-	tl = rcu_dereference(signal->timeline);
+-	if (i915_request_started(signal) || !kref_get_unless_zero(&tl->kref))
+-		tl = NULL;
+-	rcu_read_unlock();
+-	if (!tl) /* already started or maybe even completed */
+-		return 0;
++	spin_lock_irq(&signal->lock);
++	if (!i915_request_started(signal) &&
++	    !list_is_first(&signal->link,
++			   &rcu_dereference(signal->timeline)->requests)) {
++		struct i915_request *prev = list_prev_entry(signal, link);
+ 
+-	fence = ERR_PTR(-EAGAIN);
+-	if (mutex_trylock(&tl->mutex)) {
+-		fence = NULL;
+-		if (!i915_request_started(signal) &&
+-		    !list_is_first(&signal->link, &tl->requests)) {
+-			signal = list_prev_entry(signal, link);
+-			fence = dma_fence_get(&signal->fence);
++		/*
++		 * Peek at the request before us in the timeline. That
++		 * request will only be valid before it is retired, so
++		 * after acquiring a reference to it, confirm that it is
++		 * still part of the signaler's timeline.
++		 */
++		if (i915_request_get_rcu(prev)) {
++			if (list_next_entry(prev, link) == signal)
++				fence = &prev->fence;
++			else
++				i915_request_put(prev);
+ 		}
+-		mutex_unlock(&tl->mutex);
+ 	}
+-	intel_timeline_put(tl);
+-	if (IS_ERR_OR_NULL(fence))
+-		return PTR_ERR_OR_ZERO(fence);
++	spin_unlock_irq(&signal->lock);
++	rcu_read_unlock();
++	if (!fence)
++		return 0;
+ 
+ 	err = 0;
+ 	if (intel_timeline_sync_is_later(i915_request_timeline(rq), fence))
+-- 
+2.24.0
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
