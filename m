@@ -2,35 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF713120768
-	for <lists+intel-gfx@lfdr.de>; Mon, 16 Dec 2019 14:41:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2794F120776
+	for <lists+intel-gfx@lfdr.de>; Mon, 16 Dec 2019 14:45:59 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BADC46E558;
-	Mon, 16 Dec 2019 13:41:52 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1BA9C6E554
- for <Intel-gfx@lists.freedesktop.org>; Mon, 16 Dec 2019 13:41:50 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 19595577-1500050 for multiple; Mon, 16 Dec 2019 13:41:24 +0000
+	by gabe.freedesktop.org (Postfix) with ESMTP id DC0586E566;
+	Mon, 16 Dec 2019 13:45:56 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C60B26E563;
+ Mon, 16 Dec 2019 13:45:55 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 16 Dec 2019 05:45:55 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.69,321,1571727600"; d="scan'208";a="266257611"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by FMSMGA003.fm.intel.com with SMTP; 16 Dec 2019 05:45:51 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Mon, 16 Dec 2019 15:45:51 +0200
+Date: Mon, 16 Dec 2019 15:45:51 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Hans de Goede <hdegoede@redhat.com>
+Message-ID: <20191216134551.GQ1208@intel.com>
+References: <20191215163810.52356-1-hdegoede@redhat.com>
+ <20191215163810.52356-4-hdegoede@redhat.com>
 MIME-Version: 1.0
-From: Chris Wilson <chris@chris-wilson.co.uk>
-User-Agent: alot/0.6
-To: Intel-gfx@lists.freedesktop.org,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-References: <20191216120704.958-1-tvrtko.ursulin@linux.intel.com>
- <20191216120704.958-3-tvrtko.ursulin@linux.intel.com>
- <157650225139.2428.9564824266116523055@skylake-alporthouse-com>
- <7979138a-e88a-abfa-b69e-86df820c30c4@linux.intel.com>
-In-Reply-To: <7979138a-e88a-abfa-b69e-86df820c30c4@linux.intel.com>
-Message-ID: <157650368311.2428.11714999958901374584@skylake-alporthouse-com>
-Date: Mon, 16 Dec 2019 13:41:23 +0000
-Subject: Re: [Intel-gfx] [PATCH 2/5] drm/i915: Expose list of clients in
- sysfs
+Content-Disposition: inline
+In-Reply-To: <20191215163810.52356-4-hdegoede@redhat.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH 3/5] drm/i915/dsi: Init panel-enable GPIO to
+ low when the LCD is initially off
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -43,45 +48,117 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Linus Walleij <linus.walleij@linaro.org>, linux-kernel@vger.kernel.org,
+ linux-gpio@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ Lee Jones <lee.jones@linaro.org>, intel-gfx <intel-gfx@lists.freedesktop.org>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Tvrtko Ursulin (2019-12-16 13:28:18)
-> 
-> On 16/12/2019 13:17, Chris Wilson wrote:
-> > Quoting Tvrtko Ursulin (2019-12-16 12:07:01)
-> >> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> >>
-> >> Expose a list of clients with open file handles in sysfs.
-> >>
-> >> This will be a basis for a top-like utility showing per-client and per-
-> >> engine GPU load.
-> >>
-> >> Currently we only expose each client's pid and name under opaque numbered
-> >> directories in /sys/class/drm/card0/clients/.
-> >>
-> >> For instance:
-> >>
-> >> /sys/class/drm/card0/clients/3/name: Xorg
-> >> /sys/class/drm/card0/clients/3/pid: 5664
-> > 
-> > Should we even bother having the name here? And just have a link to pid
-> > instead? Contemplating even pidfd for ultramodern.
-> 
-> I haven't looked at what symlink creation facilities sysfs would allow. 
-> But even then, I don't see how we could link to proc from sysfs.
-> 
-> I had a quick read on pidfd and don't see how it fits. What did you have 
-> in mind?
+On Sun, Dec 15, 2019 at 05:38:08PM +0100, Hans de Goede wrote:
+> When the LCD has not been turned on by the firmware/GOP, because e.g. the
+> device was booted with an external monitor connected over HDMI, we should
+> not turn on the panel-enable GPIO when we request it.
+> =
 
-Just thinking if we should do something like 
-	pidfd = open(/.../clients/3/pid);
+> Turning on the panel-enable GPIO when we request it, means we turn it on
+> too early in the init-sequence, which causes some panels to not correctly
+> light up.
+> =
 
-Ok, looking at pidfd_fops, it doesn't provide anything useful like being
-able to safely acquire the pid->comm. Shame.
--Chris
+> This commits adds a panel_is_on parameter to intel_dsi_vbt_gpio_init()
+> and makes intel_dsi_vbt_gpio_init() set the initial GPIO value accordingl=
+y.
+> =
+
+> This fixes the panel not lighting up on a Thundersoft TST168 tablet when
+> booted with an external monitor connected over HDMI.
+> =
+
+> Signed-off-by: Hans de Goede <hdegoede@redhat.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_dsi.h     | 2 +-
+>  drivers/gpu/drm/i915/display/intel_dsi_vbt.c | 7 +++----
+>  drivers/gpu/drm/i915/display/vlv_dsi.c       | 2 +-
+>  3 files changed, 5 insertions(+), 6 deletions(-)
+> =
+
+> diff --git a/drivers/gpu/drm/i915/display/intel_dsi.h b/drivers/gpu/drm/i=
+915/display/intel_dsi.h
+> index de7e51cd3460..675771ea91aa 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dsi.h
+> +++ b/drivers/gpu/drm/i915/display/intel_dsi.h
+> @@ -203,7 +203,7 @@ void bxt_dsi_reset_clocks(struct intel_encoder *encod=
+er, enum port port);
+>  =
+
+>  /* intel_dsi_vbt.c */
+>  bool intel_dsi_vbt_init(struct intel_dsi *intel_dsi, u16 panel_id);
+> -void intel_dsi_vbt_gpio_init(struct intel_dsi *intel_dsi);
+> +void intel_dsi_vbt_gpio_init(struct intel_dsi *intel_dsi, bool panel_is_=
+on);
+>  void intel_dsi_vbt_gpio_cleanup(struct intel_dsi *intel_dsi);
+>  void intel_dsi_vbt_exec_sequence(struct intel_dsi *intel_dsi,
+>  				 enum mipi_seq seq_id);
+> diff --git a/drivers/gpu/drm/i915/display/intel_dsi_vbt.c b/drivers/gpu/d=
+rm/i915/display/intel_dsi_vbt.c
+> index 5352e8c9eca5..027970348b22 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
+> @@ -688,17 +688,16 @@ bool intel_dsi_vbt_init(struct intel_dsi *intel_dsi=
+, u16 panel_id)
+>   * On some BYT/CHT devs some sequences are incomplete and we need to man=
+ually
+>   * control some GPIOs.
+>   */
+> -void intel_dsi_vbt_gpio_init(struct intel_dsi *intel_dsi)
+> +void intel_dsi_vbt_gpio_init(struct intel_dsi *intel_dsi, bool panel_is_=
+on)
+>  {
+>  	struct drm_device *dev =3D intel_dsi->base.base.dev;
+>  	struct drm_i915_private *dev_priv =3D to_i915(dev);
+>  	struct mipi_config *mipi_config =3D dev_priv->vbt.dsi.config;
+> +	enum gpiod_flags flags =3D panel_is_on ? GPIOD_OUT_HIGH : GPIOD_OUT_LOW;
+
+Can't we just tell it not to change the current setting?
+
+>  =
+
+>  	if ((IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv)) &&
+>  	    (mipi_config->pwm_blc =3D=3D PPS_BLC_PMIC)) {
+> -		intel_dsi->gpio_panel =3D
+> -			gpiod_get(dev->dev, "panel", GPIOD_OUT_HIGH);
+> -
+> +		intel_dsi->gpio_panel =3D gpiod_get(dev->dev, "panel", flags);
+>  		if (IS_ERR(intel_dsi->gpio_panel)) {
+>  			DRM_ERROR("Failed to own gpio for panel control\n");
+>  			intel_dsi->gpio_panel =3D NULL;
+> diff --git a/drivers/gpu/drm/i915/display/vlv_dsi.c b/drivers/gpu/drm/i91=
+5/display/vlv_dsi.c
+> index 178d0fffba5b..e86e4a11e199 100644
+> --- a/drivers/gpu/drm/i915/display/vlv_dsi.c
+> +++ b/drivers/gpu/drm/i915/display/vlv_dsi.c
+> @@ -1910,7 +1910,7 @@ void vlv_dsi_init(struct drm_i915_private *dev_priv)
+>  =
+
+>  	vlv_dphy_param_init(intel_dsi);
+>  =
+
+> -	intel_dsi_vbt_gpio_init(intel_dsi);
+> +	intel_dsi_vbt_gpio_init(intel_dsi, current_mode !=3D NULL);
+>  =
+
+>  	drm_connector_init(dev, connector, &intel_dsi_connector_funcs,
+>  			   DRM_MODE_CONNECTOR_DSI);
+> -- =
+
+> 2.23.0
+
+-- =
+
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
