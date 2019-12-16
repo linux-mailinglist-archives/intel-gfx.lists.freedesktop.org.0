@@ -2,35 +2,35 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B35A21204E4
-	for <lists+intel-gfx@lfdr.de>; Mon, 16 Dec 2019 13:07:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4936B1204E5
+	for <lists+intel-gfx@lfdr.de>; Mon, 16 Dec 2019 13:07:20 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9F86989EAE;
+	by gabe.freedesktop.org (Postfix) with ESMTP id EE6C589F2A;
 	Mon, 16 Dec 2019 12:07:16 +0000 (UTC)
 X-Original-To: Intel-gfx@lists.freedesktop.org
 Delivered-To: Intel-gfx@lists.freedesktop.org
 Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 35C4689F2E
- for <Intel-gfx@lists.freedesktop.org>; Mon, 16 Dec 2019 12:07:14 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A1AE289EAE
+ for <Intel-gfx@lists.freedesktop.org>; Mon, 16 Dec 2019 12:07:15 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from fmsmga006.fm.intel.com ([10.253.24.20])
  by fmsmga106.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 16 Dec 2019 04:07:14 -0800
+ 16 Dec 2019 04:07:15 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,321,1571727600"; d="scan'208";a="416413997"
+X-IronPort-AV: E=Sophos;i="5.69,321,1571727600"; d="scan'208";a="416414002"
 Received: from dtriolet-mobl1.ger.corp.intel.com (HELO localhost.localdomain)
  ([10.251.84.191])
- by fmsmga006.fm.intel.com with ESMTP; 16 Dec 2019 04:07:12 -0800
+ by fmsmga006.fm.intel.com with ESMTP; 16 Dec 2019 04:07:14 -0800
 From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
 To: Intel-gfx@lists.freedesktop.org
-Date: Mon, 16 Dec 2019 12:07:00 +0000
-Message-Id: <20191216120704.958-2-tvrtko.ursulin@linux.intel.com>
+Date: Mon, 16 Dec 2019 12:07:01 +0000
+Message-Id: <20191216120704.958-3-tvrtko.ursulin@linux.intel.com>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20191216120704.958-1-tvrtko.ursulin@linux.intel.com>
 References: <20191216120704.958-1-tvrtko.ursulin@linux.intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 1/5] drm/i915: Track per-context engine busyness
+Subject: [Intel-gfx] [PATCH 2/5] drm/i915: Expose list of clients in sysfs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,244 +50,300 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 
-Some customers want to know how much of the GPU time are their clients
-using in order to make dynamic load balancing decisions.
+Expose a list of clients with open file handles in sysfs.
 
-With the hooks already in place which track the overall engine busyness,
-we can extend that slightly to split that time between contexts.
+This will be a basis for a top-like utility showing per-client and per-
+engine GPU load.
 
-v2: Fix accounting for tail updates.
-v3: Rebase.
-v4: Mark currently running contexts as active on stats enable.
-v5: Include some headers to fix the build.
-v6: Added fine grained lock.
-v7: Convert to seqlock. (Chris Wilson)
-v8: Rebase and tidy with helpers.
-v9: Refactor.
+Currently we only expose each client's pid and name under opaque numbered
+directories in /sys/class/drm/card0/clients/.
+
+For instance:
+
+/sys/class/drm/card0/clients/3/name: Xorg
+/sys/class/drm/card0/clients/3/pid: 5664
+
+v2:
+ Chris Wilson:
+ * Enclose new members into dedicated structs.
+ * Protect against failed sysfs registration.
+
+v3:
+ * sysfs_attr_init.
+
+v4:
+ * Fix for internal clients.
+
+v5:
+ * Use cyclic ida for client id. (Chris)
+ * Do not leak pid reference. (Chris)
+ * Tidy code with some locals.
 
 Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 ---
- drivers/gpu/drm/i915/gt/intel_context.c       | 20 ++++++++
- drivers/gpu/drm/i915/gt/intel_context.h       | 11 +++++
- drivers/gpu/drm/i915/gt/intel_context_types.h |  9 ++++
- drivers/gpu/drm/i915/gt/intel_engine_cs.c     | 16 ++++++-
- drivers/gpu/drm/i915/gt/intel_lrc.c           | 47 ++++++++++++++++---
- 5 files changed, 95 insertions(+), 8 deletions(-)
+ drivers/gpu/drm/i915/i915_drv.h   |  21 +++++
+ drivers/gpu/drm/i915/i915_gem.c   | 148 ++++++++++++++++++++++++++++--
+ drivers/gpu/drm/i915/i915_sysfs.c |   8 ++
+ 3 files changed, 167 insertions(+), 10 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_context.c b/drivers/gpu/drm/i915/gt/intel_context.c
-index b1e346d2d35f..b211b48d6cae 100644
---- a/drivers/gpu/drm/i915/gt/intel_context.c
-+++ b/drivers/gpu/drm/i915/gt/intel_context.c
-@@ -243,6 +243,7 @@ intel_context_init(struct intel_context *ce,
- 	INIT_LIST_HEAD(&ce->signals);
- 
- 	mutex_init(&ce->pin_mutex);
-+	seqlock_init(&ce->stats.lock);
- 
- 	i915_active_init(&ce->active,
- 			 __intel_context_active, __intel_context_retire);
-@@ -337,6 +338,25 @@ struct i915_request *intel_context_create_request(struct intel_context *ce)
- 	return rq;
- }
- 
-+ktime_t intel_context_get_busy_time(struct intel_context *ce)
-+{
-+	unsigned int seq;
-+	ktime_t total;
+diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+index 0781b6326b8c..9fcbcb6d6f76 100644
+--- a/drivers/gpu/drm/i915/i915_drv.h
++++ b/drivers/gpu/drm/i915/i915_drv.h
+@@ -224,6 +224,20 @@ struct drm_i915_file_private {
+ 	/** ban_score: Accumulated score of all ctx bans and fast hangs. */
+ 	atomic_t ban_score;
+ 	unsigned long hang_timestamp;
 +
-+	do {
-+		seq = read_seqbegin(&ce->stats.lock);
++	struct i915_drm_client {
++		unsigned int id;
 +
-+		total = ce->stats.total;
++		struct pid *pid;
++		char *name;
 +
-+		if (ce->stats.active)
-+			total = ktime_add(total,
-+					  ktime_sub(ktime_get(),
-+						    ce->stats.start));
-+	} while (read_seqretry(&ce->stats.lock, seq));
++		struct kobject *root;
 +
-+	return total;
-+}
-+
- #if IS_ENABLED(CONFIG_DRM_I915_SELFTEST)
- #include "selftest_context.c"
- #endif
-diff --git a/drivers/gpu/drm/i915/gt/intel_context.h b/drivers/gpu/drm/i915/gt/intel_context.h
-index b39eb1fcfbca..3a15cf32f0a3 100644
---- a/drivers/gpu/drm/i915/gt/intel_context.h
-+++ b/drivers/gpu/drm/i915/gt/intel_context.h
-@@ -160,4 +160,15 @@ static inline struct intel_ring *__intel_context_ring_size(u64 sz)
- 	return u64_to_ptr(struct intel_ring, sz);
- }
- 
-+static inline void
-+__intel_context_stats_start(struct intel_context_stats *stats, ktime_t now)
-+{
-+	if (!stats->active) {
-+		stats->start = now;
-+		stats->active = true;
-+	}
-+}
-+
-+ktime_t intel_context_get_busy_time(struct intel_context *ce);
-+
- #endif /* __INTEL_CONTEXT_H__ */
-diff --git a/drivers/gpu/drm/i915/gt/intel_context_types.h b/drivers/gpu/drm/i915/gt/intel_context_types.h
-index d1204cc899a3..12cbad0798cb 100644
---- a/drivers/gpu/drm/i915/gt/intel_context_types.h
-+++ b/drivers/gpu/drm/i915/gt/intel_context_types.h
-@@ -11,6 +11,7 @@
- #include <linux/list.h>
- #include <linux/mutex.h>
- #include <linux/types.h>
-+#include <linux/seqlock.h>
- 
- #include "i915_active_types.h"
- #include "i915_utils.h"
-@@ -76,6 +77,14 @@ struct intel_context {
- 
- 	/** sseu: Control eu/slice partitioning */
- 	struct intel_sseu sseu;
-+
-+	/** stats: Context GPU engine busyness tracking. */
-+	struct intel_context_stats {
-+		seqlock_t lock;
-+		bool active;
-+		ktime_t start;
-+		ktime_t total;
-+	} stats;
++		struct {
++			struct device_attribute pid;
++			struct device_attribute name;
++		} attr;
++	} client;
  };
  
- #endif /* __INTEL_CONTEXT_TYPES__ */
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-index 3d1d48bf90cf..ac08781c8b24 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-+++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-@@ -1577,8 +1577,20 @@ int intel_enable_engine_stats(struct intel_engine_cs *engine)
+ /* Interface history:
+@@ -1278,6 +1292,13 @@ struct drm_i915_private {
  
- 		engine->stats.enabled_at = ktime_get();
+ 	struct i915_pmu pmu;
  
--		/* XXX submission method oblivious? */
--		for (port = execlists->active; (rq = *port); port++)
-+		/*
-+		 * Mark currently running context as active.
-+		 * XXX submission method oblivious?
-+		 */
++	struct i915_drm_clients {
++		spinlock_t idr_lock;
++		struct idr idr;
 +
-+		rq = NULL;
-+		port = execlists->active;
-+		if (port)
-+			rq = *port;
-+		if (rq)
-+			__intel_context_stats_start(&rq->hw_context->stats,
-+						    engine->stats.enabled_at);
++		struct kobject *root;
++	} clients;
 +
-+		for (; (rq = *port); port++)
- 			engine->stats.active++;
+ 	struct i915_hdcp_comp_master *hdcp_master;
+ 	bool hdcp_comp_added;
  
- 		for (port = execlists->pending; (rq = *port); port++) {
-diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-index 4ebfecd95032..1f158cb439bc 100644
---- a/drivers/gpu/drm/i915/gt/intel_lrc.c
-+++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-@@ -940,6 +940,7 @@ static void intel_engine_context_in(struct intel_engine_cs *engine)
- 	if (engine->stats.enabled > 0) {
- 		if (engine->stats.active++ == 0)
- 			engine->stats.start = ktime_get();
-+
- 		GEM_BUG_ON(engine->stats.active == 0);
- 	}
- 
-@@ -1088,6 +1089,30 @@ static void reset_active(struct i915_request *rq,
- 	ce->lrc_desc |= CTX_DESC_FORCE_RESTORE;
+diff --git a/drivers/gpu/drm/i915/i915_gem.c b/drivers/gpu/drm/i915/i915_gem.c
+index 5eeef1ef7448..a65cd7e1ce7b 100644
+--- a/drivers/gpu/drm/i915/i915_gem.c
++++ b/drivers/gpu/drm/i915/i915_gem.c
+@@ -1457,11 +1457,14 @@ static void i915_gem_init__mm(struct drm_i915_private *i915)
+ 	i915_gem_init__objects(i915);
  }
  
-+static void
-+intel_context_stats_start(struct intel_context_stats *stats)
+-void i915_gem_init_early(struct drm_i915_private *dev_priv)
++void i915_gem_init_early(struct drm_i915_private *i915)
+ {
+-	i915_gem_init__mm(dev_priv);
++	i915_gem_init__mm(i915);
+ 
+-	spin_lock_init(&dev_priv->fb_tracking.lock);
++	spin_lock_init(&i915->fb_tracking.lock);
++
++	spin_lock_init(&i915->clients.idr_lock);
++	idr_init(&i915->clients.idr);
+ }
+ 
+ void i915_gem_cleanup_early(struct drm_i915_private *dev_priv)
+@@ -1518,6 +1521,106 @@ int i915_gem_freeze_late(struct drm_i915_private *i915)
+ 	return 0;
+ }
+ 
++static ssize_t
++show_client_name(struct device *kdev, struct device_attribute *attr, char *buf)
 +{
-+	write_seqlock(&stats->lock);
-+	__intel_context_stats_start(stats, ktime_get());
-+	write_sequnlock(&stats->lock);
++	struct drm_i915_file_private *file_priv =
++		container_of(attr, struct drm_i915_file_private,
++			     client.attr.name);
++
++	return snprintf(buf, PAGE_SIZE, "%s", file_priv->client.name);
 +}
 +
-+static void
-+intel_context_stats_stop(struct intel_context_stats *stats)
++static ssize_t
++show_client_pid(struct device *kdev, struct device_attribute *attr, char *buf)
 +{
-+	unsigned long flags;
++	struct drm_i915_file_private *file_priv =
++		container_of(attr, struct drm_i915_file_private,
++			     client.attr.pid);
 +
-+	if (!READ_ONCE(stats->active))
-+		return;
-+
-+	write_seqlock_irqsave(&stats->lock, flags);
-+	GEM_BUG_ON(!READ_ONCE(stats->active));
-+	stats->total = ktime_add(stats->total,
-+				 ktime_sub(ktime_get(), stats->start));
-+	stats->active = false;
-+	write_sequnlock_irqrestore(&stats->lock, flags);
++	return snprintf(buf, PAGE_SIZE, "%u", pid_nr(file_priv->client.pid));
 +}
 +
- static inline struct intel_engine_cs *
- __execlists_schedule_in(struct i915_request *rq)
++static int
++i915_gem_add_client(struct drm_i915_private *i915,
++		struct drm_i915_file_private *file_priv,
++		struct task_struct *task,
++		unsigned int serial)
++{
++	struct i915_drm_client *client = &file_priv->client;
++	struct i915_drm_clients *clients = &i915->clients;
++	struct device_attribute *attr;
++	int ret = -ENOMEM;
++	char id[32];
++
++	if (!clients->root)
++		return 0; /* intel_fbdev_init registers a client before sysfs */
++
++	client->name = kstrdup(task->comm, GFP_KERNEL);
++	if (!client->name)
++		goto err_name;
++
++	snprintf(id, sizeof(id), "%u", serial);
++	client->root = kobject_create_and_add(id, clients->root);
++	if (!client->root)
++		goto err_client;
++
++	attr = &client->attr.name;
++	sysfs_attr_init(&attr->attr);
++	attr->attr.name = "name";
++	attr->attr.mode = 0444;
++	attr->show = show_client_name;
++
++	ret = sysfs_create_file(client->root, (struct attribute *)attr);
++	if (ret)
++		goto err_attr_name;
++
++	attr = &client->attr.pid;
++	sysfs_attr_init(&attr->attr);
++	attr->attr.name = "pid";
++	attr->attr.mode = 0444;
++	attr->show = show_client_pid;
++
++	ret = sysfs_create_file(client->root, (struct attribute *)attr);
++	if (ret)
++		goto err_attr_pid;
++
++	client->id = serial;
++	client->pid = get_task_pid(task, PIDTYPE_PID);
++
++	return 0;
++
++err_attr_pid:
++	sysfs_remove_file(client->root, (struct attribute *)&client->attr.name);
++err_attr_name:
++	kobject_put(client->root);
++err_client:
++	kfree(client->name);
++err_name:
++	return ret;
++}
++
++static void i915_gem_remove_client(struct drm_i915_file_private *file_priv)
++{
++	struct i915_drm_clients *clients = &file_priv->dev_priv->clients;
++	struct i915_drm_client *client = &file_priv->client;
++
++	if (!client->name)
++		return; /* intel_fbdev_init registers a client before sysfs */
++
++	sysfs_remove_file(client->root, (struct attribute *)&client->attr.pid);
++	sysfs_remove_file(client->root, (struct attribute *)&client->attr.name);
++	kobject_put(client->root);
++
++	spin_lock(&clients->idr_lock);
++	idr_remove(&clients->idr, client->id);
++	spin_unlock(&clients->idr_lock);
++
++	put_pid(client->pid);
++
++	kfree(client->name);
++}
++
+ void i915_gem_release(struct drm_device *dev, struct drm_file *file)
  {
-@@ -1155,7 +1180,7 @@ static inline void
- __execlists_schedule_out(struct i915_request *rq,
- 			 struct intel_engine_cs * const engine)
+ 	struct drm_i915_file_private *file_priv = file->driver_priv;
+@@ -1531,33 +1634,58 @@ void i915_gem_release(struct drm_device *dev, struct drm_file *file)
+ 	list_for_each_entry(request, &file_priv->mm.request_list, client_link)
+ 		request->file_priv = NULL;
+ 	spin_unlock(&file_priv->mm.lock);
++
++	i915_gem_remove_client(file_priv);
+ }
+ 
+ int i915_gem_open(struct drm_i915_private *i915, struct drm_file *file)
  {
--	struct intel_context * const ce = rq->hw_context;
-+	struct intel_context *ce = rq->hw_context;
++	struct i915_drm_clients *clients = &i915->clients;
+ 	struct drm_i915_file_private *file_priv;
+-	int ret;
++	int ret = -ENOMEM;
++	int id;
  
- 	/*
- 	 * NB process_csb() is not under the engine->active.lock and hence
-@@ -1172,6 +1197,7 @@ __execlists_schedule_out(struct i915_request *rq,
- 		intel_engine_add_retire(engine, ce->timeline);
+ 	DRM_DEBUG("\n");
  
- 	intel_engine_context_out(engine);
-+	intel_context_stats_stop(&ce->stats);
- 	execlists_context_status_change(rq, INTEL_CONTEXT_SCHEDULE_OUT);
- 	intel_gt_pm_put_async(engine->gt);
- 
-@@ -1389,6 +1415,9 @@ static void execlists_submit_ports(struct intel_engine_cs *engine)
- 		write_desc(execlists,
- 			   rq ? execlists_update_context(rq) : 0,
- 			   n);
+ 	file_priv = kzalloc(sizeof(*file_priv), GFP_KERNEL);
+ 	if (!file_priv)
+-		return -ENOMEM;
++		goto err_alloc;
 +
-+		if (n == 0)
-+			intel_context_stats_start(&rq->hw_context->stats);
- 	}
- 
- 	/* we need to manually load the submit queue */
-@@ -2197,7 +2226,11 @@ static void process_csb(struct intel_engine_cs *engine)
- 
- 			WRITE_ONCE(execlists->pending[0], NULL);
- 		} else {
--			GEM_BUG_ON(!*execlists->active);
-+			struct i915_request *rq = *execlists->active++;
++	spin_lock(&clients->idr_lock);
++	id = idr_alloc_cyclic(&clients->idr, file_priv, 0, -1, GFP_KERNEL);
++	spin_unlock(&clients->idr_lock);
++	if (id < 0)
++		goto err_alloc;
 +
-+			GEM_BUG_ON(!rq);
-+			GEM_BUG_ON(execlists->active - execlists->inflight >
-+				   execlists_num_ports(execlists));
++	ret = i915_gem_add_client(i915, file_priv, current, id);
++	if (ret)
++		goto err_client;
  
- 			/* port0 completed, advanced to port1 */
- 			trace_ports(execlists, "completed", execlists->active);
-@@ -2208,12 +2241,14 @@ static void process_csb(struct intel_engine_cs *engine)
- 			 * coherent (visible from the CPU) before the
- 			 * user interrupt and CSB is processed.
- 			 */
--			GEM_BUG_ON(!i915_request_completed(*execlists->active) &&
-+			GEM_BUG_ON(!i915_request_completed(rq) &&
- 				   !reset_in_progress(execlists));
--			execlists_schedule_out(*execlists->active++);
- 
--			GEM_BUG_ON(execlists->active - execlists->inflight >
--				   execlists_num_ports(execlists));
-+			execlists_schedule_out(rq);
-+			rq = *execlists->active;
-+			if (rq)
-+				intel_context_stats_start(&rq->hw_context->stats);
+ 	file->driver_priv = file_priv;
++	ret = i915_gem_context_open(i915, file);
++	if (ret)
++		goto err_context;
 +
- 		}
- 	} while (head != tail);
+ 	file_priv->dev_priv = i915;
+ 	file_priv->file = file;
++	file_priv->bsd_engine = -1;
++	file_priv->hang_timestamp = jiffies;
  
+ 	spin_lock_init(&file_priv->mm.lock);
+ 	INIT_LIST_HEAD(&file_priv->mm.request_list);
+ 
+-	file_priv->bsd_engine = -1;
+-	file_priv->hang_timestamp = jiffies;
++	return 0;
+ 
+-	ret = i915_gem_context_open(i915, file);
+-	if (ret)
+-		kfree(file_priv);
++err_context:
++	i915_gem_remove_client(file_priv);
++
++err_client:
++	spin_lock(&clients->idr_lock);
++	idr_remove(&clients->idr, id);
++	spin_unlock(&clients->idr_lock);
++	kfree(file_priv);
+ 
++err_alloc:
+ 	return ret;
+ }
+ 
+diff --git a/drivers/gpu/drm/i915/i915_sysfs.c b/drivers/gpu/drm/i915/i915_sysfs.c
+index ad2b1b833d7b..3ab50e29fddf 100644
+--- a/drivers/gpu/drm/i915/i915_sysfs.c
++++ b/drivers/gpu/drm/i915/i915_sysfs.c
+@@ -559,6 +559,11 @@ void i915_setup_sysfs(struct drm_i915_private *dev_priv)
+ 	struct device *kdev = dev_priv->drm.primary->kdev;
+ 	int ret;
+ 
++	dev_priv->clients.root =
++		kobject_create_and_add("clients", &kdev->kobj);
++	if (!dev_priv->clients.root)
++		DRM_ERROR("Per-client sysfs setup failed\n");
++
+ #ifdef CONFIG_PM
+ 	if (HAS_RC6(dev_priv)) {
+ 		ret = sysfs_merge_group(&kdev->kobj,
+@@ -619,4 +624,7 @@ void i915_teardown_sysfs(struct drm_i915_private *dev_priv)
+ 	sysfs_unmerge_group(&kdev->kobj, &rc6_attr_group);
+ 	sysfs_unmerge_group(&kdev->kobj, &rc6p_attr_group);
+ #endif
++
++	if (dev_priv->clients.root)
++		kobject_put(dev_priv->clients.root);
+ }
 -- 
 2.20.1
 
