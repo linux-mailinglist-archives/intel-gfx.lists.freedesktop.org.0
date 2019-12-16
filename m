@@ -2,74 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 78A73120892
-	for <lists+intel-gfx@lfdr.de>; Mon, 16 Dec 2019 15:28:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 588D31208A5
+	for <lists+intel-gfx@lfdr.de>; Mon, 16 Dec 2019 15:31:34 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1FB616E5A0;
-	Mon, 16 Dec 2019 14:28:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9B30D6E5B6;
+	Mon, 16 Dec 2019 14:31:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-1.mimecast.com (us-smtp-delivery-1.mimecast.com
- [205.139.110.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 662936E5A0
- for <intel-gfx@lists.freedesktop.org>; Mon, 16 Dec 2019 14:28:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1576506494;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=noMkUix3jvf1eemRUtfdt9onAMruxoWmSHOOhy4r3RM=;
- b=aGSyxsPjpVajNejciLcJlPPQNe1iQ+d86WiPkSMv9ARBIAvazeqdyyKS6dDbxWbTf3G9Im
- ZfaLtdZ3HABLV9+8ZczN8T8ZE9HXVzji1jTr8jJS6rOgkX6WvjEOuH8SDIbx+dKhlyc6Ew
- hBvBidVXXqEzkB7U9uZj7vNLV6iiAA0=
-Received: from mail-wm1-f72.google.com (mail-wm1-f72.google.com
- [209.85.128.72]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-256-er71w6GlMA6G2vNGpH0t7g-1; Mon, 16 Dec 2019 09:28:12 -0500
-Received: by mail-wm1-f72.google.com with SMTP id p2so1111055wma.3
- for <intel-gfx@lists.freedesktop.org>; Mon, 16 Dec 2019 06:28:12 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:message-id:date
- :user-agent:mime-version:in-reply-to:content-language
- :content-transfer-encoding;
- bh=mqnAaSxh0pSKzbiLQ7KvpBpDD8sO/UPH/8UcK0z/vf8=;
- b=ZE6pzGBdMaxUdrtpthvGhu02kZOQjTEIvsXFUOSn/GuSPUuxx5WtBBvaRABFUQHt30
- hcfpFuasng4rsCviJKNa8Y6STdwvEQK81JE0iY2jcwghHqMgdCa+N9ik3tfu2mV1m3BF
- Wn6dgHtkCsjEMeQEa6GdSx5YWwcRMAJtZq31M3Sn8F7i/QKHKlFTsn9fQj7TdjRusSQD
- UZjVdEfwYUx/2tjBvmxXIVX6drr8DQGB+2Y9SaGGXKwva85XMTU/xF/3mE7JadhHzJ4s
- DN5jIif2gcQeYucRWbcDWbrAKFnTZ4r2sCFTWU33yF+o4+y8RMUVsIv1u8niENWtDKq3
- ldaQ==
-X-Gm-Message-State: APjAAAUiFgCbf7T/vPNdySSqxgGuZ4dt6cGGcoWAxT4MB5j+zscRAxQO
- 9/FJLbJDj4CcZVhVICSNdlNfp2FQKxOVX9rMX621ctMie44m7VPyLMc6+6kcTc7UTnv2KyrGjSF
- g7dvDn1Rtea4neeELejVtvPH5ASft
-X-Received: by 2002:a7b:c216:: with SMTP id x22mr29355327wmi.51.1576506491407; 
- Mon, 16 Dec 2019 06:28:11 -0800 (PST)
-X-Google-Smtp-Source: APXvYqz1cdzONxv/4mP1xQlKXrsuF/DPqXX835uoZSpIhEWRShDwrAJ8iqhJqjAy/Yiqp/DSLPbvfQ==
-X-Received: by 2002:a7b:c216:: with SMTP id x22mr29355302wmi.51.1576506491081; 
- Mon, 16 Dec 2019 06:28:11 -0800 (PST)
-Received: from shalem.localdomain
- (2001-1c00-0c0c-fe00-7e79-4dac-39d0-9c14.cable.dynamic.v6.ziggo.nl.
- [2001:1c00:c0c:fe00:7e79:4dac:39d0:9c14])
- by smtp.gmail.com with ESMTPSA id r68sm16146106wmr.43.2019.12.16.06.28.10
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 16 Dec 2019 06:28:10 -0800 (PST)
-To: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-References: <20191215163810.52356-1-hdegoede@redhat.com>
- <20191215163810.52356-6-hdegoede@redhat.com>
- <20191216140427.GT1208@intel.com>
-From: Hans de Goede <hdegoede@redhat.com>
-Message-ID: <910ef405-39df-8c58-48cb-d3ee407bd60d@redhat.com>
-Date: Mon, 16 Dec 2019 15:28:09 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.2.2
-MIME-Version: 1.0
-In-Reply-To: <20191216140427.GT1208@intel.com>
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 700C06E5B6
+ for <intel-gfx@lists.freedesktop.org>; Mon, 16 Dec 2019 14:31:31 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 16 Dec 2019 06:31:23 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.69,321,1571727600"; d="scan'208";a="227131129"
+Received: from irsmsx109.ger.corp.intel.com ([163.33.3.23])
+ by orsmga002.jf.intel.com with ESMTP; 16 Dec 2019 06:31:21 -0800
+Received: from irsmsx156.ger.corp.intel.com (10.108.20.68) by
+ IRSMSX109.ger.corp.intel.com (163.33.3.23) with Microsoft SMTP Server (TLS)
+ id 14.3.439.0; Mon, 16 Dec 2019 14:31:20 +0000
+Received: from irsmsx105.ger.corp.intel.com ([169.254.7.165]) by
+ IRSMSX156.ger.corp.intel.com ([169.254.3.131]) with mapi id 14.03.0439.000;
+ Mon, 16 Dec 2019 14:31:20 +0000
+From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
+To: "Roper, Matthew D" <matthew.d.roper@intel.com>
+Thread-Topic: [PATCH v8 4/4] drm/i915: Correctly map DBUF slices to pipes
+Thread-Index: AQHVsbYC0XmV3C6ZuUK+sEOzvOnHe6e4zjQAgAQIkQA=
+Date: Mon, 16 Dec 2019 14:31:19 +0000
+Message-ID: <084549fb914869fef8b029dfddd966552ddfde1d.camel@intel.com>
+References: <20191213130228.29509-1-stanislav.lisovskiy@intel.com>
+ <20191213130228.29509-5-stanislav.lisovskiy@intel.com>
+ <20191214005252.GG85422@mdroper-desk1.amr.corp.intel.com>
+In-Reply-To: <20191214005252.GG85422@mdroper-desk1.amr.corp.intel.com>
+Accept-Language: en-US
 Content-Language: en-US
-X-MC-Unique: er71w6GlMA6G2vNGpH0t7g-1
-X-Mimecast-Spam-Score: 0
-Subject: Re: [Intel-gfx] [PATCH 5/5] drm/i915/dsi: Control panel and
- backlight enable GPIOs on BYT
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.237.72.89]
+Content-ID: <24DBF65003C7EA4E8EC4E370EA42A546@intel.com>
+MIME-Version: 1.0
+Subject: Re: [Intel-gfx] [PATCH v8 4/4] drm/i915: Correctly map DBUF slices
+ to pipes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -82,288 +58,499 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Linus Walleij <linus.walleij@linaro.org>, linux-kernel@vger.kernel.org,
- linux-gpio@vger.kernel.org, dri-devel@lists.freedesktop.org,
- Lee Jones <lee.jones@linaro.org>, intel-gfx <intel-gfx@lists.freedesktop.org>
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="windows-1252"; Format="flowed"
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi,
+On Fri, 2019-12-13 at 16:52 -0800, Matt Roper wrote:
+> On Fri, Dec 13, 2019 at 03:02:28PM +0200, Stanislav Lisovskiy wrote:
+> > Added proper DBuf slice mapping to correspondent
+> > pipes, depending on pipe configuration as stated
+> > in BSpec.
+> > 
+> > v2:
+> >     - Remove unneeded braces
+> >     - Stop using macro for DBuf assignments as
+> >       it seems to reduce readability.
+> > 
+> > v3: Start using enabled slices mask in dev_priv
+> > 
+> > v4: Renamed "enabled_slices" used in dev_priv
+> >     to "enabled_dbuf_slices_mask"(Matt Roper)
+> > 
+> > Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/intel_pm.c | 226
+> > ++++++++++++++++++++++++++++++--
+> >  1 file changed, 216 insertions(+), 10 deletions(-)
 
-On 16-12-2019 15:04, Ville Syrj=E4l=E4 wrote:
-> On Sun, Dec 15, 2019 at 05:38:10PM +0100, Hans de Goede wrote:
->> On Bay Trail devices the MIPI power on/off sequences for DSI LCD panels
->> do not control the LCD panel- and backlight-enable GPIOs. So far, when
->> the VBT indicates we should use the SoC for backlight control, we have
->> been relying on these GPIOs being configured as output and driven high by
->> the Video BIOS (GOP) when it initializes the panel.
->>
->> This does not work when the device is booted with a HDMI monitor connect=
-ed
->> as then the GOP will initialize the HDMI instead of the panel, leaving t=
-he
->> panel black, even though the i915 driver tries to output an image to it.
->>
->> Likewise on some device-models when the GOP does not initialize the DSI
->> panel it also leaves the mux of the PWM0 pin in generic GPIO mode instead
->> of muxing it to the PWM controller.
->>
->> This commit makes the DSI code control the SoC GPIOs for panel- and
->> backlight-enable on BYT, when the VBT indicates the SoC should be used
->>
->> for backlight control. It also ensures that the PWM0 pin is muxed to the
->> PWM controller in this case.
->>
->> This fixes the LCD panel not lighting up on various devices when booted
->> with a HDMI monitor connected. This has been tested to fix this on the
->> following devices:
->>
->> Peaq C1010
->> Point of View MOBII TAB-P800W
->> Point of View MOBII TAB-P1005W
->> Terra Pad 1061
->> Yours Y8W81
->>
->> Signed-off-by: Hans de Goede <hdegoede@redhat.com>
->> ---
->>   drivers/gpu/drm/i915/display/intel_dsi.h     |  3 +-
->>   drivers/gpu/drm/i915/display/intel_dsi_vbt.c | 63 ++++++++++++++++++++
->>   2 files changed, 65 insertions(+), 1 deletion(-)
->>
->> diff --git a/drivers/gpu/drm/i915/display/intel_dsi.h b/drivers/gpu/drm/=
-i915/display/intel_dsi.h
->> index 675771ea91aa..7481a5aa3084 100644
->> --- a/drivers/gpu/drm/i915/display/intel_dsi.h
->> +++ b/drivers/gpu/drm/i915/display/intel_dsi.h
->> @@ -45,8 +45,9 @@ struct intel_dsi {
->>   	struct intel_dsi_host *dsi_hosts[I915_MAX_PORTS];
->>   	intel_wakeref_t io_wakeref[I915_MAX_PORTS];
->>   =
+Hi Matt, 
 
->> -	/* GPIO Desc for CRC based Panel control */
->> +	/* GPIO Desc for panel and backlight control */
->>   	struct gpio_desc *gpio_panel;
->> +	struct gpio_desc *gpio_backlight;
->>   =
+thanks for good comments, as usual. 
+Most of the issues I've addressed in a recent series,
+for some which I didn't I will reply inline here.
 
->>   	struct intel_connector *attached_connector;
->>   =
+> > 
+> > diff --git a/drivers/gpu/drm/i915/intel_pm.c
+> > b/drivers/gpu/drm/i915/intel_pm.c
+> > index 111bcafd6e4c..a13052b2c2ef 100644
+> > --- a/drivers/gpu/drm/i915/intel_pm.c
+> > +++ b/drivers/gpu/drm/i915/intel_pm.c
+> > @@ -3832,13 +3832,30 @@ bool intel_can_enable_sagv(struct
+> > intel_atomic_state *state)
+> >  	return true;
+> >  }
+> >  
+> > +/*
+> > + * Calculate initial DBuf slice offset, based on slice size
+> > + * and mask(i.e if slice size is 1024 and second slice is enabled
+> > + * offset would be 1024)
+> > + */
+> > +static u32 icl_get_first_dbuf_slice_offset(u32 dbuf_slice_mask,
+> > +					   u32 slice_size, u32
+> > ddb_size)
+> > +{
+> 
+> It might be worth just passing the mask + dev_priv to this function
+> and
+> let it get slice_size / ddb_size on its own to keep the logic simpler
+> at
+> the callsite.
 
->> diff --git a/drivers/gpu/drm/i915/display/intel_dsi_vbt.c b/drivers/gpu/=
-drm/i915/display/intel_dsi_vbt.c
->> index 847f04eec2a1..bd007d4f86e2 100644
->> --- a/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
->> +++ b/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
->> @@ -27,6 +27,8 @@
->>   #include <linux/gpio/consumer.h>
->>   #include <linux/gpio/machine.h>
->>   #include <linux/mfd/intel_soc_pmic.h>
->> +#include <linux/pinctrl/consumer.h>
->> +#include <linux/pinctrl/machine.h>
->>   #include <linux/slab.h>
->>   =
+The thing is that this is called only at single place and also
+at call site I still do need slice_size for other calculations.
+So I would still leave it there, as leaving only dev_priv here 
+as parameter won't simply things at callsite as it will have to
+get those parameters anyway.
 
->>   #include <asm/intel-mid.h>
->> @@ -525,11 +527,15 @@ void intel_dsi_vbt_exec_sequence(struct intel_dsi =
-*intel_dsi,
->>   {
->>   	if (seq_id =3D=3D MIPI_SEQ_POWER_ON && intel_dsi->gpio_panel)
->>   		gpiod_set_value_cansleep(intel_dsi->gpio_panel, 1);
->> +	if (seq_id =3D=3D MIPI_SEQ_BACKLIGHT_ON && intel_dsi->gpio_backlight)
->> +		gpiod_set_value_cansleep(intel_dsi->gpio_backlight, 1);
->>   =
+> 
+> > +	u32 offset = 0;
+> > +
+> > +	if (!dbuf_slice_mask)
+> > +		return 0;
+> > +
+> > +	offset = (ffs(dbuf_slice_mask) - 1) * slice_size;
+> > +
+> > +	WARN_ON(offset >= ddb_size);
+> > +	return offset;
+> > +}
+> > +
+> >  static u16 intel_get_ddb_size(struct drm_i915_private *dev_priv,
+> >  			      const struct intel_crtc_state
+> > *crtc_state,
+> >  			      const u64 total_data_rate,
+> >  			      const int num_active)
+> 
+> I probably should have mentioned it on the previous patch, but most
+> of
+> these parameters are no longer needed now.
 
->>   	intel_dsi_vbt_exec(intel_dsi, seq_id);
->>   =
+> 
+> >  {
+> > -	struct drm_atomic_state *state = crtc_state->uapi.state;
+> > -	struct intel_atomic_state *intel_state =
+> > to_intel_atomic_state(state);
+> >  	u16 ddb_size = INTEL_INFO(dev_priv)->ddb_size;
+> >  
+> >  	WARN_ON(ddb_size == 0);
+> > @@ -3846,12 +3863,13 @@ static u16 intel_get_ddb_size(struct
+> > drm_i915_private *dev_priv,
+> >  	if (INTEL_GEN(dev_priv) < 11)
+> >  		return ddb_size - 4; /* 4 blocks for bypass path
+> > allocation */
+> >  
+> > -	intel_state->enabled_dbuf_slices_mask = DBUF_S1_BIT;
+> > -	ddb_size /= 2;
+> > -
+> >  	return ddb_size;
+> >  }
+> >  
+> > +u32 i915_possible_dbuf_slices(struct drm_i915_private *dev_priv,
+> > +			      int pipe, u32 active_pipes,
+> > +			      const struct intel_crtc_state
+> > *crtc_state);
+> > +
+> >  static void
+> >  skl_ddb_get_pipe_allocation_limits(struct drm_i915_private
+> > *dev_priv,
+> >  				   const struct intel_crtc_state
+> > *crtc_state,
+> > @@ -3866,7 +3884,14 @@ skl_ddb_get_pipe_allocation_limits(struct
+> > drm_i915_private *dev_priv,
+> >  	u32 pipe_width = 0, total_width = 0, width_before_pipe = 0;
+> >  	enum pipe for_pipe = to_intel_crtc(for_crtc)->pipe;
+> >  	u16 ddb_size;
+> > +	u32 ddb_range_size;
+> >  	u32 i;
+> > +	u32 dbuf_slice_mask;
+> > +	u32 active_pipes;
+> > +	u32 offset;
+> > +	u32 slice_size;
+> > +	u32 total_slice_mask;
+> > +	u32 start, end;
+> >  
+> >  	if (WARN_ON(!state) || !crtc_state->hw.active) {
+> >  		alloc->start = 0;
+> > @@ -3875,14 +3900,19 @@ skl_ddb_get_pipe_allocation_limits(struct
+> > drm_i915_private *dev_priv,
+> >  		return;
+> >  	}
+> >  
+> > -	if (intel_state->active_pipe_changes)
+> > +	if (intel_state->active_pipe_changes) {
+> >  		*num_active = hweight8(intel_state->active_pipes);
+> > -	else
+> > +		active_pipes = intel_state->active_pipes;
+> > +	} else {
+> >  		*num_active = hweight8(dev_priv->active_pipes);
+> > +		active_pipes = dev_priv->active_pipes;
+> > +	}
+> 
+> Might be slightly more intuitive to move the num_active assignment
+> outside the 'if' as
+> 
+>         *num_active = hweight8(active_pipes);
+> 
+> Up to you; doesn't really matter.
+> 
+> >  
+> >  	ddb_size = intel_get_ddb_size(dev_priv, crtc_state,
+> > total_data_rate,
+> >  				      *num_active);
+> >  
+> > +	slice_size = ddb_size / INTEL_INFO(dev_priv)-
+> > >num_supported_dbuf_slices;
+> > +
+> >  	/*
+> >  	 * If the state doesn't change the active CRTC's or there is no
+> >  	 * modeset request, then there's no need to recalculate;
+> > @@ -3900,18 +3930,68 @@ skl_ddb_get_pipe_allocation_limits(struct
+> > drm_i915_private *dev_priv,
+> >  		return;
+> >  	}
+> >  
+> > +	/*
+> > +	 * Get allowed DBuf slices for correspondent pipe and platform.
+> > +	 */
+> > +	dbuf_slice_mask = i915_possible_dbuf_slices(dev_priv, for_pipe,
+> > +						    active_pipes,
+> > crtc_state);
+> > +
+> > +	DRM_DEBUG_KMS("DBuf slice mask %x pipe %d active pipes %x\n",
+> > +		      dbuf_slice_mask,
+> > +		      for_pipe, active_pipes);
+> > +
+> > +	/*
+> > +	 * Figure out at which DBuf slice we start, i.e if we start at
+> > Dbuf S2
+> > +	 * and slice size is 1024, the offset would be 1024
+> > +	 */
+> > +	offset = icl_get_first_dbuf_slice_offset(dbuf_slice_mask,
+> > +						 slice_size, ddb_size);
+> > +
+> > +	/*
+> > +	 * Figure out total size of allowed DBuf slices, which is
+> > basically
+> > +	 * a number of allowed slices for that pipe multiplied by slice
+> > size.
+> > +	 * Inside of this
+> > +	 * range ddb entries are still allocated in proportion to
+> > display width.
+> > +	 */
+> > +	ddb_range_size = hweight8(dbuf_slice_mask) * slice_size;
+> > +
+> >  	/*
+> >  	 * Watermark/ddb requirement highly depends upon width of the
+> >  	 * framebuffer, So instead of allocating DDB equally among
+> > pipes
+> >  	 * distribute DDB based on resolution/width of the display.
+> >  	 */
+> > +	total_slice_mask = dbuf_slice_mask;
+> >  	for_each_new_intel_crtc_in_state(intel_state, crtc, crtc_state,
+> > i) {
+> >  		const struct drm_display_mode *adjusted_mode =
+> >  			&crtc_state->hw.adjusted_mode;
+> >  		enum pipe pipe = crtc->pipe;
+> >  		int hdisplay, vdisplay;
+> > +		u32 pipe_dbuf_slice_mask =
+> > +					i915_possible_dbuf_slices(dev_p
+> > riv,
+> > +								  pipe,
+> > +								  activ
+> > e_pipes,
+> > +								  crtc_
+> > state);
+> > +
+> > +		if (!crtc_state->hw.active)
+> > +			continue;
+> 
+> You might want to do this check before we go through the bother of
+> executing i915_possible_dbuf_slices.
+> 
+> > +
+> > +		/*
+> > +		 * According to BSpec pipe can share one dbuf slice
+> > with another
+> > +		 * pipes or pipe can use multiple dbufs, in both cases
+> > we
+> > +		 * account for other pipes only if they have exactly
+> > same mask.
+> > +		 * However we need to account how many slices we should
+> > enable
+> > +		 * in total.
+> > +		 */
+> > +		total_slice_mask |= pipe_dbuf_slice_mask;
+> >  
+> > -		if (!crtc_state->hw.enable)
+> > +		/*
+> > +		 * Do not account pipes using other slice sets
+> > +		 * luckily as of current BSpec slice sets do not
+> > partially
+> > +		 * intersect(pipes share either same one slice or same
+> > slice set
+> > +		 * i.e no partial intersection), so it is enough to
+> > check for
+> > +		 * equality for now.
+> > +		 */
+> > +		if (dbuf_slice_mask != pipe_dbuf_slice_mask)
+> >  			continue;
+> >  
+> >  		drm_mode_get_hv_timing(adjusted_mode, &hdisplay,
+> > &vdisplay);
+> > @@ -3923,8 +4003,19 @@ skl_ddb_get_pipe_allocation_limits(struct
+> > drm_i915_private *dev_priv,
+> >  			pipe_width = hdisplay;
+> >  	}
+> >  
+> > -	alloc->start = ddb_size * width_before_pipe / total_width;
+> > -	alloc->end = ddb_size * (width_before_pipe + pipe_width) /
+> > total_width;
+> > +	intel_state->enabled_dbuf_slices_mask = total_slice_mask;
+> > +
+> > +	start = ddb_range_size * width_before_pipe / total_width;
+> > +	end = ddb_range_size * (width_before_pipe + pipe_width) /
+> > total_width;
+> 
+> I found it a bit confusing that "total_slice_mask" is a mask of all
+> active CRTCs, whereas total_width is only the width of the subset of
+> active CRTCs that share our slice mask (i.e., different meanings of
+> "total").  I think the logic here is correct, but some variable
+> renaming
+> might make it more obvious what's going on?
+> 
+> 
+> > +
+> > +	alloc->start = offset + start;
+> > +	alloc->end = offset + end;
+> > +
+> > +	DRM_DEBUG_KMS("Pipe %d ddb %d-%d\n", for_pipe,
+> > +		      alloc->start, alloc->end);
+> > +	DRM_DEBUG_KMS("Enabled ddb slices mask %x num supported %d\n",
+> > +		      intel_state->enabled_dbuf_slices_mask,
+> > +		      INTEL_INFO(dev_priv)->num_supported_dbuf_slices);
+> >  }
+> >  
+> >  static int skl_compute_wm_params(const struct intel_crtc_state
+> > *crtc_state,
+> > @@ -4094,6 +4185,121 @@ skl_plane_downscale_amount(const struct
+> > intel_crtc_state *crtc_state,
+> >  	return mul_fixed16(downscale_w, downscale_h);
+> >  }
+> >  
+> > +struct dbuf_slice_conf_entry {
+> > +	u32 active_pipes;
+> > +	u32 dbuf_mask[I915_MAX_PIPES];
+> > +};
+> > +
+> > +/*
+> > + * Table taken from Bspec 12716
+> > + * Pipes do have some preferred DBuf slice affinity,
+> > + * plus there are some hardcoded requirements on how
+> > + * those should be distributed for multipipe scenarios.
+> > + * For more DBuf slices algorithm can get even more messy
+> > + * and less readable, so decided to use a table almost
+> > + * as is from BSpec itself - that way it is at least easier
+> > + * to compare, change and check.
+> > + */
+> > +static struct dbuf_slice_conf_entry icl_allowed_dbufs[] = {
+> > +	{ BIT(PIPE_A), { DBUF_S1_BIT, 0, 0, 0 } },
+> > +	{ BIT(PIPE_B), { 0, DBUF_S1_BIT, 0, 0 } },
+> > +	{ BIT(PIPE_C), { 0, 0, DBUF_S2_BIT, 0 } },
+> > +	{ BIT(PIPE_A) | BIT(PIPE_B), { DBUF_S1_BIT, DBUF_S2_BIT, 0, 0 }
+> > },
+> > +	{ BIT(PIPE_A) | BIT(PIPE_C), { DBUF_S1_BIT, 0, DBUF_S2_BIT, 0 }
+> > },
+> > +	{ BIT(PIPE_B) | BIT(PIPE_C), { 0, DBUF_S1_BIT, DBUF_S2_BIT, 0 }
+> > },
+> > +	{ BIT(PIPE_A) | BIT(PIPE_B) | BIT(PIPE_C),
+> > +		{ DBUF_S1_BIT, DBUF_S1_BIT, DBUF_S2_BIT, 0 } }
+> 
+> I believe it's legal to leave ending array elements out of
+> definitions,
+> in which case they'll just be 0.  So you can drop the fourth element
+> of
+> all these dbuf_mask arrays since that's more intuitive given these
+> platforms only actually have three pipes.
+> 
+> > +};
+> > +
+> > +/*
+> > + * Table taken from Bspec 49255
+> > + * Pipes do have some preferred DBuf slice affinity,
+> > + * plus there are some hardcoded requirements on how
+> > + * those should be distributed for multipipe scenarios.
+> > + * For more DBuf slices algorithm can get even more messy
+> > + * and less readable, so decided to use a table almost
+> > + * as is from BSpec itself - that way it is at least easier
+> > + * to compare, change and check.
+> > + */
+> > +static struct dbuf_slice_conf_entry tgl_allowed_dbufs[] = {
+> > +	{ BIT(PIPE_A), { DBUF_S1_BIT | DBUF_S2_BIT, 0, 0, 0 } },
+> > +	{ BIT(PIPE_B), { 0, DBUF_S1_BIT | DBUF_S2_BIT, 0, 0 } },
+> > +	{ BIT(PIPE_C), { 0, 0, DBUF_S1_BIT | DBUF_S2_BIT, 0 } },
+> > +	{ BIT(PIPE_D), { 0, 0, 0, DBUF_S1_BIT | DBUF_S2_BIT } },
+> > +	{ BIT(PIPE_A) | BIT(PIPE_B), { DBUF_S2_BIT, DBUF_S1_BIT, 0, 0 }
+> > },
+> > +	{ BIT(PIPE_A) | BIT(PIPE_C), { DBUF_S1_BIT, 0, DBUF_S2_BIT, 0 }
+> > },
+> > +	{ BIT(PIPE_A) | BIT(PIPE_D), { DBUF_S1_BIT, 0, 0, DBUF_S2_BIT }
+> > },
+> > +	{ BIT(PIPE_B) | BIT(PIPE_C), { 0, DBUF_S1_BIT, DBUF_S2_BIT, 0 }
+> > },
+> > +	{ BIT(PIPE_B) | BIT(PIPE_D), { 0, DBUF_S1_BIT, 0, DBUF_S2_BIT }
+> > },
+> > +	{ BIT(PIPE_C) | BIT(PIPE_D), { 0, 0, DBUF_S2_BIT, DBUF_S2_BIT }
+> > },
+> 
+>                                              ^^^^^^^^^^^
+> I think this one is supposed to be S1 for pipe C.
+> 
+> 
+> > +	{ BIT(PIPE_A) | BIT(PIPE_B) | BIT(PIPE_C),
+> > +		{ DBUF_S1_BIT, DBUF_S1_BIT, DBUF_S2_BIT, 0 } },
+> > +	{ BIT(PIPE_A) | BIT(PIPE_B) | BIT(PIPE_D),
+> > +		{ DBUF_S1_BIT, DBUF_S1_BIT, 0, DBUF_S2_BIT } },
+> > +	{ BIT(PIPE_A) | BIT(PIPE_C) | BIT(PIPE_D),
+> > +		{ DBUF_S1_BIT, 0, DBUF_S2_BIT, DBUF_S2_BIT } },
+> > +	{ BIT(PIPE_B) | BIT(PIPE_C) | BIT(PIPE_D),
+> > +		{ 0, DBUF_S1_BIT, DBUF_S2_BIT, DBUF_S2_BIT } },
+> > +	{ BIT(PIPE_A) | BIT(PIPE_B) | BIT(PIPE_C) | BIT(PIPE_D),
+> > +		{ DBUF_S1_BIT, DBUF_S1_BIT, DBUF_S2_BIT, DBUF_S2_BIT }
+> > },
+> > +};
+> > +
+> > +static u32 i915_find_pipe_conf(int pipe,
+> > +			       u32 active_pipes,
+> > +			       const struct dbuf_slice_conf_entry
+> > *dbuf_slices,
+> > +			       int size)
+> > +{
+> > +	int i;
+> > +
+> > +	for (i = 0; i < size; i++) {
+> > +		if (dbuf_slices[i].active_pipes == active_pipes)
+> > +			return dbuf_slices[i].dbuf_mask[pipe];
+> > +	}
+> > +	return 0;
+> > +}
+> > +
+> > +/*
+> > + * This function finds an entry with same enabled pipe
+> > configuration and
+> > + * returns correspondent DBuf slice mask as stated in BSpec for
+> > particular
+> > + * platform.
+> > + */
+> > +static u32 icl_possible_dbuf_slices(int pipe,
+> > +				    u32 active_pipes,
+> > +				    const struct intel_crtc_state
+> > *crtc_state)
+> > +{
+> > +	return i915_find_pipe_conf(pipe, active_pipes,
+> > +				   icl_allowed_dbufs,
+> > +				   ARRAY_SIZE(icl_allowed_dbufs));
+> 
+> Should we be handling the <88.8% pipe ratio stuff here?  I.e., an
+> extra
+> condition that if # pipes == 1 and the pipe ratio is less than 88.8%,
+> return both S1 and S2?  Or will that come in a future patch (in which
+> case a TODO/FIXME comment might be appropriate)?
 
->>   	if (seq_id =3D=3D MIPI_SEQ_POWER_OFF && intel_dsi->gpio_panel)
->>   		gpiod_set_value_cansleep(intel_dsi->gpio_panel, 0);
->> +	if (seq_id =3D=3D MIPI_SEQ_BACKLIGHT_OFF && intel_dsi->gpio_backlight)
->> +		gpiod_set_value_cansleep(intel_dsi->gpio_backlight, 0);
->>   }
->>   =
+I have added a comment in the code. Problem is that the whole
+pipe_ratio thing turned out to be completely wrong(see BSpec bugs). 
+So I completely excluded that stuff until that constraint is
+fully clarified. 
 
->>   void intel_dsi_msleep(struct intel_dsi *intel_dsi, int msec)
->> @@ -688,6 +694,8 @@ bool intel_dsi_vbt_init(struct intel_dsi *intel_dsi,=
- u16 panel_id)
->>   /*
->>    * On some BYT/CHT devs some sequences are incomplete and we need to m=
-anually
->>    * control some GPIOs. We need to add a GPIO lookup table before we ge=
-t these.
->> + * If the GOP did not initialize the panel (HDMI inserted) we may need =
-to also
->> + * change the pinmux for the SoC's PWM0 pin from GPIO to PWM.
->>    */
->>   static struct gpiod_lookup_table pmic_panel_gpio_table =3D {
->>   	/* Intel GFX is consumer */
->> @@ -699,23 +707,68 @@ static struct gpiod_lookup_table pmic_panel_gpio_t=
-able =3D {
->>   	},
->>   };
->>   =
+> 
+> 
+> > +}
+> > +
+> > +static u32 tgl_possible_dbuf_slices(int pipe,
+> > +				    u32 active_pipes,
+> > +				    const struct intel_crtc_state
+> > *crtc_state)
+> > +{
+> > +	return i915_find_pipe_conf(pipe, active_pipes,
+> > +				   tgl_allowed_dbufs,
+> > +				   ARRAY_SIZE(tgl_allowed_dbufs));
+> > +}
+> 
+> Seems like these two functions (as currently written) are so simple
+> that
+> we can just invoke i915_find_pipe_conf directly in
+> i915_possible_dbuf_slices.  Might also be worth considering using an
+> empty table entry as a terminator rather than requiring than an
+> explicit
+> length be passed.
+> 
+> > +
+> > +u32 i915_possible_dbuf_slices(struct drm_i915_private *dev_priv,
+> 
+> This can be static I think?
+> 
+> > +			      int pipe, u32 active_pipes,
+> > +			      const struct intel_crtc_state
+> > *crtc_state)
+> > +{
+> > +	if (IS_GEN(dev_priv, 11))
+> > +		return icl_possible_dbuf_slices(pipe,
+> > +						active_pipes,
+> > +						crtc_state);
+> > +	else if (IS_GEN(dev_priv, 12))
+> > +		return tgl_possible_dbuf_slices(pipe,
+> > +						active_pipes,
+> > +						crtc_state);
+> > +	/*
+> > +	 * For anything else just return one slice yet.
+> > +	 * Should be extended for other platforms.
+> > +	 */
+> > +	return DBUF_S1_BIT;
+> > +}
+> 
+> None of the three functions above seem to actually use crtc_state, so
+> I
+> think we can drop that parameter.
 
->> +static struct gpiod_lookup_table soc_panel_gpio_table =3D {
->> +	.dev_id =3D "0000:00:02.0",
->> +	.table =3D {
->> +	  GPIO_LOOKUP("INT33FC:01", 10, "backlight", GPIO_ACTIVE_HIGH),
->> +	  GPIO_LOOKUP("INT33FC:01", 11, "panel", GPIO_ACTIVE_HIGH),
->> +	  { },
-> =
-
-> Some kind of indent fail here.
-
-Yeah, this was intentional in the previous revision because of the
-80 char limit, but this indent hack is no longer necessary, fixed for
-the v2 of this set which I'm preparing.
-
->> +	},
->> +};
->> +
->> +static const struct pinctrl_map soc_pwm_pinctrl_map[] =3D {
->> +	PIN_MAP_MUX_GROUP("0000:00:02.0", "soc_pwm0", "INT33FC:00",
->> +			  "pwm0_grp", "pwm"),
->> +};
->> +
->>   void intel_dsi_vbt_gpio_init(struct intel_dsi *intel_dsi, bool panel_i=
-s_on)
->>   {
->>   	struct drm_device *dev =3D intel_dsi->base.base.dev;
->>   	struct drm_i915_private *dev_priv =3D to_i915(dev);
->>   	struct mipi_config *mipi_config =3D dev_priv->vbt.dsi.config;
->>   	enum gpiod_flags flags =3D panel_is_on ? GPIOD_OUT_HIGH : GPIOD_OUT_L=
-OW;
->> +	bool want_backlight_gpio =3D false;
->> +	bool want_panel_gpio =3D false;
->> +	struct pinctrl *pinctrl;
->> +	int ret;
->>   =
-
->>   	if ((IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv)) &&
->>   	    (mipi_config->pwm_blc =3D=3D PPS_BLC_PMIC)) {
->>   		gpiod_add_lookup_table(&pmic_panel_gpio_table);
->> +		want_panel_gpio =3D true;
->> +	}
->> +
->> +	if (IS_VALLEYVIEW(dev_priv) && mipi_config->pwm_blc =3D=3D PPS_BLC_SOC=
-) {
->> +		gpiod_add_lookup_table(&soc_panel_gpio_table);
->> +		want_panel_gpio =3D true;
->> +		want_backlight_gpio =3D true;
->>   =
-
->> +		/* Ensure PWM0 pin is muxed as PWM instead of GPIO */
->> +		ret =3D pinctrl_register_mappings(soc_pwm_pinctrl_map, 1);
-> =
-
-> ARRAY_SIZE()?
-
-Ack, will fix for v2.
+I would still leave it, as once we get that BSpec "pipe_ratio" or
+something else clarified most likely we'll still need crtc_state..
 
 
-> =
-
->> +		if (ret)
->> +			DRM_ERROR("Failed to register pwm0 pinmux mapping\n");
->> +
->> +		pinctrl =3D devm_pinctrl_get_select(dev->dev, "soc_pwm0");
->> +		if (IS_ERR(pinctrl))
->> +			DRM_ERROR("Failed to set pinmux to PWM\n");
->> +	}
->> +
->> +	if (want_panel_gpio) {
->>   		intel_dsi->gpio_panel =3D gpiod_get(dev->dev, "panel", flags);
->>   		if (IS_ERR(intel_dsi->gpio_panel)) {
->>   			DRM_ERROR("Failed to own gpio for panel control\n");
->>   			intel_dsi->gpio_panel =3D NULL;
->>   		}
->>   	}
->> +
->> +	if (want_backlight_gpio) {
->> +		intel_dsi->gpio_backlight =3D
->> +			gpiod_get(dev->dev, "backlight", flags);
->> +		if (IS_ERR(intel_dsi->gpio_backlight)) {
->> +			DRM_ERROR("Failed to own gpio for backlight control\n");
->> +			intel_dsi->gpio_backlight =3D NULL;
->> +		}
->> +	}
->>   }
->>   =
-
->>   void intel_dsi_vbt_gpio_cleanup(struct intel_dsi *intel_dsi)
->> @@ -729,7 +782,17 @@ void intel_dsi_vbt_gpio_cleanup(struct intel_dsi *i=
-ntel_dsi)
->>   		intel_dsi->gpio_panel =3D NULL;
->>   	}
->>   =
-
->> +	if (intel_dsi->gpio_backlight) {
->> +		gpiod_put(intel_dsi->gpio_backlight);
->> +		intel_dsi->gpio_backlight =3D NULL;
->> +	}
->> +
->>   	if ((IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv)) &&
->>   	    (mipi_config->pwm_blc =3D=3D PPS_BLC_PMIC))
->>   		gpiod_remove_lookup_table(&pmic_panel_gpio_table);
->> +
->> +	if (IS_VALLEYVIEW(dev_priv) && mipi_config->pwm_blc =3D=3D PPS_BLC_SOC=
-) {
-> =
-
-> Slightly annoying to have these checks duplicated. Might be cleaner to
-> have a few helpers that return the correct tables and just use those in
-> both init and cleanup. OTOH those want_*_gpio flags and the pwm stuff is
-> would still be a sticking point I suppose. So maybe not cleaner in the
-> end after all.
-
-So I tried adding a helper for the if condition, since as you mention
-just returning the right table is not really helpful:
-
-static bool intel_dsi_vbt_use_pmic_backlight_ctl(struct intel_dsi *intel_ds=
-i)
-{
-        struct drm_device *dev =3D intel_dsi->base.base.dev;
-        struct drm_i915_private *dev_priv =3D to_i915(dev);
-        struct mipi_config *mipi_config =3D dev_priv->vbt.dsi.config;
-
-        if ((IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv)) &&
-            (mipi_config->pwm_blc =3D=3D PPS_BLC_PMIC)) {
-        return (IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv)) &&
-               mipi_config->pwm_blc =3D=3D PPS_BLC_PMIC;
-}
-
-And copy and paste that for the PPS_BLC_SOC case. The result does not
-look a lot better then the original, worse actually IMHO, so I'm going
-to keep this as is for v2.
-
-> Looks all right to me:
-> Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-
-Thanks.
-
-Regards,
-
-Hans
-
-
-
-
-> =
-
-> =
-
->> +		pinctrl_unregister_mappings(soc_pwm_pinctrl_map);
->> +		gpiod_remove_lookup_table(&soc_panel_gpio_table);
->> +	}
->>   }
->> -- =
-
->> 2.23.0
-> =
-
-
+Stan
+> 
+> 
+> > +
+> >  static u64
+> >  skl_plane_relative_data_rate(const struct intel_crtc_state
+> > *crtc_state,
+> >  			     const struct intel_plane_state
+> > *plane_state,
+> > -- 
+> > 2.17.1
+> > 
+> 
+> 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
