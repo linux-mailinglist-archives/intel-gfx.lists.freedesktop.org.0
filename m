@@ -2,55 +2,28 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B635120290
-	for <lists+intel-gfx@lfdr.de>; Mon, 16 Dec 2019 11:31:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B1BD61202C0
+	for <lists+intel-gfx@lfdr.de>; Mon, 16 Dec 2019 11:39:14 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A22626E49A;
-	Mon, 16 Dec 2019 10:31:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E99686E4A7;
+	Mon, 16 Dec 2019 10:39:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-lj1-x244.google.com (mail-lj1-x244.google.com
- [IPv6:2a00:1450:4864:20::244])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 613A46E49C
- for <intel-gfx@lists.freedesktop.org>; Mon, 16 Dec 2019 10:31:00 +0000 (UTC)
-Received: by mail-lj1-x244.google.com with SMTP id d20so6169652ljc.12
- for <intel-gfx@lists.freedesktop.org>; Mon, 16 Dec 2019 02:31:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=R2CAqD7yphVxKpqpK+F/eAr7MRlAfENWVqw0CFqAnoY=;
- b=F98ofzZswi1ON1bAKTPSWd5+Icm6mrMRcWlGoNTeahpUdZxvSM6qFcZqGN4zAN4Osp
- NdlLEy7XHE0zbPmUPi2zZq5/U5/a9Ue2B+XfIh+EluUE+NoHaOMSjoxvxpExuwNfwwOs
- 2oTEoPYR/rTYGmGXHzgc0Pr/FAj3QmcuhcAhTsRGt6RmxDIqCHgnOQMkUTOAHb4I3u1R
- m/2YQVrcDL+DR1UUH/SkmD8dEzpXTM4KzvF07eOk6LXi/nqEznJiz6kcl0yeiO3Lfg0O
- dcea358D79Zrq3wRs5ExA4+mnB0OVo8ZagEMOi3YmF/JKgrNYhNQ40lRqBXcsKfb/BZy
- RfWQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=R2CAqD7yphVxKpqpK+F/eAr7MRlAfENWVqw0CFqAnoY=;
- b=Ix/n71WVlqRxidqGxRvciLYzizW/PgN8N0pPTkxoRYGSNhJD4+IGm24DX7uv0nIMDd
- mhFT0S29ZR1ybNyuj/eGN47xBQG3YYVszhSO7z87uoVQh8Hn6R70wMHVugrJfCWVPKZg
- H7+QB4kRFrkoLUcu6ZMFd4+5PP4U2wFSh4RTtPKGO4cLHgdZMEvaPZm60IlbMAxwG7hJ
- tf17sJNqXddLg+9/CtK+iNOGOQlSGG3Ifo4lSE4hBw9Lx0QECztOPSpXjh8ecx0FS5If
- XqlNTAcdNUDaK0d4hNkZc/9S6KVD8DsOIX6GvqJsXwMkY+pKBUodXRQv+8D/205036ww
- k+hg==
-X-Gm-Message-State: APjAAAUlAhvzad9UdtgpGSjD8H7oCJNUGvYQNXEWTuQNg37XJc6ciiql
- 1h+HRhR3lTigqYKPdg9Nat70AspasmgIVkk78joRxQ==
-X-Google-Smtp-Source: APXvYqycu9hlE1s4S+Sge2Bqv8D+k87tga/cDOXtTcuobEYzip+IsUlyb9ENhVmckOFQwM0Ke6RmQOIym8zJ1np0yPg=
-X-Received: by 2002:a05:651c:1049:: with SMTP id
- x9mr18594833ljm.233.1576492258842; 
- Mon, 16 Dec 2019 02:30:58 -0800 (PST)
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6163F6E4A7
+ for <intel-gfx@lists.freedesktop.org>; Mon, 16 Dec 2019 10:39:11 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19593205-1500050 
+ for multiple; Mon, 16 Dec 2019 10:39:02 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon, 16 Dec 2019 10:38:59 +0000
+Message-Id: <20191216103901.2518461-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.24.0
 MIME-Version: 1.0
-References: <20191215163810.52356-1-hdegoede@redhat.com>
- <20191215163810.52356-5-hdegoede@redhat.com>
-In-Reply-To: <20191215163810.52356-5-hdegoede@redhat.com>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Mon, 16 Dec 2019 11:30:46 +0100
-Message-ID: <CACRpkdYLXU9SmrNZfk9vrJuai9O-evAoq_c1oPJ7Q=NQU8=gng@mail.gmail.com>
-To: Hans de Goede <hdegoede@redhat.com>
-Subject: Re: [Intel-gfx] [PATCH 4/5] drm/i915/dsi: Move Crystal Cove PMIC
- panel GPIO lookup from mfd to the i915 driver
+Subject: [Intel-gfx] [PATCH 1/3] drm/i915: Unpin vma->obj on early error
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,42 +36,161 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
- "open list:DRM PANEL DRIVERS" <dri-devel@lists.freedesktop.org>,
- Lee Jones <lee.jones@linaro.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Sun, Dec 15, 2019 at 5:38 PM Hans de Goede <hdegoede@redhat.com> wrote:
+If we inherit an error along the fence chain, we skip the main work
+callback and go straight to the error. In the case of the vma bind
+worker, we only dropped the pinned pages from the worker.
 
-> Move the Crystal Cove PMIC panel GPIO lookup-table from
-> drivers/mfd/intel_soc_pmic_core.c to the i915 driver.
->
-> The moved looked-up table is adding a GPIO lookup to the i915 PCI
-> device and the GPIO subsys allows only one lookup table per device,
->
-> The intel_soc_pmic_core.c code only adds lookup-table entries for the
-> PMIC panel GPIO (as it deals only with the PMIC), but we also need to be
-> able to access some GPIOs on the SoC itself, which requires entries for
-> these GPIOs in the lookup-table.
->
-> Since the lookup-table is attached to the i915 PCI device it really
-> should be part of the i915 driver, this will also allow us to extend
-> it with GPIOs from other sources when necessary.
->
-> Signed-off-by: Hans de Goede <hdegoede@redhat.com>
+In the process, make sure we call the release earlier rather than wait
+until the final reference to the fence is dropped (as a reference is
+kept while being listened upon).
 
-Looks OK to me
-Acked-by: Linus Walleij <linus.walleij@linaro.org>
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+---
+ drivers/gpu/drm/i915/gem/i915_gem_clflush.c | 11 ++++-------
+ drivers/gpu/drm/i915/i915_sw_fence_work.c   | 15 ++++++++++-----
+ drivers/gpu/drm/i915/i915_vma.c             | 17 +++++++++++++----
+ 3 files changed, 27 insertions(+), 16 deletions(-)
 
-But Lee & Andy should have a final word on this.
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_clflush.c b/drivers/gpu/drm/i915/gem/i915_gem_clflush.c
+index b9f504ba3b32..5448efa77710 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_clflush.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_clflush.c
+@@ -26,27 +26,24 @@ static void __do_clflush(struct drm_i915_gem_object *obj)
+ static int clflush_work(struct dma_fence_work *base)
+ {
+ 	struct clflush *clflush = container_of(base, typeof(*clflush), base);
+-	struct drm_i915_gem_object *obj = fetch_and_zero(&clflush->obj);
++	struct drm_i915_gem_object *obj = clflush->obj;
+ 	int err;
+ 
+ 	err = i915_gem_object_pin_pages(obj);
+ 	if (err)
+-		goto put;
++		return err;
+ 
+ 	__do_clflush(obj);
+ 	i915_gem_object_unpin_pages(obj);
+ 
+-put:
+-	i915_gem_object_put(obj);
+-	return err;
++	return 0;
+ }
+ 
+ static void clflush_release(struct dma_fence_work *base)
+ {
+ 	struct clflush *clflush = container_of(base, typeof(*clflush), base);
+ 
+-	if (clflush->obj)
+-		i915_gem_object_put(clflush->obj);
++	i915_gem_object_put(clflush->obj);
+ }
+ 
+ static const struct dma_fence_work_ops clflush_ops = {
+diff --git a/drivers/gpu/drm/i915/i915_sw_fence_work.c b/drivers/gpu/drm/i915/i915_sw_fence_work.c
+index 8538ee7a521d..997b2998f1f2 100644
+--- a/drivers/gpu/drm/i915/i915_sw_fence_work.c
++++ b/drivers/gpu/drm/i915/i915_sw_fence_work.c
+@@ -6,6 +6,13 @@
+ 
+ #include "i915_sw_fence_work.h"
+ 
++static void fence_complete(struct dma_fence_work *f)
++{
++	if (f->ops->release)
++		f->ops->release(f);
++	dma_fence_signal(&f->dma);
++}
++
+ static void fence_work(struct work_struct *work)
+ {
+ 	struct dma_fence_work *f = container_of(work, typeof(*f), work);
+@@ -14,7 +21,8 @@ static void fence_work(struct work_struct *work)
+ 	err = f->ops->work(f);
+ 	if (err)
+ 		dma_fence_set_error(&f->dma, err);
+-	dma_fence_signal(&f->dma);
++
++	fence_complete(f);
+ 	dma_fence_put(&f->dma);
+ }
+ 
+@@ -32,7 +40,7 @@ fence_notify(struct i915_sw_fence *fence, enum i915_sw_fence_notify state)
+ 			dma_fence_get(&f->dma);
+ 			queue_work(system_unbound_wq, &f->work);
+ 		} else {
+-			dma_fence_signal(&f->dma);
++			fence_complete(f);
+ 		}
+ 		break;
+ 
+@@ -60,9 +68,6 @@ static void fence_release(struct dma_fence *fence)
+ {
+ 	struct dma_fence_work *f = container_of(fence, typeof(*f), dma);
+ 
+-	if (f->ops->release)
+-		f->ops->release(f);
+-
+ 	i915_sw_fence_fini(&f->chain);
+ 
+ 	BUILD_BUG_ON(offsetof(typeof(*f), dma));
+diff --git a/drivers/gpu/drm/i915/i915_vma.c b/drivers/gpu/drm/i915/i915_vma.c
+index 6794c742fbbf..878975b37a45 100644
+--- a/drivers/gpu/drm/i915/i915_vma.c
++++ b/drivers/gpu/drm/i915/i915_vma.c
+@@ -292,6 +292,7 @@ i915_vma_instance(struct drm_i915_gem_object *obj,
+ struct i915_vma_work {
+ 	struct dma_fence_work base;
+ 	struct i915_vma *vma;
++	struct drm_i915_gem_object *pin;
+ 	enum i915_cache_level cache_level;
+ 	unsigned int flags;
+ };
+@@ -306,15 +307,21 @@ static int __vma_bind(struct dma_fence_work *work)
+ 	if (err)
+ 		atomic_or(I915_VMA_ERROR, &vma->flags);
+ 
+-	if (vma->obj)
+-		__i915_gem_object_unpin_pages(vma->obj);
+-
+ 	return err;
+ }
+ 
++static void __vma_release(struct dma_fence_work *work)
++{
++	struct i915_vma_work *vw = container_of(work, typeof(*vw), base);
++
++	if (vw->pin)
++		__i915_gem_object_unpin_pages(vw->pin);
++}
++
+ static const struct dma_fence_work_ops bind_ops = {
+ 	.name = "bind",
+ 	.work = __vma_bind,
++	.release = __vma_release,
+ };
+ 
+ struct i915_vma_work *i915_vma_work(void)
+@@ -395,8 +402,10 @@ int i915_vma_bind(struct i915_vma *vma,
+ 		i915_active_set_exclusive(&vma->active, &work->base.dma);
+ 		work->base.dma.error = 0; /* enable the queue_work() */
+ 
+-		if (vma->obj)
++		if (vma->obj) {
+ 			__i915_gem_object_pin_pages(vma->obj);
++			work->pin = vma->obj;
++		}
+ 	} else {
+ 		GEM_BUG_ON((bind_flags & ~vma_flags) & vma->vm->bind_async_flags);
+ 		ret = vma->ops->bind_vma(vma, cache_level, bind_flags);
+-- 
+2.24.0
 
-Yours,
-Linus Walleij
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
