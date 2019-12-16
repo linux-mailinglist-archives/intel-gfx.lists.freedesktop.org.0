@@ -1,32 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4A2CC11FC4A
-	for <lists+intel-gfx@lfdr.de>; Mon, 16 Dec 2019 01:48:39 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7859111FC5E
+	for <lists+intel-gfx@lfdr.de>; Mon, 16 Dec 2019 01:51:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 64F796E41F;
-	Mon, 16 Dec 2019 00:48:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B8F886E420;
+	Mon, 16 Dec 2019 00:51:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id B87646E3F2;
- Mon, 16 Dec 2019 00:48:34 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id B0D82A0091;
- Mon, 16 Dec 2019 00:48:34 +0000 (UTC)
+Received: from ozlabs.org (ozlabs.org [IPv6:2401:3900:2:1::2])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 077796E420
+ for <intel-gfx@lists.freedesktop.org>; Mon, 16 Dec 2019 00:51:49 +0000 (UTC)
+Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
+ SHA256) (No client certificate requested)
+ by mail.ozlabs.org (Postfix) with ESMTPSA id 47bjQT4Mwwz9sNH;
+ Mon, 16 Dec 2019 11:51:45 +1100 (AEDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=canb.auug.org.au;
+ s=201702; t=1576457505;
+ bh=barIgZhfjdNaSR9zBtj2KFrVq4xY0e5qWMY9AxtpYqY=;
+ h=Date:From:To:Cc:Subject:From;
+ b=MpW1QRXKX9RFkxvglPSI06kUY0h7nF2FWLtfVi+zJRuT59YycQjQMDeDVqRqirLxx
+ bM3mlmsh7UzanCbbuptc6EW+cth9WbS1NvNVYtQkfrbhaAjL1RE4qveSiuFqEQnhMe
+ rLbs5byUaRmdIgJWpHOnsdtryYahmNIYoAR5LMnT3bttY/PTqdxHybnXrdsQDSz7QN
+ 06wER/JDj8sthx2goX1f3vg6UXxmz100jNT26hfQkTEW6VJtfEGGllEjk5xvhkJaR+
+ NDd31o4Qcj1flI/zZOtwtI2akvvKb7dChFVPCJkl30VJAWkUAE1prO5xc4agnenNZg
+ QLF/ZT8KKtTcQ==
+Date: Mon, 16 Dec 2019 11:51:45 +1100
+From: Stephen Rothwell <sfr@canb.auug.org.au>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>, Intel Graphics
+ <intel-gfx@lists.freedesktop.org>, DRI <dri-devel@lists.freedesktop.org>
+Message-ID: <20191216115145.4f5cc123@canb.auug.org.au>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Mon, 16 Dec 2019 00:48:34 -0000
-Message-ID: <157645731469.5611.212791642024945765@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20191216002501.2406334-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20191216002501.2406334-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/i915/gt=3A_Set_vm_again_after_MI=5FSET=5FCONTEXT_=28rev?=
- =?utf-8?b?MTQp?=
+Subject: [Intel-gfx] linux-next: manual merge of the drm-misc tree with
+ Linus' tree
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,34 +48,110 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Linux Next Mailing List <linux-next@vger.kernel.org>,
+ Sean Paul <seanpaul@chromium.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: multipart/mixed; boundary="===============1827310497=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+--===============1827310497==
+Content-Type: multipart/signed; boundary="Sig_/frIcPPG8WbhjeYa/mWDsggn";
+ protocol="application/pgp-signature"; micalg=pgp-sha256
 
-Series: drm/i915/gt: Set vm again after MI_SET_CONTEXT (rev14)
-URL   : https://patchwork.freedesktop.org/series/70839/
-State : warning
+--Sig_/frIcPPG8WbhjeYa/mWDsggn
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
-== Summary ==
+Hi all,
 
-$ dim checkpatch origin/drm-tip
-f243dd7bf717 drm/i915/gt: Set vm again after MI_SET_CONTEXT
--:154: WARNING:MEMORY_BARRIER: memory barrier without comment
-#154: FILE: drivers/gpu/drm/i915/i915_gem_gtt.c:1712:
-+	mb();
+Today's linux-next merge of the drm-misc tree got a conflict in:
 
--:157: WARNING:MEMORY_BARRIER: memory barrier without comment
-#157: FILE: drivers/gpu/drm/i915/i915_gem_gtt.c:1715:
-+	mb();
+  include/drm/drm_dp_mst_helper.h
 
-total: 0 errors, 2 warnings, 0 checks, 150 lines checked
+between commit:
+
+  14692a3637d4 ("drm/dp_mst: Add probe_lock")
+
+from the Linus' tree and commit:
+
+  f79489074c59 ("drm/dp_mst: Clear all payload id tables downstream when in=
+itializing")
+
+from the drm-misc tree.
+
+I fixed it up (see below) and can carry the fix as necessary. This
+is now fixed as far as linux-next is concerned, but any non trivial
+conflicts should be mentioned to your upstream maintainer when your tree
+is submitted for merging.  You may also want to consider cooperating
+with the maintainer of the conflicting tree to minimise any particularly
+complex conflicts.
+
+--=20
+Cheers,
+Stephen Rothwell
+
+diff --cc include/drm/drm_dp_mst_helper.h
+index d5fc90b30487,a448d701dc7e..000000000000
+--- a/include/drm/drm_dp_mst_helper.h
++++ b/include/drm/drm_dp_mst_helper.h
+@@@ -565,18 -495,18 +566,25 @@@ struct drm_dp_mst_topology_mgr=20
+  	 */
+  	struct mutex lock;
+ =20
+ +	/**
+ +	 * @probe_lock: Prevents @work and @up_req_work, the only writers of
+ +	 * &drm_dp_mst_port.mstb and &drm_dp_mst_branch.ports, from racing
+ +	 * while they update the topology.
+ +	 */
+ +	struct mutex probe_lock;
+ +
+  	/**
+- 	 * @mst_state: If this manager is enabled for an MST capable port. False
+- 	 * if no MST sink/branch devices is connected.
++ 	 * @mst_state: If this manager is enabled for an MST capable port.
++ 	 * False if no MST sink/branch devices is connected.
+  	 */
+- 	bool mst_state;
++ 	bool mst_state : 1;
++=20
++ 	/**
++ 	 * @payload_id_table_cleared: Whether or not we've cleared the payload
++ 	 * ID table for @mst_primary. Protected by @lock.
++ 	 */
++ 	bool payload_id_table_cleared : 1;
++=20
+  	/**
+  	 * @mst_primary: Pointer to the primary/first branch device.
+  	 */
+
+--Sig_/frIcPPG8WbhjeYa/mWDsggn
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAl321SEACgkQAVBC80lX
+0GxkGggAlbCXpG7jCrvVDB2pJnRYmmHYGa9snqllJr3avUva39HJgOEHVcZKjNou
+zbOWU2JW9iWxm7n5ar3bFomH+r3/tE1T1/KmxTKF+PmFSKAzptMyeJ4MM8D+iZb7
+cyu3+jG0bOouRrwNrdGV5UD4WHig9KR67geBY6a6iIheMk9J3j+ngR0obs9D89iZ
+9A08yTnaYEdqjwnBgQLF85N3PCdygZ01FGjXypM98yxGtDQhCbVV78ybJBJGJR97
+eZB3CNimqXjU5ExSnd6/sEifeF+6jxnzv5B+S2nChf6nUdMSvSegXGFhktIKg18W
+TC4XZ+bFPFiCQj+tEgpqk/WsqCybOA==
+=3+Ni
+-----END PGP SIGNATURE-----
+
+--Sig_/frIcPPG8WbhjeYa/mWDsggn--
+
+--===============1827310497==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============1827310497==--
