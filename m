@@ -2,51 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 11C02121A83
-	for <lists+intel-gfx@lfdr.de>; Mon, 16 Dec 2019 21:05:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 85E7C121ADC
+	for <lists+intel-gfx@lfdr.de>; Mon, 16 Dec 2019 21:29:18 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7F0526E874;
-	Mon, 16 Dec 2019 20:05:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E06746E87A;
+	Mon, 16 Dec 2019 20:29:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C62786E874
- for <intel-gfx@lists.freedesktop.org>; Mon, 16 Dec 2019 20:05:25 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 16 Dec 2019 12:05:25 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,322,1571727600"; d="scan'208";a="389578093"
-Received: from linux.intel.com ([10.54.29.200])
- by orsmga005.jf.intel.com with ESMTP; 16 Dec 2019 12:05:24 -0800
-Received: from [10.251.95.214] (abudanko-mobl.ccr.corp.intel.com
- [10.251.95.214])
- by linux.intel.com (Postfix) with ESMTP id C3D875802E5;
- Mon, 16 Dec 2019 12:05:16 -0800 (PST)
-From: Alexey Budankov <alexey.budankov@linux.intel.com>
-To: Peter Zijlstra <peterz@infradead.org>,
- Arnaldo Carvalho de Melo <acme@kernel.org>, Ingo Molnar <mingo@redhat.com>,
- "jani.nikula@linux.intel.com" <jani.nikula@linux.intel.com>,
- "joonas.lahtinen@linux.intel.com" <joonas.lahtinen@linux.intel.com>,
- "rodrigo.vivi@intel.com" <rodrigo.vivi@intel.com>,
- Alexei Starovoitov <ast@kernel.org>,
- Benjamin Herrenschmidt <benh@kernel.crashing.org>,
- Paul Mackerras <paulus@samba.org>, Michael Ellerman <mpe@ellerman.id.au>,
- Serge Hallyn <serge@hallyn.com>, James Morris <jmorris@namei.org>,
- Casey Schaufler <casey@schaufler-ca.com>
-References: <b175f283-d256-e37e-f447-6ba4ab4f3d3a@linux.intel.com>
-Organization: Intel Corp.
-Message-ID: <5d87f946-3588-7531-933b-fd1104ca0842@linux.intel.com>
-Date: Mon, 16 Dec 2019 23:05:15 +0300
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.1
+Received: from us-smtp-delivery-1.mimecast.com (us-smtp-2.mimecast.com
+ [207.211.31.81])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D26E86E87A
+ for <intel-gfx@lists.freedesktop.org>; Mon, 16 Dec 2019 20:29:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1576528153;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=x2+gaSqShRjI9TwRpQ1ymZ0YBhaNrVlTtmkRQd+AJA0=;
+ b=TGXKqDqxif9uLlMAt0IYfBIRLTm/FipokgQtR+ztHnPXHaDFmvNwRIAh0TVpWAIcemdal3
+ OLHtoCudhXMRBNBTWkc9E4QaPjp1VJy64v/FfKLzr0Q/uGWIhVxsWrQ9d+5jhVUqZtg9Mj
+ 1zhrgTa4c6acIvlCvrpO3GPP0PDZFms=
+Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
+ [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-297-aLMJHBYmN3agL3oLRkyuoA-1; Mon, 16 Dec 2019 15:29:12 -0500
+X-MC-Unique: aLMJHBYmN3agL3oLRkyuoA-1
+Received: from smtp.corp.redhat.com (int-mx06.intmail.prod.int.phx2.redhat.com
+ [10.5.11.16])
+ (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+ (No client certificate requested)
+ by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 0E27618A6EC1;
+ Mon, 16 Dec 2019 20:29:10 +0000 (UTC)
+Received: from shalem.localdomain.com (ovpn-116-96.ams2.redhat.com
+ [10.36.116.96])
+ by smtp.corp.redhat.com (Postfix) with ESMTP id D99095C219;
+ Mon, 16 Dec 2019 20:29:07 +0000 (UTC)
+From: Hans de Goede <hdegoede@redhat.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
+ intel-gfx <intel-gfx@lists.freedesktop.org>,
+ "Rafael J . Wysocki" <rjw@rjwysocki.net>, Lee Jones <lee.jones@linaro.org>
+Date: Mon, 16 Dec 2019 21:29:03 +0100
+Message-Id: <20191216202906.1662893-1-hdegoede@redhat.com>
 MIME-Version: 1.0
-In-Reply-To: <b175f283-d256-e37e-f447-6ba4ab4f3d3a@linux.intel.com>
-Content-Language: en-US
-Subject: [Intel-gfx] [PATCH v3 7/7] parisc/perf: open access for
- CAP_SYS_PERFMON privileged process
+X-Scanned-By: MIMEDefang 2.79 on 10.5.11.16
+Subject: [Intel-gfx] [CI 0/3] drm/i915 / LPSS / mfd: Select correct PWM
+ controller to use based on VBT
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,52 +61,25 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: songliubraving@fb.com, Andi Kleen <ak@linux.intel.com>,
- Kees Cook <keescook@chromium.org>,
- "linux-parisc@vger.kernel.org" <linux-parisc@vger.kernel.org>,
- Jann Horn <jannh@google.com>,
- Alexander Shishkin <alexander.shishkin@linux.intel.com>,
- "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>,
- intel-gfx@lists.freedesktop.org, Igor Lubashev <ilubashe@akamai.com>,
- linux-kernel@vger.kernel.org, Stephane Eranian <eranian@google.com>,
- "linux-perf-users@vger.kernel.org" <linux-perf-users@vger.kernel.org>,
- "selinux@vger.kernel.org" <selinux@vger.kernel.org>,
- "linux-security-module@vger.kernel.org"
- <linux-security-module@vger.kernel.org>, Namhyung Kim <namhyung@kernel.org>,
- Thomas Gleixner <tglx@linutronix.de>, Brendan Gregg <bgregg@netflix.com>,
- Jiri Olsa <jolsa@redhat.com>, "bpf@vger.kernel.org" <bpf@vger.kernel.org>
+Cc: linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ linux-acpi@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Hi All,
 
-Open access to monitoring for CAP_SYS_PERFMON privileged processes.
-For backward compatibility reasons access to the monitoring remains open
-for CAP_SYS_ADMIN privileged processes but CAP_SYS_ADMIN usage for secure
-monitoring is discouraged with respect to CAP_SYS_PERFMON capability.
+Somehow the CI system did not pick up this series the first time, there
+are no test results recorded for it:
+https://patchwork.freedesktop.org/series/69685
 
-Signed-off-by: Alexey Budankov <alexey.budankov@linux.intel.com>
----
- arch/parisc/kernel/perf.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+So this is a resend for CI to do its thing. As soon as CI is happy with
+this I will push this to drm-intel-next-queued.
 
-diff --git a/arch/parisc/kernel/perf.c b/arch/parisc/kernel/perf.c
-index 676683641d00..c4208d027794 100644
---- a/arch/parisc/kernel/perf.c
-+++ b/arch/parisc/kernel/perf.c
-@@ -300,7 +300,7 @@ static ssize_t perf_write(struct file *file, const char __user *buf,
- 	else
- 		return -EFAULT;
- 
--	if (!capable(CAP_SYS_ADMIN))
-+	if (!perfmon_capable())
- 		return -EACCES;
- 
- 	if (count != sizeof(uint32_t))
--- 
-2.20.1
+Regards,
 
+Hans
 
 _______________________________________________
 Intel-gfx mailing list
