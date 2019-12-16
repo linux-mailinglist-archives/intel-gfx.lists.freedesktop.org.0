@@ -2,33 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 52CD9121531
-	for <lists+intel-gfx@lfdr.de>; Mon, 16 Dec 2019 19:20:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D6551216A8
+	for <lists+intel-gfx@lfdr.de>; Mon, 16 Dec 2019 19:31:24 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D8DD66E0A5;
-	Mon, 16 Dec 2019 18:20:38 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4E69B6E0A5
- for <Intel-gfx@lists.freedesktop.org>; Mon, 16 Dec 2019 18:20:37 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 16 Dec 2019 10:20:36 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,322,1571727600"; d="scan'208";a="415167077"
-Received: from dtriolet-mobl1.ger.corp.intel.com (HELO localhost.localdomain)
- ([10.251.84.191])
- by fmsmga005.fm.intel.com with ESMTP; 16 Dec 2019 10:20:35 -0800
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-To: Intel-gfx@lists.freedesktop.org
-Date: Mon, 16 Dec 2019 18:20:32 +0000
-Message-Id: <20191216182032.22265-1-tvrtko.ursulin@linux.intel.com>
-X-Mailer: git-send-email 2.20.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id B837E899E6;
+	Mon, 16 Dec 2019 18:31:21 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 1A8098997E;
+ Mon, 16 Dec 2019 18:31:21 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 12400A010F;
+ Mon, 16 Dec 2019 18:31:21 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/pmu: Ensure monotonic rc6
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Hans de Goede" <hdegoede@redhat.com>
+Date: Mon, 16 Dec 2019 18:31:21 -0000
+Message-ID: <157652108105.5612.118655493438686394@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20191216120735.1091873-1-hdegoede@redhat.com>
+In-Reply-To: <20191216120735.1091873-1-hdegoede@redhat.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_Deal_with_inverted_brightness_on_Thundersoft_TST178_ta?=
+ =?utf-8?q?blets?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,82 +39,137 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+== Series Details ==
 
-Avoid rc6 counter going backward in close to 0% RC6 scenarios like:
+Series: drm/i915: Deal with inverted brightness on Thundersoft TST178 tablets
+URL   : https://patchwork.freedesktop.org/series/70978/
+State : success
 
-    15.005477996        114,246,613 ns   i915/rc6-residency/
-    16.005876662            667,657 ns   i915/rc6-residency/
-    17.006131417              7,286 ns   i915/rc6-residency/
-    18.006615031 18,446,744,073,708,914,688 ns   i915/rc6-residency/
-    19.007158361 18,446,744,073,709,447,168 ns   i915/rc6-residency/
-    20.007806498                  0 ns   i915/rc6-residency/
-    21.008227495          1,440,403 ns   i915/rc6-residency/
+== Summary ==
 
-There are two aspects to this fix.
+CI Bug Log - changes from CI_DRM_7574 -> Patchwork_15790
+====================================================
 
-First is not assuming rc6 value zero means GT is asleep since that can
-also mean GPU is fully busy and we do not want to enter the estimation
-path in that case.
+Summary
+-------
 
-Second is ensuring monotonicity on the estimation path itself. I suspect
-what is happening is with extremely rapid park/unpark cycles we get no
-updates on the real rc6 and therefore have to careful not to
-unconditionally trust use last known real rc6 when creating a new
-estimation.
+  **SUCCESS**
 
-Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-Fixes: 16ffe73c186b ("drm/i915/pmu: Use GT parked for estimating RC6 while asleep")
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
----
- drivers/gpu/drm/i915/i915_pmu.c | 10 +++++++---
- 1 file changed, 7 insertions(+), 3 deletions(-)
+  No regressions found.
 
-diff --git a/drivers/gpu/drm/i915/i915_pmu.c b/drivers/gpu/drm/i915/i915_pmu.c
-index 5f2adfbf85be..c4581d8fc9ce 100644
---- a/drivers/gpu/drm/i915/i915_pmu.c
-+++ b/drivers/gpu/drm/i915/i915_pmu.c
-@@ -158,7 +158,10 @@ static u64 __pmu_estimate_rc6(struct i915_pmu *pmu)
- 	val = ktime_since(pmu->sleep_last);
- 	val += pmu->sample[__I915_SAMPLE_RC6].cur;
- 
--	pmu->sample[__I915_SAMPLE_RC6_ESTIMATED].cur = val;
-+	if (val > pmu->sample[__I915_SAMPLE_RC6_ESTIMATED].cur)
-+		pmu->sample[__I915_SAMPLE_RC6_ESTIMATED].cur = val;
-+	else
-+		val = pmu->sample[__I915_SAMPLE_RC6_ESTIMATED].cur;
- 
- 	return val;
- }
-@@ -185,17 +188,18 @@ static u64 get_rc6(struct intel_gt *gt)
- 	struct drm_i915_private *i915 = gt->i915;
- 	struct i915_pmu *pmu = &i915->pmu;
- 	unsigned long flags;
-+	bool awake = false;
- 	u64 val;
- 
--	val = 0;
- 	if (intel_gt_pm_get_if_awake(gt)) {
- 		val = __get_rc6(gt);
- 		intel_gt_pm_put_async(gt);
-+		awake = true;
- 	}
- 
- 	spin_lock_irqsave(&pmu->lock, flags);
- 
--	if (val)
-+	if (awake)
- 		val = __pmu_update_rc6(pmu, val);
- 	else
- 		val = __pmu_estimate_rc6(pmu);
--- 
-2.20.1
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15790/index.html
 
+Known issues
+------------
+
+  Here are the changes found in Patchwork_15790 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live_blt:
+    - fi-ivb-3770:        [PASS][1] -> [DMESG-FAIL][2] ([i915#725])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7574/fi-ivb-3770/igt@i915_selftest@live_blt.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15790/fi-ivb-3770/igt@i915_selftest@live_blt.html
+
+  * igt@i915_selftest@live_gem_contexts:
+    - fi-hsw-peppy:       [PASS][3] -> [INCOMPLETE][4] ([i915#694])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7574/fi-hsw-peppy/igt@i915_selftest@live_gem_contexts.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15790/fi-hsw-peppy/igt@i915_selftest@live_gem_contexts.html
+    - fi-cfl-guc:         [PASS][5] -> [DMESG-FAIL][6] ([i915#730])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7574/fi-cfl-guc/igt@i915_selftest@live_gem_contexts.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15790/fi-cfl-guc/igt@i915_selftest@live_gem_contexts.html
+
+  * igt@i915_selftest@live_requests:
+    - fi-hsw-4770r:       [PASS][7] -> [INCOMPLETE][8] ([i915#773])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7574/fi-hsw-4770r/igt@i915_selftest@live_requests.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15790/fi-hsw-4770r/igt@i915_selftest@live_requests.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_sync@basic-each:
+    - {fi-tgl-u}:         [INCOMPLETE][9] ([i915#472] / [i915#707]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7574/fi-tgl-u/igt@gem_sync@basic-each.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15790/fi-tgl-u/igt@gem_sync@basic-each.html
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-skl-6770hq:      [FAIL][11] ([i915#178]) -> [PASS][12]
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7574/fi-skl-6770hq/igt@i915_pm_rpm@module-reload.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15790/fi-skl-6770hq/igt@i915_pm_rpm@module-reload.html
+
+  * igt@kms_chamelium@hdmi-hpd-fast:
+    - fi-kbl-7500u:       [FAIL][13] ([fdo#111096] / [i915#323]) -> [PASS][14]
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7574/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15790/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+
+  
+#### Warnings ####
+
+  * igt@kms_flip@basic-flip-vs-modeset:
+    - fi-kbl-x1275:       [DMESG-WARN][15] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][16] ([i915#62] / [i915#92]) +7 similar issues
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7574/fi-kbl-x1275/igt@kms_flip@basic-flip-vs-modeset.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15790/fi-kbl-x1275/igt@kms_flip@basic-flip-vs-modeset.html
+
+  * igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a:
+    - fi-kbl-x1275:       [DMESG-WARN][17] ([i915#62] / [i915#92]) -> [DMESG-WARN][18] ([i915#62] / [i915#92] / [i915#95]) +4 similar issues
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7574/fi-kbl-x1275/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15790/fi-kbl-x1275/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#111096]: https://bugs.freedesktop.org/show_bug.cgi?id=111096
+  [fdo#111735]: https://bugs.freedesktop.org/show_bug.cgi?id=111735
+  [i915#178]: https://gitlab.freedesktop.org/drm/intel/issues/178
+  [i915#323]: https://gitlab.freedesktop.org/drm/intel/issues/323
+  [i915#472]: https://gitlab.freedesktop.org/drm/intel/issues/472
+  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
+  [i915#694]: https://gitlab.freedesktop.org/drm/intel/issues/694
+  [i915#707]: https://gitlab.freedesktop.org/drm/intel/issues/707
+  [i915#725]: https://gitlab.freedesktop.org/drm/intel/issues/725
+  [i915#730]: https://gitlab.freedesktop.org/drm/intel/issues/730
+  [i915#773]: https://gitlab.freedesktop.org/drm/intel/issues/773
+  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
+  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
+
+
+Participating hosts (53 -> 46)
+------------------------------
+
+  Additional (1): fi-hsw-4770 
+  Missing    (8): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-tgl-y fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_7574 -> Patchwork_15790
+
+  CI-20190529: 20190529
+  CI_DRM_7574: 950244ca586c6f0efe243bf8c505c01ea5e579fa @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5349: 048f58513d8b8ec6bb307a939f0ac959bc0f0e10 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_15790: 734e99ba5c9b69eab1f8561b6e29f541bb09f1a8 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+734e99ba5c9b drm/i915: Add invert-brightness quirk for Thundersoft TST178 tablet
+690293c2d125 drm/i915: panel: Use intel_panel_compute_brightness() from pwm_setup_backlight()
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15790/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
