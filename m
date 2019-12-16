@@ -2,74 +2,28 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B0C1120846
-	for <lists+intel-gfx@lfdr.de>; Mon, 16 Dec 2019 15:16:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CB6FC12088C
+	for <lists+intel-gfx@lfdr.de>; Mon, 16 Dec 2019 15:24:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9DD3D6E59D;
-	Mon, 16 Dec 2019 14:16:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 34D8D6E59F;
+	Mon, 16 Dec 2019 14:24:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-1.mimecast.com (us-smtp-delivery-1.mimecast.com
- [205.139.110.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E5E706E59F
- for <intel-gfx@lists.freedesktop.org>; Mon, 16 Dec 2019 14:16:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1576505795;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=kWznC8f0Sw5hpnKrBN/sRNgm7RvIde/Or5f2/cvT4Og=;
- b=NVc4Ae+8gqWupwHP2hs0LgpD2PUbvwyfaUFU6VWtUZItmiqB8bOUKvqWFeCUv81IPk2pKu
- +xMomGfdvwqfLmW/SoV1QtqOzZmsNqyfFVOtQM3tOcKlXYGbtQWexWRdmsE7wRQ2k2nONl
- 7wPh2fWcHv/TkIrTfZy7LfZzNE97GBY=
-Received: from mail-wr1-f71.google.com (mail-wr1-f71.google.com
- [209.85.221.71]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-352-uh64BoF3MzmqNm8k8Ut5UA-1; Mon, 16 Dec 2019 09:16:32 -0500
-Received: by mail-wr1-f71.google.com with SMTP id v17so3762757wrm.17
- for <intel-gfx@lists.freedesktop.org>; Mon, 16 Dec 2019 06:16:31 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:message-id:date
- :user-agent:mime-version:in-reply-to:content-language
- :content-transfer-encoding;
- bh=iyyJmBM3fDcRwB4obuoYugCBOkwPjR5ZZAf85xRDFJI=;
- b=iq8nDdUL7gNasECtMmDRGfqYiv+U+sxue1U0Sms5aA88yFXLBSaXNKO2uDWBU5oGAe
- eVBl2p/Mz8lrJ5qepq+4IR49bTh9QCwkkdKGu6hL5M3pegdSl8GTJ+NwbAd33XeymgW9
- mu6uQzyY4e8Qb+G0RSzlpeXJRMQ8FfAP3uJAf/vOeiiIQYI1q99eLLmaQRSCCAUpMwvP
- AAhOxyRMe78y/xeUA+SOxVB7BFbmTEqLdvkNdINJ0JoEm4n9nItHTaXrhb8Iv5Ivf2w3
- DEnxcUoiWnYMRR0ORK3kS52BmYVnRHsq+KdVuBJupDNT9X01cyU59zuXVQ33cACXjtEC
- wUiQ==
-X-Gm-Message-State: APjAAAX0D11pYuf/ZNkDsOIBNN+nfe8qcv2GMLJx0dWihcfkHzoDYevE
- L+dyHGLzoP/Q9F0xNZuQ1KeLelvSIZ223RSHnPZjWppZiv9HraV2aDWlFwJzoQNlNLaVdiSx+Ta
- rzvie9NJEnY3Urkc86aieXpqvCYNu
-X-Received: by 2002:adf:a308:: with SMTP id c8mr29838072wrb.240.1576505790871; 
- Mon, 16 Dec 2019 06:16:30 -0800 (PST)
-X-Google-Smtp-Source: APXvYqycr8vbMR7LAJzKT/83BL3q03HQov83Lat9afG86+vT2vXdgjwSHLffqAKplmr/V+CoUwBxgw==
-X-Received: by 2002:adf:a308:: with SMTP id c8mr29838050wrb.240.1576505790643; 
- Mon, 16 Dec 2019 06:16:30 -0800 (PST)
-Received: from shalem.localdomain
- (2001-1c00-0c0c-fe00-7e79-4dac-39d0-9c14.cable.dynamic.v6.ziggo.nl.
- [2001:1c00:c0c:fe00:7e79:4dac:39d0:9c14])
- by smtp.gmail.com with ESMTPSA id c9sm20297847wmc.47.2019.12.16.06.16.29
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 16 Dec 2019 06:16:30 -0800 (PST)
-To: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-References: <20191215163810.52356-1-hdegoede@redhat.com>
- <20191215163810.52356-5-hdegoede@redhat.com>
- <20191216135627.GS1208@intel.com>
-From: Hans de Goede <hdegoede@redhat.com>
-Message-ID: <25e93a0e-3f48-abd4-d2ba-07a4d03f7f7d@redhat.com>
-Date: Mon, 16 Dec 2019 15:16:29 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.2.2
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BAEA36E59F
+ for <intel-gfx@lists.freedesktop.org>; Mon, 16 Dec 2019 14:24:24 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19596071-1500050 
+ for multiple; Mon, 16 Dec 2019 14:24:09 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon, 16 Dec 2019 14:24:09 +0000
+Message-Id: <20191216142409.2605211-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.24.0
 MIME-Version: 1.0
-In-Reply-To: <20191216135627.GS1208@intel.com>
-Content-Language: en-US
-X-MC-Unique: uh64BoF3MzmqNm8k8Ut5UA-1
-X-Mimecast-Spam-Score: 0
-Subject: Re: [Intel-gfx] [PATCH 4/5] drm/i915/dsi: Move Crystal Cove PMIC
- panel GPIO lookup from mfd to the i915 driver
+Subject: [Intel-gfx] [PATCH] drm/i915/gt: Tidy up full-ppgtt on Ivybridge
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -82,208 +36,209 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Linus Walleij <linus.walleij@linaro.org>, linux-kernel@vger.kernel.org,
- linux-gpio@vger.kernel.org, dri-devel@lists.freedesktop.org,
- Lee Jones <lee.jones@linaro.org>, intel-gfx <intel-gfx@lists.freedesktop.org>
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="windows-1252"; Format="flowed"
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi,
+With a couple more memory barriers dotted around the place we can
+significantly reduce the MTBF on Ivybridge. Still doesn't really help
+Haswell though.
 
-On 16-12-2019 14:56, Ville Syrj=E4l=E4 wrote:
-> On Sun, Dec 15, 2019 at 05:38:09PM +0100, Hans de Goede wrote:
->> Move the Crystal Cove PMIC panel GPIO lookup-table from
->> drivers/mfd/intel_soc_pmic_core.c to the i915 driver.
->>
->> The moved looked-up table is adding a GPIO lookup to the i915 PCI
->> device and the GPIO subsys allows only one lookup table per device,
->>
->> The intel_soc_pmic_core.c code only adds lookup-table entries for the
->> PMIC panel GPIO (as it deals only with the PMIC), but we also need to be
->> able to access some GPIOs on the SoC itself, which requires entries for
->> these GPIOs in the lookup-table.
->>
->> Since the lookup-table is attached to the i915 PCI device it really
->> should be part of the i915 driver, this will also allow us to extend
->> it with GPIOs from other sources when necessary.
->>
->> Signed-off-by: Hans de Goede <hdegoede@redhat.com>
->> ---
->>   drivers/gpu/drm/i915/display/intel_dsi_vbt.c | 23 +++++++++++++++++++-
->>   drivers/mfd/intel_soc_pmic_core.c            | 19 ----------------
->>   2 files changed, 22 insertions(+), 20 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/i915/display/intel_dsi_vbt.c b/drivers/gpu/=
-drm/i915/display/intel_dsi_vbt.c
->> index 027970348b22..847f04eec2a1 100644
->> --- a/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
->> +++ b/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
->> @@ -25,6 +25,7 @@
->>    */
->>   =
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+---
+ .../gpu/drm/i915/gt/intel_ring_submission.c   | 110 +++++++-----------
+ drivers/gpu/drm/i915/i915_gem_gtt.c           |   2 +
+ 2 files changed, 43 insertions(+), 69 deletions(-)
 
->>   #include <linux/gpio/consumer.h>
->> +#include <linux/gpio/machine.h>
->>   #include <linux/mfd/intel_soc_pmic.h>
->>   #include <linux/slab.h>
->>   =
-
->> @@ -686,8 +687,18 @@ bool intel_dsi_vbt_init(struct intel_dsi *intel_dsi=
-, u16 panel_id)
->>   =
-
->>   /*
->>    * On some BYT/CHT devs some sequences are incomplete and we need to m=
-anually
->> - * control some GPIOs.
->> + * control some GPIOs. We need to add a GPIO lookup table before we get=
- these.
->>    */
->> +static struct gpiod_lookup_table pmic_panel_gpio_table =3D {
->> +	/* Intel GFX is consumer */
->> +	.dev_id =3D "0000:00:02.0",
->> +	.table =3D {
->> +		/* Panel EN/DISABLE */
->> +		GPIO_LOOKUP("gpio_crystalcove", 94, "panel", GPIO_ACTIVE_HIGH),
->> +		{ },
->> +	},
->> +};
-> =
-
-> Feels like a failure in abstraction to have these irrelevant details
-> exposed on the consumer side. Also slightly concerned that someone
-> refactoring things in the pmic driver could now break this without
-> realizing it. But if people want it done this way I can live with it.
-
-Note how in the final patch we add another lookup for a GPIO called "panel"
-but now on another GPIO controller. Since which GPIO controller has the
-"panel" GPIO is specified by a bit in the VBT doing the lookup-table
-registering from within the i915 code actually kinda makes sense.
-
-> =
-
->> +
->>   void intel_dsi_vbt_gpio_init(struct intel_dsi *intel_dsi, bool panel_i=
-s_on)
->>   {
->>   	struct drm_device *dev =3D intel_dsi->base.base.dev;
->> @@ -697,6 +708,8 @@ void intel_dsi_vbt_gpio_init(struct intel_dsi *intel=
-_dsi, bool panel_is_on)
->>   =
-
->>   	if ((IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv)) &&
->>   	    (mipi_config->pwm_blc =3D=3D PPS_BLC_PMIC)) {
->> +		gpiod_add_lookup_table(&pmic_panel_gpio_table);
->> +
->>   		intel_dsi->gpio_panel =3D gpiod_get(dev->dev, "panel", flags);
->>   		if (IS_ERR(intel_dsi->gpio_panel)) {
->>   			DRM_ERROR("Failed to own gpio for panel control\n");
->> @@ -707,8 +720,16 @@ void intel_dsi_vbt_gpio_init(struct intel_dsi *inte=
-l_dsi, bool panel_is_on)
->>   =
-
->>   void intel_dsi_vbt_gpio_cleanup(struct intel_dsi *intel_dsi)
->>   {
->> +	struct drm_device *dev =3D intel_dsi->base.base.dev;
->> +	struct drm_i915_private *dev_priv =3D to_i915(dev);
->> +	struct mipi_config *mipi_config =3D dev_priv->vbt.dsi.config;
->> +
->>   	if (intel_dsi->gpio_panel) {
->>   		gpiod_put(intel_dsi->gpio_panel);
->>   		intel_dsi->gpio_panel =3D NULL;
->>   	}
->> +
->> +	if ((IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv)) &&
->> +	    (mipi_config->pwm_blc =3D=3D PPS_BLC_PMIC))
-> =
-
-> Needless parens here as well.
-
-Will fix for v2 (will also the other case).
-
-> Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-
-Thanks.
-
-Regards,
-
-Hans
-
-
-
-> =
-
->> +		gpiod_remove_lookup_table(&pmic_panel_gpio_table);
->>   }
->> diff --git a/drivers/mfd/intel_soc_pmic_core.c b/drivers/mfd/intel_soc_p=
-mic_core.c
->> index 47188df3080d..ddd64f9e3341 100644
->> --- a/drivers/mfd/intel_soc_pmic_core.c
->> +++ b/drivers/mfd/intel_soc_pmic_core.c
->> @@ -9,8 +9,6 @@
->>    */
->>   =
-
->>   #include <linux/acpi.h>
->> -#include <linux/gpio/consumer.h>
->> -#include <linux/gpio/machine.h>
->>   #include <linux/i2c.h>
->>   #include <linux/interrupt.h>
->>   #include <linux/module.h>
->> @@ -25,17 +23,6 @@
->>   #define BYT_CRC_HRV		2
->>   #define CHT_CRC_HRV		3
->>   =
-
->> -/* Lookup table for the Panel Enable/Disable line as GPIO signals */
->> -static struct gpiod_lookup_table panel_gpio_table =3D {
->> -	/* Intel GFX is consumer */
->> -	.dev_id =3D "0000:00:02.0",
->> -	.table =3D {
->> -		/* Panel EN/DISABLE */
->> -		GPIO_LOOKUP("gpio_crystalcove", 94, "panel", GPIO_ACTIVE_HIGH),
->> -		{ },
->> -	},
->> -};
->> -
->>   /* PWM consumed by the Intel GFX */
->>   static struct pwm_lookup crc_pwm_lookup[] =3D {
->>   	PWM_LOOKUP("crystal_cove_pwm", 0, "0000:00:02.0", "pwm_pmic_backlight=
-", 0, PWM_POLARITY_NORMAL),
->> @@ -96,9 +83,6 @@ static int intel_soc_pmic_i2c_probe(struct i2c_client =
-*i2c,
->>   	if (ret)
->>   		dev_warn(dev, "Can't enable IRQ as wake source: %d\n", ret);
->>   =
-
->> -	/* Add lookup table binding for Panel Control to the GPIO Chip */
->> -	gpiod_add_lookup_table(&panel_gpio_table);
->> -
->>   	/* Add lookup table for crc-pwm */
->>   	pwm_add_table(crc_pwm_lookup, ARRAY_SIZE(crc_pwm_lookup));
->>   =
-
->> @@ -121,9 +105,6 @@ static int intel_soc_pmic_i2c_remove(struct i2c_clie=
-nt *i2c)
->>   =
-
->>   	regmap_del_irq_chip(pmic->irq, pmic->irq_chip_data);
->>   =
-
->> -	/* Remove lookup table for Panel Control from the GPIO Chip */
->> -	gpiod_remove_lookup_table(&panel_gpio_table);
->> -
->>   	/* remove crc-pwm lookup table */
->>   	pwm_remove_table(crc_pwm_lookup, ARRAY_SIZE(crc_pwm_lookup));
->>   =
-
->> -- =
-
->> 2.23.0
-> =
-
+diff --git a/drivers/gpu/drm/i915/gt/intel_ring_submission.c b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
+index 30ba67c9abe9..00d1fb582e95 100644
+--- a/drivers/gpu/drm/i915/gt/intel_ring_submission.c
++++ b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
+@@ -362,6 +362,12 @@ gen7_render_ring_flush(struct i915_request *rq, u32 mode)
+ 	 */
+ 	flags |= PIPE_CONTROL_CS_STALL;
+ 
++	/*
++	 * CS_STALL suggests at least a post-sync write.
++	 */
++	flags |= PIPE_CONTROL_QW_WRITE;
++	flags |= PIPE_CONTROL_GLOBAL_GTT_IVB;
++
+ 	/* Just flush everything.  Experiments have shown that reducing the
+ 	 * number of bits based on the write domains has little performance
+ 	 * impact.
+@@ -380,13 +386,6 @@ gen7_render_ring_flush(struct i915_request *rq, u32 mode)
+ 		flags |= PIPE_CONTROL_CONST_CACHE_INVALIDATE;
+ 		flags |= PIPE_CONTROL_STATE_CACHE_INVALIDATE;
+ 		flags |= PIPE_CONTROL_MEDIA_STATE_CLEAR;
+-		/*
+-		 * TLB invalidate requires a post-sync write.
+-		 */
+-		flags |= PIPE_CONTROL_QW_WRITE;
+-		flags |= PIPE_CONTROL_GLOBAL_GTT_IVB;
+-
+-		flags |= PIPE_CONTROL_STALL_AT_SCOREBOARD;
+ 
+ 		/* Workaround: we must issue a pipe_control with CS-stall bit
+ 		 * set before a pipe_control command that has the state cache
+@@ -1371,50 +1370,26 @@ static int load_pd_dir(struct i915_request *rq,
+ 	const struct intel_engine_cs * const engine = rq->engine;
+ 	u32 *cs;
+ 
+-	cs = intel_ring_begin(rq, 12);
++	cs = intel_ring_begin(rq, 10);
+ 	if (IS_ERR(cs))
+ 		return PTR_ERR(cs);
+ 
+-	*cs++ = MI_LOAD_REGISTER_IMM(1);
++	*cs++ = MI_LOAD_REGISTER_IMM(3);
+ 	*cs++ = i915_mmio_reg_offset(RING_PP_DIR_DCLV(engine->mmio_base));
+ 	*cs++ = valid;
+-
+-	*cs++ = MI_STORE_REGISTER_MEM | MI_SRM_LRM_GLOBAL_GTT;
+-	*cs++ = i915_mmio_reg_offset(RING_PP_DIR_DCLV(engine->mmio_base));
+-	*cs++ = intel_gt_scratch_offset(rq->engine->gt,
+-					INTEL_GT_SCRATCH_FIELD_DEFAULT);
+-
+-	*cs++ = MI_LOAD_REGISTER_IMM(1);
+ 	*cs++ = i915_mmio_reg_offset(RING_PP_DIR_BASE(engine->mmio_base));
+ 	*cs++ = px_base(ppgtt->pd)->ggtt_offset << 10;
++	*cs++ = i915_mmio_reg_offset(RING_INSTPM(engine->mmio_base));
++	*cs++ = _MASKED_BIT_ENABLE(INSTPM_TLB_INVALIDATE);
+ 
+ 	/* Stall until the page table load is complete? */
+ 	*cs++ = MI_STORE_REGISTER_MEM | MI_SRM_LRM_GLOBAL_GTT;
+ 	*cs++ = i915_mmio_reg_offset(RING_PP_DIR_BASE(engine->mmio_base));
+-	*cs++ = intel_gt_scratch_offset(rq->engine->gt,
++	*cs++ = intel_gt_scratch_offset(engine->gt,
+ 					INTEL_GT_SCRATCH_FIELD_DEFAULT);
+ 
+ 	intel_ring_advance(rq, cs);
+ 
+-	return rq->engine->emit_flush(rq, EMIT_FLUSH);
+-}
+-
+-static int flush_tlb(struct i915_request *rq)
+-{
+-	const struct intel_engine_cs * const engine = rq->engine;
+-	u32 *cs;
+-
+-	cs = intel_ring_begin(rq, 4);
+-	if (IS_ERR(cs))
+-		return PTR_ERR(cs);
+-
+-	*cs++ = MI_LOAD_REGISTER_IMM(1);
+-	*cs++ = i915_mmio_reg_offset(RING_INSTPM(engine->mmio_base));
+-	*cs++ = _MASKED_BIT_ENABLE(INSTPM_TLB_INVALIDATE);
+-
+-	*cs++ = MI_NOOP;
+-	intel_ring_advance(rq, cs);
+-
+ 	return 0;
+ }
+ 
+@@ -1590,52 +1565,49 @@ static int remap_l3(struct i915_request *rq)
+ 	return 0;
+ }
+ 
+-static int switch_context(struct i915_request *rq)
++static int switch_mm(struct i915_request *rq, struct i915_address_space *vm)
+ {
+-	struct intel_context *ce = rq->hw_context;
+-	struct i915_address_space *vm = vm_alias(ce);
+-	u32 hw_flags = 0;
+ 	int ret;
+ 
+-	GEM_BUG_ON(HAS_EXECLISTS(rq->i915));
++	if (!vm)
++		return 0;
+ 
+-	if (vm) {
+-		/*
+-		 * Not only do we need a full barrier (post-sync write) after
+-		 * invalidating the TLBs, but we need to wait a little bit
+-		 * longer. Whether this is merely delaying us, or the
+-		 * subsequent flush is a key part of serialising with the
+-		 * post-sync op, this extra pass appears vital before a
+-		 * mm switch!
+-		 */
+-		ret = rq->engine->emit_flush(rq, EMIT_INVALIDATE);
+-		if (ret)
+-			return ret;
++	ret = rq->engine->emit_flush(rq, EMIT_FLUSH);
++	if (ret)
++		return ret;
+ 
+-		ret = flush_tlb(rq);
+-		if (ret)
+-			return ret;
++	/*
++	 * Not only do we need a full barrier (post-sync write) after
++	 * invalidating the TLBs, but we need to wait a little bit
++	 * longer. Whether this is merely delaying us, or the
++	 * subsequent flush is a key part of serialising with the
++	 * post-sync op, this extra pass appears vital before a
++	 * mm switch!
++	 */
++	ret = load_pd_dir(rq, i915_vm_to_ppgtt(vm), PP_DIR_DCLV_2G);
++	if (ret)
++		return ret;
+ 
+-		ret = load_pd_dir(rq, i915_vm_to_ppgtt(vm), 0);
+-		if (ret)
+-			return ret;
++	return rq->engine->emit_flush(rq, EMIT_FLUSH);
++}
+ 
+-		ret = load_pd_dir(rq, i915_vm_to_ppgtt(vm), PP_DIR_DCLV_2G);
+-		if (ret)
+-			return ret;
++static int switch_context(struct i915_request *rq)
++{
++	struct intel_context *ce = rq->hw_context;
++	int ret;
+ 
+-		ret = flush_tlb(rq);
+-		if (ret)
+-			return ret;
++	GEM_BUG_ON(HAS_EXECLISTS(rq->i915));
+ 
+-		ret = rq->engine->emit_flush(rq, EMIT_INVALIDATE);
+-		if (ret)
+-			return ret;
+-	}
++	ret = switch_mm(rq, vm_alias(ce));
++	if (ret)
++		return ret;
+ 
+ 	if (ce->state) {
++		u32 hw_flags;
++
+ 		GEM_BUG_ON(rq->engine->id != RCS0);
+ 
++		hw_flags = 0;
+ 		if (!test_bit(CONTEXT_VALID_BIT, &ce->flags))
+ 			hw_flags = MI_RESTORE_INHIBIT;
+ 
+diff --git a/drivers/gpu/drm/i915/i915_gem_gtt.c b/drivers/gpu/drm/i915/i915_gem_gtt.c
+index be36719e7987..d9a2f58a620a 100644
+--- a/drivers/gpu/drm/i915/i915_gem_gtt.c
++++ b/drivers/gpu/drm/i915/i915_gem_gtt.c
+@@ -1709,8 +1709,10 @@ static void gen6_flush_pd(struct gen6_ppgtt *ppgtt, u64 start, u64 end)
+ 	gen6_for_each_pde(pt, pd, start, end, pde)
+ 		gen6_write_pde(ppgtt, pde, pt);
+ 
++	mb();
+ 	ioread32(ppgtt->pd_addr + pde - 1);
+ 	gen6_ggtt_invalidate(ppgtt->base.vm.gt->ggtt);
++	mb();
+ 
+ 	mutex_unlock(&ppgtt->flush);
+ }
+-- 
+2.24.0
 
 _______________________________________________
 Intel-gfx mailing list
