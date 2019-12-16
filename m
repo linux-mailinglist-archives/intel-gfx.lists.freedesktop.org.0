@@ -1,57 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 42AB3120468
-	for <lists+intel-gfx@lfdr.de>; Mon, 16 Dec 2019 12:52:30 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id C1FD3120472
+	for <lists+intel-gfx@lfdr.de>; Mon, 16 Dec 2019 12:55:44 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0B5786E4DD;
-	Mon, 16 Dec 2019 11:52:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4D4B66E4DE;
+	Mon, 16 Dec 2019 11:55:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-1.mimecast.com (us-smtp-delivery-1.mimecast.com
- [207.211.31.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 78C876E4D0
- for <intel-gfx@lists.freedesktop.org>; Mon, 16 Dec 2019 11:52:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1576497139;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=Zym+ba5YILcvD8FRxVNJgfmysoyqGBI7Ea1ifcwDe4o=;
- b=GjbKDzwfmS/l5xscvOprov7HUqU5pzc3kU1VRiA71C7PaXPY6WFUMX/MKodNA8U0YKpukr
- oQGRbtufXXjVGa/njGCkBPZQpcUrxe4An7BipyTqMeLB6mYvW5iXyGM+2in1g5tkf0wi5p
- o48SoFTZwVCyCZ5iAvRFaZnV3ewa9SQ=
-Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
- [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-279-MMGfEnmWMryf53uleLLOXQ-1; Mon, 16 Dec 2019 06:52:18 -0500
-Received: from smtp.corp.redhat.com (int-mx07.intmail.prod.int.phx2.redhat.com
- [10.5.11.22])
- (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
- (No client certificate requested)
- by mimecast-mx01.redhat.com (Postfix) with ESMTPS id E12BA1005510;
- Mon, 16 Dec 2019 11:52:16 +0000 (UTC)
-Received: from shalem.localdomain.com (ovpn-116-96.ams2.redhat.com
- [10.36.116.96])
- by smtp.corp.redhat.com (Postfix) with ESMTP id 35A8910002A2;
- Mon, 16 Dec 2019 11:52:15 +0000 (UTC)
-From: Hans de Goede <hdegoede@redhat.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
- Daniel Vetter <daniel@ffwll.ch>
-Date: Mon, 16 Dec 2019 12:51:58 +0100
-Message-Id: <20191216115158.862404-3-hdegoede@redhat.com>
-In-Reply-To: <20191216115158.862404-1-hdegoede@redhat.com>
-References: <20191216115158.862404-1-hdegoede@redhat.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C0C646E4DE
+ for <intel-gfx@lists.freedesktop.org>; Mon, 16 Dec 2019 11:55:40 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 16 Dec 2019 03:55:40 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.69,321,1571727600"; d="scan'208";a="212195946"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by fmsmga008.fm.intel.com with SMTP; 16 Dec 2019 03:55:37 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Mon, 16 Dec 2019 13:55:36 +0200
+Date: Mon, 16 Dec 2019 13:55:36 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+Message-ID: <20191216115536.GL1208@intel.com>
+References: <20191211184526.142413-1-jose.souza@intel.com>
+ <20191211184526.142413-6-jose.souza@intel.com>
+ <20191212155249.GQ1208@intel.com>
+ <20191214001455.quhvzgedzsl5oenq@ldmartin-desk1>
 MIME-Version: 1.0
-X-Scanned-By: MIMEDefang 2.84 on 10.5.11.22
-X-MC-Unique: MMGfEnmWMryf53uleLLOXQ-1
-X-Mimecast-Spam-Score: 0
-Subject: [Intel-gfx] [PATCH resend 2/2] drm/connector: Hookup the new
- drm_cmdline_mode panel_orientation member
+Content-Disposition: inline
+In-Reply-To: <20191214001455.quhvzgedzsl5oenq@ldmartin-desk1>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH v2 rebased 06/11] drm/i915/display: Share
+ intel_connector_needs_modeset()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,44 +50,141 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
- Maxime Ripard <mripard@kernel.org>, dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-If the new video=... panel_orientation option is set for a connector, honor
-it and setup a matching "panel orientation" property on the connector.
+On Fri, Dec 13, 2019 at 04:14:55PM -0800, Lucas De Marchi wrote:
+> On Thu, Dec 12, 2019 at 05:52:49PM +0200, Ville Syrj=E4l=E4 wrote:
+> >On Wed, Dec 11, 2019 at 10:45:21AM -0800, Jos=E9 Roberto de Souza wrote:
+> >> intel_connector_needs_modeset() will be used outside of
+> >> intel_display.c in a future patch so it would only be necessary to
+> >> remove the state and add the prototype to the header file.
+> >>
+> >> But while at it, I simplified the arguments and changed to intel
+> >> types and moved it to a better place intel_atomic.c.
+> >>
+> >> That allowed us to convert the whole
+> >> intel_encoders_update_prepare/complete to intel type too.
+> >>
+> >> No behavior changes intended here.
+> >>
+> >> Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> >> Signed-off-by: Jos=E9 Roberto de Souza <jose.souza@intel.com>
+> >> ---
+> >>  drivers/gpu/drm/i915/display/intel_atomic.c  | 32 ++++++++++++
+> >>  drivers/gpu/drm/i915/display/intel_atomic.h  |  3 ++
+> >>  drivers/gpu/drm/i915/display/intel_display.c | 53 ++++++--------------
+> >>  3 files changed, 51 insertions(+), 37 deletions(-)
+> >>
+> >> diff --git a/drivers/gpu/drm/i915/display/intel_atomic.c b/drivers/gpu=
+/drm/i915/display/intel_atomic.c
+> >> index fd0026fc3618..6e93a39a6fec 100644
+> >> --- a/drivers/gpu/drm/i915/display/intel_atomic.c
+> >> +++ b/drivers/gpu/drm/i915/display/intel_atomic.c
+> >> @@ -174,6 +174,38 @@ intel_digital_connector_duplicate_state(struct dr=
+m_connector *connector)
+> >>  	return &state->base;
+> >>  }
+> >>
+> >> +/**
+> >> + * intel_digital_connector_needs_modeset - check if connector needs a=
+ modeset
+> >> + */
+> >> +bool
+> >> +intel_digital_connector_needs_modeset(struct intel_atomic_state *stat=
+e,
+> >
+> >Why "digital"? Oh because intel_atomic_get_old_connector_state() return
+> >a ditgital_connector_state. A bit surprising.
+> >
+> >I suggest using just drm_connector_state here to keep this function
+> >totally generic.
+> >
+> >> +				      struct intel_connector *connector)
+> >> +{
+> >> +	struct intel_digital_connector_state *old_connector_state, *new_conn=
+ector_state;
+> >> +	struct intel_crtc *old_crtc, *new_crtc;
+> >> +	struct intel_crtc_state *new_crtc_state;
+> >> +
+> >> +	old_connector_state =3D intel_atomic_get_old_connector_state(state,
+> >> +								   connector);
+> >
+> >Could be done when declaring the variable. Dunno which is prettier
+> >though.
+> >
+> >> +	if (old_connector_state->base.crtc)
+> >> +		old_crtc =3D to_intel_crtc(old_connector_state->base.crtc);
+> >> +	else
+> >> +		old_crtc =3D NULL;
+> >
+> >Simple
+> >old_crtc =3D to_intel_crtc(old_connector_state->base.crtc);
+> >will do. Can be done when declaring the variable as well.
+> >
+> >> +
+> >> +	new_connector_state =3D intel_atomic_get_new_connector_state(state,
+> >> +								   connector);
+> >> +	if (new_connector_state->base.crtc) {
+> >> +		new_crtc =3D to_intel_crtc(new_connector_state->base.crtc);
+> >
+> >ditto.
+> >
+> >> +		new_crtc_state =3D intel_atomic_get_new_crtc_state(state, new_crtc);
+> >
+> >Then this just becomes
+> >if (new_crtc)
+> >	new_crtc_state =3D ...;
+> >
+> >Or maybe
+> >new_crtc_state =3D new_crtc ? get : NULL;
+> >but that could be a bit ugly.
+> >
+> >
+> >> +	} else {
+> >> +		new_crtc_state =3D NULL;
+> >> +		new_crtc =3D NULL;
+> >> +	}
+> >> +
+> >> +	return new_crtc !=3D old_crtc ||
+> >> +	       (new_crtc && drm_atomic_crtc_needs_modeset(&new_crtc_state->u=
+api));
+> >
+> >Hmm. In fact this function could be one of those special cases where we
+> >might even want to use all drm_ types internally since we don't actually
+> >need anything else.
+> =
 
-BugLink: https://gitlab.freedesktop.org/plymouth/plymouth/merge_requests/83
-Acked-by: Maxime Ripard <mripard@kernel.org>
-Signed-off-by: Hans de Goede <hdegoede@redhat.com>
----
- drivers/gpu/drm/drm_connector.c | 7 +++++++
- 1 file changed, 7 insertions(+)
+> so... do you mean to bring intel_connector_needs_modeset() as is?
 
-diff --git a/drivers/gpu/drm/drm_connector.c b/drivers/gpu/drm/drm_connector.c
-index f4fa5c59717d..d9d7fef26275 100644
---- a/drivers/gpu/drm/drm_connector.c
-+++ b/drivers/gpu/drm/drm_connector.c
-@@ -140,6 +140,13 @@ static void drm_connector_get_cmdline_mode(struct drm_connector *connector)
- 		connector->force = mode->force;
- 	}
- 
-+	if (mode->panel_orientation != DRM_MODE_PANEL_ORIENTATION_UNKNOWN) {
-+		DRM_INFO("setting connector %s panel_orientation to %d\n",
-+			 connector->name, mode->panel_orientation);
-+		drm_connector_set_panel_orientation(connector,
-+						    mode->panel_orientation);
-+	}
-+
- 	DRM_DEBUG_KMS("cmdline mode for connector %s %s %dx%d@%dHz%s%s%s\n",
- 		      connector->name, mode->name,
- 		      mode->xres, mode->yres,
--- 
-2.23.0
+Maybe... Yeah, looks more useful as is.
 
+> >> -static bool
+> >> -intel_connector_needs_modeset(struct intel_atomic_state *state,
+> >> -			      const struct drm_connector_state *old_conn_state,
+> >> -			      const struct drm_connector_state *new_conn_state)
+> >> -{
+> >> -	struct intel_crtc *old_crtc =3D old_conn_state->crtc ?
+> >> -				      to_intel_crtc(old_conn_state->crtc) : NULL;
+> >> -	struct intel_crtc *new_crtc =3D new_conn_state->crtc ?
+> >> -				      to_intel_crtc(new_conn_state->crtc) : NULL;
+
+You could toss out those ternary operators while at it. They're not needed.
+
+> >> -
+> >> -	return new_crtc !=3D old_crtc ||
+> >> -	       (new_crtc &&
+> >> -		needs_modeset(intel_atomic_get_new_crtc_state(state, new_crtc)));
+> >> -}
+> >> -
+
+-- =
+
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
