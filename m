@@ -2,28 +2,74 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB6FC12088C
-	for <lists+intel-gfx@lfdr.de>; Mon, 16 Dec 2019 15:24:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 78A73120892
+	for <lists+intel-gfx@lfdr.de>; Mon, 16 Dec 2019 15:28:19 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 34D8D6E59F;
-	Mon, 16 Dec 2019 14:24:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1FB616E5A0;
+	Mon, 16 Dec 2019 14:28:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BAEA36E59F
- for <intel-gfx@lists.freedesktop.org>; Mon, 16 Dec 2019 14:24:24 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19596071-1500050 
- for multiple; Mon, 16 Dec 2019 14:24:09 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon, 16 Dec 2019 14:24:09 +0000
-Message-Id: <20191216142409.2605211-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.24.0
+Received: from us-smtp-1.mimecast.com (us-smtp-delivery-1.mimecast.com
+ [205.139.110.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 662936E5A0
+ for <intel-gfx@lists.freedesktop.org>; Mon, 16 Dec 2019 14:28:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1576506494;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=noMkUix3jvf1eemRUtfdt9onAMruxoWmSHOOhy4r3RM=;
+ b=aGSyxsPjpVajNejciLcJlPPQNe1iQ+d86WiPkSMv9ARBIAvazeqdyyKS6dDbxWbTf3G9Im
+ ZfaLtdZ3HABLV9+8ZczN8T8ZE9HXVzji1jTr8jJS6rOgkX6WvjEOuH8SDIbx+dKhlyc6Ew
+ hBvBidVXXqEzkB7U9uZj7vNLV6iiAA0=
+Received: from mail-wm1-f72.google.com (mail-wm1-f72.google.com
+ [209.85.128.72]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-256-er71w6GlMA6G2vNGpH0t7g-1; Mon, 16 Dec 2019 09:28:12 -0500
+Received: by mail-wm1-f72.google.com with SMTP id p2so1111055wma.3
+ for <intel-gfx@lists.freedesktop.org>; Mon, 16 Dec 2019 06:28:12 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+ :user-agent:mime-version:in-reply-to:content-language
+ :content-transfer-encoding;
+ bh=mqnAaSxh0pSKzbiLQ7KvpBpDD8sO/UPH/8UcK0z/vf8=;
+ b=ZE6pzGBdMaxUdrtpthvGhu02kZOQjTEIvsXFUOSn/GuSPUuxx5WtBBvaRABFUQHt30
+ hcfpFuasng4rsCviJKNa8Y6STdwvEQK81JE0iY2jcwghHqMgdCa+N9ik3tfu2mV1m3BF
+ Wn6dgHtkCsjEMeQEa6GdSx5YWwcRMAJtZq31M3Sn8F7i/QKHKlFTsn9fQj7TdjRusSQD
+ UZjVdEfwYUx/2tjBvmxXIVX6drr8DQGB+2Y9SaGGXKwva85XMTU/xF/3mE7JadhHzJ4s
+ DN5jIif2gcQeYucRWbcDWbrAKFnTZ4r2sCFTWU33yF+o4+y8RMUVsIv1u8niENWtDKq3
+ ldaQ==
+X-Gm-Message-State: APjAAAUiFgCbf7T/vPNdySSqxgGuZ4dt6cGGcoWAxT4MB5j+zscRAxQO
+ 9/FJLbJDj4CcZVhVICSNdlNfp2FQKxOVX9rMX621ctMie44m7VPyLMc6+6kcTc7UTnv2KyrGjSF
+ g7dvDn1Rtea4neeELejVtvPH5ASft
+X-Received: by 2002:a7b:c216:: with SMTP id x22mr29355327wmi.51.1576506491407; 
+ Mon, 16 Dec 2019 06:28:11 -0800 (PST)
+X-Google-Smtp-Source: APXvYqz1cdzONxv/4mP1xQlKXrsuF/DPqXX835uoZSpIhEWRShDwrAJ8iqhJqjAy/Yiqp/DSLPbvfQ==
+X-Received: by 2002:a7b:c216:: with SMTP id x22mr29355302wmi.51.1576506491081; 
+ Mon, 16 Dec 2019 06:28:11 -0800 (PST)
+Received: from shalem.localdomain
+ (2001-1c00-0c0c-fe00-7e79-4dac-39d0-9c14.cable.dynamic.v6.ziggo.nl.
+ [2001:1c00:c0c:fe00:7e79:4dac:39d0:9c14])
+ by smtp.gmail.com with ESMTPSA id r68sm16146106wmr.43.2019.12.16.06.28.10
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Mon, 16 Dec 2019 06:28:10 -0800 (PST)
+To: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+References: <20191215163810.52356-1-hdegoede@redhat.com>
+ <20191215163810.52356-6-hdegoede@redhat.com>
+ <20191216140427.GT1208@intel.com>
+From: Hans de Goede <hdegoede@redhat.com>
+Message-ID: <910ef405-39df-8c58-48cb-d3ee407bd60d@redhat.com>
+Date: Mon, 16 Dec 2019 15:28:09 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.2.2
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/gt: Tidy up full-ppgtt on Ivybridge
+In-Reply-To: <20191216140427.GT1208@intel.com>
+Content-Language: en-US
+X-MC-Unique: er71w6GlMA6G2vNGpH0t7g-1
+X-Mimecast-Spam-Score: 0
+Subject: Re: [Intel-gfx] [PATCH 5/5] drm/i915/dsi: Control panel and
+ backlight enable GPIOs on BYT
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,209 +82,287 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Linus Walleij <linus.walleij@linaro.org>, linux-kernel@vger.kernel.org,
+ linux-gpio@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ Lee Jones <lee.jones@linaro.org>, intel-gfx <intel-gfx@lists.freedesktop.org>
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="windows-1252"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-With a couple more memory barriers dotted around the place we can
-significantly reduce the MTBF on Ivybridge. Still doesn't really help
-Haswell though.
+Hi,
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
----
- .../gpu/drm/i915/gt/intel_ring_submission.c   | 110 +++++++-----------
- drivers/gpu/drm/i915/i915_gem_gtt.c           |   2 +
- 2 files changed, 43 insertions(+), 69 deletions(-)
+On 16-12-2019 15:04, Ville Syrj=E4l=E4 wrote:
+> On Sun, Dec 15, 2019 at 05:38:10PM +0100, Hans de Goede wrote:
+>> On Bay Trail devices the MIPI power on/off sequences for DSI LCD panels
+>> do not control the LCD panel- and backlight-enable GPIOs. So far, when
+>> the VBT indicates we should use the SoC for backlight control, we have
+>> been relying on these GPIOs being configured as output and driven high by
+>> the Video BIOS (GOP) when it initializes the panel.
+>>
+>> This does not work when the device is booted with a HDMI monitor connect=
+ed
+>> as then the GOP will initialize the HDMI instead of the panel, leaving t=
+he
+>> panel black, even though the i915 driver tries to output an image to it.
+>>
+>> Likewise on some device-models when the GOP does not initialize the DSI
+>> panel it also leaves the mux of the PWM0 pin in generic GPIO mode instead
+>> of muxing it to the PWM controller.
+>>
+>> This commit makes the DSI code control the SoC GPIOs for panel- and
+>> backlight-enable on BYT, when the VBT indicates the SoC should be used
+>>
+>> for backlight control. It also ensures that the PWM0 pin is muxed to the
+>> PWM controller in this case.
+>>
+>> This fixes the LCD panel not lighting up on various devices when booted
+>> with a HDMI monitor connected. This has been tested to fix this on the
+>> following devices:
+>>
+>> Peaq C1010
+>> Point of View MOBII TAB-P800W
+>> Point of View MOBII TAB-P1005W
+>> Terra Pad 1061
+>> Yours Y8W81
+>>
+>> Signed-off-by: Hans de Goede <hdegoede@redhat.com>
+>> ---
+>>   drivers/gpu/drm/i915/display/intel_dsi.h     |  3 +-
+>>   drivers/gpu/drm/i915/display/intel_dsi_vbt.c | 63 ++++++++++++++++++++
+>>   2 files changed, 65 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/drivers/gpu/drm/i915/display/intel_dsi.h b/drivers/gpu/drm/=
+i915/display/intel_dsi.h
+>> index 675771ea91aa..7481a5aa3084 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_dsi.h
+>> +++ b/drivers/gpu/drm/i915/display/intel_dsi.h
+>> @@ -45,8 +45,9 @@ struct intel_dsi {
+>>   	struct intel_dsi_host *dsi_hosts[I915_MAX_PORTS];
+>>   	intel_wakeref_t io_wakeref[I915_MAX_PORTS];
+>>   =
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_ring_submission.c b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
-index 30ba67c9abe9..00d1fb582e95 100644
---- a/drivers/gpu/drm/i915/gt/intel_ring_submission.c
-+++ b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
-@@ -362,6 +362,12 @@ gen7_render_ring_flush(struct i915_request *rq, u32 mode)
- 	 */
- 	flags |= PIPE_CONTROL_CS_STALL;
- 
-+	/*
-+	 * CS_STALL suggests at least a post-sync write.
-+	 */
-+	flags |= PIPE_CONTROL_QW_WRITE;
-+	flags |= PIPE_CONTROL_GLOBAL_GTT_IVB;
-+
- 	/* Just flush everything.  Experiments have shown that reducing the
- 	 * number of bits based on the write domains has little performance
- 	 * impact.
-@@ -380,13 +386,6 @@ gen7_render_ring_flush(struct i915_request *rq, u32 mode)
- 		flags |= PIPE_CONTROL_CONST_CACHE_INVALIDATE;
- 		flags |= PIPE_CONTROL_STATE_CACHE_INVALIDATE;
- 		flags |= PIPE_CONTROL_MEDIA_STATE_CLEAR;
--		/*
--		 * TLB invalidate requires a post-sync write.
--		 */
--		flags |= PIPE_CONTROL_QW_WRITE;
--		flags |= PIPE_CONTROL_GLOBAL_GTT_IVB;
--
--		flags |= PIPE_CONTROL_STALL_AT_SCOREBOARD;
- 
- 		/* Workaround: we must issue a pipe_control with CS-stall bit
- 		 * set before a pipe_control command that has the state cache
-@@ -1371,50 +1370,26 @@ static int load_pd_dir(struct i915_request *rq,
- 	const struct intel_engine_cs * const engine = rq->engine;
- 	u32 *cs;
- 
--	cs = intel_ring_begin(rq, 12);
-+	cs = intel_ring_begin(rq, 10);
- 	if (IS_ERR(cs))
- 		return PTR_ERR(cs);
- 
--	*cs++ = MI_LOAD_REGISTER_IMM(1);
-+	*cs++ = MI_LOAD_REGISTER_IMM(3);
- 	*cs++ = i915_mmio_reg_offset(RING_PP_DIR_DCLV(engine->mmio_base));
- 	*cs++ = valid;
--
--	*cs++ = MI_STORE_REGISTER_MEM | MI_SRM_LRM_GLOBAL_GTT;
--	*cs++ = i915_mmio_reg_offset(RING_PP_DIR_DCLV(engine->mmio_base));
--	*cs++ = intel_gt_scratch_offset(rq->engine->gt,
--					INTEL_GT_SCRATCH_FIELD_DEFAULT);
--
--	*cs++ = MI_LOAD_REGISTER_IMM(1);
- 	*cs++ = i915_mmio_reg_offset(RING_PP_DIR_BASE(engine->mmio_base));
- 	*cs++ = px_base(ppgtt->pd)->ggtt_offset << 10;
-+	*cs++ = i915_mmio_reg_offset(RING_INSTPM(engine->mmio_base));
-+	*cs++ = _MASKED_BIT_ENABLE(INSTPM_TLB_INVALIDATE);
- 
- 	/* Stall until the page table load is complete? */
- 	*cs++ = MI_STORE_REGISTER_MEM | MI_SRM_LRM_GLOBAL_GTT;
- 	*cs++ = i915_mmio_reg_offset(RING_PP_DIR_BASE(engine->mmio_base));
--	*cs++ = intel_gt_scratch_offset(rq->engine->gt,
-+	*cs++ = intel_gt_scratch_offset(engine->gt,
- 					INTEL_GT_SCRATCH_FIELD_DEFAULT);
- 
- 	intel_ring_advance(rq, cs);
- 
--	return rq->engine->emit_flush(rq, EMIT_FLUSH);
--}
--
--static int flush_tlb(struct i915_request *rq)
--{
--	const struct intel_engine_cs * const engine = rq->engine;
--	u32 *cs;
--
--	cs = intel_ring_begin(rq, 4);
--	if (IS_ERR(cs))
--		return PTR_ERR(cs);
--
--	*cs++ = MI_LOAD_REGISTER_IMM(1);
--	*cs++ = i915_mmio_reg_offset(RING_INSTPM(engine->mmio_base));
--	*cs++ = _MASKED_BIT_ENABLE(INSTPM_TLB_INVALIDATE);
--
--	*cs++ = MI_NOOP;
--	intel_ring_advance(rq, cs);
--
- 	return 0;
- }
- 
-@@ -1590,52 +1565,49 @@ static int remap_l3(struct i915_request *rq)
- 	return 0;
- }
- 
--static int switch_context(struct i915_request *rq)
-+static int switch_mm(struct i915_request *rq, struct i915_address_space *vm)
- {
--	struct intel_context *ce = rq->hw_context;
--	struct i915_address_space *vm = vm_alias(ce);
--	u32 hw_flags = 0;
- 	int ret;
- 
--	GEM_BUG_ON(HAS_EXECLISTS(rq->i915));
-+	if (!vm)
-+		return 0;
- 
--	if (vm) {
--		/*
--		 * Not only do we need a full barrier (post-sync write) after
--		 * invalidating the TLBs, but we need to wait a little bit
--		 * longer. Whether this is merely delaying us, or the
--		 * subsequent flush is a key part of serialising with the
--		 * post-sync op, this extra pass appears vital before a
--		 * mm switch!
--		 */
--		ret = rq->engine->emit_flush(rq, EMIT_INVALIDATE);
--		if (ret)
--			return ret;
-+	ret = rq->engine->emit_flush(rq, EMIT_FLUSH);
-+	if (ret)
-+		return ret;
- 
--		ret = flush_tlb(rq);
--		if (ret)
--			return ret;
-+	/*
-+	 * Not only do we need a full barrier (post-sync write) after
-+	 * invalidating the TLBs, but we need to wait a little bit
-+	 * longer. Whether this is merely delaying us, or the
-+	 * subsequent flush is a key part of serialising with the
-+	 * post-sync op, this extra pass appears vital before a
-+	 * mm switch!
-+	 */
-+	ret = load_pd_dir(rq, i915_vm_to_ppgtt(vm), PP_DIR_DCLV_2G);
-+	if (ret)
-+		return ret;
- 
--		ret = load_pd_dir(rq, i915_vm_to_ppgtt(vm), 0);
--		if (ret)
--			return ret;
-+	return rq->engine->emit_flush(rq, EMIT_FLUSH);
-+}
- 
--		ret = load_pd_dir(rq, i915_vm_to_ppgtt(vm), PP_DIR_DCLV_2G);
--		if (ret)
--			return ret;
-+static int switch_context(struct i915_request *rq)
-+{
-+	struct intel_context *ce = rq->hw_context;
-+	int ret;
- 
--		ret = flush_tlb(rq);
--		if (ret)
--			return ret;
-+	GEM_BUG_ON(HAS_EXECLISTS(rq->i915));
- 
--		ret = rq->engine->emit_flush(rq, EMIT_INVALIDATE);
--		if (ret)
--			return ret;
--	}
-+	ret = switch_mm(rq, vm_alias(ce));
-+	if (ret)
-+		return ret;
- 
- 	if (ce->state) {
-+		u32 hw_flags;
-+
- 		GEM_BUG_ON(rq->engine->id != RCS0);
- 
-+		hw_flags = 0;
- 		if (!test_bit(CONTEXT_VALID_BIT, &ce->flags))
- 			hw_flags = MI_RESTORE_INHIBIT;
- 
-diff --git a/drivers/gpu/drm/i915/i915_gem_gtt.c b/drivers/gpu/drm/i915/i915_gem_gtt.c
-index be36719e7987..d9a2f58a620a 100644
---- a/drivers/gpu/drm/i915/i915_gem_gtt.c
-+++ b/drivers/gpu/drm/i915/i915_gem_gtt.c
-@@ -1709,8 +1709,10 @@ static void gen6_flush_pd(struct gen6_ppgtt *ppgtt, u64 start, u64 end)
- 	gen6_for_each_pde(pt, pd, start, end, pde)
- 		gen6_write_pde(ppgtt, pde, pt);
- 
-+	mb();
- 	ioread32(ppgtt->pd_addr + pde - 1);
- 	gen6_ggtt_invalidate(ppgtt->base.vm.gt->ggtt);
-+	mb();
- 
- 	mutex_unlock(&ppgtt->flush);
- }
--- 
-2.24.0
+>> -	/* GPIO Desc for CRC based Panel control */
+>> +	/* GPIO Desc for panel and backlight control */
+>>   	struct gpio_desc *gpio_panel;
+>> +	struct gpio_desc *gpio_backlight;
+>>   =
+
+>>   	struct intel_connector *attached_connector;
+>>   =
+
+>> diff --git a/drivers/gpu/drm/i915/display/intel_dsi_vbt.c b/drivers/gpu/=
+drm/i915/display/intel_dsi_vbt.c
+>> index 847f04eec2a1..bd007d4f86e2 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
+>> @@ -27,6 +27,8 @@
+>>   #include <linux/gpio/consumer.h>
+>>   #include <linux/gpio/machine.h>
+>>   #include <linux/mfd/intel_soc_pmic.h>
+>> +#include <linux/pinctrl/consumer.h>
+>> +#include <linux/pinctrl/machine.h>
+>>   #include <linux/slab.h>
+>>   =
+
+>>   #include <asm/intel-mid.h>
+>> @@ -525,11 +527,15 @@ void intel_dsi_vbt_exec_sequence(struct intel_dsi =
+*intel_dsi,
+>>   {
+>>   	if (seq_id =3D=3D MIPI_SEQ_POWER_ON && intel_dsi->gpio_panel)
+>>   		gpiod_set_value_cansleep(intel_dsi->gpio_panel, 1);
+>> +	if (seq_id =3D=3D MIPI_SEQ_BACKLIGHT_ON && intel_dsi->gpio_backlight)
+>> +		gpiod_set_value_cansleep(intel_dsi->gpio_backlight, 1);
+>>   =
+
+>>   	intel_dsi_vbt_exec(intel_dsi, seq_id);
+>>   =
+
+>>   	if (seq_id =3D=3D MIPI_SEQ_POWER_OFF && intel_dsi->gpio_panel)
+>>   		gpiod_set_value_cansleep(intel_dsi->gpio_panel, 0);
+>> +	if (seq_id =3D=3D MIPI_SEQ_BACKLIGHT_OFF && intel_dsi->gpio_backlight)
+>> +		gpiod_set_value_cansleep(intel_dsi->gpio_backlight, 0);
+>>   }
+>>   =
+
+>>   void intel_dsi_msleep(struct intel_dsi *intel_dsi, int msec)
+>> @@ -688,6 +694,8 @@ bool intel_dsi_vbt_init(struct intel_dsi *intel_dsi,=
+ u16 panel_id)
+>>   /*
+>>    * On some BYT/CHT devs some sequences are incomplete and we need to m=
+anually
+>>    * control some GPIOs. We need to add a GPIO lookup table before we ge=
+t these.
+>> + * If the GOP did not initialize the panel (HDMI inserted) we may need =
+to also
+>> + * change the pinmux for the SoC's PWM0 pin from GPIO to PWM.
+>>    */
+>>   static struct gpiod_lookup_table pmic_panel_gpio_table =3D {
+>>   	/* Intel GFX is consumer */
+>> @@ -699,23 +707,68 @@ static struct gpiod_lookup_table pmic_panel_gpio_t=
+able =3D {
+>>   	},
+>>   };
+>>   =
+
+>> +static struct gpiod_lookup_table soc_panel_gpio_table =3D {
+>> +	.dev_id =3D "0000:00:02.0",
+>> +	.table =3D {
+>> +	  GPIO_LOOKUP("INT33FC:01", 10, "backlight", GPIO_ACTIVE_HIGH),
+>> +	  GPIO_LOOKUP("INT33FC:01", 11, "panel", GPIO_ACTIVE_HIGH),
+>> +	  { },
+> =
+
+> Some kind of indent fail here.
+
+Yeah, this was intentional in the previous revision because of the
+80 char limit, but this indent hack is no longer necessary, fixed for
+the v2 of this set which I'm preparing.
+
+>> +	},
+>> +};
+>> +
+>> +static const struct pinctrl_map soc_pwm_pinctrl_map[] =3D {
+>> +	PIN_MAP_MUX_GROUP("0000:00:02.0", "soc_pwm0", "INT33FC:00",
+>> +			  "pwm0_grp", "pwm"),
+>> +};
+>> +
+>>   void intel_dsi_vbt_gpio_init(struct intel_dsi *intel_dsi, bool panel_i=
+s_on)
+>>   {
+>>   	struct drm_device *dev =3D intel_dsi->base.base.dev;
+>>   	struct drm_i915_private *dev_priv =3D to_i915(dev);
+>>   	struct mipi_config *mipi_config =3D dev_priv->vbt.dsi.config;
+>>   	enum gpiod_flags flags =3D panel_is_on ? GPIOD_OUT_HIGH : GPIOD_OUT_L=
+OW;
+>> +	bool want_backlight_gpio =3D false;
+>> +	bool want_panel_gpio =3D false;
+>> +	struct pinctrl *pinctrl;
+>> +	int ret;
+>>   =
+
+>>   	if ((IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv)) &&
+>>   	    (mipi_config->pwm_blc =3D=3D PPS_BLC_PMIC)) {
+>>   		gpiod_add_lookup_table(&pmic_panel_gpio_table);
+>> +		want_panel_gpio =3D true;
+>> +	}
+>> +
+>> +	if (IS_VALLEYVIEW(dev_priv) && mipi_config->pwm_blc =3D=3D PPS_BLC_SOC=
+) {
+>> +		gpiod_add_lookup_table(&soc_panel_gpio_table);
+>> +		want_panel_gpio =3D true;
+>> +		want_backlight_gpio =3D true;
+>>   =
+
+>> +		/* Ensure PWM0 pin is muxed as PWM instead of GPIO */
+>> +		ret =3D pinctrl_register_mappings(soc_pwm_pinctrl_map, 1);
+> =
+
+> ARRAY_SIZE()?
+
+Ack, will fix for v2.
+
+
+> =
+
+>> +		if (ret)
+>> +			DRM_ERROR("Failed to register pwm0 pinmux mapping\n");
+>> +
+>> +		pinctrl =3D devm_pinctrl_get_select(dev->dev, "soc_pwm0");
+>> +		if (IS_ERR(pinctrl))
+>> +			DRM_ERROR("Failed to set pinmux to PWM\n");
+>> +	}
+>> +
+>> +	if (want_panel_gpio) {
+>>   		intel_dsi->gpio_panel =3D gpiod_get(dev->dev, "panel", flags);
+>>   		if (IS_ERR(intel_dsi->gpio_panel)) {
+>>   			DRM_ERROR("Failed to own gpio for panel control\n");
+>>   			intel_dsi->gpio_panel =3D NULL;
+>>   		}
+>>   	}
+>> +
+>> +	if (want_backlight_gpio) {
+>> +		intel_dsi->gpio_backlight =3D
+>> +			gpiod_get(dev->dev, "backlight", flags);
+>> +		if (IS_ERR(intel_dsi->gpio_backlight)) {
+>> +			DRM_ERROR("Failed to own gpio for backlight control\n");
+>> +			intel_dsi->gpio_backlight =3D NULL;
+>> +		}
+>> +	}
+>>   }
+>>   =
+
+>>   void intel_dsi_vbt_gpio_cleanup(struct intel_dsi *intel_dsi)
+>> @@ -729,7 +782,17 @@ void intel_dsi_vbt_gpio_cleanup(struct intel_dsi *i=
+ntel_dsi)
+>>   		intel_dsi->gpio_panel =3D NULL;
+>>   	}
+>>   =
+
+>> +	if (intel_dsi->gpio_backlight) {
+>> +		gpiod_put(intel_dsi->gpio_backlight);
+>> +		intel_dsi->gpio_backlight =3D NULL;
+>> +	}
+>> +
+>>   	if ((IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv)) &&
+>>   	    (mipi_config->pwm_blc =3D=3D PPS_BLC_PMIC))
+>>   		gpiod_remove_lookup_table(&pmic_panel_gpio_table);
+>> +
+>> +	if (IS_VALLEYVIEW(dev_priv) && mipi_config->pwm_blc =3D=3D PPS_BLC_SOC=
+) {
+> =
+
+> Slightly annoying to have these checks duplicated. Might be cleaner to
+> have a few helpers that return the correct tables and just use those in
+> both init and cleanup. OTOH those want_*_gpio flags and the pwm stuff is
+> would still be a sticking point I suppose. So maybe not cleaner in the
+> end after all.
+
+So I tried adding a helper for the if condition, since as you mention
+just returning the right table is not really helpful:
+
+static bool intel_dsi_vbt_use_pmic_backlight_ctl(struct intel_dsi *intel_ds=
+i)
+{
+        struct drm_device *dev =3D intel_dsi->base.base.dev;
+        struct drm_i915_private *dev_priv =3D to_i915(dev);
+        struct mipi_config *mipi_config =3D dev_priv->vbt.dsi.config;
+
+        if ((IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv)) &&
+            (mipi_config->pwm_blc =3D=3D PPS_BLC_PMIC)) {
+        return (IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv)) &&
+               mipi_config->pwm_blc =3D=3D PPS_BLC_PMIC;
+}
+
+And copy and paste that for the PPS_BLC_SOC case. The result does not
+look a lot better then the original, worse actually IMHO, so I'm going
+to keep this as is for v2.
+
+> Looks all right to me:
+> Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+
+Thanks.
+
+Regards,
+
+Hans
+
+
+
+
+> =
+
+> =
+
+>> +		pinctrl_unregister_mappings(soc_pwm_pinctrl_map);
+>> +		gpiod_remove_lookup_table(&soc_panel_gpio_table);
+>> +	}
+>>   }
+>> -- =
+
+>> 2.23.0
+> =
+
 
 _______________________________________________
 Intel-gfx mailing list
