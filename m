@@ -2,30 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6331D121A67
-	for <lists+intel-gfx@lfdr.de>; Mon, 16 Dec 2019 21:01:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 12CAC121A6A
+	for <lists+intel-gfx@lfdr.de>; Mon, 16 Dec 2019 21:03:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A44D36E877;
-	Mon, 16 Dec 2019 20:01:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 678B66E870;
+	Mon, 16 Dec 2019 20:03:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 5412E6E874;
- Mon, 16 Dec 2019 20:01:49 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 4C322A0BC6;
- Mon, 16 Dec 2019 20:01:49 +0000 (UTC)
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6661B6E870
+ for <intel-gfx@lists.freedesktop.org>; Mon, 16 Dec 2019 20:03:10 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 16 Dec 2019 12:03:09 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.69,322,1571727600"; d="scan'208";a="365130694"
+Received: from linux.intel.com ([10.54.29.200])
+ by orsmga004.jf.intel.com with ESMTP; 16 Dec 2019 12:03:09 -0800
+Received: from [10.251.95.214] (abudanko-mobl.ccr.corp.intel.com
+ [10.251.95.214])
+ by linux.intel.com (Postfix) with ESMTP id 50EA5580342;
+ Mon, 16 Dec 2019 12:03:01 -0800 (PST)
+From: Alexey Budankov <alexey.budankov@linux.intel.com>
+To: Peter Zijlstra <peterz@infradead.org>,
+ Arnaldo Carvalho de Melo <acme@kernel.org>, Ingo Molnar <mingo@redhat.com>,
+ "jani.nikula@linux.intel.com" <jani.nikula@linux.intel.com>,
+ "joonas.lahtinen@linux.intel.com" <joonas.lahtinen@linux.intel.com>,
+ "rodrigo.vivi@intel.com" <rodrigo.vivi@intel.com>,
+ Alexei Starovoitov <ast@kernel.org>,
+ Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+ Paul Mackerras <paulus@samba.org>, Michael Ellerman <mpe@ellerman.id.au>,
+ Serge Hallyn <serge@hallyn.com>, James Morris <jmorris@namei.org>,
+ Casey Schaufler <casey@schaufler-ca.com>
+References: <b175f283-d256-e37e-f447-6ba4ab4f3d3a@linux.intel.com>
+Organization: Intel Corp.
+Message-ID: <bc5b2a0d-a185-91b6-5deb-a4b6e1dc3d3e@linux.intel.com>
+Date: Mon, 16 Dec 2019 23:03:00 +0300
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.1
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Maya Rashish" <coypu@sdf.org>
-Date: Mon, 16 Dec 2019 20:01:49 -0000
-Message-ID: <157652650930.5612.12132529147347970942@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20191213102630.GA24082@SDF.ORG>
-In-Reply-To: <20191213102630.GA24082@SDF.ORG>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgQ29y?=
- =?utf-8?q?rect_function_name_in_comment?=
+In-Reply-To: <b175f283-d256-e37e-f447-6ba4ab4f3d3a@linux.intel.com>
+Content-Language: en-US
+Subject: [Intel-gfx] [PATCH v3 4/7] drm/i915/perf: open access for
+ CAP_SYS_PERFMON privileged process
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,157 +59,87 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: songliubraving@fb.com, Andi Kleen <ak@linux.intel.com>,
+ Kees Cook <keescook@chromium.org>,
+ "linux-parisc@vger.kernel.org" <linux-parisc@vger.kernel.org>,
+ Jann Horn <jannh@google.com>,
+ Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+ "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>,
+ intel-gfx@lists.freedesktop.org, Igor Lubashev <ilubashe@akamai.com>,
+ linux-kernel@vger.kernel.org, Stephane Eranian <eranian@google.com>,
+ "linux-perf-users@vger.kernel.org" <linux-perf-users@vger.kernel.org>,
+ "selinux@vger.kernel.org" <selinux@vger.kernel.org>,
+ "linux-security-module@vger.kernel.org"
+ <linux-security-module@vger.kernel.org>, Namhyung Kim <namhyung@kernel.org>,
+ Thomas Gleixner <tglx@linutronix.de>, Brendan Gregg <bgregg@netflix.com>,
+ Jiri Olsa <jolsa@redhat.com>, "bpf@vger.kernel.org" <bpf@vger.kernel.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
 
-Series: Correct function name in comment
-URL   : https://patchwork.freedesktop.org/series/70985/
-State : failure
+Open access to i915_perf monitoring for CAP_SYS_PERFMON privileged processes.
+For backward compatibility reasons access to i915_perf subsystem remains open
+for CAP_SYS_ADMIN privileged processes but CAP_SYS_ADMIN usage for secure
+i915_perf monitoring is discouraged with respect to CAP_SYS_PERFMON capability.
 
-== Summary ==
+Signed-off-by: Alexey Budankov <alexey.budankov@linux.intel.com>
+---
+ drivers/gpu/drm/i915/i915_perf.c | 13 ++++++-------
+ 1 file changed, 6 insertions(+), 7 deletions(-)
 
-CI Bug Log - changes from CI_DRM_7574 -> Patchwork_15792
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_15792 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_15792, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15792/index.html
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_15792:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@i915_selftest@live_gem_contexts:
-    - fi-kbl-x1275:       [PASS][1] -> [DMESG-FAIL][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7574/fi-kbl-x1275/igt@i915_selftest@live_gem_contexts.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15792/fi-kbl-x1275/igt@i915_selftest@live_gem_contexts.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_15792 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_close_race@basic-threads:
-    - fi-byt-n2820:       [PASS][3] -> [TIMEOUT][4] ([i915#816])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7574/fi-byt-n2820/igt@gem_close_race@basic-threads.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15792/fi-byt-n2820/igt@gem_close_race@basic-threads.html
-
-  * igt@i915_selftest@live_blt:
-    - fi-ivb-3770:        [PASS][5] -> [DMESG-FAIL][6] ([i915#725])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7574/fi-ivb-3770/igt@i915_selftest@live_blt.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15792/fi-ivb-3770/igt@i915_selftest@live_blt.html
-
-  * igt@i915_selftest@live_gem_contexts:
-    - fi-hsw-peppy:       [PASS][7] -> [DMESG-FAIL][8] ([i915#722])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7574/fi-hsw-peppy/igt@i915_selftest@live_gem_contexts.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15792/fi-hsw-peppy/igt@i915_selftest@live_gem_contexts.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_close_race@basic-threads:
-    - fi-byt-j1900:       [TIMEOUT][9] ([i915#816]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7574/fi-byt-j1900/igt@gem_close_race@basic-threads.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15792/fi-byt-j1900/igt@gem_close_race@basic-threads.html
-
-  * igt@gem_sync@basic-each:
-    - {fi-tgl-u}:         [INCOMPLETE][11] ([i915#472] / [i915#707]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7574/fi-tgl-u/igt@gem_sync@basic-each.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15792/fi-tgl-u/igt@gem_sync@basic-each.html
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-skl-6770hq:      [FAIL][13] ([i915#178]) -> [PASS][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7574/fi-skl-6770hq/igt@i915_pm_rpm@module-reload.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15792/fi-skl-6770hq/igt@i915_pm_rpm@module-reload.html
-
-  * igt@kms_chamelium@hdmi-hpd-fast:
-    - fi-kbl-7500u:       [FAIL][15] ([fdo#111096] / [i915#323]) -> [PASS][16]
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7574/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15792/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
-
-  
-#### Warnings ####
-
-  * igt@kms_cursor_legacy@basic-flip-after-cursor-legacy:
-    - fi-kbl-x1275:       [DMESG-WARN][17] ([i915#62] / [i915#92]) -> [DMESG-WARN][18] ([i915#62] / [i915#92] / [i915#95]) +4 similar issues
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7574/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15792/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
-
-  * igt@kms_flip@basic-flip-vs-modeset:
-    - fi-kbl-x1275:       [DMESG-WARN][19] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][20] ([i915#62] / [i915#92]) +7 similar issues
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7574/fi-kbl-x1275/igt@kms_flip@basic-flip-vs-modeset.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15792/fi-kbl-x1275/igt@kms_flip@basic-flip-vs-modeset.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#111096]: https://bugs.freedesktop.org/show_bug.cgi?id=111096
-  [fdo#111593]: https://bugs.freedesktop.org/show_bug.cgi?id=111593
-  [i915#178]: https://gitlab.freedesktop.org/drm/intel/issues/178
-  [i915#323]: https://gitlab.freedesktop.org/drm/intel/issues/323
-  [i915#472]: https://gitlab.freedesktop.org/drm/intel/issues/472
-  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
-  [i915#707]: https://gitlab.freedesktop.org/drm/intel/issues/707
-  [i915#722]: https://gitlab.freedesktop.org/drm/intel/issues/722
-  [i915#725]: https://gitlab.freedesktop.org/drm/intel/issues/725
-  [i915#816]: https://gitlab.freedesktop.org/drm/intel/issues/816
-  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
-  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
+diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
+index e42b86827d6b..e2697f8d04de 100644
+--- a/drivers/gpu/drm/i915/i915_perf.c
++++ b/drivers/gpu/drm/i915/i915_perf.c
+@@ -2748,10 +2748,10 @@ i915_perf_open_ioctl_locked(struct drm_i915_private *dev_priv,
+ 	/* Similar to perf's kernel.perf_paranoid_cpu sysctl option
+ 	 * we check a dev.i915.perf_stream_paranoid sysctl option
+ 	 * to determine if it's ok to access system wide OA counters
+-	 * without CAP_SYS_ADMIN privileges.
++	 * without CAP_SYS_PERFMON or CAP_SYS_ADMIN privileges.
+ 	 */
+ 	if (privileged_op &&
+-	    i915_perf_stream_paranoid && !capable(CAP_SYS_ADMIN)) {
++	    i915_perf_stream_paranoid && !perfmon_capable()) {
+ 		DRM_DEBUG("Insufficient privileges to open system-wide i915 perf stream\n");
+ 		ret = -EACCES;
+ 		goto err_ctx;
+@@ -2939,9 +2939,8 @@ static int read_properties_unlocked(struct drm_i915_private *dev_priv,
+ 			} else
+ 				oa_freq_hz = 0;
+ 
+-			if (oa_freq_hz > i915_oa_max_sample_rate &&
+-			    !capable(CAP_SYS_ADMIN)) {
+-				DRM_DEBUG("OA exponent would exceed the max sampling frequency (sysctl dev.i915.oa_max_sample_rate) %uHz without root privileges\n",
++			if (oa_freq_hz > i915_oa_max_sample_rate && !perfmon_capable()) {
++				DRM_DEBUG("OA exponent would exceed the max sampling frequency (sysctl dev.i915.oa_max_sample_rate) %uHz without CAP_SYS_PERFMON or CAP_SYS_ADMIN privileges\n",
+ 					  i915_oa_max_sample_rate);
+ 				return -EACCES;
+ 			}
+@@ -3328,7 +3327,7 @@ int i915_perf_add_config_ioctl(struct drm_device *dev, void *data,
+ 		return -EINVAL;
+ 	}
+ 
+-	if (i915_perf_stream_paranoid && !capable(CAP_SYS_ADMIN)) {
++	if (i915_perf_stream_paranoid && !perfmon_capable()) {
+ 		DRM_DEBUG("Insufficient privileges to add i915 OA config\n");
+ 		return -EACCES;
+ 	}
+@@ -3474,7 +3473,7 @@ int i915_perf_remove_config_ioctl(struct drm_device *dev, void *data,
+ 		return -ENOTSUPP;
+ 	}
+ 
+-	if (i915_perf_stream_paranoid && !capable(CAP_SYS_ADMIN)) {
++	if (i915_perf_stream_paranoid && !perfmon_capable()) {
+ 		DRM_DEBUG("Insufficient privileges to remove i915 OA config\n");
+ 		return -EACCES;
+ 	}
+-- 
+2.20.1
 
 
-Participating hosts (53 -> 46)
-------------------------------
-
-  Additional (1): fi-hsw-4770 
-  Missing    (8): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-tgl-y fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_7574 -> Patchwork_15792
-
-  CI-20190529: 20190529
-  CI_DRM_7574: 950244ca586c6f0efe243bf8c505c01ea5e579fa @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5349: 048f58513d8b8ec6bb307a939f0ac959bc0f0e10 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_15792: 7ba9ec5f5746109e67a10382111cb3e28d2c4ae6 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-7ba9ec5f5746 Correct function name in comment
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15792/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
