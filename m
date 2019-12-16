@@ -1,34 +1,36 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 36E9E1204E3
-	for <lists+intel-gfx@lfdr.de>; Mon, 16 Dec 2019 13:07:16 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B35A21204E4
+	for <lists+intel-gfx@lfdr.de>; Mon, 16 Dec 2019 13:07:18 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CE26F89ED6;
-	Mon, 16 Dec 2019 12:07:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9F86989EAE;
+	Mon, 16 Dec 2019 12:07:16 +0000 (UTC)
 X-Original-To: Intel-gfx@lists.freedesktop.org
 Delivered-To: Intel-gfx@lists.freedesktop.org
 Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 24ACF89ED6
- for <Intel-gfx@lists.freedesktop.org>; Mon, 16 Dec 2019 12:07:13 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 35C4689F2E
+ for <Intel-gfx@lists.freedesktop.org>; Mon, 16 Dec 2019 12:07:14 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from fmsmga006.fm.intel.com ([10.253.24.20])
  by fmsmga106.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 16 Dec 2019 04:07:12 -0800
+ 16 Dec 2019 04:07:14 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,321,1571727600"; d="scan'208";a="416413992"
+X-IronPort-AV: E=Sophos;i="5.69,321,1571727600"; d="scan'208";a="416413997"
 Received: from dtriolet-mobl1.ger.corp.intel.com (HELO localhost.localdomain)
  ([10.251.84.191])
- by fmsmga006.fm.intel.com with ESMTP; 16 Dec 2019 04:07:11 -0800
+ by fmsmga006.fm.intel.com with ESMTP; 16 Dec 2019 04:07:12 -0800
 From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
 To: Intel-gfx@lists.freedesktop.org
-Date: Mon, 16 Dec 2019 12:06:59 +0000
-Message-Id: <20191216120704.958-1-tvrtko.ursulin@linux.intel.com>
+Date: Mon, 16 Dec 2019 12:07:00 +0000
+Message-Id: <20191216120704.958-2-tvrtko.ursulin@linux.intel.com>
 X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20191216120704.958-1-tvrtko.ursulin@linux.intel.com>
+References: <20191216120704.958-1-tvrtko.ursulin@linux.intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 0/5] Per client engine busyness
+Subject: [Intel-gfx] [PATCH 1/5] drm/i915: Track per-context engine busyness
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,81 +43,255 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-RnJvbTogVHZydGtvIFVyc3VsaW4gPHR2cnRrby51cnN1bGluQGludGVsLmNvbT4KCkFub3RoZXIg
-cmUtc3BpbiBvZiB0aGUgcGVyLWNsaWVudCBlbmdpbmUgYnVzeW5lc3Mgc2VyaWVzLgoKUmV2aWV3
-IGZlZWRiYWNrIGZyb20gbGFzdCByb3VuZCBoYXMgYmVlbiBhZGRyZXNzZWQqIGFuZCB0aGUgdHJh
-Y2tpbmcgc2ltcGxpZmllZC4KCigqQXBhcnQgZnJvbSByZS11c2luZyB0aGUgY3R4LT5pZHJfbG9j
-ayBmb3IgdGhlIGdsb2JhbCB0b2dnbGUsIEkga2VwdCB1c2luZwpzdHJ1Y3QgbXV0ZXh0IGZvciB0
-aGF0LikKCkludGVybmFsbHkgd2UgdHJhY2sgdGltZSBzcGVudCBvbiBlbmdpbmVzIGZvciBlYWNo
-IHN0cnVjdCBpbnRlbF9jb250ZXh0LiBUaGlzCmNhbiBzZXJ2ZSBhcyBhIGJ1aWxkaW5nIGJsb2Nr
-IGZvciBzZXZlcmFsIGZlYXR1cmVzIGZyb20gdGhlIHdhbnQgbGlzdDoKc21hcnRlciBzY2hlZHVs
-ZXIgZGVjaXNpb25zLCBnZXRydXNhZ2UoMiktbGlrZSBwZXItR0VNLWNvbnRleHQgZnVuY3Rpb25h
-bGl0eQp3YW50ZWQgYnkgc29tZSBjdXN0b21lcnMsIGNncm91cHMgY29udHJvbGxlciwgZHluYW1p
-YyBTU0VVIHR1bmluZywuLi4KCkV4dGVybmFsbHksIGluIHN5c2ZzLCB3ZSBleHBvc2UgdGltZSBz
-cGVudCBvbiBHUFUgcGVyIGNsaWVudCBhbmQgcGVyIGVuZ2luZQpjbGFzcy4KClRoZXJlIGlzIGFs
-c28gYSBnbG9iYWwgdG9nZ2xlIHRvIGVuYWJsZSB0aGlzIGV4dHJhIHRyYWNraW5nIGFsdGhvdWdo
-IGl0IGlzIG9wZW4Kd2hldGhlciBpdCBpcyB3YXJyYW50ZWQgYW5kIHdlIHNob3VsZCBub3QganVz
-dCBhbHdheXMgdHJhY2suCgpTeXNmcyBpbnRlcmZhY2UgZW5hYmxlcyB1cyB0byBpbXBsZW1lbnQg
-YSAidG9wLWxpa2UiIHRvb2wgZm9yIEdQVSB0YXNrcy4gT3Igd2l0aAphICJzY3JlZW5zaG90IjoK
-fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+
-fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn4KaW50ZWwtZ3B1LXRvcCAtICA5MDYvIDk1NSBNSHo7ICAg
-IDAlIFJDNjsgIDUuMzAgV2F0dHM7ICAgICAgOTMzIGlycXMvcwoKICAgICAgSU1DIHJlYWRzOiAg
-ICAgNDQxNCBNaUIvcwogICAgIElNQyB3cml0ZXM6ICAgICAzODA1IE1pQi9zCgogICAgICAgICAg
-RU5HSU5FICAgICAgQlVTWSAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgTUlf
-U0VNQSBNSV9XQUlUCiAgICAgUmVuZGVyLzNELzAgICA5My40NiUgfOKWiOKWiOKWiOKWiOKWiOKW
-iOKWiOKWiOKWiOKWiOKWiOKWiOKWiOKWiOKWiOKWiOKWiOKWiOKWiOKWiOKWiOKWiOKWiOKWiOKW
-iOKWiOKWiOKWiOKWiOKWiOKWiOKWiOKWiyAgfCAgICAgIDAlICAgICAgMCUKICAgICAgIEJsaXR0
-ZXIvMCAgICAwLjAwJSB8ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICB8ICAgICAg
-MCUgICAgICAwJQogICAgICAgICBWaWRlby8wICAgIDAuMDAlIHwgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgIHwgICAgICAwJSAgICAgIDAlCiAgVmlkZW9FbmhhbmNlLzAgICAgMC4w
-MCUgfCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgfCAgICAgIDAlICAgICAgMCUK
-CiAgUElEICAgICAgICAgICAgTkFNRSAgUmVuZGVyLzNEICAgICAgQmxpdHRlciAgICAgICAgVmlk
-ZW8gICAgICBWaWRlb0VuaGFuY2UKIDI3MzMgICAgICAgbmV2ZXJiYWxsIHzilojilojilojiloji
-lojilojilowgICAgIHx8ICAgICAgICAgICAgfHwgICAgICAgICAgICB8fCAgICAgICAgICAgIHwK
-IDIwNDcgICAgICAgICAgICBYb3JnIHzilojilojilojiloogICAgICAgIHx8ICAgICAgICAgICAg
-fHwgICAgICAgICAgICB8fCAgICAgICAgICAgIHwKIDI3MzcgICAgICAgIGdseGdlYXJzIHziloji
-lo0gICAgICAgICAgfHwgICAgICAgICAgICB8fCAgICAgICAgICAgIHx8ICAgICAgICAgICAgfAog
-MjEyOCAgICAgICAgICAgeGZ3bTQgfCAgICAgICAgICAgIHx8ICAgICAgICAgICAgfHwgICAgICAg
-ICAgICB8fCAgICAgICAgICAgIHwKIDIwNDcgICAgICAgICAgICBYb3JnIHwgICAgICAgICAgICB8
-fCAgICAgICAgICAgIHx8ICAgICAgICAgICAgfHwgICAgICAgICAgICB8Cn5+fn5+fn5+fn5+fn5+
-fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+
-fn5+fn5+fn5+CgpJbXBsZW1lbnRhdGlvbiB3aXNlIHdlIGFkZCBhIGEgYnVuY2ggb2YgZmlsZXMg
-aW4gc3lzZnMgbGlrZToKCgkjIGNkIC9zeXMvY2xhc3MvZHJtL2NhcmQwL2NsaWVudHMvCgkjIHRy
-ZWUKCS4KCeKUnOKUgOKUgCA3CgnilIIgICDilJzilIDilIAgYnVzeQoJ4pSCICAg4pSCICAg4pSc
-4pSA4pSAIDAKCeKUgiAgIOKUgiAgIOKUnOKUgOKUgCAxCgnilIIgICDilIIgICDilJzilIDilIAg
-MgoJ4pSCICAg4pSCICAg4pSU4pSA4pSAIDMKCeKUgiAgIOKUnOKUgOKUgCBuYW1lCgnilIIgICDi
-lJTilIDilIAgcGlkCgnilJzilIDilIAgOAoJ4pSCICAg4pSc4pSA4pSAIGJ1c3kKCeKUgiAgIOKU
-giAgIOKUnOKUgOKUgCAwCgnilIIgICDilIIgICDilJzilIDilIAgMQoJ4pSCICAg4pSCICAg4pSc
-4pSA4pSAIDIKCeKUgiAgIOKUgiAgIOKUlOKUgOKUgCAzCgnilIIgICDilJzilIDilIAgbmFtZQoJ
-4pSCICAg4pSU4pSA4pSAIHBpZAoJ4pSc4pSA4pSAIDkKCeKUgiAgIOKUnOKUgOKUgCBidXN5Cgni
-lIIgICDilIIgICDilJzilIDilIAgMAoJ4pSCICAg4pSCICAg4pSc4pSA4pSAIDEKCeKUgiAgIOKU
-giAgIOKUnOKUgOKUgCAyCgnilIIgICDilIIgICDilJTilIDilIAgMwoJ4pSCICAg4pSc4pSA4pSA
-IG5hbWUKCeKUgiAgIOKUlOKUgOKUgCBwaWQKCeKUlOKUgOKUgCBlbmFibGVfc3RhdHMKCkZpbGVz
-IGluICdidXN5JyBkaXJlY3RvcmllcyBhcmUgbnVtYmVyZWQgdXNpbmcgdGhlIGVuZ2luZSBjbGFz
-cyBBQkkgdmFsdWVzIGFuZAp0aGV5IGNvbnRhaW4gYWNjdW11bGF0ZWQgbmFub3NlY29uZHMgZWFj
-aCBjbGllbnQgc3BlbnQgb24gZW5naW5lcyBvZiBhCnJlc3BlY3RpdmUgY2xhc3MuCgpJIHdpbGwg
-cG9zdCB0aGUgY29ycmVzcG9uZGluZyBwYXRjaCB0byBpbnRlbF9ncHVfdG9wIGZvciByZWZlcmVu
-Y2UgYXMgd2VsbC4KClR2cnRrbyBVcnN1bGluICg1KToKICBkcm0vaTkxNTogVHJhY2sgcGVyLWNv
-bnRleHQgZW5naW5lIGJ1c3luZXNzCiAgZHJtL2k5MTU6IEV4cG9zZSBsaXN0IG9mIGNsaWVudHMg
-aW4gc3lzZnMKICBkcm0vaTkxNTogVXBkYXRlIGNsaWVudCBuYW1lIG9uIGNvbnRleHQgY3JlYXRl
-CiAgZHJtL2k5MTU6IEV4cG9zZSBwZXItZW5naW5lIGNsaWVudCBidXN5bmVzcwogIGRybS9pOTE1
-OiBBZGQgc3lzZnMgdG9nZ2xlIHRvIGVuYWJsZSBwZXItY2xpZW50IGVuZ2luZSBzdGF0cwoKIGRy
-aXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9jb250ZXh0LmMgICB8ICAyNCArLQogZHJp
-dmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfY29udGV4dC5jICAgICAgIHwgIDIwICsrCiBkcml2
-ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRlbF9jb250ZXh0LmggICAgICAgfCAgMTEgKwogZHJpdmVy
-cy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfY29udGV4dF90eXBlcy5oIHwgICA5ICsKIGRyaXZlcnMv
-Z3B1L2RybS9pOTE1L2d0L2ludGVsX2VuZ2luZV9jcy5jICAgICB8ICAxNiArLQogZHJpdmVycy9n
-cHUvZHJtL2k5MTUvZ3QvaW50ZWxfbHJjLmMgICAgICAgICAgIHwgIDQ3ICsrKy0KIGRyaXZlcnMv
-Z3B1L2RybS9pOTE1L2k5MTVfZHJ2LmggICAgICAgICAgICAgICB8ICA0MSArKysKIGRyaXZlcnMv
-Z3B1L2RybS9pOTE1L2k5MTVfZ2VtLmMgICAgICAgICAgICAgICB8IDIzNCArKysrKysrKysrKysr
-KysrKy0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfc3lzZnMuYyAgICAgICAgICAgICB8ICA4
-NCArKysrKysrCiA5IGZpbGVzIGNoYW5nZWQsIDQ2NSBpbnNlcnRpb25zKCspLCAyMSBkZWxldGlv
-bnMoLSkKCi0tIAoyLjIwLjEKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNr
-dG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2lu
-dGVsLWdmeAo=
+From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+
+Some customers want to know how much of the GPU time are their clients
+using in order to make dynamic load balancing decisions.
+
+With the hooks already in place which track the overall engine busyness,
+we can extend that slightly to split that time between contexts.
+
+v2: Fix accounting for tail updates.
+v3: Rebase.
+v4: Mark currently running contexts as active on stats enable.
+v5: Include some headers to fix the build.
+v6: Added fine grained lock.
+v7: Convert to seqlock. (Chris Wilson)
+v8: Rebase and tidy with helpers.
+v9: Refactor.
+
+Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+---
+ drivers/gpu/drm/i915/gt/intel_context.c       | 20 ++++++++
+ drivers/gpu/drm/i915/gt/intel_context.h       | 11 +++++
+ drivers/gpu/drm/i915/gt/intel_context_types.h |  9 ++++
+ drivers/gpu/drm/i915/gt/intel_engine_cs.c     | 16 ++++++-
+ drivers/gpu/drm/i915/gt/intel_lrc.c           | 47 ++++++++++++++++---
+ 5 files changed, 95 insertions(+), 8 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/gt/intel_context.c b/drivers/gpu/drm/i915/gt/intel_context.c
+index b1e346d2d35f..b211b48d6cae 100644
+--- a/drivers/gpu/drm/i915/gt/intel_context.c
++++ b/drivers/gpu/drm/i915/gt/intel_context.c
+@@ -243,6 +243,7 @@ intel_context_init(struct intel_context *ce,
+ 	INIT_LIST_HEAD(&ce->signals);
+ 
+ 	mutex_init(&ce->pin_mutex);
++	seqlock_init(&ce->stats.lock);
+ 
+ 	i915_active_init(&ce->active,
+ 			 __intel_context_active, __intel_context_retire);
+@@ -337,6 +338,25 @@ struct i915_request *intel_context_create_request(struct intel_context *ce)
+ 	return rq;
+ }
+ 
++ktime_t intel_context_get_busy_time(struct intel_context *ce)
++{
++	unsigned int seq;
++	ktime_t total;
++
++	do {
++		seq = read_seqbegin(&ce->stats.lock);
++
++		total = ce->stats.total;
++
++		if (ce->stats.active)
++			total = ktime_add(total,
++					  ktime_sub(ktime_get(),
++						    ce->stats.start));
++	} while (read_seqretry(&ce->stats.lock, seq));
++
++	return total;
++}
++
+ #if IS_ENABLED(CONFIG_DRM_I915_SELFTEST)
+ #include "selftest_context.c"
+ #endif
+diff --git a/drivers/gpu/drm/i915/gt/intel_context.h b/drivers/gpu/drm/i915/gt/intel_context.h
+index b39eb1fcfbca..3a15cf32f0a3 100644
+--- a/drivers/gpu/drm/i915/gt/intel_context.h
++++ b/drivers/gpu/drm/i915/gt/intel_context.h
+@@ -160,4 +160,15 @@ static inline struct intel_ring *__intel_context_ring_size(u64 sz)
+ 	return u64_to_ptr(struct intel_ring, sz);
+ }
+ 
++static inline void
++__intel_context_stats_start(struct intel_context_stats *stats, ktime_t now)
++{
++	if (!stats->active) {
++		stats->start = now;
++		stats->active = true;
++	}
++}
++
++ktime_t intel_context_get_busy_time(struct intel_context *ce);
++
+ #endif /* __INTEL_CONTEXT_H__ */
+diff --git a/drivers/gpu/drm/i915/gt/intel_context_types.h b/drivers/gpu/drm/i915/gt/intel_context_types.h
+index d1204cc899a3..12cbad0798cb 100644
+--- a/drivers/gpu/drm/i915/gt/intel_context_types.h
++++ b/drivers/gpu/drm/i915/gt/intel_context_types.h
+@@ -11,6 +11,7 @@
+ #include <linux/list.h>
+ #include <linux/mutex.h>
+ #include <linux/types.h>
++#include <linux/seqlock.h>
+ 
+ #include "i915_active_types.h"
+ #include "i915_utils.h"
+@@ -76,6 +77,14 @@ struct intel_context {
+ 
+ 	/** sseu: Control eu/slice partitioning */
+ 	struct intel_sseu sseu;
++
++	/** stats: Context GPU engine busyness tracking. */
++	struct intel_context_stats {
++		seqlock_t lock;
++		bool active;
++		ktime_t start;
++		ktime_t total;
++	} stats;
+ };
+ 
+ #endif /* __INTEL_CONTEXT_TYPES__ */
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+index 3d1d48bf90cf..ac08781c8b24 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
++++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+@@ -1577,8 +1577,20 @@ int intel_enable_engine_stats(struct intel_engine_cs *engine)
+ 
+ 		engine->stats.enabled_at = ktime_get();
+ 
+-		/* XXX submission method oblivious? */
+-		for (port = execlists->active; (rq = *port); port++)
++		/*
++		 * Mark currently running context as active.
++		 * XXX submission method oblivious?
++		 */
++
++		rq = NULL;
++		port = execlists->active;
++		if (port)
++			rq = *port;
++		if (rq)
++			__intel_context_stats_start(&rq->hw_context->stats,
++						    engine->stats.enabled_at);
++
++		for (; (rq = *port); port++)
+ 			engine->stats.active++;
+ 
+ 		for (port = execlists->pending; (rq = *port); port++) {
+diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+index 4ebfecd95032..1f158cb439bc 100644
+--- a/drivers/gpu/drm/i915/gt/intel_lrc.c
++++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+@@ -940,6 +940,7 @@ static void intel_engine_context_in(struct intel_engine_cs *engine)
+ 	if (engine->stats.enabled > 0) {
+ 		if (engine->stats.active++ == 0)
+ 			engine->stats.start = ktime_get();
++
+ 		GEM_BUG_ON(engine->stats.active == 0);
+ 	}
+ 
+@@ -1088,6 +1089,30 @@ static void reset_active(struct i915_request *rq,
+ 	ce->lrc_desc |= CTX_DESC_FORCE_RESTORE;
+ }
+ 
++static void
++intel_context_stats_start(struct intel_context_stats *stats)
++{
++	write_seqlock(&stats->lock);
++	__intel_context_stats_start(stats, ktime_get());
++	write_sequnlock(&stats->lock);
++}
++
++static void
++intel_context_stats_stop(struct intel_context_stats *stats)
++{
++	unsigned long flags;
++
++	if (!READ_ONCE(stats->active))
++		return;
++
++	write_seqlock_irqsave(&stats->lock, flags);
++	GEM_BUG_ON(!READ_ONCE(stats->active));
++	stats->total = ktime_add(stats->total,
++				 ktime_sub(ktime_get(), stats->start));
++	stats->active = false;
++	write_sequnlock_irqrestore(&stats->lock, flags);
++}
++
+ static inline struct intel_engine_cs *
+ __execlists_schedule_in(struct i915_request *rq)
+ {
+@@ -1155,7 +1180,7 @@ static inline void
+ __execlists_schedule_out(struct i915_request *rq,
+ 			 struct intel_engine_cs * const engine)
+ {
+-	struct intel_context * const ce = rq->hw_context;
++	struct intel_context *ce = rq->hw_context;
+ 
+ 	/*
+ 	 * NB process_csb() is not under the engine->active.lock and hence
+@@ -1172,6 +1197,7 @@ __execlists_schedule_out(struct i915_request *rq,
+ 		intel_engine_add_retire(engine, ce->timeline);
+ 
+ 	intel_engine_context_out(engine);
++	intel_context_stats_stop(&ce->stats);
+ 	execlists_context_status_change(rq, INTEL_CONTEXT_SCHEDULE_OUT);
+ 	intel_gt_pm_put_async(engine->gt);
+ 
+@@ -1389,6 +1415,9 @@ static void execlists_submit_ports(struct intel_engine_cs *engine)
+ 		write_desc(execlists,
+ 			   rq ? execlists_update_context(rq) : 0,
+ 			   n);
++
++		if (n == 0)
++			intel_context_stats_start(&rq->hw_context->stats);
+ 	}
+ 
+ 	/* we need to manually load the submit queue */
+@@ -2197,7 +2226,11 @@ static void process_csb(struct intel_engine_cs *engine)
+ 
+ 			WRITE_ONCE(execlists->pending[0], NULL);
+ 		} else {
+-			GEM_BUG_ON(!*execlists->active);
++			struct i915_request *rq = *execlists->active++;
++
++			GEM_BUG_ON(!rq);
++			GEM_BUG_ON(execlists->active - execlists->inflight >
++				   execlists_num_ports(execlists));
+ 
+ 			/* port0 completed, advanced to port1 */
+ 			trace_ports(execlists, "completed", execlists->active);
+@@ -2208,12 +2241,14 @@ static void process_csb(struct intel_engine_cs *engine)
+ 			 * coherent (visible from the CPU) before the
+ 			 * user interrupt and CSB is processed.
+ 			 */
+-			GEM_BUG_ON(!i915_request_completed(*execlists->active) &&
++			GEM_BUG_ON(!i915_request_completed(rq) &&
+ 				   !reset_in_progress(execlists));
+-			execlists_schedule_out(*execlists->active++);
+ 
+-			GEM_BUG_ON(execlists->active - execlists->inflight >
+-				   execlists_num_ports(execlists));
++			execlists_schedule_out(rq);
++			rq = *execlists->active;
++			if (rq)
++				intel_context_stats_start(&rq->hw_context->stats);
++
+ 		}
+ 	} while (head != tail);
+ 
+-- 
+2.20.1
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
