@@ -1,77 +1,48 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE8DA12091A
-	for <lists+intel-gfx@lfdr.de>; Mon, 16 Dec 2019 15:59:33 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E221912093F
+	for <lists+intel-gfx@lfdr.de>; Mon, 16 Dec 2019 16:07:40 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 898566E5C0;
-	Mon, 16 Dec 2019 14:59:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7556F6E5C3;
+	Mon, 16 Dec 2019 15:07:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-1.mimecast.com (us-smtp-delivery-1.mimecast.com
- [205.139.110.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A0AB66E5BE
- for <intel-gfx@lists.freedesktop.org>; Mon, 16 Dec 2019 14:59:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1576508364;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=fgxIae4uHF0MmTIXvAv4l9vfuK6CFRl82IuYqE7HjYY=;
- b=STnvG4C08xTK4/7mKiT+NSOmnlg5ixunf/SgP9EQxTcwYBejQkilRpyT3PKpqZ62bGH2t2
- wkdipCT9b8FnfnsVzkbK3lUeC1TnZimkBb8eXfUIufibTbUcOZlBBDh6P+sYLTDJEDLTNW
- IT0bpcvRAgfL47kzgZt4qP4bmhxlGbw=
-Received: from mail-wr1-f72.google.com (mail-wr1-f72.google.com
- [209.85.221.72]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-86-TA-xup-TP26KZMXsed7ICw-1; Mon, 16 Dec 2019 09:59:22 -0500
-Received: by mail-wr1-f72.google.com with SMTP id u18so3836639wrn.11
- for <intel-gfx@lists.freedesktop.org>; Mon, 16 Dec 2019 06:59:22 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:message-id:date
- :user-agent:mime-version:in-reply-to:content-language
- :content-transfer-encoding;
- bh=uJOt3/otHQDZlenhUklrLoPIwdlpgH1LgHZIHE3PiAw=;
- b=DGSAhIE4vxDsz83hspRqVIyAMEqcm4OApjdQE7JhDWD1MiQz8tcDTK49l8Qu4EEtVg
- c+6HsP7oYcrMHrv5FAQHR7iP9STqS8SZbHYsykAKnhrsqJduGD4fWztEC68vOV7HVxdu
- g0FrvHlsT+7MWZG+x6c3Xwv5dSdPV5BeCzX5FXs94DcGHq2MoBB42bQ8863/peDFlsgf
- HO0GWuebrCFNcgACgulq9uc9NUwi/u5xfrnl4KyR3w9vc6JSX/qqcIvosW2GjvhcrVpc
- uGLNIOjoJGA4mfCe4/0nj5DjusFWM3l7h36WqAk85hTf8uPndX2ri8diVidRWrByGWh5
- gJJg==
-X-Gm-Message-State: APjAAAUCLqgpTpXXfFXLOHpFedtkkcwq9/OSWfxLdw2xvoWQA9X7drMM
- sf3Uxq9T6aZmjlpCSrhLO5GMwwzubTwHPnhWHY5rd8DQNn+6WvykkzH/V3UV3nlQfnDGZaK+sag
- jIXgkplvb/6Sa9uhYxY99Ddv7rB++
-X-Received: by 2002:a5d:610a:: with SMTP id v10mr27484188wrt.267.1576508360249; 
- Mon, 16 Dec 2019 06:59:20 -0800 (PST)
-X-Google-Smtp-Source: APXvYqywGl8Dz3HRQB6nfkN44c07NNAivBGuMSN91rqy5SqGN+A6SlKsV91NWVHxZorRzf4H2zUCSw==
-X-Received: by 2002:a5d:610a:: with SMTP id v10mr27484159wrt.267.1576508360016; 
- Mon, 16 Dec 2019 06:59:20 -0800 (PST)
-Received: from shalem.localdomain
- (2001-1c00-0c0c-fe00-7e79-4dac-39d0-9c14.cable.dynamic.v6.ziggo.nl.
- [2001:1c00:c0c:fe00:7e79:4dac:39d0:9c14])
- by smtp.gmail.com with ESMTPSA id s8sm21521486wrt.57.2019.12.16.06.59.18
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 16 Dec 2019 06:59:19 -0800 (PST)
-To: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-References: <20191215163810.52356-1-hdegoede@redhat.com>
- <20191215163810.52356-4-hdegoede@redhat.com>
- <20191216134551.GQ1208@intel.com>
- <c7fe3911-be20-33dd-96c1-58eccd0f323f@redhat.com>
- <20191216141450.GU1208@intel.com>
-From: Hans de Goede <hdegoede@redhat.com>
-Message-ID: <55e2ddf4-cd20-2663-d625-3836fac5f0c7@redhat.com>
-Date: Mon, 16 Dec 2019 15:59:18 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.2.2
-MIME-Version: 1.0
-In-Reply-To: <20191216141450.GU1208@intel.com>
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1B6966E5C1
+ for <intel-gfx@lists.freedesktop.org>; Mon, 16 Dec 2019 15:07:37 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 16 Dec 2019 07:07:29 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.69,322,1571727600"; d="scan'208";a="389486428"
+Received: from irsmsx104.ger.corp.intel.com ([163.33.3.159])
+ by orsmga005.jf.intel.com with ESMTP; 16 Dec 2019 07:07:27 -0800
+Received: from irsmsx105.ger.corp.intel.com ([169.254.7.165]) by
+ IRSMSX104.ger.corp.intel.com ([169.254.5.119]) with mapi id 14.03.0439.000;
+ Mon, 16 Dec 2019 15:07:27 +0000
+From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
+To: "Roper, Matthew D" <matthew.d.roper@intel.com>
+Thread-Topic: [PATCH v8 3/4] drm/i915: Manipulate DBuf slices properly
+Thread-Index: AQHVsbYCehtH2nE370i30beRPxVx8qe4a+2AgAR074A=
+Date: Mon, 16 Dec 2019 15:07:26 +0000
+Message-ID: <2d189f1dec45f1a2fa6c64a855d87702d06fd2fb.camel@intel.com>
+References: <20191213130228.29509-1-stanislav.lisovskiy@intel.com>
+ <20191213130228.29509-4-stanislav.lisovskiy@intel.com>
+ <20191213190107.GC85422@mdroper-desk1.amr.corp.intel.com>
+In-Reply-To: <20191213190107.GC85422@mdroper-desk1.amr.corp.intel.com>
+Accept-Language: en-US
 Content-Language: en-US
-X-MC-Unique: TA-xup-TP26KZMXsed7ICw-1
-X-Mimecast-Spam-Score: 0
-Subject: Re: [Intel-gfx] [PATCH 3/5] drm/i915/dsi: Init panel-enable GPIO to
- low when the LCD is initially off
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.237.72.89]
+Content-ID: <9C6142787C5D9A40A0E16AF4681A8E16@intel.com>
+MIME-Version: 1.0
+Subject: Re: [Intel-gfx] [PATCH v8 3/4] drm/i915: Manipulate DBuf slices
+ properly
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -84,172 +55,632 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Linus Walleij <linus.walleij@linaro.org>, linux-kernel@vger.kernel.org,
- linux-gpio@vger.kernel.org, dri-devel@lists.freedesktop.org,
- Lee Jones <lee.jones@linaro.org>, intel-gfx <intel-gfx@lists.freedesktop.org>
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="windows-1252"; Format="flowed"
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi,
-
-On 16-12-2019 15:14, Ville Syrj=E4l=E4 wrote:
-> On Mon, Dec 16, 2019 at 02:51:54PM +0100, Hans de Goede wrote:
->> Hi,
->>
->> Thank you for the reviews.
->>
->> On 16-12-2019 14:45, Ville Syrj=E4l=E4 wrote:
->>> On Sun, Dec 15, 2019 at 05:38:08PM +0100, Hans de Goede wrote:
->>>> When the LCD has not been turned on by the firmware/GOP, because e.g. =
-the
->>>> device was booted with an external monitor connected over HDMI, we sho=
-uld
->>>> not turn on the panel-enable GPIO when we request it.
->>>>
->>>> Turning on the panel-enable GPIO when we request it, means we turn it =
-on
->>>> too early in the init-sequence, which causes some panels to not correc=
-tly
->>>> light up.
->>>>
->>>> This commits adds a panel_is_on parameter to intel_dsi_vbt_gpio_init()
->>>> and makes intel_dsi_vbt_gpio_init() set the initial GPIO value accordi=
-ngly.
->>>>
->>>> This fixes the panel not lighting up on a Thundersoft TST168 tablet wh=
-en
->>>> booted with an external monitor connected over HDMI.
->>>>
->>>> Signed-off-by: Hans de Goede <hdegoede@redhat.com>
->>>> ---
->>>>    drivers/gpu/drm/i915/display/intel_dsi.h     | 2 +-
->>>>    drivers/gpu/drm/i915/display/intel_dsi_vbt.c | 7 +++----
->>>>    drivers/gpu/drm/i915/display/vlv_dsi.c       | 2 +-
->>>>    3 files changed, 5 insertions(+), 6 deletions(-)
->>>>
->>>> diff --git a/drivers/gpu/drm/i915/display/intel_dsi.h b/drivers/gpu/dr=
-m/i915/display/intel_dsi.h
->>>> index de7e51cd3460..675771ea91aa 100644
->>>> --- a/drivers/gpu/drm/i915/display/intel_dsi.h
->>>> +++ b/drivers/gpu/drm/i915/display/intel_dsi.h
->>>> @@ -203,7 +203,7 @@ void bxt_dsi_reset_clocks(struct intel_encoder *en=
-coder, enum port port);
->>>>    =
-
->>>>    /* intel_dsi_vbt.c */
->>>>    bool intel_dsi_vbt_init(struct intel_dsi *intel_dsi, u16 panel_id);
->>>> -void intel_dsi_vbt_gpio_init(struct intel_dsi *intel_dsi);
->>>> +void intel_dsi_vbt_gpio_init(struct intel_dsi *intel_dsi, bool panel_=
-is_on);
->>>>    void intel_dsi_vbt_gpio_cleanup(struct intel_dsi *intel_dsi);
->>>>    void intel_dsi_vbt_exec_sequence(struct intel_dsi *intel_dsi,
->>>>    				 enum mipi_seq seq_id);
->>>> diff --git a/drivers/gpu/drm/i915/display/intel_dsi_vbt.c b/drivers/gp=
-u/drm/i915/display/intel_dsi_vbt.c
->>>> index 5352e8c9eca5..027970348b22 100644
->>>> --- a/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
->>>> +++ b/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
->>>> @@ -688,17 +688,16 @@ bool intel_dsi_vbt_init(struct intel_dsi *intel_=
-dsi, u16 panel_id)
->>>>     * On some BYT/CHT devs some sequences are incomplete and we need t=
-o manually
->>>>     * control some GPIOs.
->>>>     */
->>>> -void intel_dsi_vbt_gpio_init(struct intel_dsi *intel_dsi)
->>>> +void intel_dsi_vbt_gpio_init(struct intel_dsi *intel_dsi, bool panel_=
-is_on)
->>>>    {
->>>>    	struct drm_device *dev =3D intel_dsi->base.base.dev;
->>>>    	struct drm_i915_private *dev_priv =3D to_i915(dev);
->>>>    	struct mipi_config *mipi_config =3D dev_priv->vbt.dsi.config;
->>>> +	enum gpiod_flags flags =3D panel_is_on ? GPIOD_OUT_HIGH : GPIOD_OUT_=
-LOW;
->>>
->>> Can't we just tell it not to change the current setting?
->>
->> We could use GPIOD_ASIS for that, but with the SoC pins (when the PMIC is
->> not used for backlight control) things get a bit muddy, I've seen several
->> instances of this message from drivers/pinctrl/intel/pinctrl-baytrail.c
->> trigger when the GOP did not init the panel:
->>
->> dev_warn(vg->dev, FW_BUG "pin %u forcibly re-configured as GPIO\n", offs=
-et);
->>
->> And in that case with GPIOD_ASIS I have no idea which we initially get,
->> so this approach, where we clearly define which initial value we want,
->> seems better.
-> =
-
-> I suppose. Probably better to not abuse the current_mode pointer for
-> that though and just explicitly call encoder->get_hw_state() instead.
-
-Ok, I'll fix this for v2 of the patch-set.
-
-Regards,
-
-Hans
+On Fri, 2019-12-13 at 11:01 -0800, Matt Roper wrote:
+> On Fri, Dec 13, 2019 at 03:02:27PM +0200, Stanislav Lisovskiy wrote:
+> > Start manipulating DBuf slices as a mask,
+> > but not as a total number, as current approach
+> > doesn't give us full control on all combinations
+> > of slices, which we might need(like enabling S2
+> > only can't enabled by setting enabled_slices=1).
+> > 
+> > Removed wrong code from intel_get_ddb_size as
+> > it doesn't match to BSpec. For now still just
+> > use DBuf slice until proper algorithm is implemented.
+> > 
+> > Other minor code refactoring to get prepared
+> > for major DBuf assignment changes landed:
+> > - As now enabled slices contain a mask
+> >   we still need some value which should
+> >   reflect how much DBuf slices are supported
+> >   by the platform, now device info contains
+> >   num_supported_dbuf_slices.
+> > - Removed unneeded assertion as we are now
+> >   manipulating slices in a more proper way.
+> > 
+> > v2: Start using enabled_slices in dev_priv
+> > 
+> > v3: "enabled_slices" is now "enabled_dbuf_slices_mask",
+> >     as this now sits in dev_priv independently.
+> > 
+> > Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_display.c  |  23 ++--
+> >  .../drm/i915/display/intel_display_power.c    | 100 ++++++++----
+> > ------
+> >  .../drm/i915/display/intel_display_power.h    |   5 +
+> >  .../drm/i915/display/intel_display_types.h    |   2 +-
+> >  drivers/gpu/drm/i915/i915_drv.h               |   2 +-
+> >  drivers/gpu/drm/i915/i915_pci.c               |   6 +-
+> >  drivers/gpu/drm/i915/intel_device_info.h      |   1 +
+> >  drivers/gpu/drm/i915/intel_pm.c               |  49 +++------
+> >  drivers/gpu/drm/i915/intel_pm.h               |   2 +-
+> >  9 files changed, 84 insertions(+), 106 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/i915/display/intel_display.c
+> > b/drivers/gpu/drm/i915/display/intel_display.c
+> > index 0e09d0c23b1d..42a0ea540d4f 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_display.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> > @@ -13359,12 +13359,12 @@ static void verify_wm_state(struct
+> > intel_crtc *crtc,
+> >  
+> >  	skl_pipe_ddb_get_hw_state(crtc, hw->ddb_y, hw->ddb_uv);
+> >  
+> > -	hw_enabled_slices = intel_enabled_dbuf_slices_num(dev_priv);
+> > +	hw_enabled_slices = intel_enabled_dbuf_slices_mask(dev_priv);
+> >  
+> >  	if (INTEL_GEN(dev_priv) >= 11 &&
+> > -	    hw_enabled_slices != dev_priv->enabled_dbuf_slices_num)
+> > -		DRM_ERROR("mismatch in DBUF Slices (expected %u, got
+> > %u)\n",
+> > -			  dev_priv->enabled_dbuf_slices_num,
+> > +	    hw_enabled_slices != dev_priv->enabled_dbuf_slices_mask)
+> > +		DRM_ERROR("mismatch in DBUF Slices (expected %x, got
+> > %x)\n",
 
 
+Thanks for good comments, just as I wrote in previous patch, most of
+the issues I've addressed in a recent series, for some which I didn't,
+I will reply inline here with explanation.
 
+> 
+> Minor nitpick:  I'd write these with "0x%x" to make it more obvious
+> to
+> the person reading the message that the value is hex and thus a
+> bitmask
+> rather than a count.
+> 
+> > +			  dev_priv->enabled_dbuf_slices_mask,
+> >  			  hw_enabled_slices);
+> >  
+> >  	/* planes */
+> > @@ -14549,22 +14549,23 @@ static void
+> > intel_update_trans_port_sync_crtcs(struct intel_crtc *crtc,
+> >  static void icl_dbuf_slice_pre_update(struct intel_atomic_state
+> > *state)
+> >  {
+> >  	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
+> > -	u8 hw_enabled_slices = dev_priv->enabled_dbuf_slices_num;
+> > -	u8 required_slices = state->enabled_dbuf_slices_num;
+> > +	u8 hw_enabled_slices = dev_priv->enabled_dbuf_slices_mask;
+> > +	u8 required_slices = state->enabled_dbuf_slices_mask;
+> > +	u8 slices_union = hw_enabled_slices | required_slices;
+> >  
+> >  	/* If 2nd DBuf slice required, enable it here */
+> > -	if (INTEL_GEN(dev_priv) >= 11 && required_slices >
+> > hw_enabled_slices)
+> > -		icl_dbuf_slices_update(dev_priv, required_slices);
+> > +	if (INTEL_GEN(dev_priv) >= 11 && required_slices !=
+> > hw_enabled_slices)
+> 
+> Should this be hw_enabled_slices != slices_union so that we only
+> process
+> it when we're adding new slices and not in cases where we're only
+> going
+> to be taking slices away?
+> 
+> > +		icl_dbuf_slices_update(dev_priv, slices_union);
+> >  }
+> >  
+> >  static void icl_dbuf_slice_post_update(struct intel_atomic_state
+> > *state)
+> >  {
+> >  	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
+> > -	u8 hw_enabled_slices = dev_priv->enabled_dbuf_slices_num;
+> > -	u8 required_slices = state->enabled_dbuf_slices_num;
+> > +	u8 hw_enabled_slices = dev_priv->enabled_dbuf_slices_mask;
+> > +	u8 required_slices = state->enabled_dbuf_slices_mask;
+> >  
+> >  	/* If 2nd DBuf slice is no more required disable it */
+> > -	if (INTEL_GEN(dev_priv) >= 11 && required_slices <
+> > hw_enabled_slices)
+> > +	if (INTEL_GEN(dev_priv) >= 11 && required_slices !=
+> > hw_enabled_slices)
+> >  		icl_dbuf_slices_update(dev_priv, required_slices);
+> >  }
+> >  
+> > diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c
+> > b/drivers/gpu/drm/i915/display/intel_display_power.c
+> > index b8983422a882..ba384a5315f8 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_display_power.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
+> > @@ -1031,15 +1031,6 @@ static bool
+> > gen9_dc_off_power_well_enabled(struct drm_i915_private *dev_priv,
+> >  		(I915_READ(DC_STATE_EN) &
+> > DC_STATE_EN_UPTO_DC5_DC6_MASK) == 0);
+> >  }
+> >  
+> > -static void gen9_assert_dbuf_enabled(struct drm_i915_private
+> > *dev_priv)
+> > -{
+> > -	u32 tmp = I915_READ(DBUF_CTL);
+> > -
+> > -	WARN((tmp & (DBUF_POWER_STATE | DBUF_POWER_REQUEST)) !=
+> > -	     (DBUF_POWER_STATE | DBUF_POWER_REQUEST),
+> > -	     "Unexpected DBuf power power state (0x%08x)\n", tmp);
+> > -}
+> > -
+> >  static void gen9_disable_dc_states(struct drm_i915_private
+> > *dev_priv)
+> >  {
+> >  	struct intel_cdclk_state cdclk_state = {};
+> > @@ -1055,8 +1046,6 @@ static void gen9_disable_dc_states(struct
+> > drm_i915_private *dev_priv)
+> >  	/* Can't read out voltage_level so can't use
+> > intel_cdclk_changed() */
+> >  	WARN_ON(intel_cdclk_needs_modeset(&dev_priv->cdclk.hw,
+> > &cdclk_state));
+> >  
+> > -	gen9_assert_dbuf_enabled(dev_priv);
+> > -
+> 
+> I'm undecided on whether dropping the assertion completely is a good
+> idea or not.  If I understand correctly, it was never meant to check
+> that our own handling of the dbuf is correct (and it was added back
+> when
+> we only ever had a single dbuf slice on gen9), but rather than the
+> DMC
+> did the right thing when enabling/disabling the dbuf around DC state
+> transitions.  As far as I know, the DMC has been pretty solid
+> recently,
+> but extra paranoia around firmware we don't directly control still
+> seems
+> like a good idea to me.
 
+With this added we seem to get soem sporadical dmesg-warns on suspend
+resume tests for ICL as this assertion now is not fully correct as we
+now might not enable both DBuf slices as it was previsously hardcoded
+in icl_dbuf_enable, now we only enable dbuf slices based on the actual
+need. 
+Also I think we already have similar check in verify_wm_state where is
+also compares sw state and the actual hardware state.
+> 
+> 
+> >  	if (IS_GEN9_LP(dev_priv))
+> >  		bxt_verify_ddi_phy_power_wells(dev_priv);
+> >  
+> > @@ -4254,72 +4243,71 @@ static void gen9_dbuf_disable(struct
+> > drm_i915_private *dev_priv)
+> >  	intel_dbuf_slice_set(dev_priv, DBUF_CTL, false);
+> >  }
+> >  
+> > -static u8 intel_dbuf_max_slices(struct drm_i915_private *dev_priv)
+> > +int intel_dbuf_max_slices(struct drm_i915_private *dev_priv)
+> 
+> I don't see any new usage of this function outside this file.  I
+> think
+> we can keep this static?
+> 
+> >  {
+> > -	if (INTEL_GEN(dev_priv) < 11)
+> > -		return 1;
+> > -	return 2;
+> > +	return INTEL_INFO(dev_priv)->num_supported_dbuf_slices;
+> > +}
+> > +
+> > +void icl_program_dbuf_slices(struct drm_i915_private *dev_priv)
+> 
+> It looks like this never gets used outside this file either, so it
+> could
+> probably be static.  Or it's simple enough that we could just drop it
+> completely and inline the icl_dbuf_slices_update() directly at the
+> callsites.
+> 
+> > +{
+> > +	const u8 hw_enabled_slices = dev_priv-
+> > >enabled_dbuf_slices_mask;
+> > +
+> > +	icl_dbuf_slices_update(dev_priv, hw_enabled_slices);
+> >  }
+> >  
+> >  void icl_dbuf_slices_update(struct drm_i915_private *dev_priv,
+> >  			    u8 req_slices)
+> >  {
+> > -	const u8 hw_enabled_slices = dev_priv->enabled_dbuf_slices_num;
+> > -	bool ret;
+> > +	int i;
+> > +	int max_slices = intel_dbuf_max_slices(dev_priv);
+> >  
+> > -	if (req_slices > intel_dbuf_max_slices(dev_priv)) {
+> > +	if (hweight8(req_slices) > intel_dbuf_max_slices(dev_priv)) {
+> >  		DRM_ERROR("Invalid number of dbuf slices requested\n");
+> >  		return;
+> >  	}
+> >  
+> > -	if (req_slices == hw_enabled_slices || req_slices == 0)
+> > -		return;
+> > +	DRM_DEBUG_KMS("Updating dbuf slices to %x\n", req_slices);
+> 
+> As noted above, I prefer "0x%x" to make it more obvious the number is
+> a
+> bitmask.  Up to you though.
+> 
+> >  
+> > -	if (req_slices > hw_enabled_slices)
+> > -		ret = intel_dbuf_slice_set(dev_priv, DBUF_CTL_S2,
+> > true);
+> > -	else
+> > -		ret = intel_dbuf_slice_set(dev_priv, DBUF_CTL_S2,
+> > false);
+> > +	for (i = 0; i < max_slices; i++) {
+> > +		int slice_bit = BIT(i);
+> > +		bool slice_set = (slice_bit & req_slices) != 0;
+> 
+> Technically you could drop the "!= 0" part since anything non-zero
+> will
+> be evaluated as 'true.'  Doesn't really matter though.
+> 
+> > +
+> > +		switch (slice_bit) {
+> > +		case DBUF_S1_BIT:
+> > +			intel_dbuf_slice_set(dev_priv,
+> > +					     DBUF_CTL_S1,
+> > +					     slice_set);
+> > +			break;
+> > +		case DBUF_S2_BIT:
+> > +			intel_dbuf_slice_set(dev_priv,
+> > +					     DBUF_CTL_S2,
+> > +					     slice_set);
+> > +			break;
+> > +		default:
+> > +			MISSING_CASE(slice_bit);
+> > +		}
+> 
+> It might be worth parameterizing DBUF_CTL so that we can simplify
+> code
+> like this to just
+> 
+>         intel_dbuf_slice_set(dev_priv, DBUF_CTL(i), slice_set);
+> 
+> or even just
+> 
+>         intel_dbuf_slice_set(dev_priv, DBUF_CTL(i), req_slices &
+> BIT(i))
+> 
+> as we do with other types of registers.  That will also future-proof
+> a
+> bit in case we ever get platforms with more dbuf slices.
+> 
+> > +	}
+> >  
+> > -	if (ret)
+> > -		dev_priv->enabled_dbuf_slices_num = req_slices;
+> > +	dev_priv->enabled_dbuf_slices_mask = req_slices;
+> >  }
+> >  
+> >  static void icl_dbuf_enable(struct drm_i915_private *dev_priv)
+> >  {
+> > -	I915_WRITE(DBUF_CTL_S1, I915_READ(DBUF_CTL_S1) |
+> > DBUF_POWER_REQUEST);
+> > -	I915_WRITE(DBUF_CTL_S2, I915_READ(DBUF_CTL_S2) |
+> > DBUF_POWER_REQUEST);
+> > -	POSTING_READ(DBUF_CTL_S2);
+> > -
+> > -	udelay(10);
+> > -
+> > -	if (!(I915_READ(DBUF_CTL_S1) & DBUF_POWER_STATE) ||
+> > -	    !(I915_READ(DBUF_CTL_S2) & DBUF_POWER_STATE))
+> > -		DRM_ERROR("DBuf power enable timeout\n");
+> > -	else
+> > -		/*
+> > -		 * FIXME: for now pretend that we only have 1 slice,
+> > see
+> > -		 * intel_enabled_dbuf_slices_num().
+> > -		 */
+> > -		dev_priv->enabled_dbuf_slices_num = 1;
+> > +	/*
+> > +	 * Just power up 1 slice, we will
+> > +	 * figure out later which slices we have and what we need.
+> > +	 */
+> > +	dev_priv->enabled_dbuf_slices_mask = DBUF_S1_BIT;
+> > +	icl_program_dbuf_slices(dev_priv);
+> >  }
+> >  
+> >  static void icl_dbuf_disable(struct drm_i915_private *dev_priv)
+> >  {
+> > -	I915_WRITE(DBUF_CTL_S1, I915_READ(DBUF_CTL_S1) &
+> > ~DBUF_POWER_REQUEST);
+> > -	I915_WRITE(DBUF_CTL_S2, I915_READ(DBUF_CTL_S2) &
+> > ~DBUF_POWER_REQUEST);
+> > -	POSTING_READ(DBUF_CTL_S2);
+> > -
+> > -	udelay(10);
+> > -
+> > -	if ((I915_READ(DBUF_CTL_S1) & DBUF_POWER_STATE) ||
+> > -	    (I915_READ(DBUF_CTL_S2) & DBUF_POWER_STATE))
+> > -		DRM_ERROR("DBuf power disable timeout!\n");
+> > -	else
+> > -		/*
+> > -		 * FIXME: for now pretend that the first slice is
+> > always
+> > -		 * enabled, see intel_enabled_dbuf_slices_num().
+> > -		 */
+> > -		dev_priv->enabled_dbuf_slices_num = 1;
+> > +	/*
+> > +	 * Disable all slices
+> > +	 */
+> > +	dev_priv->enabled_dbuf_slices_mask = 0;
+> > +	icl_program_dbuf_slices(dev_priv);
+> >  }
+> >  
+> >  static void icl_mbus_init(struct drm_i915_private *dev_priv)
+> > diff --git a/drivers/gpu/drm/i915/display/intel_display_power.h
+> > b/drivers/gpu/drm/i915/display/intel_display_power.h
+> > index 1da04f3e0fb3..0d9f87607eac 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_display_power.h
+> > +++ b/drivers/gpu/drm/i915/display/intel_display_power.h
+> > @@ -311,8 +311,13 @@ intel_display_power_put_async(struct
+> > drm_i915_private *i915,
+> >  	for ((wf) = intel_display_power_get((i915), (domain)); (wf); \
+> >  	     intel_display_power_put_async((i915), (domain), (wf)),
+> > (wf) = 0)
+> >  
+> > +#define DBUF_S1_BIT			BIT(0)
+> > +#define DBUF_S2_BIT			BIT(1)
+> > +
+> >  void icl_dbuf_slices_update(struct drm_i915_private *dev_priv,
+> >  			    u8 req_slices);
+> > +void icl_program_dbuf_slices(struct drm_i915_private *dev_priv);
+> > +int intel_dbuf_max_slices(struct drm_i915_private *dev_priv);
+> >  
+> >  void chv_phy_powergate_lanes(struct intel_encoder *encoder,
+> >  			     bool override, unsigned int mask);
+> > diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h
+> > b/drivers/gpu/drm/i915/display/intel_display_types.h
+> > index 70e65c2d525d..ba2e41a03051 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> > +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> > @@ -518,7 +518,7 @@ struct intel_atomic_state {
+> >  	struct skl_ddb_values wm_results;
+> >  
+> >  	/* Number of enabled DBuf slices */
+> > -	u8 enabled_dbuf_slices_num;
+> > +	u8 enabled_dbuf_slices_mask;
+> >  
+> >  	struct i915_sw_fence commit_ready;
+> >  
+> > diff --git a/drivers/gpu/drm/i915/i915_drv.h
+> > b/drivers/gpu/drm/i915/i915_drv.h
+> > index 7a2d9fa5a9a6..ec4b9e3cef79 100644
+> > --- a/drivers/gpu/drm/i915/i915_drv.h
+> > +++ b/drivers/gpu/drm/i915/i915_drv.h
+> > @@ -1210,7 +1210,7 @@ struct drm_i915_private {
+> >  		bool distrust_bios_wm;
+> >  	} wm;
+> >  
+> > -	u8 enabled_dbuf_slices_num; /* GEN11 has configurable 2 slices
+> > */
+> > +	u8 enabled_dbuf_slices_mask; /* GEN11 has configurable 2 slices
+> > */
+> >  
+> >  	struct dram_info {
+> >  		bool valid;
+> > diff --git a/drivers/gpu/drm/i915/i915_pci.c
+> > b/drivers/gpu/drm/i915/i915_pci.c
+> > index 877560b1031e..2068aac5ab6a 100644
+> > --- a/drivers/gpu/drm/i915/i915_pci.c
+> > +++ b/drivers/gpu/drm/i915/i915_pci.c
+> > @@ -614,7 +614,8 @@ static const struct intel_device_info
+> > intel_cherryview_info = {
+> >  	.has_gt_uc = 1, \
+> >  	.display.has_hdcp = 1, \
+> >  	.display.has_ipc = 1, \
+> > -	.ddb_size = 896
+> > +	.ddb_size = 896, \
+> > +	.num_supported_dbuf_slices = 1
+> >  
+> >  #define SKL_PLATFORM \
+> >  	GEN9_FEATURES, \
+> > @@ -649,6 +650,7 @@ static const struct intel_device_info
+> > intel_skylake_gt4_info = {
+> >  #define GEN9_LP_FEATURES \
+> >  	GEN(9), \
+> >  	.is_lp = 1, \
+> > +	.num_supported_dbuf_slices = 1, \
+> >  	.display.has_hotplug = 1, \
+> >  	.engine_mask = BIT(RCS0) | BIT(VCS0) | BIT(BCS0) | BIT(VECS0),
+> > \
+> >  	.pipe_mask = BIT(PIPE_A) | BIT(PIPE_B) | BIT(PIPE_C), \
+> > @@ -737,6 +739,7 @@ static const struct intel_device_info
+> > intel_coffeelake_gt3_info = {
+> >  	GEN9_FEATURES, \
+> >  	GEN(10), \
+> >  	.ddb_size = 1024, \
+> > +	.num_supported_dbuf_slices = 1, \
+> 
+> GEN10_FEATURES inherits everything from GEN9_FEATURES, so I think we
+> can
+> drop this one.
+> 
+> 
+> >  	.display.has_dsc = 1, \
+> >  	.has_coherent_ggtt = false, \
+> >  	GLK_COLORS
+> > @@ -773,6 +776,7 @@ static const struct intel_device_info
+> > intel_cannonlake_info = {
+> >  	}, \
+> >  	GEN(11), \
+> >  	.ddb_size = 2048, \
+> > +	.num_supported_dbuf_slices = 2, \
+> >  	.has_logical_ring_elsq = 1, \
+> >  	.color = { .degamma_lut_size = 33, .gamma_lut_size = 262145 }
+> >  
+> > diff --git a/drivers/gpu/drm/i915/intel_device_info.h
+> > b/drivers/gpu/drm/i915/intel_device_info.h
+> > index 2725cb7fc169..7d4d122d2182 100644
+> > --- a/drivers/gpu/drm/i915/intel_device_info.h
+> > +++ b/drivers/gpu/drm/i915/intel_device_info.h
+> > @@ -180,6 +180,7 @@ struct intel_device_info {
+> >  	} display;
+> >  
+> >  	u16 ddb_size; /* in blocks */
+> > +	u8 num_supported_dbuf_slices; /* number of DBuf slices */
+> >  
+> >  	/* Register offsets for the various display pipes and
+> > transcoders */
+> >  	int pipe_offsets[I915_MAX_TRANSCODERS];
+> > diff --git a/drivers/gpu/drm/i915/intel_pm.c
+> > b/drivers/gpu/drm/i915/intel_pm.c
+> > index c2510978ccdf..111bcafd6e4c 100644
+> > --- a/drivers/gpu/drm/i915/intel_pm.c
+> > +++ b/drivers/gpu/drm/i915/intel_pm.c
+> > @@ -3616,26 +3616,22 @@ bool ilk_disable_lp_wm(struct
+> > drm_i915_private *dev_priv)
+> >  	return _ilk_disable_lp_wm(dev_priv, WM_DIRTY_LP_ALL);
+> >  }
+> >  
+> > -u8 intel_enabled_dbuf_slices_num(struct drm_i915_private
+> > *dev_priv)
+> > +u8 intel_enabled_dbuf_slices_mask(struct drm_i915_private
+> > *dev_priv)
+> >  {
+> > -	u8 enabled_dbuf_slices_num;
+> > -
+> > -	/* Slice 1 will always be enabled */
+> > -	enabled_dbuf_slices_num = 1;
+> > +	u8 enabled_slices_mask = 0;
+> >  
+> >  	/* Gen prior to GEN11 have only one DBuf slice */
+> >  	if (INTEL_GEN(dev_priv) < 11)
+> > -		return enabled_dbuf_slices_num;
+> > +		return DBUF_S1_BIT;
+> 
+> Do we want to assume this or should we just read it anyway to make
+> sure?
+> As noted before, we might get into a disagreement with the DMC or
+> something and it would be good to know how the hardware is actually
+> set.
 
->> p.s.
->>
->> The intel-gfx CI seems to seriously dislike my patches lately, almost
->> always failing them; and usually on what at least seem to be unrelated
->> test-cases. Any advice on how to deal with this?
-> =
+As I see the current code prefers to assume this for any platforms
+< 11, which probably need somekind of different hw state readout.
+I would prefer to leave it as is for previous platforms not to make
+too many things messy at the same time.
 
-> Yeah, CI is snafu. I keep smashing retest until it gets through BAT
-> and then just double check the shard results to make sure nothing
-> relevant has tripped. If things look OK I recommend replying to the
-> result mail and provide a few short log snippets/other details on
-> what failed so that it's clear that it's irrelevant.
-> =
+Could be good idea to refactor this in subsequent patches though.
 
->>
->>
->>
->>
->>>
->>>>    =
+Stan
 
->>>>    	if ((IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv)) &&
->>>>    	    (mipi_config->pwm_blc =3D=3D PPS_BLC_PMIC)) {
->>>> -		intel_dsi->gpio_panel =3D
->>>> -			gpiod_get(dev->dev, "panel", GPIOD_OUT_HIGH);
->>>> -
->>>> +		intel_dsi->gpio_panel =3D gpiod_get(dev->dev, "panel", flags);
->>>>    		if (IS_ERR(intel_dsi->gpio_panel)) {
->>>>    			DRM_ERROR("Failed to own gpio for panel control\n");
->>>>    			intel_dsi->gpio_panel =3D NULL;
->>>> diff --git a/drivers/gpu/drm/i915/display/vlv_dsi.c b/drivers/gpu/drm/=
-i915/display/vlv_dsi.c
->>>> index 178d0fffba5b..e86e4a11e199 100644
->>>> --- a/drivers/gpu/drm/i915/display/vlv_dsi.c
->>>> +++ b/drivers/gpu/drm/i915/display/vlv_dsi.c
->>>> @@ -1910,7 +1910,7 @@ void vlv_dsi_init(struct drm_i915_private *dev_p=
-riv)
->>>>    =
-
->>>>    	vlv_dphy_param_init(intel_dsi);
->>>>    =
-
->>>> -	intel_dsi_vbt_gpio_init(intel_dsi);
->>>> +	intel_dsi_vbt_gpio_init(intel_dsi, current_mode !=3D NULL);
->>>>    =
-
->>>>    	drm_connector_init(dev, connector, &intel_dsi_connector_funcs,
->>>>    			   DRM_MODE_CONNECTOR_DSI);
->>>> -- =
-
->>>> 2.23.0
->>>
-> =
-
-
+> 
+> > -	/*
+> > -	 * FIXME: for now we'll only ever use 1 slice; pretend that we
+> > have
+> > -	 * only that 1 slice enabled until we have a proper way for on-
+> > demand
+> > -	 * toggling of the second slice.
+> > -	 */
+> > -	if (0 && I915_READ(DBUF_CTL_S2) & DBUF_POWER_STATE)
+> > -		enabled_dbuf_slices_num++;
+> > +	/* Check if second DBuf slice is enabled */
+> > +	if (I915_READ(DBUF_CTL_S1) & DBUF_POWER_STATE)
+> > +		enabled_slices_mask |= DBUF_S1_BIT;
+> 
+> You have the comment about the second slice before your check of the
+> first slice...  I think you can just drop the comment in this case.
+> 
+> >  
+> > -	return enabled_dbuf_slices_num;
+> > +	if (I915_READ(DBUF_CTL_S2) & DBUF_POWER_STATE)
+> > +		enabled_slices_mask |= DBUF_S2_BIT;
+> > +
+> > +	return enabled_slices_mask;
+> >  }
+> >  
+> >  /*
+> > @@ -3843,8 +3839,6 @@ static u16 intel_get_ddb_size(struct
+> > drm_i915_private *dev_priv,
+> >  {
+> >  	struct drm_atomic_state *state = crtc_state->uapi.state;
+> >  	struct intel_atomic_state *intel_state =
+> > to_intel_atomic_state(state);
+> > -	const struct drm_display_mode *adjusted_mode;
+> > -	u64 total_data_bw;
+> >  	u16 ddb_size = INTEL_INFO(dev_priv)->ddb_size;
+> >  
+> >  	WARN_ON(ddb_size == 0);
+> > @@ -3852,23 +3846,8 @@ static u16 intel_get_ddb_size(struct
+> > drm_i915_private *dev_priv,
+> >  	if (INTEL_GEN(dev_priv) < 11)
+> >  		return ddb_size - 4; /* 4 blocks for bypass path
+> > allocation */
+> >  
+> > -	adjusted_mode = &crtc_state->hw.adjusted_mode;
+> > -	total_data_bw = total_data_rate *
+> > drm_mode_vrefresh(adjusted_mode);
+> > -
+> > -	/*
+> > -	 * 12GB/s is maximum BW supported by single DBuf slice.
+> > -	 *
+> > -	 * FIXME dbuf slice code is broken:
+> > -	 * - must wait for planes to stop using the slice before
+> > powering it off
+> > -	 * - plane straddling both slices is illegal in multi-pipe
+> > scenarios
+> > -	 * - should validate we stay within the hw bandwidth limits
+> > -	 */
+> > -	if (0 && (num_active > 1 || total_data_bw >= GBps(12))) {
+> > -		intel_state->enabled_dbuf_slices_num = 2;
+> > -	} else {
+> > -		intel_state->enabled_dbuf_slices_num = 1;
+> > -		ddb_size /= 2;
+> > -	}
+> > +	intel_state->enabled_dbuf_slices_mask = DBUF_S1_BIT;
+> > +	ddb_size /= 2;
+> >  
+> >  	return ddb_size;
+> >  }
+> > @@ -4065,7 +4044,7 @@ void skl_pipe_ddb_get_hw_state(struct
+> > intel_crtc *crtc,
+> >  
+> >  void skl_ddb_get_hw_state(struct drm_i915_private *dev_priv)
+> >  {
+> > -	dev_priv->enabled_dbuf_slices_num =
+> > intel_enabled_dbuf_slices_num(dev_priv);
+> > +	dev_priv->enabled_dbuf_slices_mask =
+> > intel_enabled_dbuf_slices_mask(dev_priv);
+> >  }
+> >  
+> >  /*
+> > @@ -5204,7 +5183,7 @@ skl_compute_ddb(struct intel_atomic_state
+> > *state)
+> >  	struct intel_crtc *crtc;
+> >  	int ret, i;
+> >  
+> > -	state->enabled_dbuf_slices_num = dev_priv-
+> > >enabled_dbuf_slices_num;
+> > +	state->enabled_dbuf_slices_mask = dev_priv-
+> > >enabled_dbuf_slices_mask;
+> >  
+> >  	for_each_oldnew_intel_crtc_in_state(state, crtc,
+> > old_crtc_state,
+> >  					    new_crtc_state, i) {
+> > diff --git a/drivers/gpu/drm/i915/intel_pm.h
+> > b/drivers/gpu/drm/i915/intel_pm.h
+> > index a476f6c730e9..7a7494d1224f 100644
+> > --- a/drivers/gpu/drm/i915/intel_pm.h
+> > +++ b/drivers/gpu/drm/i915/intel_pm.h
+> > @@ -33,7 +33,7 @@ void g4x_wm_get_hw_state(struct drm_i915_private
+> > *dev_priv);
+> >  void vlv_wm_get_hw_state(struct drm_i915_private *dev_priv);
+> >  void ilk_wm_get_hw_state(struct drm_i915_private *dev_priv);
+> >  void skl_wm_get_hw_state(struct drm_i915_private *dev_priv);
+> > -u8 intel_enabled_dbuf_slices_num(struct drm_i915_private
+> > *dev_priv);
+> > +u8 intel_enabled_dbuf_slices_mask(struct drm_i915_private
+> > *dev_priv);
+> >  void skl_pipe_ddb_get_hw_state(struct intel_crtc *crtc,
+> >  			       struct skl_ddb_entry *ddb_y,
+> >  			       struct skl_ddb_entry *ddb_uv);
+> > -- 
+> > 2.17.1
+> > 
+> 
+> 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
