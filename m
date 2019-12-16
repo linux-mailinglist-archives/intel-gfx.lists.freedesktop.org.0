@@ -2,36 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 299B6120158
-	for <lists+intel-gfx@lfdr.de>; Mon, 16 Dec 2019 10:44:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 41D4E12016A
+	for <lists+intel-gfx@lfdr.de>; Mon, 16 Dec 2019 10:47:04 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2182289A77;
-	Mon, 16 Dec 2019 09:44:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3403F89F8E;
+	Mon, 16 Dec 2019 09:47:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1B06889A77;
- Mon, 16 Dec 2019 09:44:32 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F325989FA6;
+ Mon, 16 Dec 2019 09:46:59 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 16 Dec 2019 01:44:31 -0800
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 16 Dec 2019 01:46:59 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,321,1571727600"; 
- d="asc'?scan'208";a="212170178"
-Received: from zhen-hp.sh.intel.com (HELO zhen-hp) ([10.239.13.116])
- by fmsmga008.fm.intel.com with ESMTP; 16 Dec 2019 01:44:29 -0800
-Date: Mon, 16 Dec 2019 17:42:43 +0800
-From: Zhenyu Wang <zhenyuw@linux.intel.com>
-To: zhengbin <zhengbin13@huawei.com>
-Message-ID: <20191216094243.GK21662@zhen-hp.sh.intel.com>
-References: <1576467845-60920-1-git-send-email-zhengbin13@huawei.com>
+X-IronPort-AV: E=Sophos;i="5.69,321,1571727600"; d="scan'208";a="221465602"
+Received: from gackerm1-mobl1.ger.corp.intel.com (HELO [10.252.49.201])
+ ([10.252.49.201])
+ by fmsmga001.fm.intel.com with ESMTP; 16 Dec 2019 01:46:58 -0800
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+References: <20191216093433.2517697-1-chris@chris-wilson.co.uk>
+From: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
+Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way,
+ Swindon SN3 1RJ
+Message-ID: <3b79edfe-673a-9cb7-d8a0-7bf5b54748c8@intel.com>
+Date: Mon, 16 Dec 2019 11:46:56 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.3.0
 MIME-Version: 1.0
-In-Reply-To: <1576467845-60920-1-git-send-email-zhengbin13@huawei.com>
-User-Agent: Mutt/1.10.0 (2018-05-17)
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Remove unneeded semicolon
+In-Reply-To: <20191216093433.2517697-1-chris@chris-wilson.co.uk>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [igt-dev] [PATCH i-g-t] i915/perf: Skip OA testing
+ on systems too old
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,102 +48,52 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: Zhenyu Wang <zhenyuw@linux.intel.com>
-Cc: dri-devel@lists.freedesktop.org, airlied@linux.ie,
- intel-gfx@lists.freedesktop.org, intel-gvt-dev@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============0288775278=="
+Cc: igt-dev@lists.freedesktop.org
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
---===============0288775278==
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="ZOudaV4lSIjFTlHv"
-Content-Disposition: inline
-
-
---ZOudaV4lSIjFTlHv
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On 2019.12.16 11:44:05 +0800, zhengbin wrote:
-> Fixes coccicheck warning:
->=20
-> drivers/gpu/drm/i915/gem/i915_gem_region.c:88:2-3: Unneeded semicolon
-> drivers/gpu/drm/i915/gvt/gtt.c:1285:2-3: Unneeded semicolon
->=20
-> Reported-by: Hulk Robot <hulkci@huawei.com>
-> Signed-off-by: zhengbin <zhengbin13@huawei.com>
-> ---
->  drivers/gpu/drm/i915/gem/i915_gem_region.c | 2 +-
->  drivers/gpu/drm/i915/gvt/gtt.c             | 2 +-
->  2 files changed, 2 insertions(+), 2 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_region.c b/drivers/gpu/drm=
-/i915/gem/i915_gem_region.c
-> index 2f7bcfb..d50adac 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_region.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_region.c
-> @@ -85,7 +85,7 @@ i915_gem_object_get_pages_buddy(struct drm_i915_gem_obj=
-ect *obj)
->  		}
->=20
->  		prev_end =3D offset + block_size;
-> -	};
-> +	}
->=20
->  	sg_page_sizes |=3D sg->length;
->  	sg_mark_end(sg);
-> diff --git a/drivers/gpu/drm/i915/gvt/gtt.c b/drivers/gpu/drm/i915/gvt/gt=
-t.c
-> index 4b04af5..34cb404 100644
-> --- a/drivers/gpu/drm/i915/gvt/gtt.c
-> +++ b/drivers/gpu/drm/i915/gvt/gtt.c
-> @@ -1282,7 +1282,7 @@ static int ppgtt_populate_shadow_entry(struct intel=
-_vgpu *vgpu,
->  		return -EINVAL;
->  	default:
->  		GEM_BUG_ON(1);
-> -	};
-> +	}
->=20
->  	/* direct shadow */
->  	ret =3D intel_gvt_hypervisor_dma_map_guest_page(vgpu, gfn, page_size,
-> --
-> 2.7.4
+On 16/12/2019 11:34, Chris Wilson wrote:
+> Don't flat out fail if the system doesn't support OA, just skip.
 >
+> Closes: https://gitlab.freedesktop.org/drm/intel/issues/834
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> ---
+>   tests/perf.c | 4 +---
+>   1 file changed, 1 insertion(+), 3 deletions(-)
+>
+> diff --git a/tests/perf.c b/tests/perf.c
+> index f5dd6051e..12f552743 100644
+> --- a/tests/perf.c
+> +++ b/tests/perf.c
+> @@ -884,11 +884,9 @@ init_sys_info(void)
+>   	const char *test_set_uuid = NULL;
+>   	char buf[256];
+>   
+> -	igt_assert_neq(devid, 0);
+> -
+>   	timestamp_frequency = get_cs_timestamp_frequency();
+>   	igt_debug("timestamp_frequency = %lu\n", timestamp_frequency);
+> -	igt_assert_neq(timestamp_frequency, 0);
+> +	igt_require(timestamp_frequency);
 
-Thanks for catching.
 
-Acked-by: Zhenyu Wang <zhenyuw@linux.intel.com>
+This requires a kernel version more recent (4.16) than when perf support 
+was added (4.13).
 
---=20
-Open Source Technology Center, Intel ltd.
+Is this what you intended?
 
-$gpg --keyserver wwwkeys.pgp.net --recv-keys 4D781827
 
---ZOudaV4lSIjFTlHv
-Content-Type: application/pgp-signature; name="signature.asc"
+-Lionel
 
------BEGIN PGP SIGNATURE-----
 
-iF0EARECAB0WIQTXuabgHDW6LPt9CICxBBozTXgYJwUCXfdRkwAKCRCxBBozTXgY
-J+sxAJ0X/KTLS6VxCBOiaGAUEzq9HGybrACgjbqshO13YwuRLTjRIWf9G+wiRe0=
-=QA8j
------END PGP SIGNATURE-----
+>   
+>   	if (IS_HASWELL(devid)) {
+>   		/* We don't have a TestOa metric set for Haswell so use
 
---ZOudaV4lSIjFTlHv--
-
---===============0288775278==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0288775278==--
