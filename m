@@ -1,41 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C58BA121BDA
-	for <lists+intel-gfx@lfdr.de>; Mon, 16 Dec 2019 22:37:46 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 080A0121C13
+	for <lists+intel-gfx@lfdr.de>; Mon, 16 Dec 2019 22:41:09 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 471BD6E8AD;
-	Mon, 16 Dec 2019 21:37:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C279589DB5;
+	Mon, 16 Dec 2019 21:41:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A819F6E8AD
- for <intel-gfx@lists.freedesktop.org>; Mon, 16 Dec 2019 21:37:42 +0000 (UTC)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E851E89C46
+ for <intel-gfx@lists.freedesktop.org>; Mon, 16 Dec 2019 21:41:04 +0000 (UTC)
 X-Amp-Result: UNKNOWN
 X-Amp-Original-Verdict: FILE UNKNOWN
 X-Amp-File-Uploaded: False
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 16 Dec 2019 13:37:41 -0800
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by orsmga106.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 16 Dec 2019 13:41:04 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,323,1571727600"; d="scan'208";a="221586808"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by fmsmga001.fm.intel.com with SMTP; 16 Dec 2019 13:37:39 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 16 Dec 2019 23:37:38 +0200
-Date: Mon, 16 Dec 2019 23:37:38 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Manasi Navare <manasi.d.navare@intel.com>
-Message-ID: <20191216213738.GD1208@intel.com>
+X-IronPort-AV: E=Sophos;i="5.69,323,1571727600"; d="scan'208";a="212181472"
+Received: from labuser-z97x-ud5h.jf.intel.com (HELO intel.com) ([10.54.75.49])
+ by fmsmga007.fm.intel.com with ESMTP; 16 Dec 2019 13:41:03 -0800
+Date: Mon, 16 Dec 2019 13:42:33 -0800
+From: Manasi Navare <manasi.d.navare@intel.com>
+To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+Message-ID: <20191216214232.GI19224@intel.com>
 References: <20191211211425.17821-1-manasi.d.navare@intel.com>
  <20191211211425.17821-2-manasi.d.navare@intel.com>
- <20191216143738.GV1208@intel.com>
- <20191216191309.GA18010@intel.com>
+ <20191213200549.GD1208@intel.com>
+ <20191214022836.GH19224@intel.com>
+ <20191216120343.GM1208@intel.com>
+ <20191216164023.GA17177@intel.com>
+ <20191216171120.GY1208@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20191216191309.GA18010@intel.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20191216171120.GY1208@intel.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
 Subject: Re: [Intel-gfx] [PATCH 1/3] drm/i915/dp: Make sure all tiled
  connectors get added to the state with full modeset
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -56,168 +57,228 @@ Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Dec 16, 2019 at 11:13:09AM -0800, Manasi Navare wrote:
-> On Mon, Dec 16, 2019 at 04:37:38PM +0200, Ville Syrj=E4l=E4 wrote:
-> > On Wed, Dec 11, 2019 at 01:14:23PM -0800, Manasi Navare wrote:
-> > > In case of tiled displays, all the tiles are linke dto each other
-> > > for transcoder port sync. So in intel_atomic_check() we need to make
-> > > sure that we add all the tiles to the modeset and if one of the
-> > > tiles needs a full modeset then mark all other tiles for a full modes=
-et.
+On Mon, Dec 16, 2019 at 07:11:20PM +0200, Ville Syrj=E4l=E4 wrote:
+> On Mon, Dec 16, 2019 at 08:40:24AM -0800, Manasi Navare wrote:
+> > On Mon, Dec 16, 2019 at 02:03:43PM +0200, Ville Syrj=E4l=E4 wrote:
+> > > On Fri, Dec 13, 2019 at 06:28:40PM -0800, Manasi Navare wrote:
+> > > > On Fri, Dec 13, 2019 at 10:05:49PM +0200, Ville Syrj=E4l=E4 wrote:
+> > > > > On Wed, Dec 11, 2019 at 01:14:23PM -0800, Manasi Navare wrote:
+> > > > > > In case of tiled displays, all the tiles are linke dto each oth=
+er
+> > > > > > for transcoder port sync. So in intel_atomic_check() we need to=
+ make
+> > > > > > sure that we add all the tiles to the modeset and if one of the
+> > > > > > tiles needs a full modeset then mark all other tiles for a full=
+ modeset.
+> > > > > > =
+
+> > > > > > Suggested-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > > > > > Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > > > > > Cc: Jos=E9 Roberto de Souza <jose.souza@intel.com>
+> > > > > > Bugzilla: https://gitlab.freedesktop.org/drm/intel/issues/5
+> > > > > > Signed-off-by: Manasi Navare <manasi.d.navare@intel.com>
+> > > > > > ---
+> > > > > >  drivers/gpu/drm/i915/display/intel_display.c | 78 ++++++++++++=
+++++++++
+> > > > > >  1 file changed, 78 insertions(+)
+> > > > > > =
+
+> > > > > > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/dri=
+vers/gpu/drm/i915/display/intel_display.c
+> > > > > > index 803993a01ca7..7263eaa66cda 100644
+> > > > > > --- a/drivers/gpu/drm/i915/display/intel_display.c
+> > > > > > +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> > > > > > @@ -14066,6 +14066,80 @@ static int intel_atomic_check_crtcs(st=
+ruct intel_atomic_state *state)
+> > > > > >  	return 0;
+> > > > > >  }
+> > > > > >  =
+
+> > > > > > +static int
+> > > > > > +intel_dp_modeset_all_tiles(struct drm_i915_private *dev_priv,
+> > > > > > +			   struct intel_atomic_state *state, int tile_grp_id)
+> > > > > > +{
+> > > > > > +	struct drm_connector *conn_iter;
+> > > > > 'connector'
+> > > > > > +	struct drm_connector_list_iter conn_list_iter;
+> > > > > > +	struct drm_crtc_state *crtc_state;
+> > > > > =
+
+> > > > > crtc_state has needlessly wide scope.
+> > > > > =
+
+> > > > > > +
+> > > > > > +	drm_connector_list_iter_begin(&dev_priv->drm, &conn_list_iter=
+);
+> > > > > > +	drm_for_each_connector_iter(conn_iter, &conn_list_iter) {
+> > > > > > +		struct drm_connector_state *conn_iter_state;
+> > > > > =
+
+> > > > > 'conn_state' is the most popular name.
+> > > > > =
+
+> > > > > > +
+> > > > > > +		if (!conn_iter->has_tile)
+> > > > > > +			continue;
+> > > > > > +		conn_iter_state =3D drm_atomic_get_connector_state(&state->b=
+ase,
+> > > > > > +								 conn_iter);
+> > > > > > +		if (IS_ERR(conn_iter_state)) {
+> > > > > > +			drm_connector_list_iter_end(&conn_list_iter);
+> > > > > > +			return PTR_ERR(conn_iter_state);
+> > > > > > +		}
+> > > > > > +
+> > > > > > +		if (!conn_iter_state->crtc)
+> > > > > > +			continue;
+> > > > > > +
+> > > > > > +		if (conn_iter->tile_group->id !=3D tile_grp_id)
+> > > > > > +			continue;
+> > > > > =
+
+> > > > > The tile group check should be part of the same if with the has_t=
+ile
+> > > > > check.
+> > > > > =
+
+> > > > > > +
+> > > > > > +		crtc_state =3D drm_atomic_get_crtc_state(&state->base, conn_=
+iter_state->crtc);
+> > > > > > +		if (IS_ERR(crtc_state)) {
+> > > > > > +			drm_connector_list_iter_end(&conn_list_iter);
+> > > > > > +			return PTR_ERR(conn_iter_state);
+> > > > > > +		}
+> > > > > > +		crtc_state->mode_changed =3D true;
+> > > > > > +	}
+> > > > > > +	drm_connector_list_iter_end(&conn_list_iter);
+> > > > > > +
+> > > > > > +	return 0;
+> > > > > > +}
+> > > > > > +
+> > > > > > +static int
+> > > > > > +intel_dp_atomic_trans_port_sync_check(struct drm_i915_private =
+*dev_priv,
+> > > > > =
+
+> > > > > Pointless variable. Can be extracted from the atomic state.
+> > > > > =
+
+> > > > > > +				      struct intel_atomic_state *state)
+> > > > > > +{
+> > > > > > +	struct drm_connector *connector;
+> > > > > > +	struct drm_crtc_state *crtc_state;
+> > > > > > +	struct drm_connector_state *connector_state;
+> > > > > > +	int i, ret, tile_grp_id =3D 0;
+> > > > > =
+
+> > > > > tile_grp_id is rather pointless. crtc_state and ret can move into
+> > > > > tighter scope. And the next suggestion allows you to kill crtc_st=
+ate
+> > > > > entirely...
+> > > > =
+
+> > > > Its not clear why tile_grp_id is pointless, I am using tile_grp_id =
+for the first connector with has_tile
+> > > > and I make sure that I dont enter into the loop to check modeset ag=
+ain for the connector with
+> > > > same tile_grp_id because we have already set its mode changed to tr=
+ue in intel_dp_modeset_all_tiles()
+> > > > =
+
+> > > > How can I achieve this instead?
 > > > =
 
-> > > Suggested-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> > > Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> > > Cc: Jos=E9 Roberto de Souza <jose.souza@intel.com>
-> > > Bugzilla: https://gitlab.freedesktop.org/drm/intel/issues/5
-> > > Signed-off-by: Manasi Navare <manasi.d.navare@intel.com>
-> > > ---
-> > >  drivers/gpu/drm/i915/display/intel_display.c | 78 ++++++++++++++++++=
-++
-> > >  1 file changed, 78 insertions(+)
 > > > =
 
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/g=
-pu/drm/i915/display/intel_display.c
-> > > index 803993a01ca7..7263eaa66cda 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_display.c
-> > > +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> > > @@ -14066,6 +14066,80 @@ static int intel_atomic_check_crtcs(struct i=
-ntel_atomic_state *state)
-> > >  	return 0;
-> > >  }
-> > >  =
+> > > Instead of =
 
-> > > +static int
-> > > +intel_dp_modeset_all_tiles(struct drm_i915_private *dev_priv,
-> > > +			   struct intel_atomic_state *state, int tile_grp_id)
-> > > +{
-> > > +	struct drm_connector *conn_iter;
-> > > +	struct drm_connector_list_iter conn_list_iter;
-> > > +	struct drm_crtc_state *crtc_state;
-> > > +
-> > > +	drm_connector_list_iter_begin(&dev_priv->drm, &conn_list_iter);
-> > > +	drm_for_each_connector_iter(conn_iter, &conn_list_iter) {
-> > > +		struct drm_connector_state *conn_iter_state;
-> > > +
-> > > +		if (!conn_iter->has_tile)
-> > > +			continue;
-> > > +		conn_iter_state =3D drm_atomic_get_connector_state(&state->base,
-> > > +								 conn_iter);
-> > > +		if (IS_ERR(conn_iter_state)) {
-> > > +			drm_connector_list_iter_end(&conn_list_iter);
-> > > +			return PTR_ERR(conn_iter_state);
-> > > +		}
-> > > +
-> > > +		if (!conn_iter_state->crtc)
-> > > +			continue;
-> > > +
-> > > +		if (conn_iter->tile_group->id !=3D tile_grp_id)
-> > > +			continue;
-> > > +
-> > > +		crtc_state =3D drm_atomic_get_crtc_state(&state->base, conn_iter_s=
-tate->crtc);
-> > > +		if (IS_ERR(crtc_state)) {
-> > > +			drm_connector_list_iter_end(&conn_list_iter);
-> > > +			return PTR_ERR(conn_iter_state);
-> > > +		}
-> > > +		crtc_state->mode_changed =3D true;
-> > > +	}
-> > > +	drm_connector_list_iter_end(&conn_list_iter);
-> > > +
-> > > +	return 0;
-> > > +}
-> > > +
-> > > +static int
-> > > +intel_dp_atomic_trans_port_sync_check(struct drm_i915_private *dev_p=
-riv,
-> > > +				      struct intel_atomic_state *state)
-> > > +{
-> > > +	struct drm_connector *connector;
-> > > +	struct drm_crtc_state *crtc_state;
-> > > +	struct drm_connector_state *connector_state;
-> > > +	int i, ret, tile_grp_id =3D 0;
-> > > +
-> > > +	if (INTEL_GEN(dev_priv) < 11)
-> > > +		return 0;
-> > > +
-> > > +	/* Is tiled, mark all other tiled CRTCs as needing a modeset */
-> > > +	for_each_new_connector_in_state(&state->base, connector, connector_=
-state, i) {
-> > > +		if (!connector->has_tile)
-> > > +			continue;
-> > > +		if (connector_state->crtc &&
-> > > +		    tile_grp_id !=3D connector->tile_group->id) {
-> > > +			crtc_state =3D drm_atomic_get_new_crtc_state(&state->base,
-> > > +								   connector_state->crtc);
-> > > +			if (!drm_atomic_crtc_needs_modeset(crtc_state))
-> > > +				continue;
-> > > +
-> > > +			tile_grp_id =3D connector->tile_group->id;
-> > > +		} else
-> > > +			continue;
-> > > +
-> > > +		ret =3D intel_dp_modeset_all_tiles(dev_priv, state, tile_grp_id);
-> > > +		if (ret)
-> > > +			return ret;
-> > > +	}
-> > > +
-> > > +	return 0;
-> > > +}
+> > > foo()
+> > > {
+> > > 	tile_grp_id =3D 0;
+> > > =
+
+> > > 	for_each() {
+> > > 		tile_grp_id =3D conn->tile_grp_id;
+> > > =
+
+> > > 		intel_dp_modeset_all_tiles(tile_grp_id);
+> > > 	}
+> > > }
+> > > =
+
+> > > you just do
+> > > foo()
+> > > {
+> > > 	for_each() {
+> > > 		intel_dp_modeset_all_tiles(conn->tile_grp_id);
+> > > 	}
+> > > }
 > > =
 
-> > BTW after some more pondering I don't think this alone is sufficient.
-> > The tile information may have already disppeared so I believe we also
-> > need to make sure we mark all currently synced crtcs as needing a
-> > modeset if any of them need a modeset. And I guess that's pretty much
-> > the same function we'll need to handle fastset correctly.
-> >
+> > Yes I understand that we can pass the conn->tile_grp_id directly. But c=
+urrently I am using tile_grp_id in for_each(), to call intel_dp_modeset_all=
+_tiles()
+> > only if that cnnector is from a differnt tile grp id else continue.
+> > =
+
+> > foo()
+> > {
+> > 	for_each() {
+> > 		if(tile_grp_id !=3D conn->tile_grp_id)
+> > 			intel_dpmodeset_all_tiles();
+> > 		else
+> > 			continue;
+> > 	}
+> > }
+> > =
+
+> > calling intel_dp_modeset_all_tiles() for all tiles is kind of redundant=
+. How can I do this with your suggestion, or do you think
+> > we should call intel_dp_modeset_all_tiles for each connector anyway and=
+ it shouldnt matter?
 > =
 
-> The crtcs in the current state get synced and master/slave assignments ha=
-ppen in icl_add_sync_mode_crtcs before compute_config call
-> So are you suggesting basically moving this function after the crtcs are =
-synced and then just setting modeset
-> to true for all synced crtcs if one of them needs modeset?
+> Yes if that connector is tiled.
+> =
 
-I think it should look something like:
+> Eg. if you have something like
+> connector A: tile group 1
+> connector B: tile group 2
+> connector C: tile group 3
+> connector D: tile group 2
+> =
 
-modeset_tiled_things();
-modeset_synced_things();
+> then your single tile_grp_id variable doesn't work anyway. You'd need
+> track which tile groups you've already handled and skip those. But
+> much easier to just blindly plow ahead.
 
-for_each() {
-	modeset_pipes_config();
-	if (can_fastset()) {
-		modeset=3Dfalse;
-		fastset=3Dtrue;
+Okay so in our case :
+Conn A: tile gro 1
+Conn B: tile grp 1
+
+Now foo {
+
+	for_each_conn {
+		//connA
+		intel_modeset_all_tiles() // this will set mode to true for conn B in ite=
+ration 1
 	}
 }
+Now in the second iteration
+ 	for_each_conn {
+		// conn B iter 2
+		intel_modeset_all_tiles() // this will set mode to true for conn A =
 
-modeset_synced_things();
+	}
+redundant second iteration since both are in same tile grp
 
-for_each() {
-	if (!modeset && fastset)
-		copy_state();
-}
+Manasi
 
 > =
 
-> And why would the tile information be disappeared?  =
+> -- =
 
-
-It'll get updated whenever someone does a getconnector() or whatever.
-
-Example:
-1. sync pipe A and B, pipe A is master
-2. swap pipe B display for something else
-3. getconnector() -> tile info goes poof
-4. do something on pipe A that needs a modeset
-   no tile info so we miss that pipe B also needs a modeset
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
+> Ville Syrj=E4l=E4
+> Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
