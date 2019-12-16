@@ -1,22 +1,22 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D7BA3120654
-	for <lists+intel-gfx@lfdr.de>; Mon, 16 Dec 2019 13:53:57 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E2DB312066D
+	for <lists+intel-gfx@lfdr.de>; Mon, 16 Dec 2019 13:55:57 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 277B86E50B;
-	Mon, 16 Dec 2019 12:53:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4EC5289C80;
+	Mon, 16 Dec 2019 12:55:56 +0000 (UTC)
 X-Original-To: Intel-gfx@lists.freedesktop.org
 Delivered-To: Intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B39DC6E50B
- for <Intel-gfx@lists.freedesktop.org>; Mon, 16 Dec 2019 12:53:53 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DAA0989C80
+ for <Intel-gfx@lists.freedesktop.org>; Mon, 16 Dec 2019 12:55:54 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from localhost (unverified [78.156.65.138]) 
  by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 19595067-1500050 for multiple; Mon, 16 Dec 2019 12:53:48 +0000
+ 19595096-1500050 for multiple; Mon, 16 Dec 2019 12:55:48 +0000
 MIME-Version: 1.0
 From: Chris Wilson <chris@chris-wilson.co.uk>
 User-Agent: alot/0.6
@@ -25,8 +25,8 @@ To: Intel-gfx@lists.freedesktop.org,
 References: <20191216120704.958-1-tvrtko.ursulin@linux.intel.com>
  <20191216120704.958-3-tvrtko.ursulin@linux.intel.com>
 In-Reply-To: <20191216120704.958-3-tvrtko.ursulin@linux.intel.com>
-Message-ID: <157650082706.2428.8789012781722817984@skylake-alporthouse-com>
-Date: Mon, 16 Dec 2019 12:53:47 +0000
+Message-ID: <157650094762.2428.12455931392724147119@skylake-alporthouse-com>
+Date: Mon, 16 Dec 2019 12:55:47 +0000
 Subject: Re: [Intel-gfx] [PATCH 2/5] drm/i915: Expose list of clients in
  sysfs
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -47,32 +47,21 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 Quoting Tvrtko Ursulin (2019-12-16 12:07:01)
-> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-> index 0781b6326b8c..9fcbcb6d6f76 100644
-> --- a/drivers/gpu/drm/i915/i915_drv.h
-> +++ b/drivers/gpu/drm/i915/i915_drv.h
-> @@ -224,6 +224,20 @@ struct drm_i915_file_private {
->         /** ban_score: Accumulated score of all ctx bans and fast hangs. */
->         atomic_t ban_score;
->         unsigned long hang_timestamp;
+> +static void i915_gem_remove_client(struct drm_i915_file_private *file_priv)
+> +{
+> +       struct i915_drm_clients *clients = &file_priv->dev_priv->clients;
+> +       struct i915_drm_client *client = &file_priv->client;
 > +
-> +       struct i915_drm_client {
-> +               unsigned int id;
+> +       if (!client->name)
+> +               return; /* intel_fbdev_init registers a client before sysfs */
 > +
-> +               struct pid *pid;
-> +               char *name;
+> +       sysfs_remove_file(client->root, (struct attribute *)&client->attr.pid);
+> +       sysfs_remove_file(client->root, (struct attribute *)&client->attr.name);
+> +       kobject_put(client->root);
 
-Hmm. Should we scrap i915_gem_context.pid and just use the client.pid?
-
-> +
-> +               struct kobject *root;
-> +
-> +               struct {
-> +                       struct device_attribute pid;
-> +                       struct device_attribute name;
-> +               } attr;
-> +       } client;
->  };
+Do we need to remove individual files if we unplug the root?
+sysfs_remove_dir(client->root) ?
+-Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
