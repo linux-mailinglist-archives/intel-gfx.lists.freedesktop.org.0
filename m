@@ -1,49 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 33FDC11FEF4
-	for <lists+intel-gfx@lfdr.de>; Mon, 16 Dec 2019 08:19:55 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A1E3611FEFF
+	for <lists+intel-gfx@lfdr.de>; Mon, 16 Dec 2019 08:28:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 84FE26E1BB;
-	Mon, 16 Dec 2019 07:19:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9F6CF6E1E0;
+	Mon, 16 Dec 2019 07:28:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0207B6E1BB
- for <intel-gfx@lists.freedesktop.org>; Mon, 16 Dec 2019 07:19:51 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by orsmga106.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 15 Dec 2019 23:19:51 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,320,1571727600"; d="scan'208";a="217326996"
-Received: from linux.intel.com ([10.54.29.200])
- by orsmga003.jf.intel.com with ESMTP; 15 Dec 2019 23:19:51 -0800
-Received: from [10.251.95.214] (abudanko-mobl.ccr.corp.intel.com
- [10.251.95.214])
- by linux.intel.com (Postfix) with ESMTP id 77F91580890;
- Sun, 15 Dec 2019 23:19:43 -0800 (PST)
-From: Alexey Budankov <alexey.budankov@linux.intel.com>
-To: Peter Zijlstra <peterz@infradead.org>,
- Arnaldo Carvalho de Melo <acme@kernel.org>, Ingo Molnar <mingo@redhat.com>,
- jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
- rodrigo.vivi@intel.com, Alexei Starovoitov <ast@kernel.org>,
- james.bottomley@hansenpartnership.com, benh@kernel.crashing.org,
- Casey Schaufler <casey@schaufler-ca.com>, serge@hallyn.com,
- James Morris <jmorris@namei.org>
-References: <26101427-c0a3-db9f-39e9-9e5f4ddd009c@linux.intel.com>
-Organization: Intel Corp.
-Message-ID: <22abd684-706c-1b3c-3858-e756217c9243@linux.intel.com>
-Date: Mon, 16 Dec 2019 10:19:42 +0300
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.1
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id B7B5A6E1E0;
+ Mon, 16 Dec 2019 07:28:52 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id B03D2A01BB;
+ Mon, 16 Dec 2019 07:28:52 +0000 (UTC)
 MIME-Version: 1.0
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Alexey Budankov" <alexey.budankov@linux.intel.com>
+Date: Mon, 16 Dec 2019 07:28:52 -0000
+Message-ID: <157648133269.5614.15940211195987665645@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <26101427-c0a3-db9f-39e9-9e5f4ddd009c@linux.intel.com>
 In-Reply-To: <26101427-c0a3-db9f-39e9-9e5f4ddd009c@linux.intel.com>
-Content-Language: en-US
-Subject: [Intel-gfx] [PATCH v2 7/7] parisc/perf: open access for
- CAP_SYS_PERFMON privileged process
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBJ?=
+ =?utf-8?q?ntroduce_CAP=5FSYS=5FPERFMON_to_secure_system_performance_monit?=
+ =?utf-8?q?oring_and_observability?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,50 +39,36 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Song Liu <songliubraving@fb.com>, Andi Kleen <ak@linux.intel.com>,
- Kees Cook <keescook@chromium.org>, linux-parisc@vger.kernel.org,
- Jann Horn <jannh@google.com>,
- Alexander Shishkin <alexander.shishkin@linux.intel.com>,
- linuxppc-dev@lists.ozlabs.org, intel-gfx@lists.freedesktop.org,
- Igor Lubashev <ilubashe@akamai.com>,
- linux-kernel <linux-kernel@vger.kernel.org>,
- Stephane Eranian <eranian@google.com>,
- "linux-perf-users@vger.kernel.org" <linux-perf-users@vger.kernel.org>,
- selinux@vger.kernel.org, linux-security-module@vger.kernel.org,
- Namhyung Kim <namhyung@kernel.org>, Thomas Gleixner <tglx@linutronix.de>,
- bgregg@netflix.com, Jiri Olsa <jolsa@redhat.com>, bpf@vger.kernel.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+== Series Details ==
 
-Open access to monitoring for CAP_SYS_PERFMON privileged processes.
-For backward compatibility reasons access to the monitoring remains open
-for CAP_SYS_ADMIN privileged processes but CAP_SYS_ADMIN usage for secure
-monitoring is discouraged with respect to CAP_SYS_PERFMON capability.
+Series: Introduce CAP_SYS_PERFMON to secure system performance monitoring and observability
+URL   : https://patchwork.freedesktop.org/series/70961/
+State : failure
 
-Signed-off-by: Alexey Budankov <alexey.budankov@linux.intel.com>
----
- arch/parisc/kernel/perf.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+== Summary ==
 
-diff --git a/arch/parisc/kernel/perf.c b/arch/parisc/kernel/perf.c
-index 676683641d00..58e7d1444e4f 100644
---- a/arch/parisc/kernel/perf.c
-+++ b/arch/parisc/kernel/perf.c
-@@ -300,7 +300,7 @@ static ssize_t perf_write(struct file *file, const char __user *buf,
- 	else
- 		return -EFAULT;
- 
--	if (!capable(CAP_SYS_ADMIN))
-+	if (!(capable(CAP_SYS_PERFMON) || capable(CAP_SYS_ADMIN)))
- 		return -EACCES;
- 
- 	if (count != sizeof(uint32_t))
--- 
-2.20.1
-
+Applying: capabilities: introduce CAP_SYS_PERFMON to kernel and user space
+Applying: perf/core: open access for CAP_SYS_PERFMON privileged process
+Applying: perf tool: extend Perf tool with CAP_SYS_PERFMON capability support
+Applying: drm/i915/perf: open access for CAP_SYS_PERFMON privileged process
+Using index info to reconstruct a base tree...
+M	drivers/gpu/drm/i915/i915_perf.c
+Falling back to patching base and 3-way merge...
+Auto-merging drivers/gpu/drm/i915/i915_perf.c
+CONFLICT (content): Merge conflict in drivers/gpu/drm/i915/i915_perf.c
+error: Failed to merge in the changes.
+hint: Use 'git am --show-current-patch' to see the failed patch
+Patch failed at 0004 drm/i915/perf: open access for CAP_SYS_PERFMON privileged process
+When you have resolved this problem, run "git am --continue".
+If you prefer to skip this patch, run "git am --skip" instead.
+To restore the original branch and stop patching, run "git am --abort".
 
 _______________________________________________
 Intel-gfx mailing list
