@@ -2,67 +2,45 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BFDF3122CC1
-	for <lists+intel-gfx@lfdr.de>; Tue, 17 Dec 2019 14:19:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A766E122CCF
+	for <lists+intel-gfx@lfdr.de>; Tue, 17 Dec 2019 14:25:41 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AD4A2899DC;
-	Tue, 17 Dec 2019 13:19:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 089D06E9E0;
+	Tue, 17 Dec 2019 13:25:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-x343.google.com (mail-wm1-x343.google.com
- [IPv6:2a00:1450:4864:20::343])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A63CC899DC
- for <intel-gfx@lists.freedesktop.org>; Tue, 17 Dec 2019 13:19:41 +0000 (UTC)
-Received: by mail-wm1-x343.google.com with SMTP id b72so3127671wme.4
- for <intel-gfx@lists.freedesktop.org>; Tue, 17 Dec 2019 05:19:41 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=date:from:to:cc:subject:message-id:mail-followup-to:references
- :mime-version:content-disposition:in-reply-to:user-agent;
- bh=H37dVUR9kItBvLUhcmZ+2qSu16q4UES9ihUAcWiQsd4=;
- b=lWK6Tmlb4CiC9XzLfvUIj8N5I8DLeA+H1Y7mjuOk755VqB9iDzMMLxdGwdLFY85lVw
- 4sqlcrnt3Az8PoDhFaiD36oyNuhg5c54qQM3qcCNlFI3OkXedhTO/ufNX/oRgkPlyvFo
- PqZBPbGE42+XNecHMEWm3VvJY/RrrIL0uLgko=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id
- :mail-followup-to:references:mime-version:content-disposition
- :in-reply-to:user-agent;
- bh=H37dVUR9kItBvLUhcmZ+2qSu16q4UES9ihUAcWiQsd4=;
- b=ihwWjodmGL7Um6NuMfeM1q6s1SzbGqkS0VMoAuTcvHqhem/A/ZP9wBo4U85sWndxEL
- IlGVxMSUng7dHb9JJ2w8IT+FIy0F5jL0rErQiBR2XCGTH4xVAhEwNFPBtPuGdvTPXRsF
- UyE8JduW7F8+v7Sa4vXS7XAXs25kaW8EgUigBH2oxZ2mDsB0MGxPMKrNM8FeWzEIn9EI
- FcAWuJ6M2Peqi1IIMmHLr2/X8wZdYYGTdNa4zmeiNFmsBhLwZVMzcGVdTCcnWICwvRtf
- fb8Q6YmnPgMWNJYqRAM08PCwESOl5k8xIzTV09DW3hFzhd1plnTfCIfNi3LSPZAe6iiY
- q1FA==
-X-Gm-Message-State: APjAAAV/lmTwdyVtxR9iMOd9AeFFVtr8pY7t+5+MjyrPBtEyghY0xLLg
- bH+HpMqUCjIvB6ki5cL+frPoOg==
-X-Google-Smtp-Source: APXvYqzliw8g7eRzBJ1o76RhQOcEfDchV4RUR+NMlKni9Ot6SqnYzUe0jGJN/na2F7kQol/nHxfaqw==
-X-Received: by 2002:a7b:c934:: with SMTP id h20mr5421444wml.103.1576588780369; 
- Tue, 17 Dec 2019 05:19:40 -0800 (PST)
-Received: from phenom.ffwll.local ([2a02:168:564b:0:7567:bb67:3d7f:f863])
- by smtp.gmail.com with ESMTPSA id f1sm25264661wru.6.2019.12.17.05.19.38
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 17 Dec 2019 05:19:39 -0800 (PST)
-Date: Tue, 17 Dec 2019 14:19:37 +0100
-From: Daniel Vetter <daniel@ffwll.ch>
-To: Stephen Rothwell <sfr@canb.auug.org.au>
-Message-ID: <20191217131937.GZ624164@phenom.ffwll.local>
-Mail-Followup-To: Stephen Rothwell <sfr@canb.auug.org.au>,
- Intel Graphics <intel-gfx@lists.freedesktop.org>,
- DRI <dri-devel@lists.freedesktop.org>,
- Linux Next Mailing List <linux-next@vger.kernel.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- Icenowy Zheng <icenowy@aosc.io>,
- Wolfram Sang <wsa+renesas@sang-engineering.com>,
- Wolfram Sang <wsa@the-dreams.de>
-References: <20191216122331.43c766f1@canb.auug.org.au>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 443CE6E9DD;
+ Tue, 17 Dec 2019 13:25:36 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 17 Dec 2019 05:25:35 -0800
+X-IronPort-AV: E=Sophos;i="5.69,325,1571727600"; d="scan'208";a="209700078"
+Received: from jnikula-mobl3.fi.intel.com (HELO localhost) ([10.237.66.161])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 17 Dec 2019 05:25:31 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Lee Jones <lee.jones@linaro.org>, Hans de Goede <hdegoede@redhat.com>
+In-Reply-To: <20191217081127.GI18955@dell>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20191210085111.GQ3468@dell>
+ <a05e5a2b-568e-2b0d-0293-aa937c590a74@redhat.com>
+ <20191212084546.GA3468@dell>
+ <d22e9a04-da09-0f41-a78e-ac17a947650a@redhat.com>
+ <20191212155209.GC3468@dell>
+ <4d07445d-98b1-f23c-0aac-07709b45df78@redhat.com>
+ <20191213082734.GE3468@dell>
+ <d648794d-4c76-cfa1-dcbd-16c34d409c51@redhat.com>
+ <20191216093016.GE3648@dell>
+ <fc3c29da-528d-a6b6-d13b-92e6469eadea@redhat.com>
+ <20191217081127.GI18955@dell>
+Date: Tue, 17 Dec 2019 15:25:29 +0200
+Message-ID: <87immfyth2.fsf@intel.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20191216122331.43c766f1@canb.auug.org.au>
-X-Operating-System: Linux phenom 5.3.0-2-amd64 
-User-Agent: Mutt/1.12.2 (2019-09-21)
-Subject: Re: [Intel-gfx] linux-next: build failure after merge of the
- drm-misc tree
+Subject: Re: [Intel-gfx] [PATCH 2/3] mfd: intel_soc_pmic: Rename
+ pwm_backlight pwm-lookup to pwm_pmic_backlight
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,92 +53,77 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Wolfram Sang <wsa@the-dreams.de>, Daniel Vetter <daniel.vetter@ffwll.ch>,
- Intel Graphics <intel-gfx@lists.freedesktop.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- DRI <dri-devel@lists.freedesktop.org>,
- Wolfram Sang <wsa+renesas@sang-engineering.com>,
- Linux Next Mailing List <linux-next@vger.kernel.org>,
- Icenowy Zheng <icenowy@aosc.io>
+Cc: intel-gfx <intel-gfx@lists.freedesktop.org>, "Rafael J .
+ Wysocki" <rjw@rjwysocki.net>, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, linux-acpi@vger.kernel.org,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Len Brown <lenb@kernel.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Dec 16, 2019 at 12:23:31PM +1100, Stephen Rothwell wrote:
-> Hi all,
-> 
-> After merging the drm-misc tree, today's linux-next build (x86_64
-> allmodconfig) failed like this:
-> 
-> drivers/gpu/drm/bridge/analogix/analogix-anx6345.c: In function 'anx6345_i2c_probe':
-> drivers/gpu/drm/bridge/analogix/analogix-anx6345.c:738:30: error: implicit declaration of function 'i2c_new_dummy' [-Werror=implicit-function-declaration]
->   738 |    anx6345->i2c_clients[i] = i2c_new_dummy(client->adapter,
->       |                              ^~~~~~~~~~~~~
-> drivers/gpu/drm/bridge/analogix/analogix-anx6345.c:738:28: warning: assignment to 'struct i2c_client *' from 'int' makes pointer from integer without a cast [-Wint-conversion]
->   738 |    anx6345->i2c_clients[i] = i2c_new_dummy(client->adapter,
->       |                            ^
-> 
-> Caused by commit
-> 
->   6aa192698089 ("drm/bridge: Add Analogix anx6345 support")
-> 
-> interacting with commit
-> 
->   2c2f00ab1641 ("i2c: remove i2c_new_dummy() API")
-> 
-> From Linus' tree.
-> 
-> I have applied the following fix up patch for today:
-> 
-> From: Stephen Rothwell <sfr@canb.auug.org.au>
-> Date: Mon, 16 Dec 2019 12:11:19 +1100
-> Subject: [PATCH] drm/bridge: fix up for removal of i2c_new_dummy()
-> 
-> Signed-off-by: Stephen Rothwell <sfr@canb.auug.org.au>
+On Tue, 17 Dec 2019, Lee Jones <lee.jones@linaro.org> wrote:
+> On Mon, 16 Dec 2019, Hans de Goede wrote:
+>
+>> Hi,
+>> 
+>> Doing immutable branches assumes that there is a base point,
+>> e.g. 5.5-rc1 where the immutable branch can then be based on and
+>> that the branch can then be merged without issues into both subsystems.
+>> 
+>> drm is constantly evolving to deal with and mostly catch up with new
+>> hardware as both GPUs and display-pipelines are evolving quite rapidly
+>> atm drm-intel-next has about 400 commits on top of 5.5-rc1 so for an
+>> immutable branch I can either base it on drm-intel-next which
+>> violates your request for a clean minimal branch to merge; or I can
+>> base it on 5.5-rc1 which leads to a big chance of problems when
+>> merging it given to large amount of churn in drm-intel-next.
+>
+> This is a *slightly* more compelling reason than the ones you've
+> previously provided.
+>
+>> So instead of the normal case of 2 subsystems seeing some changes
+>> on both side the case we have here is a part of a file which has
+>> not changed since 2015-06-26 in one subsys (and changing only
+>> a single line there!) and OTOH we have bigger changes to a subsys
+>> which see 400 patches land in the first week since rc1 .
+>
+> This is not.
+>
+>> I hope that you agree that in this case given the large amount of
+>> churn in drm-intel-next it makes since to just straight forward
+>> apply these patches on top of drm-intel-next.
+>
+> I have Acked this patch, but remember *this* is the exception rather
+> than the rule.  If/when we have a case where a contributor works
+> cross-subsystem with DRM and the code/file adapted is live (more
+> likely to change), I will have to insist on an immutable branch
+> strategy.  DRM will have to deal with that appropriately.
 
-Thanks pulled into drm-next since I just processed the first drm-misc-next
-pull.
--Daniel
+Hi, thanks for the ack and reaching an agreement with Hans, and sorry
+for not responding earlier.
 
-> ---
->  drivers/gpu/drm/bridge/analogix/analogix-anx6345.c | 6 +++---
->  1 file changed, 3 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/bridge/analogix/analogix-anx6345.c b/drivers/gpu/drm/bridge/analogix/analogix-anx6345.c
-> index 9917ce0d86a0..56f55c53abfd 100644
-> --- a/drivers/gpu/drm/bridge/analogix/analogix-anx6345.c
-> +++ b/drivers/gpu/drm/bridge/analogix/analogix-anx6345.c
-> @@ -735,13 +735,13 @@ static int anx6345_i2c_probe(struct i2c_client *client,
->  	/* Map slave addresses of ANX6345 */
->  	for (i = 0; i < I2C_NUM_ADDRESSES; i++) {
->  		if (anx6345_i2c_addresses[i] >> 1 != client->addr)
-> -			anx6345->i2c_clients[i] = i2c_new_dummy(client->adapter,
-> +			anx6345->i2c_clients[i] = i2c_new_dummy_device(client->adapter,
->  						anx6345_i2c_addresses[i] >> 1);
->  		else
->  			anx6345->i2c_clients[i] = client;
->  
-> -		if (!anx6345->i2c_clients[i]) {
-> -			err = -ENOMEM;
-> +		if (IS_ERR(anx6345->i2c_clients[i])) {
-> +			err = PTR_ERR(anx6345->i2c_clients[i]);
->  			DRM_ERROR("Failed to reserve I2C bus %02x\n",
->  				  anx6345_i2c_addresses[i]);
->  			goto err_unregister_i2c;
-> -- 
-> 2.24.0
-> 
-> -- 
-> Cheers,
-> Stephen Rothwell
+It's not unusual for us to have topic branches for cross-subsystem or
+cross-driver changes, and I think usually we try to be accommodating in
+merging stuff through whichever tree it makes most sense. In fact my ack
+to do just that was my first response on this series [1].
+
+So I don't really know why the fuss. We'll anyway deal with any
+cross-subsystem series on a case by case basis, depending on what makes
+most sense, and what suits all maintainers involved.
+
+
+Thanks again,
+Jani.
+
+
+[1] http://mid.mail-archive.com/87pnhnyir8.fsf@intel.com
 
 
 
 -- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+Jani Nikula, Intel Open Source Graphics Center
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
