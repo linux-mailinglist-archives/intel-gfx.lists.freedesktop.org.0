@@ -2,35 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE2321222B7
-	for <lists+intel-gfx@lfdr.de>; Tue, 17 Dec 2019 04:49:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 77D181222BB
+	for <lists+intel-gfx@lfdr.de>; Tue, 17 Dec 2019 04:54:18 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 404646E935;
-	Tue, 17 Dec 2019 03:49:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BCB576E939;
+	Tue, 17 Dec 2019 03:54:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 235E66E935;
- Tue, 17 Dec 2019 03:49:39 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 16 Dec 2019 19:49:38 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,324,1571727600"; d="scan'208";a="227345461"
-Received: from jhli-desk1.jf.intel.com ([10.7.198.163])
- by orsmga002.jf.intel.com with ESMTP; 16 Dec 2019 19:49:38 -0800
-From: Juston Li <juston.li@intel.com>
-To: igt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- ville.syrjala@linux.intel.com, daniel@ffwll.ch
-Date: Mon, 16 Dec 2019 19:48:40 -0800
-Message-Id: <20191217034836.3936-2-juston.li@intel.com>
-X-Mailer: git-send-email 2.21.0
-In-Reply-To: <20191217034836.3936-1-juston.li@intel.com>
-References: <20191217034836.3936-1-juston.li@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 3D6D16E938;
+ Tue, 17 Dec 2019 03:54:14 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 3518AA0118;
+ Tue, 17 Dec 2019 03:54:14 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v4 i-g-t 2/2] tests/kms_getfb: Add getfb2 tests
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Hans de Goede" <hdegoede@redhat.com>
+Date: Tue, 17 Dec 2019 03:54:14 -0000
+Message-ID: <157655485419.21848.17473184217995176844@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20191216202906.1662893-1-hdegoede@redhat.com>
+In-Reply-To: <20191216202906.1662893-1-hdegoede@redhat.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915_/_LPSS_/_mfd=3A_Select_correct_PWM_controller_to_use_base?=
+ =?utf-8?q?d_on_VBT_=28rev3=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -43,220 +39,193 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Stone <daniels@collabora.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Daniel Stone <daniels@collabora.com>
+== Series Details ==
 
-Mirroring addfb2, add tests for the new ioctl which will return us
-information about framebuffers containing multiple buffers, as well as
-modifiers.
+Series: drm/i915 / LPSS / mfd: Select correct PWM controller to use based on VBT (rev3)
+URL   : https://patchwork.freedesktop.org/series/69686/
+State : success
 
-Changes since v3:
-- Add subtests to ensure handles aren't returned for non-root and
-  non-master callers
-- Fix getfb2-handle-not-fb to use getfb2
+== Summary ==
 
-Changes since v1:
-- Add test that uses getfb2 output to call addfb2 as suggested by Ville
+CI Bug Log - changes from CI_DRM_7578 -> Patchwork_15800
+====================================================
 
-Signed-off-by: Daniel Stone <daniels@collabora.com>
-Signed-off-by: Juston Li <juston.li@intel.com>
----
- tests/kms_getfb.c | 160 ++++++++++++++++++++++++++++++++++++++++++++++
- 1 file changed, 160 insertions(+)
+Summary
+-------
 
-diff --git a/tests/kms_getfb.c b/tests/kms_getfb.c
-index ca0b01c05e5c..ffd8f9117c92 100644
---- a/tests/kms_getfb.c
-+++ b/tests/kms_getfb.c
-@@ -40,6 +40,8 @@
- #include "drm.h"
- #include "drm_fourcc.h"
- 
-+#include "igt_device.h"
-+
- static bool has_getfb_iface(int fd)
- {
- 	struct drm_mode_fb_cmd arg = { };
-@@ -228,6 +230,158 @@ static void test_duplicate_handles(int fd)
- 	}
- }
- 
-+static void test_getfb2(int fd)
-+{
-+	struct drm_mode_fb_cmd2 add_basic = {};
-+
-+	igt_fixture {
-+		struct drm_mode_fb_cmd2 get = {};
-+
-+		add_basic.width = 1024;
-+		add_basic.height = 1024;
-+		add_basic.pixel_format = DRM_FORMAT_XRGB8888;
-+		add_basic.pitches[0] = 1024*4;
-+		add_basic.handles[0] = igt_create_bo_with_dimensions(fd, 1024, 1024,
-+			DRM_FORMAT_XRGB8888, 0, 0, NULL, NULL, NULL);
-+		igt_assert(add_basic.handles[0]);
-+		do_ioctl(fd, DRM_IOCTL_MODE_ADDFB2, &add_basic);
-+
-+		get.fb_id = add_basic.fb_id;
-+		do_ioctl(fd, DRM_IOCTL_MODE_GETFB2, &get);
-+		igt_assert_neq_u32(get.handles[0], 0);
-+		gem_close(fd, get.handles[0]);
-+	}
-+
-+	igt_subtest("getfb2-handle-zero") {
-+		struct drm_mode_fb_cmd2 get = {};
-+		do_ioctl_err(fd, DRM_IOCTL_MODE_GETFB2, &get, ENOENT);
-+	}
-+
-+	igt_subtest("getfb2-handle-closed") {
-+		struct drm_mode_fb_cmd2 add = add_basic;
-+		struct drm_mode_fb_cmd2 get = { };
-+
-+		add.handles[0] = igt_create_bo_with_dimensions(fd, 1024, 1024,
-+			DRM_FORMAT_XRGB8888, 0, 0, NULL, NULL, NULL);
-+		igt_assert(add.handles[0]);
-+		do_ioctl(fd, DRM_IOCTL_MODE_ADDFB2, &add);
-+		do_ioctl(fd, DRM_IOCTL_MODE_RMFB, &add.fb_id);
-+
-+		get.fb_id = add.fb_id;
-+		do_ioctl_err(fd, DRM_IOCTL_MODE_GETFB2, &get, ENOENT);
-+		gem_close(fd, add.handles[0]);
-+	}
-+
-+	igt_subtest("getfb2-handle-not-fb") {
-+		struct drm_mode_fb_cmd2 get = { .fb_id = get_any_prop_id(fd) };
-+		igt_require(get.fb_id > 0);
-+		do_ioctl_err(fd, DRM_IOCTL_MODE_GETFB2, &get, ENOENT);
-+	}
-+
-+	igt_subtest("getfb2-accept-ccs") {
-+		struct drm_mode_fb_cmd2 add_ccs = { };
-+		struct drm_mode_fb_cmd2 get = { };
-+		int i;
-+
-+		get_ccs_fb(fd, &add_ccs);
-+		igt_require(add_ccs.fb_id != 0);
-+		get.fb_id = add_ccs.fb_id;
-+		do_ioctl(fd, DRM_IOCTL_MODE_GETFB2, &get);
-+
-+		igt_assert_eq_u32(get.width, add_ccs.width);
-+		igt_assert_eq_u32(get.height, add_ccs.height);
-+		igt_assert(get.flags & DRM_MODE_FB_MODIFIERS);
-+
-+		for (i = 0; i < ARRAY_SIZE(get.handles); i++) {
-+			igt_assert_eq_u32(get.pitches[i], add_ccs.pitches[i]);
-+			igt_assert_eq_u32(get.offsets[i], add_ccs.offsets[i]);
-+			if (add_ccs.handles[i] != 0) {
-+				igt_assert_neq_u32(get.handles[i], 0);
-+				igt_assert_neq_u32(get.handles[i],
-+						   add_ccs.handles[i]);
-+				igt_assert_eq_u64(get.modifier[i],
-+						  add_ccs.modifier[i]);
-+			} else {
-+				igt_assert_eq_u32(get.handles[i], 0);
-+				igt_assert_eq_u64(get.modifier[i], 0);
-+			}
-+		}
-+		igt_assert_eq_u32(get.handles[0], get.handles[1]);
-+
-+		do_ioctl(fd, DRM_IOCTL_MODE_RMFB, &get.fb_id);
-+		gem_close(fd, add_ccs.handles[0]);
-+		gem_close(fd, get.handles[0]);
-+	}
-+
-+	igt_subtest("getfb2-into-addfb2") {
-+		struct drm_mode_fb_cmd2 cmd = { };
-+
-+		cmd.fb_id = add_basic.fb_id;
-+		do_ioctl(fd, DRM_IOCTL_MODE_GETFB2, &cmd);
-+		do_ioctl(fd, DRM_IOCTL_MODE_ADDFB2, &cmd);
-+
-+		do_ioctl(fd, DRM_IOCTL_MODE_RMFB, &cmd.fb_id);
-+		gem_close(fd, cmd.handles[0]);
-+	}
-+
-+	igt_fixture {
-+		do_ioctl(fd, DRM_IOCTL_MODE_RMFB, &add_basic.fb_id);
-+		gem_close(fd, add_basic.handles[0]);
-+	}
-+}
-+
-+static void test_handle_protection(void) {
-+	int non_master_fd;
-+	struct drm_mode_fb_cmd2 non_master_add = {};
-+
-+	igt_fixture {
-+		non_master_fd = drm_open_driver(DRIVER_ANY);
-+
-+		non_master_add.width = 1024;
-+		non_master_add.height = 1024;
-+		non_master_add.pixel_format = DRM_FORMAT_XRGB8888;
-+		non_master_add.pitches[0] = 1024*4;
-+		non_master_add.handles[0] = igt_create_bo_with_dimensions(non_master_fd, 1024, 1024,
-+			DRM_FORMAT_XRGB8888, 0, 0, NULL, NULL, NULL);
-+		igt_require(non_master_add.handles[0] != 0);
-+		do_ioctl(non_master_fd, DRM_IOCTL_MODE_ADDFB2, &non_master_add);
-+	}
-+
-+	igt_subtest("getfb-handle-protection") {
-+		struct drm_mode_fb_cmd get = { .fb_id = non_master_add.fb_id};
-+
-+		igt_fork(child, 1) {
-+			igt_drop_root();
-+
-+			do_ioctl(non_master_fd, DRM_IOCTL_MODE_GETFB, &get);
-+			/* ioctl succeeds but handle should be 0 */
-+			igt_assert_eq_u32(get.handle, 0);
-+		}
-+		igt_waitchildren();
-+	}
-+
-+	igt_subtest("getfb2-handle-protection") {
-+		struct drm_mode_fb_cmd2 get = { .fb_id = non_master_add.fb_id};
-+		int i;
-+
-+		igt_fork(child, 1) {
-+			igt_drop_root();
-+
-+			do_ioctl(non_master_fd, DRM_IOCTL_MODE_GETFB2, &get);
-+			/* ioctl succeeds but handles should be 0 */
-+			for (i = 0; i < ARRAY_SIZE(get.handles); i++) {
-+				igt_assert_eq_u32(get.handles[i], 0);
-+			}
-+		}
-+		igt_waitchildren();
-+	}
-+
-+	igt_fixture {
-+		do_ioctl(non_master_fd, DRM_IOCTL_MODE_RMFB, &non_master_add.fb_id);
-+		gem_close(non_master_fd, non_master_add.handles[0]);
-+	}
-+}
-+
- igt_main
- {
- 	int fd;
-@@ -243,6 +397,12 @@ igt_main
- 	igt_subtest_group
- 		test_duplicate_handles(fd);
- 
-+	igt_subtest_group
-+		test_getfb2(fd);
-+
-+	igt_subtest_group
-+		test_handle_protection();
-+
- 	igt_fixture
- 		close(fd);
- }
--- 
-2.21.0
+  **SUCCESS**
 
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15800/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_15800 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_sync@basic-all:
+    - fi-tgl-y:           [PASS][1] -> [INCOMPLETE][2] ([i915#470] / [i915#472])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7578/fi-tgl-y/igt@gem_sync@basic-all.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15800/fi-tgl-y/igt@gem_sync@basic-all.html
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-skl-lmem:        [PASS][3] -> [DMESG-WARN][4] ([i915#592])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7578/fi-skl-lmem/igt@i915_pm_rpm@module-reload.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15800/fi-skl-lmem/igt@i915_pm_rpm@module-reload.html
+
+  * igt@i915_selftest@live_blt:
+    - fi-hsw-4770r:       [PASS][5] -> [DMESG-FAIL][6] ([i915#770])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7578/fi-hsw-4770r/igt@i915_selftest@live_blt.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15800/fi-hsw-4770r/igt@i915_selftest@live_blt.html
+
+  * igt@i915_selftest@live_gem_contexts:
+    - fi-byt-j1900:       [PASS][7] -> [INCOMPLETE][8] ([i915#45])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7578/fi-byt-j1900/igt@i915_selftest@live_gem_contexts.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15800/fi-byt-j1900/igt@i915_selftest@live_gem_contexts.html
+    - fi-hsw-peppy:       [PASS][9] -> [INCOMPLETE][10] ([i915#694])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7578/fi-hsw-peppy/igt@i915_selftest@live_gem_contexts.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15800/fi-hsw-peppy/igt@i915_selftest@live_gem_contexts.html
+
+  * igt@kms_frontbuffer_tracking@basic:
+    - fi-kbl-r:           [PASS][11] -> [INCOMPLETE][12] ([i915#667])
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7578/fi-kbl-r/igt@kms_frontbuffer_tracking@basic.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15800/fi-kbl-r/igt@kms_frontbuffer_tracking@basic.html
+    - fi-hsw-peppy:       [PASS][13] -> [DMESG-WARN][14] ([i915#44])
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7578/fi-hsw-peppy/igt@kms_frontbuffer_tracking@basic.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15800/fi-hsw-peppy/igt@kms_frontbuffer_tracking@basic.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_exec_parallel@basic:
+    - {fi-tgl-u}:         [INCOMPLETE][15] ([i915#476]) -> [PASS][16]
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7578/fi-tgl-u/igt@gem_exec_parallel@basic.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15800/fi-tgl-u/igt@gem_exec_parallel@basic.html
+
+  * igt@gem_exec_suspend@basic-s3:
+    - fi-icl-u2:          [FAIL][17] ([fdo#103375]) -> [PASS][18]
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7578/fi-icl-u2/igt@gem_exec_suspend@basic-s3.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15800/fi-icl-u2/igt@gem_exec_suspend@basic-s3.html
+
+  * igt@gem_exec_suspend@basic-s4-devices:
+    - fi-icl-u2:          [FAIL][19] ([fdo#111550]) -> [PASS][20]
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7578/fi-icl-u2/igt@gem_exec_suspend@basic-s4-devices.html
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15800/fi-icl-u2/igt@gem_exec_suspend@basic-s4-devices.html
+
+  * igt@i915_selftest@live_blt:
+    - fi-ivb-3770:        [DMESG-FAIL][21] ([i915#725]) -> [PASS][22]
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7578/fi-ivb-3770/igt@i915_selftest@live_blt.html
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15800/fi-ivb-3770/igt@i915_selftest@live_blt.html
+    - fi-hsw-4770:        [DMESG-FAIL][23] ([i915#553] / [i915#725]) -> [PASS][24]
+   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7578/fi-hsw-4770/igt@i915_selftest@live_blt.html
+   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15800/fi-hsw-4770/igt@i915_selftest@live_blt.html
+
+  * igt@i915_selftest@live_gem_contexts:
+    - fi-byt-n2820:       [DMESG-FAIL][25] ([i915#722]) -> [PASS][26]
+   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7578/fi-byt-n2820/igt@i915_selftest@live_gem_contexts.html
+   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15800/fi-byt-n2820/igt@i915_selftest@live_gem_contexts.html
+    - fi-cfl-guc:         [DMESG-FAIL][27] ([i915#730]) -> [PASS][28]
+   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7578/fi-cfl-guc/igt@i915_selftest@live_gem_contexts.html
+   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15800/fi-cfl-guc/igt@i915_selftest@live_gem_contexts.html
+
+  * igt@kms_busy@basic-flip-pipe-a:
+    - fi-icl-u2:          [INCOMPLETE][29] ([i915#140]) -> [PASS][30]
+   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7578/fi-icl-u2/igt@kms_busy@basic-flip-pipe-a.html
+   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15800/fi-icl-u2/igt@kms_busy@basic-flip-pipe-a.html
+
+  * igt@kms_chamelium@dp-crc-fast:
+    - fi-kbl-7500u:       [FAIL][31] ([fdo#109635] / [i915#217]) -> [PASS][32]
+   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7578/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html
+   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15800/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html
+
+  * igt@kms_chamelium@hdmi-hpd-fast:
+    - fi-kbl-7500u:       [FAIL][33] ([fdo#111096] / [i915#323]) -> [PASS][34]
+   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7578/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15800/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+
+  
+#### Warnings ####
+
+  * igt@gem_exec_suspend@basic-s0:
+    - fi-kbl-x1275:       [DMESG-WARN][35] ([i915#62] / [i915#92]) -> [DMESG-WARN][36] ([i915#62] / [i915#92] / [i915#95]) +4 similar issues
+   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7578/fi-kbl-x1275/igt@gem_exec_suspend@basic-s0.html
+   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15800/fi-kbl-x1275/igt@gem_exec_suspend@basic-s0.html
+
+  * igt@kms_flip@basic-flip-vs-modeset:
+    - fi-kbl-x1275:       [DMESG-WARN][37] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][38] ([i915#62] / [i915#92]) +8 similar issues
+   [37]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7578/fi-kbl-x1275/igt@kms_flip@basic-flip-vs-modeset.html
+   [38]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15800/fi-kbl-x1275/igt@kms_flip@basic-flip-vs-modeset.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#103375]: https://bugs.freedesktop.org/show_bug.cgi?id=103375
+  [fdo#109635]: https://bugs.freedesktop.org/show_bug.cgi?id=109635
+  [fdo#111096]: https://bugs.freedesktop.org/show_bug.cgi?id=111096
+  [fdo#111550]: https://bugs.freedesktop.org/show_bug.cgi?id=111550
+  [fdo#111593]: https://bugs.freedesktop.org/show_bug.cgi?id=111593
+  [i915#140]: https://gitlab.freedesktop.org/drm/intel/issues/140
+  [i915#217]: https://gitlab.freedesktop.org/drm/intel/issues/217
+  [i915#323]: https://gitlab.freedesktop.org/drm/intel/issues/323
+  [i915#44]: https://gitlab.freedesktop.org/drm/intel/issues/44
+  [i915#45]: https://gitlab.freedesktop.org/drm/intel/issues/45
+  [i915#470]: https://gitlab.freedesktop.org/drm/intel/issues/470
+  [i915#472]: https://gitlab.freedesktop.org/drm/intel/issues/472
+  [i915#476]: https://gitlab.freedesktop.org/drm/intel/issues/476
+  [i915#553]: https://gitlab.freedesktop.org/drm/intel/issues/553
+  [i915#592]: https://gitlab.freedesktop.org/drm/intel/issues/592
+  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
+  [i915#667]: https://gitlab.freedesktop.org/drm/intel/issues/667
+  [i915#694]: https://gitlab.freedesktop.org/drm/intel/issues/694
+  [i915#722]: https://gitlab.freedesktop.org/drm/intel/issues/722
+  [i915#725]: https://gitlab.freedesktop.org/drm/intel/issues/725
+  [i915#730]: https://gitlab.freedesktop.org/drm/intel/issues/730
+  [i915#770]: https://gitlab.freedesktop.org/drm/intel/issues/770
+  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
+  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
+
+
+Participating hosts (51 -> 44)
+------------------------------
+
+  Additional (1): fi-kbl-soraka 
+  Missing    (8): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-whl-u fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_7578 -> Patchwork_15800
+
+  CI-20190529: 20190529
+  CI_DRM_7578: cc329d389f5609d2969d0797bc96f754adb26d62 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5349: 048f58513d8b8ec6bb307a939f0ac959bc0f0e10 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_15800: b075d00cadea3e5ffb29bf64c0a18c3aab85caba @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+b075d00cadea drm/i915: DSI: select correct PWM controller to use based on the VBT
+7f06eeff5a09 mfd: intel_soc_pmic: Rename pwm_backlight pwm-lookup to pwm_pmic_backlight
+9a0b084effd9 ACPI / LPSS: Rename pwm_backlight pwm-lookup to pwm_soc_backlight
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15800/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
