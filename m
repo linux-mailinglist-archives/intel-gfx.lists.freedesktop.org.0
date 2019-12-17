@@ -1,52 +1,29 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90A3B1227DC
-	for <lists+intel-gfx@lfdr.de>; Tue, 17 Dec 2019 10:45:34 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id CF8C9122810
+	for <lists+intel-gfx@lfdr.de>; Tue, 17 Dec 2019 10:57:10 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BC9326E968;
-	Tue, 17 Dec 2019 09:45:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 967846E96E;
+	Tue, 17 Dec 2019 09:57:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B9B646E0CA
- for <intel-gfx@lists.freedesktop.org>; Tue, 17 Dec 2019 09:45:29 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 17 Dec 2019 01:45:27 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,325,1571727600"; d="scan'208";a="217719255"
-Received: from gorris-mobl2.ger.corp.intel.com (HELO [10.249.34.224])
- ([10.249.34.224])
- by orsmga003.jf.intel.com with ESMTP; 17 Dec 2019 01:45:20 -0800
-To: Alexey Budankov <alexey.budankov@linux.intel.com>,
- Peter Zijlstra <peterz@infradead.org>,
- Arnaldo Carvalho de Melo <acme@kernel.org>, Ingo Molnar <mingo@redhat.com>,
- "jani.nikula@linux.intel.com" <jani.nikula@linux.intel.com>,
- "joonas.lahtinen@linux.intel.com" <joonas.lahtinen@linux.intel.com>,
- "rodrigo.vivi@intel.com" <rodrigo.vivi@intel.com>,
- Alexei Starovoitov <ast@kernel.org>,
- Benjamin Herrenschmidt <benh@kernel.crashing.org>,
- Paul Mackerras <paulus@samba.org>, Michael Ellerman <mpe@ellerman.id.au>,
- Serge Hallyn <serge@hallyn.com>, James Morris <jmorris@namei.org>,
- Casey Schaufler <casey@schaufler-ca.com>
-References: <b175f283-d256-e37e-f447-6ba4ab4f3d3a@linux.intel.com>
- <bc5b2a0d-a185-91b6-5deb-a4b6e1dc3d3e@linux.intel.com>
-From: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
-Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way,
- Swindon SN3 1RJ
-Message-ID: <503ad40c-d94e-df1d-1541-730c002ad3b7@intel.com>
-Date: Tue, 17 Dec 2019 11:45:20 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.3.0
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 017256E969
+ for <intel-gfx@lists.freedesktop.org>; Tue, 17 Dec 2019 09:57:02 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19605946-1500050 
+ for multiple; Tue, 17 Dec 2019 09:56:43 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue, 17 Dec 2019 09:56:35 +0000
+Message-Id: <20191217095642.3124521-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.24.1
 MIME-Version: 1.0
-In-Reply-To: <bc5b2a0d-a185-91b6-5deb-a4b6e1dc3d3e@linux.intel.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH v3 4/7] drm/i915/perf: open access for
- CAP_SYS_PERFMON privileged process
+Subject: [Intel-gfx] [PATCH 1/8] drm/i915: Unpin vma->obj on early error
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,41 +36,160 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: songliubraving@fb.com, Andi Kleen <ak@linux.intel.com>,
- Kees Cook <keescook@chromium.org>,
- "linux-parisc@vger.kernel.org" <linux-parisc@vger.kernel.org>,
- Jann Horn <jannh@google.com>,
- Alexander Shishkin <alexander.shishkin@linux.intel.com>,
- Jiri Olsa <jolsa@redhat.com>, intel-gfx@lists.freedesktop.org,
- Igor Lubashev <ilubashe@akamai.com>, linux-kernel@vger.kernel.org,
- Stephane Eranian <eranian@google.com>,
- "linux-perf-users@vger.kernel.org" <linux-perf-users@vger.kernel.org>,
- "selinux@vger.kernel.org" <selinux@vger.kernel.org>,
- "linux-security-module@vger.kernel.org"
- <linux-security-module@vger.kernel.org>, Namhyung Kim <namhyung@kernel.org>,
- Thomas Gleixner <tglx@linutronix.de>, Brendan Gregg <bgregg@netflix.com>,
- "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>,
- "bpf@vger.kernel.org" <bpf@vger.kernel.org>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 16/12/2019 22:03, Alexey Budankov wrote:
-> Open access to i915_perf monitoring for CAP_SYS_PERFMON privileged processes.
-> For backward compatibility reasons access to i915_perf subsystem remains open
-> for CAP_SYS_ADMIN privileged processes but CAP_SYS_ADMIN usage for secure
-> i915_perf monitoring is discouraged with respect to CAP_SYS_PERFMON capability.
->
-> Signed-off-by: Alexey Budankov <alexey.budankov@linux.intel.com>
+If we inherit an error along the fence chain, we skip the main work
+callback and go straight to the error. In the case of the vma bind
+worker, we only dropped the pinned pages from the worker.
 
+In the process, make sure we call the release earlier rather than wait
+until the final reference to the fence is dropped (as a reference is
+kept while being listened upon).
 
-Assuming people are fine with this new cap, I like this idea of a 
-lighter privilege for i915-perf.
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+---
+ drivers/gpu/drm/i915/gem/i915_gem_clflush.c | 11 ++++-------
+ drivers/gpu/drm/i915/i915_sw_fence_work.c   | 15 ++++++++++-----
+ drivers/gpu/drm/i915/i915_vma.c             | 17 +++++++++++++----
+ 3 files changed, 27 insertions(+), 16 deletions(-)
 
-
--Lionel
-
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_clflush.c b/drivers/gpu/drm/i915/gem/i915_gem_clflush.c
+index b9f504ba3b32..5448efa77710 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_clflush.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_clflush.c
+@@ -26,27 +26,24 @@ static void __do_clflush(struct drm_i915_gem_object *obj)
+ static int clflush_work(struct dma_fence_work *base)
+ {
+ 	struct clflush *clflush = container_of(base, typeof(*clflush), base);
+-	struct drm_i915_gem_object *obj = fetch_and_zero(&clflush->obj);
++	struct drm_i915_gem_object *obj = clflush->obj;
+ 	int err;
+ 
+ 	err = i915_gem_object_pin_pages(obj);
+ 	if (err)
+-		goto put;
++		return err;
+ 
+ 	__do_clflush(obj);
+ 	i915_gem_object_unpin_pages(obj);
+ 
+-put:
+-	i915_gem_object_put(obj);
+-	return err;
++	return 0;
+ }
+ 
+ static void clflush_release(struct dma_fence_work *base)
+ {
+ 	struct clflush *clflush = container_of(base, typeof(*clflush), base);
+ 
+-	if (clflush->obj)
+-		i915_gem_object_put(clflush->obj);
++	i915_gem_object_put(clflush->obj);
+ }
+ 
+ static const struct dma_fence_work_ops clflush_ops = {
+diff --git a/drivers/gpu/drm/i915/i915_sw_fence_work.c b/drivers/gpu/drm/i915/i915_sw_fence_work.c
+index 8538ee7a521d..997b2998f1f2 100644
+--- a/drivers/gpu/drm/i915/i915_sw_fence_work.c
++++ b/drivers/gpu/drm/i915/i915_sw_fence_work.c
+@@ -6,6 +6,13 @@
+ 
+ #include "i915_sw_fence_work.h"
+ 
++static void fence_complete(struct dma_fence_work *f)
++{
++	if (f->ops->release)
++		f->ops->release(f);
++	dma_fence_signal(&f->dma);
++}
++
+ static void fence_work(struct work_struct *work)
+ {
+ 	struct dma_fence_work *f = container_of(work, typeof(*f), work);
+@@ -14,7 +21,8 @@ static void fence_work(struct work_struct *work)
+ 	err = f->ops->work(f);
+ 	if (err)
+ 		dma_fence_set_error(&f->dma, err);
+-	dma_fence_signal(&f->dma);
++
++	fence_complete(f);
+ 	dma_fence_put(&f->dma);
+ }
+ 
+@@ -32,7 +40,7 @@ fence_notify(struct i915_sw_fence *fence, enum i915_sw_fence_notify state)
+ 			dma_fence_get(&f->dma);
+ 			queue_work(system_unbound_wq, &f->work);
+ 		} else {
+-			dma_fence_signal(&f->dma);
++			fence_complete(f);
+ 		}
+ 		break;
+ 
+@@ -60,9 +68,6 @@ static void fence_release(struct dma_fence *fence)
+ {
+ 	struct dma_fence_work *f = container_of(fence, typeof(*f), dma);
+ 
+-	if (f->ops->release)
+-		f->ops->release(f);
+-
+ 	i915_sw_fence_fini(&f->chain);
+ 
+ 	BUILD_BUG_ON(offsetof(typeof(*f), dma));
+diff --git a/drivers/gpu/drm/i915/i915_vma.c b/drivers/gpu/drm/i915/i915_vma.c
+index 6794c742fbbf..878975b37a45 100644
+--- a/drivers/gpu/drm/i915/i915_vma.c
++++ b/drivers/gpu/drm/i915/i915_vma.c
+@@ -292,6 +292,7 @@ i915_vma_instance(struct drm_i915_gem_object *obj,
+ struct i915_vma_work {
+ 	struct dma_fence_work base;
+ 	struct i915_vma *vma;
++	struct drm_i915_gem_object *pin;
+ 	enum i915_cache_level cache_level;
+ 	unsigned int flags;
+ };
+@@ -306,15 +307,21 @@ static int __vma_bind(struct dma_fence_work *work)
+ 	if (err)
+ 		atomic_or(I915_VMA_ERROR, &vma->flags);
+ 
+-	if (vma->obj)
+-		__i915_gem_object_unpin_pages(vma->obj);
+-
+ 	return err;
+ }
+ 
++static void __vma_release(struct dma_fence_work *work)
++{
++	struct i915_vma_work *vw = container_of(work, typeof(*vw), base);
++
++	if (vw->pin)
++		__i915_gem_object_unpin_pages(vw->pin);
++}
++
+ static const struct dma_fence_work_ops bind_ops = {
+ 	.name = "bind",
+ 	.work = __vma_bind,
++	.release = __vma_release,
+ };
+ 
+ struct i915_vma_work *i915_vma_work(void)
+@@ -395,8 +402,10 @@ int i915_vma_bind(struct i915_vma *vma,
+ 		i915_active_set_exclusive(&vma->active, &work->base.dma);
+ 		work->base.dma.error = 0; /* enable the queue_work() */
+ 
+-		if (vma->obj)
++		if (vma->obj) {
+ 			__i915_gem_object_pin_pages(vma->obj);
++			work->pin = vma->obj;
++		}
+ 	} else {
+ 		GEM_BUG_ON((bind_flags & ~vma_flags) & vma->vm->bind_async_flags);
+ 		ret = vma->ops->bind_vma(vma, cache_level, bind_flags);
+-- 
+2.24.1
 
 _______________________________________________
 Intel-gfx mailing list
