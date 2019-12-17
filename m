@@ -2,39 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA606121FD6
-	for <lists+intel-gfx@lfdr.de>; Tue, 17 Dec 2019 01:35:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C38D8122155
+	for <lists+intel-gfx@lfdr.de>; Tue, 17 Dec 2019 02:17:23 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 543CB89BAF;
-	Tue, 17 Dec 2019 00:35:22 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 70E9689BAF
- for <Intel-gfx@lists.freedesktop.org>; Tue, 17 Dec 2019 00:35:20 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 16 Dec 2019 16:35:20 -0800
-X-IronPort-AV: E=Sophos;i="5.69,323,1571727600"; d="scan'208";a="209503233"
-Received: from dtriolet-mobl1.ger.corp.intel.com (HELO [10.251.84.191])
- ([10.251.84.191])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/AES256-SHA;
- 16 Dec 2019 16:35:18 -0800
-To: Chris Wilson <chris@chris-wilson.co.uk>, Intel-gfx@lists.freedesktop.org
-References: <20191216182032.22265-1-tvrtko.ursulin@linux.intel.com>
- <157652958683.2428.15355243435364299446@skylake-alporthouse-com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <f82a4f47-0f8c-842b-585b-7c17b016d412@linux.intel.com>
-Date: Tue, 17 Dec 2019 00:35:16 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9DA386E920;
+	Tue, 17 Dec 2019 01:17:21 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A91336E920
+ for <intel-gfx@lists.freedesktop.org>; Tue, 17 Dec 2019 01:17:20 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19602669-1500050 
+ for multiple; Tue, 17 Dec 2019 01:17:04 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue, 17 Dec 2019 01:16:59 +0000
+Message-Id: <20191217011659.3092130-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.24.0
+In-Reply-To: <20191216175220.2788298-1-chris@chris-wilson.co.uk>
+References: <20191216175220.2788298-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-In-Reply-To: <157652958683.2428.15355243435364299446@skylake-alporthouse-com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/pmu: Ensure monotonic rc6
+Subject: [Intel-gfx] [PATCH] drm/i915/gt: Eliminate the trylock for reading
+ a timeline's hwsp
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,110 +39,215 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+As we stash a pointer to the HWSP cacheline on the request, when reading
+it we only need confirm that the cacheline is still valid by checking
+that the request and timeline are still intact.
 
-On 16/12/2019 20:53, Chris Wilson wrote:
-> Quoting Tvrtko Ursulin (2019-12-16 18:20:32)
->> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->>
->> Avoid rc6 counter going backward in close to 0% RC6 scenarios like:
->>
->>      15.005477996        114,246,613 ns   i915/rc6-residency/
->>      16.005876662            667,657 ns   i915/rc6-residency/
->>      17.006131417              7,286 ns   i915/rc6-residency/
->>      18.006615031 18,446,744,073,708,914,688 ns   i915/rc6-residency/
->>      19.007158361 18,446,744,073,709,447,168 ns   i915/rc6-residency/
->>      20.007806498                  0 ns   i915/rc6-residency/
->>      21.008227495          1,440,403 ns   i915/rc6-residency/
->>
->> There are two aspects to this fix.
->>
->> First is not assuming rc6 value zero means GT is asleep since that can
->> also mean GPU is fully busy and we do not want to enter the estimation
->> path in that case.
->>
->> Second is ensuring monotonicity on the estimation path itself. I suspect
->> what is happening is with extremely rapid park/unpark cycles we get no
->> updates on the real rc6 and therefore have to careful not to
->> unconditionally trust use last known real rc6 when creating a new
->> estimation.
->>
->> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->> Fixes: 16ffe73c186b ("drm/i915/pmu: Use GT parked for estimating RC6 while asleep")
->> Cc: Chris Wilson <chris@chris-wilson.co.uk>
->> ---
->>   drivers/gpu/drm/i915/i915_pmu.c | 10 +++++++---
->>   1 file changed, 7 insertions(+), 3 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/i915/i915_pmu.c b/drivers/gpu/drm/i915/i915_pmu.c
->> index 5f2adfbf85be..c4581d8fc9ce 100644
->> --- a/drivers/gpu/drm/i915/i915_pmu.c
->> +++ b/drivers/gpu/drm/i915/i915_pmu.c
->> @@ -158,7 +158,10 @@ static u64 __pmu_estimate_rc6(struct i915_pmu *pmu)
->>          val = ktime_since(pmu->sleep_last);
->>          val += pmu->sample[__I915_SAMPLE_RC6].cur;
->>   
->> -       pmu->sample[__I915_SAMPLE_RC6_ESTIMATED].cur = val;
->> +       if (val > pmu->sample[__I915_SAMPLE_RC6_ESTIMATED].cur)
->> +               pmu->sample[__I915_SAMPLE_RC6_ESTIMATED].cur = val;
->> +       else
->> +               val = pmu->sample[__I915_SAMPLE_RC6_ESTIMATED].cur;
-> 
-> Still feels a bit hodged-podged, as we should now be able to serialise
-> park/unpark of the rc6 counters and our sampling.
+v2: Protect hwsp_cachline with RCU
 
-A bit dodgy yes. I'll try tomorrow with only setting pmu->sleep_time in 
-park when we know real rc6 has been updated and turn this to an assert. 
-I think the potentially disjoint points in time between sleep time and 
-rc6 updates is what actually could be causing this problem.
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+---
+ drivers/gpu/drm/i915/gt/intel_timeline.c      | 64 +++++++------------
+ .../gpu/drm/i915/gt/intel_timeline_types.h    | 12 +++-
+ drivers/gpu/drm/i915/i915_request.c           |  4 +-
+ drivers/gpu/drm/i915/i915_request.h           |  5 +-
+ 4 files changed, 39 insertions(+), 46 deletions(-)
 
-(Parking always updates the pmu->sleep_time but __I915_SAMPLE_RC6 only 
-if larger than the previous estimate. So on subsequent unpark the 
-estimate update can do the calculation with an unaccounted time period.)
+diff --git a/drivers/gpu/drm/i915/gt/intel_timeline.c b/drivers/gpu/drm/i915/gt/intel_timeline.c
+index d71aafb66d6e..ee5dc4fbdeb9 100644
+--- a/drivers/gpu/drm/i915/gt/intel_timeline.c
++++ b/drivers/gpu/drm/i915/gt/intel_timeline.c
+@@ -15,6 +15,9 @@
+ #define ptr_set_bit(ptr, bit) ((typeof(ptr))((unsigned long)(ptr) | BIT(bit)))
+ #define ptr_test_bit(ptr, bit) ((unsigned long)(ptr) & BIT(bit))
+ 
++#define CACHELINE_BITS 6
++#define CACHELINE_FREE CACHELINE_BITS
++
+ struct intel_timeline_hwsp {
+ 	struct intel_gt *gt;
+ 	struct intel_gt_timelines *gt_timelines;
+@@ -23,14 +26,6 @@ struct intel_timeline_hwsp {
+ 	u64 free_bitmap;
+ };
+ 
+-struct intel_timeline_cacheline {
+-	struct i915_active active;
+-	struct intel_timeline_hwsp *hwsp;
+-	void *vaddr;
+-#define CACHELINE_BITS 6
+-#define CACHELINE_FREE CACHELINE_BITS
+-};
+-
+ static struct i915_vma *__hwsp_alloc(struct intel_gt *gt)
+ {
+ 	struct drm_i915_private *i915 = gt->i915;
+@@ -133,7 +128,7 @@ static void __idle_cacheline_free(struct intel_timeline_cacheline *cl)
+ 	__idle_hwsp_free(cl->hwsp, ptr_unmask_bits(cl->vaddr, CACHELINE_BITS));
+ 
+ 	i915_active_fini(&cl->active);
+-	kfree(cl);
++	kfree_rcu(cl, rcu);
+ }
+ 
+ __i915_active_call
+@@ -514,46 +509,35 @@ int intel_timeline_read_hwsp(struct i915_request *from,
+ 			     struct i915_request *to,
+ 			     u32 *hwsp)
+ {
+-	struct intel_timeline *tl;
++	struct intel_timeline_cacheline *cl;
+ 	int err;
+ 
++	GEM_BUG_ON(!rcu_access_pointer(from->hwsp_cacheline));
++
+ 	rcu_read_lock();
+-	tl = rcu_dereference(from->timeline);
+-	if (i915_request_completed(from) || !kref_get_unless_zero(&tl->kref))
+-		tl = NULL;
++	cl = rcu_dereference(from->hwsp_cacheline);
++	if (unlikely(!i915_active_acquire_if_busy(&cl->active)))
++		goto unlock; /* seqno wrapped and completed! */
++	if (unlikely(i915_request_completed(from)))
++		goto release;
+ 	rcu_read_unlock();
+-	if (!tl) /* already completed */
+-		return 1;
+ 
+-	GEM_BUG_ON(rcu_access_pointer(to->timeline) == tl);
+-
+-	err = -EAGAIN;
+-	if (mutex_trylock(&tl->mutex)) {
+-		struct intel_timeline_cacheline *cl = from->hwsp_cacheline;
+-
+-		if (i915_request_completed(from)) {
+-			err = 1;
+-			goto unlock;
+-		}
++	err = cacheline_ref(cl, to);
++	if (err)
++		goto out;
+ 
+-		err = cacheline_ref(cl, to);
+-		if (err)
+-			goto unlock;
++	*hwsp = i915_ggtt_offset(cl->hwsp->vma) +
++		ptr_unmask_bits(cl->vaddr, CACHELINE_BITS) * CACHELINE_BYTES;
+ 
+-		if (likely(cl == tl->hwsp_cacheline)) {
+-			*hwsp = tl->hwsp_offset;
+-		} else { /* across a seqno wrap, recover the original offset */
+-			*hwsp = i915_ggtt_offset(cl->hwsp->vma) +
+-				ptr_unmask_bits(cl->vaddr, CACHELINE_BITS) *
+-				CACHELINE_BYTES;
+-		}
++out:
++	i915_active_release(&cl->active);
++	return err;
+ 
++release:
++	i915_active_release(&cl->active);
+ unlock:
+-		mutex_unlock(&tl->mutex);
+-	}
+-	intel_timeline_put(tl);
+-
+-	return err;
++	rcu_read_unlock();
++	return 1;
+ }
+ 
+ void intel_timeline_unpin(struct intel_timeline *tl)
+diff --git a/drivers/gpu/drm/i915/gt/intel_timeline_types.h b/drivers/gpu/drm/i915/gt/intel_timeline_types.h
+index aaf15cbe1ce1..24d040f14e89 100644
+--- a/drivers/gpu/drm/i915/gt/intel_timeline_types.h
++++ b/drivers/gpu/drm/i915/gt/intel_timeline_types.h
+@@ -10,14 +10,15 @@
+ #include <linux/list.h>
+ #include <linux/kref.h>
+ #include <linux/mutex.h>
++#include <linux/rcupdate.h>
+ #include <linux/types.h>
+ 
+ #include "i915_active_types.h"
+ 
+ struct drm_i915_private;
+ struct i915_vma;
+-struct intel_timeline_cacheline;
+ struct i915_syncmap;
++struct intel_timeline_hwsp;
+ 
+ struct intel_timeline {
+ 	u64 fence_context;
+@@ -87,4 +88,13 @@ struct intel_timeline {
+ 	struct rcu_head rcu;
+ };
+ 
++struct intel_timeline_cacheline {
++	struct i915_active active;
++
++	struct intel_timeline_hwsp *hwsp;
++	void *vaddr;
++
++	struct rcu_head rcu;
++};
++
+ #endif /* __I915_TIMELINE_TYPES_H__ */
+diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
+index a59b803aef92..269470d3527a 100644
+--- a/drivers/gpu/drm/i915/i915_request.c
++++ b/drivers/gpu/drm/i915/i915_request.c
+@@ -655,9 +655,9 @@ __i915_request_create(struct intel_context *ce, gfp_t gfp)
+ 	rq->execution_mask = ce->engine->mask;
+ 	rq->flags = 0;
+ 
+-	rcu_assign_pointer(rq->timeline, tl);
++	RCU_INIT_POINTER(rq->timeline, tl);
++	RCU_INIT_POINTER(rq->hwsp_cacheline, tl->hwsp_cacheline);
+ 	rq->hwsp_seqno = tl->hwsp_seqno;
+-	rq->hwsp_cacheline = tl->hwsp_cacheline;
+ 
+ 	rq->rcustate = get_state_synchronize_rcu(); /* acts as smp_mb() */
+ 
+diff --git a/drivers/gpu/drm/i915/i915_request.h b/drivers/gpu/drm/i915/i915_request.h
+index a561b8efe869..aa38290eea3d 100644
+--- a/drivers/gpu/drm/i915/i915_request.h
++++ b/drivers/gpu/drm/i915/i915_request.h
+@@ -30,6 +30,7 @@
+ 
+ #include "gt/intel_context_types.h"
+ #include "gt/intel_engine_types.h"
++#include "gt/intel_timeline_types.h"
+ 
+ #include "i915_gem.h"
+ #include "i915_scheduler.h"
+@@ -41,8 +42,6 @@
+ struct drm_file;
+ struct drm_i915_gem_object;
+ struct i915_request;
+-struct intel_timeline;
+-struct intel_timeline_cacheline;
+ 
+ struct i915_capture_list {
+ 	struct i915_capture_list *next;
+@@ -183,7 +182,7 @@ struct i915_request {
+ 	 * inside the timeline's HWSP vma, but it is only valid while this
+ 	 * request has not completed and guarded by the timeline mutex.
+ 	 */
+-	struct intel_timeline_cacheline *hwsp_cacheline;
++	struct intel_timeline_cacheline __rcu *hwsp_cacheline;
+ 
+ 	/** Position in the ring of the start of the request */
+ 	u32 head;
+-- 
+2.24.0
 
-Test for this will also be difficult since I think it needs to find a 
-curious set point just above 0% RC6 and wiggle it slightly. We have 
-really extreme park/unpark behaviour in my manual testing where for 
-several seconds we are either in stable unparked state or in very rapid 
-park/unpark cycles.
-
-Regards,
-
-Tvrtko
-
->>          return val;
->>   }
->> @@ -185,17 +188,18 @@ static u64 get_rc6(struct intel_gt *gt)
->>          struct drm_i915_private *i915 = gt->i915;
->>          struct i915_pmu *pmu = &i915->pmu;
->>          unsigned long flags;
->> +       bool awake = false;
->>          u64 val;
->>   
->> -       val = 0;
->>          if (intel_gt_pm_get_if_awake(gt)) {
->>                  val = __get_rc6(gt);
->>                  intel_gt_pm_put_async(gt);
->> +               awake = true;
->>          }
->>   
->>          spin_lock_irqsave(&pmu->lock, flags);
->>   
->> -       if (val)
->> +       if (awake)
->>                  val = __pmu_update_rc6(pmu, val);
->>          else
->>                  val = __pmu_estimate_rc6(pmu);
-> 
-> Just on the off-chance it returns 0 in the next thousand years.
-> 
-> Reviewed-by: Chris Wilson <chris@chris-wilson.co.uk>
-> -Chris
-> 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
