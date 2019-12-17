@@ -1,40 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6DC43122ACF
-	for <lists+intel-gfx@lfdr.de>; Tue, 17 Dec 2019 12:59:06 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A4AA4122AC4
+	for <lists+intel-gfx@lfdr.de>; Tue, 17 Dec 2019 12:58:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B91A36E9AF;
-	Tue, 17 Dec 2019 11:59:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E26A36E9B5;
+	Tue, 17 Dec 2019 11:58:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 392 seconds by postgrey-1.36 at gabe;
- Tue, 17 Dec 2019 11:59:04 UTC
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
- by gabe.freedesktop.org (Postfix) with ESMTP id 58E886E9AF
- for <intel-gfx@lists.freedesktop.org>; Tue, 17 Dec 2019 11:59:04 +0000 (UTC)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
- by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 91CC631B;
- Tue, 17 Dec 2019 03:52:31 -0800 (PST)
-Received: from [10.1.196.56] (e112269-lin.cambridge.arm.com [10.1.196.56])
- by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 7E8ED3F6CF;
- Tue, 17 Dec 2019 03:52:30 -0800 (PST)
-From: Steven Price <steven.price@arm.com>
-To: Randy Dunlap <rdunlap@infradead.org>, Sam Ravnborg <sam@ravnborg.org>
-References: <20191216162209.5b5256dd@canb.auug.org.au>
- <d92bec2a-62cb-004e-7f8c-01fc12a53a74@infradead.org>
- <20191217054255.GA26868@ravnborg.org>
- <65c9dc7b-3c61-8204-07da-212632732791@infradead.org>
-Message-ID: <aede39a0-3469-130d-f416-0e9426ebcec9@arm.com>
-Date: Tue, 17 Dec 2019 11:52:29 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.2.2
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CC9DF6E9AD
+ for <intel-gfx@lists.freedesktop.org>; Tue, 17 Dec 2019 11:58:03 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 17 Dec 2019 03:58:03 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.69,325,1571727600"; d="scan'208";a="247438902"
+Received: from klipka-mobl.ger.corp.intel.com (HELO
+ skylake-nuc.ger.corp.intel.com) ([10.249.254.229])
+ by fmsmga002.fm.intel.com with ESMTP; 17 Dec 2019 03:58:01 -0800
+From: Abdiel Janulgue <abdiel.janulgue@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue, 17 Dec 2019 13:57:49 +0200
+Message-Id: <20191217115750.11938-1-abdiel.janulgue@linux.intel.com>
+X-Mailer: git-send-email 2.23.0
 MIME-Version: 1.0
-In-Reply-To: <65c9dc7b-3c61-8204-07da-212632732791@infradead.org>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] linux-next: Tree for Dec 16 (drm_panel &
- intel_panel)
+Subject: [Intel-gfx] [PATCH 1/2] drm/i915: Add lmem fault handler
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,86 +41,208 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Stephen Rothwell <sfr@canb.auug.org.au>,
- intel-gfx <intel-gfx@lists.freedesktop.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- dri-devel <dri-devel@lists.freedesktop.org>,
- Linux Next Mailing List <linux-next@vger.kernel.org>
+Cc: Matthew Auld <matthew.auld@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 17/12/2019 06:37, Randy Dunlap wrote:
-> On 12/16/19 9:42 PM, Sam Ravnborg wrote:
->> Hi Randy.
->>
->> On Mon, Dec 16, 2019 at 08:25:11AM -0800, Randy Dunlap wrote:
->>> On 12/15/19 9:22 PM, Stephen Rothwell wrote:
->>>> Hi all,
->>>>
->>>> Changes since 20191213:
->>>>
->>>
->>> on x86_64:
->>>
->>> ld: drivers/gpu/drm/drm_panel.o: in function `drm_panel_of_backlight':
->>> (.text+0x2ee): undefined reference to `devm_of_find_backlight'
->>>
->>> ld: drivers/gpu/drm/i915/display/intel_panel.o: in function `intel_backlight_device_register':
->>> intel_panel.c:(.text+0x593e): undefined reference to `backlight_device_register'
->>> ld: drivers/gpu/drm/i915/display/intel_panel.o: in function `intel_backlight_device_unregister':
->>> intel_panel.c:(.text+0x5a04): undefined reference to `backlight_device_unregister'
->>>
->>> CONFIG_DRM_PANEL=y
->>> CONFIG_BACKLIGHT_CLASS_DEVICE=m
->>> CONFIG_DRM_I915=y
->>>
->>> Full randconfig file is attached.
->>
->> Can you please verify if you have:
->> 907aa265fde6589b8059dc51649c6d1f49ade2f3
->> ("drm/drm_panel: fix EXPORT of drm_panel_of_backlight")
->>
->> This commit is supposed to fix it.
->>
->> 	Sam
->>
-> 
-> Hi Sam,
-> I don't have the linux-next.git tree so I can't check that.
-> I just built whatever is in linux-next of 20191216.
-> 
+Fault handler to handle missing pages for lmem objects.
 
-907aa265fde6589b8059dc51649c6d1f49ade2f3 ("drm/drm_panel: fix EXPORT of
-drm_panel_of_backlight") is fixing drm_panel_of_backlight(), but the
-error above is for backlight_device_register().
+v4: Restore non-contigous fault handling in addition to remap_io_mapping
 
-From what I can tell, that commit is actually the cause of the error -
-now intel_backlight_device_register() is being included in the kernel
-even though it calls backlight_device_register() which is in a module.
-Of course it also fixed the original error, so reverting it isn't any
-use.
+Signed-off-by: Abdiel Janulgue <abdiel.janulgue@linux.intel.com>
+Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+---
+ drivers/gpu/drm/i915/gem/i915_gem_lmem.c | 13 +++++
+ drivers/gpu/drm/i915/gem/i915_gem_lmem.h |  4 ++
+ drivers/gpu/drm/i915/gem/i915_gem_mman.c | 71 ++++++++++++++++++++++--
+ 3 files changed, 84 insertions(+), 4 deletions(-)
 
-The below Kconfig change fixes the build for me, but I've no idea
-whether this is the correct fix.
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_lmem.c b/drivers/gpu/drm/i915/gem/i915_gem_lmem.c
+index 520cc9cac471..e8326d8b66f7 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_lmem.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_lmem.c
+@@ -6,6 +6,7 @@
+ #include "intel_memory_region.h"
+ #include "gem/i915_gem_region.h"
+ #include "gem/i915_gem_lmem.h"
++#include "gem/i915_gem_mman.h"
+ #include "i915_drv.h"
+ 
+ const struct drm_i915_gem_object_ops i915_gem_lmem_obj_ops = {
+@@ -56,6 +57,18 @@ i915_gem_object_lmem_io_map(struct drm_i915_gem_object *obj,
+ 	return io_mapping_map_wc(&obj->mm.region->iomap, offset, size);
+ }
+ 
++unsigned long i915_gem_object_lmem_io_pfn(struct drm_i915_gem_object *obj,
++					  unsigned long n)
++{
++	struct intel_memory_region *mem = obj->mm.region;
++	resource_size_t offset;
++
++	offset = i915_gem_object_get_dma_address(obj, n);
++	offset -= mem->region.start;
++
++	return (mem->io_start + offset) >> PAGE_SHIFT;
++}
++
+ bool i915_gem_object_is_lmem(struct drm_i915_gem_object *obj)
+ {
+ 	return obj->ops == &i915_gem_lmem_obj_ops;
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_lmem.h b/drivers/gpu/drm/i915/gem/i915_gem_lmem.h
+index 7c176b8b7d2f..4d5fca1a3e0e 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_lmem.h
++++ b/drivers/gpu/drm/i915/gem/i915_gem_lmem.h
+@@ -7,6 +7,7 @@
+ #define __I915_GEM_LMEM_H
+ 
+ #include <linux/types.h>
++#include <linux/mman.h>
+ 
+ struct drm_i915_private;
+ struct drm_i915_gem_object;
+@@ -22,6 +23,9 @@ void __iomem *
+ i915_gem_object_lmem_io_map_page_atomic(struct drm_i915_gem_object *obj,
+ 					unsigned long n);
+ 
++unsigned long i915_gem_object_lmem_io_pfn(struct drm_i915_gem_object *obj,
++					  unsigned long n);
++
+ bool i915_gem_object_is_lmem(struct drm_i915_gem_object *obj);
+ 
+ struct drm_i915_gem_object *
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_mman.c b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
+index 879fff8adc48..f5f7af745d1d 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_mman.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
+@@ -11,6 +11,7 @@
+ #include "gt/intel_gt.h"
+ #include "gt/intel_gt_requests.h"
+ 
++#include "i915_gem_lmem.h"
+ #include "i915_drv.h"
+ #include "i915_gem_gtt.h"
+ #include "i915_gem_ioctls.h"
+@@ -216,6 +217,7 @@ static vm_fault_t i915_error_to_vmf_fault(int err)
+ 
+ 	case -ENOSPC: /* shmemfs allocation failure */
+ 	case -ENOMEM: /* our allocation failure */
++	case -ENXIO:
+ 		return VM_FAULT_OOM;
+ 
+ 	case 0:
+@@ -274,6 +276,47 @@ static vm_fault_t vm_fault_cpu(struct vm_fault *vmf)
+ 	return ret;
+ }
+ 
++vm_fault_t vm_fault_iomem(struct vm_fault *vmf)
++{
++	struct vm_area_struct *area = vmf->vma;
++	struct i915_mmap_offset *priv = area->vm_private_data;
++	struct drm_i915_gem_object *obj = priv->obj;
++	struct intel_memory_region *mem = obj->mm.region;
++	unsigned long i, size = area->vm_end - area->vm_start;
++	bool write = area->vm_flags & VM_WRITE;
++	int ret;
++
++	/* Sanity check that we allow writing into this object */
++	if (i915_gem_object_is_readonly(obj) && write)
++		return VM_FAULT_SIGBUS;
++
++	ret = i915_gem_object_pin_pages(obj);
++	if (ret)
++		return i915_error_to_vmf_fault(ret);
++
++	if (obj->flags & I915_BO_ALLOC_CONTIGUOUS) {
++		ret = remap_io_mapping(area, area->vm_start,
++				       i915_gem_object_lmem_io_pfn(obj, 0), size,
++				       &mem->iomap);
++		i915_gem_object_unpin_pages(obj);
++		return i915_error_to_vmf_fault(ret);
++	} else {
++		vm_fault_t vmf_ret = VM_FAULT_SIGBUS;
++		if (GEM_WARN_ON(size < PAGE_SIZE))
++			return vmf_ret;
++
++		for (i = 0; i < size >> PAGE_SHIFT; i++) {
++			vmf_ret = vmf_insert_pfn(area,
++						 (unsigned long)area->vm_start + i * PAGE_SIZE,
++						 i915_gem_object_lmem_io_pfn(obj, i));
++			if (vmf_ret != VM_FAULT_NOPAGE)
++				break;
++		}
++		i915_gem_object_unpin_pages(obj);
++		return vmf_ret;
++	}
++}
++
+ static vm_fault_t vm_fault_gtt(struct vm_fault *vmf)
+ {
+ #define MIN_CHUNK_PAGES (SZ_1M >> PAGE_SHIFT)
+@@ -560,7 +603,8 @@ __assign_mmap_offset(struct drm_file *file,
+ 	}
+ 
+ 	if (mmap_type != I915_MMAP_TYPE_GTT &&
+-	    !i915_gem_object_has_struct_page(obj)) {
++	    !i915_gem_object_type_has(obj, I915_GEM_OBJECT_HAS_STRUCT_PAGE |
++				      I915_GEM_OBJECT_HAS_IOMEM)) {
+ 		err = -ENODEV;
+ 		goto out;
+ 	}
+@@ -694,6 +738,25 @@ static const struct vm_operations_struct vm_ops_cpu = {
+ 	.close = vm_close,
+ };
+ 
++static const struct vm_operations_struct vm_ops_iomem = {
++       .fault = vm_fault_iomem,
++       .open = vm_open,
++       .close = vm_close,
++};
++
++static const struct vm_operations_struct *
++get_vm_cpu_ops(struct drm_i915_gem_object *obj)
++{
++	if (i915_gem_object_type_has(obj, I915_GEM_OBJECT_HAS_STRUCT_PAGE))
++		return &vm_ops_cpu;
++
++	if (i915_gem_object_type_has(obj, I915_GEM_OBJECT_HAS_IOMEM))
++		return &vm_ops_iomem;
++
++	GEM_BUG_ON("unknown object type");
++	return NULL;
++}
++
+ /*
+  * This overcomes the limitation in drm_gem_mmap's assignment of a
+  * drm_gem_object as the vma->vm_private_data. Since we need to
+@@ -762,18 +825,18 @@ int i915_gem_mmap(struct file *filp, struct vm_area_struct *vma)
+ 	case I915_MMAP_TYPE_WC:
+ 		vma->vm_page_prot =
+ 			pgprot_writecombine(vm_get_page_prot(vma->vm_flags));
+-		vma->vm_ops = &vm_ops_cpu;
++		vma->vm_ops = get_vm_cpu_ops(to_intel_bo(obj));
+ 		break;
+ 
+ 	case I915_MMAP_TYPE_WB:
+ 		vma->vm_page_prot = vm_get_page_prot(vma->vm_flags);
+-		vma->vm_ops = &vm_ops_cpu;
++		vma->vm_ops = get_vm_cpu_ops(to_intel_bo(obj));
+ 		break;
+ 
+ 	case I915_MMAP_TYPE_UC:
+ 		vma->vm_page_prot =
+ 			pgprot_noncached(vm_get_page_prot(vma->vm_flags));
+-		vma->vm_ops = &vm_ops_cpu;
++		vma->vm_ops = get_vm_cpu_ops(to_intel_bo(obj));
+ 		break;
+ 
+ 	case I915_MMAP_TYPE_GTT:
+-- 
+2.23.0
 
-Steve
-
-----8<-----
-diff --git a/drivers/gpu/drm/i915/Kconfig b/drivers/gpu/drm/i915/Kconfig
-index ba9595960bbe..6b69dab683ae 100644
---- a/drivers/gpu/drm/i915/Kconfig
-+++ b/drivers/gpu/drm/i915/Kconfig
-@@ -16,7 +16,7 @@ config DRM_I915
- 	select IRQ_WORK
- 	# i915 depends on ACPI_VIDEO when ACPI is enabled
- 	# but for select to work, need to select ACPI_VIDEO's dependencies, ick
--	select BACKLIGHT_CLASS_DEVICE if ACPI
-+	select BACKLIGHT_CLASS_DEVICE
- 	select INPUT if ACPI
- 	select ACPI_VIDEO if ACPI
- 	select ACPI_BUTTON if ACPI
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
