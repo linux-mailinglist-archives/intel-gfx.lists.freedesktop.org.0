@@ -1,45 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D8C7F123557
-	for <lists+intel-gfx@lfdr.de>; Tue, 17 Dec 2019 20:03:26 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 32C62123563
+	for <lists+intel-gfx@lfdr.de>; Tue, 17 Dec 2019 20:07:52 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 357CB6E187;
-	Tue, 17 Dec 2019 19:03:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 720236E0D5;
+	Tue, 17 Dec 2019 19:07:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B20BA6E187
- for <intel-gfx@lists.freedesktop.org>; Tue, 17 Dec 2019 19:03:23 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-X-Amp-File-Uploaded: False
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by orsmga106.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 17 Dec 2019 11:03:22 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,326,1571727600"; d="scan'208";a="217900947"
-Received: from labuser-z97x-ud5h.jf.intel.com (HELO intel.com) ([10.54.75.49])
- by orsmga003.jf.intel.com with ESMTP; 17 Dec 2019 11:03:22 -0800
-Date: Tue, 17 Dec 2019 11:04:53 -0800
-From: Manasi Navare <manasi.d.navare@intel.com>
-To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Message-ID: <20191217190453.GA24363@intel.com>
-References: <20191211211425.17821-1-manasi.d.navare@intel.com>
- <20191211211425.17821-2-manasi.d.navare@intel.com>
- <20191216143738.GV1208@intel.com>
- <20191216191309.GA18010@intel.com>
- <20191216213738.GD1208@intel.com>
- <20191216223310.GJ19224@intel.com>
- <20191216225813.GK19224@intel.com>
- <20191217105031.GE1208@intel.com>
+Received: from asavdk4.altibox.net (asavdk4.altibox.net [109.247.116.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 161C86E0D5;
+ Tue, 17 Dec 2019 19:07:49 +0000 (UTC)
+Received: from ravnborg.org (unknown [158.248.194.18])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by asavdk4.altibox.net (Postfix) with ESMTPS id E5FD48050A;
+ Tue, 17 Dec 2019 20:07:46 +0100 (CET)
+Date: Tue, 17 Dec 2019 20:07:45 +0100
+From: Sam Ravnborg <sam@ravnborg.org>
+To: Jani Nikula <jani.nikula@intel.com>
+Message-ID: <20191217190745.GE30809@ravnborg.org>
+References: <20191210123050.8799-1-jani.nikula@intel.com>
+ <20191210123050.8799-6-jani.nikula@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20191217105031.GE1208@intel.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-Subject: Re: [Intel-gfx] [PATCH 1/3] drm/i915/dp: Make sure all tiled
- connectors get added to the state with full modeset
+In-Reply-To: <20191210123050.8799-6-jani.nikula@intel.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-CMAE-Score: 0
+X-CMAE-Analysis: v=2.3 cv=VcLZwmh9 c=1 sm=1 tr=0
+ a=UWs3HLbX/2nnQ3s7vZ42gw==:117 a=UWs3HLbX/2nnQ3s7vZ42gw==:17
+ a=jpOVt7BSZ2e4Z31A5e1TngXxSK0=:19 a=kj9zAlcOel0A:10 a=7gkXJVJtAAAA:8
+ a=QyXUC8HyAAAA:8 a=e5mUnYsNAAAA:8 a=tUJkaD4_klDURomq26IA:9
+ a=6kBM4Ie89-CDsJHo:21 a=tw2_cDPGXVXFgsfC:21 a=CjuIK1q_8ugA:10
+ a=E9Po1WZjFZOl8hwRPBS3:22 a=Vxmtnl_E_bksehYqCbjh:22
+Subject: Re: [Intel-gfx] [PATCH 6/8] drm/atomic: convert to drm device based
+ logging
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,283 +48,556 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Dec 17, 2019 at 12:50:31PM +0200, Ville Syrj=E4l=E4 wrote:
-> On Mon, Dec 16, 2019 at 02:58:13PM -0800, Manasi Navare wrote:
-> > On Mon, Dec 16, 2019 at 02:33:10PM -0800, Manasi Navare wrote:
-> > > On Mon, Dec 16, 2019 at 11:37:38PM +0200, Ville Syrj=E4l=E4 wrote:
-> > > > On Mon, Dec 16, 2019 at 11:13:09AM -0800, Manasi Navare wrote:
-> > > > > On Mon, Dec 16, 2019 at 04:37:38PM +0200, Ville Syrj=E4l=E4 wrote:
-> > > > > > On Wed, Dec 11, 2019 at 01:14:23PM -0800, Manasi Navare wrote:
-> > > > > > > In case of tiled displays, all the tiles are linke dto each o=
-ther
-> > > > > > > for transcoder port sync. So in intel_atomic_check() we need =
-to make
-> > > > > > > sure that we add all the tiles to the modeset and if one of t=
-he
-> > > > > > > tiles needs a full modeset then mark all other tiles for a fu=
-ll modeset.
-> > > > > > > =
+Hi Jani.
 
-> > > > > > > Suggested-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.co=
-m>
-> > > > > > > Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> > > > > > > Cc: Jos=E9 Roberto de Souza <jose.souza@intel.com>
-> > > > > > > Bugzilla: https://gitlab.freedesktop.org/drm/intel/issues/5
-> > > > > > > Signed-off-by: Manasi Navare <manasi.d.navare@intel.com>
-> > > > > > > ---
-> > > > > > >  drivers/gpu/drm/i915/display/intel_display.c | 78 ++++++++++=
-++++++++++
-> > > > > > >  1 file changed, 78 insertions(+)
-> > > > > > > =
+On Tue, Dec 10, 2019 at 02:30:48PM +0200, Jani Nikula wrote:
+> Prefer drm_dbg_atomic().
 
-> > > > > > > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/d=
-rivers/gpu/drm/i915/display/intel_display.c
-> > > > > > > index 803993a01ca7..7263eaa66cda 100644
-> > > > > > > --- a/drivers/gpu/drm/i915/display/intel_display.c
-> > > > > > > +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> > > > > > > @@ -14066,6 +14066,80 @@ static int intel_atomic_check_crtcs(=
-struct intel_atomic_state *state)
-> > > > > > >  	return 0;
-> > > > > > >  }
-> > > > > > >  =
+This patch simplify code by introducing a local drm_device varialble
+which is good. But this is not mentioned in the cahngelog.
 
-> > > > > > > +static int
-> > > > > > > +intel_dp_modeset_all_tiles(struct drm_i915_private *dev_priv,
-> > > > > > > +			   struct intel_atomic_state *state, int tile_grp_id)
-> > > > > > > +{
-> > > > > > > +	struct drm_connector *conn_iter;
-> > > > > > > +	struct drm_connector_list_iter conn_list_iter;
-> > > > > > > +	struct drm_crtc_state *crtc_state;
-> > > > > > > +
-> > > > > > > +	drm_connector_list_iter_begin(&dev_priv->drm, &conn_list_it=
-er);
-> > > > > > > +	drm_for_each_connector_iter(conn_iter, &conn_list_iter) {
-> > > > > > > +		struct drm_connector_state *conn_iter_state;
-> > > > > > > +
-> > > > > > > +		if (!conn_iter->has_tile)
-> > > > > > > +			continue;
-> > > > > > > +		conn_iter_state =3D drm_atomic_get_connector_state(&state-=
->base,
-> > > > > > > +								 conn_iter);
-> > > > > > > +		if (IS_ERR(conn_iter_state)) {
-> > > > > > > +			drm_connector_list_iter_end(&conn_list_iter);
-> > > > > > > +			return PTR_ERR(conn_iter_state);
-> > > > > > > +		}
-> > > > > > > +
-> > > > > > > +		if (!conn_iter_state->crtc)
-> > > > > > > +			continue;
-> > > > > > > +
-> > > > > > > +		if (conn_iter->tile_group->id !=3D tile_grp_id)
-> > > > > > > +			continue;
-> > > > > > > +
-> > > > > > > +		crtc_state =3D drm_atomic_get_crtc_state(&state->base, con=
-n_iter_state->crtc);
-> > > > > > > +		if (IS_ERR(crtc_state)) {
-> > > > > > > +			drm_connector_list_iter_end(&conn_list_iter);
-> > > > > > > +			return PTR_ERR(conn_iter_state);
-> > > > > > > +		}
-> > > > > > > +		crtc_state->mode_changed =3D true;
-> > > > > > > +	}
-> > > > > > > +	drm_connector_list_iter_end(&conn_list_iter);
-> > > > > > > +
-> > > > > > > +	return 0;
-> > > > > > > +}
-> > > > > > > +
-> > > > > > > +static int
-> > > > > > > +intel_dp_atomic_trans_port_sync_check(struct drm_i915_privat=
-e *dev_priv,
-> > > > > > > +				      struct intel_atomic_state *state)
-> > > > > > > +{
-> > > > > > > +	struct drm_connector *connector;
-> > > > > > > +	struct drm_crtc_state *crtc_state;
-> > > > > > > +	struct drm_connector_state *connector_state;
-> > > > > > > +	int i, ret, tile_grp_id =3D 0;
-> > > > > > > +
-> > > > > > > +	if (INTEL_GEN(dev_priv) < 11)
-> > > > > > > +		return 0;
-> > > > > > > +
-> > > > > > > +	/* Is tiled, mark all other tiled CRTCs as needing a modese=
-t */
-> > > > > > > +	for_each_new_connector_in_state(&state->base, connector, co=
-nnector_state, i) {
-> > > > > > > +		if (!connector->has_tile)
-> > > > > > > +			continue;
-> > > > > > > +		if (connector_state->crtc &&
-> > > > > > > +		    tile_grp_id !=3D connector->tile_group->id) {
-> > > > > > > +			crtc_state =3D drm_atomic_get_new_crtc_state(&state->base,
-> > > > > > > +								   connector_state->crtc);
-> > > > > > > +			if (!drm_atomic_crtc_needs_modeset(crtc_state))
-> > > > > > > +				continue;
-> > > > > > > +
-> > > > > > > +			tile_grp_id =3D connector->tile_group->id;
-> > > > > > > +		} else
-> > > > > > > +			continue;
-> > > > > > > +
-> > > > > > > +		ret =3D intel_dp_modeset_all_tiles(dev_priv, state, tile_g=
-rp_id);
-> > > > > > > +		if (ret)
-> > > > > > > +			return ret;
-> > > > > > > +	}
-> > > > > > > +
-> > > > > > > +	return 0;
-> > > > > > > +}
-> > > > > > =
+Anf the patch uses more than just drm_dbg_atomic(), see for example the
+first patch below.
 
-> > > > > > BTW after some more pondering I don't think this alone is suffi=
-cient.
-> > > > > > The tile information may have already disppeared so I believe w=
-e also
-> > > > > > need to make sure we mark all currently synced crtcs as needing=
- a
-> > > > > > modeset if any of them need a modeset. And I guess that's prett=
-y much
-> > > > > > the same function we'll need to handle fastset correctly.
-> > > > > >
-> > > > > =
+With updated changelog and small nit mentioned later fixed:
+Reviewed-by: Sam Ravnborg <sam@ravnborg.org>
 
-> > > > > The crtcs in the current state get synced and master/slave assign=
-ments happen in icl_add_sync_mode_crtcs before compute_config call
-> > > > > So are you suggesting basically moving this function after the cr=
-tcs are synced and then just setting modeset
-> > > > > to true for all synced crtcs if one of them needs modeset?
-> > > > =
+	Sam
 
-> > > > I think it should look something like:
-> > > > =
+> 
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> ---
+>  drivers/gpu/drm/drm_agpsupport.c |   4 +-
+>  drivers/gpu/drm/drm_atomic.c     | 187 +++++++++++++++++--------------
+>  2 files changed, 102 insertions(+), 89 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/drm_agpsupport.c b/drivers/gpu/drm/drm_agpsupport.c
+> index 4c7ad46fdd21..cd675e58de50 100644
+> --- a/drivers/gpu/drm/drm_agpsupport.c
+> +++ b/drivers/gpu/drm/drm_agpsupport.c
+> @@ -330,8 +330,8 @@ int drm_agp_bind(struct drm_device *dev, struct drm_agp_binding *request)
+>  	if (retcode)
+>  		return retcode;
+>  	entry->bound = dev->agp->base + (page << PAGE_SHIFT);
+> -	DRM_DEBUG("base = 0x%lx entry->bound = 0x%lx\n",
+> -		  dev->agp->base, entry->bound);
+> +	drm_dbg_core(dev, "base = 0x%lx entry->bound = 0x%lx\n",
+> +		     dev->agp->base, entry->bound);
+>  	return 0;
+>  }
+>  EXPORT_SYMBOL(drm_agp_bind);
+> diff --git a/drivers/gpu/drm/drm_atomic.c b/drivers/gpu/drm/drm_atomic.c
+> index 14aeaf736321..8494b1c29bf0 100644
+> --- a/drivers/gpu/drm/drm_atomic.c
+> +++ b/drivers/gpu/drm/drm_atomic.c
+> @@ -99,7 +99,7 @@ drm_atomic_state_init(struct drm_device *dev, struct drm_atomic_state *state)
+>  
+>  	state->dev = dev;
+>  
+> -	DRM_DEBUG_ATOMIC("Allocated atomic state %p\n", state);
+> +	drm_dbg_atomic(dev, "Allocated atomic state %p\n", state);
+>  
+>  	return 0;
+>  fail:
+> @@ -150,7 +150,7 @@ void drm_atomic_state_default_clear(struct drm_atomic_state *state)
+>  	struct drm_mode_config *config = &dev->mode_config;
+>  	int i;
+>  
+> -	DRM_DEBUG_ATOMIC("Clearing atomic state %p\n", state);
+> +	drm_dbg_atomic(dev, "Clearing atomic state %p\n", state);
+>  
+>  	for (i = 0; i < state->num_connector; i++) {
+>  		struct drm_connector *connector = state->connectors[i].ptr;
+> @@ -256,11 +256,12 @@ EXPORT_SYMBOL(drm_atomic_state_clear);
+>  void __drm_atomic_state_free(struct kref *ref)
+>  {
+>  	struct drm_atomic_state *state = container_of(ref, typeof(*state), ref);
+> -	struct drm_mode_config *config = &state->dev->mode_config;
+> +	struct drm_device *dev = state->dev;
+> +	struct drm_mode_config *config = &dev->mode_config;
+>  
+>  	drm_atomic_state_clear(state);
+>  
+> -	DRM_DEBUG_ATOMIC("Freeing atomic state %p\n", state);
+> +	drm_dbg_atomic(dev, "Freeing atomic state %p\n", state);
+>  
+>  	if (config->funcs->atomic_state_free) {
+>  		config->funcs->atomic_state_free(state);
+> @@ -290,8 +291,9 @@ struct drm_crtc_state *
+>  drm_atomic_get_crtc_state(struct drm_atomic_state *state,
+>  			  struct drm_crtc *crtc)
+>  {
+> -	int ret, index = drm_crtc_index(crtc);
+> +	struct drm_device *dev = state->dev;
+>  	struct drm_crtc_state *crtc_state;
+> +	int ret, index = drm_crtc_index(crtc);
+>  
+>  	WARN_ON(!state->acquire_ctx);
+>  
+> @@ -313,8 +315,8 @@ drm_atomic_get_crtc_state(struct drm_atomic_state *state,
+>  	state->crtcs[index].ptr = crtc;
+>  	crtc_state->state = state;
+>  
+> -	DRM_DEBUG_ATOMIC("Added [CRTC:%d:%s] %p state to %p\n",
+> -			 crtc->base.id, crtc->name, crtc_state, state);
+> +	drm_dbg_atomic(dev, "Added [CRTC:%d:%s] %p state to %p\n",
+> +		       crtc->base.id, crtc->name, crtc_state, state);
+>  
+>  	return crtc_state;
+>  }
+> @@ -324,6 +326,7 @@ static int drm_atomic_crtc_check(const struct drm_crtc_state *old_crtc_state,
+>  				 const struct drm_crtc_state *new_crtc_state)
+>  {
+>  	struct drm_crtc *crtc = new_crtc_state->crtc;
+> +	struct drm_device *dev = crtc->dev;
+>  
+>  	/* NOTE: we explicitly don't enforce constraints such as primary
+>  	 * layer covering entire screen, since that is something we want
+> @@ -334,25 +337,25 @@ static int drm_atomic_crtc_check(const struct drm_crtc_state *old_crtc_state,
+>  	 */
+>  
+>  	if (new_crtc_state->active && !new_crtc_state->enable) {
+> -		DRM_DEBUG_ATOMIC("[CRTC:%d:%s] active without enabled\n",
+> -				 crtc->base.id, crtc->name);
+> +		drm_dbg_atomic(dev, "[CRTC:%d:%s] active without enabled\n",
+> +			       crtc->base.id, crtc->name);
+>  		return -EINVAL;
+>  	}
+>  
+>  	/* The state->enable vs. state->mode_blob checks can be WARN_ON,
+>  	 * as this is a kernel-internal detail that userspace should never
+>  	 * be able to trigger. */
+> -	if (drm_core_check_feature(crtc->dev, DRIVER_ATOMIC) &&
+> +	if (drm_core_check_feature(dev, DRIVER_ATOMIC) &&
+>  	    WARN_ON(new_crtc_state->enable && !new_crtc_state->mode_blob)) {
+> -		DRM_DEBUG_ATOMIC("[CRTC:%d:%s] enabled without mode blob\n",
+> -				 crtc->base.id, crtc->name);
+> +		drm_dbg_atomic(dev, "[CRTC:%d:%s] enabled without mode blob\n",
+> +			       crtc->base.id, crtc->name);
+>  		return -EINVAL;
+>  	}
+>  
+> -	if (drm_core_check_feature(crtc->dev, DRIVER_ATOMIC) &&
+> +	if (drm_core_check_feature(dev, DRIVER_ATOMIC) &&
+>  	    WARN_ON(!new_crtc_state->enable && new_crtc_state->mode_blob)) {
+> -		DRM_DEBUG_ATOMIC("[CRTC:%d:%s] disabled with mode blob\n",
+> -				 crtc->base.id, crtc->name);
+> +		drm_dbg_atomic(dev, "[CRTC:%d:%s] disabled with mode blob\n",
+> +			       crtc->base.id, crtc->name);
+>  		return -EINVAL;
+>  	}
+>  
+> @@ -368,8 +371,8 @@ static int drm_atomic_crtc_check(const struct drm_crtc_state *old_crtc_state,
+>  	 */
+>  	if (new_crtc_state->event &&
+>  	    !new_crtc_state->active && !old_crtc_state->active) {
+> -		DRM_DEBUG_ATOMIC("[CRTC:%d:%s] requesting event but off\n",
+> -				 crtc->base.id, crtc->name);
+> +		drm_dbg_atomic(dev, "[CRTC:%d:%s] requesting event but off\n",
+> +			       crtc->base.id, crtc->name);
+>  		return -EINVAL;
+>  	}
+>  
+> @@ -402,6 +405,7 @@ static void drm_atomic_crtc_print_state(struct drm_printer *p,
+>  static int drm_atomic_connector_check(struct drm_connector *connector,
+>  		struct drm_connector_state *state)
+>  {
+> +	struct drm_device *dev = connector->dev;
+>  	struct drm_crtc_state *crtc_state;
+>  	struct drm_writeback_job *writeback_job = state->writeback_job;
+>  	const struct drm_display_info *info = &connector->display_info;
+> @@ -414,8 +418,8 @@ static int drm_atomic_connector_check(struct drm_connector *connector,
+>  		return 0;
+>  
+>  	if (writeback_job->fb && !state->crtc) {
+> -		DRM_DEBUG_ATOMIC("[CONNECTOR:%d:%s] framebuffer without CRTC\n",
+> -				 connector->base.id, connector->name);
+> +		drm_dbg_atomic(dev, "[CONNECTOR:%d:%s] framebuffer without CRTC\n",
+> +			       connector->base.id, connector->name);
+>  		return -EINVAL;
+>  	}
+>  
+> @@ -424,16 +428,16 @@ static int drm_atomic_connector_check(struct drm_connector *connector,
+>  								state->crtc);
+>  
+>  	if (writeback_job->fb && !crtc_state->active) {
+> -		DRM_DEBUG_ATOMIC("[CONNECTOR:%d:%s] has framebuffer, but [CRTC:%d] is off\n",
+> -				 connector->base.id, connector->name,
+> -				 state->crtc->base.id);
+> +		drm_dbg_atomic(dev, "[CONNECTOR:%d:%s] has framebuffer, but [CRTC:%d] is off\n",
+> +			       connector->base.id, connector->name,
+> +			       state->crtc->base.id);
+>  		return -EINVAL;
+>  	}
+>  
+>  	if (!writeback_job->fb) {
+>  		if (writeback_job->out_fence) {
+> -			DRM_DEBUG_ATOMIC("[CONNECTOR:%d:%s] requesting out-fence without framebuffer\n",
+> -					 connector->base.id, connector->name);
+> +			drm_dbg_atomic(dev, "[CONNECTOR:%d:%s] requesting out-fence without framebuffer\n",
+> +				       connector->base.id, connector->name);
+>  			return -EINVAL;
+>  		}
+>  
+> @@ -463,8 +467,9 @@ struct drm_plane_state *
+>  drm_atomic_get_plane_state(struct drm_atomic_state *state,
+>  			  struct drm_plane *plane)
+>  {
+> -	int ret, index = drm_plane_index(plane);
+> +	struct drm_device *dev = state->dev;
+>  	struct drm_plane_state *plane_state;
+> +	int ret, index = drm_plane_index(plane);
+We often see inverse xmas used for local variables.
+Here you move a line to make it xmas style.
+Could we avoid this extra change?
 
-> > > > modeset_tiled_things();
-> > > > modeset_synced_things();
-> > > =
-
-> > > but modeset_synced_things() should be called after icl_add_sync_crtcs=
-() which as per your review should be called
-> > > from within modeset_pipe_config just before compute_config() call.
-> > > =
-
-> > > > =
-
-> > > > for_each() {
-> > > =
-
-> > > This is the for_each_crtc loop in intel_atomic_check() right?
-> > > =
-
-> > > > 	modeset_pipes_config();
-> > > =
-
-> > > So have icl_add_sync_crtcs outside of modeset_pipe_config()?
-> > > =
-
-> > > > 	if (can_fastset()) {
-> > > > 		modeset=3Dfalse;
-> > > > 		fastset=3Dtrue;
-> > > > 	}
-> > > > }
-> > > > =
-
-> > > > modeset_synced_things();
-> > > > =
-
-> > > > for_each() {
-> > > > 	if (!modeset && fastset)
-> > > > 		copy_state();
-> > > > }
-> > > We already do this in the code right?
-> > > =
-
-> > > Manasi
-> > > =
-
-> > > > =
-
-> > > > > =
-
-> > > > > And why would the tile information be disappeared?  =
-
-> > > > =
-
-> > > > It'll get updated whenever someone does a getconnector() or whateve=
-r.
-> > > > =
-
-> > > > Example:
-> > > > 1. sync pipe A and B, pipe A is master
-> > > > 2. swap pipe B display for something else
-> > =
-
-> > If we disconnect and connect other display for pipe B, port sync mode i=
-s off and
-> > Pipe A no longer a master and we would reset the master_slave assignmen=
-ts and conn on pipe B would not have tile
-> =
-
-> Port sync will stay enabled until we do a modeset to disable it. In this
-> example there is never any modeset on pipe B until we add soemthing to
-> force one in step 4.
-
-seems to be working with the current intel_dp_add_modeset_tiles() since the=
- moment
-we unplug, it goes through the disable sequence where all the associated ti=
-les get disabled
-and port sync mode gets disabled. This happens because the Pipe A which is =
-still connected now indicates
-a mode change since it fallsback to a lower non tiled mode.
-
-But to be on safer side, i can check if say Pipe A is a master or slave (in=
- port sync mode) , check its crtc_state which is
-still showing the old master slave links since we havent cleared those yet =
-and then add all other synced crtcs
-to the modeset?
-
-So the order of calls can still be :
-intel_atomic_check() {
-
-intel_dp_atomic_tiled_check() { modeset_all_tiles modeset_synced_crtcs}
-intel_modeset_pipe_Config()
-icl_add_sync_crtcs
-compute_config
-fastsetcheck()
-modeset_synced_things (here it looks at the new master slave assignments)
-
-Does this look correct, I want send this patch out today
-
-Manasi
-
-> =
-
-> > =
-
-> > so why we wold need to add both pipes to modeset in this case at all
-> > =
-
-> > Manasi
-> > =
-
-> > > > 3. getconnector() -> tile info goes poof
-> > > > 4. do something on pipe A that needs a modeset
-> > > >    no tile info so we miss that pipe B also needs a modeset
-> > > > =
-
-> > > > -- =
-
-> > > > Ville Syrj=E4l=E4
-> > > > Intel
-> > > _______________________________________________
-> > > Intel-gfx mailing list
-> > > Intel-gfx@lists.freedesktop.org
-> > > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-> =
-
-> -- =
-
-> Ville Syrj=E4l=E4
-> Intel
+>  
+>  	WARN_ON(!state->acquire_ctx);
+>  
+> @@ -491,8 +496,8 @@ drm_atomic_get_plane_state(struct drm_atomic_state *state,
+>  	state->planes[index].new_state = plane_state;
+>  	plane_state->state = state;
+>  
+> -	DRM_DEBUG_ATOMIC("Added [PLANE:%d:%s] %p state to %p\n",
+> -			 plane->base.id, plane->name, plane_state, state);
+> +	drm_dbg_atomic(dev, "Added [PLANE:%d:%s] %p state to %p\n",
+> +		       plane->base.id, plane->name, plane_state, state);
+>  
+>  	if (plane_state->crtc) {
+>  		struct drm_crtc_state *crtc_state;
+> @@ -539,6 +544,7 @@ static int drm_atomic_plane_check(const struct drm_plane_state *old_plane_state,
+>  				  const struct drm_plane_state *new_plane_state)
+>  {
+>  	struct drm_plane *plane = new_plane_state->plane;
+> +	struct drm_device *dev = plane->dev;
+>  	struct drm_crtc *crtc = new_plane_state->crtc;
+>  	const struct drm_framebuffer *fb = new_plane_state->fb;
+>  	unsigned int fb_width, fb_height;
+> @@ -548,12 +554,12 @@ static int drm_atomic_plane_check(const struct drm_plane_state *old_plane_state,
+>  
+>  	/* either *both* CRTC and FB must be set, or neither */
+>  	if (crtc && !fb) {
+> -		DRM_DEBUG_ATOMIC("[PLANE:%d:%s] CRTC set but no FB\n",
+> -				 plane->base.id, plane->name);
+> +		drm_dbg_atomic(dev, "[PLANE:%d:%s] CRTC set but no FB\n",
+> +			       plane->base.id, plane->name);
+>  		return -EINVAL;
+>  	} else if (fb && !crtc) {
+> -		DRM_DEBUG_ATOMIC("[PLANE:%d:%s] FB set but no CRTC\n",
+> -				 plane->base.id, plane->name);
+> +		drm_dbg_atomic(dev, "[PLANE:%d:%s] FB set but no CRTC\n",
+> +			       plane->base.id, plane->name);
+>  		return -EINVAL;
+>  	}
+>  
+> @@ -563,9 +569,9 @@ static int drm_atomic_plane_check(const struct drm_plane_state *old_plane_state,
+>  
+>  	/* Check whether this plane is usable on this CRTC */
+>  	if (!(plane->possible_crtcs & drm_crtc_mask(crtc))) {
+> -		DRM_DEBUG_ATOMIC("Invalid [CRTC:%d:%s] for [PLANE:%d:%s]\n",
+> -				 crtc->base.id, crtc->name,
+> -				 plane->base.id, plane->name);
+> +		drm_dbg_atomic(dev, "Invalid [CRTC:%d:%s] for [PLANE:%d:%s]\n",
+> +			       crtc->base.id, crtc->name,
+> +			       plane->base.id, plane->name);
+>  		return -EINVAL;
+>  	}
+>  
+> @@ -574,11 +580,11 @@ static int drm_atomic_plane_check(const struct drm_plane_state *old_plane_state,
+>  					   fb->modifier);
+>  	if (ret) {
+>  		struct drm_format_name_buf format_name;
+> -		DRM_DEBUG_ATOMIC("[PLANE:%d:%s] invalid pixel format %s, modifier 0x%llx\n",
+> -				 plane->base.id, plane->name,
+> -				 drm_get_format_name(fb->format->format,
+> -						     &format_name),
+> -				 fb->modifier);
+> +		drm_dbg_atomic(dev, "[PLANE:%d:%s] invalid pixel format %s, modifier 0x%llx\n",
+> +			       plane->base.id, plane->name,
+> +			       drm_get_format_name(fb->format->format,
+> +						   &format_name),
+> +			       fb->modifier);
+>  		return ret;
+>  	}
+>  
+> @@ -587,10 +593,10 @@ static int drm_atomic_plane_check(const struct drm_plane_state *old_plane_state,
+>  	    new_plane_state->crtc_x > INT_MAX - (int32_t) new_plane_state->crtc_w ||
+>  	    new_plane_state->crtc_h > INT_MAX ||
+>  	    new_plane_state->crtc_y > INT_MAX - (int32_t) new_plane_state->crtc_h) {
+> -		DRM_DEBUG_ATOMIC("[PLANE:%d:%s] invalid CRTC coordinates %ux%u+%d+%d\n",
+> -				 plane->base.id, plane->name,
+> -				 new_plane_state->crtc_w, new_plane_state->crtc_h,
+> -				 new_plane_state->crtc_x, new_plane_state->crtc_y);
+> +		drm_dbg_atomic(dev, "[PLANE:%d:%s] invalid CRTC coordinates %ux%u+%d+%d\n",
+> +			       plane->base.id, plane->name,
+> +			       new_plane_state->crtc_w, new_plane_state->crtc_h,
+> +			       new_plane_state->crtc_x, new_plane_state->crtc_y);
+>  		return -ERANGE;
+>  	}
+>  
+> @@ -602,18 +608,18 @@ static int drm_atomic_plane_check(const struct drm_plane_state *old_plane_state,
+>  	    new_plane_state->src_x > fb_width - new_plane_state->src_w ||
+>  	    new_plane_state->src_h > fb_height ||
+>  	    new_plane_state->src_y > fb_height - new_plane_state->src_h) {
+> -		DRM_DEBUG_ATOMIC("[PLANE:%d:%s] invalid source coordinates "
+> -				 "%u.%06ux%u.%06u+%u.%06u+%u.%06u (fb %ux%u)\n",
+> -				 plane->base.id, plane->name,
+> -				 new_plane_state->src_w >> 16,
+> -				 ((new_plane_state->src_w & 0xffff) * 15625) >> 10,
+> -				 new_plane_state->src_h >> 16,
+> -				 ((new_plane_state->src_h & 0xffff) * 15625) >> 10,
+> -				 new_plane_state->src_x >> 16,
+> -				 ((new_plane_state->src_x & 0xffff) * 15625) >> 10,
+> -				 new_plane_state->src_y >> 16,
+> -				 ((new_plane_state->src_y & 0xffff) * 15625) >> 10,
+> -				 fb->width, fb->height);
+> +		drm_dbg_atomic(dev, "[PLANE:%d:%s] invalid source coordinates "
+> +			       "%u.%06ux%u.%06u+%u.%06u+%u.%06u (fb %ux%u)\n",
+> +			       plane->base.id, plane->name,
+> +			       new_plane_state->src_w >> 16,
+> +			       ((new_plane_state->src_w & 0xffff) * 15625) >> 10,
+> +			       new_plane_state->src_h >> 16,
+> +			       ((new_plane_state->src_h & 0xffff) * 15625) >> 10,
+> +			       new_plane_state->src_x >> 16,
+> +			       ((new_plane_state->src_x & 0xffff) * 15625) >> 10,
+> +			       new_plane_state->src_y >> 16,
+> +			       ((new_plane_state->src_y & 0xffff) * 15625) >> 10,
+> +			       fb->width, fb->height);
+>  		return -ENOSPC;
+>  	}
+>  
+> @@ -628,9 +634,9 @@ static int drm_atomic_plane_check(const struct drm_plane_state *old_plane_state,
+>  		    clips->y1 < 0 ||
+>  		    clips->x2 > fb_width ||
+>  		    clips->y2 > fb_height) {
+> -			DRM_DEBUG_ATOMIC("[PLANE:%d:%s] invalid damage clip %d %d %d %d\n",
+> -					 plane->base.id, plane->name, clips->x1,
+> -					 clips->y1, clips->x2, clips->y2);
+> +			drm_dbg_atomic(dev, "[PLANE:%d:%s] invalid damage clip %d %d %d %d\n",
+> +				       plane->base.id, plane->name, clips->x1,
+> +				       clips->y1, clips->x2, clips->y2);
+>  			return -EINVAL;
+>  		}
+>  		clips++;
+> @@ -638,8 +644,8 @@ static int drm_atomic_plane_check(const struct drm_plane_state *old_plane_state,
+>  	}
+>  
+>  	if (plane_switching_crtc(old_plane_state, new_plane_state)) {
+> -		DRM_DEBUG_ATOMIC("[PLANE:%d:%s] switching CRTC directly\n",
+> -				 plane->base.id, plane->name);
+> +		drm_dbg_atomic(dev, "[PLANE:%d:%s] switching CRTC directly\n",
+> +			       plane->base.id, plane->name);
+>  		return -EINVAL;
+>  	}
+>  
+> @@ -766,6 +772,7 @@ struct drm_private_state *
+>  drm_atomic_get_private_obj_state(struct drm_atomic_state *state,
+>  				 struct drm_private_obj *obj)
+>  {
+> +	struct drm_device *dev = state->dev;
+>  	int index, num_objs, i, ret;
+>  	size_t size;
+>  	struct __drm_private_objs_state *arr;
+> @@ -801,8 +808,8 @@ drm_atomic_get_private_obj_state(struct drm_atomic_state *state,
+>  
+>  	state->num_private_objs = num_objs;
+>  
+> -	DRM_DEBUG_ATOMIC("Added new private object %p state %p to %p\n",
+> -			 obj, obj_state, state);
+> +	drm_dbg_atomic(dev, "Added new private object %p state %p to %p\n",
+> +		       obj, obj_state, state);
+>  
+>  	return obj_state;
+>  }
+> @@ -940,6 +947,7 @@ struct drm_connector_state *
+>  drm_atomic_get_connector_state(struct drm_atomic_state *state,
+>  			  struct drm_connector *connector)
+>  {
+> +	struct drm_device *dev = state->dev;
+>  	int ret, index;
+>  	struct drm_mode_config *config = &connector->dev->mode_config;
+>  	struct drm_connector_state *connector_state;
+> @@ -981,9 +989,9 @@ drm_atomic_get_connector_state(struct drm_atomic_state *state,
+>  	state->connectors[index].ptr = connector;
+>  	connector_state->state = state;
+>  
+> -	DRM_DEBUG_ATOMIC("Added [CONNECTOR:%d:%s] %p state to %p\n",
+> -			 connector->base.id, connector->name,
+> -			 connector_state, state);
+> +	drm_dbg_atomic(dev, "Added [CONNECTOR:%d:%s] %p state to %p\n",
+> +		       connector->base.id, connector->name,
+> +		       connector_state, state);
+>  
+>  	if (connector_state->crtc) {
+>  		struct drm_crtc_state *crtc_state;
+> @@ -1036,7 +1044,8 @@ int
+>  drm_atomic_add_affected_connectors(struct drm_atomic_state *state,
+>  				   struct drm_crtc *crtc)
+>  {
+> -	struct drm_mode_config *config = &state->dev->mode_config;
+> +	struct drm_device *dev = state->dev;
+> +	struct drm_mode_config *config = &dev->mode_config;
+>  	struct drm_connector *connector;
+>  	struct drm_connector_state *conn_state;
+>  	struct drm_connector_list_iter conn_iter;
+> @@ -1051,8 +1060,8 @@ drm_atomic_add_affected_connectors(struct drm_atomic_state *state,
+>  	if (ret)
+>  		return ret;
+>  
+> -	DRM_DEBUG_ATOMIC("Adding all current connectors for [CRTC:%d:%s] to %p\n",
+> -			 crtc->base.id, crtc->name, state);
+> +	drm_dbg_atomic(dev, "Adding all current connectors for [CRTC:%d:%s] to %p\n",
+> +		       crtc->base.id, crtc->name, state);
+>  
+>  	/*
+>  	 * Changed connectors are already in @state, so only need to look
+> @@ -1099,14 +1108,15 @@ int
+>  drm_atomic_add_affected_planes(struct drm_atomic_state *state,
+>  			       struct drm_crtc *crtc)
+>  {
+> +	struct drm_device *dev = state->dev;
+>  	const struct drm_crtc_state *old_crtc_state =
+>  		drm_atomic_get_old_crtc_state(state, crtc);
+>  	struct drm_plane *plane;
+>  
+>  	WARN_ON(!drm_atomic_get_new_crtc_state(state, crtc));
+>  
+> -	DRM_DEBUG_ATOMIC("Adding all current planes for [CRTC:%d:%s] to %p\n",
+> -			 crtc->base.id, crtc->name, state);
+> +	drm_dbg_atomic(dev, "Adding all current planes for [CRTC:%d:%s] to %p\n",
+> +		       crtc->base.id, crtc->name, state);
+>  
+>  	drm_for_each_plane_mask(plane, state->dev, old_crtc_state->plane_mask) {
+>  		struct drm_plane_state *plane_state =
+> @@ -1144,13 +1154,13 @@ int drm_atomic_check_only(struct drm_atomic_state *state)
+>  	struct drm_connector_state *conn_state;
+>  	int i, ret = 0;
+>  
+> -	DRM_DEBUG_ATOMIC("checking %p\n", state);
+> +	drm_dbg_atomic(dev, "checking %p\n", state);
+>  
+>  	for_each_oldnew_plane_in_state(state, plane, old_plane_state, new_plane_state, i) {
+>  		ret = drm_atomic_plane_check(old_plane_state, new_plane_state);
+>  		if (ret) {
+> -			DRM_DEBUG_ATOMIC("[PLANE:%d:%s] atomic core check failed\n",
+> -					 plane->base.id, plane->name);
+> +			drm_dbg_atomic(dev, "[PLANE:%d:%s] atomic core check failed\n",
+> +				       plane->base.id, plane->name);
+>  			return ret;
+>  		}
+>  	}
+> @@ -1158,8 +1168,8 @@ int drm_atomic_check_only(struct drm_atomic_state *state)
+>  	for_each_oldnew_crtc_in_state(state, crtc, old_crtc_state, new_crtc_state, i) {
+>  		ret = drm_atomic_crtc_check(old_crtc_state, new_crtc_state);
+>  		if (ret) {
+> -			DRM_DEBUG_ATOMIC("[CRTC:%d:%s] atomic core check failed\n",
+> -					 crtc->base.id, crtc->name);
+> +			drm_dbg_atomic(dev, "[CRTC:%d:%s] atomic core check failed\n",
+> +				       crtc->base.id, crtc->name);
+>  			return ret;
+>  		}
+>  	}
+> @@ -1167,8 +1177,8 @@ int drm_atomic_check_only(struct drm_atomic_state *state)
+>  	for_each_new_connector_in_state(state, conn, conn_state, i) {
+>  		ret = drm_atomic_connector_check(conn, conn_state);
+>  		if (ret) {
+> -			DRM_DEBUG_ATOMIC("[CONNECTOR:%d:%s] atomic core check failed\n",
+> -					 conn->base.id, conn->name);
+> +			drm_dbg_atomic(dev, "[CONNECTOR:%d:%s] atomic core check failed\n",
+> +				       conn->base.id, conn->name);
+>  			return ret;
+>  		}
+>  	}
+> @@ -1177,8 +1187,8 @@ int drm_atomic_check_only(struct drm_atomic_state *state)
+>  		ret = config->funcs->atomic_check(state->dev, state);
+>  
+>  		if (ret) {
+> -			DRM_DEBUG_ATOMIC("atomic driver check for %p failed: %d\n",
+> -					 state, ret);
+> +			drm_dbg_atomic(dev, "atomic driver check for %p failed: %d\n",
+> +				       state, ret);
+>  			return ret;
+>  		}
+>  	}
+> @@ -1186,8 +1196,8 @@ int drm_atomic_check_only(struct drm_atomic_state *state)
+>  	if (!state->allow_modeset) {
+>  		for_each_new_crtc_in_state(state, crtc, new_crtc_state, i) {
+>  			if (drm_atomic_crtc_needs_modeset(new_crtc_state)) {
+> -				DRM_DEBUG_ATOMIC("[CRTC:%d:%s] requires full modeset\n",
+> -						 crtc->base.id, crtc->name);
+> +				drm_dbg_atomic(dev, "[CRTC:%d:%s] requires full modeset\n",
+> +					       crtc->base.id, crtc->name);
+>  				return -EINVAL;
+>  			}
+>  		}
+> @@ -1213,14 +1223,15 @@ EXPORT_SYMBOL(drm_atomic_check_only);
+>   */
+>  int drm_atomic_commit(struct drm_atomic_state *state)
+>  {
+> -	struct drm_mode_config *config = &state->dev->mode_config;
+> +	struct drm_device *dev = state->dev;
+> +	struct drm_mode_config *config = &dev->mode_config;
+>  	int ret;
+>  
+>  	ret = drm_atomic_check_only(state);
+>  	if (ret)
+>  		return ret;
+>  
+> -	DRM_DEBUG_ATOMIC("committing %p\n", state);
+> +	drm_dbg_atomic(dev, "committing %p\n", state);
+>  
+>  	return config->funcs->atomic_commit(state->dev, state, false);
+>  }
+> @@ -1242,14 +1253,15 @@ EXPORT_SYMBOL(drm_atomic_commit);
+>   */
+>  int drm_atomic_nonblocking_commit(struct drm_atomic_state *state)
+>  {
+> -	struct drm_mode_config *config = &state->dev->mode_config;
+> +	struct drm_device *dev = state->dev;
+> +	struct drm_mode_config *config = &dev->mode_config;
+>  	int ret;
+>  
+>  	ret = drm_atomic_check_only(state);
+>  	if (ret)
+>  		return ret;
+>  
+> -	DRM_DEBUG_ATOMIC("committing %p nonblocking\n", state);
+> +	drm_dbg_atomic(dev, "committing %p nonblocking\n", state);
+>  
+>  	return config->funcs->atomic_commit(state->dev, state, true);
+>  }
+> @@ -1425,7 +1437,8 @@ EXPORT_SYMBOL(__drm_atomic_helper_set_config);
+>  
+>  void drm_atomic_print_state(const struct drm_atomic_state *state)
+>  {
+> -	struct drm_printer p = drm_info_printer(state->dev->dev);
+> +	struct drm_device *dev = state->dev;
+> +	struct drm_printer p = drm_info_printer(dev->dev);
+>  	struct drm_plane *plane;
+>  	struct drm_plane_state *plane_state;
+>  	struct drm_crtc *crtc;
+> @@ -1434,7 +1447,7 @@ void drm_atomic_print_state(const struct drm_atomic_state *state)
+>  	struct drm_connector_state *connector_state;
+>  	int i;
+>  
+> -	DRM_DEBUG_ATOMIC("checking %p\n", state);
+> +	drm_dbg_atomic(dev, "checking %p\n", state);
+>  
+>  	for_each_new_plane_in_state(state, plane, plane_state, i)
+>  		drm_atomic_plane_print_state(&p, plane_state);
+> -- 
+> 2.20.1
+> 
+> _______________________________________________
+> dri-devel mailing list
+> dri-devel@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/dri-devel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
