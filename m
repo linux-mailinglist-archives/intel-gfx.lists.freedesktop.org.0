@@ -1,62 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B5FD0123417
-	for <lists+intel-gfx@lfdr.de>; Tue, 17 Dec 2019 19:01:47 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 09314123476
+	for <lists+intel-gfx@lfdr.de>; Tue, 17 Dec 2019 19:10:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 340D06E0A0;
-	Tue, 17 Dec 2019 18:01:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A379E6E042;
+	Tue, 17 Dec 2019 18:10:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com
- [IPv6:2a00:1450:4864:20::52c])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8227D6E079
- for <intel-gfx@lists.freedesktop.org>; Tue, 17 Dec 2019 18:01:39 +0000 (UTC)
-Received: by mail-ed1-x52c.google.com with SMTP id r21so8806755edq.0
- for <intel-gfx@lists.freedesktop.org>; Tue, 17 Dec 2019 10:01:39 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=jlekstrand-net.20150623.gappssmtp.com; s=20150623;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=Ysq0JiYnnyw8JDm3jEJ1itx35mVDFfz+z5DAE7Tg89k=;
- b=o3UhybvDKUWF+h2eXiWXORUgLbonchniru7qySRmwicGQPz0iXgtzL96k2NkIe7dNl
- ZUHJylnnyEm1eNK5Y/1hHlkjxbGqfwxCdG6KMAZO8UI2Wwr+uo5Kx1oNW0s3U8gfo7Ol
- pUEppB3gw6Ot9+tcGvaOy3ErfWYZMrAc26Mt1xqLATa4FQbjZgadSOO5UVHFO+MtX5+O
- ccF93ky6Rd+2iyMPFLqLXW1K7qEPDv5W8GTYy896rwHFSikEz4e0Yo0GkfOPFWENYgT8
- LGKWZQZn6UmswC7sdMhmp0dbLCnTtJyK4OzksdLkv5SVv6z9nYLeIsld0qbkXwjjmW7c
- /zgQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=Ysq0JiYnnyw8JDm3jEJ1itx35mVDFfz+z5DAE7Tg89k=;
- b=avdocoQtWJfhyPHNMkA840i5VTTv6LyptgekMzDZWkRQ/l63LmfXvesOItzCkfBbtQ
- 4KFk40H6zyWPT5iYfTLlp1PtnaE0lsQkYNTmSGJgT2VluqvkV/7QM5MV+EUtn6h5D/o9
- 4YfQCXXFVNPz3D03CQGMHwaHWRwAjMMO8xZ0LV+rRRVxpEj2daIsjdSt+RF8mhXoOkDq
- PTDr3cBI92oubqjzeo16z+57c4rB0e0fJ5kWPrBE9XZew6ulspOOYKFTxFGiMI8QhV4E
- 4T3g1wWkf6Ori9G6ccV2b2uaRKJmuY7pqcctg9sgKkKNjR5gQT+qLRF1I7HSnr08QHNm
- vnmg==
-X-Gm-Message-State: APjAAAXpA/ukuvO+1uICP61KJz1ozKzsi8sYpAo7uDBMbU2P69xaqb2X
- DBk6YrnreB1b3qP8bsVcNSM+W/8clyt2TzS+F/ayqA==
-X-Google-Smtp-Source: APXvYqyVAqQ3V0xWwjEXoADLFWjW3OWOwBuDq+GDpzTJVV0siDLUzcpOT0GtjCH7yjt8BXC0spL20KOWR/fs0J1BrLc=
-X-Received: by 2002:a05:6402:355:: with SMTP id
- r21mr6791721edw.60.1576605698035; 
- Tue, 17 Dec 2019 10:01:38 -0800 (PST)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id BD1AF6E037;
+ Tue, 17 Dec 2019 18:10:31 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id ACC47A0114;
+ Tue, 17 Dec 2019 18:10:31 +0000 (UTC)
 MIME-Version: 1.0
-References: <20191213215614.24558-1-niranjana.vishwanathapura@intel.com>
- <20191213215614.24558-3-niranjana.vishwanathapura@intel.com>
- <CAOFGe95rC8A4SuwWtd1tbikw8HGm-TU52_O8iBSJKpDyY0gWNw@mail.gmail.com>
- <20191213231322.GS14488@nvishwa1-DESK.sc.intel.com>
- <CAOFGe97yh5CGTwoP-f3wRGWoTLuWMvMwYFc5Hx3KOkT9XkOxkw@mail.gmail.com>
- <157631949753.7535.12359359451927943176@skylake-alporthouse-com>
- <20191216041326.GT14488@nvishwa1-DESK.sc.intel.com>
-In-Reply-To: <20191216041326.GT14488@nvishwa1-DESK.sc.intel.com>
-From: Jason Ekstrand <jason@jlekstrand.net>
-Date: Tue, 17 Dec 2019 12:01:26 -0600
-Message-ID: <CAOFGe94gcWzbizCO9N1DmV-2joXwUF-ri5f7=PTg-VJuQ9Ljtg@mail.gmail.com>
-To: Niranjan Vishwanathapura <niranjana.vishwanathapura@intel.com>
-Subject: Re: [Intel-gfx] [RFC v2 02/12] drm/i915/svm: Runtime (RT) allocator
- support
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?b?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Date: Tue, 17 Dec 2019 18:10:31 -0000
+Message-ID: <157660623168.21846.16115780710120309601@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20191107142417.11107-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20191107142417.11107-1-ville.syrjala@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLklHVDogZmFpbHVyZSBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5B1/5=5D_drm=3A_Add_=5F=5Fdrm=5Fatomic=5Fhel?=
+ =?utf-8?b?cGVyX2NydGNfc3RhdGVfcmVzZXQoKSAmIGNvLiAocmV2Myk=?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,369 +39,501 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Graunke, Kenneth W" <kenneth.w.graunke@intel.com>,
- Intel GFX <intel-gfx@lists.freedesktop.org>, sanjay.k.kumar@intel.com,
- Maling list - DRI developers <dri-devel@lists.freedesktop.org>,
- Jason Ekstrand <jason.ekstrand@intel.com>, dave.hansen@intel.com,
- jglisse@redhat.com, jgg@mellanox.com, Daniel Vetter <daniel.vetter@intel.com>,
- dan.j.williams@intel.com, ira.weiny@intel.com
-Content-Type: multipart/mixed; boundary="===============2060617815=="
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============2060617815==
-Content-Type: multipart/alternative; boundary="000000000000952b1c0599ea1e57"
+== Series Details ==
 
---000000000000952b1c0599ea1e57
-Content-Type: text/plain; charset="UTF-8"
+Series: series starting with [1/5] drm: Add __drm_atomic_helper_crtc_state_reset() & co. (rev3)
+URL   : https://patchwork.freedesktop.org/series/69129/
+State : failure
 
-On Sun, Dec 15, 2019 at 10:24 PM Niranjan Vishwanathapura <
-niranjana.vishwanathapura@intel.com> wrote:
+== Summary ==
 
-> On Sat, Dec 14, 2019 at 10:31:37AM +0000, Chris Wilson wrote:
-> >Quoting Jason Ekstrand (2019-12-14 00:36:19)
-> >> On Fri, Dec 13, 2019 at 5:24 PM Niranjan Vishwanathapura <
-> >> niranjana.vishwanathapura@intel.com> wrote:
-> >>
-> >>     On Fri, Dec 13, 2019 at 04:58:42PM -0600, Jason Ekstrand wrote:
-> >>     >
-> >>     >     +/**
-> >>     >     + * struct drm_i915_gem_vm_bind
-> >>     >     + *
-> >>     >     + * Bind an object in a vm's page table.
-> >>     >
-> >>     >   First off, this is something I've wanted for a while for
-> Vulkan, it's
-> >>     just
-> >>     >   never made its way high enough up the priority list.  However,
-> it's
-> >>     going
-> >>     >   to have to come one way or another soon.  I'm glad to see
-> kernel API
-> >>     for
-> >>     >   this being proposed.
-> >>     >   I do, however, have a few high-level comments/questions about
-> the API:
-> >>     >    1. In order to be useful for sparse memory support, the API
-> has to go
-> >>     the
-> >>     >   other way around so that it binds a VA range to a range within
-> the BO.
-> >>     It
-> >>     >   also needs to be able to handle overlapping where two different
-> VA
-> >>     ranges
-> >>     >   may map to the same underlying bytes in the BO.  This likely
-> means that
-> >>     >   unbind needs to also take a VA range and only unbind that range.
-> >>     >    2. If this is going to be useful for managing GL's address
-> space where
-> >>     we
-> >>     >   have lots of BOs, we probably want it to take a list of ranges
-> so we
-> >>     >   aren't making one ioctl for each thing we want to bind.
-> >>
-> >>     Hi Jason,
-> >>
-> >>     Yah, some of these requirements came up.
-> >>
-> >>
-> >> Yes, I have raised them every single time an API like this has come
-> across my
-> >> e-mail inbox for years and they continue to get ignored.  Why are we
-> landing an
-> >> API that we know isn't the API we want especially when it's pretty
-> obvious
-> >> roughly what the API we want is?  It may be less time in the short
-> term, but
-> >> long-term it means two ioctls and two implementations in i915, IGT
-> tests for
-> >> both code paths, and code in all UMDs to call one or the other
-> depending on
-> >> what kernel you're running on, and we have to maintain all that code
-> going
-> >> forward forever.  Sure, that's a price we pay today for a variety of
-> things but
-> >> that's because they all seemed like the right thing at the time.
-> Landing the
-> >> wrong API when we know it's the wrong API seems foolish.
-> >
-> >Exactly. This is not even close to the uAPI we need. Reposting an RFC
-> >without taking in the concerns last time (or the time before that, or
-> >the time before that...) suggests that you aren't really requesting for
-> >comments at all.
->
-> Thanks Jason for detailed exlanation.
-> Chris, all comments and guidance are much appreciated :)
->
-> I haven't looked in detail, but my concern is that implementing
-> partial object binding (offset, lenght) from vma down to [un]binding
-> in ppgtt might be a lot of work to include in this SVM patch series.
-> I believe we need the partial object binding in non-SVM scenario
-> as well?
->
+CI Bug Log - changes from CI_DRM_7578_full -> Patchwork_15797_full
+====================================================
 
-Yes, the Vulkan APIs require both partial binding and aliasing.
+Summary
+-------
 
-It may be worth pointing out that we're already doing some of this stuff
-today, although in a rather backwards way.  Our non-softpin model for
-Vulkan uses a memfd which we then map in userspace and turn into a BO via
-userptr.  Due to the way we handle threading in the driver, we end up with
-multiple BOs pointing to the same overlapping range in the memfd and hence
-the same pages.  That doesn't mean that everything in the path is already
-set up for what you need but the VA -> page mappings should be.  Also,
-avoiding these kinds of shinanigans is exactly why we want a "real" kernel
-API for this. :-)
+  **FAILURE**
 
+  Serious unknown changes coming with Patchwork_15797_full absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_15797_full, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
 
-> Ok, let me change the interface as below.
->
-> struct drm_i915_gem_vm_bind_va
-> {
->         /** VA start to bind **/
->         __u64 start;
->
->         /** Offset in Object to bind for I915_GEM_VM_BIND_SVM_OBJ type **/
->         __u64 offset;
->
->         /** VA length to [un]bind **/
->         __u64 length;
->
->         /** Type of memory to [un]bind **/
->         __u32 type;
-> #define I915_GEM_VM_BIND_SVM_OBJ      0
-> #define I915_GEM_VM_BIND_SVM_BUFFER   1
->
->         /** Object handle to [un]bind for I915_GEM_VM_BIND_SVM_OBJ type **/
->         __u32 handle;
->
->         /** Flags **/
->         __u32 flags;
-> #define I915_GEM_VM_BIND_UNBIND      (1 << 0)
-> #define I915_GEM_VM_BIND_READONLY    (1 << 1)
-> }
->
-> struct drm_i915_gem_vm_bind {
->         /** vm to [un]bind **/
->         __u32 vm_id;
->
->         /** number of VAs to bind **/
->         __u32 num_vas;
->
->         /** Array of VAs to bind **/
->         struct drm_i915_gem_vm_bind_va *bind_vas;
->
->         /** User extensions **/
->         __u64 extensions;
-> };
->
-> When synchronization control is added as extension, it applies to all VAs
-> in the array.
-> Does this looks good?
->
+  
 
-Yes, I think that header looks good.  It's probably fine if synchronization
-comes later.
+Possible new issues
+-------------------
 
-I have two more questions (more for my own education than anything):
+  Here are the unknown changes that may have been introduced in Patchwork_15797_full:
 
- 1. What is the difference between a SVM object and a buffer?
+### IGT changes ###
 
- 2. I see a vm_id but there is no context.  What (if any) are the
-synchronization guarantees between the VM_BIND ioctl and EXECBUF?  If I
-VM_BIND followed by EXECBUF is it guaranteed to happen in that order?  What
-if I EXECBUF and then VM_BIND to unbind something?  If I VM_BIND while an
-execbuf is happening but I have some way of delaying the GPU work from the
-CPU and I unblock it once the VM_BIND comes back, is that ok?
+#### Possible regressions ####
 
-If those questions are answered by other patches, feel free to just point
-me at them instead of answering in detail here.
+  * igt@kms_big_fb@linear-16bpp-rotate-180:
+    - shard-tglb:         [PASS][1] -> [DMESG-WARN][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7578/shard-tglb5/igt@kms_big_fb@linear-16bpp-rotate-180.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15797/shard-tglb3/igt@kms_big_fb@linear-16bpp-rotate-180.html
 
---Jason
+  * igt@kms_frontbuffer_tracking@basic:
+    - shard-skl:          [PASS][3] -> ([INCOMPLETE][4], [PASS][5])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7578/shard-skl4/igt@kms_frontbuffer_tracking@basic.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15797/shard-skl10/igt@kms_frontbuffer_tracking@basic.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15797/shard-skl7/igt@kms_frontbuffer_tracking@basic.html
 
---000000000000952b1c0599ea1e57
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+  
 
-<div dir=3D"ltr"><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail=
-_attr">On Sun, Dec 15, 2019 at 10:24 PM Niranjan Vishwanathapura &lt;<a hre=
-f=3D"mailto:niranjana.vishwanathapura@intel.com">niranjana.vishwanathapura@=
-intel.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=
-=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding=
--left:1ex">On Sat, Dec 14, 2019 at 10:31:37AM +0000, Chris Wilson wrote:<br=
->
-&gt;Quoting Jason Ekstrand (2019-12-14 00:36:19)<br>
-&gt;&gt; On Fri, Dec 13, 2019 at 5:24 PM Niranjan Vishwanathapura &lt;<br>
-&gt;&gt; <a href=3D"mailto:niranjana.vishwanathapura@intel.com" target=3D"_=
-blank">niranjana.vishwanathapura@intel.com</a>&gt; wrote:<br>
-&gt;&gt;<br>
-&gt;&gt;=C2=A0 =C2=A0 =C2=A0On Fri, Dec 13, 2019 at 04:58:42PM -0600, Jason=
- Ekstrand wrote:<br>
-&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt;<br>
-&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 =C2=A0 =C2=A0+/**<br>
-&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 =C2=A0 =C2=A0+ * struct drm_i915_gem=
-_vm_bind<br>
-&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 =C2=A0 =C2=A0+ *<br>
-&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 =C2=A0 =C2=A0+ * Bind an object in a=
- vm&#39;s page table.<br>
-&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt;<br>
-&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 =C2=A0First off, this is something I=
-&#39;ve wanted for a while for Vulkan, it&#39;s<br>
-&gt;&gt;=C2=A0 =C2=A0 =C2=A0just<br>
-&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 =C2=A0never made its way high enough=
- up the priority list.=C2=A0 However, it&#39;s<br>
-&gt;&gt;=C2=A0 =C2=A0 =C2=A0going<br>
-&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 =C2=A0to have to come one way or ano=
-ther soon.=C2=A0 I&#39;m glad to see kernel API<br>
-&gt;&gt;=C2=A0 =C2=A0 =C2=A0for<br>
-&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 =C2=A0this being proposed.<br>
-&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 =C2=A0I do, however, have a few high=
--level comments/questions about the API:<br>
-&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 =C2=A0 1. In order to be useful for =
-sparse memory support, the API has to go<br>
-&gt;&gt;=C2=A0 =C2=A0 =C2=A0the<br>
-&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 =C2=A0other way around so that it bi=
-nds a VA range to a range within the BO.=C2=A0<br>
-&gt;&gt;=C2=A0 =C2=A0 =C2=A0It<br>
-&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 =C2=A0also needs to be able to handl=
-e overlapping where two different VA<br>
-&gt;&gt;=C2=A0 =C2=A0 =C2=A0ranges<br>
-&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 =C2=A0may map to the same underlying=
- bytes in the BO.=C2=A0 This likely means that<br>
-&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 =C2=A0unbind needs to also take a VA=
- range and only unbind that range.<br>
-&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 =C2=A0 2. If this is going to be use=
-ful for managing GL&#39;s address space where<br>
-&gt;&gt;=C2=A0 =C2=A0 =C2=A0we<br>
-&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 =C2=A0have lots of BOs, we probably =
-want it to take a list of ranges so we<br>
-&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 =C2=A0aren&#39;t making one ioctl fo=
-r each thing we want to bind.<br>
-&gt;&gt;<br>
-&gt;&gt;=C2=A0 =C2=A0 =C2=A0Hi Jason,<br>
-&gt;&gt;<br>
-&gt;&gt;=C2=A0 =C2=A0 =C2=A0Yah, some of these requirements came up.<br>
-&gt;&gt;<br>
-&gt;&gt; =C2=A0<br>
-&gt;&gt; Yes, I have raised them every single time an API like this has com=
-e across my<br>
-&gt;&gt; e-mail inbox for years and they continue to get ignored.=C2=A0 Why=
- are we landing an<br>
-&gt;&gt; API that we know isn&#39;t the API we want especially when it&#39;=
-s pretty obvious<br>
-&gt;&gt; roughly what the API we want is?=C2=A0 It may be less time in the =
-short term, but<br>
-&gt;&gt; long-term it means two ioctls and two implementations in i915, IGT=
- tests for<br>
-&gt;&gt; both code paths, and code in all UMDs to call one or the other dep=
-ending on<br>
-&gt;&gt; what kernel you&#39;re running on, and we have to maintain all tha=
-t code going<br>
-&gt;&gt; forward forever.=C2=A0 Sure, that&#39;s a price we pay today for a=
- variety of things but<br>
-&gt;&gt; that&#39;s because they all seemed like the right thing at the tim=
-e.=C2=A0 Landing the<br>
-&gt;&gt; wrong API when we know it&#39;s the wrong API seems foolish.<br>
-&gt;<br>
-&gt;Exactly. This is not even close to the uAPI we need. Reposting an RFC<b=
-r>
-&gt;without taking in the concerns last time (or the time before that, or<b=
-r>
-&gt;the time before that...) suggests that you aren&#39;t really requesting=
- for<br>
-&gt;comments at all.<br>
-<br>
-Thanks Jason for detailed exlanation.<br>
-Chris, all comments and guidance are much appreciated :)<br>
-<br>
-I haven&#39;t looked in detail, but my concern is that implementing<br>
-partial object binding (offset, lenght) from vma down to [un]binding<br>
-in ppgtt might be a lot of work to include in this SVM patch series.<br>
-I believe we need the partial object binding in non-SVM scenario<br>
-as well?<br></blockquote><div><br></div><div>Yes, the Vulkan APIs require b=
-oth partial binding and aliasing.</div><div><br></div><div>It may be worth =
-pointing out that we&#39;re already doing some of this stuff today, althoug=
-h in a rather backwards way.=C2=A0 Our non-softpin model for Vulkan uses a =
-memfd which we then map in userspace and turn into a BO via userptr.=C2=A0 =
-Due to the way we handle threading in the driver, we end up with multiple B=
-Os pointing to the same overlapping range in the memfd and hence the same p=
-ages.=C2=A0 That doesn&#39;t mean that everything in the path is already se=
-t up for what you need but the VA -&gt; page mappings should be.=C2=A0 Also=
-, avoiding these kinds of shinanigans is exactly why we want a &quot;real&q=
-uot; kernel API for this. :-)<br></div><div>=C2=A0</div><blockquote class=
-=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rg=
-b(204,204,204);padding-left:1ex">
-Ok, let me change the interface as below.<br>
-<br>
-struct drm_i915_gem_vm_bind_va<br>
-{<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 /** VA start to bind **/<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 __u64 start;<br>
-<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 /** Offset in Object to bind for I915_GEM_VM_BI=
-ND_SVM_OBJ type **/<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 __u64 offset;<br>
-<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 /** VA length to [un]bind **/<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 __u64 length;<br>
-<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 /** Type of memory to [un]bind **/<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 __u32 type;<br>
-#define I915_GEM_VM_BIND_SVM_OBJ=C2=A0 =C2=A0 =C2=A0 0<br>
-#define I915_GEM_VM_BIND_SVM_BUFFER=C2=A0 =C2=A01<br>
-<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 /** Object handle to [un]bind for I915_GEM_VM_B=
-IND_SVM_OBJ type **/<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 __u32 handle;<br>
-<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 /** Flags **/<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 __u32 flags;<br>
-#define I915_GEM_VM_BIND_UNBIND=C2=A0 =C2=A0 =C2=A0 (1 &lt;&lt; 0)<br>
-#define I915_GEM_VM_BIND_READONLY=C2=A0 =C2=A0 (1 &lt;&lt; 1)<br>
-}<br>
-<br>
-struct drm_i915_gem_vm_bind {<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 /** vm to [un]bind **/<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 __u32 vm_id;<br>
-<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 /** number of VAs to bind **/<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 __u32 num_vas;<br>
-<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 /** Array of VAs to bind **/<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 struct drm_i915_gem_vm_bind_va *bind_vas;<br>
-<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 /** User extensions **/<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 __u64 extensions;<br>
-};<br>
-<br>
-When synchronization control is added as extension, it applies to all VAs i=
-n the array.<br>
-Does this looks good?<br></blockquote><div><br></div><div>Yes, I think that=
- header looks good.=C2=A0 It&#39;s probably fine if synchronization comes l=
-ater.</div><div><br></div><div>I have two more questions (more for my own e=
-ducation than anything):</div><div><br></div><div>=C2=A01. What is the diff=
-erence between a SVM object and a buffer?</div><div><br></div><div>=C2=A02.=
- I see a vm_id but there is no context.=C2=A0 What (if any) are the synchro=
-nization guarantees between the VM_BIND ioctl and EXECBUF?=C2=A0 If I VM_BI=
-ND followed by EXECBUF is it guaranteed to happen in that order?=C2=A0 What=
- if I EXECBUF and then VM_BIND to unbind something?=C2=A0 If I VM_BIND whil=
-e an execbuf is happening but I have some way of delaying the GPU work from=
- the CPU and I unblock it once the VM_BIND comes back, is that ok?</div><di=
-v><br></div><div>If those questions are answered by other patches, feel fre=
-e to just point me at them instead of answering in detail here.</div><div><=
-br></div><div>--Jason<br></div></div></div>
+### Piglit changes ###
 
---000000000000952b1c0599ea1e57--
+#### Possible regressions ####
 
---===============2060617815==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+  * spec@arb_texture_barrier@arb_texture_barrier-blending-in-shader 512 1 8 128 3 (NEW):
+    - {pig-hsw-4770r}:    NOTRUN -> [FAIL][6] +20 similar issues
+   [6]: None
 
+  
+New tests
+---------
+
+  New tests have been introduced between CI_DRM_7578_full and Patchwork_15797_full:
+
+### New Piglit tests (21) ###
+
+  * object namespace pollution@texture with glgetteximage-compressed:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.13] s
+
+  * object namespace pollution@texture with gltexsubimage2d:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.15] s
+
+  * spec@arb_gpu_shader5@texturegather@vs-rgb-0-float-cube:
+    - Statuses : 1 fail(s)
+    - Exec time: [1.83] s
+
+  * spec@arb_query_buffer_object@coherency:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.22] s
+
+  * spec@arb_shader_image_load_store@host-mem-barrier:
+    - Statuses : 1 fail(s)
+    - Exec time: [5.66] s
+
+  * spec@arb_shader_image_load_store@layer:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.31] s
+
+  * spec@arb_shader_image_load_store@level:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.27] s
+
+  * spec@arb_shader_image_load_store@semantics:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.53] s
+
+  * spec@arb_shader_image_load_store@unused:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.16] s
+
+  * spec@arb_texture_barrier@arb_texture_barrier-blending-in-shader 32 1 8 128 2:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.13] s
+
+  * spec@arb_texture_barrier@arb_texture_barrier-blending-in-shader 32 42 1 128 4:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.08] s
+
+  * spec@arb_texture_barrier@arb_texture_barrier-blending-in-shader 32 42 8 128 2:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.10] s
+
+  * spec@arb_texture_barrier@arb_texture_barrier-blending-in-shader 32 42 8 128 3:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.12] s
+
+  * spec@arb_texture_barrier@arb_texture_barrier-blending-in-shader 512 1 8 128 3:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.24] s
+
+  * spec@arb_texture_barrier@arb_texture_barrier-blending-in-shader 512 1 8 128 4:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.27] s
+
+  * spec@arb_texture_barrier@arb_texture_barrier-blending-in-shader 512 1 8 128 8:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.26] s
+
+  * spec@arb_texture_barrier@arb_texture_barrier-blending-in-shader 512 42 1 128 8:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.19] s
+
+  * spec@arb_texture_barrier@arb_texture_barrier-blending-in-shader 512 42 1 8 8:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.17] s
+
+  * spec@arb_vertex_attrib_64bit@execution@vs_in@vs-input-position-double_dmat3-float_mat3x2_array3:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.13] s
+
+  * spec@arb_vertex_type_2_10_10_10_rev@attribs:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.95] s
+
+  * spec@glsl-4.20@execution@vs_in@vs-input-int_ivec3_array3-position-double_dmat3_array2:
+    - Statuses : 1 fail(s)
+    - Exec time: [0.18] s
+
+  
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_15797_full that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_ctx_isolation@vcs1-none:
+    - shard-iclb:         [PASS][7] -> [SKIP][8] ([fdo#109276] / [fdo#112080])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7578/shard-iclb1/igt@gem_ctx_isolation@vcs1-none.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15797/shard-iclb8/igt@gem_ctx_isolation@vcs1-none.html
+
+  * igt@gem_ctx_persistence@bcs0-mixed-process:
+    - shard-apl:          [PASS][9] -> ([FAIL][10], [PASS][11]) ([i915#679])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7578/shard-apl8/igt@gem_ctx_persistence@bcs0-mixed-process.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15797/shard-apl6/igt@gem_ctx_persistence@bcs0-mixed-process.html
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15797/shard-apl7/igt@gem_ctx_persistence@bcs0-mixed-process.html
+
+  * igt@gem_ctx_persistence@vecs0-mixed-process:
+    - shard-glk:          [PASS][12] -> ([PASS][13], [FAIL][14]) ([i915#679])
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7578/shard-glk4/igt@gem_ctx_persistence@vecs0-mixed-process.html
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15797/shard-glk1/igt@gem_ctx_persistence@vecs0-mixed-process.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15797/shard-glk7/igt@gem_ctx_persistence@vecs0-mixed-process.html
+
+  * igt@gem_exec_async@concurrent-writes-bsd2:
+    - shard-iclb:         [PASS][15] -> [SKIP][16] ([fdo#109276])
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7578/shard-iclb1/igt@gem_exec_async@concurrent-writes-bsd2.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15797/shard-iclb8/igt@gem_exec_async@concurrent-writes-bsd2.html
+
+  * igt@gem_exec_gttfill@basic:
+    - shard-tglb:         [PASS][17] -> [INCOMPLETE][18] ([fdo#111593])
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7578/shard-tglb5/igt@gem_exec_gttfill@basic.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15797/shard-tglb6/igt@gem_exec_gttfill@basic.html
+
+  * igt@gem_exec_schedule@preempt-other-chain-bsd:
+    - shard-iclb:         [PASS][19] -> [SKIP][20] ([fdo#112146]) +5 similar issues
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7578/shard-iclb6/igt@gem_exec_schedule@preempt-other-chain-bsd.html
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15797/shard-iclb4/igt@gem_exec_schedule@preempt-other-chain-bsd.html
+
+  * igt@gem_exec_schedule@preempt-queue-contexts-chain-vebox:
+    - shard-tglb:         [PASS][21] -> [INCOMPLETE][22] ([fdo#111606] / [fdo#111677])
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7578/shard-tglb3/igt@gem_exec_schedule@preempt-queue-contexts-chain-vebox.html
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15797/shard-tglb6/igt@gem_exec_schedule@preempt-queue-contexts-chain-vebox.html
+
+  * igt@gem_persistent_relocs@forked-interruptible-faulting-reloc-thrash-inactive:
+    - shard-tglb:         [PASS][23] -> [TIMEOUT][24] ([fdo#112126] / [i915#530])
+   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7578/shard-tglb4/igt@gem_persistent_relocs@forked-interruptible-faulting-reloc-thrash-inactive.html
+   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15797/shard-tglb5/igt@gem_persistent_relocs@forked-interruptible-faulting-reloc-thrash-inactive.html
+
+  * igt@gem_ppgtt@flink-and-close-vma-leak:
+    - shard-glk:          [PASS][25] -> ([FAIL][26], [PASS][27]) ([i915#644])
+   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7578/shard-glk7/igt@gem_ppgtt@flink-and-close-vma-leak.html
+   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15797/shard-glk9/igt@gem_ppgtt@flink-and-close-vma-leak.html
+   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15797/shard-glk5/igt@gem_ppgtt@flink-and-close-vma-leak.html
+    - shard-apl:          [PASS][28] -> ([FAIL][29], [PASS][30]) ([i915#644])
+   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7578/shard-apl8/igt@gem_ppgtt@flink-and-close-vma-leak.html
+   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15797/shard-apl4/igt@gem_ppgtt@flink-and-close-vma-leak.html
+   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15797/shard-apl8/igt@gem_ppgtt@flink-and-close-vma-leak.html
+
+  * igt@gem_workarounds@suspend-resume-context:
+    - shard-apl:          [PASS][31] -> ([DMESG-WARN][32], [PASS][33]) ([i915#180]) +4 similar issues
+   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7578/shard-apl2/igt@gem_workarounds@suspend-resume-context.html
+   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15797/shard-apl6/igt@gem_workarounds@suspend-resume-context.html
+   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15797/shard-apl8/igt@gem_workarounds@suspend-resume-context.html
+
+  * igt@i915_hangman@error-state-capture-vcs1:
+    - shard-iclb:         [PASS][34] -> [SKIP][35] ([fdo#112080])
+   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7578/shard-iclb1/igt@i915_hangman@error-state-capture-vcs1.html
+   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15797/shard-iclb8/igt@i915_hangman@error-state-capture-vcs1.html
+
+  * igt@i915_pm_dc@dc5-psr:
+    - shard-skl:          [PASS][36] -> ([PASS][37], [INCOMPLETE][38]) ([i915#198])
+   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7578/shard-skl10/igt@i915_pm_dc@dc5-psr.html
+   [37]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15797/shard-skl1/igt@i915_pm_dc@dc5-psr.html
+   [38]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15797/shard-skl9/igt@i915_pm_dc@dc5-psr.html
+
+  * igt@i915_selftest@mock_sanitycheck:
+    - shard-skl:          [PASS][39] -> ([PASS][40], [DMESG-WARN][41]) ([i915#747])
+   [39]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7578/shard-skl5/igt@i915_selftest@mock_sanitycheck.html
+   [40]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15797/shard-skl6/igt@i915_selftest@mock_sanitycheck.html
+   [41]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15797/shard-skl10/igt@i915_selftest@mock_sanitycheck.html
+
+  * igt@i915_suspend@forcewake:
+    - shard-skl:          [PASS][42] -> ([INCOMPLETE][43], [PASS][44]) ([i915#69])
+   [42]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7578/shard-skl9/igt@i915_suspend@forcewake.html
+   [43]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15797/shard-skl6/igt@i915_suspend@forcewake.html
+   [44]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15797/shard-skl2/igt@i915_suspend@forcewake.html
+
+  * igt@i915_suspend@sysfs-reader:
+    - shard-apl:          [PASS][45] -> [DMESG-WARN][46] ([i915#180]) +1 similar issue
+   [45]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7578/shard-apl3/igt@i915_suspend@sysfs-reader.html
+   [46]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15797/shard-apl4/igt@i915_suspend@sysfs-reader.html
+
+  * igt@kms_color@pipe-a-ctm-0-75:
+    - shard-skl:          [PASS][47] -> ([DMESG-WARN][48], [PASS][49]) ([i915#109])
+   [47]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7578/shard-skl7/igt@kms_color@pipe-a-ctm-0-75.html
+   [48]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15797/shard-skl10/igt@kms_color@pipe-a-ctm-0-75.html
+   [49]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15797/shard-skl7/igt@kms_color@pipe-a-ctm-0-75.html
+
+  * igt@kms_cursor_crc@pipe-a-cursor-suspend:
+    - shard-kbl:          [PASS][50] -> [DMESG-WARN][51] ([i915#180]) +2 similar issues
+   [50]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7578/shard-kbl4/igt@kms_cursor_crc@pipe-a-cursor-suspend.html
+   [51]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15797/shard-kbl6/igt@kms_cursor_crc@pipe-a-cursor-suspend.html
+
+  * igt@kms_cursor_crc@pipe-c-cursor-128x128-offscreen:
+    - shard-hsw:          [PASS][52] -> ([DMESG-WARN][53], [PASS][54]) ([IGT#6] / [i915#435])
+   [52]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7578/shard-hsw4/igt@kms_cursor_crc@pipe-c-cursor-128x128-offscreen.html
+   [53]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15797/shard-hsw6/igt@kms_cursor_crc@pipe-c-cursor-128x128-offscreen.html
+   [54]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15797/shard-hsw4/igt@kms_cursor_crc@pipe-c-cursor-128x128-offscreen.html
+
+  * igt@kms_cursor_crc@pipe-c-cursor-256x85-sliding:
+    - shard-skl:          [PASS][55] -> ([FAIL][56], [PASS][57]) ([i915#54]) +1 similar issue
+   [55]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7578/shard-skl8/igt@kms_cursor_crc@pipe-c-cursor-256x85-sliding.html
+   [56]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15797/shard-skl3/igt@kms_cursor_crc@pipe-c-cursor-256x85-sliding.html
+   [57]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15797/shard-skl4/igt@kms_cursor_crc@pipe-c-cursor-256x85-sliding.html
+
+  * igt@kms_draw_crc@draw-method-xrgb8888-render-ytiled:
+    - shard-skl:          [PASS][58] -> ([INCOMPLETE][59], [PASS][60]) ([fdo#112347] / [i915#646] / [i915#667])
+   [58]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7578/shard-skl6/igt@kms_draw_crc@draw-method-xrgb8888-render-ytiled.html
+   [59]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15797/shard-skl1/igt@kms_draw_crc@draw-method-xrgb8888-render-ytiled.html
+   [60]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15797/shard-skl8/igt@kms_draw_crc@draw-method-xrgb8888-render-ytiled.html
+
+  * igt@kms_flip@flip-vs-expired-vblank:
+    - shard-skl:          [PASS][61] -> ([FAIL][62], [PASS][63]) ([i915#46])
+   [61]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7578/shard-skl8/igt@kms_flip@flip-vs-expired-vblank.html
+   [62]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15797/shard-skl9/igt@kms_flip@flip-vs-expired-vblank.html
+   [63]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15797/shard-skl2/igt@kms_flip@flip-vs-expired-vblank.html
+
+  * igt@kms_frontbuffer_tracking@fbc-1p-primscrn-cur-indfb-move:
+    - shard-iclb:         [PASS][64] -> [INCOMPLETE][65] ([i915#140])
+   [64]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7578/shard-iclb2/igt@kms_frontbuffer_tracking@fbc-1p-primscrn-cur-indfb-move.html
+   [65]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15797/shard-iclb2/igt@kms_frontbuffer_tracking@fbc-1p-primscrn-cur-indfb-move.html
+
+  * igt@kms_frontbuffer_tracking@fbcpsr-1p-primscrn-cur-indfb-draw-render:
+    - shard-iclb:         [PASS][66] -> [INCOMPLETE][67] ([i915#123] / [i915#140])
+   [66]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7578/shard-iclb4/igt@kms_frontbuffer_tracking@fbcpsr-1p-primscrn-cur-indfb-draw-render.html
+   [67]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15797/shard-iclb3/igt@kms_frontbuffer_tracking@fbcpsr-1p-primscrn-cur-indfb-draw-render.html
+
+  * igt@kms_frontbuffer_tracking@fbcpsr-1p-primscrn-pri-indfb-draw-mmap-wc:
+    - shard-tglb:         [PASS][68] -> [INCOMPLETE][69] ([i915#474] / [i915#667])
+   [68]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7578/shard-tglb5/igt@kms_frontbuffer_tracking@fbcpsr-1p-primscrn-pri-indfb-draw-mmap-wc.html
+   [69]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15797/shard-tglb9/igt@kms_frontbuffer_tracking@fbcpsr-1p-primscrn-pri-indfb-draw-mmap-wc.html
+
+  * igt@kms_frontbuffer_tracking@psr-1p-primscrn-spr-indfb-draw-render:
+    - shard-skl:          [PASS][70] -> ([PASS][71], [FAIL][72]) ([i915#49])
+   [70]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7578/shard-skl6/igt@kms_frontbuffer_tracking@psr-1p-primscrn-spr-indfb-draw-render.html
+   [71]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15797/shard-skl1/igt@kms_frontbuffer_tracking@psr-1p-primscrn-spr-indfb-draw-render.html
+   [72]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15797/shard-skl8/igt@kms_frontbuffer_tracking@psr-1p-primscrn-spr-indfb-draw-render.html
+
+  * igt@kms_pipe_crc_basic@suspend-read-crc-pipe-b:
+    - shard-tglb:         [PASS][73] -> [INCOMPLETE][74] ([i915#456] / [i915#460]) +1 similar issue
+   [73]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7578/shard-tglb4/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-b.html
+   [74]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15797/shard-tglb7/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-b.html
+
+  * igt@kms_plane_alpha_blend@pipe-b-coverage-7efc:
+    - shard-skl:          [PASS][75] -> ([FAIL][76], [FAIL][77]) ([fdo#108145] / [i915#265])
+   [75]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7578/shard-skl3/igt@kms_plane_alpha_blend@pipe-b-coverage-7efc.html
+   [76]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15797/shard-skl5/igt@kms_plane_alpha_blend@pipe-b-coverage-7efc.html
+   [77]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15797/shard-skl2/igt@kms_plane_alpha_blend@pipe-b-coverage-7efc.html
+
+  * igt@kms_psr@psr2_suspend:
+    - shard-tglb:         [PASS][78] -> [DMESG-WARN][79] ([i915#402])
+   [78]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7578/shard-tglb9/igt@kms_psr@psr2_suspend.html
+   [79]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15797/shard-tglb8/igt@kms_psr@psr2_suspend.html
+
+  * igt@kms_setmode@basic:
+    - shard-apl:          [PASS][80] -> ([FAIL][81], [FAIL][82]) ([i915#31])
+   [80]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7578/shard-apl8/igt@kms_setmode@basic.html
+   [81]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15797/shard-apl7/igt@kms_setmode@basic.html
+   [82]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15797/shard-apl6/igt@kms_setmode@basic.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_busy@close-race:
+    - shard-tglb:         [INCOMPLETE][83] ([i915#435]) -> [PASS][84]
+   [83]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7578/shard-tglb6/igt@gem_busy@close-race.html
+   [84]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15797/shard-tglb2/igt@gem_busy@close-race.html
+
+  * igt@gem_ctx_persistence@vcs0-mixed-process:
+    - shard-apl:          [FAIL][85] ([i915#679]) -> ([PASS][86], [PASS][87])
+   [85]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7578/shard-apl3/igt@gem_ctx_persistence@vcs0-mixed-process.html
+   [86]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15797/shard-apl1/igt@gem_ctx_persistence@vcs0-mixed-process.html
+   [87]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15797/shard-apl3/igt@gem_ctx_persistence@vcs0-mixed-process.html
+
+  * igt@gem_ctx_persistence@vcs1-mixed-process:
+    - shard-iclb:         [SKIP][88] ([fdo#109276] / [fdo#112080]) -> [PASS][89] +1 similar issue
+   [88]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7578/shard-iclb8/igt@gem_ctx_persistence@vcs1-mixed-process.html
+   [89]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15797/shard-iclb1/igt@gem_ctx_persistence@vcs1-mixed-process.html
+
+  * igt@gem_eio@banned:
+    - shard-tglb:         [INCOMPLETE][90] ([i915#476]) -> [PASS][91]
+   [90]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7578/shard-tglb6/igt@gem_eio@banned.html
+   [91]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15797/shard-tglb4/igt@gem_eio@banned.html
+
+  * igt@gem_exec_balancer@smoke:
+    - shard-iclb:         [SKIP][92] ([fdo#110854]) -> [PASS][93]
+   [92]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7578/shard-iclb6/igt@gem_exec_balancer@smoke.html
+   [93]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15797/shard-iclb4/igt@gem_exec_balancer@smoke.html
+
+  * igt@gem_exec_reloc@basic-wc-active:
+    - shard-skl:          [DMESG-WARN][94] ([i915#109]) -> ([PASS][95], [PASS][96])
+   [94]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7578/shard-skl8/igt@gem_exec_reloc@basic-wc-active.html
+   [95]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15797/shard-skl2/igt@gem_exec_reloc@basic-wc-active.html
+   [96]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15797/shard-skl9/igt@gem_exec_reloc@basic-wc-active.html
+
+  * igt@gem_exec_schedule@preempt-queue-bsd2:
+    - shard-iclb:         [SKIP][97] ([fdo#109276]) -> [PASS][98] +10 similar issues
+   [97]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7578/shard-iclb8/igt@gem_exec_schedule@preempt-queue-bsd2.html
+   [98]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15797/shard-iclb1/igt@gem_exec_schedule@preempt-queue-bsd2.html
+
+  * igt@gem_exec_schedule@preempt-queue-contexts-vebox:
+    - shard-tglb:         [INCOMPLETE][99] ([fdo#111677]) -> [PASS][100]
+   [99]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7578/shard-tglb6/igt@gem_exec_schedule@preempt-queue-contexts-vebox.html
+   [100]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15797/shard-tglb3/igt@gem_exec_schedule@preempt-queue-contexts-vebox.html
+
+  * igt@gem_exec_schedule@preemptive-hang-bsd:
+    - shard-iclb:         [SKIP][101] ([fdo#112146]) -> [PASS][102] +2 similar issues
+   [101]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7578/shard-iclb1/igt@gem_exec_schedule@preemptive-hang-bsd.html
+   [102]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15797/shard-iclb8/igt@gem_exec_schedule@preemptive-hang-bsd.html
+
+  * igt@gem_exec_schedule@smoketest-bsd2:
+    - shard-tglb:         [INCOMPLETE][103] ([i915#707]) -> [PASS][104]
+   [103]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7578/shard-tglb2/igt@gem_exec_schedule@smoketest-bsd2.html
+   [104]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15797/shard-tglb1/igt@gem_exec_schedule@smoketest-bsd2.html
+
+  * igt@gem_softpin@noreloc-s3:
+    - shard-tglb:         [INCOMPLETE][105] ([i915#456]) -> [PASS][106]
+   [105]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7578/shard-tglb8/igt@gem_softpin@noreloc-s3.html
+   [106]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15797/shard-tglb6/igt@gem_softpin@noreloc-s3.html
+
+  * {igt@gen9_exec_parse@allowed-single}:
+    - shard-glk:          [DMESG-WARN][107] ([i915#716]) -> ([PASS][108], [PASS][109])
+   [107]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7578/shard-glk9/igt@gen9_exec_parse@allowed-single.html
+   [108]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15797/shard-glk1/igt@gen9_exec_parse@allowed-single.html
+   [109]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15797/shard-glk7/igt@gen9_exec_parse@allowed-single.html
+    - shard-apl:          [DMESG-WARN][110] ([i915#716]) -> [PASS][111]
+   [110]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7578/shard-apl7/igt@gen9_exec_parse@allowed-single.html
+   [111]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15797/shard-apl4/igt@gen9_exec_parse@allowed-single.html
+
+  * igt@i915_suspend@fence-restore-tiled2untiled:
+    - shard-apl:          [DMESG-WARN][112] ([i915#180]) -> ([PASS][113], [PASS][114])
+   [112]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7578/shard-apl4/igt@i915_suspend@fence-restore-tiled2untiled.html
+   [113]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15797/shard-apl6/igt@i915_suspend@fence-restore-tiled2untiled.html
+   [114]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15797/shard-apl1/igt@i915_suspend@fence-restore-tiled2untiled.html
+
+  * igt@kms_cursor_crc@pipe-a-cursor-128x128-sliding:
+    - shard-skl:          [FAIL][115] ([i915#54]) -> [PASS][116]
+   [115]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7578/shard-skl10/igt@kms_cursor_crc@pipe-a-cursor-128x128-sliding.html
+   [116]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15797/shard-skl1/igt@kms_cursor_crc@pipe-a-cursor-128x128-sliding.html
+
+  * igt@kms_cursor_crc@pipe-a-cursor-64x64-sliding:
+    - shard-hsw:          [DMESG-WARN][117] ([IGT#6]) -> ([PASS][118], [PASS][119])
+   [117]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7578/shard-hsw6/igt@kms_cursor_crc@pipe-a-cursor-64x64-sliding.html
+   [118]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15797/shard-hsw1/igt@kms_cursor_crc@pipe-a-cursor-64x64-sliding.html
+   [119]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15797/shard-hsw5/igt@kms_cursor_crc@pipe-a-cursor-64x64-sliding.html
+
+  * igt@kms_cursor_crc@pipe-c-cursor-suspend:
+    - shard-tglb:         [INCOMPLETE][120] ([i915#456] / [i915#460]) -> [PASS][121]
+   [120]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7578/shard-tglb5/igt@kms_cursor_crc@pipe-c-cursor-suspend.html
+   [121]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15797/shard-tglb6/igt@kms_cursor_crc@pipe-c-cursor-suspend.html
+
+  * igt@kms_flip@2x-flip-vs-expired-vblank-interruptible:
+    - shard-glk:          [FAIL][122] ([i915#79]) -> ([PASS][123], [PASS][124])
+   [122]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7578/shard-glk9/igt@kms_flip@2x-flip-vs-expired-vblank-interruptible.html
+   [123]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15797/shard-glk1/igt@kms_flip@2x-flip-vs-expired-vblank-interruptible.html
+   [124]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15797/shard-glk4/igt@kms_flip@2x-flip-vs-expired-vblank-interruptible.html
+
+  * igt@kms_flip@flip-vs-expired-vblank-interruptible:
+    - shard-apl:          [FAIL][125] ([i915#79]) -> ([PASS][126], [PASS][127])
+   [125]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7578/shard-apl8/igt@kms_flip@flip-vs-expired-vblank-interruptible.html
+   [126]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15797/shard-apl8/igt@kms_flip@flip-vs-expired-vblank-interruptible.html
+   [127]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15797/shard-apl4/igt@kms_flip@flip-vs-expired-vblank-interruptible.html
+
+  * igt@kms_flip@flip-vs-suspend:
+    - shard-skl:          [INCOMPLETE][128] ([i915#221]) -> ([PASS][129], [PASS][130])
+   [128]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7578/shard-skl4/igt@kms_flip@flip-vs-suspend.html
+   [129]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15797/shard-skl1/igt@kms_flip@flip-vs-suspend.html
+   [130]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15797/shard-skl10/igt@kms_flip@flip-vs-suspend.html
+
+  * igt@kms_frontbuffer_tracking@fbcpsr-1p-primscrn-pri-indfb-draw-blt:
+    - shard-tglb:         [FAIL][131] ([i915#49]) -> [PASS][132]
+   [131]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7578/shard-tglb6/igt@kms_frontbuffer_tracking@fbcpsr-1p-primscrn-pri-indfb-draw-blt.html
+   [132]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15797/shard-tglb3/igt@kms_frontbuffer_tracking@fbcpsr-1p-primscrn-pri-indfb-draw-blt.html
+
+  * igt@kms_frontbuffer_tracking@fbcpsr-suspend:
+    - shard-tglb:         [INCOMPLETE][133] ([i915#456] / [i915#460] / [i915#474]) -> [PASS][134]
+   [133]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7578/shard-tglb8/igt@kms_frontbuffer_tracking@fbcpsr-suspend.html
+   [134]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15797/shard-tglb4/igt@kms_frontbuffer_tracking@fbcpsr-suspend.html
+
+  * igt@kms_plane@pixel-format-pipe-b-planes-source-clamping:
+    - shard-iclb:         [INCOMPLETE][135] ([i915#140] / [i915#246]) -> [PASS][136]
+   [135]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7578/shard-iclb4/igt@kms_plane@pixel-format-pipe-b-planes-source-clamping.html
+   [136]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15797/shard-iclb2/igt@kms_plane@pixel-format-pipe-b-planes-source-clamping.html
+
+  * igt@kms_psr@psr2_cursor_mmap_cpu:
+    - shard-iclb:         [SKIP][137] ([fdo#109441]) -> [PASS][138] +1 similar issue
+   [137]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7578/shard-iclb4/igt@kms_psr@psr2_cursor_mmap_cpu.html
+   [138]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15797/shard-iclb2/igt@kms_psr@psr2_cursor_mmap_cpu.html
+
+  * igt@kms_vblank@pipe-b-ts-continuation-suspend:
+    - shard-apl:          [DMESG-WARN][139] ([i915#180]) -> [PASS][140] +1 similar issue
+   [139]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7578/shard-apl1/igt@kms_vblank@pipe-b-ts-continuation-suspend.html
+   [140]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15797/shard-apl2/igt@kms_vblank@pipe-b-ts-continuation-suspend.html
+
+  * igt@perf_pmu@busy-check-all-vcs1:
+    - shard-iclb:         [SKIP][141] ([fdo#112080]) -> [PASS][142] +5 similar issues
+   [141]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7578/shard-iclb6/igt@perf_pmu@busy-check-all-vcs1.html
+   [142]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15797/shard-iclb4/igt@perf_pmu@busy-check-all-vcs1.html
+
+  
+#### Warnings ####
+
+  * igt@gem_ctx_isolation@vcs2-s3:
+    - shard-tglb:         [SKIP][143] ([fdo#111912] / [fdo#112080]) -> [SKIP][144] ([fdo#112080])
+   [143]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7578/shard-tglb4/igt@gem_ctx_isolation@vcs2-s3.html
+   [144]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15797/shard-tglb9/igt@gem_ctx_isolation@vcs2-s3.html
+
+  * igt@gem_tiled_blits@normal:
+    - shard-hsw:          [FAIL][145] ([i915#818]) -> ([FAIL][146], [DMESG-FAIL][147]) ([i915#44] / [i915#818])
+   [145]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7578/shard-hsw7/igt@gem_tiled_blits@normal.html
+   [146]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15797/shard-hsw2/igt@gem_tiled_blits@normal.html
+   [147]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15797/shard-hsw1/igt@gem_tiled_blits@normal.html
+
+  * igt@kms_atomic_transition@6x-modeset-transitions:
+    - shard-tglb:         [SKIP][148] ([fdo#112021]) -> [SKIP][149] ([fdo#112016] / [fdo#112021])
+   [148]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7578/shard-tglb9/igt@kms_atomic_transition@6x-modeset-transitions.html
+   [149]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15797/shard-tglb8/igt@kms_atomic_transition@6x-modeset-transitions.html
+
+  * igt@kms_flip@flip-vs-suspend:
+    - shard-apl:          [DMESG-WARN][150] ([i915#180]) -> ([PASS][151], [DMESG-WARN][152]) ([i915#180])
+   [150]: https://intel-gfx-ci.01.org
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15797/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============2060617815==--
