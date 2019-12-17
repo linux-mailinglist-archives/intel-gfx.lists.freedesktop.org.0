@@ -2,44 +2,37 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C129F12381A
-	for <lists+intel-gfx@lfdr.de>; Tue, 17 Dec 2019 21:56:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E90A12381B
+	for <lists+intel-gfx@lfdr.de>; Tue, 17 Dec 2019 21:57:26 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3C37C6E133;
-	Tue, 17 Dec 2019 20:56:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 84D406E139;
+	Tue, 17 Dec 2019 20:57:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4740F6E133
- for <intel-gfx@lists.freedesktop.org>; Tue, 17 Dec 2019 20:56:19 +0000 (UTC)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 233BE6E139;
+ Tue, 17 Dec 2019 20:57:23 +0000 (UTC)
 X-Amp-Result: UNKNOWN
 X-Amp-Original-Verdict: FILE UNKNOWN
 X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 17 Dec 2019 12:56:18 -0800
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by orsmga106.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 17 Dec 2019 12:57:22 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,326,1571727600"; d="scan'208";a="389955747"
+X-IronPort-AV: E=Sophos;i="5.69,326,1571727600"; d="scan'208";a="212500089"
 Received: from labuser-z97x-ud5h.jf.intel.com (HELO intel.com) ([10.54.75.49])
- by orsmga005.jf.intel.com with ESMTP; 17 Dec 2019 12:56:18 -0800
-Date: Tue, 17 Dec 2019 12:57:49 -0800
+ by fmsmga007.fm.intel.com with ESMTP; 17 Dec 2019 12:57:21 -0800
+Date: Tue, 17 Dec 2019 12:58:53 -0800
 From: Manasi Navare <manasi.d.navare@intel.com>
-To: Tomi Sarvela <tomi.p.sarvela@intel.com>
-Message-ID: <20191217205749.GA24921@intel.com>
+To: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Message-ID: <20191217205852.GB24921@intel.com>
 References: <20191211212433.18185-1-manasi.d.navare@intel.com>
- <157611880961.32008.16220670685103356969@emeril.freedesktop.org>
- <20191212212845.GA24342@intel.com>
- <db330426-2263-b095-8019-9e9415c25901@intel.com>
- <20191216235944.GL19224@intel.com>
- <795c063b-3970-d795-3872-3286b6c0fc71@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <795c063b-3970-d795-3872-3286b6c0fc71@intel.com>
+In-Reply-To: <20191211212433.18185-1-manasi.d.navare@intel.com>
 User-Agent: Mutt/1.5.24 (2015-08-30)
-Subject: Re: [Intel-gfx] 
- =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5B1/2=5D_drm=3A_Handle_connector_tile_suppor?=
- =?utf-8?q?t_only_for_modes_that_match_tile_size?=
+Subject: Re: [Intel-gfx] [PATCH 1/2] drm: Handle connector tile support only
+ for modes that match tile size
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,81 +45,63 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Jani Nikula <jani.nikula@intel.com>, Dave Airlie <airlied@redhat.com>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Dec 17, 2019 at 09:56:54AM +0200, Tomi Sarvela wrote:
-> On 12/17/19 1:59 AM, Manasi Navare wrote:
-> >On Fri, Dec 13, 2019 at 10:54:55AM +0200, Tomi Sarvela wrote:
-> >>On 12/12/19 11:28 PM, Manasi Navare wrote:
-> >>>The KBL failure does not look related to the changes in this patch series.
-> >>>Tomi, could you confirm if this is a false negative?
-> >>>
-> >>>Manasi
-> >>
-> >>The failures with the patchset seem same as all the other results from
-> >>live_gt_pm: just that kbl-x1275 hasn't been ticked to the bugfilter,
-> >>probably because it hasn't survived the test before (module_reload).
-> >>
-> >>I've triggered shard-run for this series.
-> >
-> >Any updates on the shard-run results?
-> 
-> Results are available at normal place:
-> https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15701/index.html
->
+On Wed, Dec 11, 2019 at 01:24:32PM -0800, Manasi Navare wrote:
+> DRM Fb driver expects multiple CRTCs if it sees connector->has_tile
+> is set, but we need to handle tile support and look for multiple CRTCs
+> only for the modes that match the tile size. The other modes should
+> be able to be displayed without tile support or uisng single CRTC.
+> =
 
-Cool so the failures on kbl are unrealted and false positives and Full IGT tests pass
-so I am merging these patches.
+> This patch adds the check to match the tile size with requested mode
+> to handle the tile support.
+> =
+
+> Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> Cc: Jani Nikula <jani.nikula@intel.com>
+> Cc: Dave Airlie <airlied@redhat.com>
+> Signed-off-by: Manasi Navare <manasi.d.navare@intel.com>
+
+Capturing Dave Airlie's r-b from IRC:
+
+Reviewed-by: Dave Airlie <airlied@redhat.com>
 
 Manasi
- 
-> Tomi
-> 
-> >>>On Thu, Dec 12, 2019 at 02:46:49AM +0000, Patchwork wrote:
-> >>>>== Series Details ==
-> >>>>
-> >>>>Series: series starting with [1/2] drm: Handle connector tile support only for modes that match tile size
-> >>>>URL   : https://patchwork.freedesktop.org/series/70790/
-> >>>>State : failure
-> >>>>
-> >>>>== Summary ==
-> >>>>
-> >>>>CI Bug Log - changes from CI_DRM_7545 -> Patchwork_15701
-> >>>>====================================================
-> >>>>
-> >>>>Summary
-> >>>>-------
-> >>>>
-> >>>>   **FAILURE**
-> 
-> >>>>   External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15701/index.html
-> >>>>
-> >>>>Possible new issues
-> >>>>-------------------
-> >>>>
-> >>>>   Here are the unknown changes that may have been introduced in Patchwork_15701:
-> >>>>
-> >>>>### IGT changes ###
-> >>>>
-> >>>>#### Possible regressions ####
-> >>>>
-> >>>>   * igt@i915_selftest@live_gt_pm:
-> >>>>     - fi-kbl-x1275:       NOTRUN -> [DMESG-FAIL][1]
-> >>>>    [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15701/fi-kbl-x1275/igt@i915_selftest@live_gt_pm.html
-> 
-> >>>>
-> >>>>== Logs ==
-> >>>>
-> >>>>For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15701/index.html
-> 
-> 
-> 
-> -- 
-> Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+
+> ---
+>  drivers/gpu/drm/drm_fb_helper.c | 4 +++-
+>  1 file changed, 3 insertions(+), 1 deletion(-)
+> =
+
+> diff --git a/drivers/gpu/drm/drm_fb_helper.c b/drivers/gpu/drm/drm_fb_hel=
+per.c
+> index fb9bff0f4581..4978363714a9 100644
+> --- a/drivers/gpu/drm/drm_fb_helper.c
+> +++ b/drivers/gpu/drm/drm_fb_helper.c
+> @@ -1558,7 +1558,9 @@ static int drm_fb_helper_single_fb_probe(struct drm=
+_fb_helper *fb_helper,
+>  		for (j =3D 0; j < mode_set->num_connectors; j++) {
+>  			struct drm_connector *connector =3D mode_set->connectors[j];
+>  =
+
+> -			if (connector->has_tile) {
+> +			if (connector->has_tile &&
+> +			    desired_mode->hdisplay =3D=3D connector->tile_h_size &&
+> +			    desired_mode->vdisplay =3D=3D connector->tile_v_size) {
+>  				lasth =3D (connector->tile_h_loc =3D=3D (connector->num_h_tile - 1));
+>  				lastv =3D (connector->tile_v_loc =3D=3D (connector->num_v_tile - 1));
+>  				/* cloning to multiple tiles is just crazy-talk, so: */
+> -- =
+
+> 2.19.1
+> =
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
