@@ -1,41 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8823C12356D
-	for <lists+intel-gfx@lfdr.de>; Tue, 17 Dec 2019 20:10:09 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6592C123595
+	for <lists+intel-gfx@lfdr.de>; Tue, 17 Dec 2019 20:25:48 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CC1D76E1BC;
-	Tue, 17 Dec 2019 19:10:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 14BD16E057;
+	Tue, 17 Dec 2019 19:25:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from asavdk4.altibox.net (asavdk4.altibox.net [109.247.116.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7A8FC6E1BC;
- Tue, 17 Dec 2019 19:10:06 +0000 (UTC)
-Received: from ravnborg.org (unknown [158.248.194.18])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by asavdk4.altibox.net (Postfix) with ESMTPS id 98ACC80510;
- Tue, 17 Dec 2019 20:10:04 +0100 (CET)
-Date: Tue, 17 Dec 2019 20:10:03 +0100
-From: Sam Ravnborg <sam@ravnborg.org>
-To: Jani Nikula <jani.nikula@intel.com>
-Message-ID: <20191217191003.GA28782@ravnborg.org>
-References: <20191210123050.8799-1-jani.nikula@intel.com>
- <20191210123050.8799-5-jani.nikula@intel.com>
- <20191217190011.GD30809@ravnborg.org>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id F257B6E057;
+ Tue, 17 Dec 2019 19:25:44 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id E9923A0118;
+ Tue, 17 Dec 2019 19:25:44 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20191217190011.GD30809@ravnborg.org>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.3 cv=VcLZwmh9 c=1 sm=1 tr=0
- a=UWs3HLbX/2nnQ3s7vZ42gw==:117 a=UWs3HLbX/2nnQ3s7vZ42gw==:17
- a=jpOVt7BSZ2e4Z31A5e1TngXxSK0=:19 a=kj9zAlcOel0A:10 a=QyXUC8HyAAAA:8
- a=7gkXJVJtAAAA:8 a=e5mUnYsNAAAA:8 a=wcju3iwnBbe9ghA5nx0A:9
- a=CjuIK1q_8ugA:10 a=E9Po1WZjFZOl8hwRPBS3:22 a=Vxmtnl_E_bksehYqCbjh:22
-Subject: Re: [Intel-gfx] [PATCH 5/8] drm/mipi-dbi: convert to drm device
- based logging
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Tvrtko Ursulin" <tvrtko.ursulin@linux.intel.com>
+Date: Tue, 17 Dec 2019 19:25:44 -0000
+Message-ID: <157661074492.21847.12157443815572187238@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20191216182032.22265-1-tvrtko.ursulin@linux.intel.com>
+In-Reply-To: <20191216182032.22265-1-tvrtko.ursulin@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/pmu=3A_Ensure_monotonic_rc6_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,108 +38,153 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Dec 17, 2019 at 08:00:11PM +0100, Sam Ravnborg wrote:
-> On Tue, Dec 10, 2019 at 02:30:47PM +0200, Jani Nikula wrote:
-> > Prefer drm device based logging where possible.
-> > 
-> > Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-> > ---
-> >  drivers/gpu/drm/drm_mipi_dbi.c | 15 ++++++++-------
-> >  1 file changed, 8 insertions(+), 7 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/drm_mipi_dbi.c b/drivers/gpu/drm/drm_mipi_dbi.c
-> > index e34058c721be..86d98e7fc30a 100644
-> > --- a/drivers/gpu/drm/drm_mipi_dbi.c
-> > +++ b/drivers/gpu/drm/drm_mipi_dbi.c
-> > @@ -225,7 +225,7 @@ int mipi_dbi_buf_copy(void *dst, struct drm_framebuffer *fb,
-> >  		drm_fb_xrgb8888_to_rgb565(dst, src, fb, clip, swap);
-> >  		break;
-> >  	default:
-> > -		dev_err_once(fb->dev->dev, "Format is not supported: %s\n",
-> > +		drm_err_once(fb->dev, "Format is not supported: %s\n",
-> >  			     drm_get_format_name(fb->format->format,
-> >  						 &format_name));
-> >  		return -EINVAL;
-> > @@ -242,7 +242,8 @@ static void mipi_dbi_fb_dirty(struct drm_framebuffer *fb, struct drm_rect *rect)
-> >  {
-> >  	struct drm_gem_object *gem = drm_gem_fb_get_obj(fb, 0);
-> >  	struct drm_gem_cma_object *cma_obj = to_drm_gem_cma_obj(gem);
-> > -	struct mipi_dbi_dev *dbidev = drm_to_mipi_dbi_dev(fb->dev);
-> > +	struct drm_device *dev = fb->dev;
-> 
-> In this file the pattern is to use the variable name "drm" for a
-> drm_device *. Your changes should follow the same pattern.
-With this fixed:
-Reviewed-by: Sam Ravnborg <sam@ravnborg.org>
+== Series Details ==
 
-> 
-> 	Sam
-> 
-> > +	struct mipi_dbi_dev *dbidev = drm_to_mipi_dbi_dev(dev);
-> >  	unsigned int height = rect->y2 - rect->y1;
-> >  	unsigned int width = rect->x2 - rect->x1;
-> >  	struct mipi_dbi *dbi = &dbidev->dbi;
-> > @@ -259,7 +260,7 @@ static void mipi_dbi_fb_dirty(struct drm_framebuffer *fb, struct drm_rect *rect)
-> >  
-> >  	full = width == fb->width && height == fb->height;
-> >  
-> > -	DRM_DEBUG_KMS("Flushing [FB:%d] " DRM_RECT_FMT "\n", fb->base.id, DRM_RECT_ARG(rect));
-> > +	drm_dbg_kms(dev, "Flushing [FB:%d] " DRM_RECT_FMT "\n", fb->base.id, DRM_RECT_ARG(rect));
-> >  
-> >  	if (!dbi->dc || !full || swap ||
-> >  	    fb->format->format == DRM_FORMAT_XRGB8888) {
-> > @@ -282,7 +283,7 @@ static void mipi_dbi_fb_dirty(struct drm_framebuffer *fb, struct drm_rect *rect)
-> >  				   width * height * 2);
-> >  err_msg:
-> >  	if (ret)
-> > -		dev_err_once(fb->dev->dev, "Failed to update display %d\n", ret);
-> > +		drm_err_once(dev, "Failed to update display %d\n", ret);
-> >  
-> >  	drm_dev_exit(idx);
-> >  }
-> > @@ -649,14 +650,14 @@ EXPORT_SYMBOL(mipi_dbi_display_is_on);
-> >  
-> >  static int mipi_dbi_poweron_reset_conditional(struct mipi_dbi_dev *dbidev, bool cond)
-> >  {
-> > -	struct device *dev = dbidev->drm.dev;
-> > +	struct drm_device *dev = &dbidev->drm;
-> >  	struct mipi_dbi *dbi = &dbidev->dbi;
-> >  	int ret;
-> >  
-> >  	if (dbidev->regulator) {
-> >  		ret = regulator_enable(dbidev->regulator);
-> >  		if (ret) {
-> > -			DRM_DEV_ERROR(dev, "Failed to enable regulator (%d)\n", ret);
-> > +			drm_err(dev, "Failed to enable regulator (%d)\n", ret);
-> >  			return ret;
-> >  		}
-> >  	}
-> > @@ -667,7 +668,7 @@ static int mipi_dbi_poweron_reset_conditional(struct mipi_dbi_dev *dbidev, bool
-> >  	mipi_dbi_hw_reset(dbi);
-> >  	ret = mipi_dbi_command(dbi, MIPI_DCS_SOFT_RESET);
-> >  	if (ret) {
-> > -		DRM_DEV_ERROR(dev, "Failed to send reset command (%d)\n", ret);
-> > +		drm_err(dev, "Failed to send reset command (%d)\n", ret);
-> >  		if (dbidev->regulator)
-> >  			regulator_disable(dbidev->regulator);
-> >  		return ret;
-> > -- 
-> > 2.20.1
-> > 
-> > _______________________________________________
-> > dri-devel mailing list
-> > dri-devel@lists.freedesktop.org
-> > https://lists.freedesktop.org/mailman/listinfo/dri-devel
-> _______________________________________________
-> dri-devel mailing list
-> dri-devel@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/dri-devel
+Series: drm/i915/pmu: Ensure monotonic rc6 (rev2)
+URL   : https://patchwork.freedesktop.org/series/70998/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_7585 -> Patchwork_15816
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15816/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_15816 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live_gem_contexts:
+    - fi-byt-j1900:       [PASS][1] -> [DMESG-FAIL][2] ([i915#722])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7585/fi-byt-j1900/igt@i915_selftest@live_gem_contexts.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15816/fi-byt-j1900/igt@i915_selftest@live_gem_contexts.html
+
+  * igt@i915_selftest@live_hangcheck:
+    - fi-icl-u2:          [PASS][3] -> [DMESG-FAIL][4] ([i915#419])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7585/fi-icl-u2/igt@i915_selftest@live_hangcheck.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15816/fi-icl-u2/igt@i915_selftest@live_hangcheck.html
+
+  * igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a:
+    - fi-icl-u3:          [PASS][5] -> [INCOMPLETE][6] ([i915#140])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7585/fi-icl-u3/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15816/fi-icl-u3/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_exec_suspend@basic-s0:
+    - fi-skl-6700k2:      [DMESG-WARN][7] -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7585/fi-skl-6700k2/igt@gem_exec_suspend@basic-s0.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15816/fi-skl-6700k2/igt@gem_exec_suspend@basic-s0.html
+
+  * igt@i915_module_load@reload-no-display:
+    - fi-skl-lmem:        [DMESG-WARN][9] ([i915#592]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7585/fi-skl-lmem/igt@i915_module_load@reload-no-display.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15816/fi-skl-lmem/igt@i915_module_load@reload-no-display.html
+
+  * igt@i915_selftest@live_blt:
+    - fi-hsw-4770:        [DMESG-FAIL][11] ([i915#770]) -> [PASS][12]
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7585/fi-hsw-4770/igt@i915_selftest@live_blt.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15816/fi-hsw-4770/igt@i915_selftest@live_blt.html
+
+  * igt@i915_selftest@live_gem_contexts:
+    - fi-hsw-peppy:       [INCOMPLETE][13] ([i915#694]) -> [PASS][14]
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7585/fi-hsw-peppy/igt@i915_selftest@live_gem_contexts.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15816/fi-hsw-peppy/igt@i915_selftest@live_gem_contexts.html
+
+  * igt@kms_chamelium@hdmi-hpd-fast:
+    - fi-kbl-7500u:       [FAIL][15] ([fdo#111407]) -> [PASS][16]
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7585/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15816/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+
+  * igt@kms_frontbuffer_tracking@basic:
+    - fi-hsw-peppy:       [DMESG-WARN][17] ([i915#44]) -> [PASS][18]
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7585/fi-hsw-peppy/igt@kms_frontbuffer_tracking@basic.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15816/fi-hsw-peppy/igt@kms_frontbuffer_tracking@basic.html
+
+  
+#### Warnings ####
+
+  * igt@i915_selftest@live_blt:
+    - fi-hsw-4770r:       [DMESG-FAIL][19] ([i915#553] / [i915#725]) -> [DMESG-FAIL][20] ([i915#725])
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7585/fi-hsw-4770r/igt@i915_selftest@live_blt.html
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15816/fi-hsw-4770r/igt@i915_selftest@live_blt.html
+
+  * igt@kms_cursor_legacy@basic-flip-after-cursor-legacy:
+    - fi-kbl-x1275:       [DMESG-WARN][21] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][22] ([i915#62] / [i915#92]) +5 similar issues
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7585/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15816/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
+
+  * igt@kms_flip@basic-flip-vs-modeset:
+    - fi-kbl-x1275:       [DMESG-WARN][23] ([i915#62] / [i915#92]) -> [DMESG-WARN][24] ([i915#62] / [i915#92] / [i915#95]) +3 similar issues
+   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7585/fi-kbl-x1275/igt@kms_flip@basic-flip-vs-modeset.html
+   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15816/fi-kbl-x1275/igt@kms_flip@basic-flip-vs-modeset.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#111407]: https://bugs.freedesktop.org/show_bug.cgi?id=111407
+  [fdo#111735]: https://bugs.freedesktop.org/show_bug.cgi?id=111735
+  [i915#140]: https://gitlab.freedesktop.org/drm/intel/issues/140
+  [i915#419]: https://gitlab.freedesktop.org/drm/intel/issues/419
+  [i915#44]: https://gitlab.freedesktop.org/drm/intel/issues/44
+  [i915#553]: https://gitlab.freedesktop.org/drm/intel/issues/553
+  [i915#592]: https://gitlab.freedesktop.org/drm/intel/issues/592
+  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
+  [i915#694]: https://gitlab.freedesktop.org/drm/intel/issues/694
+  [i915#722]: https://gitlab.freedesktop.org/drm/intel/issues/722
+  [i915#725]: https://gitlab.freedesktop.org/drm/intel/issues/725
+  [i915#770]: https://gitlab.freedesktop.org/drm/intel/issues/770
+  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
+  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
+
+
+Participating hosts (54 -> 46)
+------------------------------
+
+  Missing    (8): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-tgl-y fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_7585 -> Patchwork_15816
+
+  CI-20190529: 20190529
+  CI_DRM_7585: 96c4bb3771fb5fda19a0fa83ec2e7dba9bf6f878 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5350: 36431c5923099582e87379aec8e16d43090d06a7 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_15816: 42a7368fcdfcd2a54d99583c1be10b9bb7d8ce8d @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+42a7368fcdfc drm/i915/pmu: Ensure monotonic rc6
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15816/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
