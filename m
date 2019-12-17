@@ -1,43 +1,91 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 392881235D4
-	for <lists+intel-gfx@lfdr.de>; Tue, 17 Dec 2019 20:39:20 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id EDB3A123716
+	for <lists+intel-gfx@lfdr.de>; Tue, 17 Dec 2019 21:18:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7C4A06E0EA;
-	Tue, 17 Dec 2019 19:39:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 72F806E0E2;
+	Tue, 17 Dec 2019 20:18:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4D6176E0EA;
- Tue, 17 Dec 2019 19:39:17 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-X-Amp-File-Uploaded: False
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 17 Dec 2019 11:39:16 -0800
-X-IronPort-AV: E=Sophos;i="5.69,326,1571727600"; d="scan'208";a="227608577"
-Received: from ldmartin-desk1.jf.intel.com ([10.7.200.159])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 17 Dec 2019 11:39:16 -0800
-Date: Tue, 17 Dec 2019 11:39:05 -0800
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Matt Roper <matthew.d.roper@intel.com>
-Message-ID: <20191217193905.6vyypeiwkt3omhvr@ldmartin-desk1.jf.intel.com>
-X-Patchwork-Hint: ignore
-References: <20191209143921.9240-1-pankaj.laxminarayan.bharadiya@intel.com>
- <20191211055739.uxe46chnhkc2byul@ldmartin-desk1>
- <20191211064041.GA3339@plaxmina-desktop.iind.intel.com>
- <20191212002250.357dhphi3clst7qy@ldmartin-desk1>
- <20191212173717.GG85422@mdroper-desk1.amr.corp.intel.com>
- <20191212203449.e5ztqbkk7ljj2qqa@ldmartin-desk1>
+Received: from EUR04-VI1-obe.outbound.protection.outlook.com
+ (mail-eopbgr80088.outbound.protection.outlook.com [40.107.8.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E0E356E0E2;
+ Tue, 17 Dec 2019 20:18:24 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Z9G57B5Qkn3h+12zDr62wXLH7c4ZPZzKVf4Wgg+9tAQqSJadpZArkOr6FJbrEyAmwfNyu4jNjzitwQbBw6gaTK4PepRnxwuCWBhLWYYXqvNAUprmbMODvaXKHx/plrXM0sm4vrAv7v6xq6cCgZSxpwELmbsu56yB12KsGACtAthUcpVcSch99ESum8M4eSNiCU47HzBf8CSm2xilJ3agKPkccvYI3LFVsjfEFi0KxkpsVRrFjd7U0rWfcJJEWA43UnxBC1+r7PRTcYxAHh6pvKXShyGOe+gAdI8DEKtZI05V/KflZrFwmoE4vYCJJsTrQddOP0Kmo3LxK0Fo0Vwf2w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=32pgSRpmrM8sZKb8c51223I7nQMqUg4s97VcfgDzCi0=;
+ b=NQ8yCNM+PM1AxcLdW1/myJljk8N70KVX4xmELjGKCFCYvsLdfxUSDVl7nY8pmDvzE+CQUQc/E5riAjkbJFbiIZd2WeD7jTcFyXVUwohK+hRWEFQmAM0HHKJiSLzZImTahf3jwg+3topI7fw74zC7RmklVCHw62fMxyaz/RaapGyMF8B4uh3emJPgIgdhsoSrR9Wc2IpLEIg8a+kFauq9fPmBosm8663r9sKsOhjW8t5Eh92wxq5XvdzbcDqZxbtGKnswyffl0pYsbsv5CAXTMANlvbFiJ8qZHWjLpTZ1mfyfGy1W1JmuM71gYjhvWl54yPO0mNwLTh/GgfDcEvbsWw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=mellanox.com; dmarc=pass action=none header.from=mellanox.com;
+ dkim=pass header.d=mellanox.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Mellanox.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=32pgSRpmrM8sZKb8c51223I7nQMqUg4s97VcfgDzCi0=;
+ b=MOAL/RFPrsHca65lGDr3G5CupoRHbuWCsH9MD+AOjqSo9MYfgm7g4JRkehgYdi2vxorrYJ1OL8VGWeB1WkH1niT0uNTg/yU7sqQnCXQiYUNtBxVMwiJYGp6wwF9/Co8/DAsWr25A8Utn60O5AXkxfIRo9HZZL/6myzOW+A1RkXg=
+Received: from VI1PR05MB4141.eurprd05.prod.outlook.com (52.133.14.15) by
+ VI1PR05MB4367.eurprd05.prod.outlook.com (52.133.13.10) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2538.16; Tue, 17 Dec 2019 20:18:21 +0000
+Received: from VI1PR05MB4141.eurprd05.prod.outlook.com
+ ([fe80::18df:a0fe:18eb:a96b]) by VI1PR05MB4141.eurprd05.prod.outlook.com
+ ([fe80::18df:a0fe:18eb:a96b%6]) with mapi id 15.20.2538.019; Tue, 17 Dec 2019
+ 20:18:21 +0000
+From: Jason Gunthorpe <jgg@mellanox.com>
+To: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+Thread-Topic: [RFC v2 02/12] drm/i915/svm: Runtime (RT) allocator support
+Thread-Index: AQHVsgG9iXV/uMilr0qLfmT3axyKUKe+yjaA
+Date: Tue, 17 Dec 2019 20:18:21 +0000
+Message-ID: <20191217201815.GF16762@mellanox.com>
+References: <20191213215614.24558-1-niranjana.vishwanathapura@intel.com>
+ <20191213215614.24558-3-niranjana.vishwanathapura@intel.com>
+In-Reply-To: <20191213215614.24558-3-niranjana.vishwanathapura@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-clientproxiedby: DM5PR18CA0070.namprd18.prod.outlook.com
+ (2603:10b6:3:22::32) To VI1PR05MB4141.eurprd05.prod.outlook.com
+ (2603:10a6:803:44::15)
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=jgg@mellanox.com; 
+x-ms-exchange-messagesentrepresentingtype: 1
+x-originating-ip: [142.68.57.212]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-ht: Tenant
+x-ms-office365-filtering-correlation-id: dc84a8cd-1c23-4213-82fe-08d7832e427e
+x-ms-traffictypediagnostic: VI1PR05MB4367:
+x-microsoft-antispam-prvs: <VI1PR05MB4367859936B698F1D2CAE23ACF500@VI1PR05MB4367.eurprd05.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:5797;
+x-forefront-prvs: 02543CD7CD
+x-forefront-antispam-report: SFV:NSPM;
+ SFS:(10009020)(4636009)(346002)(396003)(366004)(376002)(136003)(39860400002)(189003)(199004)(2906002)(6916009)(478600001)(1076003)(33656002)(54906003)(6486002)(8936002)(8676002)(81156014)(81166006)(6506007)(5660300002)(26005)(186003)(4326008)(36756003)(7416002)(316002)(86362001)(52116002)(66946007)(2616005)(66446008)(64756008)(66556008)(66476007)(4744005)(6512007)(71200400001);
+ DIR:OUT; SFP:1101; SCL:1; SRVR:VI1PR05MB4367;
+ H:VI1PR05MB4141.eurprd05.prod.outlook.com; FPR:; SPF:None; LANG:en;
+ PTR:InfoNoRecords; MX:1; A:1; 
+received-spf: None (protection.outlook.com: mellanox.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: OSSO6hx51rXlhIMJbsHyxTFNZkqTNXe+gxnPMdykSR+RjaR2cGZ7PbKG23bjcQARHAj7LzXK7DimBppyKsScgE6fVErV1DtCT9hUqXNLVV4f3QqugqmCerR0Lw7RV1YZmrFtNBVjHC8K2/a9tmDehaRBu1WyqcO/NDclpBZrW4ZOoH7Dxz/jbQRgo4PN+x+arhx5doypeLBmD/rUYXCKALnJb4LwFHnvtx1GTGWK6UyBVHVXN6qWdP6xsw8u3qI+fbzH69t8Lwge8wBfs9khF26mwydP2NPQhyw0aEztTtIOY4zfbqK5QEv1uzaBvpSR5r/OuTe4XzKLmOzwheuJxyON+eo+ThGi65dqVEGGOKe1UkvQ24zxvqqXHwIL8q2cl4ucwWdGDl0ocrKLu458tbclqG8TqOFn++2log+6oFUBZWACPjdiqJR7e2g1DzEu
+x-ms-exchange-transport-forked: True
+Content-ID: <728C56C7E461EC498048B2839C289399@eurprd05.prod.outlook.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20191212203449.e5ztqbkk7ljj2qqa@ldmartin-desk1>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/display: cleanup intel_bw_state on
- i915 module removal
+X-OriginatorOrg: Mellanox.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: dc84a8cd-1c23-4213-82fe-08d7832e427e
+X-MS-Exchange-CrossTenant-originalarrivaltime: 17 Dec 2019 20:18:21.4349 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: a652971c-7d2e-4d9b-a6a4-d149256f461b
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: DaTNlkBZa4b1CsA/7TRVtnsWdmIJgahUsVOIKq/l6HO30KYIXy58nsSFt56O+j3L49pZVjqOL7N0jNZJU94tjw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR05MB4367
+Subject: Re: [Intel-gfx] [RFC v2 02/12] drm/i915/svm: Runtime (RT) allocator
+ support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,162 +98,37 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org
+Cc: "kenneth.w.graunke@intel.com" <kenneth.w.graunke@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "sanjay.k.kumar@intel.com" <sanjay.k.kumar@intel.com>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "jason.ekstrand@intel.com" <jason.ekstrand@intel.com>,
+ "dave.hansen@intel.com" <dave.hansen@intel.com>,
+ "jglisse@redhat.com" <jglisse@redhat.com>,
+ "daniel.vetter@intel.com" <daniel.vetter@intel.com>,
+ "dan.j.williams@intel.com" <dan.j.williams@intel.com>,
+ "ira.weiny@intel.com" <ira.weiny@intel.com>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Dec 12, 2019 at 12:34:49PM -0800, Lucas De Marchi wrote:
->On Thu, Dec 12, 2019 at 09:37:17AM -0800, Matt Roper wrote:
->>On Wed, Dec 11, 2019 at 04:22:50PM -0800, Lucas De Marchi wrote:
->>>On Wed, Dec 11, 2019 at 12:10:41PM +0530, Bharadiya,Pankaj wrote:
->>>> On Tue, Dec 10, 2019 at 09:57:39PM -0800, Lucas De Marchi wrote:
->>>> > On Mon, Dec 09, 2019 at 08:09:02PM +0530, Pankaj Bharadiya wrote:
->>>> > >intel_bw_state allocated memory is not getting freed even after
->>>> > >module removal.
->>>> > >
->>>> > >kmemleak reported backtrace:
->>>> > >
->>>> > >   [<0000000079019739>] kmemdup+0x17/0x40
->>>> > >   [<00000000d58c1b9d>] intel_bw_duplicate_state+0x1b/0x40 [i915]
->>>> > >   [<000000007423ed0c>] drm_atomic_get_private_obj_state+0xca/0x140
->>>> > >   [<00000000100e3533>] intel_bw_atomic_check+0x133/0x350 [i915]
->>>> > >   [<00000000126d0e0c>] intel_atomic_check+0x1ab7/0x20d0 [i915]
->>>> > >   [<00000000d5dfc004>] drm_atomic_check_only+0x563/0x810
->>>> > >   [<00000000c9379611>] drm_atomic_commit+0xe/0x50
->>>> > >   [<00000000ec82b765>] drm_atomic_helper_disable_all+0x133/0x160
->>>> > >   [<000000003c44760c>] drm_atomic_helper_shutdown+0x65/0xc0
->>>> > >   [<00000000414e3e5c>] i915_driver_remove+0xcb/0x130 [i915]
->>>> > >   [<00000000f8544c2a>] i915_pci_remove+0x19/0x40 [i915]
->>>> > >   [<000000002dcbd148>] pci_device_remove+0x36/0xb0
->>>> > >   [<000000003c8c6b0a>] device_release_driver_internal+0xe0/0x1c0
->>>> > >   [<00000000580e9566>] unbind_store+0xc3/0x120
->>>> > >   [<00000000869d0df5>] kernfs_fop_write+0x104/0x190
->>>> > >   [<000000004dc1a355>] vfs_write+0xb9/0x1d0
->>>> >
->>>> > what I find strange in this is that the last state was allocated by the
->>>> > "driver remove" code path.
->>>> >
->>>> > >
->>>> > >Call the drm_atomic_private_obj_fini(), which inturn calls the
->>>> > >intel_bw_destroy_state() to make sure the intel_bw_state memory is
->>>> > >freed properly.
->>>> > >
->>>> > >Signed-off-by: Pankaj Bharadiya <pankaj.laxminarayan.bharadiya@intel.com>
->>>> > >---
->>>> > >drivers/gpu/drm/i915/display/intel_bw.c      | 5 +++++
->>>> > >drivers/gpu/drm/i915/display/intel_bw.h      | 1 +
->>>> > >drivers/gpu/drm/i915/display/intel_display.c | 2 ++
->>>> > >3 files changed, 8 insertions(+)
->>>> > >
->>>> > >diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
->>>> > >index dcb66a33be9b..b228671d5a5d 100644
->>>> > >--- a/drivers/gpu/drm/i915/display/intel_bw.c
->>>> > >+++ b/drivers/gpu/drm/i915/display/intel_bw.c
->>>> > >@@ -486,3 +486,8 @@ int intel_bw_init(struct drm_i915_private *dev_priv)
->>>> > >
->>>> > >	return 0;
->>>> > >}
->>>> > >+
->>>> > >+void intel_bw_cleanup(struct drm_i915_private *dev_priv)
->>>> > >+{
->>>> > >+	drm_atomic_private_obj_fini(&dev_priv->bw_obj);
->>>> > >+}
->>>> > >diff --git a/drivers/gpu/drm/i915/display/intel_bw.h b/drivers/gpu/drm/i915/display/intel_bw.h
->>>> > >index 9db10af012f4..20b9ad241802 100644
->>>> > >--- a/drivers/gpu/drm/i915/display/intel_bw.h
->>>> > >+++ b/drivers/gpu/drm/i915/display/intel_bw.h
->>>> > >@@ -25,6 +25,7 @@ struct intel_bw_state {
->>>> > >
->>>> > >void intel_bw_init_hw(struct drm_i915_private *dev_priv);
->>>> > >int intel_bw_init(struct drm_i915_private *dev_priv);
->>>> > >+void intel_bw_cleanup(struct drm_i915_private *dev_priv);
->>>> > >int intel_bw_atomic_check(struct intel_atomic_state *state);
->>>> > >void intel_bw_crtc_update(struct intel_bw_state *bw_state,
->>>> > >			  const struct intel_crtc_state *crtc_state);
->>>> > >diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
->>>> > >index 3190aa27ffdc..756eb90b1bb1 100644
->>>> > >--- a/drivers/gpu/drm/i915/display/intel_display.c
->>>> > >+++ b/drivers/gpu/drm/i915/display/intel_display.c
->>>> > >@@ -17912,6 +17912,8 @@ void intel_modeset_driver_remove(struct drm_i915_private *i915)
->>>> > >
->>>> > >	intel_gmbus_teardown(i915);
->>>> > >
->>>> > >+	intel_bw_cleanup(i915);
->>>> >
->>>> > This doesn't seem to match the (reverse) order of
->>>> > intel_modeset_init()... but it's actually the gmbus_teardown() that is
->>>> > out of place. Did you check if it's not a wrong shutdown ordering?
->>>> >
->>>>
->>>> In intel_modeset_init(), intel_gmbus_setup() happens after
->>>> intel_bw_init().
->>>> I think the patch follows the reverse ordering properly.
->>>> Am I missing anything?
->>>
->>>I said it seems that it's the gmbus_teardown() that is out of place.
->>>Have you seen my comment above? Why are we duplicating the bw_state on
->>>the module-remove code path?
->>
->>I think that part is legitimate.  Part of the module remove sequence
->>does an atomic commit to turn everything off.  During atomic
->>transactions, we create duplicates of all modesetting state objects can
->>be modified; if/when the transaction succeeds, those duplicates are
->>swapped into the actual driver state and the old objects are destroyed.
->>Thus in cases like this where we forget to destroy a private object
->>state, that leaked state structure will be the one allocated during the
->>very last atomic transaction that happened (i.e., on the driver teardown
->>codepath).
->
->humn, that makes sense. The new duplicate state will replace the
->previous one and hence why we see it in the backtrace, rather than one
->allocated previously.
->
->thanks
->Lucas De Marchi
+On Fri, Dec 13, 2019 at 01:56:04PM -0800, Niranjana Vishwanathapura wrote:
+  
+> +	ctx = i915_gem_context_lookup(file->driver_priv, args->rsvd1);
+> +	if (!ctx || !rcu_access_pointer(ctx->vm))
+> +		return -ENOENT;
+> +
+> +	rcu_read_lock();
+> +	vm = i915_vm_get(ctx->vm);
+> +	rcu_read_unlock();
 
-and...
+This looks like wrong use of RCU to me.
 
+Getting a rcu lock and not calling rcu_dereference under it is
+basically guarenteed to be wrong..
 
-Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
-
-Lucas De Marchi
-
->
->>
->>
->>Matt
->>
->>>
->>>Lucas De Marchi
->>>
->>>>
->>>> Thanks,
->>>> Pankaj
->>>>
->>>> > thanks
->>>> > Lucas De Marchi
->>>> >
->>>> > >+
->>>> > >	destroy_workqueue(i915->flip_wq);
->>>> > >	destroy_workqueue(i915->modeset_wq);
->>>> > >
->>>> > >--
->>>> > >2.23.0
->>>> > >
->>>> > >_______________________________________________
->>>> > >Intel-gfx mailing list
->>>> > >Intel-gfx@lists.freedesktop.org
->>>> > >https://lists.freedesktop.org/mailman/listinfo/intel-gfx
->>
->>-- 
->>Matt Roper
->>Graphics Software Engineer
->>VTT-OSGC Platform Enablement
->>Intel Corporation
->>(916) 356-2795
+Jason
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
