@@ -1,91 +1,45 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id EDB3A123716
-	for <lists+intel-gfx@lfdr.de>; Tue, 17 Dec 2019 21:18:30 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id BF83E123735
+	for <lists+intel-gfx@lfdr.de>; Tue, 17 Dec 2019 21:22:20 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 72F806E0E2;
-	Tue, 17 Dec 2019 20:18:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A25076E11F;
+	Tue, 17 Dec 2019 20:22:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from EUR04-VI1-obe.outbound.protection.outlook.com
- (mail-eopbgr80088.outbound.protection.outlook.com [40.107.8.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E0E356E0E2;
- Tue, 17 Dec 2019 20:18:24 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Z9G57B5Qkn3h+12zDr62wXLH7c4ZPZzKVf4Wgg+9tAQqSJadpZArkOr6FJbrEyAmwfNyu4jNjzitwQbBw6gaTK4PepRnxwuCWBhLWYYXqvNAUprmbMODvaXKHx/plrXM0sm4vrAv7v6xq6cCgZSxpwELmbsu56yB12KsGACtAthUcpVcSch99ESum8M4eSNiCU47HzBf8CSm2xilJ3agKPkccvYI3LFVsjfEFi0KxkpsVRrFjd7U0rWfcJJEWA43UnxBC1+r7PRTcYxAHh6pvKXShyGOe+gAdI8DEKtZI05V/KflZrFwmoE4vYCJJsTrQddOP0Kmo3LxK0Fo0Vwf2w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=32pgSRpmrM8sZKb8c51223I7nQMqUg4s97VcfgDzCi0=;
- b=NQ8yCNM+PM1AxcLdW1/myJljk8N70KVX4xmELjGKCFCYvsLdfxUSDVl7nY8pmDvzE+CQUQc/E5riAjkbJFbiIZd2WeD7jTcFyXVUwohK+hRWEFQmAM0HHKJiSLzZImTahf3jwg+3topI7fw74zC7RmklVCHw62fMxyaz/RaapGyMF8B4uh3emJPgIgdhsoSrR9Wc2IpLEIg8a+kFauq9fPmBosm8663r9sKsOhjW8t5Eh92wxq5XvdzbcDqZxbtGKnswyffl0pYsbsv5CAXTMANlvbFiJ8qZHWjLpTZ1mfyfGy1W1JmuM71gYjhvWl54yPO0mNwLTh/GgfDcEvbsWw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=mellanox.com; dmarc=pass action=none header.from=mellanox.com;
- dkim=pass header.d=mellanox.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Mellanox.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=32pgSRpmrM8sZKb8c51223I7nQMqUg4s97VcfgDzCi0=;
- b=MOAL/RFPrsHca65lGDr3G5CupoRHbuWCsH9MD+AOjqSo9MYfgm7g4JRkehgYdi2vxorrYJ1OL8VGWeB1WkH1niT0uNTg/yU7sqQnCXQiYUNtBxVMwiJYGp6wwF9/Co8/DAsWr25A8Utn60O5AXkxfIRo9HZZL/6myzOW+A1RkXg=
-Received: from VI1PR05MB4141.eurprd05.prod.outlook.com (52.133.14.15) by
- VI1PR05MB4367.eurprd05.prod.outlook.com (52.133.13.10) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2538.16; Tue, 17 Dec 2019 20:18:21 +0000
-Received: from VI1PR05MB4141.eurprd05.prod.outlook.com
- ([fe80::18df:a0fe:18eb:a96b]) by VI1PR05MB4141.eurprd05.prod.outlook.com
- ([fe80::18df:a0fe:18eb:a96b%6]) with mapi id 15.20.2538.019; Tue, 17 Dec 2019
- 20:18:21 +0000
-From: Jason Gunthorpe <jgg@mellanox.com>
-To: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-Thread-Topic: [RFC v2 02/12] drm/i915/svm: Runtime (RT) allocator support
-Thread-Index: AQHVsgG9iXV/uMilr0qLfmT3axyKUKe+yjaA
-Date: Tue, 17 Dec 2019 20:18:21 +0000
-Message-ID: <20191217201815.GF16762@mellanox.com>
-References: <20191213215614.24558-1-niranjana.vishwanathapura@intel.com>
- <20191213215614.24558-3-niranjana.vishwanathapura@intel.com>
-In-Reply-To: <20191213215614.24558-3-niranjana.vishwanathapura@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-clientproxiedby: DM5PR18CA0070.namprd18.prod.outlook.com
- (2603:10b6:3:22::32) To VI1PR05MB4141.eurprd05.prod.outlook.com
- (2603:10a6:803:44::15)
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=jgg@mellanox.com; 
-x-ms-exchange-messagesentrepresentingtype: 1
-x-originating-ip: [142.68.57.212]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-ht: Tenant
-x-ms-office365-filtering-correlation-id: dc84a8cd-1c23-4213-82fe-08d7832e427e
-x-ms-traffictypediagnostic: VI1PR05MB4367:
-x-microsoft-antispam-prvs: <VI1PR05MB4367859936B698F1D2CAE23ACF500@VI1PR05MB4367.eurprd05.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:5797;
-x-forefront-prvs: 02543CD7CD
-x-forefront-antispam-report: SFV:NSPM;
- SFS:(10009020)(4636009)(346002)(396003)(366004)(376002)(136003)(39860400002)(189003)(199004)(2906002)(6916009)(478600001)(1076003)(33656002)(54906003)(6486002)(8936002)(8676002)(81156014)(81166006)(6506007)(5660300002)(26005)(186003)(4326008)(36756003)(7416002)(316002)(86362001)(52116002)(66946007)(2616005)(66446008)(64756008)(66556008)(66476007)(4744005)(6512007)(71200400001);
- DIR:OUT; SFP:1101; SCL:1; SRVR:VI1PR05MB4367;
- H:VI1PR05MB4141.eurprd05.prod.outlook.com; FPR:; SPF:None; LANG:en;
- PTR:InfoNoRecords; MX:1; A:1; 
-received-spf: None (protection.outlook.com: mellanox.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: OSSO6hx51rXlhIMJbsHyxTFNZkqTNXe+gxnPMdykSR+RjaR2cGZ7PbKG23bjcQARHAj7LzXK7DimBppyKsScgE6fVErV1DtCT9hUqXNLVV4f3QqugqmCerR0Lw7RV1YZmrFtNBVjHC8K2/a9tmDehaRBu1WyqcO/NDclpBZrW4ZOoH7Dxz/jbQRgo4PN+x+arhx5doypeLBmD/rUYXCKALnJb4LwFHnvtx1GTGWK6UyBVHVXN6qWdP6xsw8u3qI+fbzH69t8Lwge8wBfs9khF26mwydP2NPQhyw0aEztTtIOY4zfbqK5QEv1uzaBvpSR5r/OuTe4XzKLmOzwheuJxyON+eo+ThGi65dqVEGGOKe1UkvQ24zxvqqXHwIL8q2cl4ucwWdGDl0ocrKLu458tbclqG8TqOFn++2log+6oFUBZWACPjdiqJR7e2g1DzEu
-x-ms-exchange-transport-forked: True
-Content-ID: <728C56C7E461EC498048B2839C289399@eurprd05.prod.outlook.com>
+X-Greylist: delayed 156624 seconds by postgrey-1.36 at gabe;
+ Tue, 17 Dec 2019 20:22:11 UTC
+Received: from ozlabs.org (bilbo.ozlabs.org [203.11.71.1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C79ED6E117;
+ Tue, 17 Dec 2019 20:22:11 +0000 (UTC)
+Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
+ SHA256) (No client certificate requested)
+ by mail.ozlabs.org (Postfix) with ESMTPSA id 47cqLP4KnCz9sR4;
+ Wed, 18 Dec 2019 07:22:05 +1100 (AEDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=canb.auug.org.au;
+ s=201702; t=1576614128;
+ bh=HNE5QHDUpxYl9Gzpb/l907YVIFjvEkK/+MtEopkr4DA=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+ b=rv6PmcXHfNhTSM8MDTyYiTm/oeNrBYgP6Y96EF/L825FjFNR52ZF2cF7QHb2ATXce
+ SMhAj85MStFfrhdi6xUfYjth0bBc/USrqLnDXEODzD7AFCYRgPre9kar4oW/Z21d0S
+ wS2InJKRaDB3x0yuEYoQHy+i9VBRw/pG219TntpTFxpVfGhKCxAoL0xWQUMD85qDDE
+ V6X7Q8e2aQq3MuD/MxIymsXlzeUuaT4tYTXQFmbRNMIo9W8rXtqSFPAaST1xuZkTM2
+ Xgf6d4Pl35ZYFoc0dhssM1cf7wts60hsYV1whyHkl15lCCTtQIEUY8JQfrRzlM7VJC
+ ujSQIxs1cyFYA==
+Date: Wed, 18 Dec 2019 07:22:04 +1100
+From: Stephen Rothwell <sfr@canb.auug.org.au>
+To: Daniel Vetter <daniel@ffwll.ch>
+Message-ID: <20191218072204.06ca0cd9@canb.auug.org.au>
+In-Reply-To: <20191217131937.GZ624164@phenom.ffwll.local>
+References: <20191216122331.43c766f1@canb.auug.org.au>
+ <20191217131937.GZ624164@phenom.ffwll.local>
 MIME-Version: 1.0
-X-OriginatorOrg: Mellanox.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: dc84a8cd-1c23-4213-82fe-08d7832e427e
-X-MS-Exchange-CrossTenant-originalarrivaltime: 17 Dec 2019 20:18:21.4349 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: a652971c-7d2e-4d9b-a6a4-d149256f461b
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: DaTNlkBZa4b1CsA/7TRVtnsWdmIJgahUsVOIKq/l6HO30KYIXy58nsSFt56O+j3L49pZVjqOL7N0jNZJU94tjw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR05MB4367
-Subject: Re: [Intel-gfx] [RFC v2 02/12] drm/i915/svm: Runtime (RT) allocator
- support
+Subject: Re: [Intel-gfx] linux-next: build failure after merge of the
+ drm-misc tree
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -98,38 +52,102 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "kenneth.w.graunke@intel.com" <kenneth.w.graunke@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "sanjay.k.kumar@intel.com" <sanjay.k.kumar@intel.com>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "jason.ekstrand@intel.com" <jason.ekstrand@intel.com>,
- "dave.hansen@intel.com" <dave.hansen@intel.com>,
- "jglisse@redhat.com" <jglisse@redhat.com>,
- "daniel.vetter@intel.com" <daniel.vetter@intel.com>,
- "dan.j.williams@intel.com" <dan.j.williams@intel.com>,
- "ira.weiny@intel.com" <ira.weiny@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Wolfram Sang <wsa@the-dreams.de>, Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Intel Graphics <intel-gfx@lists.freedesktop.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ DRI <dri-devel@lists.freedesktop.org>,
+ Wolfram Sang <wsa+renesas@sang-engineering.com>,
+ Linux Next Mailing List <linux-next@vger.kernel.org>,
+ Icenowy Zheng <icenowy@aosc.io>
+Content-Type: multipart/mixed; boundary="===============1161986286=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Dec 13, 2019 at 01:56:04PM -0800, Niranjana Vishwanathapura wrote:
-  
-> +	ctx = i915_gem_context_lookup(file->driver_priv, args->rsvd1);
-> +	if (!ctx || !rcu_access_pointer(ctx->vm))
-> +		return -ENOENT;
-> +
-> +	rcu_read_lock();
-> +	vm = i915_vm_get(ctx->vm);
-> +	rcu_read_unlock();
+--===============1161986286==
+Content-Type: multipart/signed; boundary="Sig_/qP.7snxCKhckK3Gxq8N8hHT";
+ protocol="application/pgp-signature"; micalg=pgp-sha256
 
-This looks like wrong use of RCU to me.
+--Sig_/qP.7snxCKhckK3Gxq8N8hHT
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
-Getting a rcu lock and not calling rcu_dereference under it is
-basically guarenteed to be wrong..
+Hi Daniel,
 
-Jason
+On Tue, 17 Dec 2019 14:19:37 +0100 Daniel Vetter <daniel@ffwll.ch> wrote:
+>
+> On Mon, Dec 16, 2019 at 12:23:31PM +1100, Stephen Rothwell wrote:
+> >=20
+> > After merging the drm-misc tree, today's linux-next build (x86_64
+> > allmodconfig) failed like this:
+> >=20
+> > drivers/gpu/drm/bridge/analogix/analogix-anx6345.c: In function 'anx634=
+5_i2c_probe':
+> > drivers/gpu/drm/bridge/analogix/analogix-anx6345.c:738:30: error: impli=
+cit declaration of function 'i2c_new_dummy' [-Werror=3Dimplicit-function-de=
+claration]
+> >   738 |    anx6345->i2c_clients[i] =3D i2c_new_dummy(client->adapter,
+> >       |                              ^~~~~~~~~~~~~
+> > drivers/gpu/drm/bridge/analogix/analogix-anx6345.c:738:28: warning: ass=
+ignment to 'struct i2c_client *' from 'int' makes pointer from integer with=
+out a cast [-Wint-conversion]
+> >   738 |    anx6345->i2c_clients[i] =3D i2c_new_dummy(client->adapter,
+> >       |                            ^
+> >=20
+> > Caused by commit
+> >=20
+> >   6aa192698089 ("drm/bridge: Add Analogix anx6345 support")
+> >=20
+> > interacting with commit
+> >=20
+> >   2c2f00ab1641 ("i2c: remove i2c_new_dummy() API")
+> >=20
+> > From Linus' tree.
+> >=20
+> > I have applied the following fix up patch for today:
+> >=20
+> > From: Stephen Rothwell <sfr@canb.auug.org.au>
+> > Date: Mon, 16 Dec 2019 12:11:19 +1100
+> > Subject: [PATCH] drm/bridge: fix up for removal of i2c_new_dummy()
+> >=20
+> > Signed-off-by: Stephen Rothwell <sfr@canb.auug.org.au> =20
+>=20
+> Thanks pulled into drm-next since I just processed the first drm-misc-next
+> pull.
+
+Thanks.  For the future, though, merge fixes like this should be part
+of the actual merge commit to avoid bisection problems.
+
+--=20
+Cheers,
+Stephen Rothwell
+
+--Sig_/qP.7snxCKhckK3Gxq8N8hHT
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAl35OOwACgkQAVBC80lX
+0GyJpAf/ZAQL39Fy+xbh/QKHNPjpxIBNkCwgsPMRTUIUT/rkDwmYQSHdjFWhOdHH
+zG/io4ZNhuqtAjttARJgAVzeT9JBKlCEVFABGRZE6C5VrTRbeCsjN6uU/+jqk0sx
+xkBxXz7y/sld8dFFsmJb7NxutkanUeVAGKzhjHMOEwrf33tEaGKWjnODtzc2y1TB
+3e62mnjllvYR04jEMJhOLW6HJoFXM5CsXlTUVaQ3vw6P9lPXTSQ7+9q8FkDeQfyc
+VbrI9HUJpsjt25Nz+XSPCBoS1sEt79FvpgkxjI7sZDrnmVcyeoZSWetl1aO/GFA/
+/NxVcfb1iWbgF4q83MtZq9mwqZRT2A==
+=PKb0
+-----END PGP SIGNATURE-----
+
+--Sig_/qP.7snxCKhckK3Gxq8N8hHT--
+
+--===============1161986286==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============1161986286==--
