@@ -1,54 +1,59 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 079D8122DB8
-	for <lists+intel-gfx@lfdr.de>; Tue, 17 Dec 2019 14:57:31 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9188D122DE5
+	for <lists+intel-gfx@lfdr.de>; Tue, 17 Dec 2019 15:02:46 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5CF946E5C5;
-	Tue, 17 Dec 2019 13:57:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C49456E9E9;
+	Tue, 17 Dec 2019 14:02:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-vs1-xe43.google.com (mail-vs1-xe43.google.com
- [IPv6:2607:f8b0:4864:20::e43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8364C6E5C5
- for <intel-gfx@lists.freedesktop.org>; Tue, 17 Dec 2019 13:57:28 +0000 (UTC)
-Received: by mail-vs1-xe43.google.com with SMTP id x123so6528529vsc.2
- for <intel-gfx@lists.freedesktop.org>; Tue, 17 Dec 2019 05:57:28 -0800 (PST)
+Received: from mail-pg1-x542.google.com (mail-pg1-x542.google.com
+ [IPv6:2607:f8b0:4864:20::542])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2458D6E9E9;
+ Tue, 17 Dec 2019 14:02:43 +0000 (UTC)
+Received: by mail-pg1-x542.google.com with SMTP id k3so5737290pgc.3;
+ Tue, 17 Dec 2019 06:02:43 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=mOroTZP8qZq50LyT6ABKjNil+nEHnI8LiBx1jFuvP2o=;
- b=HxjAVu+V++sMy0+goWqghBK3/jbmv4yCqLC+Y3lUq0hrqv3RvqF9OU9o9gKCAkm4kI
- Ggw+7hEXonli6UrCucHP7JcBymlpAD20nwFHQjAwZhT1zbwTqrDZjMZ3GE7A4a7ZIcOl
- oiLtoAQDFxbA+WtsmurazPsad4H1FzFWGcWpdjXph1YhFqxBCgppJWQ9cylDdnC6BSuD
- CUUVfGL7EmZdDMZ2Agxh8/9omK6bJkVwnnvZYo7OHe+LiJEcOfmvdLKQnEp5RF1QVx/4
- OF70J3Huu1mn2Rt3+JlBRemn7b2e1G7vwgOzTH2wlwSxajpYkgyzxUqXwv5ckniwlTg3
- hkHQ==
+ :cc; bh=SZbdI1oTJhgNR2q16NaU/ih7Yhw7j92Blaz0d9EbKf0=;
+ b=VufgDlRLvUqcDhaN+aqsmpUSpMUEO+5eGXxtaMmiB+cLPuEIANj2BqRFbg41NZStda
+ ek5yjrcLaHyy6fz0j9cGKpRd4ZmWrpCKP8qZLrN4FkIi40zDb+URhQt10vXmZR204wHk
+ ondoEsn1mZAMYuC5XDdYhlta4Uq6iJsN+AiE8auO3rrkbiB9gdE4nKWlovMytl4nXsaR
+ NOwmYv23kXk9CYciQVrLVYxBP1vKQdJW4aD0S+zwQytPQxLPqaibsXwhZ1aLwBRs/Txl
+ 5NNofTyb1ZdA9my8h0kjpZatEPUICBMzHatfFSJHhhCkyKuPlQunIAukKI/FfzCMnIPd
+ U3iA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=mOroTZP8qZq50LyT6ABKjNil+nEHnI8LiBx1jFuvP2o=;
- b=NdW1tRXNKaVdegwemXtm3tNwr3KSa76UR3viXL4ix+j/WVfrqBuQ5y2ZTJebIFDVXt
- BOajQrx3A9q7SoP3ej22no3/t/cK9+gkIVxDTedeH9JXMPyUQ38gmtISVTpMzXCswaum
- aMaAdAzW+SR3xR9doEOGFWMGPM12GqPb6tpx1A239fK/jCQr1j6gbn2s8XAFwSXa/uV7
- xF8sFHHVGkGzR4hnjD9bXwvx/GMFj8njZfKadyGagjxsJix3bgHh/Ddn9FL+m82rWi6y
- DK26F8hiUyZBVWSC4llGbCVYho8xjiBDQmibLHCztZe0xc57qscuNXp0ed+lzXcF7veK
- i81w==
-X-Gm-Message-State: APjAAAXOprrpZYskCs6/uGpVGetxZYnlGCjDKowPRCIR7EYCU1TP50D/
- v2NWCKZTZDSa6Pk43Y0U5u5hCb/gLmbRdZXrpJ2ZFhVm
-X-Google-Smtp-Source: APXvYqzn7dXzMJBnTCKg0cWwb/s9rf8uUDojrgCrHAU7fA7TmnBKtdcGlHOF8OYB2BJrnyd7zNtFagafBfxmu4rnvrg=
-X-Received: by 2002:a67:15c7:: with SMTP id 190mr2826171vsv.178.1576591047699; 
- Tue, 17 Dec 2019 05:57:27 -0800 (PST)
+ bh=SZbdI1oTJhgNR2q16NaU/ih7Yhw7j92Blaz0d9EbKf0=;
+ b=QI297skv3gNoY2d1ZWDuqSl3R/OhjoUjNGXm+GKhMX4G46v5hWFkaRtHr+Soalp/WA
+ Wqr5xqBawCy2n4IBBOALXrFMZ3LUjJXzAXNAX06HTQ9f4nqGH1dMD9TSpLmGZSF1Ejml
+ 4FltHQW9tgdksQMUhx4WFQWWrt03vGKBAPSFFBCRaApVk0dv5F1fqhBuj4B7JZNzUOde
+ IdYIeQjhp6v7us+GR3dGQbioCyJTtF/ts2V5V9VFb7ch1tPI30ezHT0ARYihin/QEk53
+ TFLzKfyUo2RVoiyiLlqBpf1H9MLIlOUVGtM0KIyq4XBvRyDegWztWT23SV78j08Imtiu
+ FusA==
+X-Gm-Message-State: APjAAAX/lKBz+U/a2J6clDUakoOYdt0LE36p6d47xnyMe+I124nAuxau
+ nZonRYqe2tDyYL1yA+5se2TpYrSEPBuQsVvX128=
+X-Google-Smtp-Source: APXvYqy/xM6reHHq0RiuWT+LpcRLnjrMc7GzR7AnrNUS1AegdjlgvuOx6jBTvvKmZlo6TyMcdNVND3QExbOT1QWstfI=
+X-Received: by 2002:a62:7590:: with SMTP id
+ q138mr21861326pfc.241.1576591362762; 
+ Tue, 17 Dec 2019 06:02:42 -0800 (PST)
 MIME-Version: 1.0
-References: <20191217134729.3297818-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20191217134729.3297818-1-chris@chris-wilson.co.uk>
-From: Matthew Auld <matthew.william.auld@gmail.com>
-Date: Tue, 17 Dec 2019 13:56:59 +0000
-Message-ID: <CAM0jSHNDadh+d7b6FtRjHsfD_eAk1hStjoAxXvTU36oPG0r=1w@mail.gmail.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/gem: Keep request alive while
- attaching fences
+References: <20191216162209.5b5256dd@canb.auug.org.au>
+ <d92bec2a-62cb-004e-7f8c-01fc12a53a74@infradead.org>
+ <20191217054255.GA26868@ravnborg.org>
+ <65c9dc7b-3c61-8204-07da-212632732791@infradead.org>
+ <aede39a0-3469-130d-f416-0e9426ebcec9@arm.com>
+In-Reply-To: <aede39a0-3469-130d-f416-0e9426ebcec9@arm.com>
+From: Andy Shevchenko <andy.shevchenko@gmail.com>
+Date: Tue, 17 Dec 2019 16:02:32 +0200
+Message-ID: <CAHp75VfmGo1LzsHiq_UvWbhvRGovtaLVnRPZJ=40arrJWq6HvA@mail.gmail.com>
+To: Steven Price <steven.price@arm.com>
+Subject: Re: [Intel-gfx] linux-next: Tree for Dec 16 (drm_panel &
+ intel_panel)
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,29 +66,75 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Matthew Auld <matthew.auld@intel.com>
+Cc: Stephen Rothwell <sfr@canb.auug.org.au>,
+ intel-gfx <intel-gfx@lists.freedesktop.org>,
+ Randy Dunlap <rdunlap@infradead.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>,
+ Linux Next Mailing List <linux-next@vger.kernel.org>,
+ Sam Ravnborg <sam@ravnborg.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 17 Dec 2019 at 13:47, Chris Wilson <chris@chris-wilson.co.uk> wrote:
+On Tue, Dec 17, 2019 at 1:56 PM Steven Price <steven.price@arm.com> wrote:
+> On 17/12/2019 06:37, Randy Dunlap wrote:
+> > On 12/16/19 9:42 PM, Sam Ravnborg wrote:
+> >> On Mon, Dec 16, 2019 at 08:25:11AM -0800, Randy Dunlap wrote:
+> >>> On 12/15/19 9:22 PM, Stephen Rothwell wrote:
+
+> >>> on x86_64:
+> >>>
+> >>> ld: drivers/gpu/drm/drm_panel.o: in function `drm_panel_of_backlight':
+> >>> (.text+0x2ee): undefined reference to `devm_of_find_backlight'
+> >>>
+> >>> ld: drivers/gpu/drm/i915/display/intel_panel.o: in function `intel_backlight_device_register':
+> >>> intel_panel.c:(.text+0x593e): undefined reference to `backlight_device_register'
+> >>> ld: drivers/gpu/drm/i915/display/intel_panel.o: in function `intel_backlight_device_unregister':
+> >>> intel_panel.c:(.text+0x5a04): undefined reference to `backlight_device_unregister'
+> >>>
+> >>> CONFIG_DRM_PANEL=y
+> >>> CONFIG_BACKLIGHT_CLASS_DEVICE=m
+> >>> CONFIG_DRM_I915=y
+> >>>
+> >>> Full randconfig file is attached.
+> >>
+> >> Can you please verify if you have:
+> >> 907aa265fde6589b8059dc51649c6d1f49ade2f3
+> >> ("drm/drm_panel: fix EXPORT of drm_panel_of_backlight")
+> >>
+> >> This commit is supposed to fix it.
+> >>
+> >>      Sam
+> >>
+> >
+> > Hi Sam,
+> > I don't have the linux-next.git tree so I can't check that.
+> > I just built whatever is in linux-next of 20191216.
+> >
 >
-> Since commit e5dadff4b093 ("drm/i915: Protect request retirement with
-> timeline->mutex"), the request retirement can happen outside of the
-> struct_mutex serialised only by the timeline->mutex. We drop the
-> timeline->mutex on submitting the request (i915_request_add) so after
-> that point, it is liable to be freed. Make sure our local reference is
-> kept alive until we have finished attaching it to the signalers. (Note
-> that this erodes the argument that i915_request_add should consume the
-> reference, but that is a slightly larger patch!)
+> 907aa265fde6589b8059dc51649c6d1f49ade2f3 ("drm/drm_panel: fix EXPORT of
+> drm_panel_of_backlight") is fixing drm_panel_of_backlight(), but the
+> error above is for backlight_device_register().
 >
-> Fixes: e5dadff4b093 ("drm/i915: Protect request retirement with timeline->mutex")
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> Cc: Matthew Auld <matthew.auld@intel.com>
-> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+> From what I can tell, that commit is actually the cause of the error -
+> now intel_backlight_device_register() is being included in the kernel
+> even though it calls backlight_device_register() which is in a module.
+> Of course it also fixed the original error, so reverting it isn't any
+> use.
+>
+> The below Kconfig change fixes the build for me, but I've no idea
+> whether this is the correct fix.
+
+I think the proper one is to have s/IS_ENABLED/IS_REACHABLE/.
+It fixes issue for me.
+
+Should I send a patch?
+
+-- 
+With Best Regards,
+Andy Shevchenko
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
