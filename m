@@ -1,30 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE7A912431C
-	for <lists+intel-gfx@lfdr.de>; Wed, 18 Dec 2019 10:28:24 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 33D15124327
+	for <lists+intel-gfx@lfdr.de>; Wed, 18 Dec 2019 10:29:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3BECD6E288;
-	Wed, 18 Dec 2019 09:28:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9BF396E28E;
+	Wed, 18 Dec 2019 09:29:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E771D6E288
- for <intel-gfx@lists.freedesktop.org>; Wed, 18 Dec 2019 09:28:21 +0000 (UTC)
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 062386E28E
+ for <intel-gfx@lists.freedesktop.org>; Wed, 18 Dec 2019 09:29:09 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 18 Dec 2019 01:28:21 -0800
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 18 Dec 2019 01:29:09 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,329,1571727600"; d="scan'208";a="212654018"
+X-IronPort-AV: E=Sophos;i="5.69,329,1571727600"; d="scan'208";a="417169457"
 Received: from linux.intel.com ([10.54.29.200])
- by fmsmga007.fm.intel.com with ESMTP; 18 Dec 2019 01:28:20 -0800
+ by fmsmga006.fm.intel.com with ESMTP; 18 Dec 2019 01:29:08 -0800
 Received: from [10.125.252.219] (abudanko-mobl.ccr.corp.intel.com
  [10.125.252.219])
- by linux.intel.com (Postfix) with ESMTP id 779115803E4;
- Wed, 18 Dec 2019 01:28:11 -0800 (PST)
+ by linux.intel.com (Postfix) with ESMTP id 325CF5803E4;
+ Wed, 18 Dec 2019 01:28:58 -0800 (PST)
 From: Alexey Budankov <alexey.budankov@linux.intel.com>
 To: Peter Zijlstra <peterz@infradead.org>,
  Arnaldo Carvalho de Melo <acme@kernel.org>, Ingo Molnar <mingo@redhat.com>,
@@ -41,14 +41,14 @@ To: Peter Zijlstra <peterz@infradead.org>,
  <casey@schaufler-ca.com>, Robert Richter <rric@kernel.org>
 References: <c0460c78-b1a6-b5f7-7119-d97e5998f308@linux.intel.com>
 Organization: Intel Corp.
-Message-ID: <1d46cc07-ced7-9a29-a9a3-3cba6ef2df21@linux.intel.com>
-Date: Wed, 18 Dec 2019 12:28:10 +0300
+Message-ID: <b6b4cfb7-82c5-85f6-0588-43046ace8419@linux.intel.com>
+Date: Wed, 18 Dec 2019 12:28:58 +0300
 User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
  Thunderbird/60.9.1
 MIME-Version: 1.0
 In-Reply-To: <c0460c78-b1a6-b5f7-7119-d97e5998f308@linux.intel.com>
 Content-Language: en-US
-Subject: [Intel-gfx] [PATCH v4 5/9] trace/bpf_trace: open access for
+Subject: [Intel-gfx] [PATCH v4 6/9] powerpc/perf: open access for
  CAP_SYS_PERFMON privileged process
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -85,30 +85,38 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
-Open access to bpf_trace monitoring for CAP_SYS_PERFMON privileged
-processes. For backward compatibility reasons access to bpf_trace
-monitoring remains open for CAP_SYS_ADMIN privileged processes but
-CAP_SYS_ADMIN usage for secure bpf_trace monitoring is discouraged
-with respect to CAP_SYS_PERFMON capability.
+Open access to monitoring for CAP_SYS_PERFMON privileged processes.
+For backward compatibility reasons access to the monitoring remains open
+for CAP_SYS_ADMIN privileged processes but CAP_SYS_ADMIN usage for secure
+monitoring is discouraged with respect to CAP_SYS_PERFMON capability.
 
 Signed-off-by: Alexey Budankov <alexey.budankov@linux.intel.com>
 ---
- kernel/trace/bpf_trace.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ arch/powerpc/perf/imc-pmu.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/kernel/trace/bpf_trace.c b/kernel/trace/bpf_trace.c
-index 44bd08f2443b..bafe21ac6d92 100644
---- a/kernel/trace/bpf_trace.c
-+++ b/kernel/trace/bpf_trace.c
-@@ -1272,7 +1272,7 @@ int perf_event_query_prog_array(struct perf_event *event, void __user *info)
- 	u32 *ids, prog_cnt, ids_len;
- 	int ret;
+diff --git a/arch/powerpc/perf/imc-pmu.c b/arch/powerpc/perf/imc-pmu.c
+index cb50a9e1fd2d..e837717492e4 100644
+--- a/arch/powerpc/perf/imc-pmu.c
++++ b/arch/powerpc/perf/imc-pmu.c
+@@ -898,7 +898,7 @@ static int thread_imc_event_init(struct perf_event *event)
+ 	if (event->attr.type != event->pmu->type)
+ 		return -ENOENT;
  
 -	if (!capable(CAP_SYS_ADMIN))
 +	if (!perfmon_capable())
- 		return -EPERM;
- 	if (event->attr.type != PERF_TYPE_TRACEPOINT)
- 		return -EINVAL;
+ 		return -EACCES;
+ 
+ 	/* Sampling not supported */
+@@ -1307,7 +1307,7 @@ static int trace_imc_event_init(struct perf_event *event)
+ 	if (event->attr.type != event->pmu->type)
+ 		return -ENOENT;
+ 
+-	if (!capable(CAP_SYS_ADMIN))
++	if (!perfmon_capable())
+ 		return -EACCES;
+ 
+ 	/* Return if this is a couting event */
 -- 
 2.20.1
 
