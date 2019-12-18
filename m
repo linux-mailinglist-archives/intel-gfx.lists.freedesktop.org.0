@@ -1,52 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 126111253F0
-	for <lists+intel-gfx@lfdr.de>; Wed, 18 Dec 2019 21:57:11 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 09E13125411
+	for <lists+intel-gfx@lfdr.de>; Wed, 18 Dec 2019 22:06:16 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 86A8F6EA7F;
-	Wed, 18 Dec 2019 20:57:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CAFD989DA3;
+	Wed, 18 Dec 2019 21:06:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 344166EA7D
- for <intel-gfx@lists.freedesktop.org>; Wed, 18 Dec 2019 20:57:07 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 18 Dec 2019 12:57:06 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,330,1571727600"; d="scan'208";a="217971143"
-Received: from fmsmsx105.amr.corp.intel.com ([10.18.124.203])
- by orsmga006.jf.intel.com with ESMTP; 18 Dec 2019 12:57:05 -0800
-Received: from fmsmsx163.amr.corp.intel.com (10.18.125.72) by
- FMSMSX105.amr.corp.intel.com (10.18.124.203) with Microsoft SMTP Server (TLS)
- id 14.3.439.0; Wed, 18 Dec 2019 12:57:05 -0800
-Received: from fmsmsx116.amr.corp.intel.com ([169.254.2.67]) by
- fmsmsx163.amr.corp.intel.com ([169.254.6.237]) with mapi id 14.03.0439.000;
- Wed, 18 Dec 2019 12:57:05 -0800
-From: "Souza, Jose" <jose.souza@intel.com>
-To: "Navare, Manasi D" <manasi.d.navare@intel.com>
-Thread-Topic: [PATCH v4 5/6] drm/i915/display: Check if pipe fastset is
- allowed by external dependencies
-Thread-Index: AQHVtdVEWnSnVxFR70KTgvlx+/yFO6fA4ZkAgAAEOYA=
-Date: Wed, 18 Dec 2019 20:57:04 +0000
-Message-ID: <27ea3fd7b9aeec75cef2475af8895afe91573932.camel@intel.com>
-References: <20191218185910.303540-1-jose.souza@intel.com>
- <20191218185910.303540-5-jose.souza@intel.com>
- <20191218204151.GA5394@intel.com>
-In-Reply-To: <20191218204151.GA5394@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.254.71.190]
-Content-ID: <4F0BDAD7EAD49649B03FAF2A9AABE6FA@intel.com>
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CFE6589D83
+ for <intel-gfx@lists.freedesktop.org>; Wed, 18 Dec 2019 21:06:09 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19625985-1500050 
+ for multiple; Wed, 18 Dec 2019 21:05:48 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 18 Dec 2019 21:05:44 +0000
+Message-Id: <20191218210545.3975426-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.24.1
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v4 5/6] drm/i915/display: Check if pipe
- fastset is allowed by external dependencies
+Subject: [Intel-gfx] [PATCH 1/2] drm/i915/gt: Use non-forcewake writes for
+ RPS
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,134 +37,163 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "De Marchi, Lucas" <lucas.demarchi@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gV2VkLCAyMDE5LTEyLTE4IGF0IDEyOjQxIC0wODAwLCBNYW5hc2kgTmF2YXJlIHdyb3RlOg0K
-PiBPbiBXZWQsIERlYyAxOCwgMjAxOSBhdCAxMDo1OTowOUFNIC0wODAwLCBKb3PDqSBSb2JlcnRv
-IGRlIFNvdXphDQo+IHdyb3RlOg0KPiA+IENoZWNrIGlmIGZhc3RzZXQgaXMgYWxsb3dlZCBieSBl
-eHRlcm5hbCBkZXBlbmRlbmNpZXMgbGlrZSBvdGhlcg0KPiA+IHBpcGVzDQo+ID4gYW5kIHRyYW5z
-Y29kZXJzLg0KPiA+IA0KPiA+IFJpZ2h0IG5vdyB0aGlzIHBhdGNoIG9ubHkgZm9yY2VzIGEgZnVs
-bG1vZGVzZXQgaW4gTVNUIHNsYXZlcyBvZiBNU1QNCj4gPiBtYXN0ZXJzIHRoYXQgbmVlZHMgYSBm
-dWxsbW9kZXNldCBidXQgaXQgd2lsbCBiZSBuZWVkZWQgZm9yIHBvcnQNCj4gPiBzeW5jDQo+ID4g
-YXMgd2VsbC4NCj4gPiANCj4gPiB2MzoNCj4gPiAtIG1vdmVkIGhhbmRsaW5nIHRvIGludGVsX2F0
-b21pY19jaGVjaygpIHRoaXMgd2F5IGlzIGd1YXJhbnRlZSB0aGF0DQo+ID4gYWxsIHBpcGVzIHdp
-bGwgaGF2ZSBpdHMgc3RhdGUgY29tcHV0ZWQNCj4gPiANCj4gPiB2NDoNCj4gPiAtIGFkZGVkIGEg
-ZnVuY3Rpb24gdG8gcmV0dXJuIGlmIE1TVCBtYXN0ZXIgbmVlZWRzIG1vZGVzZXQgdG8gc2ltcGx5
-DQo+ID4gY29kZSBpbiBpbnRlbF9hdG9taWNfY2hlY2soKQ0KPiA+IA0KPiA+IENjOiBWaWxsZSBT
-eXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwuY29tPg0KPiA+IENjOiBMdWNhcyBE
-ZSBNYXJjaGkgPGx1Y2FzLmRlbWFyY2hpQGludGVsLmNvbT4NCj4gPiBDYzogTWFhcnRlbiBMYW5r
-aG9yc3QgPG1hYXJ0ZW4ubGFua2hvcnN0QGxpbnV4LmludGVsLmNvbT4NCj4gPiBDYzogTWFuYXNp
-IE5hdmFyZSA8bWFuYXNpLmQubmF2YXJlQGludGVsLmNvbT4NCj4gPiBTaWduZWQtb2ZmLWJ5OiBK
-b3PDqSBSb2JlcnRvIGRlIFNvdXphIDxqb3NlLnNvdXphQGludGVsLmNvbT4NCj4gPiAtLS0NCj4g
-PiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMgfCA1MyArKysr
-KysrKysrKysrKystDQo+ID4gLS0tLQ0KPiA+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5
-L2ludGVsX2RwX21zdC5jICB8IDE0ICsrKysrKw0KPiA+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9k
-aXNwbGF5L2ludGVsX2RwX21zdC5oICB8ICAzICsrDQo+ID4gIDMgZmlsZXMgY2hhbmdlZCwgNTcg
-aW5zZXJ0aW9ucygrKSwgMTMgZGVsZXRpb25zKC0pDQo+ID4gDQo+ID4gZGlmZiAtLWdpdCBhL2Ry
-aXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jDQo+ID4gYi9kcml2ZXJz
-L2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuYw0KPiA+IGluZGV4IGE0ZjI1MmQw
-NWIzNy4uMmE0MDY4OTE1NjdiIDEwMDY0NA0KPiA+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1
-L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jDQo+ID4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUv
-ZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMNCj4gPiBAQCAtMTM5MDMsMTkgKzEzOTAzLDYgQEAgc3Rh
-dGljIHZvaWQgaW50ZWxfY3J0Y19jaGVja19mYXN0c2V0KGNvbnN0DQo+ID4gc3RydWN0IGludGVs
-X2NydGNfc3RhdGUgKm9sZF9jcnRjX3N0YQ0KPiA+ICANCj4gPiAgCW5ld19jcnRjX3N0YXRlLT51
-YXBpLm1vZGVfY2hhbmdlZCA9IGZhbHNlOw0KPiA+ICAJbmV3X2NydGNfc3RhdGUtPnVwZGF0ZV9w
-aXBlID0gdHJ1ZTsNCj4gPiAtDQo+ID4gLQkvKg0KPiA+IC0JICogSWYgd2UncmUgbm90IGRvaW5n
-IHRoZSBmdWxsIG1vZGVzZXQgd2Ugd2FudCB0bw0KPiA+IC0JICoga2VlcCB0aGUgY3VycmVudCBN
-L04gdmFsdWVzIGFzIHRoZXkgbWF5IGJlDQo+ID4gLQkgKiBzdWZmaWNpZW50bHkgZGlmZmVyZW50
-IHRvIHRoZSBjb21wdXRlZCB2YWx1ZXMNCj4gPiAtCSAqIHRvIGNhdXNlIHByb2JsZW1zLg0KPiA+
-IC0JICoNCj4gPiAtCSAqIEZJWE1FOiBzaG91bGQgcmVhbGx5IGNvcHkgbW9yZSBmdXp6eSBzdGF0
-ZSBoZXJlDQo+ID4gLQkgKi8NCj4gPiAtCW5ld19jcnRjX3N0YXRlLT5mZGlfbV9uID0gb2xkX2Ny
-dGNfc3RhdGUtPmZkaV9tX247DQo+ID4gLQluZXdfY3J0Y19zdGF0ZS0+ZHBfbV9uID0gb2xkX2Ny
-dGNfc3RhdGUtPmRwX21fbjsNCj4gPiAtCW5ld19jcnRjX3N0YXRlLT5kcF9tMl9uMiA9IG9sZF9j
-cnRjX3N0YXRlLT5kcF9tMl9uMjsNCj4gPiAtCW5ld19jcnRjX3N0YXRlLT5oYXNfZHJycyA9IG9s
-ZF9jcnRjX3N0YXRlLT5oYXNfZHJyczsNCj4gPiAgfQ0KPiA+ICANCj4gPiAgc3RhdGljIGludCBp
-bnRlbF9jcnRjX2FkZF9wbGFuZXNfdG9fc3RhdGUoc3RydWN0DQo+ID4gaW50ZWxfYXRvbWljX3N0
-YXRlICpzdGF0ZSwNCj4gPiBAQCAtMTQwODMsNiArMTQwNzAsNDYgQEAgc3RhdGljIGludCBpbnRl
-bF9hdG9taWNfY2hlY2soc3RydWN0DQo+ID4gZHJtX2RldmljZSAqZGV2LA0KPiA+ICAJCQlhbnlf
-bXMgPSB0cnVlOw0KPiA+ICAJfQ0KPiA+ICANCj4gPiArCS8qKg0KPiA+ICsJICogQ2hlY2sgaWYg
-ZmFzdHNldCBpcyBhbGxvd2VkIGJ5IGV4dGVybmFsIGRlcGVuZGVuY2llcyBsaWtlDQo+ID4gb3Ro
-ZXINCj4gPiArCSAqIHBpcGVzIGFuZCB0cmFuc2NvZGVycy4NCj4gPiArCSAqDQo+ID4gKwkgKiBS
-aWdodCBub3cgaXQgb25seSBmb3JjZXMgYSBmdWxsbW9kZXNldCB3aGVuIHRoZSBNU1QgbWFzdGVy
-DQo+ID4gKwkgKiB0cmFuc2NvZGVyIGRpZCBub3QgY2hhbmdlZCBidXQgdGhlIHBpcGUgb2YgdGhl
-IG1hc3Rlcg0KPiA+IHRyYW5zY29kZXINCj4gPiArCSAqIG5lZWRzIGEgZnVsbG1vZGVzZXQgc28g
-YWxsIHNsYXZlcyBhbHNvIG5lZWRzIHRvIGRvIGENCj4gPiBmdWxsbW9kZXNldC4NCj4gPiArCSAq
-Lw0KPiA+ICsJZm9yX2VhY2hfbmV3X2ludGVsX2NydGNfaW5fc3RhdGUoc3RhdGUsIGNydGMsIG5l
-d19jcnRjX3N0YXRlLA0KPiA+IGkpIHsNCj4gPiArCQllbnVtIHRyYW5zY29kZXIgbWFzdGVyID0g
-bmV3X2NydGNfc3RhdGUtDQo+ID4gPm1zdF9tYXN0ZXJfdHJhbnNjb2RlcjsNCj4gPiArDQo+ID4g
-KwkJaWYgKCFpbnRlbF9kcF9tc3RfaXNfc2xhdmVfdHJhbnMobmV3X2NydGNfc3RhdGUpIHx8DQo+
-ID4gKwkJICAgIG5lZWRzX21vZGVzZXQobmV3X2NydGNfc3RhdGUpKQ0KPiA+ICsJCQljb250aW51
-ZTsNCj4gPiArDQo+ID4gKwkJaWYgKGludGVsX2RwX21zdF9tYXN0ZXJfdHJhbnNfbmVlZHNfbW9k
-ZXNldChzdGF0ZSwNCj4gPiBtYXN0ZXIpKSB7DQo+ID4gKwkJCW5ld19jcnRjX3N0YXRlLT51YXBp
-Lm1vZGVfY2hhbmdlZCA9IHRydWU7DQo+ID4gKwkJCW5ld19jcnRjX3N0YXRlLT51cGRhdGVfcGlw
-ZSA9IGZhbHNlOw0KPiA+ICsJCX0NCj4gPiArCX0NCj4gPiArDQo+ID4gKwlmb3JfZWFjaF9vbGRu
-ZXdfaW50ZWxfY3J0Y19pbl9zdGF0ZShzdGF0ZSwgY3J0YywNCj4gPiBvbGRfY3J0Y19zdGF0ZSwN
-Cj4gPiArCQkJCQkgICAgbmV3X2NydGNfc3RhdGUsIGkpIHsNCj4gPiArCQlpZiAobmVlZHNfbW9k
-ZXNldChuZXdfY3J0Y19zdGF0ZSkpDQo+ID4gKwkJCWNvbnRpbnVlOw0KPiA+ICsNCj4gPiArCQkv
-Kg0KPiA+ICsJCSAqIElmIHdlJ3JlIG5vdCBkb2luZyB0aGUgZnVsbCBtb2Rlc2V0IHdlIHdhbnQg
-dG8NCj4gPiArCQkgKiBrZWVwIHRoZSBjdXJyZW50IE0vTiB2YWx1ZXMgYXMgdGhleSBtYXkgYmUN
-Cj4gPiArCQkgKiBzdWZmaWNpZW50bHkgZGlmZmVyZW50IHRvIHRoZSBjb21wdXRlZCB2YWx1ZXMN
-Cj4gPiArCQkgKiB0byBjYXVzZSBwcm9ibGVtcy4NCj4gPiArCQkgKg0KPiA+ICsJCSAqIEZJWE1F
-OiBzaG91bGQgcmVhbGx5IGNvcHkgbW9yZSBmdXp6eSBzdGF0ZSBoZXJlDQo+ID4gKwkJICovDQo+
-ID4gKwkJbmV3X2NydGNfc3RhdGUtPmZkaV9tX24gPSBvbGRfY3J0Y19zdGF0ZS0+ZmRpX21fbjsN
-Cj4gPiArCQluZXdfY3J0Y19zdGF0ZS0+ZHBfbV9uID0gb2xkX2NydGNfc3RhdGUtPmRwX21fbjsN
-Cj4gPiArCQluZXdfY3J0Y19zdGF0ZS0+ZHBfbTJfbjIgPSBvbGRfY3J0Y19zdGF0ZS0+ZHBfbTJf
-bjI7DQo+ID4gKwkJbmV3X2NydGNfc3RhdGUtPmhhc19kcnJzID0gb2xkX2NydGNfc3RhdGUtPmhh
-c19kcnJzOw0KPiA+ICsJfQ0KPiANCj4gSm9zZSwgVmlsbGUsIHRoaXMgaXMgZXhhY3RseSBob3cg
-aSB3b3VsZCBuZWVkIHRvIG1vZGVzZXQgYWxsIHBvcnQNCj4gc3luY2VkIGNydGNzDQo+IGFmdGVy
-IHRoZSBmYXN0c2V0IGNoZWNrPw0KDQpZZXMsIGluIHRoZSBsb29wIHRoYXQgSSBjaGVjayBpZiBN
-U1QgbWFzdGVyIG5lZWRzIGEgbW9kZXNldCB5b3Ugc2hvdWxkDQpmb3JjZSBtb2Rlc2V0IHRvIHBv
-cnQgc3luYyBDUlRDcyB3aGVuIG5lZWRlZC4NCg0KPiANCj4gVmlsbGUgaGFkIHN1Z2dzdGVkIGFk
-ZGluZyBtZG9lc2V0X3N5bmNlZF9jcnRjcygpIGV2ZW4gYmVmb3JlIHRoZQ0KPiBjb21wdXRlX2Nv
-bmZpZyBvciBiZWZvcmUgdGhlIGNhbGwNCj4gd2hlcmUgcG9ydCBzeW5jIGFzc2lnbm1lbnRzIGhh
-cHBlbiwgc28gaW4gdGhhdCBmdW5jdGlvbiwgaXQgd291bGQNCj4gbG9vayBhdCB0aGUgbW9kZXNl
-dF9zeW5jZWRfb2xkX2NydGNfc3RhdGVzID8NCg0KQmVmb3JlIGNvbXB1dGUoKSBhbmQgaW50ZWxf
-Y3J0Y19jaGVja19mYXN0c2V0KCkgdGhlIHVhcGkubW9kZV9jaGFuZ2VkDQp3b3VsZCBiZSBvdmVy
-cmlkZS4NCg0KPiANCj4gTWFuYXNpDQo+IA0KPiANCj4gTWFuYXNpDQo+IA0KPiA+ICsNCj4gPiAg
-CWlmIChhbnlfbXMgJiYgIWNoZWNrX2RpZ2l0YWxfcG9ydF9jb25mbGljdHMoc3RhdGUpKSB7DQo+
-ID4gIAkJRFJNX0RFQlVHX0tNUygicmVqZWN0aW5nIGNvbmZsaWN0aW5nIGRpZ2l0YWwgcG9ydA0K
-PiA+IGNvbmZpZ3VyYXRpb25cbiIpOw0KPiA+ICAJCXJldCA9IEVJTlZBTDsNCj4gPiBkaWZmIC0t
-Z2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcF9tc3QuYw0KPiA+IGIv
-ZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcF9tc3QuYw0KPiA+IGluZGV4IGVm
-ZDE0YjBiNTA3Yi4uNGFiYTFkNzAyYTgzIDEwMDY0NA0KPiA+IC0tLSBhL2RyaXZlcnMvZ3B1L2Ry
-bS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHBfbXN0LmMNCj4gPiArKysgYi9kcml2ZXJzL2dwdS9kcm0v
-aTkxNS9kaXNwbGF5L2ludGVsX2RwX21zdC5jDQo+ID4gQEAgLTg1NCwzICs4NTQsMTcgQEAgYm9v
-bCBpbnRlbF9kcF9tc3RfaXNfc2xhdmVfdHJhbnMoY29uc3Qgc3RydWN0DQo+ID4gaW50ZWxfY3J0
-Y19zdGF0ZSAqY3J0Y19zdGF0ZSkNCj4gPiAgCXJldHVybiBjcnRjX3N0YXRlLT5tc3RfbWFzdGVy
-X3RyYW5zY29kZXIgIT0gSU5WQUxJRF9UUkFOU0NPREVSDQo+ID4gJiYNCj4gPiAgCSAgICAgICBj
-cnRjX3N0YXRlLT5tc3RfbWFzdGVyX3RyYW5zY29kZXIgIT0gY3J0Y19zdGF0ZS0NCj4gPiA+Y3B1
-X3RyYW5zY29kZXI7DQo+ID4gIH0NCj4gPiArDQo+ID4gK2Jvb2wgaW50ZWxfZHBfbXN0X21hc3Rl
-cl90cmFuc19uZWVkc19tb2Rlc2V0KHN0cnVjdA0KPiA+IGludGVsX2F0b21pY19zdGF0ZSAqc3Rh
-dGUsDQo+ID4gKwkJCQkJICAgICBlbnVtIHRyYW5zY29kZXIgbWFzdGVyKQ0KPiA+ICt7DQo+ID4g
-KwlzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZSAqbmV3X2NydGNfc3RhdGU7DQo+ID4gKwlzdHJ1Y3Qg
-aW50ZWxfY3J0YyAqY3J0YzsNCj4gPiArCWludCBpOw0KPiA+ICsNCj4gPiArCWZvcl9lYWNoX25l
-d19pbnRlbF9jcnRjX2luX3N0YXRlKHN0YXRlLCBjcnRjLCBuZXdfY3J0Y19zdGF0ZSwNCj4gPiBp
-KQ0KPiA+ICsJCWlmIChuZXdfY3J0Y19zdGF0ZS0+bXN0X21hc3Rlcl90cmFuc2NvZGVyID09IG1h
-c3RlcikNCj4gPiArCQkJcmV0dXJuDQo+ID4gZHJtX2F0b21pY19jcnRjX25lZWRzX21vZGVzZXQo
-Jm5ld19jcnRjX3N0YXRlLT51YXBpKTsNCj4gPiArDQo+ID4gKwlyZXR1cm4gZmFsc2U7DQo+ID4g
-K30NCj4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9k
-cF9tc3QuaA0KPiA+IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcF9tc3Qu
-aA0KPiA+IGluZGV4IDg1NDcyNGY2OGYwOS4uNzJjYjQ4NmYzMmFiIDEwMDY0NA0KPiA+IC0tLSBh
-L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHBfbXN0LmgNCj4gPiArKysgYi9k
-cml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwX21zdC5oDQo+ID4gQEAgLTgsNiAr
-OCw3IEBADQo+ID4gIA0KPiA+ICAjaW5jbHVkZSA8bGludXgvdHlwZXMuaD4NCj4gPiAgDQo+ID4g
-K3N0cnVjdCBpbnRlbF9hdG9taWNfc3RhdGU7DQo+ID4gIHN0cnVjdCBpbnRlbF9kaWdpdGFsX3Bv
-cnQ7DQo+ID4gIHN0cnVjdCBpbnRlbF9jcnRjX3N0YXRlOw0KPiA+ICANCj4gPiBAQCAtMTYsNSAr
-MTcsNyBAQCB2b2lkIGludGVsX2RwX21zdF9lbmNvZGVyX2NsZWFudXAoc3RydWN0DQo+ID4gaW50
-ZWxfZGlnaXRhbF9wb3J0ICppbnRlbF9kaWdfcG9ydCk7DQo+ID4gIGludCBpbnRlbF9kcF9tc3Rf
-ZW5jb2Rlcl9hY3RpdmVfbGlua3Moc3RydWN0IGludGVsX2RpZ2l0YWxfcG9ydA0KPiA+ICppbnRl
-bF9kaWdfcG9ydCk7DQo+ID4gIGJvb2wgaW50ZWxfZHBfbXN0X2lzX21hc3Rlcl90cmFucyhjb25z
-dCBzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZQ0KPiA+ICpjcnRjX3N0YXRlKTsNCj4gPiAgYm9vbCBp
-bnRlbF9kcF9tc3RfaXNfc2xhdmVfdHJhbnMoY29uc3Qgc3RydWN0IGludGVsX2NydGNfc3RhdGUN
-Cj4gPiAqY3J0Y19zdGF0ZSk7DQo+ID4gK2Jvb2wgaW50ZWxfZHBfbXN0X21hc3Rlcl90cmFuc19u
-ZWVkc19tb2Rlc2V0KHN0cnVjdA0KPiA+IGludGVsX2F0b21pY19zdGF0ZSAqc3RhdGUsDQo+ID4g
-KwkJCQkJICAgICBlbnVtIHRyYW5zY29kZXIgbWFzdGVyKTsNCj4gPiAgDQo+ID4gICNlbmRpZiAv
-KiBfX0lOVEVMX0RQX01TVF9IX18gKi8NCj4gPiAtLSANCj4gPiAyLjI0LjENCj4gPiANCl9fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWls
-aW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+Use non-forcewaked writes to queue RPS register changes that will take
+effect when the write buffer is flushed, rather than wake the mmio
+device for immediate effect. This is so that we can avoid a slow
+forcewake dance upon unparking, and at our irregular updates.
+
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Andi Shyti <andi.shyti@intel.com>
+---
+ drivers/gpu/drm/i915/gt/intel_rps.c | 66 ++++++++++++++---------------
+ 1 file changed, 32 insertions(+), 34 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/gt/intel_rps.c b/drivers/gpu/drm/i915/gt/intel_rps.c
+index eabd5e1a2b95..443d4ba3bbb7 100644
+--- a/drivers/gpu/drm/i915/gt/intel_rps.c
++++ b/drivers/gpu/drm/i915/gt/intel_rps.c
+@@ -37,6 +37,11 @@ static u32 rps_pm_sanitize_mask(struct intel_rps *rps, u32 mask)
+ 	return mask & ~rps->pm_intrmsk_mbz;
+ }
+ 
++static inline void set(struct intel_uncore *uncore, i915_reg_t reg, u32 val)
++{
++	intel_uncore_write_fw(uncore, reg, val);
++}
++
+ static u32 rps_pm_mask(struct intel_rps *rps, u8 val)
+ {
+ 	u32 mask = 0;
+@@ -78,8 +83,7 @@ static void rps_enable_interrupts(struct intel_rps *rps)
+ 	gen6_gt_pm_enable_irq(gt, rps->pm_events);
+ 	spin_unlock_irq(&gt->irq_lock);
+ 
+-	intel_uncore_write(gt->uncore, GEN6_PMINTRMSK,
+-			   rps_pm_mask(rps, rps->cur_freq));
++	set(gt->uncore, GEN6_PMINTRMSK, rps_pm_mask(rps, rps->cur_freq));
+ }
+ 
+ static void gen6_rps_reset_interrupts(struct intel_rps *rps)
+@@ -113,8 +117,7 @@ static void rps_disable_interrupts(struct intel_rps *rps)
+ 
+ 	rps->pm_events = 0;
+ 
+-	intel_uncore_write(gt->uncore, GEN6_PMINTRMSK,
+-			   rps_pm_sanitize_mask(rps, ~0u));
++	set(gt->uncore, GEN6_PMINTRMSK, rps_pm_sanitize_mask(rps, ~0u));
+ 
+ 	spin_lock_irq(&gt->irq_lock);
+ 	gen6_gt_pm_disable_irq(gt, GEN6_PM_RPS_EVENTS);
+@@ -573,25 +576,21 @@ static void rps_set_power(struct intel_rps *rps, int new_power)
+ 	if (IS_VALLEYVIEW(i915))
+ 		goto skip_hw_write;
+ 
+-	intel_uncore_write(uncore, GEN6_RP_UP_EI,
+-			   GT_INTERVAL_FROM_US(i915, ei_up));
+-	intel_uncore_write(uncore, GEN6_RP_UP_THRESHOLD,
+-			   GT_INTERVAL_FROM_US(i915,
+-					       ei_up * threshold_up / 100));
+-
+-	intel_uncore_write(uncore, GEN6_RP_DOWN_EI,
+-			   GT_INTERVAL_FROM_US(i915, ei_down));
+-	intel_uncore_write(uncore, GEN6_RP_DOWN_THRESHOLD,
+-			   GT_INTERVAL_FROM_US(i915,
+-					       ei_down * threshold_down / 100));
+-
+-	intel_uncore_write(uncore, GEN6_RP_CONTROL,
+-			   (INTEL_GEN(i915) > 9 ? 0 : GEN6_RP_MEDIA_TURBO) |
+-			   GEN6_RP_MEDIA_HW_NORMAL_MODE |
+-			   GEN6_RP_MEDIA_IS_GFX |
+-			   GEN6_RP_ENABLE |
+-			   GEN6_RP_UP_BUSY_AVG |
+-			   GEN6_RP_DOWN_IDLE_AVG);
++	set(uncore, GEN6_RP_UP_EI, GT_INTERVAL_FROM_US(i915, ei_up));
++	set(uncore, GEN6_RP_UP_THRESHOLD,
++	    GT_INTERVAL_FROM_US(i915, ei_up * threshold_up / 100));
++
++	set(uncore, GEN6_RP_DOWN_EI, GT_INTERVAL_FROM_US(i915, ei_down));
++	set(uncore, GEN6_RP_DOWN_THRESHOLD,
++	    GT_INTERVAL_FROM_US(i915, ei_down * threshold_down / 100));
++
++	set(uncore, GEN6_RP_CONTROL,
++	    (INTEL_GEN(i915) > 9 ? 0 : GEN6_RP_MEDIA_TURBO) |
++	    GEN6_RP_MEDIA_HW_NORMAL_MODE |
++	    GEN6_RP_MEDIA_IS_GFX |
++	    GEN6_RP_ENABLE |
++	    GEN6_RP_UP_BUSY_AVG |
++	    GEN6_RP_DOWN_IDLE_AVG);
+ 
+ skip_hw_write:
+ 	rps->power.mode = new_power;
+@@ -666,7 +665,7 @@ static int gen6_rps_set(struct intel_rps *rps, u8 val)
+ 		swreq = (GEN6_FREQUENCY(val) |
+ 			 GEN6_OFFSET(0) |
+ 			 GEN6_AGGRESSIVE_TURBO);
+-	intel_uncore_write(uncore, GEN6_RPNSWREQ, swreq);
++	set(uncore, GEN6_RPNSWREQ, swreq);
+ 
+ 	return 0;
+ }
+@@ -790,7 +789,7 @@ void intel_rps_boost(struct i915_request *rq)
+ 
+ int intel_rps_set(struct intel_rps *rps, u8 val)
+ {
+-	int err = 0;
++	int err;
+ 
+ 	lockdep_assert_held(&rps->lock);
+ 	GEM_BUG_ON(val > rps->max_freq);
+@@ -798,6 +797,8 @@ int intel_rps_set(struct intel_rps *rps, u8 val)
+ 
+ 	if (rps->active) {
+ 		err = rps_set(rps, val);
++		if (err)
++			return err;
+ 
+ 		/*
+ 		 * Make sure we continue to get interrupts
+@@ -806,18 +807,15 @@ int intel_rps_set(struct intel_rps *rps, u8 val)
+ 		if (INTEL_GEN(rps_to_i915(rps)) >= 6) {
+ 			struct intel_uncore *uncore = rps_to_uncore(rps);
+ 
+-			intel_uncore_write(uncore, GEN6_RP_INTERRUPT_LIMITS,
+-					   rps_limits(rps, val));
++			set(uncore,
++			    GEN6_RP_INTERRUPT_LIMITS, rps_limits(rps, val));
+ 
+-			intel_uncore_write(uncore, GEN6_PMINTRMSK,
+-					   rps_pm_mask(rps, val));
++			set(uncore, GEN6_PMINTRMSK, rps_pm_mask(rps, val));
+ 		}
+ 	}
+ 
+-	if (err == 0)
+-		rps->cur_freq = val;
+-
+-	return err;
++	rps->cur_freq = val;
++	return 0;
+ }
+ 
+ static void gen6_rps_init(struct intel_rps *rps)
+@@ -1201,7 +1199,7 @@ void intel_rps_enable(struct intel_rps *rps)
+ 
+ static void gen6_rps_disable(struct intel_rps *rps)
+ {
+-	intel_uncore_write(rps_to_uncore(rps), GEN6_RP_CONTROL, 0);
++	set(rps_to_uncore(rps), GEN6_RP_CONTROL, 0);
+ }
+ 
+ void intel_rps_disable(struct intel_rps *rps)
+-- 
+2.24.1
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
