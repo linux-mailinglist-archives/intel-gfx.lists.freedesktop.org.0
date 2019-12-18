@@ -1,54 +1,39 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7DD8B12462D
-	for <lists+intel-gfx@lfdr.de>; Wed, 18 Dec 2019 12:53:38 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id AD9B4124740
+	for <lists+intel-gfx@lfdr.de>; Wed, 18 Dec 2019 13:49:34 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C55296E2C8;
-	Wed, 18 Dec 2019 11:53:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ADCC06E40A;
+	Wed, 18 Dec 2019 12:49:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ot1-x342.google.com (mail-ot1-x342.google.com
- [IPv6:2607:f8b0:4864:20::342])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5E4C36E2C8
- for <intel-gfx@lists.freedesktop.org>; Wed, 18 Dec 2019 11:53:35 +0000 (UTC)
-Received: by mail-ot1-x342.google.com with SMTP id k14so2206247otn.4
- for <intel-gfx@lists.freedesktop.org>; Wed, 18 Dec 2019 03:53:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=zxFvtFTUUwA+ohr/zrRpzlWmODeoFm2SoCv2eQrZOew=;
- b=J48SMSEiIFOTZZrDBYTL8471LENC+N0zDlbkFHNuPd/2b+nORHyKXx8d+YGno8LNAG
- NtHMUA/vq9d1ti4k0oikgyLm1T9J0OAssIWOJY5Crw9urZmg41ZGRIRDsPY/zGDMqEhx
- 66BavbQBE34xD3VQEIkVDXmLLsvxLewI1nvW8=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=zxFvtFTUUwA+ohr/zrRpzlWmODeoFm2SoCv2eQrZOew=;
- b=e1xUCidY0bZoLoD9WL6g/meedtX4geBfn/aBRshHLkGzcbcqA/kRV0iESaezEllgNP
- 9kwRIiasPvAOHRJCsQJUKVGnIcy3hhd53ngYCz2H2J/dpQwjVyYdYRNrNAcMWeyuZfps
- npYrwfvdHIveWuo2DP03wZzDC5voBVxnXlekTBnSybATmiRLXbxYPM8TDw6bqQYuM9kv
- EmDwTCqC2HWkbK4H4sPunqpjA8fyuiRZwXuSEKumwihlEVt8BhCbgTwlmJ2nJLam4Tgm
- /dj4Gca8vfS5NmX91nyr/OiG/d0M2sxTGe4AYy6y/MHuhpBIQYbUIlvPx7lg8kfkH+E0
- dQFw==
-X-Gm-Message-State: APjAAAUkhgAJRqXr6+8oq3WWp/uwwn4LU/3hRgN18Qkn2gJXHIajginr
- zjhb1q4ldVJbxvQffyKqlFnaoMJjwrknB8t+gQqCWw==
-X-Google-Smtp-Source: APXvYqzOWxFUYC1FyvGnADEA9Hj69nxuYFuE8i0P3qMz16x3t8aw/ipFN63K/R08PfO4EqHEfOLYiOtz+OqGLgE1lF4=
-X-Received: by 2002:a05:6830:1415:: with SMTP id
- v21mr2319204otp.188.1576670014731; 
- Wed, 18 Dec 2019 03:53:34 -0800 (PST)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 355A66E40A
+ for <intel-gfx@lists.freedesktop.org>; Wed, 18 Dec 2019 12:49:30 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 18 Dec 2019 04:49:29 -0800
+X-IronPort-AV: E=Sophos;i="5.69,329,1571727600"; d="scan'208";a="210077337"
+Received: from dtriolet-mobl1.ger.corp.intel.com (HELO [10.251.84.191])
+ ([10.251.84.191])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/AES256-SHA;
+ 18 Dec 2019 04:49:28 -0800
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+References: <20191218094057.3510459-1-chris@chris-wilson.co.uk>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <41041b2a-c7e6-def8-655d-8478a9dac39e@linux.intel.com>
+Date: Wed, 18 Dec 2019 12:49:26 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
 MIME-Version: 1.0
-References: <20191216122331.43c766f1@canb.auug.org.au>
- <20191217131937.GZ624164@phenom.ffwll.local>
- <20191218072204.06ca0cd9@canb.auug.org.au>
-In-Reply-To: <20191218072204.06ca0cd9@canb.auug.org.au>
-From: Daniel Vetter <daniel@ffwll.ch>
-Date: Wed, 18 Dec 2019 12:53:23 +0100
-Message-ID: <CAKMK7uHP2LL=pZA3ppbz-+=wKs6QXY_7360xTjMUc-Qqp1ftrg@mail.gmail.com>
-To: Stephen Rothwell <sfr@canb.auug.org.au>
-Subject: Re: [Intel-gfx] linux-next: build failure after merge of the
- drm-misc tree
+In-Reply-To: <20191218094057.3510459-1-chris@chris-wilson.co.uk>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Ratelimit i915_globals_park
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,72 +46,141 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Wolfram Sang <wsa@the-dreams.de>,
- Intel Graphics <intel-gfx@lists.freedesktop.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- DRI <dri-devel@lists.freedesktop.org>,
- Wolfram Sang <wsa+renesas@sang-engineering.com>,
- Linux Next Mailing List <linux-next@vger.kernel.org>,
- Icenowy Zheng <icenowy@aosc.io>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Dec 17, 2019 at 9:22 PM Stephen Rothwell <sfr@canb.auug.org.au> wrote:
->
-> Hi Daniel,
->
-> On Tue, 17 Dec 2019 14:19:37 +0100 Daniel Vetter <daniel@ffwll.ch> wrote:
-> >
-> > On Mon, Dec 16, 2019 at 12:23:31PM +1100, Stephen Rothwell wrote:
-> > >
-> > > After merging the drm-misc tree, today's linux-next build (x86_64
-> > > allmodconfig) failed like this:
-> > >
-> > > drivers/gpu/drm/bridge/analogix/analogix-anx6345.c: In function 'anx6345_i2c_probe':
-> > > drivers/gpu/drm/bridge/analogix/analogix-anx6345.c:738:30: error: implicit declaration of function 'i2c_new_dummy' [-Werror=implicit-function-declaration]
-> > >   738 |    anx6345->i2c_clients[i] = i2c_new_dummy(client->adapter,
-> > >       |                              ^~~~~~~~~~~~~
-> > > drivers/gpu/drm/bridge/analogix/analogix-anx6345.c:738:28: warning: assignment to 'struct i2c_client *' from 'int' makes pointer from integer without a cast [-Wint-conversion]
-> > >   738 |    anx6345->i2c_clients[i] = i2c_new_dummy(client->adapter,
-> > >       |                            ^
-> > >
-> > > Caused by commit
-> > >
-> > >   6aa192698089 ("drm/bridge: Add Analogix anx6345 support")
-> > >
-> > > interacting with commit
-> > >
-> > >   2c2f00ab1641 ("i2c: remove i2c_new_dummy() API")
-> > >
-> > > From Linus' tree.
-> > >
-> > > I have applied the following fix up patch for today:
-> > >
-> > > From: Stephen Rothwell <sfr@canb.auug.org.au>
-> > > Date: Mon, 16 Dec 2019 12:11:19 +1100
-> > > Subject: [PATCH] drm/bridge: fix up for removal of i2c_new_dummy()
-> > >
-> > > Signed-off-by: Stephen Rothwell <sfr@canb.auug.org.au>
-> >
-> > Thanks pulled into drm-next since I just processed the first drm-misc-next
-> > pull.
->
-> Thanks.  For the future, though, merge fixes like this should be part
-> of the actual merge commit to avoid bisection problems.
 
-I flip flop on this one, between retaining your contribution
-explicitly and merging them in. Usually I squash them in, but this
-felt substantial enough to retain explicitly. Worst case if someone is
-unlucky they need to git bisect skip once. I guess next time I should
-do a topic branch, apply it there on top of the pull, and then pull
-that in so that it's both pretty history and no bisect hole.
--Daniel
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-+41 (0) 79 365 57 48 - http://blog.ffwll.ch
+On 18/12/2019 09:40, Chris Wilson wrote:
+> When doing our global park, we like to be a good citizen and shrink our
+> slab caches (of which we have quite a few now), but each
+> kmem_cache_shrink() incurs a stop_machine() and so ends up being quite
+> expensive, causing machine-wide stalls. While ideally we would like to
+> throw away unused pages in our slab caches whenever it appears that we
+> are idling, doing so will require a much cheaper mechanism. In the
+> meantime use a delayed worked to impose a rate-limit that means we have
+> to have been idle for more than 2 seconds before we start shrinking.
+
+I was thinking about this yesterday, while looking at rapid park-unpark 
+cycles!
+
+> References: https://gitlab.freedesktop.org/drm/intel/issues/848
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> ---
+>   drivers/gpu/drm/i915/i915_globals.c | 53 ++++++++++++++++++++++++-----
+>   1 file changed, 44 insertions(+), 9 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/i915_globals.c b/drivers/gpu/drm/i915/i915_globals.c
+> index be127cd28931..3aa213684293 100644
+> --- a/drivers/gpu/drm/i915/i915_globals.c
+> +++ b/drivers/gpu/drm/i915/i915_globals.c
+> @@ -20,7 +20,10 @@ static LIST_HEAD(globals);
+>   static atomic_t active;
+>   static atomic_t epoch;
+>   static struct park_work {
+> -	struct rcu_work work;
+> +	struct delayed_work work;
+> +	struct rcu_head rcu;
+> +	unsigned long flags;
+> +#define PENDING 0
+>   	int epoch;
+>   } park;
+>   
+> @@ -37,11 +40,33 @@ static void i915_globals_shrink(void)
+>   		global->shrink();
+>   }
+>   
+> +static void __i915_globals_grace(struct rcu_head *rcu)
+> +{
+> +	/* Ratelimit parking as shrinking is quite slow */
+> +	schedule_delayed_work(&park.work, round_jiffies_up_relative(2 * HZ));
+> +}
+> +
+> +static void __i915_globals_queue_rcu(void)
+> +{
+> +	park.epoch = atomic_inc_return(&epoch);
+> +	if (!atomic_read(&active)) {
+> +		init_rcu_head(&park.rcu);
+
+Do we need to do init/destroy more than once? I think once on driver 
+load/exit would be more correct since the head is statically allocated.
+
+Otherwise looks correct to me.
+
+Regards,
+
+Tvrtko
+
+> +		call_rcu(&park.rcu, __i915_globals_grace);
+> +	}
+> +}
+> +
+>   static void __i915_globals_park(struct work_struct *work)
+>   {
+> +	destroy_rcu_head(&park.rcu);
+> +
+>   	/* Confirm nothing woke up in the last grace period */
+> -	if (park.epoch == atomic_read(&epoch))
+> -		i915_globals_shrink();
+> +	if (park.epoch != atomic_read(&epoch)) {
+> +		__i915_globals_queue_rcu();
+> +		return;
+> +	}
+> +
+> +	clear_bit(PENDING, &park.flags);
+> +	i915_globals_shrink();
+>   }
+>   
+>   void __init i915_global_register(struct i915_global *global)
+> @@ -85,7 +110,7 @@ int __init i915_globals_init(void)
+>   		}
+>   	}
+>   
+> -	INIT_RCU_WORK(&park.work, __i915_globals_park);
+> +	INIT_DELAYED_WORK(&park.work, __i915_globals_park);
+>   	return 0;
+>   }
+>   
+> @@ -103,8 +128,9 @@ void i915_globals_park(void)
+>   	if (!atomic_dec_and_test(&active))
+>   		return;
+>   
+> -	park.epoch = atomic_inc_return(&epoch);
+> -	queue_rcu_work(system_wq, &park.work);
+> +	/* Queue cleanup after the next RCU grace period has freed slabs */
+> +	if (!test_and_set_bit(PENDING, &park.flags))
+> +		__i915_globals_queue_rcu();
+>   }
+>   
+>   void i915_globals_unpark(void)
+> @@ -113,12 +139,21 @@ void i915_globals_unpark(void)
+>   	atomic_inc(&active);
+>   }
+>   
+> +static void __exit __i915_globals_flush(void)
+> +{
+> +	atomic_inc(&active); /* skip shrinking */
+> +
+> +	rcu_barrier(); /* wait for the work to be queued */
+> +	flush_delayed_work(&park.work);
+> +
+> +	atomic_dec(&active);
+> +}
+> +
+>   void __exit i915_globals_exit(void)
+>   {
+> -	/* Flush any residual park_work */
+> -	atomic_inc(&epoch);
+> -	flush_rcu_work(&park.work);
+> +	GEM_BUG_ON(atomic_read(&active));
+>   
+> +	__i915_globals_flush();
+>   	__i915_globals_cleanup();
+>   
+>   	/* And ensure that our DESTROY_BY_RCU slabs are truly destroyed */
+> 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
