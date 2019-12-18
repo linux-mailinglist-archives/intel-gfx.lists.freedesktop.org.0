@@ -2,42 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 585B41252FE
-	for <lists+intel-gfx@lfdr.de>; Wed, 18 Dec 2019 21:17:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 14EC112530D
+	for <lists+intel-gfx@lfdr.de>; Wed, 18 Dec 2019 21:19:22 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9F7A06EA69;
-	Wed, 18 Dec 2019 20:17:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E47F56EA70;
+	Wed, 18 Dec 2019 20:19:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1CE806EA69
- for <intel-gfx@lists.freedesktop.org>; Wed, 18 Dec 2019 20:17:01 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 18F5D6EA70
+ for <intel-gfx@lists.freedesktop.org>; Wed, 18 Dec 2019 20:19:17 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 18 Dec 2019 12:17:00 -0800
+ by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 18 Dec 2019 12:19:16 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,330,1571727600"; d="scan'208";a="227998647"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by orsmga002.jf.intel.com with SMTP; 18 Dec 2019 12:16:58 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 18 Dec 2019 22:16:57 +0200
-Date: Wed, 18 Dec 2019 22:16:57 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: "Souza, Jose" <jose.souza@intel.com>
-Message-ID: <20191218201657.GB1208@intel.com>
+X-IronPort-AV: E=Sophos;i="5.69,330,1571727600"; d="scan'208";a="227999180"
+Received: from fmsmsx107.amr.corp.intel.com ([10.18.124.205])
+ by orsmga002.jf.intel.com with ESMTP; 18 Dec 2019 12:19:16 -0800
+Received: from fmsmsx116.amr.corp.intel.com ([169.254.2.67]) by
+ fmsmsx107.amr.corp.intel.com ([169.254.6.96]) with mapi id 14.03.0439.000;
+ Wed, 18 Dec 2019 12:19:16 -0800
+From: "Souza, Jose" <jose.souza@intel.com>
+To: "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>
+Thread-Topic: [PATCH v4 5/6] drm/i915/display: Check if pipe fastset is
+ allowed by external dependencies
+Thread-Index: AQHVtdVEWnSnVxFR70KTgvlx+/yFO6fA0B2AgAALKIA=
+Date: Wed, 18 Dec 2019 20:19:15 +0000
+Message-ID: <26caae27943611264d8b3a112e8089eab203083a.camel@intel.com>
 References: <20191218185910.303540-1-jose.souza@intel.com>
- <20191218185910.303540-2-jose.souza@intel.com>
- <20191218192407.GW1208@intel.com>
- <bb1c33cd1f75104225fabb6398c4f4e355b61ec5.camel@intel.com>
+ <20191218185910.303540-5-jose.souza@intel.com>
+ <20191218193917.GY1208@intel.com>
+In-Reply-To: <20191218193917.GY1208@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.254.71.190]
+Content-ID: <F641EC65C2DA8941B0C9DC35ECE9949E@intel.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <bb1c33cd1f75104225fabb6398c4f4e355b61ec5.camel@intel.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH v4 2/6] drm/i915/tgl: Select master
- transcoder for MST stream
+Subject: Re: [Intel-gfx] [PATCH v4 5/6] drm/i915/display: Check if pipe
+ fastset is allowed by external dependencies
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,240 +56,144 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "De Marchi, Lucas" <lucas.demarchi@intel.com>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: "De Marchi, Lucas" <lucas.demarchi@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Dec 18, 2019 at 08:06:34PM +0000, Souza, Jose wrote:
-> On Wed, 2019-12-18 at 21:24 +0200, Ville Syrj=E4l=E4 wrote:
-> > On Wed, Dec 18, 2019 at 10:59:06AM -0800, Jos=E9 Roberto de Souza
-> > wrote:
-> > > On TGL the blending of all the streams have moved from DDI to
-> > > transcoder, so now every transcoder working over the same MST port
-> > > must
-> > > send its stream to a master transcoder and master will send to DDI
-> > > respecting the time slots.
-> > > =
-
-> > > So here adding all the CRTCs that shares the same MST stream if
-> > > needed and computing their state again, it will pick the lowest
-> > > pipe/transcoder among the ones in the same stream to be master.
-> > > =
-
-> > > Most of the time skl_commit_modeset_enables() enables pipes in a
-> > > crescent order but due DDB overlapping it might not happen, this
-> > > scenarios will be handled in the next patch.
-> > > =
-
-> > > v2:
-> > > - Using recently added intel_crtc_state_reset() to set
-> > > mst_master_transcoder to invalid transcoder for all non gen12 & MST
-> > > code paths
-> > > - Setting lowest pipe/transcoder as master, previously it was the
-> > > first one but setting a predictable one will help in future MST e
-> > > port sync integration
-> > > - Moving to intel type as much as we can
-> > > =
-
-> > > v3:
-> > > - Now intel_dp_mst_master_trans_compute() returns the MST master
-> > > transcoder
-> > > - Replaced stdbool.h by linux/types.h
-> > > - Skip the connector being checked in
-> > > intel_dp_mst_atomic_master_trans_check()
-> > > - Using pipe instead of transcoder to compute MST master
-> > > =
-
-> > > v4:
-> > > - renamed connector_state to conn_state
-> > > =
-
-> > > BSpec: 50493
-> > > BSpec: 49190
-> > > Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> > > Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-> > > Signed-off-by: Jos=E9 Roberto de Souza <jose.souza@intel.com>
-> > > ---
-> > >  drivers/gpu/drm/i915/display/intel_atomic.c   |  14 ++
-> > >  drivers/gpu/drm/i915/display/intel_atomic.h   |   4 +
-> > >  drivers/gpu/drm/i915/display/intel_ddi.c      |  14 +-
-> > >  drivers/gpu/drm/i915/display/intel_display.c  |  13 +-
-> > >  .../drm/i915/display/intel_display_types.h    |   3 +
-> > >  drivers/gpu/drm/i915/display/intel_dp_mst.c   | 143
-> > > ++++++++++++++++--
-> > >  drivers/gpu/drm/i915/display/intel_dp_mst.h   |   5 +
-> > >  7 files changed, 183 insertions(+), 13 deletions(-)
-> > > =
-
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_atomic.c
-> > > b/drivers/gpu/drm/i915/display/intel_atomic.c
-> > > index b7dda18b6f29..0eb973f65977 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_atomic.c
-> > > +++ b/drivers/gpu/drm/i915/display/intel_atomic.c
-> > > @@ -192,6 +192,20 @@ intel_connector_needs_modeset(struct
-> > > intel_atomic_state *state,
-> > >  									=
-
-> > >     new_conn_state->crtc)));
-> > >  }
-> > >  =
-
-> > > +struct intel_digital_connector_state *
-> > > +intel_atomic_get_digital_connector_state(struct intel_atomic_state
-> > > *state,
-> > > +					 struct intel_connector
-> > > *connector)
-> > > +{
-> > > +	struct drm_connector_state *conn_state;
-> > > +
-> > > +	conn_state =3D drm_atomic_get_connector_state(&state->base,
-> > > +						    &connector->base);
-> > > +	if (IS_ERR(conn_state))
-> > > +		return ERR_CAST(conn_state);
-> > > +
-> > > +	return to_intel_digital_connector_state(conn_state);
-> > > +}
-> > > +
-> > >  /**
-> > >   * intel_crtc_duplicate_state - duplicate crtc state
-> > >   * @crtc: drm crtc
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_atomic.h
-> > > b/drivers/gpu/drm/i915/display/intel_atomic.h
-> > > index a7d1a8576c48..74c749dbfb4f 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_atomic.h
-> > > +++ b/drivers/gpu/drm/i915/display/intel_atomic.h
-> > > @@ -17,6 +17,7 @@ struct drm_device;
-> > >  struct drm_i915_private;
-> > >  struct drm_property;
-> > >  struct intel_atomic_state;
-> > > +struct intel_connector;
-> > >  struct intel_crtc;
-> > >  struct intel_crtc_state;
-> > >  =
-
-> > > @@ -34,6 +35,9 @@ struct drm_connector_state *
-> > >  intel_digital_connector_duplicate_state(struct drm_connector
-> > > *connector);
-> > >  bool intel_connector_needs_modeset(struct intel_atomic_state
-> > > *state,
-> > >  				   struct drm_connector *connector);
-> > > +struct intel_digital_connector_state *
-> > > +intel_atomic_get_digital_connector_state(struct intel_atomic_state
-> > > *state,
-> > > +					 struct intel_connector
-> > > *connector);
-> > >  =
-
-> > >  struct drm_crtc_state *intel_crtc_duplicate_state(struct drm_crtc
-> > > *crtc);
-> > >  void intel_crtc_destroy_state(struct drm_crtc *crtc,
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c
-> > > b/drivers/gpu/drm/i915/display/intel_ddi.c
-> > > index fa40ba7cbcad..9d99ec82d072 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_ddi.c
-> > > +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-> > > @@ -1899,8 +1899,13 @@ intel_ddi_transcoder_func_reg_val_get(const
-> > > struct intel_crtc_state *crtc_state)
-> > >  		temp |=3D TRANS_DDI_MODE_SELECT_DP_MST;
-> > >  		temp |=3D DDI_PORT_WIDTH(crtc_state->lane_count);
-> > >  =
-
-> > > -		if (INTEL_GEN(dev_priv) >=3D 12)
-> > > -			temp |=3D
-> > > TRANS_DDI_MST_TRANSPORT_SELECT(crtc_state->cpu_transcoder);
-> > > +		if (INTEL_GEN(dev_priv) >=3D 12) {
-> > > +			enum transcoder master;
-> > > +
-> > > +			master =3D crtc_state->mst_master_transcoder;
-> > > +			WARN_ON(master =3D=3D INVALID_TRANSCODER);
-> > > +			temp |=3D TRANS_DDI_MST_TRANSPORT_SELECT(master);
-> > > +		}
-> > >  	} else {
-> > >  		temp |=3D TRANS_DDI_MODE_SELECT_DP_SST;
-> > >  		temp |=3D DDI_PORT_WIDTH(crtc_state->lane_count);
-> > > @@ -4400,6 +4405,11 @@ void intel_ddi_get_config(struct
-> > > intel_encoder *encoder,
-> > >  		pipe_config->output_types |=3D BIT(INTEL_OUTPUT_DP_MST);
-> > >  		pipe_config->lane_count =3D
-> > >  			((temp & DDI_PORT_WIDTH_MASK) >>
-> > > DDI_PORT_WIDTH_SHIFT) + 1;
-> > > +
-> > > +		if (INTEL_GEN(dev_priv) >=3D 12)
-> > > +			pipe_config->mst_master_transcoder =3D
-> > > +					REG_FIELD_GET(TRANS_DDI_MST_TRA
-> > > NSPORT_SELECT_MASK, temp);
-> > > +
-> > >  		intel_dp_get_m_n(intel_crtc, pipe_config);
-> > >  		break;
-> > >  	default:
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_display.c
-> > > b/drivers/gpu/drm/i915/display/intel_display.c
-> > > index 25bf084427bf..59b3bfe8b721 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_display.c
-> > > +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> > > @@ -46,6 +46,7 @@
-> > >  #include "display/intel_crt.h"
-> > >  #include "display/intel_ddi.h"
-> > >  #include "display/intel_dp.h"
-> > > +#include "display/intel_dp_mst.h"
-> > >  #include "display/intel_dsi.h"
-> > >  #include "display/intel_dvo.h"
-> > >  #include "display/intel_gmbus.h"
-> > > @@ -11630,6 +11631,7 @@ static void intel_crtc_state_reset(struct
-> > > intel_crtc_state *crtc_state,
-> > >  	crtc_state->hsw_workaround_pipe =3D INVALID_PIPE;
-> > >  	crtc_state->output_format =3D INTEL_OUTPUT_FORMAT_INVALID;
-> > >  	crtc_state->scaler_state.scaler_id =3D -1;
-> > > +	crtc_state->mst_master_transcoder =3D INVALID_TRANSCODER;
-> > >  }
-> > >  =
-
-> > >  /* Returns the currently programmed mode of the given encoder. */
-> > > @@ -12477,6 +12479,9 @@ static void intel_dump_pipe_config(const
-> > > struct intel_crtc_state *pipe_config,
-> > >  			      pipe_config->csc_mode, pipe_config-
-> > > >gamma_mode,
-> > >  			      pipe_config->gamma_enable, pipe_config-
-> > > >csc_enable);
-> > >  =
-
-> > > +	DRM_DEBUG_KMS("MST master transcoder: %s\n",
-> > > +		      transcoder_name(pipe_config-
-> > > >mst_master_transcoder));
-> > > +
-> > >  dump_planes:
-> > >  	if (!state)
-> > >  		return;
-> > > @@ -12618,6 +12623,7 @@ intel_crtc_prepare_cleared_state(struct
-> > > intel_crtc_state *crtc_state)
-> > >  	memcpy(saved_state->icl_port_dplls, crtc_state->icl_port_dplls,
-> > >  	       sizeof(saved_state->icl_port_dplls));
-> > >  	saved_state->crc_enabled =3D crtc_state->crc_enabled;
-> > > +	saved_state->mst_master_transcoder =3D INVALID_TRANSCODER;
-> > =
-
-> > That's redundant now?
-> =
-
-> No, we don't call intel_crtc_state_reset() when computing state.
-> Did not changed that because we are copying a bunch of stuff from the
-> saved_state.
-
-Doh. I think we should be able just call the reset thing in saved_state
-here?
-
-Oh, and we seem to have another one in vlv_force_pll_on(). Maybe we
-should even add a intel_crtc_state_alloc() or something which would
-give us a properly initialized fresh state.
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gV2VkLCAyMDE5LTEyLTE4IGF0IDIxOjM5ICswMjAwLCBWaWxsZSBTeXJqw6Rsw6Qgd3JvdGU6
+DQo+IE9uIFdlZCwgRGVjIDE4LCAyMDE5IGF0IDEwOjU5OjA5QU0gLTA4MDAsIEpvc8OpIFJvYmVy
+dG8gZGUgU291emENCj4gd3JvdGU6DQo+ID4gQ2hlY2sgaWYgZmFzdHNldCBpcyBhbGxvd2VkIGJ5
+IGV4dGVybmFsIGRlcGVuZGVuY2llcyBsaWtlIG90aGVyDQo+ID4gcGlwZXMNCj4gPiBhbmQgdHJh
+bnNjb2RlcnMuDQo+ID4gDQo+ID4gUmlnaHQgbm93IHRoaXMgcGF0Y2ggb25seSBmb3JjZXMgYSBm
+dWxsbW9kZXNldCBpbiBNU1Qgc2xhdmVzIG9mIE1TVA0KPiA+IG1hc3RlcnMgdGhhdCBuZWVkcyBh
+IGZ1bGxtb2Rlc2V0IGJ1dCBpdCB3aWxsIGJlIG5lZWRlZCBmb3IgcG9ydA0KPiA+IHN5bmMNCj4g
+PiBhcyB3ZWxsLg0KPiA+IA0KPiA+IHYzOg0KPiA+IC0gbW92ZWQgaGFuZGxpbmcgdG8gaW50ZWxf
+YXRvbWljX2NoZWNrKCkgdGhpcyB3YXkgaXMgZ3VhcmFudGVlIHRoYXQNCj4gPiBhbGwgcGlwZXMg
+d2lsbCBoYXZlIGl0cyBzdGF0ZSBjb21wdXRlZA0KPiA+IA0KPiA+IHY0Og0KPiA+IC0gYWRkZWQg
+YSBmdW5jdGlvbiB0byByZXR1cm4gaWYgTVNUIG1hc3RlciBuZWVlZHMgbW9kZXNldCB0byBzaW1w
+bHkNCj4gPiBjb2RlIGluIGludGVsX2F0b21pY19jaGVjaygpDQo+ID4gDQo+ID4gQ2M6IFZpbGxl
+IFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5jb20+DQo+ID4gQ2M6IEx1Y2Fz
+IERlIE1hcmNoaSA8bHVjYXMuZGVtYXJjaGlAaW50ZWwuY29tPg0KPiA+IENjOiBNYWFydGVuIExh
+bmtob3JzdCA8bWFhcnRlbi5sYW5raG9yc3RAbGludXguaW50ZWwuY29tPg0KPiA+IENjOiBNYW5h
+c2kgTmF2YXJlIDxtYW5hc2kuZC5uYXZhcmVAaW50ZWwuY29tPg0KPiA+IFNpZ25lZC1vZmYtYnk6
+IEpvc8OpIFJvYmVydG8gZGUgU291emEgPGpvc2Uuc291emFAaW50ZWwuY29tPg0KPiA+IC0tLQ0K
+PiA+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuYyB8IDUzICsr
+KysrKysrKysrKysrKy0NCj4gPiAtLS0tDQo+ID4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3Bs
+YXkvaW50ZWxfZHBfbXN0LmMgIHwgMTQgKysrKysrDQo+ID4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1
+L2Rpc3BsYXkvaW50ZWxfZHBfbXN0LmggIHwgIDMgKysNCj4gPiAgMyBmaWxlcyBjaGFuZ2VkLCA1
+NyBpbnNlcnRpb25zKCspLCAxMyBkZWxldGlvbnMoLSkNCj4gPiANCj4gPiBkaWZmIC0tZ2l0IGEv
+ZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMNCj4gPiBiL2RyaXZl
+cnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jDQo+ID4gaW5kZXggYTRmMjUy
+ZDA1YjM3Li4yYTQwNjg5MTU2N2IgMTAwNjQ0DQo+ID4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5
+MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMNCj4gPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkx
+NS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuYw0KPiA+IEBAIC0xMzkwMywxOSArMTM5MDMsNiBAQCBz
+dGF0aWMgdm9pZCBpbnRlbF9jcnRjX2NoZWNrX2Zhc3RzZXQoY29uc3QNCj4gPiBzdHJ1Y3QgaW50
+ZWxfY3J0Y19zdGF0ZSAqb2xkX2NydGNfc3RhDQo+ID4gIA0KPiA+ICAJbmV3X2NydGNfc3RhdGUt
+PnVhcGkubW9kZV9jaGFuZ2VkID0gZmFsc2U7DQo+ID4gIAluZXdfY3J0Y19zdGF0ZS0+dXBkYXRl
+X3BpcGUgPSB0cnVlOw0KPiA+IC0NCj4gPiAtCS8qDQo+ID4gLQkgKiBJZiB3ZSdyZSBub3QgZG9p
+bmcgdGhlIGZ1bGwgbW9kZXNldCB3ZSB3YW50IHRvDQo+ID4gLQkgKiBrZWVwIHRoZSBjdXJyZW50
+IE0vTiB2YWx1ZXMgYXMgdGhleSBtYXkgYmUNCj4gPiAtCSAqIHN1ZmZpY2llbnRseSBkaWZmZXJl
+bnQgdG8gdGhlIGNvbXB1dGVkIHZhbHVlcw0KPiA+IC0JICogdG8gY2F1c2UgcHJvYmxlbXMuDQo+
+ID4gLQkgKg0KPiA+IC0JICogRklYTUU6IHNob3VsZCByZWFsbHkgY29weSBtb3JlIGZ1enp5IHN0
+YXRlIGhlcmUNCj4gPiAtCSAqLw0KPiA+IC0JbmV3X2NydGNfc3RhdGUtPmZkaV9tX24gPSBvbGRf
+Y3J0Y19zdGF0ZS0+ZmRpX21fbjsNCj4gPiAtCW5ld19jcnRjX3N0YXRlLT5kcF9tX24gPSBvbGRf
+Y3J0Y19zdGF0ZS0+ZHBfbV9uOw0KPiA+IC0JbmV3X2NydGNfc3RhdGUtPmRwX20yX24yID0gb2xk
+X2NydGNfc3RhdGUtPmRwX20yX24yOw0KPiA+IC0JbmV3X2NydGNfc3RhdGUtPmhhc19kcnJzID0g
+b2xkX2NydGNfc3RhdGUtPmhhc19kcnJzOw0KPiA+ICB9DQo+ID4gIA0KPiA+ICBzdGF0aWMgaW50
+IGludGVsX2NydGNfYWRkX3BsYW5lc190b19zdGF0ZShzdHJ1Y3QNCj4gPiBpbnRlbF9hdG9taWNf
+c3RhdGUgKnN0YXRlLA0KPiA+IEBAIC0xNDA4Myw2ICsxNDA3MCw0NiBAQCBzdGF0aWMgaW50IGlu
+dGVsX2F0b21pY19jaGVjayhzdHJ1Y3QNCj4gPiBkcm1fZGV2aWNlICpkZXYsDQo+ID4gIAkJCWFu
+eV9tcyA9IHRydWU7DQo+ID4gIAl9DQo+ID4gIA0KPiA+ICsJLyoqDQo+ID4gKwkgKiBDaGVjayBp
+ZiBmYXN0c2V0IGlzIGFsbG93ZWQgYnkgZXh0ZXJuYWwgZGVwZW5kZW5jaWVzIGxpa2UNCj4gPiBv
+dGhlcg0KPiA+ICsJICogcGlwZXMgYW5kIHRyYW5zY29kZXJzLg0KPiA+ICsJICoNCj4gPiArCSAq
+IFJpZ2h0IG5vdyBpdCBvbmx5IGZvcmNlcyBhIGZ1bGxtb2Rlc2V0IHdoZW4gdGhlIE1TVCBtYXN0
+ZXINCj4gPiArCSAqIHRyYW5zY29kZXIgZGlkIG5vdCBjaGFuZ2VkIGJ1dCB0aGUgcGlwZSBvZiB0
+aGUgbWFzdGVyDQo+ID4gdHJhbnNjb2Rlcg0KPiA+ICsJICogbmVlZHMgYSBmdWxsbW9kZXNldCBz
+byBhbGwgc2xhdmVzIGFsc28gbmVlZHMgdG8gZG8gYQ0KPiA+IGZ1bGxtb2Rlc2V0Lg0KPiA+ICsJ
+ICovDQo+ID4gKwlmb3JfZWFjaF9uZXdfaW50ZWxfY3J0Y19pbl9zdGF0ZShzdGF0ZSwgY3J0Yywg
+bmV3X2NydGNfc3RhdGUsDQo+ID4gaSkgew0KPiA+ICsJCWVudW0gdHJhbnNjb2RlciBtYXN0ZXIg
+PSBuZXdfY3J0Y19zdGF0ZS0NCj4gPiA+bXN0X21hc3Rlcl90cmFuc2NvZGVyOw0KPiA+ICsNCj4g
+PiArCQlpZiAoIWludGVsX2RwX21zdF9pc19zbGF2ZV90cmFucyhuZXdfY3J0Y19zdGF0ZSkgfHwN
+Cj4gPiArCQkgICAgbmVlZHNfbW9kZXNldChuZXdfY3J0Y19zdGF0ZSkpDQo+ID4gKwkJCWNvbnRp
+bnVlOw0KPiA+ICsNCj4gPiArCQlpZiAoaW50ZWxfZHBfbXN0X21hc3Rlcl90cmFuc19uZWVkc19t
+b2Rlc2V0KHN0YXRlLA0KPiA+IG1hc3RlcikpIHsNCj4gDQo+IEkgdGhpbmsgdGhpcyBoYXMgdGhl
+IGxvb3BzIHRoZSBvcHBvc2l0ZSB3YXkgb2Ygd2hhdCBJIHdhcyB0aGlua2luZywNCj4gYnV0IHNo
+b3VsZCB3b3JrIGZpbmUgSSB0aGluay4uLiBPSy4gSSdtIGNvbnZpbmNlZCB5b3VyIHdheSBpcyBp
+biBmYWN0DQo+IGJldHRlci4NCj4gDQo+ID4gKwkJCW5ld19jcnRjX3N0YXRlLT51YXBpLm1vZGVf
+Y2hhbmdlZCA9IHRydWU7DQo+ID4gKwkJCW5ld19jcnRjX3N0YXRlLT51cGRhdGVfcGlwZSA9IGZh
+bHNlOw0KPiA+ICsJCX0NCj4gPiArCX0NCj4gPiArDQo+ID4gKwlmb3JfZWFjaF9vbGRuZXdfaW50
+ZWxfY3J0Y19pbl9zdGF0ZShzdGF0ZSwgY3J0YywNCj4gPiBvbGRfY3J0Y19zdGF0ZSwNCj4gPiAr
+CQkJCQkgICAgbmV3X2NydGNfc3RhdGUsIGkpIHsNCj4gPiArCQlpZiAobmVlZHNfbW9kZXNldChu
+ZXdfY3J0Y19zdGF0ZSkpDQo+ID4gKwkJCWNvbnRpbnVlOw0KPiANCj4gSSBzdXBwb3NlIHRoZXJl
+IGlzbid0IGFueSB3YXkgd2Ugc2hvdWxkIGhhdmUgY3J0Y3MgaW4gdGhlIHN0YXRlIHRoYXQNCj4g
+bmVpdGhlciBoYXZlIHVwZGF0ZV9waXBlIG9yIG5lZWRzX21vZGVzZXQgZmxhZ2dlZCBoZXJlLiBD
+b3VsZCBtYXliZQ0KPiBXQVJOX09OKCF1cGRhdGVfcGlwZSkgaGVyZSBpZiB3ZSdyZSBiZWluZyBw
+YXJhbm9pZC4NCg0KQWRkaW5nIHRoZSBXQVJOX09ODQoNCj4gDQo+ID4gKw0KPiA+ICsJCS8qDQo+
+ID4gKwkJICogSWYgd2UncmUgbm90IGRvaW5nIHRoZSBmdWxsIG1vZGVzZXQgd2Ugd2FudCB0bw0K
+PiA+ICsJCSAqIGtlZXAgdGhlIGN1cnJlbnQgTS9OIHZhbHVlcyBhcyB0aGV5IG1heSBiZQ0KPiA+
+ICsJCSAqIHN1ZmZpY2llbnRseSBkaWZmZXJlbnQgdG8gdGhlIGNvbXB1dGVkIHZhbHVlcw0KPiA+
+ICsJCSAqIHRvIGNhdXNlIHByb2JsZW1zLg0KPiA+ICsJCSAqDQo+ID4gKwkJICogRklYTUU6IHNo
+b3VsZCByZWFsbHkgY29weSBtb3JlIGZ1enp5IHN0YXRlIGhlcmUNCj4gPiArCQkgKi8NCj4gPiAr
+CQluZXdfY3J0Y19zdGF0ZS0+ZmRpX21fbiA9IG9sZF9jcnRjX3N0YXRlLT5mZGlfbV9uOw0KPiA+
+ICsJCW5ld19jcnRjX3N0YXRlLT5kcF9tX24gPSBvbGRfY3J0Y19zdGF0ZS0+ZHBfbV9uOw0KPiA+
+ICsJCW5ld19jcnRjX3N0YXRlLT5kcF9tMl9uMiA9IG9sZF9jcnRjX3N0YXRlLT5kcF9tMl9uMjsN
+Cj4gPiArCQluZXdfY3J0Y19zdGF0ZS0+aGFzX2RycnMgPSBvbGRfY3J0Y19zdGF0ZS0+aGFzX2Ry
+cnM7DQo+IA0KPiBTdGlsbCBhIGJpdCB1bmhhcHB5IGhhdmluZyB0aGlzIHN0YXRlIGNvcHkgaW5s
+aW5lZCBpbg0KPiBpbnRlbF9hdG9taWNfY2hlY2soKS4NCj4gDQo+ID4gKwl9DQo+ID4gKw0KPiA+
+ICAJaWYgKGFueV9tcyAmJiAhY2hlY2tfZGlnaXRhbF9wb3J0X2NvbmZsaWN0cyhzdGF0ZSkpIHsN
+Cj4gPiAgCQlEUk1fREVCVUdfS01TKCJyZWplY3RpbmcgY29uZmxpY3RpbmcgZGlnaXRhbCBwb3J0
+DQo+ID4gY29uZmlndXJhdGlvblxuIik7DQo+ID4gIAkJcmV0ID0gRUlOVkFMOw0KPiA+IGRpZmYg
+LS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwX21zdC5jDQo+ID4g
+Yi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwX21zdC5jDQo+ID4gaW5kZXgg
+ZWZkMTRiMGI1MDdiLi40YWJhMWQ3MDJhODMgMTAwNjQ0DQo+ID4gLS0tIGEvZHJpdmVycy9ncHUv
+ZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcF9tc3QuYw0KPiA+ICsrKyBiL2RyaXZlcnMvZ3B1L2Ry
+bS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHBfbXN0LmMNCj4gPiBAQCAtODU0LDMgKzg1NCwxNyBAQCBi
+b29sIGludGVsX2RwX21zdF9pc19zbGF2ZV90cmFucyhjb25zdCBzdHJ1Y3QNCj4gPiBpbnRlbF9j
+cnRjX3N0YXRlICpjcnRjX3N0YXRlKQ0KPiA+ICAJcmV0dXJuIGNydGNfc3RhdGUtPm1zdF9tYXN0
+ZXJfdHJhbnNjb2RlciAhPSBJTlZBTElEX1RSQU5TQ09ERVINCj4gPiAmJg0KPiA+ICAJICAgICAg
+IGNydGNfc3RhdGUtPm1zdF9tYXN0ZXJfdHJhbnNjb2RlciAhPSBjcnRjX3N0YXRlLQ0KPiA+ID5j
+cHVfdHJhbnNjb2RlcjsNCj4gPiAgfQ0KPiA+ICsNCj4gPiArYm9vbCBpbnRlbF9kcF9tc3RfbWFz
+dGVyX3RyYW5zX25lZWRzX21vZGVzZXQoc3RydWN0DQo+ID4gaW50ZWxfYXRvbWljX3N0YXRlICpz
+dGF0ZSwNCj4gPiArCQkJCQkgICAgIGVudW0gdHJhbnNjb2RlciBtYXN0ZXIpDQo+IA0KPiBBcmUg
+d2UgZ29pbmcgdG8gbmVlZCB0aGlzIGVsc2V3aGVyZT8gT3IgYmUgc3RhdGljIGluIGludGVsX2Rp
+c3BsYXkuYz8NCj4gTm90IHRoYXQgcGVvcGxlIGFyZSAxMDAlIGhhcHB5IG9mIHN0dWZmaW5nIGV2
+ZXJ5dGhpbmcgaW4gdGhlcmUuDQoNCk5vdCBuZWVkZWQgZWxzZXdoZXJlLCBJJ20gYWxzbyB0cnlp
+bmcgdG8gbm90IHB1dCBtb3JlIHN0dWZmIGluDQppbnRlbF9kaXNwbGF5LmMuDQoNCj4gDQo+ID4g
+K3sNCj4gPiArCXN0cnVjdCBpbnRlbF9jcnRjX3N0YXRlICpuZXdfY3J0Y19zdGF0ZTsNCj4gPiAr
+CXN0cnVjdCBpbnRlbF9jcnRjICpjcnRjOw0KPiA+ICsJaW50IGk7DQo+ID4gKw0KPiA+ICsJZm9y
+X2VhY2hfbmV3X2ludGVsX2NydGNfaW5fc3RhdGUoc3RhdGUsIGNydGMsIG5ld19jcnRjX3N0YXRl
+LA0KPiA+IGkpDQo+ID4gKwkJaWYgKG5ld19jcnRjX3N0YXRlLT5tc3RfbWFzdGVyX3RyYW5zY29k
+ZXIgPT0gbWFzdGVyKQ0KPiANCj4gU28gd2UgbmVlZCB0byBtb2Rlc2V0IGV2ZXJ5dGhpbmcgd2hl
+biBlaXRoZXIgdGhlIG1hc3RlciBvciBhbnkNCj4gb3RoZXIgc2xhdmUgd2FudHMgdG8gbW9kZXNl
+dD8gVGhhdCBpcywgd2UgY2FuJ3QganVzdCBtb2Rlc2V0IHNsYXZlcw0KPiBpbmRlcGVuZGVudGx5
+IGFuZCBvbmx5IGZvcmNlIHRoZSBtb2Rlc2V0cyBmb3IgYWxsIHNsYXZlcyBpZiB0aGUNCj4gbWFz
+dGVyDQo+IG5lZWRzIGEgbW9kZXNldD8NCg0KSWYgYSBzbGF2ZSBuZWVkcyBhIG1vZGVzZXQgd2Ug
+ZG9uJ3QgbmVlZCB0byBkbyBhIG1vZGVzZXQgaW4gbWFzdGVyIG9yDQppbiBvdGhlciBzbGF2ZXMu
+DQoNClRoaXMgaXMgZG9pbmcgaW5kZXBlbmRlbnQgbW9kZXNldCBpbiBzbGF2ZXMgYW5kIGZvcmNp
+bmcgbW9kZXNldCB0byBhbGwNCnNsYXZlcyB3aGVuIG1hc3RlciBuZWVkcyBhcyBtb2Rlc2V0Lg0K
+DQo+IA0KPiA+ICsJCQlyZXR1cm4NCj4gPiBkcm1fYXRvbWljX2NydGNfbmVlZHNfbW9kZXNldCgm
+bmV3X2NydGNfc3RhdGUtPnVhcGkpOw0KPiA+ICsNCj4gPiArCXJldHVybiBmYWxzZTsNCj4gPiAr
+fQ0KPiA+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rw
+X21zdC5oDQo+ID4gYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwX21zdC5o
+DQo+ID4gaW5kZXggODU0NzI0ZjY4ZjA5Li43MmNiNDg2ZjMyYWIgMTAwNjQ0DQo+ID4gLS0tIGEv
+ZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcF9tc3QuaA0KPiA+ICsrKyBiL2Ry
+aXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHBfbXN0LmgNCj4gPiBAQCAtOCw2ICs4
+LDcgQEANCj4gPiAgDQo+ID4gICNpbmNsdWRlIDxsaW51eC90eXBlcy5oPg0KPiA+ICANCj4gPiAr
+c3RydWN0IGludGVsX2F0b21pY19zdGF0ZTsNCj4gPiAgc3RydWN0IGludGVsX2RpZ2l0YWxfcG9y
+dDsNCj4gPiAgc3RydWN0IGludGVsX2NydGNfc3RhdGU7DQo+ID4gIA0KPiA+IEBAIC0xNiw1ICsx
+Nyw3IEBAIHZvaWQgaW50ZWxfZHBfbXN0X2VuY29kZXJfY2xlYW51cChzdHJ1Y3QNCj4gPiBpbnRl
+bF9kaWdpdGFsX3BvcnQgKmludGVsX2RpZ19wb3J0KTsNCj4gPiAgaW50IGludGVsX2RwX21zdF9l
+bmNvZGVyX2FjdGl2ZV9saW5rcyhzdHJ1Y3QgaW50ZWxfZGlnaXRhbF9wb3J0DQo+ID4gKmludGVs
+X2RpZ19wb3J0KTsNCj4gPiAgYm9vbCBpbnRlbF9kcF9tc3RfaXNfbWFzdGVyX3RyYW5zKGNvbnN0
+IHN0cnVjdCBpbnRlbF9jcnRjX3N0YXRlDQo+ID4gKmNydGNfc3RhdGUpOw0KPiA+ICBib29sIGlu
+dGVsX2RwX21zdF9pc19zbGF2ZV90cmFucyhjb25zdCBzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZQ0K
+PiA+ICpjcnRjX3N0YXRlKTsNCj4gPiArYm9vbCBpbnRlbF9kcF9tc3RfbWFzdGVyX3RyYW5zX25l
+ZWRzX21vZGVzZXQoc3RydWN0DQo+ID4gaW50ZWxfYXRvbWljX3N0YXRlICpzdGF0ZSwNCj4gPiAr
+CQkJCQkgICAgIGVudW0gdHJhbnNjb2RlciBtYXN0ZXIpOw0KPiA+ICANCj4gPiAgI2VuZGlmIC8q
+IF9fSU5URUxfRFBfTVNUX0hfXyAqLw0KPiA+IC0tIA0KPiA+IDIuMjQuMQ0KX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlz
+dApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0
+b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
