@@ -1,30 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B41B12433C
-	for <lists+intel-gfx@lfdr.de>; Wed, 18 Dec 2019 10:30:43 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id DFA9D124342
+	for <lists+intel-gfx@lfdr.de>; Wed, 18 Dec 2019 10:31:20 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 885166E291;
-	Wed, 18 Dec 2019 09:30:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 39D496E293;
+	Wed, 18 Dec 2019 09:31:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 35C0C6E291
- for <intel-gfx@lists.freedesktop.org>; Wed, 18 Dec 2019 09:30:40 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 258936E293
+ for <intel-gfx@lists.freedesktop.org>; Wed, 18 Dec 2019 09:31:18 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 18 Dec 2019 01:30:39 -0800
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by orsmga105.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 18 Dec 2019 01:31:17 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,329,1571727600"; d="scan'208";a="240731625"
+X-IronPort-AV: E=Sophos;i="5.69,329,1571727600"; d="scan'208";a="218091630"
 Received: from linux.intel.com ([10.54.29.200])
- by fmsmga004.fm.intel.com with ESMTP; 18 Dec 2019 01:30:39 -0800
+ by orsmga003.jf.intel.com with ESMTP; 18 Dec 2019 01:31:17 -0800
 Received: from [10.125.252.219] (abudanko-mobl.ccr.corp.intel.com
  [10.125.252.219])
- by linux.intel.com (Postfix) with ESMTP id B1C1B5802C9;
- Wed, 18 Dec 2019 01:30:30 -0800 (PST)
+ by linux.intel.com (Postfix) with ESMTP id 33127580458;
+ Wed, 18 Dec 2019 01:31:09 -0800 (PST)
 From: Alexey Budankov <alexey.budankov@linux.intel.com>
 To: Peter Zijlstra <peterz@infradead.org>,
  Arnaldo Carvalho de Melo <acme@kernel.org>, Ingo Molnar <mingo@redhat.com>,
@@ -41,14 +41,14 @@ To: Peter Zijlstra <peterz@infradead.org>,
  <casey@schaufler-ca.com>, Robert Richter <rric@kernel.org>
 References: <c0460c78-b1a6-b5f7-7119-d97e5998f308@linux.intel.com>
 Organization: Intel Corp.
-Message-ID: <ce3086d8-9fce-84d6-8b4e-948996c2e0fc@linux.intel.com>
-Date: Wed, 18 Dec 2019 12:30:29 +0300
+Message-ID: <70eb48f8-34ae-8aa3-ca64-d433b75ea2ae@linux.intel.com>
+Date: Wed, 18 Dec 2019 12:31:08 +0300
 User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
  Thunderbird/60.9.1
 MIME-Version: 1.0
 In-Reply-To: <c0460c78-b1a6-b5f7-7119-d97e5998f308@linux.intel.com>
 Content-Language: en-US
-Subject: [Intel-gfx] [PATCH v4 8/9] drivers/perf: open access for
+Subject: [Intel-gfx] [PATCH v4 9/9] drivers/oprofile: open access for
  CAP_SYS_PERFMON privileged process
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -92,31 +92,22 @@ monitoring is discouraged with respect to CAP_SYS_PERFMON capability.
 
 Signed-off-by: Alexey Budankov <alexey.budankov@linux.intel.com>
 ---
- drivers/perf/arm_spe_pmu.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ drivers/oprofile/event_buffer.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/perf/arm_spe_pmu.c b/drivers/perf/arm_spe_pmu.c
-index 4e4984a55cd1..5dff81bc3324 100644
---- a/drivers/perf/arm_spe_pmu.c
-+++ b/drivers/perf/arm_spe_pmu.c
-@@ -274,7 +274,7 @@ static u64 arm_spe_event_to_pmscr(struct perf_event *event)
- 	if (!attr->exclude_kernel)
- 		reg |= BIT(SYS_PMSCR_EL1_E1SPE_SHIFT);
+diff --git a/drivers/oprofile/event_buffer.c b/drivers/oprofile/event_buffer.c
+index 12ea4a4ad607..6c9edc8bbc95 100644
+--- a/drivers/oprofile/event_buffer.c
++++ b/drivers/oprofile/event_buffer.c
+@@ -113,7 +113,7 @@ static int event_buffer_open(struct inode *inode, struct file *file)
+ {
+ 	int err = -EPERM;
  
--	if (IS_ENABLED(CONFIG_PID_IN_CONTEXTIDR) && capable(CAP_SYS_ADMIN))
-+	if (IS_ENABLED(CONFIG_PID_IN_CONTEXTIDR) && perfmon_capable())
- 		reg |= BIT(SYS_PMSCR_EL1_CX_SHIFT);
+-	if (!capable(CAP_SYS_ADMIN))
++	if (!perfmon_capable())
+ 		return -EPERM;
  
- 	return reg;
-@@ -700,7 +700,7 @@ static int arm_spe_pmu_event_init(struct perf_event *event)
- 		return -EOPNOTSUPP;
- 
- 	reg = arm_spe_event_to_pmscr(event);
--	if (!capable(CAP_SYS_ADMIN) &&
-+	if (!perfmon_capable() &&
- 	    (reg & (BIT(SYS_PMSCR_EL1_PA_SHIFT) |
- 		    BIT(SYS_PMSCR_EL1_CX_SHIFT) |
- 		    BIT(SYS_PMSCR_EL1_PCT_SHIFT))))
+ 	if (test_and_set_bit_lock(0, &buffer_opened))
 -- 
 2.20.1
 
