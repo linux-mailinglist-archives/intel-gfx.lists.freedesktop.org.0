@@ -1,31 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D41611249BD
-	for <lists+intel-gfx@lfdr.de>; Wed, 18 Dec 2019 15:31:48 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id DF327124A5E
+	for <lists+intel-gfx@lfdr.de>; Wed, 18 Dec 2019 15:53:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 94DFD6E4F3;
-	Wed, 18 Dec 2019 14:31:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F1BCA6E4BA;
+	Wed, 18 Dec 2019 14:53:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 354B96E46F
- for <intel-gfx@lists.freedesktop.org>; Wed, 18 Dec 2019 14:31:37 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19622423-1500050 
- for multiple; Wed, 18 Dec 2019 14:31:14 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 18 Dec 2019 14:31:11 +0000
-Message-Id: <20191218143111.3852266-8-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.24.1
-In-Reply-To: <20191218143111.3852266-1-chris@chris-wilson.co.uk>
-References: <20191218143111.3852266-1-chris@chris-wilson.co.uk>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 61D706E4BA;
+ Wed, 18 Dec 2019 14:53:09 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 18 Dec 2019 06:53:08 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.69,329,1571727600"; d="scan'208";a="222026579"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by fmsmga001.fm.intel.com with SMTP; 18 Dec 2019 06:53:05 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Wed, 18 Dec 2019 16:53:05 +0200
+Date: Wed, 18 Dec 2019 16:53:05 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+Message-ID: <20191218145305.GJ1208@intel.com>
+References: <20191107142417.11107-1-ville.syrjala@linux.intel.com>
+ <20191213233853.eefala2yj2sibvx2@ldmartin-desk1>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 8/8] drm/i915/gt: Merge engine init/setup loops
+Content-Disposition: inline
+In-Reply-To: <20191213233853.eefala2yj2sibvx2@ldmartin-desk1>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH 1/5] drm: Add
+ __drm_atomic_helper_crtc_state_reset() & co.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,243 +48,151 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Now that we don't need to create GEM contexts in the middle of engine
-construction, we can pull the engine init/setup loops together.
+On Fri, Dec 13, 2019 at 03:38:53PM -0800, Lucas De Marchi wrote:
+> On Thu, Nov 07, 2019 at 04:24:13PM +0200, Ville Syrj=E4l=E4 wrote:
+> >From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> >
+> >Annoyingly __drm_atomic_helper_crtc_reset() does two
+> >totally separate things:
+> >a) reset the state to defaults values
+> >b) assign the crtc->state pointer
+> >
+> >I just want a) without the b) so let's split out part
+> >a) into __drm_atomic_helper_crtc_state_reset(). And
+> >of course we'll do the same thing for planes and connectors.
+> >
+> >Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> >---
+> > drivers/gpu/drm/drm_atomic_state_helper.c | 70 ++++++++++++++++++++---
+> > include/drm/drm_atomic_state_helper.h     |  6 ++
+> > 2 files changed, 67 insertions(+), 9 deletions(-)
+> >
+> >diff --git a/drivers/gpu/drm/drm_atomic_state_helper.c b/drivers/gpu/drm=
+/drm_atomic_state_helper.c
+> >index d0a937fb0c56..a972068d58cf 100644
+> >--- a/drivers/gpu/drm/drm_atomic_state_helper.c
+> >+++ b/drivers/gpu/drm/drm_atomic_state_helper.c
+> >@@ -57,6 +57,22 @@
+> >  * for these functions.
+> >  */
+> >
+> >+/**
+> >+ * __drm_atomic_helper_crtc_state_reset - reset the CRTC state
+> >+ * @crtc_state: atomic CRTC state, must not be NULL
+> >+ * @crtc: CRTC object, must not be NULL
+> >+ *
+> >+ * Initializes the newly allocated @crtc_state with default
+> >+ * values. This is useful for drivers that subclass the CRTC state.
+> >+ */
+> >+void
+> >+__drm_atomic_helper_crtc_state_reset(struct drm_crtc_state *crtc_state,
+> >+				     struct drm_crtc *crtc)
+> >+{
+> >+	crtc_state->crtc =3D crtc;
+> >+}
+> >+EXPORT_SYMBOL(__drm_atomic_helper_crtc_state_reset);
+> >+
+> > /**
+> >  * __drm_atomic_helper_crtc_reset - reset state on CRTC
+> >  * @crtc: drm CRTC
+> >@@ -74,7 +90,7 @@ __drm_atomic_helper_crtc_reset(struct drm_crtc *crtc,
+> > 			       struct drm_crtc_state *crtc_state)
+> > {
+> > 	if (crtc_state)
+> >-		crtc_state->crtc =3D crtc;
+> >+		__drm_atomic_helper_crtc_state_reset(crtc_state, crtc);
+> >
+> > 	crtc->state =3D crtc_state;
+> > }
+> >@@ -212,23 +228,43 @@ void drm_atomic_helper_crtc_destroy_state(struct d=
+rm_crtc *crtc,
+> > EXPORT_SYMBOL(drm_atomic_helper_crtc_destroy_state);
+> >
+> > /**
+> >- * __drm_atomic_helper_plane_reset - resets planes state to default val=
+ues
+> >+ * __drm_atomic_helper_plane_state_reset - resets plane state to defaul=
+t values
+> >+ * @plane_state: atomic plane state, must not be NULL
+> >  * @plane: plane object, must not be NULL
+> >- * @state: atomic plane state, must not be NULL
+> >  *
+> >- * Initializes plane state to default. This is useful for drivers that =
+subclass
+> >- * the plane state.
+> >+ * Initializes the newly allocated @plane_state with default
+> >+ * values. This is useful for drivers that subclass the CRTC state.
+> >  */
+> >-void __drm_atomic_helper_plane_reset(struct drm_plane *plane,
+> >-				     struct drm_plane_state *state)
+> >+void __drm_atomic_helper_plane_state_reset(struct drm_plane_state *stat=
+e,
+> >+					   struct drm_plane *plane)
+> > {
+> > 	state->plane =3D plane;
+> > 	state->rotation =3D DRM_MODE_ROTATE_0;
+> >
+> > 	state->alpha =3D DRM_BLEND_ALPHA_OPAQUE;
+> > 	state->pixel_blend_mode =3D DRM_MODE_BLEND_PREMULTI;
+> >+}
+> >+EXPORT_SYMBOL(__drm_atomic_helper_plane_state_reset);
+> >
+> >-	plane->state =3D state;
+> >+/**
+> >+ * __drm_atomic_helper_plane_reset - reset state on plane
+> >+ * @plane: drm plane
+> >+ * @plane_state: plane state to assign
+> >+ *
+> >+ * Initializes the newly allocated @plane_state and assigns it to
+> >+ * the &drm_crtc->state pointer of @plane, usually required when
+> >+ * initializing the drivers or when called from the &drm_plane_funcs.re=
+set
+> >+ * hook.
+> >+ *
+> >+ * This is useful for drivers that subclass the plane state.
+> >+ */
+> >+void __drm_atomic_helper_plane_reset(struct drm_plane *plane,
+> >+				     struct drm_plane_state *plane_state)
+> >+{
+> >+	if (plane_state)
+> >+		__drm_atomic_helper_plane_state_reset(plane_state, plane);
+> >+
+> >+	plane->state =3D plane_state;
+> > }
+> > EXPORT_SYMBOL(__drm_atomic_helper_plane_reset);
+> >
+> >@@ -335,6 +371,22 @@ void drm_atomic_helper_plane_destroy_state(struct d=
+rm_plane *plane,
+> > }
+> > EXPORT_SYMBOL(drm_atomic_helper_plane_destroy_state);
+> >
+> >+/**
+> >+ * __drm_atomic_helper_connector_state_reset - reset the connector state
+> >+ * @conn__state: atomic connector state, must not be NULL
+> =
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Andi Shyti <andi.shyti@intel.com>
----
- drivers/gpu/drm/i915/gt/intel_engine_cs.c     | 118 +++++++-----------
- drivers/gpu/drm/i915/gt/intel_gt.c            |   5 -
- drivers/gpu/drm/i915/gt/intel_lrc.c           |   5 -
- .../gpu/drm/i915/gt/intel_ring_submission.c   |   6 -
- 4 files changed, 43 insertions(+), 91 deletions(-)
+> typo here, otherwise
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-index 1564301e4359..ca72761bc5c4 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-+++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-@@ -470,39 +470,6 @@ int intel_engines_init_mmio(struct intel_gt *gt)
- 	return err;
- }
- 
--/**
-- * intel_engines_init() - init the Engine Command Streamers
-- * @gt: pointer to struct intel_gt
-- *
-- * Return: non-zero if the initialization failed.
-- */
--int intel_engines_init(struct intel_gt *gt)
--{
--	int (*init)(struct intel_engine_cs *engine);
--	struct intel_engine_cs *engine;
--	enum intel_engine_id id;
--	int err;
--
--	if (HAS_EXECLISTS(gt->i915))
--		init = intel_execlists_submission_init;
--	else
--		init = intel_ring_submission_init;
--
--	for_each_engine(engine, gt, id) {
--		err = init(engine);
--		if (err)
--			goto cleanup;
--
--		intel_engine_add_user(engine);
--	}
--
--	return 0;
--
--cleanup:
--	intel_engines_release(gt);
--	return err;
--}
--
- void intel_engine_init_execlists(struct intel_engine_cs *engine)
- {
- 	struct intel_engine_execlists * const execlists = &engine->execlists;
-@@ -614,7 +581,7 @@ static int init_status_page(struct intel_engine_cs *engine)
- 	return ret;
- }
- 
--static int intel_engine_setup_common(struct intel_engine_cs *engine)
-+static int engine_setup_common(struct intel_engine_cs *engine)
- {
- 	int err;
- 
-@@ -644,46 +611,6 @@ static int intel_engine_setup_common(struct intel_engine_cs *engine)
- 	return 0;
- }
- 
--/**
-- * intel_engines_setup- setup engine state not requiring hw access
-- * @gt: pointer to struct intel_gt
-- *
-- * Initializes engine structure members shared between legacy and execlists
-- * submission modes which do not require hardware access.
-- *
-- * Typically done early in the submission mode specific engine setup stage.
-- */
--int intel_engines_setup(struct intel_gt *gt)
--{
--	int (*setup)(struct intel_engine_cs *engine);
--	struct intel_engine_cs *engine;
--	enum intel_engine_id id;
--	int err;
--
--	if (HAS_EXECLISTS(gt->i915))
--		setup = intel_execlists_submission_setup;
--	else
--		setup = intel_ring_submission_setup;
--
--	for_each_engine(engine, gt, id) {
--		err = intel_engine_setup_common(engine);
--		if (err)
--			goto cleanup;
--
--		err = setup(engine);
--		if (err)
--			goto cleanup;
--
--		GEM_BUG_ON(!engine->cops);
--	}
--
--	return 0;
--
--cleanup:
--	intel_engines_release(gt);
--	return err;
--}
--
- struct measure_breadcrumb {
- 	struct i915_request rq;
- 	struct intel_timeline timeline;
-@@ -801,7 +728,7 @@ create_kernel_context(struct intel_engine_cs *engine)
-  *
-  * Returns zero on success or an error code on failure.
-  */
--int intel_engine_init_common(struct intel_engine_cs *engine)
-+static int engine_init_common(struct intel_engine_cs *engine)
- {
- 	struct intel_context *ce;
- 	int ret;
-@@ -831,6 +758,47 @@ int intel_engine_init_common(struct intel_engine_cs *engine)
- 	return 0;
- }
- 
-+int intel_engines_init(struct intel_gt *gt)
-+{
-+	int (*init)(struct intel_engine_cs *engine);
-+	int (*setup)(struct intel_engine_cs *engine);
-+	struct intel_engine_cs *engine;
-+	enum intel_engine_id id;
-+	int err;
-+
-+	if (HAS_EXECLISTS(gt->i915)) {
-+		setup = intel_execlists_submission_setup;
-+		init = intel_execlists_submission_init;
-+	} else {
-+		setup = intel_ring_submission_setup;
-+		init = intel_ring_submission_init;
-+	}
-+
-+	for_each_engine(engine, gt, id) {
-+		err = engine_setup_common(engine);
-+		if (err)
-+			return err;
-+
-+		err = setup(engine);
-+		if (err)
-+			return err;
-+
-+		GEM_BUG_ON(!engine->cops);
-+
-+		err = init(engine);
-+		if (err)
-+			return err;
-+
-+		err = engine_init_common(engine);
-+		if (err)
-+			return err;
-+
-+		intel_engine_add_user(engine);
-+	}
-+
-+	return 0;
-+}
-+
- /**
-  * intel_engines_cleanup_common - cleans up the engine state created by
-  *                                the common initiailizers.
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c b/drivers/gpu/drm/i915/gt/intel_gt.c
-index fc15acee3984..4a38ca5794d6 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gt.c
-@@ -583,10 +583,6 @@ int intel_gt_init(struct intel_gt *gt)
- 		goto err_pm;
- 	}
- 
--	err = intel_engines_setup(gt);
--	if (err)
--		goto err_vm;
--
- 	err = intel_engines_init(gt);
- 	if (err)
- 		goto err_engines;
-@@ -616,7 +612,6 @@ int intel_gt_init(struct intel_gt *gt)
- 	intel_uc_fini(&gt->uc);
- err_engines:
- 	intel_engines_release(gt);
--err_vm:
- 	i915_vm_put(fetch_and_zero(&gt->vm));
- err_pm:
- 	intel_gt_pm_fini(gt);
-diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-index 62cd07884677..88e29a6618a8 100644
---- a/drivers/gpu/drm/i915/gt/intel_lrc.c
-+++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-@@ -3882,11 +3882,6 @@ int intel_execlists_submission_init(struct intel_engine_cs *engine)
- 	struct drm_i915_private *i915 = engine->i915;
- 	struct intel_uncore *uncore = engine->uncore;
- 	u32 base = engine->mmio_base;
--	int ret;
--
--	ret = intel_engine_init_common(engine);
--	if (ret)
--		return ret;
- 
- 	if (intel_init_workaround_bb(engine))
- 		/*
-diff --git a/drivers/gpu/drm/i915/gt/intel_ring_submission.c b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
-index 2bfd092ad118..9b193b269d1d 100644
---- a/drivers/gpu/drm/i915/gt/intel_ring_submission.c
-+++ b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
-@@ -2012,16 +2012,10 @@ int intel_ring_submission_init(struct intel_engine_cs *engine)
- 	engine->legacy.ring = ring;
- 	engine->legacy.timeline = timeline;
- 
--	err = intel_engine_init_common(engine);
--	if (err)
--		goto err_ring_unpin;
--
- 	GEM_BUG_ON(timeline->hwsp_ggtt != engine->status_page.vma);
- 
- 	return 0;
- 
--err_ring_unpin:
--	intel_ring_unpin(ring);
- err_ring:
- 	intel_ring_put(ring);
- err_timeline_unpin:
--- 
-2.24.1
+Thanks for catching that. Made me run a doc build that found a mismatch
+between kerneldoc vs. code for the plane function, so I fixed that up
+while pushing.
 
+Entire series pushed to dinq with Daniel's ack for the first patch.
+Though in hindsight I could have just pushed that one to drm-misc eons
+ago. Oh well.
+
+Thanks for the reviews.
+
+-- =
+
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
