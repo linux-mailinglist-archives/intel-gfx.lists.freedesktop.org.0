@@ -1,41 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 692C51252B5
-	for <lists+intel-gfx@lfdr.de>; Wed, 18 Dec 2019 21:08:37 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 521011252D6
+	for <lists+intel-gfx@lfdr.de>; Wed, 18 Dec 2019 21:11:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3FA6689DA2;
-	Wed, 18 Dec 2019 20:08:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A7B026EA68;
+	Wed, 18 Dec 2019 20:11:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 23C3089DA2
- for <intel-gfx@lists.freedesktop.org>; Wed, 18 Dec 2019 20:08:33 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E43FB6EA68
+ for <intel-gfx@lists.freedesktop.org>; Wed, 18 Dec 2019 20:11:46 +0000 (UTC)
 X-Amp-Result: UNKNOWN
 X-Amp-Original-Verdict: FILE UNKNOWN
 X-Amp-File-Uploaded: False
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga106.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 18 Dec 2019 12:08:32 -0800
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 18 Dec 2019 12:11:46 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,330,1571727600"; d="scan'208";a="266982128"
+X-IronPort-AV: E=Sophos;i="5.69,330,1571727600"; d="scan'208";a="222089790"
 Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by FMSMGA003.fm.intel.com with SMTP; 18 Dec 2019 12:08:30 -0800
+ by fmsmga001.fm.intel.com with SMTP; 18 Dec 2019 12:11:43 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 18 Dec 2019 22:08:29 +0200
-Date: Wed, 18 Dec 2019 22:08:29 +0200
+ Wed, 18 Dec 2019 22:11:42 +0200
+Date: Wed, 18 Dec 2019 22:11:42 +0200
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
 To: =?iso-8859-1?Q?Jos=E9?= Roberto de Souza <jose.souza@intel.com>
-Message-ID: <20191218200829.GZ1208@intel.com>
+Message-ID: <20191218201142.GA1208@intel.com>
 References: <20191218185910.303540-1-jose.souza@intel.com>
- <20191218185910.303540-4-jose.souza@intel.com>
+ <20191218185910.303540-5-jose.souza@intel.com>
+ <20191218193917.GY1208@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20191218185910.303540-4-jose.souza@intel.com>
+In-Reply-To: <20191218193917.GY1208@intel.com>
 User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH v4 4/6] drm/i915/dp: Fix MST disable
- sequences
+Subject: Re: [Intel-gfx] [PATCH v4 5/6] drm/i915/display: Check if pipe
+ fastset is allowed by external dependencies
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,230 +55,224 @@ Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Dec 18, 2019 at 10:59:08AM -0800, Jos=E9 Roberto de Souza wrote:
-> The disable sequence after wait for transcoder off was not correctly
-> implemented.
-> The MST disable sequence is basically the same for HSW, SKL, ICL and
-> TGL, with just minor changes for TGL.
+On Wed, Dec 18, 2019 at 09:39:17PM +0200, Ville Syrj=E4l=E4 wrote:
+> On Wed, Dec 18, 2019 at 10:59:09AM -0800, Jos=E9 Roberto de Souza wrote:
+> > Check if fastset is allowed by external dependencies like other pipes
+> > and transcoders.
+> > =
+
+> > Right now this patch only forces a fullmodeset in MST slaves of MST
+> > masters that needs a fullmodeset but it will be needed for port sync
+> > as well.
+> > =
+
+> > v3:
+> > - moved handling to intel_atomic_check() this way is guarantee that
+> > all pipes will have its state computed
+> > =
+
+> > v4:
+> > - added a function to return if MST master neeeds modeset to simply
+> > code in intel_atomic_check()
+> > =
+
+> > Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+> > Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> > Cc: Manasi Navare <manasi.d.navare@intel.com>
+> > Signed-off-by: Jos=E9 Roberto de Souza <jose.souza@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_display.c | 53 +++++++++++++++-----
+> >  drivers/gpu/drm/i915/display/intel_dp_mst.c  | 14 ++++++
+> >  drivers/gpu/drm/i915/display/intel_dp_mst.h  |  3 ++
+> >  3 files changed, 57 insertions(+), 13 deletions(-)
+> > =
+
+> > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu=
+/drm/i915/display/intel_display.c
+> > index a4f252d05b37..2a406891567b 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_display.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> > @@ -13903,19 +13903,6 @@ static void intel_crtc_check_fastset(const str=
+uct intel_crtc_state *old_crtc_sta
+> >  =
+
+> >  	new_crtc_state->uapi.mode_changed =3D false;
+> >  	new_crtc_state->update_pipe =3D true;
+> > -
+> > -	/*
+> > -	 * If we're not doing the full modeset we want to
+> > -	 * keep the current M/N values as they may be
+> > -	 * sufficiently different to the computed values
+> > -	 * to cause problems.
+> > -	 *
+> > -	 * FIXME: should really copy more fuzzy state here
+> > -	 */
+> > -	new_crtc_state->fdi_m_n =3D old_crtc_state->fdi_m_n;
+> > -	new_crtc_state->dp_m_n =3D old_crtc_state->dp_m_n;
+> > -	new_crtc_state->dp_m2_n2 =3D old_crtc_state->dp_m2_n2;
+> > -	new_crtc_state->has_drrs =3D old_crtc_state->has_drrs;
+> >  }
+> >  =
+
+> >  static int intel_crtc_add_planes_to_state(struct intel_atomic_state *s=
+tate,
+> > @@ -14083,6 +14070,46 @@ static int intel_atomic_check(struct drm_devic=
+e *dev,
+> >  			any_ms =3D true;
+> >  	}
+> >  =
+
+> > +	/**
+> > +	 * Check if fastset is allowed by external dependencies like other
+> > +	 * pipes and transcoders.
+> > +	 *
+> > +	 * Right now it only forces a fullmodeset when the MST master
+> > +	 * transcoder did not changed but the pipe of the master transcoder
+> > +	 * needs a fullmodeset so all slaves also needs to do a fullmodeset.
+> > +	 */
+> > +	for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state, i) {
+> > +		enum transcoder master =3D new_crtc_state->mst_master_transcoder;
+> > +
+> > +		if (!intel_dp_mst_is_slave_trans(new_crtc_state) ||
+> > +		    needs_modeset(new_crtc_state))
+> > +			continue;
+> > +
+> > +		if (intel_dp_mst_master_trans_needs_modeset(state, master)) {
 > =
 
-> With this last patch we finally fixed the hotplugs triggered by MST
-> sinks during the disable/enable sequence, those were causing source
-> to try to do a link training while it was not ready causing CPU pipe
-> FIFO underrrus on TGL.
+> I think this has the loops the opposite way of what I was thinking,
+> but should work fine I think... OK. I'm convinced your way is in fact
+> better.
 > =
 
-> v2: Only unsetting TGL_TRANS_DDI_PORT_MASK for TGL on the post
-> disable sequence
+> > +			new_crtc_state->uapi.mode_changed =3D true;
+> > +			new_crtc_state->update_pipe =3D false;
+> > +		}
+> > +	}
+> > +
+> > +	for_each_oldnew_intel_crtc_in_state(state, crtc, old_crtc_state,
+> > +					    new_crtc_state, i) {
+> > +		if (needs_modeset(new_crtc_state))
+> > +			continue;
 > =
 
-> v4: Rebased, moved MST sequences to intel_mst_post_disable_dp()
+> I suppose there isn't any way we should have crtcs in the state that
+> neither have update_pipe or needs_modeset flagged here. Could maybe
+> WARN_ON(!update_pipe) here if we're being paranoid.
 > =
 
-> BSpec: 4231
-> BSpec: 4163
-> BSpec: 22243
-> BSpec: 49190
-> Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-> Signed-off-by: Jos=E9 Roberto de Souza <jose.souza@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_ddi.c    | 33 +++++++++++++++------
->  drivers/gpu/drm/i915/display/intel_dp_mst.c | 33 +++++++++++++--------
->  2 files changed, 44 insertions(+), 22 deletions(-)
+> > +
+> > +		/*
+> > +		 * If we're not doing the full modeset we want to
+> > +		 * keep the current M/N values as they may be
+> > +		 * sufficiently different to the computed values
+> > +		 * to cause problems.
+> > +		 *
+> > +		 * FIXME: should really copy more fuzzy state here
+> > +		 */
+> > +		new_crtc_state->fdi_m_n =3D old_crtc_state->fdi_m_n;
+> > +		new_crtc_state->dp_m_n =3D old_crtc_state->dp_m_n;
+> > +		new_crtc_state->dp_m2_n2 =3D old_crtc_state->dp_m2_n2;
+> > +		new_crtc_state->has_drrs =3D old_crtc_state->has_drrs;
 > =
 
-> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i=
-915/display/intel_ddi.c
-> index 9d99ec82d072..94ca26be2fee 100644
-> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
-> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-> @@ -34,6 +34,7 @@
->  #include "intel_ddi.h"
->  #include "intel_display_types.h"
->  #include "intel_dp.h"
-> +#include "intel_dp_mst.h"
->  #include "intel_dp_link_training.h"
->  #include "intel_dpio_phy.h"
->  #include "intel_dsi.h"
-> @@ -1949,17 +1950,19 @@ void intel_ddi_disable_transcoder_func(const stru=
-ct intel_crtc_state *crtc_state
->  	struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.crtc);
->  	struct drm_i915_private *dev_priv =3D to_i915(crtc->base.dev);
->  	enum transcoder cpu_transcoder =3D crtc_state->cpu_transcoder;
-> -	i915_reg_t reg =3D TRANS_DDI_FUNC_CTL(cpu_transcoder);
-> -	u32 val =3D I915_READ(reg);
-> +	u32 val;
-> +
-> +	val =3D I915_READ(TRANS_DDI_FUNC_CTL(cpu_transcoder));
-> +	val &=3D ~TRANS_DDI_FUNC_ENABLE;
->  =
+> Still a bit unhappy having this state copy inlined in intel_atomic_check(=
+).
+> =
 
->  	if (INTEL_GEN(dev_priv) >=3D 12) {
-> -		val &=3D ~(TRANS_DDI_FUNC_ENABLE | TGL_TRANS_DDI_PORT_MASK |
-> -			 TRANS_DDI_DP_VC_PAYLOAD_ALLOC);
-> +		if (!intel_crtc_has_type(crtc_state, INTEL_OUTPUT_DP_MST) ||
-> +		    intel_dp_mst_is_slave_trans(crtc_state))
+> > +	}
+> > +
+> >  	if (any_ms && !check_digital_port_conflicts(state)) {
+> >  		DRM_DEBUG_KMS("rejecting conflicting digital port configuration\n");
+> >  		ret =3D EINVAL;
+> > diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/=
+drm/i915/display/intel_dp_mst.c
+> > index efd14b0b507b..4aba1d702a83 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> > @@ -854,3 +854,17 @@ bool intel_dp_mst_is_slave_trans(const struct inte=
+l_crtc_state *crtc_state)
+> >  	return crtc_state->mst_master_transcoder !=3D INVALID_TRANSCODER &&
+> >  	       crtc_state->mst_master_transcoder !=3D crtc_state->cpu_transco=
+der;
+> >  }
+> > +
+> > +bool intel_dp_mst_master_trans_needs_modeset(struct intel_atomic_state=
+ *state,
+> > +					     enum transcoder master)
+> =
 
-if (!intel_dp_mst_is_master_trans())
-	val &=3D ...;
+> Are we going to need this elsewhere? Or be static in intel_display.c?
+> Not that people are 100% happy of stuffing everything in there.
+> =
 
-?
+> > +{
+> > +	struct intel_crtc_state *new_crtc_state;
+> > +	struct intel_crtc *crtc;
+> > +	int i;
+> > +
+> > +	for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state, i)
+> > +		if (new_crtc_state->mst_master_transcoder =3D=3D master)
+> =
 
-> +			val &=3D ~TGL_TRANS_DDI_PORT_MASK;
->  	} else {
-> -		val &=3D ~(TRANS_DDI_FUNC_ENABLE | TRANS_DDI_PORT_MASK |
-> -			 TRANS_DDI_DP_VC_PAYLOAD_ALLOC);
-> +		val &=3D ~TRANS_DDI_PORT_MASK;
->  	}
-> -	I915_WRITE(reg, val);
-> +	I915_WRITE(TRANS_DDI_FUNC_CTL(cpu_transcoder), val);
->  =
+> So we need to modeset everything when either the master or any
+> other slave wants to modeset? That is, we can't just modeset slaves
+> independently and only force the modesets for all slaves if the master
+> needs a modeset?
 
->  	if (dev_priv->quirks & QUIRK_INCREASE_DDI_DISABLED_TIME &&
->  	    intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI)) {
-> @@ -3808,8 +3811,20 @@ static void intel_ddi_post_disable_dp(struct intel=
-_encoder *encoder,
->  	 */
->  	intel_dp_sink_dpms(intel_dp, DRM_MODE_DPMS_OFF);
->  =
+Hmm. Even if we technically could not sure we should with fastset
+potentially making minced meat of the state. Probably best to at
+least start with your version here.
 
-> -	if (INTEL_GEN(dev_priv) < 12 && !is_mst)
-> -		intel_ddi_disable_pipe_clock(old_crtc_state);
-> +	if (INTEL_GEN(dev_priv) >=3D 12) {
-> +		if (is_mst) {
-
-if (intel_dp_mst_is_master_trans()) {
-
-?
-
-> +			enum transcoder cpu_transcoder;
-> +			u32 val;
-> +
-> +			cpu_transcoder =3D old_crtc_state->cpu_transcoder;
-
-Assignment can be done when declaring the variable.
-
-> +			val =3D I915_READ(TRANS_DDI_FUNC_CTL(cpu_transcoder));
-> +			val &=3D ~TGL_TRANS_DDI_PORT_MASK;
-> +			I915_WRITE(TRANS_DDI_FUNC_CTL(cpu_transcoder), val);
-> +		}
-> +	} else {
-> +		if (!is_mst)
-> +			intel_ddi_disable_pipe_clock(old_crtc_state);
-> +	}
->  =
-
->  	intel_disable_ddi_buf(encoder, old_crtc_state);
->  =
-
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/dr=
-m/i915/display/intel_dp_mst.c
-> index 710137984c71..efd14b0b507b 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> @@ -347,6 +347,7 @@ static void intel_mst_post_disable_dp(struct intel_en=
-coder *encoder,
->  		to_intel_connector(old_conn_state->connector);
->  	struct drm_i915_private *dev_priv =3D to_i915(connector->base.dev);
->  	bool last_mst_stream;
-> +	u32 val;
->  =
-
->  	intel_dp->active_mst_links--;
->  	last_mst_stream =3D intel_dp->active_mst_links =3D=3D 0;
-> @@ -357,6 +358,19 @@ static void intel_mst_post_disable_dp(struct intel_e=
-ncoder *encoder,
->  =
-
->  	intel_disable_pipe(old_crtc_state);
->  =
-
-> +	drm_dp_update_payload_part2(&intel_dp->mst_mgr);
-
-Hmm. I'm having hard to figuring out what these things do. But from a
-cursory glance it almost looks like part1 is the one that does the AUX
-stuff to deallocate stuff. So feels like even that part should be here.
-
-> +
-> +	val =3D I915_READ(TRANS_DDI_FUNC_CTL(old_crtc_state->cpu_transcoder));
-> +	val &=3D ~TRANS_DDI_DP_VC_PAYLOAD_ALLOC;
-> +	I915_WRITE(TRANS_DDI_FUNC_CTL(old_crtc_state->cpu_transcoder), val);
-> +
-> +	if (intel_de_wait_for_set(dev_priv, intel_dp->regs.dp_tp_status,
-> +				  DP_TP_STATUS_ACT_SENT, 1))
-> +		DRM_ERROR("Timed out waiting for ACT sent when disabling\n");
-
-I guess we were missing this step entirely. Dunno if we want ERROR for
-this. Not sure how much noise it'll generate when someone forcefully
-yanks the cable...
-
-> +	drm_dp_check_act_status(&intel_dp->mst_mgr);
-> +
-> +	drm_dp_mst_deallocate_vcpi(&intel_dp->mst_mgr, connector->port);
-
-This seems to be pure sw stuff so not so critical where it is. Keeping
-it next to the hw payload deallocation seems like a good approach.
-
-> +
->  	intel_ddi_disable_transcoder_func(old_crtc_state);
->  =
-
->  	if (INTEL_GEN(dev_priv) >=3D 9)
-> @@ -364,6 +378,12 @@ static void intel_mst_post_disable_dp(struct intel_e=
-ncoder *encoder,
->  	else
->  		ironlake_pfit_disable(old_crtc_state);
->  =
-
-> +	/*
-> +	 * Power down mst path before disabling the port, otherwise we end
-> +	 * up getting interrupts from the sink upon detecting link loss.
-> +	 */
-> +	drm_dp_send_power_updown_phy(&intel_dp->mst_mgr, connector->port,
-> +				     false);
-
-And I guess this was needed to avoid the link loss screams from the sink?
-
-Seems to match the spec better than before at least. Still a bit unsure
-about he part1/2 stuff for the deallocation. But if that should be
-changed we can do it as a followup.
-
-The code movement into .post_disable() really did make for a much
-nicer experience when comparing with the spec. Or at least I didn't
-lose as much hair as with the previous version :)
-
+I'll leave it to you whether to address any nits I had:
 Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
 
->  	/*
->  	 * From TGL spec: "If multi-stream slave transcoder: Configure
->  	 * Transcoder Clock Select to direct no clock to the transcoder"
-> @@ -374,19 +394,6 @@ static void intel_mst_post_disable_dp(struct intel_e=
-ncoder *encoder,
->  	if (INTEL_GEN(dev_priv) < 12 || !last_mst_stream)
->  		intel_ddi_disable_pipe_clock(old_crtc_state);
->  =
+> =
 
-> -	/* this can fail */
-> -	drm_dp_check_act_status(&intel_dp->mst_mgr);
-> -	/* and this can also fail */
-> -	drm_dp_update_payload_part2(&intel_dp->mst_mgr);
-> -
-> -	drm_dp_mst_deallocate_vcpi(&intel_dp->mst_mgr, connector->port);
-> -
-> -	/*
-> -	 * Power down mst path before disabling the port, otherwise we end
-> -	 * up getting interrupts from the sink upon detecting link loss.
-> -	 */
-> -	drm_dp_send_power_updown_phy(&intel_dp->mst_mgr, connector->port,
-> -				     false);
->  =
+> > +			return drm_atomic_crtc_needs_modeset(&new_crtc_state->uapi);
+> > +
+> > +	return false;
+> > +}
+> > diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.h b/drivers/gpu/=
+drm/i915/display/intel_dp_mst.h
+> > index 854724f68f09..72cb486f32ab 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_dp_mst.h
+> > +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.h
+> > @@ -8,6 +8,7 @@
+> >  =
 
->  	intel_mst->connector =3D NULL;
->  	if (last_mst_stream)
+> >  #include <linux/types.h>
+> >  =
+
+> > +struct intel_atomic_state;
+> >  struct intel_digital_port;
+> >  struct intel_crtc_state;
+> >  =
+
+> > @@ -16,5 +17,7 @@ void intel_dp_mst_encoder_cleanup(struct intel_digita=
+l_port *intel_dig_port);
+> >  int intel_dp_mst_encoder_active_links(struct intel_digital_port *intel=
+_dig_port);
+> >  bool intel_dp_mst_is_master_trans(const struct intel_crtc_state *crtc_=
+state);
+> >  bool intel_dp_mst_is_slave_trans(const struct intel_crtc_state *crtc_s=
+tate);
+> > +bool intel_dp_mst_master_trans_needs_modeset(struct intel_atomic_state=
+ *state,
+> > +					     enum transcoder master);
+> >  =
+
+> >  #endif /* __INTEL_DP_MST_H__ */
+> > -- =
+
+> > 2.24.1
+> =
+
 > -- =
 
-> 2.24.1
+> Ville Syrj=E4l=E4
+> Intel
 
 -- =
 
