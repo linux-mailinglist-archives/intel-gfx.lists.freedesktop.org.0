@@ -1,30 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 419A812546D
-	for <lists+intel-gfx@lfdr.de>; Wed, 18 Dec 2019 22:14:53 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 872BE125477
+	for <lists+intel-gfx@lfdr.de>; Wed, 18 Dec 2019 22:16:57 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 06B766E153;
-	Wed, 18 Dec 2019 21:14:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E7DBD6EA82;
+	Wed, 18 Dec 2019 21:16:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F03986E153
- for <intel-gfx@lists.freedesktop.org>; Wed, 18 Dec 2019 21:14:48 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19626060-1500050 
- for multiple; Wed, 18 Dec 2019 21:14:40 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 18 Dec 2019 21:14:38 +0000
-Message-Id: <20191218211438.4009490-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.24.1
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 9D47C6EA80;
+ Wed, 18 Dec 2019 21:16:54 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 95746A0094;
+ Wed, 18 Dec 2019 21:16:54 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/gt: Schedule request retirement when
- signaler idles
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Rajat Jain" <rajatja@google.com>
+Date: Wed, 18 Dec 2019 21:16:54 -0000
+Message-ID: <157670381460.8354.17346010664530904304@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20191218195823.130560-1-rajatja@google.com>
+In-Reply-To: <20191218195823.130560-1-rajatja@google.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_series_starting_with_=5BRESEND=2Cv4=2C1/3=5D_drm/i915=3A_Mo?=
+ =?utf-8?q?ve_the_code_to_populate_ACPI_device_ID_into_intel=5Facpi?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,53 +39,35 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Very similar to commit 4f88f8747fa4 ("drm/i915/gt: Schedule request
-retirement when timeline idles"), but this time instead of coupling into
-the execlists CS event interrupt, we couple into the breadcrumb
-interrupt and queue a timeline's retirement when the last signaler is
-completed. This should allow us to more rapidly park ringbuffer
-submission, and so help reduce power consumption on older systems.
+== Series Details ==
 
-References: 4f88f8747fa4 ("drm/i915/gt: Schedule request retirement when timeline idles")
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
----
- drivers/gpu/drm/i915/gt/intel_breadcrumbs.c | 6 +++++-
- 1 file changed, 5 insertions(+), 1 deletion(-)
+Series: series starting with [RESEND,v4,1/3] drm/i915: Move the code to populate ACPI device ID into intel_acpi
+URL   : https://patchwork.freedesktop.org/series/71134/
+State : warning
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c b/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
-index 5fa4d621528e..4f491791b4ba 100644
---- a/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
-+++ b/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
-@@ -29,6 +29,7 @@
- #include "i915_drv.h"
- #include "i915_trace.h"
- #include "intel_gt_pm.h"
-+#include "intel_gt_requests.h"
- 
- static void irq_enable(struct intel_engine_cs *engine)
- {
-@@ -179,8 +180,11 @@ static void signal_irq_work(struct irq_work *work)
- 		if (!list_is_first(pos, &ce->signals)) {
- 			/* Advance the list to the first incomplete request */
- 			__list_del_many(&ce->signals, pos);
--			if (&ce->signals == pos) /* now empty */
-+			if (&ce->signals == pos) { /* now empty */
- 				list_del_init(&ce->signal_link);
-+				intel_engine_add_retire(ce->engine,
-+							ce->timeline);
-+			}
- 		}
- 	}
- 
--- 
-2.24.1
+== Summary ==
+
+$ dim checkpatch origin/drm-tip
+7893b575157a drm/i915: Move the code to populate ACPI device ID into intel_acpi
+d985e9976803 drm/i915: Lookup and attach ACPI device node for connectors
+38d88a5a15cb drm/i915: Add support for integrated privacy screens
+-:205: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#205: 
+new file mode 100644
+
+-:307: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#307: FILE: drivers/gpu/drm/i915/display/intel_privacy_screen.h:20:
++}
++static void
+
+total: 0 errors, 1 warnings, 1 checks, 247 lines checked
 
 _______________________________________________
 Intel-gfx mailing list
