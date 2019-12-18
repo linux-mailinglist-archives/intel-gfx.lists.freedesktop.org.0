@@ -2,40 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E4AEC124E4D
-	for <lists+intel-gfx@lfdr.de>; Wed, 18 Dec 2019 17:48:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8AD9D124E95
+	for <lists+intel-gfx@lfdr.de>; Wed, 18 Dec 2019 18:00:41 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 613FF6E90A;
-	Wed, 18 Dec 2019 16:48:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4B8556E914;
+	Wed, 18 Dec 2019 17:00:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CBB6C6E90A
- for <intel-gfx@lists.freedesktop.org>; Wed, 18 Dec 2019 16:48:23 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6035E6E914
+ for <intel-gfx@lists.freedesktop.org>; Wed, 18 Dec 2019 17:00:38 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
 X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 18 Dec 2019 08:48:23 -0800
-X-IronPort-AV: E=Sophos;i="5.69,330,1571727600"; d="scan'208";a="210142223"
-Received: from dtriolet-mobl1.ger.corp.intel.com (HELO [10.251.84.191])
- ([10.251.84.191])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/AES256-SHA;
- 18 Dec 2019 08:48:21 -0800
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-References: <20191217095642.3124521-1-chris@chris-wilson.co.uk>
- <20191217095642.3124521-7-chris@chris-wilson.co.uk>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <65d1543e-be04-61ef-3653-51c50f595e5e@linux.intel.com>
-Date: Wed, 18 Dec 2019 16:48:20 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by orsmga105.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 18 Dec 2019 09:00:23 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.69,330,1571727600"; d="scan'208";a="247951018"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by fmsmga002.fm.intel.com with SMTP; 18 Dec 2019 09:00:20 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Wed, 18 Dec 2019 19:00:19 +0200
+Date: Wed, 18 Dec 2019 19:00:19 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: =?iso-8859-1?Q?Jos=E9?= Roberto de Souza <jose.souza@intel.com>
+Message-ID: <20191218170019.GO1208@intel.com>
+References: <20191216220742.34332-1-jose.souza@intel.com>
+ <20191216220742.34332-10-jose.souza@intel.com>
 MIME-Version: 1.0
-In-Reply-To: <20191217095642.3124521-7-chris@chris-wilson.co.uk>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH 7/8] drm/i915/gt: Remove direct invocation
- of breadcrumb signaling
+Content-Disposition: inline
+In-Reply-To: <20191216220742.34332-10-jose.souza@intel.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH v3 10/11] drm/i915/display: Check if pipe
+ fastset is allowed by external dependencies
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,295 +48,184 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Cc: intel-gfx@lists.freedesktop.org, Lucas De Marchi <lucas.demarchi@intel.com>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Mon, Dec 16, 2019 at 02:07:41PM -0800, Jos=E9 Roberto de Souza wrote:
+> Check if fastset is allowed by external dependencies like other pipes
+> and transcoders.
+> =
 
-On 17/12/2019 09:56, Chris Wilson wrote:
-> Only signal the breadcrumbs from inside the irq_work, simplifying our
-> interface and calling conventions. The micro-optimisation here is that
-> by always using the irq_work interface, we know we are always inside an
-> irq-off critical section for the breadcrumb signaling and can ellide
-> save/restore of the irq flags.
+> Right now this patch only forces a fullmodeset in MST slaves of MST
+> masters that needs a fullmodeset but it will be needed for port sync
+> as well.
+> =
 
-Assuming no significant impact on saturated media workloads:
+> v3:
+> - moved handling to intel_atomic_check() this way is guarantee that
+> all pipes will have its state computed
+> =
 
-Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-
-Regards,
-
-Tvrtko
-
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> Cc: Manasi Navare <manasi.d.navare@intel.com>
+> Signed-off-by: Jos=E9 Roberto de Souza <jose.souza@intel.com>
 > ---
->   drivers/gpu/drm/i915/gt/intel_breadcrumbs.c   | 27 +++++++------------
->   drivers/gpu/drm/i915/gt/intel_engine.h        |  4 +--
->   drivers/gpu/drm/i915/gt/intel_gt_irq.c        | 12 ++++-----
->   drivers/gpu/drm/i915/gt/intel_lrc.c           |  2 +-
->   drivers/gpu/drm/i915/gt/intel_reset.c         |  4 +--
->   .../gpu/drm/i915/gt/intel_ring_submission.c   |  2 +-
->   drivers/gpu/drm/i915/gt/intel_rps.c           |  2 +-
->   drivers/gpu/drm/i915/gt/mock_engine.c         |  2 +-
->   drivers/gpu/drm/i915/i915_irq.c               |  8 +++---
->   drivers/gpu/drm/i915/i915_request.c           |  2 +-
->   10 files changed, 27 insertions(+), 38 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c b/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
-> index 8a9facf4f3b6..5fa4d621528e 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
-> @@ -130,16 +130,15 @@ __dma_fence_signal__notify(struct dma_fence *fence,
->   	}
->   }
->   
-> -void intel_engine_breadcrumbs_irq(struct intel_engine_cs *engine)
-> +static void signal_irq_work(struct irq_work *work)
->   {
-> -	struct intel_breadcrumbs *b = &engine->breadcrumbs;
-> +	struct intel_breadcrumbs *b = container_of(work, typeof(*b), irq_work);
->   	const ktime_t timestamp = ktime_get();
->   	struct intel_context *ce, *cn;
->   	struct list_head *pos, *next;
-> -	unsigned long flags;
->   	LIST_HEAD(signal);
->   
-> -	spin_lock_irqsave(&b->irq_lock, flags);
-> +	spin_lock(&b->irq_lock);
->   
->   	if (b->irq_armed && list_empty(&b->signalers))
->   		__intel_breadcrumbs_disarm_irq(b);
-> @@ -185,31 +184,23 @@ void intel_engine_breadcrumbs_irq(struct intel_engine_cs *engine)
->   		}
->   	}
->   
-> -	spin_unlock_irqrestore(&b->irq_lock, flags);
-> +	spin_unlock(&b->irq_lock);
->   
->   	list_for_each_safe(pos, next, &signal) {
->   		struct i915_request *rq =
->   			list_entry(pos, typeof(*rq), signal_link);
->   		struct list_head cb_list;
->   
-> -		spin_lock_irqsave(&rq->lock, flags);
-> +		spin_lock(&rq->lock);
->   		list_replace(&rq->fence.cb_list, &cb_list);
->   		__dma_fence_signal__timestamp(&rq->fence, timestamp);
->   		__dma_fence_signal__notify(&rq->fence, &cb_list);
-> -		spin_unlock_irqrestore(&rq->lock, flags);
-> +		spin_unlock(&rq->lock);
->   
->   		i915_request_put(rq);
->   	}
->   }
->   
-> -static void signal_irq_work(struct irq_work *work)
-> -{
-> -	struct intel_engine_cs *engine =
-> -		container_of(work, typeof(*engine), breadcrumbs.irq_work);
+>  drivers/gpu/drm/i915/display/intel_display.c | 63 ++++++++++++++++----
+>  1 file changed, 50 insertions(+), 13 deletions(-)
+> =
+
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/d=
+rm/i915/display/intel_display.c
+> index f1c0687bf69b..2627a7bcb45c 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -13941,19 +13941,6 @@ static void intel_crtc_check_fastset(const struc=
+t intel_crtc_state *old_crtc_sta
+>  =
+
+>  	new_crtc_state->uapi.mode_changed =3D false;
+>  	new_crtc_state->update_pipe =3D true;
 > -
-> -	intel_engine_breadcrumbs_irq(engine);
-> -}
-> -
->   static bool __intel_breadcrumbs_arm_irq(struct intel_breadcrumbs *b)
->   {
->   	struct intel_engine_cs *engine =
-> @@ -290,9 +281,9 @@ bool i915_request_enable_breadcrumb(struct i915_request *rq)
->   
->   		/*
->   		 * We keep the seqno in retirement order, so we can break
-> -		 * inside intel_engine_breadcrumbs_irq as soon as we've passed
-> -		 * the last completed request (or seen a request that hasn't
-> -		 * event started). We could iterate the timeline->requests list,
-> +		 * inside intel_engine_signal_breadcrumbs as soon as we've
-> +		 * passed the last completed request (or seen a request that
-> +		 * hasn't event started). We could walk the timeline->requests,
->   		 * but keeping a separate signalers_list has the advantage of
->   		 * hopefully being much smaller than the full list and so
->   		 * provides faster iteration and detection when there are no
-> diff --git a/drivers/gpu/drm/i915/gt/intel_engine.h b/drivers/gpu/drm/i915/gt/intel_engine.h
-> index 0926ecea9147..b21c20ee9e23 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_engine.h
-> +++ b/drivers/gpu/drm/i915/gt/intel_engine.h
-> @@ -213,13 +213,11 @@ void intel_engine_fini_breadcrumbs(struct intel_engine_cs *engine);
->   void intel_engine_disarm_breadcrumbs(struct intel_engine_cs *engine);
->   
->   static inline void
-> -intel_engine_queue_breadcrumbs(struct intel_engine_cs *engine)
-> +intel_engine_signal_breadcrumbs(struct intel_engine_cs *engine)
->   {
->   	irq_work_queue(&engine->breadcrumbs.irq_work);
->   }
->   
-> -void intel_engine_breadcrumbs_irq(struct intel_engine_cs *engine);
-> -
->   void intel_engine_reset_breadcrumbs(struct intel_engine_cs *engine);
->   void intel_engine_fini_breadcrumbs(struct intel_engine_cs *engine);
->   
-> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_irq.c b/drivers/gpu/drm/i915/gt/intel_gt_irq.c
-> index 332b12a574fb..f796bdf1ed30 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_gt_irq.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_gt_irq.c
-> @@ -28,7 +28,7 @@ cs_irq_handler(struct intel_engine_cs *engine, u32 iir)
->   		tasklet = true;
->   
->   	if (iir & GT_RENDER_USER_INTERRUPT) {
-> -		intel_engine_queue_breadcrumbs(engine);
-> +		intel_engine_signal_breadcrumbs(engine);
->   		tasklet |= intel_engine_needs_breadcrumb_tasklet(engine);
->   	}
->   
-> @@ -245,9 +245,9 @@ void gen11_gt_irq_postinstall(struct intel_gt *gt)
->   void gen5_gt_irq_handler(struct intel_gt *gt, u32 gt_iir)
->   {
->   	if (gt_iir & GT_RENDER_USER_INTERRUPT)
-> -		intel_engine_breadcrumbs_irq(gt->engine_class[RENDER_CLASS][0]);
-> +		intel_engine_signal_breadcrumbs(gt->engine_class[RENDER_CLASS][0]);
->   	if (gt_iir & ILK_BSD_USER_INTERRUPT)
-> -		intel_engine_breadcrumbs_irq(gt->engine_class[VIDEO_DECODE_CLASS][0]);
-> +		intel_engine_signal_breadcrumbs(gt->engine_class[VIDEO_DECODE_CLASS][0]);
->   }
->   
->   static void gen7_parity_error_irq_handler(struct intel_gt *gt, u32 iir)
-> @@ -271,11 +271,11 @@ static void gen7_parity_error_irq_handler(struct intel_gt *gt, u32 iir)
->   void gen6_gt_irq_handler(struct intel_gt *gt, u32 gt_iir)
->   {
->   	if (gt_iir & GT_RENDER_USER_INTERRUPT)
-> -		intel_engine_breadcrumbs_irq(gt->engine_class[RENDER_CLASS][0]);
-> +		intel_engine_signal_breadcrumbs(gt->engine_class[RENDER_CLASS][0]);
->   	if (gt_iir & GT_BSD_USER_INTERRUPT)
-> -		intel_engine_breadcrumbs_irq(gt->engine_class[VIDEO_DECODE_CLASS][0]);
-> +		intel_engine_signal_breadcrumbs(gt->engine_class[VIDEO_DECODE_CLASS][0]);
->   	if (gt_iir & GT_BLT_USER_INTERRUPT)
-> -		intel_engine_breadcrumbs_irq(gt->engine_class[COPY_ENGINE_CLASS][0]);
-> +		intel_engine_signal_breadcrumbs(gt->engine_class[COPY_ENGINE_CLASS][0]);
->   
->   	if (gt_iir & (GT_BLT_CS_ERROR_INTERRUPT |
->   		      GT_BSD_CS_ERROR_INTERRUPT |
-> diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-> index 4ebfecd95032..4db54fd6a2fe 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-> @@ -1483,7 +1483,7 @@ static void virtual_xfer_breadcrumbs(struct virtual_engine *ve,
->   	if (!list_empty(&ve->context.signal_link)) {
->   		list_move_tail(&ve->context.signal_link,
->   			       &engine->breadcrumbs.signalers);
-> -		intel_engine_queue_breadcrumbs(engine);
-> +		intel_engine_signal_breadcrumbs(engine);
->   	}
->   	spin_unlock(&old->breadcrumbs.irq_lock);
->   }
-> diff --git a/drivers/gpu/drm/i915/gt/intel_reset.c b/drivers/gpu/drm/i915/gt/intel_reset.c
-> index f5b2e7c7e6c8..f3d1e921fba6 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_reset.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_reset.c
-> @@ -742,7 +742,7 @@ static void reset_finish_engine(struct intel_engine_cs *engine)
->   	engine->reset.finish(engine);
->   	intel_uncore_forcewake_put(engine->uncore, FORCEWAKE_ALL);
->   
-> -	intel_engine_breadcrumbs_irq(engine);
-> +	intel_engine_signal_breadcrumbs(engine);
->   }
->   
->   static void reset_finish(struct intel_gt *gt, intel_engine_mask_t awake)
-> @@ -771,7 +771,7 @@ static void nop_submit_request(struct i915_request *request)
->   	i915_request_mark_complete(request);
->   	spin_unlock_irqrestore(&engine->active.lock, flags);
->   
-> -	intel_engine_queue_breadcrumbs(engine);
-> +	intel_engine_signal_breadcrumbs(engine);
->   }
->   
->   static void __intel_gt_set_wedged(struct intel_gt *gt)
-> diff --git a/drivers/gpu/drm/i915/gt/intel_ring_submission.c b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
-> index 00d1fb582e95..a5fbd1422f73 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_ring_submission.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
-> @@ -719,7 +719,7 @@ static int xcs_resume(struct intel_engine_cs *engine)
->   	}
->   
->   	/* Papering over lost _interrupts_ immediately following the restart */
-> -	intel_engine_queue_breadcrumbs(engine);
-> +	intel_engine_signal_breadcrumbs(engine);
->   out:
->   	intel_uncore_forcewake_put(engine->uncore, FORCEWAKE_ALL);
->   
-> diff --git a/drivers/gpu/drm/i915/gt/intel_rps.c b/drivers/gpu/drm/i915/gt/intel_rps.c
-> index 5f5a000c801d..eabd5e1a2b95 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_rps.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_rps.c
-> @@ -1566,7 +1566,7 @@ void gen6_rps_irq_handler(struct intel_rps *rps, u32 pm_iir)
->   		return;
->   
->   	if (pm_iir & PM_VEBOX_USER_INTERRUPT)
-> -		intel_engine_breadcrumbs_irq(gt->engine[VECS0]);
-> +		intel_engine_signal_breadcrumbs(gt->engine[VECS0]);
->   
->   	if (pm_iir & PM_VEBOX_CS_ERROR_INTERRUPT)
->   		DRM_DEBUG("Command parser error, pm_iir 0x%08x\n", pm_iir);
-> diff --git a/drivers/gpu/drm/i915/gt/mock_engine.c b/drivers/gpu/drm/i915/gt/mock_engine.c
-> index 83f549d203a0..39df9d49a134 100644
-> --- a/drivers/gpu/drm/i915/gt/mock_engine.c
-> +++ b/drivers/gpu/drm/i915/gt/mock_engine.c
-> @@ -77,7 +77,7 @@ static void advance(struct i915_request *request)
->   	i915_request_mark_complete(request);
->   	GEM_BUG_ON(!i915_request_completed(request));
->   
-> -	intel_engine_queue_breadcrumbs(request->engine);
-> +	intel_engine_signal_breadcrumbs(request->engine);
->   }
->   
->   static void hw_delay_complete(struct timer_list *t)
-> diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_irq.c
-> index a5348f79114f..42b79f577500 100644
-> --- a/drivers/gpu/drm/i915/i915_irq.c
-> +++ b/drivers/gpu/drm/i915/i915_irq.c
-> @@ -3619,7 +3619,7 @@ static irqreturn_t i8xx_irq_handler(int irq, void *arg)
->   		intel_uncore_write16(&dev_priv->uncore, GEN2_IIR, iir);
->   
->   		if (iir & I915_USER_INTERRUPT)
-> -			intel_engine_breadcrumbs_irq(dev_priv->engine[RCS0]);
-> +			intel_engine_signal_breadcrumbs(dev_priv->engine[RCS0]);
->   
->   		if (iir & I915_MASTER_ERROR_INTERRUPT)
->   			i8xx_error_irq_handler(dev_priv, eir, eir_stuck);
-> @@ -3724,7 +3724,7 @@ static irqreturn_t i915_irq_handler(int irq, void *arg)
->   		I915_WRITE(GEN2_IIR, iir);
->   
->   		if (iir & I915_USER_INTERRUPT)
-> -			intel_engine_breadcrumbs_irq(dev_priv->engine[RCS0]);
-> +			intel_engine_signal_breadcrumbs(dev_priv->engine[RCS0]);
->   
->   		if (iir & I915_MASTER_ERROR_INTERRUPT)
->   			i9xx_error_irq_handler(dev_priv, eir, eir_stuck);
-> @@ -3866,10 +3866,10 @@ static irqreturn_t i965_irq_handler(int irq, void *arg)
->   		I915_WRITE(GEN2_IIR, iir);
->   
->   		if (iir & I915_USER_INTERRUPT)
-> -			intel_engine_breadcrumbs_irq(dev_priv->engine[RCS0]);
-> +			intel_engine_signal_breadcrumbs(dev_priv->engine[RCS0]);
->   
->   		if (iir & I915_BSD_USER_INTERRUPT)
-> -			intel_engine_breadcrumbs_irq(dev_priv->engine[VCS0]);
-> +			intel_engine_signal_breadcrumbs(dev_priv->engine[VCS0]);
->   
->   		if (iir & I915_MASTER_ERROR_INTERRUPT)
->   			i9xx_error_irq_handler(dev_priv, eir, eir_stuck);
-> diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
-> index 269470d3527a..2118284b796e 100644
-> --- a/drivers/gpu/drm/i915/i915_request.c
-> +++ b/drivers/gpu/drm/i915/i915_request.c
-> @@ -408,7 +408,7 @@ bool __i915_request_submit(struct i915_request *request)
->   	if (test_bit(DMA_FENCE_FLAG_ENABLE_SIGNAL_BIT, &request->fence.flags) &&
->   	    !test_bit(DMA_FENCE_FLAG_SIGNALED_BIT, &request->fence.flags) &&
->   	    !i915_request_enable_breadcrumb(request))
-> -		intel_engine_queue_breadcrumbs(engine);
-> +		intel_engine_signal_breadcrumbs(engine);
->   
->   	__notify_execute_cb(request);
->   
-> 
+> -	/*
+> -	 * If we're not doing the full modeset we want to
+> -	 * keep the current M/N values as they may be
+> -	 * sufficiently different to the computed values
+> -	 * to cause problems.
+> -	 *
+> -	 * FIXME: should really copy more fuzzy state here
+> -	 */
+> -	new_crtc_state->fdi_m_n =3D old_crtc_state->fdi_m_n;
+> -	new_crtc_state->dp_m_n =3D old_crtc_state->dp_m_n;
+> -	new_crtc_state->dp_m2_n2 =3D old_crtc_state->dp_m2_n2;
+> -	new_crtc_state->has_drrs =3D old_crtc_state->has_drrs;
+>  }
+>  =
+
+>  static int intel_crtc_add_planes_to_state(struct intel_atomic_state *sta=
+te,
+> @@ -14121,6 +14108,56 @@ static int intel_atomic_check(struct drm_device =
+*dev,
+>  			any_ms =3D true;
+>  	}
+>  =
+
+> +	/**
+> +	 * Check if fastset is allowed by external dependencies like other
+> +	 * pipes and transcoders.
+> +	 *
+> +	 * Right now it only forces a fullmodeset when the MST master
+> +	 * transcoder did not changed but the pipe of the master transcoder
+> +	 * needs a fullmodeset so all slaves also needs to do a fullmodeset.
+> +	 */
+> +	for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state, i) {
+> +		struct intel_crtc_state *new_crtc_state_iter;
+> +		struct intel_crtc *crtc_iter;
+> +		int j;
+> +
+> +		if (!intel_dp_mst_is_slave_trans(new_crtc_state) ||
+> +		    needs_modeset(new_crtc_state))
+
+shouldn't this be
+if (!mst_master || !needs_modeset)
+	continue;
+?
+
+> +			continue;
+> +
+> +		for_each_new_intel_crtc_in_state(state, crtc_iter,
+> +						 new_crtc_state_iter, j) {
+> +			if (new_crtc_state->mst_master_transcoder !=3D
+> +			    new_crtc_state_iter->cpu_transcoder)
+> +				continue;
+> +
+> +			if (needs_modeset(new_crtc_state_iter)) {
+> +				new_crtc_state->uapi.mode_changed =3D true;
+> +				new_crtc_state->update_pipe =3D false;
+> +			}
+> +			break;
+
+Hmm. So I guess the break here is because we're going to keep iterating
+the outer loop anyway? Don't think that works with the s/slave/master/
+fix above.
+
+I suggest moving this inner loop into a separate function entirely.
+Could simply pass in the master_transcoder to that function and then
+we wouldn't even have this clash with variable names for the two
+crtcs/crtc_states.
+
+Somethig like (with better funciton names ofc :)
+
+mst_modeset_slaves(state, master_transcoder)
+{
+	for_each() {
+		if (master_transcoder =3D=3D crtc_state->master_transcoder)
+			modeset=3D1;
+	}
+}
+
+atomic_check()
+{
+	for_each()
+		compute();
+
+	for_each() {
+		if (master && needs_modeset()
+			mst_modeset_slaves(state, crtc_state->cpu_transcoder);
+	}
+
+	for_each() {
+		if (fastset)
+			copy();
+	}
+}
+
+Or do we also need to force a modeset for the master if a slave needs a
+modeset? I'm trying to think if there's a way that we could end up with
+a slave changing its master (thus needing modeset) without the master
+being flagged for modeset...
+
+> +		}
+> +	}
+> +
+> +	for_each_oldnew_intel_crtc_in_state(state, crtc, old_crtc_state,
+> +					    new_crtc_state, i) {
+> +		if (needs_modeset(new_crtc_state))
+> +			continue;
+> +
+> +		/*
+> +		 * If we're not doing the full modeset we want to
+> +		 * keep the current M/N values as they may be
+> +		 * sufficiently different to the computed values
+> +		 * to cause problems.
+> +		 *
+> +		 * FIXME: should really copy more fuzzy state here
+> +		 */
+> +		new_crtc_state->fdi_m_n =3D old_crtc_state->fdi_m_n;
+> +		new_crtc_state->dp_m_n =3D old_crtc_state->dp_m_n;
+> +		new_crtc_state->dp_m2_n2 =3D old_crtc_state->dp_m2_n2;
+> +		new_crtc_state->has_drrs =3D old_crtc_state->has_drrs;
+
+A separate function for this fastset state copy might also be nice so we
+don't have to see these mundane details in this higher level code.
+
+> +	}
+> +
+>  	if (any_ms && !check_digital_port_conflicts(state)) {
+>  		DRM_DEBUG_KMS("rejecting conflicting digital port configuration\n");
+>  		ret =3D EINVAL;
+> -- =
+
+> 2.24.1
+
+-- =
+
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
