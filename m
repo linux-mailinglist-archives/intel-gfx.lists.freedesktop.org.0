@@ -1,32 +1,39 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B7080125517
-	for <lists+intel-gfx@lfdr.de>; Wed, 18 Dec 2019 22:50:26 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 307801256A4
+	for <lists+intel-gfx@lfdr.de>; Wed, 18 Dec 2019 23:26:43 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CDA9A89780;
-	Wed, 18 Dec 2019 21:50:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9B53A6EA8C;
+	Wed, 18 Dec 2019 22:26:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 82D308977A;
- Wed, 18 Dec 2019 21:50:23 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 7ACBAA0119;
- Wed, 18 Dec 2019 21:50:23 +0000 (UTC)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2BF666EA88;
+ Wed, 18 Dec 2019 22:26:36 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 18 Dec 2019 14:26:35 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.69,330,1571727600"; d="scan'208";a="248048747"
+Received: from nvishwa1-desk.sc.intel.com ([10.3.160.185])
+ by fmsmga002.fm.intel.com with ESMTP; 18 Dec 2019 14:26:35 -0800
+Date: Wed, 18 Dec 2019 14:15:26 -0800
+From: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+To: Jason Gunthorpe <jgg@mellanox.com>
+Message-ID: <20191218221526.GA17413@nvishwa1-DESK.sc.intel.com>
+References: <20191213215614.24558-1-niranjana.vishwanathapura@intel.com>
+ <20191213215614.24558-7-niranjana.vishwanathapura@intel.com>
+ <20191217203543.GH16762@mellanox.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Rajat Jain" <rajatja@google.com>
-Date: Wed, 18 Dec 2019 21:50:23 -0000
-Message-ID: <157670582347.8356.3838472604641069904@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20191217200829.120993-1-rajatja@google.com>
-In-Reply-To: <20191217200829.120993-1-rajatja@google.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_series_starting_with_=5Bv4=2C1/3=5D_drm/i915=3A_Move_the_co?=
- =?utf-8?q?de_to_populate_ACPI_device_ID_into_intel=5Facpi?=
+Content-Disposition: inline
+In-Reply-To: <20191217203543.GH16762@mellanox.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+Subject: Re: [Intel-gfx] [RFC v2 06/12] drm/i915/svm: Device memory support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,36 +46,107 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
+Cc: "kenneth.w.graunke@intel.com" <kenneth.w.graunke@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "sanjay.k.kumar@intel.com" <sanjay.k.kumar@intel.com>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "jason.ekstrand@intel.com" <jason.ekstrand@intel.com>,
+ "dave.hansen@intel.com" <dave.hansen@intel.com>,
+ "jglisse@redhat.com" <jglisse@redhat.com>,
+ "daniel.vetter@intel.com" <daniel.vetter@intel.com>,
+ "dan.j.williams@intel.com" <dan.j.williams@intel.com>,
+ "ira.weiny@intel.com" <ira.weiny@intel.com>
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Tue, Dec 17, 2019 at 08:35:47PM +0000, Jason Gunthorpe wrote:
+>On Fri, Dec 13, 2019 at 01:56:08PM -0800, Niranjana Vishwanathapura wrote:
+>> @@ -169,6 +170,11 @@ static int i915_range_fault(struct svm_notifier *sn,
+>>  			return ret;
+>>  		}
+>>
+>> +		/* For dgfx, ensure the range is in device local memory only */
+>> +		regions = i915_dmem_convert_pfn(vm->i915, &range);
+>> +		if (!regions || (IS_DGFX(vm->i915) && (regions & REGION_SMEM)))
+>> +			return -EINVAL;
+>> +
+>
+>This is not OK, as I said before, the driver cannot de-reference pfns
+>before doing the retry check, under lock.
+>
 
-Series: series starting with [v4,1/3] drm/i915: Move the code to populate ACPI device ID into intel_acpi
-URL   : https://patchwork.freedesktop.org/series/71135/
-State : warning
+Thanks.
+Ok, will push it down and do it after validating the range.
 
-== Summary ==
+>> +
+>> +int i915_dmem_convert_pfn(struct drm_i915_private *dev_priv,
+>> +			  struct hmm_range *range)
+>> +{
+>> +	unsigned long i, npages;
+>> +	int regions = 0;
+>> +
+>> +	npages = (range->end - range->start) >> PAGE_SHIFT;
+>> +	for (i = 0; i < npages; ++i) {
+>> +		struct i915_buddy_block *block;
+>> +		struct intel_memory_region *mem;
+>> +		struct page *page;
+>> +		u64 addr;
+>> +
+>> +		page = hmm_device_entry_to_page(range, range->pfns[i]);
+>                        ^^^^^^^^^^^^^^^^^^^^^^
+>
+>For instance, that cannot be done on a speculatively loaded page.
+>
+>This also looks like it suffers from the same bug as
+>
 
-$ dim checkpatch origin/drm-tip
-a992db381df1 drm/i915: Move the code to populate ACPI device ID into intel_acpi
-686662fa34e8 drm/i915: Lookup and attach ACPI device node for connectors
-46f010dc30eb drm/i915: Add support for integrated privacy screens
--:205: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#205: 
-new file mode 100644
+Ok.
 
--:307: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
-#307: FILE: drivers/gpu/drm/i915/display/intel_privacy_screen.h:20:
-+}
-+static void
+>> +		if (!page)
+>> +			continue;
+>> +
+>> +		if (!(range->pfns[i] & range->flags[HMM_PFN_DEVICE_PRIVATE])) {
+>> +			regions |= REGION_SMEM;
+>> +			continue;
+>> +		}
+>> +
+>> +		if (!i915_dmem_page(dev_priv, page)) {
+>> +			WARN(1, "Some unknown device memory !\n");
+>
+>Why is that a WARN? The user could put other device memory in the
+>address space. You need to 'segfault' the GPU execution if this happens.
+>
 
-total: 0 errors, 1 warnings, 1 checks, 247 lines checked
+OK, will return an error here if user is trying to bind here.
+I agree, we need to segfault the GPU if it is GPU fault handling.
 
+>> +			range->pfns[i] = 0;
+>> +			continue;
+>> +		}
+>> +
+>> +		regions |= REGION_LMEM;
+>> +		block = page->zone_device_data;
+>> +		mem = block->private;
+>> +		addr = mem->region.start +
+>> +		       i915_buddy_block_offset(block);
+>> +		addr += (page_to_pfn(page) - block->pfn_first) << PAGE_SHIFT;
+>> +
+>> +		range->pfns[i] &= ~range->flags[HMM_PFN_DEVICE_PRIVATE];
+>> +		range->pfns[i] &= ((1UL << range->pfn_shift) - 1);
+>> +		range->pfns[i] |= (addr >> PAGE_SHIFT) << range->pfn_shift;
+>
+>This makes more sense as a direct manipulation of the sgl, not sure
+>why this routine is split out from the sgl builder?
+>
+
+Ok, yah, let me merge it with sgl building.
+
+Thanks,
+Niranjana
+
+>Jason
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
