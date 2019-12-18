@@ -1,41 +1,29 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2461B124DF1
-	for <lists+intel-gfx@lfdr.de>; Wed, 18 Dec 2019 17:38:35 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4880E124E12
+	for <lists+intel-gfx@lfdr.de>; Wed, 18 Dec 2019 17:42:18 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 74ECD6E8FE;
-	Wed, 18 Dec 2019 16:38:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6961A6E904;
+	Wed, 18 Dec 2019 16:42:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0911E6EA3B
- for <intel-gfx@lists.freedesktop.org>; Wed, 18 Dec 2019 16:38:30 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-X-Amp-File-Uploaded: False
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 18 Dec 2019 08:38:26 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,330,1571727600"; d="scan'208";a="298430595"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by orsmga001.jf.intel.com with SMTP; 18 Dec 2019 08:38:24 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 18 Dec 2019 18:38:23 +0200
-Date: Wed, 18 Dec 2019 18:38:23 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: =?iso-8859-1?Q?Jos=E9?= Roberto de Souza <jose.souza@intel.com>
-Message-ID: <20191218163823.GM1208@intel.com>
-References: <20191216220742.34332-1-jose.souza@intel.com>
- <20191216220742.34332-6-jose.souza@intel.com>
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4A1416E904
+ for <intel-gfx@lists.freedesktop.org>; Wed, 18 Dec 2019 16:42:15 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19623407-1500050 
+ for multiple; Wed, 18 Dec 2019 16:41:53 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 18 Dec 2019 16:41:52 +0000
+Message-Id: <20191218164152.3883750-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.24.1
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20191216220742.34332-6-jose.souza@intel.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH v3 06/11] drm/i915/display: Share
- intel_connector_needs_modeset()
+Subject: [Intel-gfx] [PATCH] drm/i915/gt: Track engine round-trip times
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,218 +36,149 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Dec 16, 2019 at 02:07:37PM -0800, Jos=E9 Roberto de Souza wrote:
-> intel_connector_needs_modeset() will be used outside of
-> intel_display.c in a future patch so it would only be necessary to
-> remove the state and add the prototype to the header file.
-> =
+Knowing the round trip time of an engine is useful for tracking the
+health of the system as well as providing a metric for the baseline
+responsiveness of the engine. We can use the latter metric for
+automatically tuning our waits in selftests and when idling so we don't
+confuse a slower system with a dead one.
 
-> But while at it, I simplified the arguments and moved it to a better
-> place intel_atomic.c.
-> =
+Upon idling the engine, we send one last pulse to switch the context
+away from precious user state to the volatile kernel context. We know
+the engine is idle at this point, and the pulse is non-preemptible, so
+this provides us with a good measurement of the round trip time. It also
+provides us with faster engine parking for ringbuffer submission, which
+is a welcome bonus (e.g. softer-rc6).
 
-> That allowed us to convert the whole
-> intel_encoders_update_prepare/complete to intel types too.
-> =
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Cc: Stuart Summers <stuart.summers@intel.com>
+---
+ drivers/gpu/drm/i915/gt/intel_engine_cs.c    |  2 ++
+ drivers/gpu/drm/i915/gt/intel_engine_pm.c    | 32 +++++++++++++++++++-
+ drivers/gpu/drm/i915/gt/intel_engine_types.h | 11 +++++++
+ 3 files changed, 44 insertions(+), 1 deletion(-)
 
-> No behavior changes intended here.
-> =
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+index 3d1d48bf90cf..0b94147ff9c2 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
++++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+@@ -334,6 +334,7 @@ static int intel_engine_setup(struct intel_gt *gt, enum intel_engine_id id)
+ 	/* Nothing to do here, execute in order of dependencies */
+ 	engine->schedule = NULL;
+ 
++	ewma_delay_init(&engine->delay);
+ 	seqlock_init(&engine->stats.lock);
+ 
+ 	ATOMIC_INIT_NOTIFIER_HEAD(&engine->context_status_notifier);
+@@ -1481,6 +1482,7 @@ void intel_engine_dump(struct intel_engine_cs *engine,
+ 	drm_printf(m, "\tAwake? %d\n", atomic_read(&engine->wakeref.count));
+ 	drm_printf(m, "\tBarriers?: %s\n",
+ 		   yesno(!llist_empty(&engine->barrier_tasks)));
++	drm_printf(m, "\tDelay: %luus\n", ewma_delay_read(&engine->delay));
+ 
+ 	rcu_read_lock();
+ 	rq = READ_ONCE(engine->heartbeat.systole);
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine_pm.c b/drivers/gpu/drm/i915/gt/intel_engine_pm.c
+index bcbda8e52d41..f23053e729ba 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine_pm.c
++++ b/drivers/gpu/drm/i915/gt/intel_engine_pm.c
+@@ -12,6 +12,7 @@
+ #include "intel_engine_pool.h"
+ #include "intel_gt.h"
+ #include "intel_gt_pm.h"
++#include "intel_gt_requests.h"
+ #include "intel_rc6.h"
+ #include "intel_ring.h"
+ 
+@@ -73,6 +74,20 @@ static inline void __timeline_mark_unlock(struct intel_context *ce,
+ 
+ #endif /* !IS_ENABLED(CONFIG_LOCKDEP) */
+ 
++struct duration_cb {
++	struct dma_fence_cb cb;
++	ktime_t emitted;
++};
++
++static void duration_cb(struct dma_fence *fence, struct dma_fence_cb *cb)
++{
++	struct duration_cb *dcb = container_of(cb, typeof(*dcb), cb);
++	struct intel_engine_cs *engine = to_request(fence)->engine;
++
++	ewma_delay_add(&engine->delay,
++		       ktime_us_delta(ktime_get(), dcb->emitted));
++}
++
+ static void
+ __queue_and_release_pm(struct i915_request *rq,
+ 		       struct intel_timeline *tl,
+@@ -163,7 +178,22 @@ static bool switch_to_kernel_context(struct intel_engine_cs *engine)
+ 
+ 	/* Install ourselves as a preemption barrier */
+ 	rq->sched.attr.priority = I915_PRIORITY_BARRIER;
+-	__i915_request_commit(rq);
++	if (likely(!__i915_request_commit(rq))) { /* engine should be idle! */
++		struct duration_cb *dcb;
++
++		BUILD_BUG_ON(sizeof(*dcb) > sizeof(rq->submitq));
++		dcb = (struct duration_cb *)&rq->submitq;
++
++		/*
++		 * Use an interrupt for precise measurement of duration,
++		 * otherwise we rely on someone else retiring all the requests
++		 * which may delay the signaling (i.e. we will likely wait
++		 * until the background request retirement running every
++		 * second or two).
++		 */
++		dma_fence_add_callback(&rq->fence, &dcb->cb, duration_cb);
++		dcb->emitted = ktime_get();
++	}
+ 
+ 	/* Expose ourselves to the world */
+ 	__queue_and_release_pm(rq, ce->timeline, engine);
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine_types.h b/drivers/gpu/drm/i915/gt/intel_engine_types.h
+index 17f1f1441efc..182aaf778d53 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine_types.h
++++ b/drivers/gpu/drm/i915/gt/intel_engine_types.h
+@@ -7,6 +7,7 @@
+ #ifndef __INTEL_ENGINE_TYPES__
+ #define __INTEL_ENGINE_TYPES__
+ 
++#include <linux/average.h>
+ #include <linux/hashtable.h>
+ #include <linux/irq_work.h>
+ #include <linux/kref.h>
+@@ -119,6 +120,9 @@ enum intel_engine_id {
+ #define INVALID_ENGINE ((enum intel_engine_id)-1)
+ };
+ 
++/* A simple estimator for the round-trip responsive time of an engine */
++DECLARE_EWMA(delay, 6, 4)
++
+ struct st_preempt_hang {
+ 	struct completion completion;
+ 	unsigned int count;
+@@ -316,6 +320,13 @@ struct intel_engine_cs {
+ 		struct intel_timeline *timeline;
+ 	} legacy;
+ 
++	/*
++	 * We track the average duration of the idle pulse on parking the
++	 * engine to keep an estimate of the how the fast the engine is
++	 * under ideal conditions.
++	 */
++	struct ewma_delay delay;
++
+ 	/* Rather than have every client wait upon all user interrupts,
+ 	 * with the herd waking after every interrupt and each doing the
+ 	 * heavyweight seqno dance, we delegate the task (of being the
+-- 
+2.24.1
 
-> v3:
-> - removed digital from exported version of intel_connector_needs_modeset
-> - rollback connector to drm type
-> =
-
-> Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> Signed-off-by: Jos=E9 Roberto de Souza <jose.souza@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_atomic.c  | 18 +++++++
->  drivers/gpu/drm/i915/display/intel_atomic.h  |  2 +
->  drivers/gpu/drm/i915/display/intel_display.c | 53 ++++++--------------
->  3 files changed, 36 insertions(+), 37 deletions(-)
-> =
-
-> diff --git a/drivers/gpu/drm/i915/display/intel_atomic.c b/drivers/gpu/dr=
-m/i915/display/intel_atomic.c
-> index fd0026fc3618..b7dda18b6f29 100644
-> --- a/drivers/gpu/drm/i915/display/intel_atomic.c
-> +++ b/drivers/gpu/drm/i915/display/intel_atomic.c
-> @@ -174,6 +174,24 @@ intel_digital_connector_duplicate_state(struct drm_c=
-onnector *connector)
->  	return &state->base;
->  }
->  =
-
-> +/**
-> + * intel_connector_needs_modeset - check if connector needs a modeset
-> + */
-> +bool
-> +intel_connector_needs_modeset(struct intel_atomic_state *state,
-> +			      struct drm_connector *connector)
-> +{
-> +	const struct drm_connector_state *old_conn_state, *new_conn_state;
-> +
-> +	old_conn_state =3D drm_atomic_get_old_connector_state(&state->base, con=
-nector);
-> +	new_conn_state =3D drm_atomic_get_new_connector_state(&state->base, con=
-nector);
-> +
-> +	return old_conn_state->crtc !=3D new_conn_state->crtc ||
-> +	       (new_conn_state->crtc &&
-> +		drm_atomic_crtc_needs_modeset(drm_atomic_get_new_crtc_state(&state->ba=
-se,
-> +									    new_conn_state->crtc)));
-> +}
-> +
->  /**
->   * intel_crtc_duplicate_state - duplicate crtc state
->   * @crtc: drm crtc
-> diff --git a/drivers/gpu/drm/i915/display/intel_atomic.h b/drivers/gpu/dr=
-m/i915/display/intel_atomic.h
-> index 7b49623419ba..a7d1a8576c48 100644
-> --- a/drivers/gpu/drm/i915/display/intel_atomic.h
-> +++ b/drivers/gpu/drm/i915/display/intel_atomic.h
-> @@ -32,6 +32,8 @@ int intel_digital_connector_atomic_check(struct drm_con=
-nector *conn,
->  					 struct drm_atomic_state *state);
->  struct drm_connector_state *
->  intel_digital_connector_duplicate_state(struct drm_connector *connector);
-> +bool intel_connector_needs_modeset(struct intel_atomic_state *state,
-> +				   struct drm_connector *connector);
->  =
-
->  struct drm_crtc_state *intel_crtc_duplicate_state(struct drm_crtc *crtc);
->  void intel_crtc_destroy_state(struct drm_crtc *crtc,
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/d=
-rm/i915/display/intel_display.c
-> index 8e3e05cfcb27..0ee2e86a8826 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -6185,71 +6185,50 @@ intel_connector_primary_encoder(struct intel_conn=
-ector *connector)
->  	return encoder;
->  }
->  =
-
-> -static bool
-> -intel_connector_needs_modeset(struct intel_atomic_state *state,
-> -			      const struct drm_connector_state *old_conn_state,
-> -			      const struct drm_connector_state *new_conn_state)
-> -{
-> -	struct intel_crtc *old_crtc =3D old_conn_state->crtc ?
-> -				      to_intel_crtc(old_conn_state->crtc) : NULL;
-> -	struct intel_crtc *new_crtc =3D new_conn_state->crtc ?
-> -				      to_intel_crtc(new_conn_state->crtc) : NULL;
-> -
-> -	return new_crtc !=3D old_crtc ||
-> -	       (new_crtc &&
-> -		needs_modeset(intel_atomic_get_new_crtc_state(state, new_crtc)));
-> -}
-> -
->  static void intel_encoders_update_prepare(struct intel_atomic_state *sta=
-te)
->  {
-> -	struct drm_connector_state *old_conn_state;
-> -	struct drm_connector_state *new_conn_state;
-> -	struct drm_connector *conn;
-> +	struct intel_digital_connector_state *new_connector_state;
-> +	struct intel_connector *connector;
-
-Not sure why we changed the types here. I suppose it works if we're
-careful in what we access in the connector state, but IIRC not
-all connectors use intel_digital_connector_state so this could
-potetially trip someone up in the future. So I'd leave these alone.
-
-The movement of the function itself is
-Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-
-
->  	int i;
->  =
-
-> -	for_each_oldnew_connector_in_state(&state->base, conn,
-> -					   old_conn_state, new_conn_state, i) {
-> +	for_each_new_intel_connector_in_state(state, connector,
-> +					      new_connector_state, i) {
->  		struct intel_encoder *encoder;
->  		struct intel_crtc *crtc;
->  =
-
-> -		if (!intel_connector_needs_modeset(state,
-> -						   old_conn_state,
-> -						   new_conn_state))
-> +		if (!intel_connector_needs_modeset(state, &connector->base))
->  			continue;
->  =
-
-> -		encoder =3D intel_connector_primary_encoder(to_intel_connector(conn));
-> +		encoder =3D intel_connector_primary_encoder(connector);
->  		if (!encoder->update_prepare)
->  			continue;
->  =
-
-> -		crtc =3D new_conn_state->crtc ?
-> -			to_intel_crtc(new_conn_state->crtc) : NULL;
-> +		crtc =3D new_connector_state->base.crtc ?
-> +			to_intel_crtc(new_connector_state->base.crtc) : NULL;
->  		encoder->update_prepare(state, encoder, crtc);
->  	}
->  }
->  =
-
->  static void intel_encoders_update_complete(struct intel_atomic_state *st=
-ate)
->  {
-> -	struct drm_connector_state *old_conn_state;
-> -	struct drm_connector_state *new_conn_state;
-> -	struct drm_connector *conn;
-> +	struct intel_digital_connector_state *new_connector_state;
-> +	struct intel_connector *connector;
->  	int i;
->  =
-
-> -	for_each_oldnew_connector_in_state(&state->base, conn,
-> -					   old_conn_state, new_conn_state, i) {
-> +	for_each_new_intel_connector_in_state(state, connector,
-> +					      new_connector_state, i) {
->  		struct intel_encoder *encoder;
->  		struct intel_crtc *crtc;
->  =
-
-> -		if (!intel_connector_needs_modeset(state,
-> -						   old_conn_state,
-> -						   new_conn_state))
-> +		if (!intel_connector_needs_modeset(state, &connector->base))
->  			continue;
->  =
-
-> -		encoder =3D intel_connector_primary_encoder(to_intel_connector(conn));
-> +		encoder =3D intel_connector_primary_encoder(connector);
->  		if (!encoder->update_complete)
->  			continue;
->  =
-
-> -		crtc =3D new_conn_state->crtc ?
-> -			to_intel_crtc(new_conn_state->crtc) : NULL;
-> +		crtc =3D new_connector_state->base.crtc ?
-> +			to_intel_crtc(new_connector_state->base.crtc) : NULL;
->  		encoder->update_complete(state, encoder, crtc);
->  	}
->  }
-> -- =
-
-> 2.24.1
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
