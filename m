@@ -2,39 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D0B8D12536F
-	for <lists+intel-gfx@lfdr.de>; Wed, 18 Dec 2019 21:27:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1CDD012537C
+	for <lists+intel-gfx@lfdr.de>; Wed, 18 Dec 2019 21:33:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 454626EA78;
-	Wed, 18 Dec 2019 20:26:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 89B6C89EB1;
+	Wed, 18 Dec 2019 20:33:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 288F46EA78
- for <intel-gfx@lists.freedesktop.org>; Wed, 18 Dec 2019 20:26:57 +0000 (UTC)
-X-Amp-Result: UNSCANNABLE
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 84D0189EB1
+ for <intel-gfx@lists.freedesktop.org>; Wed, 18 Dec 2019 20:33:32 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga106.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 18 Dec 2019 12:26:56 -0800
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 18 Dec 2019 12:33:29 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,330,1571727600"; d="scan'208";a="212800008"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by fmsmga007.fm.intel.com with SMTP; 18 Dec 2019 12:26:54 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 18 Dec 2019 22:26:53 +0200
-Date: Wed, 18 Dec 2019 22:26:53 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: "Souza, Jose" <jose.souza@intel.com>
-Message-ID: <20191218202653.GC1208@intel.com>
+X-IronPort-AV: E=Sophos;i="5.69,330,1571727600"; d="scan'208";a="415958270"
+Received: from fmsmsx107.amr.corp.intel.com ([10.18.124.205])
+ by fmsmga005.fm.intel.com with ESMTP; 18 Dec 2019 12:33:29 -0800
+Received: from fmsmsx158.amr.corp.intel.com (10.18.116.75) by
+ fmsmsx107.amr.corp.intel.com (10.18.124.205) with Microsoft SMTP Server (TLS)
+ id 14.3.439.0; Wed, 18 Dec 2019 12:33:29 -0800
+Received: from fmsmsx116.amr.corp.intel.com ([169.254.2.67]) by
+ fmsmsx158.amr.corp.intel.com ([169.254.15.85]) with mapi id 14.03.0439.000;
+ Wed, 18 Dec 2019 12:33:29 -0800
+From: "Souza, Jose" <jose.souza@intel.com>
+To: "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>
+Thread-Topic: [PATCH v4 5/6] drm/i915/display: Check if pipe fastset is
+ allowed by external dependencies
+Thread-Index: AQHVtdVEWnSnVxFR70KTgvlx+/yFO6fA0B2AgAALKICAAAIkgIAAAdaA
+Date: Wed, 18 Dec 2019 20:33:28 +0000
+Message-ID: <d7b02559a0c8e996dd190cbf1b588ad12c397316.camel@intel.com>
 References: <20191218185910.303540-1-jose.souza@intel.com>
  <20191218185910.303540-5-jose.souza@intel.com>
  <20191218193917.GY1208@intel.com>
  <26caae27943611264d8b3a112e8089eab203083a.camel@intel.com>
+ <20191218202653.GC1208@intel.com>
+In-Reply-To: <20191218202653.GC1208@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.254.71.190]
+Content-ID: <40F311A99529CC4AA0F3AE6D9E0F0B57@intel.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <26caae27943611264d8b3a112e8089eab203083a.camel@intel.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
 Subject: Re: [Intel-gfx] [PATCH v4 5/6] drm/i915/display: Check if pipe
  fastset is allowed by external dependencies
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -51,266 +63,170 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: "De Marchi, Lucas" <lucas.demarchi@intel.com>,
  "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Dec 18, 2019 at 08:19:15PM +0000, Souza, Jose wrote:
-> On Wed, 2019-12-18 at 21:39 +0200, Ville Syrj=E4l=E4 wrote:
-> > On Wed, Dec 18, 2019 at 10:59:09AM -0800, Jos=E9 Roberto de Souza
-> > wrote:
-> > > Check if fastset is allowed by external dependencies like other
-> > > pipes
-> > > and transcoders.
-> > > =
-
-> > > Right now this patch only forces a fullmodeset in MST slaves of MST
-> > > masters that needs a fullmodeset but it will be needed for port
-> > > sync
-> > > as well.
-> > > =
-
-> > > v3:
-> > > - moved handling to intel_atomic_check() this way is guarantee that
-> > > all pipes will have its state computed
-> > > =
-
-> > > v4:
-> > > - added a function to return if MST master neeeds modeset to simply
-> > > code in intel_atomic_check()
-> > > =
-
-> > > Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> > > Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-> > > Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> > > Cc: Manasi Navare <manasi.d.navare@intel.com>
-> > > Signed-off-by: Jos=E9 Roberto de Souza <jose.souza@intel.com>
-> > > ---
-> > >  drivers/gpu/drm/i915/display/intel_display.c | 53 +++++++++++++++-
-> > > ----
-> > >  drivers/gpu/drm/i915/display/intel_dp_mst.c  | 14 ++++++
-> > >  drivers/gpu/drm/i915/display/intel_dp_mst.h  |  3 ++
-> > >  3 files changed, 57 insertions(+), 13 deletions(-)
-> > > =
-
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_display.c
-> > > b/drivers/gpu/drm/i915/display/intel_display.c
-> > > index a4f252d05b37..2a406891567b 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_display.c
-> > > +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> > > @@ -13903,19 +13903,6 @@ static void intel_crtc_check_fastset(const
-> > > struct intel_crtc_state *old_crtc_sta
-> > >  =
-
-> > >  	new_crtc_state->uapi.mode_changed =3D false;
-> > >  	new_crtc_state->update_pipe =3D true;
-> > > -
-> > > -	/*
-> > > -	 * If we're not doing the full modeset we want to
-> > > -	 * keep the current M/N values as they may be
-> > > -	 * sufficiently different to the computed values
-> > > -	 * to cause problems.
-> > > -	 *
-> > > -	 * FIXME: should really copy more fuzzy state here
-> > > -	 */
-> > > -	new_crtc_state->fdi_m_n =3D old_crtc_state->fdi_m_n;
-> > > -	new_crtc_state->dp_m_n =3D old_crtc_state->dp_m_n;
-> > > -	new_crtc_state->dp_m2_n2 =3D old_crtc_state->dp_m2_n2;
-> > > -	new_crtc_state->has_drrs =3D old_crtc_state->has_drrs;
-> > >  }
-> > >  =
-
-> > >  static int intel_crtc_add_planes_to_state(struct
-> > > intel_atomic_state *state,
-> > > @@ -14083,6 +14070,46 @@ static int intel_atomic_check(struct
-> > > drm_device *dev,
-> > >  			any_ms =3D true;
-> > >  	}
-> > >  =
-
-> > > +	/**
-> > > +	 * Check if fastset is allowed by external dependencies like
-> > > other
-> > > +	 * pipes and transcoders.
-> > > +	 *
-> > > +	 * Right now it only forces a fullmodeset when the MST master
-> > > +	 * transcoder did not changed but the pipe of the master
-> > > transcoder
-> > > +	 * needs a fullmodeset so all slaves also needs to do a
-> > > fullmodeset.
-> > > +	 */
-> > > +	for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state,
-> > > i) {
-> > > +		enum transcoder master =3D new_crtc_state-
-> > > >mst_master_transcoder;
-> > > +
-> > > +		if (!intel_dp_mst_is_slave_trans(new_crtc_state) ||
-> > > +		    needs_modeset(new_crtc_state))
-> > > +			continue;
-> > > +
-> > > +		if (intel_dp_mst_master_trans_needs_modeset(state,
-> > > master)) {
-> > =
-
-> > I think this has the loops the opposite way of what I was thinking,
-> > but should work fine I think... OK. I'm convinced your way is in fact
-> > better.
-> > =
-
-> > > +			new_crtc_state->uapi.mode_changed =3D true;
-> > > +			new_crtc_state->update_pipe =3D false;
-> > > +		}
-> > > +	}
-> > > +
-> > > +	for_each_oldnew_intel_crtc_in_state(state, crtc,
-> > > old_crtc_state,
-> > > +					    new_crtc_state, i) {
-> > > +		if (needs_modeset(new_crtc_state))
-> > > +			continue;
-> > =
-
-> > I suppose there isn't any way we should have crtcs in the state that
-> > neither have update_pipe or needs_modeset flagged here. Could maybe
-> > WARN_ON(!update_pipe) here if we're being paranoid.
-> =
-
-> Adding the WARN_ON
-> =
-
-> > =
-
-> > > +
-> > > +		/*
-> > > +		 * If we're not doing the full modeset we want to
-> > > +		 * keep the current M/N values as they may be
-> > > +		 * sufficiently different to the computed values
-> > > +		 * to cause problems.
-> > > +		 *
-> > > +		 * FIXME: should really copy more fuzzy state here
-> > > +		 */
-> > > +		new_crtc_state->fdi_m_n =3D old_crtc_state->fdi_m_n;
-> > > +		new_crtc_state->dp_m_n =3D old_crtc_state->dp_m_n;
-> > > +		new_crtc_state->dp_m2_n2 =3D old_crtc_state->dp_m2_n2;
-> > > +		new_crtc_state->has_drrs =3D old_crtc_state->has_drrs;
-> > =
-
-> > Still a bit unhappy having this state copy inlined in
-> > intel_atomic_check().
-> > =
-
-> > > +	}
-> > > +
-> > >  	if (any_ms && !check_digital_port_conflicts(state)) {
-> > >  		DRM_DEBUG_KMS("rejecting conflicting digital port
-> > > configuration\n");
-> > >  		ret =3D EINVAL;
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> > > b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> > > index efd14b0b507b..4aba1d702a83 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> > > +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> > > @@ -854,3 +854,17 @@ bool intel_dp_mst_is_slave_trans(const struct
-> > > intel_crtc_state *crtc_state)
-> > >  	return crtc_state->mst_master_transcoder !=3D INVALID_TRANSCODER
-> > > &&
-> > >  	       crtc_state->mst_master_transcoder !=3D crtc_state-
-> > > >cpu_transcoder;
-> > >  }
-> > > +
-> > > +bool intel_dp_mst_master_trans_needs_modeset(struct
-> > > intel_atomic_state *state,
-> > > +					     enum transcoder master)
-> > =
-
-> > Are we going to need this elsewhere? Or be static in intel_display.c?
-> > Not that people are 100% happy of stuffing everything in there.
-> =
-
-> Not needed elsewhere, I'm also trying to not put more stuff in
-> intel_display.c.
-> =
-
-> > =
-
-> > > +{
-> > > +	struct intel_crtc_state *new_crtc_state;
-> > > +	struct intel_crtc *crtc;
-> > > +	int i;
-> > > +
-> > > +	for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state,
-> > > i)
-> > > +		if (new_crtc_state->mst_master_transcoder =3D=3D master)
-> > =
-
-> > So we need to modeset everything when either the master or any
-> > other slave wants to modeset? That is, we can't just modeset slaves
-> > independently and only force the modesets for all slaves if the
-> > master
-> > needs a modeset?
-> =
-
-> If a slave needs a modeset we don't need to do a modeset in master or
-> in other slaves.
-> =
-
-> This is doing independent modeset in slaves and forcing modeset to all
-> slaves when master needs as modeset.
-
-If you just wanted to check if the master needs a modeset then shouldn't
-it just compare crtc_state->cpu_transcoder =3D=3D master?
-
-And in that case it's not at all MST specific and we could just call it
-intel_cpu_transcoder_needs_modeset() or something.
-
-> =
-
-> > =
-
-> > > +			return
-> > > drm_atomic_crtc_needs_modeset(&new_crtc_state->uapi);
-> > > +
-> > > +	return false;
-> > > +}
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.h
-> > > b/drivers/gpu/drm/i915/display/intel_dp_mst.h
-> > > index 854724f68f09..72cb486f32ab 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_dp_mst.h
-> > > +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.h
-> > > @@ -8,6 +8,7 @@
-> > >  =
-
-> > >  #include <linux/types.h>
-> > >  =
-
-> > > +struct intel_atomic_state;
-> > >  struct intel_digital_port;
-> > >  struct intel_crtc_state;
-> > >  =
-
-> > > @@ -16,5 +17,7 @@ void intel_dp_mst_encoder_cleanup(struct
-> > > intel_digital_port *intel_dig_port);
-> > >  int intel_dp_mst_encoder_active_links(struct intel_digital_port
-> > > *intel_dig_port);
-> > >  bool intel_dp_mst_is_master_trans(const struct intel_crtc_state
-> > > *crtc_state);
-> > >  bool intel_dp_mst_is_slave_trans(const struct intel_crtc_state
-> > > *crtc_state);
-> > > +bool intel_dp_mst_master_trans_needs_modeset(struct
-> > > intel_atomic_state *state,
-> > > +					     enum transcoder master);
-> > >  =
-
-> > >  #endif /* __INTEL_DP_MST_H__ */
-> > > -- =
-
-> > > 2.24.1
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gV2VkLCAyMDE5LTEyLTE4IGF0IDIyOjI2ICswMjAwLCBWaWxsZSBTeXJqw6Rsw6Qgd3JvdGU6
+DQo+IE9uIFdlZCwgRGVjIDE4LCAyMDE5IGF0IDA4OjE5OjE1UE0gKzAwMDAsIFNvdXphLCBKb3Nl
+IHdyb3RlOg0KPiA+IE9uIFdlZCwgMjAxOS0xMi0xOCBhdCAyMTozOSArMDIwMCwgVmlsbGUgU3ly
+asOkbMOkIHdyb3RlOg0KPiA+ID4gT24gV2VkLCBEZWMgMTgsIDIwMTkgYXQgMTA6NTk6MDlBTSAt
+MDgwMCwgSm9zw6kgUm9iZXJ0byBkZSBTb3V6YQ0KPiA+ID4gd3JvdGU6DQo+ID4gPiA+IENoZWNr
+IGlmIGZhc3RzZXQgaXMgYWxsb3dlZCBieSBleHRlcm5hbCBkZXBlbmRlbmNpZXMgbGlrZSBvdGhl
+cg0KPiA+ID4gPiBwaXBlcw0KPiA+ID4gPiBhbmQgdHJhbnNjb2RlcnMuDQo+ID4gPiA+IA0KPiA+
+ID4gPiBSaWdodCBub3cgdGhpcyBwYXRjaCBvbmx5IGZvcmNlcyBhIGZ1bGxtb2Rlc2V0IGluIE1T
+VCBzbGF2ZXMgb2YNCj4gPiA+ID4gTVNUDQo+ID4gPiA+IG1hc3RlcnMgdGhhdCBuZWVkcyBhIGZ1
+bGxtb2Rlc2V0IGJ1dCBpdCB3aWxsIGJlIG5lZWRlZCBmb3IgcG9ydA0KPiA+ID4gPiBzeW5jDQo+
+ID4gPiA+IGFzIHdlbGwuDQo+ID4gPiA+IA0KPiA+ID4gPiB2MzoNCj4gPiA+ID4gLSBtb3ZlZCBo
+YW5kbGluZyB0byBpbnRlbF9hdG9taWNfY2hlY2soKSB0aGlzIHdheSBpcyBndWFyYW50ZWUNCj4g
+PiA+ID4gdGhhdA0KPiA+ID4gPiBhbGwgcGlwZXMgd2lsbCBoYXZlIGl0cyBzdGF0ZSBjb21wdXRl
+ZA0KPiA+ID4gPiANCj4gPiA+ID4gdjQ6DQo+ID4gPiA+IC0gYWRkZWQgYSBmdW5jdGlvbiB0byBy
+ZXR1cm4gaWYgTVNUIG1hc3RlciBuZWVlZHMgbW9kZXNldCB0bw0KPiA+ID4gPiBzaW1wbHkNCj4g
+PiA+ID4gY29kZSBpbiBpbnRlbF9hdG9taWNfY2hlY2soKQ0KPiA+ID4gPiANCj4gPiA+ID4gQ2M6
+IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5jb20+DQo+ID4gPiA+
+IENjOiBMdWNhcyBEZSBNYXJjaGkgPGx1Y2FzLmRlbWFyY2hpQGludGVsLmNvbT4NCj4gPiA+ID4g
+Q2M6IE1hYXJ0ZW4gTGFua2hvcnN0IDxtYWFydGVuLmxhbmtob3JzdEBsaW51eC5pbnRlbC5jb20+
+DQo+ID4gPiA+IENjOiBNYW5hc2kgTmF2YXJlIDxtYW5hc2kuZC5uYXZhcmVAaW50ZWwuY29tPg0K
+PiA+ID4gPiBTaWduZWQtb2ZmLWJ5OiBKb3PDqSBSb2JlcnRvIGRlIFNvdXphIDxqb3NlLnNvdXph
+QGludGVsLmNvbT4NCj4gPiA+ID4gLS0tDQo+ID4gPiA+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9k
+aXNwbGF5L2ludGVsX2Rpc3BsYXkuYyB8IDUzDQo+ID4gPiA+ICsrKysrKysrKysrKysrKy0NCj4g
+PiA+ID4gLS0tLQ0KPiA+ID4gPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9k
+cF9tc3QuYyAgfCAxNCArKysrKysNCj4gPiA+ID4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3Bs
+YXkvaW50ZWxfZHBfbXN0LmggIHwgIDMgKysNCj4gPiA+ID4gIDMgZmlsZXMgY2hhbmdlZCwgNTcg
+aW5zZXJ0aW9ucygrKSwgMTMgZGVsZXRpb25zKC0pDQo+ID4gPiA+IA0KPiA+ID4gPiBkaWZmIC0t
+Z2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMNCj4gPiA+
+ID4gYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuYw0KPiA+ID4g
+PiBpbmRleCBhNGYyNTJkMDViMzcuLjJhNDA2ODkxNTY3YiAxMDA2NDQNCj4gPiA+ID4gLS0tIGEv
+ZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMNCj4gPiA+ID4gKysr
+IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMNCj4gPiA+ID4g
+QEAgLTEzOTAzLDE5ICsxMzkwMyw2IEBAIHN0YXRpYyB2b2lkDQo+ID4gPiA+IGludGVsX2NydGNf
+Y2hlY2tfZmFzdHNldChjb25zdA0KPiA+ID4gPiBzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZSAqb2xk
+X2NydGNfc3RhDQo+ID4gPiA+ICANCj4gPiA+ID4gIAluZXdfY3J0Y19zdGF0ZS0+dWFwaS5tb2Rl
+X2NoYW5nZWQgPSBmYWxzZTsNCj4gPiA+ID4gIAluZXdfY3J0Y19zdGF0ZS0+dXBkYXRlX3BpcGUg
+PSB0cnVlOw0KPiA+ID4gPiAtDQo+ID4gPiA+IC0JLyoNCj4gPiA+ID4gLQkgKiBJZiB3ZSdyZSBu
+b3QgZG9pbmcgdGhlIGZ1bGwgbW9kZXNldCB3ZSB3YW50IHRvDQo+ID4gPiA+IC0JICoga2VlcCB0
+aGUgY3VycmVudCBNL04gdmFsdWVzIGFzIHRoZXkgbWF5IGJlDQo+ID4gPiA+IC0JICogc3VmZmlj
+aWVudGx5IGRpZmZlcmVudCB0byB0aGUgY29tcHV0ZWQgdmFsdWVzDQo+ID4gPiA+IC0JICogdG8g
+Y2F1c2UgcHJvYmxlbXMuDQo+ID4gPiA+IC0JICoNCj4gPiA+ID4gLQkgKiBGSVhNRTogc2hvdWxk
+IHJlYWxseSBjb3B5IG1vcmUgZnV6enkgc3RhdGUgaGVyZQ0KPiA+ID4gPiAtCSAqLw0KPiA+ID4g
+PiAtCW5ld19jcnRjX3N0YXRlLT5mZGlfbV9uID0gb2xkX2NydGNfc3RhdGUtPmZkaV9tX247DQo+
+ID4gPiA+IC0JbmV3X2NydGNfc3RhdGUtPmRwX21fbiA9IG9sZF9jcnRjX3N0YXRlLT5kcF9tX247
+DQo+ID4gPiA+IC0JbmV3X2NydGNfc3RhdGUtPmRwX20yX24yID0gb2xkX2NydGNfc3RhdGUtPmRw
+X20yX24yOw0KPiA+ID4gPiAtCW5ld19jcnRjX3N0YXRlLT5oYXNfZHJycyA9IG9sZF9jcnRjX3N0
+YXRlLT5oYXNfZHJyczsNCj4gPiA+ID4gIH0NCj4gPiA+ID4gIA0KPiA+ID4gPiAgc3RhdGljIGlu
+dCBpbnRlbF9jcnRjX2FkZF9wbGFuZXNfdG9fc3RhdGUoc3RydWN0DQo+ID4gPiA+IGludGVsX2F0
+b21pY19zdGF0ZSAqc3RhdGUsDQo+ID4gPiA+IEBAIC0xNDA4Myw2ICsxNDA3MCw0NiBAQCBzdGF0
+aWMgaW50IGludGVsX2F0b21pY19jaGVjayhzdHJ1Y3QNCj4gPiA+ID4gZHJtX2RldmljZSAqZGV2
+LA0KPiA+ID4gPiAgCQkJYW55X21zID0gdHJ1ZTsNCj4gPiA+ID4gIAl9DQo+ID4gPiA+ICANCj4g
+PiA+ID4gKwkvKioNCj4gPiA+ID4gKwkgKiBDaGVjayBpZiBmYXN0c2V0IGlzIGFsbG93ZWQgYnkg
+ZXh0ZXJuYWwgZGVwZW5kZW5jaWVzDQo+ID4gPiA+IGxpa2UNCj4gPiA+ID4gb3RoZXINCj4gPiA+
+ID4gKwkgKiBwaXBlcyBhbmQgdHJhbnNjb2RlcnMuDQo+ID4gPiA+ICsJICoNCj4gPiA+ID4gKwkg
+KiBSaWdodCBub3cgaXQgb25seSBmb3JjZXMgYSBmdWxsbW9kZXNldCB3aGVuIHRoZSBNU1QNCj4g
+PiA+ID4gbWFzdGVyDQo+ID4gPiA+ICsJICogdHJhbnNjb2RlciBkaWQgbm90IGNoYW5nZWQgYnV0
+IHRoZSBwaXBlIG9mIHRoZQ0KPiA+ID4gPiBtYXN0ZXINCj4gPiA+ID4gdHJhbnNjb2Rlcg0KPiA+
+ID4gPiArCSAqIG5lZWRzIGEgZnVsbG1vZGVzZXQgc28gYWxsIHNsYXZlcyBhbHNvIG5lZWRzIHRv
+IGRvIGENCj4gPiA+ID4gZnVsbG1vZGVzZXQuDQo+ID4gPiA+ICsJICovDQo+ID4gPiA+ICsJZm9y
+X2VhY2hfbmV3X2ludGVsX2NydGNfaW5fc3RhdGUoc3RhdGUsIGNydGMsDQo+ID4gPiA+IG5ld19j
+cnRjX3N0YXRlLA0KPiA+ID4gPiBpKSB7DQo+ID4gPiA+ICsJCWVudW0gdHJhbnNjb2RlciBtYXN0
+ZXIgPSBuZXdfY3J0Y19zdGF0ZS0NCj4gPiA+ID4gPiBtc3RfbWFzdGVyX3RyYW5zY29kZXI7DQo+
+ID4gPiA+ICsNCj4gPiA+ID4gKwkJaWYNCj4gPiA+ID4gKCFpbnRlbF9kcF9tc3RfaXNfc2xhdmVf
+dHJhbnMobmV3X2NydGNfc3RhdGUpIHx8DQo+ID4gPiA+ICsJCSAgICBuZWVkc19tb2Rlc2V0KG5l
+d19jcnRjX3N0YXRlKSkNCj4gPiA+ID4gKwkJCWNvbnRpbnVlOw0KPiA+ID4gPiArDQo+ID4gPiA+
+ICsJCWlmDQo+ID4gPiA+IChpbnRlbF9kcF9tc3RfbWFzdGVyX3RyYW5zX25lZWRzX21vZGVzZXQo
+c3RhdGUsDQo+ID4gPiA+IG1hc3RlcikpIHsNCj4gPiA+IA0KPiA+ID4gSSB0aGluayB0aGlzIGhh
+cyB0aGUgbG9vcHMgdGhlIG9wcG9zaXRlIHdheSBvZiB3aGF0IEkgd2FzDQo+ID4gPiB0aGlua2lu
+ZywNCj4gPiA+IGJ1dCBzaG91bGQgd29yayBmaW5lIEkgdGhpbmsuLi4gT0suIEknbSBjb252aW5j
+ZWQgeW91ciB3YXkgaXMgaW4NCj4gPiA+IGZhY3QNCj4gPiA+IGJldHRlci4NCj4gPiA+IA0KPiA+
+ID4gPiArCQkJbmV3X2NydGNfc3RhdGUtPnVhcGkubW9kZV9jaGFuZ2VkID0NCj4gPiA+ID4gdHJ1
+ZTsNCj4gPiA+ID4gKwkJCW5ld19jcnRjX3N0YXRlLT51cGRhdGVfcGlwZSA9IGZhbHNlOw0KPiA+
+ID4gPiArCQl9DQo+ID4gPiA+ICsJfQ0KPiA+ID4gPiArDQo+ID4gPiA+ICsJZm9yX2VhY2hfb2xk
+bmV3X2ludGVsX2NydGNfaW5fc3RhdGUoc3RhdGUsIGNydGMsDQo+ID4gPiA+IG9sZF9jcnRjX3N0
+YXRlLA0KPiA+ID4gPiArCQkJCQkgICAgbmV3X2NydGNfc3RhdGUsIGkpDQo+ID4gPiA+IHsNCj4g
+PiA+ID4gKwkJaWYgKG5lZWRzX21vZGVzZXQobmV3X2NydGNfc3RhdGUpKQ0KPiA+ID4gPiArCQkJ
+Y29udGludWU7DQo+ID4gPiANCj4gPiA+IEkgc3VwcG9zZSB0aGVyZSBpc24ndCBhbnkgd2F5IHdl
+IHNob3VsZCBoYXZlIGNydGNzIGluIHRoZSBzdGF0ZQ0KPiA+ID4gdGhhdA0KPiA+ID4gbmVpdGhl
+ciBoYXZlIHVwZGF0ZV9waXBlIG9yIG5lZWRzX21vZGVzZXQgZmxhZ2dlZCBoZXJlLiBDb3VsZA0K
+PiA+ID4gbWF5YmUNCj4gPiA+IFdBUk5fT04oIXVwZGF0ZV9waXBlKSBoZXJlIGlmIHdlJ3JlIGJl
+aW5nIHBhcmFub2lkLg0KPiA+IA0KPiA+IEFkZGluZyB0aGUgV0FSTl9PTg0KPiA+IA0KPiA+ID4g
+PiArDQo+ID4gPiA+ICsJCS8qDQo+ID4gPiA+ICsJCSAqIElmIHdlJ3JlIG5vdCBkb2luZyB0aGUg
+ZnVsbCBtb2Rlc2V0IHdlIHdhbnQNCj4gPiA+ID4gdG8NCj4gPiA+ID4gKwkJICoga2VlcCB0aGUg
+Y3VycmVudCBNL04gdmFsdWVzIGFzIHRoZXkgbWF5IGJlDQo+ID4gPiA+ICsJCSAqIHN1ZmZpY2ll
+bnRseSBkaWZmZXJlbnQgdG8gdGhlIGNvbXB1dGVkDQo+ID4gPiA+IHZhbHVlcw0KPiA+ID4gPiAr
+CQkgKiB0byBjYXVzZSBwcm9ibGVtcy4NCj4gPiA+ID4gKwkJICoNCj4gPiA+ID4gKwkJICogRklY
+TUU6IHNob3VsZCByZWFsbHkgY29weSBtb3JlIGZ1enp5IHN0YXRlDQo+ID4gPiA+IGhlcmUNCj4g
+PiA+ID4gKwkJICovDQo+ID4gPiA+ICsJCW5ld19jcnRjX3N0YXRlLT5mZGlfbV9uID0gb2xkX2Ny
+dGNfc3RhdGUtDQo+ID4gPiA+ID5mZGlfbV9uOw0KPiA+ID4gPiArCQluZXdfY3J0Y19zdGF0ZS0+
+ZHBfbV9uID0gb2xkX2NydGNfc3RhdGUtDQo+ID4gPiA+ID5kcF9tX247DQo+ID4gPiA+ICsJCW5l
+d19jcnRjX3N0YXRlLT5kcF9tMl9uMiA9IG9sZF9jcnRjX3N0YXRlLQ0KPiA+ID4gPiA+ZHBfbTJf
+bjI7DQo+ID4gPiA+ICsJCW5ld19jcnRjX3N0YXRlLT5oYXNfZHJycyA9IG9sZF9jcnRjX3N0YXRl
+LQ0KPiA+ID4gPiA+aGFzX2RycnM7DQo+ID4gPiANCj4gPiA+IFN0aWxsIGEgYml0IHVuaGFwcHkg
+aGF2aW5nIHRoaXMgc3RhdGUgY29weSBpbmxpbmVkIGluDQo+ID4gPiBpbnRlbF9hdG9taWNfY2hl
+Y2soKS4NCj4gPiA+IA0KPiA+ID4gPiArCX0NCj4gPiA+ID4gKw0KPiA+ID4gPiAgCWlmIChhbnlf
+bXMgJiYgIWNoZWNrX2RpZ2l0YWxfcG9ydF9jb25mbGljdHMoc3RhdGUpKSB7DQo+ID4gPiA+ICAJ
+CURSTV9ERUJVR19LTVMoInJlamVjdGluZyBjb25mbGljdGluZyBkaWdpdGFsDQo+ID4gPiA+IHBv
+cnQNCj4gPiA+ID4gY29uZmlndXJhdGlvblxuIik7DQo+ID4gPiA+ICAJCXJldCA9IEVJTlZBTDsN
+Cj4gPiA+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxf
+ZHBfbXN0LmMNCj4gPiA+ID4gYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rw
+X21zdC5jDQo+ID4gPiA+IGluZGV4IGVmZDE0YjBiNTA3Yi4uNGFiYTFkNzAyYTgzIDEwMDY0NA0K
+PiA+ID4gPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwX21zdC5j
+DQo+ID4gPiA+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHBfbXN0
+LmMNCj4gPiA+ID4gQEAgLTg1NCwzICs4NTQsMTcgQEAgYm9vbCBpbnRlbF9kcF9tc3RfaXNfc2xh
+dmVfdHJhbnMoY29uc3QNCj4gPiA+ID4gc3RydWN0DQo+ID4gPiA+IGludGVsX2NydGNfc3RhdGUg
+KmNydGNfc3RhdGUpDQo+ID4gPiA+ICAJcmV0dXJuIGNydGNfc3RhdGUtPm1zdF9tYXN0ZXJfdHJh
+bnNjb2RlciAhPQ0KPiA+ID4gPiBJTlZBTElEX1RSQU5TQ09ERVINCj4gPiA+ID4gJiYNCj4gPiA+
+ID4gIAkgICAgICAgY3J0Y19zdGF0ZS0+bXN0X21hc3Rlcl90cmFuc2NvZGVyICE9IGNydGNfc3Rh
+dGUtDQo+ID4gPiA+ID4gY3B1X3RyYW5zY29kZXI7DQo+ID4gPiA+ICB9DQo+ID4gPiA+ICsNCj4g
+PiA+ID4gK2Jvb2wgaW50ZWxfZHBfbXN0X21hc3Rlcl90cmFuc19uZWVkc19tb2Rlc2V0KHN0cnVj
+dA0KPiA+ID4gPiBpbnRlbF9hdG9taWNfc3RhdGUgKnN0YXRlLA0KPiA+ID4gPiArCQkJCQkgICAg
+IGVudW0gdHJhbnNjb2Rlcg0KPiA+ID4gPiBtYXN0ZXIpDQo+ID4gPiANCj4gPiA+IEFyZSB3ZSBn
+b2luZyB0byBuZWVkIHRoaXMgZWxzZXdoZXJlPyBPciBiZSBzdGF0aWMgaW4NCj4gPiA+IGludGVs
+X2Rpc3BsYXkuYz8NCj4gPiA+IE5vdCB0aGF0IHBlb3BsZSBhcmUgMTAwJSBoYXBweSBvZiBzdHVm
+ZmluZyBldmVyeXRoaW5nIGluIHRoZXJlLg0KPiA+IA0KPiA+IE5vdCBuZWVkZWQgZWxzZXdoZXJl
+LCBJJ20gYWxzbyB0cnlpbmcgdG8gbm90IHB1dCBtb3JlIHN0dWZmIGluDQo+ID4gaW50ZWxfZGlz
+cGxheS5jLg0KPiA+IA0KPiA+ID4gPiArew0KPiA+ID4gPiArCXN0cnVjdCBpbnRlbF9jcnRjX3N0
+YXRlICpuZXdfY3J0Y19zdGF0ZTsNCj4gPiA+ID4gKwlzdHJ1Y3QgaW50ZWxfY3J0YyAqY3J0YzsN
+Cj4gPiA+ID4gKwlpbnQgaTsNCj4gPiA+ID4gKw0KPiA+ID4gPiArCWZvcl9lYWNoX25ld19pbnRl
+bF9jcnRjX2luX3N0YXRlKHN0YXRlLCBjcnRjLA0KPiA+ID4gPiBuZXdfY3J0Y19zdGF0ZSwNCj4g
+PiA+ID4gaSkNCj4gPiA+ID4gKwkJaWYgKG5ld19jcnRjX3N0YXRlLT5tc3RfbWFzdGVyX3RyYW5z
+Y29kZXIgPT0NCj4gPiA+ID4gbWFzdGVyKQ0KPiA+ID4gDQo+ID4gPiBTbyB3ZSBuZWVkIHRvIG1v
+ZGVzZXQgZXZlcnl0aGluZyB3aGVuIGVpdGhlciB0aGUgbWFzdGVyIG9yIGFueQ0KPiA+ID4gb3Ro
+ZXIgc2xhdmUgd2FudHMgdG8gbW9kZXNldD8gVGhhdCBpcywgd2UgY2FuJ3QganVzdCBtb2Rlc2V0
+DQo+ID4gPiBzbGF2ZXMNCj4gPiA+IGluZGVwZW5kZW50bHkgYW5kIG9ubHkgZm9yY2UgdGhlIG1v
+ZGVzZXRzIGZvciBhbGwgc2xhdmVzIGlmIHRoZQ0KPiA+ID4gbWFzdGVyDQo+ID4gPiBuZWVkcyBh
+IG1vZGVzZXQ/DQo+ID4gDQo+ID4gSWYgYSBzbGF2ZSBuZWVkcyBhIG1vZGVzZXQgd2UgZG9uJ3Qg
+bmVlZCB0byBkbyBhIG1vZGVzZXQgaW4gbWFzdGVyDQo+ID4gb3INCj4gPiBpbiBvdGhlciBzbGF2
+ZXMuDQo+ID4gDQo+ID4gVGhpcyBpcyBkb2luZyBpbmRlcGVuZGVudCBtb2Rlc2V0IGluIHNsYXZl
+cyBhbmQgZm9yY2luZyBtb2Rlc2V0IHRvDQo+ID4gYWxsDQo+ID4gc2xhdmVzIHdoZW4gbWFzdGVy
+IG5lZWRzIGFzIG1vZGVzZXQuDQo+IA0KPiBJZiB5b3UganVzdCB3YW50ZWQgdG8gY2hlY2sgaWYg
+dGhlIG1hc3RlciBuZWVkcyBhIG1vZGVzZXQgdGhlbg0KPiBzaG91bGRuJ3QNCj4gaXQganVzdCBj
+b21wYXJlIGNydGNfc3RhdGUtPmNwdV90cmFuc2NvZGVyID09IG1hc3Rlcj8NCg0KR29vZCBjYXRj
+aCwgdGhhbmtzLiANCg0KPiANCj4gQW5kIGluIHRoYXQgY2FzZSBpdCdzIG5vdCBhdCBhbGwgTVNU
+IHNwZWNpZmljIGFuZCB3ZSBjb3VsZCBqdXN0IGNhbGwNCj4gaXQNCj4gaW50ZWxfY3B1X3RyYW5z
+Y29kZXJfbmVlZHNfbW9kZXNldCgpIG9yIHNvbWV0aGluZy4NCg0KVGhhdCBpcyB0cnVlLCBtb3Zp
+bmcgdG8gaW50ZWxfZGlzcGxheSB0aGVuLg0KDQo+IA0KPiA+ID4gPiArCQkJcmV0dXJuDQo+ID4g
+PiA+IGRybV9hdG9taWNfY3J0Y19uZWVkc19tb2Rlc2V0KCZuZXdfY3J0Y19zdGF0ZS0+dWFwaSk7
+DQo+ID4gPiA+ICsNCj4gPiA+ID4gKwlyZXR1cm4gZmFsc2U7DQo+ID4gPiA+ICt9DQo+ID4gPiA+
+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwX21zdC5o
+DQo+ID4gPiA+IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcF9tc3QuaA0K
+PiA+ID4gPiBpbmRleCA4NTQ3MjRmNjhmMDkuLjcyY2I0ODZmMzJhYiAxMDA2NDQNCj4gPiA+ID4g
+LS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcF9tc3QuaA0KPiA+ID4g
+PiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwX21zdC5oDQo+ID4g
+PiA+IEBAIC04LDYgKzgsNyBAQA0KPiA+ID4gPiAgDQo+ID4gPiA+ICAjaW5jbHVkZSA8bGludXgv
+dHlwZXMuaD4NCj4gPiA+ID4gIA0KPiA+ID4gPiArc3RydWN0IGludGVsX2F0b21pY19zdGF0ZTsN
+Cj4gPiA+ID4gIHN0cnVjdCBpbnRlbF9kaWdpdGFsX3BvcnQ7DQo+ID4gPiA+ICBzdHJ1Y3QgaW50
+ZWxfY3J0Y19zdGF0ZTsNCj4gPiA+ID4gIA0KPiA+ID4gPiBAQCAtMTYsNSArMTcsNyBAQCB2b2lk
+IGludGVsX2RwX21zdF9lbmNvZGVyX2NsZWFudXAoc3RydWN0DQo+ID4gPiA+IGludGVsX2RpZ2l0
+YWxfcG9ydCAqaW50ZWxfZGlnX3BvcnQpOw0KPiA+ID4gPiAgaW50IGludGVsX2RwX21zdF9lbmNv
+ZGVyX2FjdGl2ZV9saW5rcyhzdHJ1Y3QNCj4gPiA+ID4gaW50ZWxfZGlnaXRhbF9wb3J0DQo+ID4g
+PiA+ICppbnRlbF9kaWdfcG9ydCk7DQo+ID4gPiA+ICBib29sIGludGVsX2RwX21zdF9pc19tYXN0
+ZXJfdHJhbnMoY29uc3Qgc3RydWN0DQo+ID4gPiA+IGludGVsX2NydGNfc3RhdGUNCj4gPiA+ID4g
+KmNydGNfc3RhdGUpOw0KPiA+ID4gPiAgYm9vbCBpbnRlbF9kcF9tc3RfaXNfc2xhdmVfdHJhbnMo
+Y29uc3Qgc3RydWN0IGludGVsX2NydGNfc3RhdGUNCj4gPiA+ID4gKmNydGNfc3RhdGUpOw0KPiA+
+ID4gPiArYm9vbCBpbnRlbF9kcF9tc3RfbWFzdGVyX3RyYW5zX25lZWRzX21vZGVzZXQoc3RydWN0
+DQo+ID4gPiA+IGludGVsX2F0b21pY19zdGF0ZSAqc3RhdGUsDQo+ID4gPiA+ICsJCQkJCSAgICAg
+ZW51bSB0cmFuc2NvZGVyDQo+ID4gPiA+IG1hc3Rlcik7DQo+ID4gPiA+ICANCj4gPiA+ID4gICNl
+bmRpZiAvKiBfX0lOVEVMX0RQX01TVF9IX18gKi8NCj4gPiA+ID4gLS0gDQo+ID4gPiA+IDIuMjQu
+MQ0KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwt
+Z2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8v
+bGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
