@@ -2,38 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E8D8125398
-	for <lists+intel-gfx@lfdr.de>; Wed, 18 Dec 2019 21:40:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 004551253EE
+	for <lists+intel-gfx@lfdr.de>; Wed, 18 Dec 2019 21:55:03 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F0CB3897E4;
-	Wed, 18 Dec 2019 20:40:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 33F82895B9;
+	Wed, 18 Dec 2019 20:55:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BE691897E4
- for <intel-gfx@lists.freedesktop.org>; Wed, 18 Dec 2019 20:40:21 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-X-Amp-File-Uploaded: False
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 18 Dec 2019 12:40:19 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,330,1571727600"; d="scan'208";a="212802622"
-Received: from labuser-z97x-ud5h.jf.intel.com (HELO intel.com) ([10.54.75.49])
- by fmsmga007.fm.intel.com with ESMTP; 18 Dec 2019 12:40:18 -0800
-Date: Wed, 18 Dec 2019 12:41:52 -0800
-From: Manasi Navare <manasi.d.navare@intel.com>
-To: =?iso-8859-1?Q?Jos=E9?= Roberto de Souza <jose.souza@intel.com>
-Message-ID: <20191218204151.GA5394@intel.com>
-References: <20191218185910.303540-1-jose.souza@intel.com>
- <20191218185910.303540-5-jose.souza@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id AEEEA895B9;
+ Wed, 18 Dec 2019 20:54:59 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id A8445A363B;
+ Wed, 18 Dec 2019 20:54:59 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20191218185910.303540-5-jose.souza@intel.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-Subject: Re: [Intel-gfx] [PATCH v4 5/6] drm/i915/display: Check if pipe
- fastset is allowed by external dependencies
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Imre Deak" <imre.deak@intel.com>
+Date: Wed, 18 Dec 2019 20:54:59 -0000
+Message-ID: <157670249966.8355.16129371788766938696@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20191218161105.30638-1-imre.deak@intel.com>
+In-Reply-To: <20191218161105.30638-1-imre.deak@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
+ =?utf-8?q?/i915/tgl=3A_Render/media_decompression_support_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,198 +38,277 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, Lucas De Marchi <lucas.demarchi@intel.com>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Dec 18, 2019 at 10:59:09AM -0800, Jos=E9 Roberto de Souza wrote:
-> Check if fastset is allowed by external dependencies like other pipes
-> and transcoders.
-> =
+== Series Details ==
 
-> Right now this patch only forces a fullmodeset in MST slaves of MST
-> masters that needs a fullmodeset but it will be needed for port sync
-> as well.
-> =
+Series: drm/i915/tgl: Render/media decompression support (rev2)
+URL   : https://patchwork.freedesktop.org/series/71125/
+State : failure
 
-> v3:
-> - moved handling to intel_atomic_check() this way is guarantee that
-> all pipes will have its state computed
-> =
+== Summary ==
 
-> v4:
-> - added a function to return if MST master neeeds modeset to simply
-> code in intel_atomic_check()
-> =
+CI Bug Log - changes from CI_DRM_7599 -> Patchwork_15830
+====================================================
 
-> Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> Cc: Manasi Navare <manasi.d.navare@intel.com>
-> Signed-off-by: Jos=E9 Roberto de Souza <jose.souza@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_display.c | 53 +++++++++++++++-----
->  drivers/gpu/drm/i915/display/intel_dp_mst.c  | 14 ++++++
->  drivers/gpu/drm/i915/display/intel_dp_mst.h  |  3 ++
->  3 files changed, 57 insertions(+), 13 deletions(-)
-> =
+Summary
+-------
 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/d=
-rm/i915/display/intel_display.c
-> index a4f252d05b37..2a406891567b 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -13903,19 +13903,6 @@ static void intel_crtc_check_fastset(const struc=
-t intel_crtc_state *old_crtc_sta
->  =
+  **FAILURE**
 
->  	new_crtc_state->uapi.mode_changed =3D false;
->  	new_crtc_state->update_pipe =3D true;
-> -
-> -	/*
-> -	 * If we're not doing the full modeset we want to
-> -	 * keep the current M/N values as they may be
-> -	 * sufficiently different to the computed values
-> -	 * to cause problems.
-> -	 *
-> -	 * FIXME: should really copy more fuzzy state here
-> -	 */
-> -	new_crtc_state->fdi_m_n =3D old_crtc_state->fdi_m_n;
-> -	new_crtc_state->dp_m_n =3D old_crtc_state->dp_m_n;
-> -	new_crtc_state->dp_m2_n2 =3D old_crtc_state->dp_m2_n2;
-> -	new_crtc_state->has_drrs =3D old_crtc_state->has_drrs;
->  }
->  =
+  Serious unknown changes coming with Patchwork_15830 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_15830, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
 
->  static int intel_crtc_add_planes_to_state(struct intel_atomic_state *sta=
-te,
-> @@ -14083,6 +14070,46 @@ static int intel_atomic_check(struct drm_device =
-*dev,
->  			any_ms =3D true;
->  	}
->  =
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15830/index.html
 
-> +	/**
-> +	 * Check if fastset is allowed by external dependencies like other
-> +	 * pipes and transcoders.
-> +	 *
-> +	 * Right now it only forces a fullmodeset when the MST master
-> +	 * transcoder did not changed but the pipe of the master transcoder
-> +	 * needs a fullmodeset so all slaves also needs to do a fullmodeset.
-> +	 */
-> +	for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state, i) {
-> +		enum transcoder master =3D new_crtc_state->mst_master_transcoder;
-> +
-> +		if (!intel_dp_mst_is_slave_trans(new_crtc_state) ||
-> +		    needs_modeset(new_crtc_state))
-> +			continue;
-> +
-> +		if (intel_dp_mst_master_trans_needs_modeset(state, master)) {
-> +			new_crtc_state->uapi.mode_changed =3D true;
-> +			new_crtc_state->update_pipe =3D false;
-> +		}
-> +	}
-> +
-> +	for_each_oldnew_intel_crtc_in_state(state, crtc, old_crtc_state,
-> +					    new_crtc_state, i) {
-> +		if (needs_modeset(new_crtc_state))
-> +			continue;
-> +
-> +		/*
-> +		 * If we're not doing the full modeset we want to
-> +		 * keep the current M/N values as they may be
-> +		 * sufficiently different to the computed values
-> +		 * to cause problems.
-> +		 *
-> +		 * FIXME: should really copy more fuzzy state here
-> +		 */
-> +		new_crtc_state->fdi_m_n =3D old_crtc_state->fdi_m_n;
-> +		new_crtc_state->dp_m_n =3D old_crtc_state->dp_m_n;
-> +		new_crtc_state->dp_m2_n2 =3D old_crtc_state->dp_m2_n2;
-> +		new_crtc_state->has_drrs =3D old_crtc_state->has_drrs;
-> +	}
+Possible new issues
+-------------------
 
-Jose, Ville, this is exactly how i would need to modeset all port synced cr=
-tcs
-after the fastset check?
+  Here are the unknown changes that may have been introduced in Patchwork_15830:
 
-Ville had suggsted adding mdoeset_synced_crtcs() even before the compute_co=
-nfig or before the call
-where port sync assignments happen, so in that function, it would look at t=
-he modeset_synced_old_crtc_states ?
+### IGT changes ###
 
-Manasi
+#### Possible regressions ####
+
+  * igt@kms_addfb_basic@bo-too-small-due-to-tiling:
+    - fi-hsw-peppy:       [PASS][1] -> [FAIL][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7599/fi-hsw-peppy/igt@kms_addfb_basic@bo-too-small-due-to-tiling.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15830/fi-hsw-peppy/igt@kms_addfb_basic@bo-too-small-due-to-tiling.html
+    - fi-blb-e6850:       [PASS][3] -> [FAIL][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7599/fi-blb-e6850/igt@kms_addfb_basic@bo-too-small-due-to-tiling.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15830/fi-blb-e6850/igt@kms_addfb_basic@bo-too-small-due-to-tiling.html
+    - fi-icl-u2:          [PASS][5] -> [FAIL][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7599/fi-icl-u2/igt@kms_addfb_basic@bo-too-small-due-to-tiling.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15830/fi-icl-u2/igt@kms_addfb_basic@bo-too-small-due-to-tiling.html
+    - fi-glk-dsi:         [PASS][7] -> [FAIL][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7599/fi-glk-dsi/igt@kms_addfb_basic@bo-too-small-due-to-tiling.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15830/fi-glk-dsi/igt@kms_addfb_basic@bo-too-small-due-to-tiling.html
+    - fi-pnv-d510:        [PASS][9] -> [FAIL][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7599/fi-pnv-d510/igt@kms_addfb_basic@bo-too-small-due-to-tiling.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15830/fi-pnv-d510/igt@kms_addfb_basic@bo-too-small-due-to-tiling.html
+    - fi-kbl-x1275:       [PASS][11] -> [FAIL][12]
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7599/fi-kbl-x1275/igt@kms_addfb_basic@bo-too-small-due-to-tiling.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15830/fi-kbl-x1275/igt@kms_addfb_basic@bo-too-small-due-to-tiling.html
+    - fi-apl-guc:         [PASS][13] -> [FAIL][14]
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7599/fi-apl-guc/igt@kms_addfb_basic@bo-too-small-due-to-tiling.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15830/fi-apl-guc/igt@kms_addfb_basic@bo-too-small-due-to-tiling.html
+    - fi-bsw-kefka:       [PASS][15] -> [FAIL][16]
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7599/fi-bsw-kefka/igt@kms_addfb_basic@bo-too-small-due-to-tiling.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15830/fi-bsw-kefka/igt@kms_addfb_basic@bo-too-small-due-to-tiling.html
+    - fi-bdw-5557u:       [PASS][17] -> [FAIL][18]
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7599/fi-bdw-5557u/igt@kms_addfb_basic@bo-too-small-due-to-tiling.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15830/fi-bdw-5557u/igt@kms_addfb_basic@bo-too-small-due-to-tiling.html
+    - fi-skl-6770hq:      [PASS][19] -> [FAIL][20]
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7599/fi-skl-6770hq/igt@kms_addfb_basic@bo-too-small-due-to-tiling.html
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15830/fi-skl-6770hq/igt@kms_addfb_basic@bo-too-small-due-to-tiling.html
+    - fi-tgl-y:           [PASS][21] -> [FAIL][22]
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7599/fi-tgl-y/igt@kms_addfb_basic@bo-too-small-due-to-tiling.html
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15830/fi-tgl-y/igt@kms_addfb_basic@bo-too-small-due-to-tiling.html
+    - fi-skl-6600u:       NOTRUN -> [FAIL][23]
+   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15830/fi-skl-6600u/igt@kms_addfb_basic@bo-too-small-due-to-tiling.html
+    - fi-kbl-guc:         [PASS][24] -> [FAIL][25]
+   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7599/fi-kbl-guc/igt@kms_addfb_basic@bo-too-small-due-to-tiling.html
+   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15830/fi-kbl-guc/igt@kms_addfb_basic@bo-too-small-due-to-tiling.html
+    - fi-bsw-nick:        [PASS][26] -> [FAIL][27]
+   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7599/fi-bsw-nick/igt@kms_addfb_basic@bo-too-small-due-to-tiling.html
+   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15830/fi-bsw-nick/igt@kms_addfb_basic@bo-too-small-due-to-tiling.html
+    - fi-kbl-8809g:       [PASS][28] -> [FAIL][29]
+   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7599/fi-kbl-8809g/igt@kms_addfb_basic@bo-too-small-due-to-tiling.html
+   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15830/fi-kbl-8809g/igt@kms_addfb_basic@bo-too-small-due-to-tiling.html
+    - fi-skl-lmem:        [PASS][30] -> [FAIL][31]
+   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7599/fi-skl-lmem/igt@kms_addfb_basic@bo-too-small-due-to-tiling.html
+   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15830/fi-skl-lmem/igt@kms_addfb_basic@bo-too-small-due-to-tiling.html
+    - fi-kbl-r:           [PASS][32] -> [FAIL][33]
+   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7599/fi-kbl-r/igt@kms_addfb_basic@bo-too-small-due-to-tiling.html
+   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15830/fi-kbl-r/igt@kms_addfb_basic@bo-too-small-due-to-tiling.html
+    - fi-cml-u2:          [PASS][34] -> [FAIL][35]
+   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7599/fi-cml-u2/igt@kms_addfb_basic@bo-too-small-due-to-tiling.html
+   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15830/fi-cml-u2/igt@kms_addfb_basic@bo-too-small-due-to-tiling.html
+    - fi-byt-n2820:       NOTRUN -> [FAIL][36]
+   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15830/fi-byt-n2820/igt@kms_addfb_basic@bo-too-small-due-to-tiling.html
+    - fi-icl-guc:         [PASS][37] -> [FAIL][38]
+   [37]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7599/fi-icl-guc/igt@kms_addfb_basic@bo-too-small-due-to-tiling.html
+   [38]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15830/fi-icl-guc/igt@kms_addfb_basic@bo-too-small-due-to-tiling.html
+    - fi-bxt-dsi:         [PASS][39] -> [FAIL][40]
+   [39]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7599/fi-bxt-dsi/igt@kms_addfb_basic@bo-too-small-due-to-tiling.html
+   [40]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15830/fi-bxt-dsi/igt@kms_addfb_basic@bo-too-small-due-to-tiling.html
+    - fi-byt-j1900:       [PASS][41] -> [FAIL][42]
+   [41]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7599/fi-byt-j1900/igt@kms_addfb_basic@bo-too-small-due-to-tiling.html
+   [42]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15830/fi-byt-j1900/igt@kms_addfb_basic@bo-too-small-due-to-tiling.html
+    - fi-hsw-4770:        [PASS][43] -> [FAIL][44]
+   [43]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7599/fi-hsw-4770/igt@kms_addfb_basic@bo-too-small-due-to-tiling.html
+   [44]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15830/fi-hsw-4770/igt@kms_addfb_basic@bo-too-small-due-to-tiling.html
+    - fi-cfl-guc:         [PASS][45] -> [FAIL][46]
+   [45]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7599/fi-cfl-guc/igt@kms_addfb_basic@bo-too-small-due-to-tiling.html
+   [46]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15830/fi-cfl-guc/igt@kms_addfb_basic@bo-too-small-due-to-tiling.html
+    - fi-whl-u:           [PASS][47] -> [FAIL][48]
+   [47]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7599/fi-whl-u/igt@kms_addfb_basic@bo-too-small-due-to-tiling.html
+   [48]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15830/fi-whl-u/igt@kms_addfb_basic@bo-too-small-due-to-tiling.html
+    - fi-icl-u3:          [PASS][49] -> [FAIL][50]
+   [49]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7599/fi-icl-u3/igt@kms_addfb_basic@bo-too-small-due-to-tiling.html
+   [50]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15830/fi-icl-u3/igt@kms_addfb_basic@bo-too-small-due-to-tiling.html
+    - fi-skl-guc:         [PASS][51] -> [FAIL][52]
+   [51]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7599/fi-skl-guc/igt@kms_addfb_basic@bo-too-small-due-to-tiling.html
+   [52]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15830/fi-skl-guc/igt@kms_addfb_basic@bo-too-small-due-to-tiling.html
+    - fi-bsw-n3050:       [PASS][53] -> [FAIL][54]
+   [53]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7599/fi-bsw-n3050/igt@kms_addfb_basic@bo-too-small-due-to-tiling.html
+   [54]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15830/fi-bsw-n3050/igt@kms_addfb_basic@bo-too-small-due-to-tiling.html
+    - fi-ivb-3770:        [PASS][55] -> [FAIL][56]
+   [55]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7599/fi-ivb-3770/igt@kms_addfb_basic@bo-too-small-due-to-tiling.html
+   [56]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15830/fi-ivb-3770/igt@kms_addfb_basic@bo-too-small-due-to-tiling.html
+    - fi-ilk-650:         [PASS][57] -> [FAIL][58]
+   [57]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7599/fi-ilk-650/igt@kms_addfb_basic@bo-too-small-due-to-tiling.html
+   [58]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15830/fi-ilk-650/igt@kms_addfb_basic@bo-too-small-due-to-tiling.html
+    - fi-elk-e7500:       [PASS][59] -> [FAIL][60]
+   [59]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7599/fi-elk-e7500/igt@kms_addfb_basic@bo-too-small-due-to-tiling.html
+   [60]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15830/fi-elk-e7500/igt@kms_addfb_basic@bo-too-small-due-to-tiling.html
+    - fi-cfl-8700k:       [PASS][61] -> [FAIL][62]
+   [61]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7599/fi-cfl-8700k/igt@kms_addfb_basic@bo-too-small-due-to-tiling.html
+   [62]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15830/fi-cfl-8700k/igt@kms_addfb_basic@bo-too-small-due-to-tiling.html
+    - fi-icl-y:           [PASS][63] -> [FAIL][64]
+   [63]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7599/fi-icl-y/igt@kms_addfb_basic@bo-too-small-due-to-tiling.html
+   [64]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15830/fi-icl-y/igt@kms_addfb_basic@bo-too-small-due-to-tiling.html
+    - fi-hsw-4770r:       [PASS][65] -> [FAIL][66]
+   [65]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7599/fi-hsw-4770r/igt@kms_addfb_basic@bo-too-small-due-to-tiling.html
+   [66]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15830/fi-hsw-4770r/igt@kms_addfb_basic@bo-too-small-due-to-tiling.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_15830 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-skl-6770hq:      [PASS][67] -> [FAIL][68] ([i915#178])
+   [67]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7599/fi-skl-6770hq/igt@i915_pm_rpm@module-reload.html
+   [68]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15830/fi-skl-6770hq/igt@i915_pm_rpm@module-reload.html
+
+  * igt@i915_selftest@live_blt:
+    - fi-hsw-4770r:       [PASS][69] -> [DMESG-FAIL][70] ([i915#770])
+   [69]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7599/fi-hsw-4770r/igt@i915_selftest@live_blt.html
+   [70]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15830/fi-hsw-4770r/igt@i915_selftest@live_blt.html
+
+  * igt@i915_selftest@live_gem_contexts:
+    - fi-byt-j1900:       [PASS][71] -> [INCOMPLETE][72] ([i915#45])
+   [71]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7599/fi-byt-j1900/igt@i915_selftest@live_gem_contexts.html
+   [72]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15830/fi-byt-j1900/igt@i915_selftest@live_gem_contexts.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_close_race@basic-threads:
+    - fi-byt-n2820:       [TIMEOUT][73] ([i915#816]) -> [PASS][74]
+   [73]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7599/fi-byt-n2820/igt@gem_close_race@basic-threads.html
+   [74]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15830/fi-byt-n2820/igt@gem_close_race@basic-threads.html
+
+  * igt@gem_exec_gttfill@basic:
+    - {fi-tgl-u}:         [INCOMPLETE][75] ([fdo#111593]) -> [PASS][76]
+   [75]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7599/fi-tgl-u/igt@gem_exec_gttfill@basic.html
+   [76]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15830/fi-tgl-u/igt@gem_exec_gttfill@basic.html
+
+  * igt@i915_selftest@live_blt:
+    - fi-ivb-3770:        [DMESG-FAIL][77] ([i915#725]) -> [PASS][78]
+   [77]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7599/fi-ivb-3770/igt@i915_selftest@live_blt.html
+   [78]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15830/fi-ivb-3770/igt@i915_selftest@live_blt.html
+
+  * igt@i915_selftest@live_gem_contexts:
+    - fi-cfl-8700k:       [INCOMPLETE][79] ([i915#424]) -> [PASS][80]
+   [79]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7599/fi-cfl-8700k/igt@i915_selftest@live_gem_contexts.html
+   [80]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15830/fi-cfl-8700k/igt@i915_selftest@live_gem_contexts.html
+
+  
+#### Warnings ####
+
+  * igt@gem_exec_suspend@basic-s4-devices:
+    - fi-kbl-x1275:       [DMESG-WARN][81] ([fdo#107139] / [i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][82] ([fdo#107139] / [i915#62] / [i915#92])
+   [81]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7599/fi-kbl-x1275/igt@gem_exec_suspend@basic-s4-devices.html
+   [82]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15830/fi-kbl-x1275/igt@gem_exec_suspend@basic-s4-devices.html
+
+  * igt@i915_selftest@live_blt:
+    - fi-hsw-4770:        [DMESG-FAIL][83] ([i915#725]) -> [DMESG-FAIL][84] ([i915#770])
+   [83]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7599/fi-hsw-4770/igt@i915_selftest@live_blt.html
+   [84]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15830/fi-hsw-4770/igt@i915_selftest@live_blt.html
+
+  * igt@kms_cursor_legacy@basic-flip-after-cursor-legacy:
+    - fi-kbl-x1275:       [DMESG-WARN][85] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][86] ([i915#62] / [i915#92]) +4 similar issues
+   [85]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7599/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
+   [86]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15830/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
+
+  * igt@kms_force_connector_basic@force-edid:
+    - fi-kbl-x1275:       [DMESG-WARN][87] ([i915#62] / [i915#92]) -> [DMESG-WARN][88] ([i915#62] / [i915#92] / [i915#95]) +7 similar issues
+   [87]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7599/fi-kbl-x1275/igt@kms_force_connector_basic@force-edid.html
+   [88]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15830/fi-kbl-x1275/igt@kms_force_connector_basic@force-edid.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#107139]: https://bugs.freedesktop.org/show_bug.cgi?id=107139
+  [fdo#111593]: https://bugs.freedesktop.org/show_bug.cgi?id=111593
+  [i915#178]: https://gitlab.freedesktop.org/drm/intel/issues/178
+  [i915#424]: https://gitlab.freedesktop.org/drm/intel/issues/424
+  [i915#45]: https://gitlab.freedesktop.org/drm/intel/issues/45
+  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
+  [i915#725]: https://gitlab.freedesktop.org/drm/intel/issues/725
+  [i915#770]: https://gitlab.freedesktop.org/drm/intel/issues/770
+  [i915#816]: https://gitlab.freedesktop.org/drm/intel/issues/816
+  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
+  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
 
 
-Manasi
+Participating hosts (48 -> 40)
+------------------------------
 
-> +
->  	if (any_ms && !check_digital_port_conflicts(state)) {
->  		DRM_DEBUG_KMS("rejecting conflicting digital port configuration\n");
->  		ret =3D EINVAL;
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/dr=
-m/i915/display/intel_dp_mst.c
-> index efd14b0b507b..4aba1d702a83 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> @@ -854,3 +854,17 @@ bool intel_dp_mst_is_slave_trans(const struct intel_=
-crtc_state *crtc_state)
->  	return crtc_state->mst_master_transcoder !=3D INVALID_TRANSCODER &&
->  	       crtc_state->mst_master_transcoder !=3D crtc_state->cpu_transcode=
-r;
->  }
-> +
-> +bool intel_dp_mst_master_trans_needs_modeset(struct intel_atomic_state *=
-state,
-> +					     enum transcoder master)
-> +{
-> +	struct intel_crtc_state *new_crtc_state;
-> +	struct intel_crtc *crtc;
-> +	int i;
-> +
-> +	for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state, i)
-> +		if (new_crtc_state->mst_master_transcoder =3D=3D master)
-> +			return drm_atomic_crtc_needs_modeset(&new_crtc_state->uapi);
-> +
-> +	return false;
-> +}
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.h b/drivers/gpu/dr=
-m/i915/display/intel_dp_mst.h
-> index 854724f68f09..72cb486f32ab 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp_mst.h
-> +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.h
-> @@ -8,6 +8,7 @@
->  =
+  Additional (1): fi-skl-6600u 
+  Missing    (9): fi-kbl-soraka fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-bwr-2160 fi-gdg-551 fi-byt-clapper fi-bdw-samus fi-snb-2600 
 
->  #include <linux/types.h>
->  =
 
-> +struct intel_atomic_state;
->  struct intel_digital_port;
->  struct intel_crtc_state;
->  =
+Build changes
+-------------
 
-> @@ -16,5 +17,7 @@ void intel_dp_mst_encoder_cleanup(struct intel_digital_=
-port *intel_dig_port);
->  int intel_dp_mst_encoder_active_links(struct intel_digital_port *intel_d=
-ig_port);
->  bool intel_dp_mst_is_master_trans(const struct intel_crtc_state *crtc_st=
-ate);
->  bool intel_dp_mst_is_slave_trans(const struct intel_crtc_state *crtc_sta=
-te);
-> +bool intel_dp_mst_master_trans_needs_modeset(struct intel_atomic_state *=
-state,
-> +					     enum transcoder master);
->  =
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_7599 -> Patchwork_15830
 
->  #endif /* __INTEL_DP_MST_H__ */
-> -- =
+  CI-20190529: 20190529
+  CI_DRM_7599: 03dfaf2e5f39b632d0187544f3c988b8596f11b0 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5351: e7fdcef72d1d6b3bb9f3003bbc37571959e6e8bb @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_15830: 210d9ea8c440bfc29b443a3af46f937662264594 @ git://anongit.freedesktop.org/gfx-ci/linux
 
-> 2.24.1
-> =
 
+== Linux commits ==
+
+210d9ea8c440 drm/i915/tgl: Add Clear Color support for TGL Render Decompression
+5a820e552d62 drm/framebuffer: Format modifier for Intel Gen 12 render compression with Clear Color
+cd33cb3884df drm/i915/tgl: Gen-12 display can decompress surfaces compressed by the media engine
+3afe4941ecb1 drm/fb: Extend format_info member arrays to handle four planes
+4d6d5ce67a4f drm/framebuffer: Format modifier for Intel Gen-12 media compression
+10830ae44aa5 drm/i915: Make sure CCS YUV semiplanar format checks work
+e528f5592152 drm/i915: Make sure Y slave planes get all the required state
+136d04c5ec63 drm/i915: Skip rotated offset adjustment for unsupported modifiers
+82ec90bd848a drm/i915/tgl: Make sure FBs have a correct CCS plane stride
+81a7b00d91e6 drm/i915/tgl: Gen-12 render decompression
+8648416c288f drm/i915: Add helpers to select correct ccs/aux planes
+efa1d8e8a1af drm/i915: Extract framebufer CCS offset checks into a function
+1d89d4a9f731 drm/i915: Move CCS stride alignment W/A inside intel_fb_stride_alignment
+23ba997a14b1 drm/i915: Use intel_tile_height() instead of re-implementing
+20f56e60829c drm/framebuffer: Format modifier for Intel Gen-12 render compression
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15830/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
