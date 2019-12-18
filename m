@@ -2,29 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 33D15124327
-	for <lists+intel-gfx@lfdr.de>; Wed, 18 Dec 2019 10:29:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 92A5A12432E
+	for <lists+intel-gfx@lfdr.de>; Wed, 18 Dec 2019 10:29:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9BF396E28E;
-	Wed, 18 Dec 2019 09:29:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E503A6E290;
+	Wed, 18 Dec 2019 09:29:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 062386E28E
- for <intel-gfx@lists.freedesktop.org>; Wed, 18 Dec 2019 09:29:09 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D13566E290
+ for <intel-gfx@lists.freedesktop.org>; Wed, 18 Dec 2019 09:29:52 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 18 Dec 2019 01:29:09 -0800
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 18 Dec 2019 01:29:52 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,329,1571727600"; d="scan'208";a="417169457"
+X-IronPort-AV: E=Sophos;i="5.69,329,1571727600"; d="scan'208";a="365693253"
 Received: from linux.intel.com ([10.54.29.200])
- by fmsmga006.fm.intel.com with ESMTP; 18 Dec 2019 01:29:08 -0800
+ by orsmga004.jf.intel.com with ESMTP; 18 Dec 2019 01:29:52 -0800
 Received: from [10.125.252.219] (abudanko-mobl.ccr.corp.intel.com
  [10.125.252.219])
- by linux.intel.com (Postfix) with ESMTP id 325CF5803E4;
- Wed, 18 Dec 2019 01:28:58 -0800 (PST)
+ by linux.intel.com (Postfix) with ESMTP id 8CDA558095E;
+ Wed, 18 Dec 2019 01:29:43 -0800 (PST)
 From: Alexey Budankov <alexey.budankov@linux.intel.com>
 To: Peter Zijlstra <peterz@infradead.org>,
  Arnaldo Carvalho de Melo <acme@kernel.org>, Ingo Molnar <mingo@redhat.com>,
@@ -41,14 +41,14 @@ To: Peter Zijlstra <peterz@infradead.org>,
  <casey@schaufler-ca.com>, Robert Richter <rric@kernel.org>
 References: <c0460c78-b1a6-b5f7-7119-d97e5998f308@linux.intel.com>
 Organization: Intel Corp.
-Message-ID: <b6b4cfb7-82c5-85f6-0588-43046ace8419@linux.intel.com>
-Date: Wed, 18 Dec 2019 12:28:58 +0300
+Message-ID: <806e4881-5c22-5914-a656-5eeb65130dbe@linux.intel.com>
+Date: Wed, 18 Dec 2019 12:29:42 +0300
 User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
  Thunderbird/60.9.1
 MIME-Version: 1.0
 In-Reply-To: <c0460c78-b1a6-b5f7-7119-d97e5998f308@linux.intel.com>
 Content-Language: en-US
-Subject: [Intel-gfx] [PATCH v4 6/9] powerpc/perf: open access for
+Subject: [Intel-gfx] [PATCH v4 7/9] parisc/perf: open access for
  CAP_SYS_PERFMON privileged process
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -92,31 +92,22 @@ monitoring is discouraged with respect to CAP_SYS_PERFMON capability.
 
 Signed-off-by: Alexey Budankov <alexey.budankov@linux.intel.com>
 ---
- arch/powerpc/perf/imc-pmu.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ arch/parisc/kernel/perf.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/powerpc/perf/imc-pmu.c b/arch/powerpc/perf/imc-pmu.c
-index cb50a9e1fd2d..e837717492e4 100644
---- a/arch/powerpc/perf/imc-pmu.c
-+++ b/arch/powerpc/perf/imc-pmu.c
-@@ -898,7 +898,7 @@ static int thread_imc_event_init(struct perf_event *event)
- 	if (event->attr.type != event->pmu->type)
- 		return -ENOENT;
+diff --git a/arch/parisc/kernel/perf.c b/arch/parisc/kernel/perf.c
+index 676683641d00..c4208d027794 100644
+--- a/arch/parisc/kernel/perf.c
++++ b/arch/parisc/kernel/perf.c
+@@ -300,7 +300,7 @@ static ssize_t perf_write(struct file *file, const char __user *buf,
+ 	else
+ 		return -EFAULT;
  
 -	if (!capable(CAP_SYS_ADMIN))
 +	if (!perfmon_capable())
  		return -EACCES;
  
- 	/* Sampling not supported */
-@@ -1307,7 +1307,7 @@ static int trace_imc_event_init(struct perf_event *event)
- 	if (event->attr.type != event->pmu->type)
- 		return -ENOENT;
- 
--	if (!capable(CAP_SYS_ADMIN))
-+	if (!perfmon_capable())
- 		return -EACCES;
- 
- 	/* Return if this is a couting event */
+ 	if (count != sizeof(uint32_t))
 -- 
 2.20.1
 
