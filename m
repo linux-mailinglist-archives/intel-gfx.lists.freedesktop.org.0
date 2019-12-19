@@ -1,49 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B8B81125D29
-	for <lists+intel-gfx@lfdr.de>; Thu, 19 Dec 2019 10:01:23 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 546BA125D53
+	for <lists+intel-gfx@lfdr.de>; Thu, 19 Dec 2019 10:10:42 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8772C6E0D0;
-	Thu, 19 Dec 2019 09:01:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 27E4A6EAE2;
+	Thu, 19 Dec 2019 09:10:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CA2BB6E0D0
- for <intel-gfx@lists.freedesktop.org>; Thu, 19 Dec 2019 09:01:19 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 537026EAE2
+ for <intel-gfx@lists.freedesktop.org>; Thu, 19 Dec 2019 09:10:39 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 19 Dec 2019 01:01:19 -0800
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 19 Dec 2019 01:10:39 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,331,1571727600"; d="scan'208";a="241085106"
-Received: from irsmsx107.ger.corp.intel.com ([163.33.3.99])
- by fmsmga004.fm.intel.com with ESMTP; 19 Dec 2019 01:01:18 -0800
-Received: from irsmsx102.ger.corp.intel.com ([169.254.2.130]) by
- IRSMSX107.ger.corp.intel.com ([169.254.10.222]) with mapi id 14.03.0439.000;
- Thu, 19 Dec 2019 09:01:18 +0000
-From: "Kahola, Mika" <mika.kahola@intel.com>
-To: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "Deak, Imre" <imre.deak@intel.com>
-Thread-Topic: [Intel-gfx] [PATCH 01/15] drm/framebuffer: Format modifier for
- Intel Gen-12 render compression
-Thread-Index: AQHVtb3ZIuirFLOqv0yQ35a5fOZ4EafBKkIA
-Date: Thu, 19 Dec 2019 09:01:17 +0000
-Message-ID: <2a9976fea8f785995f64dae6d1f8389c3c09f832.camel@intel.com>
-References: <20191218161105.30638-1-imre.deak@intel.com>
- <20191218161105.30638-2-imre.deak@intel.com>
-In-Reply-To: <20191218161105.30638-2-imre.deak@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.237.72.159]
-Content-ID: <B3320A85E83627449D916A8E8DDC64C8@intel.com>
+X-IronPort-AV: E=Sophos;i="5.69,331,1571727600"; d="scan'208";a="212954494"
+Received: from bbartede-mobl2.ger.corp.intel.com (HELO [10.252.33.233])
+ ([10.252.33.233])
+ by fmsmga007.fm.intel.com with ESMTP; 19 Dec 2019 01:10:30 -0800
+To: Alexey Budankov <alexey.budankov@linux.intel.com>,
+ Peter Zijlstra <peterz@infradead.org>,
+ Arnaldo Carvalho de Melo <acme@kernel.org>, Ingo Molnar <mingo@redhat.com>,
+ "jani.nikula@linux.intel.com" <jani.nikula@linux.intel.com>,
+ "joonas.lahtinen@linux.intel.com" <joonas.lahtinen@linux.intel.com>,
+ "rodrigo.vivi@intel.com" <rodrigo.vivi@intel.com>,
+ Alexei Starovoitov <ast@kernel.org>,
+ Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+ Paul Mackerras <paulus@samba.org>, Michael Ellerman <mpe@ellerman.id.au>,
+ "james.bottomley@hansenpartnership.com"
+ <james.bottomley@hansenpartnership.com>, Serge Hallyn <serge@hallyn.com>,
+ James Morris <jmorris@namei.org>, Will Deacon <will.deacon@arm.com>,
+ Mark Rutland <mark.rutland@arm.com>, Casey Schaufler
+ <casey@schaufler-ca.com>, Robert Richter <rric@kernel.org>
+References: <c0460c78-b1a6-b5f7-7119-d97e5998f308@linux.intel.com>
+ <ea050255-a125-8831-ce91-ee23bd6ad08b@linux.intel.com>
+From: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
+Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way,
+ Swindon SN3 1RJ
+Message-ID: <d5f908f3-b545-7953-8c72-ceb7177609d3@intel.com>
+Date: Thu, 19 Dec 2019 11:10:29 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.3.0
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 01/15] drm/framebuffer: Format modifier for
- Intel Gen-12 render compression
+In-Reply-To: <ea050255-a125-8831-ce91-ee23bd6ad08b@linux.intel.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH v4 4/9] drm/i915/perf: open access for
+ CAP_SYS_PERFMON privileged process
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,67 +62,92 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Chery, Nanley G" <nanley.g.chery@intel.com>, "De Marchi,
- Lucas" <lucas.demarchi@intel.com>, "Pandiyan,
- Dhinakaran" <dhinakaran.pandiyan@intel.com>
-Content-Type: text/plain; charset="iso-8859-15"
-Content-Transfer-Encoding: quoted-printable
+Cc: Song Liu <songliubraving@fb.com>, Andi Kleen <ak@linux.intel.com>,
+ Kees Cook <keescook@chromium.org>,
+ "linux-parisc@vger.kernel.org" <linux-parisc@vger.kernel.org>,
+ Jann Horn <jannh@google.com>,
+ Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+ "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ Igor Lubashev <ilubashe@akamai.com>,
+ linux-kernel <linux-kernel@vger.kernel.org>,
+ Stephane Eranian <eranian@google.com>,
+ "linux-perf-users@vger.kernel.org" <linux-perf-users@vger.kernel.org>,
+ "selinux@vger.kernel.org" <selinux@vger.kernel.org>,
+ "linux-security-module@vger.kernel.org"
+ <linux-security-module@vger.kernel.org>, oprofile-list@lists.sf.net,
+ Namhyung Kim <namhyung@kernel.org>, Thomas Gleixner <tglx@linutronix.de>,
+ Jiri Olsa <jolsa@redhat.com>, "bpf@vger.kernel.org" <bpf@vger.kernel.org>,
+ linux-arm-kernel@lists.infradead.org
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 2019-12-18 at 18:10 +0200, Imre Deak wrote:
-> From: Dhinakaran Pandiyan <dhinakaran.pandiyan@intel.com>
-> =
+On 18/12/2019 11:27, Alexey Budankov wrote:
+> Open access to i915_perf monitoring for CAP_SYS_PERFMON privileged
+> processes. For backward compatibility reasons access to i915_perf
+> subsystem remains open for CAP_SYS_ADMIN privileged processes but
+> CAP_SYS_ADMIN usage for secure i915_perf monitoring is discouraged
+> with respect to CAP_SYS_PERFMON capability.
+>
+> Signed-off-by: Alexey Budankov <alexey.budankov@linux.intel.com>
 
-> Gen-12 has a new compression format, add a new modifier to indicate
-> that.
-> =
-
-> Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> Cc: Matt Roper <matthew.d.roper@intel.com>
-> Cc: Nanley G Chery <nanley.g.chery@intel.com>
-> Cc: Jason Ekstrand <jason@jlekstrand.net>
-> Signed-off-by: Dhinakaran Pandiyan <dhinakaran.pandiyan@intel.com>
-> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
-> Signed-off-by: Imre Deak <imre.deak@intel.com>
-
-Reviewed-by: Mika Kahola <mika.kahola@intel.com>
+Acked-by: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
 
 > ---
->  include/uapi/drm/drm_fourcc.h | 11 +++++++++++
->  1 file changed, 11 insertions(+)
-> =
+>   drivers/gpu/drm/i915/i915_perf.c | 13 ++++++-------
+>   1 file changed, 6 insertions(+), 7 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
+> index e42b86827d6b..e2697f8d04de 100644
+> --- a/drivers/gpu/drm/i915/i915_perf.c
+> +++ b/drivers/gpu/drm/i915/i915_perf.c
+> @@ -2748,10 +2748,10 @@ i915_perf_open_ioctl_locked(struct drm_i915_private *dev_priv,
+>   	/* Similar to perf's kernel.perf_paranoid_cpu sysctl option
+>   	 * we check a dev.i915.perf_stream_paranoid sysctl option
+>   	 * to determine if it's ok to access system wide OA counters
+> -	 * without CAP_SYS_ADMIN privileges.
+> +	 * without CAP_SYS_PERFMON or CAP_SYS_ADMIN privileges.
+>   	 */
+>   	if (privileged_op &&
+> -	    i915_perf_stream_paranoid && !capable(CAP_SYS_ADMIN)) {
+> +	    i915_perf_stream_paranoid && !perfmon_capable()) {
+>   		DRM_DEBUG("Insufficient privileges to open system-wide i915 perf stream\n");
+>   		ret = -EACCES;
+>   		goto err_ctx;
+> @@ -2939,9 +2939,8 @@ static int read_properties_unlocked(struct drm_i915_private *dev_priv,
+>   			} else
+>   				oa_freq_hz = 0;
+>   
+> -			if (oa_freq_hz > i915_oa_max_sample_rate &&
+> -			    !capable(CAP_SYS_ADMIN)) {
+> -				DRM_DEBUG("OA exponent would exceed the max sampling frequency (sysctl dev.i915.oa_max_sample_rate) %uHz without root privileges\n",
+> +			if (oa_freq_hz > i915_oa_max_sample_rate && !perfmon_capable()) {
+> +				DRM_DEBUG("OA exponent would exceed the max sampling frequency (sysctl dev.i915.oa_max_sample_rate) %uHz without CAP_SYS_PERFMON or CAP_SYS_ADMIN privileges\n",
+>   					  i915_oa_max_sample_rate);
+>   				return -EACCES;
+>   			}
+> @@ -3328,7 +3327,7 @@ int i915_perf_add_config_ioctl(struct drm_device *dev, void *data,
+>   		return -EINVAL;
+>   	}
+>   
+> -	if (i915_perf_stream_paranoid && !capable(CAP_SYS_ADMIN)) {
+> +	if (i915_perf_stream_paranoid && !perfmon_capable()) {
+>   		DRM_DEBUG("Insufficient privileges to add i915 OA config\n");
+>   		return -EACCES;
+>   	}
+> @@ -3474,7 +3473,7 @@ int i915_perf_remove_config_ioctl(struct drm_device *dev, void *data,
+>   		return -ENOTSUPP;
+>   	}
+>   
+> -	if (i915_perf_stream_paranoid && !capable(CAP_SYS_ADMIN)) {
+> +	if (i915_perf_stream_paranoid && !perfmon_capable()) {
+>   		DRM_DEBUG("Insufficient privileges to remove i915 OA config\n");
+>   		return -EACCES;
+>   	}
 
-> diff --git a/include/uapi/drm/drm_fourcc.h
-> b/include/uapi/drm/drm_fourcc.h
-> index 8caaaf7ff91b..5ba481f49931 100644
-> --- a/include/uapi/drm/drm_fourcc.h
-> +++ b/include/uapi/drm/drm_fourcc.h
-> @@ -410,6 +410,17 @@ extern "C" {
->  #define I915_FORMAT_MOD_Y_TILED_CCS	fourcc_mod_code(INTEL, 4)
->  #define I915_FORMAT_MOD_Yf_TILED_CCS	fourcc_mod_code(INTEL, 5)
->  =
 
-> +/*
-> + * Intel color control surfaces (CCS) for Gen-12 render compression.
-> + *
-> + * The main surface is Y-tiled and at plane index 0, the CCS is
-> linear and
-> + * at index 1. A 64B CCS cache line corresponds to an area of 4x1
-> tiles in
-> + * main surface. In other words, 4 bits in CCS map to a main surface
-> cache
-> + * line pair. The main surface pitch is required to be a multiple of
-> four
-> + * Y-tile widths.
-> + */
-> +#define I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS fourcc_mod_code(INTEL,
-> 6)
-> +
->  /*
->   * Tiled, NV12MT, grouped in 64 (pixels) x 32 (lines) -sized
-> macroblocks
->   *
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
