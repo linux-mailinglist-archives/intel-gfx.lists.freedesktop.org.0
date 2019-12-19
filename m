@@ -1,39 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CEB2C12636A
-	for <lists+intel-gfx@lfdr.de>; Thu, 19 Dec 2019 14:26:24 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B40FA126376
+	for <lists+intel-gfx@lfdr.de>; Thu, 19 Dec 2019 14:28:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 33DC66EB72;
-	Thu, 19 Dec 2019 13:26:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5F5E86EB77;
+	Thu, 19 Dec 2019 13:28:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2EB616EB72
- for <intel-gfx@lists.freedesktop.org>; Thu, 19 Dec 2019 13:26:21 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A38346EB74;
+ Thu, 19 Dec 2019 13:28:05 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
  by fmsmga106.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 19 Dec 2019 05:26:20 -0800
-X-IronPort-AV: E=Sophos;i="5.69,332,1571727600"; d="scan'208";a="206206078"
-Received: from jnikula-mobl3.fi.intel.com (HELO localhost) ([10.237.66.161])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 19 Dec 2019 05:26:19 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: "Kulkarni\, Vandita" <vandita.kulkarni@intel.com>,
- "intel-gfx\@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-In-Reply-To: <57510F3E2013164E925CD03ED7512A3B809E9812@BGSMSX108.gar.corp.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1576081155.git.jani.nikula@intel.com>
- <20191212134728.18432-1-jani.nikula@intel.com>
- <57510F3E2013164E925CD03ED7512A3B809E9812@BGSMSX108.gar.corp.intel.com>
-Date: Thu, 19 Dec 2019 15:26:17 +0200
-Message-ID: <87zhfowio6.fsf@intel.com>
+ 19 Dec 2019 05:28:05 -0800
+X-IronPort-AV: E=Sophos;i="5.69,332,1571727600"; d="scan'208";a="210459169"
+Received: from amanna-mobl1.gar.corp.intel.com (HELO [10.66.117.94])
+ ([10.66.117.94])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-SHA;
+ 19 Dec 2019 05:28:02 -0800
+To: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+References: <20191218151350.19579-1-animesh.manna@intel.com>
+ <20191218151350.19579-4-animesh.manna@intel.com> <878sn8y4ex.fsf@intel.com>
+From: "Manna, Animesh" <animesh.manna@intel.com>
+Message-ID: <32fe343c-9c30-b254-17c6-da292dd2a3c5@intel.com>
+Date: Thu, 19 Dec 2019 18:57:57 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.3.0
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 3/2] drm/i915/dsc: fix DSC power domains for
- DSI
+In-Reply-To: <878sn8y4ex.fsf@intel.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH v2 3/9] drm/i915/dp: Move
+ vswing/pre-emphasis adjustment calculation
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,86 +48,141 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: nidhi1.gupta@intel.com
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gVGh1LCAxOSBEZWMgMjAxOSwgIkt1bGthcm5pLCBWYW5kaXRhIiA8dmFuZGl0YS5rdWxrYXJu
-aUBpbnRlbC5jb20+IHdyb3RlOgo+PiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQo+PiBGcm9t
-OiBKYW5pIE5pa3VsYSA8amFuaS5uaWt1bGFAaW50ZWwuY29tPgo+PiBTZW50OiBUaHVyc2RheSwg
-RGVjZW1iZXIgMTIsIDIwMTkgNzoxNyBQTQo+PiBUbzogTmlrdWxhLCBKYW5pIDxqYW5pLm5pa3Vs
-YUBpbnRlbC5jb20+OyBpbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4+IENjOiBTb3V6
-YSwgSm9zZSA8am9zZS5zb3V6YUBpbnRlbC5jb20+OyBOYXZhcmUsIE1hbmFzaSBECj4+IDxtYW5h
-c2kuZC5uYXZhcmVAaW50ZWwuY29tPjsgS3Vsa2FybmksIFZhbmRpdGEKPj4gPHZhbmRpdGEua3Vs
-a2FybmlAaW50ZWwuY29tPgo+PiBTdWJqZWN0OiBbUEFUQ0ggMy8yXSBkcm0vaTkxNS9kc2M6IGZp
-eCBEU0MgcG93ZXIgZG9tYWlucyBmb3IgRFNJCj4+IAo+PiBGaXggc2V2ZXJhbCBpc3N1ZXMgd2l0
-aCBEU0MgcG93ZXIgZG9tYWlucyB0aGF0IGRpZCBub3QgdGFrZSBEU0kgdHJhbnNjb2RlcnMKPj4g
-aW50byBhY2NvdW50Ogo+PiAKPj4gLSBPbiBUR0wrIHdlIG5lZWQgdG8gdXNlIFBXMiBmb3IgRFND
-IG9uIHBpcGUgQSwgbm90IHRyYW5zY29kZXIgQS4gVGhlcmUKPj4gICBpcyBubyBsb25nZXIgYW4g
-ZURQIHRyYW5zY29kZXIsIGJ1dCB0aGVyZSBhcmUgdHdvIERTSSB0cmFuc2NvZGVycwo+PiAgIHdo
-aWNoIG1heSBiZSBjb25uZWN0ZWQgdG8gcGlwZSBBLgo+PiAKPj4gLSBPbiBUR0wrIHdlIG5lZWQg
-dG8gdXNlIHRoZSBwaXBlLCBub3QgdHJhbnNjb2RlciwgcG93ZXIgZG9tYWlucyBmb3IgRFNDCj4+
-ICAgb24gcGlwZXMgb3RoZXIgdGhhbiBBLiBBZ2FpbiwgdGhlcmUgYXJlIERTSSB0cmFuc2NvZGVy
-cy4KPj4gCj4+IC0gT24gSUNMIHdlIG5lZWQgdG8gdXNlIFBXMiBmb3IgRFNDIGFsc28gZm9yIERT
-SSB0cmFuc2NvZGVycywgbm90IGp1c3QKPj4gICBmb3IgdGhlIGVEUCB0cmFuc2NvZGVyLgo+PiAK
-Pj4gVXNpbmcgaXNfcGlwZV9kc2MoKSBhbHNvIGFkZHMgdGhlIHdhcm5pbmcgYWJvdXQgSUNMIHBp
-cGUgQSBEU0MsIHdoaWNoIGRvZXMKPj4gbm90IGV4aXN0Lgo+PiAKPj4gQ2M6IEpvc8OpIFJvYmVy
-dG8gZGUgU291emEgPGpvc2Uuc291emFAaW50ZWwuY29tPgo+PiBDYzogTWFuYXNpIE5hdmFyZSA8
-bWFuYXNpLmQubmF2YXJlQGludGVsLmNvbT4KPj4gQ2M6IFZhbmRpdGEgS3Vsa2FybmkgPHZhbmRp
-dGEua3Vsa2FybmlAaW50ZWwuY29tPgo+PiBTaWduZWQtb2ZmLWJ5OiBKYW5pIE5pa3VsYSA8amFu
-aS5uaWt1bGFAaW50ZWwuY29tPgo+PiAtLS0KPj4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3Bs
-YXkvaW50ZWxfdmRzYy5jIHwgMjggKysrKysrKysrKysrLS0tLS0tLS0tLS0KPj4gIDEgZmlsZSBj
-aGFuZ2VkLCAxNSBpbnNlcnRpb25zKCspLCAxMyBkZWxldGlvbnMoLSkKPj4gCj4+IGRpZmYgLS1n
-aXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Zkc2MuYwo+PiBiL2RyaXZl
-cnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfdmRzYy5jCj4+IGluZGV4IDQxNzE4ZjcyMTQ4
-NC4uNmJhYjA4ZGI1ZDc1IDEwMDY0NAo+PiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNw
-bGF5L2ludGVsX3Zkc2MuYwo+PiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2lu
-dGVsX3Zkc2MuYwo+PiBAQCAtNDY5LDI1ICs0NjksMjcgQEAgaW50IGludGVsX2RzY19jb21wdXRl
-X3BhcmFtcyhzdHJ1Y3QKPj4gaW50ZWxfZW5jb2RlciAqZW5jb2RlciwgIGVudW0gaW50ZWxfZGlz
-cGxheV9wb3dlcl9kb21haW4KPj4gaW50ZWxfZHNjX3Bvd2VyX2RvbWFpbihjb25zdCBzdHJ1Y3Qg
-aW50ZWxfY3J0Y19zdGF0ZSAqY3J0Y19zdGF0ZSkgIHsKPj4gLQlzdHJ1Y3QgZHJtX2k5MTVfcHJp
-dmF0ZSAqaTkxNSA9IHRvX2k5MTUoY3J0Y19zdGF0ZS0+dWFwaS5jcnRjLT5kZXYpOwo+PiAtCWVu
-dW0gdHJhbnNjb2RlciBjcHVfdHJhbnNjb2RlciA9IGNydGNfc3RhdGUtPmNwdV90cmFuc2NvZGVy
-Owo+PiArCXN0cnVjdCBpbnRlbF9jcnRjICpjcnRjID0gdG9faW50ZWxfY3J0YyhjcnRjX3N0YXRl
-LT51YXBpLmNydGMpOwo+PiArCXN0cnVjdCBkcm1faTkxNV9wcml2YXRlICppOTE1ID0gdG9faTkx
-NShjcnRjLT5iYXNlLmRldik7Cj4+ICsJZW51bSBwaXBlIHBpcGUgPSBjcnRjLT5waXBlOwo+PiAK
-Pj4gIAkvKgo+PiAtCSAqIE9uIElDTCBWRFNDL2pvaW5pbmcgZm9yIGVEUCB0cmFuc2NvZGVyIHVz
-ZXMgYSBzZXBhcmF0ZSBwb3dlcgo+PiB3ZWxsLAo+PiAtCSAqIFBXMi4gVGhpcyByZXF1aXJlcyBQ
-T1dFUl9ET01BSU5fVFJBTlNDT0RFUl9WRFNDX1BXMgo+PiBwb3dlciBkb21haW4uCj4+IC0JICog
-Rm9yIGFueSBvdGhlciB0cmFuc2NvZGVyLCBWRFNDL2pvaW5pbmcgdXNlcyB0aGUgcG93ZXIgd2Vs
-bAo+PiBhc3NvY2lhdGVkCj4+IC0JICogd2l0aCB0aGUgcGlwZS90cmFuc2NvZGVyIGluIHVzZS4g
-SGVuY2UgYW5vdGhlciByZWZlcmVuY2Ugb24gdGhlCj4+IC0JICogdHJhbnNjb2RlciBwb3dlciBk
-b21haW4gd2lsbCBzdWZmaWNlLgo+PiArCSAqIFZEU0Mvam9pbmluZyB1c2VzIGEgc2VwYXJhdGUg
-cG93ZXIgd2VsbCwgUFcyLCBhbmQgcmVxdWlyZXMKPj4gKwkgKiBQT1dFUl9ET01BSU5fVFJBTlND
-T0RFUl9WRFNDX1BXMiBwb3dlciBkb21haW4gaW4gdHdvCj4+IGNhc2VzOgo+PiAgCSAqCj4+IC0J
-ICogT24gVEdMIHdlIGhhdmUgdGhlIHNhbWUgbWFwcGluZywgYnV0IGZvciB0cmFuc2NvZGVyIEEg
-KHRoZQo+PiBzcGVjaWFsCj4+IC0JICogVFJBTlNDT0RFUl9FRFAgaXMgZ29uZSkuCj4KPiBDb21t
-ZW50IGluIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheV9wb3dlci5o
-IHdoZXJlIAo+IFBPV0VSX0RPTUFJTl9UUkFOU0NPREVSX1ZEU0NfUFcyIGlzIGRlZmluZWQgbWlz
-c2VzIERTSSB0cmFuc2NvZGVyLgoKSSdsbCBzZW5kIGEgZm9sbG93LXVwIHBhdGNoIGZvciB0aGlz
-LgoKPiBSZXN0IGFsbCBsb29rcyBnb29kIHRvIG1lLgo+IFJldmlld2VkLWJ5OiBWYW5kaXRhIEt1
-bGthcm5pIDx2YW5kaXRhLmt1bGthcm5pQGludGVsLmNvbT4KClB1c2hlZCB0aGUgbG90LCB0aGFu
-a3MgZm9yIHRoZSByZXZpZXcuCgpCUiwKSmFuaS4KCj4KPiBUaGFua3MsCj4gVmFuZGl0YQo+Cj4+
-ICsJICogIC0gSUNMIGVEUC9EU0kgdHJhbnNjb2Rlcgo+PiArCSAqICAtIFRHTCBwaXBlIEEKPj4g
-KwkgKgo+PiArCSAqIEZvciBhbnkgb3RoZXIgcGlwZSwgVkRTQy9qb2luaW5nIHVzZXMgdGhlIHBv
-d2VyIHdlbGwgYXNzb2NpYXRlZAo+PiB3aXRoCj4+ICsJICogdGhlIHBpcGUgaW4gdXNlLiBIZW5j
-ZSBhbm90aGVyIHJlZmVyZW5jZSBvbiB0aGUgcGlwZSBwb3dlcgo+PiBkb21haW4KPj4gKwkgKiB3
-aWxsIHN1ZmZpY2UuIChFeGNlcHQgbm8gVkRTQy9qb2luaW5nIG9uIElDTCBwaXBlIEEuKQo+PiAg
-CSAqLwo+PiAtCWlmIChJTlRFTF9HRU4oaTkxNSkgPj0gMTIgJiYgY3B1X3RyYW5zY29kZXIgPT0g
-VFJBTlNDT0RFUl9BKQo+PiAtCQlyZXR1cm4gUE9XRVJfRE9NQUlOX1RSQU5TQ09ERVJfVkRTQ19Q
-VzI7Cj4+IC0JZWxzZSBpZiAoY3B1X3RyYW5zY29kZXIgPT0gVFJBTlNDT0RFUl9FRFApCj4+ICsJ
-aWYgKElOVEVMX0dFTihpOTE1KSA+PSAxMiAmJiBwaXBlID09IFBJUEVfQSkKPj4gIAkJcmV0dXJu
-IFBPV0VSX0RPTUFJTl9UUkFOU0NPREVSX1ZEU0NfUFcyOwo+PiArCWVsc2UgaWYgKGlzX3BpcGVf
-ZHNjKGNydGNfc3RhdGUpKQo+PiArCQlyZXR1cm4gUE9XRVJfRE9NQUlOX1BJUEUocGlwZSk7Cj4+
-ICAJZWxzZQo+PiAtCQlyZXR1cm4gUE9XRVJfRE9NQUlOX1RSQU5TQ09ERVIoY3B1X3RyYW5zY29k
-ZXIpOwo+PiArCQlyZXR1cm4gUE9XRVJfRE9NQUlOX1RSQU5TQ09ERVJfVkRTQ19QVzI7Cj4+ICB9
-Cj4+IAo+PiAgc3RhdGljIHZvaWQgaW50ZWxfZHNjX3Bwc19jb25maWd1cmUoc3RydWN0IGludGVs
-X2VuY29kZXIgKmVuY29kZXIsCj4+IC0tCj4+IDIuMjAuMQo+Cj4gX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX18KPiBJbnRlbC1nZnggbWFpbGluZyBsaXN0Cj4g
-SW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+IGh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0
-b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4CgotLSAKSmFuaSBOaWt1bGEsIEludGVs
-IE9wZW4gU291cmNlIEdyYXBoaWNzIENlbnRlcgpfX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0
-cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9s
-aXN0aW5mby9pbnRlbC1nZngK
+
+On 19-12-2019 16:21, Jani Nikula wrote:
+> On Wed, 18 Dec 2019, Animesh Manna <animesh.manna@intel.com> wrote:
+>> vswing/pre-emphasis adjustment calculation is needed in processing
+>> of auto phy compliance request other than link training, so moved
+>> the same function in intel_dp.c.
+>>
+>> No functional change.
+>>
+>> Signed-off-by: Animesh Manna <animesh.manna@intel.com>
+>> ---
+>>   drivers/gpu/drm/i915/display/intel_dp.c       | 32 +++++++++++++++++++
+>>   drivers/gpu/drm/i915/display/intel_dp.h       |  3 ++
+>>   .../drm/i915/display/intel_dp_link_training.c | 32 -------------------
+>>   3 files changed, 35 insertions(+), 32 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+>> index 2f31d226c6eb..ca82835b6dcf 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+>> @@ -4110,6 +4110,38 @@ ivb_cpu_edp_signal_levels(u8 train_set)
+>>   	}
+>>   }
+>>   
+>> +void
+>> +intel_get_adjust_train(struct intel_dp *intel_dp,
+> Please follow the naming convention of prefixing non-static functions in
+> foo.c with foo_. I.e. intel_dp_ here.
+
+Sure, will do.
+
+Regards,
+Animesh
+
+>
+> BR,
+> Jani.
+>
+>> +		       const u8 *link_status)
+>> +{
+>> +	u8 v = 0;
+>> +	u8 p = 0;
+>> +	int lane;
+>> +	u8 voltage_max;
+>> +	u8 preemph_max;
+>> +
+>> +	for (lane = 0; lane < intel_dp->lane_count; lane++) {
+>> +		u8 this_v = drm_dp_get_adjust_request_voltage(link_status, lane);
+>> +		u8 this_p = drm_dp_get_adjust_request_pre_emphasis(link_status, lane);
+>> +
+>> +		if (this_v > v)
+>> +			v = this_v;
+>> +		if (this_p > p)
+>> +			p = this_p;
+>> +	}
+>> +
+>> +	voltage_max = intel_dp_voltage_max(intel_dp);
+>> +	if (v >= voltage_max)
+>> +		v = voltage_max | DP_TRAIN_MAX_SWING_REACHED;
+>> +
+>> +	preemph_max = intel_dp_pre_emphasis_max(intel_dp, v);
+>> +	if (p >= preemph_max)
+>> +		p = preemph_max | DP_TRAIN_MAX_PRE_EMPHASIS_REACHED;
+>> +
+>> +	for (lane = 0; lane < 4; lane++)
+>> +		intel_dp->train_set[lane] = v | p;
+>> +}
+>> +
+>>   void
+>>   intel_dp_set_signal_levels(struct intel_dp *intel_dp)
+>>   {
+>> diff --git a/drivers/gpu/drm/i915/display/intel_dp.h b/drivers/gpu/drm/i915/display/intel_dp.h
+>> index 3da166054788..0d0cb692f701 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_dp.h
+>> +++ b/drivers/gpu/drm/i915/display/intel_dp.h
+>> @@ -91,6 +91,9 @@ void
+>>   intel_dp_program_link_training_pattern(struct intel_dp *intel_dp,
+>>   				       u8 dp_train_pat);
+>>   void
+>> +intel_get_adjust_train(struct intel_dp *intel_dp,
+>> +		       const u8 *link_status);
+>> +void
+>>   intel_dp_set_signal_levels(struct intel_dp *intel_dp);
+>>   void intel_dp_set_idle_link_train(struct intel_dp *intel_dp);
+>>   u8
+>> diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+>> index 2a1130dd1ad0..1e38584e7d56 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+>> @@ -34,38 +34,6 @@ intel_dp_dump_link_status(const u8 link_status[DP_LINK_STATUS_SIZE])
+>>   		      link_status[3], link_status[4], link_status[5]);
+>>   }
+>>   
+>> -static void
+>> -intel_get_adjust_train(struct intel_dp *intel_dp,
+>> -		       const u8 link_status[DP_LINK_STATUS_SIZE])
+>> -{
+>> -	u8 v = 0;
+>> -	u8 p = 0;
+>> -	int lane;
+>> -	u8 voltage_max;
+>> -	u8 preemph_max;
+>> -
+>> -	for (lane = 0; lane < intel_dp->lane_count; lane++) {
+>> -		u8 this_v = drm_dp_get_adjust_request_voltage(link_status, lane);
+>> -		u8 this_p = drm_dp_get_adjust_request_pre_emphasis(link_status, lane);
+>> -
+>> -		if (this_v > v)
+>> -			v = this_v;
+>> -		if (this_p > p)
+>> -			p = this_p;
+>> -	}
+>> -
+>> -	voltage_max = intel_dp_voltage_max(intel_dp);
+>> -	if (v >= voltage_max)
+>> -		v = voltage_max | DP_TRAIN_MAX_SWING_REACHED;
+>> -
+>> -	preemph_max = intel_dp_pre_emphasis_max(intel_dp, v);
+>> -	if (p >= preemph_max)
+>> -		p = preemph_max | DP_TRAIN_MAX_PRE_EMPHASIS_REACHED;
+>> -
+>> -	for (lane = 0; lane < 4; lane++)
+>> -		intel_dp->train_set[lane] = v | p;
+>> -}
+>> -
+>>   static bool
+>>   intel_dp_set_link_train(struct intel_dp *intel_dp,
+>>   			u8 dp_train_pat)
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
