@@ -2,45 +2,37 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4588E12599F
-	for <lists+intel-gfx@lfdr.de>; Thu, 19 Dec 2019 03:36:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A567125C8D
+	for <lists+intel-gfx@lfdr.de>; Thu, 19 Dec 2019 09:25:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B69CD6E06D;
-	Thu, 19 Dec 2019 02:36:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5D1A16EAD8;
+	Thu, 19 Dec 2019 08:25:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0E0E96E06D
- for <intel-gfx@lists.freedesktop.org>; Thu, 19 Dec 2019 02:36:15 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A205F6EAD8
+ for <intel-gfx@lists.freedesktop.org>; Thu, 19 Dec 2019 08:25:47 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by orsmga106.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 18 Dec 2019 18:36:15 -0800
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 19 Dec 2019 00:25:47 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,330,1571727600"; d="scan'208";a="365926128"
-Received: from labuser-z97x-ud5h.jf.intel.com (HELO intel.com) ([10.54.75.49])
- by orsmga004.jf.intel.com with ESMTP; 18 Dec 2019 18:36:13 -0800
-Date: Wed, 18 Dec 2019 18:37:47 -0800
-From: Manasi Navare <manasi.d.navare@intel.com>
-To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Message-ID: <20191219023747.GA25153@intel.com>
-References: <20191211211425.17821-1-manasi.d.navare@intel.com>
- <20191211211425.17821-2-manasi.d.navare@intel.com>
- <20191216143738.GV1208@intel.com>
- <20191216191309.GA18010@intel.com>
- <20191216213738.GD1208@intel.com>
- <20191216223310.GJ19224@intel.com>
- <20191216225813.GK19224@intel.com>
- <20191217105031.GE1208@intel.com>
- <20191217190453.GA24363@intel.com>
+X-IronPort-AV: E=Sophos;i="5.69,330,1571727600"; d="scan'208";a="222204165"
+Received: from jnikula-mobl3.fi.intel.com (HELO localhost) ([10.237.66.161])
+ by fmsmga001.fm.intel.com with ESMTP; 19 Dec 2019 00:25:45 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+In-Reply-To: <20191219003654.rbcljj54pfkgs3h6@ldmartin-desk1.jf.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20191218014208.7916-1-lucas.demarchi@intel.com>
+ <87o8w61804.fsf@intel.com>
+ <20191219002730.ah3ajiwlzg4nc52r@ldmartin-desk1.jf.intel.com>
+ <20191219003654.rbcljj54pfkgs3h6@ldmartin-desk1.jf.intel.com>
+Date: Thu, 19 Dec 2019 10:25:44 +0200
+Message-ID: <87lfr8yb5j.fsf@intel.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20191217190453.GA24363@intel.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-Subject: Re: [Intel-gfx] [PATCH 1/3] drm/i915/dp: Make sure all tiled
- connectors get added to the state with full modeset
+Subject: Re: [Intel-gfx] [PATCH 0/5] display: prefer 3-letter acronym
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,517 +46,75 @@ List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Ville,
-
-I double checke that I can use new_crtc_state in modeset_synced_crtcs to ad=
-d all synced crtcs to modeset
-That is working as expected so that the same function can be reused after f=
-astset check to override
-mode_changed to true.
-
-Here's what I have:
-
-static int                                                                 =
-                                                                           =
-                                                                           =
-                                      =
-
-intel_dp_modeset_synced_crtcs(struct intel_atomic_state *state)            =
-                                                                           =
-                                                                           =
-                                      =
-
-{                                                                          =
-                                                                           =
-                                                                           =
-                                      =
-
-        struct drm_i915_private *dev_priv =3D to_i915(state->base.dev);    =
-                                                                           =
-                                                                           =
-                                        =
-
-        struct intel_crtc_state *old_crtc_state, *new_crtc_state;          =
-                                                                           =
-                                                                           =
-                                      =
-
-        struct intel_crtc *crtc;                                           =
-                                                                           =
-                                                                           =
-                                      =
-
-        int i;                                                             =
-                                                                           =
-                                                                           =
-                                      =
-
-                                                                           =
-                                                                           =
-                                                                           =
-                                      =
-
-        for_each_oldnew_intel_crtc_in_state(state, crtc, old_crtc_state,   =
-                                                                           =
-                                                                           =
-                                      =
-
-                                            new_crtc_state, i) {           =
-                                                                           =
-                                                                           =
-                                      =
-
-                if(is_trans_port_sync_mode(new_crtc_state))                =
-                                                                           =
-                                                                           =
-                                      =
-
-                        DRM_DEBUG_KMS("\n Adding CRTC %d:%s to modeset sinc=
-e old crtc state master trans =3D %s, slave mask =3D %d, new crtc state mas=
-ter trans =3D %s slave mask =3D %d",                                       =
-                                              =
-
-                                      crtc->base.base.id,                  =
-                                                                           =
-                                                                           =
-                                      =
-
-                                      crtc->base.name,                     =
-                                                                           =
-                                                                           =
-                                      =
-
-                                      transcoder_name(old_crtc_state->maste=
-r_transcoder),                                                             =
-                                                                           =
-                                      =
-
-                                      old_crtc_state->sync_mode_slaves_mask=
-,                                                                          =
-                                                                           =
-                                      =
-
-                                      transcoder_name(new_crtc_state->maste=
-r_transcoder),                                                             =
-                                                                           =
-                                      =
-
-                                      new_crtc_state->sync_mode_slaves_mask=
-);                                                                         =
-                                                                           =
-                                      =
-
-                        new_crtc_state->uapi.mode_changed =3D true;        =
-                                                                           =
-                                                                           =
-                                        =
-
-        }                                                                  =
-                                                                           =
-                                                                           =
-                                      =
-
-                                                                           =
-                                                                           =
-                                                                           =
-                                      =
-
-        return 0;                                                          =
-                                                                           =
-                                                                           =
-                                      =
-
-}
-
-
-static int                                                                 =
-                                                                           =
-                                                                           =
-                                      =
-
-intel_dp_atomic_check_synced_crtcs(struct intel_atomic_state *state)       =
-                                                                           =
-                                                                           =
-                                      =
-
-{                                                                          =
-                                                                           =
-                                                                           =
-                                      =
-
-        struct drm_i915_private *dev_priv =3D to_i915(state->base.dev);    =
-                                                                           =
-                                                                           =
-                                        =
-
-        struct intel_crtc_state *old_crtc_state, *new_crtc_state;          =
-                                                                           =
-                                                                           =
-                                      =
-
-        struct intel_crtc *crtc;                                           =
-                                                                           =
-                                                                           =
-                                      =
-
-        int i;                                                             =
-                                                                           =
-                                                                           =
-                                      =
-
-                                                                           =
-                                                                           =
-                                                                           =
-                                      =
-
-        for_each_oldnew_intel_crtc_in_state(state, crtc, old_crtc_state,   =
-                                                                           =
-                                                                           =
-                                      =
-
-                                            new_crtc_state, i) {           =
-                                                                           =
-                                                                           =
-                                      =
-
-                if(!is_trans_port_sync_mode(new_crtc_state) ||             =
-                                                                           =
-                                                                           =
-                                      =
-
-                   !needs_modeset(new_crtc_state))                         =
-                                                                           =
-                                                                           =
-                                      =
-
-                        continue;                                          =
-                                                                           =
-                                                                           =
-                                      =
-
-                intel_dp_modeset_synced_crtcs(state);                      =
-                                                                           =
-                                                                           =
-                                      =
-
-        }                                                                  =
-                                                                           =
-                                                                           =
-                                      =
-
-                                                                           =
-                                                                           =
-                                                                           =
-                                      =
-
-        return 0;                                                          =
-                                                                           =
-                                                                           =
-                                      =
-
-}
-
-I will add this to this patch after thye call to modeset_all_tiles() and su=
-bmit a new revision.
-
-Regards
-Manasi     =
-
-
-
-
-
-On Tue, Dec 17, 2019 at 11:04:53AM -0800, Manasi Navare wrote:
-> On Tue, Dec 17, 2019 at 12:50:31PM +0200, Ville Syrj=E4l=E4 wrote:
-> > On Mon, Dec 16, 2019 at 02:58:13PM -0800, Manasi Navare wrote:
-> > > On Mon, Dec 16, 2019 at 02:33:10PM -0800, Manasi Navare wrote:
-> > > > On Mon, Dec 16, 2019 at 11:37:38PM +0200, Ville Syrj=E4l=E4 wrote:
-> > > > > On Mon, Dec 16, 2019 at 11:13:09AM -0800, Manasi Navare wrote:
-> > > > > > On Mon, Dec 16, 2019 at 04:37:38PM +0200, Ville Syrj=E4l=E4 wro=
-te:
-> > > > > > > On Wed, Dec 11, 2019 at 01:14:23PM -0800, Manasi Navare wrote:
-> > > > > > > > In case of tiled displays, all the tiles are linke dto each=
- other
-> > > > > > > > for transcoder port sync. So in intel_atomic_check() we nee=
-d to make
-> > > > > > > > sure that we add all the tiles to the modeset and if one of=
- the
-> > > > > > > > tiles needs a full modeset then mark all other tiles for a =
-full modeset.
-> > > > > > > > =
-
-> > > > > > > > Suggested-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.=
-com>
-> > > > > > > > Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> > > > > > > > Cc: Jos=E9 Roberto de Souza <jose.souza@intel.com>
-> > > > > > > > Bugzilla: https://gitlab.freedesktop.org/drm/intel/issues/5
-> > > > > > > > Signed-off-by: Manasi Navare <manasi.d.navare@intel.com>
-> > > > > > > > ---
-> > > > > > > >  drivers/gpu/drm/i915/display/intel_display.c | 78 ++++++++=
-++++++++++++
-> > > > > > > >  1 file changed, 78 insertions(+)
-> > > > > > > > =
-
-> > > > > > > > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b=
-/drivers/gpu/drm/i915/display/intel_display.c
-> > > > > > > > index 803993a01ca7..7263eaa66cda 100644
-> > > > > > > > --- a/drivers/gpu/drm/i915/display/intel_display.c
-> > > > > > > > +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> > > > > > > > @@ -14066,6 +14066,80 @@ static int intel_atomic_check_crtc=
-s(struct intel_atomic_state *state)
-> > > > > > > >  	return 0;
-> > > > > > > >  }
-> > > > > > > >  =
-
-> > > > > > > > +static int
-> > > > > > > > +intel_dp_modeset_all_tiles(struct drm_i915_private *dev_pr=
-iv,
-> > > > > > > > +			   struct intel_atomic_state *state, int tile_grp_id)
-> > > > > > > > +{
-> > > > > > > > +	struct drm_connector *conn_iter;
-> > > > > > > > +	struct drm_connector_list_iter conn_list_iter;
-> > > > > > > > +	struct drm_crtc_state *crtc_state;
-> > > > > > > > +
-> > > > > > > > +	drm_connector_list_iter_begin(&dev_priv->drm, &conn_list_=
-iter);
-> > > > > > > > +	drm_for_each_connector_iter(conn_iter, &conn_list_iter) {
-> > > > > > > > +		struct drm_connector_state *conn_iter_state;
-> > > > > > > > +
-> > > > > > > > +		if (!conn_iter->has_tile)
-> > > > > > > > +			continue;
-> > > > > > > > +		conn_iter_state =3D drm_atomic_get_connector_state(&stat=
-e->base,
-> > > > > > > > +								 conn_iter);
-> > > > > > > > +		if (IS_ERR(conn_iter_state)) {
-> > > > > > > > +			drm_connector_list_iter_end(&conn_list_iter);
-> > > > > > > > +			return PTR_ERR(conn_iter_state);
-> > > > > > > > +		}
-> > > > > > > > +
-> > > > > > > > +		if (!conn_iter_state->crtc)
-> > > > > > > > +			continue;
-> > > > > > > > +
-> > > > > > > > +		if (conn_iter->tile_group->id !=3D tile_grp_id)
-> > > > > > > > +			continue;
-> > > > > > > > +
-> > > > > > > > +		crtc_state =3D drm_atomic_get_crtc_state(&state->base, c=
-onn_iter_state->crtc);
-> > > > > > > > +		if (IS_ERR(crtc_state)) {
-> > > > > > > > +			drm_connector_list_iter_end(&conn_list_iter);
-> > > > > > > > +			return PTR_ERR(conn_iter_state);
-> > > > > > > > +		}
-> > > > > > > > +		crtc_state->mode_changed =3D true;
-> > > > > > > > +	}
-> > > > > > > > +	drm_connector_list_iter_end(&conn_list_iter);
-> > > > > > > > +
-> > > > > > > > +	return 0;
-> > > > > > > > +}
-> > > > > > > > +
-> > > > > > > > +static int
-> > > > > > > > +intel_dp_atomic_trans_port_sync_check(struct drm_i915_priv=
-ate *dev_priv,
-> > > > > > > > +				      struct intel_atomic_state *state)
-> > > > > > > > +{
-> > > > > > > > +	struct drm_connector *connector;
-> > > > > > > > +	struct drm_crtc_state *crtc_state;
-> > > > > > > > +	struct drm_connector_state *connector_state;
-> > > > > > > > +	int i, ret, tile_grp_id =3D 0;
-> > > > > > > > +
-> > > > > > > > +	if (INTEL_GEN(dev_priv) < 11)
-> > > > > > > > +		return 0;
-> > > > > > > > +
-> > > > > > > > +	/* Is tiled, mark all other tiled CRTCs as needing a mode=
-set */
-> > > > > > > > +	for_each_new_connector_in_state(&state->base, connector, =
-connector_state, i) {
-> > > > > > > > +		if (!connector->has_tile)
-> > > > > > > > +			continue;
-> > > > > > > > +		if (connector_state->crtc &&
-> > > > > > > > +		    tile_grp_id !=3D connector->tile_group->id) {
-> > > > > > > > +			crtc_state =3D drm_atomic_get_new_crtc_state(&state->ba=
-se,
-> > > > > > > > +								   connector_state->crtc);
-> > > > > > > > +			if (!drm_atomic_crtc_needs_modeset(crtc_state))
-> > > > > > > > +				continue;
-> > > > > > > > +
-> > > > > > > > +			tile_grp_id =3D connector->tile_group->id;
-> > > > > > > > +		} else
-> > > > > > > > +			continue;
-> > > > > > > > +
-> > > > > > > > +		ret =3D intel_dp_modeset_all_tiles(dev_priv, state, tile=
-_grp_id);
-> > > > > > > > +		if (ret)
-> > > > > > > > +			return ret;
-> > > > > > > > +	}
-> > > > > > > > +
-> > > > > > > > +	return 0;
-> > > > > > > > +}
-> > > > > > > =
-
-> > > > > > > BTW after some more pondering I don't think this alone is suf=
-ficient.
-> > > > > > > The tile information may have already disppeared so I believe=
- we also
-> > > > > > > need to make sure we mark all currently synced crtcs as needi=
-ng a
-> > > > > > > modeset if any of them need a modeset. And I guess that's pre=
-tty much
-> > > > > > > the same function we'll need to handle fastset correctly.
-> > > > > > >
-> > > > > > =
-
-> > > > > > The crtcs in the current state get synced and master/slave assi=
-gnments happen in icl_add_sync_mode_crtcs before compute_config call
-> > > > > > So are you suggesting basically moving this function after the =
-crtcs are synced and then just setting modeset
-> > > > > > to true for all synced crtcs if one of them needs modeset?
-> > > > > =
-
-> > > > > I think it should look something like:
-> > > > > =
-
-> > > > > modeset_tiled_things();
-> > > > > modeset_synced_things();
-> > > > =
-
-> > > > but modeset_synced_things() should be called after icl_add_sync_crt=
-cs() which as per your review should be called
-> > > > from within modeset_pipe_config just before compute_config() call.
-> > > > =
-
-> > > > > =
-
-> > > > > for_each() {
-> > > > =
-
-> > > > This is the for_each_crtc loop in intel_atomic_check() right?
-> > > > =
-
-> > > > > 	modeset_pipes_config();
-> > > > =
-
-> > > > So have icl_add_sync_crtcs outside of modeset_pipe_config()?
-> > > > =
-
-> > > > > 	if (can_fastset()) {
-> > > > > 		modeset=3Dfalse;
-> > > > > 		fastset=3Dtrue;
-> > > > > 	}
-> > > > > }
-> > > > > =
-
-> > > > > modeset_synced_things();
-> > > > > =
-
-> > > > > for_each() {
-> > > > > 	if (!modeset && fastset)
-> > > > > 		copy_state();
-> > > > > }
-> > > > We already do this in the code right?
-> > > > =
-
-> > > > Manasi
-> > > > =
-
-> > > > > =
-
-> > > > > > =
-
-> > > > > > And why would the tile information be disappeared?  =
-
-> > > > > =
-
-> > > > > It'll get updated whenever someone does a getconnector() or whate=
-ver.
-> > > > > =
-
-> > > > > Example:
-> > > > > 1. sync pipe A and B, pipe A is master
-> > > > > 2. swap pipe B display for something else
-> > > =
-
-> > > If we disconnect and connect other display for pipe B, port sync mode=
- is off and
-> > > Pipe A no longer a master and we would reset the master_slave assignm=
-ents and conn on pipe B would not have tile
-> > =
-
-> > Port sync will stay enabled until we do a modeset to disable it. In this
-> > example there is never any modeset on pipe B until we add soemthing to
-> > force one in step 4.
-> =
-
-> seems to be working with the current intel_dp_add_modeset_tiles() since t=
-he moment
-> we unplug, it goes through the disable sequence where all the associated =
-tiles get disabled
-> and port sync mode gets disabled. This happens because the Pipe A which i=
-s still connected now indicates
-> a mode change since it fallsback to a lower non tiled mode.
-> =
-
-> But to be on safer side, i can check if say Pipe A is a master or slave (=
-in port sync mode) , check its crtc_state which is
-> still showing the old master slave links since we havent cleared those ye=
-t and then add all other synced crtcs
-> to the modeset?
-> =
-
-> So the order of calls can still be :
-> intel_atomic_check() {
-> =
-
-> intel_dp_atomic_tiled_check() { modeset_all_tiles modeset_synced_crtcs}
-> intel_modeset_pipe_Config()
-> icl_add_sync_crtcs
-> compute_config
-> fastsetcheck()
-> modeset_synced_things (here it looks at the new master slave assignments)
-> =
-
-> Does this look correct, I want send this patch out today
-> =
-
-> Manasi
-> =
-
-> > =
-
-> > > =
-
-> > > so why we wold need to add both pipes to modeset in this case at all
-> > > =
-
-> > > Manasi
-> > > =
-
-> > > > > 3. getconnector() -> tile info goes poof
-> > > > > 4. do something on pipe A that needs a modeset
-> > > > >    no tile info so we miss that pipe B also needs a modeset
-> > > > > =
-
-> > > > > -- =
-
-> > > > > Ville Syrj=E4l=E4
-> > > > > Intel
-> > > > _______________________________________________
-> > > > Intel-gfx mailing list
-> > > > Intel-gfx@lists.freedesktop.org
-> > > > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-> > =
-
-> > -- =
-
-> > Ville Syrj=E4l=E4
-> > Intel
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+On Wed, 18 Dec 2019, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
+> On Wed, Dec 18, 2019 at 04:27:30PM -0800, Lucas De Marchi wrote:
+>>On Wed, Dec 18, 2019 at 08:07:55AM +0200, Jani Nikula wrote:
+>>>On Tue, 17 Dec 2019, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
+>>>>This bothered me for a while so I decided to give it a try: let's
+>>>>normalize on using the platform acronym for function prefixes.
+>>>
+>>>The mixed use has always bothered me too.
+>>>
+>>>Acked-by: Jani Nikula <jani.nikula@intel.com>
+>>>
+>>>(Up next, IS_BROADWELL vs. IS_BDW_ULT etc... ;)
+>>
+>>actually next are the functions using <platform>_ prefix. I will leave
+>>the IS_* macros for later or bundle them in the respective commits (not
+>>that I didn't change IS_ICELAKE, IS_TIGERLAKE, etc.  Maybe it's a good
+>>idea to just bundle them in next iteration.
+>>
+>
+> also I was concentrating only on display/. If we are to change all the
+> IS_* macros this has to be done in the entire driver.  Do you think it
+> belongs in the same commit? It will be pretty intrusive.
+
+Maybe just leave the IS_* later for now? Because it's going to be one
+big ugly commit, or you have to add the TLA versions on the side and
+migrate gradually. Either way it's pretty painful I think...
+
+BR,
+Jani.
+
+
+>
+> Lucas De Marchi
+>
+>>thanks
+>>Lucas De Marchi
+>>
+>>
+>>>
+>>>
+>>>>
+>>>>This does the conversion for some platforms. There are others missing,
+>>>>but I'm sending this early for the case the idea is shot down.
+>>>>
+>>>>Lucas De Marchi (5):
+>>>>  drm/i915/display: prefer 3-letter acronym for haswell
+>>>>  drm/i915/display: prefer 3-letter acronym for skylake
+>>>>  drm/i915/display: prefer 3-letter acronym for cannonlake
+>>>>  drm/i915/display: prefer 3-letter acronym for icelake
+>>>>  drm/i915/display: prefer 3-letter acronym for ironlake
+>>>>
+>>>> drivers/gpu/drm/i915/display/intel_crt.c      |   6 +-
+>>>> drivers/gpu/drm/i915/display/intel_ddi.c      |   4 +-
+>>>> drivers/gpu/drm/i915/display/intel_display.c  | 278 +++++++++---------
+>>>> drivers/gpu/drm/i915/display/intel_display.h  |   2 +-
+>>>> drivers/gpu/drm/i915/display/intel_dp.c       |  34 +--
+>>>> .../drm/i915/display/intel_fifo_underrun.c    |   6 +-
+>>>> 6 files changed, 163 insertions(+), 167 deletions(-)
+>>>
+>>>-- 
+>>>Jani Nikula, Intel Open Source Graphics Center
+
+-- 
+Jani Nikula, Intel Open Source Graphics Center
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
