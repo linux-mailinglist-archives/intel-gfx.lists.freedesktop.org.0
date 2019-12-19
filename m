@@ -2,39 +2,36 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BEAA8126673
-	for <lists+intel-gfx@lfdr.de>; Thu, 19 Dec 2019 17:13:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2BA7412664F
+	for <lists+intel-gfx@lfdr.de>; Thu, 19 Dec 2019 17:01:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C537C6E35D;
-	Thu, 19 Dec 2019 16:13:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4F09D6E354;
+	Thu, 19 Dec 2019 16:00:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 2.mo1.mail-out.ovh.net (2.mo1.mail-out.ovh.net [178.32.119.250])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3AE696E372
- for <intel-gfx@lists.freedesktop.org>; Thu, 19 Dec 2019 16:13:47 +0000 (UTC)
-Received: from player688.ha.ovh.net (unknown [10.108.42.215])
- by mo1.mail-out.ovh.net (Postfix) with ESMTP id 24E401A4639
- for <intel-gfx@lists.freedesktop.org>; Thu, 19 Dec 2019 16:54:22 +0100 (CET)
-Received: from etezian.org (81-175-223-118.bb.dnainternet.fi [81.175.223.118])
- (Authenticated sender: andi@etezian.org)
- by player688.ha.ovh.net (Postfix) with ESMTPSA id 7C9B8D6AF37B;
- Thu, 19 Dec 2019 15:54:20 +0000 (UTC)
-Date: Thu, 19 Dec 2019 17:54:19 +0200
-From: Andi Shyti <andi@etezian.org>
-To: Chris Wilson <chris@chris-wilson.co.uk>
-Message-ID: <20191219155419.GJ36515@jack.zhora.eu>
-References: <20191218210545.3975426-1-chris@chris-wilson.co.uk>
- <20191218210545.3975426-2-chris@chris-wilson.co.uk>
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2DBD36E354
+ for <intel-gfx@lists.freedesktop.org>; Thu, 19 Dec 2019 16:00:57 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 19 Dec 2019 08:00:54 -0800
+X-IronPort-AV: E=Sophos;i="5.69,332,1571727600"; d="scan'208";a="210502024"
+Received: from jnikula-mobl3.fi.intel.com (HELO localhost) ([10.237.66.161])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 19 Dec 2019 08:00:52 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: yamada.masahiro@socionext.com, linux-kbuild@vger.kernel.org
+In-Reply-To: <e13bb7e03399471d87230d2c6296c767@SOC-EX01V.e01.socionext.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20191107071441.1067-1-yamada.masahiro@socionext.com>
+ <87a7982hwc.fsf@intel.com>
+ <e13bb7e03399471d87230d2c6296c767@SOC-EX01V.e01.socionext.com>
+Date: Thu, 19 Dec 2019 18:00:50 +0200
+Message-ID: <87tv5wwbil.fsf@intel.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20191218210545.3975426-2-chris@chris-wilson.co.uk>
-User-Agent: Mutt/1.12.2 (2019-09-21)
-X-Ovh-Tracer-Id: 11325990115520659977
-X-VR-SPAMSTATE: OK
-X-VR-SPAMSCORE: -100
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedufedrvdduuddgkedtucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepfffhvffukfhfgggtuggjfgesthdtredttdervdenucfhrhhomheptehnughiucfuhhihthhiuceorghnughisegvthgviihirghnrdhorhhgqeenucffohhmrghinhepfhhrvggvuggvshhkthhophdrohhrghenucfkpheptddrtddrtddrtddpkedurddujeehrddvvdefrdduudeknecurfgrrhgrmhepmhhouggvpehsmhhtphdqohhuthdphhgvlhhopehplhgrhigvrheikeekrdhhrgdrohhvhhdrnhgvthdpihhnvghtpedtrddtrddtrddtpdhmrghilhhfrhhomheprghnughisegvthgviihirghnrdhorhhgpdhrtghpthhtohepihhnthgvlhdqghhfgieslhhishhtshdrfhhrvggvuggvshhkthhophdrohhrghenucevlhhushhtvghrufhiiigvpedt
-Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915/gt: Suppress threshold updates
- on RPS parking
+Subject: Re: [Intel-gfx] [PATCH 1/2] kbuild: remove header compile test
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,26 +50,32 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Chris,
+On Fri, 08 Nov 2019, <yamada.masahiro@socionext.com> wrote:
+> Could check the attached three patches?
+>
+> i915 is the only driver passionate about the header self-contained'ness.
+> It would not be horrible to implement a own build rule in i915 Makefile.
+>
+> 0003 decreases the amount of code.
+>
+> 0001 and 0002 are trivial and can go in independently.
+> ( I just send them to intel-gfx ML)
 
-On Wed, Dec 18, 2019 at 09:05:45PM +0000, Chris Wilson wrote:
-> When we park RPS, we set the GPU to run at minimum 'idle' frequency.
-> However, as the GPU is idle, we also disable the worker and RPS
-> interrupts - changing the RPS thresholds has no effect, it just incurs
-> extra changes to restore them when we unpark. So on parking, leave the
-> thresholds set to the current power level and so we expect them to be
-> valid for our restart.
-> 
-> References: https://gitlab.freedesktop.org/drm/intel/issues/848
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> Cc: Andi Shyti <andi.shyti@intel.com>
+Sorry for the delayed response!
 
-nice!
+Thanks for doing this. I saw patches 1 and 2 were merged already.
 
-Reviewed-by: Andi Shyti <andi.shyti@intel.com>
+I tweaked patch 3 slightly and resent it to intel-gfx [1].
 
-Thanks,
-Andi
+BR,
+Jani.
+
+
+[1] http://patchwork.freedesktop.org/patch/msgid/20191219155652.2666-3-jani.nikula@intel.com
+
+
+-- 
+Jani Nikula, Intel Open Source Graphics Center
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
