@@ -1,37 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4367F1260BC
-	for <lists+intel-gfx@lfdr.de>; Thu, 19 Dec 2019 12:21:57 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E81DC1260C5
+	for <lists+intel-gfx@lfdr.de>; Thu, 19 Dec 2019 12:25:21 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2DF986E338;
-	Thu, 19 Dec 2019 11:21:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C41966EB48;
+	Thu, 19 Dec 2019 11:25:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 21E646E334
- for <intel-gfx@lists.freedesktop.org>; Thu, 19 Dec 2019 11:21:41 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 19 Dec 2019 03:21:40 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,331,1571727600"; d="scan'208";a="248276548"
-Received: from klipka-mobl.ger.corp.intel.com (HELO
- skylake-nuc.ger.corp.intel.com) ([10.249.254.229])
- by fmsmga002.fm.intel.com with ESMTP; 19 Dec 2019 03:21:38 -0800
-From: Abdiel Janulgue <abdiel.janulgue@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 19 Dec 2019 13:21:22 +0200
-Message-Id: <20191219112122.4892-3-abdiel.janulgue@linux.intel.com>
-X-Mailer: git-send-email 2.23.0
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 064776EB48
+ for <intel-gfx@lists.freedesktop.org>; Thu, 19 Dec 2019 11:25:17 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 19631847-1500050 for multiple; Thu, 19 Dec 2019 11:24:55 +0000
+MIME-Version: 1.0
+To: Abdiel Janulgue <abdiel.janulgue@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+From: Chris Wilson <chris@chris-wilson.co.uk>
 In-Reply-To: <20191219112122.4892-1-abdiel.janulgue@linux.intel.com>
 References: <20191219112122.4892-1-abdiel.janulgue@linux.intel.com>
-MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 3/3] drm/i915/selftests: Add selftest for memory
- region PF handling
+Message-ID: <157675469244.6469.8676811282094758231@skylake-alporthouse-com>
+User-Agent: alot/0.6
+Date: Thu, 19 Dec 2019 11:24:52 +0000
+Subject: Re: [Intel-gfx] [PATCH 1/3] drm/i915: allow prefaulting
+ discontiguous objects in remap_io_mapping()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,338 +40,81 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Matthew Auld <matthew.auld@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Instead of testing individually our new fault handlers, iterate over all
-memory regions and test all from one interface.
+Quoting Abdiel Janulgue (2019-12-19 11:21:20)
+> Provide a way to set the PTE of the physical address of kernel memory in
+> addition to just incrementing the pfn for a page range.
+> 
+> Signed-off-by: Abdiel Janulgue <abdiel.janulgue@linux.intel.com>
+> Cc: Chris Wilson <chris@chris-wilson.co.uk>
+> ---
+>  drivers/gpu/drm/i915/gem/i915_gem_mman.c |  1 +
+>  drivers/gpu/drm/i915/i915_drv.h          |  4 +++-
+>  drivers/gpu/drm/i915/i915_mm.c           | 17 ++++++++++++++---
+>  3 files changed, 18 insertions(+), 4 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_mman.c b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
+> index 879fff8adc48..aa5d6623d86c 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_mman.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
+> @@ -360,6 +360,7 @@ static vm_fault_t vm_fault_gtt(struct vm_fault *vmf)
+>                                area->vm_start + (vma->ggtt_view.partial.offset << PAGE_SHIFT),
+>                                (ggtt->gmadr.start + vma->node.start) >> PAGE_SHIFT,
+>                                min_t(u64, vma->size, area->vm_end - area->vm_start),
+> +                              NULL,
+>                                &ggtt->iomap);
+>         if (ret)
+>                 goto err_fence;
+> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+> index 0781b6326b8c..5ee0fe4d492b 100644
+> --- a/drivers/gpu/drm/i915/i915_drv.h
+> +++ b/drivers/gpu/drm/i915/i915_drv.h
+> @@ -2015,9 +2015,11 @@ int i915_reg_read_ioctl(struct drm_device *dev, void *data,
+>         intel_de_wait_for_register((dev_priv_), (reg_), (mask_), 0, (timeout_))
+>  
+>  /* i915_mm.c */
+> +typedef unsigned long (*io_pfn_t)(struct drm_i915_gem_object *obj,
+> +                                 unsigned long n);
+>  int remap_io_mapping(struct vm_area_struct *vma,
+>                      unsigned long addr, unsigned long pfn, unsigned long size,
+> -                    struct io_mapping *iomap);
+> +                    io_pfn_t fn, struct io_mapping *iomap);
+>  
+>  static inline int intel_hws_csb_write_index(struct drm_i915_private *i915)
+>  {
+> diff --git a/drivers/gpu/drm/i915/i915_mm.c b/drivers/gpu/drm/i915/i915_mm.c
+> index 318562ce64c0..86a73444bed4 100644
+> --- a/drivers/gpu/drm/i915/i915_mm.c
+> +++ b/drivers/gpu/drm/i915/i915_mm.c
+> @@ -32,7 +32,11 @@
+>  struct remap_pfn {
+>         struct mm_struct *mm;
+>         unsigned long pfn;
+> +       unsigned long start_pfn;
+>         pgprot_t prot;
+> +
+> +       io_pfn_t fn;
+> +       struct drm_i915_gem_object *obj;
+>  };
+>  
+>  static int remap_pfn(pte_t *pte, unsigned long addr, void *data)
+> @@ -41,7 +45,10 @@ static int remap_pfn(pte_t *pte, unsigned long addr, void *data)
+>  
+>         /* Special PTE are not associated with any struct page */
+>         set_pte_at(r->mm, addr, pte, pte_mkspecial(pfn_pte(r->pfn, r->prot)));
+> -       r->pfn++;
+> +       if (r->fn)
+> +               r->pfn = r->fn(r->obj, r->start_pfn++);
 
-Signed-off-by: Abdiel Janulgue <abdiel.janulgue@linux.intel.com>
-Cc: Matthew Auld <matthew.auld@intel.com>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
----
- .../drm/i915/gem/selftests/i915_gem_mman.c    | 233 ++++++++++++------
- 1 file changed, 160 insertions(+), 73 deletions(-)
+Just say no to a vfunc for every pte. retrampolines are not your friend.
 
-diff --git a/drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c b/drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c
-index 591435c5f368..8c32888e31ed 100644
---- a/drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c
-+++ b/drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c
-@@ -9,6 +9,8 @@
- #include "gt/intel_engine_pm.h"
- #include "gt/intel_gt.h"
- #include "gt/intel_gt_pm.h"
-+#include "gem/i915_gem_lmem.h"
-+#include "gem/i915_gem_region.h"
- #include "huge_gem_object.h"
- #include "i915_selftest.h"
- #include "selftests/i915_random.h"
-@@ -725,44 +727,93 @@ static int igt_mmap_offset_exhaustion(void *arg)
- 	goto out;
- }
- 
-+typedef int (*obj_set_fn_t)(struct drm_i915_gem_object *obj, bool init);
-+
-+static int gtt_obj_set(struct drm_i915_gem_object *obj, bool init)
-+{
-+	u32 __iomem *map;
-+	struct i915_vma *vma;
-+	int err = 0;
-+
-+	i915_gem_object_lock(obj);
-+	err = i915_gem_object_set_to_gtt_domain(obj, true);
-+	i915_gem_object_unlock(obj);
-+	if (err)
-+		return err;
-+
-+	vma = i915_gem_object_ggtt_pin(obj, NULL, 0, 0, PIN_MAPPABLE);
-+	if (IS_ERR(vma))
-+		return PTR_ERR(vma);
-+
-+	intel_gt_pm_get(vma->vm->gt);
-+	map = i915_vma_pin_iomap(vma);
-+	i915_vma_unpin(vma);
-+	if (IS_ERR(map)) {
-+		err = PTR_ERR(map);
-+		goto out;
-+	}
-+
-+	if (init) {
-+		memset_io(map, POISON_INUSE, PAGE_SIZE);
-+	} else {
-+		if (memchr_inv(map, POISON_FREE, PAGE_SIZE)) {
-+			pr_err("Write via mmap did not land in backing store\n");
-+			err = -EINVAL;
-+		}
-+	}
-+	i915_vma_unpin_iomap(vma);
-+
-+out:
-+	intel_gt_pm_put(vma->vm->gt);
-+	return err;
-+}
-+
-+static int cpu_obj_set(struct drm_i915_gem_object *obj, bool init)
-+{
-+	int err = 0;
-+	void *vaddr = i915_gem_object_pin_map(obj, i915_gem_object_is_lmem(obj) ?
-+					I915_MAP_WC : I915_MAP_WB);
-+	if (IS_ERR(vaddr))
-+		return PTR_ERR(vaddr);
-+
-+	if (init) {
-+		memset(vaddr, POISON_INUSE, PAGE_SIZE);
-+		i915_gem_object_flush_map(obj);
-+	} else {
-+		if (memchr_inv(vaddr, POISON_FREE, PAGE_SIZE)) {
-+			pr_err("Write via mmap did not land in backing store\n");
-+			err = -EINVAL;
-+		}
-+	}
-+	i915_gem_object_unpin_map(obj);
-+
-+	return err;
-+}
-+
- #define expand32(x) (((x) << 0) | ((x) << 8) | ((x) << 16) | ((x) << 24))
--static int igt_mmap(void *arg, enum i915_mmap_type type)
-+static int igt_mmap(struct drm_i915_private *i915, struct drm_i915_gem_object *obj,
-+		    enum i915_mmap_type type, obj_set_fn_t obj_set_fn)
- {
--	struct drm_i915_private *i915 = arg;
--	struct drm_i915_gem_object *obj;
- 	struct i915_mmap_offset *mmo;
- 	struct vm_area_struct *area;
- 	unsigned long addr;
--	void *vaddr;
--	int err = 0, i;
-+	int err = 0, out_err = 0, i;
- 
--	if (!i915_ggtt_has_aperture(&i915->ggtt))
-+	if (!i915_ggtt_has_aperture(&i915->ggtt) &&
-+	    type == I915_MMAP_TYPE_GTT)
- 		return 0;
- 
--	obj = i915_gem_object_create_internal(i915, PAGE_SIZE);
--	if (IS_ERR(obj))
--		return PTR_ERR(obj);
--
--	vaddr = i915_gem_object_pin_map(obj, I915_MAP_WB);
--	if (IS_ERR(vaddr)) {
--		err = PTR_ERR(vaddr);
--		goto out;
--	}
--	memset(vaddr, POISON_INUSE, PAGE_SIZE);
--	i915_gem_object_flush_map(obj);
--	i915_gem_object_unpin_map(obj);
-+	err = obj_set_fn(obj, true);
-+	if (err)
-+		return err;
- 
- 	mmo = mmap_offset_attach(obj, type, NULL);
--	if (IS_ERR(mmo)) {
--		err = PTR_ERR(mmo);
--		goto out;
--	}
-+	if (IS_ERR(mmo))
-+		return PTR_ERR(mmo);
- 
- 	addr = igt_mmap_node(i915, &mmo->vma_node, 0, PROT_WRITE, MAP_SHARED);
--	if (IS_ERR_VALUE(addr)) {
--		err = addr;
--		goto out;
--	}
-+	if (IS_ERR_VALUE(addr))
-+		return addr;
- 
- 	pr_debug("igt_mmap() @ %lx\n", addr);
- 
-@@ -808,31 +859,50 @@ static int igt_mmap(void *arg, enum i915_mmap_type type)
- 
- out_unmap:
- 	vm_munmap(addr, PAGE_SIZE);
-+	out_err = obj_set_fn(obj, false);
-+	if (out_err)
-+		err = out_err;
- 
--	vaddr = i915_gem_object_pin_map(obj, I915_MAP_FORCE_WC);
--	if (IS_ERR(vaddr)) {
--		err = PTR_ERR(vaddr);
--		goto out;
--	}
--	if (err == 0 && memchr_inv(vaddr, POISON_FREE, PAGE_SIZE)) {
--		pr_err("Write via mmap did not land in backing store\n");
--		err = -EINVAL;
--	}
--	i915_gem_object_unpin_map(obj);
--
--out:
--	i915_gem_object_put(obj);
- 	return err;
- }
- 
--static int igt_mmap_gtt(void *arg)
-+static int igt_mmap_memory_regions(void *arg)
- {
--	return igt_mmap(arg, I915_MMAP_TYPE_GTT);
--}
-+	struct drm_i915_private *i915 = arg;
-+	int i, err = 0;
- 
--static int igt_mmap_cpu(void *arg)
--{
--	return igt_mmap(arg, I915_MMAP_TYPE_WC);
-+	for (i = 0; i < ARRAY_SIZE(i915->mm.regions); i++) {
-+		struct intel_memory_region *mem = i915->mm.regions[i];
-+		struct drm_i915_gem_object *obj;
-+
-+		if (!mem)
-+			continue;
-+		obj = i915_gem_object_create_region(mem, PAGE_SIZE,
-+						    mem->type == INTEL_MEMORY_LOCAL ?
-+						    I915_BO_ALLOC_CONTIGUOUS : 0);
-+		if (IS_ERR(obj)) {
-+			err = PTR_ERR(obj);
-+			if (err == -ENODEV) {
-+				err = 0;
-+				continue;
-+			}
-+			break;
-+		}
-+
-+		if (!i915_gem_object_type_has(obj,
-+					      I915_GEM_OBJECT_HAS_STRUCT_PAGE |
-+					      I915_GEM_OBJECT_HAS_IOMEM))
-+			err = igt_mmap(i915, obj, I915_MMAP_TYPE_GTT,
-+				       gtt_obj_set);
-+		else
-+			err = igt_mmap(i915, obj, I915_MMAP_TYPE_WC,
-+				       cpu_obj_set);
-+		i915_gem_object_put(obj);
-+		if (err)
-+			break;
-+	}
-+
-+	return err;
- }
- 
- static int check_present_pte(pte_t *pte, unsigned long addr, void *data)
-@@ -887,32 +957,24 @@ static int prefault_range(u64 start, u64 len)
- 	return __get_user(c, end - 1);
- }
- 
--static int igt_mmap_revoke(void *arg, enum i915_mmap_type type)
-+static int igt_mmap_revoke(struct drm_i915_private *i915, struct drm_i915_gem_object *obj,
-+			   enum i915_mmap_type type)
- {
--	struct drm_i915_private *i915 = arg;
--	struct drm_i915_gem_object *obj;
- 	struct i915_mmap_offset *mmo;
- 	unsigned long addr;
- 	int err;
- 
--	if (!i915_ggtt_has_aperture(&i915->ggtt))
-+	if (!i915_ggtt_has_aperture(&i915->ggtt) &&
-+	    type == I915_MMAP_TYPE_GTT)
- 		return 0;
- 
--	obj = i915_gem_object_create_internal(i915, SZ_4M);
--	if (IS_ERR(obj))
--		return PTR_ERR(obj);
--
- 	mmo = mmap_offset_attach(obj, type, NULL);
--	if (IS_ERR(mmo)) {
--		err = PTR_ERR(mmo);
--		goto out;
--	}
-+	if (IS_ERR(mmo))
-+		return PTR_ERR(mmo);
- 
- 	addr = igt_mmap_node(i915, &mmo->vma_node, 0, PROT_WRITE, MAP_SHARED);
--	if (IS_ERR_VALUE(addr)) {
--		err = addr;
--		goto out;
--	}
-+	if (IS_ERR_VALUE(addr))
-+		return addr;
- 
- 	err = prefault_range(addr, obj->base.size);
- 	if (err)
-@@ -952,19 +1014,46 @@ static int igt_mmap_revoke(void *arg, enum i915_mmap_type type)
- 
- out_unmap:
- 	vm_munmap(addr, obj->base.size);
--out:
--	i915_gem_object_put(obj);
-+
- 	return err;
- }
- 
--static int igt_mmap_gtt_revoke(void *arg)
-+static int igt_mmap_memory_regions_revoke(void *arg)
- {
--	return igt_mmap_revoke(arg, I915_MMAP_TYPE_GTT);
--}
-+	struct drm_i915_private *i915 = arg;
-+	int i, err = 0;
- 
--static int igt_mmap_cpu_revoke(void *arg)
--{
--	return igt_mmap_revoke(arg, I915_MMAP_TYPE_WC);
-+	for (i = 0; i < ARRAY_SIZE(i915->mm.regions); i++) {
-+		struct intel_memory_region *mem = i915->mm.regions[i];
-+		struct drm_i915_gem_object *obj;
-+
-+		if (!mem)
-+			continue;
-+		obj = i915_gem_object_create_region(mem, PAGE_SIZE,
-+						    mem->type == INTEL_MEMORY_LOCAL ?
-+						    I915_BO_ALLOC_CONTIGUOUS : 0);
-+		if (IS_ERR(obj)) {
-+			err = PTR_ERR(obj);
-+			if (err == -ENODEV) {
-+				err = 0;
-+				continue;
-+			}
-+			break;
-+		}
-+
-+		if (!i915_gem_object_type_has(obj,
-+					      I915_GEM_OBJECT_HAS_STRUCT_PAGE |
-+					      I915_GEM_OBJECT_HAS_IOMEM))
-+			err = igt_mmap_revoke(i915, obj, I915_MMAP_TYPE_GTT);
-+		else
-+			err = igt_mmap_revoke(i915, obj, I915_MMAP_TYPE_WC);
-+
-+		i915_gem_object_put(obj);
-+		if (err)
-+			break;
-+	}
-+
-+	return err;
- }
- 
- int i915_gem_mman_live_selftests(struct drm_i915_private *i915)
-@@ -973,10 +1062,8 @@ int i915_gem_mman_live_selftests(struct drm_i915_private *i915)
- 		SUBTEST(igt_partial_tiling),
- 		SUBTEST(igt_smoke_tiling),
- 		SUBTEST(igt_mmap_offset_exhaustion),
--		SUBTEST(igt_mmap_gtt),
--		SUBTEST(igt_mmap_cpu),
--		SUBTEST(igt_mmap_gtt_revoke),
--		SUBTEST(igt_mmap_cpu_revoke),
-+		SUBTEST(igt_mmap_memory_regions),
-+		SUBTEST(igt_mmap_memory_regions_revoke),
- 	};
- 
- 	return i915_subtests(tests, i915);
--- 
-2.17.1
-
+I was anticipating a second remap_io_sg() that knew how to increment
+onto the next sg at dma boundaries within this setter.
+-Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
