@@ -1,58 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C8E84126546
-	for <lists+intel-gfx@lfdr.de>; Thu, 19 Dec 2019 15:56:19 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0EF46126555
+	for <lists+intel-gfx@lfdr.de>; Thu, 19 Dec 2019 16:00:09 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B0AC86E0EE;
-	Thu, 19 Dec 2019 14:56:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 90CF289A62;
+	Thu, 19 Dec 2019 15:00:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4F7EE6E0EE
- for <intel-gfx@lists.freedesktop.org>; Thu, 19 Dec 2019 14:56:16 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 19 Dec 2019 06:56:15 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,332,1571727600"; d="scan'208";a="213280510"
-Received: from fmsmsx104.amr.corp.intel.com ([10.18.124.202])
- by fmsmga008.fm.intel.com with ESMTP; 19 Dec 2019 06:56:15 -0800
-Received: from fmsmsx117.amr.corp.intel.com (10.18.116.17) by
- fmsmsx104.amr.corp.intel.com (10.18.124.202) with Microsoft SMTP Server (TLS)
- id 14.3.439.0; Thu, 19 Dec 2019 06:56:15 -0800
-Received: from BGSMSX107.gar.corp.intel.com (10.223.4.191) by
- fmsmsx117.amr.corp.intel.com (10.18.116.17) with Microsoft SMTP Server (TLS)
- id 14.3.439.0; Thu, 19 Dec 2019 06:56:15 -0800
-Received: from BGSMSX108.gar.corp.intel.com ([169.254.8.190]) by
- BGSMSX107.gar.corp.intel.com ([169.254.9.24]) with mapi id 14.03.0439.000;
- Thu, 19 Dec 2019 20:26:06 +0530
-From: "Kulkarni, Vandita" <vandita.kulkarni@intel.com>
-To: "Nikula, Jani" <jani.nikula@intel.com>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [PATCH] drm/i915: fix comment for
- POWER_DOMAIN_TRANSCODER_VDSC_PW2
-Thread-Index: AQHVtnGpxZOkI+I95U+47tbTuWw4nqfBi5Uw
-Date: Thu, 19 Dec 2019 14:56:06 +0000
-Message-ID: <57510F3E2013164E925CD03ED7512A3B809E9BEC@BGSMSX108.gar.corp.intel.com>
-References: <20191219133845.9333-1-jani.nikula@intel.com>
-In-Reply-To: <20191219133845.9333-1-jani.nikula@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiYjJlYzY4NTktNjJjNy00NWQ3LWE4NTItNmVkMjE0MjE3NTM5IiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX05UIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE3LjIuNS4xOCIsIlRydXN0ZWRMYWJlbEhhc2giOiJ6WVIwVXRYR0Y4VjBPanpLRktIak1FUFJCXC8zNFpCOW5sXC9xdjZjT3diQVhXZXBhV0E3aDRTMXdGWUFzTnF1bzcifQ==
-x-ctpclassification: CTP_NT
-dlp-product: dlpe-windows
-dlp-version: 11.2.0.6
-dlp-reaction: no-action
-x-originating-ip: [10.223.10.10]
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 6CF7689A5E;
+ Thu, 19 Dec 2019 15:00:04 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id DA273A47DF;
+ Thu, 19 Dec 2019 14:59:59 +0000 (UTC)
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: fix comment for
- POWER_DOMAIN_TRANSCODER_VDSC_PW2
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Thu, 19 Dec 2019 14:59:59 -0000
+Message-ID: <157676759986.26199.4460745290709015843@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20191219105043.4169050-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20191219105043.4169050-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/gt=3A_Track_engine_round-trip_times_=28rev5=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,55 +38,142 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Nikula, Jani" <jani.nikula@intel.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-> -----Original Message-----
-> From: Jani Nikula <jani.nikula@intel.com>
-> Sent: Thursday, December 19, 2019 7:09 PM
-> To: intel-gfx@lists.freedesktop.org
-> Cc: Nikula, Jani <jani.nikula@intel.com>; Kulkarni, Vandita
-> <vandita.kulkarni@intel.com>
-> Subject: [PATCH] drm/i915: fix comment for
-> POWER_DOMAIN_TRANSCODER_VDSC_PW2
-> 
-> The power domain covers VDSC for DSI transcoder on ICL, and it's
-> pedantically about pipe, not transcoder, on TGL.
-> 
-> Reported-by: Vandita Kulkarni <vandita.kulkarni@intel.com>
-> Cc: Vandita Kulkarni <vandita.kulkarni@intel.com>
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+== Series Details ==
 
-Looks good to me.
-Reviewed-by: Vandita Kulkarni <vandita.kulkarni@intel.com>
+Series: drm/i915/gt: Track engine round-trip times (rev5)
+URL   : https://patchwork.freedesktop.org/series/69513/
+State : success
 
-Thanks
-Vandita
-> ---
->  drivers/gpu/drm/i915/display/intel_display_power.h | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_power.h
-> b/drivers/gpu/drm/i915/display/intel_display_power.h
-> index 1da04f3e0fb3..2608a65af7fa 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_power.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_power.h
-> @@ -28,7 +28,7 @@ enum intel_display_power_domain {
->  	POWER_DOMAIN_TRANSCODER_C,
->  	POWER_DOMAIN_TRANSCODER_D,
->  	POWER_DOMAIN_TRANSCODER_EDP,
-> -	/* VDSC/joining for TRANSCODER_EDP (ICL) or TRANSCODER_A (TGL)
-> */
-> +	/* VDSC/joining for eDP/DSI transcoder (ICL) or pipe A (TGL) */
->  	POWER_DOMAIN_TRANSCODER_VDSC_PW2,
->  	POWER_DOMAIN_TRANSCODER_DSI_A,
->  	POWER_DOMAIN_TRANSCODER_DSI_C,
-> --
-> 2.20.1
+== Summary ==
 
+CI Bug Log - changes from CI_DRM_7606 -> Patchwork_15839
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15839/index.html
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_15839:
+
+### IGT changes ###
+
+#### Suppressed ####
+
+  The following results come from untrusted machines, tests, or statuses.
+  They do not affect the overall result.
+
+  * igt@kms_pipe_crc_basic@nonblocking-crc-pipe-a:
+    - {fi-kbl-7560u}:     NOTRUN -> [WARN][1] +10 similar issues
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15839/fi-kbl-7560u/igt@kms_pipe_crc_basic@nonblocking-crc-pipe-a.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_15839 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_close_race@basic-threads:
+    - fi-byt-j1900:       [PASS][2] -> [TIMEOUT][3] ([i915#816])
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7606/fi-byt-j1900/igt@gem_close_race@basic-threads.html
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15839/fi-byt-j1900/igt@gem_close_race@basic-threads.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_sync@basic-each:
+    - {fi-tgl-u}:         [INCOMPLETE][4] ([i915#472] / [i915#707]) -> [PASS][5]
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7606/fi-tgl-u/igt@gem_sync@basic-each.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15839/fi-tgl-u/igt@gem_sync@basic-each.html
+
+  * igt@i915_selftest@live_blt:
+    - fi-hsw-4770:        [DMESG-FAIL][6] ([i915#725]) -> [PASS][7]
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7606/fi-hsw-4770/igt@i915_selftest@live_blt.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15839/fi-hsw-4770/igt@i915_selftest@live_blt.html
+
+  * igt@kms_chamelium@hdmi-hpd-fast:
+    - fi-kbl-7500u:       [FAIL][8] ([fdo#111407]) -> [PASS][9]
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7606/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15839/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+
+  
+#### Warnings ####
+
+  * igt@i915_selftest@live_blt:
+    - fi-ivb-3770:        [DMESG-FAIL][10] ([i915#563]) -> [DMESG-FAIL][11] ([i915#770])
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7606/fi-ivb-3770/igt@i915_selftest@live_blt.html
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15839/fi-ivb-3770/igt@i915_selftest@live_blt.html
+
+  * igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size:
+    - fi-kbl-x1275:       [DMESG-WARN][12] ([i915#62] / [i915#92]) -> [DMESG-WARN][13] ([i915#62] / [i915#92] / [i915#95]) +3 similar issues
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7606/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size.html
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15839/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size.html
+
+  * igt@kms_force_connector_basic@force-edid:
+    - fi-kbl-x1275:       [DMESG-WARN][14] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][15] ([i915#62] / [i915#92]) +8 similar issues
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7606/fi-kbl-x1275/igt@kms_force_connector_basic@force-edid.html
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15839/fi-kbl-x1275/igt@kms_force_connector_basic@force-edid.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#111407]: https://bugs.freedesktop.org/show_bug.cgi?id=111407
+  [i915#472]: https://gitlab.freedesktop.org/drm/intel/issues/472
+  [i915#563]: https://gitlab.freedesktop.org/drm/intel/issues/563
+  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
+  [i915#707]: https://gitlab.freedesktop.org/drm/intel/issues/707
+  [i915#725]: https://gitlab.freedesktop.org/drm/intel/issues/725
+  [i915#770]: https://gitlab.freedesktop.org/drm/intel/issues/770
+  [i915#816]: https://gitlab.freedesktop.org/drm/intel/issues/816
+  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
+  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
+
+
+Participating hosts (44 -> 33)
+------------------------------
+
+  Additional (6): fi-hsw-4770r fi-skl-guc fi-bwr-2160 fi-kbl-7560u fi-byt-n2820 fi-skl-6600u 
+  Missing    (17): fi-kbl-soraka fi-ilk-m540 fi-bsw-n3050 fi-hsw-peppy fi-glk-dsi fi-byt-squawks fi-bsw-cyan fi-ilk-650 fi-cfl-guc fi-gdg-551 fi-bsw-kefka fi-skl-lmem fi-blb-e6850 fi-tgl-y fi-kbl-r fi-bdw-samus fi-snb-2600 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_7606 -> Patchwork_15839
+
+  CI-20190529: 20190529
+  CI_DRM_7606: 24b56a2cafc20edb1284c6911ecabf1061cf75bc @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5351: e7fdcef72d1d6b3bb9f3003bbc37571959e6e8bb @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_15839: fb4ea1918e3fced95b532fd89f556bfb2132b3d8 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+fb4ea1918e3f drm/i915/gt: Track engine round-trip times
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15839/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
