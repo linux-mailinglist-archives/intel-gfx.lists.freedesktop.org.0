@@ -1,31 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C44E12667F
-	for <lists+intel-gfx@lfdr.de>; Thu, 19 Dec 2019 17:17:28 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 190CA126681
+	for <lists+intel-gfx@lfdr.de>; Thu, 19 Dec 2019 17:18:06 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0FDB16E362;
-	Thu, 19 Dec 2019 16:17:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7AE146E365;
+	Thu, 19 Dec 2019 16:18:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1ACAD6E362
- for <intel-gfx@lists.freedesktop.org>; Thu, 19 Dec 2019 16:17:23 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CF6236E365
+ for <intel-gfx@lists.freedesktop.org>; Thu, 19 Dec 2019 16:18:02 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from localhost (unverified [78.156.65.138]) 
  by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 19635649-1500050 for multiple; Thu, 19 Dec 2019 16:17:04 +0000
+ 19635659-1500050 for multiple; Thu, 19 Dec 2019 16:17:54 +0000
 MIME-Version: 1.0
 To: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org
 From: Chris Wilson <chris@chris-wilson.co.uk>
-In-Reply-To: <20191219155652.2666-1-jani.nikula@intel.com>
+In-Reply-To: <20191219155652.2666-2-jani.nikula@intel.com>
 References: <20191219155652.2666-1-jani.nikula@intel.com>
-Message-ID: <157677222216.6469.9378246799804719391@skylake-alporthouse-com>
+ <20191219155652.2666-2-jani.nikula@intel.com>
+Message-ID: <157677227222.6469.16772740181170407083@skylake-alporthouse-com>
 User-Agent: alot/0.6
-Date: Thu, 19 Dec 2019 16:17:02 +0000
-Subject: Re: [Intel-gfx] [PATCH 1/3] drm/i915/selftests: make mock_context.h
+Date: Thu, 19 Dec 2019 16:17:52 +0000
+Subject: Re: [Intel-gfx] [PATCH 2/3] drm/i915/selftests: make mock_drm.h
  self-contained
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -46,8 +47,8 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Jani Nikula (2019-12-19 15:56:50)
-> Fix the forward declaration.
+Quoting Jani Nikula (2019-12-19 15:56:51)
+> Needs i915_drv.h because i915 gets dereferenced.
 > 
 > Cc: Chris Wilson <chris@chris-wilson.co.uk>
 > Cc: Masahiro Yamada <yamada.masahiro@socionext.com>
