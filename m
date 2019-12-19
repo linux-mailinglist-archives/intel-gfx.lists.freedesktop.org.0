@@ -1,41 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E64FA126388
-	for <lists+intel-gfx@lfdr.de>; Thu, 19 Dec 2019 14:31:31 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id DC3B012638A
+	for <lists+intel-gfx@lfdr.de>; Thu, 19 Dec 2019 14:31:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2638C6E286;
-	Thu, 19 Dec 2019 13:31:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 386EB6EB78;
+	Thu, 19 Dec 2019 13:31:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DED246E286;
- Thu, 19 Dec 2019 13:31:28 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3C30B6EB78
+ for <intel-gfx@lists.freedesktop.org>; Thu, 19 Dec 2019 13:31:52 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga106.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 19 Dec 2019 05:31:28 -0800
-X-IronPort-AV: E=Sophos;i="5.69,332,1571727600"; d="scan'208";a="210460075"
-Received: from amanna-mobl1.gar.corp.intel.com (HELO [10.66.117.94])
- ([10.66.117.94])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-SHA;
- 19 Dec 2019 05:31:25 -0800
-To: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-References: <20191218151350.19579-1-animesh.manna@intel.com>
- <20191218151350.19579-4-animesh.manna@intel.com>
- <20191219123310.GG1208@intel.com>
-From: "Manna, Animesh" <animesh.manna@intel.com>
-Message-ID: <33fbcb9e-dac5-ecb2-6094-43c5690e1ac1@intel.com>
-Date: Thu, 19 Dec 2019 19:01:22 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
- Thunderbird/68.3.0
-MIME-Version: 1.0
-In-Reply-To: <20191219123310.GG1208@intel.com>
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 19 Dec 2019 05:31:51 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.69,332,1571727600"; d="scan'208";a="213257019"
+Received: from irsmsx109.ger.corp.intel.com ([163.33.3.23])
+ by fmsmga008.fm.intel.com with ESMTP; 19 Dec 2019 05:31:51 -0800
+Received: from irsmsx111.ger.corp.intel.com (10.108.20.4) by
+ IRSMSX109.ger.corp.intel.com (163.33.3.23) with Microsoft SMTP Server (TLS)
+ id 14.3.439.0; Thu, 19 Dec 2019 13:31:50 +0000
+Received: from irsmsx102.ger.corp.intel.com ([169.254.2.130]) by
+ irsmsx111.ger.corp.intel.com ([169.254.2.126]) with mapi id 14.03.0439.000;
+ Thu, 19 Dec 2019 13:31:50 +0000
+From: "Kahola, Mika" <mika.kahola@intel.com>
+To: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "Deak, Imre" <imre.deak@intel.com>
+Thread-Topic: [Intel-gfx] [PATCH v2 08/15] drm/i915: Skip rotated offset
+ adjustment for unsupported modifiers
+Thread-Index: AQHVtfu0/kzG8VO5iUSOWotmMZQzyKfBdV2A
+Date: Thu, 19 Dec 2019 13:31:49 +0000
+Message-ID: <f9c85076c1e356e566334f4cf1b0b84ca11a29d7.camel@intel.com>
+References: <20191218161105.30638-9-imre.deak@intel.com>
+ <20191218233400.9888-1-imre.deak@intel.com>
+In-Reply-To: <20191218233400.9888-1-imre.deak@intel.com>
+Accept-Language: en-US
 Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH v2 3/9] drm/i915/dp: Move
- vswing/pre-emphasis adjustment calculation
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.237.72.159]
+Content-ID: <FB8FF8573F502C49952425DD0E466E47@intel.com>
+MIME-Version: 1.0
+Subject: Re: [Intel-gfx] [PATCH v2 08/15] drm/i915: Skip rotated offset
+ adjustment for unsupported modifiers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,88 +59,246 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com, nidhi1.gupta@intel.com,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Cc: "Pandiyan, Dhinakaran" <dhinakaran.pandiyan@intel.com>
+Content-Type: text/plain; charset="iso-8859-15"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Ck9uIDE5LTEyLTIwMTkgMTg6MDMsIFZpbGxlIFN5cmrDpGzDpCB3cm90ZToKPiBPbiBXZWQsIERl
-YyAxOCwgMjAxOSBhdCAwODo0Mzo0NFBNICswNTMwLCBBbmltZXNoIE1hbm5hIHdyb3RlOgo+PiB2
-c3dpbmcvcHJlLWVtcGhhc2lzIGFkanVzdG1lbnQgY2FsY3VsYXRpb24gaXMgbmVlZGVkIGluIHBy
-b2Nlc3NpbmcKPj4gb2YgYXV0byBwaHkgY29tcGxpYW5jZSByZXF1ZXN0IG90aGVyIHRoYW4gbGlu
-ayB0cmFpbmluZywgc28gbW92ZWQKPj4gdGhlIHNhbWUgZnVuY3Rpb24gaW4gaW50ZWxfZHAuYy4K
-Pj4KPj4gTm8gZnVuY3Rpb25hbCBjaGFuZ2UuCj4+Cj4+IFNpZ25lZC1vZmYtYnk6IEFuaW1lc2gg
-TWFubmEgPGFuaW1lc2gubWFubmFAaW50ZWwuY29tPgo+PiAtLS0KPj4gICBkcml2ZXJzL2dwdS9k
-cm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwLmMgICAgICAgfCAzMiArKysrKysrKysrKysrKysrKysr
-Cj4+ICAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcC5oICAgICAgIHwgIDMg
-KysKPj4gICAuLi4vZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcF9saW5rX3RyYWluaW5nLmMgfCAz
-MiAtLS0tLS0tLS0tLS0tLS0tLS0tCj4+ICAgMyBmaWxlcyBjaGFuZ2VkLCAzNSBpbnNlcnRpb25z
-KCspLCAzMiBkZWxldGlvbnMoLSkKPj4KPj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9p
-OTE1L2Rpc3BsYXkvaW50ZWxfZHAuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50
-ZWxfZHAuYwo+PiBpbmRleCAyZjMxZDIyNmM2ZWIuLmNhODI4MzViNmRjZiAxMDA2NDQKPj4gLS0t
-IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcC5jCj4+ICsrKyBiL2RyaXZl
-cnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHAuYwo+PiBAQCAtNDExMCw2ICs0MTEwLDM4
-IEBAIGl2Yl9jcHVfZWRwX3NpZ25hbF9sZXZlbHModTggdHJhaW5fc2V0KQo+PiAgIAl9Cj4+ICAg
-fQo+PiAgIAo+PiArdm9pZAo+PiAraW50ZWxfZ2V0X2FkanVzdF90cmFpbihzdHJ1Y3QgaW50ZWxf
-ZHAgKmludGVsX2RwLAo+PiArCQkgICAgICAgY29uc3QgdTggKmxpbmtfc3RhdHVzKQo+IEknZCBw
-cmVmZXIgdG8ga2VlcCB0aGUgYXJyYXlpc2ggbm90YXRpb24gc28gd2UgaGF2ZSBzb21lIGlkZWEg
-aG93IGJpZwo+IHRoaXMgaXMgc3VwcG9zZWQgdG8gYmUuIEkgZ3Vlc3MgdGhhdCB3b3VrbGQgbWVh
-biBpbmNsdWRpbmcgc29tZQo+IGRybSBkcCBoZWFkZXIgaW4gaW50ZWxfZHAuaD8KClllcywgd2ls
-bCBhZGQuCgpSZWdhcmRzLApBbmltZXNoCgo+Cj4+ICt7Cj4+ICsJdTggdiA9IDA7Cj4+ICsJdTgg
-cCA9IDA7Cj4+ICsJaW50IGxhbmU7Cj4+ICsJdTggdm9sdGFnZV9tYXg7Cj4+ICsJdTggcHJlZW1w
-aF9tYXg7Cj4+ICsKPj4gKwlmb3IgKGxhbmUgPSAwOyBsYW5lIDwgaW50ZWxfZHAtPmxhbmVfY291
-bnQ7IGxhbmUrKykgewo+PiArCQl1OCB0aGlzX3YgPSBkcm1fZHBfZ2V0X2FkanVzdF9yZXF1ZXN0
-X3ZvbHRhZ2UobGlua19zdGF0dXMsIGxhbmUpOwo+PiArCQl1OCB0aGlzX3AgPSBkcm1fZHBfZ2V0
-X2FkanVzdF9yZXF1ZXN0X3ByZV9lbXBoYXNpcyhsaW5rX3N0YXR1cywgbGFuZSk7Cj4+ICsKPj4g
-KwkJaWYgKHRoaXNfdiA+IHYpCj4+ICsJCQl2ID0gdGhpc192Owo+PiArCQlpZiAodGhpc19wID4g
-cCkKPj4gKwkJCXAgPSB0aGlzX3A7Cj4+ICsJfQo+PiArCj4+ICsJdm9sdGFnZV9tYXggPSBpbnRl
-bF9kcF92b2x0YWdlX21heChpbnRlbF9kcCk7Cj4+ICsJaWYgKHYgPj0gdm9sdGFnZV9tYXgpCj4+
-ICsJCXYgPSB2b2x0YWdlX21heCB8IERQX1RSQUlOX01BWF9TV0lOR19SRUFDSEVEOwo+PiArCj4+
-ICsJcHJlZW1waF9tYXggPSBpbnRlbF9kcF9wcmVfZW1waGFzaXNfbWF4KGludGVsX2RwLCB2KTsK
-Pj4gKwlpZiAocCA+PSBwcmVlbXBoX21heCkKPj4gKwkJcCA9IHByZWVtcGhfbWF4IHwgRFBfVFJB
-SU5fTUFYX1BSRV9FTVBIQVNJU19SRUFDSEVEOwo+PiArCj4+ICsJZm9yIChsYW5lID0gMDsgbGFu
-ZSA8IDQ7IGxhbmUrKykKPj4gKwkJaW50ZWxfZHAtPnRyYWluX3NldFtsYW5lXSA9IHYgfCBwOwo+
-PiArfQo+PiArCj4+ICAgdm9pZAo+PiAgIGludGVsX2RwX3NldF9zaWduYWxfbGV2ZWxzKHN0cnVj
-dCBpbnRlbF9kcCAqaW50ZWxfZHApCj4+ICAgewo+PiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUv
-ZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcC5oIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxh
-eS9pbnRlbF9kcC5oCj4+IGluZGV4IDNkYTE2NjA1NDc4OC4uMGQwY2I2OTJmNzAxIDEwMDY0NAo+
-PiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwLmgKPj4gKysrIGIv
-ZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcC5oCj4+IEBAIC05MSw2ICs5MSw5
-IEBAIHZvaWQKPj4gICBpbnRlbF9kcF9wcm9ncmFtX2xpbmtfdHJhaW5pbmdfcGF0dGVybihzdHJ1
-Y3QgaW50ZWxfZHAgKmludGVsX2RwLAo+PiAgIAkJCQkgICAgICAgdTggZHBfdHJhaW5fcGF0KTsK
-Pj4gICB2b2lkCj4+ICtpbnRlbF9nZXRfYWRqdXN0X3RyYWluKHN0cnVjdCBpbnRlbF9kcCAqaW50
-ZWxfZHAsCj4+ICsJCSAgICAgICBjb25zdCB1OCAqbGlua19zdGF0dXMpOwo+PiArdm9pZAo+PiAg
-IGludGVsX2RwX3NldF9zaWduYWxfbGV2ZWxzKHN0cnVjdCBpbnRlbF9kcCAqaW50ZWxfZHApOwo+
-PiAgIHZvaWQgaW50ZWxfZHBfc2V0X2lkbGVfbGlua190cmFpbihzdHJ1Y3QgaW50ZWxfZHAgKmlu
-dGVsX2RwKTsKPj4gICB1OAo+PiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlz
-cGxheS9pbnRlbF9kcF9saW5rX3RyYWluaW5nLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNw
-bGF5L2ludGVsX2RwX2xpbmtfdHJhaW5pbmcuYwo+PiBpbmRleCAyYTExMzBkZDFhZDAuLjFlMzg1
-ODRlN2Q1NiAxMDA2NDQKPj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRl
-bF9kcF9saW5rX3RyYWluaW5nLmMKPj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxh
-eS9pbnRlbF9kcF9saW5rX3RyYWluaW5nLmMKPj4gQEAgLTM0LDM4ICszNCw2IEBAIGludGVsX2Rw
-X2R1bXBfbGlua19zdGF0dXMoY29uc3QgdTggbGlua19zdGF0dXNbRFBfTElOS19TVEFUVVNfU0la
-RV0pCj4+ICAgCQkgICAgICBsaW5rX3N0YXR1c1szXSwgbGlua19zdGF0dXNbNF0sIGxpbmtfc3Rh
-dHVzWzVdKTsKPj4gICB9Cj4+ICAgCj4+IC1zdGF0aWMgdm9pZAo+PiAtaW50ZWxfZ2V0X2FkanVz
-dF90cmFpbihzdHJ1Y3QgaW50ZWxfZHAgKmludGVsX2RwLAo+PiAtCQkgICAgICAgY29uc3QgdTgg
-bGlua19zdGF0dXNbRFBfTElOS19TVEFUVVNfU0laRV0pCj4+IC17Cj4+IC0JdTggdiA9IDA7Cj4+
-IC0JdTggcCA9IDA7Cj4+IC0JaW50IGxhbmU7Cj4+IC0JdTggdm9sdGFnZV9tYXg7Cj4+IC0JdTgg
-cHJlZW1waF9tYXg7Cj4+IC0KPj4gLQlmb3IgKGxhbmUgPSAwOyBsYW5lIDwgaW50ZWxfZHAtPmxh
-bmVfY291bnQ7IGxhbmUrKykgewo+PiAtCQl1OCB0aGlzX3YgPSBkcm1fZHBfZ2V0X2FkanVzdF9y
-ZXF1ZXN0X3ZvbHRhZ2UobGlua19zdGF0dXMsIGxhbmUpOwo+PiAtCQl1OCB0aGlzX3AgPSBkcm1f
-ZHBfZ2V0X2FkanVzdF9yZXF1ZXN0X3ByZV9lbXBoYXNpcyhsaW5rX3N0YXR1cywgbGFuZSk7Cj4+
-IC0KPj4gLQkJaWYgKHRoaXNfdiA+IHYpCj4+IC0JCQl2ID0gdGhpc192Owo+PiAtCQlpZiAodGhp
-c19wID4gcCkKPj4gLQkJCXAgPSB0aGlzX3A7Cj4+IC0JfQo+PiAtCj4+IC0Jdm9sdGFnZV9tYXgg
-PSBpbnRlbF9kcF92b2x0YWdlX21heChpbnRlbF9kcCk7Cj4+IC0JaWYgKHYgPj0gdm9sdGFnZV9t
-YXgpCj4+IC0JCXYgPSB2b2x0YWdlX21heCB8IERQX1RSQUlOX01BWF9TV0lOR19SRUFDSEVEOwo+
-PiAtCj4+IC0JcHJlZW1waF9tYXggPSBpbnRlbF9kcF9wcmVfZW1waGFzaXNfbWF4KGludGVsX2Rw
-LCB2KTsKPj4gLQlpZiAocCA+PSBwcmVlbXBoX21heCkKPj4gLQkJcCA9IHByZWVtcGhfbWF4IHwg
-RFBfVFJBSU5fTUFYX1BSRV9FTVBIQVNJU19SRUFDSEVEOwo+PiAtCj4+IC0JZm9yIChsYW5lID0g
-MDsgbGFuZSA8IDQ7IGxhbmUrKykKPj4gLQkJaW50ZWxfZHAtPnRyYWluX3NldFtsYW5lXSA9IHYg
-fCBwOwo+PiAtfQo+PiAtCj4+ICAgc3RhdGljIGJvb2wKPj4gICBpbnRlbF9kcF9zZXRfbGlua190
-cmFpbihzdHJ1Y3QgaW50ZWxfZHAgKmludGVsX2RwLAo+PiAgIAkJCXU4IGRwX3RyYWluX3BhdCkK
-Pj4gLS0gCj4+IDIuMjQuMApfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3Rv
-cC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRl
-bC1nZngK
+On Thu, 2019-12-19 at 01:34 +0200, Imre Deak wrote:
+> From: Dhinakaran Pandiyan <dhinakaran.pandiyan@intel.com>
+> =
+
+> During framebuffer creation, we pre-compute offsets for 90/270 plane
+> rotation. However, only Y and Yf modifiers support 90/270 rotation.
+> So,
+> skip the calculations for other modifiers.
+> =
+
+> To keep the gem buffer size check still working for tiled planes,
+> factor
+> out the logic needed for rotation setup and skip only this part for
+> tiled planes other than Y/Yf.
+> =
+
+> v2: Add a bounds check WARN for the rotation info array.
+> v3: Keep the gem buffer size check working for tiled planes.
+> =
+
+> Cc: Matt Roper <matthew.d.roper@intel.com>
+> Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> Signed-off-by: Dhinakaran Pandiyan <dhinakaran.pandiyan@intel.com>
+> Signed-off-by: Imre Deak <imre.deak@intel.com>
+
+Reviewed-by: Mika Kahola <mika.kahola@intel.com>
+
+> ---
+>  drivers/gpu/drm/i915/display/intel_display.c | 117 ++++++++++++-----
+> --
+>  1 file changed, 76 insertions(+), 41 deletions(-)
+> =
+
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c
+> b/drivers/gpu/drm/i915/display/intel_display.c
+> index 3180c1817b60..9c0f22410c4a 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -2863,12 +2863,71 @@ intel_fb_check_ccs_xy(struct drm_framebuffer
+> *fb, int x, int y)
+>  	return 0;
+>  }
+>  =
+
+> +/*
+> + * Setup the rotated view for an FB plane and return the size the
+> GTT mapping
+> + * requires for this view.
+> + */
+> +static u32
+> +setup_fb_rotation(int plane, const struct intel_remapped_plane_info
+> *plane_info,
+> +		  u32 gtt_offset_rotated, int x, int y,
+> +		  unsigned int width, unsigned int height,
+> +		  unsigned int tile_size,
+> +		  unsigned int tile_width, unsigned int tile_height,
+> +		  struct drm_framebuffer *fb)
+> +{
+> +	struct intel_framebuffer *intel_fb =3D to_intel_framebuffer(fb);
+> +	struct intel_rotation_info *rot_info =3D &intel_fb->rot_info;
+> +	unsigned int pitch_tiles;
+> +	struct drm_rect r;
+> +
+> +	if (fb->modifier !=3D I915_FORMAT_MOD_Y_TILED &&
+> +	    fb->modifier !=3D I915_FORMAT_MOD_Yf_TILED)
+> +		return 0;
+> +
+> +	if (WARN_ON(plane >=3D ARRAY_SIZE(rot_info->plane)))
+> +		return 0;
+> +
+> +	rot_info->plane[plane] =3D *plane_info;
+> +
+> +	intel_fb->rotated[plane].pitch =3D plane_info->height *
+> tile_height;
+> +
+> +	/* rotate the x/y offsets to match the GTT view */
+> +	drm_rect_init(&r, x, y, width, height);
+> +	drm_rect_rotate(&r,
+> +			plane_info->width * tile_width,
+> +			plane_info->height * tile_height,
+> +			DRM_MODE_ROTATE_270);
+> +	x =3D r.x1;
+> +	y =3D r.y1;
+> +
+> +	/* rotate the tile dimensions to match the GTT view */
+> +	pitch_tiles =3D intel_fb->rotated[plane].pitch / tile_height;
+> +	swap(tile_width, tile_height);
+> +
+> +	/*
+> +	 * We only keep the x/y offsets, so push all of the
+> +	 * gtt offset into the x/y offsets.
+> +	 */
+> +	intel_adjust_tile_offset(&x, &y,
+> +				 tile_width, tile_height,
+> +				 tile_size, pitch_tiles,
+> +				 gtt_offset_rotated * tile_size, 0);
+> +
+> +	/*
+> +	 * First pixel of the framebuffer from
+> +	 * the start of the rotated gtt mapping.
+> +	 */
+> +	intel_fb->rotated[plane].x =3D x;
+> +	intel_fb->rotated[plane].y =3D y;
+> +
+> +	return plane_info->width * plane_info->height;
+> +}
+> +
+>  static int
+>  intel_fill_fb_info(struct drm_i915_private *dev_priv,
+>  		   struct drm_framebuffer *fb)
+>  {
+>  	struct intel_framebuffer *intel_fb =3D to_intel_framebuffer(fb);
+> -	struct intel_rotation_info *rot_info =3D &intel_fb->rot_info;
+>  	struct drm_i915_gem_object *obj =3D intel_fb_obj(fb);
+>  	u32 gtt_offset_rotated =3D 0;
+>  	unsigned int max_size =3D 0;
+> @@ -2926,23 +2985,21 @@ intel_fill_fb_info(struct drm_i915_private
+> *dev_priv,
+>  						      tile_size);
+>  		offset /=3D tile_size;
+>  =
+
+> +		/* Y or Yf modifiers required for 90/270 rotation */
+>  		if (!is_surface_linear(fb, i)) {
+> +			struct intel_remapped_plane_info plane_info;
+>  			unsigned int tile_width, tile_height;
+> -			unsigned int pitch_tiles;
+> -			struct drm_rect r;
+>  =
+
+>  			intel_tile_dims(fb, i, &tile_width,
+> &tile_height);
+>  =
+
+> -			rot_info->plane[i].offset =3D offset;
+> -			rot_info->plane[i].stride =3D DIV_ROUND_UP(fb-
+> >pitches[i], tile_width * cpp);
+> -			rot_info->plane[i].width =3D DIV_ROUND_UP(x +
+> width, tile_width);
+> -			rot_info->plane[i].height =3D DIV_ROUND_UP(y +
+> height, tile_height);
+> -
+> -			intel_fb->rotated[i].pitch =3D
+> -				rot_info->plane[i].height *
+> tile_height;
+> +			plane_info.offset =3D offset;
+> +			plane_info.stride =3D DIV_ROUND_UP(fb-
+> >pitches[i],
+> +							 tile_width *
+> cpp);
+> +			plane_info.width =3D DIV_ROUND_UP(x + width,
+> tile_width);
+> +			plane_info.height =3D DIV_ROUND_UP(y + height,
+> tile_height);
+>  =
+
+>  			/* how many tiles does this plane need */
+> -			size =3D rot_info->plane[i].stride * rot_info-
+> >plane[i].height;
+> +			size =3D plane_info.stride * plane_info.height;
+>  			/*
+>  			 * If the plane isn't horizontally tile
+> aligned,
+>  			 * we need one more tile.
+> @@ -2950,36 +3007,13 @@ intel_fill_fb_info(struct drm_i915_private
+> *dev_priv,
+>  			if (x !=3D 0)
+>  				size++;
+>  =
+
+> -			/* rotate the x/y offsets to match the GTT view
+> */
+> -			drm_rect_init(&r, x, y, width, height);
+> -			drm_rect_rotate(&r,
+> -					rot_info->plane[i].width *
+> tile_width,
+> -					rot_info->plane[i].height *
+> tile_height,
+> -					DRM_MODE_ROTATE_270);
+> -			x =3D r.x1;
+> -			y =3D r.y1;
+> -
+> -			/* rotate the tile dimensions to match the GTT
+> view */
+> -			pitch_tiles =3D intel_fb->rotated[i].pitch /
+> tile_height;
+> -			swap(tile_width, tile_height);
+> -
+> -			/*
+> -			 * We only keep the x/y offsets, so push all of
+> the
+> -			 * gtt offset into the x/y offsets.
+> -			 */
+> -			intel_adjust_tile_offset(&x, &y,
+> -						 tile_width,
+> tile_height,
+> -						 tile_size,
+> pitch_tiles,
+> -						 gtt_offset_rotated *
+> tile_size, 0);
+> -
+> -			gtt_offset_rotated +=3D rot_info->plane[i].width
+> * rot_info->plane[i].height;
+> -
+> -			/*
+> -			 * First pixel of the framebuffer from
+> -			 * the start of the rotated gtt mapping.
+> -			 */
+> -			intel_fb->rotated[i].x =3D x;
+> -			intel_fb->rotated[i].y =3D y;
+> +			gtt_offset_rotated +=3D
+> +				setup_fb_rotation(i, &plane_info,
+> +						  gtt_offset_rotated,
+> +						  x, y, width, height,
+> +						  tile_size,
+> +						  tile_width,
+> tile_height,
+> +						  fb);
+>  		} else {
+>  			size =3D DIV_ROUND_UP((y + height) * fb-
+> >pitches[i] +
+>  					    x * cpp, tile_size);
+> @@ -3063,6 +3097,7 @@ intel_plane_remap_gtt(struct intel_plane_state
+> *plane_state)
+>  						      DRM_MODE_ROTATE_0
+> , tile_size);
+>  		offset /=3D tile_size;
+>  =
+
+> +		WARN_ON(i >=3D ARRAY_SIZE(info->plane));
+>  		info->plane[i].offset =3D offset;
+>  		info->plane[i].stride =3D DIV_ROUND_UP(fb->pitches[i],
+>  						     tile_width * cpp);
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
