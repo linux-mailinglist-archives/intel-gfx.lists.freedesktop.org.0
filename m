@@ -1,32 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF7F9126645
-	for <lists+intel-gfx@lfdr.de>; Thu, 19 Dec 2019 16:58:59 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id BEAA8126673
+	for <lists+intel-gfx@lfdr.de>; Thu, 19 Dec 2019 17:13:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 922756E358;
-	Thu, 19 Dec 2019 15:58:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C537C6E35D;
+	Thu, 19 Dec 2019 16:13:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 31AA66E354;
- Thu, 19 Dec 2019 15:58:55 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 214AFA010F;
- Thu, 19 Dec 2019 15:58:55 +0000 (UTC)
+Received: from 2.mo1.mail-out.ovh.net (2.mo1.mail-out.ovh.net [178.32.119.250])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3AE696E372
+ for <intel-gfx@lists.freedesktop.org>; Thu, 19 Dec 2019 16:13:47 +0000 (UTC)
+Received: from player688.ha.ovh.net (unknown [10.108.42.215])
+ by mo1.mail-out.ovh.net (Postfix) with ESMTP id 24E401A4639
+ for <intel-gfx@lists.freedesktop.org>; Thu, 19 Dec 2019 16:54:22 +0100 (CET)
+Received: from etezian.org (81-175-223-118.bb.dnainternet.fi [81.175.223.118])
+ (Authenticated sender: andi@etezian.org)
+ by player688.ha.ovh.net (Postfix) with ESMTPSA id 7C9B8D6AF37B;
+ Thu, 19 Dec 2019 15:54:20 +0000 (UTC)
+Date: Thu, 19 Dec 2019 17:54:19 +0200
+From: Andi Shyti <andi@etezian.org>
+To: Chris Wilson <chris@chris-wilson.co.uk>
+Message-ID: <20191219155419.GJ36515@jack.zhora.eu>
+References: <20191218210545.3975426-1-chris@chris-wilson.co.uk>
+ <20191218210545.3975426-2-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Thu, 19 Dec 2019 15:58:55 -0000
-Message-ID: <157677113512.26201.5804870330654650436@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20191219124353.8607-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20191219124353.8607-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_series_starting_with_=5BCI=2C1/2=5D_drm/i915/gt=3A_Schedule?=
- =?utf-8?q?_request_retirement_when_signaler_idles?=
+Content-Disposition: inline
+In-Reply-To: <20191218210545.3975426-2-chris@chris-wilson.co.uk>
+User-Agent: Mutt/1.12.2 (2019-09-21)
+X-Ovh-Tracer-Id: 11325990115520659977
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: -100
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedufedrvdduuddgkedtucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepfffhvffukfhfgggtuggjfgesthdtredttdervdenucfhrhhomheptehnughiucfuhhihthhiuceorghnughisegvthgviihirghnrdhorhhgqeenucffohhmrghinhepfhhrvggvuggvshhkthhophdrohhrghenucfkpheptddrtddrtddrtddpkedurddujeehrddvvdefrdduudeknecurfgrrhgrmhepmhhouggvpehsmhhtphdqohhuthdphhgvlhhopehplhgrhigvrheikeekrdhhrgdrohhvhhdrnhgvthdpihhnvghtpedtrddtrddtrddtpdhmrghilhhfrhhomheprghnughisegvthgviihirghnrdhorhhgpdhrtghpthhtohepihhnthgvlhdqghhfgieslhhishhtshdrfhhrvggvuggvshhkthhophdrohhrghenucevlhhushhtvghrufhiiigvpedt
+Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915/gt: Suppress threshold updates
+ on RPS parking
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,34 +47,32 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Hi Chris,
 
-Series: series starting with [CI,1/2] drm/i915/gt: Schedule request retirement when signaler idles
-URL   : https://patchwork.freedesktop.org/series/71172/
-State : warning
+On Wed, Dec 18, 2019 at 09:05:45PM +0000, Chris Wilson wrote:
+> When we park RPS, we set the GPU to run at minimum 'idle' frequency.
+> However, as the GPU is idle, we also disable the worker and RPS
+> interrupts - changing the RPS thresholds has no effect, it just incurs
+> extra changes to restore them when we unpark. So on parking, leave the
+> thresholds set to the current power level and so we expect them to be
+> valid for our restart.
+> 
+> References: https://gitlab.freedesktop.org/drm/intel/issues/848
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Andi Shyti <andi.shyti@intel.com>
 
-== Summary ==
+nice!
 
-$ dim checkpatch origin/drm-tip
-c1298d970af7 drm/i915/gt: Schedule request retirement when signaler idles
--:15: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#15: 
-References: 4f88f8747fa4 ("drm/i915/gt: Schedule request retirement when timeline idles")
+Reviewed-by: Andi Shyti <andi.shyti@intel.com>
 
--:15: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 4f88f8747fa4 ("drm/i915/gt: Schedule request retirement when timeline idles")'
-#15: 
-References: 4f88f8747fa4 ("drm/i915/gt: Schedule request retirement when timeline idles")
-
-total: 1 errors, 1 warnings, 0 checks, 49 lines checked
-ef9d1ed3a21e drm/i915/gt: Track engine round-trip times
-
+Thanks,
+Andi
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
