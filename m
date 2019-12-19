@@ -1,40 +1,37 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7301D12617F
-	for <lists+intel-gfx@lfdr.de>; Thu, 19 Dec 2019 13:02:50 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id DC2E91261B4
+	for <lists+intel-gfx@lfdr.de>; Thu, 19 Dec 2019 13:07:21 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CCD386E32F;
-	Thu, 19 Dec 2019 12:02:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C39E26E33C;
+	Thu, 19 Dec 2019 12:07:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 846806E32F
- for <intel-gfx@lists.freedesktop.org>; Thu, 19 Dec 2019 12:02:47 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BE2C66E33C
+ for <intel-gfx@lists.freedesktop.org>; Thu, 19 Dec 2019 12:07:18 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga106.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 19 Dec 2019 04:02:46 -0800
-X-IronPort-AV: E=Sophos;i="5.69,331,1571727600"; d="scan'208";a="206185280"
-Received: from ideak-desk.fi.intel.com ([10.237.72.183])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 19 Dec 2019 04:02:45 -0800
-Date: Thu, 19 Dec 2019 14:02:21 +0200
-From: Imre Deak <imre.deak@intel.com>
-To: "Kahola, Mika" <mika.kahola@intel.com>
-Message-ID: <20191219120221.GA1795@ideak-desk.fi.intel.com>
-References: <20191218161105.30638-1-imre.deak@intel.com>
- <20191218161105.30638-5-imre.deak@intel.com>
- <181d0db3354ecc5fbeb7b2124c04526930c23fb5.camel@intel.com>
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 19 Dec 2019 04:07:18 -0800
+X-IronPort-AV: E=Sophos;i="5.69,331,1571727600"; d="scan'208";a="210442079"
+Received: from jlahtine-desk.ger.corp.intel.com (HELO localhost)
+ ([10.252.11.180])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 19 Dec 2019 04:07:17 -0800
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <181d0db3354ecc5fbeb7b2124c04526930c23fb5.camel@intel.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [PATCH 04/15] drm/i915: Extract framebufer CCS
- offset checks into a function
+In-Reply-To: <20191219105043.4169050-1-chris@chris-wilson.co.uk>
+References: <20191219105043.4169050-1-chris@chris-wilson.co.uk>
+From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Date: Thu, 19 Dec 2019 14:07:14 +0200
+Message-ID: <157675723449.9436.12167216218154839425@jlahtine-desk.ger.corp.intel.com>
+User-Agent: alot/0.8.1
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/gt: Track engine round-trip times
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,144 +44,40 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "Pandiyan, Dhinakaran" <dhinakaran.pandiyan@intel.com>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Dec 19, 2019 at 01:10:52PM +0200, Kahola, Mika wrote:
-> On Wed, 2019-12-18 at 18:10 +0200, Imre Deak wrote:
-> > From: Dhinakaran Pandiyan <dhinakaran.pandiyan@intel.com>
-> > =
+Quoting Chris Wilson (2019-12-19 12:50:43)
+> Knowing the round trip time of an engine is useful for tracking the
+> health of the system as well as providing a metric for the baseline
+> responsiveness of the engine. We can use the latter metric for
+> automatically tuning our waits in selftests and when idling so we don't
+> confuse a slower system with a dead one.
+> 
+> Upon idling the engine, we send one last pulse to switch the context
+> away from precious user state to the volatile kernel context. We know
+> the engine is idle at this point, and the pulse is non-preemptible, so
+> this provides us with a good measurement of the round trip time. It also
+> provides us with faster engine parking for ringbuffer submission, which
+> is a welcome bonus (e.g. softer-rc6).
+> 
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> Cc: Stuart Summers <stuart.summers@intel.com>
 
-> > intel_fill_fb_info() has grown quite large and wrapping the offset
-> > checks
-> > into a separate function makes the loop a bit easier to follow.
-> > =
+<SNIP>
 
-> > Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> > Cc: Matt Roper <matthew.d.roper@intel.com>
-> > Signed-off-by: Dhinakaran Pandiyan <dhinakaran.pandiyan@intel.com>
-> > Signed-off-by: Imre Deak <imre.deak@intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_display.c | 70 +++++++++++-------
-> > --
-> >  1 file changed, 40 insertions(+), 30 deletions(-)
-> > =
+> +/* A simple estimator for the round-trip latency of an engine */
+> +DECLARE_EWMA(delay, 6, 4)
 
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display.c
-> > b/drivers/gpu/drm/i915/display/intel_display.c
-> > index 9c27cf651e08..4b8b44c39724 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> > @@ -2676,6 +2676,43 @@ static bool intel_plane_needs_remap(const
-> > struct intel_plane_state *plane_state)
-> >  	return stride > max_stride;
-> >  }
-> >  =
+i915_delay as the minimum to emphasis that this is specific tous,
+with that name clarified;
 
-> > +static int
-> > +intel_fb_check_ccs_xy(struct drm_framebuffer *fb, int x, int y)
-> > +{
-> > +	struct intel_framebuffer *intel_fb =3D to_intel_framebuffer(fb);
-> > +	int hsub =3D fb->format->hsub;
-> > +	int vsub =3D fb->format->vsub;
-> > +	int tile_width, tile_height;
-> > +	int ccs_x, ccs_y;
-> > +	int main_x, main_y;
-> > +
-> > +	intel_tile_dims(fb, 1, &tile_width, &tile_height);
-> > +
-> > +	tile_width *=3D hsub;
-> > +	tile_height *=3D vsub;
-> > +
-> > +	ccs_x =3D (x * hsub) % tile_width;
-> > +	ccs_y =3D (y * vsub) % tile_height;
-> > +	main_x =3D intel_fb->normal[0].x % tile_width;
-> > +	main_y =3D intel_fb->normal[0].y % tile_height;
-> > +
-> > +	/*
-> > +	 * CCS doesn't have its own x/y offset register, so the intra
-> > CCS tile
-> > +	 * x/y offsets must match between CCS and the main surface.
-> > +	 */
-> > +	if (main_x !=3D ccs_x || main_y !=3D ccs_y) {
-> > +		DRM_DEBUG_KMS("Bad CCS x/y (main %d,%d ccs %d,%d) full
-> > (main %d,%d ccs %d,%d)\n",
-> > +			      main_x, main_y,
-> > +			      ccs_x, ccs_y,
-> > +			      intel_fb->normal[0].x,
-> > +			      intel_fb->normal[0].y,
-> > +			      x, y);
-> > +		return -EINVAL;
-> > +	}
-> > +
-> > +	return 0;
-> > +}
-> > +
-> >  static int
-> >  intel_fill_fb_info(struct drm_i915_private *dev_priv,
-> >  		   struct drm_framebuffer *fb)
-> > @@ -2706,36 +2743,9 @@ intel_fill_fb_info(struct drm_i915_private
-> > *dev_priv,
-> >  			return ret;
-> >  		}
-> >  =
+Reviewed-by: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
 
-> > -		if (is_ccs_modifier(fb->modifier) && i =3D=3D 1) {
-> > -			int hsub =3D fb->format->hsub;
-> > -			int vsub =3D fb->format->vsub;
-> > -			int tile_width, tile_height;
-> > -			int main_x, main_y;
-> > -			int ccs_x, ccs_y;
-> > -
-> > -			intel_tile_dims(fb, i, &tile_width,
-> > &tile_height);
-> > -			tile_width *=3D hsub;
-> > -			tile_height *=3D vsub;
-> > -
-> > -			ccs_x =3D (x * hsub) % tile_width;
-> > -			ccs_y =3D (y * vsub) % tile_height;
-> > -			main_x =3D intel_fb->normal[0].x % tile_width;
-> > -			main_y =3D intel_fb->normal[0].y % tile_height;
-> > -
-> > -			/*
-> > -			 * CCS doesn't have its own x/y offset
-> > register, so the intra CCS tile
-> > -			 * x/y offsets must match between CCS and the
-> > main surface.
-> > -			 */
-> > -			if (main_x !=3D ccs_x || main_y !=3D ccs_y) {
-> > -				DRM_DEBUG_KMS("Bad CCS x/y (main %d,%d
-> > ccs %d,%d) full (main %d,%d ccs %d,%d)\n",
-> > -					      main_x, main_y,
-> > -					      ccs_x, ccs_y,
-> > -					      intel_fb->normal[0].x,
-> > -					      intel_fb->normal[0].y,
-> > -					      x, y);
-> > -				return -EINVAL;
-> > -			}
-> > -		}
-> > +		ret =3D intel_fb_check_ccs_xy(fb, x, y);
-> We should check the ccs offsets only when we have ccs modifier in
-> question.  =
-
-
-Yes, thanks for spotting it. It gets fixed up in patch 6, but I'll
-resend this fixing it here already.
-
-> =
-
-> +		if (ret)
-> > +			return ret;
-> >  =
-
-> >  		/*
-> >  		 * The fence (if used) is aligned to the start of the
-> > object
+Regards, Joonas
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
