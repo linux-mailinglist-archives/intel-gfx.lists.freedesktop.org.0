@@ -1,31 +1,35 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id EBD2C126277
-	for <lists+intel-gfx@lfdr.de>; Thu, 19 Dec 2019 13:44:01 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9022B126280
+	for <lists+intel-gfx@lfdr.de>; Thu, 19 Dec 2019 13:46:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 11FCE6EB61;
-	Thu, 19 Dec 2019 12:44:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 26E9F6EB64;
+	Thu, 19 Dec 2019 12:46:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C9E846EB5F
- for <intel-gfx@lists.freedesktop.org>; Thu, 19 Dec 2019 12:43:58 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19633130-1500050 
- for <intel-gfx@lists.freedesktop.org>; Thu, 19 Dec 2019 12:43:54 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 19 Dec 2019 12:43:53 +0000
-Message-Id: <20191219124353.8607-2-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.24.1
-In-Reply-To: <20191219124353.8607-1-chris@chris-wilson.co.uk>
-References: <20191219124353.8607-1-chris@chris-wilson.co.uk>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 79C346EB62;
+ Thu, 19 Dec 2019 12:46:42 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 19 Dec 2019 04:46:41 -0800
+X-IronPort-AV: E=Sophos;i="5.69,331,1571727600"; d="scan'208";a="210450887"
+Received: from jlahtine-desk.ger.corp.intel.com (HELO localhost)
+ ([10.252.11.180])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 19 Dec 2019 04:46:38 -0800
+Date: Thu, 19 Dec 2019 14:46:35 +0200
+From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Message-ID: <20191219124635.GA16068@jlahtine-desk.ger.corp.intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [CI 2/2] drm/i915/gt: Track engine round-trip times
+Content-Disposition: inline
+Subject: [Intel-gfx] [PULL] drm-intel-fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,151 +42,143 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Maxime Ripard <mripard@kernel.org>, intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Knowing the round trip time of an engine is useful for tracking the
-health of the system as well as providing a metric for the baseline
-responsiveness of the engine. We can use the latter metric for
-automatically tuning our waits in selftests and when idling so we don't
-confuse a slower system with a dead one.
+Hi Dave & Daniel,
 
-Upon idling the engine, we send one last pulse to switch the context
-away from precious user state to the volatile kernel context. We know
-the engine is idle at this point, and the pulse is non-preemptible, so
-this provides us with a good measurement of the round trip time. It also
-provides us with faster engine parking for ringbuffer submission, which
-is a welcome bonus (e.g. softer-rc6).
+Another -rc, another CI fire due to regressions elsewhere.
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-Cc: Stuart Summers <stuart.summers@intel.com>
-Reviewed-by: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Link: https://patchwork.freedesktop.org/patch/msgid/20191219105043.4169050-1-chris@chris-wilson.co.uk
----
- drivers/gpu/drm/i915/gt/intel_engine_cs.c    |  3 +++
- drivers/gpu/drm/i915/gt/intel_engine_pm.c    | 22 +++++++++++++++++++-
- drivers/gpu/drm/i915/gt/intel_engine_types.h | 11 ++++++++++
- drivers/gpu/drm/i915/i915_request.h          |  4 ++++
- 4 files changed, 39 insertions(+), 1 deletion(-)
+Our CI needed the following patches to get machines boot with -rc2:
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-index 3d1d48bf90cf..6dd18f93d45c 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-+++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-@@ -334,6 +334,7 @@ static int intel_engine_setup(struct intel_gt *gt, enum intel_engine_id id)
- 	/* Nothing to do here, execute in order of dependencies */
- 	engine->schedule = NULL;
- 
-+	ewma__engine_latency_init(&engine->latency);
- 	seqlock_init(&engine->stats.lock);
- 
- 	ATOMIC_INIT_NOTIFIER_HEAD(&engine->context_status_notifier);
-@@ -1481,6 +1482,8 @@ void intel_engine_dump(struct intel_engine_cs *engine,
- 	drm_printf(m, "\tAwake? %d\n", atomic_read(&engine->wakeref.count));
- 	drm_printf(m, "\tBarriers?: %s\n",
- 		   yesno(!llist_empty(&engine->barrier_tasks)));
-+	drm_printf(m, "\tLatency: %luus\n",
-+		   ewma__engine_latency_read(&engine->latency));
- 
- 	rcu_read_lock();
- 	rq = READ_ONCE(engine->heartbeat.systole);
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine_pm.c b/drivers/gpu/drm/i915/gt/intel_engine_pm.c
-index bcbda8e52d41..8fb7b34fc5a6 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine_pm.c
-+++ b/drivers/gpu/drm/i915/gt/intel_engine_pm.c
-@@ -73,6 +73,15 @@ static inline void __timeline_mark_unlock(struct intel_context *ce,
- 
- #endif /* !IS_ENABLED(CONFIG_LOCKDEP) */
- 
-+static void duration(struct dma_fence *fence, struct dma_fence_cb *cb)
-+{
-+	struct i915_request *rq = to_request(fence);
-+
-+	ewma__engine_latency_add(&rq->engine->latency,
-+				 ktime_us_delta(rq->fence.timestamp,
-+						rq->duration.emitted));
-+}
-+
- static void
- __queue_and_release_pm(struct i915_request *rq,
- 		       struct intel_timeline *tl,
-@@ -163,7 +172,18 @@ static bool switch_to_kernel_context(struct intel_engine_cs *engine)
- 
- 	/* Install ourselves as a preemption barrier */
- 	rq->sched.attr.priority = I915_PRIORITY_BARRIER;
--	__i915_request_commit(rq);
-+	if (likely(!__i915_request_commit(rq))) { /* engine should be idle! */
-+		/*
-+		 * Use an interrupt for precise measurement of duration,
-+		 * otherwise we rely on someone else retiring all the requests
-+		 * which may delay the signaling (i.e. we will likely wait
-+		 * until the background request retirement running every
-+		 * second or two).
-+		 */
-+		BUILD_BUG_ON(sizeof(rq->duration) > sizeof(rq->submitq));
-+		dma_fence_add_callback(&rq->fence, &rq->duration.cb, duration);
-+		rq->duration.emitted = ktime_get();
-+	}
- 
- 	/* Expose ourselves to the world */
- 	__queue_and_release_pm(rq, ce->timeline, engine);
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine_types.h b/drivers/gpu/drm/i915/gt/intel_engine_types.h
-index 17f1f1441efc..7f227da09d66 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine_types.h
-+++ b/drivers/gpu/drm/i915/gt/intel_engine_types.h
-@@ -7,6 +7,7 @@
- #ifndef __INTEL_ENGINE_TYPES__
- #define __INTEL_ENGINE_TYPES__
- 
-+#include <linux/average.h>
- #include <linux/hashtable.h>
- #include <linux/irq_work.h>
- #include <linux/kref.h>
-@@ -119,6 +120,9 @@ enum intel_engine_id {
- #define INVALID_ENGINE ((enum intel_engine_id)-1)
- };
- 
-+/* A simple estimator for the round-trip latency of an engine */
-+DECLARE_EWMA(_engine_latency, 6, 4)
-+
- struct st_preempt_hang {
- 	struct completion completion;
- 	unsigned int count;
-@@ -316,6 +320,13 @@ struct intel_engine_cs {
- 		struct intel_timeline *timeline;
- 	} legacy;
- 
-+	/*
-+	 * We track the average duration of the idle pulse on parking the
-+	 * engine to keep an estimate of the how the fast the engine is
-+	 * under ideal conditions.
-+	 */
-+	struct ewma__engine_latency latency;
-+
- 	/* Rather than have every client wait upon all user interrupts,
- 	 * with the herd waking after every interrupt and each doing the
- 	 * heavyweight seqno dance, we delegate the task (of being the
-diff --git a/drivers/gpu/drm/i915/i915_request.h b/drivers/gpu/drm/i915/i915_request.h
-index aa38290eea3d..c18c0bcd0193 100644
---- a/drivers/gpu/drm/i915/i915_request.h
-+++ b/drivers/gpu/drm/i915/i915_request.h
-@@ -150,6 +150,10 @@ struct i915_request {
- 	union {
- 		wait_queue_entry_t submitq;
- 		struct i915_sw_dma_fence_cb dmaq;
-+		struct i915_request_duration_cb {
-+			struct dma_fence_cb cb;
-+			ktime_t emitted;
-+		} duration;
- 	};
- 	struct list_head execute_cb;
- 	struct i915_sw_fence semaphore;
--- 
-2.24.1
+	Revert "devtmpfs: use do_mount() instead of ksys_mount()"
+	(commit 5e787dbf659fe77d56215be74044f85e01b3920f)
 
+	Revert "initrd: use do_mount() instead of ksys_mount()"
+	(commit d4440aac83d12f87df9bcc51e992b9c28c7f4fa5)
+
+	Revert "init: use do_mount() instead of ksys_mount()"
+	(commit cccaa5e33525fc07f4a2ce0518e50b9ddf435e47)
+
+I have queued CI_DIF_433 with this PR contents + reverts to get any
+CI results:
+
+https://intel-gfx-ci.01.org/tree/drm-intel-fixes/CI_DIF_433/git-log.txt
+
+Nothing appears in the UI for the failed-to-boot runs, so don't be
+confused. CI_DIF_433 is equal to this PR + 3 reverts needed to mitigate
+the -rc2 regressions.
+
+Due to the CI fires, it may take a while to get the full results. Due to
+my holidays, I'll defer to Chris to let you know if the results are good
+or not. There have been some GEM bugs tackled in drm-tip, so have to make
+sure they are under control.
+
+Now on to the actual content of the PR:
+
+Removal of a unused and harmful display W/A for Tigerlake, corrections
+to powerwells of EHL compared to ICL, and MMIO offset fix for DSB. There
+is a fix for uninitialized ops in dma_fence tracing and then fixes
+for CI corner cases from CI.
+
+Also includes GVT fixes: "fix for vGPU display dmabuf, one guest reset
+warning and one locking issue."
+
+Jani/Rodrigo promised to handle -fixes for next two weeks if there is
+something urgent appearing.
+
+Happy Holidays!
+
+Regards, Joonas
+
+***
+
+drm-intel-fixes-2019-12-19:
+
+- Fix to drop an unused and harmful display W/A
+- Fix to define EHL power wells independent of ICL
+- Fix for priority inversion on bonded requests
+- Fix in mmio offset calculation of DSB instance
+- Fix memory leak from get_task_pid when banning clients
+- Fixes to avoid dereference of uninitialized ops in dma_fence tracing
+  and keep reference to execbuf object until submitted.
+
+- Includes gvt-fixes-2019-12-18
+
+The following changes since commit d1eef1c619749b2a57e514a3fa67d9a516ffa919:
+
+  Linux 5.5-rc2 (2019-12-15 15:16:08 -0800)
+
+are available in the Git repository at:
+
+  git://anongit.freedesktop.org/drm/drm-intel tags/drm-intel-fixes-2019-12-19
+
+for you to fetch changes up to 78d75f5739c457ff37cfe5adab1c01bc1f3375e2:
+
+  Merge tag 'gvt-fixes-2019-12-18' of https://github.com/intel/gvt-linux into drm-intel-fixes (2019-12-18 11:01:41 +0200)
+
+----------------------------------------------------------------
+- Fix to drop an unused and harmful display W/A
+- Fix to define EHL power wells independent of ICL
+- Fix for priority inversion on bonded requests
+- Fix in mmio offset calculation of DSB instance
+- Fix memory leak from get_task_pid when banning clients
+- Fixes to avoid dereference of uninitialized ops in dma_fence tracing
+  and keep reference to execbuf object until submitted.
+
+- Includes gvt-fixes-2019-12-18
+
+----------------------------------------------------------------
+Animesh Manna (1):
+      drm/i915/dsb: Fix in mmio offset calculation of DSB instance
+
+Chris Wilson (3):
+      drm/i915: Copy across scheduler behaviour flags across submit fences
+      drm/i915: Set fence_work.ops before dma_fence_init
+      drm/i915/gem: Keep request alive while attaching fences
+
+Gao Fred (1):
+      drm/i915/gvt: Fix guest boot warning
+
+Joonas Lahtinen (1):
+      Merge tag 'gvt-fixes-2019-12-18' of https://github.com/intel/gvt-linux into drm-intel-fixes
+
+Matt Roper (2):
+      drm/i915/ehl: Define EHL powerwells independently of ICL
+      drm/i915/tgl: Drop Wa#1178
+
+Tina Zhang (1):
+      drm/i915/gvt: Pin vgpu dma address before using
+
+Tvrtko Ursulin (1):
+      drm/i915: Fix pid leak with banned clients
+
+Vandita Kulkarni (1):
+      drm/i915: Fix WARN_ON condition for cursor plane ddb allocation
+
+Zhenyu Wang (2):
+      drm/i915/gvt: use vgpu lock for active state setting
+      drm/i915/gvt: set guest display buffer as readonly
+
+ drivers/gpu/drm/i915/display/intel_display_power.c | 153 ++++++++++++++++++++-
+ drivers/gpu/drm/i915/gem/i915_gem_context.c        |   3 +-
+ drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c     |   2 +
+ drivers/gpu/drm/i915/gvt/dmabuf.c                  |  64 ++++++++-
+ drivers/gpu/drm/i915/gvt/handlers.c                |  16 +++
+ drivers/gpu/drm/i915/gvt/hypercall.h               |   2 +
+ drivers/gpu/drm/i915/gvt/kvmgt.c                   |  23 ++++
+ drivers/gpu/drm/i915/gvt/mpt.h                     |  15 ++
+ drivers/gpu/drm/i915/gvt/vgpu.c                    |   4 +-
+ drivers/gpu/drm/i915/i915_reg.h                    |   6 +-
+ drivers/gpu/drm/i915/i915_request.c                | 114 +++++++++++----
+ drivers/gpu/drm/i915/i915_scheduler.c              |   1 -
+ drivers/gpu/drm/i915/i915_sw_fence_work.c          |   3 +-
+ drivers/gpu/drm/i915/intel_pm.c                    |   4 +-
+ 14 files changed, 365 insertions(+), 45 deletions(-)
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
