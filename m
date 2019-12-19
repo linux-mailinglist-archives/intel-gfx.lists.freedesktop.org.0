@@ -1,32 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E9978126771
-	for <lists+intel-gfx@lfdr.de>; Thu, 19 Dec 2019 17:54:57 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C74F12678B
+	for <lists+intel-gfx@lfdr.de>; Thu, 19 Dec 2019 18:01:01 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3FAFD6E38A;
-	Thu, 19 Dec 2019 16:54:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9958C6E393;
+	Thu, 19 Dec 2019 17:00:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 52B256E38A;
- Thu, 19 Dec 2019 16:54:55 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 4AC5EA0075;
- Thu, 19 Dec 2019 16:54:55 +0000 (UTC)
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 808DD6E393
+ for <intel-gfx@lists.freedesktop.org>; Thu, 19 Dec 2019 17:00:57 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 19636197-1500050 for multiple; Thu, 19 Dec 2019 17:00:35 +0000
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Date: Thu, 19 Dec 2019 16:54:55 -0000
-Message-ID: <157677449530.26199.11389096140645716638@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
+To: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org
+From: Chris Wilson <chris@chris-wilson.co.uk>
+In-Reply-To: <20191219155652.2666-3-jani.nikula@intel.com>
 References: <20191219155652.2666-1-jani.nikula@intel.com>
-In-Reply-To: <20191219155652.2666-1-jani.nikula@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_series_starting_with_=5B1/3=5D_drm/i915/selftests=3A_make_m?=
- =?utf-8?q?ock=5Fcontext=2Eh_self-contained?=
+ <20191219155652.2666-3-jani.nikula@intel.com>
+Message-ID: <157677483329.6469.18250205597696895684@skylake-alporthouse-com>
+User-Agent: alot/0.6
+Date: Thu, 19 Dec 2019 17:00:33 +0000
+Subject: Re: [Intel-gfx] [PATCH 3/3] drm/i915: reimplement header test
+ feature
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,31 +40,45 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Jani Nikula <jani.nikula@intel.com>,
+ Masahiro Yamada <yamada.masahiro@socionext.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Quoting Jani Nikula (2019-12-19 15:56:52)
+> From: Masahiro Yamada <yamada.masahiro@socionext.com>
+> 
+> I implemented a small build rule in drivers/gpu/drm/i915/Makefile
+> without relying on the special header-test-y syntax that was removed in
+> commit fcbb8461fd23 ("kbuild: remove header compile test").
+> 
+> I excluded some headers from the test coverage. I hope somebody
+> intrested can take a closer look at them.
+> 
+> Dummy subdir Makefiles can be removed altogether as single target build
+> use case is now covered by commit 394053f4a4b3 ("kbuild: make single
+> targets work more correctly").
+> 
+> v2 by Jani:
+> - add selftests/i915_perf_selftests.h to no-header-test
+> - add .gitignore for *.hdrtest
+> 
+> Cc: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Masahiro Yamada <yamada.masahiro@socionext.com>
+> Signed-off-by: Masahiro Yamada <yamada.masahiro@socionext.com>
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 
-Series: series starting with [1/3] drm/i915/selftests: make mock_context.h self-contained
-URL   : https://patchwork.freedesktop.org/series/71178/
-State : warning
+Whelp, I guess that explains why CI didn't tell me off for breaking the
+self-contained headers. The pattern matching works, I didn't see any
+residue after a make clean, and git status is not swamped with the
+artifacts. Single object build still works. O=_build still works
+(O=_build -j10 did not, hopefully that is not significant???)
 
-== Summary ==
-
-$ dim checkpatch origin/drm-tip
-9336cd8d0cbd drm/i915/selftests: make mock_context.h self-contained
-24c003d8bfe8 drm/i915/selftests: make mock_drm.h self-contained
-a715105ebc38 drm/i915: reimplement header test feature
--:27: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#27: 
-new file mode 100644
-
-total: 0 errors, 1 warnings, 0 checks, 78 lines checked
-
+Everything looks (mostly) in order,
+Reviewed-by: Chris Wilson <chris@chris-wilson.co.uk>
+-Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
