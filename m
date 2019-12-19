@@ -2,29 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA383127178
-	for <lists+intel-gfx@lfdr.de>; Fri, 20 Dec 2019 00:29:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6ECF512717D
+	for <lists+intel-gfx@lfdr.de>; Fri, 20 Dec 2019 00:31:23 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 30F3E6E3FB;
-	Thu, 19 Dec 2019 23:29:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CC0C189D81;
+	Thu, 19 Dec 2019 23:31:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 73A416E3FB
- for <intel-gfx@lists.freedesktop.org>; Thu, 19 Dec 2019 23:29:36 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19639877-1500050 
- for <intel-gfx@lists.freedesktop.org>; Thu, 19 Dec 2019 23:29:33 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 19 Dec 2019 23:29:32 +0000
-Message-Id: <20191219232932.189197-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.24.1
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D85DC89D81
+ for <intel-gfx@lists.freedesktop.org>; Thu, 19 Dec 2019 23:31:20 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 19 Dec 2019 15:31:20 -0800
+X-IronPort-AV: E=Sophos;i="5.69,333,1571727600"; d="scan'208";a="210629772"
+Received: from ideak-desk.fi.intel.com ([10.237.72.183])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 19 Dec 2019 15:31:17 -0800
+Date: Fri, 20 Dec 2019 01:30:53 +0200
+From: Imre Deak <imre.deak@intel.com>
+To: Matt Roper <matthew.d.roper@intel.com>
+Message-ID: <20191219233053.GA8168@ideak-desk.fi.intel.com>
+References: <20191218161105.30638-1-imre.deak@intel.com>
+ <20191218161105.30638-2-imre.deak@intel.com>
+ <20191219210352.GB2712252@mdroper-desk1.amr.corp.intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [CI] drm/i915/gt: Teach veng to defer the context
- allocation
+Content-Disposition: inline
+In-Reply-To: <20191219210352.GB2712252@mdroper-desk1.amr.corp.intel.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+Subject: Re: [Intel-gfx] [PATCH 01/15] drm/framebuffer: Format modifier for
+ Intel Gen-12 render compression
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,67 +47,123 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: imre.deak@intel.com
+Cc: Nanley G Chery <nanley.g.chery@intel.com>, intel-gfx@lists.freedesktop.org,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Dhinakaran Pandiyan <dhinakaran.pandiyan@intel.com>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Since we added the context_alloc callback to intel_context_ops, we can
-safely install a custom hook for the deferred virtual context allocation.
-This means that all new contexts behave the same upon creation,
-simplifying later code.
+On Thu, Dec 19, 2019 at 01:03:52PM -0800, Matt Roper wrote:
+> On Wed, Dec 18, 2019 at 06:10:51PM +0200, Imre Deak wrote:
+> > From: Dhinakaran Pandiyan <dhinakaran.pandiyan@intel.com>
+> > =
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-Cc: Andi Shyti <andi.shyti@intel.com>
-Reviewed-by: Andi Shyti <andi.shyti@intel.com>
----
- drivers/gpu/drm/i915/gt/intel_lrc.c | 15 +++++++++------
- 1 file changed, 9 insertions(+), 6 deletions(-)
+> > Gen-12 has a new compression format, add a new modifier to indicate tha=
+t.
+> =
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-index 31815d5e3b74..b7da6d7e7e2a 100644
---- a/drivers/gpu/drm/i915/gt/intel_lrc.c
-+++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-@@ -4240,6 +4240,13 @@ static void virtual_engine_initial_hint(struct virtual_engine *ve)
- 						ve->siblings[0]);
- }
- 
-+static int virtual_context_alloc(struct intel_context *ce)
-+{
-+	struct virtual_engine *ve = container_of(ce, typeof(*ve), context);
-+
-+	return __execlists_context_alloc(ce, ve->siblings[0]);
-+}
-+
- static int virtual_context_pin(struct intel_context *ce)
- {
- 	struct virtual_engine *ve = container_of(ce, typeof(*ve), context);
-@@ -4277,6 +4284,8 @@ static void virtual_context_exit(struct intel_context *ce)
- }
- 
- static const struct intel_context_ops virtual_context_ops = {
-+	.alloc = virtual_context_alloc,
-+
- 	.pin = virtual_context_pin,
- 	.unpin = execlists_context_unpin,
- 
-@@ -4593,12 +4602,6 @@ intel_execlists_create_virtual(struct i915_gem_context *ctx,
- 
- 	ve->base.flags |= I915_ENGINE_IS_VIRTUAL;
- 
--	err = __execlists_context_alloc(&ve->context, siblings[0]);
--	if (err)
--		goto err_put;
--
--	__set_bit(CONTEXT_ALLOC_BIT, &ve->context.flags);
--
- 	return &ve->context;
- 
- err_put:
--- 
-2.24.1
+> There's been some recent hallway chat about this, but it might be worth
+> naming this "TGL" rather then "GEN12" and using a fresh modifier even if
+> future gen12+ platforms seemingly have the same general CCS layout and
+> programming model.  Using the same modifier between multiple platforms
+> implies that the data format truly is compatible between them and that
+> one platform can consume the surfaces generated by another (even if you
+> can't do direct sharing via dma_buf, you could theoretically copy buffer
+> contents over the network, save/restore buffers from disk, etc.).  Even
+> if things look identical at the bspec level, there's no guarantee that
+> the hardware guys won't tweak the underlying compression algorithm
+> between platforms in a way that makes the buffers generated by one GPU
+> incompatible with a different platform.
+> =
 
+> In fact we've already seen one instance of this type of incompatibility
+> --- EHL/JSL's GT uses a very slightly different packing format than ICL
+> did.  In that case there was a chicken register we could use to make the
+> EHL GT use the ICL-style packing (and we had to set this bit anyway for
+> the display controller to be able to consume GT-rendered buffers).  But
+> going forward I think we probably want to use per-platform modifiers
+> rather than per-generation modifiers by default.
+
+Okay, however, the possibility to share the buffers between GPUs
+(without having to decompress/recompress) is an important feature imo,
+so I wouldn't be surprised if HW would be designed with this in mind.
+Some kind of architecture document proposed actually these modifier
+names, not sure if the authors of that didn't think about buffer
+sharing.
+
+Can't we assume that the design would be sensible and call the format
+that is shareable at least among GEN12 platforms GEN12? I think we could
+use a new modifier name for a platform generating an incompatible
+format. I agree that we should make sure the buffers are truly shareable
+before allowing to share modifier names.
+
+--Imre
+
+> =
+
+> Matt
+> =
+
+> > =
+
+> > Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > Cc: Matt Roper <matthew.d.roper@intel.com>
+> > Cc: Nanley G Chery <nanley.g.chery@intel.com>
+> > Cc: Jason Ekstrand <jason@jlekstrand.net>
+> > Signed-off-by: Dhinakaran Pandiyan <dhinakaran.pandiyan@intel.com>
+> > Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+> > Signed-off-by: Imre Deak <imre.deak@intel.com>
+> > ---
+> >  include/uapi/drm/drm_fourcc.h | 11 +++++++++++
+> >  1 file changed, 11 insertions(+)
+> > =
+
+> > diff --git a/include/uapi/drm/drm_fourcc.h b/include/uapi/drm/drm_fourc=
+c.h
+> > index 8caaaf7ff91b..5ba481f49931 100644
+> > --- a/include/uapi/drm/drm_fourcc.h
+> > +++ b/include/uapi/drm/drm_fourcc.h
+> > @@ -410,6 +410,17 @@ extern "C" {
+> >  #define I915_FORMAT_MOD_Y_TILED_CCS	fourcc_mod_code(INTEL, 4)
+> >  #define I915_FORMAT_MOD_Yf_TILED_CCS	fourcc_mod_code(INTEL, 5)
+> >  =
+
+> > +/*
+> > + * Intel color control surfaces (CCS) for Gen-12 render compression.
+> > + *
+> > + * The main surface is Y-tiled and at plane index 0, the CCS is linear=
+ and
+> > + * at index 1. A 64B CCS cache line corresponds to an area of 4x1 tile=
+s in
+> > + * main surface. In other words, 4 bits in CCS map to a main surface c=
+ache
+> > + * line pair. The main surface pitch is required to be a multiple of f=
+our
+> > + * Y-tile widths.
+> > + */
+> > +#define I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS fourcc_mod_code(INTEL, 6)
+> > +
+> >  /*
+> >   * Tiled, NV12MT, grouped in 64 (pixels) x 32 (lines) -sized macrobloc=
+ks
+> >   *
+> > -- =
+
+> > 2.22.0
+> > =
+
+> =
+
+> -- =
+
+> Matt Roper
+> Graphics Software Engineer
+> VTT-OSGC Platform Enablement
+> Intel Corporation
+> (916) 356-2795
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
