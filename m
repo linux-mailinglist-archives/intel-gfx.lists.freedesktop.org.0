@@ -2,48 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB98E125DDE
-	for <lists+intel-gfx@lfdr.de>; Thu, 19 Dec 2019 10:42:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B6F4D125E0A
+	for <lists+intel-gfx@lfdr.de>; Thu, 19 Dec 2019 10:48:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2D3FF6EAF1;
-	Thu, 19 Dec 2019 09:42:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 379DB6EAF2;
+	Thu, 19 Dec 2019 09:48:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8FAFA6EAF1
- for <intel-gfx@lists.freedesktop.org>; Thu, 19 Dec 2019 09:42:17 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 110106EAF2
+ for <intel-gfx@lists.freedesktop.org>; Thu, 19 Dec 2019 09:48:47 +0000 (UTC)
+X-Amp-Result: UNSCANNABLE
 X-Amp-File-Uploaded: False
 Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 19 Dec 2019 01:42:14 -0800
+ by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 19 Dec 2019 01:48:46 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,331,1571727600"; d="scan'208";a="222229256"
-Received: from irsmsx108.ger.corp.intel.com ([163.33.3.3])
- by fmsmga001.fm.intel.com with ESMTP; 19 Dec 2019 01:42:13 -0800
-Received: from irsmsx102.ger.corp.intel.com ([169.254.2.130]) by
- IRSMSX108.ger.corp.intel.com ([169.254.11.217]) with mapi id 14.03.0439.000;
- Thu, 19 Dec 2019 09:42:12 +0000
-From: "Kahola, Mika" <mika.kahola@intel.com>
-To: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "Deak, Imre" <imre.deak@intel.com>
-Thread-Topic: [Intel-gfx] [PATCH 03/15] drm/i915: Move CCS stride alignment
- W/A inside intel_fb_stride_alignment
-Thread-Index: AQHVtb3WyIvPw/BiR0KNZWFYS92YO6fBNbEA
-Date: Thu, 19 Dec 2019 09:42:12 +0000
-Message-ID: <58ca9814c9f5ca9a7bbb2a07935720818cb59204.camel@intel.com>
-References: <20191218161105.30638-1-imre.deak@intel.com>
- <20191218161105.30638-4-imre.deak@intel.com>
-In-Reply-To: <20191218161105.30638-4-imre.deak@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.237.72.159]
-Content-ID: <D4D4210DDAAB3E42AFB7CEF37C3CD564@intel.com>
+X-IronPort-AV: E=Sophos;i="5.69,331,1571727600"; d="scan'208";a="222231200"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by fmsmga001.fm.intel.com with SMTP; 19 Dec 2019 01:48:44 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Thu, 19 Dec 2019 11:48:43 +0200
+Date: Thu, 19 Dec 2019 11:48:43 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
+Message-ID: <20191219094843.GF1208@intel.com>
+References: <20191213130228.29509-1-stanislav.lisovskiy@intel.com>
+ <20191213130228.29509-4-stanislav.lisovskiy@intel.com>
+ <20191218180046.GQ1208@intel.com>
+ <aea7f05fa5b9e4c6c58966a71e48eef94eac68a0.camel@intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 03/15] drm/i915: Move CCS stride alignment
- W/A inside intel_fb_stride_alignment
+Content-Disposition: inline
+In-Reply-To: <aea7f05fa5b9e4c6c58966a71e48eef94eac68a0.camel@intel.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH v8 3/4] drm/i915: Manipulate DBuf slices
+ properly
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,95 +49,215 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Pandiyan, Dhinakaran" <dhinakaran.pandiyan@intel.com>
-Content-Type: text/plain; charset="iso-8859-15"
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 2019-12-18 at 18:10 +0200, Imre Deak wrote:
-> From: Dhinakaran Pandiyan <dhinakaran.pandiyan@intel.com>
+On Thu, Dec 19, 2019 at 09:13:23AM +0000, Lisovskiy, Stanislav wrote:
+> On Wed, 2019-12-18 at 20:00 +0200, Ville Syrj=E4l=E4 wrote:
+> > On Fri, Dec 13, 2019 at 03:02:27PM +0200, Stanislav Lisovskiy wrote:
+> > > Start manipulating DBuf slices as a mask,
+> > > but not as a total number, as current approach
+> > > doesn't give us full control on all combinations
+> > > of slices, which we might need(like enabling S2
+> > > only can't enabled by setting enabled_slices=3D1).
+> > > =
+
+> > > Removed wrong code from intel_get_ddb_size as
+> > > it doesn't match to BSpec. For now still just
+> > > use DBuf slice until proper algorithm is implemented.
+> > > =
+
+> > > Other minor code refactoring to get prepared
+> > > for major DBuf assignment changes landed:
+> > > - As now enabled slices contain a mask
+> > >   we still need some value which should
+> > >   reflect how much DBuf slices are supported
+> > >   by the platform, now device info contains
+> > >   num_supported_dbuf_slices.
+> > > - Removed unneeded assertion as we are now
+> > >   manipulating slices in a more proper way.
+> > > =
+
+> > > v2: Start using enabled_slices in dev_priv
+> > > =
+
+> > > v3: "enabled_slices" is now "enabled_dbuf_slices_mask",
+> > >     as this now sits in dev_priv independently.
+> > > =
+
+> > > Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+> > > ---
+> > >  drivers/gpu/drm/i915/display/intel_display.c  |  23 ++--
+> > >  .../drm/i915/display/intel_display_power.c    | 100 ++++++++----
+> > > ------
+> > >  .../drm/i915/display/intel_display_power.h    |   5 +
+> > >  .../drm/i915/display/intel_display_types.h    |   2 +-
+> > >  drivers/gpu/drm/i915/i915_drv.h               |   2 +-
+> > >  drivers/gpu/drm/i915/i915_pci.c               |   6 +-
+> > >  drivers/gpu/drm/i915/intel_device_info.h      |   1 +
+> > >  drivers/gpu/drm/i915/intel_pm.c               |  49 +++------
+> > >  drivers/gpu/drm/i915/intel_pm.h               |   2 +-
+> > >  9 files changed, 84 insertions(+), 106 deletions(-)
+> > > =
+
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_display.c
+> > > b/drivers/gpu/drm/i915/display/intel_display.c
+> > > index 0e09d0c23b1d..42a0ea540d4f 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_display.c
+> > > +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> > > @@ -13359,12 +13359,12 @@ static void verify_wm_state(struct
+> > > intel_crtc *crtc,
 > =
 
-> Easier to read if all the alignment changes are in one place and
-> contained
-> within a function.
+> Hi Ville,
 > =
 
-> Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> Cc: Matt Roper <matthew.d.roper@intel.com>
-> Signed-off-by: Dhinakaran Pandiyan <dhinakaran.pandiyan@intel.com>
-> Signed-off-by: Imre Deak <imre.deak@intel.com>
-
-Reviewed-by: Mika Kahola <mika.kahola@intel.com>
-
-> ---
->  drivers/gpu/drm/i915/display/intel_display.c | 31 ++++++++++------
-> ----
->  1 file changed, 16 insertions(+), 15 deletions(-)
+> Thank you for comments, please see replies for some of those inline.
 > =
 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c
-> b/drivers/gpu/drm/i915/display/intel_display.c
-> index 928a581336a7..9c27cf651e08 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -2589,7 +2589,22 @@ intel_fb_stride_alignment(const struct
-> drm_framebuffer *fb, int color_plane)
->  		else
->  			return 64;
->  	} else {
-> -		return intel_tile_width_bytes(fb, color_plane);
-> +		u32 tile_width =3D intel_tile_width_bytes(fb,
-> color_plane);
-> +
-> +		/*
-> +		 * Display WA #0531: skl,bxt,kbl,glk
-> +		 *
-> +		 * Render decompression and plane width > 3840
-> +		 * combined with horizontal panning requires the
-> +		 * plane stride to be a multiple of 4. We'll just
-> +		 * require the entire fb to accommodate that to avoid
-> +		 * potential runtime errors at plane configuration
-> time.
-> +		 */
-> +		if (IS_GEN(dev_priv, 9) && is_ccs_modifier(fb-
-> >modifier) &&
-> +		    color_plane =3D=3D 0 && fb->width > 3840)
-> +			tile_width *=3D 4;
-> +
-> +		return tile_width;
->  	}
->  }
->  =
+> > >  =
 
-> @@ -16341,20 +16356,6 @@ static int intel_framebuffer_init(struct
-> intel_framebuffer *intel_fb,
->  		}
->  =
+> > >  	skl_pipe_ddb_get_hw_state(crtc, hw->ddb_y, hw->ddb_uv);
+> > >  =
 
->  		stride_alignment =3D intel_fb_stride_alignment(fb, i);
-> -
-> -		/*
-> -		 * Display WA #0531: skl,bxt,kbl,glk
-> -		 *
-> -		 * Render decompression and plane width > 3840
-> -		 * combined with horizontal panning requires the
-> -		 * plane stride to be a multiple of 4. We'll just
-> -		 * require the entire fb to accommodate that to avoid
-> -		 * potential runtime errors at plane configuration
-> time.
-> -		 */
-> -		if (IS_GEN(dev_priv, 9) && i =3D=3D 0 && fb->width > 3840
-> &&
-> -		    is_ccs_modifier(fb->modifier))
-> -			stride_alignment *=3D 4;
-> -
->  		if (fb->pitches[i] & (stride_alignment - 1)) {
->  			DRM_DEBUG_KMS("plane %d pitch (%d) must be at
-> least %u byte aligned\n",
->  				      i, fb->pitches[i],
-> stride_alignment);
+> > > -	hw_enabled_slices =3D intel_enabled_dbuf_slices_num(dev_priv);
+> > > +	hw_enabled_slices =3D intel_enabled_dbuf_slices_mask(dev_priv);
+> > >  =
+
+> > >  	if (INTEL_GEN(dev_priv) >=3D 11 &&
+> > > -	    hw_enabled_slices !=3D dev_priv->enabled_dbuf_slices_num)
+> > > -		DRM_ERROR("mismatch in DBUF Slices (expected %u, got
+> > > %u)\n",
+> > > -			  dev_priv->enabled_dbuf_slices_num,
+> > > +	    hw_enabled_slices !=3D dev_priv->enabled_dbuf_slices_mask)
+> > > +		DRM_ERROR("mismatch in DBUF Slices (expected %x, got
+> > > %x)\n",
+> > > +			  dev_priv->enabled_dbuf_slices_mask,
+> > >  			  hw_enabled_slices);
+> > >  =
+
+> > >  	/* planes */
+> > > @@ -14549,22 +14549,23 @@ static void
+> > > intel_update_trans_port_sync_crtcs(struct intel_crtc *crtc,
+> > >  static void icl_dbuf_slice_pre_update(struct intel_atomic_state
+> > > *state)
+> > >  {
+> > >  	struct drm_i915_private *dev_priv =3D to_i915(state->base.dev);
+> > > -	u8 hw_enabled_slices =3D dev_priv->enabled_dbuf_slices_num;
+> > > -	u8 required_slices =3D state->enabled_dbuf_slices_num;
+> > > +	u8 hw_enabled_slices =3D dev_priv->enabled_dbuf_slices_mask;
+> > > +	u8 required_slices =3D state->enabled_dbuf_slices_mask;
+> > > +	u8 slices_union =3D hw_enabled_slices | required_slices;
+> > >  =
+
+> > >  	/* If 2nd DBuf slice required, enable it here */
+> > > -	if (INTEL_GEN(dev_priv) >=3D 11 && required_slices >
+> > > hw_enabled_slices)
+> > > -		icl_dbuf_slices_update(dev_priv, required_slices);
+> > > +	if (INTEL_GEN(dev_priv) >=3D 11 && required_slices !=3D
+> > > hw_enabled_slices)
+> > > +		icl_dbuf_slices_update(dev_priv, slices_union);
+> > >  }
+> > >  =
+
+> > >  static void icl_dbuf_slice_post_update(struct intel_atomic_state
+> > > *state)
+> > >  {
+> > >  	struct drm_i915_private *dev_priv =3D to_i915(state->base.dev);
+> > > -	u8 hw_enabled_slices =3D dev_priv->enabled_dbuf_slices_num;
+> > > -	u8 required_slices =3D state->enabled_dbuf_slices_num;
+> > > +	u8 hw_enabled_slices =3D dev_priv->enabled_dbuf_slices_mask;
+> > > +	u8 required_slices =3D state->enabled_dbuf_slices_mask;
+> > >  =
+
+> > >  	/* If 2nd DBuf slice is no more required disable it */
+> > > -	if (INTEL_GEN(dev_priv) >=3D 11 && required_slices <
+> > > hw_enabled_slices)
+> > > +	if (INTEL_GEN(dev_priv) >=3D 11 && required_slices !=3D
+> > > hw_enabled_slices)
+> > =
+
+> > I would rename the variables to old_slices vs. new_slices or
+> > something
+> > like that. Would match the common naming pattern we use extensively
+> > all
+> > over.
+> =
+
+> Yep, we just used to have it that way, so I just didn't want to
+> change variable names.
+> =
+
+> > =
+
+> > >  		icl_dbuf_slices_update(dev_priv, required_slices);
+> > >  }
+> > >  =
+
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c
+> > > b/drivers/gpu/drm/i915/display/intel_display_power.c
+> > > index b8983422a882..ba384a5315f8 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_display_power.c
+> > > +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
+> > > @@ -1031,15 +1031,6 @@ static bool
+> > > gen9_dc_off_power_well_enabled(struct drm_i915_private *dev_priv,
+> > >  		(I915_READ(DC_STATE_EN) &
+> > > DC_STATE_EN_UPTO_DC5_DC6_MASK) =3D=3D 0);
+> > >  }
+> > >  =
+
+> > > -static void gen9_assert_dbuf_enabled(struct drm_i915_private
+> > > *dev_priv)
+> > > -{
+> > > -	u32 tmp =3D I915_READ(DBUF_CTL);
+> > > -
+> > > -	WARN((tmp & (DBUF_POWER_STATE | DBUF_POWER_REQUEST)) !=3D
+> > > -	     (DBUF_POWER_STATE | DBUF_POWER_REQUEST),
+> > > -	     "Unexpected DBuf power power state (0x%08x)\n", tmp);
+> > > -}
+> > > -
+> > >  static void gen9_disable_dc_states(struct drm_i915_private
+> > > *dev_priv)
+> > >  {
+> > >  	struct intel_cdclk_state cdclk_state =3D {};
+> > > @@ -1055,8 +1046,6 @@ static void gen9_disable_dc_states(struct
+> > > drm_i915_private *dev_priv)
+> > >  	/* Can't read out voltage_level so can't use
+> > > intel_cdclk_changed() */
+> > >  	WARN_ON(intel_cdclk_needs_modeset(&dev_priv->cdclk.hw,
+> > > &cdclk_state));
+> > >  =
+
+> > > -	gen9_assert_dbuf_enabled(dev_priv);
+> > =
+
+> > Why are you removing these? I think you still left the code in place
+> > to
+> > power up the first slice uncoditionally. Also not sure if DMC just
+> > powers that sucker up regardless. I think we should try it and if DMC
+> > isn't insane we should turn all the slices off when we don't need
+> > them.
+> =
+
+> I just didn't get why we do this check here, as we actually have that
+> check in verify_wm_state. Also this hardcoded check seems to always
+> assume that we should have both slices enabled which might be wrong - =
+
+> we could have now different configurations, prior to this call,
+> as this is called for example before suspend which would be =
+
+> intel_power_domains_suspend->icl_display_core_uninit-
+
+The check is there because DMC is supposed to restore power to the
+slices after DC5/6.
+
+-- =
+
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
