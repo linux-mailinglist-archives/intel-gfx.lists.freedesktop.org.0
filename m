@@ -1,34 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B42C9126F43
-	for <lists+intel-gfx@lfdr.de>; Thu, 19 Dec 2019 21:57:50 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 413C0126F4D
+	for <lists+intel-gfx@lfdr.de>; Thu, 19 Dec 2019 22:03:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AF8C76E2D7;
-	Thu, 19 Dec 2019 20:57:47 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 143C76E2D7
- for <Intel-gfx@lists.freedesktop.org>; Thu, 19 Dec 2019 20:57:45 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 19639169-1500050 for multiple; Thu, 19 Dec 2019 20:57:37 +0000
+	by gabe.freedesktop.org (Postfix) with ESMTP id DD74C89FD1;
+	Thu, 19 Dec 2019 21:03:54 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0B70989FD1
+ for <intel-gfx@lists.freedesktop.org>; Thu, 19 Dec 2019 21:03:53 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga106.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 19 Dec 2019 13:03:52 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.69,333,1571727600"; d="scan'208";a="267330714"
+Received: from mdroper-desk1.fm.intel.com (HELO
+ mdroper-desk1.amr.corp.intel.com) ([10.1.27.64])
+ by FMSMGA003.fm.intel.com with ESMTP; 19 Dec 2019 13:03:52 -0800
+Date: Thu, 19 Dec 2019 13:03:52 -0800
+From: Matt Roper <matthew.d.roper@intel.com>
+To: Imre Deak <imre.deak@intel.com>
+Message-ID: <20191219210352.GB2712252@mdroper-desk1.amr.corp.intel.com>
+References: <20191218161105.30638-1-imre.deak@intel.com>
+ <20191218161105.30638-2-imre.deak@intel.com>
 MIME-Version: 1.0
-From: Chris Wilson <chris@chris-wilson.co.uk>
-User-Agent: alot/0.6
-To: Intel-gfx@lists.freedesktop.org,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-References: <20191219180019.25562-1-tvrtko.ursulin@linux.intel.com>
- <20191219180019.25562-8-tvrtko.ursulin@linux.intel.com>
-In-Reply-To: <20191219180019.25562-8-tvrtko.ursulin@linux.intel.com>
-Message-ID: <157678905483.6469.13631061410344244883@skylake-alporthouse-com>
-Date: Thu, 19 Dec 2019 20:57:34 +0000
-Subject: Re: [Intel-gfx] [RFC 7/8] drm/i915: Contexts can use struct pid
- stored in the client
+Content-Disposition: inline
+In-Reply-To: <20191218161105.30638-2-imre.deak@intel.com>
+User-Agent: Mutt/1.12.1 (2019-06-15)
+Subject: Re: [Intel-gfx] [PATCH 01/15] drm/framebuffer: Format modifier for
+ Intel Gen-12 render compression
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,21 +47,97 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Nanley G Chery <nanley.g.chery@intel.com>, intel-gfx@lists.freedesktop.org,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Dhinakaran Pandiyan <dhinakaran.pandiyan@intel.com>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Tvrtko Ursulin (2019-12-19 18:00:18)
-> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> 
-> Now that contexts keep their parent client reference counted, we can
-> remove separate struct pid reference owned by contexts in favour of the
-> one already held by the client.
+On Wed, Dec 18, 2019 at 06:10:51PM +0200, Imre Deak wrote:
+> From: Dhinakaran Pandiyan <dhinakaran.pandiyan@intel.com>
+> =
 
-Ok. I do like the client abstraction, and I think we want to develop it
-further.
--Chris
+> Gen-12 has a new compression format, add a new modifier to indicate that.
+
+There's been some recent hallway chat about this, but it might be worth
+naming this "TGL" rather then "GEN12" and using a fresh modifier even if
+future gen12+ platforms seemingly have the same general CCS layout and
+programming model.  Using the same modifier between multiple platforms
+implies that the data format truly is compatible between them and that
+one platform can consume the surfaces generated by another (even if you
+can't do direct sharing via dma_buf, you could theoretically copy buffer
+contents over the network, save/restore buffers from disk, etc.).  Even
+if things look identical at the bspec level, there's no guarantee that
+the hardware guys won't tweak the underlying compression algorithm
+between platforms in a way that makes the buffers generated by one GPU
+incompatible with a different platform.
+
+In fact we've already seen one instance of this type of incompatibility
+--- EHL/JSL's GT uses a very slightly different packing format than ICL
+did.  In that case there was a chicken register we could use to make the
+EHL GT use the ICL-style packing (and we had to set this bit anyway for
+the display controller to be able to consume GT-rendered buffers).  But
+going forward I think we probably want to use per-platform modifiers
+rather than per-generation modifiers by default.
+
+
+Matt
+
+> =
+
+> Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> Cc: Matt Roper <matthew.d.roper@intel.com>
+> Cc: Nanley G Chery <nanley.g.chery@intel.com>
+> Cc: Jason Ekstrand <jason@jlekstrand.net>
+> Signed-off-by: Dhinakaran Pandiyan <dhinakaran.pandiyan@intel.com>
+> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+> Signed-off-by: Imre Deak <imre.deak@intel.com>
+> ---
+>  include/uapi/drm/drm_fourcc.h | 11 +++++++++++
+>  1 file changed, 11 insertions(+)
+> =
+
+> diff --git a/include/uapi/drm/drm_fourcc.h b/include/uapi/drm/drm_fourcc.h
+> index 8caaaf7ff91b..5ba481f49931 100644
+> --- a/include/uapi/drm/drm_fourcc.h
+> +++ b/include/uapi/drm/drm_fourcc.h
+> @@ -410,6 +410,17 @@ extern "C" {
+>  #define I915_FORMAT_MOD_Y_TILED_CCS	fourcc_mod_code(INTEL, 4)
+>  #define I915_FORMAT_MOD_Yf_TILED_CCS	fourcc_mod_code(INTEL, 5)
+>  =
+
+> +/*
+> + * Intel color control surfaces (CCS) for Gen-12 render compression.
+> + *
+> + * The main surface is Y-tiled and at plane index 0, the CCS is linear a=
+nd
+> + * at index 1. A 64B CCS cache line corresponds to an area of 4x1 tiles =
+in
+> + * main surface. In other words, 4 bits in CCS map to a main surface cac=
+he
+> + * line pair. The main surface pitch is required to be a multiple of four
+> + * Y-tile widths.
+> + */
+> +#define I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS fourcc_mod_code(INTEL, 6)
+> +
+>  /*
+>   * Tiled, NV12MT, grouped in 64 (pixels) x 32 (lines) -sized macroblocks
+>   *
+> -- =
+
+> 2.22.0
+> =
+
+
+-- =
+
+Matt Roper
+Graphics Software Engineer
+VTT-OSGC Platform Enablement
+Intel Corporation
+(916) 356-2795
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
