@@ -1,34 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A9BE7126F12
-	for <lists+intel-gfx@lfdr.de>; Thu, 19 Dec 2019 21:44:25 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id DF8D3126F13
+	for <lists+intel-gfx@lfdr.de>; Thu, 19 Dec 2019 21:44:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D03296EB85;
-	Thu, 19 Dec 2019 20:44:22 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2503A6EB87;
+	Thu, 19 Dec 2019 20:44:35 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A1EBF6EB85
- for <Intel-gfx@lists.freedesktop.org>; Thu, 19 Dec 2019 20:44:20 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 82B086EB87
+ for <intel-gfx@lists.freedesktop.org>; Thu, 19 Dec 2019 20:44:33 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 19639102-1500050 for multiple; Thu, 19 Dec 2019 20:44:02 +0000
-MIME-Version: 1.0
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19639104-1500050 
+ for multiple; Thu, 19 Dec 2019 20:44:19 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
-User-Agent: alot/0.6
-To: Intel-gfx@lists.freedesktop.org,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-References: <20191219180019.25562-1-tvrtko.ursulin@linux.intel.com>
- <20191219180019.25562-3-tvrtko.ursulin@linux.intel.com>
-In-Reply-To: <20191219180019.25562-3-tvrtko.ursulin@linux.intel.com>
-Message-ID: <157678823997.6469.3187491361664776890@skylake-alporthouse-com>
-Date: Thu, 19 Dec 2019 20:43:59 +0000
-Subject: Re: [Intel-gfx] [RFC 2/8] drm/i915: Reference count struct
- drm_i915_file_private
+To: intel-gfx@lists.freedesktop.org
+Date: Thu, 19 Dec 2019 20:44:17 +0000
+Message-Id: <20191219204417.131219-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.24.1
+MIME-Version: 1.0
+Subject: [Intel-gfx] [PATCH] drm/i915/gt: Flush engine->retire on virtual
+ engine cleanup
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,62 +42,37 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Tvrtko Ursulin (2019-12-19 18:00:13)
-> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> 
-> In the following patches we will develope a need to peek into the client
-> owned data from any potential leftover contexts.
-> 
-> To facilitate this add reference counting to file_priv.
-> 
-> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> ---
->  drivers/gpu/drm/i915/gem/i915_gem_context.c |  2 +-
->  drivers/gpu/drm/i915/i915_drv.c             |  4 ----
->  drivers/gpu/drm/i915/i915_drv.h             |  4 +++-
->  drivers/gpu/drm/i915/i915_gem.c             | 14 +++++++++++++-
->  4 files changed, 17 insertions(+), 7 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> index e5a7c6f02a47..b482b2e5f31f 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> @@ -853,7 +853,7 @@ int i915_gem_context_open(struct drm_i915_private *i915,
->  void i915_gem_context_close(struct drm_file *file)
->  {
->         struct drm_i915_file_private *file_priv = file->driver_priv;
-> -       struct drm_i915_private *i915 = file_priv->dev_priv;
-> +       struct drm_i915_private *i915 = file_priv->i915;
->         struct i915_gem_context *ctx;
->         unsigned long idx;
->  
-> diff --git a/drivers/gpu/drm/i915/i915_drv.c b/drivers/gpu/drm/i915/i915_drv.c
-> index 8b08cfe30151..0c9c93418068 100644
-> --- a/drivers/gpu/drm/i915/i915_drv.c
-> +++ b/drivers/gpu/drm/i915/i915_drv.c
-> @@ -1633,13 +1633,9 @@ static void i915_driver_lastclose(struct drm_device *dev)
->  
->  static void i915_driver_postclose(struct drm_device *dev, struct drm_file *file)
->  {
-> -       struct drm_i915_file_private *file_priv = file->driver_priv;
-> -
->         i915_gem_context_close(file);
->         i915_gem_release(dev, file);
->  
-> -       kfree_rcu(file_priv, rcu);
+For commit dc93c9b69315 ("drm/i915/gt: Schedule request retirement when
+signaler idles") we added the intel_engine_init_retire() to the virtual
+engine, but since it does not use the common cleanup routine, we need to
+also add the intel_engine_fini_retire() to flush the retirement worker
+before freeing.
 
-As you are moving the kfree_rcu() into the i915_gem_release (via a put),
-I think it also makes sense to move the call for i915_gem_context_close
-on this file. Possibly renaming it to i915_gem_file_close() and
-s/drm_i915_file_private/i915_gem_file/ or i915_gem_client (with
-corresponding name changes) in the process.
+Fixes: dc93c9b69315 ("drm/i915/gt: Schedule request retirement when signaler idles")
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+---
+ drivers/gpu/drm/i915/gt/intel_lrc.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
-For the basic mechanics of this patch though,
-Reviewed-by: Chris Wilson <chris@chris-wilson.co.uk>
+diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+index 56cf71d8bbda..3f6bbda4391e 100644
+--- a/drivers/gpu/drm/i915/gt/intel_lrc.c
++++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+@@ -4209,6 +4209,8 @@ static void virtual_context_destroy(struct kref *kref)
+ 		__execlists_context_fini(&ve->context);
+ 	intel_context_fini(&ve->context);
+ 
++	intel_engine_fini_retire(&ve->base);
++
+ 	kfree(ve->bonds);
+ 	kfree(ve);
+ }
+-- 
+2.24.1
 
-(Though I still suggest a bit of playing with i915_gem_context_close,
-i915_gem_release to tie them together to the notion of the file better.)
--Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
