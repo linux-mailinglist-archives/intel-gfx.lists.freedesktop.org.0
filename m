@@ -2,34 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9022B126280
-	for <lists+intel-gfx@lfdr.de>; Thu, 19 Dec 2019 13:46:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C99E12628F
+	for <lists+intel-gfx@lfdr.de>; Thu, 19 Dec 2019 13:48:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 26E9F6EB64;
-	Thu, 19 Dec 2019 12:46:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AF4C26EB60;
+	Thu, 19 Dec 2019 12:48:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 79C346EB62;
- Thu, 19 Dec 2019 12:46:42 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 064F16EB60
+ for <intel-gfx@lists.freedesktop.org>; Thu, 19 Dec 2019 12:48:01 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 19 Dec 2019 04:46:41 -0800
-X-IronPort-AV: E=Sophos;i="5.69,331,1571727600"; d="scan'208";a="210450887"
-Received: from jlahtine-desk.ger.corp.intel.com (HELO localhost)
- ([10.252.11.180])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 19 Dec 2019 04:46:38 -0800
-Date: Thu, 19 Dec 2019 14:46:35 +0200
-From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
-Message-ID: <20191219124635.GA16068@jlahtine-desk.ger.corp.intel.com>
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga106.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 19 Dec 2019 04:48:01 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.69,331,1571727600"; d="scan'208";a="390524285"
+Received: from irsmsx154.ger.corp.intel.com ([163.33.192.96])
+ by orsmga005.jf.intel.com with ESMTP; 19 Dec 2019 04:48:00 -0800
+Received: from irsmsx102.ger.corp.intel.com ([169.254.2.130]) by
+ IRSMSX154.ger.corp.intel.com ([169.254.12.207]) with mapi id 14.03.0439.000;
+ Thu, 19 Dec 2019 12:47:59 +0000
+From: "Kahola, Mika" <mika.kahola@intel.com>
+To: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "Deak, Imre" <imre.deak@intel.com>
+Thread-Topic: [Intel-gfx] [PATCH 07/15] drm/i915/tgl: Make sure FBs have a
+ correct CCS plane stride
+Thread-Index: AQHVtb3jBMZRD3L+nEaNCvbKCUhqyKfBaZmA
+Date: Thu, 19 Dec 2019 12:47:59 +0000
+Message-ID: <d67d528fa9e41e129191d6b33d30e31844a48efd.camel@intel.com>
+References: <20191218161105.30638-1-imre.deak@intel.com>
+ <20191218161105.30638-8-imre.deak@intel.com>
+In-Reply-To: <20191218161105.30638-8-imre.deak@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.237.72.159]
+Content-ID: <D719935E4F5EFE429AF953E0613802CC@intel.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-Subject: [Intel-gfx] [PULL] drm-intel-fixes
+Subject: Re: [Intel-gfx] [PATCH 07/15] drm/i915/tgl: Make sure FBs have a
+ correct CCS plane stride
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,143 +56,75 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Maxime Ripard <mripard@kernel.org>, intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: "Pandiyan, Dhinakaran" <dhinakaran.pandiyan@intel.com>
+Content-Type: text/plain; charset="iso-8859-15"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Dave & Daniel,
+On Wed, 2019-12-18 at 18:10 +0200, Imre Deak wrote:
+> The CCS plane stride must be fixed on TGL, as it's not configurable
+> for
+> the display. Instead the HW has a hardwired logic to determine it
+> from
+> the main plane stride. Make sure userspace passes in the correct
+> stride.
+> =
 
-Another -rc, another CI fire due to regressions elsewhere.
+> Cc: Dhinakaran Pandiyan <dhinakaran.pandiyan@intel.com>
+> Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> Signed-off-by: Imre Deak <imre.deak@intel.com>
 
-Our CI needed the following patches to get machines boot with -rc2:
+Reviewed-by: Mika Kahola <mika.kahola@intel.com>
 
-	Revert "devtmpfs: use do_mount() instead of ksys_mount()"
-	(commit 5e787dbf659fe77d56215be74044f85e01b3920f)
+> ---
+>  drivers/gpu/drm/i915/display/intel_display.c | 15 +++++++++++++++
+>  1 file changed, 15 insertions(+)
+> =
 
-	Revert "initrd: use do_mount() instead of ksys_mount()"
-	(commit d4440aac83d12f87df9bcc51e992b9c28c7f4fa5)
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c
+> b/drivers/gpu/drm/i915/display/intel_display.c
+> index 641ea24539eb..7c52591172e1 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -2620,6 +2620,11 @@ bool is_ccs_modifier(u64 modifier)
+>  	       modifier =3D=3D I915_FORMAT_MOD_Yf_TILED_CCS;
+>  }
+>  =
 
-	Revert "init: use do_mount() instead of ksys_mount()"
-	(commit cccaa5e33525fc07f4a2ce0518e50b9ddf435e47)
+> +static int gen12_ccs_aux_stride(struct drm_framebuffer *fb, int
+> ccs_plane)
+> +{
+> +	return DIV_ROUND_UP(fb->pitches[ccs_to_main_plane(fb,
+> ccs_plane)], 512) * 64;
+> +}
+> +
+>  u32 intel_plane_fb_max_stride(struct drm_i915_private *dev_priv,
+>  			      u32 pixel_format, u64 modifier)
+>  {
+> @@ -16530,6 +16535,16 @@ static int intel_framebuffer_init(struct
+> intel_framebuffer *intel_fb,
+>  			goto err;
+>  		}
+>  =
 
-I have queued CI_DIF_433 with this PR contents + reverts to get any
-CI results:
+> +		if (is_gen12_ccs_plane(fb, i)) {
+> +			int ccs_aux_stride =3D gen12_ccs_aux_stride(fb,
+> i);
+> +
+> +			if (fb->pitches[i] !=3D ccs_aux_stride) {
+> +				DRM_DEBUG_KMS("ccs aux plane %d pitch
+> (%d) must be %d\n",
+> +					      i, fb->pitches[i],
+> ccs_aux_stride);
+> +				goto err;
+> +			}
+> +		}
+> +
+>  		fb->obj[i] =3D &obj->base;
+>  	}
+>  =
 
-https://intel-gfx-ci.01.org/tree/drm-intel-fixes/CI_DIF_433/git-log.txt
-
-Nothing appears in the UI for the failed-to-boot runs, so don't be
-confused. CI_DIF_433 is equal to this PR + 3 reverts needed to mitigate
-the -rc2 regressions.
-
-Due to the CI fires, it may take a while to get the full results. Due to
-my holidays, I'll defer to Chris to let you know if the results are good
-or not. There have been some GEM bugs tackled in drm-tip, so have to make
-sure they are under control.
-
-Now on to the actual content of the PR:
-
-Removal of a unused and harmful display W/A for Tigerlake, corrections
-to powerwells of EHL compared to ICL, and MMIO offset fix for DSB. There
-is a fix for uninitialized ops in dma_fence tracing and then fixes
-for CI corner cases from CI.
-
-Also includes GVT fixes: "fix for vGPU display dmabuf, one guest reset
-warning and one locking issue."
-
-Jani/Rodrigo promised to handle -fixes for next two weeks if there is
-something urgent appearing.
-
-Happy Holidays!
-
-Regards, Joonas
-
-***
-
-drm-intel-fixes-2019-12-19:
-
-- Fix to drop an unused and harmful display W/A
-- Fix to define EHL power wells independent of ICL
-- Fix for priority inversion on bonded requests
-- Fix in mmio offset calculation of DSB instance
-- Fix memory leak from get_task_pid when banning clients
-- Fixes to avoid dereference of uninitialized ops in dma_fence tracing
-  and keep reference to execbuf object until submitted.
-
-- Includes gvt-fixes-2019-12-18
-
-The following changes since commit d1eef1c619749b2a57e514a3fa67d9a516ffa919:
-
-  Linux 5.5-rc2 (2019-12-15 15:16:08 -0800)
-
-are available in the Git repository at:
-
-  git://anongit.freedesktop.org/drm/drm-intel tags/drm-intel-fixes-2019-12-19
-
-for you to fetch changes up to 78d75f5739c457ff37cfe5adab1c01bc1f3375e2:
-
-  Merge tag 'gvt-fixes-2019-12-18' of https://github.com/intel/gvt-linux into drm-intel-fixes (2019-12-18 11:01:41 +0200)
-
-----------------------------------------------------------------
-- Fix to drop an unused and harmful display W/A
-- Fix to define EHL power wells independent of ICL
-- Fix for priority inversion on bonded requests
-- Fix in mmio offset calculation of DSB instance
-- Fix memory leak from get_task_pid when banning clients
-- Fixes to avoid dereference of uninitialized ops in dma_fence tracing
-  and keep reference to execbuf object until submitted.
-
-- Includes gvt-fixes-2019-12-18
-
-----------------------------------------------------------------
-Animesh Manna (1):
-      drm/i915/dsb: Fix in mmio offset calculation of DSB instance
-
-Chris Wilson (3):
-      drm/i915: Copy across scheduler behaviour flags across submit fences
-      drm/i915: Set fence_work.ops before dma_fence_init
-      drm/i915/gem: Keep request alive while attaching fences
-
-Gao Fred (1):
-      drm/i915/gvt: Fix guest boot warning
-
-Joonas Lahtinen (1):
-      Merge tag 'gvt-fixes-2019-12-18' of https://github.com/intel/gvt-linux into drm-intel-fixes
-
-Matt Roper (2):
-      drm/i915/ehl: Define EHL powerwells independently of ICL
-      drm/i915/tgl: Drop Wa#1178
-
-Tina Zhang (1):
-      drm/i915/gvt: Pin vgpu dma address before using
-
-Tvrtko Ursulin (1):
-      drm/i915: Fix pid leak with banned clients
-
-Vandita Kulkarni (1):
-      drm/i915: Fix WARN_ON condition for cursor plane ddb allocation
-
-Zhenyu Wang (2):
-      drm/i915/gvt: use vgpu lock for active state setting
-      drm/i915/gvt: set guest display buffer as readonly
-
- drivers/gpu/drm/i915/display/intel_display_power.c | 153 ++++++++++++++++++++-
- drivers/gpu/drm/i915/gem/i915_gem_context.c        |   3 +-
- drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c     |   2 +
- drivers/gpu/drm/i915/gvt/dmabuf.c                  |  64 ++++++++-
- drivers/gpu/drm/i915/gvt/handlers.c                |  16 +++
- drivers/gpu/drm/i915/gvt/hypercall.h               |   2 +
- drivers/gpu/drm/i915/gvt/kvmgt.c                   |  23 ++++
- drivers/gpu/drm/i915/gvt/mpt.h                     |  15 ++
- drivers/gpu/drm/i915/gvt/vgpu.c                    |   4 +-
- drivers/gpu/drm/i915/i915_reg.h                    |   6 +-
- drivers/gpu/drm/i915/i915_request.c                | 114 +++++++++++----
- drivers/gpu/drm/i915/i915_scheduler.c              |   1 -
- drivers/gpu/drm/i915/i915_sw_fence_work.c          |   3 +-
- drivers/gpu/drm/i915/intel_pm.c                    |   4 +-
- 14 files changed, 365 insertions(+), 45 deletions(-)
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
