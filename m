@@ -2,34 +2,34 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DDB5912609A
-	for <lists+intel-gfx@lfdr.de>; Thu, 19 Dec 2019 12:14:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C1E41260BB
+	for <lists+intel-gfx@lfdr.de>; Thu, 19 Dec 2019 12:21:40 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0732B6EB47;
-	Thu, 19 Dec 2019 11:14:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 695ED6E0C4;
+	Thu, 19 Dec 2019 11:21:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 520346EB47
- for <intel-gfx@lists.freedesktop.org>; Thu, 19 Dec 2019 11:14:34 +0000 (UTC)
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BCF816E0C4
+ for <intel-gfx@lists.freedesktop.org>; Thu, 19 Dec 2019 11:21:37 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 19 Dec 2019 03:14:33 -0800
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 19 Dec 2019 03:21:37 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,331,1571727600"; d="scan'208";a="218142909"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by orsmga006.jf.intel.com with SMTP; 19 Dec 2019 03:14:31 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 19 Dec 2019 13:14:30 +0200
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
+X-IronPort-AV: E=Sophos;i="5.69,331,1571727600"; d="scan'208";a="248276537"
+Received: from klipka-mobl.ger.corp.intel.com (HELO
+ skylake-nuc.ger.corp.intel.com) ([10.249.254.229])
+ by fmsmga002.fm.intel.com with ESMTP; 19 Dec 2019 03:21:35 -0800
+From: Abdiel Janulgue <abdiel.janulgue@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 19 Dec 2019 13:14:30 +0200
-Message-Id: <20191219111430.17527-1-ville.syrjala@linux.intel.com>
+Date: Thu, 19 Dec 2019 13:21:20 +0200
+Message-Id: <20191219112122.4892-1-abdiel.janulgue@linux.intel.com>
 X-Mailer: git-send-email 2.23.0
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915: Introduce intel_crtc_state_alloc()
+Subject: [Intel-gfx] [PATCH 1/3] drm/i915: allow prefaulting discontiguous
+ objects in remap_io_mapping()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,79 +42,112 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-RnJvbTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KCldl
-IGhhdmUgc2V2ZXJhbCBwbGFjZXMgd2hlcmUgd2Ugd2FudCB0byBhbGxvY2F0ZSBhIHByaXN0aW5l
-CmNydGMgc3RhdGUuIFNvbWUgb2YgdGhvc2UgY3VycmVudGx5IGNhbGwgaW50ZWxfY3J0Y19zdGF0
-ZV9yZXNldCgpCnRvIHByb3Blcmx5IGluaXRpYWxpemUgYWxsIHRoZSBub24temVybyBkZWZhdWx0
-cyBpbiB0aGUgc3RhdGUsIGJ1dApzb21lIHBsYWNlcyBkbyBub3QuIExldCdzIGFkZCBpbnRlbF9j
-cnRjX3N0YXRlX2FsbG9jKCkgdG8gZG8gYm90aAp0aGUgYWxsb2MgYW5kIHRoZSByZXNldCwgYW5k
-IGNhbGwgdGhhdCBldmVyeXdoZXJlIHdlIG5lZWQgYSBmcmVzaApjcnRjIHN0YXRlLgoKQ2M6IEpv
-c8OpIFJvYmVydG8gZGUgU291emEgPGpvc2Uuc291emFAaW50ZWwuY29tPgpDYzogTWFuYXNpIE5h
-dmFyZSA8bWFuYXNpLmQubmF2YXJlQGludGVsLmNvbT4KU2lnbmVkLW9mZi1ieTogVmlsbGUgU3ly
-asOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KLS0tCiBkcml2ZXJzL2dwdS9k
-cm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuYyB8IDMwICsrKysrKysrKysrKystLS0tLS0t
-CiAxIGZpbGUgY2hhbmdlZCwgMTkgaW5zZXJ0aW9ucygrKSwgMTEgZGVsZXRpb25zKC0pCgpkaWZm
-IC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMgYi9k
-cml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuYwppbmRleCAyNWFmMGZm
-ZTFjM2EuLmZlNzQ1M2FmYWZiZiAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlz
-cGxheS9pbnRlbF9kaXNwbGF5LmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9p
-bnRlbF9kaXNwbGF5LmMKQEAgLTE2OCw2ICsxNjgsNyBAQCBzdGF0aWMgdm9pZCBza3lsYWtlX3Bm
-aXRfZW5hYmxlKGNvbnN0IHN0cnVjdCBpbnRlbF9jcnRjX3N0YXRlICpjcnRjX3N0YXRlKTsKIHN0
-YXRpYyB2b2lkIGlyb25sYWtlX3BmaXRfZW5hYmxlKGNvbnN0IHN0cnVjdCBpbnRlbF9jcnRjX3N0
-YXRlICpjcnRjX3N0YXRlKTsKIHN0YXRpYyB2b2lkIGludGVsX21vZGVzZXRfc2V0dXBfaHdfc3Rh
-dGUoc3RydWN0IGRybV9kZXZpY2UgKmRldiwKIAkJCQkJIHN0cnVjdCBkcm1fbW9kZXNldF9hY3F1
-aXJlX2N0eCAqY3R4KTsKK3N0YXRpYyBzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZSAqaW50ZWxfY3J0
-Y19zdGF0ZV9hbGxvYyhzdHJ1Y3QgaW50ZWxfY3J0YyAqY3J0Yyk7CiAKIHN0cnVjdCBpbnRlbF9s
-aW1pdCB7CiAJc3RydWN0IHsKQEAgLTgwNTQsMTEgKzgwNTUsMTAgQEAgaW50IHZsdl9mb3JjZV9w
-bGxfb24oc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2LCBlbnVtIHBpcGUgcGlwZSwK
-IAlzdHJ1Y3QgaW50ZWxfY3J0YyAqY3J0YyA9IGludGVsX2dldF9jcnRjX2Zvcl9waXBlKGRldl9w
-cml2LCBwaXBlKTsKIAlzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZSAqcGlwZV9jb25maWc7CiAKLQlw
-aXBlX2NvbmZpZyA9IGt6YWxsb2Moc2l6ZW9mKCpwaXBlX2NvbmZpZyksIEdGUF9LRVJORUwpOwor
-CXBpcGVfY29uZmlnID0gaW50ZWxfY3J0Y19zdGF0ZV9hbGxvYyhjcnRjKTsKIAlpZiAoIXBpcGVf
-Y29uZmlnKQogCQlyZXR1cm4gLUVOT01FTTsKIAotCXBpcGVfY29uZmlnLT51YXBpLmNydGMgPSAm
-Y3J0Yy0+YmFzZTsKIAlwaXBlX2NvbmZpZy0+Y3B1X3RyYW5zY29kZXIgPSAoZW51bSB0cmFuc2Nv
-ZGVyKXBpcGU7CiAJcGlwZV9jb25maWctPnBpeGVsX211bHRpcGxpZXIgPSAxOwogCXBpcGVfY29u
-ZmlnLT5kcGxsID0gKmRwbGw7CkBAIC0xMTY0OSw2ICsxMTY0OSwxOCBAQCBzdGF0aWMgdm9pZCBp
-bnRlbF9jcnRjX3N0YXRlX3Jlc2V0KHN0cnVjdCBpbnRlbF9jcnRjX3N0YXRlICpjcnRjX3N0YXRl
-LAogCWNydGNfc3RhdGUtPnNjYWxlcl9zdGF0ZS5zY2FsZXJfaWQgPSAtMTsKIH0KIAorc3RhdGlj
-IHN0cnVjdCBpbnRlbF9jcnRjX3N0YXRlICppbnRlbF9jcnRjX3N0YXRlX2FsbG9jKHN0cnVjdCBp
-bnRlbF9jcnRjICpjcnRjKQoreworCXN0cnVjdCBpbnRlbF9jcnRjX3N0YXRlICpjcnRjX3N0YXRl
-OworCisJY3J0Y19zdGF0ZSA9IGt6YWxsb2Moc2l6ZW9mKCpjcnRjX3N0YXRlKSwgR0ZQX0tFUk5F
-TCk7CisKKwlpZiAoY3J0Y19zdGF0ZSkKKwkJaW50ZWxfY3J0Y19zdGF0ZV9yZXNldChjcnRjX3N0
-YXRlLCBjcnRjKTsKKworCXJldHVybiBjcnRjX3N0YXRlOworfQorCiAvKiBSZXR1cm5zIHRoZSBj
-dXJyZW50bHkgcHJvZ3JhbW1lZCBtb2RlIG9mIHRoZSBnaXZlbiBlbmNvZGVyLiAqLwogc3RydWN0
-IGRybV9kaXNwbGF5X21vZGUgKgogaW50ZWxfZW5jb2Rlcl9jdXJyZW50X21vZGUoc3RydWN0IGlu
-dGVsX2VuY29kZXIgKmVuY29kZXIpCkBAIC0xMTY2OCwxNCArMTE2ODAsMTIgQEAgaW50ZWxfZW5j
-b2Rlcl9jdXJyZW50X21vZGUoc3RydWN0IGludGVsX2VuY29kZXIgKmVuY29kZXIpCiAJaWYgKCFt
-b2RlKQogCQlyZXR1cm4gTlVMTDsKIAotCWNydGNfc3RhdGUgPSBremFsbG9jKHNpemVvZigqY3J0
-Y19zdGF0ZSksIEdGUF9LRVJORUwpOworCWNydGNfc3RhdGUgPSBpbnRlbF9jcnRjX3N0YXRlX2Fs
-bG9jKGNydGMpOwogCWlmICghY3J0Y19zdGF0ZSkgewogCQlrZnJlZShtb2RlKTsKIAkJcmV0dXJu
-IE5VTEw7CiAJfQogCi0JaW50ZWxfY3J0Y19zdGF0ZV9yZXNldChjcnRjX3N0YXRlLCBjcnRjKTsK
-LQogCWlmICghZGV2X3ByaXYtPmRpc3BsYXkuZ2V0X3BpcGVfY29uZmlnKGNydGMsIGNydGNfc3Rh
-dGUpKSB7CiAJCWtmcmVlKGNydGNfc3RhdGUpOwogCQlrZnJlZShtb2RlKTsKQEAgLTEyNjEyLDEx
-ICsxMjYyMiwxMSBAQCBzdGF0aWMgdm9pZCBpbnRlbF9jcnRjX2NvcHlfaHdfdG9fdWFwaV9zdGF0
-ZShzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZSAqY3J0Y19zdGF0ZQogc3RhdGljIGludAogaW50ZWxf
-Y3J0Y19wcmVwYXJlX2NsZWFyZWRfc3RhdGUoc3RydWN0IGludGVsX2NydGNfc3RhdGUgKmNydGNf
-c3RhdGUpCiB7Ci0Jc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2ID0KLQkJdG9faTkx
-NShjcnRjX3N0YXRlLT51YXBpLmNydGMtPmRldik7CisJc3RydWN0IGludGVsX2NydGMgKmNydGMg
-PSB0b19pbnRlbF9jcnRjKGNydGNfc3RhdGUtPnVhcGkuY3J0Yyk7CisJc3RydWN0IGRybV9pOTE1
-X3ByaXZhdGUgKmRldl9wcml2ID0gdG9faTkxNShjcnRjLT5iYXNlLmRldik7CiAJc3RydWN0IGlu
-dGVsX2NydGNfc3RhdGUgKnNhdmVkX3N0YXRlOwogCi0Jc2F2ZWRfc3RhdGUgPSBremFsbG9jKHNp
-emVvZigqc2F2ZWRfc3RhdGUpLCBHRlBfS0VSTkVMKTsKKwlzYXZlZF9zdGF0ZSA9IGludGVsX2Ny
-dGNfc3RhdGVfYWxsb2MoY3J0Yyk7CiAJaWYgKCFzYXZlZF9zdGF0ZSkKIAkJcmV0dXJuIC1FTk9N
-RU07CiAKQEAgLTE1NzM3LDE0ICsxNTc0NywxMiBAQCBzdGF0aWMgc3RydWN0IGludGVsX2NydGMg
-KmludGVsX2NydGNfYWxsb2Modm9pZCkKIAlpZiAoIWNydGMpCiAJCXJldHVybiBFUlJfUFRSKC1F
-Tk9NRU0pOwogCi0JY3J0Y19zdGF0ZSA9IGt6YWxsb2Moc2l6ZW9mKCpjcnRjX3N0YXRlKSwgR0ZQ
-X0tFUk5FTCk7CisJY3J0Y19zdGF0ZSA9IGludGVsX2NydGNfc3RhdGVfYWxsb2MoY3J0Yyk7CiAJ
-aWYgKCFjcnRjX3N0YXRlKSB7CiAJCWtmcmVlKGNydGMpOwogCQlyZXR1cm4gRVJSX1BUUigtRU5P
-TUVNKTsKIAl9CiAKLQlpbnRlbF9jcnRjX3N0YXRlX3Jlc2V0KGNydGNfc3RhdGUsIGNydGMpOwot
-CiAJY3J0Yy0+YmFzZS5zdGF0ZSA9ICZjcnRjX3N0YXRlLT51YXBpOwogCWNydGMtPmNvbmZpZyA9
-IGNydGNfc3RhdGU7CiAKLS0gCjIuMjMuMAoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMu
-ZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlz
-dGluZm8vaW50ZWwtZ2Z4Cg==
+Provide a way to set the PTE of the physical address of kernel memory in
+addition to just incrementing the pfn for a page range.
+
+Signed-off-by: Abdiel Janulgue <abdiel.janulgue@linux.intel.com>
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
+---
+ drivers/gpu/drm/i915/gem/i915_gem_mman.c |  1 +
+ drivers/gpu/drm/i915/i915_drv.h          |  4 +++-
+ drivers/gpu/drm/i915/i915_mm.c           | 17 ++++++++++++++---
+ 3 files changed, 18 insertions(+), 4 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_mman.c b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
+index 879fff8adc48..aa5d6623d86c 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_mman.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
+@@ -360,6 +360,7 @@ static vm_fault_t vm_fault_gtt(struct vm_fault *vmf)
+ 			       area->vm_start + (vma->ggtt_view.partial.offset << PAGE_SHIFT),
+ 			       (ggtt->gmadr.start + vma->node.start) >> PAGE_SHIFT,
+ 			       min_t(u64, vma->size, area->vm_end - area->vm_start),
++			       NULL,
+ 			       &ggtt->iomap);
+ 	if (ret)
+ 		goto err_fence;
+diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+index 0781b6326b8c..5ee0fe4d492b 100644
+--- a/drivers/gpu/drm/i915/i915_drv.h
++++ b/drivers/gpu/drm/i915/i915_drv.h
+@@ -2015,9 +2015,11 @@ int i915_reg_read_ioctl(struct drm_device *dev, void *data,
+ 	intel_de_wait_for_register((dev_priv_), (reg_), (mask_), 0, (timeout_))
+ 
+ /* i915_mm.c */
++typedef unsigned long (*io_pfn_t)(struct drm_i915_gem_object *obj,
++				  unsigned long n);
+ int remap_io_mapping(struct vm_area_struct *vma,
+ 		     unsigned long addr, unsigned long pfn, unsigned long size,
+-		     struct io_mapping *iomap);
++		     io_pfn_t fn, struct io_mapping *iomap);
+ 
+ static inline int intel_hws_csb_write_index(struct drm_i915_private *i915)
+ {
+diff --git a/drivers/gpu/drm/i915/i915_mm.c b/drivers/gpu/drm/i915/i915_mm.c
+index 318562ce64c0..86a73444bed4 100644
+--- a/drivers/gpu/drm/i915/i915_mm.c
++++ b/drivers/gpu/drm/i915/i915_mm.c
+@@ -32,7 +32,11 @@
+ struct remap_pfn {
+ 	struct mm_struct *mm;
+ 	unsigned long pfn;
++	unsigned long start_pfn;
+ 	pgprot_t prot;
++
++	io_pfn_t fn;
++	struct drm_i915_gem_object *obj;
+ };
+ 
+ static int remap_pfn(pte_t *pte, unsigned long addr, void *data)
+@@ -41,7 +45,10 @@ static int remap_pfn(pte_t *pte, unsigned long addr, void *data)
+ 
+ 	/* Special PTE are not associated with any struct page */
+ 	set_pte_at(r->mm, addr, pte, pte_mkspecial(pfn_pte(r->pfn, r->prot)));
+-	r->pfn++;
++	if (r->fn)
++		r->pfn = r->fn(r->obj, r->start_pfn++);
++	else
++		r->pfn++;
+ 
+ 	return 0;
+ }
+@@ -52,15 +59,17 @@ static int remap_pfn(pte_t *pte, unsigned long addr, void *data)
+  * @addr: target user address to start at
+  * @pfn: physical address of kernel memory
+  * @size: size of map area
++ * @fn: if provided, the function translates each increment of @pfn to io pfn
+  * @iomap: the source io_mapping
+  *
+  *  Note: this is only safe if the mm semaphore is held when called.
+  */
+ int remap_io_mapping(struct vm_area_struct *vma,
+ 		     unsigned long addr, unsigned long pfn, unsigned long size,
+-		     struct io_mapping *iomap)
++		     io_pfn_t fn, struct io_mapping *iomap)
+ {
+-	struct remap_pfn r;
++	struct remap_pfn r = { 0 };
++	struct i915_mmap_offset *priv = vma->vm_private_data;
+ 	int err;
+ 
+ #define EXPECTED_FLAGS (VM_PFNMAP | VM_DONTEXPAND | VM_DONTDUMP)
+@@ -69,6 +78,8 @@ int remap_io_mapping(struct vm_area_struct *vma,
+ 	/* We rely on prevalidation of the io-mapping to skip track_pfn(). */
+ 	r.mm = vma->vm_mm;
+ 	r.pfn = pfn;
++	r.fn = fn;
++	r.obj = priv->obj;
+ 	r.prot = __pgprot((pgprot_val(iomap->prot) & _PAGE_CACHE_MASK) |
+ 			  (pgprot_val(vma->vm_page_prot) & ~_PAGE_CACHE_MASK));
+ 
+-- 
+2.17.1
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
