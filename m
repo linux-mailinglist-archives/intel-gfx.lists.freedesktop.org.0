@@ -1,40 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AAFDE126F4F
-	for <lists+intel-gfx@lfdr.de>; Thu, 19 Dec 2019 22:04:19 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D55E7126F54
+	for <lists+intel-gfx@lfdr.de>; Thu, 19 Dec 2019 22:04:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0DC686E3F9;
-	Thu, 19 Dec 2019 21:04:18 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E60196E3F9
- for <intel-gfx@lists.freedesktop.org>; Thu, 19 Dec 2019 21:04:16 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-X-Amp-File-Uploaded: False
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga105.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 19 Dec 2019 13:04:15 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,333,1571727600"; d="scan'208";a="298826438"
-Received: from mdroper-desk1.fm.intel.com (HELO
- mdroper-desk1.amr.corp.intel.com) ([10.1.27.64])
- by orsmga001.jf.intel.com with ESMTP; 19 Dec 2019 13:04:14 -0800
-Date: Thu, 19 Dec 2019 13:04:14 -0800
-From: Matt Roper <matthew.d.roper@intel.com>
-To: Imre Deak <imre.deak@intel.com>
-Message-ID: <20191219210414.GD2712252@mdroper-desk1.amr.corp.intel.com>
-References: <20191218161105.30638-1-imre.deak@intel.com>
- <20191218161105.30638-4-imre.deak@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2F0FC6EB8F;
+	Thu, 19 Dec 2019 21:04:26 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3F3E56EB8F
+ for <Intel-gfx@lists.freedesktop.org>; Thu, 19 Dec 2019 21:04:25 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 19639208-1500050 for multiple; Thu, 19 Dec 2019 21:04:17 +0000
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20191218161105.30638-4-imre.deak@intel.com>
-User-Agent: Mutt/1.12.1 (2019-06-15)
-Subject: Re: [Intel-gfx] [PATCH 03/15] drm/i915: Move CCS stride alignment
- W/A inside intel_fb_stride_alignment
+From: Chris Wilson <chris@chris-wilson.co.uk>
+User-Agent: alot/0.6
+To: Intel-gfx@lists.freedesktop.org,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+References: <20191219180019.25562-1-tvrtko.ursulin@linux.intel.com>
+ <20191219180019.25562-9-tvrtko.ursulin@linux.intel.com>
+In-Reply-To: <20191219180019.25562-9-tvrtko.ursulin@linux.intel.com>
+Message-ID: <157678945519.6469.7475534643662969828@skylake-alporthouse-com>
+Date: Thu, 19 Dec 2019 21:04:15 +0000
+Subject: Re: [Intel-gfx] [RFC 8/8] drm/i915: Expose per-engine client
+ busyness
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,102 +41,53 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org,
- Dhinakaran Pandiyan <dhinakaran.pandiyan@intel.com>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Dec 18, 2019 at 06:10:53PM +0200, Imre Deak wrote:
-> From: Dhinakaran Pandiyan <dhinakaran.pandiyan@intel.com>
-> =
-
-> Easier to read if all the alignment changes are in one place and contained
-> within a function.
-> =
-
-> Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> Cc: Matt Roper <matthew.d.roper@intel.com>
-> Signed-off-by: Dhinakaran Pandiyan <dhinakaran.pandiyan@intel.com>
-> Signed-off-by: Imre Deak <imre.deak@intel.com>
-
-Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
-
-> ---
->  drivers/gpu/drm/i915/display/intel_display.c | 31 ++++++++++----------
->  1 file changed, 16 insertions(+), 15 deletions(-)
-> =
-
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/d=
-rm/i915/display/intel_display.c
-> index 928a581336a7..9c27cf651e08 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -2589,7 +2589,22 @@ intel_fb_stride_alignment(const struct drm_framebu=
-ffer *fb, int color_plane)
->  		else
->  			return 64;
->  	} else {
-> -		return intel_tile_width_bytes(fb, color_plane);
-> +		u32 tile_width =3D intel_tile_width_bytes(fb, color_plane);
-> +
-> +		/*
-> +		 * Display WA #0531: skl,bxt,kbl,glk
-> +		 *
-> +		 * Render decompression and plane width > 3840
-> +		 * combined with horizontal panning requires the
-> +		 * plane stride to be a multiple of 4. We'll just
-> +		 * require the entire fb to accommodate that to avoid
-> +		 * potential runtime errors at plane configuration time.
-> +		 */
-> +		if (IS_GEN(dev_priv, 9) && is_ccs_modifier(fb->modifier) &&
-> +		    color_plane =3D=3D 0 && fb->width > 3840)
-> +			tile_width *=3D 4;
-> +
-> +		return tile_width;
->  	}
->  }
->  =
-
-> @@ -16341,20 +16356,6 @@ static int intel_framebuffer_init(struct intel_f=
-ramebuffer *intel_fb,
->  		}
->  =
-
->  		stride_alignment =3D intel_fb_stride_alignment(fb, i);
-> -
-> -		/*
-> -		 * Display WA #0531: skl,bxt,kbl,glk
-> -		 *
-> -		 * Render decompression and plane width > 3840
-> -		 * combined with horizontal panning requires the
-> -		 * plane stride to be a multiple of 4. We'll just
-> -		 * require the entire fb to accommodate that to avoid
-> -		 * potential runtime errors at plane configuration time.
-> -		 */
-> -		if (IS_GEN(dev_priv, 9) && i =3D=3D 0 && fb->width > 3840 &&
-> -		    is_ccs_modifier(fb->modifier))
-> -			stride_alignment *=3D 4;
-> -
->  		if (fb->pitches[i] & (stride_alignment - 1)) {
->  			DRM_DEBUG_KMS("plane %d pitch (%d) must be at least %u byte aligned\n=
-",
->  				      i, fb->pitches[i], stride_alignment);
-> -- =
-
-> 2.22.0
-> =
-
-
--- =
-
-Matt Roper
-Graphics Software Engineer
-VTT-OSGC Platform Enablement
-Intel Corporation
-(916) 356-2795
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+UXVvdGluZyBUdnJ0a28gVXJzdWxpbiAoMjAxOS0xMi0xOSAxODowMDoxOSkKPiBGcm9tOiBUdnJ0
+a28gVXJzdWxpbiA8dHZydGtvLnVyc3VsaW5AaW50ZWwuY29tPgo+IAo+IEV4cG9zZSBwZXItY2xp
+ZW50IGFuZCBwZXItZW5naW5lIGJ1c3luZXNzIHVuZGVyIHRoZSBwcmV2aW91c2x5IGFkZGVkIHN5
+c2ZzCj4gY2xpZW50IHJvb3QuCj4gCj4gVGhlIG5ldyBmaWxlcyBhcmUgb25lIHBlci1lbmdpbmUg
+aW5zdGFuY2UgYW5kIGxvY2F0ZWQgdW5kZXIgdGhlICdidXN5Jwo+IGRpcmVjdG9yeS4gRWFjaCBj
+b250YWlucyBhIG1vbm90b25pY2FsbHkgaW5jcmVhc2luZyBuYW5vLXNlY29uZCByZXNvbHV0aW9u
+Cj4gdGltZXMgZWFjaCBjbGllbnQncyBqb2JzIHdlcmUgZXhlY3V0aW5nIG9uIHRoZSBHUFUuCj4g
+Cj4gVGhpcyBlbmFibGVzIHVzZXJzcGFjZSB0byBjcmVhdGUgYSB0b3AtbGlrZSB0b29sIGZvciBH
+UFUgdXRpbGl6YXRpb246Cj4gCj4gPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
+PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0KPiBpbnRlbC1ncHUtdG9wIC0g
+IDkzNS8gOTM1IE1IejsgICAgMCUgUkM2OyAxNC43MyBXYXR0czsgICAgIDEwOTcgaXJxcy9zCj4g
+Cj4gICAgICAgSU1DIHJlYWRzOiAgICAgMTQwMSBNaUIvcwo+ICAgICAgSU1DIHdyaXRlczogICAg
+ICAgIDQgTWlCL3MKPiAKPiAgICAgICAgICAgRU5HSU5FICAgICAgQlVTWSAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgIE1JX1NFTUEgTUlfV0FJVAo+ICAgICAgUmVuZGVyLzNELzAgICA2
+My43MyUgfOKWiOKWiOKWiOKWiOKWiOKWiOKWiOKWiOKWiOKWiOKWiOKWiOKWiOKWiOKWiOKWiOKW
+iOKWiOKWiCAgICAgICAgICAgfCAgICAgIDMlICAgICAgMCUKPiAgICAgICAgQmxpdHRlci8wICAg
+IDkuNTMlIHzilojilojiloogICAgICAgICAgICAgICAgICAgICAgICAgICB8ICAgICAgNiUgICAg
+ICAwJQo+ICAgICAgICAgIFZpZGVvLzAgICAzOS4zMiUgfOKWiOKWiOKWiOKWiOKWiOKWiOKWiOKW
+iOKWiOKWiOKWiOKWiiAgICAgICAgICAgICAgICAgIHwgICAgIDE2JSAgICAgIDAlCj4gICAgICAg
+ICAgVmlkZW8vMSAgIDE1LjYyJSB84paI4paI4paI4paI4paLICAgICAgICAgICAgICAgICAgICAg
+ICAgIHwgICAgICAwJSAgICAgIDAlCj4gICBWaWRlb0VuaGFuY2UvMCAgICAwLjAwJSB8ICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgfCAgICAgIDAlICAgICAgMCUKPiAKPiAgIFBJRCAgICAg
+ICAgICAgIE5BTUUgICAgIFJDUyAgICAgICAgICBCQ1MgICAgICAgICAgVkNTICAgICAgICAgVkVD
+Uwo+ICA0MDg0ICAgICAgICBnZW1fd3NpbSB84paI4paI4paI4paI4paI4paMICAgICB8fOKWiCAg
+ICAgICAgICB8fCAgICAgICAgICAgfHwgICAgICAgICAgIHwKPiAgNDA4NiAgICAgICAgZ2VtX3dz
+aW0gfOKWiOKWjCAgICAgICAgIHx8ICAgICAgICAgICB8fOKWiOKWiOKWiCAgICAgICAgfHwgICAg
+ICAgICAgIHwKPiA9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
+PT09PT09PT09PT09PT09PT09PT09PT09PT09PQo+IAo+IHYyOiBVc2UgaW50ZWxfY29udGV4dF9l
+bmdpbmVfZ2V0X2J1c3lfdGltZS4KPiB2MzogTmV3IGRpcmVjdG9yeSBzdHJ1Y3R1cmUuCj4gdjQ6
+IFJlYmFzZS4KPiB2NTogc3lzZnNfYXR0cl9pbml0Lgo+IHY2OiBTbWFsbCB0aWR5IGluIGk5MTVf
+Z2VtX2FkZF9jbGllbnQuCj4gdjc6IFJlYmFzZSB0byBiZSBlbmdpbmUgY2xhc3MgYmFzZWQuCj4g
+djg6Cj4gICogQWx3YXlzIGVuYWJsZSBzdGF0cy4KPiAgKiBXYWxrIGFsbCBjbGllbnQgY29udGV4
+dHMuCj4gCj4gU2lnbmVkLW9mZi1ieTogVHZydGtvIFVyc3VsaW4gPHR2cnRrby51cnN1bGluQGlu
+dGVsLmNvbT4KCk90aGVyIHRoYW4gc3BsaXR0aW5nIGl0IG91dCBpbnRvIGk5MTVfZHJtX2NsaWVu
+dC5jIChldCBhbCkuIEl0CndvcmtzZm9ybWUuCgpIb3dldmVyLCBpdCdzIGFib3V0IGFzIHVzZWZ1
+bCBhcyB0b3AsIGJ1dCB3aXRob3V0IGFueSBtZWFucyB0bwpraWxsL3N0b3AvcmVwcmlvcml0aXNl
+IGNsaWVudHMgOigKClRvIGdpdmUgbWUgYWN0aW9uYWJsZSBkYXRhLCBkbyB3ZSBub3QgbmVlZCBt
+b3JlIG9mIGEgcGVyZiBpbnRlcmZhY2UKd2hlcmUgZXZlbnRzIGFyZSBzZW50IGZvciBjbGllbnQg
+c3RhcnQvc3RvcCBzbyB0aGF0IG9ic2VydmVycyBjYW4KcmVjb3JkIHRoZSBjb250ZXh0IHV0aWxp
+c2F0aW9uIHdpdGhpbiB0aGVpciBzYW1wbGUgcGVyaW9kcz8gSSdtIHRoaW5raW5nCm9mIHRoZSAi
+cGVyZiBzdGF0IHdzaW0uLi4iIHVzZSBjYXNlIHdoZXJlIGl0IGdpdmVzIG1lIGEgYnJlYWtkb3du
+IG9mCmVhY2ggd29ya2xvYWQuCi1DaHJpcwpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5m
+cmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0
+aW5mby9pbnRlbC1nZngK
