@@ -1,43 +1,39 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B20151262F5
-	for <lists+intel-gfx@lfdr.de>; Thu, 19 Dec 2019 14:11:15 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C854126353
+	for <lists+intel-gfx@lfdr.de>; Thu, 19 Dec 2019 14:20:59 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 77A7D6E340;
-	Thu, 19 Dec 2019 13:11:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3FAD86EB6D;
+	Thu, 19 Dec 2019 13:20:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 720416E340;
- Thu, 19 Dec 2019 13:11:12 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2D0EB6EB6D;
+ Thu, 19 Dec 2019 13:20:56 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 19 Dec 2019 05:11:11 -0800
-X-IronPort-AV: E=Sophos;i="5.69,332,1571727600"; d="scan'208";a="210456279"
-Received: from jlahtine-desk.ger.corp.intel.com (HELO localhost)
- ([10.252.11.180])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 19 Dec 2019 05:11:08 -0800
-MIME-Version: 1.0
-In-Reply-To: <875zicxzip.fsf@intel.com>
-References: <20191219223030.1747f04b@canb.auug.org.au>
- <875zicxzip.fsf@intel.com>
-From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-To: DRI <dri-devel@lists.freedesktop.org>,
- Daniel Vetter <daniel.vetter@ffwll.ch>,
- Intel Graphics <intel-gfx@lists.freedesktop.org>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Stephen Rothwell <sfr@canb.auug.org.au>
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 19 Dec 2019 05:20:55 -0800
+X-IronPort-AV: E=Sophos;i="5.69,332,1571727600"; d="scan'208";a="206204530"
+Received: from jnikula-mobl3.fi.intel.com (HELO localhost) ([10.237.66.161])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 19 Dec 2019 05:20:53 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Andrzej Pietrasiewicz <andrzej.p@collabora.com>,
+ dri-devel@lists.freedesktop.org
+In-Reply-To: <48e69dff-84c2-8bb9-5568-6acc32110ff0@collabora.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Date: Thu, 19 Dec 2019 15:11:06 +0200
-Message-ID: <157676106618.16538.6275487528140541951@jlahtine-desk.ger.corp.intel.com>
-User-Agent: alot/0.8.1
-Subject: Re: [Intel-gfx] linux-next: Signed-off-by missing for commits in
- the drm-intel-fixes tree
+References: <878so0m7dd.fsf@intel.com>
+ <20191128150130.26266-1-andrzej.p@collabora.com>
+ <48e69dff-84c2-8bb9-5568-6acc32110ff0@collabora.com>
+Date: Thu, 19 Dec 2019 15:20:51 +0200
+Message-ID: <8736dgxxho.fsf@intel.com>
+MIME-Version: 1.0
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Provide ddc symlink in hdmi
+ connector sysfs directory
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,44 +46,54 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Linux Next Mailing List <linux-next@vger.kernel.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: intel-gfx@lists.freedesktop.org, kernel@collabora.com
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Jani Nikula (2019-12-19 14:37:02)
-> On Thu, 19 Dec 2019, Stephen Rothwell <sfr@canb.auug.org.au> wrote:
-> > Hi all,
-> >
-> > Commits
-> >
-> >   987e379d7500 ("Revert "devtmpfs: use do_mount() instead of ksys_mount()"")
-> >   9bd5ba4fe25a ("Revert "initrd: use do_mount() instead of ksys_mount()"")
-> >   fa31001c96ad ("Revert "init: use do_mount() instead of ksys_mount()"")
-> >
-> > are missing a Signed-off-by from their author and committer.
-> >
-> > Reverts are commits too and should have reasonable commit messages.
-> 
-> Confused. I can't find said commits. And can't fathom why they'd be in
-> any drm-intel tree.
-
-Sorry. A glitch in the matrix, as our CI farm is hit by -rc2
-regressions. I did the usual trick of pushing the reverts/fixes on top
-of drm-intel-fixes to get CI pick them up for a run to get results, and
-then proceeded to immediately remove them.
-
-I imagine that if the commit messages got scanned, they get propagated
-somewhere else too? Feel free to drop that HEAD completely.
-
-If this is a big inconvenience, we can look into other ways of adding
-the patches on top of drm-intel-fixes to get CI working when there
-are regressions during -rc1/-rc2.
-
-Regards, Joonas
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gRnJpLCAxMyBEZWMgMjAxOSwgQW5kcnplaiBQaWV0cmFzaWV3aWN6IDxhbmRyemVqLnBAY29s
+bGFib3JhLmNvbT4gd3JvdGU6Cj4gVyBkbml1IDI4LjExLjIwMTkgb8KgMTY6MDEsIEFuZHJ6ZWog
+UGlldHJhc2lld2ljeiBwaXN6ZToKPj4gVXNlIHRoZSBkZGMgcG9pbnRlciBwcm92aWRlZCBieSB0
+aGUgZ2VuZXJpYyBjb25uZWN0b3IuCj4+IAo+Cj4gQSBnZW50bGUgcGluZy4KClB1c2hlZCwgc29y
+cnkgZm9yIHRoZSBkZWxheS4KCkJSLApKYW5pLgoKPgo+IEFuZHJ6ZWoKPgo+PiBTaWduZWQtb2Zm
+LWJ5OiBBbmRyemVqIFBpZXRyYXNpZXdpY3ogPGFuZHJ6ZWoucEBjb2xsYWJvcmEuY29tPgo+PiBB
+Y2tlZC1ieTogU2FtIFJhdm5ib3JnIDxzYW1AcmF2bmJvcmcub3JnPgo+PiBSZXZpZXdlZC1ieTog
+RW1pbCBWZWxpa292IDxlbWlsLnZlbGlrb3ZAY29sbGFib3JhLmNvbT4KPj4gLS0tCj4+IFJlYmFz
+ZWQgb250byBkcm0taW50ZWwtbmV4dC1xdWV1ZWQuCj4+IAo+PiAgIGRyaXZlcnMvZ3B1L2RybS9p
+OTE1L2Rpc3BsYXkvaW50ZWxfaGRtaS5jIHwgMTIgKysrKysrKystLS0tCj4+ICAgMSBmaWxlIGNo
+YW5nZWQsIDggaW5zZXJ0aW9ucygrKSwgNCBkZWxldGlvbnMoLSkKPj4gCj4+IGRpZmYgLS1naXQg
+YS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2hkbWkuYyBiL2RyaXZlcnMvZ3B1
+L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfaGRtaS5jCj4+IGluZGV4IDI5YTE3NGFmNTMxNC4uNmVj
+OGQxNGJjY2Q3IDEwMDY0NAo+PiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2lu
+dGVsX2hkbWkuYwo+PiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2hk
+bWkuYwo+PiBAQCAtMzEzNCw2ICszMTM0LDcgQEAgdm9pZCBpbnRlbF9oZG1pX2luaXRfY29ubmVj
+dG9yKHN0cnVjdCBpbnRlbF9kaWdpdGFsX3BvcnQgKmludGVsX2RpZ19wb3J0LAo+PiAgIAlzdHJ1
+Y3QgaW50ZWxfZW5jb2RlciAqaW50ZWxfZW5jb2RlciA9ICZpbnRlbF9kaWdfcG9ydC0+YmFzZTsK
+Pj4gICAJc3RydWN0IGRybV9kZXZpY2UgKmRldiA9IGludGVsX2VuY29kZXItPmJhc2UuZGV2Owo+
+PiAgIAlzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYgPSB0b19pOTE1KGRldik7Cj4+
+ICsJc3RydWN0IGkyY19hZGFwdGVyICpkZGM7Cj4+ICAgCWVudW0gcG9ydCBwb3J0ID0gaW50ZWxf
+ZW5jb2Rlci0+cG9ydDsKPj4gICAJc3RydWN0IGNlY19jb25uZWN0b3JfaW5mbyBjb25uX2luZm87
+Cj4+ICAgCj4+IEBAIC0zMTQ5LDggKzMxNTAsMTMgQEAgdm9pZCBpbnRlbF9oZG1pX2luaXRfY29u
+bmVjdG9yKHN0cnVjdCBpbnRlbF9kaWdpdGFsX3BvcnQgKmludGVsX2RpZ19wb3J0LAo+PiAgIAkJ
+IGludGVsX2VuY29kZXItPmJhc2UubmFtZSkpCj4+ICAgCQlyZXR1cm47Cj4+ICAgCj4+IC0JZHJt
+X2Nvbm5lY3Rvcl9pbml0KGRldiwgY29ubmVjdG9yLCAmaW50ZWxfaGRtaV9jb25uZWN0b3JfZnVu
+Y3MsCj4+IC0JCQkgICBEUk1fTU9ERV9DT05ORUNUT1JfSERNSUEpOwo+PiArCWludGVsX2hkbWkt
+PmRkY19idXMgPSBpbnRlbF9oZG1pX2RkY19waW4oZGV2X3ByaXYsIHBvcnQpOwo+PiArCWRkYyA9
+IGludGVsX2dtYnVzX2dldF9hZGFwdGVyKGRldl9wcml2LCBpbnRlbF9oZG1pLT5kZGNfYnVzKTsK
+Pj4gKwo+PiArCWRybV9jb25uZWN0b3JfaW5pdF93aXRoX2RkYyhkZXYsIGNvbm5lY3RvciwKPj4g
+KwkJCQkgICAgJmludGVsX2hkbWlfY29ubmVjdG9yX2Z1bmNzLAo+PiArCQkJCSAgICBEUk1fTU9E
+RV9DT05ORUNUT1JfSERNSUEsCj4+ICsJCQkJICAgIGRkYyk7Cj4+ICAgCWRybV9jb25uZWN0b3Jf
+aGVscGVyX2FkZChjb25uZWN0b3IsICZpbnRlbF9oZG1pX2Nvbm5lY3Rvcl9oZWxwZXJfZnVuY3Mp
+Owo+PiAgIAo+PiAgIAljb25uZWN0b3ItPmludGVybGFjZV9hbGxvd2VkID0gMTsKPj4gQEAgLTMx
+NjAsOCArMzE2Niw2IEBAIHZvaWQgaW50ZWxfaGRtaV9pbml0X2Nvbm5lY3RvcihzdHJ1Y3QgaW50
+ZWxfZGlnaXRhbF9wb3J0ICppbnRlbF9kaWdfcG9ydCwKPj4gICAJaWYgKElOVEVMX0dFTihkZXZf
+cHJpdikgPj0gMTAgfHwgSVNfR0VNSU5JTEFLRShkZXZfcHJpdikpCj4+ICAgCQljb25uZWN0b3It
+PnljYmNyXzQyMF9hbGxvd2VkID0gdHJ1ZTsKPj4gICAKPj4gLQlpbnRlbF9oZG1pLT5kZGNfYnVz
+ID0gaW50ZWxfaGRtaV9kZGNfcGluKGRldl9wcml2LCBwb3J0KTsKPj4gLQo+PiAgIAlpbnRlbF9l
+bmNvZGVyLT5ocGRfcGluID0gaW50ZWxfaHBkX3Bpbl9kZWZhdWx0KGRldl9wcml2LCBwb3J0KTsK
+Pj4gICAKPj4gICAJaWYgKEhBU19EREkoZGV2X3ByaXYpKQo+PiAKPgoKLS0gCkphbmkgTmlrdWxh
+LCBJbnRlbCBPcGVuIFNvdXJjZSBHcmFwaGljcyBDZW50ZXIKX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1n
+ZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21h
+aWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
