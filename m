@@ -2,41 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B6F4D125E0A
-	for <lists+intel-gfx@lfdr.de>; Thu, 19 Dec 2019 10:48:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A5D1125E6C
+	for <lists+intel-gfx@lfdr.de>; Thu, 19 Dec 2019 11:02:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 379DB6EAF2;
-	Thu, 19 Dec 2019 09:48:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ABDF86EAF8;
+	Thu, 19 Dec 2019 10:02:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 110106EAF2
- for <intel-gfx@lists.freedesktop.org>; Thu, 19 Dec 2019 09:48:47 +0000 (UTC)
-X-Amp-Result: UNSCANNABLE
-X-Amp-File-Uploaded: False
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 19 Dec 2019 01:48:46 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,331,1571727600"; d="scan'208";a="222231200"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by fmsmga001.fm.intel.com with SMTP; 19 Dec 2019 01:48:44 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 19 Dec 2019 11:48:43 +0200
-Date: Thu, 19 Dec 2019 11:48:43 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
-Message-ID: <20191219094843.GF1208@intel.com>
-References: <20191213130228.29509-1-stanislav.lisovskiy@intel.com>
- <20191213130228.29509-4-stanislav.lisovskiy@intel.com>
- <20191218180046.GQ1208@intel.com>
- <aea7f05fa5b9e4c6c58966a71e48eef94eac68a0.camel@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id C11916EAF5;
+ Thu, 19 Dec 2019 10:02:34 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id B79DBA0094;
+ Thu, 19 Dec 2019 10:02:34 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <aea7f05fa5b9e4c6c58966a71e48eef94eac68a0.camel@intel.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH v8 3/4] drm/i915: Manipulate DBuf slices
- properly
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Thu, 19 Dec 2019 10:02:34 -0000
+Message-ID: <157674975474.26201.1182801180424146217@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20191219092500.4134800-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20191219092500.4134800-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/gt=3A_Schedule_request_retirement_when_signaler_idles_=28?=
+ =?utf-8?q?rev3=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,215 +39,144 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Dec 19, 2019 at 09:13:23AM +0000, Lisovskiy, Stanislav wrote:
-> On Wed, 2019-12-18 at 20:00 +0200, Ville Syrj=E4l=E4 wrote:
-> > On Fri, Dec 13, 2019 at 03:02:27PM +0200, Stanislav Lisovskiy wrote:
-> > > Start manipulating DBuf slices as a mask,
-> > > but not as a total number, as current approach
-> > > doesn't give us full control on all combinations
-> > > of slices, which we might need(like enabling S2
-> > > only can't enabled by setting enabled_slices=3D1).
-> > > =
+== Series Details ==
 
-> > > Removed wrong code from intel_get_ddb_size as
-> > > it doesn't match to BSpec. For now still just
-> > > use DBuf slice until proper algorithm is implemented.
-> > > =
+Series: drm/i915/gt: Schedule request retirement when signaler idles (rev3)
+URL   : https://patchwork.freedesktop.org/series/71137/
+State : success
 
-> > > Other minor code refactoring to get prepared
-> > > for major DBuf assignment changes landed:
-> > > - As now enabled slices contain a mask
-> > >   we still need some value which should
-> > >   reflect how much DBuf slices are supported
-> > >   by the platform, now device info contains
-> > >   num_supported_dbuf_slices.
-> > > - Removed unneeded assertion as we are now
-> > >   manipulating slices in a more proper way.
-> > > =
+== Summary ==
 
-> > > v2: Start using enabled_slices in dev_priv
-> > > =
+CI Bug Log - changes from CI_DRM_7602 -> Patchwork_15837
+====================================================
 
-> > > v3: "enabled_slices" is now "enabled_dbuf_slices_mask",
-> > >     as this now sits in dev_priv independently.
-> > > =
+Summary
+-------
 
-> > > Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-> > > ---
-> > >  drivers/gpu/drm/i915/display/intel_display.c  |  23 ++--
-> > >  .../drm/i915/display/intel_display_power.c    | 100 ++++++++----
-> > > ------
-> > >  .../drm/i915/display/intel_display_power.h    |   5 +
-> > >  .../drm/i915/display/intel_display_types.h    |   2 +-
-> > >  drivers/gpu/drm/i915/i915_drv.h               |   2 +-
-> > >  drivers/gpu/drm/i915/i915_pci.c               |   6 +-
-> > >  drivers/gpu/drm/i915/intel_device_info.h      |   1 +
-> > >  drivers/gpu/drm/i915/intel_pm.c               |  49 +++------
-> > >  drivers/gpu/drm/i915/intel_pm.h               |   2 +-
-> > >  9 files changed, 84 insertions(+), 106 deletions(-)
-> > > =
+  **SUCCESS**
 
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_display.c
-> > > b/drivers/gpu/drm/i915/display/intel_display.c
-> > > index 0e09d0c23b1d..42a0ea540d4f 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_display.c
-> > > +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> > > @@ -13359,12 +13359,12 @@ static void verify_wm_state(struct
-> > > intel_crtc *crtc,
-> =
+  No regressions found.
 
-> Hi Ville,
-> =
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15837/index.html
 
-> Thank you for comments, please see replies for some of those inline.
-> =
+Known issues
+------------
 
-> > >  =
+  Here are the changes found in Patchwork_15837 that come from known issues:
 
-> > >  	skl_pipe_ddb_get_hw_state(crtc, hw->ddb_y, hw->ddb_uv);
-> > >  =
+### IGT changes ###
 
-> > > -	hw_enabled_slices =3D intel_enabled_dbuf_slices_num(dev_priv);
-> > > +	hw_enabled_slices =3D intel_enabled_dbuf_slices_mask(dev_priv);
-> > >  =
+#### Issues hit ####
 
-> > >  	if (INTEL_GEN(dev_priv) >=3D 11 &&
-> > > -	    hw_enabled_slices !=3D dev_priv->enabled_dbuf_slices_num)
-> > > -		DRM_ERROR("mismatch in DBUF Slices (expected %u, got
-> > > %u)\n",
-> > > -			  dev_priv->enabled_dbuf_slices_num,
-> > > +	    hw_enabled_slices !=3D dev_priv->enabled_dbuf_slices_mask)
-> > > +		DRM_ERROR("mismatch in DBUF Slices (expected %x, got
-> > > %x)\n",
-> > > +			  dev_priv->enabled_dbuf_slices_mask,
-> > >  			  hw_enabled_slices);
-> > >  =
+  * igt@gem_close_race@basic-threads:
+    - fi-byt-j1900:       [PASS][1] -> [TIMEOUT][2] ([i915#816])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7602/fi-byt-j1900/igt@gem_close_race@basic-threads.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15837/fi-byt-j1900/igt@gem_close_race@basic-threads.html
 
-> > >  	/* planes */
-> > > @@ -14549,22 +14549,23 @@ static void
-> > > intel_update_trans_port_sync_crtcs(struct intel_crtc *crtc,
-> > >  static void icl_dbuf_slice_pre_update(struct intel_atomic_state
-> > > *state)
-> > >  {
-> > >  	struct drm_i915_private *dev_priv =3D to_i915(state->base.dev);
-> > > -	u8 hw_enabled_slices =3D dev_priv->enabled_dbuf_slices_num;
-> > > -	u8 required_slices =3D state->enabled_dbuf_slices_num;
-> > > +	u8 hw_enabled_slices =3D dev_priv->enabled_dbuf_slices_mask;
-> > > +	u8 required_slices =3D state->enabled_dbuf_slices_mask;
-> > > +	u8 slices_union =3D hw_enabled_slices | required_slices;
-> > >  =
+  * igt@i915_selftest@live_blt:
+    - fi-ivb-3770:        [PASS][3] -> [DMESG-FAIL][4] ([i915#563])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7602/fi-ivb-3770/igt@i915_selftest@live_blt.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15837/fi-ivb-3770/igt@i915_selftest@live_blt.html
 
-> > >  	/* If 2nd DBuf slice required, enable it here */
-> > > -	if (INTEL_GEN(dev_priv) >=3D 11 && required_slices >
-> > > hw_enabled_slices)
-> > > -		icl_dbuf_slices_update(dev_priv, required_slices);
-> > > +	if (INTEL_GEN(dev_priv) >=3D 11 && required_slices !=3D
-> > > hw_enabled_slices)
-> > > +		icl_dbuf_slices_update(dev_priv, slices_union);
-> > >  }
-> > >  =
+  * igt@i915_selftest@live_execlists:
+    - fi-icl-u3:          [PASS][5] -> [INCOMPLETE][6] ([i915#140])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7602/fi-icl-u3/igt@i915_selftest@live_execlists.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15837/fi-icl-u3/igt@i915_selftest@live_execlists.html
 
-> > >  static void icl_dbuf_slice_post_update(struct intel_atomic_state
-> > > *state)
-> > >  {
-> > >  	struct drm_i915_private *dev_priv =3D to_i915(state->base.dev);
-> > > -	u8 hw_enabled_slices =3D dev_priv->enabled_dbuf_slices_num;
-> > > -	u8 required_slices =3D state->enabled_dbuf_slices_num;
-> > > +	u8 hw_enabled_slices =3D dev_priv->enabled_dbuf_slices_mask;
-> > > +	u8 required_slices =3D state->enabled_dbuf_slices_mask;
-> > >  =
+  * igt@i915_selftest@live_gem_contexts:
+    - fi-skl-lmem:        [PASS][7] -> [INCOMPLETE][8] ([i915#424])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7602/fi-skl-lmem/igt@i915_selftest@live_gem_contexts.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15837/fi-skl-lmem/igt@i915_selftest@live_gem_contexts.html
 
-> > >  	/* If 2nd DBuf slice is no more required disable it */
-> > > -	if (INTEL_GEN(dev_priv) >=3D 11 && required_slices <
-> > > hw_enabled_slices)
-> > > +	if (INTEL_GEN(dev_priv) >=3D 11 && required_slices !=3D
-> > > hw_enabled_slices)
-> > =
+  * igt@kms_frontbuffer_tracking@basic:
+    - fi-hsw-peppy:       [PASS][9] -> [DMESG-WARN][10] ([i915#44])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7602/fi-hsw-peppy/igt@kms_frontbuffer_tracking@basic.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15837/fi-hsw-peppy/igt@kms_frontbuffer_tracking@basic.html
 
-> > I would rename the variables to old_slices vs. new_slices or
-> > something
-> > like that. Would match the common naming pattern we use extensively
-> > all
-> > over.
-> =
+  
+#### Possible fixes ####
 
-> Yep, we just used to have it that way, so I just didn't want to
-> change variable names.
-> =
+  * igt@i915_selftest@live_gem_contexts:
+    - fi-hsw-peppy:       [DMESG-FAIL][11] ([i915#722]) -> [PASS][12]
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7602/fi-hsw-peppy/igt@i915_selftest@live_gem_contexts.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15837/fi-hsw-peppy/igt@i915_selftest@live_gem_contexts.html
 
-> > =
+  * igt@kms_chamelium@hdmi-hpd-fast:
+    - fi-kbl-7500u:       [FAIL][13] ([fdo#111407]) -> [PASS][14]
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7602/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15837/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
 
-> > >  		icl_dbuf_slices_update(dev_priv, required_slices);
-> > >  }
-> > >  =
+  
+#### Warnings ####
 
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c
-> > > b/drivers/gpu/drm/i915/display/intel_display_power.c
-> > > index b8983422a882..ba384a5315f8 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_display_power.c
-> > > +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
-> > > @@ -1031,15 +1031,6 @@ static bool
-> > > gen9_dc_off_power_well_enabled(struct drm_i915_private *dev_priv,
-> > >  		(I915_READ(DC_STATE_EN) &
-> > > DC_STATE_EN_UPTO_DC5_DC6_MASK) =3D=3D 0);
-> > >  }
-> > >  =
+  * igt@i915_module_load@reload-with-fault-injection:
+    - fi-kbl-x1275:       [DMESG-WARN][15] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][16] ([i915#62] / [i915#92]) +3 similar issues
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7602/fi-kbl-x1275/igt@i915_module_load@reload-with-fault-injection.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15837/fi-kbl-x1275/igt@i915_module_load@reload-with-fault-injection.html
 
-> > > -static void gen9_assert_dbuf_enabled(struct drm_i915_private
-> > > *dev_priv)
-> > > -{
-> > > -	u32 tmp =3D I915_READ(DBUF_CTL);
-> > > -
-> > > -	WARN((tmp & (DBUF_POWER_STATE | DBUF_POWER_REQUEST)) !=3D
-> > > -	     (DBUF_POWER_STATE | DBUF_POWER_REQUEST),
-> > > -	     "Unexpected DBuf power power state (0x%08x)\n", tmp);
-> > > -}
-> > > -
-> > >  static void gen9_disable_dc_states(struct drm_i915_private
-> > > *dev_priv)
-> > >  {
-> > >  	struct intel_cdclk_state cdclk_state =3D {};
-> > > @@ -1055,8 +1046,6 @@ static void gen9_disable_dc_states(struct
-> > > drm_i915_private *dev_priv)
-> > >  	/* Can't read out voltage_level so can't use
-> > > intel_cdclk_changed() */
-> > >  	WARN_ON(intel_cdclk_needs_modeset(&dev_priv->cdclk.hw,
-> > > &cdclk_state));
-> > >  =
+  * igt@i915_selftest@live_blt:
+    - fi-hsw-4770:        [DMESG-FAIL][17] ([i915#553] / [i915#725]) -> [DMESG-FAIL][18] ([i915#770])
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7602/fi-hsw-4770/igt@i915_selftest@live_blt.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15837/fi-hsw-4770/igt@i915_selftest@live_blt.html
 
-> > > -	gen9_assert_dbuf_enabled(dev_priv);
-> > =
+  * igt@kms_flip@basic-flip-vs-modeset:
+    - fi-kbl-x1275:       [DMESG-WARN][19] ([i915#62] / [i915#92]) -> [DMESG-WARN][20] ([i915#62] / [i915#92] / [i915#95]) +6 similar issues
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7602/fi-kbl-x1275/igt@kms_flip@basic-flip-vs-modeset.html
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15837/fi-kbl-x1275/igt@kms_flip@basic-flip-vs-modeset.html
 
-> > Why are you removing these? I think you still left the code in place
-> > to
-> > power up the first slice uncoditionally. Also not sure if DMC just
-> > powers that sucker up regardless. I think we should try it and if DMC
-> > isn't insane we should turn all the slices off when we don't need
-> > them.
-> =
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
 
-> I just didn't get why we do this check here, as we actually have that
-> check in verify_wm_state. Also this hardcoded check seems to always
-> assume that we should have both slices enabled which might be wrong - =
+  [fdo#111407]: https://bugs.freedesktop.org/show_bug.cgi?id=111407
+  [fdo#111735]: https://bugs.freedesktop.org/show_bug.cgi?id=111735
+  [i915#140]: https://gitlab.freedesktop.org/drm/intel/issues/140
+  [i915#424]: https://gitlab.freedesktop.org/drm/intel/issues/424
+  [i915#44]: https://gitlab.freedesktop.org/drm/intel/issues/44
+  [i915#553]: https://gitlab.freedesktop.org/drm/intel/issues/553
+  [i915#563]: https://gitlab.freedesktop.org/drm/intel/issues/563
+  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
+  [i915#722]: https://gitlab.freedesktop.org/drm/intel/issues/722
+  [i915#725]: https://gitlab.freedesktop.org/drm/intel/issues/725
+  [i915#770]: https://gitlab.freedesktop.org/drm/intel/issues/770
+  [i915#816]: https://gitlab.freedesktop.org/drm/intel/issues/816
+  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
+  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
 
-> we could have now different configurations, prior to this call,
-> as this is called for example before suspend which would be =
 
-> intel_power_domains_suspend->icl_display_core_uninit-
+Participating hosts (46 -> 33)
+------------------------------
 
-The check is there because DMC is supposed to restore power to the
-slices after DC5/6.
+  Additional (4): fi-skl-6770hq fi-icl-u2 fi-kbl-guc fi-kbl-r 
+  Missing    (17): fi-hsw-4770r fi-cml-u2 fi-bsw-n3050 fi-hsw-4200u fi-skl-guc fi-bsw-cyan fi-tgl-y fi-snb-2520m fi-cfl-8700k fi-ctg-p8600 fi-whl-u fi-bsw-kefka fi-bdw-samus fi-byt-n2820 fi-byt-clapper fi-skl-6700k2 fi-snb-2600 
 
--- =
 
-Ville Syrj=E4l=E4
-Intel
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_7602 -> Patchwork_15837
+
+  CI-20190529: 20190529
+  CI_DRM_7602: 23aa8ababbd628f988e4bd487d8d87a5c8b809a0 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5351: e7fdcef72d1d6b3bb9f3003bbc37571959e6e8bb @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_15837: efa1ee8a7e10c615260af376849deb800d79f66f @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+efa1ee8a7e10 drm/i915/gt: Schedule request retirement when signaler idles
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15837/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
