@@ -2,31 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC77A127016
-	for <lists+intel-gfx@lfdr.de>; Thu, 19 Dec 2019 22:57:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CFE0C127074
+	for <lists+intel-gfx@lfdr.de>; Thu, 19 Dec 2019 23:13:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A3E326EB9D;
-	Thu, 19 Dec 2019 21:56:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E31E86EBA3;
+	Thu, 19 Dec 2019 22:13:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id EBFCD6EB9D;
- Thu, 19 Dec 2019 21:56:58 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id E367EA0119;
- Thu, 19 Dec 2019 21:56:58 +0000 (UTC)
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 017386EBA3
+ for <intel-gfx@lists.freedesktop.org>; Thu, 19 Dec 2019 22:13:47 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19639562-1500050 
+ for <intel-gfx@lists.freedesktop.org>; Thu, 19 Dec 2019 22:13:45 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu, 19 Dec 2019 22:13:44 +0000
+Message-Id: <20191219221344.161523-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.24.1
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Manasi Navare" <manasi.d.navare@intel.com>
-Date: Thu, 19 Dec 2019 21:56:58 -0000
-Message-ID: <157679261890.26200.274464087253597424@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20191219215117.929-1-manasi.d.navare@intel.com>
-In-Reply-To: <20191219215117.929-1-manasi.d.navare@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_series_starting_with_=5Bv2=2C1/3=5D_drm/i915/dp=3A_Make_sur?=
- =?utf-8?q?e_all_tiled_connectors_get_added_to_the_state_with_full_modeset?=
+Subject: [Intel-gfx] [CI] drm/i915/gt: Add breadcrumb retire to physical
+ engine
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,31 +37,70 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Avoid adding the retire workers to the virtual engine so that we don't
+end up in the unenviable situation of trying to free the virtual engine
+while its worker remains active.
 
-Series: series starting with [v2,1/3] drm/i915/dp: Make sure all tiled connectors get added to the state with full modeset
-URL   : https://patchwork.freedesktop.org/series/71190/
-State : warning
+Fixes: dc93c9b69315 ("drm/i915/gt: Schedule request retirement when signaler idles")
+Closes: https://gitlab.freedesktop.org/drm/intel/issues/867
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+Acked-by: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+---
+ drivers/gpu/drm/i915/gt/intel_breadcrumbs.c | 11 +++++++++--
+ drivers/gpu/drm/i915/gt/intel_lrc.c         |  1 -
+ 2 files changed, 9 insertions(+), 3 deletions(-)
 
-== Summary ==
-
-$ dim checkpatch origin/drm-tip
-ccfce3fe03d1 drm/i915/dp: Make sure all tiled connectors get added to the state with full modeset
-28ec6e3386c0 drm/i915/dp: Make port sync mode assignments only if all tiles present
--:210: CHECK:LINE_SPACING: Please don't use multiple blank lines
-#210: FILE: drivers/gpu/drm/i915/display/intel_display.c:12751:
+diff --git a/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c b/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
+index 4f491791b4ba..2979f0fd9270 100644
+--- a/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
++++ b/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
+@@ -131,6 +131,14 @@ __dma_fence_signal__notify(struct dma_fence *fence,
+ 	}
+ }
  
++static void add_retire(struct intel_breadcrumbs *b, struct intel_timeline *tl)
++{
++	struct intel_engine_cs *engine =
++		container_of(b, struct intel_engine_cs, breadcrumbs);
 +
-
-total: 0 errors, 0 warnings, 1 checks, 213 lines checked
-331d1b560479 drm/i915/dp: Disable Port sync mode correctly on teardown
++	intel_engine_add_retire(engine, tl);
++}
++
+ static void signal_irq_work(struct irq_work *work)
+ {
+ 	struct intel_breadcrumbs *b = container_of(work, typeof(*b), irq_work);
+@@ -182,8 +190,7 @@ static void signal_irq_work(struct irq_work *work)
+ 			__list_del_many(&ce->signals, pos);
+ 			if (&ce->signals == pos) { /* now empty */
+ 				list_del_init(&ce->signal_link);
+-				intel_engine_add_retire(ce->engine,
+-							ce->timeline);
++				add_retire(b, ce->timeline);
+ 			}
+ 		}
+ 	}
+diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+index 56cf71d8bbda..31815d5e3b74 100644
+--- a/drivers/gpu/drm/i915/gt/intel_lrc.c
++++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+@@ -4512,7 +4512,6 @@ intel_execlists_create_virtual(struct i915_gem_context *ctx,
+ 	intel_engine_init_active(&ve->base, ENGINE_VIRTUAL);
+ 	intel_engine_init_breadcrumbs(&ve->base);
+ 	intel_engine_init_execlists(&ve->base);
+-	intel_engine_init_retire(&ve->base);
+ 
+ 	ve->base.cops = &virtual_context_ops;
+ 	ve->base.request_alloc = execlists_request_alloc;
+-- 
+2.24.1
 
 _______________________________________________
 Intel-gfx mailing list
