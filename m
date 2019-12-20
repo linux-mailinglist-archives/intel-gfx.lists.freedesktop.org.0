@@ -2,40 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A3E9E1276D1
-	for <lists+intel-gfx@lfdr.de>; Fri, 20 Dec 2019 08:56:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C74DB1276D6
+	for <lists+intel-gfx@lfdr.de>; Fri, 20 Dec 2019 08:58:57 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E15886EBE2;
-	Fri, 20 Dec 2019 07:56:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 34D3A6EBEC;
+	Fri, 20 Dec 2019 07:58:56 +0000 (UTC)
 X-Original-To: Intel-gfx@lists.freedesktop.org
 Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B066B6EBE3
- for <Intel-gfx@lists.freedesktop.org>; Fri, 20 Dec 2019 07:56:28 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6C80F6EBEE
+ for <Intel-gfx@lists.freedesktop.org>; Fri, 20 Dec 2019 07:58:55 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 19 Dec 2019 23:56:28 -0800
-X-IronPort-AV: E=Sophos;i="5.69,335,1571727600"; d="scan'208";a="210741088"
+ by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 19 Dec 2019 23:58:55 -0800
+X-IronPort-AV: E=Sophos;i="5.69,335,1571727600"; d="scan'208";a="210741556"
 Received: from dtriolet-mobl1.ger.corp.intel.com (HELO [10.251.84.191])
  ([10.251.84.191])
  by orsmga008-auth.jf.intel.com with ESMTP/TLS/AES256-SHA;
- 19 Dec 2019 23:56:26 -0800
+ 19 Dec 2019 23:58:54 -0800
 To: Chris Wilson <chris@chris-wilson.co.uk>, Intel-gfx@lists.freedesktop.org
 References: <20191219180019.25562-1-tvrtko.ursulin@linux.intel.com>
- <20191219180019.25562-4-tvrtko.ursulin@linux.intel.com>
- <157678851938.6469.1830542116916640880@skylake-alporthouse-com>
+ <20191219180019.25562-6-tvrtko.ursulin@linux.intel.com>
+ <157678871488.6469.7493567337402690504@skylake-alporthouse-com>
 From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
 Organization: Intel Corporation UK Plc
-Message-ID: <88c3d8a8-0a37-036a-5c79-845d3157ecf4@linux.intel.com>
-Date: Fri, 20 Dec 2019 07:56:25 +0000
+Message-ID: <e21bb01f-6b01-c988-2531-fde3d46eec07@linux.intel.com>
+Date: Fri, 20 Dec 2019 07:58:52 +0000
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.9.0
 MIME-Version: 1.0
-In-Reply-To: <157678851938.6469.1830542116916640880@skylake-alporthouse-com>
+In-Reply-To: <157678871488.6469.7493567337402690504@skylake-alporthouse-com>
 Content-Language: en-US
-Subject: Re: [Intel-gfx] [RFC 3/8] drm/i915: Expose list of clients in sysfs
+Subject: Re: [Intel-gfx] [RFC 5/8] drm/i915: Track per-context engine
+ busyness
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,105 +55,247 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
-On 19/12/2019 20:48, Chris Wilson wrote:
-> Quoting Tvrtko Ursulin (2019-12-19 18:00:14)
+On 19/12/2019 20:51, Chris Wilson wrote:
+> Quoting Tvrtko Ursulin (2019-12-19 18:00:16)
 >> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 >>
->> Expose a list of clients with open file handles in sysfs.
+>> Some customers want to know how much of the GPU time are their clients
+>> using in order to make dynamic load balancing decisions.
 >>
->> This will be a basis for a top-like utility showing per-client and per-
->> engine GPU load.
+>> With the hooks already in place which track the overall engine busyness,
+>> we can extend that slightly to split that time between contexts.
 >>
->> Currently we only expose each client's pid and name under opaque numbered
->> directories in /sys/class/drm/card0/clients/.
->>
->> For instance:
->>
->> /sys/class/drm/card0/clients/3/name: Xorg
->> /sys/class/drm/card0/clients/3/pid: 5664
->>
->> v2:
->>   Chris Wilson:
->>   * Enclose new members into dedicated structs.
->>   * Protect against failed sysfs registration.
->>
->> v3:
->>   * sysfs_attr_init.
->>
->> v4:
->>   * Fix for internal clients.
->>
->> v5:
->>   * Use cyclic ida for client id. (Chris)
->>   * Do not leak pid reference. (Chris)
->>   * Tidy code with some locals.
->>
->> v6:
->>   * Use xa_alloc_cyclic to simplify locking. (Chris)
->>   * No need to unregister individial sysfs files. (Chris)
->>   * Rebase on top of fpriv kref.
->>   * Track client closed status and reflect in sysfs.
+>> v2: Fix accounting for tail updates.
+>> v3: Rebase.
+>> v4: Mark currently running contexts as active on stats enable.
+>> v5: Include some headers to fix the build.
+>> v6: Added fine grained lock.
+>> v7: Convert to seqlock. (Chris Wilson)
+>> v8: Rebase and tidy with helpers.
+>> v9: Refactor.
+>> v10: Move recording start to promotion. (Chris)
 >>
 >> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 >> ---
->>   drivers/gpu/drm/i915/i915_drv.h   |  20 +++++
->>   drivers/gpu/drm/i915/i915_gem.c   | 133 ++++++++++++++++++++++++++++--
->>   drivers/gpu/drm/i915/i915_sysfs.c |   8 ++
->>   3 files changed, 155 insertions(+), 6 deletions(-)
+>>   drivers/gpu/drm/i915/gt/intel_context.c       | 20 +++++++
+>>   drivers/gpu/drm/i915/gt/intel_context.h       | 11 ++++
+>>   drivers/gpu/drm/i915/gt/intel_context_types.h |  9 ++++
+>>   drivers/gpu/drm/i915/gt/intel_engine_cs.c     | 16 +++++-
+>>   drivers/gpu/drm/i915/gt/intel_lrc.c           | 52 ++++++++++++++++---
+>>   5 files changed, 100 insertions(+), 8 deletions(-)
 >>
->> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
->> index 6f13f0c619e9..e1d8361aafd7 100644
->> --- a/drivers/gpu/drm/i915/i915_drv.h
->> +++ b/drivers/gpu/drm/i915/i915_drv.h
->> @@ -188,6 +188,7 @@ struct i915_hotplug {
->>   struct drm_i915_private;
->>   struct i915_mm_struct;
->>   struct i915_mmu_object;
->> +struct i915_drm_clients;
+>> diff --git a/drivers/gpu/drm/i915/gt/intel_context.c b/drivers/gpu/drm/i915/gt/intel_context.c
+>> index b1e346d2d35f..b211b48d6cae 100644
+>> --- a/drivers/gpu/drm/i915/gt/intel_context.c
+>> +++ b/drivers/gpu/drm/i915/gt/intel_context.c
+>> @@ -243,6 +243,7 @@ intel_context_init(struct intel_context *ce,
+>>          INIT_LIST_HEAD(&ce->signals);
 >>   
->>   struct drm_i915_file_private {
->>          struct kref kref;
->> @@ -226,6 +227,19 @@ struct drm_i915_file_private {
->>          /** ban_score: Accumulated score of all ctx bans and fast hangs. */
->>          atomic_t ban_score;
->>          unsigned long hang_timestamp;
+>>          mutex_init(&ce->pin_mutex);
+>> +       seqlock_init(&ce->stats.lock);
+>>   
+>>          i915_active_init(&ce->active,
+>>                           __intel_context_active, __intel_context_retire);
+>> @@ -337,6 +338,25 @@ struct i915_request *intel_context_create_request(struct intel_context *ce)
+>>          return rq;
+>>   }
+>>   
+>> +ktime_t intel_context_get_busy_time(struct intel_context *ce)
+>> +{
+>> +       unsigned int seq;
+>> +       ktime_t total;
 >> +
->> +       struct i915_drm_client {
-> 
-> I agree with the distinction here between drm_client and
-> gem_client. (This concept will be required beyond GEM.)
-
-So you think I should keep the i915_drm_client naming for these bits 
-throughout?
-
->> +               unsigned int id;
->> +               struct pid *pid;
->> +               char *name;
->> +               bool closed;
+>> +       do {
+>> +               seq = read_seqbegin(&ce->stats.lock);
 >> +
->> +               struct kobject *root;
->> +               struct {
->> +                       struct device_attribute pid;
->> +                       struct device_attribute name;
->> +               } attr;
->> +       } client;
+>> +               total = ce->stats.total;
+>> +
+>> +               if (ce->stats.active)
+>> +                       total = ktime_add(total,
+>> +                                         ktime_sub(ktime_get(),
+>> +                                                   ce->stats.start));
+>> +       } while (read_seqretry(&ce->stats.lock, seq));
+>> +
+>> +       return total;
+>> +}
+>> +
+>>   #if IS_ENABLED(CONFIG_DRM_I915_SELFTEST)
+>>   #include "selftest_context.c"
+>>   #endif
+>> diff --git a/drivers/gpu/drm/i915/gt/intel_context.h b/drivers/gpu/drm/i915/gt/intel_context.h
+>> index b39eb1fcfbca..3a15cf32f0a3 100644
+>> --- a/drivers/gpu/drm/i915/gt/intel_context.h
+>> +++ b/drivers/gpu/drm/i915/gt/intel_context.h
+>> @@ -160,4 +160,15 @@ static inline struct intel_ring *__intel_context_ring_size(u64 sz)
+>>          return u64_to_ptr(struct intel_ring, sz);
+>>   }
+>>   
+>> +static inline void
+>> +__intel_context_stats_start(struct intel_context_stats *stats, ktime_t now)
+>> +{
+>> +       if (!stats->active) {
+>> +               stats->start = now;
+>> +               stats->active = true;
+>> +       }
+>> +}
+>> +
+>> +ktime_t intel_context_get_busy_time(struct intel_context *ce);
+>> +
+>>   #endif /* __INTEL_CONTEXT_H__ */
+>> diff --git a/drivers/gpu/drm/i915/gt/intel_context_types.h b/drivers/gpu/drm/i915/gt/intel_context_types.h
+>> index d1204cc899a3..12cbad0798cb 100644
+>> --- a/drivers/gpu/drm/i915/gt/intel_context_types.h
+>> +++ b/drivers/gpu/drm/i915/gt/intel_context_types.h
+>> @@ -11,6 +11,7 @@
+>>   #include <linux/list.h>
+>>   #include <linux/mutex.h>
+>>   #include <linux/types.h>
+>> +#include <linux/seqlock.h>
+>>   
+>>   #include "i915_active_types.h"
+>>   #include "i915_utils.h"
+>> @@ -76,6 +77,14 @@ struct intel_context {
+>>   
+>>          /** sseu: Control eu/slice partitioning */
+>>          struct intel_sseu sseu;
+>> +
+>> +       /** stats: Context GPU engine busyness tracking. */
+>> +       struct intel_context_stats {
+>> +               seqlock_t lock;
+>> +               bool active;
+>> +               ktime_t start;
+>> +               ktime_t total;
+>> +       } stats;
 >>   };
 >>   
->>   /* Interface history:
->> @@ -1280,6 +1294,12 @@ struct drm_i915_private {
+>>   #endif /* __INTEL_CONTEXT_TYPES__ */
+>> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+>> index 3d1d48bf90cf..ac08781c8b24 100644
+>> --- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+>> +++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+>> @@ -1577,8 +1577,20 @@ int intel_enable_engine_stats(struct intel_engine_cs *engine)
 >>   
->>          struct i915_pmu pmu;
+>>                  engine->stats.enabled_at = ktime_get();
 >>   
->> +       struct i915_drm_clients {
->> +               struct xarray xarray;
+>> -               /* XXX submission method oblivious? */
+>> -               for (port = execlists->active; (rq = *port); port++)
+>> +               /*
+>> +                * Mark currently running context as active.
+>> +                * XXX submission method oblivious?
+>> +                */
 >> +
->> +               struct kobject *root;
->> +       } clients;
+>> +               rq = NULL;
+>> +               port = execlists->active;
+>> +               if (port)
+>> +                       rq = *port;
+>> +               if (rq)
+>> +                       __intel_context_stats_start(&rq->hw_context->stats,
+>> +                                                   engine->stats.enabled_at);
+>> +
+>> +               for (; (rq = *port); port++)
+>>                          engine->stats.active++;
+>>   
+>>                  for (port = execlists->pending; (rq = *port); port++) {
+>> diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+>> index 4db54fd6a2fe..b186f06e508d 100644
+>> --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
+>> +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+>> @@ -940,6 +940,7 @@ static void intel_engine_context_in(struct intel_engine_cs *engine)
+>>          if (engine->stats.enabled > 0) {
+>>                  if (engine->stats.active++ == 0)
+>>                          engine->stats.start = ktime_get();
+>> +
+>>                  GEM_BUG_ON(engine->stats.active == 0);
+>>          }
+>>   
+>> @@ -1088,6 +1089,32 @@ static void reset_active(struct i915_request *rq,
+>>          ce->lrc_desc |= CTX_DESC_FORCE_RESTORE;
+>>   }
+>>   
+>> +static void
+>> +intel_context_stats_start(struct intel_context_stats *stats)
+>> +{
+>> +       unsigned long flags;
+>> +
+>> +       write_seqlock_irqsave(&stats->lock, flags);
+>> +       __intel_context_stats_start(stats, ktime_get());
+>> +       write_sequnlock_irqrestore(&stats->lock, flags);
+>> +}
+>> +
+>> +static void
+>> +intel_context_stats_stop(struct intel_context_stats *stats)
+>> +{
+>> +       unsigned long flags;
+>> +
+>> +       if (!READ_ONCE(stats->active))
+>> +               return;
+>> +
+>> +       write_seqlock_irqsave(&stats->lock, flags);
+>> +       GEM_BUG_ON(!READ_ONCE(stats->active));
+>> +       stats->total = ktime_add(stats->total,
+>> +                                ktime_sub(ktime_get(), stats->start));
+>> +       stats->active = false;
+>> +       write_sequnlock_irqrestore(&stats->lock, flags);
+>> +}
+>> +
+>>   static inline struct intel_engine_cs *
+>>   __execlists_schedule_in(struct i915_request *rq)
+>>   {
+>> @@ -1155,7 +1182,7 @@ static inline void
+>>   __execlists_schedule_out(struct i915_request *rq,
+>>                           struct intel_engine_cs * const engine)
+>>   {
+>> -       struct intel_context * const ce = rq->hw_context;
+>> +       struct intel_context *ce = rq->hw_context;
+>>   
+>>          /*
+>>           * NB process_csb() is not under the engine->active.lock and hence
+>> @@ -1172,6 +1199,7 @@ __execlists_schedule_out(struct i915_request *rq,
+>>                  intel_engine_add_retire(engine, ce->timeline);
+>>   
+>>          intel_engine_context_out(engine);
+>> +       intel_context_stats_stop(&ce->stats);
+>>          execlists_context_status_change(rq, INTEL_CONTEXT_SCHEDULE_OUT);
+>>          intel_gt_pm_put_async(engine->gt);
+>>   
+>> @@ -2174,9 +2202,11 @@ static void process_csb(struct intel_engine_cs *engine)
+>>                          promote = gen8_csb_parse(execlists, buf + 2 * head);
+>>                  if (promote) {
+>>                          struct i915_request * const *old = execlists->active;
+>> +                       struct i915_request *rq;
+>>   
+>>                          /* Point active to the new ELSP; prevent overwriting */
+>>                          WRITE_ONCE(execlists->active, execlists->pending);
+>> +
+>>                          set_timeslice(engine);
+>>   
+>>                          if (!inject_preempt_hang(execlists))
+>> @@ -2196,8 +2226,16 @@ static void process_csb(struct intel_engine_cs *engine)
+>>                                            sizeof(*execlists->pending)));
+>>   
+>>                          WRITE_ONCE(execlists->pending[0], NULL);
+>> +
+>> +                       rq = *execlists->active;
+>> +                       if (rq)
+>> +                               intel_context_stats_start(&rq->hw_context->stats);
 > 
-> You might as well pull this out into i915_drm_client.[ch]
-> Actually make that into a please. :)
+> Code duplication :) Both branches are doing
+> 
+> rq = *execlists->active;
+> if (rq)
+> 	intel_context_stats_start(&rq->hw_context->stats);
+> 
+> as their final setp, just move it to after the if.
 
-Np. Maybe next year though. :)
+True, thanks!
+
+> Cost of maintaining stats was unnoticeable in profiles and did not
+> affect wsim, so lgtm.
+
+Yes I did not stand out to me either.
+
+I tried the opposite test as well, running intel_gpu_top with a 100Hz 
+update rate and that also wasn't that bad.
 
 Regards,
 
