@@ -2,35 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 00D9A12799F
-	for <lists+intel-gfx@lfdr.de>; Fri, 20 Dec 2019 11:50:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 379951279B1
+	for <lists+intel-gfx@lfdr.de>; Fri, 20 Dec 2019 11:57:20 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 84E2489DE3;
-	Fri, 20 Dec 2019 10:50:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3202C6EC0B;
+	Fri, 20 Dec 2019 10:57:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0C7DF89D9A;
- Fri, 20 Dec 2019 10:50:12 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 20 Dec 2019 02:50:11 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,335,1571727600"; d="scan'208";a="218778115"
-Received: from ideak-desk.fi.intel.com ([10.237.72.183])
- by orsmga003.jf.intel.com with ESMTP; 20 Dec 2019 02:50:09 -0800
-From: Imre Deak <imre.deak@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri, 20 Dec 2019 12:49:31 +0200
-Message-Id: <20191220104931.12135-7-imre.deak@intel.com>
-X-Mailer: git-send-email 2.22.0
-In-Reply-To: <20191218161105.30638-15-imre.deak@intel.com>
-References: <20191218161105.30638-15-imre.deak@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 194806EC0B;
+ Fri, 20 Dec 2019 10:57:16 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 07FA4A0073;
+ Fri, 20 Dec 2019 10:57:16 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 14/15] drm/framebuffer: Format modifier for
- Intel Gen 12 render compression with Clear Color
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Imre Deak" <imre.deak@intel.com>
+Date: Fri, 20 Dec 2019 10:57:16 -0000
+Message-ID: <157683943600.9212.7924007029086108520@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20191218161105.30638-1-imre.deak@intel.com>
+In-Reply-To: <20191218161105.30638-1-imre.deak@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915/tgl=3A_Render/media_decompression_support_=28rev10?=
+ =?utf-8?q?=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -43,72 +39,66 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Nanley Chery <nanley.g.chery@intel.com>, dri-devel@lists.freedesktop.org,
- Dhinakaran Pandiyan <dhinakaran.pandiyan@intel.com>,
- Kalyan Kondapally <kalyan.kondapally@intel.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
+== Series Details ==
 
-Gen12 display can decompress surfaces compressed by render engine with
-Clear Color, add a new modifier as the driver needs to know the surface
-was compressed by render engine.
+Series: drm/i915/tgl: Render/media decompression support (rev10)
+URL   : https://patchwork.freedesktop.org/series/71125/
+State : warning
 
-V2: Description changes as suggested by Rafael.
-V3: Mention the Clear Color size of 64 bits in the comments(DK)
-v4: Fix trailing whitespaces
-v5: Explain Clear Color in the documentation.
-v6: Documentation Nitpicks(Nanley)
+== Summary ==
 
-Cc: Ville Syrjala <ville.syrjala@linux.intel.com>
-Cc: Dhinakaran Pandiyan <dhinakaran.pandiyan@intel.com>
-Cc: Kalyan Kondapally <kalyan.kondapally@intel.com>
-Cc: Rafael Antognolli <rafael.antognolli@intel.com>
-Cc: Nanley Chery <nanley.g.chery@intel.com>
-Cc: Mika Kahola <mika.kahola@intel.com>
-Cc: dri-devel@lists.freedesktop.org
-Signed-off-by: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
-Signed-off-by: Imre Deak <imre.deak@intel.com>
-Reviewed-by: Mika Kahola <mika.kahola@intel.com>
----
- include/uapi/drm/drm_fourcc.h | 19 +++++++++++++++++++
- 1 file changed, 19 insertions(+)
+$ dim checkpatch origin/drm-tip
+0e244fde713c drm/framebuffer: Format modifier for Intel Gen-12 render compression
+b8b5d1fe8a14 drm/i915: Use intel_tile_height() instead of re-implementing
+cfb29f3dfc82 drm/i915: Move CCS stride alignment W/A inside intel_fb_stride_alignment
+302b5a034ca3 drm/i915: Extract framebufer CCS offset checks into a function
+9c5b00d5c04f drm/i915: Add helpers to select correct ccs/aux planes
+5b81b67242e0 drm/i915/tgl: Gen-12 render decompression
+31001f05269d drm/i915/tgl: Make sure FBs have a correct CCS plane stride
+bc4f1cd5e087 drm/i915: Skip rotated offset adjustment for unsupported modifiers
+38863af06562 drm/i915: Make sure Y slave planes get all the required state
+a3117f225e10 drm/i915: Make sure CCS YUV semiplanar format checks work
+-:55: ERROR:CODE_INDENT: code indent should use tabs where possible
+#55: FILE: drivers/gpu/drm/i915/display/intel_display.c:3855:
++^I^I^I^I^I        fb->modifier)) {$
 
-diff --git a/include/uapi/drm/drm_fourcc.h b/include/uapi/drm/drm_fourcc.h
-index 8bc0b31597d8..1c9c3991cab6 100644
---- a/include/uapi/drm/drm_fourcc.h
-+++ b/include/uapi/drm/drm_fourcc.h
-@@ -434,6 +434,25 @@ extern "C" {
-  */
- #define I915_FORMAT_MOD_Y_TILED_GEN12_MC_CCS fourcc_mod_code(INTEL, 7)
- 
-+/*
-+ * Intel Color Control Surface with Clear Color (CCS) for Gen-12 render
-+ * compression.
-+ *
-+ * The main surface is Y-tiled and is at plane index 0 whereas CCS is linear
-+ * and at index 1. The clear color is stored at index 2, and the pitch should
-+ * be ignored. The clear color structure is 256 bits. The first 128 bits
-+ * represents Raw Clear Color Red, Green, Blue and Alpha color each represented
-+ * by 32 bits. The raw clear color is consumed by the 3d engine and generates
-+ * the converted clear color of size 64 bits. The first 32 bits store the Lower
-+ * Converted Clear Color value and the next 32 bits store the Higher Converted
-+ * Clear Color value when applicable. The Converted Clear Color values are
-+ * consumed by the DE. The last 64 bits are used to store Color Discard Enable
-+ * and Depth Clear Value Valid which are ignored by the DE. A CCS cache line
-+ * corresponds to an area of 4x1 tiles in the main surface. The main surface
-+ * pitch is required to be a multiple of 4 tile widths.
-+ */
-+#define I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS_CC fourcc_mod_code(INTEL, 8)
-+
- /*
-  * Tiled, NV12MT, grouped in 64 (pixels) x 32 (lines) -sized macroblocks
-  *
--- 
-2.22.0
+-:55: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#55: FILE: drivers/gpu/drm/i915/display/intel_display.c:3855:
++	if (intel_format_info_is_yuv_semiplanar(fb->format,
++					        fb->modifier)) {
+
+-:65: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u64' over 'uint64_t'
+#65: FILE: drivers/gpu/drm/i915/display/intel_display.c:5785:
++		  uint64_t modifier, bool need_scaler)
+
+total: 1 errors, 0 warnings, 2 checks, 142 lines checked
+428f9f32c6f5 drm/framebuffer: Format modifier for Intel Gen-12 media compression
+78444dfcb223 drm/fb: Extend format_info member arrays to handle four planes
+e9bbc97aba9f drm/i915/tgl: Gen-12 display can decompress surfaces compressed by the media engine
+-:13: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#13: 
+compressed buffers. Unlike render decompression, plane 6 and  plane 7 do not
+
+-:124: WARNING:MISSING_BREAK: Possible switch case/default not preceded by break or fallthrough comment
+#124: FILE: drivers/gpu/drm/i915/display/intel_display.c:2644:
++	case I915_FORMAT_MOD_Y_TILED_GEN12_MC_CCS:
+
+total: 0 errors, 2 warnings, 0 checks, 478 lines checked
+8420af3f7552 drm/framebuffer: Format modifier for Intel Gen 12 render compression with Clear Color
+64e5f7fd003b drm/i915/tgl: Add Clear Color support for TGL Render Decompression
+-:304: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'pipe' - possible side-effects?
+#304: FILE: drivers/gpu/drm/i915/i915_reg.h:6889:
++#define PLANE_CC_VAL(pipe, plane)	\
++	_MMIO_PLANE(plane, _PLANE_CC_VAL_1(pipe), _PLANE_CC_VAL_2(pipe))
+
+total: 0 errors, 0 warnings, 1 checks, 238 lines checked
 
 _______________________________________________
 Intel-gfx mailing list
