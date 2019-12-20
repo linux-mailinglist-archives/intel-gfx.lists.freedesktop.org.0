@@ -1,42 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 438BC1276C8
-	for <lists+intel-gfx@lfdr.de>; Fri, 20 Dec 2019 08:55:12 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A3E9E1276D1
+	for <lists+intel-gfx@lfdr.de>; Fri, 20 Dec 2019 08:56:31 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CA8356EBE0;
-	Fri, 20 Dec 2019 07:55:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E15886EBE2;
+	Fri, 20 Dec 2019 07:56:29 +0000 (UTC)
 X-Original-To: Intel-gfx@lists.freedesktop.org
 Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AFECA6EBE0
- for <Intel-gfx@lists.freedesktop.org>; Fri, 20 Dec 2019 07:55:08 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B066B6EBE3
+ for <Intel-gfx@lists.freedesktop.org>; Fri, 20 Dec 2019 07:56:28 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 19 Dec 2019 23:55:08 -0800
-X-IronPort-AV: E=Sophos;i="5.69,335,1571727600"; d="scan'208";a="210740811"
+ by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 19 Dec 2019 23:56:28 -0800
+X-IronPort-AV: E=Sophos;i="5.69,335,1571727600"; d="scan'208";a="210741088"
 Received: from dtriolet-mobl1.ger.corp.intel.com (HELO [10.251.84.191])
  ([10.251.84.191])
  by orsmga008-auth.jf.intel.com with ESMTP/TLS/AES256-SHA;
- 19 Dec 2019 23:55:07 -0800
+ 19 Dec 2019 23:56:26 -0800
 To: Chris Wilson <chris@chris-wilson.co.uk>, Intel-gfx@lists.freedesktop.org
 References: <20191219180019.25562-1-tvrtko.ursulin@linux.intel.com>
- <20191219180019.25562-3-tvrtko.ursulin@linux.intel.com>
- <157678823997.6469.3187491361664776890@skylake-alporthouse-com>
+ <20191219180019.25562-4-tvrtko.ursulin@linux.intel.com>
+ <157678851938.6469.1830542116916640880@skylake-alporthouse-com>
 From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
 Organization: Intel Corporation UK Plc
-Message-ID: <6c9d1d35-606c-925a-1f2d-18a48720135a@linux.intel.com>
-Date: Fri, 20 Dec 2019 07:55:05 +0000
+Message-ID: <88c3d8a8-0a37-036a-5c79-845d3157ecf4@linux.intel.com>
+Date: Fri, 20 Dec 2019 07:56:25 +0000
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.9.0
 MIME-Version: 1.0
-In-Reply-To: <157678823997.6469.3187491361664776890@skylake-alporthouse-com>
+In-Reply-To: <157678851938.6469.1830542116916640880@skylake-alporthouse-com>
 Content-Language: en-US
-Subject: Re: [Intel-gfx] [RFC 2/8] drm/i915: Reference count struct
- drm_i915_file_private
+Subject: Re: [Intel-gfx] [RFC 3/8] drm/i915: Expose list of clients in sysfs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,78 +54,105 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
-On 19/12/2019 20:43, Chris Wilson wrote:
-> Quoting Tvrtko Ursulin (2019-12-19 18:00:13)
+On 19/12/2019 20:48, Chris Wilson wrote:
+> Quoting Tvrtko Ursulin (2019-12-19 18:00:14)
 >> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 >>
->> In the following patches we will develope a need to peek into the client
->> owned data from any potential leftover contexts.
+>> Expose a list of clients with open file handles in sysfs.
 >>
->> To facilitate this add reference counting to file_priv.
+>> This will be a basis for a top-like utility showing per-client and per-
+>> engine GPU load.
+>>
+>> Currently we only expose each client's pid and name under opaque numbered
+>> directories in /sys/class/drm/card0/clients/.
+>>
+>> For instance:
+>>
+>> /sys/class/drm/card0/clients/3/name: Xorg
+>> /sys/class/drm/card0/clients/3/pid: 5664
+>>
+>> v2:
+>>   Chris Wilson:
+>>   * Enclose new members into dedicated structs.
+>>   * Protect against failed sysfs registration.
+>>
+>> v3:
+>>   * sysfs_attr_init.
+>>
+>> v4:
+>>   * Fix for internal clients.
+>>
+>> v5:
+>>   * Use cyclic ida for client id. (Chris)
+>>   * Do not leak pid reference. (Chris)
+>>   * Tidy code with some locals.
+>>
+>> v6:
+>>   * Use xa_alloc_cyclic to simplify locking. (Chris)
+>>   * No need to unregister individial sysfs files. (Chris)
+>>   * Rebase on top of fpriv kref.
+>>   * Track client closed status and reflect in sysfs.
 >>
 >> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 >> ---
->>   drivers/gpu/drm/i915/gem/i915_gem_context.c |  2 +-
->>   drivers/gpu/drm/i915/i915_drv.c             |  4 ----
->>   drivers/gpu/drm/i915/i915_drv.h             |  4 +++-
->>   drivers/gpu/drm/i915/i915_gem.c             | 14 +++++++++++++-
->>   4 files changed, 17 insertions(+), 7 deletions(-)
+>>   drivers/gpu/drm/i915/i915_drv.h   |  20 +++++
+>>   drivers/gpu/drm/i915/i915_gem.c   | 133 ++++++++++++++++++++++++++++--
+>>   drivers/gpu/drm/i915/i915_sysfs.c |   8 ++
+>>   3 files changed, 155 insertions(+), 6 deletions(-)
 >>
->> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
->> index e5a7c6f02a47..b482b2e5f31f 100644
->> --- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
->> +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
->> @@ -853,7 +853,7 @@ int i915_gem_context_open(struct drm_i915_private *i915,
->>   void i915_gem_context_close(struct drm_file *file)
->>   {
->>          struct drm_i915_file_private *file_priv = file->driver_priv;
->> -       struct drm_i915_private *i915 = file_priv->dev_priv;
->> +       struct drm_i915_private *i915 = file_priv->i915;
->>          struct i915_gem_context *ctx;
->>          unsigned long idx;
+>> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+>> index 6f13f0c619e9..e1d8361aafd7 100644
+>> --- a/drivers/gpu/drm/i915/i915_drv.h
+>> +++ b/drivers/gpu/drm/i915/i915_drv.h
+>> @@ -188,6 +188,7 @@ struct i915_hotplug {
+>>   struct drm_i915_private;
+>>   struct i915_mm_struct;
+>>   struct i915_mmu_object;
+>> +struct i915_drm_clients;
 >>   
->> diff --git a/drivers/gpu/drm/i915/i915_drv.c b/drivers/gpu/drm/i915/i915_drv.c
->> index 8b08cfe30151..0c9c93418068 100644
->> --- a/drivers/gpu/drm/i915/i915_drv.c
->> +++ b/drivers/gpu/drm/i915/i915_drv.c
->> @@ -1633,13 +1633,9 @@ static void i915_driver_lastclose(struct drm_device *dev)
+>>   struct drm_i915_file_private {
+>>          struct kref kref;
+>> @@ -226,6 +227,19 @@ struct drm_i915_file_private {
+>>          /** ban_score: Accumulated score of all ctx bans and fast hangs. */
+>>          atomic_t ban_score;
+>>          unsigned long hang_timestamp;
+>> +
+>> +       struct i915_drm_client {
+> 
+> I agree with the distinction here between drm_client and
+> gem_client. (This concept will be required beyond GEM.)
+
+So you think I should keep the i915_drm_client naming for these bits 
+throughout?
+
+>> +               unsigned int id;
+>> +               struct pid *pid;
+>> +               char *name;
+>> +               bool closed;
+>> +
+>> +               struct kobject *root;
+>> +               struct {
+>> +                       struct device_attribute pid;
+>> +                       struct device_attribute name;
+>> +               } attr;
+>> +       } client;
+>>   };
 >>   
->>   static void i915_driver_postclose(struct drm_device *dev, struct drm_file *file)
->>   {
->> -       struct drm_i915_file_private *file_priv = file->driver_priv;
->> -
->>          i915_gem_context_close(file);
->>          i915_gem_release(dev, file);
+>>   /* Interface history:
+>> @@ -1280,6 +1294,12 @@ struct drm_i915_private {
 >>   
->> -       kfree_rcu(file_priv, rcu);
+>>          struct i915_pmu pmu;
+>>   
+>> +       struct i915_drm_clients {
+>> +               struct xarray xarray;
+>> +
+>> +               struct kobject *root;
+>> +       } clients;
 > 
-> As you are moving the kfree_rcu() into the i915_gem_release (via a put),
-> I think it also makes sense to move the call for i915_gem_context_close
-> on this file. Possibly renaming it to i915_gem_file_close() and
-> s/drm_i915_file_private/i915_gem_file/ or i915_gem_client (with
-> corresponding name changes) in the process.
-> 
-> For the basic mechanics of this patch though,
-> Reviewed-by: Chris Wilson <chris@chris-wilson.co.uk>
-> 
-> (Though I still suggest a bit of playing with i915_gem_context_close,
-> i915_gem_release to tie them together to the notion of the file better.)
+> You might as well pull this out into i915_drm_client.[ch]
+> Actually make that into a please. :)
 
-Yes, agreed in principle.
-
-But a) I prefer the release name to match with the fops mindset and b) I 
-prefer to leave drm_i915_file_private alone as the top level driver 
-private container.
-
-What I am not completely happy with, or say undecided, is whether to 
-move the kref into i915_drm_client. I had it like that at one point, 
-thinking to only have a smallest needed structure pinned in memory, but 
-then I simplified in favour of fewer allocations. Now I think I'd like 
-to move the kref into i915_drm_client again. Any opinion here?
-
-In a later patch, when I add the i915_gem_client_get/put helpers they 
-are already named like that. Hm okay, I also have a naming confusion 
-between struct i915_drm_client and i915_gem_client_get/put(). :)
+Np. Maybe next year though. :)
 
 Regards,
 
