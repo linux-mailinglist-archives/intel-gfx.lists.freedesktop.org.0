@@ -1,32 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E00621278B0
-	for <lists+intel-gfx@lfdr.de>; Fri, 20 Dec 2019 11:00:30 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D8041278C3
+	for <lists+intel-gfx@lfdr.de>; Fri, 20 Dec 2019 11:05:21 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9A03289E9E;
-	Fri, 20 Dec 2019 10:00:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 856276E092;
+	Fri, 20 Dec 2019 10:05:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 48E8189DB9;
- Fri, 20 Dec 2019 10:00:27 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 4029EA0099;
- Fri, 20 Dec 2019 10:00:27 +0000 (UTC)
+Received: from us-smtp-1.mimecast.com (us-smtp-delivery-1.mimecast.com
+ [205.139.110.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8EED36E092
+ for <intel-gfx@lists.freedesktop.org>; Fri, 20 Dec 2019 10:05:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1576836317;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=Mq4W5IzJwojaZjAtCtoEEkuNP+kOpC0iTItiA1Z5Xxs=;
+ b=bUdc5Wkq3boPZkVxzlM5ojSAG9Hku5wUzYu/3NSRKwWf6obRNJqh6yZ6J1i1qUXv35IqGD
+ siujBKpLr6Bm0dlq+ACMu4z2cOnXSrw6gRc2J+66ixOasdT1h4lv96usiaYtQ1qqBRfUba
+ KP+i73ZPhj0dbOB/R/1lZVVixzqZPxA=
+Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
+ [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-200-aAZosCDSOZu0JCWXq3g-Dw-1; Fri, 20 Dec 2019 05:05:13 -0500
+X-MC-Unique: aAZosCDSOZu0JCWXq3g-Dw-1
+Received: from smtp.corp.redhat.com (int-mx03.intmail.prod.int.phx2.redhat.com
+ [10.5.11.13])
+ (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+ (No client certificate requested)
+ by mimecast-mx01.redhat.com (Postfix) with ESMTPS id F40171089B82;
+ Fri, 20 Dec 2019 10:05:11 +0000 (UTC)
+Received: from localhost.localdomain (ovpn-12-202.pek2.redhat.com
+ [10.72.12.202])
+ by smtp.corp.redhat.com (Postfix) with ESMTP id C4E9D7D9D9;
+ Fri, 20 Dec 2019 10:05:04 +0000 (UTC)
+To: Lyude Paul <lyude@redhat.com>, intel-gfx@lists.freedesktop.org
+References: <20191122231616.2574-2-lyude@redhat.com>
+From: Perr Yuan <pyuan@redhat.com>
+Message-ID: <1fa2a82f-6b76-943d-56a0-9bf8623ab68e@redhat.com>
+Date: Fri, 20 Dec 2019 05:05:02 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.3.0
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Rajat Jain" <rajatja@google.com>
-Date: Fri, 20 Dec 2019 10:00:27 -0000
-Message-ID: <157683602725.9210.11688197971714665069@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20191217200829.120993-1-rajatja@google.com>
-In-Reply-To: <20191217200829.120993-1-rajatja@google.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLklHVDogc3VjY2VzcyBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5Bv4=2C1/3=5D_drm/i915=3A_Move_the_code_to_p?=
- =?utf-8?q?opulate_ACPI_device_ID_into_intel=5Facpi?=
+In-Reply-To: <20191122231616.2574-2-lyude@redhat.com>
+Content-Language: en-US
+X-Scanned-By: MIMEDefang 2.79 on 10.5.11.13
+Subject: Re: [Intel-gfx] [1/5] drm/i915: Fix eDP DPCD aux max backlight
+ calculations
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,289 +62,542 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
+Cc: David Airlie <airlied@linux.ie>, Furquan Shaikh <furquan@google.com>,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On 11/22/19 6:15 PM, Lyude Paul wrote:
+> Max backlight value for the panel was being calculated using byte
+> count i.e. 0xffff if 2 bytes are supported for backlight brightness
+> and 0xff if 1 byte is supported. However, EDP_PWMGEN_BIT_COUNT
+> determines the number of active control bits used for the brightness
+> setting. Thus, even if the panel uses 2 byte setting, it might not use
+> all the control bits. Thus, max backlight should be set based on the
+> value of EDP_PWMGEN_BIT_COUNT instead of assuming 65535 or 255.
+> 
+> Additionally, EDP_PWMGEN_BIT_COUNT was being updated based on the VBT
+> frequency which results in a different max backlight value. Thus,
+> setting of EDP_PWMGEN_BIT_COUNT is moved to setup phase instead of
+> enable so that max backlight can be calculated correctly. Only the
+> frequency divider is set during the enable phase using the value of
+> EDP_PWMGEN_BIT_COUNT.
+> 
+> This is based off the original patch series from Furquan Shaikh
+> <furquan@google.com>:
+> 
+> https://patchwork.freedesktop.org/patch/317255/?series=62326&rev=3
+> 
+> Changes since original patch:
+> * Remove unused intel_dp variable in intel_dp_aux_setup_backlight()
+> * Fix checkpatch issues
+> * Make sure that we rewrite the pwmgen bit count whenever we bring the
+>    panel out of D3 mode
+> 
+> Cc: Furquan Shaikh <furquan@google.com>
+> Signed-off-by: Lyude Paul <lyude@redhat.com>
+> ---
+>   .../drm/i915/display/intel_display_types.h    |   3 +
+>   .../drm/i915/display/intel_dp_aux_backlight.c | 139 ++++++++++++------
+>   2 files changed, 95 insertions(+), 47 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+> index 83ea04149b77..2a8d8cae638e 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> @@ -214,6 +214,9 @@ struct intel_panel {
+>   		u8 controller;		/* bxt+ only */
+>   		struct pwm_device *pwm;
+>   
+> +		/* DPCD backlight */
+> +		u8 pwmgen_bit_count;
+> +
+>   		struct backlight_device *device;
+>   
+>   		/* Connector and platform specific backlight functions */
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
+> index 020422da2ae2..fad470553cf9 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
+> @@ -111,61 +111,28 @@ static bool intel_dp_aux_set_pwm_freq(struct intel_connector *connector)
+>   {
+>   	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
+>   	struct intel_dp *intel_dp = enc_to_intel_dp(&connector->encoder->base);
+> -	int freq, fxp, fxp_min, fxp_max, fxp_actual, f = 1;
+> -	u8 pn, pn_min, pn_max;
+> +	const u8 pn = connector->panel.backlight.pwmgen_bit_count;
+> +	int freq, fxp, f, fxp_actual, fxp_min, fxp_max;
+>   
+> -	/* Find desired value of (F x P)
+> -	 * Note that, if F x P is out of supported range, the maximum value or
+> -	 * minimum value will applied automatically. So no need to check that.
+> -	 */
+>   	freq = dev_priv->vbt.backlight.pwm_freq_hz;
+> -	DRM_DEBUG_KMS("VBT defined backlight frequency %u Hz\n", freq);
+>   	if (!freq) {
+>   		DRM_DEBUG_KMS("Use panel default backlight frequency\n");
+>   		return false;
+>   	}
+>   
+>   	fxp = DIV_ROUND_CLOSEST(KHz(DP_EDP_BACKLIGHT_FREQ_BASE_KHZ), freq);
+> +	f = clamp(DIV_ROUND_CLOSEST(fxp, 1 << pn), 1, 255);
+> +	fxp_actual = f << pn;
+>   
+> -	/* Use highest possible value of Pn for more granularity of brightness
+> -	 * adjustment while satifying the conditions below.
+> -	 * - Pn is in the range of Pn_min and Pn_max
+> -	 * - F is in the range of 1 and 255
+> -	 * - FxP is within 25% of desired value.
+> -	 *   Note: 25% is arbitrary value and may need some tweak.
+> -	 */
+> -	if (drm_dp_dpcd_readb(&intel_dp->aux,
+> -			       DP_EDP_PWMGEN_BIT_COUNT_CAP_MIN, &pn_min) != 1) {
+> -		DRM_DEBUG_KMS("Failed to read pwmgen bit count cap min\n");
+> -		return false;
+> -	}
+> -	if (drm_dp_dpcd_readb(&intel_dp->aux,
+> -			       DP_EDP_PWMGEN_BIT_COUNT_CAP_MAX, &pn_max) != 1) {
+> -		DRM_DEBUG_KMS("Failed to read pwmgen bit count cap max\n");
+> -		return false;
+> -	}
+> -	pn_min &= DP_EDP_PWMGEN_BIT_COUNT_MASK;
+> -	pn_max &= DP_EDP_PWMGEN_BIT_COUNT_MASK;
+> -
+> +	/* Ensure frequency is within 25% of desired value */
+>   	fxp_min = DIV_ROUND_CLOSEST(fxp * 3, 4);
+>   	fxp_max = DIV_ROUND_CLOSEST(fxp * 5, 4);
+> -	if (fxp_min < (1 << pn_min) || (255 << pn_max) < fxp_max) {
+> -		DRM_DEBUG_KMS("VBT defined backlight frequency out of range\n");
+> -		return false;
+> -	}
+> -
+> -	for (pn = pn_max; pn >= pn_min; pn--) {
+> -		f = clamp(DIV_ROUND_CLOSEST(fxp, 1 << pn), 1, 255);
+> -		fxp_actual = f << pn;
+> -		if (fxp_min <= fxp_actual && fxp_actual <= fxp_max)
+> -			break;
+> -	}
+>   
+> -	if (drm_dp_dpcd_writeb(&intel_dp->aux,
+> -			       DP_EDP_PWMGEN_BIT_COUNT, pn) < 0) {
+> -		DRM_DEBUG_KMS("Failed to write aux pwmgen bit count\n");
+> +	if (fxp_min > fxp_actual || fxp_actual > fxp_max) {
+> +		DRM_DEBUG_KMS("Actual frequency out of range\n");
+>   		return false;
+>   	}
+> +
+>   	if (drm_dp_dpcd_writeb(&intel_dp->aux,
+>   			       DP_EDP_BACKLIGHT_FREQ_SET, (u8) f) < 0) {
+>   		DRM_DEBUG_KMS("Failed to write aux backlight freq\n");
+> @@ -178,6 +145,7 @@ static void intel_dp_aux_enable_backlight(const struct intel_crtc_state *crtc_st
+>   					  const struct drm_connector_state *conn_state)
+>   {
+>   	struct intel_connector *connector = to_intel_connector(conn_state->connector);
+> +	struct intel_panel *panel = &connector->panel;
+>   	struct intel_dp *intel_dp = enc_to_intel_dp(&connector->encoder->base);
+>   	u8 dpcd_buf, new_dpcd_buf, edp_backlight_mode;
+>   
+> @@ -197,6 +165,12 @@ static void intel_dp_aux_enable_backlight(const struct intel_crtc_state *crtc_st
+>   	case DP_EDP_BACKLIGHT_CONTROL_MODE_PRODUCT:
+>   		new_dpcd_buf &= ~DP_EDP_BACKLIGHT_CONTROL_MODE_MASK;
+>   		new_dpcd_buf |= DP_EDP_BACKLIGHT_CONTROL_MODE_DPCD;
+> +
+> +		if (drm_dp_dpcd_writeb(&intel_dp->aux,
+> +				       DP_EDP_PWMGEN_BIT_COUNT,
+> +				       panel->backlight.pwmgen_bit_count) < 0)
+> +			DRM_DEBUG_KMS("Failed to write aux pwmgen bit count\n");
+> +
+>   		break;
+>   
+>   	/* Do nothing when it is already DPCD mode */
+> @@ -225,20 +199,91 @@ static void intel_dp_aux_disable_backlight(const struct drm_connector_state *old
+>   	set_aux_backlight_enable(enc_to_intel_dp(old_conn_state->best_encoder), false);
+>   }
+>   
+> +static u32 intel_dp_aux_calc_max_backlight(struct intel_connector *connector)
+> +{
+> +	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
+> +	struct intel_dp *intel_dp = enc_to_intel_dp(&connector->encoder->base);
+> +	struct intel_panel *panel = &connector->panel;
+> +	u32 max_backlight = 0;
+> +	int freq, fxp, fxp_min, fxp_max, fxp_actual, f = 1;
+> +	u8 pn, pn_min, pn_max;
+> +
+> +	if (drm_dp_dpcd_readb(&intel_dp->aux, DP_EDP_PWMGEN_BIT_COUNT, &pn)) {
+> +		pn &= DP_EDP_PWMGEN_BIT_COUNT_MASK;
+> +		max_backlight = (1 << pn) - 1;
+> +	}
+> +
+> +	/* Find desired value of (F x P)
+> +	 * Note that, if F x P is out of supported range, the maximum value or
+> +	 * minimum value will applied automatically. So no need to check that.
+> +	 */
+> +	freq = dev_priv->vbt.backlight.pwm_freq_hz;
+> +	DRM_DEBUG_KMS("VBT defined backlight frequency %u Hz\n", freq);
+> +	if (!freq) {
+> +		DRM_DEBUG_KMS("Use panel default backlight frequency\n");
+> +		return max_backlight;
+> +	}
+> +
+> +	fxp = DIV_ROUND_CLOSEST(KHz(DP_EDP_BACKLIGHT_FREQ_BASE_KHZ), freq);
+> +
+> +	/* Use highest possible value of Pn for more granularity of brightness
+> +	 * adjustment while satifying the conditions below.
+> +	 * - Pn is in the range of Pn_min and Pn_max
+> +	 * - F is in the range of 1 and 255
+> +	 * - FxP is within 25% of desired value.
+> +	 *   Note: 25% is arbitrary value and may need some tweak.
+> +	 */
+> +	if (drm_dp_dpcd_readb(&intel_dp->aux,
+> +			      DP_EDP_PWMGEN_BIT_COUNT_CAP_MIN, &pn_min) != 1) {
+> +		DRM_DEBUG_KMS("Failed to read pwmgen bit count cap min\n");
+> +		return max_backlight;
+> +	}
+> +	if (drm_dp_dpcd_readb(&intel_dp->aux,
+> +			      DP_EDP_PWMGEN_BIT_COUNT_CAP_MAX, &pn_max) != 1) {
+> +		DRM_DEBUG_KMS("Failed to read pwmgen bit count cap max\n");
+> +		return max_backlight;
+> +	}
+> +	pn_min &= DP_EDP_PWMGEN_BIT_COUNT_MASK;
+> +	pn_max &= DP_EDP_PWMGEN_BIT_COUNT_MASK;
+> +
+> +	fxp_min = DIV_ROUND_CLOSEST(fxp * 3, 4);
+> +	fxp_max = DIV_ROUND_CLOSEST(fxp * 5, 4);
+> +	if (fxp_min < (1 << pn_min) || (255 << pn_max) < fxp_max) {
+> +		DRM_DEBUG_KMS("VBT defined backlight frequency out of range\n");
+> +		return max_backlight;
+> +	}
+> +
+> +	for (pn = pn_max; pn >= pn_min; pn--) {
+> +		f = clamp(DIV_ROUND_CLOSEST(fxp, 1 << pn), 1, 255);
+> +		fxp_actual = f << pn;
+> +		if (fxp_min <= fxp_actual && fxp_actual <= fxp_max)
+> +			break;
+> +	}
+> +
+> +	DRM_DEBUG_KMS("Using eDP pwmgen bit count of %d\n", pn);
+> +	if (drm_dp_dpcd_writeb(&intel_dp->aux,
+> +			       DP_EDP_PWMGEN_BIT_COUNT, pn) < 0) {
+> +		DRM_DEBUG_KMS("Failed to write aux pwmgen bit count\n");
+> +		return max_backlight;
+> +	}
+> +	panel->backlight.pwmgen_bit_count = pn;
+> +
+> +	max_backlight = (1 << pn) - 1;
+> +
+> +	return max_backlight;
+> +}
+> +
+>   static int intel_dp_aux_setup_backlight(struct intel_connector *connector,
+>   					enum pipe pipe)
+>   {
+> -	struct intel_dp *intel_dp = enc_to_intel_dp(&connector->encoder->base);
+>   	struct intel_panel *panel = &connector->panel;
+>   
+> -	if (intel_dp->edp_dpcd[2] & DP_EDP_BACKLIGHT_BRIGHTNESS_BYTE_COUNT)
+> -		panel->backlight.max = 0xFFFF;
+> -	else
+> -		panel->backlight.max = 0xFF;
+> +	panel->backlight.max = intel_dp_aux_calc_max_backlight(connector);
+> +	if (!panel->backlight.max)
+> +		return -ENODEV;
+>   
+>   	panel->backlight.min = 0;
+>   	panel->backlight.level = intel_dp_aux_get_backlight(connector);
+> -
+>   	panel->backlight.enabled = panel->backlight.level != 0;
+>   
+>   	return 0;
+> 
+>  From patchwork Tue Dec  3 22:42:35 2019
+> Content-Type: text/plain; charset="utf-8"
+> MIME-Version: 1.0
+> Content-Transfer-Encoding: 7bit
+> Subject: [v2] drm/i915: Assume 100% brightness when not in DPCD control mode
+> From: Lyude Paul <lyude@redhat.com>
+> X-Patchwork-Id: 343592
+> Message-Id: <20191203224236.230930-1-lyude@redhat.com>
+> To: intel-gfx@lists.freedesktop.org
+> Cc: David Airlie <airlied@linux.ie>, linux-kernel@vger.kernel.org,
+>   dri-devel@lists.freedesktop.org
+> Date: Tue,  3 Dec 2019 17:42:35 -0500
+> 
+> Currently we always determine the initial panel brightness level by
+> simply reading the value from DP_EDP_BACKLIGHT_BRIGHTNESS_MSB/LSB. This
+> seems wrong though, because if the panel is not currently in DPCD
+> control mode there's not really any reason why there would be any
+> brightness value programmed in the first place.
+> 
+> This appears to be the case on the Lenovo ThinkPad X1 Extreme 2nd
+> Generation, where the default value in these registers is always 0 on
+> boot despite the fact the panel runs at max brightness by default.
+> Getting the initial brightness value correct here is important as well,
+> since the panel on this laptop doesn't behave well if it's ever put into
+> DPCD control mode while the brightness level is programmed to 0.
+> 
+> So, let's fix this by checking what the current backlight control mode
+> is before reading the brightness level. If it's in DPCD control mode, we
+> return the programmed brightness level. Otherwise we assume 100%
+> brightness and return the highest possible brightness level. This also
+> prevents us from accidentally programming a brightness level of 0.
+> 
+> This is one of the many fixes that gets backlight controls working on
+> the ThinkPad X1 Extreme 2nd Generation with optional 4K AMOLED screen.
+> 
+> Changes since v1:
+> * s/DP_EDP_DISPLAY_CONTROL_REGISTER/DP_EDP_BACKLIGHT_MODE_SET_REGISTER/
+>    - Jani
+> 
+> Signed-off-by: Lyude Paul <lyude@redhat.com>
+> ---
+>   .../drm/i915/display/intel_dp_aux_backlight.c   | 17 +++++++++++++++++
+>   1 file changed, 17 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
+> index fad470553cf9..4d467e7d29eb 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
+> @@ -59,8 +59,25 @@ static u32 intel_dp_aux_get_backlight(struct intel_connector *connector)
+>   {
+>   	struct intel_dp *intel_dp = enc_to_intel_dp(&connector->encoder->base);
+>   	u8 read_val[2] = { 0x0 };
+> +	u8 mode_reg;
+>   	u16 level = 0;
+>   
+> +	if (drm_dp_dpcd_readb(&intel_dp->aux,
+> +			      DP_EDP_BACKLIGHT_MODE_SET_REGISTER,
+> +			      &mode_reg) != 1) {
+> +		DRM_DEBUG_KMS("Failed to read the DPCD register 0x%x\n",
+> +			      DP_EDP_BACKLIGHT_MODE_SET_REGISTER);
+> +		return 0;
+> +	}
+> +
+> +	/*
+> +	 * If we're not in DPCD control mode yet, the programmed brightness
+> +	 * value is meaningless and we should assume max brightness
+> +	 */
+> +	if ((mode_reg & DP_EDP_BACKLIGHT_CONTROL_MODE_MASK) !=
+> +	    DP_EDP_BACKLIGHT_CONTROL_MODE_DPCD)
+> +		return connector->panel.backlight.max;
+> +
+>   	if (drm_dp_dpcd_read(&intel_dp->aux, DP_EDP_BACKLIGHT_BRIGHTNESS_MSB,
+>   			     &read_val, sizeof(read_val)) < 0) {
+>   		DRM_DEBUG_KMS("Failed to read DPCD register 0x%x\n",
+> 
+>  From patchwork Fri Nov 22 23:16:01 2019
+> Content-Type: text/plain; charset="utf-8"
+> MIME-Version: 1.0
+> Content-Transfer-Encoding: 7bit
+> Subject: [3/5] drm/i915: Fix DPCD register order in intel_dp_aux_enable_backlight()
+> From: Lyude Paul <lyude@redhat.com>
+> X-Patchwork-Id: 342164
+> Message-Id: <20191122231616.2574-4-lyude@redhat.com>
+> To: intel-gfx@lists.freedesktop.org
+> Cc: David Airlie <airlied@linux.ie>, linux-kernel@vger.kernel.org,
+>   dri-devel@lists.freedesktop.org
+> Date: Fri, 22 Nov 2019 18:16:01 -0500
+> 
+> For eDP panels, it appears it's expected that so long as the panel is in
+> DPCD control mode that the brightness value is never set to 0. Instead,
+> if the desired effect is to set the panel's backlight to 0 we're
+> expected to simply turn off the backlight through the
+> DP_EDP_DISPLAY_CONTROL_REGISTER.
+> 
+> We already do the latter correctly in intel_dp_aux_disable_backlight().
+> But, we make the mistake of writing the DPCD registers in the wrong
+> order when enabling the backlight in intel_dp_aux_enable_backlight()
+> since we currently enable the backlight through
+> DP_EDP_DISPLAY_CONTROL_REGISTER before writing the brightness level. On
+> the X1 Extreme 2nd Generation, this appears to have the potential of
+> confusing the panel in such a way that further attempts to set the
+> brightness don't actually change the backlight as expected and leave it
+> off. Presumably, this happens because the incorrect register writing
+> order briefly leaves the panel with DPCD mode enabled and a 0 brightness
+> level set.
+> 
+> So, reverse the order we write the DPCD registers when enabling the
+> panel backlight so that we write the brightness value first, and enable
+> the backlight second. This fix appears to be the final bit needed to get
+> the backlight on the ThinkPad X1 Extreme 2nd Generation's AMOLED screen
+> working.
+> 
+> Signed-off-by: Lyude Paul <lyude@redhat.com>
+> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+> ---
+>   drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c | 3 ++-
+>   1 file changed, 2 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
+> index 0bf8772bc7bb..87b59db9ffe3 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
+> @@ -205,8 +205,9 @@ static void intel_dp_aux_enable_backlight(const struct intel_crtc_state *crtc_st
+>   		}
+>   	}
+>   
+> +	intel_dp_aux_set_backlight(conn_state,
+> +				   connector->panel.backlight.level);
+>   	set_aux_backlight_enable(intel_dp, true);
+> -	intel_dp_aux_set_backlight(conn_state, connector->panel.backlight.level);
+>   }
+>   
+>   static void intel_dp_aux_disable_backlight(const struct drm_connector_state *old_conn_state)
+> 
+>  From patchwork Fri Nov 22 23:16:02 2019
+> Content-Type: text/plain; charset="utf-8"
+> MIME-Version: 1.0
+> Content-Transfer-Encoding: 7bit
+> Subject: [4/5] drm/i915: Auto detect DPCD backlight support by default
+> From: Lyude Paul <lyude@redhat.com>
+> X-Patchwork-Id: 342165
+> Message-Id: <20191122231616.2574-5-lyude@redhat.com>
+> To: intel-gfx@lists.freedesktop.org
+> Cc: David Airlie <airlied@linux.ie>, linux-kernel@vger.kernel.org,
+>   dri-devel@lists.freedesktop.org
+> Date: Fri, 22 Nov 2019 18:16:02 -0500
+> 
+> Turns out we actually already have some companies, such as Lenovo,
+> shipping machines with AMOLED screens that don't allow controlling the
+> backlight through the usual PWM interface and only allow controlling it
+> through the standard EDP DPCD interface. One example of one of these
+> laptops is the X1 Extreme 2nd Generation.
+> 
+> Since we've got systems that need this turned on by default now to have
+> backlight controls working out of the box, let's start auto-detecting it
+> for systems by default based on what the VBT tells us. We do this by
+> changing the default value for the enable_dpcd_backlight module param
+> from 0 to -1.
+> 
+> Signed-off-by: Lyude Paul <lyude@redhat.com>
+> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+> ---
+>   drivers/gpu/drm/i915/i915_params.c | 2 +-
+>   drivers/gpu/drm/i915/i915_params.h | 2 +-
+>   2 files changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/i915_params.c b/drivers/gpu/drm/i915/i915_params.c
+> index 1dd1f3652795..31eed60c167e 100644
+> --- a/drivers/gpu/drm/i915/i915_params.c
+> +++ b/drivers/gpu/drm/i915/i915_params.c
+> @@ -172,7 +172,7 @@ i915_param_named_unsafe(inject_probe_failure, uint, 0400,
+>   
+>   i915_param_named(enable_dpcd_backlight, int, 0600,
+>   	"Enable support for DPCD backlight control"
+> -	"(-1=use per-VBT LFP backlight type setting, 0=disabled [default], 1=enabled)");
+> +	"(-1=use per-VBT LFP backlight type setting [default], 0=disabled, 1=enabled)");
+>   
+>   #if IS_ENABLED(CONFIG_DRM_I915_GVT)
+>   i915_param_named(enable_gvt, bool, 0400,
+> diff --git a/drivers/gpu/drm/i915/i915_params.h b/drivers/gpu/drm/i915/i915_params.h
+> index 31b88f297fbc..a79d0867f77a 100644
+> --- a/drivers/gpu/drm/i915/i915_params.h
+> +++ b/drivers/gpu/drm/i915/i915_params.h
+> @@ -64,7 +64,7 @@ struct drm_printer;
+>   	param(int, reset, 3) \
+>   	param(unsigned int, inject_probe_failure, 0) \
+>   	param(int, fastboot, -1) \
+> -	param(int, enable_dpcd_backlight, 0) \
+> +	param(int, enable_dpcd_backlight, -1) \
+>   	param(char *, force_probe, CONFIG_DRM_I915_FORCE_PROBE) \
+>   	param(unsigned long, fake_lmem_start, 0) \
+>   	/* leave bools at the end to not create holes */ \
+> 
+>  From patchwork Fri Nov 22 23:16:03 2019
+> Content-Type: text/plain; charset="utf-8"
+> MIME-Version: 1.0
+> Content-Transfer-Encoding: 7bit
+> Subject: [5/5] drm/i915: Force DPCD backlight mode on X1 Extreme 2nd Gen 4K AMOLED panel
+> From: Lyude Paul <lyude@redhat.com>
+> X-Patchwork-Id: 342166
+> Message-Id: <20191122231616.2574-6-lyude@redhat.com>
+> To: intel-gfx@lists.freedesktop.org
+> Cc: David Airlie <airlied@linux.ie>, dri-devel@lists.freedesktop.org,
+>   linux-kernel@vger.kernel.org, Maxime Ripard <mripard@kernel.org>
+> Date: Fri, 22 Nov 2019 18:16:03 -0500
+> 
+> Annoyingly, the VBT on the ThinkPad X1 Extreme 2nd Gen indicates that
+> the system uses plain PWM based backlight controls, when in reality the
+> only backlight controls that work are the standard VESA eDP DPCD
+> backlight controls.
+> 
+> Honestly, this makes me wonder how many other systems have these issues
+> or lie about this in their VBT. Not sure we have any good way of finding
+> out until panels like this become more common place in the laptop
+> market. For now, just add a DRM DP quirk to indicate that this panel is
+> telling the truth and is being a good LCD.
+> 
+> Bugzilla: https://bugs.freedesktop.org/show_bug.cgi?id=112376
+> Signed-off-by: Lyude Paul <lyude@redhat.com>
+> Acked-by: Jani Nikula <jani.nikula@intel.com>
+> ---
+>   drivers/gpu/drm/drm_dp_helper.c                       |  4 ++++
+>   drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c | 10 ++++++++--
+>   include/drm/drm_dp_helper.h                           |  8 ++++++++
+>   3 files changed, 20 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/drm_dp_helper.c b/drivers/gpu/drm/drm_dp_helper.c
+> index 2c7870aef469..ec7061e3a99b 100644
+> --- a/drivers/gpu/drm/drm_dp_helper.c
+> +++ b/drivers/gpu/drm/drm_dp_helper.c
+> @@ -1155,6 +1155,10 @@ static const struct dpcd_quirk dpcd_quirk_list[] = {
+>   	{ OUI(0x00, 0x10, 0xfa), DEVICE_ID_ANY, false, BIT(DP_DPCD_QUIRK_NO_PSR) },
+>   	/* CH7511 seems to leave SINK_COUNT zeroed */
+>   	{ OUI(0x00, 0x00, 0x00), DEVICE_ID('C', 'H', '7', '5', '1', '1'), false, BIT(DP_DPCD_QUIRK_NO_SINK_COUNT) },
+> +	/* Optional 4K AMOLED panel in the ThinkPad X1 Extreme 2nd Generation
+> +	 * only supports DPCD backlight controls, despite advertising otherwise
+> +	 */
+> +	{ OUI(0xba, 0x41, 0x59), DEVICE_ID_ANY, false, BIT(DP_DPCD_QUIRK_FORCE_DPCD_BACKLIGHT) },
+>   };
+>   
+>   #undef OUI
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
+> index 87b59db9ffe3..3d61260b08ad 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
+> @@ -325,11 +325,17 @@ intel_dp_aux_display_control_capable(struct intel_connector *connector)
+>   int intel_dp_aux_init_backlight_funcs(struct intel_connector *intel_connector)
+>   {
+>   	struct intel_panel *panel = &intel_connector->panel;
+> -	struct drm_i915_private *dev_priv = to_i915(intel_connector->base.dev);
+> +	struct intel_dp *intel_dp =
+> +		enc_to_intel_dp(&intel_connector->encoder->base);
+> +	struct drm_i915_private *dev_priv =
+> +		to_i915(intel_connector->base.dev);
+>   
+>   	if (i915_modparams.enable_dpcd_backlight == 0 ||
+>   	    (i915_modparams.enable_dpcd_backlight == -1 &&
+> -	    dev_priv->vbt.backlight.type != INTEL_BACKLIGHT_VESA_EDP_AUX_INTERFACE))
+> +	     dev_priv->vbt.backlight.type !=
+> +		     INTEL_BACKLIGHT_VESA_EDP_AUX_INTERFACE &&
+> +	     !drm_dp_has_quirk(&intel_dp->desc,
+> +			       DP_DPCD_QUIRK_FORCE_DPCD_BACKLIGHT)))
+>   		return -ENODEV;
+>   
+>   	if (!intel_dp_aux_display_control_capable(intel_connector))
+> diff --git a/include/drm/drm_dp_helper.h b/include/drm/drm_dp_helper.h
+> index 51ecb5112ef8..a444209cd54b 100644
+> --- a/include/drm/drm_dp_helper.h
+> +++ b/include/drm/drm_dp_helper.h
+> @@ -1520,6 +1520,14 @@ enum drm_dp_quirk {
+>   	 * The driver should ignore SINK_COUNT during detection.
+>   	 */
+>   	DP_DPCD_QUIRK_NO_SINK_COUNT,
+> +	/**
+> +	 * @DP_DPCD_QUIRK_FORCE_DPCD_BACKLIGHT:
+> +	 *
+> +	 * The device is telling the truth when it says that it uses DPCD
+> +	 * backlight controls, even if the system's firmware disagrees.
+> +	 * The driver should honor the DPCD backlight capabilities advertised.
+> +	 */
+> +	DP_DPCD_QUIRK_FORCE_DPCD_BACKLIGHT,
+>   };
+>   
+>   /**
+> 
+Tested-by:Perry Yuan <pyuan@redhat.com>
 
-Series: series starting with [v4,1/3] drm/i915: Move the code to populate ACPI device ID into intel_acpi
-URL   : https://patchwork.freedesktop.org/series/71135/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_7599_full -> Patchwork_15833_full
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_15833_full that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_sync@basic-store-all:
-    - shard-tglb:         [PASS][1] -> [INCOMPLETE][2] ([i915#472])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7599/shard-tglb2/igt@gem_sync@basic-store-all.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15833/shard-tglb4/igt@gem_sync@basic-store-all.html
-
-  * igt@gem_workarounds@suspend-resume-fd:
-    - shard-kbl:          [PASS][3] -> [DMESG-WARN][4] ([i915#180]) +5 similar issues
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7599/shard-kbl7/igt@gem_workarounds@suspend-resume-fd.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15833/shard-kbl3/igt@gem_workarounds@suspend-resume-fd.html
-
-  * igt@i915_selftest@live_requests:
-    - shard-tglb:         [PASS][5] -> [INCOMPLETE][6] ([fdo#112057])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7599/shard-tglb4/igt@i915_selftest@live_requests.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15833/shard-tglb1/igt@i915_selftest@live_requests.html
-
-  * igt@kms_ccs@pipe-a-crc-primary-rotation-180:
-    - shard-skl:          [PASS][7] -> [INCOMPLETE][8] ([i915#667])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7599/shard-skl2/igt@kms_ccs@pipe-a-crc-primary-rotation-180.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15833/shard-skl6/igt@kms_ccs@pipe-a-crc-primary-rotation-180.html
-
-  * igt@kms_color@pipe-a-ctm-0-25:
-    - shard-skl:          [PASS][9] -> [DMESG-WARN][10] ([i915#109])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7599/shard-skl3/igt@kms_color@pipe-a-ctm-0-25.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15833/shard-skl1/igt@kms_color@pipe-a-ctm-0-25.html
-
-  * igt@kms_cursor_crc@pipe-a-cursor-128x128-onscreen:
-    - shard-skl:          [PASS][11] -> [FAIL][12] ([i915#54])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7599/shard-skl3/igt@kms_cursor_crc@pipe-a-cursor-128x128-onscreen.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15833/shard-skl2/igt@kms_cursor_crc@pipe-a-cursor-128x128-onscreen.html
-
-  * igt@kms_cursor_crc@pipe-b-cursor-suspend:
-    - shard-skl:          [PASS][13] -> [INCOMPLETE][14] ([i915#300])
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7599/shard-skl6/igt@kms_cursor_crc@pipe-b-cursor-suspend.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15833/shard-skl10/igt@kms_cursor_crc@pipe-b-cursor-suspend.html
-
-  * igt@kms_cursor_crc@pipe-d-cursor-suspend:
-    - shard-tglb:         [PASS][15] -> [INCOMPLETE][16] ([i915#460])
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7599/shard-tglb5/igt@kms_cursor_crc@pipe-d-cursor-suspend.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15833/shard-tglb5/igt@kms_cursor_crc@pipe-d-cursor-suspend.html
-
-  * igt@kms_cursor_legacy@flip-vs-cursor-atomic:
-    - shard-skl:          [PASS][17] -> [FAIL][18] ([IGT#5])
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7599/shard-skl2/igt@kms_cursor_legacy@flip-vs-cursor-atomic.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15833/shard-skl3/igt@kms_cursor_legacy@flip-vs-cursor-atomic.html
-
-  * igt@kms_flip@flip-vs-expired-vblank:
-    - shard-skl:          [PASS][19] -> [FAIL][20] ([i915#79])
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7599/shard-skl5/igt@kms_flip@flip-vs-expired-vblank.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15833/shard-skl4/igt@kms_flip@flip-vs-expired-vblank.html
-
-  * igt@kms_flip@flip-vs-expired-vblank-interruptible:
-    - shard-glk:          [PASS][21] -> [FAIL][22] ([i915#79])
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7599/shard-glk7/igt@kms_flip@flip-vs-expired-vblank-interruptible.html
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15833/shard-glk9/igt@kms_flip@flip-vs-expired-vblank-interruptible.html
-
-  * igt@kms_flip@flip-vs-suspend-interruptible:
-    - shard-skl:          [PASS][23] -> [INCOMPLETE][24] ([i915#221])
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7599/shard-skl4/igt@kms_flip@flip-vs-suspend-interruptible.html
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15833/shard-skl7/igt@kms_flip@flip-vs-suspend-interruptible.html
-
-  * igt@kms_pipe_crc_basic@suspend-read-crc-pipe-c:
-    - shard-kbl:          [PASS][25] -> [INCOMPLETE][26] ([fdo#103665])
-   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7599/shard-kbl7/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-c.html
-   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15833/shard-kbl1/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-c.html
-
-  * igt@kms_plane@plane-panning-bottom-right-suspend-pipe-b-planes:
-    - shard-apl:          [PASS][27] -> [DMESG-WARN][28] ([i915#180])
-   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7599/shard-apl7/igt@kms_plane@plane-panning-bottom-right-suspend-pipe-b-planes.html
-   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15833/shard-apl7/igt@kms_plane@plane-panning-bottom-right-suspend-pipe-b-planes.html
-    - shard-tglb:         [PASS][29] -> [INCOMPLETE][30] ([i915#456] / [i915#460]) +2 similar issues
-   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7599/shard-tglb9/igt@kms_plane@plane-panning-bottom-right-suspend-pipe-b-planes.html
-   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15833/shard-tglb5/igt@kms_plane@plane-panning-bottom-right-suspend-pipe-b-planes.html
-
-  * igt@kms_plane_alpha_blend@pipe-c-coverage-7efc:
-    - shard-skl:          [PASS][31] -> [FAIL][32] ([fdo#108145] / [i915#265])
-   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7599/shard-skl9/igt@kms_plane_alpha_blend@pipe-c-coverage-7efc.html
-   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15833/shard-skl7/igt@kms_plane_alpha_blend@pipe-c-coverage-7efc.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_ctx_isolation@vecs0-s3:
-    - shard-tglb:         [INCOMPLETE][33] ([i915#456]) -> [PASS][34] +2 similar issues
-   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7599/shard-tglb1/igt@gem_ctx_isolation@vecs0-s3.html
-   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15833/shard-tglb9/igt@gem_ctx_isolation@vecs0-s3.html
-
-  * igt@gem_persistent_relocs@forked-interruptible-thrash-inactive:
-    - shard-snb:          [TIMEOUT][35] ([i915#530]) -> [PASS][36]
-   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7599/shard-snb5/igt@gem_persistent_relocs@forked-interruptible-thrash-inactive.html
-   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15833/shard-snb5/igt@gem_persistent_relocs@forked-interruptible-thrash-inactive.html
-
-  * igt@gem_sync@basic-all:
-    - shard-tglb:         [INCOMPLETE][37] ([i915#470] / [i915#472]) -> [PASS][38]
-   [37]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7599/shard-tglb3/igt@gem_sync@basic-all.html
-   [38]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15833/shard-tglb7/igt@gem_sync@basic-all.html
-
-  * igt@i915_pm_rps@reset:
-    - shard-tglb:         [FAIL][39] ([i915#413]) -> [PASS][40]
-   [39]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7599/shard-tglb9/igt@i915_pm_rps@reset.html
-   [40]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15833/shard-tglb4/igt@i915_pm_rps@reset.html
-
-  * igt@i915_suspend@fence-restore-tiled2untiled:
-    - shard-apl:          [DMESG-WARN][41] ([i915#180]) -> [PASS][42] +2 similar issues
-   [41]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7599/shard-apl6/igt@i915_suspend@fence-restore-tiled2untiled.html
-   [42]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15833/shard-apl4/igt@i915_suspend@fence-restore-tiled2untiled.html
-
-  * igt@kms_cursor_crc@pipe-a-cursor-128x42-sliding:
-    - shard-skl:          [FAIL][43] ([i915#54]) -> [PASS][44] +1 similar issue
-   [43]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7599/shard-skl10/igt@kms_cursor_crc@pipe-a-cursor-128x42-sliding.html
-   [44]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15833/shard-skl6/igt@kms_cursor_crc@pipe-a-cursor-128x42-sliding.html
-
-  * igt@kms_cursor_crc@pipe-b-cursor-128x42-sliding:
-    - shard-hsw:          [DMESG-WARN][45] ([IGT#6]) -> [PASS][46]
-   [45]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7599/shard-hsw6/igt@kms_cursor_crc@pipe-b-cursor-128x42-sliding.html
-   [46]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15833/shard-hsw1/igt@kms_cursor_crc@pipe-b-cursor-128x42-sliding.html
-
-  * igt@kms_draw_crc@draw-method-rgb565-render-ytiled:
-    - shard-skl:          [INCOMPLETE][47] ([i915#646]) -> [PASS][48]
-   [47]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7599/shard-skl10/igt@kms_draw_crc@draw-method-rgb565-render-ytiled.html
-   [48]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15833/shard-skl6/igt@kms_draw_crc@draw-method-rgb565-render-ytiled.html
-
-  * igt@kms_draw_crc@draw-method-xrgb8888-mmap-gtt-xtiled:
-    - shard-skl:          [FAIL][49] ([i915#52] / [i915#54]) -> [PASS][50]
-   [49]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7599/shard-skl9/igt@kms_draw_crc@draw-method-xrgb8888-mmap-gtt-xtiled.html
-   [50]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15833/shard-skl7/igt@kms_draw_crc@draw-method-xrgb8888-mmap-gtt-xtiled.html
-
-  * igt@kms_frontbuffer_tracking@fbc-1p-pri-indfb-multidraw:
-    - shard-tglb:         [FAIL][51] ([i915#49]) -> [PASS][52] +1 similar issue
-   [51]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7599/shard-tglb3/igt@kms_frontbuffer_tracking@fbc-1p-pri-indfb-multidraw.html
-   [52]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15833/shard-tglb4/igt@kms_frontbuffer_tracking@fbc-1p-pri-indfb-multidraw.html
-
-  * igt@kms_frontbuffer_tracking@fbc-1p-primscrn-cur-indfb-move:
-    - shard-tglb:         [INCOMPLETE][53] ([i915#474] / [i915#667]) -> [PASS][54] +1 similar issue
-   [53]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7599/shard-tglb1/igt@kms_frontbuffer_tracking@fbc-1p-primscrn-cur-indfb-move.html
-   [54]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15833/shard-tglb9/igt@kms_frontbuffer_tracking@fbc-1p-primscrn-cur-indfb-move.html
-
-  * igt@kms_frontbuffer_tracking@fbc-suspend:
-    - shard-tglb:         [INCOMPLETE][55] ([i915#456] / [i915#460] / [i915#474]) -> [PASS][56]
-   [55]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7599/shard-tglb7/igt@kms_frontbuffer_tracking@fbc-suspend.html
-   [56]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15833/shard-tglb2/igt@kms_frontbuffer_tracking@fbc-suspend.html
-
-  * igt@kms_frontbuffer_tracking@psr-1p-primscrn-pri-shrfb-draw-pwrite:
-    - shard-skl:          [FAIL][57] ([i915#49]) -> [PASS][58] +1 similar issue
-   [57]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7599/shard-skl9/igt@kms_frontbuffer_tracking@psr-1p-primscrn-pri-shrfb-draw-pwrite.html
-   [58]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15833/shard-skl7/igt@kms_frontbuffer_tracking@psr-1p-primscrn-pri-shrfb-draw-pwrite.html
-
-  * igt@kms_pipe_crc_basic@suspend-read-crc-pipe-b:
-    - shard-tglb:         [INCOMPLETE][59] ([i915#456] / [i915#460]) -> [PASS][60] +3 similar issues
-   [59]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7599/shard-tglb5/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-b.html
-   [60]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15833/shard-tglb9/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-b.html
-
-  * igt@kms_plane@plane-panning-bottom-right-suspend-pipe-b-planes:
-    - shard-kbl:          [DMESG-WARN][61] ([i915#180]) -> [PASS][62] +3 similar issues
-   [61]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7599/shard-kbl6/igt@kms_plane@plane-panning-bottom-right-suspend-pipe-b-planes.html
-   [62]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15833/shard-kbl1/igt@kms_plane@plane-panning-bottom-right-suspend-pipe-b-planes.html
-
-  * igt@kms_plane_alpha_blend@pipe-a-coverage-7efc:
-    - shard-skl:          [FAIL][63] ([fdo#108145]) -> [PASS][64]
-   [63]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7599/shard-skl9/igt@kms_plane_alpha_blend@pipe-a-coverage-7efc.html
-   [64]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15833/shard-skl7/igt@kms_plane_alpha_blend@pipe-a-coverage-7efc.html
-
-  * igt@kms_setmode@basic:
-    - shard-apl:          [FAIL][65] ([i915#31]) -> [PASS][66]
-   [65]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7599/shard-apl1/igt@kms_setmode@basic.html
-   [66]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15833/shard-apl4/igt@kms_setmode@basic.html
-
-  
-#### Warnings ####
-
-  * igt@gem_ctx_isolation@vcs2-nonpriv:
-    - shard-tglb:         [SKIP][67] ([fdo#111912] / [fdo#112080]) -> [SKIP][68] ([fdo#112080])
-   [67]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7599/shard-tglb1/igt@gem_ctx_isolation@vcs2-nonpriv.html
-   [68]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15833/shard-tglb9/igt@gem_ctx_isolation@vcs2-nonpriv.html
-
-  * igt@gem_ctx_isolation@vcs2-nonpriv-switch:
-    - shard-tglb:         [SKIP][69] ([fdo#112080]) -> [SKIP][70] ([fdo#111912] / [fdo#112080])
-   [69]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7599/shard-tglb9/igt@gem_ctx_isolation@vcs2-nonpriv-switch.html
-   [70]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15833/shard-tglb7/igt@gem_ctx_isolation@vcs2-nonpriv-switch.html
-
-  * igt@kms_atomic_transition@6x-modeset-transitions-nonblocking:
-    - shard-tglb:         [SKIP][71] ([fdo#112021]) -> [SKIP][72] ([fdo#112016] / [fdo#112021])
-   [71]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7599/shard-tglb9/igt@kms_atomic_transition@6x-modeset-transitions-nonblocking.html
-   [72]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15833/shard-tglb7/igt@kms_atomic_transition@6x-modeset-transitions-nonblocking.html
-
-  * igt@kms_plane@pixel-format-pipe-b-planes:
-    - shard-skl:          [INCOMPLETE][73] ([i915#648]) -> [INCOMPLETE][74] ([i915#648] / [i915#667])
-   [73]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7599/shard-skl1/igt@kms_plane@pixel-format-pipe-b-planes.html
-   [74]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15833/shard-skl9/igt@kms_plane@pixel-format-pipe-b-planes.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [IGT#5]: https://gitlab.freedesktop.org/drm/igt-gpu-tools/issues/5
-  [IGT#6]: https://gitlab.freedesktop.org/drm/igt-gpu-tools/issues/6
-  [fdo#103665]: https://bugs.freedesktop.org/show_bug.cgi?id=103665
-  [fdo#108145]: https://bugs.freedesktop.org/show_bug.cgi?id=108145
-  [fdo#111912]: https://bugs.freedesktop.org/show_bug.cgi?id=111912
-  [fdo#112016]: https://bugs.freedesktop.org/show_bug.cgi?id=112016
-  [fdo#112021]: https://bugs.freedesktop.org/show_bug.cgi?id=112021
-  [fdo#112057]: https://bugs.freedesktop.org/show_bug.cgi?id=112057
-  [fdo#112080]: https://bugs.freedesktop.org/show_bug.cgi?id=112080
-  [i915#109]: https://gitlab.freedesktop.org/drm/intel/issues/109
-  [i915#180]: https://gitlab.freedesktop.org/drm/intel/issues/180
-  [i915#221]: https://gitlab.freedesktop.org/drm/intel/issues/221
-  [i915#265]: https://gitlab.freedesktop.org/drm/intel/issues/265
-  [i915#300]: https://gitlab.freedesktop.org/drm/intel/issues/300
-  [i915#31]: https://gitlab.freedesktop.org/drm/intel/issues/31
-  [i915#413]: https://gitlab.freedesktop.org/drm/intel/issues/413
-  [i915#456]: https://gitlab.freedesktop.org/drm/intel/issues/456
-  [i915#460]: https://gitlab.freedesktop.org/drm/intel/issues/460
-  [i915#470]: https://gitlab.freedesktop.org/drm/intel/issues/470
-  [i915#472]: https://gitlab.freedesktop.org/drm/intel/issues/472
-  [i915#474]: https://gitlab.freedesktop.org/drm/intel/issues/474
-  [i915#49]: https://gitlab.freedesktop.org/drm/intel/issues/49
-  [i915#52]: https://gitlab.freedesktop.org/drm/intel/issues/52
-  [i915#530]: https://gitlab.freedesktop.org/drm/intel/issues/530
-  [i915#54]: https://gitlab.freedesktop.org/drm/intel/issues/54
-  [i915#646]: https://gitlab.freedesktop.org/drm/intel/issues/646
-  [i915#648]: https://gitlab.freedesktop.org/drm/intel/issues/648
-  [i915#667]: https://gitlab.freedesktop.org/drm/intel/issues/667
-  [i915#716]: https://gitlab.freedesktop.org/drm/intel/issues/716
-  [i915#79]: https://gitlab.freedesktop.org/drm/intel/issues/79
-
-
-Participating hosts (10 -> 10)
-------------------------------
-
-  Additional (1): pig-glk-j5005 
-  Missing    (1): pig-hsw-4770r 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_7599 -> Patchwork_15833
-
-  CI-20190529: 20190529
-  CI_DRM_7599: 03dfaf2e5f39b632d0187544f3c988b8596f11b0 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5351: e7fdcef72d1d6b3bb9f3003bbc37571959e6e8bb @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_15833: 46f010dc30eb82f8b1f578398fc03d266dc52b00 @ git://anongit.freedesktop.org/gfx-ci/linux
-  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.freedesktop.org/piglit
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15833/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
