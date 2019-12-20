@@ -2,35 +2,35 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6AEF2128162
-	for <lists+intel-gfx@lfdr.de>; Fri, 20 Dec 2019 18:28:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AFAB812816A
+	for <lists+intel-gfx@lfdr.de>; Fri, 20 Dec 2019 18:28:26 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 38C196E116;
-	Fri, 20 Dec 2019 17:28:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EDDA36EC77;
+	Fri, 20 Dec 2019 17:28:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2F5ED6E11C
- for <intel-gfx@lists.freedesktop.org>; Fri, 20 Dec 2019 17:28:01 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CE3C36E11C
+ for <intel-gfx@lists.freedesktop.org>; Fri, 20 Dec 2019 17:28:00 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
  by orsmga105.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
  20 Dec 2019 09:28:00 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,336,1571727600"; d="scan'208";a="210875749"
+X-IronPort-AV: E=Sophos;i="5.69,336,1571727600"; d="scan'208";a="210875752"
 Received: from ldmartin1-desk.jf.intel.com ([10.165.21.151])
  by orsmga008.jf.intel.com with ESMTP; 20 Dec 2019 09:27:59 -0800
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri, 20 Dec 2019 09:27:52 -0800
-Message-Id: <20191220172754.3773-9-lucas.demarchi@intel.com>
+Date: Fri, 20 Dec 2019 09:27:53 -0800
+Message-Id: <20191220172754.3773-10-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.24.0
 In-Reply-To: <20191220172754.3773-1-lucas.demarchi@intel.com>
 References: <20191220172754.3773-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 08/10] drm/i915: prefer 3-letter acronym for
- broadwell
+Subject: [Intel-gfx] [PATCH 09/10] drm/i915: prefer 3-letter acronym for
+ ivybridge
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,137 +51,112 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 We are currently using a mix of platform name and acronym to name the
 functions. Let's prefer the acronym as it should be clear what platform
 it's about and it's shorter, so it doesn't go over 80 columns in a few
-cases. This converts broadwell to bdw where appropriate.
+cases. This converts ivybridge to ivb where appropriate.
 
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_fifo_underrun.c | 6 +++---
- drivers/gpu/drm/i915/gt/intel_workarounds.c        | 2 +-
- drivers/gpu/drm/i915/gvt/handlers.c                | 8 ++++----
- drivers/gpu/drm/i915/i915_debugfs.c                | 6 +++---
- drivers/gpu/drm/i915/intel_device_info.c           | 4 ++--
- 5 files changed, 13 insertions(+), 13 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display.c       |  4 ++--
+ drivers/gpu/drm/i915/display/intel_fifo_underrun.c | 12 ++++++------
+ drivers/gpu/drm/i915/i915_irq.c                    |  6 +++---
+ 3 files changed, 11 insertions(+), 11 deletions(-)
 
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 5c14f1e5a871..9569187979fe 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -5292,7 +5292,7 @@ static void cpt_set_fdi_bc_bifurcation(struct drm_i915_private *dev_priv, bool e
+ 	POSTING_READ(SOUTH_CHICKEN1);
+ }
+ 
+-static void ivybridge_update_fdi_bc_bifurcation(const struct intel_crtc_state *crtc_state)
++static void ivb_update_fdi_bc_bifurcation(const struct intel_crtc_state *crtc_state)
+ {
+ 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+ 	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
+@@ -5365,7 +5365,7 @@ static void ilk_pch_enable(const struct intel_atomic_state *state,
+ 	assert_pch_transcoder_disabled(dev_priv, pipe);
+ 
+ 	if (IS_IVYBRIDGE(dev_priv))
+-		ivybridge_update_fdi_bc_bifurcation(crtc_state);
++		ivb_update_fdi_bc_bifurcation(crtc_state);
+ 
+ 	/* Write the TU size bits before fdi link training, so that error
+ 	 * detection works. */
 diff --git a/drivers/gpu/drm/i915/display/intel_fifo_underrun.c b/drivers/gpu/drm/i915/display/intel_fifo_underrun.c
-index d6e0d0be842e..1f80f275f3f2 100644
+index 1f80f275f3f2..6c83b350525d 100644
 --- a/drivers/gpu/drm/i915/display/intel_fifo_underrun.c
 +++ b/drivers/gpu/drm/i915/display/intel_fifo_underrun.c
-@@ -180,8 +180,8 @@ static void ivybridge_set_fifo_underrun_reporting(struct drm_device *dev,
- 	}
+@@ -139,7 +139,7 @@ static void ilk_set_fifo_underrun_reporting(struct drm_device *dev,
+ 		ilk_disable_display_irq(dev_priv, bit);
  }
  
--static void broadwell_set_fifo_underrun_reporting(struct drm_device *dev,
--						  enum pipe pipe, bool enable)
-+static void bdw_set_fifo_underrun_reporting(struct drm_device *dev,
-+					    enum pipe pipe, bool enable)
+-static void ivybridge_check_fifo_underruns(struct intel_crtc *crtc)
++static void ivb_check_fifo_underruns(struct intel_crtc *crtc)
+ {
+ 	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
+ 	enum pipe pipe = crtc->pipe;
+@@ -157,9 +157,9 @@ static void ivybridge_check_fifo_underruns(struct intel_crtc *crtc)
+ 	DRM_ERROR("fifo underrun on pipe %c\n", pipe_name(pipe));
+ }
+ 
+-static void ivybridge_set_fifo_underrun_reporting(struct drm_device *dev,
+-						  enum pipe pipe,
+-						  bool enable, bool old)
++static void ivb_set_fifo_underrun_reporting(struct drm_device *dev,
++					    enum pipe pipe, bool enable,
++					    bool old)
  {
  	struct drm_i915_private *dev_priv = to_i915(dev);
- 
-@@ -268,7 +268,7 @@ static bool __intel_set_cpu_fifo_underrun_reporting(struct drm_device *dev,
+ 	if (enable) {
+@@ -266,7 +266,7 @@ static bool __intel_set_cpu_fifo_underrun_reporting(struct drm_device *dev,
+ 	else if (IS_GEN_RANGE(dev_priv, 5, 6))
+ 		ilk_set_fifo_underrun_reporting(dev, pipe, enable);
  	else if (IS_GEN(dev_priv, 7))
- 		ivybridge_set_fifo_underrun_reporting(dev, pipe, enable, old);
+-		ivybridge_set_fifo_underrun_reporting(dev, pipe, enable, old);
++		ivb_set_fifo_underrun_reporting(dev, pipe, enable, old);
  	else if (INTEL_GEN(dev_priv) >= 8)
--		broadwell_set_fifo_underrun_reporting(dev, pipe, enable);
-+		bdw_set_fifo_underrun_reporting(dev, pipe, enable);
+ 		bdw_set_fifo_underrun_reporting(dev, pipe, enable);
  
- 	return old;
- }
-diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-index 195ccf7db272..4e292d4bf7b9 100644
---- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
-+++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-@@ -254,7 +254,7 @@ static void bdw_ctx_workarounds_init(struct intel_engine_cs *engine,
- 
- 	/* WaDisableDopClockGating:bdw
- 	 *
--	 * Also see the related UCGTCL1 write in broadwell_init_clock_gating()
-+	 * Also see the related UCGTCL1 write in bdw_init_clock_gating()
- 	 * to disable EUTC clock gating.
- 	 */
- 	WA_SET_BIT_MASKED(GEN7_ROW_CHICKEN2,
-diff --git a/drivers/gpu/drm/i915/gvt/handlers.c b/drivers/gpu/drm/i915/gvt/handlers.c
-index 1043e6d564df..6d28d72e6c7e 100644
---- a/drivers/gpu/drm/i915/gvt/handlers.c
-+++ b/drivers/gpu/drm/i915/gvt/handlers.c
-@@ -2691,7 +2691,7 @@ static int init_generic_mmio_info(struct intel_gvt *gvt)
- 	return 0;
- }
- 
--static int init_broadwell_mmio_info(struct intel_gvt *gvt)
-+static int init_bdw_mmio_info(struct intel_gvt *gvt)
- {
- 	struct drm_i915_private *dev_priv = gvt->dev_priv;
- 	int ret;
-@@ -3380,20 +3380,20 @@ int intel_gvt_setup_mmio_info(struct intel_gvt *gvt)
- 		goto err;
- 
- 	if (IS_BROADWELL(dev_priv)) {
--		ret = init_broadwell_mmio_info(gvt);
-+		ret = init_bdw_mmio_info(gvt);
- 		if (ret)
- 			goto err;
- 	} else if (IS_SKYLAKE(dev_priv)
- 		|| IS_KABYLAKE(dev_priv)
- 		|| IS_COFFEELAKE(dev_priv)) {
--		ret = init_broadwell_mmio_info(gvt);
-+		ret = init_bdw_mmio_info(gvt);
- 		if (ret)
- 			goto err;
- 		ret = init_skl_mmio_info(gvt);
- 		if (ret)
- 			goto err;
- 	} else if (IS_BROXTON(dev_priv)) {
--		ret = init_broadwell_mmio_info(gvt);
-+		ret = init_bdw_mmio_info(gvt);
- 		if (ret)
- 			goto err;
- 		ret = init_skl_mmio_info(gvt);
-diff --git a/drivers/gpu/drm/i915/i915_debugfs.c b/drivers/gpu/drm/i915/i915_debugfs.c
-index 0407229251bc..cb34e8c31511 100644
---- a/drivers/gpu/drm/i915/i915_debugfs.c
-+++ b/drivers/gpu/drm/i915/i915_debugfs.c
-@@ -3815,8 +3815,8 @@ static void gen9_sseu_device_status(struct drm_i915_private *dev_priv,
- #undef SS_MAX
- }
- 
--static void broadwell_sseu_device_status(struct drm_i915_private *dev_priv,
--					 struct sseu_dev_info *sseu)
-+static void bdw_sseu_device_status(struct drm_i915_private *dev_priv,
-+				   struct sseu_dev_info *sseu)
- {
- 	const struct intel_runtime_info *info = RUNTIME_INFO(dev_priv);
- 	u32 slice_info = I915_READ(GEN8_GT_SLICE_INFO);
-@@ -3901,7 +3901,7 @@ static int i915_sseu_status(struct seq_file *m, void *unused)
- 		if (IS_CHERRYVIEW(dev_priv))
- 			cherryview_sseu_device_status(dev_priv, &sseu);
- 		else if (IS_BROADWELL(dev_priv))
--			broadwell_sseu_device_status(dev_priv, &sseu);
-+			bdw_sseu_device_status(dev_priv, &sseu);
- 		else if (IS_GEN(dev_priv, 9))
- 			gen9_sseu_device_status(dev_priv, &sseu);
- 		else if (INTEL_GEN(dev_priv) >= 10)
-diff --git a/drivers/gpu/drm/i915/intel_device_info.c b/drivers/gpu/drm/i915/intel_device_info.c
-index ca7a42e1d769..d87c31444fa8 100644
---- a/drivers/gpu/drm/i915/intel_device_info.c
-+++ b/drivers/gpu/drm/i915/intel_device_info.c
-@@ -519,7 +519,7 @@ static void gen9_sseu_info_init(struct drm_i915_private *dev_priv)
+@@ -427,7 +427,7 @@ void intel_check_cpu_fifo_underruns(struct drm_i915_private *dev_priv)
+ 		if (HAS_GMCH(dev_priv))
+ 			i9xx_check_fifo_underruns(crtc);
+ 		else if (IS_GEN(dev_priv, 7))
+-			ivybridge_check_fifo_underruns(crtc);
++			ivb_check_fifo_underruns(crtc);
  	}
+ 
+ 	spin_unlock_irq(&dev_priv->irq_lock);
+diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_irq.c
+index 2d6324d2922a..afc6aad9bf8c 100644
+--- a/drivers/gpu/drm/i915/i915_irq.c
++++ b/drivers/gpu/drm/i915/i915_irq.c
+@@ -893,7 +893,7 @@ int intel_get_crtc_scanline(struct intel_crtc *crtc)
  }
  
--static void broadwell_sseu_info_init(struct drm_i915_private *dev_priv)
-+static void bdw_sseu_info_init(struct drm_i915_private *dev_priv)
+ /**
+- * ivybridge_parity_work - Workqueue called when a parity error interrupt
++ * ivb_parity_work - Workqueue called when a parity error interrupt
+  * occurred.
+  * @work: workqueue struct
+  *
+@@ -901,7 +901,7 @@ int intel_get_crtc_scanline(struct intel_crtc *crtc)
+  * this event, userspace should try to remap the bad rows since statistically
+  * it is likely the same row is more likely to go bad again.
+  */
+-static void ivybridge_parity_work(struct work_struct *work)
++static void ivb_parity_work(struct work_struct *work)
  {
- 	struct sseu_dev_info *sseu = &RUNTIME_INFO(dev_priv)->sseu;
- 	int s, ss;
-@@ -1025,7 +1025,7 @@ void intel_device_info_runtime_init(struct drm_i915_private *dev_priv)
- 	else if (IS_CHERRYVIEW(dev_priv))
- 		cherryview_sseu_info_init(dev_priv);
- 	else if (IS_BROADWELL(dev_priv))
--		broadwell_sseu_info_init(dev_priv);
-+		bdw_sseu_info_init(dev_priv);
- 	else if (IS_GEN(dev_priv, 9))
- 		gen9_sseu_info_init(dev_priv);
- 	else if (IS_GEN(dev_priv, 10))
+ 	struct drm_i915_private *dev_priv =
+ 		container_of(work, typeof(*dev_priv), l3_parity.error_work);
+@@ -3899,7 +3899,7 @@ void intel_irq_init(struct drm_i915_private *dev_priv)
+ 
+ 	intel_hpd_init_work(dev_priv);
+ 
+-	INIT_WORK(&dev_priv->l3_parity.error_work, ivybridge_parity_work);
++	INIT_WORK(&dev_priv->l3_parity.error_work, ivb_parity_work);
+ 	for (i = 0; i < MAX_L3_SLICES; ++i)
+ 		dev_priv->l3_parity.remap_info[i] = NULL;
+ 
 -- 
 2.24.0
 
