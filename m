@@ -1,32 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D16A6127644
-	for <lists+intel-gfx@lfdr.de>; Fri, 20 Dec 2019 08:08:57 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 438BC1276C8
+	for <lists+intel-gfx@lfdr.de>; Fri, 20 Dec 2019 08:55:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BC5716EBDE;
-	Fri, 20 Dec 2019 07:08:54 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 958A56EBDD;
- Fri, 20 Dec 2019 07:08:53 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 8B12EA0093;
- Fri, 20 Dec 2019 07:08:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CA8356EBE0;
+	Fri, 20 Dec 2019 07:55:09 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AFECA6EBE0
+ for <Intel-gfx@lists.freedesktop.org>; Fri, 20 Dec 2019 07:55:08 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 19 Dec 2019 23:55:08 -0800
+X-IronPort-AV: E=Sophos;i="5.69,335,1571727600"; d="scan'208";a="210740811"
+Received: from dtriolet-mobl1.ger.corp.intel.com (HELO [10.251.84.191])
+ ([10.251.84.191])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/AES256-SHA;
+ 19 Dec 2019 23:55:07 -0800
+To: Chris Wilson <chris@chris-wilson.co.uk>, Intel-gfx@lists.freedesktop.org
+References: <20191219180019.25562-1-tvrtko.ursulin@linux.intel.com>
+ <20191219180019.25562-3-tvrtko.ursulin@linux.intel.com>
+ <157678823997.6469.3187491361664776890@skylake-alporthouse-com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <6c9d1d35-606c-925a-1f2d-18a48720135a@linux.intel.com>
+Date: Fri, 20 Dec 2019 07:55:05 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Navare, Manasi D" <manasi.d.navare@intel.com>
-Date: Fri, 20 Dec 2019 07:08:53 -0000
-Message-ID: <157682573354.9212.16149573106593159717@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20191220010403.29111-1-manasi.d.navare@intel.com>
-In-Reply-To: <20191220010403.29111-1-manasi.d.navare@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/dp=3A_Disable_Port_sync_mode_correctly_on_teardown_=28rev?=
- =?utf-8?q?2=29?=
+In-Reply-To: <157678823997.6469.3187491361664776890@skylake-alporthouse-com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [RFC 2/8] drm/i915: Reference count struct
+ drm_i915_file_private
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,131 +49,88 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
 
-Series: drm/i915/dp: Disable Port sync mode correctly on teardown (rev2)
-URL   : https://patchwork.freedesktop.org/series/71196/
-State : success
+On 19/12/2019 20:43, Chris Wilson wrote:
+> Quoting Tvrtko Ursulin (2019-12-19 18:00:13)
+>> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+>>
+>> In the following patches we will develope a need to peek into the client
+>> owned data from any potential leftover contexts.
+>>
+>> To facilitate this add reference counting to file_priv.
+>>
+>> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+>> ---
+>>   drivers/gpu/drm/i915/gem/i915_gem_context.c |  2 +-
+>>   drivers/gpu/drm/i915/i915_drv.c             |  4 ----
+>>   drivers/gpu/drm/i915/i915_drv.h             |  4 +++-
+>>   drivers/gpu/drm/i915/i915_gem.c             | 14 +++++++++++++-
+>>   4 files changed, 17 insertions(+), 7 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+>> index e5a7c6f02a47..b482b2e5f31f 100644
+>> --- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
+>> +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+>> @@ -853,7 +853,7 @@ int i915_gem_context_open(struct drm_i915_private *i915,
+>>   void i915_gem_context_close(struct drm_file *file)
+>>   {
+>>          struct drm_i915_file_private *file_priv = file->driver_priv;
+>> -       struct drm_i915_private *i915 = file_priv->dev_priv;
+>> +       struct drm_i915_private *i915 = file_priv->i915;
+>>          struct i915_gem_context *ctx;
+>>          unsigned long idx;
+>>   
+>> diff --git a/drivers/gpu/drm/i915/i915_drv.c b/drivers/gpu/drm/i915/i915_drv.c
+>> index 8b08cfe30151..0c9c93418068 100644
+>> --- a/drivers/gpu/drm/i915/i915_drv.c
+>> +++ b/drivers/gpu/drm/i915/i915_drv.c
+>> @@ -1633,13 +1633,9 @@ static void i915_driver_lastclose(struct drm_device *dev)
+>>   
+>>   static void i915_driver_postclose(struct drm_device *dev, struct drm_file *file)
+>>   {
+>> -       struct drm_i915_file_private *file_priv = file->driver_priv;
+>> -
+>>          i915_gem_context_close(file);
+>>          i915_gem_release(dev, file);
+>>   
+>> -       kfree_rcu(file_priv, rcu);
+> 
+> As you are moving the kfree_rcu() into the i915_gem_release (via a put),
+> I think it also makes sense to move the call for i915_gem_context_close
+> on this file. Possibly renaming it to i915_gem_file_close() and
+> s/drm_i915_file_private/i915_gem_file/ or i915_gem_client (with
+> corresponding name changes) in the process.
+> 
+> For the basic mechanics of this patch though,
+> Reviewed-by: Chris Wilson <chris@chris-wilson.co.uk>
+> 
+> (Though I still suggest a bit of playing with i915_gem_context_close,
+> i915_gem_release to tie them together to the notion of the file better.)
 
-== Summary ==
+Yes, agreed in principle.
 
-CI Bug Log - changes from CI_DRM_7612 -> Patchwork_15856
-====================================================
+But a) I prefer the release name to match with the fops mindset and b) I 
+prefer to leave drm_i915_file_private alone as the top level driver 
+private container.
 
-Summary
--------
+What I am not completely happy with, or say undecided, is whether to 
+move the kref into i915_drm_client. I had it like that at one point, 
+thinking to only have a smallest needed structure pinned in memory, but 
+then I simplified in favour of fewer allocations. Now I think I'd like 
+to move the kref into i915_drm_client again. Any opinion here?
 
-  **SUCCESS**
+In a later patch, when I add the i915_gem_client_get/put helpers they 
+are already named like that. Hm okay, I also have a naming confusion 
+between struct i915_drm_client and i915_gem_client_get/put(). :)
 
-  No regressions found.
+Regards,
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15856/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_15856 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_exec_suspend@basic-s0:
-    - fi-bsw-kefka:       [PASS][1] -> [INCOMPLETE][2] ([i915#392])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7612/fi-bsw-kefka/igt@gem_exec_suspend@basic-s0.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15856/fi-bsw-kefka/igt@gem_exec_suspend@basic-s0.html
-
-  * igt@i915_selftest@live_blt:
-    - fi-hsw-4770r:       [PASS][3] -> [DMESG-FAIL][4] ([i915#770])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7612/fi-hsw-4770r/igt@i915_selftest@live_blt.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15856/fi-hsw-4770r/igt@i915_selftest@live_blt.html
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - fi-hsw-peppy:       [PASS][5] -> [DMESG-WARN][6] ([i915#44])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7612/fi-hsw-peppy/igt@kms_frontbuffer_tracking@basic.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15856/fi-hsw-peppy/igt@kms_frontbuffer_tracking@basic.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live_blt:
-    - fi-hsw-4770:        [DMESG-FAIL][7] ([i915#725]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7612/fi-hsw-4770/igt@i915_selftest@live_blt.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15856/fi-hsw-4770/igt@i915_selftest@live_blt.html
-
-  * igt@i915_selftest@live_gem_contexts:
-    - fi-hsw-peppy:       [INCOMPLETE][9] ([i915#694]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7612/fi-hsw-peppy/igt@i915_selftest@live_gem_contexts.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15856/fi-hsw-peppy/igt@i915_selftest@live_gem_contexts.html
-
-  
-#### Warnings ####
-
-  * igt@i915_module_load@reload:
-    - fi-icl-u2:          [DMESG-WARN][11] ([i915#109] / [i915#289]) -> [DMESG-WARN][12] ([i915#289])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7612/fi-icl-u2/igt@i915_module_load@reload.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15856/fi-icl-u2/igt@i915_module_load@reload.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:
-    - fi-kbl-x1275:       [DMESG-WARN][13] ([i915#62] / [i915#92]) -> [DMESG-WARN][14] ([i915#62] / [i915#92] / [i915#95]) +7 similar issues
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7612/fi-kbl-x1275/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15856/fi-kbl-x1275/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
-
-  * igt@kms_pipe_crc_basic@nonblocking-crc-pipe-a:
-    - fi-kbl-x1275:       [DMESG-WARN][15] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][16] ([i915#62] / [i915#92]) +5 similar issues
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7612/fi-kbl-x1275/igt@kms_pipe_crc_basic@nonblocking-crc-pipe-a.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15856/fi-kbl-x1275/igt@kms_pipe_crc_basic@nonblocking-crc-pipe-a.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#111736]: https://bugs.freedesktop.org/show_bug.cgi?id=111736
-  [i915#109]: https://gitlab.freedesktop.org/drm/intel/issues/109
-  [i915#289]: https://gitlab.freedesktop.org/drm/intel/issues/289
-  [i915#392]: https://gitlab.freedesktop.org/drm/intel/issues/392
-  [i915#44]: https://gitlab.freedesktop.org/drm/intel/issues/44
-  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
-  [i915#694]: https://gitlab.freedesktop.org/drm/intel/issues/694
-  [i915#725]: https://gitlab.freedesktop.org/drm/intel/issues/725
-  [i915#770]: https://gitlab.freedesktop.org/drm/intel/issues/770
-  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
-  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
-
-
-Participating hosts (49 -> 36)
-------------------------------
-
-  Additional (1): fi-bwr-2160 
-  Missing    (14): fi-ilk-m540 fi-kbl-7560u fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ilk-650 fi-ctg-p8600 fi-gdg-551 fi-skl-lmem fi-blb-e6850 fi-byt-clapper fi-bsw-nick fi-bdw-samus fi-kbl-r 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_7612 -> Patchwork_15856
-
-  CI-20190529: 20190529
-  CI_DRM_7612: d8427504d16e1aa87eab972f812c02478522bd70 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5351: e7fdcef72d1d6b3bb9f3003bbc37571959e6e8bb @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_15856: fd216e800c73d487c734de2a75a4357fd3abc3cf @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-fd216e800c73 drm/i915/dp: Disable Port sync mode correctly on teardown
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15856/index.html
+Tvrtko
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
