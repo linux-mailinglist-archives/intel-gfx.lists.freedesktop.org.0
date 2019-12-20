@@ -2,38 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 28366128100
-	for <lists+intel-gfx@lfdr.de>; Fri, 20 Dec 2019 17:58:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 947AE12810D
+	for <lists+intel-gfx@lfdr.de>; Fri, 20 Dec 2019 18:03:23 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3004F6E104;
-	Fri, 20 Dec 2019 16:58:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CCD5A6E112;
+	Fri, 20 Dec 2019 17:03:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 393D66E104
- for <intel-gfx@lists.freedesktop.org>; Fri, 20 Dec 2019 16:58:47 +0000 (UTC)
-X-Amp-Result: UNSCANNABLE
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 244226E10A
+ for <intel-gfx@lists.freedesktop.org>; Fri, 20 Dec 2019 17:03:20 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
 X-Amp-File-Uploaded: False
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga106.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 20 Dec 2019 08:58:41 -0800
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 20 Dec 2019 09:03:19 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,336,1571727600"; d="scan'208";a="218526630"
-Received: from labuser-z97x-ud5h.jf.intel.com (HELO intel.com) ([10.54.75.49])
- by orsmga006.jf.intel.com with ESMTP; 20 Dec 2019 08:58:41 -0800
-Date: Fri, 20 Dec 2019 09:00:18 -0800
-From: Manasi Navare <manasi.d.navare@intel.com>
-To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Message-ID: <20191220170017.GB507@intel.com>
-References: <20191219215117.929-1-manasi.d.navare@intel.com>
- <20191219215117.929-2-manasi.d.navare@intel.com>
- <20191220135941.GL1208@intel.com>
+X-IronPort-AV: E=Sophos;i="5.69,336,1571727600"; d="scan'208";a="222525671"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by fmsmga001.fm.intel.com with SMTP; 20 Dec 2019 09:03:17 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 20 Dec 2019 19:03:16 +0200
+Date: Fri, 20 Dec 2019 19:03:16 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: "Souza, Jose" <jose.souza@intel.com>
+Message-ID: <20191220170316.GS1208@intel.com>
+References: <20191220152954.83276-1-jose.souza@intel.com>
+ <20191220152954.83276-3-jose.souza@intel.com>
+ <20191220154710.GO1208@intel.com>
+ <fa59bd3005e0ae580e99bb7e4c26fbbca9b83779.camel@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20191220135941.GL1208@intel.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-Subject: Re: [Intel-gfx] [PATCH v2 2/3] drm/i915/dp: Make port sync mode
- assignments only if all tiles present
+In-Reply-To: <fa59bd3005e0ae580e99bb7e4c26fbbca9b83779.camel@intel.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH v5 3/7] drm/i915/tgl: Select master
+ transcoder for MST stream
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,377 +50,352 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "De Marchi, Lucas" <lucas.demarchi@intel.com>
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Dec 20, 2019 at 03:59:41PM +0200, Ville Syrj=E4l=E4 wrote:
-> On Thu, Dec 19, 2019 at 01:51:16PM -0800, Manasi Navare wrote:
-> > Add an extra check before making master slave assignments for tiled
-> > displays to make sure we make these assignments only if all tiled
-> > connectors are present. If not then initialize the state to defaults
-> > so it does a normal non tiled modeset without transcoder port sync.
+On Fri, Dec 20, 2019 at 04:53:22PM +0000, Souza, Jose wrote:
+> On Fri, 2019-12-20 at 17:47 +0200, Ville Syrj=E4l=E4 wrote:
+> > On Fri, Dec 20, 2019 at 07:29:50AM -0800, Jos=E9 Roberto de Souza
+> > wrote:
+> > > On TGL the blending of all the streams have moved from DDI to
+> > > transcoder, so now every transcoder working over the same MST port
+> > > must
+> > > send its stream to a master transcoder and master will send to DDI
+> > > respecting the time slots.
+> > > =
+
+> > > So here adding all the CRTCs that shares the same MST stream if
+> > > needed and computing their state again, it will pick the lowest
+> > > pipe/transcoder among the ones in the same stream to be master.
+> > > =
+
+> > > Most of the time skl_commit_modeset_enables() enables pipes in a
+> > > crescent order but due DDB overlapping it might not happen, this
+> > > scenarios will be handled in the next patch.
+> > > =
+
+> > > v2:
+> > > - Using recently added intel_crtc_state_reset() to set
+> > > mst_master_transcoder to invalid transcoder for all non gen12 & MST
+> > > code paths
+> > > - Setting lowest pipe/transcoder as master, previously it was the
+> > > first one but setting a predictable one will help in future MST e
+> > > port sync integration
+> > > - Moving to intel type as much as we can
+> > > =
+
+> > > v3:
+> > > - Now intel_dp_mst_master_trans_compute() returns the MST master
+> > > transcoder
+> > > - Replaced stdbool.h by linux/types.h
+> > > - Skip the connector being checked in
+> > > intel_dp_mst_atomic_master_trans_check()
+> > > - Using pipe instead of transcoder to compute MST master
+> > > =
+
+> > > v4:
+> > > - renamed connector_state to conn_state
+> > > =
+
+> > > v5:
+> > > - Improved the parameters of intel_dp_mst_master_trans_compute() to
+> > > simply code
+> > > - Added call drm_atomic_add_affected_planes() in
+> > > intel_dp_mst_atomic_master_trans_check() as helper could not do it
+> > > for us
+> > > - Removed "if (ret)" left over from v3 changes
+> > > =
+
+> > > BSpec: 50493
+> > > BSpec: 49190
+> > > Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > > Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+> > > Signed-off-by: Jos=E9 Roberto de Souza <jose.souza@intel.com>
+> > > ---
+> > >  drivers/gpu/drm/i915/display/intel_atomic.c   |  14 ++
+> > >  drivers/gpu/drm/i915/display/intel_atomic.h   |   4 +
+> > >  drivers/gpu/drm/i915/display/intel_ddi.c      |  14 +-
+> > >  drivers/gpu/drm/i915/display/intel_display.c  |  12 +-
+> > >  .../drm/i915/display/intel_display_types.h    |   3 +
+> > >  drivers/gpu/drm/i915/display/intel_dp_mst.c   | 140
+> > > ++++++++++++++++--
+> > >  drivers/gpu/drm/i915/display/intel_dp_mst.h   |   5 +
+> > >  7 files changed, 179 insertions(+), 13 deletions(-)
+> > > =
+
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_atomic.c
+> > > b/drivers/gpu/drm/i915/display/intel_atomic.c
+> > > index b7dda18b6f29..0eb973f65977 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_atomic.c
+> > > +++ b/drivers/gpu/drm/i915/display/intel_atomic.c
+> > > @@ -192,6 +192,20 @@ intel_connector_needs_modeset(struct
+> > > intel_atomic_state *state,
+> > >  									=
+
+> > >     new_conn_state->crtc)));
+> > >  }
+> > >  =
+
+> > > +struct intel_digital_connector_state *
+> > > +intel_atomic_get_digital_connector_state(struct intel_atomic_state
+> > > *state,
+> > > +					 struct intel_connector
+> > > *connector)
+> > > +{
+> > > +	struct drm_connector_state *conn_state;
+> > > +
+> > > +	conn_state =3D drm_atomic_get_connector_state(&state->base,
+> > > +						    &connector->base);
+> > > +	if (IS_ERR(conn_state))
+> > > +		return ERR_CAST(conn_state);
+> > > +
+> > > +	return to_intel_digital_connector_state(conn_state);
+> > > +}
+> > > +
+> > >  /**
+> > >   * intel_crtc_duplicate_state - duplicate crtc state
+> > >   * @crtc: drm crtc
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_atomic.h
+> > > b/drivers/gpu/drm/i915/display/intel_atomic.h
+> > > index a7d1a8576c48..74c749dbfb4f 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_atomic.h
+> > > +++ b/drivers/gpu/drm/i915/display/intel_atomic.h
+> > > @@ -17,6 +17,7 @@ struct drm_device;
+> > >  struct drm_i915_private;
+> > >  struct drm_property;
+> > >  struct intel_atomic_state;
+> > > +struct intel_connector;
+> > >  struct intel_crtc;
+> > >  struct intel_crtc_state;
+> > >  =
+
+> > > @@ -34,6 +35,9 @@ struct drm_connector_state *
+> > >  intel_digital_connector_duplicate_state(struct drm_connector
+> > > *connector);
+> > >  bool intel_connector_needs_modeset(struct intel_atomic_state
+> > > *state,
+> > >  				   struct drm_connector *connector);
+> > > +struct intel_digital_connector_state *
+> > > +intel_atomic_get_digital_connector_state(struct intel_atomic_state
+> > > *state,
+> > > +					 struct intel_connector
+> > > *connector);
+> > >  =
+
+> > >  struct drm_crtc_state *intel_crtc_duplicate_state(struct drm_crtc
+> > > *crtc);
+> > >  void intel_crtc_destroy_state(struct drm_crtc *crtc,
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c
+> > > b/drivers/gpu/drm/i915/display/intel_ddi.c
+> > > index c9ba7d7f3787..c3ac950e79a8 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> > > +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+> > > @@ -1899,8 +1899,13 @@ intel_ddi_transcoder_func_reg_val_get(const
+> > > struct intel_crtc_state *crtc_state)
+> > >  		temp |=3D TRANS_DDI_MODE_SELECT_DP_MST;
+> > >  		temp |=3D DDI_PORT_WIDTH(crtc_state->lane_count);
+> > >  =
+
+> > > -		if (INTEL_GEN(dev_priv) >=3D 12)
+> > > -			temp |=3D
+> > > TRANS_DDI_MST_TRANSPORT_SELECT(crtc_state->cpu_transcoder);
+> > > +		if (INTEL_GEN(dev_priv) >=3D 12) {
+> > > +			enum transcoder master;
+> > > +
+> > > +			master =3D crtc_state->mst_master_transcoder;
+> > > +			WARN_ON(master =3D=3D INVALID_TRANSCODER);
+> > > +			temp |=3D TRANS_DDI_MST_TRANSPORT_SELECT(master);
+> > > +		}
+> > >  	} else {
+> > >  		temp |=3D TRANS_DDI_MODE_SELECT_DP_SST;
+> > >  		temp |=3D DDI_PORT_WIDTH(crtc_state->lane_count);
+> > > @@ -4405,6 +4410,11 @@ void intel_ddi_get_config(struct
+> > > intel_encoder *encoder,
+> > >  		pipe_config->output_types |=3D BIT(INTEL_OUTPUT_DP_MST);
+> > >  		pipe_config->lane_count =3D
+> > >  			((temp & DDI_PORT_WIDTH_MASK) >>
+> > > DDI_PORT_WIDTH_SHIFT) + 1;
+> > > +
+> > > +		if (INTEL_GEN(dev_priv) >=3D 12)
+> > > +			pipe_config->mst_master_transcoder =3D
+> > > +					REG_FIELD_GET(TRANS_DDI_MST_TRA
+> > > NSPORT_SELECT_MASK, temp);
+> > > +
+> > >  		intel_dp_get_m_n(intel_crtc, pipe_config);
+> > >  		break;
+> > >  	default:
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_display.c
+> > > b/drivers/gpu/drm/i915/display/intel_display.c
+> > > index fc77829ea958..eb97ad562c96 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_display.c
+> > > +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> > > @@ -46,6 +46,7 @@
+> > >  #include "display/intel_crt.h"
+> > >  #include "display/intel_ddi.h"
+> > >  #include "display/intel_dp.h"
+> > > +#include "display/intel_dp_mst.h"
+> > >  #include "display/intel_dsi.h"
+> > >  #include "display/intel_dvo.h"
+> > >  #include "display/intel_gmbus.h"
+> > > @@ -11627,6 +11628,7 @@ static void intel_crtc_state_reset(struct
+> > > intel_crtc_state *crtc_state,
+> > >  	crtc_state->hsw_workaround_pipe =3D INVALID_PIPE;
+> > >  	crtc_state->output_format =3D INTEL_OUTPUT_FORMAT_INVALID;
+> > >  	crtc_state->scaler_state.scaler_id =3D -1;
+> > > +	crtc_state->mst_master_transcoder =3D INVALID_TRANSCODER;
+> > >  }
+> > >  =
+
+> > >  static struct intel_crtc_state *intel_crtc_state_alloc(struct
+> > > intel_crtc *crtc)
+> > > @@ -12484,6 +12486,9 @@ static void intel_dump_pipe_config(const
+> > > struct intel_crtc_state *pipe_config,
+> > >  			      pipe_config->csc_mode, pipe_config-
+> > > >gamma_mode,
+> > >  			      pipe_config->gamma_enable, pipe_config-
+> > > >csc_enable);
+> > >  =
+
+> > > +	DRM_DEBUG_KMS("MST master transcoder: %s\n",
+> > > +		      transcoder_name(pipe_config-
+> > > >mst_master_transcoder));
+> > > +
+> > >  dump_planes:
+> > >  	if (!state)
+> > >  		return;
+> > > @@ -13264,6 +13269,8 @@ intel_pipe_config_compare(const struct
+> > > intel_crtc_state *current_config,
+> > >  	PIPE_CONF_CHECK_I(dsc.dsc_split);
+> > >  	PIPE_CONF_CHECK_I(dsc.compressed_bpp);
+> > >  =
+
+> > > +	PIPE_CONF_CHECK_I(mst_master_transcoder);
+> > > +
+> > >  #undef PIPE_CONF_CHECK_X
+> > >  #undef PIPE_CONF_CHECK_I
+> > >  #undef PIPE_CONF_CHECK_BOOL
+> > > @@ -14348,7 +14355,7 @@ static void
+> > > intel_commit_modeset_disables(struct intel_atomic_state *state)
+> > >  	u32 handled =3D 0;
+> > >  	int i;
+> > >  =
+
+> > > -	/* Only disable port sync slaves */
+> > > +	/* Only disable port sync and MST slaves */
+> > >  	for_each_oldnew_intel_crtc_in_state(state, crtc,
+> > > old_crtc_state,
+> > >  					    new_crtc_state, i) {
+> > >  		if (!needs_modeset(new_crtc_state))
+> > > @@ -14362,7 +14369,8 @@ static void
+> > > intel_commit_modeset_disables(struct intel_atomic_state *state)
+> > >  		 * slave CRTCs are disabled first and then master CRTC
+> > > since
+> > >  		 * Slave vblanks are masked till Master Vblanks.
+> > >  		 */
+> > > -		if (!is_trans_port_sync_slave(old_crtc_state))
+> > > +		if (!is_trans_port_sync_slave(old_crtc_state) &&
+> > > +		    !intel_dp_mst_is_slave_trans(old_crtc_state))
+> > >  			continue;
+> > >  =
+
+> > >  		intel_pre_plane_update(state, crtc);
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h
+> > > b/drivers/gpu/drm/i915/display/intel_display_types.h
+> > > index 83ea04149b77..630a94892b7b 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> > > +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> > > @@ -1054,6 +1054,9 @@ struct intel_crtc_state {
+> > >  =
+
+> > >  	/* Bitmask to indicate slaves attached */
+> > >  	u8 sync_mode_slaves_mask;
+> > > +
+> > > +	/* Only valid on TGL+ */
+> > > +	enum transcoder mst_master_transcoder;
+> > >  };
+> > >  =
+
+> > >  struct intel_crtc {
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> > > b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> > > index 7aa0975c33b7..a6237da9ac52 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> > > +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> > > @@ -87,10 +87,53 @@ static int
+> > > intel_dp_mst_compute_link_config(struct intel_encoder *encoder,
+> > >  	return 0;
+> > >  }
+> > >  =
+
+> > > +/*
+> > > + * Iterate over all connectors and return the smallest transcoder
+> > > in the MST
+> > > + * stream
+> > > + */
+> > > +static enum transcoder
+> > > +intel_dp_mst_master_trans_compute(struct intel_atomic_state
+> > > *state,
+> > > +				  struct intel_dp *mst_port)
+> > > +{
+> > > +	struct drm_i915_private *dev_priv =3D to_i915(state->base.dev);
+> > > +	struct intel_digital_connector_state *conn_state;
+> > > +	struct intel_connector *connector;
+> > > +	enum pipe ret =3D I915_MAX_PIPES;
+> > > +	int i;
+> > > +
+> > > +	if (INTEL_GEN(dev_priv) < 12)
+> > > +		return INVALID_TRANSCODER;
+> > > +
+> > > +	for_each_new_intel_connector_in_state(state, connector,
+> > > conn_state, i) {
+> > > +		struct intel_crtc_state *crtc_state;
+> > > +		struct intel_crtc *crtc;
+> > > +
+> > > +		if (connector->mst_port !=3D mst_port || !conn_state-
+> > > >base.crtc)
+> > > +			continue;
+> > > +
+> > > +		crtc =3D to_intel_crtc(conn_state->base.crtc);
+> > > +		crtc_state =3D intel_atomic_get_new_crtc_state(state,
+> > > crtc);
+> > > +		if (!crtc_state->uapi.active)
+> > > +			continue;
+> > > +
+> > > +		/*
+> > > +		 * Using crtc->pipe because crtc_state->cpu_transcoder
+> > > is
+> > > +		 * computed, so others CRTCs could have non-computed
+> > > +		 * cpu_transcoder
+> > > +		 */
+> > > +		if (crtc->pipe < ret)
+> > > +			ret =3D crtc->pipe;
+> > > +	}
 > > =
 
-> > v2:
-> > * Rename icl_add_sync_mode_crtcs
-> > * Move this function just before .compute_config hook
-> > * Check if DP before master slave assignments (Ville)
+> > Still has the problem that ret=3D=3DI915_MAX_PIPES if no active crtcs in
+> > the
+> > state.
 > > =
 
-> > Bugzilla: https://gitlab.freedesktop.org/drm/intel/issues/5
-> > Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> > Signed-off-by: Manasi Navare <manasi.d.navare@intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_display.c | 162 +++++++++++--------
-> >  1 file changed, 99 insertions(+), 63 deletions(-)
-> > =
-
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu=
-/drm/i915/display/intel_display.c
-> > index 00608d8cef50..9c1b1256be68 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> > @@ -12014,88 +12014,106 @@ static bool c8_planes_changed(const struct i=
-ntel_crtc_state *new_crtc_state)
-> >  	return !old_crtc_state->c8_planes !=3D !new_crtc_state->c8_planes;
-> >  }
-> >  =
-
-> > -static int icl_add_sync_mode_crtcs(struct intel_crtc_state *crtc_state)
-> > +static void reset_port_sync_mode_state(struct intel_crtc_state *crtc_s=
-tate)
-> > +{
-> > +	crtc_state->master_transcoder =3D INVALID_TRANSCODER;
-> > +	crtc_state->sync_mode_slaves_mask =3D 0;
-> > +}
-> > +
-> > +static int icl_compute_port_sync_crtc_state(struct drm_connector *conn=
-ector,
-> > +					    struct intel_crtc_state *crtc_state,
-> > +					    int num_tiled_conns)
-> >  {
-> >  	struct drm_crtc *crtc =3D crtc_state->uapi.crtc;
-> >  	struct intel_atomic_state *state =3D to_intel_atomic_state(crtc_state=
-->uapi.state);
-> >  	struct drm_i915_private *dev_priv =3D to_i915(crtc_state->uapi.crtc->=
-dev);
-> > -	struct drm_connector *master_connector, *connector;
-> > -	struct drm_connector_state *connector_state;
-> > +	struct drm_connector *master_connector;
-> >  	struct drm_connector_list_iter conn_iter;
-> >  	struct drm_crtc *master_crtc =3D NULL;
-> >  	struct drm_crtc_state *master_crtc_state;
-> >  	struct intel_crtc_state *master_pipe_config;
-> > -	int i, tile_group_id;
-> >  =
-
-> >  	if (INTEL_GEN(dev_priv) < 11)
-> >  		return 0;
-> >  =
-
-> > +	if (!intel_crtc_has_type(crtc_state, INTEL_OUTPUT_DP))
-> > +		return 0;
-> > +
-> >  	/*
-> >  	 * In case of tiled displays there could be one or more slaves but th=
-ere is
-> >  	 * only one master. Lets make the CRTC used by the connector correspo=
-nding
-> >  	 * to the last horizonal and last vertical tile a master/genlock CRTC.
-> >  	 * All the other CRTCs corresponding to other tiles of the same Tile =
-group
-> >  	 * are the slave CRTCs and hold a pointer to their genlock CRTC.
-> > +	 * If all tiles not present do not make master slave assignments.
-> > +	 *
-> > +	 * FIXME: Add support for multiple tile grp ids in the future when su=
-ch
-> > +	 * panels are available.
+> > I guess a simple
+> > if (ret =3D=3D MAX_PIPES)
+> > 	return INVALID;
+> > should do here. Or something similar.
 > =
 
-> What does that mean? Why would we treat mutliple groups as a single
-> tiled display?
->
+> It would never happen, if it is computing state for this MST connector
+> it is active, so it can be master. But okay adding it anyways.
 
-No we wont treat multiple tile grp ids as a single display but we need to s=
-upport
-multiple pile grp ids in the state so 2 pairs of master and slave.
- =
+active !=3D enabled. Pretty sure it will happen.
 
-> >  	 */
-> > -	for_each_new_connector_in_state(&state->base, connector, connector_st=
-ate, i) {
-> > -		if (connector_state->crtc !=3D crtc)
-> > -			continue;
-> > -		if (!connector->has_tile)
-> > +	if (!connector->has_tile ||
-> > +	    crtc_state->hw.mode.hdisplay !=3D connector->tile_h_size ||
-> > +	    crtc_state->hw.mode.vdisplay !=3D connector->tile_v_size ||
-> > +	    num_tiled_conns < connector->num_h_tile * connector->num_v_tile) {
-> > +		reset_port_sync_mode_state(crtc_state);
-> =
+-- =
 
-> I really don't understand this back and forth of setting/clearing
-> the master/slave state. I think the way to make it not convoluted is
-> to just clear everything in intel_crtc_prepare_cleared_state() and
-> then just compute everything from scratch.
->
-
-Hmm i can add that to intel_crtc_prepare_cleared_state(), but since we comp=
-ute master crtc
-and its crtc_state during slave's compute_Config, we cannot clear the state=
- if its master.
- =
-
-> > +		return 0;
-> > +	}
-> > +	/* Last Horizontal and last vertical tile connector is a master
-> > +	 * Master Trans for a Master CRTC is always INVALID.
-> > +	 */
-> > +	if (connector->tile_h_loc =3D=3D connector->num_h_tile - 1 &&
-> > +	    connector->tile_v_loc =3D=3D connector->num_v_tile - 1) {
-> > +		crtc_state->master_transcoder =3D INVALID_TRANSCODER;
-> > +		return 0;
-> > +	}
-> > +
-> > +	/* Loop through all connectors and configure the Slave crtc_state
-> > +	 * to point to the correct master.
-> > +	 */
-> > +	reset_port_sync_mode_state(crtc_state);
-> > +	drm_connector_list_iter_begin(&dev_priv->drm, &conn_iter);
-> > +	drm_for_each_connector_iter(master_connector, &conn_iter) {
-> =
-
-> Why are we all of a sudden iterating through all connectors? I think this
-> should just iterate the connectors already in the state. The only place
-> where we want to look at the full connector list is the modeset_all_tiles=
-()
-> thing.
->
-
-This is how we had decided to do the master slave asignments and adding oth=
-er crtc
-corresponding to last tile (master) to state by iteratin through all connec=
-tors.
-This was sugested on IRC by Danvet and Maarten when I was finalizing the de=
-sign in the code
-for master slave assignments.
-
-so basically for the master compute config, it just returns and this port s=
-ync sonfig compute =
-
-happens for the slave, if master slaves all not present so all tiles not pr=
-esent then we reset the =
-
-asignments and return.
-
-And thats one of the reasons why i need the reset here since the corner cas=
-es check happens here like
-if all tiles are present if hdisplay vdisplay matches tile size, if not the=
-n we should reset the master slave crtc states.
-
- =
-
-> > +		struct drm_connector_state *master_conn_state =3D NULL;
-> > +
-> > +		if (!(master_connector->has_tile &&
-> > +		      master_connector->tile_group->id =3D=3D connector->tile_group-=
->id))
-> >  			continue;
-> > -		if (crtc_state->hw.mode.hdisplay !=3D connector->tile_h_size ||
-> > -		    crtc_state->hw.mode.vdisplay !=3D connector->tile_v_size)
-> > -			return 0;
-> > -		if (connector->tile_h_loc =3D=3D connector->num_h_tile - 1 &&
-> > -		    connector->tile_v_loc =3D=3D connector->num_v_tile - 1)
-> > +		if (master_connector->tile_h_loc !=3D master_connector->num_h_tile -=
- 1 ||
-> > +		    master_connector->tile_v_loc !=3D master_connector->num_v_tile -=
- 1)
-> >  			continue;
-> > -		crtc_state->sync_mode_slaves_mask =3D 0;
-> > -		tile_group_id =3D connector->tile_group->id;
-> > -		drm_connector_list_iter_begin(&dev_priv->drm, &conn_iter);
-> > -		drm_for_each_connector_iter(master_connector, &conn_iter) {
-> > -			struct drm_connector_state *master_conn_state =3D NULL;
-> >  =
-
-> > -			if (!master_connector->has_tile)
-> > -				continue;
-> > -			if (master_connector->tile_h_loc !=3D master_connector->num_h_tile =
-- 1 ||
-> > -			    master_connector->tile_v_loc !=3D master_connector->num_v_tile =
-- 1)
-> > -				continue;
-> > -			if (master_connector->tile_group->id !=3D tile_group_id)
-> > -				continue;
-> > -
-> > -			master_conn_state =3D drm_atomic_get_connector_state(&state->base,
-> > -									   master_connector);
-> > -			if (IS_ERR(master_conn_state)) {
-> > -				drm_connector_list_iter_end(&conn_iter);
-> > -				return PTR_ERR(master_conn_state);
-> > -			}
-> > -			if (master_conn_state->crtc) {
-> > -				master_crtc =3D master_conn_state->crtc;
-> > -				break;
-> > -			}
-> > +		master_conn_state =3D drm_atomic_get_connector_state(&state->base,
-> > +								   master_connector);
-> > +		if (IS_ERR(master_conn_state)) {
-> > +			drm_connector_list_iter_end(&conn_iter);
-> > +			return PTR_ERR(master_conn_state);
-> >  		}
-> > -		drm_connector_list_iter_end(&conn_iter);
-> > -
-> > -		if (!master_crtc) {
-> > -			DRM_DEBUG_KMS("Could not find Master CRTC for Slave CRTC %d\n",
-> > -				      connector_state->crtc->base.id);
-> > -			return -EINVAL;
-> > +		if (master_conn_state->crtc) {
-> > +			master_crtc =3D master_conn_state->crtc;
-> > +			break;
-> >  		}
-> > +	}
-> > +	drm_connector_list_iter_end(&conn_iter);
-> >  =
-
-> > -		master_crtc_state =3D drm_atomic_get_crtc_state(&state->base,
-> > -							      master_crtc);
-> > -		if (IS_ERR(master_crtc_state))
-> > -			return PTR_ERR(master_crtc_state);
-> > -
-> > -		master_pipe_config =3D to_intel_crtc_state(master_crtc_state);
-> > -		crtc_state->master_transcoder =3D master_pipe_config->cpu_transcoder;
-> > -		master_pipe_config->sync_mode_slaves_mask |=3D
-> > -			BIT(crtc_state->cpu_transcoder);
-> > -		DRM_DEBUG_KMS("Master Transcoder =3D %s added for Slave CRTC =3D %d,=
- slave transcoder bitmask =3D %d\n",
-> > -			      transcoder_name(crtc_state->master_transcoder),
-> > -			      crtc_state->uapi.crtc->base.id,
-> > -			      master_pipe_config->sync_mode_slaves_mask);
-> > +	if (!master_crtc) {
-> > +		DRM_DEBUG_KMS("Could not find Master CRTC for Slave CRTC %d\n",
-> > +			      crtc->base.id);
-> > +		return -EINVAL;
-> >  	}
-> >  =
-
-> > +	master_crtc_state =3D drm_atomic_get_crtc_state(&state->base,
-> > +						      master_crtc);
-> > +	if (IS_ERR(master_crtc_state))
-> > +		return PTR_ERR(master_crtc_state);
-> > +
-> > +	master_pipe_config =3D to_intel_crtc_state(master_crtc_state);
-> > +	crtc_state->master_transcoder =3D master_pipe_config->cpu_transcoder;
-> > +	master_pipe_config->sync_mode_slaves_mask |=3D
-> > +		BIT(crtc_state->cpu_transcoder);
-> > +	DRM_DEBUG_KMS("Master Transcoder =3D %s added for Slave CRTC =3D %d, =
-slave transcoder bitmask =3D %d\n",
-> > +		      transcoder_name(crtc_state->master_transcoder),
-> > +		      crtc->base.id,
-> > +		      master_pipe_config->sync_mode_slaves_mask);
-> > +
-> >  	return 0;
-> >  }
-> >  =
-
-> > @@ -12660,7 +12678,7 @@ intel_modeset_pipe_config(struct intel_crtc_sta=
-te *pipe_config)
-> >  	struct drm_connector *connector;
-> >  	struct drm_connector_state *connector_state;
-> >  	int base_bpp, ret;
-> > -	int i;
-> > +	int i, tile_group_id =3D -1, num_tiled_conns =3D 0;
-> >  	bool retry =3D true;
-> >  =
-
-> >  	pipe_config->cpu_transcoder =3D
-> > @@ -12730,13 +12748,23 @@ intel_modeset_pipe_config(struct intel_crtc_s=
-tate *pipe_config)
-> >  	drm_mode_set_crtcinfo(&pipe_config->hw.adjusted_mode,
-> >  			      CRTC_STEREO_DOUBLE);
-> >  =
-
-> > -	/* Set the crtc_state defaults for trans_port_sync */
-> > -	pipe_config->master_transcoder =3D INVALID_TRANSCODER;
-> > -	ret =3D icl_add_sync_mode_crtcs(pipe_config);
-> > -	if (ret) {
-> > -		DRM_DEBUG_KMS("Cannot assign Sync Mode CRTCs: %d\n",
-> > -			      ret);
-> > -		return ret;
-> > +
-> > +	/* Get tile_group_id of tiled connector */
-> > +	for_each_new_connector_in_state(state, connector, connector_state, i)=
- {
-> > +		if (connector_state->crtc =3D=3D crtc &&
-> > +		    connector->has_tile) {
-> > +			tile_group_id =3D connector->tile_group->id;
-> > +			break;
-> > +		}
-> > +	}
-> > +
-> > +	/* Get total number of tiled connectors in state that belong to
-> > +	 * this tile group.
-> > +	 */
-> > +	for_each_new_connector_in_state(state, connector, connector_state, i)=
- {
-> > +		if (connector->has_tile &&
-> > +		    connector->tile_group->id =3D=3D tile_group_id)
-> > +			num_tiled_conns++;
-> >  	}
-> =
-
-> I don't see why we would need this num_tiled_conns stuff at all. Just
-> iterate all connectors in the state that belong to the same group.
->
-
-Yea but if all tiles are not present meaning num_tiled_conns not equal to n=
-um tiles then
-we should not make master slave assignments, here the crtcs would not be sy=
-nced and just operate
-as an individual crtc not synced crtc. Like after we disconnect 1 connector=
-, there is only 1 tiled conn connected
-and in that case it still displays the lower non tiled mode but we should n=
-ot make master slave asignments.
-
-May be all these checks for hdisplay , vdisplay, num conns =3D=3D num_tiles=
- can be moved to intel_atomic_sync_mode_check at the beginning?
-
-Manasi
- =
-
-> >  =
-
-> >  	/* Pass our mode to the connectors and the CRTC to give them a chance=
- to
-> > @@ -12747,6 +12775,14 @@ intel_modeset_pipe_config(struct intel_crtc_st=
-ate *pipe_config)
-> >  		if (connector_state->crtc !=3D crtc)
-> >  			continue;
-> >  =
-
-> > +		ret =3D icl_compute_port_sync_crtc_state(connector, pipe_config,
-> > +						       num_tiled_conns);
-> > +		if (ret) {
-> > +			DRM_DEBUG_KMS("Cannot assign Sync Mode CRTCs: %d\n",
-> > +				      ret);
-> > +			return ret;
-> > +		}
-> > +
-> >  		encoder =3D to_intel_encoder(connector_state->best_encoder);
-> >  		ret =3D encoder->compute_config(encoder, pipe_config,
-> >  					      connector_state);
-> > -- =
-
-> > 2.19.1
-> =
-
-> -- =
-
-> Ville Syrj=E4l=E4
-> Intel
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
