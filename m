@@ -2,39 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1217D1281F8
-	for <lists+intel-gfx@lfdr.de>; Fri, 20 Dec 2019 19:13:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6FB9C128231
+	for <lists+intel-gfx@lfdr.de>; Fri, 20 Dec 2019 19:27:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0658A6EC88;
-	Fri, 20 Dec 2019 18:13:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A2CC46EC8B;
+	Fri, 20 Dec 2019 18:27:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EED8A6EC88
- for <intel-gfx@lists.freedesktop.org>; Fri, 20 Dec 2019 18:13:22 +0000 (UTC)
-X-Amp-Result: UNSCANNABLE
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 68F916EC8B
+ for <intel-gfx@lists.freedesktop.org>; Fri, 20 Dec 2019 18:27:51 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 20 Dec 2019 10:13:22 -0800
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 20 Dec 2019 10:27:50 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,336,1571727600"; d="scan'208";a="213638681"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by fmsmga008.fm.intel.com with SMTP; 20 Dec 2019 10:13:20 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 20 Dec 2019 20:13:19 +0200
-Date: Fri, 20 Dec 2019 20:13:19 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Manasi Navare <manasi.d.navare@intel.com>
-Message-ID: <20191220181319.GY1208@intel.com>
-References: <20191219215117.929-1-manasi.d.navare@intel.com>
- <20191219215117.929-2-manasi.d.navare@intel.com>
+X-IronPort-AV: E=Sophos;i="5.69,336,1571727600"; d="scan'208";a="218553384"
+Received: from fmsmsx105.amr.corp.intel.com ([10.18.124.203])
+ by orsmga006.jf.intel.com with ESMTP; 20 Dec 2019 10:27:50 -0800
+Received: from FMSMSX109.amr.corp.intel.com (10.18.116.9) by
+ FMSMSX105.amr.corp.intel.com (10.18.124.203) with Microsoft SMTP Server (TLS)
+ id 14.3.439.0; Fri, 20 Dec 2019 10:27:50 -0800
+Received: from fmsmsx116.amr.corp.intel.com ([169.254.2.67]) by
+ FMSMSX109.amr.corp.intel.com ([169.254.15.48]) with mapi id 14.03.0439.000;
+ Fri, 20 Dec 2019 10:27:50 -0800
+From: "Souza, Jose" <jose.souza@intel.com>
+To: "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>
+Thread-Topic: [PATCH v5 6/7] drm/i915/display: Check if pipe fastset is
+ allowed by external dependencies
+Thread-Index: AQHVt0prjIk/SyRKY0OK1Cue0MEnHqfDtd4AgAAn/4A=
+Date: Fri, 20 Dec 2019 18:27:49 +0000
+Message-ID: <1278e1a7670186bea48728c61173be614b7b1a1f.camel@intel.com>
+References: <20191220152954.83276-1-jose.souza@intel.com>
+ <20191220152954.83276-6-jose.souza@intel.com>
+ <20191220160434.GQ1208@intel.com>
+In-Reply-To: <20191220160434.GQ1208@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.252.207.149]
+Content-ID: <0161666ED87F40489D2427198FC08E8A@intel.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20191219215117.929-2-manasi.d.navare@intel.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH v2 2/3] drm/i915/dp: Make port sync mode
- assignments only if all tiles present
+Subject: Re: [Intel-gfx] [PATCH v5 6/7] drm/i915/display: Check if pipe
+ fastset is allowed by external dependencies
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,301 +59,117 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: "De Marchi, Lucas" <lucas.demarchi@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Dec 19, 2019 at 01:51:16PM -0800, Manasi Navare wrote:
-> Add an extra check before making master slave assignments for tiled
-> displays to make sure we make these assignments only if all tiled
-> connectors are present. If not then initialize the state to defaults
-> so it does a normal non tiled modeset without transcoder port sync.
-> =
-
-> v2:
-> * Rename icl_add_sync_mode_crtcs
-> * Move this function just before .compute_config hook
-> * Check if DP before master slave assignments (Ville)
-> =
-
-> Bugzilla: https://gitlab.freedesktop.org/drm/intel/issues/5
-> Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> Signed-off-by: Manasi Navare <manasi.d.navare@intel.com>
-
-So, I don't really understnad this code but it seems safe enough (esp.
-considering it's icl+ only and no one likely has a tiled display on
-those).
-
-So to get things moving
-Acked-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-
-> ---
->  drivers/gpu/drm/i915/display/intel_display.c | 162 +++++++++++--------
->  1 file changed, 99 insertions(+), 63 deletions(-)
-> =
-
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/d=
-rm/i915/display/intel_display.c
-> index 00608d8cef50..9c1b1256be68 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -12014,88 +12014,106 @@ static bool c8_planes_changed(const struct int=
-el_crtc_state *new_crtc_state)
->  	return !old_crtc_state->c8_planes !=3D !new_crtc_state->c8_planes;
->  }
->  =
-
-> -static int icl_add_sync_mode_crtcs(struct intel_crtc_state *crtc_state)
-> +static void reset_port_sync_mode_state(struct intel_crtc_state *crtc_sta=
-te)
-> +{
-> +	crtc_state->master_transcoder =3D INVALID_TRANSCODER;
-> +	crtc_state->sync_mode_slaves_mask =3D 0;
-> +}
-> +
-> +static int icl_compute_port_sync_crtc_state(struct drm_connector *connec=
-tor,
-> +					    struct intel_crtc_state *crtc_state,
-> +					    int num_tiled_conns)
->  {
->  	struct drm_crtc *crtc =3D crtc_state->uapi.crtc;
->  	struct intel_atomic_state *state =3D to_intel_atomic_state(crtc_state->=
-uapi.state);
->  	struct drm_i915_private *dev_priv =3D to_i915(crtc_state->uapi.crtc->de=
-v);
-> -	struct drm_connector *master_connector, *connector;
-> -	struct drm_connector_state *connector_state;
-> +	struct drm_connector *master_connector;
->  	struct drm_connector_list_iter conn_iter;
->  	struct drm_crtc *master_crtc =3D NULL;
->  	struct drm_crtc_state *master_crtc_state;
->  	struct intel_crtc_state *master_pipe_config;
-> -	int i, tile_group_id;
->  =
-
->  	if (INTEL_GEN(dev_priv) < 11)
->  		return 0;
->  =
-
-> +	if (!intel_crtc_has_type(crtc_state, INTEL_OUTPUT_DP))
-> +		return 0;
-> +
->  	/*
->  	 * In case of tiled displays there could be one or more slaves but ther=
-e is
->  	 * only one master. Lets make the CRTC used by the connector correspond=
-ing
->  	 * to the last horizonal and last vertical tile a master/genlock CRTC.
->  	 * All the other CRTCs corresponding to other tiles of the same Tile gr=
-oup
->  	 * are the slave CRTCs and hold a pointer to their genlock CRTC.
-> +	 * If all tiles not present do not make master slave assignments.
-> +	 *
-> +	 * FIXME: Add support for multiple tile grp ids in the future when such
-> +	 * panels are available.
->  	 */
-> -	for_each_new_connector_in_state(&state->base, connector, connector_stat=
-e, i) {
-> -		if (connector_state->crtc !=3D crtc)
-> -			continue;
-> -		if (!connector->has_tile)
-> +	if (!connector->has_tile ||
-> +	    crtc_state->hw.mode.hdisplay !=3D connector->tile_h_size ||
-> +	    crtc_state->hw.mode.vdisplay !=3D connector->tile_v_size ||
-> +	    num_tiled_conns < connector->num_h_tile * connector->num_v_tile) {
-> +		reset_port_sync_mode_state(crtc_state);
-> +		return 0;
-> +	}
-> +	/* Last Horizontal and last vertical tile connector is a master
-> +	 * Master Trans for a Master CRTC is always INVALID.
-> +	 */
-> +	if (connector->tile_h_loc =3D=3D connector->num_h_tile - 1 &&
-> +	    connector->tile_v_loc =3D=3D connector->num_v_tile - 1) {
-> +		crtc_state->master_transcoder =3D INVALID_TRANSCODER;
-> +		return 0;
-> +	}
-> +
-> +	/* Loop through all connectors and configure the Slave crtc_state
-> +	 * to point to the correct master.
-> +	 */
-> +	reset_port_sync_mode_state(crtc_state);
-> +	drm_connector_list_iter_begin(&dev_priv->drm, &conn_iter);
-> +	drm_for_each_connector_iter(master_connector, &conn_iter) {
-> +		struct drm_connector_state *master_conn_state =3D NULL;
-> +
-> +		if (!(master_connector->has_tile &&
-> +		      master_connector->tile_group->id =3D=3D connector->tile_group->i=
-d))
->  			continue;
-> -		if (crtc_state->hw.mode.hdisplay !=3D connector->tile_h_size ||
-> -		    crtc_state->hw.mode.vdisplay !=3D connector->tile_v_size)
-> -			return 0;
-> -		if (connector->tile_h_loc =3D=3D connector->num_h_tile - 1 &&
-> -		    connector->tile_v_loc =3D=3D connector->num_v_tile - 1)
-> +		if (master_connector->tile_h_loc !=3D master_connector->num_h_tile - 1=
- ||
-> +		    master_connector->tile_v_loc !=3D master_connector->num_v_tile - 1)
->  			continue;
-> -		crtc_state->sync_mode_slaves_mask =3D 0;
-> -		tile_group_id =3D connector->tile_group->id;
-> -		drm_connector_list_iter_begin(&dev_priv->drm, &conn_iter);
-> -		drm_for_each_connector_iter(master_connector, &conn_iter) {
-> -			struct drm_connector_state *master_conn_state =3D NULL;
->  =
-
-> -			if (!master_connector->has_tile)
-> -				continue;
-> -			if (master_connector->tile_h_loc !=3D master_connector->num_h_tile - =
-1 ||
-> -			    master_connector->tile_v_loc !=3D master_connector->num_v_tile - =
-1)
-> -				continue;
-> -			if (master_connector->tile_group->id !=3D tile_group_id)
-> -				continue;
-> -
-> -			master_conn_state =3D drm_atomic_get_connector_state(&state->base,
-> -									   master_connector);
-> -			if (IS_ERR(master_conn_state)) {
-> -				drm_connector_list_iter_end(&conn_iter);
-> -				return PTR_ERR(master_conn_state);
-> -			}
-> -			if (master_conn_state->crtc) {
-> -				master_crtc =3D master_conn_state->crtc;
-> -				break;
-> -			}
-> +		master_conn_state =3D drm_atomic_get_connector_state(&state->base,
-> +								   master_connector);
-> +		if (IS_ERR(master_conn_state)) {
-> +			drm_connector_list_iter_end(&conn_iter);
-> +			return PTR_ERR(master_conn_state);
->  		}
-> -		drm_connector_list_iter_end(&conn_iter);
-> -
-> -		if (!master_crtc) {
-> -			DRM_DEBUG_KMS("Could not find Master CRTC for Slave CRTC %d\n",
-> -				      connector_state->crtc->base.id);
-> -			return -EINVAL;
-> +		if (master_conn_state->crtc) {
-> +			master_crtc =3D master_conn_state->crtc;
-> +			break;
->  		}
-> +	}
-> +	drm_connector_list_iter_end(&conn_iter);
->  =
-
-> -		master_crtc_state =3D drm_atomic_get_crtc_state(&state->base,
-> -							      master_crtc);
-> -		if (IS_ERR(master_crtc_state))
-> -			return PTR_ERR(master_crtc_state);
-> -
-> -		master_pipe_config =3D to_intel_crtc_state(master_crtc_state);
-> -		crtc_state->master_transcoder =3D master_pipe_config->cpu_transcoder;
-> -		master_pipe_config->sync_mode_slaves_mask |=3D
-> -			BIT(crtc_state->cpu_transcoder);
-> -		DRM_DEBUG_KMS("Master Transcoder =3D %s added for Slave CRTC =3D %d, s=
-lave transcoder bitmask =3D %d\n",
-> -			      transcoder_name(crtc_state->master_transcoder),
-> -			      crtc_state->uapi.crtc->base.id,
-> -			      master_pipe_config->sync_mode_slaves_mask);
-> +	if (!master_crtc) {
-> +		DRM_DEBUG_KMS("Could not find Master CRTC for Slave CRTC %d\n",
-> +			      crtc->base.id);
-> +		return -EINVAL;
->  	}
->  =
-
-> +	master_crtc_state =3D drm_atomic_get_crtc_state(&state->base,
-> +						      master_crtc);
-> +	if (IS_ERR(master_crtc_state))
-> +		return PTR_ERR(master_crtc_state);
-> +
-> +	master_pipe_config =3D to_intel_crtc_state(master_crtc_state);
-> +	crtc_state->master_transcoder =3D master_pipe_config->cpu_transcoder;
-> +	master_pipe_config->sync_mode_slaves_mask |=3D
-> +		BIT(crtc_state->cpu_transcoder);
-> +	DRM_DEBUG_KMS("Master Transcoder =3D %s added for Slave CRTC =3D %d, sl=
-ave transcoder bitmask =3D %d\n",
-> +		      transcoder_name(crtc_state->master_transcoder),
-> +		      crtc->base.id,
-> +		      master_pipe_config->sync_mode_slaves_mask);
-> +
->  	return 0;
->  }
->  =
-
-> @@ -12660,7 +12678,7 @@ intel_modeset_pipe_config(struct intel_crtc_state=
- *pipe_config)
->  	struct drm_connector *connector;
->  	struct drm_connector_state *connector_state;
->  	int base_bpp, ret;
-> -	int i;
-> +	int i, tile_group_id =3D -1, num_tiled_conns =3D 0;
->  	bool retry =3D true;
->  =
-
->  	pipe_config->cpu_transcoder =3D
-> @@ -12730,13 +12748,23 @@ intel_modeset_pipe_config(struct intel_crtc_sta=
-te *pipe_config)
->  	drm_mode_set_crtcinfo(&pipe_config->hw.adjusted_mode,
->  			      CRTC_STEREO_DOUBLE);
->  =
-
-> -	/* Set the crtc_state defaults for trans_port_sync */
-> -	pipe_config->master_transcoder =3D INVALID_TRANSCODER;
-> -	ret =3D icl_add_sync_mode_crtcs(pipe_config);
-> -	if (ret) {
-> -		DRM_DEBUG_KMS("Cannot assign Sync Mode CRTCs: %d\n",
-> -			      ret);
-> -		return ret;
-> +
-> +	/* Get tile_group_id of tiled connector */
-> +	for_each_new_connector_in_state(state, connector, connector_state, i) {
-> +		if (connector_state->crtc =3D=3D crtc &&
-> +		    connector->has_tile) {
-> +			tile_group_id =3D connector->tile_group->id;
-> +			break;
-> +		}
-> +	}
-> +
-> +	/* Get total number of tiled connectors in state that belong to
-> +	 * this tile group.
-> +	 */
-> +	for_each_new_connector_in_state(state, connector, connector_state, i) {
-> +		if (connector->has_tile &&
-> +		    connector->tile_group->id =3D=3D tile_group_id)
-> +			num_tiled_conns++;
->  	}
->  =
-
->  	/* Pass our mode to the connectors and the CRTC to give them a chance to
-> @@ -12747,6 +12775,14 @@ intel_modeset_pipe_config(struct intel_crtc_stat=
-e *pipe_config)
->  		if (connector_state->crtc !=3D crtc)
->  			continue;
->  =
-
-> +		ret =3D icl_compute_port_sync_crtc_state(connector, pipe_config,
-> +						       num_tiled_conns);
-> +		if (ret) {
-> +			DRM_DEBUG_KMS("Cannot assign Sync Mode CRTCs: %d\n",
-> +				      ret);
-> +			return ret;
-> +		}
-> +
->  		encoder =3D to_intel_encoder(connector_state->best_encoder);
->  		ret =3D encoder->compute_config(encoder, pipe_config,
->  					      connector_state);
-> -- =
-
-> 2.19.1
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gRnJpLCAyMDE5LTEyLTIwIGF0IDE4OjA0ICswMjAwLCBWaWxsZSBTeXJqw6Rsw6Qgd3JvdGU6
+DQo+IE9uIEZyaSwgRGVjIDIwLCAyMDE5IGF0IDA3OjI5OjUzQU0gLTA4MDAsIEpvc8OpIFJvYmVy
+dG8gZGUgU291emENCj4gd3JvdGU6DQo+ID4gQ2hlY2sgaWYgZmFzdHNldCBpcyBhbGxvd2VkIGJ5
+IGV4dGVybmFsIGRlcGVuZGVuY2llcyBsaWtlIG90aGVyDQo+ID4gcGlwZXMNCj4gPiBhbmQgdHJh
+bnNjb2RlcnMuDQo+ID4gDQo+ID4gUmlnaHQgbm93IHRoaXMgcGF0Y2ggb25seSBmb3JjZXMgYSBm
+dWxsbW9kZXNldCBpbiBNU1Qgc2xhdmVzIG9mIE1TVA0KPiA+IG1hc3RlcnMgdGhhdCBuZWVkcyBh
+IGZ1bGxtb2Rlc2V0IGJ1dCBpdCB3aWxsIGJlIG5lZWRlZCBmb3IgcG9ydA0KPiA+IHN5bmMNCj4g
+PiBhcyB3ZWxsLg0KPiA+IA0KPiA+IHYzOg0KPiA+IC0gbW92ZWQgaGFuZGxpbmcgdG8gaW50ZWxf
+YXRvbWljX2NoZWNrKCkgdGhpcyB3YXkgaXMgZ3VhcmFudGVlIHRoYXQNCj4gPiBhbGwgcGlwZXMg
+d2lsbCBoYXZlIGl0cyBzdGF0ZSBjb21wdXRlZA0KPiA+IA0KPiA+IHY0Og0KPiA+IC0gYWRkZWQg
+YSBmdW5jdGlvbiB0byByZXR1cm4gaWYgTVNUIG1hc3RlciBuZWVlZHMgbW9kZXNldCB0byBzaW1w
+bHkNCj4gPiBjb2RlIGluIGludGVsX2F0b21pY19jaGVjaygpDQo+ID4gDQo+ID4gdjU6DQo+ID4g
+LSBmaXhlZCBhbmQgbW92ZWQgY29kZSB0byBjaGVjayBpZiBNU1QgbWFzdGVyIG5lZWRzIGEgbW9k
+ZXNldA0KPiA+IA0KPiA+IENjOiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXgu
+aW50ZWwuY29tPg0KPiA+IENjOiBMdWNhcyBEZSBNYXJjaGkgPGx1Y2FzLmRlbWFyY2hpQGludGVs
+LmNvbT4NCj4gPiBDYzogTWFhcnRlbiBMYW5raG9yc3QgPG1hYXJ0ZW4ubGFua2hvcnN0QGxpbnV4
+LmludGVsLmNvbT4NCj4gPiBDYzogTWFuYXNpIE5hdmFyZSA8bWFuYXNpLmQubmF2YXJlQGludGVs
+LmNvbT4NCj4gPiBSZXZpZXdlZC1ieTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxp
+bnV4LmludGVsLmNvbT4NCj4gPiBTaWduZWQtb2ZmLWJ5OiBKb3PDqSBSb2JlcnRvIGRlIFNvdXph
+IDxqb3NlLnNvdXphQGludGVsLmNvbT4NCj4gPiAtLS0NCj4gPiAgZHJpdmVycy9ncHUvZHJtL2k5
+MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMgfCA3MA0KPiA+ICsrKysrKysrKysrKysrKystLS0t
+DQo+ID4gIDEgZmlsZSBjaGFuZ2VkLCA1NyBpbnNlcnRpb25zKCspLCAxMyBkZWxldGlvbnMoLSkN
+Cj4gPiANCj4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRl
+bF9kaXNwbGF5LmMNCj4gPiBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlz
+cGxheS5jDQo+ID4gaW5kZXggMjQ4NDFkZGU0OTBiLi4xMWYyYzEzZWMyM2UgMTAwNjQ0DQo+ID4g
+LS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMNCj4gPiAr
+KysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuYw0KPiA+IEBA
+IC0xMzkwOSwxOSArMTM5MDksNiBAQCBzdGF0aWMgdm9pZCBpbnRlbF9jcnRjX2NoZWNrX2Zhc3Rz
+ZXQoY29uc3QNCj4gPiBzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZSAqb2xkX2NydGNfc3RhDQo+ID4g
+IA0KPiA+ICAJbmV3X2NydGNfc3RhdGUtPnVhcGkubW9kZV9jaGFuZ2VkID0gZmFsc2U7DQo+ID4g
+IAluZXdfY3J0Y19zdGF0ZS0+dXBkYXRlX3BpcGUgPSB0cnVlOw0KPiA+IC0NCj4gPiAtCS8qDQo+
+ID4gLQkgKiBJZiB3ZSdyZSBub3QgZG9pbmcgdGhlIGZ1bGwgbW9kZXNldCB3ZSB3YW50IHRvDQo+
+ID4gLQkgKiBrZWVwIHRoZSBjdXJyZW50IE0vTiB2YWx1ZXMgYXMgdGhleSBtYXkgYmUNCj4gPiAt
+CSAqIHN1ZmZpY2llbnRseSBkaWZmZXJlbnQgdG8gdGhlIGNvbXB1dGVkIHZhbHVlcw0KPiA+IC0J
+ICogdG8gY2F1c2UgcHJvYmxlbXMuDQo+ID4gLQkgKg0KPiA+IC0JICogRklYTUU6IHNob3VsZCBy
+ZWFsbHkgY29weSBtb3JlIGZ1enp5IHN0YXRlIGhlcmUNCj4gPiAtCSAqLw0KPiA+IC0JbmV3X2Ny
+dGNfc3RhdGUtPmZkaV9tX24gPSBvbGRfY3J0Y19zdGF0ZS0+ZmRpX21fbjsNCj4gPiAtCW5ld19j
+cnRjX3N0YXRlLT5kcF9tX24gPSBvbGRfY3J0Y19zdGF0ZS0+ZHBfbV9uOw0KPiA+IC0JbmV3X2Ny
+dGNfc3RhdGUtPmRwX20yX24yID0gb2xkX2NydGNfc3RhdGUtPmRwX20yX24yOw0KPiA+IC0JbmV3
+X2NydGNfc3RhdGUtPmhhc19kcnJzID0gb2xkX2NydGNfc3RhdGUtPmhhc19kcnJzOw0KPiA+ICB9
+DQo+ID4gIA0KPiA+ICBzdGF0aWMgaW50IGludGVsX2NydGNfYWRkX3BsYW5lc190b19zdGF0ZShz
+dHJ1Y3QNCj4gPiBpbnRlbF9hdG9taWNfc3RhdGUgKnN0YXRlLA0KPiA+IEBAIC0xNDAzMiw2ICsx
+NDAxOSwyMCBAQCBzdGF0aWMgaW50IGludGVsX2F0b21pY19jaGVja19jcnRjcyhzdHJ1Y3QNCj4g
+PiBpbnRlbF9hdG9taWNfc3RhdGUgKnN0YXRlKQ0KPiA+ICAJcmV0dXJuIDA7DQo+ID4gIH0NCj4g
+PiAgDQo+ID4gK3N0YXRpYyBib29sIGludGVsX2NwdV90cmFuc2NvZGVyX25lZWRzX21vZGVzZXQo
+c3RydWN0DQo+ID4gaW50ZWxfYXRvbWljX3N0YXRlICpzdGF0ZSwNCj4gPiArCQkJCQkgICAgICAg
+ZW51bSB0cmFuc2NvZGVyDQo+ID4gdHJhbnNjb2RlcikNCj4gPiArew0KPiA+ICsJc3RydWN0IGlu
+dGVsX2NydGNfc3RhdGUgKm5ld19jcnRjX3N0YXRlOw0KPiA+ICsJc3RydWN0IGludGVsX2NydGMg
+KmNydGM7DQo+ID4gKwlpbnQgaTsNCj4gPiArDQo+ID4gKwlmb3JfZWFjaF9uZXdfaW50ZWxfY3J0
+Y19pbl9zdGF0ZShzdGF0ZSwgY3J0YywgbmV3X2NydGNfc3RhdGUsDQo+ID4gaSkNCj4gPiArCQlp
+ZiAobmV3X2NydGNfc3RhdGUtPmNwdV90cmFuc2NvZGVyID09IHRyYW5zY29kZXIpDQo+ID4gKwkJ
+CXJldHVybiBuZWVkc19tb2Rlc2V0KG5ld19jcnRjX3N0YXRlKTsNCj4gPiArDQo+ID4gKwlyZXR1
+cm4gZmFsc2U7DQo+ID4gK30NCj4gDQo+IEkgd291bGQgaGlnaGx5IHJlY29tbWVuZCBzcGxpdHRp
+bmcgdGhpcyBwYXRjaCBpbnRvIHR3byBiZWZvcmUgcHVzaGluZw0KPiBzbyB0aGF0IHRoZSBjaGVj
+ayB2cy4gY29weSBzcGxpdCBnb2VzIGluIGZpcnN0LCB0aGVuIHRoZSBNU1QgdGhpbmcgb24NCj4g
+dG9wLiBUaGF0IHdheSBpZiB3ZSBoYXZlIHRvIHJldmVydCBlaXRoZXIgTVNUIG9yIHBvcnQgc3lu
+YyB0aGVuIGF0DQo+IGxlYXN0IHdlIGtlZXAgdGhpcyBwYXJ0IGFuZCB3b24ndCBicmVhayB0aGUg
+b3RoZXIgZmVhdHVyZSBpbiB0aGUNCj4gcHJvY2Vzcy4NCg0Kb2theSwgZG9pbmcgdGhhdA0KDQo+
+IA0KPiA+ICsNCj4gPiAgLyoqDQo+ID4gICAqIGludGVsX2F0b21pY19jaGVjayAtIHZhbGlkYXRl
+IHN0YXRlIG9iamVjdA0KPiA+ICAgKiBAZGV2OiBkcm0gZGV2aWNlDQo+ID4gQEAgLTE0MDg5LDYg
+KzE0MDkwLDQ5IEBAIHN0YXRpYyBpbnQgaW50ZWxfYXRvbWljX2NoZWNrKHN0cnVjdA0KPiA+IGRy
+bV9kZXZpY2UgKmRldiwNCj4gPiAgCQkJYW55X21zID0gdHJ1ZTsNCj4gPiAgCX0NCj4gDQo+IFdh
+cyBnb2luZyB0byBzYXkgdGhpcyBhbnlfbXMgdGhpbmcgaGFzIHRvIG1vdmUsIGJ1dCBJIGd1ZXNz
+IG5vdA0KPiByZWFsbHkNCj4gc2luY2UgdGhlIGJlbG93IGxvb3Agd29uJ3QgZG8gYW55dGhpbmcg
+dW5sZXNzIHdlIHN0aWxsIGhhdmUgYXQgbGVhc3QNCj4gb25lIGNydGMgbmVlZGluZyBhIG1vZGVz
+ZXQuIFByb2JhYmx5IHNob3VsZCBtb3ZlIGl0LCBidXQgY2FuIGJlIGRvbmUNCj4gbGF0ZXIuDQoN
+Ck9rYXkNCg0KPiANCj4gPiAgDQo+ID4gKwkvKioNCj4gPiArCSAqIENoZWNrIGlmIGZhc3RzZXQg
+aXMgYWxsb3dlZCBieSBleHRlcm5hbCBkZXBlbmRlbmNpZXMgbGlrZQ0KPiA+IG90aGVyDQo+ID4g
+KwkgKiBwaXBlcyBhbmQgdHJhbnNjb2RlcnMuDQo+ID4gKwkgKg0KPiA+ICsJICogUmlnaHQgbm93
+IGl0IG9ubHkgZm9yY2VzIGEgZnVsbG1vZGVzZXQgd2hlbiB0aGUgTVNUIG1hc3Rlcg0KPiA+ICsJ
+ICogdHJhbnNjb2RlciBkaWQgbm90IGNoYW5nZWQgYnV0IHRoZSBwaXBlIG9mIHRoZSBtYXN0ZXIN
+Cj4gPiB0cmFuc2NvZGVyDQo+ID4gKwkgKiBuZWVkcyBhIGZ1bGxtb2Rlc2V0IHNvIGFsbCBzbGF2
+ZXMgYWxzbyBuZWVkcyB0byBkbyBhDQo+ID4gZnVsbG1vZGVzZXQuDQo+ID4gKwkgKi8NCj4gPiAr
+CWZvcl9lYWNoX25ld19pbnRlbF9jcnRjX2luX3N0YXRlKHN0YXRlLCBjcnRjLCBuZXdfY3J0Y19z
+dGF0ZSwNCj4gPiBpKSB7DQo+ID4gKwkJZW51bSB0cmFuc2NvZGVyIG1hc3RlciA9IG5ld19jcnRj
+X3N0YXRlLQ0KPiA+ID5tc3RfbWFzdGVyX3RyYW5zY29kZXI7DQo+ID4gKw0KPiA+ICsJCWlmICgh
+bmV3X2NydGNfc3RhdGUtPnVhcGkuZW5hYmxlIHx8DQo+IA0KPiBUaGVzZSB1YXBpLmVuYWJsZSBj
+aGVja3Mgc2VlbSBmaXNoeS4gU2hvdWxkIGF0IGxlYXN0IGJlIGh3LmVuYWJsZQ0KPiBzaW5jZQ0K
+PiB3ZSdyZSBwYXN0IC5jb21wdXRlX2NvbmZpZygpIHN0YWdlIGFscmVhZHkuDQoNCk9rYXkNCg0K
+PiANCj4gPiArCQkgICAgIWludGVsX2RwX21zdF9pc19zbGF2ZV90cmFucyhuZXdfY3J0Y19zdGF0
+ZSkgfHwNCj4gPiArCQkgICAgbmVlZHNfbW9kZXNldChuZXdfY3J0Y19zdGF0ZSkpDQo+ID4gKwkJ
+CWNvbnRpbnVlOw0KPiA+ICsNCj4gPiArCQlpZiAoaW50ZWxfY3B1X3RyYW5zY29kZXJfbmVlZHNf
+bW9kZXNldChzdGF0ZSwgbWFzdGVyKSkNCj4gPiB7DQo+ID4gKwkJCW5ld19jcnRjX3N0YXRlLT51
+YXBpLm1vZGVfY2hhbmdlZCA9IHRydWU7DQo+ID4gKwkJCW5ld19jcnRjX3N0YXRlLT51cGRhdGVf
+cGlwZSA9IGZhbHNlOw0KPiA+ICsJCX0NCj4gPiArCX0NCj4gPiArDQo+ID4gKwlmb3JfZWFjaF9v
+bGRuZXdfaW50ZWxfY3J0Y19pbl9zdGF0ZShzdGF0ZSwgY3J0YywNCj4gPiBvbGRfY3J0Y19zdGF0
+ZSwNCj4gPiArCQkJCQkgICAgbmV3X2NydGNfc3RhdGUsIGkpIHsNCj4gPiArCQlpZiAoIW5ld19j
+cnRjX3N0YXRlLT51YXBpLmVuYWJsZSB8fA0KPiA+ICsJCSAgICBuZWVkc19tb2Rlc2V0KG5ld19j
+cnRjX3N0YXRlKSB8fA0KPiA+ICsJCSAgICAhbmV3X2NydGNfc3RhdGUtPnVwZGF0ZV9waXBlKQ0K
+PiA+ICsJCQljb250aW51ZTsNCj4gPiArDQo+ID4gKwkJLyoNCj4gPiArCQkgKiBJZiB3ZSdyZSBu
+b3QgZG9pbmcgdGhlIGZ1bGwgbW9kZXNldCB3ZSB3YW50IHRvDQo+ID4gKwkJICoga2VlcCB0aGUg
+Y3VycmVudCBNL04gdmFsdWVzIGFzIHRoZXkgbWF5IGJlDQo+ID4gKwkJICogc3VmZmljaWVudGx5
+IGRpZmZlcmVudCB0byB0aGUgY29tcHV0ZWQgdmFsdWVzDQo+ID4gKwkJICogdG8gY2F1c2UgcHJv
+YmxlbXMuDQo+ID4gKwkJICoNCj4gPiArCQkgKiBGSVhNRTogc2hvdWxkIHJlYWxseSBjb3B5IG1v
+cmUgZnV6enkgc3RhdGUgaGVyZQ0KPiA+ICsJCSAqLw0KPiA+ICsJCW5ld19jcnRjX3N0YXRlLT5m
+ZGlfbV9uID0gb2xkX2NydGNfc3RhdGUtPmZkaV9tX247DQo+ID4gKwkJbmV3X2NydGNfc3RhdGUt
+PmRwX21fbiA9IG9sZF9jcnRjX3N0YXRlLT5kcF9tX247DQo+ID4gKwkJbmV3X2NydGNfc3RhdGUt
+PmRwX20yX24yID0gb2xkX2NydGNfc3RhdGUtPmRwX20yX24yOw0KPiA+ICsJCW5ld19jcnRjX3N0
+YXRlLT5oYXNfZHJycyA9IG9sZF9jcnRjX3N0YXRlLT5oYXNfZHJyczsNCj4gDQo+IFN0aWxsIHNh
+ZC4NCg0KDQpBbnkgc3VnZ2VzdGlvbiBob3cgdG8gZml4IHRoaXM/IEkgY2FuIHdvcmsgb24gdGhp
+cyBhZnRlciB0aGlzIE1TVCBmaXJlLg0KDQo+IA0KPiA+ICsJfQ0KPiA+ICsNCj4gPiAgCWlmIChh
+bnlfbXMgJiYgIWNoZWNrX2RpZ2l0YWxfcG9ydF9jb25mbGljdHMoc3RhdGUpKSB7DQo+ID4gIAkJ
+RFJNX0RFQlVHX0tNUygicmVqZWN0aW5nIGNvbmZsaWN0aW5nIGRpZ2l0YWwgcG9ydA0KPiA+IGNv
+bmZpZ3VyYXRpb25cbiIpOw0KPiA+ICAJCXJldCA9IEVJTlZBTDsNCj4gPiAtLSANCj4gPiAyLjI0
+LjENCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVs
+LWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczov
+L2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
