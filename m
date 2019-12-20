@@ -2,30 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A24361272CD
-	for <lists+intel-gfx@lfdr.de>; Fri, 20 Dec 2019 02:32:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B6D11272D6
+	for <lists+intel-gfx@lfdr.de>; Fri, 20 Dec 2019 02:36:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D29546E210;
-	Fri, 20 Dec 2019 01:31:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2A2F26E1E6;
+	Fri, 20 Dec 2019 01:36:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 41FEE6E1E6;
- Fri, 20 Dec 2019 01:31:57 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 519C96E1E6;
+ Fri, 20 Dec 2019 01:36:23 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 37D53A0099;
- Fri, 20 Dec 2019 01:31:57 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 408F5A0094;
+ Fri, 20 Dec 2019 01:36:23 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Fri, 20 Dec 2019 01:31:57 -0000
-Message-ID: <157680551720.9211.5750043137211683487@emeril.freedesktop.org>
+To: "Manasi Navare" <manasi.d.navare@intel.com>
+Date: Fri, 20 Dec 2019 01:36:23 -0000
+Message-ID: <157680578323.9211.10996912452366632284@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20191219232932.189197-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20191219232932.189197-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/gt=3A_Teach_veng_to_defer_the_context_allocation?=
+References: <20191219233305.28080-1-manasi.d.navare@intel.com>
+In-Reply-To: <20191219233305.28080-1-manasi.d.navare@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_series_starting_with_=5Bv3=2C1/3=5D_drm/i915/dp=3A_Make_sur?=
+ =?utf-8?q?e_all_tiled_connectors_get_added_to_the_state_with_full_modeset?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,125 +48,23 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: drm/i915/gt: Teach veng to defer the context allocation
-URL   : https://patchwork.freedesktop.org/series/71192/
-State : success
+Series: series starting with [v3,1/3] drm/i915/dp: Make sure all tiled connectors get added to the state with full modeset
+URL   : https://patchwork.freedesktop.org/series/71193/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_7611 -> Patchwork_15851
-====================================================
+$ dim checkpatch origin/drm-tip
+a1d4c3e59f11 drm/i915/dp: Make sure all tiled connectors get added to the state with full modeset
+56e8abc460bf drm/i915/dp: Make port sync mode assignments only if all tiles present
+-:219: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#219: FILE: drivers/gpu/drm/i915/display/intel_display.c:12754:
+ 
++
 
-Summary
--------
+total: 0 errors, 0 warnings, 1 checks, 220 lines checked
+1d2738ee3929 drm/i915/dp: Disable Port sync mode correctly on teardown
 
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15851/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_15851 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live_blt:
-    - fi-hsw-4770:        [PASS][1] -> [DMESG-FAIL][2] ([i915#553] / [i915#725])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7611/fi-hsw-4770/igt@i915_selftest@live_blt.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15851/fi-hsw-4770/igt@i915_selftest@live_blt.html
-
-  * igt@i915_selftest@live_hugepages:
-    - fi-byt-j1900:       [PASS][3] -> [DMESG-FAIL][4] ([i915#845])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7611/fi-byt-j1900/igt@i915_selftest@live_hugepages.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15851/fi-byt-j1900/igt@i915_selftest@live_hugepages.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_exec_create@basic:
-    - {fi-tgl-u}:         [INCOMPLETE][5] ([fdo#111736]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7611/fi-tgl-u/igt@gem_exec_create@basic.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15851/fi-tgl-u/igt@gem_exec_create@basic.html
-
-  * igt@i915_selftest@live_blt:
-    - fi-hsw-4770r:       [DMESG-FAIL][7] ([i915#725]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7611/fi-hsw-4770r/igt@i915_selftest@live_blt.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15851/fi-hsw-4770r/igt@i915_selftest@live_blt.html
-
-  * igt@i915_selftest@live_gt_contexts:
-    - fi-tgl-y:           [DMESG-FAIL][9] -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7611/fi-tgl-y/igt@i915_selftest@live_gt_contexts.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15851/fi-tgl-y/igt@i915_selftest@live_gt_contexts.html
-
-  * igt@kms_chamelium@hdmi-hpd-fast:
-    - fi-kbl-7500u:       [FAIL][11] ([fdo#111096] / [i915#323]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7611/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15851/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - fi-icl-u2:          [INCOMPLETE][13] ([i915#140]) -> [PASS][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7611/fi-icl-u2/igt@kms_frontbuffer_tracking@basic.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15851/fi-icl-u2/igt@kms_frontbuffer_tracking@basic.html
-
-  
-#### Warnings ####
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:
-    - fi-kbl-x1275:       [DMESG-WARN][15] ([i915#62] / [i915#92]) -> [DMESG-WARN][16] ([i915#62] / [i915#92] / [i915#95]) +5 similar issues
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7611/fi-kbl-x1275/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15851/fi-kbl-x1275/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
-
-  * igt@kms_flip@basic-flip-vs-modeset:
-    - fi-kbl-x1275:       [DMESG-WARN][17] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][18] ([i915#62] / [i915#92]) +5 similar issues
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7611/fi-kbl-x1275/igt@kms_flip@basic-flip-vs-modeset.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15851/fi-kbl-x1275/igt@kms_flip@basic-flip-vs-modeset.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#111096]: https://bugs.freedesktop.org/show_bug.cgi?id=111096
-  [fdo#111736]: https://bugs.freedesktop.org/show_bug.cgi?id=111736
-  [i915#140]: https://gitlab.freedesktop.org/drm/intel/issues/140
-  [i915#323]: https://gitlab.freedesktop.org/drm/intel/issues/323
-  [i915#553]: https://gitlab.freedesktop.org/drm/intel/issues/553
-  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
-  [i915#725]: https://gitlab.freedesktop.org/drm/intel/issues/725
-  [i915#845]: https://gitlab.freedesktop.org/drm/intel/issues/845
-  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
-  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
-
-
-Participating hosts (48 -> 35)
-------------------------------
-
-  Missing    (13): fi-ilk-m540 fi-bxt-dsi fi-bdw-5557u fi-hsw-4200u fi-hsw-peppy fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-gdg-551 fi-bdw-samus fi-byt-n2820 fi-byt-clapper fi-skl-6600u 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_7611 -> Patchwork_15851
-
-  CI-20190529: 20190529
-  CI_DRM_7611: a838a8d6accc9027d4d04fb67d2f8a7a2049946c @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5351: e7fdcef72d1d6b3bb9f3003bbc37571959e6e8bb @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_15851: 436eeb5c55339e34afb716541d7c082df45584a7 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-436eeb5c5533 drm/i915/gt: Teach veng to defer the context allocation
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15851/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
