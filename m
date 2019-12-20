@@ -2,38 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF415127B96
-	for <lists+intel-gfx@lfdr.de>; Fri, 20 Dec 2019 14:17:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D998127B99
+	for <lists+intel-gfx@lfdr.de>; Fri, 20 Dec 2019 14:19:38 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 294E76EC2A;
-	Fri, 20 Dec 2019 13:17:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A58276EC2F;
+	Fri, 20 Dec 2019 13:19:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3680C6EC2A
- for <intel-gfx@lists.freedesktop.org>; Fri, 20 Dec 2019 13:17:31 +0000 (UTC)
-X-Amp-Result: UNSCANNABLE
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5C23E6EC2F
+ for <intel-gfx@lists.freedesktop.org>; Fri, 20 Dec 2019 13:19:35 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
 X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 20 Dec 2019 05:17:31 -0800
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 20 Dec 2019 05:19:34 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,336,1571727600"; d="scan'208";a="206542968"
+X-IronPort-AV: E=Sophos;i="5.69,336,1571727600"; d="scan'208";a="213574642"
 Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by orsmga007.jf.intel.com with SMTP; 20 Dec 2019 05:17:28 -0800
+ by fmsmga008.fm.intel.com with SMTP; 20 Dec 2019 05:19:32 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 20 Dec 2019 15:17:27 +0200
-Date: Fri, 20 Dec 2019 15:17:27 +0200
+ Fri, 20 Dec 2019 15:19:32 +0200
+Date: Fri, 20 Dec 2019 15:19:32 +0200
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
 To: Manasi Navare <manasi.d.navare@intel.com>
-Message-ID: <20191220131727.GJ1208@intel.com>
+Message-ID: <20191220131932.GK1208@intel.com>
 References: <20191219215117.929-1-manasi.d.navare@intel.com>
+ <20191219215117.929-3-manasi.d.navare@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20191219215117.929-1-manasi.d.navare@intel.com>
+In-Reply-To: <20191219215117.929-3-manasi.d.navare@intel.com>
 User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH v2 1/3] drm/i915/dp: Make sure all tiled
- connectors get added to the state with full modeset
+Subject: Re: [Intel-gfx] [PATCH v2 3/3] drm/i915/dp: Disable Port sync mode
+ correctly on teardown
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,265 +48,67 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Dec 19, 2019 at 01:51:15PM -0800, Manasi Navare wrote:
-> In case of tiled displays, all the tiles are linke dto each other
-> for transcoder port sync. So in intel_atomic_check() we need to make
-> sure that we add all the tiles to the modeset and if one of the
-> tiles needs a full modeset then mark all other tiles for a full modeset.
+On Thu, Dec 19, 2019 at 01:51:17PM -0800, Manasi Navare wrote:
+> While clearing the Ports ync mode enable and master select bits
+> we need to clear the register completely instead of using disable masks
 > =
 
 > v2:
-> * Change crtc_state scope, remove tile_grp_id (Ville)
-> * Use intel_connector_needs_modeset() (Ville)
-> * Add modeset_synced_crtcs (Ville)
-> * Make sure synced crtcs are forced full modeset
-> after fastset check (Ville)
+> * Just write 0 to the reg (Ville)
+> * Rebase
 > =
 
-> Suggested-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> Cc: Jos=E9 Roberto de Souza <jose.souza@intel.com>
-> Cc: Matt Roper <matthew.d.roper@intel.com>
 > Bugzilla: https://gitlab.freedesktop.org/drm/intel/issues/5
+> Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> Cc: Jani Nikula <jani.nikula@intel.com>
+> Fixes: 51528afe7c5e ("drm/i915/display/icl: Disable transcoder port sync =
+as part of crtc_disable() sequence")
 > Signed-off-by: Manasi Navare <manasi.d.navare@intel.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_display.c | 143 +++++++++++++++++--
->  1 file changed, 131 insertions(+), 12 deletions(-)
+>  drivers/gpu/drm/i915/display/intel_ddi.c | 5 +----
+>  1 file changed, 1 insertion(+), 4 deletions(-)
 > =
 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/d=
-rm/i915/display/intel_display.c
-> index a3f9430493ae..00608d8cef50 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -13910,18 +13910,6 @@ static void intel_crtc_check_fastset(const struc=
-t intel_crtc_state *old_crtc_sta
->  	new_crtc_state->uapi.mode_changed =3D false;
->  	new_crtc_state->update_pipe =3D true;
+> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i=
+915/display/intel_ddi.c
+> index c9ba7d7f3787..c484f6df5d87 100644
+> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+> @@ -3861,7 +3861,6 @@ static void icl_disable_transcoder_port_sync(const =
+struct intel_crtc_state *old_
+>  	struct intel_crtc *crtc =3D to_intel_crtc(old_crtc_state->uapi.crtc);
+>  	struct drm_i915_private *dev_priv =3D to_i915(crtc->base.dev);
+>  	i915_reg_t reg;
+> -	u32 trans_ddi_func_ctl2_val;
 >  =
 
-> -	/*
-> -	 * If we're not doing the full modeset we want to
-> -	 * keep the current M/N values as they may be
-> -	 * sufficiently different to the computed values
-> -	 * to cause problems.
-> -	 *
-> -	 * FIXME: should really copy more fuzzy state here
-> -	 */
-> -	new_crtc_state->fdi_m_n =3D old_crtc_state->fdi_m_n;
-> -	new_crtc_state->dp_m_n =3D old_crtc_state->dp_m_n;
-> -	new_crtc_state->dp_m2_n2 =3D old_crtc_state->dp_m2_n2;
-> -	new_crtc_state->has_drrs =3D old_crtc_state->has_drrs;
->  }
-
-The check vs. copy should really be a separate patch. Otherwise we risk
-having to revert the whole thing if something goes wrong.
-
+>  	if (old_crtc_state->master_transcoder =3D=3D INVALID_TRANSCODER)
+>  		return;
+> @@ -3870,9 +3869,7 @@ static void icl_disable_transcoder_port_sync(const =
+struct intel_crtc_state *old_
+>  		      transcoder_name(old_crtc_state->cpu_transcoder));
 >  =
 
->  static int intel_crtc_add_planes_to_state(struct intel_atomic_state *sta=
-te,
-> @@ -14032,6 +14020,105 @@ static int intel_atomic_check_crtcs(struct inte=
-l_atomic_state *state)
->  	return 0;
+>  	reg =3D TRANS_DDI_FUNC_CTL2(old_crtc_state->cpu_transcoder);
+
+'reg' is rather pointless now.
+
+Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+
+> -	trans_ddi_func_ctl2_val =3D ~(PORT_SYNC_MODE_ENABLE |
+> -				    PORT_SYNC_MODE_MASTER_SELECT_MASK);
+> -	I915_WRITE(reg, trans_ddi_func_ctl2_val);
+> +	I915_WRITE(reg, 0);
 >  }
 >  =
 
-> +static void
-> +intel_dp_modeset_synced_crtcs(struct intel_atomic_state *state)
-
-I would remove "dp" from the names of all these functions. The fact
-that we only enable port sync on DP outputs is just an implementation
-detail we don't have/want to care about in higher level code like this.
-
-> +{
-> +	struct intel_crtc_state *new_crtc_state;
-> +	struct intel_crtc *crtc;
-> +	int i;
-> +
-> +	for_each_new_intel_crtc_in_state(state, crtc,
-> +					 new_crtc_state, i) {
-> +		if (is_trans_port_sync_mode(new_crtc_state)) {
-> +			new_crtc_state->uapi.mode_changed =3D true;
-> +			new_crtc_state->update_pipe =3D false;
-> +		}
-> +	}
-> +}
-> +
-> +static void
-> +intel_dp_atomic_check_synced_crtcs(struct intel_atomic_state *state)
-> +{
-> +	struct intel_crtc_state *new_crtc_state;
-> +	struct intel_crtc *crtc;
-> +	int i;
-> +
-> +	for_each_new_intel_crtc_in_state(state, crtc,
-> +					 new_crtc_state, i) {
-> +		if (!is_trans_port_sync_mode(new_crtc_state) ||
-> +		    !needs_modeset(new_crtc_state))
-> +			continue;
-> +
-> +		intel_dp_modeset_synced_crtcs(state);
-> +	}
-
-This is not sufficient for the pre-compute_config() check. The point is
-that we don't yet necessarily have the synced crtcs in the atomic state
-so we have to add them. Please have a look in my branch for what I mean
-exactly.
-
-For the check between the fastset check vs. copy this here should work.
-
-> +}
-> +
-> +static int
-> +intel_dp_modeset_all_tiles(struct intel_atomic_state *state, int tile_gr=
-p_id)
-> +{
-> +	struct drm_i915_private *dev_priv =3D to_i915(state->base.dev);
-> +	struct drm_connector *connector;
-> +	struct drm_connector_list_iter conn_list_iter;
-
-'conn_iter' is the customary name.
-
-> +
-> +	drm_connector_list_iter_begin(&dev_priv->drm, &conn_list_iter);
-> +	drm_for_each_connector_iter(connector, &conn_list_iter) {
-> +		struct drm_connector_state *conn_iter_state;
-
-'conn_state'
-
-> +		struct drm_crtc_state *crtc_state;
-> +
-> +		if (!(connector->has_tile &&
-> +		      connector->tile_group->id =3D=3D tile_grp_id))
-> +			continue;
-
-or maybe !has_tile || tile_grrp !=3D tile_grp
-
-I find that form a bit easier on the eyes. But either will work.
-
-> +		conn_iter_state =3D drm_atomic_get_connector_state(&state->base,
-> +								 connector);
-> +		if (IS_ERR(conn_iter_state)) {
-> +			drm_connector_list_iter_end(&conn_list_iter);
-> +			return PTR_ERR(conn_iter_state);
-
-nit: could just do 'ret =3D PTR_ERR(); break;'
-     and 'int ret=3D0;' + 'return ret' at the fars ends of the function.
-
-> +		}
-> +
-> +		if (!conn_iter_state->crtc)
-> +			continue;
-> +
-> +		crtc_state =3D drm_atomic_get_crtc_state(&state->base,
-> +						       conn_iter_state->crtc);
-> +		if (IS_ERR(crtc_state)) {
-> +			drm_connector_list_iter_end(&conn_list_iter);
-> +			return PTR_ERR(conn_iter_state);
-> +		}
-> +		crtc_state->mode_changed =3D true;
-
-Missing drm_atomic_add_affected_planes(). We also need that in the
-pre-compute_config() check_synced_crtcs().
-
-> +	}
-> +	drm_connector_list_iter_end(&conn_list_iter);
-> +
-> +	return 0;
-> +}
-> +
-> +static int
-> +intel_dp_atomic_check_tiled_conns(struct intel_atomic_state *state)
-> +{
-> +	struct drm_i915_private *dev_priv =3D to_i915(state->base.dev);
-> +	struct drm_connector *connector;
-> +	struct drm_connector_state *old_conn_state, *new_conn_state;
-> +	int i, ret;
-> +
-> +	if (INTEL_GEN(dev_priv) < 11)
-> +		return 0;
-> +
-> +	/* Is tiled, mark all other tiled CRTCs as needing a modeset */
-> +	for_each_oldnew_connector_in_state(&state->base, connector,
-> +					   old_conn_state, new_conn_state, i) {
-> +		if (!connector->has_tile)
-> +			continue;
-> +		if (!intel_connector_needs_modeset(state, old_conn_state,
-> +						   new_conn_state))
-> +			continue;
-> +
-> +		ret =3D intel_dp_modeset_all_tiles(state, connector->tile_group->id);
-> +		if (ret)
-> +			return ret;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
->  /**
->   * intel_atomic_check - validate state object
->   * @dev: drm device
-> @@ -14059,6 +14146,12 @@ static int intel_atomic_check(struct drm_device =
-*dev,
->  	if (ret)
->  		goto fail;
->  =
-
-> +	ret =3D intel_dp_atomic_check_tiled_conns(state);
-> +	if (ret)
-> +		goto fail;
-> +
-> +	intel_dp_atomic_check_synced_crtcs(state);
-> +
->  	for_each_oldnew_intel_crtc_in_state(state, crtc, old_crtc_state,
->  					    new_crtc_state, i) {
->  		if (!needs_modeset(new_crtc_state)) {
-> @@ -14089,6 +14182,32 @@ static int intel_atomic_check(struct drm_device =
-*dev,
->  			any_ms =3D true;
->  	}
->  =
-
-> +	/*
-> +	 * In case of port synced crtcs, if one of the synced crtcs
-> +	 * needs a full modeset, all other synced crtcs should be
-> +	 * forced a full modeset.
-> +	 */
-> +	intel_dp_atomic_check_synced_crtcs(state);
-> +
-> +	for_each_oldnew_intel_crtc_in_state(state, crtc, old_crtc_state,
-> +					    new_crtc_state, i) {
-> +		if (needs_modeset(new_crtc_state))
-> +			continue;
-> +
-> +		/*
-> +		 * If we're not doing the full modeset we want to
-> +		 * keep the current M/N values as they may be
-> +		 * sufficiently different to the computed values
-> +		 * to cause problems.
-> +		 *
-> +		 * FIXME: should really copy more fuzzy state here
-> +		 */
-> +		new_crtc_state->fdi_m_n =3D old_crtc_state->fdi_m_n;
-> +		new_crtc_state->dp_m_n =3D old_crtc_state->dp_m_n;
-> +		new_crtc_state->dp_m2_n2 =3D old_crtc_state->dp_m2_n2;
-> +		new_crtc_state->has_drrs =3D old_crtc_state->has_drrs;
-
-Same comment I gave in Jose's patch: Pls keep this in a separate
-function. My branch has an example.
-
-> +	}
-> +
->  	if (any_ms && !check_digital_port_conflicts(state)) {
->  		DRM_DEBUG_KMS("rejecting conflicting digital port configuration\n");
->  		ret =3D EINVAL;
+>  static void intel_ddi_post_disable(struct intel_encoder *encoder,
 > -- =
 
 > 2.19.1
