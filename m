@@ -2,36 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0042112840B
-	for <lists+intel-gfx@lfdr.de>; Fri, 20 Dec 2019 22:43:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E8CBC128448
+	for <lists+intel-gfx@lfdr.de>; Fri, 20 Dec 2019 23:07:31 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0C7DC6ECB5;
-	Fri, 20 Dec 2019 21:43:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1AAEA6E15B;
+	Fri, 20 Dec 2019 22:07:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 17C1B6ECB5
- for <intel-gfx@lists.freedesktop.org>; Fri, 20 Dec 2019 21:43:05 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 447AB6E15B
+ for <intel-gfx@lists.freedesktop.org>; Fri, 20 Dec 2019 22:07:28 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga105.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 20 Dec 2019 13:42:58 -0800
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 20 Dec 2019 14:07:27 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,337,1571727600"; d="scan'208";a="213684295"
-Received: from kitaracr-mobl.amr.corp.intel.com (HELO
- josouza-MOBL.amr.corp.intel.com) ([10.252.207.149])
- by fmsmga008.fm.intel.com with ESMTP; 20 Dec 2019 13:42:55 -0800
-From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
+X-IronPort-AV: E=Sophos;i="5.69,337,1571727600"; d="scan'208";a="218605032"
+Received: from ldmartin1-desk.jf.intel.com ([10.165.21.151])
+ by orsmga006.jf.intel.com with ESMTP; 20 Dec 2019 14:07:27 -0800
+From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri, 20 Dec 2019 13:42:28 -0800
-Message-Id: <20191220214228.262345-8-jose.souza@intel.com>
-X-Mailer: git-send-email 2.24.1
-In-Reply-To: <20191220214228.262345-1-jose.souza@intel.com>
-References: <20191220214228.262345-1-jose.souza@intel.com>
+Date: Fri, 20 Dec 2019 14:06:50 -0800
+Message-Id: <20191220220650.16349-1-lucas.demarchi@intel.com>
+X-Mailer: git-send-email 2.24.0
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v6 8/8] drm/i915/display: Add comment to a
- function that probably can be removed
+Subject: [Intel-gfx] [PATCH] drm/i915/display: nuke skl workaround for
+ pre-production hw
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,34 +41,53 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-VGhpcyBmdW5jdGlvbiBpcyBvbmx5IGNhbGxlZCBmcm9tIHBvcnQgc3luYyBhbmQgaXQgaXMgaWRl
-bnRpY2FsIHRvCndoYXQgd2lsbCBiZSBleGVjdXRlZCBhZ2FpbiBpbiBpbnRlbF91cGRhdGVfY3J0
-YygpIG92ZXIgcG9ydCBzeW5jCnBpcGVzLgpJZiBpdCBpcyByZWFsbHkgbmVjZXNzYXJ5IGF0IGxl
-YXN0IGl0IGRlc2VydmVzIGEgYmV0dGVyIG5hbWUgYW5kIGEKY29tbWVudCwgbGVhdmluZyBpdCB0
-byBwZW9wbGUgd29ya2luZyBvbiBwb3J0IHN5bmMuCgpDYzogVmlsbGUgU3lyasOkbMOkIDx2aWxs
-ZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KQ2M6IE1hYXJ0ZW4gTGFua2hvcnN0IDxtYWFydGVu
-Lmxhbmtob3JzdEBsaW51eC5pbnRlbC5jb20+CkNjOiBNYW5hc2kgTmF2YXJlIDxtYW5hc2kuZC5u
-YXZhcmVAaW50ZWwuY29tPgpSZXZpZXdlZC1ieTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJq
-YWxhQGxpbnV4LmludGVsLmNvbT4KU2lnbmVkLW9mZi1ieTogSm9zw6kgUm9iZXJ0byBkZSBTb3V6
-YSA8am9zZS5zb3V6YUBpbnRlbC5jb20+Ci0tLQogZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxh
-eS9pbnRlbF9kaXNwbGF5LmMgfCA0ICsrKysKIDEgZmlsZSBjaGFuZ2VkLCA0IGluc2VydGlvbnMo
-KykKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3Bs
-YXkuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jCmluZGV4
-IDM5OThiYmZlMjQ1Ni4uMGI5MGJhMDE2N2YzIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0v
-aTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9k
-aXNwbGF5L2ludGVsX2Rpc3BsYXkuYwpAQCAtMTQ0ODMsNiArMTQ0ODMsMTAgQEAgc3RhdGljIHZv
-aWQgaW50ZWxfc2V0X2RwX3RwX2N0bF9ub3JtYWwoc3RydWN0IGludGVsX2NydGMgKmNydGMsCiAJ
-aW50ZWxfZHBfc3RvcF9saW5rX3RyYWluKGludGVsX2RwKTsKIH0KIAorLyoKKyAqIFRPRE86IFRo
-aXMgaXMgb25seSBjYWxsZWQgZnJvbSBwb3J0IHN5bmMgYW5kIGl0IGlzIGlkZW50aWNhbCB0byB3
-aGF0IHdpbGwgYmUKKyAqIGV4ZWN1dGVkIGFnYWluIGluIGludGVsX3VwZGF0ZV9jcnRjKCkgb3Zl
-ciBwb3J0IHN5bmMgcGlwZXMKKyAqLwogc3RhdGljIHZvaWQgaW50ZWxfcG9zdF9jcnRjX2VuYWJs
-ZV91cGRhdGVzKHN0cnVjdCBpbnRlbF9jcnRjICpjcnRjLAogCQkJCQkgICBzdHJ1Y3QgaW50ZWxf
-YXRvbWljX3N0YXRlICpzdGF0ZSkKIHsKLS0gCjIuMjQuMQoKX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1n
-ZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21h
-aWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+According to intel_detect_preproduction_hw(), the SKL steeping D0 is
+still pre-preproduction so we can nuke the additional workaround.
+
+While at it, nuke dangling new line.
+
+Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_display.c | 9 +--------
+ 1 file changed, 1 insertion(+), 8 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index e6702b9b9117..4aa7dfa88c7c 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -16018,14 +16018,8 @@ static void intel_setup_outputs(struct drm_i915_private *dev_priv)
+ 		if (intel_ddi_crt_present(dev_priv))
+ 			intel_crt_init(dev_priv);
+ 
+-		/*
+-		 * Haswell uses DDI functions to detect digital outputs.
+-		 * On SKL pre-D0 the strap isn't connected, so we assume
+-		 * it's there.
+-		 */
+ 		found = I915_READ(DDI_BUF_CTL(PORT_A)) & DDI_INIT_DISPLAY_DETECTED;
+-		/* WaIgnoreDDIAStrap: skl */
+-		if (found || IS_GEN9_BC(dev_priv))
++		if (found)
+ 			intel_ddi_init(dev_priv, PORT_A);
+ 
+ 		/* DDI B, C, D, and F detection is indicated by the SFUSE_STRAP
+@@ -16046,7 +16040,6 @@ static void intel_setup_outputs(struct drm_i915_private *dev_priv)
+ 		if (IS_GEN9_BC(dev_priv) &&
+ 		    intel_bios_is_port_present(dev_priv, PORT_E))
+ 			intel_ddi_init(dev_priv, PORT_E);
+-
+ 	} else if (HAS_PCH_SPLIT(dev_priv)) {
+ 		int found;
+ 
+-- 
+2.24.0
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
