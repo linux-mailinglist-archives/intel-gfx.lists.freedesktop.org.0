@@ -1,33 +1,46 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9863A127B53
-	for <lists+intel-gfx@lfdr.de>; Fri, 20 Dec 2019 13:52:27 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5127D127B64
+	for <lists+intel-gfx@lfdr.de>; Fri, 20 Dec 2019 13:59:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EDCE26EC22;
-	Fri, 20 Dec 2019 12:52:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 658E96E027;
+	Fri, 20 Dec 2019 12:58:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 329276EC22
- for <intel-gfx@lists.freedesktop.org>; Fri, 20 Dec 2019 12:52:24 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DF02F6E027
+ for <intel-gfx@lists.freedesktop.org>; Fri, 20 Dec 2019 12:58:56 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
 X-Amp-File-Uploaded: False
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 20 Dec 2019 04:52:23 -0800
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by orsmga105.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 20 Dec 2019 04:58:56 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,335,1571727600"; d="scan'208";a="248680556"
-Received: from ramaling-i9x.iind.intel.com ([10.99.66.154])
- by fmsmga002.fm.intel.com with ESMTP; 20 Dec 2019 04:52:21 -0800
-From: Ramalingam C <ramalingam.c@intel.com>
-To: intel-gfx <intel-gfx@lists.freedesktop.org>
-Date: Fri, 20 Dec 2019 18:21:16 +0530
-Message-Id: <20191220125116.15181-1-ramalingam.c@intel.com>
-X-Mailer: git-send-email 2.20.1
+X-IronPort-AV: E=Sophos;i="5.69,335,1571727600"; d="scan'208";a="228597540"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by orsmga002.jf.intel.com with SMTP; 20 Dec 2019 04:58:53 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 20 Dec 2019 14:58:53 +0200
+Date: Fri, 20 Dec 2019 14:58:53 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: "Souza, Jose" <jose.souza@intel.com>
+Message-ID: <20191220125853.GI1208@intel.com>
+References: <20191218185910.303540-1-jose.souza@intel.com>
+ <20191218185910.303540-5-jose.souza@intel.com>
+ <20191218193917.GY1208@intel.com>
+ <26caae27943611264d8b3a112e8089eab203083a.camel@intel.com>
+ <20191218202653.GC1208@intel.com>
+ <d7b02559a0c8e996dd190cbf1b588ad12c397316.camel@intel.com>
+ <e7beb2ca3c2aef85e22876671860ca51584d29ee.camel@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/lmem: debugfs for LMEM details
+Content-Disposition: inline
+In-Reply-To: <e7beb2ca3c2aef85e22876671860ca51584d29ee.camel@intel.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH v4 5/6] drm/i915/display: Check if pipe
+ fastset is allowed by external dependencies
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,92 +53,189 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "De Marchi, Lucas" <lucas.demarchi@intel.com>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Lukasz Fiedorowicz <lukasz.fiedorowicz@intel.com>
+On Thu, Dec 19, 2019 at 08:39:26PM +0000, Souza, Jose wrote:
+> On Wed, 2019-12-18 at 20:33 +0000, Souza, Jose wrote:
+> > On Wed, 2019-12-18 at 22:26 +0200, Ville Syrj=E4l=E4 wrote:
+> > > On Wed, Dec 18, 2019 at 08:19:15PM +0000, Souza, Jose wrote:
+> > > > On Wed, 2019-12-18 at 21:39 +0200, Ville Syrj=E4l=E4 wrote:
+> > > > > On Wed, Dec 18, 2019 at 10:59:09AM -0800, Jos=E9 Roberto de Souza
+> > > > > wrote:
+> > > > > > Check if fastset is allowed by external dependencies like
+> > > > > > other
+> > > > > > pipes
+> > > > > > and transcoders.
+> > > > > > =
 
-Debugfs i915_gem_object is extended to enable the IGTs to
-detect the LMEM's availability and the total size of LMEM.
+> > > > > > Right now this patch only forces a fullmodeset in MST slaves
+> > > > > > of
+> > > > > > MST
+> > > > > > masters that needs a fullmodeset but it will be needed for
+> > > > > > port
+> > > > > > sync
+> > > > > > as well.
+> > > > > > =
 
-Signed-off-by: Lukasz Fiedorowicz <lukasz.fiedorowicz@intel.com>
-Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-Signed-off-by: Stuart Summers <stuart.summers@intel.com>
-Signed-off-by: Ramalingam C <ramalingam.c@intel.com>
-Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-cc: Chris Wilson <chris@chris-wilson.co.uk>
----
- drivers/gpu/drm/i915/i915_debugfs.c        | 6 +++++-
- drivers/gpu/drm/i915/intel_memory_region.c | 5 ++++-
- drivers/gpu/drm/i915/intel_memory_region.h | 3 +++
- 3 files changed, 12 insertions(+), 2 deletions(-)
+> > > > > > v3:
+> > > > > > - moved handling to intel_atomic_check() this way is
+> > > > > > guarantee
+> > > > > > that
+> > > > > > all pipes will have its state computed
+> > > > > > =
 
-diff --git a/drivers/gpu/drm/i915/i915_debugfs.c b/drivers/gpu/drm/i915/i915_debugfs.c
-index d28468eaed57..856ded8cd332 100644
---- a/drivers/gpu/drm/i915/i915_debugfs.c
-+++ b/drivers/gpu/drm/i915/i915_debugfs.c
-@@ -373,7 +373,11 @@ static int i915_gem_object_info(struct seq_file *m, void *data)
- 		   atomic_read(&i915->mm.free_count),
- 		   i915->mm.shrink_memory);
- 
--	seq_putc(m, '\n');
-+	if (HAS_LMEM(i915)) {
-+		seq_printf(m, "LMEM total: %llu bytes, available %llu bytes\n",
-+			   (u64)i915->mm.regions[INTEL_REGION_LMEM]->total,
-+			   (u64)i915->mm.regions[INTEL_REGION_LMEM]->avail);
-+	}
- 
- 	print_context_stats(m, i915);
- 
-diff --git a/drivers/gpu/drm/i915/intel_memory_region.c b/drivers/gpu/drm/i915/intel_memory_region.c
-index e24c280e5930..15e539de0a82 100644
---- a/drivers/gpu/drm/i915/intel_memory_region.c
-+++ b/drivers/gpu/drm/i915/intel_memory_region.c
-@@ -37,7 +37,7 @@ __intel_memory_region_put_pages_buddy(struct intel_memory_region *mem,
- 				      struct list_head *blocks)
- {
- 	mutex_lock(&mem->mm_lock);
--	intel_memory_region_free_pages(mem, blocks);
-+	mem->avail += intel_memory_region_free_pages(mem, blocks);
- 	mutex_unlock(&mem->mm_lock);
- }
- 
-@@ -106,6 +106,7 @@ __intel_memory_region_get_pages_buddy(struct intel_memory_region *mem,
- 			break;
- 	} while (1);
- 
-+	mem->avail -= size;
- 	mutex_unlock(&mem->mm_lock);
- 	return 0;
- 
-@@ -164,6 +165,8 @@ intel_memory_region_create(struct drm_i915_private *i915,
- 	mem->io_start = io_start;
- 	mem->min_page_size = min_page_size;
- 	mem->ops = ops;
-+	mem->total = size;
-+	mem->avail = mem->total;
- 
- 	mutex_init(&mem->objects.lock);
- 	INIT_LIST_HEAD(&mem->objects.list);
-diff --git a/drivers/gpu/drm/i915/intel_memory_region.h b/drivers/gpu/drm/i915/intel_memory_region.h
-index 238722009677..da56d8ff1b01 100644
---- a/drivers/gpu/drm/i915/intel_memory_region.h
-+++ b/drivers/gpu/drm/i915/intel_memory_region.h
-@@ -94,6 +94,9 @@ struct intel_memory_region {
- 		struct list_head list;
- 		struct list_head purgeable;
- 	} objects;
-+
-+	resource_size_t total;
-+	resource_size_t avail;
- };
- 
- int intel_memory_region_init_buddy(struct intel_memory_region *mem);
--- 
-2.20.1
+> > > > > > v4:
+> > > > > > - added a function to return if MST master neeeds modeset to
+> > > > > > simply
+> > > > > > code in intel_atomic_check()
+> > > > > > =
 
+> > > > > > Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > > > > > Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+> > > > > > Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> > > > > > Cc: Manasi Navare <manasi.d.navare@intel.com>
+> > > > > > Signed-off-by: Jos=E9 Roberto de Souza <jose.souza@intel.com>
+> > > > > > ---
+> > > > > >  drivers/gpu/drm/i915/display/intel_display.c | 53
+> > > > > > +++++++++++++++-
+> > > > > > ----
+> > > > > >  drivers/gpu/drm/i915/display/intel_dp_mst.c  | 14 ++++++
+> > > > > >  drivers/gpu/drm/i915/display/intel_dp_mst.h  |  3 ++
+> > > > > >  3 files changed, 57 insertions(+), 13 deletions(-)
+> > > > > > =
+
+> > > > > > diff --git a/drivers/gpu/drm/i915/display/intel_display.c
+> > > > > > b/drivers/gpu/drm/i915/display/intel_display.c
+> > > > > > index a4f252d05b37..2a406891567b 100644
+> > > > > > --- a/drivers/gpu/drm/i915/display/intel_display.c
+> > > > > > +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> > > > > > @@ -13903,19 +13903,6 @@ static void
+> > > > > > intel_crtc_check_fastset(const
+> > > > > > struct intel_crtc_state *old_crtc_sta
+> > > > > >  =
+
+> > > > > >  	new_crtc_state->uapi.mode_changed =3D false;
+> > > > > >  	new_crtc_state->update_pipe =3D true;
+> > > > > > -
+> > > > > > -	/*
+> > > > > > -	 * If we're not doing the full modeset we want to
+> > > > > > -	 * keep the current M/N values as they may be
+> > > > > > -	 * sufficiently different to the computed values
+> > > > > > -	 * to cause problems.
+> > > > > > -	 *
+> > > > > > -	 * FIXME: should really copy more fuzzy state here
+> > > > > > -	 */
+> > > > > > -	new_crtc_state->fdi_m_n =3D old_crtc_state->fdi_m_n;
+> > > > > > -	new_crtc_state->dp_m_n =3D old_crtc_state->dp_m_n;
+> > > > > > -	new_crtc_state->dp_m2_n2 =3D old_crtc_state->dp_m2_n2;
+> > > > > > -	new_crtc_state->has_drrs =3D old_crtc_state->has_drrs;
+> > > > > >  }
+> > > > > >  =
+
+> > > > > >  static int intel_crtc_add_planes_to_state(struct
+> > > > > > intel_atomic_state *state,
+> > > > > > @@ -14083,6 +14070,46 @@ static int intel_atomic_check(struct
+> > > > > > drm_device *dev,
+> > > > > >  			any_ms =3D true;
+> > > > > >  	}
+> > > > > >  =
+
+> > > > > > +	/**
+> > > > > > +	 * Check if fastset is allowed by external dependencies
+> > > > > > like
+> > > > > > other
+> > > > > > +	 * pipes and transcoders.
+> > > > > > +	 *
+> > > > > > +	 * Right now it only forces a fullmodeset when the MST
+> > > > > > master
+> > > > > > +	 * transcoder did not changed but the pipe of the
+> > > > > > master
+> > > > > > transcoder
+> > > > > > +	 * needs a fullmodeset so all slaves also needs to do a
+> > > > > > fullmodeset.
+> > > > > > +	 */
+> > > > > > +	for_each_new_intel_crtc_in_state(state, crtc,
+> > > > > > new_crtc_state,
+> > > > > > i) {
+> > > > > > +		enum transcoder master =3D new_crtc_state-
+> > > > > > > mst_master_transcoder;
+> > > > > > +
+> > > > > > +		if
+> > > > > > (!intel_dp_mst_is_slave_trans(new_crtc_state) ||
+> > > > > > +		    needs_modeset(new_crtc_state))
+> > > > > > +			continue;
+> > > > > > +
+> > > > > > +		if
+> > > > > > (intel_dp_mst_master_trans_needs_modeset(state,
+> > > > > > master)) {
+> > > > > =
+
+> > > > > I think this has the loops the opposite way of what I was
+> > > > > thinking,
+> > > > > but should work fine I think... OK. I'm convinced your way is
+> > > > > in
+> > > > > fact
+> > > > > better.
+> > > > > =
+
+> > > > > > +			new_crtc_state->uapi.mode_changed =3D
+> > > > > > true;
+> > > > > > +			new_crtc_state->update_pipe =3D false;
+> > > > > > +		}
+> > > > > > +	}
+> > > > > > +
+> > > > > > +	for_each_oldnew_intel_crtc_in_state(state, crtc,
+> > > > > > old_crtc_state,
+> > > > > > +					    new_crtc_state, i)
+> > > > > > {
+> > > > > > +		if (needs_modeset(new_crtc_state))
+> > > > > > +			continue;
+> > > > > =
+
+> > > > > I suppose there isn't any way we should have crtcs in the state
+> > > > > that
+> > > > > neither have update_pipe or needs_modeset flagged here. Could
+> > > > > maybe
+> > > > > WARN_ON(!update_pipe) here if we're being paranoid.
+> > > > =
+
+> > > > Adding the WARN_ON
+> =
+
+> Ah we can't add this WARN_ON(), is most atomic states the previous CRTC
+> states is added even if it dont need any modification.
+> =
+
+> Those are handled here:
+> =
+
+> 	for_each_oldnew_intel_crtc_in_state(state, crtc,
+> old_crtc_state,
+> 					    new_crtc_state, i) {
+> 		if (!needs_modeset(new_crtc_state)) {
+> 			/* Light copy */
+> 			intel_crtc_copy_uapi_to_hw_state_nomodeset(new_
+> crtc_state);
+> =
+
+> 			continue;
+> 		}
+
+After further consideration we only want the copy for fastset crtcs
+(ie. ones with update_pipe=3D=3Dtrue). Crtcs added for pure plane updates
+should not do the copy (well, in that case the old and new states
+really should match, but I still think it's a bit dubious). So
+I guess we should check for '!needs_modeset() && update_pipe'.
+
+-- =
+
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
