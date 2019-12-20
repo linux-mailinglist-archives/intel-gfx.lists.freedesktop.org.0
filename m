@@ -1,41 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D998127B99
-	for <lists+intel-gfx@lfdr.de>; Fri, 20 Dec 2019 14:19:38 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 77C85127BC7
+	for <lists+intel-gfx@lfdr.de>; Fri, 20 Dec 2019 14:35:25 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A58276EC2F;
-	Fri, 20 Dec 2019 13:19:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 072BE6E053;
+	Fri, 20 Dec 2019 13:35:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5C23E6EC2F
- for <intel-gfx@lists.freedesktop.org>; Fri, 20 Dec 2019 13:19:35 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-X-Amp-File-Uploaded: False
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 20 Dec 2019 05:19:34 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,336,1571727600"; d="scan'208";a="213574642"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by fmsmga008.fm.intel.com with SMTP; 20 Dec 2019 05:19:32 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 20 Dec 2019 15:19:32 +0200
-Date: Fri, 20 Dec 2019 15:19:32 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Manasi Navare <manasi.d.navare@intel.com>
-Message-ID: <20191220131932.GK1208@intel.com>
-References: <20191219215117.929-1-manasi.d.navare@intel.com>
- <20191219215117.929-3-manasi.d.navare@intel.com>
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 187986E053
+ for <intel-gfx@lists.freedesktop.org>; Fri, 20 Dec 2019 13:35:21 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 19646884-1500050 for multiple; Fri, 20 Dec 2019 13:34:43 +0000
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20191219215117.929-3-manasi.d.navare@intel.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH v2 3/3] drm/i915/dp: Disable Port sync mode
- correctly on teardown
+To: Ramalingam C <ramalingam.c@intel.com>,
+ intel-gfx <intel-gfx@lists.freedesktop.org>
+From: Chris Wilson <chris@chris-wilson.co.uk>
+In-Reply-To: <20191220125116.15181-1-ramalingam.c@intel.com>
+References: <20191220125116.15181-1-ramalingam.c@intel.com>
+Message-ID: <157684888062.18690.7431941192929920667@skylake-alporthouse-com>
+User-Agent: alot/0.6
+Date: Fri, 20 Dec 2019 13:34:40 +0000
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/lmem: debugfs for LMEM details
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,75 +39,103 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Dec 19, 2019 at 01:51:17PM -0800, Manasi Navare wrote:
-> While clearing the Ports ync mode enable and master select bits
-> we need to clear the register completely instead of using disable masks
-> =
-
-> v2:
-> * Just write 0 to the reg (Ville)
-> * Rebase
-> =
-
-> Bugzilla: https://gitlab.freedesktop.org/drm/intel/issues/5
-> Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> Cc: Jani Nikula <jani.nikula@intel.com>
-> Fixes: 51528afe7c5e ("drm/i915/display/icl: Disable transcoder port sync =
-as part of crtc_disable() sequence")
-> Signed-off-by: Manasi Navare <manasi.d.navare@intel.com>
+Quoting Ramalingam C (2019-12-20 12:51:16)
+> From: Lukasz Fiedorowicz <lukasz.fiedorowicz@intel.com>
+> 
+> Debugfs i915_gem_object is extended to enable the IGTs to
+> detect the LMEM's availability and the total size of LMEM.
+> 
+> Signed-off-by: Lukasz Fiedorowicz <lukasz.fiedorowicz@intel.com>
+> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+> Signed-off-by: Stuart Summers <stuart.summers@intel.com>
+> Signed-off-by: Ramalingam C <ramalingam.c@intel.com>
+> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+> cc: Chris Wilson <chris@chris-wilson.co.uk>
 > ---
->  drivers/gpu/drm/i915/display/intel_ddi.c | 5 +----
->  1 file changed, 1 insertion(+), 4 deletions(-)
-> =
+>  drivers/gpu/drm/i915/i915_debugfs.c        | 6 +++++-
+>  drivers/gpu/drm/i915/intel_memory_region.c | 5 ++++-
+>  drivers/gpu/drm/i915/intel_memory_region.h | 3 +++
+>  3 files changed, 12 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/i915_debugfs.c b/drivers/gpu/drm/i915/i915_debugfs.c
+> index d28468eaed57..856ded8cd332 100644
+> --- a/drivers/gpu/drm/i915/i915_debugfs.c
+> +++ b/drivers/gpu/drm/i915/i915_debugfs.c
+> @@ -373,7 +373,11 @@ static int i915_gem_object_info(struct seq_file *m, void *data)
+>                    atomic_read(&i915->mm.free_count),
+>                    i915->mm.shrink_memory);
+>  
+> -       seq_putc(m, '\n');
+> +       if (HAS_LMEM(i915)) {
+> +               seq_printf(m, "LMEM total: %llu bytes, available %llu bytes\n",
+> +                          (u64)i915->mm.regions[INTEL_REGION_LMEM]->total,
+> +                          (u64)i915->mm.regions[INTEL_REGION_LMEM]->avail);
 
-> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i=
-915/display/intel_ddi.c
-> index c9ba7d7f3787..c484f6df5d87 100644
-> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
-> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-> @@ -3861,7 +3861,6 @@ static void icl_disable_transcoder_port_sync(const =
-struct intel_crtc_state *old_
->  	struct intel_crtc *crtc =3D to_intel_crtc(old_crtc_state->uapi.crtc);
->  	struct drm_i915_private *dev_priv =3D to_i915(crtc->base.dev);
->  	i915_reg_t reg;
-> -	u32 trans_ddi_func_ctl2_val;
->  =
+%pa for resource_size_t
 
->  	if (old_crtc_state->master_transcoder =3D=3D INVALID_TRANSCODER)
->  		return;
-> @@ -3870,9 +3869,7 @@ static void icl_disable_transcoder_port_sync(const =
-struct intel_crtc_state *old_
->  		      transcoder_name(old_crtc_state->cpu_transcoder));
->  =
+Use READ_ONCE() to indicate to the reader these are being accessed
+outside of the mem->lock.
 
->  	reg =3D TRANS_DDI_FUNC_CTL2(old_crtc_state->cpu_transcoder);
-
-'reg' is rather pointless now.
-
-Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-
-> -	trans_ddi_func_ctl2_val =3D ~(PORT_SYNC_MODE_ENABLE |
-> -				    PORT_SYNC_MODE_MASTER_SELECT_MASK);
-> -	I915_WRITE(reg, trans_ddi_func_ctl2_val);
-> +	I915_WRITE(reg, 0);
+> +       }
+>  
+>         print_context_stats(m, i915);
+>  
+> diff --git a/drivers/gpu/drm/i915/intel_memory_region.c b/drivers/gpu/drm/i915/intel_memory_region.c
+> index e24c280e5930..15e539de0a82 100644
+> --- a/drivers/gpu/drm/i915/intel_memory_region.c
+> +++ b/drivers/gpu/drm/i915/intel_memory_region.c
+> @@ -37,7 +37,7 @@ __intel_memory_region_put_pages_buddy(struct intel_memory_region *mem,
+>                                       struct list_head *blocks)
+>  {
+>         mutex_lock(&mem->mm_lock);
+> -       intel_memory_region_free_pages(mem, blocks);
+> +       mem->avail += intel_memory_region_free_pages(mem, blocks);
+>         mutex_unlock(&mem->mm_lock);
 >  }
->  =
+>  
+> @@ -106,6 +106,7 @@ __intel_memory_region_get_pages_buddy(struct intel_memory_region *mem,
+>                         break;
+>         } while (1);
+>  
+> +       mem->avail -= size;
+>         mutex_unlock(&mem->mm_lock);
+>         return 0;
 
->  static void intel_ddi_post_disable(struct intel_encoder *encoder,
-> -- =
+These two look nice and symmetrical.
 
-> 2.19.1
+>  
+> @@ -164,6 +165,8 @@ intel_memory_region_create(struct drm_i915_private *i915,
+>         mem->io_start = io_start;
+>         mem->min_page_size = min_page_size;
+>         mem->ops = ops;
+> +       mem->total = size;
+> +       mem->avail = mem->total;
+>  
+>         mutex_init(&mem->objects.lock);
+>         INIT_LIST_HEAD(&mem->objects.list);
+> diff --git a/drivers/gpu/drm/i915/intel_memory_region.h b/drivers/gpu/drm/i915/intel_memory_region.h
+> index 238722009677..da56d8ff1b01 100644
+> --- a/drivers/gpu/drm/i915/intel_memory_region.h
+> +++ b/drivers/gpu/drm/i915/intel_memory_region.h
+> @@ -94,6 +94,9 @@ struct intel_memory_region {
+>                 struct list_head list;
+>                 struct list_head purgeable;
+>         } objects;
+> +
+> +       resource_size_t total;
+> +       resource_size_t avail;
 
--- =
+Sensible placement? There'll be one less hole if you put these next to
+the other resource_size_t
 
-Ville Syrj=E4l=E4
-Intel
+Fix the nits, and
+Reviewed-by: Chris Wilson <chris@chris-wilson.co.uk>
+-Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
