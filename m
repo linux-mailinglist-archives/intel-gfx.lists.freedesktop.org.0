@@ -2,39 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 26BD0127204
-	for <lists+intel-gfx@lfdr.de>; Fri, 20 Dec 2019 01:07:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 199F9127251
+	for <lists+intel-gfx@lfdr.de>; Fri, 20 Dec 2019 01:19:39 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1D6AC6EBB5;
-	Fri, 20 Dec 2019 00:07:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 18A7A6EBB6;
+	Fri, 20 Dec 2019 00:19:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C5EF16EBB5
- for <intel-gfx@lists.freedesktop.org>; Fri, 20 Dec 2019 00:07:18 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AFAF46EBB6
+ for <intel-gfx@lists.freedesktop.org>; Fri, 20 Dec 2019 00:19:34 +0000 (UTC)
 X-Amp-Result: UNKNOWN
 X-Amp-Original-Verdict: FILE UNKNOWN
 X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 19 Dec 2019 16:07:18 -0800
-X-IronPort-AV: E=Sophos;i="5.69,333,1571727600"; d="scan'208";a="210638710"
-Received: from ideak-desk.fi.intel.com ([10.237.72.183])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 19 Dec 2019 16:07:16 -0800
-Date: Fri, 20 Dec 2019 02:06:52 +0200
-From: Imre Deak <imre.deak@intel.com>
-To: Matt Roper <matthew.d.roper@intel.com>
-Message-ID: <20191220000652.GA8384@ideak-desk.fi.intel.com>
-References: <20191218161105.30638-1-imre.deak@intel.com>
- <20191218161105.30638-8-imre.deak@intel.com>
- <20191219224850.GF2712252@mdroper-desk1.amr.corp.intel.com>
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 19 Dec 2019 16:19:34 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.69,333,1571727600"; d="scan'208";a="298871542"
+Received: from mdroper-desk1.fm.intel.com (HELO
+ mdroper-desk1.amr.corp.intel.com) ([10.1.27.64])
+ by orsmga001.jf.intel.com with ESMTP; 19 Dec 2019 16:19:33 -0800
+Date: Thu, 19 Dec 2019 16:19:33 -0800
+From: Matt Roper <matthew.d.roper@intel.com>
+To: Manasi Navare <manasi.d.navare@intel.com>
+Message-ID: <20191220001933.GI2712252@mdroper-desk1.amr.corp.intel.com>
+References: <20191219233305.28080-1-manasi.d.navare@intel.com>
+ <20191219233305.28080-3-manasi.d.navare@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20191219224850.GF2712252@mdroper-desk1.amr.corp.intel.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [PATCH 07/15] drm/i915/tgl: Make sure FBs have a
- correct CCS plane stride
+In-Reply-To: <20191219233305.28080-3-manasi.d.navare@intel.com>
+User-Agent: Mutt/1.12.1 (2019-06-15)
+Subject: Re: [Intel-gfx] [PATCH v3 3/3] drm/i915/dp: Disable Port sync mode
+ correctly on teardown
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,119 +47,88 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
-Cc: intel-gfx@lists.freedesktop.org,
- Dhinakaran Pandiyan <dhinakaran.pandiyan@intel.com>
+Cc: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Dec 19, 2019 at 02:48:50PM -0800, Matt Roper wrote:
-> On Wed, Dec 18, 2019 at 06:10:57PM +0200, Imre Deak wrote:
-> > The CCS plane stride must be fixed on TGL, as it's not configurable for
-> > the display. Instead the HW has a hardwired logic to determine it from
-> > the main plane stride. Make sure userspace passes in the correct stride.
+On Thu, Dec 19, 2019 at 03:33:05PM -0800, Manasi Navare wrote:
+> While clearing the Ports ync mode enable and master select bits
+> we need to clear the register completely instead of using disable masks
 > =
 
-> Do you have a bspec page number reference for this?  I don't see it
-> mentioned anywhere obvious.
-
-At Index/49253:
-"Control surface stride is not used for media compression."
-
-Assuming this refers to the stride we program to PLANE_AUX_DIST on
-other platforms. The description of that field tells us:
-"This field is unused. Leave at default value."
-
-Practice does match this, since there seems to be no significance what
-is programmed to this field (things keep working fine if the assumed
-fixed stride was used for the CCS surface whatever I programmed to the
-above field).
-
-So the only explanation I see is what I wrote in the commit log.
-
-The same must be true for render compression too and my test results
-match with that assumption. There is no mention about constraints on the
-stride or it being configureable somehow (unlike on other engines which
-use the AUX pagetables), so I also added now a ticket to the render
-compression page.
-
+> v2:
+> * Just write 0 to the reg (Ville)
+> * Rebase
 > =
 
+> Bugzilla: https://gitlab.freedesktop.org/drm/intel/issues/5
+> Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> Cc: Jani Nikula <jani.nikula@intel.com>
+> Fixes: 51528afe7c5e ("drm/i915/display/icl: Disable transcoder port sync =
+as part of crtc_disable() sequence")
+> Signed-off-by: Manasi Navare <manasi.d.navare@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_ddi.c | 5 +----
+>  1 file changed, 1 insertion(+), 4 deletions(-)
 > =
 
-> Matt
-> =
+> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i=
+915/display/intel_ddi.c
+> index c9ba7d7f3787..c484f6df5d87 100644
+> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+> @@ -3861,7 +3861,6 @@ static void icl_disable_transcoder_port_sync(const =
+struct intel_crtc_state *old_
+>  	struct intel_crtc *crtc =3D to_intel_crtc(old_crtc_state->uapi.crtc);
+>  	struct drm_i915_private *dev_priv =3D to_i915(crtc->base.dev);
+>  	i915_reg_t reg;
+> -	u32 trans_ddi_func_ctl2_val;
+>  =
 
-> > =
+>  	if (old_crtc_state->master_transcoder =3D=3D INVALID_TRANSCODER)
+>  		return;
+> @@ -3870,9 +3869,7 @@ static void icl_disable_transcoder_port_sync(const =
+struct intel_crtc_state *old_
+>  		      transcoder_name(old_crtc_state->cpu_transcoder));
+>  =
 
-> > Cc: Dhinakaran Pandiyan <dhinakaran.pandiyan@intel.com>
-> > Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> > Signed-off-by: Imre Deak <imre.deak@intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_display.c | 15 +++++++++++++++
-> >  1 file changed, 15 insertions(+)
-> > =
+>  	reg =3D TRANS_DDI_FUNC_CTL2(old_crtc_state->cpu_transcoder);
+> -	trans_ddi_func_ctl2_val =3D ~(PORT_SYNC_MODE_ENABLE |
+> -				    PORT_SYNC_MODE_MASTER_SELECT_MASK);
+> -	I915_WRITE(reg, trans_ddi_func_ctl2_val);
+> +	I915_WRITE(reg, 0);
 
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu=
-/drm/i915/display/intel_display.c
-> > index 641ea24539eb..7c52591172e1 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> > @@ -2620,6 +2620,11 @@ bool is_ccs_modifier(u64 modifier)
-> >  	       modifier =3D=3D I915_FORMAT_MOD_Yf_TILED_CCS;
-> >  }
-> >  =
+Could probably get rid of 'reg' now too and just
+        I915_WRITE(TRANS_DDI_FUNC_CTL2(...), 0)
 
-> > +static int gen12_ccs_aux_stride(struct drm_framebuffer *fb, int ccs_pl=
-ane)
-> > +{
-> > +	return DIV_ROUND_UP(fb->pitches[ccs_to_main_plane(fb, ccs_plane)], 51=
-2) * 64;
-> > +}
-> > +
-> >  u32 intel_plane_fb_max_stride(struct drm_i915_private *dev_priv,
-> >  			      u32 pixel_format, u64 modifier)
-> >  {
-> > @@ -16530,6 +16535,16 @@ static int intel_framebuffer_init(struct intel=
-_framebuffer *intel_fb,
-> >  			goto err;
-> >  		}
-> >  =
+Up to you.  Either way,
 
-> > +		if (is_gen12_ccs_plane(fb, i)) {
-> > +			int ccs_aux_stride =3D gen12_ccs_aux_stride(fb, i);
-> > +
-> > +			if (fb->pitches[i] !=3D ccs_aux_stride) {
-> > +				DRM_DEBUG_KMS("ccs aux plane %d pitch (%d) must be %d\n",
-> > +					      i, fb->pitches[i], ccs_aux_stride);
-> > +				goto err;
-> > +			}
-> > +		}
-> > +
-> >  		fb->obj[i] =3D &obj->base;
-> >  	}
-> >  =
+Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
 
-> > -- =
 
-> > 2.22.0
-> > =
+>  }
+>  =
 
-> > _______________________________________________
-> > Intel-gfx mailing list
-> > Intel-gfx@lists.freedesktop.org
-> > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-> =
-
+>  static void intel_ddi_post_disable(struct intel_encoder *encoder,
 > -- =
 
-> Matt Roper
-> Graphics Software Engineer
-> VTT-OSGC Platform Enablement
-> Intel Corporation
-> (916) 356-2795
+> 2.19.1
+> =
+
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+-- =
+
+Matt Roper
+Graphics Software Engineer
+VTT-OSGC Platform Enablement
+Intel Corporation
+(916) 356-2795
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
