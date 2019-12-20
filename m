@@ -1,41 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0CD60127C1A
-	for <lists+intel-gfx@lfdr.de>; Fri, 20 Dec 2019 14:59:50 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D0C2127C2C
+	for <lists+intel-gfx@lfdr.de>; Fri, 20 Dec 2019 15:03:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D28136EC30;
-	Fri, 20 Dec 2019 13:59:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BC6C16EC31;
+	Fri, 20 Dec 2019 14:03:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ED5616EC30
- for <intel-gfx@lists.freedesktop.org>; Fri, 20 Dec 2019 13:59:45 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6D9456EC31
+ for <intel-gfx@lists.freedesktop.org>; Fri, 20 Dec 2019 14:03:24 +0000 (UTC)
 X-Amp-Result: UNKNOWN
 X-Amp-Original-Verdict: FILE UNKNOWN
 X-Amp-File-Uploaded: False
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 20 Dec 2019 05:59:44 -0800
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 20 Dec 2019 06:03:23 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,336,1571727600"; d="scan'208";a="267528990"
+X-IronPort-AV: E=Sophos;i="5.69,336,1571727600"; d="scan'208";a="222496807"
 Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by FMSMGA003.fm.intel.com with SMTP; 20 Dec 2019 05:59:42 -0800
+ by fmsmga001.fm.intel.com with SMTP; 20 Dec 2019 06:03:21 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 20 Dec 2019 15:59:41 +0200
-Date: Fri, 20 Dec 2019 15:59:41 +0200
+ Fri, 20 Dec 2019 16:03:20 +0200
+Date: Fri, 20 Dec 2019 16:03:20 +0200
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Manasi Navare <manasi.d.navare@intel.com>
-Message-ID: <20191220135941.GL1208@intel.com>
-References: <20191219215117.929-1-manasi.d.navare@intel.com>
- <20191219215117.929-2-manasi.d.navare@intel.com>
+To: Imre Deak <imre.deak@intel.com>
+Message-ID: <20191220140320.GM1208@intel.com>
+References: <20191218161105.30638-1-imre.deak@intel.com>
+ <20191218161105.30638-6-imre.deak@intel.com>
+ <20191219210433.GE2712252@mdroper-desk1.amr.corp.intel.com>
+ <20191220002607.GB8384@ideak-desk.fi.intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20191219215117.929-2-manasi.d.navare@intel.com>
+In-Reply-To: <20191220002607.GB8384@ideak-desk.fi.intel.com>
 User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH v2 2/3] drm/i915/dp: Make port sync mode
- assignments only if all tiles present
+Subject: Re: [Intel-gfx] [PATCH 05/15] drm/i915: Add helpers to select
+ correct ccs/aux planes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,307 +50,239 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org,
+ Dhinakaran Pandiyan <dhinakaran.pandiyan@intel.com>
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Dec 19, 2019 at 01:51:16PM -0800, Manasi Navare wrote:
-> Add an extra check before making master slave assignments for tiled
-> displays to make sure we make these assignments only if all tiled
-> connectors are present. If not then initialize the state to defaults
-> so it does a normal non tiled modeset without transcoder port sync.
+On Fri, Dec 20, 2019 at 02:26:07AM +0200, Imre Deak wrote:
+> On Thu, Dec 19, 2019 at 01:04:33PM -0800, Matt Roper wrote:
+> > On Wed, Dec 18, 2019 at 06:10:55PM +0200, Imre Deak wrote:
+> > > Using helpers instead of open coding this to select a CCS plane for a
+> > > main plane makes the code cleaner and less error-prone when the locat=
+ion
+> > > of CCS plane can be different based on the format (packed vs. YUV
+> > > semiplanar). The same applies to selecting an AUX plane which can be a
+> > > UV plane (for an uncompressed YUV semiplanar format), or a CCS plane.
+> > > =
+
+> > > Cc: Dhinakaran Pandiyan <dhinakaran.pandiyan@intel.com>
+> > > Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > > Signed-off-by: Imre Deak <imre.deak@intel.com>
+> > =
+
+> > Looking at this makes me wonder if some of the aux stuff that we're
+> > doing for YUV in skl_check_main_surface is actually necessary for gen11+
+> > now that we have separate planes rather than an AUX surface in the same
+> > plane.
 > =
 
-> v2:
-> * Rename icl_add_sync_mode_crtcs
-> * Move this function just before .compute_config hook
-> * Check if DP before master slave assignments (Ville)
+> I also wondered if programming the UV surface's offset in the Y plane's
+> AUX_DIST register is necessary or not on GEN11+, however that's what we
+> do atm.
+
+Shouldn't be needed. But I presume you're changing that anyway for media
+compression since you need aux for both Y and UV?
+
 > =
 
-> Bugzilla: https://gitlab.freedesktop.org/drm/intel/issues/5
-> Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> Signed-off-by: Manasi Navare <manasi.d.navare@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_display.c | 162 +++++++++++--------
->  1 file changed, 99 insertions(+), 63 deletions(-)
-> =
+> > =
 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/d=
-rm/i915/display/intel_display.c
-> index 00608d8cef50..9c1b1256be68 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -12014,88 +12014,106 @@ static bool c8_planes_changed(const struct int=
-el_crtc_state *new_crtc_state)
->  	return !old_crtc_state->c8_planes !=3D !new_crtc_state->c8_planes;
->  }
->  =
+> > But none of the logic should be impacted by your changes here so,
+> > =
 
-> -static int icl_add_sync_mode_crtcs(struct intel_crtc_state *crtc_state)
-> +static void reset_port_sync_mode_state(struct intel_crtc_state *crtc_sta=
-te)
-> +{
-> +	crtc_state->master_transcoder =3D INVALID_TRANSCODER;
-> +	crtc_state->sync_mode_slaves_mask =3D 0;
-> +}
-> +
-> +static int icl_compute_port_sync_crtc_state(struct drm_connector *connec=
-tor,
-> +					    struct intel_crtc_state *crtc_state,
-> +					    int num_tiled_conns)
->  {
->  	struct drm_crtc *crtc =3D crtc_state->uapi.crtc;
->  	struct intel_atomic_state *state =3D to_intel_atomic_state(crtc_state->=
-uapi.state);
->  	struct drm_i915_private *dev_priv =3D to_i915(crtc_state->uapi.crtc->de=
-v);
-> -	struct drm_connector *master_connector, *connector;
-> -	struct drm_connector_state *connector_state;
-> +	struct drm_connector *master_connector;
->  	struct drm_connector_list_iter conn_iter;
->  	struct drm_crtc *master_crtc =3D NULL;
->  	struct drm_crtc_state *master_crtc_state;
->  	struct intel_crtc_state *master_pipe_config;
-> -	int i, tile_group_id;
->  =
+> > Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+> > =
 
->  	if (INTEL_GEN(dev_priv) < 11)
->  		return 0;
->  =
+> > > ---
+> > >  drivers/gpu/drm/i915/display/intel_display.c | 63 ++++++++++++++++--=
+--
+> > >  1 file changed, 50 insertions(+), 13 deletions(-)
+> > > =
 
-> +	if (!intel_crtc_has_type(crtc_state, INTEL_OUTPUT_DP))
-> +		return 0;
-> +
->  	/*
->  	 * In case of tiled displays there could be one or more slaves but ther=
-e is
->  	 * only one master. Lets make the CRTC used by the connector correspond=
-ing
->  	 * to the last horizonal and last vertical tile a master/genlock CRTC.
->  	 * All the other CRTCs corresponding to other tiles of the same Tile gr=
-oup
->  	 * are the slave CRTCs and hold a pointer to their genlock CRTC.
-> +	 * If all tiles not present do not make master slave assignments.
-> +	 *
-> +	 * FIXME: Add support for multiple tile grp ids in the future when such
-> +	 * panels are available.
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/g=
+pu/drm/i915/display/intel_display.c
+> > > index 4b8b44c39724..6bda397ae677 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_display.c
+> > > +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> > > @@ -1933,6 +1933,40 @@ static unsigned int intel_tile_size(const stru=
+ct drm_i915_private *dev_priv)
+> > >  	return IS_GEN(dev_priv, 2) ? 2048 : 4096;
+> > >  }
+> > >  =
 
-What does that mean? Why would we treat mutliple groups as a single
-tiled display?
+> > > +static bool is_ccs_plane(const struct drm_framebuffer *fb, int plane)
+> > > +{
+> > > +	if (!is_ccs_modifier(fb->modifier))
+> > > +		return false;
+> > > +
+> > > +	return plane >=3D fb->format->num_planes / 2;
+> > > +}
+> > > +
+> > > +static bool is_aux_plane(const struct drm_framebuffer *fb, int plane)
+> > > +{
+> > > +	if (is_ccs_modifier(fb->modifier))
+> > > +		return is_ccs_plane(fb, plane);
+> > > +
+> > > +	return plane =3D=3D 1;
+> > > +}
+> > > +
+> > > +static int main_to_ccs_plane(const struct drm_framebuffer *fb, int m=
+ain_plane)
+> > > +{
+> > > +	WARN_ON(!is_ccs_modifier(fb->modifier) ||
+> > > +		(main_plane && main_plane >=3D fb->format->num_planes / 2));
+> > > +
+> > > +	return fb->format->num_planes / 2 + main_plane;
+> > > +}
+> > > +
+> > > +/* Return either the main plane's CCS or - if not a CCS FB - UV plan=
+e */
+> > > +static int
+> > > +intel_main_to_aux_plane(const struct drm_framebuffer *fb, int main_p=
+lane)
+> > > +{
+> > > +	if (is_ccs_modifier(fb->modifier))
+> > > +		return main_to_ccs_plane(fb, main_plane);
+> > > +
+> > > +	return 1;
+> > > +}
+> > > +
+> > >  static unsigned int
+> > >  intel_tile_width_bytes(const struct drm_framebuffer *fb, int color_p=
+lane)
+> > >  {
+> > > @@ -1948,7 +1982,7 @@ intel_tile_width_bytes(const struct drm_framebu=
+ffer *fb, int color_plane)
+> > >  		else
+> > >  			return 512;
+> > >  	case I915_FORMAT_MOD_Y_TILED_CCS:
+> > > -		if (color_plane =3D=3D 1)
+> > > +		if (is_ccs_plane(fb, color_plane))
+> > >  			return 128;
+> > >  		/* fall through */
+> > >  	case I915_FORMAT_MOD_Y_TILED:
+> > > @@ -1957,7 +1991,7 @@ intel_tile_width_bytes(const struct drm_framebu=
+ffer *fb, int color_plane)
+> > >  		else
+> > >  			return 512;
+> > >  	case I915_FORMAT_MOD_Yf_TILED_CCS:
+> > > -		if (color_plane =3D=3D 1)
+> > > +		if (is_ccs_plane(fb, color_plane))
+> > >  			return 128;
+> > >  		/* fall through */
+> > >  	case I915_FORMAT_MOD_Yf_TILED:
+> > > @@ -2074,7 +2108,7 @@ static unsigned int intel_surf_alignment(const =
+struct drm_framebuffer *fb,
+> > >  	struct drm_i915_private *dev_priv =3D to_i915(fb->dev);
+> > >  =
 
->  	 */
-> -	for_each_new_connector_in_state(&state->base, connector, connector_stat=
-e, i) {
-> -		if (connector_state->crtc !=3D crtc)
-> -			continue;
-> -		if (!connector->has_tile)
-> +	if (!connector->has_tile ||
-> +	    crtc_state->hw.mode.hdisplay !=3D connector->tile_h_size ||
-> +	    crtc_state->hw.mode.vdisplay !=3D connector->tile_v_size ||
-> +	    num_tiled_conns < connector->num_h_tile * connector->num_v_tile) {
-> +		reset_port_sync_mode_state(crtc_state);
+> > >  	/* AUX_DIST needs only 4K alignment */
+> > > -	if (color_plane =3D=3D 1)
+> > > +	if (is_aux_plane(fb, color_plane))
+> > >  		return 4096;
+> > >  =
 
-I really don't understand this back and forth of setting/clearing
-the master/slave state. I think the way to make it not convoluted is
-to just clear everything in intel_crtc_prepare_cleared_state() and
-then just compute everything from scratch.
+> > >  	switch (fb->modifier) {
+> > > @@ -3457,10 +3491,11 @@ static bool skl_check_main_ccs_coordinates(st=
+ruct intel_plane_state *plane_state
+> > >  	const struct drm_framebuffer *fb =3D plane_state->hw.fb;
+> > >  	int hsub =3D fb->format->hsub;
+> > >  	int vsub =3D fb->format->vsub;
+> > > -	int aux_x =3D plane_state->color_plane[1].x;
+> > > -	int aux_y =3D plane_state->color_plane[1].y;
+> > > -	u32 aux_offset =3D plane_state->color_plane[1].offset;
+> > > -	u32 alignment =3D intel_surf_alignment(fb, 1);
+> > > +	int ccs_plane =3D main_to_ccs_plane(fb, 0);
+> > > +	int aux_x =3D plane_state->color_plane[ccs_plane].x;
+> > > +	int aux_y =3D plane_state->color_plane[ccs_plane].y;
+> > > +	u32 aux_offset =3D plane_state->color_plane[ccs_plane].offset;
+> > > +	u32 alignment =3D intel_surf_alignment(fb, ccs_plane);
+> > >  =
 
-> +		return 0;
-> +	}
-> +	/* Last Horizontal and last vertical tile connector is a master
-> +	 * Master Trans for a Master CRTC is always INVALID.
-> +	 */
-> +	if (connector->tile_h_loc =3D=3D connector->num_h_tile - 1 &&
-> +	    connector->tile_v_loc =3D=3D connector->num_v_tile - 1) {
-> +		crtc_state->master_transcoder =3D INVALID_TRANSCODER;
-> +		return 0;
-> +	}
-> +
-> +	/* Loop through all connectors and configure the Slave crtc_state
-> +	 * to point to the correct master.
-> +	 */
-> +	reset_port_sync_mode_state(crtc_state);
-> +	drm_connector_list_iter_begin(&dev_priv->drm, &conn_iter);
-> +	drm_for_each_connector_iter(master_connector, &conn_iter) {
+> > >  	while (aux_offset >=3D main_offset && aux_y <=3D main_y) {
+> > >  		int x, y;
+> > > @@ -3473,7 +3508,7 @@ static bool skl_check_main_ccs_coordinates(stru=
+ct intel_plane_state *plane_state
+> > >  =
 
-Why are we all of a sudden iterating through all connectors? I think this
-should just iterate the connectors already in the state. The only place
-where we want to look at the full connector list is the modeset_all_tiles()
-thing.
+> > >  		x =3D aux_x / hsub;
+> > >  		y =3D aux_y / vsub;
+> > > -		aux_offset =3D intel_plane_adjust_aligned_offset(&x, &y, plane_sta=
+te, 1,
+> > > +		aux_offset =3D intel_plane_adjust_aligned_offset(&x, &y, plane_sta=
+te, ccs_plane,
+> > >  							       aux_offset, aux_offset - alignment);
+> > >  		aux_x =3D x * hsub + aux_x % hsub;
+> > >  		aux_y =3D y * vsub + aux_y % vsub;
+> > > @@ -3482,9 +3517,9 @@ static bool skl_check_main_ccs_coordinates(stru=
+ct intel_plane_state *plane_state
+> > >  	if (aux_x !=3D main_x || aux_y !=3D main_y)
+> > >  		return false;
+> > >  =
 
-> +		struct drm_connector_state *master_conn_state =3D NULL;
-> +
-> +		if (!(master_connector->has_tile &&
-> +		      master_connector->tile_group->id =3D=3D connector->tile_group->i=
-d))
->  			continue;
-> -		if (crtc_state->hw.mode.hdisplay !=3D connector->tile_h_size ||
-> -		    crtc_state->hw.mode.vdisplay !=3D connector->tile_v_size)
-> -			return 0;
-> -		if (connector->tile_h_loc =3D=3D connector->num_h_tile - 1 &&
-> -		    connector->tile_v_loc =3D=3D connector->num_v_tile - 1)
-> +		if (master_connector->tile_h_loc !=3D master_connector->num_h_tile - 1=
- ||
-> +		    master_connector->tile_v_loc !=3D master_connector->num_v_tile - 1)
->  			continue;
-> -		crtc_state->sync_mode_slaves_mask =3D 0;
-> -		tile_group_id =3D connector->tile_group->id;
-> -		drm_connector_list_iter_begin(&dev_priv->drm, &conn_iter);
-> -		drm_for_each_connector_iter(master_connector, &conn_iter) {
-> -			struct drm_connector_state *master_conn_state =3D NULL;
->  =
+> > > -	plane_state->color_plane[1].offset =3D aux_offset;
+> > > -	plane_state->color_plane[1].x =3D aux_x;
+> > > -	plane_state->color_plane[1].y =3D aux_y;
+> > > +	plane_state->color_plane[ccs_plane].offset =3D aux_offset;
+> > > +	plane_state->color_plane[ccs_plane].x =3D aux_x;
+> > > +	plane_state->color_plane[ccs_plane].y =3D aux_y;
+> > >  =
 
-> -			if (!master_connector->has_tile)
-> -				continue;
-> -			if (master_connector->tile_h_loc !=3D master_connector->num_h_tile - =
-1 ||
-> -			    master_connector->tile_v_loc !=3D master_connector->num_v_tile - =
-1)
-> -				continue;
-> -			if (master_connector->tile_group->id !=3D tile_group_id)
-> -				continue;
-> -
-> -			master_conn_state =3D drm_atomic_get_connector_state(&state->base,
-> -									   master_connector);
-> -			if (IS_ERR(master_conn_state)) {
-> -				drm_connector_list_iter_end(&conn_iter);
-> -				return PTR_ERR(master_conn_state);
-> -			}
-> -			if (master_conn_state->crtc) {
-> -				master_crtc =3D master_conn_state->crtc;
-> -				break;
-> -			}
-> +		master_conn_state =3D drm_atomic_get_connector_state(&state->base,
-> +								   master_connector);
-> +		if (IS_ERR(master_conn_state)) {
-> +			drm_connector_list_iter_end(&conn_iter);
-> +			return PTR_ERR(master_conn_state);
->  		}
-> -		drm_connector_list_iter_end(&conn_iter);
-> -
-> -		if (!master_crtc) {
-> -			DRM_DEBUG_KMS("Could not find Master CRTC for Slave CRTC %d\n",
-> -				      connector_state->crtc->base.id);
-> -			return -EINVAL;
-> +		if (master_conn_state->crtc) {
-> +			master_crtc =3D master_conn_state->crtc;
-> +			break;
->  		}
-> +	}
-> +	drm_connector_list_iter_end(&conn_iter);
->  =
+> > >  	return true;
+> > >  }
+> > > @@ -3500,7 +3535,8 @@ static int skl_check_main_surface(struct intel_=
+plane_state *plane_state)
+> > >  	int h =3D drm_rect_height(&plane_state->uapi.src) >> 16;
+> > >  	int max_width;
+> > >  	int max_height;
+> > > -	u32 alignment, offset, aux_offset =3D plane_state->color_plane[1].o=
+ffset;
+> > > +	int aux_plane =3D intel_main_to_aux_plane(fb, 0);
+> > > +	u32 alignment, offset, aux_offset =3D plane_state->color_plane[aux_=
+plane].offset;
+> > >  =
 
-> -		master_crtc_state =3D drm_atomic_get_crtc_state(&state->base,
-> -							      master_crtc);
-> -		if (IS_ERR(master_crtc_state))
-> -			return PTR_ERR(master_crtc_state);
-> -
-> -		master_pipe_config =3D to_intel_crtc_state(master_crtc_state);
-> -		crtc_state->master_transcoder =3D master_pipe_config->cpu_transcoder;
-> -		master_pipe_config->sync_mode_slaves_mask |=3D
-> -			BIT(crtc_state->cpu_transcoder);
-> -		DRM_DEBUG_KMS("Master Transcoder =3D %s added for Slave CRTC =3D %d, s=
-lave transcoder bitmask =3D %d\n",
-> -			      transcoder_name(crtc_state->master_transcoder),
-> -			      crtc_state->uapi.crtc->base.id,
-> -			      master_pipe_config->sync_mode_slaves_mask);
-> +	if (!master_crtc) {
-> +		DRM_DEBUG_KMS("Could not find Master CRTC for Slave CRTC %d\n",
-> +			      crtc->base.id);
-> +		return -EINVAL;
->  	}
->  =
+> > >  	if (INTEL_GEN(dev_priv) >=3D 11)
+> > >  		max_width =3D icl_max_plane_width(fb, 0, rotation);
+> > > @@ -3566,7 +3602,8 @@ static int skl_check_main_surface(struct intel_=
+plane_state *plane_state)
+> > >  								   offset, offset - alignment);
+> > >  		}
+> > >  =
 
-> +	master_crtc_state =3D drm_atomic_get_crtc_state(&state->base,
-> +						      master_crtc);
-> +	if (IS_ERR(master_crtc_state))
-> +		return PTR_ERR(master_crtc_state);
-> +
-> +	master_pipe_config =3D to_intel_crtc_state(master_crtc_state);
-> +	crtc_state->master_transcoder =3D master_pipe_config->cpu_transcoder;
-> +	master_pipe_config->sync_mode_slaves_mask |=3D
-> +		BIT(crtc_state->cpu_transcoder);
-> +	DRM_DEBUG_KMS("Master Transcoder =3D %s added for Slave CRTC =3D %d, sl=
-ave transcoder bitmask =3D %d\n",
-> +		      transcoder_name(crtc_state->master_transcoder),
-> +		      crtc->base.id,
-> +		      master_pipe_config->sync_mode_slaves_mask);
-> +
->  	return 0;
->  }
->  =
+> > > -		if (x !=3D plane_state->color_plane[1].x || y !=3D plane_state->co=
+lor_plane[1].y) {
+> > > +		if (x !=3D plane_state->color_plane[aux_plane].x ||
+> > > +		    y !=3D plane_state->color_plane[aux_plane].y) {
+> > >  			DRM_DEBUG_KMS("Unable to find suitable display surface offset due=
+ to CCS\n");
+> > >  			return -EINVAL;
+> > >  		}
+> > > -- =
 
-> @@ -12660,7 +12678,7 @@ intel_modeset_pipe_config(struct intel_crtc_state=
- *pipe_config)
->  	struct drm_connector *connector;
->  	struct drm_connector_state *connector_state;
->  	int base_bpp, ret;
-> -	int i;
-> +	int i, tile_group_id =3D -1, num_tiled_conns =3D 0;
->  	bool retry =3D true;
->  =
+> > > 2.22.0
+> > > =
 
->  	pipe_config->cpu_transcoder =3D
-> @@ -12730,13 +12748,23 @@ intel_modeset_pipe_config(struct intel_crtc_sta=
-te *pipe_config)
->  	drm_mode_set_crtcinfo(&pipe_config->hw.adjusted_mode,
->  			      CRTC_STEREO_DOUBLE);
->  =
+> > > _______________________________________________
+> > > Intel-gfx mailing list
+> > > Intel-gfx@lists.freedesktop.org
+> > > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+> > =
 
-> -	/* Set the crtc_state defaults for trans_port_sync */
-> -	pipe_config->master_transcoder =3D INVALID_TRANSCODER;
-> -	ret =3D icl_add_sync_mode_crtcs(pipe_config);
-> -	if (ret) {
-> -		DRM_DEBUG_KMS("Cannot assign Sync Mode CRTCs: %d\n",
-> -			      ret);
-> -		return ret;
-> +
-> +	/* Get tile_group_id of tiled connector */
-> +	for_each_new_connector_in_state(state, connector, connector_state, i) {
-> +		if (connector_state->crtc =3D=3D crtc &&
-> +		    connector->has_tile) {
-> +			tile_group_id =3D connector->tile_group->id;
-> +			break;
-> +		}
-> +	}
-> +
-> +	/* Get total number of tiled connectors in state that belong to
-> +	 * this tile group.
-> +	 */
-> +	for_each_new_connector_in_state(state, connector, connector_state, i) {
-> +		if (connector->has_tile &&
-> +		    connector->tile_group->id =3D=3D tile_group_id)
-> +			num_tiled_conns++;
->  	}
+> > -- =
 
-I don't see why we would need this num_tiled_conns stuff at all. Just
-iterate all connectors in the state that belong to the same group.
-
->  =
-
->  	/* Pass our mode to the connectors and the CRTC to give them a chance to
-> @@ -12747,6 +12775,14 @@ intel_modeset_pipe_config(struct intel_crtc_stat=
-e *pipe_config)
->  		if (connector_state->crtc !=3D crtc)
->  			continue;
->  =
-
-> +		ret =3D icl_compute_port_sync_crtc_state(connector, pipe_config,
-> +						       num_tiled_conns);
-> +		if (ret) {
-> +			DRM_DEBUG_KMS("Cannot assign Sync Mode CRTCs: %d\n",
-> +				      ret);
-> +			return ret;
-> +		}
-> +
->  		encoder =3D to_intel_encoder(connector_state->best_encoder);
->  		ret =3D encoder->compute_config(encoder, pipe_config,
->  					      connector_state);
-> -- =
-
-> 2.19.1
+> > Matt Roper
+> > Graphics Software Engineer
+> > VTT-OSGC Platform Enablement
+> > Intel Corporation
+> > (916) 356-2795
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 
 -- =
 
