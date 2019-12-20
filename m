@@ -2,41 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 127DB1276E6
-	for <lists+intel-gfx@lfdr.de>; Fri, 20 Dec 2019 09:00:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D5ACF1276F5
+	for <lists+intel-gfx@lfdr.de>; Fri, 20 Dec 2019 09:07:18 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7DFC78989F;
-	Fri, 20 Dec 2019 08:00:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4CA8E6EBE4;
+	Fri, 20 Dec 2019 08:07:17 +0000 (UTC)
 X-Original-To: Intel-gfx@lists.freedesktop.org
 Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 06ECD8989F
- for <Intel-gfx@lists.freedesktop.org>; Fri, 20 Dec 2019 08:00:40 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 229336EBE4
+ for <Intel-gfx@lists.freedesktop.org>; Fri, 20 Dec 2019 08:07:16 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 20 Dec 2019 00:00:33 -0800
-X-IronPort-AV: E=Sophos;i="5.69,335,1571727600"; d="scan'208";a="210742247"
+ by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 20 Dec 2019 00:07:15 -0800
+X-IronPort-AV: E=Sophos;i="5.69,335,1571727600"; d="scan'208";a="210743666"
 Received: from dtriolet-mobl1.ger.corp.intel.com (HELO [10.251.84.191])
  ([10.251.84.191])
  by orsmga008-auth.jf.intel.com with ESMTP/TLS/AES256-SHA;
- 20 Dec 2019 00:00:32 -0800
+ 20 Dec 2019 00:07:14 -0800
 To: Chris Wilson <chris@chris-wilson.co.uk>, Intel-gfx@lists.freedesktop.org
 References: <20191219180019.25562-1-tvrtko.ursulin@linux.intel.com>
- <20191219180019.25562-8-tvrtko.ursulin@linux.intel.com>
- <157678905483.6469.13631061410344244883@skylake-alporthouse-com>
+ <20191219180019.25562-9-tvrtko.ursulin@linux.intel.com>
+ <157678945519.6469.7475534643662969828@skylake-alporthouse-com>
 From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
 Organization: Intel Corporation UK Plc
-Message-ID: <92110a8c-16ba-e6ba-0c0e-53482c4ce98d@linux.intel.com>
-Date: Fri, 20 Dec 2019 08:00:30 +0000
+Message-ID: <468e0aad-fc14-c220-4cbf-8c37c28c3cd9@linux.intel.com>
+Date: Fri, 20 Dec 2019 08:07:10 +0000
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.9.0
 MIME-Version: 1.0
-In-Reply-To: <157678905483.6469.13631061410344244883@skylake-alporthouse-com>
+In-Reply-To: <157678945519.6469.7475534643662969828@skylake-alporthouse-com>
 Content-Language: en-US
-Subject: Re: [Intel-gfx] [RFC 7/8] drm/i915: Contexts can use struct pid
- stored in the client
+Subject: Re: [Intel-gfx] [RFC 8/8] drm/i915: Expose per-engine client
+ busyness
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,31 +49,70 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-On 19/12/2019 20:57, Chris Wilson wrote:
-> Quoting Tvrtko Ursulin (2019-12-19 18:00:18)
->> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->>
->> Now that contexts keep their parent client reference counted, we can
->> remove separate struct pid reference owned by contexts in favour of the
->> one already held by the client.
-> 
-> Ok. I do like the client abstraction, and I think we want to develop it
-> further.
-
-Okay, we'll have to see what you have in mind for a gem vs drm client 
-and so on then.
-
-Regards,
-
-Tvrtko
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+Ck9uIDE5LzEyLzIwMTkgMjE6MDQsIENocmlzIFdpbHNvbiB3cm90ZToKPiBRdW90aW5nIFR2cnRr
+byBVcnN1bGluICgyMDE5LTEyLTE5IDE4OjAwOjE5KQo+PiBGcm9tOiBUdnJ0a28gVXJzdWxpbiA8
+dHZydGtvLnVyc3VsaW5AaW50ZWwuY29tPgo+Pgo+PiBFeHBvc2UgcGVyLWNsaWVudCBhbmQgcGVy
+LWVuZ2luZSBidXN5bmVzcyB1bmRlciB0aGUgcHJldmlvdXNseSBhZGRlZCBzeXNmcwo+PiBjbGll
+bnQgcm9vdC4KPj4KPj4gVGhlIG5ldyBmaWxlcyBhcmUgb25lIHBlci1lbmdpbmUgaW5zdGFuY2Ug
+YW5kIGxvY2F0ZWQgdW5kZXIgdGhlICdidXN5Jwo+PiBkaXJlY3RvcnkuIEVhY2ggY29udGFpbnMg
+YSBtb25vdG9uaWNhbGx5IGluY3JlYXNpbmcgbmFuby1zZWNvbmQgcmVzb2x1dGlvbgo+PiB0aW1l
+cyBlYWNoIGNsaWVudCdzIGpvYnMgd2VyZSBleGVjdXRpbmcgb24gdGhlIEdQVS4KPj4KPj4gVGhp
+cyBlbmFibGVzIHVzZXJzcGFjZSB0byBjcmVhdGUgYSB0b3AtbGlrZSB0b29sIGZvciBHUFUgdXRp
+bGl6YXRpb246Cj4+Cj4+ID09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
+PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09Cj4+IGludGVsLWdwdS10b3AgLSAgOTM1
+LyA5MzUgTUh6OyAgICAwJSBSQzY7IDE0LjczIFdhdHRzOyAgICAgMTA5NyBpcnFzL3MKPj4KPj4g
+ICAgICAgIElNQyByZWFkczogICAgIDE0MDEgTWlCL3MKPj4gICAgICAgSU1DIHdyaXRlczogICAg
+ICAgIDQgTWlCL3MKPj4KPj4gICAgICAgICAgICBFTkdJTkUgICAgICBCVVNZICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgTUlfU0VNQSBNSV9XQUlUCj4+ICAgICAgIFJlbmRlci8zRC8w
+ICAgNjMuNzMlIHzilojilojilojilojilojilojilojilojilojilojilojilojilojilojiloji
+lojilojilojiloggICAgICAgICAgIHwgICAgICAzJSAgICAgIDAlCj4+ICAgICAgICAgQmxpdHRl
+ci8wICAgIDkuNTMlIHzilojilojiloogICAgICAgICAgICAgICAgICAgICAgICAgICB8ICAgICAg
+NiUgICAgICAwJQo+PiAgICAgICAgICAgVmlkZW8vMCAgIDM5LjMyJSB84paI4paI4paI4paI4paI
+4paI4paI4paI4paI4paI4paI4paKICAgICAgICAgICAgICAgICAgfCAgICAgMTYlICAgICAgMCUK
+Pj4gICAgICAgICAgIFZpZGVvLzEgICAxNS42MiUgfOKWiOKWiOKWiOKWiOKWiyAgICAgICAgICAg
+ICAgICAgICAgICAgICB8ICAgICAgMCUgICAgICAwJQo+PiAgICBWaWRlb0VuaGFuY2UvMCAgICAw
+LjAwJSB8ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgfCAgICAgIDAlICAgICAgMCUKPj4K
+Pj4gICAgUElEICAgICAgICAgICAgTkFNRSAgICAgUkNTICAgICAgICAgIEJDUyAgICAgICAgICBW
+Q1MgICAgICAgICBWRUNTCj4+ICAgNDA4NCAgICAgICAgZ2VtX3dzaW0gfOKWiOKWiOKWiOKWiOKW
+iOKWjCAgICAgfHziloggICAgICAgICAgfHwgICAgICAgICAgIHx8ICAgICAgICAgICB8Cj4+ICAg
+NDA4NiAgICAgICAgZ2VtX3dzaW0gfOKWiOKWjCAgICAgICAgIHx8ICAgICAgICAgICB8fOKWiOKW
+iOKWiCAgICAgICAgfHwgICAgICAgICAgIHwKPj4gPT09PT09PT09PT09PT09PT09PT09PT09PT09
+PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0KPj4KPj4gdjI6
+IFVzZSBpbnRlbF9jb250ZXh0X2VuZ2luZV9nZXRfYnVzeV90aW1lLgo+PiB2MzogTmV3IGRpcmVj
+dG9yeSBzdHJ1Y3R1cmUuCj4+IHY0OiBSZWJhc2UuCj4+IHY1OiBzeXNmc19hdHRyX2luaXQuCj4+
+IHY2OiBTbWFsbCB0aWR5IGluIGk5MTVfZ2VtX2FkZF9jbGllbnQuCj4+IHY3OiBSZWJhc2UgdG8g
+YmUgZW5naW5lIGNsYXNzIGJhc2VkLgo+PiB2ODoKPj4gICAqIEFsd2F5cyBlbmFibGUgc3RhdHMu
+Cj4+ICAgKiBXYWxrIGFsbCBjbGllbnQgY29udGV4dHMuCj4+Cj4+IFNpZ25lZC1vZmYtYnk6IFR2
+cnRrbyBVcnN1bGluIDx0dnJ0a28udXJzdWxpbkBpbnRlbC5jb20+Cj4gCj4gT3RoZXIgdGhhbiBz
+cGxpdHRpbmcgaXQgb3V0IGludG8gaTkxNV9kcm1fY2xpZW50LmMgKGV0IGFsKS4gSXQKPiB3b3Jr
+c2Zvcm1lLgo+IAo+IEhvd2V2ZXIsIGl0J3MgYWJvdXQgYXMgdXNlZnVsIGFzIHRvcCwgYnV0IHdp
+dGhvdXQgYW55IG1lYW5zIHRvCj4ga2lsbC9zdG9wL3JlcHJpb3JpdGlzZSBjbGllbnRzIDooCgpL
+aWxsaW5nIGEgY2xpZW50IGlzIGEgam9iIGZvciBraWxsKDIpLCBubz8gU2luY2UgdGhlcmUgaXMg
+cGlkIGFscmVhZHksIAppdCBpcyBqdXN0IGEgbWF0dGVyIG9mIGFkZGluZyBzb21lIGNvZGUgdG8g
+aW50ZWxfZ3B1X3RvcC4KClVubGVzcyB3ZSBhbHNvIHdhbnQgdG8gY292ZXIga2lsbGluZyB3b3Jr
+IGJlbG9uZ2luZyB0byBleGl0ZWQgY2xpZW50cy4gCldvdWxkIHByb2JhYmx5IGJlIG5pY2UgZm9y
+IGZlYXR1cmUgY29tcGxldGVuZXNzLiBGb3IgdGhhdCB3ZSBwcm9iYWJseSAKd2FudCBhbiBpb2N0
+bC4gQnV0IGl0IHdvdWxkIGJlIGEgZmlyc3Qgb25lIHRvIGFsbG93IGRpcmVjdCBhY3Rpb24gb24g
+CnVucmVsYXRlZCBjbGllbnRzLCBldmVuIGlmIHVuZGVyIENBUF9TWVNfQURNSU4gZm9yIGluc3Rh
+bmNlLgoKPiBUbyBnaXZlIG1lIGFjdGlvbmFibGUgZGF0YSwgZG8gd2Ugbm90IG5lZWQgbW9yZSBv
+ZiBhIHBlcmYgaW50ZXJmYWNlCj4gd2hlcmUgZXZlbnRzIGFyZSBzZW50IGZvciBjbGllbnQgc3Rh
+cnQvc3RvcCBzbyB0aGF0IG9ic2VydmVycyBjYW4KPiByZWNvcmQgdGhlIGNvbnRleHQgdXRpbGlz
+YXRpb24gd2l0aGluIHRoZWlyIHNhbXBsZSBwZXJpb2RzPyBJJ20gdGhpbmtpbmcKPiBvZiB0aGUg
+InBlcmYgc3RhdCB3c2ltLi4uIiB1c2UgY2FzZSB3aGVyZSBpdCBnaXZlcyBtZSBhIGJyZWFrZG93
+biBvZgo+IGVhY2ggd29ya2xvYWQuCgpJdCBpcyBkb2FibGUgSSB0aGluay4gSSBoYWQgYSBwcm90
+b3R5cGUgYXQgdGhlIHRpbWUgd2hlbiBJIGluaXRpYWxseSAKc3RhcnRlZCBwbGF5aW5nIHdpdGgg
+dGhpcy4gSW4gc2hvcnQsIHdoYXQgaXMgcmVxdWlyZWQgaXMgYSBzZXBhcmF0ZSBQTVUgCiJub2Rl
+IiwgYW5kIGtlZXBpbmcgYSBtYXAgb2YgcGlkIHRvIGNsaWVudC4gVGhlbiBJIHdhcyBhYmxlIHRv
+IHF1ZXJ5IEdQVSAKdGltZSBmb3IgZWFjaCBwaWQgYXMgcHJvZmlsZWQgYnkgcGVyZi4gSSBzaG91
+bGQgaGF2ZSBhIHNrZXRjaCBpbiBhIApicmFuY2ggc29tZXdoZXJlLgoKQnV0IElJUkMgSSB3YXNu
+J3Qgc3VyZSBpdCB3YXMgYSBnb29kIHJlcGxhY2VtZW50IGZvciB0aGlzIHN5c2ZzIAppbnRlcmZh
+Y2Ugd2hlbiBqdXN0IHRoaW5raW5nIGFib3V0IGludGVsX2dwdV90b3AuIERldGFpbHMgZXNjYXBl
+IG1lIG5vdy4KClJlZ2FyZHMsCgpUdnJ0a28KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMu
+ZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlz
+dGluZm8vaW50ZWwtZ2Z4Cg==
