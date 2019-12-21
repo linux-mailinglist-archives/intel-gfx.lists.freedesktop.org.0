@@ -1,30 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3112F1289A2
-	for <lists+intel-gfx@lfdr.de>; Sat, 21 Dec 2019 15:49:42 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1DB1E1289BE
+	for <lists+intel-gfx@lfdr.de>; Sat, 21 Dec 2019 16:03:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 692506E471;
-	Sat, 21 Dec 2019 14:49:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 142CD6E479;
+	Sat, 21 Dec 2019 15:03:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7F5F76E479
- for <intel-gfx@lists.freedesktop.org>; Sat, 21 Dec 2019 14:49:38 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B92566E479
+ for <intel-gfx@lists.freedesktop.org>; Sat, 21 Dec 2019 15:03:50 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19656645-1500050 
- for multiple; Sat, 21 Dec 2019 14:49:18 +0000
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19656728-1500050 
+ for multiple; Sat, 21 Dec 2019 15:03:44 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Sat, 21 Dec 2019 14:49:17 +0000
-Message-Id: <20191221144917.1040662-1-chris@chris-wilson.co.uk>
+Date: Sat, 21 Dec 2019 15:03:43 +0000
+Message-Id: <20191221150343.1067855-1-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.24.1
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drn/i915: Break up long i915_buddy_free_list()
- with a cond_resched()
+Subject: [Intel-gfx] [PATCH] drm/i915: Only retire requests when eviction is
+ allowed to blocked
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,40 +37,44 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Matthew Auld <matthew.auld@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-In the selftests, we may feed very long lists of blocks to be freed on
-culmination of the tests. This coupled with kasan and other
-malloc-tracing can make the kmem_cache_free() operation time consuming,
-and doing many of time trigger soft lockup warnings. Break the list up
-with a cond_resched().
+We want to keep the PIN_NONBLOCK search quick, avoiding evicting
+recently active nodes. To that end, skip performing the more laborious
+retirement prior to beginning the fast search.
 
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Matthew Auld <matthew.auld@intel.com>
 ---
- drivers/gpu/drm/i915/i915_buddy.c | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/i915_gem_evict.c | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/i915_buddy.c b/drivers/gpu/drm/i915/i915_buddy.c
-index e9d4200ce3bc..66883af64ca1 100644
---- a/drivers/gpu/drm/i915/i915_buddy.c
-+++ b/drivers/gpu/drm/i915/i915_buddy.c
-@@ -262,8 +262,10 @@ void i915_buddy_free_list(struct i915_buddy_mm *mm, struct list_head *objects)
- {
- 	struct i915_buddy_block *block, *on;
+diff --git a/drivers/gpu/drm/i915/i915_gem_evict.c b/drivers/gpu/drm/i915/i915_gem_evict.c
+index 0697bedebeef..5f8b6cc55195 100644
+--- a/drivers/gpu/drm/i915/i915_gem_evict.c
++++ b/drivers/gpu/drm/i915/i915_gem_evict.c
+@@ -124,7 +124,8 @@ i915_gem_evict_something(struct i915_address_space *vm,
+ 				    min_size, alignment, color,
+ 				    start, end, mode);
  
--	list_for_each_entry_safe(block, on, objects, link)
-+	list_for_each_entry_safe(block, on, objects, link) {
- 		i915_buddy_free(mm, block);
-+		cond_resched();
-+	}
- 	INIT_LIST_HEAD(objects);
- }
+-	intel_gt_retire_requests(vm->gt);
++	if (!(flags & PIN_NONBLOCK))
++		intel_gt_retire_requests(vm->gt);
  
+ search_again:
+ 	active = NULL;
+@@ -270,7 +271,8 @@ int i915_gem_evict_for_node(struct i915_address_space *vm,
+ 	 * a stray pin (preventing eviction) that can only be resolved by
+ 	 * retiring.
+ 	 */
+-	intel_gt_retire_requests(vm->gt);
++	if (!(flags & PIN_NONBLOCK))
++		intel_gt_retire_requests(vm->gt);
+ 
+ 	if (i915_vm_has_cache_coloring(vm)) {
+ 		/* Expand search to cover neighbouring guard pages (or lack!) */
 -- 
 2.24.1
 
