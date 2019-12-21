@@ -2,28 +2,28 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D5DB2128B5C
-	for <lists+intel-gfx@lfdr.de>; Sat, 21 Dec 2019 21:01:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id F068A128B88
+	for <lists+intel-gfx@lfdr.de>; Sat, 21 Dec 2019 21:37:39 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4EBA56E4AA;
-	Sat, 21 Dec 2019 20:01:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A65666E4B0;
+	Sat, 21 Dec 2019 20:37:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8E2466E4AA
- for <intel-gfx@lists.freedesktop.org>; Sat, 21 Dec 2019 20:01:14 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 161236E4B1
+ for <intel-gfx@lists.freedesktop.org>; Sat, 21 Dec 2019 20:37:34 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19658332-1500050 
- for <intel-gfx@lists.freedesktop.org>; Sat, 21 Dec 2019 20:01:10 +0000
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19658481-1500050 
+ for <intel-gfx@lists.freedesktop.org>; Sat, 21 Dec 2019 20:37:32 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Sat, 21 Dec 2019 20:01:09 +0000
-Message-Id: <20191221200109.1202310-1-chris@chris-wilson.co.uk>
+Date: Sat, 21 Dec 2019 20:37:30 +0000
+Message-Id: <20191221203731.1204256-1-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.24.1
 MIME-Version: 1.0
-Subject: [Intel-gfx] [CI] drm/i915: Move i915_gem_init_contexts() earlier
+Subject: [Intel-gfx] [CI 1/2] drm/i915: Move i915_gem_init_contexts() earlier
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
