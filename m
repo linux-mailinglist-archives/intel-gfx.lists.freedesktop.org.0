@@ -1,31 +1,66 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC253128C58
-	for <lists+intel-gfx@lfdr.de>; Sun, 22 Dec 2019 03:43:46 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 71722128C6D
+	for <lists+intel-gfx@lfdr.de>; Sun, 22 Dec 2019 04:09:23 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BFEB16E4E6;
-	Sun, 22 Dec 2019 02:43:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2B90F6E4E3;
+	Sun, 22 Dec 2019 03:09:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 813B36E4E3;
- Sun, 22 Dec 2019 02:43:42 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 69D4FA0091;
- Sun, 22 Dec 2019 02:43:42 +0000 (UTC)
+Received: from mail-ot1-x343.google.com (mail-ot1-x343.google.com
+ [IPv6:2607:f8b0:4864:20::343])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7A6F76E4E3;
+ Sun, 22 Dec 2019 03:09:18 +0000 (UTC)
+Received: by mail-ot1-x343.google.com with SMTP id r27so17357580otc.8;
+ Sat, 21 Dec 2019 19:09:18 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to:user-agent;
+ bh=FLxLMHWzhvsAyc7YSZ1UcqmlBwxpr3w938KiSSxaokg=;
+ b=J//ypFVJPHCHhD3mOZb7/3Ti3EJCW6jmrc3PIdLwqX4nQxX4Lmwah28XNfXUoXIl0O
+ xDwdR/qYwLFvn3mcvv10Q55wtQnb3Ar07tzDUwFHRbOf4aFJQQvzdG95mw2TD/YQm/3G
+ zk9Mnu8tU8jZoAqdk+huPCtjYQz6MEBaRZ55aK96mAbIP77k7ff30hAdpwtW/cxmKa45
+ Qdhbm0Pgklj6g2XvVUxY3+SWJU5L733Za8z3iE+LnFfEt/5PBD9IXUtkAtKwkiPEwY+W
+ nPTYpq+XviR4cUR0S/KRpKrcmRwhGXN5pdVITJJ3Fn3ryv0dwEVfbk3CNcODs6toZHsz
+ OeFA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to:user-agent;
+ bh=FLxLMHWzhvsAyc7YSZ1UcqmlBwxpr3w938KiSSxaokg=;
+ b=okUtnjItB+Q3yvkAWmQoeeSl21sGvV8YFWVGAKHyxx84FbadKD1tmpr9+5X7livKfR
+ P3gJE8sF/sz1XCwCJHtmKsAgP+3angBngl1Y1MzgY4vDiGLEcJVcyIiyqWspQdZ7fZ2R
+ CgyQVn2A+K1Iz+bFCqDB89E92oqS+FIZWs/P4/8nd+W6sKMWWqBXmXt0MKA9v3XIuZqQ
+ MpDNo419ex4P4dGkUHowWTCqz9ACmpCAZ1c0mtWMX/SEZHrhr9d6F17D35JT3rILS+Yd
+ bJulLS9kQCroaH6SRAcxt2PP42otpkJ3Og/iCgFaGvPuB5kwZnpQ2xnTxIx5bQp7FDu7
+ nDQw==
+X-Gm-Message-State: APjAAAUe5d+wiW3jHpOrJAZIUp2+ZFdviA43dbqeEtZObGRc2jm0s+sx
+ OIa+kVNN1BsS1s3cSWobdrY=
+X-Google-Smtp-Source: APXvYqyH0YdvlwZOmLznIfhOeX/61Ru+3ctFbQQRQ5fYVPyH5b/V4PXFyQhY6hkOAQvp3okcFpPSfg==
+X-Received: by 2002:a05:6830:1cd3:: with SMTP id
+ p19mr8523090otg.70.1576984157645; 
+ Sat, 21 Dec 2019 19:09:17 -0800 (PST)
+Received: from ubuntu-m2-xlarge-x86 ([2604:1380:4111:8b00::1])
+ by smtp.gmail.com with ESMTPSA id 47sm5494666otf.54.2019.12.21.19.09.16
+ (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+ Sat, 21 Dec 2019 19:09:16 -0800 (PST)
+Date: Sat, 21 Dec 2019 20:09:15 -0700
+From: Nathan Chancellor <natechancellor@gmail.com>
+To: Nick Desaulniers <ndesaulniers@google.com>
+Message-ID: <20191222030915.GA27679@ubuntu-m2-xlarge-x86>
+References: <20191123195321.41305-1-natechancellor@gmail.com>
+ <157453950786.2524.16955749910067219709@skylake-alporthouse-com>
+ <CAKwvOdniXqn3xt3-W0Pqi-X1nWjJ2vUVofjCm1O-UPXZ7_4rXw@mail.gmail.com>
+ <157538056769.7230.15356495786856166580@skylake-alporthouse-com>
+ <CAKwvOd=ov789Lixdq8QE+MVXeYyh=W_sODSuj++4T8uF-hpVMw@mail.gmail.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Tom Murphy" <murphyt7@tcd.ie>
-Date: Sun, 22 Dec 2019 02:43:42 -0000
-Message-ID: <157698262240.8698.9302188286207253005@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20191221150402.13868-1-murphyt7@tcd.ie>
-In-Reply-To: <20191221150402.13868-1-murphyt7@tcd.ie>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_Convert_the_intel_iommu_driver_to_the_dma-iommu_api?=
+Content-Disposition: inline
+In-Reply-To: <CAKwvOd=ov789Lixdq8QE+MVXeYyh=W_sODSuj++4T8uF-hpVMw@mail.gmail.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Remove tautological compare in
+ eb_relocate_vma
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,194 +73,76 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Kees Cook <keescook@chromium.org>, intel-gfx@lists.freedesktop.org,
+ LKML <linux-kernel@vger.kernel.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>,
+ clang-built-linux <clang-built-linux@googlegroups.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Tue, Dec 03, 2019 at 10:45:22AM -0800, Nick Desaulniers wrote:
+> On Tue, Dec 3, 2019 at 5:42 AM Chris Wilson <chris@chris-wilson.co.uk> wrote:
+> >
+> > Quoting Nick Desaulniers (2019-12-02 19:18:20)
+> > > On Sat, Nov 23, 2019 at 12:05 PM Chris Wilson <chris@chris-wilson.co.uk> wrote:
+> > > >
+> > > > Quoting Nathan Chancellor (2019-11-23 19:53:22)
+> > > > > -Wtautological-compare was recently added to -Wall in LLVM, which
+> > > > > exposed an if statement in i915 that is always false:
+> > > > >
+> > > > > ../drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c:1485:22: warning:
+> > > > > result of comparison of constant 576460752303423487 with expression of
+> > > > > type 'unsigned int' is always false
+> > > > > [-Wtautological-constant-out-of-range-compare]
+> > > > >         if (unlikely(remain > N_RELOC(ULONG_MAX)))
+> > > > >             ~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~
+> > > > >
+> > > > > Since remain is an unsigned int, it can never be larger than UINT_MAX,
+> > > > > which is less than ULONG_MAX / sizeof(struct drm_i915_gem_relocation_entry).
+> > > > > Remove this statement to fix the warning.
+> > > >
+> > > > The check should remain as we do want to document the overflow
+> > > > calculation, and it should represent the types used -- it's much easier
+> > >
+> > > What do you mean "represent the types used?"  Are you concerned that
+> > > the type of drm_i915_gem_exec_object2->relocation_count might change
+> > > in the future?
+> >
+> > We may want to change the restriction, yes.
+> >
+> > > > to review a stub than trying to find a missing overflow check. If the
+> > > > overflow cannot happen as the types are wide enough, no problem, the
+> > > > compiler can remove the known false branch.
+> > >
+> > > What overflow are you trying to protect against here?
+> >
+> > These values are under user control, our validation steps should be
+> > clear and easy to check. If we have the types wrong, if the checks are
+> > wrong, we need to fix them. If the code is removed because it can be
+> > evaluated by the compiler to be redundant, it is much harder for us to
+> > verify that we have tried to validate user input.
+> >
+> > > > Tautology here has a purpose for conveying information to the reader.
+> > >
+> > > Well leaving a warning unaddressed is also not a solution.  Either
+> > > replace it with a comment or turn off the warning for your subdir.
+> >
+> > My personal preference would be to use a bunch of central macros for the
+> > various type/kmalloc overflows, and have the warnings suppressed there
+> > since they are very much about documenting user input validation.
+> > -Chris
+> 
+> Is kmalloc_array what you're looking for?  Looks like it has the
+> `check_mul_overflow` call in it.
 
-Series: Convert the intel iommu driver to the dma-iommu api
-URL   : https://patchwork.freedesktop.org/series/71260/
-State : warning
+I don't think kmalloc_array is right because we are not validating an
+allocation. I am not sure that any of these overflow macros are correct,
+we would probably need something new but I am not sure.
 
-== Summary ==
-
-$ dim checkpatch origin/drm-tip
-4a2327b5e2dd iommu/vt-d: clean up 32bit si_domain assignment
--:189: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#189: FILE: drivers/iommu/intel-iommu.c:5615:
-+		if (device_def_domain_type(dev) == IOMMU_DOMAIN_IDENTITY &&
-+				dma_mask >= dma_get_required_mask(dev)) {
-
-total: 0 errors, 0 warnings, 1 checks, 164 lines checked
-746c1cb07c86 iommu/vt-d: Use default dma_direct_* mapping functions for direct mapped devices
-da7e37085b86 iommu/vt-d: Remove IOVA handling code from non-dma_ops path
--:80: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#80: FILE: drivers/iommu/intel-iommu.c:4593:
-+		if (iommu_domain_identity_map(si_domain, start_vpfn,
-+					last_vpfn)) {
-
--:116: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#116: FILE: drivers/iommu/intel-iommu.c:4608:
-+			freelist = domain_unmap(si_domain, start_vpfn,
-+					last_vpfn);
-
--:163: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#163: FILE: drivers/iommu/intel-iommu.c:5092:
-+	if (init_iova_flush_queue(&dmar_domain->iovad, iommu_flush_iova,
-+				iova_entry_free)) {
-
-total: 0 errors, 0 warnings, 3 checks, 159 lines checked
-cd34da42186b iommu: Handle freelists when using deferred flushing in iommu drivers
--:96: CHECK:COMPARISON_TO_NULL: Comparison to NULL could be written "freelist"
-#96: FILE: drivers/iommu/dma-iommu.c:57:
-+	while (freelist != NULL) {
-
--:104: CHECK:LINE_SPACING: Please don't use multiple blank lines
-#104: FILE: drivers/iommu/dma-iommu.c:65:
-+
-+
-
--:114: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#114: FILE: drivers/iommu/dma-iommu.c:362:
-+		init_iova_flush_queue(iovad, iommu_dma_flush_iotlb_all,
-+				iommu_dma_entry_dtor);
-
--:133: CHECK:SPACING: No space is necessary after a cast
-#133: FILE: drivers/iommu/dma-iommu.c:466:
-+				(unsigned long) freelist);
-
--:150: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#150: FILE: drivers/iommu/dma-iommu.c:488:
-+	unmapped = iommu_unmap_fast(domain, dma_addr, size, &iotlb_gather,
-+			&freelist);
-
--:250: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#250: FILE: drivers/iommu/intel-iommu.c:1917:
-+		freelist = domain_unmap(domain, 0, DOMAIN_MAX_PFN(domain->gaw),
-+				NULL);
-
--:304: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#304: FILE: drivers/iommu/intel-iommu.c:5443:
-+static void intel_iommu_flush_iotlb_range(struct iommu_domain *domain,
-+		unsigned long iova, size_t size,
-
--:400: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#400: FILE: drivers/iommu/iommu.c:2032:
-+	ret = __iommu_unmap(domain, iova, size, &iotlb_gather,
-+			&freelist);
-
--:611: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#611: FILE: include/linux/iommu.h:270:
-+	void (*flush_iotlb_range)(struct iommu_domain *domain,
-+			unsigned long iova, size_t size,
-
--:638: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#638: FILE: include/linux/iommu.h:534:
-+static inline void flush_iotlb_range(struct iommu_domain *domain,
-+			unsigned long iova, size_t size,
-
-total: 0 errors, 0 warnings, 10 checks, 523 lines checked
-46112cc82738 iommu: Add iommu_dma_free_cpu_cached_iovas function
--:22: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#22: FILE: drivers/iommu/dma-iommu.c:54:
-+void iommu_dma_free_cpu_cached_iovas(unsigned int cpu,
-+		struct iommu_domain *domain)
-
--:42: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#42: FILE: include/linux/dma-iommu.h:41:
-+void iommu_dma_free_cpu_cached_iovas(unsigned int cpu,
-+		struct iommu_domain *domain);
-
-total: 0 errors, 0 warnings, 2 checks, 24 lines checked
-4be33d5f7bb6 iommu: allow the dma-iommu api to use bounce buffers
--:31: CHECK:LINE_SPACING: Please don't use multiple blank lines
-#31: FILE: drivers/iommu/dma-iommu.c:510:
- 
-+
-
--:36: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#36: FILE: drivers/iommu/dma-iommu.c:515:
-+static void __iommu_dma_unmap_swiotlb(struct device *dev, dma_addr_t dma_addr,
-+		size_t size, enum dma_data_direction dir,
-
--:55: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#55: FILE: drivers/iommu/dma-iommu.c:534:
-+		swiotlb_tbl_unmap_single(dev, phys, size,
-+				aligned_size, dir, attrs);
-
--:82: CHECK:LOGICAL_CONTINUATIONS: Logical continuations should be on the previous line
-#82: FILE: drivers/iommu/dma-iommu.c:559:
-+	if (iommu_needs_bounce_buffer(dev)
-+			&& !iova_offset(iovad, phys | org_size)) {
-
--:84: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#84: FILE: drivers/iommu/dma-iommu.c:561:
-+		phys = swiotlb_tbl_map_single(dev,
-+				__phys_to_dma(dev, io_tlb_start),
-
--:113: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#113: FILE: drivers/iommu/dma-iommu.c:587:
-+	if (iommu_map_atomic(domain, iova, phys - iova_off, aligned_size,
-+				prot)) {
-
--:114: CHECK:BRACES: Blank lines aren't necessary after an open brace '{'
-#114: FILE: drivers/iommu/dma-iommu.c:588:
-+				prot)) {
-+
-
--:117: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#117: FILE: drivers/iommu/dma-iommu.c:591:
-+			swiotlb_tbl_unmap_single(dev, phys, aligned_size,
-+					aligned_size, dir, attrs);
-
--:131: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#131: FILE: drivers/iommu/dma-iommu.c:829:
-+	dma_handle = __iommu_dma_map(dev, phys, size, dma_get_mask(dev),
-+			coherent, dir, attrs);
-
--:185: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#185: FILE: drivers/iommu/dma-iommu.c:1138:
-+	*handle = __iommu_dma_map(dev, page_to_phys(page), size,
-+			dev->coherent_dma_mask, coherent, DMA_BIDIRECTIONAL,
-
--:227: CHECK:AVOID_EXTERNS: extern prototypes should be avoided in .h files
-#227: FILE: include/linux/iommu.h:464:
-+extern int iommu_needs_bounce_buffer(struct device *dev);
-
--:237: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#237: FILE: include/linux/iommu.h:536:
-+static inline void iommu_flush_iotlb_range(struct iommu_domain *domain,
- 			unsigned long iova, size_t size,
-
-total: 0 errors, 0 warnings, 12 checks, 217 lines checked
-0eeda0f2af1c iommu/vt-d: Convert intel iommu driver to the iommu ops
--:828: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#828: FILE: drivers/iommu/intel-iommu.c:4468:
-+		if (type == IOMMU_DOMAIN_DMA &&
-+				iommu_get_dma_cookie(&dmar_domain->domain))
-
--:865: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#865: FILE: drivers/iommu/intel-iommu.c:4928:
-+			iommu_setup_dma_ops(dev, base,
-+					__DOMAIN_MAX_ADDR(dmar_domain->gaw) -
-
--:876: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#876: FILE: drivers/iommu/intel-iommu.c:4947:
-+			iommu_setup_dma_ops(dev, base,
-+					__DOMAIN_MAX_ADDR(dmar_domain->gaw) -
-
--:894: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#894: FILE: drivers/iommu/intel-iommu.c:4974:
-+static int intel_iommu_domain_get_attr(struct iommu_domain *domain,
-+		enum iommu_attr attr, void *data)
-
-total: 0 errors, 0 warnings, 4 checks, 920 lines checked
-6c37d8e17b40 DO NOT MERGE: iommu: disable list appending in dma-iommu
-
+Cheers,
+Nathan
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
