@@ -2,31 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D3F69128DF1
-	for <lists+intel-gfx@lfdr.de>; Sun, 22 Dec 2019 13:45:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E5969128DFC
+	for <lists+intel-gfx@lfdr.de>; Sun, 22 Dec 2019 14:00:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EE1B06E525;
-	Sun, 22 Dec 2019 12:45:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DB01E89ACC;
+	Sun, 22 Dec 2019 13:00:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 1CABB6E0C2;
- Sun, 22 Dec 2019 12:45:53 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 091B2A00E6;
- Sun, 22 Dec 2019 12:45:53 +0000 (UTC)
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BC03689A5C
+ for <intel-gfx@lists.freedesktop.org>; Sun, 22 Dec 2019 13:00:20 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19663068-1500050 
+ for <intel-gfx@lists.freedesktop.org>; Sun, 22 Dec 2019 13:00:18 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Sun, 22 Dec 2019 13:00:16 +0000
+Message-Id: <20191222130017.1368718-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.24.1
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Sun, 22 Dec 2019 12:45:53 -0000
-Message-ID: <157701875301.8699.2258551125447474329@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20191222120752.1368352-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20191222120752.1368352-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
- =?utf-8?q?/i915/gt=3A_Pull_GT_initialisation_under_intel=5Fgt=5Finit=28?=
- =?utf-8?q?=29?=
+Subject: [Intel-gfx] [CI 1/2] drm/i915/gt: Pull intel_gt_init_hw() into
+ intel_gt_resume()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,163 +37,114 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Since intel_gt_resume() is always immediately proceeded by init_hw, pull
+the call into intel_gt_resume, where we have the rpm and fw already
+held.
 
-Series: drm/i915/gt: Pull GT initialisation under intel_gt_init()
-URL   : https://patchwork.freedesktop.org/series/71262/
-State : failure
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Andi Shyti <andi.shyti@intel.com>
+Reviewed-by: Andi Shyti <andi.shyti@intel.com>
+---
+ drivers/gpu/drm/i915/gem/i915_gem_pm.c | 20 +-------------------
+ drivers/gpu/drm/i915/gt/intel_gt.c     |  5 -----
+ drivers/gpu/drm/i915/gt/intel_gt_pm.c  | 12 +++++++++++-
+ 3 files changed, 12 insertions(+), 25 deletions(-)
 
-== Summary ==
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_pm.c b/drivers/gpu/drm/i915/gem/i915_gem_pm.c
+index 3671a4e7e1cb..c8264eb036bf 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_pm.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_pm.c
+@@ -101,28 +101,10 @@ void i915_gem_resume(struct drm_i915_private *i915)
+ {
+ 	GEM_TRACE("%s\n", dev_name(i915->drm.dev));
+ 
+-	intel_uncore_forcewake_get(&i915->uncore, FORCEWAKE_ALL);
+-
+-	if (intel_gt_init_hw(&i915->gt))
+-		goto err_wedged;
+-
+ 	/*
+ 	 * As we didn't flush the kernel context before suspend, we cannot
+ 	 * guarantee that the context image is complete. So let's just reset
+ 	 * it and start again.
+ 	 */
+-	if (intel_gt_resume(&i915->gt))
+-		goto err_wedged;
+-
+-out_unlock:
+-	intel_uncore_forcewake_put(&i915->uncore, FORCEWAKE_ALL);
+-	return;
+-
+-err_wedged:
+-	if (!intel_gt_is_wedged(&i915->gt)) {
+-		dev_err(i915->drm.dev,
+-			"Failed to re-initialize GPU, declaring it wedged!\n");
+-		intel_gt_set_wedged(&i915->gt);
+-	}
+-	goto out_unlock;
++	intel_gt_resume(&i915->gt);
+ }
+diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c b/drivers/gpu/drm/i915/gt/intel_gt.c
+index f29c44bf992f..3859a6f467b3 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gt.c
++++ b/drivers/gpu/drm/i915/gt/intel_gt.c
+@@ -594,11 +594,6 @@ int intel_gt_init(struct intel_gt *gt)
+ 
+ 	intel_uc_init(&gt->uc);
+ 
+-	err = intel_gt_init_hw(gt);
+-	if (err)
+-		goto err_uc_init;
+-
+-	/* Only when the HW is re-initialised, can we replay the requests */
+ 	err = intel_gt_resume(gt);
+ 	if (err)
+ 		goto err_gt_init_hw;
+diff --git a/drivers/gpu/drm/i915/gt/intel_gt_pm.c b/drivers/gpu/drm/i915/gt/intel_gt_pm.c
+index 6231fe91a3b1..45b68a17da4d 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gt_pm.c
++++ b/drivers/gpu/drm/i915/gt/intel_gt_pm.c
+@@ -187,7 +187,7 @@ int intel_gt_resume(struct intel_gt *gt)
+ {
+ 	struct intel_engine_cs *engine;
+ 	enum intel_engine_id id;
+-	int err = 0;
++	int err;
+ 
+ 	GT_TRACE(gt, "\n");
+ 
+@@ -202,6 +202,15 @@ int intel_gt_resume(struct intel_gt *gt)
+ 	intel_uncore_forcewake_get(gt->uncore, FORCEWAKE_ALL);
+ 	intel_rc6_sanitize(&gt->rc6);
+ 
++	/* Only when the HW is re-initialised, can we replay the requests */
++	err = intel_gt_init_hw(gt);
++	if (err) {
++		dev_err(gt->i915->drm.dev,
++			"Failed to initialize GPU, declaring it wedged!\n");
++		intel_gt_set_wedged(gt);
++		goto err_fw;
++	}
++
+ 	intel_rps_enable(&gt->rps);
+ 	intel_llc_enable(&gt->llc);
+ 
+@@ -234,6 +243,7 @@ int intel_gt_resume(struct intel_gt *gt)
+ 
+ 	user_forcewake(gt, false);
+ 
++err_fw:
+ 	intel_uncore_forcewake_put(gt->uncore, FORCEWAKE_ALL);
+ 	intel_gt_pm_put(gt);
+ 
+-- 
+2.24.1
 
-CI Bug Log - changes from CI_DRM_7621 -> Patchwork_15879
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_15879 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_15879, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15879/index.html
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_15879:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@i915_selftest@live_execlists:
-    - fi-kbl-soraka:      [PASS][1] -> [DMESG-FAIL][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7621/fi-kbl-soraka/igt@i915_selftest@live_execlists.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15879/fi-kbl-soraka/igt@i915_selftest@live_execlists.html
-
-  
-#### Suppressed ####
-
-  The following results come from untrusted machines, tests, or statuses.
-  They do not affect the overall result.
-
-  * igt@gem_busy@busy-all:
-    - {fi-tgl-guc}:       [PASS][3] -> [INCOMPLETE][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7621/fi-tgl-guc/igt@gem_busy@busy-all.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15879/fi-tgl-guc/igt@gem_busy@busy-all.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_15879 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_module_load@reload-with-fault-injection:
-    - fi-cfl-8700k:       [PASS][5] -> [INCOMPLETE][6] ([i915#505])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7621/fi-cfl-8700k/igt@i915_module_load@reload-with-fault-injection.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15879/fi-cfl-8700k/igt@i915_module_load@reload-with-fault-injection.html
-
-  * igt@i915_selftest@live_blt:
-    - fi-hsw-4770r:       [PASS][7] -> [DMESG-FAIL][8] ([i915#563])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7621/fi-hsw-4770r/igt@i915_selftest@live_blt.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15879/fi-hsw-4770r/igt@i915_selftest@live_blt.html
-    - fi-hsw-4770:        [PASS][9] -> [DMESG-FAIL][10] ([i915#725])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7621/fi-hsw-4770/igt@i915_selftest@live_blt.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15879/fi-hsw-4770/igt@i915_selftest@live_blt.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_exec_parallel@basic:
-    - {fi-tgl-u}:         [INCOMPLETE][11] ([i915#476]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7621/fi-tgl-u/igt@gem_exec_parallel@basic.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15879/fi-tgl-u/igt@gem_exec_parallel@basic.html
-
-  * igt@i915_selftest@live_blt:
-    - fi-hsw-peppy:       [DMESG-FAIL][13] ([i915#553]) -> [PASS][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7621/fi-hsw-peppy/igt@i915_selftest@live_blt.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15879/fi-hsw-peppy/igt@i915_selftest@live_blt.html
-
-  * igt@i915_selftest@live_gem_contexts:
-    - fi-byt-j1900:       [INCOMPLETE][15] ([i915#45]) -> [PASS][16]
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7621/fi-byt-j1900/igt@i915_selftest@live_gem_contexts.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15879/fi-byt-j1900/igt@i915_selftest@live_gem_contexts.html
-
-  
-#### Warnings ####
-
-  * igt@i915_selftest@live_blt:
-    - fi-ivb-3770:        [DMESG-FAIL][17] ([i915#563]) -> [DMESG-FAIL][18] ([i915#725])
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7621/fi-ivb-3770/igt@i915_selftest@live_blt.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15879/fi-ivb-3770/igt@i915_selftest@live_blt.html
-
-  * igt@kms_flip@basic-flip-vs-dpms:
-    - fi-kbl-x1275:       [DMESG-WARN][19] ([i915#62] / [i915#92]) -> [DMESG-WARN][20] ([i915#62] / [i915#92] / [i915#95]) +2 similar issues
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7621/fi-kbl-x1275/igt@kms_flip@basic-flip-vs-dpms.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15879/fi-kbl-x1275/igt@kms_flip@basic-flip-vs-dpms.html
-
-  * igt@kms_flip@basic-flip-vs-modeset:
-    - fi-kbl-x1275:       [DMESG-WARN][21] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][22] ([i915#62] / [i915#92]) +5 similar issues
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7621/fi-kbl-x1275/igt@kms_flip@basic-flip-vs-modeset.html
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15879/fi-kbl-x1275/igt@kms_flip@basic-flip-vs-modeset.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#45]: https://gitlab.freedesktop.org/drm/intel/issues/45
-  [i915#476]: https://gitlab.freedesktop.org/drm/intel/issues/476
-  [i915#505]: https://gitlab.freedesktop.org/drm/intel/issues/505
-  [i915#553]: https://gitlab.freedesktop.org/drm/intel/issues/553
-  [i915#563]: https://gitlab.freedesktop.org/drm/intel/issues/563
-  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
-  [i915#725]: https://gitlab.freedesktop.org/drm/intel/issues/725
-  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
-  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
-
-
-Participating hosts (48 -> 40)
-------------------------------
-
-  Additional (1): fi-snb-2520m 
-  Missing    (9): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ilk-650 fi-kbl-7500u fi-ctg-p8600 fi-byt-clapper fi-skl-6600u 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_7621 -> Patchwork_15879
-
-  CI-20190529: 20190529
-  CI_DRM_7621: 7c8a691ee8ec302f3b19a690f86db7664ec5b5d0 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5352: 0586d205f651674e575351c2d5a7d0760716c9f1 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_15879: 8f8f92b9a5d583e88d0834351c880c504b996342 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-8f8f92b9a5d5 drm/i915/gt: Pull GT initialisation under intel_gt_init()
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15879/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
