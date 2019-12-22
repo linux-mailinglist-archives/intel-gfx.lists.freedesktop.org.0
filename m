@@ -2,29 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C856F128FBE
-	for <lists+intel-gfx@lfdr.de>; Sun, 22 Dec 2019 20:38:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A5F6128FC2
+	for <lists+intel-gfx@lfdr.de>; Sun, 22 Dec 2019 21:05:25 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9205E6E05A;
-	Sun, 22 Dec 2019 19:38:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 90C6B6E067;
+	Sun, 22 Dec 2019 20:05:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7A02A6E05A
- for <intel-gfx@lists.freedesktop.org>; Sun, 22 Dec 2019 19:38:15 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19665431-1500050 
- for <intel-gfx@lists.freedesktop.org>; Sun, 22 Dec 2019 19:38:12 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Sun, 22 Dec 2019 19:38:11 +0000
-Message-Id: <20191222193811.1941891-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.24.1
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BDE5B6E041;
+ Sun, 22 Dec 2019 20:05:16 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 22 Dec 2019 12:05:15 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.69,345,1571727600"; d="scan'208";a="249272950"
+Received: from nvishwa1-desk.sc.intel.com ([10.3.160.185])
+ by fmsmga002.fm.intel.com with ESMTP; 22 Dec 2019 12:05:15 -0800
+Date: Sun, 22 Dec 2019 11:54:09 -0800
+From: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+To: Jason Gunthorpe <jgg@mellanox.com>
+Message-ID: <20191222195408.GM17413@nvishwa1-DESK.sc.intel.com>
+References: <20191213215614.24558-1-niranjana.vishwanathapura@intel.com>
+ <20191213215614.24558-6-niranjana.vishwanathapura@intel.com>
+ <20191217203103.GG16762@mellanox.com>
+ <20191218224147.GB17413@nvishwa1-DESK.sc.intel.com>
+ <20191220134529.GW16762@mellanox.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [CI] drm/i915/gt: Tidy up checking active timelines
- during retirement
+Content-Disposition: inline
+In-Reply-To: <20191220134529.GW16762@mellanox.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+Subject: Re: [Intel-gfx] [RFC v2 05/12] drm/i915/svm: Page table mirroring
+ support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,78 +49,113 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
+Cc: "kenneth.w.graunke@intel.com" <kenneth.w.graunke@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "sanjay.k.kumar@intel.com" <sanjay.k.kumar@intel.com>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "jason.ekstrand@intel.com" <jason.ekstrand@intel.com>,
+ "dave.hansen@intel.com" <dave.hansen@intel.com>,
+ "jglisse@redhat.com" <jglisse@redhat.com>,
+ "daniel.vetter@intel.com" <daniel.vetter@intel.com>,
+ "dan.j.williams@intel.com" <dan.j.williams@intel.com>,
+ "ira.weiny@intel.com" <ira.weiny@intel.com>
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Use the status of the timeline request list as we retire it to determine
-if the timeline is still active.
+On Fri, Dec 20, 2019 at 01:45:33PM +0000, Jason Gunthorpe wrote:
+>On Wed, Dec 18, 2019 at 02:41:47PM -0800, Niranjana Vishwanathapura wrote:
+>> > > +static u32 i915_svm_build_sg(struct i915_address_space *vm,
+>> > > +			     struct hmm_range *range,
+>> > > +			     struct sg_table *st)
+>> > > +{
+>> > > +	struct scatterlist *sg;
+>> > > +	u32 sg_page_sizes = 0;
+>> > > +	u64 i, npages;
+>> > > +
+>> > > +	sg = NULL;
+>> > > +	st->nents = 0;
+>> > > +	npages = (range->end - range->start) / PAGE_SIZE;
+>> > > +
+>> > > +	/*
+>> > > +	 * No need to dma map the host pages and later unmap it, as
+>> > > +	 * GPU is not allowed to access it with SVM.
+>> > > +	 * XXX: Need to dma map host pages for integrated graphics while
+>> > > +	 * extending SVM support there.
+>> > > +	 */
+>> > > +	for (i = 0; i < npages; i++) {
+>> > > +		u64 addr = range->pfns[i] & ~((1UL << range->pfn_shift) - 1);
+>> > > +
+>> > > +		if (sg && (addr == (sg_dma_address(sg) + sg->length))) {
+>> > > +			sg->length += PAGE_SIZE;
+>> > > +			sg_dma_len(sg) += PAGE_SIZE;
+>> > > +			continue;
+>> > > +		}
+>> > > +
+>> > > +		if (sg)
+>> > > +			sg_page_sizes |= sg->length;
+>> > > +
+>> > > +		sg =  sg ? __sg_next(sg) : st->sgl;
+>> > > +		sg_dma_address(sg) = addr;
+>> > > +		sg_dma_len(sg) = PAGE_SIZE;
+>> >
+>> > This still can't be like this - assigning pfn to 'dma_address' is
+>> > fundamentally wrong.
+>> >
+>> > Whatever explanation you had, this needs to be fixed up first before we get
+>> > to this patch.
+>> >
+>>
+>> The pfn is converted into a device address which goes into sg_dma_address.
+>> Ok, let me think about what else we can do here.
+>
+>If you combine this with the other function and make it so only
+>DEVICE_PRIVATE pages get converted toa dma_address with out dma_map,
+>then that would make sense.
+>
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Andi Shyti <andi.shyti@intel.com>
----
- drivers/gpu/drm/i915/gt/intel_gt_requests.c | 15 ++++++++++-----
- 1 file changed, 10 insertions(+), 5 deletions(-)
+Ok thanks, will do that.
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_requests.c b/drivers/gpu/drm/i915/gt/intel_gt_requests.c
-index b4f04614230e..0506f2aeb4e3 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt_requests.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_requests.c
-@@ -14,13 +14,15 @@
- #include "intel_gt_requests.h"
- #include "intel_timeline.h"
- 
--static void retire_requests(struct intel_timeline *tl)
-+static bool retire_requests(struct intel_timeline *tl)
- {
- 	struct i915_request *rq, *rn;
- 
- 	list_for_each_entry_safe(rq, rn, &tl->requests, link)
- 		if (!i915_request_retire(rq))
--			break;
-+			return false;
-+
-+	return true;
- }
- 
- static bool flush_submission(struct intel_gt *gt)
-@@ -29,9 +31,13 @@ static bool flush_submission(struct intel_gt *gt)
- 	enum intel_engine_id id;
- 	bool active = false;
- 
-+	if (!intel_gt_pm_is_awake(gt))
-+		return false;
-+
- 	for_each_engine(engine, gt, id) {
- 		active |= intel_engine_flush_submission(engine);
- 		active |= flush_work(&engine->retire_work);
-+		active |= flush_work(&engine->wakeref.work);
- 	}
- 
- 	return active;
-@@ -145,16 +151,15 @@ long intel_gt_retire_requests_timeout(struct intel_gt *gt, long timeout)
- 			}
- 		}
- 
--		retire_requests(tl);
-+		active_count += !retire_requests(tl);
- 
-+		flush_submission(gt);
- 		spin_lock(&timelines->lock);
- 
- 		/* Resume iteration after dropping lock */
- 		list_safe_reset_next(tl, tn, link);
- 		if (atomic_dec_and_test(&tl->active_count))
- 			list_del(&tl->link);
--		else
--			active_count += i915_active_fence_isset(&tl->last_request);
- 
- 		mutex_unlock(&tl->mutex);
- 
--- 
-2.24.1
+>> > > +static int
+>> > > +i915_svm_invalidate_range_start(struct mmu_notifier *mn,
+>> > > +				const struct mmu_notifier_range *update)
+>> > > +{
+>> > > +	struct i915_svm *svm = container_of(mn, struct i915_svm, notifier);
+>> > > +	unsigned long length = update->end - update->start;
+>> > > +
+>> > > +	DRM_DEBUG_DRIVER("start 0x%lx length 0x%lx\n", update->start, length);
+>> > > +	if (!mmu_notifier_range_blockable(update))
+>> > > +		return -EAGAIN;
+>> > > +
+>> > > +	i915_gem_vm_unbind_svm_buffer(svm->vm, update->start, length);
+>> > > +	return 0;
+>> > > +}
+>> >
+>> > I still think you should strive for a better design than putting a
+>> > notifier across the entire address space..
+>> >
+>>
+>> Yah, thought it could be later optimization.
+>> If I think about it, it has be be a new user API to set the range,
+>> or an intermediate data structure for tracking the bound ranges.
+>> Will look into it.
+>
+>Well, there are lots of options. Like I said, implicit ODP uses a
+>level of the device page table to attach the notifier.
+>
+>There are many performance trade offs here, it depends what works best
+>for your work load I suppose. But usually the fault path is the fast
+>thing, so I would think to avoid registering mmu_intervals on it and
+>accept the higher probability of collisions.
+>
 
+Ok thanks, yah, solution should tune for the performant path. Will look into it.
+
+Thanks,
+Niranjana
+
+>Jason
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
