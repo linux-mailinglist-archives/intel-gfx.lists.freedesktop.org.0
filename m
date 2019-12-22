@@ -2,25 +2,25 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 55977128FA6
-	for <lists+intel-gfx@lfdr.de>; Sun, 22 Dec 2019 20:07:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C856F128FBE
+	for <lists+intel-gfx@lfdr.de>; Sun, 22 Dec 2019 20:38:19 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4475D6E046;
-	Sun, 22 Dec 2019 19:07:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9205E6E05A;
+	Sun, 22 Dec 2019 19:38:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 34B856E046
- for <intel-gfx@lists.freedesktop.org>; Sun, 22 Dec 2019 19:07:23 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7A02A6E05A
+ for <intel-gfx@lists.freedesktop.org>; Sun, 22 Dec 2019 19:38:15 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19665243-1500050 
- for <intel-gfx@lists.freedesktop.org>; Sun, 22 Dec 2019 19:07:20 +0000
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19665431-1500050 
+ for <intel-gfx@lists.freedesktop.org>; Sun, 22 Dec 2019 19:38:12 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Sun, 22 Dec 2019 19:07:19 +0000
-Message-Id: <20191222190719.1914605-1-chris@chris-wilson.co.uk>
+Date: Sun, 22 Dec 2019 19:38:11 +0000
+Message-Id: <20191222193811.1941891-1-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.24.1
 MIME-Version: 1.0
 Subject: [Intel-gfx] [CI] drm/i915/gt: Tidy up checking active timelines
@@ -48,11 +48,11 @@ if the timeline is still active.
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 Cc: Andi Shyti <andi.shyti@intel.com>
 ---
- drivers/gpu/drm/i915/gt/intel_gt_requests.c | 14 +++++++++-----
- 1 file changed, 9 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/i915/gt/intel_gt_requests.c | 15 ++++++++++-----
+ 1 file changed, 10 insertions(+), 5 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/gt/intel_gt_requests.c b/drivers/gpu/drm/i915/gt/intel_gt_requests.c
-index b4f04614230e..1bbace65b051 100644
+index b4f04614230e..0506f2aeb4e3 100644
 --- a/drivers/gpu/drm/i915/gt/intel_gt_requests.c
 +++ b/drivers/gpu/drm/i915/gt/intel_gt_requests.c
 @@ -14,13 +14,15 @@
@@ -87,16 +87,17 @@ index b4f04614230e..1bbace65b051 100644
  	}
  
  	return active;
-@@ -145,7 +151,7 @@ long intel_gt_retire_requests_timeout(struct intel_gt *gt, long timeout)
+@@ -145,16 +151,15 @@ long intel_gt_retire_requests_timeout(struct intel_gt *gt, long timeout)
  			}
  		}
  
 -		retire_requests(tl);
 +		active_count += !retire_requests(tl);
  
++		flush_submission(gt);
  		spin_lock(&timelines->lock);
  
-@@ -153,8 +159,6 @@ long intel_gt_retire_requests_timeout(struct intel_gt *gt, long timeout)
+ 		/* Resume iteration after dropping lock */
  		list_safe_reset_next(tl, tn, link);
  		if (atomic_dec_and_test(&tl->active_count))
  			list_del(&tl->link);
