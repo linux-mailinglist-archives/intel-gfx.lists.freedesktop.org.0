@@ -2,30 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 30CD8128DFB
-	for <lists+intel-gfx@lfdr.de>; Sun, 22 Dec 2019 14:00:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 22C4A128E40
+	for <lists+intel-gfx@lfdr.de>; Sun, 22 Dec 2019 14:38:44 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7BE9289A5C;
-	Sun, 22 Dec 2019 13:00:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CEBAE6E536;
+	Sun, 22 Dec 2019 13:38:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9F23989A75
- for <intel-gfx@lists.freedesktop.org>; Sun, 22 Dec 2019 13:00:21 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19663069-1500050 
- for <intel-gfx@lists.freedesktop.org>; Sun, 22 Dec 2019 13:00:18 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Sun, 22 Dec 2019 13:00:17 +0000
-Message-Id: <20191222130017.1368718-2-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.24.1
-In-Reply-To: <20191222130017.1368718-1-chris@chris-wilson.co.uk>
-References: <20191222130017.1368718-1-chris@chris-wilson.co.uk>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id BE4086E118;
+ Sun, 22 Dec 2019 13:38:38 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 8E4F0A01BB;
+ Sun, 22 Dec 2019 13:38:38 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [CI 2/2] drm/i915/gt: Merge engine init/setup loops
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Sun, 22 Dec 2019 13:38:38 -0000
+Message-ID: <157702191856.8698.6113615693287421144@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20191222130017.1368718-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20191222130017.1368718-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBz?=
+ =?utf-8?q?eries_starting_with_=5BCI=2C1/2=5D_drm/i915/gt=3A_Pull_intel=5F?=
+ =?utf-8?b?Z3RfaW5pdF9odygpIGludG8gaW50ZWxfZ3RfcmVzdW1lKCk=?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,318 +39,35 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Now that we don't need to create GEM contexts in the middle of engine
-construction, we can pull the engine init/setup loops together.
-
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Andi Shyti <andi.shyti@intel.com>
-Reviewed-by: Andi Shyti <andi.shyti@intel.com>
----
- drivers/gpu/drm/i915/gt/intel_engine.h        |   2 -
- drivers/gpu/drm/i915/gt/intel_engine_cs.c     | 108 ++++++------------
- drivers/gpu/drm/i915/gt/intel_gt.c            |   5 -
- drivers/gpu/drm/i915/gt/intel_lrc.c           |  20 +---
- drivers/gpu/drm/i915/gt/intel_lrc.h           |   1 -
- .../gpu/drm/i915/gt/intel_ring_submission.c   |  19 +--
- 6 files changed, 42 insertions(+), 113 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine.h b/drivers/gpu/drm/i915/gt/intel_engine.h
-index 428ec76b49d0..79ecac5ac0ab 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine.h
-+++ b/drivers/gpu/drm/i915/gt/intel_engine.h
-@@ -184,7 +184,6 @@ void intel_engine_stop(struct intel_engine_cs *engine);
- void intel_engine_cleanup(struct intel_engine_cs *engine);
- 
- int intel_engines_init_mmio(struct intel_gt *gt);
--int intel_engines_setup(struct intel_gt *gt);
- int intel_engines_init(struct intel_gt *gt);
- 
- void intel_engines_release(struct intel_gt *gt);
-@@ -194,7 +193,6 @@ int intel_engine_init_common(struct intel_engine_cs *engine);
- void intel_engine_cleanup_common(struct intel_engine_cs *engine);
- 
- int intel_ring_submission_setup(struct intel_engine_cs *engine);
--int intel_ring_submission_init(struct intel_engine_cs *engine);
- 
- int intel_engine_stop_cs(struct intel_engine_cs *engine);
- void intel_engine_cancel_stop_cs(struct intel_engine_cs *engine);
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-index 909614f581ac..ddf9543b1261 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-+++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-@@ -471,39 +471,6 @@ int intel_engines_init_mmio(struct intel_gt *gt)
- 	return err;
- }
- 
--/**
-- * intel_engines_init() - init the Engine Command Streamers
-- * @gt: pointer to struct intel_gt
-- *
-- * Return: non-zero if the initialization failed.
-- */
--int intel_engines_init(struct intel_gt *gt)
--{
--	int (*init)(struct intel_engine_cs *engine);
--	struct intel_engine_cs *engine;
--	enum intel_engine_id id;
--	int err;
--
--	if (HAS_EXECLISTS(gt->i915))
--		init = intel_execlists_submission_init;
--	else
--		init = intel_ring_submission_init;
--
--	for_each_engine(engine, gt, id) {
--		err = init(engine);
--		if (err)
--			goto cleanup;
--
--		intel_engine_add_user(engine);
--	}
--
--	return 0;
--
--cleanup:
--	intel_engines_release(gt);
--	return err;
--}
--
- void intel_engine_init_execlists(struct intel_engine_cs *engine)
- {
- 	struct intel_engine_execlists * const execlists = &engine->execlists;
-@@ -615,7 +582,7 @@ static int init_status_page(struct intel_engine_cs *engine)
- 	return ret;
- }
- 
--static int intel_engine_setup_common(struct intel_engine_cs *engine)
-+static int engine_setup_common(struct intel_engine_cs *engine)
- {
- 	int err;
- 
-@@ -645,46 +612,6 @@ static int intel_engine_setup_common(struct intel_engine_cs *engine)
- 	return 0;
- }
- 
--/**
-- * intel_engines_setup- setup engine state not requiring hw access
-- * @gt: pointer to struct intel_gt
-- *
-- * Initializes engine structure members shared between legacy and execlists
-- * submission modes which do not require hardware access.
-- *
-- * Typically done early in the submission mode specific engine setup stage.
-- */
--int intel_engines_setup(struct intel_gt *gt)
--{
--	int (*setup)(struct intel_engine_cs *engine);
--	struct intel_engine_cs *engine;
--	enum intel_engine_id id;
--	int err;
--
--	if (HAS_EXECLISTS(gt->i915))
--		setup = intel_execlists_submission_setup;
--	else
--		setup = intel_ring_submission_setup;
--
--	for_each_engine(engine, gt, id) {
--		err = intel_engine_setup_common(engine);
--		if (err)
--			goto cleanup;
--
--		err = setup(engine);
--		if (err)
--			goto cleanup;
--
--		GEM_BUG_ON(!engine->cops);
--	}
--
--	return 0;
--
--cleanup:
--	intel_engines_release(gt);
--	return err;
--}
--
- struct measure_breadcrumb {
- 	struct i915_request rq;
- 	struct intel_timeline timeline;
-@@ -802,7 +729,7 @@ create_kernel_context(struct intel_engine_cs *engine)
-  *
-  * Returns zero on success or an error code on failure.
-  */
--int intel_engine_init_common(struct intel_engine_cs *engine)
-+static int engine_init_common(struct intel_engine_cs *engine)
- {
- 	struct intel_context *ce;
- 	int ret;
-@@ -832,6 +759,37 @@ int intel_engine_init_common(struct intel_engine_cs *engine)
- 	return 0;
- }
- 
-+int intel_engines_init(struct intel_gt *gt)
-+{
-+	int (*setup)(struct intel_engine_cs *engine);
-+	struct intel_engine_cs *engine;
-+	enum intel_engine_id id;
-+	int err;
-+
-+	if (HAS_EXECLISTS(gt->i915))
-+		setup = intel_execlists_submission_setup;
-+	else
-+		setup = intel_ring_submission_setup;
-+
-+	for_each_engine(engine, gt, id) {
-+		err = engine_setup_common(engine);
-+		if (err)
-+			return err;
-+
-+		err = setup(engine);
-+		if (err)
-+			return err;
-+
-+		err = engine_init_common(engine);
-+		if (err)
-+			return err;
-+
-+		intel_engine_add_user(engine);
-+	}
-+
-+	return 0;
-+}
-+
- /**
-  * intel_engines_cleanup_common - cleans up the engine state created by
-  *                                the common initiailizers.
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c b/drivers/gpu/drm/i915/gt/intel_gt.c
-index 3859a6f467b3..eef9495780b1 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gt.c
-@@ -584,10 +584,6 @@ int intel_gt_init(struct intel_gt *gt)
- 		goto err_pm;
- 	}
- 
--	err = intel_engines_setup(gt);
--	if (err)
--		goto err_vm;
--
- 	err = intel_engines_init(gt);
- 	if (err)
- 		goto err_engines;
-@@ -619,7 +615,6 @@ int intel_gt_init(struct intel_gt *gt)
- 	intel_uc_fini(&gt->uc);
- err_engines:
- 	intel_engines_release(gt);
--err_vm:
- 	i915_vm_put(fetch_and_zero(&gt->vm));
- err_pm:
- 	intel_gt_pm_fini(gt);
-diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-index 36e24d987c88..4fb70a7716e3 100644
---- a/drivers/gpu/drm/i915/gt/intel_lrc.c
-+++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-@@ -3863,6 +3863,11 @@ static void rcs_submission_override(struct intel_engine_cs *engine)
- 
- int intel_execlists_submission_setup(struct intel_engine_cs *engine)
- {
-+	struct intel_engine_execlists * const execlists = &engine->execlists;
-+	struct drm_i915_private *i915 = engine->i915;
-+	struct intel_uncore *uncore = engine->uncore;
-+	u32 base = engine->mmio_base;
-+
- 	tasklet_init(&engine->execlists.tasklet,
- 		     execlists_submission_tasklet, (unsigned long)engine);
- 	timer_setup(&engine->execlists.timer, execlists_timeslice, 0);
-@@ -3874,21 +3879,6 @@ int intel_execlists_submission_setup(struct intel_engine_cs *engine)
- 	if (engine->class == RENDER_CLASS)
- 		rcs_submission_override(engine);
- 
--	return 0;
--}
--
--int intel_execlists_submission_init(struct intel_engine_cs *engine)
--{
--	struct intel_engine_execlists * const execlists = &engine->execlists;
--	struct drm_i915_private *i915 = engine->i915;
--	struct intel_uncore *uncore = engine->uncore;
--	u32 base = engine->mmio_base;
--	int ret;
--
--	ret = intel_engine_init_common(engine);
--	if (ret)
--		return ret;
--
- 	if (intel_init_workaround_bb(engine))
- 		/*
- 		 * We continue even if we fail to initialize WA batch
-diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.h b/drivers/gpu/drm/i915/gt/intel_lrc.h
-index 081521f17c74..dfbc214e14f5 100644
---- a/drivers/gpu/drm/i915/gt/intel_lrc.h
-+++ b/drivers/gpu/drm/i915/gt/intel_lrc.h
-@@ -83,7 +83,6 @@ enum {
- void intel_logical_ring_cleanup(struct intel_engine_cs *engine);
- 
- int intel_execlists_submission_setup(struct intel_engine_cs *engine);
--int intel_execlists_submission_init(struct intel_engine_cs *engine);
- 
- /* Logical Ring Contexts */
- /* At the start of the context image is its per-process HWS page */
-diff --git a/drivers/gpu/drm/i915/gt/intel_ring_submission.c b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
-index 13bd649c261e..118170eb51b4 100644
---- a/drivers/gpu/drm/i915/gt/intel_ring_submission.c
-+++ b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
-@@ -1958,6 +1958,10 @@ static void setup_vecs(struct intel_engine_cs *engine)
- 
- int intel_ring_submission_setup(struct intel_engine_cs *engine)
- {
-+	struct intel_timeline *timeline;
-+	struct intel_ring *ring;
-+	int err;
-+
- 	setup_common(engine);
- 
- 	switch (engine->class) {
-@@ -1978,15 +1982,6 @@ int intel_ring_submission_setup(struct intel_engine_cs *engine)
- 		return -ENODEV;
- 	}
- 
--	return 0;
--}
--
--int intel_ring_submission_init(struct intel_engine_cs *engine)
--{
--	struct intel_timeline *timeline;
--	struct intel_ring *ring;
--	int err;
--
- 	timeline = intel_timeline_create(engine->gt, engine->status_page.vma);
- 	if (IS_ERR(timeline)) {
- 		err = PTR_ERR(timeline);
-@@ -2012,16 +2007,10 @@ int intel_ring_submission_init(struct intel_engine_cs *engine)
- 	engine->legacy.ring = ring;
- 	engine->legacy.timeline = timeline;
- 
--	err = intel_engine_init_common(engine);
--	if (err)
--		goto err_ring_unpin;
--
- 	GEM_BUG_ON(timeline->hwsp_ggtt != engine->status_page.vma);
- 
- 	return 0;
- 
--err_ring_unpin:
--	intel_ring_unpin(ring);
- err_ring:
- 	intel_ring_put(ring);
- err_timeline_unpin:
--- 
-2.24.1
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+PT0gU2VyaWVzIERldGFpbHMgPT0KClNlcmllczogc2VyaWVzIHN0YXJ0aW5nIHdpdGggW0NJLDEv
+Ml0gZHJtL2k5MTUvZ3Q6IFB1bGwgaW50ZWxfZ3RfaW5pdF9odygpIGludG8gaW50ZWxfZ3RfcmVz
+dW1lKCkKVVJMICAgOiBodHRwczovL3BhdGNod29yay5mcmVlZGVza3RvcC5vcmcvc2VyaWVzLzcx
+MjYzLwpTdGF0ZSA6IGZhaWx1cmUKCj09IFN1bW1hcnkgPT0KCkNBTEwgICAgc2NyaXB0cy9jaGVj
+a3N5c2NhbGxzLnNoCiAgQ0FMTCAgICBzY3JpcHRzL2F0b21pYy9jaGVjay1hdG9taWNzLnNoCiAg
+REVTQ0VORCAgb2JqdG9vbAogIENISyAgICAgaW5jbHVkZS9nZW5lcmF0ZWQvY29tcGlsZS5oCiAg
+QVIgICAgICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9idWlsdC1pbi5hCiAgQ0MgW01dICBkcml2ZXJz
+L2dwdS9kcm0vaTkxNS9ndC9pbnRlbF9ndC5vCmRyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVs
+X2d0LmM6IEluIGZ1bmN0aW9uIOKAmGludGVsX2d0X2luaXTigJk6CmRyaXZlcnMvZ3B1L2RybS9p
+OTE1L2d0L2ludGVsX2d0LmM6NjE0OjE6IGVycm9yOiBsYWJlbCDigJhlcnJfdWNfaW5pdOKAmSBk
+ZWZpbmVkIGJ1dCBub3QgdXNlZCBbLVdlcnJvcj11bnVzZWQtbGFiZWxdCiBlcnJfdWNfaW5pdDoK
+IF5+fn5+fn5+fn5+CmNjMTogYWxsIHdhcm5pbmdzIGJlaW5nIHRyZWF0ZWQgYXMgZXJyb3JzCnNj
+cmlwdHMvTWFrZWZpbGUuYnVpbGQ6MjY1OiByZWNpcGUgZm9yIHRhcmdldCAnZHJpdmVycy9ncHUv
+ZHJtL2k5MTUvZ3QvaW50ZWxfZ3QubycgZmFpbGVkCm1ha2VbNF06ICoqKiBbZHJpdmVycy9ncHUv
+ZHJtL2k5MTUvZ3QvaW50ZWxfZ3Qub10gRXJyb3IgMQpzY3JpcHRzL01ha2VmaWxlLmJ1aWxkOjUw
+MzogcmVjaXBlIGZvciB0YXJnZXQgJ2RyaXZlcnMvZ3B1L2RybS9pOTE1JyBmYWlsZWQKbWFrZVsz
+XTogKioqIFtkcml2ZXJzL2dwdS9kcm0vaTkxNV0gRXJyb3IgMgpzY3JpcHRzL01ha2VmaWxlLmJ1
+aWxkOjUwMzogcmVjaXBlIGZvciB0YXJnZXQgJ2RyaXZlcnMvZ3B1L2RybScgZmFpbGVkCm1ha2Vb
+Ml06ICoqKiBbZHJpdmVycy9ncHUvZHJtXSBFcnJvciAyCnNjcmlwdHMvTWFrZWZpbGUuYnVpbGQ6
+NTAzOiByZWNpcGUgZm9yIHRhcmdldCAnZHJpdmVycy9ncHUnIGZhaWxlZAptYWtlWzFdOiAqKiog
+W2RyaXZlcnMvZ3B1XSBFcnJvciAyCk1ha2VmaWxlOjE2OTI6IHJlY2lwZSBmb3IgdGFyZ2V0ICdk
+cml2ZXJzJyBmYWlsZWQKbWFrZTogKioqIFtkcml2ZXJzXSBFcnJvciAyCgpfX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0
+CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3Rv
+cC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
