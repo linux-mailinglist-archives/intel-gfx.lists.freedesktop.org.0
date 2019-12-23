@@ -2,39 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A50FA129AEF
-	for <lists+intel-gfx@lfdr.de>; Mon, 23 Dec 2019 22:05:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D5AB129B00
+	for <lists+intel-gfx@lfdr.de>; Mon, 23 Dec 2019 22:10:18 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0731889AB3;
-	Mon, 23 Dec 2019 21:05:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 737E96E2F0;
+	Mon, 23 Dec 2019 21:10:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 278F489AB3
- for <intel-gfx@lists.freedesktop.org>; Mon, 23 Dec 2019 21:05:05 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 23 Dec 2019 13:05:04 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,349,1571727600"; d="scan'208";a="211671877"
-Received: from mdroper-desk1.fm.intel.com (HELO
- mdroper-desk1.amr.corp.intel.com) ([10.1.27.64])
- by orsmga008.jf.intel.com with ESMTP; 23 Dec 2019 13:05:03 -0800
-Date: Mon, 23 Dec 2019 13:05:02 -0800
-From: Matt Roper <matthew.d.roper@intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-Message-ID: <20191223210502.GG2877816@mdroper-desk1.amr.corp.intel.com>
-References: <20191223195850.25997-1-lucas.demarchi@intel.com>
- <20191223195850.25997-3-lucas.demarchi@intel.com>
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 386636E2F0
+ for <intel-gfx@lists.freedesktop.org>; Mon, 23 Dec 2019 21:10:15 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19676461-1500050 
+ for multiple; Mon, 23 Dec 2019 21:10:09 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon, 23 Dec 2019 21:10:08 +0000
+Message-Id: <20191223211008.2371613-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.24.1
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20191223195850.25997-3-lucas.demarchi@intel.com>
-User-Agent: Mutt/1.12.1 (2019-06-15)
-Subject: Re: [Intel-gfx] [PATCH 2/9] drm/i915/display: remove alias to
- dig_port
+Subject: [Intel-gfx] [PATCH] drm/i915/gt: Flush other retirees inside
+ intel_gt_retire_requests()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,65 +37,83 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Dec 23, 2019 at 11:58:43AM -0800, Lucas De Marchi wrote:
-> We don't need intel_dig_port and dig_port to refer to the same thing.
-> Prefer the latter.
-> 
-> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+Our goal in wait_for_idle (intel_gt_retire_requests) is to the current
+workload *and* their idle barriers. This requires us to notice the late
+arrival of those, which is done by inspecting the list of active
+timelines. However, if a concurrent retirer is running that new timeline
+may not be added until after we drop the lock -- so flush concurrent
+retirers before we take the lock and inspect the list.
 
-Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+Closes: https://gitlab.freedesktop.org/drm/intel/issues/878
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+---
+ drivers/gpu/drm/i915/gt/intel_gt_requests.c | 16 +++++-----------
+ 1 file changed, 5 insertions(+), 11 deletions(-)
 
-> ---
->  drivers/gpu/drm/i915/display/intel_ddi.c | 10 ++++------
->  1 file changed, 4 insertions(+), 6 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-> index c9ba7d7f3787..f054c82214c0 100644
-> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
-> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-> @@ -3674,12 +3674,11 @@ static void intel_ddi_pre_enable_hdmi(struct intel_encoder *encoder,
->  				      const struct intel_crtc_state *crtc_state,
->  				      const struct drm_connector_state *conn_state)
->  {
-> -	struct intel_digital_port *intel_dig_port = enc_to_dig_port(&encoder->base);
-> -	struct intel_hdmi *intel_hdmi = &intel_dig_port->hdmi;
-> +	struct intel_digital_port *dig_port = enc_to_dig_port(&encoder->base);
-> +	struct intel_hdmi *intel_hdmi = &dig_port->hdmi;
->  	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
->  	enum port port = encoder->port;
->  	int level = intel_ddi_hdmi_level(dev_priv, port);
-> -	struct intel_digital_port *dig_port = enc_to_dig_port(&encoder->base);
->  
->  	intel_dp_dual_mode_set_tmds_output(intel_hdmi, true);
->  	intel_ddi_clk_select(encoder, crtc_state);
-> @@ -3709,9 +3708,8 @@ static void intel_ddi_pre_enable_hdmi(struct intel_encoder *encoder,
->  
->  	intel_ddi_enable_pipe_clock(crtc_state);
->  
-> -	intel_dig_port->set_infoframes(encoder,
-> -				       crtc_state->has_infoframe,
-> -				       crtc_state, conn_state);
-> +	dig_port->set_infoframes(encoder, crtc_state->has_infoframe,
-> +				 crtc_state, conn_state);
->  }
->  
->  static void intel_ddi_pre_enable(struct intel_encoder *encoder,
-> -- 
-> 2.24.0
-> 
-
+diff --git a/drivers/gpu/drm/i915/gt/intel_gt_requests.c b/drivers/gpu/drm/i915/gt/intel_gt_requests.c
+index 9e75fa1b6bc1..fc691c130ba6 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gt_requests.c
++++ b/drivers/gpu/drm/i915/gt/intel_gt_requests.c
+@@ -26,21 +26,18 @@ static bool retire_requests(struct intel_timeline *tl)
+ 	return !i915_active_fence_isset(&tl->last_request);
+ }
+ 
+-static bool flush_submission(struct intel_gt *gt)
++static void flush_submission(struct intel_gt *gt)
+ {
+ 	struct intel_engine_cs *engine;
+ 	enum intel_engine_id id;
+-	bool active = false;
+ 
+ 	if (!intel_gt_pm_is_awake(gt))
+-		return false;
++		return;
+ 
+ 	for_each_engine(engine, gt, id) {
+-		active |= intel_engine_flush_submission(engine);
+-		active |= flush_work(&engine->retire_work);
++		intel_engine_flush_submission(engine);
++		flush_work(&engine->retire_work);
+ 	}
+-
+-	return active;
+ }
+ 
+ static void engine_retire(struct work_struct *work)
+@@ -126,7 +123,6 @@ long intel_gt_retire_requests_timeout(struct intel_gt *gt, long timeout)
+ 		timeout = -timeout, interruptible = false;
+ 
+ 	flush_submission(gt); /* kick the ksoftirqd tasklets */
+-
+ 	spin_lock(&timelines->lock);
+ 	list_for_each_entry_safe(tl, tn, &timelines->active_list, link) {
+ 		if (!mutex_trylock(&tl->mutex)) {
+@@ -153,6 +149,7 @@ long intel_gt_retire_requests_timeout(struct intel_gt *gt, long timeout)
+ 
+ 		active_count += !retire_requests(tl);
+ 
++		flush_submission(gt); /* sync with concurrent retirees */
+ 		spin_lock(&timelines->lock);
+ 
+ 		/* Resume iteration after dropping lock */
+@@ -173,9 +170,6 @@ long intel_gt_retire_requests_timeout(struct intel_gt *gt, long timeout)
+ 	list_for_each_entry_safe(tl, tn, &free, link)
+ 		__intel_timeline_free(&tl->kref);
+ 
+-	if (flush_submission(gt))
+-		active_count++;
+-
+ 	return active_count ? timeout : 0;
+ }
+ 
 -- 
-Matt Roper
-Graphics Software Engineer
-VTT-OSGC Platform Enablement
-Intel Corporation
-(916) 356-2795
+2.24.1
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
