@@ -2,29 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 233E112904A
-	for <lists+intel-gfx@lfdr.de>; Mon, 23 Dec 2019 00:36:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 35EDA129071
+	for <lists+intel-gfx@lfdr.de>; Mon, 23 Dec 2019 01:11:26 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 882D86E101;
-	Sun, 22 Dec 2019 23:36:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 122356E121;
+	Mon, 23 Dec 2019 00:11:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 43B2C6E101
- for <intel-gfx@lists.freedesktop.org>; Sun, 22 Dec 2019 23:36:31 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19666403-1500050 
- for multiple; Sun, 22 Dec 2019 23:36:01 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Sun, 22 Dec 2019 23:35:58 +0000
-Message-Id: <20191222233558.2201901-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.24.1
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 46A576E11E;
+ Mon, 23 Dec 2019 00:11:22 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 3E783A00E8;
+ Mon, 23 Dec 2019 00:11:22 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915: Mark the GEM context link as RCU
- protected
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Mon, 23 Dec 2019 00:11:22 -0000
+Message-ID: <157705988222.16934.17281854474195700618@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20191222233558.2201901-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20191222233558.2201901-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_Mark_the_GEM_context_link_as_RCU_protected?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,264 +38,206 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The only protection for intel_context.gem_cotext is granted by RCU, so
-annotate it as a rcu protected pointer and carefully dereference it in
-the few occasions we need to use it.
+== Series Details ==
 
-Fixes: 9f3ccd40acf4 ("drm/i915: Drop GEM context as a direct link from i915_request")
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Andi Shyti <andi.shyti@intel.com>
----
- drivers/gpu/drm/i915/gem/i915_gem_context.c   |  5 ++-
- drivers/gpu/drm/i915/gt/intel_context_types.h |  2 +-
- drivers/gpu/drm/i915/gt/intel_reset.c         | 26 +++++++++---
- .../gpu/drm/i915/gt/intel_ring_submission.c   |  2 +-
- drivers/gpu/drm/i915/i915_gpu_error.c         | 40 ++++++++++++-------
- drivers/gpu/drm/i915/i915_request.c           |  6 +--
- drivers/gpu/drm/i915/i915_request.h           |  8 ++++
- 7 files changed, 62 insertions(+), 27 deletions(-)
+Series: drm/i915: Mark the GEM context link as RCU protected
+URL   : https://patchwork.freedesktop.org/series/71278/
+State : failure
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-index 6167e68bbb25..dc90b044a217 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-@@ -212,8 +212,8 @@ context_get_vm_rcu(struct i915_gem_context *ctx)
- static void intel_context_set_gem(struct intel_context *ce,
- 				  struct i915_gem_context *ctx)
- {
--	GEM_BUG_ON(ce->gem_context);
--	ce->gem_context = ctx;
-+	GEM_BUG_ON(rcu_access_pointer(ce->gem_context));
-+	RCU_INIT_POINTER(ce->gem_context, ctx);
- 
- 	if (!test_bit(CONTEXT_ALLOC_BIT, &ce->flags))
- 		ce->ring = __intel_context_ring_size(SZ_16K);
-@@ -244,6 +244,7 @@ static void __free_engines(struct i915_gem_engines *e, unsigned int count)
- 		if (!e->engines[count])
- 			continue;
- 
-+		RCU_INIT_POINTER(e->engines[count]->gem_context, NULL);
- 		intel_context_put(e->engines[count]);
- 	}
- 	kfree(e);
-diff --git a/drivers/gpu/drm/i915/gt/intel_context_types.h b/drivers/gpu/drm/i915/gt/intel_context_types.h
-index 7dd03ad9826c..9527a659546c 100644
---- a/drivers/gpu/drm/i915/gt/intel_context_types.h
-+++ b/drivers/gpu/drm/i915/gt/intel_context_types.h
-@@ -44,7 +44,7 @@ struct intel_context {
- #define intel_context_inflight_count(ce) ptr_unmask_bits((ce)->inflight, 2)
- 
- 	struct i915_address_space *vm;
--	struct i915_gem_context *gem_context;
-+	struct i915_gem_context __rcu *gem_context;
- 
- 	struct list_head signal_link;
- 	struct list_head signals;
-diff --git a/drivers/gpu/drm/i915/gt/intel_reset.c b/drivers/gpu/drm/i915/gt/intel_reset.c
-index ab8213b90517..1c51296646e0 100644
---- a/drivers/gpu/drm/i915/gt/intel_reset.c
-+++ b/drivers/gpu/drm/i915/gt/intel_reset.c
-@@ -85,20 +85,27 @@ static bool mark_guilty(struct i915_request *rq)
- 	bool banned;
- 	int i;
- 
--	ctx = rq->context->gem_context;
-+	rcu_read_lock();
-+	ctx = rcu_dereference(rq->context->gem_context);
-+	if (ctx && !kref_get_unless_zero(&ctx->ref))
-+		ctx = NULL;
-+	rcu_read_unlock();
- 	if (!ctx)
- 		return false;
- 
- 	if (i915_gem_context_is_closed(ctx)) {
- 		intel_context_set_banned(rq->context);
--		return true;
-+		banned = true;
-+		goto out;
- 	}
- 
- 	atomic_inc(&ctx->guilty_count);
- 
- 	/* Cool contexts are too cool to be banned! (Used for reset testing.) */
--	if (!i915_gem_context_is_bannable(ctx))
--		return false;
-+	if (!i915_gem_context_is_bannable(ctx)) {
-+		banned = false;
-+		goto out;
-+	}
- 
- 	dev_notice(ctx->i915->drm.dev,
- 		   "%s context reset due to GPU hang\n",
-@@ -122,13 +129,20 @@ static bool mark_guilty(struct i915_request *rq)
- 
- 	client_mark_guilty(ctx, banned);
- 
-+out:
-+	i915_gem_context_put(ctx);
- 	return banned;
- }
- 
- static void mark_innocent(struct i915_request *rq)
- {
--	if (rq->context->gem_context)
--		atomic_inc(&rq->context->gem_context->active_count);
-+	struct i915_gem_context *ctx;
-+
-+	rcu_read_lock();
-+	ctx = rcu_dereference(rq->context->gem_context);
-+	if (ctx)
-+		atomic_inc(&ctx->active_count);
-+	rcu_read_unlock();
- }
- 
- void __i915_request_reset(struct i915_request *rq, bool guilty)
-diff --git a/drivers/gpu/drm/i915/gt/intel_ring_submission.c b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
-index 118170eb51b4..81f872f9ef03 100644
---- a/drivers/gpu/drm/i915/gt/intel_ring_submission.c
-+++ b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
-@@ -1550,7 +1550,7 @@ static int remap_l3_slice(struct i915_request *rq, int slice)
- 
- static int remap_l3(struct i915_request *rq)
- {
--	struct i915_gem_context *ctx = rq->context->gem_context;
-+	struct i915_gem_context *ctx = i915_request_gem_context(rq);
- 	int i, err;
- 
- 	if (!ctx || !ctx->remap_slice)
-diff --git a/drivers/gpu/drm/i915/i915_gpu_error.c b/drivers/gpu/drm/i915/i915_gpu_error.c
-index 7e2cb063110c..fda0977d2059 100644
---- a/drivers/gpu/drm/i915/i915_gpu_error.c
-+++ b/drivers/gpu/drm/i915/i915_gpu_error.c
-@@ -1221,7 +1221,7 @@ static void error_record_engine_registers(struct i915_gpu_state *error,
- static void record_request(const struct i915_request *request,
- 			   struct drm_i915_error_request *erq)
- {
--	const struct i915_gem_context *ctx = request->context->gem_context;
-+	const struct i915_gem_context *ctx;
- 
- 	erq->flags = request->fence.flags;
- 	erq->context = request->fence.context;
-@@ -1231,7 +1231,13 @@ static void record_request(const struct i915_request *request,
- 	erq->start = i915_ggtt_offset(request->ring->vma);
- 	erq->head = request->head;
- 	erq->tail = request->tail;
--	erq->pid = ctx && ctx->pid ? pid_nr(ctx->pid) : 0;
-+
-+	erq->pid = 0;
-+	rcu_read_lock();
-+	ctx = rcu_dereference(request->context->gem_context);
-+	if (ctx)
-+		erq->pid = pid_nr(ctx->pid);
-+	rcu_read_unlock();
- }
- 
- static void engine_record_requests(struct intel_engine_cs *engine,
-@@ -1298,28 +1304,34 @@ static void error_record_engine_execlists(const struct intel_engine_cs *engine,
- static bool record_context(struct drm_i915_error_context *e,
- 			   const struct i915_request *rq)
- {
--	const struct i915_gem_context *ctx = rq->context->gem_context;
-+	struct i915_gem_context *ctx;
-+	struct task_struct *task;
-+	bool capture;
- 
-+	rcu_read_lock();
-+	ctx = rcu_dereference(rq->context->gem_context);
-+	if (ctx && !kref_get_unless_zero(&ctx->ref))
-+		ctx = NULL;
-+	rcu_read_unlock();
- 	if (!ctx)
- 		return false;
- 
--	if (ctx->pid) {
--		struct task_struct *task;
--
--		rcu_read_lock();
--		task = pid_task(ctx->pid, PIDTYPE_PID);
--		if (task) {
--			strcpy(e->comm, task->comm);
--			e->pid = task->pid;
--		}
--		rcu_read_unlock();
-+	rcu_read_lock();
-+	task = pid_task(ctx->pid, PIDTYPE_PID);
-+	if (task) {
-+		strcpy(e->comm, task->comm);
-+		e->pid = task->pid;
- 	}
-+	rcu_read_unlock();
- 
- 	e->sched_attr = ctx->sched;
- 	e->guilty = atomic_read(&ctx->guilty_count);
- 	e->active = atomic_read(&ctx->active_count);
- 
--	return i915_gem_context_no_error_capture(ctx);
-+	capture = i915_gem_context_no_error_capture(ctx);
-+
-+	i915_gem_context_put(ctx);
-+	return capture;
- }
- 
- struct capture_vma {
-diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
-index 14a5a99284fa..44a0d1a950c5 100644
---- a/drivers/gpu/drm/i915/i915_request.c
-+++ b/drivers/gpu/drm/i915/i915_request.c
-@@ -76,7 +76,7 @@ static const char *i915_fence_get_timeline_name(struct dma_fence *fence)
- 	if (test_bit(DMA_FENCE_FLAG_SIGNALED_BIT, &fence->flags))
- 		return "signaled";
- 
--	ctx = to_request(fence)->context->gem_context;
-+	ctx = i915_request_gem_context(to_request(fence));
- 	if (!ctx)
- 		return "[" DRIVER_NAME "]";
- 
-@@ -1312,8 +1312,8 @@ void i915_request_add(struct i915_request *rq)
- 
- 	prev = __i915_request_commit(rq);
- 
--	if (rq->context->gem_context)
--		attr = rq->context->gem_context->sched;
-+	if (rcu_access_pointer(rq->context->gem_context))
-+		attr = i915_request_gem_context(rq)->sched;
- 
- 	/*
- 	 * Boost actual workloads past semaphores!
-diff --git a/drivers/gpu/drm/i915/i915_request.h b/drivers/gpu/drm/i915/i915_request.h
-index 0e4fe3205ce7..565322640378 100644
---- a/drivers/gpu/drm/i915/i915_request.h
-+++ b/drivers/gpu/drm/i915/i915_request.h
-@@ -28,6 +28,7 @@
- #include <linux/dma-fence.h>
- #include <linux/lockdep.h>
- 
-+#include "gem/i915_gem_context_types.h"
- #include "gt/intel_context_types.h"
- #include "gt/intel_engine_types.h"
- #include "gt/intel_timeline_types.h"
-@@ -463,6 +464,13 @@ i915_request_timeline(struct i915_request *rq)
- 					 lockdep_is_held(&rcu_access_pointer(rq->timeline)->mutex));
- }
- 
-+static inline struct i915_gem_context *
-+i915_request_gem_context(struct i915_request *rq)
-+{
-+	/* Valid only while the request is being constructed (or retired). */
-+	return rcu_dereference_protected(rq->context->gem_context, true);
-+}
-+
- static inline struct intel_timeline *
- i915_request_active_timeline(struct i915_request *rq)
- {
--- 
-2.24.1
+== Summary ==
 
+CI Bug Log - changes from CI_DRM_7623 -> Patchwork_15890
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with Patchwork_15890 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_15890, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15890/index.html
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_15890:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-icl-guc:         [PASS][1] -> [SKIP][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7623/fi-icl-guc/igt@i915_pm_rpm@module-reload.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15890/fi-icl-guc/igt@i915_pm_rpm@module-reload.html
+
+  
+#### Warnings ####
+
+  * igt@amdgpu/amd_prime@amd-to-i915:
+    - fi-icl-guc:         [SKIP][3] ([fdo#109315]) -> [SKIP][4] +1 similar issue
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7623/fi-icl-guc/igt@amdgpu/amd_prime@amd-to-i915.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15890/fi-icl-guc/igt@amdgpu/amd_prime@amd-to-i915.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_15890 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_exec_suspend@basic-s3:
+    - fi-icl-u2:          [PASS][5] -> [FAIL][6] ([fdo#103375])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7623/fi-icl-u2/igt@gem_exec_suspend@basic-s3.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15890/fi-icl-u2/igt@gem_exec_suspend@basic-s3.html
+
+  * igt@gem_exec_suspend@basic-s4-devices:
+    - fi-icl-u2:          [PASS][7] -> [FAIL][8] ([fdo#111550])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7623/fi-icl-u2/igt@gem_exec_suspend@basic-s4-devices.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15890/fi-icl-u2/igt@gem_exec_suspend@basic-s4-devices.html
+
+  * igt@gem_mmap_gtt@basic-read-write-distinct:
+    - fi-glk-dsi:         [PASS][9] -> [INCOMPLETE][10] ([i915#58] / [k.org#198133])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7623/fi-glk-dsi/igt@gem_mmap_gtt@basic-read-write-distinct.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15890/fi-glk-dsi/igt@gem_mmap_gtt@basic-read-write-distinct.html
+
+  * igt@i915_module_load@reload-with-fault-injection:
+    - fi-skl-6700k2:      [PASS][11] -> [INCOMPLETE][12] ([i915#671])
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7623/fi-skl-6700k2/igt@i915_module_load@reload-with-fault-injection.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15890/fi-skl-6700k2/igt@i915_module_load@reload-with-fault-injection.html
+
+  * igt@i915_selftest@live_blt:
+    - fi-hsw-4770r:       [PASS][13] -> [DMESG-FAIL][14] ([i915#725])
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7623/fi-hsw-4770r/igt@i915_selftest@live_blt.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15890/fi-hsw-4770r/igt@i915_selftest@live_blt.html
+    - fi-hsw-4770:        [PASS][15] -> [DMESG-FAIL][16] ([i915#563])
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7623/fi-hsw-4770/igt@i915_selftest@live_blt.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15890/fi-hsw-4770/igt@i915_selftest@live_blt.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_exec_create@basic:
+    - {fi-tgl-u}:         [INCOMPLETE][17] ([fdo#111736]) -> [PASS][18]
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7623/fi-tgl-u/igt@gem_exec_create@basic.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15890/fi-tgl-u/igt@gem_exec_create@basic.html
+
+  * igt@i915_selftest@live_blt:
+    - fi-ivb-3770:        [DMESG-FAIL][19] ([i915#725]) -> [PASS][20]
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7623/fi-ivb-3770/igt@i915_selftest@live_blt.html
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15890/fi-ivb-3770/igt@i915_selftest@live_blt.html
+
+  * igt@i915_selftest@live_execlists:
+    - fi-icl-u2:          [INCOMPLETE][21] ([fdo#112175] / [i915#140]) -> [PASS][22]
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7623/fi-icl-u2/igt@i915_selftest@live_execlists.html
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15890/fi-icl-u2/igt@i915_selftest@live_execlists.html
+    - fi-kbl-soraka:      [DMESG-FAIL][23] -> [PASS][24]
+   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7623/fi-kbl-soraka/igt@i915_selftest@live_execlists.html
+   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15890/fi-kbl-soraka/igt@i915_selftest@live_execlists.html
+    - fi-kbl-r:           [INCOMPLETE][25] ([fdo#112175] / [fdo#112259]) -> [PASS][26]
+   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7623/fi-kbl-r/igt@i915_selftest@live_execlists.html
+   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15890/fi-kbl-r/igt@i915_selftest@live_execlists.html
+
+  * igt@i915_selftest@live_gem_contexts:
+    - fi-byt-j1900:       [INCOMPLETE][27] ([i915#45]) -> [PASS][28]
+   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7623/fi-byt-j1900/igt@i915_selftest@live_gem_contexts.html
+   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15890/fi-byt-j1900/igt@i915_selftest@live_gem_contexts.html
+
+  
+#### Warnings ####
+
+  * igt@gem_exec_suspend@basic-s4-devices:
+    - fi-kbl-x1275:       [DMESG-WARN][29] ([fdo#107139] / [i915#62] / [i915#92]) -> [DMESG-WARN][30] ([fdo#107139] / [i915#62] / [i915#92] / [i915#95])
+   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7623/fi-kbl-x1275/igt@gem_exec_suspend@basic-s4-devices.html
+   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15890/fi-kbl-x1275/igt@gem_exec_suspend@basic-s4-devices.html
+
+  * igt@i915_module_load@reload-with-fault-injection:
+    - fi-kbl-x1275:       [INCOMPLETE][31] -> [DMESG-WARN][32] ([i915#62] / [i915#92])
+   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7623/fi-kbl-x1275/igt@i915_module_load@reload-with-fault-injection.html
+   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15890/fi-kbl-x1275/igt@i915_module_load@reload-with-fault-injection.html
+
+  * igt@kms_busy@basic-flip-pipe-c:
+    - fi-kbl-x1275:       [DMESG-WARN][33] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][34] ([i915#62] / [i915#92]) +1 similar issue
+   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7623/fi-kbl-x1275/igt@kms_busy@basic-flip-pipe-c.html
+   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15890/fi-kbl-x1275/igt@kms_busy@basic-flip-pipe-c.html
+
+  * igt@kms_chamelium@common-hpd-after-suspend:
+    - fi-icl-u2:          [DMESG-WARN][35] ([IGT#4] / [i915#263]) -> [FAIL][36] ([fdo#103375])
+   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7623/fi-icl-u2/igt@kms_chamelium@common-hpd-after-suspend.html
+   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15890/fi-icl-u2/igt@kms_chamelium@common-hpd-after-suspend.html
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank:
+    - fi-kbl-x1275:       [DMESG-WARN][37] ([i915#62] / [i915#92]) -> [DMESG-WARN][38] ([i915#62] / [i915#92] / [i915#95]) +9 similar issues
+   [37]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7623/fi-kbl-x1275/igt@kms_flip@basic-flip-vs-wf_vblank.html
+   [38]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15890/fi-kbl-x1275/igt@kms_flip@basic-flip-vs-wf_vblank.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [IGT#4]: https://gitlab.freedesktop.org/drm/igt-gpu-tools/issues/4
+  [fdo#103375]: https://bugs.freedesktop.org/show_bug.cgi?id=103375
+  [fdo#107139]: https://bugs.freedesktop.org/show_bug.cgi?id=107139
+  [fdo#109315]: https://bugs.freedesktop.org/show_bug.cgi?id=109315
+  [fdo#111550]: https://bugs.freedesktop.org/show_bug.cgi?id=111550
+  [fdo#111736]: https://bugs.freedesktop.org/show_bug.cgi?id=111736
+  [fdo#112175]: https://bugs.freedesktop.org/show_bug.cgi?id=112175
+  [fdo#112259]: https://bugs.freedesktop.org/show_bug.cgi?id=112259
+  [i915#140]: https://gitlab.freedesktop.org/drm/intel/issues/140
+  [i915#263]: https://gitlab.freedesktop.org/drm/intel/issues/263
+  [i915#45]: https://gitlab.freedesktop.org/drm/intel/issues/45
+  [i915#563]: https://gitlab.freedesktop.org/drm/intel/issues/563
+  [i915#58]: https://gitlab.freedesktop.org/drm/intel/issues/58
+  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
+  [i915#671]: https://gitlab.freedesktop.org/drm/intel/issues/671
+  [i915#725]: https://gitlab.freedesktop.org/drm/intel/issues/725
+  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
+  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
+  [k.org#198133]: https://bugzilla.kernel.org/show_bug.cgi?id=198133
+
+
+Participating hosts (40 -> 40)
+------------------------------
+
+  Additional (9): fi-hsw-peppy fi-skl-guc fi-bwr-2160 fi-snb-2520m fi-kbl-7500u fi-whl-u fi-skl-lmem fi-byt-n2820 fi-skl-6600u 
+  Missing    (9): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bsw-kefka fi-byt-clapper fi-bsw-nick fi-bdw-samus fi-snb-2600 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_7623 -> Patchwork_15890
+
+  CI-20190529: 20190529
+  CI_DRM_7623: 08c8f85caff9f010e7c66e79a2b6fa8a4a230fc8 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5352: 0586d205f651674e575351c2d5a7d0760716c9f1 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_15890: 3949ff7ccb86aaffa363b225cf365eeb23fd270d @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+3949ff7ccb86 drm/i915: Mark the GEM context link as RCU protected
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15890/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
