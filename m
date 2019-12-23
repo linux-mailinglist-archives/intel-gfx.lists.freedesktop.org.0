@@ -1,30 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8CAFA129B4B
-	for <lists+intel-gfx@lfdr.de>; Mon, 23 Dec 2019 22:51:24 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 629FB129B4C
+	for <lists+intel-gfx@lfdr.de>; Mon, 23 Dec 2019 22:55:04 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7474B89915;
-	Mon, 23 Dec 2019 21:51:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1EC506E44A;
+	Mon, 23 Dec 2019 21:55:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A522989915
- for <intel-gfx@lists.freedesktop.org>; Mon, 23 Dec 2019 21:51:21 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A50DC6E44A
+ for <intel-gfx@lists.freedesktop.org>; Mon, 23 Dec 2019 21:54:59 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
-Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19676667-1500050 
- for multiple; Mon, 23 Dec 2019 21:51:15 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon, 23 Dec 2019 21:50:59 +0000
-Message-Id: <20191223215059.2373536-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.24.1
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 19676691-1500050 for multiple; Mon, 23 Dec 2019 21:54:57 +0000
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/gt: Apply sanitiization just before
- resume
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+From: Chris Wilson <chris@chris-wilson.co.uk>
+In-Reply-To: <20191223212336.tcwyxtpovhsgh32r@ldmartin-desk1>
+References: <20191223204411.2355304-1-chris@chris-wilson.co.uk>
+ <20191223212336.tcwyxtpovhsgh32r@ldmartin-desk1>
+Message-ID: <157713809505.2689.9297067467556760741@skylake-alporthouse-com>
+User-Agent: alot/0.6
+Date: Mon, 23 Dec 2019 21:54:55 +0000
+Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915: Add spaces before compound
+ GEM_TRACE
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,118 +40,54 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Bring sanitization completely underneath the umbrella of intel_gt, and
-perform it exclusively after suspend and before the next resume.
+Quoting Lucas De Marchi (2019-12-23 21:23:36)
+> On Mon, Dec 23, 2019 at 08:44:10PM +0000, Chris Wilson wrote:
+> >Add a space between the prefixed format and the users format so that the
+> >join are not mistakenly combined into one long word.
+> >
+> >Fixes: 639f2f24895f ("drm/i915: Introduce new macros for tracing")
+> >Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> >Cc: Venkata Sandeep Dhanalakota <venkata.s.dhanalakota@intel.com>
+> >---
+> > drivers/gpu/drm/i915/gt/intel_context.h | 2 +-
+> > drivers/gpu/drm/i915/i915_request.h     | 2 +-
+> > 2 files changed, 2 insertions(+), 2 deletions(-)
+> >
+> >diff --git a/drivers/gpu/drm/i915/gt/intel_context.h b/drivers/gpu/drm/i915/gt/intel_context.h
+> >index 1d4a1b1357cf..0f5ae4ff3b10 100644
+> >--- a/drivers/gpu/drm/i915/gt/intel_context.h
+> >+++ b/drivers/gpu/drm/i915/gt/intel_context.h
+> >@@ -19,7 +19,7 @@
+> >
+> > #define CE_TRACE(ce, fmt, ...) do {                                   \
+> >       const struct intel_context *ce__ = (ce);                        \
+> >-      ENGINE_TRACE(ce__->engine, "context:%llx" fmt,                  \
+> >+      ENGINE_TRACE(ce__->engine, "context:%llx " fmt,                 \
+> >                    ce__->timeline->fence_context,                     \
+> >                    ##__VA_ARGS__);                                    \
+> > } while (0)
+> >diff --git a/drivers/gpu/drm/i915/i915_request.h b/drivers/gpu/drm/i915/i915_request.h
+> >index 565322640378..9784421a3b4d 100644
+> >--- a/drivers/gpu/drm/i915/i915_request.h
+> >+++ b/drivers/gpu/drm/i915/i915_request.h
+> >@@ -51,7 +51,7 @@ struct i915_capture_list {
+> >
+> > #define RQ_TRACE(rq, fmt, ...) do {                                   \
+> >       const struct i915_request *rq__ = (rq);                         \
+> >-      ENGINE_TRACE(rq__->engine, "fence %llx:%lld, current %d" fmt,   \
+> >+      ENGINE_TRACE(rq__->engine, "fence %llx:%lld, current %d " fmt,  \
+> 
+> do we care about the trailing space if fmt is "\n"?
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
----
- drivers/gpu/drm/i915/gt/intel_gt.c        |  2 --
- drivers/gpu/drm/i915/gt/intel_gt_pm.c     | 15 +++------------
- drivers/gpu/drm/i915/gt/intel_gt_pm.h     |  2 --
- drivers/gpu/drm/i915/i915_drv.c           |  2 --
- drivers/gpu/drm/i915/selftests/i915_gem.c |  2 --
- 5 files changed, 3 insertions(+), 20 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c b/drivers/gpu/drm/i915/gt/intel_gt.c
-index ec84b5e62fef..28a9bea5b4fa 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gt.c
-@@ -38,8 +38,6 @@ void intel_gt_init_early(struct intel_gt *gt, struct drm_i915_private *i915)
- void intel_gt_init_hw_early(struct intel_gt *gt, struct i915_ggtt *ggtt)
- {
- 	gt->ggtt = ggtt;
--
--	intel_gt_sanitize(gt, false);
- }
- 
- static void init_unused_ring(struct intel_gt *gt, u32 base)
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_pm.c b/drivers/gpu/drm/i915/gt/intel_gt_pm.c
-index 45b68a17da4d..9fb4752c38dd 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt_pm.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_pm.c
-@@ -126,17 +126,7 @@ static bool reset_engines(struct intel_gt *gt)
- 	return __intel_gt_reset(gt, ALL_ENGINES) == 0;
- }
- 
--/**
-- * intel_gt_sanitize: called after the GPU has lost power
-- * @gt: the i915 GT container
-- * @force: ignore a failed reset and sanitize engine state anyway
-- *
-- * Anytime we reset the GPU, either with an explicit GPU reset or through a
-- * PCI power cycle, the GPU loses state and we must reset our state tracking
-- * to match. Note that calling intel_gt_sanitize() if the GPU has not
-- * been reset results in much confusion!
-- */
--void intel_gt_sanitize(struct intel_gt *gt, bool force)
-+static void gt_sanitize(struct intel_gt *gt, bool force)
- {
- 	struct intel_engine_cs *engine;
- 	enum intel_engine_id id;
-@@ -201,6 +191,7 @@ int intel_gt_resume(struct intel_gt *gt)
- 
- 	intel_uncore_forcewake_get(gt->uncore, FORCEWAKE_ALL);
- 	intel_rc6_sanitize(&gt->rc6);
-+	gt_sanitize(gt, true);
- 
- 	/* Only when the HW is re-initialised, can we replay the requests */
- 	err = intel_gt_init_hw(gt);
-@@ -315,7 +306,7 @@ void intel_gt_suspend_late(struct intel_gt *gt)
- 		intel_llc_disable(&gt->llc);
- 	}
- 
--	intel_gt_sanitize(gt, false);
-+	gt_sanitize(gt, false);
- 
- 	GT_TRACE(gt, "\n");
- }
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_pm.h b/drivers/gpu/drm/i915/gt/intel_gt_pm.h
-index 4a9e48c12bd4..60f0e2fbe55c 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt_pm.h
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_pm.h
-@@ -51,8 +51,6 @@ void intel_gt_pm_init_early(struct intel_gt *gt);
- void intel_gt_pm_init(struct intel_gt *gt);
- void intel_gt_pm_fini(struct intel_gt *gt);
- 
--void intel_gt_sanitize(struct intel_gt *gt, bool force);
--
- void intel_gt_suspend_prepare(struct intel_gt *gt);
- void intel_gt_suspend_late(struct intel_gt *gt);
- int intel_gt_resume(struct intel_gt *gt);
-diff --git a/drivers/gpu/drm/i915/i915_drv.c b/drivers/gpu/drm/i915/i915_drv.c
-index 59525094d0e3..9f75e03368c4 100644
---- a/drivers/gpu/drm/i915/i915_drv.c
-+++ b/drivers/gpu/drm/i915/i915_drv.c
-@@ -1817,8 +1817,6 @@ static int i915_drm_resume(struct drm_device *dev)
- 
- 	disable_rpm_wakeref_asserts(&dev_priv->runtime_pm);
- 
--	intel_gt_sanitize(&dev_priv->gt, true);
--
- 	ret = i915_ggtt_enable_hw(dev_priv);
- 	if (ret)
- 		DRM_ERROR("failed to re-enable GGTT\n");
-diff --git a/drivers/gpu/drm/i915/selftests/i915_gem.c b/drivers/gpu/drm/i915/selftests/i915_gem.c
-index b37fc53973cc..78f36faf2bbe 100644
---- a/drivers/gpu/drm/i915/selftests/i915_gem.c
-+++ b/drivers/gpu/drm/i915/selftests/i915_gem.c
-@@ -124,8 +124,6 @@ static void pm_resume(struct drm_i915_private *i915)
- 	 * that runtime-pm just works.
- 	 */
- 	with_intel_runtime_pm(&i915->runtime_pm, wakeref) {
--		intel_gt_sanitize(&i915->gt, false);
--
- 		i915_gem_restore_gtt_mappings(i915);
- 		i915_gem_restore_fences(&i915->ggtt);
- 
--- 
-2.24.1
-
+No. An extra space in a debug log, which you only see when something
+blows up and only compiled in for CI, is the last of your worries.
+-Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
