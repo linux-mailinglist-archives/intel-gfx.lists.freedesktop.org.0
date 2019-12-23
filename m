@@ -2,35 +2,35 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8063E129AA4
-	for <lists+intel-gfx@lfdr.de>; Mon, 23 Dec 2019 20:59:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A70E129AAD
+	for <lists+intel-gfx@lfdr.de>; Mon, 23 Dec 2019 20:59:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5A8C86E0CB;
-	Mon, 23 Dec 2019 19:59:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 710466E442;
+	Mon, 23 Dec 2019 19:59:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 31CF66E0CE
- for <intel-gfx@lists.freedesktop.org>; Mon, 23 Dec 2019 19:59:10 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 075496E0CB
+ for <intel-gfx@lists.freedesktop.org>; Mon, 23 Dec 2019 19:59:09 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga003.jf.intel.com ([10.7.209.27])
  by orsmga105.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 23 Dec 2019 11:59:08 -0800
+ 23 Dec 2019 11:59:09 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,348,1571727600"; d="scan'208";a="219598199"
+X-IronPort-AV: E=Sophos;i="5.69,348,1571727600"; d="scan'208";a="219598202"
 Received: from ldmartin1-desk.jf.intel.com ([10.165.21.151])
  by orsmga003.jf.intel.com with ESMTP; 23 Dec 2019 11:59:08 -0800
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon, 23 Dec 2019 11:58:46 -0800
-Message-Id: <20191223195850.25997-6-lucas.demarchi@intel.com>
+Date: Mon, 23 Dec 2019 11:58:47 -0800
+Message-Id: <20191223195850.25997-7-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.24.0
 In-Reply-To: <20191223195850.25997-1-lucas.demarchi@intel.com>
 References: <20191223195850.25997-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 5/9] drm/i915/display: move icl to
- description-based ddi init
+Subject: [Intel-gfx] [PATCH 6/9] drm/i915/display: description-based
+ initialization for remaining ddi platforms
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,54 +48,66 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-By adding a hook that determines if a port is present, we are able to
-support Ice Lake in the new description-based DDI initialization.
+Support remaining platforms under HAS_DDI() by providing a slightly more
+complex is_port_present() hook. The downside is that now we call
+I915_READ(SFUSE_STRAP) for each port being initialized, but that's only
+on initialization: a few more mmio reads won't hurt.
+
+Alternatives would be to provide one hook per port, or to have a
+"pre_init()" hook that takes care of the mmio read. However I think this
+is simpler - we may need to adapt if future platforms don't follow the
+same initialization "template".
 
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c | 61 ++++++++++++++------
- 1 file changed, 42 insertions(+), 19 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display.c | 72 +++++++++++++-------
+ 1 file changed, 46 insertions(+), 26 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index b3fb1e03cb0b..6b4d320ff92c 100644
+index 6b4d320ff92c..ad85cf75c815 100644
 --- a/drivers/gpu/drm/i915/display/intel_display.c
 +++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -16224,9 +16224,28 @@ static void intel_pps_init(struct drm_i915_private *dev_priv)
- struct intel_output {
- 	/* Initialize DSI if present */
- 	void (*dsi_init)(struct drm_i915_private *i915);
-+
-+	/*
-+	 * Check if port is present before trying to initialize; if not provided
-+	 * it's assumed the port is present (or we can't check and fail
-+	 * gracefully
-+	 */
-+	bool (*is_port_present)(struct drm_i915_private *i915,
-+				const struct intel_ddi_port_info *port_info);
-+
- 	struct intel_ddi_port_info ddi_ports[];
- };
+@@ -16246,6 +16246,34 @@ static bool icl_is_port_present(struct drm_i915_private *i915,
+ 		intel_bios_is_port_present(i915, PORT_F);
+ }
  
-+static bool icl_is_port_present(struct drm_i915_private *i915,
++static bool ddi_is_port_present(struct drm_i915_private *i915,
 +				const struct intel_ddi_port_info *port_info)
 +{
-+	if (port_info->port != PORT_F)
-+		return true;
++	/* keep I915_READ() happy */
++	struct drm_i915_private *dev_priv = i915;
 +
-+	return IS_ICL_WITH_PORT_F(i915) &&
-+		intel_bios_is_port_present(i915, PORT_F);
++	if (port_info->port == PORT_A)
++		return I915_READ(DDI_BUF_CTL(PORT_A))
++			& DDI_INIT_DISPLAY_DETECTED;
++
++	if (port_info->port == PORT_E)
++		return IS_GEN9_BC(dev_priv) &&
++			intel_bios_is_port_present(i915, PORT_E);
++
++	switch (port_info->port) {
++	case PORT_B:
++		return I915_READ(SFUSE_STRAP) & SFUSE_STRAP_DDIB_DETECTED;
++	case PORT_C:
++		return I915_READ(SFUSE_STRAP) & SFUSE_STRAP_DDIC_DETECTED;
++	case PORT_D:
++		return I915_READ(SFUSE_STRAP) & SFUSE_STRAP_DDID_DETECTED;
++	case PORT_F:
++		return I915_READ(SFUSE_STRAP) & SFUSE_STRAP_DDIF_DETECTED;
++	default:
++		return false;
++	}
 +}
 +
  static const struct intel_output tgl_output = {
  	.dsi_init = icl_dsi_init,
  	.ddi_ports = {
-@@ -16242,6 +16261,20 @@ static const struct intel_output tgl_output = {
- 	}
+@@ -16296,11 +16324,24 @@ static const struct intel_output gen9lp_output = {
+ 	},
  };
  
-+static const struct intel_output icl_output = {
-+	.dsi_init = icl_dsi_init,
-+	.is_port_present = icl_is_port_present,
++static const struct intel_output ddi_output = {
++	.is_port_present = ddi_is_port_present,
 +	.ddi_ports = {
 +		{ .port = PORT_A },
 +		{ .port = PORT_B },
@@ -107,55 +119,60 @@ index b3fb1e03cb0b..6b4d320ff92c 100644
 +	}
 +};
 +
- static const struct intel_output ehl_output = {
- 	.dsi_init = icl_dsi_init,
- 	.ddi_ports = {
-@@ -16276,12 +16309,19 @@ static void setup_ddi_outputs_desc(struct drm_i915_private *i915)
- 		output = &tgl_output;
- 	else if (IS_ELKHARTLAKE(i915))
- 		output = &ehl_output;
-+	else if (IS_GEN(i915, 11))
-+		output = &icl_output;
+ /*
+  * Use a description-based approach for platforms that can be supported with a
+  * static table
+  */
+-static void setup_ddi_outputs_desc(struct drm_i915_private *i915)
++static void setup_ddi_outputs(struct drm_i915_private *i915)
+ {
+ 	const struct intel_output *output;
+ 	const struct intel_ddi_port_info *port_info;
+@@ -16313,6 +16354,8 @@ static void setup_ddi_outputs_desc(struct drm_i915_private *i915)
+ 		output = &icl_output;
  	else if (IS_GEN9_LP(i915))
  		output = &gen9lp_output;
++	else
++		output = &ddi_output;
  
  	for (port_info = output->ddi_ports;
--	     port_info->port != PORT_NONE; port_info++)
-+	     port_info->port != PORT_NONE; port_info++) {
-+		if (output->is_port_present &&
-+		    !output->is_port_present(i915, port_info))
-+			continue;
-+
- 		intel_ddi_init(i915, port_info->port);
-+	}
- 
- 	if (output->dsi_init)
- 		output->dsi_init(i915);
-@@ -16297,25 +16337,8 @@ static void intel_setup_outputs(struct drm_i915_private *dev_priv)
- 	if (!HAS_DISPLAY(dev_priv) || !INTEL_DISPLAY_ENABLED(dev_priv))
+ 	     port_info->port != PORT_NONE; port_info++) {
+@@ -16338,35 +16381,12 @@ static void intel_setup_outputs(struct drm_i915_private *dev_priv)
  		return;
  
--	if (INTEL_GEN(dev_priv) >= 12 || IS_ELKHARTLAKE(dev_priv) ||
--	    IS_GEN9_LP(dev_priv)) {
-+	if (INTEL_GEN(dev_priv) >= 11 || IS_GEN9_LP(dev_priv)) {
- 		setup_ddi_outputs_desc(dev_priv);
--	} else if (IS_GEN(dev_priv, 11)) {
--		intel_ddi_init(dev_priv, PORT_A);
--		intel_ddi_init(dev_priv, PORT_B);
--		intel_ddi_init(dev_priv, PORT_C);
--		intel_ddi_init(dev_priv, PORT_D);
--		intel_ddi_init(dev_priv, PORT_E);
--		/*
--		 * On some ICL SKUs port F is not present. No strap bits for
--		 * this, so rely on VBT.
--		 * Work around broken VBTs on SKUs known to have no port F.
--		 */
--		if (IS_ICL_WITH_PORT_F(dev_priv) &&
--		    intel_bios_is_port_present(dev_priv, PORT_F))
--			intel_ddi_init(dev_priv, PORT_F);
--
--		icl_dsi_init(dev_priv);
+ 	if (INTEL_GEN(dev_priv) >= 11 || IS_GEN9_LP(dev_priv)) {
+-		setup_ddi_outputs_desc(dev_priv);
++		setup_ddi_outputs(dev_priv);
  	} else if (HAS_DDI(dev_priv)) {
+-		int found;
+-
+ 		if (intel_ddi_crt_present(dev_priv))
+ 			intel_crt_init(dev_priv);
+ 
+-		found = I915_READ(DDI_BUF_CTL(PORT_A)) & DDI_INIT_DISPLAY_DETECTED;
+-		if (found)
+-			intel_ddi_init(dev_priv, PORT_A);
+-
+-		/* DDI B, C, D, and F detection is indicated by the SFUSE_STRAP
+-		 * register */
+-		found = I915_READ(SFUSE_STRAP);
+-
+-		if (found & SFUSE_STRAP_DDIB_DETECTED)
+-			intel_ddi_init(dev_priv, PORT_B);
+-		if (found & SFUSE_STRAP_DDIC_DETECTED)
+-			intel_ddi_init(dev_priv, PORT_C);
+-		if (found & SFUSE_STRAP_DDID_DETECTED)
+-			intel_ddi_init(dev_priv, PORT_D);
+-		if (found & SFUSE_STRAP_DDIF_DETECTED)
+-			intel_ddi_init(dev_priv, PORT_F);
+-		/*
+-		 * On SKL we don't have a way to detect DDI-E so we rely on VBT.
+-		 */
+-		if (IS_GEN9_BC(dev_priv) &&
+-		    intel_bios_is_port_present(dev_priv, PORT_E))
+-			intel_ddi_init(dev_priv, PORT_E);
++		setup_ddi_outputs(dev_priv);
+ 	} else if (HAS_PCH_SPLIT(dev_priv)) {
  		int found;
  
 -- 
