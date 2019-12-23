@@ -1,32 +1,38 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5EB48129B07
-	for <lists+intel-gfx@lfdr.de>; Mon, 23 Dec 2019 22:22:24 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 28B0E129B09
+	for <lists+intel-gfx@lfdr.de>; Mon, 23 Dec 2019 22:23:45 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 351106E492;
-	Mon, 23 Dec 2019 21:22:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7BB346E448;
+	Mon, 23 Dec 2019 21:23:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 4D6936E44F;
- Mon, 23 Dec 2019 21:22:19 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 45A44A00E6;
- Mon, 23 Dec 2019 21:22:19 +0000 (UTC)
-MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Mon, 23 Dec 2019 21:22:19 -0000
-Message-ID: <157713613926.16937.5318559347459336610@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 096AC6E448
+ for <intel-gfx@lists.freedesktop.org>; Mon, 23 Dec 2019 21:23:41 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga106.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 23 Dec 2019 13:23:41 -0800
+X-IronPort-AV: E=Sophos;i="5.69,349,1571727600"; d="scan'208";a="211676064"
+Received: from ldmartin-desk1.jf.intel.com (HELO ldmartin-desk1)
+ ([10.24.14.204])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 23 Dec 2019 13:23:41 -0800
+Date: Mon, 23 Dec 2019 13:23:36 -0800
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>
+Message-ID: <20191223212336.tcwyxtpovhsgh32r@ldmartin-desk1>
 References: <20191223204411.2355304-1-chris@chris-wilson.co.uk>
+MIME-Version: 1.0
+Content-Disposition: inline
 In-Reply-To: <20191223204411.2355304-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5B1/2=5D_drm/i915=3A_Add_spaces_before_compo?=
- =?utf-8?q?und_GEM=5FTRACE?=
+Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915: Add spaces before compound
+ GEM_TRACE
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,144 +45,63 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Mon, Dec 23, 2019 at 08:44:10PM +0000, Chris Wilson wrote:
+>Add a space between the prefixed format and the users format so that the
+>join are not mistakenly combined into one long word.
+>
+>Fixes: 639f2f24895f ("drm/i915: Introduce new macros for tracing")
+>Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+>Cc: Venkata Sandeep Dhanalakota <venkata.s.dhanalakota@intel.com>
+>---
+> drivers/gpu/drm/i915/gt/intel_context.h | 2 +-
+> drivers/gpu/drm/i915/i915_request.h     | 2 +-
+> 2 files changed, 2 insertions(+), 2 deletions(-)
+>
+>diff --git a/drivers/gpu/drm/i915/gt/intel_context.h b/drivers/gpu/drm/i915/gt/intel_context.h
+>index 1d4a1b1357cf..0f5ae4ff3b10 100644
+>--- a/drivers/gpu/drm/i915/gt/intel_context.h
+>+++ b/drivers/gpu/drm/i915/gt/intel_context.h
+>@@ -19,7 +19,7 @@
+>
+> #define CE_TRACE(ce, fmt, ...) do {					\
+> 	const struct intel_context *ce__ = (ce);			\
+>-	ENGINE_TRACE(ce__->engine, "context:%llx" fmt,			\
+>+	ENGINE_TRACE(ce__->engine, "context:%llx " fmt,			\
+> 		     ce__->timeline->fence_context,			\
+> 		     ##__VA_ARGS__);					\
+> } while (0)
+>diff --git a/drivers/gpu/drm/i915/i915_request.h b/drivers/gpu/drm/i915/i915_request.h
+>index 565322640378..9784421a3b4d 100644
+>--- a/drivers/gpu/drm/i915/i915_request.h
+>+++ b/drivers/gpu/drm/i915/i915_request.h
+>@@ -51,7 +51,7 @@ struct i915_capture_list {
+>
+> #define RQ_TRACE(rq, fmt, ...) do {					\
+> 	const struct i915_request *rq__ = (rq);				\
+>-	ENGINE_TRACE(rq__->engine, "fence %llx:%lld, current %d" fmt,	\
+>+	ENGINE_TRACE(rq__->engine, "fence %llx:%lld, current %d " fmt,	\
 
-Series: series starting with [1/2] drm/i915: Add spaces before compound GEM_TRACE
-URL   : https://patchwork.freedesktop.org/series/71331/
-State : success
+do we care about the trailing space if fmt is "\n"?
 
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_7630 -> Patchwork_15903
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15903/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_15903 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_exec_gttfill@basic:
-    - fi-tgl-y:           [PASS][1] -> [INCOMPLETE][2] ([fdo#111593])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7630/fi-tgl-y/igt@gem_exec_gttfill@basic.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15903/fi-tgl-y/igt@gem_exec_gttfill@basic.html
-
-  * igt@i915_module_load@reload-with-fault-injection:
-    - fi-skl-6700k2:      [PASS][3] -> [INCOMPLETE][4] ([i915#671])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7630/fi-skl-6700k2/igt@i915_module_load@reload-with-fault-injection.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15903/fi-skl-6700k2/igt@i915_module_load@reload-with-fault-injection.html
-
-  * igt@kms_chamelium@hdmi-hpd-fast:
-    - fi-kbl-7500u:       [PASS][5] -> [FAIL][6] ([fdo#111407])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7630/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15903/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - fi-hsw-peppy:       [PASS][7] -> [DMESG-WARN][8] ([i915#44])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7630/fi-hsw-peppy/igt@kms_frontbuffer_tracking@basic.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15903/fi-hsw-peppy/igt@kms_frontbuffer_tracking@basic.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_exec_create@basic:
-    - {fi-tgl-u}:         [INCOMPLETE][9] ([fdo#111736]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7630/fi-tgl-u/igt@gem_exec_create@basic.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15903/fi-tgl-u/igt@gem_exec_create@basic.html
-
-  * igt@i915_module_load@reload-with-fault-injection:
-    - fi-cfl-8700k:       [INCOMPLETE][11] ([i915#505]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7630/fi-cfl-8700k/igt@i915_module_load@reload-with-fault-injection.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15903/fi-cfl-8700k/igt@i915_module_load@reload-with-fault-injection.html
-
-  * igt@i915_selftest@live_execlists:
-    - fi-kbl-soraka:      [DMESG-FAIL][13] ([i915#656]) -> [PASS][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7630/fi-kbl-soraka/igt@i915_selftest@live_execlists.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15903/fi-kbl-soraka/igt@i915_selftest@live_execlists.html
-
-  
-#### Warnings ####
-
-  * igt@i915_selftest@live_blt:
-    - fi-hsw-4770:        [DMESG-FAIL][15] ([i915#725]) -> [DMESG-FAIL][16] ([i915#563])
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7630/fi-hsw-4770/igt@i915_selftest@live_blt.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15903/fi-hsw-4770/igt@i915_selftest@live_blt.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:
-    - fi-kbl-x1275:       [DMESG-WARN][17] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][18] ([i915#62] / [i915#92]) +5 similar issues
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7630/fi-kbl-x1275/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15903/fi-kbl-x1275/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
-
-  * igt@kms_cursor_legacy@basic-flip-after-cursor-legacy:
-    - fi-kbl-x1275:       [DMESG-WARN][19] ([i915#62] / [i915#92]) -> [DMESG-WARN][20] ([i915#62] / [i915#92] / [i915#95]) +4 similar issues
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7630/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15903/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#111407]: https://bugs.freedesktop.org/show_bug.cgi?id=111407
-  [fdo#111593]: https://bugs.freedesktop.org/show_bug.cgi?id=111593
-  [fdo#111736]: https://bugs.freedesktop.org/show_bug.cgi?id=111736
-  [i915#435]: https://gitlab.freedesktop.org/drm/intel/issues/435
-  [i915#44]: https://gitlab.freedesktop.org/drm/intel/issues/44
-  [i915#505]: https://gitlab.freedesktop.org/drm/intel/issues/505
-  [i915#563]: https://gitlab.freedesktop.org/drm/intel/issues/563
-  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
-  [i915#656]: https://gitlab.freedesktop.org/drm/intel/issues/656
-  [i915#671]: https://gitlab.freedesktop.org/drm/intel/issues/671
-  [i915#725]: https://gitlab.freedesktop.org/drm/intel/issues/725
-  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
-  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
+Lucas De Marchi
 
 
-Participating hosts (43 -> 46)
-------------------------------
-
-  Additional (10): fi-hsw-4770r fi-byt-j1900 fi-skl-6770hq fi-glk-dsi fi-whl-u fi-gdg-551 fi-ivb-3770 fi-kbl-7560u fi-bsw-nick fi-snb-2600 
-  Missing    (7): fi-ilk-m540 fi-byt-squawks fi-bsw-cyan fi-bwr-2160 fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_7630 -> Patchwork_15903
-
-  CI-20190529: 20190529
-  CI_DRM_7630: 28a2aa0ebf1520ea8a0dd89299f7ceea80dfd96f @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5352: 0586d205f651674e575351c2d5a7d0760716c9f1 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_15903: 0e8083f32b6366df29e9383d31722eea390f9a39 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-0e8083f32b63 drm/i915/gt: Convert the final GEM_TRACE to GT_TRACE and co
-a793707d6e12 drm/i915: Add spaces before compound GEM_TRACE
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15903/index.html
+> 		     rq__->fence.context, rq__->fence.seqno,		\
+> 		     hwsp_seqno(rq__), ##__VA_ARGS__);			\
+> } while (0)
+>-- 
+>2.24.1
+>
+>_______________________________________________
+>Intel-gfx mailing list
+>Intel-gfx@lists.freedesktop.org
+>https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
