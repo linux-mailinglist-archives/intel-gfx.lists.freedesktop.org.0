@@ -1,61 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C05C12999A
-	for <lists+intel-gfx@lfdr.de>; Mon, 23 Dec 2019 18:53:38 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D54912999F
+	for <lists+intel-gfx@lfdr.de>; Mon, 23 Dec 2019 18:55:10 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CDA076E405;
-	Mon, 23 Dec 2019 17:53:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4083489D5C;
+	Mon, 23 Dec 2019 17:55:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from youngberry.canonical.com (youngberry.canonical.com
- [91.189.89.112])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3AE4A6E405
- for <intel-gfx@lists.freedesktop.org>; Mon, 23 Dec 2019 17:53:32 +0000 (UTC)
-Received: from mail-pg1-f198.google.com ([209.85.215.198])
- by youngberry.canonical.com with esmtps
- (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128) (Exim 4.86_2)
- (envelope-from <kai.heng.feng@canonical.com>) id 1ijRta-0007aX-Ax
- for intel-gfx@lists.freedesktop.org; Mon, 23 Dec 2019 17:53:30 +0000
-Received: by mail-pg1-f198.google.com with SMTP id d9so8742829pgd.10
- for <intel-gfx@lists.freedesktop.org>; Mon, 23 Dec 2019 09:53:30 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:subject:from:in-reply-to:date:cc
- :content-transfer-encoding:message-id:references:to;
- bh=OCo5Ypyu6pu38a6YJ1OXr5ycGEAIBEO34ruxpB+/INg=;
- b=PCMNdKrl5jHleBjn84d/502+iAsrZ3Zk3vuu/g/glIkUcwKOYKEqjBOxlFqivmuBs5
- 5vnsEJeq1wb8MZU/EEAj7RYKkfQdoOs0TMJbLMYq0MLIKWfLomx7ByifmXLukR0LZiBL
- 7REBHjOgIGfm0aF6pBuUJHb7IKoLbiMCGePOLUAKqE1CHycfj9lRT7GcUVkt4DXNdUD7
- 4q9wurXg21nOBkqnl6NRcdt6F0SJ4nn13lsEcakGY6A0rx1zOltuiJj5kGCqMAwC8OkK
- hBsOR5BlxleVgZHGHZztBXLZP+S9FO3oo0bvMbyLeYnKnEf0B2S/wh5WEMZY3nbunv+0
- qW7Q==
-X-Gm-Message-State: APjAAAVHt5mMrpFTDmZ/8QwTzEhseyyyqxUNKbAqkv07mE9hxRiat0CT
- pvY8A0ioPSURoQClObKk9bG3LIsioYT+C5nWZJ4yN7de1bn+Hwm/nVBv+wXAK1chJ3ADMVrNvJK
- yZtQq5CbTERDDyHYbrm7pMND4PGgOLfjSaQ4ZVKCk0GbzUA==
-X-Received: by 2002:a17:90a:ad48:: with SMTP id w8mr305877pjv.19.1577123608854; 
- Mon, 23 Dec 2019 09:53:28 -0800 (PST)
-X-Google-Smtp-Source: APXvYqzvo2lxDezsV6ekd9axPKc4dlP+f7o4/vuSqg58LAdpfNg1seDqVMU+PZLKykU179GTIDOJzQ==
-X-Received: by 2002:a17:90a:ad48:: with SMTP id w8mr305839pjv.19.1577123608621; 
- Mon, 23 Dec 2019 09:53:28 -0800 (PST)
-Received: from 2001-b011-380f-35a3-a059-d6a4-0e9a-8360.dynamic-ip6.hinet.net
- (2001-b011-380f-35a3-a059-d6a4-0e9a-8360.dynamic-ip6.hinet.net.
- [2001:b011:380f:35a3:a059:d6a4:e9a:8360])
- by smtp.gmail.com with ESMTPSA id q63sm3585026pfb.149.2019.12.23.09.53.26
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Mon, 23 Dec 2019 09:53:28 -0800 (PST)
-Mime-Version: 1.0 (Mac OS X Mail 13.0 \(3608.40.2.2.4\))
-From: Kai-Heng Feng <kai.heng.feng@canonical.com>
-In-Reply-To: <87o8vzrljs.fsf@intel.com>
-Date: Tue, 24 Dec 2019 01:53:25 +0800
-Message-Id: <BD65D1A5-FB91-4A98-80BF-A8AAA84146B5@canonical.com>
-References: <20191223171310.21192-1-kai.heng.feng@canonical.com>
- <87o8vzrljs.fsf@intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-X-Mailer: Apple Mail (2.3608.40.2.2.4)
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915: Re-init lspcon after HPD if
- lspcon probe failed
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 42B6189D5C;
+ Mon, 23 Dec 2019 17:55:07 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 30BB1A01BB;
+ Mon, 23 Dec 2019 17:55:07 +0000 (UTC)
+MIME-Version: 1.0
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Stanislav Lisovskiy" <stanislav.lisovskiy@intel.com>
+Date: Mon, 23 Dec 2019 17:55:07 -0000
+Message-ID: <157712370719.16936.16192337571178215453@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20191223131444.20259-1-stanislav.lisovskiy@intel.com>
+In-Reply-To: <20191223131444.20259-1-stanislav.lisovskiy@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgRW5h?=
+ =?utf-8?q?ble_second_DBuf_slice_for_ICL_and_TGL_=28rev11=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,86 +38,173 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: airlied@linux.ie, intel-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+== Series Details ==
+
+Series: Enable second DBuf slice for ICL and TGL (rev11)
+URL   : https://patchwork.freedesktop.org/series/70059/
+State : failure
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_7628 -> Patchwork_15894
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with Patchwork_15894 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_15894, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15894/index.html
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_15894:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@i915_module_load@reload-with-fault-injection:
+    - fi-skl-6600u:       NOTRUN -> [DMESG-WARN][1]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15894/fi-skl-6600u/igt@i915_module_load@reload-with-fault-injection.html
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-skl-6600u:       NOTRUN -> [FAIL][2]
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15894/fi-skl-6600u/igt@i915_pm_rpm@module-reload.html
+
+  * igt@i915_selftest@live_gt_lrc:
+    - fi-bwr-2160:        NOTRUN -> [FAIL][3]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15894/fi-bwr-2160/igt@i915_selftest@live_gt_lrc.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_15894 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_module_load@reload-with-fault-injection:
+    - fi-cfl-guc:         [PASS][4] -> [INCOMPLETE][5] ([i915#505] / [i915#671])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7628/fi-cfl-guc/igt@i915_module_load@reload-with-fault-injection.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15894/fi-cfl-guc/igt@i915_module_load@reload-with-fault-injection.html
+
+  * igt@i915_selftest@live_blt:
+    - fi-hsw-4770:        [PASS][6] -> [DMESG-FAIL][7] ([i915#553] / [i915#725])
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7628/fi-hsw-4770/igt@i915_selftest@live_blt.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15894/fi-hsw-4770/igt@i915_selftest@live_blt.html
+
+  * igt@i915_selftest@live_execlists:
+    - fi-kbl-soraka:      [PASS][8] -> [DMESG-FAIL][9] ([i915#656])
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7628/fi-kbl-soraka/igt@i915_selftest@live_execlists.html
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15894/fi-kbl-soraka/igt@i915_selftest@live_execlists.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_close_race@basic-threads:
+    - {fi-tgl-guc}:       [INCOMPLETE][10] ([i915#435]) -> [PASS][11]
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7628/fi-tgl-guc/igt@gem_close_race@basic-threads.html
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15894/fi-tgl-guc/igt@gem_close_race@basic-threads.html
+
+  * igt@i915_module_load@reload-with-fault-injection:
+    - fi-bxt-dsi:         [INCOMPLETE][12] ([fdo#103927]) -> [PASS][13]
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7628/fi-bxt-dsi/igt@i915_module_load@reload-with-fault-injection.html
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15894/fi-bxt-dsi/igt@i915_module_load@reload-with-fault-injection.html
+
+  * igt@kms_chamelium@hdmi-hpd-fast:
+    - fi-kbl-7500u:       [FAIL][14] ([fdo#111407]) -> [PASS][15]
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7628/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15894/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+
+  * igt@kms_frontbuffer_tracking@basic:
+    - fi-hsw-peppy:       [DMESG-WARN][16] ([i915#44]) -> [PASS][17]
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7628/fi-hsw-peppy/igt@kms_frontbuffer_tracking@basic.html
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15894/fi-hsw-peppy/igt@kms_frontbuffer_tracking@basic.html
+
+  
+#### Warnings ####
+
+  * igt@gem_exec_suspend@basic-s4-devices:
+    - fi-kbl-x1275:       [DMESG-WARN][18] ([fdo#107139] / [i915#62] / [i915#92]) -> [DMESG-WARN][19] ([fdo#107139] / [i915#62] / [i915#92] / [i915#95])
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7628/fi-kbl-x1275/igt@gem_exec_suspend@basic-s4-devices.html
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15894/fi-kbl-x1275/igt@gem_exec_suspend@basic-s4-devices.html
+
+  * igt@kms_cursor_legacy@basic-flip-after-cursor-varying-size:
+    - fi-kbl-x1275:       [DMESG-WARN][20] ([i915#62] / [i915#92]) -> [DMESG-WARN][21] ([i915#62] / [i915#92] / [i915#95]) +2 similar issues
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7628/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-after-cursor-varying-size.html
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15894/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-after-cursor-varying-size.html
+
+  * igt@kms_flip@basic-flip-vs-modeset:
+    - fi-kbl-x1275:       [DMESG-WARN][22] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][23] ([i915#62] / [i915#92]) +5 similar issues
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7628/fi-kbl-x1275/igt@kms_flip@basic-flip-vs-modeset.html
+   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15894/fi-kbl-x1275/igt@kms_flip@basic-flip-vs-modeset.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#103927]: https://bugs.freedesktop.org/show_bug.cgi?id=103927
+  [fdo#107139]: https://bugs.freedesktop.org/show_bug.cgi?id=107139
+  [fdo#111407]: https://bugs.freedesktop.org/show_bug.cgi?id=111407
+  [i915#435]: https://gitlab.freedesktop.org/drm/intel/issues/435
+  [i915#44]: https://gitlab.freedesktop.org/drm/intel/issues/44
+  [i915#505]: https://gitlab.freedesktop.org/drm/intel/issues/505
+  [i915#553]: https://gitlab.freedesktop.org/drm/intel/issues/553
+  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
+  [i915#656]: https://gitlab.freedesktop.org/drm/intel/issues/656
+  [i915#671]: https://gitlab.freedesktop.org/drm/intel/issues/671
+  [i915#725]: https://gitlab.freedesktop.org/drm/intel/issues/725
+  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
+  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
 
 
-> On Dec 24, 2019, at 01:36, Jani Nikula <jani.nikula@linux.intel.com> wrote:
-> 
-> On Tue, 24 Dec 2019, Kai-Heng Feng <kai.heng.feng@canonical.com> wrote:
->> On HP 800 G4 DM, if HDMI cable isn't plugged before boot, the HDMI port
->> becomes useless and never responds to cable hotplugging:
->> [    3.031904] [drm:lspcon_init [i915]] *ERROR* Failed to probe lspcon
->> [    3.031945] [drm:intel_ddi_init [i915]] *ERROR* LSPCON init failed on port D
->> 
->> Seems like the lspcon chip on the system in question only gets powered
->> after the cable is plugged.
->> 
->> So let's call lspcon_init() dynamically to properly initialize the
->> lspcon chip and make HDMI port work.
->> 
->> Signed-off-by: Kai-Heng Feng <kai.heng.feng@canonical.com>
->> ---
->> v2: 
->>  - Move lspcon_init() inside of intel_dp_hpd_pulse().
->> 
->> drivers/gpu/drm/i915/display/intel_dp.c | 6 +++++-
->> 1 file changed, 5 insertions(+), 1 deletion(-)
->> 
->> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
->> index fe31bbfd6c62..eb395b45527e 100644
->> --- a/drivers/gpu/drm/i915/display/intel_dp.c
->> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
->> @@ -6573,6 +6573,7 @@ enum irqreturn
->> intel_dp_hpd_pulse(struct intel_digital_port *intel_dig_port, bool long_hpd)
->> {
->> 	struct intel_dp *intel_dp = &intel_dig_port->dp;
->> +	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
->> 
->> 	if (long_hpd && intel_dig_port->base.type == INTEL_OUTPUT_EDP) {
->> 		/*
->> @@ -6592,11 +6593,14 @@ intel_dp_hpd_pulse(struct intel_digital_port *intel_dig_port, bool long_hpd)
->> 		      intel_dig_port->base.base.name,
->> 		      long_hpd ? "long" : "short");
->> 
->> -	if (long_hpd) {
->> +	if (long_hpd && intel_dig_port->base.type != INTEL_OUTPUT_DDI) {
-> 
-> With this change, long hpd handling for DDI on platforms that do not
-> have LSPCON, or has an active LSPCON, falls through to the short hpd
-> handling. That's not what you're after, is it?
+Participating hosts (44 -> 43)
+------------------------------
 
-You are right, no :(
+  Additional (7): fi-bsw-n3050 fi-bwr-2160 fi-ivb-3770 fi-elk-e7500 fi-tgl-y fi-skl-6600u fi-snb-2600 
+  Missing    (8): fi-hsw-4770r fi-ilk-m540 fi-tgl-u fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-n2820 
 
-I'll send a V3.
 
-Kai-Heng
+Build changes
+-------------
 
-> 
-> 
-> BR,
-> Jani.
-> 
-> 
->> 		intel_dp->reset_link_params = true;
->> 		return IRQ_NONE;
->> 	}
->> 
->> +	if (long_hpd && HAS_LSPCON(dev_priv) && !intel_dig_port->lspcon.active)
->> +		lspcon_init(intel_dig_port);
->> +
->> 	if (intel_dp->is_mst) {
->> 		if (intel_dp_check_mst_status(intel_dp) == -EINVAL) {
->> 			/*
-> 
-> -- 
-> Jani Nikula, Intel Open Source Graphics Center
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_7628 -> Patchwork_15894
 
+  CI-20190529: 20190529
+  CI_DRM_7628: 22f0a3a9b0f332ef75988890b7f1d5881588a1dd @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5352: 0586d205f651674e575351c2d5a7d0760716c9f1 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_15894: 2a5ed9f339c27003a5746cfa0fc8643c5e06b32b @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+2a5ed9f339c2 drm/i915: Correctly map DBUF slices to pipes
+b0f2bab1a82d drm/i915: Manipulate DBuf slices properly
+d2d900d8860c drm/i915: Move dbuf slice update to proper place
+a1aa6331b13f drm/i915: Remove skl_ddl_allocation struct
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15894/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
