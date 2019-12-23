@@ -1,55 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8DAE4129234
-	for <lists+intel-gfx@lfdr.de>; Mon, 23 Dec 2019 08:20:53 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D108129253
+	for <lists+intel-gfx@lfdr.de>; Mon, 23 Dec 2019 08:43:19 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 08D066E16B;
-	Mon, 23 Dec 2019 07:20:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0CFA56E182;
+	Mon, 23 Dec 2019 07:43:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-1.mimecast.com (us-smtp-delivery-1.mimecast.com
- [205.139.110.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4ED356E169
- for <intel-gfx@lists.freedesktop.org>; Mon, 23 Dec 2019 07:20:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1577085648;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=MW6YhL+RcyQYvYpj5YrVwXN8MDvDRWOnMuiAt/nHw6w=;
- b=BKvS60xxrDyGPxcHtlBgjcjNqD9a/6K/bFjDzZxTegfUrLvKN4Tvx8Mn1KYdyDiNMts4+c
- apJnNY9wDigX95BU6Kwoe/V9wYH0g7rOw2TeO9h4/0JJB+XqADkXVZxR7gL0+5ec02hGEq
- R1lLAfOA1TsXVXv3x+cQL9YVRUZ3PY8=
-Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
- [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-336-KC-JDB_cOcm-mTCqJAK6MA-1; Mon, 23 Dec 2019 02:20:45 -0500
-X-MC-Unique: KC-JDB_cOcm-mTCqJAK6MA-1
-Received: from smtp.corp.redhat.com (int-mx03.intmail.prod.int.phx2.redhat.com
- [10.5.11.13])
- (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
- (No client certificate requested)
- by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 63424800D48;
- Mon, 23 Dec 2019 07:20:44 +0000 (UTC)
-Received: from localhost.localdomain (ovpn-12-202.pek2.redhat.com
- [10.72.12.202])
- by smtp.corp.redhat.com (Postfix) with ESMTP id CD95A808F5;
- Mon, 23 Dec 2019 07:20:38 +0000 (UTC)
-To: Lyude Paul <lyude@redhat.com>, intel-gfx@lists.freedesktop.org
-References: <20191122231616.2574-5-lyude@redhat.com>
-From: Perr Yuan <pyuan@redhat.com>
-Message-ID: <3ba84125-ab4c-e1a7-cb74-b65638f1c2d5@redhat.com>
-Date: Mon, 23 Dec 2019 02:20:36 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.3.0
-MIME-Version: 1.0
-In-Reply-To: <20191122231616.2574-5-lyude@redhat.com>
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A6F0A6E182
+ for <intel-gfx@lists.freedesktop.org>; Mon, 23 Dec 2019 07:43:14 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 22 Dec 2019 23:43:14 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.69,346,1571727600"; d="scan'208";a="207185487"
+Received: from irsmsx101.ger.corp.intel.com ([163.33.3.153])
+ by orsmga007.jf.intel.com with ESMTP; 22 Dec 2019 23:43:13 -0800
+Received: from irsmsx102.ger.corp.intel.com ([169.254.2.130]) by
+ IRSMSX101.ger.corp.intel.com ([169.254.1.94]) with mapi id 14.03.0439.000;
+ Mon, 23 Dec 2019 07:43:12 +0000
+From: "Kahola, Mika" <mika.kahola@intel.com>
+To: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "Deak, Imre" <imre.deak@intel.com>
+Thread-Topic: [PATCH v2 04/15] drm/i915: Extract framebufer CCS offset
+ checks into a function
+Thread-Index: AQHVtyM+bYQPs9oZKEmVdl8ggQJqwqfHWvmA
+Date: Mon, 23 Dec 2019 07:43:12 +0000
+Message-ID: <380844a9722bbcf451a8ba059af8bb4f20e0aef1.camel@intel.com>
+References: <20191218161105.30638-5-imre.deak@intel.com>
+ <20191220104931.12135-2-imre.deak@intel.com>
+In-Reply-To: <20191220104931.12135-2-imre.deak@intel.com>
+Accept-Language: en-US
 Content-Language: en-US
-X-Scanned-By: MIMEDefang 2.79 on 10.5.11.13
-Subject: Re: [Intel-gfx] [4/5] drm/i915: Auto detect DPCD backlight support
- by default
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.237.72.159]
+Content-ID: <4D2940030CAAA54C87AD690A3A097697@intel.com>
+MIME-Version: 1.0
+Subject: Re: [Intel-gfx] [PATCH v2 04/15] drm/i915: Extract framebufer CCS
+ offset checks into a function
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,63 +56,143 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Cc: "Pandiyan, Dhinakaran" <dhinakaran.pandiyan@intel.com>
+Content-Type: text/plain; charset="iso-8859-15"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 11/22/19 6:16 PM, Lyude Paul wrote:
-> Turns out we actually already have some companies, such as Lenovo,
-> shipping machines with AMOLED screens that don't allow controlling the
-> backlight through the usual PWM interface and only allow controlling it
-> through the standard EDP DPCD interface. One example of one of these
-> laptops is the X1 Extreme 2nd Generation.
-> 
-> Since we've got systems that need this turned on by default now to have
-> backlight controls working out of the box, let's start auto-detecting it
-> for systems by default based on what the VBT tells us. We do this by
-> changing the default value for the enable_dpcd_backlight module param
-> from 0 to -1.
-> 
-> Signed-off-by: Lyude Paul <lyude@redhat.com>
-> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+On Fri, 2019-12-20 at 12:49 +0200, Imre Deak wrote:
+> From: Dhinakaran Pandiyan <dhinakaran.pandiyan@intel.com>
+> =
+
+> intel_fill_fb_info() has grown quite large and wrapping the offset
+> checks
+> into a separate function makes the loop a bit easier to follow.
+> =
+
+> v2: Skip the check for non-CCS planes. (Mika)
+> =
+
+> Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> Cc: Matt Roper <matthew.d.roper@intel.com>
+> Cc: Mika Kahola <mika.kahola@intel.com>
+> Signed-off-by: Dhinakaran Pandiyan <dhinakaran.pandiyan@intel.com>
+> Signed-off-by: Imre Deak <imre.deak@intel.com>
+
+Reviewed-by: Mika Kahola <mika.kahola@intel.com>
+
 > ---
->   drivers/gpu/drm/i915/i915_params.c | 2 +-
->   drivers/gpu/drm/i915/i915_params.h | 2 +-
->   2 files changed, 2 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/i915_params.c b/drivers/gpu/drm/i915/i915_params.c
-> index 1dd1f3652795..31eed60c167e 100644
-> --- a/drivers/gpu/drm/i915/i915_params.c
-> +++ b/drivers/gpu/drm/i915/i915_params.c
-> @@ -172,7 +172,7 @@ i915_param_named_unsafe(inject_probe_failure, uint, 0400,
->   
->   i915_param_named(enable_dpcd_backlight, int, 0600,
->   	"Enable support for DPCD backlight control"
-> -	"(-1=use per-VBT LFP backlight type setting, 0=disabled [default], 1=enabled)");
-> +	"(-1=use per-VBT LFP backlight type setting [default], 0=disabled, 1=enabled)");
->   
->   #if IS_ENABLED(CONFIG_DRM_I915_GVT)
->   i915_param_named(enable_gvt, bool, 0400,
-> diff --git a/drivers/gpu/drm/i915/i915_params.h b/drivers/gpu/drm/i915/i915_params.h
-> index 31b88f297fbc..a79d0867f77a 100644
-> --- a/drivers/gpu/drm/i915/i915_params.h
-> +++ b/drivers/gpu/drm/i915/i915_params.h
-> @@ -64,7 +64,7 @@ struct drm_printer;
->   	param(int, reset, 3) \
->   	param(unsigned int, inject_probe_failure, 0) \
->   	param(int, fastboot, -1) \
-> -	param(int, enable_dpcd_backlight, 0) \
-> +	param(int, enable_dpcd_backlight, -1) \
->   	param(char *, force_probe, CONFIG_DRM_I915_FORCE_PROBE) \
->   	param(unsigned long, fake_lmem_start, 0) \
->   	/* leave bools at the end to not create holes */ \
-> 
+>  drivers/gpu/drm/i915/display/intel_display.c | 73 ++++++++++++----
+> ----
+>  1 file changed, 43 insertions(+), 30 deletions(-)
+> =
 
-Tested-by:Perry Yuan <pyuan@redhat.com>
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c
+> b/drivers/gpu/drm/i915/display/intel_display.c
+> index 9c27cf651e08..2665ea7300a0 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -2676,6 +2676,46 @@ static bool intel_plane_needs_remap(const
+> struct intel_plane_state *plane_state)
+>  	return stride > max_stride;
+>  }
+>  =
 
+> +static int
+> +intel_fb_check_ccs_xy(struct drm_framebuffer *fb, int ccs_plane, int
+> x, int y)
+> +{
+> +	struct intel_framebuffer *intel_fb =3D to_intel_framebuffer(fb);
+> +	int hsub =3D fb->format->hsub;
+> +	int vsub =3D fb->format->vsub;
+> +	int tile_width, tile_height;
+> +	int ccs_x, ccs_y;
+> +	int main_x, main_y;
+> +
+> +	if (!is_ccs_modifier(fb->modifier) || ccs_plane !=3D 1)
+> +		return 0;
+> +
+> +	intel_tile_dims(fb, 1, &tile_width, &tile_height);
+> +
+> +	tile_width *=3D hsub;
+> +	tile_height *=3D vsub;
+> +
+> +	ccs_x =3D (x * hsub) % tile_width;
+> +	ccs_y =3D (y * vsub) % tile_height;
+> +	main_x =3D intel_fb->normal[0].x % tile_width;
+> +	main_y =3D intel_fb->normal[0].y % tile_height;
+> +
+> +	/*
+> +	 * CCS doesn't have its own x/y offset register, so the intra
+> CCS tile
+> +	 * x/y offsets must match between CCS and the main surface.
+> +	 */
+> +	if (main_x !=3D ccs_x || main_y !=3D ccs_y) {
+> +		DRM_DEBUG_KMS("Bad CCS x/y (main %d,%d ccs %d,%d) full
+> (main %d,%d ccs %d,%d)\n",
+> +			      main_x, main_y,
+> +			      ccs_x, ccs_y,
+> +			      intel_fb->normal[0].x,
+> +			      intel_fb->normal[0].y,
+> +			      x, y);
+> +		return -EINVAL;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+>  static int
+>  intel_fill_fb_info(struct drm_i915_private *dev_priv,
+>  		   struct drm_framebuffer *fb)
+> @@ -2706,36 +2746,9 @@ intel_fill_fb_info(struct drm_i915_private
+> *dev_priv,
+>  			return ret;
+>  		}
+>  =
+
+> -		if (is_ccs_modifier(fb->modifier) && i =3D=3D 1) {
+> -			int hsub =3D fb->format->hsub;
+> -			int vsub =3D fb->format->vsub;
+> -			int tile_width, tile_height;
+> -			int main_x, main_y;
+> -			int ccs_x, ccs_y;
+> -
+> -			intel_tile_dims(fb, i, &tile_width,
+> &tile_height);
+> -			tile_width *=3D hsub;
+> -			tile_height *=3D vsub;
+> -
+> -			ccs_x =3D (x * hsub) % tile_width;
+> -			ccs_y =3D (y * vsub) % tile_height;
+> -			main_x =3D intel_fb->normal[0].x % tile_width;
+> -			main_y =3D intel_fb->normal[0].y % tile_height;
+> -
+> -			/*
+> -			 * CCS doesn't have its own x/y offset
+> register, so the intra CCS tile
+> -			 * x/y offsets must match between CCS and the
+> main surface.
+> -			 */
+> -			if (main_x !=3D ccs_x || main_y !=3D ccs_y) {
+> -				DRM_DEBUG_KMS("Bad CCS x/y (main %d,%d
+> ccs %d,%d) full (main %d,%d ccs %d,%d)\n",
+> -					      main_x, main_y,
+> -					      ccs_x, ccs_y,
+> -					      intel_fb->normal[0].x,
+> -					      intel_fb->normal[0].y,
+> -					      x, y);
+> -				return -EINVAL;
+> -			}
+> -		}
+> +		ret =3D intel_fb_check_ccs_xy(fb, i, x, y);
+> +		if (ret)
+> +			return ret;
+>  =
+
+>  		/*
+>  		 * The fence (if used) is aligned to the start of the
+> object
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
