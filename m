@@ -1,38 +1,29 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE087129977
-	for <lists+intel-gfx@lfdr.de>; Mon, 23 Dec 2019 18:36:49 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id EC5B5129984
+	for <lists+intel-gfx@lfdr.de>; Mon, 23 Dec 2019 18:45:31 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 809BA6E339;
-	Mon, 23 Dec 2019 17:36:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 747436E311;
+	Mon, 23 Dec 2019 17:45:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3E7756E339;
- Mon, 23 Dec 2019 17:36:46 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 23 Dec 2019 09:36:45 -0800
-X-IronPort-AV: E=Sophos;i="5.69,348,1571727600"; d="scan'208";a="211625969"
-Received: from unknown (HELO localhost) ([10.249.35.31])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 23 Dec 2019 09:36:42 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Kai-Heng Feng <kai.heng.feng@canonical.com>,
- joonas.lahtinen@linux.intel.com, rodrigo.vivi@intel.com, airlied@linux.ie,
- daniel@ffwll.ch
-In-Reply-To: <20191223171310.21192-1-kai.heng.feng@canonical.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20191223171310.21192-1-kai.heng.feng@canonical.com>
-Date: Mon, 23 Dec 2019 19:36:39 +0200
-Message-ID: <87o8vzrljs.fsf@intel.com>
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DEC3B6E311
+ for <intel-gfx@lists.freedesktop.org>; Mon, 23 Dec 2019 17:45:27 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19675117-1500050 
+ for multiple; Mon, 23 Dec 2019 17:45:05 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon, 23 Dec 2019 17:45:04 +0000
+Message-Id: <20191223174504.2331773-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.24.1
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915: Re-init lspcon after HPD if
- lspcon probe failed
+Subject: [Intel-gfx] [PATCH] drm/i915: Add spaces before compound GEM_TRACE
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,74 +36,51 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, Kai-Heng Feng <kai.heng.feng@canonical.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 24 Dec 2019, Kai-Heng Feng <kai.heng.feng@canonical.com> wrote:
-> On HP 800 G4 DM, if HDMI cable isn't plugged before boot, the HDMI port
-> becomes useless and never responds to cable hotplugging:
-> [    3.031904] [drm:lspcon_init [i915]] *ERROR* Failed to probe lspcon
-> [    3.031945] [drm:intel_ddi_init [i915]] *ERROR* LSPCON init failed on port D
->
-> Seems like the lspcon chip on the system in question only gets powered
-> after the cable is plugged.
->
-> So let's call lspcon_init() dynamically to properly initialize the
-> lspcon chip and make HDMI port work.
->
-> Signed-off-by: Kai-Heng Feng <kai.heng.feng@canonical.com>
-> ---
-> v2: 
->   - Move lspcon_init() inside of intel_dp_hpd_pulse().
->
->  drivers/gpu/drm/i915/display/intel_dp.c | 6 +++++-
->  1 file changed, 5 insertions(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> index fe31bbfd6c62..eb395b45527e 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -6573,6 +6573,7 @@ enum irqreturn
->  intel_dp_hpd_pulse(struct intel_digital_port *intel_dig_port, bool long_hpd)
->  {
->  	struct intel_dp *intel_dp = &intel_dig_port->dp;
-> +	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
->  
->  	if (long_hpd && intel_dig_port->base.type == INTEL_OUTPUT_EDP) {
->  		/*
-> @@ -6592,11 +6593,14 @@ intel_dp_hpd_pulse(struct intel_digital_port *intel_dig_port, bool long_hpd)
->  		      intel_dig_port->base.base.name,
->  		      long_hpd ? "long" : "short");
->  
-> -	if (long_hpd) {
-> +	if (long_hpd && intel_dig_port->base.type != INTEL_OUTPUT_DDI) {
+Add a space between the prefixed format and the users format so that the
+join are not mistakenly combined into one long word.
 
-With this change, long hpd handling for DDI on platforms that do not
-have LSPCON, or has an active LSPCON, falls through to the short hpd
-handling. That's not what you're after, is it?
+Fixes: 639f2f24895f ("drm/i915: Introduce new macros for tracing")
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Venkata Sandeep Dhanalakota <venkata.s.dhanalakota@intel.com>
+---
+ drivers/gpu/drm/i915/gt/intel_context.h | 2 +-
+ drivers/gpu/drm/i915/i915_request.h     | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
 
-
-BR,
-Jani.
-
-
->  		intel_dp->reset_link_params = true;
->  		return IRQ_NONE;
->  	}
->  
-> +	if (long_hpd && HAS_LSPCON(dev_priv) && !intel_dig_port->lspcon.active)
-> +		lspcon_init(intel_dig_port);
-> +
->  	if (intel_dp->is_mst) {
->  		if (intel_dp_check_mst_status(intel_dp) == -EINVAL) {
->  			/*
-
+diff --git a/drivers/gpu/drm/i915/gt/intel_context.h b/drivers/gpu/drm/i915/gt/intel_context.h
+index 1d4a1b1357cf..0f5ae4ff3b10 100644
+--- a/drivers/gpu/drm/i915/gt/intel_context.h
++++ b/drivers/gpu/drm/i915/gt/intel_context.h
+@@ -19,7 +19,7 @@
+ 
+ #define CE_TRACE(ce, fmt, ...) do {					\
+ 	const struct intel_context *ce__ = (ce);			\
+-	ENGINE_TRACE(ce__->engine, "context:%llx" fmt,			\
++	ENGINE_TRACE(ce__->engine, "context:%llx " fmt,			\
+ 		     ce__->timeline->fence_context,			\
+ 		     ##__VA_ARGS__);					\
+ } while (0)
+diff --git a/drivers/gpu/drm/i915/i915_request.h b/drivers/gpu/drm/i915/i915_request.h
+index 565322640378..9784421a3b4d 100644
+--- a/drivers/gpu/drm/i915/i915_request.h
++++ b/drivers/gpu/drm/i915/i915_request.h
+@@ -51,7 +51,7 @@ struct i915_capture_list {
+ 
+ #define RQ_TRACE(rq, fmt, ...) do {					\
+ 	const struct i915_request *rq__ = (rq);				\
+-	ENGINE_TRACE(rq__->engine, "fence %llx:%lld, current %d" fmt,	\
++	ENGINE_TRACE(rq__->engine, "fence %llx:%lld, current %d " fmt,	\
+ 		     rq__->fence.context, rq__->fence.seqno,		\
+ 		     hwsp_seqno(rq__), ##__VA_ARGS__);			\
+ } while (0)
 -- 
-Jani Nikula, Intel Open Source Graphics Center
+2.24.1
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
