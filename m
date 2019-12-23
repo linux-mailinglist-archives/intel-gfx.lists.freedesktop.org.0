@@ -2,30 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 012A01299F0
-	for <lists+intel-gfx@lfdr.de>; Mon, 23 Dec 2019 19:43:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9AE861299FA
+	for <lists+intel-gfx@lfdr.de>; Mon, 23 Dec 2019 19:55:18 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 00CDD6E422;
-	Mon, 23 Dec 2019 18:43:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 091186E2E6;
+	Mon, 23 Dec 2019 18:55:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 2FB366E2EA;
- Mon, 23 Dec 2019 18:43:23 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 26E00A0093;
- Mon, 23 Dec 2019 18:43:23 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B1D346E2E6
+ for <intel-gfx@lists.freedesktop.org>; Mon, 23 Dec 2019 18:55:14 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 23 Dec 2019 10:55:14 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.69,348,1571727600"; d="scan'208";a="367133794"
+Received: from dceraolo-linux.fm.intel.com (HELO [10.1.27.145]) ([10.1.27.145])
+ by orsmga004.jf.intel.com with ESMTP; 23 Dec 2019 10:55:13 -0800
+To: Maximilian Luz <luzmaximilian@gmail.com>
+References: <3d1744d1-5161-d377-7c3b-2e907060e3f8@gmail.com>
+ <1b2ff00a-3387-c39f-49cc-64afbfd78d4c@intel.com>
+ <bc4e8a25-05b5-72fb-8ddd-2275b739f0a5@gmail.com>
+From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Message-ID: <bc31eaa3-c5ed-819f-a94a-1f7ca335ea86@intel.com>
+Date: Mon, 23 Dec 2019 10:55:30 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Stanislav Lisovskiy" <stanislav.lisovskiy@intel.com>
-Date: Mon, 23 Dec 2019 18:43:23 -0000
-Message-ID: <157712660313.16936.13018035754069572830@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20191223154522.9797-1-stanislav.lisovskiy@intel.com>
-In-Reply-To: <20191223154522.9797-1-stanislav.lisovskiy@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgRW5h?=
- =?utf-8?q?ble_second_DBuf_slice_for_ICL_and_TGL_=28rev12=29?=
+In-Reply-To: <bc4e8a25-05b5-72fb-8ddd-2275b739f0a5@gmail.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] Plans for i915 GuC Submission with regards to
+ IPTS/ME
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,148 +47,95 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
+Cc: Dorian Stoll <dorian.stoll@tmsp.io>, intel-gfx@lists.freedesktop.org
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
-
-Series: Enable second DBuf slice for ICL and TGL (rev12)
-URL   : https://patchwork.freedesktop.org/series/70059/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_7628 -> Patchwork_15897
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15897/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_15897 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live_blt:
-    - fi-hsw-4770:        [PASS][1] -> [DMESG-FAIL][2] ([i915#553] / [i915#725])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7628/fi-hsw-4770/igt@i915_selftest@live_blt.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15897/fi-hsw-4770/igt@i915_selftest@live_blt.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_close_race@basic-threads:
-    - {fi-tgl-guc}:       [INCOMPLETE][3] ([i915#435]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7628/fi-tgl-guc/igt@gem_close_race@basic-threads.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15897/fi-tgl-guc/igt@gem_close_race@basic-threads.html
-    - fi-byt-j1900:       [TIMEOUT][5] ([i915#816]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7628/fi-byt-j1900/igt@gem_close_race@basic-threads.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15897/fi-byt-j1900/igt@gem_close_race@basic-threads.html
-
-  * igt@gem_exec_create@basic:
-    - {fi-tgl-u}:         [INCOMPLETE][7] ([fdo#111736]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7628/fi-tgl-u/igt@gem_exec_create@basic.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15897/fi-tgl-u/igt@gem_exec_create@basic.html
-
-  * igt@i915_module_load@reload-with-fault-injection:
-    - fi-bxt-dsi:         [INCOMPLETE][9] ([fdo#103927]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7628/fi-bxt-dsi/igt@i915_module_load@reload-with-fault-injection.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15897/fi-bxt-dsi/igt@i915_module_load@reload-with-fault-injection.html
-
-  * igt@i915_selftest@live_blt:
-    - fi-hsw-4770r:       [DMESG-FAIL][11] ([i915#725]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7628/fi-hsw-4770r/igt@i915_selftest@live_blt.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15897/fi-hsw-4770r/igt@i915_selftest@live_blt.html
-
-  * igt@kms_chamelium@hdmi-hpd-fast:
-    - fi-kbl-7500u:       [FAIL][13] ([fdo#111407]) -> [PASS][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7628/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15897/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - fi-hsw-peppy:       [DMESG-WARN][15] ([i915#44]) -> [PASS][16]
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7628/fi-hsw-peppy/igt@kms_frontbuffer_tracking@basic.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15897/fi-hsw-peppy/igt@kms_frontbuffer_tracking@basic.html
-
-  
-#### Warnings ####
-
-  * igt@gem_exec_suspend@basic-s4-devices:
-    - fi-kbl-x1275:       [DMESG-WARN][17] ([fdo#107139] / [i915#62] / [i915#92]) -> [DMESG-WARN][18] ([fdo#107139] / [i915#62] / [i915#92] / [i915#95])
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7628/fi-kbl-x1275/igt@gem_exec_suspend@basic-s4-devices.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15897/fi-kbl-x1275/igt@gem_exec_suspend@basic-s4-devices.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:
-    - fi-kbl-x1275:       [DMESG-WARN][19] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][20] ([i915#62] / [i915#92]) +1 similar issue
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7628/fi-kbl-x1275/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15897/fi-kbl-x1275/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
-
-  * igt@kms_cursor_legacy@basic-flip-before-cursor-atomic:
-    - fi-kbl-x1275:       [DMESG-WARN][21] ([i915#62] / [i915#92]) -> [DMESG-WARN][22] ([i915#62] / [i915#92] / [i915#95]) +5 similar issues
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7628/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15897/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#103927]: https://bugs.freedesktop.org/show_bug.cgi?id=103927
-  [fdo#107139]: https://bugs.freedesktop.org/show_bug.cgi?id=107139
-  [fdo#111407]: https://bugs.freedesktop.org/show_bug.cgi?id=111407
-  [fdo#111736]: https://bugs.freedesktop.org/show_bug.cgi?id=111736
-  [i915#435]: https://gitlab.freedesktop.org/drm/intel/issues/435
-  [i915#44]: https://gitlab.freedesktop.org/drm/intel/issues/44
-  [i915#553]: https://gitlab.freedesktop.org/drm/intel/issues/553
-  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
-  [i915#725]: https://gitlab.freedesktop.org/drm/intel/issues/725
-  [i915#816]: https://gitlab.freedesktop.org/drm/intel/issues/816
-  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
-  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
 
 
-Participating hosts (44 -> 43)
-------------------------------
+On 12/18/19 10:01 AM, Maximilian Luz wrote:
+> Hi,
+> 
+> On 12/16/19 11:40 PM, Daniele Ceraolo Spurio wrote:
+>> Hi,
+>>
+>> I can't comment on the ITPS side since I have never looked at that
+>> side of things, but I can give you an overview of why we turned off
+>> GuC submission and what are the short/medium term plans for it.
+> 
+> By any chance, do you have any idea if it's possible/who we could ask to
+> get some more information or some sort of documentation about the
+> IPTS/ME/touch-controller interfaces? This could maybe allow us to find
+> some sort of work-around not involving GuC.
+> 
 
-  Additional (6): fi-bsw-n3050 fi-bwr-2160 fi-ivb-3770 fi-elk-e7500 fi-skl-6600u fi-snb-2600 
-  Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-skl-6770hq fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-blb-e6850 
+Unfortunately I have no idea about the docs in this area since it is 
+outside the graphics core.
 
+>> TL;DR: The GuC submission interface is changed enough that the code
+>> you have is no longer applicable. We're now focused on implementing
+>> support for the new interface to re-enable guc submission (gen12+),
+>> which is a prerequisite for what you need. IMO any ITPS support on the
+>> current tree will have to be postponed until then.
+>>
+>> The disabling of GuC submission was done because recent binaries
+>> (v30+) introduced significant non-backward compatible changes in the
+>> interface; given that GuC submission was still not an "official"
+>> feature and that even more intrusive interface changes are coming with
+>> the upcoming GuC v40+, we decided to just disable the feature for now
+>> and wait for all the changes to land on the GuC side before adding
+>> support back in. The plan is to re-enable support from either gen11 or
+>> gen12, so the gen9 platform will not have it, at least initially. It
+>> shouldn't bee too hard to add it in though since the great majority of
+>> the code is shared on both the GuC and the i915 side, so I wouldn't
+>> exclude us adding it in if there is demand for it.
+> 
+> Thank you, this is quite helpful. As all devices that I know of using
+> IPTS are gen9, GuC support for that generation would be great to have.
+> In the mean-time however, I think we will have to try and figure out if
+> we can find a work-around, maybe bypassing GuC somehow.
 
-Build changes
--------------
+If you only care about gen9, a possible solution would be to 
+forward-port just the old GuC submission (instead of the whole i915) 
+from a know working kernel. It shouldn't be too bad since the GuC code 
+is relatively self-contained, but given the speed at which our 
+submission code evolves there might be issue in the interactions between 
+the old GuC code and the other parts of the submission flow.
 
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_7628 -> Patchwork_15897
+> 
+> Just out of curiosity: Are the firmware-changes also done on Windows or
+> is this purely Linux specific? Would be interesting to know if they have
+> the same problem.
+> 
 
-  CI-20190529: 20190529
-  CI_DRM_7628: 22f0a3a9b0f332ef75988890b7f1d5881588a1dd @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5352: 0586d205f651674e575351c2d5a7d0760716c9f1 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_15897: 85da2a5391a636492d78ab3b8bf91ce22403c5e8 @ git://anongit.freedesktop.org/gfx-ci/linux
+No idea about the details of what goes on on Windows. The firmware is 
+OS-agnostic, but they might be using a different version compared to us, 
+especially on older platforms.
 
+Daniele
 
-== Linux commits ==
-
-85da2a5391a6 drm/i915: Correctly map DBUF slices to pipes
-f60097023100 drm/i915: Manipulate DBuf slices properly
-208ab28ffb76 drm/i915: Move dbuf slice update to proper place
-26df5508765a drm/i915: Remove skl_ddl_allocation struct
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15897/index.html
+>> The v40 firmware includes an almost complete rework of the submission
+>> interface, which is why, in preparation, we removed support from the
+>> driver for the legacy structures that are no longer used; we're also
+>> not going to use HW doorbells anymore and that's why those have been
+>> removed as well. I've had a look at the code in your github tree and
+>> most of the things you use are either gone from the interface or have
+>> been significantly updated, so I don't think there is an easy way to
+>> just port the patch to the new blobs and a significant rewrite is
+>> probably going to be required. Re-enabling GuC submission on the new
+>> interface, which is our current focus on the i915/GuC integration
+>> side, is a prerequisite for that, so IMO unfortunately you'll have to
+>> wait until the new interface support lands before any ITPS changes can
+>> be considered.
+> 
+> I suspected that we'll likely have to do a substantial re-write of the
+> driver, but it's nice to have confirmation for that so we can at least
+> plan a bit ahead.
+> 
+> Thank you again,
+> Maximilian
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
