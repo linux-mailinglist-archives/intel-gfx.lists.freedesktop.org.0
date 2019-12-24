@@ -1,31 +1,50 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F30F12A3B1
-	for <lists+intel-gfx@lfdr.de>; Tue, 24 Dec 2019 18:51:26 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 765B412A404
+	for <lists+intel-gfx@lfdr.de>; Tue, 24 Dec 2019 20:23:53 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4F23389FD7;
-	Tue, 24 Dec 2019 17:51:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3C3ED6E0A2;
+	Tue, 24 Dec 2019 19:23:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 138E189FD7;
- Tue, 24 Dec 2019 17:51:23 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 0BF9AA0BC6;
- Tue, 24 Dec 2019 17:51:23 +0000 (UTC)
+Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com
+ [IPv6:2a00:1450:4864:20::42a])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5C8E26E0A2
+ for <intel-gfx@lists.freedesktop.org>; Tue, 24 Dec 2019 19:23:49 +0000 (UTC)
+Received: by mail-wr1-x42a.google.com with SMTP id t2so20536244wrr.1
+ for <intel-gfx@lists.freedesktop.org>; Tue, 24 Dec 2019 11:23:49 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:from:date:message-id:subject:to;
+ bh=WHf4FCN1bTB2KQmTKfvUBnC6LnOZKVUPQhv2JyFgECs=;
+ b=IRx2GcTdEjeJF+4ZgJn4jw324PwzWJq1knwa0NjR0I1PkNKwwbaLFD9DAQs3To+yrq
+ /Yr88gBvn6rLWGMsONaoBpdL+mMsgCPHEwyO3EQVaxShxsKTMRmsAZJVixfus8i1Y5nQ
+ +2iqFsUDtdR/lkex7poPw564qSeiwEpKp2ZXoKK+YZa6km1EGDMltIFPl29tOyCFBwLI
+ rMmX45O9qcK1JoELMPzWMvJskemhseIHP3svqHZFC6st4U/JtciVwDn7ByKM2GogvS6C
+ +g/VpfWdAUkjULahJW4jBK/ccS67h5f90taxFDbgyB8HwRL5q+GRsRpTrcM5FOnXJkw7
+ lBAA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+ bh=WHf4FCN1bTB2KQmTKfvUBnC6LnOZKVUPQhv2JyFgECs=;
+ b=fT86+h5GeMy4DGx40DZcP8whth8SSsBcyzrVNHVARvM6p6BSreTEPUbfzLhNqpa1l4
+ SuDkXv20hiJTj8NBMP8ot+Ps2NXwuW391a+RStMNzz2QGdH5DlAraa1K9cMIxfkUBhBK
+ DQc+JX64RwBck2LgCPDU/phl7DqQ15XNbias6BBAE7Wz+EwJ6HaP8XcjTzmnv3c79cX0
+ YPmez7cGh65C5rZy9fJws/yn49KGy1pGauqHwd7gVmABBbkdCy+eYW7cqA+zPzNE/CxY
+ OeQp9tYjMYtoE2IJUeJhyU7VsdgGObShOusBqa015XoU3d5KsIvxYMyb43N8IEAZDjWu
+ RAEQ==
+X-Gm-Message-State: APjAAAXXtCgYVkMrBvfo0oEFrXrAPpe/+fPVNCXIN4/kJEwdKoTDUmyX
+ dAl9GIl5XeGfNJgyQ2Ij9lDjrtYBIMkab+ou1RFBDQ5SnFQ=
+X-Google-Smtp-Source: APXvYqyMSdgAxLEyjBbeOkCQ1H1p26dEIrB2NHrkNv2GsWaz3TLCAQAO1W/Xf7wlAaWnXTqRQJ6nO8KrrDlczdkgl2A=
+X-Received: by 2002:adf:f491:: with SMTP id l17mr35963341wro.149.1577215427891; 
+ Tue, 24 Dec 2019 11:23:47 -0800 (PST)
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matt Roper" <matthew.d.roper@intel.com>
-Date: Tue, 24 Dec 2019 17:51:23 -0000
-Message-ID: <157720988302.26087.4535698971421759696@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20191224012026.3157766-1-matthew.d.roper@intel.com>
-In-Reply-To: <20191224012026.3157766-1-matthew.d.roper@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgV29y?=
- =?utf-8?q?karound_updates_=28rev3=29?=
+From: Grant <emailgrant@gmail.com>
+Date: Tue, 24 Dec 2019 11:23:36 -0800
+Message-ID: <CAN0CFw0nEGAoM=Q-VCOfn3O1BJ9n-HJXjMteHrdEZ72wwpyFwg@mail.gmail.com>
+To: intel-gfx@lists.freedesktop.org
+Subject: [Intel-gfx] acceleration works in Brave browser
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,147 +57,23 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Hardware acceleration doesn't seem to be working in Chrome but is
+working in the Brave browser (which is based on Chrome) but only on
+YouTube (with the h264ify browser extension).  I'm using one of these
+which I believe is Bay Trail:
 
-Series: Workaround updates (rev3)
-URL   : https://patchwork.freedesktop.org/series/71337/
-State : success
+https://www.gigabyte.com/us/Mini-PcBarebone/GB-BXBT-2807-rev-10#ov
 
-== Summary ==
+I've tried 6 or so streaming services but nothing accelerates besides
+YouTube even though chrome://media-internals reports the h264 codec is
+in use.  Does anyone know why this is happening?
 
-CI Bug Log - changes from CI_DRM_7633 -> Patchwork_15917
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15917/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_15917 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live_blt:
-    - fi-ivb-3770:        [PASS][1] -> [DMESG-FAIL][2] ([i915#725])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7633/fi-ivb-3770/igt@i915_selftest@live_blt.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15917/fi-ivb-3770/igt@i915_selftest@live_blt.html
-
-  * igt@i915_selftest@live_execlists:
-    - fi-kbl-soraka:      [PASS][3] -> [DMESG-FAIL][4] ([i915#656])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7633/fi-kbl-soraka/igt@i915_selftest@live_execlists.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15917/fi-kbl-soraka/igt@i915_selftest@live_execlists.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_close_race@basic-threads:
-    - fi-byt-j1900:       [TIMEOUT][5] ([i915#816]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7633/fi-byt-j1900/igt@gem_close_race@basic-threads.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15917/fi-byt-j1900/igt@gem_close_race@basic-threads.html
-
-  * igt@gem_exec_create@basic:
-    - {fi-tgl-u}:         [INCOMPLETE][7] ([fdo#111736]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7633/fi-tgl-u/igt@gem_exec_create@basic.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15917/fi-tgl-u/igt@gem_exec_create@basic.html
-
-  * igt@i915_module_load@reload-with-fault-injection:
-    - fi-bxt-dsi:         [DMESG-WARN][9] -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7633/fi-bxt-dsi/igt@i915_module_load@reload-with-fault-injection.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15917/fi-bxt-dsi/igt@i915_module_load@reload-with-fault-injection.html
-    - fi-skl-6600u:       [DMESG-WARN][11] -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7633/fi-skl-6600u/igt@i915_module_load@reload-with-fault-injection.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15917/fi-skl-6600u/igt@i915_module_load@reload-with-fault-injection.html
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-skl-6600u:       [FAIL][13] -> [PASS][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7633/fi-skl-6600u/igt@i915_pm_rpm@module-reload.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15917/fi-skl-6600u/igt@i915_pm_rpm@module-reload.html
-    - fi-bxt-dsi:         [INCOMPLETE][15] ([fdo#103927]) -> [PASS][16]
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7633/fi-bxt-dsi/igt@i915_pm_rpm@module-reload.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15917/fi-bxt-dsi/igt@i915_pm_rpm@module-reload.html
-    - fi-skl-6770hq:      [FAIL][17] ([i915#178]) -> [PASS][18]
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7633/fi-skl-6770hq/igt@i915_pm_rpm@module-reload.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15917/fi-skl-6770hq/igt@i915_pm_rpm@module-reload.html
-
-  
-#### Warnings ####
-
-  * igt@i915_module_load@reload-with-fault-injection:
-    - fi-kbl-x1275:       [INCOMPLETE][19] ([i915#879]) -> [DMESG-WARN][20] ([i915#62] / [i915#92] / [i915#95])
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7633/fi-kbl-x1275/igt@i915_module_load@reload-with-fault-injection.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15917/fi-kbl-x1275/igt@i915_module_load@reload-with-fault-injection.html
-
-  * igt@kms_busy@basic-flip-pipe-a:
-    - fi-kbl-x1275:       [DMESG-WARN][21] ([i915#62] / [i915#92]) -> [DMESG-WARN][22] ([i915#62] / [i915#92] / [i915#95]) +3 similar issues
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7633/fi-kbl-x1275/igt@kms_busy@basic-flip-pipe-a.html
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15917/fi-kbl-x1275/igt@kms_busy@basic-flip-pipe-a.html
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank:
-    - fi-kbl-x1275:       [DMESG-WARN][23] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][24] ([i915#62] / [i915#92]) +3 similar issues
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7633/fi-kbl-x1275/igt@kms_flip@basic-flip-vs-wf_vblank.html
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15917/fi-kbl-x1275/igt@kms_flip@basic-flip-vs-wf_vblank.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#103927]: https://bugs.freedesktop.org/show_bug.cgi?id=103927
-  [fdo#111736]: https://bugs.freedesktop.org/show_bug.cgi?id=111736
-  [i915#178]: https://gitlab.freedesktop.org/drm/intel/issues/178
-  [i915#435]: https://gitlab.freedesktop.org/drm/intel/issues/435
-  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
-  [i915#656]: https://gitlab.freedesktop.org/drm/intel/issues/656
-  [i915#725]: https://gitlab.freedesktop.org/drm/intel/issues/725
-  [i915#816]: https://gitlab.freedesktop.org/drm/intel/issues/816
-  [i915#879]: https://gitlab.freedesktop.org/drm/intel/issues/879
-  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
-  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
-
-
-Participating hosts (48 -> 38)
-------------------------------
-
-  Additional (3): fi-hsw-4770r fi-bsw-n3050 fi-snb-2600 
-  Missing    (13): fi-ilk-m540 fi-hsw-4200u fi-byt-n2820 fi-hsw-peppy fi-byt-squawks fi-bwr-2160 fi-cfl-guc fi-ctg-p8600 fi-skl-lmem fi-tgl-y fi-byt-clapper fi-bsw-nick fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_7633 -> Patchwork_15917
-
-  CI-20190529: 20190529
-  CI_DRM_7633: 7670f977fb1bda159172900b243d14e4dded2886 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5352: 0586d205f651674e575351c2d5a7d0760716c9f1 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_15917: fa37f6bdaf08b61dbeb346e2ff40e632d0dd08e6 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-fa37f6bdaf08 drm/i915/tgl: Extend Wa_1408615072 to tgl
-b761139c8ec5 drm/i915: Add Wa_1408615072 and Wa_1407596294 to icl, ehl
-a97633111ea4 drm/i915: Extend WaDisableDARBFClkGating to icl, ehl, tgl
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15917/index.html
+- Grant
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
