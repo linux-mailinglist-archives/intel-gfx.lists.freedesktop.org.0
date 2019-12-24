@@ -1,32 +1,38 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F1DC12A435
-	for <lists+intel-gfx@lfdr.de>; Tue, 24 Dec 2019 22:46:22 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 32BEA12A45B
+	for <lists+intel-gfx@lfdr.de>; Wed, 25 Dec 2019 00:08:26 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8F2E06E03E;
-	Tue, 24 Dec 2019 21:46:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4CE0D89C56;
+	Tue, 24 Dec 2019 23:08:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id E06A86E03E;
- Tue, 24 Dec 2019 21:46:17 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id CD5EAA0094;
- Tue, 24 Dec 2019 21:46:17 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 38E1289C56
+ for <intel-gfx@lists.freedesktop.org>; Tue, 24 Dec 2019 23:08:20 +0000 (UTC)
+X-Amp-Result: UNSCANNABLE
+X-Amp-File-Uploaded: False
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 24 Dec 2019 15:08:19 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.69,353,1571727600"; d="scan'208";a="300049024"
+Received: from mdroper-desk1.fm.intel.com (HELO
+ mdroper-desk1.amr.corp.intel.com) ([10.1.27.64])
+ by orsmga001.jf.intel.com with ESMTP; 24 Dec 2019 15:08:18 -0800
+Date: Tue, 24 Dec 2019 15:08:18 -0800
+From: Matt Roper <matthew.d.roper@intel.com>
+To: Kai Vehmanen <kai.vehmanen@linux.intel.com>
+Message-ID: <20191224230818.GA2877816@mdroper-desk1.amr.corp.intel.com>
+References: <20190920083918.27057-1-kai.vehmanen@linux.intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Lucas De Marchi" <lucas.demarchi@intel.com>
-Date: Tue, 24 Dec 2019 21:46:17 -0000
-Message-ID: <157722397781.26086.1766100698832912369@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20191224084012.24241-1-lucas.demarchi@intel.com>
-In-Reply-To: <20191224084012.24241-1-lucas.demarchi@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5BCI=2C01/10=5D_drm/i915=3A_simplify_prefixe?=
- =?utf-8?q?s_on_device=5Finfo_=28rev2=29?=
+Content-Disposition: inline
+In-Reply-To: <20190920083918.27057-1-kai.vehmanen@linux.intel.com>
+User-Agent: Mutt/1.12.1 (2019-06-15)
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: save AUD_FREQ_CNTRL state at
+ audio domain suspend
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,184 +45,131 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Fri, Sep 20, 2019 at 11:39:18AM +0300, Kai Vehmanen wrote:
+> When audio power domain is suspended, the display driver must
+> save state of AUD_FREQ_CNTRL on Tiger Lake and Ice Lake
+> systems. The initial value of the register is set by BIOS and
+> is read by driver during the audio component init sequence.
+> 
+> Cc: Jani Nikula <jani.nikula@intel.com>
+> Cc: Imre Deak <imre.deak@intel.com>
+> Signed-off-by: Kai Vehmanen <kai.vehmanen@linux.intel.com>
 
-Series: series starting with [CI,01/10] drm/i915: simplify prefixes on device_info (rev2)
-URL   : https://patchwork.freedesktop.org/series/71341/
-State : failure
+Hi Kai.
 
-== Summary ==
+I realize this patch landed several months ago, but I was just glancing
+through places in the driver where we call out specific platforms with
+IS_FOO() rather than using generation tests and noticed this one.
+Should this programming be specific to just ICL and TGL, or should it
+also apply to other recent platforms like EHL/JSL?
 
-CI Bug Log - changes from CI_DRM_7633 -> Patchwork_15918
-====================================================
+Our convention in i915 is to usually just assume that future platforms
+will follow the lead of the current latest platform until we find out
+otherwise.  So we may want to add another patch to change the test to
+use either an
 
-Summary
--------
+        if (INTEL_GEN(dev_priv) >= 11)
 
-  **FAILURE**
+or a
 
-  Serious unknown changes coming with Patchwork_15918 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_15918, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
+        if (INTEL_GEN(dev_priv) >= 12 || IS_ICELAKE(dev_priv))
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15918/index.html
+depending on whether EHL/JSL also need this.
 
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_15918:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@gem_ctx_create@basic-files:
-    - fi-byt-n2820:       [PASS][1] -> [FAIL][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7633/fi-byt-n2820/igt@gem_ctx_create@basic-files.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15918/fi-byt-n2820/igt@gem_ctx_create@basic-files.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_15918 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_module_load@reload-with-fault-injection:
-    - fi-glk-dsi:         [PASS][3] -> [INCOMPLETE][4] ([i915#58] / [k.org#198133])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7633/fi-glk-dsi/igt@i915_module_load@reload-with-fault-injection.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15918/fi-glk-dsi/igt@i915_module_load@reload-with-fault-injection.html
-    - fi-skl-lmem:        [PASS][5] -> [INCOMPLETE][6] ([i915#671])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7633/fi-skl-lmem/igt@i915_module_load@reload-with-fault-injection.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15918/fi-skl-lmem/igt@i915_module_load@reload-with-fault-injection.html
-
-  * igt@i915_selftest@live_execlists:
-    - fi-kbl-soraka:      [PASS][7] -> [DMESG-FAIL][8] ([i915#656])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7633/fi-kbl-soraka/igt@i915_selftest@live_execlists.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15918/fi-kbl-soraka/igt@i915_selftest@live_execlists.html
-
-  * igt@i915_selftest@live_gem_contexts:
-    - fi-cfl-8700k:       [PASS][9] -> [INCOMPLETE][10] ([i915#424])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7633/fi-cfl-8700k/igt@i915_selftest@live_gem_contexts.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15918/fi-cfl-8700k/igt@i915_selftest@live_gem_contexts.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_module_load@reload-with-fault-injection:
-    - fi-bxt-dsi:         [DMESG-WARN][11] -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7633/fi-bxt-dsi/igt@i915_module_load@reload-with-fault-injection.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15918/fi-bxt-dsi/igt@i915_module_load@reload-with-fault-injection.html
-    - fi-cfl-guc:         [INCOMPLETE][13] ([i915#505] / [i915#671]) -> [PASS][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7633/fi-cfl-guc/igt@i915_module_load@reload-with-fault-injection.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15918/fi-cfl-guc/igt@i915_module_load@reload-with-fault-injection.html
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-bxt-dsi:         [INCOMPLETE][15] ([fdo#103927]) -> [PASS][16]
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7633/fi-bxt-dsi/igt@i915_pm_rpm@module-reload.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15918/fi-bxt-dsi/igt@i915_pm_rpm@module-reload.html
-    - fi-skl-6770hq:      [FAIL][17] ([i915#178]) -> [PASS][18]
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7633/fi-skl-6770hq/igt@i915_pm_rpm@module-reload.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15918/fi-skl-6770hq/igt@i915_pm_rpm@module-reload.html
-
-  * igt@i915_selftest@live_blt:
-    - fi-hsw-4770:        [DMESG-FAIL][19] ([i915#563]) -> [PASS][20]
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7633/fi-hsw-4770/igt@i915_selftest@live_blt.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15918/fi-hsw-4770/igt@i915_selftest@live_blt.html
-
-  * igt@i915_selftest@live_dmabuf:
-    - fi-bwr-2160:        [FAIL][21] -> [PASS][22]
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7633/fi-bwr-2160/igt@i915_selftest@live_dmabuf.html
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15918/fi-bwr-2160/igt@i915_selftest@live_dmabuf.html
-
-  
-#### Warnings ####
-
-  * igt@gem_exec_suspend@basic-s4-devices:
-    - fi-kbl-x1275:       [DMESG-WARN][23] ([fdo#107139] / [i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][24] ([fdo#107139] / [i915#62] / [i915#92])
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7633/fi-kbl-x1275/igt@gem_exec_suspend@basic-s4-devices.html
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15918/fi-kbl-x1275/igt@gem_exec_suspend@basic-s4-devices.html
-
-  * igt@i915_module_load@reload-with-fault-injection:
-    - fi-kbl-x1275:       [INCOMPLETE][25] ([i915#879]) -> [DMESG-WARN][26] ([i915#62] / [i915#92] / [i915#95])
-   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7633/fi-kbl-x1275/igt@i915_module_load@reload-with-fault-injection.html
-   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15918/fi-kbl-x1275/igt@i915_module_load@reload-with-fault-injection.html
-
-  * igt@kms_flip@basic-flip-vs-modeset:
-    - fi-kbl-x1275:       [DMESG-WARN][27] ([i915#62] / [i915#92]) -> [DMESG-WARN][28] ([i915#62] / [i915#92] / [i915#95]) +4 similar issues
-   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7633/fi-kbl-x1275/igt@kms_flip@basic-flip-vs-modeset.html
-   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15918/fi-kbl-x1275/igt@kms_flip@basic-flip-vs-modeset.html
-
-  * igt@kms_pipe_crc_basic@read-crc-pipe-b:
-    - fi-kbl-x1275:       [DMESG-WARN][29] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][30] ([i915#62] / [i915#92])
-   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7633/fi-kbl-x1275/igt@kms_pipe_crc_basic@read-crc-pipe-b.html
-   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15918/fi-kbl-x1275/igt@kms_pipe_crc_basic@read-crc-pipe-b.html
-
-  
-  [fdo#103927]: https://bugs.freedesktop.org/show_bug.cgi?id=103927
-  [fdo#107139]: https://bugs.freedesktop.org/show_bug.cgi?id=107139
-  [i915#178]: https://gitlab.freedesktop.org/drm/intel/issues/178
-  [i915#424]: https://gitlab.freedesktop.org/drm/intel/issues/424
-  [i915#505]: https://gitlab.freedesktop.org/drm/intel/issues/505
-  [i915#563]: https://gitlab.freedesktop.org/drm/intel/issues/563
-  [i915#58]: https://gitlab.freedesktop.org/drm/intel/issues/58
-  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
-  [i915#656]: https://gitlab.freedesktop.org/drm/intel/issues/656
-  [i915#671]: https://gitlab.freedesktop.org/drm/intel/issues/671
-  [i915#879]: https://gitlab.freedesktop.org/drm/intel/issues/879
-  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
-  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
-  [k.org#198133]: https://bugzilla.kernel.org/show_bug.cgi?id=198133
+Thanks!
 
 
-Participating hosts (48 -> 39)
-------------------------------
-
-  Additional (3): fi-kbl-7500u fi-bsw-n3050 fi-snb-2600 
-  Missing    (12): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-ilk-650 fi-ctg-p8600 fi-whl-u fi-ivb-3770 fi-bdw-samus fi-tgl-y fi-byt-clapper fi-skl-6600u fi-kbl-r 
+Matt
 
 
-Build changes
--------------
+> ---
+>  drivers/gpu/drm/i915/display/intel_audio.c | 17 +++++++++++++++--
+>  drivers/gpu/drm/i915/i915_drv.h            |  1 +
+>  drivers/gpu/drm/i915/i915_reg.h            |  2 ++
+>  3 files changed, 18 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_audio.c b/drivers/gpu/drm/i915/display/intel_audio.c
+> index aac089c79ceb..54638d99e021 100644
+> --- a/drivers/gpu/drm/i915/display/intel_audio.c
+> +++ b/drivers/gpu/drm/i915/display/intel_audio.c
+> @@ -852,10 +852,17 @@ static unsigned long i915_audio_component_get_power(struct device *kdev)
+>  
+>  	ret = intel_display_power_get(dev_priv, POWER_DOMAIN_AUDIO);
+>  
+> -	/* Force CDCLK to 2*BCLK as long as we need audio to be powered. */
+> -	if (dev_priv->audio_power_refcount++ == 0)
+> +	if (dev_priv->audio_power_refcount++ == 0) {
+> +		if (IS_TIGERLAKE(dev_priv) || IS_ICELAKE(dev_priv)) {
+> +			I915_WRITE(AUD_FREQ_CNTRL, dev_priv->audio_freq_cntrl);
+> +			DRM_DEBUG_KMS("restored AUD_FREQ_CNTRL to 0x%x\n",
+> +				      dev_priv->audio_freq_cntrl);
+> +		}
+> +
+> +		/* Force CDCLK to 2*BCLK as long as we need audio powered. */
+>  		if (IS_CANNONLAKE(dev_priv) || IS_GEMINILAKE(dev_priv))
+>  			glk_force_audio_cdclk(dev_priv, true);
+> +	}
+>  
+>  	return ret;
+>  }
+> @@ -1116,6 +1123,12 @@ static void i915_audio_component_init(struct drm_i915_private *dev_priv)
+>  		return;
+>  	}
+>  
+> +	if (IS_TIGERLAKE(dev_priv) || IS_ICELAKE(dev_priv)) {
+> +		dev_priv->audio_freq_cntrl = I915_READ(AUD_FREQ_CNTRL);
+> +		DRM_DEBUG_KMS("init value of AUD_FREQ_CNTRL of 0x%x\n",
+> +			      dev_priv->audio_freq_cntrl);
+> +	}
+> +
+>  	dev_priv->audio_component_registered = true;
+>  }
+>  
+> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+> index 4faec2f94e19..5bb19f1c0ef4 100644
+> --- a/drivers/gpu/drm/i915/i915_drv.h
+> +++ b/drivers/gpu/drm/i915/i915_drv.h
+> @@ -1540,6 +1540,7 @@ struct drm_i915_private {
+>  	 */
+>  	struct mutex av_mutex;
+>  	int audio_power_refcount;
+> +	u32 audio_freq_cntrl;
+>  
+>  	struct {
+>  		struct mutex mutex;
+> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+> index bf37ecebc82f..dff077aa4cc6 100644
+> --- a/drivers/gpu/drm/i915/i915_reg.h
+> +++ b/drivers/gpu/drm/i915/i915_reg.h
+> @@ -9119,6 +9119,8 @@ enum {
+>  #define HSW_AUD_CHICKENBIT			_MMIO(0x65f10)
+>  #define   SKL_AUD_CODEC_WAKE_SIGNAL		(1 << 15)
+>  
+> +#define AUD_FREQ_CNTRL			_MMIO(0x65900)
+> +
+>  /*
+>   * HSW - ICL power wells
+>   *
+> -- 
+> 2.18.0
+> 
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_7633 -> Patchwork_15918
-
-  CI-20190529: 20190529
-  CI_DRM_7633: 7670f977fb1bda159172900b243d14e4dded2886 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5352: 0586d205f651674e575351c2d5a7d0760716c9f1 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_15918: 2328b549c230660b93431ee8e36864141426a7e5 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-2328b549c230 drm/i915: prefer 3-letter acronym for tigerlake
-eafddc856fb3 drm/i915: prefer 3-letter acronym for ivybridge
-21933e34ef86 drm/i915: prefer 3-letter acronym for broadwell
-7f0be508dcf9 drm/i915: prefer 3-letter acronym for ironlake
-6e5b621a49d2 drm/i915: prefer 3-letter acronym for icelake
-11eec285efe0 drm/i915: prefer 3-letter acronym for cannonlake
-2907a8e366ee drm/i915: prefer 3-letter acronym for skylake
-db9e9b3400b1 drm/i915: prefer 3-letter acronym for haswell
-edd5ae67332a drm/i915: prefer 3-letter acronym for pineview
-fa6595f6f640 drm/i915: simplify prefixes on device_info
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15918/index.html
+-- 
+Matt Roper
+Graphics Software Engineer
+VTT-OSGC Platform Enablement
+Intel Corporation
+(916) 356-2795
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
