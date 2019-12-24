@@ -2,35 +2,35 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F27FE129C5D
-	for <lists+intel-gfx@lfdr.de>; Tue, 24 Dec 2019 02:20:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DAEFA129C5E
+	for <lists+intel-gfx@lfdr.de>; Tue, 24 Dec 2019 02:20:44 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7E3CC89E57;
-	Tue, 24 Dec 2019 01:20:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2A78589F82;
+	Tue, 24 Dec 2019 01:20:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 890FD89F69
- for <intel-gfx@lists.freedesktop.org>; Tue, 24 Dec 2019 01:20:37 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2AB0A89F82
+ for <intel-gfx@lists.freedesktop.org>; Tue, 24 Dec 2019 01:20:40 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga004.jf.intel.com ([10.7.209.38])
  by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 23 Dec 2019 17:20:37 -0800
+ 23 Dec 2019 17:20:39 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,349,1571727600"; d="scan'208";a="367202547"
+X-IronPort-AV: E=Sophos;i="5.69,349,1571727600"; d="scan'208";a="367202555"
 Received: from mdroper-desk1.fm.intel.com ([10.1.27.64])
- by orsmga004.jf.intel.com with ESMTP; 23 Dec 2019 17:20:37 -0800
+ by orsmga004.jf.intel.com with ESMTP; 23 Dec 2019 17:20:39 -0800
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon, 23 Dec 2019 17:20:24 -0800
-Message-Id: <20191224012026.3157766-2-matthew.d.roper@intel.com>
+Date: Mon, 23 Dec 2019 17:20:25 -0800
+Message-Id: <20191224012026.3157766-3-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.23.0
 In-Reply-To: <20191224012026.3157766-1-matthew.d.roper@intel.com>
 References: <20191224012026.3157766-1-matthew.d.roper@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 1/3] drm/i915: Extend WaDisableDARBFClkGating to
- icl, ehl, tgl
+Subject: [Intel-gfx] [PATCH 2/3] drm/i915: Add Wa_1408615072 and
+ Wa_1407596294 to icl, ehl
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,39 +49,54 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-WaDisableDARBFClkGating, now known as Wa_14010480278, has been added to
-the workaround tables for ICL, EHL, and TGL so we need to extend our
-platform test accordingly.
+Workaround database indicates we should disable clock gating of both the
+vsunit and hsunit.
 
 Bspec: 33450
 Bspec: 33451
-Bspec: 52890
 Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 Cc: Matt Atwood <matthew.s.atwood@intel.com>
 Cc: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c | 7 +++++--
- 1 file changed, 5 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/i915_reg.h | 4 +++-
+ drivers/gpu/drm/i915/intel_pm.c | 8 ++++++++
+ 2 files changed, 11 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 1860da0a493e..0944b56c8f04 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -17827,8 +17827,11 @@ get_encoder_power_domains(struct drm_i915_private *dev_priv)
+diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+index bbfedeb00b7f..968a43f7cd98 100644
+--- a/drivers/gpu/drm/i915/i915_reg.h
++++ b/drivers/gpu/drm/i915/i915_reg.h
+@@ -4177,7 +4177,9 @@ enum {
+ #define  CPSSUNIT_CLKGATE_DIS		REG_BIT(9)
  
- static void intel_early_display_was(struct drm_i915_private *dev_priv)
- {
--	/* Display WA #1185 WaDisableDARBFClkGating:cnl,glk */
--	if (IS_CANNONLAKE(dev_priv) || IS_GEMINILAKE(dev_priv))
+ #define UNSLICE_UNIT_LEVEL_CLKGATE	_MMIO(0x9434)
+-#define  VFUNIT_CLKGATE_DIS		(1 << 20)
++#define   VFUNIT_CLKGATE_DIS		REG_BIT(20)
++#define   HSUNIT_CLKGATE_DIS		REG_BIT(8)
++#define   VSUNIT_CLKGATE_DIS		REG_BIT(3)
+ 
+ #define INF_UNIT_LEVEL_CLKGATE		_MMIO(0x9560)
+ #define   CGPSF_CLKGATE_DIS		(1 << 3)
+diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel_pm.c
+index 31ec82337e4f..58ba6cbf9a57 100644
+--- a/drivers/gpu/drm/i915/intel_pm.c
++++ b/drivers/gpu/drm/i915/intel_pm.c
+@@ -6590,6 +6590,14 @@ static void icl_init_clock_gating(struct drm_i915_private *dev_priv)
+ 	/* WaEnable32PlaneMode:icl */
+ 	I915_WRITE(GEN9_CSFE_CHICKEN1_RCS,
+ 		   _MASKED_BIT_ENABLE(GEN11_ENABLE_32_PLANE_MODE));
++
 +	/*
-+	 * Display WA #1185 WaDisableDARBFClkGating:cnl,glk,icl,ehl,tgl
-+	 * Also known as Wa_14010480278.
++	 * Wa_1408615072:icl,ehl  (vsunit)
++	 * Wa_1407596294:icl,ehl  (hsunit)
 +	 */
-+	if (IS_GEN_RANGE(dev_priv, 10, 12) || IS_GEMINILAKE(dev_priv))
- 		I915_WRITE(GEN9_CLKGATE_DIS_0, I915_READ(GEN9_CLKGATE_DIS_0) |
- 			   DARBF_GATING_DIS);
++	intel_uncore_rmw(&dev_priv->uncore, UNSLICE_UNIT_LEVEL_CLKGATE,
++			 0, VSUNIT_CLKGATE_DIS | HSUNIT_CLKGATE_DIS);
++
+ }
  
+ static void tgl_init_clock_gating(struct drm_i915_private *dev_priv)
 -- 
 2.23.0
 
