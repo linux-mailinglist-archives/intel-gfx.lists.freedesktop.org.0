@@ -1,36 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 38EE5129F40
-	for <lists+intel-gfx@lfdr.de>; Tue, 24 Dec 2019 09:42:04 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 934A5129F46
+	for <lists+intel-gfx@lfdr.de>; Tue, 24 Dec 2019 09:43:06 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 646636E5A4;
-	Tue, 24 Dec 2019 08:41:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 042886E113;
+	Tue, 24 Dec 2019 08:43:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 924F56E04E
- for <intel-gfx@lists.freedesktop.org>; Tue, 24 Dec 2019 08:41:50 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 24 Dec 2019 00:41:50 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,350,1571727600"; d="scan'208";a="214124355"
-Received: from ldmartin1-desk.jf.intel.com ([10.165.21.151])
- by fmsmga007.fm.intel.com with ESMTP; 24 Dec 2019 00:41:50 -0800
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 24 Dec 2019 00:40:12 -0800
-Message-Id: <20191224084012.24241-10-lucas.demarchi@intel.com>
-X-Mailer: git-send-email 2.24.0
-In-Reply-To: <20191224084012.24241-1-lucas.demarchi@intel.com>
-References: <20191224084012.24241-1-lucas.demarchi@intel.com>
-MIME-Version: 1.0
-Subject: [Intel-gfx] [CI 10/10] drm/i915: prefer 3-letter acronym for
- tigerlake
+Received: from youngberry.canonical.com (youngberry.canonical.com
+ [91.189.89.112])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 56E9E6E113;
+ Tue, 24 Dec 2019 08:43:03 +0000 (UTC)
+Received: from 61-220-137-37.hinet-ip.hinet.net ([61.220.137.37]
+ helo=localhost) by youngberry.canonical.com with esmtpsa
+ (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128) (Exim 4.86_2)
+ (envelope-from <kai.heng.feng@canonical.com>)
+ id 1ijfmL-0001uj-7b; Tue, 24 Dec 2019 08:42:58 +0000
+From: Kai-Heng Feng <kai.heng.feng@canonical.com>
+To: jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
+ rodrigo.vivi@intel.com, airlied@linux.ie, daniel@ffwll.ch
+Date: Tue, 24 Dec 2019 16:42:51 +0800
+Message-Id: <20191224084251.28414-1-kai.heng.feng@canonical.com>
+X-Mailer: git-send-email 2.17.1
+Subject: [Intel-gfx] [PATCH v3] drm/i915: Re-init lspcon after HPD if lspcon
+ probe failed
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -43,40 +38,67 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, Kai-Heng Feng <kai.heng.feng@canonical.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-V2UgYXJlIGN1cnJlbnRseSB1c2luZyBhIG1peCBvZiBwbGF0Zm9ybSBuYW1lIGFuZCBhY3Jvbnlt
-IHRvIG5hbWUgdGhlCmZ1bmN0aW9ucy4gTGV0J3MgcHJlZmVyIHRoZSBhY3JvbnltIGFzIGl0IHNo
-b3VsZCBiZSBjbGVhciB3aGF0IHBsYXRmb3JtCml0J3MgYWJvdXQgYW5kIGl0J3Mgc2hvcnRlciwg
-c28gaXQgZG9lc24ndCBnbyBvdmVyIDgwIGNvbHVtbnMgaW4gYSBmZXcKY2FzZXMuIFRoaXMgY29u
-dmVydHMgdGlnZXJsYWtlIHRvIHRnbCB3aGVyZSBhcHByb3ByaWF0ZS4KClNpZ25lZC1vZmYtYnk6
-IEx1Y2FzIERlIE1hcmNoaSA8bHVjYXMuZGVtYXJjaGlAaW50ZWwuY29tPgpBY2tlZC1ieTogSmFu
-aSBOaWt1bGEgPGphbmkubmlrdWxhQGxpbnV4LmludGVsLmNvbT4KQWNrZWQtYnk6IFZpbGxlIFN5
-cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5jb20+ClJldmlld2VkLWJ5OiBNYXR0
-IFJvcGVyIDxtYXR0aGV3LmQucm9wZXJAaW50ZWwuY29tPgotLS0KIGRyaXZlcnMvZ3B1L2RybS9p
-OTE1L2d0L2ludGVsX21vY3MuYyB8IDYgKysrLS0tCiAxIGZpbGUgY2hhbmdlZCwgMyBpbnNlcnRp
-b25zKCspLCAzIGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1
-L2d0L2ludGVsX21vY3MuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX21vY3MuYwpp
-bmRleCA5NWYxYmM0NTk1M2IuLmVlZWY5MGI1NWM2NCAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUv
-ZHJtL2k5MTUvZ3QvaW50ZWxfbW9jcy5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2lu
-dGVsX21vY3MuYwpAQCAtMjMzLDcgKzIzMyw3IEBAIHN0YXRpYyBjb25zdCBzdHJ1Y3QgZHJtX2k5
-MTVfbW9jc19lbnRyeSBicm94dG9uX21vY3NfdGFibGVbXSA9IHsKIAkJICAgTEVfM19XQiB8IExF
-X1RDXzFfTExDIHwgTEVfTFJVTSgzKSwgXAogCQkgICBMM18xX1VDKQogCi1zdGF0aWMgY29uc3Qg
-c3RydWN0IGRybV9pOTE1X21vY3NfZW50cnkgdGlnZXJsYWtlX21vY3NfdGFibGVbXSA9IHsKK3N0
-YXRpYyBjb25zdCBzdHJ1Y3QgZHJtX2k5MTVfbW9jc19lbnRyeSB0Z2xfbW9jc190YWJsZVtdID0g
-ewogCS8qIEJhc2UgLSBFcnJvciAoUmVzZXJ2ZWQgZm9yIE5vbi1Vc2UpICovCiAJTU9DU19FTlRS
-WSgwLCAweDAsIDB4MCksCiAJLyogQmFzZSAtIFJlc2VydmVkICovCkBAIC0yODQsOCArMjg0LDgg
-QEAgc3RhdGljIGJvb2wgZ2V0X21vY3Nfc2V0dGluZ3MoY29uc3Qgc3RydWN0IGRybV9pOTE1X3By
-aXZhdGUgKmk5MTUsCiAJCQkgICAgICBzdHJ1Y3QgZHJtX2k5MTVfbW9jc190YWJsZSAqdGFibGUp
-CiB7CiAJaWYgKElOVEVMX0dFTihpOTE1KSA+PSAxMikgewotCQl0YWJsZS0+c2l6ZSAgPSBBUlJB
-WV9TSVpFKHRpZ2VybGFrZV9tb2NzX3RhYmxlKTsKLQkJdGFibGUtPnRhYmxlID0gdGlnZXJsYWtl
-X21vY3NfdGFibGU7CisJCXRhYmxlLT5zaXplICA9IEFSUkFZX1NJWkUodGdsX21vY3NfdGFibGUp
-OworCQl0YWJsZS0+dGFibGUgPSB0Z2xfbW9jc190YWJsZTsKIAkJdGFibGUtPm5fZW50cmllcyA9
-IEdFTjExX05VTV9NT0NTX0VOVFJJRVM7CiAJfSBlbHNlIGlmIChJU19HRU4oaTkxNSwgMTEpKSB7
-CiAJCXRhYmxlLT5zaXplICA9IEFSUkFZX1NJWkUoaWNsX21vY3NfdGFibGUpOwotLSAKMi4yNC4w
-CgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1n
-ZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9s
-aXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
+On HP 800 G4 DM, if HDMI cable isn't plugged before boot, the HDMI port
+becomes useless and never responds to cable hotplugging:
+[    3.031904] [drm:lspcon_init [i915]] *ERROR* Failed to probe lspcon
+[    3.031945] [drm:intel_ddi_init [i915]] *ERROR* LSPCON init failed on port D
+
+Seems like the lspcon chip on the system in question only gets powered
+after the cable is plugged.
+
+So let's call lspcon_init() dynamically to properly initialize the
+lspcon chip and make HDMI port work.
+
+Closes: https://gitlab.freedesktop.org/drm/intel/issues/203
+Signed-off-by: Kai-Heng Feng <kai.heng.feng@canonical.com>
+---
+v3:
+ - Make sure it's handled under long HPD case.
+
+v2: 
+ - Move lspcon_init() inside of intel_dp_hpd_pulse().
+
+ drivers/gpu/drm/i915/display/intel_dp.c | 8 +++++++-
+ 1 file changed, 7 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index fe31bbfd6c62..a72c9c041c60 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -6573,6 +6573,7 @@ enum irqreturn
+ intel_dp_hpd_pulse(struct intel_digital_port *intel_dig_port, bool long_hpd)
+ {
+ 	struct intel_dp *intel_dp = &intel_dig_port->dp;
++	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
+ 
+ 	if (long_hpd && intel_dig_port->base.type == INTEL_OUTPUT_EDP) {
+ 		/*
+@@ -6593,7 +6594,12 @@ intel_dp_hpd_pulse(struct intel_digital_port *intel_dig_port, bool long_hpd)
+ 		      long_hpd ? "long" : "short");
+ 
+ 	if (long_hpd) {
+-		intel_dp->reset_link_params = true;
++		if (intel_dig_port->base.type == INTEL_OUTPUT_DDI &&
++		    HAS_LSPCON(dev_priv) && !intel_dig_port->lspcon.active)
++			lspcon_init(intel_dig_port);
++		else
++			intel_dp->reset_link_params = true;
++
+ 		return IRQ_NONE;
+ 	}
+ 
+-- 
+2.17.1
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
