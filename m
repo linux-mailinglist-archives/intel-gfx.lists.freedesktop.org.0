@@ -1,34 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E773612A46B
-	for <lists+intel-gfx@lfdr.de>; Wed, 25 Dec 2019 00:15:31 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D79F12A4C3
+	for <lists+intel-gfx@lfdr.de>; Wed, 25 Dec 2019 00:53:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C161589C60;
-	Tue, 24 Dec 2019 23:15:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2F10989DEA;
+	Tue, 24 Dec 2019 23:53:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D965289C52
- for <intel-gfx@lists.freedesktop.org>; Tue, 24 Dec 2019 23:15:26 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 24 Dec 2019 15:15:26 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,353,1571727600"; d="scan'208";a="268512862"
-Received: from mdroper-desk1.fm.intel.com ([10.1.27.64])
- by FMSMGA003.fm.intel.com with ESMTP; 24 Dec 2019 15:15:26 -0800
-From: Matt Roper <matthew.d.roper@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 24 Dec 2019 15:15:21 -0800
-Message-Id: <20191224231521.3430660-1-matthew.d.roper@intel.com>
-X-Mailer: git-send-email 2.23.0
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 6420B89DEA;
+ Tue, 24 Dec 2019 23:53:33 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 5AED9A47DC;
+ Tue, 24 Dec 2019 23:53:33 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/tgl: Assume future platforms will
- inherit TGL's SFC capability
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matt Roper" <matthew.d.roper@intel.com>
+Date: Tue, 24 Dec 2019 23:53:33 -0000
+Message-ID: <157723161334.26088.4589761134128055545@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20191224231521.3430660-1-matthew.d.roper@intel.com>
+In-Reply-To: <20191224231521.3430660-1-matthew.d.roper@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
+ =?utf-8?q?/i915/tgl=3A_Assume_future_platforms_will_inherit_TGL=27s_SFC_c?=
+ =?utf-8?q?apability?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,40 +39,164 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Our usual i915 convention is to assume that future platforms will follow
-the same behavior as the latest platform of today.  The VDBOX/SFC
-capabilities described here don't seem like something that should be
-specific to TGL, so let's future-proof by making the test apply to all
-gen12+ platforms.
+== Series Details ==
 
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
----
- drivers/gpu/drm/i915/intel_device_info.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Series: drm/i915/tgl: Assume future platforms will inherit TGL's SFC capability
+URL   : https://patchwork.freedesktop.org/series/71371/
+State : failure
 
-diff --git a/drivers/gpu/drm/i915/intel_device_info.c b/drivers/gpu/drm/i915/intel_device_info.c
-index 1acb5db77431..bb709a08bd3c 100644
---- a/drivers/gpu/drm/i915/intel_device_info.c
-+++ b/drivers/gpu/drm/i915/intel_device_info.c
-@@ -1093,7 +1093,7 @@ void intel_device_info_init_mmio(struct drm_i915_private *dev_priv)
- 		 * hooked up to an SFC (Scaler & Format Converter) unit.
- 		 * In TGL each VDBOX has access to an SFC.
- 		 */
--		if (IS_TIGERLAKE(dev_priv) || logical_vdbox++ % 2 == 0)
-+		if (INTEL_GEN(dev_priv) >= 12 || logical_vdbox++ % 2 == 0)
- 			RUNTIME_INFO(dev_priv)->vdbox_sfc_access |= BIT(i);
- 	}
- 	DRM_DEBUG_DRIVER("vdbox enable: %04x, instances: %04lx\n",
--- 
-2.23.0
+== Summary ==
 
+CI Bug Log - changes from CI_DRM_7633 -> Patchwork_15920
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with Patchwork_15920 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_15920, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15920/index.html
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_15920:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@i915_selftest@live_gem_contexts:
+    - fi-kbl-x1275:       NOTRUN -> [DMESG-FAIL][1]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15920/fi-kbl-x1275/igt@i915_selftest@live_gem_contexts.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_15920 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_module_load@reload-with-fault-injection:
+    - fi-skl-6700k2:      [PASS][2] -> [INCOMPLETE][3] ([i915#671])
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7633/fi-skl-6700k2/igt@i915_module_load@reload-with-fault-injection.html
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15920/fi-skl-6700k2/igt@i915_module_load@reload-with-fault-injection.html
+
+  * igt@i915_selftest@live_gem_contexts:
+    - fi-hsw-peppy:       [PASS][4] -> [DMESG-FAIL][5] ([i915#722])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7633/fi-hsw-peppy/igt@i915_selftest@live_gem_contexts.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15920/fi-hsw-peppy/igt@i915_selftest@live_gem_contexts.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_exec_create@basic:
+    - {fi-tgl-u}:         [INCOMPLETE][6] ([fdo#111736]) -> [PASS][7]
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7633/fi-tgl-u/igt@gem_exec_create@basic.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15920/fi-tgl-u/igt@gem_exec_create@basic.html
+
+  * igt@i915_module_load@reload-with-fault-injection:
+    - fi-cfl-guc:         [INCOMPLETE][8] ([i915#505] / [i915#671]) -> [PASS][9]
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7633/fi-cfl-guc/igt@i915_module_load@reload-with-fault-injection.html
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15920/fi-cfl-guc/igt@i915_module_load@reload-with-fault-injection.html
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-skl-6770hq:      [FAIL][10] ([i915#178]) -> [PASS][11]
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7633/fi-skl-6770hq/igt@i915_pm_rpm@module-reload.html
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15920/fi-skl-6770hq/igt@i915_pm_rpm@module-reload.html
+
+  * igt@i915_selftest@live_blt:
+    - fi-hsw-4770:        [DMESG-FAIL][12] ([i915#563]) -> [PASS][13]
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7633/fi-hsw-4770/igt@i915_selftest@live_blt.html
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15920/fi-hsw-4770/igt@i915_selftest@live_blt.html
+
+  * igt@i915_selftest@live_dmabuf:
+    - fi-bwr-2160:        [FAIL][14] -> [PASS][15]
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7633/fi-bwr-2160/igt@i915_selftest@live_dmabuf.html
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15920/fi-bwr-2160/igt@i915_selftest@live_dmabuf.html
+
+  
+#### Warnings ####
+
+  * igt@i915_module_load@reload-with-fault-injection:
+    - fi-bxt-dsi:         [DMESG-WARN][16] -> [INCOMPLETE][17] ([fdo#103927])
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7633/fi-bxt-dsi/igt@i915_module_load@reload-with-fault-injection.html
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15920/fi-bxt-dsi/igt@i915_module_load@reload-with-fault-injection.html
+    - fi-kbl-x1275:       [INCOMPLETE][18] ([i915#879]) -> [DMESG-WARN][19] ([i915#62] / [i915#92] / [i915#95])
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7633/fi-kbl-x1275/igt@i915_module_load@reload-with-fault-injection.html
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15920/fi-kbl-x1275/igt@i915_module_load@reload-with-fault-injection.html
+
+  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:
+    - fi-kbl-x1275:       [DMESG-WARN][20] ([i915#62] / [i915#92]) -> [DMESG-WARN][21] ([i915#62] / [i915#92] / [i915#95]) +3 similar issues
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7633/fi-kbl-x1275/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15920/fi-kbl-x1275/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
+
+  * igt@kms_cursor_legacy@basic-flip-after-cursor-legacy:
+    - fi-kbl-x1275:       [DMESG-WARN][22] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][23] ([i915#62] / [i915#92]) +1 similar issue
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7633/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
+   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15920/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#103927]: https://bugs.freedesktop.org/show_bug.cgi?id=103927
+  [fdo#111736]: https://bugs.freedesktop.org/show_bug.cgi?id=111736
+  [i915#178]: https://gitlab.freedesktop.org/drm/intel/issues/178
+  [i915#435]: https://gitlab.freedesktop.org/drm/intel/issues/435
+  [i915#505]: https://gitlab.freedesktop.org/drm/intel/issues/505
+  [i915#563]: https://gitlab.freedesktop.org/drm/intel/issues/563
+  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
+  [i915#671]: https://gitlab.freedesktop.org/drm/intel/issues/671
+  [i915#722]: https://gitlab.freedesktop.org/drm/intel/issues/722
+  [i915#879]: https://gitlab.freedesktop.org/drm/intel/issues/879
+  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
+  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
+
+
+Participating hosts (48 -> 38)
+------------------------------
+
+  Additional (3): fi-hsw-4770r fi-kbl-7500u fi-snb-2600 
+  Missing    (13): fi-kbl-soraka fi-ilk-m540 fi-bdw-samus fi-hsw-4200u fi-byt-squawks fi-ilk-650 fi-ctg-p8600 fi-ivb-3770 fi-blb-e6850 fi-tgl-y fi-byt-clapper fi-bsw-nick fi-skl-6600u 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_7633 -> Patchwork_15920
+
+  CI-20190529: 20190529
+  CI_DRM_7633: 7670f977fb1bda159172900b243d14e4dded2886 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5352: 0586d205f651674e575351c2d5a7d0760716c9f1 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_15920: ea223c9d0227fb1f2dc1e82fe5fbb59090de00a8 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+ea223c9d0227 drm/i915/tgl: Assume future platforms will inherit TGL's SFC capability
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15920/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
