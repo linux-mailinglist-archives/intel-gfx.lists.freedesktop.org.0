@@ -1,40 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 40396129C07
-	for <lists+intel-gfx@lfdr.de>; Tue, 24 Dec 2019 01:17:53 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id CAB5E129C0A
+	for <lists+intel-gfx@lfdr.de>; Tue, 24 Dec 2019 01:23:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9D59B6E544;
-	Tue, 24 Dec 2019 00:17:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B41326E54C;
+	Tue, 24 Dec 2019 00:23:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8DB4F6E544
- for <intel-gfx@lists.freedesktop.org>; Tue, 24 Dec 2019 00:17:50 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C3E6F6E54C
+ for <intel-gfx@lists.freedesktop.org>; Tue, 24 Dec 2019 00:23:22 +0000 (UTC)
 X-Amp-Result: UNKNOWN
 X-Amp-Original-Verdict: FILE UNKNOWN
 X-Amp-File-Uploaded: False
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 23 Dec 2019 16:17:50 -0800
-X-IronPort-AV: E=Sophos;i="5.69,349,1571727600"; d="scan'208";a="219646098"
-Received: from ldmartin-desk1.jf.intel.com (HELO ldmartin-desk1)
- ([10.24.14.204])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 23 Dec 2019 16:17:49 -0800
-Date: Mon, 23 Dec 2019 16:17:44 -0800
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Matt Roper <matthew.d.roper@intel.com>
-Message-ID: <20191224001744.trefroqjqy5j3o5f@ldmartin-desk1>
-References: <20191223195850.25997-1-lucas.demarchi@intel.com>
- <20191223195850.25997-8-lucas.demarchi@intel.com>
- <20191224001044.GW2877816@mdroper-desk1.amr.corp.intel.com>
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 23 Dec 2019 16:23:21 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.69,349,1571727600"; d="scan'208";a="223111980"
+Received: from mdroper-desk1.fm.intel.com (HELO
+ mdroper-desk1.amr.corp.intel.com) ([10.1.27.64])
+ by fmsmga001.fm.intel.com with ESMTP; 23 Dec 2019 16:23:20 -0800
+Date: Mon, 23 Dec 2019 16:23:20 -0800
+From: Matt Roper <matthew.d.roper@intel.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+Message-ID: <20191224002320.GY2877816@mdroper-desk1.amr.corp.intel.com>
+References: <20191224000528.10630-1-lucas.demarchi@intel.com>
+ <20191224000528.10630-3-lucas.demarchi@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20191224001044.GW2877816@mdroper-desk1.amr.corp.intel.com>
-Subject: Re: [Intel-gfx] [PATCH 7/9] drm/i915/display: add phy,
- vbt and ddi indexes
+In-Reply-To: <20191224000528.10630-3-lucas.demarchi@intel.com>
+User-Agent: Mutt/1.12.1 (2019-06-15)
+Subject: Re: [Intel-gfx] [PATCH v4 02/10] drm/i915: prefer 3-letter acronym
+ for pineview
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,215 +48,284 @@ List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: intel-gfx@lists.freedesktop.org
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Dec 23, 2019 at 04:10:44PM -0800, Matt Roper wrote:
->On Mon, Dec 23, 2019 at 11:58:48AM -0800, Lucas De Marchi wrote:
->> Identify 3 possible cases in which the index numbers can be different
->> from the "port" and add them to the description-based ddi initialization
->> table.  This can be used in place of additional functions mapping from
->> on to the other.  Right now we already cover part of this by creating kind of
->> virtual phy numbering, but that comes with downsides:
->>
->> a) there's not really a "phy numbering" in the spec, this is purely a
->> software thing; hardware uses whatever they want thinking mapping from
->> one to the other arbitrarily is easy in software.
->>
->> b) currently the mapping occurs on "leaf" functions, making the decision
->> based on the platform.
->>
->> With this new table the approach will be: the port as defined by the
->> enum port is purely a driver convention and won't be used anymore to
->> define the register offset or register bits. For that we have the other
->> 3 indexes, identified as being possibly different from the current usage
->> of register bits: ddi, vbt and phy. The phy type is also added here,
->> meant to replace the checks for combo vs tc (although the helper
->> functions can remain so we may differentiate between, e.g. Dekel and MG
->> phys).
->>
->> While at it, also give names to the ports so they can be easily
->> identified.
->>
->> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
->> ---
->>  drivers/gpu/drm/i915/display/intel_display.c  | 54 +++++++++----------
->>  drivers/gpu/drm/i915/display/intel_display.h  |  7 +++
->>  .../drm/i915/display/intel_display_types.h    |  5 ++
->>  3 files changed, 39 insertions(+), 27 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
->> index ad85cf75c815..219f180fa395 100644
->> --- a/drivers/gpu/drm/i915/display/intel_display.c
->> +++ b/drivers/gpu/drm/i915/display/intel_display.c
->> @@ -16277,14 +16277,14 @@ static bool ddi_is_port_present(struct drm_i915_private *i915,
->>  static const struct intel_output tgl_output = {
->>  	.dsi_init = icl_dsi_init,
->>  	.ddi_ports = {
->> -		{ .port = PORT_A },
->> -		{ .port = PORT_B },
->> -		{ .port = PORT_D },
->> -		{ .port = PORT_E },
->> -		{ .port = PORT_F },
->> -		{ .port = PORT_G },
->> -		{ .port = PORT_H },
->> -		{ .port = PORT_I },
->> +		{ .name = "DDI A",   .port = PORT_A, .phy_type = PHY_TYPE_COMBO, .ddi_idx = 0x0, .phy_idx = 0x0, .vbt_idx = 0x0, },
->> +		{ .name = "DDI B",   .port = PORT_B, .phy_type = PHY_TYPE_COMBO, .ddi_idx = 0x1, .phy_idx = 0x1, .vbt_idx = 0x1, },
->> +		{ .name = "DDI TC1", .port = PORT_D, .phy_type = PHY_TYPE_TC,    .ddi_idx = 0x3, .phy_idx = 0x0, .vbt_idx = 0x2, },
->> +		{ .name = "DDI TC2", .port = PORT_E, .phy_type = PHY_TYPE_TC,    .ddi_idx = 0x4, .phy_idx = 0x1, .vbt_idx = 0x3, },
->> +		{ .name = "DDI TC3", .port = PORT_F, .phy_type = PHY_TYPE_TC,    .ddi_idx = 0x5, .phy_idx = 0x2, .vbt_idx = 0x4, },
->> +		{ .name = "DDI TC4", .port = PORT_G, .phy_type = PHY_TYPE_TC,    .ddi_idx = 0x6, .phy_idx = 0x3, .vbt_idx = 0x5, },
->> +		{ .name = "DDI TC5", .port = PORT_H, .phy_type = PHY_TYPE_TC,    .ddi_idx = 0x7, .phy_idx = 0x4, .vbt_idx = 0x6, },
->> +		{ .name = "DDI TC6", .port = PORT_I, .phy_type = PHY_TYPE_TC,    .ddi_idx = 0x8, .phy_idx = 0x5, .vbt_idx = 0x7, },
->>  		{ .port = PORT_NONE }
->>  	}
->>  };
->> @@ -16293,12 +16293,12 @@ static const struct intel_output icl_output = {
->>  	.dsi_init = icl_dsi_init,
->>  	.is_port_present = icl_is_port_present,
->>  	.ddi_ports = {
->> -		{ .port = PORT_A },
->> -		{ .port = PORT_B },
->> -		{ .port = PORT_C },
->> -		{ .port = PORT_D },
->> -		{ .port = PORT_E },
->> -		{ .port = PORT_F },
->> +		{ .name = "DDI A",   .port = PORT_A, .phy_type = PHY_TYPE_COMBO, .ddi_idx = 0x0, .phy_idx = 0x0, .vbt_idx = 0x0, },
->> +		{ .name = "DDI B",   .port = PORT_B, .phy_type = PHY_TYPE_COMBO, .ddi_idx = 0x1, .phy_idx = 0x1, .vbt_idx = 0x1, },
->> +		{ .name = "DDI TC1", .port = PORT_C, .phy_type = PHY_TYPE_TC,    .ddi_idx = 0x2, .phy_idx = 0x0, .vbt_idx = 0x2, },
->> +		{ .name = "DDI TC2", .port = PORT_D, .phy_type = PHY_TYPE_TC,    .ddi_idx = 0x3, .phy_idx = 0x1, .vbt_idx = 0x3, },
->> +		{ .name = "DDI TC3", .port = PORT_E, .phy_type = PHY_TYPE_TC,    .ddi_idx = 0x4, .phy_idx = 0x2, .vbt_idx = 0x4, },
->> +		{ .name = "DDI TC4", .port = PORT_F, .phy_type = PHY_TYPE_TC,    .ddi_idx = 0x5, .phy_idx = 0x3, .vbt_idx = 0x5, },
->>  		{ .port = PORT_NONE }
->>  	}
->>  };
->> @@ -16306,10 +16306,10 @@ static const struct intel_output icl_output = {
->>  static const struct intel_output ehl_output = {
->>  	.dsi_init = icl_dsi_init,
->>  	.ddi_ports = {
->> -		{ .port = PORT_A },
->> -		{ .port = PORT_B },
->> -		{ .port = PORT_C },
->> -		{ .port = PORT_D },
->> +		{ .name = "DDI A",   .port = PORT_A, .phy_type = PHY_TYPE_COMBO, .ddi_idx = 0x0, .phy_idx = 0x0, .vbt_idx = 0x0, },
->> +		{ .name = "DDI B",   .port = PORT_B, .phy_type = PHY_TYPE_COMBO, .ddi_idx = 0x1, .phy_idx = 0x1, .vbt_idx = 0x1, },
->> +		{ .name = "DDI C",   .port = PORT_C, .phy_type = PHY_TYPE_COMBO, .ddi_idx = 0x2, .phy_idx = 0x2, .vbt_idx = 0x2, },
->> +		{ .name = "DDI D",   .port = PORT_D, .phy_type = PHY_TYPE_COMBO, .ddi_idx = 0x3, .phy_idx = 0x0, .vbt_idx = 0x3, },
->>  		{ .port = PORT_NONE }
->>  	}
->>  };
->> @@ -16317,9 +16317,9 @@ static const struct intel_output ehl_output = {
->>  static const struct intel_output gen9lp_output = {
->>  	.dsi_init = vlv_dsi_init,
->>  	.ddi_ports = {
->> -		{ .port = PORT_A },
->> -		{ .port = PORT_B },
->> -		{ .port = PORT_C },
->> +		{ .name = "DDI A", .port = PORT_A, .ddi_idx = 0x0, .phy_idx = 0x0, .vbt_idx = 0x0 },
->> +		{ .name = "DDI B", .port = PORT_B, .ddi_idx = 0x1, .phy_idx = 0x1, .vbt_idx = 0x1 },
->> +		{ .name = "DDI C", .port = PORT_C, .ddi_idx = 0x2, .phy_idx = 0x2, .vbt_idx = 0x2 },
->>  		{ .port = PORT_NONE }
->>  	},
->>  };
->> @@ -16327,12 +16327,12 @@ static const struct intel_output gen9lp_output = {
->>  static const struct intel_output ddi_output = {
->>  	.is_port_present = ddi_is_port_present,
->>  	.ddi_ports = {
->> -		{ .port = PORT_A },
->> -		{ .port = PORT_B },
->> -		{ .port = PORT_C },
->> -		{ .port = PORT_D },
->> -		{ .port = PORT_E },
->> -		{ .port = PORT_F },
->> +		{ .name = "DDI A", .port = PORT_A, .ddi_idx = 0x0, .phy_idx = 0x0, .vbt_idx = 0x0 },
->> +		{ .name = "DDI B", .port = PORT_B, .ddi_idx = 0x1, .phy_idx = 0x1, .vbt_idx = 0x1 },
->> +		{ .name = "DDI C", .port = PORT_C, .ddi_idx = 0x2, .phy_idx = 0x2, .vbt_idx = 0x2 },
->> +		{ .name = "DDI D", .port = PORT_D, .ddi_idx = 0x3, .phy_idx = 0x3, .vbt_idx = 0x3 },
->> +		{ .name = "DDI E", .port = PORT_E, .ddi_idx = 0x4, .phy_idx = 0x4, .vbt_idx = 0x4 },
->> +		{ .name = "DDI F", .port = PORT_F, .ddi_idx = 0x5, .phy_idx = 0x5, .vbt_idx = 0x5 },
->>  		{ .port = PORT_NONE }
->>  	}
->>  };
->> diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/drm/i915/display/intel_display.h
->> index 05d68bd393dc..db19e5eee248 100644
->> --- a/drivers/gpu/drm/i915/display/intel_display.h
->> +++ b/drivers/gpu/drm/i915/display/intel_display.h
->> @@ -303,6 +303,13 @@ enum phy {
->>  	I915_MAX_PHYS
->>  };
->>
->> +enum phy_type {
->> +	PHY_TYPE_NONE = 0,
->> +
->> +	PHY_TYPE_COMBO,
->> +	PHY_TYPE_TC,
->> +};
->
->Why not go ahead and actually specify the true phy type in the enum?
->
->        enum phy_type {
->                PHY_TYPE_NONE = 0,
->
->                PHY_TYPE_COMBO,
->                PHY_TYPE_MG,
->                PHY_TYPE_DKL,
->                PHY_TYPE_FOO,
->                PHY_TYPE_BAR,
->        };
->
->and then once your series is complete the helpers can figure out whether
->something is "type c" with something like
->   type == MG || type == DKL || type == BAR
+On Mon, Dec 23, 2019 at 04:05:20PM -0800, Lucas De Marchi wrote:
+> We are currently using a mix of platform name and acronym to name the
+> functions. Let's prefer the acronym as it should be clear what platform
+> it's about and it's shorter, so it doesn't go over 80 columns in a few
+> cases. This converts pineview to pnv where appropriate.
+> =
 
-yeah, I thought about that but I couldn't find a compelling reason to
-differentiate DKL and MG.  There's only a single place where it could be
-useful, but I didn't convert enough of the driver to make sure it
-actually is.
+> v2: Add missing conversions in intel_pm.c (Matt Roper). While at it, fix
+> missing blank lines between structs that would otherwise trigger
+> checkpatch errors (Lucas)
+> =
 
-that's a good option indeed, I will think about it while doing the rest
-of the conversion if people agree with the general idea on this series.
+> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+> Acked-by: Jani Nikula <jani.nikula@linux.intel.com>
+> Acked-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
 
-thanks
-Lucas De Marchi
+Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
 
->
->
->Matt
->
->> +
->>  #define phy_name(a) ((a) + 'A')
->>
->>  enum phy_fia {
->> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
->> index 4d2f4ee35812..23a885895803 100644
->> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
->> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
->> @@ -1377,7 +1377,12 @@ struct intel_dp_mst_encoder {
->>  };
->>
->>  struct intel_ddi_port_info {
->> +	const char *name;
->>  	enum port port;
->> +	s8 phy_type;
->> +	u8 ddi_idx;
->> +	u8 phy_idx;
->> +	u8 vbt_idx;
->>  };
->>
->>  static inline enum dpio_channel
->> --
->> 2.24.0
->>
->
->-- 
->Matt Roper
->Graphics Software Engineer
->VTT-OSGC Platform Enablement
->Intel Corporation
->(916) 356-2795
+> ---
+>  drivers/gpu/drm/i915/display/intel_display.c |  8 ++--
+>  drivers/gpu/drm/i915/intel_pm.c              | 41 ++++++++++++--------
+>  2 files changed, 29 insertions(+), 20 deletions(-)
+> =
+
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/d=
+rm/i915/display/intel_display.c
+> index 652b8800d585..930362124808 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -370,7 +370,7 @@ static const struct intel_limit intel_limits_g4x_dual=
+_channel_lvds =3D {
+>  	},
+>  };
+>  =
+
+> -static const struct intel_limit intel_limits_pineview_sdvo =3D {
+> +static const struct intel_limit pnv_limits_sdvo =3D {
+>  	.dot =3D { .min =3D 20000, .max =3D 400000},
+>  	.vco =3D { .min =3D 1700000, .max =3D 3500000 },
+>  	/* Pineview's Ncounter is a ring counter */
+> @@ -385,7 +385,7 @@ static const struct intel_limit intel_limits_pineview=
+_sdvo =3D {
+>  		.p2_slow =3D 10, .p2_fast =3D 5 },
+>  };
+>  =
+
+> -static const struct intel_limit intel_limits_pineview_lvds =3D {
+> +static const struct intel_limit pnv_limits_lvds =3D {
+>  	.dot =3D { .min =3D 20000, .max =3D 400000 },
+>  	.vco =3D { .min =3D 1700000, .max =3D 3500000 },
+>  	.n =3D { .min =3D 3, .max =3D 6 },
+> @@ -8779,9 +8779,9 @@ static int pnv_crtc_compute_clock(struct intel_crtc=
+ *crtc,
+>  			DRM_DEBUG_KMS("using SSC reference clock of %d kHz\n", refclk);
+>  		}
+>  =
+
+> -		limit =3D &intel_limits_pineview_lvds;
+> +		limit =3D &pnv_limits_lvds;
+>  	} else {
+> -		limit =3D &intel_limits_pineview_sdvo;
+> +		limit =3D &pnv_limits_sdvo;
+>  	}
+>  =
+
+>  	if (!crtc_state->clock_set &&
+> diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel=
+_pm.c
+> index 31ec82337e4f..b55e9d2d2a83 100644
+> --- a/drivers/gpu/drm/i915/intel_pm.c
+> +++ b/drivers/gpu/drm/i915/intel_pm.c
+> @@ -140,7 +140,7 @@ static void glk_init_clock_gating(struct drm_i915_pri=
+vate *dev_priv)
+>  =
+
+>  }
+>  =
+
+> -static void i915_pineview_get_mem_freq(struct drm_i915_private *dev_priv)
+> +static void pnv_get_mem_freq(struct drm_i915_private *dev_priv)
+>  {
+>  	u32 tmp;
+>  =
+
+> @@ -549,34 +549,38 @@ static int i845_get_fifo_size(struct drm_i915_priva=
+te *dev_priv,
+>  }
+>  =
+
+>  /* Pineview has different values for various configs */
+> -static const struct intel_watermark_params pineview_display_wm =3D {
+> +static const struct intel_watermark_params pnv_display_wm =3D {
+>  	.fifo_size =3D PINEVIEW_DISPLAY_FIFO,
+>  	.max_wm =3D PINEVIEW_MAX_WM,
+>  	.default_wm =3D PINEVIEW_DFT_WM,
+>  	.guard_size =3D PINEVIEW_GUARD_WM,
+>  	.cacheline_size =3D PINEVIEW_FIFO_LINE_SIZE,
+>  };
+> -static const struct intel_watermark_params pineview_display_hplloff_wm =
+=3D {
+> +
+> +static const struct intel_watermark_params pnv_display_hplloff_wm =3D {
+>  	.fifo_size =3D PINEVIEW_DISPLAY_FIFO,
+>  	.max_wm =3D PINEVIEW_MAX_WM,
+>  	.default_wm =3D PINEVIEW_DFT_HPLLOFF_WM,
+>  	.guard_size =3D PINEVIEW_GUARD_WM,
+>  	.cacheline_size =3D PINEVIEW_FIFO_LINE_SIZE,
+>  };
+> -static const struct intel_watermark_params pineview_cursor_wm =3D {
+> +
+> +static const struct intel_watermark_params pnv_cursor_wm =3D {
+>  	.fifo_size =3D PINEVIEW_CURSOR_FIFO,
+>  	.max_wm =3D PINEVIEW_CURSOR_MAX_WM,
+>  	.default_wm =3D PINEVIEW_CURSOR_DFT_WM,
+>  	.guard_size =3D PINEVIEW_CURSOR_GUARD_WM,
+>  	.cacheline_size =3D PINEVIEW_FIFO_LINE_SIZE,
+>  };
+> -static const struct intel_watermark_params pineview_cursor_hplloff_wm =
+=3D {
+> +
+> +static const struct intel_watermark_params pnv_cursor_hplloff_wm =3D {
+>  	.fifo_size =3D PINEVIEW_CURSOR_FIFO,
+>  	.max_wm =3D PINEVIEW_CURSOR_MAX_WM,
+>  	.default_wm =3D PINEVIEW_CURSOR_DFT_WM,
+>  	.guard_size =3D PINEVIEW_CURSOR_GUARD_WM,
+>  	.cacheline_size =3D PINEVIEW_FIFO_LINE_SIZE,
+>  };
+> +
+>  static const struct intel_watermark_params i965_cursor_wm_info =3D {
+>  	.fifo_size =3D I965_CURSOR_FIFO,
+>  	.max_wm =3D I965_CURSOR_MAX_WM,
+> @@ -584,6 +588,7 @@ static const struct intel_watermark_params i965_curso=
+r_wm_info =3D {
+>  	.guard_size =3D 2,
+>  	.cacheline_size =3D I915_FIFO_LINE_SIZE,
+>  };
+> +
+>  static const struct intel_watermark_params i945_wm_info =3D {
+>  	.fifo_size =3D I945_FIFO_SIZE,
+>  	.max_wm =3D I915_MAX_WM,
+> @@ -591,6 +596,7 @@ static const struct intel_watermark_params i945_wm_in=
+fo =3D {
+>  	.guard_size =3D 2,
+>  	.cacheline_size =3D I915_FIFO_LINE_SIZE,
+>  };
+> +
+>  static const struct intel_watermark_params i915_wm_info =3D {
+>  	.fifo_size =3D I915_FIFO_SIZE,
+>  	.max_wm =3D I915_MAX_WM,
+> @@ -598,6 +604,7 @@ static const struct intel_watermark_params i915_wm_in=
+fo =3D {
+>  	.guard_size =3D 2,
+>  	.cacheline_size =3D I915_FIFO_LINE_SIZE,
+>  };
+> +
+>  static const struct intel_watermark_params i830_a_wm_info =3D {
+>  	.fifo_size =3D I855GM_FIFO_SIZE,
+>  	.max_wm =3D I915_MAX_WM,
+> @@ -605,6 +612,7 @@ static const struct intel_watermark_params i830_a_wm_=
+info =3D {
+>  	.guard_size =3D 2,
+>  	.cacheline_size =3D I830_FIFO_LINE_SIZE,
+>  };
+> +
+>  static const struct intel_watermark_params i830_bc_wm_info =3D {
+>  	.fifo_size =3D I855GM_FIFO_SIZE,
+>  	.max_wm =3D I915_MAX_WM/2,
+> @@ -612,6 +620,7 @@ static const struct intel_watermark_params i830_bc_wm=
+_info =3D {
+>  	.guard_size =3D 2,
+>  	.cacheline_size =3D I830_FIFO_LINE_SIZE,
+>  };
+> +
+>  static const struct intel_watermark_params i845_wm_info =3D {
+>  	.fifo_size =3D I830_FIFO_SIZE,
+>  	.max_wm =3D I915_MAX_WM,
+> @@ -848,7 +857,7 @@ static struct intel_crtc *single_enabled_crtc(struct =
+drm_i915_private *dev_priv)
+>  	return enabled;
+>  }
+>  =
+
+> -static void pineview_update_wm(struct intel_crtc *unused_crtc)
+> +static void pnv_update_wm(struct intel_crtc *unused_crtc)
+>  {
+>  	struct drm_i915_private *dev_priv =3D to_i915(unused_crtc->base.dev);
+>  	struct intel_crtc *crtc;
+> @@ -876,8 +885,8 @@ static void pineview_update_wm(struct intel_crtc *unu=
+sed_crtc)
+>  		int clock =3D adjusted_mode->crtc_clock;
+>  =
+
+>  		/* Display SR */
+> -		wm =3D intel_calculate_wm(clock, &pineview_display_wm,
+> -					pineview_display_wm.fifo_size,
+> +		wm =3D intel_calculate_wm(clock, &pnv_display_wm,
+> +					pnv_display_wm.fifo_size,
+>  					cpp, latency->display_sr);
+>  		reg =3D I915_READ(DSPFW1);
+>  		reg &=3D ~DSPFW_SR_MASK;
+> @@ -886,8 +895,8 @@ static void pineview_update_wm(struct intel_crtc *unu=
+sed_crtc)
+>  		DRM_DEBUG_KMS("DSPFW1 register is %x\n", reg);
+>  =
+
+>  		/* cursor SR */
+> -		wm =3D intel_calculate_wm(clock, &pineview_cursor_wm,
+> -					pineview_display_wm.fifo_size,
+> +		wm =3D intel_calculate_wm(clock, &pnv_cursor_wm,
+> +					pnv_display_wm.fifo_size,
+>  					4, latency->cursor_sr);
+>  		reg =3D I915_READ(DSPFW3);
+>  		reg &=3D ~DSPFW_CURSOR_SR_MASK;
+> @@ -895,8 +904,8 @@ static void pineview_update_wm(struct intel_crtc *unu=
+sed_crtc)
+>  		I915_WRITE(DSPFW3, reg);
+>  =
+
+>  		/* Display HPLL off SR */
+> -		wm =3D intel_calculate_wm(clock, &pineview_display_hplloff_wm,
+> -					pineview_display_hplloff_wm.fifo_size,
+> +		wm =3D intel_calculate_wm(clock, &pnv_display_hplloff_wm,
+> +					pnv_display_hplloff_wm.fifo_size,
+>  					cpp, latency->display_hpll_disable);
+>  		reg =3D I915_READ(DSPFW3);
+>  		reg &=3D ~DSPFW_HPLL_SR_MASK;
+> @@ -904,8 +913,8 @@ static void pineview_update_wm(struct intel_crtc *unu=
+sed_crtc)
+>  		I915_WRITE(DSPFW3, reg);
+>  =
+
+>  		/* cursor HPLL off SR */
+> -		wm =3D intel_calculate_wm(clock, &pineview_cursor_hplloff_wm,
+> -					pineview_display_hplloff_wm.fifo_size,
+> +		wm =3D intel_calculate_wm(clock, &pnv_cursor_hplloff_wm,
+> +					pnv_display_hplloff_wm.fifo_size,
+>  					4, latency->cursor_hpll_disable);
+>  		reg =3D I915_READ(DSPFW3);
+>  		reg &=3D ~DSPFW_HPLL_CURSOR_MASK;
+> @@ -7180,7 +7189,7 @@ void intel_init_pm(struct drm_i915_private *dev_pri=
+v)
+>  {
+>  	/* For cxsr */
+>  	if (IS_PINEVIEW(dev_priv))
+> -		i915_pineview_get_mem_freq(dev_priv);
+> +		pnv_get_mem_freq(dev_priv);
+>  	else if (IS_GEN(dev_priv, 5))
+>  		i915_ironlake_get_mem_freq(dev_priv);
+>  =
+
+> @@ -7238,7 +7247,7 @@ void intel_init_pm(struct drm_i915_private *dev_pri=
+v)
+>  			intel_set_memory_cxsr(dev_priv, false);
+>  			dev_priv->display.update_wm =3D NULL;
+>  		} else
+> -			dev_priv->display.update_wm =3D pineview_update_wm;
+> +			dev_priv->display.update_wm =3D pnv_update_wm;
+>  	} else if (IS_GEN(dev_priv, 4)) {
+>  		dev_priv->display.update_wm =3D i965_update_wm;
+>  	} else if (IS_GEN(dev_priv, 3)) {
+> -- =
+
+> 2.24.0
+> =
+
+
+-- =
+
+Matt Roper
+Graphics Software Engineer
+VTT-OSGC Platform Enablement
+Intel Corporation
+(916) 356-2795
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
