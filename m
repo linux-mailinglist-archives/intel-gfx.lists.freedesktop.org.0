@@ -2,32 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB0DE129F48
-	for <lists+intel-gfx@lfdr.de>; Tue, 24 Dec 2019 09:43:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1FF52129FA7
+	for <lists+intel-gfx@lfdr.de>; Tue, 24 Dec 2019 10:22:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1D0FA6E2ED;
-	Tue, 24 Dec 2019 08:43:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7262D89F55;
+	Tue, 24 Dec 2019 09:21:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5E6B86E2ED
- for <intel-gfx@lists.freedesktop.org>; Tue, 24 Dec 2019 08:43:44 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 24 Dec 2019 00:43:44 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,350,1571727600"; d="scan'208";a="207526246"
-Received: from ramaling-i9x.iind.intel.com ([10.99.66.154])
- by orsmga007.jf.intel.com with ESMTP; 24 Dec 2019 00:43:41 -0800
-From: Ramalingam C <ramalingam.c@intel.com>
-To: intel-gfx <intel-gfx@lists.freedesktop.org>
-Date: Tue, 24 Dec 2019 14:13:00 +0530
-Message-Id: <20191224084300.5435-1-ramalingam.c@intel.com>
-X-Mailer: git-send-email 2.20.1
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id E9A7089F55;
+ Tue, 24 Dec 2019 09:21:55 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id C0C51A0BC6;
+ Tue, 24 Dec 2019 09:21:55 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v4] drm/i915/lmem: debugfs for LMEM details
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Lucas De Marchi" <lucas.demarchi@intel.com>
+Date: Tue, 24 Dec 2019 09:21:55 -0000
+Message-ID: <157717931576.26087.18076166118893454344@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20191224084012.24241-1-lucas.demarchi@intel.com>
+In-Reply-To: <20191224084012.24241-1-lucas.demarchi@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5BCI=2C01/10=5D_drm/i915=3A_simplify_prefixe?=
+ =?utf-8?q?s_on_device=5Finfo?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,136 +39,162 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Lukasz Fiedorowicz <lukasz.fiedorowicz@intel.com>
+== Series Details ==
 
-Debugfs i915_gem_object is extended to enable the IGTs to
-detect the LMEM's availability and the total size of LMEM.
+Series: series starting with [CI,01/10] drm/i915: simplify prefixes on device_info
+URL   : https://patchwork.freedesktop.org/series/71341/
+State : failure
 
-v2: READ_ONCE is used [Chris]
-v3: %pa is used for printing the resource [Chris]
-v4: All regions' details added to debugfs [Chris]
+== Summary ==
 
-Signed-off-by: Lukasz Fiedorowicz <lukasz.fiedorowicz@intel.com>
-Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-Signed-off-by: Stuart Summers <stuart.summers@intel.com>
-Signed-off-by: Ramalingam C <ramalingam.c@intel.com>
-Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
----
- drivers/gpu/drm/i915/i915_debugfs.c        | 12 +++++++++++-
- drivers/gpu/drm/i915/intel_memory_region.c | 19 ++++++++++++++++++-
- drivers/gpu/drm/i915/intel_memory_region.h |  4 ++++
- 3 files changed, 33 insertions(+), 2 deletions(-)
+CI Bug Log - changes from CI_DRM_7630 -> Patchwork_15913
+====================================================
 
-diff --git a/drivers/gpu/drm/i915/i915_debugfs.c b/drivers/gpu/drm/i915/i915_debugfs.c
-index d28468eaed57..35f8db7690a5 100644
---- a/drivers/gpu/drm/i915/i915_debugfs.c
-+++ b/drivers/gpu/drm/i915/i915_debugfs.c
-@@ -367,13 +367,23 @@ static void print_context_stats(struct seq_file *m,
- static int i915_gem_object_info(struct seq_file *m, void *data)
- {
- 	struct drm_i915_private *i915 = node_to_i915(m->private);
-+	struct intel_memory_region *mem;
-+	enum intel_region_id id;
- 
- 	seq_printf(m, "%u shrinkable [%u free] objects, %llu bytes\n",
- 		   i915->mm.shrink_count,
- 		   atomic_read(&i915->mm.free_count),
- 		   i915->mm.shrink_memory);
- 
--	seq_putc(m, '\n');
-+	for (id = INTEL_REGION_SMEM; id < INTEL_REGION_UNKNOWN; id++) {
-+		mem = i915->mm.regions[id];
-+		if (!mem)
-+			continue;
-+
-+		seq_printf(m, "%s total: %pa bytes, available %pa bytes\n",
-+			   intel_get_mem_region_name(mem), &mem->total,
-+			   &mem->avail);
-+	}
- 
- 	print_context_stats(m, i915);
- 
-diff --git a/drivers/gpu/drm/i915/intel_memory_region.c b/drivers/gpu/drm/i915/intel_memory_region.c
-index e24c280e5930..824aa13e993d 100644
---- a/drivers/gpu/drm/i915/intel_memory_region.c
-+++ b/drivers/gpu/drm/i915/intel_memory_region.c
-@@ -10,6 +10,20 @@
- #define REGION_MAP(type, inst) \
- 	BIT((type) + INTEL_MEMORY_TYPE_SHIFT) | BIT(inst)
- 
-+char *intel_get_mem_region_name(struct intel_memory_region *mem)
-+{
-+	switch (MEMORY_TYPE_FROM_REGION(mem->id)) {
-+	case INTEL_REGION_SMEM:
-+		return "SYSTEM MEM";
-+	case INTEL_REGION_LMEM:
-+		return "LOCAL MEM";
-+	case INTEL_REGION_STOLEN:
-+		return "STOLEN MEM";
-+	default:
-+		return NULL;
-+	}
-+}
-+
- const u32 intel_region_map[] = {
- 	[INTEL_REGION_SMEM] = REGION_MAP(INTEL_MEMORY_SYSTEM, 0),
- 	[INTEL_REGION_LMEM] = REGION_MAP(INTEL_MEMORY_LOCAL, 0),
-@@ -37,7 +51,7 @@ __intel_memory_region_put_pages_buddy(struct intel_memory_region *mem,
- 				      struct list_head *blocks)
- {
- 	mutex_lock(&mem->mm_lock);
--	intel_memory_region_free_pages(mem, blocks);
-+	mem->avail += intel_memory_region_free_pages(mem, blocks);
- 	mutex_unlock(&mem->mm_lock);
- }
- 
-@@ -106,6 +120,7 @@ __intel_memory_region_get_pages_buddy(struct intel_memory_region *mem,
- 			break;
- 	} while (1);
- 
-+	mem->avail -= size;
- 	mutex_unlock(&mem->mm_lock);
- 	return 0;
- 
-@@ -164,6 +179,8 @@ intel_memory_region_create(struct drm_i915_private *i915,
- 	mem->io_start = io_start;
- 	mem->min_page_size = min_page_size;
- 	mem->ops = ops;
-+	mem->total = size;
-+	mem->avail = mem->total;
- 
- 	mutex_init(&mem->objects.lock);
- 	INIT_LIST_HEAD(&mem->objects.list);
-diff --git a/drivers/gpu/drm/i915/intel_memory_region.h b/drivers/gpu/drm/i915/intel_memory_region.h
-index 238722009677..c312f93fc94d 100644
---- a/drivers/gpu/drm/i915/intel_memory_region.h
-+++ b/drivers/gpu/drm/i915/intel_memory_region.h
-@@ -82,6 +82,8 @@ struct intel_memory_region {
- 
- 	resource_size_t io_start;
- 	resource_size_t min_page_size;
-+	resource_size_t total;
-+	resource_size_t avail;
- 
- 	unsigned int type;
- 	unsigned int instance;
-@@ -96,6 +98,8 @@ struct intel_memory_region {
- 	} objects;
- };
- 
-+char *intel_get_mem_region_name(struct intel_memory_region *mem);
-+
- int intel_memory_region_init_buddy(struct intel_memory_region *mem);
- void intel_memory_region_release_buddy(struct intel_memory_region *mem);
- 
--- 
-2.20.1
+Summary
+-------
 
+  **FAILURE**
+
+  Serious unknown changes coming with Patchwork_15913 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_15913, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15913/index.html
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_15913:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@gem_exec_basic@basic-all:
+    - fi-byt-n2820:       [PASS][1] -> [FAIL][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7630/fi-byt-n2820/igt@gem_exec_basic@basic-all.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15913/fi-byt-n2820/igt@gem_exec_basic@basic-all.html
+
+  
+#### Suppressed ####
+
+  The following results come from untrusted machines, tests, or statuses.
+  They do not affect the overall result.
+
+  * igt@kms_pipe_crc_basic@nonblocking-crc-pipe-a:
+    - {fi-kbl-7560u}:     NOTRUN -> [WARN][3] +10 similar issues
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15913/fi-kbl-7560u/igt@kms_pipe_crc_basic@nonblocking-crc-pipe-a.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_15913 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_sync@basic-store-each:
+    - fi-tgl-y:           [PASS][4] -> [INCOMPLETE][5] ([i915#435] / [i915#472])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7630/fi-tgl-y/igt@gem_sync@basic-store-each.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15913/fi-tgl-y/igt@gem_sync@basic-store-each.html
+
+  * igt@kms_frontbuffer_tracking@basic:
+    - fi-hsw-peppy:       [PASS][6] -> [DMESG-WARN][7] ([i915#44])
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7630/fi-hsw-peppy/igt@kms_frontbuffer_tracking@basic.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15913/fi-hsw-peppy/igt@kms_frontbuffer_tracking@basic.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_exec_create@basic:
+    - {fi-tgl-u}:         [INCOMPLETE][8] ([fdo#111736]) -> [PASS][9]
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7630/fi-tgl-u/igt@gem_exec_create@basic.html
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15913/fi-tgl-u/igt@gem_exec_create@basic.html
+
+  * igt@i915_module_load@reload-with-fault-injection:
+    - fi-cfl-8700k:       [INCOMPLETE][10] ([i915#505]) -> [PASS][11]
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7630/fi-cfl-8700k/igt@i915_module_load@reload-with-fault-injection.html
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15913/fi-cfl-8700k/igt@i915_module_load@reload-with-fault-injection.html
+
+  * igt@i915_selftest@live_memory_region:
+    - fi-bwr-2160:        [FAIL][12] -> [PASS][13]
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7630/fi-bwr-2160/igt@i915_selftest@live_memory_region.html
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15913/fi-bwr-2160/igt@i915_selftest@live_memory_region.html
+
+  
+#### Warnings ####
+
+  * igt@i915_module_load@reload-with-fault-injection:
+    - fi-kbl-x1275:       [DMESG-WARN][14] ([i915#62] / [i915#92]) -> [DMESG-WARN][15] ([i915#62] / [i915#92] / [i915#95]) +3 similar issues
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7630/fi-kbl-x1275/igt@i915_module_load@reload-with-fault-injection.html
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15913/fi-kbl-x1275/igt@i915_module_load@reload-with-fault-injection.html
+
+  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:
+    - fi-kbl-x1275:       [DMESG-WARN][16] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][17] ([i915#62] / [i915#92]) +8 similar issues
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7630/fi-kbl-x1275/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15913/fi-kbl-x1275/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#111736]: https://bugs.freedesktop.org/show_bug.cgi?id=111736
+  [i915#435]: https://gitlab.freedesktop.org/drm/intel/issues/435
+  [i915#44]: https://gitlab.freedesktop.org/drm/intel/issues/44
+  [i915#472]: https://gitlab.freedesktop.org/drm/intel/issues/472
+  [i915#505]: https://gitlab.freedesktop.org/drm/intel/issues/505
+  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
+  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
+  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
+
+
+Participating hosts (43 -> 44)
+------------------------------
+
+  Additional (8): fi-byt-j1900 fi-skl-6770hq fi-glk-dsi fi-whl-u fi-gdg-551 fi-ivb-3770 fi-kbl-7560u fi-snb-2600 
+  Missing    (7): fi-kbl-soraka fi-ilk-m540 fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_7630 -> Patchwork_15913
+
+  CI-20190529: 20190529
+  CI_DRM_7630: 28a2aa0ebf1520ea8a0dd89299f7ceea80dfd96f @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5352: 0586d205f651674e575351c2d5a7d0760716c9f1 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_15913: 18ae683fdb99300464353232ff1142b36e389097 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+18ae683fdb99 drm/i915: prefer 3-letter acronym for tigerlake
+74a3b3907b01 drm/i915: prefer 3-letter acronym for ivybridge
+0b2371a21c10 drm/i915: prefer 3-letter acronym for broadwell
+6c575419c24d drm/i915: prefer 3-letter acronym for ironlake
+444ed33824b7 drm/i915: prefer 3-letter acronym for icelake
+d057272ddf16 drm/i915: prefer 3-letter acronym for cannonlake
+be2130b9f1fa drm/i915: prefer 3-letter acronym for skylake
+8f55a932e519 drm/i915: prefer 3-letter acronym for haswell
+22b8aeef43c4 drm/i915: prefer 3-letter acronym for pineview
+23a8e66b38ab drm/i915: simplify prefixes on device_info
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15913/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
