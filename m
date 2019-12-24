@@ -1,40 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA7F3129BEB
-	for <lists+intel-gfx@lfdr.de>; Tue, 24 Dec 2019 01:01:00 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4635F129BEA
+	for <lists+intel-gfx@lfdr.de>; Tue, 24 Dec 2019 01:00:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 03FE26E504;
-	Tue, 24 Dec 2019 00:00:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 028036E4FB;
+	Tue, 24 Dec 2019 00:00:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E83E96E504
- for <intel-gfx@lists.freedesktop.org>; Tue, 24 Dec 2019 00:00:56 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-X-Amp-File-Uploaded: False
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 23 Dec 2019 16:00:48 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,349,1571727600"; d="scan'208";a="418830007"
-Received: from mdroper-desk1.fm.intel.com (HELO
- mdroper-desk1.amr.corp.intel.com) ([10.1.27.64])
- by fmsmga006.fm.intel.com with ESMTP; 23 Dec 2019 16:00:48 -0800
-Date: Mon, 23 Dec 2019 16:00:48 -0800
-From: Matt Roper <matthew.d.roper@intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-Message-ID: <20191224000048.GV2877816@mdroper-desk1.amr.corp.intel.com>
-References: <20191223195850.25997-1-lucas.demarchi@intel.com>
- <20191223195850.25997-6-lucas.demarchi@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 405616E4FB;
+ Tue, 24 Dec 2019 00:00:51 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 38EDAA0BCB;
+ Tue, 24 Dec 2019 00:00:51 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20191223195850.25997-6-lucas.demarchi@intel.com>
-User-Agent: Mutt/1.12.1 (2019-06-15)
-Subject: Re: [Intel-gfx] [PATCH 5/9] drm/i915/display: move icl to
- description-based ddi init
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Lucas De Marchi" <lucas.demarchi@intel.com>
+Date: Tue, 24 Dec 2019 00:00:51 -0000
+Message-ID: <157714565120.26087.12234827465449187611@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20191220220650.16349-1-lucas.demarchi@intel.com>
+In-Reply-To: <20191220220650.16349-1-lucas.demarchi@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/display=3A_nuke_skl_workaround_for_pre-production_hw_=28r?=
+ =?utf-8?q?ev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,147 +39,125 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Dec 23, 2019 at 11:58:46AM -0800, Lucas De Marchi wrote:
-> By adding a hook that determines if a port is present, we are able to
-> support Ice Lake in the new description-based DDI initialization.
-> 
-> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_display.c | 61 ++++++++++++++------
->  1 file changed, 42 insertions(+), 19 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> index b3fb1e03cb0b..6b4d320ff92c 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -16224,9 +16224,28 @@ static void intel_pps_init(struct drm_i915_private *dev_priv)
->  struct intel_output {
->  	/* Initialize DSI if present */
->  	void (*dsi_init)(struct drm_i915_private *i915);
-> +
-> +	/*
-> +	 * Check if port is present before trying to initialize; if not provided
-> +	 * it's assumed the port is present (or we can't check and fail
-> +	 * gracefully
-> +	 */
-> +	bool (*is_port_present)(struct drm_i915_private *i915,
-> +				const struct intel_ddi_port_info *port_info);
-> +
->  	struct intel_ddi_port_info ddi_ports[];
->  };
->  
-> +static bool icl_is_port_present(struct drm_i915_private *i915,
-> +				const struct intel_ddi_port_info *port_info)
-> +{
-> +	if (port_info->port != PORT_F)
-> +		return true;
-> +
-> +	return IS_ICL_WITH_PORT_F(i915) &&
-> +		intel_bios_is_port_present(i915, PORT_F);
-> +}
-> +
->  static const struct intel_output tgl_output = {
->  	.dsi_init = icl_dsi_init,
->  	.ddi_ports = {
-> @@ -16242,6 +16261,20 @@ static const struct intel_output tgl_output = {
->  	}
->  };
->  
-> +static const struct intel_output icl_output = {
-> +	.dsi_init = icl_dsi_init,
-> +	.is_port_present = icl_is_port_present,
-> +	.ddi_ports = {
-> +		{ .port = PORT_A },
-> +		{ .port = PORT_B },
-> +		{ .port = PORT_C },
-> +		{ .port = PORT_D },
-> +		{ .port = PORT_E },
-> +		{ .port = PORT_F },
-> +		{ .port = PORT_NONE }
-> +	}
+== Series Details ==
 
-As we add more platforms, I could see there being multiple reasons to
-disqualify outputs that we mix and match across platforms (e.g.,
-dedicated fuse + hw workaround + some new platform thing).  Maybe rather
-than adding a per-platform detection funtion pointer at the top level,
-we could add a detect_flags variable to .ddi_ports that indicates which
-style(s) of detection should be applied?  Only if we satisfy the test
-associated with each flag would the output get initialized.
+Series: drm/i915/display: nuke skl workaround for pre-production hw (rev2)
+URL   : https://patchwork.freedesktop.org/series/71230/
+State : success
 
-But I might be overthinking this.  Up to you.
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_7630 -> Patchwork_15906
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15906/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_15906 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_module_load@reload-with-fault-injection:
+    - fi-cfl-guc:         [PASS][1] -> [INCOMPLETE][2] ([i915#505] / [i915#671])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7630/fi-cfl-guc/igt@i915_module_load@reload-with-fault-injection.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15906/fi-cfl-guc/igt@i915_module_load@reload-with-fault-injection.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_exec_create@basic:
+    - {fi-tgl-u}:         [INCOMPLETE][3] ([fdo#111736]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7630/fi-tgl-u/igt@gem_exec_create@basic.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15906/fi-tgl-u/igt@gem_exec_create@basic.html
+
+  * igt@i915_selftest@live_execlists:
+    - fi-kbl-soraka:      [DMESG-FAIL][5] ([i915#656]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7630/fi-kbl-soraka/igt@i915_selftest@live_execlists.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15906/fi-kbl-soraka/igt@i915_selftest@live_execlists.html
+
+  * igt@i915_selftest@live_memory_region:
+    - fi-bwr-2160:        [FAIL][7] -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7630/fi-bwr-2160/igt@i915_selftest@live_memory_region.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15906/fi-bwr-2160/igt@i915_selftest@live_memory_region.html
+
+  
+#### Warnings ####
+
+  * igt@i915_selftest@live_blt:
+    - fi-hsw-4770:        [DMESG-FAIL][9] ([i915#725]) -> [DMESG-FAIL][10] ([i915#553] / [i915#725])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7630/fi-hsw-4770/igt@i915_selftest@live_blt.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15906/fi-hsw-4770/igt@i915_selftest@live_blt.html
+
+  * igt@kms_busy@basic-flip-pipe-b:
+    - fi-kbl-x1275:       [DMESG-WARN][11] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][12] ([i915#62] / [i915#92]) +6 similar issues
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7630/fi-kbl-x1275/igt@kms_busy@basic-flip-pipe-b.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15906/fi-kbl-x1275/igt@kms_busy@basic-flip-pipe-b.html
+
+  * igt@kms_force_connector_basic@prune-stale-modes:
+    - fi-kbl-x1275:       [DMESG-WARN][13] ([i915#62] / [i915#92]) -> [DMESG-WARN][14] ([i915#62] / [i915#92] / [i915#95]) +6 similar issues
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7630/fi-kbl-x1275/igt@kms_force_connector_basic@prune-stale-modes.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15906/fi-kbl-x1275/igt@kms_force_connector_basic@prune-stale-modes.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#111736]: https://bugs.freedesktop.org/show_bug.cgi?id=111736
+  [i915#435]: https://gitlab.freedesktop.org/drm/intel/issues/435
+  [i915#505]: https://gitlab.freedesktop.org/drm/intel/issues/505
+  [i915#553]: https://gitlab.freedesktop.org/drm/intel/issues/553
+  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
+  [i915#656]: https://gitlab.freedesktop.org/drm/intel/issues/656
+  [i915#671]: https://gitlab.freedesktop.org/drm/intel/issues/671
+  [i915#725]: https://gitlab.freedesktop.org/drm/intel/issues/725
+  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
+  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
 
 
-Matt
+Participating hosts (43 -> 38)
+------------------------------
 
-> +};
-> +
->  static const struct intel_output ehl_output = {
->  	.dsi_init = icl_dsi_init,
->  	.ddi_ports = {
-> @@ -16276,12 +16309,19 @@ static void setup_ddi_outputs_desc(struct drm_i915_private *i915)
->  		output = &tgl_output;
->  	else if (IS_ELKHARTLAKE(i915))
->  		output = &ehl_output;
-> +	else if (IS_GEN(i915, 11))
-> +		output = &icl_output;
->  	else if (IS_GEN9_LP(i915))
->  		output = &gen9lp_output;
->  
->  	for (port_info = output->ddi_ports;
-> -	     port_info->port != PORT_NONE; port_info++)
-> +	     port_info->port != PORT_NONE; port_info++) {
-> +		if (output->is_port_present &&
-> +		    !output->is_port_present(i915, port_info))
-> +			continue;
-> +
->  		intel_ddi_init(i915, port_info->port);
-> +	}
->  
->  	if (output->dsi_init)
->  		output->dsi_init(i915);
-> @@ -16297,25 +16337,8 @@ static void intel_setup_outputs(struct drm_i915_private *dev_priv)
->  	if (!HAS_DISPLAY(dev_priv) || !INTEL_DISPLAY_ENABLED(dev_priv))
->  		return;
->  
-> -	if (INTEL_GEN(dev_priv) >= 12 || IS_ELKHARTLAKE(dev_priv) ||
-> -	    IS_GEN9_LP(dev_priv)) {
-> +	if (INTEL_GEN(dev_priv) >= 11 || IS_GEN9_LP(dev_priv)) {
->  		setup_ddi_outputs_desc(dev_priv);
-> -	} else if (IS_GEN(dev_priv, 11)) {
-> -		intel_ddi_init(dev_priv, PORT_A);
-> -		intel_ddi_init(dev_priv, PORT_B);
-> -		intel_ddi_init(dev_priv, PORT_C);
-> -		intel_ddi_init(dev_priv, PORT_D);
-> -		intel_ddi_init(dev_priv, PORT_E);
-> -		/*
-> -		 * On some ICL SKUs port F is not present. No strap bits for
-> -		 * this, so rely on VBT.
-> -		 * Work around broken VBTs on SKUs known to have no port F.
-> -		 */
-> -		if (IS_ICL_WITH_PORT_F(dev_priv) &&
-> -		    intel_bios_is_port_present(dev_priv, PORT_F))
-> -			intel_ddi_init(dev_priv, PORT_F);
-> -
-> -		icl_dsi_init(dev_priv);
->  	} else if (HAS_DDI(dev_priv)) {
->  		int found;
->  
-> -- 
-> 2.24.0
-> 
+  Additional (6): fi-hsw-4770r fi-skl-6770hq fi-glk-dsi fi-whl-u fi-ivb-3770 fi-bsw-nick 
+  Missing    (11): fi-ilk-m540 fi-bsw-n3050 fi-byt-squawks fi-bsw-cyan fi-tgl-y fi-ctg-p8600 fi-blb-e6850 fi-byt-n2820 fi-byt-clapper fi-bdw-samus fi-kbl-r 
 
--- 
-Matt Roper
-Graphics Software Engineer
-VTT-OSGC Platform Enablement
-Intel Corporation
-(916) 356-2795
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_7630 -> Patchwork_15906
+
+  CI-20190529: 20190529
+  CI_DRM_7630: 28a2aa0ebf1520ea8a0dd89299f7ceea80dfd96f @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5352: 0586d205f651674e575351c2d5a7d0760716c9f1 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_15906: 4e4667cba36744fe229627ebd76b0d3298a79b33 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+4e4667cba367 drm/i915/display: nuke skl workaround for pre-production hw
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15906/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
