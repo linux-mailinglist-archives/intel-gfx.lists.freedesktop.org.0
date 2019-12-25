@@ -2,30 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BBA7B12A6A7
-	for <lists+intel-gfx@lfdr.de>; Wed, 25 Dec 2019 09:06:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 534A412A820
+	for <lists+intel-gfx@lfdr.de>; Wed, 25 Dec 2019 14:08:16 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ED4D389CD7;
-	Wed, 25 Dec 2019 08:06:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5588889E59;
+	Wed, 25 Dec 2019 13:08:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id D6D0E89CC1;
- Wed, 25 Dec 2019 08:06:49 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id CDEC9A0BA8;
- Wed, 25 Dec 2019 08:06:49 +0000 (UTC)
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 487C289E59
+ for <intel-gfx@lists.freedesktop.org>; Wed, 25 Dec 2019 13:08:12 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19689857-1500050 
+ for multiple; Wed, 25 Dec 2019 13:08:01 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 25 Dec 2019 13:07:58 +0000
+Message-Id: <20191225130800.2428793-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.24.1
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ebrahim Byagowi" <ebrahim@gnu.org>
-Date: Wed, 25 Dec 2019 08:06:49 -0000
-Message-ID: <157726120984.4280.10761564268344159227@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <5cf1d94b-d076-9d99-13ef-cf26dec10430@gnu.org>
-In-Reply-To: <5cf1d94b-d076-9d99-13ef-cf26dec10430@gnu.org>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBk?=
- =?utf-8?q?rm/i915=3A_Fix_enable_OA_report_logic?=
+Subject: [Intel-gfx] [PATCH 1/3] drm/i915/gt: Ignore stale context state
+ upon resume
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,33 +37,43 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+---
+ drivers/gpu/drm/i915/gt/intel_lrc.c | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-Series: drm/i915: Fix enable OA report logic
-URL   : https://patchwork.freedesktop.org/series/71373/
-State : failure
-
-== Summary ==
-
-Applying: drm/i915: Fix enable OA report logic
-Using index info to reconstruct a base tree...
-M	drivers/gpu/drm/i915/i915_perf.c
-Falling back to patching base and 3-way merge...
-Auto-merging drivers/gpu/drm/i915/i915_perf.c
-CONFLICT (content): Merge conflict in drivers/gpu/drm/i915/i915_perf.c
-error: Failed to merge in the changes.
-hint: Use 'git am --show-current-patch' to see the failed patch
-Patch failed at 0001 drm/i915: Fix enable OA report logic
-When you have resolved this problem, run "git am --continue".
-If you prefer to skip this patch, run "git am --skip" instead.
-To restore the original branch and stop patching, run "git am --abort".
+diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+index 4fb70a7716e3..12f5241bf0fa 100644
+--- a/drivers/gpu/drm/i915/gt/intel_lrc.c
++++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+@@ -2494,6 +2494,8 @@ static int execlists_context_alloc(struct intel_context *ce)
+ 
+ static void execlists_context_reset(struct intel_context *ce)
+ {
++	GEM_BUG_ON(!intel_context_is_pinned(ce));
++
+ 	/*
+ 	 * Because we emit WA_TAIL_DWORDS there may be a disparity
+ 	 * between our bookkeeping in ce->ring->head and ce->ring->tail and
+@@ -2511,7 +2513,11 @@ static void execlists_context_reset(struct intel_context *ce)
+ 	 * simplicity, we just zero everything out.
+ 	 */
+ 	intel_ring_reset(ce->ring, 0);
++
+ 	__execlists_update_reg_state(ce, ce->engine);
++	ce->lrc_reg_state[CTX_CONTEXT_CONTROL] |=
++		_MASKED_BIT_ENABLE(CTX_CTRL_ENGINE_CTX_RESTORE_INHIBIT);
++	ce->lrc_desc |= CTX_DESC_FORCE_RESTORE;
+ }
+ 
+ static const struct intel_context_ops execlists_context_ops = {
+-- 
+2.24.1
 
 _______________________________________________
 Intel-gfx mailing list
