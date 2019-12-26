@@ -1,53 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4814512AD95
-	for <lists+intel-gfx@lfdr.de>; Thu, 26 Dec 2019 18:03:47 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 84DC512AD9B
+	for <lists+intel-gfx@lfdr.de>; Thu, 26 Dec 2019 18:12:26 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2F0E689C69;
-	Thu, 26 Dec 2019 17:03:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6998689C49;
+	Thu, 26 Dec 2019 17:12:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-x341.google.com (mail-wm1-x341.google.com
- [IPv6:2a00:1450:4864:20::341])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D3F3289C69
- for <intel-gfx@lists.freedesktop.org>; Thu, 26 Dec 2019 17:03:42 +0000 (UTC)
-Received: by mail-wm1-x341.google.com with SMTP id u2so6461998wmc.3
- for <intel-gfx@lists.freedesktop.org>; Thu, 26 Dec 2019 09:03:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=LwNCLy0scVhcHHs6IiZIqubyWBC4aBKtt9CS9oD9Xzs=;
- b=WsG4Vqm23o/KCM76qat/NkwszXMF8TXDgNL2wa2Xlzjz66QM+aLxLgn6tcxawJJZi6
- ndCp/P9yAJ1wcQ/GiUKSmyNg/MUtnZfzZLM4waRTEv4usnqD/JkKCdK1ZG6cOAMYLc/+
- qB4dAdY3nFernI67JM7xSyDAmcs9tq9HrrXsdxid52EZHLbOiW3i7000XVjLbiqf5/Wd
- u0CS9xYNt16Ft7lbsl3tcPeq3q8t/os1fDXVUJt8zVLmw7zLLayzvGfT43rHNwBPGEp6
- pklorE0+QCKUvEXKM+aeYA/XZMMQaKj9/sqLVRbUl4T0x607XDGfaovRyvMnFJqYCXqZ
- TILw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=LwNCLy0scVhcHHs6IiZIqubyWBC4aBKtt9CS9oD9Xzs=;
- b=Y1EnPRnRk/REzw5wW9qYxlZX+6s+UqLx8KQguKSSlyhPJXtn8QRkk3R0pUMIR4/13C
- k5yclkNzZvA/ne3sXJg/bj4jBra9S6nuiru5ojfNvnbNB9qOR4D/pp2qC5iFV+BFA07n
- VLiy/L1ei58ak50WhEnoT8fh7CO/o0Uy7DgKH9P/GHB6brJp1zqUG0CeDW1cSdq5dEy5
- kkyv2WVnDJuPLEsp/9bG/rdDPwqWl10HLzdzQGEaQPfq19sMFMIJZ1Yh+hlr/dsAhORU
- ch9TBhSN5XBl4fG02EHOS6WFbPd5WzVOgYXwnGyy4lWwe64/lomn8GyXWK8/LAyhdpWz
- DAlw==
-X-Gm-Message-State: APjAAAUbOzkwRobyNDUWX9JVhbqJbtUpUqB+8P9S24yo/LZpmaLtN9+f
- 1iIPtiB+wdHdmOPbrCMLbGxk6AmzZn8KXVFzdpY=
-X-Google-Smtp-Source: APXvYqysDxkhD+bF4gSJEQ6FzhkTgghNuRuo6f306JqBKdfOcc004ksZ9sfO/rB8vLjKLDRx0Yg/le7p5fQ8u8fK4og=
-X-Received: by 2002:a1c:1f51:: with SMTP id f78mr14277138wmf.60.1577379821447; 
- Thu, 26 Dec 2019 09:03:41 -0800 (PST)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9D5C189C49
+ for <intel-gfx@lists.freedesktop.org>; Thu, 26 Dec 2019 17:12:21 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orsmga106.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 26 Dec 2019 09:12:20 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.69,359,1571727600"; d="scan'208";a="367827249"
+Received: from mdroper-desk1.fm.intel.com (HELO
+ mdroper-desk1.amr.corp.intel.com) ([10.1.27.64])
+ by orsmga004.jf.intel.com with ESMTP; 26 Dec 2019 09:12:20 -0800
+Date: Thu, 26 Dec 2019 09:12:20 -0800
+From: Matt Roper <matthew.d.roper@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Message-ID: <20191226171220.GC2877816@mdroper-desk1.amr.corp.intel.com>
+References: <20191224231521.3430660-1-matthew.d.roper@intel.com>
+ <157723161334.26088.4589761134128055545@emeril.freedesktop.org>
 MIME-Version: 1.0
-References: <5cf1d94b-d076-9d99-13ef-cf26dec10430@gnu.org>
-In-Reply-To: <5cf1d94b-d076-9d99-13ef-cf26dec10430@gnu.org>
-From: Lucas De Marchi <lucas.de.marchi@gmail.com>
-Date: Thu, 26 Dec 2019 09:03:29 -0800
-Message-ID: <CAKi4VAL2TxiTfqz84fx7UTaiBxvXuknqCwtsFZFa2WFCz3PZpQ@mail.gmail.com>
-To: Ebrahim Byagowi <ebrahim@gnu.org>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Fix enable OA report logic
+Content-Disposition: inline
+In-Reply-To: <157723161334.26088.4589761134128055545@emeril.freedesktop.org>
+User-Agent: Mutt/1.12.1 (2019-06-15)
+Subject: Re: [Intel-gfx] 
+ =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
+ =?utf-8?q?/i915/tgl=3A_Assume_future_platforms_will_inherit_TGL=27s_SFC_c?=
+ =?utf-8?q?apability?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,73 +49,177 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel Graphics <intel-gfx@lists.freedesktop.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Dec 25, 2019 at 12:05 AM Ebrahim Byagowi <ebrahim@gnu.org> wrote:
->
->
-> Clang raises
->
->   drivers/gpu/drm/i915/i915_perf.c:2474:50: warning: operator '?:' has lower precedence than '|'; '|' will be evaluated first [-Wbitwise-conditional-parentheses]
->                              !(stream->sample_flags & SAMPLE_OA_REPORT) ?
->                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ^
->   drivers/gpu/drm/i915/i915_perf.c:2474:50: note: place parentheses around the '|' expression to silence this warning
->                              !(stream->sample_flags & SAMPLE_OA_REPORT) ?
->                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ^
->   drivers/gpu/drm/i915/i915_perf.c:2474:50: note: place parentheses around the '?:' expression to evaluate it first
->                              !(stream->sample_flags & SAMPLE_OA_REPORT) ?
->                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
->
-> with -Wbitwise-conditional-parentheses and apparently is right
-> as '|' is evaluated before '?:' which doesn't seem to be the intention
-> here so let's put parentheses in the right place to fix it.
->
-> Signed-off-by: Ebrahim Byagowi <ebrahim@gnu.org>
+On Tue, Dec 24, 2019 at 11:53:33PM +0000, Patchwork wrote:
+> == Series Details ==
+> 
+> Series: drm/i915/tgl: Assume future platforms will inherit TGL's SFC capability
+> URL   : https://patchwork.freedesktop.org/series/71371/
+> State : failure
+> 
+> == Summary ==
+> 
+> CI Bug Log - changes from CI_DRM_7633 -> Patchwork_15920
+> ====================================================
+> 
+> Summary
+> -------
+> 
+>   **FAILURE**
+> 
+>   Serious unknown changes coming with Patchwork_15920 absolutely need to be
+>   verified manually.
+>   
+>   If you think the reported changes have nothing to do with the changes
+>   introduced in Patchwork_15920, please notify your bug team to allow them
+>   to document this new failure mode, which will reduce false positives in CI.
+> 
+>   External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15920/index.html
+> 
+> Possible new issues
+> -------------------
+> 
+>   Here are the unknown changes that may have been introduced in Patchwork_15920:
+> 
+> ### IGT changes ###
+> 
+> #### Possible regressions ####
+> 
+>   * igt@i915_selftest@live_gem_contexts:
+>     - fi-kbl-x1275:       NOTRUN -> [DMESG-FAIL][1]
+>    [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15920/fi-kbl-x1275/igt@i915_selftest@live_gem_contexts.html
 
-This has already been fixed by
-9278bbb6e43c ("drm/i915/perf: Reverse a ternary to make sparse happy")
-
-Maybe it missed a "Fixes", reason it was not propagated to stable kernel.
-
-Lucas De Marchi
-
-> ---
->  drivers/gpu/drm/i915/i915_perf.c | 6 +++---
->  1 file changed, 3 insertions(+), 3 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
-> index 2ae14bc14931..db963f7c2e2e 100644
-> --- a/drivers/gpu/drm/i915/i915_perf.c
-> +++ b/drivers/gpu/drm/i915/i915_perf.c
-> @@ -2471,9 +2471,9 @@ static int gen12_enable_metric_set(struct i915_perf_stream *stream)
->                             * If the user didn't require OA reports, instruct the
->                             * hardware not to emit ctx switch reports.
->                             */
-> -                          !(stream->sample_flags & SAMPLE_OA_REPORT) ?
-> -                          _MASKED_BIT_ENABLE(GEN12_OAG_OA_DEBUG_DISABLE_CTX_SWITCH_REPORTS) :
-> -                          _MASKED_BIT_DISABLE(GEN12_OAG_OA_DEBUG_DISABLE_CTX_SWITCH_REPORTS));
-> +                          (!(stream->sample_flags & SAMPLE_OA_REPORT) ?
-> +                           _MASKED_BIT_ENABLE(GEN12_OAG_OA_DEBUG_DISABLE_CTX_SWITCH_REPORTS) :
-> +                           _MASKED_BIT_DISABLE(GEN12_OAG_OA_DEBUG_DISABLE_CTX_SWITCH_REPORTS)));
->
->         intel_uncore_write(uncore, GEN12_OAG_OAGLBCTXCTRL, periodic ?
->                            (GEN12_OAG_OAGLBCTXCTRL_COUNTER_RESUME |
-> --
-> 2.24.0
->
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+Some kind of GEM selftest failure on KBL.  Not related to this patch.
+Hitting the retest button.
 
 
+Matt
+
+> 
+>   
+> Known issues
+> ------------
+> 
+>   Here are the changes found in Patchwork_15920 that come from known issues:
+> 
+> ### IGT changes ###
+> 
+> #### Issues hit ####
+> 
+>   * igt@i915_module_load@reload-with-fault-injection:
+>     - fi-skl-6700k2:      [PASS][2] -> [INCOMPLETE][3] ([i915#671])
+>    [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7633/fi-skl-6700k2/igt@i915_module_load@reload-with-fault-injection.html
+>    [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15920/fi-skl-6700k2/igt@i915_module_load@reload-with-fault-injection.html
+> 
+>   * igt@i915_selftest@live_gem_contexts:
+>     - fi-hsw-peppy:       [PASS][4] -> [DMESG-FAIL][5] ([i915#722])
+>    [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7633/fi-hsw-peppy/igt@i915_selftest@live_gem_contexts.html
+>    [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15920/fi-hsw-peppy/igt@i915_selftest@live_gem_contexts.html
+> 
+>   
+> #### Possible fixes ####
+> 
+>   * igt@gem_exec_create@basic:
+>     - {fi-tgl-u}:         [INCOMPLETE][6] ([fdo#111736]) -> [PASS][7]
+>    [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7633/fi-tgl-u/igt@gem_exec_create@basic.html
+>    [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15920/fi-tgl-u/igt@gem_exec_create@basic.html
+> 
+>   * igt@i915_module_load@reload-with-fault-injection:
+>     - fi-cfl-guc:         [INCOMPLETE][8] ([i915#505] / [i915#671]) -> [PASS][9]
+>    [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7633/fi-cfl-guc/igt@i915_module_load@reload-with-fault-injection.html
+>    [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15920/fi-cfl-guc/igt@i915_module_load@reload-with-fault-injection.html
+> 
+>   * igt@i915_pm_rpm@module-reload:
+>     - fi-skl-6770hq:      [FAIL][10] ([i915#178]) -> [PASS][11]
+>    [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7633/fi-skl-6770hq/igt@i915_pm_rpm@module-reload.html
+>    [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15920/fi-skl-6770hq/igt@i915_pm_rpm@module-reload.html
+> 
+>   * igt@i915_selftest@live_blt:
+>     - fi-hsw-4770:        [DMESG-FAIL][12] ([i915#563]) -> [PASS][13]
+>    [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7633/fi-hsw-4770/igt@i915_selftest@live_blt.html
+>    [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15920/fi-hsw-4770/igt@i915_selftest@live_blt.html
+> 
+>   * igt@i915_selftest@live_dmabuf:
+>     - fi-bwr-2160:        [FAIL][14] -> [PASS][15]
+>    [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7633/fi-bwr-2160/igt@i915_selftest@live_dmabuf.html
+>    [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15920/fi-bwr-2160/igt@i915_selftest@live_dmabuf.html
+> 
+>   
+> #### Warnings ####
+> 
+>   * igt@i915_module_load@reload-with-fault-injection:
+>     - fi-bxt-dsi:         [DMESG-WARN][16] -> [INCOMPLETE][17] ([fdo#103927])
+>    [16]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7633/fi-bxt-dsi/igt@i915_module_load@reload-with-fault-injection.html
+>    [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15920/fi-bxt-dsi/igt@i915_module_load@reload-with-fault-injection.html
+>     - fi-kbl-x1275:       [INCOMPLETE][18] ([i915#879]) -> [DMESG-WARN][19] ([i915#62] / [i915#92] / [i915#95])
+>    [18]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7633/fi-kbl-x1275/igt@i915_module_load@reload-with-fault-injection.html
+>    [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15920/fi-kbl-x1275/igt@i915_module_load@reload-with-fault-injection.html
+> 
+>   * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:
+>     - fi-kbl-x1275:       [DMESG-WARN][20] ([i915#62] / [i915#92]) -> [DMESG-WARN][21] ([i915#62] / [i915#92] / [i915#95]) +3 similar issues
+>    [20]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7633/fi-kbl-x1275/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
+>    [21]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15920/fi-kbl-x1275/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
+> 
+>   * igt@kms_cursor_legacy@basic-flip-after-cursor-legacy:
+>     - fi-kbl-x1275:       [DMESG-WARN][22] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][23] ([i915#62] / [i915#92]) +1 similar issue
+>    [22]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7633/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
+>    [23]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15920/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
+> 
+>   
+>   {name}: This element is suppressed. This means it is ignored when computing
+>           the status of the difference (SUCCESS, WARNING, or FAILURE).
+> 
+>   [fdo#103927]: https://bugs.freedesktop.org/show_bug.cgi?id=103927
+>   [fdo#111736]: https://bugs.freedesktop.org/show_bug.cgi?id=111736
+>   [i915#178]: https://gitlab.freedesktop.org/drm/intel/issues/178
+>   [i915#435]: https://gitlab.freedesktop.org/drm/intel/issues/435
+>   [i915#505]: https://gitlab.freedesktop.org/drm/intel/issues/505
+>   [i915#563]: https://gitlab.freedesktop.org/drm/intel/issues/563
+>   [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
+>   [i915#671]: https://gitlab.freedesktop.org/drm/intel/issues/671
+>   [i915#722]: https://gitlab.freedesktop.org/drm/intel/issues/722
+>   [i915#879]: https://gitlab.freedesktop.org/drm/intel/issues/879
+>   [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
+>   [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
+> 
+> 
+> Participating hosts (48 -> 38)
+> ------------------------------
+> 
+>   Additional (3): fi-hsw-4770r fi-kbl-7500u fi-snb-2600 
+>   Missing    (13): fi-kbl-soraka fi-ilk-m540 fi-bdw-samus fi-hsw-4200u fi-byt-squawks fi-ilk-650 fi-ctg-p8600 fi-ivb-3770 fi-blb-e6850 fi-tgl-y fi-byt-clapper fi-bsw-nick fi-skl-6600u 
+> 
+> 
+> Build changes
+> -------------
+> 
+>   * CI: CI-20190529 -> None
+>   * Linux: CI_DRM_7633 -> Patchwork_15920
+> 
+>   CI-20190529: 20190529
+>   CI_DRM_7633: 7670f977fb1bda159172900b243d14e4dded2886 @ git://anongit.freedesktop.org/gfx-ci/linux
+>   IGT_5352: 0586d205f651674e575351c2d5a7d0760716c9f1 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+>   Patchwork_15920: ea223c9d0227fb1f2dc1e82fe5fbb59090de00a8 @ git://anongit.freedesktop.org/gfx-ci/linux
+> 
+> 
+> == Linux commits ==
+> 
+> ea223c9d0227 drm/i915/tgl: Assume future platforms will inherit TGL's SFC capability
+> 
+> == Logs ==
+> 
+> For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15920/index.html
 
 -- 
-Lucas De Marchi
+Matt Roper
+Graphics Software Engineer
+VTT-OSGC Platform Enablement
+Intel Corporation
+(916) 356-2795
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
