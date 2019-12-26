@@ -1,32 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87E6812A96E
-	for <lists+intel-gfx@lfdr.de>; Thu, 26 Dec 2019 01:57:15 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F4E812A989
+	for <lists+intel-gfx@lfdr.de>; Thu, 26 Dec 2019 02:46:17 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 70FB2898AA;
-	Thu, 26 Dec 2019 00:57:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 286AF89AAD;
+	Thu, 26 Dec 2019 01:46:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 81E6E898AA
- for <intel-gfx@lists.freedesktop.org>; Thu, 26 Dec 2019 00:57:10 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19692256-1500050 
- for multiple; Thu, 26 Dec 2019 00:57:03 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 26 Dec 2019 00:57:01 +0000
-Message-Id: <20191226005701.2534997-5-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.24.1
-In-Reply-To: <20191226005701.2534997-1-chris@chris-wilson.co.uk>
-References: <20191226005701.2534997-1-chris@chris-wilson.co.uk>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id D2E2189A1A;
+ Thu, 26 Dec 2019 01:46:13 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id C9C94A00E6;
+ Thu, 26 Dec 2019 01:46:13 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 5/5] drm/i915/gt: Apply sanitiization just
- before resume
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Thu, 26 Dec 2019 01:46:13 -0000
+Message-ID: <157732477379.14823.6776564124580683637@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20191226005701.2534997-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20191226005701.2534997-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_series_starting_with_=5B1/5=5D_drm/i915/gt=3A_Ignore_stale_?=
+ =?utf-8?q?context_state_upon_resume?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,117 +39,30 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Bring sanitization completely underneath the umbrella of intel_gt, and
-perform it exclusively after suspend and before the next resume.
+== Series Details ==
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
----
- drivers/gpu/drm/i915/gt/intel_gt.c        |  2 --
- drivers/gpu/drm/i915/gt/intel_gt_pm.c     | 15 +++------------
- drivers/gpu/drm/i915/gt/intel_gt_pm.h     |  2 --
- drivers/gpu/drm/i915/i915_drv.c           |  2 --
- drivers/gpu/drm/i915/selftests/i915_gem.c |  2 --
- 5 files changed, 3 insertions(+), 20 deletions(-)
+Series: series starting with [1/5] drm/i915/gt: Ignore stale context state upon resume
+URL   : https://patchwork.freedesktop.org/series/71386/
+State : warning
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c b/drivers/gpu/drm/i915/gt/intel_gt.c
-index e4f7cc7dd88a..8d5adac97b75 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gt.c
-@@ -38,8 +38,6 @@ void intel_gt_init_early(struct intel_gt *gt, struct drm_i915_private *i915)
- void intel_gt_init_hw_early(struct intel_gt *gt, struct i915_ggtt *ggtt)
- {
- 	gt->ggtt = ggtt;
--
--	intel_gt_sanitize(gt, false);
- }
- 
- static void init_unused_ring(struct intel_gt *gt, u32 base)
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_pm.c b/drivers/gpu/drm/i915/gt/intel_gt_pm.c
-index 46a0aed2d5d5..bcd8a9806ed2 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt_pm.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_pm.c
-@@ -126,17 +126,7 @@ static bool reset_engines(struct intel_gt *gt)
- 	return __intel_gt_reset(gt, ALL_ENGINES) == 0;
- }
- 
--/**
-- * intel_gt_sanitize: called after the GPU has lost power
-- * @gt: the i915 GT container
-- * @force: ignore a failed reset and sanitize engine state anyway
-- *
-- * Anytime we reset the GPU, either with an explicit GPU reset or through a
-- * PCI power cycle, the GPU loses state and we must reset our state tracking
-- * to match. Note that calling intel_gt_sanitize() if the GPU has not
-- * been reset results in much confusion!
-- */
--void intel_gt_sanitize(struct intel_gt *gt, bool force)
-+static void gt_sanitize(struct intel_gt *gt, bool force)
- {
- 	struct intel_engine_cs *engine;
- 	enum intel_engine_id id;
-@@ -201,6 +191,7 @@ int intel_gt_resume(struct intel_gt *gt)
- 
- 	intel_uncore_forcewake_get(gt->uncore, FORCEWAKE_ALL);
- 	intel_rc6_sanitize(&gt->rc6);
-+	gt_sanitize(gt, true);
- 
- 	/* Only when the HW is re-initialised, can we replay the requests */
- 	err = intel_gt_init_hw(gt);
-@@ -307,7 +298,7 @@ void intel_gt_suspend_late(struct intel_gt *gt)
- 		intel_llc_disable(&gt->llc);
- 	}
- 
--	intel_gt_sanitize(gt, false);
-+	gt_sanitize(gt, false);
- 
- 	GT_TRACE(gt, "\n");
- }
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_pm.h b/drivers/gpu/drm/i915/gt/intel_gt_pm.h
-index 4a9e48c12bd4..60f0e2fbe55c 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt_pm.h
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_pm.h
-@@ -51,8 +51,6 @@ void intel_gt_pm_init_early(struct intel_gt *gt);
- void intel_gt_pm_init(struct intel_gt *gt);
- void intel_gt_pm_fini(struct intel_gt *gt);
- 
--void intel_gt_sanitize(struct intel_gt *gt, bool force);
--
- void intel_gt_suspend_prepare(struct intel_gt *gt);
- void intel_gt_suspend_late(struct intel_gt *gt);
- int intel_gt_resume(struct intel_gt *gt);
-diff --git a/drivers/gpu/drm/i915/i915_drv.c b/drivers/gpu/drm/i915/i915_drv.c
-index 59525094d0e3..9f75e03368c4 100644
---- a/drivers/gpu/drm/i915/i915_drv.c
-+++ b/drivers/gpu/drm/i915/i915_drv.c
-@@ -1817,8 +1817,6 @@ static int i915_drm_resume(struct drm_device *dev)
- 
- 	disable_rpm_wakeref_asserts(&dev_priv->runtime_pm);
- 
--	intel_gt_sanitize(&dev_priv->gt, true);
--
- 	ret = i915_ggtt_enable_hw(dev_priv);
- 	if (ret)
- 		DRM_ERROR("failed to re-enable GGTT\n");
-diff --git a/drivers/gpu/drm/i915/selftests/i915_gem.c b/drivers/gpu/drm/i915/selftests/i915_gem.c
-index b37fc53973cc..78f36faf2bbe 100644
---- a/drivers/gpu/drm/i915/selftests/i915_gem.c
-+++ b/drivers/gpu/drm/i915/selftests/i915_gem.c
-@@ -124,8 +124,6 @@ static void pm_resume(struct drm_i915_private *i915)
- 	 * that runtime-pm just works.
- 	 */
- 	with_intel_runtime_pm(&i915->runtime_pm, wakeref) {
--		intel_gt_sanitize(&i915->gt, false);
--
- 		i915_gem_restore_gtt_mappings(i915);
- 		i915_gem_restore_fences(&i915->ggtt);
- 
--- 
-2.24.1
+== Summary ==
+
+$ dim checkpatch origin/drm-tip
+f9ba897e2ceb drm/i915/gt: Ignore stale context state upon resume
+-:7: WARNING:COMMIT_MESSAGE: Missing commit description - Add an appropriate one
+
+total: 0 errors, 1 warnings, 0 checks, 31 lines checked
+9e6f35bd6180 drm/i915/gt: Discard stale context state from across idling
+20a97072d51f drm/i915/gt: Always poison the kernel_context image before unparking
+615fd746ceef drm/i915/gt: Restore coarse power gating for gen9
+e73bb2efdf11 drm/i915/gt: Apply sanitiization just before resume
 
 _______________________________________________
 Intel-gfx mailing list
