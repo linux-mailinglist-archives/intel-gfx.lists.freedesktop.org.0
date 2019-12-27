@@ -2,34 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4CA2912B3DE
-	for <lists+intel-gfx@lfdr.de>; Fri, 27 Dec 2019 11:29:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A6ABE12B3E7
+	for <lists+intel-gfx@lfdr.de>; Fri, 27 Dec 2019 11:31:01 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A50716E3BB;
-	Fri, 27 Dec 2019 10:29:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 03187891C2;
+	Fri, 27 Dec 2019 10:31:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 182BC6E3BB
- for <intel-gfx@lists.freedesktop.org>; Fri, 27 Dec 2019 10:29:25 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 27 Dec 2019 02:29:24 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,362,1571727600"; d="scan'208";a="419687757"
-Received: from vandita-desktop.iind.intel.com ([10.223.74.218])
- by fmsmga006.fm.intel.com with ESMTP; 27 Dec 2019 02:29:23 -0800
-From: Vandita Kulkarni <vandita.kulkarni@intel.com>
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2C90E891C2
+ for <intel-gfx@lists.freedesktop.org>; Fri, 27 Dec 2019 10:30:58 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19703677-1500050 
+ for multiple; Fri, 27 Dec 2019 10:30:50 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri, 27 Dec 2019 15:26:29 +0530
-Message-Id: <20191227095629.1796-9-vandita.kulkarni@intel.com>
-X-Mailer: git-send-email 2.21.0.5.gaeb582a
-In-Reply-To: <20191227095629.1796-1-vandita.kulkarni@intel.com>
-References: <20191227095629.1796-1-vandita.kulkarni@intel.com>
+Date: Fri, 27 Dec 2019 10:30:50 +0000
+Message-Id: <20191227103050.2715402-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.24.1
 MIME-Version: 1.0
-Subject: [Intel-gfx] [V4 8/8] drm/i915/dsi: Initiate fame request in cmd mode
+Subject: [Intel-gfx] [PATCH] drm/i915/selftests: Err out on coherency if
+ initialisation failed
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,94 +37,66 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-In TE Gate mode, on every flip we need to set the
-frame update request bit. After this  bit is set
-transcoder hardware will automatically send the
-frame data to the panel when it receives the TE event.
+If gt initialisation failed, we are left with no engines to use for
+coherency testing. Currently we bug out, which makes the actual error,
+so fail more gracefully instead.
 
-Signed-off-by: Vandita Kulkarni <vandita.kulkarni@intel.com>
+Closes: https://gitlab.freedesktop.org/drm/intel/issues/896
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 ---
- drivers/gpu/drm/i915/display/icl_dsi.c       | 22 ++++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_display.c | 10 +++++++++
- drivers/gpu/drm/i915/display/intel_dsi.h     |  3 +++
- 3 files changed, 35 insertions(+)
+ .../gpu/drm/i915/gem/selftests/i915_gem_coherency.c  | 12 ++++++++----
+ 1 file changed, 8 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i915/display/icl_dsi.c
-index e18043f4937b..4fbf01d918be 100644
---- a/drivers/gpu/drm/i915/display/icl_dsi.c
-+++ b/drivers/gpu/drm/i915/display/icl_dsi.c
-@@ -199,6 +199,28 @@ static int dsi_send_pkt_payld(struct intel_dsi_host *host,
- 	return 0;
+diff --git a/drivers/gpu/drm/i915/gem/selftests/i915_gem_coherency.c b/drivers/gpu/drm/i915/gem/selftests/i915_gem_coherency.c
+index 49edc51111d5..3f6079e1dfb6 100644
+--- a/drivers/gpu/drm/i915/gem/selftests/i915_gem_coherency.c
++++ b/drivers/gpu/drm/i915/gem/selftests/i915_gem_coherency.c
+@@ -325,7 +325,10 @@ static int igt_gem_coherency(void *arg)
+ 	values = offsets + ncachelines;
+ 
+ 	ctx.engine = random_engine(i915, &prng);
+-	GEM_BUG_ON(!ctx.engine);
++	if (!ctx.engine) {
++		err = -ENODEV;
++		goto out_free;
++	}
+ 	pr_info("%s: using %s\n", __func__, ctx.engine->name);
+ 	intel_engine_pm_get(ctx.engine);
+ 
+@@ -354,7 +357,7 @@ static int igt_gem_coherency(void *arg)
+ 					ctx.obj = i915_gem_object_create_internal(i915, PAGE_SIZE);
+ 					if (IS_ERR(ctx.obj)) {
+ 						err = PTR_ERR(ctx.obj);
+-						goto free;
++						goto out_pm;
+ 					}
+ 
+ 					i915_random_reorder(offsets, ncachelines, &prng);
+@@ -405,14 +408,15 @@ static int igt_gem_coherency(void *arg)
+ 			}
+ 		}
+ 	}
+-free:
++out_pm:
+ 	intel_engine_pm_put(ctx.engine);
++out_free:
+ 	kfree(offsets);
+ 	return err;
+ 
+ put_object:
+ 	i915_gem_object_put(ctx.obj);
+-	goto free;
++	goto out_pm;
  }
  
-+void gen11_dsi_frame_update(struct intel_crtc_state *crtc_state)
-+{
-+	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-+	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
-+	u32 tmp, private_flags;
-+	enum port port;
-+
-+	private_flags = crtc_state->hw.adjusted_mode.private_flags;
-+
-+	/* case 1 also covers dual link */
-+	if (private_flags & I915_MODE_FLAG_DSI_USE_TE0)
-+		port = PORT_A;
-+	else if (private_flags & I915_MODE_FLAG_DSI_USE_TE1)
-+		port = PORT_B;
-+	else
-+		return;
-+
-+	tmp = I915_READ(DSI_CMD_FRMCTL(port));
-+	tmp |= DSI_FRAME_UPDATE_REQUEST;
-+	I915_WRITE(DSI_CMD_FRMCTL(port), tmp);
-+}
-+
- static void dsi_program_swing_and_deemphasis(struct intel_encoder *encoder)
- {
- 	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index eee8c0337160..cac9aa43212d 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -15115,6 +15115,16 @@ static void intel_atomic_commit_tail(struct intel_atomic_state *state)
- 			intel_color_load_luts(new_crtc_state);
- 	}
- 
-+	/*
-+	 * Incase of mipi dsi command mode, we need to set frame update
-+	 * for every commit
-+	 */
-+	if ((INTEL_GEN(dev_priv) >= 11) &&
-+	    (intel_crtc_has_type(new_crtc_state, INTEL_OUTPUT_DSI))) {
-+		if (new_crtc_state->hw.active)
-+			gen11_dsi_frame_update(new_crtc_state);
-+	}
-+
- 	/*
- 	 * Now that the vblank has passed, we can go ahead and program the
- 	 * optimal watermarks on platforms that need two-step watermark
-diff --git a/drivers/gpu/drm/i915/display/intel_dsi.h b/drivers/gpu/drm/i915/display/intel_dsi.h
-index b15be5814599..0c5366e23feb 100644
---- a/drivers/gpu/drm/i915/display/intel_dsi.h
-+++ b/drivers/gpu/drm/i915/display/intel_dsi.h
-@@ -201,6 +201,9 @@ u32 bxt_dsi_get_pclk(struct intel_encoder *encoder,
- 		     struct intel_crtc_state *config);
- void bxt_dsi_reset_clocks(struct intel_encoder *encoder, enum port port);
- 
-+/* icl_dsi.c */
-+void gen11_dsi_frame_update(struct intel_crtc_state *crtc_state);
-+
- /* intel_dsi_vbt.c */
- bool intel_dsi_vbt_init(struct intel_dsi *intel_dsi, u16 panel_id);
- void intel_dsi_vbt_exec_sequence(struct intel_dsi *intel_dsi,
+ int i915_gem_coherency_live_selftests(struct drm_i915_private *i915)
 -- 
-2.21.0.5.gaeb582a
+2.24.1
 
 _______________________________________________
 Intel-gfx mailing list
