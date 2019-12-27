@@ -2,40 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5DE7E12B17B
-	for <lists+intel-gfx@lfdr.de>; Fri, 27 Dec 2019 06:34:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7CB9712B39B
+	for <lists+intel-gfx@lfdr.de>; Fri, 27 Dec 2019 10:44:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 05F9B89CC4;
-	Fri, 27 Dec 2019 05:34:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 194A56E14F;
+	Fri, 27 Dec 2019 09:44:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 795CF89CC4
- for <intel-gfx@lists.freedesktop.org>; Fri, 27 Dec 2019 05:34:27 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 80BEE6E14F
+ for <intel-gfx@lists.freedesktop.org>; Fri, 27 Dec 2019 09:44:48 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
 X-Amp-File-Uploaded: False
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 26 Dec 2019 21:34:27 -0800
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 27 Dec 2019 01:44:47 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,361,1571727600"; d="scan'208";a="215113814"
-Received: from swatish2-mobl.gar.corp.intel.com (HELO [10.66.106.191])
- ([10.66.106.191])
- by fmsmga008.fm.intel.com with ESMTP; 26 Dec 2019 21:34:25 -0800
-To: Lucas De Marchi <lucas.de.marchi@gmail.com>
-References: <20191225175514.21271-1-swati2.sharma@intel.com>
- <CAKi4VAJOsg5pashSkEjTd4LrrbZ3ZXwK8ivw1PEfQbBrW5gWKA@mail.gmail.com>
-From: "Sharma, Swati2" <swati2.sharma@intel.com>
-Organization: Intel
-Message-ID: <32934a52-c653-ca66-4d3e-346623e224b9@intel.com>
-Date: Fri, 27 Dec 2019 11:04:24 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.1
+X-IronPort-AV: E=Sophos;i="5.69,362,1571727600"; d="scan'208";a="418236511"
+Received: from lkp-server01.sh.intel.com (HELO lkp-server01) ([10.239.97.150])
+ by fmsmga005.fm.intel.com with ESMTP; 27 Dec 2019 01:44:46 -0800
+Received: from kbuild by lkp-server01 with local (Exim 4.89)
+ (envelope-from <lkp@intel.com>)
+ id 1ikmAo-000GY4-Fc; Fri, 27 Dec 2019 17:44:46 +0800
+Date: Fri, 27 Dec 2019 17:43:48 +0800
+From: kbuild test robot <lkp@intel.com>
+To: Abdiel Janulgue <abdiel.janulgue@linux.intel.com>
+Message-ID: <201912271741.XcsFG2WF%lkp@intel.com>
+References: <20191223041512.3582-1-abdiel.janulgue@linux.intel.com>
 MIME-Version: 1.0
-In-Reply-To: <CAKi4VAJOsg5pashSkEjTd4LrrbZ3ZXwK8ivw1PEfQbBrW5gWKA@mail.gmail.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/dsb: Increase log level if DSB
- engine gets busy
+Content-Disposition: inline
+In-Reply-To: <20191223041512.3582-1-abdiel.janulgue@linux.intel.com>
+User-Agent: NeoMutt/20170113 (1.7.2)
+Subject: Re: [Intel-gfx] [PATCH 1/3] drm/i915: Introduce remap_io_sg() to
+ prefault discontiguous objects
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,77 +48,61 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>,
- Intel Graphics <intel-gfx@lists.freedesktop.org>
+Cc: intel-gfx@lists.freedesktop.org, kbuild-all@lists.01.org
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 27-Dec-19 2:39 AM, Lucas De Marchi wrote:
-> On Wed, Dec 25, 2019 at 10:07 AM Swati Sharma <swati2.sharma@intel.com> wrote:
->>
->> Increase the log level if DSB engine gets busy. If dsb engine
->> is busy, it should be an error condition to indicate there might be
->> some difficulty with the hardware.
->>
->> If DSB engine gets busy, load luts will fail and as per current
->> driver design if one instance of DSB engine gets busy, we are not
->> allocating the other instance. So, increase the log level to indicate there
->> could be an issue with driver/hardware.
->>
->> Signed-off-by: Swati Sharma <swati2.sharma@intel.com>
->> ---
->>   drivers/gpu/drm/i915/display/intel_dsb.c | 4 ++--
->>   1 file changed, 2 insertions(+), 2 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/i915/display/intel_dsb.c b/drivers/gpu/drm/i915/display/intel_dsb.c
->> index ada006a690df..6f67b5dfa128 100644
->> --- a/drivers/gpu/drm/i915/display/intel_dsb.c
->> +++ b/drivers/gpu/drm/i915/display/intel_dsb.c
->> @@ -52,7 +52,7 @@ static inline bool intel_dsb_enable_engine(struct intel_dsb *dsb)
->>
->>          dsb_ctrl = I915_READ(DSB_CTRL(pipe, dsb->id));
->>          if (DSB_STATUS & dsb_ctrl) {
->> -               DRM_DEBUG_KMS("DSB engine is busy.\n");
->> +               DRM_ERROR("DSB engine is busy.\n");
-> 
-> are we seeing this? Isn't it a dbg message because in this case we
-> would fallback to direct mmio?
-We are seeing this issue and is already under debug.
-https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7630/shard-tglb5/igt@kms_available_modes_crc@available_mode_test_crc.html
+Hi Abdiel,
 
-<7> [303.727858] [drm:intel_dsb_commit [i915]] DSB engine is busy.
-<7> [303.727975] [drm:icl_load_luts [i915]] DSB engine is busy.
-> 
-> Lucas De Marchi
-> 
->>                  return false;
->>          }
->>
->> @@ -72,7 +72,7 @@ static inline bool intel_dsb_disable_engine(struct intel_dsb *dsb)
->>
->>          dsb_ctrl = I915_READ(DSB_CTRL(pipe, dsb->id));
->>          if (DSB_STATUS & dsb_ctrl) {
->> -               DRM_DEBUG_KMS("DSB engine is busy.\n");
->> +               DRM_ERROR("DSB engine is busy.\n");
->>                  return false;
->>          }
->>
->> --
->> 2.24.1
->>
->> _______________________________________________
->> Intel-gfx mailing list
->> Intel-gfx@lists.freedesktop.org
->> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-> 
-> 
-> 
+Thank you for the patch! Perhaps something to improve:
+
+[auto build test WARNING on drm-intel/for-linux-next]
+[also build test WARNING on drm-tip/drm-tip v5.5-rc3 next-20191220]
+[if your patch is applied to the wrong git tree, please drop us a note to help
+improve the system. BTW, we also suggest to use '--base' option to specify the
+base tree in git format-patch, please see https://stackoverflow.com/a/37406982]
+
+url:    https://github.com/0day-ci/linux/commits/Abdiel-Janulgue/drm-i915-Introduce-remap_io_sg-to-prefault-discontiguous-objects/20191225-032829
+base:   git://anongit.freedesktop.org/drm-intel for-linux-next
+reproduce:
+        # apt-get install sparse
+        # sparse version: v0.6.1-129-g341daf20-dirty
+        make ARCH=x86_64 allmodconfig
+        make C=1 CF='-fdiagnostic-prefix -D__CHECK_ENDIAN__'
+
+If you fix the issue, kindly add following tag
+Reported-by: kbuild test robot <lkp@intel.com>
 
 
--- 
-~Swati Sharma
+sparse warnings: (new ones prefixed by >>)
+
+>> drivers/gpu/drm/i915/i915_mm.c:130:32: sparse: sparse: Using plain integer as NULL pointer
+
+vim +130 drivers/gpu/drm/i915/i915_mm.c
+
+   114	
+   115	/**
+   116	 * remap_io_sg - remap an IO mapping to userspace
+   117	 * @vma: user vma to map to
+   118	 * @addr: target user address to start at
+   119	 * @io_start: IO start
+   120	 * @sgl: Start sg entry
+   121	 * @size: size of map area
+   122	 * @iomap: the source io_mapping
+   123	 *
+   124	 *  Note: this is only safe if the mm semaphore is held when called.
+   125	 */
+   126	int remap_io_sg(struct vm_area_struct *vma,
+   127			unsigned long addr, resource_size_t io_start, struct scatterlist *sgl,
+   128			unsigned long size, struct io_mapping *iomap)
+   129	{
+ > 130		struct remap_pfn r = { 0 };
+
+---
+0-DAY kernel test infrastructure                 Open Source Technology Center
+https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org Intel Corporation
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
