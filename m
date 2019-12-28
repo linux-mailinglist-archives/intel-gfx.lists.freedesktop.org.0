@@ -1,34 +1,67 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 051BF12CACB
-	for <lists+intel-gfx@lfdr.de>; Sun, 29 Dec 2019 21:43:57 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8DDF612CACD
+	for <lists+intel-gfx@lfdr.de>; Sun, 29 Dec 2019 21:44:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7DA5489BEC;
-	Sun, 29 Dec 2019 20:43:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6A86F89BF5;
+	Sun, 29 Dec 2019 20:43:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 325 seconds by postgrey-1.36 at gabe;
- Sat, 28 Dec 2019 03:58:58 UTC
-Received: from mail.hallyn.com (mail.hallyn.com [178.63.66.53])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 09F0F6E133
- for <intel-gfx@lists.freedesktop.org>; Sat, 28 Dec 2019 03:58:58 +0000 (UTC)
-Received: by mail.hallyn.com (Postfix, from userid 1001)
- id BA54465C; Fri, 27 Dec 2019 21:53:31 -0600 (CST)
-Date: Fri, 27 Dec 2019 21:53:31 -0600
-From: "Serge E. Hallyn" <serge@hallyn.com>
-To: Alexey Budankov <alexey.budankov@linux.intel.com>
-Message-ID: <20191228035331.GA16088@mail.hallyn.com>
-References: <c0460c78-b1a6-b5f7-7119-d97e5998f308@linux.intel.com>
- <e0cb2b8d-e964-bc23-bf80-58d7ac4ed6f1@linux.intel.com>
+Received: from mail-wr1-x442.google.com (mail-wr1-x442.google.com
+ [IPv6:2a00:1450:4864:20::442])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 235ED8857E
+ for <intel-gfx@lists.freedesktop.org>; Sat, 28 Dec 2019 12:25:03 +0000 (UTC)
+Received: by mail-wr1-x442.google.com with SMTP id c9so28464589wrw.8
+ for <intel-gfx@lists.freedesktop.org>; Sat, 28 Dec 2019 04:25:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=subject:to:cc:references:from:message-id:date:user-agent
+ :mime-version:in-reply-to:content-language:content-transfer-encoding;
+ bh=M4vgzz0oAXRvJoZ0R6qlgcc6Xg1V//JM8vAN7dpOL4g=;
+ b=aPcbQb1gnfYWZrTVFyMfwJNKtcw6Nsw0eBaBsnaITppPk9bA026aqwVG70FwZO+Vu3
+ tMH3IHWoVNNyqgnWUeND+KTB4L+1o6WrM1l+zyjQRzKbW/OR8U/LhJsdNbFSBX7XbzcG
+ ozO6m26v7wBsT0o3LR3OclWLm7zEiexugAp0fvK6qhDnYBso7QboeU908+bRUVqyMBJk
+ uwGvdSJALiGIMDEqX+238Yvanwk+9v55DBuVdPL5nyX+NCdhJslrinCu+e+h9elDL7k9
+ 3DRduSErwvSqWzNiUnMSCpS16XFXylmSwuYxE0vrMCfNFj0r++h/kyrqLjiWQvet7dq5
+ 9pAQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+ :user-agent:mime-version:in-reply-to:content-language
+ :content-transfer-encoding;
+ bh=M4vgzz0oAXRvJoZ0R6qlgcc6Xg1V//JM8vAN7dpOL4g=;
+ b=q75vc+ypyIHTSgBvXJ8VJfq9/cTj8DJqO8pfxSaRReATAFJSuOxANV2ubZciQeDs9h
+ 2ctDC/ig1e0TtPp4+tciUTIq0IM66BYvAFTc/OUvN1R7iy1XKyVqM/gQnFsU46DsmM9E
+ pECc2T/jYOxOemHfIbeigWOHtxhLSAYlLLcCS7oq4OzWPYI+WHnHia1FRAh08tA/Tyus
+ 5PAZhv68eAQI+lF4fdIxO4CyZRmVdCc1+RdpjittJL6ScOfNjEndcmiCJSdVZKclAHTe
+ kl+mgLnGHbi7C8l6d2Qt7hsanLDefn0OhPrA7xh3nyciQ/GjQiJGtIHKFOtQnbaFz4+z
+ GTjA==
+X-Gm-Message-State: APjAAAXnUUzMSFkwitnduvD+fiHnBGA9RjP146JzOcaS7fgjZsakoGNQ
+ Uyq3BMUeBczWHcdlvQJElLM=
+X-Google-Smtp-Source: APXvYqy6Cnwg5IGbduO86vMFkLHe38BBnJct/alm/5MpmpmWxKb77YQumOey1t1hK0D4sLqeE/jw2Q==
+X-Received: by 2002:a5d:55d1:: with SMTP id i17mr54545663wrw.165.1577535901630; 
+ Sat, 28 Dec 2019 04:25:01 -0800 (PST)
+Received: from [192.168.2.202] (p5487BD0F.dip0.t-ipconnect.de. [84.135.189.15])
+ by smtp.gmail.com with ESMTPSA id f1sm37857411wru.6.2019.12.28.04.25.00
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Sat, 28 Dec 2019 04:25:00 -0800 (PST)
+To: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+References: <3d1744d1-5161-d377-7c3b-2e907060e3f8@gmail.com>
+ <1b2ff00a-3387-c39f-49cc-64afbfd78d4c@intel.com>
+ <bc4e8a25-05b5-72fb-8ddd-2275b739f0a5@gmail.com>
+ <bc31eaa3-c5ed-819f-a94a-1f7ca335ea86@intel.com>
+From: Maximilian Luz <luzmaximilian@gmail.com>
+Message-ID: <f9df12be-b34b-19ed-d052-42731d2dbd7c@gmail.com>
+Date: Sat, 28 Dec 2019 13:24:59 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.3.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <e0cb2b8d-e964-bc23-bf80-58d7ac4ed6f1@linux.intel.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+In-Reply-To: <bc31eaa3-c5ed-819f-a94a-1f7ca335ea86@intel.com>
+Content-Language: en-US
 X-Mailman-Approved-At: Sun, 29 Dec 2019 20:43:52 +0000
-Subject: Re: [Intel-gfx] [PATCH v4 1/9] capabilities: introduce
- CAP_SYS_PERFMON to kernel and user space
+Subject: Re: [Intel-gfx] Plans for i915 GuC Submission with regards to
+ IPTS/ME
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,59 +74,42 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Mark Rutland <mark.rutland@arm.com>, Song Liu <songliubraving@fb.com>,
- Peter Zijlstra <peterz@infradead.org>,
- Benjamin Herrenschmidt <benh@kernel.crashing.org>,
- Will Deacon <will.deacon@arm.com>, Alexei Starovoitov <ast@kernel.org>,
- Stephane Eranian <eranian@google.com>,
- "james.bottomley@hansenpartnership.com"
- <james.bottomley@hansenpartnership.com>, Paul Mackerras <paulus@samba.org>,
- Jiri Olsa <jolsa@redhat.com>, Andi Kleen <ak@linux.intel.com>,
- Michael Ellerman <mpe@ellerman.id.au>, Igor Lubashev <ilubashe@akamai.com>,
- James Morris <jmorris@namei.org>,
- Alexander Shishkin <alexander.shishkin@linux.intel.com>,
- Ingo Molnar <mingo@redhat.com>, oprofile-list@lists.sf.net,
- Serge Hallyn <serge@hallyn.com>, Robert Richter <rric@kernel.org>,
- Kees Cook <keescook@chromium.org>, Jann Horn <jannh@google.com>,
- "selinux@vger.kernel.org" <selinux@vger.kernel.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- Arnaldo Carvalho de Melo <acme@kernel.org>, Namhyung Kim <namhyung@kernel.org>,
- Thomas Gleixner <tglx@linutronix.de>, linux-arm-kernel@lists.infradead.org,
- "linux-parisc@vger.kernel.org" <linux-parisc@vger.kernel.org>,
- linux-kernel <linux-kernel@vger.kernel.org>,
- "linux-perf-users@vger.kernel.org" <linux-perf-users@vger.kernel.org>,
- "linux-security-module@vger.kernel.org"
- <linux-security-module@vger.kernel.org>,
- Casey Schaufler <casey@schaufler-ca.com>,
- "bpf@vger.kernel.org" <bpf@vger.kernel.org>,
- "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>
-Content-Type: text/plain; charset="us-ascii"
+Cc: Dorian Stoll <dorian.stoll@tmsp.io>, intel-gfx@lists.freedesktop.org
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Dec 18, 2019 at 12:24:28PM +0300, Alexey Budankov wrote:
-> 
-> Introduce CAP_SYS_PERFMON capability devoted to secure system performance
-> monitoring and observability operations so that CAP_SYS_PERFMON would
-> assist CAP_SYS_ADMIN capability in its governing role for perf_events,
-> i915_perf and other subsystems of the kernel.
-> 
-> CAP_SYS_PERFMON intends to harden system security and integrity during
-> system performance monitoring and observability operations by decreasing
-> attack surface that is available to CAP_SYS_ADMIN privileged processes.
-> 
-> CAP_SYS_PERFMON intends to take over CAP_SYS_ADMIN credentials related
-> to system performance monitoring and observability operations and balance
-> amount of CAP_SYS_ADMIN credentials in accordance with the recommendations
-> provided in the man page for CAP_SYS_ADMIN [1]: "Note: this capability
-> is overloaded; see Notes to kernel developers, below."
-> 
-> [1] http://man7.org/linux/man-pages/man7/capabilities.7.html
-> 
-> Signed-off-by: Alexey Budankov <alexey.budankov@linux.intel.com>
+Hi,
 
-Acked-by: Serge Hallyn <serge@hallyn.com>
+On 12/23/19 7:55 PM, Daniele Ceraolo Spurio wrote:
+> If you only care about gen9, a possible solution would be to
+> forward-port just the old GuC submission (instead of the whole i915)
+> from a know working kernel. It shouldn't be too bad since the GuC code
+> is relatively self-contained, but given the speed at which our
+> submission code evolves there might be issue in the interactions
+> between the old GuC code and the other parts of the submission flow.
+
+Right, we may have to look at that. We're currently looking into a
+non-GuC workaround as there doesn't seem to be any OpenCL kernels for
+the Surface Pro 7/Surface Laptop 3 devices (that's another issue...),
+but we will keep that in mind for the older devices.
+
+> No idea about the details of what goes on on Windows. The firmware is
+> OS-agnostic, but they might be using a different version compared to
+> us, especially on older platforms.
+
+Yeah, I suspect they're using older firmware on the older devices. Just
+wanted to know if there's any special stuff on Windows. Given that the
+newer devices (Pro 7/Laptop 3) don't seem to have any IPTS firmware at
+all (OpenCL kernels etc.) could suggest that they might use a different
+implementation (maybe non-GuC/no GPU processing), altough the IPTS
+driver still seems to be in use.
+
+Thank you for sharing your insights, this has really helped us.
+
+Regards,
+Maximilian
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
