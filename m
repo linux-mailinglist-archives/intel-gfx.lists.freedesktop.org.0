@@ -2,35 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 947D412BC62
-	for <lists+intel-gfx@lfdr.de>; Sat, 28 Dec 2019 04:10:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id F1A4E12BC79
+	for <lists+intel-gfx@lfdr.de>; Sat, 28 Dec 2019 04:42:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0169B6E12D;
-	Sat, 28 Dec 2019 03:10:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BA4D96E47B;
+	Sat, 28 Dec 2019 03:41:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8AAE46E128
- for <intel-gfx@lists.freedesktop.org>; Sat, 28 Dec 2019 03:10:19 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by orsmga106.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 27 Dec 2019 19:10:18 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,365,1571727600"; d="scan'208";a="220658299"
-Received: from labuser-z97x-ud5h.jf.intel.com ([10.54.75.49])
- by orsmga003.jf.intel.com with ESMTP; 27 Dec 2019 19:10:17 -0800
-From: Manasi Navare <manasi.d.navare@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri, 27 Dec 2019 19:12:04 -0800
-Message-Id: <20191228031204.10189-3-manasi.d.navare@intel.com>
-X-Mailer: git-send-email 2.19.1
-In-Reply-To: <20191228031204.10189-1-manasi.d.navare@intel.com>
-References: <20191228031204.10189-1-manasi.d.navare@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 0A6166E133;
+ Sat, 28 Dec 2019 03:41:56 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 01739A0094;
+ Sat, 28 Dec 2019 03:41:55 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [CI v6 3/3] drm/i915/dp: Disable Port sync mode
- correctly on teardown
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Manasi Navare" <manasi.d.navare@intel.com>
+Date: Sat, 28 Dec 2019 03:41:55 -0000
+Message-ID: <157750451597.775.15583125172175879295@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20191228031204.10189-1-manasi.d.navare@intel.com>
+In-Reply-To: <20191228031204.10189-1-manasi.d.navare@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5BCI=2Cv6=2C1/3=5D_drm/i915/dp=3A_Make_sure_?=
+ =?utf-8?q?all_tiled_connectors_get_added_to_the_state_with_full_modeset?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -43,47 +39,147 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-V2hpbGUgY2xlYXJpbmcgdGhlIFBvcnRzIHluYyBtb2RlIGVuYWJsZSBhbmQgbWFzdGVyIHNlbGVj
-dCBiaXRzCndlIG5lZWQgdG8gY2xlYXIgdGhlIHJlZ2lzdGVyIGNvbXBsZXRlbHkgaW5zdGVhZCBv
-ZiB1c2luZyBkaXNhYmxlIG1hc2tzCgp2MzoKKiBSZW1vdmUgcmVnIHZhcmlhYmxlIChNYXR0KQp2
-MjoKKiBKdXN0IHdyaXRlIDAgdG8gdGhlIHJlZyAoVmlsbGUpCiogUmViYXNlCgpCdWd6aWxsYTog
-aHR0cHM6Ly9naXRsYWIuZnJlZWRlc2t0b3Aub3JnL2RybS9pbnRlbC9pc3N1ZXMvNQpDYzogVmls
-bGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KQ2M6IEphbmkgTmlr
-dWxhIDxqYW5pLm5pa3VsYUBpbnRlbC5jb20+CkZpeGVzOiA1MTUyOGFmZTdjNWUgKCJkcm0vaTkx
-NS9kaXNwbGF5L2ljbDogRGlzYWJsZSB0cmFuc2NvZGVyIHBvcnQgc3luYyBhcyBwYXJ0IG9mIGNy
-dGNfZGlzYWJsZSgpIHNlcXVlbmNlIikKU2lnbmVkLW9mZi1ieTogTWFuYXNpIE5hdmFyZSA8bWFu
-YXNpLmQubmF2YXJlQGludGVsLmNvbT4KUmV2aWV3ZWQtYnk6IE1hdHQgUm9wZXIgPG1hdHRoZXcu
-ZC5yb3BlckBpbnRlbC5jb20+ClJldmlld2VkLWJ5OiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5
-cmphbGFAbGludXguaW50ZWwuY29tPgotLS0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkv
-aW50ZWxfZGRpLmMgfCA3ICstLS0tLS0KIDEgZmlsZSBjaGFuZ2VkLCAxIGluc2VydGlvbigrKSwg
-NiBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5
-L2ludGVsX2RkaS5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kZGkuYwpp
-bmRleCAzYTUzODc4OWM1ODUuLjM4MzhiMzcxODVkZSAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUv
-ZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kZGkuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9k
-aXNwbGF5L2ludGVsX2RkaS5jCkBAIC0zODc4LDggKzM4NzgsNiBAQCBzdGF0aWMgdm9pZCBpY2xf
-ZGlzYWJsZV90cmFuc2NvZGVyX3BvcnRfc3luYyhjb25zdCBzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0
-ZSAqb2xkXwogewogCXN0cnVjdCBpbnRlbF9jcnRjICpjcnRjID0gdG9faW50ZWxfY3J0YyhvbGRf
-Y3J0Y19zdGF0ZS0+dWFwaS5jcnRjKTsKIAlzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3By
-aXYgPSB0b19pOTE1KGNydGMtPmJhc2UuZGV2KTsKLQlpOTE1X3JlZ190IHJlZzsKLQl1MzIgdHJh
-bnNfZGRpX2Z1bmNfY3RsMl92YWw7CiAKIAlpZiAob2xkX2NydGNfc3RhdGUtPm1hc3Rlcl90cmFu
-c2NvZGVyID09IElOVkFMSURfVFJBTlNDT0RFUikKIAkJcmV0dXJuOwpAQCAtMzg4NywxMCArMzg4
-NSw3IEBAIHN0YXRpYyB2b2lkIGljbF9kaXNhYmxlX3RyYW5zY29kZXJfcG9ydF9zeW5jKGNvbnN0
-IHN0cnVjdCBpbnRlbF9jcnRjX3N0YXRlICpvbGRfCiAJRFJNX0RFQlVHX0tNUygiRGlzYWJsaW5n
-IFRyYW5zY29kZXIgUG9ydCBTeW5jIG9uIFNsYXZlIFRyYW5zY29kZXIgJXNcbiIsCiAJCSAgICAg
-IHRyYW5zY29kZXJfbmFtZShvbGRfY3J0Y19zdGF0ZS0+Y3B1X3RyYW5zY29kZXIpKTsKIAotCXJl
-ZyA9IFRSQU5TX0RESV9GVU5DX0NUTDIob2xkX2NydGNfc3RhdGUtPmNwdV90cmFuc2NvZGVyKTsK
-LQl0cmFuc19kZGlfZnVuY19jdGwyX3ZhbCA9IH4oUE9SVF9TWU5DX01PREVfRU5BQkxFIHwKLQkJ
-CQkgICAgUE9SVF9TWU5DX01PREVfTUFTVEVSX1NFTEVDVF9NQVNLKTsKLQlJOTE1X1dSSVRFKHJl
-ZywgdHJhbnNfZGRpX2Z1bmNfY3RsMl92YWwpOworCUk5MTVfV1JJVEUoVFJBTlNfRERJX0ZVTkNf
-Q1RMMihvbGRfY3J0Y19zdGF0ZS0+Y3B1X3RyYW5zY29kZXIpLCAwKTsKIH0KIAogc3RhdGljIHZv
-aWQgaW50ZWxfZGRpX3Bvc3RfZGlzYWJsZShzdHJ1Y3QgaW50ZWxfZW5jb2RlciAqZW5jb2RlciwK
-LS0gCjIuMTkuMQoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
-Cmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
-Cg==
+== Series Details ==
+
+Series: series starting with [CI,v6,1/3] drm/i915/dp: Make sure all tiled connectors get added to the state with full modeset
+URL   : https://patchwork.freedesktop.org/series/71445/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_7644 -> Patchwork_15936
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15936/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_15936 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_module_load@reload-with-fault-injection:
+    - fi-skl-6700k2:      [PASS][1] -> [INCOMPLETE][2] ([i915#671])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7644/fi-skl-6700k2/igt@i915_module_load@reload-with-fault-injection.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15936/fi-skl-6700k2/igt@i915_module_load@reload-with-fault-injection.html
+
+  * igt@i915_selftest@live_blt:
+    - fi-hsw-4770:        [PASS][3] -> [DMESG-FAIL][4] ([i915#563])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7644/fi-hsw-4770/igt@i915_selftest@live_blt.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15936/fi-hsw-4770/igt@i915_selftest@live_blt.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_module_load@reload-with-fault-injection:
+    - fi-skl-6770hq:      [INCOMPLETE][5] ([i915#671]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7644/fi-skl-6770hq/igt@i915_module_load@reload-with-fault-injection.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15936/fi-skl-6770hq/igt@i915_module_load@reload-with-fault-injection.html
+    - fi-skl-lmem:        [INCOMPLETE][7] ([i915#671]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7644/fi-skl-lmem/igt@i915_module_load@reload-with-fault-injection.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15936/fi-skl-lmem/igt@i915_module_load@reload-with-fault-injection.html
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-skl-6600u:       [DMESG-WARN][9] ([i915#889]) -> [PASS][10] +13 similar issues
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7644/fi-skl-6600u/igt@i915_pm_rpm@module-reload.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15936/fi-skl-6600u/igt@i915_pm_rpm@module-reload.html
+
+  * igt@i915_selftest@live_client:
+    - fi-skl-6600u:       [DMESG-WARN][11] -> [PASS][12] +9 similar issues
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7644/fi-skl-6600u/igt@i915_selftest@live_client.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15936/fi-skl-6600u/igt@i915_selftest@live_client.html
+
+  * igt@i915_selftest@live_gt_lrc:
+    - fi-skl-6600u:       [DMESG-FAIL][13] ([i915#889]) -> [PASS][14] +3 similar issues
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7644/fi-skl-6600u/igt@i915_selftest@live_gt_lrc.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15936/fi-skl-6600u/igt@i915_selftest@live_gt_lrc.html
+
+  * igt@i915_selftest@live_reset:
+    - fi-skl-6600u:       [DMESG-FAIL][15] -> [PASS][16] +3 similar issues
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7644/fi-skl-6600u/igt@i915_selftest@live_reset.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15936/fi-skl-6600u/igt@i915_selftest@live_reset.html
+
+  * igt@kms_chamelium@hdmi-hpd-fast:
+    - fi-kbl-7500u:       [FAIL][17] ([fdo#111407]) -> [PASS][18]
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7644/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15936/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+
+  
+#### Warnings ####
+
+  * igt@i915_selftest@live_blt:
+    - fi-hsw-4770r:       [DMESG-FAIL][19] ([i915#553] / [i915#725]) -> [DMESG-FAIL][20] ([i915#725])
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7644/fi-hsw-4770r/igt@i915_selftest@live_blt.html
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15936/fi-hsw-4770r/igt@i915_selftest@live_blt.html
+
+  * igt@kms_busy@basic-flip-pipe-b:
+    - fi-kbl-x1275:       [DMESG-WARN][21] ([i915#62] / [i915#92]) -> [DMESG-WARN][22] ([i915#62] / [i915#92] / [i915#95]) +4 similar issues
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7644/fi-kbl-x1275/igt@kms_busy@basic-flip-pipe-b.html
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15936/fi-kbl-x1275/igt@kms_busy@basic-flip-pipe-b.html
+
+  * igt@kms_flip@basic-flip-vs-modeset:
+    - fi-kbl-x1275:       [DMESG-WARN][23] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][24] ([i915#62] / [i915#92]) +5 similar issues
+   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7644/fi-kbl-x1275/igt@kms_flip@basic-flip-vs-modeset.html
+   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15936/fi-kbl-x1275/igt@kms_flip@basic-flip-vs-modeset.html
+
+  
+  [fdo#111407]: https://bugs.freedesktop.org/show_bug.cgi?id=111407
+  [i915#553]: https://gitlab.freedesktop.org/drm/intel/issues/553
+  [i915#563]: https://gitlab.freedesktop.org/drm/intel/issues/563
+  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
+  [i915#671]: https://gitlab.freedesktop.org/drm/intel/issues/671
+  [i915#725]: https://gitlab.freedesktop.org/drm/intel/issues/725
+  [i915#889]: https://gitlab.freedesktop.org/drm/intel/issues/889
+  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
+  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
+
+
+Participating hosts (42 -> 40)
+------------------------------
+
+  Additional (7): fi-byt-j1900 fi-hsw-peppy fi-ilk-650 fi-kbl-8809g fi-blb-e6850 fi-snb-2600 fi-kbl-r 
+  Missing    (9): fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-ivb-3770 fi-bsw-kefka fi-byt-clapper fi-bsw-nick fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_7644 -> Patchwork_15936
+
+  CI-20190529: 20190529
+  CI_DRM_7644: 103086964d18ac22a8e333b9ea7649f67c468f7b @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5352: 0586d205f651674e575351c2d5a7d0760716c9f1 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_15936: 1bfacdc68aeb61dcef5050478e608894fee9c181 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+1bfacdc68aeb drm/i915/dp: Disable Port sync mode correctly on teardown
+436f43af7c16 drm/i915/dp: Make port sync mode assignments only if all tiles present
+b9d5d7bbeb28 drm/i915/dp: Make sure all tiled connectors get added to the state with full modeset
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15936/index.html
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
