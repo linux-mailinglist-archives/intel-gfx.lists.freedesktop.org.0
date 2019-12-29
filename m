@@ -2,30 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E78B512CA5E
-	for <lists+intel-gfx@lfdr.de>; Sun, 29 Dec 2019 19:32:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9663412CA5D
+	for <lists+intel-gfx@lfdr.de>; Sun, 29 Dec 2019 19:32:11 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A94D289B12;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8E44B89B06;
 	Sun, 29 Dec 2019 18:32:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9F27E89ACC
- for <intel-gfx@lists.freedesktop.org>; Sun, 29 Dec 2019 18:32:03 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 835BF89AB7
+ for <intel-gfx@lists.freedesktop.org>; Sun, 29 Dec 2019 18:32:04 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19720976-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19720977-1500050 
  for multiple; Sun, 29 Dec 2019 18:31:56 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Sun, 29 Dec 2019 18:31:50 +0000
-Message-Id: <20191229183153.3719869-4-chris@chris-wilson.co.uk>
+Date: Sun, 29 Dec 2019 18:31:51 +0000
+Message-Id: <20191229183153.3719869-5-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.25.0.rc0
 In-Reply-To: <20191229183153.3719869-1-chris@chris-wilson.co.uk>
 References: <20191229183153.3719869-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 4/7] drm/i915/gt: Do not restore invalid RS state
+Subject: [Intel-gfx] [PATCH 5/7] drm/i915/gt: Ignore stale context state
+ upon resume
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -43,61 +44,73 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Only restore valid resource streamer state from the context image, i.e.
-avoid restoring if we know the image is invalid.
+We leave the kernel_context on the HW as we suspend (and while idle).
+There is no guarantee that is complete in memory, so we try to inhibit
+restoration from the kernel_context. Reinforce the inhibition by
+scrubbing the context.
 
-Closes: https://gitlab.freedesktop.org/drm/intel/issues/446
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 ---
- .../gpu/drm/i915/gt/intel_ring_submission.c   | 24 +++++++++----------
- 1 file changed, 11 insertions(+), 13 deletions(-)
+ drivers/gpu/drm/i915/gt/intel_lrc.c             | 17 +++++++++++++++--
+ drivers/gpu/drm/i915/gt/intel_ring_submission.c |  2 +-
+ 2 files changed, 16 insertions(+), 3 deletions(-)
 
+diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+index 14e7e179855f..b1508dbd1063 100644
+--- a/drivers/gpu/drm/i915/gt/intel_lrc.c
++++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+@@ -2494,6 +2494,11 @@ static int execlists_context_alloc(struct intel_context *ce)
+ 
+ static void execlists_context_reset(struct intel_context *ce)
+ {
++	u32 *regs;
++
++	CE_TRACE(ce, "reset\n");
++	GEM_BUG_ON(!intel_context_is_pinned(ce));
++
+ 	/*
+ 	 * Because we emit WA_TAIL_DWORDS there may be a disparity
+ 	 * between our bookkeeping in ce->ring->head and ce->ring->tail and
+@@ -2510,8 +2515,17 @@ static void execlists_context_reset(struct intel_context *ce)
+ 	 * So to avoid that we reset the context images upon resume. For
+ 	 * simplicity, we just zero everything out.
+ 	 */
+-	intel_ring_reset(ce->ring, 0);
++	intel_ring_reset(ce->ring, ce->ring->emit);
++
++	regs = memset(ce->lrc_reg_state, 0, PAGE_SIZE);
++	execlists_init_reg_state(regs, ce, ce->engine, ce->ring, true);
+ 	__execlists_update_reg_state(ce, ce->engine);
++
++	/* Avoid trying to reload the garbage */
++	regs[CTX_CONTEXT_CONTROL] |=
++		_MASKED_BIT_ENABLE(CTX_CTRL_ENGINE_CTX_RESTORE_INHIBIT);
++
++	ce->lrc_desc |= CTX_DESC_FORCE_RESTORE;
+ }
+ 
+ static const struct intel_context_ops execlists_context_ops = {
+@@ -3968,7 +3982,6 @@ static void init_common_reg_state(u32 * const regs,
+ 					    CTX_CTRL_RS_CTX_ENABLE);
+ 
+ 	regs[CTX_RING_CTL] = RING_CTL_SIZE(ring->size) | RING_VALID;
+-	regs[CTX_BB_STATE] = RING_BB_PPGTT;
+ }
+ 
+ static void init_wa_bb_reg_state(u32 * const regs,
 diff --git a/drivers/gpu/drm/i915/gt/intel_ring_submission.c b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
-index 81f872f9ef03..066c4eddf5d0 100644
+index 066c4eddf5d0..843111b7b015 100644
 --- a/drivers/gpu/drm/i915/gt/intel_ring_submission.c
 +++ b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
-@@ -1408,14 +1408,6 @@ static inline int mi_set_context(struct i915_request *rq, u32 flags)
- 	int len;
- 	u32 *cs;
+@@ -1347,7 +1347,7 @@ static int ring_context_pin(struct intel_context *ce)
  
--	flags |= MI_MM_SPACE_GTT;
--	if (IS_HASWELL(i915))
--		/* These flags are for resource streamer on HSW+ */
--		flags |= HSW_MI_RS_SAVE_STATE_EN | HSW_MI_RS_RESTORE_STATE_EN;
--	else
--		/* We need to save the extended state for powersaving modes */
--		flags |= MI_SAVE_EXT_STATE_EN | MI_RESTORE_EXT_STATE_EN;
--
- 	len = 4;
- 	if (IS_GEN(i915, 7))
- 		len += 2 + (num_engines ? 4 * num_engines + 6 : 0);
-@@ -1607,15 +1599,21 @@ static int switch_context(struct i915_request *rq)
- 		return ret;
+ static void ring_context_reset(struct intel_context *ce)
+ {
+-	intel_ring_reset(ce->ring, 0);
++	intel_ring_reset(ce->ring, ce->ring->emit);
+ }
  
- 	if (ce->state) {
--		u32 hw_flags;
-+		u32 flags;
- 
- 		GEM_BUG_ON(rq->engine->id != RCS0);
- 
--		hw_flags = 0;
--		if (!test_bit(CONTEXT_VALID_BIT, &ce->flags))
--			hw_flags = MI_RESTORE_INHIBIT;
-+		/* For resource streamer on HSW+ and power context elsewhere */
-+		BUILD_BUG_ON(HSW_MI_RS_SAVE_STATE_EN != MI_SAVE_EXT_STATE_EN);
-+		BUILD_BUG_ON(HSW_MI_RS_RESTORE_STATE_EN != MI_RESTORE_EXT_STATE_EN);
-+
-+		flags = MI_SAVE_EXT_STATE_EN | MI_MM_SPACE_GTT;
-+		if (test_bit(CONTEXT_VALID_BIT, &ce->flags))
-+			flags |= MI_RESTORE_EXT_STATE_EN;
-+		else
-+			flags |= MI_RESTORE_INHIBIT;
- 
--		ret = mi_set_context(rq, hw_flags);
-+		ret = mi_set_context(rq, flags);
- 		if (ret)
- 			return ret;
- 	}
+ static const struct intel_context_ops ring_context_ops = {
 -- 
 2.25.0.rc0
 
