@@ -2,36 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4419512D1B2
-	for <lists+intel-gfx@lfdr.de>; Mon, 30 Dec 2019 17:04:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7BE6112D1B3
+	for <lists+intel-gfx@lfdr.de>; Mon, 30 Dec 2019 17:05:19 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9BFE189EB1;
-	Mon, 30 Dec 2019 16:03:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A7E2B89548;
+	Mon, 30 Dec 2019 16:05:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BFB2789EB1
- for <intel-gfx@lists.freedesktop.org>; Mon, 30 Dec 2019 16:03:57 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9735289548;
+ Mon, 30 Dec 2019 16:05:16 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 30 Dec 2019 08:03:57 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,375,1571727600"; d="scan'208";a="251413091"
-Received: from gaia.fi.intel.com ([10.237.72.192])
- by fmsmga002.fm.intel.com with ESMTP; 30 Dec 2019 08:03:56 -0800
-Received: by gaia.fi.intel.com (Postfix, from userid 1000)
- id 536355C1DD6; Mon, 30 Dec 2019 18:03:33 +0200 (EET)
-From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20191230160112.3838434-1-chris@chris-wilson.co.uk>
-References: <20191230160112.3838434-1-chris@chris-wilson.co.uk>
-Date: Mon, 30 Dec 2019 18:03:33 +0200
-Message-ID: <87h81hreay.fsf@gaia.fi.intel.com>
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga105.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 30 Dec 2019 08:05:15 -0800
+X-IronPort-AV: E=Sophos;i="5.69,375,1571727600"; d="scan'208";a="213361950"
+Received: from unknown (HELO [10.66.114.55]) ([10.66.114.55])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-SHA;
+ 30 Dec 2019 08:05:11 -0800
+To: Harry Wentland <hwentlan@amd.com>, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+References: <20191218235324.GI12192@intel.com>
+ <20191223170350.15531-1-animesh.manna@intel.com>
+ <20191223170350.15531-2-animesh.manna@intel.com>
+ <2bf4630b-52f3-138d-9061-766275cbfbe8@amd.com>
+From: "Manna, Animesh" <animesh.manna@intel.com>
+Message-ID: <93fd1b3e-2c97-2cfb-0e1a-9de86b327451@intel.com>
+Date: Mon, 30 Dec 2019 21:35:06 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.3.0
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 1/6] drm/i915/selftests: Flush the context
- worker
+In-Reply-To: <2bf4630b-52f3-138d-9061-766275cbfbe8@amd.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH v3 2/9] drm/dp: get/set phy compliance
+ pattern
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,70 +49,202 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: matthew.auld@intel.com
-Content-Type: text/plain; charset="us-ascii"
+Cc: jani.nikula@intel.com, nidhi1.gupta@intel.com
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Chris Wilson <chris@chris-wilson.co.uk> writes:
-
-> When cleaning up the mock device, remember to flush the context worker
-> to free the residual GEM contexts before shutting down the device.
+On 24-12-2019 01:23, Harry Wentland wrote:
 >
-> Closes: https://gitlab.freedesktop.org/drm/intel/issues/802
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> Cc: Matthew Auld <matthew.auld@intel.com>
-
-Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-
-> ---
->  drivers/gpu/drm/i915/i915_gem.c                  | 4 ++--
->  drivers/gpu/drm/i915/selftests/mock_gem_device.c | 2 ++
->  2 files changed, 4 insertions(+), 2 deletions(-)
+> On 2019-12-23 12:03 p.m., Animesh Manna wrote:
+>> During phy compliance auto test mode source need to read
+>> requested test pattern from sink through DPCD. After processing
+>> the request source need to set the pattern. So set/get method
+>> added in drm layer as it is DP protocol.
+>>
+>> v2: As per review feedback from Manasi on RFC version,
+>> - added dp revision as function argument in set_phy_pattern api.
+>> - used int for link_rate and u8 for lane_count to align with existing code.
+>>
+>> Signed-off-by: Animesh Manna <animesh.manna@intel.com>
+>> ---
+>>   drivers/gpu/drm/drm_dp_helper.c | 93 +++++++++++++++++++++++++++++++++
+>>   include/drm/drm_dp_helper.h     | 31 +++++++++++
+>>   2 files changed, 124 insertions(+)
+>>
+>> diff --git a/drivers/gpu/drm/drm_dp_helper.c b/drivers/gpu/drm/drm_dp_helper.c
+>> index 2c7870aef469..91c80973aa83 100644
+>> --- a/drivers/gpu/drm/drm_dp_helper.c
+>> +++ b/drivers/gpu/drm/drm_dp_helper.c
+>> @@ -1371,3 +1371,96 @@ int drm_dp_dsc_sink_supported_input_bpcs(const u8 dsc_dpcd[DP_DSC_RECEIVER_CAP_S
+>>   	return num_bpc;
+>>   }
+>>   EXPORT_SYMBOL(drm_dp_dsc_sink_supported_input_bpcs);
+>> +
+>> +/**
+>> + * drm_dp_get_phy_test_pattern() - get the requested pattern from the sink.
+>> + * @aux: DisplayPort AUX channel
+>> + * @data: DP phy compliance test parameters.
+>> + *
+>> + * Returns 0 on success or a negative error code on failure.
+>> + */
+>> +int drm_dp_get_phy_test_pattern(struct drm_dp_aux *aux,
+>> +				struct drm_dp_phy_test_params *data)
+>> +{
+>> +	int err;
+>> +	u8 rate, lanes;
+>> +
+>> +	err = drm_dp_dpcd_readb(aux, DP_TEST_LINK_RATE, &rate);
+>> +	if (err < 0)
+>> +		return err;
+>> +	data->link_rate = drm_dp_bw_code_to_link_rate(rate);
+>> +
+>> +	err = drm_dp_dpcd_readb(aux, DP_TEST_LANE_COUNT, &lanes);
+>> +	if (err < 0)
+>> +		return err;
+>> +	data->num_lanes = lanes & DP_MAX_LANE_COUNT_MASK;
+>> +
+>> +	if (lanes & DP_ENHANCED_FRAME_CAP)
+>> +		data->enahanced_frame_cap = true;
+>> +
+>> +	err = drm_dp_dpcd_readb(aux, DP_PHY_TEST_PATTERN, &data->phy_pattern);
+>> +	if (err < 0)
+>> +		return err;
+>> +
+>> +	switch (data->phy_pattern) {
+>> +	case DP_PHY_TEST_PATTERN_80BIT_CUSTOM:
+>> +		err = drm_dp_dpcd_read(aux, DP_TEST_80BIT_CUSTOM_PATTERN_7_0,
+>> +				       &data->custom80, 10);
+> Using sizeof(data->custom80) might be safer.
 >
-> diff --git a/drivers/gpu/drm/i915/i915_gem.c b/drivers/gpu/drm/i915/i915_gem.c
-> index 9ddcf17230e6..a3d701b50a6b 100644
-> --- a/drivers/gpu/drm/i915/i915_gem.c
-> +++ b/drivers/gpu/drm/i915/i915_gem.c
-> @@ -1172,6 +1172,8 @@ void i915_gem_driver_remove(struct drm_i915_private *dev_priv)
->  
->  void i915_gem_driver_release(struct drm_i915_private *dev_priv)
->  {
-> +	i915_gem_driver_release__contexts(dev_priv);
-> +
->  	intel_gt_driver_release(&dev_priv->gt);
->  
->  	intel_wa_list_free(&dev_priv->gt_wa_list);
-> @@ -1179,8 +1181,6 @@ void i915_gem_driver_release(struct drm_i915_private *dev_priv)
->  	intel_uc_cleanup_firmwares(&dev_priv->gt.uc);
->  	i915_gem_cleanup_userptr(dev_priv);
->  
-> -	i915_gem_driver_release__contexts(dev_priv);
-> -
->  	i915_gem_drain_freed_objects(dev_priv);
->  
->  	WARN_ON(!list_empty(&dev_priv->gem.contexts.list));
-> diff --git a/drivers/gpu/drm/i915/selftests/mock_gem_device.c b/drivers/gpu/drm/i915/selftests/mock_gem_device.c
-> index 2b01094e4318..3b8986983afc 100644
-> --- a/drivers/gpu/drm/i915/selftests/mock_gem_device.c
-> +++ b/drivers/gpu/drm/i915/selftests/mock_gem_device.c
-> @@ -58,6 +58,8 @@ static void mock_device_release(struct drm_device *dev)
->  	mock_device_flush(i915);
->  	intel_gt_driver_remove(&i915->gt);
->  
-> +	i915_gem_driver_release__contexts(i915);
-> +
->  	i915_gem_drain_workqueue(i915);
->  	i915_gem_drain_freed_objects(i915);
->  
-> -- 
-> 2.25.0.rc0
+>> +		if (err < 0)
+>> +			return err;
+>> +
+>> +		break;
+>> +	case DP_PHY_TEST_PATTERN_CP2520:
+>> +		err = drm_dp_dpcd_read(aux, DP_TEST_HBR2_SCRAMBLER_RESET,
+>> +				       &data->hbr2_reset, 2);
+> Same here, using sizeof(data->hbr2_reset).
 >
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+>> +		if (err < 0)
+>> +			return err;
+>> +	}
+>> +
+>> +	return 0;
+>> +}
+>> +EXPORT_SYMBOL(drm_dp_get_phy_test_pattern);
+>> +
+>> +/**
+>> + * drm_dp_set_phy_test_pattern() - set the pattern to the sink.
+>> + * @aux: DisplayPort AUX channel
+>> + * @data: DP phy compliance test parameters.
+>> + *
+>> + * Returns 0 on success or a negative error code on failure.
+>> + */
+>> +int drm_dp_set_phy_test_pattern(struct drm_dp_aux *aux,
+>> +				struct drm_dp_phy_test_params *data, u8 dp_rev)
+>> +{
+>> +	int err, i;
+>> +	u8 link_config[2];
+>> +	u8 test_pattern;
+>> +
+>> +	link_config[0] = drm_dp_link_rate_to_bw_code(data->link_rate);
+>> +	link_config[1] = data->num_lanes;
+>> +	if (data->enahanced_frame_cap)
+>> +		link_config[1] |= DP_LANE_COUNT_ENHANCED_FRAME_EN;
+>> +	err = drm_dp_dpcd_write(aux, DP_LINK_BW_SET, link_config, 2);
+>> +	if (err < 0)
+>> +		return err;
+>> +
+>> +	test_pattern = data->phy_pattern;
+>> +	if (dp_rev < 0x12) {
+>> +		test_pattern = (test_pattern << 2) &
+>> +			       DP_LINK_QUAL_PATTERN_11_MASK;
+>> +		err = drm_dp_dpcd_writeb(aux, DP_TRAINING_PATTERN_SET,
+>> +					 test_pattern);
+>> +		if (err < 0)
+>> +			return err;
+>> +	} else {
+>> +		for (i = 0; i < data->num_lanes; i++) {
+>> +			err = drm_dp_dpcd_writeb(aux,
+>> +						 DP_LINK_QUAL_LANE0_SET + i,
+>> +						 test_pattern);
+>> +			if (err < 0)
+>> +				return err;
+>> +		}
+>> +	}
+>> +
+>> +	return 0;
+>> +}
+>> +EXPORT_SYMBOL(drm_dp_set_phy_test_pattern);
+>> diff --git a/include/drm/drm_dp_helper.h b/include/drm/drm_dp_helper.h
+>> index d6e560870fb1..42a364748308 100644
+>> --- a/include/drm/drm_dp_helper.h
+>> +++ b/include/drm/drm_dp_helper.h
+>> @@ -700,6 +700,15 @@
+>>   # define DP_TEST_COUNT_MASK		    0xf
+>>   
+>>   #define DP_PHY_TEST_PATTERN                 0x248
+>> +# define DP_PHY_TEST_PATTERN_SEL_MASK       0x7
+>> +# define DP_PHY_TEST_PATTERN_NONE           0x0
+>> +# define DP_PHY_TEST_PATTERN_D10_2          0x1
+>> +# define DP_PHY_TEST_PATTERN_ERROR_COUNT    0x2
+>> +# define DP_PHY_TEST_PATTERN_PRBS7          0x3
+>> +# define DP_PHY_TEST_PATTERN_80BIT_CUSTOM   0x4
+>> +# define DP_PHY_TEST_PATTERN_CP2520         0x5
+>> +
+>> +#define DP_TEST_HBR2_SCRAMBLER_RESET        0x24A
+>>   #define DP_TEST_80BIT_CUSTOM_PATTERN_7_0    0x250
+>>   #define	DP_TEST_80BIT_CUSTOM_PATTERN_15_8   0x251
+>>   #define	DP_TEST_80BIT_CUSTOM_PATTERN_23_16  0x252
+>> @@ -1570,4 +1579,26 @@ static inline void drm_dp_cec_unset_edid(struct drm_dp_aux *aux)
+>>   
+>>   #endif
+>>   
+>> +/**
+>> + * struct drm_dp_phy_test_params - DP Phy Compliance parameters
+>> + * @link: Link information.
+> @link seems to be from a previous patch version. Please describe
+> link_rate and num_lanes instead.
+>
+>> + * @phy_pattern: DP Phy test pattern from DPCD 0x248 (sink)
+>> + * @hb2_reset: DP HBR2_COMPLIANCE_SCRAMBLER_RESET from DCPD
+>> + *            0x24A and 0x24B (sink)
+>> + * @custom80: DP Test_80BIT_CUSTOM_PATTERN from DPCDs 0x250
+>> + *               through 0x259.
+> Missing doc for enhanced_frame_cap.
+>
+>> + */
+>> +struct drm_dp_phy_test_params {
+>> +	int link_rate;
+> Is there a reason you're not using u8 here? Would be nice to keep it
+> consistent with num_lanes.
+
+link_rate variable is used here to store actual clock value after multiplying with 27000 (0.27 gbps) with link-code using drm_dp_bw_code_to_link_rate().
+Followed the same and u8 maybe not be sufficient. Added other suggested changes. Thanks for review.
+
+Regrads,
+Animesh
+
+>
+>> +	u8 num_lanes;
+>> +	u8 phy_pattern;
+>> +	u8 hbr2_reset[2];
+>> +	u8 custom80[10];
+>> +	bool enahanced_frame_cap;
+> Typo. Should be enhanved_frame_cap.
+>
+> Harry
+>
+>> +};
+>> +
+>> +int drm_dp_get_phy_test_pattern(struct drm_dp_aux *aux,
+>> +				struct drm_dp_phy_test_params *data);
+>> +int drm_dp_set_phy_test_pattern(struct drm_dp_aux *aux,
+>> +				struct drm_dp_phy_test_params *data, u8 dp_rev);
+>>   #endif /* _DRM_DP_HELPER_H_ */
+>>
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
