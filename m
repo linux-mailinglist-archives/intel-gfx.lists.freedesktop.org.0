@@ -1,55 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C1DC112D1B5
-	for <lists+intel-gfx@lfdr.de>; Mon, 30 Dec 2019 17:07:18 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5015612D1BA
+	for <lists+intel-gfx@lfdr.de>; Mon, 30 Dec 2019 17:12:57 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3173789EFF;
-	Mon, 30 Dec 2019 16:07:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8FB5389F0B;
+	Mon, 30 Dec 2019 16:12:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-vk1-xa44.google.com (mail-vk1-xa44.google.com
- [IPv6:2607:f8b0:4864:20::a44])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5E84B89EFF
- for <intel-gfx@lists.freedesktop.org>; Mon, 30 Dec 2019 16:07:14 +0000 (UTC)
-Received: by mail-vk1-xa44.google.com with SMTP id i4so8381698vkc.3
- for <intel-gfx@lists.freedesktop.org>; Mon, 30 Dec 2019 08:07:14 -0800 (PST)
+Received: from mail-ua1-x942.google.com (mail-ua1-x942.google.com
+ [IPv6:2607:f8b0:4864:20::942])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C1CBE89F0B
+ for <intel-gfx@lists.freedesktop.org>; Mon, 30 Dec 2019 16:12:53 +0000 (UTC)
+Received: by mail-ua1-x942.google.com with SMTP id o42so11272090uad.10
+ for <intel-gfx@lists.freedesktop.org>; Mon, 30 Dec 2019 08:12:53 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=QgeSp3bQehuChmYxKBnmiYOtcBXEB8slgLwijhEVfMI=;
- b=WPy8XuEPrxT6PHqi1OJ8RpOIGRJBU9/SDlIeyOctbY+ksLgST17rxqTQRZv6or8RgN
- gPlYwjzht+aNCg46LOJv9tGrGUsRK5mOU1NTOYCYrla2mY92VqxV2vvr8aPT1SaD2T1B
- 7KSYFps0vMadVPI5f3zbXB9I2SVcNe1pPwiw+cH4Qum7N4myIagG3aFpzDZuAS8DzrIi
- Jv3nKp0vq6V5giVr0fpKv/PHzT1RErm3cPaOQMtMVlPFz6QMlkuZPOULD7PbMve8Qlff
- vuOeks8aTHytvBUZto6Egg7LByRPSNKlQS5G0anZVcyJ0aSb+c4q//q2UeXL+RJCA7tL
- Jv4Q==
+ :cc; bh=eL3Lb0BDzO1AklFfdypvsNPxE8EchkENWUJQzaJEvmY=;
+ b=KqB8jbXy257WBtOs21N7ts+gFK2eBS527gf7yLye0V8NciHPSLVYfnxTuXVX6MO9a4
+ vor2KWIpS9xOr473/3jgswqql8sWaCCpfnLebX0+9lja58zQn++xcDho3CSuj9IhXiwM
+ c0jM4CCQY5Gh2ycblkVYNn71irJVLwpoCe5CHU8bzrKDKrp3E6NtRPcURF4GJtl+M93w
+ FUY6ksj+B9Fr/jkWaroKPfnOj85w5dNXgnhYo+L1w5hN179Eq3Kgv5VrX/AE1Alib+Ir
+ vJAnbwD+pSraleKa3OT31OU5MhjQ7LeB7MxZOS8F06cvJpynHHJb/0mmQMvNHCtRANO5
+ T60w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=QgeSp3bQehuChmYxKBnmiYOtcBXEB8slgLwijhEVfMI=;
- b=qeo1gtp0hVUQ+njd0F91qH4EeCdmzk+2Y0DMKtvegIt5VoTpB0D8owqRgd9kaRx6M2
- 8RjQURLoH390CcUpxomcpMxe1N6pcwa5tgRbxGexWAueSshR6vEyB8T/iDF5o4GL9euX
- z3KF0yyXeJO4U5jBb5XY6wNwZft5E6CbggiPLaT44zTVrzhgMVidHA+1n1XWvS6o8ehS
- SdFSXHI9AGwp7JhJNX8YflRFsygbfauAcBwcVUZirOvpHder3meJh0z6D/tdd8r1t3bz
- s83lbUxwfCUTnP2Gc1SAHQ0KlxoPg63e50F54wu9KUGzRJdY2NiXIBFMwSqU7CcNWlpd
- yuEA==
-X-Gm-Message-State: APjAAAUoSQN4B4g9muFVuTGrk5igFC32jT40+etoXgs2CuwvtiKzMPwh
- yYs7tdedcodBeoaUHz1EQwkxJQOKx+XhlNnJNjk=
-X-Google-Smtp-Source: APXvYqyuku5okPn6hgKr5n4Frv+jGhW/OsuUVkYLSrU1SLt2IDwdIEJlB4pZ0+3YIkAO86w7GpPb2ykGvIB8tng9CDI=
-X-Received: by 2002:a1f:8fc3:: with SMTP id r186mr32996712vkd.87.1577722033310; 
- Mon, 30 Dec 2019 08:07:13 -0800 (PST)
+ bh=eL3Lb0BDzO1AklFfdypvsNPxE8EchkENWUJQzaJEvmY=;
+ b=mYtP42RbT9jCUqVJ7VfSOgnif+yPazENtQDYXAywDnvbgDWYe8SYaNgDhF2GmsS2fV
+ Bv4u0jZ1n4c30cS1D8ayBfxcK77qnvflUiFX5WPmpWNURUJcy+iSihD/6HUnFR4gnI8D
+ RSeBbFZ7Vv3H78AjPU2A5jMYsyrDiUvkENzhF/onBKwTKxE8bF9dfRtgRBg9/U9RETlU
+ nMSvKEmmeJI0D1jugh1jhhx4jFbDdo9BjVawlWTBImHXWa8cjwHfDRRb4DNjdFojVnGX
+ D7xx/5Q3zjT0bEdHrdH/5+F8mt469cmp34uCpA/q8EuZkzjwfTqB3ZQrb5gaRA7l87CA
+ N2Yg==
+X-Gm-Message-State: APjAAAXEooE/xQ4rlnyPoge+XM+zJktc042trOzZ3NudPHRBWMi4tRlg
+ n2Wrf7Hai78rXyZ9gnQOzm1TZ56kIcfTnQpcKBw=
+X-Google-Smtp-Source: APXvYqyXKpjarNplCH1oqDnK5Fci2Yvfe89sale/Kh2sgl91oyjg1kCMrzshSK/Ap4Dcg/lJOB65vG6pVe5d6g9lDu8=
+X-Received: by 2002:ab0:740e:: with SMTP id r14mr35311742uap.104.1577722373000; 
+ Mon, 30 Dec 2019 08:12:53 -0800 (PST)
 MIME-Version: 1.0
 References: <20191229183153.3719869-1-chris@chris-wilson.co.uk>
- <20191229183153.3719869-5-chris@chris-wilson.co.uk>
-In-Reply-To: <20191229183153.3719869-5-chris@chris-wilson.co.uk>
+ <20191229183153.3719869-6-chris@chris-wilson.co.uk>
+In-Reply-To: <20191229183153.3719869-6-chris@chris-wilson.co.uk>
 From: Matthew Auld <matthew.william.auld@gmail.com>
-Date: Mon, 30 Dec 2019 16:06:47 +0000
-Message-ID: <CAM0jSHOsrHys3HoaKxSXaTyod+EHzc8yC+uvWanZEewysPinPA@mail.gmail.com>
+Date: Mon, 30 Dec 2019 16:12:26 +0000
+Message-ID: <CAM0jSHPYjNA-DkVATtgj6FPUiw9x8TprMYW69o=miUQ5d0WseQ@mail.gmail.com>
 To: Chris Wilson <chris@chris-wilson.co.uk>
-Subject: Re: [Intel-gfx] [PATCH 5/7] drm/i915/gt: Ignore stale context state
- upon resume
+Subject: Re: [Intel-gfx] [PATCH 6/7] drm/i915/gt: Discard stale context
+ state from across idling
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,61 +70,13 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 On Sun, 29 Dec 2019 at 18:32, Chris Wilson <chris@chris-wilson.co.uk> wrote:
 >
-> We leave the kernel_context on the HW as we suspend (and while idle).
-> There is no guarantee that is complete in memory, so we try to inhibit
-> restoration from the kernel_context. Reinforce the inhibition by
-> scrubbing the context.
+> Before we idle, on parking, we switch to the kernel context such that we
+> have a scratch context loaded while the GPU idle, protecting any
+> precious user state. Be paranoid and assume that the idle state may have
+> been trashed, and reset the kernel_context image after idling.
 >
 > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> ---
->  drivers/gpu/drm/i915/gt/intel_lrc.c             | 17 +++++++++++++++--
->  drivers/gpu/drm/i915/gt/intel_ring_submission.c |  2 +-
->  2 files changed, 16 insertions(+), 3 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-> index 14e7e179855f..b1508dbd1063 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-> @@ -2494,6 +2494,11 @@ static int execlists_context_alloc(struct intel_context *ce)
->
->  static void execlists_context_reset(struct intel_context *ce)
->  {
-> +       u32 *regs;
-> +
-> +       CE_TRACE(ce, "reset\n");
-> +       GEM_BUG_ON(!intel_context_is_pinned(ce));
-> +
->         /*
->          * Because we emit WA_TAIL_DWORDS there may be a disparity
->          * between our bookkeeping in ce->ring->head and ce->ring->tail and
-> @@ -2510,8 +2515,17 @@ static void execlists_context_reset(struct intel_context *ce)
->          * So to avoid that we reset the context images upon resume. For
->          * simplicity, we just zero everything out.
->          */
-> -       intel_ring_reset(ce->ring, 0);
-> +       intel_ring_reset(ce->ring, ce->ring->emit);
-> +
-> +       regs = memset(ce->lrc_reg_state, 0, PAGE_SIZE);
-> +       execlists_init_reg_state(regs, ce, ce->engine, ce->ring, true);
->         __execlists_update_reg_state(ce, ce->engine);
-> +
-> +       /* Avoid trying to reload the garbage */
-> +       regs[CTX_CONTEXT_CONTROL] |=
-> +               _MASKED_BIT_ENABLE(CTX_CTRL_ENGINE_CTX_RESTORE_INHIBIT);
-> +
-> +       ce->lrc_desc |= CTX_DESC_FORCE_RESTORE;
->  }
->
->  static const struct intel_context_ops execlists_context_ops = {
-> @@ -3968,7 +3982,6 @@ static void init_common_reg_state(u32 * const regs,
->                                             CTX_CTRL_RS_CTX_ENABLE);
->
->         regs[CTX_RING_CTL] = RING_CTL_SIZE(ring->size) | RING_VALID;
-> -       regs[CTX_BB_STATE] = RING_BB_PPGTT;
-
-Zero clue what that does...
-
-Otherwise,
+> Cc: Imre Deak <imre.deak@intel.com>
 Reviewed-by: Matthew Auld <matthew.auld@intel.com>
 _______________________________________________
 Intel-gfx mailing list
