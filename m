@@ -1,29 +1,56 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A7A312D06B
-	for <lists+intel-gfx@lfdr.de>; Mon, 30 Dec 2019 14:44:14 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id E6CE612D075
+	for <lists+intel-gfx@lfdr.de>; Mon, 30 Dec 2019 14:58:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BD41289D9A;
-	Mon, 30 Dec 2019 13:44:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 29D9789CF8;
+	Mon, 30 Dec 2019 13:58:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5526E89D9A
- for <intel-gfx@lists.freedesktop.org>; Mon, 30 Dec 2019 13:44:11 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19726684-1500050 
- for multiple; Mon, 30 Dec 2019 13:43:50 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon, 30 Dec 2019 13:43:49 +0000
-Message-Id: <20191230134349.3806558-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.25.0.rc0
+Received: from mail-vk1-xa43.google.com (mail-vk1-xa43.google.com
+ [IPv6:2607:f8b0:4864:20::a43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BF53689CF8
+ for <intel-gfx@lists.freedesktop.org>; Mon, 30 Dec 2019 13:58:54 +0000 (UTC)
+Received: by mail-vk1-xa43.google.com with SMTP id i4so8291276vkc.3
+ for <intel-gfx@lists.freedesktop.org>; Mon, 30 Dec 2019 05:58:54 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=kQ2RHllaxs23eCDR7R65u2uTc02Ua90ebjeSWEGT5Hw=;
+ b=E+iLc/OM8egcagSs2VpN+/n30tv8NNFUhPHaUMgbWJeOPhCA0ofuX9LOPkElz87+dU
+ AldemG7RVsrZDfiUG9gNdoHwVcaHAtDnFVgh7ZoN7xfTa1mxZw7v2JZm0xThLfx/DzA3
+ WUOvdnAiCWro+tzsnLkAAr3jPTSj9mIM+8a92nOwzD4oQQ6glGljo2NG/xzcdCC4tvTG
+ QA2tIqdj+6r1o9ED14naCKvgunCn8u/w2BAheuKxGop1DXWKB5ra0t5gDBMUA6roUeB+
+ lRbCSs15apDGVdPokjX+Ri0WmSsLgqqrj8jOnD7zwnL60kUGCyfPbFxxT3z9iaCDS0pb
+ 4Row==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=kQ2RHllaxs23eCDR7R65u2uTc02Ua90ebjeSWEGT5Hw=;
+ b=Rdu3tPaJfn/VBiti+n/vtU1LGeLPTZKWHg55EMXnFLQRYw8UeTYw7dBDHh5PUqyuzx
+ O+Cbz/jpog2Ll8CIexrqHw6gEmLm+wOVM/1eW743mCsAx1v9K5sXGtE6xPkQv/Y/Rs9Z
+ 8bL/f7egG/kn547BWf5+rzp4bRIAjeesjBT4yig1kL2nEy/ErlAMDJeV2L0v7h8hPUEn
+ SjQy6F6kuPYh7Q9c/mprRClWXW0oVcAuP7LOi3Ld/8GEvYy0Qasjil98PsQ6u3k23uHw
+ 6pSR2vtwmShSKQlmI68/R+/YBIgnTemnNISF82l2Go+2aix/j20cP5oQ5dFUMIPs+zbH
+ dEiQ==
+X-Gm-Message-State: APjAAAWQ+n5bIQYUI7eWlZKm5gx0AU7dlxCeLX15dc5OPlJOxOuhA92X
+ Yyh4hwTueYVQrNitz8hACvlrTZu+uiAXKAhxGkdc5g==
+X-Google-Smtp-Source: APXvYqx4tnXqNabQFQ3dVNZSwZSF2OOyrQwGBx+1AqIetw4Ezkr7YjjcQkuUPZuqVl7mjwOdjXay8pUty+aQZ9AwOwk=
+X-Received: by 2002:a05:6122:1065:: with SMTP id
+ k5mr38266930vko.14.1577714333576; 
+ Mon, 30 Dec 2019 05:58:53 -0800 (PST)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/selftests: Flush the context worker
+References: <20191229183153.3719869-1-chris@chris-wilson.co.uk>
+ <20191229183153.3719869-3-chris@chris-wilson.co.uk>
+In-Reply-To: <20191229183153.3719869-3-chris@chris-wilson.co.uk>
+From: Matthew Auld <matthew.william.auld@gmail.com>
+Date: Mon, 30 Dec 2019 13:58:27 +0000
+Message-ID: <CAM0jSHOOFd-8nSWtnyAPK5TTT3Y0HnO0nP=6-3_uWnAohMFWRQ@mail.gmail.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>
+Subject: Re: [Intel-gfx] [PATCH 3/7] drm/i915/gt: Avoid using the GPU before
+ initialisation
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,61 +63,20 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Matthew Auld <matthew.auld@intel.com>
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-When cleaning up the mock device, remember to flush the context worker
-to free the residual GEM contexts before shutting down the device.
-
-Closes: https://gitlab.freedesktop.org/drm/intel/issues/802
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Matthew Auld <matthew.auld@intel.com>
----
- drivers/gpu/drm/i915/i915_gem.c                  | 4 ++--
- drivers/gpu/drm/i915/selftests/mock_gem_device.c | 2 ++
- 2 files changed, 4 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/i915_gem.c b/drivers/gpu/drm/i915/i915_gem.c
-index 9ddcf17230e6..a3d701b50a6b 100644
---- a/drivers/gpu/drm/i915/i915_gem.c
-+++ b/drivers/gpu/drm/i915/i915_gem.c
-@@ -1172,6 +1172,8 @@ void i915_gem_driver_remove(struct drm_i915_private *dev_priv)
- 
- void i915_gem_driver_release(struct drm_i915_private *dev_priv)
- {
-+	i915_gem_driver_release__contexts(dev_priv);
-+
- 	intel_gt_driver_release(&dev_priv->gt);
- 
- 	intel_wa_list_free(&dev_priv->gt_wa_list);
-@@ -1179,8 +1181,6 @@ void i915_gem_driver_release(struct drm_i915_private *dev_priv)
- 	intel_uc_cleanup_firmwares(&dev_priv->gt.uc);
- 	i915_gem_cleanup_userptr(dev_priv);
- 
--	i915_gem_driver_release__contexts(dev_priv);
--
- 	i915_gem_drain_freed_objects(dev_priv);
- 
- 	WARN_ON(!list_empty(&dev_priv->gem.contexts.list));
-diff --git a/drivers/gpu/drm/i915/selftests/mock_gem_device.c b/drivers/gpu/drm/i915/selftests/mock_gem_device.c
-index ac641f5360e1..bddead3fc855 100644
---- a/drivers/gpu/drm/i915/selftests/mock_gem_device.c
-+++ b/drivers/gpu/drm/i915/selftests/mock_gem_device.c
-@@ -58,6 +58,8 @@ static void mock_device_release(struct drm_device *dev)
- 	mock_device_flush(i915);
- 	intel_gt_driver_remove(&i915->gt);
- 
-+	i915_gem_driver_release__contexts(i915);
-+
- 	i915_gem_drain_workqueue(i915);
- 	i915_gem_drain_freed_objects(i915);
- 
--- 
-2.25.0.rc0
-
+On Sun, 29 Dec 2019 at 18:32, Chris Wilson <chris@chris-wilson.co.uk> wrote:
+>
+> Mark the GT as wedged so that we are not tempted to use it prior to
+> initialisation.
+>
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Andi Shyti <andi.shyti@intel.com>
+Reviewed-by: Matthew Auld <matthew.auld@intel.com>
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
