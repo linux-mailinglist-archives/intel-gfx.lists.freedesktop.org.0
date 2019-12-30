@@ -1,31 +1,29 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4420612D256
-	for <lists+intel-gfx@lfdr.de>; Mon, 30 Dec 2019 17:57:03 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id F0BA112D259
+	for <lists+intel-gfx@lfdr.de>; Mon, 30 Dec 2019 17:58:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 52B6B89FAD;
-	Mon, 30 Dec 2019 16:57:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 502F66E043;
+	Mon, 30 Dec 2019 16:58:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 696D589FAD;
- Mon, 30 Dec 2019 16:57:00 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 5F622A0134;
- Mon, 30 Dec 2019 16:57:00 +0000 (UTC)
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 02AC96E043
+ for <intel-gfx@lists.freedesktop.org>; Mon, 30 Dec 2019 16:58:24 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19728235-1500050 
+ for <intel-gfx@lists.freedesktop.org>; Mon, 30 Dec 2019 16:58:22 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon, 30 Dec 2019 16:58:20 +0000
+Message-Id: <20191230165821.3840449-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.25.0.rc0
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Manna, Animesh" <animesh.manna@intel.com>
-Date: Mon, 30 Dec 2019 16:57:00 -0000
-Message-ID: <157772502036.15516.1226301471693631191@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20191230161523.32222-1-animesh.manna@intel.com>
-In-Reply-To: <20191230161523.32222-1-animesh.manna@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_DP_Phy_compliance_auto_test_=28rev5=29?=
+Subject: [Intel-gfx] [CI 1/2] drm/i915/selftests: Flush the context worker
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,61 +36,60 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+When cleaning up the mock device, remember to flush the context worker
+to free the residual GEM contexts before shutting down the device.
 
-Series: DP Phy compliance auto test (rev5)
-URL   : https://patchwork.freedesktop.org/series/71121/
-State : warning
+Closes: https://gitlab.freedesktop.org/drm/intel/issues/802
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Matthew Auld <matthew.auld@intel.com>
+Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+---
+ drivers/gpu/drm/i915/i915_gem.c                  | 4 ++--
+ drivers/gpu/drm/i915/selftests/mock_gem_device.c | 2 ++
+ 2 files changed, 4 insertions(+), 2 deletions(-)
 
-== Summary ==
-
-$ dim checkpatch origin/drm-tip
-8a55c99e987a drm/amd/display: Align macro name as per DP spec
-b46d414a1888 drm/dp: get/set phy compliance pattern
-eaa338c1dc20 drm/i915/dp: Move vswing/pre-emphasis adjustment calculation
-d7fed7271de6 drm/i915/dp: Preparation for DP phy compliance auto test
-24a9becfee75 drm/i915/dsb: Send uevent to testapp.
-82604acfc432 drm/i915/dp: Add debugfs entry for DP phy compliance.
-379c984a0e16 drm/i915/dp: Register definition for DP compliance register
-8b30e6e85d43 drm/i915/dp: Update the pattern as per request
-ebbce9a8cc0e drm/i915/dp: [FIXME] Program vswing, pre-emphasis, test-pattern
--:11: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#11: 
-series. Some temporary fix added and the patch is under-development, not for
-
--:40: ERROR:SPACING: space required before the open parenthesis '('
-#40: FILE: drivers/gpu/drm/i915/display/intel_display.c:15219:
-+	if(dev_priv->dp_phy_comp) {
-
--:66: WARNING:SUSPECT_CODE_INDENT: suspect code indent for conditional statements (8, 8)
-#66: FILE: drivers/gpu/drm/i915/display/intel_display.c:15456:
-+	if (!dev_priv->dp_phy_comp) {
- 	i915_sw_fence_init(&state->commit_ready,
-
--:80: WARNING:SUSPECT_CODE_INDENT: suspect code indent for conditional statements (8, 8)
-#80: FILE: drivers/gpu/drm/i915/display/intel_display.c:15501:
-+	if (!dev_priv->dp_phy_comp) {
- 	if (ret) {
-
--:97: WARNING:SUSPECT_CODE_INDENT: suspect code indent for conditional statements (8, 8)
-#97: FILE: drivers/gpu/drm/i915/display/intel_display.c:15529:
-+	if (!dev_priv->dp_phy_comp) {
- 	i915_sw_fence_commit(&state->commit_ready);
-
--:97: WARNING:BRACES: braces {} are not necessary for single statement blocks
-#97: FILE: drivers/gpu/drm/i915/display/intel_display.c:15529:
-+	if (!dev_priv->dp_phy_comp) {
- 	i915_sw_fence_commit(&state->commit_ready);
-+	}
-
-total: 1 errors, 5 warnings, 0 checks, 181 lines checked
+diff --git a/drivers/gpu/drm/i915/i915_gem.c b/drivers/gpu/drm/i915/i915_gem.c
+index 9ddcf17230e6..a3d701b50a6b 100644
+--- a/drivers/gpu/drm/i915/i915_gem.c
++++ b/drivers/gpu/drm/i915/i915_gem.c
+@@ -1172,6 +1172,8 @@ void i915_gem_driver_remove(struct drm_i915_private *dev_priv)
+ 
+ void i915_gem_driver_release(struct drm_i915_private *dev_priv)
+ {
++	i915_gem_driver_release__contexts(dev_priv);
++
+ 	intel_gt_driver_release(&dev_priv->gt);
+ 
+ 	intel_wa_list_free(&dev_priv->gt_wa_list);
+@@ -1179,8 +1181,6 @@ void i915_gem_driver_release(struct drm_i915_private *dev_priv)
+ 	intel_uc_cleanup_firmwares(&dev_priv->gt.uc);
+ 	i915_gem_cleanup_userptr(dev_priv);
+ 
+-	i915_gem_driver_release__contexts(dev_priv);
+-
+ 	i915_gem_drain_freed_objects(dev_priv);
+ 
+ 	WARN_ON(!list_empty(&dev_priv->gem.contexts.list));
+diff --git a/drivers/gpu/drm/i915/selftests/mock_gem_device.c b/drivers/gpu/drm/i915/selftests/mock_gem_device.c
+index 2b01094e4318..3b8986983afc 100644
+--- a/drivers/gpu/drm/i915/selftests/mock_gem_device.c
++++ b/drivers/gpu/drm/i915/selftests/mock_gem_device.c
+@@ -58,6 +58,8 @@ static void mock_device_release(struct drm_device *dev)
+ 	mock_device_flush(i915);
+ 	intel_gt_driver_remove(&i915->gt);
+ 
++	i915_gem_driver_release__contexts(i915);
++
+ 	i915_gem_drain_workqueue(i915);
+ 	i915_gem_drain_freed_objects(i915);
+ 
+-- 
+2.25.0.rc0
 
 _______________________________________________
 Intel-gfx mailing list
