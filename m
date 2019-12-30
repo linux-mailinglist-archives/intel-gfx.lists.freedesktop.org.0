@@ -1,32 +1,38 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4AE8D12D307
-	for <lists+intel-gfx@lfdr.de>; Mon, 30 Dec 2019 19:00:38 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 62D2B12D371
+	for <lists+intel-gfx@lfdr.de>; Mon, 30 Dec 2019 19:40:01 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CF91989FA0;
-	Mon, 30 Dec 2019 18:00:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8BC9E6E071;
+	Mon, 30 Dec 2019 18:39:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 67FB789F97;
- Mon, 30 Dec 2019 18:00:34 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 5F82CA0094;
- Mon, 30 Dec 2019 18:00:34 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 882DC6E071
+ for <intel-gfx@lists.freedesktop.org>; Mon, 30 Dec 2019 18:39:56 +0000 (UTC)
+X-Amp-Result: UNSCANNABLE
+X-Amp-File-Uploaded: False
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 30 Dec 2019 10:39:55 -0800
+X-IronPort-AV: E=Sophos;i="5.69,376,1571727600"; d="scan'208";a="213399371"
+Received: from ideak-desk.fi.intel.com ([10.237.72.183])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 30 Dec 2019 10:39:54 -0800
+Date: Mon, 30 Dec 2019 20:39:18 +0200
+From: Imre Deak <imre.deak@intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>
+Message-ID: <20191230183918.GA6221@ideak-desk.fi.intel.com>
+References: <20191227235147.32366-1-imre.deak@intel.com>
+ <157770291183.2392.13453391973135570968@skylake-alporthouse-com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Mon, 30 Dec 2019 18:00:34 -0000
-Message-ID: <157772883438.15517.10419625903359457427@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20191230165821.3840449-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20191230165821.3840449-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5BCI=2C1/2=5D_drm/i915/selftests=3A_Flush_th?=
- =?utf-8?q?e_context_worker?=
+Content-Disposition: inline
+In-Reply-To: <157770291183.2392.13453391973135570968@skylake-alporthouse-com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+Subject: Re: [Intel-gfx] [PATCH 1/3] drm/i915: Add support for
+ non-power-of-2 FB plane alignment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,155 +45,142 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
+Reply-To: imre.deak@intel.com
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Mon, Dec 30, 2019 at 10:48:31AM +0000, Chris Wilson wrote:
+> Quoting Imre Deak (2019-12-27 23:51:45)
+> > At least one framebuffer plane on TGL - the UV plane of YUV semiplanar
+> > FBs - requires a non-power-of-2 alignment, so add support for this. This
+> > new alignment restriction applies only to an offset within an FB, so the
+> > GEM buffer itself containing the FB must still be power-of-2 aligned.
+> =
 
-Series: series starting with [CI,1/2] drm/i915/selftests: Flush the context worker
-URL   : https://patchwork.freedesktop.org/series/71500/
-State : failure
+> It's worth talking about virtual memory alignment (in the GGTT) here and
+> not the physical alignment of the backing store. The buffer itself plays
+> no part here.
 
-== Summary ==
+Yes, this new restriction is about the GGTT mapping and display
+specific. In fact other engines have other restrictions when
+reading/writing the same YUV surfaces - for instance via a PPGTT map.
+And yes, the page physical addresses can be anything.
 
-CI Bug Log - changes from CI_DRM_7656 -> Patchwork_15949
-====================================================
+Will improve the commit log.
 
-Summary
--------
+> > Add a check for this (in practice plane 0, since the plane 0 offset must
+> > be 0).
+> > =
 
-  **FAILURE**
+> > Cc: Chris Wilson <chris@chris-wilson.co.uk>
+> > Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > Signed-off-by: Imre Deak <imre.deak@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_display.c | 22 +++++++++++++-------
+> >  1 file changed, 14 insertions(+), 8 deletions(-)
+> > =
 
-  Serious unknown changes coming with Patchwork_15949 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_15949, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
+> > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu=
+/drm/i915/display/intel_display.c
+> > index 624ba9be7293..d8970198c77e 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_display.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> > @@ -2194,6 +2194,7 @@ intel_pin_and_fence_fb_obj(struct drm_framebuffer=
+ *fb,
+> >                 return ERR_PTR(-EINVAL);
+> >  =
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15949/index.html
+> >         alignment =3D intel_surf_alignment(fb, 0);
+> > +       WARN_ON(!is_power_of_2(alignment));
+> =
 
-Possible new issues
--------------------
+> Handle the error, if you are going to the trouble to warn, add the
+> return as well.
 
-  Here are the unknown changes that may have been introduced in Patchwork_15949:
+Ok.
 
-### IGT changes ###
+> >  =
 
-#### Possible regressions ####
+> >         /* Note that the w/a also requires 64 PTE of padding following =
+the
+> >          * bo. We currently fill all unused PTE with the shadow page an=
+d so
+> > @@ -2432,9 +2433,6 @@ static u32 intel_compute_aligned_offset(struct dr=
+m_i915_private *dev_priv,
+> >         unsigned int cpp =3D fb->format->cpp[color_plane];
+> >         u32 offset, offset_aligned;
+> >  =
 
-  * igt@i915_selftest@live_sanitycheck:
-    - fi-skl-lmem:        NOTRUN -> [INCOMPLETE][1]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15949/fi-skl-lmem/igt@i915_selftest@live_sanitycheck.html
+> > -       if (alignment)
+> > -               alignment--;
+> > -
+> >         if (!is_surface_linear(fb, color_plane)) {
+> >                 unsigned int tile_size, tile_width, tile_height;
+> >                 unsigned int tile_rows, tiles, pitch_tiles;
+> > @@ -2456,17 +2454,24 @@ static u32 intel_compute_aligned_offset(struct =
+drm_i915_private *dev_priv,
+> >                 *x %=3D tile_width;
+> >  =
 
-  
-Known issues
-------------
+> >                 offset =3D (tile_rows * pitch_tiles + tiles) * tile_siz=
+e;
+> > -               offset_aligned =3D offset & ~alignment;
+> > +
+> > +               offset_aligned =3D offset;
+> > +               if (alignment)
+> > +                       offset_aligned =3D rounddown(offset_aligned, al=
+ignment);
+> >  =
 
-  Here are the changes found in Patchwork_15949 that come from known issues:
+> >                 intel_adjust_tile_offset(x, y, tile_width, tile_height,
+> >                                          tile_size, pitch_tiles,
+> >                                          offset, offset_aligned);
+> >         } else {
+> >                 offset =3D *y * pitch + *x * cpp;
+> > -               offset_aligned =3D offset & ~alignment;
+> > -
+> > -               *y =3D (offset & alignment) / pitch;
+> > -               *x =3D ((offset & alignment) - *y * pitch) / cpp;
+> > +               offset_aligned =3D offset;
+> > +               if (alignment) {
+> > +                       offset_aligned =3D rounddown(offset_aligned, al=
+ignment);
+> > +                       *y =3D (offset % alignment) / pitch;
+> > +                       *x =3D ((offset % alignment) - *y * pitch) / cp=
+p;
+> > +               } else {
+> > +                       *y =3D *x =3D 0;
+> > +               }
+> >         }
+> >  =
 
-### IGT changes ###
+> >         return offset_aligned;
+> > @@ -3738,6 +3743,7 @@ static int skl_check_main_surface(struct intel_pl=
+ane_state *plane_state)
+> >         intel_add_fb_offsets(&x, &y, plane_state, 0);
+> >         offset =3D intel_plane_compute_aligned_offset(&x, &y, plane_sta=
+te, 0);
+> >         alignment =3D intel_surf_alignment(fb, 0);
+> > +       WARN_ON(!is_power_of_2(alignment));
+> =
 
-#### Issues hit ####
+> The other two are expected to handle !is_pot...
 
-  * igt@i915_module_load@reload-with-fault-injection:
-    - fi-cfl-guc:         [PASS][2] -> [INCOMPLETE][3] ([i915#505] / [i915#671])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7656/fi-cfl-guc/igt@i915_module_load@reload-with-fault-injection.html
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15949/fi-cfl-guc/igt@i915_module_load@reload-with-fault-injection.html
+Not sure what the alignment of the address we write to the main surface
+address register should be, the spec doesn't say anything about that. I
+assume now that not wrapping around the right edge of the detiler fence
+we add is enough (which is also checked in intel_fill_fb_info()).
 
-  * igt@kms_addfb_basic@addfb25-framebuffer-vs-set-tiling:
-    - fi-icl-dsi:         [PASS][4] -> [DMESG-WARN][5] ([i915#109])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7656/fi-icl-dsi/igt@kms_addfb_basic@addfb25-framebuffer-vs-set-tiling.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15949/fi-icl-dsi/igt@kms_addfb_basic@addfb25-framebuffer-vs-set-tiling.html
+> I would strongly suggest handling the WARNs, or else you may as well bug
+> out for the programming error.
 
-  
-#### Possible fixes ####
+Ok, will change those.
 
-  * igt@i915_module_load@reload-with-fault-injection:
-    - fi-bxt-dsi:         [INCOMPLETE][6] ([fdo#103927]) -> [PASS][7]
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7656/fi-bxt-dsi/igt@i915_module_load@reload-with-fault-injection.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15949/fi-bxt-dsi/igt@i915_module_load@reload-with-fault-injection.html
-    - fi-cfl-8700k:       [INCOMPLETE][8] ([i915#505]) -> [PASS][9]
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7656/fi-cfl-8700k/igt@i915_module_load@reload-with-fault-injection.html
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15949/fi-cfl-8700k/igt@i915_module_load@reload-with-fault-injection.html
-    - fi-skl-6700k2:      [INCOMPLETE][10] ([i915#671]) -> [PASS][11]
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7656/fi-skl-6700k2/igt@i915_module_load@reload-with-fault-injection.html
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15949/fi-skl-6700k2/igt@i915_module_load@reload-with-fault-injection.html
-
-  * igt@kms_chamelium@hdmi-hpd-fast:
-    - fi-kbl-7500u:       [FAIL][12] ([fdo#111096] / [i915#323]) -> [PASS][13]
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7656/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15949/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
-
-  
-#### Warnings ####
-
-  * igt@i915_module_load@reload-with-fault-injection:
-    - fi-skl-lmem:        [INCOMPLETE][14] ([i915#671]) -> [DMESG-WARN][15] ([i915#889])
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7656/fi-skl-lmem/igt@i915_module_load@reload-with-fault-injection.html
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15949/fi-skl-lmem/igt@i915_module_load@reload-with-fault-injection.html
-
-  * igt@i915_selftest@live_blt:
-    - fi-hsw-4770:        [DMESG-FAIL][16] ([i915#563]) -> [DMESG-FAIL][17] ([i915#770])
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7656/fi-hsw-4770/igt@i915_selftest@live_blt.html
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15949/fi-hsw-4770/igt@i915_selftest@live_blt.html
-
-  * igt@kms_cursor_legacy@basic-flip-after-cursor-legacy:
-    - fi-kbl-x1275:       [DMESG-WARN][18] ([i915#62] / [i915#92]) -> [DMESG-WARN][19] ([i915#62] / [i915#92] / [i915#95]) +3 similar issues
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7656/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15949/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
-
-  * igt@kms_flip@basic-flip-vs-modeset:
-    - fi-kbl-x1275:       [DMESG-WARN][20] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][21] ([i915#62] / [i915#92]) +5 similar issues
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7656/fi-kbl-x1275/igt@kms_flip@basic-flip-vs-modeset.html
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15949/fi-kbl-x1275/igt@kms_flip@basic-flip-vs-modeset.html
-
-  
-  [fdo#103927]: https://bugs.freedesktop.org/show_bug.cgi?id=103927
-  [fdo#111096]: https://bugs.freedesktop.org/show_bug.cgi?id=111096
-  [i915#109]: https://gitlab.freedesktop.org/drm/intel/issues/109
-  [i915#323]: https://gitlab.freedesktop.org/drm/intel/issues/323
-  [i915#505]: https://gitlab.freedesktop.org/drm/intel/issues/505
-  [i915#563]: https://gitlab.freedesktop.org/drm/intel/issues/563
-  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
-  [i915#671]: https://gitlab.freedesktop.org/drm/intel/issues/671
-  [i915#770]: https://gitlab.freedesktop.org/drm/intel/issues/770
-  [i915#889]: https://gitlab.freedesktop.org/drm/intel/issues/889
-  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
-  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
-
-
-Participating hosts (46 -> 39)
-------------------------------
-
-  Additional (3): fi-hsw-4770r fi-byt-n2820 fi-bsw-kefka 
-  Missing    (10): fi-ilk-m540 fi-bdw-5557u fi-hsw-4200u fi-byt-j1900 fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-gdg-551 fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_7656 -> Patchwork_15949
-
-  CI-20190529: 20190529
-  CI_DRM_7656: 635576de746ef28c1635b4cf4fb12f4db1104f8b @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5355: 2ead76177f2546d3eec0abbd0d9e47cd36588199 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_15949: ef7edcc10d5a8373db31ba69091d991aba7b71d6 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-ef7edcc10d5a drm/i915/gt: Leave RING_BB_STATE to default value
-623dc9a322ff drm/i915/selftests: Flush the context worker
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15949/index.html
+> Reviewed-by: Chris Wilson <chris@chris-wilson.co.uk>
+> -Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
