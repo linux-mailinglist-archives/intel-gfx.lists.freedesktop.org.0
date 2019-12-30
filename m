@@ -2,35 +2,28 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2CA8412D1A7
-	for <lists+intel-gfx@lfdr.de>; Mon, 30 Dec 2019 17:01:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A064612D1AA
+	for <lists+intel-gfx@lfdr.de>; Mon, 30 Dec 2019 17:01:40 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0D65F89805;
-	Mon, 30 Dec 2019 16:01:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 983C689C9B;
+	Mon, 30 Dec 2019 16:01:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 69CB489805
- for <intel-gfx@lists.freedesktop.org>; Mon, 30 Dec 2019 16:00:59 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 30 Dec 2019 08:00:47 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,375,1571727600"; d="scan'208";a="224244297"
-Received: from gaia.fi.intel.com ([10.237.72.192])
- by fmsmga001.fm.intel.com with ESMTP; 30 Dec 2019 08:00:45 -0800
-Received: by gaia.fi.intel.com (Postfix, from userid 1000)
- id E1AB45C1DD6; Mon, 30 Dec 2019 18:00:22 +0200 (EET)
-From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20191230134349.3806558-1-chris@chris-wilson.co.uk>
-References: <20191230134349.3806558-1-chris@chris-wilson.co.uk>
-Date: Mon, 30 Dec 2019 18:00:22 +0200
-Message-ID: <87mub9reg9.fsf@gaia.fi.intel.com>
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A45BD89D5F
+ for <intel-gfx@lists.freedesktop.org>; Mon, 30 Dec 2019 16:01:35 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19727703-1500050 
+ for multiple; Mon, 30 Dec 2019 16:01:13 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon, 30 Dec 2019 16:01:07 +0000
+Message-Id: <20191230160112.3838434-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.25.0.rc0
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/selftests: Flush the context worker
+Subject: [Intel-gfx] [PATCH 1/6] drm/i915/selftests: Flush the context worker
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -43,72 +36,61 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Matthew Auld <matthew.auld@intel.com>
+Cc: matthew.auld@intel.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Chris Wilson <chris@chris-wilson.co.uk> writes:
+When cleaning up the mock device, remember to flush the context worker
+to free the residual GEM contexts before shutting down the device.
 
-> When cleaning up the mock device, remember to flush the context worker
-> to free the residual GEM contexts before shutting down the device.
->
-> Closes: https://gitlab.freedesktop.org/drm/intel/issues/802
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> Cc: Matthew Auld <matthew.auld@intel.com>
-> ---
->  drivers/gpu/drm/i915/i915_gem.c                  | 4 ++--
->  drivers/gpu/drm/i915/selftests/mock_gem_device.c | 2 ++
->  2 files changed, 4 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/i915_gem.c b/drivers/gpu/drm/i915/i915_gem.c
-> index 9ddcf17230e6..a3d701b50a6b 100644
-> --- a/drivers/gpu/drm/i915/i915_gem.c
-> +++ b/drivers/gpu/drm/i915/i915_gem.c
-> @@ -1172,6 +1172,8 @@ void i915_gem_driver_remove(struct drm_i915_private *dev_priv)
->  
->  void i915_gem_driver_release(struct drm_i915_private *dev_priv)
->  {
-> +	i915_gem_driver_release__contexts(dev_priv);
-> +
->  	intel_gt_driver_release(&dev_priv->gt);
->  
->  	intel_wa_list_free(&dev_priv->gt_wa_list);
-> @@ -1179,8 +1181,6 @@ void i915_gem_driver_release(struct drm_i915_private *dev_priv)
->  	intel_uc_cleanup_firmwares(&dev_priv->gt.uc);
->  	i915_gem_cleanup_userptr(dev_priv);
->  
-> -	i915_gem_driver_release__contexts(dev_priv);
-> -
+Closes: https://gitlab.freedesktop.org/drm/intel/issues/802
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Matthew Auld <matthew.auld@intel.com>
+---
+ drivers/gpu/drm/i915/i915_gem.c                  | 4 ++--
+ drivers/gpu/drm/i915/selftests/mock_gem_device.c | 2 ++
+ 2 files changed, 4 insertions(+), 2 deletions(-)
 
-Have I missed some memo on double underscores?
+diff --git a/drivers/gpu/drm/i915/i915_gem.c b/drivers/gpu/drm/i915/i915_gem.c
+index 9ddcf17230e6..a3d701b50a6b 100644
+--- a/drivers/gpu/drm/i915/i915_gem.c
++++ b/drivers/gpu/drm/i915/i915_gem.c
+@@ -1172,6 +1172,8 @@ void i915_gem_driver_remove(struct drm_i915_private *dev_priv)
+ 
+ void i915_gem_driver_release(struct drm_i915_private *dev_priv)
+ {
++	i915_gem_driver_release__contexts(dev_priv);
++
+ 	intel_gt_driver_release(&dev_priv->gt);
+ 
+ 	intel_wa_list_free(&dev_priv->gt_wa_list);
+@@ -1179,8 +1181,6 @@ void i915_gem_driver_release(struct drm_i915_private *dev_priv)
+ 	intel_uc_cleanup_firmwares(&dev_priv->gt.uc);
+ 	i915_gem_cleanup_userptr(dev_priv);
+ 
+-	i915_gem_driver_release__contexts(dev_priv);
+-
+ 	i915_gem_drain_freed_objects(dev_priv);
+ 
+ 	WARN_ON(!list_empty(&dev_priv->gem.contexts.list));
+diff --git a/drivers/gpu/drm/i915/selftests/mock_gem_device.c b/drivers/gpu/drm/i915/selftests/mock_gem_device.c
+index 2b01094e4318..3b8986983afc 100644
+--- a/drivers/gpu/drm/i915/selftests/mock_gem_device.c
++++ b/drivers/gpu/drm/i915/selftests/mock_gem_device.c
+@@ -58,6 +58,8 @@ static void mock_device_release(struct drm_device *dev)
+ 	mock_device_flush(i915);
+ 	intel_gt_driver_remove(&i915->gt);
+ 
++	i915_gem_driver_release__contexts(i915);
++
+ 	i915_gem_drain_workqueue(i915);
+ 	i915_gem_drain_freed_objects(i915);
+ 
+-- 
+2.25.0.rc0
 
-Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-
->  	i915_gem_drain_freed_objects(dev_priv);
->  
->  	WARN_ON(!list_empty(&dev_priv->gem.contexts.list));
-> diff --git a/drivers/gpu/drm/i915/selftests/mock_gem_device.c b/drivers/gpu/drm/i915/selftests/mock_gem_device.c
-> index ac641f5360e1..bddead3fc855 100644
-> --- a/drivers/gpu/drm/i915/selftests/mock_gem_device.c
-> +++ b/drivers/gpu/drm/i915/selftests/mock_gem_device.c
-> @@ -58,6 +58,8 @@ static void mock_device_release(struct drm_device *dev)
->  	mock_device_flush(i915);
->  	intel_gt_driver_remove(&i915->gt);
->  
-> +	i915_gem_driver_release__contexts(i915);
-> +
->  	i915_gem_drain_workqueue(i915);
->  	i915_gem_drain_freed_objects(i915);
->  
-> -- 
-> 2.25.0.rc0
->
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
