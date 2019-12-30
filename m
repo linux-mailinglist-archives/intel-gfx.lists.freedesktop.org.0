@@ -1,32 +1,36 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A7EA12D25A
-	for <lists+intel-gfx@lfdr.de>; Mon, 30 Dec 2019 17:58:30 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B707212D262
+	for <lists+intel-gfx@lfdr.de>; Mon, 30 Dec 2019 18:08:40 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 975D06E048;
-	Mon, 30 Dec 2019 16:58:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EF68D6E04A;
+	Mon, 30 Dec 2019 17:08:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DAA6D6E043
- for <intel-gfx@lists.freedesktop.org>; Mon, 30 Dec 2019 16:58:25 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CA2926E04A;
+ Mon, 30 Dec 2019 17:08:35 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
-Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19728236-1500050 
- for <intel-gfx@lists.freedesktop.org>; Mon, 30 Dec 2019 16:58:22 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon, 30 Dec 2019 16:58:21 +0000
-Message-Id: <20191230165821.3840449-2-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.25.0.rc0
-In-Reply-To: <20191230165821.3840449-1-chris@chris-wilson.co.uk>
-References: <20191230165821.3840449-1-chris@chris-wilson.co.uk>
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 19728343-1500050 for multiple; Mon, 30 Dec 2019 17:08:32 +0000
 MIME-Version: 1.0
-Subject: [Intel-gfx] [CI 2/2] drm/i915/gt: Leave RING_BB_STATE to default
- value
+To: Patchwork <patchwork@emeril.freedesktop.org>,
+ intel-gfx@lists.freedesktop.org
+From: Chris Wilson <chris@chris-wilson.co.uk>
+In-Reply-To: <157772481868.15516.9279855325218671260@emeril.freedesktop.org>
+References: <20191230160112.3838434-1-chris@chris-wilson.co.uk>
+ <157772481868.15516.9279855325218671260@emeril.freedesktop.org>
+Message-ID: <157772571001.3861.13255868081738800699@skylake-alporthouse-com>
+User-Agent: alot/0.6
+Date: Mon, 30 Dec 2019 17:08:30 +0000
+Subject: Re: [Intel-gfx] 
+ =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5B1/6=5D_drm/i915/selftests=3A_Flush_the_con?=
+ =?utf-8?q?text_worker?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,37 +43,56 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Do not reset RING_BB_STATE, leaving it to the default state value. This
-prevents bdw/bsw from getting confused when executing batches from the
-GGTT.
+Quoting Patchwork (2019-12-30 16:53:38)
+> == Series Details ==
+> 
+> Series: series starting with [1/6] drm/i915/selftests: Flush the context worker
+> URL   : https://patchwork.freedesktop.org/series/71497/
+> State : failure
+> 
+> == Summary ==
+> 
+> CI Bug Log - changes from CI_DRM_7656 -> Patchwork_15947
+> ====================================================
+> 
+> Summary
+> -------
+> 
+>   **FAILURE**
+> 
+>   Serious unknown changes coming with Patchwork_15947 absolutely need to be
+>   verified manually.
+>   
+>   If you think the reported changes have nothing to do with the changes
+>   introduced in Patchwork_15947, please notify your bug team to allow them
+>   to document this new failure mode, which will reduce false positives in CI.
+> 
+>   External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15947/index.html
+> 
+> Possible new issues
+> -------------------
+> 
+>   Here are the unknown changes that may have been introduced in Patchwork_15947:
+> 
+> ### IGT changes ###
+> 
+> #### Possible regressions ####
+> 
+>   * igt@debugfs_test@read_all_entries:
+>     - fi-cml-s:           [PASS][1] -> [SKIP][2] +21 similar issues
+>    [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7656/fi-cml-s/igt@debugfs_test@read_all_entries.html
+>    [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15947/fi-cml-s/igt@debugfs_test@read_all_entries.html
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Acked-by: Matthew Auld <matthew.auld@intel.com>
-Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
----
- drivers/gpu/drm/i915/gt/intel_lrc.c | 1 -
- 1 file changed, 1 deletion(-)
+IPEHR: 0x5a5a5a5a
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-index 14e7e179855f..00895f83f61e 100644
---- a/drivers/gpu/drm/i915/gt/intel_lrc.c
-+++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-@@ -3968,7 +3968,6 @@ static void init_common_reg_state(u32 * const regs,
- 					    CTX_CTRL_RS_CTX_ENABLE);
- 
- 	regs[CTX_RING_CTL] = RING_CTL_SIZE(ring->size) | RING_VALID;
--	regs[CTX_BB_STATE] = RING_BB_PPGTT;
- }
- 
- static void init_wa_bb_reg_state(u32 * const regs,
--- 
-2.25.0.rc0
-
+Didn't clear enough...
+-Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
