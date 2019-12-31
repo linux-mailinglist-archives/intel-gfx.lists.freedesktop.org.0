@@ -2,31 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A59912D55B
-	for <lists+intel-gfx@lfdr.de>; Tue, 31 Dec 2019 01:48:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 49E8012D57B
+	for <lists+intel-gfx@lfdr.de>; Tue, 31 Dec 2019 02:33:32 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CAF726E09E;
-	Tue, 31 Dec 2019 00:48:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1DD336E0AA;
+	Tue, 31 Dec 2019 01:33:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id E7F5A6E092;
- Tue, 31 Dec 2019 00:48:18 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id DD3A0A00E6;
- Tue, 31 Dec 2019 00:48:18 +0000 (UTC)
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AE8286E092
+ for <intel-gfx@lists.freedesktop.org>; Tue, 31 Dec 2019 01:33:25 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19730572-1500050 
+ for multiple; Tue, 31 Dec 2019 01:33:11 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue, 31 Dec 2019 01:33:05 +0000
+Message-Id: <20191231013309.3998505-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.25.0.rc0
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matt Roper" <matthew.d.roper@intel.com>
-Date: Tue, 31 Dec 2019 00:48:18 -0000
-Message-ID: <157775329887.26889.6029939361547031278@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20191230234541.1416510-1-matthew.d.roper@intel.com>
-In-Reply-To: <20191230234541.1416510-1-matthew.d.roper@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Stop_programming_DDI=5FBUF=5FTRANS=5FSELECT_on_recent_?=
- =?utf-8?q?platforms?=
+Subject: [Intel-gfx] [PATCH 1/5] drm/i915/gt: Include a bunch more rcs image
+ state
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,164 +37,241 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Empirically the minimal context image we use for rcs is insufficient to
+state the engine. This is demonstrated if we poison the context image
+such that any uninitialised state is invalid, and so if the engine
+samples beyond our defined region, will fail to start.
 
-Series: drm/i915: Stop programming DDI_BUF_TRANS_SELECT on recent platforms
-URL   : https://patchwork.freedesktop.org/series/71503/
-State : success
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+---
+ drivers/gpu/drm/i915/gt/intel_lrc.c    | 161 +++++++++++++++++++++++--
+ drivers/gpu/drm/i915/gt/selftest_lrc.c |   7 ++
+ 2 files changed, 161 insertions(+), 7 deletions(-)
 
-== Summary ==
+diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+index 00895f83f61e..72490e326d66 100644
+--- a/drivers/gpu/drm/i915/gt/intel_lrc.c
++++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+@@ -488,11 +488,72 @@ lrc_descriptor(struct intel_context *ce, struct intel_engine_cs *engine)
+ 	return desc;
+ }
+ 
++/*
++static void hex2offsets(FILE *file)
++{
++	char *line = NULL;
++	size_t len = 0;
++	int lri = 0;
++	int nop = 0;
++
++	while (getline(&line, &len, file) > 0) {
++		unsigned x[8];
++		int n, i;
++		char *s;
++
++		s = strrchr(line, ']');
++		if (!s)
++			continue;
++
++		n = sscanf(s + 1, "%x %x %x %x %x %x %x %x",
++			   &x[0], &x[1], &x[2], &x[3],
++			   &x[4], &x[5], &x[6], &x[7]);
++		if (n <= 0)
++			continue;
++
++		for (i = 0; i < n; ) {
++			if (lri) {
++				unsigned int reg = x[i] & 0xfff;
++				if (reg > 0x200)
++					printf("REG16(%#x),\n", reg);
++				else
++					printf("REG(%#x),\n", reg);
++				if (!--lri)
++					printf("\n");
++				i += 2;
++				continue;
++			}
++			if (x[i] == 0) {
++				nop++;
++				i++;
++				continue;
++			}
++			if (nop) {
++				printf("NOP(%d),\n", nop);
++				nop = 0;
++			}
++			if (x[i] >> 24 == 0x11) {
++				lri = ((x[i] & 0xff) + 1) / 2;
++				printf("LRI(%d, %s),\n",
++				       lri, (x[i] & (1 << 12) ? "POSTED" : "0"));
++				i++;
++				continue;
++			}
++
++			printf("CMD(0x%x),\n", x[i++]);
++		}
++	}
++	printf("END()\n");
++
++	free(line);
++}
++*/
++
+ static u32 *set_offsets(u32 *regs,
+ 			const u8 *data,
+ 			const struct intel_engine_cs *engine)
+ #define NOP(x) (BIT(7) | (x))
+-#define LRI(count, flags) ((flags) << 6 | (count))
++#define LRI(count, flags) ((flags) << 6 | (count) | BUILD_BUG_ON_ZERO(count >= BIT(6)))
+ #define POSTED BIT(0)
+ #define REG(x) (((x) >> 2) | BUILD_BUG_ON_ZERO(x >= 0x200))
+ #define REG16(x) \
+@@ -695,10 +756,10 @@ static const u8 gen8_rcs_offsets[] = {
+ 	NOP(1),
+ 	LRI(14, POSTED),
+ 	REG16(0x244),
+-	REG(0x034),
+-	REG(0x030),
+-	REG(0x038),
+-	REG(0x03c),
++	REG(0x34),
++	REG(0x30),
++	REG(0x38),
++	REG(0x3c),
+ 	REG(0x168),
+ 	REG(0x140),
+ 	REG(0x110),
+@@ -723,9 +784,93 @@ static const u8 gen8_rcs_offsets[] = {
+ 
+ 	NOP(13),
+ 	LRI(1, 0),
+-	REG(0x0c8),
++	REG(0xc8),
+ 
+-	END(),
++	END()
++};
++
++static const u8 gen9_rcs_offsets[] = {
++	NOP(1),
++	LRI(14, POSTED),
++	REG16(0x244),
++	REG(0x34),
++	REG(0x30),
++	REG(0x38),
++	REG(0x3c),
++	REG(0x168),
++	REG(0x140),
++	REG(0x110),
++	REG(0x11c),
++	REG(0x114),
++	REG(0x118),
++	REG(0x1c0),
++	REG(0x1c4),
++	REG(0x1c8),
++
++	NOP(3),
++	LRI(9, POSTED),
++	REG16(0x3a8),
++	REG16(0x28c),
++	REG16(0x288),
++	REG16(0x284),
++	REG16(0x280),
++	REG16(0x27c),
++	REG16(0x278),
++	REG16(0x274),
++	REG16(0x270),
++
++	NOP(13),
++	LRI(1, 0),
++	REG(0xc8),
++
++	NOP(13),
++	LRI(44, POSTED),
++	REG(0x28),
++	REG(0x9c),
++	REG(0xc0),
++	REG(0x178),
++	REG(0x17c),
++	REG16(0x358),
++	REG(0x170),
++	REG(0x150),
++	REG(0x154),
++	REG(0x158),
++	REG16(0x41c),
++	REG16(0x600),
++	REG16(0x604),
++	REG16(0x608),
++	REG16(0x60c),
++	REG16(0x610),
++	REG16(0x614),
++	REG16(0x618),
++	REG16(0x61c),
++	REG16(0x620),
++	REG16(0x624),
++	REG16(0x628),
++	REG16(0x62c),
++	REG16(0x630),
++	REG16(0x634),
++	REG16(0x638),
++	REG16(0x63c),
++	REG16(0x640),
++	REG16(0x644),
++	REG16(0x648),
++	REG16(0x64c),
++	REG16(0x650),
++	REG16(0x654),
++	REG16(0x658),
++	REG16(0x65c),
++	REG16(0x660),
++	REG16(0x664),
++	REG16(0x668),
++	REG16(0x66c),
++	REG16(0x670),
++	REG16(0x674),
++	REG16(0x678),
++	REG16(0x67c),
++	REG(0x68),
++
++	END()
+ };
+ 
+ static const u8 gen11_rcs_offsets[] = {
+@@ -832,6 +977,8 @@ static const u8 *reg_offsets(const struct intel_engine_cs *engine)
+ 			return gen12_rcs_offsets;
+ 		else if (INTEL_GEN(engine->i915) >= 11)
+ 			return gen11_rcs_offsets;
++		else if (INTEL_GEN(engine->i915) >= 9)
++			return gen9_rcs_offsets;
+ 		else
+ 			return gen8_rcs_offsets;
+ 	} else {
+diff --git a/drivers/gpu/drm/i915/gt/selftest_lrc.c b/drivers/gpu/drm/i915/gt/selftest_lrc.c
+index 9ec9833c9c7b..943b623f00e9 100644
+--- a/drivers/gpu/drm/i915/gt/selftest_lrc.c
++++ b/drivers/gpu/drm/i915/gt/selftest_lrc.c
+@@ -3406,6 +3406,13 @@ static int live_lrc_layout(void *arg)
+ 				continue;
+ 			}
+ 
++			if (lrc[dw] == 0) {
++				pr_debug("%s: skipped instruction %x at dword %d\n",
++					 engine->name, lri, dw);
++				dw++;
++				continue;
++			}
++
+ 			if ((lri & GENMASK(31, 23)) != MI_INSTR(0x22, 0)) {
+ 				pr_err("%s: Expected LRI command at dword %d, found %08x\n",
+ 				       engine->name, dw, lri);
+-- 
+2.25.0.rc0
 
-CI Bug Log - changes from CI_DRM_7657 -> Patchwork_15950
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15950/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_15950 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_exec_suspend@basic-s3:
-    - fi-icl-u2:          [PASS][1] -> [FAIL][2] ([fdo#103375])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7657/fi-icl-u2/igt@gem_exec_suspend@basic-s3.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15950/fi-icl-u2/igt@gem_exec_suspend@basic-s3.html
-
-  * igt@gem_exec_suspend@basic-s4-devices:
-    - fi-icl-u2:          [PASS][3] -> [FAIL][4] ([fdo#111550])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7657/fi-icl-u2/igt@gem_exec_suspend@basic-s4-devices.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15950/fi-icl-u2/igt@gem_exec_suspend@basic-s4-devices.html
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-skl-lmem:        [PASS][5] -> [DMESG-WARN][6] ([i915#592])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7657/fi-skl-lmem/igt@i915_pm_rpm@module-reload.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15950/fi-skl-lmem/igt@i915_pm_rpm@module-reload.html
-
-  * igt@i915_selftest@live_blt:
-    - fi-hsw-4770r:       [PASS][7] -> [DMESG-FAIL][8] ([i915#553] / [i915#725])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7657/fi-hsw-4770r/igt@i915_selftest@live_blt.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15950/fi-hsw-4770r/igt@i915_selftest@live_blt.html
-
-  * igt@i915_selftest@live_hugepages:
-    - fi-byt-j1900:       [PASS][9] -> [DMESG-FAIL][10] ([i915#845])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7657/fi-byt-j1900/igt@i915_selftest@live_hugepages.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15950/fi-byt-j1900/igt@i915_selftest@live_hugepages.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_exec_suspend@basic-s3:
-    - fi-tgl-y:           [INCOMPLETE][11] ([fdo#111736] / [i915#460]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7657/fi-tgl-y/igt@gem_exec_suspend@basic-s3.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15950/fi-tgl-y/igt@gem_exec_suspend@basic-s3.html
-
-  * igt@i915_module_load@reload-with-fault-injection:
-    - fi-skl-6700k2:      [INCOMPLETE][13] ([i915#671]) -> [PASS][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7657/fi-skl-6700k2/igt@i915_module_load@reload-with-fault-injection.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15950/fi-skl-6700k2/igt@i915_module_load@reload-with-fault-injection.html
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-skl-guc:         [INCOMPLETE][15] ([i915#151]) -> [PASS][16]
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7657/fi-skl-guc/igt@i915_pm_rpm@module-reload.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15950/fi-skl-guc/igt@i915_pm_rpm@module-reload.html
-
-  * igt@i915_selftest@live_blt:
-    - fi-ivb-3770:        [DMESG-FAIL][17] ([i915#725]) -> [PASS][18]
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7657/fi-ivb-3770/igt@i915_selftest@live_blt.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15950/fi-ivb-3770/igt@i915_selftest@live_blt.html
-
-  * igt@kms_busy@basic-flip-pipe-a:
-    - fi-icl-u2:          [INCOMPLETE][19] ([i915#140]) -> [PASS][20]
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7657/fi-icl-u2/igt@kms_busy@basic-flip-pipe-a.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15950/fi-icl-u2/igt@kms_busy@basic-flip-pipe-a.html
-
-  
-#### Warnings ####
-
-  * igt@i915_module_load@reload-with-fault-injection:
-    - fi-cfl-guc:         [INCOMPLETE][21] ([i915#505] / [i915#671]) -> [DMESG-WARN][22] ([i915#889])
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7657/fi-cfl-guc/igt@i915_module_load@reload-with-fault-injection.html
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15950/fi-cfl-guc/igt@i915_module_load@reload-with-fault-injection.html
-
-  * igt@i915_selftest@live_blt:
-    - fi-hsw-4770:        [DMESG-FAIL][23] ([i915#553] / [i915#725]) -> [DMESG-FAIL][24] ([i915#770])
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7657/fi-hsw-4770/igt@i915_selftest@live_blt.html
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15950/fi-hsw-4770/igt@i915_selftest@live_blt.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:
-    - fi-kbl-x1275:       [DMESG-WARN][25] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][26] ([i915#62] / [i915#92]) +4 similar issues
-   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7657/fi-kbl-x1275/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
-   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15950/fi-kbl-x1275/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
-
-  * igt@kms_cursor_legacy@basic-flip-before-cursor-legacy:
-    - fi-kbl-x1275:       [DMESG-WARN][27] ([i915#62] / [i915#92]) -> [DMESG-WARN][28] ([i915#62] / [i915#92] / [i915#95]) +4 similar issues
-   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7657/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-before-cursor-legacy.html
-   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15950/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-before-cursor-legacy.html
-
-  
-  [fdo#103375]: https://bugs.freedesktop.org/show_bug.cgi?id=103375
-  [fdo#111550]: https://bugs.freedesktop.org/show_bug.cgi?id=111550
-  [fdo#111736]: https://bugs.freedesktop.org/show_bug.cgi?id=111736
-  [i915#140]: https://gitlab.freedesktop.org/drm/intel/issues/140
-  [i915#151]: https://gitlab.freedesktop.org/drm/intel/issues/151
-  [i915#460]: https://gitlab.freedesktop.org/drm/intel/issues/460
-  [i915#505]: https://gitlab.freedesktop.org/drm/intel/issues/505
-  [i915#553]: https://gitlab.freedesktop.org/drm/intel/issues/553
-  [i915#592]: https://gitlab.freedesktop.org/drm/intel/issues/592
-  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
-  [i915#671]: https://gitlab.freedesktop.org/drm/intel/issues/671
-  [i915#725]: https://gitlab.freedesktop.org/drm/intel/issues/725
-  [i915#770]: https://gitlab.freedesktop.org/drm/intel/issues/770
-  [i915#845]: https://gitlab.freedesktop.org/drm/intel/issues/845
-  [i915#889]: https://gitlab.freedesktop.org/drm/intel/issues/889
-  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
-  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
-
-
-Participating hosts (46 -> 37)
-------------------------------
-
-  Additional (3): fi-blb-e6850 fi-glk-dsi fi-snb-2520m 
-  Missing    (12): fi-bdw-5557u fi-hsw-4200u fi-skl-6770hq fi-byt-squawks fi-bsw-cyan fi-bwr-2160 fi-gdg-551 fi-kbl-8809g fi-elk-e7500 fi-bsw-kefka fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_7657 -> Patchwork_15950
-
-  CI-20190529: 20190529
-  CI_DRM_7657: 265f77c05e67b37169ac1a9d750a2e2936928ea0 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5355: 2ead76177f2546d3eec0abbd0d9e47cd36588199 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_15950: 2a4e939ddb9c7276870e46a43ac54255680aff3a @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-2a4e939ddb9c drm/i915: Stop programming DDI_BUF_TRANS_SELECT on recent platforms
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15950/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
