@@ -2,36 +2,28 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id F1BF912D832
-	for <lists+intel-gfx@lfdr.de>; Tue, 31 Dec 2019 12:22:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E5DF012D888
+	for <lists+intel-gfx@lfdr.de>; Tue, 31 Dec 2019 13:09:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 088B06E210;
-	Tue, 31 Dec 2019 11:22:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D4AF96E215;
+	Tue, 31 Dec 2019 12:09:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 52EF76E210
- for <intel-gfx@lists.freedesktop.org>; Tue, 31 Dec 2019 11:22:14 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 31 Dec 2019 03:22:13 -0800
-X-IronPort-AV: E=Sophos;i="5.69,379,1571727600"; d="scan'208";a="213608306"
-Received: from heer-mobl.ger.corp.intel.com (HELO localhost) ([10.252.51.86])
- by orsmga008-auth.jf.intel.com with
- ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 31 Dec 2019 03:22:11 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20191223195850.25997-10-lucas.demarchi@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20191223195850.25997-1-lucas.demarchi@intel.com>
- <20191223195850.25997-10-lucas.demarchi@intel.com>
-Date: Tue, 31 Dec 2019 13:22:25 +0200
-Message-ID: <87a778loy6.fsf@intel.com>
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9B0456E215
+ for <intel-gfx@lists.freedesktop.org>; Tue, 31 Dec 2019 12:09:02 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19734168-1500050 
+ for <intel-gfx@lists.freedesktop.org>; Tue, 31 Dec 2019 12:08:58 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue, 31 Dec 2019 12:08:57 +0000
+Message-Id: <20191231120857.4014900-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.25.0.rc0
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 9/9] drm/i915/display: use port_info on
- intel_ddi_init
+Subject: [Intel-gfx] [CI] drm/i915/gt: Tweak flushes around ivb ppgtt
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,185 +41,41 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 23 Dec 2019, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
-> Now that we have tables for all platforms using ddi, keep the port_info
-> around so we can use it for decisions like "what phy does it have?"
-> instead of keep checking the platform/gen everywhere.
->
-> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_ddi.c      | 36 ++++++++++++-------
->  drivers/gpu/drm/i915/display/intel_ddi.h      |  8 ++++-
->  drivers/gpu/drm/i915/display/intel_display.c  |  2 +-
->  .../drm/i915/display/intel_display_types.h    |  3 ++
->  4 files changed, 35 insertions(+), 14 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-> index a1b7075ea6be..9d06a34f5f8e 100644
-> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
-> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-> @@ -4782,14 +4782,25 @@ intel_ddi_max_lanes(struct intel_digital_port *dig_port)
->  	return max_lanes;
->  }
->  
-> -void intel_ddi_init(struct drm_i915_private *dev_priv, enum port port)
-> +bool __pure intel_ddi_has_tc_phy(const struct intel_digital_port *dig_port)
+A small tweak to flush then invalidate appears to improve the
+reliability of ppGTT switches on Ivybridge -- but does not improve
+hsw/vlv bcs reliability.
 
-Nitpick, I think __pure is premature optimization that may cause more
-confusion than it benefits. Also, 'git grep __pure -- drivers | wc -l'.
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+---
+ drivers/gpu/drm/i915/gt/intel_ring_submission.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-BR,
-Jani.
-
-
->  {
-> +	return dig_port->port_info->phy_type == PHY_TYPE_TC;
-> +}
-> +
-> +bool __pure intel_ddi_has_combo_phy(const struct intel_digital_port *dig_port)
-> +{
-> +	return dig_port->port_info->phy_type == PHY_TYPE_COMBO;
-> +}
-> +
-> +void intel_ddi_init(struct drm_i915_private *dev_priv,
-> +		    const struct intel_ddi_port_info *port_info)
-> +{
-> +	enum port port = port_info->port;
->  	struct ddi_vbt_port_info *vbt_port_info =
->  		&dev_priv->vbt.ddi_port_info[port];
->  	struct intel_digital_port *intel_dig_port;
->  	struct intel_encoder *encoder;
->  	bool init_hdmi, init_dp, init_lspcon = false;
-> -	enum phy phy = intel_port_to_phy(dev_priv, port);
->  
->  	init_hdmi = vbt_port_info->supports_dvi || vbt_port_info->supports_hdmi;
->  	init_dp = vbt_port_info->supports_dp;
-> @@ -4803,12 +4814,12 @@ void intel_ddi_init(struct drm_i915_private *dev_priv, enum port port)
->  		init_dp = true;
->  		init_lspcon = true;
->  		init_hdmi = false;
-> -		DRM_DEBUG_KMS("VBT says port %c has lspcon\n", port_name(port));
-> +		DRM_DEBUG_KMS("VBT says port %s has lspcon\n", port_info->name);
->  	}
->  
->  	if (!init_dp && !init_hdmi) {
-> -		DRM_DEBUG_KMS("VBT says port %c is not DVI/HDMI/DP compatible, respect it\n",
-> -			      port_name(port));
-> +		DRM_DEBUG_KMS("VBT says %s is not DVI/HDMI/DP compatible, respect it\n",
-> +			      port_info->name);
->  		return;
->  	}
->  
-> @@ -4819,7 +4830,7 @@ void intel_ddi_init(struct drm_i915_private *dev_priv, enum port port)
->  	encoder = &intel_dig_port->base;
->  
->  	drm_encoder_init(&dev_priv->drm, &encoder->base, &intel_ddi_funcs,
-> -			 DRM_MODE_ENCODER_TMDS, "DDI %c", port_name(port));
-> +			 DRM_MODE_ENCODER_TMDS, port_info->name);
->  
->  	encoder->hotplug = intel_ddi_hotplug;
->  	encoder->compute_output_type = intel_ddi_compute_output_type;
-> @@ -4837,7 +4848,7 @@ void intel_ddi_init(struct drm_i915_private *dev_priv, enum port port)
->  
->  	encoder->type = INTEL_OUTPUT_DDI;
->  	encoder->power_domain = intel_port_to_power_domain(port);
-> -	encoder->port = port;
-> +	encoder->port = port_info->port;
->  	encoder->cloneable = 0;
->  	encoder->pipe_mask = ~0;
->  
-> @@ -4851,8 +4862,9 @@ void intel_ddi_init(struct drm_i915_private *dev_priv, enum port port)
->  	intel_dig_port->dp.output_reg = INVALID_MMIO_REG;
->  	intel_dig_port->max_lanes = intel_ddi_max_lanes(intel_dig_port);
->  	intel_dig_port->aux_ch = intel_bios_port_aux_ch(dev_priv, port);
-> +	intel_dig_port->port_info = port_info;
->  
-> -	if (intel_phy_is_tc(dev_priv, phy)) {
-> +	if (intel_ddi_has_tc_phy(intel_dig_port)) {
->  		bool is_legacy = !vbt_port_info->supports_typec_usb &&
->  				 !vbt_port_info->supports_tbt;
->  
-> @@ -4883,15 +4895,15 @@ void intel_ddi_init(struct drm_i915_private *dev_priv, enum port port)
->  	if (init_lspcon) {
->  		if (lspcon_init(intel_dig_port))
->  			/* TODO: handle hdmi info frame part */
-> -			DRM_DEBUG_KMS("LSPCON init success on port %c\n",
-> -				port_name(port));
-> +			DRM_DEBUG_KMS("LSPCON init success on port %s\n",
-> +				      port_info->name);
->  		else
->  			/*
->  			 * LSPCON init faied, but DP init was success, so
->  			 * lets try to drive as DP++ port.
->  			 */
-> -			DRM_ERROR("LSPCON init failed on port %c\n",
-> -				port_name(port));
-> +			DRM_ERROR("LSPCON init failed on port %s\n",
-> +				  port_info->name);
->  	}
->  
->  	intel_infoframe_init(intel_dig_port);
-> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.h b/drivers/gpu/drm/i915/display/intel_ddi.h
-> index 167c6579d972..c500d473963e 100644
-> --- a/drivers/gpu/drm/i915/display/intel_ddi.h
-> +++ b/drivers/gpu/drm/i915/display/intel_ddi.h
-> @@ -15,6 +15,7 @@ struct drm_i915_private;
->  struct intel_connector;
->  struct intel_crtc;
->  struct intel_crtc_state;
-> +struct intel_ddi_port_info;
->  struct intel_dp;
->  struct intel_dpll_hw_state;
->  struct intel_encoder;
-> @@ -24,7 +25,8 @@ void intel_ddi_fdi_post_disable(struct intel_encoder *intel_encoder,
->  				const struct drm_connector_state *old_conn_state);
->  void hsw_fdi_link_train(struct intel_encoder *encoder,
->  			const struct intel_crtc_state *crtc_state);
-> -void intel_ddi_init(struct drm_i915_private *dev_priv, enum port port);
-> +void intel_ddi_init(struct drm_i915_private *dev_priv,
-> +		    const struct intel_ddi_port_info *port_info);
->  bool intel_ddi_get_hw_state(struct intel_encoder *encoder, enum pipe *pipe);
->  void intel_ddi_enable_transcoder_func(const struct intel_crtc_state *crtc_state);
->  void intel_ddi_disable_transcoder_func(const struct intel_crtc_state *crtc_state);
-> @@ -50,4 +52,8 @@ void icl_sanitize_encoder_pll_mapping(struct intel_encoder *encoder);
->  int cnl_calc_wrpll_link(struct drm_i915_private *dev_priv,
->  			struct intel_dpll_hw_state *state);
->  
-> +
-> +bool __pure intel_ddi_has_tc_phy(const struct intel_digital_port *dig_port);
-> +bool __pure intel_ddi_has_combo_phy(const struct intel_digital_port *dig_port);
-> +
->  #endif /* __INTEL_DDI_H__ */
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> index 219f180fa395..96207dc83fac 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -16363,7 +16363,7 @@ static void setup_ddi_outputs(struct drm_i915_private *i915)
->  		    !output->is_port_present(i915, port_info))
->  			continue;
->  
-> -		intel_ddi_init(i915, port_info->port);
-> +		intel_ddi_init(i915, port_info);
->  	}
->  
->  	if (output->dsi_init)
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-> index 23a885895803..c54b0178e885 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> @@ -1346,6 +1346,9 @@ struct intel_digital_port {
->  	enum intel_display_power_domain ddi_io_power_domain;
->  	struct mutex tc_lock;	/* protects the TypeC port mode */
->  	intel_wakeref_t tc_lock_wakeref;
-> +
-> +	const struct intel_ddi_port_info *port_info;
-> +
->  	int tc_link_refcount;
->  	bool tc_legacy_port:1;
->  	char tc_port_name[8];
-
+diff --git a/drivers/gpu/drm/i915/gt/intel_ring_submission.c b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
+index 066c4eddf5d0..48dbe46edbff 100644
+--- a/drivers/gpu/drm/i915/gt/intel_ring_submission.c
++++ b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
+@@ -1394,7 +1394,7 @@ static int load_pd_dir(struct i915_request *rq,
+ 
+ 	intel_ring_advance(rq, cs);
+ 
+-	return 0;
++	return rq->engine->emit_flush(rq, EMIT_FLUSH);
+ }
+ 
+ static inline int mi_set_context(struct i915_request *rq, u32 flags)
+@@ -1584,7 +1584,7 @@ static int switch_mm(struct i915_request *rq, struct i915_address_space *vm)
+ 	if (ret)
+ 		return ret;
+ 
+-	return rq->engine->emit_flush(rq, EMIT_FLUSH);
++	return rq->engine->emit_flush(rq, EMIT_INVALIDATE);
+ }
+ 
+ static int switch_context(struct i915_request *rq)
 -- 
-Jani Nikula, Intel Open Source Graphics Center
+2.25.0.rc0
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
