@@ -2,33 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 32FD812D51C
-	for <lists+intel-gfx@lfdr.de>; Tue, 31 Dec 2019 00:45:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A59912D55B
+	for <lists+intel-gfx@lfdr.de>; Tue, 31 Dec 2019 01:48:24 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0570E89C1F;
-	Mon, 30 Dec 2019 23:45:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CAF726E09E;
+	Tue, 31 Dec 2019 00:48:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 90FD989C1F
- for <intel-gfx@lists.freedesktop.org>; Mon, 30 Dec 2019 23:45:52 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by orsmga106.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 30 Dec 2019 15:45:51 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,377,1571727600"; d="scan'208";a="224311410"
-Received: from mdroper-desk1.fm.intel.com ([10.1.27.64])
- by fmsmga001.fm.intel.com with ESMTP; 30 Dec 2019 15:45:51 -0800
-From: Matt Roper <matthew.d.roper@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon, 30 Dec 2019 15:45:41 -0800
-Message-Id: <20191230234541.1416510-1-matthew.d.roper@intel.com>
-X-Mailer: git-send-email 2.23.0
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id E7F5A6E092;
+ Tue, 31 Dec 2019 00:48:18 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id DD3A0A00E6;
+ Tue, 31 Dec 2019 00:48:18 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915: Stop programming DDI_BUF_TRANS_SELECT
- on recent platforms
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matt Roper" <matthew.d.roper@intel.com>
+Date: Tue, 31 Dec 2019 00:48:18 -0000
+Message-ID: <157775329887.26889.6029939361547031278@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20191230234541.1416510-1-matthew.d.roper@intel.com>
+In-Reply-To: <20191230234541.1416510-1-matthew.d.roper@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_Stop_programming_DDI=5FBUF=5FTRANS=5FSELECT_on_recent_?=
+ =?utf-8?q?platforms?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,75 +39,164 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The bits in DDI_BUF_CTL related to DP vswing emphasis were removed on
-GLK since the relevant programming has moved to the PHY registers.  The
-bits still exist on BXT, but have a programming note indicating that
-they're ignored.  Let's stop programming them on gen9lp and and gen10+.
+== Series Details ==
 
-Bspec: 7534
-Bspec: 49533
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
----
- drivers/gpu/drm/i915/display/intel_ddi.c | 17 +++++++++++------
- 1 file changed, 11 insertions(+), 6 deletions(-)
+Series: drm/i915: Stop programming DDI_BUF_TRANS_SELECT on recent platforms
+URL   : https://patchwork.freedesktop.org/series/71503/
+State : success
 
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-index 3a538789c585..c63a1712515c 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-@@ -1148,6 +1148,8 @@ void hsw_fdi_link_train(struct intel_encoder *encoder,
- 	/* Start the training iterating through available voltages and emphasis,
- 	 * testing each value twice. */
- 	for (i = 0; i < ARRAY_SIZE(hsw_ddi_translations_fdi) * 2; i++) {
-+		u32 tmp;
-+
- 		/* Configure DP_TP_CTL with auto-training */
- 		I915_WRITE(DP_TP_CTL(PORT_E),
- 					DP_TP_CTL_FDI_AUTOTRAIN |
-@@ -1159,10 +1161,10 @@ void hsw_fdi_link_train(struct intel_encoder *encoder,
- 		 * DDI E does not support port reversal, the functionality is
- 		 * achieved on the PCH side in FDI_RX_CTL, so no need to set the
- 		 * port reversal bit */
--		I915_WRITE(DDI_BUF_CTL(PORT_E),
--			   DDI_BUF_CTL_ENABLE |
--			   ((crtc_state->fdi_lanes - 1) << 1) |
--			   DDI_BUF_TRANS_SELECT(i / 2));
-+		tmp = DDI_BUF_CTL_ENABLE | ((crtc_state->fdi_lanes - 1) << 1);
-+		if (INTEL_GEN(dev_priv) <= 9 && !IS_GEN9_LP(dev_priv))
-+			tmp |= DDI_BUF_TRANS_SELECT(i / 2);
-+		I915_WRITE(DDI_BUF_CTL(PORT_E), tmp);
- 		POSTING_READ(DDI_BUF_CTL(PORT_E));
- 
- 		udelay(600);
-@@ -1238,13 +1240,16 @@ void hsw_fdi_link_train(struct intel_encoder *encoder,
- 
- static void intel_ddi_init_dp_buf_reg(struct intel_encoder *encoder)
- {
-+	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
- 	struct intel_dp *intel_dp = enc_to_intel_dp(&encoder->base);
- 	struct intel_digital_port *intel_dig_port =
- 		enc_to_dig_port(&encoder->base);
- 
--	intel_dp->DP = intel_dig_port->saved_port_bits |
--		DDI_BUF_CTL_ENABLE | DDI_BUF_TRANS_SELECT(0);
-+	intel_dp->DP = intel_dig_port->saved_port_bits | DDI_BUF_CTL_ENABLE;
- 	intel_dp->DP |= DDI_PORT_WIDTH(intel_dp->lane_count);
-+	if (INTEL_GEN(dev_priv) <= 9 && !IS_GEN9_LP(dev_priv))
-+		intel_dp->DP |= DDI_BUF_TRANS_SELECT(0);
-+
- }
- 
- static struct intel_encoder *
--- 
-2.23.0
+== Summary ==
 
+CI Bug Log - changes from CI_DRM_7657 -> Patchwork_15950
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15950/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_15950 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_exec_suspend@basic-s3:
+    - fi-icl-u2:          [PASS][1] -> [FAIL][2] ([fdo#103375])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7657/fi-icl-u2/igt@gem_exec_suspend@basic-s3.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15950/fi-icl-u2/igt@gem_exec_suspend@basic-s3.html
+
+  * igt@gem_exec_suspend@basic-s4-devices:
+    - fi-icl-u2:          [PASS][3] -> [FAIL][4] ([fdo#111550])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7657/fi-icl-u2/igt@gem_exec_suspend@basic-s4-devices.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15950/fi-icl-u2/igt@gem_exec_suspend@basic-s4-devices.html
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-skl-lmem:        [PASS][5] -> [DMESG-WARN][6] ([i915#592])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7657/fi-skl-lmem/igt@i915_pm_rpm@module-reload.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15950/fi-skl-lmem/igt@i915_pm_rpm@module-reload.html
+
+  * igt@i915_selftest@live_blt:
+    - fi-hsw-4770r:       [PASS][7] -> [DMESG-FAIL][8] ([i915#553] / [i915#725])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7657/fi-hsw-4770r/igt@i915_selftest@live_blt.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15950/fi-hsw-4770r/igt@i915_selftest@live_blt.html
+
+  * igt@i915_selftest@live_hugepages:
+    - fi-byt-j1900:       [PASS][9] -> [DMESG-FAIL][10] ([i915#845])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7657/fi-byt-j1900/igt@i915_selftest@live_hugepages.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15950/fi-byt-j1900/igt@i915_selftest@live_hugepages.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_exec_suspend@basic-s3:
+    - fi-tgl-y:           [INCOMPLETE][11] ([fdo#111736] / [i915#460]) -> [PASS][12]
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7657/fi-tgl-y/igt@gem_exec_suspend@basic-s3.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15950/fi-tgl-y/igt@gem_exec_suspend@basic-s3.html
+
+  * igt@i915_module_load@reload-with-fault-injection:
+    - fi-skl-6700k2:      [INCOMPLETE][13] ([i915#671]) -> [PASS][14]
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7657/fi-skl-6700k2/igt@i915_module_load@reload-with-fault-injection.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15950/fi-skl-6700k2/igt@i915_module_load@reload-with-fault-injection.html
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-skl-guc:         [INCOMPLETE][15] ([i915#151]) -> [PASS][16]
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7657/fi-skl-guc/igt@i915_pm_rpm@module-reload.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15950/fi-skl-guc/igt@i915_pm_rpm@module-reload.html
+
+  * igt@i915_selftest@live_blt:
+    - fi-ivb-3770:        [DMESG-FAIL][17] ([i915#725]) -> [PASS][18]
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7657/fi-ivb-3770/igt@i915_selftest@live_blt.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15950/fi-ivb-3770/igt@i915_selftest@live_blt.html
+
+  * igt@kms_busy@basic-flip-pipe-a:
+    - fi-icl-u2:          [INCOMPLETE][19] ([i915#140]) -> [PASS][20]
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7657/fi-icl-u2/igt@kms_busy@basic-flip-pipe-a.html
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15950/fi-icl-u2/igt@kms_busy@basic-flip-pipe-a.html
+
+  
+#### Warnings ####
+
+  * igt@i915_module_load@reload-with-fault-injection:
+    - fi-cfl-guc:         [INCOMPLETE][21] ([i915#505] / [i915#671]) -> [DMESG-WARN][22] ([i915#889])
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7657/fi-cfl-guc/igt@i915_module_load@reload-with-fault-injection.html
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15950/fi-cfl-guc/igt@i915_module_load@reload-with-fault-injection.html
+
+  * igt@i915_selftest@live_blt:
+    - fi-hsw-4770:        [DMESG-FAIL][23] ([i915#553] / [i915#725]) -> [DMESG-FAIL][24] ([i915#770])
+   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7657/fi-hsw-4770/igt@i915_selftest@live_blt.html
+   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15950/fi-hsw-4770/igt@i915_selftest@live_blt.html
+
+  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:
+    - fi-kbl-x1275:       [DMESG-WARN][25] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][26] ([i915#62] / [i915#92]) +4 similar issues
+   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7657/fi-kbl-x1275/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
+   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15950/fi-kbl-x1275/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
+
+  * igt@kms_cursor_legacy@basic-flip-before-cursor-legacy:
+    - fi-kbl-x1275:       [DMESG-WARN][27] ([i915#62] / [i915#92]) -> [DMESG-WARN][28] ([i915#62] / [i915#92] / [i915#95]) +4 similar issues
+   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7657/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-before-cursor-legacy.html
+   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15950/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-before-cursor-legacy.html
+
+  
+  [fdo#103375]: https://bugs.freedesktop.org/show_bug.cgi?id=103375
+  [fdo#111550]: https://bugs.freedesktop.org/show_bug.cgi?id=111550
+  [fdo#111736]: https://bugs.freedesktop.org/show_bug.cgi?id=111736
+  [i915#140]: https://gitlab.freedesktop.org/drm/intel/issues/140
+  [i915#151]: https://gitlab.freedesktop.org/drm/intel/issues/151
+  [i915#460]: https://gitlab.freedesktop.org/drm/intel/issues/460
+  [i915#505]: https://gitlab.freedesktop.org/drm/intel/issues/505
+  [i915#553]: https://gitlab.freedesktop.org/drm/intel/issues/553
+  [i915#592]: https://gitlab.freedesktop.org/drm/intel/issues/592
+  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
+  [i915#671]: https://gitlab.freedesktop.org/drm/intel/issues/671
+  [i915#725]: https://gitlab.freedesktop.org/drm/intel/issues/725
+  [i915#770]: https://gitlab.freedesktop.org/drm/intel/issues/770
+  [i915#845]: https://gitlab.freedesktop.org/drm/intel/issues/845
+  [i915#889]: https://gitlab.freedesktop.org/drm/intel/issues/889
+  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
+  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
+
+
+Participating hosts (46 -> 37)
+------------------------------
+
+  Additional (3): fi-blb-e6850 fi-glk-dsi fi-snb-2520m 
+  Missing    (12): fi-bdw-5557u fi-hsw-4200u fi-skl-6770hq fi-byt-squawks fi-bsw-cyan fi-bwr-2160 fi-gdg-551 fi-kbl-8809g fi-elk-e7500 fi-bsw-kefka fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_7657 -> Patchwork_15950
+
+  CI-20190529: 20190529
+  CI_DRM_7657: 265f77c05e67b37169ac1a9d750a2e2936928ea0 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5355: 2ead76177f2546d3eec0abbd0d9e47cd36588199 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_15950: 2a4e939ddb9c7276870e46a43ac54255680aff3a @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+2a4e939ddb9c drm/i915: Stop programming DDI_BUF_TRANS_SELECT on recent platforms
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15950/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
