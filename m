@@ -1,33 +1,36 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C8C1912DC4E
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1B02912DC4D
 	for <lists+intel-gfx@lfdr.de>; Wed,  1 Jan 2020 00:38:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BB34A6E287;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7E9A16E286;
 	Tue, 31 Dec 2019 23:38:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 240316E286
- for <intel-gfx@lists.freedesktop.org>; Tue, 31 Dec 2019 23:38:33 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 17FC86E286
+ for <intel-gfx@lists.freedesktop.org>; Tue, 31 Dec 2019 23:38:34 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga003.jf.intel.com ([10.7.209.27])
  by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 31 Dec 2019 15:38:32 -0800
+ 31 Dec 2019 15:38:33 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,381,1571727600"; d="scan'208";a="221529962"
+X-IronPort-AV: E=Sophos;i="5.69,381,1571727600"; d="scan'208";a="221529963"
 Received: from ideak-desk.fi.intel.com ([10.237.72.183])
- by orsmga003.jf.intel.com with ESMTP; 31 Dec 2019 15:38:30 -0800
+ by orsmga003.jf.intel.com with ESMTP; 31 Dec 2019 15:38:32 -0800
 From: Imre Deak <imre.deak@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed,  1 Jan 2020 01:37:49 +0200
-Message-Id: <20191231233756.18753-1-imre.deak@intel.com>
+Date: Wed,  1 Jan 2020 01:37:50 +0200
+Message-Id: <20191231233756.18753-2-imre.deak@intel.com>
 X-Mailer: git-send-email 2.23.1
+In-Reply-To: <20191231233756.18753-1-imre.deak@intel.com>
+References: <20191231233756.18753-1-imre.deak@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 0/7] drm/i915/tgl: Media decompression support
+Subject: [Intel-gfx] [PATCH 1/7] drm/i915: Add support for non-power-of-2 FB
+ plane alignment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,49 +43,65 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Nanley G Chery <nanley.g.chery@intel.com>,
- Dhinakaran Pandiyan <dhinakaran.pandiyan@intel.com>,
- Ville Syrjala <ville.syrjala@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This is the second part of [1] with media decompression enabled. I left
-the third part with render decompression/color clear functionality for
-later - once we have the IGT test for it in place.
-
-Cc: Dhinakaran Pandiyan <dhinakaran.pandiyan@intel.com>
-Cc: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
-Cc: Ville Syrjala <ville.syrjala@intel.com>
-Cc: Nanley G Chery <nanley.g.chery@intel.com>
-Cc: Mika Kahola <mika.kahola@intel.com>
-Cc: Matt Roper <matthew.d.roper@intel.com>
-
-Dhinakaran Pandiyan (3):
-  drm/framebuffer: Format modifier for Intel Gen-12 media compression
-  drm/fb: Extend format_info member arrays to handle four planes
-  drm/i915/tgl: Gen-12 display can decompress surfaces compressed by the
-    media engine
-
-Imre Deak (4):
-  drm/i915: Add support for non-power-of-2 FB plane alignment
-  drm/i915/tgl: Make sure a semiplanar UV plane is tile row size aligned
-  drm/i915: Add debug message for FB plane[0].offset!=0 error
-  drm/i915: Make sure plane dims are correct for UV CCS planes
-
- drivers/gpu/drm/i915/display/intel_display.c  | 246 ++++++++++++++----
- drivers/gpu/drm/i915/display/intel_display.h  |   1 +
- .../drm/i915/display/intel_display_types.h    |   6 +-
- drivers/gpu/drm/i915/display/intel_sprite.c   |  55 +++-
- drivers/gpu/drm/i915/i915_reg.h               |   1 +
- include/drm/drm_fourcc.h                      |   8 +-
- include/uapi/drm/drm_fourcc.h                 |  13 +
- 7 files changed, 262 insertions(+), 68 deletions(-)
-
--- 
-2.23.1
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+QXQgbGVhc3Qgb25lIGZyYW1lYnVmZmVyIHBsYW5lIG9uIFRHTCAtIHRoZSBVViBwbGFuZSBvZiBZ
+VVYgc2VtaXBsYW5hcgpGQnMgLSByZXF1aXJlcyBhIG5vbi1wb3dlci1vZi0yIGFsaWdubWVudCwg
+c28gYWRkIHN1cHBvcnQgZm9yIHRoaXMuIFRoaXMKbmV3IGFsaWdubWVudCByZXN0cmljdGlvbiBh
+cHBsaWVzIG9ubHkgdG8gYW4gb2Zmc2V0IHdpdGhpbiBhbiBGQiwgc28gdGhlCkdFTSBidWZmZXIg
+aXRzZWxmIGNvbnRhaW5pbmcgdGhlIEZCIG11c3Qgc3RpbGwgYmUgcG93ZXItb2YtMiBhbGlnbmVk
+LgpBZGQgYSBjaGVjayBmb3IgdGhpcyAoaW4gcHJhY3RpY2UgcGxhbmUgMCwgc2luY2UgdGhlIHBs
+YW5lIDAgb2Zmc2V0IG11c3QKYmUgMCkuCgp2MjoKLSBGaXggV0FSTiBjaGVjayBmb3IgYWxpZ25t
+ZW50PTAuCnYzOgotIFJldHVybiBlcnJvciBmb3IgYWxpZ25tZW50IHByb2dyYW1taW5nIGJ1Z3Mu
+IChDaHJpcykKCkNjOiBDaHJpcyBXaWxzb24gPGNocmlzQGNocmlzLXdpbHNvbi5jby51az4KQ2M6
+IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5jb20+ClNpZ25lZC1v
+ZmYtYnk6IEltcmUgRGVhayA8aW1yZS5kZWFrQGludGVsLmNvbT4KUmV2aWV3ZWQtYnk6IENocmlz
+IFdpbHNvbiA8Y2hyaXNAY2hyaXMtd2lsc29uLmNvLnVrPgotLS0KIGRyaXZlcnMvZ3B1L2RybS9p
+OTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jIHwgMjQgKysrKysrKysrKysrKy0tLS0tLS0KIDEg
+ZmlsZSBjaGFuZ2VkLCAxNiBpbnNlcnRpb25zKCspLCA4IGRlbGV0aW9ucygtKQoKZGlmZiAtLWdp
+dCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jIGIvZHJpdmVy
+cy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMKaW5kZXggZGE1MjY2ZTc2NzM4
+Li42ZTQxNTI3NzBjMTUgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkv
+aW50ZWxfZGlzcGxheS5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxf
+ZGlzcGxheS5jCkBAIC0yMTk0LDYgKzIxOTQsOCBAQCBpbnRlbF9waW5fYW5kX2ZlbmNlX2ZiX29i
+aihzdHJ1Y3QgZHJtX2ZyYW1lYnVmZmVyICpmYiwKIAkJcmV0dXJuIEVSUl9QVFIoLUVJTlZBTCk7
+CiAKIAlhbGlnbm1lbnQgPSBpbnRlbF9zdXJmX2FsaWdubWVudChmYiwgMCk7CisJaWYgKFdBUk5f
+T04oYWxpZ25tZW50ICYmICFpc19wb3dlcl9vZl8yKGFsaWdubWVudCkpKQorCQlyZXR1cm4gRVJS
+X1BUUigtRUlOVkFMKTsKIAogCS8qIE5vdGUgdGhhdCB0aGUgdy9hIGFsc28gcmVxdWlyZXMgNjQg
+UFRFIG9mIHBhZGRpbmcgZm9sbG93aW5nIHRoZQogCSAqIGJvLiBXZSBjdXJyZW50bHkgZmlsbCBh
+bGwgdW51c2VkIFBURSB3aXRoIHRoZSBzaGFkb3cgcGFnZSBhbmQgc28KQEAgLTI0MzIsOSArMjQz
+NCw2IEBAIHN0YXRpYyB1MzIgaW50ZWxfY29tcHV0ZV9hbGlnbmVkX29mZnNldChzdHJ1Y3QgZHJt
+X2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYsCiAJdW5zaWduZWQgaW50IGNwcCA9IGZiLT5mb3JtYXQt
+PmNwcFtjb2xvcl9wbGFuZV07CiAJdTMyIG9mZnNldCwgb2Zmc2V0X2FsaWduZWQ7CiAKLQlpZiAo
+YWxpZ25tZW50KQotCQlhbGlnbm1lbnQtLTsKLQogCWlmICghaXNfc3VyZmFjZV9saW5lYXIoZmIs
+IGNvbG9yX3BsYW5lKSkgewogCQl1bnNpZ25lZCBpbnQgdGlsZV9zaXplLCB0aWxlX3dpZHRoLCB0
+aWxlX2hlaWdodDsKIAkJdW5zaWduZWQgaW50IHRpbGVfcm93cywgdGlsZXMsIHBpdGNoX3RpbGVz
+OwpAQCAtMjQ1NiwxNyArMjQ1NSwyNCBAQCBzdGF0aWMgdTMyIGludGVsX2NvbXB1dGVfYWxpZ25l
+ZF9vZmZzZXQoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2LAogCQkqeCAlPSB0aWxl
+X3dpZHRoOwogCiAJCW9mZnNldCA9ICh0aWxlX3Jvd3MgKiBwaXRjaF90aWxlcyArIHRpbGVzKSAq
+IHRpbGVfc2l6ZTsKLQkJb2Zmc2V0X2FsaWduZWQgPSBvZmZzZXQgJiB+YWxpZ25tZW50OworCisJ
+CW9mZnNldF9hbGlnbmVkID0gb2Zmc2V0OworCQlpZiAoYWxpZ25tZW50KQorCQkJb2Zmc2V0X2Fs
+aWduZWQgPSByb3VuZGRvd24ob2Zmc2V0X2FsaWduZWQsIGFsaWdubWVudCk7CiAKIAkJaW50ZWxf
+YWRqdXN0X3RpbGVfb2Zmc2V0KHgsIHksIHRpbGVfd2lkdGgsIHRpbGVfaGVpZ2h0LAogCQkJCQkg
+dGlsZV9zaXplLCBwaXRjaF90aWxlcywKIAkJCQkJIG9mZnNldCwgb2Zmc2V0X2FsaWduZWQpOwog
+CX0gZWxzZSB7CiAJCW9mZnNldCA9ICp5ICogcGl0Y2ggKyAqeCAqIGNwcDsKLQkJb2Zmc2V0X2Fs
+aWduZWQgPSBvZmZzZXQgJiB+YWxpZ25tZW50OwotCi0JCSp5ID0gKG9mZnNldCAmIGFsaWdubWVu
+dCkgLyBwaXRjaDsKLQkJKnggPSAoKG9mZnNldCAmIGFsaWdubWVudCkgLSAqeSAqIHBpdGNoKSAv
+IGNwcDsKKwkJb2Zmc2V0X2FsaWduZWQgPSBvZmZzZXQ7CisJCWlmIChhbGlnbm1lbnQpIHsKKwkJ
+CW9mZnNldF9hbGlnbmVkID0gcm91bmRkb3duKG9mZnNldF9hbGlnbmVkLCBhbGlnbm1lbnQpOwor
+CQkJKnkgPSAob2Zmc2V0ICUgYWxpZ25tZW50KSAvIHBpdGNoOworCQkJKnggPSAoKG9mZnNldCAl
+IGFsaWdubWVudCkgLSAqeSAqIHBpdGNoKSAvIGNwcDsKKwkJfSBlbHNlIHsKKwkJCSp5ID0gKngg
+PSAwOworCQl9CiAJfQogCiAJcmV0dXJuIG9mZnNldF9hbGlnbmVkOwpAQCAtMzczOCw2ICszNzQ0
+LDggQEAgc3RhdGljIGludCBza2xfY2hlY2tfbWFpbl9zdXJmYWNlKHN0cnVjdCBpbnRlbF9wbGFu
+ZV9zdGF0ZSAqcGxhbmVfc3RhdGUpCiAJaW50ZWxfYWRkX2ZiX29mZnNldHMoJngsICZ5LCBwbGFu
+ZV9zdGF0ZSwgMCk7CiAJb2Zmc2V0ID0gaW50ZWxfcGxhbmVfY29tcHV0ZV9hbGlnbmVkX29mZnNl
+dCgmeCwgJnksIHBsYW5lX3N0YXRlLCAwKTsKIAlhbGlnbm1lbnQgPSBpbnRlbF9zdXJmX2FsaWdu
+bWVudChmYiwgMCk7CisJaWYgKFdBUk5fT04oYWxpZ25tZW50ICYmICFpc19wb3dlcl9vZl8yKGFs
+aWdubWVudCkpKQorCQlyZXR1cm4gLUVJTlZBTDsKIAogCS8qCiAJICogQVVYIHN1cmZhY2Ugb2Zm
+c2V0IGlzIHNwZWNpZmllZCBhcyB0aGUgZGlzdGFuY2UgZnJvbSB0aGUKLS0gCjIuMjMuMQoKX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1h
+aWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMu
+ZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
