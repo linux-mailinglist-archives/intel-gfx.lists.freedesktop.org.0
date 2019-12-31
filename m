@@ -1,33 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BBFA912D91C
-	for <lists+intel-gfx@lfdr.de>; Tue, 31 Dec 2019 14:41:50 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 746CE12D958
+	for <lists+intel-gfx@lfdr.de>; Tue, 31 Dec 2019 15:00:23 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 37C4689F31;
-	Tue, 31 Dec 2019 13:41:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A8741893A8;
+	Tue, 31 Dec 2019 14:00:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0F78A89F31
- for <intel-gfx@lists.freedesktop.org>; Tue, 31 Dec 2019 13:41:46 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 89259893A8
+ for <intel-gfx@lists.freedesktop.org>; Tue, 31 Dec 2019 14:00:19 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
  by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 31 Dec 2019 05:41:46 -0800
+ 31 Dec 2019 06:00:18 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,379,1571727600"; d="scan'208";a="393540731"
+X-IronPort-AV: E=Sophos;i="5.69,379,1571727600"; d="scan'208";a="231302324"
 Received: from zeliteleevi.tm.intel.com ([10.237.55.130])
- by orsmga005.jf.intel.com with ESMTP; 31 Dec 2019 05:41:45 -0800
+ by orsmga002.jf.intel.com with ESMTP; 31 Dec 2019 06:00:13 -0800
 From: Kai Vehmanen <kai.vehmanen@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 31 Dec 2019 15:41:09 +0200
-Message-Id: <20191231134109.31203-1-kai.vehmanen@linux.intel.com>
+Date: Tue, 31 Dec 2019 16:00:07 +0200
+Message-Id: <20191231140007.31728-1-kai.vehmanen@linux.intel.com>
 X-Mailer: git-send-email 2.17.1
-Subject: [Intel-gfx] [PATCH] drm/i915: Limit audio CDCLK>=2*BCLK constraint
- back to GLK only
+Subject: [Intel-gfx] [PATCH v2] drm/i915: Limit audio CDCLK>=2*BCLK
+ constraint back to GLK only
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,11 +70,15 @@ enable time in intel_crtc_compute_min_cdclk().
 Bugzilla: https://gitlab.freedesktop.org/drm/intel/issues/913
 Signed-off-by: Kai Vehmanen <kai.vehmanen@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_audio.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+
+Notes:
+    v2: d'oh, change put_power() as well
+
+ drivers/gpu/drm/i915/display/intel_audio.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_audio.c b/drivers/gpu/drm/i915/display/intel_audio.c
-index 27710098d056..2c5f9b23f286 100644
+index 27710098d056..e406719a6716 100644
 --- a/drivers/gpu/drm/i915/display/intel_audio.c
 +++ b/drivers/gpu/drm/i915/display/intel_audio.c
 @@ -856,7 +856,7 @@ static unsigned long i915_audio_component_get_power(struct device *kdev)
@@ -86,6 +90,15 @@ index 27710098d056..2c5f9b23f286 100644
  			glk_force_audio_cdclk(dev_priv, true);
  
  		if (INTEL_GEN(dev_priv) >= 10 || IS_GEMINILAKE(dev_priv))
+@@ -875,7 +875,7 @@ static void i915_audio_component_put_power(struct device *kdev,
+ 
+ 	/* Stop forcing CDCLK to 2*BCLK if no need for audio to be powered. */
+ 	if (--dev_priv->audio_power_refcount == 0)
+-		if (INTEL_GEN(dev_priv) >= 10 || IS_GEMINILAKE(dev_priv))
++		if (IS_GEMINILAKE(dev_priv))
+ 			glk_force_audio_cdclk(dev_priv, false);
+ 
+ 	intel_display_power_put(dev_priv, POWER_DOMAIN_AUDIO, cookie);
 -- 
 2.17.1
 
