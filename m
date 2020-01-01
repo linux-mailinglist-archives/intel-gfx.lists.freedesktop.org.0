@@ -2,76 +2,28 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 697B912DEF8
-	for <lists+intel-gfx@lfdr.de>; Wed,  1 Jan 2020 14:04:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C068912DF0A
+	for <lists+intel-gfx@lfdr.de>; Wed,  1 Jan 2020 14:42:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3D82589B67;
-	Wed,  1 Jan 2020 13:04:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2E5FC8991A;
+	Wed,  1 Jan 2020 13:42:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-1.mimecast.com (us-smtp-delivery-1.mimecast.com
- [205.139.110.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 48EBC89B45
- for <intel-gfx@lists.freedesktop.org>; Wed,  1 Jan 2020 13:04:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1577883875;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=3+sMHv/NXk5vFIFavisCvSHG1HZuRuVWu182Z71fT3c=;
- b=aFgysMxRB3I4Q4WwiL7w9mrIKyDDCK3eJIdO1u1oaa4XHl7cwbt1wPLX2qDDf7UEW3Q8nW
- 0WqkGFRRBh9tSMBaLSlJRy68KrzHVNj0GU21NIJ1kAFG+FivTsM+uA+lXalxDp7EeAT7IL
- XRq5AN6bPM3IxKew71Ww7SVEXFi/egg=
-Received: from mail-wr1-f72.google.com (mail-wr1-f72.google.com
- [209.85.221.72]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-8-jbyPc-5NMXiu3Wsi1tpOPA-1; Wed, 01 Jan 2020 08:04:31 -0500
-Received: by mail-wr1-f72.google.com with SMTP id w6so19147823wrm.16
- for <intel-gfx@lists.freedesktop.org>; Wed, 01 Jan 2020 05:04:31 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:message-id:date
- :user-agent:mime-version:in-reply-to:content-language
- :content-transfer-encoding;
- bh=3+sMHv/NXk5vFIFavisCvSHG1HZuRuVWu182Z71fT3c=;
- b=hnJZIhYs1RgNjmginyzZLPXvmVczF3CDiADpC9QL/Tp0oe548uKOjzJcHc1uPtqXCI
- 322hb8jU/m/+FjJHdvhri4qrLffDESunzZgf/Riu6m3c1nKgnlw88+jv5WcGaW2dt+LA
- q0depzBK/mzlKRcJQVkLT8OZKkzHoJKA+KQ4xJurGup1txRaYUYi8vDobtAyHyTCv9M6
- AHQlBM6g9eeurlipvbxdF7tBGGCyQ5Pk8UpAAP152tUiONz4Rfmx1ueo5+aKIwDDnIP1
- v5plIx4LM4m1bammWQDGhadgWbPcoGloSeQsCU3EYeRy3FetCLytblwEPcuVpqtMhmJm
- itvg==
-X-Gm-Message-State: APjAAAWeGhmxOOuFtKReo8deEg1HOLbgt2AxofEsPtql721R3sezwYaO
- K/ig6afcHSyGqubj5iziD+08eFAWlJDce2bIIkQbiqd4UCszbXrnhWD1gGjp1hZvf78S9CFzgYW
- M6PfmOWh1SKKf2KpLUiDJo1kn+mjZ
-X-Received: by 2002:a05:600c:2c06:: with SMTP id
- q6mr9015292wmg.154.1577883870638; 
- Wed, 01 Jan 2020 05:04:30 -0800 (PST)
-X-Google-Smtp-Source: APXvYqwzUL1zteKyNuYPDFOsoKQUmzTGSQ9O1XlOn5f8lHIeW+Vbx3bAgicNtKYD8muQPcI6uTqNAg==
-X-Received: by 2002:a05:600c:2c06:: with SMTP id
- q6mr9015274wmg.154.1577883870445; 
- Wed, 01 Jan 2020 05:04:30 -0800 (PST)
-Received: from shalem.localdomain
- (2001-1c00-0c0c-fe00-7e79-4dac-39d0-9c14.cable.dynamic.v6.ziggo.nl.
- [2001:1c00:c0c:fe00:7e79:4dac:39d0:9c14])
- by smtp.gmail.com with ESMTPSA id m7sm5349302wma.39.2020.01.01.05.04.29
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 01 Jan 2020 05:04:29 -0800 (PST)
-To: Linus Walleij <linus.walleij@linaro.org>
-References: <20191216205122.1850923-1-hdegoede@redhat.com>
- <20191216205122.1850923-2-hdegoede@redhat.com>
- <CACRpkdaXFSJVkWJGzsVcvbUA9gpgP0Vbkwf1H-HWw8s35R9XYQ@mail.gmail.com>
-From: Hans de Goede <hdegoede@redhat.com>
-Message-ID: <458597d4-5f81-90f5-7f14-aa634e87ddbd@redhat.com>
-Date: Wed, 1 Jan 2020 14:04:29 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.3.1
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 33CDA8991A
+ for <intel-gfx@lists.freedesktop.org>; Wed,  1 Jan 2020 13:42:08 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19741910-1500050 
+ for <intel-gfx@lists.freedesktop.org>; Wed, 01 Jan 2020 13:42:05 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed,  1 Jan 2020 13:42:03 +0000
+Message-Id: <20200101134204.706541-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.25.0.rc0
 MIME-Version: 1.0
-In-Reply-To: <CACRpkdaXFSJVkWJGzsVcvbUA9gpgP0Vbkwf1H-HWw8s35R9XYQ@mail.gmail.com>
-Content-Language: en-US
-X-MC-Unique: jbyPc-5NMXiu3Wsi1tpOPA-1
-X-Mimecast-Spam-Score: 0
-Subject: Re: [Intel-gfx] [PATCH v2 1/5] pinctrl: Allow modules to use
- pinctrl_[un]register_mappings
+Subject: [Intel-gfx] [CI 1/2] drm: Export drm_minor_create_anonfile()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -84,74 +36,92 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
- "open list:DRM PANEL DRIVERS" <dri-devel@lists.freedesktop.org>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Lee Jones <lee.jones@linaro.org>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi,
+Export the routine for creating an anonymous file for wrapping the
+drm_device.
 
-On 30-12-2019 14:31, Linus Walleij wrote:
-> On Mon, Dec 16, 2019 at 9:51 PM Hans de Goede <hdegoede@redhat.com> wrote:
-> 
->> Currently only the drivers/pinctrl/devicetree.c code allows registering
->> pinctrl-mappings which may later be unregistered, all other mappings
->> are assumed to be permanent.
->>
->> Non-dt platforms may also want to register pinctrl mappings from code which
->> is build as a module, which requires being able to unregister the mapping
->> when the module is unloaded to avoid dangling pointers.
->>
->> To allow unregistering the mappings the devicetree code uses 2 internal
->> functions: pinctrl_register_map and pinctrl_unregister_map.
->>
->> pinctrl_register_map allows the devicetree code to tell the core to
->> not memdup the mappings as it retains ownership of them and
->> pinctrl_unregister_map does the unregistering, note this only works
->> when the mappings where not memdupped.
->>
->> The only code relying on the memdup/shallow-copy done by
->> pinctrl_register_mappings is arch/arm/mach-u300/core.c this commit
->> replaces the __initdata with const, so that the shallow-copy is no
->> longer necessary.
->>
->> After that we can get rid of the internal pinctrl_unregister_map function
->> and just use pinctrl_register_mappings directly everywhere.
->>
->> This commit also renames pinctrl_unregister_map to
->> pinctrl_unregister_mappings so that its naming matches its
->> pinctrl_register_mappings counter-part and exports it.
->>
->> Together these 2 changes will allow non-dt platform code to
->> register pinctrl-mappings from modules without breaking things on
->> module unload (as they can now unregister the mapping on unload).
->>
->> Signed-off-by: Hans de Goede <hdegoede@redhat.com>
-> 
-> This v2 works fine for me, I applied it to this immutable branch in the
-> pinctrl tree:
-> https://git.kernel.org/pub/scm/linux/kernel/git/linusw/linux-pinctrl.git/log/?h=ib-pinctrl-unreg-mappings
-> 
-> And pulled that into the pinctrl "devel" branch for v5.6.
-> 
-> Please pull this immutable branch into the Intel DRM tree and apply
-> the rest of the stuff on top!
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+---
+ drivers/gpu/drm/drm_file.c                | 7 ++++---
+ drivers/gpu/drm/i915/selftests/igt_mmap.c | 2 +-
+ drivers/gpu/drm/i915/selftests/mock_drm.h | 2 +-
+ include/drm/drm_file.h                    | 3 ++-
+ 4 files changed, 8 insertions(+), 6 deletions(-)
 
-Great, thank you!
-
-Regards,
-
-Hans
-
-p.s.
-
-Happy New year everyone.
+diff --git a/drivers/gpu/drm/drm_file.c b/drivers/gpu/drm/drm_file.c
+index 92d16724f949..0f1e902191a9 100644
+--- a/drivers/gpu/drm/drm_file.c
++++ b/drivers/gpu/drm/drm_file.c
+@@ -758,7 +758,7 @@ void drm_send_event(struct drm_device *dev, struct drm_pending_event *e)
+ EXPORT_SYMBOL(drm_send_event);
+ 
+ /**
+- * mock_drm_getfile - Create a new struct file for the drm device
++ * drm_minor_create_anonfile - Create a new struct file for the drm device
+  * @minor: drm minor to wrap (e.g. #drm_device.primary)
+  * @flags: file creation mode (O_RDWR etc)
+  *
+@@ -771,7 +771,8 @@ EXPORT_SYMBOL(drm_send_event);
+  * RETURNS:
+  * Pointer to newly created struct file, ERR_PTR on failure.
+  */
+-struct file *mock_drm_getfile(struct drm_minor *minor, unsigned int flags)
++struct file *
++drm_minor_create_anonfile(struct drm_minor *minor, unsigned int flags)
+ {
+ 	struct drm_device *dev = minor->dev;
+ 	struct drm_file *priv;
+@@ -795,4 +796,4 @@ struct file *mock_drm_getfile(struct drm_minor *minor, unsigned int flags)
+ 
+ 	return file;
+ }
+-EXPORT_SYMBOL_FOR_TESTS_ONLY(mock_drm_getfile);
++EXPORT_SYMBOL(drm_minor_create_anonfile);
+diff --git a/drivers/gpu/drm/i915/selftests/igt_mmap.c b/drivers/gpu/drm/i915/selftests/igt_mmap.c
+index 583a4ff8b8c9..85105900f3f4 100644
+--- a/drivers/gpu/drm/i915/selftests/igt_mmap.c
++++ b/drivers/gpu/drm/i915/selftests/igt_mmap.c
+@@ -19,7 +19,7 @@ unsigned long igt_mmap_node(struct drm_i915_private *i915,
+ 	int err;
+ 
+ 	/* Pretend to open("/dev/dri/card0") */
+-	file = mock_drm_getfile(i915->drm.primary, O_RDWR);
++	file = drm_minor_create_anonfile(i915->drm.primary, O_RDWR);
+ 	if (IS_ERR(file))
+ 		return PTR_ERR(file);
+ 
+diff --git a/drivers/gpu/drm/i915/selftests/mock_drm.h b/drivers/gpu/drm/i915/selftests/mock_drm.h
+index 9916b6f95526..0d7ed9b05ee0 100644
+--- a/drivers/gpu/drm/i915/selftests/mock_drm.h
++++ b/drivers/gpu/drm/i915/selftests/mock_drm.h
+@@ -34,7 +34,7 @@ struct file;
+ 
+ static inline struct file *mock_file(struct drm_i915_private *i915)
+ {
+-	return mock_drm_getfile(i915->drm.primary, O_RDWR);
++	return drm_minor_create_anonfile(i915->drm.primary, O_RDWR);
+ }
+ 
+ static inline struct drm_file *to_drm_file(struct file *f)
+diff --git a/include/drm/drm_file.h b/include/drm/drm_file.h
+index 8b099b347817..42459aaac794 100644
+--- a/include/drm/drm_file.h
++++ b/include/drm/drm_file.h
+@@ -388,6 +388,7 @@ void drm_event_cancel_free(struct drm_device *dev,
+ void drm_send_event_locked(struct drm_device *dev, struct drm_pending_event *e);
+ void drm_send_event(struct drm_device *dev, struct drm_pending_event *e);
+ 
+-struct file *mock_drm_getfile(struct drm_minor *minor, unsigned int flags);
++struct file *drm_minor_create_anonfile(struct drm_minor *minor,
++				       unsigned int flags);
+ 
+ #endif /* _DRM_FILE_H_ */
+-- 
+2.25.0.rc0
 
 _______________________________________________
 Intel-gfx mailing list
