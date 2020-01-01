@@ -2,31 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 35A0D12E0A7
-	for <lists+intel-gfx@lfdr.de>; Wed,  1 Jan 2020 23:08:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2145312E0A9
+	for <lists+intel-gfx@lfdr.de>; Wed,  1 Jan 2020 23:09:39 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D6BAF89AB6;
-	Wed,  1 Jan 2020 22:08:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 82F5D89CAC;
+	Wed,  1 Jan 2020 22:09:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DD45F89AB6
- for <intel-gfx@lists.freedesktop.org>; Wed,  1 Jan 2020 22:08:02 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 18ACD89CAC
+ for <intel-gfx@lists.freedesktop.org>; Wed,  1 Jan 2020 22:09:35 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19744339-1500050 
- for multiple; Wed, 01 Jan 2020 22:07:37 +0000
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19744348-1500050 
+ for multiple; Wed, 01 Jan 2020 22:09:29 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed,  1 Jan 2020 22:07:36 +0000
-Message-Id: <20200101220736.1073007-2-chris@chris-wilson.co.uk>
+Date: Wed,  1 Jan 2020 22:09:27 +0000
+Message-Id: <20200101220927.1074805-1-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.25.0.rc0
-In-Reply-To: <20200101220736.1073007-1-chris@chris-wilson.co.uk>
-References: <20200101220736.1073007-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200101220736.1073007-2-chris@chris-wilson.co.uk>
+References: <20200101220736.1073007-2-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 2/2] drm/i915/gem: Support discontiguous lmem
- object maps
+Subject: [Intel-gfx] [PATCH] drm/i915/gem: Support discontiguous lmem object
+ maps
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,7 +55,7 @@ Cc: Matthew Auld <matthew.auld@intel.com>
  1 file changed, 39 insertions(+), 6 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/gem/i915_gem_pages.c b/drivers/gpu/drm/i915/gem/i915_gem_pages.c
-index 75197ca696a8..ef5281a0bd05 100644
+index 75197ca696a8..edc3febbb71d 100644
 --- a/drivers/gpu/drm/i915/gem/i915_gem_pages.c
 +++ b/drivers/gpu/drm/i915/gem/i915_gem_pages.c
 @@ -158,10 +158,10 @@ static void __i915_gem_object_reset_page_iter(struct drm_i915_gem_object *obj)
@@ -114,7 +114,7 @@ index 75197ca696a8..ef5281a0bd05 100644
 +		if (!mem)
 +			return NULL;
 +
-+		area = alloc_vm_area(obj->base.size, ptes);
++		area = alloc_vm_area(obj->base.size, mem);
 +		if (!area) {
 +			kvfree(mem);
 +			return NULL;
