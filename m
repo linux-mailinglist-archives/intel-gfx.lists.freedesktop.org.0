@@ -1,31 +1,29 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE18812DF0B
-	for <lists+intel-gfx@lfdr.de>; Wed,  1 Jan 2020 14:42:15 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id D7DCE12DF17
+	for <lists+intel-gfx@lfdr.de>; Wed,  1 Jan 2020 15:10:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 362EE8992E;
-	Wed,  1 Jan 2020 13:42:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 180EC8933D;
+	Wed,  1 Jan 2020 14:10:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 971648991A
- for <intel-gfx@lists.freedesktop.org>; Wed,  1 Jan 2020 13:42:09 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7F9288933D
+ for <intel-gfx@lists.freedesktop.org>; Wed,  1 Jan 2020 14:10:10 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19741911-1500050 
- for <intel-gfx@lists.freedesktop.org>; Wed, 01 Jan 2020 13:42:05 +0000
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19742073-1500050 
+ for <intel-gfx@lists.freedesktop.org>; Wed, 01 Jan 2020 14:10:07 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed,  1 Jan 2020 13:42:04 +0000
-Message-Id: <20200101134204.706541-2-chris@chris-wilson.co.uk>
+Date: Wed,  1 Jan 2020 14:10:07 +0000
+Message-Id: <20200101141007.755429-1-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.25.0.rc0
-In-Reply-To: <20200101134204.706541-1-chris@chris-wilson.co.uk>
-References: <20200101134204.706541-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [CI 2/2] drm/i915/gem: Drop local vma->vm_file reference
+Subject: [Intel-gfx] [CI] drm/i915/gem: Drop local vma->vm_file reference
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,69 +36,87 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-We use the global device inode, shared amongst all files, and not the
-user's device filp to provide the backing storage for the mmap. The
-vma->vm_file provides a redundant reference that breaks existing
-expected behaviour that closing the user's device fd will release the
-resources bound to it, if a mmap persists. (Even without the
-vma->vm_file, the mmap will persist past the user's fd as the storage is
-bound to the device, i.e. our reference is on the object not file.)
-
-Fixes: cc662126b413 ("drm/i915: Introduce DRM_I915_GEM_MMAP_OFFSET")
-Closes: https://gitlab.freedesktop.org/drm/intel/issues/919
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
----
- drivers/gpu/drm/i915/gem/i915_gem_mman.c | 18 ++++++++++++++++++
- 1 file changed, 18 insertions(+)
-
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_mman.c b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
-index 905527ce2999..20f065e02fe2 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_mman.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
-@@ -699,6 +699,7 @@ int i915_gem_mmap(struct file *filp, struct vm_area_struct *vma)
- 	struct drm_device *dev = priv->minor->dev;
- 	struct i915_mmap_offset *mmo = NULL;
- 	struct drm_gem_object *obj = NULL;
-+	struct file *anon;
- 
- 	if (drm_dev_is_unplugged(dev))
- 		return -ENODEV;
-@@ -747,9 +748,26 @@ int i915_gem_mmap(struct file *filp, struct vm_area_struct *vma)
- 		vma->vm_flags &= ~VM_MAYWRITE;
- 	}
- 
-+	anon = drm_minor_create_anonfile(dev->primary, vma->vm_file->f_flags);
-+	if (IS_ERR(anon)) {
-+		drm_gem_object_put_unlocked(obj);
-+		return PTR_ERR(anon);
-+	}
-+
- 	vma->vm_flags |= VM_PFNMAP | VM_DONTEXPAND | VM_DONTDUMP;
- 	vma->vm_private_data = mmo;
- 
-+	/*
-+	 * We keep the ref on mmo->obj, not vm_file, but we require
-+	 * vma->vm_file->f_mapping, see vma_link(), for later revocation.
-+	 * Our userspace is accustomed to having per-file resource cleanup
-+	 * (i.e. contexts, objects and requests) on their close(fd), which
-+	 * requires avoiding extraneous references to their filp, hence why
-+	 * we prefer to use an anonymous file for their mmaps.
-+	 */
-+	fput(vma->vm_file);
-+	vma->vm_file = anon;
-+
- 	switch (mmo->mmap_type) {
- 	case I915_MMAP_TYPE_WC:
- 		vma->vm_page_prot =
--- 
-2.25.0.rc0
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+V2UgdXNlIHRoZSBnbG9iYWwgZGV2aWNlIGlub2RlLCBzaGFyZWQgYW1vbmdzdCBhbGwgZmlsZXMs
+IGFuZCBub3QgdGhlCnVzZXIncyBkZXZpY2UgZmlscCB0byBwcm92aWRlIHRoZSBiYWNraW5nIHN0
+b3JhZ2UgZm9yIHRoZSBtbWFwLiBUaGUKdm1hLT52bV9maWxlIHByb3ZpZGVzIGEgcmVkdW5kYW50
+IHJlZmVyZW5jZSB0aGF0IGJyZWFrcyBleGlzdGluZwpleHBlY3RlZCBiZWhhdmlvdXIgdGhhdCBj
+bG9zaW5nIHRoZSB1c2VyJ3MgZGV2aWNlIGZkIHdpbGwgcmVsZWFzZSB0aGUKcmVzb3VyY2VzIGJv
+dW5kIHRvIGl0LCBpZiBhIG1tYXAgcGVyc2lzdHMuIChFdmVuIHdpdGhvdXQgdGhlCnZtYS0+dm1f
+ZmlsZSwgdGhlIG1tYXAgd2lsbCBwZXJzaXN0IHBhc3QgdGhlIHVzZXIncyBmZCBhcyB0aGUgc3Rv
+cmFnZSBpcwpib3VuZCB0byB0aGUgZGV2aWNlLCBpLmUuIG91ciByZWZlcmVuY2UgaXMgb24gdGhl
+IG9iamVjdCBub3QgZmlsZS4pCgpGaXhlczogY2M2NjIxMjZiNDEzICgiZHJtL2k5MTU6IEludHJv
+ZHVjZSBEUk1fSTkxNV9HRU1fTU1BUF9PRkZTRVQiKQpDbG9zZXM6IGh0dHBzOi8vZ2l0bGFiLmZy
+ZWVkZXNrdG9wLm9yZy9kcm0vaW50ZWwvaXNzdWVzLzkxOQpTaWduZWQtb2ZmLWJ5OiBDaHJpcyBX
+aWxzb24gPGNocmlzQGNocmlzLXdpbHNvbi5jby51az4KLS0tCiBkcml2ZXJzL2dwdS9kcm0vaTkx
+NS9nZW0vaTkxNV9nZW1fbW1hbi5jIHwgNTkgKysrKysrKysrKysrKysrKysrKysrKysrCiBkcml2
+ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2Rydi5oICAgICAgICAgIHwgMTAgKysrKwogMiBmaWxlcyBj
+aGFuZ2VkLCA2OSBpbnNlcnRpb25zKCspCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5
+MTUvZ2VtL2k5MTVfZ2VtX21tYW4uYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dl
+bV9tbWFuLmMKaW5kZXggOTA1NTI3Y2UyOTk5Li5lZDBkOWEyZjBlN2IgMTAwNjQ0Ci0tLSBhL2Ry
+aXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9tbWFuLmMKKysrIGIvZHJpdmVycy9ncHUv
+ZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX21tYW4uYwpAQCAtNCw2ICs0LDcgQEAKICAqIENvcHlyaWdo
+dCDCqSAyMDE0LTIwMTYgSW50ZWwgQ29ycG9yYXRpb24KICAqLwogCisjaW5jbHVkZSA8bGludXgv
+YW5vbl9pbm9kZXMuaD4KICNpbmNsdWRlIDxsaW51eC9tbWFuLmg+CiAjaW5jbHVkZSA8bGludXgv
+cGZuX3QuaD4KICNpbmNsdWRlIDxsaW51eC9zaXplcy5oPgpAQCAtNjg2LDYgKzY4Nyw0NiBAQCBz
+dGF0aWMgY29uc3Qgc3RydWN0IHZtX29wZXJhdGlvbnNfc3RydWN0IHZtX29wc19jcHUgPSB7CiAJ
+LmNsb3NlID0gdm1fY2xvc2UsCiB9OwogCitzdGF0aWMgaW50IHNpbmdsZXRvbl9yZWxlYXNlKHN0
+cnVjdCBpbm9kZSAqaW5vZGUsIHN0cnVjdCBmaWxlICpmaWxlKQoreworCXN0cnVjdCBkcm1faTkx
+NV9wcml2YXRlICppOTE1ID0gZmlsZS0+cHJpdmF0ZV9kYXRhOworCisJY21weGNoZygmaTkxNS0+
+Z2VtLm1tYXBfc2luZ2xldG9uLCBmaWxlLCBOVUxMKTsKKwlkcm1fZGV2X3B1dCgmaTkxNS0+ZHJt
+KTsKKworCXJldHVybiAwOworfQorCitzdGF0aWMgY29uc3Qgc3RydWN0IGZpbGVfb3BlcmF0aW9u
+cyBzaW5nbGV0b25fZm9wcyA9IHsKKwkub3duZXIgPSBUSElTX01PRFVMRSwKKwkucmVsZWFzZSA9
+IHNpbmdsZXRvbl9yZWxlYXNlLAorfTsKKworc3RhdGljIHN0cnVjdCBmaWxlICptbWFwX3Npbmds
+ZXRvbihzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqaTkxNSkKK3sKKwlzdHJ1Y3QgZmlsZSAqZmls
+ZTsKKworCXJjdV9yZWFkX2xvY2soKTsKKwlmaWxlID0gaTkxNS0+Z2VtLm1tYXBfc2luZ2xldG9u
+OworCWlmIChmaWxlICYmICFnZXRfZmlsZV9yY3UoZmlsZSkpCisJCWZpbGUgPSBOVUxMOworCXJj
+dV9yZWFkX3VubG9jaygpOworCWlmIChmaWxlKQorCQlyZXR1cm4gZmlsZTsKKworCWZpbGUgPSBh
+bm9uX2lub2RlX2dldGZpbGUoImk5MTUuZ2VtIiwgJnNpbmdsZXRvbl9mb3BzLCBpOTE1LCBPX1JE
+V1IpOworCWlmIChJU19FUlIoZmlsZSkpCisJCXJldHVybiBmaWxlOworCisJLyogRXZlcnlvbmUg
+c2hhcmVzIGEgc2luZ2xlIGdsb2JhbCBhZGRyZXNzIHNwYWNlICovCisJZmlsZS0+Zl9tYXBwaW5n
+ID0gaTkxNS0+ZHJtLmFub25faW5vZGUtPmlfbWFwcGluZzsKKworCXNtcF9zdG9yZV9tYihpOTE1
+LT5nZW0ubW1hcF9zaW5nbGV0b24sIGZpbGUpOworCWRybV9kZXZfZ2V0KCZpOTE1LT5kcm0pOwor
+CisJcmV0dXJuIGZpbGU7Cit9CisKIC8qCiAgKiBUaGlzIG92ZXJjb21lcyB0aGUgbGltaXRhdGlv
+biBpbiBkcm1fZ2VtX21tYXAncyBhc3NpZ25tZW50IG9mIGEKICAqIGRybV9nZW1fb2JqZWN0IGFz
+IHRoZSB2bWEtPnZtX3ByaXZhdGVfZGF0YS4gU2luY2Ugd2UgbmVlZCB0bwpAQCAtNjk5LDYgKzc0
+MCw3IEBAIGludCBpOTE1X2dlbV9tbWFwKHN0cnVjdCBmaWxlICpmaWxwLCBzdHJ1Y3Qgdm1fYXJl
+YV9zdHJ1Y3QgKnZtYSkKIAlzdHJ1Y3QgZHJtX2RldmljZSAqZGV2ID0gcHJpdi0+bWlub3ItPmRl
+djsKIAlzdHJ1Y3QgaTkxNV9tbWFwX29mZnNldCAqbW1vID0gTlVMTDsKIAlzdHJ1Y3QgZHJtX2dl
+bV9vYmplY3QgKm9iaiA9IE5VTEw7CisJc3RydWN0IGZpbGUgKmFub247CiAKIAlpZiAoZHJtX2Rl
+dl9pc191bnBsdWdnZWQoZGV2KSkKIAkJcmV0dXJuIC1FTk9ERVY7CkBAIC03NDcsOSArNzg5LDI2
+IEBAIGludCBpOTE1X2dlbV9tbWFwKHN0cnVjdCBmaWxlICpmaWxwLCBzdHJ1Y3Qgdm1fYXJlYV9z
+dHJ1Y3QgKnZtYSkKIAkJdm1hLT52bV9mbGFncyAmPSB+Vk1fTUFZV1JJVEU7CiAJfQogCisJYW5v
+biA9IG1tYXBfc2luZ2xldG9uKHRvX2k5MTUob2JqLT5kZXYpKTsKKwlpZiAoSVNfRVJSKGFub24p
+KSB7CisJCWRybV9nZW1fb2JqZWN0X3B1dF91bmxvY2tlZChvYmopOworCQlyZXR1cm4gUFRSX0VS
+Uihhbm9uKTsKKwl9CisKIAl2bWEtPnZtX2ZsYWdzIHw9IFZNX1BGTk1BUCB8IFZNX0RPTlRFWFBB
+TkQgfCBWTV9ET05URFVNUDsKIAl2bWEtPnZtX3ByaXZhdGVfZGF0YSA9IG1tbzsKIAorCS8qCisJ
+ICogV2Uga2VlcCB0aGUgcmVmIG9uIG1tby0+b2JqLCBub3Qgdm1fZmlsZSwgYnV0IHdlIHJlcXVp
+cmUKKwkgKiB2bWEtPnZtX2ZpbGUtPmZfbWFwcGluZywgc2VlIHZtYV9saW5rKCksIGZvciBsYXRl
+ciByZXZvY2F0aW9uLgorCSAqIE91ciB1c2Vyc3BhY2UgaXMgYWNjdXN0b21lZCB0byBoYXZpbmcg
+cGVyLWZpbGUgcmVzb3VyY2UgY2xlYW51cAorCSAqIChpLmUuIGNvbnRleHRzLCBvYmplY3RzIGFu
+ZCByZXF1ZXN0cykgb24gdGhlaXIgY2xvc2UoZmQpLCB3aGljaAorCSAqIHJlcXVpcmVzIGF2b2lk
+aW5nIGV4dHJhbmVvdXMgcmVmZXJlbmNlcyB0byB0aGVpciBmaWxwLCBoZW5jZSB3aHkKKwkgKiB3
+ZSBwcmVmZXIgdG8gdXNlIGFuIGFub255bW91cyBmaWxlIGZvciB0aGVpciBtbWFwcy4KKwkgKi8K
+KwlmcHV0KHZtYS0+dm1fZmlsZSk7CisJdm1hLT52bV9maWxlID0gYW5vbjsKKwogCXN3aXRjaCAo
+bW1vLT5tbWFwX3R5cGUpIHsKIAljYXNlIEk5MTVfTU1BUF9UWVBFX1dDOgogCQl2bWEtPnZtX3Bh
+Z2VfcHJvdCA9CmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2Rydi5oIGIv
+ZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9kcnYuaAppbmRleCAyYzdlMzAyMGU3NjYuLjJlZTlm
+NTdkMTY1ZCAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9kcnYuaAorKysg
+Yi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2Rydi5oCkBAIC0xMjUyLDYgKzEyNTIsMTYgQEAg
+c3RydWN0IGRybV9pOTE1X3ByaXZhdGUgewogCQkJc3RydWN0IGxsaXN0X2hlYWQgZnJlZV9saXN0
+OwogCQkJc3RydWN0IHdvcmtfc3RydWN0IGZyZWVfd29yazsKIAkJfSBjb250ZXh0czsKKworCQkv
+KgorCQkgKiBXZSByZXBsYWNlIHRoZSBsb2NhbCBmaWxlIHdpdGggYSBnbG9iYWwgbWFwcGluZ3Mg
+YXMgdGhlCisJCSAqIGJhY2tpbmcgc3RvcmFnZSBmb3IgdGhlIG1tYXAgaXMgb24gdGhlIGRldmlj
+ZSBhbmQgbm90CisJCSAqIG9uIHRoZSBzdHJ1Y3QgZmlsZSwgYW5kIHdlIGRvIG5vdCB3YW50IHRv
+IHByb2xvbmcgdGhlCisJCSAqIGxpZmV0aW1lIG9mIHRoZSBsb2NhbCBmZC4gVG8gbWluaW1pc2Ug
+dGhlIG51bWJlciBvZgorCQkgKiBhbm9ueW1vdXMgaW5vZGVzIHdlIGNyZWF0ZSwgd2UgdXNlIGEg
+Z2xvYmFsIHNpbmdsZXRvbiB0bworCQkgKiBzaGFyZSB0aGUgZ2xvYmFsIG1hcHBpbmcuCisJCSAq
+LworCQlzdHJ1Y3QgZmlsZSAqbW1hcF9zaW5nbGV0b247CiAJfSBnZW07CiAKIAl1OCBwY2hfc3Nj
+X3VzZTsKLS0gCjIuMjUuMC5yYzAKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVk
+ZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZv
+L2ludGVsLWdmeAo=
