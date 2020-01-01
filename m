@@ -2,28 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C068912DF0A
-	for <lists+intel-gfx@lfdr.de>; Wed,  1 Jan 2020 14:42:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CE18812DF0B
+	for <lists+intel-gfx@lfdr.de>; Wed,  1 Jan 2020 14:42:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2E5FC8991A;
-	Wed,  1 Jan 2020 13:42:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 362EE8992E;
+	Wed,  1 Jan 2020 13:42:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 33CDA8991A
- for <intel-gfx@lists.freedesktop.org>; Wed,  1 Jan 2020 13:42:08 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 971648991A
+ for <intel-gfx@lists.freedesktop.org>; Wed,  1 Jan 2020 13:42:09 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19741910-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19741911-1500050 
  for <intel-gfx@lists.freedesktop.org>; Wed, 01 Jan 2020 13:42:05 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed,  1 Jan 2020 13:42:03 +0000
-Message-Id: <20200101134204.706541-1-chris@chris-wilson.co.uk>
+Date: Wed,  1 Jan 2020 13:42:04 +0000
+Message-Id: <20200101134204.706541-2-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.25.0.rc0
+In-Reply-To: <20200101134204.706541-1-chris@chris-wilson.co.uk>
+References: <20200101134204.706541-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [CI 1/2] drm: Export drm_minor_create_anonfile()
+Subject: [Intel-gfx] [CI 2/2] drm/i915/gem: Drop local vma->vm_file reference
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,85 +43,60 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Export the routine for creating an anonymous file for wrapping the
-drm_device.
+We use the global device inode, shared amongst all files, and not the
+user's device filp to provide the backing storage for the mmap. The
+vma->vm_file provides a redundant reference that breaks existing
+expected behaviour that closing the user's device fd will release the
+resources bound to it, if a mmap persists. (Even without the
+vma->vm_file, the mmap will persist past the user's fd as the storage is
+bound to the device, i.e. our reference is on the object not file.)
 
+Fixes: cc662126b413 ("drm/i915: Introduce DRM_I915_GEM_MMAP_OFFSET")
+Closes: https://gitlab.freedesktop.org/drm/intel/issues/919
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 ---
- drivers/gpu/drm/drm_file.c                | 7 ++++---
- drivers/gpu/drm/i915/selftests/igt_mmap.c | 2 +-
- drivers/gpu/drm/i915/selftests/mock_drm.h | 2 +-
- include/drm/drm_file.h                    | 3 ++-
- 4 files changed, 8 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/i915/gem/i915_gem_mman.c | 18 ++++++++++++++++++
+ 1 file changed, 18 insertions(+)
 
-diff --git a/drivers/gpu/drm/drm_file.c b/drivers/gpu/drm/drm_file.c
-index 92d16724f949..0f1e902191a9 100644
---- a/drivers/gpu/drm/drm_file.c
-+++ b/drivers/gpu/drm/drm_file.c
-@@ -758,7 +758,7 @@ void drm_send_event(struct drm_device *dev, struct drm_pending_event *e)
- EXPORT_SYMBOL(drm_send_event);
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_mman.c b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
+index 905527ce2999..20f065e02fe2 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_mman.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
+@@ -699,6 +699,7 @@ int i915_gem_mmap(struct file *filp, struct vm_area_struct *vma)
+ 	struct drm_device *dev = priv->minor->dev;
+ 	struct i915_mmap_offset *mmo = NULL;
+ 	struct drm_gem_object *obj = NULL;
++	struct file *anon;
  
- /**
-- * mock_drm_getfile - Create a new struct file for the drm device
-+ * drm_minor_create_anonfile - Create a new struct file for the drm device
-  * @minor: drm minor to wrap (e.g. #drm_device.primary)
-  * @flags: file creation mode (O_RDWR etc)
-  *
-@@ -771,7 +771,8 @@ EXPORT_SYMBOL(drm_send_event);
-  * RETURNS:
-  * Pointer to newly created struct file, ERR_PTR on failure.
-  */
--struct file *mock_drm_getfile(struct drm_minor *minor, unsigned int flags)
-+struct file *
-+drm_minor_create_anonfile(struct drm_minor *minor, unsigned int flags)
- {
- 	struct drm_device *dev = minor->dev;
- 	struct drm_file *priv;
-@@ -795,4 +796,4 @@ struct file *mock_drm_getfile(struct drm_minor *minor, unsigned int flags)
+ 	if (drm_dev_is_unplugged(dev))
+ 		return -ENODEV;
+@@ -747,9 +748,26 @@ int i915_gem_mmap(struct file *filp, struct vm_area_struct *vma)
+ 		vma->vm_flags &= ~VM_MAYWRITE;
+ 	}
  
- 	return file;
- }
--EXPORT_SYMBOL_FOR_TESTS_ONLY(mock_drm_getfile);
-+EXPORT_SYMBOL(drm_minor_create_anonfile);
-diff --git a/drivers/gpu/drm/i915/selftests/igt_mmap.c b/drivers/gpu/drm/i915/selftests/igt_mmap.c
-index 583a4ff8b8c9..85105900f3f4 100644
---- a/drivers/gpu/drm/i915/selftests/igt_mmap.c
-+++ b/drivers/gpu/drm/i915/selftests/igt_mmap.c
-@@ -19,7 +19,7 @@ unsigned long igt_mmap_node(struct drm_i915_private *i915,
- 	int err;
++	anon = drm_minor_create_anonfile(dev->primary, vma->vm_file->f_flags);
++	if (IS_ERR(anon)) {
++		drm_gem_object_put_unlocked(obj);
++		return PTR_ERR(anon);
++	}
++
+ 	vma->vm_flags |= VM_PFNMAP | VM_DONTEXPAND | VM_DONTDUMP;
+ 	vma->vm_private_data = mmo;
  
- 	/* Pretend to open("/dev/dri/card0") */
--	file = mock_drm_getfile(i915->drm.primary, O_RDWR);
-+	file = drm_minor_create_anonfile(i915->drm.primary, O_RDWR);
- 	if (IS_ERR(file))
- 		return PTR_ERR(file);
- 
-diff --git a/drivers/gpu/drm/i915/selftests/mock_drm.h b/drivers/gpu/drm/i915/selftests/mock_drm.h
-index 9916b6f95526..0d7ed9b05ee0 100644
---- a/drivers/gpu/drm/i915/selftests/mock_drm.h
-+++ b/drivers/gpu/drm/i915/selftests/mock_drm.h
-@@ -34,7 +34,7 @@ struct file;
- 
- static inline struct file *mock_file(struct drm_i915_private *i915)
- {
--	return mock_drm_getfile(i915->drm.primary, O_RDWR);
-+	return drm_minor_create_anonfile(i915->drm.primary, O_RDWR);
- }
- 
- static inline struct drm_file *to_drm_file(struct file *f)
-diff --git a/include/drm/drm_file.h b/include/drm/drm_file.h
-index 8b099b347817..42459aaac794 100644
---- a/include/drm/drm_file.h
-+++ b/include/drm/drm_file.h
-@@ -388,6 +388,7 @@ void drm_event_cancel_free(struct drm_device *dev,
- void drm_send_event_locked(struct drm_device *dev, struct drm_pending_event *e);
- void drm_send_event(struct drm_device *dev, struct drm_pending_event *e);
- 
--struct file *mock_drm_getfile(struct drm_minor *minor, unsigned int flags);
-+struct file *drm_minor_create_anonfile(struct drm_minor *minor,
-+				       unsigned int flags);
- 
- #endif /* _DRM_FILE_H_ */
++	/*
++	 * We keep the ref on mmo->obj, not vm_file, but we require
++	 * vma->vm_file->f_mapping, see vma_link(), for later revocation.
++	 * Our userspace is accustomed to having per-file resource cleanup
++	 * (i.e. contexts, objects and requests) on their close(fd), which
++	 * requires avoiding extraneous references to their filp, hence why
++	 * we prefer to use an anonymous file for their mmaps.
++	 */
++	fput(vma->vm_file);
++	vma->vm_file = anon;
++
+ 	switch (mmo->mmap_type) {
+ 	case I915_MMAP_TYPE_WC:
+ 		vma->vm_page_prot =
 -- 
 2.25.0.rc0
 
