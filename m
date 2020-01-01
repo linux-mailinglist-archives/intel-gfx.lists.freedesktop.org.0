@@ -1,32 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2145312E0A9
-	for <lists+intel-gfx@lfdr.de>; Wed,  1 Jan 2020 23:09:39 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id C573C12E0EB
+	for <lists+intel-gfx@lfdr.de>; Wed,  1 Jan 2020 23:51:45 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 82F5D89CAC;
-	Wed,  1 Jan 2020 22:09:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 86D99897DC;
+	Wed,  1 Jan 2020 22:51:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 18ACD89CAC
- for <intel-gfx@lists.freedesktop.org>; Wed,  1 Jan 2020 22:09:35 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19744348-1500050 
- for multiple; Wed, 01 Jan 2020 22:09:29 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed,  1 Jan 2020 22:09:27 +0000
-Message-Id: <20200101220927.1074805-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.25.0.rc0
-In-Reply-To: <20200101220736.1073007-2-chris@chris-wilson.co.uk>
-References: <20200101220736.1073007-2-chris@chris-wilson.co.uk>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 68B878975F;
+ Wed,  1 Jan 2020 22:51:42 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 60A49A47E9;
+ Wed,  1 Jan 2020 22:51:42 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/gem: Support discontiguous lmem object
- maps
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Wed, 01 Jan 2020 22:51:42 -0000
+Message-ID: <157791910236.5187.14266738320021335055@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200101220736.1073007-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200101220736.1073007-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_series_starting_with_=5B1/2=5D_drm/i915/gem=3A_Single_page_?=
+ =?utf-8?q?objects_are_naturally_contiguous_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,98 +39,30 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Matthew Auld <matthew.auld@intel.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Create a vmap for discontinguous lmem objects to support
-i915_gem_object_pin_map().
+== Series Details ==
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Matthew Auld <matthew.auld@intel.com>
----
- drivers/gpu/drm/i915/gem/i915_gem_pages.c | 45 ++++++++++++++++++++---
- 1 file changed, 39 insertions(+), 6 deletions(-)
+Series: series starting with [1/2] drm/i915/gem: Single page objects are naturally contiguous (rev2)
+URL   : https://patchwork.freedesktop.org/series/71549/
+State : warning
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_pages.c b/drivers/gpu/drm/i915/gem/i915_gem_pages.c
-index 75197ca696a8..edc3febbb71d 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_pages.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_pages.c
-@@ -158,10 +158,10 @@ static void __i915_gem_object_reset_page_iter(struct drm_i915_gem_object *obj)
- 
- static void unmap_object(struct drm_i915_gem_object *obj, void *ptr)
- {
--	if (i915_gem_object_is_lmem(obj))
--		io_mapping_unmap((void __force __iomem *)ptr);
--	else if (is_vmalloc_addr(ptr))
-+	if (is_vmalloc_addr(ptr))
- 		vunmap(ptr);
-+	else if (i915_gem_object_is_lmem(obj))
-+		io_mapping_unmap((void __force __iomem *)ptr);
- 	else
- 		kunmap(kmap_to_page(ptr));
- }
-@@ -236,6 +236,12 @@ int __i915_gem_object_put_pages(struct drm_i915_gem_object *obj)
- 	return err;
- }
- 
-+static inline pte_t io_wc_pte(dma_addr_t addr)
-+{
-+	return pte_mkspecial(pfn_pte(addr >> PAGE_SHIFT,
-+				     pgprot_writecombine(PAGE_KERNEL)));
-+}
-+
- /* The 'mapping' part of i915_gem_object_pin_map() below */
- static void *i915_gem_object_map(struct drm_i915_gem_object *obj,
- 				 enum i915_map_type type)
-@@ -251,13 +257,40 @@ static void *i915_gem_object_map(struct drm_i915_gem_object *obj,
- 	void *addr;
- 
- 	if (i915_gem_object_is_lmem(obj)) {
--		void __iomem *io;
-+		struct vm_struct *area;
-+		dma_addr_t addr;
-+		pte_t **ptes;
-+		void *mem;
- 
- 		if (type != I915_MAP_WC)
- 			return NULL;
- 
--		io = i915_gem_object_lmem_io_map(obj, 0, obj->base.size);
--		return (void __force *)io;
-+		if (i915_gem_object_is_contiguous(obj)) {
-+			void __iomem *io =
-+				i915_gem_object_lmem_io_map(obj,
-+							    0, obj->base.size);
-+
-+			return (void __force *)io;
-+		}
-+
-+		mem = kvmalloc_array(obj->base.size >> PAGE_SHIFT,
-+				     sizeof(*ptes),
-+				     GFP_KERNEL);
-+		if (!mem)
-+			return NULL;
-+
-+		area = alloc_vm_area(obj->base.size, mem);
-+		if (!area) {
-+			kvfree(mem);
-+			return NULL;
-+		}
-+
-+		ptes = mem;
-+		for_each_sgt_daddr(addr, sgt_iter, sgt)
+== Summary ==
+
+$ dim checkpatch origin/drm-tip
+478707d40550 drm/i915/gem: Single page objects are naturally contiguous
+c919d1f9de56 drm/i915/gem: Support discontiguous lmem object maps
+-:80: CHECK:SPACING: spaces preferred around that '*' (ctx:ExO)
+#80: FILE: drivers/gpu/drm/i915/gem/i915_gem_pages.c:290:
 +			**ptes++ = io_wc_pte(addr);
-+		kvfree(mem);
-+
-+		return area->addr;
- 	}
- 
- 	/* A single page can always be kmapped */
--- 
-2.25.0.rc0
+ 			^
+
+total: 0 errors, 0 warnings, 1 checks, 68 lines checked
 
 _______________________________________________
 Intel-gfx mailing list
