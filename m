@@ -1,32 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6028112E66D
-	for <lists+intel-gfx@lfdr.de>; Thu,  2 Jan 2020 14:17:57 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id A478D12E66B
+	for <lists+intel-gfx@lfdr.de>; Thu,  2 Jan 2020 14:17:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 17D986E0E2;
-	Thu,  2 Jan 2020 13:17:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 06E5B6E0E1;
+	Thu,  2 Jan 2020 13:17:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 92F076E0E2
- for <intel-gfx@lists.freedesktop.org>; Thu,  2 Jan 2020 13:17:52 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8DD5E6E0E1
+ for <intel-gfx@lists.freedesktop.org>; Thu,  2 Jan 2020 13:17:51 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19749374-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19749375-1500050 
  for multiple; Thu, 02 Jan 2020 13:17:09 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu,  2 Jan 2020 13:17:05 +0000
-Message-Id: <20200102131707.1463945-3-chris@chris-wilson.co.uk>
+Date: Thu,  2 Jan 2020 13:17:06 +0000
+Message-Id: <20200102131707.1463945-4-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.25.0.rc0
 In-Reply-To: <20200102131707.1463945-1-chris@chris-wilson.co.uk>
 References: <20200102131707.1463945-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 3/5] drm/i915/gt: Ignore stale context state
- upon resume
+Subject: [Intel-gfx] [PATCH 4/5] drm/i915/gt: Discard stale context state
+ from across idling
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,61 +45,89 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-We leave the kernel_context on the HW as we suspend (and while idle).
-There is no guarantee that is complete in memory, so we try to inhibit
-restoration from the kernel_context. Reinforce the inhibition by
-scrubbing the context.
+Before we idle, on parking, we switch to the kernel context such that we
+have a scratch context loaded while the GPU idle, protecting any
+precious user state. Be paranoid and assume that the idle state may have
+been trashed, and reset the kernel_context image after idling.
 
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Imre Deak <imre.deak@intel.com>
 Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/gt/intel_lrc.c             | 11 ++++++++++-
- drivers/gpu/drm/i915/gt/intel_ring_submission.c |  2 +-
- 2 files changed, 11 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/gt/intel_engine_pm.c | 6 ++++++
+ drivers/gpu/drm/i915/gt/intel_gt_pm.c     | 8 --------
+ drivers/gpu/drm/i915/gt/mock_engine.c     | 5 +++++
+ 3 files changed, 11 insertions(+), 8 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-index b36fd108f0c6..b21a191bda3b 100644
---- a/drivers/gpu/drm/i915/gt/intel_lrc.c
-+++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-@@ -2602,6 +2602,9 @@ static int execlists_context_alloc(struct intel_context *ce)
- 
- static void execlists_context_reset(struct intel_context *ce)
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine_pm.c b/drivers/gpu/drm/i915/gt/intel_engine_pm.c
+index cd82f0baef49..1b9f73948f22 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine_pm.c
++++ b/drivers/gpu/drm/i915/gt/intel_engine_pm.c
+@@ -20,6 +20,7 @@ static int __engine_unpark(struct intel_wakeref *wf)
  {
-+	CE_TRACE(ce, "reset\n");
-+	GEM_BUG_ON(!intel_context_is_pinned(ce));
+ 	struct intel_engine_cs *engine =
+ 		container_of(wf, typeof(*engine), wakeref);
++	struct intel_context *ce;
+ 	void *map;
+ 
+ 	ENGINE_TRACE(engine, "\n");
+@@ -34,6 +35,11 @@ static int __engine_unpark(struct intel_wakeref *wf)
+ 	if (!IS_ERR_OR_NULL(map))
+ 		engine->pinned_default_state = map;
+ 
++	/* Discard stale context state from across idling */
++	ce = engine->kernel_context;
++	if (ce)
++		ce->ops->reset(ce);
 +
- 	/*
- 	 * Because we emit WA_TAIL_DWORDS there may be a disparity
- 	 * between our bookkeeping in ce->ring->head and ce->ring->tail and
-@@ -2618,8 +2621,14 @@ static void execlists_context_reset(struct intel_context *ce)
- 	 * So to avoid that we reset the context images upon resume. For
- 	 * simplicity, we just zero everything out.
- 	 */
--	intel_ring_reset(ce->ring, 0);
-+	intel_ring_reset(ce->ring, ce->ring->emit);
-+
-+	/* Scrub away the garbage */
-+	execlists_init_reg_state(ce->lrc_reg_state,
-+				 ce, ce->engine, ce->ring, true);
- 	__execlists_update_reg_state(ce, ce->engine);
-+
-+	ce->lrc_desc |= CTX_DESC_FORCE_RESTORE;
+ 	if (engine->unpark)
+ 		engine->unpark(engine);
+ 
+diff --git a/drivers/gpu/drm/i915/gt/intel_gt_pm.c b/drivers/gpu/drm/i915/gt/intel_gt_pm.c
+index 9b220c930ebc..d1c2f034296a 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gt_pm.c
++++ b/drivers/gpu/drm/i915/gt/intel_gt_pm.c
+@@ -213,16 +213,8 @@ int intel_gt_resume(struct intel_gt *gt)
+ 	intel_llc_enable(&gt->llc);
+ 
+ 	for_each_engine(engine, gt, id) {
+-		struct intel_context *ce;
+-
+ 		intel_engine_pm_get(engine);
+ 
+-		ce = engine->kernel_context;
+-		if (ce) {
+-			GEM_BUG_ON(!intel_context_is_pinned(ce));
+-			ce->ops->reset(ce);
+-		}
+-
+ 		engine->serial++; /* kernel context lost */
+ 		err = engine->resume(engine);
+ 
+diff --git a/drivers/gpu/drm/i915/gt/mock_engine.c b/drivers/gpu/drm/i915/gt/mock_engine.c
+index 4e1eafa94be9..d0e68ce9aa51 100644
+--- a/drivers/gpu/drm/i915/gt/mock_engine.c
++++ b/drivers/gpu/drm/i915/gt/mock_engine.c
+@@ -152,6 +152,10 @@ static int mock_context_pin(struct intel_context *ce)
+ 	return intel_context_active_acquire(ce);
  }
  
- static const struct intel_context_ops execlists_context_ops = {
-diff --git a/drivers/gpu/drm/i915/gt/intel_ring_submission.c b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
-index 48dbe46edbff..2e1478a48a4b 100644
---- a/drivers/gpu/drm/i915/gt/intel_ring_submission.c
-+++ b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
-@@ -1347,7 +1347,7 @@ static int ring_context_pin(struct intel_context *ce)
++static void mock_context_reset(struct intel_context *ce)
++{
++}
++
+ static const struct intel_context_ops mock_context_ops = {
+ 	.alloc = mock_context_alloc,
  
- static void ring_context_reset(struct intel_context *ce)
- {
--	intel_ring_reset(ce->ring, 0);
-+	intel_ring_reset(ce->ring, ce->ring->emit);
- }
+@@ -161,6 +165,7 @@ static const struct intel_context_ops mock_context_ops = {
+ 	.enter = intel_context_enter_engine,
+ 	.exit = intel_context_exit_engine,
  
- static const struct intel_context_ops ring_context_ops = {
++	.reset = mock_context_reset,
+ 	.destroy = mock_context_destroy,
+ };
+ 
 -- 
 2.25.0.rc0
 
