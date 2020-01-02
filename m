@@ -2,31 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 70BB112ECAE
-	for <lists+intel-gfx@lfdr.de>; Thu,  2 Jan 2020 23:21:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CA32712EEAA
+	for <lists+intel-gfx@lfdr.de>; Thu,  2 Jan 2020 23:41:02 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A2A756E14F;
-	Thu,  2 Jan 2020 22:20:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 14FA66E156;
+	Thu,  2 Jan 2020 22:41:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 73C5F6E14F
- for <intel-gfx@lists.freedesktop.org>; Thu,  2 Jan 2020 22:20:57 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19754050-1500050 
- for multiple; Thu, 02 Jan 2020 22:20:51 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu,  2 Jan 2020 22:20:51 +0000
-Message-Id: <20200102222051.1668723-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.25.0.rc0
-In-Reply-To: <20200102221949.1656194-1-chris@chris-wilson.co.uk>
-References: <20200102221949.1656194-1-chris@chris-wilson.co.uk>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 8CD3D6E155;
+ Thu,  2 Jan 2020 22:40:58 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 84374A0114;
+ Thu,  2 Jan 2020 22:40:58 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/selftest: Move igt_atomic_section[]
- out of the header
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Thu, 02 Jan 2020 22:40:58 -0000
+Message-ID: <157800485850.8911.730515931518896529@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200102215659.1609942-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200102215659.1609942-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915/gt=3A_Flush_ongoing_retires_during_wait=5Ffor=5Fid?=
+ =?utf-8?q?le?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,68 +39,30 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-TW92ZSB0aGUgZGVmaW5pdGlvbiBvZiB0aGUgaWd0X2F0b21pY19zZWN0aW9uW10gaW50byBhIEMg
-ZmlsZSwgbGVhdmluZwp0aGUgZGVjbGFyYXRpb24gaW4gdGhlIGhlYWRlciBzbyBhcyBub3QgdG8g
-dXBzZXQgaGVhZGVydGVzdCEKClNpZ25lZC1vZmYtYnk6IENocmlzIFdpbHNvbiA8Y2hyaXNAY2hy
-aXMtd2lsc29uLmNvLnVrPgotLS0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L01ha2VmaWxlICAgICAg
-ICAgICAgICAgfCAgMSArCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9zZWxmdGVzdHMvaWd0X2F0b21p
-Yy5jIHwgNDcgKysrKysrKysrKysrKysrKysrKysrCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9zZWxm
-dGVzdHMvaWd0X2F0b21pYy5oIHwgNDEgKy0tLS0tLS0tLS0tLS0tLS0tCiAzIGZpbGVzIGNoYW5n
-ZWQsIDQ5IGluc2VydGlvbnMoKyksIDQwIGRlbGV0aW9ucygtKQogY3JlYXRlIG1vZGUgMTAwNjQ0
-IGRyaXZlcnMvZ3B1L2RybS9pOTE1L3NlbGZ0ZXN0cy9pZ3RfYXRvbWljLmMKCmRpZmYgLS1naXQg
-YS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9NYWtlZmlsZSBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L01h
-a2VmaWxlCmluZGV4IDFhMmZhZDgzMmE0ZC4uNTk5MmVmODAwNTM0IDEwMDY0NAotLS0gYS9kcml2
-ZXJzL2dwdS9kcm0vaTkxNS9NYWtlZmlsZQorKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9NYWtl
-ZmlsZQpAQCAtMjUyLDYgKzI1Miw3IEBAIGk5MTUtJChDT05GSUdfRFJNX0k5MTVfU0VMRlRFU1Qp
-ICs9IFwKIAlnZW0vc2VsZnRlc3RzL2lndF9nZW1fdXRpbHMubyBcCiAJc2VsZnRlc3RzL2k5MTVf
-cmFuZG9tLm8gXAogCXNlbGZ0ZXN0cy9pOTE1X3NlbGZ0ZXN0Lm8gXAorCXNlbGZ0ZXN0cy9pZ3Rf
-YXRvbWljLm8gXAogCXNlbGZ0ZXN0cy9pZ3RfZmx1c2hfdGVzdC5vIFwKIAlzZWxmdGVzdHMvaWd0
-X2xpdmVfdGVzdC5vIFwKIAlzZWxmdGVzdHMvaWd0X21tYXAubyBcCmRpZmYgLS1naXQgYS9kcml2
-ZXJzL2dwdS9kcm0vaTkxNS9zZWxmdGVzdHMvaWd0X2F0b21pYy5jIGIvZHJpdmVycy9ncHUvZHJt
-L2k5MTUvc2VsZnRlc3RzL2lndF9hdG9taWMuYwpuZXcgZmlsZSBtb2RlIDEwMDY0NAppbmRleCAw
-MDAwMDAwMDAwMDAuLmZiNTA2YjY5OTA5NQotLS0gL2Rldi9udWxsCisrKyBiL2RyaXZlcnMvZ3B1
-L2RybS9pOTE1L3NlbGZ0ZXN0cy9pZ3RfYXRvbWljLmMKQEAgLTAsMCArMSw0NyBAQAorLy8gU1BE
-WC1MaWNlbnNlLUlkZW50aWZpZXI6IE1JVAorLyoKKyAqIENvcHlyaWdodCDCqSAyMDE4IEludGVs
-IENvcnBvcmF0aW9uCisgKi8KKworI2luY2x1ZGUgPGxpbnV4L3ByZWVtcHQuaD4KKyNpbmNsdWRl
-IDxsaW51eC9ib3R0b21faGFsZi5oPgorI2luY2x1ZGUgPGxpbnV4L2lycWZsYWdzLmg+CisKKyNp
-bmNsdWRlICJpZ3RfYXRvbWljLmgiCisKK3N0YXRpYyB2b2lkIF9fcHJlZW1wdF9iZWdpbih2b2lk
-KQoreworCXByZWVtcHRfZGlzYWJsZSgpOworfQorCitzdGF0aWMgdm9pZCBfX3ByZWVtcHRfZW5k
-KHZvaWQpCit7CisJcHJlZW1wdF9lbmFibGUoKTsKK30KKworc3RhdGljIHZvaWQgX19zb2Z0aXJx
-X2JlZ2luKHZvaWQpCit7CisJbG9jYWxfYmhfZGlzYWJsZSgpOworfQorCitzdGF0aWMgdm9pZCBf
-X3NvZnRpcnFfZW5kKHZvaWQpCit7CisJbG9jYWxfYmhfZW5hYmxlKCk7Cit9CisKK3N0YXRpYyB2
-b2lkIF9faGFyZGlycV9iZWdpbih2b2lkKQoreworCWxvY2FsX2lycV9kaXNhYmxlKCk7Cit9CisK
-K3N0YXRpYyB2b2lkIF9faGFyZGlycV9lbmQodm9pZCkKK3sKKwlsb2NhbF9pcnFfZW5hYmxlKCk7
-Cit9CisKK2NvbnN0IHN0cnVjdCBpZ3RfYXRvbWljX3NlY3Rpb24gaWd0X2F0b21pY19waGFzZXNb
-XSA9IHsKKwl7ICJwcmVlbXB0IiwgX19wcmVlbXB0X2JlZ2luLCBfX3ByZWVtcHRfZW5kIH0sCisJ
-eyAic29mdGlycSIsIF9fc29mdGlycV9iZWdpbiwgX19zb2Z0aXJxX2VuZCB9LAorCXsgImhhcmRp
-cnEiLCBfX2hhcmRpcnFfYmVnaW4sIF9faGFyZGlycV9lbmQgfSwKKwl7IH0KK307CmRpZmYgLS1n
-aXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9zZWxmdGVzdHMvaWd0X2F0b21pYy5oIGIvZHJpdmVy
-cy9ncHUvZHJtL2k5MTUvc2VsZnRlc3RzL2lndF9hdG9taWMuaAppbmRleCA5M2VjODlmNDg3ZWMu
-LjE5OTE3OThhYmY0YiAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvc2VsZnRlc3Rz
-L2lndF9hdG9taWMuaAorKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9zZWxmdGVzdHMvaWd0X2F0
-b21pYy5oCkBAIC02LDUxICs2LDEyIEBACiAjaWZuZGVmIElHVF9BVE9NSUNfSAogI2RlZmluZSBJ
-R1RfQVRPTUlDX0gKIAotI2luY2x1ZGUgPGxpbnV4L3ByZWVtcHQuaD4KLSNpbmNsdWRlIDxsaW51
-eC9ib3R0b21faGFsZi5oPgotI2luY2x1ZGUgPGxpbnV4L2lycWZsYWdzLmg+Ci0KLXN0YXRpYyB2
-b2lkIF9fcHJlZW1wdF9iZWdpbih2b2lkKQotewotCXByZWVtcHRfZGlzYWJsZSgpOwotfQotCi1z
-dGF0aWMgdm9pZCBfX3ByZWVtcHRfZW5kKHZvaWQpCi17Ci0JcHJlZW1wdF9lbmFibGUoKTsKLX0K
-LQotc3RhdGljIHZvaWQgX19zb2Z0aXJxX2JlZ2luKHZvaWQpCi17Ci0JbG9jYWxfYmhfZGlzYWJs
-ZSgpOwotfQotCi1zdGF0aWMgdm9pZCBfX3NvZnRpcnFfZW5kKHZvaWQpCi17Ci0JbG9jYWxfYmhf
-ZW5hYmxlKCk7Ci19Ci0KLXN0YXRpYyB2b2lkIF9faGFyZGlycV9iZWdpbih2b2lkKQotewotCWxv
-Y2FsX2lycV9kaXNhYmxlKCk7Ci19Ci0KLXN0YXRpYyB2b2lkIF9faGFyZGlycV9lbmQodm9pZCkK
-LXsKLQlsb2NhbF9pcnFfZW5hYmxlKCk7Ci19Ci0KIHN0cnVjdCBpZ3RfYXRvbWljX3NlY3Rpb24g
-ewogCWNvbnN0IGNoYXIgKm5hbWU7CiAJdm9pZCAoKmNyaXRpY2FsX3NlY3Rpb25fYmVnaW4pKHZv
-aWQpOwogCXZvaWQgKCpjcml0aWNhbF9zZWN0aW9uX2VuZCkodm9pZCk7CiB9OwogCi1zdGF0aWMg
-Y29uc3Qgc3RydWN0IGlndF9hdG9taWNfc2VjdGlvbiBpZ3RfYXRvbWljX3BoYXNlc1tdID0gewot
-CXsgInByZWVtcHQiLCBfX3ByZWVtcHRfYmVnaW4sIF9fcHJlZW1wdF9lbmQgfSwKLQl7ICJzb2Z0
-aXJxIiwgX19zb2Z0aXJxX2JlZ2luLCBfX3NvZnRpcnFfZW5kIH0sCi0JeyAiaGFyZGlycSIsIF9f
-aGFyZGlycV9iZWdpbiwgX19oYXJkaXJxX2VuZCB9LAotCXsgfQotfTsKK2V4dGVybiBjb25zdCBz
-dHJ1Y3QgaWd0X2F0b21pY19zZWN0aW9uIGlndF9hdG9taWNfcGhhc2VzW107CiAKICNlbmRpZiAv
-KiBJR1RfQVRPTUlDX0ggKi8KLS0gCjIuMjUuMC5yYzAKCl9fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4
-QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWls
-bWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+== Series Details ==
+
+Series: drm/i915/gt: Flush ongoing retires during wait_for_idle
+URL   : https://patchwork.freedesktop.org/series/71575/
+State : warning
+
+== Summary ==
+
+$ dim checkpatch origin/drm-tip
+d965fea13a5b drm/i915/gt: Flush ongoing retires during wait_for_idle
+-:29: WARNING:ONE_SEMICOLON: Statements terminations use 1 semicolon
+#29: FILE: drivers/gpu/drm/i915/gt/intel_gt_requests.c:36:
++		return false;;
+
+total: 0 errors, 1 warnings, 0 checks, 76 lines checked
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
