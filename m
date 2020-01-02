@@ -1,22 +1,22 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4A13C12E515
-	for <lists+intel-gfx@lfdr.de>; Thu,  2 Jan 2020 11:53:27 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 57CA712E518
+	for <lists+intel-gfx@lfdr.de>; Thu,  2 Jan 2020 11:54:23 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 01CA66E03B;
-	Thu,  2 Jan 2020 10:53:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BAD956E045;
+	Thu,  2 Jan 2020 10:54:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 54FF56E03B
- for <intel-gfx@lists.freedesktop.org>; Thu,  2 Jan 2020 10:53:23 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7C6086E045
+ for <intel-gfx@lists.freedesktop.org>; Thu,  2 Jan 2020 10:54:20 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from localhost (unverified [78.156.65.138]) 
  by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 19747714-1500050 for multiple; Thu, 02 Jan 2020 10:53:20 +0000
+ 19747724-1500050 for multiple; Thu, 02 Jan 2020 10:54:17 +0000
 MIME-Version: 1.0
 From: Chris Wilson <chris@chris-wilson.co.uk>
 User-Agent: alot/0.6
@@ -24,8 +24,8 @@ To: Jani Nikula <jani.nikula@linux.intel.com>, intel-gfx@lists.freedesktop.org
 References: <20191207170110.2200142-1-chris@chris-wilson.co.uk>
  <87k16atc5m.fsf@intel.com>
 In-Reply-To: <87k16atc5m.fsf@intel.com>
-Message-ID: <157796239857.3681.2122815227159366558@skylake-alporthouse-com>
-Date: Thu, 02 Jan 2020 10:53:18 +0000
+Message-ID: <157796245579.3681.9128977576441192128@skylake-alporthouse-com>
+Date: Thu, 02 Jan 2020 10:54:15 +0000
 Subject: Re: [Intel-gfx] [PATCH 1/8] drm/i915: Fix cmdparser drm.debug
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -57,7 +57,8 @@ Quoting Jani Nikula (2020-01-02 09:56:05)
 > That's not what the documentation says about the difference between
 > DRM_DEBUG and DRM_DEBUG_DRIVER.
 
-The documentation seems to be a misconception.
+Please note these have nothing to do with debugging the driver in any
+form whatsoever.
 -Chris
 _______________________________________________
 Intel-gfx mailing list
