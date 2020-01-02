@@ -2,53 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B172A12E4DA
-	for <lists+intel-gfx@lfdr.de>; Thu,  2 Jan 2020 11:16:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E35E12E4F0
+	for <lists+intel-gfx@lfdr.de>; Thu,  2 Jan 2020 11:26:23 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1A32889296;
-	Thu,  2 Jan 2020 10:16:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1377589DDD;
+	Thu,  2 Jan 2020 10:26:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-vs1-xe44.google.com (mail-vs1-xe44.google.com
- [IPv6:2607:f8b0:4864:20::e44])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6DB4389296
- for <intel-gfx@lists.freedesktop.org>; Thu,  2 Jan 2020 10:16:18 +0000 (UTC)
-Received: by mail-vs1-xe44.google.com with SMTP id x123so25093783vsc.2
- for <intel-gfx@lists.freedesktop.org>; Thu, 02 Jan 2020 02:16:18 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=ZqXB56Jd2rDcw8Vnb+fF75z2OPJcYLWItOS/aciY4c8=;
- b=HZF6+LwQVtNdoLHbUWTtnuD2+Gwd8Xqoe1coPihI9/bnjo1jIcNBrv7zILWewpq5c9
- Pc+NXhPpvWkRd3s5hkGNr7NZ1HJGgOJmyT+KZZY5zZmch0IE2XB51uDgObSteJChHlvc
- Qg3dnTdKhFfHk9PCm77N1BPtvXhhY6Vcv7ko8aj/Gj4hwQkjcLO8BqiUWUnLXKJbDNJs
- gFoKwe5gGZ1/QT8U+Dla8NdweE4Y0h+diZeSxYLoyMNo8qVac6uwRBP0i3kenzqVEpy5
- U3i8NJbsjOy2oYfsX5LITNHSpUQeAmzqxKs6TNsztffj9EXNYVvrX3cF2qrrhODze77E
- uhPg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=ZqXB56Jd2rDcw8Vnb+fF75z2OPJcYLWItOS/aciY4c8=;
- b=iv6Rs/Y57jmsAzcunbXw84N+9EOF+coNrdqI9GRoKJIQwf3VI19Rv/T21BI5GKFkue
- 62rLVPPCh8u57YM5OVIBiJ6qwamvRkNqtaUyLrPxFbCXRIQwVDb40yOjd9sWX+/S3EZY
- mhUMGskAYMaOBMEQ9VsP/h79GdPHSNPNdHGZLnDxAF1xs0AiM+CZW9d74x+Ol7ostgs4
- 5osuIoL7Gpnz1ZprCz9TbFHg56Fot/a4Xmv9wTrTkqlHcjP1EEfazy3TI5pwqDdXl4T5
- 4aCBIG44x7TMYHkNM1pYh9WW32K1VTtuzHwQHsIcV+sAYJcUssUfgLxZknSRgqRLPcry
- T48Q==
-X-Gm-Message-State: APjAAAVHOe3GMya0UZu/vFqfchjZI4IrCxYyv04XZlt6RfGgvD6iQBgK
- 1Hyrr/Y688mqqeqCzyobiuLwCy2UiLxRizJVEBc=
-X-Google-Smtp-Source: APXvYqwJc66DjRUD+Ieiz5Fu0KsaeT8Vus7GW/gbebV/rzO+euDD0Qti0CwOM+qxNHXBXHofB5mX1xiBkJzZLW9RUQo=
-X-Received: by 2002:a67:15c7:: with SMTP id 190mr44710562vsv.178.1577960177571; 
- Thu, 02 Jan 2020 02:16:17 -0800 (PST)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9AED389D30;
+ Thu,  2 Jan 2020 10:26:16 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 02 Jan 2020 02:26:15 -0800
+X-IronPort-AV: E=Sophos;i="5.69,386,1571727600"; d="scan'208";a="214115711"
+Received: from amanna-mobl1.gar.corp.intel.com (HELO [10.66.114.55])
+ ([10.66.114.55])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-SHA;
+ 02 Jan 2020 02:26:13 -0800
+To: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+References: <20191230161523.32222-1-animesh.manna@intel.com>
+ <20191230161523.32222-4-animesh.manna@intel.com> <87v9putdvr.fsf@intel.com>
+From: "Manna, Animesh" <animesh.manna@intel.com>
+Message-ID: <8d0d9c04-234f-f099-0f2d-3c3dee5384d6@intel.com>
+Date: Thu, 2 Jan 2020 15:56:09 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.3.0
 MIME-Version: 1.0
-References: <20200101220736.1073007-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200101220736.1073007-1-chris@chris-wilson.co.uk>
-From: Matthew Auld <matthew.william.auld@gmail.com>
-Date: Thu, 2 Jan 2020 10:15:52 +0000
-Message-ID: <CAM0jSHPovNjuw6JKYzTLGq_gqG_C=Mep2vCJBdLsRu0S_2_u1g@mail.gmail.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>
-Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915/gem: Single page objects are
- naturally contiguous
+In-Reply-To: <87v9putdvr.fsf@intel.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH v3 3/9] drm/i915/dp: Move
+ vswing/pre-emphasis adjustment calculation
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,26 +48,179 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Matthew Auld <matthew.auld@intel.com>
-Content-Type: text/plain; charset="us-ascii"
+Cc: nidhi1.gupta@intel.com
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 1 Jan 2020 at 22:08, Chris Wilson <chris@chris-wilson.co.uk> wrote:
+On 02-01-2020 14:48, Jani Nikula wrote:
+> On Mon, 30 Dec 2019, Animesh Manna <animesh.manna@intel.com> wrote:
+>> vswing/pre-emphasis adjustment calculation is needed in processing
+>> of auto phy compliance request other than link training, so moved
+>> the same function in intel_dp.c.
+> I guess I'm still asking why you think this is better located in
+> intel_dp.c than intel_dp_link_training.c, as the function has been moved
+> once in the other direction already to split out stuff from intel_dp.c
+> and to make the file smaller. Even the file name suggests it should
+> really be in intel_dp_link_training.c, right?
+
+Just a thought, can we change the name to "intel_dp_link_config.c" from "intel_dp_link_training.c" which will provide little wider scope
+and all the function playing with link configuration can be under it and also exposed through header file.
+
+AFAIK, processing phy compliance request always do not need link training. I understood link training is very specific process consisting of clock recovery + channel eq.
+So I am afraid of exposing intel_get_adjust_train() from intel_dp_link_training.c which is not only specific to link-training. Need your suggestion.
+
+Regards,
+Animesh
+
 >
-> Small objects that only occupy a single page are naturally contiguous,
-> so mark them as such and allow them the special abilities that come with
-> it.
+> BR,
+> Jani.
 >
-> A more thorough treatment would extend i915_gem_object_pin_map() to
-> support discontiguous lmem objects, following the example of
-> ioremap_prot() and use get_vm_area() + remap_io_sg().
 >
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> Cc: Matthew Auld <matthew.auld@intel.com>
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+>> No functional change.
+>>
+>> v1: initial patch.
+>> v2:
+>> - used "intel_dp" prefix in function name. (Jani)
+>> - used array notation instead pointer for link_status. (Ville)
+>>
+>> Signed-off-by: Animesh Manna <animesh.manna@intel.com>
+>> ---
+>>   drivers/gpu/drm/i915/display/intel_dp.c       | 34 ++++++++++++++++++
+>>   drivers/gpu/drm/i915/display/intel_dp.h       |  4 +++
+>>   .../drm/i915/display/intel_dp_link_training.c | 36 ++-----------------
+>>   3 files changed, 40 insertions(+), 34 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+>> index 991f343579ef..2a27ee106089 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+>> @@ -4110,6 +4110,40 @@ ivb_cpu_edp_signal_levels(u8 train_set)
+>>   	}
+>>   }
+>>   
+>> +void
+>> +intel_dp_get_adjust_train(struct intel_dp *intel_dp,
+>> +			  const u8 link_status[DP_LINK_STATUS_SIZE])
+>> +{
+>> +	u8 v = 0;
+>> +	u8 p = 0;
+>> +	int lane;
+>> +	u8 voltage_max;
+>> +	u8 preemph_max;
+>> +
+>> +	for (lane = 0; lane < intel_dp->lane_count; lane++) {
+>> +		u8 this_v = drm_dp_get_adjust_request_voltage(link_status,
+>> +							      lane);
+>> +		u8 this_p = drm_dp_get_adjust_request_pre_emphasis(link_status,
+>> +								   lane);
+>> +
+>> +		if (this_v > v)
+>> +			v = this_v;
+>> +		if (this_p > p)
+>> +			p = this_p;
+>> +	}
+>> +
+>> +	voltage_max = intel_dp_voltage_max(intel_dp);
+>> +	if (v >= voltage_max)
+>> +		v = voltage_max | DP_TRAIN_MAX_SWING_REACHED;
+>> +
+>> +	preemph_max = intel_dp_pre_emphasis_max(intel_dp, v);
+>> +	if (p >= preemph_max)
+>> +		p = preemph_max | DP_TRAIN_MAX_PRE_EMPHASIS_REACHED;
+>> +
+>> +	for (lane = 0; lane < 4; lane++)
+>> +		intel_dp->train_set[lane] = v | p;
+>> +}
+>> +
+>>   void
+>>   intel_dp_set_signal_levels(struct intel_dp *intel_dp)
+>>   {
+>> diff --git a/drivers/gpu/drm/i915/display/intel_dp.h b/drivers/gpu/drm/i915/display/intel_dp.h
+>> index 3da166054788..83eadc87af26 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_dp.h
+>> +++ b/drivers/gpu/drm/i915/display/intel_dp.h
+>> @@ -9,6 +9,7 @@
+>>   #include <linux/types.h>
+>>   
+>>   #include <drm/i915_drm.h>
+>> +#include <drm/drm_dp_helper.h>
+>>   
+>>   #include "i915_reg.h"
+>>   
+>> @@ -91,6 +92,9 @@ void
+>>   intel_dp_program_link_training_pattern(struct intel_dp *intel_dp,
+>>   				       u8 dp_train_pat);
+>>   void
+>> +intel_dp_get_adjust_train(struct intel_dp *intel_dp,
+>> +			  const u8 link_status[DP_LINK_STATUS_SIZE]);
+>> +void
+>>   intel_dp_set_signal_levels(struct intel_dp *intel_dp);
+>>   void intel_dp_set_idle_link_train(struct intel_dp *intel_dp);
+>>   u8
+>> diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+>> index 2a1130dd1ad0..e8ff9e279800 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+>> @@ -34,38 +34,6 @@ intel_dp_dump_link_status(const u8 link_status[DP_LINK_STATUS_SIZE])
+>>   		      link_status[3], link_status[4], link_status[5]);
+>>   }
+>>   
+>> -static void
+>> -intel_get_adjust_train(struct intel_dp *intel_dp,
+>> -		       const u8 link_status[DP_LINK_STATUS_SIZE])
+>> -{
+>> -	u8 v = 0;
+>> -	u8 p = 0;
+>> -	int lane;
+>> -	u8 voltage_max;
+>> -	u8 preemph_max;
+>> -
+>> -	for (lane = 0; lane < intel_dp->lane_count; lane++) {
+>> -		u8 this_v = drm_dp_get_adjust_request_voltage(link_status, lane);
+>> -		u8 this_p = drm_dp_get_adjust_request_pre_emphasis(link_status, lane);
+>> -
+>> -		if (this_v > v)
+>> -			v = this_v;
+>> -		if (this_p > p)
+>> -			p = this_p;
+>> -	}
+>> -
+>> -	voltage_max = intel_dp_voltage_max(intel_dp);
+>> -	if (v >= voltage_max)
+>> -		v = voltage_max | DP_TRAIN_MAX_SWING_REACHED;
+>> -
+>> -	preemph_max = intel_dp_pre_emphasis_max(intel_dp, v);
+>> -	if (p >= preemph_max)
+>> -		p = preemph_max | DP_TRAIN_MAX_PRE_EMPHASIS_REACHED;
+>> -
+>> -	for (lane = 0; lane < 4; lane++)
+>> -		intel_dp->train_set[lane] = v | p;
+>> -}
+>> -
+>>   static bool
+>>   intel_dp_set_link_train(struct intel_dp *intel_dp,
+>>   			u8 dp_train_pat)
+>> @@ -215,7 +183,7 @@ intel_dp_link_training_clock_recovery(struct intel_dp *intel_dp)
+>>   		voltage = intel_dp->train_set[0] & DP_TRAIN_VOLTAGE_SWING_MASK;
+>>   
+>>   		/* Update training set as requested by target */
+>> -		intel_get_adjust_train(intel_dp, link_status);
+>> +		intel_dp_get_adjust_train(intel_dp, link_status);
+>>   		if (!intel_dp_update_link_train(intel_dp)) {
+>>   			DRM_ERROR("failed to update link training\n");
+>>   			return false;
+>> @@ -325,7 +293,7 @@ intel_dp_link_training_channel_equalization(struct intel_dp *intel_dp)
+>>   		}
+>>   
+>>   		/* Update training set as requested by target */
+>> -		intel_get_adjust_train(intel_dp, link_status);
+>> +		intel_dp_get_adjust_train(intel_dp, link_status);
+>>   		if (!intel_dp_update_link_train(intel_dp)) {
+>>   			DRM_ERROR("failed to update link training\n");
+>>   			break;
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
