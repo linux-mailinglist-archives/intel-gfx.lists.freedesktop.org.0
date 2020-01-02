@@ -1,38 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC40B12E45F
-	for <lists+intel-gfx@lfdr.de>; Thu,  2 Jan 2020 10:23:26 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7359D12E46B
+	for <lists+intel-gfx@lfdr.de>; Thu,  2 Jan 2020 10:29:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A17F489E15;
-	Thu,  2 Jan 2020 09:23:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DF04789E63;
+	Thu,  2 Jan 2020 09:29:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7621589DA9;
- Thu,  2 Jan 2020 09:23:19 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga106.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 02 Jan 2020 01:23:18 -0800
-X-IronPort-AV: E=Sophos;i="5.69,386,1571727600"; d="scan'208";a="214101734"
-Received: from jnikula-mobl3.fi.intel.com (HELO localhost) ([10.237.66.161])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 02 Jan 2020 01:23:16 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Animesh Manna <animesh.manna@intel.com>, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-In-Reply-To: <20191230161523.32222-9-animesh.manna@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20191230161523.32222-1-animesh.manna@intel.com>
- <20191230161523.32222-9-animesh.manna@intel.com>
-Date: Thu, 02 Jan 2020 11:23:14 +0200
-Message-ID: <87sgkytdod.fsf@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 62FBE89E4C;
+ Thu,  2 Jan 2020 09:29:24 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 5A347A00E8;
+ Thu,  2 Jan 2020 09:29:24 +0000 (UTC)
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v3 8/9] drm/i915/dp: Update the pattern as
- per request
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Thu, 02 Jan 2020 09:29:24 -0000
+Message-ID: <157795736433.8910.6173912533729475358@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200101220736.1073007-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200101220736.1073007-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5B1/2=5D_drm/i915/gem=3A_Single_page_objects?=
+ =?utf-8?q?_are_naturally_contiguous_=28rev3=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,104 +39,124 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: nidhi1.gupta@intel.com, harry.wentland@amd.com
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 30 Dec 2019, Animesh Manna <animesh.manna@intel.com> wrote:
-> As per request from DP phy compliance test few special
-> test pattern need to set by source. Added function
-> to set pattern in DP_COMP_CTL register. It will be
-> called along with other test parameters like vswing,
-> pre-emphasis programming in atomic_commit_tail path.
->
-> Signed-off-by: Animesh Manna <animesh.manna@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_dp.c | 55 +++++++++++++++++++++++++
->  1 file changed, 55 insertions(+)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> index cbefda9b6204..7c3f65e5d88b 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -5005,6 +5005,61 @@ static u8 intel_dp_prepare_phytest(struct intel_dp *intel_dp)
->  	return DP_TEST_ACK;
->  }
->  
-> +static inline void intel_dp_phy_pattern_update(struct intel_dp *intel_dp)
+== Series Details ==
 
-As a general rule, please only use the inline keyword for static inlines
-in headers. Sometimes, it's useful in small helpers, but usually you
-should just let the compiler decide what gets inlined.
+Series: series starting with [1/2] drm/i915/gem: Single page objects are naturally contiguous (rev3)
+URL   : https://patchwork.freedesktop.org/series/71549/
+State : success
 
-In this case, the inline probably just hides the compiler warning about
-the unused function.
+== Summary ==
 
-BR,
-Jani.
+CI Bug Log - changes from CI_DRM_7664 -> Patchwork_15974
+====================================================
 
-> +{
-> +	struct drm_i915_private *dev_priv =
-> +			to_i915(dp_to_dig_port(intel_dp)->base.base.dev);
-> +	struct intel_digital_port *intel_dig_port = dp_to_dig_port(intel_dp);
-> +	struct drm_dp_phy_test_params *data =
-> +			&intel_dp->compliance.test_data.phytest;
-> +	u32 temp;
-> +
-> +	switch (data->phy_pattern) {
-> +	case DP_PHY_TEST_PATTERN_NONE:
-> +		DRM_DEBUG_KMS("Disable Phy Test Pattern\n");
-> +		I915_WRITE(DDI_DP_COMP_CTL(intel_dig_port->base.port), 0x0);
-> +		break;
-> +	case DP_PHY_TEST_PATTERN_D10_2:
-> +		DRM_DEBUG_KMS("Set D10.2 Phy Test Pattern\n");
-> +		I915_WRITE(DDI_DP_COMP_CTL(intel_dig_port->base.port),
-> +			   DDI_DP_COMP_CTL_ENABLE | DDI_DP_COMP_CTL_D10_2);
-> +		break;
-> +	case DP_PHY_TEST_PATTERN_ERROR_COUNT:
-> +		DRM_DEBUG_KMS("Set Error Count Phy Test Pattern\n");
-> +		I915_WRITE(DDI_DP_COMP_CTL(intel_dig_port->base.port),
-> +			   DDI_DP_COMP_CTL_ENABLE |
-> +			   DDI_DP_COMP_CTL_SCRAMBLED_0);
-> +		break;
-> +	case DP_PHY_TEST_PATTERN_PRBS7:
-> +		DRM_DEBUG_KMS("Set PRBS7 Phy Test Pattern\n");
-> +		I915_WRITE(DDI_DP_COMP_CTL(intel_dig_port->base.port),
-> +			   DDI_DP_COMP_CTL_ENABLE | DDI_DP_COMP_CTL_PRBS7);
-> +		break;
-> +	case DP_PHY_TEST_PATTERN_80BIT_CUSTOM:
-> +		DRM_DEBUG_KMS("Set 80Bit Custom Phy Test Pattern\n");
-> +		temp = ((data->custom80[0] << 24) | (data->custom80[1] << 16) |
-> +			(data->custom80[2] << 8) | (data->custom80[3]));
-> +		I915_WRITE(DDI_DP_COMP_PAT(intel_dig_port->base.port, 0), temp);
-> +		temp = ((data->custom80[4] << 24) | (data->custom80[5] << 16) |
-> +			(data->custom80[6] << 8) | (data->custom80[7]));
-> +		I915_WRITE(DDI_DP_COMP_PAT(intel_dig_port->base.port, 1), temp);
-> +		temp = ((data->custom80[8] << 8) | data->custom80[9]);
-> +		I915_WRITE(DDI_DP_COMP_PAT(intel_dig_port->base.port, 2), temp);
-> +		I915_WRITE(DDI_DP_COMP_CTL(intel_dig_port->base.port),
-> +			   DDI_DP_COMP_CTL_ENABLE | DDI_DP_COMP_CTL_CUSTOM80);
-> +		break;
-> +	case DP_PHY_TEST_PATTERN_CP2520:
-> +		DRM_DEBUG_KMS("Set HBR2 compliance Phy Test Pattern\n");
-> +		temp = ((data->hbr2_reset[1] << 8) | data->hbr2_reset[0]);
-> +		I915_WRITE(DDI_DP_COMP_CTL(intel_dig_port->base.port),
-> +			   DDI_DP_COMP_CTL_ENABLE | DDI_DP_COMP_CTL_HBR2 |
-> +			   temp);
-> +		break;
-> +	default:
-> +		WARN(1, "Invalid Phy Test PAttern\n");
-> +	}
-> +}
-> +
->  static u8 intel_dp_autotest_phy_pattern(struct intel_dp *intel_dp)
->  {
->  	u8 test_result = DP_TEST_NAK;
+Summary
+-------
 
--- 
-Jani Nikula, Intel Open Source Graphics Center
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15974/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_15974 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_module_load@reload-with-fault-injection:
+    - fi-icl-guc:         [PASS][1] -> [DMESG-WARN][2] ([i915#109])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7664/fi-icl-guc/igt@i915_module_load@reload-with-fault-injection.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15974/fi-icl-guc/igt@i915_module_load@reload-with-fault-injection.html
+    - fi-skl-lmem:        [PASS][3] -> [INCOMPLETE][4] ([i915#671])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7664/fi-skl-lmem/igt@i915_module_load@reload-with-fault-injection.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15974/fi-skl-lmem/igt@i915_module_load@reload-with-fault-injection.html
+
+  * igt@i915_selftest@live_blt:
+    - fi-hsw-4770:        [PASS][5] -> [DMESG-FAIL][6] ([i915#725])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7664/fi-hsw-4770/igt@i915_selftest@live_blt.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15974/fi-hsw-4770/igt@i915_selftest@live_blt.html
+
+  * igt@i915_selftest@live_hangcheck:
+    - fi-bwr-2160:        [PASS][7] -> [FAIL][8] ([i915#878])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7664/fi-bwr-2160/igt@i915_selftest@live_hangcheck.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15974/fi-bwr-2160/igt@i915_selftest@live_hangcheck.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live_gt_pm:
+    - fi-bwr-2160:        [FAIL][9] ([i915#878]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7664/fi-bwr-2160/igt@i915_selftest@live_gt_pm.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15974/fi-bwr-2160/igt@i915_selftest@live_gt_pm.html
+
+  
+#### Warnings ####
+
+  * igt@i915_module_load@reload-with-fault-injection:
+    - fi-kbl-x1275:       [INCOMPLETE][11] ([i915#879]) -> [DMESG-WARN][12] ([i915#62] / [i915#92])
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7664/fi-kbl-x1275/igt@i915_module_load@reload-with-fault-injection.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15974/fi-kbl-x1275/igt@i915_module_load@reload-with-fault-injection.html
+
+  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:
+    - fi-kbl-x1275:       [DMESG-WARN][13] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][14] ([i915#62] / [i915#92]) +3 similar issues
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7664/fi-kbl-x1275/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15974/fi-kbl-x1275/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
+
+  * igt@kms_cursor_legacy@basic-flip-after-cursor-legacy:
+    - fi-kbl-x1275:       [DMESG-WARN][15] ([i915#62] / [i915#92]) -> [DMESG-WARN][16] ([i915#62] / [i915#92] / [i915#95]) +1 similar issue
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7664/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15974/fi-kbl-x1275/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
+
+  
+  [i915#109]: https://gitlab.freedesktop.org/drm/intel/issues/109
+  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
+  [i915#671]: https://gitlab.freedesktop.org/drm/intel/issues/671
+  [i915#725]: https://gitlab.freedesktop.org/drm/intel/issues/725
+  [i915#878]: https://gitlab.freedesktop.org/drm/intel/issues/878
+  [i915#879]: https://gitlab.freedesktop.org/drm/intel/issues/879
+  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
+  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
+
+
+Participating hosts (46 -> 45)
+------------------------------
+
+  Additional (7): fi-bdw-5557u fi-skl-6770hq fi-kbl-7500u fi-ivb-3770 fi-tgl-y fi-skl-6700k2 fi-snb-2600 
+  Missing    (8): fi-hsw-4770r fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_7664 -> Patchwork_15974
+
+  CI-20190529: 20190529
+  CI_DRM_7664: d207bb67a1192ff32488fdc403e6708def18d80f @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5357: a555a4b98f90dab655d24bb3d07e9291a8b8dac8 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_15974: efa9113eee90caf4f47acf2a8bc0373302f52f69 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+efa9113eee90 drm/i915/gem: Support discontiguous lmem object maps
+8ba365583e40 drm/i915/gem: Single page objects are naturally contiguous
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15974/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
