@@ -1,31 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D55B12EA40
-	for <lists+intel-gfx@lfdr.de>; Thu,  2 Jan 2020 20:19:12 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id E1AB312EAEB
+	for <lists+intel-gfx@lfdr.de>; Thu,  2 Jan 2020 21:42:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D8B576E134;
-	Thu,  2 Jan 2020 19:19:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CCA046E09A;
+	Thu,  2 Jan 2020 20:42:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 8CF516E133;
- Thu,  2 Jan 2020 19:19:09 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 88FC9A363D;
- Thu,  2 Jan 2020 19:19:09 +0000 (UTC)
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D0FC66E09A
+ for <intel-gfx@lists.freedesktop.org>; Thu,  2 Jan 2020 20:42:32 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19753367-1500050 
+ for multiple; Thu, 02 Jan 2020 20:42:16 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu,  2 Jan 2020 20:42:15 +0000
+Message-Id: <20200102204215.1519103-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.25.0.rc0
+In-Reply-To: <20200102103144.1320461-1-chris@chris-wilson.co.uk>
+References: <20200102103144.1320461-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Thu, 02 Jan 2020 19:19:09 -0000
-Message-ID: <157799274955.8911.9134748774912232192@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200102142454.1494257-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200102142454.1494257-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/gt=3A_Drop_mutex_serialisation_between_context_pin/unpin?=
+Subject: [Intel-gfx] [PATCH v2] drm/i915/gem: Support discontiguous lmem
+ object maps
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,88 +39,347 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Matthew Auld <matthew.auld@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Create a vmap for discontinguous lmem objects to support
+i915_gem_object_pin_map().
 
-Series: drm/i915/gt: Drop mutex serialisation between context pin/unpin
-URL   : https://patchwork.freedesktop.org/series/71568/
-State : success
+v2: Offset io address by region.start for fake-lmem
 
-== Summary ==
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Matthew Auld <matthew.auld@intel.com>
+---
+ drivers/gpu/drm/i915/gem/i915_gem_lmem.c      | 40 ----------
+ drivers/gpu/drm/i915/gem/i915_gem_lmem.h      |  8 --
+ drivers/gpu/drm/i915/gem/i915_gem_pages.c     | 79 +++++++++++--------
+ .../gpu/drm/i915/gem/selftests/huge_pages.c   | 41 ++++------
+ .../drm/i915/selftests/intel_memory_region.c  | 33 ++++----
+ 5 files changed, 78 insertions(+), 123 deletions(-)
 
-CI Bug Log - changes from CI_DRM_7667 -> Patchwork_15977
-====================================================
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_lmem.c b/drivers/gpu/drm/i915/gem/i915_gem_lmem.c
+index 520cc9cac471..70543c83df06 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_lmem.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_lmem.c
+@@ -16,46 +16,6 @@ const struct drm_i915_gem_object_ops i915_gem_lmem_obj_ops = {
+ 	.release = i915_gem_object_release_memory_region,
+ };
+ 
+-/* XXX: Time to vfunc your life up? */
+-void __iomem *
+-i915_gem_object_lmem_io_map_page(struct drm_i915_gem_object *obj,
+-				 unsigned long n)
+-{
+-	resource_size_t offset;
+-
+-	offset = i915_gem_object_get_dma_address(obj, n);
+-	offset -= obj->mm.region->region.start;
+-
+-	return io_mapping_map_wc(&obj->mm.region->iomap, offset, PAGE_SIZE);
+-}
+-
+-void __iomem *
+-i915_gem_object_lmem_io_map_page_atomic(struct drm_i915_gem_object *obj,
+-					unsigned long n)
+-{
+-	resource_size_t offset;
+-
+-	offset = i915_gem_object_get_dma_address(obj, n);
+-	offset -= obj->mm.region->region.start;
+-
+-	return io_mapping_map_atomic_wc(&obj->mm.region->iomap, offset);
+-}
+-
+-void __iomem *
+-i915_gem_object_lmem_io_map(struct drm_i915_gem_object *obj,
+-			    unsigned long n,
+-			    unsigned long size)
+-{
+-	resource_size_t offset;
+-
+-	GEM_BUG_ON(!i915_gem_object_is_contiguous(obj));
+-
+-	offset = i915_gem_object_get_dma_address(obj, n);
+-	offset -= obj->mm.region->region.start;
+-
+-	return io_mapping_map_wc(&obj->mm.region->iomap, offset, size);
+-}
+-
+ bool i915_gem_object_is_lmem(struct drm_i915_gem_object *obj)
+ {
+ 	return obj->ops == &i915_gem_lmem_obj_ops;
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_lmem.h b/drivers/gpu/drm/i915/gem/i915_gem_lmem.h
+index 7c176b8b7d2f..fc3f15580fe3 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_lmem.h
++++ b/drivers/gpu/drm/i915/gem/i915_gem_lmem.h
+@@ -14,14 +14,6 @@ struct intel_memory_region;
+ 
+ extern const struct drm_i915_gem_object_ops i915_gem_lmem_obj_ops;
+ 
+-void __iomem *i915_gem_object_lmem_io_map(struct drm_i915_gem_object *obj,
+-					  unsigned long n, unsigned long size);
+-void __iomem *i915_gem_object_lmem_io_map_page(struct drm_i915_gem_object *obj,
+-					       unsigned long n);
+-void __iomem *
+-i915_gem_object_lmem_io_map_page_atomic(struct drm_i915_gem_object *obj,
+-					unsigned long n);
+-
+ bool i915_gem_object_is_lmem(struct drm_i915_gem_object *obj);
+ 
+ struct drm_i915_gem_object *
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_pages.c b/drivers/gpu/drm/i915/gem/i915_gem_pages.c
+index 75197ca696a8..54aca5c9101e 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_pages.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_pages.c
+@@ -158,9 +158,7 @@ static void __i915_gem_object_reset_page_iter(struct drm_i915_gem_object *obj)
+ 
+ static void unmap_object(struct drm_i915_gem_object *obj, void *ptr)
+ {
+-	if (i915_gem_object_is_lmem(obj))
+-		io_mapping_unmap((void __force __iomem *)ptr);
+-	else if (is_vmalloc_addr(ptr))
++	if (is_vmalloc_addr(ptr))
+ 		vunmap(ptr);
+ 	else
+ 		kunmap(kmap_to_page(ptr));
+@@ -236,46 +234,44 @@ int __i915_gem_object_put_pages(struct drm_i915_gem_object *obj)
+ 	return err;
+ }
+ 
++static inline pte_t iomap_pte(resource_size_t base,
++			      dma_addr_t offset,
++			      pgprot_t prot)
++{
++	return pte_mkspecial(pfn_pte((base + offset) >> PAGE_SHIFT, prot));
++}
++
+ /* The 'mapping' part of i915_gem_object_pin_map() below */
+ static void *i915_gem_object_map(struct drm_i915_gem_object *obj,
+ 				 enum i915_map_type type)
+ {
+-	unsigned long n_pages = obj->base.size >> PAGE_SHIFT;
++	unsigned long n_pte = obj->base.size >> PAGE_SHIFT;
+ 	struct sg_table *sgt = obj->mm.pages;
+-	struct sgt_iter sgt_iter;
+-	struct page *page;
+-	struct page *stack_pages[32];
+-	struct page **pages = stack_pages;
+-	unsigned long i = 0;
++	pte_t *stack[32], **mem;
++	struct vm_struct *area;
+ 	pgprot_t pgprot;
+-	void *addr;
+ 
+-	if (i915_gem_object_is_lmem(obj)) {
+-		void __iomem *io;
+-
+-		if (type != I915_MAP_WC)
+-			return NULL;
+-
+-		io = i915_gem_object_lmem_io_map(obj, 0, obj->base.size);
+-		return (void __force *)io;
+-	}
++	if (!i915_gem_object_has_struct_page(obj) && type != I915_MAP_WC)
++		return NULL;
+ 
+ 	/* A single page can always be kmapped */
+-	if (n_pages == 1 && type == I915_MAP_WB)
++	if (n_pte == 1 && type == I915_MAP_WB)
+ 		return kmap(sg_page(sgt->sgl));
+ 
+-	if (n_pages > ARRAY_SIZE(stack_pages)) {
++	mem = stack;
++	if (n_pte > ARRAY_SIZE(stack)) {
+ 		/* Too big for stack -- allocate temporary array instead */
+-		pages = kvmalloc_array(n_pages, sizeof(*pages), GFP_KERNEL);
+-		if (!pages)
++		mem = kvmalloc_array(n_pte, sizeof(*mem), GFP_KERNEL);
++		if (!mem)
+ 			return NULL;
+ 	}
+ 
+-	for_each_sgt_page(page, sgt_iter, sgt)
+-		pages[i++] = page;
+-
+-	/* Check that we have the expected number of pages */
+-	GEM_BUG_ON(i != n_pages);
++	area = alloc_vm_area(obj->base.size, mem);
++	if (!area) {
++		if (mem != stack)
++			kvfree(mem);
++		return NULL;
++	}
+ 
+ 	switch (type) {
+ 	default:
+@@ -288,12 +284,31 @@ static void *i915_gem_object_map(struct drm_i915_gem_object *obj,
+ 		pgprot = pgprot_writecombine(PAGE_KERNEL_IO);
+ 		break;
+ 	}
+-	addr = vmap(pages, n_pages, 0, pgprot);
+ 
+-	if (pages != stack_pages)
+-		kvfree(pages);
++	if (i915_gem_object_has_struct_page(obj)) {
++		struct sgt_iter iter;
++		struct page *page;
++		pte_t **ptes = mem;
++
++		for_each_sgt_page(page, iter, sgt)
++			**ptes++ = mk_pte(page, pgprot);
++	} else {
++		resource_size_t iomap;
++		struct sgt_iter iter;
++		pte_t **ptes = mem;
++		dma_addr_t addr;
++
++		iomap = obj->mm.region->iomap.base;
++		iomap -= obj->mm.region->region.start;
++
++		for_each_sgt_daddr(addr, iter, sgt)
++			**ptes++ = iomap_pte(iomap, addr, pgprot);
++	}
++
++	if (mem != stack)
++		kvfree(mem);
+ 
+-	return addr;
++	return area->addr;
+ }
+ 
+ /* get, pin, and map the pages of the object into kernel space */
+diff --git a/drivers/gpu/drm/i915/gem/selftests/huge_pages.c b/drivers/gpu/drm/i915/gem/selftests/huge_pages.c
+index 2479395c1873..249a4d24d678 100644
+--- a/drivers/gpu/drm/i915/gem/selftests/huge_pages.c
++++ b/drivers/gpu/drm/i915/gem/selftests/huge_pages.c
+@@ -1017,38 +1017,33 @@ __cpu_check_shmem(struct drm_i915_gem_object *obj, u32 dword, u32 val)
+ 	return err;
+ }
+ 
+-static int __cpu_check_lmem(struct drm_i915_gem_object *obj, u32 dword, u32 val)
++static int __cpu_check_vmap(struct drm_i915_gem_object *obj, u32 dword, u32 val)
+ {
+-	unsigned long n;
++	unsigned long n = obj->base.size >> PAGE_SHIFT;
++	u32 *ptr;
+ 	int err;
+ 
+-	i915_gem_object_lock(obj);
+-	err = i915_gem_object_set_to_wc_domain(obj, false);
+-	i915_gem_object_unlock(obj);
+-	if (err)
+-		return err;
+-
+-	err = i915_gem_object_pin_pages(obj);
++	err = i915_gem_object_wait(obj, 0, MAX_SCHEDULE_TIMEOUT);
+ 	if (err)
+ 		return err;
+ 
+-	for (n = 0; n < obj->base.size >> PAGE_SHIFT; ++n) {
+-		u32 __iomem *base;
+-		u32 read_val;
+-
+-		base = i915_gem_object_lmem_io_map_page_atomic(obj, n);
++	ptr = i915_gem_object_pin_map(obj, I915_MAP_WC);
++	if (IS_ERR(ptr))
++		return PTR_ERR(ptr);
+ 
+-		read_val = ioread32(base + dword);
+-		io_mapping_unmap_atomic(base);
+-		if (read_val != val) {
+-			pr_err("n=%lu base[%u]=%u, val=%u\n",
+-			       n, dword, read_val, val);
++	ptr += dword;
++	while (n--) {
++		if (*ptr != val) {
++			pr_err("base[%u]=%08x, val=%08x\n",
++			       dword, *ptr, val);
+ 			err = -EINVAL;
+ 			break;
+ 		}
++
++		ptr += PAGE_SIZE / sizeof(*ptr);
+ 	}
+ 
+-	i915_gem_object_unpin_pages(obj);
++	i915_gem_object_unpin_map(obj);
+ 	return err;
+ }
+ 
+@@ -1056,10 +1051,8 @@ static int cpu_check(struct drm_i915_gem_object *obj, u32 dword, u32 val)
+ {
+ 	if (i915_gem_object_has_struct_page(obj))
+ 		return __cpu_check_shmem(obj, dword, val);
+-	else if (i915_gem_object_is_lmem(obj))
+-		return __cpu_check_lmem(obj, dword, val);
+-
+-	return -ENODEV;
++	else
++		return __cpu_check_vmap(obj, dword, val);
+ }
+ 
+ static int __igt_write_huge(struct intel_context *ce,
+diff --git a/drivers/gpu/drm/i915/selftests/intel_memory_region.c b/drivers/gpu/drm/i915/selftests/intel_memory_region.c
+index 04d0aa7b349e..3ef3620e0da5 100644
+--- a/drivers/gpu/drm/i915/selftests/intel_memory_region.c
++++ b/drivers/gpu/drm/i915/selftests/intel_memory_region.c
+@@ -270,36 +270,31 @@ static int igt_gpu_write_dw(struct intel_context *ce,
+ 
+ static int igt_cpu_check(struct drm_i915_gem_object *obj, u32 dword, u32 val)
+ {
+-	unsigned long n;
++	unsigned long n = obj->base.size >> PAGE_SHIFT;
++	u32 *ptr;
+ 	int err;
+ 
+-	i915_gem_object_lock(obj);
+-	err = i915_gem_object_set_to_wc_domain(obj, false);
+-	i915_gem_object_unlock(obj);
+-	if (err)
+-		return err;
+-
+-	err = i915_gem_object_pin_pages(obj);
++	err = i915_gem_object_wait(obj, 0, MAX_SCHEDULE_TIMEOUT);
+ 	if (err)
+ 		return err;
+ 
+-	for (n = 0; n < obj->base.size >> PAGE_SHIFT; ++n) {
+-		u32 __iomem *base;
+-		u32 read_val;
+-
+-		base = i915_gem_object_lmem_io_map_page_atomic(obj, n);
++	ptr = i915_gem_object_pin_map(obj, I915_MAP_WC);
++	if (IS_ERR(ptr))
++		return PTR_ERR(ptr);
+ 
+-		read_val = ioread32(base + dword);
+-		io_mapping_unmap_atomic(base);
+-		if (read_val != val) {
+-			pr_err("n=%lu base[%u]=%u, val=%u\n",
+-			       n, dword, read_val, val);
++	ptr += dword;
++	while (n--) {
++		if (*ptr != val) {
++			pr_err("base[%u]=%08x, val=%08x\n",
++			       dword, *ptr, val);
+ 			err = -EINVAL;
+ 			break;
+ 		}
++
++		ptr += PAGE_SIZE / sizeof(*ptr);
+ 	}
+ 
+-	i915_gem_object_unpin_pages(obj);
++	i915_gem_object_unpin_map(obj);
+ 	return err;
+ }
+ 
+-- 
+2.25.0.rc0
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15977/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_15977 that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@i915_module_load@reload-with-fault-injection:
-    - fi-skl-lmem:        [INCOMPLETE][1] ([i915#671]) -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7667/fi-skl-lmem/igt@i915_module_load@reload-with-fault-injection.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15977/fi-skl-lmem/igt@i915_module_load@reload-with-fault-injection.html
-
-  * igt@i915_selftest@live_mman:
-    - fi-bxt-dsi:         [DMESG-WARN][3] ([i915#889]) -> [PASS][4] +23 similar issues
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7667/fi-bxt-dsi/igt@i915_selftest@live_mman.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15977/fi-bxt-dsi/igt@i915_selftest@live_mman.html
-
-  * igt@i915_selftest@live_reset:
-    - fi-bxt-dsi:         [DMESG-FAIL][5] ([i915#889]) -> [PASS][6] +7 similar issues
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7667/fi-bxt-dsi/igt@i915_selftest@live_reset.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15977/fi-bxt-dsi/igt@i915_selftest@live_reset.html
-
-  
-  [i915#671]: https://gitlab.freedesktop.org/drm/intel/issues/671
-  [i915#889]: https://gitlab.freedesktop.org/drm/intel/issues/889
-
-
-Participating hosts (46 -> 40)
-------------------------------
-
-  Additional (4): fi-blb-e6850 fi-bdw-5557u fi-ivb-3770 fi-skl-6600u 
-  Missing    (10): fi-hsw-peppy fi-byt-squawks fi-bsw-cyan fi-bwr-2160 fi-ilk-650 fi-ctg-p8600 fi-gdg-551 fi-byt-clapper fi-bdw-samus fi-snb-2600 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_7667 -> Patchwork_15977
-
-  CI-20190529: 20190529
-  CI_DRM_7667: e60a61aa9e6849fc2dba1085b1ba99c4847f20cf @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5357: a555a4b98f90dab655d24bb3d07e9291a8b8dac8 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_15977: 395d527730339d2b907a2dfc94890eae41462393 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-395d52773033 drm/i915/gt: Drop mutex serialisation between context pin/unpin
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15977/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
