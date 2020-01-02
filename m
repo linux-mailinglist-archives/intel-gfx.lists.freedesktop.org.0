@@ -2,55 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E130812E355
-	for <lists+intel-gfx@lfdr.de>; Thu,  2 Jan 2020 08:32:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 22DF112E36A
+	for <lists+intel-gfx@lfdr.de>; Thu,  2 Jan 2020 08:50:19 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1D20289CB2;
-	Thu,  2 Jan 2020 07:32:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F17D48996E;
+	Thu,  2 Jan 2020 07:50:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-x344.google.com (mail-wm1-x344.google.com
- [IPv6:2a00:1450:4864:20::344])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4AE6789CB2
- for <intel-gfx@lists.freedesktop.org>; Thu,  2 Jan 2020 07:32:41 +0000 (UTC)
-Received: by mail-wm1-x344.google.com with SMTP id q9so4805668wmj.5
- for <intel-gfx@lists.freedesktop.org>; Wed, 01 Jan 2020 23:32:41 -0800 (PST)
+Received: from mail-wm1-x341.google.com (mail-wm1-x341.google.com
+ [IPv6:2a00:1450:4864:20::341])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C792D8996E
+ for <intel-gfx@lists.freedesktop.org>; Thu,  2 Jan 2020 07:50:14 +0000 (UTC)
+Received: by mail-wm1-x341.google.com with SMTP id u2so4875316wmc.3
+ for <intel-gfx@lists.freedesktop.org>; Wed, 01 Jan 2020 23:50:14 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=Xq0e7Ir8L7yITJ7ZbfbDKK22YEKiVrQQJByJfxvPG+k=;
- b=Hw7NczAYF+s15bO2suG9bvh/xwZiM056829KhORPcG1VuefeN9vzhUcWM+DS6SGOdR
- bQTh2JLaBVHhctUrxesdqsWh5NIaH9Kij+7eGXCLQUgjR6mVQ5nBz+prju1TLAMdjRuu
- CXTEpI3pcyrxaDWwV1s/N0PtJcTj+SUrtHOBZcg0dP01XFw6V2QB3vcJCXcuhmGrj2V+
- vGrj5e+b9JT3+iqNpRJGo630waU68zNgDKsm08XdBiVgEbmJnY3TbL9hVYFV9xOEfftU
- i7M7v7JM/OEC0JF+HdHHPOlgq98xsRMR/VQvGnR6U9tvzVG46xsLpaefDWxI9YfYYijG
- Oozg==
+ :cc; bh=fH922zvP0ZoaGachvTmUOWrY5vutlUhmfCccycCPvo4=;
+ b=R2naduoyv2i54ZHFMpjpW0XtEQtZu4P31heKGKaD25C7CRWqyBlHf5JR+bapG1XR1N
+ WSMjrXr8QzLPoHlkwwoplZlaxycca5Th9TvjFr+AC3Rrf9yrDZS6o16zhK7mJ7NQ1rVy
+ kGXFWZrqGpatlRSWRUABVsDP6SmFpKdWYQPigAppIzyGFD4t1JSw2/5V2noaZ7ZCokO4
+ heWy9f1ayCate/VoJWNkPte+GIdPMMWXktECrJEpg0zSD6psyk+T49Ps2fnD6MlRUM8q
+ LmtEW9jFB3bBn8zi0W7C9YxKl5McYLKNtwgsdDXvPSsgdXyZUSTX2BbdpmBl/onmJ6tM
+ HyCg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=Xq0e7Ir8L7yITJ7ZbfbDKK22YEKiVrQQJByJfxvPG+k=;
- b=YxsxJ5KPOe11hIZMAg4pM64wOtUHS8rUlCFZf8pSmTxtUZayOSzXBqYnowq4Uf2g/N
- NqmR49DE1frOHMvCliC8Rava35bGk40G2ZfwedwT9+FnKDMRaP/q2vp4yBDyB48oPcCl
- 8JzbnY05W/EZIqg/14Yao/GNz9Dzn0rjKUgccfzr9a+rHY7+FP0deSUOHl9YuREi+2K/
- 8OdUvVDi1B0QNO9lgrYkN3qM1hWFU0KpmlGP8aqBgVx2BJeIRk1+VXTbeeQ5QIV1fACX
- vsHs22XrecymBreAeknFQz9UwQHdPn8tMoB+BqLCiW28b7og3DnBQGRYgBz6WKG5O1YO
- vBlA==
-X-Gm-Message-State: APjAAAVPonKrKWTMh65BVhOqpaHd6bLOdIzvywKTIMpz4PrIFqbhztJy
- Hyo6pwWNwO3H9I+9A36tMkFNmMkts5WP740FZcU=
-X-Google-Smtp-Source: APXvYqyZqH27tnQutvjWVVXCX4XK+cK0AzBodCS/TavbTGGjo5tPn0PPQhjjGpElCAXKwMP8yfzl+6lBPsoIluwkgrA=
-X-Received: by 2002:a05:600c:294d:: with SMTP id
- n13mr12333628wmd.130.1577950359947; 
- Wed, 01 Jan 2020 23:32:39 -0800 (PST)
+ bh=fH922zvP0ZoaGachvTmUOWrY5vutlUhmfCccycCPvo4=;
+ b=fP5NFvzX+9psJNqlldHq4e08Ri4dzi2YNVmrTOpY0YChLDRW4tneumJS9q4o1ddVKo
+ YdTm1ffBRfWON4p2NAV/F+SGKCxvfYSHL3J5M2v40TULn9RpjDqgNmx42z2NVUIS1Aju
+ roH/rGQdNmijj19CVOyeftw4Y9Gx5AdpOyM7j6wXW8rmGzd9poZ3FNYpo1hRp7i/Dw9v
+ ucivsA0K4PnWLAtUzKGLyR+ZIGFvDfEMsU+3FvhVriZP5OlBn44tE0E4eZABuuy04R7S
+ FKRMKdwQJESI5RGxJTpgTL9OGIEBBx4WTWtdi6S8YuLpsO/60r5xyrNtDBL5KOQPaXjt
+ y6WA==
+X-Gm-Message-State: APjAAAWUR9J76jiEcsokl4YORdWGYybJxzInsJjXYwu1ZgjVsd4rmXGb
+ vlVX1km4Co63H8tHuy5yqqUYrjNh+iSZEUi40Z4=
+X-Google-Smtp-Source: APXvYqwaA0fPWeUO9Cz1QHIdoLyMvmf7IgUGXomeW5+naQ53KeZPGv3TL5BywaylWFuDzsAl6w3pGFrM/70UCzsyUao=
+X-Received: by 2002:a1c:61c1:: with SMTP id
+ v184mr12938781wmb.160.1577951413304; 
+ Wed, 01 Jan 2020 23:50:13 -0800 (PST)
 MIME-Version: 1.0
 References: <20191223195850.25997-1-lucas.demarchi@intel.com>
- <20191223195850.25997-6-lucas.demarchi@intel.com> <87r20kls2r.fsf@intel.com>
-In-Reply-To: <87r20kls2r.fsf@intel.com>
+ <20191223195850.25997-8-lucas.demarchi@intel.com> <87imlwlr89.fsf@intel.com>
+In-Reply-To: <87imlwlr89.fsf@intel.com>
 From: Lucas De Marchi <lucas.de.marchi@gmail.com>
-Date: Wed, 1 Jan 2020 23:32:26 -0800
-Message-ID: <CAKi4VA+-gFd9-+QfmfW6pPywZjbGHDZrAU-3m_4bQa87Wqkr6Q@mail.gmail.com>
+Date: Wed, 1 Jan 2020 23:50:00 -0800
+Message-ID: <CAKi4VAL8misoJ8urKVVMomTCJ7zBRRQXCDqm-fZj_hGtYJicsQ@mail.gmail.com>
 To: Jani Nikula <jani.nikula@linux.intel.com>
-Subject: Re: [Intel-gfx] [PATCH 5/9] drm/i915/display: move icl to
- description-based ddi init
+Subject: Re: [Intel-gfx] [PATCH 7/9] drm/i915/display: add phy,
+ vbt and ddi indexes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,156 +70,198 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Dec 31, 2019 at 2:14 AM Jani Nikula <jani.nikula@linux.intel.com> wrote:
+On Tue, Dec 31, 2019 at 2:33 AM Jani Nikula <jani.nikula@linux.intel.com> wrote:
 >
 > On Mon, 23 Dec 2019, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
-> > By adding a hook that determines if a port is present, we are able to
-> > support Ice Lake in the new description-based DDI initialization.
+> > Identify 3 possible cases in which the index numbers can be different
+> > from the "port" and add them to the description-based ddi initialization
+> > table.  This can be used in place of additional functions mapping from
+> > on to the other.  Right now we already cover part of this by creating kind of
+> > virtual phy numbering, but that comes with downsides:
 > >
-> > Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_display.c | 61 ++++++++++++++------
-> >  1 file changed, 42 insertions(+), 19 deletions(-)
+> > a) there's not really a "phy numbering" in the spec, this is purely a
+> > software thing; hardware uses whatever they want thinking mapping from
+> > one to the other arbitrarily is easy in software.
 > >
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> > index b3fb1e03cb0b..6b4d320ff92c 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> > @@ -16224,9 +16224,28 @@ static void intel_pps_init(struct drm_i915_private *dev_priv)
-> >  struct intel_output {
-> >       /* Initialize DSI if present */
-> >       void (*dsi_init)(struct drm_i915_private *i915);
-> > +
-> > +     /*
-> > +      * Check if port is present before trying to initialize; if not provided
-> > +      * it's assumed the port is present (or we can't check and fail
-> > +      * gracefully
-> > +      */
-> > +     bool (*is_port_present)(struct drm_i915_private *i915,
-> > +                             const struct intel_ddi_port_info *port_info);
-> > +
-> >       struct intel_ddi_port_info ddi_ports[];
-> >  };
+> > b) currently the mapping occurs on "leaf" functions, making the decision
+> > based on the platform.
 > >
-> > +static bool icl_is_port_present(struct drm_i915_private *i915,
-> > +                             const struct intel_ddi_port_info *port_info)
-> > +{
-> > +     if (port_info->port != PORT_F)
-> > +             return true;
-> > +
-> > +     return IS_ICL_WITH_PORT_F(i915) &&
-> > +             intel_bios_is_port_present(i915, PORT_F);
-> > +}
-> > +
+> > With this new table the approach will be: the port as defined by the
+> > enum port is purely a driver convention and won't be used anymore to
+> > define the register offset or register bits. For that we have the other
+> > 3 indexes, identified as being possibly different from the current usage
+> > of register bits: ddi, vbt and phy. The phy type is also added here,
+> > meant to replace the checks for combo vs tc (although the helper
+> > functions can remain so we may differentiate between, e.g. Dekel and MG
+> > phys).
 >
-> You know, all of that is here because there were some boards with broken
-> VBTs claiming there was a port F on hardware that didn't have port
-> F. And now we're turning it into infrastructure for all platforms. :(
->
-> I actually preferred it when it was a localized hack for ICL. (Though I
-> said at the time we should not add hacks for VBTs because this shit
-> won't get fixed if we keep accommodating it.)
->
-> If we still need the port F hack, I think I'd rather move it to
-> intel_bios.c and skip port F description in VBT for platformsm that
-> don't have it. So we can rely on VBT info elsewhere.
->
-> Note that intel_ddi_init() will still check for VBT.
+> I'm not sure how the vbt_idx is supposed to be used (because it's
+> actually not used anywhere here). I would like to reduce the amount of
+> VBT info spread around in the driver, so I'd really need to know more.
 
-I don't think that is sufficient.... It may be a VBT thing, it may be a strap,
-it may be because the phy is not hooked up (hence why we don't init
-DDIC on TGL).
-
-Idea here is to have a generic "is_port_present()" in which we collect
-the N reasons why
-we may not want to initialize a DDI.
-
-The check intel_ddi_init() does is not sufficient for TGL, because the
-VBT still says the port
-is there, the port is in fact there, but the registers related to the
-combophy don't behave.
+The index the VBT uses to refer to a DDI may not match the index used by
+the display engine, that is why I'm adding it here.
 
 Lucas De Marchi
 
 >
+> > While at it, also give names to the ports so they can be easily
+> > identified.
+> >
+> > Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_display.c  | 54 +++++++++----------
+> >  drivers/gpu/drm/i915/display/intel_display.h  |  7 +++
+> >  .../drm/i915/display/intel_display_types.h    |  5 ++
+> >  3 files changed, 39 insertions(+), 27 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> > index ad85cf75c815..219f180fa395 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_display.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> > @@ -16277,14 +16277,14 @@ static bool ddi_is_port_present(struct drm_i915_private *i915,
 > >  static const struct intel_output tgl_output = {
 > >       .dsi_init = icl_dsi_init,
 > >       .ddi_ports = {
-> > @@ -16242,6 +16261,20 @@ static const struct intel_output tgl_output = {
-> >       }
-> >  };
-> >
-> > +static const struct intel_output icl_output = {
-> > +     .dsi_init = icl_dsi_init,
-> > +     .is_port_present = icl_is_port_present,
-> > +     .ddi_ports = {
-> > +             { .port = PORT_A },
-> > +             { .port = PORT_B },
-> > +             { .port = PORT_C },
-> > +             { .port = PORT_D },
-> > +             { .port = PORT_E },
-> > +             { .port = PORT_F },
-> > +             { .port = PORT_NONE }
+> > -             { .port = PORT_A },
+> > -             { .port = PORT_B },
+> > -             { .port = PORT_D },
+> > -             { .port = PORT_E },
+> > -             { .port = PORT_F },
+> > -             { .port = PORT_G },
+> > -             { .port = PORT_H },
+> > -             { .port = PORT_I },
+> > +             { .name = "DDI A",   .port = PORT_A, .phy_type = PHY_TYPE_COMBO, .ddi_idx = 0x0, .phy_idx = 0x0, .vbt_idx = 0x0, },
+> > +             { .name = "DDI B",   .port = PORT_B, .phy_type = PHY_TYPE_COMBO, .ddi_idx = 0x1, .phy_idx = 0x1, .vbt_idx = 0x1, },
+> > +             { .name = "DDI TC1", .port = PORT_D, .phy_type = PHY_TYPE_TC,    .ddi_idx = 0x3, .phy_idx = 0x0, .vbt_idx = 0x2, },
+> > +             { .name = "DDI TC2", .port = PORT_E, .phy_type = PHY_TYPE_TC,    .ddi_idx = 0x4, .phy_idx = 0x1, .vbt_idx = 0x3, },
+> > +             { .name = "DDI TC3", .port = PORT_F, .phy_type = PHY_TYPE_TC,    .ddi_idx = 0x5, .phy_idx = 0x2, .vbt_idx = 0x4, },
+> > +             { .name = "DDI TC4", .port = PORT_G, .phy_type = PHY_TYPE_TC,    .ddi_idx = 0x6, .phy_idx = 0x3, .vbt_idx = 0x5, },
+> > +             { .name = "DDI TC5", .port = PORT_H, .phy_type = PHY_TYPE_TC,    .ddi_idx = 0x7, .phy_idx = 0x4, .vbt_idx = 0x6, },
+> > +             { .name = "DDI TC6", .port = PORT_I, .phy_type = PHY_TYPE_TC,    .ddi_idx = 0x8, .phy_idx = 0x5, .vbt_idx = 0x7, },
+> >               { .port = PORT_NONE }
 >
-> At this stage of the series it seems to me we could have a ports mask in
-> intel_device_info, and just loop over it using for_each_port_masked().
+> Makes you wonder if this sort of info should be linked from the
+> intel_device_info instead of adding new arrays. Not sure.
+
+Yeah, but I think it may be too much info there. Otherwise we should
+migrate the powerwell definitions, hpd, etc. Just
+like for the powerwells, I think the table is only relevant for the
+init function. Every other user should just go through the
+port_info from the port it's working with instead of looping through
+all of ports in the intel_device_info. By keeping the array
+private here we at least prevent that I think.
+
+Lucas De Marchi
+
 >
 > BR,
 > Jani.
 >
-> > +     }
-> > +};
-> > +
+>
+> >       }
+> >  };
+> > @@ -16293,12 +16293,12 @@ static const struct intel_output icl_output = {
+> >       .dsi_init = icl_dsi_init,
+> >       .is_port_present = icl_is_port_present,
+> >       .ddi_ports = {
+> > -             { .port = PORT_A },
+> > -             { .port = PORT_B },
+> > -             { .port = PORT_C },
+> > -             { .port = PORT_D },
+> > -             { .port = PORT_E },
+> > -             { .port = PORT_F },
+> > +             { .name = "DDI A",   .port = PORT_A, .phy_type = PHY_TYPE_COMBO, .ddi_idx = 0x0, .phy_idx = 0x0, .vbt_idx = 0x0, },
+> > +             { .name = "DDI B",   .port = PORT_B, .phy_type = PHY_TYPE_COMBO, .ddi_idx = 0x1, .phy_idx = 0x1, .vbt_idx = 0x1, },
+> > +             { .name = "DDI TC1", .port = PORT_C, .phy_type = PHY_TYPE_TC,    .ddi_idx = 0x2, .phy_idx = 0x0, .vbt_idx = 0x2, },
+> > +             { .name = "DDI TC2", .port = PORT_D, .phy_type = PHY_TYPE_TC,    .ddi_idx = 0x3, .phy_idx = 0x1, .vbt_idx = 0x3, },
+> > +             { .name = "DDI TC3", .port = PORT_E, .phy_type = PHY_TYPE_TC,    .ddi_idx = 0x4, .phy_idx = 0x2, .vbt_idx = 0x4, },
+> > +             { .name = "DDI TC4", .port = PORT_F, .phy_type = PHY_TYPE_TC,    .ddi_idx = 0x5, .phy_idx = 0x3, .vbt_idx = 0x5, },
+> >               { .port = PORT_NONE }
+> >       }
+> >  };
+> > @@ -16306,10 +16306,10 @@ static const struct intel_output icl_output = {
 > >  static const struct intel_output ehl_output = {
 > >       .dsi_init = icl_dsi_init,
 > >       .ddi_ports = {
-> > @@ -16276,12 +16309,19 @@ static void setup_ddi_outputs_desc(struct drm_i915_private *i915)
-> >               output = &tgl_output;
-> >       else if (IS_ELKHARTLAKE(i915))
-> >               output = &ehl_output;
-> > +     else if (IS_GEN(i915, 11))
-> > +             output = &icl_output;
-> >       else if (IS_GEN9_LP(i915))
-> >               output = &gen9lp_output;
+> > -             { .port = PORT_A },
+> > -             { .port = PORT_B },
+> > -             { .port = PORT_C },
+> > -             { .port = PORT_D },
+> > +             { .name = "DDI A",   .port = PORT_A, .phy_type = PHY_TYPE_COMBO, .ddi_idx = 0x0, .phy_idx = 0x0, .vbt_idx = 0x0, },
+> > +             { .name = "DDI B",   .port = PORT_B, .phy_type = PHY_TYPE_COMBO, .ddi_idx = 0x1, .phy_idx = 0x1, .vbt_idx = 0x1, },
+> > +             { .name = "DDI C",   .port = PORT_C, .phy_type = PHY_TYPE_COMBO, .ddi_idx = 0x2, .phy_idx = 0x2, .vbt_idx = 0x2, },
+> > +             { .name = "DDI D",   .port = PORT_D, .phy_type = PHY_TYPE_COMBO, .ddi_idx = 0x3, .phy_idx = 0x0, .vbt_idx = 0x3, },
+> >               { .port = PORT_NONE }
+> >       }
+> >  };
+> > @@ -16317,9 +16317,9 @@ static const struct intel_output ehl_output = {
+> >  static const struct intel_output gen9lp_output = {
+> >       .dsi_init = vlv_dsi_init,
+> >       .ddi_ports = {
+> > -             { .port = PORT_A },
+> > -             { .port = PORT_B },
+> > -             { .port = PORT_C },
+> > +             { .name = "DDI A", .port = PORT_A, .ddi_idx = 0x0, .phy_idx = 0x0, .vbt_idx = 0x0 },
+> > +             { .name = "DDI B", .port = PORT_B, .ddi_idx = 0x1, .phy_idx = 0x1, .vbt_idx = 0x1 },
+> > +             { .name = "DDI C", .port = PORT_C, .ddi_idx = 0x2, .phy_idx = 0x2, .vbt_idx = 0x2 },
+> >               { .port = PORT_NONE }
+> >       },
+> >  };
+> > @@ -16327,12 +16327,12 @@ static const struct intel_output gen9lp_output = {
+> >  static const struct intel_output ddi_output = {
+> >       .is_port_present = ddi_is_port_present,
+> >       .ddi_ports = {
+> > -             { .port = PORT_A },
+> > -             { .port = PORT_B },
+> > -             { .port = PORT_C },
+> > -             { .port = PORT_D },
+> > -             { .port = PORT_E },
+> > -             { .port = PORT_F },
+> > +             { .name = "DDI A", .port = PORT_A, .ddi_idx = 0x0, .phy_idx = 0x0, .vbt_idx = 0x0 },
+> > +             { .name = "DDI B", .port = PORT_B, .ddi_idx = 0x1, .phy_idx = 0x1, .vbt_idx = 0x1 },
+> > +             { .name = "DDI C", .port = PORT_C, .ddi_idx = 0x2, .phy_idx = 0x2, .vbt_idx = 0x2 },
+> > +             { .name = "DDI D", .port = PORT_D, .ddi_idx = 0x3, .phy_idx = 0x3, .vbt_idx = 0x3 },
+> > +             { .name = "DDI E", .port = PORT_E, .ddi_idx = 0x4, .phy_idx = 0x4, .vbt_idx = 0x4 },
+> > +             { .name = "DDI F", .port = PORT_F, .ddi_idx = 0x5, .phy_idx = 0x5, .vbt_idx = 0x5 },
+> >               { .port = PORT_NONE }
+> >       }
+> >  };
+> > diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/drm/i915/display/intel_display.h
+> > index 05d68bd393dc..db19e5eee248 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_display.h
+> > +++ b/drivers/gpu/drm/i915/display/intel_display.h
+> > @@ -303,6 +303,13 @@ enum phy {
+> >       I915_MAX_PHYS
+> >  };
 > >
-> >       for (port_info = output->ddi_ports;
-> > -          port_info->port != PORT_NONE; port_info++)
-> > +          port_info->port != PORT_NONE; port_info++) {
-> > +             if (output->is_port_present &&
-> > +                 !output->is_port_present(i915, port_info))
-> > +                     continue;
+> > +enum phy_type {
+> > +     PHY_TYPE_NONE = 0,
 > > +
-> >               intel_ddi_init(i915, port_info->port);
-> > +     }
+> > +     PHY_TYPE_COMBO,
+> > +     PHY_TYPE_TC,
+> > +};
+> > +
+> >  #define phy_name(a) ((a) + 'A')
 > >
-> >       if (output->dsi_init)
-> >               output->dsi_init(i915);
-> > @@ -16297,25 +16337,8 @@ static void intel_setup_outputs(struct drm_i915_private *dev_priv)
-> >       if (!HAS_DISPLAY(dev_priv) || !INTEL_DISPLAY_ENABLED(dev_priv))
-> >               return;
+> >  enum phy_fia {
+> > diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+> > index 4d2f4ee35812..23a885895803 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> > +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> > @@ -1377,7 +1377,12 @@ struct intel_dp_mst_encoder {
+> >  };
 > >
-> > -     if (INTEL_GEN(dev_priv) >= 12 || IS_ELKHARTLAKE(dev_priv) ||
-> > -         IS_GEN9_LP(dev_priv)) {
-> > +     if (INTEL_GEN(dev_priv) >= 11 || IS_GEN9_LP(dev_priv)) {
-> >               setup_ddi_outputs_desc(dev_priv);
-> > -     } else if (IS_GEN(dev_priv, 11)) {
-> > -             intel_ddi_init(dev_priv, PORT_A);
-> > -             intel_ddi_init(dev_priv, PORT_B);
-> > -             intel_ddi_init(dev_priv, PORT_C);
-> > -             intel_ddi_init(dev_priv, PORT_D);
-> > -             intel_ddi_init(dev_priv, PORT_E);
-> > -             /*
-> > -              * On some ICL SKUs port F is not present. No strap bits for
-> > -              * this, so rely on VBT.
-> > -              * Work around broken VBTs on SKUs known to have no port F.
-> > -              */
-> > -             if (IS_ICL_WITH_PORT_F(dev_priv) &&
-> > -                 intel_bios_is_port_present(dev_priv, PORT_F))
-> > -                     intel_ddi_init(dev_priv, PORT_F);
-> > -
-> > -             icl_dsi_init(dev_priv);
-> >       } else if (HAS_DDI(dev_priv)) {
-> >               int found;
+> >  struct intel_ddi_port_info {
+> > +     const char *name;
+> >       enum port port;
+> > +     s8 phy_type;
+> > +     u8 ddi_idx;
+> > +     u8 phy_idx;
+> > +     u8 vbt_idx;
+> >  };
+> >
+> >  static inline enum dpio_channel
 >
 > --
 > Jani Nikula, Intel Open Source Graphics Center
