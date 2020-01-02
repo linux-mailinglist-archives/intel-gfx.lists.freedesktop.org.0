@@ -1,35 +1,39 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C2A812E4AD
-	for <lists+intel-gfx@lfdr.de>; Thu,  2 Jan 2020 11:01:17 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id B7D8712E4C9
+	for <lists+intel-gfx@lfdr.de>; Thu,  2 Jan 2020 11:05:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3BA2489EB7;
-	Thu,  2 Jan 2020 10:01:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1EFAD89F63;
+	Thu,  2 Jan 2020 10:05:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C02B589EB7
- for <intel-gfx@lists.freedesktop.org>; Thu,  2 Jan 2020 10:01:14 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B3F688924F;
+ Thu,  2 Jan 2020 10:05:44 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 02 Jan 2020 02:01:14 -0800
-X-IronPort-AV: E=Sophos;i="5.69,386,1571727600"; d="scan'208";a="209750559"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 02 Jan 2020 02:05:44 -0800
+X-IronPort-AV: E=Sophos;i="5.69,386,1571727600"; d="scan'208";a="214112239"
 Received: from jnikula-mobl3.fi.intel.com (HELO localhost) ([10.237.66.161])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 02 Jan 2020 02:01:12 -0800
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 02 Jan 2020 02:05:40 -0800
 From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Gaurav K Singh <gaurav.k.singh@intel.com>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <1575994399-15799-1-git-send-email-gaurav.k.singh@intel.com>
+To: Wambui Karuga <wambui.karugax@gmail.com>, joonas.lahtinen@linux.intel.com,
+ rodrigo.vivi@intel.com, airlied@linux.ie, daniel@ffwll.ch,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
+In-Reply-To: <20200102094921.6274-1-wambui.karugax@gmail.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <1575994399-15799-1-git-send-email-gaurav.k.singh@intel.com>
-Date: Thu, 02 Jan 2020 12:01:10 +0200
-Message-ID: <87h81etbx5.fsf@intel.com>
+References: <20200102094921.6274-1-wambui.karugax@gmail.com>
+Date: Thu, 02 Jan 2020 12:05:38 +0200
+Message-ID: <87eewitbpp.fsf@intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Add DPCD quirk for AUO PSR2 panel
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: remove boolean comparisons in
+ conditionals.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,99 +51,63 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 10 Dec 2019, Gaurav K Singh <gaurav.k.singh@intel.com> wrote:
-> Currently on AUO PSR2 panel on Gen9 chromebook, we are observing
-> below issues:
-> (i) The display will show garbage after pressing sign
-> out icon in log in screen when wallpaper is one of Solid colors
-> & PSR2 is enabled
-> (ii) The characters of display is not clear when switch
-> OS mode to dev mode.
+On Thu, 02 Jan 2020, Wambui Karuga <wambui.karugax@gmail.com> wrote:
+> Remove unnecessary comparisons to true/false in if statements.
+> Issues found by coccinelle.
 >
-> Before this patch, on this panel, we set idle frame count to 6
-> that is number of idle frames before entering PSR2 deep sleep
-> and the number of frames to enter into Selective update we set
-> to 1.
->
-> On this AUO panel, we suspect there is some DP synchronization
-> latency needed, due to which we are facing the above issues.
->
-> With current TCON of the AUO panel, DPCD reg
-> DP_SYNCHRONIZATION_LATENCY_IN_SINK (0x2009) offset is giving a
-> value of 0x0.
->
-> This patch sets idle frame count to 9 and frame count for selective
-> update to 9, after which we are not seeing the above mentioned issues.
->
-> Ideally this value needs to be corrected in TCON of the panel
-> since this value comes from DPCD reg 0x2009 offset and i915 driver
-> uses it. Working with AUO panel vendor to get this fixed in the
-> panel TCON. In the meantime fixing this as DPCD quirk in the kernel.
->
-> Signed-off-by: Gaurav K Singh <gaurav.k.singh@intel.com>
+> Signed-off-by: Wambui Karuga <wambui.karugax@gmail.com>
+
+Thanks for the patch.
+
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+
 > ---
->  drivers/gpu/drm/drm_dp_helper.c          | 3 +++
->  drivers/gpu/drm/i915/display/intel_psr.c | 6 ++++++
->  include/drm/drm_dp_helper.h              | 9 +++++++++
->  3 files changed, 18 insertions(+)
+>  drivers/gpu/drm/i915/display/intel_ddi.c  | 2 +-
+>  drivers/gpu/drm/i915/display/intel_dp.c   | 2 +-
+>  drivers/gpu/drm/i915/display/intel_sdvo.c | 4 ++--
+>  3 files changed, 4 insertions(+), 4 deletions(-)
 >
-> diff --git a/drivers/gpu/drm/drm_dp_helper.c b/drivers/gpu/drm/drm_dp_helper.c
-> index 2c7870aef469..96eaeef814d3 100644
-> --- a/drivers/gpu/drm/drm_dp_helper.c
-> +++ b/drivers/gpu/drm/drm_dp_helper.c
-> @@ -1155,6 +1155,9 @@ struct dpcd_quirk {
->  	{ OUI(0x00, 0x10, 0xfa), DEVICE_ID_ANY, false, BIT(DP_DPCD_QUIRK_NO_PSR) },
->  	/* CH7511 seems to leave SINK_COUNT zeroed */
->  	{ OUI(0x00, 0x00, 0x00), DEVICE_ID('C', 'H', '7', '5', '1', '1'), false, BIT(DP_DPCD_QUIRK_NO_SINK_COUNT) },
-> +	/* AUO PSR2 panels need some more DP synchronization latency */
-> +	{ OUI(0x00, 0x1c, 0xf8), DEVICE_ID_ANY, false, BIT(DP_DPCD_QUIRK_SYNCHRONIZATION_LATENCY) },
-
-DEVICE_ID_ANY seems pretty lax.
-
-BR,
-Jani.
-
-> +
->  };
+> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+> index 9ba794cb9b4f..c065078b3be2 100644
+> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+> @@ -1812,7 +1812,7 @@ void intel_ddi_set_vc_payload_alloc(const struct intel_crtc_state *crtc_state,
+>  	u32 temp;
 >  
->  #undef OUI
-> diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-> index 16e9ff47d519..1023b08ad093 100644
-> --- a/drivers/gpu/drm/i915/display/intel_psr.c
-> +++ b/drivers/gpu/drm/i915/display/intel_psr.c
-> @@ -296,6 +296,12 @@ void intel_psr_init_dpcd(struct intel_dp *intel_dp)
->  	dev_priv->psr.sink_sync_latency =
->  		intel_dp_get_sink_sync_latency(intel_dp);
+>  	temp = I915_READ(TRANS_DDI_FUNC_CTL(cpu_transcoder));
+> -	if (state == true)
+> +	if (state)
+>  		temp |= TRANS_DDI_DP_VC_PAYLOAD_ALLOC;
+>  	else
+>  		temp &= ~TRANS_DDI_DP_VC_PAYLOAD_ALLOC;
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> index aa515261cb9f..93140c75386a 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -4958,7 +4958,7 @@ intel_dp_check_mst_status(struct intel_dp *intel_dp)
+>  		WARN_ON_ONCE(intel_dp->active_mst_links < 0);
+>  		bret = intel_dp_get_sink_irq_esi(intel_dp, esi);
+>  go_again:
+> -		if (bret == true) {
+> +		if (bret) {
 >  
-> +	if (drm_dp_has_quirk(&intel_dp->desc, DP_DPCD_QUIRK_SYNCHRONIZATION_LATENCY)) {
-> +		DRM_DEBUG_KMS("AUO PSR2 panel need more synchronization latency\n");
-> +		if (dev_priv->psr.sink_sync_latency == 0)
-> +			dev_priv->psr.sink_sync_latency = 8;
-> +	}
-> +
->  	dev_priv->psr.dp = intel_dp;
+>  			/* check link status - esi[10] = 0x200c */
+>  			if (intel_dp->active_mst_links > 0 &&
+> diff --git a/drivers/gpu/drm/i915/display/intel_sdvo.c b/drivers/gpu/drm/i915/display/intel_sdvo.c
+> index 47f5d87a938a..cff254c52f5e 100644
+> --- a/drivers/gpu/drm/i915/display/intel_sdvo.c
+> +++ b/drivers/gpu/drm/i915/display/intel_sdvo.c
+> @@ -3292,8 +3292,8 @@ bool intel_sdvo_init(struct drm_i915_private *dev_priv,
+>  	if (!intel_sdvo_get_capabilities(intel_sdvo, &intel_sdvo->caps))
+>  		goto err;
 >  
->  	if (INTEL_GEN(dev_priv) >= 9 &&
-> diff --git a/include/drm/drm_dp_helper.h b/include/drm/drm_dp_helper.h
-> index 8f8f3632e697..6018b79f2d61 100644
-> --- a/include/drm/drm_dp_helper.h
-> +++ b/include/drm/drm_dp_helper.h
-> @@ -1522,6 +1522,15 @@ enum drm_dp_quirk {
->  	 * The driver should ignore SINK_COUNT during detection.
->  	 */
->  	DP_DPCD_QUIRK_NO_SINK_COUNT,
-> +	/**
-> +	 * @DP_DPCD_QUIRK_SYNCHRONIZATION_LATENCY
-> +	 *
-> +	 * The Helios AUO PSR2 panel requires more number of frames on PSR exit,
-> +	 * to synchronize to the Source device-provided timing. Currently DPCD
-> +	 * 0x2009 offset in TCON has the value of 0. Increasing this value to 8
-> +	 * till this gets fixed in TCON of the panel.
-> +	 */
-> +	DP_DPCD_QUIRK_SYNCHRONIZATION_LATENCY,
->  };
->  
->  /**
+> -	if (intel_sdvo_output_setup(intel_sdvo,
+> -				    intel_sdvo->caps.output_flags) != true) {
+> +	if (!intel_sdvo_output_setup(intel_sdvo,
+> +				     intel_sdvo->caps.output_flags)) {
+>  		DRM_DEBUG_KMS("SDVO output failed to setup on %s\n",
+>  			      SDVO_NAME(intel_sdvo));
+>  		/* Output_setup can leave behind connectors! */
 
 -- 
 Jani Nikula, Intel Open Source Graphics Center
