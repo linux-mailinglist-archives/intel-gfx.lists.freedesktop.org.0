@@ -1,32 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A478D12E66B
-	for <lists+intel-gfx@lfdr.de>; Thu,  2 Jan 2020 14:17:54 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id EE83C12E66C
+	for <lists+intel-gfx@lfdr.de>; Thu,  2 Jan 2020 14:17:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 06E5B6E0E1;
-	Thu,  2 Jan 2020 13:17:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 18AAD6E0E7;
+	Thu,  2 Jan 2020 13:17:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8DD5E6E0E1
- for <intel-gfx@lists.freedesktop.org>; Thu,  2 Jan 2020 13:17:51 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 709FB6E0E1
+ for <intel-gfx@lists.freedesktop.org>; Thu,  2 Jan 2020 13:17:52 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19749375-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19749376-1500050 
  for multiple; Thu, 02 Jan 2020 13:17:09 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu,  2 Jan 2020 13:17:06 +0000
-Message-Id: <20200102131707.1463945-4-chris@chris-wilson.co.uk>
+Date: Thu,  2 Jan 2020 13:17:07 +0000
+Message-Id: <20200102131707.1463945-5-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.25.0.rc0
 In-Reply-To: <20200102131707.1463945-1-chris@chris-wilson.co.uk>
 References: <20200102131707.1463945-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 4/5] drm/i915/gt: Discard stale context state
- from across idling
+Subject: [Intel-gfx] [PATCH 5/5] drm/i915/gt: Always poison the
+ kernel_context image before unparking
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,95 +39,90 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Matthew Auld <matthew.auld@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Before we idle, on parking, we switch to the kernel context such that we
-have a scratch context loaded while the GPU idle, protecting any
-precious user state. Be paranoid and assume that the idle state may have
-been trashed, and reset the kernel_context image after idling.
+Keep scrubbing the kernel_context image with poison before we reset it
+in order to demonstrate that we will be resilient in the case where it
+is accidentally overwritten on idle.
 
+Suggested-by: Imre Deak <imre.deak@intel.com>
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 Cc: Imre Deak <imre.deak@intel.com>
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
 Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/gt/intel_engine_pm.c | 6 ++++++
- drivers/gpu/drm/i915/gt/intel_gt_pm.c     | 8 --------
- drivers/gpu/drm/i915/gt/mock_engine.c     | 5 +++++
- 3 files changed, 11 insertions(+), 8 deletions(-)
+ drivers/gpu/drm/i915/gt/intel_context_types.h |  2 ++
+ drivers/gpu/drm/i915/gt/intel_engine_pm.c     | 18 +++++++++++++++++-
+ drivers/gpu/drm/i915/gt/intel_lrc.c           |  4 ++--
+ 3 files changed, 21 insertions(+), 3 deletions(-)
 
+diff --git a/drivers/gpu/drm/i915/gt/intel_context_types.h b/drivers/gpu/drm/i915/gt/intel_context_types.h
+index 9527a659546c..ca1420fb8b53 100644
+--- a/drivers/gpu/drm/i915/gt/intel_context_types.h
++++ b/drivers/gpu/drm/i915/gt/intel_context_types.h
+@@ -17,6 +17,8 @@
+ #include "intel_engine_types.h"
+ #include "intel_sseu.h"
+ 
++#define CONTEXT_REDZONE POISON_INUSE
++
+ struct i915_gem_context;
+ struct i915_vma;
+ struct intel_context;
 diff --git a/drivers/gpu/drm/i915/gt/intel_engine_pm.c b/drivers/gpu/drm/i915/gt/intel_engine_pm.c
-index cd82f0baef49..1b9f73948f22 100644
+index 1b9f73948f22..ea90ab3e396e 100644
 --- a/drivers/gpu/drm/i915/gt/intel_engine_pm.c
 +++ b/drivers/gpu/drm/i915/gt/intel_engine_pm.c
-@@ -20,6 +20,7 @@ static int __engine_unpark(struct intel_wakeref *wf)
- {
- 	struct intel_engine_cs *engine =
- 		container_of(wf, typeof(*engine), wakeref);
-+	struct intel_context *ce;
- 	void *map;
+@@ -37,8 +37,24 @@ static int __engine_unpark(struct intel_wakeref *wf)
  
- 	ENGINE_TRACE(engine, "\n");
-@@ -34,6 +35,11 @@ static int __engine_unpark(struct intel_wakeref *wf)
- 	if (!IS_ERR_OR_NULL(map))
- 		engine->pinned_default_state = map;
- 
-+	/* Discard stale context state from across idling */
-+	ce = engine->kernel_context;
-+	if (ce)
-+		ce->ops->reset(ce);
+ 	/* Discard stale context state from across idling */
+ 	ce = engine->kernel_context;
+-	if (ce)
++	if (ce) {
++		GEM_BUG_ON(test_bit(CONTEXT_VALID_BIT, &ce->flags));
 +
++		/* First poison the image to verify we never fully trust it */
++		if (IS_ENABLED(CONFIG_DRM_I915_DEBUG_GEM) && ce->state) {
++			struct drm_i915_gem_object *obj = ce->state->obj;
++			int type = i915_coherent_map_type(engine->i915);
++
++			map = i915_gem_object_pin_map(obj, type);
++			if (!IS_ERR(map)) {
++				memset(map, CONTEXT_REDZONE, obj->base.size);
++				i915_gem_object_flush_map(obj);
++				i915_gem_object_unpin_map(obj);
++			}
++		}
++
+ 		ce->ops->reset(ce);
++	}
+ 
  	if (engine->unpark)
  		engine->unpark(engine);
+diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+index b21a191bda3b..170b5a0139a3 100644
+--- a/drivers/gpu/drm/i915/gt/intel_lrc.c
++++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+@@ -2507,7 +2507,7 @@ set_redzone(void *vaddr, const struct intel_engine_cs *engine)
  
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_pm.c b/drivers/gpu/drm/i915/gt/intel_gt_pm.c
-index 9b220c930ebc..d1c2f034296a 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt_pm.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_pm.c
-@@ -213,16 +213,8 @@ int intel_gt_resume(struct intel_gt *gt)
- 	intel_llc_enable(&gt->llc);
+ 	vaddr += engine->context_size;
  
- 	for_each_engine(engine, gt, id) {
--		struct intel_context *ce;
--
- 		intel_engine_pm_get(engine);
- 
--		ce = engine->kernel_context;
--		if (ce) {
--			GEM_BUG_ON(!intel_context_is_pinned(ce));
--			ce->ops->reset(ce);
--		}
--
- 		engine->serial++; /* kernel context lost */
- 		err = engine->resume(engine);
- 
-diff --git a/drivers/gpu/drm/i915/gt/mock_engine.c b/drivers/gpu/drm/i915/gt/mock_engine.c
-index 4e1eafa94be9..d0e68ce9aa51 100644
---- a/drivers/gpu/drm/i915/gt/mock_engine.c
-+++ b/drivers/gpu/drm/i915/gt/mock_engine.c
-@@ -152,6 +152,10 @@ static int mock_context_pin(struct intel_context *ce)
- 	return intel_context_active_acquire(ce);
+-	memset(vaddr, POISON_INUSE, I915_GTT_PAGE_SIZE);
++	memset(vaddr, CONTEXT_REDZONE, I915_GTT_PAGE_SIZE);
  }
  
-+static void mock_context_reset(struct intel_context *ce)
-+{
-+}
-+
- static const struct intel_context_ops mock_context_ops = {
- 	.alloc = mock_context_alloc,
+ static void
+@@ -2518,7 +2518,7 @@ check_redzone(const void *vaddr, const struct intel_engine_cs *engine)
  
-@@ -161,6 +165,7 @@ static const struct intel_context_ops mock_context_ops = {
- 	.enter = intel_context_enter_engine,
- 	.exit = intel_context_exit_engine,
+ 	vaddr += engine->context_size;
  
-+	.reset = mock_context_reset,
- 	.destroy = mock_context_destroy,
- };
- 
+-	if (memchr_inv(vaddr, POISON_INUSE, I915_GTT_PAGE_SIZE))
++	if (memchr_inv(vaddr, CONTEXT_REDZONE, I915_GTT_PAGE_SIZE))
+ 		dev_err_once(engine->i915->drm.dev,
+ 			     "%s context redzone overwritten!\n",
+ 			     engine->name);
 -- 
 2.25.0.rc0
 
