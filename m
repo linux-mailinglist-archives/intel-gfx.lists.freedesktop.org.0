@@ -2,38 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8AF0412E6E8
-	for <lists+intel-gfx@lfdr.de>; Thu,  2 Jan 2020 14:47:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 87A7312E6EC
+	for <lists+intel-gfx@lfdr.de>; Thu,  2 Jan 2020 14:48:38 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 60F976E0ED;
-	Thu,  2 Jan 2020 13:47:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D86796E0EF;
+	Thu,  2 Jan 2020 13:48:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DCDCC6E0ED
- for <intel-gfx@lists.freedesktop.org>; Thu,  2 Jan 2020 13:47:13 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AF8F06E0EF
+ for <intel-gfx@lists.freedesktop.org>; Thu,  2 Jan 2020 13:48:35 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga106.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 02 Jan 2020 05:47:12 -0800
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 02 Jan 2020 05:48:35 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,387,1571727600"; d="scan'208";a="270322401"
-Received: from zeliteleevi.tm.intel.com ([10.237.55.130])
- by FMSMGA003.fm.intel.com with ESMTP; 02 Jan 2020 05:47:10 -0800
-Date: Thu, 2 Jan 2020 15:47:10 +0200 (EET)
-From: Kai Vehmanen <kai.vehmanen@linux.intel.com>
-X-X-Sender: kvehmane@zeliteleevi
-To: Matt Roper <matthew.d.roper@intel.com>
-In-Reply-To: <20191231170157.GV2877816@mdroper-desk1.amr.corp.intel.com>
-Message-ID: <alpine.DEB.2.21.2001021524460.16459@zeliteleevi>
-References: <20191231144718.32127-1-kai.vehmanen@linux.intel.com>
- <20191231170157.GV2877816@mdroper-desk1.amr.corp.intel.com>
-User-Agent: Alpine 2.21 (DEB 202 2017-01-01)
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7 02160 Espoo
+X-IronPort-AV: E=Sophos;i="5.69,387,1571727600"; d="scan'208";a="252258704"
+Received: from irsmsx102.ger.corp.intel.com ([163.33.3.155])
+ by fmsmga002.fm.intel.com with ESMTP; 02 Jan 2020 05:48:34 -0800
+Received: from irsmsx155.ger.corp.intel.com (163.33.192.3) by
+ IRSMSX102.ger.corp.intel.com (163.33.3.155) with Microsoft SMTP Server (TLS)
+ id 14.3.439.0; Thu, 2 Jan 2020 13:48:33 +0000
+Received: from irsmsx102.ger.corp.intel.com ([169.254.2.130]) by
+ irsmsx155.ger.corp.intel.com ([169.254.14.75]) with mapi id 14.03.0439.000;
+ Thu, 2 Jan 2020 13:48:33 +0000
+From: "Kahola, Mika" <mika.kahola@intel.com>
+To: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "Deak, Imre" <imre.deak@intel.com>
+Thread-Topic: [PATCH 4/7] drm/i915: Make sure plane dims are correct for UV
+ CCS planes
+Thread-Index: AQHVwDNv7z3FYpc1I0WmG6WkTxRn1afXZjyA
+Date: Thu, 2 Jan 2020 13:48:32 +0000
+Message-ID: <5f9cdacb34bab6ce32653732c045b4ade7228231.camel@intel.com>
+References: <20191231233756.18753-1-imre.deak@intel.com>
+ <20191231233756.18753-5-imre.deak@intel.com>
+In-Reply-To: <20191231233756.18753-5-imre.deak@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.237.72.159]
+Content-ID: <D246B7271CFABC43B914689B730C3A91@intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: save state of AUD_FREQ_CNTRL on
- all gen9+ platforms
+Subject: Re: [Intel-gfx] [PATCH 4/7] drm/i915: Make sure plane dims are
+ correct for UV CCS planes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,40 +59,63 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: "Pandiyan, Dhinakaran" <dhinakaran.pandiyan@intel.com>
+Content-Type: text/plain; charset="iso-8859-15"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hey,
+On Wed, 2020-01-01 at 01:37 +0200, Imre Deak wrote:
+> As intel_fb_plane_get_subsampling() returns the subsampling factor
+> wrt.
+> its main plane, for a CCS plane we need to apply both the main and
+> the
+> CCS plane's subsampling factor on the FB's dimensions to get the CCS
+> plane's dimensions.
+> =
 
-On Tue, 31 Dec 2019, Matt Roper wrote:
+> Cc: Dhinakaran Pandiyan <dhinakaran.pandiyan@intel.com>
+> Cc: Mika Kahola <mika.kahola@intel.com>
+> Cc: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
+> Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> Cc: Matt Roper <matthew.d.roper@intel.com>
+> Signed-off-by: Imre Deak <imre.deak@intel.com>
 
-> On Tue, Dec 31, 2019 at 04:47:18PM +0200, Kai Vehmanen wrote:
-> > On old platforms the default values of AUD_FREQ_CNTRL are
-> > typically used (as set by BIOS), so this has not been an issue,
-> > but future platforms will definitely need this. Extend the state
-> > save logic to cover all gen9+ platforms.
-[...]
-> Given that the lack of this save/restore was causing noticeable problems
-> on ICL/TGL, do you know whether the same problems were also seen on
-> EHL/JSL?  If so, we may want Cc: stable and Fixes: tags so that it gets
-> backported?
+Reviewed-by: Mika Kahola <mika.kahola@intel.com>
 
-the fix is most critical for TGL and later (due to changed hw default 
-values gen12 display onwards). For EHL/JSL, this would seem less important 
-as systems are shipping using the hw default configuration in which case 
-this patch is not needed. Based on current data, I'd probably skip the Cc 
-stable at this point as TGL is already covered -- or limit to "v5.5+". 
+> ---
+>  drivers/gpu/drm/i915/display/intel_display.c | 8 ++++++--
+>  1 file changed, 6 insertions(+), 2 deletions(-)
+> =
 
-PS A newbie question, if decision is to cc stable, should I add it as the 
-   original submitted and resend V2, or are stable tags typically
-   added by the intel-gfx maintainers when applying a patch (i.e. no 
-   actions needed from me). In sound tree, latter seems to be the norm..
-   I see both conventions used here on intel-gfx.
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c
+> b/drivers/gpu/drm/i915/display/intel_display.c
+> index 2c2450d3469b..d5128e900660 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -2913,11 +2913,15 @@ intel_fb_check_ccs_xy(struct drm_framebuffer
+> *fb, int ccs_plane, int x, int y)
+>  static void
+>  intel_fb_plane_dims(int *w, int *h, struct drm_framebuffer *fb, int
+> color_plane)
+>  {
+> +	int main_plane =3D is_ccs_plane(fb, color_plane) ?
+> +			 ccs_to_main_plane(fb, color_plane) : 0;
+> +	int main_hsub, main_vsub;
+>  	int hsub, vsub;
+>  =
 
-Br, Kai
+> +	intel_fb_plane_get_subsampling(&main_hsub, &main_vsub, fb,
+> main_plane);
+>  	intel_fb_plane_get_subsampling(&hsub, &vsub, fb, color_plane);
+> -	*w =3D fb->width / hsub;
+> -	*h =3D fb->height / vsub;
+> +	*w =3D fb->width / main_hsub / hsub;
+> +	*h =3D fb->height / main_vsub / vsub;
+>  }
+>  =
+
+>  /*
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
