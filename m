@@ -1,32 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E924112E0FE
-	for <lists+intel-gfx@lfdr.de>; Thu,  2 Jan 2020 00:21:11 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id DD4D612E343
+	for <lists+intel-gfx@lfdr.de>; Thu,  2 Jan 2020 08:19:34 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 643E789B29;
-	Wed,  1 Jan 2020 23:21:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DAF1089AB5;
+	Thu,  2 Jan 2020 07:19:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 661A2899F2;
- Wed,  1 Jan 2020 23:21:08 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 568BEA0BCB;
- Wed,  1 Jan 2020 23:21:08 +0000 (UTC)
+Received: from mail-wm1-x344.google.com (mail-wm1-x344.google.com
+ [IPv6:2a00:1450:4864:20::344])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2E9D389AB5
+ for <intel-gfx@lists.freedesktop.org>; Thu,  2 Jan 2020 07:19:31 +0000 (UTC)
+Received: by mail-wm1-x344.google.com with SMTP id p17so4852628wmb.0
+ for <intel-gfx@lists.freedesktop.org>; Wed, 01 Jan 2020 23:19:31 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=9k2Iqv39CgscqCrOHFiuB3PB/a0qkJncEs9DV24tkAc=;
+ b=Vb/XhP7vebQvl7dwRWzI4brNPdl3pMUe7Ji3zoMWF2Z7MmqsBccLCPvuqIoK1PrBG0
+ hJ78M4gIiauRaJEBO3j9DWftsqxIDDUDwe2RKjWILGCPolqjxEmDO8pWZ6LIBKdLhHCb
+ nxyxFZcM1S2z+Esa+rx3kbMKow0bYz+zd33BjXL858J2X+MHd3EXjHbFRZfdn6utxP2Q
+ tneC+ubSMl40UYiFUclQtijz+uBkNBWSLwUT8GXfIH0qw1VLqMueMV0OzKV5NaNneA5o
+ RLJVCPKyOsGQlj0VgALojBHXViOB9rLD7T1kX1YjTMcY+Yh8T0g1OPPWlur8iuGZVs1o
+ dd5Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=9k2Iqv39CgscqCrOHFiuB3PB/a0qkJncEs9DV24tkAc=;
+ b=uT7pPGM675hxIMEiQMzc9JBOKEcSBpap6mdRQtNFU7rOLltrSbN+ZK9sINyU3mW7H4
+ wydP7JGjcnBxBcGej0klBqL0Exh7StLwrRzIrLkGoZFcD7Y/xKYi795qJ01FD9RvywT9
+ ypK+AOjqU/EofkMBSJfM5oJepcQ8xh619pSN76dROIqnHvsJmoYJF8gYmZDLICiQCnue
+ LAv4zf0Jtcpvq1LdTBQ1sJyCRDoNStS2E1bH+ybdFsMOlozhv7N6k/4hg/KFzZUvC2VL
+ DsUaqKTo/J0f7wBLWnQr9xbf4qOGJPiIUV5NKM7mHTh9MW9xCQmTqVAkFXzW9QcL3Jqf
+ gDzg==
+X-Gm-Message-State: APjAAAUvLKa8VgvpYqpiVQEhZ6HVlImf19E3m9IJYFgBiUNQwNpX32E7
+ sARrNEDKyO5FknYYIzf73BY3j+hAnlOsYrOrpxs=
+X-Google-Smtp-Source: APXvYqzi9cjmmtQzWwesUXQ9bOPZgBwykY/ej+ejtQw3DygHPQUEPCHwEy3ZUvmufQfIgfZ2O2YF85weTFTaJI+6jFs=
+X-Received: by 2002:a1c:1f51:: with SMTP id f78mr12369702wmf.60.1577949569767; 
+ Wed, 01 Jan 2020 23:19:29 -0800 (PST)
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Wed, 01 Jan 2020 23:21:08 -0000
-Message-ID: <157792086832.5187.6825948990446805407@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200101220736.1073007-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200101220736.1073007-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5B1/2=5D_drm/i915/gem=3A_Single_page_objects?=
- =?utf-8?q?_are_naturally_contiguous_=28rev2=29?=
+References: <20191223195850.25997-1-lucas.demarchi@intel.com>
+ <20191223195850.25997-5-lucas.demarchi@intel.com> <87tv5glstg.fsf@intel.com>
+In-Reply-To: <87tv5glstg.fsf@intel.com>
+From: Lucas De Marchi <lucas.de.marchi@gmail.com>
+Date: Wed, 1 Jan 2020 23:19:17 -0800
+Message-ID: <CAKi4VAKOSLS-mKFgEsBHjw66ZoTXjWdZucgsK3Ogc+OkbPKZ3w@mail.gmail.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Subject: Re: [Intel-gfx] [PATCH 4/9] drm/i915/display: start
+ description-based ddi initialization
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,149 +62,195 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Intel Graphics <intel-gfx@lists.freedesktop.org>,
+ Lucas De Marchi <lucas.demarchi@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Tue, Dec 31, 2019 at 1:58 AM Jani Nikula <jani.nikula@linux.intel.com> wrote:
+>
+> On Mon, 23 Dec 2019, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
+> > For the latest platforms we can share the logic to initialize the the
+> > ddi, so start moving the most trivial ones to a new setup_outputs_desc()
+> > function that will be responsible for initialization according to a
+> > static const table.
+> >
+> > Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_display.c  | 96 +++++++++++++------
+> >  .../drm/i915/display/intel_display_types.h    |  4 +
+> >  2 files changed, 73 insertions(+), 27 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> > index 04819b0bd494..b3fb1e03cb0b 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_display.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> > @@ -16221,6 +16221,72 @@ static void intel_pps_init(struct drm_i915_private *dev_priv)
+> >       intel_pps_unlock_regs_wa(dev_priv);
+> >  }
+> >
+> > +struct intel_output {
+> > +     /* Initialize DSI if present */
+> > +     void (*dsi_init)(struct drm_i915_private *i915);
+>
+> We'll need to be able to initialize DSI on multiple ports too. I've
+> already drafted a series to do so, maybe I've even sent it to the
+> list. Basically you'd pass the port to icl_dsi_init() too.
+>
+> I don't want that development to get any more complicated than it
+> already is.
 
-Series: series starting with [1/2] drm/i915/gem: Single page objects are naturally contiguous (rev2)
-URL   : https://patchwork.freedesktop.org/series/71549/
-State : success
+Right now this is just working with what is there. I don't see a problem
+to update this series with the additional port argument, but let's
+keep the series
+independent from each other.
 
-== Summary ==
+Lucas De Marchi
 
-CI Bug Log - changes from CI_DRM_7663 -> Patchwork_15972
-====================================================
+>
+> BR,
+> Jani.
+>
+>
+> > +     struct intel_ddi_port_info ddi_ports[];
+> > +};
+> > +
+> > +static const struct intel_output tgl_output = {
+> > +     .dsi_init = icl_dsi_init,
+> > +     .ddi_ports = {
+> > +             { .port = PORT_A },
+> > +             { .port = PORT_B },
+> > +             { .port = PORT_D },
+> > +             { .port = PORT_E },
+> > +             { .port = PORT_F },
+> > +             { .port = PORT_G },
+> > +             { .port = PORT_H },
+> > +             { .port = PORT_I },
+> > +             { .port = PORT_NONE }
+> > +     }
+> > +};
+> > +
+> > +static const struct intel_output ehl_output = {
+> > +     .dsi_init = icl_dsi_init,
+> > +     .ddi_ports = {
+> > +             { .port = PORT_A },
+> > +             { .port = PORT_B },
+> > +             { .port = PORT_C },
+> > +             { .port = PORT_D },
+> > +             { .port = PORT_NONE }
+> > +     }
+> > +};
+> > +
+> > +static const struct intel_output gen9lp_output = {
+> > +     .dsi_init = vlv_dsi_init,
+> > +     .ddi_ports = {
+> > +             { .port = PORT_A },
+> > +             { .port = PORT_B },
+> > +             { .port = PORT_C },
+> > +             { .port = PORT_NONE }
+> > +     },
+> > +};
+> > +
+> > +/*
+> > + * Use a description-based approach for platforms that can be supported with a
+> > + * static table
+> > + */
+> > +static void setup_ddi_outputs_desc(struct drm_i915_private *i915)
+> > +{
+> > +     const struct intel_output *output;
+> > +     const struct intel_ddi_port_info *port_info;
+> > +
+> > +     if (INTEL_GEN(i915) >= 12)
+> > +             output = &tgl_output;
+> > +     else if (IS_ELKHARTLAKE(i915))
+> > +             output = &ehl_output;
+> > +     else if (IS_GEN9_LP(i915))
+> > +             output = &gen9lp_output;
+> > +
+> > +     for (port_info = output->ddi_ports;
+> > +          port_info->port != PORT_NONE; port_info++)
+> > +             intel_ddi_init(i915, port_info->port);
+> > +
+> > +     if (output->dsi_init)
+> > +             output->dsi_init(i915);
+> > +}
+> > +
+> >  static void intel_setup_outputs(struct drm_i915_private *dev_priv)
+> >  {
+> >       struct intel_encoder *encoder;
+> > @@ -16231,22 +16297,9 @@ static void intel_setup_outputs(struct drm_i915_private *dev_priv)
+> >       if (!HAS_DISPLAY(dev_priv) || !INTEL_DISPLAY_ENABLED(dev_priv))
+> >               return;
+> >
+> > -     if (INTEL_GEN(dev_priv) >= 12) {
+> > -             intel_ddi_init(dev_priv, PORT_A);
+> > -             intel_ddi_init(dev_priv, PORT_B);
+> > -             intel_ddi_init(dev_priv, PORT_D);
+> > -             intel_ddi_init(dev_priv, PORT_E);
+> > -             intel_ddi_init(dev_priv, PORT_F);
+> > -             intel_ddi_init(dev_priv, PORT_G);
+> > -             intel_ddi_init(dev_priv, PORT_H);
+> > -             intel_ddi_init(dev_priv, PORT_I);
+> > -             icl_dsi_init(dev_priv);
+> > -     } else if (IS_ELKHARTLAKE(dev_priv)) {
+> > -             intel_ddi_init(dev_priv, PORT_A);
+> > -             intel_ddi_init(dev_priv, PORT_B);
+> > -             intel_ddi_init(dev_priv, PORT_C);
+> > -             intel_ddi_init(dev_priv, PORT_D);
+> > -             icl_dsi_init(dev_priv);
+> > +     if (INTEL_GEN(dev_priv) >= 12 || IS_ELKHARTLAKE(dev_priv) ||
+> > +         IS_GEN9_LP(dev_priv)) {
+> > +             setup_ddi_outputs_desc(dev_priv);
+> >       } else if (IS_GEN(dev_priv, 11)) {
+> >               intel_ddi_init(dev_priv, PORT_A);
+> >               intel_ddi_init(dev_priv, PORT_B);
+> > @@ -16263,17 +16316,6 @@ static void intel_setup_outputs(struct drm_i915_private *dev_priv)
+> >                       intel_ddi_init(dev_priv, PORT_F);
+> >
+> >               icl_dsi_init(dev_priv);
+> > -     } else if (IS_GEN9_LP(dev_priv)) {
+> > -             /*
+> > -              * FIXME: Broxton doesn't support port detection via the
+> > -              * DDI_BUF_CTL_A or SFUSE_STRAP registers, find another way to
+> > -              * detect the ports.
+> > -              */
+> > -             intel_ddi_init(dev_priv, PORT_A);
+> > -             intel_ddi_init(dev_priv, PORT_B);
+> > -             intel_ddi_init(dev_priv, PORT_C);
+> > -
+> > -             vlv_dsi_init(dev_priv);
+> >       } else if (HAS_DDI(dev_priv)) {
+> >               int found;
+> >
+> > diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+> > index a3a067dacf84..4d2f4ee35812 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> > +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> > @@ -1376,6 +1376,10 @@ struct intel_dp_mst_encoder {
+> >       struct intel_connector *connector;
+> >  };
+> >
+> > +struct intel_ddi_port_info {
+> > +     enum port port;
+> > +};
+> > +
+> >  static inline enum dpio_channel
+> >  vlv_dig_port_to_channel(struct intel_digital_port *dig_port)
+> >  {
+>
+> --
+> Jani Nikula, Intel Open Source Graphics Center
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15972/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_15972 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_module_load@reload-with-fault-injection:
-    - fi-bxt-dsi:         [PASS][1] -> [INCOMPLETE][2] ([fdo#103927])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7663/fi-bxt-dsi/igt@i915_module_load@reload-with-fault-injection.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15972/fi-bxt-dsi/igt@i915_module_load@reload-with-fault-injection.html
-    - fi-cfl-8700k:       [PASS][3] -> [INCOMPLETE][4] ([i915#505])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7663/fi-cfl-8700k/igt@i915_module_load@reload-with-fault-injection.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15972/fi-cfl-8700k/igt@i915_module_load@reload-with-fault-injection.html
-
-  * igt@i915_selftest@live_blt:
-    - fi-hsw-4770:        [PASS][5] -> [DMESG-FAIL][6] ([i915#553] / [i915#725])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7663/fi-hsw-4770/igt@i915_selftest@live_blt.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15972/fi-hsw-4770/igt@i915_selftest@live_blt.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_close_race@basic-threads:
-    - fi-byt-j1900:       [TIMEOUT][7] ([i915#816]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7663/fi-byt-j1900/igt@gem_close_race@basic-threads.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15972/fi-byt-j1900/igt@gem_close_race@basic-threads.html
-
-  * igt@i915_module_load@reload-with-fault-injection:
-    - fi-skl-6700k2:      [INCOMPLETE][9] ([i915#671]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7663/fi-skl-6700k2/igt@i915_module_load@reload-with-fault-injection.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15972/fi-skl-6700k2/igt@i915_module_load@reload-with-fault-injection.html
-
-  * igt@i915_selftest@live_blt:
-    - fi-hsw-peppy:       [DMESG-FAIL][11] ([i915#553] / [i915#725]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7663/fi-hsw-peppy/igt@i915_selftest@live_blt.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15972/fi-hsw-peppy/igt@i915_selftest@live_blt.html
-
-  * igt@i915_selftest@live_coherency:
-    - fi-cfl-guc:         [DMESG-FAIL][13] ([i915#889]) -> [PASS][14] +5 similar issues
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7663/fi-cfl-guc/igt@i915_selftest@live_coherency.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15972/fi-cfl-guc/igt@i915_selftest@live_coherency.html
-
-  * igt@i915_selftest@live_gt_timelines:
-    - fi-cfl-guc:         [DMESG-WARN][15] ([i915#889]) -> [PASS][16] +16 similar issues
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7663/fi-cfl-guc/igt@i915_selftest@live_gt_timelines.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15972/fi-cfl-guc/igt@i915_selftest@live_gt_timelines.html
-
-  * igt@kms_pipe_crc_basic@read-crc-pipe-a:
-    - fi-icl-dsi:         [DMESG-WARN][17] ([i915#109]) -> [PASS][18]
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7663/fi-icl-dsi/igt@kms_pipe_crc_basic@read-crc-pipe-a.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15972/fi-icl-dsi/igt@kms_pipe_crc_basic@read-crc-pipe-a.html
-
-  
-#### Warnings ####
-
-  * igt@i915_selftest@live_gem_contexts:
-    - fi-cfl-guc:         [DMESG-WARN][19] ([i915#889]) -> [INCOMPLETE][20] ([fdo#106070] / [i915#424])
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7663/fi-cfl-guc/igt@i915_selftest@live_gem_contexts.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15972/fi-cfl-guc/igt@i915_selftest@live_gem_contexts.html
-
-  * igt@kms_flip@basic-flip-vs-modeset:
-    - fi-kbl-x1275:       [DMESG-WARN][21] ([i915#62] / [i915#92] / [i915#95]) -> [DMESG-WARN][22] ([i915#62] / [i915#92]) +10 similar issues
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7663/fi-kbl-x1275/igt@kms_flip@basic-flip-vs-modeset.html
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15972/fi-kbl-x1275/igt@kms_flip@basic-flip-vs-modeset.html
-
-  * igt@kms_force_connector_basic@prune-stale-modes:
-    - fi-kbl-x1275:       [DMESG-WARN][23] ([i915#62] / [i915#92]) -> [DMESG-WARN][24] ([i915#62] / [i915#92] / [i915#95]) +3 similar issues
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7663/fi-kbl-x1275/igt@kms_force_connector_basic@prune-stale-modes.html
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15972/fi-kbl-x1275/igt@kms_force_connector_basic@prune-stale-modes.html
-
-  
-  [fdo#103927]: https://bugs.freedesktop.org/show_bug.cgi?id=103927
-  [fdo#106070]: https://bugs.freedesktop.org/show_bug.cgi?id=106070
-  [i915#109]: https://gitlab.freedesktop.org/drm/intel/issues/109
-  [i915#424]: https://gitlab.freedesktop.org/drm/intel/issues/424
-  [i915#505]: https://gitlab.freedesktop.org/drm/intel/issues/505
-  [i915#553]: https://gitlab.freedesktop.org/drm/intel/issues/553
-  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
-  [i915#671]: https://gitlab.freedesktop.org/drm/intel/issues/671
-  [i915#725]: https://gitlab.freedesktop.org/drm/intel/issues/725
-  [i915#816]: https://gitlab.freedesktop.org/drm/intel/issues/816
-  [i915#889]: https://gitlab.freedesktop.org/drm/intel/issues/889
-  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
-  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
 
 
-Participating hosts (43 -> 41)
-------------------------------
-
-  Additional (7): fi-bdw-5557u fi-bsw-n3050 fi-skl-6770hq fi-ivb-3770 fi-skl-lmem fi-bsw-nick fi-kbl-r 
-  Missing    (9): fi-hsw-4770r fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-bwr-2160 fi-ctg-p8600 fi-blb-e6850 fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_7663 -> Patchwork_15972
-
-  CI-20190529: 20190529
-  CI_DRM_7663: f062a18e0daf3d831fd816c27f74458ff36a1da9 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5357: a555a4b98f90dab655d24bb3d07e9291a8b8dac8 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_15972: c919d1f9de56044d566b8980ff897dafefbcfe5f @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-c919d1f9de56 drm/i915/gem: Support discontiguous lmem object maps
-478707d40550 drm/i915/gem: Single page objects are naturally contiguous
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15972/index.html
+-- 
+Lucas De Marchi
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
