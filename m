@@ -2,26 +2,28 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9EF5E12E4FC
-	for <lists+intel-gfx@lfdr.de>; Thu,  2 Jan 2020 11:32:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BBC5012E500
+	for <lists+intel-gfx@lfdr.de>; Thu,  2 Jan 2020 11:38:21 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1A2E26E038;
-	Thu,  2 Jan 2020 10:32:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 359FD89DE3;
+	Thu,  2 Jan 2020 10:38:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 422156E038
- for <intel-gfx@lists.freedesktop.org>; Thu,  2 Jan 2020 10:32:06 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0041D89DE3
+ for <intel-gfx@lists.freedesktop.org>; Thu,  2 Jan 2020 10:38:16 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19747491-1500050 
- for multiple; Thu, 02 Jan 2020 10:31:45 +0000
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19747569-1500050 
+ for multiple; Thu, 02 Jan 2020 10:37:57 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu,  2 Jan 2020 10:31:44 +0000
-Message-Id: <20200102103144.1320461-1-chris@chris-wilson.co.uk>
+Date: Thu,  2 Jan 2020 10:37:57 +0000
+Message-Id: <20200102103757.1344827-1-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.25.0.rc0
+In-Reply-To: <20200102103144.1320461-1-chris@chris-wilson.co.uk>
+References: <20200102103144.1320461-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
 Subject: [Intel-gfx] [PATCH] drm/i915/gem: Support discontiguous lmem object
  maps
@@ -51,10 +53,10 @@ Cc: Matthew Auld <matthew.auld@intel.com>
 ---
  drivers/gpu/drm/i915/gem/i915_gem_lmem.c      | 40 ----------
  drivers/gpu/drm/i915/gem/i915_gem_lmem.h      |  8 --
- drivers/gpu/drm/i915/gem/i915_gem_pages.c     | 74 +++++++++++--------
+ drivers/gpu/drm/i915/gem/i915_gem_pages.c     | 76 +++++++++++--------
  .../gpu/drm/i915/gem/selftests/huge_pages.c   | 41 +++++-----
- .../drm/i915/selftests/intel_memory_region.c  | 33 ++++-----
- 5 files changed, 73 insertions(+), 123 deletions(-)
+ .../drm/i915/selftests/intel_memory_region.c  | 33 ++++----
+ 5 files changed, 75 insertions(+), 123 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/gem/i915_gem_lmem.c b/drivers/gpu/drm/i915/gem/i915_gem_lmem.c
 index 520cc9cac471..70543c83df06 100644
@@ -127,7 +129,7 @@ index 7c176b8b7d2f..fc3f15580fe3 100644
  
  struct drm_i915_gem_object *
 diff --git a/drivers/gpu/drm/i915/gem/i915_gem_pages.c b/drivers/gpu/drm/i915/gem/i915_gem_pages.c
-index 75197ca696a8..b4d242f7001c 100644
+index 75197ca696a8..b5fa3b45cfa9 100644
 --- a/drivers/gpu/drm/i915/gem/i915_gem_pages.c
 +++ b/drivers/gpu/drm/i915/gem/i915_gem_pages.c
 @@ -158,9 +158,7 @@ static void __i915_gem_object_reset_page_iter(struct drm_i915_gem_object *obj)
@@ -164,8 +166,7 @@ index 75197ca696a8..b4d242f7001c 100644
 -	struct page *stack_pages[32];
 -	struct page **pages = stack_pages;
 -	unsigned long i = 0;
-+	pte_t *stack_ptes[32];
-+	pte_t **ptes = stack_ptes;
++	pte_t *stack[32], **mem;
 +	struct vm_struct *area;
  	pgprot_t pgprot;
 -	void *addr;
@@ -188,12 +189,13 @@ index 75197ca696a8..b4d242f7001c 100644
  		return kmap(sg_page(sgt->sgl));
  
 -	if (n_pages > ARRAY_SIZE(stack_pages)) {
-+	if (n_pte > ARRAY_SIZE(stack_ptes)) {
++	mem = stack;
++	if (n_pte > ARRAY_SIZE(stack)) {
  		/* Too big for stack -- allocate temporary array instead */
 -		pages = kvmalloc_array(n_pages, sizeof(*pages), GFP_KERNEL);
 -		if (!pages)
-+		ptes = kvmalloc_array(n_pte, sizeof(*ptes), GFP_KERNEL);
-+		if (!ptes)
++		mem = kvmalloc_array(n_pte, sizeof(*mem), GFP_KERNEL);
++		if (!mem)
  			return NULL;
  	}
  
@@ -202,16 +204,16 @@ index 75197ca696a8..b4d242f7001c 100644
 -
 -	/* Check that we have the expected number of pages */
 -	GEM_BUG_ON(i != n_pages);
-+	area = alloc_vm_area(obj->base.size, ptes);
++	area = alloc_vm_area(obj->base.size, mem);
 +	if (!area) {
-+		if (ptes != stack_ptes)
-+			kvfree(ptes);
++		if (mem != stack)
++			kvfree(mem);
 +		return NULL;
 +	}
  
  	switch (type) {
  	default:
-@@ -288,12 +284,26 @@ static void *i915_gem_object_map(struct drm_i915_gem_object *obj,
+@@ -288,12 +284,28 @@ static void *i915_gem_object_map(struct drm_i915_gem_object *obj,
  		pgprot = pgprot_writecombine(PAGE_KERNEL_IO);
  		break;
  	}
@@ -222,6 +224,7 @@ index 75197ca696a8..b4d242f7001c 100644
 +	if (i915_gem_object_has_struct_page(obj)) {
 +		struct sgt_iter iter;
 +		struct page *page;
++		pte_t **ptes = mem;
 +
 +		for_each_sgt_page(page, iter, sgt)
 +			**ptes++ = mk_pte(page, pgprot);
@@ -229,13 +232,14 @@ index 75197ca696a8..b4d242f7001c 100644
 +		const resource_size_t iomap = obj->mm.region->iomap.base;
 +		struct sgt_iter iter;
 +		dma_addr_t addr;
++		pte_t **ptes = mem;
 +
 +		for_each_sgt_daddr(addr, iter, sgt)
 +			**ptes++ = iomap_pte(iomap, addr, pgprot);
 +	}
 +
-+	if (ptes != stack_ptes)
-+		kvfree(ptes);
++	if (mem != stack)
++		kvfree(mem);
  
 -	return addr;
 +	return area->addr;
