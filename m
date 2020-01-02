@@ -2,38 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6634212E42E
-	for <lists+intel-gfx@lfdr.de>; Thu,  2 Jan 2020 10:04:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F51512E449
+	for <lists+intel-gfx@lfdr.de>; Thu,  2 Jan 2020 10:14:20 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 89C6489D40;
-	Thu,  2 Jan 2020 09:04:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2817489DBA;
+	Thu,  2 Jan 2020 09:14:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2A66D89D40;
- Thu,  2 Jan 2020 09:04:50 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 17DE589DA7;
+ Thu,  2 Jan 2020 09:14:12 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 02 Jan 2020 01:04:49 -0800
-X-IronPort-AV: E=Sophos;i="5.69,386,1571727600"; d="scan'208";a="214098037"
+ by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 02 Jan 2020 01:14:12 -0800
+X-IronPort-AV: E=Sophos;i="5.69,386,1571727600"; d="scan'208";a="214099775"
 Received: from jnikula-mobl3.fi.intel.com (HELO localhost) ([10.237.66.161])
  by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 02 Jan 2020 01:04:45 -0800
+ 02 Jan 2020 01:14:09 -0800
 From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Linus Walleij <linus.walleij@linaro.org>,
- Hans de Goede <hdegoede@redhat.com>
-In-Reply-To: <CACRpkdaXFSJVkWJGzsVcvbUA9gpgP0Vbkwf1H-HWw8s35R9XYQ@mail.gmail.com>
+To: Hans de Goede <hdegoede@redhat.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>, intel-gfx
+ <intel-gfx@lists.freedesktop.org>, Lee Jones <lee.jones@linaro.org>, Andy
+ Shevchenko <andriy.shevchenko@linux.intel.com>, Linus Walleij
+ <linus.walleij@linaro.org>
+In-Reply-To: <20191216205122.1850923-4-hdegoede@redhat.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20191216205122.1850923-1-hdegoede@redhat.com>
- <20191216205122.1850923-2-hdegoede@redhat.com>
- <CACRpkdaXFSJVkWJGzsVcvbUA9gpgP0Vbkwf1H-HWw8s35R9XYQ@mail.gmail.com>
-Date: Thu, 02 Jan 2020 11:04:43 +0200
-Message-ID: <875zhuut3o.fsf@intel.com>
+ <20191216205122.1850923-4-hdegoede@redhat.com>
+Date: Thu, 02 Jan 2020 11:14:06 +0200
+Message-ID: <871rsiuso1.fsf@intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v2 1/5] pinctrl: Allow modules to use
- pinctrl_[un]register_mappings
+Subject: Re: [Intel-gfx] [PATCH v2 3/5] drm/i915/dsi: Init panel-enable GPIO
+ to low when the LCD is initially off (v2)
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,67 +49,107 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "open list:DRM PANEL DRIVERS" <dri-devel@lists.freedesktop.org>, "open
- list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Lee Jones <lee.jones@linaro.org>
+Cc: linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ linux-gpio@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 30 Dec 2019, Linus Walleij <linus.walleij@linaro.org> wrote:
-> On Mon, Dec 16, 2019 at 9:51 PM Hans de Goede <hdegoede@redhat.com> wrote:
+On Mon, 16 Dec 2019, Hans de Goede <hdegoede@redhat.com> wrote:
+> When the LCD has not been turned on by the firmware/GOP, because e.g. the
+> device was booted with an external monitor connected over HDMI, we should
+> not turn on the panel-enable GPIO when we request it.
 >
->> Currently only the drivers/pinctrl/devicetree.c code allows registering
->> pinctrl-mappings which may later be unregistered, all other mappings
->> are assumed to be permanent.
->>
->> Non-dt platforms may also want to register pinctrl mappings from code which
->> is build as a module, which requires being able to unregister the mapping
->> when the module is unloaded to avoid dangling pointers.
->>
->> To allow unregistering the mappings the devicetree code uses 2 internal
->> functions: pinctrl_register_map and pinctrl_unregister_map.
->>
->> pinctrl_register_map allows the devicetree code to tell the core to
->> not memdup the mappings as it retains ownership of them and
->> pinctrl_unregister_map does the unregistering, note this only works
->> when the mappings where not memdupped.
->>
->> The only code relying on the memdup/shallow-copy done by
->> pinctrl_register_mappings is arch/arm/mach-u300/core.c this commit
->> replaces the __initdata with const, so that the shallow-copy is no
->> longer necessary.
->>
->> After that we can get rid of the internal pinctrl_unregister_map function
->> and just use pinctrl_register_mappings directly everywhere.
->>
->> This commit also renames pinctrl_unregister_map to
->> pinctrl_unregister_mappings so that its naming matches its
->> pinctrl_register_mappings counter-part and exports it.
->>
->> Together these 2 changes will allow non-dt platform code to
->> register pinctrl-mappings from modules without breaking things on
->> module unload (as they can now unregister the mapping on unload).
->>
->> Signed-off-by: Hans de Goede <hdegoede@redhat.com>
+> Turning on the panel-enable GPIO when we request it, means we turn it on
+> too early in the init-sequence, which causes some panels to not correctly
+> light up.
 >
-> This v2 works fine for me, I applied it to this immutable branch in the
-> pinctrl tree:
-> https://git.kernel.org/pub/scm/linux/kernel/git/linusw/linux-pinctrl.git/log/?h=ib-pinctrl-unreg-mappings
+> This commits adds a panel_is_on parameter to intel_dsi_vbt_gpio_init()
+> and makes intel_dsi_vbt_gpio_init() set the initial GPIO value accordingly.
 >
-> And pulled that into the pinctrl "devel" branch for v5.6.
+> This fixes the panel not lighting up on a Thundersoft TST168 tablet when
+> booted with an external monitor connected over HDMI.
 >
-> Please pull this immutable branch into the Intel DRM tree and apply
-> the rest of the stuff on top!
+> Changes in v2:
+> - Call intel_dsi_get_hw_state() to check if the panel is on instead of
+>   relying on the current_mode pointer
+>
+> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+> Signed-off-by: Hans de Goede <hdegoede@redhat.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_dsi.h     | 2 +-
+>  drivers/gpu/drm/i915/display/intel_dsi_vbt.c | 7 +++----
+>  drivers/gpu/drm/i915/display/vlv_dsi.c       | 4 +++-
+>  3 files changed, 7 insertions(+), 6 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_dsi.h b/drivers/gpu/drm/i915/display/intel_dsi.h
+> index de7e51cd3460..675771ea91aa 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dsi.h
+> +++ b/drivers/gpu/drm/i915/display/intel_dsi.h
+> @@ -203,7 +203,7 @@ void bxt_dsi_reset_clocks(struct intel_encoder *encoder, enum port port);
+>  
+>  /* intel_dsi_vbt.c */
+>  bool intel_dsi_vbt_init(struct intel_dsi *intel_dsi, u16 panel_id);
+> -void intel_dsi_vbt_gpio_init(struct intel_dsi *intel_dsi);
+> +void intel_dsi_vbt_gpio_init(struct intel_dsi *intel_dsi, bool panel_is_on);
+>  void intel_dsi_vbt_gpio_cleanup(struct intel_dsi *intel_dsi);
+>  void intel_dsi_vbt_exec_sequence(struct intel_dsi *intel_dsi,
+>  				 enum mipi_seq seq_id);
+> diff --git a/drivers/gpu/drm/i915/display/intel_dsi_vbt.c b/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
+> index 8be7d6c507aa..4210f449553e 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
+> @@ -688,17 +688,16 @@ bool intel_dsi_vbt_init(struct intel_dsi *intel_dsi, u16 panel_id)
+>   * On some BYT/CHT devs some sequences are incomplete and we need to manually
+>   * control some GPIOs.
+>   */
+> -void intel_dsi_vbt_gpio_init(struct intel_dsi *intel_dsi)
+> +void intel_dsi_vbt_gpio_init(struct intel_dsi *intel_dsi, bool panel_is_on)
+>  {
+>  	struct drm_device *dev = intel_dsi->base.base.dev;
+>  	struct drm_i915_private *dev_priv = to_i915(dev);
+>  	struct mipi_config *mipi_config = dev_priv->vbt.dsi.config;
+> +	enum gpiod_flags flags = panel_is_on ? GPIOD_OUT_HIGH : GPIOD_OUT_LOW;
+>  
+>  	if ((IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv)) &&
+>  	    mipi_config->pwm_blc == PPS_BLC_PMIC) {
+> -		intel_dsi->gpio_panel =
+> -			gpiod_get(dev->dev, "panel", GPIOD_OUT_HIGH);
+> -
+> +		intel_dsi->gpio_panel = gpiod_get(dev->dev, "panel", flags);
+>  		if (IS_ERR(intel_dsi->gpio_panel)) {
+>  			DRM_ERROR("Failed to own gpio for panel control\n");
+>  			intel_dsi->gpio_panel = NULL;
+> diff --git a/drivers/gpu/drm/i915/display/vlv_dsi.c b/drivers/gpu/drm/i915/display/vlv_dsi.c
+> index c1edd8857af0..d0efee09c593 100644
+> --- a/drivers/gpu/drm/i915/display/vlv_dsi.c
+> +++ b/drivers/gpu/drm/i915/display/vlv_dsi.c
+> @@ -1759,6 +1759,7 @@ void vlv_dsi_init(struct drm_i915_private *dev_priv)
+>  	struct drm_connector *connector;
+>  	struct drm_display_mode *current_mode, *fixed_mode;
+>  	enum port port;
+> +	enum pipe pipe;
+>  
+>  	DRM_DEBUG_KMS("\n");
+>  
+> @@ -1857,7 +1858,8 @@ void vlv_dsi_init(struct drm_i915_private *dev_priv)
+>  
+>  	vlv_dphy_param_init(intel_dsi);
+>  
+> -	intel_dsi_vbt_gpio_init(intel_dsi);
+> +	intel_dsi_vbt_gpio_init(intel_dsi,
+> +				intel_dsi_get_hw_state(intel_encoder, &pipe));
 
-Thanks, pulled to drm-intel-next-queued.
+Feels a bit scary to call into the hooks before everything is
+initialized, but this seems safe. Fingers crossed.
 
-BR,
-Jani.
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+
+
+>  
+>  	drm_connector_init(dev, connector, &intel_dsi_connector_funcs,
+>  			   DRM_MODE_CONNECTOR_DSI);
 
 -- 
 Jani Nikula, Intel Open Source Graphics Center
