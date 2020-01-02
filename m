@@ -1,30 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 981EE12F1BD
-	for <lists+intel-gfx@lfdr.de>; Fri,  3 Jan 2020 00:16:11 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id DC04812F1E6
+	for <lists+intel-gfx@lfdr.de>; Fri,  3 Jan 2020 00:44:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DC2A36E159;
-	Thu,  2 Jan 2020 23:16:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 019B36E15B;
+	Thu,  2 Jan 2020 23:44:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 500606E158
- for <intel-gfx@lists.freedesktop.org>; Thu,  2 Jan 2020 23:16:08 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19754832-1500050 
- for <intel-gfx@lists.freedesktop.org>; Thu, 02 Jan 2020 23:16:04 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu,  2 Jan 2020 23:16:04 +0000
-Message-Id: <20200102231604.1669010-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.25.0.rc0
+Received: from mail-wm1-x341.google.com (mail-wm1-x341.google.com
+ [IPv6:2a00:1450:4864:20::341])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7363D6E15B
+ for <intel-gfx@lists.freedesktop.org>; Thu,  2 Jan 2020 23:44:51 +0000 (UTC)
+Received: by mail-wm1-x341.google.com with SMTP id t14so7165545wmi.5
+ for <intel-gfx@lists.freedesktop.org>; Thu, 02 Jan 2020 15:44:51 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=YI50omODjlBKVPdrsznZUw7FhKpvGCDl//Pa/AETAFU=;
+ b=Ju42CM4ykbGEar8kHwLxpjzcjvpB/PL7vf5Ks+RuONMcibtrFRvHWF0XQD6gmDKkWT
+ Bo8+cgBxC0OZjWvusQ/R79trGVq7IH9HH7h8SLETsWzEkstAOBU4h8nnXfsISBOW2b/U
+ 9NissnP9K4di5BSuERdShyuIxB2ZHM038zoBx9i7dGIC7EFdZpKl6xbFS0JzEHMEVSwM
+ HufLXezBt1T75hpqrUAdD+k85Q+NJ4e3o3c210BrNOj1yRE8OWUDw/YfS11g3hevfD5L
+ SR/gxiZM2+dtMJGO4tmHNAbssVAujcOQmsNNPakBQwHT5bILhOpY0cwwnIXgejwPov/t
+ vgwA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=YI50omODjlBKVPdrsznZUw7FhKpvGCDl//Pa/AETAFU=;
+ b=dfHi/mSm3dmGqJggR9dKYA+rkSTjpdnthljG2cC+FZIlG878jjlR95mSFjpDN/y5Ns
+ WVYSJHhJMFfbVMYycSOFlm7DU0rT+gpum081hGyK3lSwwzw5ne7FzkR7JrTZeeUQa6O3
+ 5r2gCCMSwcWexgbv+kQXmXILTDRtfVZW4PinLoDxgiIEpLHK/8DnIdSDGanqxW6EG93M
+ +4VJab8oX43fFeHReK45OiqUaAtvXTDzVhRoT/DdKL1bUS/clccr+z95ZoQobfEOc6zX
+ ekgTUJ4rdhTYVIbqQ6aj0GZXjxWy42cRUaJT1Kgs2RIkgvsn6KlheIrlDEN6roXL54KN
+ sB7Q==
+X-Gm-Message-State: APjAAAWW1xiDcF51KiQsoyx5JI831IIjWN2mZ8auSSZiudeiyFOTGHDs
+ 1JDa2fulb3NAuiZ3jntfufqmW/TJWa1/tBqa+Hk=
+X-Google-Smtp-Source: APXvYqztbeaCFlCm/qDi8aS8EA9HkXKNDG+R0e0SN0PKsiv3FdVAZD4GlCSUURu7ft33ELXEfmGn1arCYTdLK4spPH8=
+X-Received: by 2002:a1c:61c1:: with SMTP id
+ v184mr15923790wmb.160.1578008690043; 
+ Thu, 02 Jan 2020 15:44:50 -0800 (PST)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [CI] drm/i915/gt: Flush ongoing retires during
- wait_for_idle
+References: <20190306131957.GC3888@intel.com>
+ <20190308232321.30168-1-lucas.demarchi@intel.com>
+In-Reply-To: <20190308232321.30168-1-lucas.demarchi@intel.com>
+From: Lucas De Marchi <lucas.de.marchi@gmail.com>
+Date: Thu, 2 Jan 2020 15:44:38 -0800
+Message-ID: <CAKi4VAKSi1otf_R_D1mPEvCjR1+MRfhQ0NEc_-hJ298W=wdTRQ@mail.gmail.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+Subject: Re: [Intel-gfx] [PATCH v2] drm/i915: remove ICP_PP_CONTROL
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,115 +62,68 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Intel Graphics <intel-gfx@lists.freedesktop.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Synchronise with any background retires and parking we may have spawned,
-so that all requests are accounted for.
+Today I saw this register and had a vague memory of having already
+removed it in the past.
+It seems this patch has never been reviewed/applied.
 
-Closes: https://gitlab.freedesktop.org/drm/intel/issues/878
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
----
- drivers/gpu/drm/i915/gt/intel_gt_requests.c | 14 +++++++++-----
- drivers/gpu/drm/i915/intel_wakeref.c        |  5 +++--
- drivers/gpu/drm/i915/intel_wakeref.h        |  9 +++++++--
- 3 files changed, 19 insertions(+), 9 deletions(-)
+Ping
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_requests.c b/drivers/gpu/drm/i915/gt/intel_gt_requests.c
-index fc691c130ba6..7ef1d37970f6 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt_requests.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_requests.c
-@@ -26,18 +26,22 @@ static bool retire_requests(struct intel_timeline *tl)
- 	return !i915_active_fence_isset(&tl->last_request);
- }
- 
--static void flush_submission(struct intel_gt *gt)
-+static bool flush_submission(struct intel_gt *gt)
- {
- 	struct intel_engine_cs *engine;
- 	enum intel_engine_id id;
-+	bool active = false;
- 
- 	if (!intel_gt_pm_is_awake(gt))
--		return;
-+		return false;
- 
- 	for_each_engine(engine, gt, id) {
- 		intel_engine_flush_submission(engine);
--		flush_work(&engine->retire_work);
-+		active |= flush_work(&engine->retire_work);
-+		active |= flush_work(&engine->wakeref.work);
- 	}
-+
-+	return active;
- }
- 
- static void engine_retire(struct work_struct *work)
-@@ -147,9 +151,9 @@ long intel_gt_retire_requests_timeout(struct intel_gt *gt, long timeout)
- 			}
- 		}
- 
--		active_count += !retire_requests(tl);
-+		if (!retire_requests(tl) || flush_submission(gt))
-+			active_count++;
- 
--		flush_submission(gt); /* sync with concurrent retirees */
- 		spin_lock(&timelines->lock);
- 
- 		/* Resume iteration after dropping lock */
-diff --git a/drivers/gpu/drm/i915/intel_wakeref.c b/drivers/gpu/drm/i915/intel_wakeref.c
-index 59aa1b6f1827..8fbf6f4d3f26 100644
---- a/drivers/gpu/drm/i915/intel_wakeref.c
-+++ b/drivers/gpu/drm/i915/intel_wakeref.c
-@@ -95,16 +95,17 @@ static void __intel_wakeref_put_work(struct work_struct *wrk)
- void __intel_wakeref_init(struct intel_wakeref *wf,
- 			  struct intel_runtime_pm *rpm,
- 			  const struct intel_wakeref_ops *ops,
--			  struct lock_class_key *key)
-+			  struct intel_wakeref_lockclass *key)
- {
- 	wf->rpm = rpm;
- 	wf->ops = ops;
- 
--	__mutex_init(&wf->mutex, "wakeref", key);
-+	__mutex_init(&wf->mutex, "wakeref.mutex", &key->mutex);
- 	atomic_set(&wf->count, 0);
- 	wf->wakeref = 0;
- 
- 	INIT_WORK(&wf->work, __intel_wakeref_put_work);
-+	lockdep_init_map(&wf->work.lockdep_map, "wakeref.work", &key->work, 0);
- }
- 
- int intel_wakeref_wait_for_idle(struct intel_wakeref *wf)
-diff --git a/drivers/gpu/drm/i915/intel_wakeref.h b/drivers/gpu/drm/i915/intel_wakeref.h
-index 8d945db94b7a..7d1e676b71ef 100644
---- a/drivers/gpu/drm/i915/intel_wakeref.h
-+++ b/drivers/gpu/drm/i915/intel_wakeref.h
-@@ -44,12 +44,17 @@ struct intel_wakeref {
- 	struct work_struct work;
- };
- 
-+struct intel_wakeref_lockclass {
-+	struct lock_class_key mutex;
-+	struct lock_class_key work;
-+};
-+
- void __intel_wakeref_init(struct intel_wakeref *wf,
- 			  struct intel_runtime_pm *rpm,
- 			  const struct intel_wakeref_ops *ops,
--			  struct lock_class_key *key);
-+			  struct intel_wakeref_lockclass *key);
- #define intel_wakeref_init(wf, rpm, ops) do {				\
--	static struct lock_class_key __key;				\
-+	static struct intel_wakeref_lockclass __key;			\
- 									\
- 	__intel_wakeref_init((wf), (rpm), (ops), &__key);		\
- } while (0)
+Lucas De Marchi
+
+On Fri, Mar 8, 2019 at 3:23 PM Lucas De Marchi <lucas.demarchi@intel.com> wrote:
+>
+> This register was placed in the middle of the PP_STATUS definition
+> instead of together with the PP_CONTROL where it should. Since it's not
+> used and there are no current plans to use it, just remove the
+> definition.
+>
+> v2: remove the define rather than moving it.
+>
+> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+> ---
+>  drivers/gpu/drm/i915/i915_reg.h | 11 -----------
+>  1 file changed, 11 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+> index c0cd7a836799..4a855befa838 100644
+> --- a/drivers/gpu/drm/i915/i915_reg.h
+> +++ b/drivers/gpu/drm/i915/i915_reg.h
+> @@ -4692,17 +4692,6 @@ enum {
+>  #define _PP_STATUS                     0x61200
+>  #define PP_STATUS(pps_idx)             _MMIO_PPS(pps_idx, _PP_STATUS)
+>  #define   PP_ON                                (1 << 31)
+> -
+> -#define _PP_CONTROL_1                  0xc7204
+> -#define _PP_CONTROL_2                  0xc7304
+> -#define ICP_PP_CONTROL(x)              _MMIO(((x) == 1) ? _PP_CONTROL_1 : \
+> -                                             _PP_CONTROL_2)
+> -#define  POWER_CYCLE_DELAY_MASK        (0x1f << 4)
+> -#define  POWER_CYCLE_DELAY_SHIFT       4
+> -#define  VDD_OVERRIDE_FORCE            (1 << 3)
+> -#define  BACKLIGHT_ENABLE              (1 << 2)
+> -#define  PWR_DOWN_ON_RESET             (1 << 1)
+> -#define  PWR_STATE_TARGET              (1 << 0)
+>  /*
+>   * Indicates that all dependencies of the panel are on:
+>   *
+> --
+> 2.20.1
+>
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+
+
 -- 
-2.25.0.rc0
-
+Lucas De Marchi
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
