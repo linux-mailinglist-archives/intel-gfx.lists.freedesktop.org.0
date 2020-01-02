@@ -1,36 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF46E12E9F3
-	for <lists+intel-gfx@lfdr.de>; Thu,  2 Jan 2020 19:28:49 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 16D7612EA09
+	for <lists+intel-gfx@lfdr.de>; Thu,  2 Jan 2020 19:45:39 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1C98D6E12D;
-	Thu,  2 Jan 2020 18:28:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1D9D76E090;
+	Thu,  2 Jan 2020 18:45:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3DA726E12D
- for <intel-gfx@lists.freedesktop.org>; Thu,  2 Jan 2020 18:28:46 +0000 (UTC)
-X-Amp-Result: UNSCANNABLE
-X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga106.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 02 Jan 2020 10:28:45 -0800
-X-IronPort-AV: E=Sophos;i="5.69,387,1571727600"; d="scan'208";a="209859272"
-Received: from rdvivi-losangeles.jf.intel.com (HELO intel.com) ([10.7.196.150])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 02 Jan 2020 10:28:45 -0800
-Date: Thu, 2 Jan 2020 10:28:45 -0800
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Kai Vehmanen <kai.vehmanen@linux.intel.com>
-Message-ID: <20200102182845.GB11904@intel.com>
-References: <20191231140007.31728-1-kai.vehmanen@linux.intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 473136E083;
+ Thu,  2 Jan 2020 18:45:36 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 3D408A432F;
+ Thu,  2 Jan 2020 18:45:36 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20191231140007.31728-1-kai.vehmanen@linux.intel.com>
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915: Limit audio CDCLK>=2*BCLK
- constraint back to GLK only
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Thu, 02 Jan 2020 18:45:36 -0000
+Message-ID: <157799073622.8910.5231072217101348788@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200102131707.1463945-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200102131707.1463945-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5B1/5=5D_drm/i915/gt=3A_Include_a_bunch_more?=
+ =?utf-8?q?_rcs_image_state?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -43,80 +39,122 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Dec 31, 2019 at 04:00:07PM +0200, Kai Vehmanen wrote:
-> Revert changes done in commit f6ec9483091f ("drm/i915: extend audio
-> CDCLK>=2*BCLK constraint to more platforms"). Audio drivers
-> communicate with i915 over HDA bus multiple times during system
-> boot-up and each of these transactions result in matching
-> get_power/put_power calls to i915, and depending on the platform,
-> a modeset change causing visible flicker.
-> 
-> GLK is the only platform with minimum CDCLK significantly lower
-> than BCLK, and thus for GLK setting a higher CDCLK is mandatory.
-> 
-> For other platforms, minimum CDCLK is close but below 2*BCLK
-> (e.g. on ICL, CDCLK=176.4kHz with BCLK=96kHz). Spec-wise the constraint
-> should be set, but in practise no communication errors have been
-> reported and the downside if set is the flicker observed at boot-time.
-> 
-> Revert to old behaviour until better mechanism to manage
-> probe-time clocks is available.
-> 
-> The full CDCLK>=2*BCLK constraint is still enforced at pipe
-> enable time in intel_crtc_compute_min_cdclk().
-> 
-> Bugzilla: https://gitlab.freedesktop.org/drm/intel/issues/913
-> Signed-off-by: Kai Vehmanen <kai.vehmanen@linux.intel.com>
-> ---
-> 
-> Notes:
->     v2: d'oh, change put_power() as well
-> 
->  drivers/gpu/drm/i915/display/intel_audio.c | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_audio.c b/drivers/gpu/drm/i915/display/intel_audio.c
-> index 27710098d056..e406719a6716 100644
-> --- a/drivers/gpu/drm/i915/display/intel_audio.c
-> +++ b/drivers/gpu/drm/i915/display/intel_audio.c
-> @@ -856,7 +856,7 @@ static unsigned long i915_audio_component_get_power(struct device *kdev)
->  		}
->  
->  		/* Force CDCLK to 2*BCLK as long as we need audio powered. */
-> -		if (INTEL_GEN(dev_priv) >= 10 || IS_GEMINILAKE(dev_priv))
-> +		if (IS_GEMINILAKE(dev_priv))
+== Series Details ==
 
-I believe for correctness we should at least say this is for display_10 but
-since we don't have display gen defined probably the right thing to do here
-is to at least replace this per:
+Series: series starting with [1/5] drm/i915/gt: Include a bunch more rcs image state
+URL   : https://patchwork.freedesktop.org/series/71565/
+State : success
 
-IS_GEN(dev_priv, 10) || IS_GEMINILAKE(dev_priv)
+== Summary ==
 
->  			glk_force_audio_cdclk(dev_priv, true);
->  
->  		if (INTEL_GEN(dev_priv) >= 10 || IS_GEMINILAKE(dev_priv))
-> @@ -875,7 +875,7 @@ static void i915_audio_component_put_power(struct device *kdev,
->  
->  	/* Stop forcing CDCLK to 2*BCLK if no need for audio to be powered. */
->  	if (--dev_priv->audio_power_refcount == 0)
-> -		if (INTEL_GEN(dev_priv) >= 10 || IS_GEMINILAKE(dev_priv))
-> +		if (IS_GEMINILAKE(dev_priv))
->  			glk_force_audio_cdclk(dev_priv, false);
->  
->  	intel_display_power_put(dev_priv, POWER_DOMAIN_AUDIO, cookie);
-> -- 
-> 2.17.1
-> 
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+CI Bug Log - changes from CI_DRM_7667 -> Patchwork_15976
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15976/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_15976 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live_blt:
+    - fi-byt-j1900:       [PASS][1] -> [DMESG-FAIL][2] ([i915#725])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7667/fi-byt-j1900/igt@i915_selftest@live_blt.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15976/fi-byt-j1900/igt@i915_selftest@live_blt.html
+    - fi-hsw-4770:        [PASS][3] -> [DMESG-FAIL][4] ([i915#725])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7667/fi-hsw-4770/igt@i915_selftest@live_blt.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15976/fi-hsw-4770/igt@i915_selftest@live_blt.html
+    - fi-hsw-4770r:       [PASS][5] -> [DMESG-FAIL][6] ([i915#725])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7667/fi-hsw-4770r/igt@i915_selftest@live_blt.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15976/fi-hsw-4770r/igt@i915_selftest@live_blt.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_module_load@reload-with-fault-injection:
+    - fi-skl-lmem:        [INCOMPLETE][7] ([i915#671]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7667/fi-skl-lmem/igt@i915_module_load@reload-with-fault-injection.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15976/fi-skl-lmem/igt@i915_module_load@reload-with-fault-injection.html
+
+  * igt@i915_selftest@live_gt_engines:
+    - fi-bxt-dsi:         [DMESG-FAIL][9] ([i915#889]) -> [PASS][10] +7 similar issues
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7667/fi-bxt-dsi/igt@i915_selftest@live_gt_engines.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15976/fi-bxt-dsi/igt@i915_selftest@live_gt_engines.html
+
+  * igt@i915_selftest@live_mman:
+    - fi-bxt-dsi:         [DMESG-WARN][11] ([i915#889]) -> [PASS][12] +23 similar issues
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7667/fi-bxt-dsi/igt@i915_selftest@live_mman.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15976/fi-bxt-dsi/igt@i915_selftest@live_mman.html
+
+  * igt@i915_selftest@live_workarounds:
+    - fi-bwr-2160:        [FAIL][13] ([i915#878]) -> [PASS][14]
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7667/fi-bwr-2160/igt@i915_selftest@live_workarounds.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15976/fi-bwr-2160/igt@i915_selftest@live_workarounds.html
+
+  * igt@kms_busy@basic-flip-pipe-a:
+    - {fi-tgl-guc}:       [DMESG-WARN][15] ([i915#402]) -> [PASS][16]
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7667/fi-tgl-guc/igt@kms_busy@basic-flip-pipe-a.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15976/fi-tgl-guc/igt@kms_busy@basic-flip-pipe-a.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+  [i915#671]: https://gitlab.freedesktop.org/drm/intel/issues/671
+  [i915#725]: https://gitlab.freedesktop.org/drm/intel/issues/725
+  [i915#878]: https://gitlab.freedesktop.org/drm/intel/issues/878
+  [i915#889]: https://gitlab.freedesktop.org/drm/intel/issues/889
+
+
+Participating hosts (46 -> 45)
+------------------------------
+
+  Additional (5): fi-bdw-5557u fi-skl-6770hq fi-kbl-7500u fi-ivb-3770 fi-blb-e6850 
+  Missing    (6): fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-gdg-551 fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_7667 -> Patchwork_15976
+
+  CI-20190529: 20190529
+  CI_DRM_7667: e60a61aa9e6849fc2dba1085b1ba99c4847f20cf @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5357: a555a4b98f90dab655d24bb3d07e9291a8b8dac8 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_15976: 0c77ece7c3e9c3078d5347bfd87b06045a20c904 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+0c77ece7c3e9 drm/i915/gt: Always poison the kernel_context image before unparking
+3af8edaa285a drm/i915/gt: Discard stale context state from across idling
+ed9d9bc9491f drm/i915/gt: Ignore stale context state upon resume
+ad10e072d9a8 drm/i915/gt: Clear LRC image inline
+45be0b74860c drm/i915/gt: Include a bunch more rcs image state
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15976/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
