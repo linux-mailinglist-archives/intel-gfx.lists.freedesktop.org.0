@@ -2,29 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8173F12F6D6
-	for <lists+intel-gfx@lfdr.de>; Fri,  3 Jan 2020 11:45:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A97612F6D5
+	for <lists+intel-gfx@lfdr.de>; Fri,  3 Jan 2020 11:45:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 845D189A4E;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 08E9C89971;
 	Fri,  3 Jan 2020 10:45:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D347489973
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C7B0689971
  for <intel-gfx@lists.freedesktop.org>; Fri,  3 Jan 2020 10:45:24 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19758425-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19758426-1500050 
  for multiple; Fri, 03 Jan 2020 10:45:18 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri,  3 Jan 2020 10:45:15 +0000
-Message-Id: <20200103104516.1757103-1-chris@chris-wilson.co.uk>
+Date: Fri,  3 Jan 2020 10:45:16 +0000
+Message-Id: <20200103104516.1757103-2-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.25.0.rc0
+In-Reply-To: <20200103104516.1757103-1-chris@chris-wilson.co.uk>
+References: <20200103104516.1757103-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 1/2] drm/i915/selftest: Move
- igt_atomic_section[] out of the header
+Subject: [Intel-gfx] [PATCH 2/2] drm/i915/selftests: Make headers
+ self-contained
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,68 +39,150 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-TW92ZSB0aGUgZGVmaW5pdGlvbiBvZiB0aGUgaWd0X2F0b21pY19zZWN0aW9uW10gaW50byBhIEMg
-ZmlsZSwgbGVhdmluZwp0aGUgZGVjbGFyYXRpb24gaW4gdGhlIGhlYWRlciBzbyBhcyBub3QgdG8g
-dXBzZXQgaGVhZGVydGVzdCEKClNpZ25lZC1vZmYtYnk6IENocmlzIFdpbHNvbiA8Y2hyaXNAY2hy
-aXMtd2lsc29uLmNvLnVrPgotLS0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L01ha2VmaWxlICAgICAg
-ICAgICAgICAgfCAgMSArCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9zZWxmdGVzdHMvaWd0X2F0b21p
-Yy5jIHwgNDcgKysrKysrKysrKysrKysrKysrKysrCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9zZWxm
-dGVzdHMvaWd0X2F0b21pYy5oIHwgNDEgKy0tLS0tLS0tLS0tLS0tLS0tCiAzIGZpbGVzIGNoYW5n
-ZWQsIDQ5IGluc2VydGlvbnMoKyksIDQwIGRlbGV0aW9ucygtKQogY3JlYXRlIG1vZGUgMTAwNjQ0
-IGRyaXZlcnMvZ3B1L2RybS9pOTE1L3NlbGZ0ZXN0cy9pZ3RfYXRvbWljLmMKCmRpZmYgLS1naXQg
-YS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9NYWtlZmlsZSBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L01h
-a2VmaWxlCmluZGV4IDFhMmZhZDgzMmE0ZC4uNTk5MmVmODAwNTM0IDEwMDY0NAotLS0gYS9kcml2
-ZXJzL2dwdS9kcm0vaTkxNS9NYWtlZmlsZQorKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9NYWtl
-ZmlsZQpAQCAtMjUyLDYgKzI1Miw3IEBAIGk5MTUtJChDT05GSUdfRFJNX0k5MTVfU0VMRlRFU1Qp
-ICs9IFwKIAlnZW0vc2VsZnRlc3RzL2lndF9nZW1fdXRpbHMubyBcCiAJc2VsZnRlc3RzL2k5MTVf
-cmFuZG9tLm8gXAogCXNlbGZ0ZXN0cy9pOTE1X3NlbGZ0ZXN0Lm8gXAorCXNlbGZ0ZXN0cy9pZ3Rf
-YXRvbWljLm8gXAogCXNlbGZ0ZXN0cy9pZ3RfZmx1c2hfdGVzdC5vIFwKIAlzZWxmdGVzdHMvaWd0
-X2xpdmVfdGVzdC5vIFwKIAlzZWxmdGVzdHMvaWd0X21tYXAubyBcCmRpZmYgLS1naXQgYS9kcml2
-ZXJzL2dwdS9kcm0vaTkxNS9zZWxmdGVzdHMvaWd0X2F0b21pYy5jIGIvZHJpdmVycy9ncHUvZHJt
-L2k5MTUvc2VsZnRlc3RzL2lndF9hdG9taWMuYwpuZXcgZmlsZSBtb2RlIDEwMDY0NAppbmRleCAw
-MDAwMDAwMDAwMDAuLmZiNTA2YjY5OTA5NQotLS0gL2Rldi9udWxsCisrKyBiL2RyaXZlcnMvZ3B1
-L2RybS9pOTE1L3NlbGZ0ZXN0cy9pZ3RfYXRvbWljLmMKQEAgLTAsMCArMSw0NyBAQAorLy8gU1BE
-WC1MaWNlbnNlLUlkZW50aWZpZXI6IE1JVAorLyoKKyAqIENvcHlyaWdodCDCqSAyMDE4IEludGVs
-IENvcnBvcmF0aW9uCisgKi8KKworI2luY2x1ZGUgPGxpbnV4L3ByZWVtcHQuaD4KKyNpbmNsdWRl
-IDxsaW51eC9ib3R0b21faGFsZi5oPgorI2luY2x1ZGUgPGxpbnV4L2lycWZsYWdzLmg+CisKKyNp
-bmNsdWRlICJpZ3RfYXRvbWljLmgiCisKK3N0YXRpYyB2b2lkIF9fcHJlZW1wdF9iZWdpbih2b2lk
-KQoreworCXByZWVtcHRfZGlzYWJsZSgpOworfQorCitzdGF0aWMgdm9pZCBfX3ByZWVtcHRfZW5k
-KHZvaWQpCit7CisJcHJlZW1wdF9lbmFibGUoKTsKK30KKworc3RhdGljIHZvaWQgX19zb2Z0aXJx
-X2JlZ2luKHZvaWQpCit7CisJbG9jYWxfYmhfZGlzYWJsZSgpOworfQorCitzdGF0aWMgdm9pZCBf
-X3NvZnRpcnFfZW5kKHZvaWQpCit7CisJbG9jYWxfYmhfZW5hYmxlKCk7Cit9CisKK3N0YXRpYyB2
-b2lkIF9faGFyZGlycV9iZWdpbih2b2lkKQoreworCWxvY2FsX2lycV9kaXNhYmxlKCk7Cit9CisK
-K3N0YXRpYyB2b2lkIF9faGFyZGlycV9lbmQodm9pZCkKK3sKKwlsb2NhbF9pcnFfZW5hYmxlKCk7
-Cit9CisKK2NvbnN0IHN0cnVjdCBpZ3RfYXRvbWljX3NlY3Rpb24gaWd0X2F0b21pY19waGFzZXNb
-XSA9IHsKKwl7ICJwcmVlbXB0IiwgX19wcmVlbXB0X2JlZ2luLCBfX3ByZWVtcHRfZW5kIH0sCisJ
-eyAic29mdGlycSIsIF9fc29mdGlycV9iZWdpbiwgX19zb2Z0aXJxX2VuZCB9LAorCXsgImhhcmRp
-cnEiLCBfX2hhcmRpcnFfYmVnaW4sIF9faGFyZGlycV9lbmQgfSwKKwl7IH0KK307CmRpZmYgLS1n
-aXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9zZWxmdGVzdHMvaWd0X2F0b21pYy5oIGIvZHJpdmVy
-cy9ncHUvZHJtL2k5MTUvc2VsZnRlc3RzL2lndF9hdG9taWMuaAppbmRleCA5M2VjODlmNDg3ZWMu
-LjE5OTE3OThhYmY0YiAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvc2VsZnRlc3Rz
-L2lndF9hdG9taWMuaAorKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9zZWxmdGVzdHMvaWd0X2F0
-b21pYy5oCkBAIC02LDUxICs2LDEyIEBACiAjaWZuZGVmIElHVF9BVE9NSUNfSAogI2RlZmluZSBJ
-R1RfQVRPTUlDX0gKIAotI2luY2x1ZGUgPGxpbnV4L3ByZWVtcHQuaD4KLSNpbmNsdWRlIDxsaW51
-eC9ib3R0b21faGFsZi5oPgotI2luY2x1ZGUgPGxpbnV4L2lycWZsYWdzLmg+Ci0KLXN0YXRpYyB2
-b2lkIF9fcHJlZW1wdF9iZWdpbih2b2lkKQotewotCXByZWVtcHRfZGlzYWJsZSgpOwotfQotCi1z
-dGF0aWMgdm9pZCBfX3ByZWVtcHRfZW5kKHZvaWQpCi17Ci0JcHJlZW1wdF9lbmFibGUoKTsKLX0K
-LQotc3RhdGljIHZvaWQgX19zb2Z0aXJxX2JlZ2luKHZvaWQpCi17Ci0JbG9jYWxfYmhfZGlzYWJs
-ZSgpOwotfQotCi1zdGF0aWMgdm9pZCBfX3NvZnRpcnFfZW5kKHZvaWQpCi17Ci0JbG9jYWxfYmhf
-ZW5hYmxlKCk7Ci19Ci0KLXN0YXRpYyB2b2lkIF9faGFyZGlycV9iZWdpbih2b2lkKQotewotCWxv
-Y2FsX2lycV9kaXNhYmxlKCk7Ci19Ci0KLXN0YXRpYyB2b2lkIF9faGFyZGlycV9lbmQodm9pZCkK
-LXsKLQlsb2NhbF9pcnFfZW5hYmxlKCk7Ci19Ci0KIHN0cnVjdCBpZ3RfYXRvbWljX3NlY3Rpb24g
-ewogCWNvbnN0IGNoYXIgKm5hbWU7CiAJdm9pZCAoKmNyaXRpY2FsX3NlY3Rpb25fYmVnaW4pKHZv
-aWQpOwogCXZvaWQgKCpjcml0aWNhbF9zZWN0aW9uX2VuZCkodm9pZCk7CiB9OwogCi1zdGF0aWMg
-Y29uc3Qgc3RydWN0IGlndF9hdG9taWNfc2VjdGlvbiBpZ3RfYXRvbWljX3BoYXNlc1tdID0gewot
-CXsgInByZWVtcHQiLCBfX3ByZWVtcHRfYmVnaW4sIF9fcHJlZW1wdF9lbmQgfSwKLQl7ICJzb2Z0
-aXJxIiwgX19zb2Z0aXJxX2JlZ2luLCBfX3NvZnRpcnFfZW5kIH0sCi0JeyAiaGFyZGlycSIsIF9f
-aGFyZGlycV9iZWdpbiwgX19oYXJkaXJxX2VuZCB9LAotCXsgfQotfTsKK2V4dGVybiBjb25zdCBz
-dHJ1Y3QgaWd0X2F0b21pY19zZWN0aW9uIGlndF9hdG9taWNfcGhhc2VzW107CiAKICNlbmRpZiAv
-KiBJR1RfQVRPTUlDX0ggKi8KLS0gCjIuMjUuMC5yYzAKCl9fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4
-QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWls
-bWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+Include the types used by the headers to they can be compiled
+standalone.
+
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+---
+ drivers/gpu/drm/i915/Makefile                        | 8 +-------
+ drivers/gpu/drm/i915/gem/selftests/huge_gem_object.h | 6 ++++++
+ drivers/gpu/drm/i915/gem/selftests/mock_gem_object.h | 2 ++
+ drivers/gpu/drm/i915/selftests/i915_live_selftests.h | 8 +++++++-
+ drivers/gpu/drm/i915/selftests/i915_mock_selftests.h | 8 +++++++-
+ drivers/gpu/drm/i915/selftests/i915_perf_selftests.h | 8 +++++++-
+ drivers/gpu/drm/i915/selftests/igt_live_test.h       | 3 ++-
+ 7 files changed, 32 insertions(+), 11 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
+index 5992ef800534..0b1d8d36a50a 100644
+--- a/drivers/gpu/drm/i915/Makefile
++++ b/drivers/gpu/drm/i915/Makefile
+@@ -275,8 +275,6 @@ obj-$(CONFIG_DRM_I915_GVT_KVMGT) += gvt/kvmgt.o
+ # exclude some broken headers from the test coverage
+ no-header-test := \
+ 	display/intel_vbt_defs.h \
+-	gem/selftests/huge_gem_object.h \
+-	gem/selftests/mock_gem_object.h \
+ 	gvt/execlist.h \
+ 	gvt/fb_decoder.h \
+ 	gvt/gtt.h \
+@@ -284,11 +282,7 @@ no-header-test := \
+ 	gvt/interrupt.h \
+ 	gvt/mmio_context.h \
+ 	gvt/mpt.h \
+-	gvt/scheduler.h \
+-	selftests/i915_live_selftests.h \
+-	selftests/i915_mock_selftests.h \
+-	selftests/i915_perf_selftests.h \
+-	selftests/igt_live_test.h
++	gvt/scheduler.h
+ 
+ extra-$(CONFIG_DRM_I915_WERROR) += \
+ 	$(patsubst %.h,%.hdrtest, $(filter-out $(no-header-test), \
+diff --git a/drivers/gpu/drm/i915/gem/selftests/huge_gem_object.h b/drivers/gpu/drm/i915/gem/selftests/huge_gem_object.h
+index 549c1394bcdc..b8cf31b7bf14 100644
+--- a/drivers/gpu/drm/i915/gem/selftests/huge_gem_object.h
++++ b/drivers/gpu/drm/i915/gem/selftests/huge_gem_object.h
+@@ -7,6 +7,12 @@
+ #ifndef __HUGE_GEM_OBJECT_H
+ #define __HUGE_GEM_OBJECT_H
+ 
++#include <linux/types.h>
++
++#include "gem/i915_gem_object_types.h"
++
++struct drm_i915_private;
++
+ struct drm_i915_gem_object *
+ huge_gem_object(struct drm_i915_private *i915,
+ 		phys_addr_t phys_size,
+diff --git a/drivers/gpu/drm/i915/gem/selftests/mock_gem_object.h b/drivers/gpu/drm/i915/gem/selftests/mock_gem_object.h
+index 370360b4a148..688511afa883 100644
+--- a/drivers/gpu/drm/i915/gem/selftests/mock_gem_object.h
++++ b/drivers/gpu/drm/i915/gem/selftests/mock_gem_object.h
+@@ -7,6 +7,8 @@
+ #ifndef __MOCK_GEM_OBJECT_H__
+ #define __MOCK_GEM_OBJECT_H__
+ 
++#include "gem/i915_gem_object_types.h"
++
+ struct mock_object {
+ 	struct drm_i915_gem_object base;
+ };
+diff --git a/drivers/gpu/drm/i915/selftests/i915_live_selftests.h b/drivers/gpu/drm/i915/selftests/i915_live_selftests.h
+index 476fba2ed8bb..34138c7bdd15 100644
+--- a/drivers/gpu/drm/i915/selftests/i915_live_selftests.h
++++ b/drivers/gpu/drm/i915/selftests/i915_live_selftests.h
+@@ -1,5 +1,11 @@
+ /* SPDX-License-Identifier: GPL-2.0 */
+-/* List each unit test as selftest(name, function)
++
++#ifndef selftest
++#define selftest(x, y)
++#endif
++
++/*
++ * List each unit test as selftest(name, function)
+  *
+  * The name is used as both an enum and expanded as subtest__name to create
+  * a module parameter. It must be unique and legal for a C identifier.
+diff --git a/drivers/gpu/drm/i915/selftests/i915_mock_selftests.h b/drivers/gpu/drm/i915/selftests/i915_mock_selftests.h
+index aa5a0e7f5d9e..5b39bab4da1d 100644
+--- a/drivers/gpu/drm/i915/selftests/i915_mock_selftests.h
++++ b/drivers/gpu/drm/i915/selftests/i915_mock_selftests.h
+@@ -1,5 +1,11 @@
+ /* SPDX-License-Identifier: GPL-2.0 */
+-/* List each unit test as selftest(name, function)
++
++#ifndef selftest
++#define selftest(x, y)
++#endif
++
++/*
++ * List each unit test as selftest(name, function)
+  *
+  * The name is used as both an enum and expanded as subtest__name to create
+  * a module parameter. It must be unique and legal for a C identifier.
+diff --git a/drivers/gpu/drm/i915/selftests/i915_perf_selftests.h b/drivers/gpu/drm/i915/selftests/i915_perf_selftests.h
+index f7129a243daa..5a577a1332f5 100644
+--- a/drivers/gpu/drm/i915/selftests/i915_perf_selftests.h
++++ b/drivers/gpu/drm/i915/selftests/i915_perf_selftests.h
+@@ -1,5 +1,11 @@
+ /* SPDX-License-Identifier: GPL-2.0 */
+-/* List each unit test as selftest(name, function)
++
++#ifndef selftest
++#define selftest(x, y)
++#endif
++
++/*
++ * List each unit test as selftest(name, function)
+  *
+  * The name is used as both an enum and expanded as subtest__name to create
+  * a module parameter. It must be unique and legal for a C identifier.
+diff --git a/drivers/gpu/drm/i915/selftests/igt_live_test.h b/drivers/gpu/drm/i915/selftests/igt_live_test.h
+index c0e9f99d50de..7567ea75643a 100644
+--- a/drivers/gpu/drm/i915/selftests/igt_live_test.h
++++ b/drivers/gpu/drm/i915/selftests/igt_live_test.h
+@@ -7,7 +7,8 @@
+ #ifndef IGT_LIVE_TEST_H
+ #define IGT_LIVE_TEST_H
+ 
+-#include "../i915_gem.h"
++#include "gt/intel_engine.h"
++#include "i915_gem.h"
+ 
+ struct drm_i915_private;
+ 
+-- 
+2.25.0.rc0
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
