@@ -2,31 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 06D6612FD69
-	for <lists+intel-gfx@lfdr.de>; Fri,  3 Jan 2020 21:08:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0474F12FDF2
+	for <lists+intel-gfx@lfdr.de>; Fri,  3 Jan 2020 21:29:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6B04A6E33C;
-	Fri,  3 Jan 2020 20:08:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3D7D76E340;
+	Fri,  3 Jan 2020 20:29:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 3BEA86E33C;
- Fri,  3 Jan 2020 20:08:19 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 32A0FA0134;
- Fri,  3 Jan 2020 20:08:19 +0000 (UTC)
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 646806E340
+ for <intel-gfx@lists.freedesktop.org>; Fri,  3 Jan 2020 20:29:46 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 19764601-1500050 for multiple; Fri, 03 Jan 2020 20:29:30 +0000
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Auld" <matthew.auld@intel.com>
-Date: Fri, 03 Jan 2020 20:08:19 -0000
-Message-ID: <157808209917.20616.14599866977900367759@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200103200030.334215-1-matthew.auld@intel.com>
+To: Matthew Auld <matthew.auld@intel.com>, intel-gfx@lists.freedesktop.org
+From: Chris Wilson <chris@chris-wilson.co.uk>
 In-Reply-To: <20200103200030.334215-1-matthew.auld@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_series_starting_with_=5B1/3=5D_drm/i915=3A_make_stolen_more?=
- =?utf-8?q?_region_centric?=
+References: <20200103200030.334215-1-matthew.auld@intel.com>
+Message-ID: <157808336882.11773.1542979275077374013@skylake-alporthouse-com>
+User-Agent: alot/0.6
+Date: Fri, 03 Jan 2020 20:29:28 +0000
+Subject: Re: [Intel-gfx] [PATCH 1/3] drm/i915: make stolen more region
+ centric
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,43 +39,18 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Quoting Matthew Auld (2020-01-03 20:00:28)
+> From: CQ Tang <cq.tang@intel.com>
 
-Series: series starting with [1/3] drm/i915: make stolen more region centric
-URL   : https://patchwork.freedesktop.org/series/71615/
-State : warning
-
-== Summary ==
-
-$ dim checkpatch origin/drm-tip
-798fff7d1586 drm/i915: make stolen more region centric
--:7: WARNING:COMMIT_MESSAGE: Missing commit description - Add an appropriate one
-
--:329: WARNING:LEADING_SPACE: please, no spaces at the start of a line
-#329: FILE: drivers/gpu/drm/i915/gem/i915_gem_stolen.c:528:
-+       sg_free_table(pages);$
-
--:330: WARNING:LEADING_SPACE: please, no spaces at the start of a line
-#330: FILE: drivers/gpu/drm/i915/gem/i915_gem_stolen.c:529:
-+       kfree(pages);$
-
-total: 0 errors, 3 warnings, 0 checks, 502 lines checked
-bdef42f5a543 drm/i915/gtt: refactor the storage assumptions around paging structures
-c3ed5865acfc drm/i915/lmem: stop mapping the aperture for fake LMEM
--:24: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#24: FILE: drivers/gpu/drm/i915/i915_params.c:186:
-+i915_param_named_unsafe(fake_lmem_size, ulong, 0600,
-+	"Fake LMEM size (default: 0)");
-
-total: 0 errors, 0 warnings, 1 checks, 110 lines checked
-
+Just throwing the kitchen sink into intel_memory_region is not very
+appetizing. There seems to be no design behind this -- as foretold by
+the lack of rationale.
+-Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
