@@ -1,39 +1,25 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8901B12F8CD
-	for <lists+intel-gfx@lfdr.de>; Fri,  3 Jan 2020 14:35:01 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 175C012F8FC
+	for <lists+intel-gfx@lfdr.de>; Fri,  3 Jan 2020 14:57:32 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7A11C6E316;
-	Fri,  3 Jan 2020 13:34:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5AFB16E317;
+	Fri,  3 Jan 2020 13:57:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C7AAC6E316
- for <intel-gfx@lists.freedesktop.org>; Fri,  3 Jan 2020 13:34:57 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-X-Amp-File-Uploaded: False
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga106.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 03 Jan 2020 05:34:57 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,390,1571727600"; d="scan'208";a="270583418"
-Received: from ramaling-i9x.iind.intel.com (HELO intel.com) ([10.99.66.154])
- by FMSMGA003.fm.intel.com with ESMTP; 03 Jan 2020 05:34:55 -0800
-Date: Fri, 3 Jan 2020 19:04:23 +0530
-From: Ramalingam C <ramalingam.c@intel.com>
-To: Anshuman Gupta <anshuman.gupta@intel.com>
-Message-ID: <20200103133423.GA9813@intel.com>
-References: <20200103130021.15992-1-anshuman.gupta@intel.com>
- <20200103130021.15992-2-anshuman.gupta@intel.com>
+Received: from mblankhorst.nl (mblankhorst.nl [141.105.120.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AAB2A6E317
+ for <intel-gfx@lists.freedesktop.org>; Fri,  3 Jan 2020 13:57:27 +0000 (UTC)
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri,  3 Jan 2020 14:57:24 +0100
+Message-Id: <20200103135724.780841-1-maarten.lankhorst@linux.intel.com>
+X-Mailer: git-send-email 2.24.1
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200103130021.15992-2-anshuman.gupta@intel.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH 1/1] drm/i915/hdcp: restore hdcp state same
- as previous
+Subject: [Intel-gfx] [CI] drm/i915: Remove nest annotation from
+ intel_context_unpin
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,57 +32,108 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 2020-01-03 at 18:30:21 +0530, Anshuman Gupta wrote:
-> When port is disabled due to modeset or DPMS off actually
-> it disables the HDCP encryption keeping its state to
-> CP_ENABLED this doesn't enable HDCP again while port
-> gets enable again. HDCP state should set accordingly
-> when port is disabled.
-> 
-> CC: Ramalingam C <ramalingam.c@intel.com>
-> Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_ddi.c | 9 ++++++++-
->  1 file changed, 8 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-> index 07acd0daca25..b1b79073e3f9 100644
-> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
-> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-> @@ -4137,7 +4137,14 @@ static void intel_disable_ddi(struct intel_encoder *encoder,
->  			      const struct intel_crtc_state *old_crtc_state,
->  			      const struct drm_connector_state *old_conn_state)
->  {
-> -	intel_hdcp_disable(to_intel_connector(old_conn_state->connector));
-> +	int ret;
-> +
-> +	ret = intel_hdcp_disable(to_intel_connector(old_conn_state->connector));
-> +
-> +	if (old_conn_state->content_protection ==
-> +	    DRM_MODE_CONTENT_PROTECTION_ENABLED && !ret)
-while relooking at it, locking is missing. 
+Lets see what breaks? Round 2?
 
-                mutex_lock(&hdcp->mutex);
-                hdcp->value = DRM_MODE_CONTENT_PROTECTION_DESIRED;
-                schedule_work(&hdcp->prop_work);
-                mutex_unlock(&hdcp->mutex);
+Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+---
+ drivers/gpu/drm/i915/gt/intel_context.c       | 28 +++++++++++++------
+ drivers/gpu/drm/i915/gt/intel_context_types.h |  1 +
+ 2 files changed, 20 insertions(+), 9 deletions(-)
 
--Ram
+diff --git a/drivers/gpu/drm/i915/gt/intel_context.c b/drivers/gpu/drm/i915/gt/intel_context.c
+index 61c39e943f69..614258e268e4 100644
+--- a/drivers/gpu/drm/i915/gt/intel_context.c
++++ b/drivers/gpu/drm/i915/gt/intel_context.c
+@@ -48,21 +48,30 @@ int __intel_context_do_pin(struct intel_context *ce)
+ {
+ 	int err;
+ 
+-	if (mutex_lock_interruptible(&ce->pin_mutex))
+-		return -EINTR;
+-
+-	if (likely(!atomic_read(&ce->pin_count))) {
+-		intel_wakeref_t wakeref;
++	if (unlikely(!test_bit(CONTEXT_ALLOC_BIT, &ce->flags))) {
++		err = mutex_lock_interruptible(&ce->alloc_mutex);
++		if (err)
++			return err;
+ 
+-		if (unlikely(!test_bit(CONTEXT_ALLOC_BIT, &ce->flags))) {
++		if (!test_bit(CONTEXT_ALLOC_BIT, &ce->flags)) {
+ 			err = ce->ops->alloc(ce);
+ 			if (unlikely(err))
+ 				goto err;
+ 
++			smp_mb(); /* Make sure allocation is flushed to memory */
++
+ 			__set_bit(CONTEXT_ALLOC_BIT, &ce->flags);
+ 		}
++		mutex_unlock(&ce->alloc_mutex);
++	}
++
++	err = mutex_lock_interruptible(&ce->pin_mutex);
++	if (err)
++		return err;
++
++	if (likely(!atomic_read(&ce->pin_count))) {
++		intel_wakeref_t wakeref;
+ 
+-		err = 0;
+ 		with_intel_runtime_pm(ce->engine->uncore->rpm, wakeref)
+ 			err = ce->ops->pin(ce);
+ 		if (err)
+@@ -95,14 +104,13 @@ void intel_context_unpin(struct intel_context *ce)
+ 
+ 	/* We may be called from inside intel_context_pin() to evict another */
+ 	intel_context_get(ce);
+-	mutex_lock_nested(&ce->pin_mutex, SINGLE_DEPTH_NESTING);
++	mutex_lock(&ce->pin_mutex);
+ 
+ 	if (likely(atomic_dec_and_test(&ce->pin_count))) {
+ 		GEM_TRACE("%s context:%llx retire\n",
+ 			  ce->engine->name, ce->timeline->fence_context);
+ 
+ 		ce->ops->unpin(ce);
+-
+ 		i915_gem_context_put(ce->gem_context);
+ 		intel_context_active_release(ce);
+ 	}
+@@ -246,6 +254,7 @@ intel_context_init(struct intel_context *ce,
+ 	INIT_LIST_HEAD(&ce->signals);
+ 
+ 	mutex_init(&ce->pin_mutex);
++	mutex_init(&ce->alloc_mutex);
+ 
+ 	i915_active_init(&ce->active,
+ 			 __intel_context_active, __intel_context_retire);
+@@ -257,6 +266,7 @@ void intel_context_fini(struct intel_context *ce)
+ 		intel_timeline_put(ce->timeline);
+ 	i915_vm_put(ce->vm);
+ 
++	mutex_destroy(&ce->alloc_mutex);
+ 	mutex_destroy(&ce->pin_mutex);
+ 	i915_active_fini(&ce->active);
+ }
+diff --git a/drivers/gpu/drm/i915/gt/intel_context_types.h b/drivers/gpu/drm/i915/gt/intel_context_types.h
+index d1204cc899a3..a987df89caaf 100644
+--- a/drivers/gpu/drm/i915/gt/intel_context_types.h
++++ b/drivers/gpu/drm/i915/gt/intel_context_types.h
+@@ -65,6 +65,7 @@ struct intel_context {
+ 
+ 	atomic_t pin_count;
+ 	struct mutex pin_mutex; /* guards pinning and associated on-gpuing */
++	struct mutex alloc_mutex; /* guards against concurrent contex allocation */
+ 
+ 	/**
+ 	 * active: Active tracker for the rq activity (inc. external) on this
+-- 
+2.24.1
 
-> +		drm_hdcp_update_content_protection(old_conn_state->connector,
-> +						   DRM_MODE_CONTENT_PROTECTION_DESIRED);
->  
->  	if (intel_crtc_has_type(old_crtc_state, INTEL_OUTPUT_HDMI))
->  		intel_disable_ddi_hdmi(encoder, old_crtc_state, old_conn_state);
-> -- 
-> 2.24.0
-> 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
