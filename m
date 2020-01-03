@@ -2,36 +2,28 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BEEF412F719
-	for <lists+intel-gfx@lfdr.de>; Fri,  3 Jan 2020 12:22:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E896812F810
+	for <lists+intel-gfx@lfdr.de>; Fri,  3 Jan 2020 13:15:29 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E94996E1D6;
-	Fri,  3 Jan 2020 11:22:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5690189FE3;
+	Fri,  3 Jan 2020 12:15:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 462C86E1D6
- for <intel-gfx@lists.freedesktop.org>; Fri,  3 Jan 2020 11:22:39 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga106.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 03 Jan 2020 03:22:38 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,390,1571727600"; d="scan'208";a="224938437"
-Received: from gaia.fi.intel.com ([10.237.72.192])
- by fmsmga001.fm.intel.com with ESMTP; 03 Jan 2020 03:22:37 -0800
-Received: by gaia.fi.intel.com (Postfix, from userid 1000)
- id D29145C1DFE; Fri,  3 Jan 2020 13:22:11 +0200 (EET)
-From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20200102131707.1463945-1-chris@chris-wilson.co.uk>
-References: <20200102131707.1463945-1-chris@chris-wilson.co.uk>
-Date: Fri, 03 Jan 2020 13:22:11 +0200
-Message-ID: <871rsg6azg.fsf@gaia.fi.intel.com>
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CFDFE89DBC
+ for <intel-gfx@lists.freedesktop.org>; Fri,  3 Jan 2020 12:15:25 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19759414-1500050 
+ for multiple; Fri, 03 Jan 2020 12:15:07 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri,  3 Jan 2020 12:15:04 +0000
+Message-Id: <20200103121505.1862904-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.25.0.rc0
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 1/5] drm/i915/gt: Include a bunch more rcs
- image state
+Subject: [Intel-gfx] [PATCH 1/2] drm/i915/gem: Extend mmap support for lmem
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,160 +36,193 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Matthew Auld <matthew.auld@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Chris Wilson <chris@chris-wilson.co.uk> writes:
+From: Abdiel Janulgue <abdiel.janulgue@linux.intel.com>
 
-> Empirically the minimal context image we use for rcs is insufficient to
-> state the engine. This is demonstrated if we poison the context image
-> such that any uninitialised state is invalid, and so if the engine
-> samples beyond our defined region, will fail to start.
->
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Local memory objects are similar to our usual scatterlist, but instead
+of using the struct page stored therein, we need to use the
+sg->dma_address.
 
-Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+Signed-off-by: Abdiel Janulgue <abdiel.janulgue@linux.intel.com>
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Matthew Auld <matthew.auld@intel.com>
+---
+ drivers/gpu/drm/i915/gem/i915_gem_mman.c | 21 ++++++++++-----
+ drivers/gpu/drm/i915/i915_drv.h          |  6 ++---
+ drivers/gpu/drm/i915/i915_mm.c           | 34 +++++++++++++++---------
+ 3 files changed, 39 insertions(+), 22 deletions(-)
 
-> ---
->  drivers/gpu/drm/i915/gt/intel_lrc.c    | 88 +++++++++++++++++++++++++-
->  drivers/gpu/drm/i915/gt/selftest_lrc.c |  7 ++
->  2 files changed, 94 insertions(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-> index 00895f83f61e..029496d2dfb5 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-> @@ -492,7 +492,7 @@ static u32 *set_offsets(u32 *regs,
->  			const u8 *data,
->  			const struct intel_engine_cs *engine)
->  #define NOP(x) (BIT(7) | (x))
-> -#define LRI(count, flags) ((flags) << 6 | (count))
-> +#define LRI(count, flags) ((flags) << 6 | (count) | BUILD_BUG_ON_ZERO(count >= BIT(6)))
->  #define POSTED BIT(0)
->  #define REG(x) (((x) >> 2) | BUILD_BUG_ON_ZERO(x >= 0x200))
->  #define REG16(x) \
-> @@ -728,6 +728,90 @@ static const u8 gen8_rcs_offsets[] = {
->  	END(),
->  };
->  
-> +static const u8 gen9_rcs_offsets[] = {
-> +	NOP(1),
-> +	LRI(14, POSTED),
-> +	REG16(0x244),
-> +	REG(0x34),
-> +	REG(0x30),
-> +	REG(0x38),
-> +	REG(0x3c),
-> +	REG(0x168),
-> +	REG(0x140),
-> +	REG(0x110),
-> +	REG(0x11c),
-> +	REG(0x114),
-> +	REG(0x118),
-> +	REG(0x1c0),
-> +	REG(0x1c4),
-> +	REG(0x1c8),
-> +
-> +	NOP(3),
-> +	LRI(9, POSTED),
-> +	REG16(0x3a8),
-> +	REG16(0x28c),
-> +	REG16(0x288),
-> +	REG16(0x284),
-> +	REG16(0x280),
-> +	REG16(0x27c),
-> +	REG16(0x278),
-> +	REG16(0x274),
-> +	REG16(0x270),
-> +
-> +	NOP(13),
-> +	LRI(1, 0),
-> +	REG(0xc8),
-> +
-> +	NOP(13),
-> +	LRI(44, POSTED),
-> +	REG(0x28),
-> +	REG(0x9c),
-> +	REG(0xc0),
-> +	REG(0x178),
-> +	REG(0x17c),
-> +	REG16(0x358),
-> +	REG(0x170),
-> +	REG(0x150),
-> +	REG(0x154),
-> +	REG(0x158),
-> +	REG16(0x41c),
-> +	REG16(0x600),
-> +	REG16(0x604),
-> +	REG16(0x608),
-> +	REG16(0x60c),
-> +	REG16(0x610),
-> +	REG16(0x614),
-> +	REG16(0x618),
-> +	REG16(0x61c),
-> +	REG16(0x620),
-> +	REG16(0x624),
-> +	REG16(0x628),
-> +	REG16(0x62c),
-> +	REG16(0x630),
-> +	REG16(0x634),
-> +	REG16(0x638),
-> +	REG16(0x63c),
-> +	REG16(0x640),
-> +	REG16(0x644),
-> +	REG16(0x648),
-> +	REG16(0x64c),
-> +	REG16(0x650),
-> +	REG16(0x654),
-> +	REG16(0x658),
-> +	REG16(0x65c),
-> +	REG16(0x660),
-> +	REG16(0x664),
-> +	REG16(0x668),
-> +	REG16(0x66c),
-> +	REG16(0x670),
-> +	REG16(0x674),
-> +	REG16(0x678),
-> +	REG16(0x67c),
-> +	REG(0x68),
-> +
-> +	END()
-> +};
-> +
->  static const u8 gen11_rcs_offsets[] = {
->  	NOP(1),
->  	LRI(15, POSTED),
-> @@ -832,6 +916,8 @@ static const u8 *reg_offsets(const struct intel_engine_cs *engine)
->  			return gen12_rcs_offsets;
->  		else if (INTEL_GEN(engine->i915) >= 11)
->  			return gen11_rcs_offsets;
-> +		else if (INTEL_GEN(engine->i915) >= 9)
-> +			return gen9_rcs_offsets;
->  		else
->  			return gen8_rcs_offsets;
->  	} else {
-> diff --git a/drivers/gpu/drm/i915/gt/selftest_lrc.c b/drivers/gpu/drm/i915/gt/selftest_lrc.c
-> index 9ec9833c9c7b..943b623f00e9 100644
-> --- a/drivers/gpu/drm/i915/gt/selftest_lrc.c
-> +++ b/drivers/gpu/drm/i915/gt/selftest_lrc.c
-> @@ -3406,6 +3406,13 @@ static int live_lrc_layout(void *arg)
->  				continue;
->  			}
->  
-> +			if (lrc[dw] == 0) {
-> +				pr_debug("%s: skipped instruction %x at dword %d\n",
-> +					 engine->name, lri, dw);
-> +				dw++;
-> +				continue;
-> +			}
-> +
->  			if ((lri & GENMASK(31, 23)) != MI_INSTR(0x22, 0)) {
->  				pr_err("%s: Expected LRI command at dword %d, found %08x\n",
->  				       engine->name, dw, lri);
-> -- 
-> 2.25.0.rc0
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_mman.c b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
+index ed0d9a2f0e7b..37efd95c086d 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_mman.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
+@@ -217,6 +217,7 @@ static vm_fault_t i915_error_to_vmf_fault(int err)
+ 
+ 	case -ENOSPC: /* shmemfs allocation failure */
+ 	case -ENOMEM: /* our allocation failure */
++	case -ENXIO:
+ 		return VM_FAULT_OOM;
+ 
+ 	case 0:
+@@ -237,11 +238,9 @@ static vm_fault_t vm_fault_cpu(struct vm_fault *vmf)
+ 	struct vm_area_struct *area = vmf->vma;
+ 	struct i915_mmap_offset *mmo = area->vm_private_data;
+ 	struct drm_i915_gem_object *obj = mmo->obj;
++	resource_size_t iomap;
+ 	int err;
+ 
+-	if (unlikely(!i915_gem_object_has_struct_page(obj)))
+-		return VM_FAULT_SIGBUS;
+-
+ 	/* Sanity check that we allow writing into this object */
+ 	if (unlikely(i915_gem_object_is_readonly(obj) &&
+ 		     area->vm_flags & VM_WRITE))
+@@ -251,10 +250,16 @@ static vm_fault_t vm_fault_cpu(struct vm_fault *vmf)
+ 	if (err)
+ 		goto out;
+ 
++	iomap = -1;
++	if (!i915_gem_object_type_has(obj, I915_GEM_OBJECT_HAS_STRUCT_PAGE)) {
++		iomap = obj->mm.region->iomap.base;
++		iomap -= obj->mm.region->region.start;
++	}
++
+ 	/* PTEs are revoked in obj->ops->put_pages() */
+-	err = remap_io_sg_page(area,
+-			       area->vm_start, area->vm_end - area->vm_start,
+-			       obj->mm.pages->sgl);
++	err = remap_io_sg(area,
++			  area->vm_start, area->vm_end - area->vm_start,
++			  obj->mm.pages->sgl, iomap);
+ 
+ 	if (area->vm_flags & VM_WRITE) {
+ 		GEM_BUG_ON(!i915_gem_object_has_pinned_pages(obj));
+@@ -553,7 +558,9 @@ __assign_mmap_offset(struct drm_file *file,
+ 	}
+ 
+ 	if (mmap_type != I915_MMAP_TYPE_GTT &&
+-	    !i915_gem_object_has_struct_page(obj)) {
++	    !i915_gem_object_type_has(obj,
++				      I915_GEM_OBJECT_HAS_STRUCT_PAGE |
++				      I915_GEM_OBJECT_HAS_IOMEM)) {
+ 		err = -ENODEV;
+ 		goto out;
+ 	}
+diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+index 2ee9f57d165d..50181113dd2b 100644
+--- a/drivers/gpu/drm/i915/i915_drv.h
++++ b/drivers/gpu/drm/i915/i915_drv.h
+@@ -2027,9 +2027,9 @@ int i915_reg_read_ioctl(struct drm_device *dev, void *data,
+ int remap_io_mapping(struct vm_area_struct *vma,
+ 		     unsigned long addr, unsigned long pfn, unsigned long size,
+ 		     struct io_mapping *iomap);
+-int remap_io_sg_page(struct vm_area_struct *vma,
+-		     unsigned long addr, unsigned long size,
+-		     struct scatterlist *sgl);
++int remap_io_sg(struct vm_area_struct *vma,
++		unsigned long addr, unsigned long size,
++		struct scatterlist *sgl, resource_size_t iobase);
+ 
+ static inline int intel_hws_csb_write_index(struct drm_i915_private *i915)
+ {
+diff --git a/drivers/gpu/drm/i915/i915_mm.c b/drivers/gpu/drm/i915/i915_mm.c
+index 2998689e6d42..b6376b25ef63 100644
+--- a/drivers/gpu/drm/i915/i915_mm.c
++++ b/drivers/gpu/drm/i915/i915_mm.c
+@@ -35,6 +35,7 @@ struct remap_pfn {
+ 	pgprot_t prot;
+ 
+ 	struct sgt_iter sgt;
++	resource_size_t iobase;
+ };
+ 
+ static int remap_pfn(pte_t *pte, unsigned long addr, void *data)
+@@ -48,12 +49,17 @@ static int remap_pfn(pte_t *pte, unsigned long addr, void *data)
+ 	return 0;
+ }
+ 
+-static inline unsigned long sgt_pfn(const struct sgt_iter *sgt)
++#define use_dma(io) ((io) != -1)
++
++static inline unsigned long sgt_pfn(const struct remap_pfn *r)
+ {
+-	return sgt->pfn + (sgt->curr >> PAGE_SHIFT);
++	if (use_dma(r->iobase))
++		return (r->sgt.dma + r->sgt.curr + r->iobase) >> PAGE_SHIFT;
++	else
++		return r->sgt.pfn + (r->sgt.curr >> PAGE_SHIFT);
+ }
+ 
+-static int remap_sg_page(pte_t *pte, unsigned long addr, void *data)
++static int remap_sg(pte_t *pte, unsigned long addr, void *data)
+ {
+ 	struct remap_pfn *r = data;
+ 
+@@ -62,12 +68,12 @@ static int remap_sg_page(pte_t *pte, unsigned long addr, void *data)
+ 
+ 	/* Special PTE are not associated with any struct page */
+ 	set_pte_at(r->mm, addr, pte,
+-		   pte_mkspecial(pfn_pte(sgt_pfn(&r->sgt), r->prot)));
++		   pte_mkspecial(pfn_pte(sgt_pfn(r), r->prot)));
+ 	r->pfn++; /* track insertions in case we need to unwind later */
+ 
+ 	r->sgt.curr += PAGE_SIZE;
+ 	if (r->sgt.curr >= r->sgt.max)
+-		r->sgt = __sgt_iter(__sg_next(r->sgt.sgp), false);
++		r->sgt = __sgt_iter(__sg_next(r->sgt.sgp), use_dma(r->iobase));
+ 
+ 	return 0;
+ }
+@@ -108,30 +114,34 @@ int remap_io_mapping(struct vm_area_struct *vma,
+ }
+ 
+ /**
+- * remap_io_sg_page - remap an IO mapping to userspace
++ * remap_io_sg - remap an IO mapping to userspace
+  * @vma: user vma to map to
+  * @addr: target user address to start at
+  * @size: size of map area
+  * @sgl: Start sg entry
++ * @iobase: Use stored dma address offset by this address or pfn if -1
+  *
+  *  Note: this is only safe if the mm semaphore is held when called.
+  */
+-int remap_io_sg_page(struct vm_area_struct *vma,
+-		     unsigned long addr, unsigned long size,
+-		     struct scatterlist *sgl)
++int remap_io_sg(struct vm_area_struct *vma,
++		unsigned long addr, unsigned long size,
++		struct scatterlist *sgl, resource_size_t iobase)
+ {
+ 	struct remap_pfn r = {
+ 		.mm = vma->vm_mm,
+ 		.prot = vma->vm_page_prot,
+-		.sgt = __sgt_iter(sgl, false),
++		.sgt = __sgt_iter(sgl, use_dma(iobase)),
++		.iobase = iobase,
+ 	};
+ 	int err;
+ 
+ 	/* We rely on prevalidation of the io-mapping to skip track_pfn(). */
+ 	GEM_BUG_ON((vma->vm_flags & EXPECTED_FLAGS) != EXPECTED_FLAGS);
+ 
+-	flush_cache_range(vma, addr, size);
+-	err = apply_to_page_range(r.mm, addr, size, remap_sg_page, &r);
++	if (!use_dma(iobase))
++		flush_cache_range(vma, addr, size);
++
++	err = apply_to_page_range(r.mm, addr, size, remap_sg, &r);
+ 	if (unlikely(err)) {
+ 		zap_vma_ptes(vma, addr, r.pfn << PAGE_SHIFT);
+ 		return err;
+-- 
+2.25.0.rc0
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
