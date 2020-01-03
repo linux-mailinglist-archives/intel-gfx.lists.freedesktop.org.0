@@ -2,31 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 10C9912F818
-	for <lists+intel-gfx@lfdr.de>; Fri,  3 Jan 2020 13:18:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CA37512F88F
+	for <lists+intel-gfx@lfdr.de>; Fri,  3 Jan 2020 13:57:23 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 68FD96E2E1;
-	Fri,  3 Jan 2020 12:18:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B64006E2F9;
+	Fri,  3 Jan 2020 12:57:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2FAE86E2E1
- for <intel-gfx@lists.freedesktop.org>; Fri,  3 Jan 2020 12:18:07 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 19759454-1500050 for multiple; Fri, 03 Jan 2020 12:17:59 +0000
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id F403F88F94;
+ Fri,  3 Jan 2020 12:57:20 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id EAA0FA00C7;
+ Fri,  3 Jan 2020 12:57:20 +0000 (UTC)
 MIME-Version: 1.0
-To: intel-gfx@lists.freedesktop.org
-From: Chris Wilson <chris@chris-wilson.co.uk>
-In-Reply-To: <20200103121505.1862904-1-chris@chris-wilson.co.uk>
-References: <20200103121505.1862904-1-chris@chris-wilson.co.uk>
-Message-ID: <157805387736.10181.3309027688829519130@skylake-alporthouse-com>
-User-Agent: alot/0.6
-Date: Fri, 03 Jan 2020 12:17:57 +0000
-Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915/gem: Extend mmap support for
- lmem
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Fri, 03 Jan 2020 12:57:20 -0000
+Message-ID: <157805624093.20613.2984785784016710354@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200103104516.1757103-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200103104516.1757103-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_series_starting_with_=5B1/2=5D_drm/i915/selftest=3A_Move_ig?=
+ =?utf-8?q?t=5Fatomic=5Fsection=5B=5D_out_of_the_header?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,40 +39,30 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Matthew Auld <matthew.auld@intel.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Chris Wilson (2020-01-03 12:15:04)
-> From: Abdiel Janulgue <abdiel.janulgue@linux.intel.com>
-> 
-> Local memory objects are similar to our usual scatterlist, but instead
-> of using the struct page stored therein, we need to use the
-> sg->dma_address.
-> 
-> Signed-off-by: Abdiel Janulgue <abdiel.janulgue@linux.intel.com>
-> Cc: Chris Wilson <chris@chris-wilson.co.uk>
-> Cc: Matthew Auld <matthew.auld@intel.com>
-> ---
->  drivers/gpu/drm/i915/gem/i915_gem_mman.c | 21 ++++++++++-----
->  drivers/gpu/drm/i915/i915_drv.h          |  6 ++---
->  drivers/gpu/drm/i915/i915_mm.c           | 34 +++++++++++++++---------
->  3 files changed, 39 insertions(+), 22 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_mman.c b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
-> index ed0d9a2f0e7b..37efd95c086d 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_mman.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
-> @@ -217,6 +217,7 @@ static vm_fault_t i915_error_to_vmf_fault(int err)
->  
->         case -ENOSPC: /* shmemfs allocation failure */
->         case -ENOMEM: /* our allocation failure */
-> +       case -ENXIO:
+== Series Details ==
 
-Why not SIGBUS?
--Chris
+Series: series starting with [1/2] drm/i915/selftest: Move igt_atomic_section[] out of the header
+URL   : https://patchwork.freedesktop.org/series/71599/
+State : warning
+
+== Summary ==
+
+$ dim checkpatch origin/drm-tip
+aba7d1f5aa20 drm/i915/selftest: Move igt_atomic_section[] out of the header
+-:25: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#25: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 106 lines checked
+b72498a874fb drm/i915/selftests: Make headers self-contained
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
