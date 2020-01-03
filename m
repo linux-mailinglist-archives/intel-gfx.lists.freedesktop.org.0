@@ -1,34 +1,37 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D26012FD57
-	for <lists+intel-gfx@lfdr.de>; Fri,  3 Jan 2020 21:00:38 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F24E12FD56
+	for <lists+intel-gfx@lfdr.de>; Fri,  3 Jan 2020 21:00:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BB4EF89DCF;
-	Fri,  3 Jan 2020 20:00:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 20DB46E339;
+	Fri,  3 Jan 2020 20:00:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2F70A89722
- for <intel-gfx@lists.freedesktop.org>; Fri,  3 Jan 2020 20:00:32 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1C2EE89722
+ for <intel-gfx@lists.freedesktop.org>; Fri,  3 Jan 2020 20:00:33 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga002.jf.intel.com ([10.7.209.21])
  by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 03 Jan 2020 12:00:31 -0800
+ 03 Jan 2020 12:00:32 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,391,1571727600"; d="scan'208";a="232201166"
+X-IronPort-AV: E=Sophos;i="5.69,391,1571727600"; d="scan'208";a="232201170"
 Received: from eyonkov-mobl.ger.corp.intel.com (HELO
  mwahaha-bdw.ger.corp.intel.com) ([10.252.22.82])
- by orsmga002.jf.intel.com with ESMTP; 03 Jan 2020 12:00:29 -0800
+ by orsmga002.jf.intel.com with ESMTP; 03 Jan 2020 12:00:30 -0800
 From: Matthew Auld <matthew.auld@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri,  3 Jan 2020 20:00:28 +0000
-Message-Id: <20200103200030.334215-1-matthew.auld@intel.com>
+Date: Fri,  3 Jan 2020 20:00:29 +0000
+Message-Id: <20200103200030.334215-2-matthew.auld@intel.com>
 X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20200103200030.334215-1-matthew.auld@intel.com>
+References: <20200103200030.334215-1-matthew.auld@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 1/3] drm/i915: make stolen more region centric
+Subject: [Intel-gfx] [PATCH 2/3] drm/i915/gtt: refactor the storage
+ assumptions around paging structures
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,596 +49,323 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: CQ Tang <cq.tang@intel.com>
+We currently assume we have struct pages for the backing storage of our
+paging structures, however in the future we may also want to support
+allocating storage from non-page backed memory, while still being able
+to map it into the kernel address space for CPU access.
 
-Signed-off-by: CQ Tang <cq.tang@intel.com>
 Signed-off-by: Matthew Auld <matthew.auld@intel.com>
 Cc: Chris Wilson <chris@chris-wilson.co.uk>
 ---
- drivers/gpu/drm/i915/display/intel_fbc.c      |  20 +--
- drivers/gpu/drm/i915/display/intel_fbdev.c    |   4 +-
- .../gpu/drm/i915/gem/i915_gem_object_types.h  |   7 +-
- drivers/gpu/drm/i915/gem/i915_gem_stolen.c    | 128 ++++++++----------
- drivers/gpu/drm/i915/gem/i915_gem_stolen.h    |   7 +-
- drivers/gpu/drm/i915/gt/intel_rc6.c           |   4 +-
- drivers/gpu/drm/i915/gt/intel_ring.c          |   2 +-
- drivers/gpu/drm/i915/i915_debugfs.c           |   4 +-
- drivers/gpu/drm/i915/i915_drv.h               |   6 -
- drivers/gpu/drm/i915/intel_memory_region.h    |   3 +
- 10 files changed, 90 insertions(+), 95 deletions(-)
+ drivers/gpu/drm/i915/i915_gem_gtt.c | 109 +++++++++++++++++++++-------
+ drivers/gpu/drm/i915/i915_gem_gtt.h |   7 ++
+ 2 files changed, 88 insertions(+), 28 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
-index a1048ece541e..3c4e70da717c 100644
---- a/drivers/gpu/drm/i915/display/intel_fbc.c
-+++ b/drivers/gpu/drm/i915/display/intel_fbc.c
-@@ -420,6 +420,7 @@ static int find_compression_threshold(struct drm_i915_private *dev_priv,
- 				      unsigned int size,
- 				      unsigned int fb_cpp)
- {
-+	struct intel_memory_region *mem = dev_priv->mm.regions[INTEL_REGION_STOLEN];
- 	int compression_threshold = 1;
- 	int ret;
- 	u64 end;
-@@ -441,7 +442,7 @@ static int find_compression_threshold(struct drm_i915_private *dev_priv,
- 	 */
- 
- 	/* Try to over-allocate to reduce reallocations and fragmentation. */
--	ret = i915_gem_stolen_insert_node_in_range(dev_priv, node, size <<= 1,
-+	ret = i915_gem_stolen_insert_node_in_range(mem, node, size <<= 1,
- 						   4096, 0, end);
- 	if (ret == 0)
- 		return compression_threshold;
-@@ -452,7 +453,7 @@ static int find_compression_threshold(struct drm_i915_private *dev_priv,
- 	    (fb_cpp == 2 && compression_threshold == 2))
- 		return 0;
- 
--	ret = i915_gem_stolen_insert_node_in_range(dev_priv, node, size >>= 1,
-+	ret = i915_gem_stolen_insert_node_in_range(mem, node, size >>= 1,
- 						   4096, 0, end);
- 	if (ret && INTEL_GEN(dev_priv) <= 4) {
- 		return 0;
-@@ -467,6 +468,7 @@ static int find_compression_threshold(struct drm_i915_private *dev_priv,
- static int intel_fbc_alloc_cfb(struct drm_i915_private *dev_priv,
- 			       unsigned int size, unsigned int fb_cpp)
- {
-+	struct intel_memory_region *mem = dev_priv->mm.regions[INTEL_REGION_STOLEN];
- 	struct intel_fbc *fbc = &dev_priv->fbc;
- 	struct drm_mm_node *uninitialized_var(compressed_llb);
- 	int ret;
-@@ -493,7 +495,7 @@ static int intel_fbc_alloc_cfb(struct drm_i915_private *dev_priv,
- 		if (!compressed_llb)
- 			goto err_fb;
- 
--		ret = i915_gem_stolen_insert_node(dev_priv, compressed_llb,
-+		ret = i915_gem_stolen_insert_node(mem, compressed_llb,
- 						  4096, 4096);
- 		if (ret)
- 			goto err_fb;
-@@ -519,22 +521,23 @@ static int intel_fbc_alloc_cfb(struct drm_i915_private *dev_priv,
- 
- err_fb:
- 	kfree(compressed_llb);
--	i915_gem_stolen_remove_node(dev_priv, &fbc->compressed_fb);
-+	i915_gem_stolen_remove_node(mem, &fbc->compressed_fb);
- err_llb:
--	if (drm_mm_initialized(&dev_priv->mm.stolen))
-+	if (drm_mm_initialized(&mem->stolen))
- 		pr_info_once("drm: not enough stolen space for compressed buffer (need %d more bytes), disabling. Hint: you may be able to increase stolen memory size in the BIOS to avoid this.\n", size);
- 	return -ENOSPC;
+diff --git a/drivers/gpu/drm/i915/i915_gem_gtt.c b/drivers/gpu/drm/i915/i915_gem_gtt.c
+index 1efe58ad0ce9..48b3b9e681c9 100644
+--- a/drivers/gpu/drm/i915/i915_gem_gtt.c
++++ b/drivers/gpu/drm/i915/i915_gem_gtt.c
+@@ -588,11 +588,20 @@ static void i915_address_space_init(struct i915_address_space *vm, int subclass)
+ 	INIT_LIST_HEAD(&vm->bound_list);
  }
  
- static void __intel_fbc_cleanup_cfb(struct drm_i915_private *dev_priv)
+-static int __setup_page_dma(struct i915_address_space *vm,
+-			    struct i915_page_dma *p,
+-			    gfp_t gfp)
++static void *kmap_page_dma_system(const struct i915_page_dma *p)
++{
++	return kmap_atomic(p->page);
++}
++
++static void kunmap_page_dma_system(void *vaddr)
++{
++	kunmap_atomic(vaddr);
++}
++
++static int setup_page_dma_system(struct i915_address_space *vm,
++				 struct i915_page_dma *p)
  {
-+	struct intel_memory_region *mem = dev_priv->mm.regions[INTEL_REGION_STOLEN];
- 	struct intel_fbc *fbc = &dev_priv->fbc;
+-	p->page = vm_alloc_page(vm, gfp | I915_GFP_ALLOW_FAIL);
++	p->page = vm_alloc_page(vm, __GFP_HIGHMEM | I915_GFP_ALLOW_FAIL);
+ 	if (unlikely(!p->page))
+ 		return -ENOMEM;
  
- 	if (drm_mm_node_allocated(&fbc->compressed_fb))
--		i915_gem_stolen_remove_node(dev_priv, &fbc->compressed_fb);
-+		i915_gem_stolen_remove_node(mem, &fbc->compressed_fb);
- 
- 	if (fbc->compressed_llb) {
--		i915_gem_stolen_remove_node(dev_priv, fbc->compressed_llb);
-+		i915_gem_stolen_remove_node(mem, fbc->compressed_llb);
- 		kfree(fbc->compressed_llb);
+@@ -606,28 +615,54 @@ static int __setup_page_dma(struct i915_address_space *vm,
+ 		return -ENOMEM;
  	}
- }
-@@ -1325,13 +1328,14 @@ static bool need_fbc_vtd_wa(struct drm_i915_private *dev_priv)
-  */
- void intel_fbc_init(struct drm_i915_private *dev_priv)
- {
-+	struct intel_memory_region *mem = dev_priv->mm.regions[INTEL_REGION_STOLEN];
- 	struct intel_fbc *fbc = &dev_priv->fbc;
  
- 	INIT_WORK(&fbc->underrun_work, intel_fbc_underrun_work_fn);
- 	mutex_init(&fbc->lock);
- 	fbc->active = false;
- 
--	if (!drm_mm_initialized(&dev_priv->mm.stolen))
-+	if (!drm_mm_initialized(&mem->stolen))
- 		mkwrite_device_info(dev_priv)->display.has_fbc = false;
- 
- 	if (need_fbc_vtd_wa(dev_priv))
-diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.c b/drivers/gpu/drm/i915/display/intel_fbdev.c
-index 1e98e432c9fa..522ea9538c16 100644
---- a/drivers/gpu/drm/i915/display/intel_fbdev.c
-+++ b/drivers/gpu/drm/i915/display/intel_fbdev.c
-@@ -254,7 +254,7 @@ static int intelfb_create(struct drm_fb_helper *helper,
- 	 * If the object is stolen however, it will be full of whatever
- 	 * garbage was left in there.
- 	 */
--	if (vma->obj->stolen && !prealloc)
-+	if (vma->obj->mm.stolen && !prealloc)
- 		memset_io(info->screen_base, 0, info->screen_size);
- 
- 	/* Use default scratch pixmap (info->pixmap.flags = FB_PIXMAP_SYSTEM) */
-@@ -584,7 +584,7 @@ void intel_fbdev_set_suspend(struct drm_device *dev, int state, bool synchronous
- 	 * full of whatever garbage was left in there.
- 	 */
- 	if (state == FBINFO_STATE_RUNNING &&
--	    intel_fb_obj(&ifbdev->fb->base)->stolen)
-+	    intel_fb_obj(&ifbdev->fb->base)->mm.stolen)
- 		memset_io(info->screen_base, 0, info->screen_size);
- 
- 	drm_fb_helper_set_suspend(&ifbdev->helper, state);
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object_types.h b/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
-index 88e268633fdc..1919994fee33 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
-@@ -122,8 +122,6 @@ struct drm_i915_gem_object {
- 	 */
- 	struct list_head lut_list;
- 
--	/** Stolen memory for this object, instead of being backed by shmem. */
--	struct drm_mm_node *stolen;
- 	union {
- 		struct rcu_head rcu;
- 		struct llist_node freed;
-@@ -201,6 +199,11 @@ struct drm_i915_gem_object {
- 		 * List of memory region blocks allocated for this object.
- 		 */
- 		struct list_head blocks;
-+		/**
-+		 * The memory region block allocated for this object, if backed
-+		 * by stolen memory.
-+		 */
-+		struct drm_mm_node *stolen;
- 		/**
- 		 * Element within memory_region->objects or region->purgeable
- 		 * if the object is marked as DONTNEED. Access is protected by
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_stolen.c b/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
-index 451f3078d60d..ddb59a2fbbfe 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
-@@ -26,42 +26,42 @@
-  * for is a boon.
-  */
- 
--int i915_gem_stolen_insert_node_in_range(struct drm_i915_private *i915,
-+int i915_gem_stolen_insert_node_in_range(struct intel_memory_region *mem,
- 					 struct drm_mm_node *node, u64 size,
- 					 unsigned alignment, u64 start, u64 end)
- {
- 	int ret;
- 
--	if (!drm_mm_initialized(&i915->mm.stolen))
-+	if (!drm_mm_initialized(&mem->stolen))
- 		return -ENODEV;
- 
- 	/* WaSkipStolenMemoryFirstPage:bdw+ */
--	if (INTEL_GEN(i915) >= 8 && start < 4096)
-+	if (INTEL_GEN(mem->i915) >= 8 && start < 4096)
- 		start = 4096;
- 
--	mutex_lock(&i915->mm.stolen_lock);
--	ret = drm_mm_insert_node_in_range(&i915->mm.stolen, node,
-+	mutex_lock(&mem->mm_lock);
-+	ret = drm_mm_insert_node_in_range(&mem->stolen, node,
- 					  size, alignment, 0,
- 					  start, end, DRM_MM_INSERT_BEST);
--	mutex_unlock(&i915->mm.stolen_lock);
-+	mutex_unlock(&mem->mm_lock);
- 
- 	return ret;
- }
- 
--int i915_gem_stolen_insert_node(struct drm_i915_private *i915,
-+int i915_gem_stolen_insert_node(struct intel_memory_region *mem,
- 				struct drm_mm_node *node, u64 size,
- 				unsigned alignment)
- {
--	return i915_gem_stolen_insert_node_in_range(i915, node, size,
-+	return i915_gem_stolen_insert_node_in_range(mem, node, size,
- 						    alignment, 0, U64_MAX);
- }
- 
--void i915_gem_stolen_remove_node(struct drm_i915_private *i915,
-+void i915_gem_stolen_remove_node(struct intel_memory_region *mem,
- 				 struct drm_mm_node *node)
- {
--	mutex_lock(&i915->mm.stolen_lock);
-+	mutex_lock(&mem->mm_lock);
- 	drm_mm_remove_node(node);
--	mutex_unlock(&i915->mm.stolen_lock);
-+	mutex_unlock(&mem->mm_lock);
- }
- 
- static int i915_adjust_stolen(struct drm_i915_private *i915,
-@@ -152,12 +152,12 @@ static int i915_adjust_stolen(struct drm_i915_private *i915,
++	p->kmap = kmap_page_dma_system;
++	p->kunmap = kunmap_page_dma_system;
++
  	return 0;
  }
  
--static void i915_gem_cleanup_stolen(struct drm_i915_private *i915)
-+static void i915_gem_cleanup_stolen(struct intel_memory_region *mem)
++static void cleanup_page_dma_system(struct i915_address_space *vm,
++				    struct i915_page_dma *p)
++{
++	dma_unmap_page(vm->dma, p->daddr, PAGE_SIZE, PCI_DMA_BIDIRECTIONAL);
++	vm_free_page(vm, p->page);
++}
++
++static int __setup_page_dma(struct i915_address_space *vm,
++			    struct i915_page_dma *p)
++{
++	return vm->setup_page_dma(vm, p);
++}
++
+ static int setup_page_dma(struct i915_address_space *vm,
+ 			  struct i915_page_dma *p)
  {
--	if (!drm_mm_initialized(&i915->mm.stolen))
-+	if (!drm_mm_initialized(&mem->stolen))
- 		return;
- 
--	drm_mm_takedown(&i915->mm.stolen);
-+	drm_mm_takedown(&mem->stolen);
+-	return __setup_page_dma(vm, p, __GFP_HIGHMEM);
++	return __setup_page_dma(vm, p);
  }
  
- static void g4x_get_stolen_reserved(struct drm_i915_private *i915,
-@@ -365,14 +365,13 @@ static void icl_get_stolen_reserved(struct drm_i915_private *i915,
- 	}
- }
- 
--static int i915_gem_init_stolen(struct drm_i915_private *i915)
-+static int i915_gem_init_stolen(struct intel_memory_region *mem)
+ static void cleanup_page_dma(struct i915_address_space *vm,
+ 			     struct i915_page_dma *p)
  {
-+	struct drm_i915_private *i915 = mem->i915;
- 	struct intel_uncore *uncore = &i915->uncore;
- 	resource_size_t reserved_base, stolen_top;
- 	resource_size_t reserved_total, reserved_size;
- 
--	mutex_init(&i915->mm.stolen_lock);
--
- 	if (intel_vgpu_active(i915)) {
- 		dev_notice(i915->drm.dev,
- 			   "%s, disabling use of stolen memory\n",
-@@ -387,10 +386,10 @@ static int i915_gem_init_stolen(struct drm_i915_private *i915)
- 		return 0;
- 	}
- 
--	if (resource_size(&intel_graphics_stolen_res) == 0)
-+	if (!resource_size(&mem->region))
- 		return 0;
- 
--	i915->dsm = intel_graphics_stolen_res;
-+	i915->dsm = mem->region;
- 
- 	if (i915_adjust_stolen(i915, &i915->dsm))
- 		return 0;
-@@ -480,55 +479,44 @@ static int i915_gem_init_stolen(struct drm_i915_private *i915)
- 		resource_size(&i915->dsm) - reserved_total;
- 
- 	/* Basic memrange allocator for stolen space. */
--	drm_mm_init(&i915->mm.stolen, 0, i915->stolen_usable_size);
-+	drm_mm_init(&mem->stolen, 0, i915->stolen_usable_size);
- 
- 	return 0;
+-	dma_unmap_page(vm->dma, p->daddr, PAGE_SIZE, PCI_DMA_BIDIRECTIONAL);
+-	vm_free_page(vm, p->page);
++	vm->cleanup_page_dma(vm, p);
  }
  
--static struct sg_table *
--i915_pages_create_for_stolen(struct drm_device *dev,
--			     resource_size_t offset, resource_size_t size)
-+static int i915_gem_object_get_pages_stolen(struct drm_i915_gem_object *obj)
- {
--	struct drm_i915_private *i915 = to_i915(dev);
-+	struct intel_memory_region *mem = obj->mm.region;
-+	resource_size_t offset = obj->mm.stolen->start;
-+	resource_size_t size = obj->mm.stolen->size;
- 	struct sg_table *st;
- 	struct scatterlist *sg;
- 
--	GEM_BUG_ON(range_overflows(offset, size, resource_size(&i915->dsm)));
-+	GEM_BUG_ON(range_overflows(offset, size, resource_size(&mem->region)));
- 
--	/* We hide that we have no struct page backing our stolen object
-+	/*
-+	 * We hide that we have no struct page backing our stolen object
- 	 * by wrapping the contiguous physical allocation with a fake
- 	 * dma mapping in a single scatterlist.
- 	 */
- 
- 	st = kmalloc(sizeof(*st), GFP_KERNEL);
--	if (st == NULL)
--		return ERR_PTR(-ENOMEM);
-+	if (!st)
-+		return -ENOMEM;
- 
- 	if (sg_alloc_table(st, 1, GFP_KERNEL)) {
- 		kfree(st);
--		return ERR_PTR(-ENOMEM);
-+		return -ENOMEM;
- 	}
- 
- 	sg = st->sgl;
- 	sg->offset = 0;
- 	sg->length = size;
- 
--	sg_dma_address(sg) = (dma_addr_t)i915->dsm.start + offset;
-+	sg_dma_address(sg) = (dma_addr_t)mem->region.start + offset;
- 	sg_dma_len(sg) = size;
- 
--	return st;
--}
--
--static int i915_gem_object_get_pages_stolen(struct drm_i915_gem_object *obj)
--{
--	struct sg_table *pages =
--		i915_pages_create_for_stolen(obj->base.dev,
--					     obj->stolen->start,
--					     obj->stolen->size);
--	if (IS_ERR(pages))
--		return PTR_ERR(pages);
--
--	__i915_gem_object_set_pages(obj, pages, obj->stolen->size);
-+	__i915_gem_object_set_pages(obj, st, size);
- 
- 	return 0;
- }
-@@ -536,23 +524,23 @@ static int i915_gem_object_get_pages_stolen(struct drm_i915_gem_object *obj)
- static void i915_gem_object_put_pages_stolen(struct drm_i915_gem_object *obj,
- 					     struct sg_table *pages)
- {
--	/* Should only be called from i915_gem_object_release_stolen() */
--	sg_free_table(pages);
--	kfree(pages);
-+       /* Should only be called from i915_gem_object_release_stolen() */
-+       sg_free_table(pages);
-+       kfree(pages);
- }
+-#define kmap_atomic_px(px) kmap_atomic(px_base(px)->page)
++static void kunmap_page_dma(const struct i915_page_dma *p, void *vaddr)
++{
++	p->kunmap(vaddr);
++}
++
++static void *kmap_page_dma(const struct i915_page_dma *p)
++{
++	return p->kmap(p);
++}
++
++#define kmap_atomic_px(px) kmap_page_dma(px_base(px))
++#define kunmap_atomic_px(px, vaddr) kunmap_page_dma(px_base(px), vaddr)
  
  static void
- i915_gem_object_release_stolen(struct drm_i915_gem_object *obj)
+ fill_page_dma(const struct i915_page_dma *p, const u64 val, unsigned int count)
  {
--	struct drm_i915_private *i915 = to_i915(obj->base.dev);
--	struct drm_mm_node *stolen = fetch_and_zero(&obj->stolen);
-+	struct intel_memory_region *mem = obj->mm.region;
-+	struct drm_mm_node *stolen = fetch_and_zero(&obj->mm.stolen);
- 
- 	GEM_BUG_ON(!stolen);
- 
--	i915_gem_object_release_memory_region(obj);
--
--	i915_gem_stolen_remove_node(i915, stolen);
-+	i915_gem_stolen_remove_node(mem, stolen);
- 	kfree(stolen);
-+
-+	i915_gem_object_release_memory_region(obj);
+-	kunmap_atomic(memset64(kmap_atomic(p->page), val, count));
++	kunmap_page_dma(p, memset64(kmap_page_dma(p), val, count));
  }
  
- static const struct drm_i915_gem_object_ops i915_gem_object_stolen_ops = {
-@@ -563,7 +551,8 @@ static const struct drm_i915_gem_object_ops i915_gem_object_stolen_ops = {
- 
- static struct drm_i915_gem_object *
- __i915_gem_object_create_stolen(struct intel_memory_region *mem,
--				struct drm_mm_node *stolen)
-+				struct drm_mm_node *stolen,
-+				unsigned int flags)
+ #define fill_px(px, v) fill_page_dma(px_base(px), (v), PAGE_SIZE / sizeof(u64))
+@@ -728,7 +763,7 @@ static struct i915_page_table *alloc_pt(struct i915_address_space *vm)
  {
- 	static struct lock_class_key lock_class;
- 	struct drm_i915_gem_object *obj;
-@@ -577,17 +566,17 @@ __i915_gem_object_create_stolen(struct intel_memory_region *mem,
- 	drm_gem_private_object_init(&mem->i915->drm, &obj->base, stolen->size);
- 	i915_gem_object_init(obj, &i915_gem_object_stolen_ops, &lock_class);
+ 	struct i915_page_table *pt;
  
--	obj->stolen = stolen;
-+	obj->mm.stolen = stolen;
- 	obj->read_domains = I915_GEM_DOMAIN_CPU | I915_GEM_DOMAIN_GTT;
- 	cache_level = HAS_LLC(mem->i915) ? I915_CACHE_LLC : I915_CACHE_NONE;
- 	i915_gem_object_set_cache_coherency(obj, cache_level);
- 
-+	i915_gem_object_init_memory_region(obj, mem, flags);
-+
- 	err = i915_gem_object_pin_pages(obj);
- 	if (err)
- 		goto cleanup;
- 
--	i915_gem_object_init_memory_region(obj, mem, 0);
--
- 	return obj;
- 
- cleanup:
-@@ -601,35 +590,35 @@ _i915_gem_object_create_stolen(struct intel_memory_region *mem,
- 			       resource_size_t size,
- 			       unsigned int flags)
- {
--	struct drm_i915_private *i915 = mem->i915;
- 	struct drm_i915_gem_object *obj;
- 	struct drm_mm_node *stolen;
- 	int ret;
- 
--	if (!drm_mm_initialized(&i915->mm.stolen))
-+	if (!drm_mm_initialized(&mem->stolen))
- 		return ERR_PTR(-ENODEV);
- 
--	if (size == 0)
-+	if (!size)
- 		return ERR_PTR(-EINVAL);
- 
- 	stolen = kzalloc(sizeof(*stolen), GFP_KERNEL);
- 	if (!stolen)
+-	pt = kmalloc(sizeof(*pt), I915_GFP_ALLOW_FAIL);
++	pt = kzalloc(sizeof(*pt), I915_GFP_ALLOW_FAIL);
+ 	if (unlikely(!pt))
  		return ERR_PTR(-ENOMEM);
  
--	ret = i915_gem_stolen_insert_node(i915, stolen, size, 4096);
-+	ret = i915_gem_stolen_insert_node(mem, stolen, size,
-+					  mem->min_page_size);
- 	if (ret) {
- 		obj = ERR_PTR(ret);
- 		goto err_free;
- 	}
- 
--	obj = __i915_gem_object_create_stolen(mem, stolen);
-+	obj = __i915_gem_object_create_stolen(mem, stolen, flags);
- 	if (IS_ERR(obj))
- 		goto err_remove;
- 
- 	return obj;
- 
- err_remove:
--	i915_gem_stolen_remove_node(i915, stolen);
-+	i915_gem_stolen_remove_node(mem, stolen);
- err_free:
- 	kfree(stolen);
- 	return obj;
-@@ -651,12 +640,12 @@ static int init_stolen(struct intel_memory_region *mem)
- 	 * Initialise stolen early so that we may reserve preallocated
- 	 * objects for the BIOS to KMS transition.
- 	 */
--	return i915_gem_init_stolen(mem->i915);
-+	return i915_gem_init_stolen(mem);
- }
- 
- static void release_stolen(struct intel_memory_region *mem)
+@@ -782,10 +817,10 @@ write_dma_entry(struct i915_page_dma * const pdma,
+ 		const unsigned short idx,
+ 		const u64 encoded_entry)
  {
--	i915_gem_cleanup_stolen(mem->i915);
-+	i915_gem_cleanup_stolen(mem);
+-	u64 * const vaddr = kmap_atomic(pdma->page);
++	u64 * const vaddr = kmap_page_dma(pdma);
+ 
+ 	vaddr[idx] = encoded_entry;
+-	kunmap_atomic(vaddr);
++	kunmap_page_dma(pdma, vaddr);
  }
  
- static const struct intel_memory_region_ops i915_region_stolen_ops = {
-@@ -687,7 +676,7 @@ i915_gem_object_create_stolen_for_preallocated(struct drm_i915_private *i915,
- 	struct i915_vma *vma;
- 	int ret;
+ static inline void
+@@ -1017,7 +1052,7 @@ static u64 __gen8_ppgtt_clear(struct i915_address_space * const vm,
+ 			memset64(vaddr + gen8_pd_index(start, 0),
+ 				 vm->scratch[0].encode,
+ 				 count);
+-			kunmap_atomic(vaddr);
++			kunmap_atomic_px(pt, vaddr);
  
--	if (!drm_mm_initialized(&i915->mm.stolen))
-+	if (!drm_mm_initialized(&mem->stolen))
- 		return ERR_PTR(-ENODEV);
+ 			atomic_sub(count, &pt->used);
+ 			start += count;
+@@ -1184,10 +1219,12 @@ gen8_ppgtt_insert_pte(struct i915_ppgtt *ppgtt,
+ {
+ 	struct i915_page_directory *pd;
+ 	const gen8_pte_t pte_encode = gen8_pte_encode(0, cache_level, flags);
++	struct i915_page_table *pt;
+ 	gen8_pte_t *vaddr;
  
- 	DRM_DEBUG_DRIVER("creating preallocated stolen object: stolen_offset=%pa, gtt_offset=%pa, size=%pa\n",
-@@ -705,19 +694,20 @@ i915_gem_object_create_stolen_for_preallocated(struct drm_i915_private *i915,
+ 	pd = i915_pd_entry(pdp, gen8_pd_index(idx, 2));
+-	vaddr = kmap_atomic_px(i915_pt_entry(pd, gen8_pd_index(idx, 1)));
++	pt = i915_pt_entry(pd, gen8_pd_index(idx, 1));
++	vaddr = kmap_atomic_px(pt);
+ 	do {
+ 		vaddr[gen8_pd_index(idx, 0)] = pte_encode | iter->dma;
  
- 	stolen->start = stolen_offset;
- 	stolen->size = size;
--	mutex_lock(&i915->mm.stolen_lock);
--	ret = drm_mm_reserve_node(&i915->mm.stolen, stolen);
--	mutex_unlock(&i915->mm.stolen_lock);
-+	mutex_lock(&mem->mm_lock);
-+	ret = drm_mm_reserve_node(&mem->stolen, stolen);
-+	mutex_unlock(&mem->mm_lock);
- 	if (ret) {
- 		DRM_DEBUG_DRIVER("failed to allocate stolen space\n");
- 		kfree(stolen);
- 		return ERR_PTR(ret);
+@@ -1212,11 +1249,12 @@ gen8_ppgtt_insert_pte(struct i915_ppgtt *ppgtt,
+ 				pd = pdp->entry[gen8_pd_index(idx, 2)];
+ 			}
+ 
+-			kunmap_atomic(vaddr);
+-			vaddr = kmap_atomic_px(i915_pt_entry(pd, gen8_pd_index(idx, 1)));
++			kunmap_atomic_px(pt, vaddr);
++			pt = i915_pt_entry(pd, gen8_pd_index(idx, 1));
++			vaddr = kmap_atomic_px(pt);
+ 		}
+ 	} while (1);
+-	kunmap_atomic(vaddr);
++	kunmap_atomic_px(pt, vaddr);
+ 
+ 	return idx;
+ }
+@@ -1237,6 +1275,7 @@ static void gen8_ppgtt_insert_huge(struct i915_vma *vma,
+ 			gen8_pdp_for_page_address(vma->vm, start);
+ 		struct i915_page_directory * const pd =
+ 			i915_pd_entry(pdp, __gen8_pte_index(start, 2));
++		struct i915_page_table *base;
+ 		gen8_pte_t encode = pte_encode;
+ 		unsigned int maybe_64K = -1;
+ 		unsigned int page_size;
+@@ -1251,7 +1290,7 @@ static void gen8_ppgtt_insert_huge(struct i915_vma *vma,
+ 			encode |= GEN8_PDE_PS_2M;
+ 			page_size = I915_GTT_PAGE_SIZE_2M;
+ 
+-			vaddr = kmap_atomic_px(pd);
++			base = &pd->pt;
+ 		} else {
+ 			struct i915_page_table *pt =
+ 				i915_pt_entry(pd, __gen8_pte_index(start, 1));
+@@ -1266,9 +1305,11 @@ static void gen8_ppgtt_insert_huge(struct i915_vma *vma,
+ 			     rem >= (I915_PDES - index) * I915_GTT_PAGE_SIZE))
+ 				maybe_64K = __gen8_pte_index(start, 1);
+ 
+-			vaddr = kmap_atomic_px(pt);
++			base = pt;
+ 		}
+ 
++		vaddr = kmap_atomic_px(base);
++
+ 		do {
+ 			GEM_BUG_ON(iter->sg->length < page_size);
+ 			vaddr[index++] = encode | iter->dma;
+@@ -1296,7 +1337,7 @@ static void gen8_ppgtt_insert_huge(struct i915_vma *vma,
+ 			}
+ 		} while (rem >= page_size && index < I915_PDES);
+ 
+-		kunmap_atomic(vaddr);
++		kunmap_atomic_px(base, vaddr);
+ 
+ 		/*
+ 		 * Is it safe to mark the 2M block as 64K? -- Either we have
+@@ -1312,7 +1353,7 @@ static void gen8_ppgtt_insert_huge(struct i915_vma *vma,
+ 					      I915_GTT_PAGE_SIZE_2M)))) {
+ 			vaddr = kmap_atomic_px(pd);
+ 			vaddr[maybe_64K] |= GEN8_PDE_IPS_64K;
+-			kunmap_atomic(vaddr);
++			kunmap_atomic_px(pd, vaddr);
+ 			page_size = I915_GTT_PAGE_SIZE_64K;
+ 
+ 			/*
+@@ -1325,15 +1366,17 @@ static void gen8_ppgtt_insert_huge(struct i915_vma *vma,
+ 			 * selftests.
+ 			 */
+ 			if (I915_SELFTEST_ONLY(vma->vm->scrub_64K)) {
++				struct i915_page_table *pt =
++						i915_pt_entry(pd, maybe_64K);
+ 				u16 i;
+ 
+ 				encode = vma->vm->scratch[0].encode;
+-				vaddr = kmap_atomic_px(i915_pt_entry(pd, maybe_64K));
++				vaddr = kmap_atomic_px(pt);
+ 
+ 				for (i = 1; i < index; i += 16)
+ 					memset64(vaddr + i, encode, 15);
+ 
+-				kunmap_atomic(vaddr);
++				kunmap_atomic_px(pt, vaddr);
+ 			}
+ 		}
+ 
+@@ -1510,6 +1553,9 @@ static struct i915_ppgtt *gen8_ppgtt_create(struct drm_i915_private *i915)
+ 	if (IS_CHERRYVIEW(i915) || IS_BROXTON(i915))
+ 		ppgtt->vm.pt_kmap_wc = true;
+ 
++	ppgtt->vm.setup_page_dma = setup_page_dma_system;
++	ppgtt->vm.cleanup_page_dma = cleanup_page_dma_system;
++
+ 	err = gen8_init_scratch(&ppgtt->vm);
+ 	if (err)
+ 		goto err_free;
+@@ -1644,7 +1690,7 @@ static void gen6_ppgtt_clear_range(struct i915_address_space *vm,
+ 
+ 		vaddr = kmap_atomic_px(pt);
+ 		memset32(vaddr + pte, scratch_pte, count);
+-		kunmap_atomic(vaddr);
++		kunmap_atomic_px(pt, vaddr);
+ 
+ 		pte = 0;
  	}
+@@ -1662,11 +1708,13 @@ static void gen6_ppgtt_insert_entries(struct i915_address_space *vm,
+ 	unsigned act_pte = first_entry % GEN6_PTES;
+ 	const u32 pte_encode = vm->pte_encode(0, cache_level, flags);
+ 	struct sgt_dma iter = sgt_dma(vma);
++	struct i915_page_table *pt;
+ 	gen6_pte_t *vaddr;
  
--	obj = __i915_gem_object_create_stolen(mem, stolen);
-+	obj = __i915_gem_object_create_stolen(mem, stolen,
-+					      I915_BO_ALLOC_CONTIGUOUS);
- 	if (IS_ERR(obj)) {
- 		DRM_DEBUG_DRIVER("failed to allocate stolen object\n");
--		i915_gem_stolen_remove_node(i915, stolen);
-+		i915_gem_stolen_remove_node(mem, stolen);
- 		kfree(stolen);
- 		return obj;
- 	}
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_stolen.h b/drivers/gpu/drm/i915/gem/i915_gem_stolen.h
-index c1040627fbf3..511e8ffcf377 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_stolen.h
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_stolen.h
-@@ -11,15 +11,16 @@
- struct drm_i915_private;
- struct drm_mm_node;
- struct drm_i915_gem_object;
-+struct intel_memory_region;
+ 	GEM_BUG_ON(pd->entry[act_pt] == &vm->scratch[1]);
  
--int i915_gem_stolen_insert_node(struct drm_i915_private *dev_priv,
-+int i915_gem_stolen_insert_node(struct intel_memory_region *mem,
- 				struct drm_mm_node *node, u64 size,
- 				unsigned alignment);
--int i915_gem_stolen_insert_node_in_range(struct drm_i915_private *dev_priv,
-+int i915_gem_stolen_insert_node_in_range(struct intel_memory_region *mem,
- 					 struct drm_mm_node *node, u64 size,
- 					 unsigned alignment, u64 start,
- 					 u64 end);
--void i915_gem_stolen_remove_node(struct drm_i915_private *dev_priv,
-+void i915_gem_stolen_remove_node(struct intel_memory_region *mem,
- 				 struct drm_mm_node *node);
- struct intel_memory_region *i915_gem_stolen_setup(struct drm_i915_private *i915);
- struct drm_i915_gem_object *
-diff --git a/drivers/gpu/drm/i915/gt/intel_rc6.c b/drivers/gpu/drm/i915/gt/intel_rc6.c
-index 9e303c29d6e3..c370023a7a63 100644
---- a/drivers/gpu/drm/i915/gt/intel_rc6.c
-+++ b/drivers/gpu/drm/i915/gt/intel_rc6.c
-@@ -325,9 +325,9 @@ static int vlv_rc6_init(struct intel_rc6 *rc6)
+-	vaddr = kmap_atomic_px(i915_pt_entry(pd, act_pt));
++	pt = i915_pt_entry(pd, act_pt);
++	vaddr = kmap_atomic_px(pt);
+ 	do {
+ 		vaddr[act_pte] = pte_encode | GEN6_PTE_ADDR_ENCODE(iter.dma);
  
- 	GEM_BUG_ON(range_overflows_t(u64,
- 				     i915->dsm.start,
--				     pctx->stolen->start,
-+				     pctx->mm.stolen->start,
- 				     U32_MAX));
--	pctx_paddr = i915->dsm.start + pctx->stolen->start;
-+	pctx_paddr = i915->dsm.start + pctx->mm.stolen->start;
- 	intel_uncore_write(uncore, VLV_PCBR, pctx_paddr);
+@@ -1681,12 +1729,14 @@ static void gen6_ppgtt_insert_entries(struct i915_address_space *vm,
+ 		}
  
- out:
-diff --git a/drivers/gpu/drm/i915/gt/intel_ring.c b/drivers/gpu/drm/i915/gt/intel_ring.c
-index 374b28f13ca0..5c442b8bdcb1 100644
---- a/drivers/gpu/drm/i915/gt/intel_ring.c
-+++ b/drivers/gpu/drm/i915/gt/intel_ring.c
-@@ -36,7 +36,7 @@ int intel_ring_pin(struct intel_ring *ring)
- 	/* Ring wraparound at offset 0 sometimes hangs. No idea why. */
- 	flags |= PIN_OFFSET_BIAS | i915_ggtt_pin_bias(vma);
+ 		if (++act_pte == GEN6_PTES) {
+-			kunmap_atomic(vaddr);
+-			vaddr = kmap_atomic_px(i915_pt_entry(pd, ++act_pt));
++			kunmap_atomic_px(pt, vaddr);
++
++			pt = i915_pt_entry(pd, ++act_pt);
++			vaddr = kmap_atomic_px(pt);
+ 			act_pte = 0;
+ 		}
+ 	} while (1);
+-	kunmap_atomic(vaddr);
++	kunmap_atomic_px(pt, vaddr);
  
--	if (vma->obj->stolen)
-+	if (vma->obj->mm.stolen)
- 		flags |= PIN_MAPPABLE;
- 	else
- 		flags |= PIN_HIGH;
-diff --git a/drivers/gpu/drm/i915/i915_debugfs.c b/drivers/gpu/drm/i915/i915_debugfs.c
-index 0ac98e39eb75..b6e99c4519be 100644
---- a/drivers/gpu/drm/i915/i915_debugfs.c
-+++ b/drivers/gpu/drm/i915/i915_debugfs.c
-@@ -213,8 +213,8 @@ describe_obj(struct seq_file *m, struct drm_i915_gem_object *obj)
- 	spin_unlock(&obj->vma.lock);
+ 	vma->page_sizes.gtt = I915_GTT_PAGE_SIZE;
+ }
+@@ -1990,6 +2040,9 @@ static struct i915_ppgtt *gen6_ppgtt_create(struct drm_i915_private *i915)
  
- 	seq_printf(m, " (pinned x %d)", pin_count);
--	if (obj->stolen)
--		seq_printf(m, " (stolen: %08llx)", obj->stolen->start);
-+	if (obj->mm.stolen)
-+		seq_printf(m, " (stolen: %08llx)", obj->mm.stolen->start);
- 	if (i915_gem_object_is_framebuffer(obj))
- 		seq_printf(m, " (fb)");
+ 	ppgtt->base.vm.pte_encode = ggtt->vm.pte_encode;
  
-diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-index 2ee9f57d165d..b50d0953a40f 100644
---- a/drivers/gpu/drm/i915/i915_drv.h
-+++ b/drivers/gpu/drm/i915/i915_drv.h
-@@ -550,12 +550,6 @@ struct intel_l3_parity {
++	ppgtt->base.vm.setup_page_dma = setup_page_dma_system;
++	ppgtt->base.vm.cleanup_page_dma = cleanup_page_dma_system;
++
+ 	ppgtt->base.pd = __alloc_pd(sizeof(*ppgtt->base.pd));
+ 	if (!ppgtt->base.pd) {
+ 		err = -ENOMEM;
+diff --git a/drivers/gpu/drm/i915/i915_gem_gtt.h b/drivers/gpu/drm/i915/i915_gem_gtt.h
+index 31a4a96ddd0d..42ba96dffc3f 100644
+--- a/drivers/gpu/drm/i915/i915_gem_gtt.h
++++ b/drivers/gpu/drm/i915/i915_gem_gtt.h
+@@ -226,6 +226,9 @@ struct i915_page_dma {
+ 		 */
+ 		u32 ggtt_offset;
+ 	};
++
++	void *(*kmap)(const struct i915_page_dma *p);
++	void (*kunmap)(void *vaddr);
  };
  
- struct i915_gem_mm {
--	/** Memory allocator for GTT stolen memory */
--	struct drm_mm stolen;
--	/** Protects the usage of the GTT stolen memory allocator. This is
--	 * always the inner lock when overlapping with struct_mutex. */
--	struct mutex stolen_lock;
--
- 	/* Protects bound_list/unbound_list and #drm_i915_gem_object.mm.link */
- 	spinlock_t obj_lock;
+ struct i915_page_scratch {
+@@ -345,6 +348,10 @@ struct i915_address_space {
+ 			  u32 flags); /* Create a valid PTE */
+ #define PTE_READ_ONLY	(1<<0)
  
-diff --git a/drivers/gpu/drm/i915/intel_memory_region.h b/drivers/gpu/drm/i915/intel_memory_region.h
-index 7f4bff8f8be1..0c8e35be76a3 100644
---- a/drivers/gpu/drm/i915/intel_memory_region.h
-+++ b/drivers/gpu/drm/i915/intel_memory_region.h
-@@ -6,6 +6,7 @@
- #ifndef __INTEL_MEMORY_REGION_H__
- #define __INTEL_MEMORY_REGION_H__
- 
-+#include <drm/drm_mm.h>
- #include <linux/kref.h>
- #include <linux/ioport.h>
- #include <linux/mutex.h>
-@@ -79,6 +80,8 @@ struct intel_memory_region {
- 	/* For fake LMEM */
- 	struct drm_mm_node fake_mappable;
- 
-+	/* XXX: filthy midlayers */
-+	struct drm_mm stolen;
- 	struct i915_buddy_mm mm;
- 	struct mutex mm_lock;
- 
++	int (*setup_page_dma)(struct i915_address_space *vm,
++			      struct i915_page_dma *p);
++	void (*cleanup_page_dma)(struct i915_address_space *vm,
++				 struct i915_page_dma *p);
+ 	int (*allocate_va_range)(struct i915_address_space *vm,
+ 				 u64 start, u64 length);
+ 	void (*clear_range)(struct i915_address_space *vm,
 -- 
 2.20.1
 
