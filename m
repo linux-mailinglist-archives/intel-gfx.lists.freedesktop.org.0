@@ -1,30 +1,77 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 91ACD130358
-	for <lists+intel-gfx@lfdr.de>; Sat,  4 Jan 2020 16:38:16 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F7CB1303A6
+	for <lists+intel-gfx@lfdr.de>; Sat,  4 Jan 2020 17:44:59 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6DB806E44E;
-	Sat,  4 Jan 2020 15:38:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8BD4E6E463;
+	Sat,  4 Jan 2020 16:44:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 09E496E44E;
- Sat,  4 Jan 2020 15:38:10 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19769911-1500050 
- for multiple; Sat, 04 Jan 2020 15:37:48 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Sat,  4 Jan 2020 15:37:46 +0000
-Message-Id: <20200104153746.2175482-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.25.0.rc0
+Received: from us-smtp-delivery-1.mimecast.com (us-smtp-2.mimecast.com
+ [205.139.110.61])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D49416E461
+ for <intel-gfx@lists.freedesktop.org>; Sat,  4 Jan 2020 16:44:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1578156293;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=rVEg1pCgTz0x1WPd9GtxR2otkGPveKv4qhhkb6PjKGw=;
+ b=Feg0R501vHA61tOBezOM4X83TUY/+1waU66QU8MI4m86A9FkTPzhjpr24i/IPj8ZwoFW+8
+ dd8ZQ9/LUXVgKM2paQnA9QONBgsf5rkW6vJh4OiP0XIiZDxWjtbcUoT3TvY84rEI6SQygK
+ 0H5pvr3T8UZW1Sh/THvp3PAka5BotVQ=
+Received: from mail-wr1-f69.google.com (mail-wr1-f69.google.com
+ [209.85.221.69]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-158-r0BSo9DRO4ahJBqTqTZhyQ-1; Sat, 04 Jan 2020 11:44:51 -0500
+Received: by mail-wr1-f69.google.com with SMTP id z15so6856966wrw.0
+ for <intel-gfx@lists.freedesktop.org>; Sat, 04 Jan 2020 08:44:50 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+ :user-agent:mime-version:in-reply-to:content-language
+ :content-transfer-encoding;
+ bh=rVEg1pCgTz0x1WPd9GtxR2otkGPveKv4qhhkb6PjKGw=;
+ b=nBuHzjJgcm/dCNfCmSge4mgyTaJEpLlkNKiQCCSNatM+pqH+Y/Zhh5OGQoi354F5+T
+ 7NUcn3Mnpht4jpKUYk9OVtQQfbKTr6iJCmfoUUZ1HobAoroMAhjlnsr/Ar6VmwdBAK8T
+ 9wb9M1J6kvB9YgjwxGGVjjlYfJM8Y+0u/qC3Eu1FkjBCoxw8nos6Wcqbec0pzyxAaP25
+ /IOQjxOCLS/HxHDMmm6oLXBoFQAwfSRuJ4sRQfJizhRt7CbApisDqC4PJA2NOWMdKiND
+ uqXoGzzs+8xjBsWy+3T6Oh6ocI+/NagGl2CcTFcXfFx5u3ypzXuyXk4K/REdoPLz6EQE
+ gaqQ==
+X-Gm-Message-State: APjAAAXKYdRCLw7fRw/87jFTh5HDtPV48v8+3v1heDdnsN4Me5ppKUAf
+ 9oErMUTIjvTrUvn38lmziOM6ORoSko8M+2AxPeA9M9F3Q9V8oFoycWUxL/n4Hs9ZsRJ4ORXJw47
+ Urd4gWGPfM7SlcKvB+dzz/m00Ewgn
+X-Received: by 2002:a05:600c:2409:: with SMTP id
+ 9mr23943881wmp.109.1578156290026; 
+ Sat, 04 Jan 2020 08:44:50 -0800 (PST)
+X-Google-Smtp-Source: APXvYqwgJSYDYmGsn6ile9WBmW+c1lgJ7O9AHez2DFSgMDF6zDLJiFxf9asBSSlWyQkB4w0ynTmdjA==
+X-Received: by 2002:a05:600c:2409:: with SMTP id
+ 9mr23943865wmp.109.1578156289796; 
+ Sat, 04 Jan 2020 08:44:49 -0800 (PST)
+Received: from shalem.localdomain
+ (2001-1c00-0c0c-fe00-7e79-4dac-39d0-9c14.cable.dynamic.v6.ziggo.nl.
+ [2001:1c00:c0c:fe00:7e79:4dac:39d0:9c14])
+ by smtp.gmail.com with ESMTPSA id i5sm16338821wml.31.2020.01.04.08.44.48
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Sat, 04 Jan 2020 08:44:48 -0800 (PST)
+To: Vivek Kasireddy <vivek.kasireddy@intel.com>
+References: <20200103000050.8223-1-vivek.kasireddy@intel.com>
+ <f3a97500-7e85-fe0c-e48d-56c93da3dc38@redhat.com>
+ <20200103160054.1086df08@vkasired-desk2.fm.intel.com>
+From: Hans de Goede <hdegoede@redhat.com>
+Message-ID: <0b4f4d19-fca4-f7be-b438-13c26b64e553@redhat.com>
+Date: Sat, 4 Jan 2020 17:44:47 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.3.1
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH i-g-t v2] i915/perf: Find the associated
- perf-type for a particular device
+In-Reply-To: <20200103160054.1086df08@vkasired-desk2.fm.intel.com>
+Content-Language: en-US
+X-MC-Unique: r0BSo9DRO4ahJBqTqTZhyQ-1
+X-Mimecast-Spam-Score: 0
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/dsi: Parse the I2C element from
+ the VBT MIPI sequence block
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,688 +84,240 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: igt-dev@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
+Cc: Deepak M <m.deepak@intel.com>, intel-gfx@lists.freedesktop.org
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Since with multiple devices, we may have multiple different perf_pmu
-each with their own type, we want to find the right one for the job.
+Hi,
 
-The tests are run with a specific fd, from which we can extract the
-appropriate bus-id and find the associated perf-type. The performance
-monitoring tools are a little more general and not yet ready to probe
-all device or bind to one in particular, so we just assume the default
-igfx for the time being.
+On 04-01-2020 01:00, Vivek Kasireddy wrote:
+> On Fri, 3 Jan 2020 12:05:11 +0100
+> Hans de Goede <hdegoede@redhat.com> wrote:
+> Hi Hans,
+> 
+>> Hi Vivek,
+>>
+>> On 03-01-2020 01:00, Vivek Kasireddy wrote:
+>>> Parsing the i2c element is mainly done to transfer the payload from
+>>> the MIPI sequence block to the relevant slave device. In some
+>>> cases, the commands that are part of the payload can be used to
+>>> turn on the backlight.
+>>>
+>>> This patch is actually a refactored version of this old patch:
+>>> https://lists.freedesktop.org/archives/intel-gfx/2014-December/056897.html
+>>>
+>>> In addition to the refactoring, the old patch is augmented by
+>>> looking up the i2c bus from ACPI NS instead of relying on the bus
+>>> number provided in the VBT.
+>>>
+>>> Cc: Deepak M <m.deepak@intel.com>
+>>> Cc: Nabendu Maiti <nabendu.bikash.maiti@intel.com>
+>>> Cc: Matt Roper <matthew.d.roper@intel.com>
+>>> Cc: Bob Paauwe <bob.j.paauwe@intel.com>
+>>> Signed-off-by: Vivek Kasireddy <vivek.kasireddy@intel.com>
+>>
+>> Thank you for this patch, I have been doing a lot of work to make
+>> DSI panels on Bay Trail and Cherry Trail devices work better, as such
+>> I've done a lot of testing of DSI panels. But I have never seen any
+>> MIPI sequences actually use the i2c commands. May I ask how you have
+>> tested this? Do you have a device which actually uses the i2c
+>> commands?
+> Oh, they sure exist; we do have a device that uses i2c commands to turn
+> on the backlight that we have tested this patch on.
 
-v2: Extract the bus address from out of sysfs
+Ah, ok, good. I was a bit worried this patch was not tested with
+any devices actually using the i2c stuff. So I'm happy to hear that it
+has been tested.
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: "Robert M. Fosha" <robert.m.fosha@intel.com>
-Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
----
- benchmarks/gem_wsim.c          |  4 +-
- lib/igt_perf.c                 | 77 ++++++++++++++++++++++++++++---
- lib/igt_perf.h                 | 13 ++++--
- overlay/gem-interrupts.c       |  2 +-
- overlay/gpu-freq.c             |  4 +-
- overlay/gpu-top.c              | 12 ++---
- overlay/rc6.c                  |  2 +-
- tests/i915/gem_ctx_freq.c      |  2 +-
- tests/i915/gem_ctx_sseu.c      |  2 +-
- tests/i915/gem_exec_balancer.c | 18 +++++---
- tests/perf_pmu.c               | 84 ++++++++++++++++++----------------
- tools/intel_gpu_top.c          |  2 +-
- 12 files changed, 152 insertions(+), 70 deletions(-)
+Regards,
 
-diff --git a/benchmarks/gem_wsim.c b/benchmarks/gem_wsim.c
-index 6305e0d7a..9156fdc90 100644
---- a/benchmarks/gem_wsim.c
-+++ b/benchmarks/gem_wsim.c
-@@ -2268,8 +2268,8 @@ busy_init(const struct workload_balancer *balancer, struct workload *wrk)
- 	for (d = &engines[0]; d->id != VCS; d++) {
- 		int pfd;
- 
--		pfd = perf_i915_open_group(I915_PMU_ENGINE_BUSY(d->class,
--							        d->inst),
-+		pfd = perf_igfx_open_group(I915_PMU_ENGINE_BUSY(d->class,
-+								d->inst),
- 					   bb->fd);
- 		if (pfd < 0) {
- 			if (d->id != VCS2)
-diff --git a/lib/igt_perf.c b/lib/igt_perf.c
-index e3dec2cc2..1537faf80 100644
---- a/lib/igt_perf.c
-+++ b/lib/igt_perf.c
-@@ -4,17 +4,70 @@
- #include <stdlib.h>
- #include <string.h>
- #include <errno.h>
-+#include <sys/stat.h>
- #include <sys/sysinfo.h>
-+#include <sys/sysmacros.h>
- 
- #include "igt_perf.h"
- 
--uint64_t i915_type_id(void)
-+static char *bus_address(int i915, char *path, int pathlen)
-+{
-+	struct stat st;
-+	int len = -1;
-+	int dir;
-+
-+	if (fstat(i915, &st) || !S_ISCHR(st.st_mode))
-+		return NULL;
-+
-+	snprintf(path, pathlen, "/sys/dev/char/%d:%d",
-+		 major(st.st_rdev), minor(st.st_rdev));
-+
-+	dir = open(path, O_RDONLY);
-+	if (dir != -1) {
-+		len = readlinkat(dir, "device", path, pathlen - 1);
-+		close(dir);
-+	}
-+	if (len < 0)
-+		return NULL;
-+
-+	path[len] = '\0';
-+	return path;
-+}
-+
-+const char *i915_perf_device(int i915, char *buf, int buflen)
-+{
-+#define prefix "i915-"
-+#define plen strlen(prefix)
-+
-+	if (!buf || buflen < plen)
-+		return "i915";
-+
-+	memcpy(buf, prefix, plen);
-+
-+	if (!bus_address(i915, buf + plen, buflen - plen) ||
-+	    strcmp(buf + plen, "0000:00:02.0") == 0) /* legacy name for igfx */
-+		buf[plen - 1] = '\0';
-+
-+	return buf;
-+}
-+
-+uint64_t i915_perf_type_id(int i915)
-+{
-+	char buf[80];
-+
-+	return igt_perf_type_id(i915_perf_device(i915, buf, sizeof(buf)));
-+}
-+
-+uint64_t igt_perf_type_id(const char *device)
- {
- 	char buf[64];
- 	ssize_t ret;
- 	int fd;
- 
--	fd = open("/sys/bus/event_source/devices/i915/type", O_RDONLY);
-+	snprintf(buf, sizeof(buf),
-+		 "/sys/bus/event_source/devices/%s/type", device);
-+
-+	fd = open(buf, O_RDONLY);
- 	if (fd < 0)
- 		return 0;
- 
-@@ -52,15 +105,27 @@ _perf_open(uint64_t type, uint64_t config, int group, uint64_t format)
- 	return ret;
- }
- 
--int perf_i915_open(uint64_t config)
-+int perf_igfx_open(uint64_t config)
-+{
-+	return _perf_open(igt_perf_type_id("i915"), config, -1,
-+			  PERF_FORMAT_TOTAL_TIME_ENABLED);
-+}
-+
-+int perf_igfx_open_group(uint64_t config, int group)
-+{
-+	return _perf_open(igt_perf_type_id("i915"), config, group,
-+			  PERF_FORMAT_TOTAL_TIME_ENABLED | PERF_FORMAT_GROUP);
-+}
-+
-+int perf_i915_open(int i915, uint64_t config)
- {
--	return _perf_open(i915_type_id(), config, -1,
-+	return _perf_open(i915_perf_type_id(i915), config, -1,
- 			  PERF_FORMAT_TOTAL_TIME_ENABLED);
- }
- 
--int perf_i915_open_group(uint64_t config, int group)
-+int perf_i915_open_group(int i915, uint64_t config, int group)
- {
--	return _perf_open(i915_type_id(), config, group,
-+	return _perf_open(i915_perf_type_id(i915), config, group,
- 			  PERF_FORMAT_TOTAL_TIME_ENABLED | PERF_FORMAT_GROUP);
- }
- 
-diff --git a/lib/igt_perf.h b/lib/igt_perf.h
-index e00718f47..a8328c70c 100644
---- a/lib/igt_perf.h
-+++ b/lib/igt_perf.h
-@@ -51,10 +51,17 @@ perf_event_open(struct perf_event_attr *attr,
-     return syscall(__NR_perf_event_open, attr, pid, cpu, group_fd, flags);
- }
- 
--uint64_t i915_type_id(void);
--int perf_i915_open(uint64_t config);
--int perf_i915_open_group(uint64_t config, int group);
-+uint64_t igt_perf_type_id(const char *device);
- int igt_perf_open(uint64_t type, uint64_t config);
- int igt_perf_open_group(uint64_t type, uint64_t config, int group);
- 
-+const char *i915_perf_device(int i915, char *buf, int buflen);
-+uint64_t i915_perf_type_id(int i915);
-+
-+int perf_igfx_open(uint64_t config);
-+int perf_igfx_open_group(uint64_t config, int group);
-+
-+int perf_i915_open(int i915, uint64_t config);
-+int perf_i915_open_group(int i915, uint64_t config, int group);
-+
- #endif /* I915_PERF_H */
-diff --git a/overlay/gem-interrupts.c b/overlay/gem-interrupts.c
-index 0233fbb05..be73b6931 100644
---- a/overlay/gem-interrupts.c
-+++ b/overlay/gem-interrupts.c
-@@ -113,7 +113,7 @@ int gem_interrupts_init(struct gem_interrupts *irqs)
- {
- 	memset(irqs, 0, sizeof(*irqs));
- 
--	irqs->fd = perf_i915_open(I915_PMU_INTERRUPTS);
-+	irqs->fd = perf_igfx_open(I915_PMU_INTERRUPTS);
- 	if (irqs->fd < 0 && interrupts_read() < 0)
- 		irqs->error = ENODEV;
- 
-diff --git a/overlay/gpu-freq.c b/overlay/gpu-freq.c
-index 0d8032592..b73157d39 100644
---- a/overlay/gpu-freq.c
-+++ b/overlay/gpu-freq.c
-@@ -37,8 +37,8 @@ static int perf_open(void)
- {
- 	int fd;
- 
--	fd = perf_i915_open_group(I915_PMU_ACTUAL_FREQUENCY, -1);
--	if (perf_i915_open_group(I915_PMU_REQUESTED_FREQUENCY, fd) < 0) {
-+	fd = perf_igfx_open_group(I915_PMU_ACTUAL_FREQUENCY, -1);
-+	if (perf_igfx_open_group(I915_PMU_REQUESTED_FREQUENCY, fd) < 0) {
- 		close(fd);
- 		fd = -1;
- 	}
-diff --git a/overlay/gpu-top.c b/overlay/gpu-top.c
-index 6cec2e943..32123abdd 100644
---- a/overlay/gpu-top.c
-+++ b/overlay/gpu-top.c
-@@ -58,16 +58,16 @@ static int perf_init(struct gpu_top *gt)
- 
- 	d = &engines[0];
- 
--	gt->fd = perf_i915_open_group(I915_PMU_ENGINE_BUSY(d->class, d->inst),
-+	gt->fd = perf_igfx_open_group(I915_PMU_ENGINE_BUSY(d->class, d->inst),
- 				      -1);
- 	if (gt->fd < 0)
- 		return -1;
- 
--	if (perf_i915_open_group(I915_PMU_ENGINE_WAIT(d->class, d->inst),
-+	if (perf_igfx_open_group(I915_PMU_ENGINE_WAIT(d->class, d->inst),
- 				 gt->fd) >= 0)
- 		gt->have_wait = 1;
- 
--	if (perf_i915_open_group(I915_PMU_ENGINE_SEMA(d->class, d->inst),
-+	if (perf_igfx_open_group(I915_PMU_ENGINE_SEMA(d->class, d->inst),
- 				 gt->fd) >= 0)
- 		gt->have_sema = 1;
- 
-@@ -75,19 +75,19 @@ static int perf_init(struct gpu_top *gt)
- 	gt->num_rings = 1;
- 
- 	for (d++; d->name; d++) {
--		if (perf_i915_open_group(I915_PMU_ENGINE_BUSY(d->class,
-+		if (perf_igfx_open_group(I915_PMU_ENGINE_BUSY(d->class,
- 							      d->inst),
- 					gt->fd) < 0)
- 			continue;
- 
- 		if (gt->have_wait &&
--		    perf_i915_open_group(I915_PMU_ENGINE_WAIT(d->class,
-+		    perf_igfx_open_group(I915_PMU_ENGINE_WAIT(d->class,
- 							      d->inst),
- 					 gt->fd) < 0)
- 			return -1;
- 
- 		if (gt->have_sema &&
--		    perf_i915_open_group(I915_PMU_ENGINE_SEMA(d->class,
-+		    perf_igfx_open_group(I915_PMU_ENGINE_SEMA(d->class,
- 							      d->inst),
- 				   gt->fd) < 0)
- 			return -1;
-diff --git a/overlay/rc6.c b/overlay/rc6.c
-index b5286f0cf..69f95f288 100644
---- a/overlay/rc6.c
-+++ b/overlay/rc6.c
-@@ -39,7 +39,7 @@ int rc6_init(struct rc6 *rc6)
- {
- 	memset(rc6, 0, sizeof(*rc6));
- 
--	rc6->fd = perf_i915_open(I915_PMU_RC6_RESIDENCY);
-+	rc6->fd = perf_igfx_open(I915_PMU_RC6_RESIDENCY);
- 	if (rc6->fd < 0) {
- 		struct stat st;
- 		if (stat("/sys/class/drm/card0/power", &st) < 0)
-diff --git a/tests/i915/gem_ctx_freq.c b/tests/i915/gem_ctx_freq.c
-index 89f3d11ef..5d2d3ec31 100644
---- a/tests/i915/gem_ctx_freq.c
-+++ b/tests/i915/gem_ctx_freq.c
-@@ -136,7 +136,7 @@ static void sysfs_range(int i915)
- 
- 	triangle_fill(frequencies, N_STEPS, sys_min, sys_max);
- 
--	pmu = perf_i915_open(I915_PMU_REQUESTED_FREQUENCY);
-+	pmu = perf_i915_open(i915, I915_PMU_REQUESTED_FREQUENCY);
- 	igt_require(pmu >= 0);
- 
- 	for (int outer = 0; outer <= 2*N_STEPS; outer++) {
-diff --git a/tests/i915/gem_ctx_sseu.c b/tests/i915/gem_ctx_sseu.c
-index 48e4411c8..38dc584bc 100644
---- a/tests/i915/gem_ctx_sseu.c
-+++ b/tests/i915/gem_ctx_sseu.c
-@@ -119,7 +119,7 @@ kernel_has_per_context_sseu_support(int fd)
- 
- static bool has_engine(int fd, unsigned int class, unsigned int instance)
- {
--	int pmu = perf_i915_open(I915_PMU_ENGINE_BUSY(class, instance));
-+	int pmu = perf_i915_open(fd, I915_PMU_ENGINE_BUSY(class, instance));
- 
- 	if (pmu >= 0)
- 		close(pmu);
-diff --git a/tests/i915/gem_exec_balancer.c b/tests/i915/gem_exec_balancer.c
-index f4909a978..cebcc39c7 100644
---- a/tests/i915/gem_exec_balancer.c
-+++ b/tests/i915/gem_exec_balancer.c
-@@ -60,7 +60,7 @@ static bool has_class_instance(int i915, uint16_t class, uint16_t instance)
- {
- 	int fd;
- 
--	fd = perf_i915_open(I915_PMU_ENGINE_BUSY(class, instance));
-+	fd = perf_i915_open(i915, I915_PMU_ENGINE_BUSY(class, instance));
- 	if (fd != -1) {
- 		close(fd);
- 		return true;
-@@ -483,9 +483,11 @@ static void measure_all_load(int pmu, double *v, unsigned int num, int period_us
- 	}
- }
- 
--static int add_pmu(int pmu, const struct i915_engine_class_instance *ci)
-+static int
-+add_pmu(int i915, int pmu, const struct i915_engine_class_instance *ci)
- {
--	return perf_i915_open_group(I915_PMU_ENGINE_BUSY(ci->engine_class,
-+	return perf_i915_open_group(i915,
-+				    I915_PMU_ENGINE_BUSY(ci->engine_class,
- 							 ci->engine_instance),
- 				    pmu);
- }
-@@ -514,7 +516,8 @@ static void check_individual_engine(int i915,
- 	double load;
- 	int pmu;
- 
--	pmu = perf_i915_open(I915_PMU_ENGINE_BUSY(ci[idx].engine_class,
-+	pmu = perf_i915_open(i915,
-+			     I915_PMU_ENGINE_BUSY(ci[idx].engine_class,
- 						  ci[idx].engine_instance));
- 
- 	spin = igt_spin_new(i915, .ctx = ctx, .engine = idx + 1);
-@@ -636,8 +639,9 @@ static void bonded(int i915, unsigned int flags)
- 
- 			pmu[0] = -1;
- 			for (int i = 0; i < limit; i++)
--				pmu[i] = add_pmu(pmu[0], &siblings[i]);
--			pmu[limit] = add_pmu(pmu[0], &master_engines[bond]);
-+				pmu[i] = add_pmu(i915, pmu[0], &siblings[i]);
-+			pmu[limit] = add_pmu(i915,
-+					     pmu[0], &master_engines[bond]);
- 
- 			igt_assert(siblings[bond].engine_class !=
- 				   master_engines[bond].engine_class);
-@@ -1346,7 +1350,7 @@ static void full(int i915, unsigned int flags)
- 		for (unsigned int n = 0; n < count; n++) {
- 			uint32_t ctx;
- 
--			pmu[n] = add_pmu(pmu[0], &ci[n]);
-+			pmu[n] = add_pmu(i915, pmu[0], &ci[n]);
- 
- 			if (flags & PULSE) {
- 				struct drm_i915_gem_execbuffer2 eb = {
-diff --git a/tests/perf_pmu.c b/tests/perf_pmu.c
-index e1bbf2410..3e179daef 100644
---- a/tests/perf_pmu.c
-+++ b/tests/perf_pmu.c
-@@ -50,22 +50,22 @@ IGT_TEST_DESCRIPTION("Test the i915 pmu perf interface");
- const double tolerance = 0.05f;
- const unsigned long batch_duration_ns = 500e6;
- 
--static int open_pmu(uint64_t config)
-+static int open_pmu(int i915, uint64_t config)
- {
- 	int fd;
- 
--	fd = perf_i915_open(config);
-+	fd = perf_i915_open(i915, config);
- 	igt_skip_on(fd < 0 && errno == ENODEV);
- 	igt_assert(fd >= 0);
- 
- 	return fd;
- }
- 
--static int open_group(uint64_t config, int group)
-+static int open_group(int i915, uint64_t config, int group)
- {
- 	int fd;
- 
--	fd = perf_i915_open_group(config, group);
-+	fd = perf_i915_open_group(i915, config, group);
- 	igt_skip_on(fd < 0 && errno == ENODEV);
- 	igt_assert(fd >= 0);
- 
-@@ -79,7 +79,8 @@ init(int gem_fd, const struct intel_execution_engine2 *e, uint8_t sample)
- 	bool exists;
- 
- 	errno = 0;
--	fd = perf_i915_open(__I915_PMU_ENGINE(e->class, e->instance, sample));
-+	fd = perf_i915_open(gem_fd,
-+			    __I915_PMU_ENGINE(e->class, e->instance, sample));
- 	if (fd < 0)
- 		err = errno;
- 
-@@ -278,7 +279,7 @@ single(int gem_fd, const struct intel_execution_engine2 *e, unsigned int flags)
- 	uint64_t val;
- 	int fd;
- 
--	fd = open_pmu(I915_PMU_ENGINE_BUSY(e->class, e->instance));
-+	fd = open_pmu(gem_fd, I915_PMU_ENGINE_BUSY(e->class, e->instance));
- 
- 	if (flags & TEST_BUSY)
- 		spin = spin_sync(gem_fd, 0, e);
-@@ -332,7 +333,7 @@ busy_start(int gem_fd, const struct intel_execution_engine2 *e)
- 
- 	spin = __spin_sync(gem_fd, 0, e);
- 
--	fd = open_pmu(I915_PMU_ENGINE_BUSY(e->class, e->instance));
-+	fd = open_pmu(gem_fd, I915_PMU_ENGINE_BUSY(e->class, e->instance));
- 
- 	val = __pmu_read_single(fd, &ts[0]);
- 	slept = measured_usleep(batch_duration_ns / 1000);
-@@ -384,7 +385,7 @@ busy_double_start(int gem_fd, const struct intel_execution_engine2 *e)
- 	 * Open PMU as fast as possible after the second spin batch in attempt
- 	 * to be faster than the driver handling lite-restore.
- 	 */
--	fd = open_pmu(I915_PMU_ENGINE_BUSY(e->class, e->instance));
-+	fd = open_pmu(gem_fd, I915_PMU_ENGINE_BUSY(e->class, e->instance));
- 
- 	val = __pmu_read_single(fd, &ts[0]);
- 	slept = measured_usleep(batch_duration_ns / 1000);
-@@ -453,7 +454,8 @@ busy_check_all(int gem_fd, const struct intel_execution_engine2 *e,
- 		if (e->class == e_->class && e->instance == e_->instance)
- 			busy_idx = i;
- 
--		fd[i++] = open_group(I915_PMU_ENGINE_BUSY(e_->class,
-+		fd[i++] = open_group(gem_fd,
-+				     I915_PMU_ENGINE_BUSY(e_->class,
- 							  e_->instance),
- 				     fd[0]);
- 	}
-@@ -527,7 +529,7 @@ most_busy_check_all(int gem_fd, const struct intel_execution_engine2 *e,
- 
- 	fd[0] = -1;
- 	for (i = 0; i < num_engines; i++)
--		fd[i] = open_group(val[i], fd[0]);
-+		fd[i] = open_group(gem_fd, val[i], fd[0]);
- 
- 	/* Small delay to allow engines to start. */
- 	usleep(__spin_wait(gem_fd, spin) * num_engines / 1e3);
-@@ -581,7 +583,7 @@ all_busy_check_all(int gem_fd, const unsigned int num_engines,
- 
- 	fd[0] = -1;
- 	for (i = 0; i < num_engines; i++)
--		fd[i] = open_group(val[i], fd[0]);
-+		fd[i] = open_group(gem_fd, val[i], fd[0]);
- 
- 	/* Small delay to allow engines to start. */
- 	usleep(__spin_wait(gem_fd, spin) * num_engines / 1e3);
-@@ -613,8 +615,9 @@ no_sema(int gem_fd, const struct intel_execution_engine2 *e, unsigned int flags)
- 	uint64_t val[2][2];
- 	int fd;
- 
--	fd = open_group(I915_PMU_ENGINE_SEMA(e->class, e->instance), -1);
--	open_group(I915_PMU_ENGINE_WAIT(e->class, e->instance), fd);
-+	fd = open_group(gem_fd,
-+			I915_PMU_ENGINE_SEMA(e->class, e->instance), -1);
-+	open_group(gem_fd, I915_PMU_ENGINE_WAIT(e->class, e->instance), fd);
- 
- 	if (flags & TEST_BUSY)
- 		spin = spin_sync(gem_fd, 0, e);
-@@ -712,7 +715,7 @@ sema_wait(int gem_fd, const struct intel_execution_engine2 *e,
- 	 * to expected time spent in semaphore wait state.
- 	 */
- 
--	fd = open_pmu(I915_PMU_ENGINE_SEMA(e->class, e->instance));
-+	fd = open_pmu(gem_fd, I915_PMU_ENGINE_SEMA(e->class, e->instance));
- 
- 	val[0] = pmu_read_single(fd);
- 
-@@ -817,8 +820,9 @@ sema_busy(int gem_fd,
- 
- 	igt_require(gem_scheduler_has_semaphores(gem_fd));
- 
--	fd = open_group(I915_PMU_ENGINE_SEMA(e->class, e->instance), -1);
--	open_group(I915_PMU_ENGINE_BUSY(e->class, e->instance), fd);
-+	fd = open_group(gem_fd,
-+			I915_PMU_ENGINE_SEMA(e->class, e->instance), -1);
-+	open_group(gem_fd, I915_PMU_ENGINE_BUSY(e->class, e->instance), fd);
- 
- 	__for_each_physical_engine(gem_fd, signal) {
- 		if (e->class == signal->class &&
-@@ -992,7 +996,8 @@ event_wait(int gem_fd, const struct intel_execution_engine2 *e)
- 		data.pipe = p;
- 		prepare_crtc(&data, gem_fd, output);
- 
--		fd = open_pmu(I915_PMU_ENGINE_WAIT(e->class, e->instance));
-+		fd = open_pmu(gem_fd,
-+			      I915_PMU_ENGINE_WAIT(e->class, e->instance));
- 
- 		val[0] = pmu_read_single(fd);
- 
-@@ -1044,14 +1049,14 @@ multi_client(int gem_fd, const struct intel_execution_engine2 *e)
- 
- 	gem_quiescent_gpu(gem_fd);
- 
--	fd[0] = open_pmu(config);
-+	fd[0] = open_pmu(gem_fd, config);
- 
- 	/*
- 	 * Second PMU client which is initialized after the first one,
- 	 * and exists before it, should not affect accounting as reported
- 	 * in the first client.
- 	 */
--	fd[1] = open_pmu(config);
-+	fd[1] = open_pmu(gem_fd, config);
- 
- 	spin = spin_sync(gem_fd, 0, e);
- 
-@@ -1085,7 +1090,7 @@ multi_client(int gem_fd, const struct intel_execution_engine2 *e)
-  *  - cpu != 0 is not supported since i915 PMU only allows running on one cpu
-  *    and that is normally CPU0.
-  */
--static void invalid_init(void)
-+static void invalid_init(int i915)
- {
- 	struct perf_event_attr attr;
- 
-@@ -1093,7 +1098,7 @@ static void invalid_init(void)
- do { \
- 	memset(&attr, 0, sizeof (attr)); \
- 	attr.config = I915_PMU_ENGINE_BUSY(I915_ENGINE_CLASS_RENDER, 0); \
--	attr.type = i915_type_id(); \
-+	attr.type = i915_perf_type_id(i915); \
- 	igt_assert(attr.type != 0); \
- 	errno = 0; \
- } while(0)
-@@ -1112,11 +1117,11 @@ do { \
- 	igt_assert_eq(errno, EINVAL);
- }
- 
--static void init_other(unsigned int i, bool valid)
-+static void init_other(int i915, unsigned int i, bool valid)
- {
- 	int fd;
- 
--	fd = perf_i915_open(__I915_PMU_OTHER(i));
-+	fd = perf_i915_open(i915, __I915_PMU_OTHER(i));
- 	igt_require(!(fd < 0 && errno == ENODEV));
- 	if (valid) {
- 		igt_assert(fd >= 0);
-@@ -1128,11 +1133,11 @@ static void init_other(unsigned int i, bool valid)
- 	close(fd);
- }
- 
--static void read_other(unsigned int i, bool valid)
-+static void read_other(int i915, unsigned int i, bool valid)
- {
- 	int fd;
- 
--	fd = perf_i915_open(__I915_PMU_OTHER(i));
-+	fd = perf_i915_open(i915, __I915_PMU_OTHER(i));
- 	igt_require(!(fd < 0 && errno == ENODEV));
- 	if (valid) {
- 		igt_assert(fd >= 0);
-@@ -1163,7 +1168,8 @@ static void cpu_hotplug(int gem_fd)
- 
- 	igt_require(cpu0_hotplug_support());
- 
--	fd = open_pmu(I915_PMU_ENGINE_BUSY(I915_ENGINE_CLASS_RENDER, 0));
-+	fd = open_pmu(gem_fd,
-+		      I915_PMU_ENGINE_BUSY(I915_ENGINE_CLASS_RENDER, 0));
- 
- 	/*
- 	 * Create two spinners so test can ensure shorter gaps in engine
-@@ -1292,7 +1298,7 @@ test_interrupts(int gem_fd)
- 
- 	gem_quiescent_gpu(gem_fd);
- 
--	fd = open_pmu(I915_PMU_INTERRUPTS);
-+	fd = open_pmu(gem_fd, I915_PMU_INTERRUPTS);
- 
- 	/* Queue spinning batches. */
- 	for (int i = 0; i < target; i++) {
-@@ -1355,7 +1361,7 @@ test_interrupts_sync(int gem_fd)
- 
- 	gem_quiescent_gpu(gem_fd);
- 
--	fd = open_pmu(I915_PMU_INTERRUPTS);
-+	fd = open_pmu(gem_fd, I915_PMU_INTERRUPTS);
- 
- 	/* Queue spinning batches. */
- 	for (int i = 0; i < target; i++)
-@@ -1409,8 +1415,8 @@ test_frequency(int gem_fd)
- 	igt_require(max_freq > min_freq);
- 	igt_require(boost_freq > min_freq);
- 
--	fd = open_group(I915_PMU_REQUESTED_FREQUENCY, -1);
--	open_group(I915_PMU_ACTUAL_FREQUENCY, fd);
-+	fd = open_group(gem_fd, I915_PMU_REQUESTED_FREQUENCY, -1);
-+	open_group(gem_fd, I915_PMU_ACTUAL_FREQUENCY, fd);
- 
- 	/*
- 	 * Set GPU to min frequency and read PMU counters.
-@@ -1499,8 +1505,8 @@ test_frequency_idle(int gem_fd)
- 
- 	/* While parked, our convention is to report the GPU at 0Hz */
- 
--	fd = open_group(I915_PMU_REQUESTED_FREQUENCY, -1);
--	open_group(I915_PMU_ACTUAL_FREQUENCY, fd);
-+	fd = open_group(gem_fd, I915_PMU_REQUESTED_FREQUENCY, -1);
-+	open_group(gem_fd, I915_PMU_ACTUAL_FREQUENCY, fd);
- 
- 	gem_quiescent_gpu(gem_fd); /* Be idle! */
- 	measured_usleep(2000); /* Wait for timers to cease */
-@@ -1554,7 +1560,7 @@ test_rc6(int gem_fd, unsigned int flags)
- 
- 	gem_quiescent_gpu(gem_fd);
- 
--	fd = open_pmu(I915_PMU_RC6_RESIDENCY);
-+	fd = open_pmu(gem_fd, I915_PMU_RC6_RESIDENCY);
- 
- 	if (flags & TEST_RUNTIME_PM) {
- 		drmModeRes *res;
-@@ -1651,7 +1657,7 @@ test_enable_race(int gem_fd, const struct intel_execution_engine2 *e)
- 		usleep(500e3);
- 
- 		/* Enable the PMU. */
--		fd = open_pmu(config);
-+		fd = open_pmu(gem_fd, config);
- 
- 		/* Stop load and close the PMU. */
- 		igt_stop_helper(&engine_load);
-@@ -1797,7 +1803,7 @@ accuracy(int gem_fd, const struct intel_execution_engine2 *e,
- 		igt_spin_free(gem_fd, spin);
- 	}
- 
--	fd = open_pmu(I915_PMU_ENGINE_BUSY(e->class, e->instance));
-+	fd = open_pmu(gem_fd, I915_PMU_ENGINE_BUSY(e->class, e->instance));
- 
- 	/* Let the child run. */
- 	read(link[0], &expected, sizeof(expected));
-@@ -1835,7 +1841,7 @@ igt_main
- 		fd = drm_open_driver_master(DRIVER_INTEL);
- 
- 		igt_require_gem(fd);
--		igt_require(i915_type_id() > 0);
-+		igt_require(i915_perf_type_id(fd) > 0);
- 
- 		__for_each_physical_engine(fd, e)
- 			num_engines++;
-@@ -1845,7 +1851,7 @@ igt_main
- 	 * Test invalid access via perf API is rejected.
- 	 */
- 	igt_subtest("invalid-init")
--		invalid_init();
-+		invalid_init(fd);
- 
- 	__for_each_physical_engine(fd, e) {
- 		const unsigned int pct[] = { 2, 50, 98 };
-@@ -1996,10 +2002,10 @@ igt_main
- 	 */
- 	for (i = 0; i < num_other_metrics + 1; i++) {
- 		igt_subtest_f("other-init-%u", i)
--			init_other(i, i < num_other_metrics);
-+			init_other(fd, i, i < num_other_metrics);
- 
- 		igt_subtest_f("other-read-%u", i)
--			read_other(i, i < num_other_metrics);
-+			read_other(fd, i, i < num_other_metrics);
- 	}
- 
- 	/**
-diff --git a/tools/intel_gpu_top.c b/tools/intel_gpu_top.c
-index cc8db7c53..8197482dd 100644
---- a/tools/intel_gpu_top.c
-+++ b/tools/intel_gpu_top.c
-@@ -423,7 +423,7 @@ static const char *imc_data_writes_unit(void)
- ({ \
- 	int fd__; \
- \
--	fd__ = perf_i915_open_group((pmu)->config, (fd)); \
-+	fd__ = perf_igfx_open_group((pmu)->config, (fd)); \
- 	if (fd__ >= 0) { \
- 		if ((fd) == -1) \
- 			(fd) = fd__; \
--- 
-2.25.0.rc0
+Hans
+
+
+
+> 
+>>
+>> I also have some small review comments inline:
+>>
+>>> ---
+>>>    drivers/gpu/drm/i915/display/intel_dsi.h     |  3 +
+>>>    drivers/gpu/drm/i915/display/intel_dsi_vbt.c | 93
+>>> ++++++++++++++++++++ 2 files changed, 96 insertions(+)
+>>>
+>>> diff --git a/drivers/gpu/drm/i915/display/intel_dsi.h
+>>> b/drivers/gpu/drm/i915/display/intel_dsi.h index
+>>> b15be5814599..5651bc8aa5c2 100644 ---
+>>> a/drivers/gpu/drm/i915/display/intel_dsi.h +++
+>>> b/drivers/gpu/drm/i915/display/intel_dsi.h @@ -68,6 +68,9 @@ struct
+>>> intel_dsi { /* number of DSI lanes */
+>>>    	unsigned int lane_count;
+>>>    
+>>> +	/* i2c bus associated with the slave device */
+>>> +	int i2c_bus_num;
+>>> +
+>>>    	/*
+>>>    	 * video mode pixel format
+>>>    	 *
+>>> diff --git a/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
+>>> b/drivers/gpu/drm/i915/display/intel_dsi_vbt.c index
+>>> f90946c912ee..60441a5a3dba 100644 ---
+>>> a/drivers/gpu/drm/i915/display/intel_dsi_vbt.c +++
+>>> b/drivers/gpu/drm/i915/display/intel_dsi_vbt.c @@ -83,6 +83,12 @@
+>>> static struct gpio_map vlv_gpio_table[] = { {
+>>> VLV_GPIO_NC_11_PANEL1_BKLTCTL }, };
+>>>    
+>>> +struct i2c_adapter_lookup {
+>>> +	u16 slave_addr;
+>>> +	struct intel_dsi *intel_dsi;
+>>> +	acpi_handle dev_handle;
+>>> +};
+>>> +
+>>>    #define CHV_GPIO_IDX_START_N		0
+>>>    #define CHV_GPIO_IDX_START_E		73
+>>>    #define CHV_GPIO_IDX_START_SW		100
+>>> @@ -375,8 +381,93 @@ static const u8 *mipi_exec_gpio(struct
+>>> intel_dsi *intel_dsi, const u8 *data) return data;
+>>>    }
+>>>    
+>>> +static int i2c_adapter_lookup(struct acpi_resource *ares, void
+>>> *data) +{
+>>> +	struct i2c_adapter_lookup *lookup = data;
+>>> +	struct intel_dsi *intel_dsi = lookup->intel_dsi;
+>>> +	struct acpi_resource_i2c_serialbus *sb;
+>>> +	struct i2c_adapter *adapter;
+>>> +	acpi_handle adapter_handle;
+>>> +	acpi_status status;
+>>> +
+>>> +	if (intel_dsi->i2c_bus_num >= 0 ||
+>>> +	    !i2c_acpi_get_i2c_resource(ares, &sb))
+>>> +		return 1;
+>>> +
+>>> +	if (lookup->slave_addr != sb->slave_address)
+>>> +		return 1;
+>>> +
+>>> +	status = acpi_get_handle(lookup->dev_handle,
+>>> +				 sb->resource_source.string_ptr,
+>>> +				 &adapter_handle);
+>>> +	if (ACPI_FAILURE(status))
+>>> +		return 1;
+>>> +
+>>> +	adapter = i2c_acpi_find_adapter_by_handle(adapter_handle);
+>>> +	if (adapter)
+>>> +		intel_dsi->i2c_bus_num = adapter->nr;
+>>> +
+>>> +	return 1;
+>>> +}
+>>> +
+>>>    static const u8 *mipi_exec_i2c(struct intel_dsi *intel_dsi, const
+>>> u8 *data) {
+>>> +	struct drm_device *dev = intel_dsi->base.base.dev;
+>>> +	struct i2c_adapter *adapter;
+>>> +	struct acpi_device *acpi_dev;
+>>> +	struct list_head resource_list;
+>>> +	struct i2c_adapter_lookup lookup;
+>>> +	struct i2c_msg msg;
+>>> +	int ret;
+>>> +	u8 vbt_i2c_bus_num = *(data + 2);
+>>> +	u16 slave_addr = *(u16 *)(data + 3);
+>>> +	u8 reg_offset = *(data + 5);
+>>> +	u8 payload_size = *(data + 6);
+>>> +	u8 *payload_data;
+>>> +
+>>> +	if (intel_dsi->i2c_bus_num < 0) {
+>>> +		intel_dsi->i2c_bus_num = vbt_i2c_bus_num;
+>>> +
+>>> +		acpi_dev = ACPI_COMPANION(&dev->pdev->dev);
+>>> +		if (acpi_dev) {
+>>> +			memset(&lookup, 0, sizeof(lookup));
+>>> +			lookup.slave_addr = slave_addr;
+>>> +			lookup.intel_dsi = intel_dsi;
+>>> +			lookup.dev_handle =
+>>> acpi_device_handle(acpi_dev); +
+>>> +			INIT_LIST_HEAD(&resource_list);
+>>> +			acpi_dev_get_resources(acpi_dev,
+>>> &resource_list,
+>>> +					       i2c_adapter_lookup,
+>>> +					       &lookup);
+>>> +
+>>> acpi_dev_free_resource_list(&resource_list);
+>>> +		}
+>>> +	}
+>>> +
+>>> +	adapter = i2c_get_adapter(intel_dsi->i2c_bus_num);
+>>> +	if (!adapter)
+>>> +		goto out;
+>>
+>> This should never happen, so you should put a DRM_DEV_WARN here.
+> Ok, will do.
+> 
+>>
+>>> +
+>>> +	payload_data = kzalloc(payload_size + 1, GFP_KERNEL);
+>>> +	if (!payload_data)
+>>> +		goto out;
+>>> +
+>>> +	payload_data[0] = reg_offset;
+>>> +	memcpy(&payload_data[1], (data + 7), payload_size);
+>>> +
+>>> +	msg.addr = slave_addr;
+>>> +	msg.flags = 0;
+>>> +	msg.len = payload_size + 1;
+>>> +	msg.buf = payload_data;
+>>> +
+>>> +	ret = i2c_transfer(adapter, &msg, 1);
+>>> +	if (ret < 0)
+>>> +		DRM_ERROR("i2c transfer failed");
+>>
+>> DRM_DEV_ERROR? And maybe some more info, like the register which
+>> the transfer is going to + payload size?
+> Ok, adding extra info makes sense.
+> 
+>>
+>>> +
+>>> +	kfree(payload_data);
+>>> +	i2c_put_adapter(adapter);
+>>> +
+>>
+>> Just put out here, no need for the DRM_DEBUG (which should no
+>> longer be a debug now that we implement this) below, since we
+>> WARN or ERROR on all goto out; statements above.
+> Ok, will do.
+> 
+> Thanks,
+> Vivek
+> 
+>>
+>> out:
+>>
+>>> +	return data + payload_size + 7;
+>>
+>> And drop these 3 lines:
+>>
+>>> +out:
+>>>    	DRM_DEBUG_KMS("Skipping I2C element execution\n");
+>>>    
+>>>    	return data + *(data + 6) + 7;
+>>
+>>
+>>
+>>> @@ -664,6 +755,8 @@ bool intel_dsi_vbt_init(struct intel_dsi
+>>> *intel_dsi, u16 panel_id) intel_dsi->panel_off_delay =
+>>> pps->panel_off_delay / 10; intel_dsi->panel_pwr_cycle_delay =
+>>> pps->panel_power_cycle_delay / 10;
+>>> +	intel_dsi->i2c_bus_num = -1;
+>>> +
+>>>    	/* a regular driver would get the device in probe */
+>>>    	for_each_dsi_port(port, intel_dsi->ports) {
+>>>    		mipi_dsi_attach(intel_dsi->dsi_hosts[port]->device);
+>>>    
+>>
+>> Regards,
+>>
+>> Hans
+>>
+> 
 
 _______________________________________________
 Intel-gfx mailing list
