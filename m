@@ -2,30 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 419A11303FA
-	for <lists+intel-gfx@lfdr.de>; Sat,  4 Jan 2020 20:10:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C932213040A
+	for <lists+intel-gfx@lfdr.de>; Sat,  4 Jan 2020 20:43:29 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 114446E03E;
-	Sat,  4 Jan 2020 19:10:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E73BF89890;
+	Sat,  4 Jan 2020 19:43:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1D3476E048
- for <intel-gfx@lists.freedesktop.org>; Sat,  4 Jan 2020 19:10:49 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19771054-1500050 
- for <intel-gfx@lists.freedesktop.org>; Sat, 04 Jan 2020 19:10:44 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Sat,  4 Jan 2020 19:10:43 +0000
-Message-Id: <20200104191043.2207314-2-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.25.0.rc0
-In-Reply-To: <20200104191043.2207314-1-chris@chris-wilson.co.uk>
-References: <20200104191043.2207314-1-chris@chris-wilson.co.uk>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 9BC0A89857;
+ Sat,  4 Jan 2020 19:43:25 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 93601A0099;
+ Sat,  4 Jan 2020 19:43:25 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [CI 2/2] drm/i915: Create dumb buffer from LMEM
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Sat, 04 Jan 2020 19:43:25 -0000
+Message-ID: <157816700557.3249.5837147708835011656@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200104191043.2207314-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200104191043.2207314-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5BCI=2C1/2=5D_drm/i915=3A_lookup_for_mem=5Fr?=
+ =?utf-8?q?egion_of_a_mem=5Ftype?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,107 +39,123 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Ramalingam C <ramalingam.c@intel.com>
+== Series Details ==
 
-When LMEM is supported, dumb buffer preferred to be created from LMEM.
+Series: series starting with [CI,1/2] drm/i915: lookup for mem_region of a mem_type
+URL   : https://patchwork.freedesktop.org/series/71635/
+State : success
 
-v2:
-  Parameters are reshuffled. [Chris]
-v3:
-  s/region_id/mem_type
-v4:
-  use the i915_gem_object_create_region [chris]
+== Summary ==
 
-Signed-off-by: Ramalingam C <ramalingam.c@intel.com>
-cc: Matthew Auld <matthew.auld@intel.com>
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
----
- drivers/gpu/drm/i915/i915_gem.c | 25 ++++++++++++++++++++-----
- 1 file changed, 20 insertions(+), 5 deletions(-)
+CI Bug Log - changes from CI_DRM_7678 -> Patchwork_15994
+====================================================
 
-diff --git a/drivers/gpu/drm/i915/i915_gem.c b/drivers/gpu/drm/i915/i915_gem.c
-index a3d701b50a6b..0f9162beffba 100644
---- a/drivers/gpu/drm/i915/i915_gem.c
-+++ b/drivers/gpu/drm/i915/i915_gem.c
-@@ -45,6 +45,7 @@
- #include "gem/i915_gem_context.h"
- #include "gem/i915_gem_ioctls.h"
- #include "gem/i915_gem_mman.h"
-+#include "gem/i915_gem_region.h"
- #include "gt/intel_engine_user.h"
- #include "gt/intel_gt.h"
- #include "gt/intel_gt_pm.h"
-@@ -200,7 +201,7 @@ i915_gem_phys_pwrite(struct drm_i915_gem_object *obj,
- 
- static int
- i915_gem_create(struct drm_file *file,
--		struct drm_i915_private *dev_priv,
-+		struct intel_memory_region *mr,
- 		u64 *size_p,
- 		u32 *handle_p)
- {
-@@ -209,12 +210,16 @@ i915_gem_create(struct drm_file *file,
- 	u64 size;
- 	int ret;
- 
--	size = round_up(*size_p, PAGE_SIZE);
-+	GEM_BUG_ON(!is_power_of_2(mr->min_page_size));
-+	size = round_up(*size_p, mr->min_page_size);
- 	if (size == 0)
- 		return -EINVAL;
- 
-+	/* For most of the ABI (e.g. mmap) we think in system pages */
-+	GEM_BUG_ON(!IS_ALIGNED(size, PAGE_SIZE));
-+
- 	/* Allocate the new object */
--	obj = i915_gem_object_create_shmem(dev_priv, size);
-+	obj = i915_gem_object_create_region(mr, size, 0);
- 	if (IS_ERR(obj))
- 		return PTR_ERR(obj);
- 
-@@ -234,6 +239,7 @@ i915_gem_dumb_create(struct drm_file *file,
- 		     struct drm_device *dev,
- 		     struct drm_mode_create_dumb *args)
- {
-+	enum intel_memory_type mem_type;
- 	int cpp = DIV_ROUND_UP(args->bpp, 8);
- 	u32 format;
- 
-@@ -260,7 +266,14 @@ i915_gem_dumb_create(struct drm_file *file,
- 		args->pitch = ALIGN(args->pitch, 4096);
- 
- 	args->size = args->pitch * args->height;
--	return i915_gem_create(file, to_i915(dev),
-+
-+	mem_type = INTEL_MEMORY_SYSTEM;
-+	if (HAS_LMEM(to_i915(dev)))
-+		mem_type = INTEL_MEMORY_LOCAL;
-+
-+	return i915_gem_create(file,
-+			       intel_memory_region_by_type(to_i915(dev),
-+							   mem_type),
- 			       &args->size, &args->handle);
- }
- 
-@@ -279,7 +292,9 @@ i915_gem_create_ioctl(struct drm_device *dev, void *data,
- 
- 	i915_gem_flush_free_objects(dev_priv);
- 
--	return i915_gem_create(file, dev_priv,
-+	return i915_gem_create(file,
-+			       intel_memory_region_by_type(to_i915(dev),
-+							   INTEL_MEMORY_SYSTEM),
- 			       &args->size, &args->handle);
- }
- 
--- 
-2.25.0.rc0
+Summary
+-------
 
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15994/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_15994 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live_blt:
+    - fi-ivb-3770:        [PASS][1] -> [DMESG-FAIL][2] ([i915#725])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7678/fi-ivb-3770/igt@i915_selftest@live_blt.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15994/fi-ivb-3770/igt@i915_selftest@live_blt.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_close_race@basic-threads:
+    - fi-byt-j1900:       [TIMEOUT][3] ([i915#816]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7678/fi-byt-j1900/igt@gem_close_race@basic-threads.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15994/fi-byt-j1900/igt@gem_close_race@basic-threads.html
+
+  * igt@i915_module_load@reload-no-display:
+    - fi-skl-lmem:        [DMESG-WARN][5] ([i915#592]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7678/fi-skl-lmem/igt@i915_module_load@reload-no-display.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15994/fi-skl-lmem/igt@i915_module_load@reload-no-display.html
+
+  * igt@i915_module_load@reload-with-fault-injection:
+    - fi-cfl-8700k:       [DMESG-WARN][7] ([i915#889]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7678/fi-cfl-8700k/igt@i915_module_load@reload-with-fault-injection.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15994/fi-cfl-8700k/igt@i915_module_load@reload-with-fault-injection.html
+    - fi-skl-6770hq:      [INCOMPLETE][9] ([i915#671]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7678/fi-skl-6770hq/igt@i915_module_load@reload-with-fault-injection.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15994/fi-skl-6770hq/igt@i915_module_load@reload-with-fault-injection.html
+
+  * igt@i915_selftest@live_hangcheck:
+    - fi-icl-u3:          [DMESG-FAIL][11] ([i915#419]) -> [PASS][12]
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7678/fi-icl-u3/igt@i915_selftest@live_hangcheck.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15994/fi-icl-u3/igt@i915_selftest@live_hangcheck.html
+
+  * igt@kms_frontbuffer_tracking@basic:
+    - fi-hsw-peppy:       [DMESG-WARN][13] ([i915#44]) -> [PASS][14]
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7678/fi-hsw-peppy/igt@kms_frontbuffer_tracking@basic.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15994/fi-hsw-peppy/igt@kms_frontbuffer_tracking@basic.html
+
+  
+#### Warnings ####
+
+  * igt@i915_selftest@live_blt:
+    - fi-hsw-4770r:       [DMESG-FAIL][15] ([i915#553] / [i915#725]) -> [DMESG-FAIL][16] ([i915#725])
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7678/fi-hsw-4770r/igt@i915_selftest@live_blt.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15994/fi-hsw-4770r/igt@i915_selftest@live_blt.html
+
+  
+  [i915#419]: https://gitlab.freedesktop.org/drm/intel/issues/419
+  [i915#44]: https://gitlab.freedesktop.org/drm/intel/issues/44
+  [i915#553]: https://gitlab.freedesktop.org/drm/intel/issues/553
+  [i915#592]: https://gitlab.freedesktop.org/drm/intel/issues/592
+  [i915#671]: https://gitlab.freedesktop.org/drm/intel/issues/671
+  [i915#725]: https://gitlab.freedesktop.org/drm/intel/issues/725
+  [i915#816]: https://gitlab.freedesktop.org/drm/intel/issues/816
+  [i915#889]: https://gitlab.freedesktop.org/drm/intel/issues/889
+
+
+Participating hosts (51 -> 38)
+------------------------------
+
+  Missing    (13): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ilk-650 fi-kbl-7500u fi-ctg-p8600 fi-bsw-kefka fi-byt-n2820 fi-byt-clapper fi-kbl-r fi-bdw-samus fi-snb-2600 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_7678 -> Patchwork_15994
+
+  CI-20190529: 20190529
+  CI_DRM_7678: e554efffc6ca410bae6c5b3f310dea22f597487c @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5357: a555a4b98f90dab655d24bb3d07e9291a8b8dac8 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_15994: b2f5a0fc7cdadc7e9c22d1a61e564081d9838aea @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+b2f5a0fc7cda drm/i915: Create dumb buffer from LMEM
+085160b164d2 drm/i915: lookup for mem_region of a mem_type
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15994/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
