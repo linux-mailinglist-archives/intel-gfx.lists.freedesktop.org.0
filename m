@@ -1,30 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6CBAD131070
-	for <lists+intel-gfx@lfdr.de>; Mon,  6 Jan 2020 11:22:52 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id AA73B131072
+	for <lists+intel-gfx@lfdr.de>; Mon,  6 Jan 2020 11:22:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7D6C56E22B;
+	by gabe.freedesktop.org (Postfix) with ESMTP id AD7166E22C;
 	Mon,  6 Jan 2020 10:22:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E07D16E22B
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E346A6E22F
  for <intel-gfx@lists.freedesktop.org>; Mon,  6 Jan 2020 10:22:48 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19782261-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19782262-1500050 
  for multiple; Mon, 06 Jan 2020 10:22:29 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon,  6 Jan 2020 10:22:20 +0000
-Message-Id: <20200106102227.2438478-1-chris@chris-wilson.co.uk>
+Date: Mon,  6 Jan 2020 10:22:21 +0000
+Message-Id: <20200106102227.2438478-2-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.25.0.rc1
+In-Reply-To: <20200106102227.2438478-1-chris@chris-wilson.co.uk>
+References: <20200106102227.2438478-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 1/8] drm/i915/selftests: Fixup sparse __user
- annotation on local var
+Subject: [Intel-gfx] [PATCH 2/8] drm/i915/selftests: Impose a timeout for
+ request submission
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,32 +44,71 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The local var does not need the __user as it exists on the kernel stack
-and not a pointer into the __user address space.
-
-drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c:989:9: warning: dereference of noderef expression
-drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c:990:13: warning: dereference of noderef expression
+Avoid spinning indefinitely waiting for the request to be submitted, and
+instead apply a timeout. A secondary benefit is that the error message
+will show which suspect is blocked.
 
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 ---
- drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/gt/selftest_lrc.c | 26 +++++++++++++++++++++-----
+ 1 file changed, 21 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c b/drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c
-index e9e8f62c1185..ef7c74cff28a 100644
---- a/drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c
-+++ b/drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c
-@@ -958,8 +958,9 @@ static int __igt_mmap_gpu(struct drm_i915_private *i915,
- {
- 	struct intel_engine_cs *engine;
- 	struct i915_mmap_offset *mmo;
--	u32 __user *ux, bbe;
- 	unsigned long addr;
-+	u32 __user *ux;
-+	u32 bbe;
- 	int err;
+diff --git a/drivers/gpu/drm/i915/gt/selftest_lrc.c b/drivers/gpu/drm/i915/gt/selftest_lrc.c
+index 627613d85db8..d96604baab94 100644
+--- a/drivers/gpu/drm/i915/gt/selftest_lrc.c
++++ b/drivers/gpu/drm/i915/gt/selftest_lrc.c
+@@ -527,13 +527,19 @@ static struct i915_request *nop_request(struct intel_engine_cs *engine)
+ 	return rq;
+ }
  
- 	/*
+-static void wait_for_submit(struct intel_engine_cs *engine,
+-			    struct i915_request *rq)
++static int wait_for_submit(struct intel_engine_cs *engine,
++			   struct i915_request *rq,
++			   unsigned long timeout)
+ {
++	timeout += jiffies;
+ 	do {
+ 		cond_resched();
+ 		intel_engine_flush_submission(engine);
+-	} while (!i915_request_is_active(rq));
++		if (i915_request_is_active(rq))
++			return 0;
++	} while (time_before(jiffies, timeout));
++
++	return -ETIME;
+ }
+ 
+ static long timeslice_threshold(const struct intel_engine_cs *engine)
+@@ -601,7 +607,12 @@ static int live_timeslice_queue(void *arg)
+ 			goto err_heartbeat;
+ 		}
+ 		engine->schedule(rq, &attr);
+-		wait_for_submit(engine, rq);
++		err = wait_for_submit(engine, rq, HZ / 2);
++		if (err) {
++			pr_err("%s: Timed out trying to submit semaphores\n",
++			       engine->name);
++			goto err_rq;
++		}
+ 
+ 		/* ELSP[1]: nop request */
+ 		nop = nop_request(engine);
+@@ -609,8 +620,13 @@ static int live_timeslice_queue(void *arg)
+ 			err = PTR_ERR(nop);
+ 			goto err_rq;
+ 		}
+-		wait_for_submit(engine, nop);
++		err = wait_for_submit(engine, nop, HZ / 2);
+ 		i915_request_put(nop);
++		if (err) {
++			pr_err("%s: Timed out trying to submit nop\n",
++			       engine->name);
++			goto err_rq;
++		}
+ 
+ 		GEM_BUG_ON(i915_request_completed(rq));
+ 		GEM_BUG_ON(execlists_active(&engine->execlists) != rq);
 -- 
 2.25.0.rc1
 
