@@ -2,31 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 806B9131071
-	for <lists+intel-gfx@lfdr.de>; Mon,  6 Jan 2020 11:22:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C5607131073
+	for <lists+intel-gfx@lfdr.de>; Mon,  6 Jan 2020 11:22:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AEDB26E22D;
+	by gabe.freedesktop.org (Postfix) with ESMTP id C16E96E22F;
 	Mon,  6 Jan 2020 10:22:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E18686E22C
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E3B2E6E231
  for <intel-gfx@lists.freedesktop.org>; Mon,  6 Jan 2020 10:22:48 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19782265-1500050 
- for multiple; Mon, 06 Jan 2020 10:22:29 +0000
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19782267-1500050 
+ for multiple; Mon, 06 Jan 2020 10:22:30 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon,  6 Jan 2020 10:22:23 +0000
-Message-Id: <20200106102227.2438478-4-chris@chris-wilson.co.uk>
+Date: Mon,  6 Jan 2020 10:22:24 +0000
+Message-Id: <20200106102227.2438478-5-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.25.0.rc1
 In-Reply-To: <20200106102227.2438478-1-chris@chris-wilson.co.uk>
 References: <20200106102227.2438478-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 4/8] drm/i915: Merge i915_request.flags with
- i915_request.fence.flags
+Subject: [Intel-gfx] [PATCH 5/8] drm/i915: Replace vma parking with a clock
+ aging algorithm
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,175 +44,272 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-As we already have a flags field buried within i915_request, reuse it!
+We cache the user's vma for a brief period of time after they close them
+so that if they are immediately reopened we avoid having to unbind and
+rebind them. This happens quite frequently for display servers which
+only keep a client's frame open for as long as they are copying from it,
+and so they open/close every vma about 30 Hz (every other frame for
+double buffering).
+
+Our current strategy is to keep the vma alive until the next global idle
+point. However this cache should be purely temporal, so switch over from
+using the parked notifier to using its own clock based aging algorithm:
+if the closed vma is not reused within 2 clock ticks, it is destroyed.
 
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 ---
- .../gpu/drm/i915/gem/i915_gem_execbuffer.c    |  2 +-
- .../gpu/drm/i915/gt/intel_engine_heartbeat.c  |  2 +-
- drivers/gpu/drm/i915/gt/intel_lrc.c           |  4 +-
- drivers/gpu/drm/i915/gt/intel_rps.c           |  2 +-
- drivers/gpu/drm/i915/gt/selftest_lrc.c        |  2 +-
- drivers/gpu/drm/i915/i915_request.c           |  1 -
- drivers/gpu/drm/i915/i915_request.h           | 43 +++++++++++++++----
- 7 files changed, 41 insertions(+), 15 deletions(-)
+ drivers/gpu/drm/i915/gt/intel_gt.c       |  3 --
+ drivers/gpu/drm/i915/gt/intel_gt_pm.c    |  1 -
+ drivers/gpu/drm/i915/gt/intel_gt_types.h |  3 --
+ drivers/gpu/drm/i915/i915_debugfs.c      |  3 ++
+ drivers/gpu/drm/i915/i915_drv.c          |  4 +-
+ drivers/gpu/drm/i915/i915_drv.h          |  1 +
+ drivers/gpu/drm/i915/i915_vma.c          | 68 ++++++++++++++++++------
+ drivers/gpu/drm/i915/i915_vma.h          | 11 +++-
+ 8 files changed, 69 insertions(+), 25 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-index cbd2bcade3c8..d5a0f5ae4a8b 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-@@ -2173,7 +2173,7 @@ static int eb_submit(struct i915_execbuffer *eb)
- 	}
+diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c b/drivers/gpu/drm/i915/gt/intel_gt.c
+index 8a17abfbb19f..d0879b5fc313 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gt.c
++++ b/drivers/gpu/drm/i915/gt/intel_gt.c
+@@ -23,9 +23,6 @@ void intel_gt_init_early(struct intel_gt *gt, struct drm_i915_private *i915)
  
- 	if (intel_context_nopreempt(eb->context))
--		eb->request->flags |= I915_REQUEST_NOPREEMPT;
-+		__set_bit(I915_FENCE_FLAG_NOPREEMPT, &eb->request->fence.flags);
+ 	spin_lock_init(&gt->irq_lock);
  
- 	return 0;
+-	INIT_LIST_HEAD(&gt->closed_vma);
+-	spin_lock_init(&gt->closed_lock);
+-
+ 	intel_gt_init_reset(gt);
+ 	intel_gt_init_requests(gt);
+ 	intel_gt_init_timelines(gt);
+diff --git a/drivers/gpu/drm/i915/gt/intel_gt_pm.c b/drivers/gpu/drm/i915/gt/intel_gt_pm.c
+index d1c2f034296a..3302f676d12b 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gt_pm.c
++++ b/drivers/gpu/drm/i915/gt/intel_gt_pm.c
+@@ -80,7 +80,6 @@ static int __gt_park(struct intel_wakeref *wf)
+ 
+ 	intel_gt_park_requests(gt);
+ 
+-	i915_vma_parked(gt);
+ 	i915_pmu_gt_parked(i915);
+ 	intel_rps_park(&gt->rps);
+ 	intel_rc6_park(&gt->rc6);
+diff --git a/drivers/gpu/drm/i915/gt/intel_gt_types.h b/drivers/gpu/drm/i915/gt/intel_gt_types.h
+index 96890dd12b5f..4589dea67b8f 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gt_types.h
++++ b/drivers/gpu/drm/i915/gt/intel_gt_types.h
+@@ -58,9 +58,6 @@ struct intel_gt {
+ 	struct intel_wakeref wakeref;
+ 	atomic_t user_wakeref;
+ 
+-	struct list_head closed_vma;
+-	spinlock_t closed_lock; /* guards the list of closed_vma */
+-
+ 	struct intel_reset reset;
+ 
+ 	/**
+diff --git a/drivers/gpu/drm/i915/i915_debugfs.c b/drivers/gpu/drm/i915/i915_debugfs.c
+index 0ac98e39eb75..00fb03d772ab 100644
+--- a/drivers/gpu/drm/i915/i915_debugfs.c
++++ b/drivers/gpu/drm/i915/i915_debugfs.c
+@@ -3589,6 +3589,9 @@ i915_drop_caches_set(void *data, u64 val)
+ 	if (ret)
+ 		return ret;
+ 
++	if (val & DROP_IDLE)
++		i915_vma_clock_flush(&i915->vma_clock);
++
+ 	fs_reclaim_acquire(GFP_KERNEL);
+ 	if (val & DROP_BOUND)
+ 		i915_gem_shrink(i915, LONG_MAX, NULL, I915_SHRINK_BOUND);
+diff --git a/drivers/gpu/drm/i915/i915_drv.c b/drivers/gpu/drm/i915/i915_drv.c
+index f7385abdd74b..9fde3918094f 100644
+--- a/drivers/gpu/drm/i915/i915_drv.c
++++ b/drivers/gpu/drm/i915/i915_drv.c
+@@ -523,8 +523,8 @@ static int i915_driver_early_probe(struct drm_i915_private *dev_priv)
+ 
+ 	intel_wopcm_init_early(&dev_priv->wopcm);
+ 
++	i915_vma_clock_init_early(&dev_priv->vma_clock);
+ 	intel_gt_init_early(&dev_priv->gt, dev_priv);
+-
+ 	i915_gem_init_early(dev_priv);
+ 
+ 	/* This must be called before any calls to HAS_PCH_* */
+@@ -561,6 +561,8 @@ static int i915_driver_early_probe(struct drm_i915_private *dev_priv)
+  */
+ static void i915_driver_late_release(struct drm_i915_private *dev_priv)
+ {
++	i915_vma_clock_flush(&dev_priv->vma_clock);
++
+ 	intel_irq_fini(dev_priv);
+ 	intel_power_domains_cleanup(dev_priv);
+ 	i915_gem_cleanup_early(dev_priv);
+diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+index 50181113dd2b..d61d73c680b1 100644
+--- a/drivers/gpu/drm/i915/i915_drv.h
++++ b/drivers/gpu/drm/i915/i915_drv.h
+@@ -1240,6 +1240,7 @@ struct drm_i915_private {
+ 	struct intel_runtime_pm runtime_pm;
+ 
+ 	struct i915_perf perf;
++	struct i915_vma_clock vma_clock;
+ 
+ 	/* Abstract the submission mechanism (legacy ringbuffer or execlists) away */
+ 	struct intel_gt gt;
+diff --git a/drivers/gpu/drm/i915/i915_vma.c b/drivers/gpu/drm/i915/i915_vma.c
+index cbd783c31adb..925100c0690e 100644
+--- a/drivers/gpu/drm/i915/i915_vma.c
++++ b/drivers/gpu/drm/i915/i915_vma.c
+@@ -985,8 +985,7 @@ int i915_ggtt_pin(struct i915_vma *vma, u32 align, unsigned int flags)
+ 
+ void i915_vma_close(struct i915_vma *vma)
+ {
+-	struct intel_gt *gt = vma->vm->gt;
+-	unsigned long flags;
++	struct i915_vma_clock *clock = &vma->vm->i915->vma_clock;
+ 
+ 	GEM_BUG_ON(i915_vma_is_closed(vma));
+ 
+@@ -1002,18 +1001,20 @@ void i915_vma_close(struct i915_vma *vma)
+ 	 * causing us to rebind the VMA once more. This ends up being a lot
+ 	 * of wasted work for the steady state.
+ 	 */
+-	spin_lock_irqsave(&gt->closed_lock, flags);
+-	list_add(&vma->closed_link, &gt->closed_vma);
+-	spin_unlock_irqrestore(&gt->closed_lock, flags);
++	spin_lock(&clock->lock);
++	list_add(&vma->closed_link, &clock->age[0]);
++	spin_unlock(&clock->lock);
++
++	schedule_delayed_work(&clock->work, round_jiffies_up_relative(HZ));
  }
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c b/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c
-index 742628e40201..6c6fd185457c 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c
-+++ b/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c
-@@ -199,7 +199,7 @@ int intel_engine_pulse(struct intel_engine_cs *engine)
- 		goto out_unlock;
- 	}
  
--	rq->flags |= I915_REQUEST_SENTINEL;
-+	__set_bit(I915_FENCE_FLAG_SENTINEL, &rq->fence.flags);
- 	idle_pulse(engine, rq);
+ static void __i915_vma_remove_closed(struct i915_vma *vma)
+ {
+-	struct intel_gt *gt = vma->vm->gt;
++	struct i915_vma_clock *clock = &vma->vm->i915->vma_clock;
  
- 	__i915_request_commit(rq);
-diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-index 170b5a0139a3..28c05e7a1510 100644
---- a/drivers/gpu/drm/i915/gt/intel_lrc.c
-+++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-@@ -1538,8 +1538,8 @@ static bool can_merge_rq(const struct i915_request *prev,
- 	if (i915_request_completed(next))
- 		return true;
+-	spin_lock_irq(&gt->closed_lock);
++	spin_lock(&clock->lock);
+ 	list_del_init(&vma->closed_link);
+-	spin_unlock_irq(&gt->closed_lock);
++	spin_unlock(&clock->lock);
+ }
  
--	if (unlikely((prev->flags ^ next->flags) &
--		     (I915_REQUEST_NOPREEMPT | I915_REQUEST_SENTINEL)))
-+	if (unlikely((prev->fence.flags ^ next->fence.flags) &
-+		     (I915_FENCE_FLAG_NOPREEMPT | I915_FENCE_FLAG_SENTINEL)))
- 		return false;
+ void i915_vma_reopen(struct i915_vma *vma)
+@@ -1051,12 +1052,28 @@ void i915_vma_release(struct kref *ref)
+ 	i915_vma_free(vma);
+ }
  
- 	if (!can_merge_ctx(prev->context, next->context))
-diff --git a/drivers/gpu/drm/i915/gt/intel_rps.c b/drivers/gpu/drm/i915/gt/intel_rps.c
-index f232036c3c7a..d2a3d935d186 100644
---- a/drivers/gpu/drm/i915/gt/intel_rps.c
-+++ b/drivers/gpu/drm/i915/gt/intel_rps.c
-@@ -777,7 +777,7 @@ void intel_rps_boost(struct i915_request *rq)
- 	spin_lock_irqsave(&rq->lock, flags);
- 	if (!i915_request_has_waitboost(rq) &&
- 	    !dma_fence_is_signaled_locked(&rq->fence)) {
--		rq->flags |= I915_REQUEST_WAITBOOST;
-+		set_bit(I915_FENCE_FLAG_BOOST, &rq->fence.flags);
+-void i915_vma_parked(struct intel_gt *gt)
++static void i915_vma_clock(struct work_struct *w)
+ {
++	struct i915_vma_clock *clock =
++		container_of(w, typeof(*clock), work.work);
+ 	struct i915_vma *vma, *next;
  
- 		if (!atomic_fetch_inc(&rps->num_waiters) &&
- 		    READ_ONCE(rps->cur_freq) < rps->boost_freq)
-diff --git a/drivers/gpu/drm/i915/gt/selftest_lrc.c b/drivers/gpu/drm/i915/gt/selftest_lrc.c
-index d96604baab94..15cda024e3e4 100644
---- a/drivers/gpu/drm/i915/gt/selftest_lrc.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_lrc.c
-@@ -1153,7 +1153,7 @@ static int live_nopreempt(void *arg)
+-	spin_lock_irq(&gt->closed_lock);
+-	list_for_each_entry_safe(vma, next, &gt->closed_vma, closed_link) {
++	/*
++	 * A very simple clock aging algorithm: we keep the user's closed
++	 * vma alive for a couple of timer ticks before destroying them.
++	 * This serves a shortlived cache so that frequently reused VMA
++	 * are kept alive between frames and we skip having to rebing them.
++	 *
++	 * When closed, we insert the vma into age[0]. Upon completion of
++	 * a timer tick, it is moved to age[1]. At the start of each timer
++	 * tick, we destroy all the old vma that were accumulated into age[1]
++	 * and have not been reused. All destroyed vma have therefore been
++	 * unused for more than 1 tick (at least a second), and at most 2
++	 * ticks (we expect the average to be 1.5 ticks).
++	 */
++
++	spin_lock(&clock->lock);
++	list_for_each_entry_safe(vma, next, &clock->age[1], closed_link) {
+ 		struct drm_i915_gem_object *obj = vma->obj;
+ 		struct i915_address_space *vm = vma->vm;
+ 
+@@ -1072,7 +1089,7 @@ void i915_vma_parked(struct intel_gt *gt)
+ 			obj = NULL;
  		}
  
- 		/* Low priority client, but unpreemptable! */
--		rq_a->flags |= I915_REQUEST_NOPREEMPT;
-+		__set_bit(I915_FENCE_FLAG_NOPREEMPT, &rq_a->fence.flags);
+-		spin_unlock_irq(&gt->closed_lock);
++		spin_unlock(&clock->lock);
  
- 		i915_request_add(rq_a);
- 		if (!igt_wait_for_spinner(&a.spin, rq_a)) {
-diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
-index 44a0d1a950c5..be185886e4fc 100644
---- a/drivers/gpu/drm/i915/i915_request.c
-+++ b/drivers/gpu/drm/i915/i915_request.c
-@@ -658,7 +658,6 @@ __i915_request_create(struct intel_context *ce, gfp_t gfp)
- 	rq->engine = ce->engine;
- 	rq->ring = ce->ring;
- 	rq->execution_mask = ce->engine->mask;
--	rq->flags = 0;
+ 		if (obj) {
+ 			__i915_vma_put(vma);
+@@ -1082,11 +1099,15 @@ void i915_vma_parked(struct intel_gt *gt)
+ 		i915_vm_close(vm);
  
- 	RCU_INIT_POINTER(rq->timeline, tl);
- 	RCU_INIT_POINTER(rq->hwsp_cacheline, tl->hwsp_cacheline);
-diff --git a/drivers/gpu/drm/i915/i915_request.h b/drivers/gpu/drm/i915/i915_request.h
-index 9784421a3b4d..031433691a06 100644
---- a/drivers/gpu/drm/i915/i915_request.h
-+++ b/drivers/gpu/drm/i915/i915_request.h
-@@ -77,6 +77,38 @@ enum {
- 	 * a request is on the various signal_list.
- 	 */
- 	I915_FENCE_FLAG_SIGNAL,
+ 		/* Restart after dropping lock */
+-		spin_lock_irq(&gt->closed_lock);
+-		next = list_first_entry(&gt->closed_vma,
++		spin_lock(&clock->lock);
++		next = list_first_entry(&clock->age[1],
+ 					typeof(*next), closed_link);
+ 	}
+-	spin_unlock_irq(&gt->closed_lock);
++	list_splice_tail_init(&clock->age[0], &clock->age[1]);
++	if (!list_empty(&clock->age[1]))
++		schedule_delayed_work(&clock->work,
++				      round_jiffies_up_relative(HZ));
++	spin_unlock(&clock->lock);
+ }
+ 
+ static void __i915_vma_iounmap(struct i915_vma *vma)
+@@ -1277,6 +1298,23 @@ void i915_vma_make_purgeable(struct i915_vma *vma)
+ 	i915_gem_object_make_purgeable(vma->obj);
+ }
+ 
++void i915_vma_clock_init_early(struct i915_vma_clock *clock)
++{
++	spin_lock_init(&clock->lock);
++	INIT_LIST_HEAD(&clock->age[0]);
++	INIT_LIST_HEAD(&clock->age[1]);
 +
-+	/*
-+	 * I915_FENCE_FLAG_NOPREEMPT - this request should not be preempted
-+	 *
-+	 * The execution of some requests should not be interrupted. This is
-+	 * a sensitive operation as it makes the request super important,
-+	 * blocking other higher priority work. Abuse of this flag will
-+	 * lead to quality of service issues.
-+	 */
-+	I915_FENCE_FLAG_NOPREEMPT,
++	INIT_DELAYED_WORK(&clock->work, i915_vma_clock);
++}
 +
-+	/*
-+	 * I915_FENCE_FLAG_SENTINEL - this request should be last in the queue
-+	 *
-+	 * A high priority sentinel request may be submitted to clear the
-+	 * submission queue. As it will be the only request in-flight, upon
-+	 * execution all other active requests will have been preempted and
-+	 * unsubmitted. This preemptive pulse is used to re-evaluate the
-+	 * in-flight requests, particularly in cases where an active context
-+	 * is banned and those active requests need to be cancelled.
-+	 */
-+	I915_FENCE_FLAG_SENTINEL,
++void i915_vma_clock_flush(struct i915_vma_clock *clock)
++{
++	do {
++		if (cancel_delayed_work_sync(&clock->work))
++			i915_vma_clock(&clock->work.work);
++	} while (delayed_work_pending(&clock->work));
++}
 +
-+	/*
-+	 * I915_FENCE_FLAG_BOOST - upclock the gpu for this request
-+	 *
-+	 * Some requests are more important than others! In particular, a
-+	 * request that the user is waiting on is typically required for
-+	 * interactive latency, for which we want to minimise by upclocking
-+	 * the GPU. Here we track such boost requests on a per-request basis.
-+	 */
-+	I915_FENCE_FLAG_BOOST,
- };
+ #if IS_ENABLED(CONFIG_DRM_I915_SELFTEST)
+ #include "selftests/i915_vma.c"
+ #endif
+diff --git a/drivers/gpu/drm/i915/i915_vma.h b/drivers/gpu/drm/i915/i915_vma.h
+index 5fffa3c58908..460a50a350d0 100644
+--- a/drivers/gpu/drm/i915/i915_vma.h
++++ b/drivers/gpu/drm/i915/i915_vma.h
+@@ -485,8 +485,6 @@ i915_vma_unpin_fence(struct i915_vma *vma)
+ 		__i915_vma_unpin_fence(vma);
+ }
+ 
+-void i915_vma_parked(struct intel_gt *gt);
+-
+ #define for_each_until(cond) if (cond) break; else
  
  /**
-@@ -225,11 +257,6 @@ struct i915_request {
- 	/** Time at which this request was emitted, in jiffies. */
- 	unsigned long emitted_jiffies;
- 
--	unsigned long flags;
--#define I915_REQUEST_WAITBOOST	BIT(0)
--#define I915_REQUEST_NOPREEMPT	BIT(1)
--#define I915_REQUEST_SENTINEL	BIT(2)
--
- 	/** timeline->request entry for this request */
- 	struct list_head link;
- 
-@@ -442,18 +469,18 @@ static inline void i915_request_mark_complete(struct i915_request *rq)
- 
- static inline bool i915_request_has_waitboost(const struct i915_request *rq)
- {
--	return rq->flags & I915_REQUEST_WAITBOOST;
-+	return test_bit(I915_FENCE_FLAG_BOOST, &rq->fence.flags);
+@@ -515,4 +513,13 @@ static inline int i915_vma_sync(struct i915_vma *vma)
+ 	return i915_active_wait(&vma->active);
  }
  
- static inline bool i915_request_has_nopreempt(const struct i915_request *rq)
- {
- 	/* Preemption should only be disabled very rarely */
--	return unlikely(rq->flags & I915_REQUEST_NOPREEMPT);
-+	return unlikely(test_bit(I915_FENCE_FLAG_NOPREEMPT, &rq->fence.flags));
- }
- 
- static inline bool i915_request_has_sentinel(const struct i915_request *rq)
- {
--	return unlikely(rq->flags & I915_REQUEST_SENTINEL);
-+	return unlikely(test_bit(I915_FENCE_FLAG_SENTINEL, &rq->fence.flags));
- }
- 
- static inline struct intel_timeline *
++struct i915_vma_clock {
++	spinlock_t lock;
++	struct list_head age[2];
++	struct delayed_work work;
++};
++
++void i915_vma_clock_init_early(struct i915_vma_clock *clock);
++void i915_vma_clock_flush(struct i915_vma_clock *clock);
++
+ #endif
 -- 
 2.25.0.rc1
 
