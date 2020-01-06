@@ -1,32 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED28C131188
-	for <lists+intel-gfx@lfdr.de>; Mon,  6 Jan 2020 12:42:47 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4948C131186
+	for <lists+intel-gfx@lfdr.de>; Mon,  6 Jan 2020 12:42:45 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 39B416E282;
-	Mon,  6 Jan 2020 11:42:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EA9F76E27A;
+	Mon,  6 Jan 2020 11:42:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7A5356E26F
- for <intel-gfx@lists.freedesktop.org>; Mon,  6 Jan 2020 11:42:41 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 93CD86E279
+ for <intel-gfx@lists.freedesktop.org>; Mon,  6 Jan 2020 11:42:40 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19783444-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19783445-1500050 
  for <intel-gfx@lists.freedesktop.org>; Mon, 06 Jan 2020 11:42:35 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon,  6 Jan 2020 11:42:32 +0000
-Message-Id: <20200106114234.2529613-4-chris@chris-wilson.co.uk>
+Date: Mon,  6 Jan 2020 11:42:33 +0000
+Message-Id: <20200106114234.2529613-5-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.25.0.rc1
 In-Reply-To: <20200106114234.2529613-1-chris@chris-wilson.co.uk>
 References: <20200106114234.2529613-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [CI 4/6] drm/i915/gt: Convert the final GEM_TRACE to
- GT_TRACE and co
+Subject: [Intel-gfx] [CI 5/6] drm/i915/gt: Drop mutex serialisation between
+ context pin/unpin
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,112 +44,111 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Convert the few remaining GEM_TRACE() used for debugging over to the
-appropriate GT_TRACE or RQ_TRACE.
+The last remaining reason for serialising the pin/unpin of the
+intel_context is to ensure that our preallocated wakerefs are not
+consumed too early (i.e. the unpin of the previous phase does not emit
+the idle barriers for this phase before we even submit). All of the
+other operations within the context pin/unpin are supposed to be
+atomic...  Therefore, we can reduce the serialisation to being just on
+the i915_active.preallocated_barriers itself and drop the nested
+pin_mutex from intel_context_unpin().
 
-References: 639f2f24895f ("drm/i915: Introduce new macros for tracing")
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Venkata Sandeep Dhanalakota <venkata.s.dhanalakota@intel.com>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 Reviewed-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 ---
- drivers/gpu/drm/i915/gt/intel_context.c |  2 ++
- drivers/gpu/drm/i915/gt/intel_reset.c   | 21 ++++++++-------------
- 2 files changed, 10 insertions(+), 13 deletions(-)
+ drivers/gpu/drm/i915/gt/intel_context.c | 24 +++++++++++-------------
+ drivers/gpu/drm/i915/i915_active.c      | 19 +++++++++++++++----
+ 2 files changed, 26 insertions(+), 17 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/gt/intel_context.c b/drivers/gpu/drm/i915/gt/intel_context.c
-index fbaa9df6f436..4d0bc1478ccd 100644
+index 4d0bc1478ccd..5ea8305fd633 100644
 --- a/drivers/gpu/drm/i915/gt/intel_context.c
 +++ b/drivers/gpu/drm/i915/gt/intel_context.c
-@@ -152,6 +152,8 @@ static int __intel_context_active(struct i915_active *active)
- 	struct intel_context *ce = container_of(active, typeof(*ce), active);
- 	int err;
+@@ -86,22 +86,20 @@ int __intel_context_do_pin(struct intel_context *ce)
  
-+	CE_TRACE(ce, "active\n");
-+
- 	intel_context_get(ce);
- 
- 	err = intel_ring_pin(ce->ring);
-diff --git a/drivers/gpu/drm/i915/gt/intel_reset.c b/drivers/gpu/drm/i915/gt/intel_reset.c
-index fe919a1af904..76de33ae9efe 100644
---- a/drivers/gpu/drm/i915/gt/intel_reset.c
-+++ b/drivers/gpu/drm/i915/gt/intel_reset.c
-@@ -147,11 +147,7 @@ static void mark_innocent(struct i915_request *rq)
- 
- void __i915_request_reset(struct i915_request *rq, bool guilty)
+ void intel_context_unpin(struct intel_context *ce)
  {
--	GEM_TRACE("%s rq=%llx:%lld, guilty? %s\n",
--		  rq->engine->name,
--		  rq->fence.context,
--		  rq->fence.seqno,
--		  yesno(guilty));
-+	RQ_TRACE(rq, "guilty? %s\n", yesno(guilty));
+-	if (likely(atomic_add_unless(&ce->pin_count, -1, 1)))
++	if (!atomic_dec_and_test(&ce->pin_count))
+ 		return;
  
- 	GEM_BUG_ON(i915_request_completed(rq));
+-	/* We may be called from inside intel_context_pin() to evict another */
+-	intel_context_get(ce);
+-	mutex_lock_nested(&ce->pin_mutex, SINGLE_DEPTH_NESTING);
+-
+-	if (likely(atomic_dec_and_test(&ce->pin_count))) {
+-		CE_TRACE(ce, "retire\n");
+-
+-		ce->ops->unpin(ce);
+-
+-		intel_context_active_release(ce);
+-	}
++	CE_TRACE(ce, "unpin\n");
++	ce->ops->unpin(ce);
  
-@@ -624,7 +620,7 @@ int __intel_gt_reset(struct intel_gt *gt, intel_engine_mask_t engine_mask)
- 	 */
- 	intel_uncore_forcewake_get(gt->uncore, FORCEWAKE_ALL);
- 	for (retry = 0; ret == -ETIMEDOUT && retry < retries; retry++) {
--		GEM_TRACE("engine_mask=%x\n", engine_mask);
-+		GT_TRACE(gt, "engine_mask=%x\n", engine_mask);
- 		preempt_disable();
- 		ret = reset(gt, engine_mask, retry);
- 		preempt_enable();
-@@ -784,8 +780,7 @@ static void nop_submit_request(struct i915_request *request)
- 	struct intel_engine_cs *engine = request->engine;
- 	unsigned long flags;
- 
--	GEM_TRACE("%s fence %llx:%lld -> -EIO\n",
--		  engine->name, request->fence.context, request->fence.seqno);
-+	RQ_TRACE(request, "-EIO\n");
- 	dma_fence_set_error(&request->fence, -EIO);
- 
- 	spin_lock_irqsave(&engine->active.lock, flags);
-@@ -812,7 +807,7 @@ static void __intel_gt_set_wedged(struct intel_gt *gt)
- 			intel_engine_dump(engine, &p, "%s\n", engine->name);
- 	}
- 
--	GEM_TRACE("start\n");
-+	GT_TRACE(gt, "start\n");
- 
- 	/*
- 	 * First, stop submission to hw, but do not yet complete requests by
-@@ -843,7 +838,7 @@ static void __intel_gt_set_wedged(struct intel_gt *gt)
- 
- 	reset_finish(gt, awake);
- 
--	GEM_TRACE("end\n");
-+	GT_TRACE(gt, "end\n");
+-	mutex_unlock(&ce->pin_mutex);
++	/*
++	 * Once released, we may asynchronously drop the active reference.
++	 * As that may be the only reference keeping the context alive,
++	 * take an extra now so that it is not freed before we finish
++	 * dereferencing it.
++	 */
++	intel_context_get(ce);
++	intel_context_active_release(ce);
+ 	intel_context_put(ce);
  }
  
- void intel_gt_set_wedged(struct intel_gt *gt)
-@@ -869,7 +864,7 @@ static bool __intel_gt_unset_wedged(struct intel_gt *gt)
- 	if (test_bit(I915_WEDGED_ON_INIT, &gt->reset.flags))
- 		return false;
+diff --git a/drivers/gpu/drm/i915/i915_active.c b/drivers/gpu/drm/i915/i915_active.c
+index cfe09964622b..f3da5c06f331 100644
+--- a/drivers/gpu/drm/i915/i915_active.c
++++ b/drivers/gpu/drm/i915/i915_active.c
+@@ -605,12 +605,15 @@ int i915_active_acquire_preallocate_barrier(struct i915_active *ref,
+ 					    struct intel_engine_cs *engine)
+ {
+ 	intel_engine_mask_t tmp, mask = engine->mask;
++	struct llist_node *pos = NULL, *next;
+ 	struct intel_gt *gt = engine->gt;
+-	struct llist_node *pos, *next;
+ 	int err;
  
--	GEM_TRACE("start\n");
-+	GT_TRACE(gt, "start\n");
+ 	GEM_BUG_ON(i915_active_is_idle(ref));
+-	GEM_BUG_ON(!llist_empty(&ref->preallocated_barriers));
++
++	/* Wait until the previous preallocation is completed */
++	while (!llist_empty(&ref->preallocated_barriers))
++		cond_resched();
  
  	/*
- 	 * Before unwedging, make sure that all pending operations
-@@ -931,7 +926,7 @@ static bool __intel_gt_unset_wedged(struct intel_gt *gt)
- 	 */
- 	intel_engines_reset_default_submission(gt);
+ 	 * Preallocate a node for each physical engine supporting the target
+@@ -653,16 +656,24 @@ int i915_active_acquire_preallocate_barrier(struct i915_active *ref,
+ 		GEM_BUG_ON(rcu_access_pointer(node->base.fence) != ERR_PTR(-EAGAIN));
  
--	GEM_TRACE("end\n");
-+	GT_TRACE(gt, "end\n");
+ 		GEM_BUG_ON(barrier_to_engine(node) != engine);
+-		llist_add(barrier_to_ll(node), &ref->preallocated_barriers);
++		next = barrier_to_ll(node);
++		next->next = pos;
++		if (!pos)
++			pos = next;
+ 		intel_engine_pm_get(engine);
+ 	}
  
- 	smp_mb__before_atomic(); /* complete takeover before enabling execbuf */
- 	clear_bit(I915_WEDGED, &gt->reset.flags);
-@@ -1006,7 +1001,7 @@ void intel_gt_reset(struct intel_gt *gt,
- 	intel_engine_mask_t awake;
- 	int ret;
++	GEM_BUG_ON(!llist_empty(&ref->preallocated_barriers));
++	llist_add_batch(next, pos, &ref->preallocated_barriers);
++
+ 	return 0;
  
--	GEM_TRACE("flags=%lx\n", gt->reset.flags);
-+	GT_TRACE(gt, "flags=%lx\n", gt->reset.flags);
+ unwind:
+-	llist_for_each_safe(pos, next, take_preallocated_barriers(ref)) {
++	while (pos) {
+ 		struct active_node *node = barrier_from_ll(pos);
  
- 	might_sleep();
- 	GEM_BUG_ON(!test_bit(I915_RESET_BACKOFF, &gt->reset.flags));
++		pos = pos->next;
++
+ 		atomic_dec(&ref->count);
+ 		intel_engine_pm_put(barrier_to_engine(node));
+ 
 -- 
 2.25.0.rc1
 
