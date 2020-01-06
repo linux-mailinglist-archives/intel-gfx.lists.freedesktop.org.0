@@ -1,32 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 662931313DF
-	for <lists+intel-gfx@lfdr.de>; Mon,  6 Jan 2020 15:41:13 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 36A481313E7
+	for <lists+intel-gfx@lfdr.de>; Mon,  6 Jan 2020 15:42:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AAC236E31D;
-	Mon,  6 Jan 2020 14:41:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1F4FF6E356;
+	Mon,  6 Jan 2020 14:42:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 0A6236E2E0;
- Mon,  6 Jan 2020 14:41:10 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 014C2A0134;
- Mon,  6 Jan 2020 14:41:10 +0000 (UTC)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8D5906E356
+ for <intel-gfx@lists.freedesktop.org>; Mon,  6 Jan 2020 14:42:11 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga106.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 06 Jan 2020 06:42:11 -0800
+X-IronPort-AV: E=Sophos;i="5.69,402,1571727600"; d="scan'208";a="222266635"
+Received: from kumarjai-mobl1.ger.corp.intel.com (HELO [10.251.83.12])
+ ([10.251.83.12])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/AES256-SHA;
+ 06 Jan 2020 06:42:10 -0800
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+References: <20200106123921.2543886-1-chris@chris-wilson.co.uk>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <7af25d92-8320-88d5-d705-b42347e8204f@linux.intel.com>
+Date: Mon, 6 Jan 2020 14:42:08 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Mon, 06 Jan 2020 14:41:10 -0000
-Message-ID: <157832167000.24766.1323192223548046246@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200106114234.2529613-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200106114234.2529613-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5BCI=2C1/6=5D_drm/i915/selftests=3A_Fixup_sp?=
- =?utf-8?q?arse_=5F=5Fuser_annotation_on_local_var?=
+In-Reply-To: <20200106123921.2543886-1-chris@chris-wilson.co.uk>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/gt: Mark up virtual engine
+ uabi_instance
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,116 +47,49 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
+Cc: stable@vger.kernel.org
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
 
-Series: series starting with [CI,1/6] drm/i915/selftests: Fixup sparse __user annotation on local var
-URL   : https://patchwork.freedesktop.org/series/71656/
-State : success
+On 06/01/2020 12:39, Chris Wilson wrote:
+> Be sure to initialise the uabi_instance on the virtual engine to the
+> special invalid value, just in case we ever peek at it from the uAPI.
+> 
+> Reported-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> Fixes: 750e76b4f9f6 ("drm/i915/gt: Move the [class][inst] lookup for engines onto the GT")
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> Cc: <stable@vger.kernel.org> # v5.4+
+> ---
+>   drivers/gpu/drm/i915/gt/intel_lrc.c | 2 ++
+>   1 file changed, 2 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+> index 170b5a0139a3..f07d93514a7c 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+> @@ -4601,9 +4601,11 @@ intel_execlists_create_virtual(struct intel_engine_cs **siblings,
+>   	ve->base.gt = siblings[0]->gt;
+>   	ve->base.uncore = siblings[0]->uncore;
+>   	ve->base.id = -1;
+> +
+>   	ve->base.class = OTHER_CLASS;
+>   	ve->base.uabi_class = I915_ENGINE_CLASS_INVALID;
+>   	ve->base.instance = I915_ENGINE_CLASS_INVALID_VIRTUAL;
+> +	ve->base.uabi_instance = I915_ENGINE_CLASS_INVALID_VIRTUAL;
+>   
+>   	/*
+>   	 * The decision on whether to submit a request using semaphores
+> 
 
-== Summary ==
+Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 
-CI Bug Log - changes from CI_DRM_7684 -> Patchwork_16002
-====================================================
+Regards,
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16002/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_16002 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_module_load@reload-with-fault-injection:
-    - fi-skl-lmem:        [PASS][1] -> [INCOMPLETE][2] ([i915#671])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7684/fi-skl-lmem/igt@i915_module_load@reload-with-fault-injection.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16002/fi-skl-lmem/igt@i915_module_load@reload-with-fault-injection.html
-
-  * igt@i915_selftest@live_blt:
-    - fi-hsw-4770:        [PASS][3] -> [DMESG-FAIL][4] ([i915#725])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7684/fi-hsw-4770/igt@i915_selftest@live_blt.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16002/fi-hsw-4770/igt@i915_selftest@live_blt.html
-
-  * igt@i915_selftest@live_execlists:
-    - fi-kbl-soraka:      [PASS][5] -> [DMESG-FAIL][6] ([i915#656])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7684/fi-kbl-soraka/igt@i915_selftest@live_execlists.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16002/fi-kbl-soraka/igt@i915_selftest@live_execlists.html
-
-  * igt@i915_selftest@live_gem_contexts:
-    - fi-cfl-guc:         [PASS][7] -> [INCOMPLETE][8] ([fdo#106070] / [i915#424])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7684/fi-cfl-guc/igt@i915_selftest@live_gem_contexts.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16002/fi-cfl-guc/igt@i915_selftest@live_gem_contexts.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live_blt:
-    - fi-hsw-4770r:       [DMESG-FAIL][9] ([i915#725]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7684/fi-hsw-4770r/igt@i915_selftest@live_blt.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16002/fi-hsw-4770r/igt@i915_selftest@live_blt.html
-
-  * igt@kms_chamelium@hdmi-hpd-fast:
-    - fi-kbl-7500u:       [FAIL][11] ([fdo#111096] / [i915#323]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7684/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16002/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
-
-  
-  [fdo#106070]: https://bugs.freedesktop.org/show_bug.cgi?id=106070
-  [fdo#111096]: https://bugs.freedesktop.org/show_bug.cgi?id=111096
-  [i915#323]: https://gitlab.freedesktop.org/drm/intel/issues/323
-  [i915#424]: https://gitlab.freedesktop.org/drm/intel/issues/424
-  [i915#656]: https://gitlab.freedesktop.org/drm/intel/issues/656
-  [i915#671]: https://gitlab.freedesktop.org/drm/intel/issues/671
-  [i915#725]: https://gitlab.freedesktop.org/drm/intel/issues/725
-
-
-Participating hosts (43 -> 43)
-------------------------------
-
-  Additional (5): fi-skl-6770hq fi-bwr-2160 fi-ivb-3770 fi-byt-n2820 fi-skl-6600u 
-  Missing    (5): fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_7684 -> Patchwork_16002
-
-  CI-20190529: 20190529
-  CI_DRM_7684: 24e427b22da0dc4581464fb4469cc5667c20e7ae @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5357: a555a4b98f90dab655d24bb3d07e9291a8b8dac8 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_16002: 22bb3b1c9346de7411d77b820c4c93159d7c3191 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-22bb3b1c9346 drm/i915/gt: Use memset_p to clear the ports
-5e81d0a31df8 drm/i915/gt: Drop mutex serialisation between context pin/unpin
-a875e0245eff drm/i915/gt: Convert the final GEM_TRACE to GT_TRACE and co
-b021d68879f7 drm/i915: Merge i915_request.flags with i915_request.fence.flags
-3eff419737e1 drm/i915/selftests: Impose a timeout for request submission
-49a394caf3df drm/i915/selftests: Fixup sparse __user annotation on local var
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16002/index.html
+Tvrtko
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
