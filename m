@@ -2,42 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B7BFC130FDB
-	for <lists+intel-gfx@lfdr.de>; Mon,  6 Jan 2020 11:02:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id F13DB13106B
+	for <lists+intel-gfx@lfdr.de>; Mon,  6 Jan 2020 11:22:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BC2096E219;
-	Mon,  6 Jan 2020 10:02:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 523906E229;
+	Mon,  6 Jan 2020 10:22:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5B88A6E219;
- Mon,  6 Jan 2020 10:02:17 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 06 Jan 2020 02:02:17 -0800
-X-IronPort-AV: E=Sophos;i="5.69,402,1571727600"; d="scan'208";a="215157431"
-Received: from amanna-mobl1.gar.corp.intel.com (HELO [10.66.114.55])
- ([10.66.114.55])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-SHA;
- 06 Jan 2020 02:02:13 -0800
-To: Manasi Navare <manasi.d.navare@intel.com>,
- Jani Nikula <jani.nikula@intel.com>
-References: <20191230161523.32222-1-animesh.manna@intel.com>
- <20191230161523.32222-4-animesh.manna@intel.com> <87v9putdvr.fsf@intel.com>
- <8d0d9c04-234f-f099-0f2d-3c3dee5384d6@intel.com>
- <20200103234846.GB2608@intel.com>
-From: "Manna, Animesh" <animesh.manna@intel.com>
-Message-ID: <88415e48-2d1d-6b31-211c-6509b4605c67@intel.com>
-Date: Mon, 6 Jan 2020 15:32:09 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
- Thunderbird/68.3.0
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id A01AC6E229;
+ Mon,  6 Jan 2020 10:22:13 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 959D6A00C7;
+ Mon,  6 Jan 2020 10:22:13 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <20200103234846.GB2608@intel.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH v3 3/9] drm/i915/dp: Move
- vswing/pre-emphasis adjustment calculation
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Lee Shawn C" <shawn.c.lee@intel.com>
+Date: Mon, 06 Jan 2020 10:22:13 -0000
+Message-ID: <157830613360.24768.8386305930335192046@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200106174156.11081-1-shawn.c.lee@intel.com>
+In-Reply-To: <20200106174156.11081-1-shawn.c.lee@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/dp/mst_=3A_Get_clock_rate_from_sink=27s_available_PBN?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,187 +38,188 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: nidhi1.gupta@intel.com, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 04-01-2020 05:18, Manasi Navare wrote:
-> On Thu, Jan 02, 2020 at 03:56:09PM +0530, Manna, Animesh wrote:
->> On 02-01-2020 14:48, Jani Nikula wrote:
->>> On Mon, 30 Dec 2019, Animesh Manna <animesh.manna@intel.com> wrote:
->>>> vswing/pre-emphasis adjustment calculation is needed in processing
->>>> of auto phy compliance request other than link training, so moved
->>>> the same function in intel_dp.c.
->>> I guess I'm still asking why you think this is better located in
->>> intel_dp.c than intel_dp_link_training.c, as the function has been moved
->>> once in the other direction already to split out stuff from intel_dp.c
->>> and to make the file smaller. Even the file name suggests it should
->>> really be in intel_dp_link_training.c, right?
->> Just a thought, can we change the name to "intel_dp_link_config.c" from "intel_dp_link_training.c" which will provide little wider scope
->> and all the function playing with link configuration can be under it and also exposed through header file.
->>
->> AFAIK, processing phy compliance request always do not need link training. I understood link training is very specific process consisting of clock recovery + channel eq.
->> So I am afraid of exposing intel_get_adjust_train() from intel_dp_link_training.c which is not only specific to link-training. Need your suggestion.
->>
->> Regards,
->> Animesh
->>
-> I agree with Jani here and I think I had even suggested this earlier that instead of moving this function to intel_dp.c
-> we should make it non static so it can be used even for PHY compliance but since this function still deals
-> with adjusting training patterns IMHO it should still stay in intel_dp_link_training.c
->
-> Manasi
+== Series Details ==
 
-Sure Manasi, I will make intel_get_adjust_train() non-static and keep in intel_dp_link_training.c.
-Now as suggested by Jani before (https://patchwork.freedesktop.org/patch/345823/?series=71121&rev=1#comment_640087) other non static functions are not following the rule,
-should I change the function name or keep it as it is?
+Series: drm/i915/dp/mst : Get clock rate from sink's available PBN
+URL   : https://patchwork.freedesktop.org/series/71647/
+State : success
 
-Regards,
-Animesh
+== Summary ==
 
->   
->>> BR,
->>> Jani.
->>>
->>>
->>>> No functional change.
->>>>
->>>> v1: initial patch.
->>>> v2:
->>>> - used "intel_dp" prefix in function name. (Jani)
->>>> - used array notation instead pointer for link_status. (Ville)
->>>>
->>>> Signed-off-by: Animesh Manna <animesh.manna@intel.com>
->>>> ---
->>>>   drivers/gpu/drm/i915/display/intel_dp.c       | 34 ++++++++++++++++++
->>>>   drivers/gpu/drm/i915/display/intel_dp.h       |  4 +++
->>>>   .../drm/i915/display/intel_dp_link_training.c | 36 ++-----------------
->>>>   3 files changed, 40 insertions(+), 34 deletions(-)
->>>>
->>>> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
->>>> index 991f343579ef..2a27ee106089 100644
->>>> --- a/drivers/gpu/drm/i915/display/intel_dp.c
->>>> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
->>>> @@ -4110,6 +4110,40 @@ ivb_cpu_edp_signal_levels(u8 train_set)
->>>>   	}
->>>>   }
->>>> +void
->>>> +intel_dp_get_adjust_train(struct intel_dp *intel_dp,
->>>> +			  const u8 link_status[DP_LINK_STATUS_SIZE])
->>>> +{
->>>> +	u8 v = 0;
->>>> +	u8 p = 0;
->>>> +	int lane;
->>>> +	u8 voltage_max;
->>>> +	u8 preemph_max;
->>>> +
->>>> +	for (lane = 0; lane < intel_dp->lane_count; lane++) {
->>>> +		u8 this_v = drm_dp_get_adjust_request_voltage(link_status,
->>>> +							      lane);
->>>> +		u8 this_p = drm_dp_get_adjust_request_pre_emphasis(link_status,
->>>> +								   lane);
->>>> +
->>>> +		if (this_v > v)
->>>> +			v = this_v;
->>>> +		if (this_p > p)
->>>> +			p = this_p;
->>>> +	}
->>>> +
->>>> +	voltage_max = intel_dp_voltage_max(intel_dp);
->>>> +	if (v >= voltage_max)
->>>> +		v = voltage_max | DP_TRAIN_MAX_SWING_REACHED;
->>>> +
->>>> +	preemph_max = intel_dp_pre_emphasis_max(intel_dp, v);
->>>> +	if (p >= preemph_max)
->>>> +		p = preemph_max | DP_TRAIN_MAX_PRE_EMPHASIS_REACHED;
->>>> +
->>>> +	for (lane = 0; lane < 4; lane++)
->>>> +		intel_dp->train_set[lane] = v | p;
->>>> +}
->>>> +
->>>>   void
->>>>   intel_dp_set_signal_levels(struct intel_dp *intel_dp)
->>>>   {
->>>> diff --git a/drivers/gpu/drm/i915/display/intel_dp.h b/drivers/gpu/drm/i915/display/intel_dp.h
->>>> index 3da166054788..83eadc87af26 100644
->>>> --- a/drivers/gpu/drm/i915/display/intel_dp.h
->>>> +++ b/drivers/gpu/drm/i915/display/intel_dp.h
->>>> @@ -9,6 +9,7 @@
->>>>   #include <linux/types.h>
->>>>   #include <drm/i915_drm.h>
->>>> +#include <drm/drm_dp_helper.h>
->>>>   #include "i915_reg.h"
->>>> @@ -91,6 +92,9 @@ void
->>>>   intel_dp_program_link_training_pattern(struct intel_dp *intel_dp,
->>>>   				       u8 dp_train_pat);
->>>>   void
->>>> +intel_dp_get_adjust_train(struct intel_dp *intel_dp,
->>>> +			  const u8 link_status[DP_LINK_STATUS_SIZE]);
->>>> +void
->>>>   intel_dp_set_signal_levels(struct intel_dp *intel_dp);
->>>>   void intel_dp_set_idle_link_train(struct intel_dp *intel_dp);
->>>>   u8
->>>> diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
->>>> index 2a1130dd1ad0..e8ff9e279800 100644
->>>> --- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
->>>> +++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
->>>> @@ -34,38 +34,6 @@ intel_dp_dump_link_status(const u8 link_status[DP_LINK_STATUS_SIZE])
->>>>   		      link_status[3], link_status[4], link_status[5]);
->>>>   }
->>>> -static void
->>>> -intel_get_adjust_train(struct intel_dp *intel_dp,
->>>> -		       const u8 link_status[DP_LINK_STATUS_SIZE])
->>>> -{
->>>> -	u8 v = 0;
->>>> -	u8 p = 0;
->>>> -	int lane;
->>>> -	u8 voltage_max;
->>>> -	u8 preemph_max;
->>>> -
->>>> -	for (lane = 0; lane < intel_dp->lane_count; lane++) {
->>>> -		u8 this_v = drm_dp_get_adjust_request_voltage(link_status, lane);
->>>> -		u8 this_p = drm_dp_get_adjust_request_pre_emphasis(link_status, lane);
->>>> -
->>>> -		if (this_v > v)
->>>> -			v = this_v;
->>>> -		if (this_p > p)
->>>> -			p = this_p;
->>>> -	}
->>>> -
->>>> -	voltage_max = intel_dp_voltage_max(intel_dp);
->>>> -	if (v >= voltage_max)
->>>> -		v = voltage_max | DP_TRAIN_MAX_SWING_REACHED;
->>>> -
->>>> -	preemph_max = intel_dp_pre_emphasis_max(intel_dp, v);
->>>> -	if (p >= preemph_max)
->>>> -		p = preemph_max | DP_TRAIN_MAX_PRE_EMPHASIS_REACHED;
->>>> -
->>>> -	for (lane = 0; lane < 4; lane++)
->>>> -		intel_dp->train_set[lane] = v | p;
->>>> -}
->>>> -
->>>>   static bool
->>>>   intel_dp_set_link_train(struct intel_dp *intel_dp,
->>>>   			u8 dp_train_pat)
->>>> @@ -215,7 +183,7 @@ intel_dp_link_training_clock_recovery(struct intel_dp *intel_dp)
->>>>   		voltage = intel_dp->train_set[0] & DP_TRAIN_VOLTAGE_SWING_MASK;
->>>>   		/* Update training set as requested by target */
->>>> -		intel_get_adjust_train(intel_dp, link_status);
->>>> +		intel_dp_get_adjust_train(intel_dp, link_status);
->>>>   		if (!intel_dp_update_link_train(intel_dp)) {
->>>>   			DRM_ERROR("failed to update link training\n");
->>>>   			return false;
->>>> @@ -325,7 +293,7 @@ intel_dp_link_training_channel_equalization(struct intel_dp *intel_dp)
->>>>   		}
->>>>   		/* Update training set as requested by target */
->>>> -		intel_get_adjust_train(intel_dp, link_status);
->>>> +		intel_dp_get_adjust_train(intel_dp, link_status);
->>>>   		if (!intel_dp_update_link_train(intel_dp)) {
->>>>   			DRM_ERROR("failed to update link training\n");
->>>>   			break;
+CI Bug Log - changes from CI_DRM_7680 -> Patchwork_15998
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15998/index.html
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_15998:
+
+### IGT changes ###
+
+#### Suppressed ####
+
+  The following results come from untrusted machines, tests, or statuses.
+  They do not affect the overall result.
+
+  * igt@kms_setmode@basic-clone-single-crtc:
+    - {fi-kbl-7560u}:     NOTRUN -> [WARN][1]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15998/fi-kbl-7560u/igt@kms_setmode@basic-clone-single-crtc.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_15998 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_module_load@reload-with-fault-injection:
+    - fi-cfl-guc:         [PASS][2] -> [INCOMPLETE][3] ([i915#505] / [i915#671])
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7680/fi-cfl-guc/igt@i915_module_load@reload-with-fault-injection.html
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15998/fi-cfl-guc/igt@i915_module_load@reload-with-fault-injection.html
+    - fi-cfl-8700k:       [PASS][4] -> [INCOMPLETE][5] ([i915#505])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7680/fi-cfl-8700k/igt@i915_module_load@reload-with-fault-injection.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15998/fi-cfl-8700k/igt@i915_module_load@reload-with-fault-injection.html
+    - fi-skl-6700k2:      [PASS][6] -> [INCOMPLETE][7] ([i915#671])
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7680/fi-skl-6700k2/igt@i915_module_load@reload-with-fault-injection.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15998/fi-skl-6700k2/igt@i915_module_load@reload-with-fault-injection.html
+    - fi-skl-6770hq:      [PASS][8] -> [DMESG-WARN][9] ([i915#889])
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7680/fi-skl-6770hq/igt@i915_module_load@reload-with-fault-injection.html
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15998/fi-skl-6770hq/igt@i915_module_load@reload-with-fault-injection.html
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-skl-6770hq:      [PASS][10] -> [INCOMPLETE][11] ([i915#151])
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7680/fi-skl-6770hq/igt@i915_pm_rpm@module-reload.html
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15998/fi-skl-6770hq/igt@i915_pm_rpm@module-reload.html
+
+  * igt@i915_selftest@live_gem_contexts:
+    - fi-hsw-peppy:       [PASS][12] -> [DMESG-FAIL][13] ([i915#761])
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7680/fi-hsw-peppy/igt@i915_selftest@live_gem_contexts.html
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15998/fi-hsw-peppy/igt@i915_selftest@live_gem_contexts.html
+
+  * igt@i915_selftest@live_mman:
+    - fi-bxt-dsi:         [PASS][14] -> [DMESG-WARN][15] ([i915#889]) +23 similar issues
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7680/fi-bxt-dsi/igt@i915_selftest@live_mman.html
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15998/fi-bxt-dsi/igt@i915_selftest@live_mman.html
+
+  * igt@i915_selftest@live_reset:
+    - fi-bxt-dsi:         [PASS][16] -> [DMESG-FAIL][17] ([i915#889]) +7 similar issues
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7680/fi-bxt-dsi/igt@i915_selftest@live_reset.html
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15998/fi-bxt-dsi/igt@i915_selftest@live_reset.html
+
+  * igt@kms_chamelium@hdmi-hpd-fast:
+    - fi-kbl-7500u:       [PASS][18] -> [FAIL][19] ([fdo#111096] / [i915#323])
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7680/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15998/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+
+  * igt@kms_frontbuffer_tracking@basic:
+    - fi-hsw-peppy:       [PASS][20] -> [DMESG-WARN][21] ([i915#44])
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7680/fi-hsw-peppy/igt@kms_frontbuffer_tracking@basic.html
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15998/fi-hsw-peppy/igt@kms_frontbuffer_tracking@basic.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_close_race@basic-threads:
+    - fi-byt-j1900:       [TIMEOUT][22] ([i915#816]) -> [PASS][23]
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7680/fi-byt-j1900/igt@gem_close_race@basic-threads.html
+   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15998/fi-byt-j1900/igt@gem_close_race@basic-threads.html
+
+  * igt@i915_module_load@reload-with-fault-injection:
+    - fi-skl-lmem:        [INCOMPLETE][24] ([i915#671]) -> [PASS][25]
+   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7680/fi-skl-lmem/igt@i915_module_load@reload-with-fault-injection.html
+   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15998/fi-skl-lmem/igt@i915_module_load@reload-with-fault-injection.html
+
+  * igt@i915_selftest@live_active:
+    - fi-icl-y:           [DMESG-FAIL][26] ([i915#765]) -> [PASS][27]
+   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7680/fi-icl-y/igt@i915_selftest@live_active.html
+   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15998/fi-icl-y/igt@i915_selftest@live_active.html
+
+  * igt@i915_selftest@live_blt:
+    - fi-ivb-3770:        [DMESG-FAIL][28] ([i915#725]) -> [PASS][29]
+   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7680/fi-ivb-3770/igt@i915_selftest@live_blt.html
+   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15998/fi-ivb-3770/igt@i915_selftest@live_blt.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#111096]: https://bugs.freedesktop.org/show_bug.cgi?id=111096
+  [i915#151]: https://gitlab.freedesktop.org/drm/intel/issues/151
+  [i915#323]: https://gitlab.freedesktop.org/drm/intel/issues/323
+  [i915#44]: https://gitlab.freedesktop.org/drm/intel/issues/44
+  [i915#505]: https://gitlab.freedesktop.org/drm/intel/issues/505
+  [i915#671]: https://gitlab.freedesktop.org/drm/intel/issues/671
+  [i915#725]: https://gitlab.freedesktop.org/drm/intel/issues/725
+  [i915#761]: https://gitlab.freedesktop.org/drm/intel/issues/761
+  [i915#765]: https://gitlab.freedesktop.org/drm/intel/issues/765
+  [i915#816]: https://gitlab.freedesktop.org/drm/intel/issues/816
+  [i915#889]: https://gitlab.freedesktop.org/drm/intel/issues/889
+
+
+Participating hosts (43 -> 41)
+------------------------------
+
+  Additional (6): fi-bdw-gvtdvm fi-glk-dsi fi-ilk-650 fi-cfl-8109u fi-kbl-7560u fi-skl-6600u 
+  Missing    (8): fi-hsw-4770r fi-byt-squawks fi-bsw-cyan fi-kbl-guc fi-ctg-p8600 fi-byt-n2820 fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_7680 -> Patchwork_15998
+
+  CI-20190529: 20190529
+  CI_DRM_7680: b70a5ffaee3192a3d21296a6d68f4a1b4f4cecd5 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5357: a555a4b98f90dab655d24bb3d07e9291a8b8dac8 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_15998: aead470c8162bad96ba015b057f6dc9f1217750c @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Kernel 32bit build ==
+
+Warning: Kernel 32bit buildtest failed:
+https://intel-gfx-ci.01.org/Patchwork_15998/build_32bit.log
+
+  CALL    scripts/checksyscalls.sh
+  CALL    scripts/atomic/check-atomics.sh
+  CHK     include/generated/compile.h
+Kernel: arch/x86/boot/bzImage is ready  (#1)
+  Building modules, stage 2.
+  MODPOST 121 modules
+ERROR: "__udivdi3" [drivers/gpu/drm/i915/i915.ko] undefined!
+ERROR: "__divdi3" [drivers/gpu/drm/i915/i915.ko] undefined!
+scripts/Makefile.modpost:93: recipe for target '__modpost' failed
+make[1]: *** [__modpost] Error 1
+Makefile:1282: recipe for target 'modules' failed
+make: *** [modules] Error 2
+
+
+== Linux commits ==
+
+aead470c8162 drm/i915/dp/mst : Get clock rate from sink's available PBN
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15998/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
