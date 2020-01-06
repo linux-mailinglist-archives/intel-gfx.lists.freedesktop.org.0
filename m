@@ -2,31 +2,67 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE0EC13175E
-	for <lists+intel-gfx@lfdr.de>; Mon,  6 Jan 2020 19:18:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 43C051318C4
+	for <lists+intel-gfx@lfdr.de>; Mon,  6 Jan 2020 20:31:24 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 213F96E4FB;
-	Mon,  6 Jan 2020 18:18:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 361E86E506;
+	Mon,  6 Jan 2020 19:31:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 8AA676E4FB;
- Mon,  6 Jan 2020 18:18:11 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 862F3A00E8;
- Mon,  6 Jan 2020 18:18:11 +0000 (UTC)
+Received: from us-smtp-1.mimecast.com (us-smtp-delivery-1.mimecast.com
+ [207.211.31.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E4BE16E506
+ for <intel-gfx@lists.freedesktop.org>; Mon,  6 Jan 2020 19:31:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1578339079;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=0iw0kZ/MWgubC31oS1/9I6r4l25QHI07sDGGXe5d/bQ=;
+ b=V1HvT4y1p1Y7FIDZo12bXo6a3FILFdBuvgv7rD4Y5T6WdAOXfWkkxNos5lJynNfcj8r4OI
+ GRMXo347G/wvPjvY7XGPbcScwcfXcZLqX/jk5KyDhJitifGZ5wqUF9ZN9aOuXmIMr21IWw
+ d5OrWlRTN2AImWBzSzo1Kl/Yw8mgkUk=
+Received: from mail-wr1-f72.google.com (mail-wr1-f72.google.com
+ [209.85.221.72]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-323-OfXDDgQYNSqLM5sX_LhR4Q-1; Mon, 06 Jan 2020 14:31:15 -0500
+Received: by mail-wr1-f72.google.com with SMTP id c17so2497736wrp.10
+ for <intel-gfx@lists.freedesktop.org>; Mon, 06 Jan 2020 11:31:15 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:to:from:subject:cc:message-id:date:user-agent
+ :mime-version:content-language:content-transfer-encoding;
+ bh=0iw0kZ/MWgubC31oS1/9I6r4l25QHI07sDGGXe5d/bQ=;
+ b=AMAneMeC8qTd8eCoNTNffeC/UWW0RztLiJdFeqR+xNWGkMrVNadM6ZU1ECv+4ZBuY5
+ z2yITVYf3W51ma5LkrauCB3UiWzkf1lDp3yQ2LuH7MYHRfoQ3iW6V2nHD8c1RFgM3DYT
+ ac7Ns04xshfmJEPQtOixJV3pVh5E5MWtW5DaTW/x+RCpDAXkuyLg7SL+Ny3yQbXHF4uE
+ 2JlT6RJUdqZmkMcIDo6mLMUdFwJmRgC19CI46b0lQNsGR/ZIHJO/k2Qqm5A8mWEzAlfd
+ zXBE2tnbglWGND0OlOHSoGEXEbfWRnFOdzavDoSU5FHty6XEs7eGn2quMUmfLYjr1GS6
+ 9X5g==
+X-Gm-Message-State: APjAAAUycPbFPLHph4Bg5mHodwiSV+CCIIj17oXX5ONbmj0cdtQYIFZn
+ w6HLIgFHvf2i6S0TmHb6l2PBAsfAHimxjJReZBUOqQVMAK2u4oWPBAGlbnX6BFq7GI4EU6i3xyA
+ GBS6US1kddQ4Qm6JxgKAGu8Yvp3UM
+X-Received: by 2002:adf:f6c8:: with SMTP id y8mr104415752wrp.167.1578339074325; 
+ Mon, 06 Jan 2020 11:31:14 -0800 (PST)
+X-Google-Smtp-Source: APXvYqydyyceJqHTUejKZiZu+nudXHXzarYT8OliertFcX8uzKUH9ycXNof9k9AwgtuozEkQSy6BdA==
+X-Received: by 2002:adf:f6c8:: with SMTP id y8mr104415739wrp.167.1578339074092; 
+ Mon, 06 Jan 2020 11:31:14 -0800 (PST)
+Received: from shalem.localdomain
+ (2001-1c00-0c0c-fe00-7e79-4dac-39d0-9c14.cable.dynamic.v6.ziggo.nl.
+ [2001:1c00:c0c:fe00:7e79:4dac:39d0:9c14])
+ by smtp.gmail.com with ESMTPSA id a14sm78366322wrx.81.2020.01.06.11.31.13
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Mon, 06 Jan 2020 11:31:13 -0800 (PST)
+To: Jani Nikula <jani.nikula@linux.intel.com>
+From: Hans de Goede <hdegoede@redhat.com>
+Message-ID: <fd2f48cc-19c9-b8bf-0c5a-83a929b09dfa@redhat.com>
+Date: Mon, 6 Jan 2020 20:31:12 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.3.1
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Jos=C3=A9_Roberto_de_Souza?= <jose.souza@intel.com>
-Date: Mon, 06 Jan 2020 18:18:11 -0000
-Message-ID: <157833469154.24768.15307577817785031416@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200106152128.195171-1-jose.souza@intel.com>
-In-Reply-To: <20200106152128.195171-1-jose.souza@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/display=3A_Force_the_state_compute_phase_once_to_enable_P?=
- =?utf-8?b?U1IgKHJldjQp?=
+Content-Language: en-US
+X-MC-Unique: OfXDDgQYNSqLM5sX_LhR4Q-1
+X-Mimecast-Spam-Score: 0
+Subject: [Intel-gfx] Help merging 2 patches into drm-intel (and/or drm-misc)
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,111 +75,40 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
+Cc: intel-gfx <intel-gfx@lists.freedesktop.org>
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Hi Jani,
 
-Series: drm/i915/display: Force the state compute phase once to enable PSR (rev4)
-URL   : https://patchwork.freedesktop.org/series/70000/
-State : success
+I need your help merging this series, as it touches files in both drm-intel and drm-misc:
 
-== Summary ==
+https://patchwork.freedesktop.org/series/71637/
 
-CI Bug Log - changes from CI_DRM_7688 -> Patchwork_16006
-====================================================
+The first patch touches some i915 files, and applies cleanly to both
+dinq and drm-misc-next.
 
-Summary
--------
+The second patch relies on the first patch as well as on the new panel_orientation
+member of struct drm_cmdline_mode which was recently introduced in drm-misc-next
+and which is not yet present in struct drm_cmdline_mode in drm-intel-next-queued.
 
-  **WARNING**
+So both patches can be pushed without issues to drm-misc-next, but then a
+back-merge of drm-misc-next into dinq should be done to avoid future changes
+to dinq causing causing conflicts. This seems the easiest way to merge this.
+If you want I can push the 2 patch to drm-misc-next myself, then you can do
+the backmerge after that.
 
-  Minor unknown changes coming with Patchwork_16006 need to be verified
-  manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_16006, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
+Alternatively you could back-merge drm-misc-next into dinq before merging
+these into dinq, but the first patch changes some generic code, so then another
+backmerge of dinq into drm-misc-next should probably be done after that, so
+that seems suboptimal.
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16006/index.html
+Regards,
 
-Possible new issues
--------------------
+Hans
 
-  Here are the unknown changes that may have been introduced in Patchwork_16006:
-
-### IGT changes ###
-
-#### Warnings ####
-
-  * igt@i915_selftest@live_blt:
-    - fi-ivb-3770:        [DMESG-FAIL][1] ([i915#563]) -> [DMESG-FAIL][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7688/fi-ivb-3770/igt@i915_selftest@live_blt.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16006/fi-ivb-3770/igt@i915_selftest@live_blt.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_16006 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live_blt:
-    - fi-hsw-4770:        [PASS][3] -> [DMESG-FAIL][4] ([i915#563])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7688/fi-hsw-4770/igt@i915_selftest@live_blt.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16006/fi-hsw-4770/igt@i915_selftest@live_blt.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live_coherency:
-    - fi-cfl-guc:         [DMESG-FAIL][5] ([i915#889]) -> [PASS][6] +7 similar issues
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7688/fi-cfl-guc/igt@i915_selftest@live_coherency.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16006/fi-cfl-guc/igt@i915_selftest@live_coherency.html
-
-  * igt@i915_selftest@live_gt_timelines:
-    - fi-cfl-guc:         [DMESG-WARN][7] ([i915#889]) -> [PASS][8] +23 similar issues
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7688/fi-cfl-guc/igt@i915_selftest@live_gt_timelines.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16006/fi-cfl-guc/igt@i915_selftest@live_gt_timelines.html
-
-  
-  [i915#563]: https://gitlab.freedesktop.org/drm/intel/issues/563
-  [i915#889]: https://gitlab.freedesktop.org/drm/intel/issues/889
-
-
-Participating hosts (42 -> 43)
-------------------------------
-
-  Additional (6): fi-bwr-2160 fi-gdg-551 fi-skl-lmem fi-kbl-7560u fi-skl-6600u fi-snb-2600 
-  Missing    (5): fi-hsw-4770r fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_7688 -> Patchwork_16006
-
-  CI-20190529: 20190529
-  CI_DRM_7688: 9901bb096bfe4d9bfd843475eef24b563aed835a @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5357: a555a4b98f90dab655d24bb3d07e9291a8b8dac8 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_16006: 8405cbb665d90b02b4bb13453ece0311b164f2ba @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-8405cbb665d9 drm/i915/display: Force the state compute phase once to enable PSR
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16006/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
