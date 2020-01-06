@@ -2,38 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7AE391316C4
-	for <lists+intel-gfx@lfdr.de>; Mon,  6 Jan 2020 18:28:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7493313170A
+	for <lists+intel-gfx@lfdr.de>; Mon,  6 Jan 2020 18:46:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EBED96E4EA;
-	Mon,  6 Jan 2020 17:28:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A5CED6E4FF;
+	Mon,  6 Jan 2020 17:46:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 957856E4DE;
- Mon,  6 Jan 2020 17:28:44 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 06 Jan 2020 09:28:44 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,403,1571727600"; 
- d="scan'208,217";a="225496157"
-Received: from plaxmina-desktop.iind.intel.com ([10.106.124.119])
- by fmsmga001.fm.intel.com with ESMTP; 06 Jan 2020 09:28:40 -0800
-From: Pankaj Bharadiya <pankaj.laxminarayan.bharadiya@intel.com>
-To: rodrigo.vivi@intel.com, irlied@linux.ie, daniel@ffwll.ch,
- sudeep.dutt@intel.com, jani.nikula@intel.com,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Date: Mon,  6 Jan 2020 22:53:26 +0530
-Message-Id: <20200106172326.32592-8-pankaj.laxminarayan.bharadiya@intel.com>
-X-Mailer: git-send-email 2.23.0
-In-Reply-To: <20200106172326.32592-1-pankaj.laxminarayan.bharadiya@intel.com>
-References: <20200106172326.32592-1-pankaj.laxminarayan.bharadiya@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 30B546E4FB;
+ Mon,  6 Jan 2020 17:46:54 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 06682A011A;
+ Mon,  6 Jan 2020 17:46:54 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [RFC 7/7] drm/i915: Make WARN* device specific for
- various cases.
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Mon, 06 Jan 2020 17:46:53 -0000
+Message-ID: <157833281399.24766.15264355422452694374@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200106111518.2515465-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200106111518.2515465-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLklHVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/gt=3A_Yield_the_timeslice_if_waiting_on_a_semaphore?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,1075 +38,411 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Device specific WARN* calls include device information in the
-backtrace, so we know what device the warnings originate from.
+== Series Details ==
 
-Covert all the calls of WARN* with device specific dev_WARN*
-variants in functions where any one of intel_pm, intel_encoder,
-i915_perf_stream or intel_crtc_state struct pointer is available.
+Series: drm/i915/gt: Yield the timeslice if waiting on a semaphore
+URL   : https://patchwork.freedesktop.org/series/71654/
+State : success
 
-The conversion was done automatically with below coccinelle semantic
-patch. checkpatch errors/warnings are fixed manually
+== Summary ==
 
-@@
-identifier func, T;
-@@
-func(struct intel_vgpu *T,...) {
-<...
-(
--WARN(
-+dev_WARN(vgpu_to_dev(T),
-...)
-|
--WARN_ON(
-+dev_WARN_ON(vgpu_to_dev(T),
-...)
-|
--WARN_ONCE(
-+dev_WARN_ONCE(vgpu_to_dev(T),
-...)
-|
--WARN_ON_ONCE(
-+dev_WARN_ON_ONCE(vgpu_to_dev(T),
-...)
-)
-...>
+CI Bug Log - changes from CI_DRM_7683_full -> Patchwork_16000_full
+====================================================
 
-}
+Summary
+-------
 
-@@
-identifier func, T;
-@@
-func(struct intel_encoder *T,...) {
-<...
-(
--WARN(
-+dev_WARN(enc_to_dev(T),
-...)
-|
--WARN_ON(
-+dev_WARN_ON(enc_to_dev(T),
-...)
-|
--WARN_ONCE(
-+dev_WARN_ONCE(enc_to_dev(T),
-...)
-|
--WARN_ON_ONCE(
-+dev_WARN_ON_ONCE(enc_to_dev(T),
-...)
-)
-...>
+  **SUCCESS**
 
-}
+  No regressions found.
 
-@@
-identifier func, T;
-@@
-func(struct i915_perf_stream *T,...) {
-<...
-(
--WARN(
-+dev_WARN(perf_stream_to_dev(T),
-...)
-|
--WARN_ON(
-+dev_WARN_ON(perf_stream_to_dev(T),
-...)
-|
--WARN_ONCE(
-+dev_WARN_ONCE(perf_stream_to_dev(T),
-...)
-|
--WARN_ON_ONCE(
-+dev_WARN_ON_ONCE(perf_stream_to_dev(T),
-...)
-)
-...>
+  
 
-}
+Known issues
+------------
 
-@@
-identifier func, T;
-@@
-func(struct intel_crtc_state *T,...) {
-<...
-(
--WARN(
-+dev_WARN(crtc_state_to_dev(T),
-...)
-|
--WARN_ON(
-+dev_WARN_ON(crtc_state_to_dev(T),
-...)
-|
--WARN_ONCE(
-+dev_WARN_ONCE(crtc_state_to_dev(T),
-...)
-|
--WARN_ON_ONCE(
-+dev_WARN_ON_ONCE(crtc_state_to_dev(T),
-...)
-)
-...>
+  Here are the changes found in Patchwork_16000_full that come from known issues:
 
-}
+### IGT changes ###
 
-command: spatch --sp-file <script>  --dir drivers/gpu/drm/i915 \
-				--linux-spacing --in-place
+#### Issues hit ####
 
-Signed-off-by: Pankaj Bharadiya <pankaj.laxminarayan.bharadiya@intel.com>
----
- drivers/gpu/drm/i915/display/intel_ddi.c      |  6 +-
- drivers/gpu/drm/i915/display/intel_display.c  | 15 ++--
- drivers/gpu/drm/i915/display/intel_dp.c       |  5 +-
- drivers/gpu/drm/i915/display/intel_dpll_mgr.c |  2 +-
- drivers/gpu/drm/i915/display/intel_hdmi.c     | 20 +++---
- drivers/gpu/drm/i915/display/intel_panel.c    |  2 +-
- drivers/gpu/drm/i915/display/intel_sdvo.c     |  3 +-
- drivers/gpu/drm/i915/gvt/cfg_space.c          | 20 +++---
- drivers/gpu/drm/i915/gvt/display.c            |  2 +-
- drivers/gpu/drm/i915/gvt/edid.c               | 11 +--
- drivers/gpu/drm/i915/gvt/gtt.c                | 15 ++--
- drivers/gpu/drm/i915/gvt/handlers.c           | 16 +++--
- drivers/gpu/drm/i915/gvt/interrupt.c          | 11 +--
- drivers/gpu/drm/i915/gvt/kvmgt.c              |  8 ++-
- drivers/gpu/drm/i915/gvt/mmio.c               | 31 ++++----
- drivers/gpu/drm/i915/gvt/mmio_context.c       |  4 +-
- drivers/gpu/drm/i915/gvt/scheduler.c          |  5 +-
- drivers/gpu/drm/i915/gvt/vgpu.c               |  5 +-
- drivers/gpu/drm/i915/i915_perf.c              | 37 +++++-----
- drivers/gpu/drm/i915/intel_pm.c               | 71 +++++++++++--------
- 20 files changed, 169 insertions(+), 120 deletions(-)
+  * igt@gem_blits@basic:
+    - shard-kbl:          [PASS][1] -> [DMESG-WARN][2] ([i915#836])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7683/shard-kbl1/igt@gem_blits@basic.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16000/shard-kbl4/igt@gem_blits@basic.html
 
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-index 8f635637d61e..3b3e213303c5 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-@@ -1660,7 +1660,8 @@ static void skl_ddi_clock_get(struct intel_encoder *encoder,
- 			link_clock = 270000;
- 			break;
- 		default:
--			WARN(1, "Unsupported link rate\n");
-+			dev_WARN(enc_to_dev(encoder), 1,
-+				 "Unsupported link rate\n");
- 			break;
- 		}
- 		link_clock *= 2;
-@@ -4734,7 +4735,8 @@ intel_ddi_hotplug(struct intel_encoder *encoder,
- 
- 	drm_modeset_drop_locks(&ctx);
- 	drm_modeset_acquire_fini(&ctx);
--	WARN(ret, "Acquiring modeset locks failed with %i\n", ret);
-+	dev_WARN(enc_to_dev(encoder), ret,
-+		 "Acquiring modeset locks failed with %i\n", ret);
- 
- 	/*
- 	 * Unpowered type-c dongles can take some time to boot and be
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index ab1fac1abf37..c71948aa4bd0 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -7730,7 +7730,8 @@ static u32 ilk_pipe_pixel_rate(const struct intel_crtc_state *pipe_config)
- 		if (pipe_h < pfit_h)
- 			pipe_h = pfit_h;
- 
--		if (WARN_ON(!pfit_w || !pfit_h))
-+		if (dev_WARN_ON(crtc_state_to_dev(pipe_config),
-+				!pfit_w || !pfit_h))
- 			return pixel_rate;
- 
- 		pixel_rate = div_u64(mul_u32_u32(pixel_rate, pipe_w * pipe_h),
-@@ -11178,8 +11179,9 @@ static int i845_check_cursor(struct intel_crtc_state *crtc_state,
- 		return -EINVAL;
- 	}
- 
--	WARN_ON(plane_state->uapi.visible &&
--		plane_state->color_plane[0].stride != fb->pitches[0]);
-+	dev_WARN_ON(crtc_state_to_dev(crtc_state),
-+		    plane_state->uapi.visible &&
-+		    plane_state->color_plane[0].stride != fb->pitches[0]);
- 
- 	switch (fb->pitches[0]) {
- 	case 256:
-@@ -12888,7 +12890,9 @@ static void intel_crtc_copy_hw_to_uapi_state(struct intel_crtc_state *crtc_state
- {
- 	crtc_state->uapi.enable = crtc_state->hw.enable;
- 	crtc_state->uapi.active = crtc_state->hw.active;
--	WARN_ON(drm_atomic_set_mode_for_crtc(&crtc_state->uapi, &crtc_state->hw.mode) < 0);
-+	dev_WARN_ON(crtc_state_to_dev(crtc_state),
-+		    drm_atomic_set_mode_for_crtc(&crtc_state->uapi,
-+						 &crtc_state->hw.mode) < 0);
- 
- 	crtc_state->uapi.adjusted_mode = crtc_state->hw.adjusted_mode;
- 
-@@ -13068,7 +13072,8 @@ intel_modeset_pipe_config(struct intel_crtc_state *pipe_config)
- 	}
- 
- 	if (ret == RETRY) {
--		if (WARN(!retry, "loop in pipe configuration computation\n"))
-+		if (dev_WARN(crtc_state_to_dev(pipe_config), !retry,
-+			     "loop in pipe configuration computation\n"))
- 			return -EINVAL;
- 
- 		DRM_DEBUG_KMS("CRTC bw constrained, retrying\n");
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index c637929aa311..38882bc77ffa 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -2226,7 +2226,7 @@ intel_dp_compute_link_config(struct intel_encoder *encoder,
- 						    intel_dp->max_link_rate);
- 
- 	/* No common link rates between source and sink */
--	WARN_ON(common_len <= 0);
-+	dev_WARN_ON(enc_to_dev(encoder), common_len <= 0);
- 
- 	limits.min_clock = 0;
- 	limits.max_clock = common_len - 1;
-@@ -5220,7 +5220,8 @@ intel_dp_hotplug(struct intel_encoder *encoder,
- 
- 	drm_modeset_drop_locks(&ctx);
- 	drm_modeset_acquire_fini(&ctx);
--	WARN(ret, "Acquiring modeset locks failed with %i\n", ret);
-+	dev_WARN(enc_to_dev(encoder), ret,
-+		 "Acquiring modeset locks failed with %i\n", ret);
- 
- 	/*
- 	 * Keeping it consistent with intel_ddi_hotplug() and
-diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-index 7141d5ae0ee3..8db2b31e042c 100644
---- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-+++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-@@ -1777,7 +1777,7 @@ bxt_ddi_hdmi_pll_dividers(struct intel_crtc_state *crtc_state,
- 
- 	clk_div->p1 = best_clock.p1;
- 	clk_div->p2 = best_clock.p2;
--	WARN_ON(best_clock.m1 != 2);
-+	dev_WARN_ON(crtc_state_to_dev(crtc_state), best_clock.m1 != 2);
- 	clk_div->n = best_clock.n;
- 	clk_div->m2_int = best_clock.m2 >> 22;
- 	clk_div->m2_frac = best_clock.m2 & ((1 << 22) - 1);
-diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
-index 7dbd30c65d62..8fb3ea5d3fe4 100644
---- a/drivers/gpu/drm/i915/display/intel_hdmi.c
-+++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
-@@ -665,12 +665,12 @@ static void intel_write_infoframe(struct intel_encoder *encoder,
- 	     intel_hdmi_infoframe_enable(type)) == 0)
- 		return;
- 
--	if (WARN_ON(frame->any.type != type))
-+	if (dev_WARN_ON(enc_to_dev(encoder), frame->any.type != type))
- 		return;
- 
- 	/* see comment above for the reason for this offset */
- 	len = hdmi_infoframe_pack_only(frame, buffer + 1, sizeof(buffer) - 1);
--	if (WARN_ON(len < 0))
-+	if (dev_WARN_ON(enc_to_dev(encoder), len < 0))
- 		return;
- 
- 	/* Insert the 'hole' (see big comment above) at position 3 */
-@@ -744,8 +744,8 @@ intel_hdmi_compute_avi_infoframe(struct intel_encoder *encoder,
- 	drm_hdmi_avi_infoframe_colorspace(frame, conn_state);
- 
- 	/* nonsense combination */
--	WARN_ON(crtc_state->limited_color_range &&
--		crtc_state->output_format != INTEL_OUTPUT_FORMAT_RGB);
-+	dev_WARN_ON(enc_to_dev(encoder), crtc_state->limited_color_range &&
-+		    crtc_state->output_format != INTEL_OUTPUT_FORMAT_RGB);
- 
- 	if (crtc_state->output_format == INTEL_OUTPUT_FORMAT_RGB) {
- 		drm_hdmi_avi_infoframe_quant_range(frame, connector,
-@@ -763,7 +763,7 @@ intel_hdmi_compute_avi_infoframe(struct intel_encoder *encoder,
- 	/* TODO: handle pixel repetition for YCBCR420 outputs */
- 
- 	ret = hdmi_avi_infoframe_check(frame);
--	if (WARN_ON(ret))
-+	if (dev_WARN_ON(enc_to_dev(encoder), ret))
- 		return false;
- 
- 	return true;
-@@ -784,13 +784,13 @@ intel_hdmi_compute_spd_infoframe(struct intel_encoder *encoder,
- 		intel_hdmi_infoframe_enable(HDMI_INFOFRAME_TYPE_SPD);
- 
- 	ret = hdmi_spd_infoframe_init(frame, "Intel", "Integrated gfx");
--	if (WARN_ON(ret))
-+	if (dev_WARN_ON(enc_to_dev(encoder), ret))
- 		return false;
- 
- 	frame->sdi = HDMI_SPD_SDI_PC;
- 
- 	ret = hdmi_spd_infoframe_check(frame);
--	if (WARN_ON(ret))
-+	if (dev_WARN_ON(enc_to_dev(encoder), ret))
- 		return false;
- 
- 	return true;
-@@ -816,11 +816,11 @@ intel_hdmi_compute_hdmi_infoframe(struct intel_encoder *encoder,
- 	ret = drm_hdmi_vendor_infoframe_from_display_mode(frame,
- 							  conn_state->connector,
- 							  &crtc_state->hw.adjusted_mode);
--	if (WARN_ON(ret))
-+	if (dev_WARN_ON(enc_to_dev(encoder), ret))
- 		return false;
- 
- 	ret = hdmi_vendor_infoframe_check(frame);
--	if (WARN_ON(ret))
-+	if (dev_WARN_ON(enc_to_dev(encoder), ret))
- 		return false;
- 
- 	return true;
-@@ -1876,7 +1876,7 @@ static void intel_enable_hdmi_audio(struct intel_encoder *encoder,
- {
- 	struct intel_crtc *crtc = to_intel_crtc(pipe_config->uapi.crtc);
- 
--	WARN_ON(!pipe_config->has_hdmi_sink);
-+	dev_WARN_ON(enc_to_dev(encoder), !pipe_config->has_hdmi_sink);
- 	DRM_DEBUG_DRIVER("Enabling HDMI audio on pipe %c\n",
- 			 pipe_name(crtc->pipe));
- 	intel_audio_codec_enable(encoder, pipe_config, conn_state);
-diff --git a/drivers/gpu/drm/i915/display/intel_panel.c b/drivers/gpu/drm/i915/display/intel_panel.c
-index c108e4934fbf..8558ed990937 100644
---- a/drivers/gpu/drm/i915/display/intel_panel.c
-+++ b/drivers/gpu/drm/i915/display/intel_panel.c
-@@ -1172,7 +1172,7 @@ static void __intel_panel_enable_backlight(const struct intel_crtc_state *crtc_s
- 	struct intel_connector *connector = to_intel_connector(conn_state->connector);
- 	struct intel_panel *panel = &connector->panel;
- 
--	WARN_ON(panel->backlight.max == 0);
-+	dev_WARN_ON(crtc_state_to_dev(crtc_state), panel->backlight.max == 0);
- 
- 	if (panel->backlight.level <= panel->backlight.min) {
- 		panel->backlight.level = panel->backlight.max;
-diff --git a/drivers/gpu/drm/i915/display/intel_sdvo.c b/drivers/gpu/drm/i915/display/intel_sdvo.c
-index 2ceb0c72db33..5330e51f5bbb 100644
---- a/drivers/gpu/drm/i915/display/intel_sdvo.c
-+++ b/drivers/gpu/drm/i915/display/intel_sdvo.c
-@@ -1261,7 +1261,8 @@ static void i9xx_adjust_sdvo_tv_clock(struct intel_crtc_state *pipe_config)
- 		clock->m1 = 12;
- 		clock->m2 = 8;
- 	} else {
--		WARN(1, "SDVO TV clock out of range: %i\n", dotclock);
-+		dev_WARN(crtc_state_to_dev(pipe_config), 1,
-+			 "SDVO TV clock out of range: %i\n", dotclock);
- 	}
- 
- 	pipe_config->clock_set = true;
-diff --git a/drivers/gpu/drm/i915/gvt/cfg_space.c b/drivers/gpu/drm/i915/gvt/cfg_space.c
-index 19cf1bbe059d..20775c9ee33a 100644
---- a/drivers/gpu/drm/i915/gvt/cfg_space.c
-+++ b/drivers/gpu/drm/i915/gvt/cfg_space.c
-@@ -106,10 +106,11 @@ static void vgpu_pci_cfg_mem_write(struct intel_vgpu *vgpu, unsigned int off,
- int intel_vgpu_emulate_cfg_read(struct intel_vgpu *vgpu, unsigned int offset,
- 	void *p_data, unsigned int bytes)
- {
--	if (WARN_ON(bytes > 4))
-+	if (dev_WARN_ON(vgpu_to_dev(vgpu), bytes > 4))
- 		return -EINVAL;
- 
--	if (WARN_ON(offset + bytes > vgpu->gvt->device_info.cfg_space_size))
-+	if (dev_WARN_ON(vgpu_to_dev(vgpu),
-+			offset + bytes > vgpu->gvt->device_info.cfg_space_size))
- 		return -EINVAL;
- 
- 	memcpy(p_data, vgpu_cfg_space(vgpu) + offset, bytes);
-@@ -299,32 +300,33 @@ int intel_vgpu_emulate_cfg_write(struct intel_vgpu *vgpu, unsigned int offset,
- {
- 	int ret;
- 
--	if (WARN_ON(bytes > 4))
-+	if (dev_WARN_ON(vgpu_to_dev(vgpu), bytes > 4))
- 		return -EINVAL;
- 
--	if (WARN_ON(offset + bytes > vgpu->gvt->device_info.cfg_space_size))
-+	if (dev_WARN_ON(vgpu_to_dev(vgpu),
-+			offset + bytes > vgpu->gvt->device_info.cfg_space_size))
- 		return -EINVAL;
- 
- 	/* First check if it's PCI_COMMAND */
- 	if (IS_ALIGNED(offset, 2) && offset == PCI_COMMAND) {
--		if (WARN_ON(bytes > 2))
-+		if (dev_WARN_ON(vgpu_to_dev(vgpu), bytes > 2))
- 			return -EINVAL;
- 		return emulate_pci_command_write(vgpu, offset, p_data, bytes);
- 	}
- 
- 	switch (rounddown(offset, 4)) {
- 	case PCI_ROM_ADDRESS:
--		if (WARN_ON(!IS_ALIGNED(offset, 4)))
-+		if (dev_WARN_ON(vgpu_to_dev(vgpu), !IS_ALIGNED(offset, 4)))
- 			return -EINVAL;
- 		return emulate_pci_rom_bar_write(vgpu, offset, p_data, bytes);
- 
- 	case PCI_BASE_ADDRESS_0 ... PCI_BASE_ADDRESS_5:
--		if (WARN_ON(!IS_ALIGNED(offset, 4)))
-+		if (dev_WARN_ON(vgpu_to_dev(vgpu), !IS_ALIGNED(offset, 4)))
- 			return -EINVAL;
- 		return emulate_pci_bar_write(vgpu, offset, p_data, bytes);
- 
- 	case INTEL_GVT_PCI_SWSCI:
--		if (WARN_ON(!IS_ALIGNED(offset, 4)))
-+		if (dev_WARN_ON(vgpu_to_dev(vgpu), !IS_ALIGNED(offset, 4)))
- 			return -EINVAL;
- 		ret = intel_vgpu_emulate_opregion_request(vgpu, *(u32 *)p_data);
- 		if (ret)
-@@ -332,7 +334,7 @@ int intel_vgpu_emulate_cfg_write(struct intel_vgpu *vgpu, unsigned int offset,
- 		break;
- 
- 	case INTEL_GVT_PCI_OPREGION:
--		if (WARN_ON(!IS_ALIGNED(offset, 4)))
-+		if (dev_WARN_ON(vgpu_to_dev(vgpu), !IS_ALIGNED(offset, 4)))
- 			return -EINVAL;
- 		ret = intel_vgpu_opregion_base_write_handler(vgpu,
- 						   *(u32 *)p_data);
-diff --git a/drivers/gpu/drm/i915/gvt/display.c b/drivers/gpu/drm/i915/gvt/display.c
-index 66516d6f8811..0bb7058a4bfb 100644
---- a/drivers/gpu/drm/i915/gvt/display.c
-+++ b/drivers/gpu/drm/i915/gvt/display.c
-@@ -322,7 +322,7 @@ static int setup_virtual_dp_monitor(struct intel_vgpu *vgpu, int port_num,
- {
- 	struct intel_vgpu_port *port = intel_vgpu_port(vgpu, port_num);
- 
--	if (WARN_ON(resolution >= GVT_EDID_NUM))
-+	if (dev_WARN_ON(vgpu_to_dev(vgpu), resolution >= GVT_EDID_NUM))
- 		return -EINVAL;
- 
- 	port->edid = kzalloc(sizeof(*(port->edid)), GFP_KERNEL);
-diff --git a/drivers/gpu/drm/i915/gvt/edid.c b/drivers/gpu/drm/i915/gvt/edid.c
-index e8541b50ab21..cf601fee73dc 100644
---- a/drivers/gpu/drm/i915/gvt/edid.c
-+++ b/drivers/gpu/drm/i915/gvt/edid.c
-@@ -277,7 +277,7 @@ static int gmbus1_mmio_write(struct intel_vgpu *vgpu, unsigned int offset,
- static int gmbus3_mmio_write(struct intel_vgpu *vgpu, unsigned int offset,
- 	void *p_data, unsigned int bytes)
- {
--	WARN_ON(1);
-+	dev_WARN_ON(vgpu_to_dev(vgpu), 1);
- 	return 0;
- }
- 
-@@ -372,7 +372,7 @@ static int gmbus2_mmio_write(struct intel_vgpu *vgpu, unsigned int offset,
- int intel_gvt_i2c_handle_gmbus_read(struct intel_vgpu *vgpu,
- 	unsigned int offset, void *p_data, unsigned int bytes)
- {
--	if (WARN_ON(bytes > 8 && (offset & (bytes - 1))))
-+	if (dev_WARN_ON(vgpu_to_dev(vgpu), bytes > 8 && (offset & (bytes - 1))))
- 		return -EINVAL;
- 
- 	if (offset == i915_mmio_reg_offset(PCH_GMBUS2))
-@@ -400,7 +400,7 @@ int intel_gvt_i2c_handle_gmbus_read(struct intel_vgpu *vgpu,
- int intel_gvt_i2c_handle_gmbus_write(struct intel_vgpu *vgpu,
- 		unsigned int offset, void *p_data, unsigned int bytes)
- {
--	if (WARN_ON(bytes > 8 && (offset & (bytes - 1))))
-+	if (dev_WARN_ON(vgpu_to_dev(vgpu), bytes > 8 && (offset & (bytes - 1))))
- 		return -EINVAL;
- 
- 	if (offset == i915_mmio_reg_offset(PCH_GMBUS0))
-@@ -533,9 +533,10 @@ void intel_gvt_i2c_handle_aux_ch_write(struct intel_vgpu *vgpu,
- 		 * support the gfx driver to do EDID access.
- 		 */
- 	} else {
--		if (WARN_ON((op & 0x1) != GVT_AUX_I2C_READ))
-+		if (dev_WARN_ON(vgpu_to_dev(vgpu),
-+				(op & 0x1) != GVT_AUX_I2C_READ))
- 			return;
--		if (WARN_ON(msg_length != 4))
-+		if (dev_WARN_ON(vgpu_to_dev(vgpu), msg_length != 4))
- 			return;
- 		if (i2c_edid->edid_available && i2c_edid->slave_selected) {
- 			unsigned char val = edid_get_byte(vgpu);
-diff --git a/drivers/gpu/drm/i915/gvt/gtt.c b/drivers/gpu/drm/i915/gvt/gtt.c
-index 34cb404ba4b7..c9ed76456c01 100644
---- a/drivers/gpu/drm/i915/gvt/gtt.c
-+++ b/drivers/gpu/drm/i915/gvt/gtt.c
-@@ -71,8 +71,8 @@ bool intel_gvt_ggtt_validate_range(struct intel_vgpu *vgpu, u64 addr, u32 size)
- /* translate a guest gmadr to host gmadr */
- int intel_gvt_ggtt_gmadr_g2h(struct intel_vgpu *vgpu, u64 g_addr, u64 *h_addr)
- {
--	if (WARN(!vgpu_gmadr_is_valid(vgpu, g_addr),
--		 "invalid guest gmadr %llx\n", g_addr))
-+	if (dev_WARN(vgpu_to_dev(vgpu), !vgpu_gmadr_is_valid(vgpu, g_addr),
-+		     "invalid guest gmadr %llx\n", g_addr))
- 		return -EACCES;
- 
- 	if (vgpu_gmadr_is_aperture(vgpu, g_addr))
-@@ -87,8 +87,8 @@ int intel_gvt_ggtt_gmadr_g2h(struct intel_vgpu *vgpu, u64 g_addr, u64 *h_addr)
- /* translate a host gmadr to guest gmadr */
- int intel_gvt_ggtt_gmadr_h2g(struct intel_vgpu *vgpu, u64 h_addr, u64 *g_addr)
- {
--	if (WARN(!gvt_gmadr_is_valid(vgpu->gvt, h_addr),
--		 "invalid host gmadr %llx\n", h_addr))
-+	if (dev_WARN(vgpu_to_dev(vgpu), !gvt_gmadr_is_valid(vgpu->gvt, h_addr),
-+		     "invalid host gmadr %llx\n", h_addr))
- 		return -EACCES;
- 
- 	if (gvt_gmadr_is_aperture(vgpu->gvt, h_addr))
-@@ -952,7 +952,9 @@ static int ppgtt_invalidate_spt_by_shadow_entry(struct intel_vgpu *vgpu,
- 
- 		if (!gtt_type_is_pt(cur_pt_type) ||
- 				!gtt_type_is_pt(cur_pt_type + 1)) {
--			WARN(1, "Invalid page table type, cur_pt_type is: %d\n", cur_pt_type);
-+			dev_WARN(vgpu_to_dev(vgpu), 1,
-+				 "Invalid page table type, cur_pt_type is: %d\n",
-+				 cur_pt_type);
- 			return -EINVAL;
- 		}
- 
-@@ -2352,7 +2354,8 @@ static int alloc_scratch_pages(struct intel_vgpu *vgpu,
- 	struct device *dev = &vgpu->gvt->dev_priv->drm.pdev->dev;
- 	dma_addr_t daddr;
- 
--	if (WARN_ON(type < GTT_TYPE_PPGTT_PTE_PT || type >= GTT_TYPE_MAX))
-+	if (dev_WARN_ON(vgpu_to_dev(vgpu),
-+			type < GTT_TYPE_PPGTT_PTE_PT || type >= GTT_TYPE_MAX))
- 		return -EINVAL;
- 
- 	scratch_pt = (void *)get_zeroed_page(GFP_KERNEL);
-diff --git a/drivers/gpu/drm/i915/gvt/handlers.c b/drivers/gpu/drm/i915/gvt/handlers.c
-index 73f668885bea..2fd23d25f506 100644
---- a/drivers/gpu/drm/i915/gvt/handlers.c
-+++ b/drivers/gpu/drm/i915/gvt/handlers.c
-@@ -1312,8 +1312,9 @@ static int pf_write(struct intel_vgpu *vgpu,
- 	if ((offset == _PS_1A_CTRL || offset == _PS_2A_CTRL ||
- 	   offset == _PS_1B_CTRL || offset == _PS_2B_CTRL ||
- 	   offset == _PS_1C_CTRL) && (val & PS_PLANE_SEL_MASK) != 0) {
--		WARN_ONCE(true, "VM(%d): guest is trying to scaling a plane\n",
--			  vgpu->id);
-+		dev_WARN_ONCE(vgpu_to_dev(vgpu), true,
-+			      "VM(%d): guest is trying to scaling a plane\n",
-+			      vgpu->id);
- 		return 0;
- 	}
- 
-@@ -1367,7 +1368,8 @@ static int dma_ctrl_write(struct intel_vgpu *vgpu, unsigned int offset,
- 	mode = vgpu_vreg(vgpu, offset);
- 
- 	if (GFX_MODE_BIT_SET_IN_MASK(mode, START_DMA)) {
--		WARN_ONCE(1, "VM(%d): iGVT-g doesn't support GuC\n",
-+		dev_WARN_ONCE(vgpu_to_dev(vgpu), 1,
-+				"VM(%d): iGVT-g doesn't support GuC\n",
- 				vgpu->id);
- 		return 0;
- 	}
-@@ -1381,7 +1383,8 @@ static int gen9_trtte_write(struct intel_vgpu *vgpu, unsigned int offset,
- 	u32 trtte = *(u32 *)p_data;
- 
- 	if ((trtte & 1) && (trtte & (1 << 1)) == 0) {
--		WARN(1, "VM(%d): Use physical address for TRTT!\n",
-+		dev_WARN(vgpu_to_dev(vgpu), 1,
-+				"VM(%d): Use physical address for TRTT!\n",
- 				vgpu->id);
- 		return -EINVAL;
- 	}
-@@ -1688,7 +1691,8 @@ static int elsp_mmio_write(struct intel_vgpu *vgpu, unsigned int offset,
- 	u32 data = *(u32 *)p_data;
- 	int ret = 0;
- 
--	if (WARN_ON(ring_id < 0 || ring_id >= I915_NUM_ENGINES))
-+	if (dev_WARN_ON(vgpu_to_dev(vgpu),
-+			ring_id < 0 || ring_id >= I915_NUM_ENGINES))
- 		return -EINVAL;
- 
- 	execlist = &vgpu->submission.execlist[ring_id];
-@@ -3548,7 +3552,7 @@ int intel_vgpu_mmio_reg_rw(struct intel_vgpu *vgpu, unsigned int offset,
- 	gvt_mmio_func func;
- 	int ret;
- 
--	if (WARN_ON(bytes > 8))
-+	if (dev_WARN_ON(vgpu_to_dev(vgpu), bytes > 8))
- 		return -EINVAL;
- 
- 	/*
-diff --git a/drivers/gpu/drm/i915/gvt/interrupt.c b/drivers/gpu/drm/i915/gvt/interrupt.c
-index 11accd3e1023..965b5459e8b3 100644
---- a/drivers/gpu/drm/i915/gvt/interrupt.c
-+++ b/drivers/gpu/drm/i915/gvt/interrupt.c
-@@ -255,7 +255,7 @@ int intel_vgpu_reg_ier_handler(struct intel_vgpu *vgpu,
- 	vgpu_vreg(vgpu, reg) = ier;
- 
- 	info = regbase_to_irq_info(gvt, ier_to_regbase(reg));
--	if (WARN_ON(!info))
-+	if (dev_WARN_ON(vgpu_to_dev(vgpu), !info))
- 		return -EINVAL;
- 
- 	if (info->has_upstream_irq)
-@@ -289,7 +289,7 @@ int intel_vgpu_reg_iir_handler(struct intel_vgpu *vgpu, unsigned int reg,
- 	trace_write_ir(vgpu->id, "IIR", reg, iir, vgpu_vreg(vgpu, reg),
- 		       (vgpu_vreg(vgpu, reg) ^ iir));
- 
--	if (WARN_ON(!info))
-+	if (dev_WARN_ON(vgpu_to_dev(vgpu), !info))
- 		return -EINVAL;
- 
- 	vgpu_vreg(vgpu, reg) &= ~iir;
-@@ -340,7 +340,8 @@ static void update_upstream_irq(struct intel_vgpu *vgpu,
- 		if (!up_irq_info)
- 			up_irq_info = irq->info[map->up_irq_group];
- 		else
--			WARN_ON(up_irq_info != irq->info[map->up_irq_group]);
-+			dev_WARN_ON(vgpu_to_dev(vgpu),
-+				up_irq_info != irq->info[map->up_irq_group]);
- 
- 		bit = map->up_irq_bit;
- 
-@@ -350,7 +351,7 @@ static void update_upstream_irq(struct intel_vgpu *vgpu,
- 			clear_bits |= (1 << bit);
- 	}
- 
--	if (WARN_ON(!up_irq_info))
-+	if (dev_WARN_ON(vgpu_to_dev(vgpu), !up_irq_info))
- 		return;
- 
- 	if (up_irq_info->group == INTEL_GVT_IRQ_INFO_MASTER) {
-@@ -624,7 +625,7 @@ void intel_vgpu_trigger_virtual_event(struct intel_vgpu *vgpu,
- 	struct intel_gvt_irq_ops *ops = gvt->irq.ops;
- 
- 	handler = get_event_virt_handler(irq, event);
--	WARN_ON(!handler);
-+	dev_WARN_ON(vgpu_to_dev(vgpu), !handler);
- 
- 	handler(irq, event, vgpu);
- 
-diff --git a/drivers/gpu/drm/i915/gvt/kvmgt.c b/drivers/gpu/drm/i915/gvt/kvmgt.c
-index 3259a1fa69e1..8e8ff6cce237 100644
---- a/drivers/gpu/drm/i915/gvt/kvmgt.c
-+++ b/drivers/gpu/drm/i915/gvt/kvmgt.c
-@@ -130,7 +130,7 @@ static void gvt_unpin_guest_page(struct intel_vgpu *vgpu, unsigned long gfn,
- 		unsigned long cur_gfn = gfn + npage;
- 
- 		ret = vfio_unpin_pages(mdev_dev(vgpu->vdev.mdev), &cur_gfn, 1);
--		WARN_ON(ret != 1);
-+		dev_WARN_ON(vgpu_to_dev(vgpu), ret != 1);
- 	}
- }
- 
-@@ -821,11 +821,13 @@ static void __intel_vgpu_release(struct intel_vgpu *vgpu)
- 
- 	ret = vfio_unregister_notifier(mdev_dev(vgpu->vdev.mdev), VFIO_IOMMU_NOTIFY,
- 					&vgpu->vdev.iommu_notifier);
--	WARN(ret, "vfio_unregister_notifier for iommu failed: %d\n", ret);
-+	dev_WARN(vgpu_to_dev(vgpu), ret,
-+		 "vfio_unregister_notifier for iommu failed: %d\n", ret);
- 
- 	ret = vfio_unregister_notifier(mdev_dev(vgpu->vdev.mdev), VFIO_GROUP_NOTIFY,
- 					&vgpu->vdev.group_notifier);
--	WARN(ret, "vfio_unregister_notifier for group failed: %d\n", ret);
-+	dev_WARN(vgpu_to_dev(vgpu), ret,
-+		 "vfio_unregister_notifier for group failed: %d\n", ret);
- 
- 	/* dereference module reference taken at open */
- 	module_put(THIS_MODULE);
-diff --git a/drivers/gpu/drm/i915/gvt/mmio.c b/drivers/gpu/drm/i915/gvt/mmio.c
-index a55178884d67..1b06f341102d 100644
---- a/drivers/gpu/drm/i915/gvt/mmio.c
-+++ b/drivers/gpu/drm/i915/gvt/mmio.c
-@@ -114,15 +114,18 @@ int intel_vgpu_emulate_mmio_read(struct intel_vgpu *vgpu, u64 pa,
- 
- 	offset = intel_vgpu_gpa_to_mmio_offset(vgpu, pa);
- 
--	if (WARN_ON(bytes > 8))
-+	if (dev_WARN_ON(vgpu_to_dev(vgpu), bytes > 8))
- 		goto err;
- 
- 	if (reg_is_gtt(gvt, offset)) {
--		if (WARN_ON(!IS_ALIGNED(offset, 4) && !IS_ALIGNED(offset, 8)))
-+		if (dev_WARN_ON(vgpu_to_dev(vgpu),
-+				!IS_ALIGNED(offset, 4) &&
-+				!IS_ALIGNED(offset, 8)))
- 			goto err;
--		if (WARN_ON(bytes != 4 && bytes != 8))
-+		if (dev_WARN_ON(vgpu_to_dev(vgpu), bytes != 4 && bytes != 8))
- 			goto err;
--		if (WARN_ON(!reg_is_gtt(gvt, offset + bytes - 1)))
-+		if (dev_WARN_ON(vgpu_to_dev(vgpu),
-+				!reg_is_gtt(gvt, offset + bytes - 1)))
- 			goto err;
- 
- 		ret = intel_vgpu_emulate_ggtt_mmio_read(vgpu, offset,
-@@ -132,16 +135,17 @@ int intel_vgpu_emulate_mmio_read(struct intel_vgpu *vgpu, u64 pa,
- 		goto out;
- 	}
- 
--	if (WARN_ON_ONCE(!reg_is_mmio(gvt, offset))) {
-+	if (dev_WARN_ON_ONCE(vgpu_to_dev(vgpu), !reg_is_mmio(gvt, offset))) {
- 		ret = intel_gvt_hypervisor_read_gpa(vgpu, pa, p_data, bytes);
- 		goto out;
- 	}
- 
--	if (WARN_ON(!reg_is_mmio(gvt, offset + bytes - 1)))
-+	if (dev_WARN_ON(vgpu_to_dev(vgpu),
-+			!reg_is_mmio(gvt, offset + bytes - 1)))
- 		goto err;
- 
- 	if (!intel_gvt_mmio_is_unalign(gvt, offset)) {
--		if (WARN_ON(!IS_ALIGNED(offset, bytes)))
-+		if (dev_WARN_ON(vgpu_to_dev(vgpu), !IS_ALIGNED(offset, bytes)))
- 			goto err;
- 	}
- 
-@@ -187,15 +191,18 @@ int intel_vgpu_emulate_mmio_write(struct intel_vgpu *vgpu, u64 pa,
- 
- 	offset = intel_vgpu_gpa_to_mmio_offset(vgpu, pa);
- 
--	if (WARN_ON(bytes > 8))
-+	if (dev_WARN_ON(vgpu_to_dev(vgpu), bytes > 8))
- 		goto err;
- 
- 	if (reg_is_gtt(gvt, offset)) {
--		if (WARN_ON(!IS_ALIGNED(offset, 4) && !IS_ALIGNED(offset, 8)))
-+		if (dev_WARN_ON(vgpu_to_dev(vgpu),
-+				!IS_ALIGNED(offset, 4) &&
-+				!IS_ALIGNED(offset, 8)))
- 			goto err;
--		if (WARN_ON(bytes != 4 && bytes != 8))
-+		if (dev_WARN_ON(vgpu_to_dev(vgpu), bytes != 4 && bytes != 8))
- 			goto err;
--		if (WARN_ON(!reg_is_gtt(gvt, offset + bytes - 1)))
-+		if (dev_WARN_ON(vgpu_to_dev(vgpu),
-+				!reg_is_gtt(gvt, offset + bytes - 1)))
- 			goto err;
- 
- 		ret = intel_vgpu_emulate_ggtt_mmio_write(vgpu, offset,
-@@ -205,7 +212,7 @@ int intel_vgpu_emulate_mmio_write(struct intel_vgpu *vgpu, u64 pa,
- 		goto out;
- 	}
- 
--	if (WARN_ON_ONCE(!reg_is_mmio(gvt, offset))) {
-+	if (dev_WARN_ON_ONCE(vgpu_to_dev(vgpu), !reg_is_mmio(gvt, offset))) {
- 		ret = intel_gvt_hypervisor_write_gpa(vgpu, pa, p_data, bytes);
- 		goto out;
- 	}
-diff --git a/drivers/gpu/drm/i915/gvt/mmio_context.c b/drivers/gpu/drm/i915/gvt/mmio_context.c
-index 82dbcd091f5b..6132093fdcd9 100644
---- a/drivers/gpu/drm/i915/gvt/mmio_context.c
-+++ b/drivers/gpu/drm/i915/gvt/mmio_context.c
-@@ -407,7 +407,7 @@ static void switch_mocs(struct intel_vgpu *pre, struct intel_vgpu *next,
- 	int i;
- 
- 	dev_priv = pre ? pre->gvt->dev_priv : next->gvt->dev_priv;
--	if (WARN_ON(ring_id >= ARRAY_SIZE(regs)))
-+	if (dev_WARN_ON(vgpu_to_dev(pre), ring_id >= ARRAY_SIZE(regs)))
- 		return;
- 
- 	if (ring_id == RCS0 && IS_GEN(dev_priv, 9))
-@@ -554,7 +554,7 @@ void intel_gvt_switch_mmio(struct intel_vgpu *pre,
- {
- 	struct drm_i915_private *dev_priv;
- 
--	if (WARN_ON(!pre && !next))
-+	if (dev_WARN_ON(vgpu_to_dev(pre), !pre && !next))
- 		return;
- 
- 	gvt_dbg_render("switch ring %d from %s to %s\n", ring_id,
-diff --git a/drivers/gpu/drm/i915/gvt/scheduler.c b/drivers/gpu/drm/i915/gvt/scheduler.c
-index b3299f88e24e..2fcef0869bcd 100644
---- a/drivers/gpu/drm/i915/gvt/scheduler.c
-+++ b/drivers/gpu/drm/i915/gvt/scheduler.c
-@@ -1316,10 +1316,11 @@ int intel_vgpu_select_submission_ops(struct intel_vgpu *vgpu,
- 	};
- 	int ret;
- 
--	if (WARN_ON(interface >= ARRAY_SIZE(ops)))
-+	if (dev_WARN_ON(vgpu_to_dev(vgpu), interface >= ARRAY_SIZE(ops)))
- 		return -EINVAL;
- 
--	if (WARN_ON(interface == 0 && engine_mask != ALL_ENGINES))
-+	if (dev_WARN_ON(vgpu_to_dev(vgpu),
-+			interface == 0 && engine_mask != ALL_ENGINES))
- 		return -EINVAL;
- 
- 	if (s->active)
-diff --git a/drivers/gpu/drm/i915/gvt/vgpu.c b/drivers/gpu/drm/i915/gvt/vgpu.c
-index 85bd9bf4f6ee..a97a143e82b6 100644
---- a/drivers/gpu/drm/i915/gvt/vgpu.c
-+++ b/drivers/gpu/drm/i915/gvt/vgpu.c
-@@ -69,7 +69,8 @@ void populate_pvinfo_page(struct intel_vgpu *vgpu)
- 		vgpu_hidden_gmadr_base(vgpu), vgpu_hidden_sz(vgpu));
- 	gvt_dbg_core("fence size %d\n", vgpu_fence_sz(vgpu));
- 
--	WARN_ON(sizeof(struct vgt_if) != VGT_PVINFO_SIZE);
-+	dev_WARN_ON(vgpu_to_dev(vgpu),
-+		    sizeof(struct vgt_if) != VGT_PVINFO_SIZE);
- }
- 
- #define VGPU_MAX_WEIGHT 16
-@@ -274,7 +275,7 @@ void intel_gvt_destroy_vgpu(struct intel_vgpu *vgpu)
- 
- 	mutex_lock(&vgpu->vgpu_lock);
- 
--	WARN(vgpu->active, "vGPU is still active!\n");
-+	dev_WARN(vgpu_to_dev(vgpu), vgpu->active, "vGPU is still active!\n");
- 
- 	intel_gvt_debugfs_remove_vgpu(vgpu);
- 	intel_vgpu_clean_sched_policy(vgpu);
-diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
-index 51006169a285..585bf47fc555 100644
---- a/drivers/gpu/drm/i915/i915_perf.c
-+++ b/drivers/gpu/drm/i915/i915_perf.c
-@@ -686,7 +686,7 @@ static int gen8_append_oa_reports(struct i915_perf_stream *stream,
- 	u32 taken;
- 	int ret = 0;
- 
--	if (WARN_ON(!stream->enabled))
-+	if (dev_WARN_ON(perf_stream_to_dev(stream), !stream->enabled))
- 		return -EIO;
- 
- 	spin_lock_irqsave(&stream->oa_buffer.ptr_lock, flags);
-@@ -718,10 +718,11 @@ static int gen8_append_oa_reports(struct i915_perf_stream *stream,
- 	 * only be incremented by multiples of the report size (notably also
- 	 * all a power of two).
- 	 */
--	if (WARN_ONCE(head > OA_BUFFER_SIZE || head % report_size ||
--		      tail > OA_BUFFER_SIZE || tail % report_size,
--		      "Inconsistent OA buffer pointers: head = %u, tail = %u\n",
--		      head, tail))
-+	if (dev_WARN_ONCE(perf_stream_to_dev(stream),
-+			  head > OA_BUFFER_SIZE || head % report_size ||
-+			  tail > OA_BUFFER_SIZE || tail % report_size,
-+			  "Inconsistent OA buffer pointers: head = %u, tail = %u\n",
-+			  head, tail))
- 		return -EIO;
- 
- 
-@@ -742,7 +743,8 @@ static int gen8_append_oa_reports(struct i915_perf_stream *stream,
- 		 * here would imply a driver bug that would result
- 		 * in an overrun.
- 		 */
--		if (WARN_ON((OA_BUFFER_SIZE - head) < report_size)) {
-+		if (dev_WARN_ON(perf_stream_to_dev(stream),
-+				(OA_BUFFER_SIZE - head) < report_size)) {
- 			DRM_ERROR("Spurious OA head ptr: non-integral report offset\n");
- 			break;
- 		}
-@@ -896,7 +898,7 @@ static int gen8_oa_read(struct i915_perf_stream *stream,
- 	i915_reg_t oastatus_reg;
- 	int ret;
- 
--	if (WARN_ON(!stream->oa_buffer.vaddr))
-+	if (dev_WARN_ON(perf_stream_to_dev(stream), !stream->oa_buffer.vaddr))
- 		return -EIO;
- 
- 	oastatus_reg = IS_GEN(stream->perf->i915, 12) ?
-@@ -986,7 +988,7 @@ static int gen7_append_oa_reports(struct i915_perf_stream *stream,
- 	u32 taken;
- 	int ret = 0;
- 
--	if (WARN_ON(!stream->enabled))
-+	if (dev_WARN_ON(perf_stream_to_dev(stream), !stream->enabled))
- 		return -EIO;
- 
- 	spin_lock_irqsave(&stream->oa_buffer.ptr_lock, flags);
-@@ -1015,10 +1017,11 @@ static int gen7_append_oa_reports(struct i915_perf_stream *stream,
- 	 * only be incremented by multiples of the report size (notably also
- 	 * all a power of two).
- 	 */
--	if (WARN_ONCE(head > OA_BUFFER_SIZE || head % report_size ||
--		      tail > OA_BUFFER_SIZE || tail % report_size,
--		      "Inconsistent OA buffer pointers: head = %u, tail = %u\n",
--		      head, tail))
-+	if (dev_WARN_ONCE(perf_stream_to_dev(stream),
-+			  head > OA_BUFFER_SIZE || head % report_size ||
-+			  tail > OA_BUFFER_SIZE || tail % report_size,
-+			  "Inconsistent OA buffer pointers: head = %u, tail = %u\n",
-+			  head, tail))
- 		return -EIO;
- 
- 
-@@ -1036,7 +1039,8 @@ static int gen7_append_oa_reports(struct i915_perf_stream *stream,
- 		 * here would imply a driver bug that would result
- 		 * in an overrun.
- 		 */
--		if (WARN_ON((OA_BUFFER_SIZE - head) < report_size)) {
-+		if (dev_WARN_ON(perf_stream_to_dev(stream),
-+				(OA_BUFFER_SIZE - head) < report_size)) {
- 			DRM_ERROR("Spurious OA head ptr: non-integral report offset\n");
- 			break;
- 		}
-@@ -1110,7 +1114,7 @@ static int gen7_oa_read(struct i915_perf_stream *stream,
- 	u32 oastatus1;
- 	int ret;
- 
--	if (WARN_ON(!stream->oa_buffer.vaddr))
-+	if (dev_WARN_ON(perf_stream_to_dev(stream), !stream->oa_buffer.vaddr))
- 		return -EIO;
- 
- 	oastatus1 = intel_uncore_read(uncore, GEN7_OASTATUS1);
-@@ -1579,7 +1583,7 @@ static int alloc_oa_buffer(struct i915_perf_stream *stream)
- 	struct i915_vma *vma;
- 	int ret;
- 
--	if (WARN_ON(stream->oa_buffer.vma))
-+	if (dev_WARN_ON(perf_stream_to_dev(stream), stream->oa_buffer.vma))
- 		return -ENODEV;
- 
- 	BUILD_BUG_ON_NOT_POWER_OF_2(OA_BUFFER_SIZE);
-@@ -2779,7 +2783,8 @@ static int i915_oa_stream_init(struct i915_perf_stream *stream,
- 	stream->sample_size += format_size;
- 
- 	stream->oa_buffer.format_size = format_size;
--	if (WARN_ON(stream->oa_buffer.format_size == 0))
-+	if (dev_WARN_ON(perf_stream_to_dev(stream),
-+			stream->oa_buffer.format_size == 0))
- 		return -EINVAL;
- 
- 	stream->hold_preemption = props->hold_preemption;
-diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel_pm.c
-index 227c35d1c395..3c6089058557 100644
---- a/drivers/gpu/drm/i915/intel_pm.c
-+++ b/drivers/gpu/drm/i915/intel_pm.c
-@@ -1445,8 +1445,9 @@ static int g4x_compute_intermediate_wm(struct intel_crtc_state *new_crtc_state)
- 			max(optimal->wm.plane[plane_id],
- 			    active->wm.plane[plane_id]);
- 
--		WARN_ON(intermediate->wm.plane[plane_id] >
--			g4x_plane_fifo_size(plane_id, G4X_WM_LEVEL_NORMAL));
-+		dev_WARN_ON(crtc_state_to_dev(new_crtc_state),
-+			    intermediate->wm.plane[plane_id] >
-+			    g4x_plane_fifo_size(plane_id, G4X_WM_LEVEL_NORMAL));
- 	}
- 
- 	intermediate->sr.plane = max(optimal->sr.plane,
-@@ -1463,21 +1464,25 @@ static int g4x_compute_intermediate_wm(struct intel_crtc_state *new_crtc_state)
- 	intermediate->hpll.fbc = max(optimal->hpll.fbc,
- 				     active->hpll.fbc);
- 
--	WARN_ON((intermediate->sr.plane >
--		 g4x_plane_fifo_size(PLANE_PRIMARY, G4X_WM_LEVEL_SR) ||
--		 intermediate->sr.cursor >
--		 g4x_plane_fifo_size(PLANE_CURSOR, G4X_WM_LEVEL_SR)) &&
--		intermediate->cxsr);
--	WARN_ON((intermediate->sr.plane >
--		 g4x_plane_fifo_size(PLANE_PRIMARY, G4X_WM_LEVEL_HPLL) ||
--		 intermediate->sr.cursor >
--		 g4x_plane_fifo_size(PLANE_CURSOR, G4X_WM_LEVEL_HPLL)) &&
--		intermediate->hpll_en);
--
--	WARN_ON(intermediate->sr.fbc > g4x_fbc_fifo_size(1) &&
--		intermediate->fbc_en && intermediate->cxsr);
--	WARN_ON(intermediate->hpll.fbc > g4x_fbc_fifo_size(2) &&
--		intermediate->fbc_en && intermediate->hpll_en);
-+	dev_WARN_ON(crtc_state_to_dev(new_crtc_state),
-+		    (intermediate->sr.plane >
-+		     g4x_plane_fifo_size(PLANE_PRIMARY, G4X_WM_LEVEL_SR) ||
-+		     intermediate->sr.cursor >
-+		     g4x_plane_fifo_size(PLANE_CURSOR, G4X_WM_LEVEL_SR)) &&
-+		    intermediate->cxsr);
-+	dev_WARN_ON(crtc_state_to_dev(new_crtc_state),
-+		    (intermediate->sr.plane >
-+		     g4x_plane_fifo_size(PLANE_PRIMARY, G4X_WM_LEVEL_HPLL) ||
-+		     intermediate->sr.cursor >
-+		     g4x_plane_fifo_size(PLANE_CURSOR, G4X_WM_LEVEL_HPLL)) &&
-+		    intermediate->hpll_en);
-+
-+	dev_WARN_ON(crtc_state_to_dev(new_crtc_state),
-+		    intermediate->sr.fbc > g4x_fbc_fifo_size(1) &&
-+		    intermediate->fbc_en && intermediate->cxsr);
-+	dev_WARN_ON(crtc_state_to_dev(new_crtc_state),
-+		    intermediate->hpll.fbc > g4x_fbc_fifo_size(2) &&
-+		    intermediate->fbc_en && intermediate->hpll_en);
- 
- out:
- 	/*
-@@ -1729,11 +1734,13 @@ static int vlv_compute_fifo(struct intel_crtc_state *crtc_state)
- 		fifo_left -= plane_extra;
- 	}
- 
--	WARN_ON(active_planes != 0 && fifo_left != 0);
-+	dev_WARN_ON(crtc_state_to_dev(crtc_state),
-+		    active_planes != 0 && fifo_left != 0);
- 
- 	/* give it all to the first plane if none are active */
- 	if (active_planes == 0) {
--		WARN_ON(fifo_left != fifo_size);
-+		dev_WARN_ON(crtc_state_to_dev(crtc_state),
-+			    fifo_left != fifo_size);
- 		fifo_state->plane[PLANE_PRIMARY] = fifo_left;
- 	}
- 
-@@ -2808,9 +2815,11 @@ hsw_compute_linetime_wm(const struct intel_crtc_state *crtc_state)
- 
- 	if (!crtc_state->hw.active)
- 		return 0;
--	if (WARN_ON(adjusted_mode->crtc_clock == 0))
-+	if (dev_WARN_ON(crtc_state_to_dev(crtc_state),
-+			adjusted_mode->crtc_clock == 0))
- 		return 0;
--	if (WARN_ON(intel_state->cdclk.logical.cdclk == 0))
-+	if (dev_WARN_ON(crtc_state_to_dev(crtc_state),
-+			intel_state->cdclk.logical.cdclk == 0))
- 		return 0;
- 
- 	/* The WM are computed with base on how long it takes to fill a single
-@@ -4107,7 +4116,8 @@ skl_plane_downscale_amount(const struct intel_crtc_state *crtc_state,
- 	uint_fixed_16_16_t fp_w_ratio, fp_h_ratio;
- 	uint_fixed_16_16_t downscale_h, downscale_w;
- 
--	if (WARN_ON(!intel_wm_plane_visible(crtc_state, plane_state)))
-+	if (dev_WARN_ON(crtc_state_to_dev(crtc_state),
-+			!intel_wm_plane_visible(crtc_state, plane_state)))
- 		return u32_to_fixed16(0);
- 
- 	/*
-@@ -4186,7 +4196,7 @@ skl_get_total_relative_data_rate(struct intel_crtc_state *crtc_state,
- 	const struct intel_plane_state *plane_state;
- 	u64 total_data_rate = 0;
- 
--	if (WARN_ON(!state))
-+	if (dev_WARN_ON(crtc_state_to_dev(crtc_state), !state))
- 		return 0;
- 
- 	/* Calculate and cache data rate for each plane */
-@@ -4216,7 +4226,7 @@ icl_get_total_relative_data_rate(struct intel_crtc_state *crtc_state,
- 	const struct intel_plane_state *plane_state;
- 	u64 total_data_rate = 0;
- 
--	if (WARN_ON(!crtc_state->uapi.state))
-+	if (dev_WARN_ON(crtc_state_to_dev(crtc_state), !crtc_state->uapi.state))
- 		return 0;
- 
- 	/* Calculate and cache data rate for each plane */
-@@ -4533,7 +4543,7 @@ intel_get_linetime_us(const struct intel_crtc_state *crtc_state)
- 
- 	pixel_rate = crtc_state->pixel_rate;
- 
--	if (WARN_ON(pixel_rate == 0))
-+	if (dev_WARN_ON(crtc_state_to_dev(crtc_state), pixel_rate == 0))
- 		return u32_to_fixed16(0);
- 
- 	crtc_htotal = crtc_state->hw.adjusted_mode.crtc_htotal;
-@@ -4550,7 +4560,8 @@ skl_adjusted_plane_pixel_rate(const struct intel_crtc_state *crtc_state,
- 	uint_fixed_16_16_t downscale_amount;
- 
- 	/* Shouldn't reach here on disabled planes... */
--	if (WARN_ON(!intel_wm_plane_visible(crtc_state, plane_state)))
-+	if (dev_WARN_ON(crtc_state_to_dev(crtc_state),
-+			!intel_wm_plane_visible(crtc_state, plane_state)))
- 		return 0;
- 
- 	/*
-@@ -4988,9 +4999,11 @@ static int icl_build_plane_wm(struct intel_crtc_state *crtc_state,
- 		const struct drm_framebuffer *fb = plane_state->hw.fb;
- 		enum plane_id y_plane_id = plane_state->planar_linked_plane->id;
- 
--		WARN_ON(!intel_wm_plane_visible(crtc_state, plane_state));
--		WARN_ON(!fb->format->is_yuv ||
--			fb->format->num_planes == 1);
-+		dev_WARN_ON(crtc_state_to_dev(crtc_state),
-+			    !intel_wm_plane_visible(crtc_state, plane_state));
-+		dev_WARN_ON(crtc_state_to_dev(crtc_state),
-+			    !fb->format->is_yuv ||
-+			    fb->format->num_planes == 1);
- 
- 		ret = skl_build_plane_wm_single(crtc_state, plane_state,
- 						y_plane_id, 0);
--- 
-2.23.0
+  * igt@gem_ctx_isolation@vcs0-s3:
+    - shard-skl:          [PASS][3] -> [INCOMPLETE][4] ([i915#69])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7683/shard-skl6/igt@gem_ctx_isolation@vcs0-s3.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16000/shard-skl5/igt@gem_ctx_isolation@vcs0-s3.html
 
+  * igt@gem_ctx_isolation@vcs1-clean:
+    - shard-iclb:         [PASS][5] -> [SKIP][6] ([fdo#109276] / [fdo#112080]) +2 similar issues
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7683/shard-iclb4/igt@gem_ctx_isolation@vcs1-clean.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16000/shard-iclb8/igt@gem_ctx_isolation@vcs1-clean.html
+
+  * igt@gem_ctx_persistence@rcs0-mixed-process:
+    - shard-apl:          [PASS][7] -> [FAIL][8] ([i915#679])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7683/shard-apl6/igt@gem_ctx_persistence@rcs0-mixed-process.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16000/shard-apl7/igt@gem_ctx_persistence@rcs0-mixed-process.html
+
+  * igt@gem_ctx_shared@q-smoketest-bsd:
+    - shard-tglb:         [PASS][9] -> [INCOMPLETE][10] ([i915#461])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7683/shard-tglb1/igt@gem_ctx_shared@q-smoketest-bsd.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16000/shard-tglb3/igt@gem_ctx_shared@q-smoketest-bsd.html
+
+  * igt@gem_eio@kms:
+    - shard-tglb:         [PASS][11] -> [INCOMPLETE][12] ([i915#476])
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7683/shard-tglb9/igt@gem_eio@kms.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16000/shard-tglb6/igt@gem_eio@kms.html
+
+  * igt@gem_eio@unwedge-stress:
+    - shard-tglb:         [PASS][13] -> [INCOMPLETE][14] ([i915#469])
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7683/shard-tglb7/igt@gem_eio@unwedge-stress.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16000/shard-tglb1/igt@gem_eio@unwedge-stress.html
+
+  * igt@gem_exec_balancer@smoke:
+    - shard-tglb:         [PASS][15] -> [INCOMPLETE][16] ([fdo#111593])
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7683/shard-tglb5/igt@gem_exec_balancer@smoke.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16000/shard-tglb8/igt@gem_exec_balancer@smoke.html
+
+  * igt@gem_exec_parallel@fds:
+    - shard-tglb:         [PASS][17] -> [INCOMPLETE][18] ([i915#470])
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7683/shard-tglb7/igt@gem_exec_parallel@fds.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16000/shard-tglb9/igt@gem_exec_parallel@fds.html
+
+  * igt@gem_exec_reloc@basic-gtt-cpu-active:
+    - shard-skl:          [PASS][19] -> [DMESG-WARN][20] ([i915#109])
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7683/shard-skl4/igt@gem_exec_reloc@basic-gtt-cpu-active.html
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16000/shard-skl10/igt@gem_exec_reloc@basic-gtt-cpu-active.html
+
+  * igt@gem_exec_schedule@preempt-other-chain-bsd:
+    - shard-iclb:         [PASS][21] -> [SKIP][22] ([fdo#112146]) +2 similar issues
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7683/shard-iclb7/igt@gem_exec_schedule@preempt-other-chain-bsd.html
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16000/shard-iclb1/igt@gem_exec_schedule@preempt-other-chain-bsd.html
+
+  * igt@gem_persistent_relocs@forked-thrash-inactive:
+    - shard-snb:          [PASS][23] -> [TIMEOUT][24] ([i915#530])
+   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7683/shard-snb7/igt@gem_persistent_relocs@forked-thrash-inactive.html
+   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16000/shard-snb2/igt@gem_persistent_relocs@forked-thrash-inactive.html
+
+  * igt@gem_pipe_control_store_loop@reused-buffer:
+    - shard-tglb:         [PASS][25] -> [INCOMPLETE][26] ([i915#707] / [i915#796])
+   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7683/shard-tglb8/igt@gem_pipe_control_store_loop@reused-buffer.html
+   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16000/shard-tglb6/igt@gem_pipe_control_store_loop@reused-buffer.html
+
+  * igt@gem_wait@write-busy-vcs1:
+    - shard-iclb:         [PASS][27] -> [SKIP][28] ([fdo#112080]) +6 similar issues
+   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7683/shard-iclb4/igt@gem_wait@write-busy-vcs1.html
+   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16000/shard-iclb6/igt@gem_wait@write-busy-vcs1.html
+
+  * igt@i915_selftest@live_hangcheck:
+    - shard-tglb:         [PASS][29] -> [INCOMPLETE][30] ([i915#435])
+   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7683/shard-tglb1/igt@i915_selftest@live_hangcheck.html
+   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16000/shard-tglb7/igt@i915_selftest@live_hangcheck.html
+
+  * igt@i915_suspend@fence-restore-tiled2untiled:
+    - shard-apl:          [PASS][31] -> [DMESG-WARN][32] ([i915#180]) +2 similar issues
+   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7683/shard-apl8/igt@i915_suspend@fence-restore-tiled2untiled.html
+   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16000/shard-apl1/igt@i915_suspend@fence-restore-tiled2untiled.html
+
+  * igt@i915_suspend@fence-restore-untiled:
+    - shard-kbl:          [PASS][33] -> [DMESG-WARN][34] ([i915#180]) +1 similar issue
+   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7683/shard-kbl6/igt@i915_suspend@fence-restore-untiled.html
+   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16000/shard-kbl7/igt@i915_suspend@fence-restore-untiled.html
+
+  * igt@kms_draw_crc@draw-method-xrgb2101010-render-ytiled:
+    - shard-skl:          [PASS][35] -> [FAIL][36] ([i915#52] / [i915#54])
+   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7683/shard-skl4/igt@kms_draw_crc@draw-method-xrgb2101010-render-ytiled.html
+   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16000/shard-skl10/igt@kms_draw_crc@draw-method-xrgb2101010-render-ytiled.html
+
+  * igt@kms_flip@2x-modeset-vs-vblank-race:
+    - shard-hsw:          [PASS][37] -> [DMESG-FAIL][38] ([i915#407] / [i915#44])
+   [37]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7683/shard-hsw2/igt@kms_flip@2x-modeset-vs-vblank-race.html
+   [38]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16000/shard-hsw5/igt@kms_flip@2x-modeset-vs-vblank-race.html
+
+  * igt@kms_flip@flip-vs-expired-vblank:
+    - shard-apl:          [PASS][39] -> [FAIL][40] ([i915#79])
+   [39]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7683/shard-apl3/igt@kms_flip@flip-vs-expired-vblank.html
+   [40]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16000/shard-apl3/igt@kms_flip@flip-vs-expired-vblank.html
+
+  * igt@kms_flip@plain-flip-fb-recreate-interruptible:
+    - shard-skl:          [PASS][41] -> [FAIL][42] ([i915#34])
+   [41]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7683/shard-skl8/igt@kms_flip@plain-flip-fb-recreate-interruptible.html
+   [42]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16000/shard-skl4/igt@kms_flip@plain-flip-fb-recreate-interruptible.html
+
+  * igt@kms_flip@wf_vblank-ts-check-interruptible:
+    - shard-apl:          [PASS][43] -> [FAIL][44] ([i915#34])
+   [43]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7683/shard-apl2/igt@kms_flip@wf_vblank-ts-check-interruptible.html
+   [44]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16000/shard-apl6/igt@kms_flip@wf_vblank-ts-check-interruptible.html
+
+  * igt@kms_frontbuffer_tracking@fbc-1p-offscren-pri-shrfb-draw-pwrite:
+    - shard-tglb:         [PASS][45] -> [FAIL][46] ([i915#49]) +1 similar issue
+   [45]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7683/shard-tglb2/igt@kms_frontbuffer_tracking@fbc-1p-offscren-pri-shrfb-draw-pwrite.html
+   [46]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16000/shard-tglb9/igt@kms_frontbuffer_tracking@fbc-1p-offscren-pri-shrfb-draw-pwrite.html
+
+  * igt@kms_plane_alpha_blend@pipe-b-constant-alpha-min:
+    - shard-skl:          [PASS][47] -> [FAIL][48] ([fdo#108145])
+   [47]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7683/shard-skl2/igt@kms_plane_alpha_blend@pipe-b-constant-alpha-min.html
+   [48]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16000/shard-skl4/igt@kms_plane_alpha_blend@pipe-b-constant-alpha-min.html
+
+  * igt@kms_plane_alpha_blend@pipe-b-coverage-7efc:
+    - shard-skl:          [PASS][49] -> [FAIL][50] ([fdo#108145] / [i915#265])
+   [49]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7683/shard-skl6/igt@kms_plane_alpha_blend@pipe-b-coverage-7efc.html
+   [50]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16000/shard-skl5/igt@kms_plane_alpha_blend@pipe-b-coverage-7efc.html
+
+  * igt@kms_psr2_su@page_flip:
+    - shard-iclb:         [PASS][51] -> [SKIP][52] ([fdo#109642] / [fdo#111068])
+   [51]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7683/shard-iclb2/igt@kms_psr2_su@page_flip.html
+   [52]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16000/shard-iclb5/igt@kms_psr2_su@page_flip.html
+
+  * igt@kms_psr@psr2_dpms:
+    - shard-iclb:         [PASS][53] -> [SKIP][54] ([fdo#109441])
+   [53]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7683/shard-iclb2/igt@kms_psr@psr2_dpms.html
+   [54]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16000/shard-iclb1/igt@kms_psr@psr2_dpms.html
+
+  * igt@prime_vgem@fence-wait-bsd2:
+    - shard-iclb:         [PASS][55] -> [SKIP][56] ([fdo#109276]) +14 similar issues
+   [55]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7683/shard-iclb4/igt@prime_vgem@fence-wait-bsd2.html
+   [56]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16000/shard-iclb6/igt@prime_vgem@fence-wait-bsd2.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_busy@busy-vcs1:
+    - shard-iclb:         [SKIP][57] ([fdo#112080]) -> [PASS][58] +7 similar issues
+   [57]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7683/shard-iclb8/igt@gem_busy@busy-vcs1.html
+   [58]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16000/shard-iclb4/igt@gem_busy@busy-vcs1.html
+
+  * igt@gem_busy@close-race:
+    - shard-tglb:         [INCOMPLETE][59] ([i915#435]) -> [PASS][60] +1 similar issue
+   [59]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7683/shard-tglb8/igt@gem_busy@close-race.html
+   [60]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16000/shard-tglb1/igt@gem_busy@close-race.html
+
+  * igt@gem_ctx_isolation@rcs0-s3:
+    - shard-iclb:         [DMESG-WARN][61] ([fdo#111764]) -> [PASS][62]
+   [61]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7683/shard-iclb8/igt@gem_ctx_isolation@rcs0-s3.html
+   [62]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16000/shard-iclb4/igt@gem_ctx_isolation@rcs0-s3.html
+
+  * igt@gem_ctx_persistence@processes:
+    - shard-tglb:         [FAIL][63] ([i915#570]) -> [PASS][64]
+   [63]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7683/shard-tglb8/igt@gem_ctx_persistence@processes.html
+   [64]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16000/shard-tglb9/igt@gem_ctx_persistence@processes.html
+
+  * igt@gem_ctx_persistence@vcs1-queued:
+    - shard-iclb:         [SKIP][65] ([fdo#109276] / [fdo#112080]) -> [PASS][66] +1 similar issue
+   [65]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7683/shard-iclb7/igt@gem_ctx_persistence@vcs1-queued.html
+   [66]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16000/shard-iclb1/igt@gem_ctx_persistence@vcs1-queued.html
+
+  * igt@gem_ctx_shared@q-smoketest-bsd1:
+    - shard-tglb:         [INCOMPLETE][67] ([fdo#111735]) -> [PASS][68] +1 similar issue
+   [67]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7683/shard-tglb9/igt@gem_ctx_shared@q-smoketest-bsd1.html
+   [68]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16000/shard-tglb1/igt@gem_ctx_shared@q-smoketest-bsd1.html
+
+  * igt@gem_exec_reloc@basic-active-vebox:
+    - shard-tglb:         [INCOMPLETE][69] -> [PASS][70]
+   [69]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7683/shard-tglb5/igt@gem_exec_reloc@basic-active-vebox.html
+   [70]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16000/shard-tglb3/igt@gem_exec_reloc@basic-active-vebox.html
+
+  * igt@gem_exec_reloc@basic-wc-read-active:
+    - shard-skl:          [DMESG-WARN][71] ([i915#109]) -> [PASS][72]
+   [71]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7683/shard-skl3/igt@gem_exec_reloc@basic-wc-read-active.html
+   [72]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16000/shard-skl7/igt@gem_exec_reloc@basic-wc-read-active.html
+
+  * igt@gem_exec_schedule@in-order-bsd:
+    - shard-iclb:         [SKIP][73] ([fdo#112146]) -> [PASS][74] +1 similar issue
+   [73]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7683/shard-iclb2/igt@gem_exec_schedule@in-order-bsd.html
+   [74]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16000/shard-iclb5/igt@gem_exec_schedule@in-order-bsd.html
+
+  * {igt@gem_exec_schedule@pi-shared-iova-bsd}:
+    - shard-iclb:         [SKIP][75] ([i915#677]) -> [PASS][76] +1 similar issue
+   [75]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7683/shard-iclb2/igt@gem_exec_schedule@pi-shared-iova-bsd.html
+   [76]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16000/shard-iclb5/igt@gem_exec_schedule@pi-shared-iova-bsd.html
+
+  * igt@gem_exec_schedule@preempt-queue-chain-blt:
+    - shard-tglb:         [INCOMPLETE][77] ([fdo#111606] / [fdo#111677]) -> [PASS][78] +1 similar issue
+   [77]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7683/shard-tglb6/igt@gem_exec_schedule@preempt-queue-chain-blt.html
+   [78]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16000/shard-tglb7/igt@gem_exec_schedule@preempt-queue-chain-blt.html
+
+  * igt@gem_exec_suspend@basic:
+    - shard-tglb:         [INCOMPLETE][79] ([i915#460]) -> [PASS][80]
+   [79]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7683/shard-tglb6/igt@gem_exec_suspend@basic.html
+   [80]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16000/shard-tglb7/igt@gem_exec_suspend@basic.html
+
+  * igt@gem_persistent_relocs@forked-interruptible-thrashing:
+    - shard-tglb:         [FAIL][81] ([i915#520]) -> [PASS][82]
+   [81]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7683/shard-tglb3/igt@gem_persistent_relocs@forked-interruptible-thrashing.html
+   [82]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16000/shard-tglb8/igt@gem_persistent_relocs@forked-interruptible-thrashing.html
+
+  * igt@gem_ppgtt@flink-and-close-vma-leak:
+    - shard-skl:          [FAIL][83] ([i915#644]) -> [PASS][84]
+   [83]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7683/shard-skl1/igt@gem_ppgtt@flink-and-close-vma-leak.html
+   [84]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16000/shard-skl3/igt@gem_ppgtt@flink-and-close-vma-leak.html
+
+  * igt@gem_sync@basic-each:
+    - shard-tglb:         [INCOMPLETE][85] ([i915#472] / [i915#707]) -> [PASS][86]
+   [85]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7683/shard-tglb9/igt@gem_sync@basic-each.html
+   [86]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16000/shard-tglb1/igt@gem_sync@basic-each.html
+
+  * {igt@gen7_exec_parse@basic-offset}:
+    - shard-hsw:          [FAIL][87] ([i915#819]) -> [PASS][88]
+   [87]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7683/shard-hsw4/igt@gen7_exec_parse@basic-offset.html
+   [88]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16000/shard-hsw7/igt@gen7_exec_parse@basic-offset.html
+
+  * {igt@kms_dp_aux_dev}:
+    - shard-iclb:         [DMESG-WARN][89] -> [PASS][90]
+   [89]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7683/shard-iclb7/igt@kms_dp_aux_dev.html
+   [90]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16000/shard-iclb7/igt@kms_dp_aux_dev.html
+
+  * igt@kms_draw_crc@draw-method-rgb565-blt-ytiled:
+    - shard-skl:          [FAIL][91] ([i915#52] / [i915#54]) -> [PASS][92] +1 similar issue
+   [91]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7683/shard-skl3/igt@kms_draw_crc@draw-method-rgb565-blt-ytiled.html
+   [92]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16000/shard-skl9/igt@kms_draw_crc@draw-method-rgb565-blt-ytiled.html
+
+  * igt@kms_flip@flip-vs-expired-vblank:
+    - shard-skl:          [FAIL][93] ([i915#79]) -> [PASS][94]
+   [93]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7683/shard-skl6/igt@kms_flip@flip-vs-expired-vblank.html
+   [94]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16000/shard-skl1/igt@kms_flip@flip-vs-expired-vblank.html
+
+  * igt@kms_frontbuffer_tracking@fbcpsr-1p-pri-indfb-multidraw:
+    - shard-tglb:         [FAIL][95] ([i915#49]) -> [PASS][96] +2 similar issues
+   [95]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7683/shard-tglb3/igt@kms_frontbuffer_tracking@fbcpsr-1p-pri-indfb-multidraw.html
+   [96]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16000/shard-tglb6/igt@kms_frontbuffer_tracking@fbcpsr-1p-pri-indfb-multidraw.html
+
+  * igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a:
+    - shard-kbl:          [DMESG-WARN][97] ([i915#180]) -> [PASS][98] +2 similar issues
+   [97]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7683/shard-kbl7/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a.html
+   [98]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16000/shard-kbl3/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a.html
+
+  * igt@kms_plane_alpha_blend@pipe-c-coverage-7efc:
+    - shard-skl:          [FAIL][99] ([fdo#108145] / [i915#265]) -> [PASS][100]
+   [99]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7683/shard-skl1/igt@kms_plane_alpha_blend@pipe-c-coverage-7efc.html
+   [100]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16000/shard-skl10/igt@kms_plane_alpha_blend@pipe-c-coverage-7efc.html
+
+  * igt@kms_psr@psr2_cursor_render:
+    - shard-iclb:         [SKIP][101] ([fdo#109441]) -> [PASS][102] +2 similar issues
+   [101]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7683/shard-iclb3/igt@kms_psr@psr2_cursor_render.html
+   [102]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16000/shard-iclb2/igt@kms_psr@psr2_cursor_render.html
+
+  * igt@prime_busy@hang-bsd2:
+    - shard-iclb:         [SKIP][103] ([fdo#109276]) -> [PASS][104] +20 similar issues
+   [103]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7683/shard-iclb8/igt@prime_busy@hang-bsd2.html
+   [104]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16000/shard-iclb4/igt@prime_busy@hang-bsd2.html
+
+  
+#### Warnings ####
+
+  * igt@gem_ctx_isolation@vcs1-nonpriv:
+    - shard-iclb:         [FAIL][105] ([IGT#28]) -> [SKIP][106] ([fdo#109276] / [fdo#112080])
+   [105]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7683/shard-iclb4/igt@gem_ctx_isolation@vcs1-nonpriv.html
+   [106]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16000/shard-iclb8/igt@gem_ctx_isolation@vcs1-nonpriv.html
+
+  * igt@gem_ctx_isolation@vcs2-reset:
+    - shard-tglb:         [SKIP][107] ([fdo#111912] / [fdo#112080]) -> [SKIP][108] ([fdo#112080])
+   [107]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7683/shard-tglb7/igt@gem_ctx_isolation@vcs2-reset.html
+   [108]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16000/shard-tglb9/igt@gem_ctx_isolation@vcs2-reset.html
+
+  * igt@gem_ctx_isolation@vcs2-s3:
+    - shard-tglb:         [SKIP][109] ([fdo#112080]) -> [SKIP][110] ([fdo#111912] / [fdo#112080])
+   [109]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7683/shard-tglb9/igt@gem_ctx_isolation@vcs2-s3.html
+   [110]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16000/shard-tglb5/igt@gem_ctx_isolation@vcs2-s3.html
+
+  * igt@gem_tiled_blits@normal:
+    - shard-hsw:          [FAIL][111] ([i915#818]) -> [FAIL][112] ([i915#832])
+   [111]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7683/shard-hsw7/igt@gem_tiled_blits@normal.html
+   [112]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16000/shard-hsw7/igt@gem_tiled_blits@normal.html
+
+  * igt@i915_pm_dc@dc6-dpms:
+    - shard-tglb:         [FAIL][113] ([i915#454]) -> [SKIP][114] ([i915#468])
+   [113]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7683/shard-tglb7/igt@i915_pm_dc@dc6-dpms.html
+   [114]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16000/shard-tglb9/igt@i915_pm_dc@dc6-dpms.html
+
+  * igt@kms_cursor_crc@pipe-a-cursor-suspend:
+    - shard-kbl:          [FAIL][115] ([i915#54]) -> [DMESG-FAIL][116] ([i915#180] / [i915#54])
+   [115]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7683/shard-kbl1/igt@kms_cursor_crc@pipe-a-cursor-suspend.html
+   [116]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16000/shard-kbl6/igt@kms_cursor_crc@pipe-a-cursor-suspend.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [IGT#28]: https://gitlab.freedesktop.org/drm/igt-gpu-tools/issues/28
+  [fdo#108145]: https://bugs.freedesktop.org/show_bug.cgi?id=108145
+  [fdo#109276]: https://bugs.freedesktop.org/show_bug.cgi?id=109276
+  [fdo#109441]: https://bugs.freedesktop.org/show_bug.cgi?id=109441
+  [fdo#109642]: https://bugs.freedesktop.org/show_bug.cgi?id=109642
+  [fdo#111068]: https://bugs.freedesktop.org/show_bug.cgi?id=111068
+  [fdo#111593]: https://bugs.freedesktop.org/show_bug.cgi?id=111593
+  [fdo#111606]: https://bugs.freedesktop.org/show_bug.cgi?id=111606
+  [fdo#111677]: https://bugs.freedesktop.org/show_bug.cgi?id=111677
+  [fdo#111735]: https://bugs.freedesktop.org/show_bug.cgi?id=111735
+  [fdo#111764]: https://bugs.freedesktop.org/show_bug.cgi?id=111764
+  [fdo#111912]: https://bugs.freedesktop.org/show_bug.cgi?id=111912
+  [fdo#112080]: https://bugs.freedesktop.org/show_bug.cgi?id=112080
+  [fdo#112146]: https://bugs.freedesktop.org/show_bug.cgi?id=112146
+  [i915#109]: https://gitlab.freedesktop.org/drm/intel/issues/109
+  [i915#180]: https://gitlab.freedesktop.org/drm/intel/issues/180
+  [i915#265]: https://gitlab.freedesktop.org/drm/intel/issues/265
+  [i915#34]: https://gitlab.freedesktop.org/drm/intel/issues/34
+  [i915#407]: https://gitlab.freedesktop.org/drm/intel/issues/407
+  [i915#435]: https://gitlab.freedesktop.org/drm/intel/issues/435
+  [i915#44]: https://gitlab.freedesktop.org/drm/intel/issues/44
+  [i915#454]: https://gitlab.freedesktop.org/drm/intel/issues/454
+  [i915#460]: https://gitlab.freedesktop.org/drm/intel/issues/460
+  [i915#461]: https://gitlab.freedesktop.org/drm/intel/issues/461
+  [i915#468]: https://gitlab.freedesktop.org/drm/intel/issues/468
+  [i915#469]: https://gitlab.freedesktop.org/drm/intel/issues/469
+  [i915#470]: https://gitlab.freedesktop.org/drm/intel/issues/470
+  [i915#472]: https://gitlab.freedesktop.org/drm/intel/issues/472
+  [i915#476]: https://gitlab.freedesktop.org/drm/intel/issues/476
+  [i915#49]: https://gitlab.freedesktop.org/drm/intel/issues/49
+  [i915#52]: https://gitlab.freedesktop.org/drm/intel/issues/52
+  [i915#520]: https://gitlab.freedesktop.org/drm/intel/issues/520
+  [i915#530]: https://gitlab.freedesktop.org/drm/intel/issues/530
+  [i915#54]: https://gitlab.freedesktop.org/drm/intel/issues/54
+  [i915#570]: https://gitlab.freedesktop.org/drm/intel/issues/570
+  [i915#644]: https://gitlab.freedesktop.org/drm/intel/issues/644
+  [i915#677]: https://gitlab.freedesktop.org/drm/intel/issues/677
+  [i915#679]: https://gitlab.freedesktop.org/drm/intel/issues/679
+  [i915#69]: https://gitlab.freedesktop.org/drm/intel/issues/69
+  [i915#707]: https://gitlab.freedesktop.org/drm/intel/issues/707
+  [i915#79]: https://gitlab.freedesktop.org/drm/intel/issues/79
+  [i915#796]: https://gitlab.freedesktop.org/drm/intel/issues/796
+  [i915#818]: https://gitlab.freedesktop.org/drm/intel/issues/818
+  [i915#819]: https://gitlab.freedesktop.org/drm/intel/issues/819
+  [i915#832]: https://gitlab.freedesktop.org/drm/intel/issues/832
+  [i915#836]: https://gitlab.freedesktop.org/drm/intel/issues/836
+
+
+Participating hosts (10 -> 10)
+------------------------------
+
+  No changes in participating hosts
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_7683 -> Patchwork_16000
+
+  CI-20190529: 20190529
+  CI_DRM_7683: 2355e597e6ecddc17319d0231f229223209f6ff2 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5357: a555a4b98f90dab655d24bb3d07e9291a8b8dac8 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_16000: fe1a652e8aa7bcad587b152468d4e740c4377b92 @ git://anongit.freedesktop.org/gfx-ci/linux
+  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.freedesktop.org/piglit
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16000/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
