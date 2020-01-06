@@ -2,31 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5CAD21310DF
-	for <lists+intel-gfx@lfdr.de>; Mon,  6 Jan 2020 11:55:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0102E13113E
+	for <lists+intel-gfx@lfdr.de>; Mon,  6 Jan 2020 12:15:47 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 73A436E258;
-	Mon,  6 Jan 2020 10:55:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 56A3A89A92;
+	Mon,  6 Jan 2020 11:15:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 441086E255;
- Mon,  6 Jan 2020 10:55:44 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 43EA7A0003;
- Mon,  6 Jan 2020 10:55:43 +0000 (UTC)
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7292B89A92
+ for <intel-gfx@lists.freedesktop.org>; Mon,  6 Jan 2020 11:15:43 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19783080-1500050 
+ for multiple; Mon, 06 Jan 2020 11:15:19 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon,  6 Jan 2020 11:15:18 +0000
+Message-Id: <20200106111518.2515465-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.25.0.rc1
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Mon, 06 Jan 2020 10:55:43 -0000
-Message-ID: <157830814324.24766.11506378703545040725@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200106102227.2438478-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200106102227.2438478-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5B1/8=5D_drm/i915/selftests=3A_Fixup_sparse_?=
- =?utf-8?q?=5F=5Fuser_annotation_on_local_var?=
+Subject: [Intel-gfx] [PATCH] drm/i915/gt: Yield the timeslice if waiting on
+ a semaphore
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,109 +37,179 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+If we find ourselves waiting on a MI_SEMAPHORE_WAIT, either within the
+user batch or in our own preamble, the engine raises a
+GT_WAIT_ON_SEMAPHORE interrupt. We can unmask that interrupt and so
+respond to a semaphore wait by yielding the timeslice (if we have
+another process to yield to!)
 
-Series: series starting with [1/8] drm/i915/selftests: Fixup sparse __user annotation on local var
-URL   : https://patchwork.freedesktop.org/series/71648/
-State : success
+The only real complication is that the interrupt is only generated for
+the start of the semaphore wait, and is asynchronous to our
+process_csb() -- that is we may not have registered the timeslice before
+we see the interrupt. To ensure we don't miss a potential semaphore
+(e.g. selftests/live_timeslice_preempt) we mark the interrupt and apply
+it to the next timeslice regardless of whether it was active at the
+time.
 
-== Summary ==
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+---
+ drivers/gpu/drm/i915/gt/intel_gt_irq.c | 31 ++++++++++++++------------
+ drivers/gpu/drm/i915/gt/intel_lrc.c    | 17 ++++++++++----
+ drivers/gpu/drm/i915/i915_gem.h        |  5 +++++
+ drivers/gpu/drm/i915/i915_reg.h        |  1 +
+ 4 files changed, 36 insertions(+), 18 deletions(-)
 
-CI Bug Log - changes from CI_DRM_7680 -> Patchwork_15999
-====================================================
+diff --git a/drivers/gpu/drm/i915/gt/intel_gt_irq.c b/drivers/gpu/drm/i915/gt/intel_gt_irq.c
+index f796bdf1ed30..15560d46e5f9 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gt_irq.c
++++ b/drivers/gpu/drm/i915/gt/intel_gt_irq.c
+@@ -24,6 +24,12 @@ cs_irq_handler(struct intel_engine_cs *engine, u32 iir)
+ {
+ 	bool tasklet = false;
+ 
++	if (iir & GT_WAIT_SEMAPHORE_INTERRUPT) {
++		set_bit(I915_TASKLET_YIELD, &engine->execlists.tasklet.state);
++		if (del_timer(&engine->execlists.timer))
++			tasklet = true;
++	}
++
+ 	if (iir & GT_CONTEXT_SWITCH_INTERRUPT)
+ 		tasklet = true;
+ 
+@@ -210,7 +216,10 @@ void gen11_gt_irq_reset(struct intel_gt *gt)
+ 
+ void gen11_gt_irq_postinstall(struct intel_gt *gt)
+ {
+-	const u32 irqs = GT_RENDER_USER_INTERRUPT | GT_CONTEXT_SWITCH_INTERRUPT;
++	const u32 irqs =
++		GT_RENDER_USER_INTERRUPT |
++		GT_CONTEXT_SWITCH_INTERRUPT |
++		GT_WAIT_SEMAPHORE_INTERRUPT;
+ 	struct intel_uncore *uncore = gt->uncore;
+ 	const u32 dmask = irqs << 16 | irqs;
+ 	const u32 smask = irqs << 16;
+@@ -357,21 +366,15 @@ void gen8_gt_irq_postinstall(struct intel_gt *gt)
+ 	struct intel_uncore *uncore = gt->uncore;
+ 
+ 	/* These are interrupts we'll toggle with the ring mask register */
++	const u32 irqs =
++		GT_RENDER_USER_INTERRUPT |
++		GT_CONTEXT_SWITCH_INTERRUPT |
++		GT_WAIT_SEMAPHORE_INTERRUPT;
+ 	u32 gt_interrupts[] = {
+-		(GT_RENDER_USER_INTERRUPT << GEN8_RCS_IRQ_SHIFT |
+-		 GT_CONTEXT_SWITCH_INTERRUPT << GEN8_RCS_IRQ_SHIFT |
+-		 GT_RENDER_USER_INTERRUPT << GEN8_BCS_IRQ_SHIFT |
+-		 GT_CONTEXT_SWITCH_INTERRUPT << GEN8_BCS_IRQ_SHIFT),
+-
+-		(GT_RENDER_USER_INTERRUPT << GEN8_VCS0_IRQ_SHIFT |
+-		 GT_CONTEXT_SWITCH_INTERRUPT << GEN8_VCS0_IRQ_SHIFT |
+-		 GT_RENDER_USER_INTERRUPT << GEN8_VCS1_IRQ_SHIFT |
+-		 GT_CONTEXT_SWITCH_INTERRUPT << GEN8_VCS1_IRQ_SHIFT),
+-
++		irqs << GEN8_RCS_IRQ_SHIFT | irqs << GEN8_BCS_IRQ_SHIFT,
++		irqs << GEN8_VCS0_IRQ_SHIFT | irqs << GEN8_VCS1_IRQ_SHIFT,
+ 		0,
+-
+-		(GT_RENDER_USER_INTERRUPT << GEN8_VECS_IRQ_SHIFT |
+-		 GT_CONTEXT_SWITCH_INTERRUPT << GEN8_VECS_IRQ_SHIFT)
++		irqs << GEN8_VECS_IRQ_SHIFT,
+ 	};
+ 
+ 	gt->pm_ier = 0x0;
+diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+index 42717d026349..0162ef7476ad 100644
+--- a/drivers/gpu/drm/i915/gt/intel_lrc.c
++++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+@@ -1662,7 +1662,8 @@ static void defer_active(struct intel_engine_cs *engine)
+ }
+ 
+ static bool
+-need_timeslice(struct intel_engine_cs *engine, const struct i915_request *rq)
++need_timeslice(const struct intel_engine_cs *engine,
++	       const struct i915_request *rq)
+ {
+ 	int hint;
+ 
+@@ -1678,6 +1679,13 @@ need_timeslice(struct intel_engine_cs *engine, const struct i915_request *rq)
+ 	return hint >= effective_prio(rq);
+ }
+ 
++static bool
++timeslice_expired(const struct intel_engine_cs *engine)
++{
++	return (timer_expired(&engine->execlists.timer) ||
++		test_bit(I915_TASKLET_YIELD, &engine->execlists.tasklet.state));
++}
++
+ static int
+ switch_prio(struct intel_engine_cs *engine, const struct i915_request *rq)
+ {
+@@ -1840,7 +1848,7 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
+ 			last->context->lrc_desc |= CTX_DESC_FORCE_RESTORE;
+ 			last = NULL;
+ 		} else if (need_timeslice(engine, last) &&
+-			   timer_expired(&engine->execlists.timer)) {
++			   timeslice_expired(engine)) {
+ 			ENGINE_TRACE(engine,
+ 				     "expired last=%llx:%lld, prio=%d, hint=%d\n",
+ 				     last->fence.context,
+@@ -2104,10 +2112,10 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
+ 
+ 			goto skip_submit;
+ 		}
+-
+ 		memset(port + 1, 0, (last_port - port) * sizeof(*port));
+-		execlists_submit_ports(engine);
+ 
++		clear_bit(I915_TASKLET_YIELD, &execlists->tasklet.state);
++		execlists_submit_ports(engine);
+ 		set_preempt_timeout(engine);
+ 	} else {
+ skip_submit:
+@@ -3968,6 +3976,7 @@ logical_ring_default_irqs(struct intel_engine_cs *engine)
+ 
+ 	engine->irq_enable_mask = GT_RENDER_USER_INTERRUPT << shift;
+ 	engine->irq_keep_mask = GT_CONTEXT_SWITCH_INTERRUPT << shift;
++	engine->irq_keep_mask |= GT_WAIT_SEMAPHORE_INTERRUPT << shift;
+ }
+ 
+ static void rcs_submission_override(struct intel_engine_cs *engine)
+diff --git a/drivers/gpu/drm/i915/i915_gem.h b/drivers/gpu/drm/i915/i915_gem.h
+index 1753c84d6c0d..f67dcfe4c706 100644
+--- a/drivers/gpu/drm/i915/i915_gem.h
++++ b/drivers/gpu/drm/i915/i915_gem.h
+@@ -116,4 +116,9 @@ static inline bool __tasklet_is_scheduled(struct tasklet_struct *t)
+ 	return test_bit(TASKLET_STATE_SCHED, &t->state);
+ }
+ 
++enum {
++	__TASKLET_STATE_LAST = TASKLET_STATE_RUN,
++	I915_TASKLET_YIELD,
++};
++
+ #endif /* __I915_GEM_H__ */
+diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+index cf770793be54..787da4a770ed 100644
+--- a/drivers/gpu/drm/i915/i915_reg.h
++++ b/drivers/gpu/drm/i915/i915_reg.h
+@@ -3105,6 +3105,7 @@ static inline bool i915_mmio_reg_valid(i915_reg_t reg)
+ #define GT_BSD_CS_ERROR_INTERRUPT		(1 << 15)
+ #define GT_BSD_USER_INTERRUPT			(1 << 12)
+ #define GT_RENDER_L3_PARITY_ERROR_INTERRUPT_S1	(1 << 11) /* hsw+; rsvd on snb, ivb, vlv */
++#define GT_WAIT_SEMAPHORE_INTERRUPT		(1 <<  11) /* bdw+ */
+ #define GT_CONTEXT_SWITCH_INTERRUPT		(1 <<  8)
+ #define GT_RENDER_L3_PARITY_ERROR_INTERRUPT	(1 <<  5) /* !snb */
+ #define GT_RENDER_PIPECTL_NOTIFY_INTERRUPT	(1 <<  4)
+-- 
+2.25.0.rc1
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15999/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_15999 that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@gem_close_race@basic-threads:
-    - fi-byt-j1900:       [TIMEOUT][1] ([i915#816]) -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7680/fi-byt-j1900/igt@gem_close_race@basic-threads.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15999/fi-byt-j1900/igt@gem_close_race@basic-threads.html
-
-  * igt@i915_selftest@live_active:
-    - fi-icl-y:           [DMESG-FAIL][3] ([i915#765]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7680/fi-icl-y/igt@i915_selftest@live_active.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15999/fi-icl-y/igt@i915_selftest@live_active.html
-
-  * igt@i915_selftest@live_blt:
-    - fi-hsw-4770r:       [DMESG-FAIL][5] ([i915#553] / [i915#725]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7680/fi-hsw-4770r/igt@i915_selftest@live_blt.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15999/fi-hsw-4770r/igt@i915_selftest@live_blt.html
-    - fi-ivb-3770:        [DMESG-FAIL][7] ([i915#725]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7680/fi-ivb-3770/igt@i915_selftest@live_blt.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15999/fi-ivb-3770/igt@i915_selftest@live_blt.html
-
-  
-#### Warnings ####
-
-  * igt@i915_selftest@live_blt:
-    - fi-hsw-4770:        [DMESG-FAIL][9] ([i915#553] / [i915#725]) -> [DMESG-FAIL][10] ([i915#770])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7680/fi-hsw-4770/igt@i915_selftest@live_blt.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15999/fi-hsw-4770/igt@i915_selftest@live_blt.html
-
-  
-  [i915#553]: https://gitlab.freedesktop.org/drm/intel/issues/553
-  [i915#725]: https://gitlab.freedesktop.org/drm/intel/issues/725
-  [i915#765]: https://gitlab.freedesktop.org/drm/intel/issues/765
-  [i915#770]: https://gitlab.freedesktop.org/drm/intel/issues/770
-  [i915#816]: https://gitlab.freedesktop.org/drm/intel/issues/816
-
-
-Participating hosts (43 -> 40)
-------------------------------
-
-  Additional (6): fi-bdw-gvtdvm fi-glk-dsi fi-ilk-650 fi-cfl-8109u fi-kbl-8809g fi-skl-6600u 
-  Missing    (9): fi-byt-squawks fi-bsw-cyan fi-kbl-7500u fi-ctg-p8600 fi-whl-u fi-bsw-kefka fi-skl-lmem fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_7680 -> Patchwork_15999
-
-  CI-20190529: 20190529
-  CI_DRM_7680: b70a5ffaee3192a3d21296a6d68f4a1b4f4cecd5 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5357: a555a4b98f90dab655d24bb3d07e9291a8b8dac8 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_15999: ce3a2924e90c45cf9cca6d2b80e29f4bdbf4ed98 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-ce3a2924e90c drm/i915/gt: Use memset_p to clear the ports
-7ef130338af2 drm/i915/gt: Drop mutex serialisation between context pin/unpin
-a5dd173981d4 drm/i915: Only retire requests when eviction is allowed to blocked
-66b1f7932954 drm/i915: Replace vma parking with a clock aging algorithm
-4b68dfe31714 drm/i915: Merge i915_request.flags with i915_request.fence.flags
-6fc7325bd127 drm/i915/gt: Convert the final GEM_TRACE to GT_TRACE and co
-dc3de2f2809d drm/i915/selftests: Impose a timeout for request submission
-2b51023a3737 drm/i915/selftests: Fixup sparse __user annotation on local var
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15999/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
