@@ -2,31 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA73B131072
-	for <lists+intel-gfx@lfdr.de>; Mon,  6 Jan 2020 11:22:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C9A9D131076
+	for <lists+intel-gfx@lfdr.de>; Mon,  6 Jan 2020 11:22:57 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AD7166E22C;
-	Mon,  6 Jan 2020 10:22:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 888546E231;
+	Mon,  6 Jan 2020 10:22:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E346A6E22F
- for <intel-gfx@lists.freedesktop.org>; Mon,  6 Jan 2020 10:22:48 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C05436E22C
+ for <intel-gfx@lists.freedesktop.org>; Mon,  6 Jan 2020 10:22:49 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19782262-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19782264-1500050 
  for multiple; Mon, 06 Jan 2020 10:22:29 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon,  6 Jan 2020 10:22:21 +0000
-Message-Id: <20200106102227.2438478-2-chris@chris-wilson.co.uk>
+Date: Mon,  6 Jan 2020 10:22:22 +0000
+Message-Id: <20200106102227.2438478-3-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.25.0.rc1
 In-Reply-To: <20200106102227.2438478-1-chris@chris-wilson.co.uk>
 References: <20200106102227.2438478-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 2/8] drm/i915/selftests: Impose a timeout for
- request submission
+Subject: [Intel-gfx] [PATCH 3/8] drm/i915/gt: Convert the final GEM_TRACE to
+ GT_TRACE and co
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,71 +44,111 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Avoid spinning indefinitely waiting for the request to be submitted, and
-instead apply a timeout. A secondary benefit is that the error message
-will show which suspect is blocked.
+Convert the few remaining GEM_TRACE() used for debugging over to the
+appropriate GT_TRACE or RQ_TRACE.
 
+References: 639f2f24895f ("drm/i915: Introduce new macros for tracing")
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Venkata Sandeep Dhanalakota <venkata.s.dhanalakota@intel.com>
 ---
- drivers/gpu/drm/i915/gt/selftest_lrc.c | 26 +++++++++++++++++++++-----
- 1 file changed, 21 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/i915/gt/intel_context.c |  2 ++
+ drivers/gpu/drm/i915/gt/intel_reset.c   | 21 ++++++++-------------
+ 2 files changed, 10 insertions(+), 13 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/selftest_lrc.c b/drivers/gpu/drm/i915/gt/selftest_lrc.c
-index 627613d85db8..d96604baab94 100644
---- a/drivers/gpu/drm/i915/gt/selftest_lrc.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_lrc.c
-@@ -527,13 +527,19 @@ static struct i915_request *nop_request(struct intel_engine_cs *engine)
- 	return rq;
- }
+diff --git a/drivers/gpu/drm/i915/gt/intel_context.c b/drivers/gpu/drm/i915/gt/intel_context.c
+index fbaa9df6f436..4d0bc1478ccd 100644
+--- a/drivers/gpu/drm/i915/gt/intel_context.c
++++ b/drivers/gpu/drm/i915/gt/intel_context.c
+@@ -152,6 +152,8 @@ static int __intel_context_active(struct i915_active *active)
+ 	struct intel_context *ce = container_of(active, typeof(*ce), active);
+ 	int err;
  
--static void wait_for_submit(struct intel_engine_cs *engine,
--			    struct i915_request *rq)
-+static int wait_for_submit(struct intel_engine_cs *engine,
-+			   struct i915_request *rq,
-+			   unsigned long timeout)
- {
-+	timeout += jiffies;
- 	do {
- 		cond_resched();
- 		intel_engine_flush_submission(engine);
--	} while (!i915_request_is_active(rq));
-+		if (i915_request_is_active(rq))
-+			return 0;
-+	} while (time_before(jiffies, timeout));
++	CE_TRACE(ce, "active\n");
 +
-+	return -ETIME;
+ 	intel_context_get(ce);
+ 
+ 	err = intel_ring_pin(ce->ring);
+diff --git a/drivers/gpu/drm/i915/gt/intel_reset.c b/drivers/gpu/drm/i915/gt/intel_reset.c
+index fe919a1af904..76de33ae9efe 100644
+--- a/drivers/gpu/drm/i915/gt/intel_reset.c
++++ b/drivers/gpu/drm/i915/gt/intel_reset.c
+@@ -147,11 +147,7 @@ static void mark_innocent(struct i915_request *rq)
+ 
+ void __i915_request_reset(struct i915_request *rq, bool guilty)
+ {
+-	GEM_TRACE("%s rq=%llx:%lld, guilty? %s\n",
+-		  rq->engine->name,
+-		  rq->fence.context,
+-		  rq->fence.seqno,
+-		  yesno(guilty));
++	RQ_TRACE(rq, "guilty? %s\n", yesno(guilty));
+ 
+ 	GEM_BUG_ON(i915_request_completed(rq));
+ 
+@@ -624,7 +620,7 @@ int __intel_gt_reset(struct intel_gt *gt, intel_engine_mask_t engine_mask)
+ 	 */
+ 	intel_uncore_forcewake_get(gt->uncore, FORCEWAKE_ALL);
+ 	for (retry = 0; ret == -ETIMEDOUT && retry < retries; retry++) {
+-		GEM_TRACE("engine_mask=%x\n", engine_mask);
++		GT_TRACE(gt, "engine_mask=%x\n", engine_mask);
+ 		preempt_disable();
+ 		ret = reset(gt, engine_mask, retry);
+ 		preempt_enable();
+@@ -784,8 +780,7 @@ static void nop_submit_request(struct i915_request *request)
+ 	struct intel_engine_cs *engine = request->engine;
+ 	unsigned long flags;
+ 
+-	GEM_TRACE("%s fence %llx:%lld -> -EIO\n",
+-		  engine->name, request->fence.context, request->fence.seqno);
++	RQ_TRACE(request, "-EIO\n");
+ 	dma_fence_set_error(&request->fence, -EIO);
+ 
+ 	spin_lock_irqsave(&engine->active.lock, flags);
+@@ -812,7 +807,7 @@ static void __intel_gt_set_wedged(struct intel_gt *gt)
+ 			intel_engine_dump(engine, &p, "%s\n", engine->name);
+ 	}
+ 
+-	GEM_TRACE("start\n");
++	GT_TRACE(gt, "start\n");
+ 
+ 	/*
+ 	 * First, stop submission to hw, but do not yet complete requests by
+@@ -843,7 +838,7 @@ static void __intel_gt_set_wedged(struct intel_gt *gt)
+ 
+ 	reset_finish(gt, awake);
+ 
+-	GEM_TRACE("end\n");
++	GT_TRACE(gt, "end\n");
  }
  
- static long timeslice_threshold(const struct intel_engine_cs *engine)
-@@ -601,7 +607,12 @@ static int live_timeslice_queue(void *arg)
- 			goto err_heartbeat;
- 		}
- 		engine->schedule(rq, &attr);
--		wait_for_submit(engine, rq);
-+		err = wait_for_submit(engine, rq, HZ / 2);
-+		if (err) {
-+			pr_err("%s: Timed out trying to submit semaphores\n",
-+			       engine->name);
-+			goto err_rq;
-+		}
+ void intel_gt_set_wedged(struct intel_gt *gt)
+@@ -869,7 +864,7 @@ static bool __intel_gt_unset_wedged(struct intel_gt *gt)
+ 	if (test_bit(I915_WEDGED_ON_INIT, &gt->reset.flags))
+ 		return false;
  
- 		/* ELSP[1]: nop request */
- 		nop = nop_request(engine);
-@@ -609,8 +620,13 @@ static int live_timeslice_queue(void *arg)
- 			err = PTR_ERR(nop);
- 			goto err_rq;
- 		}
--		wait_for_submit(engine, nop);
-+		err = wait_for_submit(engine, nop, HZ / 2);
- 		i915_request_put(nop);
-+		if (err) {
-+			pr_err("%s: Timed out trying to submit nop\n",
-+			       engine->name);
-+			goto err_rq;
-+		}
+-	GEM_TRACE("start\n");
++	GT_TRACE(gt, "start\n");
  
- 		GEM_BUG_ON(i915_request_completed(rq));
- 		GEM_BUG_ON(execlists_active(&engine->execlists) != rq);
+ 	/*
+ 	 * Before unwedging, make sure that all pending operations
+@@ -931,7 +926,7 @@ static bool __intel_gt_unset_wedged(struct intel_gt *gt)
+ 	 */
+ 	intel_engines_reset_default_submission(gt);
+ 
+-	GEM_TRACE("end\n");
++	GT_TRACE(gt, "end\n");
+ 
+ 	smp_mb__before_atomic(); /* complete takeover before enabling execbuf */
+ 	clear_bit(I915_WEDGED, &gt->reset.flags);
+@@ -1006,7 +1001,7 @@ void intel_gt_reset(struct intel_gt *gt,
+ 	intel_engine_mask_t awake;
+ 	int ret;
+ 
+-	GEM_TRACE("flags=%lx\n", gt->reset.flags);
++	GT_TRACE(gt, "flags=%lx\n", gt->reset.flags);
+ 
+ 	might_sleep();
+ 	GEM_BUG_ON(!test_bit(I915_RESET_BACKOFF, &gt->reset.flags));
 -- 
 2.25.0.rc1
 
