@@ -1,32 +1,39 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BCC5013115A
-	for <lists+intel-gfx@lfdr.de>; Mon,  6 Jan 2020 12:21:42 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 03C3713115C
+	for <lists+intel-gfx@lfdr.de>; Mon,  6 Jan 2020 12:22:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 99DEC6E25F;
-	Mon,  6 Jan 2020 11:21:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5E2916E260;
+	Mon,  6 Jan 2020 11:22:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DB5546E25F
- for <intel-gfx@lists.freedesktop.org>; Mon,  6 Jan 2020 11:21:38 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19783186-1500050 
- for multiple; Mon, 06 Jan 2020 11:21:27 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon,  6 Jan 2020 11:21:26 +0000
-Message-Id: <20200106112126.2515523-2-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.25.0.rc1
-In-Reply-To: <20200106112126.2515523-1-chris@chris-wilson.co.uk>
-References: <20200106112126.2515523-1-chris@chris-wilson.co.uk>
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 95A206E260
+ for <intel-gfx@lists.freedesktop.org>; Mon,  6 Jan 2020 11:22:24 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 06 Jan 2020 03:22:23 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.69,402,1571727600"; d="scan'208";a="216807129"
+Received: from unknown (HELO [10.249.36.43]) ([10.249.36.43])
+ by fmsmga007.fm.intel.com with ESMTP; 06 Jan 2020 03:22:22 -0800
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+References: <20200106102227.2438478-1-chris@chris-wilson.co.uk>
+ <20200106102227.2438478-7-chris@chris-wilson.co.uk>
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Message-ID: <f148cbb9-c424-4f81-0e45-cb0814114788@linux.intel.com>
+Date: Mon, 6 Jan 2020 12:22:21 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 2/2] drm/i915/gt: Yield the timeslice if waiting
- on a semaphore
+In-Reply-To: <20200106102227.2438478-7-chris@chris-wilson.co.uk>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH 7/8] drm/i915/gt: Drop mutex serialisation
+ between context pin/unpin
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,173 +51,113 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-If we find ourselves waiting on a MI_SEMAPHORE_WAIT, either within the
-user batch or in our own preamble, the engine raises a
-GT_WAIT_ON_SEMAPHORE interrupt. We can unmask that interrupt and so
-respond to a semaphore wait by yielding the timeslice (if we have
-another process to yield to!)
+Op 06-01-2020 om 11:22 schreef Chris Wilson:
+> The last remaining reason for serialising the pin/unpin of the
+> intel_context is to ensure that our preallocated wakerefs are not
+> consumed too early (i.e. the unpin of the previous phase does not emit
+> the idle barriers for this phase before we even submit). All of the
+> other operations within the context pin/unpin are supposed to be
+> atomic...  Therefore, we can reduce the serialisation to being just on
+> the i915_active.preallocated_barriers itself and drop the nested
+> pin_mutex from intel_context_unpin().
+>
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> ---
+>  drivers/gpu/drm/i915/gt/intel_context.c | 18 +++++-------------
+>  drivers/gpu/drm/i915/i915_active.c      | 19 +++++++++++++++----
+>  2 files changed, 20 insertions(+), 17 deletions(-)
 
-The only real complication is that the interrupt is only generated for
-the start of the semaphore wait, and is asynchronous to our
-process_csb() -- that is we may not have registered the timeslice before
-we see the interrupt. To ensure we don't miss a potential semaphore
-(e.g. selftests/live_timeslice_preempt) we mark the interrupt and apply
-it to the next timeslice regardless of whether it was active at the
-time.
+For whole series, except 5 and 6:
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
----
- drivers/gpu/drm/i915/gt/intel_gt_irq.c | 31 ++++++++++++++------------
- drivers/gpu/drm/i915/gt/intel_lrc.c    | 17 ++++++++++----
- drivers/gpu/drm/i915/i915_gem.h        |  5 +++++
- drivers/gpu/drm/i915/i915_reg.h        |  1 +
- 4 files changed, 36 insertions(+), 18 deletions(-)
+Reviewed-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_irq.c b/drivers/gpu/drm/i915/gt/intel_gt_irq.c
-index f796bdf1ed30..15560d46e5f9 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt_irq.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_irq.c
-@@ -24,6 +24,12 @@ cs_irq_handler(struct intel_engine_cs *engine, u32 iir)
- {
- 	bool tasklet = false;
- 
-+	if (iir & GT_WAIT_SEMAPHORE_INTERRUPT) {
-+		set_bit(I915_TASKLET_YIELD, &engine->execlists.tasklet.state);
-+		if (del_timer(&engine->execlists.timer))
-+			tasklet = true;
-+	}
-+
- 	if (iir & GT_CONTEXT_SWITCH_INTERRUPT)
- 		tasklet = true;
- 
-@@ -210,7 +216,10 @@ void gen11_gt_irq_reset(struct intel_gt *gt)
- 
- void gen11_gt_irq_postinstall(struct intel_gt *gt)
- {
--	const u32 irqs = GT_RENDER_USER_INTERRUPT | GT_CONTEXT_SWITCH_INTERRUPT;
-+	const u32 irqs =
-+		GT_RENDER_USER_INTERRUPT |
-+		GT_CONTEXT_SWITCH_INTERRUPT |
-+		GT_WAIT_SEMAPHORE_INTERRUPT;
- 	struct intel_uncore *uncore = gt->uncore;
- 	const u32 dmask = irqs << 16 | irqs;
- 	const u32 smask = irqs << 16;
-@@ -357,21 +366,15 @@ void gen8_gt_irq_postinstall(struct intel_gt *gt)
- 	struct intel_uncore *uncore = gt->uncore;
- 
- 	/* These are interrupts we'll toggle with the ring mask register */
-+	const u32 irqs =
-+		GT_RENDER_USER_INTERRUPT |
-+		GT_CONTEXT_SWITCH_INTERRUPT |
-+		GT_WAIT_SEMAPHORE_INTERRUPT;
- 	u32 gt_interrupts[] = {
--		(GT_RENDER_USER_INTERRUPT << GEN8_RCS_IRQ_SHIFT |
--		 GT_CONTEXT_SWITCH_INTERRUPT << GEN8_RCS_IRQ_SHIFT |
--		 GT_RENDER_USER_INTERRUPT << GEN8_BCS_IRQ_SHIFT |
--		 GT_CONTEXT_SWITCH_INTERRUPT << GEN8_BCS_IRQ_SHIFT),
--
--		(GT_RENDER_USER_INTERRUPT << GEN8_VCS0_IRQ_SHIFT |
--		 GT_CONTEXT_SWITCH_INTERRUPT << GEN8_VCS0_IRQ_SHIFT |
--		 GT_RENDER_USER_INTERRUPT << GEN8_VCS1_IRQ_SHIFT |
--		 GT_CONTEXT_SWITCH_INTERRUPT << GEN8_VCS1_IRQ_SHIFT),
--
-+		irqs << GEN8_RCS_IRQ_SHIFT | irqs << GEN8_BCS_IRQ_SHIFT,
-+		irqs << GEN8_VCS0_IRQ_SHIFT | irqs << GEN8_VCS1_IRQ_SHIFT,
- 		0,
--
--		(GT_RENDER_USER_INTERRUPT << GEN8_VECS_IRQ_SHIFT |
--		 GT_CONTEXT_SWITCH_INTERRUPT << GEN8_VECS_IRQ_SHIFT)
-+		irqs << GEN8_VECS_IRQ_SHIFT,
- 	};
- 
- 	gt->pm_ier = 0x0;
-diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-index 42717d026349..0162ef7476ad 100644
---- a/drivers/gpu/drm/i915/gt/intel_lrc.c
-+++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-@@ -1662,7 +1662,8 @@ static void defer_active(struct intel_engine_cs *engine)
- }
- 
- static bool
--need_timeslice(struct intel_engine_cs *engine, const struct i915_request *rq)
-+need_timeslice(const struct intel_engine_cs *engine,
-+	       const struct i915_request *rq)
- {
- 	int hint;
- 
-@@ -1678,6 +1679,13 @@ need_timeslice(struct intel_engine_cs *engine, const struct i915_request *rq)
- 	return hint >= effective_prio(rq);
- }
- 
-+static bool
-+timeslice_expired(const struct intel_engine_cs *engine)
-+{
-+	return (timer_expired(&engine->execlists.timer) ||
-+		test_bit(I915_TASKLET_YIELD, &engine->execlists.tasklet.state));
-+}
-+
- static int
- switch_prio(struct intel_engine_cs *engine, const struct i915_request *rq)
- {
-@@ -1840,7 +1848,7 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
- 			last->context->lrc_desc |= CTX_DESC_FORCE_RESTORE;
- 			last = NULL;
- 		} else if (need_timeslice(engine, last) &&
--			   timer_expired(&engine->execlists.timer)) {
-+			   timeslice_expired(engine)) {
- 			ENGINE_TRACE(engine,
- 				     "expired last=%llx:%lld, prio=%d, hint=%d\n",
- 				     last->fence.context,
-@@ -2104,10 +2112,10 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
- 
- 			goto skip_submit;
- 		}
--
- 		memset(port + 1, 0, (last_port - port) * sizeof(*port));
--		execlists_submit_ports(engine);
- 
-+		clear_bit(I915_TASKLET_YIELD, &execlists->tasklet.state);
-+		execlists_submit_ports(engine);
- 		set_preempt_timeout(engine);
- 	} else {
- skip_submit:
-@@ -3968,6 +3976,7 @@ logical_ring_default_irqs(struct intel_engine_cs *engine)
- 
- 	engine->irq_enable_mask = GT_RENDER_USER_INTERRUPT << shift;
- 	engine->irq_keep_mask = GT_CONTEXT_SWITCH_INTERRUPT << shift;
-+	engine->irq_keep_mask |= GT_WAIT_SEMAPHORE_INTERRUPT << shift;
- }
- 
- static void rcs_submission_override(struct intel_engine_cs *engine)
-diff --git a/drivers/gpu/drm/i915/i915_gem.h b/drivers/gpu/drm/i915/i915_gem.h
-index 1753c84d6c0d..f67dcfe4c706 100644
---- a/drivers/gpu/drm/i915/i915_gem.h
-+++ b/drivers/gpu/drm/i915/i915_gem.h
-@@ -116,4 +116,9 @@ static inline bool __tasklet_is_scheduled(struct tasklet_struct *t)
- 	return test_bit(TASKLET_STATE_SCHED, &t->state);
- }
- 
-+enum {
-+	__TASKLET_STATE_LAST = TASKLET_STATE_RUN,
-+	I915_TASKLET_YIELD,
-+};
-+
- #endif /* __I915_GEM_H__ */
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index cf770793be54..787da4a770ed 100644
---- a/drivers/gpu/drm/i915/i915_reg.h
-+++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -3105,6 +3105,7 @@ static inline bool i915_mmio_reg_valid(i915_reg_t reg)
- #define GT_BSD_CS_ERROR_INTERRUPT		(1 << 15)
- #define GT_BSD_USER_INTERRUPT			(1 << 12)
- #define GT_RENDER_L3_PARITY_ERROR_INTERRUPT_S1	(1 << 11) /* hsw+; rsvd on snb, ivb, vlv */
-+#define GT_WAIT_SEMAPHORE_INTERRUPT		(1 <<  11) /* bdw+ */
- #define GT_CONTEXT_SWITCH_INTERRUPT		(1 <<  8)
- #define GT_RENDER_L3_PARITY_ERROR_INTERRUPT	(1 <<  5) /* !snb */
- #define GT_RENDER_PIPECTL_NOTIFY_INTERRUPT	(1 <<  4)
--- 
-2.25.0.rc1
+For 5 and 6, I think they look sane but I'm not the right person to review. :)
+
+> diff --git a/drivers/gpu/drm/i915/gt/intel_context.c b/drivers/gpu/drm/i915/gt/intel_context.c
+> index 4d0bc1478ccd..34ec958d400e 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_context.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_context.c
+> @@ -86,22 +86,14 @@ int __intel_context_do_pin(struct intel_context *ce)
+>  
+>  void intel_context_unpin(struct intel_context *ce)
+>  {
+> -	if (likely(atomic_add_unless(&ce->pin_count, -1, 1)))
+> +	if (!atomic_dec_and_test(&ce->pin_count))
+>  		return;
+>  
+> -	/* We may be called from inside intel_context_pin() to evict another */
+> -	intel_context_get(ce);
+> -	mutex_lock_nested(&ce->pin_mutex, SINGLE_DEPTH_NESTING);
+> -
+> -	if (likely(atomic_dec_and_test(&ce->pin_count))) {
+> -		CE_TRACE(ce, "retire\n");
+> +	CE_TRACE(ce, "unpin\n");
+> +	ce->ops->unpin(ce);
+>  
+> -		ce->ops->unpin(ce);
+> -
+> -		intel_context_active_release(ce);
+> -	}
+> -
+> -	mutex_unlock(&ce->pin_mutex);
+> +	intel_context_get(ce);
+> +	intel_context_active_release(ce);
+>  	intel_context_put(ce);
+>  }
+>  
+Might want to put a comment here why intel_context_get is needed?
+> diff --git a/drivers/gpu/drm/i915/i915_active.c b/drivers/gpu/drm/i915/i915_active.c
+> index cfe09964622b..f3da5c06f331 100644
+> --- a/drivers/gpu/drm/i915/i915_active.c
+> +++ b/drivers/gpu/drm/i915/i915_active.c
+> @@ -605,12 +605,15 @@ int i915_active_acquire_preallocate_barrier(struct i915_active *ref,
+>  					    struct intel_engine_cs *engine)
+>  {
+>  	intel_engine_mask_t tmp, mask = engine->mask;
+> +	struct llist_node *pos = NULL, *next;
+>  	struct intel_gt *gt = engine->gt;
+> -	struct llist_node *pos, *next;
+>  	int err;
+>  
+>  	GEM_BUG_ON(i915_active_is_idle(ref));
+> -	GEM_BUG_ON(!llist_empty(&ref->preallocated_barriers));
+> +
+> +	/* Wait until the previous preallocation is completed */
+> +	while (!llist_empty(&ref->preallocated_barriers))
+> +		cond_resched();
+>  
+>  	/*
+>  	 * Preallocate a node for each physical engine supporting the target
+> @@ -653,16 +656,24 @@ int i915_active_acquire_preallocate_barrier(struct i915_active *ref,
+>  		GEM_BUG_ON(rcu_access_pointer(node->base.fence) != ERR_PTR(-EAGAIN));
+>  
+>  		GEM_BUG_ON(barrier_to_engine(node) != engine);
+> -		llist_add(barrier_to_ll(node), &ref->preallocated_barriers);
+> +		next = barrier_to_ll(node);
+> +		next->next = pos;
+> +		if (!pos)
+> +			pos = next;
+>  		intel_engine_pm_get(engine);
+>  	}
+>  
+> +	GEM_BUG_ON(!llist_empty(&ref->preallocated_barriers));
+> +	llist_add_batch(next, pos, &ref->preallocated_barriers);
+> +
+>  	return 0;
+>  
+>  unwind:
+> -	llist_for_each_safe(pos, next, take_preallocated_barriers(ref)) {
+> +	while (pos) {
+>  		struct active_node *node = barrier_from_ll(pos);
+>  
+> +		pos = pos->next;
+> +
+>  		atomic_dec(&ref->count);
+>  		intel_engine_pm_put(barrier_to_engine(node));
+>  
+
 
 _______________________________________________
 Intel-gfx mailing list
