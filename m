@@ -2,29 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 98AC3131C01
-	for <lists+intel-gfx@lfdr.de>; Tue,  7 Jan 2020 00:02:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A6C7131C12
+	for <lists+intel-gfx@lfdr.de>; Tue,  7 Jan 2020 00:06:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A6E116E58A;
-	Mon,  6 Jan 2020 23:02:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5336F6E591;
+	Mon,  6 Jan 2020 23:06:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9FDF26E58A
- for <intel-gfx@lists.freedesktop.org>; Mon,  6 Jan 2020 23:02:52 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19789808-1500050 
- for multiple; Mon, 06 Jan 2020 23:02:21 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon,  6 Jan 2020 23:02:21 +0000
-Message-Id: <20200106230221.2721160-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.25.0.rc1
+Received: from mail-wr1-x443.google.com (mail-wr1-x443.google.com
+ [IPv6:2a00:1450:4864:20::443])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 68D636E591;
+ Mon,  6 Jan 2020 23:06:12 +0000 (UTC)
+Received: by mail-wr1-x443.google.com with SMTP id y11so51777610wrt.6;
+ Mon, 06 Jan 2020 15:06:12 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=CWw2SMtXEXOWcLVM5K8UlRWvd3huS6ldzOQafR3nK/g=;
+ b=ct9i1KnOVYhIz0hkvMXoEiCTshm35RPTQ2/npIbAa8fYP742AP2nZEz8ShpygP6cuw
+ YKu4dHjdtSYF7Y924AHMQrrl1Cabv44RRmOz4HkwDZDp6IWdWSpqhGWFQtCeTX0q20Fj
+ euu75FoBf7vW9diIm43blTUNZfhL27KlbLAHuZx4jKAcy4JWlJ93XHXRG45fnWi4kbNu
+ JVH5+B66Nxy3XU3Dd02rHJHUW58eboAL+NBmqQ3MJ6kk514eoPXgtilTXI/Shkm/M507
+ UVYPU3Eb/qdN0FVEAYE02rom1kjnWJYoTCR18z3zLTwwpAE8ILncdehr62BD/4z6y/pv
+ TgAA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=CWw2SMtXEXOWcLVM5K8UlRWvd3huS6ldzOQafR3nK/g=;
+ b=eI4sc94WOc8xnqo5dl0trxahOqnsLHLb/CB+TThWOOXyi2fkKYPNCZjPUDG9OztNRh
+ Qo68v6TKy0jWQ4rZ5NDVof3KMjaEWu7lJN/51jkR/ky4XRfvrTDgodxdoUIuqrsHG+sN
+ va6i6I8crPTPuQKINSl4Bhh2AV3DvTL6q8i3/oJOQo69kDsQLjkV7boZaY6krr2U70ob
+ LxdLeprpV6bXDBQBR8sNVtOlHWfO9JFMHeY7OPiTXO1UyoOIZLzP9WPcml8pUcsmQQgJ
+ EUhTjoxKMS01Bw8zDJve6qD6jpFMxEmSXO5yb7y9ZtdEvAVccsVGrVaf2BnIAVtMToOy
+ YhTg==
+X-Gm-Message-State: APjAAAU0KM/O5itYIjAkeBfk0TidfDTDQHKZNBwckOSMIbu7bgDEcVaK
+ v9WKWWkbxsfh7EqMn/yqdYcA0bXpRxyZc29FKRk=
+X-Google-Smtp-Source: APXvYqy4jqqoLj9b5U1Qxpr3AOebEW91Zx/4uUXQ7zt0y7D72lxDroYTLkhXPP4APER8BspgW8UF8e1uLZ1/cXpuCO8=
+X-Received: by 2002:a5d:4692:: with SMTP id
+ u18mr104906459wrq.206.1578351971028; 
+ Mon, 06 Jan 2020 15:06:11 -0800 (PST)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915: Replace vma parking with a clock
- aging algorithm
+References: <20191230161523.32222-1-animesh.manna@intel.com>
+ <20191230161523.32222-2-animesh.manna@intel.com>
+ <20200103235444.GD2608@intel.com>
+In-Reply-To: <20200103235444.GD2608@intel.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Mon, 6 Jan 2020 18:05:59 -0500
+Message-ID: <CADnq5_MUTQTWkfCvUh+DT7mB61h=m_EyN5AeU4ktEwBkdpq3=w@mail.gmail.com>
+To: Manasi Navare <manasi.d.navare@intel.com>
+Subject: Re: [Intel-gfx] [PATCH v3 1/9] drm/amd/display: Align macro name as
+ per DP spec
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,320 +64,77 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Jani Nikula <jani.nikula@intel.com>, nidhi1.gupta@intel.com,
+ Maling list - DRI developers <dri-devel@lists.freedesktop.org>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-We cache the user's vma for a brief period of time after they close them
-so that if they are immediately reopened we avoid having to unbind and
-rebind them. This happens quite frequently for display servers which
-only keep a client's frame open for as long as they are copying from it,
-and so they open/close every vma about 30 Hz (every other frame for
-double buffering).
+On Fri, Jan 3, 2020 at 6:53 PM Manasi Navare <manasi.d.navare@intel.com> wrote:
+>
+> Harry, Jani - Since this also updates the AMD driver file, should this be merged through
+> AMD tree and then backmerged to drm-misc ?
 
-Our current strategy is to keep the vma alive until the next global idle
-point. However this cache should be purely temporal, so switch over from
-using the parked notifier to using its own clock based aging algorithm:
-if the closed vma is not reused within 2 clock ticks, it is destroyed.
+Take it through whatever tree is easiest for you.
 
-Closes: https://gitlab.freedesktop.org/drm/intel/issues/644
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
----
- drivers/gpu/drm/i915/gt/intel_gt.c            |  3 -
- drivers/gpu/drm/i915/gt/intel_gt_pm.c         |  1 -
- drivers/gpu/drm/i915/gt/intel_gt_types.h      |  3 -
- drivers/gpu/drm/i915/i915_debugfs.c           |  3 +
- drivers/gpu/drm/i915/i915_drv.c               |  4 +-
- drivers/gpu/drm/i915/i915_drv.h               |  1 +
- drivers/gpu/drm/i915/i915_vma.c               | 83 +++++++++++++++----
- drivers/gpu/drm/i915/i915_vma.h               | 11 ++-
- .../gpu/drm/i915/selftests/mock_gem_device.c  |  2 +
- 9 files changed, 86 insertions(+), 25 deletions(-)
+Alex
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c b/drivers/gpu/drm/i915/gt/intel_gt.c
-index 8a17abfbb19f..d0879b5fc313 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gt.c
-@@ -23,9 +23,6 @@ void intel_gt_init_early(struct intel_gt *gt, struct drm_i915_private *i915)
- 
- 	spin_lock_init(&gt->irq_lock);
- 
--	INIT_LIST_HEAD(&gt->closed_vma);
--	spin_lock_init(&gt->closed_lock);
--
- 	intel_gt_init_reset(gt);
- 	intel_gt_init_requests(gt);
- 	intel_gt_init_timelines(gt);
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_pm.c b/drivers/gpu/drm/i915/gt/intel_gt_pm.c
-index d1c2f034296a..3302f676d12b 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt_pm.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_pm.c
-@@ -80,7 +80,6 @@ static int __gt_park(struct intel_wakeref *wf)
- 
- 	intel_gt_park_requests(gt);
- 
--	i915_vma_parked(gt);
- 	i915_pmu_gt_parked(i915);
- 	intel_rps_park(&gt->rps);
- 	intel_rc6_park(&gt->rc6);
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_types.h b/drivers/gpu/drm/i915/gt/intel_gt_types.h
-index 96890dd12b5f..4589dea67b8f 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt_types.h
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_types.h
-@@ -58,9 +58,6 @@ struct intel_gt {
- 	struct intel_wakeref wakeref;
- 	atomic_t user_wakeref;
- 
--	struct list_head closed_vma;
--	spinlock_t closed_lock; /* guards the list of closed_vma */
--
- 	struct intel_reset reset;
- 
- 	/**
-diff --git a/drivers/gpu/drm/i915/i915_debugfs.c b/drivers/gpu/drm/i915/i915_debugfs.c
-index 0ac98e39eb75..00fb03d772ab 100644
---- a/drivers/gpu/drm/i915/i915_debugfs.c
-+++ b/drivers/gpu/drm/i915/i915_debugfs.c
-@@ -3589,6 +3589,9 @@ i915_drop_caches_set(void *data, u64 val)
- 	if (ret)
- 		return ret;
- 
-+	if (val & DROP_IDLE)
-+		i915_vma_clock_flush(&i915->vma_clock);
-+
- 	fs_reclaim_acquire(GFP_KERNEL);
- 	if (val & DROP_BOUND)
- 		i915_gem_shrink(i915, LONG_MAX, NULL, I915_SHRINK_BOUND);
-diff --git a/drivers/gpu/drm/i915/i915_drv.c b/drivers/gpu/drm/i915/i915_drv.c
-index f7385abdd74b..9fde3918094f 100644
---- a/drivers/gpu/drm/i915/i915_drv.c
-+++ b/drivers/gpu/drm/i915/i915_drv.c
-@@ -523,8 +523,8 @@ static int i915_driver_early_probe(struct drm_i915_private *dev_priv)
- 
- 	intel_wopcm_init_early(&dev_priv->wopcm);
- 
-+	i915_vma_clock_init_early(&dev_priv->vma_clock);
- 	intel_gt_init_early(&dev_priv->gt, dev_priv);
--
- 	i915_gem_init_early(dev_priv);
- 
- 	/* This must be called before any calls to HAS_PCH_* */
-@@ -561,6 +561,8 @@ static int i915_driver_early_probe(struct drm_i915_private *dev_priv)
-  */
- static void i915_driver_late_release(struct drm_i915_private *dev_priv)
- {
-+	i915_vma_clock_flush(&dev_priv->vma_clock);
-+
- 	intel_irq_fini(dev_priv);
- 	intel_power_domains_cleanup(dev_priv);
- 	i915_gem_cleanup_early(dev_priv);
-diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-index 50181113dd2b..d61d73c680b1 100644
---- a/drivers/gpu/drm/i915/i915_drv.h
-+++ b/drivers/gpu/drm/i915/i915_drv.h
-@@ -1240,6 +1240,7 @@ struct drm_i915_private {
- 	struct intel_runtime_pm runtime_pm;
- 
- 	struct i915_perf perf;
-+	struct i915_vma_clock vma_clock;
- 
- 	/* Abstract the submission mechanism (legacy ringbuffer or execlists) away */
- 	struct intel_gt gt;
-diff --git a/drivers/gpu/drm/i915/i915_vma.c b/drivers/gpu/drm/i915/i915_vma.c
-index cbd783c31adb..89ed287ab892 100644
---- a/drivers/gpu/drm/i915/i915_vma.c
-+++ b/drivers/gpu/drm/i915/i915_vma.c
-@@ -985,8 +985,7 @@ int i915_ggtt_pin(struct i915_vma *vma, u32 align, unsigned int flags)
- 
- void i915_vma_close(struct i915_vma *vma)
- {
--	struct intel_gt *gt = vma->vm->gt;
--	unsigned long flags;
-+	struct i915_vma_clock *clock = &vma->vm->i915->vma_clock;
- 
- 	GEM_BUG_ON(i915_vma_is_closed(vma));
- 
-@@ -1002,18 +1001,20 @@ void i915_vma_close(struct i915_vma *vma)
- 	 * causing us to rebind the VMA once more. This ends up being a lot
- 	 * of wasted work for the steady state.
- 	 */
--	spin_lock_irqsave(&gt->closed_lock, flags);
--	list_add(&vma->closed_link, &gt->closed_vma);
--	spin_unlock_irqrestore(&gt->closed_lock, flags);
-+	spin_lock(&clock->lock);
-+	list_add(&vma->closed_link, &clock->age[0]);
-+	spin_unlock(&clock->lock);
-+
-+	schedule_delayed_work(&clock->work, round_jiffies_up_relative(HZ));
- }
- 
- static void __i915_vma_remove_closed(struct i915_vma *vma)
- {
--	struct intel_gt *gt = vma->vm->gt;
-+	struct i915_vma_clock *clock = &vma->vm->i915->vma_clock;
- 
--	spin_lock_irq(&gt->closed_lock);
-+	spin_lock(&clock->lock);
- 	list_del_init(&vma->closed_link);
--	spin_unlock_irq(&gt->closed_lock);
-+	spin_unlock(&clock->lock);
- }
- 
- void i915_vma_reopen(struct i915_vma *vma)
-@@ -1051,15 +1052,35 @@ void i915_vma_release(struct kref *ref)
- 	i915_vma_free(vma);
- }
- 
--void i915_vma_parked(struct intel_gt *gt)
-+static void i915_vma_clock(struct work_struct *w)
- {
-+	struct i915_vma_clock *clock =
-+		container_of(w, typeof(*clock), work.work);
- 	struct i915_vma *vma, *next;
- 
--	spin_lock_irq(&gt->closed_lock);
--	list_for_each_entry_safe(vma, next, &gt->closed_vma, closed_link) {
-+	/*
-+	 * A very simple clock aging algorithm: we keep the user's closed
-+	 * vma alive for a couple of timer ticks before destroying them.
-+	 * This serves a shortlived cache so that frequently reused VMA
-+	 * are kept alive between frames and we skip having to rebing them.
-+	 *
-+	 * When closed, we insert the vma into age[0]. Upon completion of
-+	 * a timer tick, it is moved to age[1]. At the start of each timer
-+	 * tick, we destroy all the old vma that were accumulated into age[1]
-+	 * and have not been reused. All destroyed vma have therefore been
-+	 * unused for more than 1 tick (at least a second), and at most 2
-+	 * ticks (we expect the average to be 1.5 ticks).
-+	 */
-+
-+	spin_lock(&clock->lock);
-+
-+	list_for_each_entry_safe(vma, next, &clock->age[1], closed_link) {
- 		struct drm_i915_gem_object *obj = vma->obj;
- 		struct i915_address_space *vm = vma->vm;
- 
-+		if (i915_vma_is_active(vma))
-+			continue;
-+
- 		/* XXX All to avoid keeping a reference on i915_vma itself */
- 
- 		if (!kref_get_unless_zero(&obj->base.refcount))
-@@ -1072,7 +1093,7 @@ void i915_vma_parked(struct intel_gt *gt)
- 			obj = NULL;
- 		}
- 
--		spin_unlock_irq(&gt->closed_lock);
-+		spin_unlock(&clock->lock);
- 
- 		if (obj) {
- 			__i915_vma_put(vma);
-@@ -1082,11 +1103,26 @@ void i915_vma_parked(struct intel_gt *gt)
- 		i915_vm_close(vm);
- 
- 		/* Restart after dropping lock */
--		spin_lock_irq(&gt->closed_lock);
--		next = list_first_entry(&gt->closed_vma,
-+		spin_lock(&clock->lock);
-+		next = list_first_entry(&clock->age[1],
- 					typeof(*next), closed_link);
- 	}
--	spin_unlock_irq(&gt->closed_lock);
-+	list_splice_tail_init(&clock->age[0], &clock->age[1]);
-+
-+	if (!list_empty(&clock->age[1])) {
-+		/* Keep active VMA around until second tick after idling */
-+		list_for_each_entry_safe(vma, next,
-+					 &clock->age[1], closed_link) {
-+			if (i915_vma_is_active(vma))
-+				list_move_tail(&vma->closed_link,
-+					       &clock->age[0]);
-+		}
-+
-+		schedule_delayed_work(&clock->work,
-+				      round_jiffies_up_relative(HZ));
-+	}
-+
-+	spin_unlock(&clock->lock);
- }
- 
- static void __i915_vma_iounmap(struct i915_vma *vma)
-@@ -1277,6 +1313,23 @@ void i915_vma_make_purgeable(struct i915_vma *vma)
- 	i915_gem_object_make_purgeable(vma->obj);
- }
- 
-+void i915_vma_clock_init_early(struct i915_vma_clock *clock)
-+{
-+	spin_lock_init(&clock->lock);
-+	INIT_LIST_HEAD(&clock->age[0]);
-+	INIT_LIST_HEAD(&clock->age[1]);
-+
-+	INIT_DELAYED_WORK(&clock->work, i915_vma_clock);
-+}
-+
-+void i915_vma_clock_flush(struct i915_vma_clock *clock)
-+{
-+	do {
-+		if (cancel_delayed_work_sync(&clock->work))
-+			i915_vma_clock(&clock->work.work);
-+	} while (delayed_work_pending(&clock->work));
-+}
-+
- #if IS_ENABLED(CONFIG_DRM_I915_SELFTEST)
- #include "selftests/i915_vma.c"
- #endif
-diff --git a/drivers/gpu/drm/i915/i915_vma.h b/drivers/gpu/drm/i915/i915_vma.h
-index 5fffa3c58908..460a50a350d0 100644
---- a/drivers/gpu/drm/i915/i915_vma.h
-+++ b/drivers/gpu/drm/i915/i915_vma.h
-@@ -485,8 +485,6 @@ i915_vma_unpin_fence(struct i915_vma *vma)
- 		__i915_vma_unpin_fence(vma);
- }
- 
--void i915_vma_parked(struct intel_gt *gt);
--
- #define for_each_until(cond) if (cond) break; else
- 
- /**
-@@ -515,4 +513,13 @@ static inline int i915_vma_sync(struct i915_vma *vma)
- 	return i915_active_wait(&vma->active);
- }
- 
-+struct i915_vma_clock {
-+	spinlock_t lock;
-+	struct list_head age[2];
-+	struct delayed_work work;
-+};
-+
-+void i915_vma_clock_init_early(struct i915_vma_clock *clock);
-+void i915_vma_clock_flush(struct i915_vma_clock *clock);
-+
- #endif
-diff --git a/drivers/gpu/drm/i915/selftests/mock_gem_device.c b/drivers/gpu/drm/i915/selftests/mock_gem_device.c
-index 3b8986983afc..6c27f43155ea 100644
---- a/drivers/gpu/drm/i915/selftests/mock_gem_device.c
-+++ b/drivers/gpu/drm/i915/selftests/mock_gem_device.c
-@@ -57,6 +57,7 @@ static void mock_device_release(struct drm_device *dev)
- 
- 	mock_device_flush(i915);
- 	intel_gt_driver_remove(&i915->gt);
-+	i915_vma_clock_flush(&i915->vma_clock);
- 
- 	i915_gem_driver_release__contexts(i915);
- 
-@@ -164,6 +165,7 @@ struct drm_i915_private *mock_gem_device(void)
- 	mock_uncore_init(&i915->uncore, i915);
- 
- 	i915_gem_init__mm(i915);
-+	i915_vma_clock_init_early(&i915->vma_clock);
- 	intel_gt_init_early(&i915->gt, i915);
- 	atomic_inc(&i915->gt.wakeref.count); /* disable; no hw support */
- 	i915->gt.awake = -ENODEV;
--- 
-2.25.0.rc1
-
+>
+> Manasi
+>
+> On Mon, Dec 30, 2019 at 09:45:15PM +0530, Animesh Manna wrote:
+> > [Why]:
+> > Aligh with DP spec wanted to follow same naming convention.
+> >
+> > [How]:
+> > Changed the macro name of the dpcd address used for getting requested
+> > test-pattern.
+> >
+> > Cc: Harry Wentland <harry.wentland@amd.com>
+> > Cc: Alex Deucher <alexander.deucher@amd.com>
+> > Reviewed-by: Harry Wentland <harry.wentland@amd.com>
+> > Signed-off-by: Animesh Manna <animesh.manna@intel.com>
+> > ---
+> >  drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c | 2 +-
+> >  include/drm/drm_dp_helper.h                      | 2 +-
+> >  2 files changed, 2 insertions(+), 2 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c b/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
+> > index 42aa889fd0f5..1a6109be2fce 100644
+> > --- a/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
+> > +++ b/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
+> > @@ -2491,7 +2491,7 @@ static void dp_test_send_phy_test_pattern(struct dc_link *link)
+> >       /* get phy test pattern and pattern parameters from DP receiver */
+> >       core_link_read_dpcd(
+> >                       link,
+> > -                     DP_TEST_PHY_PATTERN,
+> > +                     DP_PHY_TEST_PATTERN,
+> >                       &dpcd_test_pattern.raw,
+> >                       sizeof(dpcd_test_pattern));
+> >       core_link_read_dpcd(
+> > diff --git a/include/drm/drm_dp_helper.h b/include/drm/drm_dp_helper.h
+> > index 8f8f3632e697..d6e560870fb1 100644
+> > --- a/include/drm/drm_dp_helper.h
+> > +++ b/include/drm/drm_dp_helper.h
+> > @@ -699,7 +699,7 @@
+> >  # define DP_TEST_CRC_SUPPORTED                   (1 << 5)
+> >  # define DP_TEST_COUNT_MASK              0xf
+> >
+> > -#define DP_TEST_PHY_PATTERN                 0x248
+> > +#define DP_PHY_TEST_PATTERN                 0x248
+> >  #define DP_TEST_80BIT_CUSTOM_PATTERN_7_0    0x250
+> >  #define      DP_TEST_80BIT_CUSTOM_PATTERN_15_8   0x251
+> >  #define      DP_TEST_80BIT_CUSTOM_PATTERN_23_16  0x252
+> > --
+> > 2.24.0
+> >
+> _______________________________________________
+> dri-devel mailing list
+> dri-devel@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/dri-devel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
