@@ -1,37 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A108132C9F
-	for <lists+intel-gfx@lfdr.de>; Tue,  7 Jan 2020 18:10:05 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C42E8132CF3
+	for <lists+intel-gfx@lfdr.de>; Tue,  7 Jan 2020 18:27:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1E0CF88A56;
-	Tue,  7 Jan 2020 17:10:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4BBBA6E0F5;
+	Tue,  7 Jan 2020 17:27:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 84CDB6E830
- for <intel-gfx@lists.freedesktop.org>; Tue,  7 Jan 2020 17:10:01 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7A86C6E0F5
+ for <intel-gfx@lists.freedesktop.org>; Tue,  7 Jan 2020 17:27:31 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
 X-Amp-File-Uploaded: False
 Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 07 Jan 2020 09:09:48 -0800
+ by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 07 Jan 2020 09:27:29 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,406,1571727600"; d="scan'208";a="233266444"
-Received: from trdietz-mobl1.amr.corp.intel.com (HELO
- josouza-MOBL.amr.corp.intel.com) ([10.251.130.113])
- by orsmga002.jf.intel.com with ESMTP; 07 Jan 2020 09:09:38 -0800
-From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue,  7 Jan 2020 09:09:22 -0800
-Message-Id: <20200107170922.153612-2-jose.souza@intel.com>
-X-Mailer: git-send-email 2.24.1
-In-Reply-To: <20200107170922.153612-1-jose.souza@intel.com>
-References: <20200107170922.153612-1-jose.souza@intel.com>
+X-IronPort-AV: E=Sophos;i="5.69,406,1571727600"; d="scan'208";a="233275478"
+Received: from ndcioban-mobl.jf.intel.com (HELO linux.intel.com)
+ ([10.7.199.51])
+ by orsmga002.jf.intel.com with SMTP; 07 Jan 2020 09:27:27 -0800
+Received: by linux.intel.com (sSMTP sendmail emulation);
+ Tue, 07 Jan 2020 09:24:57 -0800
+Date: Tue, 7 Jan 2020 09:24:57 -0800
+From: Nathan Ciobanu <nathan.d.ciobanu@linux.intel.com>
+To: Lucien_Kao@compal.com
+Message-ID: <20200107172457.GA18938@nc-hades.jf.intel.com>
+References: <d7aba6970fbd48f2b32e2bc6d838ab20@TPEMBX01.compal.com>
+ <s5hwoa8j3xi.wl-tiwai@suse.de>
+ <5aff22f1e36e484fa52e17c855e8ddc8@TPEMBX03.compal.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v4 rebased 2/2] drm/i915/display: Fix warning
- about MST and DDI restrictions
+Content-Disposition: inline
+In-Reply-To: <5aff22f1e36e484fa52e17c855e8ddc8@TPEMBX03.compal.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [alsa-devel] USB Type-C monitor flashes once when
+ play a video file after unplug and re-plug the monitor
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,102 +50,77 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: AJ_Cheng@compal.com, alsa-devel@alsa-project.org, CindyXT_Wang@compal.com,
+ tiwai@suse.de, intel-gfx@lists.freedesktop.org, Nelson_Ye@compal.com,
+ Shane_Yap@compal.com, Evan_Tseng@compal.com
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Q2FwdHVyaW5nIHRoZSByZXN0cmljdGlvbnMgb2YgdGhlIEJTcGVjIHBhZ2VzIGJlbGxvdzoKClNL
-TCBhbmQgQ05MIGRvIG5vdCBzdXBwb3J0IE1TVCBpbiBEREkgRSwgRERJIEUgb25seSBzdXBwb3J0
-IDIgbGFuZXMKYW5kIGl0IGlzIG1vc3RseSB1c2VkIHRvIHN1cHBvcnQgYSA0IGxhbmVzIGVEUCBw
-YW5lbCB0b2dldGhlciB3aXRoCkRESSBBLgpJQ0wncyBEREkgRSBzdXBwb3J0IE1TVCBqdXN0IGxp
-a2Ugb3RoZXIgcG9ydHMgYnV0IERESSBBIGlzIHN0aWxsIGVEUAphbmQgTUlQSSBvbmx5LgpUR0wg
-c3VwcG9ydHMgTVNUIGluIGFueSBEREksIGluY2x1ZGluZyBEREkgQSBidXQgVEdMIGhhcyBpdCdz
-IG93bgpkZGlfcHJlX2VuYWJsZV9kcCBmdW5jdGlvbiBhbHJlYWR5IHdpdGhvdXQgYW55IHdhcm5p
-bmcuCgpbICAyMTUuNTc5NzkxXSAtLS0tLS0tLS0tLS1bIGN1dCBoZXJlIF0tLS0tLS0tLS0tLS0K
-WyAgMjE1LjU3OTc5NF0gV0FSTl9PTihpc19tc3QgJiYgKHBvcnQgPT0gUE9SVF9BIHx8IHBvcnQg
-PT0gUE9SVF9FKSkKWyAgMjE1LjU3OTg3NV0gV0FSTklORzogQ1BVOiAwIFBJRDogMjY4IGF0IGRy
-aXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGRpLmM6MzU3NiBpbnRlbF9kZGlfcHJl
-X2VuYWJsZSsweDEyNC8weGVhMCBbaTkxNV0KWyAgMjE1LjU3OTg3OF0gTW9kdWxlcyBsaW5rZWQg
-aW46IHNuZF9oZGFfY29kZWNfaGRtaSBzbmRfaGRhX2NvZGVjX3JlYWx0ZWsgc25kX2hkYV9jb2Rl
-Y19nZW5lcmljIGk5MTUgYnR1c2IgYnRydGwgYnRiY20gYnRpbnRlbCBibHVldG9vdGggcHJpbWVf
-bnVtYmVycyBzbmRfaGRhX2ludGVsIHNuZF9pbnRlbF9kc3BjZmcgc25kX2hkYV9jb2RlYyBlMTAw
-MGUgc25kX2h3ZGVwIHNuZF9oZGFfY29yZSBhc2l4IG1laV9oZGNwIGNkY19ldGhlciB4ODZfcGtn
-X3RlbXBfdGhlcm1hbCBtZWlfbWUgc25kX3BjbSByODE1MiBjb3JldGVtcCB1c2JuZXQgbWVpIGNy
-Y3QxMGRpZl9wY2xtdWwgbWlpIHB0cCBlY2RoX2dlbmVyaWMgY3JjMzJfcGNsbXVsIGkyY19pODAx
-IGVjYyBwcHNfY29yZSBnaGFzaF9jbG11bG5pX2ludGVsIHRodW5kZXJib2x0ClsgIDIxNS41Nzk5
-MDVdIENQVTogMCBQSUQ6IDI2OCBDb21tOiBrd29ya2VyLzA6MiBUYWludGVkOiBHICAgICAgICBX
-ICAgICAgICAgNS40LjAtcmM4LXplaCsgIzEzMDcKWyAgMjE1LjU3OTkwN10gSGFyZHdhcmUgbmFt
-ZTogSW50ZWwgQ29ycG9yYXRpb24gSWNlIExha2UgQ2xpZW50IFBsYXRmb3JtL0ljZUxha2UgVSBE
-RFI0IFNPRElNTSBQRCBSVlAgVExDLCBCSU9TIElDTFNGV1IxLlIwMC4zMjAxLkEwMC4xOTA1MTQw
-MzU4IDA1LzE0LzIwMTkKWyAgMjE1LjU3OTkxMl0gV29ya3F1ZXVlOiBldmVudHNfbG9uZyBkcm1f
-ZHBfbXN0X2xpbmtfcHJvYmVfd29yawpbICAyMTUuNTc5OTc1XSBSSVA6IDAwMTA6aW50ZWxfZGRp
-X3ByZV9lbmFibGUrMHgxMjQvMHhlYTAgW2k5MTVdClsgIDIxNS41Nzk5NzhdIENvZGU6IGZmIDhi
-IDdjIDI0IDEwIDg5IDQ0IDI0IDMwIDg1IGZmIDc0IDFmIGY3IDQ0IDI0IDE4IGZiIGZmIGZmIGZm
-IDc1IDE1IDQ4IGM3IGM2IDk4IGZhIDQ4IGEwIDQ4IGM3IGM3IGQzIGRmIDRhIGEwIGU4IGNmIGQ1
-IGQwIGUwIDwwZj4gMGIgMGYgYjYgNGMgMjQgMmMgNDEgOGIgYjUgMDQgMDYgMDAgMDAgNGMgODkg
-ZTcgNDEgMGYgYjYgOTUgMGMKWyAgMjE1LjU3OTk4MF0gUlNQOiAwMDE4OmZmZmZjOTAwMDFhNWY5
-OTAgRUZMQUdTOiAwMDAxMDI4NgpbICAyMTUuNTc5OTg0XSBSQVg6IDAwMDAwMDAwMDAwMDAwMDAg
-UkJYOiBmZmZmODg4NDgzNTZhMDAwIFJDWDogMDAwMDAwMDAwMDAwMDAwMApbICAyMTUuNTc5OTg2
-XSBSRFg6IDAwMDAwMDAwMDAwMDFkZjEgUlNJOiBmZmZmODg4NDkzNDBjOTk4IFJESTogZmZmZmZm
-ZmY4MjE0ODljNQpbICAyMTUuNTc5OTg5XSBSQlA6IGZmZmY4ODg0ODM1NmEwMDAgUjA4OiAwMDAw
-MDAwMGMwMjFhNDE5IFIwOTogMDAwMDAwMDAwMDAwMDAwMApbICAyMTUuNTc5OTkxXSBSMTA6IDAw
-MDAwMDAwMDAwMDAwMDAgUjExOiAwMDAwMDAwMDAwMDAwMDAwIFIxMjogZmZmZjg4ODQ4MzU2YTEx
-OApbICAyMTUuNTc5OTk0XSBSMTM6IGZmZmY4ODg0N2YzOWMwMDAgUjE0OiBmZmZmODg4NDdmZTcw
-MDAwIFIxNTogZmZmZjg4ODQ4MzU2YTAwMApbICAyMTUuNTc5OTk2XSBGUzogIDAwMDAwMDAwMDAw
-MDAwMDAoMDAwMCkgR1M6ZmZmZjg4ODQ5ZjgwMDAwMCgwMDAwKSBrbmxHUzowMDAwMDAwMDAwMDAw
-MDAwClsgIDIxNS41Nzk5OTldIENTOiAgMDAxMCBEUzogMDAwMCBFUzogMDAwMCBDUjA6IDAwMDAw
-MDAwODAwNTAwMzMKWyAgMjE1LjU4MDAwMV0gQ1IyOiAwMDAwNTVkM2Q1YTI2YmMwIENSMzogMDAw
-MDAwMDQ4MGJhNjAwNSBDUjQ6IDAwMDAwMDAwMDA3NjBlZjAKWyAgMjE1LjU4MDAwNF0gUEtSVTog
-NTU1NTU1NTQKWyAgMjE1LjU4MDAwNl0gQ2FsbCBUcmFjZToKWyAgMjE1LjU4MDAxNF0gID8gZHJt
-X2RwX21zdF90b3BvbG9neV9wdXRfcG9ydCsweDZmLzB4MTMwClsgIDIxNS41ODAwNzJdICBpbnRl
-bF9tc3RfcHJlX2VuYWJsZV9kcCsweDE0Yi8weDE3MCBbaTkxNV0KWyAgMjE1LjU4MDEyOV0gIGlu
-dGVsX2VuY29kZXJzX3ByZV9lbmFibGUrMHg3Ni8weDkwIFtpOTE1XQpbICAyMTUuNTgwMTkxXSAg
-aGFzd2VsbF9jcnRjX2VuYWJsZSsweDg0LzB4ODgwIFtpOTE1XQpbICAyMTUuNTgwMjY2XSAgaW50
-ZWxfdXBkYXRlX2NydGMrMHgxZTQvMHgyMDAgW2k5MTVdClsgIDIxNS41ODAzMzNdICBza2xfY29t
-bWl0X21vZGVzZXRfZW5hYmxlcysweDI4Ny8weDQyMCBbaTkxNV0KWyAgMjE1LjU4MDQwNV0gIGlu
-dGVsX2F0b21pY19jb21taXRfdGFpbCsweDMzMi8weDE0ZTAgW2k5MTVdClsgIDIxNS41ODA0MTBd
-ICA/IHF1ZXVlX3dvcmtfb24rMHg0MS8weDcwClsgIDIxNS41ODA0ODldICBpbnRlbF9hdG9taWNf
-Y29tbWl0KzB4MzFlLzB4MzUwIFtpOTE1XQpbICAyMTUuNTgwNTAwXSAgZHJtX2NsaWVudF9tb2Rl
-c2V0X2NvbW1pdF9hdG9taWMrMHgxOGIvMHgyMjAKWyAgMjE1LjU4MDUyM10gIGRybV9jbGllbnRf
-bW9kZXNldF9jb21taXRfZm9yY2UrMHg0ZC8weDE4MApbICAyMTUuNTgwNTMxXSAgZHJtX2ZiX2hl
-bHBlcl9yZXN0b3JlX2ZiZGV2X21vZGVfdW5sb2NrZWQrMHg0Ni8weGEwClsgIDIxNS41ODA1Mzhd
-ICBkcm1fZmJfaGVscGVyX3NldF9wYXIrMHgyNy8weDUwClsgIDIxNS41ODA1NDNdICBkcm1fZmJf
-aGVscGVyX2hvdHBsdWdfZXZlbnQucGFydC4wKzB4YTcvMHhjMApbICAyMTUuNTgwNTQ5XSAgZHJt
-X2ttc19oZWxwZXJfaG90cGx1Z19ldmVudCsweDIxLzB4MzAKWyAgMjE1LjU4MDU1M10gIHByb2Nl
-c3Nfb25lX3dvcmsrMHgyNWIvMHg1YjAKWyAgMjE1LjU4MDU2Nl0gIHdvcmtlcl90aHJlYWQrMHg0
-Yi8weDNiMApbICAyMTUuNTgwNTc4XSAga3RocmVhZCsweDEwMC8weDE0MApbICAyMTUuNTgwNTgx
-XSAgPyBwcm9jZXNzX29uZV93b3JrKzB4NWIwLzB4NWIwClsgIDIxNS41ODA1ODVdICA/IGt0aHJl
-YWRfcGFyaysweDgwLzB4ODAKWyAgMjE1LjU4MDU5MV0gIHJldF9mcm9tX2ZvcmsrMHgyNC8weDUw
-ClsgIDIxNS41ODA2MDNdIGlycSBldmVudCBzdGFtcDogMTM5MzkzMApbICAyMTUuNTgwNjA2XSBo
-YXJkaXJxcyBsYXN0ICBlbmFibGVkIGF0ICgxMzkzOTI5KTogWzxmZmZmZmZmZjgxMTJhMDEzPl0g
-dnByaW50a19lbWl0KzB4MTQzLzB4MzMwClsgIDIxNS41ODA2MDldIGhhcmRpcnFzIGxhc3QgZGlz
-YWJsZWQgYXQgKDEzOTM5MzApOiBbPGZmZmZmZmZmODEwMDFjZmE+XSB0cmFjZV9oYXJkaXJxc19v
-ZmZfdGh1bmsrMHgxYS8weDIwClsgIDIxNS41ODA2MTNdIHNvZnRpcnFzIGxhc3QgIGVuYWJsZWQg
-YXQgKDEzOTM0MzQpOiBbPGZmZmZmZmZmODFjMDAzODk+XSBfX2RvX3NvZnRpcnErMHgzODkvMHg0
-N2YKWyAgMjE1LjU4MDYxOF0gc29mdGlycXMgbGFzdCBkaXNhYmxlZCBhdCAoMTM5MzQyMyk6IFs8
-ZmZmZmZmZmY4MTBiNzE5OT5dIGlycV9leGl0KzB4YTkvMHhjMApbICAyMTUuNTgwNjIxXSAtLS1b
-IGVuZCB0cmFjZSBhZmQ0NGVhOWNhYTYzNzNlIF0tLS0KCkJTcGVjOiA0MjE3CkJTcGVjOiAxNDAw
-NApCU3BlYzogMjA1ODQKQlNwZWM6IDUwNTgzCkNjOiBNYXR0IFJvcGVyIDxtYXR0aGV3LmQucm9w
-ZXJAaW50ZWwuY29tPgpDYzogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4Lmlu
-dGVsLmNvbT4KQ2M6IEx1Y2FzIERlIE1hcmNoaSA8bHVjYXMuZGVtYXJjaGlAaW50ZWwuY29tPgpT
-aWduZWQtb2ZmLWJ5OiBKb3PDqSBSb2JlcnRvIGRlIFNvdXphIDxqb3NlLnNvdXphQGludGVsLmNv
-bT4KLS0tCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RkaS5jIHwgNSArKysr
-LQogMSBmaWxlIGNoYW5nZWQsIDQgaW5zZXJ0aW9ucygrKSwgMSBkZWxldGlvbigtKQoKZGlmZiAt
-LWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGRpLmMgYi9kcml2ZXJz
-L2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RkaS5jCmluZGV4IDJlNGUxNzhmN2VkNC4uY2Zl
-YTA2ZWQ1MGYyIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVs
-X2RkaS5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGRpLmMKQEAg
-LTM1MzMsNyArMzUzMywxMCBAQCBzdGF0aWMgdm9pZCBoc3dfZGRpX3ByZV9lbmFibGVfZHAoc3Ry
-dWN0IGludGVsX2VuY29kZXIgKmVuY29kZXIsCiAJYm9vbCBpc19tc3QgPSBpbnRlbF9jcnRjX2hh
-c190eXBlKGNydGNfc3RhdGUsIElOVEVMX09VVFBVVF9EUF9NU1QpOwogCWludCBsZXZlbCA9IGlu
-dGVsX2RkaV9kcF9sZXZlbChpbnRlbF9kcCk7CiAKLQlXQVJOX09OKGlzX21zdCAmJiAocG9ydCA9
-PSBQT1JUX0EgfHwgcG9ydCA9PSBQT1JUX0UpKTsKKwlpZiAoSU5URUxfR0VOKGRldl9wcml2KSA8
-IDExKQorCQlXQVJOX09OKGlzX21zdCAmJiAocG9ydCA9PSBQT1JUX0EgfHwgcG9ydCA9PSBQT1JU
-X0UpKTsKKwllbHNlCisJCVdBUk5fT04oaXNfbXN0ICYmIHBvcnQgPT0gUE9SVF9BKTsKIAogCWlu
-dGVsX2RwX3NldF9saW5rX3BhcmFtcyhpbnRlbF9kcCwgY3J0Y19zdGF0ZS0+cG9ydF9jbG9jaywK
-IAkJCQkgY3J0Y19zdGF0ZS0+bGFuZV9jb3VudCwgaXNfbXN0KTsKLS0gCjIuMjQuMQoKX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxp
-bmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJl
-ZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+On Mon, Jan 06, 2020 at 08:08:04AM +0000, Lucien_Kao@compal.com wrote:
+> Hi Takashi
+> 
+> We verified on Ubuntu 19.10 with kernel 5.4.0.0-050400-generic (please refer to attachment), the result is positive which symptom doesn't happen anymore once I played music or video sound output through Dell S2718D Type-C monitor. It seems had some fix in latest kernel.
+
+Takashi, can you point to the patch series you suspect may have fixed this issue? 
+
+Thanks,
+Nathan
+> 
+> Thanks.
+> 
+> 
+> -----Original Message-----
+> From: Takashi Iwai <tiwai@suse.de> 
+> Sent: Friday, January 3, 2020 5:16 PM
+> To: Cheng. AJ (TPE) <AJ_Cheng@compal.com>
+> Cc: intel-gfx@lists.freedesktop.org; alsa-devel@alsa-project.org; nathan.d.ciobanu@linux.intel.com; Wang. CindyXT (TPE) <CindyXT_Wang@compal.com>; Ye. Nelson (TPE) <Nelson_Ye@compal.com>; Yap. Shane (TPE) <Shane_Yap@compal.com>; Kao. Lucien (TPE) <Lucien_Kao@compal.com>; Tseng. Evan (TPE) <Evan_Tseng@compal.com>
+> Subject: Re: [alsa-devel] USB Type-C monitor flashes once when play a video file after unplug and re-plug the monitor
+> 
+> On Fri, 03 Jan 2020 02:57:03 +0100,
+> <AJ_Cheng@compal.com> wrote:
+> > 
+> > Hi Sirs,
+> >         Here is chromebook SW team from Compal.
+> > As the mail title, we hit issue that the external monitor will flash once when play video after hot pluging.
+> > We can reproduce not only on chromebook but also ubuntu 16.04.
+> > There has higher failure rate with Dell Solomon dock and Dell S2718D monitor.
+> > 
+> > We found adding the delay in "sound/pci/hda/patch_hdmi.c " can fix 
+> > this issue.(as the attachment) May need your help to review and advice. Thanks.
+> > 
+> > Here is the issue number in gitlab for more detail.
+> > https://gitlab.freedesktop.org/drm/intel/issues/318
+> 
+> Could you check whether it still happens with the latest upstream kernel, at least 5.4.y, if it wasn't tested yet?
+> 
+> I don't want to put a long delay just because of random reason unless it's really mandatory.  I'm wondering whether the recent write-sync change improves the situation, so let's check the recent code.
+> 
+> 
+> thanks,
+> 
+> Takashi
+> 
+> > 
+> > 
+> > 
+> > AJ Cheng
+> > NID/NID1
+> > e-mail: AJ_Cheng@compal.com<mailto:AJ_Cheng@compal.com>
+> > Tel:  +886-2-8797-8599 ext. 17561
+> > Mobile : +886-932827829
+> > COMPAL Electronics, Inc.
+> > 
+> > [2 flash_once.diff <application/octet-stream (base64)>]
+> > 
+> > _______________________________________________
+> > Alsa-devel mailing list
+> > Alsa-devel@alsa-project.org
+> > https://mailman.alsa-project.org/mailman/listinfo/alsa-devel
+
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
