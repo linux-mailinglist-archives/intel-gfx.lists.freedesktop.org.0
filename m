@@ -1,31 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 18A84132F64
-	for <lists+intel-gfx@lfdr.de>; Tue,  7 Jan 2020 20:28:07 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 93A62132F91
+	for <lists+intel-gfx@lfdr.de>; Tue,  7 Jan 2020 20:36:14 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 550AA6E83C;
-	Tue,  7 Jan 2020 19:28:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ECE4C6E090;
+	Tue,  7 Jan 2020 19:36:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id DCF576E839;
- Tue,  7 Jan 2020 19:28:02 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id D4751A0009;
- Tue,  7 Jan 2020 19:28:02 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 442346E130
+ for <intel-gfx@lists.freedesktop.org>; Tue,  7 Jan 2020 19:36:12 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orsmga105.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 07 Jan 2020 11:36:11 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.69,407,1571727600"; d="scan'208";a="370714150"
+Received: from mdroper-desk1.fm.intel.com (HELO
+ mdroper-desk1.amr.corp.intel.com) ([10.1.27.64])
+ by orsmga004.jf.intel.com with ESMTP; 07 Jan 2020 11:36:11 -0800
+Date: Tue, 7 Jan 2020 11:36:11 -0800
+From: Matt Roper <matthew.d.roper@intel.com>
+To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+Message-ID: <20200107193611.GP1762291@mdroper-desk1.amr.corp.intel.com>
+References: <20200103000050.8223-1-vivek.kasireddy@intel.com>
+ <f3a97500-7e85-fe0c-e48d-56c93da3dc38@redhat.com>
+ <20200103160054.1086df08@vkasired-desk2.fm.intel.com>
+ <20200107164904.GG1208@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Tue, 07 Jan 2020 19:28:02 -0000
-Message-ID: <157842528285.8940.6490715865182992879@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200107143826.3298401-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200107143826.3298401-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/gt=3A_Drop_a_defunct_timeline_assertion?=
+Content-Disposition: inline
+In-Reply-To: <20200107164904.GG1208@intel.com>
+User-Agent: Mutt/1.12.1 (2019-06-15)
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/dsi: Parse the I2C element from
+ the VBT MIPI sequence block
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,141 +49,308 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Deepak M <m.deepak@intel.com>, intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Tue, Jan 07, 2020 at 06:49:04PM +0200, Ville Syrj=E4l=E4 wrote:
+> On Fri, Jan 03, 2020 at 04:00:54PM -0800, Vivek Kasireddy wrote:
+> > On Fri, 3 Jan 2020 12:05:11 +0100
+> > Hans de Goede <hdegoede@redhat.com> wrote:
+> > Hi Hans,
+> > =
 
-Series: drm/i915/gt: Drop a defunct timeline assertion
-URL   : https://patchwork.freedesktop.org/series/71697/
-State : success
+> > > Hi Vivek,
+> > > =
 
-== Summary ==
+> > > On 03-01-2020 01:00, Vivek Kasireddy wrote:
+> > > > Parsing the i2c element is mainly done to transfer the payload from
+> > > > the MIPI sequence block to the relevant slave device. In some
+> > > > cases, the commands that are part of the payload can be used to
+> > > > turn on the backlight.
+> > > > =
 
-CI Bug Log - changes from CI_DRM_7695 -> Patchwork_16015
-====================================================
+> > > > This patch is actually a refactored version of this old patch:
+> > > > https://lists.freedesktop.org/archives/intel-gfx/2014-December/0568=
+97.html
+> > > > =
 
-Summary
--------
+> > > > In addition to the refactoring, the old patch is augmented by
+> > > > looking up the i2c bus from ACPI NS instead of relying on the bus
+> > > > number provided in the VBT.
+> > > > =
 
-  **SUCCESS**
+> > > > Cc: Deepak M <m.deepak@intel.com>
+> > > > Cc: Nabendu Maiti <nabendu.bikash.maiti@intel.com>
+> > > > Cc: Matt Roper <matthew.d.roper@intel.com>
+> > > > Cc: Bob Paauwe <bob.j.paauwe@intel.com>
+> > > > Signed-off-by: Vivek Kasireddy <vivek.kasireddy@intel.com>  =
 
-  No regressions found.
+> > > =
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16015/index.html
+> > > Thank you for this patch, I have been doing a lot of work to make
+> > > DSI panels on Bay Trail and Cherry Trail devices work better, as such
+> > > I've done a lot of testing of DSI panels. But I have never seen any
+> > > MIPI sequences actually use the i2c commands. May I ask how you have
+> > > tested this? Do you have a device which actually uses the i2c
+> > > commands?
+> > Oh, they sure exist; we do have a device that uses i2c commands to turn
+> > on the backlight that we have tested this patch on. =
 
-Known issues
-------------
+> =
 
-  Here are the changes found in Patchwork_16015 that come from known issues:
+> And what exactly is that device? That is valuable information that the
+> commit message should contain.
 
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_module_load@reload-with-fault-injection:
-    - fi-cfl-8700k:       [PASS][1] -> [DMESG-WARN][2] ([i915#889])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7695/fi-cfl-8700k/igt@i915_module_load@reload-with-fault-injection.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16015/fi-cfl-8700k/igt@i915_module_load@reload-with-fault-injection.html
-
-  * igt@i915_selftest@live_blt:
-    - fi-hsw-4770:        [PASS][3] -> [DMESG-FAIL][4] ([i915#553] / [i915#725])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7695/fi-hsw-4770/igt@i915_selftest@live_blt.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16015/fi-hsw-4770/igt@i915_selftest@live_blt.html
-
-  * igt@i915_selftest@live_execlists:
-    - fi-kbl-soraka:      [PASS][5] -> [DMESG-FAIL][6] ([i915#656])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7695/fi-kbl-soraka/igt@i915_selftest@live_execlists.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16015/fi-kbl-soraka/igt@i915_selftest@live_execlists.html
-
-  * igt@kms_chamelium@hdmi-hpd-fast:
-    - fi-kbl-7500u:       [PASS][7] -> [FAIL][8] ([fdo#111096] / [i915#323])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7695/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16015/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - fi-hsw-peppy:       [PASS][9] -> [DMESG-WARN][10] ([i915#44])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7695/fi-hsw-peppy/igt@kms_frontbuffer_tracking@basic.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16015/fi-hsw-peppy/igt@kms_frontbuffer_tracking@basic.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_close_race@basic-threads:
-    - fi-byt-j1900:       [TIMEOUT][11] ([i915#816]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7695/fi-byt-j1900/igt@gem_close_race@basic-threads.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16015/fi-byt-j1900/igt@gem_close_race@basic-threads.html
-
-  * igt@gem_exec_suspend@basic-s0:
-    - fi-byt-n2820:       [FAIL][13] ([i915#694]) -> [PASS][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7695/fi-byt-n2820/igt@gem_exec_suspend@basic-s0.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16015/fi-byt-n2820/igt@gem_exec_suspend@basic-s0.html
-
-  * igt@i915_module_load@reload-with-fault-injection:
-    - fi-skl-6770hq:      [INCOMPLETE][15] ([i915#671]) -> [PASS][16]
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7695/fi-skl-6770hq/igt@i915_module_load@reload-with-fault-injection.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16015/fi-skl-6770hq/igt@i915_module_load@reload-with-fault-injection.html
-
-  * igt@i915_selftest@live_blt:
-    - fi-bsw-nick:        [DMESG-FAIL][17] ([i915#723]) -> [PASS][18]
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7695/fi-bsw-nick/igt@i915_selftest@live_blt.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16015/fi-bsw-nick/igt@i915_selftest@live_blt.html
-
-  
-#### Warnings ####
-
-  * igt@runner@aborted:
-    - fi-kbl-8809g:       [FAIL][19] ([i915#192] / [i915#193] / [i915#194]) -> [FAIL][20] ([i915#858])
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7695/fi-kbl-8809g/igt@runner@aborted.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16015/fi-kbl-8809g/igt@runner@aborted.html
-
-  
-  [fdo#111096]: https://bugs.freedesktop.org/show_bug.cgi?id=111096
-  [i915#192]: https://gitlab.freedesktop.org/drm/intel/issues/192
-  [i915#193]: https://gitlab.freedesktop.org/drm/intel/issues/193
-  [i915#194]: https://gitlab.freedesktop.org/drm/intel/issues/194
-  [i915#323]: https://gitlab.freedesktop.org/drm/intel/issues/323
-  [i915#44]: https://gitlab.freedesktop.org/drm/intel/issues/44
-  [i915#553]: https://gitlab.freedesktop.org/drm/intel/issues/553
-  [i915#656]: https://gitlab.freedesktop.org/drm/intel/issues/656
-  [i915#671]: https://gitlab.freedesktop.org/drm/intel/issues/671
-  [i915#694]: https://gitlab.freedesktop.org/drm/intel/issues/694
-  [i915#723]: https://gitlab.freedesktop.org/drm/intel/issues/723
-  [i915#725]: https://gitlab.freedesktop.org/drm/intel/issues/725
-  [i915#816]: https://gitlab.freedesktop.org/drm/intel/issues/816
-  [i915#858]: https://gitlab.freedesktop.org/drm/intel/issues/858
-  [i915#889]: https://gitlab.freedesktop.org/drm/intel/issues/889
+I'm not sure if we're allowed to disclose that information.  I believe
+Vivek is working with an engineering sample and the device itself might
+not have been publicly announced by the device manufacturer yet.
 
 
-Participating hosts (53 -> 45)
-------------------------------
+Matt
 
-  Missing    (8): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-tgl-y fi-byt-clapper fi-bdw-samus 
+> =
 
+> > =
 
-Build changes
--------------
+> > > =
 
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_7695 -> Patchwork_16015
+> > > I also have some small review comments inline:
+> > > =
 
-  CI-20190529: 20190529
-  CI_DRM_7695: 8df346a062d56d97ab53555d3f5829c26f950233 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5358: c6fc013f414b806175dc4143c58ab445e5235ea5 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_16015: 7a1336e24506abeaccdbf0dd49e75f1e44fed3cf @ git://anongit.freedesktop.org/gfx-ci/linux
+> > > > ---
+> > > >   drivers/gpu/drm/i915/display/intel_dsi.h     |  3 +
+> > > >   drivers/gpu/drm/i915/display/intel_dsi_vbt.c | 93
+> > > > ++++++++++++++++++++ 2 files changed, 96 insertions(+)
+> > > > =
 
+> > > > diff --git a/drivers/gpu/drm/i915/display/intel_dsi.h
+> > > > b/drivers/gpu/drm/i915/display/intel_dsi.h index
+> > > > b15be5814599..5651bc8aa5c2 100644 ---
+> > > > a/drivers/gpu/drm/i915/display/intel_dsi.h +++
+> > > > b/drivers/gpu/drm/i915/display/intel_dsi.h @@ -68,6 +68,9 @@ struct
+> > > > intel_dsi { /* number of DSI lanes */
+> > > >   	unsigned int lane_count;
+> > > >   =
 
-== Linux commits ==
+> > > > +	/* i2c bus associated with the slave device */
+> > > > +	int i2c_bus_num;
+> > > > +
+> > > >   	/*
+> > > >   	 * video mode pixel format
+> > > >   	 *
+> > > > diff --git a/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
+> > > > b/drivers/gpu/drm/i915/display/intel_dsi_vbt.c index
+> > > > f90946c912ee..60441a5a3dba 100644 ---
+> > > > a/drivers/gpu/drm/i915/display/intel_dsi_vbt.c +++
+> > > > b/drivers/gpu/drm/i915/display/intel_dsi_vbt.c @@ -83,6 +83,12 @@
+> > > > static struct gpio_map vlv_gpio_table[] =3D { {
+> > > > VLV_GPIO_NC_11_PANEL1_BKLTCTL }, };
+> > > >   =
 
-7a1336e24506 drm/i915/gt: Drop a defunct timeline assertion
+> > > > +struct i2c_adapter_lookup {
+> > > > +	u16 slave_addr;
+> > > > +	struct intel_dsi *intel_dsi;
+> > > > +	acpi_handle dev_handle;
+> > > > +};
+> > > > +
+> > > >   #define CHV_GPIO_IDX_START_N		0
+> > > >   #define CHV_GPIO_IDX_START_E		73
+> > > >   #define CHV_GPIO_IDX_START_SW		100
+> > > > @@ -375,8 +381,93 @@ static const u8 *mipi_exec_gpio(struct
+> > > > intel_dsi *intel_dsi, const u8 *data) return data;
+> > > >   }
+> > > >   =
 
-== Logs ==
+> > > > +static int i2c_adapter_lookup(struct acpi_resource *ares, void
+> > > > *data) +{
+> > > > +	struct i2c_adapter_lookup *lookup =3D data;
+> > > > +	struct intel_dsi *intel_dsi =3D lookup->intel_dsi;
+> > > > +	struct acpi_resource_i2c_serialbus *sb;
+> > > > +	struct i2c_adapter *adapter;
+> > > > +	acpi_handle adapter_handle;
+> > > > +	acpi_status status;
+> > > > +
+> > > > +	if (intel_dsi->i2c_bus_num >=3D 0 ||
+> > > > +	    !i2c_acpi_get_i2c_resource(ares, &sb))
+> > > > +		return 1;
+> > > > +
+> > > > +	if (lookup->slave_addr !=3D sb->slave_address)
+> > > > +		return 1;
+> > > > +
+> > > > +	status =3D acpi_get_handle(lookup->dev_handle,
+> > > > +				 sb->resource_source.string_ptr,
+> > > > +				 &adapter_handle);
+> > > > +	if (ACPI_FAILURE(status))
+> > > > +		return 1;
+> > > > +
+> > > > +	adapter =3D i2c_acpi_find_adapter_by_handle(adapter_handle);
+> > > > +	if (adapter)
+> > > > +		intel_dsi->i2c_bus_num =3D adapter->nr;
+> > > > +
+> > > > +	return 1;
+> > > > +}
+> > > > +
+> > > >   static const u8 *mipi_exec_i2c(struct intel_dsi *intel_dsi, const
+> > > > u8 *data) {
+> > > > +	struct drm_device *dev =3D intel_dsi->base.base.dev;
+> > > > +	struct i2c_adapter *adapter;
+> > > > +	struct acpi_device *acpi_dev;
+> > > > +	struct list_head resource_list;
+> > > > +	struct i2c_adapter_lookup lookup;
+> > > > +	struct i2c_msg msg;
+> > > > +	int ret;
+> > > > +	u8 vbt_i2c_bus_num =3D *(data + 2);
+> > > > +	u16 slave_addr =3D *(u16 *)(data + 3);
+> > > > +	u8 reg_offset =3D *(data + 5);
+> > > > +	u8 payload_size =3D *(data + 6);
+> > > > +	u8 *payload_data;
+> > > > +
+> > > > +	if (intel_dsi->i2c_bus_num < 0) {
+> > > > +		intel_dsi->i2c_bus_num =3D vbt_i2c_bus_num;
+> > > > +
+> > > > +		acpi_dev =3D ACPI_COMPANION(&dev->pdev->dev);
+> > > > +		if (acpi_dev) {
+> > > > +			memset(&lookup, 0, sizeof(lookup));
+> > > > +			lookup.slave_addr =3D slave_addr;
+> > > > +			lookup.intel_dsi =3D intel_dsi;
+> > > > +			lookup.dev_handle =3D
+> > > > acpi_device_handle(acpi_dev); +
+> > > > +			INIT_LIST_HEAD(&resource_list);
+> > > > +			acpi_dev_get_resources(acpi_dev,
+> > > > &resource_list,
+> > > > +					       i2c_adapter_lookup,
+> > > > +					       &lookup);
+> > > > +
+> > > > acpi_dev_free_resource_list(&resource_list);
+> > > > +		}
+> > > > +	}
+> > > > +
+> > > > +	adapter =3D i2c_get_adapter(intel_dsi->i2c_bus_num);
+> > > > +	if (!adapter)
+> > > > +		goto out;  =
 
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16015/index.html
+> > > =
+
+> > > This should never happen, so you should put a DRM_DEV_WARN here.
+> > Ok, will do.
+> > =
+
+> > > =
+
+> > > > +
+> > > > +	payload_data =3D kzalloc(payload_size + 1, GFP_KERNEL);
+> > > > +	if (!payload_data)
+> > > > +		goto out;
+> > > > +
+> > > > +	payload_data[0] =3D reg_offset;
+> > > > +	memcpy(&payload_data[1], (data + 7), payload_size);
+> > > > +
+> > > > +	msg.addr =3D slave_addr;
+> > > > +	msg.flags =3D 0;
+> > > > +	msg.len =3D payload_size + 1;
+> > > > +	msg.buf =3D payload_data;
+> > > > +
+> > > > +	ret =3D i2c_transfer(adapter, &msg, 1);
+> > > > +	if (ret < 0)
+> > > > +		DRM_ERROR("i2c transfer failed");  =
+
+> > > =
+
+> > > DRM_DEV_ERROR? And maybe some more info, like the register which
+> > > the transfer is going to + payload size?
+> > Ok, adding extra info makes sense.
+> > =
+
+> > > =
+
+> > > > +
+> > > > +	kfree(payload_data);
+> > > > +	i2c_put_adapter(adapter);
+> > > > +  =
+
+> > > =
+
+> > > Just put out here, no need for the DRM_DEBUG (which should no
+> > > longer be a debug now that we implement this) below, since we
+> > > WARN or ERROR on all goto out; statements above.
+> > Ok, will do.
+> > =
+
+> > Thanks,
+> > Vivek
+> > =
+
+> > > =
+
+> > > out:
+> > > =
+
+> > > > +	return data + payload_size + 7;  =
+
+> > > =
+
+> > > And drop these 3 lines:
+> > > =
+
+> > > > +out:
+> > > >   	DRM_DEBUG_KMS("Skipping I2C element execution\n");
+> > > >   =
+
+> > > >   	return data + *(data + 6) + 7;  =
+
+> > > =
+
+> > > =
+
+> > > =
+
+> > > > @@ -664,6 +755,8 @@ bool intel_dsi_vbt_init(struct intel_dsi
+> > > > *intel_dsi, u16 panel_id) intel_dsi->panel_off_delay =3D
+> > > > pps->panel_off_delay / 10; intel_dsi->panel_pwr_cycle_delay =3D
+> > > > pps->panel_power_cycle_delay / 10; =
+
+> > > > +	intel_dsi->i2c_bus_num =3D -1;
+> > > > +
+> > > >   	/* a regular driver would get the device in probe */
+> > > >   	for_each_dsi_port(port, intel_dsi->ports) {
+> > > >   		mipi_dsi_attach(intel_dsi->dsi_hosts[port]->device);
+> > > >   =
+
+> > > =
+
+> > > Regards,
+> > > =
+
+> > > Hans
+> > > =
+
+> > =
+
+> > _______________________________________________
+> > Intel-gfx mailing list
+> > Intel-gfx@lists.freedesktop.org
+> > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+> =
+
+> -- =
+
+> Ville Syrj=E4l=E4
+> Intel
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+-- =
+
+Matt Roper
+Graphics Software Engineer
+VTT-OSGC Platform Enablement
+Intel Corporation
+(916) 356-2795
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
