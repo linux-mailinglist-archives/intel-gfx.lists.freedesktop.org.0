@@ -1,41 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F24471328B4
-	for <lists+intel-gfx@lfdr.de>; Tue,  7 Jan 2020 15:20:52 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D6A721328ED
+	for <lists+intel-gfx@lfdr.de>; Tue,  7 Jan 2020 15:32:06 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4486489FE8;
-	Tue,  7 Jan 2020 14:20:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3E9C289DA8;
+	Tue,  7 Jan 2020 14:32:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 66EA189FE8
- for <intel-gfx@lists.freedesktop.org>; Tue,  7 Jan 2020 14:20:49 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-X-Amp-File-Uploaded: False
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 07 Jan 2020 06:20:48 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,406,1571727600"; d="scan'208";a="271532898"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by FMSMGA003.fm.intel.com with SMTP; 07 Jan 2020 06:20:46 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 07 Jan 2020 16:20:45 +0200
-Date: Tue, 7 Jan 2020 16:20:45 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Lucas De Marchi <lucas.de.marchi@gmail.com>
-Message-ID: <20200107142045.GE1208@intel.com>
-References: <20190306131957.GC3888@intel.com>
- <20190308232321.30168-1-lucas.demarchi@intel.com>
- <CAKi4VAKSi1otf_R_D1mPEvCjR1+MRfhQ0NEc_-hJ298W=wdTRQ@mail.gmail.com>
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AB48089DA8
+ for <intel-gfx@lists.freedesktop.org>; Tue,  7 Jan 2020 14:32:03 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19796850-1500050 
+ for multiple; Tue, 07 Jan 2020 14:31:20 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue,  7 Jan 2020 14:31:18 +0000
+Message-Id: <20200107143118.3288995-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.25.0.rc1
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <CAKi4VAKSi1otf_R_D1mPEvCjR1+MRfhQ0NEc_-hJ298W=wdTRQ@mail.gmail.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915: remove ICP_PP_CONTROL
+Subject: [Intel-gfx] [PATCH] drm/i915/gt: Take responsibility for
+ engine->release as the last step
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,88 +37,71 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel Graphics <intel-gfx@lists.freedesktop.org>,
- Lucas De Marchi <lucas.demarchi@intel.com>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Jan 02, 2020 at 03:44:38PM -0800, Lucas De Marchi wrote:
-> Today I saw this register and had a vague memory of having already
-> removed it in the past.
-> It seems this patch has never been reviewed/applied.
-> =
+In order to avoid a double cleanup on error, take ownership of
+engine->release past the point of no [error] return.
 
-> Ping
+Reported-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+Fixes: e26b6d434147 ("drm/i915/gt: Pull GT initialisation under intel_gt_init()")
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+---
+ drivers/gpu/drm/i915/gt/intel_lrc.c             | 4 +++-
+ drivers/gpu/drm/i915/gt/intel_ring_submission.c | 5 +++--
+ 2 files changed, 6 insertions(+), 3 deletions(-)
 
-Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+index f6174e597dd3..5f171e43f79c 100644
+--- a/drivers/gpu/drm/i915/gt/intel_lrc.c
++++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+@@ -3925,7 +3925,6 @@ logical_ring_default_vfuncs(struct intel_engine_cs *engine)
+ {
+ 	/* Default vfuncs which can be overriden by each engine. */
+ 
+-	engine->release = execlists_release;
+ 	engine->resume = execlists_resume;
+ 
+ 	engine->cops = &execlists_context_ops;
+@@ -4040,6 +4039,9 @@ int intel_execlists_submission_setup(struct intel_engine_cs *engine)
+ 
+ 	reset_csb_pointers(engine);
+ 
++	/* Finally, take ownership and responsibility for cleanup! */
++	engine->release = execlists_release;
++
+ 	return 0;
+ }
+ 
+diff --git a/drivers/gpu/drm/i915/gt/intel_ring_submission.c b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
+index 2e1478a48a4b..0525d67c6fc3 100644
+--- a/drivers/gpu/drm/i915/gt/intel_ring_submission.c
++++ b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
+@@ -1840,8 +1840,6 @@ static void setup_common(struct intel_engine_cs *engine)
+ 
+ 	setup_irq(engine);
+ 
+-	engine->release = ring_release;
+-
+ 	engine->resume = xcs_resume;
+ 	engine->reset.prepare = reset_prepare;
+ 	engine->reset.rewind = reset_rewind;
+@@ -2007,6 +2005,9 @@ int intel_ring_submission_setup(struct intel_engine_cs *engine)
+ 
+ 	GEM_BUG_ON(timeline->hwsp_ggtt != engine->status_page.vma);
+ 
++	/* Finally, take ownership and responsibility for cleanup! */
++	engine->release = ring_release;
++
+ 	return 0;
+ 
+ err_ring:
+-- 
+2.25.0.rc1
 
-> =
-
-> Lucas De Marchi
-> =
-
-> On Fri, Mar 8, 2019 at 3:23 PM Lucas De Marchi <lucas.demarchi@intel.com>=
- wrote:
-> >
-> > This register was placed in the middle of the PP_STATUS definition
-> > instead of together with the PP_CONTROL where it should. Since it's not
-> > used and there are no current plans to use it, just remove the
-> > definition.
-> >
-> > v2: remove the define rather than moving it.
-> >
-> > Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/i915_reg.h | 11 -----------
-> >  1 file changed, 11 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i91=
-5_reg.h
-> > index c0cd7a836799..4a855befa838 100644
-> > --- a/drivers/gpu/drm/i915/i915_reg.h
-> > +++ b/drivers/gpu/drm/i915/i915_reg.h
-> > @@ -4692,17 +4692,6 @@ enum {
-> >  #define _PP_STATUS                     0x61200
-> >  #define PP_STATUS(pps_idx)             _MMIO_PPS(pps_idx, _PP_STATUS)
-> >  #define   PP_ON                                (1 << 31)
-> > -
-> > -#define _PP_CONTROL_1                  0xc7204
-> > -#define _PP_CONTROL_2                  0xc7304
-> > -#define ICP_PP_CONTROL(x)              _MMIO(((x) =3D=3D 1) ? _PP_CONT=
-ROL_1 : \
-> > -                                             _PP_CONTROL_2)
-> > -#define  POWER_CYCLE_DELAY_MASK        (0x1f << 4)
-> > -#define  POWER_CYCLE_DELAY_SHIFT       4
-> > -#define  VDD_OVERRIDE_FORCE            (1 << 3)
-> > -#define  BACKLIGHT_ENABLE              (1 << 2)
-> > -#define  PWR_DOWN_ON_RESET             (1 << 1)
-> > -#define  PWR_STATE_TARGET              (1 << 0)
-> >  /*
-> >   * Indicates that all dependencies of the panel are on:
-> >   *
-> > --
-> > 2.20.1
-> >
-> > _______________________________________________
-> > Intel-gfx mailing list
-> > Intel-gfx@lists.freedesktop.org
-> > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-> =
-
-> =
-
-> =
-
-> -- =
-
-> Lucas De Marchi
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
