@@ -2,30 +2,34 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id EBF29132C5D
-	for <lists+intel-gfx@lfdr.de>; Tue,  7 Jan 2020 18:00:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 981E9132C9C
+	for <lists+intel-gfx@lfdr.de>; Tue,  7 Jan 2020 18:09:41 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C789B6E82E;
-	Tue,  7 Jan 2020 17:00:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A60746E82F;
+	Tue,  7 Jan 2020 17:09:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 8CF666E82D;
- Tue,  7 Jan 2020 17:00:19 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 864CBA0073;
- Tue,  7 Jan 2020 17:00:19 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 618596E82F
+ for <intel-gfx@lists.freedesktop.org>; Tue,  7 Jan 2020 17:09:38 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 07 Jan 2020 09:09:37 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.69,406,1571727600"; d="scan'208";a="233266393"
+Received: from trdietz-mobl1.amr.corp.intel.com (HELO
+ josouza-MOBL.amr.corp.intel.com) ([10.251.130.113])
+ by orsmga002.jf.intel.com with ESMTP; 07 Jan 2020 09:09:29 -0800
+From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue,  7 Jan 2020 09:09:21 -0800
+Message-Id: <20200107170922.153612-1-jose.souza@intel.com>
+X-Mailer: git-send-email 2.24.1
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Tue, 07 Jan 2020 17:00:19 -0000
-Message-ID: <157841641953.8942.598972798256710233@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200106234703.645168-1-matthew.auld@intel.com>
-In-Reply-To: <20200106234703.645168-1-matthew.auld@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/i915/gtt=3A_split_up_i915=5Fgem=5Fgtt_=28rev2=29?=
+Subject: [Intel-gfx] [PATCH v4 rebased 1/2] drm/i915/display/icl+: Do not
+ program clockgating
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,284 +42,128 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Jani Nikula <jani.nikula@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
-
-Series: drm/i915/gtt: split up i915_gem_gtt (rev2)
-URL   : https://patchwork.freedesktop.org/series/71678/
-State : warning
-
-== Summary ==
-
-$ dim checkpatch origin/drm-tip
-b50ab2add6b6 drm/i915/gtt: split up i915_gem_gtt
--:112: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#112: 
-new file mode 100644
-
--:287: WARNING:MEMORY_BARRIER: memory barrier without comment
-#287: FILE: drivers/gpu/drm/i915/gt/gen6_ppgtt.c:171:
-+	mb();
-
--:290: WARNING:MEMORY_BARRIER: memory barrier without comment
-#290: FILE: drivers/gpu/drm/i915/gt/gen6_ppgtt.c:174:
-+	mb();
-
--:618: CHECK:UNCOMMENTED_DEFINITION: struct mutex definition without comment
-#618: FILE: drivers/gpu/drm/i915/gt/gen6_ppgtt.h:14:
-+	struct mutex flush;
-
--:623: CHECK:UNCOMMENTED_DEFINITION: struct mutex definition without comment
-#623: FILE: drivers/gpu/drm/i915/gt/gen6_ppgtt.h:19:
-+	struct mutex pin_mutex;
-
--:643: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'base' - possible side-effects?
-#643: FILE: drivers/gpu/drm/i915/gt/gen6_ppgtt.h:39:
-+#define __to_gen6_ppgtt(base) container_of(base, struct gen6_ppgtt, base)
-
--:659: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'start' - possible side-effects?
-#659: FILE: drivers/gpu/drm/i915/gt/gen6_ppgtt.h:55:
-+#define gen6_for_each_pde(pt, pd, start, length, iter)			\
-+	for (iter = gen6_pde_index(start);				\
-+	     length > 0 && iter < I915_PDES &&				\
-+		     (pt = i915_pt_entry(pd, iter), true);		\
-+	     ({ u32 temp = ALIGN(start+1, 1 << GEN6_PDE_SHIFT);		\
-+		    temp = min(temp - start, length);			\
-+		    start += temp, length -= temp; }), ++iter)
-
--:659: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'length' - possible side-effects?
-#659: FILE: drivers/gpu/drm/i915/gt/gen6_ppgtt.h:55:
-+#define gen6_for_each_pde(pt, pd, start, length, iter)			\
-+	for (iter = gen6_pde_index(start);				\
-+	     length > 0 && iter < I915_PDES &&				\
-+		     (pt = i915_pt_entry(pd, iter), true);		\
-+	     ({ u32 temp = ALIGN(start+1, 1 << GEN6_PDE_SHIFT);		\
-+		    temp = min(temp - start, length);			\
-+		    start += temp, length -= temp; }), ++iter)
-
--:659: CHECK:MACRO_ARG_PRECEDENCE: Macro argument 'length' may be better as '(length)' to avoid precedence issues
-#659: FILE: drivers/gpu/drm/i915/gt/gen6_ppgtt.h:55:
-+#define gen6_for_each_pde(pt, pd, start, length, iter)			\
-+	for (iter = gen6_pde_index(start);				\
-+	     length > 0 && iter < I915_PDES &&				\
-+		     (pt = i915_pt_entry(pd, iter), true);		\
-+	     ({ u32 temp = ALIGN(start+1, 1 << GEN6_PDE_SHIFT);		\
-+		    temp = min(temp - start, length);			\
-+		    start += temp, length -= temp; }), ++iter)
-
--:659: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'iter' - possible side-effects?
-#659: FILE: drivers/gpu/drm/i915/gt/gen6_ppgtt.h:55:
-+#define gen6_for_each_pde(pt, pd, start, length, iter)			\
-+	for (iter = gen6_pde_index(start);				\
-+	     length > 0 && iter < I915_PDES &&				\
-+		     (pt = i915_pt_entry(pd, iter), true);		\
-+	     ({ u32 temp = ALIGN(start+1, 1 << GEN6_PDE_SHIFT);		\
-+		    temp = min(temp - start, length);			\
-+		    start += temp, length -= temp; }), ++iter)
-
--:663: CHECK:SPACING: spaces preferred around that '+' (ctx:VxV)
-#663: FILE: drivers/gpu/drm/i915/gt/gen6_ppgtt.h:59:
-+	     ({ u32 temp = ALIGN(start+1, 1 << GEN6_PDE_SHIFT);		\
- 	                              ^
-
--:667: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'iter' - possible side-effects?
-#667: FILE: drivers/gpu/drm/i915/gt/gen6_ppgtt.h:63:
-+#define gen6_for_all_pdes(pt, pd, iter)					\
-+	for (iter = 0;							\
-+	     iter < I915_PDES &&					\
-+		     (pt = i915_pt_entry(pd, iter), true);		\
-+	     ++iter)
-
--:810: WARNING:LINE_SPACING: Missing a blank line after declarations
-#810: FILE: drivers/gpu/drm/i915/gt/gen8_ppgtt.c:124:
-+	unsigned int shift = __gen8_pte_shift(vm->top);
-+	return (vm->total + (1ull << shift) - 1) >> shift;
-
--:1310: WARNING:MEMORY_BARRIER: memory barrier without comment
-#1310: FILE: drivers/gpu/drm/i915/gt/gen8_ppgtt.c:624:
-+	wmb();
-
--:1676: WARNING:LINE_SPACING: Missing a blank line after declarations
-#1676: FILE: drivers/gpu/drm/i915/gt/intel_ggtt.c:243:
-+	dma_addr_t addr;
-+	for_each_sgt_daddr(addr, iter, vma->pages)
-
--:1695: WARNING:UNSPECIFIED_INT: Prefer 'unsigned int' to bare use of 'unsigned'
-#1695: FILE: drivers/gpu/drm/i915/gt/intel_ggtt.c:262:
-+	unsigned first_entry = start / I915_GTT_PAGE_SIZE;
-
--:1696: WARNING:UNSPECIFIED_INT: Prefer 'unsigned int' to bare use of 'unsigned'
-#1696: FILE: drivers/gpu/drm/i915/gt/intel_ggtt.c:263:
-+	unsigned num_entries = length / I915_GTT_PAGE_SIZE;
-
--:1808: WARNING:UNSPECIFIED_INT: Prefer 'unsigned int' to bare use of 'unsigned'
-#1808: FILE: drivers/gpu/drm/i915/gt/intel_ggtt.c:375:
-+	unsigned first_entry = start / I915_GTT_PAGE_SIZE;
-
--:1809: WARNING:UNSPECIFIED_INT: Prefer 'unsigned int' to bare use of 'unsigned'
-#1809: FILE: drivers/gpu/drm/i915/gt/intel_ggtt.c:376:
-+	unsigned num_entries = length / I915_GTT_PAGE_SIZE;
-
--:2343: WARNING:LINE_SPACING: Missing a blank line after declarations
-#2343: FILE: drivers/gpu/drm/i915/gt/intel_ggtt.c:910:
-+	gen6_pte_t pte = GEN6_PTE_VALID;
-+	pte |= GEN6_PTE_ADDR_ENCODE(addr);
-
--:2365: WARNING:LINE_SPACING: Missing a blank line after declarations
-#2365: FILE: drivers/gpu/drm/i915/gt/intel_ggtt.c:932:
-+	gen6_pte_t pte = GEN6_PTE_VALID;
-+	pte |= GEN6_PTE_ADDR_ENCODE(addr);
-
--:2389: WARNING:LINE_SPACING: Missing a blank line after declarations
-#2389: FILE: drivers/gpu/drm/i915/gt/intel_ggtt.c:956:
-+	gen6_pte_t pte = GEN6_PTE_VALID;
-+	pte |= GEN6_PTE_ADDR_ENCODE(addr);
-
--:2405: WARNING:LINE_SPACING: Missing a blank line after declarations
-#2405: FILE: drivers/gpu/drm/i915/gt/intel_ggtt.c:972:
-+	gen6_pte_t pte = GEN6_PTE_VALID;
-+	pte |= HSW_PTE_ADDR_ENCODE(addr);
-
--:2418: WARNING:LINE_SPACING: Missing a blank line after declarations
-#2418: FILE: drivers/gpu/drm/i915/gt/intel_ggtt.c:985:
-+	gen6_pte_t pte = GEN6_PTE_VALID;
-+	pte |= HSW_PTE_ADDR_ENCODE(addr);
-
--:2448: CHECK:SPACING: spaces preferred around that '<<' (ctx:VxV)
-#2448: FILE: drivers/gpu/drm/i915/gt/intel_ggtt.c:1015:
-+	if (ggtt->mappable_end < (64<<20) || ggtt->mappable_end > (512<<20)) {
- 	                            ^
-
--:2448: CHECK:SPACING: spaces preferred around that '<<' (ctx:VxV)
-#2448: FILE: drivers/gpu/drm/i915/gt/intel_ggtt.c:1015:
-+	if (ggtt->mappable_end < (64<<20) || ggtt->mappable_end > (512<<20)) {
- 	                                                              ^
-
--:3470: WARNING:BLOCK_COMMENT_STYLE: Block comments use a trailing */ on a separate line
-#3470: FILE: drivers/gpu/drm/i915/gt/intel_gtt.c:523:
-+ * writing this data shouldn't be harmful even in those cases. */
-
--:3476: WARNING:LONG_LINE_COMMENT: line over 100 characters
-#3476: FILE: drivers/gpu/drm/i915/gt/intel_gtt.c:529:
-+	      GEN8_PPAT(1, GEN8_PPAT_WC | GEN8_PPAT_LLCELLC) |	/* for something pointing to ptes? */
-
--:3478: WARNING:LONG_LINE_COMMENT: line over 100 characters
-#3478: FILE: drivers/gpu/drm/i915/gt/intel_gtt.c:531:
-+	      GEN8_PPAT(3, GEN8_PPAT_UC) |			/* Uncached objects, mostly for scanout */
-
--:3618: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'addr' - possible side-effects?
-#3618: FILE: drivers/gpu/drm/i915/gt/intel_gtt.h:70:
-+#define GEN6_GTT_ADDR_ENCODE(addr)	((addr) | (((addr) >> 28) & 0xff0))
-
--:3630: CHECK:MACRO_ARG_PRECEDENCE: Macro argument 'pde_shift' may be better as '(pde_shift)' to avoid precedence issues
-#3630: FILE: drivers/gpu/drm/i915/gt/intel_gtt.h:82:
-+#define NUM_PTE(pde_shift)     (1 << (pde_shift - PAGE_SHIFT))
-
--:3640: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'bits' - possible side-effects?
-#3640: FILE: drivers/gpu/drm/i915/gt/intel_gtt.h:92:
-+#define HSW_CACHEABILITY_CONTROL(bits)	((((bits) & 0x7) << 1) | \
-+					 (((bits) & 0x8) << (11 - 3)))
-
--:3649: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'addr' - possible side-effects?
-#3649: FILE: drivers/gpu/drm/i915/gt/intel_gtt.h:101:
-+#define HSW_GTT_ADDR_ENCODE(addr)	((addr) | (((addr) >> 28) & 0x7f0))
-
--:3671: CHECK:SPACING: spaces preferred around that '<<' (ctx:VxV)
-#3671: FILE: drivers/gpu/drm/i915/gt/intel_gtt.h:123:
-+#define GEN8_PPAT_AGE(x)		((x)<<4)
-                         		    ^
-
--:3672: CHECK:SPACING: spaces preferred around that '<<' (ctx:VxV)
-#3672: FILE: drivers/gpu/drm/i915/gt/intel_gtt.h:124:
-+#define GEN8_PPAT_LLCeLLC		(3<<2)
-                          		  ^
-
--:3673: CHECK:SPACING: spaces preferred around that '<<' (ctx:VxV)
-#3673: FILE: drivers/gpu/drm/i915/gt/intel_gtt.h:125:
-+#define GEN8_PPAT_LLCELLC		(2<<2)
-                          		  ^
-
--:3674: CHECK:SPACING: spaces preferred around that '<<' (ctx:VxV)
-#3674: FILE: drivers/gpu/drm/i915/gt/intel_gtt.h:126:
-+#define GEN8_PPAT_LLC			(1<<2)
-                      			  ^
-
--:3675: CHECK:SPACING: spaces preferred around that '<<' (ctx:VxV)
-#3675: FILE: drivers/gpu/drm/i915/gt/intel_gtt.h:127:
-+#define GEN8_PPAT_WB			(3<<0)
-                     			  ^
-
--:3676: CHECK:SPACING: spaces preferred around that '<<' (ctx:VxV)
-#3676: FILE: drivers/gpu/drm/i915/gt/intel_gtt.h:128:
-+#define GEN8_PPAT_WT			(2<<0)
-                     			  ^
-
--:3677: CHECK:SPACING: spaces preferred around that '<<' (ctx:VxV)
-#3677: FILE: drivers/gpu/drm/i915/gt/intel_gtt.h:129:
-+#define GEN8_PPAT_WC			(1<<0)
-                     			  ^
-
--:3678: CHECK:SPACING: spaces preferred around that '<<' (ctx:VxV)
-#3678: FILE: drivers/gpu/drm/i915/gt/intel_gtt.h:130:
-+#define GEN8_PPAT_UC			(0<<0)
-                     			  ^
-
--:3679: CHECK:SPACING: spaces preferred around that '<<' (ctx:VxV)
-#3679: FILE: drivers/gpu/drm/i915/gt/intel_gtt.h:131:
-+#define GEN8_PPAT_ELLC_OVERRIDE		(0<<2)
-                                		  ^
-
--:3712: CHECK:UNCOMMENTED_DEFINITION: spinlock_t definition without comment
-#3712: FILE: drivers/gpu/drm/i915/gt/intel_gtt.h:164:
-+	spinlock_t lock;
-
--:3723: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'px' - possible side-effects?
-#3723: FILE: drivers/gpu/drm/i915/gt/intel_gtt.h:175:
-+#define px_base(px) \
-+	__px_choose_expr(px, struct i915_page_dma *, __x, \
-+	__px_choose_expr(px, struct i915_page_scratch *, &__x->base, \
-+	__px_choose_expr(px, struct i915_page_table *, &__x->base, \
-+	__px_choose_expr(px, struct i915_page_directory *, &__x->pt.base, \
-+	(void)0))))
-
--:3731: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'px' - possible side-effects?
-#3731: FILE: drivers/gpu/drm/i915/gt/intel_gtt.h:183:
-+#define px_pt(px) \
-+	__px_choose_expr(px, struct i915_page_table *, __x, \
-+	__px_choose_expr(px, struct i915_page_directory *, &__x->pt, \
-+	(void)0))
-
--:3760: CHECK:UNCOMMENTED_DEFINITION: spinlock_t definition without comment
-#3760: FILE: drivers/gpu/drm/i915/gt/intel_gtt.h:212:
-+	spinlock_t lock;
-
--:4316: WARNING:MEMORY_BARRIER: memory barrier without comment
-#4316: FILE: drivers/gpu/drm/i915/gt/intel_ppgtt.c:181:
-+	wmb();
-
--:5070: CHECK:USLEEP_RANGE: usleep_range is preferred over udelay; see Documentation/timers/timers-howto.rst
-#5070: FILE: drivers/gpu/drm/i915/i915_gem_gtt.c:68:
-+			udelay(10);
-
--:8995: CHECK:SPACING: spaces preferred around that '*' (ctx:VxV)
-#8995: FILE: drivers/gpu/drm/i915/i915_vma_types.h:126:
-+	BUILD_BUG_ON(sizeof(struct intel_rotation_info) != 8*sizeof(unsigned int));
- 	                                                    ^
-
--:8997: CHECK:SPACING: spaces preferred around that '*' (ctx:VxV)
-#8997: FILE: drivers/gpu/drm/i915/i915_vma_types.h:128:
-+	BUILD_BUG_ON(sizeof(struct intel_remapped_info) != 9*sizeof(unsigned int));
- 	                                                    ^
-
-total: 0 errors, 19 warnings, 31 checks, 9335 lines checked
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+VGFsa2VkIHdpdGggSFcgdGVhbSBhbmQgdGhpcyBpcyBhIGxlZnQgb3ZlciwgZHJpdmVyIHNob3Vs
+ZCBub3QKcHJvZ3JhbSBjbG9ja2dhdGluZywgbWcgb3IgZGVrZWwgZmlybXdhcmUgaXMgcmVwb25z
+aWJsZSBmb3IgYW55CmNsb2NrZ2F0aW5nIHByb2dyYW1pbmcuCgpBbHNvIHJlbW92aW5nIHRoZSBy
+ZWdpc3RlciBhbmQgYml0cyBkZWZpbml0aW9uIHJlbGF0ZWQgdG8gY2xvY2tnYXRpbmcuCgp2MjoK
+QWRkZWQgV0FSTl9PTgoKdjM6Ck9ubHkgY2FsbGluZyBpY2xfcGh5X3NldF9jbG9ja19nYXRpbmco
+KSBvbiBpbnRlbF9kZGlfcHJlX2VuYWJsZV9oZG1pCmZvciBHRU4xMQoKdjQ6CklDTCBzaG91bGQg
+YWxzbyBub3QgcHJvZ3JhbSBjbG9ja2dhdGluZyAodGhhbmtzIE1hdHQgZm9yIGNhdGNoaW5nCnRo
+aXMpCgpCU3BlYyBpc3N1ZTogMjA4ODUKQlNwZWM6IDQ5MjkyCkJTcGVjOiAyMTczNQpDYzogTHVj
+YXMgRGUgTWFyY2hpIDxsdWNhcy5kZW1hcmNoaUBpbnRlbC5jb20+CkNjOiBNYXR0IFJvcGVyIDxt
+YXR0aGV3LmQucm9wZXJAaW50ZWwuY29tPgpDYzogSmFuaSBOaWt1bGEgPGphbmkubmlrdWxhQGlu
+dGVsLmNvbT4KUmV2aWV3ZWQtYnk6IE1hdHQgUm9wZXIgPG1hdHRoZXcuZC5yb3BlckBpbnRlbC5j
+b20+ClNpZ25lZC1vZmYtYnk6IEpvc8OpIFJvYmVydG8gZGUgU291emEgPGpvc2Uuc291emFAaW50
+ZWwuY29tPgotLS0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGRpLmMgfCA3
+MiAtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfcmVn
+LmggICAgICAgICAgfCAyMCAtLS0tLS0tCiAyIGZpbGVzIGNoYW5nZWQsIDkyIGRlbGV0aW9ucygt
+KQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGRpLmMg
+Yi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RkaS5jCmluZGV4IDA3YWNkMGRh
+Y2EyNS4uMmU0ZTE3OGY3ZWQ0IDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNw
+bGF5L2ludGVsX2RkaS5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxf
+ZGRpLmMKQEAgLTMxNjcsNTcgKzMxNjcsNiBAQCBzdGF0aWMgdm9pZCBpbnRlbF9kZGlfY2xrX2Rp
+c2FibGUoc3RydWN0IGludGVsX2VuY29kZXIgKmVuY29kZXIpCiAJfQogfQogCi1zdGF0aWMgdm9p
+ZAotaWNsX3BoeV9zZXRfY2xvY2tfZ2F0aW5nKHN0cnVjdCBpbnRlbF9kaWdpdGFsX3BvcnQgKmRp
+Z19wb3J0LCBib29sIGVuYWJsZSkKLXsKLQlzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3By
+aXYgPSB0b19pOTE1KGRpZ19wb3J0LT5iYXNlLmJhc2UuZGV2KTsKLQllbnVtIHRjX3BvcnQgdGNf
+cG9ydCA9IGludGVsX3BvcnRfdG9fdGMoZGV2X3ByaXYsIGRpZ19wb3J0LT5iYXNlLnBvcnQpOwot
+CXUzMiB2YWwsIGJpdHM7Ci0JaW50IGxuOwotCi0JaWYgKHRjX3BvcnQgPT0gUE9SVF9UQ19OT05F
+KQotCQlyZXR1cm47Ci0KLQliaXRzID0gTUdfRFBfTU9ERV9DRkdfVFIyUFdSX0dBVElORyB8IE1H
+X0RQX01PREVfQ0ZHX1RSUFdSX0dBVElORyB8Ci0JICAgICAgIE1HX0RQX01PREVfQ0ZHX0NMTlBX
+Ul9HQVRJTkcgfCBNR19EUF9NT0RFX0NGR19ESUdQV1JfR0FUSU5HIHwKLQkgICAgICAgTUdfRFBf
+TU9ERV9DRkdfR0FPTlBXUl9HQVRJTkc7Ci0KLQlmb3IgKGxuID0gMDsgbG4gPCAyOyBsbisrKSB7
+Ci0JCWlmIChJTlRFTF9HRU4oZGV2X3ByaXYpID49IDEyKSB7Ci0JCQlJOTE1X1dSSVRFKEhJUF9J
+TkRFWF9SRUcodGNfcG9ydCksIEhJUF9JTkRFWF9WQUwodGNfcG9ydCwgbG4pKTsKLQkJCXZhbCA9
+IEk5MTVfUkVBRChES0xfRFBfTU9ERSh0Y19wb3J0KSk7Ci0JCX0gZWxzZSB7Ci0JCQl2YWwgPSBJ
+OTE1X1JFQUQoTUdfRFBfTU9ERShsbiwgdGNfcG9ydCkpOwotCQl9Ci0KLQkJaWYgKGVuYWJsZSkK
+LQkJCXZhbCB8PSBiaXRzOwotCQllbHNlCi0JCQl2YWwgJj0gfmJpdHM7Ci0KLQkJaWYgKElOVEVM
+X0dFTihkZXZfcHJpdikgPj0gMTIpCi0JCQlJOTE1X1dSSVRFKERLTF9EUF9NT0RFKHRjX3BvcnQp
+LCB2YWwpOwotCQllbHNlCi0JCQlJOTE1X1dSSVRFKE1HX0RQX01PREUobG4sIHRjX3BvcnQpLCB2
+YWwpOwotCX0KLQotCWlmIChJTlRFTF9HRU4oZGV2X3ByaXYpID09IDExKSB7Ci0JCWJpdHMgPSBN
+R19NSVNDX1NVUzBfQ0ZHX1RSMlBXUl9HQVRJTkcgfAotCQkgICAgICAgTUdfTUlTQ19TVVMwX0NG
+R19DTDJQV1JfR0FUSU5HIHwKLQkJICAgICAgIE1HX01JU0NfU1VTMF9DRkdfR0FPTlBXUl9HQVRJ
+TkcgfAotCQkgICAgICAgTUdfTUlTQ19TVVMwX0NGR19UUlBXUl9HQVRJTkcgfAotCQkgICAgICAg
+TUdfTUlTQ19TVVMwX0NGR19DTDFQV1JfR0FUSU5HIHwKLQkJICAgICAgIE1HX01JU0NfU1VTMF9D
+RkdfREdQV1JfR0FUSU5HOwotCi0JCXZhbCA9IEk5MTVfUkVBRChNR19NSVNDX1NVUzAodGNfcG9y
+dCkpOwotCQlpZiAoZW5hYmxlKQotCQkJdmFsIHw9IChiaXRzIHwgTUdfTUlTQ19TVVMwX1NVU0NM
+S19EWU5DTEtHQVRFX01PREUoMykpOwotCQllbHNlCi0JCQl2YWwgJj0gfihiaXRzIHwgTUdfTUlT
+Q19TVVMwX1NVU0NMS19EWU5DTEtHQVRFX01PREVfTUFTSyk7Ci0JCUk5MTVfV1JJVEUoTUdfTUlT
+Q19TVVMwKHRjX3BvcnQpLCB2YWwpOwotCX0KLX0KLQogc3RhdGljIHZvaWQKIGljbF9wcm9ncmFt
+X21nX2RwX21vZGUoc3RydWN0IGludGVsX2RpZ2l0YWxfcG9ydCAqaW50ZWxfZGlnX3BvcnQsCiAJ
+CSAgICAgICBjb25zdCBzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZSAqY3J0Y19zdGF0ZSkKQEAgLTM1
+MTYsMTIgKzM0NjUsNiBAQCBzdGF0aWMgdm9pZCB0Z2xfZGRpX3ByZV9lbmFibGVfZHAoc3RydWN0
+IGludGVsX2VuY29kZXIgKmVuY29kZXIsCiAJICogZG93biB0aGlzIGZ1bmN0aW9uLgogCSAqLwog
+Ci0JLyoKLQkgKiA3LmQgVHlwZSBDIHdpdGggRFAgYWx0ZXJuYXRlIG9yIGZpeGVkL2xlZ2FjeS9z
+dGF0aWMgY29ubmVjdGlvbiAtCi0JICogRGlzYWJsZSBQSFkgY2xvY2sgZ2F0aW5nIHBlciBUeXBl
+LUMgRERJIEJ1ZmZlciBwYWdlCi0JICovCi0JaWNsX3BoeV9zZXRfY2xvY2tfZ2F0aW5nKGRpZ19w
+b3J0LCBmYWxzZSk7Ci0KIAkvKiA3LmUgQ29uZmlndXJlIHZvbHRhZ2Ugc3dpbmcgYW5kIHJlbGF0
+ZWQgSU8gc2V0dGluZ3MgKi8KIAl0Z2xfZGRpX3Zzd2luZ19zZXF1ZW5jZShlbmNvZGVyLCBjcnRj
+X3N0YXRlLT5wb3J0X2Nsb2NrLCBsZXZlbCwKIAkJCQllbmNvZGVyLT50eXBlKTsKQEAgLTM1NzMs
+MTUgKzM1MTYsNiBAQCBzdGF0aWMgdm9pZCB0Z2xfZGRpX3ByZV9lbmFibGVfZHAoc3RydWN0IGlu
+dGVsX2VuY29kZXIgKmVuY29kZXIsCiAJaWYgKCFpc190cmFuc19wb3J0X3N5bmNfbW9kZShjcnRj
+X3N0YXRlKSkKIAkJaW50ZWxfZHBfc3RvcF9saW5rX3RyYWluKGludGVsX2RwKTsKIAotCS8qCi0J
+ICogVE9ETzogZW5hYmxlIGNsb2NrIGdhdGluZwotCSAqCi0JICogSXQgaXMgbm90IHdyaXR0ZW4g
+aW4gRFAgZW5hYmxpbmcgc2VxdWVuY2UgYnV0ICJQSFkgQ2xvY2tnYXRpbmcKLQkgKiBwcm9ncmFt
+bWluZyIgc3RhdGVzIHRoYXQgY2xvY2sgZ2F0aW5nIHNob3VsZCBiZSBlbmFibGVkIGFmdGVyIHRo
+ZQotCSAqIGxpbmsgdHJhaW5pbmcgYnV0IGRvaW5nIHNvIGNhdXNlcyBhbGwgdGhlIGZvbGxvd2lu
+ZyB0cmFpbmluZ3MgdG8gZmFpbAotCSAqIHNvIG5vdCBlbmFibGluZyBpdCBmb3Igbm93LgotCSAq
+LwotCiAJLyogNy5sIENvbmZpZ3VyZSBhbmQgZW5hYmxlIEZFQyBpZiBuZWVkZWQgKi8KIAlpbnRl
+bF9kZGlfZW5hYmxlX2ZlYyhlbmNvZGVyLCBjcnRjX3N0YXRlKTsKIAlpbnRlbF9kc2NfZW5hYmxl
+KGVuY29kZXIsIGNydGNfc3RhdGUpOwpAQCAtMzYxNyw3ICszNTUxLDYgQEAgc3RhdGljIHZvaWQg
+aHN3X2RkaV9wcmVfZW5hYmxlX2RwKHN0cnVjdCBpbnRlbF9lbmNvZGVyICplbmNvZGVyLAogCQkJ
+CQlkaWdfcG9ydC0+ZGRpX2lvX3Bvd2VyX2RvbWFpbik7CiAKIAlpY2xfcHJvZ3JhbV9tZ19kcF9t
+b2RlKGRpZ19wb3J0LCBjcnRjX3N0YXRlKTsKLQlpY2xfcGh5X3NldF9jbG9ja19nYXRpbmcoZGln
+X3BvcnQsIGZhbHNlKTsKIAogCWlmIChJTlRFTF9HRU4oZGV2X3ByaXYpID49IDExKQogCQlpY2xf
+ZGRpX3Zzd2luZ19zZXF1ZW5jZShlbmNvZGVyLCBjcnRjX3N0YXRlLT5wb3J0X2Nsb2NrLApAQCAt
+MzY1MSw4ICszNTg0LDYgQEAgc3RhdGljIHZvaWQgaHN3X2RkaV9wcmVfZW5hYmxlX2RwKHN0cnVj
+dCBpbnRlbF9lbmNvZGVyICplbmNvZGVyLAogCiAJaW50ZWxfZGRpX2VuYWJsZV9mZWMoZW5jb2Rl
+ciwgY3J0Y19zdGF0ZSk7CiAKLQlpY2xfcGh5X3NldF9jbG9ja19nYXRpbmcoZGlnX3BvcnQsIHRy
+dWUpOwotCiAJaWYgKCFpc19tc3QpCiAJCWludGVsX2RkaV9lbmFibGVfcGlwZV9jbG9jayhjcnRj
+X3N0YXRlKTsKIApAQCAtMzY5NCw3ICszNjI1LDYgQEAgc3RhdGljIHZvaWQgaW50ZWxfZGRpX3By
+ZV9lbmFibGVfaGRtaShzdHJ1Y3QgaW50ZWxfZW5jb2RlciAqZW5jb2RlciwKIAlpbnRlbF9kaXNw
+bGF5X3Bvd2VyX2dldChkZXZfcHJpdiwgZGlnX3BvcnQtPmRkaV9pb19wb3dlcl9kb21haW4pOwog
+CiAJaWNsX3Byb2dyYW1fbWdfZHBfbW9kZShkaWdfcG9ydCwgY3J0Y19zdGF0ZSk7Ci0JaWNsX3Bo
+eV9zZXRfY2xvY2tfZ2F0aW5nKGRpZ19wb3J0LCBmYWxzZSk7CiAKIAlpZiAoSU5URUxfR0VOKGRl
+dl9wcml2KSA+PSAxMikKIAkJdGdsX2RkaV92c3dpbmdfc2VxdWVuY2UoZW5jb2RlciwgY3J0Y19z
+dGF0ZS0+cG9ydF9jbG9jaywKQEAgLTM3MDksOCArMzYzOSw2IEBAIHN0YXRpYyB2b2lkIGludGVs
+X2RkaV9wcmVfZW5hYmxlX2hkbWkoc3RydWN0IGludGVsX2VuY29kZXIgKmVuY29kZXIsCiAJZWxz
+ZQogCQlpbnRlbF9wcmVwYXJlX2hkbWlfZGRpX2J1ZmZlcnMoZW5jb2RlciwgbGV2ZWwpOwogCi0J
+aWNsX3BoeV9zZXRfY2xvY2tfZ2F0aW5nKGRpZ19wb3J0LCB0cnVlKTsKLQogCWlmIChJU19HRU45
+X0JDKGRldl9wcml2KSkKIAkJc2tsX2RkaV9zZXRfaWJvb3N0KGVuY29kZXIsIGxldmVsLCBJTlRF
+TF9PVVRQVVRfSERNSSk7CiAKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVf
+cmVnLmggYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3JlZy5oCmluZGV4IGQ5MGQ3YmY4ZDMy
+OC4uNmNjNTVjMTAzZjY3IDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3Jl
+Zy5oCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfcmVnLmgKQEAgLTIyNDQsMjYgKzIy
+NDQsNiBAQCBzdGF0aWMgaW5saW5lIGJvb2wgaTkxNV9tbWlvX3JlZ192YWxpZChpOTE1X3JlZ190
+IHJlZykKIAkJCQkgICAgTUdfRFBfTU9ERV9MTjFfQUNVX1BPUlQxKQogI2RlZmluZSAgIE1HX0RQ
+X01PREVfQ0ZHX0RQX1gyX01PREUJCQkoMSA8PCA3KQogI2RlZmluZSAgIE1HX0RQX01PREVfQ0ZH
+X0RQX1gxX01PREUJCQkoMSA8PCA2KQotI2RlZmluZSAgIE1HX0RQX01PREVfQ0ZHX1RSMlBXUl9H
+QVRJTkcJCQkoMSA8PCA1KQotI2RlZmluZSAgIE1HX0RQX01PREVfQ0ZHX1RSUFdSX0dBVElORwkJ
+CSgxIDw8IDQpCi0jZGVmaW5lICAgTUdfRFBfTU9ERV9DRkdfQ0xOUFdSX0dBVElORwkJCSgxIDw8
+IDMpCi0jZGVmaW5lICAgTUdfRFBfTU9ERV9DRkdfRElHUFdSX0dBVElORwkJCSgxIDw8IDIpCi0j
+ZGVmaW5lICAgTUdfRFBfTU9ERV9DRkdfR0FPTlBXUl9HQVRJTkcJCQkoMSA8PCAxKQotCi0jZGVm
+aW5lIE1HX01JU0NfU1VTMF9QT1JUMQkJCQkweDE2ODgxNAotI2RlZmluZSBNR19NSVNDX1NVUzBf
+UE9SVDIJCQkJMHgxNjk4MTQKLSNkZWZpbmUgTUdfTUlTQ19TVVMwX1BPUlQzCQkJCTB4MTZBODE0
+Ci0jZGVmaW5lIE1HX01JU0NfU1VTMF9QT1JUNAkJCQkweDE2QjgxNAotI2RlZmluZSBNR19NSVND
+X1NVUzAodGNfcG9ydCkgXAotCV9NTUlPKF9QT1JUKHRjX3BvcnQsIE1HX01JU0NfU1VTMF9QT1JU
+MSwgTUdfTUlTQ19TVVMwX1BPUlQyKSkKLSNkZWZpbmUgICBNR19NSVNDX1NVUzBfU1VTQ0xLX0RZ
+TkNMS0dBVEVfTU9ERV9NQVNLCSgzIDw8IDE0KQotI2RlZmluZSAgIE1HX01JU0NfU1VTMF9TVVND
+TEtfRFlOQ0xLR0FURV9NT0RFKHgpCSgoeCkgPDwgMTQpCi0jZGVmaW5lICAgTUdfTUlTQ19TVVMw
+X0NGR19UUjJQV1JfR0FUSU5HCQkoMSA8PCAxMikKLSNkZWZpbmUgICBNR19NSVNDX1NVUzBfQ0ZH
+X0NMMlBXUl9HQVRJTkcJCSgxIDw8IDExKQotI2RlZmluZSAgIE1HX01JU0NfU1VTMF9DRkdfR0FP
+TlBXUl9HQVRJTkcJCSgxIDw8IDEwKQotI2RlZmluZSAgIE1HX01JU0NfU1VTMF9DRkdfVFJQV1Jf
+R0FUSU5HCQkJKDEgPDwgNykKLSNkZWZpbmUgICBNR19NSVNDX1NVUzBfQ0ZHX0NMMVBXUl9HQVRJ
+TkcJCSgxIDw8IDYpCi0jZGVmaW5lICAgTUdfTUlTQ19TVVMwX0NGR19ER1BXUl9HQVRJTkcJCQko
+MSA8PCA1KQogCiAvKiBUaGUgc3BlYyBkZWZpbmVzIHRoaXMgb25seSBmb3IgQlhUIFBIWTAsIGJ1
+dCBsZXRzIGFzc3VtZSB0aGF0IHRoaXMKICAqIHdvdWxkIGV4aXN0IGZvciBQSFkxIHRvbyBpZiBp
+dCBoYWQgYSBzZWNvbmQgY2hhbm5lbC4KLS0gCjIuMjQuMQoKX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1n
+ZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21h
+aWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
