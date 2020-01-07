@@ -2,34 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B8EF11323A0
-	for <lists+intel-gfx@lfdr.de>; Tue,  7 Jan 2020 11:33:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 86F1E13249A
+	for <lists+intel-gfx@lfdr.de>; Tue,  7 Jan 2020 12:15:45 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4FA176E829;
-	Tue,  7 Jan 2020 10:33:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8215389DD2;
+	Tue,  7 Jan 2020 11:15:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A0EB46E829;
- Tue,  7 Jan 2020 10:33:06 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 19793686-1500050 for multiple; Tue, 07 Jan 2020 10:32:45 +0000
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B5E4589DD2
+ for <intel-gfx@lists.freedesktop.org>; Tue,  7 Jan 2020 11:15:42 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 07 Jan 2020 03:15:42 -0800
+X-IronPort-AV: E=Sophos;i="5.69,406,1571727600"; d="scan'208";a="215516851"
+Received: from kumarjai-mobl1.ger.corp.intel.com (HELO [10.251.83.12])
+ ([10.251.83.12])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/AES256-SHA;
+ 07 Jan 2020 03:15:41 -0800
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+References: <20191222233558.2201901-1-chris@chris-wilson.co.uk>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <bffc4098-183d-59af-cf74-09e96bb4063d@linux.intel.com>
+Date: Tue, 7 Jan 2020 11:15:39 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
 MIME-Version: 1.0
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-From: Chris Wilson <chris@chris-wilson.co.uk>
-In-Reply-To: <65f5226b-9f8d-9442-1131-4c4768cfa41c@linux.intel.com>
-References: <20200104153746.2175482-1-chris@chris-wilson.co.uk>
- <20200105010643.2207837-1-chris@chris-wilson.co.uk>
- <65f5226b-9f8d-9442-1131-4c4768cfa41c@linux.intel.com>
-Message-ID: <157839316240.2273.2749522722629040780@skylake-alporthouse-com>
-User-Agent: alot/0.6
-Date: Tue, 07 Jan 2020 10:32:42 +0000
-Subject: Re: [Intel-gfx] [igt-dev] [PATCH i-g-t] i915/perf: Find the
- associated perf-type for a particular device
+In-Reply-To: <20191222233558.2201901-1-chris@chris-wilson.co.uk>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Mark the GEM context link as RCU
+ protected
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,154 +47,76 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: igt-dev@lists.freedesktop.org, saurabhg.gupta@intel.com
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Tvrtko Ursulin (2020-01-07 09:53:39)
-> 
-> +Arek, Saurabhg
-> 
-> On 05/01/2020 01:06, Chris Wilson wrote:
-> > Since with multiple devices, we may have multiple different perf_pmu
-> > each with their own type, we want to find the right one for the job.
-> > 
-> > The tests are run with a specific fd, from which we can extract the
-> > appropriate bus-id and find the associated perf-type. The performance
-> > monitoring tools are a little more general and not yet ready to probe
-> > all device or bind to one in particular, so we just assume the default
-> > igfx for the time being.
-> > 
-> > v2: Extract the bus address from out of sysfs
-> > 
-> > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> > Cc: "Robert M. Fosha" <robert.m.fosha@intel.com>
-> > Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> > Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-> > ---
-> >   benchmarks/gem_wsim.c          |  4 +-
-> >   lib/igt_perf.c                 | 84 +++++++++++++++++++++++++++++++---
-> >   lib/igt_perf.h                 | 13 ++++--
-> >   overlay/gem-interrupts.c       |  2 +-
-> >   overlay/gpu-freq.c             |  4 +-
-> >   overlay/gpu-top.c              | 12 ++---
-> >   overlay/rc6.c                  |  2 +-
-> >   tests/i915/gem_ctx_freq.c      |  2 +-
-> >   tests/i915/gem_ctx_sseu.c      |  2 +-
-> >   tests/i915/gem_exec_balancer.c | 18 +++++---
-> >   tests/perf_pmu.c               | 84 ++++++++++++++++++----------------
-> >   tools/intel_gpu_top.c          |  2 +-
-> >   12 files changed, 159 insertions(+), 70 deletions(-)
-> > 
-> > diff --git a/benchmarks/gem_wsim.c b/benchmarks/gem_wsim.c
-> > index 6305e0d7a..9156fdc90 100644
-> > --- a/benchmarks/gem_wsim.c
-> > +++ b/benchmarks/gem_wsim.c
-> > @@ -2268,8 +2268,8 @@ busy_init(const struct workload_balancer *balancer, struct workload *wrk)
-> >       for (d = &engines[0]; d->id != VCS; d++) {
-> >               int pfd;
-> >   
-> > -             pfd = perf_i915_open_group(I915_PMU_ENGINE_BUSY(d->class,
-> > -                                                             d->inst),
-> > +             pfd = perf_igfx_open_group(I915_PMU_ENGINE_BUSY(d->class,
-> > +                                                             d->inst),
-> >                                          bb->fd);
-> >               if (pfd < 0) {
-> >                       if (d->id != VCS2)
-> > diff --git a/lib/igt_perf.c b/lib/igt_perf.c
-> > index e3dec2cc2..840add043 100644
-> > --- a/lib/igt_perf.c
-> > +++ b/lib/igt_perf.c
-> > @@ -4,17 +4,77 @@
-> >   #include <stdlib.h>
-> >   #include <string.h>
-> >   #include <errno.h>
-> > +#include <sys/stat.h>
-> >   #include <sys/sysinfo.h>
-> > +#include <sys/sysmacros.h>
-> >   
-> >   #include "igt_perf.h"
-> >   
-> > -uint64_t i915_type_id(void)
-> > +static char *bus_address(int i915, char *path, int pathlen)
-> > +{
-> > +     struct stat st;
-> > +     int len = -1;
-> > +     int dir;
-> > +     char *s;
-> > +
-> > +     if (fstat(i915, &st) || !S_ISCHR(st.st_mode))
-> > +             return NULL;
-> > +
-> > +     snprintf(path, pathlen, "/sys/dev/char/%d:%d",
-> > +              major(st.st_rdev), minor(st.st_rdev));
-> > +
-> > +     dir = open(path, O_RDONLY);
-> > +     if (dir != -1) {
-> > +             len = readlinkat(dir, "device", path, pathlen - 1);
-> > +             close(dir);
-> > +     }
-> > +     if (len < 0)
-> > +             return NULL;
-> > +
-> > +     path[len] = '\0';
-> > +
-> > +     /* strip off the relative path */
-> > +     s = strrchr(path, '/');
-> > +     if (s)
-> > +             memmove(path, s + 1, len - (s - path) + 1);
-> > +
-> > +     return path;
-> > +}
-> > +
-> > +const char *i915_perf_device(int i915, char *buf, int buflen)
-> > +{
-> > +#define prefix "i915-"
-> > +#define plen strlen(prefix)
-> > +
-> > +     if (!buf || buflen < plen)
-> > +             return "i915";
-> > +
-> > +     memcpy(buf, prefix, plen);
-> > +
-> > +     if (!bus_address(i915, buf + plen, buflen - plen) ||
-> > +         strcmp(buf + plen, "0000:00:02.0") == 0) /* legacy name for igfx */
-> > +             buf[plen - 1] = '\0';
-> > +
-> > +     return buf;
-> > +}
-> 
-> So DRM fd -> PCI string conversion, yes? On a glance it looks okay. 
-> However Arek probably has this data as part of "[PATCH i-g-t 0/4] device 
-> selection && lsgpu" (https://patchwork.freedesktop.org/series/70285/).
 
-If the string is known, we can use it. This simple routine is *simple*
-yet effective :)
- 
-> Also:
+On 22/12/2019 23:35, Chris Wilson wrote:
+> The only protection for intel_context.gem_cotext is granted by RCU, so
+> annotate it as a rcu protected pointer and carefully dereference it in
+> the few occasions we need to use it.
 > 
-> https://gitlab.freedesktop.org/drm/igt-gpu-tools/issues/52
-> https://gitlab.freedesktop.org/drm/igt-gpu-tools/issues/51
-
-How lightweight are they aiming to be?
- 
-> And VLK-5588.
+> Fixes: 9f3ccd40acf4 ("drm/i915: Drop GEM context as a direct link from i915_request")
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Andi Shyti <andi.shyti@intel.com>
+> ---
+>   drivers/gpu/drm/i915/gem/i915_gem_context.c   |  5 ++-
+>   drivers/gpu/drm/i915/gt/intel_context_types.h |  2 +-
+>   drivers/gpu/drm/i915/gt/intel_reset.c         | 26 +++++++++---
+>   .../gpu/drm/i915/gt/intel_ring_submission.c   |  2 +-
+>   drivers/gpu/drm/i915/i915_gpu_error.c         | 40 ++++++++++++-------
+>   drivers/gpu/drm/i915/i915_request.c           |  6 +--
+>   drivers/gpu/drm/i915/i915_request.h           |  8 ++++
+>   7 files changed, 62 insertions(+), 27 deletions(-)
 > 
-> This patch is overlap with #52 and then #51/VLK-5588 is about allowing 
-> card selection for tools.
-> 
-> How to meld the two with minimum effort? We could put this in and then 
-> later replace the PCI name resolve with a library routine and re-adjust 
-> tools to allow card selection via some mechanism.
 
-Exactly. All we need here is a name to lookup the perf type id. One
-routine to provide an introspection method for a given fd and assumption
-of i915, does not prevent better methods :)
+[snip]
 
-I do wonder though if we should have perf_name in our sysfs.
--Chris
+>   
+>   static void engine_record_requests(struct intel_engine_cs *engine,
+> @@ -1298,28 +1304,34 @@ static void error_record_engine_execlists(const struct intel_engine_cs *engine,
+>   static bool record_context(struct drm_i915_error_context *e,
+>   			   const struct i915_request *rq)
+>   {
+> -	const struct i915_gem_context *ctx = rq->context->gem_context;
+> +	struct i915_gem_context *ctx;
+> +	struct task_struct *task;
+> +	bool capture;
+>   
+> +	rcu_read_lock();
+> +	ctx = rcu_dereference(rq->context->gem_context);
+> +	if (ctx && !kref_get_unless_zero(&ctx->ref))
+> +		ctx = NULL;
+> +	rcu_read_unlock();
+>   	if (!ctx)
+>   		return false;
+>   
+> -	if (ctx->pid) {
+> -		struct task_struct *task;
+> -
+> -		rcu_read_lock();
+> -		task = pid_task(ctx->pid, PIDTYPE_PID);
+> -		if (task) {
+> -			strcpy(e->comm, task->comm);
+> -			e->pid = task->pid;
+> -		}
+> -		rcu_read_unlock();
+> +	rcu_read_lock();
+> +	task = pid_task(ctx->pid, PIDTYPE_PID);
+> +	if (task) {
+> +		strcpy(e->comm, task->comm);
+> +		e->pid = task->pid;
+>   	}
+> +	rcu_read_unlock();
+
+Why is this rcu_read_lock section needed? The first one obtained the 
+reference to the context so should be good.
+
+Regards,
+
+Tvrtko
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
