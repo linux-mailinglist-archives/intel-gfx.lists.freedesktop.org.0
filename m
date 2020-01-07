@@ -1,56 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0AB5E132F4A
-	for <lists+intel-gfx@lfdr.de>; Tue,  7 Jan 2020 20:21:14 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6DCE6132F5D
+	for <lists+intel-gfx@lfdr.de>; Tue,  7 Jan 2020 20:26:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 032016E838;
-	Tue,  7 Jan 2020 19:21:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 204506E840;
+	Tue,  7 Jan 2020 19:26:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x442.google.com (mail-wr1-x442.google.com
- [IPv6:2a00:1450:4864:20::442])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3FF676E838
- for <intel-gfx@lists.freedesktop.org>; Tue,  7 Jan 2020 19:21:10 +0000 (UTC)
-Received: by mail-wr1-x442.google.com with SMTP id q6so699449wro.9
- for <intel-gfx@lists.freedesktop.org>; Tue, 07 Jan 2020 11:21:10 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=LdJYOuNh221r+I5HkB8kiuvIiYDLp6ocj/aWsi30vcU=;
- b=GSb1MOfEpE29dOqOvru4LcH8tqKdbdV1i55X8cHDLMoreriVFPrCmbML9Plqyl+/Pf
- kiezLSLBlaf3NeyPF2DCe6OWhV2TTU8pnODOypX4Yd5uWBauFEttsVltNa1c0OfR5g+L
- aui9+c0vScGAGzHSG1JWJ2JS/GosfWrsboFV8cUMS4QKgHYaH1T8TXAAmUaEAspoFWog
- ymQMs7G//u6723ke06Y6cZS8Rh3spEg2TfyAhmjnVexOeyUT3gzaWtFsn3NW0hY6F4dZ
- HMy6MRzz2AEgfkh+tcndkIRvyluTfJo8gHF+0sMRGhov1puM6f8p7jQ8jqnJjOlbfnsy
- 2pwg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=LdJYOuNh221r+I5HkB8kiuvIiYDLp6ocj/aWsi30vcU=;
- b=tRyIbW+whkCtebIyedZviJKLWvo4nlPAZQpeD76FWGSdTytxVgVajielyObpNu7UUR
- I9PDAGLVDLAF+P9i7GyZVT62OlFfsmdWtjKaPzS5XWL2hENgtrlFbfdkEoP3lILGUifa
- OVJHQZoMUK8hDl/e501TM2newUSlYPxDu5ISRZGUczXpPdTcLxOz7DWgDSbk5tJw+Orq
- EUIivPfnZD17bgFG72hNKP1siDhTMrv8o0WLOTL23qzzRD0eDKVd5xDq0+SE/g+3pI1b
- oGYBwiIULZSlq6PratCu0lsKz/yFHwwrkroTdA2erw2MxnEAPNV9s9ZlN9rP62dWqDFY
- nTeA==
-X-Gm-Message-State: APjAAAX8WEaQZXjEJXygnOrUM88WRzP/D8cP8se9c7RpYAhFkn9BT8I3
- kE/Z70wx/q6eVM0b5/IDf2sLxgYe+5T4Grb9JAnt6wdRUSQ=
-X-Google-Smtp-Source: APXvYqyW/AHuegW6k4JKamyXmhubPrGw9N2WgopMiGEa0RCKqaaySVUTWrtbd0etwqgFj027hgU21+8IJRt6rUKGiS0=
-X-Received: by 2002:adf:fbc9:: with SMTP id d9mr707121wrs.20.1578424868909;
- Tue, 07 Jan 2020 11:21:08 -0800 (PST)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 0294B6E83B;
+ Tue,  7 Jan 2020 19:26:12 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id EF5FEA0009;
+ Tue,  7 Jan 2020 19:26:11 +0000 (UTC)
 MIME-Version: 1.0
-References: <20191225175514.21271-1-swati2.sharma@intel.com>
- <CAKi4VAJOsg5pashSkEjTd4LrrbZ3ZXwK8ivw1PEfQbBrW5gWKA@mail.gmail.com>
- <32934a52-c653-ca66-4d3e-346623e224b9@intel.com>
-In-Reply-To: <32934a52-c653-ca66-4d3e-346623e224b9@intel.com>
-From: Lucas De Marchi <lucas.de.marchi@gmail.com>
-Date: Tue, 7 Jan 2020 11:20:56 -0800
-Message-ID: <CAKi4VA+LckgK4iauyP_mV5=x3C=JvQkEDOkkHOoaoDoEA0OWsg@mail.gmail.com>
-To: "Sharma, Swati2" <swati2.sharma@intel.com>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/dsb: Increase log level if DSB
- engine gets busy
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Tue, 07 Jan 2020 19:26:11 -0000
+Message-ID: <157842517197.8939.12694968727851587477@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200107143118.3288995-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200107143118.3288995-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/gt=3A_Take_responsibility_for_engine-=3Erelease_as_the_la?=
+ =?utf-8?q?st_step?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,103 +39,145 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>,
- Intel Graphics <intel-gfx@lists.freedesktop.org>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Dec 26, 2019 at 9:34 PM Sharma, Swati2 <swati2.sharma@intel.com> wrote:
->
-> On 27-Dec-19 2:39 AM, Lucas De Marchi wrote:
-> > On Wed, Dec 25, 2019 at 10:07 AM Swati Sharma <swati2.sharma@intel.com> wrote:
-> >>
-> >> Increase the log level if DSB engine gets busy. If dsb engine
-> >> is busy, it should be an error condition to indicate there might be
-> >> some difficulty with the hardware.
-> >>
-> >> If DSB engine gets busy, load luts will fail and as per current
-> >> driver design if one instance of DSB engine gets busy, we are not
-> >> allocating the other instance. So, increase the log level to indicate there
-> >> could be an issue with driver/hardware.
-> >>
-> >> Signed-off-by: Swati Sharma <swati2.sharma@intel.com>
-> >> ---
-> >>   drivers/gpu/drm/i915/display/intel_dsb.c | 4 ++--
-> >>   1 file changed, 2 insertions(+), 2 deletions(-)
-> >>
-> >> diff --git a/drivers/gpu/drm/i915/display/intel_dsb.c b/drivers/gpu/drm/i915/display/intel_dsb.c
-> >> index ada006a690df..6f67b5dfa128 100644
-> >> --- a/drivers/gpu/drm/i915/display/intel_dsb.c
-> >> +++ b/drivers/gpu/drm/i915/display/intel_dsb.c
-> >> @@ -52,7 +52,7 @@ static inline bool intel_dsb_enable_engine(struct intel_dsb *dsb)
-> >>
-> >>          dsb_ctrl = I915_READ(DSB_CTRL(pipe, dsb->id));
-> >>          if (DSB_STATUS & dsb_ctrl) {
-> >> -               DRM_DEBUG_KMS("DSB engine is busy.\n");
-> >> +               DRM_ERROR("DSB engine is busy.\n");
-> >
-> > are we seeing this? Isn't it a dbg message because in this case we
-> > would fallback to direct mmio?
-> We are seeing this issue and is already under debug.
-> https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7630/shard-tglb5/igt@kms_available_modes_crc@available_mode_test_crc.html
+== Series Details ==
 
-I'm not sure what benefit it has in just raising the log level here.
-Btw, the only caller of this function already has a pointless check
-for "engine is busy". You may want to remove that too if you follow this route.
+Series: drm/i915/gt: Take responsibility for engine->release as the last step
+URL   : https://patchwork.freedesktop.org/series/71696/
+State : success
 
-I think it would be more interesting to root cause the issue:  if DSB
-*may* get busy, then we'd better leave this as a dbg and fallback on a
-chain of
-MMIO writes or a delayed commit or failed its initialization early. If
-this is really unexpected, why are we hitting this?
+== Summary ==
 
-As why DSB is busy: is it because we had a previous dsb_commit() that
-is keeping DSB busy so we can't have another subsequent commit? Why
-didn't we fail the call to dsb_init() early Since it's not possible to
-have unpaired dsb_init() / dsb_commit(), if that is the cause then if
-DSB is busy on dsb_commit, it should as well be busy on dsb_init().
+CI Bug Log - changes from CI_DRM_7695 -> Patchwork_16014
+====================================================
 
-Lucas De Marchi
+Summary
+-------
 
->
-> <7> [303.727858] [drm:intel_dsb_commit [i915]] DSB engine is busy.
-> <7> [303.727975] [drm:icl_load_luts [i915]] DSB engine is busy.
-> >
-> > Lucas De Marchi
-> >
-> >>                  return false;
-> >>          }
-> >>
-> >> @@ -72,7 +72,7 @@ static inline bool intel_dsb_disable_engine(struct intel_dsb *dsb)
-> >>
-> >>          dsb_ctrl = I915_READ(DSB_CTRL(pipe, dsb->id));
-> >>          if (DSB_STATUS & dsb_ctrl) {
-> >> -               DRM_DEBUG_KMS("DSB engine is busy.\n");
-> >> +               DRM_ERROR("DSB engine is busy.\n");
-> >>                  return false;
-> >>          }
-> >>
-> >> --
-> >> 2.24.1
-> >>
-> >> _______________________________________________
-> >> Intel-gfx mailing list
-> >> Intel-gfx@lists.freedesktop.org
-> >> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-> >
-> >
-> >
->
->
-> --
-> ~Swati Sharma
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16014/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_16014 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_close_race@basic-threads:
+    - fi-byt-n2820:       [PASS][1] -> [TIMEOUT][2] ([i915#816])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7695/fi-byt-n2820/igt@gem_close_race@basic-threads.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16014/fi-byt-n2820/igt@gem_close_race@basic-threads.html
+
+  * igt@i915_module_load@reload-with-fault-injection:
+    - fi-cfl-guc:         [PASS][3] -> [INCOMPLETE][4] ([i915#505] / [i915#671])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7695/fi-cfl-guc/igt@i915_module_load@reload-with-fault-injection.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16014/fi-cfl-guc/igt@i915_module_load@reload-with-fault-injection.html
+    - fi-kbl-x1275:       [PASS][5] -> [INCOMPLETE][6] ([i915#879])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7695/fi-kbl-x1275/igt@i915_module_load@reload-with-fault-injection.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16014/fi-kbl-x1275/igt@i915_module_load@reload-with-fault-injection.html
+
+  * igt@i915_selftest@live_blt:
+    - fi-ivb-3770:        [PASS][7] -> [DMESG-FAIL][8] ([i915#725])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7695/fi-ivb-3770/igt@i915_selftest@live_blt.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16014/fi-ivb-3770/igt@i915_selftest@live_blt.html
+
+  * igt@i915_selftest@live_execlists:
+    - fi-kbl-soraka:      [PASS][9] -> [DMESG-FAIL][10] ([i915#656])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7695/fi-kbl-soraka/igt@i915_selftest@live_execlists.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16014/fi-kbl-soraka/igt@i915_selftest@live_execlists.html
+
+  * igt@i915_selftest@live_hangcheck:
+    - fi-icl-dsi:         [PASS][11] -> [DMESG-FAIL][12] ([i915#333] / [i915#419])
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7695/fi-icl-dsi/igt@i915_selftest@live_hangcheck.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16014/fi-icl-dsi/igt@i915_selftest@live_hangcheck.html
+
+  * igt@kms_chamelium@hdmi-hpd-fast:
+    - fi-kbl-7500u:       [PASS][13] -> [FAIL][14] ([fdo#111096] / [i915#323])
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7695/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16014/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+
+  * igt@kms_frontbuffer_tracking@basic:
+    - fi-hsw-peppy:       [PASS][15] -> [DMESG-WARN][16] ([i915#44])
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7695/fi-hsw-peppy/igt@kms_frontbuffer_tracking@basic.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16014/fi-hsw-peppy/igt@kms_frontbuffer_tracking@basic.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_module_load@reload-with-fault-injection:
+    - fi-skl-6770hq:      [INCOMPLETE][17] ([i915#671]) -> [PASS][18]
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7695/fi-skl-6770hq/igt@i915_module_load@reload-with-fault-injection.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16014/fi-skl-6770hq/igt@i915_module_load@reload-with-fault-injection.html
+
+  * igt@i915_selftest@live_blt:
+    - fi-bsw-nick:        [DMESG-FAIL][19] ([i915#723]) -> [PASS][20]
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7695/fi-bsw-nick/igt@i915_selftest@live_blt.html
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16014/fi-bsw-nick/igt@i915_selftest@live_blt.html
+
+  
+#### Warnings ####
+
+  * igt@runner@aborted:
+    - fi-kbl-8809g:       [FAIL][21] ([i915#192] / [i915#193] / [i915#194]) -> [FAIL][22] ([i915#858])
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7695/fi-kbl-8809g/igt@runner@aborted.html
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16014/fi-kbl-8809g/igt@runner@aborted.html
+
+  
+  [fdo#111096]: https://bugs.freedesktop.org/show_bug.cgi?id=111096
+  [i915#192]: https://gitlab.freedesktop.org/drm/intel/issues/192
+  [i915#193]: https://gitlab.freedesktop.org/drm/intel/issues/193
+  [i915#194]: https://gitlab.freedesktop.org/drm/intel/issues/194
+  [i915#323]: https://gitlab.freedesktop.org/drm/intel/issues/323
+  [i915#333]: https://gitlab.freedesktop.org/drm/intel/issues/333
+  [i915#419]: https://gitlab.freedesktop.org/drm/intel/issues/419
+  [i915#44]: https://gitlab.freedesktop.org/drm/intel/issues/44
+  [i915#505]: https://gitlab.freedesktop.org/drm/intel/issues/505
+  [i915#656]: https://gitlab.freedesktop.org/drm/intel/issues/656
+  [i915#671]: https://gitlab.freedesktop.org/drm/intel/issues/671
+  [i915#723]: https://gitlab.freedesktop.org/drm/intel/issues/723
+  [i915#725]: https://gitlab.freedesktop.org/drm/intel/issues/725
+  [i915#816]: https://gitlab.freedesktop.org/drm/intel/issues/816
+  [i915#858]: https://gitlab.freedesktop.org/drm/intel/issues/858
+  [i915#879]: https://gitlab.freedesktop.org/drm/intel/issues/879
 
 
+Participating hosts (53 -> 44)
+------------------------------
 
--- 
-Lucas De Marchi
+  Missing    (9): fi-hsw-4770r fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-elk-e7500 fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_7695 -> Patchwork_16014
+
+  CI-20190529: 20190529
+  CI_DRM_7695: 8df346a062d56d97ab53555d3f5829c26f950233 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5358: c6fc013f414b806175dc4143c58ab445e5235ea5 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_16014: 27b70a59a5036127fb58e37c25f21f148aeaf836 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+27b70a59a503 drm/i915/gt: Take responsibility for engine->release as the last step
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16014/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
