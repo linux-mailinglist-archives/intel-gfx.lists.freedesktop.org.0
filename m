@@ -2,36 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 676CA132993
-	for <lists+intel-gfx@lfdr.de>; Tue,  7 Jan 2020 16:05:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A21571329D3
+	for <lists+intel-gfx@lfdr.de>; Tue,  7 Jan 2020 16:18:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7485A6E02A;
-	Tue,  7 Jan 2020 15:05:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0A47A6E0DA;
+	Tue,  7 Jan 2020 15:18:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 81E2C89C28
- for <intel-gfx@lists.freedesktop.org>; Tue,  7 Jan 2020 15:05:32 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by orsmga105.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 07 Jan 2020 07:05:31 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,406,1571727600"; d="scan'208";a="217178073"
-Received: from gaia.fi.intel.com ([10.237.72.192])
- by fmsmga007.fm.intel.com with ESMTP; 07 Jan 2020 07:05:30 -0800
-Received: by gaia.fi.intel.com (Postfix, from userid 1000)
- id B8DAC5C1DEA; Tue,  7 Jan 2020 17:05:00 +0200 (EET)
-From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20200107143118.3288995-1-chris@chris-wilson.co.uk>
-References: <20200107143118.3288995-1-chris@chris-wilson.co.uk>
-Date: Tue, 07 Jan 2020 17:05:00 +0200
-Message-ID: <87blrfux2b.fsf@gaia.fi.intel.com>
+Received: from mail-wm1-x342.google.com (mail-wm1-x342.google.com
+ [IPv6:2a00:1450:4864:20::342])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 70F526E0D1;
+ Tue,  7 Jan 2020 15:13:40 +0000 (UTC)
+Received: by mail-wm1-x342.google.com with SMTP id d73so19340689wmd.1;
+ Tue, 07 Jan 2020 07:13:40 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=iQTaLBi6j7EgaoJz5qobsvGq1YHqHDB8qwtSQ4J8zF0=;
+ b=atcxLIBg/X241bRTSOHHcqILNV70RVqHeLsTcSB3LmtonMWDV2RLzh6oPntcbyyojo
+ hCJuZa6/DhXqTmWwQc8/EnqRuieFNMMoo8kaK0y+mKkxDDNQTUyo57zRrm9WR+NSfF6e
+ vil0ho48k0k1QVC6wksg7Lu2rrlr636d4pC+4nRO7Emq/HLrtQ9GygmpriJRfrr9Fw7q
+ u4kY81Uq5Cxr7eZw5qNQhymAut3xV0Sn83p0BFZjwuzLvbSj1Lyl4xfE358CUxlvigSa
+ a/39Qr9hnxiDANkqIYDW4usgpWei98Hh4h2TMnOwTbA+0/Bbu8ttvNDHsfAfHSwBB002
+ NfqA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=iQTaLBi6j7EgaoJz5qobsvGq1YHqHDB8qwtSQ4J8zF0=;
+ b=OvQjnK6oE4lTbaAouSGwABvVLZbBiFQCYakTTKzoN4m7YZK75WXKu05X2wEJRf8qmj
+ KzCcAxW9HUEN/AAxa17NGQTRpv+jLSyCqnWtbvj916muNDK6OCyPlVDb1rLV/QuQ7dON
+ CCLD+hoLO8IZuZXUstaTw8HTT8HE3J44RMgrUUGjfVz6Rww3B8mAT/d0c99D33dWRfHn
+ rXoVSRft/AF3sNy/Qa+EwxV1XigYY8fT4B3eke3/oxmL9mG4Su4o7MEMiW37pTOux3kO
+ cpQP2FQcAtZpzd5hcp89yPDQ/qxx9Gv3zj77mLKOw4qb39mEQk9UtbeJDhqiVTEzD7Br
+ d9Tg==
+X-Gm-Message-State: APjAAAUUrcoUjh4WUAQZiGwlHTn1E1LAuRJtm+qZc9z/XtP8moa/Nz/U
+ yr9yVWS02sD/aZzDT7eOAGY=
+X-Google-Smtp-Source: APXvYqyOqZvqLcqbZ32d6g02T/B0eS7dqxb9+bjRh/TuMWGi6Kd0t/LvRAzX44WDosZS2jY4MML7tw==
+X-Received: by 2002:a05:600c:2046:: with SMTP id
+ p6mr41252316wmg.110.1578410019088; 
+ Tue, 07 Jan 2020 07:13:39 -0800 (PST)
+Received: from wambui.zuku.co.ke ([197.237.61.225])
+ by smtp.googlemail.com with ESMTPSA id c4sm27076664wml.7.2020.01.07.07.13.36
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 07 Jan 2020 07:13:38 -0800 (PST)
+From: Wambui Karuga <wambui.karugax@gmail.com>
+To: jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
+ rodrigo.vivi@intel.com, airlied@linux.ie, daniel@ffwll.ch
+Date: Tue,  7 Jan 2020 18:13:28 +0300
+Message-Id: <cover.1578409433.git.wambui.karugax@gmail.com>
+X-Mailer: git-send-email 2.24.1
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/gt: Take responsibility for
- engine->release as the last step
+X-Mailman-Approved-At: Tue, 07 Jan 2020 15:18:02 +0000
+Subject: [Intel-gfx] [PATCH 0/5] drm/i915: conversion to new drm logging
+ macros.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,78 +68,33 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: intel-gfx@lists.freedesktop.org, seanpaul@chromium.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Chris Wilson <chris@chris-wilson.co.uk> writes:
+This series begins the conversion to using the new struct drm_device
+based logging macros in drm/i915.
 
-> In order to avoid a double cleanup on error, take ownership of
-> engine->release past the point of no [error] return.
->
-> Reported-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-> Fixes: e26b6d434147 ("drm/i915/gt: Pull GT initialisation under intel_gt_init()")
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+Wambui Karuga (5):
+  drm/i915: convert to using the drm_dbg_kms() macro.
+  drm/i915: use new struct drm_device logging macros.
+  drm/i915: use new struct drm_device based logging macros.
+  drm/i915: convert to using new struct drm_device logging macros
+  drm/i915: use new struct drm_device based macros.
 
-fwiw, in the context of avoiding refcount underflow in error path,
-Tested-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+ drivers/gpu/drm/i915/intel_pch.c         |  46 +--
+ drivers/gpu/drm/i915/intel_pm.c          | 351 +++++++++++++----------
+ drivers/gpu/drm/i915/intel_region_lmem.c |  10 +-
+ drivers/gpu/drm/i915/intel_sideband.c    |  29 +-
+ drivers/gpu/drm/i915/intel_uncore.c      |  25 +-
+ 5 files changed, 254 insertions(+), 207 deletions(-)
 
-Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+-- 
+2.24.1
 
-> ---
->  drivers/gpu/drm/i915/gt/intel_lrc.c             | 4 +++-
->  drivers/gpu/drm/i915/gt/intel_ring_submission.c | 5 +++--
->  2 files changed, 6 insertions(+), 3 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-> index f6174e597dd3..5f171e43f79c 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-> @@ -3925,7 +3925,6 @@ logical_ring_default_vfuncs(struct intel_engine_cs *engine)
->  {
->  	/* Default vfuncs which can be overriden by each engine. */
->  
-> -	engine->release = execlists_release;
->  	engine->resume = execlists_resume;
->  
->  	engine->cops = &execlists_context_ops;
-> @@ -4040,6 +4039,9 @@ int intel_execlists_submission_setup(struct intel_engine_cs *engine)
->  
->  	reset_csb_pointers(engine);
->  
-> +	/* Finally, take ownership and responsibility for cleanup! */
-> +	engine->release = execlists_release;
-> +
->  	return 0;
->  }
->  
-> diff --git a/drivers/gpu/drm/i915/gt/intel_ring_submission.c b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
-> index 2e1478a48a4b..0525d67c6fc3 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_ring_submission.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
-> @@ -1840,8 +1840,6 @@ static void setup_common(struct intel_engine_cs *engine)
->  
->  	setup_irq(engine);
->  
-> -	engine->release = ring_release;
-> -
->  	engine->resume = xcs_resume;
->  	engine->reset.prepare = reset_prepare;
->  	engine->reset.rewind = reset_rewind;
-> @@ -2007,6 +2005,9 @@ int intel_ring_submission_setup(struct intel_engine_cs *engine)
->  
->  	GEM_BUG_ON(timeline->hwsp_ggtt != engine->status_page.vma);
->  
-> +	/* Finally, take ownership and responsibility for cleanup! */
-> +	engine->release = ring_release;
-> +
->  	return 0;
->  
->  err_ring:
-> -- 
-> 2.25.0.rc1
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
