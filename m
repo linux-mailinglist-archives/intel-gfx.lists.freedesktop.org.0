@@ -2,33 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE7C21324B6
-	for <lists+intel-gfx@lfdr.de>; Tue,  7 Jan 2020 12:20:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 906071324D8
+	for <lists+intel-gfx@lfdr.de>; Tue,  7 Jan 2020 12:29:26 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 509AE89CF6;
-	Tue,  7 Jan 2020 11:20:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2D5D56E03B;
+	Tue,  7 Jan 2020 11:29:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5556689CF6
- for <intel-gfx@lists.freedesktop.org>; Tue,  7 Jan 2020 11:20:35 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5CD9B6E02F;
+ Tue,  7 Jan 2020 11:29:21 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 19794426-1500050 for multiple; Tue, 07 Jan 2020 11:20:33 +0000
-MIME-Version: 1.0
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19794579-1500050 
+ for multiple; Tue, 07 Jan 2020 11:29:15 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
-User-Agent: alot/0.6
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-References: <20191222233558.2201901-1-chris@chris-wilson.co.uk>
- <bffc4098-183d-59af-cf74-09e96bb4063d@linux.intel.com>
-In-Reply-To: <bffc4098-183d-59af-cf74-09e96bb4063d@linux.intel.com>
-Message-ID: <157839603041.2273.13544185281064382398@skylake-alporthouse-com>
-Date: Tue, 07 Jan 2020 11:20:30 +0000
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Mark the GEM context link as RCU
- protected
+To: intel-gfx@lists.freedesktop.org
+Date: Tue,  7 Jan 2020 11:29:13 +0000
+Message-Id: <20200107112913.2726371-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.25.0.rc1
+MIME-Version: 1.0
+Subject: [Intel-gfx] [PATCH i-g-t] i915/gem_ctx_engine: Skip redundant clear
+ of a fresh buffer
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,79 +37,35 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: igt-dev@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Tvrtko Ursulin (2020-01-07 11:15:39)
-> 
-> On 22/12/2019 23:35, Chris Wilson wrote:
-> > The only protection for intel_context.gem_cotext is granted by RCU, so
-> > annotate it as a rcu protected pointer and carefully dereference it in
-> > the few occasions we need to use it.
-> > 
-> > Fixes: 9f3ccd40acf4 ("drm/i915: Drop GEM context as a direct link from i915_request")
-> > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> > Cc: Andi Shyti <andi.shyti@intel.com>
-> > ---
-> >   drivers/gpu/drm/i915/gem/i915_gem_context.c   |  5 ++-
-> >   drivers/gpu/drm/i915/gt/intel_context_types.h |  2 +-
-> >   drivers/gpu/drm/i915/gt/intel_reset.c         | 26 +++++++++---
-> >   .../gpu/drm/i915/gt/intel_ring_submission.c   |  2 +-
-> >   drivers/gpu/drm/i915/i915_gpu_error.c         | 40 ++++++++++++-------
-> >   drivers/gpu/drm/i915/i915_request.c           |  6 +--
-> >   drivers/gpu/drm/i915/i915_request.h           |  8 ++++
-> >   7 files changed, 62 insertions(+), 27 deletions(-)
-> > 
-> 
-> [snip]
-> 
-> >   
-> >   static void engine_record_requests(struct intel_engine_cs *engine,
-> > @@ -1298,28 +1304,34 @@ static void error_record_engine_execlists(const struct intel_engine_cs *engine,
-> >   static bool record_context(struct drm_i915_error_context *e,
-> >                          const struct i915_request *rq)
-> >   {
-> > -     const struct i915_gem_context *ctx = rq->context->gem_context;
-> > +     struct i915_gem_context *ctx;
-> > +     struct task_struct *task;
-> > +     bool capture;
-> >   
-> > +     rcu_read_lock();
-> > +     ctx = rcu_dereference(rq->context->gem_context);
-> > +     if (ctx && !kref_get_unless_zero(&ctx->ref))
-> > +             ctx = NULL;
-> > +     rcu_read_unlock();
-> >       if (!ctx)
-> >               return false;
-> >   
-> > -     if (ctx->pid) {
-> > -             struct task_struct *task;
-> > -
-> > -             rcu_read_lock();
-> > -             task = pid_task(ctx->pid, PIDTYPE_PID);
-> > -             if (task) {
-> > -                     strcpy(e->comm, task->comm);
-> > -                     e->pid = task->pid;
-> > -             }
-> > -             rcu_read_unlock();
-> > +     rcu_read_lock();
-> > +     task = pid_task(ctx->pid, PIDTYPE_PID);
-> > +     if (task) {
-> > +             strcpy(e->comm, task->comm);
-> > +             e->pid = task->pid;
-> >       }
-> > +     rcu_read_unlock();
-> 
-> Why is this rcu_read_lock section needed? The first one obtained the 
-> reference to the context so should be good.
+No need to memset(0) the mapping of a fresh buffer, as we expect it to
+be 0 already.
 
-The task returned by ctx->pid is not protected by that reference, and
-pid_task() doesn't increment the reference on the task. That's what I
-remember of the pid_task() interface, that requires rcu to be held while
-you look inside, where get_pid_task() does not.
--Chris
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+---
+ tests/i915/gem_ctx_engines.c | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/tests/i915/gem_ctx_engines.c b/tests/i915/gem_ctx_engines.c
+index 55794a438..86c4bea5a 100644
+--- a/tests/i915/gem_ctx_engines.c
++++ b/tests/i915/gem_ctx_engines.c
+@@ -454,7 +454,6 @@ static void independent(int i915)
+ 	map = gem_mmap__cpu(i915, results.handle, 0, 4096, PROT_READ);
+ 	gem_set_domain(i915, results.handle,
+ 		       I915_GEM_DOMAIN_CPU, I915_GEM_DOMAIN_CPU);
+-	memset(map, 0, 4096);
+ 
+ 	for (int i = 0; i < I915_EXEC_RING_MASK + 1; i++) {
+ 		struct drm_i915_gem_exec_object2 obj[2] = {
+-- 
+2.25.0.rc1
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
