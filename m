@@ -1,57 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D0844134E3A
-	for <lists+intel-gfx@lfdr.de>; Wed,  8 Jan 2020 21:59:55 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 94AD9134F5C
+	for <lists+intel-gfx@lfdr.de>; Wed,  8 Jan 2020 23:28:41 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8D9A66E33A;
-	Wed,  8 Jan 2020 20:59:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 973D36E348;
+	Wed,  8 Jan 2020 22:28:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-yb1-xb43.google.com (mail-yb1-xb43.google.com
- [IPv6:2607:f8b0:4864:20::b43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2A8AA6E33F
- for <intel-gfx@lists.freedesktop.org>; Wed,  8 Jan 2020 20:59:52 +0000 (UTC)
-Received: by mail-yb1-xb43.google.com with SMTP id a124so2092415ybg.2
- for <intel-gfx@lists.freedesktop.org>; Wed, 08 Jan 2020 12:59:52 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=poorly.run; s=google;
- h=date:from:to:cc:subject:message-id:mime-version:content-disposition
- :user-agent; bh=TTfZUrzIdG4GvVpuC632RtnPmfajz27XSxslKwleBjY=;
- b=CInWDQ3nAhldk00jzRf46RCaaROwR9WsNPfBO1T7EKVcPfUhWFGdDoMisumbgGTagx
- FF59tnAPPhznz6Ak+JC3Q56KG4zrStl9qdJE7ij2BDHBG/CiyiyJyCnHETAhzm/YlW5D
- t4iJiCjP3y2/xMNXDqA4tz5DTDdEuxXF05UkJaW0jrgiWPABXSvAtaDV5hOT4ZHUGvfr
- EN9yhMva4uXO0A5plNcLSDl9vpkVRVWRkuMhXkQGME350aQFzCZuWVDu+/JC3C+Tmzoi
- +BtQbGrQLR88q7DmnkAdWA3aQrbTRRem7GsoTcd5oOGYZXeC0lm3FdDtbNu35wrTdjtG
- YDIQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:mime-version
- :content-disposition:user-agent;
- bh=TTfZUrzIdG4GvVpuC632RtnPmfajz27XSxslKwleBjY=;
- b=Q4bJJrnaYf5suCH0/G8lGp3ydgwq7Knr42+UtbX1oHz1jqyuqXvgzYzWruTfkId9Yv
- f06rE5/JlALwDuDkiMvJ1/LFp2uRN6zNY4XVuSpq5MB8/MwumjUCqf3RqZSS1cYkhMer
- UMoNIAu9ZQjAfT9cp4Gnt6Yoh0V4Oss06QBZRW3rvmvjfl8FWFwBbFjwdRVUk9RIUf6g
- 8BAOQd8EVoaZy21S4j3xTFFCTRvkw2POXLy7TzRRUU0IwWPzvP4CJrtP5d1n6ioVAXWs
- 9o2DMJP8CiB3W/Z6BBpsWGuIfh+iibKIBKrIeSfT0nBj9UFuhICXcZ4utj++ga8YLP/n
- N8ng==
-X-Gm-Message-State: APjAAAU8Td+CD5DHLqLJPuEDUZXcx+2guUYMUQkpkb/FHT9kxSnDUmjY
- TmUNHaGDYMFe1v1pmEvPFYWQZQ==
-X-Google-Smtp-Source: APXvYqzCiedz7CcDCagQM8plp5DxnY666Ge/Ka0Upu4v9X+7lN0GyggQ9ToQExrDTlP8olPEGCdPAw==
-X-Received: by 2002:a25:401:: with SMTP id 1mr5322847ybe.273.1578517191257;
- Wed, 08 Jan 2020 12:59:51 -0800 (PST)
-Received: from localhost ([2620:0:1013:11:1e1:4760:6ce4:fc64])
- by smtp.gmail.com with ESMTPSA id 124sm2114167ywn.76.2020.01.08.12.59.50
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 08 Jan 2020 12:59:50 -0800 (PST)
-Date: Wed, 8 Jan 2020 15:59:49 -0500
-From: Sean Paul <sean@poorly.run>
-To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
-Message-ID: <20200108205949.GA233273@art_vandelay>
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A92566E343;
+ Wed,  8 Jan 2020 22:28:36 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 08 Jan 2020 14:28:35 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.69,411,1571727600"; d="scan'208";a="423056826"
+Received: from rmfosha-dev-1.fm.intel.com (HELO [10.19.83.123])
+ ([10.19.83.123])
+ by fmsmga006.fm.intel.com with ESMTP; 08 Jan 2020 14:28:35 -0800
+To: Chris Wilson <chris@chris-wilson.co.uk>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+References: <20200104153746.2175482-1-chris@chris-wilson.co.uk>
+ <20200105010643.2207837-1-chris@chris-wilson.co.uk>
+ <65f5226b-9f8d-9442-1131-4c4768cfa41c@linux.intel.com>
+ <157839316240.2273.2749522722629040780@skylake-alporthouse-com>
+From: "Fosha, Robert M" <robert.m.fosha@intel.com>
+Message-ID: <2d8e70a0-69e7-a448-6b1f-e477dcf8dc9d@intel.com>
+Date: Wed, 8 Jan 2020 14:19:47 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.2.2
 MIME-Version: 1.0
-Content-Disposition: inline
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: [Intel-gfx] [PULL] drm-misc-fixes
+In-Reply-To: <157839316240.2273.2749522722629040780@skylake-alporthouse-com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [igt-dev] [PATCH i-g-t] i915/perf: Find the
+ associated perf-type for a particular device
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,73 +51,167 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dim-tools@lists.freedesktop.org,
- Geert Uytterhoeven <geert+renesas@glider.be>, Wayne Lin <Wayne.Lin@amd.com>,
- dri-devel@lists.freedesktop.org, Maxime Ripard <mripard@kernel.org>,
- Chen-Yu Tsai <wens@csie.org>, intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
+Cc: igt-dev@lists.freedesktop.org, saurabhg.gupta@intel.com
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
-Hi Dave and Daniel,
-Either our code is nearly perfect, or things are still slow due to holidays.
-I'll choose to believe the former.
 
-Please pull!
+On 1/7/20 2:32 AM, Chris Wilson wrote:
+> Quoting Tvrtko Ursulin (2020-01-07 09:53:39)
+>> +Arek, Saurabhg
+>>
+>> On 05/01/2020 01:06, Chris Wilson wrote:
+>>> Since with multiple devices, we may have multiple different perf_pmu
+>>> each with their own type, we want to find the right one for the job.
+>>>
+>>> The tests are run with a specific fd, from which we can extract the
+>>> appropriate bus-id and find the associated perf-type. The performance
+>>> monitoring tools are a little more general and not yet ready to probe
+>>> all device or bind to one in particular, so we just assume the default
+>>> igfx for the time being.
+>>>
+>>> v2: Extract the bus address from out of sysfs
+>>>
+>>> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+>>> Cc: "Robert M. Fosha" <robert.m.fosha@intel.com>
+>>> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+>>> Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
 
-drm-misc-fixes-2020-01-08:
--mst: Fix NO_STOP_BIT bit offset (Wayne)
--sun4i: Fix RGB_DIV clock min divider on old hardware (Chen-Yu)
--fb_helper: Fix bits_per_pixel param set behavior to round up (Geert)
+Tested-by: Robert M. Fosha <robert.m.fosha@intel.com>
 
-Cc: Wayne Lin <Wayne.Lin@amd.com>
-Cc: Chen-Yu Tsai <wens@csie.org>
-Cc: Geert Uytterhoeven <geert+renesas@glider.be>
+>>> ---
+>>>    benchmarks/gem_wsim.c          |  4 +-
+>>>    lib/igt_perf.c                 | 84 +++++++++++++++++++++++++++++++---
+>>>    lib/igt_perf.h                 | 13 ++++--
+>>>    overlay/gem-interrupts.c       |  2 +-
+>>>    overlay/gpu-freq.c             |  4 +-
+>>>    overlay/gpu-top.c              | 12 ++---
+>>>    overlay/rc6.c                  |  2 +-
+>>>    tests/i915/gem_ctx_freq.c      |  2 +-
+>>>    tests/i915/gem_ctx_sseu.c      |  2 +-
+>>>    tests/i915/gem_exec_balancer.c | 18 +++++---
+>>>    tests/perf_pmu.c               | 84 ++++++++++++++++++----------------
+>>>    tools/intel_gpu_top.c          |  2 +-
+>>>    12 files changed, 159 insertions(+), 70 deletions(-)
+>>>
+>>> diff --git a/benchmarks/gem_wsim.c b/benchmarks/gem_wsim.c
+>>> index 6305e0d7a..9156fdc90 100644
+>>> --- a/benchmarks/gem_wsim.c
+>>> +++ b/benchmarks/gem_wsim.c
+>>> @@ -2268,8 +2268,8 @@ busy_init(const struct workload_balancer *balancer, struct workload *wrk)
+>>>        for (d = &engines[0]; d->id != VCS; d++) {
+>>>                int pfd;
+>>>    
+>>> -             pfd = perf_i915_open_group(I915_PMU_ENGINE_BUSY(d->class,
+>>> -                                                             d->inst),
+>>> +             pfd = perf_igfx_open_group(I915_PMU_ENGINE_BUSY(d->class,
+>>> +                                                             d->inst),
+>>>                                           bb->fd);
+>>>                if (pfd < 0) {
+>>>                        if (d->id != VCS2)
+>>> diff --git a/lib/igt_perf.c b/lib/igt_perf.c
+>>> index e3dec2cc2..840add043 100644
+>>> --- a/lib/igt_perf.c
+>>> +++ b/lib/igt_perf.c
+>>> @@ -4,17 +4,77 @@
+>>>    #include <stdlib.h>
+>>>    #include <string.h>
+>>>    #include <errno.h>
+>>> +#include <sys/stat.h>
+>>>    #include <sys/sysinfo.h>
+>>> +#include <sys/sysmacros.h>
+>>>    
+>>>    #include "igt_perf.h"
+>>>    
+>>> -uint64_t i915_type_id(void)
+>>> +static char *bus_address(int i915, char *path, int pathlen)
+>>> +{
+>>> +     struct stat st;
+>>> +     int len = -1;
+>>> +     int dir;
+>>> +     char *s;
+>>> +
+>>> +     if (fstat(i915, &st) || !S_ISCHR(st.st_mode))
+>>> +             return NULL;
+>>> +
+>>> +     snprintf(path, pathlen, "/sys/dev/char/%d:%d",
+>>> +              major(st.st_rdev), minor(st.st_rdev));
+>>> +
+>>> +     dir = open(path, O_RDONLY);
+>>> +     if (dir != -1) {
+>>> +             len = readlinkat(dir, "device", path, pathlen - 1);
+>>> +             close(dir);
+>>> +     }
+>>> +     if (len < 0)
+>>> +             return NULL;
+>>> +
+>>> +     path[len] = '\0';
+>>> +
+>>> +     /* strip off the relative path */
+>>> +     s = strrchr(path, '/');
+>>> +     if (s)
+>>> +             memmove(path, s + 1, len - (s - path) + 1);
+>>> +
+>>> +     return path;
+>>> +}
+>>> +
+>>> +const char *i915_perf_device(int i915, char *buf, int buflen)
+>>> +{
+>>> +#define prefix "i915-"
+>>> +#define plen strlen(prefix)
+>>> +
+>>> +     if (!buf || buflen < plen)
+>>> +             return "i915";
+>>> +
+>>> +     memcpy(buf, prefix, plen);
+>>> +
+>>> +     if (!bus_address(i915, buf + plen, buflen - plen) ||
+>>> +         strcmp(buf + plen, "0000:00:02.0") == 0) /* legacy name for igfx */
+>>> +             buf[plen - 1] = '\0';
+>>> +
+>>> +     return buf;
+>>> +}
+>> So DRM fd -> PCI string conversion, yes? On a glance it looks okay.
+>> However Arek probably has this data as part of "[PATCH i-g-t 0/4] device
+>> selection && lsgpu" (https://patchwork.freedesktop.org/series/70285/).
+> If the string is known, we can use it. This simple routine is *simple*
+> yet effective :)
+>   
+>> Also:
+>>
+>> https://gitlab.freedesktop.org/drm/igt-gpu-tools/issues/52
+>> https://gitlab.freedesktop.org/drm/igt-gpu-tools/issues/51
+> How lightweight are they aiming to be?
+>   
+>> And VLK-5588.
+>>
+>> This patch is overlap with #52 and then #51/VLK-5588 is about allowing
+>> card selection for tools.
+>>
+>> How to meld the two with minimum effort? We could put this in and then
+>> later replace the PCI name resolve with a library routine and re-adjust
+>> tools to allow card selection via some mechanism.
+> Exactly. All we need here is a name to lookup the perf type id. One
+> routine to provide an introspection method for a given fd and assumption
+> of i915, does not prevent better methods :)
+>
+> I do wonder though if we should have perf_name in our sysfs.
+> -Chris
 
-Cheers, Sean
+Agree with idea of adding this change now and re-adjusting if other 
+mechanism is added for other tests/tools. If no other concerns from 
+Tvrtko or Arek
+Reviewed-by: Robert M. Fosha <robert.m.fosha@intel.com>
 
+-Rob
+> _______________________________________________
+> igt-dev mailing list
+> igt-dev@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/igt-dev
 
-The following changes since commit ac2917b01992c098b8d4e6837115e3ca347fdd90:
-
-  drm/arm/mali: make malidp_mw_connector_helper_funcs static (2019-12-20 15:23:51 +0000)
-
-are available in the Git repository at:
-
-  git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-fixes-2020-01-08
-
-for you to fetch changes up to f30e27779d3031a092c2a177b7fb76adccc45241:
-
-  drm/fb-helper: Round up bits_per_pixel if possible (2020-01-07 16:54:03 +0100)
-
-----------------------------------------------------------------
--mst: Fix NO_STOP_BIT bit offset (Wayne)
--sun4i: Fix RGB_DIV clock min divider on old hardware (Chen-Yu)
--fb_helper: Fix bits_per_pixel param set behavior to round up (Geert)
-
-Cc: Wayne Lin <Wayne.Lin@amd.com>
-Cc: Chen-Yu Tsai <wens@csie.org>
-Cc: Geert Uytterhoeven <geert+renesas@glider.be>
-
-----------------------------------------------------------------
-Chen-Yu Tsai (1):
-      drm/sun4i: tcon: Set RGB DCLK min. divider based on hardware model
-
-Geert Uytterhoeven (1):
-      drm/fb-helper: Round up bits_per_pixel if possible
-
-Wayne Lin (1):
-      drm/dp_mst: correct the shifting in DP_REMOTE_I2C_READ
-
- drivers/gpu/drm/drm_dp_mst_topology.c |  2 +-
- drivers/gpu/drm/drm_fb_helper.c       |  7 ++++++-
- drivers/gpu/drm/sun4i/sun4i_tcon.c    | 15 ++++++++++++---
- drivers/gpu/drm/sun4i/sun4i_tcon.h    |  1 +
- 4 files changed, 20 insertions(+), 5 deletions(-)
-
--- 
-Sean Paul, Software Engineer, Google / Chromium OS
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
