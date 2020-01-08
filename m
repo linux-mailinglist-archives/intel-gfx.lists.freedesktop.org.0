@@ -1,38 +1,72 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0298E134A4E
-	for <lists+intel-gfx@lfdr.de>; Wed,  8 Jan 2020 19:13:14 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0F018134B00
+	for <lists+intel-gfx@lfdr.de>; Wed,  8 Jan 2020 19:56:10 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 431ED6E27C;
-	Wed,  8 Jan 2020 18:13:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6554D6E320;
+	Wed,  8 Jan 2020 18:56:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D6F376E27C
- for <intel-gfx@lists.freedesktop.org>; Wed,  8 Jan 2020 18:13:10 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga105.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 08 Jan 2020 10:13:10 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,410,1571727600"; d="scan'208";a="216028572"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by orsmga008.jf.intel.com with SMTP; 08 Jan 2020 10:13:08 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 08 Jan 2020 20:13:07 +0200
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed,  8 Jan 2020 20:12:42 +0200
-Message-Id: <20200108181242.13650-9-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.24.1
-In-Reply-To: <20200108181242.13650-1-ville.syrjala@linux.intel.com>
-References: <20200108181242.13650-1-ville.syrjala@linux.intel.com>
+Received: from mail-wr1-x442.google.com (mail-wr1-x442.google.com
+ [IPv6:2a00:1450:4864:20::442])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 93F6D6E320
+ for <intel-gfx@lists.freedesktop.org>; Wed,  8 Jan 2020 18:56:03 +0000 (UTC)
+Received: by mail-wr1-x442.google.com with SMTP id w15so4579957wru.4
+ for <intel-gfx@lists.freedesktop.org>; Wed, 08 Jan 2020 10:56:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=date:from:to:cc:subject:message-id:mail-followup-to:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=qikF1UWtZ6eJF4mubyOKm+5IHWTeRRmYGvFpDMF351E=;
+ b=ceZzOk/osJcQAtkpzR91QtixWOdjRNYR+OCYMtv3WA8NOtb+JiZoZQVsdoVa4dxtGX
+ gN4EgS67E15UsEhjjgSBgDzEszlBRC0EDdXMO7ZrtN4jxssKHyE6qtDYveoHXMa0ipno
+ P7vxIJQxucBSpTrdEoYGqoS2EXkHqYg6458GE=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id
+ :mail-followup-to:references:mime-version:content-disposition
+ :in-reply-to;
+ bh=qikF1UWtZ6eJF4mubyOKm+5IHWTeRRmYGvFpDMF351E=;
+ b=DOP5ju41xBB90JYLgOc0Z/3fAXkFUDMkpHo+NCbSWgsMV8OxLmBU9HQDChAgyqpAkp
+ wBdwDSpqWslYLovC9jTAUTPCeDHKAUTMEPSoEcOasGhD8gxHbJogC3OtMZpS7hXBmegY
+ zEUfdCWMV2J5+D3Xq8qL2O1F8bGPngcWd17aaDNnRa56jv0zK3yzdBiaeq5GarsXmIpd
+ hldg7Me4LgGWC9DV1lq4TY2PJJ6Llc4KvHTUMF6IYqBLjRJPdNuyaJ5VlD4UpjqYtVZr
+ WYjki9afZHO1upl88y+aQMdQueCWnsewVDwcd2JTJti2BOY0FdVHnwbC0htqE/qIPgh7
+ JB8w==
+X-Gm-Message-State: APjAAAW/MlrTwrzMkUsWK41KhFCWRPcSRMgrGxXNuJdTSPXvnp5a7uDr
+ JYLvOXg9ccwmEjMzzcb3Hjugaw==
+X-Google-Smtp-Source: APXvYqysOS8XXtQ6tjSokAq63/nT5KtQo5+V5djlv6ehXIu6gzFuO1bkC6VJiqoB1c6TjhqOqXvlJg==
+X-Received: by 2002:adf:edd0:: with SMTP id v16mr6201385wro.310.1578509762068; 
+ Wed, 08 Jan 2020 10:56:02 -0800 (PST)
+Received: from phenom.ffwll.local ([2a02:168:564b:0:7567:bb67:3d7f:f863])
+ by smtp.gmail.com with ESMTPSA id s3sm22691wmh.25.2020.01.08.10.56.00
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 08 Jan 2020 10:56:01 -0800 (PST)
+Date: Wed, 8 Jan 2020 19:55:59 +0100
+From: Daniel Vetter <daniel@ffwll.ch>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Message-ID: <20200108185559.GK43062@phenom.ffwll.local>
+Mail-Followup-To: Jani Nikula <jani.nikula@linux.intel.com>,
+ Arnd Bergmann <arnd@arndb.de>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ David Airlie <airlied@linux.ie>,
+ Chris Wilson <chris@chris-wilson.co.uk>,
+ Dave Airlie <airlied@redhat.com>,
+ Alexander Shiyan <shc_work@mail.ru>,
+ Krzysztof Kozlowski <krzk@kernel.org>,
+ Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Hans de Goede <hdegoede@redhat.com>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
+References: <20200108140227.3976563-1-arnd@arndb.de> <87o8veotf9.fsf@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 9/9] drm/i915/dvo: Make .get_modes() return the
- number of modes
+Content-Disposition: inline
+In-Reply-To: <87o8veotf9.fsf@intel.com>
+X-Operating-System: Linux phenom 5.3.0-3-amd64 
+Subject: Re: [Intel-gfx] [PATCH] i915: fix backlight configuration issue
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,43 +79,176 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Alexander Shiyan <shc_work@mail.ru>, Arnd Bergmann <arnd@arndb.de>,
+ David Airlie <airlied@linux.ie>, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, Krzysztof Kozlowski <krzk@kernel.org>,
+ dri-devel@lists.freedesktop.org, Dave Airlie <airlied@redhat.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-RnJvbTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KCi5n
-ZXRfbW9kZXMoKSBpcyBzdXBwb3NlZCB0byByZXR1cm4gdGhlIG51bWJlciBvZiBtb2RlcyBhZGRl
-ZCB0byB0aGUKcHJvYmVkX21vZGVzIGxpc3QgKG5vdCB0aGF0IGFueW9uZSBhY3R1YWxseSBjaGVj
-a3MgZm9yIGFueXRoaW5nCmV4Y2VwdCB6ZXJvIHZzLiBub3QgemVybykuIExldCdzIGRvIHRoYXQu
-CgpTaWduZWQtb2ZmLWJ5OiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50
-ZWwuY29tPgotLS0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHZvLmMgfCAx
-NCArKysrKysrKy0tLS0tLQogMSBmaWxlIGNoYW5nZWQsIDggaW5zZXJ0aW9ucygrKSwgNiBkZWxl
-dGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVs
-X2R2by5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kdm8uYwppbmRleCBh
-NzRkYzViOTE1ZDEuLjNjZTlmNzJkMTJlNSAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5
-MTUvZGlzcGxheS9pbnRlbF9kdm8uYworKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5
-L2ludGVsX2R2by5jCkBAIC0zMjIsNiArMzIyLDcgQEAgc3RhdGljIGludCBpbnRlbF9kdm9fZ2V0
-X21vZGVzKHN0cnVjdCBkcm1fY29ubmVjdG9yICpjb25uZWN0b3IpCiAJc3RydWN0IGRybV9pOTE1
-X3ByaXZhdGUgKmRldl9wcml2ID0gdG9faTkxNShjb25uZWN0b3ItPmRldik7CiAJY29uc3Qgc3Ry
-dWN0IGRybV9kaXNwbGF5X21vZGUgKmZpeGVkX21vZGUgPQogCQl0b19pbnRlbF9jb25uZWN0b3Io
-Y29ubmVjdG9yKS0+cGFuZWwuZml4ZWRfbW9kZTsKKwlpbnQgbnVtX21vZGVzOwogCiAJLyoKIAkg
-KiBXZSBzaG91bGQgcHJvYmFibHkgaGF2ZSBhbiBpMmMgZHJpdmVyIGdldF9tb2RlcyBmdW5jdGlv
-biBmb3IgdGhvc2UKQEAgLTMyOSwyMSArMzMwLDIyIEBAIHN0YXRpYyBpbnQgaW50ZWxfZHZvX2dl
-dF9tb2RlcyhzdHJ1Y3QgZHJtX2Nvbm5lY3RvciAqY29ubmVjdG9yKQogCSAqIChUVi1vdXQsIGZv
-ciBleGFtcGxlKSwgYnV0IGZvciBub3cgd2l0aCBqdXN0IFRNRFMgYW5kIExWRFMsCiAJICogdGhh
-dCdzIG5vdCB0aGUgY2FzZS4KIAkgKi8KLQlpbnRlbF9kZGNfZ2V0X21vZGVzKGNvbm5lY3RvciwK
-LQkJCSAgICBpbnRlbF9nbWJ1c19nZXRfYWRhcHRlcihkZXZfcHJpdiwgR01CVVNfUElOX0RQQykp
-OwotCWlmICghbGlzdF9lbXB0eSgmY29ubmVjdG9yLT5wcm9iZWRfbW9kZXMpKQotCQlyZXR1cm4g
-MTsKKwludW1fbW9kZXMgPSBpbnRlbF9kZGNfZ2V0X21vZGVzKGNvbm5lY3RvciwKKwkJCQkJaW50
-ZWxfZ21idXNfZ2V0X2FkYXB0ZXIoZGV2X3ByaXYsIEdNQlVTX1BJTl9EUEMpKTsKKwlpZiAobnVt
-X21vZGVzKQorCQlyZXR1cm4gbnVtX21vZGVzOwogCiAJaWYgKGZpeGVkX21vZGUpIHsKIAkJc3Ry
-dWN0IGRybV9kaXNwbGF5X21vZGUgKm1vZGU7CisKIAkJbW9kZSA9IGRybV9tb2RlX2R1cGxpY2F0
-ZShjb25uZWN0b3ItPmRldiwgZml4ZWRfbW9kZSk7CiAJCWlmIChtb2RlKSB7CiAJCQlkcm1fbW9k
-ZV9wcm9iZWRfYWRkKGNvbm5lY3RvciwgbW9kZSk7Ci0JCQlyZXR1cm4gMTsKKwkJCW51bV9tb2Rl
-cysrOwogCQl9CiAJfQogCi0JcmV0dXJuIDA7CisJcmV0dXJuIG51bV9tb2RlczsKIH0KIAogc3Rh
-dGljIGNvbnN0IHN0cnVjdCBkcm1fY29ubmVjdG9yX2Z1bmNzIGludGVsX2R2b19jb25uZWN0b3Jf
-ZnVuY3MgPSB7Ci0tIAoyLjI0LjEKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVk
-ZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZv
-L2ludGVsLWdmeAo=
+On Wed, Jan 08, 2020 at 05:32:26PM +0200, Jani Nikula wrote:
+> On Wed, 08 Jan 2020, Arnd Bergmann <arnd@arndb.de> wrote:
+> > The i915 driver can use the backlight subsystem as an option, and usually
+> > selects it when CONFIG_ACPI is set. However it is possible to configure
+> > a kernel with modular backlight classdev support and a built-in i915
+> > driver, which leads to a linker error:
+> >
+> > drivers/gpu/drm/i915/display/intel_panel.o: In function `intel_backlight_device_register':
+> > intel_panel.c:(.text+0x2f58): undefined reference to `backlight_device_register'
+> > drivers/gpu/drm/i915/display/intel_panel.o: In function `intel_backlight_device_unregister':
+> > intel_panel.c:(.text+0x2fe4): undefined reference to `backlight_device_unregister'
+> >
+> > Add another Kconfig option to ensure the driver only tries to use
+> > the backlight support when it can in fact be linked that way. The
+> > new option is on by default to keep the existing behavior.
+> >
+> > This is roughly what other drivers like nouveau do as well.
+> >
+> > Signed-off-by: Arnd Bergmann <arnd@arndb.de>
+> > ---
+> > I've had this one lying around for a long time, it is still needed
+> > but I am not sure which solution is best here. This version is
+> > probably the least invasive, but it does not solve the bigger
+> > problem around too many 'select' statements in drm
+> 
+> This is just another hack that's only required because backlight is
+> selected instead of depended on throughout the kernel. (*)
+> 
+> i915 (and most drm drivers, with some variations) could easily handle
+> this with:
+> 
+> 	depends on (ACPI && ACPI_VIDEO) || ACPI=n
+> 	depends on BACKLIGHT_CLASS_DEVICE || BACKLIGHT_CLASS_DEVICE=n
+> 
+> Those two lines express the allowed configurations. It's just that we
+> can't do that in i915 *alone*. The combinations of depends and selects
+> lead to impossible configurations. It's all or nothing.
+> 
+> I am not amused by adding more hacks, and I am really *not* interested
+> in adding another useless i915 config option to "solve" this issue.
+> 
+> So thanks, but no thanks. I'm not taking this patch.
+
+Yeah I'm also leaning towards that the real fix here is to convert
+backlight over to be a depends on symbol, not a select symbol. It's
+clearly not a simple stand-alone helper. Or someone makes select recursive
+and adds a SAT solver to Kconfig :-)
+-Daniel
+
+> 
+> 
+> BR,
+> Jani.
+> 
+> 
+> (*) The deeper issue is that people as well as the kconfig tools ignore
+> the warnings in Documentation/kbuild/kconfig-language.rst:
+> 
+> 	select should be used with care. select will force
+> 	a symbol to a value without visiting the dependencies.
+> 	By abusing select you are able to select a symbol FOO even
+> 	if FOO depends on BAR that is not set.
+> 	In general use select only for non-visible symbols
+> 	(no prompts anywhere) and for symbols with no dependencies.
+> 	That will limit the usefulness but on the other hand avoid
+> 	the illegal configurations all over.
+> 
+> I don't think we can, uh, fix the people, but it might be possible to
+> warn about selecting visible symbols or symbols with dependencies.
+> 
+> > ---
+> >  drivers/gpu/drm/i915/Kconfig               | 11 ++++++++++-
+> >  drivers/gpu/drm/i915/display/intel_panel.c |  4 ++--
+> >  drivers/gpu/drm/i915/display/intel_panel.h |  6 +++---
+> >  3 files changed, 15 insertions(+), 6 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/Kconfig b/drivers/gpu/drm/i915/Kconfig
+> > index ba9595960bbe..81d956040d18 100644
+> > --- a/drivers/gpu/drm/i915/Kconfig
+> > +++ b/drivers/gpu/drm/i915/Kconfig
+> > @@ -16,7 +16,7 @@ config DRM_I915
+> >  	select IRQ_WORK
+> >  	# i915 depends on ACPI_VIDEO when ACPI is enabled
+> >  	# but for select to work, need to select ACPI_VIDEO's dependencies, ick
+> > -	select BACKLIGHT_CLASS_DEVICE if ACPI
+> > +	select DRM_I915_BACKLIGHT if ACPI
+> >  	select INPUT if ACPI
+> >  	select ACPI_VIDEO if ACPI
+> >  	select ACPI_BUTTON if ACPI
+> > @@ -68,6 +68,15 @@ config DRM_I915_FORCE_PROBE
+> >  
+> >  	  Use "*" to force probe the driver for all known devices.
+> >  
+> > +config DRM_I915_BACKLIGHT
+> > +	tristate "Control backlight support"
+> > +	depends on DRM_I915
+> > +	default DRM_I915
+> > +	select BACKLIGHT_CLASS_DEVICE
+> > +	help
+> > +          Say Y here if you want to control the backlight of your display
+> > +          (e.g. a laptop panel).
+> > +
+> >  config DRM_I915_CAPTURE_ERROR
+> >  	bool "Enable capturing GPU state following a hang"
+> >  	depends on DRM_I915
+> > diff --git a/drivers/gpu/drm/i915/display/intel_panel.c b/drivers/gpu/drm/i915/display/intel_panel.c
+> > index 7b3ec6eb3382..e2fe7a50dcbf 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_panel.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_panel.c
+> > @@ -1203,7 +1203,7 @@ void intel_panel_enable_backlight(const struct intel_crtc_state *crtc_state,
+> >  	mutex_unlock(&dev_priv->backlight_lock);
+> >  }
+> >  
+> > -#if IS_ENABLED(CONFIG_BACKLIGHT_CLASS_DEVICE)
+> > +#if IS_ENABLED(CONFIG_DRM_I915_BACKLIGHT)
+> >  static u32 intel_panel_get_backlight(struct intel_connector *connector)
+> >  {
+> >  	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
+> > @@ -1370,7 +1370,7 @@ void intel_backlight_device_unregister(struct intel_connector *connector)
+> >  		panel->backlight.device = NULL;
+> >  	}
+> >  }
+> > -#endif /* CONFIG_BACKLIGHT_CLASS_DEVICE */
+> > +#endif /* CONFIG_DRM_I915_BACKLIGHT */
+> >  
+> >  /*
+> >   * CNP: PWM clock frequency is 19.2 MHz or 24 MHz.
+> > diff --git a/drivers/gpu/drm/i915/display/intel_panel.h b/drivers/gpu/drm/i915/display/intel_panel.h
+> > index cedeea443336..e6e81268b7ed 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_panel.h
+> > +++ b/drivers/gpu/drm/i915/display/intel_panel.h
+> > @@ -49,10 +49,10 @@ intel_panel_edid_fixed_mode(struct intel_connector *connector);
+> >  struct drm_display_mode *
+> >  intel_panel_vbt_fixed_mode(struct intel_connector *connector);
+> >  
+> > -#if IS_ENABLED(CONFIG_BACKLIGHT_CLASS_DEVICE)
+> > +#if IS_ENABLED(CONFIG_DRM_I915_BACKLIGHT)
+> >  int intel_backlight_device_register(struct intel_connector *connector);
+> >  void intel_backlight_device_unregister(struct intel_connector *connector);
+> > -#else /* CONFIG_BACKLIGHT_CLASS_DEVICE */
+> > +#else /* CONFIG_DRM_I915_BACKLIGHT */
+> >  static inline int intel_backlight_device_register(struct intel_connector *connector)
+> >  {
+> >  	return 0;
+> > @@ -60,6 +60,6 @@ static inline int intel_backlight_device_register(struct intel_connector *connec
+> >  static inline void intel_backlight_device_unregister(struct intel_connector *connector)
+> >  {
+> >  }
+> > -#endif /* CONFIG_BACKLIGHT_CLASS_DEVICE */
+> > +#endif /* CONFIG_DRM_I915_BACKLIGHT */
+> >  
+> >  #endif /* __INTEL_PANEL_H__ */
+> 
+> -- 
+> Jani Nikula, Intel Open Source Graphics Center
+
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
