@@ -2,39 +2,37 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F15A1345EB
-	for <lists+intel-gfx@lfdr.de>; Wed,  8 Jan 2020 16:15:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 36CC1134644
+	for <lists+intel-gfx@lfdr.de>; Wed,  8 Jan 2020 16:32:39 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 54C8B6E0CC;
-	Wed,  8 Jan 2020 15:15:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6A0576E8AE;
+	Wed,  8 Jan 2020 15:32:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 969386E0CC
- for <intel-gfx@lists.freedesktop.org>; Wed,  8 Jan 2020 15:15:55 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CAD976E8AE;
+ Wed,  8 Jan 2020 15:32:35 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 08 Jan 2020 07:15:55 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,410,1571727600"; d="scan'208";a="271851404"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by FMSMGA003.fm.intel.com with SMTP; 08 Jan 2020 07:15:52 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 08 Jan 2020 17:15:51 +0200
-Date: Wed, 8 Jan 2020 17:15:51 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Lee Shawn C <shawn.c.lee@intel.com>
-Message-ID: <20200108151551.GL1208@intel.com>
-References: <20200106174156.11081-1-shawn.c.lee@intel.com>
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga106.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 08 Jan 2020 07:32:35 -0800
+X-IronPort-AV: E=Sophos;i="5.69,410,1571727600"; d="scan'208";a="215983554"
+Received: from jnikula-mobl3.fi.intel.com (HELO localhost) ([10.237.66.161])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 08 Jan 2020 07:32:29 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Arnd Bergmann <arnd@arndb.de>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@linux.ie>,
+ Daniel Vetter <daniel@ffwll.ch>
+In-Reply-To: <20200108140227.3976563-1-arnd@arndb.de>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20200108140227.3976563-1-arnd@arndb.de>
+Date: Wed, 08 Jan 2020 17:32:26 +0200
+Message-ID: <87o8veotf9.fsf@intel.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200106174156.11081-1-shawn.c.lee@intel.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/dp/mst : Get clock rate from
- sink's available PBN
+Subject: Re: [Intel-gfx] [PATCH] i915: fix backlight configuration issue
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,129 +45,162 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Cooper Chiou <cooper.chiou@intel.com>, intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: Arnd Bergmann <arnd@arndb.de>, Alexander Shiyan <shc_work@mail.ru>,
+ intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ Krzysztof Kozlowski <krzk@kernel.org>, dri-devel@lists.freedesktop.org,
+ Dave Airlie <airlied@redhat.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Jan 07, 2020 at 01:41:56AM +0800, Lee Shawn C wrote:
-> Driver report physcial bandwidth for max dot clock rate.
-> It would caused compatibility issue sometimes when physical
-> bandwidth exceed MST hub output ability.
-> =
-
-> For example, here is a MST hub with HDMI 1.4 and DP 1.2 output.
-> And source have DP 1.2 output capability. Connect a HDMI 2.0
-> display then source will retrieve EDID from external monitor.
-> Driver got max resolution was 4k@60fps. DP 1.2 can support
-> this resolution because it did not surpass max physical bandwidth.
-> After modeset, source output display data but MST hub can't
-> output HDMI properly due to it already over HDMI 1.4 spec.
-> =
-
-> Apply this calculation, source calcualte max dot clock according
-> to available PBN. Driver will remove the mode that over current
-> clock rate. And external display can works normally.
-> =
-
-> Cc: Manasi Navare <manasi.d.navare@intel.com>
-> Cc: Jani Nikula <jani.nikula@linux.intel.com>
-> Cc: Ville Syrjala <ville.syrjala@linux.intel.com>
-> Cc: Cooper Chiou <cooper.chiou@intel.com>
-> =
-
-> Signed-off-by: Lee Shawn C <shawn.c.lee@intel.com>
+On Wed, 08 Jan 2020, Arnd Bergmann <arnd@arndb.de> wrote:
+> The i915 driver can use the backlight subsystem as an option, and usually
+> selects it when CONFIG_ACPI is set. However it is possible to configure
+> a kernel with modular backlight classdev support and a built-in i915
+> driver, which leads to a linker error:
+>
+> drivers/gpu/drm/i915/display/intel_panel.o: In function `intel_backlight_device_register':
+> intel_panel.c:(.text+0x2f58): undefined reference to `backlight_device_register'
+> drivers/gpu/drm/i915/display/intel_panel.o: In function `intel_backlight_device_unregister':
+> intel_panel.c:(.text+0x2fe4): undefined reference to `backlight_device_unregister'
+>
+> Add another Kconfig option to ensure the driver only tries to use
+> the backlight support when it can in fact be linked that way. The
+> new option is on by default to keep the existing behavior.
+>
+> This is roughly what other drivers like nouveau do as well.
+>
+> Signed-off-by: Arnd Bergmann <arnd@arndb.de>
 > ---
->  drivers/gpu/drm/i915/display/intel_dp_mst.c | 27 ++++++++++++++++++---
->  1 file changed, 24 insertions(+), 3 deletions(-)
-> =
+> I've had this one lying around for a long time, it is still needed
+> but I am not sure which solution is best here. This version is
+> probably the least invasive, but it does not solve the bigger
+> problem around too many 'select' statements in drm
 
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/dr=
-m/i915/display/intel_dp_mst.c
-> index 3b066c63816d..eaa440165ad2 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> @@ -550,6 +550,27 @@ static int intel_dp_mst_get_modes(struct drm_connect=
-or *connector)
->  	return intel_dp_mst_get_ddc_modes(connector);
+This is just another hack that's only required because backlight is
+selected instead of depended on throughout the kernel. (*)
+
+i915 (and most drm drivers, with some variations) could easily handle
+this with:
+
+	depends on (ACPI && ACPI_VIDEO) || ACPI=n
+	depends on BACKLIGHT_CLASS_DEVICE || BACKLIGHT_CLASS_DEVICE=n
+
+Those two lines express the allowed configurations. It's just that we
+can't do that in i915 *alone*. The combinations of depends and selects
+lead to impossible configurations. It's all or nothing.
+
+I am not amused by adding more hacks, and I am really *not* interested
+in adding another useless i915 config option to "solve" this issue.
+
+So thanks, but no thanks. I'm not taking this patch.
+
+
+BR,
+Jani.
+
+
+(*) The deeper issue is that people as well as the kconfig tools ignore
+the warnings in Documentation/kbuild/kconfig-language.rst:
+
+	select should be used with care. select will force
+	a symbol to a value without visiting the dependencies.
+	By abusing select you are able to select a symbol FOO even
+	if FOO depends on BAR that is not set.
+	In general use select only for non-visible symbols
+	(no prompts anywhere) and for symbols with no dependencies.
+	That will limit the usefulness but on the other hand avoid
+	the illegal configurations all over.
+
+I don't think we can, uh, fix the people, but it might be possible to
+warn about selecting visible symbols or symbols with dependencies.
+
+> ---
+>  drivers/gpu/drm/i915/Kconfig               | 11 ++++++++++-
+>  drivers/gpu/drm/i915/display/intel_panel.c |  4 ++--
+>  drivers/gpu/drm/i915/display/intel_panel.h |  6 +++---
+>  3 files changed, 15 insertions(+), 6 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/Kconfig b/drivers/gpu/drm/i915/Kconfig
+> index ba9595960bbe..81d956040d18 100644
+> --- a/drivers/gpu/drm/i915/Kconfig
+> +++ b/drivers/gpu/drm/i915/Kconfig
+> @@ -16,7 +16,7 @@ config DRM_I915
+>  	select IRQ_WORK
+>  	# i915 depends on ACPI_VIDEO when ACPI is enabled
+>  	# but for select to work, need to select ACPI_VIDEO's dependencies, ick
+> -	select BACKLIGHT_CLASS_DEVICE if ACPI
+> +	select DRM_I915_BACKLIGHT if ACPI
+>  	select INPUT if ACPI
+>  	select ACPI_VIDEO if ACPI
+>  	select ACPI_BUTTON if ACPI
+> @@ -68,6 +68,15 @@ config DRM_I915_FORCE_PROBE
+>  
+>  	  Use "*" to force probe the driver for all known devices.
+>  
+> +config DRM_I915_BACKLIGHT
+> +	tristate "Control backlight support"
+> +	depends on DRM_I915
+> +	default DRM_I915
+> +	select BACKLIGHT_CLASS_DEVICE
+> +	help
+> +          Say Y here if you want to control the backlight of your display
+> +          (e.g. a laptop panel).
+> +
+>  config DRM_I915_CAPTURE_ERROR
+>  	bool "Enable capturing GPU state following a hang"
+>  	depends on DRM_I915
+> diff --git a/drivers/gpu/drm/i915/display/intel_panel.c b/drivers/gpu/drm/i915/display/intel_panel.c
+> index 7b3ec6eb3382..e2fe7a50dcbf 100644
+> --- a/drivers/gpu/drm/i915/display/intel_panel.c
+> +++ b/drivers/gpu/drm/i915/display/intel_panel.c
+> @@ -1203,7 +1203,7 @@ void intel_panel_enable_backlight(const struct intel_crtc_state *crtc_state,
+>  	mutex_unlock(&dev_priv->backlight_lock);
 >  }
->  =
+>  
+> -#if IS_ENABLED(CONFIG_BACKLIGHT_CLASS_DEVICE)
+> +#if IS_ENABLED(CONFIG_DRM_I915_BACKLIGHT)
+>  static u32 intel_panel_get_backlight(struct intel_connector *connector)
+>  {
+>  	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
+> @@ -1370,7 +1370,7 @@ void intel_backlight_device_unregister(struct intel_connector *connector)
+>  		panel->backlight.device = NULL;
+>  	}
+>  }
+> -#endif /* CONFIG_BACKLIGHT_CLASS_DEVICE */
+> +#endif /* CONFIG_DRM_I915_BACKLIGHT */
+>  
+>  /*
+>   * CNP: PWM clock frequency is 19.2 MHz or 24 MHz.
+> diff --git a/drivers/gpu/drm/i915/display/intel_panel.h b/drivers/gpu/drm/i915/display/intel_panel.h
+> index cedeea443336..e6e81268b7ed 100644
+> --- a/drivers/gpu/drm/i915/display/intel_panel.h
+> +++ b/drivers/gpu/drm/i915/display/intel_panel.h
+> @@ -49,10 +49,10 @@ intel_panel_edid_fixed_mode(struct intel_connector *connector);
+>  struct drm_display_mode *
+>  intel_panel_vbt_fixed_mode(struct intel_connector *connector);
+>  
+> -#if IS_ENABLED(CONFIG_BACKLIGHT_CLASS_DEVICE)
+> +#if IS_ENABLED(CONFIG_DRM_I915_BACKLIGHT)
+>  int intel_backlight_device_register(struct intel_connector *connector);
+>  void intel_backlight_device_unregister(struct intel_connector *connector);
+> -#else /* CONFIG_BACKLIGHT_CLASS_DEVICE */
+> +#else /* CONFIG_DRM_I915_BACKLIGHT */
+>  static inline int intel_backlight_device_register(struct intel_connector *connector)
+>  {
+>  	return 0;
+> @@ -60,6 +60,6 @@ static inline int intel_backlight_device_register(struct intel_connector *connec
+>  static inline void intel_backlight_device_unregister(struct intel_connector *connector)
+>  {
+>  }
+> -#endif /* CONFIG_BACKLIGHT_CLASS_DEVICE */
+> +#endif /* CONFIG_DRM_I915_BACKLIGHT */
+>  
+>  #endif /* __INTEL_PANEL_H__ */
 
-> +static int
-> +intel_dp_mst_downstream_max_dotclock(struct drm_connector *connector)
-> +{
-> +	struct intel_connector *intel_connector =3D to_intel_connector(connecto=
-r);
-> +	struct intel_dp *intel_dp =3D intel_connector->mst_port;
-> +	struct drm_dp_mst_port *port;
-> +	u64 clock_rate =3D 0;
-> +
-> +	if (intel_dp->mst_mgr.mst_primary)
-> +		list_for_each_entry(port, &intel_dp->mst_mgr.mst_primary->ports, next)
-> +			if (port->connector =3D=3D connector) {
-> +				clock_rate =3D ((u64)port->available_pbn * (54 * 8 * 1000 * 1000)) /=
- (64 * 1006);
-
-IIRC avaible pbn is soime kind of dynamic "how much bw we have left
-currently" so we don't want to use it for this purpose. If we really
-wanted to do this we'd have to refilter the modelist and generate
-hotplugs whenever the bw allocations change.
-
-In the current design what should happens is that we check that we
-have enough bw when doing the modeset, and if that fails userspace
-is supposed to handle the situation in some graceful manner.
-
-Also locking totally missing.
-
-So nak.
-
-> +
-> +				// FIXME: We should used pipe bpp to do this calculation.
-> +				//        But can't retrieve bpp setting from drm_connector.
-> +				return (int)(clock_rate / 24);
-> +			}
-> +
-> +	return to_i915(connector->dev)->max_dotclk_freq;
-> +}
-> +
->  static enum drm_mode_status
->  intel_dp_mst_mode_valid(struct drm_connector *connector,
->  			struct drm_display_mode *mode)
-> @@ -557,8 +578,7 @@ intel_dp_mst_mode_valid(struct drm_connector *connect=
-or,
->  	struct drm_i915_private *dev_priv =3D to_i915(connector->dev);
->  	struct intel_connector *intel_connector =3D to_intel_connector(connecto=
-r);
->  	struct intel_dp *intel_dp =3D intel_connector->mst_port;
-> -	int max_dotclk =3D to_i915(connector->dev)->max_dotclk_freq;
-> -	int max_rate, mode_rate, max_lanes, max_link_clock;
-> +	int max_rate, mode_rate, max_lanes, max_link_clock, max_dotclk;
->  =
-
->  	if (drm_connector_is_unregistered(connector))
->  		return MODE_ERROR;
-> @@ -572,7 +592,8 @@ intel_dp_mst_mode_valid(struct drm_connector *connect=
-or,
->  	max_rate =3D intel_dp_max_data_rate(max_link_clock, max_lanes);
->  	mode_rate =3D intel_dp_link_required(mode->clock, 18);
->  =
-
-> -	/* TODO - validate mode against available PBN for link */
-> +	max_dotclk =3D intel_dp_mst_downstream_max_dotclock(connector);
-> +
->  	if (mode->clock < 10000)
->  		return MODE_CLOCK_LOW;
->  =
-
-> -- =
-
-> 2.17.1
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
+-- 
+Jani Nikula, Intel Open Source Graphics Center
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
