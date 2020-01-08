@@ -2,39 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A066513455F
-	for <lists+intel-gfx@lfdr.de>; Wed,  8 Jan 2020 15:53:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 10E9B134571
+	for <lists+intel-gfx@lfdr.de>; Wed,  8 Jan 2020 15:56:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A2C0D89FC9;
-	Wed,  8 Jan 2020 14:53:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 59BB76E48E;
+	Wed,  8 Jan 2020 14:55:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E653789FC9;
- Wed,  8 Jan 2020 14:53:14 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 19810076-1500050 for multiple; Wed, 08 Jan 2020 14:53:11 +0000
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 883E16E48E;
+ Wed,  8 Jan 2020 14:55:57 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 80C57A47DF;
+ Wed,  8 Jan 2020 14:55:57 +0000 (UTC)
 MIME-Version: 1.0
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Wambui Karuga <wambui.karugax@gmail.com>, airlied@linux.ie, daniel@ffwll.ch,
- rodrigo.vivi@intel.com
-From: Chris Wilson <chris@chris-wilson.co.uk>
-In-Reply-To: <87v9pmovmx.fsf@intel.com>
-References: <cover.1578409433.git.wambui.karugax@gmail.com>
- <b79ee0f6efbf8358cbb4f2e163fa6b5bb04db794.1578409433.git.wambui.karugax@gmail.com>
- <157847199686.4725.87481257304852182@jlahtine-desk.ger.corp.intel.com>
- <8736cqs2uf.fsf@intel.com>
- <157848029770.2273.9590955422248556735@skylake-alporthouse-com>
- <87v9pmovmx.fsf@intel.com>
-Message-ID: <157849519000.2273.18061101721039254369@skylake-alporthouse-com>
-User-Agent: alot/0.6
-Date: Wed, 08 Jan 2020 14:53:10 +0000
-Subject: Re: [Intel-gfx] [PATCH 1/5] drm/i915: convert to using the
- drm_dbg_kms() macro.
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Stanislav Lisovskiy" <stanislav.lisovskiy@intel.com>
+Date: Wed, 08 Jan 2020 14:55:57 -0000
+Message-ID: <157849535750.23227.565512721071071782@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200108122650.13823-1-stanislav.lisovskiy@intel.com>
+In-Reply-To: <20200108122650.13823-1-stanislav.lisovskiy@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_Bump_up_CDCLK_to_eliminate_underruns_on_TGL?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,57 +38,132 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, seanpaul@chromium.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Jani Nikula (2020-01-08 14:44:38)
-> On Wed, 08 Jan 2020, Chris Wilson <chris@chris-wilson.co.uk> wrote:
-> > Quoting Jani Nikula (2020-01-08 09:40:40)
-> >> On Wed, 08 Jan 2020, Joonas Lahtinen <joonas.lahtinen@linux.intel.com> wrote:
-> >> > Quoting Wambui Karuga (2020-01-07 17:13:29)
-> >> >> Convert the use of the DRM_DEBUG_KMS() logging macro to the new struct
-> >> >> drm_device based drm_dbg_kms() logging macro in i915/intel_pch.c.
-> >> >> 
-> >> >> Signed-off-by: Wambui Karuga <wambui.karugax@gmail.com>
-> >> >> ---
-> >> >>  drivers/gpu/drm/i915/intel_pch.c | 46 +++++++++++++++++---------------
-> >> >>  1 file changed, 24 insertions(+), 22 deletions(-)
-> >> >> 
-> >> >> diff --git a/drivers/gpu/drm/i915/intel_pch.c b/drivers/gpu/drm/i915/intel_pch.c
-> >> >> index 43b68b5fc562..4ed60e1f01db 100644
-> >> >> --- a/drivers/gpu/drm/i915/intel_pch.c
-> >> >> +++ b/drivers/gpu/drm/i915/intel_pch.c
-> >> >> @@ -12,90 +12,91 @@ intel_pch_type(const struct drm_i915_private *dev_priv, unsigned short id)
-> >> >>  {
-> >> >>         switch (id) {
-> >> >>         case INTEL_PCH_IBX_DEVICE_ID_TYPE:
-> >> >> -               DRM_DEBUG_KMS("Found Ibex Peak PCH\n");
-> >> >> +               drm_dbg_kms(&dev_priv->drm, "Found Ibex Peak PCH\n");
-> >> >
-> >> > Did we at some point consider i915_dbg_kms alias? That would just take
-> >> > dev_priv (or i915, as it's called in newer code). It would shorten many
-> >> > of the statements.
-> >> >
-> >> > i915_dbg_kms(dev_priv, ...) or i915_dbg_kms(i915, ...)
-> >> 
-> >> I'd rather use the common drm logging macros. I thought about adding
-> >> i915 specific ones only if the drm device specific logging macros
-> >> weren't going to be merged.
-> >
-> > Why do they even exist? Why isn't it enough to do
-> > #define drm_info(drm, fmt, ...) dev_info(&(drm)->dev, fmt, ##__VA_ARGS) ?
-> 
-> It *is* enough to do that, and that's essentially what the new macros
-> do, just with an extra helper macro in between.
+== Series Details ==
 
-/o\
+Series: drm/i915: Bump up CDCLK to eliminate underruns on TGL
+URL   : https://patchwork.freedesktop.org/series/71760/
+State : success
 
-Mistook __drm_printk() for the older drm_dev_printk()
--Chris
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_7703 -> Patchwork_16024
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16024/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_16024 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_exec_suspend@basic-s0:
+    - fi-cml-s:           [PASS][1] -> [FAIL][2] ([fdo#103375])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7703/fi-cml-s/igt@gem_exec_suspend@basic-s0.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16024/fi-cml-s/igt@gem_exec_suspend@basic-s0.html
+
+  * igt@gem_exec_suspend@basic-s3:
+    - fi-ilk-650:         [PASS][3] -> [DMESG-WARN][4] ([i915#116])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7703/fi-ilk-650/igt@gem_exec_suspend@basic-s3.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16024/fi-ilk-650/igt@gem_exec_suspend@basic-s3.html
+
+  * igt@i915_selftest@live_blt:
+    - fi-hsw-4770r:       [PASS][5] -> [DMESG-FAIL][6] ([i915#553] / [i915#725])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7703/fi-hsw-4770r/igt@i915_selftest@live_blt.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16024/fi-hsw-4770r/igt@i915_selftest@live_blt.html
+    - fi-hsw-4770:        [PASS][7] -> [DMESG-FAIL][8] ([i915#563])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7703/fi-hsw-4770/igt@i915_selftest@live_blt.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16024/fi-hsw-4770/igt@i915_selftest@live_blt.html
+
+  * igt@i915_selftest@live_gem_contexts:
+    - fi-kbl-x1275:       [PASS][9] -> [DMESG-FAIL][10] ([i915#943])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7703/fi-kbl-x1275/igt@i915_selftest@live_gem_contexts.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16024/fi-kbl-x1275/igt@i915_selftest@live_gem_contexts.html
+
+  * igt@kms_chamelium@hdmi-hpd-fast:
+    - fi-kbl-7500u:       [PASS][11] -> [FAIL][12] ([fdo#111407])
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7703/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16024/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_exec_suspend@basic-s3:
+    - fi-cml-s:           [DMESG-WARN][13] ([fdo#111764]) -> [PASS][14]
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7703/fi-cml-s/igt@gem_exec_suspend@basic-s3.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16024/fi-cml-s/igt@gem_exec_suspend@basic-s3.html
+
+  * igt@i915_module_load@reload-with-fault-injection:
+    - fi-skl-6700k2:      [INCOMPLETE][15] ([i915#671]) -> [PASS][16]
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7703/fi-skl-6700k2/igt@i915_module_load@reload-with-fault-injection.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16024/fi-skl-6700k2/igt@i915_module_load@reload-with-fault-injection.html
+
+  * igt@i915_selftest@live_blt:
+    - fi-ivb-3770:        [DMESG-FAIL][17] ([i915#725]) -> [PASS][18]
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7703/fi-ivb-3770/igt@i915_selftest@live_blt.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16024/fi-ivb-3770/igt@i915_selftest@live_blt.html
+
+  * igt@i915_selftest@live_gem_contexts:
+    - fi-cfl-8700k:       [INCOMPLETE][19] ([i915#424]) -> [PASS][20]
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7703/fi-cfl-8700k/igt@i915_selftest@live_gem_contexts.html
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16024/fi-cfl-8700k/igt@i915_selftest@live_gem_contexts.html
+
+  
+  [fdo#103375]: https://bugs.freedesktop.org/show_bug.cgi?id=103375
+  [fdo#111407]: https://bugs.freedesktop.org/show_bug.cgi?id=111407
+  [fdo#111764]: https://bugs.freedesktop.org/show_bug.cgi?id=111764
+  [i915#116]: https://gitlab.freedesktop.org/drm/intel/issues/116
+  [i915#424]: https://gitlab.freedesktop.org/drm/intel/issues/424
+  [i915#553]: https://gitlab.freedesktop.org/drm/intel/issues/553
+  [i915#563]: https://gitlab.freedesktop.org/drm/intel/issues/563
+  [i915#671]: https://gitlab.freedesktop.org/drm/intel/issues/671
+  [i915#725]: https://gitlab.freedesktop.org/drm/intel/issues/725
+  [i915#943]: https://gitlab.freedesktop.org/drm/intel/issues/943
+
+
+Participating hosts (51 -> 34)
+------------------------------
+
+  Additional (1): fi-tgl-y 
+  Missing    (18): fi-bdw-5557u fi-bsw-n3050 fi-byt-j1900 fi-skl-6770hq fi-hsw-4200u fi-hsw-peppy fi-byt-squawks fi-bwr-2160 fi-snb-2520m fi-bsw-cyan fi-ctg-p8600 fi-gdg-551 fi-bsw-kefka fi-bdw-samus fi-byt-clapper fi-kbl-r fi-skl-6600u fi-snb-2600 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_7703 -> Patchwork_16024
+
+  CI-20190529: 20190529
+  CI_DRM_7703: 17da00c0d18968f69a34991f54804c7eaa8a3312 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5358: c6fc013f414b806175dc4143c58ab445e5235ea5 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_16024: 859795e699e83c82fcc6409b0e2b6962d0c9ff43 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+859795e699e8 drm/i915: Bump up CDCLK to eliminate underruns on TGL
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16024/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
