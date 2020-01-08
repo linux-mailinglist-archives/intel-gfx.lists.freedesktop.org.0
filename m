@@ -2,37 +2,28 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1057D133F86
-	for <lists+intel-gfx@lfdr.de>; Wed,  8 Jan 2020 11:45:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F99B133F90
+	for <lists+intel-gfx@lfdr.de>; Wed,  8 Jan 2020 11:45:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A3C5F89203;
-	Wed,  8 Jan 2020 10:45:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6D1666E1B3;
+	Wed,  8 Jan 2020 10:45:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BCAFF6E1B3;
- Wed,  8 Jan 2020 10:45:02 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 86D216E1B1
+ for <intel-gfx@lists.freedesktop.org>; Wed,  8 Jan 2020 10:45:52 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 19806929-1500050 for multiple; Wed, 08 Jan 2020 10:44:59 +0000
-MIME-Version: 1.0
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Wambui Karuga <wambui.karugax@gmail.com>, airlied@linux.ie, daniel@ffwll.ch,
- rodrigo.vivi@intel.com
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19806937-1500050 
+ for multiple; Wed, 08 Jan 2020 10:45:40 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
-In-Reply-To: <8736cqs2uf.fsf@intel.com>
-References: <cover.1578409433.git.wambui.karugax@gmail.com>
- <b79ee0f6efbf8358cbb4f2e163fa6b5bb04db794.1578409433.git.wambui.karugax@gmail.com>
- <157847199686.4725.87481257304852182@jlahtine-desk.ger.corp.intel.com>
- <8736cqs2uf.fsf@intel.com>
-Message-ID: <157848029770.2273.9590955422248556735@skylake-alporthouse-com>
-User-Agent: alot/0.6
-Date: Wed, 08 Jan 2020 10:44:57 +0000
-Subject: Re: [Intel-gfx] [PATCH 1/5] drm/i915: convert to using the
- drm_dbg_kms() macro.
+To: intel-gfx@lists.freedesktop.org
+Date: Wed,  8 Jan 2020 10:45:36 +0000
+Message-Id: <20200108104539.3422768-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.25.0.rc1
+MIME-Version: 1.0
+Subject: [Intel-gfx] [PATCH 1/4] drm/i915: Pin the context as we work on it
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,52 +36,150 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, seanpaul@chromium.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Jani Nikula (2020-01-08 09:40:40)
-> On Wed, 08 Jan 2020, Joonas Lahtinen <joonas.lahtinen@linux.intel.com> wrote:
-> > Quoting Wambui Karuga (2020-01-07 17:13:29)
-> >> Convert the use of the DRM_DEBUG_KMS() logging macro to the new struct
-> >> drm_device based drm_dbg_kms() logging macro in i915/intel_pch.c.
-> >> 
-> >> Signed-off-by: Wambui Karuga <wambui.karugax@gmail.com>
-> >> ---
-> >>  drivers/gpu/drm/i915/intel_pch.c | 46 +++++++++++++++++---------------
-> >>  1 file changed, 24 insertions(+), 22 deletions(-)
-> >> 
-> >> diff --git a/drivers/gpu/drm/i915/intel_pch.c b/drivers/gpu/drm/i915/intel_pch.c
-> >> index 43b68b5fc562..4ed60e1f01db 100644
-> >> --- a/drivers/gpu/drm/i915/intel_pch.c
-> >> +++ b/drivers/gpu/drm/i915/intel_pch.c
-> >> @@ -12,90 +12,91 @@ intel_pch_type(const struct drm_i915_private *dev_priv, unsigned short id)
-> >>  {
-> >>         switch (id) {
-> >>         case INTEL_PCH_IBX_DEVICE_ID_TYPE:
-> >> -               DRM_DEBUG_KMS("Found Ibex Peak PCH\n");
-> >> +               drm_dbg_kms(&dev_priv->drm, "Found Ibex Peak PCH\n");
-> >
-> > Did we at some point consider i915_dbg_kms alias? That would just take
-> > dev_priv (or i915, as it's called in newer code). It would shorten many
-> > of the statements.
-> >
-> > i915_dbg_kms(dev_priv, ...) or i915_dbg_kms(i915, ...)
-> 
-> I'd rather use the common drm logging macros. I thought about adding
-> i915 specific ones only if the drm device specific logging macros
-> weren't going to be merged.
+Since we now allow the intel_context_unpin() to run unserialised, we
+risk our operations under the intel_context_lock_pinned() being run as
+the context is unpinned (and thus invalidating our state). We can
+atomically acquire the pin, testing to see if it is pinned in the
+process, thus ensuring that the state remains consistent during the
+course of the whole operation.
 
-Why do they even exist? Why isn't it enough to do
-#define drm_info(drm, fmt, ...) dev_info(&(drm)->dev, fmt, ##__VA_ARGS) ?
-#define i915_info(i915, fmt, ...) drm_info(&(i915)->drm, fmt, ##__VA_ARGS)
+Fixes: 841350223816 ("drm/i915/gt: Drop mutex serialisation between context pin/unpin")
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+---
+ drivers/gpu/drm/i915/gem/i915_gem_context.c | 10 +++++++---
+ drivers/gpu/drm/i915/gt/intel_context.h     |  7 ++++++-
+ drivers/gpu/drm/i915/i915_debugfs.c         | 10 ++++------
+ drivers/gpu/drm/i915/i915_perf.c            | 13 +++++--------
+ 4 files changed, 22 insertions(+), 18 deletions(-)
 
-The lea for &i915->drm.dev is the same as the mov, so we shave off an
-unnecessary wrapper.
--Chris
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+index 88f6253f5405..a2e57e62af30 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+@@ -1236,12 +1236,14 @@ gen8_modify_rpcs(struct intel_context *ce, struct intel_sseu sseu)
+ 	 * image, or into the registers directory, does not stick). Pristine
+ 	 * and idle contexts will be configured on pinning.
+ 	 */
+-	if (!intel_context_is_pinned(ce))
++	if (!intel_context_pin_if_active(ce))
+ 		return 0;
+ 
+ 	rq = intel_engine_create_kernel_request(ce->engine);
+-	if (IS_ERR(rq))
+-		return PTR_ERR(rq);
++	if (IS_ERR(rq)) {
++		ret = PTR_ERR(rq);
++		goto out_unpin;
++	}
+ 
+ 	/* Serialise with the remote context */
+ 	ret = intel_context_prepare_remote_request(ce, rq);
+@@ -1249,6 +1251,8 @@ gen8_modify_rpcs(struct intel_context *ce, struct intel_sseu sseu)
+ 		ret = gen8_emit_rpcs_config(rq, ce, sseu);
+ 
+ 	i915_request_add(rq);
++out_unpin:
++	intel_context_unpin(ce);
+ 	return ret;
+ }
+ 
+diff --git a/drivers/gpu/drm/i915/gt/intel_context.h b/drivers/gpu/drm/i915/gt/intel_context.h
+index 0f5ae4ff3b10..63073ebc6cf1 100644
+--- a/drivers/gpu/drm/i915/gt/intel_context.h
++++ b/drivers/gpu/drm/i915/gt/intel_context.h
+@@ -76,9 +76,14 @@ static inline void intel_context_unlock_pinned(struct intel_context *ce)
+ 
+ int __intel_context_do_pin(struct intel_context *ce);
+ 
++static inline bool intel_context_pin_if_active(struct intel_context *ce)
++{
++	return atomic_inc_not_zero(&ce->pin_count);
++}
++
+ static inline int intel_context_pin(struct intel_context *ce)
+ {
+-	if (likely(atomic_inc_not_zero(&ce->pin_count)))
++	if (likely(intel_context_pin_if_active(ce)))
+ 		return 0;
+ 
+ 	return __intel_context_do_pin(ce);
+diff --git a/drivers/gpu/drm/i915/i915_debugfs.c b/drivers/gpu/drm/i915/i915_debugfs.c
+index 0ac98e39eb75..db184536acef 100644
+--- a/drivers/gpu/drm/i915/i915_debugfs.c
++++ b/drivers/gpu/drm/i915/i915_debugfs.c
+@@ -321,16 +321,15 @@ static void print_context_stats(struct seq_file *m,
+ 
+ 		for_each_gem_engine(ce,
+ 				    i915_gem_context_lock_engines(ctx), it) {
+-			intel_context_lock_pinned(ce);
+-			if (intel_context_is_pinned(ce)) {
++			if (intel_context_pin_if_active(ce)) {
+ 				rcu_read_lock();
+ 				if (ce->state)
+ 					per_file_stats(0,
+ 						       ce->state->obj, &kstats);
+ 				per_file_stats(0, ce->ring->vma->obj, &kstats);
+ 				rcu_read_unlock();
++				intel_context_unpin(ce);
+ 			}
+-			intel_context_unlock_pinned(ce);
+ 		}
+ 		i915_gem_context_unlock_engines(ctx);
+ 
+@@ -1513,15 +1512,14 @@ static int i915_context_status(struct seq_file *m, void *unused)
+ 
+ 		for_each_gem_engine(ce,
+ 				    i915_gem_context_lock_engines(ctx), it) {
+-			intel_context_lock_pinned(ce);
+-			if (intel_context_is_pinned(ce)) {
++			if (intel_context_pin_if_active(ce)) {
+ 				seq_printf(m, "%s: ", ce->engine->name);
+ 				if (ce->state)
+ 					describe_obj(m, ce->state->obj);
+ 				describe_ctx_ring(m, ce->ring);
+ 				seq_putc(m, '\n');
++				intel_context_unpin(ce);
+ 			}
+-			intel_context_unlock_pinned(ce);
+ 		}
+ 		i915_gem_context_unlock_engines(ctx);
+ 
+diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
+index 84350c7bc711..c7a7b676f079 100644
+--- a/drivers/gpu/drm/i915/i915_perf.c
++++ b/drivers/gpu/drm/i915/i915_perf.c
+@@ -2203,17 +2203,14 @@ static int gen8_configure_context(struct i915_gem_context *ctx,
+ 		if (ce->engine->class != RENDER_CLASS)
+ 			continue;
+ 
+-		err = intel_context_lock_pinned(ce);
+-		if (err)
+-			break;
++		/* Otherwise OA settings will be set upon first use */
++		if (!intel_context_pin_if_active(ce))
++			continue;
+ 
+ 		flex->value = intel_sseu_make_rpcs(ctx->i915, &ce->sseu);
++		err = gen8_modify_context(ce, flex, count);
+ 
+-		/* Otherwise OA settings will be set upon first use */
+-		if (intel_context_is_pinned(ce))
+-			err = gen8_modify_context(ce, flex, count);
+-
+-		intel_context_unlock_pinned(ce);
++		intel_context_unpin(ce);
+ 		if (err)
+ 			break;
+ 	}
+-- 
+2.25.0.rc1
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
