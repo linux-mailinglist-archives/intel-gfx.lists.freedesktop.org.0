@@ -1,39 +1,36 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E7DD41348EB
-	for <lists+intel-gfx@lfdr.de>; Wed,  8 Jan 2020 18:16:25 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E2156134A46
+	for <lists+intel-gfx@lfdr.de>; Wed,  8 Jan 2020 19:12:49 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6B3966E062;
-	Wed,  8 Jan 2020 17:16:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CF4B689C60;
+	Wed,  8 Jan 2020 18:12:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 39D1F6E062
- for <intel-gfx@lists.freedesktop.org>; Wed,  8 Jan 2020 17:16:23 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6DEC989C60
+ for <intel-gfx@lists.freedesktop.org>; Wed,  8 Jan 2020 18:12:46 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga106.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 08 Jan 2020 09:16:22 -0800
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga105.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 08 Jan 2020 10:12:45 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,410,1571727600"; d="scan'208";a="216014820"
-Received: from mdroper-desk1.fm.intel.com (HELO
- mdroper-desk1.amr.corp.intel.com) ([10.1.27.64])
- by orsmga008.jf.intel.com with ESMTP; 08 Jan 2020 09:16:21 -0800
-Date: Wed, 8 Jan 2020 09:16:21 -0800
-From: Matt Roper <matthew.d.roper@intel.com>
-To: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-Message-ID: <20200108171621.GZ1762291@mdroper-desk1.amr.corp.intel.com>
-References: <20200108122650.13823-1-stanislav.lisovskiy@intel.com>
+X-IronPort-AV: E=Sophos;i="5.69,410,1571727600"; d="scan'208";a="218135017"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by fmsmga008.fm.intel.com with SMTP; 08 Jan 2020 10:12:43 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Wed, 08 Jan 2020 20:12:42 +0200
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed,  8 Jan 2020 20:12:34 +0200
+Message-Id: <20200108181242.13650-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.24.1
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200108122650.13823-1-stanislav.lisovskiy@intel.com>
-User-Agent: Mutt/1.12.1 (2019-06-15)
-Subject: Re: [Intel-gfx] [PATCH v1] drm/i915: Bump up CDCLK to eliminate
- underruns on TGL
+Subject: [Intel-gfx] [PATCH 1/9] drm/i915/sdvo: Reduce the size of the on
+ stack buffers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,89 +43,55 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Jan 08, 2020 at 02:26:50PM +0200, Stanislav Lisovskiy wrote:
-> There seems to be some undocumented bandwidth
-> bottleneck/dependency which scales with CDCLK,
-> causing FIFO underruns when CDCLK is too low,
-> even when it's correct from BSpec point of view.
-> 
-> Currently for TGL platforms we calculate
-> min_cdclk initially based on pixel_rate divided
-> by 2, accounting for also plane requirements,
-> however in some cases the lowest possible CDCLK
-> doesn't work and causing the underruns.
-> 
-> Explicitly stating here that this seems to be currently
-> rather a Hack, than final solution.
-> 
-> Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-> Bugzilla: https://gitlab.freedesktop.org/drm/intel/issues/402
-> ---
->  drivers/gpu/drm/i915/display/intel_cdclk.c | 7 +++++++
->  1 file changed, 7 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
-> index 7d1ab1e5b7c3..3db4060ed190 100644
-> --- a/drivers/gpu/drm/i915/display/intel_cdclk.c
-> +++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
-> @@ -2004,6 +2004,13 @@ int intel_crtc_compute_min_cdclk(const struct intel_crtc_state *crtc_state)
->  	/* Account for additional needs from the planes */
->  	min_cdclk = max(intel_planes_min_cdclk(crtc_state), min_cdclk);
->  
-> +	if (IS_GEN(dev_priv, 12)) {
-> +		if (min_cdclk <= DIV_ROUND_UP(crtc_state->pixel_rate, 2)) {
-> +			min_cdclk = min(min_cdclk * 2,
-> +				    ((int)dev_priv->max_cdclk_freq));
-> +		}
-
-min_cdclk is initially set to DIV_ROUND_UP(crtc_state->pixel_rate, 2),
-and then only potentially increases from there, so we're really just
-checking for equality here, right (the "<" case is impossible)?  Should
-we worry that one of the other checks (audio, planes, etc.) might have
-just slightly bumped up min_cdclk, causing this condition to fail, but
-not bumping it far enough to get us into the seemingly-safe zone?
-
-Maybe it would be simpler/safer to just do something like
-
-        /* HACK */
-        if (IS_TIGERLAKE(dev_priv))
-                min_cdclk = clamp(min_cdclk,
-                                  crtc_state->pixel_rate,
-                                  dev_priv->max_cdclk_freq);
-
-which seems closer to the true goal of the workaround?
-
-Regardless, we should probably also have a code comment on whatever we
-come up with just like we do on all the other min_cdclk adjustments,
-especially since this one is a hack that doesn't actually match the
-bspec.
-
-
-Matt
-
-
-> +	}
-> +
->  	if (min_cdclk > dev_priv->max_cdclk_freq) {
->  		DRM_DEBUG_KMS("required cdclk (%d kHz) exceeds max (%d kHz)\n",
->  			      min_cdclk, dev_priv->max_cdclk_freq);
-> -- 
-> 2.24.1.485.gad05a3d8e5
-> 
-
--- 
-Matt Roper
-Graphics Software Engineer
-VTT-OSGC Platform Enablement
-Intel Corporation
-(916) 356-2795
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+RnJvbTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KClRo
+ZSBzdHJpbmdzIHdlIHdhbnQgdG8gcHJpbnQgdG8gdGhlIG9uIHN0YWNrIGJ1ZmZlcnMgc2hvdWxk
+CmJlIG5vIG1vcmUgdGhhbgo4ICogMyArIHN0cmxlbigiKEdFVF9TQ0FMRURfSERUVl9SRVNPTFVU
+SU9OX1NVUFBPUlQpIikgKyAxID0gNjEKYnl0ZXMuIFNvIGxldCdzIHNocmluayB0aGUgYnVmZmVy
+cyBkb3duIHRvIDY0IGJ5dGVzLgoKQWxzbyBzd2l0Y2ggdGhlIEJVR19PTigpcyB0byBXQVJOX09O
+KClzIGlmIEkgbWFkZSBhIG1pc3Rha2UgaW4KbXkgYXJpdGhtZW50aWMuCgpTaWduZWQtb2ZmLWJ5
+OiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwuY29tPgotLS0KIGRy
+aXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfc2R2by5jIHwgMTkgKysrKysrKystLS0t
+LS0tLS0tLQogMSBmaWxlIGNoYW5nZWQsIDggaW5zZXJ0aW9ucygrKSwgMTEgZGVsZXRpb25zKC0p
+CgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9zZHZvLmMg
+Yi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Nkdm8uYwppbmRleCA4NzU4ZWUy
+YTQ0NDIuLjAyMTE5YzgyN2M4MCAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlz
+cGxheS9pbnRlbF9zZHZvLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRl
+bF9zZHZvLmMKQEAgLTQxNCwxMiArNDE0LDEwIEBAIHN0YXRpYyB2b2lkIGludGVsX3Nkdm9fZGVi
+dWdfd3JpdGUoc3RydWN0IGludGVsX3Nkdm8gKmludGVsX3Nkdm8sIHU4IGNtZCwKIHsKIAljb25z
+dCBjaGFyICpjbWRfbmFtZTsKIAlpbnQgaSwgcG9zID0gMDsKLSNkZWZpbmUgQlVGX0xFTiAyNTYK
+LQljaGFyIGJ1ZmZlcltCVUZfTEVOXTsKKwljaGFyIGJ1ZmZlcls2NF07CiAKICNkZWZpbmUgQlVG
+X1BSSU5UKGFyZ3MuLi4pIFwKLQlwb3MgKz0gc25wcmludGYoYnVmZmVyICsgcG9zLCBtYXhfdChp
+bnQsIEJVRl9MRU4gLSBwb3MsIDApLCBhcmdzKQotCisJcG9zICs9IHNucHJpbnRmKGJ1ZmZlciAr
+IHBvcywgbWF4X3QoaW50LCBzaXplb2YoYnVmZmVyKSAtIHBvcywgMCksIGFyZ3MpCiAKIAlmb3Ig
+KGkgPSAwOyBpIDwgYXJnc19sZW47IGkrKykgewogCQlCVUZfUFJJTlQoIiUwMlggIiwgKCh1OCAq
+KWFyZ3MpW2ldKTsKQEAgLTQzMyw5ICs0MzEsOSBAQCBzdGF0aWMgdm9pZCBpbnRlbF9zZHZvX2Rl
+YnVnX3dyaXRlKHN0cnVjdCBpbnRlbF9zZHZvICppbnRlbF9zZHZvLCB1OCBjbWQsCiAJCUJVRl9Q
+UklOVCgiKCVzKSIsIGNtZF9uYW1lKTsKIAllbHNlCiAJCUJVRl9QUklOVCgiKCUwMlgpIiwgY21k
+KTsKLQlCVUdfT04ocG9zID49IEJVRl9MRU4gLSAxKTsKKworCVdBUk5fT04ocG9zID49IHNpemVv
+ZihidWZmZXIpIC0gMSk7CiAjdW5kZWYgQlVGX1BSSU5UCi0jdW5kZWYgQlVGX0xFTgogCiAJRFJN
+X0RFQlVHX0tNUygiJXM6IFc6ICUwMlggJXNcbiIsIFNEVk9fTkFNRShpbnRlbF9zZHZvKSwgY21k
+LCBidWZmZXIpOwogfQpAQCAtNTQwLDggKzUzOCw3IEBAIHN0YXRpYyBib29sIGludGVsX3Nkdm9f
+cmVhZF9yZXNwb25zZShzdHJ1Y3QgaW50ZWxfc2R2byAqaW50ZWxfc2R2bywKIAl1OCByZXRyeSA9
+IDE1OyAvKiA1IHF1aWNrIGNoZWNrcywgZm9sbG93ZWQgYnkgMTAgbG9uZyBjaGVja3MgKi8KIAl1
+OCBzdGF0dXM7CiAJaW50IGksIHBvcyA9IDA7Ci0jZGVmaW5lIEJVRl9MRU4gMjU2Ci0JY2hhciBi
+dWZmZXJbQlVGX0xFTl07CisJY2hhciBidWZmZXJbNjRdOwogCiAJYnVmZmVyWzBdID0gJ1wwJzsK
+IApAQCAtNTgxLDcgKzU3OCw3IEBAIHN0YXRpYyBib29sIGludGVsX3Nkdm9fcmVhZF9yZXNwb25z
+ZShzdHJ1Y3QgaW50ZWxfc2R2byAqaW50ZWxfc2R2bywKIAl9CiAKICNkZWZpbmUgQlVGX1BSSU5U
+KGFyZ3MuLi4pIFwKLQlwb3MgKz0gc25wcmludGYoYnVmZmVyICsgcG9zLCBtYXhfdChpbnQsIEJV
+Rl9MRU4gLSBwb3MsIDApLCBhcmdzKQorCXBvcyArPSBzbnByaW50ZihidWZmZXIgKyBwb3MsIG1h
+eF90KGludCwgc2l6ZW9mKGJ1ZmZlcikgLSBwb3MsIDApLCBhcmdzKQogCiAJY21kX3N0YXR1cyA9
+IHNkdm9fY21kX3N0YXR1cyhzdGF0dXMpOwogCWlmIChjbWRfc3RhdHVzKQpAQCAtNjAwLDkgKzU5
+Nyw5IEBAIHN0YXRpYyBib29sIGludGVsX3Nkdm9fcmVhZF9yZXNwb25zZShzdHJ1Y3QgaW50ZWxf
+c2R2byAqaW50ZWxfc2R2bywKIAkJCWdvdG8gbG9nX2ZhaWw7CiAJCUJVRl9QUklOVCgiICUwMlgi
+LCAoKHU4ICopcmVzcG9uc2UpW2ldKTsKIAl9Ci0JQlVHX09OKHBvcyA+PSBCVUZfTEVOIC0gMSk7
+CisKKwlXQVJOX09OKHBvcyA+PSBzaXplb2YoYnVmZmVyKSAtIDEpOwogI3VuZGVmIEJVRl9QUklO
+VAotI3VuZGVmIEJVRl9MRU4KIAogCURSTV9ERUJVR19LTVMoIiVzOiBSOiAlc1xuIiwgU0RWT19O
+QU1FKGludGVsX3Nkdm8pLCBidWZmZXIpOwogCXJldHVybiB0cnVlOwotLSAKMi4yNC4xCgpfX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFp
+bGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
