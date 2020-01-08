@@ -1,33 +1,37 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 478E213454C
-	for <lists+intel-gfx@lfdr.de>; Wed,  8 Jan 2020 15:46:06 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id F35CB134549
+	for <lists+intel-gfx@lfdr.de>; Wed,  8 Jan 2020 15:45:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A82FE6E30D;
-	Wed,  8 Jan 2020 14:46:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 49C7B6E2FF;
+	Wed,  8 Jan 2020 14:45:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8E5796E30D
- for <intel-gfx@lists.freedesktop.org>; Wed,  8 Jan 2020 14:46:02 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 19810006-1500050 for multiple; Wed, 08 Jan 2020 14:45:49 +0000
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 93A7D6E2FF
+ for <intel-gfx@lists.freedesktop.org>; Wed,  8 Jan 2020 14:45:54 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 08 Jan 2020 06:45:53 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.69,410,1571727600"; d="scan'208";a="254243754"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by fmsmga002.fm.intel.com with SMTP; 08 Jan 2020 06:45:50 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Wed, 08 Jan 2020 16:45:50 +0200
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed,  8 Jan 2020 16:45:50 +0200
+Message-Id: <20200108144550.29280-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.24.1
+In-Reply-To: <20200108142447.9952-1-ville.syrjala@linux.intel.com>
+References: <20200108142447.9952-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
-To: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org
-From: Chris Wilson <chris@chris-wilson.co.uk>
-In-Reply-To: <600101c8433e7caf9303663fc85a9972fa1f05e7.1575560168.git.jani.nikula@intel.com>
-References: <cover.1575560168.git.jani.nikula@intel.com>
- <600101c8433e7caf9303663fc85a9972fa1f05e7.1575560168.git.jani.nikula@intel.com>
-Message-ID: <157849474809.2273.10126647469755480457@skylake-alporthouse-com>
-User-Agent: alot/0.6
-Date: Wed, 08 Jan 2020 14:45:48 +0000
-Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915/params: add i915 parameters to
- debugfs
+Subject: [Intel-gfx] [PATCH v2] drm/i915: Fix MST disable sequence
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,35 +44,64 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Jani Nikula (2019-12-05 15:43:40)
-> +static int i915_param_int_open(struct inode *inode, struct file *file)
-> +{
-> +       return single_open(file, i915_param_int_show, inode->i_private);
-
-What I've always wanted with this style of approach was a means that the
-parameter is only set while the debugfs remained open.
-
-	fd = open("/debug/my_parameter", O_WRONLY | O_EXCL);
-	write(fd, "1", 1);
-
-	... run test ..
-
-System reverts to default on process termination, or explicit close(fd).
-
-I'd make the open implicitly O_EXCL, i.e. return -EBUSY if something
-else already holds the parameter set. Or, you can use the O_EXCL to
-select between the different modes of operation.
-
-Moving the parameters to debugfs is more than worth it imo if we can
-enable this mode of operation.
--Chris
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+RnJvbTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KCldo
+ZW4gbW92aW5nIHRoZSBwaXBlIGRpc2FibGUgJiBjby4gZnVuY3Rpb24gY2FsbHMgZnJvbQpoYXN3
+ZWxsX2NydGNfZGlzYWJsZSgpIGludG8gdGhlIGVuY29kZXIgLnBvc3RfZGlzYWJsZSgpIGhvb2tz
+IEkKbmVnbGVjdGVkIHRvIGFjY291bnQgZm9yIHRoZSBNU1QgdnMuIERESSBpbnRlcmFjdGlvbnMg
+cHJvcGVybHkuClRoaXMgbm93IGxlYWRzIHVzIHRvIGNhbGwgdGhlc2UgZnVuY3Rpb25zIHR3byB0
+aW1lcyBmb3IgdGhlIGxhc3QKTVNUIHN0cmVhbSAob25jZSBmcm9tIHRoZSBNU1QgY29kZSBhbmQg
+YSBzZWNvbmQgdGltZSBmcm9tIHRoZSBEREkKY29kZSkuIFRoZSBjYWxscyBmcm9tIHRoZSBEREkg
+Y29kZSBzaG91bGQgb25seSBiZSBkb25lIGZvciBTU1QKYW5kIG5vdCBNU1QuIEFkZCB0aGUgcHJv
+cGVyIGNoZWNrIGZvciB0aGF0LgoKVGhpcyByZXN1bHRzIGluIGFuIE1DRSBvbiBJQ0wuIE15IHZh
+Z3VlIHRoZW9yeSBpcyB0aGF0IHdlIHR1cm4gb2ZmCnRoZSB0cmFuc2NvZGVyIGNsb2NrIGZyb20g
+dGhlIE1TVCBjb2RlIGFuZCB0aGVuIHdlIHByb2NlZWQgdG8gdG91Y2gKc29tZXRoaW5nIGluIHRo
+ZSBEREkgY29kZSB3aGljaCBzdGlsbCBkZXBlbmRzIG9uIHRoYXQgY2xvY2sgY2F1c2luZwp0aGUg
+aGFyZHdhcmUgdG8gYmVjb21lIHVwc2V0LiBUaG91Z2ggSSBjYW4ndCByZWFsbHkgZXhwbGFpbiB3
+aHkKU3RhbidzIGhhY2sgb2Ygb21pdHRpbmcgdGhlIHBpcGUgZGlzYWJsZSBpbiB0aGUgTVNUIGNv
+ZGUgd291bGQgYXZvaWQKdGhlIE1DRSBzaW5jZSB3ZSBzaG91bGQgc3RpbGwgYmUgdHVybmluZyBv
+ZmYgdGhlIHRyYW5zY29kZXIgY2xvY2suCkJ1dCBtYXliZSB0aGVyZSdzIHNvbWV0aGluZyBtYWdp
+YyBpbiB0aGUgaHcgdGhhdCBrZWVwcyB0aGUgY2xvY2sgb24KYXMgbG9uZyBhcyB0aGUgcGlwZSBp
+cyBvbi4gT3IgbWF5YmUgdGhlIGNsb2NrIGlzbid0IHRoZSBwcm9ibGVtIGFuZAp3ZSBub3cgdG91
+Y2ggc29tZXRoaW5nIGluIHRoZSBEREkgZGlzYWJsZSBjb2RlIHRoYXQgcmVhbGx5IGRvZXMgbmVl
+ZAp0aGUgcGlwZSB0byBiZSBzdGlsbCBlbmFibGVkLgoKdjI6IFJlYmFzZSB0byBsYXRlc3QgZHJt
+LXRpcAoKQ2M6IEpvc8OpIFJvYmVydG8gZGUgU291emEgPGpvc2Uuc291emFAaW50ZWwuY29tPgpD
+YzogTWFuYXNpIE5hdmFyZSA8bWFuYXNpLmQubmF2YXJlQGludGVsLmNvbT4KUmVwb3J0ZWQtYnk6
+IFN0YW5pc2xhdiBMaXNvdnNraXkgPHN0YW5pc2xhdi5saXNvdnNraXlAaW50ZWwuY29tPgpDbG9z
+ZXM6IGh0dHBzOi8vZ2l0bGFiLmZyZWVkZXNrdG9wLm9yZy9kcm0vaW50ZWwvaXNzdWVzLzkwMQpG
+aXhlczogNzczYjRiNTQzNTFjICgiZHJtL2k5MTU6IE1vdmUgc3R1ZmYgZnJvbSBoYXN3ZWxsX2Ny
+dGNfZGlzYWJsZSgpIGludG8gZW5jb2RlciAucG9zdF9kaXNhYmxlKCkiKQpTaWduZWQtb2ZmLWJ5
+OiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwuY29tPgotLS0KIGRy
+aXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGRpLmMgfCAyMiArKysrKysrKysrKyst
+LS0tLS0tLS0tCiAxIGZpbGUgY2hhbmdlZCwgMTIgaW5zZXJ0aW9ucygrKSwgMTAgZGVsZXRpb25z
+KC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kZGku
+YyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGRpLmMKaW5kZXggMDdhY2Qw
+ZGFjYTI1Li42ZTBhNzVkMWU2Y2EgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rp
+c3BsYXkvaW50ZWxfZGRpLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRl
+bF9kZGkuYwpAQCAtMzg5NywyMSArMzg5NywyMyBAQCBzdGF0aWMgdm9pZCBpbnRlbF9kZGlfcG9z
+dF9kaXNhYmxlKHN0cnVjdCBpbnRlbF9lbmNvZGVyICplbmNvZGVyLAogCWVudW0gcGh5IHBoeSA9
+IGludGVsX3BvcnRfdG9fcGh5KGRldl9wcml2LCBlbmNvZGVyLT5wb3J0KTsKIAlib29sIGlzX3Rj
+X3BvcnQgPSBpbnRlbF9waHlfaXNfdGMoZGV2X3ByaXYsIHBoeSk7CiAKLQlpbnRlbF9jcnRjX3Zi
+bGFua19vZmYob2xkX2NydGNfc3RhdGUpOworCWlmICghaW50ZWxfY3J0Y19oYXNfdHlwZShvbGRf
+Y3J0Y19zdGF0ZSwgSU5URUxfT1VUUFVUX0RQX01TVCkpIHsKKwkJaW50ZWxfY3J0Y192Ymxhbmtf
+b2ZmKG9sZF9jcnRjX3N0YXRlKTsKIAotCWludGVsX2Rpc2FibGVfcGlwZShvbGRfY3J0Y19zdGF0
+ZSk7CisJCWludGVsX2Rpc2FibGVfcGlwZShvbGRfY3J0Y19zdGF0ZSk7CiAKLQlpZiAoSU5URUxf
+R0VOKGRldl9wcml2KSA+PSAxMSkKLQkJaWNsX2Rpc2FibGVfdHJhbnNjb2Rlcl9wb3J0X3N5bmMo
+b2xkX2NydGNfc3RhdGUpOworCQlpZiAoSU5URUxfR0VOKGRldl9wcml2KSA+PSAxMSkKKwkJCWlj
+bF9kaXNhYmxlX3RyYW5zY29kZXJfcG9ydF9zeW5jKG9sZF9jcnRjX3N0YXRlKTsKIAotCWludGVs
+X2RkaV9kaXNhYmxlX3RyYW5zY29kZXJfZnVuYyhvbGRfY3J0Y19zdGF0ZSk7CisJCWludGVsX2Rk
+aV9kaXNhYmxlX3RyYW5zY29kZXJfZnVuYyhvbGRfY3J0Y19zdGF0ZSk7CiAKLQlpbnRlbF9kc2Nf
+ZGlzYWJsZShvbGRfY3J0Y19zdGF0ZSk7CisJCWludGVsX2RzY19kaXNhYmxlKG9sZF9jcnRjX3N0
+YXRlKTsKIAotCWlmIChJTlRFTF9HRU4oZGV2X3ByaXYpID49IDkpCi0JCXNrbF9zY2FsZXJfZGlz
+YWJsZShvbGRfY3J0Y19zdGF0ZSk7Ci0JZWxzZQotCQlpbGtfcGZpdF9kaXNhYmxlKG9sZF9jcnRj
+X3N0YXRlKTsKKwkJaWYgKElOVEVMX0dFTihkZXZfcHJpdikgPj0gOSkKKwkJCXNrbF9zY2FsZXJf
+ZGlzYWJsZShvbGRfY3J0Y19zdGF0ZSk7CisJCWVsc2UKKwkJCWlsa19wZml0X2Rpc2FibGUob2xk
+X2NydGNfc3RhdGUpOworCX0KIAogCS8qCiAJICogV2hlbiBjYWxsZWQgZnJvbSBEUCBNU1QgY29k
+ZToKLS0gCjIuMjQuMQoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Au
+b3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwt
+Z2Z4Cg==
