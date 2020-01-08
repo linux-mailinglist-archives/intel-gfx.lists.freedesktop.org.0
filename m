@@ -1,33 +1,56 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 162A41346A2
-	for <lists+intel-gfx@lfdr.de>; Wed,  8 Jan 2020 16:48:34 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C1EA1347C8
+	for <lists+intel-gfx@lfdr.de>; Wed,  8 Jan 2020 17:24:10 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 69D106E095;
-	Wed,  8 Jan 2020 15:48:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C04DE8996E;
+	Wed,  8 Jan 2020 16:24:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 33D466E095
- for <intel-gfx@lists.freedesktop.org>; Wed,  8 Jan 2020 15:48:31 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 19810778-1500050 for multiple; Wed, 08 Jan 2020 15:48:26 +0000
+X-Greylist: delayed 991 seconds by postgrey-1.36 at gabe;
+ Wed, 08 Jan 2020 16:24:07 UTC
+Received: from bombadil.infradead.org (bombadil.infradead.org
+ [IPv6:2607:7c80:54:e::133])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8A3BB8996E
+ for <intel-gfx@lists.freedesktop.org>; Wed,  8 Jan 2020 16:24:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=infradead.org; s=bombadil.20170209; h=In-Reply-To:Content-Type:MIME-Version
+ :References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+ Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+ Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+ List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=vTWY1coa2Uglbk+2ijUNU4PAcTKo3OAi9shtTNMi0Rk=; b=gqbvtODkaNnvdu0BtI1I+oz9W
+ A/2kAzeM+Of8bAddV33sSuyFB5xF+Iq5ljJRIvioI+k+R95x57awB/8d2/OaCxPEWI73HH3ggqw/b
+ sRuPnU/M3cuEf3KHzciBaTOkOpg9la+z/euW56512nmDwFzNGDIve2Ho4jXCQShNWbCSAJw0jVzgp
+ W73rwpfbOnlx/JXYvxqZG+ueOUqg0TTsDyxTW539J3TnC4nfAFSqo8UjcEPXCvaV8lYoYsU9cKROX
+ c5nXwgc0c5to6F7JUcDXFL8eRwzCCSZ1nK2sOxQ5uehPgx5U+VprgiM8abXXvQlwSBJdkTRyrU3JI
+ mPuHTmEYQ==;
+Received: from j217100.upc-j.chello.nl ([24.132.217.100]
+ helo=noisy.programming.kicks-ass.net)
+ by bombadil.infradead.org with esmtpsa (Exim 4.92.3 #3 (Red Hat Linux))
+ id 1ipDrb-0002aV-JF; Wed, 08 Jan 2020 16:07:19 +0000
+Received: from hirez.programming.kicks-ass.net
+ (hirez.programming.kicks-ass.net [192.168.1.225])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (Client did not present a certificate)
+ by noisy.programming.kicks-ass.net (Postfix) with ESMTPS id 0BFB530018B;
+ Wed,  8 Jan 2020 17:05:40 +0100 (CET)
+Received: by hirez.programming.kicks-ass.net (Postfix, from userid 1000)
+ id 08A5520B79C82; Wed,  8 Jan 2020 17:07:14 +0100 (CET)
+Date: Wed, 8 Jan 2020 17:07:13 +0100
+From: Peter Zijlstra <peterz@infradead.org>
+To: Alexey Budankov <alexey.budankov@linux.intel.com>
+Message-ID: <20200108160713.GI2844@hirez.programming.kicks-ass.net>
+References: <c0460c78-b1a6-b5f7-7119-d97e5998f308@linux.intel.com>
+ <c93309dc-b920-f5fa-f997-e8b2faf47b88@linux.intel.com>
 MIME-Version: 1.0
-From: Chris Wilson <chris@chris-wilson.co.uk>
-User-Agent: alot/0.6
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-References: <20200108145616.7349-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20200108145616.7349-1-ville.syrjala@linux.intel.com>
-Message-ID: <157849850534.13423.14174641232666298165@skylake-alporthouse-com>
-Date: Wed, 08 Jan 2020 15:48:25 +0000
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Pass cpu_transcoder to
- assert_pipe_disabled() always
+Content-Disposition: inline
+In-Reply-To: <c93309dc-b920-f5fa-f997-e8b2faf47b88@linux.intel.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH v4 2/9] perf/core: open access for
+ CAP_SYS_PERFMON privileged process
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,53 +63,127 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Mark Rutland <mark.rutland@arm.com>, Song Liu <songliubraving@fb.com>,
+ Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+ Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+ Will Deacon <will.deacon@arm.com>, Alexei Starovoitov <ast@kernel.org>,
+ Stephane Eranian <eranian@google.com>,
+ "james.bottomley@hansenpartnership.com"
+ <james.bottomley@hansenpartnership.com>, Paul Mackerras <paulus@samba.org>,
+ Jiri Olsa <jolsa@redhat.com>, Andi Kleen <ak@linux.intel.com>,
+ Michael Ellerman <mpe@ellerman.id.au>, Igor Lubashev <ilubashe@akamai.com>,
+ James Morris <jmorris@namei.org>, Ingo Molnar <mingo@redhat.com>,
+ oprofile-list@lists.sf.net, Serge Hallyn <serge@hallyn.com>,
+ Robert Richter <rric@kernel.org>, Kees Cook <keescook@chromium.org>,
+ Jann Horn <jannh@google.com>,
+ "selinux@vger.kernel.org" <selinux@vger.kernel.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ Arnaldo Carvalho de Melo <acme@kernel.org>, Namhyung Kim <namhyung@kernel.org>,
+ Thomas Gleixner <tglx@linutronix.de>, linux-arm-kernel@lists.infradead.org,
+ "linux-parisc@vger.kernel.org" <linux-parisc@vger.kernel.org>,
+ linux-kernel <linux-kernel@vger.kernel.org>,
+ "linux-perf-users@vger.kernel.org" <linux-perf-users@vger.kernel.org>,
+ "linux-security-module@vger.kernel.org"
+ <linux-security-module@vger.kernel.org>,
+ Casey Schaufler <casey@schaufler-ca.com>,
+ "bpf@vger.kernel.org" <bpf@vger.kernel.org>,
+ "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-UXVvdGluZyBWaWxsZSBTeXJqYWxhICgyMDIwLTAxLTA4IDE0OjU2OjE2KQo+IEZyb206IFZpbGxl
-IFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5jb20+Cj4gCj4gSSBtaXNzZWQg
-YSBmZXcgYXNzZXJ0X3BpcGVfZGlzYWJsZWQoKSBjYXNlcyB3aGVuIGNoYW5naW5nIGl0IHRvCj4g
-dGFrZSBlbnVtIHRyYW5zY29kZXIgaW5zdGVhZCBvZiBlbnVtIHBpcGUsIG1ha2luZyBzcGFyc2Ug
-dW5oYXBweS4KPiBDb252ZXJ0IHRoZSBsZWZ0b3ZlcnMuCj4gCj4gUmVwb3J0ZWQtYnk6IGtidWls
-ZCB0ZXN0IHJvYm90IDxsa3BAaW50ZWwuY29tPgo+IFNpZ25lZC1vZmYtYnk6IFZpbGxlIFN5cmrD
-pGzDpCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5jb20+Cj4gLS0tCj4gIGRyaXZlcnMvZ3B1
-L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHAuYyB8IDQgKystLQo+ICBkcml2ZXJzL2dwdS9kcm0v
-aTkxNS9kaXNwbGF5L2ludGVsX3R2LmMgfCAyICstCj4gIDIgZmlsZXMgY2hhbmdlZCwgMyBpbnNl
-cnRpb25zKCspLCAzIGRlbGV0aW9ucygtKQo+IAo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9k
-cm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5
-L2ludGVsX2RwLmMKPiBpbmRleCA5OTFmMzQzNTc5ZWYuLjdjNzZkNDM3OTA2YiAxMDA2NDQKPiAt
-LS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwLmMKPiArKysgYi9kcml2
-ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwLmMKPiBAQCAtMzA4NSw3ICszMDg1LDcg
-QEAgc3RhdGljIHZvaWQgaWxrX2VkcF9wbGxfb24oc3RydWN0IGludGVsX2RwICppbnRlbF9kcCwK
-PiAgICAgICAgIHN0cnVjdCBpbnRlbF9jcnRjICpjcnRjID0gdG9faW50ZWxfY3J0YyhwaXBlX2Nv
-bmZpZy0+dWFwaS5jcnRjKTsKPiAgICAgICAgIHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpkZXZf
-cHJpdiA9IHRvX2k5MTUoY3J0Yy0+YmFzZS5kZXYpOwo+ICAKPiAtICAgICAgIGFzc2VydF9waXBl
-X2Rpc2FibGVkKGRldl9wcml2LCBjcnRjLT5waXBlKTsKPiArICAgICAgIGFzc2VydF9waXBlX2Rp
-c2FibGVkKGRldl9wcml2LCBwaXBlX2NvbmZpZy0+Y3B1X3RyYW5zY29kZXIpOwo+ICAgICAgICAg
-YXNzZXJ0X2RwX3BvcnRfZGlzYWJsZWQoaW50ZWxfZHApOwo+ICAgICAgICAgYXNzZXJ0X2VkcF9w
-bGxfZGlzYWJsZWQoZGV2X3ByaXYpOwo+ICAKPiBAQCAtMzEyNSw3ICszMTI1LDcgQEAgc3RhdGlj
-IHZvaWQgaWxrX2VkcF9wbGxfb2ZmKHN0cnVjdCBpbnRlbF9kcCAqaW50ZWxfZHAsCj4gICAgICAg
-ICBzdHJ1Y3QgaW50ZWxfY3J0YyAqY3J0YyA9IHRvX2ludGVsX2NydGMob2xkX2NydGNfc3RhdGUt
-PnVhcGkuY3J0Yyk7Cj4gICAgICAgICBzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYg
-PSB0b19pOTE1KGNydGMtPmJhc2UuZGV2KTsKPiAgCj4gLSAgICAgICBhc3NlcnRfcGlwZV9kaXNh
-YmxlZChkZXZfcHJpdiwgY3J0Yy0+cGlwZSk7Cj4gKyAgICAgICBhc3NlcnRfcGlwZV9kaXNhYmxl
-ZChkZXZfcHJpdiwgb2xkX2NydGNfc3RhdGUtPmNwdV90cmFuc2NvZGVyKTsKPiAgICAgICAgIGFz
-c2VydF9kcF9wb3J0X2Rpc2FibGVkKGludGVsX2RwKTsKPiAgICAgICAgIGFzc2VydF9lZHBfcGxs
-X2VuYWJsZWQoZGV2X3ByaXYpOwo+ICAKPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5
-MTUvZGlzcGxheS9pbnRlbF90di5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRl
-bF90di5jCj4gaW5kZXggNTA3MDM1MzY0MzZjLi40ZjNmOTAyZTRhOWEgMTAwNjQ0Cj4gLS0tIGEv
-ZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF90di5jCj4gKysrIGIvZHJpdmVycy9n
-cHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF90di5jCj4gQEAgLTE1MjcsNyArMTUyNyw3IEBAIHN0
-YXRpYyB2b2lkIGludGVsX3R2X3ByZV9lbmFibGUoc3RydWN0IGludGVsX2VuY29kZXIgKmVuY29k
-ZXIsCj4gICAgICAgICAgICAgICAgICAgICAgICAgICAgKCh2aWRlb19sZXZlbHMtPmJsYWNrIDw8
-IFRWX0JMQUNLX0xFVkVMX1NISUZUKSB8Cj4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICh2
-aWRlb19sZXZlbHMtPmJsYW5rIDw8IFRWX0JMQU5LX0xFVkVMX1NISUZUKSkpOwo+ICAKPiAtICAg
-ICAgIGFzc2VydF9waXBlX2Rpc2FibGVkKGRldl9wcml2LCBpbnRlbF9jcnRjLT5waXBlKTsKPiAr
-ICAgICAgIGFzc2VydF9waXBlX2Rpc2FibGVkKGRldl9wcml2LCBwaXBlX2NvbmZpZy0+Y3B1X3Ry
-YW5zY29kZXIpOwoKT25seSB0aGlzIG9uZSBpcyBub3QgY2xlYXIgZnJvbSBjb250ZXh0IGFsb25l
-Li4uClJldmlld2VkLWJ5OiBDaHJpcyBXaWxzb24gPGNocmlzQGNocmlzLXdpbHNvbi5jby51az4K
-LUNocmlzCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCklu
-dGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRw
-czovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+On Wed, Dec 18, 2019 at 12:25:35PM +0300, Alexey Budankov wrote:
+> 
+> Open access to perf_events monitoring for CAP_SYS_PERFMON privileged
+> processes. For backward compatibility reasons access to perf_events
+> subsystem remains open for CAP_SYS_ADMIN privileged processes but
+> CAP_SYS_ADMIN usage for secure perf_events monitoring is discouraged
+> with respect to CAP_SYS_PERFMON capability.
+> 
+> Signed-off-by: Alexey Budankov <alexey.budankov@linux.intel.com>
+> ---
+>  include/linux/perf_event.h | 6 +++---
+>  kernel/events/core.c       | 6 +++---
+>  2 files changed, 6 insertions(+), 6 deletions(-)
+> 
+> diff --git a/include/linux/perf_event.h b/include/linux/perf_event.h
+> index 34c7c6910026..f46acd69425f 100644
+> --- a/include/linux/perf_event.h
+> +++ b/include/linux/perf_event.h
+> @@ -1285,7 +1285,7 @@ static inline int perf_is_paranoid(void)
+>  
+>  static inline int perf_allow_kernel(struct perf_event_attr *attr)
+>  {
+> -	if (sysctl_perf_event_paranoid > 1 && !capable(CAP_SYS_ADMIN))
+> +	if (sysctl_perf_event_paranoid > 1 && !perfmon_capable())
+>  		return -EACCES;
+>  
+>  	return security_perf_event_open(attr, PERF_SECURITY_KERNEL);
+> @@ -1293,7 +1293,7 @@ static inline int perf_allow_kernel(struct perf_event_attr *attr)
+>  
+>  static inline int perf_allow_cpu(struct perf_event_attr *attr)
+>  {
+> -	if (sysctl_perf_event_paranoid > 0 && !capable(CAP_SYS_ADMIN))
+> +	if (sysctl_perf_event_paranoid > 0 && !perfmon_capable())
+>  		return -EACCES;
+>  
+>  	return security_perf_event_open(attr, PERF_SECURITY_CPU);
+> @@ -1301,7 +1301,7 @@ static inline int perf_allow_cpu(struct perf_event_attr *attr)
+>  
+>  static inline int perf_allow_tracepoint(struct perf_event_attr *attr)
+>  {
+> -	if (sysctl_perf_event_paranoid > -1 && !capable(CAP_SYS_ADMIN))
+> +	if (sysctl_perf_event_paranoid > -1 && !perfmon_capable())
+>  		return -EPERM;
+>  
+>  	return security_perf_event_open(attr, PERF_SECURITY_TRACEPOINT);
+
+These are OK I suppose.
+
+> diff --git a/kernel/events/core.c b/kernel/events/core.c
+> index 059ee7116008..d9db414f2197 100644
+> --- a/kernel/events/core.c
+> +++ b/kernel/events/core.c
+> @@ -9056,7 +9056,7 @@ static int perf_kprobe_event_init(struct perf_event *event)
+>  	if (event->attr.type != perf_kprobe.type)
+>  		return -ENOENT;
+>  
+> -	if (!capable(CAP_SYS_ADMIN))
+> +	if (!perfmon_capable())
+>  		return -EACCES;
+>  
+>  	/*
+
+This one only allows attaching to already extant kprobes, right? It does
+not allow creation of kprobes.
+
+> @@ -9116,7 +9116,7 @@ static int perf_uprobe_event_init(struct perf_event *event)
+>  	if (event->attr.type != perf_uprobe.type)
+>  		return -ENOENT;
+>  
+> -	if (!capable(CAP_SYS_ADMIN))
+> +	if (!perfmon_capable())
+>  		return -EACCES;
+>  
+>  	/*
+
+Idem, I presume.
+
+> @@ -11157,7 +11157,7 @@ SYSCALL_DEFINE5(perf_event_open,
+>  	}
+>  
+>  	if (attr.namespaces) {
+> -		if (!capable(CAP_SYS_ADMIN))
+> +		if (!perfmon_capable())
+>  			return -EACCES;
+>  	}
+
+And given we basically make the entire kernel observable with this CAP,
+busting namespaces shoulnd't be a problem either.
+
+So yeah, I suppose that works.
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
