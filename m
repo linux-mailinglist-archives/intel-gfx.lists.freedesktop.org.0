@@ -2,36 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F35CB134549
-	for <lists+intel-gfx@lfdr.de>; Wed,  8 Jan 2020 15:45:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A066513455F
+	for <lists+intel-gfx@lfdr.de>; Wed,  8 Jan 2020 15:53:19 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 49C7B6E2FF;
-	Wed,  8 Jan 2020 14:45:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A2C0D89FC9;
+	Wed,  8 Jan 2020 14:53:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 93A7D6E2FF
- for <intel-gfx@lists.freedesktop.org>; Wed,  8 Jan 2020 14:45:54 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 08 Jan 2020 06:45:53 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,410,1571727600"; d="scan'208";a="254243754"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by fmsmga002.fm.intel.com with SMTP; 08 Jan 2020 06:45:50 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 08 Jan 2020 16:45:50 +0200
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed,  8 Jan 2020 16:45:50 +0200
-Message-Id: <20200108144550.29280-1-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.24.1
-In-Reply-To: <20200108142447.9952-1-ville.syrjala@linux.intel.com>
-References: <20200108142447.9952-1-ville.syrjala@linux.intel.com>
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E653789FC9;
+ Wed,  8 Jan 2020 14:53:14 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 19810076-1500050 for multiple; Wed, 08 Jan 2020 14:53:11 +0000
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v2] drm/i915: Fix MST disable sequence
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Wambui Karuga <wambui.karugax@gmail.com>, airlied@linux.ie, daniel@ffwll.ch,
+ rodrigo.vivi@intel.com
+From: Chris Wilson <chris@chris-wilson.co.uk>
+In-Reply-To: <87v9pmovmx.fsf@intel.com>
+References: <cover.1578409433.git.wambui.karugax@gmail.com>
+ <b79ee0f6efbf8358cbb4f2e163fa6b5bb04db794.1578409433.git.wambui.karugax@gmail.com>
+ <157847199686.4725.87481257304852182@jlahtine-desk.ger.corp.intel.com>
+ <8736cqs2uf.fsf@intel.com>
+ <157848029770.2273.9590955422248556735@skylake-alporthouse-com>
+ <87v9pmovmx.fsf@intel.com>
+Message-ID: <157849519000.2273.18061101721039254369@skylake-alporthouse-com>
+User-Agent: alot/0.6
+Date: Wed, 08 Jan 2020 14:53:10 +0000
+Subject: Re: [Intel-gfx] [PATCH 1/5] drm/i915: convert to using the
+ drm_dbg_kms() macro.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,64 +47,58 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: intel-gfx@lists.freedesktop.org, seanpaul@chromium.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-RnJvbTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KCldo
-ZW4gbW92aW5nIHRoZSBwaXBlIGRpc2FibGUgJiBjby4gZnVuY3Rpb24gY2FsbHMgZnJvbQpoYXN3
-ZWxsX2NydGNfZGlzYWJsZSgpIGludG8gdGhlIGVuY29kZXIgLnBvc3RfZGlzYWJsZSgpIGhvb2tz
-IEkKbmVnbGVjdGVkIHRvIGFjY291bnQgZm9yIHRoZSBNU1QgdnMuIERESSBpbnRlcmFjdGlvbnMg
-cHJvcGVybHkuClRoaXMgbm93IGxlYWRzIHVzIHRvIGNhbGwgdGhlc2UgZnVuY3Rpb25zIHR3byB0
-aW1lcyBmb3IgdGhlIGxhc3QKTVNUIHN0cmVhbSAob25jZSBmcm9tIHRoZSBNU1QgY29kZSBhbmQg
-YSBzZWNvbmQgdGltZSBmcm9tIHRoZSBEREkKY29kZSkuIFRoZSBjYWxscyBmcm9tIHRoZSBEREkg
-Y29kZSBzaG91bGQgb25seSBiZSBkb25lIGZvciBTU1QKYW5kIG5vdCBNU1QuIEFkZCB0aGUgcHJv
-cGVyIGNoZWNrIGZvciB0aGF0LgoKVGhpcyByZXN1bHRzIGluIGFuIE1DRSBvbiBJQ0wuIE15IHZh
-Z3VlIHRoZW9yeSBpcyB0aGF0IHdlIHR1cm4gb2ZmCnRoZSB0cmFuc2NvZGVyIGNsb2NrIGZyb20g
-dGhlIE1TVCBjb2RlIGFuZCB0aGVuIHdlIHByb2NlZWQgdG8gdG91Y2gKc29tZXRoaW5nIGluIHRo
-ZSBEREkgY29kZSB3aGljaCBzdGlsbCBkZXBlbmRzIG9uIHRoYXQgY2xvY2sgY2F1c2luZwp0aGUg
-aGFyZHdhcmUgdG8gYmVjb21lIHVwc2V0LiBUaG91Z2ggSSBjYW4ndCByZWFsbHkgZXhwbGFpbiB3
-aHkKU3RhbidzIGhhY2sgb2Ygb21pdHRpbmcgdGhlIHBpcGUgZGlzYWJsZSBpbiB0aGUgTVNUIGNv
-ZGUgd291bGQgYXZvaWQKdGhlIE1DRSBzaW5jZSB3ZSBzaG91bGQgc3RpbGwgYmUgdHVybmluZyBv
-ZmYgdGhlIHRyYW5zY29kZXIgY2xvY2suCkJ1dCBtYXliZSB0aGVyZSdzIHNvbWV0aGluZyBtYWdp
-YyBpbiB0aGUgaHcgdGhhdCBrZWVwcyB0aGUgY2xvY2sgb24KYXMgbG9uZyBhcyB0aGUgcGlwZSBp
-cyBvbi4gT3IgbWF5YmUgdGhlIGNsb2NrIGlzbid0IHRoZSBwcm9ibGVtIGFuZAp3ZSBub3cgdG91
-Y2ggc29tZXRoaW5nIGluIHRoZSBEREkgZGlzYWJsZSBjb2RlIHRoYXQgcmVhbGx5IGRvZXMgbmVl
-ZAp0aGUgcGlwZSB0byBiZSBzdGlsbCBlbmFibGVkLgoKdjI6IFJlYmFzZSB0byBsYXRlc3QgZHJt
-LXRpcAoKQ2M6IEpvc8OpIFJvYmVydG8gZGUgU291emEgPGpvc2Uuc291emFAaW50ZWwuY29tPgpD
-YzogTWFuYXNpIE5hdmFyZSA8bWFuYXNpLmQubmF2YXJlQGludGVsLmNvbT4KUmVwb3J0ZWQtYnk6
-IFN0YW5pc2xhdiBMaXNvdnNraXkgPHN0YW5pc2xhdi5saXNvdnNraXlAaW50ZWwuY29tPgpDbG9z
-ZXM6IGh0dHBzOi8vZ2l0bGFiLmZyZWVkZXNrdG9wLm9yZy9kcm0vaW50ZWwvaXNzdWVzLzkwMQpG
-aXhlczogNzczYjRiNTQzNTFjICgiZHJtL2k5MTU6IE1vdmUgc3R1ZmYgZnJvbSBoYXN3ZWxsX2Ny
-dGNfZGlzYWJsZSgpIGludG8gZW5jb2RlciAucG9zdF9kaXNhYmxlKCkiKQpTaWduZWQtb2ZmLWJ5
-OiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwuY29tPgotLS0KIGRy
-aXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGRpLmMgfCAyMiArKysrKysrKysrKyst
-LS0tLS0tLS0tCiAxIGZpbGUgY2hhbmdlZCwgMTIgaW5zZXJ0aW9ucygrKSwgMTAgZGVsZXRpb25z
-KC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kZGku
-YyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGRpLmMKaW5kZXggMDdhY2Qw
-ZGFjYTI1Li42ZTBhNzVkMWU2Y2EgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rp
-c3BsYXkvaW50ZWxfZGRpLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRl
-bF9kZGkuYwpAQCAtMzg5NywyMSArMzg5NywyMyBAQCBzdGF0aWMgdm9pZCBpbnRlbF9kZGlfcG9z
-dF9kaXNhYmxlKHN0cnVjdCBpbnRlbF9lbmNvZGVyICplbmNvZGVyLAogCWVudW0gcGh5IHBoeSA9
-IGludGVsX3BvcnRfdG9fcGh5KGRldl9wcml2LCBlbmNvZGVyLT5wb3J0KTsKIAlib29sIGlzX3Rj
-X3BvcnQgPSBpbnRlbF9waHlfaXNfdGMoZGV2X3ByaXYsIHBoeSk7CiAKLQlpbnRlbF9jcnRjX3Zi
-bGFua19vZmYob2xkX2NydGNfc3RhdGUpOworCWlmICghaW50ZWxfY3J0Y19oYXNfdHlwZShvbGRf
-Y3J0Y19zdGF0ZSwgSU5URUxfT1VUUFVUX0RQX01TVCkpIHsKKwkJaW50ZWxfY3J0Y192Ymxhbmtf
-b2ZmKG9sZF9jcnRjX3N0YXRlKTsKIAotCWludGVsX2Rpc2FibGVfcGlwZShvbGRfY3J0Y19zdGF0
-ZSk7CisJCWludGVsX2Rpc2FibGVfcGlwZShvbGRfY3J0Y19zdGF0ZSk7CiAKLQlpZiAoSU5URUxf
-R0VOKGRldl9wcml2KSA+PSAxMSkKLQkJaWNsX2Rpc2FibGVfdHJhbnNjb2Rlcl9wb3J0X3N5bmMo
-b2xkX2NydGNfc3RhdGUpOworCQlpZiAoSU5URUxfR0VOKGRldl9wcml2KSA+PSAxMSkKKwkJCWlj
-bF9kaXNhYmxlX3RyYW5zY29kZXJfcG9ydF9zeW5jKG9sZF9jcnRjX3N0YXRlKTsKIAotCWludGVs
-X2RkaV9kaXNhYmxlX3RyYW5zY29kZXJfZnVuYyhvbGRfY3J0Y19zdGF0ZSk7CisJCWludGVsX2Rk
-aV9kaXNhYmxlX3RyYW5zY29kZXJfZnVuYyhvbGRfY3J0Y19zdGF0ZSk7CiAKLQlpbnRlbF9kc2Nf
-ZGlzYWJsZShvbGRfY3J0Y19zdGF0ZSk7CisJCWludGVsX2RzY19kaXNhYmxlKG9sZF9jcnRjX3N0
-YXRlKTsKIAotCWlmIChJTlRFTF9HRU4oZGV2X3ByaXYpID49IDkpCi0JCXNrbF9zY2FsZXJfZGlz
-YWJsZShvbGRfY3J0Y19zdGF0ZSk7Ci0JZWxzZQotCQlpbGtfcGZpdF9kaXNhYmxlKG9sZF9jcnRj
-X3N0YXRlKTsKKwkJaWYgKElOVEVMX0dFTihkZXZfcHJpdikgPj0gOSkKKwkJCXNrbF9zY2FsZXJf
-ZGlzYWJsZShvbGRfY3J0Y19zdGF0ZSk7CisJCWVsc2UKKwkJCWlsa19wZml0X2Rpc2FibGUob2xk
-X2NydGNfc3RhdGUpOworCX0KIAogCS8qCiAJICogV2hlbiBjYWxsZWQgZnJvbSBEUCBNU1QgY29k
-ZToKLS0gCjIuMjQuMQoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Au
-b3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwt
-Z2Z4Cg==
+Quoting Jani Nikula (2020-01-08 14:44:38)
+> On Wed, 08 Jan 2020, Chris Wilson <chris@chris-wilson.co.uk> wrote:
+> > Quoting Jani Nikula (2020-01-08 09:40:40)
+> >> On Wed, 08 Jan 2020, Joonas Lahtinen <joonas.lahtinen@linux.intel.com> wrote:
+> >> > Quoting Wambui Karuga (2020-01-07 17:13:29)
+> >> >> Convert the use of the DRM_DEBUG_KMS() logging macro to the new struct
+> >> >> drm_device based drm_dbg_kms() logging macro in i915/intel_pch.c.
+> >> >> 
+> >> >> Signed-off-by: Wambui Karuga <wambui.karugax@gmail.com>
+> >> >> ---
+> >> >>  drivers/gpu/drm/i915/intel_pch.c | 46 +++++++++++++++++---------------
+> >> >>  1 file changed, 24 insertions(+), 22 deletions(-)
+> >> >> 
+> >> >> diff --git a/drivers/gpu/drm/i915/intel_pch.c b/drivers/gpu/drm/i915/intel_pch.c
+> >> >> index 43b68b5fc562..4ed60e1f01db 100644
+> >> >> --- a/drivers/gpu/drm/i915/intel_pch.c
+> >> >> +++ b/drivers/gpu/drm/i915/intel_pch.c
+> >> >> @@ -12,90 +12,91 @@ intel_pch_type(const struct drm_i915_private *dev_priv, unsigned short id)
+> >> >>  {
+> >> >>         switch (id) {
+> >> >>         case INTEL_PCH_IBX_DEVICE_ID_TYPE:
+> >> >> -               DRM_DEBUG_KMS("Found Ibex Peak PCH\n");
+> >> >> +               drm_dbg_kms(&dev_priv->drm, "Found Ibex Peak PCH\n");
+> >> >
+> >> > Did we at some point consider i915_dbg_kms alias? That would just take
+> >> > dev_priv (or i915, as it's called in newer code). It would shorten many
+> >> > of the statements.
+> >> >
+> >> > i915_dbg_kms(dev_priv, ...) or i915_dbg_kms(i915, ...)
+> >> 
+> >> I'd rather use the common drm logging macros. I thought about adding
+> >> i915 specific ones only if the drm device specific logging macros
+> >> weren't going to be merged.
+> >
+> > Why do they even exist? Why isn't it enough to do
+> > #define drm_info(drm, fmt, ...) dev_info(&(drm)->dev, fmt, ##__VA_ARGS) ?
+> 
+> It *is* enough to do that, and that's essentially what the new macros
+> do, just with an extra helper macro in between.
+
+/o\
+
+Mistook __drm_printk() for the older drm_dev_printk()
+-Chris
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
