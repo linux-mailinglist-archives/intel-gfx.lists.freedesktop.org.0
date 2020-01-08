@@ -1,56 +1,50 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C1EA1347C8
-	for <lists+intel-gfx@lfdr.de>; Wed,  8 Jan 2020 17:24:10 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C26E134742
+	for <lists+intel-gfx@lfdr.de>; Wed,  8 Jan 2020 17:09:49 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C04DE8996E;
-	Wed,  8 Jan 2020 16:24:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5EF096E150;
+	Wed,  8 Jan 2020 16:09:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 991 seconds by postgrey-1.36 at gabe;
- Wed, 08 Jan 2020 16:24:07 UTC
-Received: from bombadil.infradead.org (bombadil.infradead.org
- [IPv6:2607:7c80:54:e::133])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8A3BB8996E
- for <intel-gfx@lists.freedesktop.org>; Wed,  8 Jan 2020 16:24:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=bombadil.20170209; h=In-Reply-To:Content-Type:MIME-Version
- :References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
- Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
- Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
- List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=vTWY1coa2Uglbk+2ijUNU4PAcTKo3OAi9shtTNMi0Rk=; b=gqbvtODkaNnvdu0BtI1I+oz9W
- A/2kAzeM+Of8bAddV33sSuyFB5xF+Iq5ljJRIvioI+k+R95x57awB/8d2/OaCxPEWI73HH3ggqw/b
- sRuPnU/M3cuEf3KHzciBaTOkOpg9la+z/euW56512nmDwFzNGDIve2Ho4jXCQShNWbCSAJw0jVzgp
- W73rwpfbOnlx/JXYvxqZG+ueOUqg0TTsDyxTW539J3TnC4nfAFSqo8UjcEPXCvaV8lYoYsU9cKROX
- c5nXwgc0c5to6F7JUcDXFL8eRwzCCSZ1nK2sOxQ5uehPgx5U+VprgiM8abXXvQlwSBJdkTRyrU3JI
- mPuHTmEYQ==;
-Received: from j217100.upc-j.chello.nl ([24.132.217.100]
- helo=noisy.programming.kicks-ass.net)
- by bombadil.infradead.org with esmtpsa (Exim 4.92.3 #3 (Red Hat Linux))
- id 1ipDrb-0002aV-JF; Wed, 08 Jan 2020 16:07:19 +0000
-Received: from hirez.programming.kicks-ass.net
- (hirez.programming.kicks-ass.net [192.168.1.225])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (Client did not present a certificate)
- by noisy.programming.kicks-ass.net (Postfix) with ESMTPS id 0BFB530018B;
- Wed,  8 Jan 2020 17:05:40 +0100 (CET)
-Received: by hirez.programming.kicks-ass.net (Postfix, from userid 1000)
- id 08A5520B79C82; Wed,  8 Jan 2020 17:07:14 +0100 (CET)
-Date: Wed, 8 Jan 2020 17:07:13 +0100
-From: Peter Zijlstra <peterz@infradead.org>
-To: Alexey Budankov <alexey.budankov@linux.intel.com>
-Message-ID: <20200108160713.GI2844@hirez.programming.kicks-ass.net>
-References: <c0460c78-b1a6-b5f7-7119-d97e5998f308@linux.intel.com>
- <c93309dc-b920-f5fa-f997-e8b2faf47b88@linux.intel.com>
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 97E206E150
+ for <intel-gfx@lists.freedesktop.org>; Wed,  8 Jan 2020 16:09:46 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 08 Jan 2020 08:09:35 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.69,410,1571727600"; d="scan'208";a="217549844"
+Received: from fmsmsx108.amr.corp.intel.com ([10.18.124.206])
+ by fmsmga007.fm.intel.com with ESMTP; 08 Jan 2020 08:09:32 -0800
+Received: from fmsmsx156.amr.corp.intel.com (10.18.116.74) by
+ FMSMSX108.amr.corp.intel.com (10.18.124.206) with Microsoft SMTP Server (TLS)
+ id 14.3.439.0; Wed, 8 Jan 2020 08:09:32 -0800
+Received: from fmsmsx116.amr.corp.intel.com ([169.254.2.67]) by
+ fmsmsx156.amr.corp.intel.com ([169.254.13.211]) with mapi id 14.03.0439.000;
+ Wed, 8 Jan 2020 08:09:32 -0800
+From: "Souza, Jose" <jose.souza@intel.com>
+To: "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Thread-Topic: [PATCH v2] drm/i915: Fix MST disable sequence
+Thread-Index: AQHVxjJUHDcnu2FOnUGQP30Bh8m396fhdbEA
+Date: Wed, 8 Jan 2020 16:09:31 +0000
+Message-ID: <03f794d6cfb5e189cc90b34cfc6174c6673e85b2.camel@intel.com>
+References: <20200108142447.9952-1-ville.syrjala@linux.intel.com>
+ <20200108144550.29280-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20200108144550.29280-1-ville.syrjala@linux.intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.254.177.152]
+Content-ID: <2DC0A536DE576448B4F99DFB078A804E@intel.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <c93309dc-b920-f5fa-f997-e8b2faf47b88@linux.intel.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH v4 2/9] perf/core: open access for
- CAP_SYS_PERFMON privileged process
+Subject: Re: [Intel-gfx] [PATCH v2] drm/i915: Fix MST disable sequence
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,127 +57,81 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Mark Rutland <mark.rutland@arm.com>, Song Liu <songliubraving@fb.com>,
- Alexander Shishkin <alexander.shishkin@linux.intel.com>,
- Benjamin Herrenschmidt <benh@kernel.crashing.org>,
- Will Deacon <will.deacon@arm.com>, Alexei Starovoitov <ast@kernel.org>,
- Stephane Eranian <eranian@google.com>,
- "james.bottomley@hansenpartnership.com"
- <james.bottomley@hansenpartnership.com>, Paul Mackerras <paulus@samba.org>,
- Jiri Olsa <jolsa@redhat.com>, Andi Kleen <ak@linux.intel.com>,
- Michael Ellerman <mpe@ellerman.id.au>, Igor Lubashev <ilubashe@akamai.com>,
- James Morris <jmorris@namei.org>, Ingo Molnar <mingo@redhat.com>,
- oprofile-list@lists.sf.net, Serge Hallyn <serge@hallyn.com>,
- Robert Richter <rric@kernel.org>, Kees Cook <keescook@chromium.org>,
- Jann Horn <jannh@google.com>,
- "selinux@vger.kernel.org" <selinux@vger.kernel.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- Arnaldo Carvalho de Melo <acme@kernel.org>, Namhyung Kim <namhyung@kernel.org>,
- Thomas Gleixner <tglx@linutronix.de>, linux-arm-kernel@lists.infradead.org,
- "linux-parisc@vger.kernel.org" <linux-parisc@vger.kernel.org>,
- linux-kernel <linux-kernel@vger.kernel.org>,
- "linux-perf-users@vger.kernel.org" <linux-perf-users@vger.kernel.org>,
- "linux-security-module@vger.kernel.org"
- <linux-security-module@vger.kernel.org>,
- Casey Schaufler <casey@schaufler-ca.com>,
- "bpf@vger.kernel.org" <bpf@vger.kernel.org>,
- "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Dec 18, 2019 at 12:25:35PM +0300, Alexey Budankov wrote:
-> 
-> Open access to perf_events monitoring for CAP_SYS_PERFMON privileged
-> processes. For backward compatibility reasons access to perf_events
-> subsystem remains open for CAP_SYS_ADMIN privileged processes but
-> CAP_SYS_ADMIN usage for secure perf_events monitoring is discouraged
-> with respect to CAP_SYS_PERFMON capability.
-> 
-> Signed-off-by: Alexey Budankov <alexey.budankov@linux.intel.com>
-> ---
->  include/linux/perf_event.h | 6 +++---
->  kernel/events/core.c       | 6 +++---
->  2 files changed, 6 insertions(+), 6 deletions(-)
-> 
-> diff --git a/include/linux/perf_event.h b/include/linux/perf_event.h
-> index 34c7c6910026..f46acd69425f 100644
-> --- a/include/linux/perf_event.h
-> +++ b/include/linux/perf_event.h
-> @@ -1285,7 +1285,7 @@ static inline int perf_is_paranoid(void)
->  
->  static inline int perf_allow_kernel(struct perf_event_attr *attr)
->  {
-> -	if (sysctl_perf_event_paranoid > 1 && !capable(CAP_SYS_ADMIN))
-> +	if (sysctl_perf_event_paranoid > 1 && !perfmon_capable())
->  		return -EACCES;
->  
->  	return security_perf_event_open(attr, PERF_SECURITY_KERNEL);
-> @@ -1293,7 +1293,7 @@ static inline int perf_allow_kernel(struct perf_event_attr *attr)
->  
->  static inline int perf_allow_cpu(struct perf_event_attr *attr)
->  {
-> -	if (sysctl_perf_event_paranoid > 0 && !capable(CAP_SYS_ADMIN))
-> +	if (sysctl_perf_event_paranoid > 0 && !perfmon_capable())
->  		return -EACCES;
->  
->  	return security_perf_event_open(attr, PERF_SECURITY_CPU);
-> @@ -1301,7 +1301,7 @@ static inline int perf_allow_cpu(struct perf_event_attr *attr)
->  
->  static inline int perf_allow_tracepoint(struct perf_event_attr *attr)
->  {
-> -	if (sysctl_perf_event_paranoid > -1 && !capable(CAP_SYS_ADMIN))
-> +	if (sysctl_perf_event_paranoid > -1 && !perfmon_capable())
->  		return -EPERM;
->  
->  	return security_perf_event_open(attr, PERF_SECURITY_TRACEPOINT);
-
-These are OK I suppose.
-
-> diff --git a/kernel/events/core.c b/kernel/events/core.c
-> index 059ee7116008..d9db414f2197 100644
-> --- a/kernel/events/core.c
-> +++ b/kernel/events/core.c
-> @@ -9056,7 +9056,7 @@ static int perf_kprobe_event_init(struct perf_event *event)
->  	if (event->attr.type != perf_kprobe.type)
->  		return -ENOENT;
->  
-> -	if (!capable(CAP_SYS_ADMIN))
-> +	if (!perfmon_capable())
->  		return -EACCES;
->  
->  	/*
-
-This one only allows attaching to already extant kprobes, right? It does
-not allow creation of kprobes.
-
-> @@ -9116,7 +9116,7 @@ static int perf_uprobe_event_init(struct perf_event *event)
->  	if (event->attr.type != perf_uprobe.type)
->  		return -ENOENT;
->  
-> -	if (!capable(CAP_SYS_ADMIN))
-> +	if (!perfmon_capable())
->  		return -EACCES;
->  
->  	/*
-
-Idem, I presume.
-
-> @@ -11157,7 +11157,7 @@ SYSCALL_DEFINE5(perf_event_open,
->  	}
->  
->  	if (attr.namespaces) {
-> -		if (!capable(CAP_SYS_ADMIN))
-> +		if (!perfmon_capable())
->  			return -EACCES;
->  	}
-
-And given we basically make the entire kernel observable with this CAP,
-busting namespaces shoulnd't be a problem either.
-
-So yeah, I suppose that works.
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gV2VkLCAyMDIwLTAxLTA4IGF0IDE2OjQ1ICswMjAwLCBWaWxsZSBTeXJqYWxhIHdyb3RlOg0K
+PiBGcm9tOiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwuY29tPg0K
+PiANCj4gV2hlbiBtb3ZpbmcgdGhlIHBpcGUgZGlzYWJsZSAmIGNvLiBmdW5jdGlvbiBjYWxscyBm
+cm9tDQo+IGhhc3dlbGxfY3J0Y19kaXNhYmxlKCkgaW50byB0aGUgZW5jb2RlciAucG9zdF9kaXNh
+YmxlKCkgaG9va3MgSQ0KPiBuZWdsZWN0ZWQgdG8gYWNjb3VudCBmb3IgdGhlIE1TVCB2cy4gRERJ
+IGludGVyYWN0aW9ucyBwcm9wZXJseS4NCj4gVGhpcyBub3cgbGVhZHMgdXMgdG8gY2FsbCB0aGVz
+ZSBmdW5jdGlvbnMgdHdvIHRpbWVzIGZvciB0aGUgbGFzdA0KPiBNU1Qgc3RyZWFtIChvbmNlIGZy
+b20gdGhlIE1TVCBjb2RlIGFuZCBhIHNlY29uZCB0aW1lIGZyb20gdGhlIERESQ0KPiBjb2RlKS4g
+VGhlIGNhbGxzIGZyb20gdGhlIERESSBjb2RlIHNob3VsZCBvbmx5IGJlIGRvbmUgZm9yIFNTVA0K
+PiBhbmQgbm90IE1TVC4gQWRkIHRoZSBwcm9wZXIgY2hlY2sgZm9yIHRoYXQuDQoNCk9vaGggSSBm
+b3Jnb3QgdGhhdCB0b28uDQoNCj4gDQo+IFRoaXMgcmVzdWx0cyBpbiBhbiBNQ0Ugb24gSUNMLiBN
+eSB2YWd1ZSB0aGVvcnkgaXMgdGhhdCB3ZSB0dXJuIG9mZg0KPiB0aGUgdHJhbnNjb2RlciBjbG9j
+ayBmcm9tIHRoZSBNU1QgY29kZSBhbmQgdGhlbiB3ZSBwcm9jZWVkIHRvIHRvdWNoDQo+IHNvbWV0
+aGluZyBpbiB0aGUgRERJIGNvZGUgd2hpY2ggc3RpbGwgZGVwZW5kcyBvbiB0aGF0IGNsb2NrIGNh
+dXNpbmcNCj4gdGhlIGhhcmR3YXJlIHRvIGJlY29tZSB1cHNldC4gVGhvdWdoIEkgY2FuJ3QgcmVh
+bGx5IGV4cGxhaW4gd2h5DQo+IFN0YW4ncyBoYWNrIG9mIG9taXR0aW5nIHRoZSBwaXBlIGRpc2Fi
+bGUgaW4gdGhlIE1TVCBjb2RlIHdvdWxkIGF2b2lkDQo+IHRoZSBNQ0Ugc2luY2Ugd2Ugc2hvdWxk
+IHN0aWxsIGJlIHR1cm5pbmcgb2ZmIHRoZSB0cmFuc2NvZGVyIGNsb2NrLg0KPiBCdXQgbWF5YmUg
+dGhlcmUncyBzb21ldGhpbmcgbWFnaWMgaW4gdGhlIGh3IHRoYXQga2VlcHMgdGhlIGNsb2NrIG9u
+DQo+IGFzIGxvbmcgYXMgdGhlIHBpcGUgaXMgb24uIE9yIG1heWJlIHRoZSBjbG9jayBpc24ndCB0
+aGUgcHJvYmxlbSBhbmQNCj4gd2Ugbm93IHRvdWNoIHNvbWV0aGluZyBpbiB0aGUgRERJIGRpc2Fi
+bGUgY29kZSB0aGF0IHJlYWxseSBkb2VzIG5lZWQNCj4gdGhlIHBpcGUgdG8gYmUgc3RpbGwgZW5h
+YmxlZC4NCj4gDQo+IHYyOiBSZWJhc2UgdG8gbGF0ZXN0IGRybS10aXANCj4gDQo+IENjOiBKb3PD
+qSBSb2JlcnRvIGRlIFNvdXphIDxqb3NlLnNvdXphQGludGVsLmNvbT4NCj4gQ2M6IE1hbmFzaSBO
+YXZhcmUgPG1hbmFzaS5kLm5hdmFyZUBpbnRlbC5jb20+DQo+IFJlcG9ydGVkLWJ5OiBTdGFuaXNs
+YXYgTGlzb3Zza2l5IDxzdGFuaXNsYXYubGlzb3Zza2l5QGludGVsLmNvbT4NCj4gQ2xvc2VzOiBo
+dHRwczovL2dpdGxhYi5mcmVlZGVza3RvcC5vcmcvZHJtL2ludGVsL2lzc3Vlcy85MDENCj4gRml4
+ZXM6IDc3M2I0YjU0MzUxYyAoImRybS9pOTE1OiBNb3ZlIHN0dWZmIGZyb20NCj4gaGFzd2VsbF9j
+cnRjX2Rpc2FibGUoKSBpbnRvIGVuY29kZXIgLnBvc3RfZGlzYWJsZSgpIikNCj4gU2lnbmVkLW9m
+Zi1ieTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4NCj4g
+LS0tDQo+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RkaS5jIHwgMjIgKysr
+KysrKysrKysrLS0tLS0tLS0tLQ0KPiAgMSBmaWxlIGNoYW5nZWQsIDEyIGluc2VydGlvbnMoKyks
+IDEwIGRlbGV0aW9ucygtKQ0KPiANCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1
+L2Rpc3BsYXkvaW50ZWxfZGRpLmMNCj4gYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2lu
+dGVsX2RkaS5jDQo+IGluZGV4IDA3YWNkMGRhY2EyNS4uNmUwYTc1ZDFlNmNhIDEwMDY0NA0KPiAt
+LS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RkaS5jDQo+ICsrKyBiL2Ry
+aXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGRpLmMNCj4gQEAgLTM4OTcsMjEgKzM4
+OTcsMjMgQEAgc3RhdGljIHZvaWQgaW50ZWxfZGRpX3Bvc3RfZGlzYWJsZShzdHJ1Y3QNCj4gaW50
+ZWxfZW5jb2RlciAqZW5jb2RlciwNCj4gIAllbnVtIHBoeSBwaHkgPSBpbnRlbF9wb3J0X3RvX3Bo
+eShkZXZfcHJpdiwgZW5jb2Rlci0+cG9ydCk7DQo+ICAJYm9vbCBpc190Y19wb3J0ID0gaW50ZWxf
+cGh5X2lzX3RjKGRldl9wcml2LCBwaHkpOw0KPiAgDQo+IC0JaW50ZWxfY3J0Y192Ymxhbmtfb2Zm
+KG9sZF9jcnRjX3N0YXRlKTsNCj4gKwlpZiAoIWludGVsX2NydGNfaGFzX3R5cGUob2xkX2NydGNf
+c3RhdGUsIElOVEVMX09VVFBVVF9EUF9NU1QpKQ0KPiB7DQo+ICsJCWludGVsX2NydGNfdmJsYW5r
+X29mZihvbGRfY3J0Y19zdGF0ZSk7DQo+ICANCj4gLQlpbnRlbF9kaXNhYmxlX3BpcGUob2xkX2Ny
+dGNfc3RhdGUpOw0KPiArCQlpbnRlbF9kaXNhYmxlX3BpcGUob2xkX2NydGNfc3RhdGUpOw0KPiAg
+DQo+IC0JaWYgKElOVEVMX0dFTihkZXZfcHJpdikgPj0gMTEpDQo+IC0JCWljbF9kaXNhYmxlX3Ry
+YW5zY29kZXJfcG9ydF9zeW5jKG9sZF9jcnRjX3N0YXRlKTsNCj4gKwkJaWYgKElOVEVMX0dFTihk
+ZXZfcHJpdikgPj0gMTEpDQo+ICsJCQlpY2xfZGlzYWJsZV90cmFuc2NvZGVyX3BvcnRfc3luYyhv
+bGRfY3J0Y19zdGF0ZQ0KPiApOw0KPiAgDQo+IC0JaW50ZWxfZGRpX2Rpc2FibGVfdHJhbnNjb2Rl
+cl9mdW5jKG9sZF9jcnRjX3N0YXRlKTsNCj4gKwkJaW50ZWxfZGRpX2Rpc2FibGVfdHJhbnNjb2Rl
+cl9mdW5jKG9sZF9jcnRjX3N0YXRlKTsNCj4gIA0KPiAtCWludGVsX2RzY19kaXNhYmxlKG9sZF9j
+cnRjX3N0YXRlKTsNCj4gKwkJaW50ZWxfZHNjX2Rpc2FibGUob2xkX2NydGNfc3RhdGUpOw0KPiAg
+DQo+IC0JaWYgKElOVEVMX0dFTihkZXZfcHJpdikgPj0gOSkNCj4gLQkJc2tsX3NjYWxlcl9kaXNh
+YmxlKG9sZF9jcnRjX3N0YXRlKTsNCj4gLQllbHNlDQo+IC0JCWlsa19wZml0X2Rpc2FibGUob2xk
+X2NydGNfc3RhdGUpOw0KPiArCQlpZiAoSU5URUxfR0VOKGRldl9wcml2KSA+PSA5KQ0KPiArCQkJ
+c2tsX3NjYWxlcl9kaXNhYmxlKG9sZF9jcnRjX3N0YXRlKTsNCj4gKwkJZWxzZQ0KPiArCQkJaWxr
+X3BmaXRfZGlzYWJsZShvbGRfY3J0Y19zdGF0ZSk7DQo+ICsJfQ0KDQoNCk90aGVyIG9wdGlvbiB3
+b3VsZCBiZSByZXBsYWNlDQppbnRlbF9kaWdfcG9ydC0+YmFzZS5wb3N0X2Rpc2FibGUoJmludGVs
+X2RpZ19wb3J0LT5iYXNlLA0Kb2xkX2NydGNfc3RhdGUsIE5VTEwpOw0KaW4gaW50ZWxfbXN0X3Bv
+c3RfZGlzYWJsZV9kcCgpIGJ5Og0KDQoNCmludGVsX2RkaV9wb3N0X2Rpc2FibGVfZHAoZW5jb2Rl
+ciwgb2xkX2NydGNfc3RhdGUsIG9sZF9jb25uX3N0YXRlKTsNCg0KaWYgKElOVEVMX0dFTihkZXZf
+cHJpdikgPj0gMTEpDQoJaWNsX3VubWFwX3BsbHNfdG9fcG9ydHMoZW5jb2Rlcik7DQoNCmlmIChp
+bnRlbF9jcnRjX2hhc19kcF9lbmNvZGVyKG9sZF9jcnRjX3N0YXRlKSB8fCBpc190Y19wb3J0KQ0K
+CWludGVsX2Rpc3BsYXlfcG93ZXJfcHV0X3VuY2hlY2tlZChkZXZfcHJpdiwNCmludGVsX2RkaV9t
+YWluX2xpbmtfYXV4X2RvbWFpbihkaWdfcG9ydCkpOw0KDQppZiAoaXNfdGNfcG9ydCkNCglpbnRl
+bF90Y19wb3J0X3B1dF9saW5rKGRpZ19wb3J0KTsNCg0KSSBndWVzcyB0aGlzIGdvZXMgbW9yZSB3
+aXRoIGNoYW5nZXMgdGhhdCB5b3UgZGlkIGluIHRoZSBwYXRjaCBmaXhlZC4NCg0KDQpBbnl3YXkg
+eW91ciBjaGFuZ2VzIGxvb2tzIGdvb2QuDQoNClJldmlld2VkLWJ5OiBKb3PDqSBSb2JlcnRvIGRl
+IFNvdXphIDxqb3NlLnNvdXphQGludGVsLmNvbT4NCg0KDQo+ICANCj4gIAkvKg0KPiAgCSAqIFdo
+ZW4gY2FsbGVkIGZyb20gRFAgTVNUIGNvZGU6DQpfX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0
+cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9s
+aXN0aW5mby9pbnRlbC1nZngK
