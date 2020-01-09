@@ -1,63 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id ABF86135B04
-	for <lists+intel-gfx@lfdr.de>; Thu,  9 Jan 2020 15:06:39 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B274135ACD
+	for <lists+intel-gfx@lfdr.de>; Thu,  9 Jan 2020 15:00:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 77AF96E431;
-	Thu,  9 Jan 2020 14:06:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D33EF6E420;
+	Thu,  9 Jan 2020 14:00:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-x343.google.com (mail-wm1-x343.google.com
- [IPv6:2a00:1450:4864:20::343])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9F40E6E3C1;
- Thu,  9 Jan 2020 09:07:07 +0000 (UTC)
-Received: by mail-wm1-x343.google.com with SMTP id p17so1937112wmb.0;
- Thu, 09 Jan 2020 01:07:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=srJzvMMQdpxyH00NoNIv1SdEKNzlKV0X21LyZXL6/tY=;
- b=eeOkVav3QtkOQrSyAYP34ttKjtKRxUKJhIuZS0/TC1uLiiy5EpnkIUgVGpyXGCiKPt
- y0rwRvQFOx9fIYvgn7CmD5L54YaTt/zNKp5DfCABveJgki3N46zSurPNPLaXPOHLX8VF
- CH9uC3bE5Ty8npPc4AyAkwYkN84BJzhmq/1cnwn6Z04aqzSH/9c4AZauXO1E4lrkm/dQ
- BFwFDS0W9DbkoQMGul67giCNYsI0hidenVfSl8/2ZeLQ2I/AM/x8Jo3qaT4JvTYrb0fO
- SSx0G6KQzB7gBHDVz0w1SsBk8hOc81svJhFYAQS/DACCT92W6KpJXM3a2AFjKQgrSQTb
- lsmw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=srJzvMMQdpxyH00NoNIv1SdEKNzlKV0X21LyZXL6/tY=;
- b=rjg857y1hZsKQqmW4j/K+hNOePAGu5fzy1gTUJfLhdC9PEpOG4/oXMXV74VtWzzTt7
- whqFHA/6WtL9yQNvX5yrf+aM8n+wiPV6JsIVU5nJYBeZPW4o2hwtGmSlBpT7GUGHa3DU
- ELNvmS/txT0vTjFgRnC/K//l3Z2TBmN3RI6upS5S+ehlGpvjC+Cs6AXn0IxMXs0Pc+Bz
- smvFnrbf0zHOE+HdtIhjgWlIj5D5qHSjZr5OjhDJz8If1d/hUln1fGgHc9U/uldaconX
- kFOfjyiSKuS+RV9QbSX2VbVdtXdDl84fcwZhX7vkBFyl57vVjoa5vyQcjVLUq+SUeqqX
- ZmAw==
-X-Gm-Message-State: APjAAAWQta+BX0yTeIzeaamueJRgo9XlO9JJaxi6Fezvt+uoMD0GiDek
- cJUpDiHHBN+tCUvwDF0cbNzwjNt05QE=
-X-Google-Smtp-Source: APXvYqw3p1tNZvJ6wGQcHlYj+kueCXToKBOgAY9fxM9CWd7N+g8KXeUHmFyiTOoSrXAf60CTyuKZYw==
-X-Received: by 2002:a05:600c:2c50:: with SMTP id
- r16mr3398556wmg.74.1578560826373; 
- Thu, 09 Jan 2020 01:07:06 -0800 (PST)
-Received: from wambui.zuku.co.ke ([197.237.61.225])
- by smtp.googlemail.com with ESMTPSA id i8sm8004734wro.47.2020.01.09.01.07.03
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 09 Jan 2020 01:07:05 -0800 (PST)
-From: Wambui Karuga <wambui.karugax@gmail.com>
-To: jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
- rodrigo.vivi@intel.com, airlied@linux.ie, daniel@ffwll.ch
-Date: Thu,  9 Jan 2020 12:06:46 +0300
-Message-Id: <1bf4d362e72c619843d44aac96c3561f54e4b23a.1578560355.git.wambui.karugax@gmail.com>
-X-Mailer: git-send-email 2.24.1
-In-Reply-To: <cover.1578560355.git.wambui.karugax@gmail.com>
-References: <cover.1578560355.git.wambui.karugax@gmail.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 9B36A6E415;
+ Thu,  9 Jan 2020 14:00:47 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 71EE5A0BCB;
+ Thu,  9 Jan 2020 14:00:47 +0000 (UTC)
 MIME-Version: 1.0
-X-Mailman-Approved-At: Thu, 09 Jan 2020 14:06:27 +0000
-Subject: [Intel-gfx] [PATCH 5/5] drm/i915: convert to new logging macros in
- i915/intel_memory_region.c
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Thu, 09 Jan 2020 14:00:47 -0000
+Message-ID: <157857844743.4563.8598943309539897402@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200109085717.873326-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200109085717.873326-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5BCI=2C1/3=5D_drm/i915/gt=3A_Push_context_st?=
+ =?utf-8?q?ate_allocation_earlier?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,39 +39,126 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Replace the use of printk based logging macros with the new struct
-drm_device based logging macro in i915/intel_memory_region.c.
+== Series Details ==
 
-Signed-off-by: Wambui Karuga <wambui.karugax@gmail.com>
----
- drivers/gpu/drm/i915/intel_memory_region.c | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+Series: series starting with [CI,1/3] drm/i915/gt: Push context state allocation earlier
+URL   : https://patchwork.freedesktop.org/series/71808/
+State : success
 
-diff --git a/drivers/gpu/drm/i915/intel_memory_region.c b/drivers/gpu/drm/i915/intel_memory_region.c
-index d0d038b3cd79..6b5e9d88646d 100644
---- a/drivers/gpu/drm/i915/intel_memory_region.c
-+++ b/drivers/gpu/drm/i915/intel_memory_region.c
-@@ -265,7 +265,9 @@ int intel_memory_regions_hw_probe(struct drm_i915_private *i915)
- 
- 		if (IS_ERR(mem)) {
- 			err = PTR_ERR(mem);
--			DRM_ERROR("Failed to setup region(%d) type=%d\n", err, type);
-+			drm_err(&i915->drm,
-+				"Failed to setup region(%d) type=%d\n",
-+				err, type);
- 			goto out_cleanup;
- 		}
- 
--- 
-2.24.1
+== Summary ==
 
+CI Bug Log - changes from CI_DRM_7706 -> Patchwork_16035
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16035/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_16035 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_module_load@reload-with-fault-injection:
+    - fi-skl-6700k2:      [PASS][1] -> [INCOMPLETE][2] ([i915#671])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7706/fi-skl-6700k2/igt@i915_module_load@reload-with-fault-injection.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16035/fi-skl-6700k2/igt@i915_module_load@reload-with-fault-injection.html
+
+  * igt@i915_selftest@live_gem_contexts:
+    - fi-cfl-8700k:       [PASS][3] -> [INCOMPLETE][4] ([i915#424])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7706/fi-cfl-8700k/igt@i915_selftest@live_gem_contexts.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16035/fi-cfl-8700k/igt@i915_selftest@live_gem_contexts.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_exec_fence@basic-wait-default:
+    - {fi-ehl-1}:         [INCOMPLETE][5] ([i915#949]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7706/fi-ehl-1/igt@gem_exec_fence@basic-wait-default.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16035/fi-ehl-1/igt@gem_exec_fence@basic-wait-default.html
+
+  * igt@gem_sync@basic-store-each:
+    - fi-tgl-y:           [INCOMPLETE][7] ([CI#80] / [i915#472]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7706/fi-tgl-y/igt@gem_sync@basic-store-each.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16035/fi-tgl-y/igt@gem_sync@basic-store-each.html
+
+  * igt@i915_module_load@reload-with-fault-injection:
+    - fi-bxt-dsi:         [INCOMPLETE][9] ([fdo#103927]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7706/fi-bxt-dsi/igt@i915_module_load@reload-with-fault-injection.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16035/fi-bxt-dsi/igt@i915_module_load@reload-with-fault-injection.html
+
+  * igt@prime_vgem@basic-write:
+    - fi-icl-dsi:         [DMESG-WARN][11] ([i915#109]) -> [PASS][12]
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7706/fi-icl-dsi/igt@prime_vgem@basic-write.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16035/fi-icl-dsi/igt@prime_vgem@basic-write.html
+
+  
+#### Warnings ####
+
+  * igt@i915_selftest@live_blt:
+    - fi-hsw-4770:        [DMESG-FAIL][13] ([i915#553]) -> [DMESG-FAIL][14] ([i915#725])
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7706/fi-hsw-4770/igt@i915_selftest@live_blt.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16035/fi-hsw-4770/igt@i915_selftest@live_blt.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [CI#80]: https://gitlab.freedesktop.org/gfx-ci/i915-infra/issues/80
+  [fdo#103927]: https://bugs.freedesktop.org/show_bug.cgi?id=103927
+  [i915#109]: https://gitlab.freedesktop.org/drm/intel/issues/109
+  [i915#424]: https://gitlab.freedesktop.org/drm/intel/issues/424
+  [i915#472]: https://gitlab.freedesktop.org/drm/intel/issues/472
+  [i915#553]: https://gitlab.freedesktop.org/drm/intel/issues/553
+  [i915#671]: https://gitlab.freedesktop.org/drm/intel/issues/671
+  [i915#725]: https://gitlab.freedesktop.org/drm/intel/issues/725
+  [i915#949]: https://gitlab.freedesktop.org/drm/intel/issues/949
+
+
+Participating hosts (44 -> 44)
+------------------------------
+
+  Additional (6): fi-skl-6770hq fi-kbl-7500u fi-ivb-3770 fi-bsw-nick fi-skl-6600u fi-snb-2600 
+  Missing    (6): fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-bwr-2160 fi-ctg-p8600 fi-byt-clapper 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_7706 -> Patchwork_16035
+
+  CI-20190529: 20190529
+  CI_DRM_7706: 3d36ffaa59259e46de9dde125d18d228d764609f @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5358: c6fc013f414b806175dc4143c58ab445e5235ea5 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_16035: 775192ffb31a3c35238dcf751c8286aefa12b5b8 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+775192ffb31a drm/i915/gt: runtime-pm is no longer required for ce->ops->pin()
+ac16926d7f9d drm/i915/gt: Pull context activation into central intel_context_pin()
+64791e46717f drm/i915/gt: Push context state allocation earlier
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16035/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
