@@ -2,40 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8BE901357F8
-	for <lists+intel-gfx@lfdr.de>; Thu,  9 Jan 2020 12:30:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 18B9C1357DE
+	for <lists+intel-gfx@lfdr.de>; Thu,  9 Jan 2020 12:26:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7890C6E3E7;
-	Thu,  9 Jan 2020 11:30:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8E0A46E02D;
+	Thu,  9 Jan 2020 11:25:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 261166E3E1;
- Thu,  9 Jan 2020 11:30:00 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-X-Amp-File-Uploaded: False
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 09 Jan 2020 03:29:58 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,413,1571727600"; 
- d="scan'208,217";a="223851703"
-Received: from plaxmina-desktop.iind.intel.com ([10.106.124.119])
- by orsmga003.jf.intel.com with ESMTP; 09 Jan 2020 03:29:56 -0800
-Date: Thu, 9 Jan 2020 16:55:13 +0530
-From: "Bharadiya,Pankaj" <pankaj.laxminarayan.bharadiya@intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Message-ID: <20200109112513.GA19403@plaxmina-desktop.iind.intel.com>
-References: <20200106172326.32592-1-pankaj.laxminarayan.bharadiya@intel.com>
- <20200106172326.32592-6-pankaj.laxminarayan.bharadiya@intel.com>
- <87d0buqff1.fsf@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id A53E56E02D;
+ Thu,  9 Jan 2020 11:25:56 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 9C764A0087;
+ Thu,  9 Jan 2020 11:25:56 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <87d0buqff1.fsf@intel.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-Subject: Re: [Intel-gfx] [RFC 5/7] drm/i915: Make WARN* device specific
- where drm_priv ptr is available
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Tvrtko Ursulin" <tvrtko.ursulin@linux.intel.com>
+Date: Thu, 09 Jan 2020 11:25:56 -0000
+Message-ID: <157856915661.4564.2904158449292251160@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200108161954.29739-1-tvrtko.ursulin@linux.intel.com>
+In-Reply-To: <20200108161954.29739-1-tvrtko.ursulin@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_Revert_=22drm/i915/tgl=3A_Wa=5F1607138340=22?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,192 +38,155 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: irlied@linux.ie, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Jan 08, 2020 at 02:52:02PM +0200, Jani Nikula wrote:
-> On Mon, 06 Jan 2020, Pankaj Bharadiya <pankaj.laxminarayan.bharadiya@intel.com> wrote:
-> > Device specific WARN* calls include device information in the
-> > backtrace, so we know what device the warnings originate from.
-> >
-> > Covert all the calls of WARN* with device specific dev_WARN*
-> > variants in functions where drm_i915_private struct pointer is readily
-> > available.
-> >
-> > The conversion was done automatically with below coccinelle semantic
-> > patch. checkpatch errors/warnings are fixed manually.
-> >
-> > @rule1@
-> > identifier func, T;
-> > @@
-> > func(...) {
-> > ...
-> > struct drm_i915_private *T = ...;
-> > +struct device *dev = i915_to_dev(T);
-> > <+...
-> > (
-> > -WARN(
-> > +dev_WARN(dev,
-> > ...)
-> > |
-> > -WARN_ON(
-> > +dev_WARN_ON(dev,
-> > ...)
-> > |
-> > -WARN_ONCE(
-> > +dev_WARN_ONCE(dev,
-> > ...)
-> > |
-> > -WARN_ON_ONCE(
-> > +dev_WARN_ON_ONCE(dev,
-> > ...)
-> > )
-> > ...+>
-> > }
-> >
-> > @rule2@
-> > identifier func, T;
-> > @@
-> > func(struct drm_i915_private *T,...) {
-> > +struct device *dev = i915_to_dev(T);
-> > <+...
-> > (
-> > -WARN(
-> > +dev_WARN(dev,
-> > ...)
-> > |
-> > -WARN_ON(
-> > +dev_WARN_ON(dev,
-> > ...)
-> > |
-> > -WARN_ONCE(
-> > +dev_WARN_ONCE(dev,
-> > ...)
-> > |
-> > -WARN_ON_ONCE(
-> > +dev_WARN_ON_ONCE(dev,
-> > ...)
-> > )
-> > ...+>
-> > }
-> >
-> > command: spatch --sp-file <script> --dir drivers/gpu/drm/i915 \
-> > 					--linux-spacing --in-place
-> > Signed-off-by: Pankaj Bharadiya <pankaj.laxminarayan.bharadiya@intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/icl_dsi.c        |  14 +-
-> >  drivers/gpu/drm/i915/display/intel_atomic.c   |   8 +-
-> >  drivers/gpu/drm/i915/display/intel_audio.c    |  23 ++-
-> >  drivers/gpu/drm/i915/display/intel_bios.c     |  13 +-
-> >  drivers/gpu/drm/i915/display/intel_bw.c       |   3 +-
-> >  drivers/gpu/drm/i915/display/intel_cdclk.c    |  85 ++++----
-> >  drivers/gpu/drm/i915/display/intel_color.c    |   4 +-
-> >  .../gpu/drm/i915/display/intel_combo_phy.c    |   3 +-
-> >  drivers/gpu/drm/i915/display/intel_crt.c      |  15 +-
-> >  drivers/gpu/drm/i915/display/intel_ddi.c      | 102 ++++++----
-> >  drivers/gpu/drm/i915/display/intel_display.c  | 180 ++++++++++-------
-> >  .../drm/i915/display/intel_display_power.c    | 190 +++++++++++-------
-> >  drivers/gpu/drm/i915/display/intel_dp.c       | 112 +++++++----
-> >  drivers/gpu/drm/i915/display/intel_dp_mst.c   |  10 +-
-> >  drivers/gpu/drm/i915/display/intel_dpio_phy.c |   3 +-
-> >  drivers/gpu/drm/i915/display/intel_dpll_mgr.c |  45 +++--
-> >  drivers/gpu/drm/i915/display/intel_dsb.c      |   9 +-
-> >  drivers/gpu/drm/i915/display/intel_dsi_vbt.c  |   5 +-
-> >  drivers/gpu/drm/i915/display/intel_fbc.c      |  30 ++-
-> >  drivers/gpu/drm/i915/display/intel_gmbus.c    |   4 +-
-> >  drivers/gpu/drm/i915/display/intel_hdcp.c     |  26 ++-
-> >  drivers/gpu/drm/i915/display/intel_hdmi.c     |  47 +++--
-> >  drivers/gpu/drm/i915/display/intel_hotplug.c  |   6 +-
-> >  .../gpu/drm/i915/display/intel_lpe_audio.c    |   3 +-
-> >  drivers/gpu/drm/i915/display/intel_lvds.c     |   3 +-
-> >  drivers/gpu/drm/i915/display/intel_opregion.c |   8 +-
-> >  drivers/gpu/drm/i915/display/intel_overlay.c  |  17 +-
-> >  drivers/gpu/drm/i915/display/intel_panel.c    |  28 ++-
-> >  drivers/gpu/drm/i915/display/intel_pipe_crc.c |   4 +-
-> >  drivers/gpu/drm/i915/display/intel_psr.c      |  38 ++--
-> >  drivers/gpu/drm/i915/display/intel_sdvo.c     |   8 +-
-> >  drivers/gpu/drm/i915/display/intel_sprite.c   |   6 +-
-> >  drivers/gpu/drm/i915/display/intel_tc.c       |  24 ++-
-> >  drivers/gpu/drm/i915/display/intel_vdsc.c     |   3 +-
-> >  drivers/gpu/drm/i915/display/vlv_dsi.c        |   3 +-
-> >  drivers/gpu/drm/i915/gem/i915_gem_pm.c        |   3 +-
-> >  drivers/gpu/drm/i915/gem/i915_gem_shmem.c     |   4 +-
-> >  drivers/gpu/drm/i915/gem/i915_gem_shrinker.c  |  15 +-
-> >  drivers/gpu/drm/i915/gem/i915_gem_stolen.c    |  15 +-
-> >  drivers/gpu/drm/i915/gt/intel_engine_cs.c     |   9 +-
-> >  drivers/gpu/drm/i915/gt/intel_engine_user.c   |   3 +-
-> >  drivers/gpu/drm/i915/gt/intel_mocs.c          |   5 +-
-> >  drivers/gpu/drm/i915/gt/intel_rc6.c           |   3 +-
-> >  .../gpu/drm/i915/gt/intel_ring_submission.c   |   8 +-
-> >  drivers/gpu/drm/i915/gt/intel_rps.c           |  23 ++-
-> >  drivers/gpu/drm/i915/gt/intel_workarounds.c   |   3 +-
-> >  drivers/gpu/drm/i915/gvt/aperture_gm.c        |   8 +-
-> >  drivers/gpu/drm/i915/gvt/cmd_parser.c         |   5 +-
-> >  drivers/gpu/drm/i915/gvt/display.c            |   3 +-
-> >  drivers/gpu/drm/i915/gvt/dmabuf.c             |   5 +-
-> >  drivers/gpu/drm/i915/gvt/edid.c               |   3 +-
-> >  drivers/gpu/drm/i915/gvt/gvt.c                |   6 +-
-> >  drivers/gpu/drm/i915/gvt/handlers.c           |   3 +-
-> >  drivers/gpu/drm/i915/gvt/mmio_context.c       |   3 +-
-> >  drivers/gpu/drm/i915/i915_drv.c               |  23 ++-
-> >  drivers/gpu/drm/i915/i915_gem.c               |   9 +-
-> >  drivers/gpu/drm/i915/i915_gem_gtt.c           |   7 +-
-> >  drivers/gpu/drm/i915/i915_irq.c               |  83 ++++----
-> >  drivers/gpu/drm/i915/i915_pmu.c               |   9 +-
-> >  drivers/gpu/drm/i915/intel_csr.c              |   7 +-
-> >  drivers/gpu/drm/i915/intel_pch.c              |  65 +++---
-> >  drivers/gpu/drm/i915/intel_pm.c               |  30 ++-
-> >  drivers/gpu/drm/i915/intel_sideband.c         |   9 +-
-> >  drivers/gpu/drm/i915/intel_uncore.c           |   3 +-
-> >  64 files changed, 918 insertions(+), 536 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i915/display/icl_dsi.c
-> > index 8435bc5a7a74..8648569793f6 100644
-> > --- a/drivers/gpu/drm/i915/display/icl_dsi.c
-> > +++ b/drivers/gpu/drm/i915/display/icl_dsi.c
-> > @@ -345,10 +345,11 @@ static void gen11_dsi_program_esc_clk_div(struct intel_encoder *encoder,
-> >  static void get_dsi_io_power_domains(struct drm_i915_private *dev_priv,
-> >  				     struct intel_dsi *intel_dsi)
-> >  {
-> > +	struct device *dev = i915_to_dev(dev_priv);
-> 
-> Please don't add the extra local variables. See the replies to previous
-> patches, and use dev_priv->drm.dev or just &dev_priv->drm.
-> 
-> Also we usually have struct drm_device *dev, almost never struct device
-> *dev, so these will inevitably conflict.
+== Series Details ==
 
-Thank you for the review. Will post updated series.
+Series: drm/i915: Revert "drm/i915/tgl: Wa_1607138340"
+URL   : https://patchwork.freedesktop.org/series/71774/
+State : success
 
-Thanks,
-Pankaj
+== Summary ==
 
-> 
-> BR,
-> Jani.
-> 
-[snip]
-> >  	struct drm_i915_private *i915 = uncore->i915;
-> > +	struct device *dev = i915_to_dev(i915);
-> >  	int ret = 0;
-> >  
-> >  	GEM_BUG_ON(!intel_uncore_has_forcewake(uncore));
-> > @@ -1612,7 +1613,7 @@ static int intel_uncore_fw_domains_init(struct intel_uncore *uncore)
-> >  #undef fw_domain_init
-> >  
-> >  	/* All future platforms are expected to require complex power gating */
-> > -	WARN_ON(!ret && uncore->fw_domains == 0);
-> > +	dev_WARN_ON(dev, !ret && uncore->fw_domains == 0);
-> >  
-> >  out:
-> >  	if (ret)
-> 
-> -- 
-> Jani Nikula, Intel Open Source Graphics Center
+CI Bug Log - changes from CI_DRM_7705 -> Patchwork_16031
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16031/index.html
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_16031:
+
+### IGT changes ###
+
+#### Suppressed ####
+
+  The following results come from untrusted machines, tests, or statuses.
+  They do not affect the overall result.
+
+  * igt@gem_mmap_gtt@basic:
+    - {fi-ehl-1}:         NOTRUN -> [INCOMPLETE][1]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16031/fi-ehl-1/igt@gem_mmap_gtt@basic.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_16031 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_exec_suspend@basic-s0:
+    - fi-cml-s:           [PASS][2] -> [FAIL][3] ([fdo#103375])
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7705/fi-cml-s/igt@gem_exec_suspend@basic-s0.html
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16031/fi-cml-s/igt@gem_exec_suspend@basic-s0.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_close_race@basic-threads:
+    - fi-byt-j1900:       [TIMEOUT][4] ([i915#816]) -> [PASS][5]
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7705/fi-byt-j1900/igt@gem_close_race@basic-threads.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16031/fi-byt-j1900/igt@gem_close_race@basic-threads.html
+
+  * igt@gem_exec_fence@nb-await-default:
+    - {fi-ehl-1}:         [INCOMPLETE][6] -> [PASS][7]
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7705/fi-ehl-1/igt@gem_exec_fence@nb-await-default.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16031/fi-ehl-1/igt@gem_exec_fence@nb-await-default.html
+
+  * igt@gem_exec_suspend@basic-s3:
+    - fi-cml-s:           [DMESG-WARN][8] ([fdo#111764]) -> [PASS][9]
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7705/fi-cml-s/igt@gem_exec_suspend@basic-s3.html
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16031/fi-cml-s/igt@gem_exec_suspend@basic-s3.html
+
+  * igt@i915_module_load@reload-with-fault-injection:
+    - fi-cfl-8700k:       [INCOMPLETE][10] ([i915#505]) -> [PASS][11]
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7705/fi-cfl-8700k/igt@i915_module_load@reload-with-fault-injection.html
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16031/fi-cfl-8700k/igt@i915_module_load@reload-with-fault-injection.html
+    - fi-kbl-x1275:       [INCOMPLETE][12] ([i915#879]) -> [PASS][13]
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7705/fi-kbl-x1275/igt@i915_module_load@reload-with-fault-injection.html
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16031/fi-kbl-x1275/igt@i915_module_load@reload-with-fault-injection.html
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-kbl-guc:         [SKIP][14] ([fdo#109271]) -> [PASS][15]
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7705/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16031/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html
+
+  * igt@i915_selftest@live_blt:
+    - fi-hsw-4770:        [DMESG-FAIL][16] ([i915#553] / [i915#725]) -> [PASS][17]
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7705/fi-hsw-4770/igt@i915_selftest@live_blt.html
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16031/fi-hsw-4770/igt@i915_selftest@live_blt.html
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank:
+    - fi-skl-6770hq:      [INCOMPLETE][18] ([i915#435]) -> [PASS][19]
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7705/fi-skl-6770hq/igt@kms_flip@basic-flip-vs-wf_vblank.html
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16031/fi-skl-6770hq/igt@kms_flip@basic-flip-vs-wf_vblank.html
+
+  
+#### Warnings ####
+
+  * igt@i915_selftest@live_blt:
+    - fi-hsw-4770r:       [DMESG-FAIL][20] ([i915#563]) -> [DMESG-FAIL][21] ([i915#725])
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7705/fi-hsw-4770r/igt@i915_selftest@live_blt.html
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16031/fi-hsw-4770r/igt@i915_selftest@live_blt.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#103375]: https://bugs.freedesktop.org/show_bug.cgi?id=103375
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#111764]: https://bugs.freedesktop.org/show_bug.cgi?id=111764
+  [i915#435]: https://gitlab.freedesktop.org/drm/intel/issues/435
+  [i915#505]: https://gitlab.freedesktop.org/drm/intel/issues/505
+  [i915#553]: https://gitlab.freedesktop.org/drm/intel/issues/553
+  [i915#563]: https://gitlab.freedesktop.org/drm/intel/issues/563
+  [i915#725]: https://gitlab.freedesktop.org/drm/intel/issues/725
+  [i915#816]: https://gitlab.freedesktop.org/drm/intel/issues/816
+  [i915#879]: https://gitlab.freedesktop.org/drm/intel/issues/879
+
+
+Participating hosts (38 -> 35)
+------------------------------
+
+  Additional (5): fi-hsw-peppy fi-snb-2520m fi-gdg-551 fi-bsw-kefka fi-kbl-r 
+  Missing    (8): fi-byt-squawks fi-tgl-y fi-ilk-650 fi-ctg-p8600 fi-elk-e7500 fi-kbl-7560u fi-byt-n2820 fi-bsw-nick 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_7705 -> Patchwork_16031
+
+  CI-20190529: 20190529
+  CI_DRM_7705: b57ea8cadecd3444690439b4703d964afca476e1 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5358: c6fc013f414b806175dc4143c58ab445e5235ea5 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_16031: 4c837000070d0256c45e0dc3e56b265339fdd8a7 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+4c837000070d drm/i915: Revert "drm/i915/tgl: Wa_1607138340"
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16031/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
