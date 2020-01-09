@@ -2,30 +2,37 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E40D135A08
-	for <lists+intel-gfx@lfdr.de>; Thu,  9 Jan 2020 14:27:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 79B2E135A09
+	for <lists+intel-gfx@lfdr.de>; Thu,  9 Jan 2020 14:28:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4CCD46E40A;
-	Thu,  9 Jan 2020 13:27:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D08F66E402;
+	Thu,  9 Jan 2020 13:27:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id B036E6E402;
- Thu,  9 Jan 2020 13:27:11 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 9EBDFA00C7;
- Thu,  9 Jan 2020 13:27:11 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 945476E402
+ for <intel-gfx@lists.freedesktop.org>; Thu,  9 Jan 2020 13:27:57 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 09 Jan 2020 05:27:56 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.69,413,1571727600"; d="scan'208";a="303868909"
+Received: from ramaling-i9x.iind.intel.com (HELO intel.com) ([10.99.66.154])
+ by orsmga001.jf.intel.com with ESMTP; 09 Jan 2020 05:27:55 -0800
+Date: Thu, 9 Jan 2020 18:57:27 +0530
+From: Ramalingam C <ramalingam.c@intel.com>
+To: Anshuman Gupta <anshuman.gupta@intel.com>
+Message-ID: <20200109132727.GC32180@intel.com>
+References: <20200109125508.19601-1-anshuman.gupta@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Thu, 09 Jan 2020 13:27:11 -0000
-Message-ID: <157857643162.4563.10473944421154528736@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200109085142.871563-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200109085142.871563-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Pin_the_context_as_we_work_on_it_=28rev2=29?=
+Content-Disposition: inline
+In-Reply-To: <20200109125508.19601-1-anshuman.gupta@intel.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/hdcp: restore hdcp state same
+ as previous
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,121 +45,102 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On 2020-01-09 at 18:25:08 +0530, Anshuman Gupta wrote:
+> When port is disabled due to modeset or DPMS off actually
+> it disables the HDCP encryption keeping its state to
+s/state/"content protection property as"
+> CP_ENABLED.
+> this doesn't enable HDCP again while port
+> gets enable again.
+Since the content protection is left at ENABLED state by mistake at next
+DDI enable flow HDCP auth is not attempted.
 
-Series: drm/i915: Pin the context as we work on it (rev2)
-URL   : https://patchwork.freedesktop.org/series/71700/
-State : success
+> HDCP state should set accordingly
+content protection property state should be updated as per port
+authentication state.
+> when port is disabled.
+> 
+> v2: Incorporated the necessary locking and making sure
+>     when user explicitly set HDCP to UNDESRIED it should
+>     make HDCP to desired while disabling DDI. (Ram)
+Need to rephrase this too.
+> 
+> CC: Ramalingam C <ramalingam.c@intel.com>
+> Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_display_types.h |  1 +
+>  drivers/gpu/drm/i915/display/intel_hdcp.c          | 12 +++++++++++-
+>  2 files changed, 12 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+> index 630a94892b7b..f2552a52f26a 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> @@ -344,6 +344,7 @@ struct intel_hdcp {
+>  	u64 value;
+>  	struct delayed_work check_work;
+>  	struct work_struct prop_work;
+> +	bool is_hdcp_undesired;
+small comment on why this is needed now would be good.
 
-== Summary ==
+/* Indicates whether HDCP is UNDESIERD by userspace */
+>  
+>  	/* HDCP1.4 Encryption status */
+>  	bool hdcp_encrypted;
+> diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
+> index 0fdbd39f6641..507056aab33b 100644
+> --- a/drivers/gpu/drm/i915/display/intel_hdcp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
+> @@ -2002,11 +2002,17 @@ int intel_hdcp_disable(struct intel_connector *connector)
+>  	mutex_lock(&hdcp->mutex);
+>  
+>  	if (hdcp->value != DRM_MODE_CONTENT_PROTECTION_UNDESIRED) {
+> -		hdcp->value = DRM_MODE_CONTENT_PROTECTION_UNDESIRED;
+>  		if (hdcp->hdcp2_encrypted)
+>  			ret = _intel_hdcp2_disable(connector);
+>  		else if (hdcp->hdcp_encrypted)
+>  			ret = _intel_hdcp_disable(connector);
+> +
+> +		if (hdcp->is_hdcp_undesired) {
+> +			hdcp->value = DRM_MODE_CONTENT_PROTECTION_UNDESIRED;
+> +		} else {
+> +			hdcp->value = DRM_MODE_CONTENT_PROTECTION_DESIRED;
+> +			schedule_work(&hdcp->prop_work);
+> +		}
+>  	}
+>  
+>  	mutex_unlock(&hdcp->mutex);
+> @@ -2044,6 +2050,7 @@ void intel_hdcp_atomic_check(struct drm_connector *connector,
+>  {
+>  	u64 old_cp = old_state->content_protection;
+>  	u64 new_cp = new_state->content_protection;
+> +	struct intel_connector *intel_conn = to_intel_connector(connector);
+>  	struct drm_crtc_state *crtc_state;
+>  
+>  	if (!new_state->crtc) {
+> @@ -2069,6 +2076,9 @@ void intel_hdcp_atomic_check(struct drm_connector *connector,
+>  			return;
+>  	}
+>  
+> +	if (new_cp == DRM_MODE_CONTENT_PROTECTION_UNDESIRED)
+> +		intel_conn->hdcp.is_hdcp_undesired  =  true;
+This flag will be always left at true. reset it to false as soon as used
+at intel_hdcp_disable()
 
-CI Bug Log - changes from CI_DRM_7706 -> Patchwork_16034
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16034/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_16034 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_close_race@basic-threads:
-    - fi-byt-n2820:       [PASS][1] -> [TIMEOUT][2] ([i915#816])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7706/fi-byt-n2820/igt@gem_close_race@basic-threads.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16034/fi-byt-n2820/igt@gem_close_race@basic-threads.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_exec_fence@basic-wait-default:
-    - {fi-ehl-1}:         [INCOMPLETE][3] ([i915#949]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7706/fi-ehl-1/igt@gem_exec_fence@basic-wait-default.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16034/fi-ehl-1/igt@gem_exec_fence@basic-wait-default.html
-
-  * igt@gem_sync@basic-store-each:
-    - fi-tgl-y:           [INCOMPLETE][5] ([i915#435] / [i915#472]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7706/fi-tgl-y/igt@gem_sync@basic-store-each.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16034/fi-tgl-y/igt@gem_sync@basic-store-each.html
-
-  * igt@i915_module_load@reload-with-fault-injection:
-    - fi-bxt-dsi:         [INCOMPLETE][7] ([fdo#103927]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7706/fi-bxt-dsi/igt@i915_module_load@reload-with-fault-injection.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16034/fi-bxt-dsi/igt@i915_module_load@reload-with-fault-injection.html
-
-  * igt@prime_vgem@basic-write:
-    - fi-icl-dsi:         [DMESG-WARN][9] ([i915#109]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7706/fi-icl-dsi/igt@prime_vgem@basic-write.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16034/fi-icl-dsi/igt@prime_vgem@basic-write.html
-
-  
-#### Warnings ####
-
-  * igt@i915_selftest@live_blt:
-    - fi-hsw-4770:        [DMESG-FAIL][11] ([i915#553]) -> [DMESG-FAIL][12] ([i915#725])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7706/fi-hsw-4770/igt@i915_selftest@live_blt.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16034/fi-hsw-4770/igt@i915_selftest@live_blt.html
-    - fi-hsw-4770r:       [DMESG-FAIL][13] ([i915#725]) -> [DMESG-FAIL][14] ([i915#553] / [i915#725])
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7706/fi-hsw-4770r/igt@i915_selftest@live_blt.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16034/fi-hsw-4770r/igt@i915_selftest@live_blt.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#103927]: https://bugs.freedesktop.org/show_bug.cgi?id=103927
-  [i915#109]: https://gitlab.freedesktop.org/drm/intel/issues/109
-  [i915#435]: https://gitlab.freedesktop.org/drm/intel/issues/435
-  [i915#472]: https://gitlab.freedesktop.org/drm/intel/issues/472
-  [i915#553]: https://gitlab.freedesktop.org/drm/intel/issues/553
-  [i915#725]: https://gitlab.freedesktop.org/drm/intel/issues/725
-  [i915#816]: https://gitlab.freedesktop.org/drm/intel/issues/816
-  [i915#949]: https://gitlab.freedesktop.org/drm/intel/issues/949
-
-
-Participating hosts (44 -> 48)
-------------------------------
-
-  Additional (9): fi-kbl-soraka fi-skl-6770hq fi-kbl-7500u fi-ivb-3770 fi-skl-lmem fi-kbl-7560u fi-bsw-nick fi-skl-6600u fi-snb-2600 
-  Missing    (5): fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_7706 -> Patchwork_16034
-
-  CI-20190529: 20190529
-  CI_DRM_7706: 3d36ffaa59259e46de9dde125d18d228d764609f @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5358: c6fc013f414b806175dc4143c58ab445e5235ea5 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_16034: 88e0594b330288b0a14730ae34077b090ccc276d @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-88e0594b3302 drm/i915: Pin the context as we work on it
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16034/index.html
+-Ram
+> +
+>  	crtc_state = drm_atomic_get_new_crtc_state(new_state->state,
+>  						   new_state->crtc);
+>  	crtc_state->mode_changed = true;
+> -- 
+> 2.24.0
+> 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
