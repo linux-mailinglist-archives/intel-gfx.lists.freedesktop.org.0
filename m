@@ -2,40 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF7051357C1
-	for <lists+intel-gfx@lfdr.de>; Thu,  9 Jan 2020 12:17:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8BE901357F8
+	for <lists+intel-gfx@lfdr.de>; Thu,  9 Jan 2020 12:30:09 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 44C676E3DF;
-	Thu,  9 Jan 2020 11:17:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7890C6E3E7;
+	Thu,  9 Jan 2020 11:30:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 697246E3DF
- for <intel-gfx@lists.freedesktop.org>; Thu,  9 Jan 2020 11:17:14 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 261166E3E1;
+ Thu,  9 Jan 2020 11:30:00 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
 X-Amp-File-Uploaded: False
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga105.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 09 Jan 2020 03:17:13 -0800
-X-IronPort-AV: E=Sophos;i="5.69,413,1571727600"; d="scan'208";a="223255361"
-Received: from jnikula-mobl3.fi.intel.com (HELO localhost) ([10.237.66.161])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 09 Jan 2020 03:17:11 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>, "Souza\,
- Jose" <jose.souza@intel.com>
-In-Reply-To: <157849428827.2273.15167701436088595576@skylake-alporthouse-com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20200107130322.gdk5b6jurifr26c2@kili.mountain>
- <04c2960a11f5361288d7d3a8a3bd16301b05c5e5.camel@intel.com>
- <157840592663.2273.15929240102084093971@skylake-alporthouse-com>
- <87y2uiow5p.fsf@intel.com>
- <157849428827.2273.15167701436088595576@skylake-alporthouse-com>
-Date: Thu, 09 Jan 2020 13:17:08 +0200
-Message-ID: <87imlkq3pn.fsf@intel.com>
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 09 Jan 2020 03:29:58 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.69,413,1571727600"; 
+ d="scan'208,217";a="223851703"
+Received: from plaxmina-desktop.iind.intel.com ([10.106.124.119])
+ by orsmga003.jf.intel.com with ESMTP; 09 Jan 2020 03:29:56 -0800
+Date: Thu, 9 Jan 2020 16:55:13 +0530
+From: "Bharadiya,Pankaj" <pankaj.laxminarayan.bharadiya@intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Message-ID: <20200109112513.GA19403@plaxmina-desktop.iind.intel.com>
+References: <20200106172326.32592-1-pankaj.laxminarayan.bharadiya@intel.com>
+ <20200106172326.32592-6-pankaj.laxminarayan.bharadiya@intel.com>
+ <87d0buqff1.fsf@intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: fix an error code in
- intel_modeset_all_tiles()
+Content-Disposition: inline
+In-Reply-To: <87d0buqff1.fsf@intel.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+Subject: Re: [Intel-gfx] [RFC 5/7] drm/i915: Make WARN* device specific
+ where drm_priv ptr is available
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,32 +48,193 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- martin.peres@intel.com
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: irlied@linux.ie, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gV2VkLCAwOCBKYW4gMjAyMCwgQ2hyaXMgV2lsc29uIDxjaHJpc0BjaHJpcy13aWxzb24uY28u
-dWs+IHdyb3RlOgo+IFF1b3RpbmcgSmFuaSBOaWt1bGEgKDIwMjAtMDEtMDggMTQ6MzM6MjIpCj4+
-IE9uIFR1ZSwgMDcgSmFuIDIwMjAsIENocmlzIFdpbHNvbiA8Y2hyaXNAY2hyaXMtd2lsc29uLmNv
-LnVrPiB3cm90ZToKPj4gPiBRdW90aW5nIFNvdXphLCBKb3NlICgyMDIwLTAxLTA3IDE0OjAxOjQw
-KQo+PiA+PiBPbiBUdWUsIDIwMjAtMDEtMDcgYXQgMTY6MDMgKzAzMDAsIERhbiBDYXJwZW50ZXIg
-d3JvdGU6Cj4+ID4+ID4gVGhlcmUgaXMgYSBjdXQgYW5kIHBhc3RlIGJ1ZyBzbyB3ZSByZXR1cm4g
-dGhlIHdyb25nIGVycm9yIGNvZGUuCj4+ID4+ID4gCj4+ID4+ID4gRml4ZXM6IGE2MDNmNWJkMTY5
-MSAoImRybS9pOTE1L2RwOiBNYWtlIHN1cmUgYWxsIHRpbGVkIGNvbm5lY3RvcnMgZ2V0Cj4+ID4+
-ID4gYWRkZWQgdG8gdGhlIHN0YXRlIHdpdGggZnVsbCBtb2Rlc2V0IikKPj4gPj4gCj4+ID4+IFJl
-dmlld2VkLWJ5OiBKb3PDqSBSb2JlcnRvIGRlIFNvdXphIDxqb3NlLnNvdXphQGludGVsLmNvbT4K
-Pj4gPj4gCj4+ID4+ID4gU2lnbmVkLW9mZi1ieTogRGFuIENhcnBlbnRlciA8ZGFuLmNhcnBlbnRl
-ckBvcmFjbGUuY29tPgo+PiA+Cj4+ID4gUHVzaGVkLiBUaGFua3MgZm9yIHRoZSBwYXRjaCwKPj4g
-Cj4+IEhybWgsIHdlIGFyZSBzdGlsbCBzdXBwb3NlZCB0byB3YWl0IGZvciBDSSByZXN1bHRzIGZv
-ciBldmVyeSBwYXRjaCwgbm8KPj4gZXhjZXB0aW9ucy4KPgo+IFRoZXJlIGlzIG5vIGNvdmVyYWdl
-IG9mIHRoYXQgcGF0aCBpbiBDSS4KCk1heWJlIG5vdCwgYnV0IG1ha2luZyB0aGF0IGFzc2Vzc21l
-bnQgaXMgbm90IG9idmlvdXMgdG8gbWUuCgpJIGRvbid0IHdhbnQgdG8gc3RhcnQgb24gdGhlIHNs
-aXBwZXJ5IHNsb3BlIG9mIHBlb3BsZSBwdXNoaW5nIHVudGVzdGVkCnBhdGNoZXMgY2xhaW1pbmcg
-Im5vIGNvdmVyYWdlIi4KCgpCUiwKSmFuaS4KCgotLSAKSmFuaSBOaWt1bGEsIEludGVsIE9wZW4g
-U291cmNlIEdyYXBoaWNzIENlbnRlcgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVl
-ZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5m
-by9pbnRlbC1nZngK
+On Wed, Jan 08, 2020 at 02:52:02PM +0200, Jani Nikula wrote:
+> On Mon, 06 Jan 2020, Pankaj Bharadiya <pankaj.laxminarayan.bharadiya@intel.com> wrote:
+> > Device specific WARN* calls include device information in the
+> > backtrace, so we know what device the warnings originate from.
+> >
+> > Covert all the calls of WARN* with device specific dev_WARN*
+> > variants in functions where drm_i915_private struct pointer is readily
+> > available.
+> >
+> > The conversion was done automatically with below coccinelle semantic
+> > patch. checkpatch errors/warnings are fixed manually.
+> >
+> > @rule1@
+> > identifier func, T;
+> > @@
+> > func(...) {
+> > ...
+> > struct drm_i915_private *T = ...;
+> > +struct device *dev = i915_to_dev(T);
+> > <+...
+> > (
+> > -WARN(
+> > +dev_WARN(dev,
+> > ...)
+> > |
+> > -WARN_ON(
+> > +dev_WARN_ON(dev,
+> > ...)
+> > |
+> > -WARN_ONCE(
+> > +dev_WARN_ONCE(dev,
+> > ...)
+> > |
+> > -WARN_ON_ONCE(
+> > +dev_WARN_ON_ONCE(dev,
+> > ...)
+> > )
+> > ...+>
+> > }
+> >
+> > @rule2@
+> > identifier func, T;
+> > @@
+> > func(struct drm_i915_private *T,...) {
+> > +struct device *dev = i915_to_dev(T);
+> > <+...
+> > (
+> > -WARN(
+> > +dev_WARN(dev,
+> > ...)
+> > |
+> > -WARN_ON(
+> > +dev_WARN_ON(dev,
+> > ...)
+> > |
+> > -WARN_ONCE(
+> > +dev_WARN_ONCE(dev,
+> > ...)
+> > |
+> > -WARN_ON_ONCE(
+> > +dev_WARN_ON_ONCE(dev,
+> > ...)
+> > )
+> > ...+>
+> > }
+> >
+> > command: spatch --sp-file <script> --dir drivers/gpu/drm/i915 \
+> > 					--linux-spacing --in-place
+> > Signed-off-by: Pankaj Bharadiya <pankaj.laxminarayan.bharadiya@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/icl_dsi.c        |  14 +-
+> >  drivers/gpu/drm/i915/display/intel_atomic.c   |   8 +-
+> >  drivers/gpu/drm/i915/display/intel_audio.c    |  23 ++-
+> >  drivers/gpu/drm/i915/display/intel_bios.c     |  13 +-
+> >  drivers/gpu/drm/i915/display/intel_bw.c       |   3 +-
+> >  drivers/gpu/drm/i915/display/intel_cdclk.c    |  85 ++++----
+> >  drivers/gpu/drm/i915/display/intel_color.c    |   4 +-
+> >  .../gpu/drm/i915/display/intel_combo_phy.c    |   3 +-
+> >  drivers/gpu/drm/i915/display/intel_crt.c      |  15 +-
+> >  drivers/gpu/drm/i915/display/intel_ddi.c      | 102 ++++++----
+> >  drivers/gpu/drm/i915/display/intel_display.c  | 180 ++++++++++-------
+> >  .../drm/i915/display/intel_display_power.c    | 190 +++++++++++-------
+> >  drivers/gpu/drm/i915/display/intel_dp.c       | 112 +++++++----
+> >  drivers/gpu/drm/i915/display/intel_dp_mst.c   |  10 +-
+> >  drivers/gpu/drm/i915/display/intel_dpio_phy.c |   3 +-
+> >  drivers/gpu/drm/i915/display/intel_dpll_mgr.c |  45 +++--
+> >  drivers/gpu/drm/i915/display/intel_dsb.c      |   9 +-
+> >  drivers/gpu/drm/i915/display/intel_dsi_vbt.c  |   5 +-
+> >  drivers/gpu/drm/i915/display/intel_fbc.c      |  30 ++-
+> >  drivers/gpu/drm/i915/display/intel_gmbus.c    |   4 +-
+> >  drivers/gpu/drm/i915/display/intel_hdcp.c     |  26 ++-
+> >  drivers/gpu/drm/i915/display/intel_hdmi.c     |  47 +++--
+> >  drivers/gpu/drm/i915/display/intel_hotplug.c  |   6 +-
+> >  .../gpu/drm/i915/display/intel_lpe_audio.c    |   3 +-
+> >  drivers/gpu/drm/i915/display/intel_lvds.c     |   3 +-
+> >  drivers/gpu/drm/i915/display/intel_opregion.c |   8 +-
+> >  drivers/gpu/drm/i915/display/intel_overlay.c  |  17 +-
+> >  drivers/gpu/drm/i915/display/intel_panel.c    |  28 ++-
+> >  drivers/gpu/drm/i915/display/intel_pipe_crc.c |   4 +-
+> >  drivers/gpu/drm/i915/display/intel_psr.c      |  38 ++--
+> >  drivers/gpu/drm/i915/display/intel_sdvo.c     |   8 +-
+> >  drivers/gpu/drm/i915/display/intel_sprite.c   |   6 +-
+> >  drivers/gpu/drm/i915/display/intel_tc.c       |  24 ++-
+> >  drivers/gpu/drm/i915/display/intel_vdsc.c     |   3 +-
+> >  drivers/gpu/drm/i915/display/vlv_dsi.c        |   3 +-
+> >  drivers/gpu/drm/i915/gem/i915_gem_pm.c        |   3 +-
+> >  drivers/gpu/drm/i915/gem/i915_gem_shmem.c     |   4 +-
+> >  drivers/gpu/drm/i915/gem/i915_gem_shrinker.c  |  15 +-
+> >  drivers/gpu/drm/i915/gem/i915_gem_stolen.c    |  15 +-
+> >  drivers/gpu/drm/i915/gt/intel_engine_cs.c     |   9 +-
+> >  drivers/gpu/drm/i915/gt/intel_engine_user.c   |   3 +-
+> >  drivers/gpu/drm/i915/gt/intel_mocs.c          |   5 +-
+> >  drivers/gpu/drm/i915/gt/intel_rc6.c           |   3 +-
+> >  .../gpu/drm/i915/gt/intel_ring_submission.c   |   8 +-
+> >  drivers/gpu/drm/i915/gt/intel_rps.c           |  23 ++-
+> >  drivers/gpu/drm/i915/gt/intel_workarounds.c   |   3 +-
+> >  drivers/gpu/drm/i915/gvt/aperture_gm.c        |   8 +-
+> >  drivers/gpu/drm/i915/gvt/cmd_parser.c         |   5 +-
+> >  drivers/gpu/drm/i915/gvt/display.c            |   3 +-
+> >  drivers/gpu/drm/i915/gvt/dmabuf.c             |   5 +-
+> >  drivers/gpu/drm/i915/gvt/edid.c               |   3 +-
+> >  drivers/gpu/drm/i915/gvt/gvt.c                |   6 +-
+> >  drivers/gpu/drm/i915/gvt/handlers.c           |   3 +-
+> >  drivers/gpu/drm/i915/gvt/mmio_context.c       |   3 +-
+> >  drivers/gpu/drm/i915/i915_drv.c               |  23 ++-
+> >  drivers/gpu/drm/i915/i915_gem.c               |   9 +-
+> >  drivers/gpu/drm/i915/i915_gem_gtt.c           |   7 +-
+> >  drivers/gpu/drm/i915/i915_irq.c               |  83 ++++----
+> >  drivers/gpu/drm/i915/i915_pmu.c               |   9 +-
+> >  drivers/gpu/drm/i915/intel_csr.c              |   7 +-
+> >  drivers/gpu/drm/i915/intel_pch.c              |  65 +++---
+> >  drivers/gpu/drm/i915/intel_pm.c               |  30 ++-
+> >  drivers/gpu/drm/i915/intel_sideband.c         |   9 +-
+> >  drivers/gpu/drm/i915/intel_uncore.c           |   3 +-
+> >  64 files changed, 918 insertions(+), 536 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i915/display/icl_dsi.c
+> > index 8435bc5a7a74..8648569793f6 100644
+> > --- a/drivers/gpu/drm/i915/display/icl_dsi.c
+> > +++ b/drivers/gpu/drm/i915/display/icl_dsi.c
+> > @@ -345,10 +345,11 @@ static void gen11_dsi_program_esc_clk_div(struct intel_encoder *encoder,
+> >  static void get_dsi_io_power_domains(struct drm_i915_private *dev_priv,
+> >  				     struct intel_dsi *intel_dsi)
+> >  {
+> > +	struct device *dev = i915_to_dev(dev_priv);
+> 
+> Please don't add the extra local variables. See the replies to previous
+> patches, and use dev_priv->drm.dev or just &dev_priv->drm.
+> 
+> Also we usually have struct drm_device *dev, almost never struct device
+> *dev, so these will inevitably conflict.
+
+Thank you for the review. Will post updated series.
+
+Thanks,
+Pankaj
+
+> 
+> BR,
+> Jani.
+> 
+[snip]
+> >  	struct drm_i915_private *i915 = uncore->i915;
+> > +	struct device *dev = i915_to_dev(i915);
+> >  	int ret = 0;
+> >  
+> >  	GEM_BUG_ON(!intel_uncore_has_forcewake(uncore));
+> > @@ -1612,7 +1613,7 @@ static int intel_uncore_fw_domains_init(struct intel_uncore *uncore)
+> >  #undef fw_domain_init
+> >  
+> >  	/* All future platforms are expected to require complex power gating */
+> > -	WARN_ON(!ret && uncore->fw_domains == 0);
+> > +	dev_WARN_ON(dev, !ret && uncore->fw_domains == 0);
+> >  
+> >  out:
+> >  	if (ret)
+> 
+> -- 
+> Jani Nikula, Intel Open Source Graphics Center
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
