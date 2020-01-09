@@ -1,32 +1,58 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4ACF11361F6
-	for <lists+intel-gfx@lfdr.de>; Thu,  9 Jan 2020 21:50:43 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id CF841136231
+	for <lists+intel-gfx@lfdr.de>; Thu,  9 Jan 2020 22:04:31 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 13BBF6E962;
-	Thu,  9 Jan 2020 20:50:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ECDED6E968;
+	Thu,  9 Jan 2020 21:04:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id F30716E04E;
- Thu,  9 Jan 2020 20:50:39 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id EB87FA011A;
- Thu,  9 Jan 2020 20:50:39 +0000 (UTC)
+Received: from mail-wr1-x443.google.com (mail-wr1-x443.google.com
+ [IPv6:2a00:1450:4864:20::443])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 905366E968;
+ Thu,  9 Jan 2020 21:04:28 +0000 (UTC)
+Received: by mail-wr1-x443.google.com with SMTP id d16so8882498wre.10;
+ Thu, 09 Jan 2020 13:04:28 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=Jx2mnQ5sQHhvy05gzpF6Xb4vyLWFy0EStruomBKxur4=;
+ b=RnyqCFjLIS4svLi+h/UCvFKDzvChRa6kkBNmZesJzWOCc+jQn87SBRwnYLBMbY1D76
+ cvT+LRxrURdsujbDonshbHfQMSnzyu3/aWZXTGr8H2Omcq0TqZOKDH8YFiugQf02ovUL
+ DjIJdi6h1ISJcmXgZu3PSYfcieDIk/4UhO8pRQ+g6RwtDZ00nGo2w+TdSIcf4qmNmYOy
+ LwqILdatjdtuZBRsd/V2IXbBhclWnF07zi4OWRTTM1SLo/4jghVSY01w+mY0v9ylbrkV
+ ziaHb+OG2zGhnqhe5S7ybYROioPwjJ9kTNdA6Yka+QcsDn4V3G+zniiu1gVuhyPGWCGk
+ zNWg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=Jx2mnQ5sQHhvy05gzpF6Xb4vyLWFy0EStruomBKxur4=;
+ b=UBWVU0rM5/GBaZZdZ2LxUqBc0NLpFz5Q5r0RrO9f/eH1xMVvaly3AokTrlCV2Rzzd0
+ j/5EsFI0Fe1SDy3ev4j65Wj7/bW91NHOXI1LQouJosBjyUk0T+JdV97R1c/YdZNLpM7A
+ Zk82Ah5pkYyd4fpRrssdIPsmEX0OCB0PUVgSEZ7mWqenJsTe91//r9fLHAQUvOgxqbpd
+ G9NzCbIU2j/pXJuiXXHdHDXHwT1KWG1v1GemD8Sb5sw/hQvXOhkdb+LNESB3jXe8VbY3
+ /G1hgFd+Gfp+3dPDUsg4K6cdzZjOoroN8GgeyYz6S9G9aEnpziW+OjtFSA+6Bbmpqq8s
+ PfQg==
+X-Gm-Message-State: APjAAAU5UpuPK/SwtdnWpoNpBLoNYcaS8y4m1+veJ8T3iTwSg7EDXgxQ
+ H9kXELP3eqcUJNFWoGfSEWLbNzHy8mpySUZppl3urmaZcrw=
+X-Google-Smtp-Source: APXvYqxdmotb+XD13kQ3492bZFH6SKWQQaRDI+qFYqpoSC53D5NWWxsnVUa63gSk1TIlQhW+QDyELkbMafuy1znF/J4=
+X-Received: by 2002:a5d:4f90:: with SMTP id d16mr12226286wru.395.1578603867295; 
+ Thu, 09 Jan 2020 13:04:27 -0800 (PST)
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Thu, 09 Jan 2020 20:50:39 -0000
-Message-ID: <157860303993.4566.10432233319857088503@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200109122507.945002-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200109122507.945002-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5BCI=2C1/3=5D_drm/i915=3A_Flush_idle_barrier?=
- =?utf-8?q?s_when_waiting?=
+References: <20200109150752.28098-1-mario.kleiner.de@gmail.com>
+ <CADnq5_PvPD+FyEwUrqDVmbdLrP6ZC72HPtd19bqm-Csx-fHMOA@mail.gmail.com>
+ <CAEsyxyjTvuCHHA3D-NJd=aGkHz2d=obSizwGQL8B4k1B7i2jJg@mail.gmail.com>
+ <CADnq5_NPdg8MjQ5cB2aCD+US1Hv+FoP1gqKcA4W2e0pouG8cGQ@mail.gmail.com>
+In-Reply-To: <CADnq5_NPdg8MjQ5cB2aCD+US1Hv+FoP1gqKcA4W2e0pouG8cGQ@mail.gmail.com>
+From: Mario Kleiner <mario.kleiner.de@gmail.com>
+Date: Thu, 9 Jan 2020 22:04:15 +0100
+Message-ID: <CAEsyxyjMsCU8rzyO0GewU_-uV5+UoDDwa5Mc74irUnJHhF6ALQ@mail.gmail.com>
+To: Alex Deucher <alexdeucher@gmail.com>,
+ Harry Wentland <Harry.Wentland@amd.com>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/dp: Add current maximum eDP link
+ rate to sink_rate array.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,134 +65,155 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: mario.kleiner.de@gmail.de,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Maling list - DRI developers <dri-devel@lists.freedesktop.org>,
+ Daniel Vetter <daniel.vetter@ffwll.ch>
+Content-Type: multipart/mixed; boundary="===============1548942475=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+--===============1548942475==
+Content-Type: multipart/alternative; boundary="000000000000c05498059bbb5ac6"
 
-Series: series starting with [CI,1/3] drm/i915: Flush idle barriers when waiting
-URL   : https://patchwork.freedesktop.org/series/71819/
-State : success
+--000000000000c05498059bbb5ac6
+Content-Type: text/plain; charset="UTF-8"
 
-== Summary ==
+On Thu, Jan 9, 2020 at 8:49 PM Alex Deucher <alexdeucher@gmail.com> wrote:
 
-CI Bug Log - changes from CI_DRM_7714 -> Patchwork_16038
-====================================================
+> On Thu, Jan 9, 2020 at 11:47 AM Mario Kleiner
+> <mario.kleiner.de@gmail.com> wrote:
+> >
+> > On Thu, Jan 9, 2020 at 4:40 PM Alex Deucher <alexdeucher@gmail.com>
+> wrote:
+> >>
+> >> On Thu, Jan 9, 2020 at 10:08 AM Mario Kleiner
+> >> <mario.kleiner.de@gmail.com> wrote:
+> >> >
+> As Harry mentioned in the other thread, won't this only work if the
+> display was brought up by the vbios?  In the suspend/resume case,
+> won't we just fall back to 2.7Gbps?
+>
+> Alex
+>
+>
+Adding Harry to cc...
 
-Summary
--------
+The code is only executed for eDP. On the Intel side, it seems that
+intel_edp_init_dpcd() gets only called during driver load / modesetting
+init, so not on resume.
 
-  **SUCCESS**
+On the AMD DC side, dc_link_detect_helper() has this early no-op return at
+the beginning:
 
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16038/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_16038 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_close_race@basic-threads:
-    - fi-byt-n2820:       [PASS][1] -> [TIMEOUT][2] ([i915#816])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7714/fi-byt-n2820/igt@gem_close_race@basic-threads.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16038/fi-byt-n2820/igt@gem_close_race@basic-threads.html
-
-  * igt@i915_module_load@reload-with-fault-injection:
-    - fi-skl-6700k2:      [PASS][3] -> [INCOMPLETE][4] ([i915#671])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7714/fi-skl-6700k2/igt@i915_module_load@reload-with-fault-injection.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16038/fi-skl-6700k2/igt@i915_module_load@reload-with-fault-injection.html
-    - fi-kbl-7500u:       [PASS][5] -> [INCOMPLETE][6] ([i915#879])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7714/fi-kbl-7500u/igt@i915_module_load@reload-with-fault-injection.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16038/fi-kbl-7500u/igt@i915_module_load@reload-with-fault-injection.html
-    - fi-skl-lmem:        [PASS][7] -> [DMESG-WARN][8] ([i915#889])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7714/fi-skl-lmem/igt@i915_module_load@reload-with-fault-injection.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16038/fi-skl-lmem/igt@i915_module_load@reload-with-fault-injection.html
-
-  * igt@i915_selftest@live_blt:
-    - fi-byt-j1900:       [PASS][9] -> [DMESG-FAIL][10] ([i915#725])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7714/fi-byt-j1900/igt@i915_selftest@live_blt.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16038/fi-byt-j1900/igt@i915_selftest@live_blt.html
-
-  * igt@kms_chamelium@hdmi-hpd-fast:
-    - fi-kbl-7500u:       [PASS][11] -> [FAIL][12] ([fdo#111096] / [i915#323])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7714/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16038/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live_blt:
-    - fi-hsw-4770:        [DMESG-FAIL][13] ([i915#725]) -> [PASS][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7714/fi-hsw-4770/igt@i915_selftest@live_blt.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16038/fi-hsw-4770/igt@i915_selftest@live_blt.html
-
-  * igt@i915_selftest@live_gem_contexts:
-    - fi-skl-lmem:        [INCOMPLETE][15] ([i915#424]) -> [PASS][16]
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7714/fi-skl-lmem/igt@i915_selftest@live_gem_contexts.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16038/fi-skl-lmem/igt@i915_selftest@live_gem_contexts.html
-    - fi-cfl-8700k:       [DMESG-FAIL][17] ([i915#623]) -> [PASS][18]
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7714/fi-cfl-8700k/igt@i915_selftest@live_gem_contexts.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16038/fi-cfl-8700k/igt@i915_selftest@live_gem_contexts.html
-
-  
-#### Warnings ####
-
-  * igt@i915_selftest@live_blt:
-    - fi-hsw-4770r:       [DMESG-FAIL][19] ([i915#725]) -> [DMESG-FAIL][20] ([i915#553] / [i915#725])
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7714/fi-hsw-4770r/igt@i915_selftest@live_blt.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16038/fi-hsw-4770r/igt@i915_selftest@live_blt.html
-
-  
-  [fdo#111096]: https://bugs.freedesktop.org/show_bug.cgi?id=111096
-  [i915#323]: https://gitlab.freedesktop.org/drm/intel/issues/323
-  [i915#424]: https://gitlab.freedesktop.org/drm/intel/issues/424
-  [i915#553]: https://gitlab.freedesktop.org/drm/intel/issues/553
-  [i915#623]: https://gitlab.freedesktop.org/drm/intel/issues/623
-  [i915#671]: https://gitlab.freedesktop.org/drm/intel/issues/671
-  [i915#725]: https://gitlab.freedesktop.org/drm/intel/issues/725
-  [i915#816]: https://gitlab.freedesktop.org/drm/intel/issues/816
-  [i915#879]: https://gitlab.freedesktop.org/drm/intel/issues/879
-  [i915#889]: https://gitlab.freedesktop.org/drm/intel/issues/889
+if ((link <https://elixir.bootlin.com/linux/v5.5-rc5/ident/link>->connector_signal
+== SIGNAL_TYPE_LVDS
+<https://elixir.bootlin.com/linux/v5.5-rc5/ident/SIGNAL_TYPE_LVDS> ||
+			link <https://elixir.bootlin.com/linux/v5.5-rc5/ident/link>->connector_signal
+== SIGNAL_TYPE_EDP
+<https://elixir.bootlin.com/linux/v5.5-rc5/ident/SIGNAL_TYPE_EDP>) &&
+			link <https://elixir.bootlin.com/linux/v5.5-rc5/ident/link>->local_sink)
+		return <https://elixir.bootlin.com/linux/v5.5-rc5/ident/return> true
+<https://elixir.bootlin.com/linux/v5.5-rc5/ident/true>;
 
 
-Participating hosts (46 -> 39)
-------------------------------
+So i guess if link->local_sink doesn't get NULL'ed during a suspend/resume
+cycle, then we never reach the setup code that would overwrite with non
+vbios settings?
 
-  Additional (4): fi-skl-6770hq fi-gdg-551 fi-skl-6600u fi-bsw-n3050 
-  Missing    (11): fi-bdw-5557u fi-hsw-4200u fi-hsw-peppy fi-byt-squawks fi-bwr-2160 fi-ilk-650 fi-ctg-p8600 fi-byt-clapper fi-whl-u fi-tgl-y fi-icl-dsi 
+Sounds reasonable to me, given that eDP panels are usually fixed internal
+panels, nothing that gets hot(un-)plugged?
 
+I can't test, because suspend/resume with the Polaris gpu on the MBP 2017
+is totally broken atm., just as vgaswitcheroo can't do its job. Looks like
+powering down the gpu works, but powering up doesn't. And also modesetting
+at vgaswitcheroo switch time is no-go, because the DDC/AUX lines apparently
+can't be switched on that Apple gmux, and handover of that data seems to be
+not implemented in current vgaswitcheroo. At the moment switching between
+AMD only or Intel+AMD Prime setup is quite a pita...
 
-Build changes
--------------
+-mario
 
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_7714 -> Patchwork_16038
+--000000000000c05498059bbb5ac6
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-  CI-20190529: 20190529
-  CI_DRM_7714: b633f28f2de80cdb861d6c1c3b4df6fd2d53239f @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5358: c6fc013f414b806175dc4143c58ab445e5235ea5 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_16038: 372cfdbe8c334cb61d6cb4e47e030286e00b883c @ git://anongit.freedesktop.org/gfx-ci/linux
+<div dir=3D"ltr"><div dir=3D"ltr">On Thu, Jan 9, 2020 at 8:49 PM Alex Deuch=
+er &lt;<a href=3D"mailto:alexdeucher@gmail.com">alexdeucher@gmail.com</a>&g=
+t; wrote:<br></div><div class=3D"gmail_quote"><blockquote class=3D"gmail_qu=
+ote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,20=
+4);padding-left:1ex">On Thu, Jan 9, 2020 at 11:47 AM Mario Kleiner<br>
+&lt;<a href=3D"mailto:mario.kleiner.de@gmail.com" target=3D"_blank">mario.k=
+leiner.de@gmail.com</a>&gt; wrote:<br>
+&gt;<br>
+&gt; On Thu, Jan 9, 2020 at 4:40 PM Alex Deucher &lt;<a href=3D"mailto:alex=
+deucher@gmail.com" target=3D"_blank">alexdeucher@gmail.com</a>&gt; wrote:<b=
+r>
+&gt;&gt;<br>
+&gt;&gt; On Thu, Jan 9, 2020 at 10:08 AM Mario Kleiner<br>
+&gt;&gt; &lt;<a href=3D"mailto:mario.kleiner.de@gmail.com" target=3D"_blank=
+">mario.kleiner.de@gmail.com</a>&gt; wrote:<br>
+&gt;&gt; &gt;<br>As Harry mentioned in the other thread, won&#39;t this onl=
+y work if the<br>
+display was brought up by the vbios?=C2=A0 In the suspend/resume case,<br>
+won&#39;t we just fall back to 2.7Gbps?<br>
+<br>
+Alex<br>
+<br></blockquote></div><div class=3D"gmail_quote"><br></div><div class=3D"g=
+mail_quote">Adding Harry to cc...<br></div><div class=3D"gmail_quote"><br><=
+/div><div class=3D"gmail_quote">The code is only executed for eDP. On the I=
+ntel side, it seems that intel_edp_init_dpcd() gets only called during driv=
+er load / modesetting init, so not on resume.</div><div class=3D"gmail_quot=
+e"><br></div><div class=3D"gmail_quote">On the AMD DC side, dc_link_detect_=
+helper() has this early no-op return at the beginning:</div><div class=3D"g=
+mail_quote"><br></div><div class=3D"gmail_quote"><pre><span class=3D"gmail-=
+k">if</span> <span class=3D"gmail-p">((</span><span class=3D"gmail-n"><a hr=
+ef=3D"https://elixir.bootlin.com/linux/v5.5-rc5/ident/link">link</a></span>=
+<span class=3D"gmail-o">-&gt;</span><span class=3D"gmail-n">connector_signa=
+l</span> <span class=3D"gmail-o">=3D=3D</span> <span class=3D"gmail-n"><a h=
+ref=3D"https://elixir.bootlin.com/linux/v5.5-rc5/ident/SIGNAL_TYPE_LVDS">SI=
+GNAL_TYPE_LVDS</a></span> <span class=3D"gmail-o">||</span>
+			<span class=3D"gmail-n"><a href=3D"https://elixir.bootlin.com/linux/v5.5=
+-rc5/ident/link">link</a></span><span class=3D"gmail-o">-&gt;</span><span c=
+lass=3D"gmail-n">connector_signal</span> <span class=3D"gmail-o">=3D=3D</sp=
+an> <span class=3D"gmail-n"><a href=3D"https://elixir.bootlin.com/linux/v5.=
+5-rc5/ident/SIGNAL_TYPE_EDP">SIGNAL_TYPE_EDP</a></span><span class=3D"gmail=
+-p">)</span> <span class=3D"gmail-o">&amp;&amp;</span>
+			<span class=3D"gmail-n"><a href=3D"https://elixir.bootlin.com/linux/v5.5=
+-rc5/ident/link">link</a></span><span class=3D"gmail-o">-&gt;</span><span c=
+lass=3D"gmail-n">local_sink</span><span class=3D"gmail-p">)</span>
+		<span class=3D"gmail-n"><a href=3D"https://elixir.bootlin.com/linux/v5.5-=
+rc5/ident/return">return</a></span> <span class=3D"gmail-n"><a href=3D"http=
+s://elixir.bootlin.com/linux/v5.5-rc5/ident/true">true</a></span><span clas=
+s=3D"gmail-p">;</span></pre></div><div class=3D"gmail_quote"><br></div><div=
+ class=3D"gmail_quote">So i guess if link-&gt;local_sink doesn&#39;t get NU=
+LL&#39;ed during a suspend/resume cycle, then we never reach the setup code=
+ that would overwrite with non vbios settings?</div><div class=3D"gmail_quo=
+te"><br></div><div class=3D"gmail_quote">Sounds reasonable to me, given tha=
+t eDP panels are usually fixed internal panels, nothing that gets hot(un-)p=
+lugged?</div><div class=3D"gmail_quote"><br></div><div class=3D"gmail_quote=
+">I can&#39;t test, because suspend/resume with the Polaris gpu on the MBP =
+2017 is totally broken atm., just as vgaswitcheroo can&#39;t do its job. Lo=
+oks like powering down the gpu works, but powering up doesn&#39;t. And also=
+ modesetting at vgaswitcheroo switch time is no-go, because the DDC/AUX lin=
+es apparently can&#39;t be switched on that Apple gmux, and handover of tha=
+t data seems to be not implemented in current vgaswitcheroo. At the moment =
+switching between AMD only or Intel+AMD Prime setup is quite a pita...<br><=
+/div><div class=3D"gmail_quote"><br></div><div class=3D"gmail_quote">-mario=
+<br></div><div class=3D"gmail_quote"><br></div><div class=3D"gmail_quote"><=
+br></div></div>
 
+--000000000000c05498059bbb5ac6--
 
-== Linux commits ==
+--===============1548942475==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
-372cfdbe8c33 drm/i915/gem: Honour O_NONBLOCK before throttling execbuf submissions
-275b6f677174 drm/i915: Allow userspace to specify ringsize on construction
-421ad93f393d drm/i915: Flush idle barriers when waiting
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16038/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============1548942475==--
