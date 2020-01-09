@@ -1,32 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 13F281354F7
-	for <lists+intel-gfx@lfdr.de>; Thu,  9 Jan 2020 09:59:04 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7FF5D1354F9
+	for <lists+intel-gfx@lfdr.de>; Thu,  9 Jan 2020 09:59:06 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C2A496E8E2;
-	Thu,  9 Jan 2020 08:59:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 359B56E8DC;
+	Thu,  9 Jan 2020 08:59:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8A5A46E8E0
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7C3996E8DC
  for <intel-gfx@lists.freedesktop.org>; Thu,  9 Jan 2020 08:59:00 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19817530-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19817531-1500050 
  for multiple; Thu, 09 Jan 2020 08:58:43 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu,  9 Jan 2020 08:58:32 +0000
-Message-Id: <20200109085839.873553-7-chris@chris-wilson.co.uk>
+Date: Thu,  9 Jan 2020 08:58:33 +0000
+Message-Id: <20200109085839.873553-8-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.25.0.rc1
 In-Reply-To: <20200109085839.873553-1-chris@chris-wilson.co.uk>
 References: <20200109085839.873553-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 07/14] drm/i915/gt: Yield the timeslice if
- waiting on a semaphore
+Subject: [Intel-gfx] [PATCH 08/14] drm/i915: Use common priotree lists for
+ virtual engine
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,215 +44,108 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-If we find ourselves waiting on a MI_SEMAPHORE_WAIT, either within the
-user batch or in our own preamble, the engine raises a
-GT_WAIT_ON_SEMAPHORE interrupt. We can unmask that interrupt and so
-respond to a semaphore wait by yielding the timeslice, if we have
-another context to yield to!
+Since commit 422d7df4f090 ("drm/i915: Replace engine->timeline with a
+plain list"), we used the default embedded priotree slot for the virtual
+engine request queue, which means we can also use the same solitary slot
+with the scheduler. However, the priolist is expected to be guarded by
+the engine->active.lock, but this is not true for the virtual engine
 
-The only real complication is that the interrupt is only generated for
-the start of the semaphore wait, and is asynchronous to our
-process_csb() -- that is, we may not have registered the timeslice before
-we see the interrupt. To ensure we don't miss a potential semaphore
-blocking forward progress (e.g. selftests/live_timeslice_preempt) we mark
-the interrupt and apply it to the next timeslice regardless of whether it
-was active at the time.
-
-v2: We use semaphores in preempt-to-busy, within the timeslicing
-implementation itself! Ergo, when we do insert a preemption due to an
-expired timeslice, the new context may start with the missed semaphore
-flagged by the retired context and be yielded, ad infinitum. To avoid
-this, read the context id at the time of the semaphore interrupt and
-only yield if that context is still active.
-
+References: 422d7df4f090 ("drm/i915: Replace engine->timeline with a plain list")
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 ---
- drivers/gpu/drm/i915/gt/intel_engine_types.h |  9 ++++++
- drivers/gpu/drm/i915/gt/intel_gt_irq.c       | 32 +++++++++++---------
- drivers/gpu/drm/i915/gt/intel_lrc.c          | 31 ++++++++++++++++---
- drivers/gpu/drm/i915/i915_reg.h              |  5 +++
- 4 files changed, 59 insertions(+), 18 deletions(-)
+ drivers/gpu/drm/i915/gt/intel_lrc.c   |  3 +++
+ drivers/gpu/drm/i915/i915_request.c   |  4 +++-
+ drivers/gpu/drm/i915/i915_request.h   | 16 ++++++++++++++++
+ drivers/gpu/drm/i915/i915_scheduler.c |  3 +--
+ 4 files changed, 23 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine_types.h b/drivers/gpu/drm/i915/gt/intel_engine_types.h
-index 00287515e7af..d146d2fbd42a 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine_types.h
-+++ b/drivers/gpu/drm/i915/gt/intel_engine_types.h
-@@ -156,6 +156,15 @@ struct intel_engine_execlists {
- 	 */
- 	struct i915_priolist default_priolist;
- 
-+	/**
-+	 * @yield: CCID at the time of the last semaphore-wait interrupt.
-+	 *
-+	 * Instead of leaving a semaphore busy-spinning on an engine, we would
-+	 * like to switch to another ready context, i.e. yielding the semaphore
-+	 * timeslice.
-+	 */
-+	u32 yield;
-+
- 	/**
- 	 * @no_priolist: priority lists disabled
- 	 */
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_irq.c b/drivers/gpu/drm/i915/gt/intel_gt_irq.c
-index f796bdf1ed30..6ae64a224b02 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt_irq.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_irq.c
-@@ -24,6 +24,13 @@ cs_irq_handler(struct intel_engine_cs *engine, u32 iir)
- {
- 	bool tasklet = false;
- 
-+	if (iir & GT_WAIT_SEMAPHORE_INTERRUPT) {
-+		WRITE_ONCE(engine->execlists.yield,
-+			   ENGINE_READ_FW(engine, EXECLIST_CCID));
-+		if (del_timer(&engine->execlists.timer))
-+			tasklet = true;
-+	}
-+
- 	if (iir & GT_CONTEXT_SWITCH_INTERRUPT)
- 		tasklet = true;
- 
-@@ -210,7 +217,10 @@ void gen11_gt_irq_reset(struct intel_gt *gt)
- 
- void gen11_gt_irq_postinstall(struct intel_gt *gt)
- {
--	const u32 irqs = GT_RENDER_USER_INTERRUPT | GT_CONTEXT_SWITCH_INTERRUPT;
-+	const u32 irqs =
-+		GT_RENDER_USER_INTERRUPT |
-+		GT_CONTEXT_SWITCH_INTERRUPT |
-+		GT_WAIT_SEMAPHORE_INTERRUPT;
- 	struct intel_uncore *uncore = gt->uncore;
- 	const u32 dmask = irqs << 16 | irqs;
- 	const u32 smask = irqs << 16;
-@@ -357,21 +367,15 @@ void gen8_gt_irq_postinstall(struct intel_gt *gt)
- 	struct intel_uncore *uncore = gt->uncore;
- 
- 	/* These are interrupts we'll toggle with the ring mask register */
-+	const u32 irqs =
-+		GT_RENDER_USER_INTERRUPT |
-+		GT_CONTEXT_SWITCH_INTERRUPT |
-+		GT_WAIT_SEMAPHORE_INTERRUPT;
- 	u32 gt_interrupts[] = {
--		(GT_RENDER_USER_INTERRUPT << GEN8_RCS_IRQ_SHIFT |
--		 GT_CONTEXT_SWITCH_INTERRUPT << GEN8_RCS_IRQ_SHIFT |
--		 GT_RENDER_USER_INTERRUPT << GEN8_BCS_IRQ_SHIFT |
--		 GT_CONTEXT_SWITCH_INTERRUPT << GEN8_BCS_IRQ_SHIFT),
--
--		(GT_RENDER_USER_INTERRUPT << GEN8_VCS0_IRQ_SHIFT |
--		 GT_CONTEXT_SWITCH_INTERRUPT << GEN8_VCS0_IRQ_SHIFT |
--		 GT_RENDER_USER_INTERRUPT << GEN8_VCS1_IRQ_SHIFT |
--		 GT_CONTEXT_SWITCH_INTERRUPT << GEN8_VCS1_IRQ_SHIFT),
--
-+		irqs << GEN8_RCS_IRQ_SHIFT | irqs << GEN8_BCS_IRQ_SHIFT,
-+		irqs << GEN8_VCS0_IRQ_SHIFT | irqs << GEN8_VCS1_IRQ_SHIFT,
- 		0,
--
--		(GT_RENDER_USER_INTERRUPT << GEN8_VECS_IRQ_SHIFT |
--		 GT_CONTEXT_SWITCH_INTERRUPT << GEN8_VECS_IRQ_SHIFT)
-+		irqs << GEN8_VECS_IRQ_SHIFT,
- 	};
- 
- 	gt->pm_ier = 0x0;
 diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-index 3f1f55327506..08d5087e7582 100644
+index 08d5087e7582..45f90cfbe2d6 100644
 --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
 +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-@@ -1662,7 +1662,8 @@ static void defer_active(struct intel_engine_cs *engine)
- }
+@@ -985,6 +985,8 @@ __unwind_incomplete_requests(struct intel_engine_cs *engine)
+ 			GEM_BUG_ON(RB_EMPTY_ROOT(&engine->execlists.queue.rb_root));
  
- static bool
--need_timeslice(struct intel_engine_cs *engine, const struct i915_request *rq)
-+need_timeslice(const struct intel_engine_cs *engine,
-+	       const struct i915_request *rq)
- {
- 	int hint;
- 
-@@ -1678,6 +1679,27 @@ need_timeslice(struct intel_engine_cs *engine, const struct i915_request *rq)
- 	return hint >= effective_prio(rq);
- }
- 
-+static bool
-+timeslice_expired(const struct intel_engine_cs *engine,
-+		  const struct i915_request *rq)
-+{
-+	const struct intel_engine_execlists *el = &engine->execlists;
+ 			list_move(&rq->sched.link, pl);
++			set_bit(I915_FENCE_FLAG_PQUEUE, &rq->fence.flags);
 +
-+	return (timer_expired(&el->timer) ||
-+		/*
-+		 * Once bitten, forever smitten!
-+		 *
-+		 * If the active context ever busy-waited on a semaphore,
-+		 * it will be treated as a hog until the end of its timeslice.
-+		 * The HW only sends an interrupt on the first miss, and we
-+		 * do know if that semaphore has been signaled, or even if it
-+		 * is now stuck on another semaphore. Play safe, yield if it
-+		 * might be stuck -- it will be given a fresh timeslice in
-+		 * the near future.
-+		 */
-+		upper_32_bits(rq->context->lrc_desc) == READ_ONCE(el->yield));
+ 			active = rq;
+ 		} else {
+ 			struct intel_engine_cs *owner = rq->context->engine;
+@@ -2499,6 +2501,7 @@ static void execlists_submit_request(struct i915_request *request)
+ 	spin_lock_irqsave(&engine->active.lock, flags);
+ 
+ 	queue_request(engine, &request->sched, rq_prio(request));
++	set_bit(I915_FENCE_FLAG_PQUEUE, &request->fence.flags);
+ 
+ 	GEM_BUG_ON(RB_EMPTY_ROOT(&engine->execlists.queue.rb_root));
+ 	GEM_BUG_ON(list_empty(&request->sched.link));
+diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
+index be185886e4fc..9ed0d3bc7249 100644
+--- a/drivers/gpu/drm/i915/i915_request.c
++++ b/drivers/gpu/drm/i915/i915_request.c
+@@ -408,8 +408,10 @@ bool __i915_request_submit(struct i915_request *request)
+ xfer:	/* We may be recursing from the signal callback of another i915 fence */
+ 	spin_lock_nested(&request->lock, SINGLE_DEPTH_NESTING);
+ 
+-	if (!test_and_set_bit(I915_FENCE_FLAG_ACTIVE, &request->fence.flags))
++	if (!test_and_set_bit(I915_FENCE_FLAG_ACTIVE, &request->fence.flags)) {
+ 		list_move_tail(&request->sched.link, &engine->active.requests);
++		clear_bit(I915_FENCE_FLAG_PQUEUE, &request->fence.flags);
++	}
+ 
+ 	if (test_bit(DMA_FENCE_FLAG_ENABLE_SIGNAL_BIT, &request->fence.flags) &&
+ 	    !test_bit(DMA_FENCE_FLAG_SIGNALED_BIT, &request->fence.flags) &&
+diff --git a/drivers/gpu/drm/i915/i915_request.h b/drivers/gpu/drm/i915/i915_request.h
+index 031433691a06..f3e50ec989b8 100644
+--- a/drivers/gpu/drm/i915/i915_request.h
++++ b/drivers/gpu/drm/i915/i915_request.h
+@@ -70,6 +70,17 @@ enum {
+ 	 */
+ 	I915_FENCE_FLAG_ACTIVE = DMA_FENCE_FLAG_USER_BITS,
+ 
++	/*
++	 * I915_FENCE_FLAG_PQUEUE - this request is ready for execution
++	 *
++	 * Using the scheduler, when a request is ready for execution it is put
++	 * into the priority queue. We want to track its membership within that
++	 * queue so that we can easily check before rescheduling.
++	 *
++	 * See i915_request_in_priority_queue()
++	 */
++	I915_FENCE_FLAG_PQUEUE,
++
+ 	/*
+ 	 * I915_FENCE_FLAG_SIGNAL - this request is currently on signal_list
+ 	 *
+@@ -361,6 +372,11 @@ static inline bool i915_request_is_active(const struct i915_request *rq)
+ 	return test_bit(I915_FENCE_FLAG_ACTIVE, &rq->fence.flags);
+ }
+ 
++static inline bool i915_request_in_priority_queue(const struct i915_request *rq)
++{
++	return test_bit(I915_FENCE_FLAG_PQUEUE, &rq->fence.flags);
 +}
 +
- static int
- switch_prio(struct intel_engine_cs *engine, const struct i915_request *rq)
- {
-@@ -1693,8 +1715,7 @@ timeslice(const struct intel_engine_cs *engine)
- 	return READ_ONCE(engine->props.timeslice_duration_ms);
- }
- 
--static unsigned long
--active_timeslice(const struct intel_engine_cs *engine)
-+static unsigned long active_timeslice(const struct intel_engine_cs *engine)
- {
- 	const struct i915_request *rq = *engine->execlists.active;
- 
-@@ -1845,7 +1866,7 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
- 			last->context->lrc_desc |= CTX_DESC_FORCE_RESTORE;
- 			last = NULL;
- 		} else if (need_timeslice(engine, last) &&
--			   timer_expired(&engine->execlists.timer)) {
-+			   timeslice_expired(engine, last)) {
- 			ENGINE_TRACE(engine,
- 				     "expired last=%llx:%lld, prio=%d, hint=%d\n",
- 				     last->fence.context,
-@@ -2111,6 +2132,7 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
+ /**
+  * Returns true if seq1 is later than seq2.
+  */
+diff --git a/drivers/gpu/drm/i915/i915_scheduler.c b/drivers/gpu/drm/i915/i915_scheduler.c
+index bf87c70bfdd9..4f6e4d6c590a 100644
+--- a/drivers/gpu/drm/i915/i915_scheduler.c
++++ b/drivers/gpu/drm/i915/i915_scheduler.c
+@@ -338,8 +338,7 @@ static void __i915_schedule(struct i915_sched_node *node,
+ 			continue;
  		}
- 		clear_ports(port + 1, last_port - port);
  
-+		WRITE_ONCE(execlists->yield, -1);
- 		execlists_submit_ports(engine);
- 		set_preempt_timeout(engine);
- 	} else {
-@@ -3960,6 +3982,7 @@ logical_ring_default_irqs(struct intel_engine_cs *engine)
- 
- 	engine->irq_enable_mask = GT_RENDER_USER_INTERRUPT << shift;
- 	engine->irq_keep_mask = GT_CONTEXT_SWITCH_INTERRUPT << shift;
-+	engine->irq_keep_mask |= GT_WAIT_SEMAPHORE_INTERRUPT << shift;
- }
- 
- static void rcs_submission_override(struct intel_engine_cs *engine)
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index 6cc55c103f67..a4976512835f 100644
---- a/drivers/gpu/drm/i915/i915_reg.h
-+++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -3085,6 +3085,7 @@ static inline bool i915_mmio_reg_valid(i915_reg_t reg)
- #define GT_BSD_CS_ERROR_INTERRUPT		(1 << 15)
- #define GT_BSD_USER_INTERRUPT			(1 << 12)
- #define GT_RENDER_L3_PARITY_ERROR_INTERRUPT_S1	(1 << 11) /* hsw+; rsvd on snb, ivb, vlv */
-+#define GT_WAIT_SEMAPHORE_INTERRUPT		REG_BIT(11) /* bdw+ */
- #define GT_CONTEXT_SWITCH_INTERRUPT		(1 <<  8)
- #define GT_RENDER_L3_PARITY_ERROR_INTERRUPT	(1 <<  5) /* !snb */
- #define GT_RENDER_PIPECTL_NOTIFY_INTERRUPT	(1 <<  4)
-@@ -4036,6 +4037,10 @@ static inline bool i915_mmio_reg_valid(i915_reg_t reg)
- #define   CCID_EN			BIT(0)
- #define   CCID_EXTENDED_STATE_RESTORE	BIT(2)
- #define   CCID_EXTENDED_STATE_SAVE	BIT(3)
-+
-+#define EXECLIST_STATUS(base)	_MMIO((base) + 0x234)
-+#define EXECLIST_CCID(base)	_MMIO((base) + 0x238)
-+
- /*
-  * Notes on SNB/IVB/VLV context size:
-  * - Power context is saved elsewhere (LLC or stolen)
+-		if (!intel_engine_is_virtual(engine) &&
+-		    !i915_request_is_active(node_to_request(node))) {
++		if (i915_request_in_priority_queue(node_to_request(node))) {
+ 			if (!cache.priolist)
+ 				cache.priolist =
+ 					i915_sched_lookup_priolist(engine,
 -- 
 2.25.0.rc1
 
