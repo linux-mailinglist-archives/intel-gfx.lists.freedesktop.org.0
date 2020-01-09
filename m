@@ -2,38 +2,28 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 449CE1354A9
-	for <lists+intel-gfx@lfdr.de>; Thu,  9 Jan 2020 09:46:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4102C1354C5
+	for <lists+intel-gfx@lfdr.de>; Thu,  9 Jan 2020 09:51:49 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AEC796E3F7;
-	Thu,  9 Jan 2020 08:46:37 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F3F3B6E3F7
- for <Intel-gfx@lists.freedesktop.org>; Thu,  9 Jan 2020 08:46:35 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 09 Jan 2020 00:46:35 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,413,1571727600"; d="scan'208";a="421715428"
-Received: from gaia.fi.intel.com ([10.237.72.192])
- by fmsmga005.fm.intel.com with ESMTP; 09 Jan 2020 00:46:33 -0800
-Received: by gaia.fi.intel.com (Postfix, from userid 1000)
- id CA81F5C1DE9; Thu,  9 Jan 2020 10:46:02 +0200 (EET)
-From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>, Intel-gfx@lists.freedesktop.org,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-In-Reply-To: <157850084100.13423.10479098209136206233@skylake-alporthouse-com>
-References: <20200108161954.29739-1-tvrtko.ursulin@linux.intel.com>
- <157850084100.13423.10479098209136206233@skylake-alporthouse-com>
-Date: Thu, 09 Jan 2020 10:46:02 +0200
-Message-ID: <87pnftf25x.fsf@gaia.fi.intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 03A5E6E3AE;
+	Thu,  9 Jan 2020 08:51:47 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 60F116E3AE
+ for <intel-gfx@lists.freedesktop.org>; Thu,  9 Jan 2020 08:51:45 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19817458-1500050 
+ for <intel-gfx@lists.freedesktop.org>; Thu, 09 Jan 2020 08:51:42 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu,  9 Jan 2020 08:51:42 +0000
+Message-Id: <20200109085142.871563-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.25.0.rc1
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Revert "drm/i915/tgl:
- Wa_1607138340"
+Subject: [Intel-gfx] [CI] drm/i915: Pin the context as we work on it
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,27 +41,155 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Chris Wilson <chris@chris-wilson.co.uk> writes:
+Since we now allow the intel_context_unpin() to run unserialised, we
+risk our operations under the intel_context_lock_pinned() being run as
+the context is unpinned (and thus invalidating our state). We can
+atomically acquire the pin, testing to see if it is pinned in the
+process, thus ensuring that the state remains consistent during the
+course of the whole operation.
 
-> Quoting Tvrtko Ursulin (2020-01-08 16:19:54)
->> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->> 
->> This reverts commit 08fff7aeddc9dd72161b4c8fc27fbab12b4b9352.
->> 
->> For some yet unexplained reason not having this improves stability of some
->> media workloads.
->> 
->> Promise is that the media hang will be root caused properly and in the
->> meantime absence of this workaround is unlikely to cause problems.
->
-> I suspect this is shooting the messenger. The danger is that we rely on
-> FORCE_RESTORE for preemption, and so if this bit is triggering the issue,
-> their problem just becomes more sporadic.
+Fixes: 841350223816 ("drm/i915/gt: Drop mutex serialisation between context pin/unpin")
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+---
+ drivers/gpu/drm/i915/gem/i915_gem_context.c | 10 +++++++---
+ drivers/gpu/drm/i915/gt/intel_context.h     |  7 ++++++-
+ drivers/gpu/drm/i915/i915_debugfs.c         | 10 ++++------
+ drivers/gpu/drm/i915/i915_perf.c            | 15 +++++----------
+ 4 files changed, 22 insertions(+), 20 deletions(-)
 
-Noted. But lets get a sample point with A0. We kind
-of know where to focus our gaze from now on.
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+index 88f6253f5405..a2e57e62af30 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+@@ -1236,12 +1236,14 @@ gen8_modify_rpcs(struct intel_context *ce, struct intel_sseu sseu)
+ 	 * image, or into the registers directory, does not stick). Pristine
+ 	 * and idle contexts will be configured on pinning.
+ 	 */
+-	if (!intel_context_is_pinned(ce))
++	if (!intel_context_pin_if_active(ce))
+ 		return 0;
+ 
+ 	rq = intel_engine_create_kernel_request(ce->engine);
+-	if (IS_ERR(rq))
+-		return PTR_ERR(rq);
++	if (IS_ERR(rq)) {
++		ret = PTR_ERR(rq);
++		goto out_unpin;
++	}
+ 
+ 	/* Serialise with the remote context */
+ 	ret = intel_context_prepare_remote_request(ce, rq);
+@@ -1249,6 +1251,8 @@ gen8_modify_rpcs(struct intel_context *ce, struct intel_sseu sseu)
+ 		ret = gen8_emit_rpcs_config(rq, ce, sseu);
+ 
+ 	i915_request_add(rq);
++out_unpin:
++	intel_context_unpin(ce);
+ 	return ret;
+ }
+ 
+diff --git a/drivers/gpu/drm/i915/gt/intel_context.h b/drivers/gpu/drm/i915/gt/intel_context.h
+index 0f5ae4ff3b10..63073ebc6cf1 100644
+--- a/drivers/gpu/drm/i915/gt/intel_context.h
++++ b/drivers/gpu/drm/i915/gt/intel_context.h
+@@ -76,9 +76,14 @@ static inline void intel_context_unlock_pinned(struct intel_context *ce)
+ 
+ int __intel_context_do_pin(struct intel_context *ce);
+ 
++static inline bool intel_context_pin_if_active(struct intel_context *ce)
++{
++	return atomic_inc_not_zero(&ce->pin_count);
++}
++
+ static inline int intel_context_pin(struct intel_context *ce)
+ {
+-	if (likely(atomic_inc_not_zero(&ce->pin_count)))
++	if (likely(intel_context_pin_if_active(ce)))
+ 		return 0;
+ 
+ 	return __intel_context_do_pin(ce);
+diff --git a/drivers/gpu/drm/i915/i915_debugfs.c b/drivers/gpu/drm/i915/i915_debugfs.c
+index 0ac98e39eb75..db184536acef 100644
+--- a/drivers/gpu/drm/i915/i915_debugfs.c
++++ b/drivers/gpu/drm/i915/i915_debugfs.c
+@@ -321,16 +321,15 @@ static void print_context_stats(struct seq_file *m,
+ 
+ 		for_each_gem_engine(ce,
+ 				    i915_gem_context_lock_engines(ctx), it) {
+-			intel_context_lock_pinned(ce);
+-			if (intel_context_is_pinned(ce)) {
++			if (intel_context_pin_if_active(ce)) {
+ 				rcu_read_lock();
+ 				if (ce->state)
+ 					per_file_stats(0,
+ 						       ce->state->obj, &kstats);
+ 				per_file_stats(0, ce->ring->vma->obj, &kstats);
+ 				rcu_read_unlock();
++				intel_context_unpin(ce);
+ 			}
+-			intel_context_unlock_pinned(ce);
+ 		}
+ 		i915_gem_context_unlock_engines(ctx);
+ 
+@@ -1513,15 +1512,14 @@ static int i915_context_status(struct seq_file *m, void *unused)
+ 
+ 		for_each_gem_engine(ce,
+ 				    i915_gem_context_lock_engines(ctx), it) {
+-			intel_context_lock_pinned(ce);
+-			if (intel_context_is_pinned(ce)) {
++			if (intel_context_pin_if_active(ce)) {
+ 				seq_printf(m, "%s: ", ce->engine->name);
+ 				if (ce->state)
+ 					describe_obj(m, ce->state->obj);
+ 				describe_ctx_ring(m, ce->ring);
+ 				seq_putc(m, '\n');
++				intel_context_unpin(ce);
+ 			}
+-			intel_context_unlock_pinned(ce);
+ 		}
+ 		i915_gem_context_unlock_engines(ctx);
+ 
+diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
+index 84350c7bc711..0f556d80ba36 100644
+--- a/drivers/gpu/drm/i915/i915_perf.c
++++ b/drivers/gpu/drm/i915/i915_perf.c
+@@ -2159,8 +2159,6 @@ static int gen8_modify_context(struct intel_context *ce,
+ 	struct i915_request *rq;
+ 	int err;
+ 
+-	lockdep_assert_held(&ce->pin_mutex);
+-
+ 	rq = intel_engine_create_kernel_request(ce->engine);
+ 	if (IS_ERR(rq))
+ 		return PTR_ERR(rq);
+@@ -2203,17 +2201,14 @@ static int gen8_configure_context(struct i915_gem_context *ctx,
+ 		if (ce->engine->class != RENDER_CLASS)
+ 			continue;
+ 
+-		err = intel_context_lock_pinned(ce);
+-		if (err)
+-			break;
++		/* Otherwise OA settings will be set upon first use */
++		if (!intel_context_pin_if_active(ce))
++			continue;
+ 
+ 		flex->value = intel_sseu_make_rpcs(ctx->i915, &ce->sseu);
++		err = gen8_modify_context(ce, flex, count);
+ 
+-		/* Otherwise OA settings will be set upon first use */
+-		if (intel_context_is_pinned(ce))
+-			err = gen8_modify_context(ce, flex, count);
+-
+-		intel_context_unlock_pinned(ce);
++		intel_context_unpin(ce);
+ 		if (err)
+ 			break;
+ 	}
+-- 
+2.25.0.rc1
 
-Acked-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
