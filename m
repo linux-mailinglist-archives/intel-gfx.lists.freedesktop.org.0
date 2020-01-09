@@ -2,37 +2,34 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 79B2E135A09
-	for <lists+intel-gfx@lfdr.de>; Thu,  9 Jan 2020 14:28:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E0CC7135A36
+	for <lists+intel-gfx@lfdr.de>; Thu,  9 Jan 2020 14:35:10 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D08F66E402;
-	Thu,  9 Jan 2020 13:27:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CCF356E422;
+	Thu,  9 Jan 2020 13:35:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 945476E402
- for <intel-gfx@lists.freedesktop.org>; Thu,  9 Jan 2020 13:27:57 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 15D1589FE3;
+ Thu,  9 Jan 2020 13:35:06 +0000 (UTC)
 X-Amp-Result: UNKNOWN
 X-Amp-Original-Verdict: FILE UNKNOWN
 X-Amp-File-Uploaded: False
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 09 Jan 2020 05:27:56 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,413,1571727600"; d="scan'208";a="303868909"
-Received: from ramaling-i9x.iind.intel.com (HELO intel.com) ([10.99.66.154])
- by orsmga001.jf.intel.com with ESMTP; 09 Jan 2020 05:27:55 -0800
-Date: Thu, 9 Jan 2020 18:57:27 +0530
-From: Ramalingam C <ramalingam.c@intel.com>
-To: Anshuman Gupta <anshuman.gupta@intel.com>
-Message-ID: <20200109132727.GC32180@intel.com>
-References: <20200109125508.19601-1-anshuman.gupta@intel.com>
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 09 Jan 2020 05:35:04 -0800
+X-IronPort-AV: E=Sophos;i="5.69,413,1571727600"; d="scan'208";a="218365494"
+Received: from jlahtine-desk.ger.corp.intel.com (HELO localhost)
+ ([10.252.9.128])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 09 Jan 2020 05:35:01 -0800
+Date: Thu, 9 Jan 2020 15:34:58 +0200
+From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Message-ID: <20200109133458.GA15558@jlahtine-desk.ger.corp.intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20200109125508.19601-1-anshuman.gupta@intel.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/hdcp: restore hdcp state same
- as previous
+Subject: [Intel-gfx] [PULL] drm-intel-fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,102 +42,86 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Maxime Ripard <mripard@kernel.org>, intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 2020-01-09 at 18:25:08 +0530, Anshuman Gupta wrote:
-> When port is disabled due to modeset or DPMS off actually
-> it disables the HDCP encryption keeping its state to
-s/state/"content protection property as"
-> CP_ENABLED.
-> this doesn't enable HDCP again while port
-> gets enable again.
-Since the content protection is left at ENABLED state by mistake at next
-DDI enable flow HDCP auth is not attempted.
+Hi Dave & Daniel,
 
-> HDCP state should set accordingly
-content protection property state should be updated as per port
-authentication state.
-> when port is disabled.
-> 
-> v2: Incorporated the necessary locking and making sure
->     when user explicitly set HDCP to UNDESRIED it should
->     make HDCP to desired while disabling DDI. (Ram)
-Need to rephrase this too.
-> 
-> CC: Ramalingam C <ramalingam.c@intel.com>
-> Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_display_types.h |  1 +
->  drivers/gpu/drm/i915/display/intel_hdcp.c          | 12 +++++++++++-
->  2 files changed, 12 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-> index 630a94892b7b..f2552a52f26a 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> @@ -344,6 +344,7 @@ struct intel_hdcp {
->  	u64 value;
->  	struct delayed_work check_work;
->  	struct work_struct prop_work;
-> +	bool is_hdcp_undesired;
-small comment on why this is needed now would be good.
+Happy New Year, now back from the holiday break.
 
-/* Indicates whether HDCP is UNDESIERD by userspace */
->  
->  	/* HDCP1.4 Encryption status */
->  	bool hdcp_encrypted;
-> diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
-> index 0fdbd39f6641..507056aab33b 100644
-> --- a/drivers/gpu/drm/i915/display/intel_hdcp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
-> @@ -2002,11 +2002,17 @@ int intel_hdcp_disable(struct intel_connector *connector)
->  	mutex_lock(&hdcp->mutex);
->  
->  	if (hdcp->value != DRM_MODE_CONTENT_PROTECTION_UNDESIRED) {
-> -		hdcp->value = DRM_MODE_CONTENT_PROTECTION_UNDESIRED;
->  		if (hdcp->hdcp2_encrypted)
->  			ret = _intel_hdcp2_disable(connector);
->  		else if (hdcp->hdcp_encrypted)
->  			ret = _intel_hdcp_disable(connector);
-> +
-> +		if (hdcp->is_hdcp_undesired) {
-> +			hdcp->value = DRM_MODE_CONTENT_PROTECTION_UNDESIRED;
-> +		} else {
-> +			hdcp->value = DRM_MODE_CONTENT_PROTECTION_DESIRED;
-> +			schedule_work(&hdcp->prop_work);
-> +		}
->  	}
->  
->  	mutex_unlock(&hdcp->mutex);
-> @@ -2044,6 +2050,7 @@ void intel_hdcp_atomic_check(struct drm_connector *connector,
->  {
->  	u64 old_cp = old_state->content_protection;
->  	u64 new_cp = new_state->content_protection;
-> +	struct intel_connector *intel_conn = to_intel_connector(connector);
->  	struct drm_crtc_state *crtc_state;
->  
->  	if (!new_state->crtc) {
-> @@ -2069,6 +2076,9 @@ void intel_hdcp_atomic_check(struct drm_connector *connector,
->  			return;
->  	}
->  
-> +	if (new_cp == DRM_MODE_CONTENT_PROTECTION_UNDESIRED)
-> +		intel_conn->hdcp.is_hdcp_undesired  =  true;
-This flag will be always left at true. reset it to false as soon as used
-at intel_hdcp_disable()
+A bunch of important fixes. Further fixes for the power/perf
+regressions caused by the past security fixes. Then fix for
+user reported GPU hang regression. Revert to avoid screen flicker
+caused by HDA audio. Then missing two W/A and uninitialized uAPI
+variable fix.
 
--Ram
-> +
->  	crtc_state = drm_atomic_get_new_crtc_state(new_state->state,
->  						   new_state->crtc);
->  	crtc_state->mode_changed = true;
-> -- 
-> 2.24.0
-> 
+There's one further fix which I didn't include in this PR as the
+CI results won't make it in time. So at least that will be in next
+weeks PR.
+
+Regards, Joonas
+
+***
+
+drm-intel-fixes-2020-01-09-1:
+
+- Fix GitLab issue #446 causing GPU hangs: Do not restore invalid RS state
+- Fix GitLab issue #846: Restore coarse power gating that was disabled
+  by initial RC66 context corruption security fixes.
+- Revert f6ec9483091f ("drm/i915: extend audio CDCLK>=2*BCLK constraint to more platforms")
+  to avoid screen flicker
+- Fix to fill in unitialized uabi_instance in virtual engine uAPI
+- Add two missing W/As for ICL and EHL
+
+The following changes since commit c79f46a282390e0f5b306007bf7b11a46d529538:
+
+  Linux 5.5-rc5 (2020-01-05 14:23:27 -0800)
+
+are available in the Git repository at:
+
+  git://anongit.freedesktop.org/drm/drm-intel tags/drm-intel-fixes-2020-01-09-1
+
+for you to fetch changes up to 2b2c4a83d69dc9f2b46b8e791f5b8c2451c267bd:
+
+  drm/i915/dp: Disable Port sync mode correctly on teardown (2020-01-07 15:11:40 +0200)
+
+----------------------------------------------------------------
+- Fix GitLab issue #446 causing GPU hangs: Do not restore invalid RS state
+- Fix GitLab issue #846: Restore coarse power gating that was disabled
+  by initial RC66 context corruption security fixes.
+- Revert f6ec9483091f ("drm/i915: extend audio CDCLK>=2*BCLK constraint to more platforms")
+  to avoid screen flicker
+- Fix to fill in unitialized uabi_instance in virtual engine uAPI
+- Add two missing W/As for ICL and EHL
+
+----------------------------------------------------------------
+Chris Wilson (3):
+      drm/i915/gt: Mark up virtual engine uabi_instance
+      drm/i915/gt: Do not restore invalid RS state
+      drm/i915/gt: Restore coarse power gating
+
+Kai Vehmanen (1):
+      drm/i915: Limit audio CDCLK>=2*BCLK constraint back to GLK only
+
+Manasi Navare (1):
+      drm/i915/dp: Disable Port sync mode correctly on teardown
+
+Matt Roper (2):
+      drm/i915: Add Wa_1408615072 and Wa_1407596294 to icl,ehl
+      drm/i915: Add Wa_1407352427:icl,ehl
+
+ drivers/gpu/drm/i915/display/intel_audio.c      |  4 ++--
+ drivers/gpu/drm/i915/display/intel_display.c    |  7 +-----
+ drivers/gpu/drm/i915/gt/intel_lrc.c             |  2 ++
+ drivers/gpu/drm/i915/gt/intel_ring_submission.c | 31 +++++++++----------------
+ drivers/gpu/drm/i915/i915_drv.h                 |  6 +++--
+ drivers/gpu/drm/i915/i915_reg.h                 |  8 ++++++-
+ drivers/gpu/drm/i915/intel_pm.c                 | 11 +++++++++
+ 7 files changed, 38 insertions(+), 31 deletions(-)
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
