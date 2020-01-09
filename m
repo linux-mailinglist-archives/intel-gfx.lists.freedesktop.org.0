@@ -2,31 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B0991363D2
-	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jan 2020 00:28:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5CB8A13640B
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jan 2020 00:52:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5CABA8994D;
-	Thu,  9 Jan 2020 23:28:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BA5D86E97D;
+	Thu,  9 Jan 2020 23:52:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id C02C689C08;
- Thu,  9 Jan 2020 23:28:33 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 034846E97C;
+ Thu,  9 Jan 2020 23:52:26 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id B75A5A47DF;
- Thu,  9 Jan 2020 23:28:33 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id EFAE7A0009;
+ Thu,  9 Jan 2020 23:52:25 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Thu, 09 Jan 2020 23:28:33 -0000
-Message-ID: <157861251372.4563.1293428811328118726@emeril.freedesktop.org>
+To: =?utf-8?b?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Date: Thu, 09 Jan 2020 23:52:25 -0000
+Message-ID: <157861394597.4564.3598309262101991624@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20200109141152.975687-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200109141152.975687-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/i915/gt=3A_Validation_rotated_vma_bounds_are_within_the?=
- =?utf-8?q?_object?=
+References: <20200109150752.28098-1-mario.kleiner.de@gmail.com>
+In-Reply-To: <20200109150752.28098-1-mario.kleiner.de@gmail.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBk?=
+ =?utf-8?q?rm/i915/dp=3A_Add_current_maximum_eDP_link_rate_to_sink=5Frate_?=
+ =?utf-8?q?array=2E_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,19 +48,20 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: drm/i915/gt: Validation rotated vma bounds are within the object
-URL   : https://patchwork.freedesktop.org/series/71827/
-State : warning
+Series: drm/i915/dp: Add current maximum eDP link rate to sink_rate array. (rev2)
+URL   : https://patchwork.freedesktop.org/series/71828/
+State : failure
 
 == Summary ==
 
-$ dim checkpatch origin/drm-tip
-cd35fb1ef5a1 drm/i915/gt: Validation rotated vma bounds are within the object
--:23: ERROR:BAD_SIGN_OFF: Unrecognized email address: 'Matthew Auld <matthew.auld@intel.com'
-#23: 
-Cc: Matthew Auld <matthew.auld@intel.com
-
-total: 1 errors, 0 warnings, 0 checks, 33 lines checked
+Applying: drm/i915/dp: Add current maximum eDP link rate to sink_rate array.
+error: corrupt patch at line 15
+error: could not build fake ancestor
+hint: Use 'git am --show-current-patch' to see the failed patch
+Patch failed at 0001 drm/i915/dp: Add current maximum eDP link rate to sink_rate array.
+When you have resolved this problem, run "git am --continue".
+If you prefer to skip this patch, run "git am --skip" instead.
+To restore the original branch and stop patching, run "git am --abort".
 
 _______________________________________________
 Intel-gfx mailing list
