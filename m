@@ -2,31 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16EC01357EA
-	for <lists+intel-gfx@lfdr.de>; Thu,  9 Jan 2020 12:27:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D2B51135839
+	for <lists+intel-gfx@lfdr.de>; Thu,  9 Jan 2020 12:41:52 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 82FC56E3D6;
-	Thu,  9 Jan 2020 11:27:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 54C2B6E3E1;
+	Thu,  9 Jan 2020 11:41:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 365276E3D6;
- Thu,  9 Jan 2020 11:27:05 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 31CD6A0087;
- Thu,  9 Jan 2020 11:27:05 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 70EBE6E3E1
+ for <intel-gfx@lists.freedesktop.org>; Thu,  9 Jan 2020 11:41:50 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 09 Jan 2020 03:41:49 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.69,413,1571727600"; d="scan'208";a="223264577"
+Received: from vandita-desktop.iind.intel.com ([10.223.74.218])
+ by orsmga006.jf.intel.com with ESMTP; 09 Jan 2020 03:41:48 -0800
+From: Vandita Kulkarni <vandita.kulkarni@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu,  9 Jan 2020 16:38:26 +0530
+Message-Id: <20200109110835.29764-1-vandita.kulkarni@intel.com>
+X-Mailer: git-send-email 2.21.0.5.gaeb582a
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
-Date: Thu, 09 Jan 2020 11:27:05 -0000
-Message-ID: <157856922520.4564.11109892190711674769@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200108181242.13650-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20200108181242.13650-1-ville.syrjala@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_series_starting_with_=5B1/9=5D_drm/i915/sdvo=3A_Reduce_the_?=
- =?utf-8?q?size_of_the_on_stack_buffers?=
+Subject: [Intel-gfx] [V6 0/9] Add support for mipi dsi cmd mode
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,41 +40,35 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: jani.nikula@intel.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+This series contains basic cmd mode enablemnet patches.
+This version fixes a compilation warning on patch-5 of v5.
 
-Series: series starting with [1/9] drm/i915/sdvo: Reduce the size of the on stack buffers
-URL   : https://patchwork.freedesktop.org/series/71775/
-State : warning
+Vandita Kulkarni (9):
+  drm/i915/dsi: Configure transcoder operation for command mode.
+  drm/i915/dsi: Add vblank calculation for command mode
+  drm/i915/dsi: Add cmd mode flags in display mode private flags
+  drm/i915/dsi: Add check for periodic command mode
+  drm/i915/dsi: Use private flags to indicate TE in cmd mode
+  drm/i915/dsi: Configure TE interrupt for cmd mode
+  drm/i915/dsi: Add TE handler for dsi cmd mode.
+  drm/i915/dsi: Initiate fame request in cmd mode
+  drm/i915/dsi: Clear the DSI IIR
 
-== Summary ==
+ drivers/gpu/drm/i915/display/icl_dsi.c        | 171 ++++++++++++++++--
+ drivers/gpu/drm/i915/display/intel_display.c  |  12 ++
+ .../drm/i915/display/intel_display_types.h    |  10 +
+ drivers/gpu/drm/i915/display/intel_dsi.h      |   3 +
+ drivers/gpu/drm/i915/i915_irq.c               | 124 ++++++++++++-
+ 5 files changed, 301 insertions(+), 19 deletions(-)
 
-$ dim checkpatch origin/drm-tip
-ac1818fd99c9 drm/i915/sdvo: Reduce the size of the on stack buffers
-f28fab3ed98c drm/i915: Consolidate HDMI force_dvi handling
--:26: WARNING:LONG_LINE: line over 100 characters
-#26: FILE: drivers/gpu/drm/i915/display/intel_hdmi.c:2115:
-+		READ_ONCE(to_intel_digital_connector_state(conn_state)->force_audio) != HDMI_AUDIO_OFF_DVI;
-
-total: 0 errors, 1 warnings, 0 checks, 147 lines checked
-9c38e233607e drm/i915/sdvo: Consolidate SDVO HDMI force_dvi handling
--:27: WARNING:LONG_LINE: line over 100 characters
-#27: FILE: drivers/gpu/drm/i915/display/intel_sdvo.c:1271:
-+		READ_ONCE(to_intel_digital_connector_state(conn_state)->force_audio) != HDMI_AUDIO_OFF_DVI;
-
-total: 0 errors, 1 warnings, 0 checks, 33 lines checked
-b7beccfe4cce drm/i915/sdvo: Fix SDVO colorimetry bit defines
-352cca7fca00 drm/i915/sdvo: Implement limited color range for SDVO HDMI properly
-8b3edc33044e drm/i915: Reject DRM_MODE_FLAG_DBLCLK with DVI sinks
-a367724ad6f5 drm/i915/sdvo: Make SDVO deal with HDMI pixel repeat
-e62085f51578 drm/i915/sdvo: Make .get_modes() return the number of modes
-521d3340a6bd drm/i915/dvo: Make .get_modes() return the number of modes
+-- 
+2.21.0.5.gaeb582a
 
 _______________________________________________
 Intel-gfx mailing list
