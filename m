@@ -2,54 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E8FA136164
-	for <lists+intel-gfx@lfdr.de>; Thu,  9 Jan 2020 20:49:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E66511361A8
+	for <lists+intel-gfx@lfdr.de>; Thu,  9 Jan 2020 21:19:24 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C269C6E048;
-	Thu,  9 Jan 2020 19:49:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7C6B56E964;
+	Thu,  9 Jan 2020 20:19:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x443.google.com (mail-wr1-x443.google.com
- [IPv6:2a00:1450:4864:20::443])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CAB656E048;
- Thu,  9 Jan 2020 19:49:27 +0000 (UTC)
-Received: by mail-wr1-x443.google.com with SMTP id z3so8733213wru.3;
- Thu, 09 Jan 2020 11:49:27 -0800 (PST)
+Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com
+ [IPv6:2a00:1450:4864:20::334])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 018406E962;
+ Thu,  9 Jan 2020 20:19:19 +0000 (UTC)
+Received: by mail-wm1-x334.google.com with SMTP id p17so4283281wmb.0;
+ Thu, 09 Jan 2020 12:19:19 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc:content-transfer-encoding;
- bh=1+BPUFdGjZolNEIZXyhgzf9fZtNW05/3LYukVrt9S1o=;
- b=Vn7VkzfN6G2DUWXXfNzcVAnLgsoj7O4UZGQAn/gcBfPiTy2uvzKmxP8jBU6Z7YqWL8
- Rfbmf2jpmNthnpWNXvB1c0OHI7JwSBAGX/rRQJDw6Gs66sChgQJZLh611CFC/Z/OVYdD
- rs5L/AeBrcDP+Reyc1sODLuNwhz6q6gXLVoq80hAcbOpjcpX0KxLlCBzqHM3ClEXwuh0
- rQMq6CvlV4YP+3uvnpaIUVjA69q0ubhqek6AdzD/mFOQhJSChzb+VMrYxBWcnKPH9GWO
- rJfnX9Iti5UbOqC+PXqTerdzrYXlDfQX+g7kUEHlpKzi+ljWmXSyEgJgRUnRwoZ/3aBJ
- cXng==
+ :cc; bh=LmmmTV+l4WQWa4WjNnHTYqHYZO7ME/LQrwd/inNoJ1M=;
+ b=ZZFbWktOPdVn9fle1ZdSDtb0yp+80d73K9LlqmiIVak5aKOKJno6Eyt73Ua57z68+D
+ h/xnZx7KqUxqghtYX5UnVlBNOgDLirgM+jyC1GhHL+3ZRMKh8zzFuXRSwp3IOIKztmrx
+ dsZB/1eZhTJKFc3+y+sKKUQyLfWZFaHtUQ76pP0C4upb4TYR1a+xoF+uXS4f+WhdcYJO
+ j9KObJ0bwwktx4vj1PA+B/9rFROBxpJl5DgBZM+UwOMRUs1OL20KHeHv9cUVzUMxG0l+
+ ZjnyiFPnGoPHiDlHZUpfscwP33KaJZ9WKK0dePEvQOfh/rs+j4mddXXnrBQsX3I5ZyDU
+ XYgg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc:content-transfer-encoding;
- bh=1+BPUFdGjZolNEIZXyhgzf9fZtNW05/3LYukVrt9S1o=;
- b=AiXU9xjrBxgmOj8u3Uj9ouS0/sw3KJ1szObV3C0i6oyK6BQYci5J1U7Gazb21EeiYy
- UVaFGaxPnflbj6gxbi7sxC5sv9NPZfZ9MOXBuVF8zButgVwZE6Z7tO0v09YMxzPDdxlW
- WI6jNG6k5JC/cSnlMnLBvRPYRoxx2lZgzMelI8ks4GfEblHMV3I6kGgjfKbulCsEanMx
- C248kXO0yt9fquJiVGQEF5wte+lw9OBGyMdBYXJKVMm4Phv8qCQF/KUNoycnL7/y68Tt
- 6uYeAKVm2RReM/Goa3gbPkOvVFnnfHPpXxpZ3AQdoMQyoOKUvxsrO5GRevpgzPOQ65ut
- UWyQ==
-X-Gm-Message-State: APjAAAXYsdUsPxJV/WPdLQrlHc66QTS51W9LUnyM92FzUjQ9t3wDgHww
- sge9nA8WP384hDgKK82Jr2RMnDMkFoAdK37Hqa0=
-X-Google-Smtp-Source: APXvYqz0ORhs0Mqz7yE/AIWpadxxhqlhWG8q+jKGYDvCRZuRRuyCcTfEodgVdWQ+rMIXd6/ZXFFaS6Z2x6WZrzZ9jtc=
-X-Received: by 2002:adf:e8ca:: with SMTP id k10mr12865990wrn.50.1578599366338; 
- Thu, 09 Jan 2020 11:49:26 -0800 (PST)
+ :message-id:subject:to:cc;
+ bh=LmmmTV+l4WQWa4WjNnHTYqHYZO7ME/LQrwd/inNoJ1M=;
+ b=m7DwR7t53KgzNtpTDYIWSBV3GdylufIFGhaLJfLcEa+hu4jXM/4wpXrU91IBoBcyml
+ UhFc5UTnHsleUX2qo8sR9as4dgTUhM/tUtH6VtwahSGXWjwb3bvHEIc8dLeYn3fcHUm7
+ 7siTrztE8UUw7eIS0ojcyX8GRJ9j8j3eT1jSIreaKPuSIP7fdTa5s6qBjRGLeXgLXud8
+ brYfxdcQft6n+bDyumvM8+A576V2pcz8vYAk3E0Vk4o8YsTLr9QB67MU4++vXtp0z/kM
+ iTWEejGM3Wt6GAtdtmZAdnzeHY+ZM2pCXf/qSXYTGolsEoYTxWlOfFxZVA5IqdmBfMcY
+ w3CA==
+X-Gm-Message-State: APjAAAVPGnB20ZS3v/UogoMJ4xwLh+x0+LMd8Z3I+9bTdwHA40e2Hfxc
+ nPA6I+oTR+fTHL/CxTCcJQjdKlm4T42laFudMgDW4A50QEs=
+X-Google-Smtp-Source: APXvYqweKVtjTiZXT6FmyiQcX5hZYRk/FefoHElRPe9Hf6tp6IkbnvnGMVafc8iiAUYCwEOicSJTfumqeFqCyiQvpZM=
+X-Received: by 2002:a1c:28d4:: with SMTP id o203mr6695542wmo.123.1578601158696; 
+ Thu, 09 Jan 2020 12:19:18 -0800 (PST)
 MIME-Version: 1.0
 References: <20200109150752.28098-1-mario.kleiner.de@gmail.com>
- <CADnq5_PvPD+FyEwUrqDVmbdLrP6ZC72HPtd19bqm-Csx-fHMOA@mail.gmail.com>
- <CAEsyxyjTvuCHHA3D-NJd=aGkHz2d=obSizwGQL8B4k1B7i2jJg@mail.gmail.com>
-In-Reply-To: <CAEsyxyjTvuCHHA3D-NJd=aGkHz2d=obSizwGQL8B4k1B7i2jJg@mail.gmail.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Thu, 9 Jan 2020 14:49:12 -0500
-Message-ID: <CADnq5_NPdg8MjQ5cB2aCD+US1Hv+FoP1gqKcA4W2e0pouG8cGQ@mail.gmail.com>
-To: Mario Kleiner <mario.kleiner.de@gmail.com>
+ <20200109152656.GP1208@intel.com> <20200109153815.GQ1208@intel.com>
+ <CAEsyxyj6xbHrkKk5=bG5APrD5VW_PP-Cs+nT0vqCjW_LBSG29A@mail.gmail.com>
+ <20200109164715.GD13686@intel.com>
+ <CAEsyxyhjbP6ADutU7XRJUjryj1+X8mFqopB9TvBoW6RWjBihww@mail.gmail.com>
+ <20200109182408.GF13686@intel.com>
+In-Reply-To: <20200109182408.GF13686@intel.com>
+From: Mario Kleiner <mario.kleiner.de@gmail.com>
+Date: Thu, 9 Jan 2020 21:19:07 +0100
+Message-ID: <CAEsyxyiTxRZC=Mw4rKvjCQO557Qg6Q2JRkoUvQWOia7SxumznA@mail.gmail.com>
+To: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
 Subject: Re: [Intel-gfx] [PATCH] drm/i915/dp: Add current maximum eDP link
  rate to sink_rate array.
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -64,129 +66,147 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: mario.kleiner.de@gmail.de,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Maling list - DRI developers <dri-devel@lists.freedesktop.org>,
+Cc: mario.kleiner.de@gmail.de, intel-gfx <intel-gfx@lists.freedesktop.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>,
  Daniel Vetter <daniel.vetter@ffwll.ch>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============1378560852=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Jan 9, 2020 at 11:47 AM Mario Kleiner
-<mario.kleiner.de@gmail.com> wrote:
->
-> On Thu, Jan 9, 2020 at 4:40 PM Alex Deucher <alexdeucher@gmail.com> wrote:
->>
->> On Thu, Jan 9, 2020 at 10:08 AM Mario Kleiner
->> <mario.kleiner.de@gmail.com> wrote:
->> >
->> > If the current eDP link rate, as read from hw, provides a
->> > higher bandwidth than the standard link rates, then add the
->> > current link rate to the link_rates array for consideration
->> > in future mode-sets.
->> >
->> > These initial current eDP link settings have been set up by
->> > firmware during boot, so they should work on the eDP panel.
->> > Therefore use them if the firmware thinks they are good and
->> > they provide higher link bandwidth, e.g., to enable higher
->> > resolutions / color depths.
->> >
->> > This fixes a problem found on the MacBookPro 2017 Retina panel:
->> >
->> > The panel reports 10 bpc color depth in its EDID, and the UEFI
->> > firmware chooses link settings at boot which support enough
->> > bandwidth for 10 bpc (324000 kbit/sec to be precise), but the
->> > DP_MAX_LINK_RATE dpcd register only reports 2.7 Gbps as possible,
->> > so intel_dp_set_sink_rates() would cap at that. This restricts
->> > achievable color depth to 8 bpc, not providing the full color
->> > depth of the panel. With this commit, we can use firmware setting
->> > and get the full 10 bpc advertised by the Retina panel.
->>
->> Would it make more sense to just add a quirk for this particular
->> panel?  Would there be cases where the link was programmed wrong and
->> then we end up using that additional link speed as supported?
->>
->> Alex
->>
->
-> Not sure. This MBP 2017 is the only non-ancient laptop i now have. I'd assume many other Apple Retina panels would behave similar. The panels dpcd regs report DP 1.1 and eDP 1.3, so the flexible table with additional modes from eDP1.4+ does not exist. According to Wikipedia, eDP 1.4 was introduced in february 2013 and this is a mid 2017 machine, so Apple seems to be quite behind. Therefore i assume  we'd need a lot of quirks over time.
->
-> That said:
->
-> 1. The logic in amdgpu's DC for the same purpose is a bit different than on the intel side.
->
-> 2. DC allows overriding DP link settings, that's how i initially tested this, so one could do the "quirk" via something like that in a bootup script. So on AMD one could work around the lack of the patch and of quirks.
->
-> 3. I spent a lot of time with a photo-meter, testing the quality of the 10 bit: It turns out that running the panel at 8 bit + AMD's spatial dithering that kicks in gives better results than running the panel in native 10 bit. Maybe the panel is not really a 10 bit one, but just pretends to be and then uses its own dithering to achieve 10 bit. So at least on AMD one is better off precision-wise with the 8 bit panel default with this specific panel.
->
-> On Intel however, we don't do dithering for > 6 bpc panels atm., so using the panel at 10 bpc is the only way to get 10 bit display atm. Adn we don't use dithering on Intel at > 6 bpc panels atm., because there are some oddities in the way Intel hw dithers at higher bit depths - it also dithers pixel values where it shouldn't. That makes it impossible to get an identity passthrough of a 8 bpc framebuffer to the outputs, which kills all kind of special display equipment that needs that identity passthrough to work.
+--===============1378560852==
+Content-Type: multipart/alternative; boundary="0000000000004e63ba059bbab94a"
+
+--0000000000004e63ba059bbab94a
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+On Thu, Jan 9, 2020 at 7:24 PM Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux=
+.intel.com>
+wrote:
+
+> On Thu, Jan 09, 2020 at 06:57:14PM +0100, Mario Kleiner wrote:
+> > On Thu, Jan 9, 2020 at 5:47 PM Ville Syrj=C3=A4l=C3=A4 <
+> ville.syrjala@linux.intel.com>
+> > wrote:
+> >
+> > > On Thu, Jan 09, 2020 at 05:30:05PM +0100, Mario Kleiner wrote:
+> > > > On Thu, Jan 9, 2020 at 4:38 PM Ville Syrj=C3=A4l=C3=A4 <
+> > > ville.syrjala@linux.intel.com>
+> > > > wrote:
+> > > >
 >
 
-As Harry mentioned in the other thread, won't this only work if the
-display was brought up by the vbios?  In the suspend/resume case,
-won't we just fall back to 2.7Gbps?
-
-Alex
-
-> -mario
+> wouldn't work if dpcd[0x1] =3D=3D 0xa, which it likely is [*]. AMD DC
+> > identified it as DP 1.1, eDP 1.3, and these extended caps seem to be on=
+ly
+> > part of DP 1.3+ if i understand the comments in
+> > intel_dp_extended_receiver_capabilities() correctly.
 >
->> >
->> > Signed-off-by: Mario Kleiner <mario.kleiner.de@gmail.com>
->> > Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
->> > ---
->> >  drivers/gpu/drm/i915/display/intel_dp.c | 23 +++++++++++++++++++++++
->> >  1 file changed, 23 insertions(+)
->> >
->> > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
->> > index 2f31d226c6eb..aa3e0b5108c6 100644
->> > --- a/drivers/gpu/drm/i915/display/intel_dp.c
->> > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
->> > @@ -4368,6 +4368,8 @@ intel_edp_init_dpcd(struct intel_dp *intel_dp)
->> >  {
->> >         struct drm_i915_private *dev_priv =
->> >                 to_i915(dp_to_dig_port(intel_dp)->base.base.dev);
->> > +       int max_rate;
->> > +       u8 link_bw;
->> >
->> >         /* this function is meant to be called only once */
->> >         WARN_ON(intel_dp->dpcd[DP_DPCD_REV] != 0);
->> > @@ -4433,6 +4435,27 @@ intel_edp_init_dpcd(struct intel_dp *intel_dp)
->> >         else
->> >                 intel_dp_set_sink_rates(intel_dp);
->> >
->> > +       /*
->> > +        * If the firmware programmed a rate higher than the standard sink rates
->> > +        * during boot, then add that rate as a valid sink rate, as fw knows
->> > +        * this is a good rate and we get extra bandwidth.
->> > +        *
->> > +        * Helps, e.g., on the Apple MacBookPro 2017 Retina panel, which is only
->> > +        * eDP 1.1, but supports the unusual rate of 324000 kHz at bootup, for
->> > +        * 10 bpc / 30 bit color depth.
->> > +        */
->> > +       if (!intel_dp->use_rate_select &&
->> > +           (drm_dp_dpcd_read(&intel_dp->aux, DP_LINK_BW_SET, &link_bw, 1) == 1) &&
->> > +           (link_bw > 0) && (intel_dp->num_sink_rates < DP_MAX_SUPPORTED_RATES)) {
->> > +               max_rate = drm_dp_bw_code_to_link_rate(link_bw);
->> > +               if (max_rate > intel_dp->sink_rates[intel_dp->num_sink_rates - 1]) {
->> > +                       intel_dp->sink_rates[intel_dp->num_sink_rates] = max_rate;
->> > +                       intel_dp->num_sink_rates++;
->> > +                       DRM_DEBUG_KMS("Adding max bandwidth eDP rate %d kHz.\n",
->> > +                                     max_rate);
->> > +               }
->> > +       }
->> > +
->> >         intel_dp_set_common_rates(intel_dp);
->> >
->> >         /* Read the eDP DSC DPCD registers */
->> > --
->> > 2.24.0
->> >
->> > _______________________________________________
->> > dri-devel mailing list
->> > dri-devel@lists.freedesktop.org
->> > https://lists.freedesktop.org/mailman/listinfo/dri-devel
+>
+Ok, looking at previous debug output logs shows that those extended caps
+are not present on the systems, ie. that extended caps bit is not set. So
+dpcd[0x1] =3D=3D 0xa.
+
+
+> Yeah, but you never know how creative they've been with the DPCD in
+> such a propritary machine. A full DPCD dump from /dev/drm_dp_aux* would
+> be nice. Can you file a bug an attach the DPCD dump there so we have a
+> good reference on what we're talking about (also for future if/when
+> someone eventually starts to wonder why we have such hacks in the
+> code)?
+>
+>
+True, it's Apple which likes to "Think different..." :/
+
+Will do. But is there a proper/better way to do the /dev/drm_dp_aux0 dump?
+I used cat /dev/drm_dp_aux0 > dump, and that hangs, but if i interrupt it
+after a few seconds, i get a dump file of 512k size, which seems excessive?
+On AMD DC atm., in case that matters.
+
+However, the file shows DPCD_REV 1.1, maximum 0xa and no extended caps (
+DP_TRAINING_AUX_RD_INTERVAL
+<https://elixir.bootlin.com/linux/v5.5-rc5/ident/DP_TRAINING_AUX_RD_INTERVA=
+L>
+aka
+[0xe] =3D=3D 0x00).
+ -mario
+
+
+--=20
+> Ville Syrj=C3=A4l=C3=A4
+> Intel
+>
+
+--0000000000004e63ba059bbab94a
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div dir=3D"ltr">On Thu, Jan 9, 2020 at 7:24 PM Ville Syrj=
+=C3=A4l=C3=A4 &lt;<a href=3D"mailto:ville.syrjala@linux.intel.com">ville.sy=
+rjala@linux.intel.com</a>&gt; wrote:<br></div><div class=3D"gmail_quote"><b=
+lockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-le=
+ft:1px solid rgb(204,204,204);padding-left:1ex">On Thu, Jan 09, 2020 at 06:=
+57:14PM +0100, Mario Kleiner wrote:<br>
+&gt; On Thu, Jan 9, 2020 at 5:47 PM Ville Syrj=C3=A4l=C3=A4 &lt;<a href=3D"=
+mailto:ville.syrjala@linux.intel.com" target=3D"_blank">ville.syrjala@linux=
+.intel.com</a>&gt;<br>
+&gt; wrote:<br>
+&gt; <br>
+&gt; &gt; On Thu, Jan 09, 2020 at 05:30:05PM +0100, Mario Kleiner wrote:<br=
+>
+&gt; &gt; &gt; On Thu, Jan 9, 2020 at 4:38 PM Ville Syrj=C3=A4l=C3=A4 &lt;<=
+br>
+&gt; &gt; <a href=3D"mailto:ville.syrjala@linux.intel.com" target=3D"_blank=
+">ville.syrjala@linux.intel.com</a>&gt;<br>
+&gt; &gt; &gt; wrote:<br>
+&gt; &gt; &gt;<br>=C2=A0</blockquote><blockquote class=3D"gmail_quote" styl=
+e=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);paddin=
+g-left:1ex">
+&gt; wouldn&#39;t work if dpcd[0x1] =3D=3D 0xa, which it likely is [*]. AMD=
+ DC<br>
+&gt; identified it as DP 1.1, eDP 1.3, and these extended caps seem to be o=
+nly<br>
+&gt; part of DP 1.3+ if i understand the comments in<br>
+&gt; intel_dp_extended_receiver_capabilities() correctly.<br>
+<br></blockquote><div><br></div><div>Ok, looking at previous debug output l=
+ogs shows that those extended caps are not present on the systems, ie. that=
+ extended caps bit is not set. So dpcd[0x1] =3D=3D 0xa.<br></div><div>=C2=
+=A0</div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8e=
+x;border-left:1px solid rgb(204,204,204);padding-left:1ex">
+Yeah, but you never know how creative they&#39;ve been with the DPCD in<br>
+such a propritary machine. A full DPCD dump from /dev/drm_dp_aux* would<br>
+be nice. Can you file a bug an attach the DPCD dump there so we have a<br>
+good reference on what we&#39;re talking about (also for future if/when<br>
+someone eventually starts to wonder why we have such hacks in the<br>
+code)?<br>
+<br></blockquote><div><br></div><div>True, it&#39;s Apple which likes to &q=
+uot;Think different...&quot; :/</div><div><br></div><div>Will do. But is th=
+ere a proper/better way to do the /dev/drm_dp_aux0 dump? I used cat /dev/dr=
+m_dp_aux0 &gt; dump, and that hangs, but if i interrupt it after a few seco=
+nds, i get a dump file of 512k size, which seems excessive? On AMD DC atm.,=
+ in case that matters.<br></div><div><br></div><div>However, the file shows=
+ DPCD_REV 1.1, maximum 0xa and no extended caps (<span class=3D"gmail-cp"><=
+a href=3D"https://elixir.bootlin.com/linux/v5.5-rc5/ident/DP_TRAINING_AUX_R=
+D_INTERVAL">DP_TRAINING_AUX_RD_INTERVAL</a> </span>aka [0xe] =3D=3D 0x00).<=
+br></div><div>=C2=A0-mario</div><div><br></div><div><br></div><blockquote c=
+lass=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px soli=
+d rgb(204,204,204);padding-left:1ex">
+-- <br>
+Ville Syrj=C3=A4l=C3=A4<br>
+Intel<br>
+</blockquote></div></div>
+
+--0000000000004e63ba059bbab94a--
+
+--===============1378560852==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============1378560852==--
