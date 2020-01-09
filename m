@@ -1,30 +1,50 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8FC30136334
-	for <lists+intel-gfx@lfdr.de>; Thu,  9 Jan 2020 23:23:35 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 69CFE13633B
+	for <lists+intel-gfx@lfdr.de>; Thu,  9 Jan 2020 23:28:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9EFC66E977;
-	Thu,  9 Jan 2020 22:23:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 264A66E055;
+	Thu,  9 Jan 2020 22:28:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6F5EB6E06D;
- Thu,  9 Jan 2020 22:23:30 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19827460-1500050 
- for multiple; Thu, 09 Jan 2020 22:23:01 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu,  9 Jan 2020 22:23:00 +0000
-Message-Id: <20200109222300.1154999-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.25.0.rc2
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D48E96E055
+ for <intel-gfx@lists.freedesktop.org>; Thu,  9 Jan 2020 22:28:50 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 09 Jan 2020 14:28:50 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.69,414,1571727600"; d="scan'208";a="218488342"
+Received: from orsmsx105.amr.corp.intel.com ([10.22.225.132])
+ by fmsmga008.fm.intel.com with ESMTP; 09 Jan 2020 14:28:50 -0800
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.147]) by
+ ORSMSX105.amr.corp.intel.com ([169.254.2.110]) with mapi id 14.03.0439.000;
+ Thu, 9 Jan 2020 14:28:50 -0800
+From: "Sripada, Radhakrishna" <radhakrishna.sripada@intel.com>
+To: "Roper, Matthew D" <matthew.d.roper@intel.com>
+Thread-Topic: [PATCH] drm/i915/tgl: Add Wa_1409825376 to tgl
+Thread-Index: AQHVxzh0niI3pPcM8EeQLNfsdHEch6fjaz6A//9+QJA=
+Date: Thu, 9 Jan 2020 22:28:49 +0000
+Message-ID: <8C2593290C2B3E488D763E819AF1F02E16001BF7@ORSMSX101.amr.corp.intel.com>
+References: <20200109220226.10661-1-radhakrishna.sripada@intel.com>
+ <20200109221149.GJ2244136@mdroper-desk1.amr.corp.intel.com>
+In-Reply-To: <20200109221149.GJ2244136@mdroper-desk1.amr.corp.intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ctpclassification: CTP_NT
+x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiZmNlZjNjMDMtZDVhOC00YTU2LTkyZjAtMTQ5OGI4MzgyNjZjIiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX05UIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE3LjEwLjE4MDQuNDkiLCJUcnVzdGVkTGFiZWxIYXNoIjoiWFZRdG83TXB1ZkdJK3pnZ25VZGZVUnVFWEFGdGNMbk9VdVh3QytNdzR3VkdUXC9TYU1KbnhnQnVyd0JcLytkeTJHIn0=
+dlp-product: dlpe-windows
+dlp-version: 11.0.400.15
+dlp-reaction: no-action
+x-originating-ip: [10.22.254.140]
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH i-g-t] test/i915_pm_rc6_residency: Check we
- enter RC6 when mostly idle
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/tgl: Add Wa_1409825376 to tgl
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,294 +57,97 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: igt-dev@lists.freedesktop.org
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Long ago, we would only approach runtime-suspend if the GPU had been
-idle (no userspace submissions) for a second or two. However, since
-disabling automatic HW RC6 such a relaxed approach to runtime-suspend
-caused us to never enter RC6 on the desktop and consume vast quantities
-of power. Surmise this behaviour by setting up a background load that is
-only active for ~1% of the time (so equivalent to a compositor that is
-updating the clock every 50ms or so) and verify that we do continue to
-enter RC6 between the GPU pulses.
 
-References: https://gitlab.freedesktop.org/drm/intel/issues/614
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Imre Deak <imre.deak@intel.com>
-Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
----
- tests/Makefile.am                  |   1 +
- tests/i915/i915_pm_rc6_residency.c | 174 +++++++++++++++++++++++++++--
- tests/meson.build                  |   9 +-
- 3 files changed, 173 insertions(+), 11 deletions(-)
 
-diff --git a/tests/Makefile.am b/tests/Makefile.am
-index 9a320bc23..fc3052475 100644
---- a/tests/Makefile.am
-+++ b/tests/Makefile.am
-@@ -122,6 +122,7 @@ gem_threaded_access_tiled_CFLAGS = $(AM_CFLAGS) $(THREAD_CFLAGS)
- gem_threaded_access_tiled_LDADD = $(LDADD) -lpthread
- gem_tiled_swapping_CFLAGS = $(AM_CFLAGS) $(THREAD_CFLAGS)
- gem_tiled_swapping_LDADD = $(LDADD) -lpthread
-+i915_pm_rc6_residency_LDADD = $(LDADD) $(top_builddir)/lib/libigt_perf.la
- prime_self_import_CFLAGS = $(AM_CFLAGS) $(THREAD_CFLAGS)
- prime_self_import_LDADD = $(LDADD) -lpthread
- gem_userptr_blits_CFLAGS = $(AM_CFLAGS) $(THREAD_CFLAGS)
-diff --git a/tests/i915/i915_pm_rc6_residency.c b/tests/i915/i915_pm_rc6_residency.c
-index 1b39c870e..a5bcb084b 100644
---- a/tests/i915/i915_pm_rc6_residency.c
-+++ b/tests/i915/i915_pm_rc6_residency.c
-@@ -25,8 +25,6 @@
-  *
-  */
- 
--#include "igt.h"
--#include "igt_sysfs.h"
- #include <stdio.h>
- #include <stdlib.h>
- #include <string.h>
-@@ -34,6 +32,9 @@
- #include <errno.h>
- #include <time.h>
- 
-+#include "igt.h"
-+#include "igt_perf.h"
-+#include "igt_sysfs.h"
- 
- #define SLEEP_DURATION 3 /* in seconds */
- 
-@@ -195,31 +196,180 @@ static bool wait_for_rc6(void)
- 	return false;
- }
- 
-+static uint64_t __pmu_read_single(int fd, uint64_t *ts)
-+{
-+	uint64_t data[2];
-+
-+	igt_assert_eq(read(fd, data, sizeof(data)), sizeof(data));
-+
-+	if (ts)
-+		*ts = data[1];
-+
-+	return data[0];
-+}
-+
-+static uint64_t pmu_read_single(int fd)
-+{
-+	return __pmu_read_single(fd, NULL);
-+}
-+
-+#define __assert_within_epsilon(x, ref, tol_up, tol_down) \
-+	igt_assert_f((double)(x) <= (1.0 + (tol_up)) * (double)(ref) && \
-+		     (double)(x) >= (1.0 - (tol_down)) * (double)(ref), \
-+		     "'%s' != '%s' (%f not within +%.1f%%/-%.1f%% tolerance of %f)\n",\
-+		     #x, #ref, (double)(x), \
-+		     (tol_up) * 100.0, (tol_down) * 100.0, \
-+		     (double)(ref))
-+
-+#define assert_within_epsilon(x, ref, tolerance) \
-+	__assert_within_epsilon(x, ref, tolerance, tolerance)
-+
-+static bool __pmu_wait_for_rc6(int fd)
-+{
-+	struct timespec tv = {};
-+	uint64_t start, now;
-+
-+	/* First wait for roughly an RC6 Evaluation Interval */
-+	usleep(160 * 1000);
-+
-+	/* Then poll for RC6 to start ticking */
-+	now = pmu_read_single(fd);
-+	do {
-+		start = now;
-+		usleep(5000);
-+		now = pmu_read_single(fd);
-+		if (now - start > 1e6)
-+			return true;
-+	} while (!igt_seconds_elapsed(&tv));
-+
-+	return false;
-+}
-+
-+static unsigned int measured_usleep(unsigned int usec)
-+{
-+	struct timespec ts = { };
-+	unsigned int slept;
-+
-+	slept = igt_nsec_elapsed(&ts);
-+	igt_assert(slept == 0);
-+	do {
-+		usleep(usec - slept);
-+		slept = igt_nsec_elapsed(&ts) / 1000;
-+	} while (slept < usec);
-+
-+	return igt_nsec_elapsed(&ts);
-+}
-+
-+static uint32_t batch_create(int fd)
-+{
-+	const uint32_t bbe = MI_BATCH_BUFFER_END;
-+	uint32_t handle;
-+
-+	handle = gem_create(fd, 4096);
-+	gem_write(fd, handle, 0, &bbe, sizeof(bbe));
-+
-+	return handle;
-+}
-+
-+static int open_pmu(int i915, uint64_t config)
-+{
-+	int fd;
-+
-+	fd = perf_i915_open(config);
-+	igt_skip_on(fd < 0 && errno == ENODEV);
-+	igt_assert(fd >= 0);
-+
-+	return fd;
-+}
-+
-+static void rc6_perf(int i915)
-+{
-+	const int64_t duration_ns = 2e9;
-+	uint64_t idle, prev, ts[2];
-+	unsigned long slept, cycles;
-+	unsigned long *done;
-+	int fd;
-+
-+	fd = open_pmu(i915, I915_PMU_RC6_RESIDENCY);
-+	igt_require(__pmu_wait_for_rc6(fd));
-+
-+	/* While idle check full RC6. */
-+	prev = __pmu_read_single(fd, &ts[0]);
-+	slept = measured_usleep(duration_ns / 1000);
-+	idle = __pmu_read_single(fd, &ts[1]);
-+	igt_debug("slept=%lu perf=%"PRIu64"\n", slept, ts[1] - ts[0]);
-+	assert_within_epsilon(idle - prev, ts[1] - ts[0], 5);
-+
-+	/* Setup up a very light load */
-+	done = mmap(0, 4096, PROT_WRITE, MAP_SHARED | MAP_ANON, -1, 0);
-+	igt_fork(child, 1) {
-+		struct drm_i915_gem_exec_object2 obj = {
-+			.handle = batch_create(i915),
-+		};
-+		struct drm_i915_gem_execbuffer2 execbuf = {
-+			.buffers_ptr = to_user_pointer(&obj),
-+			.buffer_count = 1,
-+		};
-+
-+		do {
-+			struct timespec tv = {};
-+
-+			igt_seconds_elapsed(&tv);
-+
-+			gem_execbuf(i915, &execbuf);
-+			gem_sync(i915, obj.handle);
-+			done[1]++;
-+
-+			usleep(igt_seconds_elapsed(&tv) / 10); /* => 1% busy */
-+		} while (!*done);
-+	}
-+
-+	/* While very nearly idle (idle to within tolerance), except full RC6 */
-+	cycles = -done[1];
-+	prev = __pmu_read_single(fd, &ts[0]);
-+	slept = measured_usleep(duration_ns / 1000);
-+	idle = __pmu_read_single(fd, &ts[1]);
-+	cycles += done[1];
-+	igt_debug("slept=%lu perf=%"PRIu64", cycles=%lu\n",
-+		  slept, ts[1] - ts[0], cycles);
-+	igt_assert(cycles > 0);
-+	assert_within_epsilon(idle - prev, ts[1] - ts[0], 5);
-+
-+	close(fd);
-+
-+	*done = 1;
-+	igt_waitchildren();
-+}
-+
- igt_main
- {
- 	unsigned int rc6_enabled = 0;
- 	unsigned int devid = 0;
-+	int i915 = -1;
- 
- 	/* Use drm_open_driver to verify device existence */
- 	igt_fixture {
--		int fd;
--
--		fd = drm_open_driver(DRIVER_INTEL);
--		devid = intel_get_drm_devid(fd);
--		sysfs = igt_sysfs_open(fd);
-+		i915 = drm_open_driver(DRIVER_INTEL);
-+		devid = intel_get_drm_devid(i915);
-+		sysfs = igt_sysfs_open(i915);
- 
- 		igt_require(has_rc6_residency("rc6"));
- 
- 		/* Make sure rc6 counters are running */
--		igt_drop_caches_set(fd, DROP_IDLE);
-+		igt_drop_caches_set(i915, DROP_IDLE);
- 		igt_require(wait_for_rc6());
- 
--		close(fd);
--
- 		rc6_enabled = get_rc6_enabled_mask();
- 		igt_require(rc6_enabled & RC6_ENABLED);
- 	}
- 
-+	igt_subtest("rc6-perf") {
-+		igt_require_gem(i915);
-+		gem_quiescent_gpu(i915);
-+
-+		rc6_perf(i915);
-+	}
-+
- 	igt_subtest("rc6-accuracy") {
- 		struct residencies res;
- 
-@@ -235,4 +385,8 @@ igt_main
- 		measure_residencies(devid, rc6_enabled, &res);
- 		residency_accuracy(res.media_rc6, res.duration, "media_rc6");
- 	}
-+
-+	igt_fixture
-+		close(i915);
-+
- }
-diff --git a/tests/meson.build b/tests/meson.build
-index 570de5459..a79d22ba1 100644
---- a/tests/meson.build
-+++ b/tests/meson.build
-@@ -232,7 +232,6 @@ i915_progs = [
- 	'i915_module_load',
- 	'i915_pm_backlight',
- 	'i915_pm_lpsp',
--	'i915_pm_rc6_residency',
- 	'i915_pm_rpm',
- 	'i915_pm_dc',
- 	'i915_pm_rps',
-@@ -336,6 +335,14 @@ test_executables += executable('gem_mmap_offset',
- 	   install : true)
- test_list += 'gem_mmap_offset'
- 
-+test_executables += executable('i915_pm_rc6_residency',
-+	   join_paths('i915', 'i915_pm_rc6_residency.c'),
-+	   dependencies : test_deps + [ lib_igt_perf ],
-+	   install_dir : libexecdir,
-+	   install_rpath : libexecdir_rpathdir,
-+	   install : true)
-+test_list += 'i915_pm_rc6_residency'
-+
- test_executables += executable('perf_pmu', 'perf_pmu.c',
- 	   dependencies : test_deps + [ lib_igt_perf ],
- 	   install_dir : libexecdir,
--- 
-2.25.0.rc2
+> -----Original Message-----
+> From: Roper, Matthew D <matthew.d.roper@intel.com>
+> Sent: Thursday, January 9, 2020 2:12 PM
+> To: Sripada, Radhakrishna <radhakrishna.sripada@intel.com>
+> Cc: intel-gfx@lists.freedesktop.org
+> Subject: Re: [PATCH] drm/i915/tgl: Add Wa_1409825376 to tgl
+> 
+> On Thu, Jan 09, 2020 at 02:02:26PM -0800, Radhakrishna Sripada wrote:
+> > Workaround database indicates we should disable VRH clockgating in
+> > pre-production hardware.
+> 
+> Maybe also add a
+> 
+>     Bspec: 52890
+>     Bspec: 49424
+> 
+> for reference?
+Sure will add in the next rev.
+> 
+> >
+> > Cc: Matt Roper <matthew.d.roper@intel.com>
+> > Signed-off-by: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/i915_reg.h | 3 +++
+> > drivers/gpu/drm/i915/intel_pm.c | 5 +++++
+> >  2 files changed, 8 insertions(+)
+> >
+> > diff --git a/drivers/gpu/drm/i915/i915_reg.h
+> > b/drivers/gpu/drm/i915/i915_reg.h index 6cc55c103f67..5215df17e7bd
+> > 100644
+> > --- a/drivers/gpu/drm/i915/i915_reg.h
+> > +++ b/drivers/gpu/drm/i915/i915_reg.h
+> > @@ -4124,6 +4124,9 @@ enum {
+> >  #define   PWM2_GATING_DIS		(1 << 14)
+> >  #define   PWM1_GATING_DIS		(1 << 13)
+> >
+> > +#define GEN9_CLKGATE_DIS_3		_MMIO(0x46538)
+> > +#define   TGL_VRH_GATING_DIS		(1 << 31)
+> 
+> For new registers (or registers which are receiving noticeable updates), I think
+> we're trying to slowly transition over to REG_BIT(31) notation.
+> 
+> Aside from that,
+> 
+> Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+Will use the newer notation.
+Thanks for the review.
 
+-Radhakrishna(RK) Sripada
+> 
+> > +
+> >  #define GEN9_CLKGATE_DIS_4		_MMIO(0x4653C)
+> >  #define   BXT_GMBUS_GATING_DIS		(1 << 14)
+> >
+> > diff --git a/drivers/gpu/drm/i915/intel_pm.c
+> > b/drivers/gpu/drm/i915/intel_pm.c index 148ac455dfa7..0d71fc19d0ee
+> > 100644
+> > --- a/drivers/gpu/drm/i915/intel_pm.c
+> > +++ b/drivers/gpu/drm/i915/intel_pm.c
+> > @@ -6630,6 +6630,11 @@ static void tgl_init_clock_gating(struct
+> > drm_i915_private *dev_priv)
+> >
+> >  	I915_WRITE(POWERGATE_ENABLE,
+> >  		   I915_READ(POWERGATE_ENABLE) | vd_pg_enable);
+> > +
+> > +	/* Wa_1409825376:tgl (pre-prod)*/
+> > +	if (IS_TGL_REVID(dev_priv, TGL_REVID_A0, TGL_REVID_A0))
+> > +		I915_WRITE(GEN9_CLKGATE_DIS_3,
+> I915_READ(GEN9_CLKGATE_DIS_3) |
+> > +			   TGL_VRH_GATING_DIS);
+> >  }
+> >
+> >  static void cnp_init_clock_gating(struct drm_i915_private *dev_priv)
+> > --
+> > 2.20.1
+> >
+> 
+> --
+> Matt Roper
+> Graphics Software Engineer
+> VTT-OSGC Platform Enablement
+> Intel Corporation
+> (916) 356-2795
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
