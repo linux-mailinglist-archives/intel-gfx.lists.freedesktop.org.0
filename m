@@ -2,33 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D25E0136E70
-	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jan 2020 14:46:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CBAB4136EDB
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jan 2020 14:58:10 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D3BD06EA23;
-	Fri, 10 Jan 2020 13:46:16 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 712F96EA23
- for <Intel-gfx@lists.freedesktop.org>; Fri, 10 Jan 2020 13:46:15 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 19834749-1500050 for multiple; Fri, 10 Jan 2020 13:46:05 +0000
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2C5426E9FD;
+	Fri, 10 Jan 2020 13:58:09 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E2DBA6E9FD
+ for <intel-gfx@lists.freedesktop.org>; Fri, 10 Jan 2020 13:58:07 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 10 Jan 2020 05:58:07 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.69,417,1571727600"; d="scan'208";a="371616538"
+Received: from unknown (HELO genxfsim-desktop.iind.intel.com) ([10.223.74.178])
+ by orsmga004.jf.intel.com with ESMTP; 10 Jan 2020 05:58:05 -0800
+From: Anshuman Gupta <anshuman.gupta@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri, 10 Jan 2020 19:19:13 +0530
+Message-Id: <20200110134913.24325-1-anshuman.gupta@intel.com>
+X-Mailer: git-send-email 2.24.0
 MIME-Version: 1.0
-To: Intel-gfx@lists.freedesktop.org,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-In-Reply-To: <20200110133049.2705-4-tvrtko.ursulin@linux.intel.com>
-References: <20200110133049.2705-1-tvrtko.ursulin@linux.intel.com>
- <20200110133049.2705-4-tvrtko.ursulin@linux.intel.com>
-Message-ID: <157866396458.10140.13791407344296706854@skylake-alporthouse-com>
-User-Agent: alot/0.6
-Date: Fri, 10 Jan 2020 13:46:04 +0000
-Subject: Re: [Intel-gfx] [RFC 3/8] drm/i915: Track per-context engine
- busyness
+Subject: [Intel-gfx] [PATCH v3] drm/i915/hdcp: update HDCP CP property as
+ per port authentication state
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,95 +41,99 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: kui.wen@intel.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Tvrtko Ursulin (2020-01-10 13:30:44)
->  #endif /* __INTEL_CONTEXT_TYPES__ */
-> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-> index 825c94e7ca0b..9a346c060469 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-> @@ -1543,8 +1543,20 @@ int intel_enable_engine_stats(struct intel_engine_cs *engine)
->  
->                 engine->stats.enabled_at = ktime_get();
->  
-> -               /* XXX submission method oblivious? */
-> -               for (port = execlists->active; (rq = *port); port++)
-> +               /*
-> +                * Mark currently running context as active.
-> +                * XXX submission method oblivious?
-> +                */
-> +
-> +               rq = NULL;
-> +               port = execlists->active;
+When port is disabled due to modeset crtc disable sequence
+or DPMS off, it eventually disables the HDCP encryption
+keeping its content protection property to CP_ENABLED.
+Since content protection property left at CP_ENABLED by
+mistake, HDCP authentication is not attempted at next DDI
+enable sequence.
+HDCP content property should be updated accordingly
+as per port authentication state.
 
-execlists->active is never NULL (it always points at one of the arrays).
-*execlists->active may be NULL.
+v2:
+ - Incorporated the necessary locking. (Ram)
+ - Set content protection property to CP_DESIRED only when
+   user has not asked explicitly to set CP_UNDESIRED.
 
-> +               if (port)
-> +                       rq = *port;
-> +               if (rq)
-> +                       __intel_context_stats_start(&rq->context->stats,
-> +                                                   engine->stats.enabled_at);
-> +
-> +               for (; (rq = *port); port++)
->                         engine->stats.active++;
->  
-> @@ -2250,6 +2277,7 @@ static void process_csb(struct intel_engine_cs *engine)
->         rmb();
->  
->         do {
-> +               struct i915_request *rq;
->                 bool promote;
->  
->                 if (++head == num_entries)
-> @@ -2305,7 +2333,11 @@ static void process_csb(struct intel_engine_cs *engine)
->  
->                         WRITE_ONCE(execlists->pending[0], NULL);
->                 } else {
-> -                       GEM_BUG_ON(!*execlists->active);
-> +                       rq = *execlists->active++;
-> +                       GEM_BUG_ON(!rq);
-> +
-> +                       GEM_BUG_ON(execlists->active - execlists->inflight >
-> +                                  execlists_num_ports(execlists));
->  
->                         /* port0 completed, advanced to port1 */
->                         trace_ports(execlists, "completed", execlists->active);
-> @@ -2316,13 +2348,15 @@ static void process_csb(struct intel_engine_cs *engine)
->                          * coherent (visible from the CPU) before the
->                          * user interrupt and CSB is processed.
->                          */
-> -                       GEM_BUG_ON(!i915_request_completed(*execlists->active) &&
-> +                       GEM_BUG_ON(!i915_request_completed(rq) &&
->                                    !reset_in_progress(execlists));
-> -                       execlists_schedule_out(*execlists->active++);
->  
-> -                       GEM_BUG_ON(execlists->active - execlists->inflight >
-> -                                  execlists_num_ports(execlists));
-> +                       execlists_schedule_out(rq);
->                 }
-> +
-> +               rq = *execlists->active;
-> +               if (rq)
-> +                       intel_context_stats_start(&rq->context->stats);
->         } while (head != tail);
+v3:
+ - Reset the is_hdcp_undesired flag to false. (Ram)
+ - Rephrasing commit log and small comment for is_hdcp_desired
+   flag. (Ram)
 
-Actually, we can do this after processing the entire event buf.
+CC: Ramalingam C <ramalingam.c@intel.com>
+Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_display_types.h |  6 ++++++
+ drivers/gpu/drm/i915/display/intel_hdcp.c          | 13 ++++++++++++-
+ 2 files changed, 18 insertions(+), 1 deletion(-)
 
-if (execlists_active(execlists))
-	intel_context_stats_start((*execlists->active)->context->stats);
+diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+index 630a94892b7b..a7b4c8324838 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_types.h
++++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+@@ -345,6 +345,12 @@ struct intel_hdcp {
+ 	struct delayed_work check_work;
+ 	struct work_struct prop_work;
+ 
++	/*
++	 * Track new_conn CP UNDESIRED state as DDI disable
++	 * code path does't have access to new conn state.
++	 */
++	bool is_hdcp_undesired;
++
+ 	/* HDCP1.4 Encryption status */
+ 	bool hdcp_encrypted;
+ 
+diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
+index 0fdbd39f6641..7f631ebd8395 100644
+--- a/drivers/gpu/drm/i915/display/intel_hdcp.c
++++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
+@@ -2002,11 +2002,18 @@ int intel_hdcp_disable(struct intel_connector *connector)
+ 	mutex_lock(&hdcp->mutex);
+ 
+ 	if (hdcp->value != DRM_MODE_CONTENT_PROTECTION_UNDESIRED) {
+-		hdcp->value = DRM_MODE_CONTENT_PROTECTION_UNDESIRED;
+ 		if (hdcp->hdcp2_encrypted)
+ 			ret = _intel_hdcp2_disable(connector);
+ 		else if (hdcp->hdcp_encrypted)
+ 			ret = _intel_hdcp_disable(connector);
++
++		if (hdcp->is_hdcp_undesired) {
++			hdcp->value = DRM_MODE_CONTENT_PROTECTION_UNDESIRED;
++			hdcp->is_hdcp_undesired = false;
++		} else {
++			hdcp->value = DRM_MODE_CONTENT_PROTECTION_DESIRED;
++			schedule_work(&hdcp->prop_work);
++		}
+ 	}
+ 
+ 	mutex_unlock(&hdcp->mutex);
+@@ -2044,6 +2051,7 @@ void intel_hdcp_atomic_check(struct drm_connector *connector,
+ {
+ 	u64 old_cp = old_state->content_protection;
+ 	u64 new_cp = new_state->content_protection;
++	struct intel_connector *intel_conn = to_intel_connector(connector);
+ 	struct drm_crtc_state *crtc_state;
+ 
+ 	if (!new_state->crtc) {
+@@ -2069,6 +2077,9 @@ void intel_hdcp_atomic_check(struct drm_connector *connector,
+ 			return;
+ 	}
+ 
++	if (new_cp == DRM_MODE_CONTENT_PROTECTION_UNDESIRED)
++		intel_conn->hdcp.is_hdcp_undesired  =  true;
++
+ 	crtc_state = drm_atomic_get_new_crtc_state(new_state->state,
+ 						   new_state->crtc);
+ 	crtc_state->mode_changed = true;
+-- 
+2.24.0
 
-Once we apply the fix in
-https://patchwork.freedesktop.org/patch/347934/?series=71809&rev=1
-
-We can in fact do this as a part of set_timeslice() which means we have
-all the time-related updates in the same spot.
--Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
