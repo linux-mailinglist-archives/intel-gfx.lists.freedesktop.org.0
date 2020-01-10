@@ -2,29 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 037DA136B9F
-	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jan 2020 12:04:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A6AD136BA0
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jan 2020 12:04:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 70E0F6E9B6;
-	Fri, 10 Jan 2020 11:04:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AD3076E9C1;
+	Fri, 10 Jan 2020 11:04:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 628176E9B6
- for <intel-gfx@lists.freedesktop.org>; Fri, 10 Jan 2020 11:04:08 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 65AD16E9BB
+ for <intel-gfx@lists.freedesktop.org>; Fri, 10 Jan 2020 11:04:10 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19832532-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19832533-1500050 
  for multiple; Fri, 10 Jan 2020 11:04:03 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri, 10 Jan 2020 11:04:00 +0000
-Message-Id: <20200110110402.1231745-1-chris@chris-wilson.co.uk>
+Date: Fri, 10 Jan 2020 11:04:01 +0000
+Message-Id: <20200110110402.1231745-2-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.25.0.rc2
+In-Reply-To: <20200110110402.1231745-1-chris@chris-wilson.co.uk>
+References: <20200110110402.1231745-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 1/3] drm/i915/gt: Skip trying to unbind in
- restore_ggtt_mappings
+Subject: [Intel-gfx] [PATCH 2/3] drm/i915/gt: Mark context->state vma as
+ active while pinned
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,48 +44,53 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Currently we first to try to unbind the VMA (and lazily rebind on next
-use) as an optimisation during restore_ggtt_mappings. Ideally, the only
-objects in the GGTT upon resume are the pinned kernel objects which
-can't be unbound and need to be restored. As the unbind interferes with
-the plan to mark those objects as active for error capture, forgo the
-optimisation.
+As we use the active state to keep the vma alive while we are reading
+its contents during GPU error capture, we need to mark the
+context->state vma as active during execution if we want to include it
+in the error state.
 
+Reported-by: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
+Fixes: b1e3177bd1d8 ("drm/i915: Coordinate i915_active with its own mutex")
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Cc: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
+Acked-by: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
 ---
- drivers/gpu/drm/i915/gt/intel_ggtt.c | 7 ++-----
- 1 file changed, 2 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/i915/gt/intel_context.c | 9 +++++++++
+ 1 file changed, 9 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_ggtt.c b/drivers/gpu/drm/i915/gt/intel_ggtt.c
-index 795cd267e28e..eb9365741ff8 100644
---- a/drivers/gpu/drm/i915/gt/intel_ggtt.c
-+++ b/drivers/gpu/drm/i915/gt/intel_ggtt.c
-@@ -1197,7 +1197,7 @@ void i915_ggtt_disable_guc(struct i915_ggtt *ggtt)
+diff --git a/drivers/gpu/drm/i915/gt/intel_context.c b/drivers/gpu/drm/i915/gt/intel_context.c
+index 9796a54b4f47..8774c18f405e 100644
+--- a/drivers/gpu/drm/i915/gt/intel_context.c
++++ b/drivers/gpu/drm/i915/gt/intel_context.c
+@@ -160,6 +160,10 @@ static int __context_pin_state(struct i915_vma *vma)
+ 	if (err)
+ 		return err;
  
- static void ggtt_restore_mappings(struct i915_ggtt *ggtt)
++	err = i915_active_acquire(&vma->active);
++	if (err)
++		goto err_unpin;
++
+ 	/*
+ 	 * And mark it as a globally pinned object to let the shrinker know
+ 	 * it cannot reclaim the object until we release it.
+@@ -168,11 +172,16 @@ static int __context_pin_state(struct i915_vma *vma)
+ 	vma->obj->mm.dirty = true;
+ 
+ 	return 0;
++
++err_unpin:
++	i915_vma_unpin(vma);
++	return err;
+ }
+ 
+ static void __context_unpin_state(struct i915_vma *vma)
  {
--	struct i915_vma *vma, *vn;
-+	struct i915_vma *vma;
- 	bool flush = false;
- 	int open;
+ 	i915_vma_make_shrinkable(vma);
++	i915_active_release(&vma->active);
+ 	__i915_vma_unpin(vma);
+ }
  
-@@ -1212,15 +1212,12 @@ static void ggtt_restore_mappings(struct i915_ggtt *ggtt)
- 	open = atomic_xchg(&ggtt->vm.open, 0);
- 
- 	/* clflush objects bound into the GGTT and rebind them. */
--	list_for_each_entry_safe(vma, vn, &ggtt->vm.bound_list, vm_link) {
-+	list_for_each_entry(vma, &ggtt->vm.bound_list, vm_link) {
- 		struct drm_i915_gem_object *obj = vma->obj;
- 
- 		if (!i915_vma_is_bound(vma, I915_VMA_GLOBAL_BIND))
- 			continue;
- 
--		if (!__i915_vma_unbind(vma))
--			continue;
--
- 		clear_bit(I915_VMA_GLOBAL_BIND_BIT, __i915_vma_flags(vma));
- 		WARN_ON(i915_vma_bind(vma,
- 				      obj ? obj->cache_level : 0,
 -- 
 2.25.0.rc2
 
