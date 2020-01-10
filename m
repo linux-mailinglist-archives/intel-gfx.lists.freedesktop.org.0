@@ -2,46 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E901C136E22
-	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jan 2020 14:32:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 90D8F136E2A
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jan 2020 14:37:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 14B9E6EA19;
-	Fri, 10 Jan 2020 13:32:38 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DF0C96EA15;
- Fri, 10 Jan 2020 13:32:36 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga105.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 10 Jan 2020 05:32:36 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,417,1571727600"; d="scan'208";a="212265157"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by orsmga007.jf.intel.com with SMTP; 10 Jan 2020 05:32:33 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 10 Jan 2020 15:32:32 +0200
-Date: Fri, 10 Jan 2020 15:32:32 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Mario Kleiner <mario.kleiner.de@gmail.com>
-Message-ID: <20200110133232.GJ13686@intel.com>
-References: <20200109150752.28098-1-mario.kleiner.de@gmail.com>
- <20200109152656.GP1208@intel.com> <20200109153815.GQ1208@intel.com>
- <CAEsyxyj6xbHrkKk5=bG5APrD5VW_PP-Cs+nT0vqCjW_LBSG29A@mail.gmail.com>
- <20200109164715.GD13686@intel.com>
- <CAEsyxyhjbP6ADutU7XRJUjryj1+X8mFqopB9TvBoW6RWjBihww@mail.gmail.com>
- <20200109182408.GF13686@intel.com>
- <CAEsyxyiTxRZC=Mw4rKvjCQO557Qg6Q2JRkoUvQWOia7SxumznA@mail.gmail.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 99D2B6EA1A;
+	Fri, 10 Jan 2020 13:37:11 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 737BA6EA15
+ for <Intel-gfx@lists.freedesktop.org>; Fri, 10 Jan 2020 13:37:09 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 19834648-1500050 for multiple; Fri, 10 Jan 2020 13:36:39 +0000
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <CAEsyxyiTxRZC=Mw4rKvjCQO557Qg6Q2JRkoUvQWOia7SxumznA@mail.gmail.com>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/dp: Add current maximum eDP link
- rate to sink_rate array.
+To: Intel-gfx@lists.freedesktop.org,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+From: Chris Wilson <chris@chris-wilson.co.uk>
+In-Reply-To: <20200110133049.2705-2-tvrtko.ursulin@linux.intel.com>
+References: <20200110133049.2705-1-tvrtko.ursulin@linux.intel.com>
+ <20200110133049.2705-2-tvrtko.ursulin@linux.intel.com>
+Message-ID: <157866339842.10140.2488304849056258089@skylake-alporthouse-com>
+User-Agent: alot/0.6
+Date: Fri, 10 Jan 2020 13:36:38 +0000
+Subject: Re: [Intel-gfx] [RFC 1/8] drm/i915: Expose list of clients in sysfs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,73 +40,26 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: mario.kleiner.de@gmail.de, intel-gfx <intel-gfx@lists.freedesktop.org>,
- dri-devel <dri-devel@lists.freedesktop.org>,
- Daniel Vetter <daniel.vetter@ffwll.ch>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: kui.wen@intel.com
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Jan 09, 2020 at 09:19:07PM +0100, Mario Kleiner wrote:
-> On Thu, Jan 9, 2020 at 7:24 PM Ville Syrj=E4l=E4 <ville.syrjala@linux.int=
-el.com>
-> wrote:
-> =
+Quoting Tvrtko Ursulin (2020-01-10 13:30:42)
+> +static ssize_t
+> +show_client_name(struct device *kdev, struct device_attribute *attr, char *buf)
+> +{
+> +       struct i915_drm_client *client =
+> +               container_of(attr, typeof(*client), attr.name);
+> +
+> +       return snprintf(buf, PAGE_SIZE, "%s%s%s",
+> +                       client->closed ? "<" : "",
+> +                       client->name,
+> +                       client->closed ? ">" : "");
 
-> > On Thu, Jan 09, 2020 at 06:57:14PM +0100, Mario Kleiner wrote:
-> > > On Thu, Jan 9, 2020 at 5:47 PM Ville Syrj=E4l=E4 <
-> > ville.syrjala@linux.intel.com>
-> > > wrote:
-> > >
-> > > > On Thu, Jan 09, 2020 at 05:30:05PM +0100, Mario Kleiner wrote:
-> > > > > On Thu, Jan 9, 2020 at 4:38 PM Ville Syrj=E4l=E4 <
-> > > > ville.syrjala@linux.intel.com>
-> > > > > wrote:
-> > > > >
-> >
-> =
-
-> > wouldn't work if dpcd[0x1] =3D=3D 0xa, which it likely is [*]. AMD DC
-> > > identified it as DP 1.1, eDP 1.3, and these extended caps seem to be =
-only
-> > > part of DP 1.3+ if i understand the comments in
-> > > intel_dp_extended_receiver_capabilities() correctly.
-> >
-> >
-> Ok, looking at previous debug output logs shows that those extended caps
-> are not present on the systems, ie. that extended caps bit is not set. So
-> dpcd[0x1] =3D=3D 0xa.
-> =
-
-> =
-
-> > Yeah, but you never know how creative they've been with the DPCD in
-> > such a propritary machine. A full DPCD dump from /dev/drm_dp_aux* would
-> > be nice. Can you file a bug an attach the DPCD dump there so we have a
-> > good reference on what we're talking about (also for future if/when
-> > someone eventually starts to wonder why we have such hacks in the
-> > code)?
-> >
-> >
-> True, it's Apple which likes to "Think different..." :/
-> =
-
-> Will do. But is there a proper/better way to do the /dev/drm_dp_aux0 dump?
-> I used cat /dev/drm_dp_aux0 > dump, and that hangs, but if i interrupt it
-> after a few seconds, i get a dump file of 512k size, which seems excessiv=
-e?
-> On AMD DC atm., in case that matters.
-
-It can take a while to dump the whole thing. If there are errors in some
-parts (against the spec but some devices simply don't care about the
-spec) you may need to use ddrescue/etc. to dump everything that can be
-dumped.
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
+client->closed ? "<%s>" : "%s", unspeakably evil?
+-Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
