@@ -2,30 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F18D136D0B
-	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jan 2020 13:31:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DA2F9136D19
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jan 2020 13:33:01 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 158A66E9DF;
-	Fri, 10 Jan 2020 12:31:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3033B6E9EF;
+	Fri, 10 Jan 2020 12:33:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 388136E9E4
- for <intel-gfx@lists.freedesktop.org>; Fri, 10 Jan 2020 12:31:04 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19833856-1500050 
- for <intel-gfx@lists.freedesktop.org>; Fri, 10 Jan 2020 12:30:59 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri, 10 Jan 2020 12:30:59 +0000
-Message-Id: <20200110123059.1348712-4-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.25.0.rc2
-In-Reply-To: <20200110123059.1348712-1-chris@chris-wilson.co.uk>
-References: <20200110123059.1348712-1-chris@chris-wilson.co.uk>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 5822D6E9E4;
+ Fri, 10 Jan 2020 12:32:58 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 4EB9FA00FD;
+ Fri, 10 Jan 2020 12:32:58 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [CI 4/4] drm/i915: Drop request list from error state
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Fri, 10 Jan 2020 12:32:58 -0000
+Message-ID: <157865957829.30836.12778951851870126466@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200110110402.1231745-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200110110402.1231745-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5B1/3=5D_drm/i915/gt=3A_Skip_trying_to_unbin?=
+ =?utf-8?q?d_in_restore=5Fggtt=5Fmappings?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,174 +39,140 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The list of requests from after the hang tells little about the hang
-itself, only how busy userspace was after the fact. As it pertains
-nothing to the HW state, drop it from the error state.
+== Series Details ==
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Acked-by: Andi Shyti <andi.shyti@intel.com>
----
- drivers/gpu/drm/i915/i915_gpu_error.c | 75 +++------------------------
- drivers/gpu/drm/i915/i915_gpu_error.h |  3 +-
- 2 files changed, 8 insertions(+), 70 deletions(-)
+Series: series starting with [1/3] drm/i915/gt: Skip trying to unbind in restore_ggtt_mappings
+URL   : https://patchwork.freedesktop.org/series/71876/
+State : success
 
-diff --git a/drivers/gpu/drm/i915/i915_gpu_error.c b/drivers/gpu/drm/i915/i915_gpu_error.c
-index 79eae3708602..95635daca4c4 100644
---- a/drivers/gpu/drm/i915/i915_gpu_error.c
-+++ b/drivers/gpu/drm/i915/i915_gpu_error.c
-@@ -669,7 +669,7 @@ static void err_print_gt(struct drm_i915_error_state_buf *m,
- 			 struct intel_gt_coredump *gt)
- {
- 	const struct intel_engine_coredump *ee;
--	int i, j;
-+	int i;
- 
- 	err_printf(m, "GT awake: %s\n", yesno(gt->awake));
- 	err_printf(m, "EIR: 0x%08x\n", gt->eir);
-@@ -715,17 +715,8 @@ static void err_print_gt(struct drm_i915_error_state_buf *m,
- 		const struct i915_vma_coredump *vma;
- 
- 		error_print_engine(m, ee);
--
- 		for (vma = ee->vma; vma; vma = vma->next)
- 			print_error_vma(m, ee->engine, vma);
--
--		if (ee->num_requests) {
--			err_printf(m, "%s --- %d requests\n",
--				   ee->engine->name,
--				   ee->num_requests);
--			for (j = 0; j < ee->num_requests; j++)
--				error_print_request(m, " ", &ee->requests[j]);
--		}
- 	}
- 
- 	if (gt->uc)
-@@ -936,7 +927,6 @@ static void cleanup_gt(struct intel_gt_coredump *gt)
- 		gt->engine = ee->next;
- 
- 		i915_vma_coredump_free(ee->vma);
--		kfree(ee->requests);
- 		kfree(ee);
- 	}
- 
-@@ -1221,54 +1211,6 @@ static void record_request(const struct i915_request *request,
- 	rcu_read_unlock();
- }
- 
--static void engine_record_requests(const struct intel_engine_cs *engine,
--				   struct i915_request *first,
--				   struct intel_engine_coredump *ee)
--{
--	struct i915_request *request;
--	int count;
--
--	count = 0;
--	request = first;
--	list_for_each_entry_from(request, &engine->active.requests, sched.link)
--		count++;
--	if (!count)
--		return;
--
--	ee->requests = kcalloc(count, sizeof(*ee->requests), ATOMIC_MAYFAIL);
--	if (!ee->requests)
--		return;
--
--	ee->num_requests = count;
--
--	count = 0;
--	request = first;
--	list_for_each_entry_from(request,
--				 &engine->active.requests, sched.link) {
--		if (count >= ee->num_requests) {
--			/*
--			 * If the ring request list was changed in
--			 * between the point where the error request
--			 * list was created and dimensioned and this
--			 * point then just exit early to avoid crashes.
--			 *
--			 * We don't need to communicate that the
--			 * request list changed state during error
--			 * state capture and that the error state is
--			 * slightly incorrect as a consequence since we
--			 * are typically only interested in the request
--			 * list state at the point of error state
--			 * capture, not in any changes happening during
--			 * the capture.
--			 */
--			break;
--		}
--
--		record_request(request, &ee->requests[count++]);
--	}
--	ee->num_requests = count;
--}
--
- static void engine_record_execlists(struct intel_engine_coredump *ee)
- {
- 	const struct intel_engine_execlists * const el = &ee->engine->execlists;
-@@ -1480,7 +1422,7 @@ static struct intel_engine_coredump *
- capture_engine(struct intel_engine_cs *engine,
- 	       struct i915_vma_compress *compress)
- {
--	struct intel_engine_capture_vma *capture;
-+	struct intel_engine_capture_vma *capture = NULL;
- 	struct intel_engine_coredump *ee;
- 	struct i915_request *rq;
- 	unsigned long flags;
-@@ -1490,19 +1432,16 @@ capture_engine(struct intel_engine_cs *engine,
- 		return NULL;
- 
- 	spin_lock_irqsave(&engine->active.lock, flags);
--
- 	rq = intel_engine_find_active_request(engine);
--	if (!rq) {
--		spin_unlock_irqrestore(&engine->active.lock, flags);
-+	if (rq)
-+		capture = intel_engine_coredump_add_request(ee, rq,
-+							    ATOMIC_MAYFAIL);
-+	spin_unlock_irqrestore(&engine->active.lock, flags);
-+	if (!capture) {
- 		kfree(ee);
- 		return NULL;
- 	}
- 
--	capture = intel_engine_coredump_add_request(ee, rq, ATOMIC_MAYFAIL);
--	engine_record_requests(engine, rq, ee);
--
--	spin_unlock_irqrestore(&engine->active.lock, flags);
--
- 	intel_engine_coredump_add_vma(ee, capture, compress);
- 
- 	return ee;
-diff --git a/drivers/gpu/drm/i915/i915_gpu_error.h b/drivers/gpu/drm/i915/i915_gpu_error.h
-index 8f4579d64d8c..b87f39291c07 100644
---- a/drivers/gpu/drm/i915/i915_gpu_error.h
-+++ b/drivers/gpu/drm/i915/i915_gpu_error.h
-@@ -60,7 +60,6 @@ struct intel_engine_coredump {
- 	const struct intel_engine_cs *engine;
- 
- 	bool simulated;
--	int num_requests;
- 	u32 reset_count;
- 
- 	/* position of active request inside the ring */
-@@ -96,7 +95,7 @@ struct intel_engine_coredump {
- 
- 	struct i915_vma_coredump *vma;
- 
--	struct i915_request_coredump *requests, execlist[EXECLIST_MAX_PORTS];
-+	struct i915_request_coredump execlist[EXECLIST_MAX_PORTS];
- 	unsigned int num_ports;
- 
- 	struct {
--- 
-2.25.0.rc2
+== Summary ==
 
+CI Bug Log - changes from CI_DRM_7716 -> Patchwork_16049
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16049/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_16049 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_sync@basic-store-each:
+    - fi-tgl-y:           [PASS][1] -> [INCOMPLETE][2] ([CI#80] / [i915#472])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7716/fi-tgl-y/igt@gem_sync@basic-store-each.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16049/fi-tgl-y/igt@gem_sync@basic-store-each.html
+
+  * igt@i915_module_load@reload-with-fault-injection:
+    - fi-cfl-guc:         [PASS][3] -> [DMESG-WARN][4] ([i915#889])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7716/fi-cfl-guc/igt@i915_module_load@reload-with-fault-injection.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16049/fi-cfl-guc/igt@i915_module_load@reload-with-fault-injection.html
+    - fi-skl-6770hq:      [PASS][5] -> [DMESG-WARN][6] ([i915#889])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7716/fi-skl-6770hq/igt@i915_module_load@reload-with-fault-injection.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16049/fi-skl-6770hq/igt@i915_module_load@reload-with-fault-injection.html
+    - fi-kbl-x1275:       [PASS][7] -> [INCOMPLETE][8] ([i915#879])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7716/fi-kbl-x1275/igt@i915_module_load@reload-with-fault-injection.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16049/fi-kbl-x1275/igt@i915_module_load@reload-with-fault-injection.html
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-cfl-guc:         [PASS][9] -> [INCOMPLETE][10] ([i915#148])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7716/fi-cfl-guc/igt@i915_pm_rpm@module-reload.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16049/fi-cfl-guc/igt@i915_pm_rpm@module-reload.html
+    - fi-skl-6770hq:      [PASS][11] -> [FAIL][12] ([i915#178])
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7716/fi-skl-6770hq/igt@i915_pm_rpm@module-reload.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16049/fi-skl-6770hq/igt@i915_pm_rpm@module-reload.html
+
+  * igt@kms_chamelium@hdmi-hpd-fast:
+    - fi-kbl-7500u:       [PASS][13] -> [FAIL][14] ([fdo#111407])
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7716/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16049/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_module_load@reload-with-fault-injection:
+    - fi-skl-6700k2:      [INCOMPLETE][15] ([i915#671]) -> [PASS][16]
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7716/fi-skl-6700k2/igt@i915_module_load@reload-with-fault-injection.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16049/fi-skl-6700k2/igt@i915_module_load@reload-with-fault-injection.html
+
+  * igt@i915_selftest@live_blt:
+    - fi-bsw-nick:        [DMESG-FAIL][17] ([i915#723]) -> [PASS][18]
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7716/fi-bsw-nick/igt@i915_selftest@live_blt.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16049/fi-bsw-nick/igt@i915_selftest@live_blt.html
+
+  * igt@i915_selftest@live_gt_heartbeat:
+    - fi-bsw-n3050:       [DMESG-FAIL][19] ([i915#541]) -> [PASS][20]
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7716/fi-bsw-n3050/igt@i915_selftest@live_gt_heartbeat.html
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16049/fi-bsw-n3050/igt@i915_selftest@live_gt_heartbeat.html
+
+  
+#### Warnings ####
+
+  * igt@i915_selftest@live_blt:
+    - fi-hsw-4770r:       [DMESG-FAIL][21] ([i915#553] / [i915#725]) -> [DMESG-FAIL][22] ([i915#725])
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7716/fi-hsw-4770r/igt@i915_selftest@live_blt.html
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16049/fi-hsw-4770r/igt@i915_selftest@live_blt.html
+
+  
+  [CI#80]: https://gitlab.freedesktop.org/gfx-ci/i915-infra/issues/80
+  [fdo#111407]: https://bugs.freedesktop.org/show_bug.cgi?id=111407
+  [i915#148]: https://gitlab.freedesktop.org/drm/intel/issues/148
+  [i915#178]: https://gitlab.freedesktop.org/drm/intel/issues/178
+  [i915#472]: https://gitlab.freedesktop.org/drm/intel/issues/472
+  [i915#541]: https://gitlab.freedesktop.org/drm/intel/issues/541
+  [i915#553]: https://gitlab.freedesktop.org/drm/intel/issues/553
+  [i915#671]: https://gitlab.freedesktop.org/drm/intel/issues/671
+  [i915#723]: https://gitlab.freedesktop.org/drm/intel/issues/723
+  [i915#725]: https://gitlab.freedesktop.org/drm/intel/issues/725
+  [i915#879]: https://gitlab.freedesktop.org/drm/intel/issues/879
+  [i915#889]: https://gitlab.freedesktop.org/drm/intel/issues/889
+
+
+Participating hosts (51 -> 44)
+------------------------------
+
+  Additional (1): fi-bxt-dsi 
+  Missing    (8): fi-ehl-1 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-pnv-d510 fi-kbl-7560u fi-byt-n2820 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_7716 -> Patchwork_16049
+
+  CI-20190529: 20190529
+  CI_DRM_7716: b532d43e8d71b07d1cd0619915b1d4039002b5b9 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5359: 28451bcec2245dcc1fd0eb1d4c76335b2b4f97a5 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_16049: 5af13e22647252b327519d15f5d8bc2f5e5de087 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+5af13e226472 drm/i915/gt: Mark ring->vma as active while pinned
+6aec71d5890d drm/i915/gt: Mark context->state vma as active while pinned
+ca8079c2039a drm/i915/gt: Skip trying to unbind in restore_ggtt_mappings
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16049/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
