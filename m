@@ -1,34 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6DE3136EF4
-	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jan 2020 15:05:24 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F7AE136F03
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jan 2020 15:09:16 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6780A6EA25;
-	Fri, 10 Jan 2020 14:05:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DB42A6EA2B;
+	Fri, 10 Jan 2020 14:09:14 +0000 (UTC)
 X-Original-To: Intel-gfx@lists.freedesktop.org
 Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 044D06EA00
- for <Intel-gfx@lists.freedesktop.org>; Fri, 10 Jan 2020 14:05:20 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 19834961-1500050 for multiple; Fri, 10 Jan 2020 14:03:18 +0000
-MIME-Version: 1.0
-To: Intel-gfx@lists.freedesktop.org,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-In-Reply-To: <20200110133049.2705-8-tvrtko.ursulin@linux.intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 95B116EA2E
+ for <Intel-gfx@lists.freedesktop.org>; Fri, 10 Jan 2020 14:09:13 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 10 Jan 2020 06:09:13 -0800
+X-IronPort-AV: E=Sophos;i="5.69,417,1571727600"; d="scan'208";a="216676126"
+Received: from kumarjai-mobl1.ger.corp.intel.com (HELO [10.251.83.12])
+ ([10.251.83.12])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/AES256-SHA;
+ 10 Jan 2020 06:09:11 -0800
+To: Chris Wilson <chris@chris-wilson.co.uk>, Intel-gfx@lists.freedesktop.org
 References: <20200110133049.2705-1-tvrtko.ursulin@linux.intel.com>
- <20200110133049.2705-8-tvrtko.ursulin@linux.intel.com>
-Message-ID: <157866499711.10140.9953467835735963210@skylake-alporthouse-com>
-User-Agent: alot/0.6
-Date: Fri, 10 Jan 2020 14:03:17 +0000
-Subject: Re: [Intel-gfx] [RFC 7/8] drm/i915: Track hw reported context
- runtime
+ <20200110133049.2705-7-tvrtko.ursulin@linux.intel.com>
+ <157866471921.10140.2303070485485258716@skylake-alporthouse-com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <aacea301-9bed-424e-42a7-c398bf242b1d@linux.intel.com>
+Date: Fri, 10 Jan 2020 14:09:09 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
+MIME-Version: 1.0
+In-Reply-To: <157866471921.10140.2303070485485258716@skylake-alporthouse-com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [RFC 6/8] drm/i915: Expose per-engine client
+ busyness
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,125 +50,122 @@ List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: kui.wen@intel.com
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Tvrtko Ursulin (2020-01-10 13:30:48)
-> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+
+On 10/01/2020 13:58, Chris Wilson wrote:
+> Quoting Tvrtko Ursulin (2020-01-10 13:30:47)
+>> +static ssize_t
+>> +show_client_busy(struct device *kdev, struct device_attribute *attr, char *buf)
+>> +{
+>> +       struct i915_engine_busy_attribute *i915_attr =
+>> +               container_of(attr, typeof(*i915_attr), attr);
+>> +       struct list_head *list = &i915_attr->client->ctx_list;
+>> +       unsigned int engine_class = i915_attr->engine_class;
+>> +       struct i915_gem_context *ctx;
+>> +       u64 total = 0;
+>> +
+>> +       if (i915_attr->no_busy_stats)
+>> +               return -ENODEV;
+>> +
+>> +       rcu_read_lock();
+>> +       list_for_each_entry_rcu(ctx, list, client_link)
+>> +               total += sw_busy_add(ctx, engine_class);
+>> +       rcu_read_unlock();
+>> +
+>> +       return snprintf(buf, PAGE_SIZE, "%llu\n", total);
+>> +}
+>> +
+>> +static const char *uabi_class_names[] = {
+>> +       [I915_ENGINE_CLASS_RENDER] = "0",
+>> +       [I915_ENGINE_CLASS_COPY] = "1",
+>> +       [I915_ENGINE_CLASS_VIDEO] = "2",
+>> +       [I915_ENGINE_CLASS_VIDEO_ENHANCE] = "3",
+>> +};
 > 
-> GPU saves accumulated context runtime (in CS timestamp units) in PPHWSP
-> which will be useful for us in cases when we are not able to track context
-> busyness ourselves (like with GuC). Keep a copy of this in struct
-> intel_context from where it can be easily read even if the context is not
-> pinned.
+> Hmm. /sys/class/drm/card0/clients/0/busy/0
 > 
-> QQQ: Do we want to make this accounting conditional / able to turn on/off?
+> Ok. I was worried this was 0/0 and so very bland and liable to clash
+> later.
 > 
-> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> ---
->  drivers/gpu/drm/i915/gt/intel_context.h       | 7 +++++++
->  drivers/gpu/drm/i915/gt/intel_context_types.h | 5 +++++
->  drivers/gpu/drm/i915/gt/intel_lrc.c           | 9 +++++++++
->  drivers/gpu/drm/i915/intel_device_info.c      | 2 ++
->  drivers/gpu/drm/i915/intel_device_info.h      | 1 +
->  5 files changed, 24 insertions(+)
+>> +
+>>   int
+>>   __i915_drm_client_register(struct i915_drm_client *client,
+>>                             struct task_struct *task)
+>>   {
+>>          struct i915_drm_clients *clients = client->clients;
+>> +       struct drm_i915_private *i915 =
+>> +               container_of(clients, typeof(*i915), clients);
+>> +       struct intel_engine_cs *engine;
+>>          struct device_attribute *attr;
+>> -       int ret = -ENOMEM;
+>> +       int i, ret = -ENOMEM;
+>>          char idstr[32];
+>>   
+>>          if (!clients->root)
+>> @@ -77,10 +130,71 @@ __i915_drm_client_register(struct i915_drm_client *client,
+>>          if (ret)
+>>                  goto err_attr;
+>>   
+>> +       if (HAS_LOGICAL_RING_CONTEXTS(i915)) {
+>> +               client->busy_root =
+>> +                       kobject_create_and_add("busy", client->root);
+>> +               if (!client->busy_root)
+>> +                       goto err_attr;
+>> +
+>> +               for (i = 0; i < ARRAY_SIZE(uabi_class_names); i++) {
+>> +                       struct i915_engine_busy_attribute *i915_attr =
+>> +                               &client->attr.busy[i];
 > 
-> diff --git a/drivers/gpu/drm/i915/gt/intel_context.h b/drivers/gpu/drm/i915/gt/intel_context.h
-> index 30f0268fcc9a..389a05736fc7 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_context.h
-> +++ b/drivers/gpu/drm/i915/gt/intel_context.h
-> @@ -12,6 +12,7 @@
->  #include <linux/types.h>
->  
->  #include "i915_active.h"
-> +#include "i915_drv.h"
->  #include "intel_context_types.h"
->  #include "intel_engine_types.h"
->  #include "intel_ring_types.h"
-> @@ -235,4 +236,10 @@ __intel_context_stats_start(struct intel_context_stats *stats, ktime_t now)
->  
->  ktime_t intel_context_get_busy_time(struct intel_context *ce);
->  
-> +static inline u64 intel_context_get_hw_runtime_ns(struct intel_context *ce)
-> +{
-> +       return ce->total_runtime *
-> +              RUNTIME_INFO(ce->engine->i915)->cs_timestamp_period_ns;
-> +}
-> +
->  #endif /* __INTEL_CONTEXT_H__ */
-> diff --git a/drivers/gpu/drm/i915/gt/intel_context_types.h b/drivers/gpu/drm/i915/gt/intel_context_types.h
-> index 963d33dc5289..7b08bf87fb82 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_context_types.h
-> +++ b/drivers/gpu/drm/i915/gt/intel_context_types.h
-> @@ -69,6 +69,11 @@ struct intel_context {
->         u64 lrc_desc;
->         u32 tag; /* cookie passed to HW to track this context on submission */
->  
-> +       /* Time on GPU as tracked by the hw. */
-> +       u32 last_runtime;
-> +       u64 total_runtime;
-> +       u32 *pphwsp;
+> 
+> if (!intel_engine_lookup_user(i915, i, 0))
+> 	continue;
+> 
+> i.e. skip if we don't have any engines of that class in the system.
 
-I wouldn't bother with keeping pphwsp, we know it's the page before the
-reg state. At least for the foreseeable future.
+Yes, thanks.
 
->         unsigned int active_count; /* protected by timeline->mutex */
->  
->         atomic_t pin_count;
-> diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-> index dd559547500f..26999b43e5a1 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-> @@ -1289,6 +1289,7 @@ __execlists_schedule_out(struct i915_request *rq,
->                          struct intel_engine_cs * const engine)
->  {
->         struct intel_context *ce = rq->context;
-> +       u32 old, new;
->  
->         /*
->          * NB process_csb() is not under the engine->active.lock and hence
-> @@ -1309,6 +1310,13 @@ __execlists_schedule_out(struct i915_request *rq,
->         execlists_context_status_change(rq, INTEL_CONTEXT_SCHEDULE_OUT);
->         intel_gt_pm_put_async(engine->gt);
->  
-> +       old = ce->last_runtime;
-> +       ce->last_runtime = new = ce->pphwsp[16];
-> +       if (new > old)
-> +               ce->total_runtime += new - old;
-> +       else
-> +               ce->total_runtime += (~0UL - old) + new + 1;
+>> +
+>> +                       i915_attr->client = client;
+>> +                       i915_attr->engine_class = i;
+>> +
+>> +                       attr = &i915_attr->attr;
+>> +
+>> +                       sysfs_attr_init(&attr->attr);
+>> +
+>> +                       attr->attr.name = uabi_class_names[i];
+>> +                       attr->attr.mode = 0444;
+>> +                       attr->show = show_client_busy;
+>> +
+>> +                       ret = sysfs_create_file(client->busy_root,
+>> +                                               (struct attribute *)attr);
+>> +                       if (ret)
+>> +                               goto err_busy;
+>> +               }
+>> +
+>> +               /* Enable busy stats on all engines. */
+>> +               i = 0;
+>> +               for_each_uabi_engine(engine, i915) {
+>> +                       ret = intel_enable_engine_stats(engine);
+> 
+> Hmm. We gave it a global bit in
+> 
+> 	i915->caps.scheduler & I915_SCHEDULER_CAP_ENABLED.
+> 
+> That'll avoid having to do the individual checking and rollback.
 
-It's u32, unsigned wrap-around arithmetic is defined, so just
-ce->total_runtime += new - old;
+I could add a top level check as a short circuit, but I prefer to check 
+return code from intel_enable_engine_stats since it returns one.
 
-> +
->         /*
->          * If this is part of a virtual engine, its next request may
->          * have been blocked waiting for access to the active context.
-> @@ -2608,6 +2616,7 @@ __execlists_context_pin(struct intel_context *ce,
->  
->         ce->lrc_desc = lrc_descriptor(ce, engine) | CTX_DESC_FORCE_RESTORE;
->         ce->lrc_reg_state = vaddr + LRC_STATE_PN * PAGE_SIZE;
-> +       ce->pphwsp = vaddr + LRC_PPHWSP_PN * PAGE_SIZE;
->         __execlists_update_reg_state(ce, engine);
->  
->         return 0;
-> diff --git a/drivers/gpu/drm/i915/intel_device_info.c b/drivers/gpu/drm/i915/intel_device_info.c
-> index 6670a0763be2..7732748e1939 100644
-> --- a/drivers/gpu/drm/i915/intel_device_info.c
-> +++ b/drivers/gpu/drm/i915/intel_device_info.c
-> @@ -1042,6 +1042,8 @@ void intel_device_info_runtime_init(struct drm_i915_private *dev_priv)
->  
->         /* Initialize command stream timestamp frequency */
->         runtime->cs_timestamp_frequency_khz = read_timestamp_frequency(dev_priv);
-> +       runtime->cs_timestamp_period_ns =
-> +               div_u64(1e6, runtime->cs_timestamp_frequency_khz);
+Also if new GuC will have I915_SCHEDULER_CAP_ENABLED it will still fail 
+to enable engine stats and then fallback to pphwsp has to happen.
 
-drm_debug(&dev_priv->drm, "CS timestamp wraparound in %lld\n",
-div_u64(U32_MAX * runtime->cs_timestamp_period_ns, NSEC_PER_SEC);
--Chris
+Regards,
+
+Tvrtko
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
