@@ -1,33 +1,35 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 83624137675
-	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jan 2020 19:54:27 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id BCE9613767A
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jan 2020 19:58:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D91D16EA8E;
-	Fri, 10 Jan 2020 18:54:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 382DA6EA8A;
+	Fri, 10 Jan 2020 18:58:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CFFFA6EA8E
- for <intel-gfx@lists.freedesktop.org>; Fri, 10 Jan 2020 18:54:24 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1B1AC6EA8A
+ for <intel-gfx@lists.freedesktop.org>; Fri, 10 Jan 2020 18:58:10 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from localhost (unverified [78.156.65.138]) 
  by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 19838716-1500050 for multiple; Fri, 10 Jan 2020 18:54:14 +0000
+ 19838740-1500050 for multiple; Fri, 10 Jan 2020 18:57:59 +0000
 MIME-Version: 1.0
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+To: Michal Wajdeczko <michal.wajdeczko@intel.com>,
  intel-gfx@lists.freedesktop.org
 From: Chris Wilson <chris@chris-wilson.co.uk>
-In-Reply-To: <20200110183228.8199-1-ville.syrjala@linux.intel.com>
-References: <20200110183228.8199-1-ville.syrjala@linux.intel.com>
-Message-ID: <157868245324.10140.16798394715431007470@skylake-alporthouse-com>
+In-Reply-To: <op.0d6w50tdxaggs7@mwajdecz-mobl1.ger.corp.intel.com>
+References: <20200110162930.88968-1-michal.wajdeczko@intel.com>
+ <20200110162930.88968-2-michal.wajdeczko@intel.com>
+ <157867544267.10140.17763932771976610595@skylake-alporthouse-com>
+ <op.0d6w50tdxaggs7@mwajdecz-mobl1.ger.corp.intel.com>
+Message-ID: <157868267818.10140.12103194474945067279@skylake-alporthouse-com>
 User-Agent: alot/0.6
-Date: Fri, 10 Jan 2020 18:54:13 +0000
-Subject: Re: [Intel-gfx] [PATCH 1/6] drm/i915: Make a copy of the ggtt view
- for slave plane
+Date: Fri, 10 Jan 2020 18:57:58 +0000
+Subject: Re: [Intel-gfx] [PATCH v2 1/4] drm/i915/uc: Add ops to intel_uc
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,51 +42,137 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-UXVvdGluZyBWaWxsZSBTeXJqYWxhICgyMDIwLTAxLTEwIDE4OjMyOjIzKQo+IEZyb206IFZpbGxl
-IFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5jb20+Cj4gCj4gaW50ZWxfcHJl
-cGFyZV9wbGFuZV9mYigpIHdpbGwgYWx3YXlzIHBpbiBwbGFuZV9zdGF0ZS0+aHcuZmIgd2hlbmV2
-ZXIKPiBpdCBpcyBwcmVzZW50LiBXZSBjb3B5IHRoYXQgZnJvbSB0aGUgbWFzdGVyIHBsYW5lIHRv
-IHRoZSBzbGF2ZSBwbGFuZSwKPiBidXQgd2UgZmFpbCB0byBjb3B5IHRoZSBjb3JyZXNwb25kaW5n
-IGdndHQgdmlldy4gVGh1cyB3aGVuIGl0IGNvbWVzIHRpbWUKPiB0byBwaW4gdGhlIHNsYXZlIHBs
-YW5lJ3MgZmIgd2UgdXNlIHNvbWUgc3RhbGUgZ2d0dCB2aWV3IGxlZnQgb3ZlciBmcm9tCj4gdGhl
-IGxhc3QgdGltZSB0aGUgcGxhbmUgd2FzIHVzZWQgYXMgYSBub24tc2xhdmUgcGxhbmUuIElmIHRo
-YXQgcHJldmlvdXMKPiB1c2UgaW52b2x2ZWQgOTAvMjcwIGRlZ3JlZSByb3RhdGlvbiBvciByZW1h
-cHBpbmcgd2UnbGwgdHJ5IHRvIHNodWZmbGUKPiB0aGUgcGFnZXMgb2YgdGhlIG5ldyBmYiBhcm91
-bmQgYWNjb3JkaW5naW5nbHkuIEhvd2V2ZXIgdGhlIG5ldwo+IGZiIG1heSBiZSBiYWNrZWQgYnkg
-YSBibyB3aXRoIGxlc3MgcGFnZXMgdGhhbiB3aGF0IHRoZSBnZ3R0IHZpZXcKPiByb3RhdGlvbi9y
-ZW1hcHBlZCBpbmZvIHJlcXVpcmVzLCBhbmQgc28gd2Ugd2UgdHJpcCBhIEdFTV9CVUcoKS4KPiAK
-PiBTdGVwcyB0byByZXByb2R1Y2Ugb24gaWNsOgo+IDEuIHBsYW5lIDE6IHdoYXRldmVyCj4gICAg
-cGxhbmUgNjogbGFyZ2lzaCAhTlYxMiBmYiArIDkwIGRlZ3JlZSByb3RhdGlvbgo+IDIuIHBsYW5l
-IDE6IHNtYWxsaXNoIE5WMTIgZmIKPiAgICBwbGFuZSA2OiBtYWtlIGludmlzaWJsZSBzbyBpdCBn
-ZXRzIHNsYXZlZCB0byBwbGFuZSAxCj4gMy4gR0VNX0JVRygpCj4gCj4gQ2M6IENocmlzIFdpbHNv
-biA8Y2hyaXNAY2hyaXMtd2lsc29uLmNvLnVrPgo+IENjOiBNYWFydGVuIExhbmtob3JzdCA8bWFh
-cnRlbi5sYW5raG9yc3RAbGludXguaW50ZWwuY29tPgo+IENsb3NlczogaHR0cHM6Ly9naXRsYWIu
-ZnJlZWRlc2t0b3Aub3JnL2RybS9pbnRlbC9pc3N1ZXMvOTUxCj4gRml4ZXM6IDFmNTk0YjIwOWZl
-MSAoImRybS9pOTE1OiBSZW1vdmUgc3BlY2lhbCBjYXNlIHNsYXZlIGhhbmRsaW5nIGR1cmluZyBo
-dyBwcm9ncmFtbWluZywgdjMuIikKPiBTaWduZWQtb2ZmLWJ5OiBWaWxsZSBTeXJqw6Rsw6QgPHZp
-bGxlLnN5cmphbGFAbGludXguaW50ZWwuY29tPgo+IC0tLQo+ICBkcml2ZXJzL2dwdS9kcm0vaTkx
-NS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuYyB8IDEgKwo+ICAxIGZpbGUgY2hhbmdlZCwgMSBpbnNl
-cnRpb24oKykKPiAKPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9p
-bnRlbF9kaXNwbGF5LmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3Bs
-YXkuYwo+IGluZGV4IDU5YzM3NTg3OTE4Ni4uZmFmYjY3Njg5ZGVlIDEwMDY0NAo+IC0tLSBhL2Ry
-aXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jCj4gKysrIGIvZHJpdmVy
-cy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMKPiBAQCAtMTIzNjYsNiArMTIz
-NjYsNyBAQCBzdGF0aWMgaW50IGljbF9jaGVja19udjEyX3BsYW5lcyhzdHJ1Y3QgaW50ZWxfY3J0
-Y19zdGF0ZSAqY3J0Y19zdGF0ZSkKPiAgICAgICAgICAgICAgICAgLyogQ29weSBwYXJhbWV0ZXJz
-IHRvIHNsYXZlIHBsYW5lICovCj4gICAgICAgICAgICAgICAgIGxpbmtlZF9zdGF0ZS0+Y3RsID0g
-cGxhbmVfc3RhdGUtPmN0bCB8IFBMQU5FX0NUTF9ZVVY0MjBfWV9QTEFORTsKPiAgICAgICAgICAg
-ICAgICAgbGlua2VkX3N0YXRlLT5jb2xvcl9jdGwgPSBwbGFuZV9zdGF0ZS0+Y29sb3JfY3RsOwo+
-ICsgICAgICAgICAgICAgICBsaW5rZWRfc3RhdGUtPnZpZXcgPSBwbGFuZV9zdGF0ZS0+dmlldzsK
-PiAgICAgICAgICAgICAgICAgbWVtY3B5KGxpbmtlZF9zdGF0ZS0+Y29sb3JfcGxhbmUsIHBsYW5l
-X3N0YXRlLT5jb2xvcl9wbGFuZSwKPiAgICAgICAgICAgICAgICAgICAgICAgIHNpemVvZihsaW5r
-ZWRfc3RhdGUtPmNvbG9yX3BsYW5lKSk7CgpTbyB0aGlzIGJpdCBpcyBqdXN0IGNvcHlpbmcgYWNy
-b3NzIHRoZSByZXN1bHRzIG9mCmludGVsX3BsYW5lX2NvbXB1dGVfZ3R0KCk/CgpXaGF0IGhhcHBl
-bnMgZm9yIGVxdWl2YWxlbnQgb2YgaW50ZWxfcGxhbmVfbmVlZHNfcmVtYXAoKT8KLUNocmlzCl9f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBt
-YWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3Rz
-LmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+Quoting Michal Wajdeczko (2020-01-10 18:47:50)
+> On Fri, 10 Jan 2020 17:57:22 +0100, Chris Wilson  
+> <chris@chris-wilson.co.uk> wrote:
+> 
+> > Quoting Michal Wajdeczko (2020-01-10 16:29:27)
+> >> Instead of spreading multiple conditionals across the uC code
+> >> to find out current mode of uC operation, start using predefined
+> >> set of function pointers that reflect that mode.
+> >>
+> >> Begin with pair of init_hw/fini_hw functions that are responsible
+> >> for uC hardware initialization and cleanup.
+> >>
+> >> v2: drop ops_none, use macro to generate ops helpers
+> >>
+> >> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+> >> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+> >> Cc: Chris Wilson <chris@chris-wilson.co.uk>
+> >> Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+> >> ---
+> >>  drivers/gpu/drm/i915/gt/uc/intel_uc.c | 45 ++++++++++++++++++++++-----
+> >>  drivers/gpu/drm/i915/gt/uc/intel_uc.h | 21 +++++++++++--
+> >>  2 files changed, 57 insertions(+), 9 deletions(-)
+> >>
+> >> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc.c  
+> >> b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
+> >> index 3ffc6267f96e..da401e97bba3 100644
+> >> --- a/drivers/gpu/drm/i915/gt/uc/intel_uc.c
+> >> +++ b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
+> >> @@ -12,6 +12,19 @@
+> >>
+> >>  #include "i915_drv.h"
+> >>
+> >> +static int __uc_check_hw(struct intel_uc *uc);
+> >> +static int __uc_init_hw(struct intel_uc *uc);
+> >> +static void __uc_fini_hw(struct intel_uc *uc);
+> >> +
+> >> +static const struct intel_uc_ops uc_ops_off = {
+> >> +       .init_hw = __uc_check_hw,
+> >> +};
+> >> +
+> >> +static const struct intel_uc_ops uc_ops_on = {
+> >> +       .init_hw = __uc_init_hw,
+> >> +       .fini_hw = __uc_fini_hw,
+> >> +};
+> >> +
+> >>  /* Reset GuC providing us with fresh state for both GuC and HuC.
+> >>   */
+> >>  static int __intel_uc_reset_hw(struct intel_uc *uc)
+> >> @@ -89,6 +102,11 @@ void intel_uc_init_early(struct intel_uc *uc)
+> >>         intel_huc_init_early(&uc->huc);
+> >>
+> >>         __confirm_options(uc);
+> >> +
+> >> +       if (intel_uc_uses_guc(uc))
+> >> +               uc->ops = &uc_ops_on;
+> >> +       else
+> >> +               uc->ops = &uc_ops_off;
+> >>  }
+> >>
+> >>  void intel_uc_driver_late_release(struct intel_uc *uc)
+> >> @@ -380,24 +398,37 @@ static bool uc_is_wopcm_locked(struct intel_uc  
+> >> *uc)
+> >>                (intel_uncore_read(uncore, DMA_GUC_WOPCM_OFFSET) &  
+> >> GUC_WOPCM_OFFSET_VALID);
+> >>  }
+> >>
+> >> -int intel_uc_init_hw(struct intel_uc *uc)
+> >> +static int __uc_check_hw(struct intel_uc *uc)
+> >> +{
+> >> +       if (!intel_uc_supports_guc(uc))
+> >> +               return 0;
+> >> +
+> >> +       /*
+> >> +        * We can silently continue without GuC only if it was never  
+> >> enabled
+> >> +        * before on this system after reboot, otherwise we risk GPU  
+> >> hangs.
+> >> +        * To check if GuC was loaded before we look at WOPCM registers.
+> >> +        */
+> >> +       if (uc_is_wopcm_locked(uc))
+> >> +               return -EIO;
+> >> +
+> >> +       return 0;
+> >> +}
+> >> +
+> >> +static int __uc_init_hw(struct intel_uc *uc)
+> >>  {
+> >>         struct drm_i915_private *i915 = uc_to_gt(uc)->i915;
+> >>         struct intel_guc *guc = &uc->guc;
+> >>         struct intel_huc *huc = &uc->huc;
+> >>         int ret, attempts;
+> >>
+> >> -       if (!intel_uc_supports_guc(uc))
+> >> -               return 0;
+> >> +       GEM_BUG_ON(!intel_uc_supports_guc(uc));
+> >> +       GEM_BUG_ON(!intel_uc_uses_guc(uc));
+> >>
+> >>         /*
+> >>          * We can silently continue without GuC only if it was never  
+> >> enabled
+> >>          * before on this system after reboot, otherwise we risk GPU  
+> >> hangs.
+> >>          * To check if GuC was loaded before we look at WOPCM registers.
+> >>          */
+> >
+> > This comment still required?
+> > Shouldn't there be a call here to __uc_check_hw() instead?
+> 
+> ok, will replace below call to uc_is_wopcm_locked() with __uc_check_hw()
+> to avoid redundant (but otherwise still valid) comment
+> 
+> >
+> >> -       if (!intel_uc_uses_guc(uc) && !uc_is_wopcm_locked(uc))
+> >> -               return 0;
+> >> -
+> >>         if (!intel_uc_fw_is_available(&guc->fw)) {
+> >>                 ret = uc_is_wopcm_locked(uc) ||
+> 
+>                           ^^^^^^^^^^^^^^^^^^
+
+Ah, I see.
+
+I think I still like the chaining up to __uc_check_hw() for the
+continuity aspect, and only being scared once by the warning.
+-Chris
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
