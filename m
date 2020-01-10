@@ -2,62 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 900CA137541
-	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jan 2020 18:51:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A538E13752C
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jan 2020 18:48:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D4CFC6EA76;
-	Fri, 10 Jan 2020 17:51:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E5A776EA74;
+	Fri, 10 Jan 2020 17:48:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x443.google.com (mail-wr1-x443.google.com
- [IPv6:2a00:1450:4864:20::443])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 87DF96EA73;
- Fri, 10 Jan 2020 17:44:59 +0000 (UTC)
-Received: by mail-wr1-x443.google.com with SMTP id q10so2604559wrm.11;
- Fri, 10 Jan 2020 09:44:59 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:date:to:cc:subject:in-reply-to:message-id:references
- :user-agent:mime-version;
- bh=5hI1Z6zc0isNIwOCpgK9mbSp+WfDRjfAoj1TrQlEpEk=;
- b=ocd2XjHL/6q7Bv/03GFAnmNwBPQIoL9bJ5BkRsKBNXMqvd8Uvwjxfo9N0CltqGK4D9
- m6WC8vwBiEcX3wu3eGMFNb9s9JE5ssWh1ubdTMtX2neDKxdmN8y0MdX9llmGxdVV5lGs
- 3gIhVrGO3MV5UOrO6jzR3kPtPxQfHl1qEdTRSp91kXAxaWWTp9RD7jhUvsAOoiEsU9ct
- nJNZ0yLcdvlOBT37oT5m7bgVdT0RWO7rA1ntLhmdpnghc3srvwMQ/4BZ5HMOOwSyd7yV
- USMWVFuK6BQn4GknPaflrM+p4Dcpadd6N1Hxtm07GZt4017QGXtJasMEiwZ16KRqxOsH
- 7Evw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:date:to:cc:subject:in-reply-to:message-id
- :references:user-agent:mime-version;
- bh=5hI1Z6zc0isNIwOCpgK9mbSp+WfDRjfAoj1TrQlEpEk=;
- b=MEgeswDSZfnjts2fdcws5VDJB4GBB7tfyRO53HTNvcwLS3JwYbqay7+HxdnXvhcSLU
- VksG/BVcvgr+ZSomxoPab9GtP2JZ02WRzArTNZYNz/+JJeKJKkyEbMn+NHvywmnW2GJp
- /Tv6I/P81EPv8go2col0Jw8JULUGKxjctY5YWa+vRW31KeF5TP5DJDRGEpuxumJf3f5e
- W0eTgSJtJs1MjQUy3R1rDUfavDVdoPCo1qDdA+OCDHfBQZijr9/RhwIy+URcKjGzMBLB
- bo+uAQnJWXThcHxHe0kZEwFohFWsaAH/MbWdOz08xWmtxVhIVsERi+8T35EW3wiBSVZi
- XjjQ==
-X-Gm-Message-State: APjAAAX1MOwxauP43VKXFja5/3d+5olQrZaBYYJXz1KbU8nc5R/jb9Gn
- 180nogz2MNx/ng1k3ZC7CBY=
-X-Google-Smtp-Source: APXvYqzt7Qr8UDP3Dv38WgfWk/xkS6KCAOtCWgJWi+dWf98rcqNzc/uJiB+XqpYBSc+PgqaRuSXu8w==
-X-Received: by 2002:adf:d846:: with SMTP id k6mr4500598wrl.337.1578678298144; 
- Fri, 10 Jan 2020 09:44:58 -0800 (PST)
-Received: from wambui.local ([197.237.61.225])
- by smtp.googlemail.com with ESMTPSA id i8sm3140572wro.47.2020.01.10.09.44.54
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 10 Jan 2020 09:44:57 -0800 (PST)
-From: Wambui Karuga <wambui.karugax@gmail.com>
-X-Google-Original-From: Wambui Karuga <wambui@wambui>
-Date: Fri, 10 Jan 2020 20:44:48 +0300 (EAT)
-To: Jani Nikula <jani.nikula@linux.intel.com>
-In-Reply-To: <8736cno0ow.fsf@intel.com>
-Message-ID: <alpine.LNX.2.21.99999.375.2001102044220.23860@wambui>
-References: <cover.1578409433.git.wambui.karugax@gmail.com>
- <8736cno0ow.fsf@intel.com>
-User-Agent: Alpine 2.21.99999 (LNX 375 2019-10-29)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id A06056EA74;
+ Fri, 10 Jan 2020 17:48:10 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 98580A00C7;
+ Fri, 10 Jan 2020 17:48:10 +0000 (UTC)
 MIME-Version: 1.0
-X-Mailman-Approved-At: Fri, 10 Jan 2020 17:51:44 +0000
-Subject: Re: [Intel-gfx] [PATCH 0/5] drm/i915: conversion to new drm logging
- macros.
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Anshuman Gupta" <anshuman.gupta@intel.com>
+Date: Fri, 10 Jan 2020 17:48:10 -0000
+Message-ID: <157867849059.30836.10445649633552310451@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200110134913.24325-1-anshuman.gupta@intel.com>
+In-Reply-To: <20200110134913.24325-1-anshuman.gupta@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/hdcp=3A_update_HDCP_CP_property_as_per_port_authenticatio?=
+ =?utf-8?q?n_state?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,61 +39,140 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: airlied@linux.ie, intel-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- seanpaul@chromium.org, Wambui Karuga <wambui.karugax@gmail.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+== Series Details ==
+
+Series: drm/i915/hdcp: update HDCP CP property as per port authentication state
+URL   : https://patchwork.freedesktop.org/series/71887/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_7718 -> Patchwork_16053
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16053/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_16053 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_close_race@basic-threads:
+    - fi-byt-n2820:       [PASS][1] -> [TIMEOUT][2] ([i915#816])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7718/fi-byt-n2820/igt@gem_close_race@basic-threads.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16053/fi-byt-n2820/igt@gem_close_race@basic-threads.html
+
+  * igt@i915_module_load@reload-with-fault-injection:
+    - fi-skl-6700k2:      [PASS][3] -> [DMESG-WARN][4] ([i915#889])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7718/fi-skl-6700k2/igt@i915_module_load@reload-with-fault-injection.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16053/fi-skl-6700k2/igt@i915_module_load@reload-with-fault-injection.html
+    - fi-skl-lmem:        [PASS][5] -> [INCOMPLETE][6] ([i915#671])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7718/fi-skl-lmem/igt@i915_module_load@reload-with-fault-injection.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16053/fi-skl-lmem/igt@i915_module_load@reload-with-fault-injection.html
+
+  * igt@i915_pm_rps@basic-api:
+    - fi-icl-dsi:         [PASS][7] -> [DMESG-WARN][8] ([i915#109])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7718/fi-icl-dsi/igt@i915_pm_rps@basic-api.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16053/fi-icl-dsi/igt@i915_pm_rps@basic-api.html
+
+  * igt@i915_selftest@live_blt:
+    - fi-ivb-3770:        [PASS][9] -> [DMESG-FAIL][10] ([i915#725])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7718/fi-ivb-3770/igt@i915_selftest@live_blt.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16053/fi-ivb-3770/igt@i915_selftest@live_blt.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_close_race@basic-threads:
+    - fi-byt-j1900:       [TIMEOUT][11] ([i915#816]) -> [PASS][12]
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7718/fi-byt-j1900/igt@gem_close_race@basic-threads.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16053/fi-byt-j1900/igt@gem_close_race@basic-threads.html
+
+  * igt@gem_exec_suspend@basic-s3:
+    - fi-cml-s:           [DMESG-WARN][13] ([fdo#111764]) -> [PASS][14]
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7718/fi-cml-s/igt@gem_exec_suspend@basic-s3.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16053/fi-cml-s/igt@gem_exec_suspend@basic-s3.html
+
+  * igt@i915_module_load@reload-with-fault-injection:
+    - fi-kbl-x1275:       [INCOMPLETE][15] ([i915#879]) -> [PASS][16]
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7718/fi-kbl-x1275/igt@i915_module_load@reload-with-fault-injection.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16053/fi-kbl-x1275/igt@i915_module_load@reload-with-fault-injection.html
+
+  * igt@i915_selftest@live_blt:
+    - fi-hsw-4770:        [DMESG-FAIL][17] ([i915#563]) -> [PASS][18]
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7718/fi-hsw-4770/igt@i915_selftest@live_blt.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16053/fi-hsw-4770/igt@i915_selftest@live_blt.html
+
+  * igt@i915_selftest@live_execlists:
+    - fi-kbl-soraka:      [DMESG-FAIL][19] ([i915#656]) -> [PASS][20]
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7718/fi-kbl-soraka/igt@i915_selftest@live_execlists.html
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16053/fi-kbl-soraka/igt@i915_selftest@live_execlists.html
+
+  
+#### Warnings ####
+
+  * igt@i915_selftest@live_blt:
+    - fi-hsw-4770r:       [DMESG-FAIL][21] ([i915#725]) -> [DMESG-FAIL][22] ([i915#553])
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7718/fi-hsw-4770r/igt@i915_selftest@live_blt.html
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16053/fi-hsw-4770r/igt@i915_selftest@live_blt.html
+
+  
+  [fdo#111764]: https://bugs.freedesktop.org/show_bug.cgi?id=111764
+  [i915#109]: https://gitlab.freedesktop.org/drm/intel/issues/109
+  [i915#553]: https://gitlab.freedesktop.org/drm/intel/issues/553
+  [i915#563]: https://gitlab.freedesktop.org/drm/intel/issues/563
+  [i915#656]: https://gitlab.freedesktop.org/drm/intel/issues/656
+  [i915#671]: https://gitlab.freedesktop.org/drm/intel/issues/671
+  [i915#725]: https://gitlab.freedesktop.org/drm/intel/issues/725
+  [i915#816]: https://gitlab.freedesktop.org/drm/intel/issues/816
+  [i915#879]: https://gitlab.freedesktop.org/drm/intel/issues/879
+  [i915#889]: https://gitlab.freedesktop.org/drm/intel/issues/889
 
 
-On Fri, 10 Jan 2020, Jani Nikula wrote:
+Participating hosts (46 -> 45)
+------------------------------
 
-> On Tue, 07 Jan 2020, Wambui Karuga <wambui.karugax@gmail.com> wrote:
->> This series begins the conversion to using the new struct drm_device
->> based logging macros in drm/i915.
->>
->> Wambui Karuga (5):
->>   drm/i915: convert to using the drm_dbg_kms() macro.
->>   drm/i915: use new struct drm_device logging macros.
->>   drm/i915: use new struct drm_device based logging macros.
->>   drm/i915: convert to using new struct drm_device logging macros
->>   drm/i915: use new struct drm_device based macros.
->
-> Thanks for the patches, pushed to drm-intel-next-queued.
->
-> As it's impossible to distinguish the commits from each other by the
-> subject line alone, I've amended the prefix while pushing as follows:
->
-> drm/i915/pch: convert to using the drm_dbg_kms() macro.
-> drm/i915/pm: use new struct drm_device logging macros.
-> drm/i915/lmem: use new struct drm_device based logging macros.
-> drm/i915/sideband: convert to using new struct drm_device logging macros
-> drm/i915/uncore: use new struct drm_device based macros.
->
-> Please pay attention to this in future work. It's not always obvious
-> what the prefix should be, but 'git log -- path/to/file.c' will go a
-> long way.
->
-Sure, I'll do that from now on.
-Thanks.
-> BR,
-> Jani.
->
->
->>
->>  drivers/gpu/drm/i915/intel_pch.c         |  46 +--
->>  drivers/gpu/drm/i915/intel_pm.c          | 351 +++++++++++++----------
->>  drivers/gpu/drm/i915/intel_region_lmem.c |  10 +-
->>  drivers/gpu/drm/i915/intel_sideband.c    |  29 +-
->>  drivers/gpu/drm/i915/intel_uncore.c      |  25 +-
->>  5 files changed, 254 insertions(+), 207 deletions(-)
->
-> -- 
-> Jani Nikula, Intel Open Source Graphics Center
->
+  Additional (5): fi-bdw-5557u fi-bsw-n3050 fi-gdg-551 fi-bsw-nick fi-snb-2600 
+  Missing    (6): fi-ehl-1 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-tgl-y fi-byt-clapper 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_7718 -> Patchwork_16053
+
+  CI-20190529: 20190529
+  CI_DRM_7718: 37be537ac03a8299982f5fd177418aef86fdcc9e @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5362: c2843f8e06a2cf7d372cd154310bf0e3b7722ab8 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_16053: 8d704d27326faa3e115286a8582a0b7710616657 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+8d704d27326f drm/i915/hdcp: update HDCP CP property as per port authentication state
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16053/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
