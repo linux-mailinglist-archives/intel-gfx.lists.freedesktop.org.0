@@ -2,32 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16081137386
-	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jan 2020 17:26:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E7189137385
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jan 2020 17:26:23 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4E8146EA51;
-	Fri, 10 Jan 2020 16:26:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0FD8C6EA45;
+	Fri, 10 Jan 2020 16:26:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 246BB6EA50;
- Fri, 10 Jan 2020 16:26:26 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 19836897-1500050 for multiple; Fri, 10 Jan 2020 16:26:12 +0000
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 082CB6EA45;
+ Fri, 10 Jan 2020 16:26:21 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 00EBDA47DF;
+ Fri, 10 Jan 2020 16:26:20 +0000 (UTC)
 MIME-Version: 1.0
-To: Imre Deak <imre.deak@intel.com>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-In-Reply-To: <20200110161627.GA26762@ideak-desk.fi.intel.com>
-References: <20200109222300.1154999-1-chris@chris-wilson.co.uk>
- <20200110161627.GA26762@ideak-desk.fi.intel.com>
-Message-ID: <157867357187.10140.13602735697460279700@skylake-alporthouse-com>
-User-Agent: alot/0.6
-Date: Fri, 10 Jan 2020 16:26:11 +0000
-Subject: Re: [Intel-gfx] [PATCH i-g-t] test/i915_pm_rc6_residency: Check we
- enter RC6 when mostly idle
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Tvrtko Ursulin" <tvrtko.ursulin@linux.intel.com>
+Date: Fri, 10 Jan 2020 16:26:20 -0000
+Message-ID: <157867358097.30835.6053922689670484125@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200110133049.2705-1-tvrtko.ursulin@linux.intel.com>
+In-Reply-To: <20200110133049.2705-1-tvrtko.ursulin@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_Per_client_engine_busyness_=28rev3=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,214 +38,69 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: igt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Imre Deak (2020-01-10 16:16:27)
-> On Thu, Jan 09, 2020 at 10:23:00PM +0000, Chris Wilson wrote:
-> > Long ago, we would only approach runtime-suspend if the GPU had been
-> > idle (no userspace submissions) for a second or two. However, since
-> > disabling automatic HW RC6 such a relaxed approach to runtime-suspend
-> > caused us to never enter RC6 on the desktop and consume vast quantities
-> > of power. Surmise this behaviour by setting up a background load that is
-> > only active for ~1% of the time (so equivalent to a compositor that is
-> > updating the clock every 50ms or so) and verify that we do continue to
-> > enter RC6 between the GPU pulses.
-> > 
-> > References: https://gitlab.freedesktop.org/drm/intel/issues/614
-> > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> > Cc: Imre Deak <imre.deak@intel.com>
-> > Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> > ---
-> >  tests/Makefile.am                  |   1 +
-> >  tests/i915/i915_pm_rc6_residency.c | 174 +++++++++++++++++++++++++++--
-> >  tests/meson.build                  |   9 +-
-> >  3 files changed, 173 insertions(+), 11 deletions(-)
-> > 
-> > diff --git a/tests/Makefile.am b/tests/Makefile.am
-> > index 9a320bc23..fc3052475 100644
-> > --- a/tests/Makefile.am
-> > +++ b/tests/Makefile.am
-> > @@ -122,6 +122,7 @@ gem_threaded_access_tiled_CFLAGS = $(AM_CFLAGS) $(THREAD_CFLAGS)
-> >  gem_threaded_access_tiled_LDADD = $(LDADD) -lpthread
-> >  gem_tiled_swapping_CFLAGS = $(AM_CFLAGS) $(THREAD_CFLAGS)
-> >  gem_tiled_swapping_LDADD = $(LDADD) -lpthread
-> > +i915_pm_rc6_residency_LDADD = $(LDADD) $(top_builddir)/lib/libigt_perf.la
-> >  prime_self_import_CFLAGS = $(AM_CFLAGS) $(THREAD_CFLAGS)
-> >  prime_self_import_LDADD = $(LDADD) -lpthread
-> >  gem_userptr_blits_CFLAGS = $(AM_CFLAGS) $(THREAD_CFLAGS)
-> > diff --git a/tests/i915/i915_pm_rc6_residency.c b/tests/i915/i915_pm_rc6_residency.c
-> > index 1b39c870e..a5bcb084b 100644
-> > --- a/tests/i915/i915_pm_rc6_residency.c
-> > +++ b/tests/i915/i915_pm_rc6_residency.c
-> > @@ -25,8 +25,6 @@
-> >   *
-> >   */
-> >  
-> > -#include "igt.h"
-> > -#include "igt_sysfs.h"
-> >  #include <stdio.h>
-> >  #include <stdlib.h>
-> >  #include <string.h>
-> > @@ -34,6 +32,9 @@
-> >  #include <errno.h>
-> >  #include <time.h>
-> >  
-> > +#include "igt.h"
-> > +#include "igt_perf.h"
-> > +#include "igt_sysfs.h"
-> >  
-> >  #define SLEEP_DURATION 3 /* in seconds */
-> >  
-> > @@ -195,31 +196,180 @@ static bool wait_for_rc6(void)
-> >       return false;
-> >  }
-> >  
-> > +static uint64_t __pmu_read_single(int fd, uint64_t *ts)
-> > +{
-> > +     uint64_t data[2];
-> > +
-> > +     igt_assert_eq(read(fd, data, sizeof(data)), sizeof(data));
-> > +
-> > +     if (ts)
-> > +             *ts = data[1];
-> > +
-> > +     return data[0];
-> > +}
-> > +
-> > +static uint64_t pmu_read_single(int fd)
-> > +{
-> > +     return __pmu_read_single(fd, NULL);
-> > +}
-> > +
-> > +#define __assert_within_epsilon(x, ref, tol_up, tol_down) \
-> > +     igt_assert_f((double)(x) <= (1.0 + (tol_up)) * (double)(ref) && \
-> > +                  (double)(x) >= (1.0 - (tol_down)) * (double)(ref), \
-> > +                  "'%s' != '%s' (%f not within +%.1f%%/-%.1f%% tolerance of %f)\n",\
-> > +                  #x, #ref, (double)(x), \
-> > +                  (tol_up) * 100.0, (tol_down) * 100.0, \
-> > +                  (double)(ref))
-> > +
-> > +#define assert_within_epsilon(x, ref, tolerance) \
-> > +     __assert_within_epsilon(x, ref, tolerance, tolerance)
-> > +
-> > +static bool __pmu_wait_for_rc6(int fd)
-> > +{
-> > +     struct timespec tv = {};
-> > +     uint64_t start, now;
-> > +
-> > +     /* First wait for roughly an RC6 Evaluation Interval */
-> > +     usleep(160 * 1000);
-> > +
-> > +     /* Then poll for RC6 to start ticking */
-> > +     now = pmu_read_single(fd);
-> > +     do {
-> > +             start = now;
-> > +             usleep(5000);
-> > +             now = pmu_read_single(fd);
-> > +             if (now - start > 1e6)
-> > +                     return true;
-> > +     } while (!igt_seconds_elapsed(&tv));
-> > +
-> > +     return false;
-> > +}
-> > +
-> > +static unsigned int measured_usleep(unsigned int usec)
-> > +{
-> > +     struct timespec ts = { };
-> > +     unsigned int slept;
-> > +
-> > +     slept = igt_nsec_elapsed(&ts);
-> > +     igt_assert(slept == 0);
-> > +     do {
-> > +             usleep(usec - slept);
-> > +             slept = igt_nsec_elapsed(&ts) / 1000;
-> > +     } while (slept < usec);
-> > +
-> > +     return igt_nsec_elapsed(&ts);
-> > +}
-> > +
-> > +static uint32_t batch_create(int fd)
-> > +{
-> > +     const uint32_t bbe = MI_BATCH_BUFFER_END;
-> > +     uint32_t handle;
-> > +
-> > +     handle = gem_create(fd, 4096);
-> > +     gem_write(fd, handle, 0, &bbe, sizeof(bbe));
-> > +
-> > +     return handle;
-> > +}
-> > +
-> > +static int open_pmu(int i915, uint64_t config)
-> > +{
-> > +     int fd;
-> > +
-> > +     fd = perf_i915_open(config);
-> > +     igt_skip_on(fd < 0 && errno == ENODEV);
-> > +     igt_assert(fd >= 0);
-> > +
-> > +     return fd;
-> > +}
-> > +
-> > +static void rc6_perf(int i915)
-> > +{
-> > +     const int64_t duration_ns = 2e9;
-> > +     uint64_t idle, prev, ts[2];
-> > +     unsigned long slept, cycles;
-> > +     unsigned long *done;
-> > +     int fd;
-> > +
-> > +     fd = open_pmu(i915, I915_PMU_RC6_RESIDENCY);
-> > +     igt_require(__pmu_wait_for_rc6(fd));
-> > +
-> > +     /* While idle check full RC6. */
-> > +     prev = __pmu_read_single(fd, &ts[0]);
-> > +     slept = measured_usleep(duration_ns / 1000);
-> > +     idle = __pmu_read_single(fd, &ts[1]);
-> > +     igt_debug("slept=%lu perf=%"PRIu64"\n", slept, ts[1] - ts[0]);
-> > +     assert_within_epsilon(idle - prev, ts[1] - ts[0], 5);
-> > +
-> > +     /* Setup up a very light load */
-> > +     done = mmap(0, 4096, PROT_WRITE, MAP_SHARED | MAP_ANON, -1, 0);
-> > +     igt_fork(child, 1) {
-> > +             struct drm_i915_gem_exec_object2 obj = {
-> > +                     .handle = batch_create(i915),
-> > +             };
-> > +             struct drm_i915_gem_execbuffer2 execbuf = {
-> > +                     .buffers_ptr = to_user_pointer(&obj),
-> > +                     .buffer_count = 1,
-> > +             };
-> > +
-> > +             do {
-> > +                     struct timespec tv = {};
-> > +
-> > +                     igt_seconds_elapsed(&tv);
-> > +
-> > +                     gem_execbuf(i915, &execbuf);
-> > +                     gem_sync(i915, obj.handle);
-> > +                     done[1]++;
-> > +
-> > +                     usleep(igt_seconds_elapsed(&tv) / 10); /* => 1% busy */
-> 
-> igt_nsec_elapsed()?
-
-That's what I thought I wrote. How bizarre!
-
-> Not too familiar with the perf interface but I assume event[0] read is
-> the RC6 residency, while event[1] is the duration while the event was
-> enabled (so the duration since the event file was opened?). Looks ok:
-
-Yup, event[1] is the timestamp, as measured from the start of perf_open.
-We use PERF_FORMAT_TOTAL_TIME_ENABLED in perf_i915_open().
- 
-> Reviewed-by: Imre Deak <imre.deak@intel.com>
-
-Thanks,
--Chris
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+PT0gU2VyaWVzIERldGFpbHMgPT0KClNlcmllczogUGVyIGNsaWVudCBlbmdpbmUgYnVzeW5lc3Mg
+KHJldjMpClVSTCAgIDogaHR0cHM6Ly9wYXRjaHdvcmsuZnJlZWRlc2t0b3Aub3JnL3Nlcmllcy83
+MDk3Ny8KU3RhdGUgOiB3YXJuaW5nCgo9PSBTdW1tYXJ5ID09CgokIGRpbSBjaGVja3BhdGNoIG9y
+aWdpbi9kcm0tdGlwCmYyYTJhYjBmYjkwZSBkcm0vaTkxNTogRXhwb3NlIGxpc3Qgb2YgY2xpZW50
+cyBpbiBzeXNmcwotOjYxOiBXQVJOSU5HOkZJTEVfUEFUSF9DSEFOR0VTOiBhZGRlZCwgbW92ZWQg
+b3IgZGVsZXRlZCBmaWxlKHMpLCBkb2VzIE1BSU5UQUlORVJTIG5lZWQgdXBkYXRpbmc/CiM2MTog
+Cm5ldyBmaWxlIG1vZGUgMTAwNjQ0CgotOjY2OiBXQVJOSU5HOlNQRFhfTElDRU5TRV9UQUc6IE1p
+c3Npbmcgb3IgbWFsZm9ybWVkIFNQRFgtTGljZW5zZS1JZGVudGlmaWVyIHRhZyBpbiBsaW5lIDEK
+IzY2OiBGSUxFOiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2RybV9jbGllbnQuYzoxOgorLyoK
+Ci06Njc6IFdBUk5JTkc6U1BEWF9MSUNFTlNFX1RBRzogTWlzcGxhY2VkIFNQRFgtTGljZW5zZS1J
+ZGVudGlmaWVyIHRhZyAtIHVzZSBsaW5lIDEgaW5zdGVhZAojNjc6IEZJTEU6IGRyaXZlcnMvZ3B1
+L2RybS9pOTE1L2k5MTVfZHJtX2NsaWVudC5jOjI6CisgKiBTUERYLUxpY2Vuc2UtSWRlbnRpZmll
+cjogTUlUCgotOjIyMjogV0FSTklORzpTUERYX0xJQ0VOU0VfVEFHOiBNaXNzaW5nIG9yIG1hbGZv
+cm1lZCBTUERYLUxpY2Vuc2UtSWRlbnRpZmllciB0YWcgaW4gbGluZSAxCiMyMjI6IEZJTEU6IGRy
+aXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZHJtX2NsaWVudC5oOjE6CisvKgoKLToyMjM6IFdBUk5J
+Tkc6U1BEWF9MSUNFTlNFX1RBRzogTWlzcGxhY2VkIFNQRFgtTGljZW5zZS1JZGVudGlmaWVyIHRh
+ZyAtIHVzZSBsaW5lIDEgaW5zdGVhZAojMjIzOiBGSUxFOiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9p
+OTE1X2RybV9jbGllbnQuaDoyOgorICogU1BEWC1MaWNlbnNlLUlkZW50aWZpZXI6IE1JVAoKdG90
+YWw6IDAgZXJyb3JzLCA1IHdhcm5pbmdzLCAwIGNoZWNrcywgMzM4IGxpbmVzIGNoZWNrZWQKNGNk
+MDk2MGQxYjJkIGRybS9pOTE1OiBVcGRhdGUgY2xpZW50IG5hbWUgb24gY29udGV4dCBjcmVhdGUK
+YjY5ZWE5YzU1MDBiIGRybS9pOTE1OiBUcmFjayBwZXItY29udGV4dCBlbmdpbmUgYnVzeW5lc3MK
+Mzg3ODM0MmJmMmNjIGRybS9pOTE1OiBUcmFjayBhbGwgdXNlciBjb250ZXh0cyBwZXIgY2xpZW50
+Ci06NTY6IENIRUNLOk1VTFRJUExFX0FTU0lHTk1FTlRTOiBtdWx0aXBsZSBhc3NpZ25tZW50cyBz
+aG91bGQgYmUgYXZvaWRlZAojNTY6IEZJTEU6IGRyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1
+X2dlbV9jb250ZXh0LmM6ODA4OgorCWN0eC0+Y2xpZW50ID0gY2xpZW50ID0gaTkxNV9kcm1fY2xp
+ZW50X2dldChmcHJpdi0+Y2xpZW50KTsKCi06MTE2OiBDSEVDSzpVTkNPTU1FTlRFRF9ERUZJTklU
+SU9OOiBzcGlubG9ja190IGRlZmluaXRpb24gd2l0aG91dCBjb21tZW50CiMxMTY6IEZJTEU6IGRy
+aXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZHJtX2NsaWVudC5oOjM1OgorCXNwaW5sb2NrX3QgY3R4
+X2xvY2s7Cgp0b3RhbDogMCBlcnJvcnMsIDAgd2FybmluZ3MsIDIgY2hlY2tzLCA4NCBsaW5lcyBj
+aGVja2VkCjM0MmQ0OWU4MDZjNCBkcm0vaTkxNTogQ29udGV4dHMgY2FuIHVzZSBzdHJ1Y3QgcGlk
+IHN0b3JlZCBpbiB0aGUgY2xpZW50CmViM2YxNDE5NjU3MSBkcm0vaTkxNTogRXhwb3NlIHBlci1l
+bmdpbmUgY2xpZW50IGJ1c3luZXNzCi06MjU6IFdBUk5JTkc6Q09NTUlUX0xPR19MT05HX0xJTkU6
+IFBvc3NpYmxlIHVud3JhcHBlZCBjb21taXQgZGVzY3JpcHRpb24gKHByZWZlciBhIG1heGltdW0g
+NzUgY2hhcnMgcGVyIGxpbmUpCiMyNTogCiAgICAgUmVuZGVyLzNELzAgICA2My43MyUgfOKWiOKW
+iOKWiOKWiOKWiOKWiOKWiOKWiOKWiOKWiOKWiOKWiOKWiOKWiOKWiOKWiOKWiOKWiOKWiCAgICAg
+ICAgICAgfCAgICAgIDMlICAgICAgMCUKCi06MTA3OiBXQVJOSU5HOlNUQVRJQ19DT05TVF9DSEFS
+X0FSUkFZOiBzdGF0aWMgY29uc3QgY2hhciAqIGFycmF5IHNob3VsZCBwcm9iYWJseSBiZSBzdGF0
+aWMgY29uc3QgY2hhciAqIGNvbnN0CiMxMDc6IEZJTEU6IGRyaXZlcnMvZ3B1L2RybS9pOTE1L2k5
+MTVfZHJtX2NsaWVudC5jOjgyOgorc3RhdGljIGNvbnN0IGNoYXIgKnVhYmlfY2xhc3NfbmFtZXNb
+XSA9IHsKCi06MTMyOiBXQVJOSU5HOkxFQURJTkdfU1BBQ0U6IHBsZWFzZSwgbm8gc3BhY2VzIGF0
+IHRoZSBzdGFydCBvZiBhIGxpbmUKIzEzMjogRklMRTogZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkx
+NV9kcm1fY2xpZW50LmM6MTMzOgorICAgICAgIGlmIChIQVNfTE9HSUNBTF9SSU5HX0NPTlRFWFRT
+KGk5MTUpKSB7JAoKLToxMzI6IFdBUk5JTkc6U1VTUEVDVF9DT0RFX0lOREVOVDogc3VzcGVjdCBj
+b2RlIGluZGVudCBmb3IgY29uZGl0aW9uYWwgc3RhdGVtZW50cyAoNywgMTYpCiMxMzI6IEZJTEU6
+IGRyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZHJtX2NsaWVudC5jOjEzMzoKKyAgICAgICBpZiAo
+SEFTX0xPR0lDQUxfUklOR19DT05URVhUUyhpOTE1KSkgeworCQljbGllbnQtPmJ1c3lfcm9vdCA9
+CgotOjE4OTogV0FSTklORzpMRUFESU5HX1NQQUNFOiBwbGVhc2UsIG5vIHNwYWNlcyBhdCB0aGUg
+c3RhcnQgb2YgYSBsaW5lCiMxODk6IEZJTEU6IGRyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZHJt
+X2NsaWVudC5jOjE5MDoKKyAgICAgICB9JAoKdG90YWw6IDAgZXJyb3JzLCA1IHdhcm5pbmdzLCAw
+IGNoZWNrcywgMTk4IGxpbmVzIGNoZWNrZWQKMGY1YzhmMWEzMzc1IGRybS9pOTE1OiBUcmFjayBo
+dyByZXBvcnRlZCBjb250ZXh0IHJ1bnRpbWUKLTo3MjogQ0hFQ0s6TVVMVElQTEVfQVNTSUdOTUVO
+VFM6IG11bHRpcGxlIGFzc2lnbm1lbnRzIHNob3VsZCBiZSBhdm9pZGVkCiM3MjogRklMRTogZHJp
+dmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfbHJjLmM6MTMxNDoKKwljZS0+bGFzdF9ydW50aW1l
+ID0gbmV3ID0gY2UtPnBwaHdzcFsxNl07Cgp0b3RhbDogMCBlcnJvcnMsIDAgd2FybmluZ3MsIDEg
+Y2hlY2tzLCA3MCBsaW5lcyBjaGVja2VkCjgyZTRhZmY5ODRlNyBkcm0vaTkxNTogRmFsbGJhY2sg
+dG8gaHcgY29udGV4dCBydW50aW1lIHdoZW4gc3cgdHJhY2tpbmcgaXMgbm90IGF2YWlsYWJsZQoK
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
+IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
