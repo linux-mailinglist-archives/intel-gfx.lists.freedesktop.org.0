@@ -2,57 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B1358137081
-	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jan 2020 16:00:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E66541370F5
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jan 2020 16:18:42 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AD1AB89E11;
-	Fri, 10 Jan 2020 15:00:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C90FF6EA2E;
+	Fri, 10 Jan 2020 15:18:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 3424 seconds by postgrey-1.36 at gabe;
- Fri, 10 Jan 2020 15:00:28 UTC
-Received: from merlin.infradead.org (merlin.infradead.org
- [IPv6:2001:8b0:10b:1231::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B7C7489E11
- for <intel-gfx@lists.freedesktop.org>; Fri, 10 Jan 2020 15:00:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=merlin.20170209; h=In-Reply-To:Content-Type:MIME-Version:
- References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
- Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
- Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
- List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=YfX4Wn1/pqccM1olKxdBD79TA9u9Lbt27vICyToE+ls=; b=hUd/+pKHQBBDMpuaTCGYlb6oP
- tHjI1NofTkszYxvkTnNNqmYmw6EzgYCrcSu2vsBjWQUO0IgTKKkb11WzaDx4LmzdHtz9LW/Hm0RgC
- ZdIv+jcU1kRIITHLD0QOfmJzN7/LA/mfZPgCHq6NIEoLWkJujRv4Sla98UT6cKhPOKLcPGcxN+HMy
- AUc5AvlNE3kz0tVvky+aV9FX0vpYZfR/A3TN2D0GIH29lrbxj3mFkAp1ukIqg0k68ObHXAUR8NbZi
- RCwiUEVFD1oEMiNUTjmJ1fIFGQS7nm2/X6ijHCr37Eyn+JkfXY5mT7EQ0um89vJiV6zkfuXOSIYS0
- +ziuTrUqw==;
-Received: from j217100.upc-j.chello.nl ([24.132.217.100]
- helo=noisy.programming.kicks-ass.net)
- by merlin.infradead.org with esmtpsa (Exim 4.92.3 #3 (Red Hat Linux))
- id 1ipus5-0003rT-5A; Fri, 10 Jan 2020 14:02:41 +0000
-Received: from hirez.programming.kicks-ass.net
- (hirez.programming.kicks-ass.net [192.168.1.225])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (Client did not present a certificate)
- by noisy.programming.kicks-ass.net (Postfix) with ESMTPS id 7AC7C30018B;
- Fri, 10 Jan 2020 15:01:00 +0100 (CET)
-Received: by hirez.programming.kicks-ass.net (Postfix, from userid 1000)
- id 61C442B612603; Fri, 10 Jan 2020 15:02:34 +0100 (CET)
-Date: Fri, 10 Jan 2020 15:02:34 +0100
-From: Peter Zijlstra <peterz@infradead.org>
-To: Alexey Budankov <alexey.budankov@linux.intel.com>
-Message-ID: <20200110140234.GO2844@hirez.programming.kicks-ass.net>
-References: <c0460c78-b1a6-b5f7-7119-d97e5998f308@linux.intel.com>
- <c93309dc-b920-f5fa-f997-e8b2faf47b88@linux.intel.com>
- <20200108160713.GI2844@hirez.programming.kicks-ass.net>
- <cc239899-5c52-2fd0-286d-4bff18877937@linux.intel.com>
+Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.126.135])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 09CE06EA2E;
+ Fri, 10 Jan 2020 15:18:37 +0000 (UTC)
+Received: from threadripper.lan ([149.172.19.189]) by mrelayeu.kundenserver.de
+ (mreue011 [212.227.15.129]) with ESMTPA (Nemesis) id
+ 1N4hex-1jrPza1LRH-011kch; Fri, 10 Jan 2020 16:18:09 +0100
+From: Arnd Bergmann <arnd@arndb.de>
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@linux.ie>,
+ Daniel Vetter <daniel@ffwll.ch>, Chris Wilson <chris@chris-wilson.co.uk>,
+ Matthew Auld <matthew.auld@intel.com>
+Date: Fri, 10 Jan 2020 16:17:54 +0100
+Message-Id: <20200110151807.2863347-1-arnd@arndb.de>
+X-Mailer: git-send-email 2.20.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <cc239899-5c52-2fd0-286d-4bff18877937@linux.intel.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH v4 2/9] perf/core: open access for
- CAP_SYS_PERFMON privileged process
+X-Provags-ID: V03:K1:TdcCHNFfPiGJRLCq5binja0aFvhBJCOv8HRjm9+CE0MRaD/kmMC
+ PxXlULSPhYzQYQk03k8vMnd9nBMyr/MQ5Ld3cz5W0g5CjnEA7pi41yBIkZ1AkBpPFsw99F3
+ Q/9+SvoAR7bFeo2nssLIBt3H4TiAfDbX7gITxGA5/KZkL+UovBR7u8q60XPNB+DBz1aKUp/
+ 63h81eSnqzapgQkIIIeTg==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:yO1slOsO/lk=:87iYLgBH6h0Q6+CY11Wgsh
+ lXJDfAj9Z+L1mAm8zO//lZUSEfS885uQ3rtWp/fa3y4eAKLjJ31p58KgveFCmH8z3Cf5AOrL5
+ LRkBRSeoIOVKfocu7It03ZHE3z5PaBq4NLbzbLDo6uTtmllJFMzkICYoYMRY+nJUjvNtLM7mh
+ +pfK6RIWclprMq/CnxcXTt3bU9SvSh0ALmi+UdPt/VdS8cF5JLqABH8bVhSe33BJxYfCDJwGG
+ yenDzMlBwAMw9D0VS1O4LND5LDtXfph2MqIgHXyjgsH6ShpDJZcFivCVbSXGP01Vbowq1aKI7
+ YYRi5TXSnMewvbB07STL5AubGrVvM0boRbQ/meCeF5WG5t9HnR/Iax4h5Zpt7VlueEQ3upzxh
+ j3KtF/IpmJ/e7BFU21fx025On/9lhDZVHKcCqtijoWAInG0juY/xoogs+Rvw/YzD6vAyoEggi
+ p0CKQ3orLrhp7mwExGFhb/I+NVmtlq2xxttVdaO2dUqcHHaoOLoC41vm4pgJ3YkZtUbh8c/YZ
+ ETS5wmA4144bEDx0tjWVf0Uqphv2f0kuj1l+8K+OYm4fLRVlT/XbO7GwCNh28FnkZursKWk0r
+ 5TvGSZKIPGUtgbLDKRCKAEPdJtBH1RERjYz6Fo/TJR9k/sFks9tZ7wT0dz3XEDb4J3CmmhHRg
+ rXyQ9hBYChP04LW4prCaCox9WLCkyELnJWF7MYfoePDn+wcEyO7nPi3TNprvPJEmYyMBgU9wY
+ CnfTFMxERtodVZJiJ+QNopuj6uBjoYrkpqM4D8EDtNIaHLmKhnDwB+VyJtcM+FLjSuifDiBvS
+ TS7ed0v0h8yiOLRGlK/7vitAzB3iC9bPilS2XRke3o15Ba9KBIljFk0v/xo2+R23iheHnWzvq
+ 5/yeWvvJoKi8sTYAgWLw==
+Subject: [Intel-gfx] [PATCH] i915: ggtt: include asm/smp.h
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,70 +57,47 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Mark Rutland <mark.rutland@arm.com>, Song Liu <songliubraving@fb.com>,
- Alexander Shishkin <alexander.shishkin@linux.intel.com>,
- Benjamin Herrenschmidt <benh@kernel.crashing.org>,
- Will Deacon <will.deacon@arm.com>, Alexei Starovoitov <ast@kernel.org>,
- Stephane Eranian <eranian@google.com>,
- "james.bottomley@hansenpartnership.com"
- <james.bottomley@hansenpartnership.com>, Paul Mackerras <paulus@samba.org>,
- Jiri Olsa <jolsa@redhat.com>, Andi Kleen <ak@linux.intel.com>,
- Michael Ellerman <mpe@ellerman.id.au>, Igor Lubashev <ilubashe@akamai.com>,
- James Morris <jmorris@namei.org>, Ingo Molnar <mingo@redhat.com>,
- oprofile-list@lists.sf.net, Serge Hallyn <serge@hallyn.com>,
- Robert Richter <rric@kernel.org>, Kees Cook <keescook@chromium.org>,
- Jann Horn <jannh@google.com>,
- "selinux@vger.kernel.org" <selinux@vger.kernel.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- Arnaldo Carvalho de Melo <acme@kernel.org>, Namhyung Kim <namhyung@kernel.org>,
- Thomas Gleixner <tglx@linutronix.de>, linux-arm-kernel@lists.infradead.org,
- "linux-parisc@vger.kernel.org" <linux-parisc@vger.kernel.org>,
- linux-kernel <linux-kernel@vger.kernel.org>,
- "linux-perf-users@vger.kernel.org" <linux-perf-users@vger.kernel.org>,
- "linux-security-module@vger.kernel.org"
- <linux-security-module@vger.kernel.org>, mhiramat@kernel.org,
- Casey Schaufler <casey@schaufler-ca.com>,
- "bpf@vger.kernel.org" <bpf@vger.kernel.org>,
- "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Arnd Bergmann <arnd@arndb.de>, linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Jan 09, 2020 at 02:36:50PM +0300, Alexey Budankov wrote:
-> On 08.01.2020 19:07, Peter Zijlstra wrote:
-> > On Wed, Dec 18, 2019 at 12:25:35PM +0300, Alexey Budankov wrote:
+Splitting up the i915_gem_gtt caused a build failure in some configurations:
 
-> >> diff --git a/kernel/events/core.c b/kernel/events/core.c
-> >> index 059ee7116008..d9db414f2197 100644
-> >> --- a/kernel/events/core.c
-> >> +++ b/kernel/events/core.c
-> >> @@ -9056,7 +9056,7 @@ static int perf_kprobe_event_init(struct perf_event *event)
-> >>  	if (event->attr.type != perf_kprobe.type)
-> >>  		return -ENOENT;
-> >>  
-> >> -	if (!capable(CAP_SYS_ADMIN))
-> >> +	if (!perfmon_capable())
-> >>  		return -EACCES;
-> >>  
-> >>  	/*
-> > 
-> > This one only allows attaching to already extant kprobes, right? It does
-> > not allow creation of kprobes.
-> 
-> This unblocks creation of local trace kprobes and uprobes by CAP_SYS_PERFMON 
-> privileged process, exactly the same as for CAP_SYS_ADMIN privileged process.
+drivers/gpu/drm/i915/gt/intel_ggtt.c: In function 'ggtt_restore_mappings':
+drivers/gpu/drm/i915/gt/intel_ggtt.c:1239:3: error: implicit declaration of function 'wbinvd_on_all_cpus'; did you mean 'wrmsr_on_cpus'? [-Werror=implicit-function-declaration]
+   wbinvd_on_all_cpus();
+   ^~~~~~~~~~~~~~~~~~
+   wrmsr_on_cpus
 
-I've no idea what you just said; it's just words.
+Add the missing header file.
 
-Again, this only allows attaching to previously created kprobes, it does
-not allow creating kprobes, right?
+Fixes: 2c86e55d2ab5 ("drm/i915/gtt: split up i915_gem_gtt")
+Signed-off-by: Arnd Bergmann <arnd@arndb.de>
+---
+I ran into this bug a few days ago on linux-next. Please just ignore
+if it's already fixed in the meantime.
+---
+ drivers/gpu/drm/i915/gt/intel_ggtt.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-That is; I don't think CAP_SYS_PERFMON should be allowed to create
-kprobes.
+diff --git a/drivers/gpu/drm/i915/gt/intel_ggtt.c b/drivers/gpu/drm/i915/gt/intel_ggtt.c
+index 1a2b5dcde960..9ef8ed85a738 100644
+--- a/drivers/gpu/drm/i915/gt/intel_ggtt.c
++++ b/drivers/gpu/drm/i915/gt/intel_ggtt.c
+@@ -6,6 +6,7 @@
+ #include <linux/stop_machine.h>
+ 
+ #include <asm/set_memory.h>
++#include <asm/smp.h>
+ 
+ #include "intel_gt.h"
+ #include "i915_drv.h"
+-- 
+2.20.0
 
-As might be clear; I don't actually know what the user-ABI is for
-creating kprobes.
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
