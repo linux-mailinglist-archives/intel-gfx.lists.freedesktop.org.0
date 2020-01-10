@@ -1,38 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6895413729E
-	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jan 2020 17:16:41 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 316A2137329
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jan 2020 17:21:49 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7D5286EA4A;
-	Fri, 10 Jan 2020 16:16:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 679DF6EA4E;
+	Fri, 10 Jan 2020 16:21:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5AB5E6EA47;
- Fri, 10 Jan 2020 16:16:37 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 10 Jan 2020 08:16:36 -0800
-X-IronPort-AV: E=Sophos;i="5.69,417,1571727600"; d="scan'208";a="212309795"
-Received: from ideak-desk.fi.intel.com ([10.237.68.142])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 10 Jan 2020 08:16:34 -0800
-Date: Fri, 10 Jan 2020 18:16:27 +0200
-From: Imre Deak <imre.deak@intel.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>
-Message-ID: <20200110161627.GA26762@ideak-desk.fi.intel.com>
-References: <20200109222300.1154999-1-chris@chris-wilson.co.uk>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 2E8F56EA45;
+ Fri, 10 Jan 2020 16:21:46 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 1D464A00C7;
+ Fri, 10 Jan 2020 16:21:46 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200109222300.1154999-1-chris@chris-wilson.co.uk>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [PATCH i-g-t] test/i915_pm_rc6_residency: Check we
- enter RC6 when mostly idle
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Fri, 10 Jan 2020 16:21:46 -0000
+Message-ID: <157867330609.30835.2876147424006978724@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200110123059.1348712-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200110123059.1348712-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5BCI=2C1/4=5D_drm/i915=3A_Start_chopping_up_?=
+ =?utf-8?q?the_GPU_error_capture?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,307 +39,154 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
-Cc: igt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Jan 09, 2020 at 10:23:00PM +0000, Chris Wilson wrote:
-> Long ago, we would only approach runtime-suspend if the GPU had been
-> idle (no userspace submissions) for a second or two. However, since
-> disabling automatic HW RC6 such a relaxed approach to runtime-suspend
-> caused us to never enter RC6 on the desktop and consume vast quantities
-> of power. Surmise this behaviour by setting up a background load that is
-> only active for ~1% of the time (so equivalent to a compositor that is
-> updating the clock every 50ms or so) and verify that we do continue to
-> enter RC6 between the GPU pulses.
-> 
-> References: https://gitlab.freedesktop.org/drm/intel/issues/614
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> Cc: Imre Deak <imre.deak@intel.com>
-> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> ---
->  tests/Makefile.am                  |   1 +
->  tests/i915/i915_pm_rc6_residency.c | 174 +++++++++++++++++++++++++++--
->  tests/meson.build                  |   9 +-
->  3 files changed, 173 insertions(+), 11 deletions(-)
-> 
-> diff --git a/tests/Makefile.am b/tests/Makefile.am
-> index 9a320bc23..fc3052475 100644
-> --- a/tests/Makefile.am
-> +++ b/tests/Makefile.am
-> @@ -122,6 +122,7 @@ gem_threaded_access_tiled_CFLAGS = $(AM_CFLAGS) $(THREAD_CFLAGS)
->  gem_threaded_access_tiled_LDADD = $(LDADD) -lpthread
->  gem_tiled_swapping_CFLAGS = $(AM_CFLAGS) $(THREAD_CFLAGS)
->  gem_tiled_swapping_LDADD = $(LDADD) -lpthread
-> +i915_pm_rc6_residency_LDADD = $(LDADD) $(top_builddir)/lib/libigt_perf.la
->  prime_self_import_CFLAGS = $(AM_CFLAGS) $(THREAD_CFLAGS)
->  prime_self_import_LDADD = $(LDADD) -lpthread
->  gem_userptr_blits_CFLAGS = $(AM_CFLAGS) $(THREAD_CFLAGS)
-> diff --git a/tests/i915/i915_pm_rc6_residency.c b/tests/i915/i915_pm_rc6_residency.c
-> index 1b39c870e..a5bcb084b 100644
-> --- a/tests/i915/i915_pm_rc6_residency.c
-> +++ b/tests/i915/i915_pm_rc6_residency.c
-> @@ -25,8 +25,6 @@
->   *
->   */
->  
-> -#include "igt.h"
-> -#include "igt_sysfs.h"
->  #include <stdio.h>
->  #include <stdlib.h>
->  #include <string.h>
-> @@ -34,6 +32,9 @@
->  #include <errno.h>
->  #include <time.h>
->  
-> +#include "igt.h"
-> +#include "igt_perf.h"
-> +#include "igt_sysfs.h"
->  
->  #define SLEEP_DURATION 3 /* in seconds */
->  
-> @@ -195,31 +196,180 @@ static bool wait_for_rc6(void)
->  	return false;
->  }
->  
-> +static uint64_t __pmu_read_single(int fd, uint64_t *ts)
-> +{
-> +	uint64_t data[2];
-> +
-> +	igt_assert_eq(read(fd, data, sizeof(data)), sizeof(data));
-> +
-> +	if (ts)
-> +		*ts = data[1];
-> +
-> +	return data[0];
-> +}
-> +
-> +static uint64_t pmu_read_single(int fd)
-> +{
-> +	return __pmu_read_single(fd, NULL);
-> +}
-> +
-> +#define __assert_within_epsilon(x, ref, tol_up, tol_down) \
-> +	igt_assert_f((double)(x) <= (1.0 + (tol_up)) * (double)(ref) && \
-> +		     (double)(x) >= (1.0 - (tol_down)) * (double)(ref), \
-> +		     "'%s' != '%s' (%f not within +%.1f%%/-%.1f%% tolerance of %f)\n",\
-> +		     #x, #ref, (double)(x), \
-> +		     (tol_up) * 100.0, (tol_down) * 100.0, \
-> +		     (double)(ref))
-> +
-> +#define assert_within_epsilon(x, ref, tolerance) \
-> +	__assert_within_epsilon(x, ref, tolerance, tolerance)
-> +
-> +static bool __pmu_wait_for_rc6(int fd)
-> +{
-> +	struct timespec tv = {};
-> +	uint64_t start, now;
-> +
-> +	/* First wait for roughly an RC6 Evaluation Interval */
-> +	usleep(160 * 1000);
-> +
-> +	/* Then poll for RC6 to start ticking */
-> +	now = pmu_read_single(fd);
-> +	do {
-> +		start = now;
-> +		usleep(5000);
-> +		now = pmu_read_single(fd);
-> +		if (now - start > 1e6)
-> +			return true;
-> +	} while (!igt_seconds_elapsed(&tv));
-> +
-> +	return false;
-> +}
-> +
-> +static unsigned int measured_usleep(unsigned int usec)
-> +{
-> +	struct timespec ts = { };
-> +	unsigned int slept;
-> +
-> +	slept = igt_nsec_elapsed(&ts);
-> +	igt_assert(slept == 0);
-> +	do {
-> +		usleep(usec - slept);
-> +		slept = igt_nsec_elapsed(&ts) / 1000;
-> +	} while (slept < usec);
-> +
-> +	return igt_nsec_elapsed(&ts);
-> +}
-> +
-> +static uint32_t batch_create(int fd)
-> +{
-> +	const uint32_t bbe = MI_BATCH_BUFFER_END;
-> +	uint32_t handle;
-> +
-> +	handle = gem_create(fd, 4096);
-> +	gem_write(fd, handle, 0, &bbe, sizeof(bbe));
-> +
-> +	return handle;
-> +}
-> +
-> +static int open_pmu(int i915, uint64_t config)
-> +{
-> +	int fd;
-> +
-> +	fd = perf_i915_open(config);
-> +	igt_skip_on(fd < 0 && errno == ENODEV);
-> +	igt_assert(fd >= 0);
-> +
-> +	return fd;
-> +}
-> +
-> +static void rc6_perf(int i915)
-> +{
-> +	const int64_t duration_ns = 2e9;
-> +	uint64_t idle, prev, ts[2];
-> +	unsigned long slept, cycles;
-> +	unsigned long *done;
-> +	int fd;
-> +
-> +	fd = open_pmu(i915, I915_PMU_RC6_RESIDENCY);
-> +	igt_require(__pmu_wait_for_rc6(fd));
-> +
-> +	/* While idle check full RC6. */
-> +	prev = __pmu_read_single(fd, &ts[0]);
-> +	slept = measured_usleep(duration_ns / 1000);
-> +	idle = __pmu_read_single(fd, &ts[1]);
-> +	igt_debug("slept=%lu perf=%"PRIu64"\n", slept, ts[1] - ts[0]);
-> +	assert_within_epsilon(idle - prev, ts[1] - ts[0], 5);
-> +
-> +	/* Setup up a very light load */
-> +	done = mmap(0, 4096, PROT_WRITE, MAP_SHARED | MAP_ANON, -1, 0);
-> +	igt_fork(child, 1) {
-> +		struct drm_i915_gem_exec_object2 obj = {
-> +			.handle = batch_create(i915),
-> +		};
-> +		struct drm_i915_gem_execbuffer2 execbuf = {
-> +			.buffers_ptr = to_user_pointer(&obj),
-> +			.buffer_count = 1,
-> +		};
-> +
-> +		do {
-> +			struct timespec tv = {};
-> +
-> +			igt_seconds_elapsed(&tv);
-> +
-> +			gem_execbuf(i915, &execbuf);
-> +			gem_sync(i915, obj.handle);
-> +			done[1]++;
-> +
-> +			usleep(igt_seconds_elapsed(&tv) / 10); /* => 1% busy */
+== Series Details ==
 
-igt_nsec_elapsed()?
+Series: series starting with [CI,1/4] drm/i915: Start chopping up the GPU error capture
+URL   : https://patchwork.freedesktop.org/series/71885/
+State : success
 
-Not too familiar with the perf interface but I assume event[0] read is
-the RC6 residency, while event[1] is the duration while the event was
-enabled (so the duration since the event file was opened?). Looks ok:
+== Summary ==
 
-Reviewed-by: Imre Deak <imre.deak@intel.com>
+CI Bug Log - changes from CI_DRM_7718 -> Patchwork_16051
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16051/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_16051 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_module_load@reload-with-fault-injection:
+    - fi-cfl-guc:         [PASS][1] -> [DMESG-WARN][2] ([i915#889])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7718/fi-cfl-guc/igt@i915_module_load@reload-with-fault-injection.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16051/fi-cfl-guc/igt@i915_module_load@reload-with-fault-injection.html
+    - fi-skl-6770hq:      [PASS][3] -> [DMESG-WARN][4] ([i915#88])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7718/fi-skl-6770hq/igt@i915_module_load@reload-with-fault-injection.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16051/fi-skl-6770hq/igt@i915_module_load@reload-with-fault-injection.html
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-cfl-guc:         [PASS][5] -> [INCOMPLETE][6] ([i915#148])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7718/fi-cfl-guc/igt@i915_pm_rpm@module-reload.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16051/fi-cfl-guc/igt@i915_pm_rpm@module-reload.html
+
+  * igt@i915_selftest@live_gem_contexts:
+    - fi-hsw-peppy:       [PASS][7] -> [DMESG-FAIL][8] ([i915#722])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7718/fi-hsw-peppy/igt@i915_selftest@live_gem_contexts.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16051/fi-hsw-peppy/igt@i915_selftest@live_gem_contexts.html
+
+  * igt@kms_frontbuffer_tracking@basic:
+    - fi-hsw-peppy:       [PASS][9] -> [DMESG-WARN][10] ([i915#44])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7718/fi-hsw-peppy/igt@kms_frontbuffer_tracking@basic.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16051/fi-hsw-peppy/igt@kms_frontbuffer_tracking@basic.html
+
+  
+#### Possible fixes ####
+
+  * {igt@gem_exec_basic@basic@bcs0}:
+    - fi-byt-n2820:       [FAIL][11] ([i915#694]) -> [PASS][12]
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7718/fi-byt-n2820/igt@gem_exec_basic@basic@bcs0.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16051/fi-byt-n2820/igt@gem_exec_basic@basic@bcs0.html
+
+  * {igt@gem_exec_basic@basic@vcs0}:
+    - fi-byt-n2820:       [WARN][13] -> [PASS][14]
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7718/fi-byt-n2820/igt@gem_exec_basic@basic@vcs0.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16051/fi-byt-n2820/igt@gem_exec_basic@basic@vcs0.html
+
+  * igt@i915_module_load@reload-with-fault-injection:
+    - fi-kbl-x1275:       [INCOMPLETE][15] ([i915#879]) -> [PASS][16]
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7718/fi-kbl-x1275/igt@i915_module_load@reload-with-fault-injection.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16051/fi-kbl-x1275/igt@i915_module_load@reload-with-fault-injection.html
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-skl-6770hq:      [FAIL][17] ([i915#178]) -> [PASS][18]
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7718/fi-skl-6770hq/igt@i915_pm_rpm@module-reload.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16051/fi-skl-6770hq/igt@i915_pm_rpm@module-reload.html
+
+  * igt@i915_selftest@live_blt:
+    - fi-hsw-4770:        [DMESG-FAIL][19] ([i915#563]) -> [PASS][20]
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7718/fi-hsw-4770/igt@i915_selftest@live_blt.html
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16051/fi-hsw-4770/igt@i915_selftest@live_blt.html
+
+  * igt@i915_selftest@live_execlists:
+    - fi-kbl-soraka:      [DMESG-FAIL][21] ([i915#656]) -> [PASS][22]
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7718/fi-kbl-soraka/igt@i915_selftest@live_execlists.html
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16051/fi-kbl-soraka/igt@i915_selftest@live_execlists.html
+
+  
+#### Warnings ####
+
+  * igt@i915_selftest@live_blt:
+    - fi-hsw-4770r:       [DMESG-FAIL][23] ([i915#725]) -> [DMESG-FAIL][24] ([i915#553] / [i915#725])
+   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7718/fi-hsw-4770r/igt@i915_selftest@live_blt.html
+   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16051/fi-hsw-4770r/igt@i915_selftest@live_blt.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#148]: https://gitlab.freedesktop.org/drm/intel/issues/148
+  [i915#178]: https://gitlab.freedesktop.org/drm/intel/issues/178
+  [i915#44]: https://gitlab.freedesktop.org/drm/intel/issues/44
+  [i915#553]: https://gitlab.freedesktop.org/drm/intel/issues/553
+  [i915#563]: https://gitlab.freedesktop.org/drm/intel/issues/563
+  [i915#656]: https://gitlab.freedesktop.org/drm/intel/issues/656
+  [i915#694]: https://gitlab.freedesktop.org/drm/intel/issues/694
+  [i915#722]: https://gitlab.freedesktop.org/drm/intel/issues/722
+  [i915#725]: https://gitlab.freedesktop.org/drm/intel/issues/725
+  [i915#879]: https://gitlab.freedesktop.org/drm/intel/issues/879
+  [i915#88]: https://gitlab.freedesktop.org/drm/intel/issues/88
+  [i915#889]: https://gitlab.freedesktop.org/drm/intel/issues/889
+  [i915#937]: https://gitlab.freedesktop.org/drm/intel/issues/937
 
 
+Participating hosts (46 -> 40)
+------------------------------
 
-> +		} while (!*done);
-> +	}
-> +
-> +	/* While very nearly idle (idle to within tolerance), except full RC6 */
-> +	cycles = -done[1];
-> +	prev = __pmu_read_single(fd, &ts[0]);
-> +	slept = measured_usleep(duration_ns / 1000);
-> +	idle = __pmu_read_single(fd, &ts[1]);
-> +	cycles += done[1];
-> +	igt_debug("slept=%lu perf=%"PRIu64", cycles=%lu\n",
-> +		  slept, ts[1] - ts[0], cycles);
-> +	igt_assert(cycles > 0);
-> +	assert_within_epsilon(idle - prev, ts[1] - ts[0], 5);
-> +
-> +	close(fd);
-> +
-> +	*done = 1;
-> +	igt_waitchildren();
-> +}
-> +
->  igt_main
->  {
->  	unsigned int rc6_enabled = 0;
->  	unsigned int devid = 0;
-> +	int i915 = -1;
->  
->  	/* Use drm_open_driver to verify device existence */
->  	igt_fixture {
-> -		int fd;
-> -
-> -		fd = drm_open_driver(DRIVER_INTEL);
-> -		devid = intel_get_drm_devid(fd);
-> -		sysfs = igt_sysfs_open(fd);
-> +		i915 = drm_open_driver(DRIVER_INTEL);
-> +		devid = intel_get_drm_devid(i915);
-> +		sysfs = igt_sysfs_open(i915);
->  
->  		igt_require(has_rc6_residency("rc6"));
->  
->  		/* Make sure rc6 counters are running */
-> -		igt_drop_caches_set(fd, DROP_IDLE);
-> +		igt_drop_caches_set(i915, DROP_IDLE);
->  		igt_require(wait_for_rc6());
->  
-> -		close(fd);
-> -
->  		rc6_enabled = get_rc6_enabled_mask();
->  		igt_require(rc6_enabled & RC6_ENABLED);
->  	}
->  
-> +	igt_subtest("rc6-perf") {
-> +		igt_require_gem(i915);
-> +		gem_quiescent_gpu(i915);
-> +
-> +		rc6_perf(i915);
-> +	}
-> +
->  	igt_subtest("rc6-accuracy") {
->  		struct residencies res;
->  
-> @@ -235,4 +385,8 @@ igt_main
->  		measure_residencies(devid, rc6_enabled, &res);
->  		residency_accuracy(res.media_rc6, res.duration, "media_rc6");
->  	}
-> +
-> +	igt_fixture
-> +		close(i915);
-> +
->  }
-> diff --git a/tests/meson.build b/tests/meson.build
-> index 570de5459..a79d22ba1 100644
-> --- a/tests/meson.build
-> +++ b/tests/meson.build
-> @@ -232,7 +232,6 @@ i915_progs = [
->  	'i915_module_load',
->  	'i915_pm_backlight',
->  	'i915_pm_lpsp',
-> -	'i915_pm_rc6_residency',
->  	'i915_pm_rpm',
->  	'i915_pm_dc',
->  	'i915_pm_rps',
-> @@ -336,6 +335,14 @@ test_executables += executable('gem_mmap_offset',
->  	   install : true)
->  test_list += 'gem_mmap_offset'
->  
-> +test_executables += executable('i915_pm_rc6_residency',
-> +	   join_paths('i915', 'i915_pm_rc6_residency.c'),
-> +	   dependencies : test_deps + [ lib_igt_perf ],
-> +	   install_dir : libexecdir,
-> +	   install_rpath : libexecdir_rpathdir,
-> +	   install : true)
-> +test_list += 'i915_pm_rc6_residency'
-> +
->  test_executables += executable('perf_pmu', 'perf_pmu.c',
->  	   dependencies : test_deps + [ lib_igt_perf ],
->  	   install_dir : libexecdir,
-> -- 
-> 2.25.0.rc2
-> 
+  Additional (4): fi-bsw-nick fi-bdw-5557u fi-bsw-n3050 fi-snb-2600 
+  Missing    (10): fi-hsw-4200u fi-byt-j1900 fi-bsw-cyan fi-snb-2520m fi-ctg-p8600 fi-ivb-3770 fi-skl-lmem fi-tgl-y fi-byt-clapper fi-skl-6600u 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_7718 -> Patchwork_16051
+
+  CI-20190529: 20190529
+  CI_DRM_7718: 37be537ac03a8299982f5fd177418aef86fdcc9e @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5362: c2843f8e06a2cf7d372cd154310bf0e3b7722ab8 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_16051: 331533c19413db60183f91905e9a5bf767f0d604 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+331533c19413 drm/i915: Drop request list from error state
+f295e7438394 drm/i915: Drop the shadow ring state from the error capture
+722c6f8f1369 drm/i915: Drop the shadow w/a batch buffer
+d117616075ef drm/i915: Start chopping up the GPU error capture
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16051/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
