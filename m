@@ -2,39 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 09EED136B9C
-	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jan 2020 12:02:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 037DA136B9F
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jan 2020 12:04:11 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 716E16E9B4;
-	Fri, 10 Jan 2020 11:02:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 70E0F6E9B6;
+	Fri, 10 Jan 2020 11:04:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A2C476E9B4
- for <intel-gfx@lists.freedesktop.org>; Fri, 10 Jan 2020 11:02:50 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-X-Amp-File-Uploaded: False
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 10 Jan 2020 03:02:49 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,416,1571727600"; d="scan'208";a="224165695"
-Received: from cwaites-mobl.ger.corp.intel.com (HELO intel.com)
- ([10.252.22.140])
- by orsmga003.jf.intel.com with ESMTP; 10 Jan 2020 03:02:47 -0800
-Date: Fri, 10 Jan 2020 13:02:46 +0200
-From: Andi Shyti <andi.shyti@intel.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>
-Message-ID: <20200110110246.GA3827@intel.intel>
-References: <20200109085839.873553-1-chris@chris-wilson.co.uk>
- <20200109085839.873553-12-chris@chris-wilson.co.uk>
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 628176E9B6
+ for <intel-gfx@lists.freedesktop.org>; Fri, 10 Jan 2020 11:04:08 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19832532-1500050 
+ for multiple; Fri, 10 Jan 2020 11:04:03 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri, 10 Jan 2020 11:04:00 +0000
+Message-Id: <20200110110402.1231745-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.25.0.rc2
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200109085839.873553-12-chris@chris-wilson.co.uk>
-User-Agent: Mutt/1.12.2 (2019-09-21)
-Subject: Re: [Intel-gfx] [PATCH 12/14] drm/i915: Drop the shadow w/a batch
- buffer
+Subject: [Intel-gfx] [PATCH 1/3] drm/i915/gt: Skip trying to unbind in
+ restore_ggtt_mappings
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,23 +37,56 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Chris,
+Currently we first to try to unbind the VMA (and lazily rebind on next
+use) as an optimisation during restore_ggtt_mappings. Ideally, the only
+objects in the GGTT upon resume are the pinned kernel objects which
+can't be unbound and need to be restored. As the unbind interferes with
+the plan to mark those objects as active for error capture, forgo the
+optimisation.
 
-On Thu, Jan 09, 2020 at 08:58:37AM +0000, Chris Wilson wrote:
-> While this is technically the batch as executed by the HW (in part at
-> least), it is confusing, and only used for a minority of gen.
-> 
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+---
+ drivers/gpu/drm/i915/gt/intel_ggtt.c | 7 ++-----
+ 1 file changed, 2 insertions(+), 5 deletions(-)
 
-Acked-by: Andi Shyti <andi.shyti@intel.com>
+diff --git a/drivers/gpu/drm/i915/gt/intel_ggtt.c b/drivers/gpu/drm/i915/gt/intel_ggtt.c
+index 795cd267e28e..eb9365741ff8 100644
+--- a/drivers/gpu/drm/i915/gt/intel_ggtt.c
++++ b/drivers/gpu/drm/i915/gt/intel_ggtt.c
+@@ -1197,7 +1197,7 @@ void i915_ggtt_disable_guc(struct i915_ggtt *ggtt)
+ 
+ static void ggtt_restore_mappings(struct i915_ggtt *ggtt)
+ {
+-	struct i915_vma *vma, *vn;
++	struct i915_vma *vma;
+ 	bool flush = false;
+ 	int open;
+ 
+@@ -1212,15 +1212,12 @@ static void ggtt_restore_mappings(struct i915_ggtt *ggtt)
+ 	open = atomic_xchg(&ggtt->vm.open, 0);
+ 
+ 	/* clflush objects bound into the GGTT and rebind them. */
+-	list_for_each_entry_safe(vma, vn, &ggtt->vm.bound_list, vm_link) {
++	list_for_each_entry(vma, &ggtt->vm.bound_list, vm_link) {
+ 		struct drm_i915_gem_object *obj = vma->obj;
+ 
+ 		if (!i915_vma_is_bound(vma, I915_VMA_GLOBAL_BIND))
+ 			continue;
+ 
+-		if (!__i915_vma_unbind(vma))
+-			continue;
+-
+ 		clear_bit(I915_VMA_GLOBAL_BIND_BIT, __i915_vma_flags(vma));
+ 		WARN_ON(i915_vma_bind(vma,
+ 				      obj ? obj->cache_level : 0,
+-- 
+2.25.0.rc2
 
-Andi
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
