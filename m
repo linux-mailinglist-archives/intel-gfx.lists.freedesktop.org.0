@@ -1,32 +1,45 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A538E13752C
-	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jan 2020 18:48:13 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8514C1375DC
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jan 2020 19:09:52 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E5A776EA74;
-	Fri, 10 Jan 2020 17:48:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8FBE86EA7B;
+	Fri, 10 Jan 2020 18:09:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id A06056EA74;
- Fri, 10 Jan 2020 17:48:10 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 98580A00C7;
- Fri, 10 Jan 2020 17:48:10 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2A4D16EA7B;
+ Fri, 10 Jan 2020 18:09:49 +0000 (UTC)
+X-Amp-Result: UNSCANNABLE
+X-Amp-File-Uploaded: False
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 10 Jan 2020 10:09:48 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.69,417,1571727600"; d="scan'208";a="212339355"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by orsmga007.jf.intel.com with SMTP; 10 Jan 2020 10:09:45 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 10 Jan 2020 20:09:44 +0200
+Date: Fri, 10 Jan 2020 20:09:44 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Harry Wentland <hwentlan@amd.com>
+Message-ID: <20200110180944.GL13686@intel.com>
+References: <20200109150752.28098-1-mario.kleiner.de@gmail.com>
+ <CADnq5_PvPD+FyEwUrqDVmbdLrP6ZC72HPtd19bqm-Csx-fHMOA@mail.gmail.com>
+ <CAEsyxyjTvuCHHA3D-NJd=aGkHz2d=obSizwGQL8B4k1B7i2jJg@mail.gmail.com>
+ <CADnq5_NPdg8MjQ5cB2aCD+US1Hv+FoP1gqKcA4W2e0pouG8cGQ@mail.gmail.com>
+ <CAEsyxyjMsCU8rzyO0GewU_-uV5+UoDDwa5Mc74irUnJHhF6ALQ@mail.gmail.com>
+ <bae132f3-73e6-5004-c9a9-adb632338268@amd.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Anshuman Gupta" <anshuman.gupta@intel.com>
-Date: Fri, 10 Jan 2020 17:48:10 -0000
-Message-ID: <157867849059.30836.10445649633552310451@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200110134913.24325-1-anshuman.gupta@intel.com>
-In-Reply-To: <20200110134913.24325-1-anshuman.gupta@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/hdcp=3A_update_HDCP_CP_property_as_per_port_authenticatio?=
- =?utf-8?q?n_state?=
+Content-Disposition: inline
+In-Reply-To: <bae132f3-73e6-5004-c9a9-adb632338268@amd.com>
+X-Patchwork-Hint: comment
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/dp: Add current maximum eDP link
+ rate to sink_rate array.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,140 +52,87 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: mario.kleiner.de@gmail.de, Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Maling list - DRI developers <dri-devel@lists.freedesktop.org>,
+ Alex Deucher <alexdeucher@gmail.com>, Harry Wentland <Harry.Wentland@amd.com>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Thu, Jan 09, 2020 at 04:26:19PM -0500, Harry Wentland wrote:
+> =
 
-Series: drm/i915/hdcp: update HDCP CP property as per port authentication state
-URL   : https://patchwork.freedesktop.org/series/71887/
-State : success
+> =
 
-== Summary ==
+> On 2020-01-09 4:04 p.m., Mario Kleiner wrote:
+> > On Thu, Jan 9, 2020 at 8:49 PM Alex Deucher <alexdeucher@gmail.com
+> > <mailto:alexdeucher@gmail.com>> wrote:
+> >
+> >     On Thu, Jan 9, 2020 at 11:47 AM Mario Kleiner
+> >     <mario.kleiner.de@gmail.com <mailto:mario.kleiner.de@gmail.com>>
+> >     wrote:
+> >     >
+> >     > On Thu, Jan 9, 2020 at 4:40 PM Alex Deucher
+> >     <alexdeucher@gmail.com <mailto:alexdeucher@gmail.com>> wrote:
+> >     >>
+> >     >> On Thu, Jan 9, 2020 at 10:08 AM Mario Kleiner
+> >     >> <mario.kleiner.de@gmail.com
+> >     <mailto:mario.kleiner.de@gmail.com>> wrote:
+> >     >> >
+> >     As Harry mentioned in the other thread, won't this only work if the
+> >     display was brought up by the vbios?=A0 In the suspend/resume case,
+> >     won't we just fall back to 2.7Gbps?
+> >
+> >     Alex
+> >
+> >
+> > Adding Harry to cc...
+> >
+> > The code is only executed for eDP. On the Intel side, it seems that
+> > intel_edp_init_dpcd() gets only called during driver load /
+> > modesetting init, so not on resume.
+> >
+> > On the AMD DC side, dc_link_detect_helper() has this early no-op
+> > return at the beginning:
+> >
+> > if ((link->connector_signal =3D=3D SIGNAL_TYPE_LVDS ||
+> > 			link->connector_signal =3D=3D SIGNAL_TYPE_EDP) &&
+> > 			link->local_sink)
+> > 		return true;
+> >
+> > So i guess if link->local_sink doesn't get NULL'ed during a
+> > suspend/resume cycle, then we never reach the setup code that would
+> > overwrite with non vbios settings?
+> >
+> > Sounds reasonable to me, given that eDP panels are usually fixed
+> > internal panels, nothing that gets hot(un-)plugged?
+> >
+> > I can't test, because suspend/resume with the Polaris gpu on the MBP
+> > 2017 is totally broken atm., just as vgaswitcheroo can't do its job.
+> > Looks like powering down the gpu works, but powering up doesn't. And
+> > also modesetting at vgaswitcheroo switch time is no-go, because the
+> > DDC/AUX lines apparently can't be switched on that Apple gmux, and
+> > handover of that data seems to be not implemented in current
+> > vgaswitcheroo. At the moment switching between AMD only or Intel+AMD
+> > Prime setup is quite a pita...
+> >
+> =
 
-CI Bug Log - changes from CI_DRM_7718 -> Patchwork_16053
-====================================================
+> I haven't followed the entire discussion on the i915 thread but for the
+> amdgpu dc patch I would prefer a DPCD quirk to override the reported
+> link settings with the correct link rate.
 
-Summary
--------
+We could consider adding a standard function for reading the receiver
+caps and applying the quirk there. I have a feeling that putting it
+into drm_dp_dpcd_read() would be a bit too low level since it would
+prevent reading the non-quirked raw data easily.
 
-  **SUCCESS**
+-- =
 
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16053/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_16053 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_close_race@basic-threads:
-    - fi-byt-n2820:       [PASS][1] -> [TIMEOUT][2] ([i915#816])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7718/fi-byt-n2820/igt@gem_close_race@basic-threads.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16053/fi-byt-n2820/igt@gem_close_race@basic-threads.html
-
-  * igt@i915_module_load@reload-with-fault-injection:
-    - fi-skl-6700k2:      [PASS][3] -> [DMESG-WARN][4] ([i915#889])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7718/fi-skl-6700k2/igt@i915_module_load@reload-with-fault-injection.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16053/fi-skl-6700k2/igt@i915_module_load@reload-with-fault-injection.html
-    - fi-skl-lmem:        [PASS][5] -> [INCOMPLETE][6] ([i915#671])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7718/fi-skl-lmem/igt@i915_module_load@reload-with-fault-injection.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16053/fi-skl-lmem/igt@i915_module_load@reload-with-fault-injection.html
-
-  * igt@i915_pm_rps@basic-api:
-    - fi-icl-dsi:         [PASS][7] -> [DMESG-WARN][8] ([i915#109])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7718/fi-icl-dsi/igt@i915_pm_rps@basic-api.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16053/fi-icl-dsi/igt@i915_pm_rps@basic-api.html
-
-  * igt@i915_selftest@live_blt:
-    - fi-ivb-3770:        [PASS][9] -> [DMESG-FAIL][10] ([i915#725])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7718/fi-ivb-3770/igt@i915_selftest@live_blt.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16053/fi-ivb-3770/igt@i915_selftest@live_blt.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_close_race@basic-threads:
-    - fi-byt-j1900:       [TIMEOUT][11] ([i915#816]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7718/fi-byt-j1900/igt@gem_close_race@basic-threads.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16053/fi-byt-j1900/igt@gem_close_race@basic-threads.html
-
-  * igt@gem_exec_suspend@basic-s3:
-    - fi-cml-s:           [DMESG-WARN][13] ([fdo#111764]) -> [PASS][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7718/fi-cml-s/igt@gem_exec_suspend@basic-s3.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16053/fi-cml-s/igt@gem_exec_suspend@basic-s3.html
-
-  * igt@i915_module_load@reload-with-fault-injection:
-    - fi-kbl-x1275:       [INCOMPLETE][15] ([i915#879]) -> [PASS][16]
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7718/fi-kbl-x1275/igt@i915_module_load@reload-with-fault-injection.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16053/fi-kbl-x1275/igt@i915_module_load@reload-with-fault-injection.html
-
-  * igt@i915_selftest@live_blt:
-    - fi-hsw-4770:        [DMESG-FAIL][17] ([i915#563]) -> [PASS][18]
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7718/fi-hsw-4770/igt@i915_selftest@live_blt.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16053/fi-hsw-4770/igt@i915_selftest@live_blt.html
-
-  * igt@i915_selftest@live_execlists:
-    - fi-kbl-soraka:      [DMESG-FAIL][19] ([i915#656]) -> [PASS][20]
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7718/fi-kbl-soraka/igt@i915_selftest@live_execlists.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16053/fi-kbl-soraka/igt@i915_selftest@live_execlists.html
-
-  
-#### Warnings ####
-
-  * igt@i915_selftest@live_blt:
-    - fi-hsw-4770r:       [DMESG-FAIL][21] ([i915#725]) -> [DMESG-FAIL][22] ([i915#553])
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7718/fi-hsw-4770r/igt@i915_selftest@live_blt.html
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16053/fi-hsw-4770r/igt@i915_selftest@live_blt.html
-
-  
-  [fdo#111764]: https://bugs.freedesktop.org/show_bug.cgi?id=111764
-  [i915#109]: https://gitlab.freedesktop.org/drm/intel/issues/109
-  [i915#553]: https://gitlab.freedesktop.org/drm/intel/issues/553
-  [i915#563]: https://gitlab.freedesktop.org/drm/intel/issues/563
-  [i915#656]: https://gitlab.freedesktop.org/drm/intel/issues/656
-  [i915#671]: https://gitlab.freedesktop.org/drm/intel/issues/671
-  [i915#725]: https://gitlab.freedesktop.org/drm/intel/issues/725
-  [i915#816]: https://gitlab.freedesktop.org/drm/intel/issues/816
-  [i915#879]: https://gitlab.freedesktop.org/drm/intel/issues/879
-  [i915#889]: https://gitlab.freedesktop.org/drm/intel/issues/889
-
-
-Participating hosts (46 -> 45)
-------------------------------
-
-  Additional (5): fi-bdw-5557u fi-bsw-n3050 fi-gdg-551 fi-bsw-nick fi-snb-2600 
-  Missing    (6): fi-ehl-1 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-tgl-y fi-byt-clapper 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_7718 -> Patchwork_16053
-
-  CI-20190529: 20190529
-  CI_DRM_7718: 37be537ac03a8299982f5fd177418aef86fdcc9e @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5362: c2843f8e06a2cf7d372cd154310bf0e3b7722ab8 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_16053: 8d704d27326faa3e115286a8582a0b7710616657 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-8d704d27326f drm/i915/hdcp: update HDCP CP property as per port authentication state
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16053/index.html
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
