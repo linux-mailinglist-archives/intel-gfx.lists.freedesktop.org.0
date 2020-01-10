@@ -2,45 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 83E2E1374E2
-	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jan 2020 18:34:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 900CA137541
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jan 2020 18:51:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0E2F76EA70;
-	Fri, 10 Jan 2020 17:34:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D4CFC6EA76;
+	Fri, 10 Jan 2020 17:51:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A2C226EA70
- for <intel-gfx@lists.freedesktop.org>; Fri, 10 Jan 2020 17:34:45 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga106.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 10 Jan 2020 09:34:45 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,417,1571727600"; d="scan'208";a="216736137"
-Received: from linux.intel.com ([10.54.29.200])
- by orsmga008.jf.intel.com with ESMTP; 10 Jan 2020 09:34:44 -0800
-Received: from [10.252.24.8] (abudanko-mobl.ccr.corp.intel.com [10.252.24.8])
- by linux.intel.com (Postfix) with ESMTP id A1D7F58045A;
- Fri, 10 Jan 2020 09:34:34 -0800 (PST)
-To: Peter Zijlstra <peterz@infradead.org>
-References: <c0460c78-b1a6-b5f7-7119-d97e5998f308@linux.intel.com>
- <c93309dc-b920-f5fa-f997-e8b2faf47b88@linux.intel.com>
- <20200108160713.GI2844@hirez.programming.kicks-ass.net>
- <cc239899-5c52-2fd0-286d-4bff18877937@linux.intel.com>
- <20200110140234.GO2844@hirez.programming.kicks-ass.net>
-From: Alexey Budankov <alexey.budankov@linux.intel.com>
-Organization: Intel Corp.
-Message-ID: <603c4d4f-9021-a8bc-1be6-3654d5c557d4@linux.intel.com>
-Date: Fri, 10 Jan 2020 20:34:33 +0300
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
- Thunderbird/68.3.1
+Received: from mail-wr1-x443.google.com (mail-wr1-x443.google.com
+ [IPv6:2a00:1450:4864:20::443])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 87DF96EA73;
+ Fri, 10 Jan 2020 17:44:59 +0000 (UTC)
+Received: by mail-wr1-x443.google.com with SMTP id q10so2604559wrm.11;
+ Fri, 10 Jan 2020 09:44:59 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=from:date:to:cc:subject:in-reply-to:message-id:references
+ :user-agent:mime-version;
+ bh=5hI1Z6zc0isNIwOCpgK9mbSp+WfDRjfAoj1TrQlEpEk=;
+ b=ocd2XjHL/6q7Bv/03GFAnmNwBPQIoL9bJ5BkRsKBNXMqvd8Uvwjxfo9N0CltqGK4D9
+ m6WC8vwBiEcX3wu3eGMFNb9s9JE5ssWh1ubdTMtX2neDKxdmN8y0MdX9llmGxdVV5lGs
+ 3gIhVrGO3MV5UOrO6jzR3kPtPxQfHl1qEdTRSp91kXAxaWWTp9RD7jhUvsAOoiEsU9ct
+ nJNZ0yLcdvlOBT37oT5m7bgVdT0RWO7rA1ntLhmdpnghc3srvwMQ/4BZ5HMOOwSyd7yV
+ USMWVFuK6BQn4GknPaflrM+p4Dcpadd6N1Hxtm07GZt4017QGXtJasMEiwZ16KRqxOsH
+ 7Evw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:date:to:cc:subject:in-reply-to:message-id
+ :references:user-agent:mime-version;
+ bh=5hI1Z6zc0isNIwOCpgK9mbSp+WfDRjfAoj1TrQlEpEk=;
+ b=MEgeswDSZfnjts2fdcws5VDJB4GBB7tfyRO53HTNvcwLS3JwYbqay7+HxdnXvhcSLU
+ VksG/BVcvgr+ZSomxoPab9GtP2JZ02WRzArTNZYNz/+JJeKJKkyEbMn+NHvywmnW2GJp
+ /Tv6I/P81EPv8go2col0Jw8JULUGKxjctY5YWa+vRW31KeF5TP5DJDRGEpuxumJf3f5e
+ W0eTgSJtJs1MjQUy3R1rDUfavDVdoPCo1qDdA+OCDHfBQZijr9/RhwIy+URcKjGzMBLB
+ bo+uAQnJWXThcHxHe0kZEwFohFWsaAH/MbWdOz08xWmtxVhIVsERi+8T35EW3wiBSVZi
+ XjjQ==
+X-Gm-Message-State: APjAAAX1MOwxauP43VKXFja5/3d+5olQrZaBYYJXz1KbU8nc5R/jb9Gn
+ 180nogz2MNx/ng1k3ZC7CBY=
+X-Google-Smtp-Source: APXvYqzt7Qr8UDP3Dv38WgfWk/xkS6KCAOtCWgJWi+dWf98rcqNzc/uJiB+XqpYBSc+PgqaRuSXu8w==
+X-Received: by 2002:adf:d846:: with SMTP id k6mr4500598wrl.337.1578678298144; 
+ Fri, 10 Jan 2020 09:44:58 -0800 (PST)
+Received: from wambui.local ([197.237.61.225])
+ by smtp.googlemail.com with ESMTPSA id i8sm3140572wro.47.2020.01.10.09.44.54
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 10 Jan 2020 09:44:57 -0800 (PST)
+From: Wambui Karuga <wambui.karugax@gmail.com>
+X-Google-Original-From: Wambui Karuga <wambui@wambui>
+Date: Fri, 10 Jan 2020 20:44:48 +0300 (EAT)
+To: Jani Nikula <jani.nikula@linux.intel.com>
+In-Reply-To: <8736cno0ow.fsf@intel.com>
+Message-ID: <alpine.LNX.2.21.99999.375.2001102044220.23860@wambui>
+References: <cover.1578409433.git.wambui.karugax@gmail.com>
+ <8736cno0ow.fsf@intel.com>
+User-Agent: Alpine 2.21.99999 (LNX 375 2019-10-29)
 MIME-Version: 1.0
-In-Reply-To: <20200110140234.GO2844@hirez.programming.kicks-ass.net>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH v4 2/9] perf/core: open access for
- CAP_SYS_PERFMON privileged process
+X-Mailman-Approved-At: Fri, 10 Jan 2020 17:51:44 +0000
+Subject: Re: [Intel-gfx] [PATCH 0/5] drm/i915: conversion to new drm logging
+ macros.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,85 +70,61 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Mark Rutland <mark.rutland@arm.com>, Song Liu <songliubraving@fb.com>,
- Alexander Shishkin <alexander.shishkin@linux.intel.com>,
- Benjamin Herrenschmidt <benh@kernel.crashing.org>,
- Will Deacon <will.deacon@arm.com>, Alexei Starovoitov <ast@kernel.org>,
- Stephane Eranian <eranian@google.com>,
- "james.bottomley@hansenpartnership.com"
- <james.bottomley@hansenpartnership.com>, Paul Mackerras <paulus@samba.org>,
- Jiri Olsa <jolsa@redhat.com>, Andi Kleen <ak@linux.intel.com>,
- Michael Ellerman <mpe@ellerman.id.au>, Igor Lubashev <ilubashe@akamai.com>,
- James Morris <jmorris@namei.org>, Ingo Molnar <mingo@redhat.com>,
- oprofile-list@lists.sf.net, Serge Hallyn <serge@hallyn.com>,
- Robert Richter <rric@kernel.org>, Kees Cook <keescook@chromium.org>,
- Jann Horn <jannh@google.com>,
- "selinux@vger.kernel.org" <selinux@vger.kernel.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- Arnaldo Carvalho de Melo <acme@kernel.org>, Namhyung Kim <namhyung@kernel.org>,
- Thomas Gleixner <tglx@linutronix.de>, linux-arm-kernel@lists.infradead.org,
- "linux-parisc@vger.kernel.org" <linux-parisc@vger.kernel.org>,
- linux-kernel <linux-kernel@vger.kernel.org>,
- "linux-perf-users@vger.kernel.org" <linux-perf-users@vger.kernel.org>,
- "linux-security-module@vger.kernel.org"
- <linux-security-module@vger.kernel.org>, mhiramat@kernel.org,
- Casey Schaufler <casey@schaufler-ca.com>,
- "bpf@vger.kernel.org" <bpf@vger.kernel.org>,
- "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>
-Content-Type: text/plain; charset="us-ascii"
+Cc: airlied@linux.ie, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ seanpaul@chromium.org, Wambui Karuga <wambui.karugax@gmail.com>
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
 
-On 10.01.2020 17:02, Peter Zijlstra wrote:
-> On Thu, Jan 09, 2020 at 02:36:50PM +0300, Alexey Budankov wrote:
->> On 08.01.2020 19:07, Peter Zijlstra wrote:
->>> On Wed, Dec 18, 2019 at 12:25:35PM +0300, Alexey Budankov wrote:
-> 
->>>> diff --git a/kernel/events/core.c b/kernel/events/core.c
->>>> index 059ee7116008..d9db414f2197 100644
->>>> --- a/kernel/events/core.c
->>>> +++ b/kernel/events/core.c
->>>> @@ -9056,7 +9056,7 @@ static int perf_kprobe_event_init(struct perf_event *event)
->>>>  	if (event->attr.type != perf_kprobe.type)
->>>>  		return -ENOENT;
->>>>  
->>>> -	if (!capable(CAP_SYS_ADMIN))
->>>> +	if (!perfmon_capable())
->>>>  		return -EACCES;
->>>>  
->>>>  	/*
->>>
->>> This one only allows attaching to already extant kprobes, right? It does
->>> not allow creation of kprobes.
+On Fri, 10 Jan 2020, Jani Nikula wrote:
+
+> On Tue, 07 Jan 2020, Wambui Karuga <wambui.karugax@gmail.com> wrote:
+>> This series begins the conversion to using the new struct drm_device
+>> based logging macros in drm/i915.
 >>
->> This unblocks creation of local trace kprobes and uprobes by CAP_SYS_PERFMON 
->> privileged process, exactly the same as for CAP_SYS_ADMIN privileged process.
-> 
-> I've no idea what you just said; it's just words.
-> 
-> Again, this only allows attaching to previously created kprobes, it does
-> not allow creating kprobes, right?
-
-Not really, this allows creating a kprobe using perf_event_open syscall that
-associates file descriptor with the kprobe [1].
-
-Lifetime of that kprobe is equal to the lifetime of the file descriptor and 
-the kprobe is not visible in tracefs: /sys/kernel/debug/tracing/kprobe_events
-
-> 
-> That is; I don't think CAP_SYS_PERFMON should be allowed to create
-> kprobes.
-> 
-> As might be clear; I don't actually know what the user-ABI is for
-> creating kprobes.
-> 
-
-~Alexey
-
-[1] https://lore.kernel.org/lkml/20171206224518.3598254-1-songliubraving@fb.com/
+>> Wambui Karuga (5):
+>>   drm/i915: convert to using the drm_dbg_kms() macro.
+>>   drm/i915: use new struct drm_device logging macros.
+>>   drm/i915: use new struct drm_device based logging macros.
+>>   drm/i915: convert to using new struct drm_device logging macros
+>>   drm/i915: use new struct drm_device based macros.
+>
+> Thanks for the patches, pushed to drm-intel-next-queued.
+>
+> As it's impossible to distinguish the commits from each other by the
+> subject line alone, I've amended the prefix while pushing as follows:
+>
+> drm/i915/pch: convert to using the drm_dbg_kms() macro.
+> drm/i915/pm: use new struct drm_device logging macros.
+> drm/i915/lmem: use new struct drm_device based logging macros.
+> drm/i915/sideband: convert to using new struct drm_device logging macros
+> drm/i915/uncore: use new struct drm_device based macros.
+>
+> Please pay attention to this in future work. It's not always obvious
+> what the prefix should be, but 'git log -- path/to/file.c' will go a
+> long way.
+>
+Sure, I'll do that from now on.
+Thanks.
+> BR,
+> Jani.
+>
+>
+>>
+>>  drivers/gpu/drm/i915/intel_pch.c         |  46 +--
+>>  drivers/gpu/drm/i915/intel_pm.c          | 351 +++++++++++++----------
+>>  drivers/gpu/drm/i915/intel_region_lmem.c |  10 +-
+>>  drivers/gpu/drm/i915/intel_sideband.c    |  29 +-
+>>  drivers/gpu/drm/i915/intel_uncore.c      |  25 +-
+>>  5 files changed, 254 insertions(+), 207 deletions(-)
+>
+> -- 
+> Jani Nikula, Intel Open Source Graphics Center
+>
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
