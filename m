@@ -2,36 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 32653136E15
-	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jan 2020 14:31:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E901C136E22
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jan 2020 14:32:39 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 839A46EA12;
-	Fri, 10 Jan 2020 13:31:07 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E9A676EA12
- for <Intel-gfx@lists.freedesktop.org>; Fri, 10 Jan 2020 13:31:05 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 14B9E6EA19;
+	Fri, 10 Jan 2020 13:32:38 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DF0C96EA15;
+ Fri, 10 Jan 2020 13:32:36 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
 X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 10 Jan 2020 05:31:05 -0800
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga105.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 10 Jan 2020 05:32:36 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,417,1571727600"; d="scan'208";a="216666385"
-Received: from kumarjai-mobl1.ger.corp.intel.com (HELO localhost.localdomain)
- ([10.251.83.12])
- by orsmga008.jf.intel.com with ESMTP; 10 Jan 2020 05:31:04 -0800
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-To: Intel-gfx@lists.freedesktop.org
-Date: Fri, 10 Jan 2020 13:30:49 +0000
-Message-Id: <20200110133049.2705-9-tvrtko.ursulin@linux.intel.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200110133049.2705-1-tvrtko.ursulin@linux.intel.com>
-References: <20200110133049.2705-1-tvrtko.ursulin@linux.intel.com>
+X-IronPort-AV: E=Sophos;i="5.69,417,1571727600"; d="scan'208";a="212265157"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by orsmga007.jf.intel.com with SMTP; 10 Jan 2020 05:32:33 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 10 Jan 2020 15:32:32 +0200
+Date: Fri, 10 Jan 2020 15:32:32 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Mario Kleiner <mario.kleiner.de@gmail.com>
+Message-ID: <20200110133232.GJ13686@intel.com>
+References: <20200109150752.28098-1-mario.kleiner.de@gmail.com>
+ <20200109152656.GP1208@intel.com> <20200109153815.GQ1208@intel.com>
+ <CAEsyxyj6xbHrkKk5=bG5APrD5VW_PP-Cs+nT0vqCjW_LBSG29A@mail.gmail.com>
+ <20200109164715.GD13686@intel.com>
+ <CAEsyxyhjbP6ADutU7XRJUjryj1+X8mFqopB9TvBoW6RWjBihww@mail.gmail.com>
+ <20200109182408.GF13686@intel.com>
+ <CAEsyxyiTxRZC=Mw4rKvjCQO557Qg6Q2JRkoUvQWOia7SxumznA@mail.gmail.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [RFC 8/8] drm/i915: Fallback to hw context runtime when
- sw tracking is not available
+Content-Disposition: inline
+In-Reply-To: <CAEsyxyiTxRZC=Mw4rKvjCQO557Qg6Q2JRkoUvQWOia7SxumznA@mail.gmail.com>
+X-Patchwork-Hint: comment
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/dp: Add current maximum eDP link
+ rate to sink_rate array.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,100 +54,73 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: kui.wen@intel.com
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: mario.kleiner.de@gmail.de, intel-gfx <intel-gfx@lists.freedesktop.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>,
+ Daniel Vetter <daniel.vetter@ffwll.ch>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+On Thu, Jan 09, 2020 at 09:19:07PM +0100, Mario Kleiner wrote:
+> On Thu, Jan 9, 2020 at 7:24 PM Ville Syrj=E4l=E4 <ville.syrjala@linux.int=
+el.com>
+> wrote:
+> =
 
-In GuC mode we are not receiving the context switch interrupts to be able
-to accurately track context runtimes.
+> > On Thu, Jan 09, 2020 at 06:57:14PM +0100, Mario Kleiner wrote:
+> > > On Thu, Jan 9, 2020 at 5:47 PM Ville Syrj=E4l=E4 <
+> > ville.syrjala@linux.intel.com>
+> > > wrote:
+> > >
+> > > > On Thu, Jan 09, 2020 at 05:30:05PM +0100, Mario Kleiner wrote:
+> > > > > On Thu, Jan 9, 2020 at 4:38 PM Ville Syrj=E4l=E4 <
+> > > > ville.syrjala@linux.intel.com>
+> > > > > wrote:
+> > > > >
+> >
+> =
 
-We can fallback to using PPHWSP counter updated by the GPU on context save.
+> > wouldn't work if dpcd[0x1] =3D=3D 0xa, which it likely is [*]. AMD DC
+> > > identified it as DP 1.1, eDP 1.3, and these extended caps seem to be =
+only
+> > > part of DP 1.3+ if i understand the comments in
+> > > intel_dp_extended_receiver_capabilities() correctly.
+> >
+> >
+> Ok, looking at previous debug output logs shows that those extended caps
+> are not present on the systems, ie. that extended caps bit is not set. So
+> dpcd[0x1] =3D=3D 0xa.
+> =
 
-QQQ
-Downsides are: 1) we do not see currently executing batch and 2) with a
-12MHz command streamer timestamp timer frequency the 32-bit counter wraps
-every ~358 seconds. This makes endless OpenCL batches with hearbeats
-turned off also a problem.
+> =
 
-Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
----
- drivers/gpu/drm/i915/i915_drm_client.c | 34 ++++++++++++++++++++------
- 1 file changed, 27 insertions(+), 7 deletions(-)
+> > Yeah, but you never know how creative they've been with the DPCD in
+> > such a propritary machine. A full DPCD dump from /dev/drm_dp_aux* would
+> > be nice. Can you file a bug an attach the DPCD dump there so we have a
+> > good reference on what we're talking about (also for future if/when
+> > someone eventually starts to wonder why we have such hacks in the
+> > code)?
+> >
+> >
+> True, it's Apple which likes to "Think different..." :/
+> =
 
-diff --git a/drivers/gpu/drm/i915/i915_drm_client.c b/drivers/gpu/drm/i915/i915_drm_client.c
-index 55b2f86cc4c1..0b84ae528dcc 100644
---- a/drivers/gpu/drm/i915/i915_drm_client.c
-+++ b/drivers/gpu/drm/i915/i915_drm_client.c
-@@ -58,6 +58,24 @@ sw_busy_add(struct i915_gem_context *ctx, unsigned int engine_class)
- 	return total;
- }
- 
-+static u64
-+hw_busy_add(struct i915_gem_context *ctx, unsigned int engine_class)
-+{
-+	struct i915_gem_engines *engines = rcu_dereference(ctx->engines);
-+	struct i915_gem_engines_iter it;
-+	struct intel_context *ce;
-+	u64 total = 0;
-+
-+	for_each_gem_engine(ce, engines, it) {
-+		if (ce->engine->uabi_class != engine_class)
-+			continue;
-+
-+		total += intel_context_get_hw_runtime_ns(ce);
-+	}
-+
-+	return total;
-+}
-+
- static ssize_t
- show_client_busy(struct device *kdev, struct device_attribute *attr, char *buf)
- {
-@@ -68,12 +86,14 @@ show_client_busy(struct device *kdev, struct device_attribute *attr, char *buf)
- 	struct i915_gem_context *ctx;
- 	u64 total = 0;
- 
--	if (i915_attr->no_busy_stats)
--		return -ENODEV;
--
- 	rcu_read_lock();
--	list_for_each_entry_rcu(ctx, list, client_link)
--		total += sw_busy_add(ctx, engine_class);
-+	if (i915_attr->no_busy_stats) {
-+		list_for_each_entry_rcu(ctx, list, client_link)
-+			total += hw_busy_add(ctx, engine_class);
-+	} else {
-+		list_for_each_entry_rcu(ctx, list, client_link)
-+			total += sw_busy_add(ctx, engine_class);
-+	}
- 	rcu_read_unlock();
- 
- 	return snprintf(buf, PAGE_SIZE, "%llu\n", total);
-@@ -164,7 +184,7 @@ __i915_drm_client_register(struct i915_drm_client *client,
- 			if (ret) {
- 				int j, k;
- 
--				/* Unwind if not available. */
-+				/* Unwind and fallback if not available. */
- 				j = 0;
- 				for_each_uabi_engine(engine, i915) {
- 					if (j++ == i)
-@@ -181,7 +201,7 @@ __i915_drm_client_register(struct i915_drm_client *client,
- 				}
- 
- 				dev_notice_once(i915->drm.dev,
--						"Engine busy stats not available! (%d)",
-+						"Reduced accuracy context runtime mode (%d)",
- 						ret);
- 				break;
- 			}
--- 
-2.20.1
+> Will do. But is there a proper/better way to do the /dev/drm_dp_aux0 dump?
+> I used cat /dev/drm_dp_aux0 > dump, and that hangs, but if i interrupt it
+> after a few seconds, i get a dump file of 512k size, which seems excessiv=
+e?
+> On AMD DC atm., in case that matters.
 
+It can take a while to dump the whole thing. If there are errors in some
+parts (against the spec but some devices simply don't care about the
+spec) you may need to use ddrescue/etc. to dump everything that can be
+dumped.
+
+-- =
+
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
