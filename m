@@ -1,34 +1,45 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A369C137A48
-	for <lists+intel-gfx@lfdr.de>; Sat, 11 Jan 2020 00:39:14 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 74977137A56
+	for <lists+intel-gfx@lfdr.de>; Sat, 11 Jan 2020 00:47:49 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9286F6E0F7;
-	Fri, 10 Jan 2020 23:39:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 27C0D89CDE;
+	Fri, 10 Jan 2020 23:47:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0CBBB6E0F7
- for <intel-gfx@lists.freedesktop.org>; Fri, 10 Jan 2020 23:39:10 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 10 Jan 2020 15:39:09 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,418,1571727600"; d="scan'208";a="232569752"
-Received: from josouza-mobl.jf.intel.com (HELO josouza-MOBL.intel.com)
- ([10.24.12.163])
- by fmsmga001.fm.intel.com with ESMTP; 10 Jan 2020 15:39:09 -0800
-From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri, 10 Jan 2020 15:39:02 -0800
-Message-Id: <20200110233902.154960-1-jose.souza@intel.com>
-X-Mailer: git-send-email 2.24.1
-MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/dp/tgl+: Update combo phy vswing tables
+Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ED52789CDE
+ for <intel-gfx@lists.freedesktop.org>; Fri, 10 Jan 2020 23:47:45 +0000 (UTC)
+Received: from devnote2 (NE2965lan1.rev.em-net.ne.jp [210.141.244.193])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by mail.kernel.org (Postfix) with ESMTPSA id A61EC20721;
+ Fri, 10 Jan 2020 23:47:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=default; t=1578700065;
+ bh=NuMXPw3kPSPAokfxRtkSxkyo7a4EVAlOcwjKZAwv8nY=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+ b=t116nza3ajSBnjZbfKgcN5ONvfAghlxApVIAIUZPf0R8FY7ey0DryHbox6JEQPVwR
+ 2xql9T24vHJ7lZgd8/0P6ybYgmcY34jFGX+VnlShjoGYoVU3chcg4p7xaRfP4Azzzx
+ FSSjjNHlhTZMBRDpXhh2exzFwwJlouRtCsAGpcsw=
+Date: Sat, 11 Jan 2020 08:47:35 +0900
+From: Masami Hiramatsu <mhiramat@kernel.org>
+To: Arnaldo Carvalho de Melo <acme@kernel.org>
+Message-Id: <20200111084735.0ff01c758bfbfd0ae2e1f24e@kernel.org>
+In-Reply-To: <20200110164531.GA2598@kernel.org>
+References: <c0460c78-b1a6-b5f7-7119-d97e5998f308@linux.intel.com>
+ <c93309dc-b920-f5fa-f997-e8b2faf47b88@linux.intel.com>
+ <20200108160713.GI2844@hirez.programming.kicks-ass.net>
+ <cc239899-5c52-2fd0-286d-4bff18877937@linux.intel.com>
+ <20200110140234.GO2844@hirez.programming.kicks-ass.net>
+ <20200111005213.6dfd98fb36ace098004bde0e@kernel.org>
+ <20200110164531.GA2598@kernel.org>
+X-Mailer: Sylpheed 3.5.1 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+Mime-Version: 1.0
+Subject: Re: [Intel-gfx] [PATCH v4 2/9] perf/core: open access for
+ CAP_SYS_PERFMON privileged process
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,100 +52,74 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Mark Rutland <mark.rutland@arm.com>, Song Liu <songliubraving@fb.com>,
+ Peter Zijlstra <peterz@infradead.org>,
+ Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+ Will Deacon <will.deacon@arm.com>, Alexei Starovoitov <ast@kernel.org>,
+ Stephane Eranian <eranian@google.com>,
+ "james.bottomley@hansenpartnership.com"
+ <james.bottomley@hansenpartnership.com>, Paul Mackerras <paulus@samba.org>,
+ Jiri Olsa <jolsa@redhat.com>, Andi Kleen <ak@linux.intel.com>,
+ Michael Ellerman <mpe@ellerman.id.au>, Igor Lubashev <ilubashe@akamai.com>,
+ James Morris <jmorris@namei.org>,
+ Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+ Ingo Molnar <mingo@redhat.com>, oprofile-list@lists.sf.net,
+ Serge Hallyn <serge@hallyn.com>, Robert Richter <rric@kernel.org>,
+ Kees Cook <keescook@chromium.org>, Jann Horn <jannh@google.com>,
+ "selinux@vger.kernel.org" <selinux@vger.kernel.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ Namhyung Kim <namhyung@kernel.org>, Thomas Gleixner <tglx@linutronix.de>,
+ linux-arm-kernel@lists.infradead.org,
+ "linux-parisc@vger.kernel.org" <linux-parisc@vger.kernel.org>,
+ linux-kernel <linux-kernel@vger.kernel.org>,
+ "linux-perf-users@vger.kernel.org" <linux-perf-users@vger.kernel.org>,
+ "linux-security-module@vger.kernel.org"
+ <linux-security-module@vger.kernel.org>,
+ Casey Schaufler <casey@schaufler-ca.com>,
+ "bpf@vger.kernel.org" <bpf@vger.kernel.org>,
+ "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-VEdMIGhhcyBub3cgYSB0YWJsZSBmb3IgUkJSIGFuZCBIQlIgYW5kIGFub3RoZXIgdGFibGUgZm9y
-IEhCUjIgb3Zlcgpjb21ibyBwaHlzLiBUaGUgSEJSMiBvbmUgaGFzIHNvbWUgc21hbGwgY2hhbmdl
-cyBjb21wYXJpbmcgdG8gdGhlIElDTApvbmUsIHNvIGFkZGluZyB0d28gbmV3IHRhYmxlcyBhbmQg
-YWRkaW5nIGEgZnVuY3Rpb24gdG8gcmV0dXJuIFRHTApjb21ibyBwaHkgdGFibGVzLgoKdjI6Ci0g
-cmVvcmRlcmVkIHRoZSB0Z2xfY29tYm9fcGh5X2RkaV90cmFuc2xhdGlvbnNfZHBfaGJyMiB0byBy
-ZWR1Y2UgZGlmZgooTWF0dCkKLSByZW1vdmVkIGRlZmluaXRpb24gb2YgcmF0ZXMsIGtlcHQgdXNp
-bmcgcmF3IG51bWJlcihKYW5pIGFuZCBWaWxsZSkKLSBjaGFuZ2VkIGNvZGUgdG8gdXNlIGljbF9n
-ZXRfY29tYm9fYnVmX3RyYW5zKCkgZm9yIG5vbi1EUCBhcyB0aG9zZQphcmUgZXF1YWwgYmV0d2Vl
-biBUR0wgYW5kIElDTChNYXR0KQoKQlNwZWM6IDQ5MjkxCkNjOiBMdWNhcyBEZSBNYXJjaGkgPGx1
-Y2FzLmRlbWFyY2hpQGludGVsLmNvbT4KQ2M6IE1hdHQgUm9wZXIgPG1hdHRoZXcuZC5yb3BlckBp
-bnRlbC5jb20+CkNjOiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwu
-Y29tPgpDYzogSmFuaSBOaWt1bGEgPGphbmkubmlrdWxhQGludGVsLmNvbT4KU2lnbmVkLW9mZi1i
-eTogSm9zw6kgUm9iZXJ0byBkZSBTb3V6YSA8am9zZS5zb3V6YUBpbnRlbC5jb20+Ci0tLQogZHJp
-dmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kZGkuYyB8IDU1ICsrKysrKysrKysrKysr
-KysrKysrKystLQogMSBmaWxlIGNoYW5nZWQsIDUxIGluc2VydGlvbnMoKyksIDQgZGVsZXRpb25z
-KC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kZGku
-YyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGRpLmMKaW5kZXggZmJjMTNm
-MzZmNzZmLi40MWM0MzNjZGY2MGMgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rp
-c3BsYXkvaW50ZWxfZGRpLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRl
-bF9kZGkuYwpAQCAtNjIyLDYgKzYyMiwzNCBAQCBzdGF0aWMgY29uc3Qgc3RydWN0IHRnbF9ka2xf
-cGh5X2RkaV9idWZfdHJhbnMgdGdsX2RrbF9waHlfaGRtaV9kZGlfdHJhbnNbXSA9IHsKIAl7IDB4
-MCwgMHgwLCAweEEgfSwJLyogMTAJCUZ1bGwJLTMgZEIgKi8KIH07CiAKK3N0YXRpYyBjb25zdCBz
-dHJ1Y3QgY25sX2RkaV9idWZfdHJhbnMgdGdsX2NvbWJvX3BoeV9kZGlfdHJhbnNsYXRpb25zX2Rw
-X2hicltdID0geworCQkJCQkJLyogTlQgbVYgVHJhbnMgbVYgZGIgICAgKi8KKwl7IDB4QSwgMHgz
-MiwgMHgzRiwgMHgwMCwgMHgwMCB9LAkvKiAzNTAgICAzNTAgICAgICAwLjAgICAqLworCXsgMHhB
-LCAweDRGLCAweDM3LCAweDAwLCAweDA4IH0sCS8qIDM1MCAgIDUwMCAgICAgIDMuMSAgICovCisJ
-eyAweEMsIDB4NzEsIDB4MkYsIDB4MDAsIDB4MTAgfSwJLyogMzUwICAgNzAwICAgICAgNi4wICAg
-Ki8KKwl7IDB4NiwgMHg3RCwgMHgyQiwgMHgwMCwgMHgxNCB9LAkvKiAzNTAgICA5MDAgICAgICA4
-LjIgICAqLworCXsgMHhBLCAweDRDLCAweDNGLCAweDAwLCAweDAwIH0sCS8qIDUwMCAgIDUwMCAg
-ICAgIDAuMCAgICovCisJeyAweEMsIDB4NzMsIDB4MzQsIDB4MDAsIDB4MEIgfSwJLyogNTAwICAg
-NzAwICAgICAgMi45ICAgKi8KKwl7IDB4NiwgMHg3RiwgMHgyRiwgMHgwMCwgMHgxMCB9LAkvKiA1
-MDAgICA5MDAgICAgICA1LjEgICAqLworCXsgMHhDLCAweDZDLCAweDNDLCAweDAwLCAweDAzIH0s
-CS8qIDY1MCAgIDcwMCAgICAgIDAuNiAgICovCisJeyAweDYsIDB4N0YsIDB4MzUsIDB4MDAsIDB4
-MEEgfSwJLyogNjAwICAgOTAwICAgICAgMy41ICAgKi8KKwl7IDB4NiwgMHg3RiwgMHgzRiwgMHgw
-MCwgMHgwMCB9LAkvKiA5MDAgICA5MDAgICAgICAwLjAgICAqLworfTsKKworc3RhdGljIGNvbnN0
-IHN0cnVjdCBjbmxfZGRpX2J1Zl90cmFucyB0Z2xfY29tYm9fcGh5X2RkaV90cmFuc2xhdGlvbnNf
-ZHBfaGJyMltdID0geworCQkJCQkJLyogTlQgbVYgVHJhbnMgbVYgZGIgICAgKi8KKwl7IDB4QSwg
-MHgzNSwgMHgzRiwgMHgwMCwgMHgwMCB9LAkvKiAzNTAgICAzNTAgICAgICAwLjAgICAqLworCXsg
-MHhBLCAweDRGLCAweDM3LCAweDAwLCAweDA4IH0sCS8qIDM1MCAgIDUwMCAgICAgIDMuMSAgICov
-CisJeyAweEMsIDB4NjMsIDB4MkYsIDB4MDAsIDB4MTAgfSwJLyogMzUwICAgNzAwICAgICAgNi4w
-ICAgKi8KKwl7IDB4NiwgMHg3RiwgMHgyQiwgMHgwMCwgMHgxNCB9LAkvKiAzNTAgICA5MDAgICAg
-ICA4LjIgICAqLworCXsgMHhBLCAweDQ3LCAweDNGLCAweDAwLCAweDAwIH0sCS8qIDUwMCAgIDUw
-MCAgICAgIDAuMCAgICovCisJeyAweEMsIDB4NjMsIDB4MzQsIDB4MDAsIDB4MEIgfSwJLyogNTAw
-ICAgNzAwICAgICAgMi45ICAgKi8KKwl7IDB4NiwgMHg3RiwgMHgyRiwgMHgwMCwgMHgxMCB9LAkv
-KiA1MDAgICA5MDAgICAgICA1LjEgICAqLworCXsgMHhDLCAweDYxLCAweDNDLCAweDAwLCAweDAz
-IH0sCS8qIDY1MCAgIDcwMCAgICAgIDAuNiAgICovCisJeyAweDYsIDB4N0IsIDB4MzUsIDB4MDAs
-IDB4MEEgfSwJLyogNjAwICAgOTAwICAgICAgMy41ICAgKi8KKwl7IDB4NiwgMHg3RiwgMHgzRiwg
-MHgwMCwgMHgwMCB9LAkvKiA5MDAgICA5MDAgICAgICAwLjAgICAqLworfTsKKwogc3RhdGljIGNv
-bnN0IHN0cnVjdCBkZGlfYnVmX3RyYW5zICoKIGJkd19nZXRfYnVmX3RyYW5zX2VkcChzdHJ1Y3Qg
-ZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYsIGludCAqbl9lbnRyaWVzKQogewpAQCAtOTAxLDYg
-KzkyOSwyMSBAQCBpY2xfZ2V0X2NvbWJvX2J1Zl90cmFucyhzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0
-ZSAqZGV2X3ByaXYsIGludCB0eXBlLCBpbnQgcmF0ZSwKIAlyZXR1cm4gaWNsX2NvbWJvX3BoeV9k
-ZGlfdHJhbnNsYXRpb25zX2RwX2hicjI7CiB9CiAKK3N0YXRpYyBjb25zdCBzdHJ1Y3QgY25sX2Rk
-aV9idWZfdHJhbnMgKgordGdsX2dldF9jb21ib19idWZfdHJhbnMoc3RydWN0IGRybV9pOTE1X3By
-aXZhdGUgKmRldl9wcml2LCBpbnQgdHlwZSwgaW50IHJhdGUsCisJCQlpbnQgKm5fZW50cmllcykK
-K3sKKwlpZiAodHlwZSAhPSBJTlRFTF9PVVRQVVRfRFApIHsKKwkJcmV0dXJuIGljbF9nZXRfY29t
-Ym9fYnVmX3RyYW5zKGRldl9wcml2LCB0eXBlLCByYXRlLCBuX2VudHJpZXMpOworCX0gZWxzZSBp
-ZiAocmF0ZSA+IDI3MDAwMCkgeworCQkqbl9lbnRyaWVzID0gQVJSQVlfU0laRSh0Z2xfY29tYm9f
-cGh5X2RkaV90cmFuc2xhdGlvbnNfZHBfaGJyMik7CisJCXJldHVybiB0Z2xfY29tYm9fcGh5X2Rk
-aV90cmFuc2xhdGlvbnNfZHBfaGJyMjsKKwl9CisKKwkqbl9lbnRyaWVzID0gQVJSQVlfU0laRSh0
-Z2xfY29tYm9fcGh5X2RkaV90cmFuc2xhdGlvbnNfZHBfaGJyKTsKKwlyZXR1cm4gdGdsX2NvbWJv
-X3BoeV9kZGlfdHJhbnNsYXRpb25zX2RwX2hicjsKK30KKwogc3RhdGljIGludCBpbnRlbF9kZGlf
-aGRtaV9sZXZlbChzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYsIGVudW0gcG9ydCBw
-b3J0KQogewogCXN0cnVjdCBkZGlfdmJ0X3BvcnRfaW5mbyAqcG9ydF9pbmZvID0gJmRldl9wcml2
-LT52YnQuZGRpX3BvcnRfaW5mb1twb3J0XTsKQEAgLTkwOSw3ICs5NTIsNyBAQCBzdGF0aWMgaW50
-IGludGVsX2RkaV9oZG1pX2xldmVsKHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJpdiwg
-ZW51bSBwb3J0IHBvcgogCiAJaWYgKElOVEVMX0dFTihkZXZfcHJpdikgPj0gMTIpIHsKIAkJaWYg
-KGludGVsX3BoeV9pc19jb21ibyhkZXZfcHJpdiwgcGh5KSkKLQkJCWljbF9nZXRfY29tYm9fYnVm
-X3RyYW5zKGRldl9wcml2LCBJTlRFTF9PVVRQVVRfSERNSSwKKwkJCXRnbF9nZXRfY29tYm9fYnVm
-X3RyYW5zKGRldl9wcml2LCBJTlRFTF9PVVRQVVRfSERNSSwKIAkJCQkJCTAsICZuX2VudHJpZXMp
-OwogCQllbHNlCiAJCQluX2VudHJpZXMgPSBBUlJBWV9TSVpFKHRnbF9ka2xfcGh5X2hkbWlfZGRp
-X3RyYW5zKTsKQEAgLTIzNzIsNyArMjQxNSw3IEBAIHU4IGludGVsX2RkaV9kcF92b2x0YWdlX21h
-eChzdHJ1Y3QgaW50ZWxfZW5jb2RlciAqZW5jb2RlcikKIAogCWlmIChJTlRFTF9HRU4oZGV2X3By
-aXYpID49IDEyKSB7CiAJCWlmIChpbnRlbF9waHlfaXNfY29tYm8oZGV2X3ByaXYsIHBoeSkpCi0J
-CQlpY2xfZ2V0X2NvbWJvX2J1Zl90cmFucyhkZXZfcHJpdiwgZW5jb2Rlci0+dHlwZSwKKwkJCXRn
-bF9nZXRfY29tYm9fYnVmX3RyYW5zKGRldl9wcml2LCBlbmNvZGVyLT50eXBlLAogCQkJCQkJaW50
-ZWxfZHAtPmxpbmtfcmF0ZSwgJm5fZW50cmllcyk7CiAJCWVsc2UKIAkJCW5fZW50cmllcyA9IEFS
-UkFZX1NJWkUodGdsX2RrbF9waHlfZHBfZGRpX3RyYW5zKTsKQEAgLTI1NjcsOCArMjYxMCwxMiBA
-QCBzdGF0aWMgdm9pZCBpY2xfZGRpX2NvbWJvX3Zzd2luZ19wcm9ncmFtKHN0cnVjdCBkcm1faTkx
-NV9wcml2YXRlICpkZXZfcHJpdiwKIAl1MzIgbl9lbnRyaWVzLCB2YWw7CiAJaW50IGxuOwogCi0J
-ZGRpX3RyYW5zbGF0aW9ucyA9IGljbF9nZXRfY29tYm9fYnVmX3RyYW5zKGRldl9wcml2LCB0eXBl
-LCByYXRlLAotCQkJCQkJICAgJm5fZW50cmllcyk7CisJaWYgKElOVEVMX0dFTihkZXZfcHJpdikg
-Pj0gMTIpCisJCWRkaV90cmFuc2xhdGlvbnMgPSB0Z2xfZ2V0X2NvbWJvX2J1Zl90cmFucyhkZXZf
-cHJpdiwgdHlwZSwgcmF0ZSwKKwkJCQkJCQkgICAmbl9lbnRyaWVzKTsKKwllbHNlCisJCWRkaV90
-cmFuc2xhdGlvbnMgPSBpY2xfZ2V0X2NvbWJvX2J1Zl90cmFucyhkZXZfcHJpdiwgdHlwZSwgcmF0
-ZSwKKwkJCQkJCQkgICAmbl9lbnRyaWVzKTsKIAlpZiAoIWRkaV90cmFuc2xhdGlvbnMpCiAJCXJl
-dHVybjsKIAotLSAKMi4yNC4xCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVz
-a3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9p
-bnRlbC1nZngK
+On Fri, 10 Jan 2020 13:45:31 -0300
+Arnaldo Carvalho de Melo <acme@kernel.org> wrote:
+
+> Em Sat, Jan 11, 2020 at 12:52:13AM +0900, Masami Hiramatsu escreveu:
+> > On Fri, 10 Jan 2020 15:02:34 +0100 Peter Zijlstra <peterz@infradead.org> wrote:
+> > > Again, this only allows attaching to previously created kprobes, it does
+> > > not allow creating kprobes, right?
+> 
+> > > That is; I don't think CAP_SYS_PERFMON should be allowed to create
+> > > kprobes.
+> 
+> > > As might be clear; I don't actually know what the user-ABI is for
+> > > creating kprobes.
+> 
+> > There are 2 ABIs nowadays, ftrace and ebpf. perf-probe uses ftrace interface to
+> > define new kprobe events, and those events are treated as completely same as
+> > tracepoint events. On the other hand, ebpf tries to define new probe event
+> > via perf_event interface. Above one is that interface. IOW, it creates new kprobe.
+> 
+> Masami, any plans to make 'perf probe' use the perf_event_open()
+> interface for creating kprobes/uprobes?
+
+Would you mean perf probe to switch to perf_event_open()?
+No, perf probe is for setting up the ftrace probe events. I think we can add an
+option to use perf_event_open(). But current kprobe creation from perf_event_open()
+is separated from ftrace by design.
+
+I think the reason why ebpf uses perf_event_open() interface is to avoid conflict
+with ftrace users. Those probes are temporally used by ebpf, but if it is appeared on
+ftrace, it is easy to be used by ftrace. In that case, it can not be removed when
+the ebpf exits.
+
+Thank you,
+
+-- 
+Masami Hiramatsu <mhiramat@kernel.org>
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
