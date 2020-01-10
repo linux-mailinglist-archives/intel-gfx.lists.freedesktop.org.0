@@ -1,45 +1,35 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 74977137A56
-	for <lists+intel-gfx@lfdr.de>; Sat, 11 Jan 2020 00:47:49 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5861F137A5F
+	for <lists+intel-gfx@lfdr.de>; Sat, 11 Jan 2020 00:51:01 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 27C0D89CDE;
-	Fri, 10 Jan 2020 23:47:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7DA136E154;
+	Fri, 10 Jan 2020 23:50:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ED52789CDE
- for <intel-gfx@lists.freedesktop.org>; Fri, 10 Jan 2020 23:47:45 +0000 (UTC)
-Received: from devnote2 (NE2965lan1.rev.em-net.ne.jp [210.141.244.193])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id A61EC20721;
- Fri, 10 Jan 2020 23:47:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1578700065;
- bh=NuMXPw3kPSPAokfxRtkSxkyo7a4EVAlOcwjKZAwv8nY=;
- h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
- b=t116nza3ajSBnjZbfKgcN5ONvfAghlxApVIAIUZPf0R8FY7ey0DryHbox6JEQPVwR
- 2xql9T24vHJ7lZgd8/0P6ybYgmcY34jFGX+VnlShjoGYoVU3chcg4p7xaRfP4Azzzx
- FSSjjNHlhTZMBRDpXhh2exzFwwJlouRtCsAGpcsw=
-Date: Sat, 11 Jan 2020 08:47:35 +0900
-From: Masami Hiramatsu <mhiramat@kernel.org>
-To: Arnaldo Carvalho de Melo <acme@kernel.org>
-Message-Id: <20200111084735.0ff01c758bfbfd0ae2e1f24e@kernel.org>
-In-Reply-To: <20200110164531.GA2598@kernel.org>
-References: <c0460c78-b1a6-b5f7-7119-d97e5998f308@linux.intel.com>
- <c93309dc-b920-f5fa-f997-e8b2faf47b88@linux.intel.com>
- <20200108160713.GI2844@hirez.programming.kicks-ass.net>
- <cc239899-5c52-2fd0-286d-4bff18877937@linux.intel.com>
- <20200110140234.GO2844@hirez.programming.kicks-ass.net>
- <20200111005213.6dfd98fb36ace098004bde0e@kernel.org>
- <20200110164531.GA2598@kernel.org>
-X-Mailer: Sylpheed 3.5.1 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
-Mime-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v4 2/9] perf/core: open access for
- CAP_SYS_PERFMON privileged process
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8B27E6E154
+ for <intel-gfx@lists.freedesktop.org>; Fri, 10 Jan 2020 23:50:57 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 10 Jan 2020 15:50:56 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.69,418,1571727600"; d="scan'208";a="212417692"
+Received: from josouza-mobl.jf.intel.com (HELO josouza-MOBL.intel.com)
+ ([10.24.12.163])
+ by orsmga007.jf.intel.com with ESMTP; 10 Jan 2020 15:50:56 -0800
+From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri, 10 Jan 2020 15:50:45 -0800
+Message-Id: <20200110235045.176640-1-jose.souza@intel.com>
+X-Mailer: git-send-email 2.24.1
+MIME-Version: 1.0
+Subject: [Intel-gfx] [PATCH] drm/i915/vbt: Rename BDB_LVDS_POWER to
+ BDB_LFP_POWER
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,74 +42,36 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Mark Rutland <mark.rutland@arm.com>, Song Liu <songliubraving@fb.com>,
- Peter Zijlstra <peterz@infradead.org>,
- Benjamin Herrenschmidt <benh@kernel.crashing.org>,
- Will Deacon <will.deacon@arm.com>, Alexei Starovoitov <ast@kernel.org>,
- Stephane Eranian <eranian@google.com>,
- "james.bottomley@hansenpartnership.com"
- <james.bottomley@hansenpartnership.com>, Paul Mackerras <paulus@samba.org>,
- Jiri Olsa <jolsa@redhat.com>, Andi Kleen <ak@linux.intel.com>,
- Michael Ellerman <mpe@ellerman.id.au>, Igor Lubashev <ilubashe@akamai.com>,
- James Morris <jmorris@namei.org>,
- Alexander Shishkin <alexander.shishkin@linux.intel.com>,
- Ingo Molnar <mingo@redhat.com>, oprofile-list@lists.sf.net,
- Serge Hallyn <serge@hallyn.com>, Robert Richter <rric@kernel.org>,
- Kees Cook <keescook@chromium.org>, Jann Horn <jannh@google.com>,
- "selinux@vger.kernel.org" <selinux@vger.kernel.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- Namhyung Kim <namhyung@kernel.org>, Thomas Gleixner <tglx@linutronix.de>,
- linux-arm-kernel@lists.infradead.org,
- "linux-parisc@vger.kernel.org" <linux-parisc@vger.kernel.org>,
- linux-kernel <linux-kernel@vger.kernel.org>,
- "linux-perf-users@vger.kernel.org" <linux-perf-users@vger.kernel.org>,
- "linux-security-module@vger.kernel.org"
- <linux-security-module@vger.kernel.org>,
- Casey Schaufler <casey@schaufler-ca.com>,
- "bpf@vger.kernel.org" <bpf@vger.kernel.org>,
- "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Jani Nikula <jani.nikula@intel.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 10 Jan 2020 13:45:31 -0300
-Arnaldo Carvalho de Melo <acme@kernel.org> wrote:
-
-> Em Sat, Jan 11, 2020 at 12:52:13AM +0900, Masami Hiramatsu escreveu:
-> > On Fri, 10 Jan 2020 15:02:34 +0100 Peter Zijlstra <peterz@infradead.org> wrote:
-> > > Again, this only allows attaching to previously created kprobes, it does
-> > > not allow creating kprobes, right?
-> 
-> > > That is; I don't think CAP_SYS_PERFMON should be allowed to create
-> > > kprobes.
-> 
-> > > As might be clear; I don't actually know what the user-ABI is for
-> > > creating kprobes.
-> 
-> > There are 2 ABIs nowadays, ftrace and ebpf. perf-probe uses ftrace interface to
-> > define new kprobe events, and those events are treated as completely same as
-> > tracepoint events. On the other hand, ebpf tries to define new probe event
-> > via perf_event interface. Above one is that interface. IOW, it creates new kprobe.
-> 
-> Masami, any plans to make 'perf probe' use the perf_event_open()
-> interface for creating kprobes/uprobes?
-
-Would you mean perf probe to switch to perf_event_open()?
-No, perf probe is for setting up the ftrace probe events. I think we can add an
-option to use perf_event_open(). But current kprobe creation from perf_event_open()
-is separated from ftrace by design.
-
-I think the reason why ebpf uses perf_event_open() interface is to avoid conflict
-with ftrace users. Those probes are temporally used by ebpf, but if it is appeared on
-ftrace, it is easy to be used by ftrace. In that case, it can not be removed when
-the ebpf exits.
-
-Thank you,
-
--- 
-Masami Hiramatsu <mhiramat@kernel.org>
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+UmVuYW1pbmcgdG8gbWF0Y2ggdGhlIEJTcGVjIGFuZCBzdHJ1Y3QgbmFtZS4KCkJTcGVjOiAyMDE1
+MApDYzogSmFuaSBOaWt1bGEgPGphbmkubmlrdWxhQGludGVsLmNvbT4KU2lnbmVkLW9mZi1ieTog
+Sm9zw6kgUm9iZXJ0byBkZSBTb3V6YSA8am9zZS5zb3V6YUBpbnRlbC5jb20+Ci0tLQogZHJpdmVy
+cy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9iaW9zLmMgICAgIHwgMiArLQogZHJpdmVycy9n
+cHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF92YnRfZGVmcy5oIHwgMiArLQogMiBmaWxlcyBjaGFu
+Z2VkLCAyIGluc2VydGlvbnMoKyksIDIgZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVy
+cy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9iaW9zLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkx
+NS9kaXNwbGF5L2ludGVsX2Jpb3MuYwppbmRleCA4YmVhYzA2ZTNmMTAuLjlhODkxZWY3MjExOCAx
+MDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9iaW9zLmMKKysr
+IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9iaW9zLmMKQEAgLTY4Niw3ICs2
+ODYsNyBAQCBwYXJzZV9wb3dlcl9jb25zZXJ2YXRpb25fZmVhdHVyZXMoc3RydWN0IGRybV9pOTE1
+X3ByaXZhdGUgKmRldl9wcml2LAogCWlmIChiZGItPnZlcnNpb24gPCAyMjgpCiAJCXJldHVybjsK
+IAotCXBvd2VyID0gZmluZF9zZWN0aW9uKGJkYiwgQkRCX0xWRFNfUE9XRVIpOworCXBvd2VyID0g
+ZmluZF9zZWN0aW9uKGJkYiwgQkRCX0xGUF9QT1dFUik7CiAJaWYgKCFwb3dlcikKIAkJcmV0dXJu
+OwogCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3ZidF9k
+ZWZzLmggYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3ZidF9kZWZzLmgKaW5k
+ZXggNGQwYzIzYjI5MjQ4Li4wNWM3Y2JlMzJlYjQgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2Ry
+bS9pOTE1L2Rpc3BsYXkvaW50ZWxfdmJ0X2RlZnMuaAorKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkx
+NS9kaXNwbGF5L2ludGVsX3ZidF9kZWZzLmgKQEAgLTExMSw3ICsxMTEsNyBAQCBlbnVtIGJkYl9i
+bG9ja19pZCB7CiAJQkRCX0xWRFNfTEZQX0RBVEFfUFRSUwkJPSA0MSwKIAlCREJfTFZEU19MRlBf
+REFUQQkJPSA0MiwKIAlCREJfTFZEU19CQUNLTElHSFQJCT0gNDMsCi0JQkRCX0xWRFNfUE9XRVIJ
+CQk9IDQ0LAorCUJEQl9MRlBfUE9XRVIJCQk9IDQ0LAogCUJEQl9NSVBJX0NPTkZJRwkJCT0gNTIs
+CiAJQkRCX01JUElfU0VRVUVOQ0UJCT0gNTMsCiAJQkRCX0NPTVBSRVNTSU9OX1BBUkFNRVRFUlMJ
+PSA1NiwKLS0gCjIuMjQuMQoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0
+b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50
+ZWwtZ2Z4Cg==
