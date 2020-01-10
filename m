@@ -2,58 +2,37 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5570D13720E
-	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jan 2020 17:02:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6895413729E
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jan 2020 17:16:41 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9F0F06EA43;
-	Fri, 10 Jan 2020 16:02:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7D5286EA4A;
+	Fri, 10 Jan 2020 16:16:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x444.google.com (mail-wr1-x444.google.com
- [IPv6:2a00:1450:4864:20::444])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5377E89A6D;
- Fri, 10 Jan 2020 16:02:37 +0000 (UTC)
-Received: by mail-wr1-x444.google.com with SMTP id q6so2287179wro.9;
- Fri, 10 Jan 2020 08:02:37 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=Fk4l7uGygizrgCjzbf0QE8J+XpL6US2LefSlzMowOTc=;
- b=NVBEGPNhnL488QezvjtNkfrWuBvTvtvebb7vpa5vAIAzNYqHBkRnWjdh23TVsRXWoJ
- SGc1PNlntHtywOBWO5FLUIGtvKNRNqPO3MTWauCfLU2FeHK6c2fhU3ekETcXy0ljjmWh
- ThoCdxx9AsZEzDavVUyJ2AaT1jmiISBMMtjqEUG2e8NNELZXDBi7lv1XcX13LH7YMvBY
- SaQcri0rruc8hFSAjTfxaMt4XN7Obxt9y0xVasNJ1sMGKrJS/b9A+VUEi24zdJ1QPjoj
- /3i1cwp2VAV3m/g8zGQ0bpTGlSxESX/FHPObeYD376/Piv1gv7dpjDpPPEkCWnh5V12F
- cq5A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=Fk4l7uGygizrgCjzbf0QE8J+XpL6US2LefSlzMowOTc=;
- b=OCwzslIWbpn9u1i4nEKJpx+CAmkH/MzueQ8TX20+kxtVRm2tVedVczjbOZtfn/RVwA
- rwbqRoHQgrb1JwrG/h92gPdvlFjC480nARszO2r/i9xcNxlXJdGcECuEPfeYKVl8gm3J
- Sq4pTD/mJkVGRDYRjIHBphgv3jyqET/KfsGqqE9d7TxKvxr1z4pMZs7JfZV9VhNuhdWI
- F63cdyHrH6I04TGGsy2Qv2bFsXENDLHJgIdmEtsn8JxFFLT6WL6F70QOj1gFD9c81PJ2
- 2D8EOuv+tZz7eKoGMt88CTuq2MSTSPAyIHcDRDV4HJqDqhciO8rvzSVWKB0hvkQL6h80
- gZPA==
-X-Gm-Message-State: APjAAAWG2YCYrmJVIkkXLtaNKqYH1LakduKacSWpSviyQjrhk8TFQDTz
- eHeZNHIm8dmJU4JN5kFsFjs4ZPLh7Y8XARGi0Vw=
-X-Google-Smtp-Source: APXvYqxS9x4bESFullmo5dI3Te4aTGskQMwp2UyMm++IhPSTsPffIPhudMsris3wraNVGWHqIVVD1vnWbhunXcAx7Jc=
-X-Received: by 2002:adf:f5cb:: with SMTP id k11mr4151805wrp.71.1578672155990; 
- Fri, 10 Jan 2020 08:02:35 -0800 (PST)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5AB5E6EA47;
+ Fri, 10 Jan 2020 16:16:37 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 10 Jan 2020 08:16:36 -0800
+X-IronPort-AV: E=Sophos;i="5.69,417,1571727600"; d="scan'208";a="212309795"
+Received: from ideak-desk.fi.intel.com ([10.237.68.142])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 10 Jan 2020 08:16:34 -0800
+Date: Fri, 10 Jan 2020 18:16:27 +0200
+From: Imre Deak <imre.deak@intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>
+Message-ID: <20200110161627.GA26762@ideak-desk.fi.intel.com>
+References: <20200109222300.1154999-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-References: <20200109150752.28098-1-mario.kleiner.de@gmail.com>
- <CADnq5_PvPD+FyEwUrqDVmbdLrP6ZC72HPtd19bqm-Csx-fHMOA@mail.gmail.com>
- <CAEsyxyjTvuCHHA3D-NJd=aGkHz2d=obSizwGQL8B4k1B7i2jJg@mail.gmail.com>
- <CADnq5_NPdg8MjQ5cB2aCD+US1Hv+FoP1gqKcA4W2e0pouG8cGQ@mail.gmail.com>
- <CAEsyxyjMsCU8rzyO0GewU_-uV5+UoDDwa5Mc74irUnJHhF6ALQ@mail.gmail.com>
- <bae132f3-73e6-5004-c9a9-adb632338268@amd.com>
-In-Reply-To: <bae132f3-73e6-5004-c9a9-adb632338268@amd.com>
-From: Mario Kleiner <mario.kleiner.de@gmail.com>
-Date: Fri, 10 Jan 2020 17:02:24 +0100
-Message-ID: <CAEsyxyjr9MBFmVn_K_TBfq5mJO-OCLPKjwxX+xX9iRO+s7iLSQ@mail.gmail.com>
-To: Harry Wentland <hwentlan@amd.com>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/dp: Add current maximum eDP link
- rate to sink_rate array.
+Content-Disposition: inline
+In-Reply-To: <20200109222300.1154999-1-chris@chris-wilson.co.uk>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+Subject: Re: [Intel-gfx] [PATCH i-g-t] test/i915_pm_rc6_residency: Check we
+ enter RC6 when mostly idle
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,270 +45,308 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: mario.kleiner.de@gmail.de, Daniel Vetter <daniel.vetter@ffwll.ch>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Maling list - DRI developers <dri-devel@lists.freedesktop.org>,
- Alex Deucher <alexdeucher@gmail.com>, Harry Wentland <Harry.Wentland@amd.com>
-Content-Type: multipart/mixed; boundary="===============0117735300=="
+Reply-To: imre.deak@intel.com
+Cc: igt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0117735300==
-Content-Type: multipart/alternative; boundary="000000000000132222059bcb416a"
+On Thu, Jan 09, 2020 at 10:23:00PM +0000, Chris Wilson wrote:
+> Long ago, we would only approach runtime-suspend if the GPU had been
+> idle (no userspace submissions) for a second or two. However, since
+> disabling automatic HW RC6 such a relaxed approach to runtime-suspend
+> caused us to never enter RC6 on the desktop and consume vast quantities
+> of power. Surmise this behaviour by setting up a background load that is
+> only active for ~1% of the time (so equivalent to a compositor that is
+> updating the clock every 50ms or so) and verify that we do continue to
+> enter RC6 between the GPU pulses.
+> 
+> References: https://gitlab.freedesktop.org/drm/intel/issues/614
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Imre Deak <imre.deak@intel.com>
+> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> ---
+>  tests/Makefile.am                  |   1 +
+>  tests/i915/i915_pm_rc6_residency.c | 174 +++++++++++++++++++++++++++--
+>  tests/meson.build                  |   9 +-
+>  3 files changed, 173 insertions(+), 11 deletions(-)
+> 
+> diff --git a/tests/Makefile.am b/tests/Makefile.am
+> index 9a320bc23..fc3052475 100644
+> --- a/tests/Makefile.am
+> +++ b/tests/Makefile.am
+> @@ -122,6 +122,7 @@ gem_threaded_access_tiled_CFLAGS = $(AM_CFLAGS) $(THREAD_CFLAGS)
+>  gem_threaded_access_tiled_LDADD = $(LDADD) -lpthread
+>  gem_tiled_swapping_CFLAGS = $(AM_CFLAGS) $(THREAD_CFLAGS)
+>  gem_tiled_swapping_LDADD = $(LDADD) -lpthread
+> +i915_pm_rc6_residency_LDADD = $(LDADD) $(top_builddir)/lib/libigt_perf.la
+>  prime_self_import_CFLAGS = $(AM_CFLAGS) $(THREAD_CFLAGS)
+>  prime_self_import_LDADD = $(LDADD) -lpthread
+>  gem_userptr_blits_CFLAGS = $(AM_CFLAGS) $(THREAD_CFLAGS)
+> diff --git a/tests/i915/i915_pm_rc6_residency.c b/tests/i915/i915_pm_rc6_residency.c
+> index 1b39c870e..a5bcb084b 100644
+> --- a/tests/i915/i915_pm_rc6_residency.c
+> +++ b/tests/i915/i915_pm_rc6_residency.c
+> @@ -25,8 +25,6 @@
+>   *
+>   */
+>  
+> -#include "igt.h"
+> -#include "igt_sysfs.h"
+>  #include <stdio.h>
+>  #include <stdlib.h>
+>  #include <string.h>
+> @@ -34,6 +32,9 @@
+>  #include <errno.h>
+>  #include <time.h>
+>  
+> +#include "igt.h"
+> +#include "igt_perf.h"
+> +#include "igt_sysfs.h"
+>  
+>  #define SLEEP_DURATION 3 /* in seconds */
+>  
+> @@ -195,31 +196,180 @@ static bool wait_for_rc6(void)
+>  	return false;
+>  }
+>  
+> +static uint64_t __pmu_read_single(int fd, uint64_t *ts)
+> +{
+> +	uint64_t data[2];
+> +
+> +	igt_assert_eq(read(fd, data, sizeof(data)), sizeof(data));
+> +
+> +	if (ts)
+> +		*ts = data[1];
+> +
+> +	return data[0];
+> +}
+> +
+> +static uint64_t pmu_read_single(int fd)
+> +{
+> +	return __pmu_read_single(fd, NULL);
+> +}
+> +
+> +#define __assert_within_epsilon(x, ref, tol_up, tol_down) \
+> +	igt_assert_f((double)(x) <= (1.0 + (tol_up)) * (double)(ref) && \
+> +		     (double)(x) >= (1.0 - (tol_down)) * (double)(ref), \
+> +		     "'%s' != '%s' (%f not within +%.1f%%/-%.1f%% tolerance of %f)\n",\
+> +		     #x, #ref, (double)(x), \
+> +		     (tol_up) * 100.0, (tol_down) * 100.0, \
+> +		     (double)(ref))
+> +
+> +#define assert_within_epsilon(x, ref, tolerance) \
+> +	__assert_within_epsilon(x, ref, tolerance, tolerance)
+> +
+> +static bool __pmu_wait_for_rc6(int fd)
+> +{
+> +	struct timespec tv = {};
+> +	uint64_t start, now;
+> +
+> +	/* First wait for roughly an RC6 Evaluation Interval */
+> +	usleep(160 * 1000);
+> +
+> +	/* Then poll for RC6 to start ticking */
+> +	now = pmu_read_single(fd);
+> +	do {
+> +		start = now;
+> +		usleep(5000);
+> +		now = pmu_read_single(fd);
+> +		if (now - start > 1e6)
+> +			return true;
+> +	} while (!igt_seconds_elapsed(&tv));
+> +
+> +	return false;
+> +}
+> +
+> +static unsigned int measured_usleep(unsigned int usec)
+> +{
+> +	struct timespec ts = { };
+> +	unsigned int slept;
+> +
+> +	slept = igt_nsec_elapsed(&ts);
+> +	igt_assert(slept == 0);
+> +	do {
+> +		usleep(usec - slept);
+> +		slept = igt_nsec_elapsed(&ts) / 1000;
+> +	} while (slept < usec);
+> +
+> +	return igt_nsec_elapsed(&ts);
+> +}
+> +
+> +static uint32_t batch_create(int fd)
+> +{
+> +	const uint32_t bbe = MI_BATCH_BUFFER_END;
+> +	uint32_t handle;
+> +
+> +	handle = gem_create(fd, 4096);
+> +	gem_write(fd, handle, 0, &bbe, sizeof(bbe));
+> +
+> +	return handle;
+> +}
+> +
+> +static int open_pmu(int i915, uint64_t config)
+> +{
+> +	int fd;
+> +
+> +	fd = perf_i915_open(config);
+> +	igt_skip_on(fd < 0 && errno == ENODEV);
+> +	igt_assert(fd >= 0);
+> +
+> +	return fd;
+> +}
+> +
+> +static void rc6_perf(int i915)
+> +{
+> +	const int64_t duration_ns = 2e9;
+> +	uint64_t idle, prev, ts[2];
+> +	unsigned long slept, cycles;
+> +	unsigned long *done;
+> +	int fd;
+> +
+> +	fd = open_pmu(i915, I915_PMU_RC6_RESIDENCY);
+> +	igt_require(__pmu_wait_for_rc6(fd));
+> +
+> +	/* While idle check full RC6. */
+> +	prev = __pmu_read_single(fd, &ts[0]);
+> +	slept = measured_usleep(duration_ns / 1000);
+> +	idle = __pmu_read_single(fd, &ts[1]);
+> +	igt_debug("slept=%lu perf=%"PRIu64"\n", slept, ts[1] - ts[0]);
+> +	assert_within_epsilon(idle - prev, ts[1] - ts[0], 5);
+> +
+> +	/* Setup up a very light load */
+> +	done = mmap(0, 4096, PROT_WRITE, MAP_SHARED | MAP_ANON, -1, 0);
+> +	igt_fork(child, 1) {
+> +		struct drm_i915_gem_exec_object2 obj = {
+> +			.handle = batch_create(i915),
+> +		};
+> +		struct drm_i915_gem_execbuffer2 execbuf = {
+> +			.buffers_ptr = to_user_pointer(&obj),
+> +			.buffer_count = 1,
+> +		};
+> +
+> +		do {
+> +			struct timespec tv = {};
+> +
+> +			igt_seconds_elapsed(&tv);
+> +
+> +			gem_execbuf(i915, &execbuf);
+> +			gem_sync(i915, obj.handle);
+> +			done[1]++;
+> +
+> +			usleep(igt_seconds_elapsed(&tv) / 10); /* => 1% busy */
 
---000000000000132222059bcb416a
-Content-Type: text/plain; charset="UTF-8"
+igt_nsec_elapsed()?
 
-On Thu, Jan 9, 2020 at 10:26 PM Harry Wentland <hwentlan@amd.com> wrote:
+Not too familiar with the perf interface but I assume event[0] read is
+the RC6 residency, while event[1] is the duration while the event was
+enabled (so the duration since the event file was opened?). Looks ok:
 
->
->
-> On 2020-01-09 4:04 p.m., Mario Kleiner wrote:
->
-> On Thu, Jan 9, 2020 at 8:49 PM Alex Deucher <alexdeucher@gmail.com> wrote:
->
->> On Thu, Jan 9, 2020 at 11:47 AM Mario Kleiner
->> <mario.kleiner.de@gmail.com> wrote:
->> >
->> > On Thu, Jan 9, 2020 at 4:40 PM Alex Deucher <alexdeucher@gmail.com>
->> wrote:
->> >>
->> >> On Thu, Jan 9, 2020 at 10:08 AM Mario Kleiner
->> >> <mario.kleiner.de@gmail.com> wrote:
->> >> >
->> As Harry mentioned in the other thread, won't this only work if the
->> display was brought up by the vbios?  In the suspend/resume case,
->> won't we just fall back to 2.7Gbps?
->>
->> Alex
->>
->>
-> Adding Harry to cc...
->
-> The code is only executed for eDP. On the Intel side, it seems that
-> intel_edp_init_dpcd() gets only called during driver load / modesetting
-> init, so not on resume.
->
-> On the AMD DC side, dc_link_detect_helper() has this early no-op return at
-> the beginning:
->
-> if ((link->connector_signal == SIGNAL_TYPE_LVDS ||
-> 			link->connector_signal == SIGNAL_TYPE_EDP) &&
-> 			link->local_sink)
-> 		return true;
->
->
-> So i guess if link->local_sink doesn't get NULL'ed during a suspend/resume
-> cycle, then we never reach the setup code that would overwrite with non
-> vbios settings?
->
-> Sounds reasonable to me, given that eDP panels are usually fixed internal
-> panels, nothing that gets hot(un-)plugged?
->
-> I can't test, because suspend/resume with the Polaris gpu on the MBP 2017
-> is totally broken atm., just as vgaswitcheroo can't do its job. Looks like
-> powering down the gpu works, but powering up doesn't. And also modesetting
-> at vgaswitcheroo switch time is no-go, because the DDC/AUX lines apparently
-> can't be switched on that Apple gmux, and handover of that data seems to be
-> not implemented in current vgaswitcheroo. At the moment switching between
-> AMD only or Intel+AMD Prime setup is quite a pita...
->
->
-> I haven't followed the entire discussion on the i915 thread but for the
-> amdgpu dc patch I would prefer a DPCD quirk to override the reported link
-> settings with the correct link rate.
->
-> Harry
->
->
-Ok, as you wish. How do i do that? Is there already some DP related
-official mechanism, or do i just add some if-statement to
+Reviewed-by: Imre Deak <imre.deak@intel.com>
 
-detect_edp_sink_caps
-<https://elixir.bootlin.com/linux/v5.5-rc5/ident/detect_edp_sink_caps>()
-that matches on a new EDID quirk to be defined for that panel in
-drm_edid etc., and then
 
-if (edit quirk for that panel)
-    dpcd[DP_MAX_LINK_RATE
-<https://elixir.bootlin.com/linux/v5.5-rc5/ident/DP_MAX_LINK_RATE>] =
-0xc;
 
-The other question would be if we should do it for this panel on AMD DC at
-all? I see my original patch more as something to fix other odd (Apple?)
-panels, than for this specific one. As mentioned above, photometer testing
-on AMD DC with a Polaris on the MBP 2017 suggests that the deault 2.7 Gbps
-8 bit mode + AMD's spatial dithering provides higher quality results for >=
-10 bpc framebuffers than actually running the panel at 10 bit without
-dithering.
-
-As a little side-note, for squeezing out more precision than the 10 bpc
-framebuffers we officially have in Mesa/OpenGL, my software Psychtoolbox
-has some special hacks, playing funny tricks with resizing X-Screens,
-applying bit-twiddling shaders to images and MMIO programming the gpu
-"behind the back" of the driver, to get the gpu into RGBA16161616 linear
-scanout mode. That gives up to 12 bpc precision on that panel according to
-photometer measurements. While AMD's dithering with the panel in 8 bit + 4
-bit spatial dithering gives pretty good results, panel at 10 bit + 2 bit
-spatial dithering has some artifacts. And even at a normal 10 bit
-framebuffer, the 8 bit panel + 2 bit dithering seems to give better results
-than 10 bit panel mode.
-
--mario
-
---000000000000132222059bcb416a
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div dir=3D"ltr"><br></div><br><div class=3D"gmail_quote">=
-<div dir=3D"ltr" class=3D"gmail_attr">On Thu, Jan 9, 2020 at 10:26 PM Harry=
- Wentland &lt;<a href=3D"mailto:hwentlan@amd.com">hwentlan@amd.com</a>&gt; =
-wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0=
-px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
-
- =20
-  <div>
-    <br>
-    <br>
-    <div>On 2020-01-09 4:04 p.m., Mario Kleiner
-      wrote:<br>
-    </div>
-    <blockquote type=3D"cite">
-     =20
-      <div dir=3D"ltr">
-        <div dir=3D"ltr">On Thu, Jan 9, 2020 at 8:49 PM Alex Deucher &lt;<a=
- href=3D"mailto:alexdeucher@gmail.com" target=3D"_blank">alexdeucher@gmail.=
-com</a>&gt;
-          wrote:<br>
-        </div>
-        <div class=3D"gmail_quote">
-          <blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8=
-ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">On Thu, Jan 9, =
-2020 at
-            11:47 AM Mario Kleiner<br>
-            &lt;<a href=3D"mailto:mario.kleiner.de@gmail.com" target=3D"_bl=
-ank">mario.kleiner.de@gmail.com</a>&gt;
-            wrote:<br>
-            &gt;<br>
-            &gt; On Thu, Jan 9, 2020 at 4:40 PM Alex Deucher &lt;<a href=3D=
-"mailto:alexdeucher@gmail.com" target=3D"_blank">alexdeucher@gmail.com</a>&=
-gt;
-            wrote:<br>
-            &gt;&gt;<br>
-            &gt;&gt; On Thu, Jan 9, 2020 at 10:08 AM Mario Kleiner<br>
-            &gt;&gt; &lt;<a href=3D"mailto:mario.kleiner.de@gmail.com" targ=
-et=3D"_blank">mario.kleiner.de@gmail.com</a>&gt;
-            wrote:<br>
-            &gt;&gt; &gt;<br>
-            As Harry mentioned in the other thread, won&#39;t this only wor=
-k
-            if the<br>
-            display was brought up by the vbios?=C2=A0 In the suspend/resum=
-e
-            case,<br>
-            won&#39;t we just fall back to 2.7Gbps?<br>
-            <br>
-            Alex<br>
-            <br>
-          </blockquote>
-        </div>
-        <div class=3D"gmail_quote"><br>
-        </div>
-        <div class=3D"gmail_quote">Adding Harry to cc...<br>
-        </div>
-        <div class=3D"gmail_quote"><br>
-        </div>
-        <div class=3D"gmail_quote">The code is only executed for eDP. On
-          the Intel side, it seems that intel_edp_init_dpcd() gets only
-          called during driver load / modesetting init, so not on
-          resume.</div>
-        <div class=3D"gmail_quote"><br>
-        </div>
-        <div class=3D"gmail_quote">On the AMD DC side,
-          dc_link_detect_helper() has this early no-op return at the
-          beginning:</div>
-        <div class=3D"gmail_quote"><br>
-        </div>
-        <div class=3D"gmail_quote">
-          <pre>if ((link-&gt;connector_signal =3D=3D SIGNAL_TYPE_LVDS ||
-			link-&gt;connector_signal =3D=3D SIGNAL_TYPE_EDP) &amp;&amp;
-			link-&gt;local_sink)
-		return true;</pre>
-        </div>
-        <div class=3D"gmail_quote"><br>
-        </div>
-        <div class=3D"gmail_quote">So i guess if link-&gt;local_sink
-          doesn&#39;t get NULL&#39;ed during a suspend/resume cycle, then w=
-e
-          never reach the setup code that would overwrite with non vbios
-          settings?</div>
-        <div class=3D"gmail_quote"><br>
-        </div>
-        <div class=3D"gmail_quote">Sounds reasonable to me, given that eDP
-          panels are usually fixed internal panels, nothing that gets
-          hot(un-)plugged?</div>
-        <div class=3D"gmail_quote"><br>
-        </div>
-        <div class=3D"gmail_quote">I can&#39;t test, because suspend/resume
-          with the Polaris gpu on the MBP 2017 is totally broken atm.,
-          just as vgaswitcheroo can&#39;t do its job. Looks like powering
-          down the gpu works, but powering up doesn&#39;t. And also
-          modesetting at vgaswitcheroo switch time is no-go, because the
-          DDC/AUX lines apparently can&#39;t be switched on that Apple gmux=
-,
-          and handover of that data seems to be not implemented in
-          current vgaswitcheroo. At the moment switching between AMD
-          only or Intel+AMD Prime setup is quite a pita...<br>
-        </div>
-        <div class=3D"gmail_quote"><br>
-        </div>
-      </div>
-    </blockquote>
-    <br>
-    I haven&#39;t followed the entire discussion on the i915 thread but for
-    the amdgpu dc patch I would prefer a DPCD quirk to override the
-    reported link settings with the correct link rate.<br>
-    <br>
-    Harry<br>
-    <br></div></blockquote><div><br></div><div>Ok, as you wish. How do i do=
- that? Is there already some DP related official mechanism, or do i just ad=
-d some if-statement to <br><pre><span class=3D"gmail-nf"><a href=3D"https:/=
-/elixir.bootlin.com/linux/v5.5-rc5/ident/detect_edp_sink_caps">detect_edp_s=
-ink_caps</a></span><span class=3D"gmail-p">() that matches on a new EDID qu=
-irk to be defined for that panel in drm_edid etc., and then<br><br>if (edit=
- quirk for that panel)<br>    dpcd[<span class=3D"gmail-cp"><a href=3D"http=
-s://elixir.bootlin.com/linux/v5.5-rc5/ident/DP_MAX_LINK_RATE">DP_MAX_LINK_R=
-ATE</a>] =3D 0xc;<br><br></span></span></pre> </div><div>The other question=
- would be if we should do it for this panel on AMD DC at all? I see my orig=
-inal patch more as something to fix other odd (Apple?) panels, than for thi=
-s specific one. As mentioned above, photometer testing on AMD DC with a Pol=
-aris on the MBP 2017 suggests that the deault 2.7 Gbps 8 bit mode + AMD&#39=
-;s spatial dithering provides higher quality results for &gt;=3D 10 bpc fra=
-mebuffers than actually running the panel at 10 bit without dithering.<br><=
-/div><div><br></div><div>As a little side-note, for squeezing out more prec=
-ision than the 10 bpc framebuffers we officially have in Mesa/OpenGL, my so=
-ftware Psychtoolbox has some special hacks, playing funny tricks with resiz=
-ing X-Screens, applying bit-twiddling shaders to images and MMIO programmin=
-g the gpu &quot;behind the back&quot; of the driver, to get the gpu into RG=
-BA16161616 linear scanout mode. That gives up to 12 bpc precision on that p=
-anel according to photometer measurements. While AMD&#39;s dithering with t=
-he panel in 8 bit + 4 bit spatial dithering gives pretty good results, pane=
-l at 10 bit + 2 bit spatial dithering has some artifacts. And even at a nor=
-mal 10 bit framebuffer, the 8 bit panel + 2 bit dithering seems to give bet=
-ter results than 10 bit panel mode.</div><div><br></div><div>-mario</div><d=
-iv><br></div><div>=C2=A0</div></div></div>
-
---000000000000132222059bcb416a--
-
---===============0117735300==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+> +		} while (!*done);
+> +	}
+> +
+> +	/* While very nearly idle (idle to within tolerance), except full RC6 */
+> +	cycles = -done[1];
+> +	prev = __pmu_read_single(fd, &ts[0]);
+> +	slept = measured_usleep(duration_ns / 1000);
+> +	idle = __pmu_read_single(fd, &ts[1]);
+> +	cycles += done[1];
+> +	igt_debug("slept=%lu perf=%"PRIu64", cycles=%lu\n",
+> +		  slept, ts[1] - ts[0], cycles);
+> +	igt_assert(cycles > 0);
+> +	assert_within_epsilon(idle - prev, ts[1] - ts[0], 5);
+> +
+> +	close(fd);
+> +
+> +	*done = 1;
+> +	igt_waitchildren();
+> +}
+> +
+>  igt_main
+>  {
+>  	unsigned int rc6_enabled = 0;
+>  	unsigned int devid = 0;
+> +	int i915 = -1;
+>  
+>  	/* Use drm_open_driver to verify device existence */
+>  	igt_fixture {
+> -		int fd;
+> -
+> -		fd = drm_open_driver(DRIVER_INTEL);
+> -		devid = intel_get_drm_devid(fd);
+> -		sysfs = igt_sysfs_open(fd);
+> +		i915 = drm_open_driver(DRIVER_INTEL);
+> +		devid = intel_get_drm_devid(i915);
+> +		sysfs = igt_sysfs_open(i915);
+>  
+>  		igt_require(has_rc6_residency("rc6"));
+>  
+>  		/* Make sure rc6 counters are running */
+> -		igt_drop_caches_set(fd, DROP_IDLE);
+> +		igt_drop_caches_set(i915, DROP_IDLE);
+>  		igt_require(wait_for_rc6());
+>  
+> -		close(fd);
+> -
+>  		rc6_enabled = get_rc6_enabled_mask();
+>  		igt_require(rc6_enabled & RC6_ENABLED);
+>  	}
+>  
+> +	igt_subtest("rc6-perf") {
+> +		igt_require_gem(i915);
+> +		gem_quiescent_gpu(i915);
+> +
+> +		rc6_perf(i915);
+> +	}
+> +
+>  	igt_subtest("rc6-accuracy") {
+>  		struct residencies res;
+>  
+> @@ -235,4 +385,8 @@ igt_main
+>  		measure_residencies(devid, rc6_enabled, &res);
+>  		residency_accuracy(res.media_rc6, res.duration, "media_rc6");
+>  	}
+> +
+> +	igt_fixture
+> +		close(i915);
+> +
+>  }
+> diff --git a/tests/meson.build b/tests/meson.build
+> index 570de5459..a79d22ba1 100644
+> --- a/tests/meson.build
+> +++ b/tests/meson.build
+> @@ -232,7 +232,6 @@ i915_progs = [
+>  	'i915_module_load',
+>  	'i915_pm_backlight',
+>  	'i915_pm_lpsp',
+> -	'i915_pm_rc6_residency',
+>  	'i915_pm_rpm',
+>  	'i915_pm_dc',
+>  	'i915_pm_rps',
+> @@ -336,6 +335,14 @@ test_executables += executable('gem_mmap_offset',
+>  	   install : true)
+>  test_list += 'gem_mmap_offset'
+>  
+> +test_executables += executable('i915_pm_rc6_residency',
+> +	   join_paths('i915', 'i915_pm_rc6_residency.c'),
+> +	   dependencies : test_deps + [ lib_igt_perf ],
+> +	   install_dir : libexecdir,
+> +	   install_rpath : libexecdir_rpathdir,
+> +	   install : true)
+> +test_list += 'i915_pm_rc6_residency'
+> +
+>  test_executables += executable('perf_pmu', 'perf_pmu.c',
+>  	   dependencies : test_deps + [ lib_igt_perf ],
+>  	   install_dir : libexecdir,
+> -- 
+> 2.25.0.rc2
+> 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0117735300==--
