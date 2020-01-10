@@ -2,29 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A34F136FAE
-	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jan 2020 15:44:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 39680136FB3
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jan 2020 15:45:39 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 013C16EA26;
-	Fri, 10 Jan 2020 14:44:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9036E6EA27;
+	Fri, 10 Jan 2020 14:45:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 75AE76EA26
- for <intel-gfx@lists.freedesktop.org>; Fri, 10 Jan 2020 14:44:36 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19835489-1500050 
- for multiple; Fri, 10 Jan 2020 14:44:18 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri, 10 Jan 2020 14:44:18 +0000
-Message-Id: <20200110144418.1415639-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.25.0.rc2
+Received: from mail-ua1-x942.google.com (mail-ua1-x942.google.com
+ [IPv6:2607:f8b0:4864:20::942])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7DF9E6EA27
+ for <intel-gfx@lists.freedesktop.org>; Fri, 10 Jan 2020 14:45:36 +0000 (UTC)
+Received: by mail-ua1-x942.google.com with SMTP id y3so807303uae.3
+ for <intel-gfx@lists.freedesktop.org>; Fri, 10 Jan 2020 06:45:36 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=sMX7ow+3qEg8hPsmhjV06gNg1T/AH9TQWZUHGFXsWdw=;
+ b=EK+lBv/W1746bK0qm2GKwVPKDhwwKvFuwsgiMEgt2sZwkdqdm/ksz/lM87k9DhT7fj
+ eSqpcF8hLRbNyP8wRPDnZK+H7CORtIWcbyi4vJNfPYq8SegHXLvMvm4S/xTlpFi/8IsP
+ thUyHURzZutTnq2mLjqK6d/1B2pULyrOPdnLo+UwZ35/vIxxgnPyh/X2SCPEHoepQ8cU
+ IRmpRfcs/XcEVpujuMRKmlvq83Huz6Z4AbZdrSZjWK6slXJlc4ndrBFznd03qzJKbCB3
+ DU8TEPIn4gKdL1Kq09LVwNp1SVBM/x2mySd0tUY3zjflWvh4nkSCCUC1X7KVQqRG0YMX
+ Ogdg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=sMX7ow+3qEg8hPsmhjV06gNg1T/AH9TQWZUHGFXsWdw=;
+ b=dqYtgvYfKpCYzBbtx25LBw2nOhTtW2EOtSI1vRHAcmGUeSrOdJ3FulVPnxQYJHSg4V
+ 6qGQGLwKs5NLnx7Oagvx/m4rek2oaBT0uXVCiQ54N+mVYlqibYC+ykefpFkSnl9rFkVE
+ sJCHMw2+2j9QaW0mwr6X2A7KtuRpCa+wTBll+t0l5NNJcaW788KHY7YvLeE37cyNkRID
+ T09CzqqcgRHAFRjU8LtbiXcd7BkkEAXE4G2ISEmftQLNyfNh4y0OgKEX/ekzQlYrERWd
+ LqSKJL1TOs6To5ulo/e18HzBkUasKW3zt4sVVcYx3HZphCwDurzMR/jLHGuKpjqUgnEg
+ jw1g==
+X-Gm-Message-State: APjAAAUYtc9sQ5GEv8J4Nr0OgU+30xGXqaFL2R5CQzbHN4M0jTHSMtJi
+ ch0nOiQmM8Svv3vy93EroJUaLQOPhR1GZmlP2pRdawq5
+X-Google-Smtp-Source: APXvYqxsZ5CgcWamF7tE7Ji+GQk8u0dtyBgOEl+4iuGMhUjyuVz7hD6lBlQOvBOc2wAlSOVexOGv1WdvGSCC49X5AHc=
+X-Received: by 2002:ab0:740e:: with SMTP id r14mr2191614uap.104.1578667535558; 
+ Fri, 10 Jan 2020 06:45:35 -0800 (PST)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/gt: Hold rpm wakeref before taking
- ggtt->vm.mutex
+References: <20200110110402.1231745-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200110110402.1231745-1-chris@chris-wilson.co.uk>
+From: Matthew Auld <matthew.william.auld@gmail.com>
+Date: Fri, 10 Jan 2020 14:45:09 +0000
+Message-ID: <CAM0jSHMtNNM5E6TnxfbhBhBHFW42UFpQRJ_83WRJ69MmedgzBQ@mail.gmail.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>
+Subject: Re: [Intel-gfx] [PATCH 1/3] drm/i915/gt: Skip trying to unbind in
+ restore_ggtt_mappings
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,165 +61,23 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Matthew Auld <matthew.auld@intel.com>
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-We need to hold the runtime-pm wakeref to update the global PTEs (as
-they exist behind a PCI BAR). However, some systems invoke ACPI during
-runtime resume and so require allocations, which is verboten inside the
-vm->mutex. Ergo, we must not use intel_runtime_pm_get() inside the
-mutex, but lift the call outside.
-
-Closes: https://gitlab.freedesktop.org/drm/intel/issues/958
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Cc: Matthew Auld <matthew.auld@intel.com>
-Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
----
- drivers/gpu/drm/i915/gt/intel_ggtt.c | 28 +++++-----------------------
- drivers/gpu/drm/i915/i915_vma.c      | 13 +++++++++++++
- 2 files changed, 18 insertions(+), 23 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/gt/intel_ggtt.c b/drivers/gpu/drm/i915/gt/intel_ggtt.c
-index 795cd267e28e..6474c6190d3d 100644
---- a/drivers/gpu/drm/i915/gt/intel_ggtt.c
-+++ b/drivers/gpu/drm/i915/gt/intel_ggtt.c
-@@ -430,9 +430,7 @@ static int ggtt_bind_vma(struct i915_vma *vma,
- 			 enum i915_cache_level cache_level,
- 			 u32 flags)
- {
--	struct drm_i915_private *i915 = vma->vm->i915;
- 	struct drm_i915_gem_object *obj = vma->obj;
--	intel_wakeref_t wakeref;
- 	u32 pte_flags;
- 
- 	/* Applicable to VLV (gen8+ do not support RO in the GGTT) */
-@@ -440,8 +438,7 @@ static int ggtt_bind_vma(struct i915_vma *vma,
- 	if (i915_gem_object_is_readonly(obj))
- 		pte_flags |= PTE_READ_ONLY;
- 
--	with_intel_runtime_pm(&i915->runtime_pm, wakeref)
--		vma->vm->insert_entries(vma->vm, vma, cache_level, pte_flags);
-+	vma->vm->insert_entries(vma->vm, vma, cache_level, pte_flags);
- 
- 	vma->page_sizes.gtt = I915_GTT_PAGE_SIZE;
- 
-@@ -457,11 +454,7 @@ static int ggtt_bind_vma(struct i915_vma *vma,
- 
- static void ggtt_unbind_vma(struct i915_vma *vma)
- {
--	struct drm_i915_private *i915 = vma->vm->i915;
--	intel_wakeref_t wakeref;
--
--	with_intel_runtime_pm(&i915->runtime_pm, wakeref)
--		vma->vm->clear_range(vma->vm, vma->node.start, vma->size);
-+	vma->vm->clear_range(vma->vm, vma->node.start, vma->size);
- }
- 
- static int ggtt_reserve_guc_top(struct i915_ggtt *ggtt)
-@@ -569,7 +562,6 @@ static int aliasing_gtt_bind_vma(struct i915_vma *vma,
- 				 enum i915_cache_level cache_level,
- 				 u32 flags)
- {
--	struct drm_i915_private *i915 = vma->vm->i915;
- 	u32 pte_flags;
- 	int ret;
- 
-@@ -597,28 +589,18 @@ static int aliasing_gtt_bind_vma(struct i915_vma *vma,
- 					 cache_level, pte_flags);
- 	}
- 
--	if (flags & I915_VMA_GLOBAL_BIND) {
--		intel_wakeref_t wakeref;
--
--		with_intel_runtime_pm(&i915->runtime_pm, wakeref) {
--			vma->vm->insert_entries(vma->vm, vma,
--						cache_level, pte_flags);
--		}
--	}
-+	if (flags & I915_VMA_GLOBAL_BIND)
-+		vma->vm->insert_entries(vma->vm, vma, cache_level, pte_flags);
- 
- 	return 0;
- }
- 
- static void aliasing_gtt_unbind_vma(struct i915_vma *vma)
- {
--	struct drm_i915_private *i915 = vma->vm->i915;
--
- 	if (i915_vma_is_bound(vma, I915_VMA_GLOBAL_BIND)) {
- 		struct i915_address_space *vm = vma->vm;
--		intel_wakeref_t wakeref;
- 
--		with_intel_runtime_pm(&i915->runtime_pm, wakeref)
--			vm->clear_range(vm, vma->node.start, vma->size);
-+		vm->clear_range(vm, vma->node.start, vma->size);
- 	}
- 
- 	if (test_and_clear_bit(I915_VMA_ALLOC_BIT, __i915_vma_flags(vma))) {
-diff --git a/drivers/gpu/drm/i915/i915_vma.c b/drivers/gpu/drm/i915/i915_vma.c
-index 43d5c270bdb0..c702708131b8 100644
---- a/drivers/gpu/drm/i915/i915_vma.c
-+++ b/drivers/gpu/drm/i915/i915_vma.c
-@@ -858,6 +858,7 @@ static void vma_unbind_pages(struct i915_vma *vma)
- int i915_vma_pin(struct i915_vma *vma, u64 size, u64 alignment, u64 flags)
- {
- 	struct i915_vma_work *work = NULL;
-+	intel_wakeref_t wakeref = 0;
- 	unsigned int bound;
- 	int err;
- 
-@@ -883,6 +884,9 @@ int i915_vma_pin(struct i915_vma *vma, u64 size, u64 alignment, u64 flags)
- 		}
- 	}
- 
-+	if (flags & PIN_GLOBAL)
-+		wakeref = intel_runtime_pm_get(&vma->vm->i915->runtime_pm);
-+
- 	/* No more allocations allowed once we hold vm->mutex */
- 	err = mutex_lock_interruptible(&vma->vm->mutex);
- 	if (err)
-@@ -946,6 +950,8 @@ int i915_vma_pin(struct i915_vma *vma, u64 size, u64 alignment, u64 flags)
- err_fence:
- 	if (work)
- 		dma_fence_work_commit(&work->base);
-+	if (wakeref)
-+		intel_runtime_pm_put(&vma->vm->i915->runtime_pm, wakeref);
- err_pages:
- 	vma_put_pages(vma);
- 	return err;
-@@ -1246,11 +1252,15 @@ int __i915_vma_unbind(struct i915_vma *vma)
- int i915_vma_unbind(struct i915_vma *vma)
- {
- 	struct i915_address_space *vm = vma->vm;
-+	intel_wakeref_t wakeref = 0;
- 	int err;
- 
- 	if (!drm_mm_node_allocated(&vma->node))
- 		return 0;
- 
-+	if (i915_vma_is_bound(vma, I915_VMA_GLOBAL_BIND))
-+		wakeref = intel_runtime_pm_get(&vm->i915->runtime_pm);
-+
- 	err = mutex_lock_interruptible(&vm->mutex);
- 	if (err)
- 		return err;
-@@ -1258,6 +1268,9 @@ int i915_vma_unbind(struct i915_vma *vma)
- 	err = __i915_vma_unbind(vma);
- 	mutex_unlock(&vm->mutex);
- 
-+	if (wakeref)
-+		intel_runtime_pm_put(&vm->i915->runtime_pm, wakeref);
-+
- 	return err;
- }
- 
--- 
-2.25.0.rc2
-
+On Fri, 10 Jan 2020 at 11:04, Chris Wilson <chris@chris-wilson.co.uk> wrote:
+>
+> Currently we first to try to unbind the VMA (and lazily rebind on next
+> use) as an optimisation during restore_ggtt_mappings. Ideally, the only
+> objects in the GGTT upon resume are the pinned kernel objects which
+> can't be unbound and need to be restored. As the unbind interferes with
+> the plan to mark those objects as active for error capture, forgo the
+> optimisation.
+>
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Reviewed-by: Matthew Auld <matthew.auld@intel.com>
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
