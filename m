@@ -2,33 +2,37 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1502E136E3E
-	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jan 2020 14:40:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4770B136E59
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jan 2020 14:42:17 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 543556EA1B;
-	Fri, 10 Jan 2020 13:40:02 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AC8B66EA1B
- for <Intel-gfx@lists.freedesktop.org>; Fri, 10 Jan 2020 13:40:00 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 19834681-1500050 for multiple; Fri, 10 Jan 2020 13:39:52 +0000
+	by gabe.freedesktop.org (Postfix) with ESMTP id C67536EA21;
+	Fri, 10 Jan 2020 13:42:11 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A2DCC6EA20;
+ Fri, 10 Jan 2020 13:42:10 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 10 Jan 2020 05:42:10 -0800
+X-IronPort-AV: E=Sophos;i="5.69,417,1571727600"; d="scan'208";a="216669084"
+Received: from jnikula-mobl3.fi.intel.com (HELO localhost) ([10.237.66.161])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 10 Jan 2020 05:42:07 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Oleg Vasilev <oleg.vasilev@intel.com>, dri-devel@lists.freedesktop.org
+In-Reply-To: <20190829114854.1539-2-oleg.vasilev@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20190826132216.2823-1-oleg.vasilev@intel.com>
+ <20190829114854.1539-1-oleg.vasilev@intel.com>
+ <20190829114854.1539-2-oleg.vasilev@intel.com>
+Date: Fri, 10 Jan 2020 15:42:03 +0200
+Message-ID: <87blrbo2c4.fsf@intel.com>
 MIME-Version: 1.0
-To: Intel-gfx@lists.freedesktop.org,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-In-Reply-To: <20200110133049.2705-3-tvrtko.ursulin@linux.intel.com>
-References: <20200110133049.2705-1-tvrtko.ursulin@linux.intel.com>
- <20200110133049.2705-3-tvrtko.ursulin@linux.intel.com>
-Message-ID: <157866359132.10140.10568592835896446755@skylake-alporthouse-com>
-User-Agent: alot/0.6
-Date: Fri, 10 Jan 2020 13:39:51 +0000
-Subject: Re: [Intel-gfx] [RFC 2/8] drm/i915: Update client name on context
- create
+Subject: Re: [Intel-gfx] [PATCH v4 2/7] drm: always determine branch device
+ with drm_dp_is_branch()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,166 +45,44 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: kui.wen@intel.com
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: intel-gfx@lists.freedesktop.org, Emil Velikov <emil.velikov@collabora.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Tvrtko Ursulin (2020-01-10 13:30:43)
-> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> 
-> Some clients have the DRM fd passed to them over a socket by the X server.
-> 
-> Grab the real client and pid when they create their first context and
-> update the exposed data for more useful enumeration.
-> 
-> v2:
->  * Do not leak the pid reference and borrow context idr_lock. (Chris)
-> 
-> v3:
->  * More avoiding leaks. (Chris)
-> 
-> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> ---
->  drivers/gpu/drm/i915/gem/i915_gem_context.c | 36 ++++++++++++++++++---
->  drivers/gpu/drm/i915/i915_drm_client.c      |  4 +--
->  drivers/gpu/drm/i915/i915_drm_client.h      |  4 +++
->  3 files changed, 37 insertions(+), 7 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> index a2e57e62af30..ba3c29a01535 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> @@ -77,6 +77,7 @@
->  #include "gt/intel_lrc_reg.h"
->  #include "gt/intel_ring.h"
->  
-> +#include "i915_drm_client.h"
->  #include "i915_gem_context.h"
->  #include "i915_globals.h"
->  #include "i915_trace.h"
-> @@ -2181,7 +2182,10 @@ int i915_gem_context_create_ioctl(struct drm_device *dev, void *data,
->  {
->         struct drm_i915_private *i915 = to_i915(dev);
->         struct drm_i915_gem_context_create_ext *args = data;
-> +       struct drm_i915_file_private *file_priv = file->driver_priv;
-> +       struct i915_drm_client *client = file_priv->client;
->         struct create_ext ext_data;
-> +       struct pid *pid;
->         int ret;
->         u32 id;
->  
-> @@ -2195,16 +2199,35 @@ int i915_gem_context_create_ioctl(struct drm_device *dev, void *data,
->         if (ret)
->                 return ret;
->  
-> -       ext_data.fpriv = file->driver_priv;
-> +       pid = get_task_pid(current, PIDTYPE_PID);
-> +
-> +       ext_data.fpriv = file_priv;
-
-Might as well do this in the declaration ?
-
-struct create_ext ext_data {
-	.fpriv = file->driver_priv,
-};
-struct i915_drm_client *client = ext_data.fpriv->client;
-
-?
-
->         if (client_is_banned(ext_data.fpriv)) {
->                 DRM_DEBUG("client %s[%d] banned from creating ctx\n",
-> -                         current->comm, task_pid_nr(current));
-> -               return -EIO;
-> +                         current->comm, pid_nr(pid));
-> +               ret = -EIO;
-> +               goto err_pid;
-> +       }
-> +
-> +       /*
-> +        * Borrow struct_mutex to protect the client remove-add cycle.
-> +        */
-> +       ret = mutex_lock_interruptible(&dev->struct_mutex);
-> +       if (ret)
-> +               goto err_pid;
-> +       if (client->pid != pid) {
-> +               __i915_drm_client_unregister(client);
-> +               ret = __i915_drm_client_register(client, current);
->         }
-> +       mutex_unlock(&dev->struct_mutex);
-> +       if (ret)
-> +               goto err_pid;
-
--> i915_drm_client_update();
-
-And let it manage the pid locally?
-
->  
->         ext_data.ctx = i915_gem_create_context(i915, args->flags);
-> -       if (IS_ERR(ext_data.ctx))
-> -               return PTR_ERR(ext_data.ctx);
-> +       if (IS_ERR(ext_data.ctx)) {
-> +               ret = PTR_ERR(ext_data.ctx);
-> +               goto err_pid;
-> +       }
->  
->         if (args->flags & I915_CONTEXT_CREATE_FLAGS_USE_EXTENSIONS) {
->                 ret = i915_user_extensions(u64_to_user_ptr(args->extensions),
-> @@ -2226,6 +2249,9 @@ int i915_gem_context_create_ioctl(struct drm_device *dev, void *data,
->  
->  err_ctx:
->         context_close(ext_data.ctx);
-> +err_pid:
-> +       put_pid(pid);
-> +
->         return ret;
->  }
->  
-> diff --git a/drivers/gpu/drm/i915/i915_drm_client.c b/drivers/gpu/drm/i915/i915_drm_client.c
-> index 02356f48d85b..666ec67c77e9 100644
-> --- a/drivers/gpu/drm/i915/i915_drm_client.c
-> +++ b/drivers/gpu/drm/i915/i915_drm_client.c
-> @@ -36,7 +36,7 @@ show_client_pid(struct device *kdev, struct device_attribute *attr, char *buf)
->                         client->closed ? ">" : "");
->  }
->  
-> -static int
-> +int
->  __i915_drm_client_register(struct i915_drm_client *client,
->                            struct task_struct *task)
->  {
-> @@ -89,7 +89,7 @@ __i915_drm_client_register(struct i915_drm_client *client,
->         return ret;
->  }
->  
-> -static void __i915_drm_client_unregister(struct i915_drm_client *client)
-> +void __i915_drm_client_unregister(struct i915_drm_client *client)
->  {
->         if (!client->name)
->                 return; /* fbdev client or error during drm open */
-> diff --git a/drivers/gpu/drm/i915/i915_drm_client.h b/drivers/gpu/drm/i915/i915_drm_client.h
-> index 8b261dc4a1f3..2c692345bc4e 100644
-> --- a/drivers/gpu/drm/i915/i915_drm_client.h
-> +++ b/drivers/gpu/drm/i915/i915_drm_client.h
-> @@ -58,4 +58,8 @@ void i915_drm_client_close(struct i915_drm_client *client);
->  struct i915_drm_client *i915_drm_client_add(struct i915_drm_clients *clients,
->                                             struct task_struct *task);
->  
-> +int __i915_drm_client_register(struct i915_drm_client *client,
-> +                              struct task_struct *task);
-> +void __i915_drm_client_unregister(struct i915_drm_client *client);
-> +
->  #endif /* !__I915_DRM_CLIENT_H__ */
-> -- 
-> 2.20.1
-> 
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-> 
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gVGh1LCAyOSBBdWcgMjAxOSwgT2xlZyBWYXNpbGV2IDxvbGVnLnZhc2lsZXZAaW50ZWwuY29t
+PiB3cm90ZToKPiBUaGUgaGVscGVyIHNob3VsZCBhbHdheXMgYmUgdXNlZC4KPgo+IFJldmlld2Vk
+LWJ5OiBFbWlsIFZlbGlrb3YgPGVtaWwudmVsaWtvdkBjb2xsYWJvcmEuY29tPgo+IFNpZ25lZC1v
+ZmYtYnk6IE9sZWcgVmFzaWxldiA8b2xlZy52YXNpbGV2QGludGVsLmNvbT4KPiBDYzogVmlsbGUg
+U3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KPiBDYzogaW50ZWwtZ2Z4
+QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwoKUHVzaGVkIHBhdGNoZXMgMS0yIHRvIGRybS1taXNjLW5l
+eHQsIHRoYW5rcyBmb3IgdGhlIHBhdGNoZXMgYW5kIHJldmlldy4KCkJSLApKYW5pLgoKCj4gLS0t
+Cj4gIGRyaXZlcnMvZ3B1L2RybS9kcm1fZHBfaGVscGVyLmMgICAgICAgICB8IDMgKy0tCj4gIGRy
+aXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHAuYyB8IDIgKy0KPiAgMiBmaWxlcyBj
+aGFuZ2VkLCAyIGluc2VydGlvbnMoKyksIDMgZGVsZXRpb25zKC0pCj4KPiBkaWZmIC0tZ2l0IGEv
+ZHJpdmVycy9ncHUvZHJtL2RybV9kcF9oZWxwZXIuYyBiL2RyaXZlcnMvZ3B1L2RybS9kcm1fZHBf
+aGVscGVyLmMKPiBpbmRleCBmZmM2OGQzMDVhZmUuLjE0MzIwOTMwMDkxYiAxMDA2NDQKPiAtLS0g
+YS9kcml2ZXJzL2dwdS9kcm0vZHJtX2RwX2hlbHBlci5jCj4gKysrIGIvZHJpdmVycy9ncHUvZHJt
+L2RybV9kcF9oZWxwZXIuYwo+IEBAIC01NzMsOCArNTczLDcgQEAgdm9pZCBkcm1fZHBfZG93bnN0
+cmVhbV9kZWJ1ZyhzdHJ1Y3Qgc2VxX2ZpbGUgKm0sCj4gIAlpbnQgbGVuOwo+ICAJdWludDhfdCBy
+ZXZbMl07Cj4gIAlpbnQgdHlwZSA9IHBvcnRfY2FwWzBdICYgRFBfRFNfUE9SVF9UWVBFX01BU0s7
+Cj4gLQlib29sIGJyYW5jaF9kZXZpY2UgPSBkcGNkW0RQX0RPV05TVFJFQU1QT1JUX1BSRVNFTlRd
+ICYKPiAtCQkJICAgICBEUF9EV05fU1RSTV9QT1JUX1BSRVNFTlQ7Cj4gKwlib29sIGJyYW5jaF9k
+ZXZpY2UgPSBkcm1fZHBfaXNfYnJhbmNoKGRwY2QpOwo+ICAKPiAgCXNlcV9wcmludGYobSwgIlx0
+RFAgYnJhbmNoIGRldmljZSBwcmVzZW50OiAlc1xuIiwKPiAgCQkgICBicmFuY2hfZGV2aWNlID8g
+InllcyIgOiAibm8iKTsKPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxh
+eS9pbnRlbF9kcC5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcC5jCj4g
+aW5kZXggMjM5MDhkYTFjZDVkLi42ZGE2YTQ4NTlmMDYgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9n
+cHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcC5jCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5
+MTUvZGlzcGxheS9pbnRlbF9kcC5jCj4gQEAgLTI5MjIsNyArMjkyMiw3IEBAIHN0YXRpYyBib29s
+IGRvd25zdHJlYW1faHBkX25lZWRzX2QwKHN0cnVjdCBpbnRlbF9kcCAqaW50ZWxfZHApCj4gIAkg
+KiBGSVhNRSBzaG91bGQgcmVhbGx5IGNoZWNrIGFsbCBkb3duc3RyZWFtIHBvcnRzLi4uCj4gIAkg
+Ki8KPiAgCXJldHVybiBpbnRlbF9kcC0+ZHBjZFtEUF9EUENEX1JFVl0gPT0gMHgxMSAmJgo+IC0J
+CWludGVsX2RwLT5kcGNkW0RQX0RPV05TVFJFQU1QT1JUX1BSRVNFTlRdICYgRFBfRFdOX1NUUk1f
+UE9SVF9QUkVTRU5UICYmCj4gKwkJZHJtX2RwX2lzX2JyYW5jaChpbnRlbF9kcC0+ZHBjZCkgJiYK
+PiAgCQlpbnRlbF9kcC0+ZG93bnN0cmVhbV9wb3J0c1swXSAmIERQX0RTX1BPUlRfSFBEOwo+ICB9
+CgotLSAKSmFuaSBOaWt1bGEsIEludGVsIE9wZW4gU291cmNlIEdyYXBoaWNzIENlbnRlcgpfX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFp
+bGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
