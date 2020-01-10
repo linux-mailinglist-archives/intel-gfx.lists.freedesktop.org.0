@@ -1,119 +1,70 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC0C6137540
-	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jan 2020 18:51:53 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7ADDC13753F
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jan 2020 18:51:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CB2DD6EA75;
-	Fri, 10 Jan 2020 17:51:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 551056EA73;
+	Fri, 10 Jan 2020 17:51:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com
- (mail-co1nam11on2087.outbound.protection.outlook.com [40.107.220.87])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 68F4E6E96E;
- Thu,  9 Jan 2020 21:26:23 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Pk3CeaVWVpdEobKh7ETwmjVZkeFQHmPhkJjM+Efr7H+Jm1+dBwviMNMQ/ZYSkObXJHB9fA+vd4qzS4NAljLLO4lui3k3VEItoIgJX+OKVlYWL+hHPajANWn5OxYAfW7NcIXs6hR2BmJQpcKBvyqCt6BKJyjHqNi8mdInPaBz4Fc/dOjkJEOpcJsmeRZ12EE8bkwE2LiICYpsujPeSPkZrcgevsloz6UeR0MvDbIqwhFYrVZ+M/1Q0tKY9JuLn49DFn/L/UArvT4884D7Na0CExXJXDCyBuY/UWVS+f9j3D6/1yAgFgkT/oz/G/UdQ9WsEdJB6oerTpvQCEYqgMabGQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=OvNhci6tWBZltRIsxH9vrCmkKIy8HBbQWDvX68bKbz4=;
- b=Cic3vsYuX6jV84udmSq8oKihBizAGvdDLeCg7d46mUpIrlc9T+9NUE5pcYRq0OvgX81SZsWFzo3l/JkVjn0hfMt0lv//T4OGVlBB3j8v4rHYoem2gTqIYIzzGj6llfsl97pJbH4EAl2aqeQmmxZ4zwp8EGy+Y5lntg5hBnZ0gtmiwqR7bfxwE02LRP/OZIIiofuLfkhOfrf566jJqKAlUVW47YyGTy/VklQwzjLvP1WORPvRGFW65bEkPm5q5xlC0pP2jteihBNJnRhYUdzevSNHkoxHeZObMO4/KUjQlbykPJ9He73V4EtxqqERyM9VwPTgp+/mfchgzQ3vatJ+5g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=OvNhci6tWBZltRIsxH9vrCmkKIy8HBbQWDvX68bKbz4=;
- b=etfhccQAi1rmIgAArcdL7BtVnxOx2i6Sn/m93EfT1ZAUQRYBWwRYvYVBl4uteolZow9gr2UKNwxNGVmWSfAkrc2Agd3p6gpZV+uXAhEqhr23LfP5cTzUqvysw1ih8KF+dZhSxj851RnlQr9RFbIu9RAg1WvFsuEccwQPPu1/etU=
-Authentication-Results: spf=none (sender IP is )
- smtp.mailfrom=Harry.Wentland@amd.com; 
-Received: from CY4PR1201MB0230.namprd12.prod.outlook.com (10.172.79.7) by
- CY4PR1201MB2535.namprd12.prod.outlook.com (10.172.121.143) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2602.15; Thu, 9 Jan 2020 21:26:21 +0000
-Received: from CY4PR1201MB0230.namprd12.prod.outlook.com
- ([fe80::4c09:215c:e5d2:3c8f]) by CY4PR1201MB0230.namprd12.prod.outlook.com
- ([fe80::4c09:215c:e5d2:3c8f%9]) with mapi id 15.20.2602.016; Thu, 9 Jan 2020
- 21:26:21 +0000
-To: Mario Kleiner <mario.kleiner.de@gmail.com>,
- Alex Deucher <alexdeucher@gmail.com>, Harry Wentland <Harry.Wentland@amd.com>
-References: <20200109150752.28098-1-mario.kleiner.de@gmail.com>
- <CADnq5_PvPD+FyEwUrqDVmbdLrP6ZC72HPtd19bqm-Csx-fHMOA@mail.gmail.com>
- <CAEsyxyjTvuCHHA3D-NJd=aGkHz2d=obSizwGQL8B4k1B7i2jJg@mail.gmail.com>
- <CADnq5_NPdg8MjQ5cB2aCD+US1Hv+FoP1gqKcA4W2e0pouG8cGQ@mail.gmail.com>
- <CAEsyxyjMsCU8rzyO0GewU_-uV5+UoDDwa5Mc74irUnJHhF6ALQ@mail.gmail.com>
-From: Harry Wentland <hwentlan@amd.com>
-Autocrypt: addr=hwentlan@amd.com; keydata=
- mQENBFhb4C8BCADhHHUNoBQ7K7LupCP0FsUb443Vuqq+dH0uo4A3lnPkMF6FJmGcJ9Sbx1C6
- cd4PbVAaTFZUEmjqfpm+wCRBe11eF55hW3GJ273wvfH69Q/zmAxwO8yk+i5ZWWl8Hns5h69K
- D9QURHLpXxrcwnfHFah0DwV23TrD1KGB7vowCZyJOw93U/GzAlXKESy0FM7ZOYIJH83X7qhh
- Q9KX94iTEYTeH86Wy8hwHtqM6ySviwEz0g+UegpG8ebbz0w3b5QmdKCAg+eZTmBekP5o77YE
- BKqR+Miiwo9+tzm2N5GiF9HDeI2pVe/egOLa5UcmsgdF4Y5FKoMnBbAHNaA6Fev8PHlNABEB
- AAG0J0hhcnJ5IFdlbnRsYW5kIDxoYXJyeS53ZW50bGFuZEBhbWQuY29tPokBNwQTAQgAIQUC
- WFvgLwIbAwULCQgHAgYVCAkKCwIEFgIDAQIeAQIXgAAKCRAtWBXJjBS24xUlCAC9MqAlIbZO
- /a37s41h+MQ+D20C6/hVErWO+RA06nA+jFDPUWrDJKYdn6EDQWdLY3ATeAq3X8GIeOTXGrPD
- b2OXD6kOViW/RNvlXdrIsnIDacdr39aoAlY1b+bhTzZVz4pto4l+K1PZb5jlMgTk/ks9HesL
- RfYVq5wOy3qIpocdjdlXnSUKn0WOkGBBd8Nv3o0OI18tiJ1S/QwLBBfZoVvfGinoB2p4j/wO
- kJxpi3F9TaOtLGcdrgfghg31Fb48DP+6kodZ4ircerp4hyAp0U2iKtsrQ/sVWR4mbe3eTfcn
- YjBxGd2JOVdNQZa2VTNf9GshIDMD8IIQK6jN0LfY8Py2uQENBFhb4C8BCAC/0KWY3pIbU2cy
- i7GMj3gqB6h0jGqRuMpMRoSNDoAUIuSh17w+bawuOF6XZPdK3D4lC9cOXMwP3aP9tTJOori2
- 8vMH8KW9jp9lAYnGWYhSqLdjzIACquMqi96EBtawJDct1e9pVgp+d4JXHlgIrl11ITJo8rCP
- dEqjro2bCBWxijsIncdCzMjf57+nR7u86SBtGSFcXKapS7YJeWcvM6MzFYgIkxHxxBDvBBvm
- U2/mAXiL72kwmlV1BNrabQxX2UnIb3xt3UovYJehrnDUMdYjxJgSPRBx27wQ/D05xAlhkmmL
- FJ01ZYc412CRCC6gjgFPfUi2y7YJTrQHS79WSyANABEBAAGJAR8EGAEIAAkFAlhb4C8CGwwA
- CgkQLVgVyYwUtuM72Qf+J6JOQ/27pWf5Ulde9GS0BigA1kV9CNfIq396TgvQzeyixHMvgPdq
- Z36x89zZi0otjMZv6ypIdEg5co1Bvz0wFaKbCiNbTjpnA1VAbQVLSFjCZLQiu0vc+BZ1yKDV
- T5ASJ97G4XvQNO+XXGY55MrmhoNqMaeIa/3Jas54fPVd5olcnUAyDty29/VWXNllUq38iBCX
- /0tTF7oav1lzPGfeW2c6B700FFZMTR4YBVSGE8jPIzu2Fj0E8EkDmsgS+nibqSvWXfo1v231
- 410h35CjbYDlYQO7Z1YD7asqbaOnF0As+rckyRMweQ9CxZn5+YBijtPJA3x5ldbCfQ9rWiTu XQ==
-Message-ID: <bae132f3-73e6-5004-c9a9-adb632338268@amd.com>
-Date: Thu, 9 Jan 2020 16:26:19 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.3.1
-In-Reply-To: <CAEsyxyjMsCU8rzyO0GewU_-uV5+UoDDwa5Mc74irUnJHhF6ALQ@mail.gmail.com>
-Content-Language: en-US
-X-ClientProxiedBy: YTOPR0101CA0063.CANPRD01.PROD.OUTLOOK.COM
- (2603:10b6:b00:14::40) To CY4PR1201MB0230.namprd12.prod.outlook.com
- (2603:10b6:910:1e::7)
+Received: from mail-qt1-x842.google.com (mail-qt1-x842.google.com
+ [IPv6:2607:f8b0:4864:20::842])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 39C516EA5F
+ for <intel-gfx@lists.freedesktop.org>; Fri, 10 Jan 2020 16:45:35 +0000 (UTC)
+Received: by mail-qt1-x842.google.com with SMTP id n15so2443695qtp.5
+ for <intel-gfx@lists.freedesktop.org>; Fri, 10 Jan 2020 08:45:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=from:date:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to;
+ bh=s80UcNQvKwGgKWzgf5mb0xu3daHQpbt1S8dMQfZFc54=;
+ b=Ok+PdgOkxWfVNZDBHC7AxcoITL4nnSC4kT9KjSqRuC1eTjfmC3LmiPvnvS171U4tna
+ EP8iijKW402NqG5BQx0coWKMEOVLMeGKc7ap98b6Rxbh9hPjWfSYFuB8E80W7o5tEa0O
+ ek9FW+VSI8iQh6VP6skYcf093r9SVtaSVemJCMeYaE/PnLp/tTkEDChLmjDKQF0AdxlE
+ fPjw+quRMzhLGO443NvQb4dIgcflvLFBLkxMtRcloEjnxDpZATC4idego7WSfiaP3Jw3
+ BAz+Hsmc+r9gtv6eKgFDuF1OwZhT+5WqFpA+9hhpFHz1e0iBUICVW9826sBvrRCXXr80
+ 32OQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:date:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=s80UcNQvKwGgKWzgf5mb0xu3daHQpbt1S8dMQfZFc54=;
+ b=C7F+GuqRnn5Kq/9MshKC4z/G2N/7NdQNqOZfNuFDwNVVB9soyUlqFRrCclFCdEpubS
+ Qar46SOCVruW/s8JAJnLdykDrWz9P8H2NMBDqUnprLTL54mRt7WIKSFSgIfsWgLvrzJq
+ TZHywLl5YcUumNVbSxVYVKJnC2/aSWfQ8QeM2XFfOFQ+21249PKbV9BaIZ+zaPkMH8Wl
+ /6rtwVXRhQOy6alb7VCSRI7ni9QOnEvzKPX7H0FC6qZIqfzLIJ/tfSW02ZXk/KuJmePH
+ Yms8+yV5KvVRPb9L357ZBdhFn8Jf1AT4QYHpEIHQBr9n3mi3rW3BP3EdpGI/JDXX5FoX
+ iv2w==
+X-Gm-Message-State: APjAAAX0y1GbwvnuThMjxpw5cdpyGW3svg/EIhsiXjIrUEl1iQ+4jTN4
+ qaSK5mYNjhOSubD7xszEFBY=
+X-Google-Smtp-Source: APXvYqynM7DSjiVb/K1cuj10GL5Qx3F6jhpXa1DeMyONRynlWzC2QHu0QHM7eFjM/sX/8EKaoo1NZQ==
+X-Received: by 2002:ac8:163c:: with SMTP id p57mr3289416qtj.106.1578674734400; 
+ Fri, 10 Jan 2020 08:45:34 -0800 (PST)
+Received: from quaco.ghostprotocols.net ([179.97.37.151])
+ by smtp.gmail.com with ESMTPSA id g81sm1091649qkb.70.2020.01.10.08.45.33
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 10 Jan 2020 08:45:33 -0800 (PST)
+From: Arnaldo Carvalho de Melo <arnaldo.melo@gmail.com>
+X-Google-Original-From: Arnaldo Carvalho de Melo <acme@kernel.org>
+Received: by quaco.ghostprotocols.net (Postfix, from userid 1000)
+ id BCA6F40DFD; Fri, 10 Jan 2020 13:45:31 -0300 (-03)
+Date: Fri, 10 Jan 2020 13:45:31 -0300
+To: Masami Hiramatsu <mhiramat@kernel.org>
+Message-ID: <20200110164531.GA2598@kernel.org>
+References: <c0460c78-b1a6-b5f7-7119-d97e5998f308@linux.intel.com>
+ <c93309dc-b920-f5fa-f997-e8b2faf47b88@linux.intel.com>
+ <20200108160713.GI2844@hirez.programming.kicks-ass.net>
+ <cc239899-5c52-2fd0-286d-4bff18877937@linux.intel.com>
+ <20200110140234.GO2844@hirez.programming.kicks-ass.net>
+ <20200111005213.6dfd98fb36ace098004bde0e@kernel.org>
 MIME-Version: 1.0
-Received: from [10.4.33.74] (165.204.55.251) by
- YTOPR0101CA0063.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b00:14::40) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2623.9 via Frontend
- Transport; Thu, 9 Jan 2020 21:26:21 +0000
-X-Originating-IP: [165.204.55.251]
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 97905d00-3fa7-4884-7d7d-08d7954a9286
-X-MS-TrafficTypeDiagnostic: CY4PR1201MB2535:|CY4PR1201MB2535:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <CY4PR1201MB253539EF3203DB739A8413AE8C390@CY4PR1201MB2535.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:8273;
-X-Forefront-PRVS: 02778BF158
-X-Forefront-Antispam-Report: SFV:NSPM;
- SFS:(10009020)(4636009)(396003)(376002)(366004)(136003)(346002)(39860400002)(189003)(199004)(81156014)(81166006)(6636002)(316002)(2906002)(8936002)(6486002)(4326008)(478600001)(16576012)(8676002)(36756003)(16526019)(52116002)(2616005)(33964004)(31686004)(956004)(66946007)(66476007)(53546011)(66556008)(31696002)(5660300002)(186003)(110136005)(26005)(54906003);
- DIR:OUT; SFP:1101; SCL:1; SRVR:CY4PR1201MB2535;
- H:CY4PR1201MB0230.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
- PTR:InfoNoRecords; MX:1; A:1; 
-Received-SPF: None (protection.outlook.com: amd.com does not designate
- permitted sender hosts)
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 4Dm+6e/AkjVG9O3SMJ4MJ7vRsbJ+fvI3rHYl3HnUUtSu1Vua6VeYqj8C0YJQvyNasDsCiRdplhZ3uILjgpv7Edcl6sI8FB0lujyvQSBEqC/JIDOoeYym2KDQiPUSDcs6G2rn9fr0darHoKwFFHSkRJHLRAwDw6bMLO8W22g36iQCYu9FQSG8xrMHcMOXFRLyaMK5Q6tVdQSN/9SVyFvg8+B9eVqV+ff07459h7H3Au28RHUomjG0oWDeoBGtNWEJ8DqP9ffRPWxWkblfT8QZMkcRj5IQhdOHcAaNBfQ39PVLa+FxXpc4AQHCgpBGh7NzGTqESueXmQTHp0H0IDasMRs6bXl/ti2Tbeuf8Xv9THOrmXD6oWjSqROz2psBpsRHl2PpNetDbQ11MU7NAme3yfiRDc42pYDSyPCZQ3mpkd7YvuqfNV377MI2sVX0AMwY
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 97905d00-3fa7-4884-7d7d-08d7954a9286
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Jan 2020 21:26:21.6179 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: BoyPFMmYbZ93WhBuyQuQfCRJB+j02q2Btlvi3CYyfNpViKpIOXdBn8KXHD4+TK1cAFV/FnZhGh6WvpWjvRrrxQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY4PR1201MB2535
+Content-Disposition: inline
+In-Reply-To: <20200111005213.6dfd98fb36ace098004bde0e@kernel.org>
+X-Url: http://acmel.wordpress.com
 X-Mailman-Approved-At: Fri, 10 Jan 2020 17:51:44 +0000
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/dp: Add current maximum eDP link
- rate to sink_rate array.
+Subject: Re: [Intel-gfx] [PATCH v4 2/9] perf/core: open access for
+ CAP_SYS_PERFMON privileged process
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -126,217 +77,58 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: mario.kleiner.de@gmail.de,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Maling list - DRI developers <dri-devel@lists.freedesktop.org>,
- Daniel Vetter <daniel.vetter@ffwll.ch>
-Content-Type: multipart/mixed; boundary="===============0169269336=="
+Cc: Mark Rutland <mark.rutland@arm.com>, Song Liu <songliubraving@fb.com>,
+ Peter Zijlstra <peterz@infradead.org>,
+ Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+ Will Deacon <will.deacon@arm.com>, Alexei Starovoitov <ast@kernel.org>,
+ Stephane Eranian <eranian@google.com>,
+ "james.bottomley@hansenpartnership.com"
+ <james.bottomley@hansenpartnership.com>, Paul Mackerras <paulus@samba.org>,
+ Jiri Olsa <jolsa@redhat.com>, Andi Kleen <ak@linux.intel.com>,
+ Michael Ellerman <mpe@ellerman.id.au>, Igor Lubashev <ilubashe@akamai.com>,
+ James Morris <jmorris@namei.org>,
+ Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+ Ingo Molnar <mingo@redhat.com>, oprofile-list@lists.sf.net,
+ Serge Hallyn <serge@hallyn.com>, Robert Richter <rric@kernel.org>,
+ Kees Cook <keescook@chromium.org>, Jann Horn <jannh@google.com>,
+ "selinux@vger.kernel.org" <selinux@vger.kernel.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ Namhyung Kim <namhyung@kernel.org>, Thomas Gleixner <tglx@linutronix.de>,
+ linux-arm-kernel@lists.infradead.org,
+ "linux-parisc@vger.kernel.org" <linux-parisc@vger.kernel.org>,
+ linux-kernel <linux-kernel@vger.kernel.org>,
+ "linux-perf-users@vger.kernel.org" <linux-perf-users@vger.kernel.org>,
+ "linux-security-module@vger.kernel.org"
+ <linux-security-module@vger.kernel.org>,
+ Casey Schaufler <casey@schaufler-ca.com>,
+ "bpf@vger.kernel.org" <bpf@vger.kernel.org>,
+ "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0169269336==
-Content-Type: multipart/alternative;
- boundary="------------233C9ABD89B05595E9630594"
-Content-Language: en-US
+Em Sat, Jan 11, 2020 at 12:52:13AM +0900, Masami Hiramatsu escreveu:
+> On Fri, 10 Jan 2020 15:02:34 +0100 Peter Zijlstra <peterz@infradead.org> wrote:
+> > Again, this only allows attaching to previously created kprobes, it does
+> > not allow creating kprobes, right?
 
---------------233C9ABD89B05595E9630594
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+> > That is; I don't think CAP_SYS_PERFMON should be allowed to create
+> > kprobes.
 
+> > As might be clear; I don't actually know what the user-ABI is for
+> > creating kprobes.
 
+> There are 2 ABIs nowadays, ftrace and ebpf. perf-probe uses ftrace interface to
+> define new kprobe events, and those events are treated as completely same as
+> tracepoint events. On the other hand, ebpf tries to define new probe event
+> via perf_event interface. Above one is that interface. IOW, it creates new kprobe.
 
-On 2020-01-09 4:04 p.m., Mario Kleiner wrote:
-> On Thu, Jan 9, 2020 at 8:49 PM Alex Deucher <alexdeucher@gmail.com
-> <mailto:alexdeucher@gmail.com>> wrote:
->
->     On Thu, Jan 9, 2020 at 11:47 AM Mario Kleiner
->     <mario.kleiner.de@gmail.com <mailto:mario.kleiner.de@gmail.com>>
->     wrote:
->     >
->     > On Thu, Jan 9, 2020 at 4:40 PM Alex Deucher
->     <alexdeucher@gmail.com <mailto:alexdeucher@gmail.com>> wrote:
->     >>
->     >> On Thu, Jan 9, 2020 at 10:08 AM Mario Kleiner
->     >> <mario.kleiner.de@gmail.com
->     <mailto:mario.kleiner.de@gmail.com>> wrote:
->     >> >
->     As Harry mentioned in the other thread, won't this only work if the=
+Masami, any plans to make 'perf probe' use the perf_event_open()
+interface for creating kprobes/uprobes?
 
->     display was brought up by the vbios?=C2=A0 In the suspend/resume ca=
-se,
->     won't we just fall back to 2.7Gbps?
->
->     Alex
->
->
-> Adding Harry to cc...
->
-> The code is only executed for eDP. On the Intel side, it seems that
-> intel_edp_init_dpcd() gets only called during driver load /
-> modesetting init, so not on resume.
->
-> On the AMD DC side, dc_link_detect_helper() has this early no-op
-> return at the beginning:
->
-> if ((link->connector_signal =3D=3D SIGNAL_TYPE_LVDS ||
-> 			link->connector_signal =3D=3D SIGNAL_TYPE_EDP) &&
-> 			link->local_sink)
-> 		return true;
->
-> So i guess if link->local_sink doesn't get NULL'ed during a
-> suspend/resume cycle, then we never reach the setup code that would
-> overwrite with non vbios settings?
->
-> Sounds reasonable to me, given that eDP panels are usually fixed
-> internal panels, nothing that gets hot(un-)plugged?
->
-> I can't test, because suspend/resume with the Polaris gpu on the MBP
-> 2017 is totally broken atm., just as vgaswitcheroo can't do its job.
-> Looks like powering down the gpu works, but powering up doesn't. And
-> also modesetting at vgaswitcheroo switch time is no-go, because the
-> DDC/AUX lines apparently can't be switched on that Apple gmux, and
-> handover of that data seems to be not implemented in current
-> vgaswitcheroo. At the moment switching between AMD only or Intel+AMD
-> Prime setup is quite a pita...
->
-
-I haven't followed the entire discussion on the i915 thread but for the
-amdgpu dc patch I would prefer a DPCD quirk to override the reported
-link settings with the correct link rate.
-
-Harry
-
-> -mario
->
->
-
-
---------------233C9ABD89B05595E9630594
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 8bit
-
-<html><head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  </head>
-  <body>
-    <br>
-    <br>
-    <div class="moz-cite-prefix">On 2020-01-09 4:04 p.m., Mario Kleiner
-      wrote:<br>
-    </div>
-    <blockquote type="cite" cite="mid:CAEsyxyjMsCU8rzyO0GewU_-uV5&#43;UoDDwa5Mc74irUnJHhF6ALQ@mail.gmail.com">
-      
-      <div dir="ltr">
-        <div dir="ltr">On Thu, Jan 9, 2020 at 8:49 PM Alex Deucher &lt;<a href="mailto:alexdeucher@gmail.com" moz-do-not-send="true">alexdeucher@gmail.com</a>&gt;
-          wrote:<br>
-        </div>
-        <div class="gmail_quote">
-          <blockquote class="gmail_quote" style="margin:0px 0px 0px
-            0.8ex;border-left:1px solid
-            rgb(204,204,204);padding-left:1ex">On Thu, Jan 9, 2020 at
-            11:47 AM Mario Kleiner<br>
-            &lt;<a href="mailto:mario.kleiner.de@gmail.com" target="_blank" moz-do-not-send="true">mario.kleiner.de@gmail.com</a>&gt;
-            wrote:<br>
-            &gt;<br>
-            &gt; On Thu, Jan 9, 2020 at 4:40 PM Alex Deucher &lt;<a href="mailto:alexdeucher@gmail.com" target="_blank" moz-do-not-send="true">alexdeucher@gmail.com</a>&gt;
-            wrote:<br>
-            &gt;&gt;<br>
-            &gt;&gt; On Thu, Jan 9, 2020 at 10:08 AM Mario Kleiner<br>
-            &gt;&gt; &lt;<a href="mailto:mario.kleiner.de@gmail.com" target="_blank" moz-do-not-send="true">mario.kleiner.de@gmail.com</a>&gt;
-            wrote:<br>
-            &gt;&gt; &gt;<br>
-            As Harry mentioned in the other thread, won't this only work
-            if the<br>
-            display was brought up by the vbios?&nbsp; In the suspend/resume
-            case,<br>
-            won't we just fall back to 2.7Gbps?<br>
-            <br>
-            Alex<br>
-            <br>
-          </blockquote>
-        </div>
-        <div class="gmail_quote"><br>
-        </div>
-        <div class="gmail_quote">Adding Harry to cc...<br>
-        </div>
-        <div class="gmail_quote"><br>
-        </div>
-        <div class="gmail_quote">The code is only executed for eDP. On
-          the Intel side, it seems that intel_edp_init_dpcd() gets only
-          called during driver load / modesetting init, so not on
-          resume.</div>
-        <div class="gmail_quote"><br>
-        </div>
-        <div class="gmail_quote">On the AMD DC side,
-          dc_link_detect_helper() has this early no-op return at the
-          beginning:</div>
-        <div class="gmail_quote"><br>
-        </div>
-        <div class="gmail_quote">
-          <pre>if ((link-&gt;connector_signal == SIGNAL_TYPE_LVDS ||
-			link-&gt;connector_signal == SIGNAL_TYPE_EDP) &amp;&amp;
-			link-&gt;local_sink)
-		return true;</pre>
-        </div>
-        <div class="gmail_quote"><br>
-        </div>
-        <div class="gmail_quote">So i guess if link-&gt;local_sink
-          doesn't get NULL'ed during a suspend/resume cycle, then we
-          never reach the setup code that would overwrite with non vbios
-          settings?</div>
-        <div class="gmail_quote"><br>
-        </div>
-        <div class="gmail_quote">Sounds reasonable to me, given that eDP
-          panels are usually fixed internal panels, nothing that gets
-          hot(un-)plugged?</div>
-        <div class="gmail_quote"><br>
-        </div>
-        <div class="gmail_quote">I can't test, because suspend/resume
-          with the Polaris gpu on the MBP 2017 is totally broken atm.,
-          just as vgaswitcheroo can't do its job. Looks like powering
-          down the gpu works, but powering up doesn't. And also
-          modesetting at vgaswitcheroo switch time is no-go, because the
-          DDC/AUX lines apparently can't be switched on that Apple gmux,
-          and handover of that data seems to be not implemented in
-          current vgaswitcheroo. At the moment switching between AMD
-          only or Intel&#43;AMD Prime setup is quite a pita...<br>
-        </div>
-        <div class="gmail_quote"><br>
-        </div>
-      </div>
-    </blockquote>
-    <br>
-    I haven't followed the entire discussion on the i915 thread but for
-    the amdgpu dc patch I would prefer a DPCD quirk to override the
-    reported link settings with the correct link rate.<br>
-    <br>
-    Harry<br>
-    <br>
-    <blockquote type="cite" cite="mid:CAEsyxyjMsCU8rzyO0GewU_-uV5&#43;UoDDwa5Mc74irUnJHhF6ALQ@mail.gmail.com">
-      <div dir="ltr">
-        <div class="gmail_quote">-mario<br>
-        </div>
-        <div class="gmail_quote"><br>
-        </div>
-        <div class="gmail_quote"><br>
-        </div>
-      </div>
-    </blockquote>
-    <br>
-  </body>
-</html>
-
---------------233C9ABD89B05595E9630594--
-
---===============0169269336==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+- Arnaldo
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0169269336==--
