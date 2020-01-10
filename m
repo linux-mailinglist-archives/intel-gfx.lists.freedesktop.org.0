@@ -2,30 +2,45 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1942D136AA0
-	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jan 2020 11:09:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B0ED1136B01
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jan 2020 11:24:24 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CFDFD6E9AC;
-	Fri, 10 Jan 2020 10:09:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1515A6E9B1;
+	Fri, 10 Jan 2020 10:24:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id EF5336E9A8;
- Fri, 10 Jan 2020 10:09:05 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id E6FF0A0087;
- Fri, 10 Jan 2020 10:09:05 +0000 (UTC)
-MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Thomas Zimmermann" <tzimmermann@suse.de>
-Date: Fri, 10 Jan 2020 10:09:05 -0000
-Message-ID: <157865094594.30838.4696083829030977126@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 311FC6E9AF;
+ Fri, 10 Jan 2020 10:24:18 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 10 Jan 2020 02:24:17 -0800
+X-IronPort-AV: E=Sophos;i="5.69,416,1571727600"; d="scan'208";a="223700705"
+Received: from jnikula-mobl3.fi.intel.com (HELO localhost) ([10.237.66.161])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 10 Jan 2020 02:24:09 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Thomas Zimmermann <tzimmermann@suse.de>, airlied@linux.ie, daniel@ffwll.ch,
+ alexander.deucher@amd.com, christian.koenig@amd.com, David1.Zhou@amd.com,
+ maarten.lankhorst@linux.intel.com, patrik.r.jakobsson@gmail.com,
+ robdclark@gmail.com, sean@poorly.run, benjamin.gaignard@linaro.org,
+ vincent.abriou@st.com, yannick.fertre@st.com, philippe.cornu@st.com,
+ mcoquelin.stm32@gmail.com, alexandre.torgue@st.com, eric@anholt.net,
+ rodrigosiqueiramelo@gmail.com, hamohammed.sa@gmail.com,
+ linux-graphics-maintainer@vmware.com, thellstrom@vmware.com,
+ bskeggs@redhat.com, harry.wentland@amd.com, sunpeng.li@amd.com,
+ joonas.lahtinen@linux.intel.com, rodrigo.vivi@intel.com
+In-Reply-To: <20200110092127.27847-2-tzimmermann@suse.de>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20200110092127.27847-1-tzimmermann@suse.de>
-In-Reply-To: <20200110092127.27847-1-tzimmermann@suse.de>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?=3A_Clean_up_VBLANK_callbacks_in_struct_drm=5Fdriver?=
+ <20200110092127.27847-2-tzimmermann@suse.de>
+Date: Fri, 10 Jan 2020 12:24:06 +0200
+Message-ID: <87muavobi1.fsf@intel.com>
+MIME-Version: 1.0
+Subject: Re: [Intel-gfx] [PATCH 01/23] drm: Add get_scanout_position() to
+ struct drm_crtc_helper_funcs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,147 +53,170 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: linux-arm-msm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Thomas Zimmermann <tzimmermann@suse.de>, nouveau@lists.freedesktop.org,
+ freedreno@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Fri, 10 Jan 2020, Thomas Zimmermann <tzimmermann@suse.de> wrote:
+> The new callback get_scanout_position() reads the current location of
+> the scanout process. The operation is currentyl located in struct
+> drm_driver, but really belongs to the CRTC. Drivers will be converted
+> in separate patches.
+>
+> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+> ---
+>  drivers/gpu/drm/drm_vblank.c             | 24 ++++++++----
+>  include/drm/drm_drv.h                    |  7 +---
+>  include/drm/drm_modeset_helper_vtables.h | 47 ++++++++++++++++++++++++
+>  3 files changed, 65 insertions(+), 13 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/drm_vblank.c b/drivers/gpu/drm/drm_vblank.c
+> index 1659b13b178c..c12f0b333e14 100644
+> --- a/drivers/gpu/drm/drm_vblank.c
+> +++ b/drivers/gpu/drm/drm_vblank.c
+> @@ -30,6 +30,7 @@
+>  #include <drm/drm_crtc.h>
+>  #include <drm/drm_drv.h>
+>  #include <drm/drm_framebuffer.h>
+> +#include <drm/drm_modeset_helper_vtables.h>
+>  #include <drm/drm_print.h>
+>  #include <drm/drm_vblank.h>
+>  
+> @@ -590,7 +591,7 @@ EXPORT_SYMBOL(drm_calc_timestamping_constants);
+>   * Implements calculation of exact vblank timestamps from given drm_display_mode
+>   * timings and current video scanout position of a CRTC. This can be directly
+>   * used as the &drm_driver.get_vblank_timestamp implementation of a kms driver
+> - * if &drm_driver.get_scanout_position is implemented.
+> + * if &drm_crtc_helper_funcs.get_scanout_position is implemented.
+>   *
+>   * The current implementation only handles standard video modes. For double scan
+>   * and interlaced modes the driver is supposed to adjust the hardware mode
+> @@ -632,8 +633,9 @@ bool drm_calc_vbltimestamp_from_scanoutpos(struct drm_device *dev,
+>  	}
+>  
+>  	/* Scanout position query not supported? Should not happen. */
+> -	if (!dev->driver->get_scanout_position) {
+> -		DRM_ERROR("Called from driver w/o get_scanout_position()!?\n");
+> +	if (!dev->driver->get_scanout_position ||
+> +	    !crtc->helper_private->get_scanout_position) {
 
-Series: drm: Clean up VBLANK callbacks in struct drm_driver
-URL   : https://patchwork.freedesktop.org/series/71873/
-State : success
+ITYM s/||/&&/
 
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_7715 -> Patchwork_16048
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16048/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_16048 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_exec_suspend@basic-s0:
-    - fi-skl-6700k2:      [PASS][1] -> [INCOMPLETE][2] ([i915#198])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7715/fi-skl-6700k2/igt@gem_exec_suspend@basic-s0.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16048/fi-skl-6700k2/igt@gem_exec_suspend@basic-s0.html
-
-  * igt@i915_module_load@reload-with-fault-injection:
-    - fi-bxt-dsi:         [PASS][3] -> [DMESG-WARN][4] ([i915#889])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7715/fi-bxt-dsi/igt@i915_module_load@reload-with-fault-injection.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16048/fi-bxt-dsi/igt@i915_module_load@reload-with-fault-injection.html
-    - fi-kbl-x1275:       [PASS][5] -> [INCOMPLETE][6] ([i915#879])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7715/fi-kbl-x1275/igt@i915_module_load@reload-with-fault-injection.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16048/fi-kbl-x1275/igt@i915_module_load@reload-with-fault-injection.html
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-hsw-4770:        [PASS][7] -> [INCOMPLETE][8] ([i915#151])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7715/fi-hsw-4770/igt@i915_pm_rpm@module-reload.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16048/fi-hsw-4770/igt@i915_pm_rpm@module-reload.html
-
-  * igt@i915_selftest@live_blt:
-    - fi-hsw-4770r:       [PASS][9] -> [DMESG-FAIL][10] ([i915#563])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7715/fi-hsw-4770r/igt@i915_selftest@live_blt.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16048/fi-hsw-4770r/igt@i915_selftest@live_blt.html
-    - fi-hsw-peppy:       [PASS][11] -> [DMESG-FAIL][12] ([i915#553] / [i915#725])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7715/fi-hsw-peppy/igt@i915_selftest@live_blt.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16048/fi-hsw-peppy/igt@i915_selftest@live_blt.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-skl-6770hq:      [FAIL][13] ([i915#178]) -> [PASS][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7715/fi-skl-6770hq/igt@i915_pm_rpm@module-reload.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16048/fi-skl-6770hq/igt@i915_pm_rpm@module-reload.html
-
-  * igt@i915_selftest@live_execlists:
-    - fi-kbl-soraka:      [DMESG-FAIL][15] ([i915#656]) -> [PASS][16]
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7715/fi-kbl-soraka/igt@i915_selftest@live_execlists.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16048/fi-kbl-soraka/igt@i915_selftest@live_execlists.html
-
-  * igt@i915_selftest@live_gem_contexts:
-    - fi-hsw-peppy:       [DMESG-FAIL][17] ([i915#722]) -> [PASS][18]
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7715/fi-hsw-peppy/igt@i915_selftest@live_gem_contexts.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16048/fi-hsw-peppy/igt@i915_selftest@live_gem_contexts.html
-
-  
-  [i915#151]: https://gitlab.freedesktop.org/drm/intel/issues/151
-  [i915#178]: https://gitlab.freedesktop.org/drm/intel/issues/178
-  [i915#198]: https://gitlab.freedesktop.org/drm/intel/issues/198
-  [i915#553]: https://gitlab.freedesktop.org/drm/intel/issues/553
-  [i915#563]: https://gitlab.freedesktop.org/drm/intel/issues/563
-  [i915#656]: https://gitlab.freedesktop.org/drm/intel/issues/656
-  [i915#722]: https://gitlab.freedesktop.org/drm/intel/issues/722
-  [i915#725]: https://gitlab.freedesktop.org/drm/intel/issues/725
-  [i915#879]: https://gitlab.freedesktop.org/drm/intel/issues/879
-  [i915#889]: https://gitlab.freedesktop.org/drm/intel/issues/889
+BR,
+Jani.
 
 
-Participating hosts (44 -> 39)
-------------------------------
+> +		DRM_ERROR("Called from CRTC w/o get_scanout_position()!?\n");
+>  		return false;
+>  	}
+>  
+> @@ -664,11 +666,17 @@ bool drm_calc_vbltimestamp_from_scanoutpos(struct drm_device *dev,
+>  		 * Get vertical and horizontal scanout position vpos, hpos,
+>  		 * and bounding timestamps stime, etime, pre/post query.
+>  		 */
+> -		vbl_status = dev->driver->get_scanout_position(dev, pipe,
+> -							       in_vblank_irq,
+> -							       &vpos, &hpos,
+> -							       &stime, &etime,
+> -							       mode);
+> +		if (crtc->helper_private->get_scanout_position) {
+> +			vbl_status =
+> +				crtc->helper_private->get_scanout_position(
+> +					crtc, in_vblank_irq, &vpos, &hpos,
+> +					&stime, &etime, mode);
+> +		} else {
+> +			vbl_status =
+> +				dev->driver->get_scanout_position(
+> +					dev, pipe, in_vblank_irq, &vpos,
+> +					&hpos, &stime, &etime, mode);
+> +		}
+>  
+>  		/* Return as no-op if scanout query unsupported or failed. */
+>  		if (!vbl_status) {
+> diff --git a/include/drm/drm_drv.h b/include/drm/drm_drv.h
+> index cf13470810a5..d0049e5786fc 100644
+> --- a/include/drm/drm_drv.h
+> +++ b/include/drm/drm_drv.h
+> @@ -362,11 +362,8 @@ struct drm_driver {
+>  	 * True on success, false if a reliable scanout position counter could
+>  	 * not be read out.
+>  	 *
+> -	 * FIXME:
+> -	 *
+> -	 * Since this is a helper to implement @get_vblank_timestamp, we should
+> -	 * move it to &struct drm_crtc_helper_funcs, like all the other
+> -	 * helper-internal hooks.
+> +	 * This is deprecated and should not be used by new drivers.
+> +	 * Use &drm_crtc_helper_funcs.get_scanout_position instead.
+>  	 */
+>  	bool (*get_scanout_position) (struct drm_device *dev, unsigned int pipe,
+>  				      bool in_vblank_irq, int *vpos, int *hpos,
+> diff --git a/include/drm/drm_modeset_helper_vtables.h b/include/drm/drm_modeset_helper_vtables.h
+> index 5a87f1bd7a3f..e398512bfd5f 100644
+> --- a/include/drm/drm_modeset_helper_vtables.h
+> +++ b/include/drm/drm_modeset_helper_vtables.h
+> @@ -450,6 +450,53 @@ struct drm_crtc_helper_funcs {
+>  	 */
+>  	void (*atomic_disable)(struct drm_crtc *crtc,
+>  			       struct drm_crtc_state *old_crtc_state);
+> +
+> +	/**
+> +	 * @get_scanout_position:
+> +	 *
+> +	 * Called by vblank timestamping code.
+> +	 *
+> +	 * Returns the current display scanout position from a CRTC and an
+> +	 * optional accurate ktime_get() timestamp of when the position was
+> +	 * measured. Note that this is a helper callback which is only used
+> +	 * if a driver uses drm_calc_vbltimestamp_from_scanoutpos() for the
+> +	 * @drm_driver.get_vblank_timestamp callback.
+> +	 *
+> +	 * Parameters:
+> +	 *
+> +	 * crtc:
+> +	 *     The CRTC.
+> +	 * in_vblank_irq:
+> +	 *     True when called from drm_crtc_handle_vblank(). Some drivers
+> +	 *     need to apply some workarounds for gpu-specific vblank irq
+> +	 *     quirks if the flag is set.
+> +	 * vpos:
+> +	 *     Target location for current vertical scanout position.
+> +	 * hpos:
+> +	 *     Target location for current horizontal scanout position.
+> +	 * stime:
+> +	 *     Target location for timestamp taken immediately before
+> +	 *     scanout position query. Can be NULL to skip timestamp.
+> +	 * etime:
+> +	 *     Target location for timestamp taken immediately after
+> +	 *     scanout position query. Can be NULL to skip timestamp.
+> +	 * mode:
+> +	 *     Current display timings.
+> +	 *
+> +	 * Returns vpos as a positive number while in active scanout area.
+> +	 * Returns vpos as a negative number inside vblank, counting the number
+> +	 * of scanlines to go until end of vblank, e.g., -1 means "one scanline
+> +	 * until start of active scanout / end of vblank."
+> +	 *
+> +	 * Returns:
+> +	 *
+> +	 * True on success, false if a reliable scanout position counter could
+> +	 * not be read out.
+> +	 */
+> +	bool (*get_scanout_position)(struct drm_crtc *crtc,
+> +				     bool in_vblank_irq, int *vpos, int *hpos,
+> +				     ktime_t *stime, ktime_t *etime,
+> +				     const struct drm_display_mode *mode);
+>  };
+>  
+>  /**
 
-  Additional (8): fi-byt-j1900 fi-glk-dsi fi-kbl-guc fi-kbl-8809g fi-elk-e7500 fi-kbl-7560u fi-tgl-y fi-bsw-nick 
-  Missing    (13): fi-ehl-1 fi-bdw-5557u fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-snb-2520m fi-kbl-7500u fi-ctg-p8600 fi-whl-u fi-skl-lmem fi-byt-n2820 fi-byt-clapper fi-kbl-r 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_7715 -> Patchwork_16048
-
-  CI-20190529: 20190529
-  CI_DRM_7715: 337449c74a6745cf1d9d60c41f170d31a291f0c0 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5359: 28451bcec2245dcc1fd0eb1d4c76335b2b4f97a5 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_16048: dadf262439d81673a98e649029a16118347446f7 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-dadf262439d8 drm: Cleanup VBLANK callbacks in struct drm_driver
-84acced102ba drm/vmwgfx: Convert to CRTC VBLANK callbacks
-903a2a016c51 drm/vkms: Convert to CRTC VBLANK callbacks
-3cfb12b0e696 drm/vc4: Convert to CRTC VBLANK callbacks
-525588523ac7 drm/stm: Convert to CRTC VBLANK callbacks
-086db47a9d9b drm/sti: Convert to CRTC VBLANK callbacks
-a88d8ab0a3a3 drm/radeon: Convert to CRTC VBLANK callbacks
-172a0bc8d942 drm/nouveau: Convert to CRTC VBLANK callbacks
-9f3580b11e21 drm/msm: Convert to CRTC VBLANK callbacks
-c7747dd915c1 drm/i915: Convert to CRTC VBLANK callbacks
-dbf1b08fc990 drm/gma500: Convert to CRTC VBLANK callbacks
-585dc3993334 drm/amdgpu: Convert to CRTC VBLANK callbacks
-115af48b3a62 drm: Add get_vblank_timestamp() to struct drm_crtc_funcs
-cbfbe29f84f9 drm: Evaluate struct drm_device.vblank_disable_immediate on each use
-4fb79c555089 drm: Remove struct drm_driver.get_scanout_position()
-47676fe9e9da drm/stm: Convert to struct drm_crtc_helper_funcs.get_scanout_position()
-450559e9416c drm/vc4: Convert to struct drm_crtc_helper_funcs.get_scanout_position()
-7aa032e1e5eb drm/msm: Convert to struct drm_crtc_helper_funcs.get_scanout_position()
-78fac3c06e60 drm/radeon: Convert to struct drm_crtc_helper_funcs.get_scanout_position()
-cc4157b82402 drm/nouveau: Convert to struct drm_crtc_helper_funcs.get_scanout_position()
-daf9deab4b37 drm/i915: Don't use struct drm_driver.get_scanout_position()
-62a0fc25c2ed drm/amdgpu: Convert to struct drm_crtc_helper_funcs.get_scanout_position()
-30f2cd6c8fad drm: Add get_scanout_position() to struct drm_crtc_helper_funcs
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16048/index.html
+-- 
+Jani Nikula, Intel Open Source Graphics Center
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
