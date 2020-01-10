@@ -1,31 +1,37 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C95B21378C9
-	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jan 2020 23:00:12 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1361013799B
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jan 2020 23:27:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EA80789E3B;
-	Fri, 10 Jan 2020 22:00:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8861B6E0E6;
+	Fri, 10 Jan 2020 22:27:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 394C989E3B;
- Fri, 10 Jan 2020 22:00:08 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 31550A00C7;
- Fri, 10 Jan 2020 22:00:08 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2886F6E0E5
+ for <intel-gfx@lists.freedesktop.org>; Fri, 10 Jan 2020 22:27:31 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 10 Jan 2020 14:27:29 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.69,418,1571727600"; d="scan'208";a="218198544"
+Received: from irvmail001.ir.intel.com ([163.33.26.43])
+ by fmsmga007.fm.intel.com with ESMTP; 10 Jan 2020 14:27:29 -0800
+Received: from mwajdecz-MOBL1.ger.corp.intel.com
+ (mwajdecz-mobl1.ger.corp.intel.com [10.249.151.239])
+ by irvmail001.ir.intel.com (8.14.3/8.13.6/MailSET/Hub) with ESMTP id
+ 00AMRSEU001371; Fri, 10 Jan 2020 22:27:28 GMT
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri, 10 Jan 2020 22:27:19 +0000
+Message-Id: <20200110222723.14724-1-michal.wajdeczko@intel.com>
+X-Mailer: git-send-email 2.21.0.windows.1
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
-Date: Fri, 10 Jan 2020 22:00:08 -0000
-Message-ID: <157869360818.30836.5717600446253222475@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200110162930.88968-1-michal.wajdeczko@intel.com>
-In-Reply-To: <20200110162930.88968-1-michal.wajdeczko@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_Add_ops_to_intel=5Fuc_=28rev3=29?=
+Subject: [Intel-gfx] [CI v4 0/4] Add ops to intel_uc
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,95 +44,31 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Instead of spreading multiple conditionals across the uC code
+to find out current mode of uC operation, start using predefined
+set of function pointers that reflect that mode.
 
-Series: Add ops to intel_uc (rev3)
-URL   : https://patchwork.freedesktop.org/series/70716/
-State : warning
+v2: rebased, using macro to generate ops helpers 
+v3: reuse __uc_check_hw to avoid redundant comment
+v4: forward declare ops struct vs functions
 
-== Summary ==
+Michal Wajdeczko (4):
+  drm/i915/uc: Add ops to intel_uc
+  drm/i915/uc: Add init_fw/fini_fw to to intel_uc_ops
+  drm/i915/uc: Add init/fini to to intel_uc_ops
+  drm/i915/uc: Add sanitize to to intel_uc_ops
 
-$ dim checkpatch origin/drm-tip
-bb5e4aea2877 drm/i915/uc: Add ops to intel_uc
--:142: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
-#142: FILE: drivers/gpu/drm/i915/gt/uc/intel_uc.h:73:
-+#define intel_uc_ops_function(_NAME, _OPS, _TYPE, _RET) \
-+static inline _TYPE intel_uc_##_NAME(struct intel_uc *uc) \
-+{ \
-+	if (uc->ops->_OPS) \
-+		return uc->ops->_OPS(uc); \
-+	return _RET; \
-+}
+ drivers/gpu/drm/i915/gt/uc/intel_uc.c | 75 +++++++++++++++++----------
+ drivers/gpu/drm/i915/gt/uc/intel_uc.h | 36 ++++++++++---
+ 2 files changed, 78 insertions(+), 33 deletions(-)
 
--:142: CHECK:MACRO_ARG_REUSE: Macro argument reuse '_OPS' - possible side-effects?
-#142: FILE: drivers/gpu/drm/i915/gt/uc/intel_uc.h:73:
-+#define intel_uc_ops_function(_NAME, _OPS, _TYPE, _RET) \
-+static inline _TYPE intel_uc_##_NAME(struct intel_uc *uc) \
-+{ \
-+	if (uc->ops->_OPS) \
-+		return uc->ops->_OPS(uc); \
-+	return _RET; \
-+}
-
--:142: CHECK:MACRO_ARG_PRECEDENCE: Macro argument '_OPS' may be better as '(_OPS)' to avoid precedence issues
-#142: FILE: drivers/gpu/drm/i915/gt/uc/intel_uc.h:73:
-+#define intel_uc_ops_function(_NAME, _OPS, _TYPE, _RET) \
-+static inline _TYPE intel_uc_##_NAME(struct intel_uc *uc) \
-+{ \
-+	if (uc->ops->_OPS) \
-+		return uc->ops->_OPS(uc); \
-+	return _RET; \
-+}
-
--:149: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
-#149: FILE: drivers/gpu/drm/i915/gt/uc/intel_uc.h:80:
-+}
-+intel_uc_ops_function(init_hw, init_hw, int, 0);
-
--:150: ERROR:SPACING: space prohibited before that close parenthesis ')'
-#150: FILE: drivers/gpu/drm/i915/gt/uc/intel_uc.h:81:
-+intel_uc_ops_function(fini_hw, fini_hw, void, );
-
-total: 2 errors, 0 warnings, 3 checks, 117 lines checked
-def878150533 drm/i915/uc: Add init_fw/fini_fw to to intel_uc_ops
--:87: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
-#87: FILE: drivers/gpu/drm/i915/gt/uc/intel_uc.h:80:
- }
-+intel_uc_ops_function(fetch_firmwares, init_fw, void, );
-
--:87: ERROR:SPACING: space prohibited before that close parenthesis ')'
-#87: FILE: drivers/gpu/drm/i915/gt/uc/intel_uc.h:80:
-+intel_uc_ops_function(fetch_firmwares, init_fw, void, );
-
--:88: ERROR:SPACING: space prohibited before that close parenthesis ')'
-#88: FILE: drivers/gpu/drm/i915/gt/uc/intel_uc.h:81:
-+intel_uc_ops_function(cleanup_firmwares, fini_fw, void, );
-
-total: 2 errors, 0 warnings, 1 checks, 63 lines checked
-71565950a620 drm/i915/uc: Add init/fini to to intel_uc_ops
--:89: ERROR:SPACING: space prohibited before that close parenthesis ')'
-#89: FILE: drivers/gpu/drm/i915/gt/uc/intel_uc.h:82:
-+intel_uc_ops_function(init, init, void, );
-
--:90: ERROR:SPACING: space prohibited before that close parenthesis ')'
-#90: FILE: drivers/gpu/drm/i915/gt/uc/intel_uc.h:83:
-+intel_uc_ops_function(fini, fini, void, );
-
-total: 2 errors, 0 warnings, 0 checks, 65 lines checked
-0960b20d5549 drm/i915/uc: Add sanitize to to intel_uc_ops
--:74: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
-#74: FILE: drivers/gpu/drm/i915/gt/uc/intel_uc.h:80:
- }
-+intel_uc_ops_function(sanitize, sanitize, int, 0);
-
-total: 0 errors, 0 warnings, 1 checks, 49 lines checked
+-- 
+2.19.2
 
 _______________________________________________
 Intel-gfx mailing list
