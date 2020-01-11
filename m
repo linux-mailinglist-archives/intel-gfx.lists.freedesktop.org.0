@@ -1,40 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8EAC81383F0
-	for <lists+intel-gfx@lfdr.de>; Sun, 12 Jan 2020 00:12:43 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B74E1383F8
+	for <lists+intel-gfx@lfdr.de>; Sun, 12 Jan 2020 00:18:49 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EF5776E44C;
-	Sat, 11 Jan 2020 23:12:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C339E6E49C;
+	Sat, 11 Jan 2020 23:18:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AA1C86E499
- for <intel-gfx@lists.freedesktop.org>; Sat, 11 Jan 2020 23:12:36 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 11 Jan 2020 15:12:35 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,422,1571727600"; d="scan'208";a="212612007"
-Received: from irvmail001.ir.intel.com ([163.33.26.43])
- by orsmga007.jf.intel.com with ESMTP; 11 Jan 2020 15:12:34 -0800
-Received: from mwajdecz-MOBL1.ger.corp.intel.com
- (mwajdecz-mobl1.ger.corp.intel.com [10.249.152.25])
- by irvmail001.ir.intel.com (8.14.3/8.13.6/MailSET/Hub) with ESMTP id
- 00BNCVOT021857; Sat, 11 Jan 2020 23:12:33 GMT
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Sat, 11 Jan 2020 23:11:14 +0000
-Message-Id: <20200111231114.59208-5-michal.wajdeczko@intel.com>
-X-Mailer: git-send-email 2.21.0.windows.1
-In-Reply-To: <20200111231114.59208-1-michal.wajdeczko@intel.com>
-References: <20200111231114.59208-1-michal.wajdeczko@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id A99BD6E49C;
+ Sat, 11 Jan 2020 23:18:45 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id A0487A0118;
+ Sat, 11 Jan 2020 23:18:45 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 4/4] drm/i915/guc: Use correct name for last CT
- fence
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
+Date: Sat, 11 Jan 2020 23:18:45 -0000
+Message-ID: <157878472563.16373.13560531312427541734@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200111231114.59208-1-michal.wajdeczko@intel.com>
+In-Reply-To: <20200111231114.59208-1-michal.wajdeczko@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_Misc_GuC_CT_improvements?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,50 +38,37 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-While we have function that returns "next fence" that can be used
-by new CT request, we internally store value of the last used fence.
+== Series Details ==
 
-Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
----
- drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c | 2 +-
- drivers/gpu/drm/i915/gt/uc/intel_guc_ct.h | 2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
+Series: Misc GuC CT improvements
+URL   : https://patchwork.freedesktop.org/series/71927/
+State : warning
 
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
-index 1da69425029b..73f617cbcf55 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
-@@ -290,7 +290,7 @@ void intel_guc_ct_disable(struct intel_guc_ct *ct)
- static u32 ct_get_next_fence(struct intel_guc_ct *ct)
- {
- 	/* For now it's trivial */
--	return ++ct->requests.next_fence;
-+	return ++ct->requests.last_fence;
- }
- 
- /**
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.h b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.h
-index 3e7fe237cfa5..97913bbb8be3 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.h
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.h
-@@ -49,7 +49,7 @@ struct intel_guc_ct {
- 	struct intel_guc_ct_buffer ctbs[2];
- 
- 	struct {
--		u32 next_fence; /* fence to be used with next request to send */
-+		u32 last_fence; /* last fence used to send request */
- 
- 		spinlock_t lock; /* protects pending requests list */
- 		struct list_head pending; /* requests waiting for response */
--- 
-2.19.2
+== Summary ==
+
+$ dim checkpatch origin/drm-tip
+fcb6ad56e500 drm/i915/guc: Simpler CT message size calculation
+3de4fca5641b drm/i915/guc: Introduce CT_ERROR
+e65db0f0de6a drm/i915/guc: Update CTB helpers to use CT_ERROR
+-:82: CHECK:SPACING: spaces preferred around that '/' (ctx:VxV)
+#82: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c:251:
++	err = ct_register_buffer(ct, base + PAGE_SIZE/4 * CTB_RECV,
+ 	                                             ^
+
+-:90: CHECK:SPACING: spaces preferred around that '/' (ctx:VxV)
+#90: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c:256:
++	err = ct_register_buffer(ct, base + PAGE_SIZE/4 * CTB_SEND,
+ 	                                             ^
+
+total: 0 errors, 0 warnings, 2 checks, 98 lines checked
+78fc81508a2a drm/i915/guc: Use correct name for last CT fence
 
 _______________________________________________
 Intel-gfx mailing list
