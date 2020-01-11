@@ -2,30 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C663B137A60
-	for <lists+intel-gfx@lfdr.de>; Sat, 11 Jan 2020 00:51:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C2C69137A81
+	for <lists+intel-gfx@lfdr.de>; Sat, 11 Jan 2020 01:18:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3572F6E188;
-	Fri, 10 Jan 2020 23:51:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 32E966E1E2;
+	Sat, 11 Jan 2020 00:18:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 965B76E188;
- Fri, 10 Jan 2020 23:51:07 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 8E554A00FD;
- Fri, 10 Jan 2020 23:51:07 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BF3416E1E2
+ for <intel-gfx@lists.freedesktop.org>; Sat, 11 Jan 2020 00:18:51 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 10 Jan 2020 16:18:51 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.69,418,1571727600"; d="scan'208";a="218813814"
+Received: from mdroper-desk1.fm.intel.com (HELO
+ mdroper-desk1.amr.corp.intel.com) ([10.1.27.64])
+ by fmsmga008.fm.intel.com with ESMTP; 10 Jan 2020 16:18:51 -0800
+Date: Fri, 10 Jan 2020 16:18:51 -0800
+From: Matt Roper <matthew.d.roper@intel.com>
+To: =?iso-8859-1?Q?Jos=E9?= Roberto de Souza <jose.souza@intel.com>
+Message-ID: <20200111001851.GX2244136@mdroper-desk1.amr.corp.intel.com>
+References: <20200110233902.154960-1-jose.souza@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
-Date: Fri, 10 Jan 2020 23:51:07 -0000
-Message-ID: <157870026757.30836.9762151277875887096@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200110222723.14724-1-michal.wajdeczko@intel.com>
-In-Reply-To: <20200110222723.14724-1-michal.wajdeczko@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgQWRk?=
- =?utf-8?q?_ops_to_intel=5Fuc_=28rev4=29?=
+Content-Disposition: inline
+In-Reply-To: <20200110233902.154960-1-jose.souza@intel.com>
+User-Agent: Mutt/1.12.1 (2019-06-15)
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/dp/tgl+: Update combo phy vswing
+ tables
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,115 +46,168 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org,
+ Lucas De Marchi <lucas.demarchi@intel.com>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Fri, Jan 10, 2020 at 03:39:02PM -0800, Jos=E9 Roberto de Souza wrote:
+> TGL has now a table for RBR and HBR and another table for HBR2 over
+> combo phys. The HBR2 one has some small changes comparing to the ICL
+> one, so adding two new tables and adding a function to return TGL
+> combo phy tables.
+> =
 
-Series: Add ops to intel_uc (rev4)
-URL   : https://patchwork.freedesktop.org/series/70716/
-State : success
+> v2:
+> - reordered the tgl_combo_phy_ddi_translations_dp_hbr2 to reduce diff
+> (Matt)
+> - removed definition of rates, kept using raw number(Jani and Ville)
+> - changed code to use icl_get_combo_buf_trans() for non-DP as those
+> are equal between TGL and ICL(Matt)
+> =
 
-== Summary ==
+> BSpec: 49291
+> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+> Cc: Matt Roper <matthew.d.roper@intel.com>
+> Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> Cc: Jani Nikula <jani.nikula@intel.com>
+> Signed-off-by: Jos=E9 Roberto de Souza <jose.souza@intel.com>
 
-CI Bug Log - changes from CI_DRM_7721 -> Patchwork_16061
-====================================================
+Matches the spec.
 
-Summary
--------
+Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
 
-  **SUCCESS**
+> ---
+>  drivers/gpu/drm/i915/display/intel_ddi.c | 55 ++++++++++++++++++++++--
+>  1 file changed, 51 insertions(+), 4 deletions(-)
+> =
 
-  No regressions found.
+> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i=
+915/display/intel_ddi.c
+> index fbc13f36f76f..41c433cdf60c 100644
+> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+> @@ -622,6 +622,34 @@ static const struct tgl_dkl_phy_ddi_buf_trans tgl_dk=
+l_phy_hdmi_ddi_trans[] =3D {
+>  	{ 0x0, 0x0, 0xA },	/* 10		Full	-3 dB */
+>  };
+>  =
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16061/index.html
+> +static const struct cnl_ddi_buf_trans tgl_combo_phy_ddi_translations_dp_=
+hbr[] =3D {
+> +						/* NT mV Trans mV db    */
+> +	{ 0xA, 0x32, 0x3F, 0x00, 0x00 },	/* 350   350      0.0   */
+> +	{ 0xA, 0x4F, 0x37, 0x00, 0x08 },	/* 350   500      3.1   */
+> +	{ 0xC, 0x71, 0x2F, 0x00, 0x10 },	/* 350   700      6.0   */
+> +	{ 0x6, 0x7D, 0x2B, 0x00, 0x14 },	/* 350   900      8.2   */
+> +	{ 0xA, 0x4C, 0x3F, 0x00, 0x00 },	/* 500   500      0.0   */
+> +	{ 0xC, 0x73, 0x34, 0x00, 0x0B },	/* 500   700      2.9   */
+> +	{ 0x6, 0x7F, 0x2F, 0x00, 0x10 },	/* 500   900      5.1   */
+> +	{ 0xC, 0x6C, 0x3C, 0x00, 0x03 },	/* 650   700      0.6   */
+> +	{ 0x6, 0x7F, 0x35, 0x00, 0x0A },	/* 600   900      3.5   */
+> +	{ 0x6, 0x7F, 0x3F, 0x00, 0x00 },	/* 900   900      0.0   */
+> +};
+> +
+> +static const struct cnl_ddi_buf_trans tgl_combo_phy_ddi_translations_dp_=
+hbr2[] =3D {
+> +						/* NT mV Trans mV db    */
+> +	{ 0xA, 0x35, 0x3F, 0x00, 0x00 },	/* 350   350      0.0   */
+> +	{ 0xA, 0x4F, 0x37, 0x00, 0x08 },	/* 350   500      3.1   */
+> +	{ 0xC, 0x63, 0x2F, 0x00, 0x10 },	/* 350   700      6.0   */
+> +	{ 0x6, 0x7F, 0x2B, 0x00, 0x14 },	/* 350   900      8.2   */
+> +	{ 0xA, 0x47, 0x3F, 0x00, 0x00 },	/* 500   500      0.0   */
+> +	{ 0xC, 0x63, 0x34, 0x00, 0x0B },	/* 500   700      2.9   */
+> +	{ 0x6, 0x7F, 0x2F, 0x00, 0x10 },	/* 500   900      5.1   */
+> +	{ 0xC, 0x61, 0x3C, 0x00, 0x03 },	/* 650   700      0.6   */
+> +	{ 0x6, 0x7B, 0x35, 0x00, 0x0A },	/* 600   900      3.5   */
+> +	{ 0x6, 0x7F, 0x3F, 0x00, 0x00 },	/* 900   900      0.0   */
+> +};
+> +
+>  static const struct ddi_buf_trans *
+>  bdw_get_buf_trans_edp(struct drm_i915_private *dev_priv, int *n_entries)
+>  {
+> @@ -901,6 +929,21 @@ icl_get_combo_buf_trans(struct drm_i915_private *dev=
+_priv, int type, int rate,
+>  	return icl_combo_phy_ddi_translations_dp_hbr2;
+>  }
+>  =
 
-Known issues
-------------
+> +static const struct cnl_ddi_buf_trans *
+> +tgl_get_combo_buf_trans(struct drm_i915_private *dev_priv, int type, int=
+ rate,
+> +			int *n_entries)
+> +{
+> +	if (type !=3D INTEL_OUTPUT_DP) {
+> +		return icl_get_combo_buf_trans(dev_priv, type, rate, n_entries);
+> +	} else if (rate > 270000) {
+> +		*n_entries =3D ARRAY_SIZE(tgl_combo_phy_ddi_translations_dp_hbr2);
+> +		return tgl_combo_phy_ddi_translations_dp_hbr2;
+> +	}
+> +
+> +	*n_entries =3D ARRAY_SIZE(tgl_combo_phy_ddi_translations_dp_hbr);
+> +	return tgl_combo_phy_ddi_translations_dp_hbr;
+> +}
+> +
+>  static int intel_ddi_hdmi_level(struct drm_i915_private *dev_priv, enum =
+port port)
+>  {
+>  	struct ddi_vbt_port_info *port_info =3D &dev_priv->vbt.ddi_port_info[po=
+rt];
+> @@ -909,7 +952,7 @@ static int intel_ddi_hdmi_level(struct drm_i915_priva=
+te *dev_priv, enum port por
+>  =
 
-  Here are the changes found in Patchwork_16061 that come from known issues:
+>  	if (INTEL_GEN(dev_priv) >=3D 12) {
+>  		if (intel_phy_is_combo(dev_priv, phy))
+> -			icl_get_combo_buf_trans(dev_priv, INTEL_OUTPUT_HDMI,
+> +			tgl_get_combo_buf_trans(dev_priv, INTEL_OUTPUT_HDMI,
+>  						0, &n_entries);
+>  		else
+>  			n_entries =3D ARRAY_SIZE(tgl_dkl_phy_hdmi_ddi_trans);
+> @@ -2372,7 +2415,7 @@ u8 intel_ddi_dp_voltage_max(struct intel_encoder *e=
+ncoder)
+>  =
 
-### IGT changes ###
+>  	if (INTEL_GEN(dev_priv) >=3D 12) {
+>  		if (intel_phy_is_combo(dev_priv, phy))
+> -			icl_get_combo_buf_trans(dev_priv, encoder->type,
+> +			tgl_get_combo_buf_trans(dev_priv, encoder->type,
+>  						intel_dp->link_rate, &n_entries);
+>  		else
+>  			n_entries =3D ARRAY_SIZE(tgl_dkl_phy_dp_ddi_trans);
+> @@ -2567,8 +2610,12 @@ static void icl_ddi_combo_vswing_program(struct dr=
+m_i915_private *dev_priv,
+>  	u32 n_entries, val;
+>  	int ln;
+>  =
 
-#### Issues hit ####
+> -	ddi_translations =3D icl_get_combo_buf_trans(dev_priv, type, rate,
+> -						   &n_entries);
+> +	if (INTEL_GEN(dev_priv) >=3D 12)
+> +		ddi_translations =3D tgl_get_combo_buf_trans(dev_priv, type, rate,
+> +							   &n_entries);
+> +	else
+> +		ddi_translations =3D icl_get_combo_buf_trans(dev_priv, type, rate,
+> +							   &n_entries);
+>  	if (!ddi_translations)
+>  		return;
+>  =
 
-  * igt@i915_module_load@reload-with-fault-injection:
-    - fi-skl-6700k2:      [PASS][1] -> [INCOMPLETE][2] ([i915#671])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7721/fi-skl-6700k2/igt@i915_module_load@reload-with-fault-injection.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16061/fi-skl-6700k2/igt@i915_module_load@reload-with-fault-injection.html
+> -- =
 
-  * igt@i915_selftest@live_execlists:
-    - fi-skl-6770hq:      [PASS][3] -> [DMESG-FAIL][4] ([i915#841])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7721/fi-skl-6770hq/igt@i915_selftest@live_execlists.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16061/fi-skl-6770hq/igt@i915_selftest@live_execlists.html
-
-  * igt@i915_selftest@live_gem_contexts:
-    - fi-hsw-peppy:       [PASS][5] -> [DMESG-FAIL][6] ([i915#722])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7721/fi-hsw-peppy/igt@i915_selftest@live_gem_contexts.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16061/fi-hsw-peppy/igt@i915_selftest@live_gem_contexts.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_exec_gttfill@basic:
-    - {fi-ehl-1}:         [INCOMPLETE][7] ([i915#937]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7721/fi-ehl-1/igt@gem_exec_gttfill@basic.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16061/fi-ehl-1/igt@gem_exec_gttfill@basic.html
-
-  * igt@gem_render_linear_blits@basic:
-    - fi-icl-dsi:         [DMESG-WARN][9] ([i915#109]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7721/fi-icl-dsi/igt@gem_render_linear_blits@basic.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16061/fi-icl-dsi/igt@gem_render_linear_blits@basic.html
-
-  * igt@kms_chamelium@dp-edid-read:
-    - fi-kbl-7500u:       [FAIL][11] -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7721/fi-kbl-7500u/igt@kms_chamelium@dp-edid-read.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16061/fi-kbl-7500u/igt@kms_chamelium@dp-edid-read.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#109]: https://gitlab.freedesktop.org/drm/intel/issues/109
-  [i915#671]: https://gitlab.freedesktop.org/drm/intel/issues/671
-  [i915#722]: https://gitlab.freedesktop.org/drm/intel/issues/722
-  [i915#841]: https://gitlab.freedesktop.org/drm/intel/issues/841
-  [i915#937]: https://gitlab.freedesktop.org/drm/intel/issues/937
-
-
-Participating hosts (47 -> 41)
-------------------------------
-
-  Additional (5): fi-hsw-4770r fi-bdw-5557u fi-ilk-650 fi-snb-2520m fi-byt-n2820 
-  Missing    (11): fi-hsw-4200u fi-glk-dsi fi-byt-squawks fi-bwr-2160 fi-bsw-cyan fi-ctg-p8600 fi-blb-e6850 fi-tgl-y fi-byt-clapper fi-bsw-nick fi-snb-2600 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_7721 -> Patchwork_16061
-
-  CI-20190529: 20190529
-  CI_DRM_7721: 3a2436c56fcf2d133d701a112eb1e0dfce0b846d @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5364: b7cb6ffdb65cbd233f5ddee2f2dabf97b34fa640 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_16061: ab06f9906171849a5fc250a85df38475c9058094 @ git://anongit.freedesktop.org/gfx-ci/linux
+> 2.24.1
+> =
 
 
-== Linux commits ==
+-- =
 
-ab06f9906171 drm/i915/uc: Add sanitize to to intel_uc_ops
-cb2532cf174b drm/i915/uc: Add init/fini to to intel_uc_ops
-f899ba846e7d drm/i915/uc: Add init_fw/fini_fw to to intel_uc_ops
-2e1f188d8ce3 drm/i915/uc: Add ops to intel_uc
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16061/index.html
+Matt Roper
+Graphics Software Engineer
+VTT-OSGC Platform Enablement
+Intel Corporation
+(916) 356-2795
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
