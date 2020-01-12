@@ -2,30 +2,47 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE2DB13841B
-	for <lists+intel-gfx@lfdr.de>; Sun, 12 Jan 2020 00:43:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4DBE1138470
+	for <lists+intel-gfx@lfdr.de>; Sun, 12 Jan 2020 02:45:01 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DA23D89125;
-	Sat, 11 Jan 2020 23:43:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2D7BF6E2B4;
+	Sun, 12 Jan 2020 01:44:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 4DDFE89125;
- Sat, 11 Jan 2020 23:43:28 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 3D94FA0134;
- Sat, 11 Jan 2020 23:43:28 +0000 (UTC)
-MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
-Date: Sat, 11 Jan 2020 23:43:28 -0000
-Message-ID: <157878620822.16374.7269865606160116537@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200111231114.59208-1-michal.wajdeczko@intel.com>
-In-Reply-To: <20200111231114.59208-1-michal.wajdeczko@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgTWlz?=
- =?utf-8?q?c_GuC_CT_improvements?=
+Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 702CD6E2B4
+ for <intel-gfx@lists.freedesktop.org>; Sun, 12 Jan 2020 01:44:56 +0000 (UTC)
+Received: from devnote2 (NE2965lan1.rev.em-net.ne.jp [210.141.244.193])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by mail.kernel.org (Postfix) with ESMTPSA id 8B06520848;
+ Sun, 12 Jan 2020 01:44:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=default; t=1578793495;
+ bh=be5/qvDI0xWmWfszMbPxV2+iE40FAvtbAVatuYqBdFU=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+ b=f0hoRGlul2fyhkOOcYf1vS5xKaAldIjyYI8U8Uba9sbzBzlr3WwBUMp4wsLy5lJdJ
+ XmmdHCMtMDQduupcXI0Mw4zH29CkC4uugIayLSeHFJMxGogQNV1b79k9XvjtJOogU9
+ 4tM2vpzf/obL6Rvpm4tCnfNHWY7gk7jjptMstCSE=
+Date: Sun, 12 Jan 2020 10:44:46 +0900
+From: Masami Hiramatsu <mhiramat@kernel.org>
+To: arnaldo.melo@gmail.com
+Message-Id: <20200112104446.f667df82b061dfb9c7a6bdce@kernel.org>
+In-Reply-To: <5e191833.1c69fb81.8bc25.a88c@mx.google.com>
+References: <c0460c78-b1a6-b5f7-7119-d97e5998f308@linux.intel.com>
+ <c93309dc-b920-f5fa-f997-e8b2faf47b88@linux.intel.com>
+ <20200108160713.GI2844@hirez.programming.kicks-ass.net>
+ <cc239899-5c52-2fd0-286d-4bff18877937@linux.intel.com>
+ <20200110140234.GO2844@hirez.programming.kicks-ass.net>
+ <20200111005213.6dfd98fb36ace098004bde0e@kernel.org>
+ <20200110164531.GA2598@kernel.org>
+ <20200111084735.0ff01c758bfbfd0ae2e1f24e@kernel.org>
+ <2B79131A-3F76-47F5-AAB4-08BCA820473F@fb.com>
+ <5e191833.1c69fb81.8bc25.a88c@mx.google.com>
+X-Mailer: Sylpheed 3.5.1 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+Mime-Version: 1.0
+Subject: Re: [Intel-gfx] [PATCH v4 2/9] perf/core: open access for
+ CAP_SYS_PERFMON privileged process
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,121 +55,123 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: , Mark Rutland <mark.rutland@arm.com>, Song Liu <songliubraving@fb.com>,
+ Peter Zijlstra <peterz@infradead.org>,
+ Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+ Will Deacon <will.deacon@arm.com>, Alexei Starovoitov <ast@kernel.org>,
+ Stephane Eranian <eranian@google.com>, james.bottomley@hansenpartnership.com,
+ Paul Mackerras <paulus@samba.org>, Jiri Olsa <jolsa@redhat.com>,
+ Andi Kleen <ak@linux.intel.com>, Michael Ellerman <mpe@ellerman.id.au>,
+ Igor Lubashev <ilubashe@akamai.com>, James Morris <jmorris@namei.org>,
+ Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+ Ingo Molnar <mingo@redhat.com>,
+ "oprofile-list@lists.sf.net" <oprofile-list@lists.sf.net>,
+ Serge Hallyn <serge@hallyn.com>, Robert Richter <rric@kernel.org>,
+ Kees Cook <keescook@chromium.org>, Jann Horn <jannh@google.com>,
+ "selinux@vger.kernel.org" <selinux@vger.kernel.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ Namhyung Kim <namhyung@kernel.org>, Thomas Gleixner <tglx@linutronix.de>,
+ "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+ "linux-parisc@vger.kernel.org" <linux-parisc@vger.kernel.org>,
+ linux-kernel <linux-kernel@vger.kernel.org>,
+ "linux-perf-users@vger.kernel.org" <linux-perf-users@vger.kernel.org>,
+ "linux-security-module@vger.kernel.org"
+ <linux-security-module@vger.kernel.org>,
+ Casey Schaufler <casey@schaufler-ca.com>,
+ "bpf@vger.kernel.org" <bpf@vger.kernel.org>,
+ "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Fri, 10 Jan 2020 21:35:12 -0300
+arnaldo.melo@gmail.com wrote:
 
-Series: Misc GuC CT improvements
-URL   : https://patchwork.freedesktop.org/series/71927/
-State : success
+> <keescook@chromium.org>,Jann Horn <jannh@google.com>,Thomas Gleixner <tglx@linutronix.de>,Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,Lionel Landwerlin <lionel.g.landwerlin@intel.com>,linux-kernel <linux-kernel@vger.kernel.org>,"linux-security-module@vger.kernel.org" <linux-security-module@vger.kernel.org>,"selinux@vger.kernel.org" <selinux@vger.kernel.org>,"intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,"bpf@vger.kernel.org" <bpf@vger.kernel.org>,"linux-parisc@vger.kernel.org" <linux-parisc@vger.kernel.org>,"linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>,"linux-perf-users@vger.kernel.org" <linux-perf-users@vger.kernel.org>,"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,"oprofile-list@lists.sf.net" <oprofile-list@lists.sf.net>
+> From: Arnaldo Carvalho de Melo <acme@kernel.org>
+> Message-ID: <A7F0BF73-9189-44BA-9264-C88F2F51CBF3@kernel.org>
+> 
+> On January 10, 2020 9:23:27 PM GMT-03:00, Song Liu <songliubraving@fb.com> wrote:
+> >
+> >
+> >> On Jan 10, 2020, at 3:47 PM, Masami Hiramatsu <mhiramat@kernel.org>
+> >wrote:
+> >> 
+> >> On Fri, 10 Jan 2020 13:45:31 -0300
+> >> Arnaldo Carvalho de Melo <acme@kernel.org> wrote:
+> >> 
+> >>> Em Sat, Jan 11, 2020 at 12:52:13AM +0900, Masami Hiramatsu escreveu:
+> >>>> On Fri, 10 Jan 2020 15:02:34 +0100 Peter Zijlstra
+> ><peterz@infradead.org> wrote:
+> >>>>> Again, this only allows attaching to previously created kprobes,
+> >it does
+> >>>>> not allow creating kprobes, right?
+> >>> 
+> >>>>> That is; I don't think CAP_SYS_PERFMON should be allowed to create
+> >>>>> kprobes.
+> >>> 
+> >>>>> As might be clear; I don't actually know what the user-ABI is for
+> >>>>> creating kprobes.
+> >>> 
+> >>>> There are 2 ABIs nowadays, ftrace and ebpf. perf-probe uses ftrace
+> >interface to
+> >>>> define new kprobe events, and those events are treated as
+> >completely same as
+> >>>> tracepoint events. On the other hand, ebpf tries to define new
+> >probe event
+> >>>> via perf_event interface. Above one is that interface. IOW, it
+> >creates new kprobe.
+> >>> 
+> >>> Masami, any plans to make 'perf probe' use the perf_event_open()
+> >>> interface for creating kprobes/uprobes?
+> >> 
+> >> Would you mean perf probe to switch to perf_event_open()?
+> >> No, perf probe is for setting up the ftrace probe events. I think we
+> >can add an
+> >> option to use perf_event_open(). But current kprobe creation from
+> >perf_event_open()
+> >> is separated from ftrace by design.
+> >
+> >I guess we can extend event parser to understand kprobe directly.
+> >Instead of
+> >
+> >	perf probe kernel_func
+> >	perf stat/record -e probe:kernel_func ...
+> >
+> >We can just do 
+> >
+> >	perf stat/record -e kprobe:kernel_func ...
+> 
+> 
+> You took the words from my mouth, exactly, that is a perfect use case, an alternative to the 'perf probe' one of making a disabled event that then gets activated via record/stat/trace, in many cases it's better, removes the explicit probe setup case.
 
-== Summary ==
+Ah, I got it. If the perf event parser just kicks perf's kprobe creation
+interface, it will be easy. In that case, there should be following differences.
 
-CI Bug Log - changes from CI_DRM_7725 -> Patchwork_16067
-====================================================
+- perf * -e "kprobe":kernel_func will put a local (hidden) kprobe
+  events. So ftrace user can not access it.
+- perf * -e "kprobe":kernel_func may not support inline/function-body
+  nor trace local variables etc.
 
-Summary
--------
+Hm, if we support inline function via -e "kprobe" interface, we have to
+expand perf_event_open() to support multi-probe event.
 
-  **SUCCESS**
+Thanks,
 
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16067/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_16067 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_module_load@reload-with-fault-injection:
-    - fi-skl-lmem:        [PASS][1] -> [INCOMPLETE][2] ([i915#671])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7725/fi-skl-lmem/igt@i915_module_load@reload-with-fault-injection.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16067/fi-skl-lmem/igt@i915_module_load@reload-with-fault-injection.html
-
-  * igt@i915_selftest@live_blt:
-    - fi-hsw-4770r:       [PASS][3] -> [DMESG-FAIL][4] ([i915#563])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7725/fi-hsw-4770r/igt@i915_selftest@live_blt.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16067/fi-hsw-4770r/igt@i915_selftest@live_blt.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_close_race@basic-threads:
-    - fi-byt-n2820:       [TIMEOUT][5] ([i915#816]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7725/fi-byt-n2820/igt@gem_close_race@basic-threads.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16067/fi-byt-n2820/igt@gem_close_race@basic-threads.html
-
-  * igt@gem_exec_fence@basic-wait-default:
-    - {fi-ehl-1}:         [INCOMPLETE][7] ([i915#937] / [i915#949]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7725/fi-ehl-1/igt@gem_exec_fence@basic-wait-default.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16067/fi-ehl-1/igt@gem_exec_fence@basic-wait-default.html
-
-  * igt@gem_render_linear_blits@basic:
-    - fi-icl-dsi:         [DMESG-WARN][9] ([i915#109]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7725/fi-icl-dsi/igt@gem_render_linear_blits@basic.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16067/fi-icl-dsi/igt@gem_render_linear_blits@basic.html
-
-  
-#### Warnings ####
-
-  * igt@i915_selftest@live_blt:
-    - fi-hsw-4770:        [DMESG-FAIL][11] ([i915#553] / [i915#725]) -> [DMESG-FAIL][12] ([i915#563])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7725/fi-hsw-4770/igt@i915_selftest@live_blt.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16067/fi-hsw-4770/igt@i915_selftest@live_blt.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#109]: https://gitlab.freedesktop.org/drm/intel/issues/109
-  [i915#553]: https://gitlab.freedesktop.org/drm/intel/issues/553
-  [i915#563]: https://gitlab.freedesktop.org/drm/intel/issues/563
-  [i915#671]: https://gitlab.freedesktop.org/drm/intel/issues/671
-  [i915#725]: https://gitlab.freedesktop.org/drm/intel/issues/725
-  [i915#816]: https://gitlab.freedesktop.org/drm/intel/issues/816
-  [i915#937]: https://gitlab.freedesktop.org/drm/intel/issues/937
-  [i915#949]: https://gitlab.freedesktop.org/drm/intel/issues/949
-
-
-Participating hosts (43 -> 38)
-------------------------------
-
-  Additional (4): fi-byt-j1900 fi-glk-dsi fi-kbl-7500u fi-snb-2600 
-  Missing    (9): fi-hsw-4200u fi-hsw-peppy fi-skl-6770hq fi-byt-squawks fi-ctg-p8600 fi-gdg-551 fi-elk-e7500 fi-kbl-7560u fi-byt-clapper 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_7725 -> Patchwork_16067
-
-  CI-20190529: 20190529
-  CI_DRM_7725: 122b7c0d39d109d83b44be0ed515e53d39bfc0fa @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5364: b7cb6ffdb65cbd233f5ddee2f2dabf97b34fa640 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_16067: 78fc81508a2aedd739a4e8f4d317d12a9204345d @ git://anongit.freedesktop.org/gfx-ci/linux
+> 
+> Regards, 
+> 
+> - Arnaldo
+> 
+> >
+> >Thanks,
+> >Song
+> 
 
 
-== Linux commits ==
-
-78fc81508a2a drm/i915/guc: Use correct name for last CT fence
-e65db0f0de6a drm/i915/guc: Update CTB helpers to use CT_ERROR
-3de4fca5641b drm/i915/guc: Introduce CT_ERROR
-fcb6ad56e500 drm/i915/guc: Simpler CT message size calculation
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16067/index.html
+-- 
+Masami Hiramatsu <mhiramat@kernel.org>
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
