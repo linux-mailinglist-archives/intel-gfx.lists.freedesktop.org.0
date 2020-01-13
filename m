@@ -1,32 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C31F7139378
-	for <lists+intel-gfx@lfdr.de>; Mon, 13 Jan 2020 15:17:05 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 47C08139393
+	for <lists+intel-gfx@lfdr.de>; Mon, 13 Jan 2020 15:21:14 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 284A689EAE;
-	Mon, 13 Jan 2020 14:17:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1A3716E0C2;
+	Mon, 13 Jan 2020 14:21:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F2D0789E9B
- for <intel-gfx@lists.freedesktop.org>; Mon, 13 Jan 2020 14:17:01 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4E4A46E0BA
+ for <intel-gfx@lists.freedesktop.org>; Mon, 13 Jan 2020 14:20:45 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
-Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19862433-1500050 
- for multiple; Mon, 13 Jan 2020 14:16:54 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon, 13 Jan 2020 14:16:53 +0000
-Message-Id: <20200113141653.1868621-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.25.0.rc2
-In-Reply-To: <20200113140715.1868017-1-chris@chris-wilson.co.uk>
-References: <20200113140715.1868017-1-chris@chris-wilson.co.uk>
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 19862497-1500050 for multiple; Mon, 13 Jan 2020 14:20:42 +0000
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v2] drm/i915: More proactive timeline retirement
- before new requests
+To: =?utf-8?b?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+From: Chris Wilson <chris@chris-wilson.co.uk>
+In-Reply-To: <20200113140923.GP13686@intel.com>
+References: <20200113132614.1820518-1-chris@chris-wilson.co.uk>
+ <20200113132956.1832986-1-chris@chris-wilson.co.uk>
+ <20200113140923.GP13686@intel.com>
+Message-ID: <157892524040.27314.11204120152369693882@skylake-alporthouse-com>
+User-Agent: alot/0.6
+Date: Mon, 13 Jan 2020 14:20:40 +0000
+Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/gt: Sanitize and reset GPU
+ before removing powercontext
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,121 +41,82 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Currently, we only retire the oldest request on the timeline before
-allocating the next, but only if there is a spare request. However,
-since we rearranged the locking, e.g.  commit df9f85d8582e ("drm/i915:
-Serialise i915_active_fence_set() with itself"), we no longer benefit
-from keeping the active chain intact underneath the struct_mutex. As
-such, retire all completed requests in the client's timeline before
-creating the next, trying to keep our memory and resource usage tight
-and ideally only penalising the heavy users.
-
-v2: Keep a retire after submission to try and keep the amount of work
-before the next submission to a minimum.
-
-References: df9f85d8582e ("drm/i915: Serialise i915_active_fence_set() with itself")
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
----
- drivers/gpu/drm/i915/i915_request.c | 57 +++++++----------------------
- 1 file changed, 13 insertions(+), 44 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
-index 9ed0d3bc7249..70f5010e89f5 100644
---- a/drivers/gpu/drm/i915/i915_request.c
-+++ b/drivers/gpu/drm/i915/i915_request.c
-@@ -556,31 +556,20 @@ static void retire_requests(struct intel_timeline *tl)
- static noinline struct i915_request *
- request_alloc_slow(struct intel_timeline *tl, gfp_t gfp)
- {
--	struct i915_request *rq;
--
--	if (list_empty(&tl->requests))
--		goto out;
--
- 	if (!gfpflags_allow_blocking(gfp))
--		goto out;
-+		return NULL;
- 
--	/* Move our oldest request to the slab-cache (if not in use!) */
--	rq = list_first_entry(&tl->requests, typeof(*rq), link);
--	i915_request_retire(rq);
-+	if (!list_empty(&tl->requests)) {
-+		struct i915_request *rq;
- 
--	rq = kmem_cache_alloc(global.slab_requests,
--			      gfp | __GFP_RETRY_MAYFAIL | __GFP_NOWARN);
--	if (rq)
--		return rq;
-+		/* Ratelimit ourselves to prevent oom from malicious clients */
-+		rq = list_last_entry(&tl->requests, typeof(*rq), link);
-+		cond_synchronize_rcu(rq->rcustate);
- 
--	/* Ratelimit ourselves to prevent oom from malicious clients */
--	rq = list_last_entry(&tl->requests, typeof(*rq), link);
--	cond_synchronize_rcu(rq->rcustate);
--
--	/* Retire our old requests in the hope that we free some */
--	retire_requests(tl);
-+		/* Retire our old requests in the hope that we free some */
-+		retire_requests(tl);
-+	}
- 
--out:
- 	return kmem_cache_alloc(global.slab_requests, gfp);
- }
- 
-@@ -739,9 +728,7 @@ i915_request_create(struct intel_context *ce)
- 		return ERR_CAST(tl);
- 
- 	/* Move our oldest request to the slab-cache (if not in use!) */
--	rq = list_first_entry(&tl->requests, typeof(*rq), link);
--	if (!list_is_last(&rq->link, &tl->requests))
--		i915_request_retire(rq);
-+	retire_requests(tl);
- 
- 	intel_context_enter(ce);
- 	rq = __i915_request_create(ce, GFP_KERNEL);
-@@ -1344,27 +1331,9 @@ void i915_request_add(struct i915_request *rq)
- 	__i915_request_queue(rq, &attr);
- 	local_bh_enable(); /* Kick the execlists tasklet if just scheduled */
- 
--	/*
--	 * In typical scenarios, we do not expect the previous request on
--	 * the timeline to be still tracked by timeline->last_request if it
--	 * has been completed. If the completed request is still here, that
--	 * implies that request retirement is a long way behind submission,
--	 * suggesting that we haven't been retiring frequently enough from
--	 * the combination of retire-before-alloc, waiters and the background
--	 * retirement worker. So if the last request on this timeline was
--	 * already completed, do a catch up pass, flushing the retirement queue
--	 * up to this client. Since we have now moved the heaviest operations
--	 * during retirement onto secondary workers, such as freeing objects
--	 * or contexts, retiring a bunch of requests is mostly list management
--	 * (and cache misses), and so we should not be overly penalizing this
--	 * client by performing excess work, though we may still performing
--	 * work on behalf of others -- but instead we should benefit from
--	 * improved resource management. (Well, that's the theory at least.)
--	 */
--	if (prev &&
--	    i915_request_completed(prev) &&
--	    rcu_access_pointer(prev->timeline) == tl)
--		i915_request_retire_upto(prev);
-+	/* Try to clean up the client's timeline after submitting the request */
-+	if (prev)
-+		retire_requests(tl);
- 
- 	mutex_unlock(&tl->mutex);
- }
--- 
-2.25.0.rc2
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+UXVvdGluZyBWaWxsZSBTeXJqw6Rsw6QgKDIwMjAtMDEtMTMgMTQ6MDk6MjMpCj4gT24gTW9uLCBK
+YW4gMTMsIDIwMjAgYXQgMDE6Mjk6NTZQTSArMDAwMCwgQ2hyaXMgV2lsc29uIHdyb3RlOgo+ID4g
+QXMgYSBmaW5hbCBwYXJhbm9pZCBzdGVwICh3ZSBfc2hvdWxkXyBoYXZlIHJlc2V0IHRoZSBHUFUg
+b24gc3VzcGVuZGluZwo+ID4gdGhlIGRldmljZSBwcmlvciB0byB1bmxvYWQpLCByZXNldCB0aGUg
+R1BVIG9uY2UgbW9yZSBiZWZvcmUgcmVtb3ZpbmcgdGhlCj4gPiBwb3dlcmNvbnRleHQgYW5kIG90
+aGVyIHJlbGF0ZWQgcG93ZXIgc2F2aW5nIHBhcmFwaGVybmFsaWEuCj4gPiAKPiA+IEEgY2x1ZSB0
+aGF0IHRoaXMgbWF5IG5vdCBiZSB0aGUgY2FzZSBpcwo+ID4gCj4gPiA8Nz4gWzMxMy4yMDM3MjFd
+IF9faW50ZWxfZ3Rfc2V0X3dlZGdlZCByY3MnMAo+ID4gPDc+IFszMTMuMjAzNzQ2XSBfX2ludGVs
+X2d0X3NldF93ZWRnZWQgICAgICAgIEF3YWtlPyAzCj4gPiA8Nz4gWzMxMy4yMDM3NTFdIF9faW50
+ZWxfZ3Rfc2V0X3dlZGdlZCAgICAgICAgQmFycmllcnM/OiBubwo+ID4gPDc+IFszMTMuMjAzNzU2
+XSBfX2ludGVsX2d0X3NldF93ZWRnZWQgICAgICAgIExhdGVuY3k6IDB1cwo+ID4gPDc+IFszMTMu
+MjAzNzYyXSBfX2ludGVsX2d0X3NldF93ZWRnZWQgICAgICAgIFJlc2V0IGNvdW50OiAwIChnbG9i
+YWwgMCkKPiA+IDw3PiBbMzEzLjIwMzc2Nl0gX19pbnRlbF9ndF9zZXRfd2VkZ2VkICAgICAgICBS
+ZXF1ZXN0czoKPiA+IDw3PiBbMzEzLjIwMzc4NV0gX19pbnRlbF9ndF9zZXRfd2VkZ2VkICAgICAg
+ICBNTUlPIGJhc2U6ICAweDAwMDAyMDAwCj4gPiA8Nz4gWzMxMy4yMDM4MTldIF9faW50ZWxfZ3Rf
+c2V0X3dlZGdlZCAgICAgICAgUklOR19TVEFSVDogMHgwMDAwMDAwMAo+ID4gPDc+IFszMTMuMjAz
+ODI2XSBfX2ludGVsX2d0X3NldF93ZWRnZWQgICAgICAgIFJJTkdfSEVBRDogIDB4MDAwMDAwMDAK
+PiA+IDw3PiBbMzEzLjIwMzgzM10gX19pbnRlbF9ndF9zZXRfd2VkZ2VkICAgICAgICBSSU5HX1RB
+SUw6ICAweDAwMDAwMDAwCj4gPiA8Nz4gWzMxMy4yMDM4NDRdIF9faW50ZWxfZ3Rfc2V0X3dlZGdl
+ZCAgICAgICAgUklOR19DVEw6ICAgMHgwMDAwMDAwMAo+ID4gPDc+IFszMTMuMjAzODU0XSBfX2lu
+dGVsX2d0X3NldF93ZWRnZWQgICAgICAgIFJJTkdfTU9ERTogIDB4MDAwMDAwMDAKPiA+IDw3PiBb
+MzEzLjIwMzg2MV0gX19pbnRlbF9ndF9zZXRfd2VkZ2VkICAgICAgICBSSU5HX0lNUjogZmZmZmZl
+ZmUKPiA+IDw3PiBbMzEzLjIwMzg3NV0gX19pbnRlbF9ndF9zZXRfd2VkZ2VkICAgICAgICBBQ1RI
+RDogIDB4MDAwMDAwMDBfMDAwMDAwMDAKPiA+IDw3PiBbMzEzLjIwMzg4OF0gX19pbnRlbF9ndF9z
+ZXRfd2VkZ2VkICAgICAgICBCQkFERFI6IDB4MDAwMDAwMDBfMDAwMDAwMDAKPiA+IDw3PiBbMzEz
+LjIwMzkwMV0gX19pbnRlbF9ndF9zZXRfd2VkZ2VkICAgICAgICBETUFfRkFERFI6IDB4MDAwMDAw
+MDBfMDAwMDAwMDAKPiA+IDw3PiBbMzEzLjIwMzkwOV0gX19pbnRlbF9ndF9zZXRfd2VkZ2VkICAg
+ICAgICBJUEVJUjogMHgwMDAwMDAwMAo+ID4gPDc+IFszMTMuMjAzOTE2XSBfX2ludGVsX2d0X3Nl
+dF93ZWRnZWQgICAgICAgIElQRUhSOiAweGNjY2NjY2NjCj4gPiA8Nz4gWzMxMy4yMDM5MjFdIF9f
+aW50ZWxfZ3Rfc2V0X3dlZGdlZCAgICAgICAgRXhlY2xpc3QgdGFza2xldCBxdWV1ZWQ/IG5vIChl
+bmFibGVkKSwgcHJlZW1wdD8gaW5hY3RpdmUsIHRpbWVzbGljZT8gaW5hY3RpdmUKPiA+IDw3PiBb
+MzEzLjIwMzkzMl0gX19pbnRlbF9ndF9zZXRfd2VkZ2VkICAgICAgICBFeGVjbGlzdCBzdGF0dXM6
+IDB4MDAwNDQwMzIgMDAwMDAwMjA7IENTQiByZWFkOjUsIHdyaXRlOjAsIGVudHJpZXM6Ngo+ID4g
+PDc+IFszMTMuMjAzOTM3XSBfX2ludGVsX2d0X3NldF93ZWRnZWQgICAgICAgIEV4ZWNsaXN0IENT
+QlswXTogMHgwMDAwMDAwMSwgY29udGV4dDogMAo+ID4gPDc+IFszMTMuMjAzOTUyXSBfX2ludGVs
+X2d0X3NldF93ZWRnZWQgICAgICAgICAgICAgICAgUGVuZGluZ1swXSByaW5nOntzdGFydDowMDBj
+NDAwMCwgaHdzcDpmZWRmYzAwMCwgc2Vxbm86MDAwMDAwMDB9LCBycTogIDQwMmU6Mi0gIHByaW89
+MjE0NzQ4MzY0NyBAIDIwN21zOiBbaTkxNV0KPiA+IDw3PiBbMzEzLjIwMzk4M10gX19pbnRlbF9n
+dF9zZXRfd2VkZ2VkICAgICAgICAgICAgICAgIEUgIDQwMmU6Mi0gIHByaW89MjE0NzQ4MzY0NyBA
+IDIwN21zOiBbaTkxNV0KPiA+IDw3PiBbMzEzLjIwNDAwNl0gX19pbnRlbF9ndF9zZXRfd2VkZ2Vk
+ICAgICAgICAgICAgICAgIFF1ZXVlIHByaW9yaXR5IGhpbnQ6IDMKPiA+IAo+ID4gZHVyaW5nIHJh
+cGlkIGZhdWx0LWluamVjdGlvbiByZWxvYWRzLiAweGNjIGlzIFBPSVNPTl9GUkVFX0lOSVQgd2hp
+Y2gKPiA+IHN1Z2dlc3RzIHRoYXQgdGhlIHN5c3RlbSBjbGVhcmVkIHRoZSBwYWdlcyBvbiBpbml0
+aWFsaXNhdGlvbiBhcyB0aGV5IGFyZQo+ID4gc3RpbGwgYmVpbmcgdXNlZCBmcm9tIHRoZSBwcmV2
+aW91cyBtb2R1bGUgbG9hZC4KPiA+IAo+ID4gRGVzcGl0ZSB0aGF0IHdlIGFsc28gaGF2ZSBhIGNv
+dXBsZSBvZiBHUFUgcmVzZXRzIHByaW9yIHRvIHRoaXMuLi4KPiA+IEkgaGF2ZSBhIHNuZWFreSBz
+dXNwaWNpb24gdGhhdCBtYXkgYmUgYSBHdUMgYXJ0aWZhY3QuCj4gPiAKPiA+IFNpZ25lZC1vZmYt
+Ynk6IENocmlzIFdpbHNvbiA8Y2hyaXNAY2hyaXMtd2lsc29uLmNvLnVrPgo+ID4gQ2M6IEFuZGkg
+U2h5dGkgPGFuZGkuc2h5dGlAaW50ZWwuY29tPgo+ID4gQ2M6IE1pa2EgS3VvcHBhbGEgPG1pa2Eu
+a3VvcHBhbGFAbGludXguaW50ZWwuY29tPgo+ID4gCj4gPiBkcm0vaTkxNS9ndDogTGlmdCBjbGVh
+cmluZyBHVCB3ZWRnZWQgb3V0IG9mIGd0X3Nhbml0aXplCj4gPiAKPiA+IFdlIG9ubHkgd2FudCB0
+byB0cnkgYW5kIHJlc2V0IGEgd2VkZ2VkIGRldmljZSBvbiByZXN1bWUsIG5vdCBiZWZvcmUKPiA+
+IHN1c3BlbmQsIHNvIGxpZnQgdGhlIHJlY292ZXJ5IG91dCBvZiB0aGUgY29tbW9udCBndF9zYW5p
+dGl6ZSgpLgo+ID4gCj4gPiBTaWduZWQtb2ZmLWJ5OiBDaHJpcyBXaWxzb24gPGNocmlzQGNocmlz
+LXdpbHNvbi5jby51az4KPiA+IENjOiBBbmRpIFNoeXRpIDxhbmRpLnNoeXRpQGludGVsLmNvbT4K
+PiA+IENjOiBNaWthIEt1b3BwYWxhIDxtaWthLmt1b3BwYWxhQGxpbnV4LmludGVsLmNvbT4KPiA+
+IC0tLQo+ID4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX2d0X3BtLmMgfCA1NiArKysr
+KysrKysrKy0tLS0tLS0tLS0tLS0tLS0KPiA+ICAxIGZpbGUgY2hhbmdlZCwgMjIgaW5zZXJ0aW9u
+cygrKSwgMzQgZGVsZXRpb25zKC0pCj4gPiAKPiA+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9k
+cm0vaTkxNS9ndC9pbnRlbF9ndF9wbS5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxf
+Z3RfcG0uYwo+ID4gaW5kZXggZDFjMmYwMzQyOTZhLi4wOWE3OGQ3NjdlMjQgMTAwNjQ0Cj4gPiAt
+LS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRlbF9ndF9wbS5jCj4gPiArKysgYi9kcml2
+ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRlbF9ndF9wbS5jCj4gPiBAQCAtMTE4LDM2ICsxMTgsMTYg
+QEAgdm9pZCBpbnRlbF9ndF9wbV9pbml0KHN0cnVjdCBpbnRlbF9ndCAqZ3QpCj4gPiAgICAgICBp
+bnRlbF9ycHNfaW5pdCgmZ3QtPnJwcyk7Cj4gPiAgfQo+ID4gIAo+ID4gLXN0YXRpYyBib29sIHJl
+c2V0X2VuZ2luZXMoc3RydWN0IGludGVsX2d0ICpndCkKPiA+ICtzdGF0aWMgdm9pZCByZXNldF9l
+bmdpbmVzKHN0cnVjdCBpbnRlbF9ndCAqZ3QpCj4gPiAgewo+ID4gICAgICAgaWYgKElOVEVMX0lO
+Rk8oZ3QtPmk5MTUpLT5ncHVfcmVzZXRfY2xvYmJlcnNfZGlzcGxheSkKPiAKPiBTaG91bGQgdGhh
+dCBiZSBhICFncHVfcmVzZXRfY2xvYmJlcnNfZGlzcGxheSBub3c/CgpIZWguIFllcy4gRmFyIHRv
+byBtYW55IG1pc3Rha2VzIHRvZGF5LgotQ2hyaXMKX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4v
+bGlzdGluZm8vaW50ZWwtZ2Z4Cg==
