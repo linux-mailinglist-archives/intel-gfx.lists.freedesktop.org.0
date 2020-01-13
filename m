@@ -1,34 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 47C08139393
-	for <lists+intel-gfx@lfdr.de>; Mon, 13 Jan 2020 15:21:14 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2AD8C1393A5
+	for <lists+intel-gfx@lfdr.de>; Mon, 13 Jan 2020 15:27:11 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1A3716E0C2;
-	Mon, 13 Jan 2020 14:21:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 954C46E0D5;
+	Mon, 13 Jan 2020 14:27:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4E4A46E0BA
- for <intel-gfx@lists.freedesktop.org>; Mon, 13 Jan 2020 14:20:45 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 818286E0D5
+ for <intel-gfx@lists.freedesktop.org>; Mon, 13 Jan 2020 14:27:07 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 19862497-1500050 for multiple; Mon, 13 Jan 2020 14:20:42 +0000
-MIME-Version: 1.0
-To: =?utf-8?b?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19862543-1500050 
+ for multiple; Mon, 13 Jan 2020 14:26:32 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
-In-Reply-To: <20200113140923.GP13686@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon, 13 Jan 2020 14:26:30 +0000
+Message-Id: <20200113142630.1879666-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.25.0.rc2
+In-Reply-To: <20200113132614.1820518-1-chris@chris-wilson.co.uk>
 References: <20200113132614.1820518-1-chris@chris-wilson.co.uk>
- <20200113132956.1832986-1-chris@chris-wilson.co.uk>
- <20200113140923.GP13686@intel.com>
-Message-ID: <157892524040.27314.11204120152369693882@skylake-alporthouse-com>
-User-Agent: alot/0.6
-Date: Mon, 13 Jan 2020 14:20:40 +0000
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/gt: Sanitize and reset GPU
- before removing powercontext
+MIME-Version: 1.0
+Subject: [Intel-gfx] [PATCH v3] drm/i915/gt: Sanitize and reset GPU before
+ removing powercontext
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,82 +39,174 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-UXVvdGluZyBWaWxsZSBTeXJqw6Rsw6QgKDIwMjAtMDEtMTMgMTQ6MDk6MjMpCj4gT24gTW9uLCBK
-YW4gMTMsIDIwMjAgYXQgMDE6Mjk6NTZQTSArMDAwMCwgQ2hyaXMgV2lsc29uIHdyb3RlOgo+ID4g
-QXMgYSBmaW5hbCBwYXJhbm9pZCBzdGVwICh3ZSBfc2hvdWxkXyBoYXZlIHJlc2V0IHRoZSBHUFUg
-b24gc3VzcGVuZGluZwo+ID4gdGhlIGRldmljZSBwcmlvciB0byB1bmxvYWQpLCByZXNldCB0aGUg
-R1BVIG9uY2UgbW9yZSBiZWZvcmUgcmVtb3ZpbmcgdGhlCj4gPiBwb3dlcmNvbnRleHQgYW5kIG90
-aGVyIHJlbGF0ZWQgcG93ZXIgc2F2aW5nIHBhcmFwaGVybmFsaWEuCj4gPiAKPiA+IEEgY2x1ZSB0
-aGF0IHRoaXMgbWF5IG5vdCBiZSB0aGUgY2FzZSBpcwo+ID4gCj4gPiA8Nz4gWzMxMy4yMDM3MjFd
-IF9faW50ZWxfZ3Rfc2V0X3dlZGdlZCByY3MnMAo+ID4gPDc+IFszMTMuMjAzNzQ2XSBfX2ludGVs
-X2d0X3NldF93ZWRnZWQgICAgICAgIEF3YWtlPyAzCj4gPiA8Nz4gWzMxMy4yMDM3NTFdIF9faW50
-ZWxfZ3Rfc2V0X3dlZGdlZCAgICAgICAgQmFycmllcnM/OiBubwo+ID4gPDc+IFszMTMuMjAzNzU2
-XSBfX2ludGVsX2d0X3NldF93ZWRnZWQgICAgICAgIExhdGVuY3k6IDB1cwo+ID4gPDc+IFszMTMu
-MjAzNzYyXSBfX2ludGVsX2d0X3NldF93ZWRnZWQgICAgICAgIFJlc2V0IGNvdW50OiAwIChnbG9i
-YWwgMCkKPiA+IDw3PiBbMzEzLjIwMzc2Nl0gX19pbnRlbF9ndF9zZXRfd2VkZ2VkICAgICAgICBS
-ZXF1ZXN0czoKPiA+IDw3PiBbMzEzLjIwMzc4NV0gX19pbnRlbF9ndF9zZXRfd2VkZ2VkICAgICAg
-ICBNTUlPIGJhc2U6ICAweDAwMDAyMDAwCj4gPiA8Nz4gWzMxMy4yMDM4MTldIF9faW50ZWxfZ3Rf
-c2V0X3dlZGdlZCAgICAgICAgUklOR19TVEFSVDogMHgwMDAwMDAwMAo+ID4gPDc+IFszMTMuMjAz
-ODI2XSBfX2ludGVsX2d0X3NldF93ZWRnZWQgICAgICAgIFJJTkdfSEVBRDogIDB4MDAwMDAwMDAK
-PiA+IDw3PiBbMzEzLjIwMzgzM10gX19pbnRlbF9ndF9zZXRfd2VkZ2VkICAgICAgICBSSU5HX1RB
-SUw6ICAweDAwMDAwMDAwCj4gPiA8Nz4gWzMxMy4yMDM4NDRdIF9faW50ZWxfZ3Rfc2V0X3dlZGdl
-ZCAgICAgICAgUklOR19DVEw6ICAgMHgwMDAwMDAwMAo+ID4gPDc+IFszMTMuMjAzODU0XSBfX2lu
-dGVsX2d0X3NldF93ZWRnZWQgICAgICAgIFJJTkdfTU9ERTogIDB4MDAwMDAwMDAKPiA+IDw3PiBb
-MzEzLjIwMzg2MV0gX19pbnRlbF9ndF9zZXRfd2VkZ2VkICAgICAgICBSSU5HX0lNUjogZmZmZmZl
-ZmUKPiA+IDw3PiBbMzEzLjIwMzg3NV0gX19pbnRlbF9ndF9zZXRfd2VkZ2VkICAgICAgICBBQ1RI
-RDogIDB4MDAwMDAwMDBfMDAwMDAwMDAKPiA+IDw3PiBbMzEzLjIwMzg4OF0gX19pbnRlbF9ndF9z
-ZXRfd2VkZ2VkICAgICAgICBCQkFERFI6IDB4MDAwMDAwMDBfMDAwMDAwMDAKPiA+IDw3PiBbMzEz
-LjIwMzkwMV0gX19pbnRlbF9ndF9zZXRfd2VkZ2VkICAgICAgICBETUFfRkFERFI6IDB4MDAwMDAw
-MDBfMDAwMDAwMDAKPiA+IDw3PiBbMzEzLjIwMzkwOV0gX19pbnRlbF9ndF9zZXRfd2VkZ2VkICAg
-ICAgICBJUEVJUjogMHgwMDAwMDAwMAo+ID4gPDc+IFszMTMuMjAzOTE2XSBfX2ludGVsX2d0X3Nl
-dF93ZWRnZWQgICAgICAgIElQRUhSOiAweGNjY2NjY2NjCj4gPiA8Nz4gWzMxMy4yMDM5MjFdIF9f
-aW50ZWxfZ3Rfc2V0X3dlZGdlZCAgICAgICAgRXhlY2xpc3QgdGFza2xldCBxdWV1ZWQ/IG5vIChl
-bmFibGVkKSwgcHJlZW1wdD8gaW5hY3RpdmUsIHRpbWVzbGljZT8gaW5hY3RpdmUKPiA+IDw3PiBb
-MzEzLjIwMzkzMl0gX19pbnRlbF9ndF9zZXRfd2VkZ2VkICAgICAgICBFeGVjbGlzdCBzdGF0dXM6
-IDB4MDAwNDQwMzIgMDAwMDAwMjA7IENTQiByZWFkOjUsIHdyaXRlOjAsIGVudHJpZXM6Ngo+ID4g
-PDc+IFszMTMuMjAzOTM3XSBfX2ludGVsX2d0X3NldF93ZWRnZWQgICAgICAgIEV4ZWNsaXN0IENT
-QlswXTogMHgwMDAwMDAwMSwgY29udGV4dDogMAo+ID4gPDc+IFszMTMuMjAzOTUyXSBfX2ludGVs
-X2d0X3NldF93ZWRnZWQgICAgICAgICAgICAgICAgUGVuZGluZ1swXSByaW5nOntzdGFydDowMDBj
-NDAwMCwgaHdzcDpmZWRmYzAwMCwgc2Vxbm86MDAwMDAwMDB9LCBycTogIDQwMmU6Mi0gIHByaW89
-MjE0NzQ4MzY0NyBAIDIwN21zOiBbaTkxNV0KPiA+IDw3PiBbMzEzLjIwMzk4M10gX19pbnRlbF9n
-dF9zZXRfd2VkZ2VkICAgICAgICAgICAgICAgIEUgIDQwMmU6Mi0gIHByaW89MjE0NzQ4MzY0NyBA
-IDIwN21zOiBbaTkxNV0KPiA+IDw3PiBbMzEzLjIwNDAwNl0gX19pbnRlbF9ndF9zZXRfd2VkZ2Vk
-ICAgICAgICAgICAgICAgIFF1ZXVlIHByaW9yaXR5IGhpbnQ6IDMKPiA+IAo+ID4gZHVyaW5nIHJh
-cGlkIGZhdWx0LWluamVjdGlvbiByZWxvYWRzLiAweGNjIGlzIFBPSVNPTl9GUkVFX0lOSVQgd2hp
-Y2gKPiA+IHN1Z2dlc3RzIHRoYXQgdGhlIHN5c3RlbSBjbGVhcmVkIHRoZSBwYWdlcyBvbiBpbml0
-aWFsaXNhdGlvbiBhcyB0aGV5IGFyZQo+ID4gc3RpbGwgYmVpbmcgdXNlZCBmcm9tIHRoZSBwcmV2
-aW91cyBtb2R1bGUgbG9hZC4KPiA+IAo+ID4gRGVzcGl0ZSB0aGF0IHdlIGFsc28gaGF2ZSBhIGNv
-dXBsZSBvZiBHUFUgcmVzZXRzIHByaW9yIHRvIHRoaXMuLi4KPiA+IEkgaGF2ZSBhIHNuZWFreSBz
-dXNwaWNpb24gdGhhdCBtYXkgYmUgYSBHdUMgYXJ0aWZhY3QuCj4gPiAKPiA+IFNpZ25lZC1vZmYt
-Ynk6IENocmlzIFdpbHNvbiA8Y2hyaXNAY2hyaXMtd2lsc29uLmNvLnVrPgo+ID4gQ2M6IEFuZGkg
-U2h5dGkgPGFuZGkuc2h5dGlAaW50ZWwuY29tPgo+ID4gQ2M6IE1pa2EgS3VvcHBhbGEgPG1pa2Eu
-a3VvcHBhbGFAbGludXguaW50ZWwuY29tPgo+ID4gCj4gPiBkcm0vaTkxNS9ndDogTGlmdCBjbGVh
-cmluZyBHVCB3ZWRnZWQgb3V0IG9mIGd0X3Nhbml0aXplCj4gPiAKPiA+IFdlIG9ubHkgd2FudCB0
-byB0cnkgYW5kIHJlc2V0IGEgd2VkZ2VkIGRldmljZSBvbiByZXN1bWUsIG5vdCBiZWZvcmUKPiA+
-IHN1c3BlbmQsIHNvIGxpZnQgdGhlIHJlY292ZXJ5IG91dCBvZiB0aGUgY29tbW9udCBndF9zYW5p
-dGl6ZSgpLgo+ID4gCj4gPiBTaWduZWQtb2ZmLWJ5OiBDaHJpcyBXaWxzb24gPGNocmlzQGNocmlz
-LXdpbHNvbi5jby51az4KPiA+IENjOiBBbmRpIFNoeXRpIDxhbmRpLnNoeXRpQGludGVsLmNvbT4K
-PiA+IENjOiBNaWthIEt1b3BwYWxhIDxtaWthLmt1b3BwYWxhQGxpbnV4LmludGVsLmNvbT4KPiA+
-IC0tLQo+ID4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX2d0X3BtLmMgfCA1NiArKysr
-KysrKysrKy0tLS0tLS0tLS0tLS0tLS0KPiA+ICAxIGZpbGUgY2hhbmdlZCwgMjIgaW5zZXJ0aW9u
-cygrKSwgMzQgZGVsZXRpb25zKC0pCj4gPiAKPiA+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9k
-cm0vaTkxNS9ndC9pbnRlbF9ndF9wbS5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxf
-Z3RfcG0uYwo+ID4gaW5kZXggZDFjMmYwMzQyOTZhLi4wOWE3OGQ3NjdlMjQgMTAwNjQ0Cj4gPiAt
-LS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRlbF9ndF9wbS5jCj4gPiArKysgYi9kcml2
-ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRlbF9ndF9wbS5jCj4gPiBAQCAtMTE4LDM2ICsxMTgsMTYg
-QEAgdm9pZCBpbnRlbF9ndF9wbV9pbml0KHN0cnVjdCBpbnRlbF9ndCAqZ3QpCj4gPiAgICAgICBp
-bnRlbF9ycHNfaW5pdCgmZ3QtPnJwcyk7Cj4gPiAgfQo+ID4gIAo+ID4gLXN0YXRpYyBib29sIHJl
-c2V0X2VuZ2luZXMoc3RydWN0IGludGVsX2d0ICpndCkKPiA+ICtzdGF0aWMgdm9pZCByZXNldF9l
-bmdpbmVzKHN0cnVjdCBpbnRlbF9ndCAqZ3QpCj4gPiAgewo+ID4gICAgICAgaWYgKElOVEVMX0lO
-Rk8oZ3QtPmk5MTUpLT5ncHVfcmVzZXRfY2xvYmJlcnNfZGlzcGxheSkKPiAKPiBTaG91bGQgdGhh
-dCBiZSBhICFncHVfcmVzZXRfY2xvYmJlcnNfZGlzcGxheSBub3c/CgpIZWguIFllcy4gRmFyIHRv
-byBtYW55IG1pc3Rha2VzIHRvZGF5LgotQ2hyaXMKX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4v
-bGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+As a final paranoid step (we _should_ have reset the GPU on suspending
+the device prior to unload), reset the GPU once more before removing the
+powercontext and other related power saving paraphernalia.
+
+A clue that this may not be the case is
+
+<7> [313.203721] __intel_gt_set_wedged rcs'0
+<7> [313.203746] __intel_gt_set_wedged 	Awake? 3
+<7> [313.203751] __intel_gt_set_wedged 	Barriers?: no
+<7> [313.203756] __intel_gt_set_wedged 	Latency: 0us
+<7> [313.203762] __intel_gt_set_wedged 	Reset count: 0 (global 0)
+<7> [313.203766] __intel_gt_set_wedged 	Requests:
+<7> [313.203785] __intel_gt_set_wedged 	MMIO base:  0x00002000
+<7> [313.203819] __intel_gt_set_wedged 	RING_START: 0x00000000
+<7> [313.203826] __intel_gt_set_wedged 	RING_HEAD:  0x00000000
+<7> [313.203833] __intel_gt_set_wedged 	RING_TAIL:  0x00000000
+<7> [313.203844] __intel_gt_set_wedged 	RING_CTL:   0x00000000
+<7> [313.203854] __intel_gt_set_wedged 	RING_MODE:  0x00000000
+<7> [313.203861] __intel_gt_set_wedged 	RING_IMR: fffffefe
+<7> [313.203875] __intel_gt_set_wedged 	ACTHD:  0x00000000_00000000
+<7> [313.203888] __intel_gt_set_wedged 	BBADDR: 0x00000000_00000000
+<7> [313.203901] __intel_gt_set_wedged 	DMA_FADDR: 0x00000000_00000000
+<7> [313.203909] __intel_gt_set_wedged 	IPEIR: 0x00000000
+<7> [313.203916] __intel_gt_set_wedged 	IPEHR: 0xcccccccc
+<7> [313.203921] __intel_gt_set_wedged 	Execlist tasklet queued? no (enabled), preempt? inactive, timeslice? inactive
+<7> [313.203932] __intel_gt_set_wedged 	Execlist status: 0x00044032 00000020; CSB read:5, write:0, entries:6
+<7> [313.203937] __intel_gt_set_wedged 	Execlist CSB[0]: 0x00000001, context: 0
+<7> [313.203952] __intel_gt_set_wedged 		Pending[0] ring:{start:000c4000, hwsp:fedfc000, seqno:00000000}, rq:  402e:2-  prio=2147483647 @ 207ms: [i915]
+<7> [313.203983] __intel_gt_set_wedged 		E  402e:2-  prio=2147483647 @ 207ms: [i915]
+<7> [313.204006] __intel_gt_set_wedged 		Queue priority hint: 3
+
+during rapid fault-injection reloads. 0xcc is POISON_FREE_INIT which
+suggests that the system cleared the pages on initialisation as they are
+still being used from the previous module load.
+
+Despite that we also have a couple of GPU resets prior to this...
+I have a sneaky suspicion that may be a GuC artifact.
+
+v2: Just set the device as wedged (which includes a reset) on
+suspend/unload, and leave the sanitization to load/resume.
+
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Andi Shyti <andi.shyti@intel.com>
+Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+---
+ drivers/gpu/drm/i915/gt/intel_gt_pm.c | 59 +++++++++++----------------
+ 1 file changed, 23 insertions(+), 36 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/gt/intel_gt_pm.c b/drivers/gpu/drm/i915/gt/intel_gt_pm.c
+index d1c2f034296a..6c0b662b91b8 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gt_pm.c
++++ b/drivers/gpu/drm/i915/gt/intel_gt_pm.c
+@@ -118,36 +118,16 @@ void intel_gt_pm_init(struct intel_gt *gt)
+ 	intel_rps_init(&gt->rps);
+ }
+ 
+-static bool reset_engines(struct intel_gt *gt)
++static void reset_engines(struct intel_gt *gt)
+ {
+-	if (INTEL_INFO(gt->i915)->gpu_reset_clobbers_display)
+-		return false;
+-
+-	return __intel_gt_reset(gt, ALL_ENGINES) == 0;
++	if (!INTEL_INFO(gt->i915)->gpu_reset_clobbers_display)
++		__intel_gt_reset(gt, ALL_ENGINES);
+ }
+ 
+-static void gt_sanitize(struct intel_gt *gt, bool force)
++static void gt_sanitize(struct intel_gt *gt)
+ {
+ 	struct intel_engine_cs *engine;
+ 	enum intel_engine_id id;
+-	intel_wakeref_t wakeref;
+-
+-	GT_TRACE(gt, "force:%s", yesno(force));
+-
+-	/* Use a raw wakeref to avoid calling intel_display_power_get early */
+-	wakeref = intel_runtime_pm_get(gt->uncore->rpm);
+-	intel_uncore_forcewake_get(gt->uncore, FORCEWAKE_ALL);
+-
+-	/*
+-	 * As we have just resumed the machine and woken the device up from
+-	 * deep PCI sleep (presumably D3_cold), assume the HW has been reset
+-	 * back to defaults, recovering from whatever wedged state we left it
+-	 * in and so worth trying to use the device once more.
+-	 */
+-	if (intel_gt_is_wedged(gt))
+-		intel_gt_unset_wedged(gt);
+-
+-	intel_uc_sanitize(&gt->uc);
+ 
+ 	for_each_engine(engine, gt, id)
+ 		if (engine->reset.prepare)
+@@ -155,21 +135,18 @@ static void gt_sanitize(struct intel_gt *gt, bool force)
+ 
+ 	intel_uc_reset_prepare(&gt->uc);
+ 
+-	if (reset_engines(gt) || force) {
+-		for_each_engine(engine, gt, id)
+-			__intel_engine_reset(engine, false);
+-	}
++	reset_engines(gt);
++	for_each_engine(engine, gt, id)
++		__intel_engine_reset(engine, false);
+ 
+ 	for_each_engine(engine, gt, id)
+ 		if (engine->reset.finish)
+ 			engine->reset.finish(engine);
+-
+-	intel_uncore_forcewake_put(gt->uncore, FORCEWAKE_ALL);
+-	intel_runtime_pm_put(gt->uncore->rpm, wakeref);
+ }
+ 
+ void intel_gt_pm_fini(struct intel_gt *gt)
+ {
++	intel_gt_set_wedged(gt);
+ 	intel_rc6_fini(&gt->rc6);
+ }
+ 
+@@ -192,15 +169,26 @@ int intel_gt_resume(struct intel_gt *gt)
+ 	 * allowing us to fixup the user contexts on their first pin.
+ 	 */
+ 	intel_gt_pm_get(gt);
+-
+ 	intel_uncore_forcewake_get(gt->uncore, FORCEWAKE_ALL);
++
+ 	intel_rc6_sanitize(&gt->rc6);
+-	gt_sanitize(gt, true);
+-	if (intel_gt_is_wedged(gt)) {
++	intel_uc_sanitize(&gt->uc);
++
++	/*
++	 * As we have just resumed the machine and woken the device up from
++	 * deep PCI sleep (presumably D3_cold), assume the HW has been reset
++	 * back to defaults, recovering from whatever wedged state we left it
++	 * in and so worth trying to use the device once more.
++	 */
++	if (intel_gt_is_wedged(gt))
++		intel_gt_unset_wedged(gt);
++	if (unlikely(intel_gt_is_wedged(gt))) {
+ 		err = -EIO;
+ 		goto out_fw;
+ 	}
+ 
++	gt_sanitize(gt);
++
+ 	/* Only when the HW is re-initialised, can we replay the requests */
+ 	err = intel_gt_init_hw(gt);
+ 	if (err) {
+@@ -308,8 +296,7 @@ void intel_gt_suspend_late(struct intel_gt *gt)
+ 		intel_llc_disable(&gt->llc);
+ 	}
+ 
+-	gt_sanitize(gt, false);
+-
++	intel_gt_set_wedged(gt);
+ 	GT_TRACE(gt, "\n");
+ }
+ 
+-- 
+2.25.0.rc2
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
