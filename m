@@ -2,29 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4227D138FC0
-	for <lists+intel-gfx@lfdr.de>; Mon, 13 Jan 2020 12:06:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 008BC138FE9
+	for <lists+intel-gfx@lfdr.de>; Mon, 13 Jan 2020 12:18:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9BB5C8986D;
-	Mon, 13 Jan 2020 11:06:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E11756E059;
+	Mon, 13 Jan 2020 11:18:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 572068986D
- for <intel-gfx@lists.freedesktop.org>; Mon, 13 Jan 2020 11:06:30 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 29F0589BC0;
+ Mon, 13 Jan 2020 11:18:04 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
-Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19860008-1500050 
- for multiple; Mon, 13 Jan 2020 11:06:15 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon, 13 Jan 2020 11:06:13 +0000
-Message-Id: <20200113110613.1778894-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.25.0.rc2
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 19860154-1500050 for multiple; Mon, 13 Jan 2020 11:17:55 +0000
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/gt: Sanitize and reset GPU before
- removing powercontext
+To: Wambui Karuga <wambui.karugax@gmail.com>, airlied@linux.ie, daniel@ffwll.ch,
+ jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
+ rodrigo.vivi@intel.com
+From: Chris Wilson <chris@chris-wilson.co.uk>
+In-Reply-To: <20200113111025.2048-1-wambui.karugax@gmail.com>
+References: <20200113111025.2048-1-wambui.karugax@gmail.com>
+Message-ID: <157891427231.27314.12398974277241668021@skylake-alporthouse-com>
+User-Agent: alot/0.6
+Date: Mon, 13 Jan 2020 11:17:52 +0000
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: convert to new logging macros
+ based on struct intel_engine_cs.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,71 +41,38 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-As a final paranoid step (we _should_ have reset the GPU on suspending
-the device prior to unload), reset the GPU once more before removing the
-powercontext and other related power saving paraphernalia.
+Quoting Wambui Karuga (2020-01-13 11:10:25)
+> fn(...) {
+> ...
+> struct intel_engine_cs *E = ...;
+> +struct drm_i915_private *dev_priv = E->i915;
 
-A clue that this may not be the case is
+No new dev_priv.
 
-<7> [313.203721] __intel_gt_set_wedged rcs'0
-<7> [313.203746] __intel_gt_set_wedged 	Awake? 3
-<7> [313.203751] __intel_gt_set_wedged 	Barriers?: no
-<7> [313.203756] __intel_gt_set_wedged 	Latency: 0us
-<7> [313.203762] __intel_gt_set_wedged 	Reset count: 0 (global 0)
-<7> [313.203766] __intel_gt_set_wedged 	Requests:
-<7> [313.203785] __intel_gt_set_wedged 	MMIO base:  0x00002000
-<7> [313.203819] __intel_gt_set_wedged 	RING_START: 0x00000000
-<7> [313.203826] __intel_gt_set_wedged 	RING_HEAD:  0x00000000
-<7> [313.203833] __intel_gt_set_wedged 	RING_TAIL:  0x00000000
-<7> [313.203844] __intel_gt_set_wedged 	RING_CTL:   0x00000000
-<7> [313.203854] __intel_gt_set_wedged 	RING_MODE:  0x00000000
-<7> [313.203861] __intel_gt_set_wedged 	RING_IMR: fffffefe
-<7> [313.203875] __intel_gt_set_wedged 	ACTHD:  0x00000000_00000000
-<7> [313.203888] __intel_gt_set_wedged 	BBADDR: 0x00000000_00000000
-<7> [313.203901] __intel_gt_set_wedged 	DMA_FADDR: 0x00000000_00000000
-<7> [313.203909] __intel_gt_set_wedged 	IPEIR: 0x00000000
-<7> [313.203916] __intel_gt_set_wedged 	IPEHR: 0xcccccccc
-<7> [313.203921] __intel_gt_set_wedged 	Execlist tasklet queued? no (enabled), preempt? inactive, timeslice? inactive
-<7> [313.203932] __intel_gt_set_wedged 	Execlist status: 0x00044032 00000020; CSB read:5, write:0, entries:6
-<7> [313.203937] __intel_gt_set_wedged 	Execlist CSB[0]: 0x00000001, context: 0
-<7> [313.203952] __intel_gt_set_wedged 		Pending[0] ring:{start:000c4000, hwsp:fedfc000, seqno:00000000}, rq:  402e:2-  prio=2147483647 @ 207ms: [i915]
-<7> [313.203983] __intel_gt_set_wedged 		E  402e:2-  prio=2147483647 @ 207ms: [i915]
-<7> [313.204006] __intel_gt_set_wedged 		Queue priority hint: 3
+There should be no reason for drm_dbg here, as the rest of the debug is
+behind ENGINE_TRACE and so the vestigial debug should be moved over, or
+deleted as not being useful.
 
-during rapid fault-injection reloads. 0xcc is POISON_FREE_INIT which
-suggests that the system cleared the pages on initialisation as they are
-still being used from the previous module load.
+The error messages look unhelpful.
 
-Despite that we also have a couple of GPU resets prior to this...
-I have a sneaky suspicion that may be a GuC artifact.
+>                 if ((batch_end - cmd) < length) {
+> -                       DRM_DEBUG("CMD: Command length exceeds batch length: 0x%08X length=%u batchlen=%td\n",
+> -                                 *cmd,
+> -                                 length,
+> -                                 batch_end - cmd);
+> +                       drm_dbg(&dev_priv->drm,
+> +                               "CMD: Command length exceeds batch length: 0x%08X length=%u batchlen=%td\n",
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Andi Shyti <andi.shyti@intel.com>
-Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
----
- drivers/gpu/drm/i915/gt/intel_gt_pm.c | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_pm.c b/drivers/gpu/drm/i915/gt/intel_gt_pm.c
-index d1c2f034296a..26241c9c9e38 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt_pm.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_pm.c
-@@ -170,6 +170,7 @@ static void gt_sanitize(struct intel_gt *gt, bool force)
- 
- void intel_gt_pm_fini(struct intel_gt *gt)
- {
-+	gt_sanitize(gt, false);
- 	intel_rc6_fini(&gt->rc6);
- }
- 
--- 
-2.25.0.rc2
-
+No. This is not driver debug. If anything this should be pr_debug, or
+some over user centric channel.
+-Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
