@@ -1,32 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C1C4139A75
-	for <lists+intel-gfx@lfdr.de>; Mon, 13 Jan 2020 21:02:36 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A631139A7E
+	for <lists+intel-gfx@lfdr.de>; Mon, 13 Jan 2020 21:06:57 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 81B0B6E152;
-	Mon, 13 Jan 2020 20:02:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1B90B6E155;
+	Mon, 13 Jan 2020 20:06:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 084AA6E155;
- Mon, 13 Jan 2020 20:02:31 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 7549E6E14A;
+ Mon, 13 Jan 2020 20:06:53 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 0435BA7E01;
- Mon, 13 Jan 2020 20:02:31 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 6E12AA00E9;
+ Mon, 13 Jan 2020 20:06:53 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Zhang Xiaoxu" <zhangxiaoxu5@huawei.com>
-Date: Mon, 13 Jan 2020 20:02:31 -0000
-Message-ID: <157894575101.25474.11927101989448500432@emeril.freedesktop.org>
+Date: Mon, 13 Jan 2020 20:06:53 -0000
+Message-ID: <157894601342.25474.18255722736114220896@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20200113105539.9493-1-zhangxiaoxu5@huawei.com>
-In-Reply-To: <20200113105539.9493-1-zhangxiaoxu5@huawei.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiB3YXJuaW5nIGZvciBk?=
- =?utf-8?q?rm/i915/dsi=3A_Fix_implicit_declaration_of_function_=27acpi=5Fd?=
- =?utf-8?b?ZXYqJyBpbiAnbWlwaV9leGVjX2kyYyc=?=
+References: <20200113104009.13274-1-zhangxiaoxu5@huawei.com>
+In-Reply-To: <20200113104009.13274-1-zhangxiaoxu5@huawei.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915=3A_Fix_multiple_definition_of_=27i915=5Fvma=5Fcapt?=
+ =?utf-8?q?ure=5Ffinish=27?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,27 +48,21 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: drm/i915/dsi: Fix implicit declaration of function 'acpi_dev*' in 'mipi_exec_i2c'
-URL   : https://patchwork.freedesktop.org/series/71972/
+Series: drm/i915: Fix multiple definition of 'i915_vma_capture_finish'
+URL   : https://patchwork.freedesktop.org/series/71973/
 State : warning
 
 == Summary ==
 
-CALL    scripts/checksyscalls.sh
-  CALL    scripts/atomic/check-atomics.sh
-  CHK     include/generated/compile.h
-Kernel: arch/x86/boot/bzImage is ready  (#1)
-  Building modules, stage 2.
-  MODPOST 122 modules
-ERROR: "__udivdi3" [drivers/gpu/drm/amd/amdgpu/amdgpu.ko] undefined!
-scripts/Makefile.modpost:93: recipe for target '__modpost' failed
-make[1]: *** [__modpost] Error 1
-Makefile:1282: recipe for target 'modules' failed
-make: *** [modules] Error 2
+$ dim checkpatch origin/drm-tip
+f549445b8719 drm/i915: Fix multiple definition of 'i915_vma_capture_finish'
+-:33: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#33: FILE: drivers/gpu/drm/i915/i915_gpu_error.h:313:
++static inline void i915_vma_capture_finish(struct intel_gt_coredump *gt,
+ 			     struct i915_vma_compress *compress)
 
-== Logs ==
+total: 0 errors, 0 warnings, 1 checks, 8 lines checked
 
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16079/build_32bit.log
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
