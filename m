@@ -1,38 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 82CD6139127
-	for <lists+intel-gfx@lfdr.de>; Mon, 13 Jan 2020 13:33:49 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id C49E113916B
+	for <lists+intel-gfx@lfdr.de>; Mon, 13 Jan 2020 13:51:57 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0C25589E03;
-	Mon, 13 Jan 2020 12:33:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1D6ED8995F;
+	Mon, 13 Jan 2020 12:51:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B072689DFE;
- Mon, 13 Jan 2020 12:33:41 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 663F28995F
+ for <intel-gfx@lists.freedesktop.org>; Mon, 13 Jan 2020 12:51:54 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
 X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 13 Jan 2020 04:33:41 -0800
-X-IronPort-AV: E=Sophos;i="5.69,428,1571727600"; d="scan'208";a="212983065"
-Received: from jnikula-mobl3.fi.intel.com (HELO localhost) ([10.237.66.161])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 13 Jan 2020 04:33:38 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Pankaj Bharadiya <pankaj.laxminarayan.bharadiya@intel.com>, daniel@ffwll.ch,
- sam@ravnborg.org, sudeep.dutt@intel.com, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-In-Reply-To: <20200113115557.32713-1-pankaj.laxminarayan.bharadiya@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20200113115557.32713-1-pankaj.laxminarayan.bharadiya@intel.com>
-Date: Mon, 13 Jan 2020 14:33:36 +0200
-Message-ID: <87d0bnmt7j.fsf@intel.com>
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orsmga106.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 13 Jan 2020 04:51:53 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.69,429,1571727600"; d="scan'208";a="304832106"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by orsmga001.jf.intel.com with SMTP; 13 Jan 2020 04:51:51 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Mon, 13 Jan 2020 14:51:50 +0200
+Date: Mon, 13 Jan 2020 14:51:50 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: "Souza, Jose" <jose.souza@intel.com>
+Message-ID: <20200113125150.GM13686@intel.com>
+References: <20200108142447.9952-1-ville.syrjala@linux.intel.com>
+ <20200108144550.29280-1-ville.syrjala@linux.intel.com>
+ <03f794d6cfb5e189cc90b34cfc6174c6673e85b2.camel@intel.com>
+ <20200108162046.GM1208@intel.com>
+ <2e7611eb69c28094372ac7f32e28eeb04b34f461.camel@intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 0/6]: drm: Introduce struct drm_device based
- WARN* and use them in i915
+Content-Disposition: inline
+In-Reply-To: <2e7611eb69c28094372ac7f32e28eeb04b34f461.camel@intel.com>
+X-Patchwork-Hint: comment
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH v2] drm/i915: Fix MST disable sequence
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,151 +51,153 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: pankaj.laxminaryan.bharadiya@outlook.iglb.intel.com
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 13 Jan 2020, Pankaj Bharadiya <pankaj.laxminarayan.bharadiya@intel.com> wrote:
-> Device specific dev_WARN and dev_WARN_ONCE macros available in kernel
-> include device information in the backtrace, so we know what device
-> the warnings originate from.
->
-> Similar to this, add new struct drm_device based drm_WARN* macros. These
-> macros include device information in the backtrace, so we know
-> what device the warnings originate from. Knowing the device specific
-> information in the backtrace would be helpful in development all
-> around.
->
-> This patch series aims to convert calls of WARN(), WARN_ON(),
-> WARN_ONCE() and WARN_ON_ONCE() in i916 driver to use the drm
-> device-specific variants automatically wherever struct device pointer
-> is available.
->
-> To do this, this patch series -
->   - introduces new struct drm_device based WARN* macros
->   - automatically converts WARN* with device specific dev_WARN*
->     variants using coccinelle semantic patch scripts.
->
-> The goal is to convert all the calls of WARN* with drm_WARN* in i915,
-> but there are still cases where device pointer is not readily
-> available in some functions (or I missed them somehow) using WARN*
-> hence some manual churning is needed. Handle such remaining cases
-> separately later.
->
-> Changes since RFC at [1]
->   - Introduce drm_WARN* macros and use them as suggested by Sam and Jani
->   - Get rid of extra local variables
->
-> [1] https://patchwork.freedesktop.org/series/71668/
->
-> Pankaj Bharadiya (6):
->   drm/print: introduce new struct drm_device based WARN* macros
->   drm/i915: add helper functions to get device ptr
->   drm/i915: Make WARN* drm specific where drm_device ptr available
->   drm/i915: Make WARN* drm specific where drm_priv ptr is available
->   drm/i915: Make WARN* drm specific where dev_priv can be extracted.
->   drm/i915: Make WARN* drm specific for various cases.
+On Fri, Jan 10, 2020 at 06:40:38PM +0000, Souza, Jose wrote:
+> On Wed, 2020-01-08 at 18:20 +0200, Ville Syrj=E4l=E4 wrote:
+> > On Wed, Jan 08, 2020 at 04:09:31PM +0000, Souza, Jose wrote:
+> > > On Wed, 2020-01-08 at 16:45 +0200, Ville Syrjala wrote:
+> > > > From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > > > =
 
-I think the last four patches actually making the conversions are too
-big, and need to be split out to smaller pieces. These are bound to
-conflict in annoying ways.
+> > > > When moving the pipe disable & co. function calls from
+> > > > haswell_crtc_disable() into the encoder .post_disable() hooks I
+> > > > neglected to account for the MST vs. DDI interactions properly.
+> > > > This now leads us to call these functions two times for the last
+> > > > MST stream (once from the MST code and a second time from the DDI
+> > > > code). The calls from the DDI code should only be done for SST
+> > > > and not MST. Add the proper check for that.
+> > > =
 
-The absolute minimum I think it splitting by directory, and in
-particular the changes to gvt needs to be handled by gvt maintainers.
+> > > Oohh I forgot that too.
+> > > =
 
-BR,
-Jani.
+> > > > This results in an MCE on ICL. My vague theory is that we turn
+> > > > off
+> > > > the transcoder clock from the MST code and then we proceed to
+> > > > touch
+> > > > something in the DDI code which still depends on that clock
+> > > > causing
+> > > > the hardware to become upset. Though I can't really explain why
+> > > > Stan's hack of omitting the pipe disable in the MST code would
+> > > > avoid
+> > > > the MCE since we should still be turning off the transcoder
+> > > > clock.
+> > > > But maybe there's something magic in the hw that keeps the clock
+> > > > on
+> > > > as long as the pipe is on. Or maybe the clock isn't the problem
+> > > > and
+> > > > we now touch something in the DDI disable code that really does
+> > > > need
+> > > > the pipe to be still enabled.
+> > > > =
 
+> > > > v2: Rebase to latest drm-tip
+> > > > =
 
->
->  drivers/gpu/drm/i915/display/icl_dsi.c        |  14 +-
->  drivers/gpu/drm/i915/display/intel_atomic.c   |   6 +-
->  drivers/gpu/drm/i915/display/intel_audio.c    |  19 +-
->  drivers/gpu/drm/i915/display/intel_bios.c     |  10 +-
->  drivers/gpu/drm/i915/display/intel_bw.c       |   3 +-
->  drivers/gpu/drm/i915/display/intel_cdclk.c    |  81 +++---
->  drivers/gpu/drm/i915/display/intel_color.c    |   3 +-
->  .../gpu/drm/i915/display/intel_combo_phy.c    |   2 +-
->  .../gpu/drm/i915/display/intel_connector.c    |   3 +-
->  drivers/gpu/drm/i915/display/intel_crt.c      |  10 +-
->  drivers/gpu/drm/i915/display/intel_ddi.c      | 100 ++++----
->  drivers/gpu/drm/i915/display/intel_display.c  | 239 ++++++++++--------
->  .../drm/i915/display/intel_display_power.c    | 170 +++++++------
->  .../drm/i915/display/intel_display_types.h    |  14 +
->  drivers/gpu/drm/i915/display/intel_dp.c       | 121 +++++----
->  drivers/gpu/drm/i915/display/intel_dp_mst.c   |  10 +-
->  drivers/gpu/drm/i915/display/intel_dpio_phy.c |   3 +-
->  drivers/gpu/drm/i915/display/intel_dpll_mgr.c |  39 +--
->  drivers/gpu/drm/i915/display/intel_dsb.c      |   6 +-
->  .../i915/display/intel_dsi_dcs_backlight.c    |   2 +-
->  drivers/gpu/drm/i915/display/intel_dsi_vbt.c  |   5 +-
->  drivers/gpu/drm/i915/display/intel_fbc.c      |  23 +-
->  drivers/gpu/drm/i915/display/intel_fbdev.c    |  13 +-
->  drivers/gpu/drm/i915/display/intel_gmbus.c    |   3 +-
->  drivers/gpu/drm/i915/display/intel_hdcp.c     |  21 +-
->  drivers/gpu/drm/i915/display/intel_hdmi.c     |  71 +++---
->  drivers/gpu/drm/i915/display/intel_hotplug.c  |   7 +-
->  .../gpu/drm/i915/display/intel_lpe_audio.c    |   2 +-
->  drivers/gpu/drm/i915/display/intel_lvds.c     |   7 +-
->  drivers/gpu/drm/i915/display/intel_opregion.c |   7 +-
->  drivers/gpu/drm/i915/display/intel_overlay.c  |  18 +-
->  drivers/gpu/drm/i915/display/intel_panel.c    |  21 +-
->  drivers/gpu/drm/i915/display/intel_pipe_crc.c |   7 +-
->  drivers/gpu/drm/i915/display/intel_psr.c      |  32 ++-
->  drivers/gpu/drm/i915/display/intel_sdvo.c     |  17 +-
->  drivers/gpu/drm/i915/display/intel_sprite.c   |   5 +-
->  drivers/gpu/drm/i915/display/intel_tc.c       |  17 +-
->  drivers/gpu/drm/i915/display/intel_vdsc.c     |   2 +-
->  drivers/gpu/drm/i915/display/vlv_dsi.c        |   2 +-
->  .../gpu/drm/i915/gem/i915_gem_execbuffer.c    |   4 +-
->  drivers/gpu/drm/i915/gem/i915_gem_pm.c        |   4 +-
->  drivers/gpu/drm/i915/gem/i915_gem_shmem.c     |   3 +-
->  drivers/gpu/drm/i915/gem/i915_gem_shrinker.c  |  13 +-
->  drivers/gpu/drm/i915/gem/i915_gem_stolen.c    |  15 +-
->  drivers/gpu/drm/i915/gt/intel_engine_cs.c     |  10 +-
->  drivers/gpu/drm/i915/gt/intel_engine_user.c   |   3 +-
->  drivers/gpu/drm/i915/gt/intel_gt_irq.c        |  15 +-
->  drivers/gpu/drm/i915/gt/intel_gt_pm_irq.c     |   2 +-
->  drivers/gpu/drm/i915/gt/intel_gtt.c           |   6 +-
->  drivers/gpu/drm/i915/gt/intel_mocs.c          |   4 +-
->  drivers/gpu/drm/i915/gt/intel_rc6.c           |   2 +-
->  .../gpu/drm/i915/gt/intel_ring_submission.c   |   7 +-
->  drivers/gpu/drm/i915/gt/intel_rps.c           |  21 +-
->  drivers/gpu/drm/i915/gt/intel_workarounds.c   |   2 +-
->  drivers/gpu/drm/i915/gvt/aperture_gm.c        |   6 +-
->  drivers/gpu/drm/i915/gvt/cfg_space.c          |  20 +-
->  drivers/gpu/drm/i915/gvt/cmd_parser.c         |   4 +-
->  drivers/gpu/drm/i915/gvt/display.c            |   5 +-
->  drivers/gpu/drm/i915/gvt/dmabuf.c             |   4 +-
->  drivers/gpu/drm/i915/gvt/edid.c               |  13 +-
->  drivers/gpu/drm/i915/gvt/gtt.c                |  15 +-
->  drivers/gpu/drm/i915/gvt/gvt.c                |   4 +-
->  drivers/gpu/drm/i915/gvt/gvt.h                |   5 +
->  drivers/gpu/drm/i915/gvt/handlers.c           |  18 +-
->  drivers/gpu/drm/i915/gvt/interrupt.c          |  11 +-
->  drivers/gpu/drm/i915/gvt/kvmgt.c              |   8 +-
->  drivers/gpu/drm/i915/gvt/mmio.c               |  29 ++-
->  drivers/gpu/drm/i915/gvt/mmio_context.c       |   6 +-
->  drivers/gpu/drm/i915/gvt/scheduler.c          |   5 +-
->  drivers/gpu/drm/i915/gvt/vgpu.c               |   5 +-
->  drivers/gpu/drm/i915/i915_drv.c               |  19 +-
->  drivers/gpu/drm/i915/i915_drv.h               |  11 +
->  drivers/gpu/drm/i915/i915_gem.c               |   7 +-
->  drivers/gpu/drm/i915/i915_irq.c               |  85 ++++---
->  drivers/gpu/drm/i915/i915_perf.c              |  40 +--
->  drivers/gpu/drm/i915/i915_pmu.c               |   6 +-
->  drivers/gpu/drm/i915/intel_csr.c              |   4 +-
->  drivers/gpu/drm/i915/intel_pch.c              |  68 +++--
->  drivers/gpu/drm/i915/intel_pm.c               |  95 ++++---
->  drivers/gpu/drm/i915/intel_sideband.c         |   7 +-
->  drivers/gpu/drm/i915/intel_uncore.c           |  57 +++--
->  include/drm/drm_print.h                       |  30 +++
->  82 files changed, 1065 insertions(+), 768 deletions(-)
+> > > > Cc: Jos=E9 Roberto de Souza <jose.souza@intel.com>
+> > > > Cc: Manasi Navare <manasi.d.navare@intel.com>
+> > > > Reported-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+> > > > Closes: https://gitlab.freedesktop.org/drm/intel/issues/901
+> > > > Fixes: 773b4b54351c ("drm/i915: Move stuff from
+> > > > haswell_crtc_disable() into encoder .post_disable()")
+> > > > Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > > > ---
+> > > >  drivers/gpu/drm/i915/display/intel_ddi.c | 22 ++++++++++++----
+> > > > ------
+> > > >  1 file changed, 12 insertions(+), 10 deletions(-)
+> > > > =
 
--- 
-Jani Nikula, Intel Open Source Graphics Center
+> > > > diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c
+> > > > b/drivers/gpu/drm/i915/display/intel_ddi.c
+> > > > index 07acd0daca25..6e0a75d1e6ca 100644
+> > > > --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> > > > +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+> > > > @@ -3897,21 +3897,23 @@ static void intel_ddi_post_disable(struct
+> > > > intel_encoder *encoder,
+> > > >  	enum phy phy =3D intel_port_to_phy(dev_priv, encoder->port);
+> > > >  	bool is_tc_port =3D intel_phy_is_tc(dev_priv, phy);
+> > > >  =
+
+> > > > -	intel_crtc_vblank_off(old_crtc_state);
+> > > > +	if (!intel_crtc_has_type(old_crtc_state, INTEL_OUTPUT_DP_MST))
+> > > > {
+> > > > +		intel_crtc_vblank_off(old_crtc_state);
+> > > >  =
+
+> > > > -	intel_disable_pipe(old_crtc_state);
+> > > > +		intel_disable_pipe(old_crtc_state);
+> > > >  =
+
+> > > > -	if (INTEL_GEN(dev_priv) >=3D 11)
+> > > > -		icl_disable_transcoder_port_sync(old_crtc_state);
+> > > > +		if (INTEL_GEN(dev_priv) >=3D 11)
+> > > > +			icl_disable_transcoder_port_sync(old_crtc_state
+> > > > );
+> > > >  =
+
+> > > > -	intel_ddi_disable_transcoder_func(old_crtc_state);
+> > > > +		intel_ddi_disable_transcoder_func(old_crtc_state);
+> > > >  =
+
+> > > > -	intel_dsc_disable(old_crtc_state);
+> > > > +		intel_dsc_disable(old_crtc_state);
+> > > >  =
+
+> > > > -	if (INTEL_GEN(dev_priv) >=3D 9)
+> > > > -		skl_scaler_disable(old_crtc_state);
+> > > > -	else
+> > > > -		ilk_pfit_disable(old_crtc_state);
+> > > > +		if (INTEL_GEN(dev_priv) >=3D 9)
+> > > > +			skl_scaler_disable(old_crtc_state);
+> > > > +		else
+> > > > +			ilk_pfit_disable(old_crtc_state);
+> > > > +	}
+> > > =
+
+> > > Other option would be replace
+> > > intel_dig_port->base.post_disable(&intel_dig_port->base,
+> > > old_crtc_state, NULL);
+> > > in intel_mst_post_disable_dp() by:
+> > > =
+
+> > > =
+
+> > > intel_ddi_post_disable_dp(encoder, old_crtc_state, old_conn_state);
+> > > =
+
+> > > if (INTEL_GEN(dev_priv) >=3D 11)
+> > > 	icl_unmap_plls_to_ports(encoder);
+> > > =
+
+> > > if (intel_crtc_has_dp_encoder(old_crtc_state) || is_tc_port)
+> > > 	intel_display_power_put_unchecked(dev_priv,
+> > > intel_ddi_main_link_aux_domain(dig_port));
+> > > =
+
+> > > if (is_tc_port)
+> > > 	intel_tc_port_put_link(dig_port);
+> > =
+
+> > Yeah, the current way is a bit of a mess. We probably want to think
+> > of
+> > ways to make it less sucky.
+> =
+
+> Can I go forward and implement the above and undoing this patch?
+
+I'm thinking we should start looking at the enable side too so that
+we can come up with some kind of scheme that isn't totally out of
+sync for enable vs. disable.
+
+-- =
+
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
