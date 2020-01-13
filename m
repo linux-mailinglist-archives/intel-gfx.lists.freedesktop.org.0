@@ -2,30 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5BE1F139B4D
-	for <lists+intel-gfx@lfdr.de>; Mon, 13 Jan 2020 22:21:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D4089139BCF
+	for <lists+intel-gfx@lfdr.de>; Mon, 13 Jan 2020 22:45:53 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C76B46E169;
-	Mon, 13 Jan 2020 21:21:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 11FF989C52;
+	Mon, 13 Jan 2020 21:45:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 355986E169;
- Mon, 13 Jan 2020 21:21:06 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 31911A7E01;
- Mon, 13 Jan 2020 21:21:06 +0000 (UTC)
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C8EBD89C52
+ for <intel-gfx@lists.freedesktop.org>; Mon, 13 Jan 2020 21:45:50 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19867466-1500050 
+ for <intel-gfx@lists.freedesktop.org>; Mon, 13 Jan 2020 21:45:47 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon, 13 Jan 2020 21:45:46 +0000
+Message-Id: <20200113214546.1990139-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.25.0.rc2
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matt Atwood" <matthew.s.atwood@intel.com>
-Date: Mon, 13 Jan 2020 21:21:06 -0000
-Message-ID: <157895046620.25474.3816915381298009924@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200114041128.11211-1-matthew.s.atwood@intel.com>
-In-Reply-To: <20200114041128.11211-1-matthew.s.atwood@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiB3YXJuaW5nIGZvciBk?=
- =?utf-8?q?rm/i915=3A_add_Wa=5F14010594013=3A_icl=2Cehl_=28rev2=29?=
+Subject: [Intel-gfx] [CI] drm/i915/gt: Always reset the timeslice after a
+ context switch
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,36 +37,57 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Currently, we reset the timer after a pre-eemption event. This has the
+side-effect that the timeslice runs into the second context after the
+first is completed after a normal promotion event, causing the second
+context to be swapped out early and switched for a third context. To be
+more fair, we want to reset the clock after promotion as well.
 
-Series: drm/i915: add Wa_14010594013: icl,ehl (rev2)
-URL   : https://patchwork.freedesktop.org/series/71858/
-State : warning
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Link: https://patchwork.freedesktop.org/patch/msgid/20200113104442.1753973-1-chris@chris-wilson.co.uk
+---
+ drivers/gpu/drm/i915/gt/intel_lrc.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-== Summary ==
+diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+index 9af1b2b493f4..9e430590fb3a 100644
+--- a/drivers/gpu/drm/i915/gt/intel_lrc.c
++++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+@@ -1694,7 +1694,7 @@ active_timeslice(const struct intel_engine_cs *engine)
+ {
+ 	const struct i915_request *rq = *engine->execlists.active;
+ 
+-	if (i915_request_completed(rq))
++	if (!rq || i915_request_completed(rq))
+ 		return 0;
+ 
+ 	if (engine->execlists.switch_priority_hint < effective_prio(rq))
+@@ -2285,7 +2285,6 @@ static void process_csb(struct intel_engine_cs *engine)
+ 
+ 			/* Point active to the new ELSP; prevent overwriting */
+ 			WRITE_ONCE(execlists->active, execlists->pending);
+-			set_timeslice(engine);
+ 
+ 			if (!inject_preempt_hang(execlists))
+ 				ring_set_paused(engine, 0);
+@@ -2326,6 +2325,7 @@ static void process_csb(struct intel_engine_cs *engine)
+ 	} while (head != tail);
+ 
+ 	execlists->csb_head = head;
++	set_timeslice(engine);
+ 
+ 	/*
+ 	 * Gen11 has proven to fail wrt global observation point between
+-- 
+2.25.0.rc2
 
-CALL    scripts/checksyscalls.sh
-  CALL    scripts/atomic/check-atomics.sh
-  CHK     include/generated/compile.h
-Kernel: arch/x86/boot/bzImage is ready  (#1)
-  Building modules, stage 2.
-  MODPOST 122 modules
-ERROR: "__udivdi3" [drivers/gpu/drm/amd/amdgpu/amdgpu.ko] undefined!
-scripts/Makefile.modpost:93: recipe for target '__modpost' failed
-make[1]: *** [__modpost] Error 1
-Makefile:1282: recipe for target 'modules' failed
-make: *** [modules] Error 2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16082/build_32bit.log
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
