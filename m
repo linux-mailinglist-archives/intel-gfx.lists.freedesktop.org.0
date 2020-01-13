@@ -2,31 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D9B31395A2
-	for <lists+intel-gfx@lfdr.de>; Mon, 13 Jan 2020 17:19:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A46511395D8
+	for <lists+intel-gfx@lfdr.de>; Mon, 13 Jan 2020 17:25:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4E74D6E051;
-	Mon, 13 Jan 2020 16:19:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E8C5E6E102;
+	Mon, 13 Jan 2020 16:25:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 281B36E109;
- Mon, 13 Jan 2020 16:19:00 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 240CFA7E01;
- Mon, 13 Jan 2020 16:19:00 +0000 (UTC)
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4C85C6E102
+ for <intel-gfx@lists.freedesktop.org>; Mon, 13 Jan 2020 16:25:09 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19864033-1500050 
+ for multiple; Mon, 13 Jan 2020 16:24:31 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon, 13 Jan 2020 16:24:29 +0000
+Message-Id: <20200113162429.1920747-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.25.0.rc2
+In-Reply-To: <20200113142630.1879666-1-chris@chris-wilson.co.uk>
+References: <20200113142630.1879666-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Mon, 13 Jan 2020 16:19:00 -0000
-Message-ID: <157893234014.25474.7244151905408844241@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200113132614.1820518-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200113132614.1820518-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiB3YXJuaW5nIGZvciBk?=
- =?utf-8?q?rm/i915/gt=3A_Sanitize_and_reset_GPU_before_removing_powerconte?=
- =?utf-8?b?eHQgKHJldjQp?=
+Subject: [Intel-gfx] [PATCH v4] drm/i915/gt: Sanitize and reset GPU before
+ removing powercontext
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,36 +39,195 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+As a final paranoid step (we _should_ have reset the GPU on suspending
+the device prior to unload), reset the GPU once more before removing the
+powercontext and other related power saving paraphernalia.
 
-Series: drm/i915/gt: Sanitize and reset GPU before removing powercontext (rev4)
-URL   : https://patchwork.freedesktop.org/series/71952/
-State : warning
+A clue that this may not be the case is
 
-== Summary ==
+<7> [313.203721] __intel_gt_set_wedged rcs'0
+<7> [313.203746] __intel_gt_set_wedged 	Awake? 3
+<7> [313.203751] __intel_gt_set_wedged 	Barriers?: no
+<7> [313.203756] __intel_gt_set_wedged 	Latency: 0us
+<7> [313.203762] __intel_gt_set_wedged 	Reset count: 0 (global 0)
+<7> [313.203766] __intel_gt_set_wedged 	Requests:
+<7> [313.203785] __intel_gt_set_wedged 	MMIO base:  0x00002000
+<7> [313.203819] __intel_gt_set_wedged 	RING_START: 0x00000000
+<7> [313.203826] __intel_gt_set_wedged 	RING_HEAD:  0x00000000
+<7> [313.203833] __intel_gt_set_wedged 	RING_TAIL:  0x00000000
+<7> [313.203844] __intel_gt_set_wedged 	RING_CTL:   0x00000000
+<7> [313.203854] __intel_gt_set_wedged 	RING_MODE:  0x00000000
+<7> [313.203861] __intel_gt_set_wedged 	RING_IMR: fffffefe
+<7> [313.203875] __intel_gt_set_wedged 	ACTHD:  0x00000000_00000000
+<7> [313.203888] __intel_gt_set_wedged 	BBADDR: 0x00000000_00000000
+<7> [313.203901] __intel_gt_set_wedged 	DMA_FADDR: 0x00000000_00000000
+<7> [313.203909] __intel_gt_set_wedged 	IPEIR: 0x00000000
+<7> [313.203916] __intel_gt_set_wedged 	IPEHR: 0xcccccccc
+<7> [313.203921] __intel_gt_set_wedged 	Execlist tasklet queued? no (enabled), preempt? inactive, timeslice? inactive
+<7> [313.203932] __intel_gt_set_wedged 	Execlist status: 0x00044032 00000020; CSB read:5, write:0, entries:6
+<7> [313.203937] __intel_gt_set_wedged 	Execlist CSB[0]: 0x00000001, context: 0
+<7> [313.203952] __intel_gt_set_wedged 		Pending[0] ring:{start:000c4000, hwsp:fedfc000, seqno:00000000}, rq:  402e:2-  prio=2147483647 @ 207ms: [i915]
+<7> [313.203983] __intel_gt_set_wedged 		E  402e:2-  prio=2147483647 @ 207ms: [i915]
+<7> [313.204006] __intel_gt_set_wedged 		Queue priority hint: 3
 
-CALL    scripts/checksyscalls.sh
-  CALL    scripts/atomic/check-atomics.sh
-  CHK     include/generated/compile.h
-Kernel: arch/x86/boot/bzImage is ready  (#1)
-  Building modules, stage 2.
-  MODPOST 122 modules
-ERROR: "__udivdi3" [drivers/gpu/drm/amd/amdgpu/amdgpu.ko] undefined!
-scripts/Makefile.modpost:93: recipe for target '__modpost' failed
-make[1]: *** [__modpost] Error 1
-Makefile:1282: recipe for target 'modules' failed
-make: *** [modules] Error 2
+during rapid fault-injection reloads. 0xcc is POISON_FREE_INIT which
+suggests that the system cleared the pages on initialisation as they are
+still being used from the previous module load.
 
-== Logs ==
+Despite that we also have a couple of GPU resets prior to this...
+I have a sneaky suspicion that may be a GuC artifact.
 
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16073/build_32bit.log
+v2: Just set the device as wedged (which includes a reset) on
+suspend/unload, and leave the sanitization to load/resume.
+
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Andi Shyti <andi.shyti@intel.com>
+Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+---
+ drivers/gpu/drm/i915/gt/intel_gt.c    |  3 +-
+ drivers/gpu/drm/i915/gt/intel_gt_pm.c | 60 ++++++++++-----------------
+ 2 files changed, 24 insertions(+), 39 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c b/drivers/gpu/drm/i915/gt/intel_gt.c
+index da2b6e2ae692..700ee4c37487 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gt.c
++++ b/drivers/gpu/drm/i915/gt/intel_gt.c
+@@ -588,7 +588,7 @@ int intel_gt_init(struct intel_gt *gt)
+ 
+ 	err = intel_gt_resume(gt);
+ 	if (err)
+-		goto err_uc_init;
++		goto err_gt;
+ 
+ 	err = __engines_record_defaults(gt);
+ 	if (err)
+@@ -606,7 +606,6 @@ int intel_gt_init(struct intel_gt *gt)
+ err_gt:
+ 	__intel_gt_disable(gt);
+ 	intel_uc_fini_hw(&gt->uc);
+-err_uc_init:
+ 	intel_uc_fini(&gt->uc);
+ err_engines:
+ 	intel_engines_release(gt);
+diff --git a/drivers/gpu/drm/i915/gt/intel_gt_pm.c b/drivers/gpu/drm/i915/gt/intel_gt_pm.c
+index d1c2f034296a..681cd986324f 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gt_pm.c
++++ b/drivers/gpu/drm/i915/gt/intel_gt_pm.c
+@@ -118,36 +118,16 @@ void intel_gt_pm_init(struct intel_gt *gt)
+ 	intel_rps_init(&gt->rps);
+ }
+ 
+-static bool reset_engines(struct intel_gt *gt)
++static void reset_engines(struct intel_gt *gt)
+ {
+-	if (INTEL_INFO(gt->i915)->gpu_reset_clobbers_display)
+-		return false;
+-
+-	return __intel_gt_reset(gt, ALL_ENGINES) == 0;
++	if (!INTEL_INFO(gt->i915)->gpu_reset_clobbers_display)
++		__intel_gt_reset(gt, ALL_ENGINES);
+ }
+ 
+-static void gt_sanitize(struct intel_gt *gt, bool force)
++static void gt_sanitize(struct intel_gt *gt)
+ {
+ 	struct intel_engine_cs *engine;
+ 	enum intel_engine_id id;
+-	intel_wakeref_t wakeref;
+-
+-	GT_TRACE(gt, "force:%s", yesno(force));
+-
+-	/* Use a raw wakeref to avoid calling intel_display_power_get early */
+-	wakeref = intel_runtime_pm_get(gt->uncore->rpm);
+-	intel_uncore_forcewake_get(gt->uncore, FORCEWAKE_ALL);
+-
+-	/*
+-	 * As we have just resumed the machine and woken the device up from
+-	 * deep PCI sleep (presumably D3_cold), assume the HW has been reset
+-	 * back to defaults, recovering from whatever wedged state we left it
+-	 * in and so worth trying to use the device once more.
+-	 */
+-	if (intel_gt_is_wedged(gt))
+-		intel_gt_unset_wedged(gt);
+-
+-	intel_uc_sanitize(&gt->uc);
+ 
+ 	for_each_engine(engine, gt, id)
+ 		if (engine->reset.prepare)
+@@ -155,21 +135,18 @@ static void gt_sanitize(struct intel_gt *gt, bool force)
+ 
+ 	intel_uc_reset_prepare(&gt->uc);
+ 
+-	if (reset_engines(gt) || force) {
+-		for_each_engine(engine, gt, id)
+-			__intel_engine_reset(engine, false);
+-	}
++	reset_engines(gt);
++	for_each_engine(engine, gt, id)
++		__intel_engine_reset(engine, false);
+ 
+ 	for_each_engine(engine, gt, id)
+ 		if (engine->reset.finish)
+ 			engine->reset.finish(engine);
+-
+-	intel_uncore_forcewake_put(gt->uncore, FORCEWAKE_ALL);
+-	intel_runtime_pm_put(gt->uncore->rpm, wakeref);
+ }
+ 
+ void intel_gt_pm_fini(struct intel_gt *gt)
+ {
++	intel_gt_set_wedged(gt);
+ 	intel_rc6_fini(&gt->rc6);
+ }
+ 
+@@ -192,15 +169,25 @@ int intel_gt_resume(struct intel_gt *gt)
+ 	 * allowing us to fixup the user contexts on their first pin.
+ 	 */
+ 	intel_gt_pm_get(gt);
+-
+ 	intel_uncore_forcewake_get(gt->uncore, FORCEWAKE_ALL);
+-	intel_rc6_sanitize(&gt->rc6);
+-	gt_sanitize(gt, true);
+-	if (intel_gt_is_wedged(gt)) {
++
++	/*
++	 * As we have just resumed the machine and woken the device up from
++	 * deep PCI sleep (presumably D3_cold), assume the HW has been reset
++	 * back to defaults, recovering from whatever wedged state we left it
++	 * in and so worth trying to use the device once more.
++	 */
++	if (intel_gt_is_wedged(gt))
++		intel_gt_unset_wedged(gt);
++	if (unlikely(intel_gt_is_wedged(gt))) {
+ 		err = -EIO;
+ 		goto out_fw;
+ 	}
+ 
++	intel_rc6_sanitize(&gt->rc6);
++	intel_uc_sanitize(&gt->uc);
++	gt_sanitize(gt);
++
+ 	/* Only when the HW is re-initialised, can we replay the requests */
+ 	err = intel_gt_init_hw(gt);
+ 	if (err) {
+@@ -308,8 +295,7 @@ void intel_gt_suspend_late(struct intel_gt *gt)
+ 		intel_llc_disable(&gt->llc);
+ 	}
+ 
+-	gt_sanitize(gt, false);
+-
++	intel_gt_set_wedged(gt);
+ 	GT_TRACE(gt, "\n");
+ }
+ 
+-- 
+2.25.0.rc2
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
