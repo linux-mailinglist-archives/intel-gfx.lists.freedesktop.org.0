@@ -1,35 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F3F2139BD0
-	for <lists+intel-gfx@lfdr.de>; Mon, 13 Jan 2020 22:46:08 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 14D23139C03
+	for <lists+intel-gfx@lfdr.de>; Mon, 13 Jan 2020 22:59:52 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A801B89C59;
-	Mon, 13 Jan 2020 21:46:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0507A89CAA;
+	Mon, 13 Jan 2020 21:59:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D7EDE89C59
- for <intel-gfx@lists.freedesktop.org>; Mon, 13 Jan 2020 21:46:05 +0000 (UTC)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C0B7D89CAA
+ for <intel-gfx@lists.freedesktop.org>; Mon, 13 Jan 2020 21:59:47 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 13 Jan 2020 13:46:05 -0800
+ by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 13 Jan 2020 13:59:46 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,430,1571727600"; d="scan'208";a="246103006"
-Received: from josouza-mobl.jf.intel.com (HELO josouza-MOBL.intel.com)
- ([10.24.13.11])
- by fmsmga001.fm.intel.com with ESMTP; 13 Jan 2020 13:46:04 -0800
-From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon, 13 Jan 2020 13:46:03 -0800
-Message-Id: <20200113214603.52158-1-jose.souza@intel.com>
-X-Mailer: git-send-email 2.24.1
+X-IronPort-AV: E=Sophos;i="5.69,430,1571727600"; d="scan'208";a="246121551"
+Received: from dceraolo-mobl.amr.corp.intel.com (HELO [10.255.88.44])
+ ([10.255.88.44])
+ by fmsmga001.fm.intel.com with ESMTP; 13 Jan 2020 13:59:46 -0800
+To: Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ intel-gfx@lists.freedesktop.org
+References: <20200111231114.59208-1-michal.wajdeczko@intel.com>
+ <20200111231114.59208-3-michal.wajdeczko@intel.com>
+ <138a54aa-de99-c4f3-1b9f-32d8f34a28db@intel.com>
+ <op.0ecmxiozxaggs7@mwajdecz-mobl1.ger.corp.intel.com>
+From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Message-ID: <cfd21b49-1eff-9e9d-5754-86380e02a154@intel.com>
+Date: Mon, 13 Jan 2020 13:59:46 -0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.1
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH CI] drm/i915/psr: Share the computation of idle
- frames
+In-Reply-To: <op.0ecmxiozxaggs7@mwajdecz-mobl1.ger.corp.intel.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH 2/4] drm/i915/guc: Introduce CT_ERROR
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,71 +49,248 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-15"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Qm90aCBhY3RpdmF0ZSBmdW5jdGlvbnMgYW5kIHRoZSBkYzNjbyBkaXNhYmxlIGZ1bmN0aW9uIHdl
-cmUgZG9pbmcgdGhlCnNhbWUgdGhpbmcsIHNvIGJldHRlciBtb3ZlIHRvIGEgZnVuY3Rpb24gYW5k
-IHNoYXJlLgpBbHNvIHdoaWxlIGF0IGl0IGFkZGluZyBhIFdBUk5fT04gdG8gY2F0Y2ggaW52YWxp
-ZCB2YWx1ZXMuCgpDYzogQW5zaHVtYW4gR3VwdGEgPGFuc2h1bWFuLmd1cHRhQGludGVsLmNvbT4K
-Q2M6IEltcmUgRGVhayA8aW1yZS5kZWFrQGludGVsLmNvbT4KUmV2aWV3ZWQtYnk6IEFuc2h1bWFu
-IEd1cHRhIDxhbnNodW1hbi5ndXB0YUBpbnRlbC5jb20+ClNpZ25lZC1vZmYtYnk6IEpvc8OpIFJv
-YmVydG8gZGUgU291emEgPGpvc2Uuc291emFAaW50ZWwuY29tPgotLS0KIGRyaXZlcnMvZ3B1L2Ry
-bS9pOTE1L2Rpc3BsYXkvaW50ZWxfcHNyLmMgfCA0MyArKysrKysrKysrKy0tLS0tLS0tLS0tLS0K
-IDEgZmlsZSBjaGFuZ2VkLCAxOSBpbnNlcnRpb25zKCspLCAyNCBkZWxldGlvbnMoLSkKCmRpZmYg
-LS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Bzci5jIGIvZHJpdmVy
-cy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9wc3IuYwppbmRleCA4OWM5Y2Y1ZjM4ZDIuLmJk
-NzEzY2E4ZDVmYyAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRl
-bF9wc3IuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Bzci5jCkBA
-IC00NTQsMjIgKzQ1NCwyOSBAQCBzdGF0aWMgdTMyIGludGVsX3BzcjFfZ2V0X3RwX3RpbWUoc3Ry
-dWN0IGludGVsX2RwICppbnRlbF9kcCkKIAlyZXR1cm4gdmFsOwogfQogCi1zdGF0aWMgdm9pZCBo
-c3dfYWN0aXZhdGVfcHNyMShzdHJ1Y3QgaW50ZWxfZHAgKmludGVsX2RwKQorc3RhdGljIHU4IHBz
-cl9jb21wdXRlX2lkbGVfZnJhbWVzKHN0cnVjdCBpbnRlbF9kcCAqaW50ZWxfZHApCiB7CiAJc3Ry
-dWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2ID0gZHBfdG9faTkxNShpbnRlbF9kcCk7Ci0J
-dTMyIG1heF9zbGVlcF90aW1lID0gMHgxZjsKLQl1MzIgdmFsID0gRURQX1BTUl9FTkFCTEU7CisJ
-aW50IGlkbGVfZnJhbWVzOwogCiAJLyogTGV0J3MgdXNlIDYgYXMgdGhlIG1pbmltdW0gdG8gY292
-ZXIgYWxsIGtub3duIGNhc2VzIGluY2x1ZGluZyB0aGUKIAkgKiBvZmYtYnktb25lIGlzc3VlIHRo
-YXQgSFcgaGFzIGluIHNvbWUgY2FzZXMuCiAJICovCi0JaW50IGlkbGVfZnJhbWVzID0gbWF4KDYs
-IGRldl9wcml2LT52YnQucHNyLmlkbGVfZnJhbWVzKTsKLQotCS8qIHNpbmtfc3luY19sYXRlbmN5
-IG9mIDggbWVhbnMgc291cmNlIGhhcyB0byB3YWl0IGZvciBtb3JlIHRoYW4gOAotCSAqIGZyYW1l
-cywgd2UnbGwgZ28gd2l0aCA5IGZyYW1lcyBmb3Igbm93Ci0JICovCisJaWRsZV9mcmFtZXMgPSBt
-YXgoNiwgZGV2X3ByaXYtPnZidC5wc3IuaWRsZV9mcmFtZXMpOwogCWlkbGVfZnJhbWVzID0gbWF4
-KGlkbGVfZnJhbWVzLCBkZXZfcHJpdi0+cHNyLnNpbmtfc3luY19sYXRlbmN5ICsgMSk7Ci0JdmFs
-IHw9IGlkbGVfZnJhbWVzIDw8IEVEUF9QU1JfSURMRV9GUkFNRV9TSElGVDsKKworCVdBUk5fT04o
-aWRsZV9mcmFtZXMgPiAweGYpOworCisJcmV0dXJuIGlkbGVfZnJhbWVzOworfQorCitzdGF0aWMg
-dm9pZCBoc3dfYWN0aXZhdGVfcHNyMShzdHJ1Y3QgaW50ZWxfZHAgKmludGVsX2RwKQoreworCXN0
-cnVjdCBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJpdiA9IGRwX3RvX2k5MTUoaW50ZWxfZHApOwor
-CXUzMiBtYXhfc2xlZXBfdGltZSA9IDB4MWY7CisJdTMyIHZhbCA9IEVEUF9QU1JfRU5BQkxFOwor
-CisJdmFsIHw9IHBzcl9jb21wdXRlX2lkbGVfZnJhbWVzKGludGVsX2RwKSA8PCBFRFBfUFNSX0lE
-TEVfRlJBTUVfU0hJRlQ7CiAKIAl2YWwgfD0gbWF4X3NsZWVwX3RpbWUgPDwgRURQX1BTUl9NQVhf
-U0xFRVBfVElNRV9TSElGVDsKIAlpZiAoSVNfSEFTV0VMTChkZXZfcHJpdikpCkBAIC00OTMsMTMg
-KzUwMCw3IEBAIHN0YXRpYyB2b2lkIGhzd19hY3RpdmF0ZV9wc3IyKHN0cnVjdCBpbnRlbF9kcCAq
-aW50ZWxfZHApCiAJc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2ID0gZHBfdG9faTkx
-NShpbnRlbF9kcCk7CiAJdTMyIHZhbDsKIAotCS8qIExldCdzIHVzZSA2IGFzIHRoZSBtaW5pbXVt
-IHRvIGNvdmVyIGFsbCBrbm93biBjYXNlcyBpbmNsdWRpbmcgdGhlCi0JICogb2ZmLWJ5LW9uZSBp
-c3N1ZSB0aGF0IEhXIGhhcyBpbiBzb21lIGNhc2VzLgotCSAqLwotCWludCBpZGxlX2ZyYW1lcyA9
-IG1heCg2LCBkZXZfcHJpdi0+dmJ0LnBzci5pZGxlX2ZyYW1lcyk7Ci0KLQlpZGxlX2ZyYW1lcyA9
-IG1heChpZGxlX2ZyYW1lcywgZGV2X3ByaXYtPnBzci5zaW5rX3N5bmNfbGF0ZW5jeSArIDEpOwot
-CXZhbCA9IGlkbGVfZnJhbWVzIDw8IEVEUF9QU1IyX0lETEVfRlJBTUVfU0hJRlQ7CisJdmFsID0g
-cHNyX2NvbXB1dGVfaWRsZV9mcmFtZXMoaW50ZWxfZHApIDw8IEVEUF9QU1IyX0lETEVfRlJBTUVf
-U0hJRlQ7CiAKIAl2YWwgfD0gRURQX1BTUjJfRU5BQkxFIHwgRURQX1NVX1RSQUNLX0VOQUJMRTsK
-IAlpZiAoSU5URUxfR0VOKGRldl9wcml2KSA+PSAxMCB8fCBJU19HRU1JTklMQUtFKGRldl9wcml2
-KSkKQEAgLTU2NiwxNiArNTY3LDEwIEBAIHN0YXRpYyB2b2lkIHRnbF9wc3IyX2VuYWJsZV9kYzNj
-byhzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYpCiAKIHN0YXRpYyB2b2lkIHRnbF9w
-c3IyX2Rpc2FibGVfZGMzY28oc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2KQogewot
-CWludCBpZGxlX2ZyYW1lczsKKwlzdHJ1Y3QgaW50ZWxfZHAgKmludGVsX2RwID0gZGV2X3ByaXYt
-PnBzci5kcDsKIAogCWludGVsX2Rpc3BsYXlfcG93ZXJfc2V0X3RhcmdldF9kY19zdGF0ZShkZXZf
-cHJpdiwgRENfU1RBVEVfRU5fVVBUT19EQzYpOwotCS8qCi0JICogUmVzdG9yZSBQU1IyIGlkbGUg
-ZnJhbWUgbGV0J3MgdXNlIDYgYXMgdGhlIG1pbmltdW0gdG8gY292ZXIgYWxsIGtub3duCi0JICog
-Y2FzZXMgaW5jbHVkaW5nIHRoZSBvZmYtYnktb25lIGlzc3VlIHRoYXQgSFcgaGFzIGluIHNvbWUg
-Y2FzZXMuCi0JICovCi0JaWRsZV9mcmFtZXMgPSBtYXgoNiwgZGV2X3ByaXYtPnZidC5wc3IuaWRs
-ZV9mcmFtZXMpOwotCWlkbGVfZnJhbWVzID0gbWF4KGlkbGVfZnJhbWVzLCBkZXZfcHJpdi0+cHNy
-LnNpbmtfc3luY19sYXRlbmN5ICsgMSk7Ci0JcHNyMl9wcm9ncmFtX2lkbGVfZnJhbWVzKGRldl9w
-cml2LCBpZGxlX2ZyYW1lcyk7CisJcHNyMl9wcm9ncmFtX2lkbGVfZnJhbWVzKGRldl9wcml2LCBw
-c3JfY29tcHV0ZV9pZGxlX2ZyYW1lcyhpbnRlbF9kcCkpOwogfQogCiBzdGF0aWMgdm9pZCB0Z2xf
-ZGM1X2lkbGVfdGhyZWFkKHN0cnVjdCB3b3JrX3N0cnVjdCAqd29yaykKLS0gCjIuMjQuMQoKX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1h
-aWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMu
-ZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+
+
+On 1/13/2020 12:52 PM, Michal Wajdeczko wrote:
+> On Mon, 13 Jan 2020 21:20:25 +0100, Daniele Ceraolo Spurio =
+
+> <daniele.ceraolospurio@intel.com> wrote:
+>
+>>
+>>
+>> On 1/11/2020 3:11 PM, Michal Wajdeczko wrote:
+>>> We should start using dev variants of error logging and
+>>> to simplify that introduce helper macro that will do any
+>>> necessary conversions to obtain pointer to device struct.
+>>>
+>>> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+>>> Cc: Chris Wilson <chris@chris-wilson.co.uk>
+>>> Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+>>> ---
+>>> =A0 drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c | 46 =
+
+>>> ++++++++++++++++-------
+>>> =A0 1 file changed, 32 insertions(+), 14 deletions(-)
+>>>
+>>> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c =
+
+>>> b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
+>>> index 4aa07a53a9cf..eb123543392a 100644
+>>> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
+>>> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
+>>> @@ -5,7 +5,10 @@
+>>> =A0=A0=A0 #include "i915_drv.h"
+>>> =A0 #include "intel_guc_ct.h"
+>>> +#include "gt/intel_gt.h"
+>>> =A0 +#define CT_ERROR(_ct, _fmt, ...) \
+>>> +=A0=A0=A0 DRM_DEV_ERROR(ct_to_dev(_ct), "CT: " _fmt, ##__VA_ARGS__)
+>>> =A0 #ifdef CONFIG_DRM_I915_DEBUG_GUC
+>>> =A0 #define CT_DEBUG_DRIVER(...) DRM_DEBUG_DRIVER(__VA_ARGS__)
+>>
+>> I'm not convinced by the fact that CT_ERROR and CT_DEBUG_DRIVER now =
+
+>> have different styles. Maybe we should go with something like:
+>>
+>> #define __CT_MSG(level, _ct, _fmt, ...) \
+>> =A0=A0=A0=A0DRM_DEV_##level(ct_to_dev(_ct), "CT: " _fmt, ##__VA_ARGS__)
+>>
+>> #define CT_ERROR(_ct, _fmt, ...) __CT_MSG(ERROR, _ct, _fmt, =
+
+>> ##__VA_ARGS__)
+>>
+>> #ifdef CONFIG_DRM_I915_DEBUG_GUC
+>> #define CT_DEBUG(_ct, _fmt, ...) \
+>> =A0=A0=A0=A0__CT_MSG(DEBUG_DRIVER, _ct, _fmt, ##__VA_ARGS__)
+>> #else
+>> #define CT_DEBUG(...)=A0 do { } while (0)
+>> #endif
+>>
+>>
+>> Thoughts?
+>
+> This is on my todo-list: I'm planning to add CT_DEBUG (with unified
+> style) after completing some other necessary refactoring to get 'ct'
+> in all places where we would like to replace old CT_DEBUG_DRIVER (as
+> you may notice now in some places we don't have ct/dev handy)
+>
+
+If you're committing to land those other reworks in a reasonable time =
+
+after this is merged, then:
+
+Reviewed-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+
+Daniele
+
+> Michal
+>
+>>
+>> Daniele
+>>
+>>> =A0 #else
+>>> @@ -48,6 +51,21 @@ static inline struct intel_guc *ct_to_guc(struct =
+
+>>> intel_guc_ct *ct)
+>>> =A0=A0=A0=A0=A0 return container_of(ct, struct intel_guc, ct);
+>>> =A0 }
+>>> =A0 +static inline struct intel_gt *ct_to_gt(struct intel_guc_ct *ct)
+>>> +{
+>>> +=A0=A0=A0 return guc_to_gt(ct_to_guc(ct));
+>>> +}
+>>> +
+>>> +static inline struct drm_i915_private *ct_to_i915(struct =
+
+>>> intel_guc_ct *ct)
+>>> +{
+>>> +=A0=A0=A0 return ct_to_gt(ct)->i915;
+>>> +}
+>>> +
+>>> +static inline struct device *ct_to_dev(struct intel_guc_ct *ct)
+>>> +{
+>>> +=A0=A0=A0 return ct_to_i915(ct)->drm.dev;
+>>> +}
+>>> +
+>>> =A0 static inline const char *guc_ct_buffer_type_to_str(u32 type)
+>>> =A0 {
+>>> =A0=A0=A0=A0=A0 switch (type) {
+>>> @@ -157,8 +175,8 @@ int intel_guc_ct_init(struct intel_guc_ct *ct)
+>>> =A0=A0=A0=A0=A0=A0 */
+>>> =A0=A0=A0=A0=A0=A0=A0 err =3D intel_guc_allocate_and_map_vma(guc, PAGE_=
+SIZE, =
+
+>>> &ct->vma, &blob);
+>>> -=A0=A0=A0 if (err) {
+>>> -=A0=A0=A0=A0=A0=A0=A0 DRM_ERROR("CT: channel allocation failed; err=3D=
+%d\n", err);
+>>> +=A0=A0=A0 if (unlikely(err)) {
+>>> +=A0=A0=A0=A0=A0=A0=A0 CT_ERROR(ct, "Failed to allocate CT channel (err=
+=3D%d)\n", err);
+>>> =A0=A0=A0=A0=A0=A0=A0=A0=A0 return err;
+>>> =A0=A0=A0=A0=A0 }
+>>> =A0 @@ -240,7 +258,7 @@ int intel_guc_ct_enable(struct intel_guc_ct *ct)
+>>> =A0=A0=A0=A0=A0 guc_action_deregister_ct_buffer(guc,
+>>> =A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 INTEL_G=
+UC_CT_BUFFER_TYPE_RECV);
+>>> =A0 err_out:
+>>> -=A0=A0=A0 DRM_ERROR("CT: can't open channel; err=3D%d\n", err);
+>>> +=A0=A0=A0 CT_ERROR(ct, "Failed to open open CT channel (err=3D%d)\n", =
+err);
+>>> =A0=A0=A0=A0=A0 return err;
+>>> =A0 }
+>>> =A0 @@ -526,8 +544,8 @@ int intel_guc_ct_send(struct intel_guc_ct *ct, =
+
+>>> const u32 *action, u32 len,
+>>> =A0=A0=A0=A0=A0=A0=A0 ret =3D ct_send(ct, action, len, response_buf, =
+
+>>> response_buf_size, &status);
+>>> =A0=A0=A0=A0=A0 if (unlikely(ret < 0)) {
+>>> -=A0=A0=A0=A0=A0=A0=A0 DRM_ERROR("CT: send action %#X failed; err=3D%d =
+status=3D%#X\n",
+>>> -=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 action[0], ret, status);
+>>> +=A0=A0=A0=A0=A0=A0=A0 CT_ERROR(ct, "Sending action %#x failed (err=3D%=
+d =
+
+>>> status=3D%#X)\n",
+>>> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 action[0], ret, status);
+>>> =A0=A0=A0=A0=A0 } else if (unlikely(ret)) {
+>>> =A0=A0=A0=A0=A0=A0=A0=A0=A0 CT_DEBUG_DRIVER("CT: send action %#x return=
+ed %d (%#x)\n",
+>>> =A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 action[0], ret, ret=
+);
+>>> @@ -639,7 +657,7 @@ static int ct_handle_response(struct =
+
+>>> intel_guc_ct *ct, const u32 *msg)
+>>> =A0=A0=A0=A0=A0=A0=A0 /* Response payload shall at least include fence =
+and status */
+>>> =A0=A0=A0=A0=A0 if (unlikely(len < 2)) {
+>>> -=A0=A0=A0=A0=A0=A0=A0 DRM_ERROR("CT: corrupted response %*ph\n", msgsi=
+ze, msg);
+>>> +=A0=A0=A0=A0=A0=A0=A0 CT_ERROR(ct, "Corrupted response %*ph\n", msgsiz=
+e, msg);
+>>> =A0=A0=A0=A0=A0=A0=A0=A0=A0 return -EPROTO;
+>>> =A0=A0=A0=A0=A0 }
+>>> =A0 @@ -649,7 +667,7 @@ static int ct_handle_response(struct =
+
+>>> intel_guc_ct *ct, const u32 *msg)
+>>> =A0=A0=A0=A0=A0=A0=A0 /* Format of the status follows RESPONSE message =
+*/
+>>> =A0=A0=A0=A0=A0 if (unlikely(!INTEL_GUC_MSG_IS_RESPONSE(status))) {
+>>> -=A0=A0=A0=A0=A0=A0=A0 DRM_ERROR("CT: corrupted response %*ph\n", msgsi=
+ze, msg);
+>>> +=A0=A0=A0=A0=A0=A0=A0 CT_ERROR(ct, "Corrupted response %*ph\n", msgsiz=
+e, msg);
+>>> =A0=A0=A0=A0=A0=A0=A0=A0=A0 return -EPROTO;
+>>> =A0=A0=A0=A0=A0 }
+>>> =A0 @@ -663,8 +681,8 @@ static int ct_handle_response(struct =
+
+>>> intel_guc_ct *ct, const u32 *msg)
+>>> =A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 continue;
+>>> =A0=A0=A0=A0=A0=A0=A0=A0=A0 }
+>>> =A0=A0=A0=A0=A0=A0=A0=A0=A0 if (unlikely(datalen > req->response_len)) {
+>>> -=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 DRM_ERROR("CT: response %u too long =
+%*ph\n",
+>>> -=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 req->fence, msgsiz=
+e, msg);
+>>> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 CT_ERROR(ct, "Response for %u is too=
+ long %*ph\n",
+>>> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 req->fence, msgsize, =
+msg);
+>>> =A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 datalen =3D 0;
+>>> =A0=A0=A0=A0=A0=A0=A0=A0=A0 }
+>>> =A0=A0=A0=A0=A0=A0=A0=A0=A0 if (datalen)
+>>> @@ -677,7 +695,7 @@ static int ct_handle_response(struct =
+
+>>> intel_guc_ct *ct, const u32 *msg)
+>>> =A0=A0=A0=A0=A0 spin_unlock(&ct->requests.lock);
+>>> =A0=A0=A0=A0=A0=A0=A0 if (!found)
+>>> -=A0=A0=A0=A0=A0=A0=A0 DRM_ERROR("CT: unsolicited response %*ph\n", msg=
+size, msg);
+>>> +=A0=A0=A0=A0=A0=A0=A0 CT_ERROR(ct, "Unsolicited response %*ph\n", msgs=
+ize, msg);
+>>> =A0=A0=A0=A0=A0 return 0;
+>>> =A0 }
+>>> =A0 @@ -698,8 +716,8 @@ static void ct_process_request(struct =
+
+>>> intel_guc_ct *ct,
+>>> =A0=A0=A0=A0=A0=A0=A0 default:
+>>> =A0 fail_unexpected:
+>>> -=A0=A0=A0=A0=A0=A0=A0 DRM_ERROR("CT: unexpected request %x %*ph\n",
+>>> -=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 action, 4 * len, payload);
+>>> +=A0=A0=A0=A0=A0=A0=A0 CT_ERROR(ct, "Unexpected request %x %*ph\n",
+>>> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 action, 4 * len, payload);
+>>> =A0=A0=A0=A0=A0=A0=A0=A0=A0 break;
+>>> =A0=A0=A0=A0=A0 }
+>>> =A0 }
+>>> @@ -775,7 +793,7 @@ static int ct_handle_request(struct intel_guc_ct =
+
+>>> *ct, const u32 *msg)
+>>> =A0=A0=A0=A0=A0=A0=A0 request =3D kmalloc(sizeof(*request) + msgsize, G=
+FP_ATOMIC);
+>>> =A0=A0=A0=A0=A0 if (unlikely(!request)) {
+>>> -=A0=A0=A0=A0=A0=A0=A0 DRM_ERROR("CT: dropping request %*ph\n", msgsize=
+, msg);
+>>> +=A0=A0=A0=A0=A0=A0=A0 CT_ERROR(ct, "Dropping request %*ph\n", msgsize,=
+ msg);
+>>> =A0=A0=A0=A0=A0=A0=A0=A0=A0 return 0; /* XXX: -ENOMEM ? */
+>>> =A0=A0=A0=A0=A0 }
+>>> =A0=A0=A0=A0=A0 memcpy(request->msg, msg, msgsize);
+>>> @@ -815,7 +833,7 @@ void intel_guc_ct_event_handler(struct =
+
+>>> intel_guc_ct *ct)
+>>> =A0=A0=A0=A0=A0 } while (!err);
+>>> =A0=A0=A0=A0=A0=A0=A0 if (GEM_WARN_ON(err =3D=3D -EPROTO)) {
+>>> -=A0=A0=A0=A0=A0=A0=A0 DRM_ERROR("CT: corrupted message detected!\n");
+>>> +=A0=A0=A0=A0=A0=A0=A0 CT_ERROR(ct, "Corrupted message: %#x\n", msg[0]);
+>>> =A0=A0=A0=A0=A0=A0=A0=A0=A0 ctb->desc->is_in_error =3D 1;
+>>> =A0=A0=A0=A0=A0 }
+>>> =A0 }
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
