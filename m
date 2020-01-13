@@ -2,31 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3557D139752
-	for <lists+intel-gfx@lfdr.de>; Mon, 13 Jan 2020 18:17:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E57F9139766
+	for <lists+intel-gfx@lfdr.de>; Mon, 13 Jan 2020 18:21:10 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9FA7C89E5B;
-	Mon, 13 Jan 2020 17:17:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3B26D6E111;
+	Mon, 13 Jan 2020 17:21:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 57C9C89E5B
- for <intel-gfx@lists.freedesktop.org>; Mon, 13 Jan 2020 17:17:23 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19864712-1500050 
- for multiple; Mon, 13 Jan 2020 17:17:06 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon, 13 Jan 2020 17:17:05 +0000
-Message-Id: <20200113171705.1921329-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.25.0.rc2
-In-Reply-To: <20200113132614.1820518-1-chris@chris-wilson.co.uk>
-References: <20200113132614.1820518-1-chris@chris-wilson.co.uk>
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D142D6E10F;
+ Mon, 13 Jan 2020 17:21:07 +0000 (UTC)
+X-Amp-Result: UNSCANNABLE
+X-Amp-File-Uploaded: False
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 13 Jan 2020 09:21:07 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.69,429,1571727600"; d="scan'208";a="242161926"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by orsmga002.jf.intel.com with SMTP; 13 Jan 2020 09:21:04 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Mon, 13 Jan 2020 19:21:03 +0200
+Date: Mon, 13 Jan 2020 19:21:03 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Juston Li <juston.li@intel.com>
+Message-ID: <20200113172103.GU13686@intel.com>
+References: <20191217034836.3936-1-juston.li@intel.com>
+ <20191217034836.3936-2-juston.li@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v5] drm/i915/gt: Sanitize and reset GPU before
- removing powercontext
+Content-Disposition: inline
+In-Reply-To: <20191217034836.3936-2-juston.li@intel.com>
+X-Patchwork-Hint: comment
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH v4 i-g-t 2/2] tests/kms_getfb: Add getfb2
+ tests
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,209 +48,243 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: igt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ Daniel Stone <daniels@collabora.com>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-As a final paranoid step (we _should_ have reset the GPU on suspending
-the device prior to unload), reset the GPU once more before removing the
-powercontext and other related power saving paraphernalia.
+On Mon, Dec 16, 2019 at 07:48:40PM -0800, Juston Li wrote:
+> From: Daniel Stone <daniels@collabora.com>
+> =
 
-A clue that this may not be the case is
+> Mirroring addfb2, add tests for the new ioctl which will return us
+> information about framebuffers containing multiple buffers, as well as
+> modifiers.
+> =
 
-<7> [313.203721] __intel_gt_set_wedged rcs'0
-<7> [313.203746] __intel_gt_set_wedged 	Awake? 3
-<7> [313.203751] __intel_gt_set_wedged 	Barriers?: no
-<7> [313.203756] __intel_gt_set_wedged 	Latency: 0us
-<7> [313.203762] __intel_gt_set_wedged 	Reset count: 0 (global 0)
-<7> [313.203766] __intel_gt_set_wedged 	Requests:
-<7> [313.203785] __intel_gt_set_wedged 	MMIO base:  0x00002000
-<7> [313.203819] __intel_gt_set_wedged 	RING_START: 0x00000000
-<7> [313.203826] __intel_gt_set_wedged 	RING_HEAD:  0x00000000
-<7> [313.203833] __intel_gt_set_wedged 	RING_TAIL:  0x00000000
-<7> [313.203844] __intel_gt_set_wedged 	RING_CTL:   0x00000000
-<7> [313.203854] __intel_gt_set_wedged 	RING_MODE:  0x00000000
-<7> [313.203861] __intel_gt_set_wedged 	RING_IMR: fffffefe
-<7> [313.203875] __intel_gt_set_wedged 	ACTHD:  0x00000000_00000000
-<7> [313.203888] __intel_gt_set_wedged 	BBADDR: 0x00000000_00000000
-<7> [313.203901] __intel_gt_set_wedged 	DMA_FADDR: 0x00000000_00000000
-<7> [313.203909] __intel_gt_set_wedged 	IPEIR: 0x00000000
-<7> [313.203916] __intel_gt_set_wedged 	IPEHR: 0xcccccccc
-<7> [313.203921] __intel_gt_set_wedged 	Execlist tasklet queued? no (enabled), preempt? inactive, timeslice? inactive
-<7> [313.203932] __intel_gt_set_wedged 	Execlist status: 0x00044032 00000020; CSB read:5, write:0, entries:6
-<7> [313.203937] __intel_gt_set_wedged 	Execlist CSB[0]: 0x00000001, context: 0
-<7> [313.203952] __intel_gt_set_wedged 		Pending[0] ring:{start:000c4000, hwsp:fedfc000, seqno:00000000}, rq:  402e:2-  prio=2147483647 @ 207ms: [i915]
-<7> [313.203983] __intel_gt_set_wedged 		E  402e:2-  prio=2147483647 @ 207ms: [i915]
-<7> [313.204006] __intel_gt_set_wedged 		Queue priority hint: 3
+> Changes since v3:
+> - Add subtests to ensure handles aren't returned for non-root and
+>   non-master callers
+> - Fix getfb2-handle-not-fb to use getfb2
+> =
 
-during rapid fault-injection reloads. 0xcc is POISON_FREE_INIT which
-suggests that the system cleared the pages on initialisation as they are
-still being used from the previous module load.
+> Changes since v1:
+> - Add test that uses getfb2 output to call addfb2 as suggested by Ville
+> =
 
-Despite that we also have a couple of GPU resets prior to this...
-I have a sneaky suspicion that may be a GuC artifact.
+> Signed-off-by: Daniel Stone <daniels@collabora.com>
+> Signed-off-by: Juston Li <juston.li@intel.com>
+> ---
+>  tests/kms_getfb.c | 160 ++++++++++++++++++++++++++++++++++++++++++++++
+>  1 file changed, 160 insertions(+)
+> =
 
-v2: Just set the device as wedged (which includes a reset) on
-suspend/unload, and leave the sanitization to load/resume.
+> diff --git a/tests/kms_getfb.c b/tests/kms_getfb.c
+> index ca0b01c05e5c..ffd8f9117c92 100644
+> --- a/tests/kms_getfb.c
+> +++ b/tests/kms_getfb.c
+> @@ -40,6 +40,8 @@
+>  #include "drm.h"
+>  #include "drm_fourcc.h"
+>  =
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Andi Shyti <andi.shyti@intel.com>
-Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
----
- drivers/gpu/drm/i915/gt/intel_gt.c    |  3 +-
- drivers/gpu/drm/i915/gt/intel_gt_pm.c | 60 ++++++++++-----------------
- drivers/gpu/drm/i915/gt/intel_reset.c |  2 +
- 3 files changed, 26 insertions(+), 39 deletions(-)
+> +#include "igt_device.h"
+> +
+>  static bool has_getfb_iface(int fd)
+>  {
+>  	struct drm_mode_fb_cmd arg =3D { };
+> @@ -228,6 +230,158 @@ static void test_duplicate_handles(int fd)
+>  	}
+>  }
+>  =
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c b/drivers/gpu/drm/i915/gt/intel_gt.c
-index da2b6e2ae692..700ee4c37487 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gt.c
-@@ -588,7 +588,7 @@ int intel_gt_init(struct intel_gt *gt)
- 
- 	err = intel_gt_resume(gt);
- 	if (err)
--		goto err_uc_init;
-+		goto err_gt;
- 
- 	err = __engines_record_defaults(gt);
- 	if (err)
-@@ -606,7 +606,6 @@ int intel_gt_init(struct intel_gt *gt)
- err_gt:
- 	__intel_gt_disable(gt);
- 	intel_uc_fini_hw(&gt->uc);
--err_uc_init:
- 	intel_uc_fini(&gt->uc);
- err_engines:
- 	intel_engines_release(gt);
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_pm.c b/drivers/gpu/drm/i915/gt/intel_gt_pm.c
-index d1c2f034296a..681cd986324f 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt_pm.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_pm.c
-@@ -118,36 +118,16 @@ void intel_gt_pm_init(struct intel_gt *gt)
- 	intel_rps_init(&gt->rps);
- }
- 
--static bool reset_engines(struct intel_gt *gt)
-+static void reset_engines(struct intel_gt *gt)
- {
--	if (INTEL_INFO(gt->i915)->gpu_reset_clobbers_display)
--		return false;
--
--	return __intel_gt_reset(gt, ALL_ENGINES) == 0;
-+	if (!INTEL_INFO(gt->i915)->gpu_reset_clobbers_display)
-+		__intel_gt_reset(gt, ALL_ENGINES);
- }
- 
--static void gt_sanitize(struct intel_gt *gt, bool force)
-+static void gt_sanitize(struct intel_gt *gt)
- {
- 	struct intel_engine_cs *engine;
- 	enum intel_engine_id id;
--	intel_wakeref_t wakeref;
--
--	GT_TRACE(gt, "force:%s", yesno(force));
--
--	/* Use a raw wakeref to avoid calling intel_display_power_get early */
--	wakeref = intel_runtime_pm_get(gt->uncore->rpm);
--	intel_uncore_forcewake_get(gt->uncore, FORCEWAKE_ALL);
--
--	/*
--	 * As we have just resumed the machine and woken the device up from
--	 * deep PCI sleep (presumably D3_cold), assume the HW has been reset
--	 * back to defaults, recovering from whatever wedged state we left it
--	 * in and so worth trying to use the device once more.
--	 */
--	if (intel_gt_is_wedged(gt))
--		intel_gt_unset_wedged(gt);
--
--	intel_uc_sanitize(&gt->uc);
- 
- 	for_each_engine(engine, gt, id)
- 		if (engine->reset.prepare)
-@@ -155,21 +135,18 @@ static void gt_sanitize(struct intel_gt *gt, bool force)
- 
- 	intel_uc_reset_prepare(&gt->uc);
- 
--	if (reset_engines(gt) || force) {
--		for_each_engine(engine, gt, id)
--			__intel_engine_reset(engine, false);
--	}
-+	reset_engines(gt);
-+	for_each_engine(engine, gt, id)
-+		__intel_engine_reset(engine, false);
- 
- 	for_each_engine(engine, gt, id)
- 		if (engine->reset.finish)
- 			engine->reset.finish(engine);
--
--	intel_uncore_forcewake_put(gt->uncore, FORCEWAKE_ALL);
--	intel_runtime_pm_put(gt->uncore->rpm, wakeref);
- }
- 
- void intel_gt_pm_fini(struct intel_gt *gt)
- {
-+	intel_gt_set_wedged(gt);
- 	intel_rc6_fini(&gt->rc6);
- }
- 
-@@ -192,15 +169,25 @@ int intel_gt_resume(struct intel_gt *gt)
- 	 * allowing us to fixup the user contexts on their first pin.
- 	 */
- 	intel_gt_pm_get(gt);
--
- 	intel_uncore_forcewake_get(gt->uncore, FORCEWAKE_ALL);
--	intel_rc6_sanitize(&gt->rc6);
--	gt_sanitize(gt, true);
--	if (intel_gt_is_wedged(gt)) {
-+
-+	/*
-+	 * As we have just resumed the machine and woken the device up from
-+	 * deep PCI sleep (presumably D3_cold), assume the HW has been reset
-+	 * back to defaults, recovering from whatever wedged state we left it
-+	 * in and so worth trying to use the device once more.
-+	 */
-+	if (intel_gt_is_wedged(gt))
-+		intel_gt_unset_wedged(gt);
-+	if (unlikely(intel_gt_is_wedged(gt))) {
- 		err = -EIO;
- 		goto out_fw;
- 	}
- 
-+	intel_rc6_sanitize(&gt->rc6);
-+	intel_uc_sanitize(&gt->uc);
-+	gt_sanitize(gt);
-+
- 	/* Only when the HW is re-initialised, can we replay the requests */
- 	err = intel_gt_init_hw(gt);
- 	if (err) {
-@@ -308,8 +295,7 @@ void intel_gt_suspend_late(struct intel_gt *gt)
- 		intel_llc_disable(&gt->llc);
- 	}
- 
--	gt_sanitize(gt, false);
--
-+	intel_gt_set_wedged(gt);
- 	GT_TRACE(gt, "\n");
- }
- 
-diff --git a/drivers/gpu/drm/i915/gt/intel_reset.c b/drivers/gpu/drm/i915/gt/intel_reset.c
-index beee0cf89bce..234663faf4c2 100644
---- a/drivers/gpu/drm/i915/gt/intel_reset.c
-+++ b/drivers/gpu/drm/i915/gt/intel_reset.c
-@@ -768,6 +768,8 @@ static void reset_finish(struct intel_gt *gt, intel_engine_mask_t awake)
- 	struct intel_engine_cs *engine;
- 	enum intel_engine_id id;
- 
-+	intel_uc_sanitize(&gt->uc);
-+
- 	for_each_engine(engine, gt, id) {
- 		reset_finish_engine(engine);
- 		if (awake & engine->mask)
--- 
-2.25.0.rc2
+> +static void test_getfb2(int fd)
+> +{
+> +	struct drm_mode_fb_cmd2 add_basic =3D {};
+> +
+> +	igt_fixture {
+> +		struct drm_mode_fb_cmd2 get =3D {};
+> +
+> +		add_basic.width =3D 1024;
+> +		add_basic.height =3D 1024;
+> +		add_basic.pixel_format =3D DRM_FORMAT_XRGB8888;
+> +		add_basic.pitches[0] =3D 1024*4;
+> +		add_basic.handles[0] =3D igt_create_bo_with_dimensions(fd, 1024, 1024,
+> +			DRM_FORMAT_XRGB8888, 0, 0, NULL, NULL, NULL);
+> +		igt_assert(add_basic.handles[0]);
+> +		do_ioctl(fd, DRM_IOCTL_MODE_ADDFB2, &add_basic);
+> +
+> +		get.fb_id =3D add_basic.fb_id;
+> +		do_ioctl(fd, DRM_IOCTL_MODE_GETFB2, &get);
+> +		igt_assert_neq_u32(get.handles[0], 0);
+> +		gem_close(fd, get.handles[0]);
+> +	}
+> +
+> +	igt_subtest("getfb2-handle-zero") {
+> +		struct drm_mode_fb_cmd2 get =3D {};
+> +		do_ioctl_err(fd, DRM_IOCTL_MODE_GETFB2, &get, ENOENT);
+> +	}
+> +
+> +	igt_subtest("getfb2-handle-closed") {
+> +		struct drm_mode_fb_cmd2 add =3D add_basic;
+> +		struct drm_mode_fb_cmd2 get =3D { };
+> +
+> +		add.handles[0] =3D igt_create_bo_with_dimensions(fd, 1024, 1024,
+> +			DRM_FORMAT_XRGB8888, 0, 0, NULL, NULL, NULL);
+> +		igt_assert(add.handles[0]);
 
+Not sure why we're creating another bo here. Can't we reuse the one we
+already have?
+
+Otherwise seems sane
+Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+
+> +		do_ioctl(fd, DRM_IOCTL_MODE_ADDFB2, &add);
+> +		do_ioctl(fd, DRM_IOCTL_MODE_RMFB, &add.fb_id);
+> +
+> +		get.fb_id =3D add.fb_id;
+> +		do_ioctl_err(fd, DRM_IOCTL_MODE_GETFB2, &get, ENOENT);
+> +		gem_close(fd, add.handles[0]);
+> +	}
+> +
+> +	igt_subtest("getfb2-handle-not-fb") {
+> +		struct drm_mode_fb_cmd2 get =3D { .fb_id =3D get_any_prop_id(fd) };
+> +		igt_require(get.fb_id > 0);
+> +		do_ioctl_err(fd, DRM_IOCTL_MODE_GETFB2, &get, ENOENT);
+> +	}
+> +
+> +	igt_subtest("getfb2-accept-ccs") {
+> +		struct drm_mode_fb_cmd2 add_ccs =3D { };
+> +		struct drm_mode_fb_cmd2 get =3D { };
+> +		int i;
+> +
+> +		get_ccs_fb(fd, &add_ccs);
+> +		igt_require(add_ccs.fb_id !=3D 0);
+> +		get.fb_id =3D add_ccs.fb_id;
+> +		do_ioctl(fd, DRM_IOCTL_MODE_GETFB2, &get);
+> +
+> +		igt_assert_eq_u32(get.width, add_ccs.width);
+> +		igt_assert_eq_u32(get.height, add_ccs.height);
+> +		igt_assert(get.flags & DRM_MODE_FB_MODIFIERS);
+> +
+> +		for (i =3D 0; i < ARRAY_SIZE(get.handles); i++) {
+> +			igt_assert_eq_u32(get.pitches[i], add_ccs.pitches[i]);
+> +			igt_assert_eq_u32(get.offsets[i], add_ccs.offsets[i]);
+> +			if (add_ccs.handles[i] !=3D 0) {
+> +				igt_assert_neq_u32(get.handles[i], 0);
+> +				igt_assert_neq_u32(get.handles[i],
+> +						   add_ccs.handles[i]);
+> +				igt_assert_eq_u64(get.modifier[i],
+> +						  add_ccs.modifier[i]);
+> +			} else {
+> +				igt_assert_eq_u32(get.handles[i], 0);
+> +				igt_assert_eq_u64(get.modifier[i], 0);
+> +			}
+> +		}
+> +		igt_assert_eq_u32(get.handles[0], get.handles[1]);
+> +
+> +		do_ioctl(fd, DRM_IOCTL_MODE_RMFB, &get.fb_id);
+> +		gem_close(fd, add_ccs.handles[0]);
+> +		gem_close(fd, get.handles[0]);
+> +	}
+> +
+> +	igt_subtest("getfb2-into-addfb2") {
+> +		struct drm_mode_fb_cmd2 cmd =3D { };
+> +
+> +		cmd.fb_id =3D add_basic.fb_id;
+> +		do_ioctl(fd, DRM_IOCTL_MODE_GETFB2, &cmd);
+> +		do_ioctl(fd, DRM_IOCTL_MODE_ADDFB2, &cmd);
+> +
+> +		do_ioctl(fd, DRM_IOCTL_MODE_RMFB, &cmd.fb_id);
+> +		gem_close(fd, cmd.handles[0]);
+> +	}
+> +
+> +	igt_fixture {
+> +		do_ioctl(fd, DRM_IOCTL_MODE_RMFB, &add_basic.fb_id);
+> +		gem_close(fd, add_basic.handles[0]);
+> +	}
+> +}
+> +
+> +static void test_handle_protection(void) {
+> +	int non_master_fd;
+> +	struct drm_mode_fb_cmd2 non_master_add =3D {};
+> +
+> +	igt_fixture {
+> +		non_master_fd =3D drm_open_driver(DRIVER_ANY);
+> +
+> +		non_master_add.width =3D 1024;
+> +		non_master_add.height =3D 1024;
+> +		non_master_add.pixel_format =3D DRM_FORMAT_XRGB8888;
+> +		non_master_add.pitches[0] =3D 1024*4;
+> +		non_master_add.handles[0] =3D igt_create_bo_with_dimensions(non_master=
+_fd, 1024, 1024,
+> +			DRM_FORMAT_XRGB8888, 0, 0, NULL, NULL, NULL);
+> +		igt_require(non_master_add.handles[0] !=3D 0);
+> +		do_ioctl(non_master_fd, DRM_IOCTL_MODE_ADDFB2, &non_master_add);
+> +	}
+> +
+> +	igt_subtest("getfb-handle-protection") {
+> +		struct drm_mode_fb_cmd get =3D { .fb_id =3D non_master_add.fb_id};
+> +
+> +		igt_fork(child, 1) {
+> +			igt_drop_root();
+> +
+> +			do_ioctl(non_master_fd, DRM_IOCTL_MODE_GETFB, &get);
+> +			/* ioctl succeeds but handle should be 0 */
+> +			igt_assert_eq_u32(get.handle, 0);
+> +		}
+> +		igt_waitchildren();
+> +	}
+> +
+> +	igt_subtest("getfb2-handle-protection") {
+> +		struct drm_mode_fb_cmd2 get =3D { .fb_id =3D non_master_add.fb_id};
+> +		int i;
+> +
+> +		igt_fork(child, 1) {
+> +			igt_drop_root();
+> +
+> +			do_ioctl(non_master_fd, DRM_IOCTL_MODE_GETFB2, &get);
+> +			/* ioctl succeeds but handles should be 0 */
+> +			for (i =3D 0; i < ARRAY_SIZE(get.handles); i++) {
+> +				igt_assert_eq_u32(get.handles[i], 0);
+> +			}
+> +		}
+> +		igt_waitchildren();
+> +	}
+> +
+> +	igt_fixture {
+> +		do_ioctl(non_master_fd, DRM_IOCTL_MODE_RMFB, &non_master_add.fb_id);
+> +		gem_close(non_master_fd, non_master_add.handles[0]);
+> +	}
+> +}
+> +
+>  igt_main
+>  {
+>  	int fd;
+> @@ -243,6 +397,12 @@ igt_main
+>  	igt_subtest_group
+>  		test_duplicate_handles(fd);
+>  =
+
+> +	igt_subtest_group
+> +		test_getfb2(fd);
+> +
+> +	igt_subtest_group
+> +		test_handle_protection();
+> +
+>  	igt_fixture
+>  		close(fd);
+>  }
+> -- =
+
+> 2.21.0
+
+-- =
+
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
