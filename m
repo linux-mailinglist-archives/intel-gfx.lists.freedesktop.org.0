@@ -2,31 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 11EF4139232
-	for <lists+intel-gfx@lfdr.de>; Mon, 13 Jan 2020 14:30:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 13E57139282
+	for <lists+intel-gfx@lfdr.de>; Mon, 13 Jan 2020 14:53:23 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 871D889B3B;
-	Mon, 13 Jan 2020 13:30:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E78DD897F0;
+	Mon, 13 Jan 2020 13:53:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8DC3F89B3B
- for <intel-gfx@lists.freedesktop.org>; Mon, 13 Jan 2020 13:30:28 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19861821-1500050 
- for multiple; Mon, 13 Jan 2020 13:29:59 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon, 13 Jan 2020 13:29:56 +0000
-Message-Id: <20200113132956.1832986-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.25.0.rc2
-In-Reply-To: <20200113132614.1820518-1-chris@chris-wilson.co.uk>
-References: <20200113132614.1820518-1-chris@chris-wilson.co.uk>
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F265D897F0
+ for <intel-gfx@lists.freedesktop.org>; Mon, 13 Jan 2020 13:53:19 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 13 Jan 2020 05:53:19 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.69,429,1571727600"; d="scan'208";a="213000283"
+Received: from irsmsx151.ger.corp.intel.com ([163.33.192.59])
+ by orsmga007.jf.intel.com with ESMTP; 13 Jan 2020 05:53:18 -0800
+Received: from irsmsx601.ger.corp.intel.com (163.33.146.7) by
+ IRSMSX151.ger.corp.intel.com (163.33.192.59) with Microsoft SMTP Server (TLS)
+ id 14.3.439.0; Mon, 13 Jan 2020 13:53:17 +0000
+Received: from irsmsx605.ger.corp.intel.com (163.33.146.138) by
+ irsmsx601.ger.corp.intel.com (163.33.146.7) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Mon, 13 Jan 2020 13:53:17 +0000
+Received: from irsmsx605.ger.corp.intel.com ([163.33.146.138]) by
+ IRSMSX605.ger.corp.intel.com ([163.33.146.138]) with mapi id 15.01.1713.004;
+ Mon, 13 Jan 2020 13:53:17 +0000
+From: "Kahola, Mika" <mika.kahola@intel.com>
+To: "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Thread-Topic: [Intel-gfx] [PATCH 6/9] drm/i915: Relocate intel_attached_dp()
+Thread-Index: AQHVqs3EcgiIeU3w70yO3pCaVJAwuafo3AAA
+Date: Mon, 13 Jan 2020 13:53:17 +0000
+Message-ID: <55ff84617b1bb3b0e8c17673816030c17b79b0ef.camel@intel.com>
+References: <20191204180549.1267-1-ville.syrjala@linux.intel.com>
+ <20191204180549.1267-7-ville.syrjala@linux.intel.com>
+In-Reply-To: <20191204180549.1267-7-ville.syrjala@linux.intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.237.72.159]
+Content-ID: <5608C5E9AEC0CE459C83561EC8A6E301@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v2] drm/i915/gt: Sanitize and reset GPU before
- removing powercontext
+Subject: Re: [Intel-gfx] [PATCH 6/9] drm/i915: Relocate intel_attached_dp()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,176 +61,70 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="iso-8859-15"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-As a final paranoid step (we _should_ have reset the GPU on suspending
-the device prior to unload), reset the GPU once more before removing the
-powercontext and other related power saving paraphernalia.
+On Wed, 2019-12-04 at 20:05 +0200, Ville Syrjala wrote:
+> From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> =
 
-A clue that this may not be the case is
+> We have uses for intel_attached_dp() outside of intel_dp.c. Move
+> it to a header.
+> =
 
-<7> [313.203721] __intel_gt_set_wedged rcs'0
-<7> [313.203746] __intel_gt_set_wedged 	Awake? 3
-<7> [313.203751] __intel_gt_set_wedged 	Barriers?: no
-<7> [313.203756] __intel_gt_set_wedged 	Latency: 0us
-<7> [313.203762] __intel_gt_set_wedged 	Reset count: 0 (global 0)
-<7> [313.203766] __intel_gt_set_wedged 	Requests:
-<7> [313.203785] __intel_gt_set_wedged 	MMIO base:  0x00002000
-<7> [313.203819] __intel_gt_set_wedged 	RING_START: 0x00000000
-<7> [313.203826] __intel_gt_set_wedged 	RING_HEAD:  0x00000000
-<7> [313.203833] __intel_gt_set_wedged 	RING_TAIL:  0x00000000
-<7> [313.203844] __intel_gt_set_wedged 	RING_CTL:   0x00000000
-<7> [313.203854] __intel_gt_set_wedged 	RING_MODE:  0x00000000
-<7> [313.203861] __intel_gt_set_wedged 	RING_IMR: fffffefe
-<7> [313.203875] __intel_gt_set_wedged 	ACTHD:  0x00000000_00000000
-<7> [313.203888] __intel_gt_set_wedged 	BBADDR: 0x00000000_00000000
-<7> [313.203901] __intel_gt_set_wedged 	DMA_FADDR: 0x00000000_00000000
-<7> [313.203909] __intel_gt_set_wedged 	IPEIR: 0x00000000
-<7> [313.203916] __intel_gt_set_wedged 	IPEHR: 0xcccccccc
-<7> [313.203921] __intel_gt_set_wedged 	Execlist tasklet queued? no (enabled), preempt? inactive, timeslice? inactive
-<7> [313.203932] __intel_gt_set_wedged 	Execlist status: 0x00044032 00000020; CSB read:5, write:0, entries:6
-<7> [313.203937] __intel_gt_set_wedged 	Execlist CSB[0]: 0x00000001, context: 0
-<7> [313.203952] __intel_gt_set_wedged 		Pending[0] ring:{start:000c4000, hwsp:fedfc000, seqno:00000000}, rq:  402e:2-  prio=2147483647 @ 207ms: [i915]
-<7> [313.203983] __intel_gt_set_wedged 		E  402e:2-  prio=2147483647 @ 207ms: [i915]
-<7> [313.204006] __intel_gt_set_wedged 		Queue priority hint: 3
+> Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
 
-during rapid fault-injection reloads. 0xcc is POISON_FREE_INIT which
-suggests that the system cleared the pages on initialisation as they are
-still being used from the previous module load.
+Reviewed-by: Mika Kahola <mika.kahola@intel.com>
 
-Despite that we also have a couple of GPU resets prior to this...
-I have a sneaky suspicion that may be a GuC artifact.
+> ---
+>  drivers/gpu/drm/i915/display/intel_display_types.h | 5 +++++
+>  drivers/gpu/drm/i915/display/intel_dp.c            | 5 -----
+>  2 files changed, 5 insertions(+), 5 deletions(-)
+> =
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Andi Shyti <andi.shyti@intel.com>
-Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h
+> b/drivers/gpu/drm/i915/display/intel_display_types.h
+> index 79c7454ff510..92bd3d04ad80 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> @@ -1483,6 +1483,11 @@ static inline struct intel_dp
+> *enc_to_intel_dp(struct intel_encoder *encoder)
+>  	return &enc_to_dig_port(encoder)->dp;
+>  }
+>  =
 
-drm/i915/gt: Lift clearing GT wedged out of gt_sanitize
+> +static inline struct intel_dp *intel_attached_dp(struct
+> intel_connector *connector)
+> +{
+> +	return enc_to_intel_dp(intel_attached_encoder(connector));
+> +}
+> +
+>  static inline bool intel_encoder_is_dp(struct intel_encoder
+> *encoder)
+>  {
+>  	switch (encoder->type) {
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c
+> b/drivers/gpu/drm/i915/display/intel_dp.c
+> index 93f3d232fcb5..50b9b81d37db 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -146,11 +146,6 @@ bool intel_dp_is_edp(struct intel_dp *intel_dp)
+>  	return intel_dig_port->base.type =3D=3D INTEL_OUTPUT_EDP;
+>  }
+>  =
 
-We only want to try and reset a wedged device on resume, not before
-suspend, so lift the recovery out of the commont gt_sanitize().
-
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Andi Shyti <andi.shyti@intel.com>
-Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
----
- drivers/gpu/drm/i915/gt/intel_gt_pm.c | 56 +++++++++++----------------
- 1 file changed, 22 insertions(+), 34 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_pm.c b/drivers/gpu/drm/i915/gt/intel_gt_pm.c
-index d1c2f034296a..09a78d767e24 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt_pm.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_pm.c
-@@ -118,36 +118,16 @@ void intel_gt_pm_init(struct intel_gt *gt)
- 	intel_rps_init(&gt->rps);
- }
- 
--static bool reset_engines(struct intel_gt *gt)
-+static void reset_engines(struct intel_gt *gt)
- {
- 	if (INTEL_INFO(gt->i915)->gpu_reset_clobbers_display)
--		return false;
--
--	return __intel_gt_reset(gt, ALL_ENGINES) == 0;
-+		__intel_gt_reset(gt, ALL_ENGINES);
- }
- 
--static void gt_sanitize(struct intel_gt *gt, bool force)
-+static void gt_sanitize(struct intel_gt *gt)
- {
- 	struct intel_engine_cs *engine;
- 	enum intel_engine_id id;
--	intel_wakeref_t wakeref;
--
--	GT_TRACE(gt, "force:%s", yesno(force));
--
--	/* Use a raw wakeref to avoid calling intel_display_power_get early */
--	wakeref = intel_runtime_pm_get(gt->uncore->rpm);
--	intel_uncore_forcewake_get(gt->uncore, FORCEWAKE_ALL);
--
--	/*
--	 * As we have just resumed the machine and woken the device up from
--	 * deep PCI sleep (presumably D3_cold), assume the HW has been reset
--	 * back to defaults, recovering from whatever wedged state we left it
--	 * in and so worth trying to use the device once more.
--	 */
--	if (intel_gt_is_wedged(gt))
--		intel_gt_unset_wedged(gt);
--
--	intel_uc_sanitize(&gt->uc);
- 
- 	for_each_engine(engine, gt, id)
- 		if (engine->reset.prepare)
-@@ -155,21 +135,18 @@ static void gt_sanitize(struct intel_gt *gt, bool force)
- 
- 	intel_uc_reset_prepare(&gt->uc);
- 
--	if (reset_engines(gt) || force) {
--		for_each_engine(engine, gt, id)
--			__intel_engine_reset(engine, false);
--	}
-+	reset_engines(gt);
-+	for_each_engine(engine, gt, id)
-+		__intel_engine_reset(engine, false);
- 
- 	for_each_engine(engine, gt, id)
- 		if (engine->reset.finish)
- 			engine->reset.finish(engine);
--
--	intel_uncore_forcewake_put(gt->uncore, FORCEWAKE_ALL);
--	intel_runtime_pm_put(gt->uncore->rpm, wakeref);
- }
- 
- void intel_gt_pm_fini(struct intel_gt *gt)
- {
-+	intel_gt_set_wedged(gt);
- 	intel_rc6_fini(&gt->rc6);
- }
- 
-@@ -194,13 +171,25 @@ int intel_gt_resume(struct intel_gt *gt)
- 	intel_gt_pm_get(gt);
- 
- 	intel_uncore_forcewake_get(gt->uncore, FORCEWAKE_ALL);
-+
- 	intel_rc6_sanitize(&gt->rc6);
--	gt_sanitize(gt, true);
--	if (intel_gt_is_wedged(gt)) {
-+	intel_uc_sanitize(&gt->uc);
-+
-+	/*
-+	 * As we have just resumed the machine and woken the device up from
-+	 * deep PCI sleep (presumably D3_cold), assume the HW has been reset
-+	 * back to defaults, recovering from whatever wedged state we left it
-+	 * in and so worth trying to use the device once more.
-+	 */
-+	if (intel_gt_is_wedged(gt))
-+		intel_gt_unset_wedged(gt);
-+	if (unlikely(intel_gt_is_wedged(gt))) {
- 		err = -EIO;
- 		goto out_fw;
- 	}
- 
-+	gt_sanitize(gt);
-+
- 	/* Only when the HW is re-initialised, can we replay the requests */
- 	err = intel_gt_init_hw(gt);
- 	if (err) {
-@@ -308,8 +297,7 @@ void intel_gt_suspend_late(struct intel_gt *gt)
- 		intel_llc_disable(&gt->llc);
- 	}
- 
--	gt_sanitize(gt, false);
--
-+	intel_gt_set_wedged(gt);
- 	GT_TRACE(gt, "\n");
- }
- 
--- 
-2.25.0.rc2
-
+> -static struct intel_dp *intel_attached_dp(struct intel_connector
+> *connector)
+> -{
+> -	return enc_to_intel_dp(intel_attached_encoder(connector));
+> -}
+> -
+>  static void intel_dp_link_down(struct intel_encoder *encoder,
+>  			       const struct intel_crtc_state
+> *old_crtc_state);
+>  static bool edp_panel_vdd_on(struct intel_dp *intel_dp);
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
