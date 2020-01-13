@@ -1,27 +1,29 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F82F139224
-	for <lists+intel-gfx@lfdr.de>; Mon, 13 Jan 2020 14:26:57 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 11EF4139232
+	for <lists+intel-gfx@lfdr.de>; Mon, 13 Jan 2020 14:30:31 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8A3666E0AC;
-	Mon, 13 Jan 2020 13:26:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 871D889B3B;
+	Mon, 13 Jan 2020 13:30:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1749B6E0AC
- for <intel-gfx@lists.freedesktop.org>; Mon, 13 Jan 2020 13:26:53 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8DC3F89B3B
+ for <intel-gfx@lists.freedesktop.org>; Mon, 13 Jan 2020 13:30:28 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19861777-1500050 
- for multiple; Mon, 13 Jan 2020 13:26:15 +0000
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19861821-1500050 
+ for multiple; Mon, 13 Jan 2020 13:29:59 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon, 13 Jan 2020 13:26:14 +0000
-Message-Id: <20200113132614.1820518-1-chris@chris-wilson.co.uk>
+Date: Mon, 13 Jan 2020 13:29:56 +0000
+Message-Id: <20200113132956.1832986-1-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.25.0.rc2
+In-Reply-To: <20200113132614.1820518-1-chris@chris-wilson.co.uk>
+References: <20200113132614.1820518-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
 Subject: [Intel-gfx] [PATCH v2] drm/i915/gt: Sanitize and reset GPU before
  removing powercontext
@@ -93,17 +95,40 @@ Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 Cc: Andi Shyti <andi.shyti@intel.com>
 Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/gt/intel_gt_pm.c | 27 ++++++++++++++-------------
- 1 file changed, 14 insertions(+), 13 deletions(-)
+ drivers/gpu/drm/i915/gt/intel_gt_pm.c | 56 +++++++++++----------------
+ 1 file changed, 22 insertions(+), 34 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/gt/intel_gt_pm.c b/drivers/gpu/drm/i915/gt/intel_gt_pm.c
-index d1c2f034296a..c039185c4bd2 100644
+index d1c2f034296a..09a78d767e24 100644
 --- a/drivers/gpu/drm/i915/gt/intel_gt_pm.c
 +++ b/drivers/gpu/drm/i915/gt/intel_gt_pm.c
-@@ -138,17 +138,6 @@ static void gt_sanitize(struct intel_gt *gt, bool force)
- 	wakeref = intel_runtime_pm_get(gt->uncore->rpm);
- 	intel_uncore_forcewake_get(gt->uncore, FORCEWAKE_ALL);
+@@ -118,36 +118,16 @@ void intel_gt_pm_init(struct intel_gt *gt)
+ 	intel_rps_init(&gt->rps);
+ }
  
+-static bool reset_engines(struct intel_gt *gt)
++static void reset_engines(struct intel_gt *gt)
+ {
+ 	if (INTEL_INFO(gt->i915)->gpu_reset_clobbers_display)
+-		return false;
+-
+-	return __intel_gt_reset(gt, ALL_ENGINES) == 0;
++		__intel_gt_reset(gt, ALL_ENGINES);
+ }
+ 
+-static void gt_sanitize(struct intel_gt *gt, bool force)
++static void gt_sanitize(struct intel_gt *gt)
+ {
+ 	struct intel_engine_cs *engine;
+ 	enum intel_engine_id id;
+-	intel_wakeref_t wakeref;
+-
+-	GT_TRACE(gt, "force:%s", yesno(force));
+-
+-	/* Use a raw wakeref to avoid calling intel_display_power_get early */
+-	wakeref = intel_runtime_pm_get(gt->uncore->rpm);
+-	intel_uncore_forcewake_get(gt->uncore, FORCEWAKE_ALL);
+-
 -	/*
 -	 * As we have just resumed the machine and woken the device up from
 -	 * deep PCI sleep (presumably D3_cold), assume the HW has been reset
@@ -114,11 +139,28 @@ index d1c2f034296a..c039185c4bd2 100644
 -		intel_gt_unset_wedged(gt);
 -
 -	intel_uc_sanitize(&gt->uc);
--
+ 
  	for_each_engine(engine, gt, id)
  		if (engine->reset.prepare)
- 			engine->reset.prepare(engine);
-@@ -170,6 +159,7 @@ static void gt_sanitize(struct intel_gt *gt, bool force)
+@@ -155,21 +135,18 @@ static void gt_sanitize(struct intel_gt *gt, bool force)
+ 
+ 	intel_uc_reset_prepare(&gt->uc);
+ 
+-	if (reset_engines(gt) || force) {
+-		for_each_engine(engine, gt, id)
+-			__intel_engine_reset(engine, false);
+-	}
++	reset_engines(gt);
++	for_each_engine(engine, gt, id)
++		__intel_engine_reset(engine, false);
+ 
+ 	for_each_engine(engine, gt, id)
+ 		if (engine->reset.finish)
+ 			engine->reset.finish(engine);
+-
+-	intel_uncore_forcewake_put(gt->uncore, FORCEWAKE_ALL);
+-	intel_runtime_pm_put(gt->uncore->rpm, wakeref);
+ }
  
  void intel_gt_pm_fini(struct intel_gt *gt)
  {
@@ -126,12 +168,14 @@ index d1c2f034296a..c039185c4bd2 100644
  	intel_rc6_fini(&gt->rc6);
  }
  
-@@ -194,7 +184,19 @@ int intel_gt_resume(struct intel_gt *gt)
+@@ -194,13 +171,25 @@ int intel_gt_resume(struct intel_gt *gt)
  	intel_gt_pm_get(gt);
  
  	intel_uncore_forcewake_get(gt->uncore, FORCEWAKE_ALL);
 +
  	intel_rc6_sanitize(&gt->rc6);
+-	gt_sanitize(gt, true);
+-	if (intel_gt_is_wedged(gt)) {
 +	intel_uc_sanitize(&gt->uc);
 +
 +	/*
@@ -142,11 +186,17 @@ index d1c2f034296a..c039185c4bd2 100644
 +	 */
 +	if (intel_gt_is_wedged(gt))
 +		intel_gt_unset_wedged(gt);
-+
- 	gt_sanitize(gt, true);
- 	if (intel_gt_is_wedged(gt)) {
++	if (unlikely(intel_gt_is_wedged(gt))) {
  		err = -EIO;
-@@ -308,8 +310,7 @@ void intel_gt_suspend_late(struct intel_gt *gt)
+ 		goto out_fw;
+ 	}
+ 
++	gt_sanitize(gt);
++
+ 	/* Only when the HW is re-initialised, can we replay the requests */
+ 	err = intel_gt_init_hw(gt);
+ 	if (err) {
+@@ -308,8 +297,7 @@ void intel_gt_suspend_late(struct intel_gt *gt)
  		intel_llc_disable(&gt->llc);
  	}
  
