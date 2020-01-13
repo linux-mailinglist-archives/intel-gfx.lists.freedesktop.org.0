@@ -1,41 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A0CB139A6E
-	for <lists+intel-gfx@lfdr.de>; Mon, 13 Jan 2020 20:59:13 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8536F139A74
+	for <lists+intel-gfx@lfdr.de>; Mon, 13 Jan 2020 21:02:33 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 41D216E14F;
-	Mon, 13 Jan 2020 19:59:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 820B36E151;
+	Mon, 13 Jan 2020 20:02:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 802B76E14A
- for <intel-gfx@lists.freedesktop.org>; Mon, 13 Jan 2020 19:59:10 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 13 Jan 2020 11:59:09 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,430,1571727600"; d="scan'208";a="245661688"
-Received: from dceraolo-mobl.amr.corp.intel.com (HELO [10.255.88.44])
- ([10.255.88.44])
- by fmsmga001.fm.intel.com with ESMTP; 13 Jan 2020 11:59:09 -0800
-To: Michal Wajdeczko <michal.wajdeczko@intel.com>,
- intel-gfx@lists.freedesktop.org
-References: <20200111231114.59208-1-michal.wajdeczko@intel.com>
- <20200111231114.59208-2-michal.wajdeczko@intel.com>
-From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Message-ID: <068c3cd8-985a-5cce-73bc-eb735ca16169@intel.com>
-Date: Mon, 13 Jan 2020 11:59:09 -0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.1
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 6445F6E14A;
+ Mon, 13 Jan 2020 20:02:29 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 5455BA0138;
+ Mon, 13 Jan 2020 20:02:29 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <20200111231114.59208-2-michal.wajdeczko@intel.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH 1/4] drm/i915/guc: Simpler CT message size
- calculation
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Zhang Xiaoxu" <zhangxiaoxu5@huawei.com>
+Date: Mon, 13 Jan 2020 20:02:29 -0000
+Message-ID: <157894574931.25473.14339896236797375065@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200113105539.9493-1-zhangxiaoxu5@huawei.com>
+In-Reply-To: <20200113105539.9493-1-zhangxiaoxu5@huawei.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/dsi=3A_Fix_implicit_declaration_of_function_=27acpi=5Fdev?=
+ =?utf-8?b?KicgaW4gJ21pcGlfZXhlY19pMmMn?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,101 +39,138 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+== Series Details ==
+
+Series: drm/i915/dsi: Fix implicit declaration of function 'acpi_dev*' in 'mipi_exec_i2c'
+URL   : https://patchwork.freedesktop.org/series/71972/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_7735 -> Patchwork_16079
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16079/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_16079 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live_gem_contexts:
+    - fi-byt-n2820:       [PASS][1] -> [DMESG-FAIL][2] ([i915#722])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7735/fi-byt-n2820/igt@i915_selftest@live_gem_contexts.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16079/fi-byt-n2820/igt@i915_selftest@live_gem_contexts.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_close_race@basic-threads:
+    - fi-byt-j1900:       [TIMEOUT][3] ([fdo#112271] / [i915#816]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7735/fi-byt-j1900/igt@gem_close_race@basic-threads.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16079/fi-byt-j1900/igt@gem_close_race@basic-threads.html
+
+  * igt@i915_module_load@reload-with-fault-injection:
+    - fi-cfl-guc:         [DMESG-WARN][5] ([i915#889]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7735/fi-cfl-guc/igt@i915_module_load@reload-with-fault-injection.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16079/fi-cfl-guc/igt@i915_module_load@reload-with-fault-injection.html
+    - fi-cfl-8700k:       [INCOMPLETE][7] ([i915#505]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7735/fi-cfl-8700k/igt@i915_module_load@reload-with-fault-injection.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16079/fi-cfl-8700k/igt@i915_module_load@reload-with-fault-injection.html
+    - fi-kbl-x1275:       [INCOMPLETE][9] ([i915#879]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7735/fi-kbl-x1275/igt@i915_module_load@reload-with-fault-injection.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16079/fi-kbl-x1275/igt@i915_module_load@reload-with-fault-injection.html
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-skl-6770hq:      [FAIL][11] ([i915#178]) -> [PASS][12]
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7735/fi-skl-6770hq/igt@i915_pm_rpm@module-reload.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16079/fi-skl-6770hq/igt@i915_pm_rpm@module-reload.html
+
+  
+#### Warnings ####
+
+  * igt@i915_module_load@reload-with-fault-injection:
+    - fi-skl-6700k2:      [DMESG-WARN][13] ([i915#889]) -> [INCOMPLETE][14] ([i915#671])
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7735/fi-skl-6700k2/igt@i915_module_load@reload-with-fault-injection.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16079/fi-skl-6700k2/igt@i915_module_load@reload-with-fault-injection.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#112271]: https://bugs.freedesktop.org/show_bug.cgi?id=112271
+  [i915#178]: https://gitlab.freedesktop.org/drm/intel/issues/178
+  [i915#505]: https://gitlab.freedesktop.org/drm/intel/issues/505
+  [i915#671]: https://gitlab.freedesktop.org/drm/intel/issues/671
+  [i915#722]: https://gitlab.freedesktop.org/drm/intel/issues/722
+  [i915#816]: https://gitlab.freedesktop.org/drm/intel/issues/816
+  [i915#879]: https://gitlab.freedesktop.org/drm/intel/issues/879
+  [i915#889]: https://gitlab.freedesktop.org/drm/intel/issues/889
+  [i915#937]: https://gitlab.freedesktop.org/drm/intel/issues/937
 
 
-On 1/11/2020 3:11 PM, Michal Wajdeczko wrote:
-> We need CT message size in bytes so just use that in helper var.
->
-> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
-> Cc: Chris Wilson <chris@chris-wilson.co.uk>
-> Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Participating hosts (42 -> 41)
+------------------------------
 
-Reviewed-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+  Additional (5): fi-bdw-5557u fi-bwr-2160 fi-ivb-3770 fi-blb-e6850 fi-bsw-nick 
+  Missing    (6): fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-gdg-551 fi-byt-clapper 
 
-Daniele
 
-> ---
->   drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c | 18 +++++++++---------
->   1 file changed, 9 insertions(+), 9 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
-> index c6f971a049f9..4aa07a53a9cf 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
-> @@ -627,7 +627,7 @@ static int ct_handle_response(struct intel_guc_ct *ct, const u32 *msg)
->   {
->   	u32 header = msg[0];
->   	u32 len = ct_header_get_len(header);
-> -	u32 msglen = len + 1; /* total message length including header */
-> +	u32 msgsize = (len + 1) * sizeof(u32); /* msg size in bytes w/header */
->   	u32 fence;
->   	u32 status;
->   	u32 datalen;
-> @@ -639,7 +639,7 @@ static int ct_handle_response(struct intel_guc_ct *ct, const u32 *msg)
->   
->   	/* Response payload shall at least include fence and status */
->   	if (unlikely(len < 2)) {
-> -		DRM_ERROR("CT: corrupted response %*ph\n", 4 * msglen, msg);
-> +		DRM_ERROR("CT: corrupted response %*ph\n", msgsize, msg);
->   		return -EPROTO;
->   	}
->   
-> @@ -649,7 +649,7 @@ static int ct_handle_response(struct intel_guc_ct *ct, const u32 *msg)
->   
->   	/* Format of the status follows RESPONSE message */
->   	if (unlikely(!INTEL_GUC_MSG_IS_RESPONSE(status))) {
-> -		DRM_ERROR("CT: corrupted response %*ph\n", 4 * msglen, msg);
-> +		DRM_ERROR("CT: corrupted response %*ph\n", msgsize, msg);
->   		return -EPROTO;
->   	}
->   
-> @@ -664,7 +664,7 @@ static int ct_handle_response(struct intel_guc_ct *ct, const u32 *msg)
->   		}
->   		if (unlikely(datalen > req->response_len)) {
->   			DRM_ERROR("CT: response %u too long %*ph\n",
-> -				  req->fence, 4 * msglen, msg);
-> +				  req->fence, msgsize, msg);
->   			datalen = 0;
->   		}
->   		if (datalen)
-> @@ -677,7 +677,7 @@ static int ct_handle_response(struct intel_guc_ct *ct, const u32 *msg)
->   	spin_unlock(&ct->requests.lock);
->   
->   	if (!found)
-> -		DRM_ERROR("CT: unsolicited response %*ph\n", 4 * msglen, msg);
-> +		DRM_ERROR("CT: unsolicited response %*ph\n", msgsize, msg);
->   	return 0;
->   }
->   
-> @@ -767,18 +767,18 @@ static int ct_handle_request(struct intel_guc_ct *ct, const u32 *msg)
->   {
->   	u32 header = msg[0];
->   	u32 len = ct_header_get_len(header);
-> -	u32 msglen = len + 1; /* total message length including header */
-> +	u32 msgsize = (len + 1) * sizeof(u32); /* msg size in bytes w/header */
->   	struct ct_incoming_request *request;
->   	unsigned long flags;
->   
->   	GEM_BUG_ON(ct_header_is_response(header));
->   
-> -	request = kmalloc(sizeof(*request) + 4 * msglen, GFP_ATOMIC);
-> +	request = kmalloc(sizeof(*request) + msgsize, GFP_ATOMIC);
->   	if (unlikely(!request)) {
-> -		DRM_ERROR("CT: dropping request %*ph\n", 4 * msglen, msg);
-> +		DRM_ERROR("CT: dropping request %*ph\n", msgsize, msg);
->   		return 0; /* XXX: -ENOMEM ? */
->   	}
-> -	memcpy(request->msg, msg, 4 * msglen);
-> +	memcpy(request->msg, msg, msgsize);
->   
->   	spin_lock_irqsave(&ct->requests.lock, flags);
->   	list_add_tail(&request->link, &ct->requests.incoming);
+Build changes
+-------------
 
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_7735 -> Patchwork_16079
+
+  CI-20190529: 20190529
+  CI_DRM_7735: 3093622134384342d2ce121a0ed2ada29423e762 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5364: b7cb6ffdb65cbd233f5ddee2f2dabf97b34fa640 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_16079: bc9f30292a19b3867b3e94640a95c0809c9ea21d @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Kernel 32bit build ==
+
+Warning: Kernel 32bit buildtest failed:
+https://intel-gfx-ci.01.org/Patchwork_16079/build_32bit.log
+
+  CALL    scripts/checksyscalls.sh
+  CALL    scripts/atomic/check-atomics.sh
+  CHK     include/generated/compile.h
+Kernel: arch/x86/boot/bzImage is ready  (#1)
+  Building modules, stage 2.
+  MODPOST 122 modules
+ERROR: "__udivdi3" [drivers/gpu/drm/amd/amdgpu/amdgpu.ko] undefined!
+scripts/Makefile.modpost:93: recipe for target '__modpost' failed
+make[1]: *** [__modpost] Error 1
+Makefile:1282: recipe for target 'modules' failed
+make: *** [modules] Error 2
+
+
+== Linux commits ==
+
+bc9f30292a19 drm/i915/dsi: Fix implicit declaration of function 'acpi_dev*' in 'mipi_exec_i2c'
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16079/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
