@@ -2,41 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E02B0139AFA
-	for <lists+intel-gfx@lfdr.de>; Mon, 13 Jan 2020 21:52:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 48F68139AFE
+	for <lists+intel-gfx@lfdr.de>; Mon, 13 Jan 2020 21:54:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 43AA76E159;
-	Mon, 13 Jan 2020 20:52:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 71B8F6E15E;
+	Mon, 13 Jan 2020 20:54:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CD3EF6E159
- for <intel-gfx@lists.freedesktop.org>; Mon, 13 Jan 2020 20:52:23 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 13 Jan 2020 12:52:23 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,430,1571727600"; d="scan'208";a="219396074"
-Received: from irvmail001.ir.intel.com ([163.33.26.43])
- by fmsmga008.fm.intel.com with ESMTP; 13 Jan 2020 12:52:20 -0800
-Received: from mwajdecz-mobl1.ger.corp.intel.com
- (mwajdecz-mobl1.ger.corp.intel.com [10.249.152.88])
- by irvmail001.ir.intel.com (8.14.3/8.13.6/MailSET/Hub) with ESMTP id
- 00DKqKbw029096; Mon, 13 Jan 2020 20:52:21 GMT
-To: intel-gfx@lists.freedesktop.org, "Daniele Ceraolo Spurio"
- <daniele.ceraolospurio@intel.com>
-References: <20200111231114.59208-1-michal.wajdeczko@intel.com>
- <20200111231114.59208-3-michal.wajdeczko@intel.com>
- <138a54aa-de99-c4f3-1b9f-32d8f34a28db@intel.com>
-Date: Mon, 13 Jan 2020 21:52:20 +0100
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 868BF6E15D;
+ Mon, 13 Jan 2020 20:54:08 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 7E464A00C7;
+ Mon, 13 Jan 2020 20:54:08 +0000 (UTC)
 MIME-Version: 1.0
-From: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
-Message-ID: <op.0ecmxiozxaggs7@mwajdecz-mobl1.ger.corp.intel.com>
-In-Reply-To: <138a54aa-de99-c4f3-1b9f-32d8f34a28db@intel.com>
-User-Agent: Opera Mail/1.0 (Win32)
-Subject: Re: [Intel-gfx] [PATCH 2/4] drm/i915/guc: Introduce CT_ERROR
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Zhang Xiaoxu" <zhangxiaoxu5@huawei.com>
+Date: Mon, 13 Jan 2020 20:54:08 -0000
+Message-ID: <157894884850.25475.5326810805246795178@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200113081942.15982-1-zhangxiaoxu5@huawei.com>
+In-Reply-To: <20200113081942.15982-1-zhangxiaoxu5@huawei.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_Fix_too_few_arguments_to_function_i915=5Fcapture=5Ferr?=
+ =?utf-8?q?or=5Fstate?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,190 +39,126 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"; DelSp="yes"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 13 Jan 2020 21:20:25 +0100, Daniele Ceraolo Spurio  
-<daniele.ceraolospurio@intel.com> wrote:
+== Series Details ==
 
->
->
-> On 1/11/2020 3:11 PM, Michal Wajdeczko wrote:
->> We should start using dev variants of error logging and
->> to simplify that introduce helper macro that will do any
->> necessary conversions to obtain pointer to device struct.
->>
->> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
->> Cc: Chris Wilson <chris@chris-wilson.co.uk>
->> Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
->> ---
->>   drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c | 46 ++++++++++++++++-------
->>   1 file changed, 32 insertions(+), 14 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c  
->> b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
->> index 4aa07a53a9cf..eb123543392a 100644
->> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
->> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
->> @@ -5,7 +5,10 @@
->>     #include "i915_drv.h"
->>   #include "intel_guc_ct.h"
->> +#include "gt/intel_gt.h"
->>   +#define CT_ERROR(_ct, _fmt, ...) \
->> +	DRM_DEV_ERROR(ct_to_dev(_ct), "CT: " _fmt, ##__VA_ARGS__)
->>   #ifdef CONFIG_DRM_I915_DEBUG_GUC
->>   #define CT_DEBUG_DRIVER(...)	DRM_DEBUG_DRIVER(__VA_ARGS__)
->
-> I'm not convinced by the fact that CT_ERROR and CT_DEBUG_DRIVER now have  
-> different styles. Maybe we should go with something like:
->
-> #define __CT_MSG(level, _ct, _fmt, ...) \
-> 	DRM_DEV_##level(ct_to_dev(_ct), "CT: " _fmt, ##__VA_ARGS__)
->
-> #define CT_ERROR(_ct, _fmt, ...) __CT_MSG(ERROR, _ct, _fmt,  
-> ##__VA_ARGS__)
->
-> #ifdef CONFIG_DRM_I915_DEBUG_GUC
-> #define CT_DEBUG(_ct, _fmt, ...) \
-> 	__CT_MSG(DEBUG_DRIVER, _ct, _fmt, ##__VA_ARGS__)
-> #else
-> #define CT_DEBUG(...)  do { } while (0)
-> #endif
->
->
-> Thoughts?
+Series: drm/i915: Fix too few arguments to function i915_capture_error_state
+URL   : https://patchwork.freedesktop.org/series/71974/
+State : success
 
-This is on my todo-list: I'm planning to add CT_DEBUG (with unified
-style) after completing some other necessary refactoring to get 'ct'
-in all places where we would like to replace old CT_DEBUG_DRIVER (as
-you may notice now in some places we don't have ct/dev handy)
+== Summary ==
 
-Michal
+CI Bug Log - changes from CI_DRM_7735 -> Patchwork_16081
+====================================================
 
->
-> Daniele
->
->>   #else
->> @@ -48,6 +51,21 @@ static inline struct intel_guc *ct_to_guc(struct  
->> intel_guc_ct *ct)
->>   	return container_of(ct, struct intel_guc, ct);
->>   }
->>   +static inline struct intel_gt *ct_to_gt(struct intel_guc_ct *ct)
->> +{
->> +	return guc_to_gt(ct_to_guc(ct));
->> +}
->> +
->> +static inline struct drm_i915_private *ct_to_i915(struct intel_guc_ct  
->> *ct)
->> +{
->> +	return ct_to_gt(ct)->i915;
->> +}
->> +
->> +static inline struct device *ct_to_dev(struct intel_guc_ct *ct)
->> +{
->> +	return ct_to_i915(ct)->drm.dev;
->> +}
->> +
->>   static inline const char *guc_ct_buffer_type_to_str(u32 type)
->>   {
->>   	switch (type) {
->> @@ -157,8 +175,8 @@ int intel_guc_ct_init(struct intel_guc_ct *ct)
->>   	 */
->>     	err = intel_guc_allocate_and_map_vma(guc, PAGE_SIZE, &ct->vma,  
->> &blob);
->> -	if (err) {
->> -		DRM_ERROR("CT: channel allocation failed; err=%d\n", err);
->> +	if (unlikely(err)) {
->> +		CT_ERROR(ct, "Failed to allocate CT channel (err=%d)\n", err);
->>   		return err;
->>   	}
->>   @@ -240,7 +258,7 @@ int intel_guc_ct_enable(struct intel_guc_ct *ct)
->>   	guc_action_deregister_ct_buffer(guc,
->>   					INTEL_GUC_CT_BUFFER_TYPE_RECV);
->>   err_out:
->> -	DRM_ERROR("CT: can't open channel; err=%d\n", err);
->> +	CT_ERROR(ct, "Failed to open open CT channel (err=%d)\n", err);
->>   	return err;
->>   }
->>   @@ -526,8 +544,8 @@ int intel_guc_ct_send(struct intel_guc_ct *ct,  
->> const u32 *action, u32 len,
->>     	ret = ct_send(ct, action, len, response_buf, response_buf_size,  
->> &status);
->>   	if (unlikely(ret < 0)) {
->> -		DRM_ERROR("CT: send action %#X failed; err=%d status=%#X\n",
->> -			  action[0], ret, status);
->> +		CT_ERROR(ct, "Sending action %#x failed (err=%d status=%#X)\n",
->> +			 action[0], ret, status);
->>   	} else if (unlikely(ret)) {
->>   		CT_DEBUG_DRIVER("CT: send action %#x returned %d (%#x)\n",
->>   				action[0], ret, ret);
->> @@ -639,7 +657,7 @@ static int ct_handle_response(struct intel_guc_ct  
->> *ct, const u32 *msg)
->>     	/* Response payload shall at least include fence and status */
->>   	if (unlikely(len < 2)) {
->> -		DRM_ERROR("CT: corrupted response %*ph\n", msgsize, msg);
->> +		CT_ERROR(ct, "Corrupted response %*ph\n", msgsize, msg);
->>   		return -EPROTO;
->>   	}
->>   @@ -649,7 +667,7 @@ static int ct_handle_response(struct intel_guc_ct  
->> *ct, const u32 *msg)
->>     	/* Format of the status follows RESPONSE message */
->>   	if (unlikely(!INTEL_GUC_MSG_IS_RESPONSE(status))) {
->> -		DRM_ERROR("CT: corrupted response %*ph\n", msgsize, msg);
->> +		CT_ERROR(ct, "Corrupted response %*ph\n", msgsize, msg);
->>   		return -EPROTO;
->>   	}
->>   @@ -663,8 +681,8 @@ static int ct_handle_response(struct intel_guc_ct  
->> *ct, const u32 *msg)
->>   			continue;
->>   		}
->>   		if (unlikely(datalen > req->response_len)) {
->> -			DRM_ERROR("CT: response %u too long %*ph\n",
->> -				  req->fence, msgsize, msg);
->> +			CT_ERROR(ct, "Response for %u is too long %*ph\n",
->> +				 req->fence, msgsize, msg);
->>   			datalen = 0;
->>   		}
->>   		if (datalen)
->> @@ -677,7 +695,7 @@ static int ct_handle_response(struct intel_guc_ct  
->> *ct, const u32 *msg)
->>   	spin_unlock(&ct->requests.lock);
->>     	if (!found)
->> -		DRM_ERROR("CT: unsolicited response %*ph\n", msgsize, msg);
->> +		CT_ERROR(ct, "Unsolicited response %*ph\n", msgsize, msg);
->>   	return 0;
->>   }
->>   @@ -698,8 +716,8 @@ static void ct_process_request(struct  
->> intel_guc_ct *ct,
->>     	default:
->>   fail_unexpected:
->> -		DRM_ERROR("CT: unexpected request %x %*ph\n",
->> -			  action, 4 * len, payload);
->> +		CT_ERROR(ct, "Unexpected request %x %*ph\n",
->> +			 action, 4 * len, payload);
->>   		break;
->>   	}
->>   }
->> @@ -775,7 +793,7 @@ static int ct_handle_request(struct intel_guc_ct  
->> *ct, const u32 *msg)
->>     	request = kmalloc(sizeof(*request) + msgsize, GFP_ATOMIC);
->>   	if (unlikely(!request)) {
->> -		DRM_ERROR("CT: dropping request %*ph\n", msgsize, msg);
->> +		CT_ERROR(ct, "Dropping request %*ph\n", msgsize, msg);
->>   		return 0; /* XXX: -ENOMEM ? */
->>   	}
->>   	memcpy(request->msg, msg, msgsize);
->> @@ -815,7 +833,7 @@ void intel_guc_ct_event_handler(struct intel_guc_ct  
->> *ct)
->>   	} while (!err);
->>     	if (GEM_WARN_ON(err == -EPROTO)) {
->> -		DRM_ERROR("CT: corrupted message detected!\n");
->> +		CT_ERROR(ct, "Corrupted message: %#x\n", msg[0]);
->>   		ctb->desc->is_in_error = 1;
->>   	}
->>   }
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16081/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_16081 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live_coherency:
+    - fi-cfl-guc:         [PASS][1] -> [DMESG-FAIL][2] ([i915#889]) +7 similar issues
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7735/fi-cfl-guc/igt@i915_selftest@live_coherency.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16081/fi-cfl-guc/igt@i915_selftest@live_coherency.html
+
+  * igt@i915_selftest@live_gt_timelines:
+    - fi-cfl-guc:         [PASS][3] -> [DMESG-WARN][4] ([i915#889]) +22 similar issues
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7735/fi-cfl-guc/igt@i915_selftest@live_gt_timelines.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16081/fi-cfl-guc/igt@i915_selftest@live_gt_timelines.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_module_load@reload-with-fault-injection:
+    - fi-cfl-8700k:       [INCOMPLETE][5] ([i915#505]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7735/fi-cfl-8700k/igt@i915_module_load@reload-with-fault-injection.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16081/fi-cfl-8700k/igt@i915_module_load@reload-with-fault-injection.html
+    - fi-skl-6700k2:      [DMESG-WARN][7] ([i915#889]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7735/fi-skl-6700k2/igt@i915_module_load@reload-with-fault-injection.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16081/fi-skl-6700k2/igt@i915_module_load@reload-with-fault-injection.html
+    - fi-kbl-x1275:       [INCOMPLETE][9] ([i915#879]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7735/fi-kbl-x1275/igt@i915_module_load@reload-with-fault-injection.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16081/fi-kbl-x1275/igt@i915_module_load@reload-with-fault-injection.html
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-skl-6770hq:      [FAIL][11] ([i915#178]) -> [PASS][12]
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7735/fi-skl-6770hq/igt@i915_pm_rpm@module-reload.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16081/fi-skl-6770hq/igt@i915_pm_rpm@module-reload.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#178]: https://gitlab.freedesktop.org/drm/intel/issues/178
+  [i915#505]: https://gitlab.freedesktop.org/drm/intel/issues/505
+  [i915#879]: https://gitlab.freedesktop.org/drm/intel/issues/879
+  [i915#889]: https://gitlab.freedesktop.org/drm/intel/issues/889
+  [i915#937]: https://gitlab.freedesktop.org/drm/intel/issues/937
+
+
+Participating hosts (42 -> 45)
+------------------------------
+
+  Additional (10): fi-bdw-5557u fi-kbl-7560u fi-hsw-peppy fi-bwr-2160 fi-kbl-7500u fi-ivb-3770 fi-blb-e6850 fi-bsw-nick fi-skl-6600u fi-snb-2600 
+  Missing    (7): fi-kbl-soraka fi-hsw-4770r fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_7735 -> Patchwork_16081
+
+  CI-20190529: 20190529
+  CI_DRM_7735: 3093622134384342d2ce121a0ed2ada29423e762 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5364: b7cb6ffdb65cbd233f5ddee2f2dabf97b34fa640 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_16081: b29ce887f60e7c8018149e7c79f45a79a219e637 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Kernel 32bit build ==
+
+Warning: Kernel 32bit buildtest failed:
+https://intel-gfx-ci.01.org/Patchwork_16081/build_32bit.log
+
+  CALL    scripts/checksyscalls.sh
+  CALL    scripts/atomic/check-atomics.sh
+  CHK     include/generated/compile.h
+Kernel: arch/x86/boot/bzImage is ready  (#1)
+  Building modules, stage 2.
+  MODPOST 122 modules
+ERROR: "__udivdi3" [drivers/gpu/drm/amd/amdgpu/amdgpu.ko] undefined!
+scripts/Makefile.modpost:93: recipe for target '__modpost' failed
+make[1]: *** [__modpost] Error 1
+Makefile:1282: recipe for target 'modules' failed
+make: *** [modules] Error 2
+
+
+== Linux commits ==
+
+b29ce887f60e drm/i915: Fix too few arguments to function i915_capture_error_state
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16081/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
