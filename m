@@ -1,32 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A46511395D8
-	for <lists+intel-gfx@lfdr.de>; Mon, 13 Jan 2020 17:25:12 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B6AC113966E
+	for <lists+intel-gfx@lfdr.de>; Mon, 13 Jan 2020 17:35:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E8C5E6E102;
-	Mon, 13 Jan 2020 16:25:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4BDA689B99;
+	Mon, 13 Jan 2020 16:35:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4C85C6E102
- for <intel-gfx@lists.freedesktop.org>; Mon, 13 Jan 2020 16:25:09 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19864033-1500050 
- for multiple; Mon, 13 Jan 2020 16:24:31 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon, 13 Jan 2020 16:24:29 +0000
-Message-Id: <20200113162429.1920747-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.25.0.rc2
-In-Reply-To: <20200113142630.1879666-1-chris@chris-wilson.co.uk>
-References: <20200113142630.1879666-1-chris@chris-wilson.co.uk>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 24FD289664;
+ Mon, 13 Jan 2020 16:35:10 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 13D97A00C7;
+ Mon, 13 Jan 2020 16:35:10 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v4] drm/i915/gt: Sanitize and reset GPU before
- removing powercontext
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Mon, 13 Jan 2020 16:35:10 -0000
+Message-ID: <157893331005.25475.13185302957426812535@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200113154555.1909639-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200113154555.1909639-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/gem=3A_Take_local_vma_references_for_the_parser?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,195 +38,142 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-As a final paranoid step (we _should_ have reset the GPU on suspending
-the device prior to unload), reset the GPU once more before removing the
-powercontext and other related power saving paraphernalia.
+== Series Details ==
 
-A clue that this may not be the case is
+Series: drm/i915/gem: Take local vma references for the parser
+URL   : https://patchwork.freedesktop.org/series/71968/
+State : success
 
-<7> [313.203721] __intel_gt_set_wedged rcs'0
-<7> [313.203746] __intel_gt_set_wedged 	Awake? 3
-<7> [313.203751] __intel_gt_set_wedged 	Barriers?: no
-<7> [313.203756] __intel_gt_set_wedged 	Latency: 0us
-<7> [313.203762] __intel_gt_set_wedged 	Reset count: 0 (global 0)
-<7> [313.203766] __intel_gt_set_wedged 	Requests:
-<7> [313.203785] __intel_gt_set_wedged 	MMIO base:  0x00002000
-<7> [313.203819] __intel_gt_set_wedged 	RING_START: 0x00000000
-<7> [313.203826] __intel_gt_set_wedged 	RING_HEAD:  0x00000000
-<7> [313.203833] __intel_gt_set_wedged 	RING_TAIL:  0x00000000
-<7> [313.203844] __intel_gt_set_wedged 	RING_CTL:   0x00000000
-<7> [313.203854] __intel_gt_set_wedged 	RING_MODE:  0x00000000
-<7> [313.203861] __intel_gt_set_wedged 	RING_IMR: fffffefe
-<7> [313.203875] __intel_gt_set_wedged 	ACTHD:  0x00000000_00000000
-<7> [313.203888] __intel_gt_set_wedged 	BBADDR: 0x00000000_00000000
-<7> [313.203901] __intel_gt_set_wedged 	DMA_FADDR: 0x00000000_00000000
-<7> [313.203909] __intel_gt_set_wedged 	IPEIR: 0x00000000
-<7> [313.203916] __intel_gt_set_wedged 	IPEHR: 0xcccccccc
-<7> [313.203921] __intel_gt_set_wedged 	Execlist tasklet queued? no (enabled), preempt? inactive, timeslice? inactive
-<7> [313.203932] __intel_gt_set_wedged 	Execlist status: 0x00044032 00000020; CSB read:5, write:0, entries:6
-<7> [313.203937] __intel_gt_set_wedged 	Execlist CSB[0]: 0x00000001, context: 0
-<7> [313.203952] __intel_gt_set_wedged 		Pending[0] ring:{start:000c4000, hwsp:fedfc000, seqno:00000000}, rq:  402e:2-  prio=2147483647 @ 207ms: [i915]
-<7> [313.203983] __intel_gt_set_wedged 		E  402e:2-  prio=2147483647 @ 207ms: [i915]
-<7> [313.204006] __intel_gt_set_wedged 		Queue priority hint: 3
+== Summary ==
 
-during rapid fault-injection reloads. 0xcc is POISON_FREE_INIT which
-suggests that the system cleared the pages on initialisation as they are
-still being used from the previous module load.
+CI Bug Log - changes from CI_DRM_7733 -> Patchwork_16074
+====================================================
 
-Despite that we also have a couple of GPU resets prior to this...
-I have a sneaky suspicion that may be a GuC artifact.
+Summary
+-------
 
-v2: Just set the device as wedged (which includes a reset) on
-suspend/unload, and leave the sanitization to load/resume.
+  **SUCCESS**
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Andi Shyti <andi.shyti@intel.com>
-Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
----
- drivers/gpu/drm/i915/gt/intel_gt.c    |  3 +-
- drivers/gpu/drm/i915/gt/intel_gt_pm.c | 60 ++++++++++-----------------
- 2 files changed, 24 insertions(+), 39 deletions(-)
+  No regressions found.
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c b/drivers/gpu/drm/i915/gt/intel_gt.c
-index da2b6e2ae692..700ee4c37487 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gt.c
-@@ -588,7 +588,7 @@ int intel_gt_init(struct intel_gt *gt)
- 
- 	err = intel_gt_resume(gt);
- 	if (err)
--		goto err_uc_init;
-+		goto err_gt;
- 
- 	err = __engines_record_defaults(gt);
- 	if (err)
-@@ -606,7 +606,6 @@ int intel_gt_init(struct intel_gt *gt)
- err_gt:
- 	__intel_gt_disable(gt);
- 	intel_uc_fini_hw(&gt->uc);
--err_uc_init:
- 	intel_uc_fini(&gt->uc);
- err_engines:
- 	intel_engines_release(gt);
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_pm.c b/drivers/gpu/drm/i915/gt/intel_gt_pm.c
-index d1c2f034296a..681cd986324f 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt_pm.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_pm.c
-@@ -118,36 +118,16 @@ void intel_gt_pm_init(struct intel_gt *gt)
- 	intel_rps_init(&gt->rps);
- }
- 
--static bool reset_engines(struct intel_gt *gt)
-+static void reset_engines(struct intel_gt *gt)
- {
--	if (INTEL_INFO(gt->i915)->gpu_reset_clobbers_display)
--		return false;
--
--	return __intel_gt_reset(gt, ALL_ENGINES) == 0;
-+	if (!INTEL_INFO(gt->i915)->gpu_reset_clobbers_display)
-+		__intel_gt_reset(gt, ALL_ENGINES);
- }
- 
--static void gt_sanitize(struct intel_gt *gt, bool force)
-+static void gt_sanitize(struct intel_gt *gt)
- {
- 	struct intel_engine_cs *engine;
- 	enum intel_engine_id id;
--	intel_wakeref_t wakeref;
--
--	GT_TRACE(gt, "force:%s", yesno(force));
--
--	/* Use a raw wakeref to avoid calling intel_display_power_get early */
--	wakeref = intel_runtime_pm_get(gt->uncore->rpm);
--	intel_uncore_forcewake_get(gt->uncore, FORCEWAKE_ALL);
--
--	/*
--	 * As we have just resumed the machine and woken the device up from
--	 * deep PCI sleep (presumably D3_cold), assume the HW has been reset
--	 * back to defaults, recovering from whatever wedged state we left it
--	 * in and so worth trying to use the device once more.
--	 */
--	if (intel_gt_is_wedged(gt))
--		intel_gt_unset_wedged(gt);
--
--	intel_uc_sanitize(&gt->uc);
- 
- 	for_each_engine(engine, gt, id)
- 		if (engine->reset.prepare)
-@@ -155,21 +135,18 @@ static void gt_sanitize(struct intel_gt *gt, bool force)
- 
- 	intel_uc_reset_prepare(&gt->uc);
- 
--	if (reset_engines(gt) || force) {
--		for_each_engine(engine, gt, id)
--			__intel_engine_reset(engine, false);
--	}
-+	reset_engines(gt);
-+	for_each_engine(engine, gt, id)
-+		__intel_engine_reset(engine, false);
- 
- 	for_each_engine(engine, gt, id)
- 		if (engine->reset.finish)
- 			engine->reset.finish(engine);
--
--	intel_uncore_forcewake_put(gt->uncore, FORCEWAKE_ALL);
--	intel_runtime_pm_put(gt->uncore->rpm, wakeref);
- }
- 
- void intel_gt_pm_fini(struct intel_gt *gt)
- {
-+	intel_gt_set_wedged(gt);
- 	intel_rc6_fini(&gt->rc6);
- }
- 
-@@ -192,15 +169,25 @@ int intel_gt_resume(struct intel_gt *gt)
- 	 * allowing us to fixup the user contexts on their first pin.
- 	 */
- 	intel_gt_pm_get(gt);
--
- 	intel_uncore_forcewake_get(gt->uncore, FORCEWAKE_ALL);
--	intel_rc6_sanitize(&gt->rc6);
--	gt_sanitize(gt, true);
--	if (intel_gt_is_wedged(gt)) {
-+
-+	/*
-+	 * As we have just resumed the machine and woken the device up from
-+	 * deep PCI sleep (presumably D3_cold), assume the HW has been reset
-+	 * back to defaults, recovering from whatever wedged state we left it
-+	 * in and so worth trying to use the device once more.
-+	 */
-+	if (intel_gt_is_wedged(gt))
-+		intel_gt_unset_wedged(gt);
-+	if (unlikely(intel_gt_is_wedged(gt))) {
- 		err = -EIO;
- 		goto out_fw;
- 	}
- 
-+	intel_rc6_sanitize(&gt->rc6);
-+	intel_uc_sanitize(&gt->uc);
-+	gt_sanitize(gt);
-+
- 	/* Only when the HW is re-initialised, can we replay the requests */
- 	err = intel_gt_init_hw(gt);
- 	if (err) {
-@@ -308,8 +295,7 @@ void intel_gt_suspend_late(struct intel_gt *gt)
- 		intel_llc_disable(&gt->llc);
- 	}
- 
--	gt_sanitize(gt, false);
--
-+	intel_gt_set_wedged(gt);
- 	GT_TRACE(gt, "\n");
- }
- 
--- 
-2.25.0.rc2
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16074/index.html
 
+Known issues
+------------
+
+  Here are the changes found in Patchwork_16074 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_busy@basic-flip-pipe-a:
+    - fi-icl-u2:          [PASS][1] -> [INCOMPLETE][2] ([i915#140])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7733/fi-icl-u2/igt@kms_busy@basic-flip-pipe-a.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16074/fi-icl-u2/igt@kms_busy@basic-flip-pipe-a.html
+
+  * igt@kms_chamelium@hdmi-edid-read:
+    - fi-kbl-7500u:       [PASS][3] -> [FAIL][4] ([i915#217])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7733/fi-kbl-7500u/igt@kms_chamelium@hdmi-edid-read.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16074/fi-kbl-7500u/igt@kms_chamelium@hdmi-edid-read.html
+
+  * igt@kms_chamelium@hdmi-hpd-fast:
+    - fi-kbl-7500u:       [PASS][5] -> [FAIL][6] ([fdo#111096] / [i915#323])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7733/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16074/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_exec_suspend@basic-s3:
+    - {fi-ehl-1}:         [INCOMPLETE][7] ([i915#937]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7733/fi-ehl-1/igt@gem_exec_suspend@basic-s3.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16074/fi-ehl-1/igt@gem_exec_suspend@basic-s3.html
+
+  * igt@i915_module_load@reload-with-fault-injection:
+    - fi-skl-6770hq:      [INCOMPLETE][9] ([i915#671]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7733/fi-skl-6770hq/igt@i915_module_load@reload-with-fault-injection.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16074/fi-skl-6770hq/igt@i915_module_load@reload-with-fault-injection.html
+    - fi-kbl-x1275:       [INCOMPLETE][11] ([i915#879]) -> [PASS][12]
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7733/fi-kbl-x1275/igt@i915_module_load@reload-with-fault-injection.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16074/fi-kbl-x1275/igt@i915_module_load@reload-with-fault-injection.html
+
+  * igt@i915_selftest@live_blt:
+    - fi-hsw-4770:        [DMESG-FAIL][13] ([i915#725]) -> [PASS][14]
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7733/fi-hsw-4770/igt@i915_selftest@live_blt.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16074/fi-hsw-4770/igt@i915_selftest@live_blt.html
+
+  * igt@i915_selftest@live_execlists:
+    - fi-kbl-soraka:      [DMESG-FAIL][15] ([i915#656]) -> [PASS][16]
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7733/fi-kbl-soraka/igt@i915_selftest@live_execlists.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16074/fi-kbl-soraka/igt@i915_selftest@live_execlists.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#111096]: https://bugs.freedesktop.org/show_bug.cgi?id=111096
+  [i915#140]: https://gitlab.freedesktop.org/drm/intel/issues/140
+  [i915#217]: https://gitlab.freedesktop.org/drm/intel/issues/217
+  [i915#323]: https://gitlab.freedesktop.org/drm/intel/issues/323
+  [i915#656]: https://gitlab.freedesktop.org/drm/intel/issues/656
+  [i915#671]: https://gitlab.freedesktop.org/drm/intel/issues/671
+  [i915#725]: https://gitlab.freedesktop.org/drm/intel/issues/725
+  [i915#879]: https://gitlab.freedesktop.org/drm/intel/issues/879
+  [i915#937]: https://gitlab.freedesktop.org/drm/intel/issues/937
+
+
+Participating hosts (43 -> 37)
+------------------------------
+
+  Additional (4): fi-bsw-kefka fi-gdg-551 fi-ivb-3770 fi-ilk-650 
+  Missing    (10): fi-hsw-4770r fi-hsw-4200u fi-bdw-gvtdvm fi-byt-squawks fi-bsw-cyan fi-kbl-8809g fi-elk-e7500 fi-byt-n2820 fi-byt-clapper fi-skl-6600u 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_7733 -> Patchwork_16074
+
+  CI-20190529: 20190529
+  CI_DRM_7733: 379e3dc4d5c95f4c3bcb244fd9527986a23b3e74 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5364: b7cb6ffdb65cbd233f5ddee2f2dabf97b34fa640 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_16074: 2491f25bc2aa8e039a9397a3d4c47429d91234e3 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Kernel 32bit build ==
+
+Warning: Kernel 32bit buildtest failed:
+https://intel-gfx-ci.01.org/Patchwork_16074/build_32bit.log
+
+  CALL    scripts/checksyscalls.sh
+  CALL    scripts/atomic/check-atomics.sh
+  CHK     include/generated/compile.h
+Kernel: arch/x86/boot/bzImage is ready  (#1)
+  Building modules, stage 2.
+  MODPOST 122 modules
+ERROR: "__udivdi3" [drivers/gpu/drm/amd/amdgpu/amdgpu.ko] undefined!
+scripts/Makefile.modpost:93: recipe for target '__modpost' failed
+make[1]: *** [__modpost] Error 1
+Makefile:1282: recipe for target 'modules' failed
+make: *** [modules] Error 2
+
+
+== Linux commits ==
+
+2491f25bc2aa drm/i915/gem: Take local vma references for the parser
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16074/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
