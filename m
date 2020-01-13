@@ -2,39 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C3441391E5
-	for <lists+intel-gfx@lfdr.de>; Mon, 13 Jan 2020 14:15:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3416C139218
+	for <lists+intel-gfx@lfdr.de>; Mon, 13 Jan 2020 14:23:39 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 55A77899DB;
-	Mon, 13 Jan 2020 13:15:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F209E89AB3;
+	Mon, 13 Jan 2020 13:23:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 15471899DB
- for <intel-gfx@lists.freedesktop.org>; Mon, 13 Jan 2020 13:15:20 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-X-Amp-File-Uploaded: False
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 13 Jan 2020 05:15:19 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,429,1571727600"; d="scan'208";a="219293253"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by fmsmga008.fm.intel.com with SMTP; 13 Jan 2020 05:15:17 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 13 Jan 2020 15:15:16 +0200
-Date: Mon, 13 Jan 2020 15:15:16 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>
-Message-ID: <20200113131516.GN13686@intel.com>
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7151089AB3
+ for <intel-gfx@lists.freedesktop.org>; Mon, 13 Jan 2020 13:23:35 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 19861744-1500050 for multiple; Mon, 13 Jan 2020 13:22:59 +0000
+MIME-Version: 1.0
+To: =?utf-8?b?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+From: Chris Wilson <chris@chris-wilson.co.uk>
+In-Reply-To: <20200113131516.GN13686@intel.com>
 References: <20200110183228.8199-1-ville.syrjala@linux.intel.com>
  <157868245324.10140.16798394715431007470@skylake-alporthouse-com>
-MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <157868245324.10140.16798394715431007470@skylake-alporthouse-com>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
+ <20200113131516.GN13686@intel.com>
+Message-ID: <157892177731.27314.13130220427774766696@skylake-alporthouse-com>
+User-Agent: alot/0.6
+Date: Mon, 13 Jan 2020 13:22:57 +0000
 Subject: Re: [Intel-gfx] [PATCH 1/6] drm/i915: Make a copy of the ggtt view
  for slave plane
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -50,85 +42,67 @@ List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Jan 10, 2020 at 06:54:13PM +0000, Chris Wilson wrote:
-> Quoting Ville Syrjala (2020-01-10 18:32:23)
-> > From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> > =
-
-> > intel_prepare_plane_fb() will always pin plane_state->hw.fb whenever
-> > it is present. We copy that from the master plane to the slave plane,
-> > but we fail to copy the corresponding ggtt view. Thus when it comes time
-> > to pin the slave plane's fb we use some stale ggtt view left over from
-> > the last time the plane was used as a non-slave plane. If that previous
-> > use involved 90/270 degree rotation or remapping we'll try to shuffle
-> > the pages of the new fb around accordingingly. However the new
-> > fb may be backed by a bo with less pages than what the ggtt view
-> > rotation/remapped info requires, and so we we trip a GEM_BUG().
-> > =
-
-> > Steps to reproduce on icl:
-> > 1. plane 1: whatever
-> >    plane 6: largish !NV12 fb + 90 degree rotation
-> > 2. plane 1: smallish NV12 fb
-> >    plane 6: make invisible so it gets slaved to plane 1
-> > 3. GEM_BUG()
-> > =
-
-> > Cc: Chris Wilson <chris@chris-wilson.co.uk>
-> > Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> > Closes: https://gitlab.freedesktop.org/drm/intel/issues/951
-> > Fixes: 1f594b209fe1 ("drm/i915: Remove special case slave handling duri=
-ng hw programming, v3.")
-> > Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_display.c | 1 +
-> >  1 file changed, 1 insertion(+)
-> > =
-
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu=
-/drm/i915/display/intel_display.c
-> > index 59c375879186..fafb67689dee 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> > @@ -12366,6 +12366,7 @@ static int icl_check_nv12_planes(struct intel_c=
-rtc_state *crtc_state)
-> >                 /* Copy parameters to slave plane */
-> >                 linked_state->ctl =3D plane_state->ctl | PLANE_CTL_YUV4=
-20_Y_PLANE;
-> >                 linked_state->color_ctl =3D plane_state->color_ctl;
-> > +               linked_state->view =3D plane_state->view;
-> >                 memcpy(linked_state->color_plane, plane_state->color_pl=
-ane,
-> >                        sizeof(linked_state->color_plane));
-> =
-
-> So this bit is just copying across the results of
-> intel_plane_compute_gtt()?
-
-Yep. Actually we copied some of it already (.color_plane[])
-but this part was missing.
-
-> =
-
-> What happens for equivalent of intel_plane_needs_remap()?
-
-The master plane makes the remap vs. not decision and fills
-.color_plane[] and .view accordingly for both chroma and luma.
-Though at the moment intel_plane_needs_remap() is a bit
-incomplete as it only considers the luma stride limit. The
-chroma stride limit is not really documented (at least on
-pre-icl) and I've been too lazy to reverse engineer it.
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+UXVvdGluZyBWaWxsZSBTeXJqw6Rsw6QgKDIwMjAtMDEtMTMgMTM6MTU6MTYpCj4gT24gRnJpLCBK
+YW4gMTAsIDIwMjAgYXQgMDY6NTQ6MTNQTSArMDAwMCwgQ2hyaXMgV2lsc29uIHdyb3RlOgo+ID4g
+UXVvdGluZyBWaWxsZSBTeXJqYWxhICgyMDIwLTAxLTEwIDE4OjMyOjIzKQo+ID4gPiBGcm9tOiBW
+aWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwuY29tPgo+ID4gPiAKPiA+
+ID4gaW50ZWxfcHJlcGFyZV9wbGFuZV9mYigpIHdpbGwgYWx3YXlzIHBpbiBwbGFuZV9zdGF0ZS0+
+aHcuZmIgd2hlbmV2ZXIKPiA+ID4gaXQgaXMgcHJlc2VudC4gV2UgY29weSB0aGF0IGZyb20gdGhl
+IG1hc3RlciBwbGFuZSB0byB0aGUgc2xhdmUgcGxhbmUsCj4gPiA+IGJ1dCB3ZSBmYWlsIHRvIGNv
+cHkgdGhlIGNvcnJlc3BvbmRpbmcgZ2d0dCB2aWV3LiBUaHVzIHdoZW4gaXQgY29tZXMgdGltZQo+
+ID4gPiB0byBwaW4gdGhlIHNsYXZlIHBsYW5lJ3MgZmIgd2UgdXNlIHNvbWUgc3RhbGUgZ2d0dCB2
+aWV3IGxlZnQgb3ZlciBmcm9tCj4gPiA+IHRoZSBsYXN0IHRpbWUgdGhlIHBsYW5lIHdhcyB1c2Vk
+IGFzIGEgbm9uLXNsYXZlIHBsYW5lLiBJZiB0aGF0IHByZXZpb3VzCj4gPiA+IHVzZSBpbnZvbHZl
+ZCA5MC8yNzAgZGVncmVlIHJvdGF0aW9uIG9yIHJlbWFwcGluZyB3ZSdsbCB0cnkgdG8gc2h1ZmZs
+ZQo+ID4gPiB0aGUgcGFnZXMgb2YgdGhlIG5ldyBmYiBhcm91bmQgYWNjb3JkaW5naW5nbHkuIEhv
+d2V2ZXIgdGhlIG5ldwo+ID4gPiBmYiBtYXkgYmUgYmFja2VkIGJ5IGEgYm8gd2l0aCBsZXNzIHBh
+Z2VzIHRoYW4gd2hhdCB0aGUgZ2d0dCB2aWV3Cj4gPiA+IHJvdGF0aW9uL3JlbWFwcGVkIGluZm8g
+cmVxdWlyZXMsIGFuZCBzbyB3ZSB3ZSB0cmlwIGEgR0VNX0JVRygpLgo+ID4gPiAKPiA+ID4gU3Rl
+cHMgdG8gcmVwcm9kdWNlIG9uIGljbDoKPiA+ID4gMS4gcGxhbmUgMTogd2hhdGV2ZXIKPiA+ID4g
+ICAgcGxhbmUgNjogbGFyZ2lzaCAhTlYxMiBmYiArIDkwIGRlZ3JlZSByb3RhdGlvbgo+ID4gPiAy
+LiBwbGFuZSAxOiBzbWFsbGlzaCBOVjEyIGZiCj4gPiA+ICAgIHBsYW5lIDY6IG1ha2UgaW52aXNp
+YmxlIHNvIGl0IGdldHMgc2xhdmVkIHRvIHBsYW5lIDEKPiA+ID4gMy4gR0VNX0JVRygpCj4gPiA+
+IAo+ID4gPiBDYzogQ2hyaXMgV2lsc29uIDxjaHJpc0BjaHJpcy13aWxzb24uY28udWs+Cj4gPiA+
+IENjOiBNYWFydGVuIExhbmtob3JzdCA8bWFhcnRlbi5sYW5raG9yc3RAbGludXguaW50ZWwuY29t
+Pgo+ID4gPiBDbG9zZXM6IGh0dHBzOi8vZ2l0bGFiLmZyZWVkZXNrdG9wLm9yZy9kcm0vaW50ZWwv
+aXNzdWVzLzk1MQo+ID4gPiBGaXhlczogMWY1OTRiMjA5ZmUxICgiZHJtL2k5MTU6IFJlbW92ZSBz
+cGVjaWFsIGNhc2Ugc2xhdmUgaGFuZGxpbmcgZHVyaW5nIGh3IHByb2dyYW1taW5nLCB2My4iKQo+
+ID4gPiBTaWduZWQtb2ZmLWJ5OiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXgu
+aW50ZWwuY29tPgo+ID4gPiAtLS0KPiA+ID4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkv
+aW50ZWxfZGlzcGxheS5jIHwgMSArCj4gPiA+ICAxIGZpbGUgY2hhbmdlZCwgMSBpbnNlcnRpb24o
+KykKPiA+ID4gCj4gPiA+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5
+L2ludGVsX2Rpc3BsYXkuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlz
+cGxheS5jCj4gPiA+IGluZGV4IDU5YzM3NTg3OTE4Ni4uZmFmYjY3Njg5ZGVlIDEwMDY0NAo+ID4g
+PiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuYwo+ID4g
+PiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuYwo+ID4g
+PiBAQCAtMTIzNjYsNiArMTIzNjYsNyBAQCBzdGF0aWMgaW50IGljbF9jaGVja19udjEyX3BsYW5l
+cyhzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZSAqY3J0Y19zdGF0ZSkKPiA+ID4gICAgICAgICAgICAg
+ICAgIC8qIENvcHkgcGFyYW1ldGVycyB0byBzbGF2ZSBwbGFuZSAqLwo+ID4gPiAgICAgICAgICAg
+ICAgICAgbGlua2VkX3N0YXRlLT5jdGwgPSBwbGFuZV9zdGF0ZS0+Y3RsIHwgUExBTkVfQ1RMX1lV
+VjQyMF9ZX1BMQU5FOwo+ID4gPiAgICAgICAgICAgICAgICAgbGlua2VkX3N0YXRlLT5jb2xvcl9j
+dGwgPSBwbGFuZV9zdGF0ZS0+Y29sb3JfY3RsOwo+ID4gPiArICAgICAgICAgICAgICAgbGlua2Vk
+X3N0YXRlLT52aWV3ID0gcGxhbmVfc3RhdGUtPnZpZXc7Cj4gPiA+ICAgICAgICAgICAgICAgICBt
+ZW1jcHkobGlua2VkX3N0YXRlLT5jb2xvcl9wbGFuZSwgcGxhbmVfc3RhdGUtPmNvbG9yX3BsYW5l
+LAo+ID4gPiAgICAgICAgICAgICAgICAgICAgICAgIHNpemVvZihsaW5rZWRfc3RhdGUtPmNvbG9y
+X3BsYW5lKSk7Cj4gPiAKPiA+IFNvIHRoaXMgYml0IGlzIGp1c3QgY29weWluZyBhY3Jvc3MgdGhl
+IHJlc3VsdHMgb2YKPiA+IGludGVsX3BsYW5lX2NvbXB1dGVfZ3R0KCk/Cj4gCj4gWWVwLiBBY3R1
+YWxseSB3ZSBjb3BpZWQgc29tZSBvZiBpdCBhbHJlYWR5ICguY29sb3JfcGxhbmVbXSkKPiBidXQg
+dGhpcyBwYXJ0IHdhcyBtaXNzaW5nLgo+IAo+ID4gCj4gPiBXaGF0IGhhcHBlbnMgZm9yIGVxdWl2
+YWxlbnQgb2YgaW50ZWxfcGxhbmVfbmVlZHNfcmVtYXAoKT8KPiAKPiBUaGUgbWFzdGVyIHBsYW5l
+IG1ha2VzIHRoZSByZW1hcCB2cy4gbm90IGRlY2lzaW9uIGFuZCBmaWxscwo+IC5jb2xvcl9wbGFu
+ZVtdIGFuZCAudmlldyBhY2NvcmRpbmdseSBmb3IgYm90aCBjaHJvbWEgYW5kIGx1bWEuCj4gVGhv
+dWdoIGF0IHRoZSBtb21lbnQgaW50ZWxfcGxhbmVfbmVlZHNfcmVtYXAoKSBpcyBhIGJpdAo+IGlu
+Y29tcGxldGUgYXMgaXQgb25seSBjb25zaWRlcnMgdGhlIGx1bWEgc3RyaWRlIGxpbWl0LiBUaGUK
+PiBjaHJvbWEgc3RyaWRlIGxpbWl0IGlzIG5vdCByZWFsbHkgZG9jdW1lbnRlZCAoYXQgbGVhc3Qg
+b24KPiBwcmUtaWNsKSBhbmQgSSd2ZSBiZWVuIHRvbyBsYXp5IHRvIHJldmVyc2UgZW5naW5lZXIg
+aXQuCgpJIHRydXN0IHlvdSBrbm93IHdoYXQgeW91IGFyZSBkb2luZyBjb3B5aW5nIHRoZSByZW1h
+cHBlZCB2aWV3IGZyb20KcGxhbmVfc3RhdGUgdG8gbGlua2VkX3N0YXRlLCBzbwoKUmV2aWV3ZWQt
+Ynk6IENocmlzIFdpbHNvbiA8Y2hyaXNAY2hyaXMtd2lsc29uLmNvLnVrPgotQ2hyaXMKX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxp
+bmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJl
+ZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
