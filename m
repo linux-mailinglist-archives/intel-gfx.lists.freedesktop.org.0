@@ -1,32 +1,39 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2017513908B
-	for <lists+intel-gfx@lfdr.de>; Mon, 13 Jan 2020 13:00:40 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 993551390CC
+	for <lists+intel-gfx@lfdr.de>; Mon, 13 Jan 2020 13:08:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4D8B26E061;
-	Mon, 13 Jan 2020 12:00:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 025836E088;
+	Mon, 13 Jan 2020 12:08:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 0338A6E05F;
- Mon, 13 Jan 2020 12:00:37 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id EF638A7E01;
- Mon, 13 Jan 2020 12:00:36 +0000 (UTC)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 70A216E082;
+ Mon, 13 Jan 2020 12:08:28 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga106.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 13 Jan 2020 04:08:27 -0800
+X-IronPort-AV: E=Sophos;i="5.69,428,1571727600"; d="scan'208";a="217387846"
+Received: from jnikula-mobl3.fi.intel.com (HELO localhost) ([10.237.66.161])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 13 Jan 2020 04:08:25 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>,
+ Wambui Karuga <wambui.karugax@gmail.com>, airlied@linux.ie, daniel@ffwll.ch,
+ joonas.lahtinen@linux.intel.com, rodrigo.vivi@intel.com
+In-Reply-To: <157891427231.27314.12398974277241668021@skylake-alporthouse-com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20200113111025.2048-1-wambui.karugax@gmail.com>
+ <157891427231.27314.12398974277241668021@skylake-alporthouse-com>
+Date: Mon, 13 Jan 2020 14:08:22 +0200
+Message-ID: <87lfqbmudl.fsf@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Mon, 13 Jan 2020 12:00:36 -0000
-Message-ID: <157891683697.25474.6281019789723421468@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200113110613.1778894-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200113110613.1778894-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/i915/gt=3A_Sanitize_and_reset_GPU_before_removing_power?=
- =?utf-8?q?context?=
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: convert to new logging macros
+ based on struct intel_engine_cs.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,29 +46,53 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Mon, 13 Jan 2020, Chris Wilson <chris@chris-wilson.co.uk> wrote:
+> Quoting Wambui Karuga (2020-01-13 11:10:25)
+>> fn(...) {
+>> ...
+>> struct intel_engine_cs *E = ...;
+>> +struct drm_i915_private *dev_priv = E->i915;
+>
+> No new dev_priv.
 
-Series: drm/i915/gt: Sanitize and reset GPU before removing powercontext
-URL   : https://patchwork.freedesktop.org/series/71952/
-State : warning
+Wambui, we're gradually converting all dev_priv variable and parameter
+names to i915.
 
-== Summary ==
+> There should be no reason for drm_dbg here, as the rest of the debug is
+> behind ENGINE_TRACE and so the vestigial debug should be moved over, or
+> deleted as not being useful.
+>
+> The error messages look unhelpful.
 
-$ dim checkpatch origin/drm-tip
-fabbc8e407e7 drm/i915/gt: Sanitize and reset GPU before removing powercontext
--:31: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#31: 
-<7> [313.203921] __intel_gt_set_wedged 	Execlist tasklet queued? no (enabled), preempt? inactive, timeslice? inactive
+I don't think you can expect any meaninful improvements on the debug
+message contents from Wambui without detailed help at this point.
 
-total: 0 errors, 1 warnings, 0 checks, 7 lines checked
+>
+>>                 if ((batch_end - cmd) < length) {
+>> -                       DRM_DEBUG("CMD: Command length exceeds batch length: 0x%08X length=%u batchlen=%td\n",
+>> -                                 *cmd,
+>> -                                 length,
+>> -                                 batch_end - cmd);
+>> +                       drm_dbg(&dev_priv->drm,
+>> +                               "CMD: Command length exceeds batch length: 0x%08X length=%u batchlen=%td\n",
+>
+> No. This is not driver debug. If anything this should be pr_debug, or
+> some over user centric channel.
 
+I'm sorry, I still don't understand your reasoning here.
+
+BR,
+Jani.
+
+-- 
+Jani Nikula, Intel Open Source Graphics Center
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
