@@ -1,55 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 70A15139988
-	for <lists+intel-gfx@lfdr.de>; Mon, 13 Jan 2020 20:02:48 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3AFC7139A2B
+	for <lists+intel-gfx@lfdr.de>; Mon, 13 Jan 2020 20:29:17 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7B2B86E14B;
-	Mon, 13 Jan 2020 19:02:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3757C89C29;
+	Mon, 13 Jan 2020 19:29:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-x344.google.com (mail-wm1-x344.google.com
- [IPv6:2a00:1450:4864:20::344])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6F3C86E139;
- Mon, 13 Jan 2020 19:02:45 +0000 (UTC)
-Received: by mail-wm1-x344.google.com with SMTP id t14so10920561wmi.5;
- Mon, 13 Jan 2020 11:02:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=g5bN8wH7FTCKMaY/O9Oej61HYM/NEwy3Ac5fo9Lh1CM=;
- b=cXihKozMLIK8aRkwyi6CUSBoYteUAU/J+qqx2TR55NghW/eABcq2WEso8oD5IqdhhL
- eFEGmuYYH39qJED57r6lsswXLGelKAqIsAx27U2EThlh8URYtwWfwlDas//1vDH4bIum
- 1TOnoMuDDn8pkMddd09d117aHDVRmBwewvnRJd6nKZH0xhzsE348Fem7TuiS793ACX48
- it0UvTYfUUNDkloSqqD3K1hQoQNf4x/omD8TaTOwwkuiPqNizObDjwTdO5g1Mz+VMzFN
- dtnu5SO8V6aZlfy53MYp4iib/tw9nX5XITsOiHbb+vRDE2ubtXM9AHZruSa66ld0E7o/
- lENw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=g5bN8wH7FTCKMaY/O9Oej61HYM/NEwy3Ac5fo9Lh1CM=;
- b=aS7Kq/WxJC5+em10sRzuR5ANA8RGjQ/XwQdYEmIeWrceu0b/KciZqMhWnMM1i4vqFF
- sK7F2ziiL7qwO51VZQtYlZpMYefQPwYbM6UODG+W5dPzrrVgWWbcmRvfwfxkDmTxRuyl
- yej2taj1nS000qu+hoElsyg55HxgtyA19sR2spa1b9qET7oY/9cUmGfzCk9z4GJNhT27
- mX0x1psxyFjDCz0gy2g8OGP0QjDFMe78hL18hMtaPTUxSjCjhi0RF5QKWSyRIeo5pN8c
- ru6FrqhheVibwe/HqdSqOeWTqlle0mOix5iRcV8quJZhLvrLJG2V2bHFlAzQP7Gxvlid
- q7ZA==
-X-Gm-Message-State: APjAAAX+R/8bUJtaraZ1+/V3DZvpKT5A6BEWTP8oLORpHjzkujcqMD2m
- SNUm4tBlPzzy78qew/55JKTteopPXUXhblZB8mw=
-X-Google-Smtp-Source: APXvYqypf0BaRB3wlCCMXdO+KwGjdkP3TWave4BGBfjMXMdIt0UaOb1bcTDdhs32wKkz3vzR8VjhOSXO3HKDj563ELc=
-X-Received: by 2002:a1c:f30e:: with SMTP id q14mr22026498wmq.65.1578942164075; 
- Mon, 13 Jan 2020 11:02:44 -0800 (PST)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id B44CC89C29;
+ Mon, 13 Jan 2020 19:29:13 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id A9398A00C7;
+ Mon, 13 Jan 2020 19:29:13 +0000 (UTC)
 MIME-Version: 1.0
-References: <20200110092127.27847-1-tzimmermann@suse.de>
- <20200110092127.27847-18-tzimmermann@suse.de>
-In-Reply-To: <20200110092127.27847-18-tzimmermann@suse.de>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Mon, 13 Jan 2020 14:02:32 -0500
-Message-ID: <CADnq5_MopZ3iP0hV=V-vGd3jdzRDjxq7J=d_NsZU+fDSQoi9fA@mail.gmail.com>
-To: Thomas Zimmermann <tzimmermann@suse.de>
-Subject: Re: [Intel-gfx] [PATCH 17/23] drm/radeon: Convert to CRTC VBLANK
- callbacks
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Wambui Karuga" <wambui.karugax@gmail.com>
+Date: Mon, 13 Jan 2020 19:29:13 -0000
+Message-ID: <157894375366.25475.7564333078704862753@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200113111025.2048-1-wambui.karugax@gmail.com>
+In-Reply-To: <20200113111025.2048-1-wambui.karugax@gmail.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_convert_to_new_logging_macros_based_on_struct_intel=5F?=
+ =?utf-8?q?engine=5Fcs=2E?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,203 +39,156 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: hamohammed.sa@gmail.com, Dave Airlie <airlied@linux.ie>,
- nouveau <nouveau@lists.freedesktop.org>,
- Maling list - DRI developers <dri-devel@lists.freedesktop.org>,
- Eric Anholt <eric@anholt.net>, amd-gfx list <amd-gfx@lists.freedesktop.org>,
- Benjamin Gaignard <benjamin.gaignard@linaro.org>, alexandre.torgue@st.com,
- Chunming Zhou <David1.Zhou@amd.com>, Thomas Hellstrom <thellstrom@vmware.com>,
- VMware Graphics <linux-graphics-maintainer@vmware.com>,
- Ben Skeggs <bskeggs@redhat.com>, "Wentland, Harry" <harry.wentland@amd.com>,
- mcoquelin.stm32@gmail.com, "Leo \(Sunpeng\) Li" <sunpeng.li@amd.com>,
- linux-arm-msm <linux-arm-msm@vger.kernel.org>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Vincent Abriou <vincent.abriou@st.com>, rodrigosiqueiramelo@gmail.com,
- philippe.cornu@st.com, yannick.fertre@st.com, "Deucher,
- Alexander" <alexander.deucher@amd.com>,
- freedreno <freedreno@lists.freedesktop.org>,
- Christian Koenig <christian.koenig@amd.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Jan 10, 2020 at 4:22 AM Thomas Zimmermann <tzimmermann@suse.de> wrote:
->
-> VBLANK callbacks in struct drm_driver are deprecated in favor of
-> their equivalents in struct drm_crtc_funcs. Convert radeon over.
->
-> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+== Series Details ==
 
-Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
+Series: drm/i915: convert to new logging macros based on struct intel_engine_cs.
+URL   : https://patchwork.freedesktop.org/series/71971/
+State : success
 
-> ---
->  drivers/gpu/drm/radeon/radeon_display.c | 12 ++++++++--
->  drivers/gpu/drm/radeon/radeon_drv.c     |  7 ------
->  drivers/gpu/drm/radeon/radeon_kms.c     | 29 ++++++++++++++-----------
->  3 files changed, 26 insertions(+), 22 deletions(-)
->
-> diff --git a/drivers/gpu/drm/radeon/radeon_display.c b/drivers/gpu/drm/radeon/radeon_display.c
-> index 7187158b9963..9116975b6eb9 100644
-> --- a/drivers/gpu/drm/radeon/radeon_display.c
-> +++ b/drivers/gpu/drm/radeon/radeon_display.c
-> @@ -45,6 +45,10 @@
->  #include "atom.h"
->  #include "radeon.h"
->
-> +u32 radeon_get_vblank_counter_kms(struct drm_crtc *crtc);
-> +int radeon_enable_vblank_kms(struct drm_crtc *crtc);
-> +void radeon_disable_vblank_kms(struct drm_crtc *crtc);
-> +
->  static void avivo_crtc_load_lut(struct drm_crtc *crtc)
->  {
->         struct radeon_crtc *radeon_crtc = to_radeon_crtc(crtc);
-> @@ -458,7 +462,7 @@ static void radeon_flip_work_func(struct work_struct *__work)
->                 (DRM_SCANOUTPOS_VALID | DRM_SCANOUTPOS_IN_VBLANK) &&
->                 (!ASIC_IS_AVIVO(rdev) ||
->                 ((int) (work->target_vblank -
-> -               dev->driver->get_vblank_counter(dev, work->crtc_id)) > 0)))
-> +               crtc->funcs->get_vblank_counter(crtc)) > 0)))
->                 usleep_range(1000, 2000);
->
->         /* We borrow the event spin lock for protecting flip_status */
-> @@ -574,7 +578,7 @@ static int radeon_crtc_page_flip_target(struct drm_crtc *crtc,
->         }
->         work->base = base;
->         work->target_vblank = target - (uint32_t)drm_crtc_vblank_count(crtc) +
-> -               dev->driver->get_vblank_counter(dev, work->crtc_id);
-> +               crtc->funcs->get_vblank_counter(crtc);
->
->         /* We borrow the event spin lock for protecting flip_work */
->         spin_lock_irqsave(&crtc->dev->event_lock, flags);
-> @@ -666,6 +670,10 @@ static const struct drm_crtc_funcs radeon_crtc_funcs = {
->         .set_config = radeon_crtc_set_config,
->         .destroy = radeon_crtc_destroy,
->         .page_flip_target = radeon_crtc_page_flip_target,
-> +       .get_vblank_counter = radeon_get_vblank_counter_kms,
-> +       .enable_vblank = radeon_enable_vblank_kms,
-> +       .disable_vblank = radeon_disable_vblank_kms,
-> +       .get_vblank_timestamp = drm_crtc_calc_vbltimestamp_from_scanoutpos,
->  };
->
->  static void radeon_crtc_init(struct drm_device *dev, int index)
-> diff --git a/drivers/gpu/drm/radeon/radeon_drv.c b/drivers/gpu/drm/radeon/radeon_drv.c
-> index 1f597f166bff..49ce2e7d5f9e 100644
-> --- a/drivers/gpu/drm/radeon/radeon_drv.c
-> +++ b/drivers/gpu/drm/radeon/radeon_drv.c
-> @@ -119,9 +119,6 @@ void radeon_driver_postclose_kms(struct drm_device *dev,
->  int radeon_suspend_kms(struct drm_device *dev, bool suspend,
->                        bool fbcon, bool freeze);
->  int radeon_resume_kms(struct drm_device *dev, bool resume, bool fbcon);
-> -u32 radeon_get_vblank_counter_kms(struct drm_device *dev, unsigned int pipe);
-> -int radeon_enable_vblank_kms(struct drm_device *dev, unsigned int pipe);
-> -void radeon_disable_vblank_kms(struct drm_device *dev, unsigned int pipe);
->  void radeon_driver_irq_preinstall_kms(struct drm_device *dev);
->  int radeon_driver_irq_postinstall_kms(struct drm_device *dev);
->  void radeon_driver_irq_uninstall_kms(struct drm_device *dev);
-> @@ -571,10 +568,6 @@ static struct drm_driver kms_driver = {
->         .postclose = radeon_driver_postclose_kms,
->         .lastclose = radeon_driver_lastclose_kms,
->         .unload = radeon_driver_unload_kms,
-> -       .get_vblank_counter = radeon_get_vblank_counter_kms,
-> -       .enable_vblank = radeon_enable_vblank_kms,
-> -       .disable_vblank = radeon_disable_vblank_kms,
-> -       .get_vblank_timestamp = drm_calc_vbltimestamp_from_scanoutpos,
->         .irq_preinstall = radeon_driver_irq_preinstall_kms,
->         .irq_postinstall = radeon_driver_irq_postinstall_kms,
->         .irq_uninstall = radeon_driver_irq_uninstall_kms,
-> diff --git a/drivers/gpu/drm/radeon/radeon_kms.c b/drivers/gpu/drm/radeon/radeon_kms.c
-> index d24f23a81656..cab891f86dc0 100644
-> --- a/drivers/gpu/drm/radeon/radeon_kms.c
-> +++ b/drivers/gpu/drm/radeon/radeon_kms.c
-> @@ -739,14 +739,15 @@ void radeon_driver_postclose_kms(struct drm_device *dev,
->  /**
->   * radeon_get_vblank_counter_kms - get frame count
->   *
-> - * @dev: drm dev pointer
-> - * @pipe: crtc to get the frame count from
-> + * @crtc: crtc to get the frame count from
->   *
->   * Gets the frame count on the requested crtc (all asics).
->   * Returns frame count on success, -EINVAL on failure.
->   */
-> -u32 radeon_get_vblank_counter_kms(struct drm_device *dev, unsigned int pipe)
-> +u32 radeon_get_vblank_counter_kms(struct drm_crtc *crtc)
->  {
-> +       struct drm_device *dev = crtc->dev;
-> +       unsigned int pipe = crtc->index;
->         int vpos, hpos, stat;
->         u32 count;
->         struct radeon_device *rdev = dev->dev_private;
-> @@ -808,25 +809,26 @@ u32 radeon_get_vblank_counter_kms(struct drm_device *dev, unsigned int pipe)
->  /**
->   * radeon_enable_vblank_kms - enable vblank interrupt
->   *
-> - * @dev: drm dev pointer
->   * @crtc: crtc to enable vblank interrupt for
->   *
->   * Enable the interrupt on the requested crtc (all asics).
->   * Returns 0 on success, -EINVAL on failure.
->   */
-> -int radeon_enable_vblank_kms(struct drm_device *dev, int crtc)
-> +int radeon_enable_vblank_kms(struct drm_crtc *crtc)
->  {
-> +       struct drm_device *dev = crtc->dev;
-> +       unsigned int pipe = crtc->index;
->         struct radeon_device *rdev = dev->dev_private;
->         unsigned long irqflags;
->         int r;
->
-> -       if (crtc < 0 || crtc >= rdev->num_crtc) {
-> -               DRM_ERROR("Invalid crtc %d\n", crtc);
-> +       if (pipe < 0 || pipe >= rdev->num_crtc) {
-> +               DRM_ERROR("Invalid crtc %d\n", pipe);
->                 return -EINVAL;
->         }
->
->         spin_lock_irqsave(&rdev->irq.lock, irqflags);
-> -       rdev->irq.crtc_vblank_int[crtc] = true;
-> +       rdev->irq.crtc_vblank_int[pipe] = true;
->         r = radeon_irq_set(rdev);
->         spin_unlock_irqrestore(&rdev->irq.lock, irqflags);
->         return r;
-> @@ -835,23 +837,24 @@ int radeon_enable_vblank_kms(struct drm_device *dev, int crtc)
->  /**
->   * radeon_disable_vblank_kms - disable vblank interrupt
->   *
-> - * @dev: drm dev pointer
->   * @crtc: crtc to disable vblank interrupt for
->   *
->   * Disable the interrupt on the requested crtc (all asics).
->   */
-> -void radeon_disable_vblank_kms(struct drm_device *dev, int crtc)
-> +void radeon_disable_vblank_kms(struct drm_crtc *crtc)
->  {
-> +       struct drm_device *dev = crtc->dev;
-> +       unsigned int pipe = crtc->index;
->         struct radeon_device *rdev = dev->dev_private;
->         unsigned long irqflags;
->
-> -       if (crtc < 0 || crtc >= rdev->num_crtc) {
-> -               DRM_ERROR("Invalid crtc %d\n", crtc);
-> +       if (pipe < 0 || pipe >= rdev->num_crtc) {
-> +               DRM_ERROR("Invalid crtc %d\n", pipe);
->                 return;
->         }
->
->         spin_lock_irqsave(&rdev->irq.lock, irqflags);
-> -       rdev->irq.crtc_vblank_int[crtc] = false;
-> +       rdev->irq.crtc_vblank_int[pipe] = false;
->         radeon_irq_set(rdev);
->         spin_unlock_irqrestore(&rdev->irq.lock, irqflags);
->  }
-> --
-> 2.24.1
->
-> _______________________________________________
-> amd-gfx mailing list
-> amd-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_7735 -> Patchwork_16078
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16078/index.html
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_16078:
+
+### IGT changes ###
+
+#### Suppressed ####
+
+  The following results come from untrusted machines, tests, or statuses.
+  They do not affect the overall result.
+
+  * igt@gem_exec_parallel@basic:
+    - {fi-ehl-1}:         [PASS][1] -> [FAIL][2] +1 similar issue
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7735/fi-ehl-1/igt@gem_exec_parallel@basic.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16078/fi-ehl-1/igt@gem_exec_parallel@basic.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_16078 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_close_race@basic-threads:
+    - fi-byt-n2820:       [PASS][3] -> [TIMEOUT][4] ([fdo#112271] / [i915#816])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7735/fi-byt-n2820/igt@gem_close_race@basic-threads.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16078/fi-byt-n2820/igt@gem_close_race@basic-threads.html
+
+  * igt@i915_module_load@reload-with-fault-injection:
+    - fi-skl-6770hq:      [PASS][5] -> [INCOMPLETE][6] ([i915#671])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7735/fi-skl-6770hq/igt@i915_module_load@reload-with-fault-injection.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16078/fi-skl-6770hq/igt@i915_module_load@reload-with-fault-injection.html
+
+  * igt@i915_selftest@live_blt:
+    - fi-hsw-4770:        [PASS][7] -> [DMESG-FAIL][8] ([i915#553] / [i915#725])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7735/fi-hsw-4770/igt@i915_selftest@live_blt.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16078/fi-hsw-4770/igt@i915_selftest@live_blt.html
+
+  * igt@i915_selftest@live_execlists:
+    - fi-kbl-soraka:      [PASS][9] -> [DMESG-FAIL][10] ([i915#656])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7735/fi-kbl-soraka/igt@i915_selftest@live_execlists.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16078/fi-kbl-soraka/igt@i915_selftest@live_execlists.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_module_load@reload-with-fault-injection:
+    - fi-cfl-guc:         [DMESG-WARN][11] ([i915#889]) -> [PASS][12]
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7735/fi-cfl-guc/igt@i915_module_load@reload-with-fault-injection.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16078/fi-cfl-guc/igt@i915_module_load@reload-with-fault-injection.html
+    - fi-cfl-8700k:       [INCOMPLETE][13] ([i915#505]) -> [PASS][14]
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7735/fi-cfl-8700k/igt@i915_module_load@reload-with-fault-injection.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16078/fi-cfl-8700k/igt@i915_module_load@reload-with-fault-injection.html
+    - fi-skl-6700k2:      [DMESG-WARN][15] ([i915#889]) -> [PASS][16]
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7735/fi-skl-6700k2/igt@i915_module_load@reload-with-fault-injection.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16078/fi-skl-6700k2/igt@i915_module_load@reload-with-fault-injection.html
+    - fi-kbl-x1275:       [INCOMPLETE][17] ([i915#879]) -> [PASS][18]
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7735/fi-kbl-x1275/igt@i915_module_load@reload-with-fault-injection.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16078/fi-kbl-x1275/igt@i915_module_load@reload-with-fault-injection.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#112271]: https://bugs.freedesktop.org/show_bug.cgi?id=112271
+  [i915#505]: https://gitlab.freedesktop.org/drm/intel/issues/505
+  [i915#553]: https://gitlab.freedesktop.org/drm/intel/issues/553
+  [i915#656]: https://gitlab.freedesktop.org/drm/intel/issues/656
+  [i915#671]: https://gitlab.freedesktop.org/drm/intel/issues/671
+  [i915#725]: https://gitlab.freedesktop.org/drm/intel/issues/725
+  [i915#816]: https://gitlab.freedesktop.org/drm/intel/issues/816
+  [i915#879]: https://gitlab.freedesktop.org/drm/intel/issues/879
+  [i915#889]: https://gitlab.freedesktop.org/drm/intel/issues/889
+
+
+Participating hosts (42 -> 42)
+------------------------------
+
+  Additional (9): fi-bdw-5557u fi-hsw-peppy fi-bwr-2160 fi-kbl-7500u fi-ivb-3770 fi-blb-e6850 fi-bsw-nick fi-skl-6600u fi-snb-2600 
+  Missing    (9): fi-hsw-4770r fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ilk-650 fi-ctg-p8600 fi-whl-u fi-gdg-551 fi-byt-clapper 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_7735 -> Patchwork_16078
+
+  CI-20190529: 20190529
+  CI_DRM_7735: 3093622134384342d2ce121a0ed2ada29423e762 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5364: b7cb6ffdb65cbd233f5ddee2f2dabf97b34fa640 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_16078: c89cc0181256afab53d299e17fb0798b94cc3017 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Kernel 32bit build ==
+
+Warning: Kernel 32bit buildtest failed:
+https://intel-gfx-ci.01.org/Patchwork_16078/build_32bit.log
+
+  CALL    scripts/checksyscalls.sh
+  CALL    scripts/atomic/check-atomics.sh
+  CHK     include/generated/compile.h
+Kernel: arch/x86/boot/bzImage is ready  (#1)
+  Building modules, stage 2.
+  MODPOST 122 modules
+ERROR: "__udivdi3" [drivers/gpu/drm/amd/amdgpu/amdgpu.ko] undefined!
+scripts/Makefile.modpost:93: recipe for target '__modpost' failed
+make[1]: *** [__modpost] Error 1
+Makefile:1282: recipe for target 'modules' failed
+make: *** [modules] Error 2
+
+
+== Linux commits ==
+
+c89cc0181256 drm/i915: convert to new logging macros based on struct intel_engine_cs.
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16078/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
