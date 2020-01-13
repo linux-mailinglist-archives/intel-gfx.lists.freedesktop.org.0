@@ -1,41 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B2657139C65
-	for <lists+intel-gfx@lfdr.de>; Mon, 13 Jan 2020 23:26:14 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 842FD139D41
+	for <lists+intel-gfx@lfdr.de>; Tue, 14 Jan 2020 00:28:02 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0D46F6E177;
-	Mon, 13 Jan 2020 22:26:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2E56B6E19C;
+	Mon, 13 Jan 2020 23:28:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E66AC6E181
- for <intel-gfx@lists.freedesktop.org>; Mon, 13 Jan 2020 22:26:11 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 13 Jan 2020 14:26:11 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,430,1571727600"; d="scan'208";a="246129221"
-Received: from dceraolo-mobl.amr.corp.intel.com (HELO [10.255.88.44])
- ([10.255.88.44])
- by fmsmga001.fm.intel.com with ESMTP; 13 Jan 2020 14:26:10 -0800
-To: Michal Wajdeczko <michal.wajdeczko@intel.com>,
- intel-gfx@lists.freedesktop.org
-References: <20200111231114.59208-1-michal.wajdeczko@intel.com>
- <20200111231114.59208-5-michal.wajdeczko@intel.com>
-From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Message-ID: <144f8c55-dcd3-604c-fa15-1b0e61b527c0@intel.com>
-Date: Mon, 13 Jan 2020 14:26:10 -0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.1
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 8B0276E19C;
+ Mon, 13 Jan 2020 23:27:59 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 8297DA0118;
+ Mon, 13 Jan 2020 23:27:59 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <20200111231114.59208-5-michal.wajdeczko@intel.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH 4/4] drm/i915/guc: Use correct name for last
- CT fence
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Jos=C3=A9_Roberto_de_Souza?= <jose.souza@intel.com>
+Date: Mon, 13 Jan 2020 23:27:59 -0000
+Message-ID: <157895807950.25473.17841197799836370319@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200113214603.52158-1-jose.souza@intel.com>
+In-Reply-To: <20200113214603.52158-1-jose.souza@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/psr=3A_Share_the_computation_of_idle_frames?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,57 +38,152 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+== Series Details ==
+
+Series: drm/i915/psr: Share the computation of idle frames
+URL   : https://patchwork.freedesktop.org/series/71981/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_7736 -> Patchwork_16084
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16084/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_16084 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_close_race@basic-threads:
+    - fi-byt-j1900:       [PASS][1] -> [TIMEOUT][2] ([fdo#112271] / [i915#816])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7736/fi-byt-j1900/igt@gem_close_race@basic-threads.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16084/fi-byt-j1900/igt@gem_close_race@basic-threads.html
+
+  * igt@i915_module_load@reload-with-fault-injection:
+    - fi-kbl-x1275:       [PASS][3] -> [INCOMPLETE][4] ([i915#879])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7736/fi-kbl-x1275/igt@i915_module_load@reload-with-fault-injection.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16084/fi-kbl-x1275/igt@i915_module_load@reload-with-fault-injection.html
+    - fi-skl-lmem:        [PASS][5] -> [INCOMPLETE][6] ([i915#671])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7736/fi-skl-lmem/igt@i915_module_load@reload-with-fault-injection.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16084/fi-skl-lmem/igt@i915_module_load@reload-with-fault-injection.html
+
+  * igt@i915_selftest@live_blt:
+    - fi-ivb-3770:        [PASS][7] -> [DMESG-FAIL][8] ([i915#725])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7736/fi-ivb-3770/igt@i915_selftest@live_blt.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16084/fi-ivb-3770/igt@i915_selftest@live_blt.html
+
+  * igt@i915_selftest@live_execlists:
+    - fi-kbl-soraka:      [PASS][9] -> [DMESG-FAIL][10] ([i915#656])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7736/fi-kbl-soraka/igt@i915_selftest@live_execlists.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16084/fi-kbl-soraka/igt@i915_selftest@live_execlists.html
+
+  * igt@kms_chamelium@hdmi-hpd-fast:
+    - fi-kbl-7500u:       [PASS][11] -> [FAIL][12] ([fdo#111096] / [i915#323])
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7736/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16084/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_module_load@reload-with-fault-injection:
+    - fi-skl-6700k2:      [INCOMPLETE][13] ([i915#671]) -> [PASS][14]
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7736/fi-skl-6700k2/igt@i915_module_load@reload-with-fault-injection.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16084/fi-skl-6700k2/igt@i915_module_load@reload-with-fault-injection.html
+    - fi-skl-6770hq:      [INCOMPLETE][15] ([i915#671]) -> [PASS][16]
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7736/fi-skl-6770hq/igt@i915_module_load@reload-with-fault-injection.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16084/fi-skl-6770hq/igt@i915_module_load@reload-with-fault-injection.html
+
+  * igt@i915_selftest@live_blt:
+    - fi-hsw-4770:        [DMESG-FAIL][17] ([i915#553] / [i915#725]) -> [PASS][18]
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7736/fi-hsw-4770/igt@i915_selftest@live_blt.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16084/fi-hsw-4770/igt@i915_selftest@live_blt.html
+
+  * igt@i915_selftest@live_gem_contexts:
+    - fi-cfl-8700k:       [INCOMPLETE][19] ([i915#424]) -> [PASS][20]
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7736/fi-cfl-8700k/igt@i915_selftest@live_gem_contexts.html
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16084/fi-cfl-8700k/igt@i915_selftest@live_gem_contexts.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#111096]: https://bugs.freedesktop.org/show_bug.cgi?id=111096
+  [fdo#112271]: https://bugs.freedesktop.org/show_bug.cgi?id=112271
+  [i915#323]: https://gitlab.freedesktop.org/drm/intel/issues/323
+  [i915#424]: https://gitlab.freedesktop.org/drm/intel/issues/424
+  [i915#553]: https://gitlab.freedesktop.org/drm/intel/issues/553
+  [i915#656]: https://gitlab.freedesktop.org/drm/intel/issues/656
+  [i915#671]: https://gitlab.freedesktop.org/drm/intel/issues/671
+  [i915#725]: https://gitlab.freedesktop.org/drm/intel/issues/725
+  [i915#816]: https://gitlab.freedesktop.org/drm/intel/issues/816
+  [i915#879]: https://gitlab.freedesktop.org/drm/intel/issues/879
+  [i915#937]: https://gitlab.freedesktop.org/drm/intel/issues/937
 
 
-On 1/11/2020 3:11 PM, Michal Wajdeczko wrote:
-> While we have function that returns "next fence" that can be used
-> by new CT request, we internally store value of the last used fence.
->
-> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
-> Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-> Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Participating hosts (40 -> 46)
+------------------------------
 
-Reviewed-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+  Additional (10): fi-hsw-4770r fi-bdw-5557u fi-kbl-7560u fi-hsw-peppy fi-bwr-2160 fi-gdg-551 fi-blb-e6850 fi-byt-n2820 fi-bsw-nick fi-snb-2600 
+  Missing    (4): fi-ctg-p8600 fi-byt-squawks fi-bsw-cyan fi-cfl-guc 
 
-Daniele
 
-> ---
->   drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c | 2 +-
->   drivers/gpu/drm/i915/gt/uc/intel_guc_ct.h | 2 +-
->   2 files changed, 2 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
-> index 1da69425029b..73f617cbcf55 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
-> @@ -290,7 +290,7 @@ void intel_guc_ct_disable(struct intel_guc_ct *ct)
->   static u32 ct_get_next_fence(struct intel_guc_ct *ct)
->   {
->   	/* For now it's trivial */
-> -	return ++ct->requests.next_fence;
-> +	return ++ct->requests.last_fence;
->   }
->   
->   /**
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.h b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.h
-> index 3e7fe237cfa5..97913bbb8be3 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.h
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.h
-> @@ -49,7 +49,7 @@ struct intel_guc_ct {
->   	struct intel_guc_ct_buffer ctbs[2];
->   
->   	struct {
-> -		u32 next_fence; /* fence to be used with next request to send */
-> +		u32 last_fence; /* last fence used to send request */
->   
->   		spinlock_t lock; /* protects pending requests list */
->   		struct list_head pending; /* requests waiting for response */
+Build changes
+-------------
 
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_7736 -> Patchwork_16084
+
+  CI-20190529: 20190529
+  CI_DRM_7736: 2a7726472c7d4c39d23a491611068c2a969b9e02 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5364: b7cb6ffdb65cbd233f5ddee2f2dabf97b34fa640 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_16084: 4adf45e78718a1951f529cb8059aba99f55e33bd @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Kernel 32bit build ==
+
+Warning: Kernel 32bit buildtest failed:
+https://intel-gfx-ci.01.org/Patchwork_16084/build_32bit.log
+
+  CALL    scripts/checksyscalls.sh
+  CALL    scripts/atomic/check-atomics.sh
+  CHK     include/generated/compile.h
+Kernel: arch/x86/boot/bzImage is ready  (#1)
+  Building modules, stage 2.
+  MODPOST 122 modules
+ERROR: "__udivdi3" [drivers/gpu/drm/amd/amdgpu/amdgpu.ko] undefined!
+scripts/Makefile.modpost:93: recipe for target '__modpost' failed
+make[1]: *** [__modpost] Error 1
+Makefile:1282: recipe for target 'modules' failed
+make: *** [modules] Error 2
+
+
+== Linux commits ==
+
+4adf45e78718 drm/i915/psr: Share the computation of idle frames
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16084/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
