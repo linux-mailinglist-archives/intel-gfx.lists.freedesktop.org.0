@@ -2,37 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F98C13ACA7
-	for <lists+intel-gfx@lfdr.de>; Tue, 14 Jan 2020 15:52:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2084D13ACB2
+	for <lists+intel-gfx@lfdr.de>; Tue, 14 Jan 2020 15:55:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 80FFF6E3F7;
-	Tue, 14 Jan 2020 14:52:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A78406E400;
+	Tue, 14 Jan 2020 14:55:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C0DEC6E3F7
- for <intel-gfx@lists.freedesktop.org>; Tue, 14 Jan 2020 14:52:45 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 68FE26E3FE;
+ Tue, 14 Jan 2020 14:55:46 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
 X-Amp-File-Uploaded: False
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 14 Jan 2020 06:52:45 -0800
-X-IronPort-AV: E=Sophos;i="5.69,433,1571727600"; d="scan'208";a="372596523"
-Received: from jnikula-mobl3.fi.intel.com (HELO localhost) ([10.237.66.161])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 14 Jan 2020 06:52:43 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-In-Reply-To: <20200108181242.13650-3-ville.syrjala@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20200108181242.13650-1-ville.syrjala@linux.intel.com>
- <20200108181242.13650-3-ville.syrjala@linux.intel.com>
-Date: Tue, 14 Jan 2020 16:52:40 +0200
-Message-ID: <871rs2ks3r.fsf@intel.com>
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 14 Jan 2020 06:55:45 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.69,433,1571727600"; d="scan'208";a="242495126"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by orsmga002.jf.intel.com with SMTP; 14 Jan 2020 06:55:42 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Tue, 14 Jan 2020 16:55:41 +0200
+Date: Tue, 14 Jan 2020 16:55:41 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Message-ID: <20200114145541.GW13686@intel.com>
+References: <20191224084251.28414-1-kai.heng.feng@canonical.com>
+ <85235F00-7FBA-46E4-B7A5-45294DE1B824@canonical.com>
+ <87ftgiku03.fsf@intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 3/9] drm/i915/sdvo: Consolidate SDVO HDMI
- force_dvi handling
+Content-Disposition: inline
+In-Reply-To: <87ftgiku03.fsf@intel.com>
+X-Patchwork-Hint: comment
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH v3] drm/i915: Re-init lspcon after HPD if
+ lspcon probe failed
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,54 +50,119 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: airlied@linux.ie, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, Kai-Heng Feng <kai.heng.feng@canonical.com>,
+ dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gV2VkLCAwOCBKYW4gMjAyMCwgVmlsbGUgU3lyamFsYSA8dmlsbGUuc3lyamFsYUBsaW51eC5p
-bnRlbC5jb20+IHdyb3RlOgo+IEZyb206IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBs
-aW51eC5pbnRlbC5jb20+Cj4KPiBNb3ZlIHRoZSBmb3JjZV9kdmkgY2hlY2sgdG8gYSBzaW5nbGUg
-ZnVuY3Rpb24gdGhhdCBjYW4gYmUgY2FsbGVkIGZyb20KPiBib3RoIG1vZGUgdmFsaWRhdGlvbiBh
-bmQgY29tcHV0ZV9jb25maWcoKS4gTm90ZSB0aGF0IGN1cnJlbnRseSB3ZQo+IGRvbid0IGNhbGwg
-aXQgZnJvbSBtb2RlIHZhbGlkYXRpb24sIGJ1dCB0aGF0IHdpbGwgY2hhbmdlIHNvb24uCj4KPiBT
-aWduZWQtb2ZmLWJ5OiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwu
-Y29tPgoKUmV2aWV3ZWQtYnk6IEphbmkgTmlrdWxhIDxqYW5pLm5pa3VsYUBpbnRlbC5jb20+Cgo+
-IC0tLQo+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Nkdm8uYyB8IDIwICsr
-KysrKysrKysrKysrKy0tLS0tCj4gIDEgZmlsZSBjaGFuZ2VkLCAxNSBpbnNlcnRpb25zKCspLCA1
-IGRlbGV0aW9ucygtKQo+Cj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3Bs
-YXkvaW50ZWxfc2R2by5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9zZHZv
-LmMKPiBpbmRleCAwMjExOWM4MjdjODAuLjJkMmM1ZTFjN2U3YyAxMDA2NDQKPiAtLS0gYS9kcml2
-ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Nkdm8uYwo+ICsrKyBiL2RyaXZlcnMvZ3B1
-L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfc2R2by5jCj4gQEAgLTEyNjQsNiArMTI2NCwxMyBAQCBz
-dGF0aWMgdm9pZCBpOXh4X2FkanVzdF9zZHZvX3R2X2Nsb2NrKHN0cnVjdCBpbnRlbF9jcnRjX3N0
-YXRlICpwaXBlX2NvbmZpZykKPiAgCXBpcGVfY29uZmlnLT5jbG9ja19zZXQgPSB0cnVlOwo+ICB9
-Cj4gIAo+ICtzdGF0aWMgYm9vbCBpbnRlbF9oYXNfaGRtaV9zaW5rKHN0cnVjdCBpbnRlbF9zZHZv
-ICpzZHZvLAo+ICsJCQkJY29uc3Qgc3RydWN0IGRybV9jb25uZWN0b3Jfc3RhdGUgKmNvbm5fc3Rh
-dGUpCj4gK3sKPiArCXJldHVybiBzZHZvLT5oYXNfaGRtaV9tb25pdG9yICYmCj4gKwkJUkVBRF9P
-TkNFKHRvX2ludGVsX2RpZ2l0YWxfY29ubmVjdG9yX3N0YXRlKGNvbm5fc3RhdGUpLT5mb3JjZV9h
-dWRpbykgIT0gSERNSV9BVURJT19PRkZfRFZJOwo+ICt9Cj4gKwo+ICBzdGF0aWMgaW50IGludGVs
-X3Nkdm9fY29tcHV0ZV9jb25maWcoc3RydWN0IGludGVsX2VuY29kZXIgKmVuY29kZXIsCj4gIAkJ
-CQkgICAgIHN0cnVjdCBpbnRlbF9jcnRjX3N0YXRlICpwaXBlX2NvbmZpZywKPiAgCQkJCSAgICAg
-c3RydWN0IGRybV9jb25uZWN0b3Jfc3RhdGUgKmNvbm5fc3RhdGUpCj4gQEAgLTEzMTksMTIgKzEz
-MjYsMTUgQEAgc3RhdGljIGludCBpbnRlbF9zZHZvX2NvbXB1dGVfY29uZmlnKHN0cnVjdCBpbnRl
-bF9lbmNvZGVyICplbmNvZGVyLAo+ICAJcGlwZV9jb25maWctPnBpeGVsX211bHRpcGxpZXIgPQo+
-ICAJCWludGVsX3Nkdm9fZ2V0X3BpeGVsX211bHRpcGxpZXIoYWRqdXN0ZWRfbW9kZSk7Cj4gIAo+
-IC0JaWYgKGludGVsX3Nkdm9fc3RhdGUtPmJhc2UuZm9yY2VfYXVkaW8gIT0gSERNSV9BVURJT19P
-RkZfRFZJKQo+IC0JCXBpcGVfY29uZmlnLT5oYXNfaGRtaV9zaW5rID0gaW50ZWxfc2R2by0+aGFz
-X2hkbWlfbW9uaXRvcjsKPiArCXBpcGVfY29uZmlnLT5oYXNfaGRtaV9zaW5rID0gaW50ZWxfaGFz
-X2hkbWlfc2luayhpbnRlbF9zZHZvLCBjb25uX3N0YXRlKTsKPiAgCj4gLQlpZiAoaW50ZWxfc2R2
-b19zdGF0ZS0+YmFzZS5mb3JjZV9hdWRpbyA9PSBIRE1JX0FVRElPX09OIHx8Cj4gLQkgICAgKGlu
-dGVsX3Nkdm9fc3RhdGUtPmJhc2UuZm9yY2VfYXVkaW8gPT0gSERNSV9BVURJT19BVVRPICYmIGlu
-dGVsX3Nkdm8tPmhhc19oZG1pX2F1ZGlvKSkKPiAtCQlwaXBlX2NvbmZpZy0+aGFzX2F1ZGlvID0g
-dHJ1ZTsKPiArCWlmIChwaXBlX2NvbmZpZy0+aGFzX2hkbWlfc2luaykgewo+ICsJCWlmIChpbnRl
-bF9zZHZvX3N0YXRlLT5iYXNlLmZvcmNlX2F1ZGlvID09IEhETUlfQVVESU9fQVVUTykKPiArCQkJ
-cGlwZV9jb25maWctPmhhc19hdWRpbyA9IGludGVsX3Nkdm8tPmhhc19oZG1pX2F1ZGlvOwo+ICsJ
-CWVsc2UKPiArCQkJcGlwZV9jb25maWctPmhhc19hdWRpbyA9Cj4gKwkJCQlpbnRlbF9zZHZvX3N0
-YXRlLT5iYXNlLmZvcmNlX2F1ZGlvID09IEhETUlfQVVESU9fT047Cj4gKwl9Cj4gIAo+ICAJaWYg
-KGludGVsX3Nkdm9fc3RhdGUtPmJhc2UuYnJvYWRjYXN0X3JnYiA9PSBJTlRFTF9CUk9BRENBU1Rf
-UkdCX0FVVE8pIHsKPiAgCQkvKgoKLS0gCkphbmkgTmlrdWxhLCBJbnRlbCBPcGVuIFNvdXJjZSBH
-cmFwaGljcyBDZW50ZXIKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Au
-b3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwt
-Z2Z4Cg==
+On Tue, Jan 14, 2020 at 04:11:40PM +0200, Jani Nikula wrote:
+> On Mon, 06 Jan 2020, Kai-Heng Feng <kai.heng.feng@canonical.com> wrote:
+> > Hi Jani,
+> >
+> >> On Dec 24, 2019, at 16:42, Kai-Heng Feng <kai.heng.feng@canonical.com>=
+ wrote:
+> >> =
+
+> >> On HP 800 G4 DM, if HDMI cable isn't plugged before boot, the HDMI port
+> >> becomes useless and never responds to cable hotplugging:
+> >> [    3.031904] [drm:lspcon_init [i915]] *ERROR* Failed to probe lspcon
+> >> [    3.031945] [drm:intel_ddi_init [i915]] *ERROR* LSPCON init failed =
+on port D
+> >> =
+
+> >> Seems like the lspcon chip on the system in question only gets powered
+> >> after the cable is plugged.
+> >> =
+
+> >> So let's call lspcon_init() dynamically to properly initialize the
+> >> lspcon chip and make HDMI port work.
+> >
+> > Do you have any further suggestion for this patch?
+> =
+
+> Sorry for taking so long. Comments inline.
+> =
+
+> >
+> > Kai-Heng
+> >
+> >> =
+
+> >> Closes: https://gitlab.freedesktop.org/drm/intel/issues/203
+> >> Signed-off-by: Kai-Heng Feng <kai.heng.feng@canonical.com>
+> >> ---
+> >> v3:
+> >> - Make sure it's handled under long HPD case.
+> >> =
+
+> >> v2: =
+
+> >> - Move lspcon_init() inside of intel_dp_hpd_pulse().
+> >> =
+
+> >> drivers/gpu/drm/i915/display/intel_dp.c | 8 +++++++-
+> >> 1 file changed, 7 insertions(+), 1 deletion(-)
+> >> =
+
+> >> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm=
+/i915/display/intel_dp.c
+> >> index fe31bbfd6c62..a72c9c041c60 100644
+> >> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> >> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> >> @@ -6573,6 +6573,7 @@ enum irqreturn
+> >> intel_dp_hpd_pulse(struct intel_digital_port *intel_dig_port, bool lon=
+g_hpd)
+> >> {
+> >> 	struct intel_dp *intel_dp =3D &intel_dig_port->dp;
+> >> +	struct drm_i915_private *dev_priv =3D dp_to_i915(intel_dp);
+> >> =
+
+> >> 	if (long_hpd && intel_dig_port->base.type =3D=3D INTEL_OUTPUT_EDP) {
+> >> 		/*
+> >> @@ -6593,7 +6594,12 @@ intel_dp_hpd_pulse(struct intel_digital_port *i=
+ntel_dig_port, bool long_hpd)
+> >> 		      long_hpd ? "long" : "short");
+> >> =
+
+> >> 	if (long_hpd) {
+> >> -		intel_dp->reset_link_params =3D true;
+> >> +		if (intel_dig_port->base.type =3D=3D INTEL_OUTPUT_DDI &&
+> >> +		    HAS_LSPCON(dev_priv) && !intel_dig_port->lspcon.active)
+> >> +			lspcon_init(intel_dig_port);
+> >> +		else
+> >> +			intel_dp->reset_link_params =3D true;
+> >> +
+> =
+
+> Hmm, I think this will try to init lspcon on ports that do not have
+> lspcon. Also, why wouldn't we reset the params?
+> =
+
+> I think this boils down to just adding the following lines:
+> =
+
+> 	if (intel_bios_is_lspcon_present(dev_priv, intel_dig_port->base.port) &&
+>             !intel_dig_port->lspcon.active)
+> 		lspcon_init(intel_dig_port);
+> =
+
+> =
+
+> Ville?
+
+This won't work right. Eg. intel_infoframe_init() assumes that lspcon
+init happens during driver load. We should probably change that to just
+trust the VBT and simply move the lspcon probe (if we even need one)
+into dp_detect() instead of sprinkling it around in several places.
+
+-- =
+
+Ville Syrj=E4l=E4
+Intel
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
