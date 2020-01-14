@@ -2,31 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3DC7713A3EC
-	for <lists+intel-gfx@lfdr.de>; Tue, 14 Jan 2020 10:37:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B6A2813A3ED
+	for <lists+intel-gfx@lfdr.de>; Tue, 14 Jan 2020 10:37:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 873A56E32C;
-	Tue, 14 Jan 2020 09:37:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 465916E32E;
+	Tue, 14 Jan 2020 09:37:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D890A6E32E
- for <intel-gfx@lists.freedesktop.org>; Tue, 14 Jan 2020 09:37:00 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7F5F16E32E
+ for <intel-gfx@lists.freedesktop.org>; Tue, 14 Jan 2020 09:37:03 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19871427-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19871428-1500050 
  for multiple; Tue, 14 Jan 2020 09:36:51 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 14 Jan 2020 09:36:39 +0000
-Message-Id: <20200114093648.2090633-4-chris@chris-wilson.co.uk>
+Date: Tue, 14 Jan 2020 09:36:40 +0000
+Message-Id: <20200114093648.2090633-5-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.25.0.rc2
 In-Reply-To: <20200114093648.2090633-1-chris@chris-wilson.co.uk>
 References: <20200114093648.2090633-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 04/13] drm/i915: Only retire requests when
- eviction is allowed to blocked
+Subject: [Intel-gfx] [PATCH 05/13] drm/i915: Disable preemption support on
+ Icelake
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,39 +44,31 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-We want to keep the PIN_NONBLOCK search quick, avoiding evicting
-recently active nodes. To that end, skip performing the more laborious
-retirement prior to beginning the fast search.
+Our pre-emption support on Icelake is broken on all kernels, so disable
+until resolved.
 
+Reported-by: Jason Ekstrand <jason@jlekstrand.net>
+Closes: https://gitlab.freedesktop.org/drm/intel/issues/809
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+Cc: Jon Bloomfield <jon.bloomfield@intel.com>
+Cc: Jason Ekstrand <jason@jlekstrand.net>
 ---
- drivers/gpu/drm/i915/i915_gem_evict.c | 6 ++++--
- 1 file changed, 4 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/i915_pci.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/drivers/gpu/drm/i915/i915_gem_evict.c b/drivers/gpu/drm/i915/i915_gem_evict.c
-index 0697bedebeef..5f8b6cc55195 100644
---- a/drivers/gpu/drm/i915/i915_gem_evict.c
-+++ b/drivers/gpu/drm/i915/i915_gem_evict.c
-@@ -124,7 +124,8 @@ i915_gem_evict_something(struct i915_address_space *vm,
- 				    min_size, alignment, color,
- 				    start, end, mode);
+diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
+index 83f01401b8b5..67f3b4dbac7b 100644
+--- a/drivers/gpu/drm/i915/i915_pci.c
++++ b/drivers/gpu/drm/i915/i915_pci.c
+@@ -782,6 +782,7 @@ static const struct intel_device_info icl_info = {
+ 	PLATFORM(INTEL_ICELAKE),
+ 	.engine_mask =
+ 		BIT(RCS0) | BIT(BCS0) | BIT(VECS0) | BIT(VCS0) | BIT(VCS2),
++	.has_logical_ring_preemption = 0,
+ };
  
--	intel_gt_retire_requests(vm->gt);
-+	if (!(flags & PIN_NONBLOCK))
-+		intel_gt_retire_requests(vm->gt);
- 
- search_again:
- 	active = NULL;
-@@ -270,7 +271,8 @@ int i915_gem_evict_for_node(struct i915_address_space *vm,
- 	 * a stray pin (preventing eviction) that can only be resolved by
- 	 * retiring.
- 	 */
--	intel_gt_retire_requests(vm->gt);
-+	if (!(flags & PIN_NONBLOCK))
-+		intel_gt_retire_requests(vm->gt);
- 
- 	if (i915_vm_has_cache_coloring(vm)) {
- 		/* Expand search to cover neighbouring guard pages (or lack!) */
+ static const struct intel_device_info ehl_info = {
 -- 
 2.25.0.rc2
 
