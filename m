@@ -1,37 +1,39 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 919D913ABC9
-	for <lists+intel-gfx@lfdr.de>; Tue, 14 Jan 2020 15:02:21 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id CCEC213ABEE
+	for <lists+intel-gfx@lfdr.de>; Tue, 14 Jan 2020 15:11:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E98136E3DF;
-	Tue, 14 Jan 2020 14:02:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E61576E3E3;
+	Tue, 14 Jan 2020 14:11:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 022ED6E3DF
- for <intel-gfx@lists.freedesktop.org>; Tue, 14 Jan 2020 14:02:17 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E2C3B6E3E3;
+ Tue, 14 Jan 2020 14:11:48 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga106.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 14 Jan 2020 06:02:17 -0800
-X-IronPort-AV: E=Sophos;i="5.69,433,1571727600"; d="scan'208";a="242475563"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 14 Jan 2020 06:11:48 -0800
+X-IronPort-AV: E=Sophos;i="5.69,433,1571727600"; d="scan'208";a="213344121"
 Received: from jnikula-mobl3.fi.intel.com (HELO localhost) ([10.237.66.161])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 14 Jan 2020 06:02:15 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 14 Jan 2020 16:01:39 +0200
-Message-Id: <99df51313fd8112a9eb8d30dde19dde51e0c618b.1579010266.git.jani.nikula@intel.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <cover.1579010266.git.jani.nikula@intel.com>
-References: <cover.1579010266.git.jani.nikula@intel.com>
-MIME-Version: 1.0
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 14 Jan 2020 06:11:43 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Kai-Heng Feng <kai.heng.feng@canonical.com>,
+ joonas.lahtinen@linux.intel.com, rodrigo.vivi@intel.com, airlied@linux.ie,
+ daniel@ffwll.ch
+In-Reply-To: <85235F00-7FBA-46E4-B7A5-45294DE1B824@canonical.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Subject: [Intel-gfx] [PATCH v2 5/5] drm/i915: Force DPCD backlight mode on
- X1 Extreme 2nd Gen 4K AMOLED panel
+References: <20191224084251.28414-1-kai.heng.feng@canonical.com>
+ <85235F00-7FBA-46E4-B7A5-45294DE1B824@canonical.com>
+Date: Tue, 14 Jan 2020 16:11:40 +0200
+Message-ID: <87ftgiku03.fsf@intel.com>
+MIME-Version: 1.0
+Subject: Re: [Intel-gfx] [PATCH v3] drm/i915: Re-init lspcon after HPD if
+ lspcon probe failed
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,98 +46,98 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com, AceLan Kao <acelan.kao@canonical.com>
+Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Lyude Paul <lyude@redhat.com>
+On Mon, 06 Jan 2020, Kai-Heng Feng <kai.heng.feng@canonical.com> wrote:
+> Hi Jani,
+>
+>> On Dec 24, 2019, at 16:42, Kai-Heng Feng <kai.heng.feng@canonical.com> wrote:
+>> 
+>> On HP 800 G4 DM, if HDMI cable isn't plugged before boot, the HDMI port
+>> becomes useless and never responds to cable hotplugging:
+>> [    3.031904] [drm:lspcon_init [i915]] *ERROR* Failed to probe lspcon
+>> [    3.031945] [drm:intel_ddi_init [i915]] *ERROR* LSPCON init failed on port D
+>> 
+>> Seems like the lspcon chip on the system in question only gets powered
+>> after the cable is plugged.
+>> 
+>> So let's call lspcon_init() dynamically to properly initialize the
+>> lspcon chip and make HDMI port work.
+>
+> Do you have any further suggestion for this patch?
 
-Annoyingly, the VBT on the ThinkPad X1 Extreme 2nd Gen indicates that
-the system uses plain PWM based backlight controls, when in reality the
-only backlight controls that work are the standard VESA eDP DPCD
-backlight controls.
+Sorry for taking so long. Comments inline.
 
-Honestly, this makes me wonder how many other systems have these issues
-or lie about this in their VBT. Not sure we have any good way of finding
-out until panels like this become more common place in the laptop
-market. For now, just add a DRM DP quirk to indicate that this panel is
-telling the truth and is being a good LCD.
+>
+> Kai-Heng
+>
+>> 
+>> Closes: https://gitlab.freedesktop.org/drm/intel/issues/203
+>> Signed-off-by: Kai-Heng Feng <kai.heng.feng@canonical.com>
+>> ---
+>> v3:
+>> - Make sure it's handled under long HPD case.
+>> 
+>> v2: 
+>> - Move lspcon_init() inside of intel_dp_hpd_pulse().
+>> 
+>> drivers/gpu/drm/i915/display/intel_dp.c | 8 +++++++-
+>> 1 file changed, 7 insertions(+), 1 deletion(-)
+>> 
+>> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+>> index fe31bbfd6c62..a72c9c041c60 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+>> @@ -6573,6 +6573,7 @@ enum irqreturn
+>> intel_dp_hpd_pulse(struct intel_digital_port *intel_dig_port, bool long_hpd)
+>> {
+>> 	struct intel_dp *intel_dp = &intel_dig_port->dp;
+>> +	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
+>> 
+>> 	if (long_hpd && intel_dig_port->base.type == INTEL_OUTPUT_EDP) {
+>> 		/*
+>> @@ -6593,7 +6594,12 @@ intel_dp_hpd_pulse(struct intel_digital_port *intel_dig_port, bool long_hpd)
+>> 		      long_hpd ? "long" : "short");
+>> 
+>> 	if (long_hpd) {
+>> -		intel_dp->reset_link_params = true;
+>> +		if (intel_dig_port->base.type == INTEL_OUTPUT_DDI &&
+>> +		    HAS_LSPCON(dev_priv) && !intel_dig_port->lspcon.active)
+>> +			lspcon_init(intel_dig_port);
+>> +		else
+>> +			intel_dp->reset_link_params = true;
+>> +
 
-v2 by Jani:
-- rebase
+Hmm, I think this will try to init lspcon on ports that do not have
+lspcon. Also, why wouldn't we reset the params?
 
-Bugzilla: https://bugs.freedesktop.org/show_bug.cgi?id=112376
-Closes: https://gitlab.freedesktop.org/drm/intel/issues/642
-Tested-by: AceLan Kao <acelan.kao@canonical.com>
-Signed-off-by: Lyude Paul <lyude@redhat.com>
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/drm_dp_helper.c                       | 4 ++++
- drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c | 8 ++++++--
- include/drm/drm_dp_helper.h                           | 8 ++++++++
- 3 files changed, 18 insertions(+), 2 deletions(-)
+I think this boils down to just adding the following lines:
 
-diff --git a/drivers/gpu/drm/drm_dp_helper.c b/drivers/gpu/drm/drm_dp_helper.c
-index 5a103e9b3c86..90e122809fa4 100644
---- a/drivers/gpu/drm/drm_dp_helper.c
-+++ b/drivers/gpu/drm/drm_dp_helper.c
-@@ -1179,6 +1179,10 @@ static const struct dpcd_quirk dpcd_quirk_list[] = {
- 	{ OUI(0x00, 0x00, 0x00), DEVICE_ID('C', 'H', '7', '5', '1', '1'), false, BIT(DP_DPCD_QUIRK_NO_SINK_COUNT) },
- 	/* Synaptics DP1.4 MST hubs can support DSC without virtual DPCD */
- 	{ OUI(0x90, 0xCC, 0x24), DEVICE_ID_ANY, true, BIT(DP_DPCD_QUIRK_DSC_WITHOUT_VIRTUAL_DPCD) },
-+	/* Optional 4K AMOLED panel in the ThinkPad X1 Extreme 2nd Generation
-+	 * only supports DPCD backlight controls, despite advertising otherwise
-+	 */
-+	{ OUI(0xba, 0x41, 0x59), DEVICE_ID_ANY, false, BIT(DP_DPCD_QUIRK_FORCE_DPCD_BACKLIGHT) },
- };
- 
- #undef OUI
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-index 77a759361c5c..57774003e8c5 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-@@ -328,11 +328,15 @@ intel_dp_aux_display_control_capable(struct intel_connector *connector)
- int intel_dp_aux_init_backlight_funcs(struct intel_connector *intel_connector)
- {
- 	struct intel_panel *panel = &intel_connector->panel;
--	struct drm_i915_private *dev_priv = to_i915(intel_connector->base.dev);
-+	struct intel_dp *intel_dp = enc_to_intel_dp(intel_connector->encoder);
-+	struct drm_i915_private *i915 = to_i915(intel_connector->base.dev);
- 
- 	if (i915_modparams.enable_dpcd_backlight == 0 ||
- 	    (i915_modparams.enable_dpcd_backlight == -1 &&
--	    dev_priv->vbt.backlight.type != INTEL_BACKLIGHT_VESA_EDP_AUX_INTERFACE))
-+	     i915->vbt.backlight.type !=
-+	     INTEL_BACKLIGHT_VESA_EDP_AUX_INTERFACE &&
-+	     !drm_dp_has_quirk(&intel_dp->desc,
-+			       DP_DPCD_QUIRK_FORCE_DPCD_BACKLIGHT)))
- 		return -ENODEV;
- 
- 	if (!intel_dp_aux_display_control_capable(intel_connector))
-diff --git a/include/drm/drm_dp_helper.h b/include/drm/drm_dp_helper.h
-index 262faf9e5e94..bb081921f53d 100644
---- a/include/drm/drm_dp_helper.h
-+++ b/include/drm/drm_dp_helper.h
-@@ -1532,6 +1532,14 @@ enum drm_dp_quirk {
- 	 * The DSC caps can be read from the physical aux instead.
- 	 */
- 	DP_DPCD_QUIRK_DSC_WITHOUT_VIRTUAL_DPCD,
-+	/**
-+	 * @DP_DPCD_QUIRK_FORCE_DPCD_BACKLIGHT:
-+	 *
-+	 * The device is telling the truth when it says that it uses DPCD
-+	 * backlight controls, even if the system's firmware disagrees.
-+	 * The driver should honor the DPCD backlight capabilities advertised.
-+	 */
-+	DP_DPCD_QUIRK_FORCE_DPCD_BACKLIGHT,
- };
- 
- /**
+	if (intel_bios_is_lspcon_present(dev_priv, intel_dig_port->base.port) &&
+            !intel_dig_port->lspcon.active)
+		lspcon_init(intel_dig_port);
+
+
+Ville?
+
+BR,
+Jani.
+
+>> 		return IRQ_NONE;
+>> 	}
+>> 
+>> -- 
+>> 2.17.1
+>> 
+>
+
 -- 
-2.20.1
-
+Jani Nikula, Intel Open Source Graphics Center
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
