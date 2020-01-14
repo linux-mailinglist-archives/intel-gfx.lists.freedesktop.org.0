@@ -1,32 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 59C6313A3F0
-	for <lists+intel-gfx@lfdr.de>; Tue, 14 Jan 2020 10:37:12 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7ADFF13A3F5
+	for <lists+intel-gfx@lfdr.de>; Tue, 14 Jan 2020 10:37:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0F03D6E33A;
-	Tue, 14 Jan 2020 09:37:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 85BB06E33D;
+	Tue, 14 Jan 2020 09:37:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BCA2F6E32F
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BB10F6E32C
  for <intel-gfx@lists.freedesktop.org>; Tue, 14 Jan 2020 09:37:01 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19871432-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19871433-1500050 
  for multiple; Tue, 14 Jan 2020 09:36:52 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 14 Jan 2020 09:36:44 +0000
-Message-Id: <20200114093648.2090633-9-chris@chris-wilson.co.uk>
+Date: Tue, 14 Jan 2020 09:36:45 +0000
+Message-Id: <20200114093648.2090633-10-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.25.0.rc2
 In-Reply-To: <20200114093648.2090633-1-chris@chris-wilson.co.uk>
 References: <20200114093648.2090633-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 09/13] drm/i915/gt: Expose busywait duration to
- sysfs
+Subject: [Intel-gfx] [PATCH 10/13] drm/i915/gt: Expose reset stop timeout
+ via sysfs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,220 +44,98 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-We busywait on an inflight request (one that is currently executing on
-HW, and so might complete quickly) prior to setting up an interrupt and
-sleeping. The trade off is that we keep an expensive CPU core busy in
-order to avoid wake up latency: where that trade off should lie is best
-left to the sysadmin.
+When we allow ourselves to sleep before a GPU reset after disabling
+submission, even for a few milliseconds, gives an innocent context the
+opportunity to clear the GPU before the reset occurs. However, how long
+to sleep depends on the typical non-preemptible duration (a similar
+problem to determining the ideal preempt-reset timeout or even the
+heartbeat interval). As this seems of a hard policy decision, punt it to
+userspace.
 
-The busywait mechanism can be compiled out with
+The timeout can be adjusted using
 
-	./scripts/config --set-val DRM_I915_SPIN_REQUEST 0
-
-The maximum busywait duration can be adjusted per-engine using,
-
-	/sys/class/drm/card?/engine/*/ms_busywait_duration_ns
+	/sys/class/drm/card?/engine/*/stop_timeout_ms
 
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+Cc: Jon Bloomfield <jon.bloomfield@intel.com>
 ---
- drivers/gpu/drm/i915/Kconfig.profile         |  9 ++--
- drivers/gpu/drm/i915/gt/intel_engine_cs.c    |  2 +
- drivers/gpu/drm/i915/gt/intel_engine_sysfs.c | 49 ++++++++++++++++++++
- drivers/gpu/drm/i915/gt/intel_engine_types.h |  1 +
- drivers/gpu/drm/i915/i915_request.c          | 19 ++++----
- 5 files changed, 68 insertions(+), 12 deletions(-)
+ drivers/gpu/drm/i915/Kconfig.profile         |  3 ++
+ drivers/gpu/drm/i915/gt/intel_engine_sysfs.c | 40 ++++++++++++++++++++
+ 2 files changed, 43 insertions(+)
 
 diff --git a/drivers/gpu/drm/i915/Kconfig.profile b/drivers/gpu/drm/i915/Kconfig.profile
-index d8d4a16179bd..9ee3b59685b9 100644
+index 9ee3b59685b9..5f4ec3aec1d2 100644
 --- a/drivers/gpu/drm/i915/Kconfig.profile
 +++ b/drivers/gpu/drm/i915/Kconfig.profile
-@@ -35,9 +35,9 @@ config DRM_I915_PREEMPT_TIMEOUT
- 
- 	  May be 0 to disable the timeout.
- 
--config DRM_I915_SPIN_REQUEST
--	int "Busywait for request completion (us)"
--	default 5 # microseconds
-+config DRM_I915_MAX_REQUEST_BUSYWAIT
-+	int "Busywait for request completion limit (ns)"
-+	default 8000 # nanoseconds
- 	help
- 	  Before sleeping waiting for a request (GPU operation) to complete,
- 	  we may spend some time polling for its completion. As the IRQ may
-@@ -45,6 +45,9 @@ config DRM_I915_SPIN_REQUEST
- 	  check if the request will complete in the time it would have taken
- 	  us to enable the interrupt.
+@@ -63,6 +63,9 @@ config DRM_I915_STOP_TIMEOUT
+ 	  that the reset itself may take longer and so be more disruptive to
+ 	  interactive or low latency workloads.
  
 +	  This is adjustable via
-+	  /sys/class/drm/card?/engine/*/max_busywait_duration_ns
++	  /sys/class/drm/card?/engine/*/stop_timeout_ms
 +
- 	  May be 0 to disable the initial spin. In practice, we estimate
- 	  the cost of enabling the interrupt (if currently disabled) to be
- 	  a few microseconds.
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-index f451ef376548..eb3a781e3918 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-+++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-@@ -312,6 +312,8 @@ static int intel_engine_setup(struct intel_gt *gt, enum intel_engine_id id)
- 
- 	engine->props.heartbeat_interval_ms =
- 		CONFIG_DRM_I915_HEARTBEAT_INTERVAL;
-+	engine->props.max_busywait_duration_ns =
-+		CONFIG_DRM_I915_MAX_REQUEST_BUSYWAIT;
- 	engine->props.preempt_timeout_ms =
- 		CONFIG_DRM_I915_PREEMPT_TIMEOUT;
- 	engine->props.stop_timeout_ms =
+ config DRM_I915_TIMESLICE_DURATION
+ 	int "Scheduling quantum for userspace batches (ms, jiffy granularity)"
+ 	default 1 # milliseconds
 diff --git a/drivers/gpu/drm/i915/gt/intel_engine_sysfs.c b/drivers/gpu/drm/i915/gt/intel_engine_sysfs.c
-index b1bd768b13d7..6d87529c64a7 100644
+index 6d87529c64a7..2b65fed76435 100644
 --- a/drivers/gpu/drm/i915/gt/intel_engine_sysfs.c
 +++ b/drivers/gpu/drm/i915/gt/intel_engine_sysfs.c
-@@ -142,6 +142,54 @@ all_caps_show(struct kobject *kobj, struct kobj_attribute *attr, char *buf)
- static struct kobj_attribute all_caps_attr =
- __ATTR(known_capabilities, 0444, all_caps_show, NULL);
+@@ -232,6 +232,45 @@ timeslice_show(struct kobject *kobj, struct kobj_attribute *attr, char *buf)
+ static struct kobj_attribute timeslice_duration_attr =
+ __ATTR(timeslice_duration_ms, 0644, timeslice_show, timeslice_store);
  
 +static ssize_t
-+max_spin_store(struct kobject *kobj, struct kobj_attribute *attr,
-+	       const char *buf, size_t count)
++stop_store(struct kobject *kobj, struct kobj_attribute *attr,
++	   const char *buf, size_t count)
 +{
 +	struct intel_engine_cs *engine = kobj_to_engine(kobj);
 +	unsigned long long duration;
 +	int err;
 +
 +	/*
-+	 * When waiting for a request, if is it currently being executed
-+	 * on the GPU, we busywait for a short while before sleeping. The
-+	 * premise is that most requests are short, and if it is already
-+	 * executing then there is a good chance that it will complete
-+	 * before we can setup the interrupt handler and go to sleep.
-+	 * We try to offset the cost of going to sleep, by first spinning
-+	 * on the request -- if it completed in less time than it would take
-+	 * to go sleep, process the interrupt and return back to the client,
-+	 * then we have saved the client some latency, albeit at the cost
-+	 * of spinning on an expensive CPU core.
-+	 *
-+	 * While we try to avoid waiting at all for a request that is unlikely
-+	 * to complete, deciding how long it is worth spinning is for is an
-+	 * arbitrary decision: trading off power vs latency.
++	 * When we allow ourselves to sleep before a GPU reset after disabling
++	 * submission, even for a few milliseconds, gives an innocent context
++	 * the opportunity to clear the GPU before the reset occurs. However,
++	 * how long to sleep depends on the typical non-preemptible duration
++	 * (a similar problem to determining the ideal preempt-reset timeout
++	 * or even the heartbeat interval).
 +	 */
 +
 +	err = kstrtoull(buf, 0, &duration);
 +	if (err)
 +		return err;
 +
-+	if (duration > jiffies_to_nsecs(2))
++	if (duration > jiffies_to_msecs(MAX_SCHEDULE_TIMEOUT))
 +		return -EINVAL;
 +
-+	WRITE_ONCE(engine->props.max_busywait_duration_ns, duration);
-+
++	WRITE_ONCE(engine->props.stop_timeout_ms, duration);
 +	return count;
 +}
 +
 +static ssize_t
-+max_spin_show(struct kobject *kobj, struct kobj_attribute *attr, char *buf)
++stop_show(struct kobject *kobj, struct kobj_attribute *attr, char *buf)
 +{
 +	struct intel_engine_cs *engine = kobj_to_engine(kobj);
 +
-+	return sprintf(buf, "%lu\n", engine->props.max_busywait_duration_ns);
++	return sprintf(buf, "%lu\n", engine->props.stop_timeout_ms);
 +}
 +
-+static struct kobj_attribute max_spin_attr =
-+__ATTR(max_busywait_duration_ns, 0644, max_spin_show, max_spin_store);
++static struct kobj_attribute stop_timeout_attr =
++__ATTR(stop_timeout_ms, 0644, stop_show, stop_store);
 +
- static ssize_t
- timeslice_store(struct kobject *kobj, struct kobj_attribute *attr,
- 		const char *buf, size_t count)
-@@ -224,6 +272,7 @@ void intel_engines_add_sysfs(struct drm_i915_private *i915)
- 		&mmio_attr.attr,
+ static void kobj_engine_release(struct kobject *kobj)
+ {
+ 	kfree(kobj);
+@@ -273,6 +312,7 @@ void intel_engines_add_sysfs(struct drm_i915_private *i915)
  		&caps_attr.attr,
  		&all_caps_attr.attr,
-+		&max_spin_attr.attr,
+ 		&max_spin_attr.attr,
++		&stop_timeout_attr.attr,
  		NULL
  	};
  
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine_types.h b/drivers/gpu/drm/i915/gt/intel_engine_types.h
-index 00287515e7af..de1bc6534cc2 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine_types.h
-+++ b/drivers/gpu/drm/i915/gt/intel_engine_types.h
-@@ -536,6 +536,7 @@ struct intel_engine_cs {
- 
- 	struct {
- 		unsigned long heartbeat_interval_ms;
-+		unsigned long max_busywait_duration_ns;
- 		unsigned long preempt_timeout_ms;
- 		unsigned long stop_timeout_ms;
- 		unsigned long timeslice_duration_ms;
-diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
-index be185886e4fc..f5696698d234 100644
---- a/drivers/gpu/drm/i915/i915_request.c
-+++ b/drivers/gpu/drm/i915/i915_request.c
-@@ -1367,7 +1367,7 @@ void i915_request_add(struct i915_request *rq)
- 	mutex_unlock(&tl->mutex);
- }
- 
--static unsigned long local_clock_us(unsigned int *cpu)
-+static unsigned long local_clock_ns(unsigned int *cpu)
- {
- 	unsigned long t;
- 
-@@ -1384,7 +1384,7 @@ static unsigned long local_clock_us(unsigned int *cpu)
- 	 * stop busywaiting, see busywait_stop().
- 	 */
- 	*cpu = get_cpu();
--	t = local_clock() >> 10;
-+	t = local_clock();
- 	put_cpu();
- 
- 	return t;
-@@ -1394,15 +1394,15 @@ static bool busywait_stop(unsigned long timeout, unsigned int cpu)
- {
- 	unsigned int this_cpu;
- 
--	if (time_after(local_clock_us(&this_cpu), timeout))
-+	if (time_after(local_clock_ns(&this_cpu), timeout))
- 		return true;
- 
- 	return this_cpu != cpu;
- }
- 
--static bool __i915_spin_request(const struct i915_request * const rq,
--				int state, unsigned long timeout_us)
-+static bool __i915_spin_request(const struct i915_request * const rq, int state)
- {
-+	unsigned long timeout_ns;
- 	unsigned int cpu;
- 
- 	/*
-@@ -1430,7 +1430,8 @@ static bool __i915_spin_request(const struct i915_request * const rq,
- 	 * takes to sleep on a request, on the order of a microsecond.
- 	 */
- 
--	timeout_us += local_clock_us(&cpu);
-+	timeout_ns = READ_ONCE(rq->engine->props.max_busywait_duration_ns);
-+	timeout_ns += local_clock_ns(&cpu);
- 	do {
- 		if (i915_request_completed(rq))
- 			return true;
-@@ -1438,7 +1439,7 @@ static bool __i915_spin_request(const struct i915_request * const rq,
- 		if (signal_pending_state(state, current))
- 			break;
- 
--		if (busywait_stop(timeout_us, cpu))
-+		if (busywait_stop(timeout_ns, cpu))
- 			break;
- 
- 		cpu_relax();
-@@ -1524,8 +1525,8 @@ long i915_request_wait(struct i915_request *rq,
- 	 * completion. That requires having a good predictor for the request
- 	 * duration, which we currently lack.
- 	 */
--	if (IS_ACTIVE(CONFIG_DRM_I915_SPIN_REQUEST) &&
--	    __i915_spin_request(rq, state, CONFIG_DRM_I915_SPIN_REQUEST)) {
-+	if (IS_ACTIVE(CONFIG_DRM_I915_MAX_REQUEST_BUSYWAIT) &&
-+	    __i915_spin_request(rq, state)) {
- 		dma_fence_signal(&rq->fence);
- 		goto out;
- 	}
 -- 
 2.25.0.rc2
 
