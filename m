@@ -2,34 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BEB1B13A8A3
-	for <lists+intel-gfx@lfdr.de>; Tue, 14 Jan 2020 12:49:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D812D13A8C1
+	for <lists+intel-gfx@lfdr.de>; Tue, 14 Jan 2020 12:55:57 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EC1E46E37F;
-	Tue, 14 Jan 2020 11:49:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2A5C889346;
+	Tue, 14 Jan 2020 11:55:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 90A006E37F
- for <intel-gfx@lists.freedesktop.org>; Tue, 14 Jan 2020 11:49:50 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5779289346
+ for <intel-gfx@lists.freedesktop.org>; Tue, 14 Jan 2020 11:55:55 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 19873795-1500050 for multiple; Tue, 14 Jan 2020 11:49:47 +0000
-MIME-Version: 1.0
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19873888-1500050 
+ for multiple; Tue, 14 Jan 2020 11:55:35 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
-User-Agent: alot/0.6
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-References: <20200114105648.2172026-1-chris@chris-wilson.co.uk>
- <157899996519.27314.1692935781998209144@skylake-alporthouse-com>
- <ffaddcf2-0c6a-398a-2b1b-2f67b4094ade@linux.intel.com>
-In-Reply-To: <ffaddcf2-0c6a-398a-2b1b-2f67b4094ade@linux.intel.com>
-Message-ID: <157900258549.27314.6270179007943729334@skylake-alporthouse-com>
-Date: Tue, 14 Jan 2020 11:49:45 +0000
-Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915/pmu: Correct the rc6 offset
- upon enabling
+To: intel-gfx@lists.freedesktop.org
+Date: Tue, 14 Jan 2020 11:55:34 +0000
+Message-Id: <20200114115534.2196296-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.25.0.rc2
+In-Reply-To: <9b90921d-be2b-0c17-c1e6-32cdfec3ab19@linux.intel.com>
+References: <9b90921d-be2b-0c17-c1e6-32cdfec3ab19@linux.intel.com>
+MIME-Version: 1.0
+Subject: [Intel-gfx] [PATCH v2] drm/i915: Use common priotree lists for
+ virtual engine
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,94 +44,154 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Tvrtko Ursulin (2020-01-14 11:37:09)
-> 
-> On 14/01/2020 11:06, Chris Wilson wrote:
-> > Quoting Chris Wilson (2020-01-14 10:56:47)
-> >> The rc6 residency starts ticking from 0 from BIOS POST, but the kernel
-> >> starts measuring the time from its boot. If we start measuruing
-> >> I915_PMU_RC6_RESIDENCY while the GT is idle, we start our sampling from
-> >> 0 and then upon first activity (park/unpark) add in all the rc6
-> >> residency since boot. After the first park with the sampler engaged, the
-> >> sleep/active counters are aligned.
-> >>
-> >> v2: With a wakeref to be sure
-> >>
-> >> Fixes: df6a42053513 ("drm/i915/pmu: Ensure monotonic rc6")
-> >> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> >> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> >> ---
-> >>   drivers/gpu/drm/i915/i915_pmu.c | 12 ++++++++++++
-> >>   1 file changed, 12 insertions(+)
-> >>
-> >> diff --git a/drivers/gpu/drm/i915/i915_pmu.c b/drivers/gpu/drm/i915/i915_pmu.c
-> >> index 28a82c849bac..ec0299490dd4 100644
-> >> --- a/drivers/gpu/drm/i915/i915_pmu.c
-> >> +++ b/drivers/gpu/drm/i915/i915_pmu.c
-> >> @@ -637,8 +637,10 @@ static void i915_pmu_enable(struct perf_event *event)
-> >>                  container_of(event->pmu, typeof(*i915), pmu.base);
-> >>          unsigned int bit = event_enabled_bit(event);
-> >>          struct i915_pmu *pmu = &i915->pmu;
-> >> +       intel_wakeref_t wakeref;
-> >>          unsigned long flags;
-> >>   
-> >> +       wakeref = intel_runtime_pm_get(&i915->runtime_pm);
-> 
-> I think it would be nicer to use with_intel_runtime_pm directly at the 
-> __get_rc6 call site. That would show/localise where it is actually needed.
+Since commit 422d7df4f090 ("drm/i915: Replace engine->timeline with a
+plain list"), we used the default embedded priotree slot for the virtual
+engine request queue, which means we can also use the same solitary slot
+with the scheduler. However, the priolist is expected to be guarded by
+the engine->active.lock, but this is not true for the virtual engine
 
-We can't, as it gets called under the spinlock :(
+v2: Update i915_sched_node.link explanation for current usage where it
+is a link on both the queue and on the runlists.
 
-And I don't see a way around that, as we require the fixup to be applied
-while idle and so require the wakeref.
+References: 422d7df4f090 ("drm/i915: Replace engine->timeline with a plain list")
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+---
+ drivers/gpu/drm/i915/gt/intel_lrc.c   | 13 ++++++++-----
+ drivers/gpu/drm/i915/i915_request.c   |  4 +++-
+ drivers/gpu/drm/i915/i915_request.h   | 17 +++++++++++++++++
+ drivers/gpu/drm/i915/i915_scheduler.c | 22 ++++++++++------------
+ 4 files changed, 38 insertions(+), 18 deletions(-)
 
-> >>          spin_lock_irqsave(&pmu->lock, flags);
-> >>   
-> >>          /*
-> >> @@ -648,6 +650,14 @@ static void i915_pmu_enable(struct perf_event *event)
-> >>          BUILD_BUG_ON(ARRAY_SIZE(pmu->enable_count) != I915_PMU_MASK_BITS);
-> >>          GEM_BUG_ON(bit >= ARRAY_SIZE(pmu->enable_count));
-> >>          GEM_BUG_ON(pmu->enable_count[bit] == ~0);
-> >> +
-> >> +       if (pmu->enable_count[bit] == 0 &&
-> >> +           config_enabled_mask(I915_PMU_RC6_RESIDENCY) & BIT_ULL(bit)) {
-> >> +               pmu->sample[__I915_SAMPLE_RC6_LAST_REPORTED].cur = 0;
-> > 
-> > I can't decide if it's better to have discrete sampling appear
-> > monotonic, or to reset just in case we drifted far off.
-> 
-> What do you mean?
-> 
-> This looks correct to me as you implemented it. On enable it samples the 
-> real RC6 and updates pmu->sleep_last. So regardless if the next even 
-> read comes with device awake or suspended it will report monotonic and 
-> without adding up any time outside the enabled window.
+diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+index e9e42de9a9c3..09cfe7a8ecd0 100644
+--- a/drivers/gpu/drm/i915/gt/intel_lrc.c
++++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+@@ -985,6 +985,8 @@ __unwind_incomplete_requests(struct intel_engine_cs *engine)
+ 			GEM_BUG_ON(RB_EMPTY_ROOT(&engine->execlists.queue.rb_root));
+ 
+ 			list_move(&rq->sched.link, pl);
++			set_bit(I915_FENCE_FLAG_PQUEUE, &rq->fence.flags);
++
+ 			active = rq;
+ 		} else {
+ 			struct intel_engine_cs *owner = rq->context->engine;
+@@ -2452,11 +2454,12 @@ static void execlists_preempt(struct timer_list *timer)
+ }
+ 
+ static void queue_request(struct intel_engine_cs *engine,
+-			  struct i915_sched_node *node,
+-			  int prio)
++			  struct i915_request *rq)
+ {
+-	GEM_BUG_ON(!list_empty(&node->link));
+-	list_add_tail(&node->link, i915_sched_lookup_priolist(engine, prio));
++	GEM_BUG_ON(!list_empty(&rq->sched.link));
++	list_add_tail(&rq->sched.link,
++		      i915_sched_lookup_priolist(engine, rq_prio(rq)));
++	set_bit(I915_FENCE_FLAG_PQUEUE, &rq->fence.flags);
+ }
+ 
+ static void __submit_queue_imm(struct intel_engine_cs *engine)
+@@ -2492,7 +2495,7 @@ static void execlists_submit_request(struct i915_request *request)
+ 	/* Will be called from irq-context when using foreign fences. */
+ 	spin_lock_irqsave(&engine->active.lock, flags);
+ 
+-	queue_request(engine, &request->sched, rq_prio(request));
++	queue_request(engine, request);
+ 
+ 	GEM_BUG_ON(RB_EMPTY_ROOT(&engine->execlists.queue.rb_root));
+ 	GEM_BUG_ON(list_empty(&request->sched.link));
+diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
+index f5696698d234..705ade87d166 100644
+--- a/drivers/gpu/drm/i915/i915_request.c
++++ b/drivers/gpu/drm/i915/i915_request.c
+@@ -408,8 +408,10 @@ bool __i915_request_submit(struct i915_request *request)
+ xfer:	/* We may be recursing from the signal callback of another i915 fence */
+ 	spin_lock_nested(&request->lock, SINGLE_DEPTH_NESTING);
+ 
+-	if (!test_and_set_bit(I915_FENCE_FLAG_ACTIVE, &request->fence.flags))
++	if (!test_and_set_bit(I915_FENCE_FLAG_ACTIVE, &request->fence.flags)) {
+ 		list_move_tail(&request->sched.link, &engine->active.requests);
++		clear_bit(I915_FENCE_FLAG_PQUEUE, &request->fence.flags);
++	}
+ 
+ 	if (test_bit(DMA_FENCE_FLAG_ENABLE_SIGNAL_BIT, &request->fence.flags) &&
+ 	    !test_bit(DMA_FENCE_FLAG_SIGNALED_BIT, &request->fence.flags) &&
+diff --git a/drivers/gpu/drm/i915/i915_request.h b/drivers/gpu/drm/i915/i915_request.h
+index 031433691a06..a9f0d3c8d8b7 100644
+--- a/drivers/gpu/drm/i915/i915_request.h
++++ b/drivers/gpu/drm/i915/i915_request.h
+@@ -70,6 +70,18 @@ enum {
+ 	 */
+ 	I915_FENCE_FLAG_ACTIVE = DMA_FENCE_FLAG_USER_BITS,
+ 
++	/*
++	 * I915_FENCE_FLAG_PQUEUE - this request is ready for execution
++	 *
++	 * Using the scheduler, when a request is ready for execution it is put
++	 * into the priority queue, and removed from the queue when transferred
++	 * to the HW runlists. We want to track its membership within that
++	 * queue so that we can easily check before rescheduling.
++	 *
++	 * See i915_request_in_priority_queue()
++	 */
++	I915_FENCE_FLAG_PQUEUE,
++
+ 	/*
+ 	 * I915_FENCE_FLAG_SIGNAL - this request is currently on signal_list
+ 	 *
+@@ -361,6 +373,11 @@ static inline bool i915_request_is_active(const struct i915_request *rq)
+ 	return test_bit(I915_FENCE_FLAG_ACTIVE, &rq->fence.flags);
+ }
+ 
++static inline bool i915_request_in_priority_queue(const struct i915_request *rq)
++{
++	return test_bit(I915_FENCE_FLAG_PQUEUE, &rq->fence.flags);
++}
++
+ /**
+  * Returns true if seq1 is later than seq2.
+  */
+diff --git a/drivers/gpu/drm/i915/i915_scheduler.c b/drivers/gpu/drm/i915/i915_scheduler.c
+index bf87c70bfdd9..db3da81b7f05 100644
+--- a/drivers/gpu/drm/i915/i915_scheduler.c
++++ b/drivers/gpu/drm/i915/i915_scheduler.c
+@@ -326,20 +326,18 @@ static void __i915_schedule(struct i915_sched_node *node,
+ 
+ 		node->attr.priority = prio;
+ 
+-		if (list_empty(&node->link)) {
+-			/*
+-			 * If the request is not in the priolist queue because
+-			 * it is not yet runnable, then it doesn't contribute
+-			 * to our preemption decisions. On the other hand,
+-			 * if the request is on the HW, it too is not in the
+-			 * queue; but in that case we may still need to reorder
+-			 * the inflight requests.
+-			 */
++		/*
++		 * Once the request is ready, it will be place into the
++		 * priority lists and then onto the HW runlist. Before the
++		 * request is ready, it does not contribute to our preemption
++		 * decisions and we can safely ignore it, as it will, and
++		 * any preemption required, be dealt with upon submission.
++		 * See engine->submit_request()
++		 */
++		if (list_empty(&node->link))
+ 			continue;
+-		}
+ 
+-		if (!intel_engine_is_virtual(engine) &&
+-		    !i915_request_is_active(node_to_request(node))) {
++		if (i915_request_in_priority_queue(node_to_request(node))) {
+ 			if (!cache.priolist)
+ 				cache.priolist =
+ 					i915_sched_lookup_priolist(engine,
+-- 
+2.25.0.rc2
 
-u64 sample[2];
-
-fd = perf_open(RC6);
-sample[0] = read(fd);
-close(fd);
-
-fd = perf_open(RC6);
-sample[1] = read(fd);
-close(fd);
-
-/* assume idle system */
-assert(sample[1] > sample[0]);
-
-Do we want that? I don't think that's required by the perf API, as the
-counters are only valid while the event is enabled (iirc).
-
-> Drift can normally come when we overestimate because hw RC6 can be less 
-> than our time between park and unpark. I don't see how to reset that and 
-> stay monotonic. Or you are thinking it doesn't need to be monotonic?
-
-I was mostly thinking of bugs, e.g. across suspend. We also have a problem
-if we wait longer than 2*counter_wrap between perf_event_reads, and we
-probably should install a very lax timer for rc6 to ensure the
-__get_rc6() calls remain monotonic. There was a fdo bug for that :)
--Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
