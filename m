@@ -1,39 +1,38 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 18F1113A243
-	for <lists+intel-gfx@lfdr.de>; Tue, 14 Jan 2020 08:51:09 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3344B13A24F
+	for <lists+intel-gfx@lfdr.de>; Tue, 14 Jan 2020 08:55:29 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A223D6E2DC;
-	Tue, 14 Jan 2020 07:51:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 367306E2DD;
+	Tue, 14 Jan 2020 07:55:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2E1ED6E2DA;
- Tue, 14 Jan 2020 07:51:05 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EF52E6E2DD
+ for <intel-gfx@lists.freedesktop.org>; Tue, 14 Jan 2020 07:55:24 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga105.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 13 Jan 2020 23:51:03 -0800
-X-IronPort-AV: E=Sophos;i="5.69,432,1571727600"; d="scan'208";a="217662278"
+ by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 13 Jan 2020 23:55:24 -0800
+X-IronPort-AV: E=Sophos;i="5.69,432,1571727600"; d="scan'208";a="217663158"
 Received: from huse-mobl2.ger.corp.intel.com (HELO localhost) ([10.252.50.31])
  by orsmga008-auth.jf.intel.com with
- ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 13 Jan 2020 23:50:58 -0800
+ ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 13 Jan 2020 23:55:16 -0800
 From: Jani Nikula <jani.nikula@intel.com>
-To: "Bharadiya\,Pankaj" <pankaj.laxminarayan.bharadiya@intel.com>
-In-Reply-To: <20200113183158.GA739@plaxmina-desktop.iind.intel.com>
+To: Vivek Kasireddy <vivek.kasireddy@intel.com>,
+ intel-gfx@lists.freedesktop.org
+In-Reply-To: <20200113221112.576-1-vivek.kasireddy@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20200113115557.32713-1-pankaj.laxminarayan.bharadiya@intel.com>
- <20200113115557.32713-3-pankaj.laxminarayan.bharadiya@intel.com>
- <87imlfmu2s.fsf@intel.com>
- <20200113183158.GA739@plaxmina-desktop.iind.intel.com>
-Date: Tue, 14 Jan 2020 09:51:29 +0200
-Message-ID: <87o8v6jx1a.fsf@intel.com>
+References: <87r203mw97.fsf@intel.com>
+ <20200113221112.576-1-vivek.kasireddy@intel.com>
+Date: Tue, 14 Jan 2020 09:55:47 +0200
+Message-ID: <87lfqajwu4.fsf@intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 2/6] drm/i915: add helper functions to get
- device ptr
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/dsi: Lookup the i2c bus from ACPI
+ NS only if CONFIG_ACPI=y
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,141 +45,81 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: pankaj.laxminaryan.bharadiya@outlook.iglb.intel.com,
- David Airlie <airlied@linux.ie>, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, sam@ravnborg.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Hulk Robot <hulkci@huawei.com>, Zhang Xiaoxu <zhangxiaoxu5@huawei.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 14 Jan 2020, "Bharadiya,Pankaj" <pankaj.laxminarayan.bharadiya@intel.com> wrote:
-> Hi Jani, 
->
-> On Mon, Jan 13, 2020 at 02:14:51PM +0200, Jani Nikula wrote:
->> On Mon, 13 Jan 2020, Pankaj Bharadiya <pankaj.laxminarayan.bharadiya@intel.com> wrote:
->> > We will need struct drm_device pointer to pass it to drm_WARN* calls.
->> >
->> > Add helper functions to exract drm_device pointer from various structs.
->> 
->> Please don't do this.
->> 
->> We use the helpers we currently have when they involve something more
->> complex than dereferences, such as container_of() or having to use
->> dev_get_drvdata() or pci_get_drvdata().
->
-> Removing all the helpers will lead to 3 level access depth wherever
-> struct drm_device pointer is needed and unnecessary complicate the
-> drm_WARN* calls IMHO.
->
-> e.g.: drm_WARN(&vgpu->gvt->dev_priv.drm, 1)
->
-> If you are OK with this, I will remove all the helpers and extract
-> drm_device pointer while calling drm_WARN*() instead and submit
-> updated patch series.
-
-At times you may need to add local variables for struct drm_i915_private
-*i915. But I'd rather have that than the helpers.
-
-BR,
-Jani.
-
-
-
->
-> Thanks,
-> Pankaj
->> 
->> I really don't want people to use e.g.
->> 
->> 	i915_to_dev(i915)
->> 
->> over
->> 
->> 	&i915->drm
->> 
->> 
->> BR,
->> Jani.
->> 
->> >
->> > Signed-off-by: Pankaj Bharadiya <pankaj.laxminarayan.bharadiya@intel.com>
->> > ---
->> >  drivers/gpu/drm/i915/display/intel_display_types.h | 14 ++++++++++++++
->> >  drivers/gpu/drm/i915/gvt/gvt.h                     |  5 +++++
->> >  drivers/gpu/drm/i915/i915_drv.h                    | 11 +++++++++++
->> >  3 files changed, 30 insertions(+)
->> >
->> > diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
->> > index 7964b3dc0046..765878718fe9 100644
->> > --- a/drivers/gpu/drm/i915/display/intel_display_types.h
->> > +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
->> > @@ -1521,6 +1521,20 @@ dp_to_i915(struct intel_dp *intel_dp)
->> >  	return to_i915(dp_to_dig_port(intel_dp)->base.base.dev);
->> >  }
->> >  
->> > +static inline struct drm_device *enc_to_dev(const struct intel_encoder *encoder)
->> > +{
->> > +	return encoder->base.dev;
->> > +}
->> > +
->> > +static inline struct drm_device *
->> > +crtc_state_to_dev(const struct intel_crtc_state *state)
->> > +{
->> > +	struct intel_crtc *crtc = to_intel_crtc(state->uapi.crtc);
->> > +	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
->> > +
->> > +	return i915_to_dev(i915);
->> > +}
->> > +
->> >  static inline struct intel_digital_port *
->> >  hdmi_to_dig_port(struct intel_hdmi *intel_hdmi)
->> >  {
->> > diff --git a/drivers/gpu/drm/i915/gvt/gvt.h b/drivers/gpu/drm/i915/gvt/gvt.h
->> > index b47c6acaf9c0..d257399b075a 100644
->> > --- a/drivers/gpu/drm/i915/gvt/gvt.h
->> > +++ b/drivers/gpu/drm/i915/gvt/gvt.h
->> > @@ -348,6 +348,11 @@ static inline struct intel_gvt *to_gvt(struct drm_i915_private *i915)
->> >  	return i915->gvt;
->> >  }
->> >  
->> > +static inline struct drm_device *vgpu_to_dev(const struct intel_vgpu *vgpu)
->> > +{
->> > +	return i915_to_dev(vgpu->gvt->dev_priv);
->> > +}
->> > +
->> >  enum {
->> >  	INTEL_GVT_REQUEST_EMULATE_VBLANK = 0,
->> >  
->> > diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
->> > index e7be4c3e43c6..bdc89d021ff8 100644
->> > --- a/drivers/gpu/drm/i915/i915_drv.h
->> > +++ b/drivers/gpu/drm/i915/i915_drv.h
->> > @@ -1325,6 +1325,17 @@ static inline struct drm_i915_private *pdev_to_i915(struct pci_dev *pdev)
->> >  	return pci_get_drvdata(pdev);
->> >  }
->> >  
->> > +static inline struct drm_device *i915_to_dev(struct drm_i915_private *i915)
->> > +{
->> > +	return &i915->drm;
->> > +}
->> > +
->> > +static inline struct drm_device *
->> > +perf_stream_to_dev(const struct i915_perf_stream *stream)
->> > +{
->> > +	return i915_to_dev(stream->perf->i915);
->> > +}
->> > +
->> >  /* Simple iterator over all initialised engines */
->> >  #define for_each_engine(engine__, dev_priv__, id__) \
->> >  	for ((id__) = 0; \
->> 
->> -- 
->> Jani Nikula, Intel Open Source Graphics Center
-
--- 
-Jani Nikula, Intel Open Source Graphics Center
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gTW9uLCAxMyBKYW4gMjAyMCwgVml2ZWsgS2FzaXJlZGR5IDx2aXZlay5rYXNpcmVkZHlAaW50
+ZWwuY29tPiB3cm90ZToKPiBQZXJmb3JtIHRoZSBpMmMgYnVzL2FkYXB0ZXIgbG9va3VwIGZyb20g
+QUNQSSBOYW1lc3BhY2Ugb25seSBpZgo+IEFDUEkgaXMgZW5hYmxlZCBpbiB0aGUga2VybmVsIGNv
+bmZpZy4gSWYgQUNQSSBpcyBub3QgZW5hYmxlZCBvciBpZgo+IHRoZSBsb29rdXAgZmFpbHMsIHdl
+J2xsIGZhbGxiYWNrIHRvIHVzaW5nIHRoZSBWQlQgZm9yIGlkZW50aXlpbmcKPiB0aGUgaTJjIGJ1
+cy4KPgo+IFRoaXMgZml4ZXMgY29tbWl0IDhjYmY4OWRiMjk0MSgiZHJtL2k5MTUvZHNpOiBQYXJz
+ZSB0aGUgSTJDIGVsZW1lbnQKPiBmcm9tIHRoZSBWQlQgTUlQSSBzZXF1ZW5jZSBibG9jayAodjMp
+LiIpCgpJT1csCgpGaXhlczogOGNiZjg5ZGIyOTQxICgiZHJtL2k5MTUvZHNpOiBQYXJzZSB0aGUg
+STJDIGVsZW1lbnQgZnJvbSB0aGUgVkJUIE1JUEkgc2VxdWVuY2UgYmxvY2sgKHYzKSIpCgpBbHNv
+LCBwbGVhc2UgcG9zdCBhcyBhIGZyZXNoIHBhdGNoLCBub3QgaW4gcmVwbHkgaW4gdGhlIG1pZGRs
+ZSBvZiBhCnRocmVhZCwgdG8gbm90IGNvbmZ1c2UgQ0kuCgpCUiwKSmFuaS4KCgo+Cj4gQ2M6IEhh
+bnMgZGUgR29lZGUgPGhkZWdvZWRlQHJlZGhhdC5jb20+Cj4gQ2M6IE5hYmVuZHUgTWFpdGkgPG5h
+YmVuZHUuYmlrYXNoLm1haXRpQGludGVsLmNvbT4KPiBDYzogTWF0dCBSb3BlciA8bWF0dGhldy5k
+LnJvcGVyQGludGVsLmNvbT4KPiBDYzogQm9iIFBhYXV3ZSA8Ym9iLmoucGFhdXdlQGludGVsLmNv
+bT4KPiBDYzogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4K
+PiBDYzogSmFuaSBOaWt1bGEgPGphbmkubmlrdWxhQGludGVsLmNvbT4KPiBDYzogWmhhbmcgWGlh
+b3h1IDx6aGFuZ3hpYW94dTVAaHVhd2VpLmNvbT4KPiBSZXBvcnRlZC1ieTogSHVsayBSb2JvdCA8
+aHVsa2NpQGh1YXdlaS5jb20+Cj4gU2lnbmVkLW9mZi1ieTogVml2ZWsgS2FzaXJlZGR5IDx2aXZl
+ay5rYXNpcmVkZHlAaW50ZWwuY29tPgo+IC0tLQo+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNw
+bGF5L2ludGVsX2RzaV92YnQuYyB8IDQ3ICsrKysrKysrKysrKystLS0tLS0tCj4gIDEgZmlsZSBj
+aGFuZ2VkLCAzMSBpbnNlcnRpb25zKCspLCAxNiBkZWxldGlvbnMoLSkKPgo+IGRpZmYgLS1naXQg
+YS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RzaV92YnQuYyBiL2RyaXZlcnMv
+Z3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHNpX3ZidC5jCj4gaW5kZXggODlmYjBkOTBiNjk0
+Li42ZWMzNWQ5NzViZDcgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxh
+eS9pbnRlbF9kc2lfdmJ0LmMKPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2lu
+dGVsX2RzaV92YnQuYwo+IEBAIC0zODQsNiArMzg0LDcgQEAgc3RhdGljIGNvbnN0IHU4ICptaXBp
+X2V4ZWNfZ3BpbyhzdHJ1Y3QgaW50ZWxfZHNpICppbnRlbF9kc2ksIGNvbnN0IHU4ICpkYXRhKQo+
+ICAJcmV0dXJuIGRhdGE7Cj4gIH0KPiAgCj4gKyNpZmRlZiBDT05GSUdfQUNQSQo+ICBzdGF0aWMg
+aW50IGkyY19hZGFwdGVyX2xvb2t1cChzdHJ1Y3QgYWNwaV9yZXNvdXJjZSAqYXJlcywgdm9pZCAq
+ZGF0YSkKPiAgewo+ICAJc3RydWN0IGkyY19hZGFwdGVyX2xvb2t1cCAqbG9va3VwID0gZGF0YTsK
+PiBAQCAtNDEzLDE0ICs0MTQsNDEgQEAgc3RhdGljIGludCBpMmNfYWRhcHRlcl9sb29rdXAoc3Ry
+dWN0IGFjcGlfcmVzb3VyY2UgKmFyZXMsIHZvaWQgKmRhdGEpCj4gIAlyZXR1cm4gMTsKPiAgfQo+
+ICAKPiAtc3RhdGljIGNvbnN0IHU4ICptaXBpX2V4ZWNfaTJjKHN0cnVjdCBpbnRlbF9kc2kgKmlu
+dGVsX2RzaSwgY29uc3QgdTggKmRhdGEpCj4gK3N0YXRpYyB2b2lkIGkyY19hY3BpX2ZpbmRfYWRh
+cHRlcihzdHJ1Y3QgaW50ZWxfZHNpICppbnRlbF9kc2ksCj4gKwkJCQkgIGNvbnN0IHUxNiBzbGF2
+ZV9hZGRyKQo+ICB7Cj4gIAlzdHJ1Y3QgZHJtX2RldmljZSAqZHJtX2RldiA9IGludGVsX2RzaS0+
+YmFzZS5iYXNlLmRldjsKPiAgCXN0cnVjdCBkZXZpY2UgKmRldiA9ICZkcm1fZGV2LT5wZGV2LT5k
+ZXY7Cj4gLQlzdHJ1Y3QgaTJjX2FkYXB0ZXIgKmFkYXB0ZXI7Cj4gIAlzdHJ1Y3QgYWNwaV9kZXZp
+Y2UgKmFjcGlfZGV2Owo+ICAJc3RydWN0IGxpc3RfaGVhZCByZXNvdXJjZV9saXN0Owo+ICAJc3Ry
+dWN0IGkyY19hZGFwdGVyX2xvb2t1cCBsb29rdXA7Cj4gKwo+ICsJYWNwaV9kZXYgPSBBQ1BJX0NP
+TVBBTklPTihkZXYpOwo+ICsJaWYgKGFjcGlfZGV2KSB7Cj4gKwkJbWVtc2V0KCZsb29rdXAsIDAs
+IHNpemVvZihsb29rdXApKTsKPiArCQlsb29rdXAuc2xhdmVfYWRkciA9IHNsYXZlX2FkZHI7Cj4g
+KwkJbG9va3VwLmludGVsX2RzaSA9IGludGVsX2RzaTsKPiArCQlsb29rdXAuZGV2X2hhbmRsZSA9
+IGFjcGlfZGV2aWNlX2hhbmRsZShhY3BpX2Rldik7Cj4gKwo+ICsJCUlOSVRfTElTVF9IRUFEKCZy
+ZXNvdXJjZV9saXN0KTsKPiArCQlhY3BpX2Rldl9nZXRfcmVzb3VyY2VzKGFjcGlfZGV2LCAmcmVz
+b3VyY2VfbGlzdCwKPiArCQkJCSAgICAgICBpMmNfYWRhcHRlcl9sb29rdXAsCj4gKwkJCQkgICAg
+ICAgJmxvb2t1cCk7Cj4gKwkJYWNwaV9kZXZfZnJlZV9yZXNvdXJjZV9saXN0KCZyZXNvdXJjZV9s
+aXN0KTsKPiArCX0KPiArfQo+ICsjZWxzZQo+ICtzdGF0aWMgaW5saW5lIHZvaWQgaTJjX2FjcGlf
+ZmluZF9hZGFwdGVyKHN0cnVjdCBpbnRlbF9kc2kgKmludGVsX2RzaSwKPiArCQkJCQkgY29uc3Qg
+dTE2IHNsYXZlX2FkZHIpCj4gK3sKPiArfQo+ICsjZW5kaWYKPiArCj4gK3N0YXRpYyBjb25zdCB1
+OCAqbWlwaV9leGVjX2kyYyhzdHJ1Y3QgaW50ZWxfZHNpICppbnRlbF9kc2ksIGNvbnN0IHU4ICpk
+YXRhKQo+ICt7Cj4gKwlzdHJ1Y3QgZHJtX2RldmljZSAqZHJtX2RldiA9IGludGVsX2RzaS0+YmFz
+ZS5iYXNlLmRldjsKPiArCXN0cnVjdCBkZXZpY2UgKmRldiA9ICZkcm1fZGV2LT5wZGV2LT5kZXY7
+Cj4gKwlzdHJ1Y3QgaTJjX2FkYXB0ZXIgKmFkYXB0ZXI7Cj4gIAlzdHJ1Y3QgaTJjX21zZyBtc2c7
+Cj4gIAlpbnQgcmV0Owo+ICAJdTggdmJ0X2kyY19idXNfbnVtID0gKihkYXRhICsgMik7Cj4gQEAg
+LTQzMSwyMCArNDU5LDcgQEAgc3RhdGljIGNvbnN0IHU4ICptaXBpX2V4ZWNfaTJjKHN0cnVjdCBp
+bnRlbF9kc2kgKmludGVsX2RzaSwgY29uc3QgdTggKmRhdGEpCj4gIAo+ICAJaWYgKGludGVsX2Rz
+aS0+aTJjX2J1c19udW0gPCAwKSB7Cj4gIAkJaW50ZWxfZHNpLT5pMmNfYnVzX251bSA9IHZidF9p
+MmNfYnVzX251bTsKPiAtCj4gLQkJYWNwaV9kZXYgPSBBQ1BJX0NPTVBBTklPTihkZXYpOwo+IC0J
+CWlmIChhY3BpX2Rldikgewo+IC0JCQltZW1zZXQoJmxvb2t1cCwgMCwgc2l6ZW9mKGxvb2t1cCkp
+Owo+IC0JCQlsb29rdXAuc2xhdmVfYWRkciA9IHNsYXZlX2FkZHI7Cj4gLQkJCWxvb2t1cC5pbnRl
+bF9kc2kgPSBpbnRlbF9kc2k7Cj4gLQkJCWxvb2t1cC5kZXZfaGFuZGxlID0gYWNwaV9kZXZpY2Vf
+aGFuZGxlKGFjcGlfZGV2KTsKPiAtCj4gLQkJCUlOSVRfTElTVF9IRUFEKCZyZXNvdXJjZV9saXN0
+KTsKPiAtCQkJYWNwaV9kZXZfZ2V0X3Jlc291cmNlcyhhY3BpX2RldiwgJnJlc291cmNlX2xpc3Qs
+Cj4gLQkJCQkJICAgICAgIGkyY19hZGFwdGVyX2xvb2t1cCwKPiAtCQkJCQkgICAgICAgJmxvb2t1
+cCk7Cj4gLQkJCWFjcGlfZGV2X2ZyZWVfcmVzb3VyY2VfbGlzdCgmcmVzb3VyY2VfbGlzdCk7Cj4g
+LQkJfQo+ICsJCWkyY19hY3BpX2ZpbmRfYWRhcHRlcihpbnRlbF9kc2ksIHNsYXZlX2FkZHIpOwo+
+ICAJfQo+ICAKPiAgCWFkYXB0ZXIgPSBpMmNfZ2V0X2FkYXB0ZXIoaW50ZWxfZHNpLT5pMmNfYnVz
+X251bSk7CgotLSAKSmFuaSBOaWt1bGEsIEludGVsIE9wZW4gU291cmNlIEdyYXBoaWNzIENlbnRl
+cgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1n
+ZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9s
+aXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
