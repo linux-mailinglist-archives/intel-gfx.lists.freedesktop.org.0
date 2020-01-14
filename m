@@ -2,42 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5774813AB63
-	for <lists+intel-gfx@lfdr.de>; Tue, 14 Jan 2020 14:48:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8357613AB64
+	for <lists+intel-gfx@lfdr.de>; Tue, 14 Jan 2020 14:48:23 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A6E116E3D3;
-	Tue, 14 Jan 2020 13:48:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9E1C96E3C6;
+	Tue, 14 Jan 2020 13:48:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5A9E76E3C6
- for <intel-gfx@lists.freedesktop.org>; Tue, 14 Jan 2020 13:48:14 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 14 Jan 2020 05:48:13 -0800
-X-IronPort-AV: E=Sophos;i="5.69,432,1571727600"; d="scan'208";a="213337470"
-Received: from mdanino-mobl1.ger.corp.intel.com (HELO [10.252.23.174])
- ([10.252.23.174])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/AES256-SHA;
- 14 Jan 2020 05:48:12 -0800
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-References: <20200113104442.1753973-1-chris@chris-wilson.co.uk>
- <20200113104442.1753973-2-chris@chris-wilson.co.uk>
- <9b90921d-be2b-0c17-c1e6-32cdfec3ab19@linux.intel.com>
- <157900084769.27314.2165867150839106315@skylake-alporthouse-com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <5cfeea48-3a31-6bae-76df-1f8a59978fd1@linux.intel.com>
-Date: Tue, 14 Jan 2020 13:48:11 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
+Received: from mx2.suse.de (mx2.suse.de [195.135.220.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 20D0D6E3C6;
+ Tue, 14 Jan 2020 13:48:20 +0000 (UTC)
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.220.254])
+ by mx2.suse.de (Postfix) with ESMTP id 35C6CAD0F;
+ Tue, 14 Jan 2020 13:48:18 +0000 (UTC)
+To: Daniel Vetter <daniel@ffwll.ch>
+References: <20200110092127.27847-1-tzimmermann@suse.de>
+ <20200110092127.27847-24-tzimmermann@suse.de>
+ <20200112225312.GC5340@dvetter-linux.ger.corp.intel.com>
+From: Thomas Zimmermann <tzimmermann@suse.de>
+Autocrypt: addr=tzimmermann@suse.de; keydata=
+ mQENBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
+ XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
+ BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
+ hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
+ 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
+ AAG0J1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPokBVAQTAQgAPhYh
+ BHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJbOdLgAhsDBQkDwmcABQsJCAcCBhUKCQgLAgQWAgMB
+ Ah4BAheAAAoJEGgNwR1TC3ojR80H/jH+vYavwQ+TvO8ksXL9JQWc3IFSiGpuSVXLCdg62AmR
+ irxW+qCwNncNQyb9rd30gzdectSkPWL3KSqEResBe24IbA5/jSkPweJasgXtfhuyoeCJ6PXo
+ clQQGKIoFIAEv1s8l0ggPZswvCinegl1diyJXUXmdEJRTWYAtxn/atut1o6Giv6D2qmYbXN7
+ mneMC5MzlLaJKUtoH7U/IjVw1sx2qtxAZGKVm4RZxPnMCp9E1MAr5t4dP5gJCIiqsdrVqI6i
+ KupZstMxstPU//azmz7ZWWxT0JzgJqZSvPYx/SATeexTYBP47YFyri4jnsty2ErS91E6H8os
+ Bv6pnSn7eAq5AQ0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRH
+ UE9eosYbT6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgT
+ RjP+qbU63Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+R
+ dhgATnWWGKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zb
+ ehDda8lvhFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r
+ 12+lqdsAEQEAAYkBPAQYAQgAJhYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJbOdLgAhsMBQkD
+ wmcAAAoJEGgNwR1TC3ojpfcIAInwP5OlcEKokTnHCiDTz4Ony4GnHRP2fXATQZCKxmu4AJY2
+ h9ifw9Nf2TjCZ6AMvC3thAN0rFDj55N9l4s1CpaDo4J+0fkrHuyNacnT206CeJV1E7NYntxU
+ n+LSiRrOdywn6erjxRi9EYTVLCHcDhBEjKmFZfg4AM4GZMWX1lg0+eHbd5oL1as28WvvI/uI
+ aMyV8RbyXot1r/8QLlWldU3NrTF5p7TMU2y3ZH2mf5suSKHAMtbE4jKJ8ZHFOo3GhLgjVrBW
+ HE9JXO08xKkgD+w6v83+nomsEuf6C6LYrqY/tsZvyEX6zN8CtirPdPWu/VXNRYAl/lat7lSI
+ 3H26qrE=
+Message-ID: <b5f6ac70-0bbe-18d5-f944-3ebba3237a9d@suse.de>
+Date: Tue, 14 Jan 2020 14:48:13 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.3.1
 MIME-Version: 1.0
-In-Reply-To: <157900084769.27314.2165867150839106315@skylake-alporthouse-com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH 2/4] drm/i915: Use common priotree lists for
- virtual engine
+In-Reply-To: <20200112225312.GC5340@dvetter-linux.ger.corp.intel.com>
+Subject: Re: [Intel-gfx] [PATCH 23/23] drm: Cleanup VBLANK callbacks in
+ struct drm_driver
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,180 +66,388 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Cc: hamohammed.sa@gmail.com, airlied@linux.ie, nouveau@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, thellstrom@vmware.com,
+ amd-gfx@lists.freedesktop.org, linux-graphics-maintainer@vmware.com,
+ bskeggs@redhat.com, alexandre.torgue@st.com, sunpeng.li@amd.com,
+ linux-arm-msm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ vincent.abriou@st.com, rodrigosiqueiramelo@gmail.com, philippe.cornu@st.com,
+ yannick.fertre@st.com, mcoquelin.stm32@gmail.com, alexander.deucher@amd.com,
+ freedreno@lists.freedesktop.org, christian.koenig@amd.com
+Content-Type: multipart/mixed; boundary="===============1194639242=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--===============1194639242==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="hnX2ORJn5vRIQccq9Tfc7COteUkRxx61k"
 
-On 14/01/2020 11:20, Chris Wilson wrote:
-> Quoting Tvrtko Ursulin (2020-01-14 11:13:06)
->> On 13/01/2020 10:44, Chris Wilson wrote:
->>> Since commit 422d7df4f090 ("drm/i915: Replace engine->timeline with a
->>> plain list"), we used the default embedded priotree slot for the virtual
->>> engine request queue, which means we can also use the same solitary slot
->>> with the scheduler. However, the priolist is expected to be guarded by
->>> the engine->active.lock, but this is not true for the virtual engine
->>>
->>> References: 422d7df4f090 ("drm/i915: Replace engine->timeline with a plain list")
->>> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
->>> Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
->>> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->>> ---
->>>    drivers/gpu/drm/i915/gt/intel_lrc.c   |  3 +++
->>>    drivers/gpu/drm/i915/i915_request.c   |  4 +++-
->>>    drivers/gpu/drm/i915/i915_request.h   | 16 ++++++++++++++++
->>>    drivers/gpu/drm/i915/i915_scheduler.c |  3 +--
->>>    4 files changed, 23 insertions(+), 3 deletions(-)
->>>
->>> diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
->>> index a6ac37dece0a..685659f079a2 100644
->>> --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
->>> +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
->>> @@ -985,6 +985,8 @@ __unwind_incomplete_requests(struct intel_engine_cs *engine)
->>>                        GEM_BUG_ON(RB_EMPTY_ROOT(&engine->execlists.queue.rb_root));
->>>    
->>>                        list_move(&rq->sched.link, pl);
->>> +                     set_bit(I915_FENCE_FLAG_PQUEUE, &rq->fence.flags);
->>> +
->>>                        active = rq;
->>>                } else {
->>>                        struct intel_engine_cs *owner = rq->context->engine;
->>> @@ -2473,6 +2475,7 @@ static void execlists_submit_request(struct i915_request *request)
->>>        spin_lock_irqsave(&engine->active.lock, flags);
->>>    
->>>        queue_request(engine, &request->sched, rq_prio(request));
->>> +     set_bit(I915_FENCE_FLAG_PQUEUE, &request->fence.flags);
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--hnX2ORJn5vRIQccq9Tfc7COteUkRxx61k
+Content-Type: multipart/mixed; boundary="RAgxvS6j00AOrEMVpsfV7vPGxWhMlDzKn";
+ protected-headers="v1"
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: Daniel Vetter <daniel@ffwll.ch>
+Cc: hamohammed.sa@gmail.com, airlied@linux.ie, nouveau@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ alexandre.torgue@st.com, thellstrom@vmware.com, sean@poorly.run,
+ linux-graphics-maintainer@vmware.com, bskeggs@redhat.com,
+ mcoquelin.stm32@gmail.com, sunpeng.li@amd.com,
+ linux-arm-msm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ rodrigo.vivi@intel.com, vincent.abriou@st.com,
+ rodrigosiqueiramelo@gmail.com, philippe.cornu@st.com, yannick.fertre@st.com,
+ alexander.deucher@amd.com, freedreno@lists.freedesktop.org,
+ christian.koenig@amd.com
+Message-ID: <b5f6ac70-0bbe-18d5-f944-3ebba3237a9d@suse.de>
+Subject: Re: [PATCH 23/23] drm: Cleanup VBLANK callbacks in struct drm_driver
+References: <20200110092127.27847-1-tzimmermann@suse.de>
+ <20200110092127.27847-24-tzimmermann@suse.de>
+ <20200112225312.GC5340@dvetter-linux.ger.corp.intel.com>
+In-Reply-To: <20200112225312.GC5340@dvetter-linux.ger.corp.intel.com>
+
+--RAgxvS6j00AOrEMVpsfV7vPGxWhMlDzKn
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: quoted-printable
+
+Hi
+
+Am 12.01.20 um 23:53 schrieb Daniel Vetter:
+> On Fri, Jan 10, 2020 at 10:21:27AM +0100, Thomas Zimmermann wrote:
+>> All non-legacy users of VBLANK functions in struct drm_driver have bee=
+n
+>> converted to use the respective interfaces in struct drm_crtc_funcs. T=
+he
+>> remaining users of VBLANK callbacks in struct drm_driver are legacy dr=
+ivers
+>> with userspace modesetting.
 >>
->> Move into queue_request so it is closer to priolist management, just like at other call sites?
+>> There are no users left of get_vblank_timestamp(), so the callback is
+>> being removed. The other VBLANK callbacks are being moved to the legac=
+y
+>> section at the end of struct drm_driver.
 >>
->> Also, these are all under the engine active lock so non-atomic set/clear could be used, no?
-> 
-> It's not the bit that is important, but if there may be any other
-> concurrent access to the dword.
-> 
-> Thread A:			Thread B:
-> __set_bit(0, &rq->flags)	__set_bit(31, &rq->flags)
-> 
-> *does* cause an issue, speaking from sad experience. So if in doubt, and
-> here there's always doubt with preempt-to-busy and background signaling,
-> go atomic.
-> 
+>> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+>=20
+> I think sprinkling some WARN_ON (in drm_dev_register or wherever) if ne=
+w
+> drivers try to use the legacy hooks would be really nice. Experience sa=
+ys
+> someone is going to copypaste this stuff around forever otherwise.
+
+I've been thinking about moving these fields to separate structures, say
+struct drm_legacy_device and struct drm_legacy_driver. Those would be
+allocated for legacy drivers and KMS drivers would never see them
+(except for their forward declaration).
+
+Best regards
+Thomas
+
+>=20
+> Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
+>=20
+>> ---
+>>  drivers/gpu/drm/drm_vblank.c |  39 +++++---------
+>>  include/drm/drm_drv.h        | 101 ++--------------------------------=
+-
+>>  2 files changed, 17 insertions(+), 123 deletions(-)
 >>
->>>    
->>>        GEM_BUG_ON(RB_EMPTY_ROOT(&engine->execlists.queue.rb_root));
->>>        GEM_BUG_ON(list_empty(&request->sched.link));
->>> diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
->>> index be185886e4fc..9ed0d3bc7249 100644
->>> --- a/drivers/gpu/drm/i915/i915_request.c
->>> +++ b/drivers/gpu/drm/i915/i915_request.c
->>> @@ -408,8 +408,10 @@ bool __i915_request_submit(struct i915_request *request)
->>>    xfer:       /* We may be recursing from the signal callback of another i915 fence */
->>>        spin_lock_nested(&request->lock, SINGLE_DEPTH_NESTING);
->>>    
->>> -     if (!test_and_set_bit(I915_FENCE_FLAG_ACTIVE, &request->fence.flags))
->>> +     if (!test_and_set_bit(I915_FENCE_FLAG_ACTIVE, &request->fence.flags)) {
->>>                list_move_tail(&request->sched.link, &engine->active.requests);
->>> +             clear_bit(I915_FENCE_FLAG_PQUEUE, &request->fence.flags);
->>> +     }
->>>    
->>>        if (test_bit(DMA_FENCE_FLAG_ENABLE_SIGNAL_BIT, &request->fence.flags) &&
->>>            !test_bit(DMA_FENCE_FLAG_SIGNALED_BIT, &request->fence.flags) &&
->>> diff --git a/drivers/gpu/drm/i915/i915_request.h b/drivers/gpu/drm/i915/i915_request.h
->>> index 031433691a06..f3e50ec989b8 100644
->>> --- a/drivers/gpu/drm/i915/i915_request.h
->>> +++ b/drivers/gpu/drm/i915/i915_request.h
->>> @@ -70,6 +70,17 @@ enum {
->>>         */
->>>        I915_FENCE_FLAG_ACTIVE = DMA_FENCE_FLAG_USER_BITS,
->>>    
->>> +     /*
->>> +      * I915_FENCE_FLAG_PQUEUE - this request is ready for execution
->>> +      *
->>> +      * Using the scheduler, when a request is ready for execution it is put
->>> +      * into the priority queue. We want to track its membership within that
->>> +      * queue so that we can easily check before rescheduling.
->>> +      *
->>> +      * See i915_request_in_priority_queue()
->>> +      */
->>> +     I915_FENCE_FLAG_PQUEUE,
->>> +
->>>        /*
->>>         * I915_FENCE_FLAG_SIGNAL - this request is currently on signal_list
->>>         *
->>> @@ -361,6 +372,11 @@ static inline bool i915_request_is_active(const struct i915_request *rq)
->>>        return test_bit(I915_FENCE_FLAG_ACTIVE, &rq->fence.flags);
->>>    }
->>>    
->>> +static inline bool i915_request_in_priority_queue(const struct i915_request *rq)
->>> +{
->>> +     return test_bit(I915_FENCE_FLAG_PQUEUE, &rq->fence.flags);
->>> +}
->>> +
->>>    /**
->>>     * Returns true if seq1 is later than seq2.
->>>     */
->>> diff --git a/drivers/gpu/drm/i915/i915_scheduler.c b/drivers/gpu/drm/i915/i915_scheduler.c
->>> index bf87c70bfdd9..4f6e4d6c590a 100644
->>> --- a/drivers/gpu/drm/i915/i915_scheduler.c
->>> +++ b/drivers/gpu/drm/i915/i915_scheduler.c
->>> @@ -338,8 +338,7 @@ static void __i915_schedule(struct i915_sched_node *node,
->>>                        continue;
->>>                }
->>>    
->>> -             if (!intel_engine_is_virtual(engine) &&
->>> -                 !i915_request_is_active(node_to_request(node))) {
->>> +             if (i915_request_in_priority_queue(node_to_request(node))) {
+>> diff --git a/drivers/gpu/drm/drm_vblank.c b/drivers/gpu/drm/drm_vblank=
+=2Ec
+>> index 7cf436a4b908..ceff68474d4d 100644
+>> --- a/drivers/gpu/drm/drm_vblank.c
+>> +++ b/drivers/gpu/drm/drm_vblank.c
+>> @@ -138,10 +138,9 @@ static u32 __get_vblank_counter(struct drm_device=
+ *dev, unsigned int pipe)
+>> =20
+>>  		if (crtc->funcs->get_vblank_counter)
+>>  			return crtc->funcs->get_vblank_counter(crtc);
+>> -	}
+>> -
+>> -	if (dev->driver->get_vblank_counter)
+>> +	} else if (dev->driver->get_vblank_counter) {
+>>  		return dev->driver->get_vblank_counter(dev, pipe);
+>> +	}
+>> =20
+>>  	return drm_vblank_no_hw_counter(dev, pipe);
+>>  }
+>> @@ -334,8 +333,7 @@ u64 drm_crtc_accurate_vblank_count(struct drm_crtc=
+ *crtc)
+>>  	unsigned long flags;
+>> =20
+>>  	WARN_ONCE(drm_debug_enabled(DRM_UT_VBL) &&
+>> -		  !crtc->funcs->get_vblank_timestamp &&
+>> -		  !dev->driver->get_vblank_timestamp,
+>> +		  !crtc->funcs->get_vblank_timestamp,
+>>  		  "This function requires support for accurate vblank timestamps.")=
+;
+>> =20
+>>  	spin_lock_irqsave(&dev->vblank_time_lock, flags);
+>> @@ -357,13 +355,11 @@ static void __disable_vblank(struct drm_device *=
+dev, unsigned int pipe)
+>>  		if (WARN_ON(!crtc))
+>>  			return;
+>> =20
+>> -		if (crtc->funcs->disable_vblank) {
+>> +		if (crtc->funcs->disable_vblank)
+>>  			crtc->funcs->disable_vblank(crtc);
+>> -			return;
+>> -		}
+>> +	} else {
+>> +		dev->driver->disable_vblank(dev, pipe);
+>>  	}
+>> -
+>> -	dev->driver->disable_vblank(dev, pipe);
+>>  }
+>> =20
+>>  /*
+>> @@ -791,9 +787,6 @@ drm_get_last_vbltimestamp(struct drm_device *dev, =
+unsigned int pipe,
+>> =20
+>>  		ret =3D crtc->funcs->get_vblank_timestamp(crtc, &max_error,
+>>  							tvblank, in_vblank_irq);
+>> -	} else if (dev->driver->get_vblank_timestamp && (max_error > 0)) {
+>> -		ret =3D dev->driver->get_vblank_timestamp(dev, pipe, &max_error,
+>> -							tvblank, in_vblank_irq);
+>>  	}
+>> =20
+>>  	/* GPU high precision timestamp query unsupported or failed.
+>> @@ -1016,9 +1009,11 @@ static int __enable_vblank(struct drm_device *d=
+ev, unsigned int pipe)
+>> =20
+>>  		if (crtc->funcs->enable_vblank)
+>>  			return crtc->funcs->enable_vblank(crtc);
+>> +	} else if (dev->driver->enable_vblank) {
+>> +		return dev->driver->enable_vblank(dev, pipe);
+>>  	}
+>> =20
+>> -	return dev->driver->enable_vblank(dev, pipe);
+>> +	return -EINVAL;
+>>  }
+>> =20
+>>  static int drm_vblank_enable(struct drm_device *dev, unsigned int pip=
+e)
+>> @@ -1109,13 +1104,10 @@ static bool __vblank_disable_immediate(struct =
+drm_device *dev, unsigned int pipe
+>>  		return false;
+>> =20
+>>  	crtc =3D drm_crtc_from_index(dev, pipe);
+>> -	if (crtc && crtc->funcs->get_vblank_timestamp)
+>> -		return true;
+>> -
+>> -	if (dev->driver->get_vblank_timestamp)
+>> -		return true;
+>> +	if (!crtc || !crtc->funcs->get_vblank_timestamp)
+>> +		return false;
+>> =20
+>> -	return false;
+>> +	return true;
+>>  }
+>> =20
+>>  static void drm_vblank_put(struct drm_device *dev, unsigned int pipe)=
+
+>> @@ -1798,7 +1790,6 @@ static void drm_handle_vblank_events(struct drm_=
+device *dev, unsigned int pipe)
+>>  	struct drm_pending_vblank_event *e, *t;
+>>  	ktime_t now;
+>>  	u64 seq;
+>> -	bool high_prec;
+>> =20
+>>  	assert_spin_locked(&dev->event_lock);
+>> =20
+>> @@ -1818,10 +1809,8 @@ static void drm_handle_vblank_events(struct drm=
+_device *dev, unsigned int pipe)
+>>  		send_vblank_event(dev, e, seq, now);
+>>  	}
+>> =20
+>> -	high_prec =3D crtc->funcs->get_vblank_timestamp ||
+>> -		    dev->driver->get_vblank_timestamp;
+>> -
+>> -	trace_drm_vblank_event(pipe, seq, now, high_prec);
+>> +	trace_drm_vblank_event(pipe, seq, now,
+>> +			       crtc->funcs->get_vblank_timestamp !=3D NULL);
+>>  }
+>> =20
+>>  /**
+>> diff --git a/include/drm/drm_drv.h b/include/drm/drm_drv.h
+>> index b704e252f3b2..e290b3aca6eb 100644
+>> --- a/include/drm/drm_drv.h
+>> +++ b/include/drm/drm_drv.h
+>> @@ -268,104 +268,6 @@ struct drm_driver {
+>>  	 */
+>>  	void (*release) (struct drm_device *);
+>> =20
+>> -	/**
+>> -	 * @get_vblank_counter:
+>> -	 *
+>> -	 * Driver callback for fetching a raw hardware vblank counter for th=
+e
+>> -	 * CRTC specified with the pipe argument.  If a device doesn't have =
+a
+>> -	 * hardware counter, the driver can simply leave the hook as NULL.
+>> -	 * The DRM core will account for missed vblank events while interrup=
+ts
+>> -	 * where disabled based on system timestamps.
+>> -	 *
+>> -	 * Wraparound handling and loss of events due to modesetting is deal=
+t
+>> -	 * with in the DRM core code, as long as drivers call
+>> -	 * drm_crtc_vblank_off() and drm_crtc_vblank_on() when disabling or
+>> -	 * enabling a CRTC.
+>> -	 *
+>> -	 * This is deprecated and should not be used by new drivers.
+>> -	 * Use &drm_crtc_funcs.get_vblank_counter instead.
+>> -	 *
+>> -	 * Returns:
+>> -	 *
+>> -	 * Raw vblank counter value.
+>> -	 */
+>> -	u32 (*get_vblank_counter) (struct drm_device *dev, unsigned int pipe=
+);
+>> -
+>> -	/**
+>> -	 * @enable_vblank:
+>> -	 *
+>> -	 * Enable vblank interrupts for the CRTC specified with the pipe
+>> -	 * argument.
+>> -	 *
+>> -	 * This is deprecated and should not be used by new drivers.
+>> -	 * Use &drm_crtc_funcs.enable_vblank instead.
+>> -	 *
+>> -	 * Returns:
+>> -	 *
+>> -	 * Zero on success, appropriate errno if the given @crtc's vblank
+>> -	 * interrupt cannot be enabled.
+>> -	 */
+>> -	int (*enable_vblank) (struct drm_device *dev, unsigned int pipe);
+>> -
+>> -	/**
+>> -	 * @disable_vblank:
+>> -	 *
+>> -	 * Disable vblank interrupts for the CRTC specified with the pipe
+>> -	 * argument.
+>> -	 *
+>> -	 * This is deprecated and should not be used by new drivers.
+>> -	 * Use &drm_crtc_funcs.disable_vblank instead.
+>> -	 */
+>> -	void (*disable_vblank) (struct drm_device *dev, unsigned int pipe);
+>> -
+>> -	/**
+>> -	 * @get_vblank_timestamp:
+>> -	 *
+>> -	 * Called by drm_get_last_vbltimestamp(). Should return a precise
+>> -	 * timestamp when the most recent VBLANK interval ended or will end.=
+
+>> -	 *
+>> -	 * Specifically, the timestamp in @vblank_time should correspond as
+>> -	 * closely as possible to the time when the first video scanline of
+>> -	 * the video frame after the end of VBLANK will start scanning out,
+>> -	 * the time immediately after end of the VBLANK interval. If the
+>> -	 * @crtc is currently inside VBLANK, this will be a time in the futu=
+re.
+>> -	 * If the @crtc is currently scanning out a frame, this will be the
+>> -	 * past start time of the current scanout. This is meant to adhere
+>> -	 * to the OpenML OML_sync_control extension specification.
+>> -	 *
+>> -	 * Paramters:
+>> -	 *
+>> -	 * dev:
+>> -	 *     dev DRM device handle.
+>> -	 * pipe:
+>> -	 *     crtc for which timestamp should be returned.
+>> -	 * max_error:
+>> -	 *     Maximum allowable timestamp error in nanoseconds.
+>> -	 *     Implementation should strive to provide timestamp
+>> -	 *     with an error of at most max_error nanoseconds.
+>> -	 *     Returns true upper bound on error for timestamp.
+>> -	 * vblank_time:
+>> -	 *     Target location for returned vblank timestamp.
+>> -	 * in_vblank_irq:
+>> -	 *     True when called from drm_crtc_handle_vblank().  Some drivers=
+
+>> -	 *     need to apply some workarounds for gpu-specific vblank irq qu=
+irks
+>> -	 *     if flag is set.
+>> -	 *
+>> -	 * Returns:
+>> -	 *
+>> -	 * True on success, false on failure, which means the core should
+>> -	 * fallback to a simple timestamp taken in drm_crtc_handle_vblank().=
+
+>> -	 *
+>> -	 * FIXME:
+>> -	 *
+>> -	 * We should move this hook to &struct drm_crtc_funcs like all the o=
+ther
+>> -	 * vblank hooks.
+>> -	 */
+>> -	bool (*get_vblank_timestamp) (struct drm_device *dev, unsigned int p=
+ipe,
+>> -				     int *max_error,
+>> -				     ktime_t *vblank_time,
+>> -				     bool in_vblank_irq);
+>> -
+>>  	/**
+>>  	 * @irq_handler:
+>>  	 *
+>> @@ -720,6 +622,9 @@ struct drm_driver {
+>>  	int (*dma_ioctl) (struct drm_device *dev, void *data, struct drm_fil=
+e *file_priv);
+>>  	int (*dma_quiescent) (struct drm_device *);
+>>  	int (*context_dtor) (struct drm_device *dev, int context);
+>> +	u32 (*get_vblank_counter)(struct drm_device *dev, unsigned int pipe)=
+;
+>> +	int (*enable_vblank)(struct drm_device *dev, unsigned int pipe);
+>> +	void (*disable_vblank)(struct drm_device *dev, unsigned int pipe);
+>>  	int dev_priv_size;
+>>  };
+>> =20
+>> --=20
+>> 2.24.1
 >>
->> Not shown in this diff before this if block we have:
->>
->>          if (list_empty(&node->link)) {
->>                  /*
->>                   * If the request is not in the priolist queue because
->>                   * it is not yet runnable, then it doesn't contribute
->>                   * to our preemption decisions. On the other hand,
->>                   * if the request is on the HW, it too is not in the
->>                   * queue; but in that case we may still need to reorder
->>                   * the inflight requests.
-> 
-> This second sentence is obsolete, we now use node->link for active.
+>=20
 
-Which active?  I915_FENCE_FLAG_ACTIVE is set when request is not on the 
-priority queue any more, no?
+--=20
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Maxfeldstr. 5, 90409 N=C3=BCrnberg, Germany
+(HRB 36809, AG N=C3=BCrnberg)
+Gesch=C3=A4ftsf=C3=BChrer: Felix Imend=C3=B6rffer
 
-> 
->>                   */
->>                  continue;
->>          }
->>
->> What is the difference between list_empty(&node->link) and !i915_request_in_priority_queue?
-> 
-> list_empty() -> prior to being ready, we will put into the plist upon
-> submit_request()
-> 
-> Once ready, we only want to fiddle with its place in the priority lists,
-> if it is in the plist.
 
-Yes brain fart on the list_empty check.
+--RAgxvS6j00AOrEMVpsfV7vPGxWhMlDzKn--
 
-However I need to go a step back and ask what is the whole point of this 
-block:
+--hnX2ORJn5vRIQccq9Tfc7COteUkRxx61k
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="signature.asc"
 
-	if (!intel_engine_is_virtual(engine) &&
-	    !i915_request_is_active(node_to_request(node))) {
+-----BEGIN PGP SIGNATURE-----
 
-For active request, they are already on the hw so no need to push them 
-up. But I forgot why are virtual ones special? VE is single context so 
-in order, or in other words no need to track prio levels for it, is that it?
+iQEzBAEBCAAdFiEEchf7rIzpz2NEoWjlaA3BHVMLeiMFAl4dxp0ACgkQaA3BHVML
+eiM2LAf+N0P4K1WKEoBwNNQG29y3+S5aPjHn2Z//V9UoNisKLZHcvcqsUvwN1Tev
+N+DXjGdRzpgPCMu8IOfQBi+fob8CKgS5i+Y1t21sqJo1YqLGdeECeVvwofurAjEp
+gNL6hGEG+TnzuuSQdn9JyAzLvwMHS9GR5aBXM3D3v8hBI5VDl3kP7RsvU6Cra2j+
+iT+fKiSwpLbjeRK/tvquY5YD2IHGhThx0foDhYHtNM+Wtp8xuVjd/fkAa8087bfY
+tbIkX44AnNJnkaSwic7tsl9YBKNnXaRDciqcblXWF8FHDpoUocuGJf9NUePvx8XU
+wL9DGhUIxUSIeSr++09yBzi5jXc6vA==
+=2kyn
+-----END PGP SIGNATURE-----
 
-But then also commit says "Use common priotree lists for virtual 
-engine". It already uses that before the patch because of the 
-!intel_engine_is_virtual condition. So I am confused.
+--hnX2ORJn5vRIQccq9Tfc7COteUkRxx61k--
 
-Regards,
+--===============1194639242==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
-Tvrtko
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============1194639242==--
