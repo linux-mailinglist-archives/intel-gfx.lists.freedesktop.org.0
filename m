@@ -1,32 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF0E4139A2C
-	for <lists+intel-gfx@lfdr.de>; Mon, 13 Jan 2020 20:29:19 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B71221399E2
+	for <lists+intel-gfx@lfdr.de>; Mon, 13 Jan 2020 20:11:32 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EC4C76E13C;
-	Mon, 13 Jan 2020 19:29:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AA05B6E139;
+	Mon, 13 Jan 2020 19:11:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 4B4AC6E13C;
- Mon, 13 Jan 2020 19:29:15 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 47B5CA00C7;
- Mon, 13 Jan 2020 19:29:15 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5066F6E139
+ for <intel-gfx@lists.freedesktop.org>; Mon, 13 Jan 2020 19:11:29 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 13 Jan 2020 11:11:28 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.69,429,1571727600"; d="scan'208";a="424406823"
+Received: from msatwood-mobl.jf.intel.com (HELO msatwood-mobl.intel.com)
+ ([10.24.14.212])
+ by fmsmga006.fm.intel.com with ESMTP; 13 Jan 2020 11:11:28 -0800
+From: Matt Atwood <matthew.s.atwood@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon, 13 Jan 2020 23:11:28 -0500
+Message-Id: <20200114041128.11211-1-matthew.s.atwood@intel.com>
+X-Mailer: git-send-email 2.21.1
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Wambui Karuga" <wambui.karugax@gmail.com>
-Date: Mon, 13 Jan 2020 19:29:15 -0000
-Message-ID: <157894375529.25474.9256063867059980465@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200113111025.2048-1-wambui.karugax@gmail.com>
-In-Reply-To: <20200113111025.2048-1-wambui.karugax@gmail.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiB3YXJuaW5nIGZvciBk?=
- =?utf-8?q?rm/i915=3A_convert_to_new_logging_macros_based_on_struct_intel?=
- =?utf-8?b?X2VuZ2luZV9jcy4=?=
+Subject: [Intel-gfx] [PATCH v2] drm/i915: add Wa_14010594013: icl,ehl
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,36 +41,57 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+The bspec tells us we need to set this bit to avoid potential underruns.
 
-Series: drm/i915: convert to new logging macros based on struct intel_engine_cs.
-URL   : https://patchwork.freedesktop.org/series/71971/
-State : warning
+v2: use new register write convention (Anshuman) add bspec 7386 ref.
 
-== Summary ==
+Bspec: 7386
+Bspec: 33450
+Bspec: 33451
 
-CALL    scripts/checksyscalls.sh
-  CALL    scripts/atomic/check-atomics.sh
-  CHK     include/generated/compile.h
-Kernel: arch/x86/boot/bzImage is ready  (#1)
-  Building modules, stage 2.
-  MODPOST 122 modules
-ERROR: "__udivdi3" [drivers/gpu/drm/amd/amdgpu/amdgpu.ko] undefined!
-scripts/Makefile.modpost:93: recipe for target '__modpost' failed
-make[1]: *** [__modpost] Error 1
-Makefile:1282: recipe for target 'modules' failed
-make: *** [modules] Error 2
+Cc: Anshuman Gupta <anshuman.gupta@intel.com>
+Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Signed-off-by: Matt Atwood <matthew.s.atwood@intel.com>
+---
+ drivers/gpu/drm/i915/i915_reg.h | 1 +
+ drivers/gpu/drm/i915/intel_pm.c | 4 ++++
+ 2 files changed, 5 insertions(+)
 
-== Logs ==
+diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+index cf770793be54..b9dc5e2ea606 100644
+--- a/drivers/gpu/drm/i915/i915_reg.h
++++ b/drivers/gpu/drm/i915/i915_reg.h
+@@ -7785,6 +7785,7 @@ enum {
+ 
+ #define GEN8_CHICKEN_DCPR_1		_MMIO(0x46430)
+ #define   SKL_SELECT_ALTERNATE_DC_EXIT	(1 << 30)
++#define   CNL_DELAY_PMRSP		(1 << 22)
+ #define   MASK_WAKEMEM			(1 << 13)
+ #define   CNL_DDI_CLOCK_REG_ACCESS_ON	(1 << 7)
+ 
+diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel_pm.c
+index 148ac455dfa7..de585e670496 100644
+--- a/drivers/gpu/drm/i915/intel_pm.c
++++ b/drivers/gpu/drm/i915/intel_pm.c
+@@ -6610,6 +6610,10 @@ static void icl_init_clock_gating(struct drm_i915_private *dev_priv)
+ 	/* Wa_1407352427:icl,ehl */
+ 	intel_uncore_rmw(&dev_priv->uncore, UNSLICE_UNIT_LEVEL_CLKGATE2,
+ 			 0, PSDUNIT_CLKGATE_DIS);
++
++	/*Wa_14010594013:icl, ehl */
++	intel_uncore_rmw(&dev_priv->uncore, GEN8_CHICKEN_DCPR_1,
++			 0, CNL_DELAY_PMRSP);
+ }
+ 
+ static void tgl_init_clock_gating(struct drm_i915_private *dev_priv)
+-- 
+2.21.1
 
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16078/build_32bit.log
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
