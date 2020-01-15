@@ -1,34 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1728813C917
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Jan 2020 17:19:11 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id D602413C954
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Jan 2020 17:29:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CEC5F6EA3E;
-	Wed, 15 Jan 2020 16:19:07 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 028EF6EA3C
- for <intel-gfx@lists.freedesktop.org>; Wed, 15 Jan 2020 16:19:05 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 19890990-1500050 for multiple; Wed, 15 Jan 2020 16:18:52 +0000
+	by gabe.freedesktop.org (Postfix) with ESMTP id 75AF489D6C;
+	Wed, 15 Jan 2020 16:29:48 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E9B9E89D6C
+ for <Intel-gfx@lists.freedesktop.org>; Wed, 15 Jan 2020 16:29:46 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 15 Jan 2020 08:29:43 -0800
+X-IronPort-AV: E=Sophos;i="5.70,323,1574150400"; d="scan'208";a="213760210"
+Received: from mdanino-mobl1.ger.corp.intel.com (HELO [10.252.23.174])
+ ([10.252.23.174])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/AES256-SHA;
+ 15 Jan 2020 08:29:34 -0800
+To: Chris Wilson <chris@chris-wilson.co.uk>, Intel-gfx@lists.freedesktop.org
+References: <20200115152437.13207-1-tvrtko.ursulin@linux.intel.com>
+ <b2917343-c654-2300-9716-7747d8b88be8@linux.intel.com>
+ <157910253984.14122.1935242870824479556@skylake-alporthouse-com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <b97339bd-d06a-3ac9-b09c-811d6d72226a@linux.intel.com>
+Date: Wed, 15 Jan 2020 16:29:31 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
 MIME-Version: 1.0
-To: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
- intel-gfx@lists.freedesktop.org
-From: Chris Wilson <chris@chris-wilson.co.uk>
-In-Reply-To: <ebdc5cd5-761e-1cfe-48f0-93bc37b32afc@intel.com>
-References: <20200115013143.34961-1-daniele.ceraolospurio@intel.com>
- <157907760539.5559.7281364125701103353@skylake-alporthouse-com>
- <ebdc5cd5-761e-1cfe-48f0-93bc37b32afc@intel.com>
-Message-ID: <157910513051.14122.10645009325140090342@skylake-alporthouse-com>
-User-Agent: alot/0.6
-Date: Wed, 15 Jan 2020 16:18:50 +0000
-Subject: Re: [Intel-gfx] [PATCH 0/7] Commit early to GuC
+In-Reply-To: <157910253984.14122.1935242870824479556@skylake-alporthouse-com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Align engine->uabi_class/instance
+ with i915_drm.h
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,66 +49,143 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Daniele Ceraolo Spurio (2020-01-15 15:57:27)
-> 
-> 
-> On 1/15/2020 12:40 AM, Chris Wilson wrote:
-> > Quoting Daniele Ceraolo Spurio (2020-01-15 01:31:36)
-> >> We currently wait until we attempt to load the GuC to confirm if we're
-> >> in GuC mode or not, at which point a lot of the engine setup has already
-> >> happened and needs to be updated for GuC submission. To allow us to get
-> >> the setup done directly into GuC mode, we need to commit to using GuC
-> >> as soon as possible.
-> > I think this is the wrong direction; as I thought the goal was to allow
-> > delayed loading of firmware, even going as far as allowing the system to
-> > run a browser for the user to get the firmware first. I may be
-> 
-> We do indeed want to keep supporting execlists mode even as some HW 
-> features move to the GuC to allow the user to get to the binaries, but 
-> we don't want to switch between the 2 modes without a reboot. Switching 
-> between the 2 modes is not a HW capability that we're committed to; the 
-> guc->elsp transition is already not possible, while the elsp->guc one 
-> still seems to work, but who knows for how long it will?
-> 
-> This series is also not really changing the commitment at the 
-> implementation level, just making it "official" and acting based on 
-> that. Even without these patches, if the blobs are on the system we will 
-> attempt to get into GuC mode unless we get an allocation failure or 
-> something similar, in which case it is extremely likely that the 
-> fall-back to non-guc will not work either.
-> 
-> > completely wrong about that, but imho I never want to have to build
-> > firmware images into the kernel.
-> 
-> I do 100% agree with this statement, although I'm not sure how this 
-> relates to the series. Are you planning to pull some of the engine setup 
-> to an even earlier point?
-> 
-> >
-> > The transition from execlists to guc could be just set-wedged; delete
-> > old engines, build guc engines. [This should also work for guc -> guc.]
-> > Throwing away context state is ugly, but simple enough.
-> 
-> As mentioned above, we can't switch between elsp and GuC modes so this 
-> transition would have to be done before the first submission to HW. Why 
-> not go directly in GuC mode then?
 
-So the problem is if we can't freely switch (we can never power down the
-guc, that seems unlikely?) then we can't make a decision on which mode
-to run (and which engines to initialise) until userspace is active and
-has committed to supplying or not supplying a fw image. Which puts us in
-a catch-22 of wanting to register the driver with userspace before we
-have finalized initialisation.
+On 15/01/2020 15:35, Chris Wilson wrote:
+> Quoting Tvrtko Ursulin (2020-01-15 15:28:19)
+>>
+>> On 15/01/2020 15:24, Tvrtko Ursulin wrote:
+>>> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+>>>
+>>> In our ABI we have defined I915_ENGINE_CLASS_INVALID_NONE and
+>>> I915_ENGINE_CLASS_INVALID_VIRTUAL as negative values which creates
+>>> implicit coupling with type widths used in, also ABI, struct
+>>> i915_engine_class_instance.
+>>>
+>>> When for instance we export engine->uabi_class
+>>> I915_ENGINE_CLASS_INVALID_VIRTUAL from our our tracepoints, because the
+>>> type of the former is u8 in contrast to u16 defined in the ABI, 254 will
+>>> be returned instead of 65534 which userspace would legitimately expect.
+>>>
+>>> Therefore we need to align the type used to store engine ABI class and
+>>> instance.
+>>>
+>>> I did not find any other user visible inconsistency apart from the
+>>> tracepoints so I think importance of the fix is low.
+>>
+>> Alternatives:
+>>
+>> 1.
+>> Embed struct i915_engine_class_instance in struct intel_engine_cs, but
+>> downside is more churn.
+> 
+> Could do. It would seem to make sense.
+>   
+>> 2.
+>> Only tweak the tracepoints to cast back and forth, but is it possible to
+>> cast from unsigned to signed and get a negative number?
+>>
+>> 3.
+>> Do nothing, does anyone cares?
+> 
+> It actually changes the value reported by GET_ENGINES for a virtual
+> engine, right?
+> 
+> engine->uabi_instance is u8, so u16 ci.engine_instance =
+> engine->uabi_instance is zero extended, not sign extended.
+> 
+> And we did say that is expected to be (u16)-2 already.
+> 
+> So cc:stable
 
-If the transition is impossible, it seems like you have no choice but to
-require the fw image at initialisation. I do not understand why it has
-to be that way, seems such a hindrance.
--Chris
+You are correct, yep, was thinking about engine query where it doesn't 
+apply but forgot about get_engines where it does.
+
+>>> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+>>> Cc: Chris Wilson <chris@chris-wilson.co.uk>
+> Reviewed-by: Chris Wilson <chris@chris-wilson.co.uk>
+> 
+>>> ---
+>>>    drivers/gpu/drm/i915/gem/i915_gem_busy.c     | 12 ++++++------
+>>>    drivers/gpu/drm/i915/gt/intel_engine_types.h |  4 ++--
+>>>    2 files changed, 8 insertions(+), 8 deletions(-)
+>>>
+>>> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_busy.c b/drivers/gpu/drm/i915/gem/i915_gem_busy.c
+>>> index 3d4f5775a4ba..25235ef630c1 100644
+>>> --- a/drivers/gpu/drm/i915/gem/i915_gem_busy.c
+>>> +++ b/drivers/gpu/drm/i915/gem/i915_gem_busy.c
+>>> @@ -9,16 +9,16 @@
+>>>    #include "i915_gem_ioctls.h"
+>>>    #include "i915_gem_object.h"
+>>>    
+>>> -static __always_inline u32 __busy_read_flag(u8 id)
+>>> +static __always_inline u32 __busy_read_flag(u16 id)
+>>>    {
+>>> -     if (id == (u8)I915_ENGINE_CLASS_INVALID)
+>>> +     if (id == (u16)I915_ENGINE_CLASS_INVALID)
+>>>                return 0xffff0000u;
+>>>    
+>>>        GEM_BUG_ON(id >= 16);
+>>>        return 0x10000u << id;
+>>>    }
+>>>    
+>>> -static __always_inline u32 __busy_write_id(u8 id)
+>>> +static __always_inline u32 __busy_write_id(u16 id)
+>>>    {
+>>>        /*
+>>>         * The uABI guarantees an active writer is also amongst the read
+>>> @@ -29,14 +29,14 @@ static __always_inline u32 __busy_write_id(u8 id)
+>>>         * last_read - hence we always set both read and write busy for
+>>>         * last_write.
+>>>         */
+>>> -     if (id == (u8)I915_ENGINE_CLASS_INVALID)
+>>> +     if (id == (u16)I915_ENGINE_CLASS_INVALID)
+>>>                return 0xffffffffu;
+>>>    
+>>>        return (id + 1) | __busy_read_flag(id);
+>>>    }
+>>>    
+>>>    static __always_inline unsigned int
+>>> -__busy_set_if_active(const struct dma_fence *fence, u32 (*flag)(u8 id))
+>>> +__busy_set_if_active(const struct dma_fence *fence, u32 (*flag)(u16 id))
+>>>    {
+>>>        const struct i915_request *rq;
+>>>    
+>>> @@ -57,7 +57,7 @@ __busy_set_if_active(const struct dma_fence *fence, u32 (*flag)(u8 id))
+>>>                return 0;
+>>>    
+>>>        /* Beware type-expansion follies! */
+>>> -     BUILD_BUG_ON(!typecheck(u8, rq->engine->uabi_class));
+>>> +     BUILD_BUG_ON(!typecheck(u16, rq->engine->uabi_class));
+>>>        return flag(rq->engine->uabi_class);
+>>>    }
+>>>    
+>>> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_types.h b/drivers/gpu/drm/i915/gt/intel_engine_types.h
+>>> index 00287515e7af..350da59e605b 100644
+>>> --- a/drivers/gpu/drm/i915/gt/intel_engine_types.h
+>>> +++ b/drivers/gpu/drm/i915/gt/intel_engine_types.h
+>>> @@ -278,8 +278,8 @@ struct intel_engine_cs {
+>>>        u8 class;
+>>>        u8 instance;
+>>>    
+>>> -     u8 uabi_class;
+>>> -     u8 uabi_instance;
+>>> +     u16 uabi_class;
+>>> +     u16 uabi_instance;
+> 
+> Bah, doesn't this leave us with a u16 hole!
+
+I don't see anything to fill it with. Could expand class and instance to 
+u16 as well and see if it has any negative effect on code size. But in a 
+separate patch.
+
+Regards,
+
+Tvrtko
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
