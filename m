@@ -1,32 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB51D13BD0B
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Jan 2020 11:07:00 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id DADD013BD1F
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Jan 2020 11:11:22 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3B4C56E0CB;
-	Wed, 15 Jan 2020 10:06:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C3FBA6E8F1;
+	Wed, 15 Jan 2020 10:11:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 87C226E8F0;
- Wed, 15 Jan 2020 10:06:57 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id E74C86E8F1;
+ Wed, 15 Jan 2020 10:11:18 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 829EFA66C7;
- Wed, 15 Jan 2020 10:06:57 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id DF1AEA0096;
+ Wed, 15 Jan 2020 10:11:18 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Wed, 15 Jan 2020 10:06:57 -0000
-Message-ID: <157908281753.2010.9212650428418585887@emeril.freedesktop.org>
+To: "Stanislav Lisovskiy" <stanislav.lisovskiy@intel.com>
+Date: Wed, 15 Jan 2020 10:11:18 -0000
+Message-ID: <157908307888.2007.267664812226588082@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20200115083346.2601512-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200115083346.2601512-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiB3YXJuaW5nIGZvciBz?=
- =?utf-8?q?eries_starting_with_=5Bv2=5D_drm/i915=3A_Keep_track_of_request_?=
- =?utf-8?q?among_the_scheduling_lists_=28rev2=29?=
+References: <20200115095054.10660-1-stanislav.lisovskiy@intel.com>
+In-Reply-To: <20200115095054.10660-1-stanislav.lisovskiy@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_Enable_second_DBuf_slice_for_ICL_and_TGL_=28rev13=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,27 +47,25 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: series starting with [v2] drm/i915: Keep track of request among the scheduling lists (rev2)
-URL   : https://patchwork.freedesktop.org/series/72048/
+Series: Enable second DBuf slice for ICL and TGL (rev13)
+URL   : https://patchwork.freedesktop.org/series/70059/
 State : warning
 
 == Summary ==
 
-CALL    scripts/checksyscalls.sh
-  CALL    scripts/atomic/check-atomics.sh
-  CHK     include/generated/compile.h
-Kernel: arch/x86/boot/bzImage is ready  (#1)
-  Building modules, stage 2.
-  MODPOST 122 modules
-ERROR: "__udivdi3" [drivers/gpu/drm/amd/amdgpu/amdgpu.ko] undefined!
-scripts/Makefile.modpost:93: recipe for target '__modpost' failed
-make[1]: *** [__modpost] Error 1
-Makefile:1282: recipe for target 'modules' failed
-make: *** [modules] Error 2
+$ dim checkpatch origin/drm-tip
+091637515149 drm/i915: Remove skl_ddl_allocation struct
+9c02bbfc80f8 drm/i915: Move dbuf slice update to proper place
+6fa5e89f8dfb drm/i915: Manipulate DBuf slices properly
+-:382: CHECK:BRACES: Blank lines aren't necessary after an open brace '{'
+#382: FILE: drivers/gpu/drm/i915/intel_pm.c:3662:
++		switch (i) {
++
 
-== Logs ==
+total: 0 errors, 0 warnings, 1 checks, 352 lines checked
+ab2871f866a3 drm/i915: Introduce parameterized DBUF_CTL
+c81891411ee1 drm/i915: Correctly map DBUF slices to pipes
 
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16106/build_32bit.log
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
