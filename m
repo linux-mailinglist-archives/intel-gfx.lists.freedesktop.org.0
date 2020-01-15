@@ -1,39 +1,47 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3848B13C4F8
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Jan 2020 15:08:45 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 72A0313C5BE
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Jan 2020 15:17:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 157B66EAAD;
-	Wed, 15 Jan 2020 14:08:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 958ED6EA02;
+	Wed, 15 Jan 2020 14:17:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3F50E6EAAB
- for <intel-gfx@lists.freedesktop.org>; Wed, 15 Jan 2020 14:08:41 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 643B96EA02;
+ Wed, 15 Jan 2020 14:17:55 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
 X-Amp-File-Uploaded: False
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 15 Jan 2020 06:08:40 -0800
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 15 Jan 2020 06:17:54 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,322,1574150400"; d="scan'208";a="256784244"
-Received: from irvmail001.ir.intel.com ([163.33.26.43])
- by fmsmga002.fm.intel.com with ESMTP; 15 Jan 2020 06:08:39 -0800
-Received: from mwajdecz-MOBL1.ger.corp.intel.com
- (mwajdecz-mobl1.ger.corp.intel.com [172.28.174.138])
- by irvmail001.ir.intel.com (8.14.3/8.13.6/MailSET/Hub) with ESMTP id
- 00FE8USU003035; Wed, 15 Jan 2020 14:08:38 GMT
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 15 Jan 2020 14:08:22 +0000
-Message-Id: <20200115140822.55756-6-michal.wajdeczko@intel.com>
-X-Mailer: git-send-email 2.21.0.windows.1
-In-Reply-To: <20200115140822.55756-1-michal.wajdeczko@intel.com>
-References: <20200115140822.55756-1-michal.wajdeczko@intel.com>
+X-IronPort-AV: E=Sophos;i="5.70,322,1574150400"; d="scan'208";a="213715688"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by orsmga007.jf.intel.com with SMTP; 15 Jan 2020 06:17:51 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Wed, 15 Jan 2020 16:17:50 +0200
+Date: Wed, 15 Jan 2020 16:17:50 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Message-ID: <20200115141750.GX13686@intel.com>
+References: <20200109150752.28098-1-mario.kleiner.de@gmail.com>
+ <CADnq5_PvPD+FyEwUrqDVmbdLrP6ZC72HPtd19bqm-Csx-fHMOA@mail.gmail.com>
+ <CAEsyxyjTvuCHHA3D-NJd=aGkHz2d=obSizwGQL8B4k1B7i2jJg@mail.gmail.com>
+ <CADnq5_NPdg8MjQ5cB2aCD+US1Hv+FoP1gqKcA4W2e0pouG8cGQ@mail.gmail.com>
+ <CAEsyxyjMsCU8rzyO0GewU_-uV5+UoDDwa5Mc74irUnJHhF6ALQ@mail.gmail.com>
+ <bae132f3-73e6-5004-c9a9-adb632338268@amd.com>
+ <20200110180944.GL13686@intel.com> <87o8v4kif9.fsf@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 5/5] drm/i915/guc: Introduce CT_DEBUG
+Content-Disposition: inline
+In-Reply-To: <87o8v4kif9.fsf@intel.com>
+X-Patchwork-Hint: comment
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/dp: Add current maximum eDP link
+ rate to sink_rate array.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,158 +54,151 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: mario.kleiner.de@gmail.de, Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Maling list - DRI developers <dri-devel@lists.freedesktop.org>,
+ Harry Wentland <Harry.Wentland@amd.com>, Alex Deucher <alexdeucher@gmail.com>,
+ Harry Wentland <hwentlan@amd.com>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-As we now have "ct" available almost in all functions we can
-start using dev variants of logs also for debug.
+On Wed, Jan 15, 2020 at 02:34:02PM +0200, Jani Nikula wrote:
+> On Fri, 10 Jan 2020, Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com> wr=
+ote:
+> > On Thu, Jan 09, 2020 at 04:26:19PM -0500, Harry Wentland wrote:
+> >> =
 
-Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
----
- drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c | 41 +++++++++++------------
- 1 file changed, 19 insertions(+), 22 deletions(-)
+> >> =
 
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
-index a435b01c46d6..93d7dc3748df 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
-@@ -10,9 +10,10 @@
- #define CT_ERROR(_ct, _fmt, ...) \
- 	DRM_DEV_ERROR(ct_to_dev(_ct), "CT: " _fmt, ##__VA_ARGS__)
- #ifdef CONFIG_DRM_I915_DEBUG_GUC
--#define CT_DEBUG_DRIVER(...)	DRM_DEBUG_DRIVER(__VA_ARGS__)
-+#define CT_DEBUG(_ct, _fmt, ...) \
-+	DRM_DEV_DEBUG_DRIVER(ct_to_dev(_ct), "CT: " _fmt, ##__VA_ARGS__)
- #else
--#define CT_DEBUG_DRIVER(...)	do { } while (0)
-+#define CT_DEBUG(...)	do { } while (0)
- #endif
- 
- struct ct_request {
-@@ -81,7 +82,6 @@ static inline const char *guc_ct_buffer_type_to_str(u32 type)
- static void guc_ct_buffer_desc_init(struct guc_ct_buffer_desc *desc,
- 				    u32 cmds_addr, u32 size)
- {
--	CT_DEBUG_DRIVER("CT: init addr=%#x size=%u\n", cmds_addr, size);
- 	memset(desc, 0, sizeof(*desc));
- 	desc->addr = cmds_addr;
- 	desc->size = size;
-@@ -90,8 +90,6 @@ static void guc_ct_buffer_desc_init(struct guc_ct_buffer_desc *desc,
- 
- static void guc_ct_buffer_desc_reset(struct guc_ct_buffer_desc *desc)
- {
--	CT_DEBUG_DRIVER("CT: desc %p reset head=%u tail=%u\n",
--			desc, desc->head, desc->tail);
- 	desc->head = 0;
- 	desc->tail = 0;
- 	desc->is_in_error = 0;
-@@ -189,8 +187,7 @@ int intel_guc_ct_init(struct intel_guc_ct *ct)
- 		return err;
- 	}
- 
--	CT_DEBUG_DRIVER("CT: vma base=%#x\n",
--			intel_guc_ggtt_offset(guc, ct->vma));
-+	CT_DEBUG(ct, "vma base=%#x\n", intel_guc_ggtt_offset(guc, ct->vma));
- 
- 	/* store pointers to desc and cmds */
- 	for (i = 0; i < ARRAY_SIZE(ct->ctbs); i++) {
-@@ -224,7 +221,7 @@ void intel_guc_ct_fini(struct intel_guc_ct *ct)
- int intel_guc_ct_enable(struct intel_guc_ct *ct)
- {
- 	struct intel_guc *guc = ct_to_guc(ct);
--	u32 base;
-+	u32 base, cmds, size;
- 	int err;
- 	int i;
- 
-@@ -239,9 +236,10 @@ int intel_guc_ct_enable(struct intel_guc_ct *ct)
- 	 */
- 	for (i = 0; i < ARRAY_SIZE(ct->ctbs); i++) {
- 		GEM_BUG_ON((i != CTB_SEND) && (i != CTB_RECV));
--		guc_ct_buffer_desc_init(ct->ctbs[i].desc,
--					base + PAGE_SIZE/4 * i + PAGE_SIZE/2,
--					PAGE_SIZE/4);
-+		cmds = base + PAGE_SIZE / 4 * i + PAGE_SIZE / 2;
-+		size = PAGE_SIZE / 4;
-+		CT_DEBUG(ct, "%d: addr=%#x size=%u\n", i, cmds, size);
-+		guc_ct_buffer_desc_init(ct->ctbs[i].desc, cmds, size);
- 	}
- 
- 	/*
-@@ -356,9 +354,8 @@ static int ct_write(struct intel_guc_ct *ct,
- 		 (want_response ? GUC_CT_MSG_SEND_STATUS : 0) |
- 		 (action[0] << GUC_CT_MSG_ACTION_SHIFT);
- 
--	CT_DEBUG_DRIVER("CT: writing %*ph %*ph %*ph\n",
--			4, &header, 4, &fence,
--			4 * (len - 1), &action[1]);
-+	CT_DEBUG(ct, "writing %*ph %*ph %*ph\n",
-+		 4, &header, 4, &fence, 4 * (len - 1), &action[1]);
- 
- 	cmds[tail] = header;
- 	tail = (tail + 1) % size;
-@@ -553,8 +550,8 @@ int intel_guc_ct_send(struct intel_guc_ct *ct, const u32 *action, u32 len,
- 		CT_ERROR(ct, "Sending action %#x failed (err=%d status=%#X)\n",
- 			 action[0], ret, status);
- 	} else if (unlikely(ret)) {
--		CT_DEBUG_DRIVER("CT: send action %#x returned %d (%#x)\n",
--				action[0], ret, ret);
-+		CT_DEBUG(ct, "send action %#x returned %d (%#x)\n",
-+			 action[0], ret, ret);
- 	}
- 
- 	mutex_unlock(&guc->send_mutex);
-@@ -612,7 +609,7 @@ static int ct_read(struct intel_guc_ct *ct, u32 *data)
- 	/* beware of buffer wrap case */
- 	if (unlikely(available < 0))
- 		available += size;
--	CT_DEBUG_DRIVER("CT: available %d (%u:%u)\n", available, head, tail);
-+	CT_DEBUG(ct, "available %d (%u:%u)\n", available, head, tail);
- 	GEM_BUG_ON(available < 0);
- 
- 	data[0] = cmds[head];
-@@ -634,7 +631,7 @@ static int ct_read(struct intel_guc_ct *ct, u32 *data)
- 		data[i] = cmds[head];
- 		head = (head + 1) % size;
- 	}
--	CT_DEBUG_DRIVER("CT: received %*ph\n", 4 * len, data);
-+	CT_DEBUG(ct, "received %*ph\n", 4 * len, data);
- 
- 	desc->head = head * 4;
- 	return 0;
-@@ -694,13 +691,13 @@ static int ct_handle_response(struct intel_guc_ct *ct, const u32 *msg)
- 		return -EPROTO;
- 	}
- 
--	CT_DEBUG_DRIVER("CT: response fence %u status %#x\n", fence, status);
-+	CT_DEBUG(ct, "response fence %u status %#x\n", fence, status);
- 
- 	spin_lock(&ct->requests.lock);
- 	list_for_each_entry(req, &ct->requests.pending, link) {
- 		if (unlikely(fence != req->fence)) {
--			CT_DEBUG_DRIVER("CT: request %u awaits response\n",
--					req->fence);
-+			CT_DEBUG(ct, "request %u awaits response\n",
-+				 req->fence);
- 			continue;
- 		}
- 		if (unlikely(datalen > req->response_len)) {
-@@ -728,7 +725,7 @@ static void ct_process_request(struct intel_guc_ct *ct,
- 	struct intel_guc *guc = ct_to_guc(ct);
- 	int ret;
- 
--	CT_DEBUG_DRIVER("CT: request %x %*ph\n", action, 4 * len, payload);
-+	CT_DEBUG(ct, "request %x %*ph\n", action, 4 * len, payload);
- 
- 	switch (action) {
- 	case INTEL_GUC_ACTION_DEFAULT:
--- 
-2.19.2
+> >> On 2020-01-09 4:04 p.m., Mario Kleiner wrote:
+> >> > On Thu, Jan 9, 2020 at 8:49 PM Alex Deucher <alexdeucher@gmail.com
+> >> > <mailto:alexdeucher@gmail.com>> wrote:
+> >> >
+> >> >     On Thu, Jan 9, 2020 at 11:47 AM Mario Kleiner
+> >> >     <mario.kleiner.de@gmail.com <mailto:mario.kleiner.de@gmail.com>>
+> >> >     wrote:
+> >> >     >
+> >> >     > On Thu, Jan 9, 2020 at 4:40 PM Alex Deucher
+> >> >     <alexdeucher@gmail.com <mailto:alexdeucher@gmail.com>> wrote:
+> >> >     >>
+> >> >     >> On Thu, Jan 9, 2020 at 10:08 AM Mario Kleiner
+> >> >     >> <mario.kleiner.de@gmail.com
+> >> >     <mailto:mario.kleiner.de@gmail.com>> wrote:
+> >> >     >> >
+> >> >     As Harry mentioned in the other thread, won't this only work if =
+the
+> >> >     display was brought up by the vbios?=A0 In the suspend/resume ca=
+se,
+> >> >     won't we just fall back to 2.7Gbps?
+> >> >
+> >> >     Alex
+> >> >
+> >> >
+> >> > Adding Harry to cc...
+> >> >
+> >> > The code is only executed for eDP. On the Intel side, it seems that
+> >> > intel_edp_init_dpcd() gets only called during driver load /
+> >> > modesetting init, so not on resume.
+> >> >
+> >> > On the AMD DC side, dc_link_detect_helper() has this early no-op
+> >> > return at the beginning:
+> >> >
+> >> > if ((link->connector_signal =3D=3D SIGNAL_TYPE_LVDS ||
+> >> > 			link->connector_signal =3D=3D SIGNAL_TYPE_EDP) &&
+> >> > 			link->local_sink)
+> >> > 		return true;
+> >> >
+> >> > So i guess if link->local_sink doesn't get NULL'ed during a
+> >> > suspend/resume cycle, then we never reach the setup code that would
+> >> > overwrite with non vbios settings?
+> >> >
+> >> > Sounds reasonable to me, given that eDP panels are usually fixed
+> >> > internal panels, nothing that gets hot(un-)plugged?
+> >> >
+> >> > I can't test, because suspend/resume with the Polaris gpu on the MBP
+> >> > 2017 is totally broken atm., just as vgaswitcheroo can't do its job.
+> >> > Looks like powering down the gpu works, but powering up doesn't. And
+> >> > also modesetting at vgaswitcheroo switch time is no-go, because the
+> >> > DDC/AUX lines apparently can't be switched on that Apple gmux, and
+> >> > handover of that data seems to be not implemented in current
+> >> > vgaswitcheroo. At the moment switching between AMD only or Intel+AMD
+> >> > Prime setup is quite a pita...
+> >> >
+> >> =
 
+> >> I haven't followed the entire discussion on the i915 thread but for the
+> >> amdgpu dc patch I would prefer a DPCD quirk to override the reported
+> >> link settings with the correct link rate.
+> >
+> > We could consider adding a standard function for reading the receiver
+> > caps and applying the quirk there. I have a feeling that putting it
+> > into drm_dp_dpcd_read() would be a bit too low level since it would
+> > prevent reading the non-quirked raw data easily.
+> =
+
+> Everything about this panel is ugly.
+> =
+
+> The panel does not claim to support extended receiver caps. (I have not
+> seen whether there is non-zero data at 0x2200. Mario, please provide a
+> dump of that DPCD region.)
+> =
+
+> The panel does use DPCD_DISPLAY_CONTROL_CAPABLE and reports eDP 1.3 in
+> EDP_DPCD_REV.
+> =
+
+> eDP 1.3 says only four values are supported in LINK_BW_SET (0x06, 0x0a,
+> 0x14, and 0x1e). The same for MAX_LINK_RATE for all DP, and even in the
+> extended receiver cap.
+> =
+
+> You could perhaps make the case for the interpretation in commit
+> 57a1b0893782 ("drm: Make the bw/link rate calculations more forgiving")
+> that in eDP 1.4+ you can use arbitrary values in LINK_BW_SET. But I
+> think that's a stretch, really. And anyway the panel reports eDP 1.3.
+> =
+
+> The panel is consistent in that it does not claim to support link rate
+> selection nor does it have anything in SUPPORTED_LINK_RATES which are
+> eDP 1.4+ features.
+> =
+
+> However, the panel reports 0x0a as the max link rate in MAX_LINK_RATE,
+> which exceeds the value 0x0c set in LINK_BW_SET by the firmware.
+> =
+
+> Bottom line is, *if* we're going to support this proprietary crap of a
+> panel, it *must* be an isolated quirk. I certainly won't take a patch
+> generalizing this to any panel out there. But you're going to have to be
+> pretty clever to isolate this crap. I'm not sure if quirking a homebrew
+> extended receiver cap is going to be enough.
+
+drm_dp_read_receiver_caps()
+{
+	dpcd_read(dpcd);
+	if (quirk) {
+		DRM_DEBUG_KMS("blah");
+		dpcd[MAX_BW] =3D 0xc;
+	}
+}
+
+intel_dp_sink_rates()
+{
+	...
+	if (max_bw > rates[i-1])
+		rates[i++] =3D max_bw;
+}
+
+Would seem more or less OK to me. And doing it this way would also
+cover the MyDP 6.75 case automagically.
+
+-- =
+
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
