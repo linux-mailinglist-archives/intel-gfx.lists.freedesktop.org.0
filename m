@@ -2,31 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9DFED13C649
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Jan 2020 15:37:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DCC7913C64E
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Jan 2020 15:38:17 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CFAA56EA28;
-	Wed, 15 Jan 2020 14:37:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1D8246EAC0;
+	Wed, 15 Jan 2020 14:38:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 620C76EABE;
- Wed, 15 Jan 2020 14:37:38 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 55537A66C7;
- Wed, 15 Jan 2020 14:37:38 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 936C66EABD;
+ Wed, 15 Jan 2020 14:38:12 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 15 Jan 2020 06:38:11 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,322,1574150400"; d="scan'208";a="273659015"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by FMSMGA003.fm.intel.com with SMTP; 15 Jan 2020 06:37:58 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Wed, 15 Jan 2020 16:37:57 +0200
+Date: Wed, 15 Jan 2020 16:37:57 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Thomas Zimmermann <tzimmermann@suse.de>
+Message-ID: <20200115143757.GZ13686@intel.com>
+References: <20200115121652.7050-1-tzimmermann@suse.de>
+ <20200115121652.7050-3-tzimmermann@suse.de>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Wed, 15 Jan 2020 14:37:38 -0000
-Message-ID: <157909905834.2010.17061690697792856413@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200115083346.2601512-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200115083346.2601512-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiB3YXJuaW5nIGZvciBz?=
- =?utf-8?q?eries_starting_with_=5Bv2=5D_drm/i915=3A_Keep_track_of_request_?=
- =?utf-8?q?among_the_scheduling_lists_=28rev3=29?=
+Content-Disposition: inline
+In-Reply-To: <20200115121652.7050-3-tzimmermann@suse.de>
+X-Patchwork-Hint: comment
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH v2 02/21] drm: Evaluate struct
+ drm_device.vblank_disable_immediate on each use
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,36 +49,150 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: hamohammed.sa@gmail.com, airlied@linux.ie, nouveau@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, eric@anholt.net,
+ amd-gfx@lists.freedesktop.org, benjamin.gaignard@linaro.org,
+ alexandre.torgue@st.com, David1.Zhou@amd.com, thellstrom@vmware.com,
+ linux-graphics-maintainer@vmware.com, bskeggs@redhat.com,
+ harry.wentland@amd.com, mcoquelin.stm32@gmail.com, sunpeng.li@amd.com,
+ linux-arm-msm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ vincent.abriou@st.com, rodrigosiqueiramelo@gmail.com, philippe.cornu@st.com,
+ yannick.fertre@st.com, alexander.deucher@amd.com,
+ freedreno@lists.freedesktop.org, christian.koenig@amd.com
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Wed, Jan 15, 2020 at 01:16:33PM +0100, Thomas Zimmermann wrote:
+> VBLANK interrupts can be disabled immediately or with a delay, where the
+> latter is the default. The former option can be selected by setting
+> get_vblank_timestamp, and enabling vblank_disable_immediate in struct
+> drm_device.
+> =
 
-Series: series starting with [v2] drm/i915: Keep track of request among the scheduling lists (rev3)
-URL   : https://patchwork.freedesktop.org/series/72048/
-State : warning
+> The setup is only evaluated once when DRM initializes VBLANKs. Evaluating
+> the settings on each use of vblank_disable_immediate will allow for easy
+> integration of CRTC VBLANK functions.
+> =
 
-== Summary ==
+> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+> ---
+>  drivers/gpu/drm/drm_vblank.c | 31 ++++++++++++++-----------------
+>  1 file changed, 14 insertions(+), 17 deletions(-)
+> =
 
-CALL    scripts/checksyscalls.sh
-  CALL    scripts/atomic/check-atomics.sh
-  CHK     include/generated/compile.h
-Kernel: arch/x86/boot/bzImage is ready  (#1)
-  Building modules, stage 2.
-  MODPOST 122 modules
-ERROR: "__udivdi3" [drivers/gpu/drm/amd/amdgpu/amdgpu.ko] undefined!
-scripts/Makefile.modpost:93: recipe for target '__modpost' failed
-make[1]: *** [__modpost] Error 1
-Makefile:1282: recipe for target 'modules' failed
-make: *** [modules] Error 2
+> diff --git a/drivers/gpu/drm/drm_vblank.c b/drivers/gpu/drm/drm_vblank.c
+> index 3f1dd54cc8bb..abb085c67d82 100644
+> --- a/drivers/gpu/drm/drm_vblank.c
+> +++ b/drivers/gpu/drm/drm_vblank.c
+> @@ -481,19 +481,6 @@ int drm_vblank_init(struct drm_device *dev, unsigned=
+ int num_crtcs)
+>  =
 
-== Logs ==
+>  	DRM_INFO("Supports vblank timestamp caching Rev 2 (21.10.2013).\n");
+>  =
 
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16108/build_32bit.log
+> -	/* Driver specific high-precision vblank timestamping supported? */
+> -	if (dev->driver->get_vblank_timestamp)
+> -		DRM_INFO("Driver supports precise vblank timestamp query.\n");
+> -	else
+> -		DRM_INFO("No driver support for vblank timestamp query.\n");
+> -
+> -	/* Must have precise timestamping for reliable vblank instant disable */
+> -	if (dev->vblank_disable_immediate && !dev->driver->get_vblank_timestamp=
+) {
+> -		dev->vblank_disable_immediate =3D false;
+> -		DRM_INFO("Setting vblank_disable_immediate to false because "
+> -			 "get_vblank_timestamp =3D=3D NULL\n");
+> -	}
+
+Which drivers are so broken they set vblank_disable_immediate to true
+without having the vfunc specified? IMO this code should just go away
+(or converted to a WARN).
+
+> -
+>  	return 0;
+>  =
+
+>  err:
+> @@ -1070,6 +1057,15 @@ int drm_crtc_vblank_get(struct drm_crtc *crtc)
+>  }
+>  EXPORT_SYMBOL(drm_crtc_vblank_get);
+>  =
+
+> +static bool __vblank_disable_immediate(struct drm_device *dev, unsigned =
+int pipe)
+> +{
+> +	if (!dev->vblank_disable_immediate)
+> +		return false;
+> +	if (!dev->driver->get_vblank_timestamp)
+> +		return false;
+> +	return true;
+> +}
+> +
+>  static void drm_vblank_put(struct drm_device *dev, unsigned int pipe)
+>  {
+>  	struct drm_vblank_crtc *vblank =3D &dev->vblank[pipe];
+> @@ -1086,7 +1082,7 @@ static void drm_vblank_put(struct drm_device *dev, =
+unsigned int pipe)
+>  			return;
+>  		else if (drm_vblank_offdelay < 0)
+>  			vblank_disable_fn(&vblank->disable_timer);
+> -		else if (!dev->vblank_disable_immediate)
+> +		else if (__vblank_disable_immediate(dev, pipe))
+>  			mod_timer(&vblank->disable_timer,
+>  				  jiffies + ((drm_vblank_offdelay * HZ)/1000));
+>  	}
+> @@ -1663,7 +1659,7 @@ int drm_wait_vblank_ioctl(struct drm_device *dev, v=
+oid *data,
+>  	/* If the counter is currently enabled and accurate, short-circuit
+>  	 * queries to return the cached timestamp of the last vblank.
+>  	 */
+> -	if (dev->vblank_disable_immediate &&
+> +	if (__vblank_disable_immediate(dev, pipe) &&
+>  	    drm_wait_vblank_is_query(vblwait) &&
+>  	    READ_ONCE(vblank->enabled)) {
+>  		drm_wait_vblank_reply(dev, pipe, &vblwait->reply);
+> @@ -1820,7 +1816,7 @@ bool drm_handle_vblank(struct drm_device *dev, unsi=
+gned int pipe)
+>  	 * been signaled. The disable has to be last (after
+>  	 * drm_handle_vblank_events) so that the timestamp is always accurate.
+>  	 */
+> -	disable_irq =3D (dev->vblank_disable_immediate &&
+> +	disable_irq =3D (__vblank_disable_immediate(dev, pipe) &&
+>  		       drm_vblank_offdelay > 0 &&
+>  		       !atomic_read(&vblank->refcount));
+>  =
+
+> @@ -1893,7 +1889,8 @@ int drm_crtc_get_sequence_ioctl(struct drm_device *=
+dev, void *data,
+>  	pipe =3D drm_crtc_index(crtc);
+>  =
+
+>  	vblank =3D &dev->vblank[pipe];
+> -	vblank_enabled =3D dev->vblank_disable_immediate && READ_ONCE(vblank->e=
+nabled);
+> +	vblank_enabled =3D __vblank_disable_immediate(dev, pipe) &&
+> +			 READ_ONCE(vblank->enabled);
+>  =
+
+>  	if (!vblank_enabled) {
+>  		ret =3D drm_crtc_vblank_get(crtc);
+> -- =
+
+> 2.24.1
+> =
+
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+-- =
+
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
