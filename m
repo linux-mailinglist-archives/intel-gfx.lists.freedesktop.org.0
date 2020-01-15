@@ -1,31 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A382313B81D
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Jan 2020 04:24:06 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C91513B81E
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Jan 2020 04:24:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 30B1C6E830;
-	Wed, 15 Jan 2020 03:24:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7DC6D6E834;
+	Wed, 15 Jan 2020 03:24:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id B13C66E830;
- Wed, 15 Jan 2020 03:24:01 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 6EF3E6E834;
+ Wed, 15 Jan 2020 03:24:03 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id A236BA47E0;
- Wed, 15 Jan 2020 03:24:01 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 5A815A47E0;
+ Wed, 15 Jan 2020 03:24:03 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: John.C.Harrison@Intel.com
-Date: Wed, 15 Jan 2020 03:24:01 -0000
-Message-ID: <157905864163.2009.4220443290481128574@emeril.freedesktop.org>
+Date: Wed, 15 Jan 2020 03:24:03 -0000
+Message-ID: <157905864336.2007.3570501954123817473@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20200115024053.11333-1-John.C.Harrison@Intel.com>
 In-Reply-To: <20200115024053.11333-1-John.C.Harrison@Intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/guc=3A_Update_to_GuC_FW_v40?=
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiB3YXJuaW5nIGZvciBk?=
+ =?utf-8?q?rm/i915/guc=3A_Update_to_GuC_FW_v40?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,123 +49,11 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 Series: drm/i915/guc: Update to GuC FW v40
 URL   : https://patchwork.freedesktop.org/series/72032/
-State : success
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_7746 -> Patchwork_16104
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16104/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_16104 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_module_load@reload-with-fault-injection:
-    - fi-skl-6700k2:      [PASS][1] -> [DMESG-WARN][2] ([i915#889])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7746/fi-skl-6700k2/igt@i915_module_load@reload-with-fault-injection.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16104/fi-skl-6700k2/igt@i915_module_load@reload-with-fault-injection.html
-    - fi-kbl-x1275:       [PASS][3] -> [INCOMPLETE][4] ([i915#879])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7746/fi-kbl-x1275/igt@i915_module_load@reload-with-fault-injection.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16104/fi-kbl-x1275/igt@i915_module_load@reload-with-fault-injection.html
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-skl-6700k2:      [PASS][5] -> [INCOMPLETE][6] ([i915#151])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7746/fi-skl-6700k2/igt@i915_pm_rpm@module-reload.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16104/fi-skl-6700k2/igt@i915_pm_rpm@module-reload.html
-    - fi-skl-lmem:        [PASS][7] -> [DMESG-WARN][8] ([i915#889]) +1 similar issue
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7746/fi-skl-lmem/igt@i915_pm_rpm@module-reload.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16104/fi-skl-lmem/igt@i915_pm_rpm@module-reload.html
-
-  * igt@i915_selftest@live_execlists:
-    - fi-kbl-soraka:      [PASS][9] -> [DMESG-FAIL][10] ([i915#656])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7746/fi-kbl-soraka/igt@i915_selftest@live_execlists.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16104/fi-kbl-soraka/igt@i915_selftest@live_execlists.html
-
-  * igt@i915_selftest@live_sanitycheck:
-    - fi-skl-lmem:        [PASS][11] -> [INCOMPLETE][12] ([i915#198])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7746/fi-skl-lmem/igt@i915_selftest@live_sanitycheck.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16104/fi-skl-lmem/igt@i915_selftest@live_sanitycheck.html
-
-  * igt@kms_chamelium@hdmi-hpd-fast:
-    - fi-kbl-7500u:       [PASS][13] -> [FAIL][14] ([fdo#111096] / [i915#323])
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7746/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16104/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_close_race@basic-threads:
-    - fi-byt-n2820:       [TIMEOUT][15] ([fdo#112271] / [i915#816]) -> [PASS][16]
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7746/fi-byt-n2820/igt@gem_close_race@basic-threads.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16104/fi-byt-n2820/igt@gem_close_race@basic-threads.html
-
-  * igt@i915_selftest@live_blt:
-    - fi-hsw-4770:        [DMESG-FAIL][17] ([i915#770]) -> [PASS][18]
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7746/fi-hsw-4770/igt@i915_selftest@live_blt.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16104/fi-hsw-4770/igt@i915_selftest@live_blt.html
-
-  * igt@kms_chamelium@hdmi-crc-fast:
-    - fi-icl-u2:          [FAIL][19] ([fdo#109635]) -> [PASS][20]
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7746/fi-icl-u2/igt@kms_chamelium@hdmi-crc-fast.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16104/fi-icl-u2/igt@kms_chamelium@hdmi-crc-fast.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109635]: https://bugs.freedesktop.org/show_bug.cgi?id=109635
-  [fdo#111096]: https://bugs.freedesktop.org/show_bug.cgi?id=111096
-  [fdo#112271]: https://bugs.freedesktop.org/show_bug.cgi?id=112271
-  [i915#151]: https://gitlab.freedesktop.org/drm/intel/issues/151
-  [i915#198]: https://gitlab.freedesktop.org/drm/intel/issues/198
-  [i915#323]: https://gitlab.freedesktop.org/drm/intel/issues/323
-  [i915#656]: https://gitlab.freedesktop.org/drm/intel/issues/656
-  [i915#770]: https://gitlab.freedesktop.org/drm/intel/issues/770
-  [i915#816]: https://gitlab.freedesktop.org/drm/intel/issues/816
-  [i915#879]: https://gitlab.freedesktop.org/drm/intel/issues/879
-  [i915#889]: https://gitlab.freedesktop.org/drm/intel/issues/889
-  [i915#937]: https://gitlab.freedesktop.org/drm/intel/issues/937
-
-
-Participating hosts (42 -> 44)
-------------------------------
-
-  Additional (9): fi-glk-dsi fi-bsw-kefka fi-elk-e7500 fi-pnv-d510 fi-icl-y fi-icl-guc fi-icl-dsi fi-bsw-nick fi-snb-2600 
-  Missing    (7): fi-hsw-4770r fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-snb-2520m fi-tgl-y 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_7746 -> Patchwork_16104
-
-  CI-20190529: 20190529
-  CI_DRM_7746: 84d16aa256204bccaaf382504a69fe0822e67ba0 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5365: e9ec0ed63b25c86861ffac3c8601cc4d1b910b65 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_16104: de48c2fe7caafa728dea69252f8ee998131c43eb @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Kernel 32bit build ==
-
-Warning: Kernel 32bit buildtest failed:
-https://intel-gfx-ci.01.org/Patchwork_16104/build_32bit.log
-
-  CALL    scripts/checksyscalls.sh
+CALL    scripts/checksyscalls.sh
   CALL    scripts/atomic/check-atomics.sh
   CHK     include/generated/compile.h
 Kernel: arch/x86/boot/bzImage is ready  (#1)
@@ -177,14 +65,9 @@ make[1]: *** [__modpost] Error 1
 Makefile:1282: recipe for target 'modules' failed
 make: *** [modules] Error 2
 
-
-== Linux commits ==
-
-de48c2fe7caa drm/i915/guc: Update to GuC FW v40
-
 == Logs ==
 
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16104/index.html
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16104/build_32bit.log
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
