@@ -2,30 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8AFFB13C5E6
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Jan 2020 15:25:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8790913C614
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Jan 2020 15:32:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DAB046EA0C;
-	Wed, 15 Jan 2020 14:25:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 02F8F6EAB2;
+	Wed, 15 Jan 2020 14:32:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 424C96EA0B;
- Wed, 15 Jan 2020 14:25:05 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 2E20FA0096;
- Wed, 15 Jan 2020 14:25:05 +0000 (UTC)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 554B26EAB2
+ for <intel-gfx@lists.freedesktop.org>; Wed, 15 Jan 2020 14:32:48 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 15 Jan 2020 06:32:47 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,322,1574150400"; d="scan'208";a="425045286"
+Received: from slisovsk-lenovo-ideapad-720s-13ikb.fi.intel.com ([10.237.72.89])
+ by fmsmga006.fm.intel.com with ESMTP; 15 Jan 2020 06:32:45 -0800
+From: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 15 Jan 2020 16:30:28 +0200
+Message-Id: <20200115143033.28284-1-stanislav.lisovskiy@intel.com>
+X-Mailer: git-send-email 2.24.1.485.gad05a3d8e5
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
-Date: Wed, 15 Jan 2020 14:25:05 -0000
-Message-ID: <157909830515.2009.17024469903613985365@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200115140822.55756-1-michal.wajdeczko@intel.com>
-In-Reply-To: <20200115140822.55756-1-michal.wajdeczko@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_Misc_GuC_CT_improvements_-_part_II?=
+Subject: [Intel-gfx] [PATCH v12 0/5] Enable second DBuf slice for ICL and TGL
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,42 +40,37 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Those patch series, do some initial preparation DBuf manipulating code
+cleanups, i.e remove redundant structures/code, switch to mask
+based DBuf manupulation, get into use DBuf assignment according to
+BSpec rules.
 
-Series: Misc GuC CT improvements - part II
-URL   : https://patchwork.freedesktop.org/series/72071/
-State : warning
+Stanislav Lisovskiy (5):
+  drm/i915: Remove skl_ddl_allocation struct
+  drm/i915: Move dbuf slice update to proper place
+  drm/i915: Manipulate DBuf slices properly
+  drm/i915: Introduce parameterized DBUF_CTL
+  drm/i915: Correctly map DBUF slices to pipes
 
-== Summary ==
+ drivers/gpu/drm/i915/display/intel_display.c  |  52 +-
+ .../drm/i915/display/intel_display_power.c    |  82 ++--
+ .../drm/i915/display/intel_display_power.h    |   6 +
+ .../drm/i915/display/intel_display_types.h    |   3 +
+ drivers/gpu/drm/i915/i915_drv.h               |   7 +-
+ drivers/gpu/drm/i915/i915_pci.c               |   5 +-
+ drivers/gpu/drm/i915/i915_reg.h               |  12 +-
+ drivers/gpu/drm/i915/intel_device_info.h      |   1 +
+ drivers/gpu/drm/i915/intel_pm.c               | 457 +++++++++++++++---
+ drivers/gpu/drm/i915/intel_pm.h               |   7 +-
+ 10 files changed, 490 insertions(+), 142 deletions(-)
 
-$ dim checkpatch origin/drm-tip
-b07a956a95fe drm/i915/guc: Don't GEM_BUG_ON on corrupted G2H CTB
--:50: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'tail >= size'
-#50: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c:592:
-+	if (unlikely(!IS_ALIGNED(head, 4) ||
-+		     !IS_ALIGNED(tail, 4) ||
-+		     !IS_ALIGNED(size, 4) ||
-+		     (tail >= size) || (head >= size))) {
-
--:50: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'head >= size'
-#50: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c:592:
-+	if (unlikely(!IS_ALIGNED(head, 4) ||
-+		     !IS_ALIGNED(tail, 4) ||
-+		     !IS_ALIGNED(size, 4) ||
-+		     (tail >= size) || (head >= size))) {
-
-total: 0 errors, 0 warnings, 2 checks, 67 lines checked
-58e8d5866323 i915/drm/guc: Don't pass CTB while writing
-649a099a7a62 i915/drm/guc: Don't pass CTB while reading
-ce8ba4dabf49 drm/i915/guc: Switch to CT_ERROR in ct_read
-17839d70f06c drm/i915/guc: Introduce CT_DEBUG
+-- 
+2.24.1.485.gad05a3d8e5
 
 _______________________________________________
 Intel-gfx mailing list
