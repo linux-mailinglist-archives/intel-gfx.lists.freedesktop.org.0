@@ -2,29 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 713D613CE52
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Jan 2020 21:53:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C10FB13CE7F
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Jan 2020 22:01:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 736896EA99;
-	Wed, 15 Jan 2020 20:52:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1181B6EA9F;
+	Wed, 15 Jan 2020 21:01:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AE0F56EA98;
- Wed, 15 Jan 2020 20:52:53 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19893960-1500050 
- for multiple; Wed, 15 Jan 2020 20:52:47 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: dri-devel@lists.freedesktop.org
-Date: Wed, 15 Jan 2020 20:52:45 +0000
-Message-Id: <20200115205245.2772800-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.25.0
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 70FE26EA9F
+ for <intel-gfx@lists.freedesktop.org>; Wed, 15 Jan 2020 21:01:51 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 15 Jan 2020 13:01:51 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,323,1574150400"; d="scan'208";a="225720770"
+Received: from orsmsx107.amr.corp.intel.com ([10.22.240.5])
+ by orsmga003.jf.intel.com with ESMTP; 15 Jan 2020 13:01:50 -0800
+Received: from orsmsx113.amr.corp.intel.com (10.22.240.9) by
+ ORSMSX107.amr.corp.intel.com (10.22.240.5) with Microsoft SMTP Server (TLS)
+ id 14.3.439.0; Wed, 15 Jan 2020 13:01:50 -0800
+Received: from vkasired-desk2.fm.intel.com (10.22.254.138) by
+ ORSMSX113.amr.corp.intel.com (10.22.240.9) with Microsoft SMTP Server (TLS)
+ id 14.3.439.0; Wed, 15 Jan 2020 13:01:50 -0800
+From: Vivek Kasireddy <vivek.kasireddy@intel.com>
+To: <intel-gfx@lists.freedesktop.org>
+Date: Wed, 15 Jan 2020 12:57:04 -0800
+Message-ID: <20200115205704.22674-1-vivek.kasireddy@intel.com>
+X-Mailer: git-send-email 2.21.1
+In-Reply-To: <87d0blje23.fsf@intel.com>
+References: <87d0blje23.fsf@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm: Inject a cond_resched() into long
- drm_clflush_sg()
+X-Originating-IP: [10.22.254.138]
+Subject: [Intel-gfx] [PATCH] drm/i915/dsi: Lookup the i2c bus from ACPI NS
+ only if CONFIG_ACPI=y (v3)
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,110 +50,85 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, David Laight <David.Laight@ACULAB.COM>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Hulk Robot <hulkci@huawei.com>, Jani
+ Nikula <jani.nikula@intel.com>, Zhang Xiaoxu <zhangxiaoxu5@huawei.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Since we may try and flush the cachelines associated with large buffers
-(an 8K framebuffer is about 128MiB, even before we try HDR), this leads
-to unacceptably long latencies (when using a voluntary CONFIG_PREEMPT).
-If we call cond_resched() between each sg chunk, that it about every 128
-pages, we have a natural break point in which to check if the process
-needs to be rescheduled. Naturally, this means that drm_clflush_sg() can
-only be called from process context -- which is true at the moment. The
-other clflush routines remain usable from atomic context.
-
-Even though flushing large objects takes a demonstrable amount to time
-to flush all the cachelines, clflush is still preferred over a
-system-wide wbinvd as the latter has unpredictable latencies affecting
-the whole system not just the local task.
-
-Reported-by: David Laight <David.Laight@ACULAB.COM>
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: David Laight <David.Laight@ACULAB.COM>
----
- drivers/gpu/drm/drm_cache.c | 49 ++++++++++++++++++++++++++++++++++---
- 1 file changed, 45 insertions(+), 4 deletions(-)
-
-diff --git a/drivers/gpu/drm/drm_cache.c b/drivers/gpu/drm/drm_cache.c
-index 03e01b000f7a..fbd2bb644544 100644
---- a/drivers/gpu/drm/drm_cache.c
-+++ b/drivers/gpu/drm/drm_cache.c
-@@ -112,23 +112,64 @@ drm_clflush_pages(struct page *pages[], unsigned long num_pages)
- }
- EXPORT_SYMBOL(drm_clflush_pages);
- 
-+static __always_inline struct sgt_iter {
-+	struct scatterlist *sgp;
-+	unsigned long pfn;
-+	unsigned int curr;
-+	unsigned int max;
-+} __sgt_iter(struct scatterlist *sgl) {
-+	struct sgt_iter s = { .sgp = sgl };
-+
-+	if (s.sgp) {
-+		s.max = s.curr = s.sgp->offset;
-+		s.max += s.sgp->length;
-+		s.pfn = page_to_pfn(sg_page(s.sgp));
-+	}
-+
-+	return s;
-+}
-+
-+static inline struct scatterlist *__sg_next_resched(struct scatterlist *sg)
-+{
-+	if (sg_is_last(sg))
-+		return NULL;
-+
-+	++sg;
-+	if (unlikely(sg_is_chain(sg))) {
-+		sg = sg_chain_ptr(sg);
-+		cond_resched();
-+	}
-+	return sg;
-+}
-+
-+#define for_each_sgt_page(__pp, __iter, __sgt)				\
-+	for ((__iter) = __sgt_iter((__sgt)->sgl);			\
-+	     ((__pp) = (__iter).pfn == 0 ? NULL :			\
-+	      pfn_to_page((__iter).pfn + ((__iter).curr >> PAGE_SHIFT))); \
-+	     (((__iter).curr += PAGE_SIZE) >= (__iter).max) ?		\
-+	     (__iter) = __sgt_iter(__sg_next_resched((__iter).sgp)), 0 : 0)
-+
- /**
-  * drm_clflush_sg - Flush dcache lines pointing to a scather-gather.
-  * @st: struct sg_table.
-  *
-  * Flush every data cache line entry that points to an address in the
-- * sg.
-+ * sg. This may schedule between scatterlist chunks, in order to keep
-+ * the system preemption-latency down for large buffers.
-  */
- void
- drm_clflush_sg(struct sg_table *st)
- {
-+	might_sleep();
-+
- #if defined(CONFIG_X86)
- 	if (static_cpu_has(X86_FEATURE_CLFLUSH)) {
--		struct sg_page_iter sg_iter;
-+		struct sgt_iter sg_iter;
-+		struct page *page;
- 
- 		mb(); /*CLFLUSH is ordered only by using memory barriers*/
--		for_each_sg_page(st->sgl, &sg_iter, st->nents, 0)
--			drm_clflush_page(sg_page_iter_page(&sg_iter));
-+		for_each_sgt_page(page, sg_iter, st)
-+			drm_clflush_page(page);
- 		mb(); /*Make sure that all cache line entry is flushed*/
- 
- 		return;
--- 
-2.25.0
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+UGVyZm9ybSB0aGUgaTJjIGJ1cy9hZGFwdGVyIGxvb2t1cCBmcm9tIEFDUEkgTmFtZXNwYWNlIG9u
+bHkgaWYKQUNQSSBpcyBlbmFibGVkIGluIHRoZSBrZXJuZWwgY29uZmlnLiBJZiBBQ1BJIGlzIG5v
+dCBlbmFibGVkIG9yIGlmCnRoZSBsb29rdXAgZmFpbHMsIHdlJ2xsIGZhbGxiYWNrIHRvIHVzaW5n
+IHRoZSBWQlQgZm9yIGlkZW50aXlpbmcKdGhlIGkyYyBidXMuCgp2MjogQ2xlYXJseSBpZGVudGlm
+eSB0aGUgY29tbWl0IHRoaXMgcGF0Y2ggaXMgZml4aW5nIChKYW5pKQoKdjM6IFJlbW92ZSB0aGUg
+aTJjX2J1c19udW0gPj0gMCBjaGVjayBmcm9tIHRoZSBhZGFwdGVyIGxvb2t1cCBmdW5jdGlvbgph
+cyB0aGlzIHdvdWxkIHByZXZlbnQgQUNQSSBidXMgbnVtYmVyIG92ZXJyaWRlLiBUaGlzIGNoZWNr
+IHdhcyBtYWlubHkKdGhlcmUgdG8gcmV0dXJuIGVhcmx5IGlmIHRoZSBidXMgbnVtYmVyIGhhcyBh
+bHJlYWR5IGJlZW4gZm91bmQgYnV0IHdlCmFueXdheSByZXR1cm4gaW4gdGhlIG5leHQgbGluZSBp
+ZiB0aGUgc2xhdmUgYWRkcmVzcyBkb2VzIG5vdCBtYXRjaC4KCkZpeGVzOiA4Y2JmODlkYjI5NDEg
+KCJkcm0vaTkxNS9kc2k6IFBhcnNlIHRoZSBJMkMgZWxlbWVudCBmcm9tIHRoZSBWQlQgTUlQSSBz
+ZXF1ZW5jZSBibG9jayAodjMpIikKQ2M6IEhhbnMgZGUgR29lZGUgPGhkZWdvZWRlQHJlZGhhdC5j
+b20+CkNjOiBOYWJlbmR1IE1haXRpIDxuYWJlbmR1LmJpa2FzaC5tYWl0aUBpbnRlbC5jb20+CkNj
+OiBNYXR0IFJvcGVyIDxtYXR0aGV3LmQucm9wZXJAaW50ZWwuY29tPgpDYzogQm9iIFBhYXV3ZSA8
+Ym9iLmoucGFhdXdlQGludGVsLmNvbT4KQ2M6IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFs
+YUBsaW51eC5pbnRlbC5jb20+CkNjOiBKYW5pIE5pa3VsYSA8amFuaS5uaWt1bGFAaW50ZWwuY29t
+PgpDYzogWmhhbmcgWGlhb3h1IDx6aGFuZ3hpYW94dTVAaHVhd2VpLmNvbT4KUmVwb3J0ZWQtYnk6
+IEh1bGsgUm9ib3QgPGh1bGtjaUBodWF3ZWkuY29tPgpTaWduZWQtb2ZmLWJ5OiBWaXZlayBLYXNp
+cmVkZHkgPHZpdmVrLmthc2lyZWRkeUBpbnRlbC5jb20+Ci0tLQogZHJpdmVycy9ncHUvZHJtL2k5
+MTUvZGlzcGxheS9pbnRlbF9kc2lfdmJ0LmMgfCA1MCArKysrKysrKysrKysrLS0tLS0tLQogMSBm
+aWxlIGNoYW5nZWQsIDMyIGluc2VydGlvbnMoKyksIDE4IGRlbGV0aW9ucygtKQoKZGlmZiAtLWdp
+dCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHNpX3ZidC5jIGIvZHJpdmVy
+cy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kc2lfdmJ0LmMKaW5kZXggODlmYjBkOTBiNjk0
+Li4wNGY5NTNiYThmMDAgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkv
+aW50ZWxfZHNpX3ZidC5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxf
+ZHNpX3ZidC5jCkBAIC0zODQsNiArMzg0LDcgQEAgc3RhdGljIGNvbnN0IHU4ICptaXBpX2V4ZWNf
+Z3BpbyhzdHJ1Y3QgaW50ZWxfZHNpICppbnRlbF9kc2ksIGNvbnN0IHU4ICpkYXRhKQogCXJldHVy
+biBkYXRhOwogfQogCisjaWZkZWYgQ09ORklHX0FDUEkKIHN0YXRpYyBpbnQgaTJjX2FkYXB0ZXJf
+bG9va3VwKHN0cnVjdCBhY3BpX3Jlc291cmNlICphcmVzLCB2b2lkICpkYXRhKQogewogCXN0cnVj
+dCBpMmNfYWRhcHRlcl9sb29rdXAgKmxvb2t1cCA9IGRhdGE7CkBAIC0zOTMsOCArMzk0LDcgQEAg
+c3RhdGljIGludCBpMmNfYWRhcHRlcl9sb29rdXAoc3RydWN0IGFjcGlfcmVzb3VyY2UgKmFyZXMs
+IHZvaWQgKmRhdGEpCiAJYWNwaV9oYW5kbGUgYWRhcHRlcl9oYW5kbGU7CiAJYWNwaV9zdGF0dXMg
+c3RhdHVzOwogCi0JaWYgKGludGVsX2RzaS0+aTJjX2J1c19udW0gPj0gMCB8fAotCSAgICAhaTJj
+X2FjcGlfZ2V0X2kyY19yZXNvdXJjZShhcmVzLCAmc2IpKQorCWlmICghaTJjX2FjcGlfZ2V0X2ky
+Y19yZXNvdXJjZShhcmVzLCAmc2IpKQogCQlyZXR1cm4gMTsKIAogCWlmIChsb29rdXAtPnNsYXZl
+X2FkZHIgIT0gc2ItPnNsYXZlX2FkZHJlc3MpCkBAIC00MTMsMTQgKzQxMyw0MSBAQCBzdGF0aWMg
+aW50IGkyY19hZGFwdGVyX2xvb2t1cChzdHJ1Y3QgYWNwaV9yZXNvdXJjZSAqYXJlcywgdm9pZCAq
+ZGF0YSkKIAlyZXR1cm4gMTsKIH0KIAotc3RhdGljIGNvbnN0IHU4ICptaXBpX2V4ZWNfaTJjKHN0
+cnVjdCBpbnRlbF9kc2kgKmludGVsX2RzaSwgY29uc3QgdTggKmRhdGEpCitzdGF0aWMgdm9pZCBp
+MmNfYWNwaV9maW5kX2FkYXB0ZXIoc3RydWN0IGludGVsX2RzaSAqaW50ZWxfZHNpLAorCQkJCSAg
+Y29uc3QgdTE2IHNsYXZlX2FkZHIpCiB7CiAJc3RydWN0IGRybV9kZXZpY2UgKmRybV9kZXYgPSBp
+bnRlbF9kc2ktPmJhc2UuYmFzZS5kZXY7CiAJc3RydWN0IGRldmljZSAqZGV2ID0gJmRybV9kZXYt
+PnBkZXYtPmRldjsKLQlzdHJ1Y3QgaTJjX2FkYXB0ZXIgKmFkYXB0ZXI7CiAJc3RydWN0IGFjcGlf
+ZGV2aWNlICphY3BpX2RldjsKIAlzdHJ1Y3QgbGlzdF9oZWFkIHJlc291cmNlX2xpc3Q7CiAJc3Ry
+dWN0IGkyY19hZGFwdGVyX2xvb2t1cCBsb29rdXA7CisKKwlhY3BpX2RldiA9IEFDUElfQ09NUEFO
+SU9OKGRldik7CisJaWYgKGFjcGlfZGV2KSB7CisJCW1lbXNldCgmbG9va3VwLCAwLCBzaXplb2Yo
+bG9va3VwKSk7CisJCWxvb2t1cC5zbGF2ZV9hZGRyID0gc2xhdmVfYWRkcjsKKwkJbG9va3VwLmlu
+dGVsX2RzaSA9IGludGVsX2RzaTsKKwkJbG9va3VwLmRldl9oYW5kbGUgPSBhY3BpX2RldmljZV9o
+YW5kbGUoYWNwaV9kZXYpOworCisJCUlOSVRfTElTVF9IRUFEKCZyZXNvdXJjZV9saXN0KTsKKwkJ
+YWNwaV9kZXZfZ2V0X3Jlc291cmNlcyhhY3BpX2RldiwgJnJlc291cmNlX2xpc3QsCisJCQkJICAg
+ICAgIGkyY19hZGFwdGVyX2xvb2t1cCwKKwkJCQkgICAgICAgJmxvb2t1cCk7CisJCWFjcGlfZGV2
+X2ZyZWVfcmVzb3VyY2VfbGlzdCgmcmVzb3VyY2VfbGlzdCk7CisJfQorfQorI2Vsc2UKK3N0YXRp
+YyBpbmxpbmUgdm9pZCBpMmNfYWNwaV9maW5kX2FkYXB0ZXIoc3RydWN0IGludGVsX2RzaSAqaW50
+ZWxfZHNpLAorCQkJCQkgY29uc3QgdTE2IHNsYXZlX2FkZHIpCit7Cit9CisjZW5kaWYKKworc3Rh
+dGljIGNvbnN0IHU4ICptaXBpX2V4ZWNfaTJjKHN0cnVjdCBpbnRlbF9kc2kgKmludGVsX2RzaSwg
+Y29uc3QgdTggKmRhdGEpCit7CisJc3RydWN0IGRybV9kZXZpY2UgKmRybV9kZXYgPSBpbnRlbF9k
+c2ktPmJhc2UuYmFzZS5kZXY7CisJc3RydWN0IGRldmljZSAqZGV2ID0gJmRybV9kZXYtPnBkZXYt
+PmRldjsKKwlzdHJ1Y3QgaTJjX2FkYXB0ZXIgKmFkYXB0ZXI7CiAJc3RydWN0IGkyY19tc2cgbXNn
+OwogCWludCByZXQ7CiAJdTggdmJ0X2kyY19idXNfbnVtID0gKihkYXRhICsgMik7CkBAIC00MzEs
+MjAgKzQ1OCw3IEBAIHN0YXRpYyBjb25zdCB1OCAqbWlwaV9leGVjX2kyYyhzdHJ1Y3QgaW50ZWxf
+ZHNpICppbnRlbF9kc2ksIGNvbnN0IHU4ICpkYXRhKQogCiAJaWYgKGludGVsX2RzaS0+aTJjX2J1
+c19udW0gPCAwKSB7CiAJCWludGVsX2RzaS0+aTJjX2J1c19udW0gPSB2YnRfaTJjX2J1c19udW07
+Ci0KLQkJYWNwaV9kZXYgPSBBQ1BJX0NPTVBBTklPTihkZXYpOwotCQlpZiAoYWNwaV9kZXYpIHsK
+LQkJCW1lbXNldCgmbG9va3VwLCAwLCBzaXplb2YobG9va3VwKSk7Ci0JCQlsb29rdXAuc2xhdmVf
+YWRkciA9IHNsYXZlX2FkZHI7Ci0JCQlsb29rdXAuaW50ZWxfZHNpID0gaW50ZWxfZHNpOwotCQkJ
+bG9va3VwLmRldl9oYW5kbGUgPSBhY3BpX2RldmljZV9oYW5kbGUoYWNwaV9kZXYpOwotCi0JCQlJ
+TklUX0xJU1RfSEVBRCgmcmVzb3VyY2VfbGlzdCk7Ci0JCQlhY3BpX2Rldl9nZXRfcmVzb3VyY2Vz
+KGFjcGlfZGV2LCAmcmVzb3VyY2VfbGlzdCwKLQkJCQkJICAgICAgIGkyY19hZGFwdGVyX2xvb2t1
+cCwKLQkJCQkJICAgICAgICZsb29rdXApOwotCQkJYWNwaV9kZXZfZnJlZV9yZXNvdXJjZV9saXN0
+KCZyZXNvdXJjZV9saXN0KTsKLQkJfQorCQlpMmNfYWNwaV9maW5kX2FkYXB0ZXIoaW50ZWxfZHNp
+LCBzbGF2ZV9hZGRyKTsKIAl9CiAKIAlhZGFwdGVyID0gaTJjX2dldF9hZGFwdGVyKGludGVsX2Rz
+aS0+aTJjX2J1c19udW0pOwotLSAKMi4yMS4xCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0
+cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9s
+aXN0aW5mby9pbnRlbC1nZngK
