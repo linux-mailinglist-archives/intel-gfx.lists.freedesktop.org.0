@@ -1,36 +1,36 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id ECA6313B6EC
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Jan 2020 02:32:40 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 666A613B6ED
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Jan 2020 02:32:41 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4932F6E81D;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7D0546E81F;
 	Wed, 15 Jan 2020 01:32:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D37296E81D
- for <intel-gfx@lists.freedesktop.org>; Wed, 15 Jan 2020 01:32:37 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 966546E81D
+ for <intel-gfx@lists.freedesktop.org>; Wed, 15 Jan 2020 01:32:38 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
  by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 14 Jan 2020 17:32:37 -0800
+ 14 Jan 2020 17:32:38 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,320,1574150400"; d="scan'208";a="305337582"
+X-IronPort-AV: E=Sophos;i="5.70,320,1574150400"; d="scan'208";a="305337586"
 Received: from dceraolo-linux.fm.intel.com ([10.1.27.145])
- by orsmga001.jf.intel.com with ESMTP; 14 Jan 2020 17:32:37 -0800
+ by orsmga001.jf.intel.com with ESMTP; 14 Jan 2020 17:32:38 -0800
 From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 14 Jan 2020 17:31:41 -0800
-Message-Id: <20200115013143.34961-6-daniele.ceraolospurio@intel.com>
+Date: Tue, 14 Jan 2020 17:31:42 -0800
+Message-Id: <20200115013143.34961-7-daniele.ceraolospurio@intel.com>
 X-Mailer: git-send-email 2.24.1
 In-Reply-To: <20200115013143.34961-1-daniele.ceraolospurio@intel.com>
 References: <20200115013143.34961-1-daniele.ceraolospurio@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 5/7] drm/i915/guc: Apply new uC status tracking
- to GuC submission as well
+Subject: [Intel-gfx] [PATCH 6/7] drm/i915/guc: Start considering GuC
+ submission a proper back-end
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,299 +48,275 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-To be able to differentiate the before and after of our commitment to
-GuC submission, which will be used in follow-up patches to early set-up
-the submission structures.
+Now that we commit early to using GuC, we can start setting up the
+engine for GuC submission during engine_init, instead of initializing it
+for execlists submission first and updating it later. Note that the
+change is still mostly cosmetic, since the new GuC submission setup
+function internally calls execlists code, with the only differences being
+part of the execlists-only setup being skipped and a different irq mask.
+
+The GuC submission setup is expect to change and diverge from the
+execlists one with the new GuC interface.
 
 Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Cc: John Harrison <John.C.Harrison@Intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/i915/gt/uc/intel_guc.c        | 12 ++++----
- drivers/gpu/drm/i915/gt/uc/intel_guc.h        | 17 +++++++++--
- .../gpu/drm/i915/gt/uc/intel_guc_submission.c |  9 ++----
- drivers/gpu/drm/i915/gt/uc/intel_uc.c         | 14 ++++-----
- drivers/gpu/drm/i915/gt/uc/intel_uc.h         | 29 +++++++------------
- drivers/gpu/drm/i915/gvt/scheduler.c          |  2 +-
- drivers/gpu/drm/i915/i915_drv.h               |  6 ----
- drivers/gpu/drm/i915/intel_gvt.c              |  2 +-
- 8 files changed, 42 insertions(+), 49 deletions(-)
+ drivers/gpu/drm/i915/gt/intel_engine_cs.c     | 10 +++-
+ drivers/gpu/drm/i915/gt/intel_lrc.c           | 42 ++++++++++-------
+ drivers/gpu/drm/i915/gt/intel_lrc.h           |  2 +
+ .../gpu/drm/i915/gt/uc/intel_guc_submission.c | 47 ++++++++++++++-----
+ .../gpu/drm/i915/gt/uc/intel_guc_submission.h |  4 +-
+ 5 files changed, 71 insertions(+), 34 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc.c b/drivers/gpu/drm/i915/gt/uc/intel_guc.c
-index c46f5ae77348..58884e06e548 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.c
-@@ -207,7 +207,7 @@ static u32 guc_ctl_feature_flags(struct intel_guc *guc)
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+index f451ef376548..3e05d7b8c8a6 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
++++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+@@ -39,6 +39,8 @@
+ #include "intel_reset.h"
+ #include "intel_ring.h"
+ 
++#include "uc/intel_guc_submission.h"
++
+ /* Haswell does have the CXT_SIZE register however it does not appear to be
+  * valid. Now, docs explain in dwords what is in the context object. The full
+  * size is 70720 bytes, however, the power context and execlist context will
+@@ -766,7 +768,9 @@ int intel_engines_init(struct intel_gt *gt)
+ 	enum intel_engine_id id;
+ 	int err;
+ 
+-	if (HAS_EXECLISTS(gt->i915))
++	if (intel_uc_uses_guc_submission(&gt->uc))
++		setup = intel_guc_submission_setup;
++	else if (HAS_EXECLISTS(gt->i915))
+ 		setup = intel_execlists_submission_setup;
+ 	else
+ 		setup = intel_ring_submission_setup;
+@@ -1303,7 +1307,9 @@ static void intel_engine_print_registers(struct intel_engine_cs *engine,
+ 		drm_printf(m, "\tIPEHR: 0x%08x\n", ENGINE_READ(engine, IPEHR));
+ 	}
+ 
+-	if (HAS_EXECLISTS(dev_priv)) {
++	if (intel_engine_in_guc_submission_mode(engine)) {
++		/* nothing to print yet */
++	} else if (HAS_EXECLISTS(dev_priv)) {
+ 		struct i915_request * const *port, *rq;
+ 		const u32 *hws =
+ 			&engine->status_page.addr[I915_HWS_CSB_BUF0_INDEX];
+diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+index 9e430590fb3a..ffb61e513c51 100644
+--- a/drivers/gpu/drm/i915/gt/intel_lrc.c
++++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+@@ -2941,7 +2941,7 @@ static void lrc_destroy_wa_ctx(struct intel_engine_cs *engine)
+ 
+ typedef u32 *(*wa_bb_func_t)(struct intel_engine_cs *engine, u32 *batch);
+ 
+-static int intel_init_workaround_bb(struct intel_engine_cs *engine)
++void intel_logical_ring_init_workaround_bb(struct intel_engine_cs *engine)
  {
- 	u32 flags = 0;
+ 	struct i915_ctx_workarounds *wa_ctx = &engine->wa_ctx;
+ 	struct i915_wa_ctx_bb *wa_bb[2] = { &wa_ctx->indirect_ctx,
+@@ -2953,12 +2953,12 @@ static int intel_init_workaround_bb(struct intel_engine_cs *engine)
+ 	int ret;
  
--	if (!intel_guc_is_submission_supported(guc))
-+	if (!intel_guc_submission_is_used(guc))
- 		flags |= GUC_CTL_DISABLE_SCHEDULER;
+ 	if (engine->class != RENDER_CLASS)
+-		return 0;
++		return;
  
- 	return flags;
-@@ -217,7 +217,7 @@ static u32 guc_ctl_ctxinfo_flags(struct intel_guc *guc)
- {
- 	u32 flags = 0;
+ 	switch (INTEL_GEN(engine->i915)) {
+ 	case 12:
+ 	case 11:
+-		return 0;
++		return;
+ 	case 10:
+ 		wa_bb_fn[0] = gen10_init_indirectctx_bb;
+ 		wa_bb_fn[1] = NULL;
+@@ -2973,13 +2973,13 @@ static int intel_init_workaround_bb(struct intel_engine_cs *engine)
+ 		break;
+ 	default:
+ 		MISSING_CASE(INTEL_GEN(engine->i915));
+-		return 0;
++		return;
+ 	}
  
--	if (intel_guc_is_submission_supported(guc)) {
-+	if (intel_guc_submission_is_used(guc)) {
- 		u32 ctxnum, base;
+ 	ret = lrc_setup_wa_ctx(engine);
+ 	if (ret) {
+ 		DRM_DEBUG_DRIVER("Failed to setup context WA page: %d\n", ret);
+-		return ret;
++		goto out;
+ 	}
  
- 		base = intel_guc_ggtt_offset(guc, guc->stage_desc_pool);
-@@ -348,7 +348,7 @@ int intel_guc_init(struct intel_guc *guc)
+ 	page = i915_gem_object_get_dirty_page(wa_ctx->vma->obj, 0);
+@@ -3008,7 +3008,16 @@ static int intel_init_workaround_bb(struct intel_engine_cs *engine)
  	if (ret)
- 		goto err_ads;
+ 		lrc_destroy_wa_ctx(engine);
  
--	if (intel_guc_is_submission_supported(guc)) {
-+	if (intel_guc_submission_is_used(guc)) {
- 		/*
- 		 * This is stuff we need to have available at fw load time
- 		 * if we are planning to enable submission later
-@@ -389,7 +389,7 @@ void intel_guc_fini(struct intel_guc *guc)
- 
- 	i915_ggtt_disable_guc(gt->ggtt);
- 
--	if (intel_guc_is_submission_supported(guc))
-+	if (intel_guc_submission_is_used(guc))
- 		intel_guc_submission_fini(guc);
- 
- 	intel_guc_ct_fini(&guc->ct);
-@@ -544,7 +544,7 @@ int intel_guc_suspend(struct intel_guc *guc)
- 	 * If GuC communication is enabled but submission is not supported,
- 	 * we do not need to suspend the GuC.
- 	 */
--	if (!intel_guc_submission_is_enabled(guc))
-+	if (!intel_guc_submission_is_used(guc) || !intel_guc_is_running(guc))
- 		return 0;
- 
- 	/*
-@@ -609,7 +609,7 @@ int intel_guc_resume(struct intel_guc *guc)
- 	 * we do not need to resume the GuC but we do need to enable the
- 	 * GuC communication on resume (above).
- 	 */
--	if (!intel_guc_submission_is_enabled(guc))
-+	if (!intel_guc_submission_is_used(guc) || !intel_guc_is_running(guc))
- 		return 0;
- 
- 	return intel_guc_send(guc, action, ARRAY_SIZE(action));
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc.h b/drivers/gpu/drm/i915/gt/uc/intel_guc.h
-index f9e0be843992..1ad446f4a022 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc.h
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.h
-@@ -39,7 +39,7 @@ struct intel_guc {
- 		void (*disable)(struct intel_guc *guc);
- 	} interrupts;
- 
--	bool submission_supported;
-+	bool submission_selected;
- 
- 	struct i915_vma *ads_vma;
- 	struct __guc_ads_blob *ads_blob;
-@@ -167,9 +167,20 @@ static inline int intel_guc_sanitize(struct intel_guc *guc)
- 	return 0;
+-	return ret;
++out:
++	/*
++	 * We continue even if we fail to initialize WA batch
++	 * because we only expect rare glitches but nothing
++	 * critical to prevent us from using GPU
++	 */
++	if (ret)
++		DRM_ERROR("WA batch buffer initialization failed\n");
++
++	return;
  }
  
--static inline bool intel_guc_is_submission_supported(struct intel_guc *guc)
-+static inline bool intel_guc_submission_is_supported(struct intel_guc *guc)
+ static void enable_execlists(struct intel_engine_cs *engine)
+@@ -3974,6 +3983,14 @@ static void rcs_submission_override(struct intel_engine_cs *engine)
+ 	}
+ }
+ 
++void intel_execlists_submission_vfuncs(struct intel_engine_cs *engine)
++{
++	logical_ring_default_vfuncs(engine);
++
++	if (engine->class == RENDER_CLASS)
++		rcs_submission_override(engine);
++}
++
+ int intel_execlists_submission_setup(struct intel_engine_cs *engine)
  {
--	return guc->submission_supported;
-+	/* XXX: GuC submission is unavailable for now */
-+	return false;
-+}
-+
-+static inline bool intel_guc_submission_is_wanted(struct intel_guc *guc)
-+{
-+	return guc->submission_selected;
-+}
-+
-+static inline bool intel_guc_submission_is_used(struct intel_guc *guc)
-+{
-+	return intel_guc_is_used(guc) && intel_guc_submission_is_wanted(guc);
- }
+ 	struct intel_engine_execlists * const execlists = &engine->execlists;
+@@ -3986,19 +4003,10 @@ int intel_execlists_submission_setup(struct intel_engine_cs *engine)
+ 	timer_setup(&engine->execlists.timer, execlists_timeslice, 0);
+ 	timer_setup(&engine->execlists.preempt, execlists_preempt, 0);
  
- static inline void intel_guc_enable_msg(struct intel_guc *guc, u32 mask)
+-	logical_ring_default_vfuncs(engine);
++	intel_execlists_submission_vfuncs(engine);
+ 	logical_ring_default_irqs(engine);
+ 
+-	if (engine->class == RENDER_CLASS)
+-		rcs_submission_override(engine);
+-
+-	if (intel_init_workaround_bb(engine))
+-		/*
+-		 * We continue even if we fail to initialize WA batch
+-		 * because we only expect rare glitches but nothing
+-		 * critical to prevent us from using GPU
+-		 */
+-		DRM_ERROR("WA batch buffer initialization failed\n");
++	intel_logical_ring_init_workaround_bb(engine);
+ 
+ 	if (HAS_LOGICAL_RING_ELSQ(i915)) {
+ 		execlists->submit_reg = uncore->regs +
+diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.h b/drivers/gpu/drm/i915/gt/intel_lrc.h
+index dfbc214e14f5..354bb900da68 100644
+--- a/drivers/gpu/drm/i915/gt/intel_lrc.h
++++ b/drivers/gpu/drm/i915/gt/intel_lrc.h
+@@ -80,9 +80,11 @@ enum {
+ };
+ 
+ /* Logical Rings */
++void intel_logical_ring_init_workaround_bb(struct intel_engine_cs *engine);
+ void intel_logical_ring_cleanup(struct intel_engine_cs *engine);
+ 
+ int intel_execlists_submission_setup(struct intel_engine_cs *engine);
++void intel_execlists_submission_vfuncs(struct intel_engine_cs *engine);
+ 
+ /* Logical Ring Contexts */
+ /* At the start of the context image is its per-process HWS page */
 diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-index 9e42324fdecd..1beaa77f9bb6 100644
+index 1beaa77f9bb6..b6fecead9697 100644
 --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
 +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-@@ -660,12 +660,9 @@ void intel_guc_submission_disable(struct intel_guc *guc)
- 	guc_proc_desc_fini(guc);
+@@ -605,21 +605,47 @@ static void guc_set_default_submission(struct intel_engine_cs *engine)
+ 
+ 	engine->flags &= ~I915_ENGINE_SUPPORTS_STATS;
+ 	engine->flags |= I915_ENGINE_NEEDS_BREADCRUMB_TASKLET;
++}
++
++static inline void guc_default_irqs(struct intel_engine_cs *engine)
++{
++	/*
++	 * Pre-gen11 irqs share registers across engines and therefore need a
++	 * shift, but we don't support GuC submission pre-gen11 so we don't
++	 * bother.
++	 */
++	GEM_BUG_ON(INTEL_GEN(engine->i915) < 11);
+ 
+ 	/*
+-	 * For the breadcrumb irq to work we need the interrupts to stay
+-	 * enabled. However, on all platforms on which we'll have support for
+-	 * GuC submission we don't allow disabling the interrupts at runtime, so
+-	 * we're always safe with the current flow.
++	 * We're emulating execlists but we don't get the ctx switch interrupt,
++	 * so we instead use the user interrupt to re-schedule the tasklet and
++	 * therefore need to keep it enabled.
++	 * We should be able to drop this with the new interface after we remove
++	 * the execlists emulation.
+ 	 */
+-	GEM_BUG_ON(engine->irq_enable || engine->irq_disable);
++	engine->irq_keep_mask = GT_RENDER_USER_INTERRUPT;
++}
++
++int intel_guc_submission_setup(struct intel_engine_cs *engine)
++{
++	GEM_BUG_ON(!intel_uc_uses_guc_submission(&engine->gt->uc));
++
++	tasklet_init(&engine->execlists.tasklet,
++		     guc_submission_tasklet, (unsigned long)engine);
++
++	/* XXX: still mirroring execlists. Will diverge with new interface */
++	intel_execlists_submission_vfuncs(engine);
++	engine->set_default_submission = guc_set_default_submission;
++
++	guc_default_irqs(engine);
++	intel_logical_ring_init_workaround_bb(engine);
++
++	return 0;
  }
  
--static bool __guc_submission_support(struct intel_guc *guc)
-+static bool __guc_submission_selected(struct intel_guc *guc)
+ void intel_guc_submission_enable(struct intel_guc *guc)
  {
--	/* XXX: GuC submission is unavailable for now */
--	return false;
+ 	struct intel_gt *gt = guc_to_gt(guc);
+-	struct intel_engine_cs *engine;
+-	enum intel_engine_id id;
+ 
+ 	/*
+ 	 * We're using GuC work items for submitting work through GuC. Since
+@@ -630,7 +656,7 @@ void intel_guc_submission_enable(struct intel_guc *guc)
+ 	 * and it is guaranteed that it will remove the work item from the
+ 	 * queue before our request is completed.
+ 	 */
+-	BUILD_BUG_ON(ARRAY_SIZE(engine->execlists.inflight) *
++	BUILD_BUG_ON(EXECLIST_MAX_PORTS *
+ 		     sizeof(struct guc_wq_item) *
+ 		     I915_NUM_ENGINES > GUC_WQ_SIZE);
+ 
+@@ -639,11 +665,6 @@ void intel_guc_submission_enable(struct intel_guc *guc)
+ 
+ 	/* Take over from manual control of ELSP (execlists) */
+ 	guc_interrupts_capture(gt);
 -
--	if (!intel_guc_is_supported(guc))
-+	if (!intel_guc_submission_is_supported(guc))
- 		return false;
- 
- 	return i915_modparams.enable_guc & ENABLE_GUC_SUBMISSION;
-@@ -673,7 +670,7 @@ static bool __guc_submission_support(struct intel_guc *guc)
- 
- void intel_guc_submission_init_early(struct intel_guc *guc)
- {
--	guc->submission_supported = __guc_submission_support(guc);
-+	guc->submission_selected = __guc_submission_selected(guc);
+-	for_each_engine(engine, gt, id) {
+-		engine->set_default_submission = guc_set_default_submission;
+-		engine->set_default_submission(engine);
+-	}
  }
  
- bool intel_engine_in_guc_submission_mode(const struct intel_engine_cs *engine)
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc.c b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
-index d57b731952ef..7e112d4ebdc5 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_uc.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
-@@ -49,7 +49,7 @@ static void __confirm_options(struct intel_uc *uc)
- 			     "enable_guc=%d (guc:%s submission:%s huc:%s)\n",
- 			     i915_modparams.enable_guc,
- 			     yesno(intel_uc_wants_guc(uc)),
--			     yesno(intel_uc_uses_guc_submission(uc)),
-+			     yesno(intel_uc_wants_guc_submission(uc)),
- 			     yesno(intel_uc_wants_huc(uc)));
+ void intel_guc_submission_disable(struct intel_guc *guc)
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.h b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.h
+index e402a2932592..696b03e3c515 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.h
++++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.h
+@@ -16,8 +16,8 @@ int intel_guc_submission_init(struct intel_guc *guc);
+ void intel_guc_submission_enable(struct intel_guc *guc);
+ void intel_guc_submission_disable(struct intel_guc *guc);
+ void intel_guc_submission_fini(struct intel_guc *guc);
+-int intel_guc_preempt_work_create(struct intel_guc *guc);
+-void intel_guc_preempt_work_destroy(struct intel_guc *guc);
++
++int intel_guc_submission_setup(struct intel_engine_cs *engine);
+ bool intel_engine_in_guc_submission_mode(const struct intel_engine_cs *engine);
  
- 	if (i915_modparams.enable_guc == -1)
-@@ -57,7 +57,7 @@ static void __confirm_options(struct intel_uc *uc)
- 
- 	if (i915_modparams.enable_guc == 0) {
- 		GEM_BUG_ON(intel_uc_wants_guc(uc));
--		GEM_BUG_ON(intel_uc_uses_guc_submission(uc));
-+		GEM_BUG_ON(intel_uc_wants_guc_submission(uc));
- 		GEM_BUG_ON(intel_uc_wants_huc(uc));
- 		return;
- 	}
-@@ -288,7 +288,7 @@ static int __uc_init(struct intel_uc *uc)
- 		return -ENOMEM;
- 
- 	/* XXX: GuC submission is unavailable for now */
--	GEM_BUG_ON(intel_uc_supports_guc_submission(uc));
-+	GEM_BUG_ON(intel_uc_uses_guc_submission(uc));
- 
- 	ret = intel_guc_init(guc);
- 	if (ret)
-@@ -420,7 +420,7 @@ static int __uc_init_hw(struct intel_uc *uc)
- 	if (!intel_uc_fw_is_available(&guc->fw)) {
- 		ret = __uc_check_hw(uc) ||
- 		      intel_uc_fw_is_overridden(&guc->fw) ||
--		      intel_uc_supports_guc_submission(uc) ?
-+		      intel_uc_wants_guc_submission(uc) ?
- 		      intel_uc_fw_status_to_error(guc->fw.status) : 0;
- 		goto err_out;
- 	}
-@@ -472,14 +472,14 @@ static int __uc_init_hw(struct intel_uc *uc)
- 	if (ret)
- 		goto err_communication;
- 
--	if (intel_uc_supports_guc_submission(uc))
-+	if (intel_uc_uses_guc_submission(uc))
- 		intel_guc_submission_enable(guc);
- 
- 	dev_info(i915->drm.dev, "%s firmware %s version %u.%u %s:%s\n",
- 		 intel_uc_fw_type_repr(INTEL_UC_FW_TYPE_GUC), guc->fw.path,
- 		 guc->fw.major_ver_found, guc->fw.minor_ver_found,
- 		 "submission",
--		 enableddisabled(intel_uc_supports_guc_submission(uc)));
-+		 enableddisabled(intel_uc_uses_guc_submission(uc)));
- 
- 	if (intel_uc_uses_huc(uc)) {
- 		dev_info(i915->drm.dev, "%s firmware %s version %u.%u %s:%s\n",
-@@ -521,7 +521,7 @@ static void __uc_fini_hw(struct intel_uc *uc)
- 	if (!intel_guc_is_running(guc))
- 		return;
- 
--	if (intel_uc_supports_guc_submission(uc))
-+	if (intel_uc_uses_guc_submission(uc))
- 		intel_guc_submission_disable(guc);
- 
- 	if (guc_communication_enabled(guc))
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc.h b/drivers/gpu/drm/i915/gt/uc/intel_uc.h
-index 2d9f17196761..78350cdc2d63 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_uc.h
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_uc.h
-@@ -61,33 +61,24 @@ int intel_uc_runtime_resume(struct intel_uc *uc);
-  * - In use: wanted and firmware found on the system.
-  */
- 
--#define __uc_state_checker(x, state, required) \
--static inline bool intel_uc_##state##_##x(struct intel_uc *uc) \
-+#define __uc_state_checker(x, func, state, required) \
-+static inline bool intel_uc_##state##_##func(struct intel_uc *uc) \
- { \
--	return intel_##x##_is_##required(&uc->x); \
-+	return intel_##func##_is_##required(&uc->x); \
- }
- 
--#define uc_state_checkers(x) \
--__uc_state_checker(x, supports, supported) \
--__uc_state_checker(x, wants, wanted) \
--__uc_state_checker(x, uses, used)
-+#define uc_state_checkers(x, func) \
-+__uc_state_checker(x, func, supports, supported) \
-+__uc_state_checker(x, func, wants, wanted) \
-+__uc_state_checker(x, func, uses, used)
- 
--uc_state_checkers(guc);
--uc_state_checkers(huc);
-+uc_state_checkers(guc, guc);
-+uc_state_checkers(huc, huc);
-+uc_state_checkers(guc, guc_submission);
- 
- #undef uc_state_checkers
- #undef __uc_state_checker
- 
--static inline bool intel_uc_supports_guc_submission(struct intel_uc *uc)
--{
--	return intel_guc_is_submission_supported(&uc->guc);
--}
--
--static inline bool intel_uc_uses_guc_submission(struct intel_uc *uc)
--{
--	return intel_guc_is_submission_supported(&uc->guc);
--}
--
- #define intel_uc_ops_function(_NAME, _OPS, _TYPE, _RET) \
- static inline _TYPE intel_uc_##_NAME(struct intel_uc *uc) \
- { \
-diff --git a/drivers/gpu/drm/i915/gvt/scheduler.c b/drivers/gpu/drm/i915/gvt/scheduler.c
-index 5fe00ee6bd1b..e8c0885df978 100644
---- a/drivers/gpu/drm/i915/gvt/scheduler.c
-+++ b/drivers/gpu/drm/i915/gvt/scheduler.c
-@@ -1247,7 +1247,7 @@ int intel_vgpu_setup_submission(struct intel_vgpu *vgpu)
- 		intel_context_set_single_submission(ce);
- 
- 		/* Max ring buffer size */
--		if (!intel_uc_uses_guc_submission(&engine->gt->uc)) {
-+		if (!intel_uc_wants_guc_submission(&engine->gt->uc)) {
- 			const unsigned int ring_size = 512 * SZ_4K;
- 
- 			ce->ring = __intel_context_ring_size(ring_size);
-diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-index 24d581c63667..b1469625c85a 100644
---- a/drivers/gpu/drm/i915/i915_drv.h
-+++ b/drivers/gpu/drm/i915/i915_drv.h
-@@ -2042,10 +2042,4 @@ i915_coherent_map_type(struct drm_i915_private *i915)
- 	return HAS_LLC(i915) ? I915_MAP_WB : I915_MAP_WC;
- }
- 
--static inline bool intel_guc_submission_is_enabled(struct intel_guc *guc)
--{
--	return intel_guc_is_submission_supported(guc) &&
--		intel_guc_is_running(guc);
--}
--
  #endif
-diff --git a/drivers/gpu/drm/i915/intel_gvt.c b/drivers/gpu/drm/i915/intel_gvt.c
-index 481c6de9f4d6..8f1ed15c0ed8 100644
---- a/drivers/gpu/drm/i915/intel_gvt.c
-+++ b/drivers/gpu/drm/i915/intel_gvt.c
-@@ -103,7 +103,7 @@ int intel_gvt_init(struct drm_i915_private *dev_priv)
- 		return 0;
- 	}
- 
--	if (intel_uc_uses_guc_submission(&dev_priv->gt.uc)) {
-+	if (intel_uc_wants_guc_submission(&dev_priv->gt.uc)) {
- 		DRM_ERROR("i915 GVT-g loading failed due to Graphics virtualization is not yet supported with GuC submission\n");
- 		return -EIO;
- 	}
 -- 
 2.24.1
 
