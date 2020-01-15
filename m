@@ -1,37 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7BABF13BB81
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Jan 2020 09:53:16 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D00013BBD0
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Jan 2020 10:03:45 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E05B16E0C1;
-	Wed, 15 Jan 2020 08:53:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A1AE26E8AD;
+	Wed, 15 Jan 2020 09:03:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A2F296E0C1
- for <intel-gfx@lists.freedesktop.org>; Wed, 15 Jan 2020 08:53:12 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 15 Jan 2020 00:53:11 -0800
-X-IronPort-AV: E=Sophos;i="5.70,322,1574150400"; d="scan'208";a="218057314"
-Received: from huse-mobl2.ger.corp.intel.com (HELO localhost) ([10.252.50.31])
- by orsmga008-auth.jf.intel.com with
- ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 15 Jan 2020 00:53:06 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Vivek Kasireddy <vivek.kasireddy@intel.com>,
- intel-gfx@lists.freedesktop.org
-In-Reply-To: <20200115012305.27395-1-vivek.kasireddy@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20200115012305.27395-1-vivek.kasireddy@intel.com>
-Date: Wed, 15 Jan 2020 10:53:40 +0200
-Message-ID: <87d0blje23.fsf@intel.com>
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B7B046E8AC
+ for <intel-gfx@lists.freedesktop.org>; Wed, 15 Jan 2020 09:03:41 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19884849-1500050 
+ for multiple; Wed, 15 Jan 2020 09:02:42 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 15 Jan 2020 09:02:41 +0000
+Message-Id: <20200115090241.2601864-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.25.0
+In-Reply-To: <20200115083346.2601512-1-chris@chris-wilson.co.uk>
+References: <20200115083346.2601512-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/dsi: Lookup the i2c bus from ACPI
- NS only if CONFIG_ACPI=y (v2)
+Subject: [Intel-gfx] [PATCH v2] drm/i915: Keep track of request among the
+ scheduling lists
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,85 +39,159 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Hulk Robot <hulkci@huawei.com>, Zhang Xiaoxu <zhangxiaoxu5@huawei.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gVHVlLCAxNCBKYW4gMjAyMCwgVml2ZWsgS2FzaXJlZGR5IDx2aXZlay5rYXNpcmVkZHlAaW50
-ZWwuY29tPiB3cm90ZToKPiBQZXJmb3JtIHRoZSBpMmMgYnVzL2FkYXB0ZXIgbG9va3VwIGZyb20g
-QUNQSSBOYW1lc3BhY2Ugb25seSBpZgo+IEFDUEkgaXMgZW5hYmxlZCBpbiB0aGUga2VybmVsIGNv
-bmZpZy4gSWYgQUNQSSBpcyBub3QgZW5hYmxlZCBvciBpZgo+IHRoZSBsb29rdXAgZmFpbHMsIHdl
-J2xsIGZhbGxiYWNrIHRvIHVzaW5nIHRoZSBWQlQgZm9yIGlkZW50aXlpbmcKPiB0aGUgaTJjIGJ1
-cy4KPgo+IFRoaXMgcGF0Y2gKPiBGaXhlczogOGNiZjg5ZGIyOTQxICgiZHJtL2k5MTUvZHNpOiBQ
-YXJzZSB0aGUgSTJDIGVsZW1lbnQgZnJvbSB0aGUgVkJUCj4gTUlQSSBzZXF1ZW5jZSBibG9jayAo
-djMpIikKCkhybWgsIHBsZWFzZSBoYXZlIGEgbG9vayBhdCBnaXQgbG9nLiBGaXhlczogZ29lcyB3
-aXRoIHRoZSBvdGhlciB0YWdzCmJlbG93LCB5b3UgZG9uJ3Qgc3BsaXQgaXQgYWNyb3NzIG11bHRp
-cGxlIGxpbmVzLCBhbmQgeW91IGRvbid0IG5lZWQgdG8KZW1iZWQgaXQgaW4gdGhlIHRleHQuCgpT
-b21lb25lIGFwcGx5aW5nIHRoZSBwYXRjaCBjYW4gZml4IHRoaXMsIG5vIG5lZWQgdG8gc2VuZCBh
-bm90aGVyCnZlcnNpb24uCgo+IHYyOiBSZWZvcm1hdCB0aGUgYWJvdmUgbGluZSB0byBjbGVhcmx5
-IGlkZW50aWZ5IHRoZSBjb21taXQgdGhpcyBwYXRjaCBpcwo+IGZpeGluZyBmb3IgQ0kgKEphbmkp
-CgpJdCdzIG5vdCBmb3IgQ0ksIGl0J3MgbW9zdGx5IGZvciBwZW9wbGUuIE5vIG5lZWQgdG8gc2Vu
-ZCBhbm90aGVyIHZlcnNpb24KdG8gYWRqdXN0IHRoYXQgZWl0aGVyLgoKQlIsCkphbmkuCgo+Cj4g
-Q2M6IEhhbnMgZGUgR29lZGUgPGhkZWdvZWRlQHJlZGhhdC5jb20+Cj4gQ2M6IE5hYmVuZHUgTWFp
-dGkgPG5hYmVuZHUuYmlrYXNoLm1haXRpQGludGVsLmNvbT4KPiBDYzogTWF0dCBSb3BlciA8bWF0
-dGhldy5kLnJvcGVyQGludGVsLmNvbT4KPiBDYzogQm9iIFBhYXV3ZSA8Ym9iLmoucGFhdXdlQGlu
-dGVsLmNvbT4KPiBDYzogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVs
-LmNvbT4KPiBDYzogSmFuaSBOaWt1bGEgPGphbmkubmlrdWxhQGludGVsLmNvbT4KPiBDYzogWmhh
-bmcgWGlhb3h1IDx6aGFuZ3hpYW94dTVAaHVhd2VpLmNvbT4KPiBSZXBvcnRlZC1ieTogSHVsayBS
-b2JvdCA8aHVsa2NpQGh1YXdlaS5jb20+Cj4gU2lnbmVkLW9mZi1ieTogVml2ZWsgS2FzaXJlZGR5
-IDx2aXZlay5rYXNpcmVkZHlAaW50ZWwuY29tPgo+IC0tLQo+ICBkcml2ZXJzL2dwdS9kcm0vaTkx
-NS9kaXNwbGF5L2ludGVsX2RzaV92YnQuYyB8IDQ3ICsrKysrKysrKysrKystLS0tLS0tCj4gIDEg
-ZmlsZSBjaGFuZ2VkLCAzMSBpbnNlcnRpb25zKCspLCAxNiBkZWxldGlvbnMoLSkKPgo+IGRpZmYg
-LS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RzaV92YnQuYyBiL2Ry
-aXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHNpX3ZidC5jCj4gaW5kZXggODlmYjBk
-OTBiNjk0Li42ZWMzNWQ5NzViZDcgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUv
-ZGlzcGxheS9pbnRlbF9kc2lfdmJ0LmMKPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNw
-bGF5L2ludGVsX2RzaV92YnQuYwo+IEBAIC0zODQsNiArMzg0LDcgQEAgc3RhdGljIGNvbnN0IHU4
-ICptaXBpX2V4ZWNfZ3BpbyhzdHJ1Y3QgaW50ZWxfZHNpICppbnRlbF9kc2ksIGNvbnN0IHU4ICpk
-YXRhKQo+ICAJcmV0dXJuIGRhdGE7Cj4gIH0KPiAgCj4gKyNpZmRlZiBDT05GSUdfQUNQSQo+ICBz
-dGF0aWMgaW50IGkyY19hZGFwdGVyX2xvb2t1cChzdHJ1Y3QgYWNwaV9yZXNvdXJjZSAqYXJlcywg
-dm9pZCAqZGF0YSkKPiAgewo+ICAJc3RydWN0IGkyY19hZGFwdGVyX2xvb2t1cCAqbG9va3VwID0g
-ZGF0YTsKPiBAQCAtNDEzLDE0ICs0MTQsNDEgQEAgc3RhdGljIGludCBpMmNfYWRhcHRlcl9sb29r
-dXAoc3RydWN0IGFjcGlfcmVzb3VyY2UgKmFyZXMsIHZvaWQgKmRhdGEpCj4gIAlyZXR1cm4gMTsK
-PiAgfQo+ICAKPiAtc3RhdGljIGNvbnN0IHU4ICptaXBpX2V4ZWNfaTJjKHN0cnVjdCBpbnRlbF9k
-c2kgKmludGVsX2RzaSwgY29uc3QgdTggKmRhdGEpCj4gK3N0YXRpYyB2b2lkIGkyY19hY3BpX2Zp
-bmRfYWRhcHRlcihzdHJ1Y3QgaW50ZWxfZHNpICppbnRlbF9kc2ksCj4gKwkJCQkgIGNvbnN0IHUx
-NiBzbGF2ZV9hZGRyKQo+ICB7Cj4gIAlzdHJ1Y3QgZHJtX2RldmljZSAqZHJtX2RldiA9IGludGVs
-X2RzaS0+YmFzZS5iYXNlLmRldjsKPiAgCXN0cnVjdCBkZXZpY2UgKmRldiA9ICZkcm1fZGV2LT5w
-ZGV2LT5kZXY7Cj4gLQlzdHJ1Y3QgaTJjX2FkYXB0ZXIgKmFkYXB0ZXI7Cj4gIAlzdHJ1Y3QgYWNw
-aV9kZXZpY2UgKmFjcGlfZGV2Owo+ICAJc3RydWN0IGxpc3RfaGVhZCByZXNvdXJjZV9saXN0Owo+
-ICAJc3RydWN0IGkyY19hZGFwdGVyX2xvb2t1cCBsb29rdXA7Cj4gKwo+ICsJYWNwaV9kZXYgPSBB
-Q1BJX0NPTVBBTklPTihkZXYpOwo+ICsJaWYgKGFjcGlfZGV2KSB7Cj4gKwkJbWVtc2V0KCZsb29r
-dXAsIDAsIHNpemVvZihsb29rdXApKTsKPiArCQlsb29rdXAuc2xhdmVfYWRkciA9IHNsYXZlX2Fk
-ZHI7Cj4gKwkJbG9va3VwLmludGVsX2RzaSA9IGludGVsX2RzaTsKPiArCQlsb29rdXAuZGV2X2hh
-bmRsZSA9IGFjcGlfZGV2aWNlX2hhbmRsZShhY3BpX2Rldik7Cj4gKwo+ICsJCUlOSVRfTElTVF9I
-RUFEKCZyZXNvdXJjZV9saXN0KTsKPiArCQlhY3BpX2Rldl9nZXRfcmVzb3VyY2VzKGFjcGlfZGV2
-LCAmcmVzb3VyY2VfbGlzdCwKPiArCQkJCSAgICAgICBpMmNfYWRhcHRlcl9sb29rdXAsCj4gKwkJ
-CQkgICAgICAgJmxvb2t1cCk7Cj4gKwkJYWNwaV9kZXZfZnJlZV9yZXNvdXJjZV9saXN0KCZyZXNv
-dXJjZV9saXN0KTsKPiArCX0KPiArfQo+ICsjZWxzZQo+ICtzdGF0aWMgaW5saW5lIHZvaWQgaTJj
-X2FjcGlfZmluZF9hZGFwdGVyKHN0cnVjdCBpbnRlbF9kc2kgKmludGVsX2RzaSwKPiArCQkJCQkg
-Y29uc3QgdTE2IHNsYXZlX2FkZHIpCj4gK3sKPiArfQo+ICsjZW5kaWYKPiArCj4gK3N0YXRpYyBj
-b25zdCB1OCAqbWlwaV9leGVjX2kyYyhzdHJ1Y3QgaW50ZWxfZHNpICppbnRlbF9kc2ksIGNvbnN0
-IHU4ICpkYXRhKQo+ICt7Cj4gKwlzdHJ1Y3QgZHJtX2RldmljZSAqZHJtX2RldiA9IGludGVsX2Rz
-aS0+YmFzZS5iYXNlLmRldjsKPiArCXN0cnVjdCBkZXZpY2UgKmRldiA9ICZkcm1fZGV2LT5wZGV2
-LT5kZXY7Cj4gKwlzdHJ1Y3QgaTJjX2FkYXB0ZXIgKmFkYXB0ZXI7Cj4gIAlzdHJ1Y3QgaTJjX21z
-ZyBtc2c7Cj4gIAlpbnQgcmV0Owo+ICAJdTggdmJ0X2kyY19idXNfbnVtID0gKihkYXRhICsgMik7
-Cj4gQEAgLTQzMSwyMCArNDU5LDcgQEAgc3RhdGljIGNvbnN0IHU4ICptaXBpX2V4ZWNfaTJjKHN0
-cnVjdCBpbnRlbF9kc2kgKmludGVsX2RzaSwgY29uc3QgdTggKmRhdGEpCj4gIAo+ICAJaWYgKGlu
-dGVsX2RzaS0+aTJjX2J1c19udW0gPCAwKSB7Cj4gIAkJaW50ZWxfZHNpLT5pMmNfYnVzX251bSA9
-IHZidF9pMmNfYnVzX251bTsKPiAtCj4gLQkJYWNwaV9kZXYgPSBBQ1BJX0NPTVBBTklPTihkZXYp
-Owo+IC0JCWlmIChhY3BpX2Rldikgewo+IC0JCQltZW1zZXQoJmxvb2t1cCwgMCwgc2l6ZW9mKGxv
-b2t1cCkpOwo+IC0JCQlsb29rdXAuc2xhdmVfYWRkciA9IHNsYXZlX2FkZHI7Cj4gLQkJCWxvb2t1
-cC5pbnRlbF9kc2kgPSBpbnRlbF9kc2k7Cj4gLQkJCWxvb2t1cC5kZXZfaGFuZGxlID0gYWNwaV9k
-ZXZpY2VfaGFuZGxlKGFjcGlfZGV2KTsKPiAtCj4gLQkJCUlOSVRfTElTVF9IRUFEKCZyZXNvdXJj
-ZV9saXN0KTsKPiAtCQkJYWNwaV9kZXZfZ2V0X3Jlc291cmNlcyhhY3BpX2RldiwgJnJlc291cmNl
-X2xpc3QsCj4gLQkJCQkJICAgICAgIGkyY19hZGFwdGVyX2xvb2t1cCwKPiAtCQkJCQkgICAgICAg
-Jmxvb2t1cCk7Cj4gLQkJCWFjcGlfZGV2X2ZyZWVfcmVzb3VyY2VfbGlzdCgmcmVzb3VyY2VfbGlz
-dCk7Cj4gLQkJfQo+ICsJCWkyY19hY3BpX2ZpbmRfYWRhcHRlcihpbnRlbF9kc2ksIHNsYXZlX2Fk
-ZHIpOwo+ICAJfQo+ICAKPiAgCWFkYXB0ZXIgPSBpMmNfZ2V0X2FkYXB0ZXIoaW50ZWxfZHNpLT5p
-MmNfYnVzX251bSk7CgotLSAKSmFuaSBOaWt1bGEsIEludGVsIE9wZW4gU291cmNlIEdyYXBoaWNz
-IENlbnRlcgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJ
-bnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0
-cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
+If we keep track of when the i915_request.sched.link is on the HW
+runlist, or in the priority queue we can simplify our interactions with
+the request (such as during rescheduling). This also simplifies the next
+patch where we introduce a new in-between list, for requests that are
+ready but neither on the run list or in the queue.
+
+v2: Update i915_sched_node.link explanation for current usage where it
+is a link on both the queue and on the runlists.
+
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+---
+ drivers/gpu/drm/i915/gt/intel_lrc.c   | 13 ++++++++-----
+ drivers/gpu/drm/i915/i915_request.c   |  4 +++-
+ drivers/gpu/drm/i915/i915_request.h   | 17 +++++++++++++++++
+ drivers/gpu/drm/i915/i915_scheduler.c | 22 ++++++++++------------
+ 4 files changed, 38 insertions(+), 18 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+index 9e430590fb3a..f0cbd240a8c2 100644
+--- a/drivers/gpu/drm/i915/gt/intel_lrc.c
++++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+@@ -985,6 +985,8 @@ __unwind_incomplete_requests(struct intel_engine_cs *engine)
+ 			GEM_BUG_ON(RB_EMPTY_ROOT(&engine->execlists.queue.rb_root));
+ 
+ 			list_move(&rq->sched.link, pl);
++			set_bit(I915_FENCE_FLAG_PQUEUE, &rq->fence.flags);
++
+ 			active = rq;
+ 		} else {
+ 			struct intel_engine_cs *owner = rq->context->engine;
+@@ -2430,11 +2432,12 @@ static void execlists_preempt(struct timer_list *timer)
+ }
+ 
+ static void queue_request(struct intel_engine_cs *engine,
+-			  struct i915_sched_node *node,
+-			  int prio)
++			  struct i915_request *rq)
+ {
+-	GEM_BUG_ON(!list_empty(&node->link));
+-	list_add_tail(&node->link, i915_sched_lookup_priolist(engine, prio));
++	GEM_BUG_ON(!list_empty(&rq->sched.link));
++	list_add_tail(&rq->sched.link,
++		      i915_sched_lookup_priolist(engine, rq_prio(rq)));
++	set_bit(I915_FENCE_FLAG_PQUEUE, &rq->fence.flags);
+ }
+ 
+ static void __submit_queue_imm(struct intel_engine_cs *engine)
+@@ -2470,7 +2473,7 @@ static void execlists_submit_request(struct i915_request *request)
+ 	/* Will be called from irq-context when using foreign fences. */
+ 	spin_lock_irqsave(&engine->active.lock, flags);
+ 
+-	queue_request(engine, &request->sched, rq_prio(request));
++	queue_request(engine, request);
+ 
+ 	GEM_BUG_ON(RB_EMPTY_ROOT(&engine->execlists.queue.rb_root));
+ 	GEM_BUG_ON(list_empty(&request->sched.link));
+diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
+index be185886e4fc..9ed0d3bc7249 100644
+--- a/drivers/gpu/drm/i915/i915_request.c
++++ b/drivers/gpu/drm/i915/i915_request.c
+@@ -408,8 +408,10 @@ bool __i915_request_submit(struct i915_request *request)
+ xfer:	/* We may be recursing from the signal callback of another i915 fence */
+ 	spin_lock_nested(&request->lock, SINGLE_DEPTH_NESTING);
+ 
+-	if (!test_and_set_bit(I915_FENCE_FLAG_ACTIVE, &request->fence.flags))
++	if (!test_and_set_bit(I915_FENCE_FLAG_ACTIVE, &request->fence.flags)) {
+ 		list_move_tail(&request->sched.link, &engine->active.requests);
++		clear_bit(I915_FENCE_FLAG_PQUEUE, &request->fence.flags);
++	}
+ 
+ 	if (test_bit(DMA_FENCE_FLAG_ENABLE_SIGNAL_BIT, &request->fence.flags) &&
+ 	    !test_bit(DMA_FENCE_FLAG_SIGNALED_BIT, &request->fence.flags) &&
+diff --git a/drivers/gpu/drm/i915/i915_request.h b/drivers/gpu/drm/i915/i915_request.h
+index 031433691a06..a9f0d3c8d8b7 100644
+--- a/drivers/gpu/drm/i915/i915_request.h
++++ b/drivers/gpu/drm/i915/i915_request.h
+@@ -70,6 +70,18 @@ enum {
+ 	 */
+ 	I915_FENCE_FLAG_ACTIVE = DMA_FENCE_FLAG_USER_BITS,
+ 
++	/*
++	 * I915_FENCE_FLAG_PQUEUE - this request is ready for execution
++	 *
++	 * Using the scheduler, when a request is ready for execution it is put
++	 * into the priority queue, and removed from the queue when transferred
++	 * to the HW runlists. We want to track its membership within that
++	 * queue so that we can easily check before rescheduling.
++	 *
++	 * See i915_request_in_priority_queue()
++	 */
++	I915_FENCE_FLAG_PQUEUE,
++
+ 	/*
+ 	 * I915_FENCE_FLAG_SIGNAL - this request is currently on signal_list
+ 	 *
+@@ -361,6 +373,11 @@ static inline bool i915_request_is_active(const struct i915_request *rq)
+ 	return test_bit(I915_FENCE_FLAG_ACTIVE, &rq->fence.flags);
+ }
+ 
++static inline bool i915_request_in_priority_queue(const struct i915_request *rq)
++{
++	return test_bit(I915_FENCE_FLAG_PQUEUE, &rq->fence.flags);
++}
++
+ /**
+  * Returns true if seq1 is later than seq2.
+  */
+diff --git a/drivers/gpu/drm/i915/i915_scheduler.c b/drivers/gpu/drm/i915/i915_scheduler.c
+index bf87c70bfdd9..db3da81b7f05 100644
+--- a/drivers/gpu/drm/i915/i915_scheduler.c
++++ b/drivers/gpu/drm/i915/i915_scheduler.c
+@@ -326,20 +326,18 @@ static void __i915_schedule(struct i915_sched_node *node,
+ 
+ 		node->attr.priority = prio;
+ 
+-		if (list_empty(&node->link)) {
+-			/*
+-			 * If the request is not in the priolist queue because
+-			 * it is not yet runnable, then it doesn't contribute
+-			 * to our preemption decisions. On the other hand,
+-			 * if the request is on the HW, it too is not in the
+-			 * queue; but in that case we may still need to reorder
+-			 * the inflight requests.
+-			 */
++		/*
++		 * Once the request is ready, it will be place into the
++		 * priority lists and then onto the HW runlist. Before the
++		 * request is ready, it does not contribute to our preemption
++		 * decisions and we can safely ignore it, as it will, and
++		 * any preemption required, be dealt with upon submission.
++		 * See engine->submit_request()
++		 */
++		if (list_empty(&node->link))
+ 			continue;
+-		}
+ 
+-		if (!intel_engine_is_virtual(engine) &&
+-		    !i915_request_is_active(node_to_request(node))) {
++		if (i915_request_in_priority_queue(node_to_request(node))) {
+ 			if (!cache.priolist)
+ 				cache.priolist =
+ 					i915_sched_lookup_priolist(engine,
+-- 
+2.25.0
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
