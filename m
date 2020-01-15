@@ -2,40 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C851C13C68C
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Jan 2020 15:49:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 309F913C69A
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Jan 2020 15:52:04 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8F7A86EACC;
-	Wed, 15 Jan 2020 14:49:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7199789911;
+	Wed, 15 Jan 2020 14:52:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BCE4B6EAC8;
- Wed, 15 Jan 2020 14:49:47 +0000 (UTC)
-X-Amp-Result: UNSCANNABLE
-X-Amp-File-Uploaded: False
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 15 Jan 2020 06:49:47 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,322,1574150400"; d="scan'208";a="253818572"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by fmsmga001.fm.intel.com with SMTP; 15 Jan 2020 06:49:39 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 15 Jan 2020 16:49:38 +0200
-Date: Wed, 15 Jan 2020 16:49:38 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Thomas Zimmermann <tzimmermann@suse.de>
-Message-ID: <20200115144938.GA13686@intel.com>
-References: <20200115121652.7050-1-tzimmermann@suse.de>
- <20200115121652.7050-4-tzimmermann@suse.de>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 2B48289736;
+ Wed, 15 Jan 2020 14:52:01 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 23620A47EB;
+ Wed, 15 Jan 2020 14:52:01 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200115121652.7050-4-tzimmermann@suse.de>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH v2 03/21] drm: Add get_vblank_timestamp() to
- struct drm_crtc_funcs
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Wed, 15 Jan 2020 14:52:01 -0000
+Message-ID: <157909992114.2009.14474181146004211282@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200113112917.1789952-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200113112917.1789952-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLklHVDogc3VjY2VzcyBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5B1/2=5D_drm/i915/gt=3A_Sanitize_and_reset_G?=
+ =?utf-8?q?PU_before_removing_powercontext?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,573 +39,366 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: hamohammed.sa@gmail.com, airlied@linux.ie, nouveau@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, eric@anholt.net,
- amd-gfx@lists.freedesktop.org, benjamin.gaignard@linaro.org,
- alexandre.torgue@st.com, David1.Zhou@amd.com, thellstrom@vmware.com,
- linux-graphics-maintainer@vmware.com, bskeggs@redhat.com,
- harry.wentland@amd.com, mcoquelin.stm32@gmail.com, sunpeng.li@amd.com,
- linux-arm-msm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- vincent.abriou@st.com, rodrigosiqueiramelo@gmail.com, philippe.cornu@st.com,
- yannick.fertre@st.com, alexander.deucher@amd.com,
- freedreno@lists.freedesktop.org, christian.koenig@amd.com
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Jan 15, 2020 at 01:16:34PM +0100, Thomas Zimmermann wrote:
-> The callback get_vblank_timestamp() is currently located in struct
-> drm_driver, but really belongs into struct drm_crtc_funcs. Add an
-> equivalent there. Driver will be converted in separate patches.
-> =
+== Series Details ==
 
-> The default implementation is drm_calc_vbltimestamp_from_scanoutpos().
-> The patch adds drm_crtc_vblank_helper_get_vblank_timestamp(), which is
-> an implementation for the CRTC callback.
-> =
+Series: series starting with [1/2] drm/i915/gt: Sanitize and reset GPU before removing powercontext
+URL   : https://patchwork.freedesktop.org/series/71953/
+State : success
 
-> v2:
-> 	* rename helper to drm_crtc_vblank_helper_get_vblank_timestamp()
-> 	* replace drm_calc_vbltimestamp_from_scanoutpos() with
-> 	  drm_crtc_vblank_helper_get_vblank_timestamp() in docs
-> =
+== Summary ==
 
-> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
-> ---
->  drivers/gpu/drm/drm_vblank.c             | 236 +++++++++++++++++++++--
->  include/drm/drm_crtc.h                   |  46 ++++-
->  include/drm/drm_modeset_helper_vtables.h |   4 +-
->  include/drm/drm_vblank.h                 |  26 ++-
->  4 files changed, 292 insertions(+), 20 deletions(-)
-> =
+CI Bug Log - changes from CI_DRM_7733_full -> Patchwork_16070_full
+====================================================
 
-> diff --git a/drivers/gpu/drm/drm_vblank.c b/drivers/gpu/drm/drm_vblank.c
-> index abb085c67d82..1b7af316e6a5 100644
-> --- a/drivers/gpu/drm/drm_vblank.c
-> +++ b/drivers/gpu/drm/drm_vblank.c
-> @@ -333,7 +333,9 @@ u64 drm_crtc_accurate_vblank_count(struct drm_crtc *c=
-rtc)
->  	u64 vblank;
->  	unsigned long flags;
->  =
+Summary
+-------
 
-> -	WARN_ONCE(drm_debug_enabled(DRM_UT_VBL) && !dev->driver->get_vblank_tim=
-estamp,
-> +	WARN_ONCE(drm_debug_enabled(DRM_UT_VBL) &&
-> +		  !crtc->funcs->get_vblank_timestamp &&
-> +		  !dev->driver->get_vblank_timestamp,
->  		  "This function requires support for accurate vblank timestamps.");
->  =
+  **SUCCESS**
 
->  	spin_lock_irqsave(&dev->vblank_time_lock, flags);
-> @@ -511,9 +513,9 @@ EXPORT_SYMBOL(drm_crtc_vblank_waitqueue);
->   *
->   * Calculate and store various constants which are later needed by vblan=
-k and
->   * swap-completion timestamping, e.g, by
-> - * drm_calc_vbltimestamp_from_scanoutpos(). They are derived from CRTC's=
- true
-> - * scanout timing, so they take things like panel scaling or other adjus=
-tments
-> - * into account.
-> + * drm_crtc_vblank_helper_get_vblank_timestamp(). They are derived from
-> + * CRTC's true scanout timing, so they take things like panel scaling or
-> + * other adjustments into account.
->   */
->  void drm_calc_timestamping_constants(struct drm_crtc *crtc,
->  				     const struct drm_display_mode *mode)
-> @@ -577,8 +579,9 @@ EXPORT_SYMBOL(drm_calc_timestamping_constants);
->   *
->   * Implements calculation of exact vblank timestamps from given drm_disp=
-lay_mode
->   * timings and current video scanout position of a CRTC. This can be dir=
-ectly
-> - * used as the &drm_driver.get_vblank_timestamp implementation of a kms =
-driver
-> - * if &drm_crtc_helper_funcs.get_scanout_position is implemented.
-> + * used as the &drm_crtc_funcs.get_vblank_timestamp implementation of a =
-kms
-> + * driver if &drm_crtc_helper_funcs.get_scanout_position or
-> + * &drm_driver.get_scanout_position is implemented.
->   *
->   * The current implementation only handles standard video modes. For dou=
-ble scan
->   * and interlaced modes the driver is supposed to adjust the hardware mo=
-de
-> @@ -742,15 +745,22 @@ static bool
->  drm_get_last_vbltimestamp(struct drm_device *dev, unsigned int pipe,
->  			  ktime_t *tvblank, bool in_vblank_irq)
->  {
-> +	struct drm_crtc *crtc =3D drm_crtc_from_index(dev, pipe);
->  	bool ret =3D false;
->  =
+  No regressions found.
 
->  	/* Define requested maximum error on timestamps (nanoseconds). */
->  	int max_error =3D (int) drm_timestamp_precision * 1000;
->  =
+  
 
->  	/* Query driver if possible and precision timestamping enabled. */
-> -	if (dev->driver->get_vblank_timestamp && (max_error > 0))
-> +	if (crtc->funcs->get_vblank_timestamp && (max_error > 0)) {
+Known issues
+------------
 
-Could drop the superfluous parens while at it.
+  Here are the changes found in Patchwork_16070_full that come from known issues:
 
-Are all drivers utilizing this guaranteed to have the crtc here?
+### IGT changes ###
 
-> +		struct drm_crtc *crtc =3D drm_crtc_from_index(dev, pipe);
-> +
-> +		ret =3D crtc->funcs->get_vblank_timestamp(crtc, &max_error,
-> +							tvblank, in_vblank_irq);
-> +	} else if (dev->driver->get_vblank_timestamp && (max_error > 0)) {
->  		ret =3D dev->driver->get_vblank_timestamp(dev, pipe, &max_error,
->  							tvblank, in_vblank_irq);
-> +	}
->  =
+#### Issues hit ####
 
->  	/* GPU high precision timestamp query unsupported or failed.
->  	 * Return current monotonic/gettimeofday timestamp as best estimate.
-> @@ -1059,11 +1069,19 @@ EXPORT_SYMBOL(drm_crtc_vblank_get);
->  =
+  * igt@gem_busy@extended-parallel-vcs1:
+    - shard-iclb:         [PASS][1] -> [SKIP][2] ([fdo#112080]) +3 similar issues
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7733/shard-iclb1/igt@gem_busy@extended-parallel-vcs1.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16070/shard-iclb5/igt@gem_busy@extended-parallel-vcs1.html
 
->  static bool __vblank_disable_immediate(struct drm_device *dev, unsigned =
-int pipe)
->  {
-> +	struct drm_crtc *crtc;
-> +
->  	if (!dev->vblank_disable_immediate)
->  		return false;
-> -	if (!dev->driver->get_vblank_timestamp)
-> -		return false;
-> -	return true;
-> +
-> +	crtc =3D drm_crtc_from_index(dev, pipe);
-> +	if (crtc && crtc->funcs->get_vblank_timestamp)
+  * igt@gem_ctx_isolation@rcs0-s3:
+    - shard-kbl:          [PASS][3] -> [DMESG-WARN][4] ([i915#180]) +8 similar issues
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7733/shard-kbl1/igt@gem_ctx_isolation@rcs0-s3.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16070/shard-kbl3/igt@gem_ctx_isolation@rcs0-s3.html
 
-Here you are expecting that the crtc might be NULL.
+  * igt@gem_ctx_isolation@vecs0-s3:
+    - shard-iclb:         [PASS][5] -> [DMESG-WARN][6] ([fdo#111764])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7733/shard-iclb2/igt@gem_ctx_isolation@vecs0-s3.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16070/shard-iclb4/igt@gem_ctx_isolation@vecs0-s3.html
 
-> +		return true;
-> +
-> +	if (dev->driver->get_vblank_timestamp)
-> +		return true;
-> +
-> +	return false;
->  }
->  =
+  * igt@gem_ctx_persistence@vcs1-mixed:
+    - shard-iclb:         [PASS][7] -> [SKIP][8] ([fdo#109276] / [fdo#112080]) +1 similar issue
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7733/shard-iclb1/igt@gem_ctx_persistence@vcs1-mixed.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16070/shard-iclb3/igt@gem_ctx_persistence@vcs1-mixed.html
 
->  static void drm_vblank_put(struct drm_device *dev, unsigned int pipe)
-> @@ -1742,9 +1760,11 @@ int drm_wait_vblank_ioctl(struct drm_device *dev, =
-void *data,
->  =
+  * igt@gem_eio@reset-stress:
+    - shard-tglb:         [PASS][9] -> [INCOMPLETE][10] ([i915#470])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7733/shard-tglb9/igt@gem_eio@reset-stress.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16070/shard-tglb5/igt@gem_eio@reset-stress.html
+    - shard-snb:          [PASS][11] -> [FAIL][12] ([i915#232])
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7733/shard-snb6/igt@gem_eio@reset-stress.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16070/shard-snb5/igt@gem_eio@reset-stress.html
 
->  static void drm_handle_vblank_events(struct drm_device *dev, unsigned in=
-t pipe)
->  {
-> +	struct drm_crtc *crtc =3D drm_crtc_from_index(dev, pipe);
->  	struct drm_pending_vblank_event *e, *t;
->  	ktime_t now;
->  	u64 seq;
-> +	bool high_prec;
->  =
+  * igt@gem_exec_balancer@nop:
+    - shard-tglb:         [PASS][13] -> [INCOMPLETE][14] ([fdo#111736] / [i915#472]) +1 similar issue
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7733/shard-tglb4/igt@gem_exec_balancer@nop.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16070/shard-tglb2/igt@gem_exec_balancer@nop.html
 
->  	assert_spin_locked(&dev->event_lock);
->  =
+  * igt@gem_exec_balancer@smoke:
+    - shard-iclb:         [PASS][15] -> [SKIP][16] ([fdo#110854])
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7733/shard-iclb4/igt@gem_exec_balancer@smoke.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16070/shard-iclb3/igt@gem_exec_balancer@smoke.html
 
-> @@ -1764,8 +1784,10 @@ static void drm_handle_vblank_events(struct drm_de=
-vice *dev, unsigned int pipe)
->  		send_vblank_event(dev, e, seq, now);
->  	}
->  =
+  * igt@gem_exec_nop@basic-sequential:
+    - shard-tglb:         [PASS][17] -> [INCOMPLETE][18] ([i915#472])
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7733/shard-tglb2/igt@gem_exec_nop@basic-sequential.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16070/shard-tglb5/igt@gem_exec_nop@basic-sequential.html
 
-> -	trace_drm_vblank_event(pipe, seq, now,
-> -			dev->driver->get_vblank_timestamp !=3D NULL);
-> +	high_prec =3D crtc->funcs->get_vblank_timestamp ||
-> +		    dev->driver->get_vblank_timestamp;
+  * igt@gem_exec_schedule@pi-distinct-iova-bsd:
+    - shard-iclb:         [PASS][19] -> [SKIP][20] ([i915#677])
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7733/shard-iclb8/igt@gem_exec_schedule@pi-distinct-iova-bsd.html
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16070/shard-iclb2/igt@gem_exec_schedule@pi-distinct-iova-bsd.html
 
-Here again assuming the crtc can't be NULL.
+  * igt@gem_exec_schedule@preempt-hang-bsd:
+    - shard-iclb:         [PASS][21] -> [SKIP][22] ([fdo#112146]) +1 similar issue
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7733/shard-iclb5/igt@gem_exec_schedule@preempt-hang-bsd.html
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16070/shard-iclb4/igt@gem_exec_schedule@preempt-hang-bsd.html
 
-> +
-> +	trace_drm_vblank_event(pipe, seq, now, high_prec);
->  }
->  =
+  * igt@gem_exec_suspend@basic-s3:
+    - shard-tglb:         [PASS][23] -> [INCOMPLETE][24] ([fdo#111736] / [i915#460] / [i915#472])
+   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7733/shard-tglb7/igt@gem_exec_suspend@basic-s3.html
+   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16070/shard-tglb6/igt@gem_exec_suspend@basic-s3.html
 
->  /**
-> @@ -2020,3 +2042,193 @@ int drm_crtc_queue_sequence_ioctl(struct drm_devi=
-ce *dev, void *data,
->  	kfree(e);
->  	return ret;
->  }
-> +
-> +/*
-> + * Helpers for struct drm_crtc_funcs
-> + */
-> +
-> +/**
-> + * drm_crtc_vblank_helper_get_vblank_timestamp_internal - precise vblank
-> + *                                                        timestamp help=
-er
-> + * @dev: DRM device
-> + * @pipe: index of CRTC whose vblank timestamp to retrieve
-> + * @max_error: Desired maximum allowable error in timestamps (nanosecs)
-> + *             On return contains true maximum error of timestamp
-> + * @vblank_time: Pointer to time which should receive the timestamp
-> + * @in_vblank_irq:
-> + *     True when called from drm_crtc_handle_vblank().  Some drivers
-> + *     need to apply some workarounds for gpu-specific vblank irq quirks
-> + *     if flag is set.
-> + * @get_scanout_position:
-> + *     Callback function to retrieve the scanout position. See
-> + *     @struct drm_crtc_helper_funcs.get_scanout_position.
-> + *
-> + * Implements calculation of exact vblank timestamps from given drm_disp=
-lay_mode
-> + * timings and current video scanout position of a CRTC.
-> + *
-> + * The current implementation only handles standard video modes. For dou=
-ble scan
-> + * and interlaced modes the driver is supposed to adjust the hardware mo=
-de
-> + * (taken from &drm_crtc_state.adjusted mode for atomic modeset drivers)=
- to
-> + * match the scanout position reported.
-> + *
-> + * Note that atomic drivers must call drm_calc_timestamping_constants() =
-before
-> + * enabling a CRTC. The atomic helpers already take care of that in
-> + * drm_atomic_helper_update_legacy_modeset_state().
-> + *
-> + * Returns:
-> + *
-> + * Returns true on success, and false on failure, i.e. when no accurate
-> + * timestamp could be acquired.
-> + */
-> +bool
-> +drm_crtc_vblank_helper_get_vblank_timestamp_internal(
-> +	struct drm_crtc *crtc, int *max_error, ktime_t *vblank_time,
-> +	bool in_vblank_irq,
-> +	bool (*get_scanout_position)(struct drm_crtc *crtc,
-> +                                     bool in_vblank_irq, int *vpos, int =
-*hpos,
-> +                                     ktime_t *stime, ktime_t *etime,
-> +                                     const struct drm_display_mode *mode=
-))
-> +{
-> +	struct drm_device *dev =3D crtc->dev;
-> +	unsigned int pipe =3D crtc->index;
-> +	struct drm_vblank_crtc *vblank =3D &dev->vblank[pipe];
-> +	struct timespec64 ts_etime, ts_vblank_time;
-> +	ktime_t stime, etime;
-> +	bool vbl_status;
-> +	const struct drm_display_mode *mode;
-> +	int vpos, hpos, i;
-> +	int delta_ns, duration_ns;
-> +
-> +	if (pipe >=3D dev->num_crtcs) {
-> +		DRM_ERROR("Invalid crtc %u\n", pipe);
-> +		return false;
-> +	}
-> +
-> +	/* Scanout position query not supported? Should not happen. */
-> +	if (!get_scanout_position) {
-> +		DRM_ERROR("Called from CRTC w/o get_scanout_position()!?\n");
-> +		return false;
-> +	}
-> +
-> +	if (drm_drv_uses_atomic_modeset(dev))
-> +		mode =3D &vblank->hwmode;
-> +	else
-> +		mode =3D &crtc->hwmode;
-> +
-> +	/* If mode timing undefined, just return as no-op:
-> +	 * Happens during initial modesetting of a crtc.
-> +	 */
-> +	if (mode->crtc_clock =3D=3D 0) {
-> +		DRM_DEBUG("crtc %u: Noop due to uninitialized mode.\n", pipe);
-> +		WARN_ON_ONCE(drm_drv_uses_atomic_modeset(dev));
-> +		return false;
-> +	}
-> +
-> +	/* Get current scanout position with system timestamp.
-> +	 * Repeat query up to DRM_TIMESTAMP_MAXRETRIES times
-> +	 * if single query takes longer than max_error nanoseconds.
-> +	 *
-> +	 * This guarantees a tight bound on maximum error if
-> +	 * code gets preempted or delayed for some reason.
-> +	 */
-> +	for (i =3D 0; i < DRM_TIMESTAMP_MAXRETRIES; i++) {
-> +		/*
-> +		 * Get vertical and horizontal scanout position vpos, hpos,
-> +		 * and bounding timestamps stime, etime, pre/post query.
-> +		 */
-> +		vbl_status =3D get_scanout_position(crtc, in_vblank_irq, &vpos,
-> +						  &hpos, &stime, &etime, mode);
-> +
-> +		/* Return as no-op if scanout query unsupported or failed. */
-> +		if (!vbl_status) {
-> +			DRM_DEBUG("crtc %u : scanoutpos query failed.\n",
-> +				  pipe);
-> +			return false;
-> +		}
-> +
-> +		/* Compute uncertainty in timestamp of scanout position query. */
-> +		duration_ns =3D ktime_to_ns(etime) - ktime_to_ns(stime);
-> +
-> +		/* Accept result with <  max_error nsecs timing uncertainty. */
-> +		if (duration_ns <=3D *max_error)
-> +			break;
-> +	}
-> +
-> +	/* Noisy system timing? */
-> +	if (i =3D=3D DRM_TIMESTAMP_MAXRETRIES) {
-> +		DRM_DEBUG("crtc %u: Noisy timestamp %d us > %d us [%d reps].\n",
-> +			  pipe, duration_ns/1000, *max_error/1000, i);
-> +	}
-> +
-> +	/* Return upper bound of timestamp precision error. */
-> +	*max_error =3D duration_ns;
-> +
-> +	/* Convert scanout position into elapsed time at raw_time query
-> +	 * since start of scanout at first display scanline. delta_ns
-> +	 * can be negative if start of scanout hasn't happened yet.
-> +	 */
-> +	delta_ns =3D div_s64(1000000LL * (vpos * mode->crtc_htotal + hpos),
-> +			   mode->crtc_clock);
-> +
-> +	/* Subtract time delta from raw timestamp to get final
-> +	 * vblank_time timestamp for end of vblank.
-> +	 */
-> +	*vblank_time =3D ktime_sub_ns(etime, delta_ns);
-> +
-> +	if (!drm_debug_enabled(DRM_UT_VBL))
-> +		return true;
-> +
-> +	ts_etime =3D ktime_to_timespec64(etime);
-> +	ts_vblank_time =3D ktime_to_timespec64(*vblank_time);
-> +
-> +	DRM_DEBUG_VBL("crtc %u : v p(%d,%d)@ %lld.%06ld -> %lld.%06ld [e %d us,=
- %d rep]\n",
-> +		      pipe, hpos, vpos,
-> +		      (u64)ts_etime.tv_sec, ts_etime.tv_nsec / 1000,
-> +		      (u64)ts_vblank_time.tv_sec, ts_vblank_time.tv_nsec / 1000,
-> +		      duration_ns / 1000, i);
-> +
-> +	return true;
-> +}
-> +EXPORT_SYMBOL(drm_crtc_vblank_helper_get_vblank_timestamp_internal);
+  * igt@gem_exec_suspend@basic-s4-devices:
+    - shard-iclb:         [PASS][25] -> [INCOMPLETE][26] ([i915#140])
+   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7733/shard-iclb2/igt@gem_exec_suspend@basic-s4-devices.html
+   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16070/shard-iclb5/igt@gem_exec_suspend@basic-s4-devices.html
 
-This looks like copy paste from the current thing. Why are you =
+  * igt@gem_persistent_relocs@forked-faulting-reloc-thrashing:
+    - shard-tglb:         [PASS][27] -> [INCOMPLETE][28] ([i915#530])
+   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7733/shard-tglb7/igt@gem_persistent_relocs@forked-faulting-reloc-thrashing.html
+   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16070/shard-tglb7/igt@gem_persistent_relocs@forked-faulting-reloc-thrashing.html
 
-duplicating the entire function instead of refactoring what
-we already have?
+  * igt@gem_sync@basic-all:
+    - shard-tglb:         [PASS][29] -> [INCOMPLETE][30] ([i915#470] / [i915#472])
+   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7733/shard-tglb1/igt@gem_sync@basic-all.html
+   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16070/shard-tglb9/igt@gem_sync@basic-all.html
 
-> +
-> +/**
-> + * drm_crtc_vblank_helper_get_vblank_timestamp - precise vblank timestamp
-> + *                                               helper
-> + * @crtc: CRTC whose vblank timestamp to retrieve
-> + * @max_error: Desired maximum allowable error in timestamps (nanosecs)
-> + *             On return contains true maximum error of timestamp
-> + * @vblank_time: Pointer to time which should receive the timestamp
-> + * @in_vblank_irq:
-> + *     True when called from drm_crtc_handle_vblank().  Some drivers
-> + *     need to apply some workarounds for gpu-specific vblank irq quirks
-> + *     if flag is set.
-> + *
-> + * Implements calculation of exact vblank timestamps from given drm_disp=
-lay_mode
-> + * timings and current video scanout position of a CRTC. This can be dir=
-ectly
-> + * used as the &drm_crtc_funcs.get_vblank_timestamp implementation of a =
-kms
-> + * driver if &drm_crtc_helper_funcs.get_scanout_position is implemented.
-> + *
-> + * The current implementation only handles standard video modes. For dou=
-ble scan
-> + * and interlaced modes the driver is supposed to adjust the hardware mo=
-de
-> + * (taken from &drm_crtc_state.adjusted mode for atomic modeset drivers)=
- to
-> + * match the scanout position reported.
-> + *
-> + * Note that atomic drivers must call drm_calc_timestamping_constants() =
-before
-> + * enabling a CRTC. The atomic helpers already take care of that in
-> + * drm_atomic_helper_update_legacy_modeset_state().
-> + *
-> + * Returns:
-> + *
-> + * Returns true on success, and false on failure, i.e. when no accurate
-> + * timestamp could be acquired.
-> + */
-> +bool drm_crtc_vblank_helper_get_vblank_timestamp(struct drm_crtc *crtc,
-> +						 int *max_error,
-> +						 ktime_t *vblank_time,
-> +						 bool in_vblank_irq)
-> +{
-> +	return drm_crtc_vblank_helper_get_vblank_timestamp_internal(
-> +		crtc, max_error, vblank_time, in_vblank_irq,
-> +		crtc->helper_private->get_scanout_position);
-> +}
-> +EXPORT_SYMBOL(drm_crtc_vblank_helper_get_vblank_timestamp);
-> diff --git a/include/drm/drm_crtc.h b/include/drm/drm_crtc.h
-> index 5e9b15a0e8c5..db46abbbf4e7 100644
-> --- a/include/drm/drm_crtc.h
-> +++ b/include/drm/drm_crtc.h
-> @@ -867,6 +867,47 @@ struct drm_crtc_funcs {
->  	 * new drivers as the replacement of &drm_driver.disable_vblank hook.
->  	 */
->  	void (*disable_vblank)(struct drm_crtc *crtc);
-> +
-> +	/**
-> +	 * @get_vblank_timestamp:
-> +	 *
-> +	 * Called by drm_get_last_vbltimestamp(). Should return a precise
-> +	 * timestamp when the most recent vblank interval ended or will end.
-> +	 *
-> +	 * Specifically, the timestamp in @vblank_time should correspond as
-> +	 * closely as possible to the time when the first video scanline of
-> +	 * the video frame after the end of vblank will start scanning out,
-> +	 * the time immediately after end of the vblank interval. If the
-> +	 * @crtc is currently inside vblank, this will be a time in the future.
-> +	 * If the @crtc is currently scanning out a frame, this will be the
-> +	 * past start time of the current scanout. This is meant to adhere
-> +	 * to the OpenML OML_sync_control extension specification.
-> +	 *
-> +	 * Parameters:
-> +	 *
-> +	 * crtc:
-> +	 *     CRTC for which timestamp should be returned.
-> +	 * max_error:
-> +	 *     Maximum allowable timestamp error in nanoseconds.
-> +	 *     Implementation should strive to provide timestamp
-> +	 *     with an error of at most max_error nanoseconds.
-> +	 *     Returns true upper bound on error for timestamp.
-> +	 * vblank_time:
-> +	 *     Target location for returned vblank timestamp.
-> +	 * in_vblank_irq:
-> +	 *     True when called from drm_crtc_handle_vblank().  Some drivers
-> +	 *     need to apply some workarounds for gpu-specific vblank irq quirks
-> +	 *     if flag is set.
-> +	 *
-> +	 * Returns:
-> +	 *
-> +	 * True on success, false on failure, which means the core should
-> +	 * fallback to a simple timestamp taken in drm_crtc_handle_vblank().
-> +	 */
-> +	bool (*get_vblank_timestamp)(struct drm_crtc *crtc,
-> +				     int *max_error,
-> +				     ktime_t *vblank_time,
-> +				     bool in_vblank_irq);
->  };
->  =
+  * igt@i915_pm_dc@dc6-dpms:
+    - shard-iclb:         [PASS][31] -> [FAIL][32] ([i915#454])
+   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7733/shard-iclb6/igt@i915_pm_dc@dc6-dpms.html
+   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16070/shard-iclb3/igt@i915_pm_dc@dc6-dpms.html
 
->  /**
-> @@ -974,11 +1015,12 @@ struct drm_crtc {
->  	 * Programmed mode in hw, after adjustments for encoders, crtc, panel
->  	 * scaling etc. Should only be used by legacy drivers, for high
->  	 * precision vblank timestamps in
-> -	 * drm_calc_vbltimestamp_from_scanoutpos().
-> +	 * drm_crtc_vblank_helper_get_vblank_timestamp().
->  	 *
->  	 * Note that atomic drivers should not use this, but instead use
->  	 * &drm_crtc_state.adjusted_mode. And for high-precision timestamps
-> -	 * drm_calc_vbltimestamp_from_scanoutpos() used &drm_vblank_crtc.hwmode,
-> +	 * drm_crtc_vblank_helper_get_vblank_timestamp() used
-> +	 * &drm_vblank_crtc.hwmode,
->  	 * which is filled out by calling drm_calc_timestamping_constants().
->  	 */
->  	struct drm_display_mode hwmode;
-> diff --git a/include/drm/drm_modeset_helper_vtables.h b/include/drm/drm_m=
-odeset_helper_vtables.h
-> index e398512bfd5f..0afaf58da40d 100644
-> --- a/include/drm/drm_modeset_helper_vtables.h
-> +++ b/include/drm/drm_modeset_helper_vtables.h
-> @@ -459,8 +459,8 @@ struct drm_crtc_helper_funcs {
->  	 * Returns the current display scanout position from a CRTC and an
->  	 * optional accurate ktime_get() timestamp of when the position was
->  	 * measured. Note that this is a helper callback which is only used
-> -	 * if a driver uses drm_calc_vbltimestamp_from_scanoutpos() for the
-> -	 * @drm_driver.get_vblank_timestamp callback.
-> +	 * if a driver uses drm_crtc_vblank_helper_get_vblank_timestamp()
-> +	 * for the @drm_crtc_funcs.get_vblank_timestamp callback.
->  	 *
->  	 * Parameters:
->  	 *
-> diff --git a/include/drm/drm_vblank.h b/include/drm/drm_vblank.h
-> index c16c44052b3d..248fbd5de177 100644
-> --- a/include/drm/drm_vblank.h
-> +++ b/include/drm/drm_vblank.h
-> @@ -174,13 +174,13 @@ struct drm_vblank_crtc {
->  	unsigned int pipe;
->  	/**
->  	 * @framedur_ns: Frame/Field duration in ns, used by
-> -	 * drm_calc_vbltimestamp_from_scanoutpos() and computed by
-> +	 * drm_crtc_vblank_helper_get_vblank_timestamp() and computed by
->  	 * drm_calc_timestamping_constants().
->  	 */
->  	int framedur_ns;
->  	/**
->  	 * @linedur_ns: Line duration in ns, used by
-> -	 * drm_calc_vbltimestamp_from_scanoutpos() and computed by
-> +	 * drm_crtc_vblank_helper_get_vblank_timestamp() and computed by
->  	 * drm_calc_timestamping_constants().
->  	 */
->  	int linedur_ns;
-> @@ -190,8 +190,8 @@ struct drm_vblank_crtc {
->  	 *
->  	 * Cache of the current hardware display mode. Only valid when @enabled
->  	 * is set. This is used by helpers like
-> -	 * drm_calc_vbltimestamp_from_scanoutpos(). We can't just access the
-> -	 * hardware mode by e.g. looking at &drm_crtc_state.adjusted_mode,
-> +	 * drm_crtc_vblank_helper_get_vblank_timestamp(). We can't just access
-> +	 * the hardware mode by e.g. looking at &drm_crtc_state.adjusted_mode,
->  	 * because that one is really hard to get from interrupt context.
->  	 */
->  	struct drm_display_mode hwmode;
-> @@ -238,4 +238,22 @@ void drm_calc_timestamping_constants(struct drm_crtc=
- *crtc,
->  wait_queue_head_t *drm_crtc_vblank_waitqueue(struct drm_crtc *crtc);
->  void drm_crtc_set_max_vblank_count(struct drm_crtc *crtc,
->  				   u32 max_vblank_count);
-> +
-> +/*
-> + * Helpers for struct drm_crtc_funcs
-> + */
-> +
-> +bool
-> +drm_crtc_vblank_helper_get_vblank_timestamp_internal(
-> +	struct drm_crtc *crtc, int *max_error, ktime_t *vblank_time,
-> +	bool in_vblank_irq,
-> +	bool (*get_scanout_position)(struct drm_crtc *crtc,
-> +                                     bool in_vblank_irq, int *vpos, int =
-*hpos,
-> +                                     ktime_t *stime, ktime_t *etime,
-> +                                     const struct drm_display_mode *mode=
-));
+  * igt@kms_color@pipe-a-ctm-red-to-blue:
+    - shard-skl:          [PASS][33] -> [DMESG-WARN][34] ([i915#109]) +2 similar issues
+   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7733/shard-skl1/igt@kms_color@pipe-a-ctm-red-to-blue.html
+   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16070/shard-skl6/igt@kms_color@pipe-a-ctm-red-to-blue.html
 
-Ugly alignment. Could maybe add a typedef for the function pointer if it
-otherwise gets super horrible with proper alignment.
+  * igt@kms_cursor_crc@pipe-a-cursor-128x42-onscreen:
+    - shard-skl:          [PASS][35] -> [FAIL][36] ([i915#54])
+   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7733/shard-skl2/igt@kms_cursor_crc@pipe-a-cursor-128x42-onscreen.html
+   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16070/shard-skl9/igt@kms_cursor_crc@pipe-a-cursor-128x42-onscreen.html
 
-> +bool drm_crtc_vblank_helper_get_vblank_timestamp(struct drm_crtc *crtc,
-> +						 int *max_error,
-> +						 ktime_t *vblank_time,
-> +						 bool in_vblank_irq);
-> +
->  #endif
-> -- =
+  * igt@kms_cursor_crc@pipe-a-cursor-suspend:
+    - shard-apl:          [PASS][37] -> [DMESG-WARN][38] ([i915#180]) +1 similar issue
+   [37]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7733/shard-apl4/igt@kms_cursor_crc@pipe-a-cursor-suspend.html
+   [38]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16070/shard-apl1/igt@kms_cursor_crc@pipe-a-cursor-suspend.html
 
-> 2.24.1
-> =
+  * igt@kms_frontbuffer_tracking@fbcpsr-1p-pri-indfb-multidraw:
+    - shard-tglb:         [PASS][39] -> [FAIL][40] ([i915#49]) +1 similar issue
+   [39]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7733/shard-tglb9/igt@kms_frontbuffer_tracking@fbcpsr-1p-pri-indfb-multidraw.html
+   [40]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16070/shard-tglb5/igt@kms_frontbuffer_tracking@fbcpsr-1p-pri-indfb-multidraw.html
 
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+  * igt@kms_plane_alpha_blend@pipe-a-constant-alpha-min:
+    - shard-skl:          [PASS][41] -> [FAIL][42] ([fdo#108145]) +1 similar issue
+   [41]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7733/shard-skl1/igt@kms_plane_alpha_blend@pipe-a-constant-alpha-min.html
+   [42]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16070/shard-skl6/igt@kms_plane_alpha_blend@pipe-a-constant-alpha-min.html
 
--- =
+  * igt@kms_psr@no_drrs:
+    - shard-iclb:         [PASS][43] -> [FAIL][44] ([i915#173])
+   [43]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7733/shard-iclb4/igt@kms_psr@no_drrs.html
+   [44]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16070/shard-iclb1/igt@kms_psr@no_drrs.html
 
-Ville Syrj=E4l=E4
-Intel
+  * igt@kms_psr@psr2_cursor_mmap_cpu:
+    - shard-iclb:         [PASS][45] -> [SKIP][46] ([fdo#109441]) +3 similar issues
+   [45]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7733/shard-iclb2/igt@kms_psr@psr2_cursor_mmap_cpu.html
+   [46]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16070/shard-iclb5/igt@kms_psr@psr2_cursor_mmap_cpu.html
+
+  * igt@prime_busy@hang-bsd2:
+    - shard-iclb:         [PASS][47] -> [SKIP][48] ([fdo#109276]) +18 similar issues
+   [47]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7733/shard-iclb2/igt@prime_busy@hang-bsd2.html
+   [48]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16070/shard-iclb5/igt@prime_busy@hang-bsd2.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_ctx_shared@q-smoketest-blt:
+    - shard-tglb:         [INCOMPLETE][49] ([fdo#111735]) -> [PASS][50]
+   [49]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7733/shard-tglb6/igt@gem_ctx_shared@q-smoketest-blt.html
+   [50]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16070/shard-tglb9/igt@gem_ctx_shared@q-smoketest-blt.html
+
+  * igt@gem_exec_parallel@contexts:
+    - shard-tglb:         [INCOMPLETE][51] ([i915#470] / [i915#472]) -> [PASS][52]
+   [51]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7733/shard-tglb3/igt@gem_exec_parallel@contexts.html
+   [52]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16070/shard-tglb9/igt@gem_exec_parallel@contexts.html
+
+  * igt@gem_exec_schedule@pi-shared-iova-bsd:
+    - shard-iclb:         [SKIP][53] ([i915#677]) -> [PASS][54]
+   [53]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7733/shard-iclb2/igt@gem_exec_schedule@pi-shared-iova-bsd.html
+   [54]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16070/shard-iclb6/igt@gem_exec_schedule@pi-shared-iova-bsd.html
+
+  * igt@gem_exec_schedule@preempt-queue-bsd1:
+    - shard-iclb:         [SKIP][55] ([fdo#109276]) -> [PASS][56] +14 similar issues
+   [55]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7733/shard-iclb8/igt@gem_exec_schedule@preempt-queue-bsd1.html
+   [56]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16070/shard-iclb2/igt@gem_exec_schedule@preempt-queue-bsd1.html
+    - shard-tglb:         [INCOMPLETE][57] ([fdo#111677] / [i915#472]) -> [PASS][58]
+   [57]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7733/shard-tglb6/igt@gem_exec_schedule@preempt-queue-bsd1.html
+   [58]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16070/shard-tglb6/igt@gem_exec_schedule@preempt-queue-bsd1.html
+
+  * igt@gem_exec_schedule@preempt-queue-contexts-blt:
+    - shard-tglb:         [INCOMPLETE][59] ([fdo#111606] / [fdo#111677] / [i915#472]) -> [PASS][60]
+   [59]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7733/shard-tglb8/igt@gem_exec_schedule@preempt-queue-contexts-blt.html
+   [60]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16070/shard-tglb1/igt@gem_exec_schedule@preempt-queue-contexts-blt.html
+
+  * igt@gem_exec_schedule@preemptive-hang-bsd:
+    - shard-iclb:         [SKIP][61] ([fdo#112146]) -> [PASS][62] +5 similar issues
+   [61]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7733/shard-iclb1/igt@gem_exec_schedule@preemptive-hang-bsd.html
+   [62]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16070/shard-iclb5/igt@gem_exec_schedule@preemptive-hang-bsd.html
+
+  * igt@gem_exec_schedule@smoketest-bsd1:
+    - shard-tglb:         [INCOMPLETE][63] ([i915#463] / [i915#472]) -> [PASS][64]
+   [63]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7733/shard-tglb9/igt@gem_exec_schedule@smoketest-bsd1.html
+   [64]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16070/shard-tglb8/igt@gem_exec_schedule@smoketest-bsd1.html
+
+  * igt@gem_pipe_control_store_loop@reused-buffer:
+    - shard-tglb:         [INCOMPLETE][65] ([i915#707] / [i915#796]) -> [PASS][66]
+   [65]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7733/shard-tglb8/igt@gem_pipe_control_store_loop@reused-buffer.html
+   [66]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16070/shard-tglb4/igt@gem_pipe_control_store_loop@reused-buffer.html
+
+  * igt@gem_sync@basic-store-all:
+    - shard-tglb:         [INCOMPLETE][67] ([i915#472]) -> [PASS][68]
+   [67]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7733/shard-tglb8/igt@gem_sync@basic-store-all.html
+   [68]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16070/shard-tglb1/igt@gem_sync@basic-store-all.html
+
+  * igt@i915_pm_dc@dc5-dpms:
+    - shard-iclb:         [FAIL][69] ([i915#447]) -> [PASS][70]
+   [69]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7733/shard-iclb3/igt@i915_pm_dc@dc5-dpms.html
+   [70]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16070/shard-iclb4/igt@i915_pm_dc@dc5-dpms.html
+
+  * igt@i915_pm_rps@min-max-config-loaded:
+    - shard-apl:          [FAIL][71] ([i915#39]) -> [PASS][72]
+   [71]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7733/shard-apl8/igt@i915_pm_rps@min-max-config-loaded.html
+   [72]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16070/shard-apl4/igt@i915_pm_rps@min-max-config-loaded.html
+
+  * igt@kms_color@pipe-b-ctm-0-25:
+    - shard-skl:          [DMESG-WARN][73] ([i915#109]) -> [PASS][74] +1 similar issue
+   [73]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7733/shard-skl3/igt@kms_color@pipe-b-ctm-0-25.html
+   [74]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16070/shard-skl4/igt@kms_color@pipe-b-ctm-0-25.html
+
+  * igt@kms_fbcon_fbt@psr-suspend:
+    - shard-skl:          [INCOMPLETE][75] ([i915#69]) -> [PASS][76] +1 similar issue
+   [75]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7733/shard-skl7/igt@kms_fbcon_fbt@psr-suspend.html
+   [76]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16070/shard-skl8/igt@kms_fbcon_fbt@psr-suspend.html
+
+  * igt@kms_flip@flip-vs-expired-vblank:
+    - shard-apl:          [FAIL][77] ([i915#79]) -> [PASS][78]
+   [77]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7733/shard-apl1/igt@kms_flip@flip-vs-expired-vblank.html
+   [78]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16070/shard-apl6/igt@kms_flip@flip-vs-expired-vblank.html
+
+  * igt@kms_flip@plain-flip-ts-check:
+    - shard-skl:          [FAIL][79] ([i915#34]) -> [PASS][80]
+   [79]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7733/shard-skl2/igt@kms_flip@plain-flip-ts-check.html
+   [80]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16070/shard-skl8/igt@kms_flip@plain-flip-ts-check.html
+    - shard-apl:          [FAIL][81] ([i915#34]) -> [PASS][82]
+   [81]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7733/shard-apl8/igt@kms_flip@plain-flip-ts-check.html
+   [82]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16070/shard-apl4/igt@kms_flip@plain-flip-ts-check.html
+
+  * igt@kms_frontbuffer_tracking@fbc-suspend:
+    - shard-kbl:          [DMESG-WARN][83] ([i915#180]) -> [PASS][84] +3 similar issues
+   [83]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7733/shard-kbl1/igt@kms_frontbuffer_tracking@fbc-suspend.html
+   [84]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16070/shard-kbl6/igt@kms_frontbuffer_tracking@fbc-suspend.html
+
+  * igt@kms_frontbuffer_tracking@fbcpsr-1p-primscrn-pri-indfb-draw-mmap-wc:
+    - shard-tglb:         [SKIP][85] ([i915#668]) -> [PASS][86] +3 similar issues
+   [85]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7733/shard-tglb8/igt@kms_frontbuffer_tracking@fbcpsr-1p-primscrn-pri-indfb-draw-mmap-wc.html
+   [86]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16070/shard-tglb1/igt@kms_frontbuffer_tracking@fbcpsr-1p-primscrn-pri-indfb-draw-mmap-wc.html
+
+  * igt@kms_frontbuffer_tracking@fbcpsr-1p-primscrn-spr-indfb-draw-render:
+    - shard-tglb:         [FAIL][87] ([i915#49]) -> [PASS][88]
+   [87]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7733/shard-tglb8/igt@kms_frontbuffer_tracking@fbcpsr-1p-primscrn-spr-indfb-draw-render.html
+   [88]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16070/shard-tglb3/igt@kms_frontbuffer_tracking@fbcpsr-1p-primscrn-spr-indfb-draw-render.html
+
+  * igt@kms_plane_alpha_blend@pipe-c-constant-alpha-min:
+    - shard-skl:          [FAIL][89] ([fdo#108145]) -> [PASS][90]
+   [89]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7733/shard-skl7/igt@kms_plane_alpha_blend@pipe-c-constant-alpha-min.html
+   [90]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16070/shard-skl3/igt@kms_plane_alpha_blend@pipe-c-constant-alpha-min.html
+
+  * igt@kms_plane_alpha_blend@pipe-c-coverage-7efc:
+    - shard-skl:          [FAIL][91] ([fdo#108145] / [i915#265]) -> [PASS][92]
+   [91]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7733/shard-skl1/igt@kms_plane_alpha_blend@pipe-c-coverage-7efc.html
+   [92]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16070/shard-skl6/igt@kms_plane_alpha_blend@pipe-c-coverage-7efc.html
+
+  * igt@kms_psr@psr2_primary_mmap_cpu:
+    - shard-iclb:         [SKIP][93] ([fdo#109441]) -> [PASS][94] +1 similar issue
+   [93]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7733/shard-iclb1/igt@kms_psr@psr2_primary_mmap_cpu.html
+   [94]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16070/shard-iclb2/igt@kms_psr@psr2_primary_mmap_cpu.html
+
+  * igt@kms_setmode@basic:
+    - shard-apl:          [FAIL][95] ([i915#31]) -> [PASS][96]
+   [95]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7733/shard-apl3/igt@kms_setmode@basic.html
+   [96]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16070/shard-apl7/igt@kms_setmode@basic.html
+
+  * igt@perf_pmu@busy-accuracy-2-vcs1:
+    - shard-iclb:         [SKIP][97] ([fdo#112080]) -> [PASS][98] +6 similar issues
+   [97]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7733/shard-iclb3/igt@perf_pmu@busy-accuracy-2-vcs1.html
+   [98]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16070/shard-iclb1/igt@perf_pmu@busy-accuracy-2-vcs1.html
+
+  
+#### Warnings ####
+
+  * igt@gem_ctx_isolation@vcs1-nonpriv:
+    - shard-iclb:         [FAIL][99] ([IGT#28]) -> [SKIP][100] ([fdo#109276] / [fdo#112080])
+   [99]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7733/shard-iclb2/igt@gem_ctx_isolation@vcs1-nonpriv.html
+   [100]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16070/shard-iclb6/igt@gem_ctx_isolation@vcs1-nonpriv.html
+
+  * igt@gem_tiled_blits@normal:
+    - shard-hsw:          [FAIL][101] ([i915#818]) -> [FAIL][102] ([i915#694])
+   [101]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7733/shard-hsw5/igt@gem_tiled_blits@normal.html
+   [102]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16070/shard-hsw7/igt@gem_tiled_blits@normal.html
+
+  * igt@i915_pm_rpm@gem-execbuf-stress:
+    - shard-snb:          [INCOMPLETE][103] ([i915#82]) -> [SKIP][104] ([fdo#109271])
+   [103]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7733/shard-snb5/igt@i915_pm_rpm@gem-execbuf-stress.html
+   [104]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16070/shard-snb4/igt@i915_pm_rpm@gem-execbuf-stress.html
+
+  
+  [IGT#28]: https://gitlab.freedesktop.org/drm/igt-gpu-tools/issues/28
+  [fdo#108145]: https://bugs.freedesktop.org/show_bug.cgi?id=108145
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#109276]: https://bugs.freedesktop.org/show_bug.cgi?id=109276
+  [fdo#109441]: https://bugs.freedesktop.org/show_bug.cgi?id=109441
+  [fdo#110854]: https://bugs.freedesktop.org/show_bug.cgi?id=110854
+  [fdo#111606]: https://bugs.freedesktop.org/show_bug.cgi?id=111606
+  [fdo#111677]: https://bugs.freedesktop.org/show_bug.cgi?id=111677
+  [fdo#111735]: https://bugs.freedesktop.org/show_bug.cgi?id=111735
+  [fdo#111736]: https://bugs.freedesktop.org/show_bug.cgi?id=111736
+  [fdo#111764]: https://bugs.freedesktop.org/show_bug.cgi?id=111764
+  [fdo#112080]: https://bugs.freedesktop.org/show_bug.cgi?id=112080
+  [fdo#112146]: https://bugs.freedesktop.org/show_bug.cgi?id=112146
+  [i915#109]: https://gitlab.freedesktop.org/drm/intel/issues/109
+  [i915#140]: https://gitlab.freedesktop.org/drm/intel/issues/140
+  [i915#173]: https://gitlab.freedesktop.org/drm/intel/issues/173
+  [i915#180]: https://gitlab.freedesktop.org/drm/intel/issues/180
+  [i915#232]: https://gitlab.freedesktop.org/drm/intel/issues/232
+  [i915#265]: https://gitlab.freedesktop.org/drm/intel/issues/265
+  [i915#31]: https://gitlab.freedesktop.org/drm/intel/issues/31
+  [i915#34]: https://gitlab.freedesktop.org/drm/intel/issues/34
+  [i915#39]: https://gitlab.freedesktop.org/drm/intel/issues/39
+  [i915#447]: https://gitlab.freedesktop.org/drm/intel/issues/447
+  [i915#454]: https://gitlab.freedesktop.org/drm/intel/issues/454
+  [i915#460]: https://gitlab.freedesktop.org/drm/intel/issues/460
+  [i915#463]: https://gitlab.freedesktop.org/drm/intel/issues/463
+  [i915#470]: https://gitlab.freedesktop.org/drm/intel/issues/470
+  [i915#472]: https://gitlab.freedesktop.org/drm/intel/issues/472
+  [i915#49]: https://gitlab.freedesktop.org/drm/intel/issues/49
+  [i915#530]: https://gitlab.freedesktop.org/drm/intel/issues/530
+  [i915#54]: https://gitlab.freedesktop.org/drm/intel/issues/54
+  [i915#668]: https://gitlab.freedesktop.org/drm/intel/issues/668
+  [i915#677]: https://gitlab.freedesktop.org/drm/intel/issues/677
+  [i915#69]: https://gitlab.freedesktop.org/drm/intel/issues/69
+  [i915#694]: https://gitlab.freedesktop.org/drm/intel/issues/694
+  [i915#707]: https://gitlab.freedesktop.org/drm/intel/issues/707
+  [i915#79]: https://gitlab.freedesktop.org/drm/intel/issues/79
+  [i915#796]: https://gitlab.freedesktop.org/drm/intel/issues/796
+  [i915#818]: https://gitlab.freedesktop.org/drm/intel/issues/818
+  [i915#82]: https://gitlab.freedesktop.org/drm/intel/issues/82
+
+
+Participating hosts (11 -> 11)
+------------------------------
+
+  No changes in participating hosts
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_7733 -> Patchwork_16070
+
+  CI-20190529: 20190529
+  CI_DRM_7733: 379e3dc4d5c95f4c3bcb244fd9527986a23b3e74 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5364: b7cb6ffdb65cbd233f5ddee2f2dabf97b34fa640 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_16070: 23231346a24a895a255b65db8dd5f0eb46426248 @ git://anongit.freedesktop.org/gfx-ci/linux
+  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.freedesktop.org/piglit
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16070/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
