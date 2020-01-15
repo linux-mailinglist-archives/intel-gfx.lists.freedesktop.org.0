@@ -2,39 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0745E13CE31
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Jan 2020 21:47:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 713D613CE52
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Jan 2020 21:53:02 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 97C1F6EA91;
-	Wed, 15 Jan 2020 20:46:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 736896EA99;
+	Wed, 15 Jan 2020 20:52:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6120D6EA91
- for <intel-gfx@lists.freedesktop.org>; Wed, 15 Jan 2020 20:46:56 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 15 Jan 2020 12:46:55 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,323,1574150400"; d="scan'208";a="213831542"
-Received: from dceraolo-linux.fm.intel.com (HELO [10.1.27.145]) ([10.1.27.145])
- by orsmga007.jf.intel.com with ESMTP; 15 Jan 2020 12:46:55 -0800
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-References: <20200115013143.34961-1-daniele.ceraolospurio@intel.com>
- <157907760539.5559.7281364125701103353@skylake-alporthouse-com>
- <ebdc5cd5-761e-1cfe-48f0-93bc37b32afc@intel.com>
- <157910513051.14122.10645009325140090342@skylake-alporthouse-com>
-From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Message-ID: <e6252c9e-4fd9-bd89-cf94-875f4c3425c3@intel.com>
-Date: Wed, 15 Jan 2020 12:46:24 -0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.2.2
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AE0F56EA98;
+ Wed, 15 Jan 2020 20:52:53 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19893960-1500050 
+ for multiple; Wed, 15 Jan 2020 20:52:47 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: dri-devel@lists.freedesktop.org
+Date: Wed, 15 Jan 2020 20:52:45 +0000
+Message-Id: <20200115205245.2772800-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.25.0
 MIME-Version: 1.0
-In-Reply-To: <157910513051.14122.10645009325140090342@skylake-alporthouse-com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH 0/7] Commit early to GuC
+Subject: [Intel-gfx] [PATCH] drm: Inject a cond_resched() into long
+ drm_clflush_sg()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,93 +37,109 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: intel-gfx@lists.freedesktop.org, David Laight <David.Laight@ACULAB.COM>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Since we may try and flush the cachelines associated with large buffers
+(an 8K framebuffer is about 128MiB, even before we try HDR), this leads
+to unacceptably long latencies (when using a voluntary CONFIG_PREEMPT).
+If we call cond_resched() between each sg chunk, that it about every 128
+pages, we have a natural break point in which to check if the process
+needs to be rescheduled. Naturally, this means that drm_clflush_sg() can
+only be called from process context -- which is true at the moment. The
+other clflush routines remain usable from atomic context.
 
+Even though flushing large objects takes a demonstrable amount to time
+to flush all the cachelines, clflush is still preferred over a
+system-wide wbinvd as the latter has unpredictable latencies affecting
+the whole system not just the local task.
 
-On 1/15/20 8:18 AM, Chris Wilson wrote:
-> Quoting Daniele Ceraolo Spurio (2020-01-15 15:57:27)
->>
->>
->> On 1/15/2020 12:40 AM, Chris Wilson wrote:
->>> Quoting Daniele Ceraolo Spurio (2020-01-15 01:31:36)
->>>> We currently wait until we attempt to load the GuC to confirm if we're
->>>> in GuC mode or not, at which point a lot of the engine setup has already
->>>> happened and needs to be updated for GuC submission. To allow us to get
->>>> the setup done directly into GuC mode, we need to commit to using GuC
->>>> as soon as possible.
->>> I think this is the wrong direction; as I thought the goal was to allow
->>> delayed loading of firmware, even going as far as allowing the system to
->>> run a browser for the user to get the firmware first. I may be
->>
->> We do indeed want to keep supporting execlists mode even as some HW
->> features move to the GuC to allow the user to get to the binaries, but
->> we don't want to switch between the 2 modes without a reboot. Switching
->> between the 2 modes is not a HW capability that we're committed to; the
->> guc->elsp transition is already not possible, while the elsp->guc one
->> still seems to work, but who knows for how long it will?
->>
->> This series is also not really changing the commitment at the
->> implementation level, just making it "official" and acting based on
->> that. Even without these patches, if the blobs are on the system we will
->> attempt to get into GuC mode unless we get an allocation failure or
->> something similar, in which case it is extremely likely that the
->> fall-back to non-guc will not work either.
->>
->>> completely wrong about that, but imho I never want to have to build
->>> firmware images into the kernel.
->>
->> I do 100% agree with this statement, although I'm not sure how this
->> relates to the series. Are you planning to pull some of the engine setup
->> to an even earlier point?
->>
->>>
->>> The transition from execlists to guc could be just set-wedged; delete
->>> old engines, build guc engines. [This should also work for guc -> guc.]
->>> Throwing away context state is ugly, but simple enough.
->>
->> As mentioned above, we can't switch between elsp and GuC modes so this
->> transition would have to be done before the first submission to HW. Why
->> not go directly in GuC mode then?
-> 
-> So the problem is if we can't freely switch (we can never power down the
-> guc, that seems unlikely?) then we can't make a decision on which mode
+Reported-by: David Laight <David.Laight@ACULAB.COM>
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: David Laight <David.Laight@ACULAB.COM>
+---
+ drivers/gpu/drm/drm_cache.c | 49 ++++++++++++++++++++++++++++++++++---
+ 1 file changed, 45 insertions(+), 4 deletions(-)
 
-AFAIU it's not the GuC itself that's the issue, but some of the other 
-units, some of which outside the GT, that can get locked in one mode 
-without being resettable (like what happens for the WOPCM regs for example).
+diff --git a/drivers/gpu/drm/drm_cache.c b/drivers/gpu/drm/drm_cache.c
+index 03e01b000f7a..fbd2bb644544 100644
+--- a/drivers/gpu/drm/drm_cache.c
++++ b/drivers/gpu/drm/drm_cache.c
+@@ -112,23 +112,64 @@ drm_clflush_pages(struct page *pages[], unsigned long num_pages)
+ }
+ EXPORT_SYMBOL(drm_clflush_pages);
+ 
++static __always_inline struct sgt_iter {
++	struct scatterlist *sgp;
++	unsigned long pfn;
++	unsigned int curr;
++	unsigned int max;
++} __sgt_iter(struct scatterlist *sgl) {
++	struct sgt_iter s = { .sgp = sgl };
++
++	if (s.sgp) {
++		s.max = s.curr = s.sgp->offset;
++		s.max += s.sgp->length;
++		s.pfn = page_to_pfn(sg_page(s.sgp));
++	}
++
++	return s;
++}
++
++static inline struct scatterlist *__sg_next_resched(struct scatterlist *sg)
++{
++	if (sg_is_last(sg))
++		return NULL;
++
++	++sg;
++	if (unlikely(sg_is_chain(sg))) {
++		sg = sg_chain_ptr(sg);
++		cond_resched();
++	}
++	return sg;
++}
++
++#define for_each_sgt_page(__pp, __iter, __sgt)				\
++	for ((__iter) = __sgt_iter((__sgt)->sgl);			\
++	     ((__pp) = (__iter).pfn == 0 ? NULL :			\
++	      pfn_to_page((__iter).pfn + ((__iter).curr >> PAGE_SHIFT))); \
++	     (((__iter).curr += PAGE_SIZE) >= (__iter).max) ?		\
++	     (__iter) = __sgt_iter(__sg_next_resched((__iter).sgp)), 0 : 0)
++
+ /**
+  * drm_clflush_sg - Flush dcache lines pointing to a scather-gather.
+  * @st: struct sg_table.
+  *
+  * Flush every data cache line entry that points to an address in the
+- * sg.
++ * sg. This may schedule between scatterlist chunks, in order to keep
++ * the system preemption-latency down for large buffers.
+  */
+ void
+ drm_clflush_sg(struct sg_table *st)
+ {
++	might_sleep();
++
+ #if defined(CONFIG_X86)
+ 	if (static_cpu_has(X86_FEATURE_CLFLUSH)) {
+-		struct sg_page_iter sg_iter;
++		struct sgt_iter sg_iter;
++		struct page *page;
+ 
+ 		mb(); /*CLFLUSH is ordered only by using memory barriers*/
+-		for_each_sg_page(st->sgl, &sg_iter, st->nents, 0)
+-			drm_clflush_page(sg_page_iter_page(&sg_iter));
++		for_each_sgt_page(page, sg_iter, st)
++			drm_clflush_page(page);
+ 		mb(); /*Make sure that all cache line entry is flushed*/
+ 
+ 		return;
+-- 
+2.25.0
 
-> to run (and which engines to initialise) until userspace is active and
-> has committed to supplying or not supplying a fw image. Which puts us in
-> a catch-22 of wanting to register the driver with userspace before we
-> have finalized initialisation.
-
-I think this is the bit I'm missing. Why do you want userspace to 
-directly provide the firmware instead of fetching it from /lib/firmware 
-like we do now? The distros should pack the correct firmware in their 
-linux-firmware packages and it seems reasonable to me to expect the 
-system to be rebooted after fetching a binary by hand. We can move the 
-fetch to an earlier point in time if we need the info earlier, since it 
-does not require the HW to be ready.
-
-> 
-> If the transition is impossible, it seems like you have no choice but to
-> require the fw image at initialisation. I do not understand why it has
-> to be that way, seems such a hindrance.
-
-My understanding from the talk I had with the HW team when we realized 
-that the guc->elsp transition was broken on gen11 is that the HW expects 
-SW to pick a mode and stick to that. The elsp->guc transition seem to 
-still work, but there is no guarantee it will keep doing so in the 
-future and therefore it doesn't seem like a good idea to build on that.
-
-Daniele
-
-> -Chris
-> 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
