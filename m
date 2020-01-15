@@ -1,46 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 84B2F13C123
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Jan 2020 13:38:30 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id E51E413C195
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Jan 2020 13:48:47 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 67E6A6E98B;
-	Wed, 15 Jan 2020 12:38:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2A5896E9BD;
+	Wed, 15 Jan 2020 12:48:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 75D136E981;
- Wed, 15 Jan 2020 12:38:25 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 15 Jan 2020 04:38:24 -0800
-X-IronPort-AV: E=Sophos;i="5.70,322,1574150400"; d="scan'208";a="226067880"
-Received: from jnikula-mobl3.fi.intel.com (HELO localhost) ([10.237.66.161])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 15 Jan 2020 04:38:16 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Thomas Zimmermann <tzimmermann@suse.de>, airlied@linux.ie, daniel@ffwll.ch,
- alexander.deucher@amd.com, christian.koenig@amd.com, David1.Zhou@amd.com,
- maarten.lankhorst@linux.intel.com, patrik.r.jakobsson@gmail.com,
- robdclark@gmail.com, sean@poorly.run, benjamin.gaignard@linaro.org,
- vincent.abriou@st.com, yannick.fertre@st.com, philippe.cornu@st.com,
- mcoquelin.stm32@gmail.com, alexandre.torgue@st.com, eric@anholt.net,
- rodrigosiqueiramelo@gmail.com, hamohammed.sa@gmail.com,
- linux-graphics-maintainer@vmware.com, thellstrom@vmware.com,
- bskeggs@redhat.com, harry.wentland@amd.com, sunpeng.li@amd.com,
- joonas.lahtinen@linux.intel.com, rodrigo.vivi@intel.com
-In-Reply-To: <20200115121652.7050-8-tzimmermann@suse.de>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20200115121652.7050-1-tzimmermann@suse.de>
- <20200115121652.7050-8-tzimmermann@suse.de>
-Date: Wed, 15 Jan 2020 14:38:13 +0200
-Message-ID: <87lfq8ki8a.fsf@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id D368F6E9B9;
+ Wed, 15 Jan 2020 12:48:45 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id C86D5A011A;
+ Wed, 15 Jan 2020 12:48:45 +0000 (UTC)
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v2 07/21] drm/i915: Convert to CRTC VBLANK
- callbacks
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Yannick FERTRE" <yannick.fertre@st.com>
+Date: Wed, 15 Jan 2020 12:48:45 -0000
+Message-ID: <157909252579.2007.6647545675225166482@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200115121652.7050-1-tzimmermann@suse.de>
+In-Reply-To: <20200115121652.7050-1-tzimmermann@suse.de>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm=3A_Clean_up_VBLANK_callbacks_in_struct_drm=5Fdriver_=28?=
+ =?utf-8?q?rev7=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,177 +39,230 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-arm-msm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Thomas Zimmermann <tzimmermann@suse.de>, nouveau@lists.freedesktop.org,
- freedreno@lists.freedesktop.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 15 Jan 2020, Thomas Zimmermann <tzimmermann@suse.de> wrote:
-> VBLANK callbacks in struct drm_driver are deprecated in favor of their
-> equivalents in struct drm_crtc_funcs. Convert i915 over.
->
-> The callback struct drm_driver.get_scanout_position() is deprecated
-> in favor of struct drm_crtc_helper_funcs.get_scanout_position().
-> i915 doesn't use CRTC helpers. Instead pass i915's implementation of
-> get_scanout_position() to DRM core's
-> drm_crtc_vblank_helper_get_vblank_timestamp_internal().
->
-> v2:
-> 	* use DRM's implementation of get_vblank_timestamp()
-> 	* simplify function names
->
-> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+== Series Details ==
 
-Acked-by: Jani Nikula <jani.nikula@intel.com>
+Series: drm: Clean up VBLANK callbacks in struct drm_driver (rev7)
+URL   : https://patchwork.freedesktop.org/series/71873/
+State : warning
 
-for the approach and for merging through whichever tree makes most
-sense, *however* needs detailed review on the whole.
+== Summary ==
 
-> ---
->  drivers/gpu/drm/i915/display/intel_display.c |  7 +++++++
->  drivers/gpu/drm/i915/i915_drv.c              |  3 ---
->  drivers/gpu/drm/i915/i915_irq.c              | 20 +++++++++++++++-----
->  drivers/gpu/drm/i915/i915_irq.h              |  6 ++----
->  4 files changed, 24 insertions(+), 12 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> index 59c375879186..c8f1da845e7d 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -16336,6 +16336,7 @@ static const struct drm_crtc_funcs bdw_crtc_funcs = {
->  	.get_vblank_counter = g4x_get_vblank_counter,
->  	.enable_vblank = bdw_enable_vblank,
->  	.disable_vblank = bdw_disable_vblank,
-> +	.get_vblank_timestamp = i915_crtc_get_vblank_timestamp,
->  };
->  
->  static const struct drm_crtc_funcs ilk_crtc_funcs = {
-> @@ -16344,6 +16345,7 @@ static const struct drm_crtc_funcs ilk_crtc_funcs = {
->  	.get_vblank_counter = g4x_get_vblank_counter,
->  	.enable_vblank = ilk_enable_vblank,
->  	.disable_vblank = ilk_disable_vblank,
-> +	.get_vblank_timestamp = i915_crtc_get_vblank_timestamp,
->  };
->  
->  static const struct drm_crtc_funcs g4x_crtc_funcs = {
-> @@ -16352,6 +16354,7 @@ static const struct drm_crtc_funcs g4x_crtc_funcs = {
->  	.get_vblank_counter = g4x_get_vblank_counter,
->  	.enable_vblank = i965_enable_vblank,
->  	.disable_vblank = i965_disable_vblank,
-> +	.get_vblank_timestamp = i915_crtc_get_vblank_timestamp,
->  };
->  
->  static const struct drm_crtc_funcs i965_crtc_funcs = {
-> @@ -16360,6 +16363,7 @@ static const struct drm_crtc_funcs i965_crtc_funcs = {
->  	.get_vblank_counter = i915_get_vblank_counter,
->  	.enable_vblank = i965_enable_vblank,
->  	.disable_vblank = i965_disable_vblank,
-> +	.get_vblank_timestamp = i915_crtc_get_vblank_timestamp,
->  };
->  
->  static const struct drm_crtc_funcs i915gm_crtc_funcs = {
-> @@ -16368,6 +16372,7 @@ static const struct drm_crtc_funcs i915gm_crtc_funcs = {
->  	.get_vblank_counter = i915_get_vblank_counter,
->  	.enable_vblank = i915gm_enable_vblank,
->  	.disable_vblank = i915gm_disable_vblank,
-> +	.get_vblank_timestamp = i915_crtc_get_vblank_timestamp,
->  };
->  
->  static const struct drm_crtc_funcs i915_crtc_funcs = {
-> @@ -16376,6 +16381,7 @@ static const struct drm_crtc_funcs i915_crtc_funcs = {
->  	.get_vblank_counter = i915_get_vblank_counter,
->  	.enable_vblank = i8xx_enable_vblank,
->  	.disable_vblank = i8xx_disable_vblank,
-> +	.get_vblank_timestamp = i915_crtc_get_vblank_timestamp,
->  };
->  
->  static const struct drm_crtc_funcs i8xx_crtc_funcs = {
-> @@ -16384,6 +16390,7 @@ static const struct drm_crtc_funcs i8xx_crtc_funcs = {
->  	/* no hw vblank counter */
->  	.enable_vblank = i8xx_enable_vblank,
->  	.disable_vblank = i8xx_disable_vblank,
-> +	.get_vblank_timestamp = i915_crtc_get_vblank_timestamp,
->  };
->  
->  static struct intel_crtc *intel_crtc_alloc(void)
-> diff --git a/drivers/gpu/drm/i915/i915_drv.c b/drivers/gpu/drm/i915/i915_drv.c
-> index f7385abdd74b..30b9ba136a81 100644
-> --- a/drivers/gpu/drm/i915/i915_drv.c
-> +++ b/drivers/gpu/drm/i915/i915_drv.c
-> @@ -2769,9 +2769,6 @@ static struct drm_driver driver = {
->  	.gem_prime_export = i915_gem_prime_export,
->  	.gem_prime_import = i915_gem_prime_import,
->  
-> -	.get_vblank_timestamp = drm_calc_vbltimestamp_from_scanoutpos,
-> -	.get_scanout_position = i915_get_crtc_scanoutpos,
-> -
->  	.dumb_create = i915_gem_dumb_create,
->  	.dumb_map_offset = i915_gem_dumb_mmap_offset,
->  
-> diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_irq.c
-> index afc6aad9bf8c..c39e3ef6e4a2 100644
-> --- a/drivers/gpu/drm/i915/i915_irq.c
-> +++ b/drivers/gpu/drm/i915/i915_irq.c
-> @@ -762,13 +762,15 @@ static int __intel_get_crtc_scanline(struct intel_crtc *crtc)
->  	return (position + crtc->scanline_offset) % vtotal;
->  }
->  
-> -bool i915_get_crtc_scanoutpos(struct drm_device *dev, unsigned int index,
-> -			      bool in_vblank_irq, int *vpos, int *hpos,
-> -			      ktime_t *stime, ktime_t *etime,
-> -			      const struct drm_display_mode *mode)
-> +static bool i915_get_crtc_scanoutpos(struct drm_crtc *dcrtc,
-> +				     bool in_vblank_irq,
-> +				     int *vpos, int *hpos,
-> +				     ktime_t *stime, ktime_t *etime,
-> +				     const struct drm_display_mode *mode)
->  {
-> +	struct drm_device *dev = dcrtc->dev;
->  	struct drm_i915_private *dev_priv = to_i915(dev);
-> -	struct intel_crtc *crtc = to_intel_crtc(drm_crtc_from_index(dev, index));
-> +	struct intel_crtc *crtc = to_intel_crtc(dcrtc);
->  	enum pipe pipe = crtc->pipe;
->  	int position;
->  	int vbl_start, vbl_end, hsync_start, htotal, vtotal;
-> @@ -879,6 +881,14 @@ bool i915_get_crtc_scanoutpos(struct drm_device *dev, unsigned int index,
->  	return true;
->  }
->  
-> +bool i915_crtc_get_vblank_timestamp(struct drm_crtc *crtc, int *max_error,
-> +				    ktime_t *vblank_time, bool in_vblank_irq)
-> +{
-> +	return drm_crtc_vblank_helper_get_vblank_timestamp_internal(
-> +		crtc, max_error, vblank_time, in_vblank_irq,
-> +		i915_get_crtc_scanoutpos);
-> +}
-> +
->  int intel_get_crtc_scanline(struct intel_crtc *crtc)
->  {
->  	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
-> diff --git a/drivers/gpu/drm/i915/i915_irq.h b/drivers/gpu/drm/i915/i915_irq.h
-> index 812c47a9c2d6..53ec921c1c67 100644
-> --- a/drivers/gpu/drm/i915/i915_irq.h
-> +++ b/drivers/gpu/drm/i915/i915_irq.h
-> @@ -101,10 +101,8 @@ void gen8_irq_power_well_post_enable(struct drm_i915_private *dev_priv,
->  void gen8_irq_power_well_pre_disable(struct drm_i915_private *dev_priv,
->  				     u8 pipe_mask);
->  
-> -bool i915_get_crtc_scanoutpos(struct drm_device *dev, unsigned int pipe,
-> -			      bool in_vblank_irq, int *vpos, int *hpos,
-> -			      ktime_t *stime, ktime_t *etime,
-> -			      const struct drm_display_mode *mode);
-> +bool i915_crtc_get_vblank_timestamp(struct drm_crtc *crtc, int *max_error,
-> +				    ktime_t *vblank_time, bool in_vblank_irq);
->  
->  u32 i915_get_vblank_counter(struct drm_crtc *crtc);
->  u32 g4x_get_vblank_counter(struct drm_crtc *crtc);
+$ dim checkpatch origin/drm-tip
+b5db489929e6 drm: Add get_scanout_position() to struct drm_crtc_helper_funcs
+-:65: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#65: FILE: drivers/gpu/drm/drm_vblank.c:671:
++				crtc->helper_private->get_scanout_position(
 
--- 
-Jani Nikula, Intel Open Source Graphics Center
+-:70: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#70: FILE: drivers/gpu/drm/drm_vblank.c:676:
++				dev->driver->get_scanout_position(
+
+total: 0 errors, 0 warnings, 2 checks, 114 lines checked
+f69356546e68 drm: Evaluate struct drm_device.vblank_disable_immediate on each use
+f092246f0d79 drm: Add get_vblank_timestamp() to struct drm_crtc_funcs
+-:73: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'max_error > 0'
+#73: FILE: drivers/gpu/drm/drm_vblank.c:755:
++	if (crtc->funcs->get_vblank_timestamp && (max_error > 0)) {
+
+-:176: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#176: FILE: drivers/gpu/drm/drm_vblank.c:2084:
++drm_crtc_vblank_helper_get_vblank_timestamp_internal(
+
+-:180: ERROR:CODE_INDENT: code indent should use tabs where possible
+#180: FILE: drivers/gpu/drm/drm_vblank.c:2088:
++                                     bool in_vblank_irq, int *vpos, int *hpos,$
+
+-:180: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#180: FILE: drivers/gpu/drm/drm_vblank.c:2088:
++	bool (*get_scanout_position)(struct drm_crtc *crtc,
++                                     bool in_vblank_irq, int *vpos, int *hpos,
+
+-:180: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#180: FILE: drivers/gpu/drm/drm_vblank.c:2088:
++                                     bool in_vblank_irq, int *vpos, int *hpos,$
+
+-:181: ERROR:CODE_INDENT: code indent should use tabs where possible
+#181: FILE: drivers/gpu/drm/drm_vblank.c:2089:
++                                     ktime_t *stime, ktime_t *etime,$
+
+-:181: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#181: FILE: drivers/gpu/drm/drm_vblank.c:2089:
++                                     ktime_t *stime, ktime_t *etime,$
+
+-:182: ERROR:CODE_INDENT: code indent should use tabs where possible
+#182: FILE: drivers/gpu/drm/drm_vblank.c:2090:
++                                     const struct drm_display_mode *mode))$
+
+-:182: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#182: FILE: drivers/gpu/drm/drm_vblank.c:2090:
++                                     const struct drm_display_mode *mode))$
+
+-:252: CHECK:SPACING: spaces preferred around that '/' (ctx:VxV)
+#252: FILE: drivers/gpu/drm/drm_vblank.c:2160:
++			  pipe, duration_ns/1000, *max_error/1000, i);
+ 			                   ^
+
+-:252: CHECK:SPACING: spaces preferred around that '/' (ctx:VxV)
+#252: FILE: drivers/gpu/drm/drm_vblank.c:2160:
++			  pipe, duration_ns/1000, *max_error/1000, i);
+ 			                                    ^
+
+-:322: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#322: FILE: drivers/gpu/drm/drm_vblank.c:2230:
++	return drm_crtc_vblank_helper_get_vblank_timestamp_internal(
+
+-:450: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#450: FILE: include/drm/drm_vblank.h:247:
++drm_crtc_vblank_helper_get_vblank_timestamp_internal(
+
+-:454: ERROR:CODE_INDENT: code indent should use tabs where possible
+#454: FILE: include/drm/drm_vblank.h:251:
++                                     bool in_vblank_irq, int *vpos, int *hpos,$
+
+-:454: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#454: FILE: include/drm/drm_vblank.h:251:
++	bool (*get_scanout_position)(struct drm_crtc *crtc,
++                                     bool in_vblank_irq, int *vpos, int *hpos,
+
+-:454: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#454: FILE: include/drm/drm_vblank.h:251:
++                                     bool in_vblank_irq, int *vpos, int *hpos,$
+
+-:455: ERROR:CODE_INDENT: code indent should use tabs where possible
+#455: FILE: include/drm/drm_vblank.h:252:
++                                     ktime_t *stime, ktime_t *etime,$
+
+-:455: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#455: FILE: include/drm/drm_vblank.h:252:
++                                     ktime_t *stime, ktime_t *etime,$
+
+-:456: ERROR:CODE_INDENT: code indent should use tabs where possible
+#456: FILE: include/drm/drm_vblank.h:253:
++                                     const struct drm_display_mode *mode));$
+
+-:456: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#456: FILE: include/drm/drm_vblank.h:253:
++                                     const struct drm_display_mode *mode));$
+
+total: 6 errors, 6 warnings, 8 checks, 412 lines checked
+fa076645f81a drm/amdgpu: Convert to struct drm_crtc_helper_funcs.get_scanout_position()
+-:23: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#23: FILE: drivers/gpu/drm/amd/amdgpu/amdgpu_display.c:919:
++bool amdgpu_crtc_get_scanout_position(struct drm_crtc *crtc,
++			bool in_vblank_irq, int *vpos,
+
+-:71: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#71: FILE: drivers/gpu/drm/amd/amdgpu/amdgpu_mode.h:616:
++bool amdgpu_crtc_get_scanout_position(struct drm_crtc *crtc,
++			bool in_vblank_irq, int *vpos,
+
+total: 0 errors, 0 warnings, 2 checks, 93 lines checked
+cd78a84d2d2a drm/amdgpu: Convert to CRTC VBLANK callbacks
+93037221d20f drm/gma500: Convert to CRTC VBLANK callbacks
+-:57: CHECK:AVOID_EXTERNS: extern prototypes should be avoided in .h files
+#57: FILE: drivers/gpu/drm/gma500/psb_drv.h:684:
++extern int psb_enable_vblank(struct drm_crtc *crtc);
+
+-:58: CHECK:AVOID_EXTERNS: extern prototypes should be avoided in .h files
+#58: FILE: drivers/gpu/drm/gma500/psb_drv.h:685:
++extern void psb_disable_vblank(struct drm_crtc *crtc);
+
+-:66: CHECK:AVOID_EXTERNS: extern prototypes should be avoided in .h files
+#66: FILE: drivers/gpu/drm/gma500/psb_drv.h:692:
++extern u32 psb_get_vblank_counter(struct drm_crtc *crtc);
+
+total: 0 errors, 0 warnings, 3 checks, 104 lines checked
+6973748c37f8 drm/i915: Convert to CRTC VBLANK callbacks
+-:128: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#128: FILE: drivers/gpu/drm/i915/i915_irq.c:887:
++	return drm_crtc_vblank_helper_get_vblank_timestamp_internal(
+
+total: 0 errors, 0 warnings, 1 checks, 104 lines checked
+e07dbc1495a4 drm/nouveau: Convert to struct drm_crtc_helper_funcs.get_scanout_position()
+-:75: WARNING:FUNCTION_ARGUMENTS: function definition argument 'struct drm_crtc *' should also have an identifier name
+#75: FILE: drivers/gpu/drm/nouveau/nouveau_display.h:66:
++bool  nouveau_display_scanoutpos(struct drm_crtc *,
+
+-:75: WARNING:FUNCTION_ARGUMENTS: function definition argument 'bool' should also have an identifier name
+#75: FILE: drivers/gpu/drm/nouveau/nouveau_display.h:66:
++bool  nouveau_display_scanoutpos(struct drm_crtc *,
+
+-:75: WARNING:FUNCTION_ARGUMENTS: function definition argument 'int *' should also have an identifier name
+#75: FILE: drivers/gpu/drm/nouveau/nouveau_display.h:66:
++bool  nouveau_display_scanoutpos(struct drm_crtc *,
+
+-:75: WARNING:FUNCTION_ARGUMENTS: function definition argument 'int *' should also have an identifier name
+#75: FILE: drivers/gpu/drm/nouveau/nouveau_display.h:66:
++bool  nouveau_display_scanoutpos(struct drm_crtc *,
+
+-:75: WARNING:FUNCTION_ARGUMENTS: function definition argument 'ktime_t *' should also have an identifier name
+#75: FILE: drivers/gpu/drm/nouveau/nouveau_display.h:66:
++bool  nouveau_display_scanoutpos(struct drm_crtc *,
+
+-:75: WARNING:FUNCTION_ARGUMENTS: function definition argument 'ktime_t *' should also have an identifier name
+#75: FILE: drivers/gpu/drm/nouveau/nouveau_display.h:66:
++bool  nouveau_display_scanoutpos(struct drm_crtc *,
+
+-:75: WARNING:FUNCTION_ARGUMENTS: function definition argument 'const struct drm_display_mode *' should also have an identifier name
+#75: FILE: drivers/gpu/drm/nouveau/nouveau_display.h:66:
++bool  nouveau_display_scanoutpos(struct drm_crtc *,
+
+total: 0 errors, 7 warnings, 0 checks, 53 lines checked
+a6ce542fd47d drm/nouveau: Convert to CRTC VBLANK callbacks
+-:95: WARNING:FUNCTION_ARGUMENTS: function definition argument 'struct drm_crtc *' should also have an identifier name
+#95: FILE: drivers/gpu/drm/nouveau/nouveau_display.h:64:
++int  nouveau_display_vblank_enable(struct drm_crtc *);
+
+-:96: WARNING:FUNCTION_ARGUMENTS: function definition argument 'struct drm_crtc *' should also have an identifier name
+#96: FILE: drivers/gpu/drm/nouveau/nouveau_display.h:65:
++void nouveau_display_vblank_disable(struct drm_crtc *);
+
+total: 0 errors, 2 warnings, 0 checks, 77 lines checked
+1f6db288e0fa drm/radeon: Convert to struct drm_crtc_helper_funcs.get_scanout_position()
+-:97: CHECK:AVOID_EXTERNS: extern prototypes should be avoided in .h files
+#97: FILE: drivers/gpu/drm/radeon/radeon_mode.h:884:
++extern bool radeon_get_crtc_scanout_position(struct drm_crtc *crtc,
+
+total: 0 errors, 0 warnings, 1 checks, 67 lines checked
+72b4efee8c65 drm/radeon: Convert to CRTC VBLANK callbacks
+-:21: WARNING:AVOID_EXTERNS: externs should be avoided in .c files
+#21: FILE: drivers/gpu/drm/radeon/radeon_display.c:49:
++int radeon_enable_vblank_kms(struct drm_crtc *crtc);
+
+-:22: WARNING:AVOID_EXTERNS: externs should be avoided in .c files
+#22: FILE: drivers/gpu/drm/radeon/radeon_display.c:50:
++void radeon_disable_vblank_kms(struct drm_crtc *crtc);
+
+total: 0 errors, 2 warnings, 0 checks, 133 lines checked
+966e9c656ca6 drm/msm: Convert to struct drm_crtc_helper_funcs.get_scanout_position()
+-:43: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#43: FILE: drivers/gpu/drm/msm/disp/mdp5/mdp5_crtc.c:430:
++
++
+
+total: 0 errors, 0 warnings, 1 checks, 152 lines checked
+173cf84c27e3 drm/msm: Convert to CRTC VBLANK callbacks
+30e9f7f1f87b drm/stm: Convert to struct drm_crtc_helper_funcs.get_scanout_position()
+d6dc7e620f0d drm/stm: Convert to CRTC VBLANK callbacks
+704e97144a39 drm/sti: Convert to CRTC VBLANK callbacks
+bdb33d490006 drm/vc4: Convert to struct drm_crtc_helper_funcs.get_scanout_position()
+e952fa736e1b drm/vc4: Convert to CRTC VBLANK callbacks
+b29321882b4f drm/vkms: Convert to CRTC VBLANK callbacks
+61527d1c7a93 drm/vmwgfx: Convert to CRTC VBLANK callbacks
+c52556e30792 drm: Clean-up VBLANK-related callbacks in struct drm_driver
+-:296: CHECK:COMPARISON_TO_NULL: Comparison to NULL could be written "crtc->funcs->get_vblank_timestamp"
+#296: FILE: drivers/gpu/drm/drm_vblank.c:1624:
++			       crtc->funcs->get_vblank_timestamp != NULL);
+
+total: 0 errors, 0 warnings, 1 checks, 429 lines checked
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
