@@ -2,37 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1559B13BB19
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Jan 2020 09:31:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B4B7313BB2C
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Jan 2020 09:34:03 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4F80C6E886;
-	Wed, 15 Jan 2020 08:31:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1FF156E895;
+	Wed, 15 Jan 2020 08:34:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7DE866E886
- for <intel-gfx@lists.freedesktop.org>; Wed, 15 Jan 2020 08:31:28 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 15 Jan 2020 00:31:28 -0800
-X-IronPort-AV: E=Sophos;i="5.70,322,1574150400"; d="scan'208";a="218051609"
-Received: from huse-mobl2.ger.corp.intel.com (HELO localhost) ([10.252.50.31])
- by orsmga008-auth.jf.intel.com with
- ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 15 Jan 2020 00:31:26 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Lyude Paul <lyude@redhat.com>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <fc4b86e27577d0467e3ca1bff52d7645b1e71e31.camel@redhat.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1579010266.git.jani.nikula@intel.com>
- <99df51313fd8112a9eb8d30dde19dde51e0c618b.1579010266.git.jani.nikula@intel.com>
- <fc4b86e27577d0467e3ca1bff52d7645b1e71e31.camel@redhat.com>
-Date: Wed, 15 Jan 2020 10:32:00 +0200
-Message-ID: <87ftghjf27.fsf@intel.com>
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8D09D6E899
+ for <intel-gfx@lists.freedesktop.org>; Wed, 15 Jan 2020 08:33:59 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19884513-1500050 
+ for multiple; Wed, 15 Jan 2020 08:33:48 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 15 Jan 2020 08:33:44 +0000
+Message-Id: <20200115083346.2601512-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.25.0
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v2 5/5] drm/i915: Force DPCD backlight mode
- on X1 Extreme 2nd Gen 4K AMOLED panel
+Subject: [Intel-gfx] [PATCH 1/3] drm/i915: Use common priotree lists for
+ virtual engine
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,125 +37,159 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: AceLan Kao <acelan.kao@canonical.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 14 Jan 2020, Lyude Paul <lyude@redhat.com> wrote:
-> fwiw - I got some feedback from one of the vendors that we work with that I
-> haven't gone through yet, but I'm hoping to figure out whether we want to
-> trust the vbt/dpcd based off that once I do. Once we've made up the decision
-> on that (and I send out a reroll if needed), think this is good to merge? (I
-> don't see any issues with any of the changes you've made, and they seem to
-> work fine on my machines)
+Since commit 422d7df4f090 ("drm/i915: Replace engine->timeline with a
+plain list"), we used the default embedded priotree slot for the virtual
+engine request queue, which means we can also use the same solitary slot
+with the scheduler. However, the priolist is expected to be guarded by
+the engine->active.lock, but this is not true for the virtual engine
 
-Thanks, yes, my idea was that I'd merge this after CI says good to
-go. But do let me know if you get more information.
+v2: Update i915_sched_node.link explanation for current usage where it
+is a link on both the queue and on the runlists.
 
-BR,
-Jani.
+References: 422d7df4f090 ("drm/i915: Replace engine->timeline with a plain list")
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+---
+ drivers/gpu/drm/i915/gt/intel_lrc.c   | 13 ++++++++-----
+ drivers/gpu/drm/i915/i915_request.c   |  4 +++-
+ drivers/gpu/drm/i915/i915_request.h   | 17 +++++++++++++++++
+ drivers/gpu/drm/i915/i915_scheduler.c | 22 ++++++++++------------
+ 4 files changed, 38 insertions(+), 18 deletions(-)
 
-
->
-> On Tue, 2020-01-14 at 16:01 +0200, Jani Nikula wrote:
->> From: Lyude Paul <lyude@redhat.com>
->> 
->> Annoyingly, the VBT on the ThinkPad X1 Extreme 2nd Gen indicates that
->> the system uses plain PWM based backlight controls, when in reality the
->> only backlight controls that work are the standard VESA eDP DPCD
->> backlight controls.
->> 
->> Honestly, this makes me wonder how many other systems have these issues
->> or lie about this in their VBT. Not sure we have any good way of finding
->> out until panels like this become more common place in the laptop
->> market. For now, just add a DRM DP quirk to indicate that this panel is
->> telling the truth and is being a good LCD.
->> 
->> v2 by Jani:
->> - rebase
->> 
->> Bugzilla: https://bugs.freedesktop.org/show_bug.cgi?id=112376
->> Closes: https://gitlab.freedesktop.org/drm/intel/issues/642
->> Tested-by: AceLan Kao <acelan.kao@canonical.com>
->> Signed-off-by: Lyude Paul <lyude@redhat.com>
->> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->> ---
->>  drivers/gpu/drm/drm_dp_helper.c                       | 4 ++++
->>  drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c | 8 ++++++--
->>  include/drm/drm_dp_helper.h                           | 8 ++++++++
->>  3 files changed, 18 insertions(+), 2 deletions(-)
->> 
->> diff --git a/drivers/gpu/drm/drm_dp_helper.c
->> b/drivers/gpu/drm/drm_dp_helper.c
->> index 5a103e9b3c86..90e122809fa4 100644
->> --- a/drivers/gpu/drm/drm_dp_helper.c
->> +++ b/drivers/gpu/drm/drm_dp_helper.c
->> @@ -1179,6 +1179,10 @@ static const struct dpcd_quirk dpcd_quirk_list[] = {
->>  	{ OUI(0x00, 0x00, 0x00), DEVICE_ID('C', 'H', '7', '5', '1', '1'),
->> false, BIT(DP_DPCD_QUIRK_NO_SINK_COUNT) },
->>  	/* Synaptics DP1.4 MST hubs can support DSC without virtual DPCD */
->>  	{ OUI(0x90, 0xCC, 0x24), DEVICE_ID_ANY, true,
->> BIT(DP_DPCD_QUIRK_DSC_WITHOUT_VIRTUAL_DPCD) },
->> +	/* Optional 4K AMOLED panel in the ThinkPad X1 Extreme 2nd Generation
->> +	 * only supports DPCD backlight controls, despite advertising
->> otherwise
->> +	 */
->> +	{ OUI(0xba, 0x41, 0x59), DEVICE_ID_ANY, false,
->> BIT(DP_DPCD_QUIRK_FORCE_DPCD_BACKLIGHT) },
->>  };
->>  
->>  #undef OUI
->> diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
->> b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
->> index 77a759361c5c..57774003e8c5 100644
->> --- a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
->> +++ b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
->> @@ -328,11 +328,15 @@ intel_dp_aux_display_control_capable(struct
->> intel_connector *connector)
->>  int intel_dp_aux_init_backlight_funcs(struct intel_connector
->> *intel_connector)
->>  {
->>  	struct intel_panel *panel = &intel_connector->panel;
->> -	struct drm_i915_private *dev_priv = to_i915(intel_connector-
->> >base.dev);
->> +	struct intel_dp *intel_dp = enc_to_intel_dp(intel_connector->encoder);
->> +	struct drm_i915_private *i915 = to_i915(intel_connector->base.dev);
->>  
->>  	if (i915_modparams.enable_dpcd_backlight == 0 ||
->>  	    (i915_modparams.enable_dpcd_backlight == -1 &&
->> -	    dev_priv->vbt.backlight.type !=
->> INTEL_BACKLIGHT_VESA_EDP_AUX_INTERFACE))
->> +	     i915->vbt.backlight.type !=
->> +	     INTEL_BACKLIGHT_VESA_EDP_AUX_INTERFACE &&
->> +	     !drm_dp_has_quirk(&intel_dp->desc,
->> +			       DP_DPCD_QUIRK_FORCE_DPCD_BACKLIGHT)))
->>  		return -ENODEV;
->>  
->>  	if (!intel_dp_aux_display_control_capable(intel_connector))
->> diff --git a/include/drm/drm_dp_helper.h b/include/drm/drm_dp_helper.h
->> index 262faf9e5e94..bb081921f53d 100644
->> --- a/include/drm/drm_dp_helper.h
->> +++ b/include/drm/drm_dp_helper.h
->> @@ -1532,6 +1532,14 @@ enum drm_dp_quirk {
->>  	 * The DSC caps can be read from the physical aux instead.
->>  	 */
->>  	DP_DPCD_QUIRK_DSC_WITHOUT_VIRTUAL_DPCD,
->> +	/**
->> +	 * @DP_DPCD_QUIRK_FORCE_DPCD_BACKLIGHT:
->> +	 *
->> +	 * The device is telling the truth when it says that it uses DPCD
->> +	 * backlight controls, even if the system's firmware disagrees.
->> +	 * The driver should honor the DPCD backlight capabilities advertised.
->> +	 */
->> +	DP_DPCD_QUIRK_FORCE_DPCD_BACKLIGHT,
->>  };
->>  
->>  /**
-
+diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+index 9e430590fb3a..f0cbd240a8c2 100644
+--- a/drivers/gpu/drm/i915/gt/intel_lrc.c
++++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+@@ -985,6 +985,8 @@ __unwind_incomplete_requests(struct intel_engine_cs *engine)
+ 			GEM_BUG_ON(RB_EMPTY_ROOT(&engine->execlists.queue.rb_root));
+ 
+ 			list_move(&rq->sched.link, pl);
++			set_bit(I915_FENCE_FLAG_PQUEUE, &rq->fence.flags);
++
+ 			active = rq;
+ 		} else {
+ 			struct intel_engine_cs *owner = rq->context->engine;
+@@ -2430,11 +2432,12 @@ static void execlists_preempt(struct timer_list *timer)
+ }
+ 
+ static void queue_request(struct intel_engine_cs *engine,
+-			  struct i915_sched_node *node,
+-			  int prio)
++			  struct i915_request *rq)
+ {
+-	GEM_BUG_ON(!list_empty(&node->link));
+-	list_add_tail(&node->link, i915_sched_lookup_priolist(engine, prio));
++	GEM_BUG_ON(!list_empty(&rq->sched.link));
++	list_add_tail(&rq->sched.link,
++		      i915_sched_lookup_priolist(engine, rq_prio(rq)));
++	set_bit(I915_FENCE_FLAG_PQUEUE, &rq->fence.flags);
+ }
+ 
+ static void __submit_queue_imm(struct intel_engine_cs *engine)
+@@ -2470,7 +2473,7 @@ static void execlists_submit_request(struct i915_request *request)
+ 	/* Will be called from irq-context when using foreign fences. */
+ 	spin_lock_irqsave(&engine->active.lock, flags);
+ 
+-	queue_request(engine, &request->sched, rq_prio(request));
++	queue_request(engine, request);
+ 
+ 	GEM_BUG_ON(RB_EMPTY_ROOT(&engine->execlists.queue.rb_root));
+ 	GEM_BUG_ON(list_empty(&request->sched.link));
+diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
+index be185886e4fc..9ed0d3bc7249 100644
+--- a/drivers/gpu/drm/i915/i915_request.c
++++ b/drivers/gpu/drm/i915/i915_request.c
+@@ -408,8 +408,10 @@ bool __i915_request_submit(struct i915_request *request)
+ xfer:	/* We may be recursing from the signal callback of another i915 fence */
+ 	spin_lock_nested(&request->lock, SINGLE_DEPTH_NESTING);
+ 
+-	if (!test_and_set_bit(I915_FENCE_FLAG_ACTIVE, &request->fence.flags))
++	if (!test_and_set_bit(I915_FENCE_FLAG_ACTIVE, &request->fence.flags)) {
+ 		list_move_tail(&request->sched.link, &engine->active.requests);
++		clear_bit(I915_FENCE_FLAG_PQUEUE, &request->fence.flags);
++	}
+ 
+ 	if (test_bit(DMA_FENCE_FLAG_ENABLE_SIGNAL_BIT, &request->fence.flags) &&
+ 	    !test_bit(DMA_FENCE_FLAG_SIGNALED_BIT, &request->fence.flags) &&
+diff --git a/drivers/gpu/drm/i915/i915_request.h b/drivers/gpu/drm/i915/i915_request.h
+index 031433691a06..a9f0d3c8d8b7 100644
+--- a/drivers/gpu/drm/i915/i915_request.h
++++ b/drivers/gpu/drm/i915/i915_request.h
+@@ -70,6 +70,18 @@ enum {
+ 	 */
+ 	I915_FENCE_FLAG_ACTIVE = DMA_FENCE_FLAG_USER_BITS,
+ 
++	/*
++	 * I915_FENCE_FLAG_PQUEUE - this request is ready for execution
++	 *
++	 * Using the scheduler, when a request is ready for execution it is put
++	 * into the priority queue, and removed from the queue when transferred
++	 * to the HW runlists. We want to track its membership within that
++	 * queue so that we can easily check before rescheduling.
++	 *
++	 * See i915_request_in_priority_queue()
++	 */
++	I915_FENCE_FLAG_PQUEUE,
++
+ 	/*
+ 	 * I915_FENCE_FLAG_SIGNAL - this request is currently on signal_list
+ 	 *
+@@ -361,6 +373,11 @@ static inline bool i915_request_is_active(const struct i915_request *rq)
+ 	return test_bit(I915_FENCE_FLAG_ACTIVE, &rq->fence.flags);
+ }
+ 
++static inline bool i915_request_in_priority_queue(const struct i915_request *rq)
++{
++	return test_bit(I915_FENCE_FLAG_PQUEUE, &rq->fence.flags);
++}
++
+ /**
+  * Returns true if seq1 is later than seq2.
+  */
+diff --git a/drivers/gpu/drm/i915/i915_scheduler.c b/drivers/gpu/drm/i915/i915_scheduler.c
+index bf87c70bfdd9..db3da81b7f05 100644
+--- a/drivers/gpu/drm/i915/i915_scheduler.c
++++ b/drivers/gpu/drm/i915/i915_scheduler.c
+@@ -326,20 +326,18 @@ static void __i915_schedule(struct i915_sched_node *node,
+ 
+ 		node->attr.priority = prio;
+ 
+-		if (list_empty(&node->link)) {
+-			/*
+-			 * If the request is not in the priolist queue because
+-			 * it is not yet runnable, then it doesn't contribute
+-			 * to our preemption decisions. On the other hand,
+-			 * if the request is on the HW, it too is not in the
+-			 * queue; but in that case we may still need to reorder
+-			 * the inflight requests.
+-			 */
++		/*
++		 * Once the request is ready, it will be place into the
++		 * priority lists and then onto the HW runlist. Before the
++		 * request is ready, it does not contribute to our preemption
++		 * decisions and we can safely ignore it, as it will, and
++		 * any preemption required, be dealt with upon submission.
++		 * See engine->submit_request()
++		 */
++		if (list_empty(&node->link))
+ 			continue;
+-		}
+ 
+-		if (!intel_engine_is_virtual(engine) &&
+-		    !i915_request_is_active(node_to_request(node))) {
++		if (i915_request_in_priority_queue(node_to_request(node))) {
+ 			if (!cache.priolist)
+ 				cache.priolist =
+ 					i915_sched_lookup_priolist(engine,
 -- 
-Jani Nikula, Intel Open Source Graphics Center
+2.25.0
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
