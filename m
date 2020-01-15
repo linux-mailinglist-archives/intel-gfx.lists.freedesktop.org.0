@@ -1,39 +1,37 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF9F313C27E
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Jan 2020 14:20:07 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4039C13C4F3
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Jan 2020 15:08:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5A1516E9D5;
-	Wed, 15 Jan 2020 13:20:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 959326EAA7;
+	Wed, 15 Jan 2020 14:08:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8604E6E9D5
- for <intel-gfx@lists.freedesktop.org>; Wed, 15 Jan 2020 13:20:05 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DDC3B6EAA7
+ for <intel-gfx@lists.freedesktop.org>; Wed, 15 Jan 2020 14:08:32 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 15 Jan 2020 05:13:04 -0800
-X-IronPort-AV: E=Sophos;i="5.70,322,1574150400"; d="scan'208";a="226080148"
-Received: from jnikula-mobl3.fi.intel.com (HELO localhost) ([10.237.66.161])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 15 Jan 2020 05:13:02 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <87sgkhj96b.fsf@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1575560168.git.jani.nikula@intel.com>
- <600101c8433e7caf9303663fc85a9972fa1f05e7.1575560168.git.jani.nikula@intel.com>
- <157908269569.5559.17250369129638651910@skylake-alporthouse-com>
- <87sgkhj96b.fsf@intel.com>
-Date: Wed, 15 Jan 2020 15:12:59 +0200
-Message-ID: <87imlckgmc.fsf@intel.com>
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 15 Jan 2020 06:08:32 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,322,1574150400"; d="scan'208";a="273651569"
+Received: from irvmail001.ir.intel.com ([163.33.26.43])
+ by FMSMGA003.fm.intel.com with ESMTP; 15 Jan 2020 06:08:31 -0800
+Received: from mwajdecz-MOBL1.ger.corp.intel.com
+ (mwajdecz-mobl1.ger.corp.intel.com [172.28.174.138])
+ by irvmail001.ir.intel.com (8.14.3/8.13.6/MailSET/Hub) with ESMTP id
+ 00FE8USP003035; Wed, 15 Jan 2020 14:08:30 GMT
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 15 Jan 2020 14:08:17 +0000
+Message-Id: <20200115140822.55756-1-michal.wajdeczko@intel.com>
+X-Mailer: git-send-email 2.21.0.windows.1
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915/params: add i915 parameters to
- debugfs
+Subject: [Intel-gfx] [PATCH 0/5] Misc GuC CT improvements - part II
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,54 +49,19 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 15 Jan 2020, Jani Nikula <jani.nikula@intel.com> wrote:
-> On Wed, 15 Jan 2020, Chris Wilson <chris@chris-wilson.co.uk> wrote:
->> Quoting Jani Nikula (2019-12-05 15:43:40)
->>> Add a debugfs subdirectory i915_params with all the i915 module
->>> parameters. This is a first step, with lots of boilerplate, and not much
->>> benefit yet.
->>
->> Right, creates a mirror [more or less] of /sys/module/i915/parameters. I
->> probably would have used parameters/ rather than i915_params/, but that
->> is immaterial.
->
-> I guess I used i915_ because it's sort of a shared namespace with drm
-> core, which in itself is, IMO, a historical mistake. Perhaps there
-> should've been a driver/ debugfs directory for driver specific debug
-> files.
->
-> What if someone wanted to add a drm core level parameters/ file or
-> directory? Would be kind of embarrassing to say, don't do that, i915
-> already uses it...
->
->>> 
->>> This will result in a new device specific debugfs directory at
->>> /sys/kernel/debug/dri/<N>/i915_params duplicating the module specific
->>> sysfs directory at /sys/module/i915/parameters/. Going forward, all
->>> users of the parameters should use the debugfs, with the module
->>> parameters being phased out.
->>> 
->>> Add debugfs permissions to I915_PARAMS_FOR_EACH(). This duplicates the
->>> mode with module parameter sysfs, but the goal is to make the module
->>> parameters read-only initial values for device specific parameters.
->>> 
->>> 0 mode will bypass debugfs creation. Use it for verbose_state_checks
->>> which will need special attention in follow-up work.
->>
->> The patch does what you say, hopefully a local entropy maxima.
->> Reviewed-by: Chris Wilson <chris@chris-wilson.co.uk>
->
-> Many thanks,
-> Jani.
+Michal Wajdeczko (5):
+  drm/i915/guc: Don't GEM_BUG_ON on corrupted G2H CTB
+  i915/drm/guc: Don't pass CTB while writing
+  i915/drm/guc: Don't pass CTB while reading
+  drm/i915/guc: Switch to CT_ERROR in ct_read
+  drm/i915/guc: Introduce CT_DEBUG
 
-And pushed both to dinq, thanks again for the review.
-
-BR,
-Jani.
-
+ drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c | 114 ++++++++++++----------
+ 1 file changed, 61 insertions(+), 53 deletions(-)
 
 -- 
-Jani Nikula, Intel Open Source Graphics Center
+2.19.2
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
