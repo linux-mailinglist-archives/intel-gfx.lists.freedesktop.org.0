@@ -1,37 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C64313CD60
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Jan 2020 20:46:11 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2797513CD62
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Jan 2020 20:48:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 568576EA83;
-	Wed, 15 Jan 2020 19:46:09 +0000 (UTC)
-X-Original-To: Intel-GFX@lists.freedesktop.org
-Delivered-To: Intel-GFX@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2418E6EA83
- for <Intel-GFX@lists.freedesktop.org>; Wed, 15 Jan 2020 19:46:08 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 15 Jan 2020 11:46:07 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,323,1574150400"; d="scan'208";a="213816168"
-Received: from dceraolo-linux.fm.intel.com (HELO [10.1.27.145]) ([10.1.27.145])
- by orsmga007.jf.intel.com with ESMTP; 15 Jan 2020 11:46:07 -0800
-To: John.C.Harrison@Intel.com, Intel-GFX@Lists.FreeDesktop.Org
-References: <20200115024053.11333-1-John.C.Harrison@Intel.com>
-From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Message-ID: <3201a276-52d7-3140-6271-3cf6c5bd7dda@intel.com>
-Date: Wed, 15 Jan 2020 11:45:36 -0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.2.2
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0542C6EA8F;
+	Wed, 15 Jan 2020 19:48:12 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 27EFA6EA8B;
+ Wed, 15 Jan 2020 19:48:10 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 1FB47A0019;
+ Wed, 15 Jan 2020 19:48:10 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <20200115024053.11333-1-John.C.Harrison@Intel.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/guc: Update to GuC FW v40
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
+Date: Wed, 15 Jan 2020 19:48:10 -0000
+Message-ID: <157911769010.2007.2554530306059503858@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200115190813.17971-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20200115190813.17971-1-ville.syrjala@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5B1/5=5D_drm/i915=3A_Fix_post-fastset_modese?=
+ =?utf-8?q?t_check_for_port_sync?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,293 +39,185 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+== Series Details ==
+
+Series: series starting with [1/5] drm/i915: Fix post-fastset modeset check for port sync
+URL   : https://patchwork.freedesktop.org/series/72083/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_7751 -> Patchwork_16116
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16116/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_16116 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_exec_parallel@basic:
+    - fi-tgl-y:           [PASS][1] -> [DMESG-WARN][2] ([i915#402]) +2 similar issues
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7751/fi-tgl-y/igt@gem_exec_parallel@basic.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16116/fi-tgl-y/igt@gem_exec_parallel@basic.html
+
+  * igt@gem_exec_suspend@basic-s0:
+    - fi-cml-s:           [PASS][3] -> [FAIL][4] ([fdo#103375])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7751/fi-cml-s/igt@gem_exec_suspend@basic-s0.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16116/fi-cml-s/igt@gem_exec_suspend@basic-s0.html
+
+  * igt@i915_module_load@reload-with-fault-injection:
+    - fi-icl-guc:         [PASS][5] -> [DMESG-WARN][6] ([i915#109])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7751/fi-icl-guc/igt@i915_module_load@reload-with-fault-injection.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16116/fi-icl-guc/igt@i915_module_load@reload-with-fault-injection.html
+
+  * igt@i915_selftest@live_blt:
+    - fi-ivb-3770:        [PASS][7] -> [DMESG-FAIL][8] ([i915#563])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7751/fi-ivb-3770/igt@i915_selftest@live_blt.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16116/fi-ivb-3770/igt@i915_selftest@live_blt.html
+
+  * igt@i915_selftest@live_gem_contexts:
+    - fi-kbl-x1275:       [PASS][9] -> [INCOMPLETE][10] ([CI#80] / [i915#504])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7751/fi-kbl-x1275/igt@i915_selftest@live_gem_contexts.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16116/fi-kbl-x1275/igt@i915_selftest@live_gem_contexts.html
+    - fi-cml-s:           [PASS][11] -> [DMESG-FAIL][12] ([i915#877])
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7751/fi-cml-s/igt@i915_selftest@live_gem_contexts.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16116/fi-cml-s/igt@i915_selftest@live_gem_contexts.html
+
+  * igt@kms_cursor_legacy@basic-flip-after-cursor-atomic:
+    - fi-icl-dsi:         [PASS][13] -> [DMESG-WARN][14] ([i915#109])
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7751/fi-icl-dsi/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16116/fi-icl-dsi/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_close_race@basic-threads:
+    - fi-byt-j1900:       [TIMEOUT][15] ([fdo#112271] / [i915#816]) -> [PASS][16]
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7751/fi-byt-j1900/igt@gem_close_race@basic-threads.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16116/fi-byt-j1900/igt@gem_close_race@basic-threads.html
+
+  * igt@gem_exec_gttfill@basic:
+    - {fi-ehl-1}:         [INCOMPLETE][17] ([i915#937]) -> [PASS][18]
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7751/fi-ehl-1/igt@gem_exec_gttfill@basic.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16116/fi-ehl-1/igt@gem_exec_gttfill@basic.html
+
+  * igt@i915_getparams_basic@basic-subslice-total:
+    - fi-tgl-y:           [DMESG-WARN][19] ([i915#402]) -> [PASS][20] +1 similar issue
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7751/fi-tgl-y/igt@i915_getparams_basic@basic-subslice-total.html
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16116/fi-tgl-y/igt@i915_getparams_basic@basic-subslice-total.html
+
+  * igt@i915_module_load@reload-with-fault-injection:
+    - fi-skl-6770hq:      [DMESG-WARN][21] ([i915#889]) -> [PASS][22]
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7751/fi-skl-6770hq/igt@i915_module_load@reload-with-fault-injection.html
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16116/fi-skl-6770hq/igt@i915_module_load@reload-with-fault-injection.html
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-skl-6770hq:      [INCOMPLETE][23] ([i915#151]) -> [PASS][24]
+   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7751/fi-skl-6770hq/igt@i915_pm_rpm@module-reload.html
+   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16116/fi-skl-6770hq/igt@i915_pm_rpm@module-reload.html
+
+  * igt@kms_chamelium@hdmi-hpd-fast:
+    - fi-kbl-7500u:       [FAIL][25] ([fdo#111096] / [i915#323]) -> [PASS][26]
+   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7751/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16116/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+
+  
+#### Warnings ####
+
+  * igt@i915_module_load@reload-with-fault-injection:
+    - fi-cfl-8700k:       [DMESG-WARN][27] ([i915#889]) -> [INCOMPLETE][28] ([i915#505])
+   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7751/fi-cfl-8700k/igt@i915_module_load@reload-with-fault-injection.html
+   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16116/fi-cfl-8700k/igt@i915_module_load@reload-with-fault-injection.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [CI#80]: https://gitlab.freedesktop.org/gfx-ci/i915-infra/issues/80
+  [fdo#103375]: https://bugs.freedesktop.org/show_bug.cgi?id=103375
+  [fdo#111096]: https://bugs.freedesktop.org/show_bug.cgi?id=111096
+  [fdo#112271]: https://bugs.freedesktop.org/show_bug.cgi?id=112271
+  [i915#109]: https://gitlab.freedesktop.org/drm/intel/issues/109
+  [i915#151]: https://gitlab.freedesktop.org/drm/intel/issues/151
+  [i915#323]: https://gitlab.freedesktop.org/drm/intel/issues/323
+  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+  [i915#504]: https://gitlab.freedesktop.org/drm/intel/issues/504
+  [i915#505]: https://gitlab.freedesktop.org/drm/intel/issues/505
+  [i915#563]: https://gitlab.freedesktop.org/drm/intel/issues/563
+  [i915#816]: https://gitlab.freedesktop.org/drm/intel/issues/816
+  [i915#877]: https://gitlab.freedesktop.org/drm/intel/issues/877
+  [i915#889]: https://gitlab.freedesktop.org/drm/intel/issues/889
+  [i915#937]: https://gitlab.freedesktop.org/drm/intel/issues/937
 
 
-On 1/14/20 6:40 PM, John.C.Harrison@Intel.com wrote:
-> From: Matthew Brost <matthew.brost@intel.com>
-> 
-> The GuC major version has jumped from 35 to 40. This is because this
-> FW includes a significant re-write of the API that completely breaks
-> backwards compatibility for command submission. This patch is
-> sufficient to enable loading of the GuC and hence authentication of
-> the HuC. Support of command submission will follow in a much larger
-> patch series.
-> 
-> The changes required to load v40 FW are:
-> * An additional data structure and associated 'private_data' pointer
-> are now required to be setup by the driver. This is basically a
-> scratch area of memory that the GuC owns. The size is read from the
-> CSS header.
-> 
-> * A physical to logical engine mapping table is required to be
-> provided in the GuC additional data structure. This is initialized
-> with a 1 to 1 mapping.
-> 
-> * GUC_CTL_CTXINFO has been removed from the initialization params.
-> 
+Participating hosts (46 -> 38)
+------------------------------
 
-You're missing the removal of ads.reg_state_buffer, which is several 
-page of memory we can now save. Michal has floated a patch for that 
-internally.
+  Additional (3): fi-hsw-peppy fi-blb-e6850 fi-byt-n2820 
+  Missing    (11): fi-kbl-soraka fi-ilk-m540 fi-byt-squawks fi-bsw-cyan fi-bwr-2160 fi-cfl-guc fi-gdg-551 fi-byt-clapper fi-bsw-nick fi-skl-6600u fi-kbl-r 
 
-Daniele
 
-> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
-> CC: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-> ---
->   drivers/gpu/drm/i915/gt/uc/intel_guc.c       | 18 ------------
->   drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c   | 29 +++++++++++++++++++-
->   drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h  | 22 +++++++--------
->   drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c     | 21 ++++++++------
->   drivers/gpu/drm/i915/gt/uc/intel_uc_fw.h     |  2 ++
->   drivers/gpu/drm/i915/gt/uc/intel_uc_fw_abi.h |  6 +++-
->   6 files changed, 57 insertions(+), 41 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc.c b/drivers/gpu/drm/i915/gt/uc/intel_guc.c
-> index 5d00a3b2d914..e3ef742aac4a 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc.c
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.c
-> @@ -213,23 +213,6 @@ static u32 guc_ctl_feature_flags(struct intel_guc *guc)
->   	return flags;
->   }
->   
-> -static u32 guc_ctl_ctxinfo_flags(struct intel_guc *guc)
-> -{
-> -	u32 flags = 0;
-> -
-> -	if (intel_guc_is_submission_supported(guc)) {
-> -		u32 ctxnum, base;
-> -
-> -		base = intel_guc_ggtt_offset(guc, guc->stage_desc_pool);
-> -		ctxnum = GUC_MAX_STAGE_DESCRIPTORS / 16;
-> -
-> -		base >>= PAGE_SHIFT;
-> -		flags |= (base << GUC_CTL_BASE_ADDR_SHIFT) |
-> -			(ctxnum << GUC_CTL_CTXNUM_IN16_SHIFT);
-> -	}
-> -	return flags;
-> -}
-> -
->   static u32 guc_ctl_log_params_flags(struct intel_guc *guc)
->   {
->   	u32 offset = intel_guc_ggtt_offset(guc, guc->log.vma) >> PAGE_SHIFT;
-> @@ -291,7 +274,6 @@ static void guc_init_params(struct intel_guc *guc)
->   
->   	BUILD_BUG_ON(sizeof(guc->params) != GUC_CTL_MAX_DWORDS * sizeof(u32));
->   
-> -	params[GUC_CTL_CTXINFO] = guc_ctl_ctxinfo_flags(guc);
->   	params[GUC_CTL_LOG_PARAMS] = guc_ctl_log_params_flags(guc);
->   	params[GUC_CTL_FEATURE] = guc_ctl_feature_flags(guc);
->   	params[GUC_CTL_DEBUG] = guc_ctl_debug_flags(guc);
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c
-> index 101728006ae9..1d84cf1d8710 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c
-> @@ -48,6 +48,20 @@ static void guc_ct_pool_entries_init(struct guc_ct_pool_entry *pool, u32 num)
->   	memset(pool, 0, num * sizeof(*pool));
->   }
->   
-> +static void guc_mapping_table_init(struct guc_gt_system_info *system_info)
-> +{
-> +	unsigned int i, j;
-> +
-> +	/*
-> +	 * Initializing the physical to logical engine mapping table with a
-> +	 * 1 to 1 mapping. This allows the firmware to load on all platforms as
-> +	 * all engines are logical exposed to the user.
-> +	 */
-> +	for (i = 0; i < GUC_MAX_ENGINE_CLASSES; ++i)
-> +		for (j = 0; j < GUC_MAX_INSTANCES_PER_CLASS; ++j)
-> +			system_info->mapping_table[i][j] = j;
-> +}
-> +
->   /*
->    * The first 80 dwords of the register state context, containing the
->    * execlists and ppgtt registers.
-> @@ -107,6 +121,8 @@ static void __guc_ads_init(struct intel_guc *guc)
->   	blob->system_info.vebox_enable_mask = VEBOX_MASK(dev_priv);
->   	blob->system_info.vdbox_sfc_support_mask = RUNTIME_INFO(dev_priv)->vdbox_sfc_access;
->   
-> +	guc_mapping_table_init(&blob->system_info);
-> +
->   	base = intel_guc_ggtt_offset(guc, guc->ads_vma);
->   
->   	/* Clients info  */
-> @@ -123,6 +139,10 @@ static void __guc_ads_init(struct intel_guc *guc)
->   	blob->ads.gt_system_info = base + ptr_offset(blob, system_info);
->   	blob->ads.clients_info = base + ptr_offset(blob, clients_info);
->   
-> +	/* Private Data */
-> +	blob->ads.private_data = base +
-> +		PAGE_ALIGN(sizeof(struct __guc_ads_blob));
-> +
->   	i915_gem_object_flush_map(guc->ads_vma->obj);
->   }
->   
-> @@ -135,11 +155,13 @@ static void __guc_ads_init(struct intel_guc *guc)
->    */
->   int intel_guc_ads_create(struct intel_guc *guc)
->   {
-> -	const u32 size = PAGE_ALIGN(sizeof(struct __guc_ads_blob));
-> +	u32 size = PAGE_ALIGN(sizeof(struct __guc_ads_blob));
->   	int ret;
->   
->   	GEM_BUG_ON(guc->ads_vma);
->   
-> +	size += PAGE_ALIGN(guc->fw.private_data_size);
-> +
->   	ret = intel_guc_allocate_and_map_vma(guc, size, &guc->ads_vma,
->   					     (void **)&guc->ads_blob);
->   
-> @@ -169,4 +191,9 @@ void intel_guc_ads_reset(struct intel_guc *guc)
->   	if (!guc->ads_vma)
->   		return;
->   	__guc_ads_init(guc);
-> +
-> +	if (guc->fw.private_data_size)
-> +		memset((void *)guc->ads_blob +
-> +		       PAGE_ALIGN(sizeof(struct __guc_ads_blob)), 0,
-> +		       PAGE_ALIGN(guc->fw.private_data_size));
->   }
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h b/drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h
-> index a6b733c146c9..0389fad4e61f 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h
-> @@ -62,12 +62,7 @@
->   #define GUC_STAGE_DESC_ATTR_PCH		BIT(6)
->   #define GUC_STAGE_DESC_ATTR_TERMINATED	BIT(7)
->   
-> -/* New GuC control data */
-> -#define GUC_CTL_CTXINFO			0
-> -#define   GUC_CTL_CTXNUM_IN16_SHIFT	0
-> -#define   GUC_CTL_BASE_ADDR_SHIFT	12
-> -
-> -#define GUC_CTL_LOG_PARAMS		1
-> +#define GUC_CTL_LOG_PARAMS		0
->   #define   GUC_LOG_VALID			(1 << 0)
->   #define   GUC_LOG_NOTIFY_ON_HALF_FULL	(1 << 1)
->   #define   GUC_LOG_ALLOC_IN_MEGABYTE	(1 << 3)
-> @@ -79,11 +74,11 @@
->   #define   GUC_LOG_ISR_MASK	        (0x7 << GUC_LOG_ISR_SHIFT)
->   #define   GUC_LOG_BUF_ADDR_SHIFT	12
->   
-> -#define GUC_CTL_WA			2
-> -#define GUC_CTL_FEATURE			3
-> +#define GUC_CTL_WA			1
-> +#define GUC_CTL_FEATURE			2
->   #define   GUC_CTL_DISABLE_SCHEDULER	(1 << 14)
->   
-> -#define GUC_CTL_DEBUG			4
-> +#define GUC_CTL_DEBUG			3
->   #define   GUC_LOG_VERBOSITY_SHIFT	0
->   #define   GUC_LOG_VERBOSITY_LOW		(0 << GUC_LOG_VERBOSITY_SHIFT)
->   #define   GUC_LOG_VERBOSITY_MED		(1 << GUC_LOG_VERBOSITY_SHIFT)
-> @@ -97,7 +92,7 @@
->   #define   GUC_LOG_DISABLED		(1 << 6)
->   #define   GUC_PROFILE_ENABLED		(1 << 7)
->   
-> -#define GUC_CTL_ADS			5
-> +#define GUC_CTL_ADS			4
->   #define   GUC_ADS_ADDR_SHIFT		1
->   #define   GUC_ADS_ADDR_MASK		(0xFFFFF << GUC_ADS_ADDR_SHIFT)
->   
-> @@ -369,7 +364,9 @@ struct guc_gt_system_info {
->   	u32 vdbox_enable_mask;
->   	u32 vdbox_sfc_support_mask;
->   	u32 vebox_enable_mask;
-> -	u32 reserved[9];
-> +	u32 reserved1;
-> +	u8 mapping_table[GUC_MAX_ENGINE_CLASSES][GUC_MAX_INSTANCES_PER_CLASS];
-> +	u32 reserved2[8];
->   } __packed;
->   
->   /* Clients info */
-> @@ -398,7 +395,8 @@ struct guc_ads {
->   	u32 control_data;
->   	u32 golden_context_lrca[GUC_MAX_ENGINE_CLASSES];
->   	u32 eng_state_size[GUC_MAX_ENGINE_CLASSES];
-> -	u32 reserved[16];
-> +	u32 private_data;
-> +	u32 reserved[15];
->   } __packed;
->   
->   /* GuC logging structures */
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
-> index 8ee0a0c7f447..791edd6db6bc 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
-> @@ -43,15 +43,15 @@ void intel_uc_fw_change_status(struct intel_uc_fw *uc_fw,
->    * features.
->    */
->   #define INTEL_UC_FIRMWARE_DEFS(fw_def, guc_def, huc_def) \
-> -	fw_def(TIGERLAKE,   0, guc_def(tgl, 35, 2, 0), huc_def(tgl,  7, 0, 3)) \
-> -	fw_def(ELKHARTLAKE, 0, guc_def(ehl, 33, 0, 4), huc_def(ehl,  9, 0, 0)) \
-> -	fw_def(ICELAKE,     0, guc_def(icl, 33, 0, 0), huc_def(icl,  9, 0, 0)) \
-> -	fw_def(COFFEELAKE,  5, guc_def(cml, 33, 0, 0), huc_def(cml,  4, 0, 0)) \
-> -	fw_def(COFFEELAKE,  0, guc_def(kbl, 33, 0, 0), huc_def(kbl,  4, 0, 0)) \
-> -	fw_def(GEMINILAKE,  0, guc_def(glk, 33, 0, 0), huc_def(glk,  4, 0, 0)) \
-> -	fw_def(KABYLAKE,    0, guc_def(kbl, 33, 0, 0), huc_def(kbl,  4, 0, 0)) \
-> -	fw_def(BROXTON,     0, guc_def(bxt, 33, 0, 0), huc_def(bxt,  2, 0, 0)) \
-> -	fw_def(SKYLAKE,     0, guc_def(skl, 33, 0, 0), huc_def(skl,  2, 0, 0))
-> +	fw_def(TIGERLAKE,   0, guc_def(tgl, 40, 0, 0), huc_def(tgl,  7, 0, 3)) \
-> +	fw_def(ELKHARTLAKE, 0, guc_def(ehl, 40, 0, 0), huc_def(ehl,  9, 0, 0)) \
-> +	fw_def(ICELAKE,     0, guc_def(icl, 40, 0, 0), huc_def(icl,  9, 0, 0)) \
-> +	fw_def(COFFEELAKE,  5, guc_def(cml, 40, 0, 0), huc_def(cml,  4, 0, 0)) \
-> +	fw_def(COFFEELAKE,  0, guc_def(kbl, 40, 0, 0), huc_def(kbl,  4, 0, 0)) \
-> +	fw_def(GEMINILAKE,  0, guc_def(glk, 40, 0, 0), huc_def(glk,  4, 0, 0)) \
-> +	fw_def(KABYLAKE,    0, guc_def(kbl, 40, 0, 0), huc_def(kbl,  4, 0, 0)) \
-> +	fw_def(BROXTON,     0, guc_def(bxt, 40, 0, 0), huc_def(bxt,  2, 0, 0)) \
-> +	fw_def(SKYLAKE,     0, guc_def(skl, 40, 0, 0), huc_def(skl,  2, 0, 0))
->   
->   #define __MAKE_UC_FW_PATH(prefix_, name_, major_, minor_, patch_) \
->   	"i915/" \
-> @@ -362,6 +362,9 @@ int intel_uc_fw_fetch(struct intel_uc_fw *uc_fw)
->   		}
->   	}
->   
-> +	if (uc_fw->type == INTEL_UC_FW_TYPE_GUC)
-> +		uc_fw->private_data_size = css->private_data_size;
-> +
->   	obj = i915_gem_object_create_shmem_from_data(i915, fw->data, fw->size);
->   	if (IS_ERR(obj)) {
->   		err = PTR_ERR(obj);
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.h b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.h
-> index 1f30543d0d2d..7e6a21847660 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.h
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.h
-> @@ -84,6 +84,8 @@ struct intel_uc_fw {
->   
->   	u32 rsa_size;
->   	u32 ucode_size;
-> +
-> +	u32 private_data_size;
->   };
->   
->   #ifdef CONFIG_DRM_I915_DEBUG_GUC
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw_abi.h b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw_abi.h
-> index 029214cdedd5..e41ffc7a7fbc 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw_abi.h
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw_abi.h
-> @@ -69,7 +69,11 @@ struct uc_css_header {
->   #define CSS_SW_VERSION_UC_MAJOR		(0xFF << 16)
->   #define CSS_SW_VERSION_UC_MINOR		(0xFF << 8)
->   #define CSS_SW_VERSION_UC_PATCH		(0xFF << 0)
-> -	u32 reserved[14];
-> +	u32 reserved0[13];
-> +	union {
-> +		u32 private_data_size; /* only applies to GuC */
-> +		u32 reserved1;
-> +	};
->   	u32 header_info;
->   } __packed;
->   static_assert(sizeof(struct uc_css_header) == 128);
-> 
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_7751 -> Patchwork_16116
+
+  CI-20190529: 20190529
+  CI_DRM_7751: bffb5bf41a2e3d84ee5043dcccad49578656a012 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5367: 94af6de4f07487b93c4f5008f3ed04b5fc045200 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_16116: 1060deea422567275d6c7d950283e5bca8d7b321 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Kernel 32bit build ==
+
+Warning: Kernel 32bit buildtest failed:
+https://intel-gfx-ci.01.org/Patchwork_16116/build_32bit.log
+
+  CALL    scripts/checksyscalls.sh
+  CALL    scripts/atomic/check-atomics.sh
+  CHK     include/generated/compile.h
+Kernel: arch/x86/boot/bzImage is ready  (#1)
+  Building modules, stage 2.
+  MODPOST 122 modules
+ERROR: "__udivdi3" [drivers/gpu/drm/amd/amdgpu/amdgpu.ko] undefined!
+scripts/Makefile.modpost:93: recipe for target '__modpost' failed
+make[1]: *** [__modpost] Error 1
+Makefile:1282: recipe for target 'modules' failed
+make: *** [modules] Error 2
+
+
+== Linux commits ==
+
+1060deea4225 drm/i915: Move encoder variable to tighter scope
+0799ff52fcba drm/i915: Use PIPE_CONF_CHECK_X() for sync_mode_slaves_mask
+12fcf2727c3b drm/i915: Prefer to use the pipe to index the ddb entries
+7a9734cbdc58 drm/i915: Clear most of crtc state when disabling the crtc
+a7a6e4ad3544 drm/i915: Fix post-fastset modeset check for port sync
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16116/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
