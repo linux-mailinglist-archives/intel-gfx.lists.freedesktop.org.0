@@ -2,30 +2,35 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DAC5D13CC93
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Jan 2020 19:51:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 32D6913CCC8
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Jan 2020 20:08:20 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 214B96EA80;
-	Wed, 15 Jan 2020 18:51:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 285A76EA7B;
+	Wed, 15 Jan 2020 19:08:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 4EA356EA7C;
- Wed, 15 Jan 2020 18:51:28 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 49ED7A66C7;
- Wed, 15 Jan 2020 18:51:28 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 60CF76EA7B
+ for <intel-gfx@lists.freedesktop.org>; Wed, 15 Jan 2020 19:08:17 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga105.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 15 Jan 2020 11:08:16 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,323,1574150400"; d="scan'208";a="226234747"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by orsmga006.jf.intel.com with SMTP; 15 Jan 2020 11:08:14 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Wed, 15 Jan 2020 21:08:13 +0200
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 15 Jan 2020 21:08:09 +0200
+Message-Id: <20200115190813.17971-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.24.1
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Wed, 15 Jan 2020 18:51:28 -0000
-Message-ID: <157911428830.2010.5659485202716207648@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200115175829.2761329-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200115175829.2761329-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiB3YXJuaW5nIGZvciBk?=
- =?utf-8?q?rm/i915/execlists=3A_Leave_resetting_ring_to_intel=5Fring?=
+Subject: [Intel-gfx] [PATCH 1/5] drm/i915: Fix post-fastset modeset check
+ for port sync
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,37 +43,76 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
-
-Series: drm/i915/execlists: Leave resetting ring to intel_ring
-URL   : https://patchwork.freedesktop.org/series/72082/
-State : warning
-
-== Summary ==
-
-CALL    scripts/checksyscalls.sh
-  CALL    scripts/atomic/check-atomics.sh
-  CHK     include/generated/compile.h
-Kernel: arch/x86/boot/bzImage is ready  (#1)
-  Building modules, stage 2.
-  MODPOST 122 modules
-ERROR: "__udivdi3" [drivers/gpu/drm/amd/amdgpu/amdgpu.ko] undefined!
-scripts/Makefile.modpost:93: recipe for target '__modpost' failed
-make[1]: *** [__modpost] Error 1
-Makefile:1282: recipe for target 'modules' failed
-make: *** [modules] Error 2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16115/build_32bit.log
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+RnJvbTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KClRo
+ZSBwb3N0LWZhc3RzZXQgImRvZXMgYW55b25lIHN0aWxsIG5lZWQgYSBmdWxsIG1vZGVzZXQ/IiBm
+b3IKcG9ydCBzeW5jIGxvb2tzIGJ1c3RlZC4gVGhlIG91dGVyIGxvb3AgYmFpbHMgb3V0IG9mIGEg
+ZnVsbCBtb2Rlc2V0CmlzIHN0aWxsIG5lZWRlZCBieSB0aGUgY3VycmVudCBjcnRjIHdoaWNoLCBh
+bmQgdGhlbiB3ZSBza2lwIGZvcmNpbmcKYSBmdWxsIG1vZGVzZXQgb24gdGhlIHJlbGF0ZWQgY3J0
+Y3MuIFRoYXQncyB0b3RhbGx5IHRoZSBvcHBvc2l0ZQpvZiB3aGF0IHdlIHdhbnQuCgpUaGUgTVNU
+IHBhdGggaGFzIHRoZSBsb2dpYyBtb3N0bHkgdGhlIG90aGVyIHdheSBhcm91bmQgc28gaXQKbG9v
+a3MgY29ycmVjdC4gVG8gZml4IHRoZSBwb3J0IHN5bmMgY2FzZSBsZXQncyBmb2xsb3cgdGhlIE1T
+VApsb2dpYyBmb3IgYm90aC4gU28sIGlmIHRoZSBjdXJyZW50IGNydGMgYWxyZWFkeSBuZWVkcyBh
+IG1vZGVzZXQKd2UgZG8gbm90aGluZy4gb3RoZXJ3aXNlIHdlIGNoZWNrIGlmIGFueSBvZiB0aGUg
+cmVsYXRlZCBjcnRjcwpuZWVkcyBhIG1vZGVzZXQsIGFuZCBpZiBzbyB3ZSBmb3JjZSBhIGZ1bGwg
+bW9kZXNldCBmb3IgdGhlCmN1cnJlbnQgY3J0Yy4KCkFuZCB3aGlsZSBhdCBsZXQncyBjaGFuZ2Ug
+dGhlIGVsc2UgaWYgdG8gYSBwbGFpbiBpZiB0byBzbwp3ZSBkb24ndCBoYXZlIG5lZWRsZXNzIGNv
+dXBsaW5nIGJldHdlZW4gdGhlIE1TVCBhbmQgcG9ydCBzeW5jCmNoZWNrcy4KCkNjOiBKb3PDqSBS
+b2JlcnRvIGRlIFNvdXphIDxqb3NlLnNvdXphQGludGVsLmNvbT4KQ2M6IE1hbmFzaSBOYXZhcmUg
+PG1hbmFzaS5kLm5hdmFyZUBpbnRlbC5jb20+CkZpeGVzOiAwNWE4ZTQ1MTM2Y2EgKCJkcm0vaTkx
+NS9kaXNwbGF5OiBVc2UgZXh0ZXJuYWwgZGVwZW5kZW5jeSBsb29wIGZvciBwb3J0IHN5bmMiKQpT
+aWduZWQtb2ZmLWJ5OiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwu
+Y29tPgotLS0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jIHwg
+NDMgKysrKysrKystLS0tLS0tLS0tLS0KIDEgZmlsZSBjaGFuZ2VkLCAxNyBpbnNlcnRpb25zKCsp
+LCAyNiBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNw
+bGF5L2ludGVsX2Rpc3BsYXkuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxf
+ZGlzcGxheS5jCmluZGV4IGRkMDM5ODdjYzI0Zi4uYjM5NzgxNmNlMjUzIDEwMDY0NAotLS0gYS9k
+cml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuYworKysgYi9kcml2ZXJz
+L2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuYwpAQCAtMTQ0NjksMzcgKzE0NDY5
+LDIzIEBAIHN0YXRpYyBpbnQgaW50ZWxfYXRvbWljX2NoZWNrX2NydGNzKHN0cnVjdCBpbnRlbF9h
+dG9taWNfc3RhdGUgKnN0YXRlKQogCXJldHVybiAwOwogfQogCi1zdGF0aWMgYm9vbCBpbnRlbF9j
+cHVfdHJhbnNjb2Rlcl9uZWVkc19tb2Rlc2V0KHN0cnVjdCBpbnRlbF9hdG9taWNfc3RhdGUgKnN0
+YXRlLAotCQkJCQkgICAgICAgZW51bSB0cmFuc2NvZGVyIHRyYW5zY29kZXIpCitzdGF0aWMgYm9v
+bCBpbnRlbF9jcHVfdHJhbnNjb2RlcnNfbmVlZF9tb2Rlc2V0KHN0cnVjdCBpbnRlbF9hdG9taWNf
+c3RhdGUgKnN0YXRlLAorCQkJCQkgICAgICAgdTggdHJhbnNjb2RlcnMpCiB7Ci0Jc3RydWN0IGlu
+dGVsX2NydGNfc3RhdGUgKm5ld19jcnRjX3N0YXRlOworCWNvbnN0IHN0cnVjdCBpbnRlbF9jcnRj
+X3N0YXRlICpuZXdfY3J0Y19zdGF0ZTsKIAlzdHJ1Y3QgaW50ZWxfY3J0YyAqY3J0YzsKIAlpbnQg
+aTsKIAotCWZvcl9lYWNoX25ld19pbnRlbF9jcnRjX2luX3N0YXRlKHN0YXRlLCBjcnRjLCBuZXdf
+Y3J0Y19zdGF0ZSwgaSkKLQkJaWYgKG5ld19jcnRjX3N0YXRlLT5jcHVfdHJhbnNjb2RlciA9PSB0
+cmFuc2NvZGVyKQotCQkJcmV0dXJuIG5lZWRzX21vZGVzZXQobmV3X2NydGNfc3RhdGUpOworCWZv
+cl9lYWNoX25ld19pbnRlbF9jcnRjX2luX3N0YXRlKHN0YXRlLCBjcnRjLCBuZXdfY3J0Y19zdGF0
+ZSwgaSkgeworCQlpZiAobmV3X2NydGNfc3RhdGUtPmh3LmVuYWJsZSAmJgorCQkgICAgdHJhbnNj
+b2RlcnMgJiBCSVQobmV3X2NydGNfc3RhdGUtPmNwdV90cmFuc2NvZGVyKSAmJgorCQkgICAgbmVl
+ZHNfbW9kZXNldChuZXdfY3J0Y19zdGF0ZSkpCisJCQlyZXR1cm4gdHJ1ZTsKKwl9CiAKIAlyZXR1
+cm4gZmFsc2U7CiB9CiAKLXN0YXRpYyB2b2lkCi1pbnRlbF9tb2Rlc2V0X3N5bmNlZF9jcnRjcyhz
+dHJ1Y3QgaW50ZWxfYXRvbWljX3N0YXRlICpzdGF0ZSwKLQkJCSAgIHU4IHRyYW5zY29kZXJzKQot
+ewotCXN0cnVjdCBpbnRlbF9jcnRjX3N0YXRlICpuZXdfY3J0Y19zdGF0ZTsKLQlzdHJ1Y3QgaW50
+ZWxfY3J0YyAqY3J0YzsKLQlpbnQgaTsKLQotCWZvcl9lYWNoX25ld19pbnRlbF9jcnRjX2luX3N0
+YXRlKHN0YXRlLCBjcnRjLAotCQkJCQkgbmV3X2NydGNfc3RhdGUsIGkpIHsKLQkJaWYgKHRyYW5z
+Y29kZXJzICYgQklUKG5ld19jcnRjX3N0YXRlLT5jcHVfdHJhbnNjb2RlcikpIHsKLQkJCW5ld19j
+cnRjX3N0YXRlLT51YXBpLm1vZGVfY2hhbmdlZCA9IHRydWU7Ci0JCQluZXdfY3J0Y19zdGF0ZS0+
+dXBkYXRlX3BpcGUgPSBmYWxzZTsKLQkJfQotCX0KLX0KLQogc3RhdGljIGludAogaW50ZWxfbW9k
+ZXNldF9hbGxfdGlsZXMoc3RydWN0IGludGVsX2F0b21pY19zdGF0ZSAqc3RhdGUsIGludCB0aWxl
+X2dycF9pZCkKIHsKQEAgLTE0NjU1LDE1ICsxNDY0MSwyMCBAQCBzdGF0aWMgaW50IGludGVsX2F0
+b21pY19jaGVjayhzdHJ1Y3QgZHJtX2RldmljZSAqZGV2LAogCQlpZiAoaW50ZWxfZHBfbXN0X2lz
+X3NsYXZlX3RyYW5zKG5ld19jcnRjX3N0YXRlKSkgewogCQkJZW51bSB0cmFuc2NvZGVyIG1hc3Rl
+ciA9IG5ld19jcnRjX3N0YXRlLT5tc3RfbWFzdGVyX3RyYW5zY29kZXI7CiAKLQkJCWlmIChpbnRl
+bF9jcHVfdHJhbnNjb2Rlcl9uZWVkc19tb2Rlc2V0KHN0YXRlLCBtYXN0ZXIpKSB7CisJCQlpZiAo
+aW50ZWxfY3B1X3RyYW5zY29kZXJzX25lZWRfbW9kZXNldChzdGF0ZSwgQklUKG1hc3RlcikpKSB7
+CiAJCQkJbmV3X2NydGNfc3RhdGUtPnVhcGkubW9kZV9jaGFuZ2VkID0gdHJ1ZTsKIAkJCQluZXdf
+Y3J0Y19zdGF0ZS0+dXBkYXRlX3BpcGUgPSBmYWxzZTsKIAkJCX0KLQkJfSBlbHNlIGlmIChpc190
+cmFuc19wb3J0X3N5bmNfbW9kZShuZXdfY3J0Y19zdGF0ZSkpIHsKKwkJfQorCisJCWlmIChpc190
+cmFuc19wb3J0X3N5bmNfbW9kZShuZXdfY3J0Y19zdGF0ZSkpIHsKIAkJCXU4IHRyYW5zID0gbmV3
+X2NydGNfc3RhdGUtPnN5bmNfbW9kZV9zbGF2ZXNfbWFzayB8CiAJCQkJICAgQklUKG5ld19jcnRj
+X3N0YXRlLT5tYXN0ZXJfdHJhbnNjb2Rlcik7CiAKLQkJCWludGVsX21vZGVzZXRfc3luY2VkX2Ny
+dGNzKHN0YXRlLCB0cmFucyk7CisJCQlpZiAoaW50ZWxfY3B1X3RyYW5zY29kZXJzX25lZWRfbW9k
+ZXNldChzdGF0ZSwgdHJhbnMpKSB7CisJCQkJbmV3X2NydGNfc3RhdGUtPnVhcGkubW9kZV9jaGFu
+Z2VkID0gdHJ1ZTsKKwkJCQluZXdfY3J0Y19zdGF0ZS0+dXBkYXRlX3BpcGUgPSBmYWxzZTsKKwkJ
+CX0KIAkJfQogCX0KIAotLSAKMi4yNC4xCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5m
+cmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0
+aW5mby9pbnRlbC1nZngK
