@@ -2,30 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1EAAA13D41B
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Jan 2020 07:05:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DFD1D13D41C
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Jan 2020 07:06:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6A2A36EA3D;
-	Thu, 16 Jan 2020 06:05:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5CE386EA79;
+	Thu, 16 Jan 2020 06:06:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id D291D6EA3D;
- Thu, 16 Jan 2020 06:05:23 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 5F5A76EA79;
+ Thu, 16 Jan 2020 06:06:25 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id A19CFA0138;
- Thu, 16 Jan 2020 06:05:23 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 59EB5A0138;
+ Thu, 16 Jan 2020 06:06:25 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Wambui Karuga" <wambui.karugax@gmail.com>
-Date: Thu, 16 Jan 2020 06:05:23 -0000
-Message-ID: <157915472363.12911.8932164892395082959@emeril.freedesktop.org>
+Date: Thu, 16 Jan 2020 06:06:25 -0000
+Message-ID: <157915478536.12911.15228178797622825279@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20200114193123.5314-1-wambui.karugax@gmail.com>
-In-Reply-To: <20200114193123.5314-1-wambui.karugax@gmail.com>
+References: <20200114095107.21197-1-wambui.karugax@gmail.com>
+In-Reply-To: <20200114095107.21197-1-wambui.karugax@gmail.com>
 Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBk?=
- =?utf-8?q?rm/i915/audio=3A_convert_to_using_drm=5Fdbg=5Fkms=28=29?=
+ =?utf-8?q?rm/i915=3A_conversion_to_new_drm_logging_macros=2E?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,17 +47,22 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: drm/i915/audio: convert to using drm_dbg_kms()
-URL   : https://patchwork.freedesktop.org/series/72097/
+Series: drm/i915: conversion to new drm logging macros.
+URL   : https://patchwork.freedesktop.org/series/72096/
 State : failure
 
 == Summary ==
 
-Applying: drm/i915/audio: convert to using drm_dbg_kms()
-error: sha1 information is lacking or useless (drivers/gpu/drm/i915/display/intel_audio.c).
-error: could not build fake ancestor
+Applying: drm/i915/atomic: use new logging macros for debug
+Applying: drm/i915/audio: convert to new drm logging macros.
+Using index info to reconstruct a base tree...
+M	drivers/gpu/drm/i915/display/intel_audio.c
+Falling back to patching base and 3-way merge...
+Auto-merging drivers/gpu/drm/i915/display/intel_audio.c
+CONFLICT (content): Merge conflict in drivers/gpu/drm/i915/display/intel_audio.c
+error: Failed to merge in the changes.
 hint: Use 'git am --show-current-patch' to see the failed patch
-Patch failed at 0001 drm/i915/audio: convert to using drm_dbg_kms()
+Patch failed at 0002 drm/i915/audio: convert to new drm logging macros.
 When you have resolved this problem, run "git am --continue".
 If you prefer to skip this patch, run "git am --skip" instead.
 To restore the original branch and stop patching, run "git am --abort".
