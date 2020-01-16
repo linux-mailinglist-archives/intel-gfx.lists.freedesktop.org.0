@@ -2,30 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8652E13D4A3
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Jan 2020 07:50:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A4B7C13D4AA
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Jan 2020 07:52:57 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3D6396EBF6;
-	Thu, 16 Jan 2020 06:50:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2D6B86EBFA;
+	Thu, 16 Jan 2020 06:52:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 408C16EBFA;
- Thu, 16 Jan 2020 06:50:37 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 3976CA47E9;
- Thu, 16 Jan 2020 06:50:37 +0000 (UTC)
+Received: from mail-pj1-x1043.google.com (mail-pj1-x1043.google.com
+ [IPv6:2607:f8b0:4864:20::1043])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F1D3D6EBFA
+ for <intel-gfx@lists.freedesktop.org>; Thu, 16 Jan 2020 06:52:49 +0000 (UTC)
+Received: by mail-pj1-x1043.google.com with SMTP id r67so1083556pjb.0
+ for <intel-gfx@lists.freedesktop.org>; Wed, 15 Jan 2020 22:52:49 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to;
+ bh=PE4BnlYdrwlls3sXyQZX3/ymWvNt+AEObITFicQkgqE=;
+ b=KhdCroBH4KSABB5oBicBd8oq46RsESodHAuFmJbyWOHgb0cywrQfkwrnvBLrrTChxf
+ N/V98hs9U2UnHDJm/JadrFQw2a+wBUQ1QbxNbrKJloyJGVzgULW4KAU9iYAIiEVrMFKP
+ W475hrsdCeaJq4OFwzxI6XD0BabR+eAXSXj1o=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=PE4BnlYdrwlls3sXyQZX3/ymWvNt+AEObITFicQkgqE=;
+ b=bCTpCjyxXBxAJWyEuKZM0EMKFj5uepELLymu60tWgSeBT3KQ6mSJGv3t0/fEHWzo9V
+ k9FFpyvoc1k1GUWrcoRY4vXcw3syGTkHZee4YI6jbYnJSr4ErttrdN+Z3kC6onQjskUW
+ 4uwLcNazkv5uODMLaxnOzVO64c6rCBbYvcgr8yOgy+9lNjJz265OXYJqXEHmF9GCMFZ8
+ ej/mdgsqsRjT+SYLeyJYiiUZwlqNIveQ2gmSV3j0+GBCeSa8+p2G5Dv/UN83O2gsgkJn
+ XFhCnew2zuOiEdlx9RHS0RKGlfoKlxSr52lmzoYSFLwx8OK21nmMY58pSEqiMed1peCT
+ 7QQw==
+X-Gm-Message-State: APjAAAVz5zz7IUlsMurbVSZWSq1ragN41LrvU0hNaqyf93h9knxjjYit
+ F3q7N/2k2koq7O5a06YqryqrUg==
+X-Google-Smtp-Source: APXvYqx9AdyUZbn2iZHudv+3tWSAKLT5IOu0K9kcbg7NdtIB68wkc/4qX2VjWFHl7h1syTaI5uTssw==
+X-Received: by 2002:a17:902:e789:: with SMTP id
+ cp9mr36426714plb.85.1579157569454; 
+ Wed, 15 Jan 2020 22:52:49 -0800 (PST)
+Received: from dvetter-linux.ger.corp.intel.com ([138.44.248.126])
+ by smtp.gmail.com with ESMTPSA id k16sm2084996pje.18.2020.01.15.22.52.46
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 15 Jan 2020 22:52:48 -0800 (PST)
+Date: Thu, 16 Jan 2020 07:52:42 +0100
+From: Daniel Vetter <daniel@ffwll.ch>
+To: Chris Wilson <chris@chris-wilson.co.uk>
+Message-ID: <20200116065242.GC8400@dvetter-linux.ger.corp.intel.com>
+References: <20200115205245.2772800-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Christian Kujau" <lists@nerdbynature.de>
-Date: Thu, 16 Jan 2020 06:50:37 -0000
-Message-ID: <157915743723.12911.7482481671908460050@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <alpine.DEB.2.21.99999.375.2001141825300.21037@trent.utfs.org>
-In-Reply-To: <alpine.DEB.2.21.99999.375.2001141825300.21037@trent.utfs.org>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiB3YXJuaW5nIGZvciBk?=
- =?utf-8?q?rm=3A_bugs=2Efreedesktop=2Eorg_is_no_longer_accepting_bugs?=
+Content-Disposition: inline
+In-Reply-To: <20200115205245.2772800-1-chris@chris-wilson.co.uk>
+X-Operating-System: Linux dvetter-linux.ger.corp.intel.com
+ 5.2.11-200.fc30.x86_64 
+Subject: Re: [Intel-gfx] [PATCH] drm: Inject a cond_resched() into long
+ drm_clflush_sg()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,36 +67,130 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, David Laight <David.Laight@aculab.com>,
+ dri-devel@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Wed, Jan 15, 2020 at 08:52:45PM +0000, Chris Wilson wrote:
+> Since we may try and flush the cachelines associated with large buffers
+> (an 8K framebuffer is about 128MiB, even before we try HDR), this leads
+> to unacceptably long latencies (when using a voluntary CONFIG_PREEMPT).
+> If we call cond_resched() between each sg chunk, that it about every 128
+> pages, we have a natural break point in which to check if the process
+> needs to be rescheduled. Naturally, this means that drm_clflush_sg() can
+> only be called from process context -- which is true at the moment. The
+> other clflush routines remain usable from atomic context.
+> 
+> Even though flushing large objects takes a demonstrable amount to time
+> to flush all the cachelines, clflush is still preferred over a
+> system-wide wbinvd as the latter has unpredictable latencies affecting
+> the whole system not just the local task.
+> 
+> Reported-by: David Laight <David.Laight@ACULAB.COM>
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: David Laight <David.Laight@ACULAB.COM>
 
-Series: drm: bugs.freedesktop.org is no longer accepting bugs
-URL   : https://patchwork.freedesktop.org/series/72098/
-State : warning
+The original bug report is complaining about latencies for SCHED_RT
+threads, on a system that doesn't even use CONFIG_PREEMPT. I'm not sure
+it's terribly valid to cater to that use-case - all the desktop distros
+seem a lot more reasonable. So firmly *shrug* from my side ...
 
-== Summary ==
+Patch itself looks correct, just not seeing the point.
+-Daniel
 
-CALL    scripts/checksyscalls.sh
-  CALL    scripts/atomic/check-atomics.sh
-  CHK     include/generated/compile.h
-Kernel: arch/x86/boot/bzImage is ready  (#1)
-  Building modules, stage 2.
-  MODPOST 122 modules
-ERROR: "__udivdi3" [drivers/gpu/drm/amd/amdgpu/amdgpu.ko] undefined!
-scripts/Makefile.modpost:93: recipe for target '__modpost' failed
-make[1]: *** [__modpost] Error 1
-Makefile:1282: recipe for target 'modules' failed
-make: *** [modules] Error 2
 
-== Logs ==
+> ---
+>  drivers/gpu/drm/drm_cache.c | 49 ++++++++++++++++++++++++++++++++++---
+>  1 file changed, 45 insertions(+), 4 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/drm_cache.c b/drivers/gpu/drm/drm_cache.c
+> index 03e01b000f7a..fbd2bb644544 100644
+> --- a/drivers/gpu/drm/drm_cache.c
+> +++ b/drivers/gpu/drm/drm_cache.c
+> @@ -112,23 +112,64 @@ drm_clflush_pages(struct page *pages[], unsigned long num_pages)
+>  }
+>  EXPORT_SYMBOL(drm_clflush_pages);
+>  
+> +static __always_inline struct sgt_iter {
+> +	struct scatterlist *sgp;
+> +	unsigned long pfn;
+> +	unsigned int curr;
+> +	unsigned int max;
+> +} __sgt_iter(struct scatterlist *sgl) {
+> +	struct sgt_iter s = { .sgp = sgl };
+> +
+> +	if (s.sgp) {
+> +		s.max = s.curr = s.sgp->offset;
+> +		s.max += s.sgp->length;
+> +		s.pfn = page_to_pfn(sg_page(s.sgp));
+> +	}
+> +
+> +	return s;
+> +}
+> +
+> +static inline struct scatterlist *__sg_next_resched(struct scatterlist *sg)
+> +{
+> +	if (sg_is_last(sg))
+> +		return NULL;
+> +
+> +	++sg;
+> +	if (unlikely(sg_is_chain(sg))) {
+> +		sg = sg_chain_ptr(sg);
+> +		cond_resched();
+> +	}
+> +	return sg;
+> +}
+> +
+> +#define for_each_sgt_page(__pp, __iter, __sgt)				\
+> +	for ((__iter) = __sgt_iter((__sgt)->sgl);			\
+> +	     ((__pp) = (__iter).pfn == 0 ? NULL :			\
+> +	      pfn_to_page((__iter).pfn + ((__iter).curr >> PAGE_SHIFT))); \
+> +	     (((__iter).curr += PAGE_SIZE) >= (__iter).max) ?		\
+> +	     (__iter) = __sgt_iter(__sg_next_resched((__iter).sgp)), 0 : 0)
+> +
+>  /**
+>   * drm_clflush_sg - Flush dcache lines pointing to a scather-gather.
+>   * @st: struct sg_table.
+>   *
+>   * Flush every data cache line entry that points to an address in the
+> - * sg.
+> + * sg. This may schedule between scatterlist chunks, in order to keep
+> + * the system preemption-latency down for large buffers.
+>   */
+>  void
+>  drm_clflush_sg(struct sg_table *st)
+>  {
+> +	might_sleep();
+> +
+>  #if defined(CONFIG_X86)
+>  	if (static_cpu_has(X86_FEATURE_CLFLUSH)) {
+> -		struct sg_page_iter sg_iter;
+> +		struct sgt_iter sg_iter;
+> +		struct page *page;
+>  
+>  		mb(); /*CLFLUSH is ordered only by using memory barriers*/
+> -		for_each_sg_page(st->sgl, &sg_iter, st->nents, 0)
+> -			drm_clflush_page(sg_page_iter_page(&sg_iter));
+> +		for_each_sgt_page(page, sg_iter, st)
+> +			drm_clflush_page(page);
+>  		mb(); /*Make sure that all cache line entry is flushed*/
+>  
+>  		return;
+> -- 
+> 2.25.0
+> 
+> _______________________________________________
+> dri-devel mailing list
+> dri-devel@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/dri-devel
 
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16125/build_32bit.log
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
