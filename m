@@ -1,43 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE96E13EF2B
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Jan 2020 19:14:31 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id DBFAB13EF83
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Jan 2020 19:15:53 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 194E26EE7F;
-	Thu, 16 Jan 2020 18:14:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3609A6E22A;
+	Thu, 16 Jan 2020 18:15:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3942F6EE86
- for <intel-gfx@lists.freedesktop.org>; Thu, 16 Jan 2020 18:14:28 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9B83D6E22A
+ for <intel-gfx@lists.freedesktop.org>; Thu, 16 Jan 2020 18:15:50 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 16 Jan 2020 10:14:27 -0800
-X-IronPort-AV: E=Sophos;i="5.70,327,1574150400"; d="scan'208";a="214175684"
-Received: from mdanino-mobl1.ger.corp.intel.com (HELO [10.252.23.174])
- ([10.252.23.174])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/AES256-SHA;
- 16 Jan 2020 10:14:26 -0800
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-References: <20200115083346.2601512-1-chris@chris-wilson.co.uk>
- <20200115083346.2601512-3-chris@chris-wilson.co.uk>
- <e826323f-7b6f-b8ff-1008-6deaacad340b@linux.intel.com>
- <157919690377.2795.10878471609767844216@skylake-alporthouse-com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <e9be510e-fb47-a615-cb77-0507fe7ff04d@linux.intel.com>
-Date: Thu, 16 Jan 2020 18:14:24 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
-MIME-Version: 1.0
-In-Reply-To: <157919690377.2795.10878471609767844216@skylake-alporthouse-com>
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 16 Jan 2020 10:15:50 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,327,1574150400"; d="scan'208";a="219765302"
+Received: from fmsmsx103.amr.corp.intel.com ([10.18.124.201])
+ by fmsmga007.fm.intel.com with ESMTP; 16 Jan 2020 10:15:50 -0800
+Received: from fmsmsx113.amr.corp.intel.com (10.18.116.7) by
+ FMSMSX103.amr.corp.intel.com (10.18.124.201) with Microsoft SMTP Server (TLS)
+ id 14.3.439.0; Thu, 16 Jan 2020 10:15:49 -0800
+Received: from fmsmsx117.amr.corp.intel.com ([169.254.3.125]) by
+ FMSMSX113.amr.corp.intel.com ([169.254.13.183]) with mapi id 14.03.0439.000;
+ Thu, 16 Jan 2020 10:15:49 -0800
+From: "Souza, Jose" <jose.souza@intel.com>
+To: "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>
+Thread-Topic: [PATCH 1/5] drm/i915: Fix post-fastset modeset check for port
+ sync
+Thread-Index: AQHVy9crCVSed4ojx02zX51Two0Wb6fs79GAgAC12ACAAHq5AA==
+Date: Thu, 16 Jan 2020 18:15:48 +0000
+Message-ID: <714f93faeba758d5a97b3f5b78e8081c2dc1446c.camel@intel.com>
+References: <20200115190813.17971-1-ville.syrjala@linux.intel.com>
+ <85ebbf8ae15490c4f4d90ae9fbdc147975649323.camel@intel.com>
+ <20200116105634.GD13686@intel.com>
+In-Reply-To: <20200116105634.GD13686@intel.com>
+Accept-Language: en-US
 Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH 3/3] drm/i915/execlists: Offline error
- capture
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.24.12.138]
+Content-ID: <CC0531A30F94044495783597CD753B34@intel.com>
+MIME-Version: 1.0
+Subject: Re: [Intel-gfx] [PATCH 1/5] drm/i915: Fix post-fastset modeset
+ check for port sync
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,229 +59,118 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-On 16/01/2020 17:48, Chris Wilson wrote:
-> Quoting Tvrtko Ursulin (2020-01-16 17:22:10)
->>
->> On 15/01/2020 08:33, Chris Wilson wrote:
->>> Currently, we skip error capture upon forced preemption. We apply forced
->>> preemption when there is a higher priority request that should be
->>> running but is being blocked, and we skip inline error capture so that
->>> the preemption request is not further delayed by a user controlled
->>> capture -- extending the denial of service.
->>>
->>> However, preemption reset is also used for heartbeats and regular GPU
->>> hangs. By skipping the error capture, we remove the ability to debug GPU
->>> hangs.
->>>
->>> In order to capture the error without delaying the preemption request
->>> further, we can do an out-of-line capture by removing the guilty request
->>> from the execution queue and scheduling a work to dump that request.
->>> When removing a request, we need to remove the entire context and all
->>> descendants from the execution queue, so that they do not jump past.
->>>
->>> Closes: https://gitlab.freedesktop.org/drm/intel/issues/738
->>> Fixes: 3a7a92aba8fb ("drm/i915/execlists: Force preemption")
->>> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
->>> Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
->>> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->>> ---
->>>    drivers/gpu/drm/i915/gt/intel_lrc.c | 120 +++++++++++++++++++++++++++-
->>>    1 file changed, 118 insertions(+), 2 deletions(-)
->>>
->>> diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
->>> index 43c19dc9c0c7..a84477df32bd 100644
->>> --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
->>> +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
->>> @@ -2392,7 +2392,6 @@ static void __execlists_hold(struct i915_request *rq)
->>>        } while(rq);
->>>    }
->>>    
->>> -__maybe_unused
->>>    static void execlists_hold(struct intel_engine_cs *engine,
->>>                           struct i915_request *rq)
->>>    {
->>> @@ -2472,7 +2471,6 @@ static void __execlists_unhold(struct i915_request *rq)
->>>        } while(rq);
->>>    }
->>>    
->>> -__maybe_unused
->>>    static void execlists_unhold(struct intel_engine_cs *engine,
->>>                             struct i915_request *rq)
->>>    {
->>> @@ -2492,6 +2490,121 @@ static void execlists_unhold(struct intel_engine_cs *engine,
->>>        spin_unlock_irq(&engine->active.lock);
->>>    }
->>>    
->>> +struct execlists_capture {
->>> +     struct work_struct work;
->>> +     struct i915_request *rq;
->>> +     struct i915_gpu_coredump *error;
->>> +};
->>> +
->>> +static void execlists_capture_work(struct work_struct *work)
->>> +{
->>> +     struct execlists_capture *cap = container_of(work, typeof(*cap), work);
->>> +     const gfp_t gfp = GFP_KERNEL | __GFP_RETRY_MAYFAIL | __GFP_NOWARN;
->>> +     struct intel_engine_cs *engine = cap->rq->engine;
->>> +     struct intel_gt_coredump *gt = cap->error->gt;
->>> +     struct intel_engine_capture_vma *vma;
->>> +
->>> +     /* Compress all the objects attached to the request, slow! */
->>> +     vma = intel_engine_coredump_add_request(gt->engine, cap->rq, gfp);
->>> +     if (vma) {
->>> +             struct i915_vma_compress *compress =
->>> +                     i915_vma_capture_prepare(gt);
->>> +
->>> +             intel_engine_coredump_add_vma(gt->engine, vma, compress);
->>> +             i915_vma_capture_finish(gt, compress);
->>> +     }
->>> +
->>> +     gt->simulated = gt->engine->simulated;
->>> +     cap->error->simulated = gt->simulated;
->>> +
->>> +     /* Publish the error state, and announce it to the world */
->>> +     i915_error_state_store(cap->error);
->>> +     i915_gpu_coredump_put(cap->error);
->>> +
->>> +     /* Return this request and all that depend upon it for signaling */
->>> +     execlists_unhold(engine, cap->rq);
->>> +
->>> +     kfree(cap);
->>> +}
->>> +
->>> +static struct i915_gpu_coredump *capture_regs(struct intel_engine_cs *engine)
->>> +{
->>> +     const gfp_t gfp = GFP_ATOMIC | __GFP_NOWARN;
->>> +     struct i915_gpu_coredump *e;
->>> +
->>> +     e = i915_gpu_coredump_alloc(engine->i915, gfp);
->>> +     if (!e)
->>> +             return NULL;
->>> +
->>> +     e->gt = intel_gt_coredump_alloc(engine->gt, gfp);
->>> +     if (!e->gt)
->>> +             goto err;
->>> +
->>> +     e->gt->engine = intel_engine_coredump_alloc(engine, gfp);
->>> +     if (!e->gt->engine)
->>> +             goto err_gt;
->>> +
->>> +     return e;
->>> +
->>> +err_gt:
->>> +     kfree(e->gt);
->>> +err:
->>> +     kfree(e);
->>> +     return NULL;
->>> +}
->>> +
->>> +static void execlists_capture(struct intel_engine_cs *engine)
->>> +{
->>> +     struct execlists_capture *cap;
->>> +
->>> +     if (!IS_ENABLED(CONFIG_DRM_I915_CAPTURE_ERROR))
->>> +             return;
->>> +
->>> +     cap = kmalloc(sizeof(*cap), GFP_ATOMIC);
->>> +     if (!cap)
->>> +             return;
->>> +
->>> +     cap->rq = execlists_active(&engine->execlists);
->>> +     GEM_BUG_ON(!cap->rq);
->>> +
->>> +     cap->rq = active_request(cap->rq->context->timeline, cap->rq);
->>
->> Old code, but why is active_request taking the timeline as a separate
->> param when it always seems to be rq->context->timeline?
-> 
-> It grew out of walking along the engine without a request. Old habits.
-> 
->>> +     /*
->>> +      * We need to _quickly_ capture the engine state before we reset.
->>> +      * We are inside an atomic section (softirq) here and we are delaying
->>> +      * the forced preemption event.
->>> +      */
->>> +     cap->error = capture_regs(engine);
->>> +     if (!cap->error)
->>> +             goto err_free;
->>> +
->>> +     if (i915_request_completed(cap->rq)) /* oops, not so guilty! */
->>> +             goto err_store;
->>
->> Should this be a bug on? Doesn't look active_request() can return a
->> non-completed request. Hm I guess we can make a wrong decision to reset
->> the engine.
-> 
-> Aye. Until we actually invoke the reset, the engine is still active and
-> so may have advanced. We call ring_set_paused() so it doesn't get too
-> far ahead, but that still lets the breadcrumb tick over, so it is still
-> possible for the active_request() to complete (but no more).
-
-...
-
->> But in any case, if request has completed in the meantime, why go to
->> i915_error_state_store which will log a hang in dmesg?
-> 
-> Because we are about to call intel_reset_engine(), so want some debug
-> clue as to why we got into a situation where we invoked the forced
-> preemption. I thought it might be useful to see the engine state, and to
-> drop the "oops, please file a bug request" because of the reset.
-
-... so we could still decide to bail out if request completed in the 
-meantime and give up on the whole reset business. Why not if not? I 
-guess it is of little practical difference, micro-second here or there 
-before a potential false positive.
-
->>> +     /*
->>> +      * Remove the request from the execlists queue, and take ownership
->>> +      * of the request. We pass it to our worker who will _slowly_ compress
->>> +      * all the pages the _user_ requested for debugging their batch, after
->>> +      * which we return it to the queue for signaling.
->>> +      *
->>> +      * By removing them from the execlists queue, we also remove the
->>> +      * requests from being processed by __unwind_incomplete_requests()
->>> +      * during the intel_engine_reset(), and so they will *not* be replayed
->>> +      * afterwards.
->>> +      */
->>> +     execlists_hold(engine, cap->rq);
->>> +
->>> +     INIT_WORK(&cap->work, execlists_capture_work);
->>> +     schedule_work(&cap->work);
->>> +     return;
->>> +
->>> +err_store:
->>> +     i915_error_state_store(cap->error);
->>> +     i915_gpu_coredump_put(cap->error);
->>> +err_free:
->>> +     kfree(cap);
->>> +}
->>> +
->>>    static noinline void preempt_reset(struct intel_engine_cs *engine)
->>>    {
->>>        const unsigned int bit = I915_RESET_ENGINE + engine->id;
->>> @@ -2509,6 +2622,9 @@ static noinline void preempt_reset(struct intel_engine_cs *engine)
->>>        ENGINE_TRACE(engine, "preempt timeout %lu+%ums\n",
->>>                     READ_ONCE(engine->props.preempt_timeout_ms),
->>>                     jiffies_to_msecs(jiffies - engine->execlists.preempt.expires));
->>> +
->>> +     ring_set_paused(engine, 1); /* Freeze the request in place */
->>
->> Who unsets this flags?
-> 
-> Reset -> reset_csb_pointers -> ring_set_paused(0).
-
-Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-
-Regards,
-
-Tvrtko
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gVGh1LCAyMDIwLTAxLTE2IGF0IDEyOjU2ICswMjAwLCBWaWxsZSBTeXJqw6Rsw6Qgd3JvdGU6
+DQo+IE9uIFRodSwgSmFuIDE2LCAyMDIwIGF0IDEyOjA1OjQzQU0gKzAwMDAsIFNvdXphLCBKb3Nl
+IHdyb3RlOg0KPiA+IE9uIFdlZCwgMjAyMC0wMS0xNSBhdCAyMTowOCArMDIwMCwgVmlsbGUgU3ly
+amFsYSB3cm90ZToNCj4gPiA+IEZyb206IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBs
+aW51eC5pbnRlbC5jb20+DQo+ID4gPiANCj4gPiA+IFRoZSBwb3N0LWZhc3RzZXQgImRvZXMgYW55
+b25lIHN0aWxsIG5lZWQgYSBmdWxsIG1vZGVzZXQ/IiBmb3INCj4gPiA+IHBvcnQgc3luYyBsb29r
+cyBidXN0ZWQuIFRoZSBvdXRlciBsb29wIGJhaWxzIG91dCBvZiBhIGZ1bGwNCj4gPiA+IG1vZGVz
+ZXQNCj4gPiA+IGlzIHN0aWxsIG5lZWRlZCBieSB0aGUgY3VycmVudCBjcnRjIHdoaWNoLCBhbmQg
+dGhlbiB3ZSBza2lwDQo+ID4gPiBmb3JjaW5nDQo+ID4gPiBhIGZ1bGwgbW9kZXNldCBvbiB0aGUg
+cmVsYXRlZCBjcnRjcy4gVGhhdCdzIHRvdGFsbHkgdGhlIG9wcG9zaXRlDQo+ID4gPiBvZiB3aGF0
+IHdlIHdhbnQuDQo+ID4gDQo+ID4gT3BzIHllYWgsIGl0IGlzIGFsd2F5cyBkb2luZyBhIGZ1bGwg
+bW9kZXNldC4NCj4gPiANCj4gPiA+IFRoZSBNU1QgcGF0aCBoYXMgdGhlIGxvZ2ljIG1vc3RseSB0
+aGUgb3RoZXIgd2F5IGFyb3VuZCBzbyBpdA0KPiA+ID4gbG9va3MgY29ycmVjdC4gVG8gZml4IHRo
+ZSBwb3J0IHN5bmMgY2FzZSBsZXQncyBmb2xsb3cgdGhlIE1TVA0KPiA+ID4gbG9naWMgZm9yIGJv
+dGguIFNvLCBpZiB0aGUgY3VycmVudCBjcnRjIGFscmVhZHkgbmVlZHMgYSBtb2Rlc2V0DQo+ID4g
+PiB3ZSBkbyBub3RoaW5nLiBvdGhlcndpc2Ugd2UgY2hlY2sgaWYgYW55IG9mIHRoZSByZWxhdGVk
+IGNydGNzDQo+ID4gPiBuZWVkcyBhIG1vZGVzZXQsIGFuZCBpZiBzbyB3ZSBmb3JjZSBhIGZ1bGwg
+bW9kZXNldCBmb3IgdGhlDQo+ID4gPiBjdXJyZW50IGNydGMuDQo+ID4gPiANCj4gPiA+IEFuZCB3
+aGlsZSBhdCBsZXQncyBjaGFuZ2UgdGhlIGVsc2UgaWYgdG8gYSBwbGFpbiBpZiB0byBzbw0KPiA+
+ID4gd2UgZG9uJ3QgaGF2ZSBuZWVkbGVzcyBjb3VwbGluZyBiZXR3ZWVuIHRoZSBNU1QgYW5kIHBv
+cnQgc3luYw0KPiA+ID4gY2hlY2tzLg0KPiA+ID4gDQo+ID4gPiBDYzogSm9zw6kgUm9iZXJ0byBk
+ZSBTb3V6YSA8am9zZS5zb3V6YUBpbnRlbC5jb20+DQo+ID4gPiBDYzogTWFuYXNpIE5hdmFyZSA8
+bWFuYXNpLmQubmF2YXJlQGludGVsLmNvbT4NCj4gPiA+IEZpeGVzOiAwNWE4ZTQ1MTM2Y2EgKCJk
+cm0vaTkxNS9kaXNwbGF5OiBVc2UgZXh0ZXJuYWwgZGVwZW5kZW5jeQ0KPiA+ID4gbG9vcA0KPiA+
+ID4gZm9yIHBvcnQgc3luYyIpDQo+ID4gPiBTaWduZWQtb2ZmLWJ5OiBWaWxsZSBTeXJqw6Rsw6Qg
+PHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwuY29tPg0KPiA+ID4gLS0tDQo+ID4gPiAgZHJpdmVy
+cy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMgfCA0MyArKysrKysrKy0tLS0N
+Cj4gPiA+IC0tLS0NCj4gPiA+IC0tLS0NCj4gPiA+ICAxIGZpbGUgY2hhbmdlZCwgMTcgaW5zZXJ0
+aW9ucygrKSwgMjYgZGVsZXRpb25zKC0pDQo+ID4gPiANCj4gPiA+IGRpZmYgLS1naXQgYS9kcml2
+ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuYw0KPiA+ID4gYi9kcml2ZXJz
+L2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuYw0KPiA+ID4gaW5kZXggZGQwMzk4
+N2NjMjRmLi5iMzk3ODE2Y2UyNTMgMTAwNjQ0DQo+ID4gPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0v
+aTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuYw0KPiA+ID4gKysrIGIvZHJpdmVycy9ncHUvZHJt
+L2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMNCj4gPiA+IEBAIC0xNDQ2OSwzNyArMTQ0Njks
+MjMgQEAgc3RhdGljIGludA0KPiA+ID4gaW50ZWxfYXRvbWljX2NoZWNrX2NydGNzKHN0cnVjdA0K
+PiA+ID4gaW50ZWxfYXRvbWljX3N0YXRlICpzdGF0ZSkNCj4gPiA+ICAJcmV0dXJuIDA7DQo+ID4g
+PiAgfQ0KPiA+ID4gIA0KPiA+ID4gLXN0YXRpYyBib29sIGludGVsX2NwdV90cmFuc2NvZGVyX25l
+ZWRzX21vZGVzZXQoc3RydWN0DQo+ID4gPiBpbnRlbF9hdG9taWNfc3RhdGUgKnN0YXRlLA0KPiA+
+ID4gLQkJCQkJICAgICAgIGVudW0gdHJhbnNjb2Rlcg0KPiA+ID4gdHJhbnNjb2RlcikNCj4gPiA+
+ICtzdGF0aWMgYm9vbCBpbnRlbF9jcHVfdHJhbnNjb2RlcnNfbmVlZF9tb2Rlc2V0KHN0cnVjdA0K
+PiA+ID4gaW50ZWxfYXRvbWljX3N0YXRlICpzdGF0ZSwNCj4gPiA+ICsJCQkJCSAgICAgICB1OCB0
+cmFuc2NvZGVycykNCj4gPiA+ICB7DQo+ID4gPiAtCXN0cnVjdCBpbnRlbF9jcnRjX3N0YXRlICpu
+ZXdfY3J0Y19zdGF0ZTsNCj4gPiA+ICsJY29uc3Qgc3RydWN0IGludGVsX2NydGNfc3RhdGUgKm5l
+d19jcnRjX3N0YXRlOw0KPiA+ID4gIAlzdHJ1Y3QgaW50ZWxfY3J0YyAqY3J0YzsNCj4gPiA+ICAJ
+aW50IGk7DQo+ID4gPiAgDQo+ID4gPiAtCWZvcl9lYWNoX25ld19pbnRlbF9jcnRjX2luX3N0YXRl
+KHN0YXRlLCBjcnRjLCBuZXdfY3J0Y19zdGF0ZSwNCj4gPiA+IGkpDQo+ID4gPiAtCQlpZiAobmV3
+X2NydGNfc3RhdGUtPmNwdV90cmFuc2NvZGVyID09IHRyYW5zY29kZXIpDQo+ID4gPiAtCQkJcmV0
+dXJuIG5lZWRzX21vZGVzZXQobmV3X2NydGNfc3RhdGUpOw0KPiA+ID4gKwlmb3JfZWFjaF9uZXdf
+aW50ZWxfY3J0Y19pbl9zdGF0ZShzdGF0ZSwgY3J0YywgbmV3X2NydGNfc3RhdGUsDQo+ID4gPiBp
+KSB7DQo+ID4gPiArCQlpZiAobmV3X2NydGNfc3RhdGUtPmh3LmVuYWJsZSAmJg0KPiA+IA0KPiA+
+IFRoZSBpbnRlbF9waXBlX2NvbmZpZ19jb21wYXJlKCkgd2lsbCBmb3JjZSBhIG1vZGVzZXQgZm9y
+IE1TVCBhbmQNCj4gPiBwb3J0DQo+ID4gc3luYyBidXQgdGhpcyBody5lbmFibGUgY291bGQgc2tp
+cCBtb2Rlc2V0IGluIGZ1dHVyZSBmZWF0dXJlcyB3aGVuDQo+ID4gb25lDQo+ID4gb2YgdGhlIHBp
+cGVzIGFyZSBnb2luZyBmcm9tIGVuYWJsZWQgdG8gZGlzYWJsZWQuDQo+IA0KPiBXZSBjYW4ndCB0
+cnVzdCB3aGF0J3MgaW4gLmNwdV90cmFuc2NvZGVyIHdoZW4gZW5hYmxlPT1mYWxzZS4gSXQgY2Fu
+DQo+IGJlIHNvbWUgc3RhbGUganVuayBsZWZ0IG92ZXIgZnJvbSB0aGUgcHJldmlvdXMgc3RhdGUu
+IFdlbGwsIHVudGlsDQo+IHRoZSBuZXh0IHBhdGNoIGF0IGxlYXN0Lg0KPiANCj4gSWYgdGhlIGRp
+c2FibGVkIHBpcGUgd2FzIHRoZSBtYXN0ZXIgdGhlbiB0aGUgbXN0L3BvcnQgc3luYyBtYXN0ZXIN
+Cj4gdHJhbnNjb2RlciB3aWxsIGNoYW5nZSBhbmQgdGhlIGZhc3RzZXQgY2hlY2sgd29uJ3QgcGFz
+cyBvbiBhbnkgb2YgdGhlDQo+IHNsYXZlcy4gU28gdGhlIGVuYWJsZSBjaGVjayBpcyBmaW5lIGZv
+ciB0aGF0IGNhc2UuDQo+IA0KPiBJZiB0aGUgZGlzYWJsZWQgcGlwZSB3YXMgb25lIG9mIHRoZSBw
+b3J0IHN5bmMgc2xhdmVzIHRoZSByZWxldmFudA0KPiBiaXRtYXNrIHdpbGwgY2hhbmdlIGZvciB0
+aGUgbWFzdGVyLCBhZ2FpbiBtYWtpbmcgdGhlIGZhc3RzZXQgY2hlY2sNCj4gZmFpbC4gQW5kIHRo
+dXMgdGhpcyBjb2RlIGhlcmUgd2lsbCBmb3JjZSBhIG1vZGVzZXQgZm9yIGFsbCB0aGUNCj4gb3Ro
+ZXIgc2xhdmVzLg0KPiANCj4gU28gY2FuJ3Qgc2VlIGhvdyBoYXZpbmcgdGhlIGNoZWNrIGNvdWxk
+IGJlIGEgcHJvYmxlbS4NCg0KSSBrbm93IHRoaXMgd2lsbCBub3QgYWZmZWN0IE1TVCBhbmQgcG9y
+dCBzeW5jLCBJIHdhcyB0aGlua2luZyBpbiBmdXR1cmUNCnVzZXJzIG9mIHRoaXMgZnVuY3Rpb24g
+YnV0IG9rYXksIHdlIGNhbiBsZWF2ZSB0aGF0IHRvIGJlIHdvcmtlZCB3aGVuDQpzdWNoIHVzZXJz
+IHNob3dzIHVwLg0KDQpSZXZpZXdlZC1ieTogSm9zw6kgUm9iZXJ0byBkZSBTb3V6YSA8am9zZS5z
+b3V6YUBpbnRlbC5jb20+DQoNCj4gDQo+ID4gUmVtb3ZpbmcgaXQ6DQo+ID4gDQo+ID4gUmV2aWV3
+ZWQtYnk6IEpvc8OpIFJvYmVydG8gZGUgU291emEgPGpvc2Uuc291emFAaW50ZWwuY29tPg0KPiA+
+IA0KPiA+ID4gKwkJICAgIHRyYW5zY29kZXJzICYgQklUKG5ld19jcnRjX3N0YXRlLT5jcHVfdHJh
+bnNjb2RlcikNCj4gPiA+ICYmDQo+ID4gPiArCQkgICAgbmVlZHNfbW9kZXNldChuZXdfY3J0Y19z
+dGF0ZSkpDQo+ID4gPiArCQkJcmV0dXJuIHRydWU7DQo+ID4gPiArCX0NCj4gPiA+ICANCj4gPiA+
+ICAJcmV0dXJuIGZhbHNlOw0KPiA+ID4gIH0NCj4gPiA+ICANCj4gPiA+IC1zdGF0aWMgdm9pZA0K
+PiA+ID4gLWludGVsX21vZGVzZXRfc3luY2VkX2NydGNzKHN0cnVjdCBpbnRlbF9hdG9taWNfc3Rh
+dGUgKnN0YXRlLA0KPiA+ID4gLQkJCSAgIHU4IHRyYW5zY29kZXJzKQ0KPiA+ID4gLXsNCj4gPiA+
+IC0Jc3RydWN0IGludGVsX2NydGNfc3RhdGUgKm5ld19jcnRjX3N0YXRlOw0KPiA+ID4gLQlzdHJ1
+Y3QgaW50ZWxfY3J0YyAqY3J0YzsNCj4gPiA+IC0JaW50IGk7DQo+ID4gPiAtDQo+ID4gPiAtCWZv
+cl9lYWNoX25ld19pbnRlbF9jcnRjX2luX3N0YXRlKHN0YXRlLCBjcnRjLA0KPiA+ID4gLQkJCQkJ
+IG5ld19jcnRjX3N0YXRlLCBpKSB7DQo+ID4gPiAtCQlpZiAodHJhbnNjb2RlcnMgJiBCSVQobmV3
+X2NydGNfc3RhdGUtPmNwdV90cmFuc2NvZGVyKSkNCj4gPiA+IHsNCj4gPiA+IC0JCQluZXdfY3J0
+Y19zdGF0ZS0+dWFwaS5tb2RlX2NoYW5nZWQgPSB0cnVlOw0KPiA+ID4gLQkJCW5ld19jcnRjX3N0
+YXRlLT51cGRhdGVfcGlwZSA9IGZhbHNlOw0KPiA+ID4gLQkJfQ0KPiA+ID4gLQl9DQo+ID4gPiAt
+fQ0KPiA+ID4gLQ0KPiA+ID4gIHN0YXRpYyBpbnQNCj4gPiA+ICBpbnRlbF9tb2Rlc2V0X2FsbF90
+aWxlcyhzdHJ1Y3QgaW50ZWxfYXRvbWljX3N0YXRlICpzdGF0ZSwgaW50DQo+ID4gPiB0aWxlX2dy
+cF9pZCkNCj4gPiA+ICB7DQo+ID4gPiBAQCAtMTQ2NTUsMTUgKzE0NjQxLDIwIEBAIHN0YXRpYyBp
+bnQgaW50ZWxfYXRvbWljX2NoZWNrKHN0cnVjdA0KPiA+ID4gZHJtX2RldmljZSAqZGV2LA0KPiA+
+ID4gIAkJaWYgKGludGVsX2RwX21zdF9pc19zbGF2ZV90cmFucyhuZXdfY3J0Y19zdGF0ZSkpIHsN
+Cj4gPiA+ICAJCQllbnVtIHRyYW5zY29kZXIgbWFzdGVyID0gbmV3X2NydGNfc3RhdGUtDQo+ID4g
+PiA+IG1zdF9tYXN0ZXJfdHJhbnNjb2RlcjsNCj4gPiA+ICANCj4gPiA+IC0JCQlpZiAoaW50ZWxf
+Y3B1X3RyYW5zY29kZXJfbmVlZHNfbW9kZXNldChzdGF0ZSwNCj4gPiA+IG1hc3RlcikpIHsNCj4g
+PiA+ICsJCQlpZiAoaW50ZWxfY3B1X3RyYW5zY29kZXJzX25lZWRfbW9kZXNldChzdGF0ZSwNCj4g
+PiA+IEJJVChtYXN0ZXIpKSkgew0KPiA+ID4gIAkJCQluZXdfY3J0Y19zdGF0ZS0+dWFwaS5tb2Rl
+X2NoYW5nZWQgPQ0KPiA+ID4gdHJ1ZTsNCj4gPiA+ICAJCQkJbmV3X2NydGNfc3RhdGUtPnVwZGF0
+ZV9waXBlID0gZmFsc2U7DQo+ID4gPiAgCQkJfQ0KPiA+ID4gLQkJfSBlbHNlIGlmIChpc190cmFu
+c19wb3J0X3N5bmNfbW9kZShuZXdfY3J0Y19zdGF0ZSkpIHsNCj4gPiA+ICsJCX0NCj4gPiA+ICsN
+Cj4gPiA+ICsJCWlmIChpc190cmFuc19wb3J0X3N5bmNfbW9kZShuZXdfY3J0Y19zdGF0ZSkpIHsN
+Cj4gPiA+ICAJCQl1OCB0cmFucyA9IG5ld19jcnRjX3N0YXRlLQ0KPiA+ID4gPiBzeW5jX21vZGVf
+c2xhdmVzX21hc2sgfA0KPiA+ID4gIAkJCQkgICBCSVQobmV3X2NydGNfc3RhdGUtDQo+ID4gPiA+
+IG1hc3Rlcl90cmFuc2NvZGVyKTsNCj4gPiA+ICANCj4gPiA+IC0JCQlpbnRlbF9tb2Rlc2V0X3N5
+bmNlZF9jcnRjcyhzdGF0ZSwgdHJhbnMpOw0KPiA+ID4gKwkJCWlmIChpbnRlbF9jcHVfdHJhbnNj
+b2RlcnNfbmVlZF9tb2Rlc2V0KHN0YXRlLA0KPiA+ID4gdHJhbnMpKSB7DQo+ID4gPiArCQkJCW5l
+d19jcnRjX3N0YXRlLT51YXBpLm1vZGVfY2hhbmdlZCA9DQo+ID4gPiB0cnVlOw0KPiA+ID4gKwkJ
+CQluZXdfY3J0Y19zdGF0ZS0+dXBkYXRlX3BpcGUgPSBmYWxzZTsNCj4gPiA+ICsJCQl9DQo+ID4g
+PiAgCQl9DQo+ID4gPiAgCX0NCj4gPiA+ICANCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3Rz
+LmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xp
+c3RpbmZvL2ludGVsLWdmeAo=
