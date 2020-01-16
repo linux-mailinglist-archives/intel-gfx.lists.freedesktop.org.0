@@ -2,36 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C90F213DC48
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Jan 2020 14:45:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CA3BB13DCC4
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Jan 2020 15:00:06 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 182B26ED0A;
-	Thu, 16 Jan 2020 13:45:16 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CC2B66ED0A
- for <Intel-gfx@lists.freedesktop.org>; Thu, 16 Jan 2020 13:45:13 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 16 Jan 2020 05:45:13 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,326,1574150400"; d="scan'208";a="425538251"
-Received: from mdanino-mobl1.ger.corp.intel.com (HELO localhost.localdomain)
- ([10.252.23.174])
- by fmsmga006.fm.intel.com with ESMTP; 16 Jan 2020 05:45:11 -0800
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-To: Intel-gfx@lists.freedesktop.org
-Date: Thu, 16 Jan 2020 13:45:08 +0000
-Message-Id: <20200116134508.25211-1-tvrtko.ursulin@linux.intel.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200115152437.13207-1-tvrtko.ursulin@linux.intel.com>
-References: <20200115152437.13207-1-tvrtko.ursulin@linux.intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 792976ED1B;
+	Thu, 16 Jan 2020 14:00:04 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from eu-smtp-delivery-151.mimecast.com
+ (eu-smtp-delivery-151.mimecast.com [207.82.80.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 918886ED1B
+ for <intel-gfx@lists.freedesktop.org>; Thu, 16 Jan 2020 14:00:02 +0000 (UTC)
+Received: from AcuMS.aculab.com (156.67.243.126 [156.67.243.126]) (Using
+ TLS) by relay.mimecast.com with ESMTP id
+ uk-mta-209-ou66e3WJN7O-0cN6rIdmfw-1; Thu, 16 Jan 2020 13:58:44 +0000
+Received: from AcuMS.Aculab.com (fd9f:af1c:a25b:0:43c:695e:880f:8750) by
+ AcuMS.aculab.com (fd9f:af1c:a25b:0:43c:695e:880f:8750) with Microsoft SMTP
+ Server (TLS) id 15.0.1347.2; Thu, 16 Jan 2020 13:58:44 +0000
+Received: from AcuMS.Aculab.com ([fe80::43c:695e:880f:8750]) by
+ AcuMS.aculab.com ([fe80::43c:695e:880f:8750%12]) with mapi id 15.00.1347.000; 
+ Thu, 16 Jan 2020 13:58:44 +0000
+From: David Laight <David.Laight@ACULAB.COM>
+To: 'Chris Wilson' <chris@chris-wilson.co.uk>, Daniel Vetter <daniel@ffwll.ch>
+Thread-Topic: [PATCH] drm: Inject a cond_resched() into long drm_clflush_sg()
+Thread-Index: AQHVy+gMprmlNntzX0qJh6CaHCkwb6fs20gAgAANToCAAEszQIAABVIAgAAWQUA=
+Date: Thu, 16 Jan 2020 13:58:44 +0000
+Message-ID: <90de9ae911dc481f9c2c62e196b2bacf@AcuMS.aculab.com>
+References: <20200115205245.2772800-1-chris@chris-wilson.co.uk>
+ <20200116065242.GC8400@dvetter-linux.ger.corp.intel.com>
+ <157916041994.14122.8524532515240369595@skylake-alporthouse-com>
+ <8f6b9daa2af342a79137064203255242@AcuMS.aculab.com>
+ <157917771007.2795.953028640868055754@skylake-alporthouse-com>
+In-Reply-To: <157917771007.2795.953028640868055754@skylake-alporthouse-com>
+Accept-Language: en-GB, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [10.202.205.107]
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v2] drm/i915: Align engine->uabi_class/instance
- with i915_drm.h
+X-MC-Unique: ou66e3WJN7O-0cN6rIdmfw-1
+X-Mimecast-Spam-Score: 0
+Subject: Re: [Intel-gfx] [PATCH] drm: Inject a cond_resched() into long
+ drm_clflush_sg()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,111 +57,46 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: stable@vger.kernel.org
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+From: Chris Wilson <chris@chris-wilson.co.uk>
+> Sent: 16 January 2020 12:29
+> 
+> Quoting David Laight (2020-01-16 12:26:45)
+> > However there is a call from __i915_gem_objet_set_pages() that
+> > is preceded by a lockdep_assert_held() check - so mustn't sleep.
+> 
+> That is a mutex; it's allowed to sleep. The might_sleep() here should
+> help assuage your fears.
 
-In our ABI we have defined I915_ENGINE_CLASS_INVALID_NONE and
-I915_ENGINE_CLASS_INVALID_VIRTUAL as negative values which creates
-implicit coupling with type widths used in, also ABI, struct
-i915_engine_class_instance.
+Gah. Having a mutex called mm.lock isn't entirely obvious when quickly
+reading code.
 
-One place where we export engine->uabi_class
-I915_ENGINE_CLASS_INVALID_VIRTUAL is from our our tracepoints. Because the
-type of the former is u8 in contrast to u16 defined in the ABI, 254 will
-be returned instead of 65534 which userspace would legitimately expect.
+From what I was reading earlier it seems that clflush() (and cflushopt)
+are fast (well not stupidly slow) for buffers under 4k.
+I suspect then can do a 'mark pending', but for larger buffers have to
+wait for earlier requests to complete (although the graph carries on
+increasing to the 16k RH margin.
 
-Another place is I915_CONTEXT_PARAM_ENGINES.
+If may well be that adding a cond_resched() after every 4k page
+will have ~0 performance impact because the first few clflush
+will be a bit faster (less slow).
 
-Therefore we need to align the type used to store engine ABI class and
-instance.
+I'll do some measurements later this afternoon.
 
-v2:
- * Update the commit message mentioning get_engines and cc stable.
-   (Chris)
+FWIW does this code need to actually invalidate the cache lines?
+Or is it just forcing a writeback?
 
-Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-Fixes: 6d06779e8672 ("drm/i915: Load balancing across a virtual engine")
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: <stable@vger.kernel.org> # v5.3+
-Reviewed-by: Chris Wilson <chris@chris-wilson.co.uk>
----
- drivers/gpu/drm/i915/gem/i915_gem_busy.c     | 12 ++++++------
- drivers/gpu/drm/i915/gt/intel_engine_types.h |  4 ++--
- 2 files changed, 8 insertions(+), 8 deletions(-)
+	David
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_busy.c b/drivers/gpu/drm/i915/gem/i915_gem_busy.c
-index 3d4f5775a4ba..25235ef630c1 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_busy.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_busy.c
-@@ -9,16 +9,16 @@
- #include "i915_gem_ioctls.h"
- #include "i915_gem_object.h"
- 
--static __always_inline u32 __busy_read_flag(u8 id)
-+static __always_inline u32 __busy_read_flag(u16 id)
- {
--	if (id == (u8)I915_ENGINE_CLASS_INVALID)
-+	if (id == (u16)I915_ENGINE_CLASS_INVALID)
- 		return 0xffff0000u;
- 
- 	GEM_BUG_ON(id >= 16);
- 	return 0x10000u << id;
- }
- 
--static __always_inline u32 __busy_write_id(u8 id)
-+static __always_inline u32 __busy_write_id(u16 id)
- {
- 	/*
- 	 * The uABI guarantees an active writer is also amongst the read
-@@ -29,14 +29,14 @@ static __always_inline u32 __busy_write_id(u8 id)
- 	 * last_read - hence we always set both read and write busy for
- 	 * last_write.
- 	 */
--	if (id == (u8)I915_ENGINE_CLASS_INVALID)
-+	if (id == (u16)I915_ENGINE_CLASS_INVALID)
- 		return 0xffffffffu;
- 
- 	return (id + 1) | __busy_read_flag(id);
- }
- 
- static __always_inline unsigned int
--__busy_set_if_active(const struct dma_fence *fence, u32 (*flag)(u8 id))
-+__busy_set_if_active(const struct dma_fence *fence, u32 (*flag)(u16 id))
- {
- 	const struct i915_request *rq;
- 
-@@ -57,7 +57,7 @@ __busy_set_if_active(const struct dma_fence *fence, u32 (*flag)(u8 id))
- 		return 0;
- 
- 	/* Beware type-expansion follies! */
--	BUILD_BUG_ON(!typecheck(u8, rq->engine->uabi_class));
-+	BUILD_BUG_ON(!typecheck(u16, rq->engine->uabi_class));
- 	return flag(rq->engine->uabi_class);
- }
- 
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine_types.h b/drivers/gpu/drm/i915/gt/intel_engine_types.h
-index 00287515e7af..350da59e605b 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine_types.h
-+++ b/drivers/gpu/drm/i915/gt/intel_engine_types.h
-@@ -278,8 +278,8 @@ struct intel_engine_cs {
- 	u8 class;
- 	u8 instance;
- 
--	u8 uabi_class;
--	u8 uabi_instance;
-+	u16 uabi_class;
-+	u16 uabi_instance;
- 
- 	u32 uabi_capabilities;
- 	u32 context_size;
--- 
-2.20.1
-
+-
+Registered Address Lakeside, Bramley Road, Mount Farm, Milton Keynes, MK1 1PT, UK
+Registration No: 1397386 (Wales)
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
