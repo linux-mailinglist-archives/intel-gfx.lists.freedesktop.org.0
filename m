@@ -2,32 +2,47 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D7C813D9F2
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Jan 2020 13:28:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AE15C13DA18
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Jan 2020 13:33:10 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AE6C06ECCF;
-	Thu, 16 Jan 2020 12:28:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 817916ECD5;
+	Thu, 16 Jan 2020 12:33:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AE8236ECCF;
- Thu, 16 Jan 2020 12:28:36 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 19900566-1500050 for multiple; Thu, 16 Jan 2020 12:28:32 +0000
-MIME-Version: 1.0
-To: Daniel Vetter <daniel@ffwll.ch>, David Laight <David.Laight@ACULAB.COM>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-In-Reply-To: <8f6b9daa2af342a79137064203255242@AcuMS.aculab.com>
+X-Greylist: delayed 374 seconds by postgrey-1.36 at gabe;
+ Thu, 16 Jan 2020 12:33:05 UTC
+Received: from eu-smtp-delivery-151.mimecast.com
+ (eu-smtp-delivery-151.mimecast.com [207.82.80.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 691316ECD5
+ for <intel-gfx@lists.freedesktop.org>; Thu, 16 Jan 2020 12:33:05 +0000 (UTC)
+Received: from AcuMS.aculab.com (156.67.243.126 [156.67.243.126]) (Using
+ TLS) by relay.mimecast.com with ESMTP id
+ uk-mta-140-XHznUHIJPea1EeGEH4eIuQ-1; Thu, 16 Jan 2020 12:26:45 +0000
+Received: from AcuMS.Aculab.com (fd9f:af1c:a25b:0:43c:695e:880f:8750) by
+ AcuMS.aculab.com (fd9f:af1c:a25b:0:43c:695e:880f:8750) with Microsoft SMTP
+ Server (TLS) id 15.0.1347.2; Thu, 16 Jan 2020 12:26:45 +0000
+Received: from AcuMS.Aculab.com ([fe80::43c:695e:880f:8750]) by
+ AcuMS.aculab.com ([fe80::43c:695e:880f:8750%12]) with mapi id 15.00.1347.000; 
+ Thu, 16 Jan 2020 12:26:45 +0000
+From: David Laight <David.Laight@ACULAB.COM>
+To: 'Chris Wilson' <chris@chris-wilson.co.uk>, Daniel Vetter <daniel@ffwll.ch>
+Thread-Topic: [PATCH] drm: Inject a cond_resched() into long drm_clflush_sg()
+Thread-Index: AQHVy+gMprmlNntzX0qJh6CaHCkwb6fs20gAgAANToCAAEszQA==
+Date: Thu, 16 Jan 2020 12:26:45 +0000
+Message-ID: <8f6b9daa2af342a79137064203255242@AcuMS.aculab.com>
 References: <20200115205245.2772800-1-chris@chris-wilson.co.uk>
  <20200116065242.GC8400@dvetter-linux.ger.corp.intel.com>
  <157916041994.14122.8524532515240369595@skylake-alporthouse-com>
- <8f6b9daa2af342a79137064203255242@AcuMS.aculab.com>
-Message-ID: <157917771007.2795.953028640868055754@skylake-alporthouse-com>
-User-Agent: alot/0.6
-Date: Thu, 16 Jan 2020 12:28:30 +0000
+In-Reply-To: <157916041994.14122.8524532515240369595@skylake-alporthouse-com>
+Accept-Language: en-GB, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [10.202.205.107]
+MIME-Version: 1.0
+X-MC-Unique: XHznUHIJPea1EeGEH4eIuQ-1
+X-Mimecast-Spam-Score: 0
 Subject: Re: [Intel-gfx] [PATCH] drm: Inject a cond_resched() into long
  drm_clflush_sg()
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -49,13 +64,64 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting David Laight (2020-01-16 12:26:45)
-> However there is a call from __i915_gem_objet_set_pages() that
-> is preceded by a lockdep_assert_held() check - so mustn't sleep.
+From: Chris Wilson <chris@chris-wilson.co.uk>
+> Sent: 16 January 2020 07:40
+> Quoting Daniel Vetter (2020-01-16 06:52:42)
+> > On Wed, Jan 15, 2020 at 08:52:45PM +0000, Chris Wilson wrote:
+> > > Since we may try and flush the cachelines associated with large buffers
+> > > (an 8K framebuffer is about 128MiB, even before we try HDR), this leads
+> > > to unacceptably long latencies (when using a voluntary CONFIG_PREEMPT).
+> > > If we call cond_resched() between each sg chunk, that it about every 128
+> > > pages, we have a natural break point in which to check if the process
+> > > needs to be rescheduled. Naturally, this means that drm_clflush_sg() can
+> > > only be called from process context -- which is true at the moment. The
+> > > other clflush routines remain usable from atomic context.
+> > >
+> > > Even though flushing large objects takes a demonstrable amount to time
+> > > to flush all the cachelines, clflush is still preferred over a
+> > > system-wide wbinvd as the latter has unpredictable latencies affecting
+> > > the whole system not just the local task.
+> > >
+> > > Reported-by: David Laight <David.Laight@ACULAB.COM>
+> > > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> > > Cc: David Laight <David.Laight@ACULAB.COM>
+> >
+> > The original bug report is complaining about latencies for SCHED_RT
+> > threads, on a system that doesn't even use CONFIG_PREEMPT. I'm not sure
+> > it's terribly valid to cater to that use-case - all the desktop distros
+> > seem a lot more reasonable. So firmly *shrug* from my side ...
+> 
+> Yeah, I had the same immediate response to the complaint), but otoh we've
+> inserted cond_resched() before when it looks like may consume entire
+> jiffies inside a loop. At the very minimum, we should have a
+> might_sleep() here and a reminder that this can be very slow (remember
+> byt?).
 
-That is a mutex; it's allowed to sleep. The might_sleep() here should
-help assuage your fears.
--Chris
+I'm using RT to get more deterministic scheduling to look for long
+scheduling delays, rather than because we need very tight scheduling.
+Delays of several 100us aren't a real problem.
+
+The problem with CONFIG_PREEMPT is that the distros don't
+enable it and it isn't a command line option.
+So it is really useless unless you are able/willing to build your
+own kernel.
+
+I could run the code under the normal scheduler with 'nice -19'.
+I stlll wouldn't expect to have all but one cpu idle when I've just
+done a cv_broadcast() to wake up a lot of threads.
+
+I've added 'if (!(++i & 31)) cond_resched();' after the drm_clfulsh_page()
+call in drm_cflush_sg().
+In my case that it 3600/32 reschedules in 3.3ms - plenty.
+
+However there is a call from __i915_gem_objet_set_pages() that
+is preceded by a lockdep_assert_held() check - so mustn't sleep.
+
+	David
+
+-
+Registered Address Lakeside, Bramley Road, Mount Farm, Milton Keynes, MK1 1PT, UK
+Registration No: 1397386 (Wales)
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
