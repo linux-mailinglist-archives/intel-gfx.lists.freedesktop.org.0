@@ -1,36 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 11AC913F97B
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Jan 2020 20:28:36 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B0C4113F984
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Jan 2020 20:30:21 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AAB876EEA7;
-	Thu, 16 Jan 2020 19:28:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E94386EE9F;
+	Thu, 16 Jan 2020 19:30:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0A7046EEA7
- for <intel-gfx@lists.freedesktop.org>; Thu, 16 Jan 2020 19:28:32 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by orsmga105.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 16 Jan 2020 11:28:31 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,327,1574150400"; d="scan'208";a="424166933"
-Received: from ppiec-mobl1.ger.corp.intel.com (HELO
- mwahaha-bdw.ger.corp.intel.com) ([10.252.5.129])
- by fmsmga005.fm.intel.com with ESMTP; 16 Jan 2020 11:28:30 -0800
-From: Matthew Auld <matthew.auld@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 16 Jan 2020 19:28:09 +0000
-Message-Id: <20200116192809.843138-2-matthew.auld@intel.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200116192809.843138-1-matthew.auld@intel.com>
-References: <20200116192809.843138-1-matthew.auld@intel.com>
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E61D06EE9F
+ for <intel-gfx@lists.freedesktop.org>; Thu, 16 Jan 2020 19:30:18 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 19907061-1500050 for multiple; Thu, 16 Jan 2020 19:30:16 +0000
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 2/2] drm/i915/userptr: fix size calculation
+From: Chris Wilson <chris@chris-wilson.co.uk>
+User-Agent: alot/0.6
+To: Brian Welty <brian.welty@intel.com>, intel-gfx@lists.freedesktop.org
+References: <20200116192047.22303-1-brian.welty@intel.com>
+In-Reply-To: <20200116192047.22303-1-brian.welty@intel.com>
+Message-ID: <157920301401.7612.15247641307789572716@skylake-alporthouse-com>
+Date: Thu, 16 Jan 2020 19:30:14 +0000
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Make use of drm_gem_object_release
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,58 +43,43 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-If we create a rather large userptr object(e.g 1ULL << 32) we might
-shift past the type-width of num_pages: (int)num_pages << PAGE_SHIFT,
-resulting in a totally bogus sg_table, which fortunately will eventually
-manifest as:
+Quoting Brian Welty (2020-01-16 19:20:47)
+> As i915 is using drm_gem_private_object_init, it is best to
+> use the inverse function for cleanup: drm_gem_object_release.
+> This removes need for a shmem_release and phys_release.
+> 
+> Signed-off-by: Brian Welty <brian.welty@intel.com>
+> ---
+> Chris, the cleanup sequence in drm_gem_object_release() vs the replaced
+> i915 code is different, but should be okay?  Light testing didn't find
+> any issues.
 
-gen8_ppgtt_insert_huge:463 GEM_BUG_ON(iter->sg->length < page_size)
-kernel BUG at drivers/gpu/drm/i915/gt/gen8_ppgtt.c:463!
+commit 0c159ffef628fa94d0f4f9128e7f2b6f2b5e86ef
+Author: Chris Wilson <chris@chris-wilson.co.uk>
+Date:   Wed Jul 3 19:06:01 2019 +0100
 
-Fixes: 5cc9ed4b9a7a ("drm/i915: Introduce mapping of user pages into video memory (userptr) ioctl")
-Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
----
- drivers/gpu/drm/i915/gem/i915_gem_userptr.c | 3 ++-
- drivers/gpu/drm/i915/gt/gen8_ppgtt.c        | 1 +
- 2 files changed, 3 insertions(+), 1 deletion(-)
+    drm/i915/gem: Defer obj->base.resv fini until RCU callback
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_userptr.c b/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
-index fef96a303d9d..81fa53495c9d 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
-@@ -405,6 +405,7 @@ static struct sg_table *
- __i915_gem_userptr_alloc_pages(struct drm_i915_gem_object *obj,
- 			       struct page **pvec, int num_pages)
- {
-+	unsigned long size = (unsigned long)num_pages << PAGE_SHIFT;
- 	unsigned int max_segment = i915_sg_segment_size();
- 	struct sg_table *st;
- 	unsigned int sg_page_sizes;
-@@ -416,7 +417,7 @@ __i915_gem_userptr_alloc_pages(struct drm_i915_gem_object *obj,
- 
- alloc_table:
- 	ret = __sg_alloc_table_from_pages(st, pvec, num_pages,
--					  0, num_pages << PAGE_SHIFT,
-+					  0, size,
- 					  max_segment,
- 					  GFP_KERNEL);
- 	if (ret) {
-diff --git a/drivers/gpu/drm/i915/gt/gen8_ppgtt.c b/drivers/gpu/drm/i915/gt/gen8_ppgtt.c
-index 077b8f7cf6cb..0d7820c49f5b 100644
---- a/drivers/gpu/drm/i915/gt/gen8_ppgtt.c
-+++ b/drivers/gpu/drm/i915/gt/gen8_ppgtt.c
-@@ -379,6 +379,7 @@ gen8_ppgtt_insert_pte(struct i915_ppgtt *ppgtt,
- 	pd = i915_pd_entry(pdp, gen8_pd_index(idx, 2));
- 	vaddr = kmap_atomic_px(i915_pt_entry(pd, gen8_pd_index(idx, 1)));
- 	do {
-+		GEM_BUG_ON(iter->sg->length < PAGE_SIZE);
- 		vaddr[gen8_pd_index(idx, 0)] = pte_encode | iter->dma;
- 
- 		iter->dma += I915_GTT_PAGE_SIZE;
--- 
-2.20.1
+    Since reservation_object_fini() does an immediate free, rather than
+    kfree_rcu as normal, we have to delay the release until after the RCU
+    grace period has elapsed (i.e. from the rcu cleanup callback) so that we
+    can rely on the RCU protected access to the fences while the object is a
+    zombie.
 
+    i915_gem_busy_ioctl relies on having an RCU barrier to protect the
+    reservation in order to avoid having to take a reference and strong
+    memory barriers.
+
+    v2: Order is important; only release after putting the pages!
+
+    Fixes: c03467ba40f7 ("drm/i915/gem: Free pages before rcu-freeing the object
+")
+    Testcase: igt/gem_busy/close-race
+    Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+    Cc: Matthew Auld <matthew.auld@intel.com>
+    Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+    Link: https://patchwork.freedesktop.org/patch/msgid/20190703180601.10950-1-c
+hris@chris-wilson.co.uk
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
