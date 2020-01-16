@@ -2,40 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E7EC213E6C0
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Jan 2020 18:22:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5299213E705
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Jan 2020 18:23:11 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B20AC6EE2E;
-	Thu, 16 Jan 2020 17:22:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B2A6D6EE2F;
+	Thu, 16 Jan 2020 17:23:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 390B36EE2E
- for <intel-gfx@lists.freedesktop.org>; Thu, 16 Jan 2020 17:22:13 +0000 (UTC)
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3A91B6EE2F
+ for <intel-gfx@lists.freedesktop.org>; Thu, 16 Jan 2020 17:23:08 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 16 Jan 2020 09:22:12 -0800
-X-IronPort-AV: E=Sophos;i="5.70,327,1574150400"; d="scan'208";a="214157381"
+ by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 16 Jan 2020 09:23:07 -0800
+X-IronPort-AV: E=Sophos;i="5.70,327,1574150400"; d="scan'208";a="214157611"
 Received: from mdanino-mobl1.ger.corp.intel.com (HELO [10.252.23.174])
  ([10.252.23.174])
  by orsmga007-auth.jf.intel.com with ESMTP/TLS/AES256-SHA;
- 16 Jan 2020 09:22:11 -0800
+ 16 Jan 2020 09:23:06 -0800
 To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
 References: <20200115083346.2601512-1-chris@chris-wilson.co.uk>
- <20200115083346.2601512-3-chris@chris-wilson.co.uk>
+ <20200115090241.2601864-1-chris@chris-wilson.co.uk>
 From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
 Organization: Intel Corporation UK Plc
-Message-ID: <e826323f-7b6f-b8ff-1008-6deaacad340b@linux.intel.com>
-Date: Thu, 16 Jan 2020 17:22:10 +0000
+Message-ID: <1acc9042-5f59-beb3-dc3e-ab8398c939c1@linux.intel.com>
+Date: Thu, 16 Jan 2020 17:23:05 +0000
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.9.0
 MIME-Version: 1.0
-In-Reply-To: <20200115083346.2601512-3-chris@chris-wilson.co.uk>
+In-Reply-To: <20200115090241.2601864-1-chris@chris-wilson.co.uk>
 Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH 3/3] drm/i915/execlists: Offline error
- capture
+Subject: Re: [Intel-gfx] [PATCH v2] drm/i915: Keep track of request among
+ the scheduling lists
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,200 +54,154 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
-On 15/01/2020 08:33, Chris Wilson wrote:
-> Currently, we skip error capture upon forced preemption. We apply forced
-> preemption when there is a higher priority request that should be
-> running but is being blocked, and we skip inline error capture so that
-> the preemption request is not further delayed by a user controlled
-> capture -- extending the denial of service.
+On 15/01/2020 09:02, Chris Wilson wrote:
+> If we keep track of when the i915_request.sched.link is on the HW
+> runlist, or in the priority queue we can simplify our interactions with
+> the request (such as during rescheduling). This also simplifies the next
+> patch where we introduce a new in-between list, for requests that are
+> ready but neither on the run list or in the queue.
 > 
-> However, preemption reset is also used for heartbeats and regular GPU
-> hangs. By skipping the error capture, we remove the ability to debug GPU
-> hangs.
+> v2: Update i915_sched_node.link explanation for current usage where it
+> is a link on both the queue and on the runlists.
 > 
-> In order to capture the error without delaying the preemption request
-> further, we can do an out-of-line capture by removing the guilty request
-> from the execution queue and scheduling a work to dump that request.
-> When removing a request, we need to remove the entire context and all
-> descendants from the execution queue, so that they do not jump past.
-> 
-> Closes: https://gitlab.freedesktop.org/drm/intel/issues/738
-> Fixes: 3a7a92aba8fb ("drm/i915/execlists: Force preemption")
 > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 > Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 > Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 > ---
->   drivers/gpu/drm/i915/gt/intel_lrc.c | 120 +++++++++++++++++++++++++++-
->   1 file changed, 118 insertions(+), 2 deletions(-)
+>   drivers/gpu/drm/i915/gt/intel_lrc.c   | 13 ++++++++-----
+>   drivers/gpu/drm/i915/i915_request.c   |  4 +++-
+>   drivers/gpu/drm/i915/i915_request.h   | 17 +++++++++++++++++
+>   drivers/gpu/drm/i915/i915_scheduler.c | 22 ++++++++++------------
+>   4 files changed, 38 insertions(+), 18 deletions(-)
 > 
 > diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-> index 43c19dc9c0c7..a84477df32bd 100644
+> index 9e430590fb3a..f0cbd240a8c2 100644
 > --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
 > +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-> @@ -2392,7 +2392,6 @@ static void __execlists_hold(struct i915_request *rq)
->   	} while(rq);
+> @@ -985,6 +985,8 @@ __unwind_incomplete_requests(struct intel_engine_cs *engine)
+>   			GEM_BUG_ON(RB_EMPTY_ROOT(&engine->execlists.queue.rb_root));
+>   
+>   			list_move(&rq->sched.link, pl);
+> +			set_bit(I915_FENCE_FLAG_PQUEUE, &rq->fence.flags);
+> +
+>   			active = rq;
+>   		} else {
+>   			struct intel_engine_cs *owner = rq->context->engine;
+> @@ -2430,11 +2432,12 @@ static void execlists_preempt(struct timer_list *timer)
 >   }
 >   
-> -__maybe_unused
->   static void execlists_hold(struct intel_engine_cs *engine,
->   			   struct i915_request *rq)
+>   static void queue_request(struct intel_engine_cs *engine,
+> -			  struct i915_sched_node *node,
+> -			  int prio)
+> +			  struct i915_request *rq)
 >   {
-> @@ -2472,7 +2471,6 @@ static void __execlists_unhold(struct i915_request *rq)
->   	} while(rq);
+> -	GEM_BUG_ON(!list_empty(&node->link));
+> -	list_add_tail(&node->link, i915_sched_lookup_priolist(engine, prio));
+> +	GEM_BUG_ON(!list_empty(&rq->sched.link));
+> +	list_add_tail(&rq->sched.link,
+> +		      i915_sched_lookup_priolist(engine, rq_prio(rq)));
+> +	set_bit(I915_FENCE_FLAG_PQUEUE, &rq->fence.flags);
 >   }
 >   
-> -__maybe_unused
->   static void execlists_unhold(struct intel_engine_cs *engine,
->   			     struct i915_request *rq)
->   {
-> @@ -2492,6 +2490,121 @@ static void execlists_unhold(struct intel_engine_cs *engine,
->   	spin_unlock_irq(&engine->active.lock);
->   }
+>   static void __submit_queue_imm(struct intel_engine_cs *engine)
+> @@ -2470,7 +2473,7 @@ static void execlists_submit_request(struct i915_request *request)
+>   	/* Will be called from irq-context when using foreign fences. */
+>   	spin_lock_irqsave(&engine->active.lock, flags);
 >   
-> +struct execlists_capture {
-> +	struct work_struct work;
-> +	struct i915_request *rq;
-> +	struct i915_gpu_coredump *error;
-> +};
-> +
-> +static void execlists_capture_work(struct work_struct *work)
-> +{
-> +	struct execlists_capture *cap = container_of(work, typeof(*cap), work);
-> +	const gfp_t gfp = GFP_KERNEL | __GFP_RETRY_MAYFAIL | __GFP_NOWARN;
-> +	struct intel_engine_cs *engine = cap->rq->engine;
-> +	struct intel_gt_coredump *gt = cap->error->gt;
-> +	struct intel_engine_capture_vma *vma;
-> +
-> +	/* Compress all the objects attached to the request, slow! */
-> +	vma = intel_engine_coredump_add_request(gt->engine, cap->rq, gfp);
-> +	if (vma) {
-> +		struct i915_vma_compress *compress =
-> +			i915_vma_capture_prepare(gt);
-> +
-> +		intel_engine_coredump_add_vma(gt->engine, vma, compress);
-> +		i915_vma_capture_finish(gt, compress);
+> -	queue_request(engine, &request->sched, rq_prio(request));
+> +	queue_request(engine, request);
+>   
+>   	GEM_BUG_ON(RB_EMPTY_ROOT(&engine->execlists.queue.rb_root));
+>   	GEM_BUG_ON(list_empty(&request->sched.link));
+> diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
+> index be185886e4fc..9ed0d3bc7249 100644
+> --- a/drivers/gpu/drm/i915/i915_request.c
+> +++ b/drivers/gpu/drm/i915/i915_request.c
+> @@ -408,8 +408,10 @@ bool __i915_request_submit(struct i915_request *request)
+>   xfer:	/* We may be recursing from the signal callback of another i915 fence */
+>   	spin_lock_nested(&request->lock, SINGLE_DEPTH_NESTING);
+>   
+> -	if (!test_and_set_bit(I915_FENCE_FLAG_ACTIVE, &request->fence.flags))
+> +	if (!test_and_set_bit(I915_FENCE_FLAG_ACTIVE, &request->fence.flags)) {
+>   		list_move_tail(&request->sched.link, &engine->active.requests);
+> +		clear_bit(I915_FENCE_FLAG_PQUEUE, &request->fence.flags);
 > +	}
-> +
-> +	gt->simulated = gt->engine->simulated;
-> +	cap->error->simulated = gt->simulated;
-> +
-> +	/* Publish the error state, and announce it to the world */
-> +	i915_error_state_store(cap->error);
-> +	i915_gpu_coredump_put(cap->error);
-> +
-> +	/* Return this request and all that depend upon it for signaling */
-> +	execlists_unhold(engine, cap->rq);
-> +
-> +	kfree(cap);
-> +}
-> +
-> +static struct i915_gpu_coredump *capture_regs(struct intel_engine_cs *engine)
-> +{
-> +	const gfp_t gfp = GFP_ATOMIC | __GFP_NOWARN;
-> +	struct i915_gpu_coredump *e;
-> +
-> +	e = i915_gpu_coredump_alloc(engine->i915, gfp);
-> +	if (!e)
-> +		return NULL;
-> +
-> +	e->gt = intel_gt_coredump_alloc(engine->gt, gfp);
-> +	if (!e->gt)
-> +		goto err;
-> +
-> +	e->gt->engine = intel_engine_coredump_alloc(engine, gfp);
-> +	if (!e->gt->engine)
-> +		goto err_gt;
-> +
-> +	return e;
-> +
-> +err_gt:
-> +	kfree(e->gt);
-> +err:
-> +	kfree(e);
-> +	return NULL;
-> +}
-> +
-> +static void execlists_capture(struct intel_engine_cs *engine)
-> +{
-> +	struct execlists_capture *cap;
-> +
-> +	if (!IS_ENABLED(CONFIG_DRM_I915_CAPTURE_ERROR))
-> +		return;
-> +
-> +	cap = kmalloc(sizeof(*cap), GFP_ATOMIC);
-> +	if (!cap)
-> +		return;
-> +
-> +	cap->rq = execlists_active(&engine->execlists);
-> +	GEM_BUG_ON(!cap->rq);
-> +
-> +	cap->rq = active_request(cap->rq->context->timeline, cap->rq);
-
-Old code, but why is active_request taking the timeline as a separate 
-param when it always seems to be rq->context->timeline?
-
-> +
-> +	/*
-> +	 * We need to _quickly_ capture the engine state before we reset.
-> +	 * We are inside an atomic section (softirq) here and we are delaying
-> +	 * the forced preemption event.
-> +	 */
-> +	cap->error = capture_regs(engine);
-> +	if (!cap->error)
-> +		goto err_free;
-> +
-> +	if (i915_request_completed(cap->rq)) /* oops, not so guilty! */
-> +		goto err_store;
-
-Should this be a bug on? Doesn't look active_request() can return a 
-non-completed request. Hm I guess we can make a wrong decision to reset 
-the engine.
-
-But in any case, if request has completed in the meantime, why go to 
-i915_error_state_store which will log a hang in dmesg?
-
-> +
-> +	/*
-> +	 * Remove the request from the execlists queue, and take ownership
-> +	 * of the request. We pass it to our worker who will _slowly_ compress
-> +	 * all the pages the _user_ requested for debugging their batch, after
-> +	 * which we return it to the queue for signaling.
-> +	 *
-> +	 * By removing them from the execlists queue, we also remove the
-> +	 * requests from being processed by __unwind_incomplete_requests()
-> +	 * during the intel_engine_reset(), and so they will *not* be replayed
-> +	 * afterwards.
-> +	 */
-> +	execlists_hold(engine, cap->rq);
-> +
-> +	INIT_WORK(&cap->work, execlists_capture_work);
-> +	schedule_work(&cap->work);
-> +	return;
-> +
-> +err_store:
-> +	i915_error_state_store(cap->error);
-> +	i915_gpu_coredump_put(cap->error);
-> +err_free:
-> +	kfree(cap);
-> +}
-> +
->   static noinline void preempt_reset(struct intel_engine_cs *engine)
->   {
->   	const unsigned int bit = I915_RESET_ENGINE + engine->id;
-> @@ -2509,6 +2622,9 @@ static noinline void preempt_reset(struct intel_engine_cs *engine)
->   	ENGINE_TRACE(engine, "preempt timeout %lu+%ums\n",
->   		     READ_ONCE(engine->props.preempt_timeout_ms),
->   		     jiffies_to_msecs(jiffies - engine->execlists.preempt.expires));
-> +
-> +	ring_set_paused(engine, 1); /* Freeze the request in place */
-
-Who unsets this flags?
-
-> +	execlists_capture(engine);
->   	intel_engine_reset(engine, "preemption time out");
 >   
->   	tasklet_enable(&engine->execlists.tasklet);
+>   	if (test_bit(DMA_FENCE_FLAG_ENABLE_SIGNAL_BIT, &request->fence.flags) &&
+>   	    !test_bit(DMA_FENCE_FLAG_SIGNALED_BIT, &request->fence.flags) &&
+> diff --git a/drivers/gpu/drm/i915/i915_request.h b/drivers/gpu/drm/i915/i915_request.h
+> index 031433691a06..a9f0d3c8d8b7 100644
+> --- a/drivers/gpu/drm/i915/i915_request.h
+> +++ b/drivers/gpu/drm/i915/i915_request.h
+> @@ -70,6 +70,18 @@ enum {
+>   	 */
+>   	I915_FENCE_FLAG_ACTIVE = DMA_FENCE_FLAG_USER_BITS,
+>   
+> +	/*
+> +	 * I915_FENCE_FLAG_PQUEUE - this request is ready for execution
+> +	 *
+> +	 * Using the scheduler, when a request is ready for execution it is put
+> +	 * into the priority queue, and removed from the queue when transferred
+> +	 * to the HW runlists. We want to track its membership within that
+> +	 * queue so that we can easily check before rescheduling.
+> +	 *
+> +	 * See i915_request_in_priority_queue()
+> +	 */
+> +	I915_FENCE_FLAG_PQUEUE,
+> +
+>   	/*
+>   	 * I915_FENCE_FLAG_SIGNAL - this request is currently on signal_list
+>   	 *
+> @@ -361,6 +373,11 @@ static inline bool i915_request_is_active(const struct i915_request *rq)
+>   	return test_bit(I915_FENCE_FLAG_ACTIVE, &rq->fence.flags);
+>   }
+>   
+> +static inline bool i915_request_in_priority_queue(const struct i915_request *rq)
+> +{
+> +	return test_bit(I915_FENCE_FLAG_PQUEUE, &rq->fence.flags);
+> +}
+> +
+>   /**
+>    * Returns true if seq1 is later than seq2.
+>    */
+> diff --git a/drivers/gpu/drm/i915/i915_scheduler.c b/drivers/gpu/drm/i915/i915_scheduler.c
+> index bf87c70bfdd9..db3da81b7f05 100644
+> --- a/drivers/gpu/drm/i915/i915_scheduler.c
+> +++ b/drivers/gpu/drm/i915/i915_scheduler.c
+> @@ -326,20 +326,18 @@ static void __i915_schedule(struct i915_sched_node *node,
+>   
+>   		node->attr.priority = prio;
+>   
+> -		if (list_empty(&node->link)) {
+> -			/*
+> -			 * If the request is not in the priolist queue because
+> -			 * it is not yet runnable, then it doesn't contribute
+> -			 * to our preemption decisions. On the other hand,
+> -			 * if the request is on the HW, it too is not in the
+> -			 * queue; but in that case we may still need to reorder
+> -			 * the inflight requests.
+> -			 */
+> +		/*
+> +		 * Once the request is ready, it will be place into the
+> +		 * priority lists and then onto the HW runlist. Before the
+> +		 * request is ready, it does not contribute to our preemption
+> +		 * decisions and we can safely ignore it, as it will, and
+> +		 * any preemption required, be dealt with upon submission.
+> +		 * See engine->submit_request()
+> +		 */
+> +		if (list_empty(&node->link))
+>   			continue;
+> -		}
+>   
+> -		if (!intel_engine_is_virtual(engine) &&
+> -		    !i915_request_is_active(node_to_request(node))) {
+> +		if (i915_request_in_priority_queue(node_to_request(node))) {
+>   			if (!cache.priolist)
+>   				cache.priolist =
+>   					i915_sched_lookup_priolist(engine,
 > 
+
+Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 
 Regards,
 
