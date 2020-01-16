@@ -1,39 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7978513F5CA
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Jan 2020 19:59:15 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id DC2E113F79F
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Jan 2020 20:13:10 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0ED086EE98;
-	Thu, 16 Jan 2020 18:59:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4494A6EE9D;
+	Thu, 16 Jan 2020 19:13:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0AE0C6EE95;
- Thu, 16 Jan 2020 18:59:07 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 19906572-1500050 for multiple; Thu, 16 Jan 2020 18:58:56 +0000
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BD6C76EE9D
+ for <intel-gfx@lists.freedesktop.org>; Thu, 16 Jan 2020 19:13:07 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 16 Jan 2020 11:13:07 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,327,1574150400"; d="scan'208";a="424162403"
+Received: from irvmail001.ir.intel.com ([163.33.26.43])
+ by fmsmga005.fm.intel.com with ESMTP; 16 Jan 2020 11:13:06 -0800
+Received: from mwajdecz-mobl1.ger.corp.intel.com
+ (mwajdecz-mobl1.ger.corp.intel.com [172.28.174.138])
+ by irvmail001.ir.intel.com (8.14.3/8.13.6/MailSET/Hub) with ESMTP id
+ 00GJD5KN010034; Thu, 16 Jan 2020 19:13:05 GMT
+To: intel-gfx@lists.freedesktop.org, "Daniele Ceraolo Spurio"
+ <daniele.ceraolospurio@intel.com>
+References: <20200115140822.55756-1-michal.wajdeczko@intel.com>
+ <20200115140822.55756-2-michal.wajdeczko@intel.com>
+ <ec38e7fd-c810-bada-4645-2419f25552f9@intel.com>
+Date: Thu, 16 Jan 2020 20:13:05 +0100
 MIME-Version: 1.0
-From: Chris Wilson <chris@chris-wilson.co.uk>
-User-Agent: alot/0.6
-To: akeem.g.abodunrin@intel.com, d.scott.phillips@intel.com,
- daniel.vetter@intel.com, david.c.stewart@intel.com,
- dri-devel@lists.freedesktop.org, francesco.balestrieri@intel.com,
- intel-gfx@lists.freedesktop.org, jani.nikula@intel.com,
- jon.bloomfield@intel.com, joonas.lahtinen@intel.com, mika.kuoppala@intel.com, 
- omer.aran@intel.com, pragyansri.pathi@intel.com,
- prathap.kumar.valsan@intel.com, sudeep.dutt@intel.com, tony.luck@intel.com
-References: <20200114174549.74643-1-akeem.g.abodunrin@intel.com>
- <20200114174549.74643-3-akeem.g.abodunrin@intel.com>
-In-Reply-To: <20200114174549.74643-3-akeem.g.abodunrin@intel.com>
-Message-ID: <157920113389.7612.3195730584391044825@skylake-alporthouse-com>
-Date: Thu, 16 Jan 2020 18:58:53 +0000
-Subject: Re: [Intel-gfx] [RFC PATCH v2 2/2] drm/i915/gen7: Clear all EU/L3
- residual contexts
+From: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
+Message-ID: <op.0eh2b308xaggs7@mwajdecz-mobl1.ger.corp.intel.com>
+In-Reply-To: <ec38e7fd-c810-bada-4645-2419f25552f9@intel.com>
+User-Agent: Opera Mail/1.0 (Win32)
+Subject: Re: [Intel-gfx] [PATCH 1/5] drm/i915/guc: Don't GEM_BUG_ON on
+ corrupted G2H CTB
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,24 +50,135 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"; DelSp="yes"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-UXVvdGluZyBBa2VlbSBHIEFib2R1bnJpbiAoMjAyMC0wMS0xNCAxNzo0NTo0OCkKPiBkaWZmIC0t
-Z2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvZ2VuN19yZW5kZXJjbGVhci5oIGIvZHJpdmVy
-cy9ncHUvZHJtL2k5MTUvZ3QvZ2VuN19yZW5kZXJjbGVhci5oCj4gbmV3IGZpbGUgbW9kZSAxMDA2
-NDQKPiBpbmRleCAwMDAwMDAwMDAwMDAuLjRiODhkZDhkMGZkNAo+IC0tLSAvZGV2L251bGwKPiAr
-KysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9nZW43X3JlbmRlcmNsZWFyLmgKPiBAQCAtMCww
-ICsxLDE2IEBACj4gKy8qIFNQRFgtTGljZW5zZS1JZGVudGlmaWVyOiBNSVQgKi8KPiArLyoKPiAr
-ICogQ29weXJpZ2h0IMKpIDIwMTkgSW50ZWwgQ29ycG9yYXRpb24KPiArICovCj4gKwo+ICsjaWZu
-ZGVmIF9fR0VON19SRU5ERVJDTEVBUl9IX18KPiArI2RlZmluZSBfX0dFTjdfUkVOREVSQ0xFQVJf
-SF9fCj4gKwo+ICsjZGVmaW5lIGJhdGNoX2FkdmFuY2UoWSwgQ1MpIEdFTV9CVUdfT04oKFkpLT5l
-bmQgIT0gKENTKSkKCkl0IHdvcmtzIGJldHRlciBpZiB5b3UgYWN0dWFsbHkgcHV0IGl0IHRvIHVz
-ZSwgYWZ0ZXIgZXZlcnkKYmF0Y2hfYWxsb2NfaXRlbXMoKSBbZ2l2ZSBvciB0YWtlXS4gQW5kIGl0
-IGRvZXNuJ3QgbmVlZCB0byBiZSB1c2VkCm91dHNpZGUgb2YgZ2VuN19yZW5kZXJjbGVhci5jIHNv
-IGNhbiBsaXZlIHRoZXJlLgotQ2hyaXMKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJl
-ZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGlu
-Zm8vaW50ZWwtZ2Z4Cg==
+On Thu, 16 Jan 2020 19:46:35 +0100, Daniele Ceraolo Spurio  
+<daniele.ceraolospurio@intel.com> wrote:
+
+>
+>
+> On 1/15/20 6:08 AM, Michal Wajdeczko wrote:
+>> We should never BUG_ON on any corruption in CTB descriptor as
+>> data there can be also modified by the GuC. Instead we can
+>> use flag "is_in_error" to indicate that we will not process
+>> any further messages over this CTB (until reset). While here
+>> move descriptor error reporting to the function that actually
+>> touches that descriptor.
+>>  Note that unexpected content of the specific CT messages, that
+>> still complies with generic CT message format, shall not trigger
+>> disabling whole CTB, as that might just indicate new unsupported
+>> message types.
+>>  Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+>> Cc: Chris Wilson <chris@chris-wilson.co.uk>
+>> Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+>> ---
+>>   drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c | 42 ++++++++++++++---------
+>>   1 file changed, 26 insertions(+), 16 deletions(-)
+>>  diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c  
+>> b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
+>> index a55c336cc5ef..0d3556a820a3 100644
+>> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
+>> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
+>> @@ -578,19 +578,29 @@ static inline bool ct_header_is_response(u32  
+>> header)
+>>   static int ctb_read(struct intel_guc_ct_buffer *ctb, u32 *data)
+>>   {
+>>   	struct guc_ct_buffer_desc *desc = ctb->desc;
+>> -	u32 head = desc->head / 4;	/* in dwords */
+>> -	u32 tail = desc->tail / 4;	/* in dwords */
+>> -	u32 size = desc->size / 4;	/* in dwords */
+>> +	u32 head = desc->head;
+>> +	u32 tail = desc->tail;
+>> +	u32 size = desc->size;
+>>   	u32 *cmds = ctb->cmds;
+>> -	s32 available;			/* in dwords */
+>> +	s32 available;
+>>   	unsigned int len;
+>>   	unsigned int i;
+>>   -	GEM_BUG_ON(desc->size % 4);
+>> -	GEM_BUG_ON(desc->head % 4);
+>> -	GEM_BUG_ON(desc->tail % 4);
+>> -	GEM_BUG_ON(tail >= size);
+>> -	GEM_BUG_ON(head >= size);
+>> +	if (unlikely(desc->is_in_error))
+>> +		return -EPIPE;
+>
+> How do we recover from this situation? before we marked the buffer as  
+> in_error but didn't stop processing of G2H, but with this return here we  
+> do. Do we need to reset the CTB desc to recover?
+
+before we should hit BUG_ON followed by PANIC (since we read in irq)
+now (or soon) we should be able to detect stalled CTB and then wedge
+we can't reset CTB alone as IIRC GuC keeps its own head/tail copies
+
+>
+>> +
+>> +	if (unlikely(!IS_ALIGNED(head, 4) ||
+>> +		     !IS_ALIGNED(tail, 4) ||
+>> +		     !IS_ALIGNED(size, 4) ||
+>> +		     (tail >= size) || (head >= size))) {
+>> +		DRM_ERROR("CT: Invalid data in descriptor\n");
+>
+> nit: this log is redundant since we have a better message after the jump  
+> which includes the values
+
+yeah, looking again and agree that's redundant, will remove
+
+Initially this "better message" was here, then it was reduced after copying
+it after jump to allow below error also to have desc details:
+
+	DRM_ERROR("CT: incomplete message %*ph %*ph %*ph\n",
+
+>
+> Daniele
+>
+>> +		goto corrupted;
+>> +	}
+>> +
+>> +	/* later calculations will be done in dwords */
+>> +	head /= 4;
+>> +	tail /= 4;
+>> +	size /= 4;
+>>     	/* tail == head condition indicates empty */
+>>   	available = tail - head;
+>> @@ -615,7 +625,7 @@ static int ctb_read(struct intel_guc_ct_buffer  
+>> *ctb, u32 *data)
+>>   			       size - head : available - 1), &cmds[head],
+>>   			  4 * (head + available - 1 > size ?
+>>   			       available - 1 - size + head : 0), &cmds[0]);
+>> -		return -EPROTO;
+>> +		goto corrupted;
+>>   	}
+>>     	for (i = 1; i < len; i++) {
+>> @@ -626,6 +636,12 @@ static int ctb_read(struct intel_guc_ct_buffer  
+>> *ctb, u32 *data)
+>>     	desc->head = head * 4;
+>>   	return 0;
+>> +
+>> +corrupted:
+>> +	DRM_ERROR("CT: Corrupted descriptor addr=%#x head=%u tail=%u  
+>> size=%u\n",
+>> +		  desc->addr, desc->head, desc->tail, desc->size);
+>> +	desc->is_in_error = 1;
+>> +	return -EPIPE;
+>>   }
+>>     /**
+>> @@ -836,10 +852,4 @@ void intel_guc_ct_event_handler(struct  
+>> intel_guc_ct *ct)
+>>   		else
+>>   			err = ct_handle_request(ct, msg);
+>>   	} while (!err);
+>> -
+>> -	if (GEM_WARN_ON(err == -EPROTO)) {
+>> -		CT_ERROR(ct, "Corrupted message: %#x\n", msg[0]);
+>> -		ctb->desc->is_in_error = 1;
+>> -	}
+>>   }
+>> -
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
