@@ -1,33 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D2B3313F851
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Jan 2020 20:18:13 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E05EC13F8CE
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Jan 2020 20:21:22 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 01BEF6E23D;
-	Thu, 16 Jan 2020 19:18:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 40C9E6EEA3;
+	Thu, 16 Jan 2020 19:21:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4614D6E23D
- for <intel-gfx@lists.freedesktop.org>; Thu, 16 Jan 2020 19:18:10 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 99E7D6EEA3
+ for <intel-gfx@lists.freedesktop.org>; Thu, 16 Jan 2020 19:21:20 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 16 Jan 2020 11:18:09 -0800
+ by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 16 Jan 2020 11:21:20 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,327,1574150400"; d="scan'208";a="214199894"
-Received: from nperf12.hd.intel.com ([10.127.88.161])
- by orsmga007.jf.intel.com with ESMTP; 16 Jan 2020 11:18:09 -0800
-From: Brian Welty <brian.welty@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 16 Jan 2020 14:20:47 -0500
-Message-Id: <20200116192047.22303-1-brian.welty@intel.com>
-X-Mailer: git-send-email 2.21.0
+X-IronPort-AV: E=Sophos;i="5.70,327,1574150400"; d="scan'208";a="214201015"
+Received: from dceraolo-linux.fm.intel.com (HELO [10.1.27.145]) ([10.1.27.145])
+ by orsmga007.jf.intel.com with ESMTP; 16 Jan 2020 11:21:19 -0800
+To: Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ intel-gfx@lists.freedesktop.org
+References: <20200115140822.55756-1-michal.wajdeczko@intel.com>
+ <20200115140822.55756-4-michal.wajdeczko@intel.com>
+From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Message-ID: <31b4fa6c-e0f2-2c01-b2a2-708a595c2c5b@intel.com>
+Date: Thu, 16 Jan 2020 11:20:50 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.2.2
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915: Make use of drm_gem_object_release
+In-Reply-To: <20200115140822.55756-4-michal.wajdeczko@intel.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH 3/5] i915/drm/guc: Don't pass CTB while
+ reading
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,99 +47,62 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-As i915 is using drm_gem_private_object_init, it is best to
-use the inverse function for cleanup: drm_gem_object_release.
-This removes need for a shmem_release and phys_release.
 
-Signed-off-by: Brian Welty <brian.welty@intel.com>
----
-Chris, the cleanup sequence in drm_gem_object_release() vs the replaced
-i915 code is different, but should be okay?  Light testing didn't find
-any issues.
----
- drivers/gpu/drm/i915/gem/i915_gem_object.c | 4 +---
- drivers/gpu/drm/i915/gem/i915_gem_phys.c   | 7 -------
- drivers/gpu/drm/i915/gem/i915_gem_shmem.c  | 9 +--------
- 3 files changed, 2 insertions(+), 18 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.c b/drivers/gpu/drm/i915/gem/i915_gem_object.c
-index 46bacc82ddc4..d51838d7d2ec 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_object.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_object.c
-@@ -159,7 +159,6 @@ static void __i915_gem_free_object_rcu(struct rcu_head *head)
- 		container_of(head, typeof(*obj), rcu);
- 	struct drm_i915_private *i915 = to_i915(obj->base.dev);
- 
--	dma_resv_fini(&obj->base._resv);
- 	i915_gem_object_free(obj);
- 
- 	GEM_BUG_ON(!atomic_read(&i915->mm.free_count));
-@@ -222,8 +221,7 @@ static void __i915_gem_free_objects(struct drm_i915_private *i915,
- 		if (obj->base.import_attach)
- 			drm_prime_gem_destroy(&obj->base, NULL);
- 
--		drm_gem_free_mmap_offset(&obj->base);
--
-+		drm_gem_object_release(&obj->base);
- 		if (obj->ops->release)
- 			obj->ops->release(obj);
- 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_phys.c b/drivers/gpu/drm/i915/gem/i915_gem_phys.c
-index b1b7c1b3038a..7c19f92f256b 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_phys.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_phys.c
-@@ -134,16 +134,9 @@ i915_gem_object_put_pages_phys(struct drm_i915_gem_object *obj,
- 	drm_pci_free(obj->base.dev, obj->phys_handle);
- }
- 
--static void phys_release(struct drm_i915_gem_object *obj)
--{
--	fput(obj->base.filp);
--}
--
- static const struct drm_i915_gem_object_ops i915_gem_phys_ops = {
- 	.get_pages = i915_gem_object_get_pages_phys,
- 	.put_pages = i915_gem_object_put_pages_phys,
--
--	.release = phys_release,
- };
- 
- int i915_gem_object_attach_phys(struct drm_i915_gem_object *obj, int align)
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_shmem.c b/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
-index a2a980d9d241..4004cfe1e28a 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
-@@ -418,13 +418,6 @@ shmem_pwrite(struct drm_i915_gem_object *obj,
- 	return 0;
- }
- 
--static void shmem_release(struct drm_i915_gem_object *obj)
--{
--	i915_gem_object_release_memory_region(obj);
--
--	fput(obj->base.filp);
--}
--
- const struct drm_i915_gem_object_ops i915_gem_shmem_ops = {
- 	.flags = I915_GEM_OBJECT_HAS_STRUCT_PAGE |
- 		 I915_GEM_OBJECT_IS_SHRINKABLE,
-@@ -436,7 +429,7 @@ const struct drm_i915_gem_object_ops i915_gem_shmem_ops = {
- 
- 	.pwrite = shmem_pwrite,
- 
--	.release = shmem_release,
-+	.release = i915_gem_object_release_memory_region,
- };
- 
- static int __create_shmem(struct drm_i915_private *i915,
--- 
-2.21.0
+On 1/15/20 6:08 AM, Michal Wajdeczko wrote:
+> Since we only have one RECV buffer we don't need to explicitly pass
+> it to the read function.
+> 
+> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+> Cc: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 
+Reviewed-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+
+Daniele
+
+> ---
+>   drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c | 6 +++---
+>   1 file changed, 3 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
+> index dedbf3b8ab01..8c466308ad08 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
+> @@ -576,8 +576,9 @@ static inline bool ct_header_is_response(u32 header)
+>   	return !!(header & GUC_CT_MSG_IS_RESPONSE);
+>   }
+>   
+> -static int ctb_read(struct intel_guc_ct_buffer *ctb, u32 *data)
+> +static int ct_read(struct intel_guc_ct *ct, u32 *data)
+>   {
+> +	struct intel_guc_ct_buffer *ctb = &ct->ctbs[CTB_RECV];
+>   	struct guc_ct_buffer_desc *desc = ctb->desc;
+>   	u32 head = desc->head;
+>   	u32 tail = desc->tail;
+> @@ -834,7 +835,6 @@ static int ct_handle_request(struct intel_guc_ct *ct, const u32 *msg)
+>    */
+>   void intel_guc_ct_event_handler(struct intel_guc_ct *ct)
+>   {
+> -	struct intel_guc_ct_buffer *ctb = &ct->ctbs[CTB_RECV];
+>   	u32 msg[GUC_CT_MSG_LEN_MASK + 1]; /* one extra dw for the header */
+>   	int err = 0;
+>   
+> @@ -844,7 +844,7 @@ void intel_guc_ct_event_handler(struct intel_guc_ct *ct)
+>   	}
+>   
+>   	do {
+> -		err = ctb_read(ctb, msg);
+> +		err = ct_read(ct, msg);
+>   		if (err)
+>   			break;
+>   
+> 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
