@@ -2,40 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 238FC13E708
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Jan 2020 18:23:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AF60B13E77A
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Jan 2020 18:26:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7B8526EE30;
-	Thu, 16 Jan 2020 17:23:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0ED6F6EE3D;
+	Thu, 16 Jan 2020 17:26:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AD9376EE30
- for <intel-gfx@lists.freedesktop.org>; Thu, 16 Jan 2020 17:23:34 +0000 (UTC)
-X-Amp-Result: UNSCANNABLE
-X-Amp-File-Uploaded: False
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga106.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 16 Jan 2020 09:23:34 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,327,1574150400"; d="scan'208";a="220439322"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by fmsmga008.fm.intel.com with SMTP; 16 Jan 2020 09:23:31 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 16 Jan 2020 19:23:31 +0200
-Date: Thu, 16 Jan 2020 19:23:31 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-Message-ID: <20200116172331.GJ13686@intel.com>
-References: <20200116092214.2342-1-stanislav.lisovskiy@intel.com>
- <20200116092214.2342-5-stanislav.lisovskiy@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id C7E1C6EE3D;
+ Thu, 16 Jan 2020 17:26:24 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id BEAF5A0138;
+ Thu, 16 Jan 2020 17:26:24 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200116092214.2342-5-stanislav.lisovskiy@intel.com>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH v12 4/5] drm/i915: Introduce parameterized
- DBUF_CTL
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Mika Kuoppala" <mika.kuoppala@linux.intel.com>
+Date: Thu, 16 Jan 2020 17:26:24 -0000
+Message-ID: <157919558477.12913.516371624618147797@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200114174549.74643-1-akeem.g.abodunrin@intel.com>
+In-Reply-To: <20200114174549.74643-1-akeem.g.abodunrin@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgU2Vj?=
+ =?utf-8?q?urity_mitigation_for_Intel_Gen7_HWs_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,151 +38,151 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Jan 16, 2020 at 11:22:13AM +0200, Stanislav Lisovskiy wrote:
-> Now start using parameterized DBUF_CTL instead
-> of hardcoded, this would allow shorter access
-> functions when reading or storing entire state.
-> =
+== Series Details ==
 
-> Tried to implement it in a MMIO_PIPE manner, however
-> DBUF_CTL1 address is higher than DBUF_CTL2, which
-> implies that we have to now subtract from base
-> rather than add.
-> =
+Series: Security mitigation for Intel Gen7 HWs (rev2)
+URL   : https://patchwork.freedesktop.org/series/72028/
+State : success
 
-> v2: - Removed unneeded DBUF_CTL_DIST and DBUF_CTL_ADDR
->       macros. Started to use _PICK construct as suggested
->       by Matt Roper.
-> =
+== Summary ==
 
-> Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
-> Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-> ---
->  .../drm/i915/display/intel_display_power.c    | 19 +++----------------
->  drivers/gpu/drm/i915/i915_reg.h               |  7 ++++---
->  drivers/gpu/drm/i915/intel_pm.c               | 18 ++----------------
->  3 files changed, 9 insertions(+), 35 deletions(-)
-> =
+CI Bug Log - changes from CI_DRM_7755 -> Patchwork_16133
+====================================================
 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers=
-/gpu/drm/i915/display/intel_display_power.c
-> index 474d6d4f3eb5..4729bcafb937 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_power.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
-> @@ -4410,22 +4410,9 @@ void icl_dbuf_slices_update(struct drm_i915_privat=
-e *dev_priv,
->  	DRM_DEBUG_KMS("Updating dbuf slices to 0x%x\n", req_slices);
->  =
+Summary
+-------
 
->  	for (i =3D 0; i < max_slices; i++) {
-> -		u8 slice_set =3D req_slices & BIT(i);
-> -
-> -		switch (i) {
-> -		case DBUF_S1:
-> -			intel_dbuf_slice_set(dev_priv,
-> -					     DBUF_CTL_S1,
-> -					     slice_set);
-> -			break;
-> -		case DBUF_S2:
-> -			intel_dbuf_slice_set(dev_priv,
-> -					     DBUF_CTL_S2,
-> -					     slice_set);
-> -			break;
-> -		default:
-> -			MISSING_CASE(i);
-> -		}
+  **SUCCESS**
 
-I think you added this code in one of the previous patches. So would be
-better to make this patch the first in the series so you don't end up
-adding code only to rewrite it one patch later.
+  No regressions found.
 
-> +		intel_dbuf_slice_set(dev_priv,
-> +				     DBUF_CTL_S(i),
-> +				     (req_slices & BIT(i)) !=3D 0);
->  	}
->  =
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16133/index.html
 
->  	dev_priv->enabled_dbuf_slices_mask =3D req_slices;
-> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_=
-reg.h
-> index e5071af4a3b3..b3de69a0ea50 100644
-> --- a/drivers/gpu/drm/i915/i915_reg.h
-> +++ b/drivers/gpu/drm/i915/i915_reg.h
-> @@ -7745,9 +7745,10 @@ enum {
->  #define DISP_ARB_CTL2	_MMIO(0x45004)
->  #define  DISP_DATA_PARTITION_5_6	(1 << 6)
->  #define  DISP_IPC_ENABLE		(1 << 3)
-> -#define DBUF_CTL	_MMIO(0x45008)
-> -#define DBUF_CTL_S1	_MMIO(0x45008)
-> -#define DBUF_CTL_S2	_MMIO(0x44FE8)
-> +#define DBUF_CTL_ADDR1			0x45008
-> +#define DBUF_CTL_ADDR2			0x44FE8
+Known issues
+------------
 
-_DBUF_CTL_S1 etc. is the usual naming pattern for the raw reg offsets.
+  Here are the changes found in Patchwork_16133 that come from known issues:
 
-> +#define DBUF_CTL_S(X)			_MMIO(_PICK(X, DBUF_CTL_ADDR1, DBUF_CTL_ADDR2))
+### IGT changes ###
 
-s/X/slice/ perhaps
+#### Issues hit ####
 
-_PICK_EVEN() will work just fine here.
+  * igt@i915_module_load@reload-with-fault-injection:
+    - fi-cfl-guc:         [PASS][1] -> [INCOMPLETE][2] ([i915#505] / [i915#671])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7755/fi-cfl-guc/igt@i915_module_load@reload-with-fault-injection.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16133/fi-cfl-guc/igt@i915_module_load@reload-with-fault-injection.html
+    - fi-skl-6600u:       [PASS][3] -> [DMESG-WARN][4] ([i915#889])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7755/fi-skl-6600u/igt@i915_module_load@reload-with-fault-injection.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16133/fi-skl-6600u/igt@i915_module_load@reload-with-fault-injection.html
 
-With those
-Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+  * igt@i915_selftest@live_gtt:
+    - fi-hsw-4770:        [PASS][5] -> [TIMEOUT][6] ([fdo#112271])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7755/fi-hsw-4770/igt@i915_selftest@live_gtt.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16133/fi-hsw-4770/igt@i915_selftest@live_gtt.html
 
-Was more or less also expecting to see the enum here, but I guess
-that ended up somewhere else?
+  * igt@i915_selftest@live_mman:
+    - fi-bxt-dsi:         [PASS][7] -> [DMESG-WARN][8] ([i915#889]) +23 similar issues
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7755/fi-bxt-dsi/igt@i915_selftest@live_mman.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16133/fi-bxt-dsi/igt@i915_selftest@live_mman.html
 
-> +#define DBUF_CTL			DBUF_CTL_S(0)
->  #define  DBUF_POWER_REQUEST		(1 << 31)
->  #define  DBUF_POWER_STATE		(1 << 30)
->  #define GEN7_MSG_CTL	_MMIO(0x45010)
-> diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel=
-_pm.c
-> index 525578933658..b4b291d4244b 100644
-> --- a/drivers/gpu/drm/i915/intel_pm.c
-> +++ b/drivers/gpu/drm/i915/intel_pm.c
-> @@ -3651,22 +3651,8 @@ u8 intel_enabled_dbuf_slices_mask(struct drm_i915_=
-private *dev_priv)
->  	u8 enabled_slices_mask =3D 0;
->  =
+  * igt@i915_selftest@live_reset:
+    - fi-bxt-dsi:         [PASS][9] -> [DMESG-FAIL][10] ([i915#889]) +7 similar issues
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7755/fi-bxt-dsi/igt@i915_selftest@live_reset.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16133/fi-bxt-dsi/igt@i915_selftest@live_reset.html
 
->  	for (i =3D 0; i < max_slices; i++) {
-> -		u8 slice_bit =3D BIT(i);
-> -		bool res;
-> -
-> -		switch (i) {
-> -		case DBUF_S1:
-> -			res =3D I915_READ(DBUF_CTL_S1) & DBUF_POWER_STATE;
-> -			break;
-> -		case DBUF_S2:
-> -			res =3D I915_READ(DBUF_CTL_S2) & DBUF_POWER_STATE;
-> -			break;
-> -		default:
-> -			MISSING_CASE(slice_bit);
-> -		}
-> -
-> -		if (res)
-> -			enabled_slices_mask |=3D slice_bit;
-> +		if (I915_READ(DBUF_CTL_S(i)) & DBUF_POWER_STATE)
-> +			enabled_slices_mask |=3D BIT(i);
->  	}
->  =
+  * igt@prime_self_import@basic-with_fd_dup:
+    - fi-tgl-y:           [PASS][11] -> [DMESG-WARN][12] ([i915#402])
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7755/fi-tgl-y/igt@prime_self_import@basic-with_fd_dup.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16133/fi-tgl-y/igt@prime_self_import@basic-with_fd_dup.html
 
->  	return enabled_slices_mask;
-> -- =
+  
+#### Possible fixes ####
 
-> 2.24.1.485.gad05a3d8e5
+  * igt@gem_exec_parallel@basic:
+    - {fi-ehl-1}:         [INCOMPLETE][13] ([i915#937]) -> [PASS][14]
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7755/fi-ehl-1/igt@gem_exec_parallel@basic.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16133/fi-ehl-1/igt@gem_exec_parallel@basic.html
 
--- =
+  * igt@i915_module_load@reload-with-fault-injection:
+    - fi-skl-lmem:        [INCOMPLETE][15] ([i915#671]) -> [PASS][16]
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7755/fi-skl-lmem/igt@i915_module_load@reload-with-fault-injection.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16133/fi-skl-lmem/igt@i915_module_load@reload-with-fault-injection.html
 
-Ville Syrj=E4l=E4
-Intel
+  * igt@prime_self_import@basic-with_one_bo_two_files:
+    - fi-tgl-y:           [DMESG-WARN][17] ([i915#402]) -> [PASS][18] +1 similar issue
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7755/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16133/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html
+
+  * igt@vgem_basic@dmabuf-mmap:
+    - fi-icl-dsi:         [DMESG-WARN][19] ([i915#109]) -> [PASS][20]
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7755/fi-icl-dsi/igt@vgem_basic@dmabuf-mmap.html
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16133/fi-icl-dsi/igt@vgem_basic@dmabuf-mmap.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#112271]: https://bugs.freedesktop.org/show_bug.cgi?id=112271
+  [i915#109]: https://gitlab.freedesktop.org/drm/intel/issues/109
+  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+  [i915#505]: https://gitlab.freedesktop.org/drm/intel/issues/505
+  [i915#671]: https://gitlab.freedesktop.org/drm/intel/issues/671
+  [i915#889]: https://gitlab.freedesktop.org/drm/intel/issues/889
+  [i915#937]: https://gitlab.freedesktop.org/drm/intel/issues/937
+
+
+Participating hosts (48 -> 41)
+------------------------------
+
+  Additional (1): fi-kbl-r 
+  Missing    (8): fi-ilk-m540 fi-hsw-4200u fi-byt-j1900 fi-skl-6770hq fi-byt-squawks fi-kbl-x1275 fi-byt-clapper fi-snb-2600 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_7755 -> Patchwork_16133
+
+  CI-20190529: 20190529
+  CI_DRM_7755: 9bb4096398e728d98fb5721175edd1281c4732e3 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5370: a98fb02cc2816a48eec374392d9b6941abb6af2c @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_16133: 6b4f188b8e71ad6e664b7c083809d7cc48252215 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Kernel 32bit build ==
+
+Warning: Kernel 32bit buildtest failed:
+https://intel-gfx-ci.01.org/Patchwork_16133/build_32bit.log
+
+  CALL    scripts/checksyscalls.sh
+  CALL    scripts/atomic/check-atomics.sh
+  CHK     include/generated/compile.h
+Kernel: arch/x86/boot/bzImage is ready  (#1)
+  Building modules, stage 2.
+  MODPOST 122 modules
+ERROR: "__udivdi3" [drivers/gpu/drm/amd/amdgpu/amdgpu.ko] undefined!
+scripts/Makefile.modpost:93: recipe for target '__modpost' failed
+make[1]: *** [__modpost] Error 1
+Makefile:1282: recipe for target 'modules' failed
+make: *** [modules] Error 2
+
+
+== Linux commits ==
+
+6b4f188b8e71 drm/i915/gen7: Clear all EU/L3 residual contexts
+92c14eedb4e1 drm/i915: Add mechanism to submit a context WA on ring submission
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16133/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
