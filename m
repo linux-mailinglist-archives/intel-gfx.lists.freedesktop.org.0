@@ -2,38 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2687C13D1A5
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Jan 2020 02:44:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D44A13D1B4
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Jan 2020 02:49:01 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EF5516E1EC;
-	Thu, 16 Jan 2020 01:44:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4BFC96E1EE;
+	Thu, 16 Jan 2020 01:48:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0F4616E1EC
- for <intel-gfx@lists.freedesktop.org>; Thu, 16 Jan 2020 01:44:04 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 725B86E1EE
+ for <intel-gfx@lists.freedesktop.org>; Thu, 16 Jan 2020 01:48:57 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 15 Jan 2020 17:44:04 -0800
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 15 Jan 2020 17:48:56 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,323,1574150400"; d="scan'208";a="225793544"
-Received: from mdroper-desk1.fm.intel.com (HELO
- mdroper-desk1.amr.corp.intel.com) ([10.1.27.64])
- by orsmga003.jf.intel.com with ESMTP; 15 Jan 2020 17:44:04 -0800
-Date: Wed, 15 Jan 2020 17:44:04 -0800
+X-IronPort-AV: E=Sophos;i="5.70,323,1574150400"; d="scan'208";a="273833208"
+Received: from mdroper-desk1.fm.intel.com ([10.1.27.64])
+ by FMSMGA003.fm.intel.com with ESMTP; 15 Jan 2020 17:48:56 -0800
 From: Matt Roper <matthew.d.roper@intel.com>
-To: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-Message-ID: <20200116014404.GP2244136@mdroper-desk1.amr.corp.intel.com>
-References: <20200115214556.2052-1-stanislav.lisovskiy@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 15 Jan 2020 17:48:55 -0800
+Message-Id: <20200116014855.3615366-1-matthew.d.roper@intel.com>
+X-Mailer: git-send-email 2.23.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200115214556.2052-1-stanislav.lisovskiy@intel.com>
-User-Agent: Mutt/1.12.1 (2019-06-15)
-Subject: Re: [Intel-gfx] [PATCH v12 0/5] Enable second DBuf slice for ICL
- and TGL
+Subject: [Intel-gfx] [PATCH] drm/i915/tgl: Program MBUS_ABOX{1,
+ 2}_CTL during display init
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,55 +41,55 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Jan 15, 2020 at 11:45:51PM +0200, Stanislav Lisovskiy wrote:
-> Those patch series, do some initial preparation DBuf manipulating code
-> cleanups, i.e remove redundant structures/code, switch to mask
-> based DBuf manupulation, get into use DBuf assignment according to
-> BSpec rules.
+On gen11 we only needed to program MBus credits into MBUS_ABOX_CTL
+during display initialization, but on gen12 we're now supposed to
+program the same values into MBUS_ABOX1_CTL and MBUS_ABOX2_CTL as well.
 
-I just noticed that bspec page 49213 indicates we should also be writing
-a value of '8' to bits 23:19 on gen12.  We don't seem to handling that
-yet.  We may need to add that change as an additional patch.
+Bspec: 49213
+Bspec: 50096
+Cc: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_display_power.c | 4 ++++
+ drivers/gpu/drm/i915/i915_reg.h                    | 2 ++
+ 2 files changed, 6 insertions(+)
 
-
-Matt
-
-> 
-> Stanislav Lisovskiy (5):
->   drm/i915: Remove skl_ddl_allocation struct
->   drm/i915: Move dbuf slice update to proper place
->   drm/i915: Manipulate DBuf slices properly
->   drm/i915: Introduce parameterized DBUF_CTL
->   drm/i915: Correctly map DBUF slices to pipes
-> 
->  drivers/gpu/drm/i915/display/intel_display.c  |  52 +-
->  .../drm/i915/display/intel_display_power.c    |  88 ++--
->  .../drm/i915/display/intel_display_power.h    |   6 +
->  .../drm/i915/display/intel_display_types.h    |   3 +
->  drivers/gpu/drm/i915/i915_drv.h               |   7 +-
->  drivers/gpu/drm/i915/i915_pci.c               |   5 +-
->  drivers/gpu/drm/i915/i915_reg.h               |  12 +-
->  drivers/gpu/drm/i915/intel_device_info.h      |   1 +
->  drivers/gpu/drm/i915/intel_pm.c               | 457 +++++++++++++++---
->  drivers/gpu/drm/i915/intel_pm.h               |   7 +-
->  10 files changed, 496 insertions(+), 142 deletions(-)
-> 
-> -- 
-> 2.24.1.485.gad05a3d8e5
-> 
-
+diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
+index 21561acfa3ac..761be9fcaf10 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_power.c
++++ b/drivers/gpu/drm/i915/display/intel_display_power.c
+@@ -4474,6 +4474,10 @@ static void icl_mbus_init(struct drm_i915_private *dev_priv)
+ 	      MBUS_ABOX_BW_CREDIT(1);
+ 
+ 	I915_WRITE(MBUS_ABOX_CTL, val);
++	if (INTEL_GEN(dev_priv) >= 12) {
++		I915_WRITE(MBUS_ABOX1_CTL, val);
++		I915_WRITE(MBUS_ABOX2_CTL, val);
++	}
+ }
+ 
+ static void hsw_assert_cdclk(struct drm_i915_private *dev_priv)
+diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+index 5e5949edf2a8..ef191a0278ac 100644
+--- a/drivers/gpu/drm/i915/i915_reg.h
++++ b/drivers/gpu/drm/i915/i915_reg.h
+@@ -2860,6 +2860,8 @@ static inline bool i915_mmio_reg_valid(i915_reg_t reg)
+ #define MI_ARB_STATE	_MMIO(0x20e4) /* 915+ only */
+ 
+ #define MBUS_ABOX_CTL			_MMIO(0x45038)
++#define MBUS_ABOX1_CTL			_MMIO(0x45048)
++#define MBUS_ABOX2_CTL			_MMIO(0x4504C)
+ #define MBUS_ABOX_BW_CREDIT_MASK	(3 << 20)
+ #define MBUS_ABOX_BW_CREDIT(x)		((x) << 20)
+ #define MBUS_ABOX_B_CREDIT_MASK		(0xF << 16)
 -- 
-Matt Roper
-Graphics Software Engineer
-VTT-OSGC Platform Enablement
-Intel Corporation
-(916) 356-2795
+2.23.0
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
