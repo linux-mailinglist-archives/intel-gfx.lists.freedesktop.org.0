@@ -1,40 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 865C113F406
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Jan 2020 19:47:10 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id CBDFB13F41D
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Jan 2020 19:48:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1E7886E23B;
-	Thu, 16 Jan 2020 18:47:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2D5906EE8B;
+	Thu, 16 Jan 2020 18:47:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CE54F6E23B
- for <intel-gfx@lists.freedesktop.org>; Thu, 16 Jan 2020 18:47:06 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 16 Jan 2020 10:47:06 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,327,1574150400"; d="scan'208";a="214190477"
-Received: from dceraolo-linux.fm.intel.com (HELO [10.1.27.145]) ([10.1.27.145])
- by orsmga007.jf.intel.com with ESMTP; 16 Jan 2020 10:47:05 -0800
-To: Michal Wajdeczko <michal.wajdeczko@intel.com>,
- intel-gfx@lists.freedesktop.org
-References: <20200115140822.55756-1-michal.wajdeczko@intel.com>
- <20200115140822.55756-2-michal.wajdeczko@intel.com>
-From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Message-ID: <ec38e7fd-c810-bada-4645-2419f25552f9@intel.com>
-Date: Thu, 16 Jan 2020 10:46:35 -0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.2.2
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 175136EE8B
+ for <intel-gfx@lists.freedesktop.org>; Thu, 16 Jan 2020 18:47:57 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19906424-1500050 
+ for <intel-gfx@lists.freedesktop.org>; Thu, 16 Jan 2020 18:47:55 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu, 16 Jan 2020 18:47:52 +0000
+Message-Id: <20200116184754.2860848-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.25.0
 MIME-Version: 1.0
-In-Reply-To: <20200115140822.55756-2-michal.wajdeczko@intel.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH 1/5] drm/i915/guc: Don't GEM_BUG_ON on
- corrupted G2H CTB
+Subject: [Intel-gfx] [CI 1/3] drm/i915: Keep track of request among the
+ scheduling lists
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,121 +37,159 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+If we keep track of when the i915_request.sched.link is on the HW
+runlist, or in the priority queue we can simplify our interactions with
+the request (such as during rescheduling). This also simplifies the next
+patch where we introduce a new in-between list, for requests that are
+ready but neither on the run list or in the queue.
 
+v2: Update i915_sched_node.link explanation for current usage where it
+is a link on both the queue and on the runlists.
 
-On 1/15/20 6:08 AM, Michal Wajdeczko wrote:
-> We should never BUG_ON on any corruption in CTB descriptor as
-> data there can be also modified by the GuC. Instead we can
-> use flag "is_in_error" to indicate that we will not process
-> any further messages over this CTB (until reset). While here
-> move descriptor error reporting to the function that actually
-> touches that descriptor.
-> 
-> Note that unexpected content of the specific CT messages, that
-> still complies with generic CT message format, shall not trigger
-> disabling whole CTB, as that might just indicate new unsupported
-> message types.
-> 
-> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
-> Cc: Chris Wilson <chris@chris-wilson.co.uk>
-> Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-> ---
->   drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c | 42 ++++++++++++++---------
->   1 file changed, 26 insertions(+), 16 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
-> index a55c336cc5ef..0d3556a820a3 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
-> @@ -578,19 +578,29 @@ static inline bool ct_header_is_response(u32 header)
->   static int ctb_read(struct intel_guc_ct_buffer *ctb, u32 *data)
->   {
->   	struct guc_ct_buffer_desc *desc = ctb->desc;
-> -	u32 head = desc->head / 4;	/* in dwords */
-> -	u32 tail = desc->tail / 4;	/* in dwords */
-> -	u32 size = desc->size / 4;	/* in dwords */
-> +	u32 head = desc->head;
-> +	u32 tail = desc->tail;
-> +	u32 size = desc->size;
->   	u32 *cmds = ctb->cmds;
-> -	s32 available;			/* in dwords */
-> +	s32 available;
->   	unsigned int len;
->   	unsigned int i;
->   
-> -	GEM_BUG_ON(desc->size % 4);
-> -	GEM_BUG_ON(desc->head % 4);
-> -	GEM_BUG_ON(desc->tail % 4);
-> -	GEM_BUG_ON(tail >= size);
-> -	GEM_BUG_ON(head >= size);
-> +	if (unlikely(desc->is_in_error))
-> +		return -EPIPE;
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+---
+ drivers/gpu/drm/i915/gt/intel_lrc.c   | 13 ++++++++-----
+ drivers/gpu/drm/i915/i915_request.c   |  4 +++-
+ drivers/gpu/drm/i915/i915_request.h   | 17 +++++++++++++++++
+ drivers/gpu/drm/i915/i915_scheduler.c | 22 ++++++++++------------
+ 4 files changed, 38 insertions(+), 18 deletions(-)
 
-How do we recover from this situation? before we marked the buffer as 
-in_error but didn't stop processing of G2H, but with this return here we 
-do. Do we need to reset the CTB desc to recover?
+diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+index 999fe82190da..4cd88019fc2d 100644
+--- a/drivers/gpu/drm/i915/gt/intel_lrc.c
++++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+@@ -985,6 +985,8 @@ __unwind_incomplete_requests(struct intel_engine_cs *engine)
+ 			GEM_BUG_ON(RB_EMPTY_ROOT(&engine->execlists.queue.rb_root));
+ 
+ 			list_move(&rq->sched.link, pl);
++			set_bit(I915_FENCE_FLAG_PQUEUE, &rq->fence.flags);
++
+ 			active = rq;
+ 		} else {
+ 			struct intel_engine_cs *owner = rq->context->engine;
+@@ -2431,11 +2433,12 @@ static void execlists_preempt(struct timer_list *timer)
+ }
+ 
+ static void queue_request(struct intel_engine_cs *engine,
+-			  struct i915_sched_node *node,
+-			  int prio)
++			  struct i915_request *rq)
+ {
+-	GEM_BUG_ON(!list_empty(&node->link));
+-	list_add_tail(&node->link, i915_sched_lookup_priolist(engine, prio));
++	GEM_BUG_ON(!list_empty(&rq->sched.link));
++	list_add_tail(&rq->sched.link,
++		      i915_sched_lookup_priolist(engine, rq_prio(rq)));
++	set_bit(I915_FENCE_FLAG_PQUEUE, &rq->fence.flags);
+ }
+ 
+ static void __submit_queue_imm(struct intel_engine_cs *engine)
+@@ -2471,7 +2474,7 @@ static void execlists_submit_request(struct i915_request *request)
+ 	/* Will be called from irq-context when using foreign fences. */
+ 	spin_lock_irqsave(&engine->active.lock, flags);
+ 
+-	queue_request(engine, &request->sched, rq_prio(request));
++	queue_request(engine, request);
+ 
+ 	GEM_BUG_ON(RB_EMPTY_ROOT(&engine->execlists.queue.rb_root));
+ 	GEM_BUG_ON(list_empty(&request->sched.link));
+diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
+index be185886e4fc..9ed0d3bc7249 100644
+--- a/drivers/gpu/drm/i915/i915_request.c
++++ b/drivers/gpu/drm/i915/i915_request.c
+@@ -408,8 +408,10 @@ bool __i915_request_submit(struct i915_request *request)
+ xfer:	/* We may be recursing from the signal callback of another i915 fence */
+ 	spin_lock_nested(&request->lock, SINGLE_DEPTH_NESTING);
+ 
+-	if (!test_and_set_bit(I915_FENCE_FLAG_ACTIVE, &request->fence.flags))
++	if (!test_and_set_bit(I915_FENCE_FLAG_ACTIVE, &request->fence.flags)) {
+ 		list_move_tail(&request->sched.link, &engine->active.requests);
++		clear_bit(I915_FENCE_FLAG_PQUEUE, &request->fence.flags);
++	}
+ 
+ 	if (test_bit(DMA_FENCE_FLAG_ENABLE_SIGNAL_BIT, &request->fence.flags) &&
+ 	    !test_bit(DMA_FENCE_FLAG_SIGNALED_BIT, &request->fence.flags) &&
+diff --git a/drivers/gpu/drm/i915/i915_request.h b/drivers/gpu/drm/i915/i915_request.h
+index 031433691a06..6f5bbfa95513 100644
+--- a/drivers/gpu/drm/i915/i915_request.h
++++ b/drivers/gpu/drm/i915/i915_request.h
+@@ -70,6 +70,18 @@ enum {
+ 	 */
+ 	I915_FENCE_FLAG_ACTIVE = DMA_FENCE_FLAG_USER_BITS,
+ 
++	/*
++	 * I915_FENCE_FLAG_PQUEUE - this request is ready for execution
++	 *
++	 * Using the scheduler, when a request is ready for execution it is put
++	 * into the priority queue, and removed from that queue when transferred
++	 * to the HW runlists. We want to track its membership within the
++	 * priority queue so that we can easily check before rescheduling.
++	 *
++	 * See i915_request_in_priority_queue()
++	 */
++	I915_FENCE_FLAG_PQUEUE,
++
+ 	/*
+ 	 * I915_FENCE_FLAG_SIGNAL - this request is currently on signal_list
+ 	 *
+@@ -361,6 +373,11 @@ static inline bool i915_request_is_active(const struct i915_request *rq)
+ 	return test_bit(I915_FENCE_FLAG_ACTIVE, &rq->fence.flags);
+ }
+ 
++static inline bool i915_request_in_priority_queue(const struct i915_request *rq)
++{
++	return test_bit(I915_FENCE_FLAG_PQUEUE, &rq->fence.flags);
++}
++
+ /**
+  * Returns true if seq1 is later than seq2.
+  */
+diff --git a/drivers/gpu/drm/i915/i915_scheduler.c b/drivers/gpu/drm/i915/i915_scheduler.c
+index bf87c70bfdd9..5d96cfba40f8 100644
+--- a/drivers/gpu/drm/i915/i915_scheduler.c
++++ b/drivers/gpu/drm/i915/i915_scheduler.c
+@@ -326,20 +326,18 @@ static void __i915_schedule(struct i915_sched_node *node,
+ 
+ 		node->attr.priority = prio;
+ 
+-		if (list_empty(&node->link)) {
+-			/*
+-			 * If the request is not in the priolist queue because
+-			 * it is not yet runnable, then it doesn't contribute
+-			 * to our preemption decisions. On the other hand,
+-			 * if the request is on the HW, it too is not in the
+-			 * queue; but in that case we may still need to reorder
+-			 * the inflight requests.
+-			 */
++		/*
++		 * Once the request is ready, it will be placed into the
++		 * priority lists and then onto the HW runlist. Before the
++		 * request is ready, it does not contribute to our preemption
++		 * decisions and we can safely ignore it, as it will, and
++		 * any preemption required, be dealt with upon submission.
++		 * See engine->submit_request()
++		 */
++		if (list_empty(&node->link))
+ 			continue;
+-		}
+ 
+-		if (!intel_engine_is_virtual(engine) &&
+-		    !i915_request_is_active(node_to_request(node))) {
++		if (i915_request_in_priority_queue(node_to_request(node))) {
+ 			if (!cache.priolist)
+ 				cache.priolist =
+ 					i915_sched_lookup_priolist(engine,
+-- 
+2.25.0
 
-> +
-> +	if (unlikely(!IS_ALIGNED(head, 4) ||
-> +		     !IS_ALIGNED(tail, 4) ||
-> +		     !IS_ALIGNED(size, 4) ||
-> +		     (tail >= size) || (head >= size))) {
-> +		DRM_ERROR("CT: Invalid data in descriptor\n");
-
-nit: this log is redundant since we have a better message after the jump 
-which includes the values
-
-Daniele
-
-> +		goto corrupted;
-> +	}
-> +
-> +	/* later calculations will be done in dwords */
-> +	head /= 4;
-> +	tail /= 4;
-> +	size /= 4;
->   
->   	/* tail == head condition indicates empty */
->   	available = tail - head;
-> @@ -615,7 +625,7 @@ static int ctb_read(struct intel_guc_ct_buffer *ctb, u32 *data)
->   			       size - head : available - 1), &cmds[head],
->   			  4 * (head + available - 1 > size ?
->   			       available - 1 - size + head : 0), &cmds[0]);
-> -		return -EPROTO;
-> +		goto corrupted;
->   	}
->   
->   	for (i = 1; i < len; i++) {
-> @@ -626,6 +636,12 @@ static int ctb_read(struct intel_guc_ct_buffer *ctb, u32 *data)
->   
->   	desc->head = head * 4;
->   	return 0;
-> +
-> +corrupted:
-> +	DRM_ERROR("CT: Corrupted descriptor addr=%#x head=%u tail=%u size=%u\n",
-> +		  desc->addr, desc->head, desc->tail, desc->size);
-> +	desc->is_in_error = 1;
-> +	return -EPIPE;
->   }
->   
->   /**
-> @@ -836,10 +852,4 @@ void intel_guc_ct_event_handler(struct intel_guc_ct *ct)
->   		else
->   			err = ct_handle_request(ct, msg);
->   	} while (!err);
-> -
-> -	if (GEM_WARN_ON(err == -EPROTO)) {
-> -		CT_ERROR(ct, "Corrupted message: %#x\n", msg[0]);
-> -		ctb->desc->is_in_error = 1;
-> -	}
->   }
-> -
-> 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
