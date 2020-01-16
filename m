@@ -1,37 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 07C2613DA19
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Jan 2020 13:35:22 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5FFC913DAAC
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Jan 2020 13:57:59 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 669666ECD7;
-	Thu, 16 Jan 2020 12:35:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D2BFD6ECEC;
+	Thu, 16 Jan 2020 12:57:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2B5A06ECD7
- for <intel-gfx@lists.freedesktop.org>; Thu, 16 Jan 2020 12:35:18 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 16 Jan 2020 04:35:17 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,326,1574150400"; d="scan'208";a="220353611"
-Received: from gaia.fi.intel.com ([10.237.72.192])
- by fmsmga008.fm.intel.com with ESMTP; 16 Jan 2020 04:35:16 -0800
-Received: by gaia.fi.intel.com (Postfix, from userid 1000)
- id F28115C1DEA; Thu, 16 Jan 2020 14:34:39 +0200 (EET)
-From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20200115175829.2761329-1-chris@chris-wilson.co.uk>
-References: <20200115175829.2761329-1-chris@chris-wilson.co.uk>
-Date: Thu, 16 Jan 2020 14:34:39 +0200
-Message-ID: <87v9pbpokg.fsf@gaia.fi.intel.com>
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 649786ECEC
+ for <intel-gfx@lists.freedesktop.org>; Thu, 16 Jan 2020 12:57:56 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19900995-1500050 
+ for multiple; Thu, 16 Jan 2020 12:57:51 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu, 16 Jan 2020 12:57:49 +0000
+Message-Id: <20200116125749.2786743-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.25.0
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/execlists: Leave resetting ring to
- intel_ring
+Subject: [Intel-gfx] [PATCH] drm/i915/gt: Drop rogue space in the middle of
+ GT_TRACE
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,56 +37,34 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Matthew Auld <matthew.auld@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Chris Wilson <chris@chris-wilson.co.uk> writes:
+Remove the double space that crept into the fmt stringification.
 
-> We need to allow concurrent intel_context_unpin, which means avoiding
-> doing destructive operations like intel_ring_reset(). This was already
-> fixed for intel_ring_unpin() in commit 0725d9a31869 ("drm/i915/gt: Make
-> intel_ring_unpin() safe for concurrent pint"), but I overlooked that
-> execlists_context_unpin() also made the same mistake.
->
-> Reported-by: Matthew Brost <matthew.brost@intel.com>
-> Fixes: 841350223816 ("drm/i915/gt: Drop mutex serialisation between context pin/unpin")
-> References: 0725d9a31869 ("drm/i915/gt: Make intel_ring_unpin() safe for concurrent pint")
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> Cc: Matthew Brost <matthew.brost@intel.com>
-> Cc: Matthew Auld <matthew.auld@intel.com>
-> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> ---
->  drivers/gpu/drm/i915/gt/intel_lrc.c | 1 -
->  1 file changed, 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-> index a8fe2f16c910..999fe82190da 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-> @@ -2532,7 +2532,6 @@ static void execlists_context_unpin(struct intel_context *ce)
->  		      ce->engine);
->  
->  	i915_gem_object_unpin_map(ce->state->obj);
-> -	intel_ring_reset(ce->ring, ce->ring->tail);
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+---
+ drivers/gpu/drm/i915/gt/intel_gt.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-It seems we have entered an era where intel_ring_reset()
-is actually resetting the ring. Long live the engine(s)!
+diff --git a/drivers/gpu/drm/i915/gt/intel_gt.h b/drivers/gpu/drm/i915/gt/intel_gt.h
+index 1dac441cb8f4..4fac043750aa 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gt.h
++++ b/drivers/gpu/drm/i915/gt/intel_gt.h
+@@ -14,7 +14,7 @@ struct drm_i915_private;
+ 
+ #define GT_TRACE(gt, fmt, ...) do {					\
+ 	const struct intel_gt *gt__ __maybe_unused = (gt);		\
+-	GEM_TRACE("%s  " fmt, dev_name(gt__->i915->drm.dev),		\
++	GEM_TRACE("%s " fmt, dev_name(gt__->i915->drm.dev),		\
+ 		  ##__VA_ARGS__);					\
+ } while (0)
+ 
+-- 
+2.25.0
 
-Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-
->  }
->  
->  static void
-> -- 
-> 2.25.0
->
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
