@@ -1,31 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DFD1D13D41C
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Jan 2020 07:06:27 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id B642B13D426
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Jan 2020 07:12:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5CE386EA79;
-	Thu, 16 Jan 2020 06:06:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D64296EBEE;
+	Thu, 16 Jan 2020 06:12:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 5F5A76EA79;
- Thu, 16 Jan 2020 06:06:25 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 58E996EBED;
+ Thu, 16 Jan 2020 06:12:32 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 59EB5A0138;
- Thu, 16 Jan 2020 06:06:25 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 42122A00E9;
+ Thu, 16 Jan 2020 06:12:32 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Wambui Karuga" <wambui.karugax@gmail.com>
-Date: Thu, 16 Jan 2020 06:06:25 -0000
-Message-ID: <157915478536.12911.15228178797622825279@emeril.freedesktop.org>
+To: "Christian Kujau" <lists@nerdbynature.de>
+Date: Thu, 16 Jan 2020 06:12:32 -0000
+Message-ID: <157915515224.12914.6030284911346943175@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20200114095107.21197-1-wambui.karugax@gmail.com>
-In-Reply-To: <20200114095107.21197-1-wambui.karugax@gmail.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBk?=
- =?utf-8?q?rm/i915=3A_conversion_to_new_drm_logging_macros=2E?=
+References: <alpine.DEB.2.21.99999.375.2001141825300.21037@trent.utfs.org>
+In-Reply-To: <alpine.DEB.2.21.99999.375.2001141825300.21037@trent.utfs.org>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm=3A_bugs=2Efreedesktop=2Eorg_is_no_longer_accepting_bugs?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,25 +47,19 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: drm/i915: conversion to new drm logging macros.
-URL   : https://patchwork.freedesktop.org/series/72096/
-State : failure
+Series: drm: bugs.freedesktop.org is no longer accepting bugs
+URL   : https://patchwork.freedesktop.org/series/72098/
+State : warning
 
 == Summary ==
 
-Applying: drm/i915/atomic: use new logging macros for debug
-Applying: drm/i915/audio: convert to new drm logging macros.
-Using index info to reconstruct a base tree...
-M	drivers/gpu/drm/i915/display/intel_audio.c
-Falling back to patching base and 3-way merge...
-Auto-merging drivers/gpu/drm/i915/display/intel_audio.c
-CONFLICT (content): Merge conflict in drivers/gpu/drm/i915/display/intel_audio.c
-error: Failed to merge in the changes.
-hint: Use 'git am --show-current-patch' to see the failed patch
-Patch failed at 0002 drm/i915/audio: convert to new drm logging macros.
-When you have resolved this problem, run "git am --continue".
-If you prefer to skip this patch, run "git am --skip" instead.
-To restore the original branch and stop patching, run "git am --abort".
+$ dim checkpatch origin/drm-tip
+ed770364cac3 drm: bugs.freedesktop.org is no longer accepting bugs
+-:23: WARNING:BAD_SIGN_OFF: Do not use whitespace before Signed-off-by:
+#23: 
+    Signed-off-by: Christian Kujau <lists@nerdbynature.de>
+
+total: 0 errors, 1 warnings, 0 checks, 33 lines checked
 
 _______________________________________________
 Intel-gfx mailing list
