@@ -2,49 +2,36 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE15C13DA18
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Jan 2020 13:33:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 07C2613DA19
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Jan 2020 13:35:22 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 817916ECD5;
-	Thu, 16 Jan 2020 12:33:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 669666ECD7;
+	Thu, 16 Jan 2020 12:35:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 374 seconds by postgrey-1.36 at gabe;
- Thu, 16 Jan 2020 12:33:05 UTC
-Received: from eu-smtp-delivery-151.mimecast.com
- (eu-smtp-delivery-151.mimecast.com [207.82.80.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 691316ECD5
- for <intel-gfx@lists.freedesktop.org>; Thu, 16 Jan 2020 12:33:05 +0000 (UTC)
-Received: from AcuMS.aculab.com (156.67.243.126 [156.67.243.126]) (Using
- TLS) by relay.mimecast.com with ESMTP id
- uk-mta-140-XHznUHIJPea1EeGEH4eIuQ-1; Thu, 16 Jan 2020 12:26:45 +0000
-Received: from AcuMS.Aculab.com (fd9f:af1c:a25b:0:43c:695e:880f:8750) by
- AcuMS.aculab.com (fd9f:af1c:a25b:0:43c:695e:880f:8750) with Microsoft SMTP
- Server (TLS) id 15.0.1347.2; Thu, 16 Jan 2020 12:26:45 +0000
-Received: from AcuMS.Aculab.com ([fe80::43c:695e:880f:8750]) by
- AcuMS.aculab.com ([fe80::43c:695e:880f:8750%12]) with mapi id 15.00.1347.000; 
- Thu, 16 Jan 2020 12:26:45 +0000
-From: David Laight <David.Laight@ACULAB.COM>
-To: 'Chris Wilson' <chris@chris-wilson.co.uk>, Daniel Vetter <daniel@ffwll.ch>
-Thread-Topic: [PATCH] drm: Inject a cond_resched() into long drm_clflush_sg()
-Thread-Index: AQHVy+gMprmlNntzX0qJh6CaHCkwb6fs20gAgAANToCAAEszQA==
-Date: Thu, 16 Jan 2020 12:26:45 +0000
-Message-ID: <8f6b9daa2af342a79137064203255242@AcuMS.aculab.com>
-References: <20200115205245.2772800-1-chris@chris-wilson.co.uk>
- <20200116065242.GC8400@dvetter-linux.ger.corp.intel.com>
- <157916041994.14122.8524532515240369595@skylake-alporthouse-com>
-In-Reply-To: <157916041994.14122.8524532515240369595@skylake-alporthouse-com>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [10.202.205.107]
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2B5A06ECD7
+ for <intel-gfx@lists.freedesktop.org>; Thu, 16 Jan 2020 12:35:18 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 16 Jan 2020 04:35:17 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,326,1574150400"; d="scan'208";a="220353611"
+Received: from gaia.fi.intel.com ([10.237.72.192])
+ by fmsmga008.fm.intel.com with ESMTP; 16 Jan 2020 04:35:16 -0800
+Received: by gaia.fi.intel.com (Postfix, from userid 1000)
+ id F28115C1DEA; Thu, 16 Jan 2020 14:34:39 +0200 (EET)
+From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20200115175829.2761329-1-chris@chris-wilson.co.uk>
+References: <20200115175829.2761329-1-chris@chris-wilson.co.uk>
+Date: Thu, 16 Jan 2020 14:34:39 +0200
+Message-ID: <87v9pbpokg.fsf@gaia.fi.intel.com>
 MIME-Version: 1.0
-X-MC-Unique: XHznUHIJPea1EeGEH4eIuQ-1
-X-Mimecast-Spam-Score: 0
-Subject: Re: [Intel-gfx] [PATCH] drm: Inject a cond_resched() into long
- drm_clflush_sg()
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/execlists: Leave resetting ring to
+ intel_ring
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,71 +44,56 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
+Cc: Matthew Auld <matthew.auld@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Chris Wilson <chris@chris-wilson.co.uk>
-> Sent: 16 January 2020 07:40
-> Quoting Daniel Vetter (2020-01-16 06:52:42)
-> > On Wed, Jan 15, 2020 at 08:52:45PM +0000, Chris Wilson wrote:
-> > > Since we may try and flush the cachelines associated with large buffers
-> > > (an 8K framebuffer is about 128MiB, even before we try HDR), this leads
-> > > to unacceptably long latencies (when using a voluntary CONFIG_PREEMPT).
-> > > If we call cond_resched() between each sg chunk, that it about every 128
-> > > pages, we have a natural break point in which to check if the process
-> > > needs to be rescheduled. Naturally, this means that drm_clflush_sg() can
-> > > only be called from process context -- which is true at the moment. The
-> > > other clflush routines remain usable from atomic context.
-> > >
-> > > Even though flushing large objects takes a demonstrable amount to time
-> > > to flush all the cachelines, clflush is still preferred over a
-> > > system-wide wbinvd as the latter has unpredictable latencies affecting
-> > > the whole system not just the local task.
-> > >
-> > > Reported-by: David Laight <David.Laight@ACULAB.COM>
-> > > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> > > Cc: David Laight <David.Laight@ACULAB.COM>
-> >
-> > The original bug report is complaining about latencies for SCHED_RT
-> > threads, on a system that doesn't even use CONFIG_PREEMPT. I'm not sure
-> > it's terribly valid to cater to that use-case - all the desktop distros
-> > seem a lot more reasonable. So firmly *shrug* from my side ...
-> 
-> Yeah, I had the same immediate response to the complaint), but otoh we've
-> inserted cond_resched() before when it looks like may consume entire
-> jiffies inside a loop. At the very minimum, we should have a
-> might_sleep() here and a reminder that this can be very slow (remember
-> byt?).
+Chris Wilson <chris@chris-wilson.co.uk> writes:
 
-I'm using RT to get more deterministic scheduling to look for long
-scheduling delays, rather than because we need very tight scheduling.
-Delays of several 100us aren't a real problem.
+> We need to allow concurrent intel_context_unpin, which means avoiding
+> doing destructive operations like intel_ring_reset(). This was already
+> fixed for intel_ring_unpin() in commit 0725d9a31869 ("drm/i915/gt: Make
+> intel_ring_unpin() safe for concurrent pint"), but I overlooked that
+> execlists_context_unpin() also made the same mistake.
+>
+> Reported-by: Matthew Brost <matthew.brost@intel.com>
+> Fixes: 841350223816 ("drm/i915/gt: Drop mutex serialisation between context pin/unpin")
+> References: 0725d9a31869 ("drm/i915/gt: Make intel_ring_unpin() safe for concurrent pint")
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Matthew Brost <matthew.brost@intel.com>
+> Cc: Matthew Auld <matthew.auld@intel.com>
+> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> ---
+>  drivers/gpu/drm/i915/gt/intel_lrc.c | 1 -
+>  1 file changed, 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+> index a8fe2f16c910..999fe82190da 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+> @@ -2532,7 +2532,6 @@ static void execlists_context_unpin(struct intel_context *ce)
+>  		      ce->engine);
+>  
+>  	i915_gem_object_unpin_map(ce->state->obj);
+> -	intel_ring_reset(ce->ring, ce->ring->tail);
 
-The problem with CONFIG_PREEMPT is that the distros don't
-enable it and it isn't a command line option.
-So it is really useless unless you are able/willing to build your
-own kernel.
+It seems we have entered an era where intel_ring_reset()
+is actually resetting the ring. Long live the engine(s)!
 
-I could run the code under the normal scheduler with 'nice -19'.
-I stlll wouldn't expect to have all but one cpu idle when I've just
-done a cv_broadcast() to wake up a lot of threads.
+Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 
-I've added 'if (!(++i & 31)) cond_resched();' after the drm_clfulsh_page()
-call in drm_cflush_sg().
-In my case that it 3600/32 reschedules in 3.3ms - plenty.
-
-However there is a call from __i915_gem_objet_set_pages() that
-is preceded by a lockdep_assert_held() check - so mustn't sleep.
-
-	David
-
--
-Registered Address Lakeside, Bramley Road, Mount Farm, Milton Keynes, MK1 1PT, UK
-Registration No: 1397386 (Wales)
+>  }
+>  
+>  static void
+> -- 
+> 2.25.0
+>
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
