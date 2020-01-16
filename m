@@ -2,40 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5299213E705
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Jan 2020 18:23:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 238FC13E708
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Jan 2020 18:23:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B2A6D6EE2F;
-	Thu, 16 Jan 2020 17:23:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7B8526EE30;
+	Thu, 16 Jan 2020 17:23:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3A91B6EE2F
- for <intel-gfx@lists.freedesktop.org>; Thu, 16 Jan 2020 17:23:08 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AD9376EE30
+ for <intel-gfx@lists.freedesktop.org>; Thu, 16 Jan 2020 17:23:34 +0000 (UTC)
+X-Amp-Result: UNSCANNABLE
 X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 16 Jan 2020 09:23:07 -0800
-X-IronPort-AV: E=Sophos;i="5.70,327,1574150400"; d="scan'208";a="214157611"
-Received: from mdanino-mobl1.ger.corp.intel.com (HELO [10.252.23.174])
- ([10.252.23.174])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/AES256-SHA;
- 16 Jan 2020 09:23:06 -0800
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-References: <20200115083346.2601512-1-chris@chris-wilson.co.uk>
- <20200115090241.2601864-1-chris@chris-wilson.co.uk>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <1acc9042-5f59-beb3-dc3e-ab8398c939c1@linux.intel.com>
-Date: Thu, 16 Jan 2020 17:23:05 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 16 Jan 2020 09:23:34 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,327,1574150400"; d="scan'208";a="220439322"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by fmsmga008.fm.intel.com with SMTP; 16 Jan 2020 09:23:31 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Thu, 16 Jan 2020 19:23:31 +0200
+Date: Thu, 16 Jan 2020 19:23:31 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+Message-ID: <20200116172331.GJ13686@intel.com>
+References: <20200116092214.2342-1-stanislav.lisovskiy@intel.com>
+ <20200116092214.2342-5-stanislav.lisovskiy@intel.com>
 MIME-Version: 1.0
-In-Reply-To: <20200115090241.2601864-1-chris@chris-wilson.co.uk>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915: Keep track of request among
- the scheduling lists
+Content-Disposition: inline
+In-Reply-To: <20200116092214.2342-5-stanislav.lisovskiy@intel.com>
+X-Patchwork-Hint: comment
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH v12 4/5] drm/i915: Introduce parameterized
+ DBUF_CTL
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,164 +48,151 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Thu, Jan 16, 2020 at 11:22:13AM +0200, Stanislav Lisovskiy wrote:
+> Now start using parameterized DBUF_CTL instead
+> of hardcoded, this would allow shorter access
+> functions when reading or storing entire state.
+> =
 
-On 15/01/2020 09:02, Chris Wilson wrote:
-> If we keep track of when the i915_request.sched.link is on the HW
-> runlist, or in the priority queue we can simplify our interactions with
-> the request (such as during rescheduling). This also simplifies the next
-> patch where we introduce a new in-between list, for requests that are
-> ready but neither on the run list or in the queue.
-> 
-> v2: Update i915_sched_node.link explanation for current usage where it
-> is a link on both the queue and on the runlists.
-> 
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> Tried to implement it in a MMIO_PIPE manner, however
+> DBUF_CTL1 address is higher than DBUF_CTL2, which
+> implies that we have to now subtract from base
+> rather than add.
+> =
+
+> v2: - Removed unneeded DBUF_CTL_DIST and DBUF_CTL_ADDR
+>       macros. Started to use _PICK construct as suggested
+>       by Matt Roper.
+> =
+
+> Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+> Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
 > ---
->   drivers/gpu/drm/i915/gt/intel_lrc.c   | 13 ++++++++-----
->   drivers/gpu/drm/i915/i915_request.c   |  4 +++-
->   drivers/gpu/drm/i915/i915_request.h   | 17 +++++++++++++++++
->   drivers/gpu/drm/i915/i915_scheduler.c | 22 ++++++++++------------
->   4 files changed, 38 insertions(+), 18 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-> index 9e430590fb3a..f0cbd240a8c2 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-> @@ -985,6 +985,8 @@ __unwind_incomplete_requests(struct intel_engine_cs *engine)
->   			GEM_BUG_ON(RB_EMPTY_ROOT(&engine->execlists.queue.rb_root));
->   
->   			list_move(&rq->sched.link, pl);
-> +			set_bit(I915_FENCE_FLAG_PQUEUE, &rq->fence.flags);
-> +
->   			active = rq;
->   		} else {
->   			struct intel_engine_cs *owner = rq->context->engine;
-> @@ -2430,11 +2432,12 @@ static void execlists_preempt(struct timer_list *timer)
->   }
->   
->   static void queue_request(struct intel_engine_cs *engine,
-> -			  struct i915_sched_node *node,
-> -			  int prio)
-> +			  struct i915_request *rq)
->   {
-> -	GEM_BUG_ON(!list_empty(&node->link));
-> -	list_add_tail(&node->link, i915_sched_lookup_priolist(engine, prio));
-> +	GEM_BUG_ON(!list_empty(&rq->sched.link));
-> +	list_add_tail(&rq->sched.link,
-> +		      i915_sched_lookup_priolist(engine, rq_prio(rq)));
-> +	set_bit(I915_FENCE_FLAG_PQUEUE, &rq->fence.flags);
->   }
->   
->   static void __submit_queue_imm(struct intel_engine_cs *engine)
-> @@ -2470,7 +2473,7 @@ static void execlists_submit_request(struct i915_request *request)
->   	/* Will be called from irq-context when using foreign fences. */
->   	spin_lock_irqsave(&engine->active.lock, flags);
->   
-> -	queue_request(engine, &request->sched, rq_prio(request));
-> +	queue_request(engine, request);
->   
->   	GEM_BUG_ON(RB_EMPTY_ROOT(&engine->execlists.queue.rb_root));
->   	GEM_BUG_ON(list_empty(&request->sched.link));
-> diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
-> index be185886e4fc..9ed0d3bc7249 100644
-> --- a/drivers/gpu/drm/i915/i915_request.c
-> +++ b/drivers/gpu/drm/i915/i915_request.c
-> @@ -408,8 +408,10 @@ bool __i915_request_submit(struct i915_request *request)
->   xfer:	/* We may be recursing from the signal callback of another i915 fence */
->   	spin_lock_nested(&request->lock, SINGLE_DEPTH_NESTING);
->   
-> -	if (!test_and_set_bit(I915_FENCE_FLAG_ACTIVE, &request->fence.flags))
-> +	if (!test_and_set_bit(I915_FENCE_FLAG_ACTIVE, &request->fence.flags)) {
->   		list_move_tail(&request->sched.link, &engine->active.requests);
-> +		clear_bit(I915_FENCE_FLAG_PQUEUE, &request->fence.flags);
-> +	}
->   
->   	if (test_bit(DMA_FENCE_FLAG_ENABLE_SIGNAL_BIT, &request->fence.flags) &&
->   	    !test_bit(DMA_FENCE_FLAG_SIGNALED_BIT, &request->fence.flags) &&
-> diff --git a/drivers/gpu/drm/i915/i915_request.h b/drivers/gpu/drm/i915/i915_request.h
-> index 031433691a06..a9f0d3c8d8b7 100644
-> --- a/drivers/gpu/drm/i915/i915_request.h
-> +++ b/drivers/gpu/drm/i915/i915_request.h
-> @@ -70,6 +70,18 @@ enum {
->   	 */
->   	I915_FENCE_FLAG_ACTIVE = DMA_FENCE_FLAG_USER_BITS,
->   
-> +	/*
-> +	 * I915_FENCE_FLAG_PQUEUE - this request is ready for execution
-> +	 *
-> +	 * Using the scheduler, when a request is ready for execution it is put
-> +	 * into the priority queue, and removed from the queue when transferred
-> +	 * to the HW runlists. We want to track its membership within that
-> +	 * queue so that we can easily check before rescheduling.
-> +	 *
-> +	 * See i915_request_in_priority_queue()
-> +	 */
-> +	I915_FENCE_FLAG_PQUEUE,
-> +
->   	/*
->   	 * I915_FENCE_FLAG_SIGNAL - this request is currently on signal_list
->   	 *
-> @@ -361,6 +373,11 @@ static inline bool i915_request_is_active(const struct i915_request *rq)
->   	return test_bit(I915_FENCE_FLAG_ACTIVE, &rq->fence.flags);
->   }
->   
-> +static inline bool i915_request_in_priority_queue(const struct i915_request *rq)
-> +{
-> +	return test_bit(I915_FENCE_FLAG_PQUEUE, &rq->fence.flags);
-> +}
-> +
->   /**
->    * Returns true if seq1 is later than seq2.
->    */
-> diff --git a/drivers/gpu/drm/i915/i915_scheduler.c b/drivers/gpu/drm/i915/i915_scheduler.c
-> index bf87c70bfdd9..db3da81b7f05 100644
-> --- a/drivers/gpu/drm/i915/i915_scheduler.c
-> +++ b/drivers/gpu/drm/i915/i915_scheduler.c
-> @@ -326,20 +326,18 @@ static void __i915_schedule(struct i915_sched_node *node,
->   
->   		node->attr.priority = prio;
->   
-> -		if (list_empty(&node->link)) {
-> -			/*
-> -			 * If the request is not in the priolist queue because
-> -			 * it is not yet runnable, then it doesn't contribute
-> -			 * to our preemption decisions. On the other hand,
-> -			 * if the request is on the HW, it too is not in the
-> -			 * queue; but in that case we may still need to reorder
-> -			 * the inflight requests.
-> -			 */
-> +		/*
-> +		 * Once the request is ready, it will be place into the
-> +		 * priority lists and then onto the HW runlist. Before the
-> +		 * request is ready, it does not contribute to our preemption
-> +		 * decisions and we can safely ignore it, as it will, and
-> +		 * any preemption required, be dealt with upon submission.
-> +		 * See engine->submit_request()
-> +		 */
-> +		if (list_empty(&node->link))
->   			continue;
+>  .../drm/i915/display/intel_display_power.c    | 19 +++----------------
+>  drivers/gpu/drm/i915/i915_reg.h               |  7 ++++---
+>  drivers/gpu/drm/i915/intel_pm.c               | 18 ++----------------
+>  3 files changed, 9 insertions(+), 35 deletions(-)
+> =
+
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers=
+/gpu/drm/i915/display/intel_display_power.c
+> index 474d6d4f3eb5..4729bcafb937 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_power.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
+> @@ -4410,22 +4410,9 @@ void icl_dbuf_slices_update(struct drm_i915_privat=
+e *dev_priv,
+>  	DRM_DEBUG_KMS("Updating dbuf slices to 0x%x\n", req_slices);
+>  =
+
+>  	for (i =3D 0; i < max_slices; i++) {
+> -		u8 slice_set =3D req_slices & BIT(i);
+> -
+> -		switch (i) {
+> -		case DBUF_S1:
+> -			intel_dbuf_slice_set(dev_priv,
+> -					     DBUF_CTL_S1,
+> -					     slice_set);
+> -			break;
+> -		case DBUF_S2:
+> -			intel_dbuf_slice_set(dev_priv,
+> -					     DBUF_CTL_S2,
+> -					     slice_set);
+> -			break;
+> -		default:
+> -			MISSING_CASE(i);
 > -		}
->   
-> -		if (!intel_engine_is_virtual(engine) &&
-> -		    !i915_request_is_active(node_to_request(node))) {
-> +		if (i915_request_in_priority_queue(node_to_request(node))) {
->   			if (!cache.priolist)
->   				cache.priolist =
->   					i915_sched_lookup_priolist(engine,
-> 
 
-Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+I think you added this code in one of the previous patches. So would be
+better to make this patch the first in the series so you don't end up
+adding code only to rewrite it one patch later.
 
-Regards,
+> +		intel_dbuf_slice_set(dev_priv,
+> +				     DBUF_CTL_S(i),
+> +				     (req_slices & BIT(i)) !=3D 0);
+>  	}
+>  =
 
-Tvrtko
+>  	dev_priv->enabled_dbuf_slices_mask =3D req_slices;
+> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_=
+reg.h
+> index e5071af4a3b3..b3de69a0ea50 100644
+> --- a/drivers/gpu/drm/i915/i915_reg.h
+> +++ b/drivers/gpu/drm/i915/i915_reg.h
+> @@ -7745,9 +7745,10 @@ enum {
+>  #define DISP_ARB_CTL2	_MMIO(0x45004)
+>  #define  DISP_DATA_PARTITION_5_6	(1 << 6)
+>  #define  DISP_IPC_ENABLE		(1 << 3)
+> -#define DBUF_CTL	_MMIO(0x45008)
+> -#define DBUF_CTL_S1	_MMIO(0x45008)
+> -#define DBUF_CTL_S2	_MMIO(0x44FE8)
+> +#define DBUF_CTL_ADDR1			0x45008
+> +#define DBUF_CTL_ADDR2			0x44FE8
+
+_DBUF_CTL_S1 etc. is the usual naming pattern for the raw reg offsets.
+
+> +#define DBUF_CTL_S(X)			_MMIO(_PICK(X, DBUF_CTL_ADDR1, DBUF_CTL_ADDR2))
+
+s/X/slice/ perhaps
+
+_PICK_EVEN() will work just fine here.
+
+With those
+Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+
+Was more or less also expecting to see the enum here, but I guess
+that ended up somewhere else?
+
+> +#define DBUF_CTL			DBUF_CTL_S(0)
+>  #define  DBUF_POWER_REQUEST		(1 << 31)
+>  #define  DBUF_POWER_STATE		(1 << 30)
+>  #define GEN7_MSG_CTL	_MMIO(0x45010)
+> diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel=
+_pm.c
+> index 525578933658..b4b291d4244b 100644
+> --- a/drivers/gpu/drm/i915/intel_pm.c
+> +++ b/drivers/gpu/drm/i915/intel_pm.c
+> @@ -3651,22 +3651,8 @@ u8 intel_enabled_dbuf_slices_mask(struct drm_i915_=
+private *dev_priv)
+>  	u8 enabled_slices_mask =3D 0;
+>  =
+
+>  	for (i =3D 0; i < max_slices; i++) {
+> -		u8 slice_bit =3D BIT(i);
+> -		bool res;
+> -
+> -		switch (i) {
+> -		case DBUF_S1:
+> -			res =3D I915_READ(DBUF_CTL_S1) & DBUF_POWER_STATE;
+> -			break;
+> -		case DBUF_S2:
+> -			res =3D I915_READ(DBUF_CTL_S2) & DBUF_POWER_STATE;
+> -			break;
+> -		default:
+> -			MISSING_CASE(slice_bit);
+> -		}
+> -
+> -		if (res)
+> -			enabled_slices_mask |=3D slice_bit;
+> +		if (I915_READ(DBUF_CTL_S(i)) & DBUF_POWER_STATE)
+> +			enabled_slices_mask |=3D BIT(i);
+>  	}
+>  =
+
+>  	return enabled_slices_mask;
+> -- =
+
+> 2.24.1.485.gad05a3d8e5
+
+-- =
+
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
