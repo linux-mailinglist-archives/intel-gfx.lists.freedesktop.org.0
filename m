@@ -2,52 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A216013DE3D
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Jan 2020 16:05:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 58E9913DF02
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Jan 2020 16:38:41 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E86AA6ED85;
-	Thu, 16 Jan 2020 15:05:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 144CF6EDA1;
+	Thu, 16 Jan 2020 15:38:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from eu-smtp-delivery-151.mimecast.com
- (eu-smtp-delivery-151.mimecast.com [146.101.78.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A880B6ED87
- for <intel-gfx@lists.freedesktop.org>; Thu, 16 Jan 2020 15:05:04 +0000 (UTC)
-Received: from AcuMS.aculab.com (156.67.243.126 [156.67.243.126]) (Using
- TLS) by relay.mimecast.com with ESMTP id
- uk-mta-151-OeP4EoJrOLyEo7Ur8YABHw-1; Thu, 16 Jan 2020 15:04:59 +0000
-Received: from AcuMS.Aculab.com (fd9f:af1c:a25b:0:43c:695e:880f:8750) by
- AcuMS.aculab.com (fd9f:af1c:a25b:0:43c:695e:880f:8750) with Microsoft SMTP
- Server (TLS) id 15.0.1347.2; Thu, 16 Jan 2020 15:04:58 +0000
-Received: from AcuMS.Aculab.com ([fe80::43c:695e:880f:8750]) by
- AcuMS.aculab.com ([fe80::43c:695e:880f:8750%12]) with mapi id 15.00.1347.000; 
- Thu, 16 Jan 2020 15:04:58 +0000
-From: David Laight <David.Laight@ACULAB.COM>
-To: 'Chris Wilson' <chris@chris-wilson.co.uk>, 'Daniel Vetter'
- <daniel@ffwll.ch>
-Thread-Topic: [PATCH] drm: Inject a cond_resched() into long drm_clflush_sg()
-Thread-Index: AQHVy+gMprmlNntzX0qJh6CaHCkwb6fs20gAgAANToCAAEszQIAABVIAgAAWQUCAAAyNcIAACDbg
-Date: Thu, 16 Jan 2020 15:04:58 +0000
-Message-ID: <ffbb911f6baa4721a47e28116c5514c7@AcuMS.aculab.com>
-References: <20200115205245.2772800-1-chris@chris-wilson.co.uk>
- <20200116065242.GC8400@dvetter-linux.ger.corp.intel.com>
- <157916041994.14122.8524532515240369595@skylake-alporthouse-com>
- <8f6b9daa2af342a79137064203255242@AcuMS.aculab.com>
- <157917771007.2795.953028640868055754@skylake-alporthouse-com>
- <90de9ae911dc481f9c2c62e196b2bacf@AcuMS.aculab.com>
- <fbc24dd0f61e4fb8b777777d1de46ab3@AcuMS.aculab.com>
-In-Reply-To: <fbc24dd0f61e4fb8b777777d1de46ab3@AcuMS.aculab.com>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [10.202.205.107]
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 8512E6ED9F;
+ Thu, 16 Jan 2020 15:38:37 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 7C389A0019;
+ Thu, 16 Jan 2020 15:38:37 +0000 (UTC)
 MIME-Version: 1.0
-X-MC-Unique: OeP4EoJrOLyEo7Ur8YABHw-1
-X-Mimecast-Spam-Score: 0
-Subject: Re: [Intel-gfx] [PATCH] drm: Inject a cond_resched() into long
- drm_clflush_sg()
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Thu, 16 Jan 2020 15:38:37 -0000
+Message-ID: <157918911750.12913.12256765949980033950@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200116125749.2786743-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200116125749.2786743-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/gt=3A_Drop_rogue_space_in_the_middle_of_GT=5FTRACE?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,44 +38,138 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "'intel-gfx@lists.freedesktop.org'" <intel-gfx@lists.freedesktop.org>,
- "'dri-devel@lists.freedesktop.org'" <dri-devel@lists.freedesktop.org>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: David Laight
-> Sent: 16 January 2020 14:41
-> > I'll do some measurements later this afternoon.
-> 
-> This is an Ivy bridge cpu, so clflush (not clflushopt).
-> With a cond_resched for every page I get:
-> (Note these calls are every 10 seconds....)
+== Series Details ==
 
-For comparison some times booted with the original drm.ko
+Series: drm/i915/gt: Drop rogue space in the middle of GT_TRACE
+URL   : https://patchwork.freedesktop.org/series/72108/
+State : success
 
- 1) # 3125.116 us |  drm_clflush_sg [drm]();
- 0) # 3181.705 us |  drm_clflush_sg [drm]();
- 1) # 3108.863 us |  drm_clflush_sg [drm]();
- 1) # 3051.926 us |  drm_clflush_sg [drm]();
- 2) # 3088.468 us |  drm_clflush_sg [drm]();
- 2) # 3012.729 us |  drm_clflush_sg [drm]();
- 2) # 3191.268 us |  drm_clflush_sg [drm]();
- 3) # 3044.294 us |  drm_clflush_sg [drm]();
- 0) # 3163.916 us |  drm_clflush_sg [drm]();
- 2) # 3029.307 us |  drm_clflush_sg [drm]();
- 2) # 3116.360 us |  drm_clflush_sg [drm]();
- 2) # 3031.620 us |  drm_clflush_sg [drm]();
- 0) # 3349.706 us |  drm_clflush_sg [drm]();
+== Summary ==
 
-Probably nothing really significant.
+CI Bug Log - changes from CI_DRM_7754 -> Patchwork_16129
+====================================================
 
-	David
+Summary
+-------
 
--
-Registered Address Lakeside, Bramley Road, Mount Farm, Milton Keynes, MK1 1PT, UK
-Registration No: 1397386 (Wales)
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16129/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_16129 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_exec_parallel@basic:
+    - fi-tgl-y:           [PASS][1] -> [DMESG-WARN][2] ([i915#402])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7754/fi-tgl-y/igt@gem_exec_parallel@basic.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16129/fi-tgl-y/igt@gem_exec_parallel@basic.html
+
+  * igt@gem_sync@basic-store-all:
+    - fi-tgl-y:           [PASS][3] -> [INCOMPLETE][4] ([i915#472])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7754/fi-tgl-y/igt@gem_sync@basic-store-all.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16129/fi-tgl-y/igt@gem_sync@basic-store-all.html
+
+  * igt@i915_module_load@reload-with-fault-injection:
+    - fi-cfl-8700k:       [PASS][5] -> [INCOMPLETE][6] ([i915#505])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7754/fi-cfl-8700k/igt@i915_module_load@reload-with-fault-injection.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16129/fi-cfl-8700k/igt@i915_module_load@reload-with-fault-injection.html
+
+  * igt@i915_selftest@live_hangcheck:
+    - fi-kbl-7500u:       [PASS][7] -> [DMESG-FAIL][8] ([i915#889]) +7 similar issues
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7754/fi-kbl-7500u/igt@i915_selftest@live_hangcheck.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16129/fi-kbl-7500u/igt@i915_selftest@live_hangcheck.html
+
+  * igt@i915_selftest@live_vma:
+    - fi-kbl-7500u:       [PASS][9] -> [DMESG-WARN][10] ([i915#889]) +23 similar issues
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7754/fi-kbl-7500u/igt@i915_selftest@live_vma.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16129/fi-kbl-7500u/igt@i915_selftest@live_vma.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live_blt:
+    - fi-ivb-3770:        [DMESG-FAIL][11] ([i915#770]) -> [PASS][12]
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7754/fi-ivb-3770/igt@i915_selftest@live_blt.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16129/fi-ivb-3770/igt@i915_selftest@live_blt.html
+
+  
+#### Warnings ####
+
+  * igt@kms_chamelium@hdmi-hpd-fast:
+    - fi-kbl-7500u:       [FAIL][13] ([fdo#111096] / [i915#323]) -> [FAIL][14] ([fdo#111407])
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7754/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16129/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+
+  
+  [fdo#111096]: https://bugs.freedesktop.org/show_bug.cgi?id=111096
+  [fdo#111407]: https://bugs.freedesktop.org/show_bug.cgi?id=111407
+  [i915#323]: https://gitlab.freedesktop.org/drm/intel/issues/323
+  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+  [i915#472]: https://gitlab.freedesktop.org/drm/intel/issues/472
+  [i915#505]: https://gitlab.freedesktop.org/drm/intel/issues/505
+  [i915#770]: https://gitlab.freedesktop.org/drm/intel/issues/770
+  [i915#889]: https://gitlab.freedesktop.org/drm/intel/issues/889
+
+
+Participating hosts (48 -> 43)
+------------------------------
+
+  Additional (4): fi-hsw-4770r fi-byt-n2820 fi-snb-2520m fi-ehl-1 
+  Missing    (9): fi-kbl-soraka fi-ilk-m540 fi-hsw-4200u fi-glk-dsi fi-byt-squawks fi-bsw-cyan fi-elk-e7500 fi-blb-e6850 fi-byt-clapper 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_7754 -> Patchwork_16129
+
+  CI-20190529: 20190529
+  CI_DRM_7754: 4db14301dfa813d24cd2ad46552af83d493c5d12 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5370: a98fb02cc2816a48eec374392d9b6941abb6af2c @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_16129: c2dc02f09ced509810045c944c9d9dd5fca1c9f1 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Kernel 32bit build ==
+
+Warning: Kernel 32bit buildtest failed:
+https://intel-gfx-ci.01.org/Patchwork_16129/build_32bit.log
+
+  CALL    scripts/checksyscalls.sh
+  CALL    scripts/atomic/check-atomics.sh
+  CHK     include/generated/compile.h
+Kernel: arch/x86/boot/bzImage is ready  (#1)
+  Building modules, stage 2.
+  MODPOST 122 modules
+ERROR: "__udivdi3" [drivers/gpu/drm/amd/amdgpu/amdgpu.ko] undefined!
+scripts/Makefile.modpost:93: recipe for target '__modpost' failed
+make[1]: *** [__modpost] Error 1
+Makefile:1282: recipe for target 'modules' failed
+make: *** [modules] Error 2
+
+
+== Linux commits ==
+
+c2dc02f09ced drm/i915/gt: Drop rogue space in the middle of GT_TRACE
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16129/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
