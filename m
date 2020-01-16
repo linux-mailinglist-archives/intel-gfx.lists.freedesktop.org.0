@@ -2,39 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 912E613D12E
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Jan 2020 01:35:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2687C13D1A5
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Jan 2020 02:44:10 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 852AB6E1E2;
-	Thu, 16 Jan 2020 00:35:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EF5516E1EC;
+	Thu, 16 Jan 2020 01:44:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C499C6E1E2
- for <intel-gfx@lists.freedesktop.org>; Thu, 16 Jan 2020 00:35:47 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0F4616E1EC
+ for <intel-gfx@lists.freedesktop.org>; Thu, 16 Jan 2020 01:44:04 +0000 (UTC)
 X-Amp-Result: UNKNOWN
 X-Amp-Original-Verdict: FILE UNKNOWN
 X-Amp-File-Uploaded: False
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 15 Jan 2020 16:35:47 -0800
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 15 Jan 2020 17:44:04 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,323,1574150400"; d="scan'208";a="219463357"
-Received: from labuser-z97x-ud5h.jf.intel.com (HELO intel.com)
- ([10.165.21.211])
- by fmsmga007.fm.intel.com with ESMTP; 15 Jan 2020 16:35:46 -0800
-Date: Wed, 15 Jan 2020 16:37:08 -0800
-From: Manasi Navare <manasi.d.navare@intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>
-Message-ID: <20200116003708.GF27746@intel.com>
-References: <20200115190813.17971-1-ville.syrjala@linux.intel.com>
- <20200115190813.17971-4-ville.syrjala@linux.intel.com>
+X-IronPort-AV: E=Sophos;i="5.70,323,1574150400"; d="scan'208";a="225793544"
+Received: from mdroper-desk1.fm.intel.com (HELO
+ mdroper-desk1.amr.corp.intel.com) ([10.1.27.64])
+ by orsmga003.jf.intel.com with ESMTP; 15 Jan 2020 17:44:04 -0800
+Date: Wed, 15 Jan 2020 17:44:04 -0800
+From: Matt Roper <matthew.d.roper@intel.com>
+To: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+Message-ID: <20200116014404.GP2244136@mdroper-desk1.amr.corp.intel.com>
+References: <20200115214556.2052-1-stanislav.lisovskiy@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20200115190813.17971-4-ville.syrjala@linux.intel.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-Subject: Re: [Intel-gfx] [PATCH 4/5] drm/i915: Use PIPE_CONF_CHECK_X() for
- sync_mode_slaves_mask
+In-Reply-To: <20200115214556.2052-1-stanislav.lisovskiy@intel.com>
+User-Agent: Mutt/1.12.1 (2019-06-15)
+Subject: Re: [Intel-gfx] [PATCH v12 0/5] Enable second DBuf slice for ICL
+ and TGL
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,59 +47,54 @@ List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Jan 15, 2020 at 09:08:12PM +0200, Ville Syrjala wrote:
-> From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> =
+On Wed, Jan 15, 2020 at 11:45:51PM +0200, Stanislav Lisovskiy wrote:
+> Those patch series, do some initial preparation DBuf manipulating code
+> cleanups, i.e remove redundant structures/code, switch to mask
+> based DBuf manupulation, get into use DBuf assignment according to
+> BSpec rules.
 
-> sync_mode_slaves_mask is a bitmask so use PIPE_CONF_CHECK_X() for it
-> so we get the mismatch printed in hex instead of decimal.
-> =
+I just noticed that bspec page 49213 indicates we should also be writing
+a value of '8' to bits 23:19 on gen12.  We don't seem to handling that
+yet.  We may need to add that change as an additional patch.
 
-> Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
 
-Yes makes sense also tested this on the 8K tiled display,
+Matt
 
-Reviewed-by: Manasi Navare <manasi.d.navare@intel.com>
-Tested-by: Manasi Navare <manasi.d.navare@intel.com>
+> 
+> Stanislav Lisovskiy (5):
+>   drm/i915: Remove skl_ddl_allocation struct
+>   drm/i915: Move dbuf slice update to proper place
+>   drm/i915: Manipulate DBuf slices properly
+>   drm/i915: Introduce parameterized DBUF_CTL
+>   drm/i915: Correctly map DBUF slices to pipes
+> 
+>  drivers/gpu/drm/i915/display/intel_display.c  |  52 +-
+>  .../drm/i915/display/intel_display_power.c    |  88 ++--
+>  .../drm/i915/display/intel_display_power.h    |   6 +
+>  .../drm/i915/display/intel_display_types.h    |   3 +
+>  drivers/gpu/drm/i915/i915_drv.h               |   7 +-
+>  drivers/gpu/drm/i915/i915_pci.c               |   5 +-
+>  drivers/gpu/drm/i915/i915_reg.h               |  12 +-
+>  drivers/gpu/drm/i915/intel_device_info.h      |   1 +
+>  drivers/gpu/drm/i915/intel_pm.c               | 457 +++++++++++++++---
+>  drivers/gpu/drm/i915/intel_pm.h               |   7 +-
+>  10 files changed, 496 insertions(+), 142 deletions(-)
+> 
+> -- 
+> 2.24.1.485.gad05a3d8e5
+> 
 
-Manasi
-
-> ---
->  drivers/gpu/drm/i915/display/intel_display.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> =
-
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/d=
-rm/i915/display/intel_display.c
-> index 64a377d61ce0..97cf8457c956 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -13695,7 +13695,7 @@ intel_pipe_config_compare(const struct intel_crtc=
-_state *current_config,
->  	PIPE_CONF_CHECK_INFOFRAME(hdmi);
->  	PIPE_CONF_CHECK_INFOFRAME(drm);
->  =
-
-> -	PIPE_CONF_CHECK_I(sync_mode_slaves_mask);
-> +	PIPE_CONF_CHECK_X(sync_mode_slaves_mask);
->  	PIPE_CONF_CHECK_I(master_transcoder);
->  =
-
->  	PIPE_CONF_CHECK_I(dsc.compression_enable);
-> -- =
-
-> 2.24.1
-> =
-
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+-- 
+Matt Roper
+Graphics Software Engineer
+VTT-OSGC Platform Enablement
+Intel Corporation
+(916) 356-2795
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
