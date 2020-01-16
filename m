@@ -2,41 +2,34 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E893D13DFB3
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Jan 2020 17:12:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AD5BD13DFB9
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Jan 2020 17:14:29 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5AE836EDB7;
-	Thu, 16 Jan 2020 16:12:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B31A96EDBC;
+	Thu, 16 Jan 2020 16:14:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C842E6EDB7;
- Thu, 16 Jan 2020 16:12:39 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 10F736EDBB;
+ Thu, 16 Jan 2020 16:14:26 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
 X-Amp-File-Uploaded: False
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 16 Jan 2020 08:12:39 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,326,1574150400"; d="scan'208";a="219729445"
-Received: from rosetta.fi.intel.com ([10.237.72.194])
- by fmsmga007.fm.intel.com with ESMTP; 16 Jan 2020 08:12:35 -0800
-Received: by rosetta.fi.intel.com (Postfix, from userid 1000)
- id 693FC843B9F; Thu, 16 Jan 2020 18:12:34 +0200 (EET)
-From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-To: akeem.g.abodunrin@intel.com, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, omer.aran@intel.com,
- pragyansri.pathi@intel.com, d.scott.phillips@intel.com,
- david.c.stewart@intel.com, tony.luck@intel.com, jon.bloomfield@intel.com,
- sudeep.dutt@intel.com, daniel.vetter@intel.com, joonas.lahtinen@intel.com,
- jani.nikula@intel.com, chris.p.wilson@intel.com
-Date: Thu, 16 Jan 2020 18:12:31 +0200
-Message-Id: <20200116161231.26026-1-mika.kuoppala@linux.intel.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200114145136.65373-2-akeem.g.abodunrin@intel.com>
-References: <20200114145136.65373-2-akeem.g.abodunrin@intel.com>
-Subject: [Intel-gfx] [PATCH 1/2] drm/i915: Add mechanism to submit a context
- WA on ring submission
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 16 Jan 2020 08:14:25 -0800
+X-IronPort-AV: E=Sophos;i="5.70,326,1574150400"; d="scan'208";a="218582608"
+Received: from jlahtine-desk.ger.corp.intel.com (HELO localhost)
+ ([10.252.21.160])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 16 Jan 2020 08:14:21 -0800
+Date: Thu, 16 Jan 2020 18:14:19 +0200
+From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Message-ID: <20200116161419.GA13594@jlahtine-desk.ger.corp.intel.com>
+MIME-Version: 1.0
+Content-Disposition: inline
+Subject: [Intel-gfx] [PULL] drm-intel-fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,247 +42,69 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-MIME-Version: 1.0
+Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Maxime Ripard <mripard@kernel.org>, intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This patch adds framework to submit an arbitrary batchbuffer on each
-context switch to clear residual state for render engine on Gen7/7.5
-devices.
+Hi Dave & Daniel,
 
-The idea of always emitting the context and vm setup around each request
-is primary to make reset recovery easy, and not require rewriting the
-ringbuffer. As each request would set up its own context, leaving it to
-the HW to notice and elide no-op context switches, we could restart the
-ring at any point, and reorder the requests freely.
+Two new fixes still, the VMA activity fixes are overflow from
+last week as I couldn't get CI results then.
 
-However, to avoid emitting clear_residuals() between consecutive requests
-in the ringbuffer of the same context, we do want to track the current
-context in the ring. In doing so, we need to be careful to only record a
-context switch when we are sure the next request will be emitted.
+One important uAPI fix for PMU names to comply with tools/perf,
+thanks for our media team for noticing. A compile fix and two
+VMA activity tracking fixes for error capture and a dependency.
 
-v2: elide optimization patch squashed, courtesy of Chris Wilson
+Regards, Joonas
 
-Signed-off-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-Signed-off-by: Akeem G Abodunrin <akeem.g.abodunrin@intel.com>
-Cc: Kumar Valsan Prathap <prathap.kumar.valsan@intel.com>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Balestrieri Francesco <francesco.balestrieri@intel.com>
-Cc: Bloomfield Jon <jon.bloomfield@intel.com>
-Cc: Dutt Sudeep <sudeep.dutt@intel.com>
----
- .../gpu/drm/i915/gt/intel_ring_submission.c   | 132 +++++++++++++++++-
- 1 file changed, 129 insertions(+), 3 deletions(-)
+PS. There were quite a few conflicts due to the renames,
+when applying.
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_ring_submission.c b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
-index bc44fe8e5ffa..58500032c993 100644
---- a/drivers/gpu/drm/i915/gt/intel_ring_submission.c
-+++ b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
-@@ -1384,7 +1384,9 @@ static int load_pd_dir(struct i915_request *rq,
- 	return rq->engine->emit_flush(rq, EMIT_FLUSH);
- }
- 
--static inline int mi_set_context(struct i915_request *rq, u32 flags)
-+static inline int mi_set_context(struct i915_request *rq,
-+				 struct intel_context *ce,
-+				 u32 flags)
- {
- 	struct drm_i915_private *i915 = rq->i915;
- 	struct intel_engine_cs *engine = rq->engine;
-@@ -1459,7 +1461,7 @@ static inline int mi_set_context(struct i915_request *rq, u32 flags)
- 
- 	*cs++ = MI_NOOP;
- 	*cs++ = MI_SET_CONTEXT;
--	*cs++ = i915_ggtt_offset(rq->context->state) | flags;
-+	*cs++ = i915_ggtt_offset(ce->state) | flags;
- 	/*
- 	 * w/a: MI_SET_CONTEXT must always be followed by MI_NOOP
- 	 * WaMiSetContext_Hang:snb,ivb,vlv
-@@ -1574,13 +1576,56 @@ static int switch_mm(struct i915_request *rq, struct i915_address_space *vm)
- 	return rq->engine->emit_flush(rq, EMIT_INVALIDATE);
- }
- 
-+static int clear_residuals(struct i915_request *rq)
-+{
-+	struct intel_engine_cs *engine = rq->engine;
-+	int ret;
-+
-+	GEM_BUG_ON(!engine->kernel_context->state);
-+
-+	ret = switch_mm(rq, vm_alias(engine->kernel_context));
-+	if (ret)
-+		return ret;
-+
-+	ret = mi_set_context(rq,
-+			     engine->kernel_context,
-+			     MI_MM_SPACE_GTT | MI_RESTORE_INHIBIT);
-+	if (ret)
-+		return ret;
-+
-+	ret = engine->emit_bb_start(rq,
-+				    engine->wa_ctx.vma->node.start, 0,
-+				    0);
-+	if (ret)
-+		return ret;
-+
-+	ret = engine->emit_flush(rq, EMIT_FLUSH);
-+	if (ret)
-+		return ret;
-+
-+	/* Always invalidate before the next switch_mm() */
-+	return engine->emit_flush(rq, EMIT_INVALIDATE);
-+}
-+
- static int switch_context(struct i915_request *rq)
- {
-+	struct intel_engine_cs *engine = rq->engine;
- 	struct intel_context *ce = rq->context;
-+	void **residuals = NULL;
- 	int ret;
- 
- 	GEM_BUG_ON(HAS_EXECLISTS(rq->i915));
- 
-+	if (engine->wa_ctx.vma && ce != engine->kernel_context) {
-+		if (engine->wa_ctx.vma->private != ce) {
-+			ret = clear_residuals(rq);
-+			if (ret)
-+				return ret;
-+
-+			residuals = &engine->wa_ctx.vma->private;
-+		}
-+	}
-+
- 	ret = switch_mm(rq, vm_alias(ce));
- 	if (ret)
- 		return ret;
-@@ -1600,7 +1645,7 @@ static int switch_context(struct i915_request *rq)
- 		else
- 			flags |= MI_RESTORE_INHIBIT;
- 
--		ret = mi_set_context(rq, flags);
-+		ret = mi_set_context(rq, ce, flags);
- 		if (ret)
- 			return ret;
- 	}
-@@ -1609,6 +1654,20 @@ static int switch_context(struct i915_request *rq)
- 	if (ret)
- 		return ret;
- 
-+	/*
-+	 * Now past the point of no return, this request _will_ be emitted.
-+	 *
-+	 * Or at least this preamble will be emitted, the request may be
-+	 * interrupted prior to submitting the user payload. If so, we
-+	 * still submit the "empty" request in order to preserve global
-+	 * state tracking such as this, our tracking of the current
-+	 * dirty context.
-+	 */
-+	if (residuals) {
-+		intel_context_put(*residuals);
-+		*residuals = intel_context_get(ce);
-+	}
-+
- 	return 0;
- }
- 
-@@ -1792,6 +1851,11 @@ static void ring_release(struct intel_engine_cs *engine)
- 
- 	intel_engine_cleanup_common(engine);
- 
-+	if (engine->wa_ctx.vma) {
-+		intel_context_put(engine->wa_ctx.vma->private);
-+		i915_vma_unpin_and_release(&engine->wa_ctx.vma, 0);
-+	}
-+
- 	intel_ring_unpin(engine->legacy.ring);
- 	intel_ring_put(engine->legacy.ring);
- 
-@@ -1939,6 +2003,60 @@ static void setup_vecs(struct intel_engine_cs *engine)
- 	engine->emit_fini_breadcrumb = gen7_xcs_emit_breadcrumb;
- }
- 
-+static int gen7_ctx_switch_bb_setup(struct intel_engine_cs * const engine,
-+				    struct i915_vma * const vma)
-+{
-+	return 0;
-+}
-+
-+static int gen7_ctx_switch_bb_init(struct intel_engine_cs *engine)
-+{
-+	struct drm_i915_gem_object *obj;
-+	struct i915_vma *vma;
-+	int size;
-+	int err;
-+
-+	size = gen7_ctx_switch_bb_setup(engine, NULL /* probe size */);
-+	if (size <= 0)
-+		return size;
-+
-+	size = ALIGN(size, PAGE_SIZE);
-+	obj = i915_gem_object_create_internal(engine->i915, size);
-+	if (IS_ERR(obj))
-+		return PTR_ERR(obj);
-+
-+	vma = i915_vma_instance(obj, engine->gt->vm, NULL);
-+	if (IS_ERR(vma)) {
-+		err = PTR_ERR(vma);
-+		goto err_obj;
-+	}
-+
-+	vma->private = intel_context_create(engine); /* dummy residuals */
-+	if (IS_ERR(vma->private)) {
-+		err = PTR_ERR(vma->private);
-+		goto err_obj;
-+	}
-+
-+	err = i915_vma_pin(vma, 0, 0, PIN_USER | PIN_HIGH);
-+	if (err)
-+		goto err_private;
-+
-+	err = gen7_ctx_switch_bb_setup(engine, vma);
-+	if (err)
-+		goto err_unpin;
-+
-+	engine->wa_ctx.vma = vma;
-+	return 0;
-+
-+err_unpin:
-+	i915_vma_unpin(vma);
-+err_private:
-+	intel_context_put(vma->private);
-+err_obj:
-+	i915_gem_object_put(obj);
-+	return err;
-+}
-+
- int intel_ring_submission_setup(struct intel_engine_cs *engine)
- {
- 	struct intel_timeline *timeline;
-@@ -1992,11 +2110,19 @@ int intel_ring_submission_setup(struct intel_engine_cs *engine)
- 
- 	GEM_BUG_ON(timeline->hwsp_ggtt != engine->status_page.vma);
- 
-+	if (IS_GEN(engine->i915, 7) && engine->class == RENDER_CLASS) {
-+		err = gen7_ctx_switch_bb_init(engine);
-+		if (err)
-+			goto err_ring_unpin;
-+	}
-+
- 	/* Finally, take ownership and responsibility for cleanup! */
- 	engine->release = ring_release;
- 
- 	return 0;
- 
-+err_ring_unpin:
-+	intel_ring_unpin(ring);
- err_ring:
- 	intel_ring_put(ring);
- err_timeline_unpin:
--- 
-2.17.1
+***
 
+drm-intel-fixes-2020-01-16:
+
+- uAPI fix: Remove dash and colon from PMU names to comply with tools/perf
+- Fix for include file that was indirectly included
+- Two fixes to make sure VMA are marked active for error capture
+
+The following changes since commit b3a987b0264d3ddbb24293ebff10eddfc472f653:
+
+  Linux 5.5-rc6 (2020-01-12 16:55:08 -0800)
+
+are available in the Git repository at:
+
+  git://anongit.freedesktop.org/drm/drm-intel tags/drm-intel-fixes-2020-01-16
+
+for you to fetch changes up to 88550e1c345c6d3f70292fa60d481eb320e11953:
+
+  drm/i915/pmu: Do not use colons or dashes in PMU names (2020-01-14 08:56:58 +0200)
+
+----------------------------------------------------------------
+- uAPI fix: Remove dash and colon from PMU names to comply with tools/perf
+- Fix for include file that was indirectly included
+- Two fixes to make sure VMA are marked active for error capture
+
+----------------------------------------------------------------
+Chris Wilson (3):
+      drm/i915/gt: Skip trying to unbind in restore_ggtt_mappings
+      drm/i915/gt: Mark context->state vma as active while pinned
+      drm/i915/gt: Mark ring->vma as active while pinned
+
+Tvrtko Ursulin (1):
+      drm/i915/pmu: Do not use colons or dashes in PMU names
+
+YueHaibing (1):
+      drm/i915: Add missing include file <linux/math64.h>
+
+ drivers/gpu/drm/i915/gt/intel_context.c      | 40 +++++++++++++++++++++++++---
+ drivers/gpu/drm/i915/i915_gem_gtt.c          |  7 ++---
+ drivers/gpu/drm/i915/i915_pmu.c              | 11 +++++---
+ drivers/gpu/drm/i915/selftests/i915_random.h |  1 +
+ 4 files changed, 48 insertions(+), 11 deletions(-)
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
