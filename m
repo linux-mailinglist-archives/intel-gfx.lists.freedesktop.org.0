@@ -1,35 +1,103 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1BCC14042A
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Jan 2020 07:55:46 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id D2C9B140462
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Jan 2020 08:15:59 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0ABF16F3D5;
-	Fri, 17 Jan 2020 06:55:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 323E36F3E2;
+	Fri, 17 Jan 2020 07:15:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 417DB6F3D5
- for <intel-gfx@lists.freedesktop.org>; Fri, 17 Jan 2020 06:55:44 +0000 (UTC)
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D5D176F3E2
+ for <intel-gfx@lists.freedesktop.org>; Fri, 17 Jan 2020 07:15:56 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 16 Jan 2020 22:55:43 -0800
-X-IronPort-AV: E=Sophos;i="5.70,329,1574150400"; d="scan'208";a="218814413"
-Received: from mdsiyams-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.38.100])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 16 Jan 2020 22:55:39 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Lee Shawn C <shawn.c.lee@intel.com>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20200117134717.2703-1-shawn.c.lee@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 16 Jan 2020 23:15:39 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,329,1574150400"; d="scan'208";a="398549284"
+Received: from fmsmsx103.amr.corp.intel.com ([10.18.124.201])
+ by orsmga005.jf.intel.com with ESMTP; 16 Jan 2020 23:15:38 -0800
+Received: from fmsmsx125.amr.corp.intel.com (10.18.125.40) by
+ FMSMSX103.amr.corp.intel.com (10.18.124.201) with Microsoft SMTP Server (TLS)
+ id 14.3.439.0; Thu, 16 Jan 2020 23:15:38 -0800
+Received: from FMSEDG001.ED.cps.intel.com (10.1.192.133) by
+ FMSMSX125.amr.corp.intel.com (10.18.125.40) with Microsoft SMTP Server (TLS)
+ id 14.3.439.0; Thu, 16 Jan 2020 23:15:38 -0800
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.106)
+ by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server (TLS) id
+ 14.3.439.0; Thu, 16 Jan 2020 23:15:37 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=LaNMoDQpqR0UO2HLYeZWfWuKnFxgGOKqOkoCrF7h/+jW2YFwkeXRzR48rPSTUaN1RFOoimlJMOziUfkFVo48NxJZE4o8DOlaETSNfcPL5C/AbZiR/YHrIc0mWdzUx6rwMI7pzJ2MS6VMelQYp0kuYsdh5h1k5DlW/v24wpdBRmUmD/uOws4PKyz5Ndsvk9lZhk8nB8HcY/G/tBNdSCDHFiOxoK7sZjjrZSJmwJEriRPg9boDohz/AuRt9z7iqkcWrZ2fJJamTeSpxe9FVC+qzobp0HuoZ3wmjW4/MNx+R9BXsxPmw/MQiUuZSecvJoT5zAdiQS1S7URZo9W6o26a6w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=WCM1Abqvts2gbxfoqp9olQBHQdos5KCV5onuVMQmG/c=;
+ b=mS4OA4fOit5s4Kt2ZNkjkMtOjQh3m6AjNMP3qB/LEXecpYohBk6chFGufg3q5NGZwlXGB240FOS2BiJrkS9yMK+Yn6O+244g9zb7M0mWeJ9krt4/ZnmzwGNX4LwP0CuWqQe8KJTEJFP4ZlCZ3rHG17ggIM9BZQPw/joSBj/rS4pmuCmqeTbXG7UGE0pKuRRva/dqTYwSUSS60w3NW73IDwBT4Nw1Ct/CON6K6PzqcAqoOKz2KpMac2eHcH10fohP7CfPV52cRgVIVOPYSwGmu4J55fGGaaKsMlvLKsxtDqR2SsekkkK3JuINLsfwZPy4vvsqRiYUOen/dXHYtO+Dzw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.onmicrosoft.com; 
+ s=selector2-intel-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=WCM1Abqvts2gbxfoqp9olQBHQdos5KCV5onuVMQmG/c=;
+ b=LXVbJ3huXrie2+a+RBjM0+jqdpoF4Mu9NMvxNU8x52A3WVKocPXDCWk5XI84S+84+GMy9Dvk41ww5jkxpuk1VsQzYdfjjzhZxeUcowawJFvzy27xtfqS/5SZYMB54Yr3rgrskRVaRCjtC0NWDOzOKSFNr0pTyX7cvx5ID6D3xZQ=
+Received: from DM6PR11MB3211.namprd11.prod.outlook.com (20.176.120.27) by
+ DM6PR11MB3659.namprd11.prod.outlook.com (20.178.231.203) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2623.8; Fri, 17 Jan 2020 07:15:35 +0000
+Received: from DM6PR11MB3211.namprd11.prod.outlook.com
+ ([fe80::71c5:efdc:c87a:456c]) by DM6PR11MB3211.namprd11.prod.outlook.com
+ ([fe80::71c5:efdc:c87a:456c%3]) with mapi id 15.20.2644.015; Fri, 17 Jan 2020
+ 07:15:35 +0000
+From: "Lee, Shawn C" <shawn.c.lee@intel.com>
+To: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Thread-Topic: [PATCH] drm/i915: Check require bandwidth did not exceed LSPCON
+ limitation
+Thread-Index: AQHVzPnpKXaRvBwcnUOU7j1VYMFME6fubHyAgAAEpvA=
+Date: Fri, 17 Jan 2020 07:15:35 +0000
+Message-ID: <DM6PR11MB3211770FC150BDE9DC5881C2A3310@DM6PR11MB3211.namprd11.prod.outlook.com>
 References: <20200117134717.2703-1-shawn.c.lee@intel.com>
-Date: Fri, 17 Jan 2020 08:56:19 +0200
-Message-ID: <874kwuk1v0.fsf@intel.com>
+ <874kwuk1v0.fsf@intel.com>
+In-Reply-To: <874kwuk1v0.fsf@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-reaction: no-action
+dlp-version: 11.2.0.6
+dlp-product: dlpe-windows
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=shawn.c.lee@intel.com; 
+x-originating-ip: [192.55.52.199]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: a74970a2-a78b-4f0e-5b95-08d79b1d0bfa
+x-ms-traffictypediagnostic: DM6PR11MB3659:
+x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <DM6PR11MB3659E064AD6B701EC184FC03A3310@DM6PR11MB3659.namprd11.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:10000;
+x-forefront-prvs: 0285201563
+x-forefront-antispam-report: SFV:NSPM;
+ SFS:(10019020)(346002)(136003)(39860400002)(376002)(366004)(396003)(189003)(199004)(8796002)(7696005)(81166006)(71200400001)(8936002)(316002)(86362001)(81156014)(5660300002)(6506007)(52536014)(9686003)(4326008)(66574012)(6916009)(8676002)(55016002)(76116006)(478600001)(33656002)(26005)(54906003)(66946007)(186003)(66556008)(64756008)(66446008)(66476007)(2906002);
+ DIR:OUT; SFP:1102; SCL:1; SRVR:DM6PR11MB3659;
+ H:DM6PR11MB3211.namprd11.prod.outlook.com; FPR:; SPF:None; LANG:en;
+ PTR:InfoNoRecords; MX:1; A:1; 
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: Ws4gLV4CJ59Gpxjoi5lbvFfur3ZUxtQ1gAJ0GCYyQx4xeAzxl+PnTApEV9/LdyzPKyq+4dnOL6OfqKvE7bnl0gzCuh7XP1+mEj7piYTkozgWs9XkqGcK4z8Yte68CBiePcfVTRh+wLR6M5o1cC6BrYAd4TENs+ahTZJyPN5N3UpnqBABdYAmZwaurAWKSwbDVxUoYIhCfNsmWvNf4WUkLkQbOe8JBb+OOFB5BniD6aPkFTgs2CF2TBvzK57JPu95YeaVpdluaxAauh8qRj8LkGr3w5zvEBMiI6JiyfbH3rZDJlIgubfTwUqLFNj1fJM5PvQFkTUXkgPPJnQ6X5eN8xuWhAASV3RrMc5EQTs/kbV2div3ZowxzgCq0klC/aW7kLwPam3RS8AWr9FJitd5CbR8duy+H8Bgd4Jr/vnAIS7PKecySRrA4a24uw/r865C
 MIME-Version: 1.0
+X-MS-Exchange-CrossTenant-Network-Message-Id: a74970a2-a78b-4f0e-5b95-08d79b1d0bfa
+X-MS-Exchange-CrossTenant-originalarrivaltime: 17 Jan 2020 07:15:35.2978 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: z1Phgi9ADhOD9VhEX/vmRfPB/eq78z1EaTZMxMEw67tOPOqVHlprrEEAtCHqknqfVMtMk3Td8mMP6dxOhAlKJA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR11MB3659
+X-OriginatorOrg: intel.com
 Subject: Re: [Intel-gfx] [PATCH] drm/i915: Check require bandwidth did not
  exceed LSPCON limitation
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -44,107 +112,203 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Cooper Chiou <cooper.chiou@intel.com>, Sam McNally <sammc@google.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: "20200117134717.2703-1-shawn.c.lee@intel.com"
+ <20200117134717.2703-1-shawn.c.lee@intel.com>
+Cc: "Chiou, Cooper" <cooper.chiou@intel.com>, Sam McNally <sammc@google.com>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gRnJpLCAxNyBKYW4gMjAyMCwgTGVlIFNoYXduIEMgPHNoYXduLmMubGVlQGludGVsLmNvbT4g
-d3JvdGU6Cj4gV2hpbGUgbW9kZSBzZXR0aW5nLCBkcml2ZXIgd291bGQgY2FsY3VsYXRlIG1vZGUg
-cmF0ZSBiYXNlZCBvbgo+IHJlc29sdXRpb24gYW5kIGJwcC4gQW5kIGNob29zZSB0aGUgYmVzdCBi
-cHAgdGhhdCBkaWQgbm90IGV4Y2VlZAo+IERQIGJhbmR3aWR0ZC4KPgo+IEJ1dCBMU1BDT04gaGFk
-IG1vcmUgcmVzdHJpY3Rpb24gZHVlIHRvIGl0IGNvbnZlcnQgRFAgdG8gSERNSS4KPiBEcml2ZXIg
-c2hvdWxkIHJlc3BlY3QgSERNSSdzIGJhbmR3aWR0aCBsaW1pdGF0aW9uIGlmIExTUENPTgo+IHdh
-cyBhY3RpdmUuIFRoaXMgY2hhbmdlIHdvdWxkIGlnbm9yZSB0aGUgYnBwIHdoZW4gaXRzIHJlcXVp
-cmVkCj4gb3V0cHV0IGJhbmR3aWR0aCBhbHJlYWR5IG92ZXIgSERNSSAyLjAgb3IgMS40IHNwZWMu
-Cj4KPiBDYzogSW1yZSBEZWFrIDxpbXJlLmRlYWtAaW50ZWwuY29tPgo+IENjOiBWaWxsZSBTeXJq
-w6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwuY29tPgo+IENjOiBNYWFydGVuIExhbmto
-b3JzdCA8bWFhcnRlbi5sYW5raG9yc3RAbGludXguaW50ZWwuY29tPgo+IENjOiBKYW5pIE5pa3Vs
-YSA8amFuaS5uaWt1bGFAbGludXguaW50ZWwuY29tPgo+IENjOiBDb29wZXIgQ2hpb3UgPGNvb3Bl
-ci5jaGlvdUBpbnRlbC5jb20+Cj4gQ2M6IFNhbSBNY05hbGx5IDxzYW1tY0Bnb29nbGUuY29tPgo+
-IFNpZ25lZC1vZmYtYnk6IExlZSBTaGF3biBDIDxzaGF3bi5jLmxlZUBpbnRlbC5jb20+Cj4gLS0t
-Cj4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHAuYyAgICAgfCA0NSArKysr
-KysrKysrKysrKysrKysrKysKPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9s
-c3Bjb24uYyB8ICA1ICsrKwo+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2xz
-cGNvbi5oIHwgIDEgKwo+ICAzIGZpbGVzIGNoYW5nZWQsIDUxIGluc2VydGlvbnMoKykKPgo+IGRp
-ZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwLmMgYi9kcml2
-ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwLmMKPiBpbmRleCBjNzQyNGUyYTA0YTMu
-LmMyN2QzZTdhYzIxOSAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5
-L2ludGVsX2RwLmMKPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rw
-LmMKPiBAQCAtMTk3Niw2ICsxOTc2LDQ3IEBAIHN0YXRpYyBpbnQgaW50ZWxfZHBfb3V0cHV0X2Jw
-cChjb25zdCBzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZSAqY3J0Y19zdGF0ZSwgaW50IGJwCj4gIAly
-ZXR1cm4gYnBwOwo+ICB9Cj4gIAo+ICtzdGF0aWMgYm9vbAo+ICtpbnRlbF9kcF9sc3Bjb25fZXhj
-ZWVkX2JhbmR3aWR0aF9saW1pdGF0aW9uKHN0cnVjdCBpbnRlbF9kcCAqaW50ZWxfZHAsCj4gKwkJ
-CQkJICAgIHN0cnVjdCBpbnRlbF9jcnRjX3N0YXRlICpwaXBlX2NvbmZpZywKPiArCQkJCQkgICAg
-aW50IGJwcCkKPiArewo+ICsJc3RydWN0IGludGVsX2xzcGNvbiAqbHNwY29uID0gZHBfdG9fbHNw
-Y29uKGludGVsX2RwKTsKPiArCXN0cnVjdCBpbnRlbF9jb25uZWN0b3IgKmNvbm5lY3RvciA9IGlu
-dGVsX2RwLT5hdHRhY2hlZF9jb25uZWN0b3I7Cj4gKwljb25zdCBzdHJ1Y3QgZHJtX2Rpc3BsYXlf
-aW5mbyAqaW5mbyA9ICZjb25uZWN0b3ItPmJhc2UuZGlzcGxheV9pbmZvOwo+ICsJZW51bSBkcm1f
-bHNwY29uX21vZGUgbHNwY29uX2N1cnJlbnRfbW9kZSA9IGxzcGNvbl9nZXRfbW9kZShsc3Bjb24p
-Owo+ICsJY29uc3QgaW50IHBjb25fbW9kZV9tYXhfdG1kc19jbG9jayA9IDYwMDAwMDsKPiArCWNv
-bnN0IGludCBsc19tb2RlX21heF90bWRzX2Nsb2NrICAgPSAzNDAwMDA7Cj4gKwlpbnQgbW9kZV9y
-YXRlLCBtYXhfdG1kc19jbG9jayA9IHBjb25fbW9kZV9tYXhfdG1kc19jbG9jazsKPiArCj4gKwlp
-ZiAobHNwY29uLT5hY3RpdmUpIHsKPiArCQlzd2l0Y2ggKGJwcCkgewo+ICsJCWNhc2UgMzY6Cj4g
-KwkJCW1vZGVfcmF0ZSA9IHBpcGVfY29uZmlnLT5ody5hZGp1c3RlZF9tb2RlLmNydGNfY2xvY2sg
-KiAzIC8gMjsKPiArCQkJYnJlYWs7Cj4gKwkJY2FzZSAzMDoKPiArCQkJbW9kZV9yYXRlID0gcGlw
-ZV9jb25maWctPmh3LmFkanVzdGVkX21vZGUuY3J0Y19jbG9jayAqIDUgLyA0Owo+ICsJCQlicmVh
-azsKPiArCQljYXNlIDI0Ogo+ICsJCWRlZmF1bHQ6Cj4gKwkJCW1vZGVfcmF0ZSA9IHBpcGVfY29u
-ZmlnLT5ody5hZGp1c3RlZF9tb2RlLmNydGNfY2xvY2s7Cj4gKwkJCWJyZWFrOwo+ICsJCX0KPiAr
-Cj4gKwkJaWYgKGxzcGNvbl9jdXJyZW50X21vZGUgPT0gRFJNX0xTUENPTl9NT0RFX0xTKQo+ICsJ
-CQltYXhfdG1kc19jbG9jayA9IGxzX21vZGVfbWF4X3RtZHNfY2xvY2s7Cj4gKwo+ICsJCWlmIChp
-bmZvLT5tYXhfdG1kc19jbG9jaykKPiArCQkJbWF4X3RtZHNfY2xvY2sgPSBtaW4obWF4X3RtZHNf
-Y2xvY2ssCj4gKwkJCQkJICAgICBpbmZvLT5tYXhfdG1kc19jbG9jayk7Cj4gKwo+ICsJCWlmICht
-b2RlX3JhdGUgPiBtYXhfdG1kc19jbG9jaykKPiArCQkJcmV0dXJuIHRydWU7Cj4gKwl9Cj4gKwo+
-ICsJcmV0dXJuIGZhbHNlOwo+ICt9Cj4gKwoKSW5zdGVhZCBvZiB0aGlzLCBwbGVhc2UgYWRkIGEg
-c2ltcGxlIGludGVsX2xzcGNvbi5jIGZ1bmN0aW9uOgoKCWludCBsc3Bjb25fbWF4X3JhdGUoc3Ry
-dWN0IGludGVsX2xzcGNvbiAqbHNwY29uKTsKCnRoYXQgcmV0dXJucyB0aGUgbWF4IHJhdGUuIEV2
-ZXJ5dGhpbmcgZWxzZSBjYW4gdGhlbiBiZSBkb25lIGluCmludGVsX2RwLmMgYXJvdW5kIHRoaXMu
-IFRoZSBmdW5jdGlvbiBnZXRzIHNpbXBsaWZpZWQgZW5vdWdoIHRoYXQgeW91IGNhbgp0aHJvdyBv
-dXQgdGhlIGNvbnN0IGludHMgYW5kIHVzZSB0aGUgdmFsdWVzIGRpcmVjdGx5LgoKPiAgLyogT3B0
-aW1pemUgbGluayBjb25maWcgaW4gb3JkZXI6IG1heCBicHAsIG1pbiBjbG9jaywgbWluIGxhbmVz
-ICovCj4gIHN0YXRpYyBpbnQKPiAgaW50ZWxfZHBfY29tcHV0ZV9saW5rX2NvbmZpZ193aWRlKHN0
-cnVjdCBpbnRlbF9kcCAqaW50ZWxfZHAsCj4gQEAgLTE5ODksNiArMjAzMCwxMCBAQCBpbnRlbF9k
-cF9jb21wdXRlX2xpbmtfY29uZmlnX3dpZGUoc3RydWN0IGludGVsX2RwICppbnRlbF9kcCwKPiAg
-CWZvciAoYnBwID0gbGltaXRzLT5tYXhfYnBwOyBicHAgPj0gbGltaXRzLT5taW5fYnBwOyBicHAg
-LT0gMiAqIDMpIHsKPiAgCQlpbnQgb3V0cHV0X2JwcCA9IGludGVsX2RwX291dHB1dF9icHAocGlw
-ZV9jb25maWcsIGJwcCk7Cj4gIAo+ICsJCS8qIEJ5cGFzcyB0aCBicHAgaWYgcmVxdWlyZSBiYW5k
-d2lkdGggb3ZlciBIRE1JIHNwZWMgd2hlbiBMU1BDT04gYWN0aXZlICovCj4gKwkJaWYgKGludGVs
-X2RwX2xzcGNvbl9leGNlZWRfYmFuZHdpZHRoX2xpbWl0YXRpb24oaW50ZWxfZHAsIHBpcGVfY29u
-ZmlnLCBvdXRwdXRfYnBwKSkKPiArCQkJY29udGludWU7Cj4gKwoKVGhlIHBsYWNpbmcgc3RpY2tz
-IG91dCBsaWtlIGEgc29yZSB0aHVtYi4gSSB0aGluayB3ZSBuZWVkIHRvIGZpbHRlciBvdXQKdGhl
-IG1vZGVzIGFscmVhZHkgaW4gaW50ZWxfZHBfbW9kZV92YWxpZCgpLiBUaGlzIGlzbid0IGFsbCB0
-aGF0CmRpZmZlcmVudCBmcm9tIGludGVsX2RwX2Rvd25zdHJlYW1fbWF4X2RvdGNsb2NrKCkgaXMg
-aXQ/Cgo+ICAJCW1vZGVfcmF0ZSA9IGludGVsX2RwX2xpbmtfcmVxdWlyZWQoYWRqdXN0ZWRfbW9k
-ZS0+Y3J0Y19jbG9jaywKPiAgCQkJCQkJICAgb3V0cHV0X2JwcCk7CgpCdXQgSSBndWVzcyBzaW5j
-ZSB0aGUgbW9kZSB2YWxpZCBsaW1pdCBpcyBmb3IgOCBicGMsIHlvdSdsbCBhbHNvIG5lZWQgYQpj
-aGVjayBoZXJlPyBNYXliZSBWaWxsZSBoYXMgYmV0dGVyIGlkZWFzLgoKSGVyZSBpdCB3b3VsZCBi
-ZSBzb21ldGhpbmcgbGlrZToKCglpZiAobHNwY29uLT5hY3RpdmUgJiYgbW9kZV9yYXRlID4gbHNw
-Y29uX21heF9yYXRlKGxzY29uKSkKICAgICAgICAJY29udGludWU7CgpCUiwKSmFuaS4KCj4gIAo+
-IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2xzcGNvbi5j
-IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9sc3Bjb24uYwo+IGluZGV4IGQ4
-MDdjNTY0OGM4Ny4uNjk1MmM1MDI4ZmRmIDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9p
-OTE1L2Rpc3BsYXkvaW50ZWxfbHNwY29uLmMKPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9k
-aXNwbGF5L2ludGVsX2xzcGNvbi5jCj4gQEAgLTU1MCw2ICs1NTAsMTEgQEAgdm9pZCBsc3Bjb25f
-d2FpdF9wY29uX21vZGUoc3RydWN0IGludGVsX2xzcGNvbiAqbHNwY29uKQo+ICAJbHNwY29uX3dh
-aXRfbW9kZShsc3Bjb24sIERSTV9MU1BDT05fTU9ERV9QQ09OKTsKPiAgfQo+ICAKPiAraW50IGxz
-cGNvbl9nZXRfbW9kZShzdHJ1Y3QgaW50ZWxfbHNwY29uICpsc3Bjb24pCj4gK3sKPiArCXJldHVy
-biBsc3Bjb25fZ2V0X2N1cnJlbnRfbW9kZShsc3Bjb24pOwo+ICt9Cj4gKwo+ICBib29sIGxzcGNv
-bl9pbml0KHN0cnVjdCBpbnRlbF9kaWdpdGFsX3BvcnQgKmludGVsX2RpZ19wb3J0KQo+ICB7Cj4g
-IAlzdHJ1Y3QgaW50ZWxfZHAgKmRwID0gJmludGVsX2RpZ19wb3J0LT5kcDsKPiBkaWZmIC0tZ2l0
-IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9sc3Bjb24uaCBiL2RyaXZlcnMv
-Z3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfbHNwY29uLmgKPiBpbmRleCAzN2NmZGRmOGE5YzUu
-LjVjZTlkYWVmOTcwOCAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5
-L2ludGVsX2xzcGNvbi5oCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRl
-bF9sc3Bjb24uaAo+IEBAIC0xOCw2ICsxOCw3IEBAIHN0cnVjdCBpbnRlbF9sc3Bjb247Cj4gIGJv
-b2wgbHNwY29uX2luaXQoc3RydWN0IGludGVsX2RpZ2l0YWxfcG9ydCAqaW50ZWxfZGlnX3BvcnQp
-Owo+ICB2b2lkIGxzcGNvbl9yZXN1bWUoc3RydWN0IGludGVsX2xzcGNvbiAqbHNwY29uKTsKPiAg
-dm9pZCBsc3Bjb25fd2FpdF9wY29uX21vZGUoc3RydWN0IGludGVsX2xzcGNvbiAqbHNwY29uKTsK
-PiAraW50IGxzcGNvbl9nZXRfbW9kZShzdHJ1Y3QgaW50ZWxfbHNwY29uICpsc3Bjb24pOwo+ICB2
-b2lkIGxzcGNvbl93cml0ZV9pbmZvZnJhbWUoc3RydWN0IGludGVsX2VuY29kZXIgKmVuY29kZXIs
-Cj4gIAkJCSAgICBjb25zdCBzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZSAqY3J0Y19zdGF0ZSwKPiAg
-CQkJICAgIHVuc2lnbmVkIGludCB0eXBlLAoKLS0gCkphbmkgTmlrdWxhLCBJbnRlbCBPcGVuIFNv
-dXJjZSBHcmFwaGljcyBDZW50ZXIKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRl
-c2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8v
-aW50ZWwtZ2Z4Cg==
+
+On Fri, 17 Jan 2020, Jani Nikula wrote:
+>On Fri, 17 Jan 2020, Lee Shawn C <shawn.c.lee@intel.com> wrote:
+>> While mode setting, driver would calculate mode rate based on =
+
+>> resolution and bpp. And choose the best bpp that did not exceed DP =
+
+>> bandwidtd.
+>>
+>> But LSPCON had more restriction due to it convert DP to HDMI.
+>> Driver should respect HDMI's bandwidth limitation if LSPCON was =
+
+>> active. This change would ignore the bpp when its required output =
+
+>> bandwidth already over HDMI 2.0 or 1.4 spec.
+>>
+>> Cc: Imre Deak <imre.deak@intel.com>
+>> Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+>> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+>> Cc: Jani Nikula <jani.nikula@linux.intel.com>
+>> Cc: Cooper Chiou <cooper.chiou@intel.com>
+>> Cc: Sam McNally <sammc@google.com>
+>> Signed-off-by: Lee Shawn C <shawn.c.lee@intel.com>
+>> ---
+>>  drivers/gpu/drm/i915/display/intel_dp.c     | 45 +++++++++++++++++++++
+>>  drivers/gpu/drm/i915/display/intel_lspcon.c |  5 +++  =
+
+>> drivers/gpu/drm/i915/display/intel_lspcon.h |  1 +
+>>  3 files changed, 51 insertions(+)
+>>
+>> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c =
+
+>> b/drivers/gpu/drm/i915/display/intel_dp.c
+>> index c7424e2a04a3..c27d3e7ac219 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+>> @@ -1976,6 +1976,47 @@ static int intel_dp_output_bpp(const struct intel=
+_crtc_state *crtc_state, int bp
+>>  	return bpp;
+>>  }
+>>  =
+
+>> +static bool
+>> +intel_dp_lspcon_exceed_bandwidth_limitation(struct intel_dp *intel_dp,
+>> +					    struct intel_crtc_state *pipe_config,
+>> +					    int bpp)
+>> +{
+>> +	struct intel_lspcon *lspcon =3D dp_to_lspcon(intel_dp);
+>> +	struct intel_connector *connector =3D intel_dp->attached_connector;
+>> +	const struct drm_display_info *info =3D &connector->base.display_info;
+>> +	enum drm_lspcon_mode lspcon_current_mode =3D lspcon_get_mode(lspcon);
+>> +	const int pcon_mode_max_tmds_clock =3D 600000;
+>> +	const int ls_mode_max_tmds_clock   =3D 340000;
+>> +	int mode_rate, max_tmds_clock =3D pcon_mode_max_tmds_clock;
+>> +
+>> +	if (lspcon->active) {
+>> +		switch (bpp) {
+>> +		case 36:
+>> +			mode_rate =3D pipe_config->hw.adjusted_mode.crtc_clock * 3 / 2;
+>> +			break;
+>> +		case 30:
+>> +			mode_rate =3D pipe_config->hw.adjusted_mode.crtc_clock * 5 / 4;
+>> +			break;
+>> +		case 24:
+>> +		default:
+>> +			mode_rate =3D pipe_config->hw.adjusted_mode.crtc_clock;
+>> +			break;
+>> +		}
+>> +
+>> +		if (lspcon_current_mode =3D=3D DRM_LSPCON_MODE_LS)
+>> +			max_tmds_clock =3D ls_mode_max_tmds_clock;
+>> +
+>> +		if (info->max_tmds_clock)
+>> +			max_tmds_clock =3D min(max_tmds_clock,
+>> +					     info->max_tmds_clock);
+>> +
+>> +		if (mode_rate > max_tmds_clock)
+>> +			return true;
+>> +	}
+>> +
+>> +	return false;
+>> +}
+>> +
+>
+>Instead of this, please add a simple intel_lspcon.c function:
+>
+>	int lspcon_max_rate(struct intel_lspcon *lspcon);
+>
+>that returns the max rate. Everything else can then be done in intel_dp.c =
+around this. The function gets simplified enough that you can throw out the=
+ const ints and use the values directly.
+>
+
+Thanks for comment! I will rename and move it to intel_lspcon.c.
+
+>>  /* Optimize link config in order: max bpp, min clock, min lanes */  =
+
+>> static int  intel_dp_compute_link_config_wide(struct intel_dp =
+
+>> *intel_dp, @@ -1989,6 +2030,10 @@ =
+
+>> intel_dp_compute_link_config_wide(struct intel_dp *intel_dp,
+>>  	for (bpp =3D limits->max_bpp; bpp >=3D limits->min_bpp; bpp -=3D 2 * 3=
+) {
+>>  		int output_bpp =3D intel_dp_output_bpp(pipe_config, bpp);
+>>  =
+
+>> +		/* Bypass th bpp if require bandwidth over HDMI spec when LSPCON acti=
+ve */
+>> +		if (intel_dp_lspcon_exceed_bandwidth_limitation(intel_dp, pipe_config=
+, output_bpp))
+>> +			continue;
+>> +
+>
+>The placing sticks out like a sore thumb. I think we need to filter out th=
+e modes already in intel_dp_mode_valid(). =
+
+>This isn't all that different from intel_dp_downstream_max_dotclock() is i=
+t?
+
+Yes, what you said is right. intel_dp_mode_valid() did all the thing based =
+on source DP output capability.
+And intel_dp_downstream_max_dotclock() report LSPCON's DP RX bandwidth.
+We have to consider LSPCON's HDMI TX limitation as well to avoid display ou=
+tput data over HDMI's spec.
+
+>
+>>  		mode_rate =3D intel_dp_link_required(adjusted_mode->crtc_clock,
+>>  						   output_bpp);
+>
+>But I guess since the mode valid limit is for 8 bpc, you'll also need a ch=
+eck here? Maybe Ville has better ideas.
+>
+>Here it would be something like:
+>
+>	if (lspcon->active && mode_rate > lspcon_max_rate(lscon))
+>        	continue;
+
+Let's wait for more comments from Ville.
+I will follow the suggestion to update v2 patch later. =
+
+
+Best regards,
+Shawn
+
+>
+>BR,
+>Jani.
+>
+>>  =
+
+>> diff --git a/drivers/gpu/drm/i915/display/intel_lspcon.c =
+
+>> b/drivers/gpu/drm/i915/display/intel_lspcon.c
+>> index d807c5648c87..6952c5028fdf 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_lspcon.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_lspcon.c
+>> @@ -550,6 +550,11 @@ void lspcon_wait_pcon_mode(struct intel_lspcon *lsp=
+con)
+>>  	lspcon_wait_mode(lspcon, DRM_LSPCON_MODE_PCON);  }
+>>  =
+
+>> +int lspcon_get_mode(struct intel_lspcon *lspcon) {
+>> +	return lspcon_get_current_mode(lspcon); }
+>> +
+>>  bool lspcon_init(struct intel_digital_port *intel_dig_port)  {
+>>  	struct intel_dp *dp =3D &intel_dig_port->dp; diff --git =
+
+>> a/drivers/gpu/drm/i915/display/intel_lspcon.h =
+
+>> b/drivers/gpu/drm/i915/display/intel_lspcon.h
+>> index 37cfddf8a9c5..5ce9daef9708 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_lspcon.h
+>> +++ b/drivers/gpu/drm/i915/display/intel_lspcon.h
+>> @@ -18,6 +18,7 @@ struct intel_lspcon;  bool lspcon_init(struct =
+
+>> intel_digital_port *intel_dig_port);  void lspcon_resume(struct =
+
+>> intel_lspcon *lspcon);  void lspcon_wait_pcon_mode(struct intel_lspcon =
+
+>> *lspcon);
+>> +int lspcon_get_mode(struct intel_lspcon *lspcon);
+>>  void lspcon_write_infoframe(struct intel_encoder *encoder,
+>>  			    const struct intel_crtc_state *crtc_state,
+>>  			    unsigned int type,
+>
+>--
+>Jani Nikula, Intel Open Source Graphics Center
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
