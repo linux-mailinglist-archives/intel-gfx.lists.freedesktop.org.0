@@ -2,41 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8EF41140D89
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Jan 2020 16:13:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 90016140D94
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Jan 2020 16:15:21 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E662F6F5DA;
-	Fri, 17 Jan 2020 15:13:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 81B206F5DE;
+	Fri, 17 Jan 2020 15:15:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7AD6E6F5DA
- for <intel-gfx@lists.freedesktop.org>; Fri, 17 Jan 2020 15:13:28 +0000 (UTC)
-X-Amp-Result: UNSCANNABLE
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1A84A6F5DE
+ for <intel-gfx@lists.freedesktop.org>; Fri, 17 Jan 2020 15:15:18 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
 X-Amp-File-Uploaded: False
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga106.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 17 Jan 2020 07:13:28 -0800
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 17 Jan 2020 07:14:52 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,330,1574150400"; d="scan'208";a="220751512"
+X-IronPort-AV: E=Sophos;i="5.70,330,1574150400"; d="scan'208";a="274408573"
 Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by fmsmga008.fm.intel.com with SMTP; 17 Jan 2020 07:13:26 -0800
+ by FMSMGA003.fm.intel.com with SMTP; 17 Jan 2020 07:14:49 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 17 Jan 2020 17:13:25 +0200
-Date: Fri, 17 Jan 2020 17:13:25 +0200
+ Fri, 17 Jan 2020 17:14:48 +0200
+Date: Fri, 17 Jan 2020 17:14:48 +0200
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
 To: Jani Nikula <jani.nikula@intel.com>
-Message-ID: <20200117151325.GQ13686@intel.com>
+Message-ID: <20200117151448.GR13686@intel.com>
 References: <cover.1579270868.git.jani.nikula@intel.com>
- <4338a29e4ed49e69f859dff1490fd85f6ae6177e.1579270868.git.jani.nikula@intel.com>
- <20200117151238.GP13686@intel.com>
+ <42544944ce505826335bab30cc76e135581229be.1579270868.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20200117151238.GP13686@intel.com>
+In-Reply-To: <42544944ce505826335bab30cc76e135581229be.1579270868.git.jani.nikula@intel.com>
 X-Patchwork-Hint: comment
 User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH 8/9] drm/i915/bios: check port presence
- based on child device
+Subject: Re: [Intel-gfx] [PATCH 9/9] drm/i915: use
+ intel_bios_is_port_present()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,65 +55,47 @@ Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Jan 17, 2020 at 05:12:38PM +0200, Ville Syrj=E4l=E4 wrote:
-> On Fri, Jan 17, 2020 at 04:29:28PM +0200, Jani Nikula wrote:
-> > Affects only two calls in output setup, and ddi init will check the
-> > features in more fine grained way.
-> > =
-
-> > This will make future changes easier.
-> > =
-
-> > Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_bios.c | 4 +---
-> >  1 file changed, 1 insertion(+), 3 deletions(-)
-> > =
-
-> > diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/dr=
-m/i915/display/intel_bios.c
-> > index 4c69253739ec..70fb87e7afb6 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_bios.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_bios.c
-> > @@ -2236,9 +2236,7 @@ bool intel_bios_is_port_present(struct drm_i915_p=
-rivate *dev_priv, enum port por
-> >  		const struct ddi_vbt_port_info *port_info =3D
-> >  			&dev_priv->vbt.ddi_port_info[port];
-> >  =
-
-> > -		return port_info->supports_dp ||
-> > -		       port_info->supports_dvi ||
-> > -		       port_info->supports_hdmi;
-> > +		return port_info->child;
+On Fri, Jan 17, 2020 at 04:29:29PM +0200, Jani Nikula wrote:
+> Don't access i915->vbt.ddi_port_info[] directly.
 > =
 
-> Pondering what happens if there's a non-DP/DVI/HDMI port declared in the
-> VBT... I guess those should not have their dvo port set to anything we
-> accept?
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 
-Umm, no. We accept DVO_PORT_CRT as PORT_E.
+Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
 
+> ---
+>  drivers/gpu/drm/i915/display/intel_combo_phy.c | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
 > =
 
-> >  	}
-> >  =
+> diff --git a/drivers/gpu/drm/i915/display/intel_combo_phy.c b/drivers/gpu=
+/drm/i915/display/intel_combo_phy.c
+> index 44bbc7e74fc3..5f54aca7c36f 100644
+> --- a/drivers/gpu/drm/i915/display/intel_combo_phy.c
+> +++ b/drivers/gpu/drm/i915/display/intel_combo_phy.c
+> @@ -265,8 +265,8 @@ void intel_combo_phy_power_up_lanes(struct drm_i915_p=
+rivate *dev_priv,
+>  =
 
-> >  	/* FIXME maybe deal with port A as well? */
-> > -- =
+>  static u32 ehl_combo_phy_a_mux(struct drm_i915_private *i915, u32 val)
+>  {
+> -	bool ddi_a_present =3D i915->vbt.ddi_port_info[PORT_A].child !=3D NULL;
+> -	bool ddi_d_present =3D i915->vbt.ddi_port_info[PORT_D].child !=3D NULL;
+> +	bool ddi_a_present =3D intel_bios_is_port_present(i915, PORT_A);
+> +	bool ddi_d_present =3D intel_bios_is_port_present(i915, PORT_D);
+>  	bool dsi_present =3D intel_bios_is_dsi_present(i915, NULL);
+>  =
 
-> > 2.20.1
-> > =
-
-> > _______________________________________________
-> > Intel-gfx mailing list
-> > Intel-gfx@lists.freedesktop.org
-> > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-> =
-
+>  	/*
 > -- =
 
-> Ville Syrj=E4l=E4
-> Intel
+> 2.20.1
+> =
+
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 
 -- =
 
