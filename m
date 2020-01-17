@@ -1,44 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E8E6F14132D
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Jan 2020 22:33:55 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 256DF1413D3
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Jan 2020 23:01:03 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D1FB789EAC;
-	Fri, 17 Jan 2020 21:33:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7AA506F93C;
+	Fri, 17 Jan 2020 22:01:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2426789EAC
- for <intel-gfx@lists.freedesktop.org>; Fri, 17 Jan 2020 21:33:51 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 17 Jan 2020 13:33:50 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,331,1574150400"; d="scan'208";a="249381111"
-Received: from linux.intel.com ([10.54.29.200])
- by fmsmga004.fm.intel.com with ESMTP; 17 Jan 2020 13:33:49 -0800
-Received: from [10.252.10.77] (abudanko-mobl.ccr.corp.intel.com [10.252.10.77])
- by linux.intel.com (Postfix) with ESMTP id 7E2515803DA;
- Fri, 17 Jan 2020 13:33:38 -0800 (PST)
-To: Will Deacon <will@kernel.org>
-References: <c0460c78-b1a6-b5f7-7119-d97e5998f308@linux.intel.com>
- <ce3086d8-9fce-84d6-8b4e-948996c2e0fc@linux.intel.com>
- <20200117105153.GB6144@willie-the-truck>
-From: Alexey Budankov <alexey.budankov@linux.intel.com>
-Organization: Intel Corp.
-Message-ID: <dc14cf55-d63e-3565-b366-3a93d54cd588@linux.intel.com>
-Date: Sat, 18 Jan 2020 00:33:37 +0300
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
- Thunderbird/68.4.1
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B44F06F93C
+ for <intel-gfx@lists.freedesktop.org>; Fri, 17 Jan 2020 22:00:59 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19922863-1500050 
+ for multiple; Fri, 17 Jan 2020 22:00:39 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri, 17 Jan 2020 22:00:38 +0000
+Message-Id: <20200117220038.3409820-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.25.0
 MIME-Version: 1.0
-In-Reply-To: <20200117105153.GB6144@willie-the-truck>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH v4 8/9] drivers/perf: open access for
- CAP_SYS_PERFMON privileged process
+Subject: [Intel-gfx] [PATCH] drm/i915/gem: Store mmap_offsets in an rbtree
+ rather than a plain list
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,94 +37,267 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Mark Rutland <mark.rutland@arm.com>, Song Liu <songliubraving@fb.com>,
- Peter Zijlstra <peterz@infradead.org>,
- Benjamin Herrenschmidt <benh@kernel.crashing.org>,
- Will Deacon <will.deacon@arm.com>, Alexei Starovoitov <ast@kernel.org>,
- Stephane Eranian <eranian@google.com>,
- "james.bottomley@hansenpartnership.com"
- <james.bottomley@hansenpartnership.com>, Paul Mackerras <paulus@samba.org>,
- Jiri Olsa <jolsa@redhat.com>, Andi Kleen <ak@linux.intel.com>,
- Michael Ellerman <mpe@ellerman.id.au>, Igor Lubashev <ilubashe@akamai.com>,
- James Morris <jmorris@namei.org>,
- Alexander Shishkin <alexander.shishkin@linux.intel.com>,
- Ingo Molnar <mingo@redhat.com>, oprofile-list@lists.sf.net,
- Serge Hallyn <serge@hallyn.com>, Robert Richter <rric@kernel.org>,
- Kees Cook <keescook@chromium.org>, Jann Horn <jannh@google.com>,
- "selinux@vger.kernel.org" <selinux@vger.kernel.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- Arnaldo Carvalho de Melo <acme@kernel.org>, Namhyung Kim <namhyung@kernel.org>,
- Thomas Gleixner <tglx@linutronix.de>, linux-arm-kernel@lists.infradead.org,
- "linux-parisc@vger.kernel.org" <linux-parisc@vger.kernel.org>,
- linux-kernel <linux-kernel@vger.kernel.org>,
- "linux-perf-users@vger.kernel.org" <linux-perf-users@vger.kernel.org>,
- "linux-security-module@vger.kernel.org"
- <linux-security-module@vger.kernel.org>,
- Casey Schaufler <casey@schaufler-ca.com>,
- "bpf@vger.kernel.org" <bpf@vger.kernel.org>,
- "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Currently we create a new mmap_offset for every call to
+mmap_offset_ioctl. This exposes ourselves to an abusive client that may
+simply create new mmap_offsets ad infinitum, which will exhaust physical
+memory and the virtual address space. In addition to the exhaustion, a
+very long linear list of mmap_offsets causes other clients using the
+object to incur long list walks -- these long lists can also be
+generated by simply having many clients generate their own mmap_offset.
 
-On 17.01.2020 13:51, Will Deacon wrote:
-> On Wed, Dec 18, 2019 at 12:30:29PM +0300, Alexey Budankov wrote:
->>
->> Open access to monitoring for CAP_SYS_PERFMON privileged processes.
->> For backward compatibility reasons access to the monitoring remains open
->> for CAP_SYS_ADMIN privileged processes but CAP_SYS_ADMIN usage for secure
->> monitoring is discouraged with respect to CAP_SYS_PERFMON capability.
->>
->> Signed-off-by: Alexey Budankov <alexey.budankov@linux.intel.com>
->> ---
->>  drivers/perf/arm_spe_pmu.c | 4 ++--
->>  1 file changed, 2 insertions(+), 2 deletions(-)
->>
->> diff --git a/drivers/perf/arm_spe_pmu.c b/drivers/perf/arm_spe_pmu.c
->> index 4e4984a55cd1..5dff81bc3324 100644
->> --- a/drivers/perf/arm_spe_pmu.c
->> +++ b/drivers/perf/arm_spe_pmu.c
->> @@ -274,7 +274,7 @@ static u64 arm_spe_event_to_pmscr(struct perf_event *event)
->>  	if (!attr->exclude_kernel)
->>  		reg |= BIT(SYS_PMSCR_EL1_E1SPE_SHIFT);
->>  
->> -	if (IS_ENABLED(CONFIG_PID_IN_CONTEXTIDR) && capable(CAP_SYS_ADMIN))
->> +	if (IS_ENABLED(CONFIG_PID_IN_CONTEXTIDR) && perfmon_capable())
->>  		reg |= BIT(SYS_PMSCR_EL1_CX_SHIFT);
->>  
->>  	return reg;
->> @@ -700,7 +700,7 @@ static int arm_spe_pmu_event_init(struct perf_event *event)
->>  		return -EOPNOTSUPP;
->>  
->>  	reg = arm_spe_event_to_pmscr(event);
->> -	if (!capable(CAP_SYS_ADMIN) &&
->> +	if (!perfmon_capable() &&
->>  	    (reg & (BIT(SYS_PMSCR_EL1_PA_SHIFT) |
->>  		    BIT(SYS_PMSCR_EL1_CX_SHIFT) |
->>  		    BIT(SYS_PMSCR_EL1_PCT_SHIFT))))
-> 
-> Acked-by: Will Deacon <will@kernel.org>
-> 
-> Worth noting that this allows profiling of *physical* addresses used by
-> memory access instructions and so probably has some security implications
-> beyond the usual "but perf is buggy" line of reasoning.
+Switching to an rbtree store for obj->mmo.offsets allows us to use a
+binary search for duplicated mmap_offsets (preventing the exhaustion
+from a trivial malicious client), and also quickly search for matching
+mmap_offsets on object close.
 
-Good to know. Thank you!
-The data on physical addresses used by memory access instructions can already be
-provided under CAP_SYS_ADMIN privileges [1] thus, I suppose, any implications you
-have mentioned are already in place. I believe providing the data under CAP_PERFMON
-alone without the rest of CAP_SYS_ADMIN credentials decreases chances to misuse the
-data for harm and makes the monitoring more secure.
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Abdiel Janulgue <abdiel.janulgue@linux.intel.com>
+---
+ drivers/gpu/drm/i915/gem/i915_gem_mman.c      | 93 +++++++++++++++++--
+ drivers/gpu/drm/i915/gem/i915_gem_object.c    | 46 +++++++--
+ .../gpu/drm/i915/gem/i915_gem_object_types.h  |  4 +-
+ 3 files changed, 124 insertions(+), 19 deletions(-)
 
-~Alexey
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_mman.c b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
+index b9fdac2f9003..2908a205faa9 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_mman.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
+@@ -455,10 +455,11 @@ static void i915_gem_object_release_mmap_gtt(struct drm_i915_gem_object *obj)
+ 
+ void i915_gem_object_release_mmap_offset(struct drm_i915_gem_object *obj)
+ {
+-	struct i915_mmap_offset *mmo;
++	struct i915_mmap_offset *mmo, *mn;
+ 
+ 	spin_lock(&obj->mmo.lock);
+-	list_for_each_entry(mmo, &obj->mmo.offsets, offset) {
++	rbtree_postorder_for_each_entry_safe(mmo, mn,
++					     &obj->mmo.offsets, offset) {
+ 		/*
+ 		 * vma_node_unmap for GTT mmaps handled already in
+ 		 * __i915_gem_object_release_mmap_gtt
+@@ -487,6 +488,84 @@ void i915_gem_object_release_mmap(struct drm_i915_gem_object *obj)
+ 	i915_gem_object_release_mmap_offset(obj);
+ }
+ 
++static struct i915_mmap_offset *
++lookup_mmo(struct drm_i915_gem_object *obj,
++	   enum i915_mmap_type mmap_type,
++	   struct drm_file *file)
++{
++	struct i915_mmap_offset *match = NULL;
++	struct rb_node *rb;
++
++	spin_lock(&obj->mmo.lock);
++	rb = obj->mmo.offsets.rb_node;
++	while (rb) {
++		struct i915_mmap_offset *mmo =
++			rb_entry(rb, typeof(*mmo), offset);
++
++		if (mmo->file < file) {
++			rb = rb->rb_right;
++			continue;
++		}
++
++		if (mmo->file > file) {
++			rb = rb->rb_left;
++			continue;
++		}
++
++		if (mmo->mmap_type < mmap_type) {
++			rb = rb->rb_right;
++			continue;
++		}
++
++		if (mmo->mmap_type > mmap_type) {
++			rb = rb->rb_left;
++			continue;
++		}
++
++		match = mmo;
++		break;
++	}
++	spin_unlock(&obj->mmo.lock);
++
++	return match;
++}
++
++static struct i915_mmap_offset *
++insert_mmo(struct drm_i915_gem_object *obj, struct i915_mmap_offset *mmo)
++{
++	struct rb_node *rb, **p;
++
++	spin_lock(&obj->mmo.lock);
++	rb = NULL;
++	p = &obj->mmo.offsets.rb_node;
++	while (*p) {
++		struct i915_mmap_offset *pos;
++
++		rb = *p;
++		pos = rb_entry(rb, typeof(*pos), offset);
++
++		if (pos->file < mmo->file) {
++			p = &rb->rb_right;
++			continue;
++		}
++
++		if (pos->file > mmo->file) {
++			p = &rb->rb_left;
++			continue;
++		}
++
++		if (pos->mmap_type < mmo->mmap_type)
++			p = &rb->rb_right;
++		else
++			p = &rb->rb_left;
++	}
++	rb_link_node(&mmo->offset, rb, p);
++	rb_insert_color(&mmo->offset, &obj->mmo.offsets);
++	spin_unlock(&obj->mmo.lock);
++
++	return mmo;
++}
++
+ static struct i915_mmap_offset *
+ mmap_offset_attach(struct drm_i915_gem_object *obj,
+ 		   enum i915_mmap_type mmap_type,
+@@ -496,6 +575,10 @@ mmap_offset_attach(struct drm_i915_gem_object *obj,
+ 	struct i915_mmap_offset *mmo;
+ 	int err;
+ 
++	mmo = lookup_mmo(obj, mmap_type, file);
++	if (mmo)
++		return mmo;
++
+ 	mmo = kmalloc(sizeof(*mmo), GFP_KERNEL);
+ 	if (!mmo)
+ 		return ERR_PTR(-ENOMEM);
+@@ -526,11 +609,7 @@ mmap_offset_attach(struct drm_i915_gem_object *obj,
+ 	if (file)
+ 		drm_vma_node_allow(&mmo->vma_node, file);
+ 
+-	spin_lock(&obj->mmo.lock);
+-	list_add(&mmo->offset, &obj->mmo.offsets);
+-	spin_unlock(&obj->mmo.lock);
+-
+-	return mmo;
++	return insert_mmo(obj, mmo);
+ 
+ err:
+ 	kfree(mmo);
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.c b/drivers/gpu/drm/i915/gem/i915_gem_object.c
+index 46bacc82ddc4..3cc9f83f0bae 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_object.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_object.c
+@@ -63,7 +63,7 @@ void i915_gem_object_init(struct drm_i915_gem_object *obj,
+ 	INIT_LIST_HEAD(&obj->lut_list);
+ 
+ 	spin_lock_init(&obj->mmo.lock);
+-	INIT_LIST_HEAD(&obj->mmo.offsets);
++	obj->mmo.offsets = RB_ROOT;
+ 
+ 	init_rcu_head(&obj->rcu);
+ 
+@@ -96,6 +96,37 @@ void i915_gem_object_set_cache_coherency(struct drm_i915_gem_object *obj,
+ 		!(obj->cache_coherent & I915_BO_CACHE_COHERENT_FOR_WRITE);
+ }
+ 
++static struct i915_mmap_offset *
++first_mmo(struct drm_i915_gem_object *obj, struct drm_file *file)
++{
++	struct i915_mmap_offset *first = NULL;
++	struct rb_node *pos;
++
++	pos = obj->mmo.offsets.rb_node;
++	while (pos) {
++		struct i915_mmap_offset *mmo =
++			rb_entry(pos, typeof(*mmo), offset);
++
++		if (mmo->file < file) {
++			pos = pos->rb_right;
++			continue;
++		}
++
++		pos = pos->rb_left;
++		if (mmo->file == file)
++			first = mmo;
++	}
++
++	return first;
++}
++
++static struct i915_mmap_offset *
++next_mmo(struct i915_mmap_offset *pos, struct drm_file *file)
++{
++	pos = rb_entry_safe(rb_next(&pos->offset), typeof(*pos), offset);
++	return pos && pos->file == file ? pos : NULL;
++}
++
+ void i915_gem_close_object(struct drm_gem_object *gem, struct drm_file *file)
+ {
+ 	struct drm_i915_gem_object *obj = to_intel_bo(gem);
+@@ -117,14 +148,8 @@ void i915_gem_close_object(struct drm_gem_object *gem, struct drm_file *file)
+ 	i915_gem_object_unlock(obj);
+ 
+ 	spin_lock(&obj->mmo.lock);
+-	list_for_each_entry(mmo, &obj->mmo.offsets, offset) {
+-		if (mmo->file != file)
+-			continue;
+-
+-		spin_unlock(&obj->mmo.lock);
++	for (mmo = first_mmo(obj, file); mmo; mmo = next_mmo(mmo, file))
+ 		drm_vma_node_revoke(&mmo->vma_node, file);
+-		spin_lock(&obj->mmo.lock);
+-	}
+ 	spin_unlock(&obj->mmo.lock);
+ 
+ 	list_for_each_entry_safe(lut, ln, &close, obj_link) {
+@@ -203,12 +228,13 @@ static void __i915_gem_free_objects(struct drm_i915_private *i915,
+ 
+ 		i915_gem_object_release_mmap(obj);
+ 
+-		list_for_each_entry_safe(mmo, mn, &obj->mmo.offsets, offset) {
++		rbtree_postorder_for_each_entry_safe(mmo, mn,
++						     &obj->mmo.offsets,
++						     offset) {
+ 			drm_vma_offset_remove(obj->base.dev->vma_offset_manager,
+ 					      &mmo->vma_node);
+ 			kfree(mmo);
+ 		}
+-		INIT_LIST_HEAD(&obj->mmo.offsets);
+ 
+ 		GEM_BUG_ON(atomic_read(&obj->bind_count));
+ 		GEM_BUG_ON(obj->userfault_count);
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object_types.h b/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
+index 88e268633fdc..124fd2fb1bec 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
++++ b/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
+@@ -77,7 +77,7 @@ struct i915_mmap_offset {
+ 	struct drm_file *file;
+ 	enum i915_mmap_type mmap_type;
+ 
+-	struct list_head offset;
++	struct rb_node offset;
+ };
+ 
+ struct drm_i915_gem_object {
+@@ -137,7 +137,7 @@ struct drm_i915_gem_object {
+ 
+ 	struct {
+ 		spinlock_t lock; /* Protects access to mmo offsets */
+-		struct list_head offsets;
++		struct rb_root offsets;
+ 	} mmo;
+ 
+ 	I915_SELFTEST_DECLARE(struct list_head st_link);
+-- 
+2.25.0
 
-[1] https://www.kernel.org/doc/html/latest/admin-guide/perf-security.html
-
-> 
-> Will
-> 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
