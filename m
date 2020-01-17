@@ -1,31 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4659B140809
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Jan 2020 11:32:40 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 82AA014080E
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Jan 2020 11:36:25 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E016F6F4E3;
-	Fri, 17 Jan 2020 10:32:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6E2A96F4E6;
+	Fri, 17 Jan 2020 10:36:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id F35906F4E4;
- Fri, 17 Jan 2020 10:32:35 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 3EDD96F4E4;
+ Fri, 17 Jan 2020 10:36:22 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id EFE1FA47E7;
- Fri, 17 Jan 2020 10:32:35 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 35A82A47E0;
+ Fri, 17 Jan 2020 10:36:22 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Stanislav Lisovskiy" <stanislav.lisovskiy@intel.com>
-Date: Fri, 17 Jan 2020 10:32:35 -0000
-Message-ID: <157925715598.26756.15162224316843556465@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Fri, 17 Jan 2020 10:36:22 -0000
+Message-ID: <157925738218.26757.13152295175857139002@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20200117095026.1113-1-stanislav.lisovskiy@intel.com>
-In-Reply-To: <20200117095026.1113-1-stanislav.lisovskiy@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiB3YXJuaW5nIGZvciBF?=
- =?utf-8?q?nable_second_DBuf_slice_for_ICL_and_TGL_=28rev17=29?=
+References: <20200117101314.2897102-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200117101314.2897102-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915/gt=3A_Report_the_currently_active_execlists_reques?=
+ =?utf-8?q?t?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,27 +48,20 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: Enable second DBuf slice for ICL and TGL (rev17)
-URL   : https://patchwork.freedesktop.org/series/70059/
+Series: drm/i915/gt: Report the currently active execlists request
+URL   : https://patchwork.freedesktop.org/series/72179/
 State : warning
 
 == Summary ==
 
-CALL    scripts/checksyscalls.sh
-  CALL    scripts/atomic/check-atomics.sh
-  CHK     include/generated/compile.h
-Kernel: arch/x86/boot/bzImage is ready  (#1)
-  Building modules, stage 2.
-  MODPOST 122 modules
-ERROR: "__udivdi3" [drivers/gpu/drm/amd/amdgpu/amdgpu.ko] undefined!
-scripts/Makefile.modpost:93: recipe for target '__modpost' failed
-make[1]: *** [__modpost] Error 1
-Makefile:1282: recipe for target 'modules' failed
-make: *** [modules] Error 2
+$ dim checkpatch origin/drm-tip
+f7bf30d3006e drm/i915/gt: Report the currently active execlists request
+-:13: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 22b7a426bbe1 ("drm/i915/execlists: Preempt-to-busy")'
+#13: 
+References: 22b7a426bbe1 ("drm/i915/execlists: Preempt-to-busy")
 
-== Logs ==
+total: 1 errors, 0 warnings, 0 checks, 48 lines checked
 
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16145/build_32bit.log
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
