@@ -1,30 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 108C914089F
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Jan 2020 12:06:22 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 226481408BF
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Jan 2020 12:15:59 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 673486F500;
-	Fri, 17 Jan 2020 11:06:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 93AF26F501;
+	Fri, 17 Jan 2020 11:15:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BF5196F500
- for <intel-gfx@lists.freedesktop.org>; Fri, 17 Jan 2020 11:06:19 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 951C16F502
+ for <intel-gfx@lists.freedesktop.org>; Fri, 17 Jan 2020 11:15:54 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19914539-1500050 
- for multiple; Fri, 17 Jan 2020 11:06:04 +0000
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19914671-1500050 
+ for multiple; Fri, 17 Jan 2020 11:15:48 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri, 17 Jan 2020 11:06:02 +0000
-Message-Id: <20200117110603.2982286-1-chris@chris-wilson.co.uk>
+Date: Fri, 17 Jan 2020 11:15:43 +0000
+Message-Id: <20200117111546.3012803-1-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.25.0
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915: Satisfy smatch that a loop has at
- least one iteration
+Subject: [Intel-gfx] [PATCH 1/4] drm/i915: Only retire requests when
+ eviction is allowed to blocked
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,32 +42,39 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Smatch worries that the engine->mask may be 0 leading to the loop being
-shortcircuited leaving the next pointer unset,
-
-drivers/gpu/drm/i915/i915_active.c:667 i915_active_acquire_preallocate_barrier() error: uninitialized symbol 'next'.
-
-Assert that mask is not 0 and smatch can then verify that next must be
-initialised before use.
+We want to keep the PIN_NONBLOCK search quick, avoiding evicting
+recently active nodes. To that end, skip performing the more laborious
+retirement prior to beginning the fast search.
 
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 ---
- drivers/gpu/drm/i915/i915_active.c | 1 +
- 1 file changed, 1 insertion(+)
+ drivers/gpu/drm/i915/i915_gem_evict.c | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/i915_active.c b/drivers/gpu/drm/i915/i915_active.c
-index f3da5c06f331..ace55d5d4ca7 100644
---- a/drivers/gpu/drm/i915/i915_active.c
-+++ b/drivers/gpu/drm/i915/i915_active.c
-@@ -621,6 +621,7 @@ int i915_active_acquire_preallocate_barrier(struct i915_active *ref,
- 	 * We can then use the preallocated nodes in
- 	 * i915_active_acquire_barrier()
+diff --git a/drivers/gpu/drm/i915/i915_gem_evict.c b/drivers/gpu/drm/i915/i915_gem_evict.c
+index 0697bedebeef..5f8b6cc55195 100644
+--- a/drivers/gpu/drm/i915/i915_gem_evict.c
++++ b/drivers/gpu/drm/i915/i915_gem_evict.c
+@@ -124,7 +124,8 @@ i915_gem_evict_something(struct i915_address_space *vm,
+ 				    min_size, alignment, color,
+ 				    start, end, mode);
+ 
+-	intel_gt_retire_requests(vm->gt);
++	if (!(flags & PIN_NONBLOCK))
++		intel_gt_retire_requests(vm->gt);
+ 
+ search_again:
+ 	active = NULL;
+@@ -270,7 +271,8 @@ int i915_gem_evict_for_node(struct i915_address_space *vm,
+ 	 * a stray pin (preventing eviction) that can only be resolved by
+ 	 * retiring.
  	 */
-+	GEM_BUG_ON(!mask);
- 	for_each_engine_masked(engine, gt, mask, tmp) {
- 		u64 idx = engine->kernel_context->timeline->fence_context;
- 		struct active_node *node;
+-	intel_gt_retire_requests(vm->gt);
++	if (!(flags & PIN_NONBLOCK))
++		intel_gt_retire_requests(vm->gt);
+ 
+ 	if (i915_vm_has_cache_coloring(vm)) {
+ 		/* Expand search to cover neighbouring guard pages (or lack!) */
 -- 
 2.25.0
 
