@@ -2,39 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F65D140D95
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Jan 2020 16:15:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 235F8140DC2
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Jan 2020 16:23:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6A4D86F5DD;
-	Fri, 17 Jan 2020 15:15:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0ED966F5E2;
+	Fri, 17 Jan 2020 15:23:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DC7E06F5DD;
- Fri, 17 Jan 2020 15:15:42 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 028736F5E2
+ for <intel-gfx@lists.freedesktop.org>; Fri, 17 Jan 2020 15:23:50 +0000 (UTC)
+X-Amp-Result: UNSCANNABLE
 X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 17 Jan 2020 07:15:42 -0800
-X-IronPort-AV: E=Sophos;i="5.70,330,1574150400"; d="scan'208";a="218934603"
-Received: from jnikula-mobl3.fi.intel.com (HELO localhost) ([10.237.66.161])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 17 Jan 2020 07:15:39 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>,
- Zhenyu Wang <zhenyuw@linux.intel.com>
-In-Reply-To: <157164501001.24426.17278525357815707355@skylake-alporthouse-com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20191016183902.13614-1-chris@chris-wilson.co.uk>
- <20191016183902.13614-2-chris@chris-wilson.co.uk>
- <20191021053724.GB8745@zhen-hp.sh.intel.com>
- <157164501001.24426.17278525357815707355@skylake-alporthouse-com>
-Date: Fri, 17 Jan 2020 17:15:36 +0200
-Message-ID: <87ftgegllz.fsf@intel.com>
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 17 Jan 2020 07:23:50 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,330,1574150400"; d="scan'208";a="262640887"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by fmsmga001.fm.intel.com with SMTP; 17 Jan 2020 07:23:48 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 17 Jan 2020 17:23:48 +0200
+Date: Fri, 17 Jan 2020 17:23:48 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Message-ID: <20200117152348.GS13686@intel.com>
+References: <cover.1579270868.git.jani.nikula@intel.com>
+ <4338a29e4ed49e69f859dff1490fd85f6ae6177e.1579270868.git.jani.nikula@intel.com>
+ <20200117151238.GP13686@intel.com>
+ <20200117151325.GQ13686@intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915/gvt: Wean gvt off
- dev_priv->engine[]
+Content-Disposition: inline
+In-Reply-To: <20200117151325.GQ13686@intel.com>
+X-Patchwork-Hint: comment
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH 8/9] drm/i915/bios: check port presence
+ based on child device
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,43 +50,90 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org,
- intel-gvt-dev <intel-gvt-dev@lists.freedesktop.org>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 21 Oct 2019, Chris Wilson <chris@chris-wilson.co.uk> wrote:
-> Quoting Zhenyu Wang (2019-10-21 06:37:24)
->> On 2019.10.16 19:39:02 +0100, Chris Wilson wrote:
->> > Stop trying to escape out of the gvt layer to find the engine that we
->> > initially setup for use with gvt. Record the engines during initialisation
->> > and use them henceforth.
->> > 
->> > add/remove: 1/4 grow/shrink: 22/28 up/down: 341/-1410 (-1069)
->> > 
->> > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
->> > ---
->> 
->> Thanks for this cleanup! Quick review seems good to me, although it
->> looks pretty fine for me on ring_id replacement, this big one also
->> includes other changes like indent fix, debugfs item change, etc.
->> Could we split them for easier merge? Can have a gvt developer to
->> help on that.
->
-> Just make gvt/ checkpatch clean so that CI doesn't reject patches
-> because the surrounding code does not conform to coding style.
+On Fri, Jan 17, 2020 at 05:13:25PM +0200, Ville Syrj=E4l=E4 wrote:
+> On Fri, Jan 17, 2020 at 05:12:38PM +0200, Ville Syrj=E4l=E4 wrote:
+> > On Fri, Jan 17, 2020 at 04:29:28PM +0200, Jani Nikula wrote:
+> > > Affects only two calls in output setup, and ddi init will check the
+> > > features in more fine grained way.
+> > > =
 
-Sadly this has fallen between the cracks. Could someone pick this up
-again please, maybe from the gvt team?
+> > > This will make future changes easier.
+> > > =
 
-BR,
-Jani.
+> > > Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> > > ---
+> > >  drivers/gpu/drm/i915/display/intel_bios.c | 4 +---
+> > >  1 file changed, 1 insertion(+), 3 deletions(-)
+> > > =
 
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/=
+drm/i915/display/intel_bios.c
+> > > index 4c69253739ec..70fb87e7afb6 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_bios.c
+> > > +++ b/drivers/gpu/drm/i915/display/intel_bios.c
+> > > @@ -2236,9 +2236,7 @@ bool intel_bios_is_port_present(struct drm_i915=
+_private *dev_priv, enum port por
+> > >  		const struct ddi_vbt_port_info *port_info =3D
+> > >  			&dev_priv->vbt.ddi_port_info[port];
+> > >  =
 
--- 
-Jani Nikula, Intel Open Source Graphics Center
+> > > -		return port_info->supports_dp ||
+> > > -		       port_info->supports_dvi ||
+> > > -		       port_info->supports_hdmi;
+> > > +		return port_info->child;
+> > =
+
+> > Pondering what happens if there's a non-DP/DVI/HDMI port declared in the
+> > VBT... I guess those should not have their dvo port set to anything we
+> > accept?
+> =
+
+> Umm, no. We accept DVO_PORT_CRT as PORT_E.
+
+Maybe it doesn't matter though. Hopefully no VBT has that on skl+,
+and on hsw/bdw the current CRT init code doesn't seem to care
+what this says.
+
+> =
+
+> > =
+
+> > >  	}
+> > >  =
+
+> > >  	/* FIXME maybe deal with port A as well? */
+> > > -- =
+
+> > > 2.20.1
+> > > =
+
+> > > _______________________________________________
+> > > Intel-gfx mailing list
+> > > Intel-gfx@lists.freedesktop.org
+> > > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+> > =
+
+> > -- =
+
+> > Ville Syrj=E4l=E4
+> > Intel
+> =
+
+> -- =
+
+> Ville Syrj=E4l=E4
+> Intel
+
+-- =
+
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
