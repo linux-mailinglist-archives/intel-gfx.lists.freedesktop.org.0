@@ -2,37 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E533B140C2C
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Jan 2020 15:13:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D07D140C52
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Jan 2020 15:20:44 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 85A0F6F591;
-	Fri, 17 Jan 2020 14:13:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8C02B6F585;
+	Fri, 17 Jan 2020 14:20:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2D7EE6F58F;
- Fri, 17 Jan 2020 14:13:36 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 17 Jan 2020 06:13:35 -0800
-X-IronPort-AV: E=Sophos;i="5.70,330,1574150400"; d="scan'208";a="218918876"
-Received: from jnikula-mobl3.fi.intel.com (HELO localhost) ([10.237.66.161])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 17 Jan 2020 06:13:31 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Andi Shyti <andi.shyti@intel.com>
-In-Reply-To: <20200117140552.GB3238@intel.intel>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20200117073436.6507-1-zhangxiaoxu5@huawei.com>
- <20200117121550.GA3238@intel.intel> <87tv4ugr7y.fsf@intel.com>
- <20200117140552.GB3238@intel.intel>
-Date: Fri, 17 Jan 2020 16:13:28 +0200
-Message-ID: <87muamgohj.fsf@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 975106E02F;
+ Fri, 17 Jan 2020 14:20:40 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 8D539A011A;
+ Fri, 17 Jan 2020 14:20:40 +0000 (UTC)
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Fix i915_error_state_store error
- defination
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Fri, 17 Jan 2020 14:20:40 -0000
+Message-ID: <157927084055.26757.12500385563766759776@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200117111546.3012803-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200117111546.3012803-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_series_starting_with_=5B1/4=5D_drm/i915=3A_Only_retire_requ?=
+ =?utf-8?q?ests_when_eviction_is_allowed_to_blocked?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,50 +39,36 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: airlied@linux.ie, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, Zhang Xiaoxu <zhangxiaoxu5@huawei.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 17 Jan 2020, Andi Shyti <andi.shyti@intel.com> wrote:
-> Hi Jani,
->
->> >> Reported-by: Hulk Robot <hulkci@huawei.com>
->> >
->> > I've never been a fan of non human accounts, we had this discussion
->> > already in a different mailing list. Could you please find a
->> > different way of giving credit to your CI system?
->> 
->> I don't actually mind for Reported-by credits. The history is full of
->> things like:
->> 
->>     Reported-by: kbuild test robot <lkp@intel.com>
->>     Reported-by: syzbot+ec24e95ea483de0a24da@syzkaller.appspotmail.com
->
-> That's just commit log unnecessary pollution, unwanted mail
-> reference... no one will ever answer at lkp@intel.com, why
-> reference it, then?
+== Series Details ==
 
-It's not about that, it's about giving credit to whom credit is due.
+Series: series starting with [1/4] drm/i915: Only retire requests when eviction is allowed to blocked
+URL   : https://patchwork.freedesktop.org/series/72184/
+State : warning
 
->> Care to reference the discussion?
->
-> Here in the Samsung list we had a discussion with another Huawei
-> developer about the Hulk Robot:
->
->   https://lkml.org/lkml/2019/9/4/635
+== Summary ==
 
-Well, there's no consensus there either.
+$ dim checkpatch origin/drm-tip
+c2291b8125c5 drm/i915: Only retire requests when eviction is allowed to blocked
+7df501b57690 drm/i915: More proactive timeline retirement before new requests
+-:19: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#19: 
+References: df9f85d8582e ("drm/i915: Serialise i915_active_fence_set() with itself")
 
-Again, if they want to use that Reported-by: line, I'm fine with it.
+-:19: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit df9f85d8582e ("drm/i915: Serialise i915_active_fence_set() with itself")'
+#19: 
+References: df9f85d8582e ("drm/i915: Serialise i915_active_fence_set() with itself")
 
-BR,
-Jani.
+total: 1 errors, 1 warnings, 0 checks, 80 lines checked
+e60423ef7d0b drm/i915/gt: Yield the timeslice if waiting on a semaphore
+6ecd9e89fbe8 drm/i915: Tweak scheduler's kick_submission()
 
--- 
-Jani Nikula, Intel Open Source Graphics Center
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
