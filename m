@@ -1,31 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1FCA31410A8
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Jan 2020 19:19:50 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id DF9DC1410D6
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Jan 2020 19:32:32 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8E75F6F895;
-	Fri, 17 Jan 2020 18:19:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4A1926F8A1;
+	Fri, 17 Jan 2020 18:32:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BE28A6F899;
- Fri, 17 Jan 2020 18:19:44 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19921010-1500050 
- for multiple; Fri, 17 Jan 2020 18:19:30 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri, 17 Jan 2020 18:19:25 +0000
-Message-Id: <20200117181925.3249942-5-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.25.0
-In-Reply-To: <20200117181925.3249942-1-chris@chris-wilson.co.uk>
-References: <20200117181925.3249942-1-chris@chris-wilson.co.uk>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 1873E6F8A1;
+ Fri, 17 Jan 2020 18:32:30 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 102B0A0019;
+ Fri, 17 Jan 2020 18:32:30 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH i-g-t 5/5] HAX: run gem_render_copy tests in BAT
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Auld" <matthew.auld@intel.com>
+Date: Fri, 17 Jan 2020 18:32:30 -0000
+Message-ID: <157928595006.26754.2686498469746787968@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200117132413.1170563-1-matthew.auld@intel.com>
+In-Reply-To: <20200117132413.1170563-1-matthew.auld@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5Bv3=2C1/2=5D_drm/i915/userptr=3A_add_user?=
+ =?utf-8?q?=5Fsize_limit_check?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,54 +39,177 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: igt-dev@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-RnJvbTogWmJpZ25pZXcgS2VtcGN6ecWEc2tpIDx6Ymlnbmlldy5rZW1wY3p5bnNraUBpbnRlbC5j
-b20+CgotLS0KIHRlc3RzL2ludGVsLWNpL2Zhc3QtZmVlZGJhY2sudGVzdGxpc3QgfCAzOCArKysr
-KysrKysrKysrKysrKysrKysrKysrKysKIDEgZmlsZSBjaGFuZ2VkLCAzOCBpbnNlcnRpb25zKCsp
-CgpkaWZmIC0tZ2l0IGEvdGVzdHMvaW50ZWwtY2kvZmFzdC1mZWVkYmFjay50ZXN0bGlzdCBiL3Rl
-c3RzL2ludGVsLWNpL2Zhc3QtZmVlZGJhY2sudGVzdGxpc3QKaW5kZXggMzdhOTJiNGU3Li42NDY1
-NzI1YjkgMTAwNjQ0Ci0tLSBhL3Rlc3RzL2ludGVsLWNpL2Zhc3QtZmVlZGJhY2sudGVzdGxpc3QK
-KysrIGIvdGVzdHMvaW50ZWwtY2kvZmFzdC1mZWVkYmFjay50ZXN0bGlzdApAQCAtMzcsNiArMzcs
-NDQgQEAgaWd0QGdlbV9mbGlua19iYXNpY0BmbGluay1saWZldGltZQogaWd0QGdlbV9saW5lYXJf
-YmxpdHNAYmFzaWMKIGlndEBnZW1fbW1hcEBiYXNpYwogaWd0QGdlbV9tbWFwX2d0dEBiYXNpYwor
-aWd0QGdlbV9yZW5kZXJfY29weUBsaW5lYXIKK2lndEBnZW1fcmVuZGVyX2NvcHlAeC10aWxlZAor
-aWd0QGdlbV9yZW5kZXJfY29weUB5LXRpbGVkCitpZ3RAZ2VtX3JlbmRlcl9jb3B5QHlmLXRpbGVk
-CitpZ3RAZ2VtX3JlbmRlcl9jb3B5QG1peGVkLXRpbGVkLXRvLXktdGlsZWQtY2NzCitpZ3RAZ2Vt
-X3JlbmRlcl9jb3B5QG1peGVkLXRpbGVkLXRvLXlmLXRpbGVkLWNjcworaWd0QGdlbV9yZW5kZXJf
-Y29weUB5LXRpbGVkLWNjcy10by1saW5lYXIKK2lndEBnZW1fcmVuZGVyX2NvcHlAeS10aWxlZC1j
-Y3MtdG8teC10aWxlZAoraWd0QGdlbV9yZW5kZXJfY29weUB5LXRpbGVkLWNjcy10by15LXRpbGVk
-CitpZ3RAZ2VtX3JlbmRlcl9jb3B5QHktdGlsZWQtY2NzLXRvLXlmLXRpbGVkCitpZ3RAZ2VtX3Jl
-bmRlcl9jb3B5QHlmLXRpbGVkLWNjcy10by1saW5lYXIKK2lndEBnZW1fcmVuZGVyX2NvcHlAeWYt
-dGlsZWQtY2NzLXRvLXgtdGlsZWQKK2lndEBnZW1fcmVuZGVyX2NvcHlAeWYtdGlsZWQtY2NzLXRv
-LXktdGlsZWQKK2lndEBnZW1fcmVuZGVyX2NvcHlAeWYtdGlsZWQtY2NzLXRvLXlmLXRpbGVkCitp
-Z3RAZ2VtX3JlbmRlcl9jb3B5QHktdGlsZWQtY2NzLXRvLXktdGlsZWQtY2NzCitpZ3RAZ2VtX3Jl
-bmRlcl9jb3B5QHlmLXRpbGVkLWNjcy10by15Zi10aWxlZC1jY3MKK2lndEBnZW1fcmVuZGVyX2Nv
-cHlAeS10aWxlZC1jY3MtdG8teWYtdGlsZWQtY2NzCitpZ3RAZ2VtX3JlbmRlcl9jb3B5QHlmLXRp
-bGVkLWNjcy10by15LXRpbGVkLWNjcworaWd0QGdlbV9yZW5kZXJfY29weUBsaW5lYXItdG8tdmVi
-b3gteWYtdGlsZWQKK2lndEBnZW1fcmVuZGVyX2NvcHlAbGluZWFyLXRvLXZlYm94LXktdGlsZWQK
-K2lndEBnZW1fcmVuZGVyX2NvcHlAeC10aWxlZC10by12ZWJveC15Zi10aWxlZAoraWd0QGdlbV9y
-ZW5kZXJfY29weUB4LXRpbGVkLXRvLXZlYm94LXktdGlsZWQKK2lndEBnZW1fcmVuZGVyX2NvcHlA
-eS10aWxlZC10by12ZWJveC1saW5lYXIKK2lndEBnZW1fcmVuZGVyX2NvcHlAeS10aWxlZC10by12
-ZWJveC14LXRpbGVkCitpZ3RAZ2VtX3JlbmRlcl9jb3B5QHktdGlsZWQtdG8tdmVib3gteS10aWxl
-ZAoraWd0QGdlbV9yZW5kZXJfY29weUB5LXRpbGVkLXRvLXZlYm94LXlmLXRpbGVkCitpZ3RAZ2Vt
-X3JlbmRlcl9jb3B5QHlmLXRpbGVkLXRvLXZlYm94LWxpbmVhcgoraWd0QGdlbV9yZW5kZXJfY29w
-eUB5Zi10aWxlZC10by12ZWJveC14LXRpbGVkCitpZ3RAZ2VtX3JlbmRlcl9jb3B5QHlmLXRpbGVk
-LXRvLXZlYm94LXlmLXRpbGVkCitpZ3RAZ2VtX3JlbmRlcl9jb3B5QHlmLXRpbGVkLXRvLXZlYm94
-LXktdGlsZWQKK2lndEBnZW1fcmVuZGVyX2NvcHlAeS10aWxlZC1tYy1jY3MtdG8tdmVib3gteS10
-aWxlZAoraWd0QGdlbV9yZW5kZXJfY29weUB5Zi10aWxlZC1tYy1jY3MtdG8tdmVib3gteWYtdGls
-ZWQKK2lndEBnZW1fcmVuZGVyX2NvcHlAeS10aWxlZC1tYy1jY3MtdG8tdmVib3gteWYtdGlsZWQK
-K2lndEBnZW1fcmVuZGVyX2NvcHlAeWYtdGlsZWQtbWMtY2NzLXRvLXZlYm94LXktdGlsZWQKK2ln
-dEBnZW1fcmVuZGVyX2NvcHlAeS10aWxlZC1tYy1jY3MtdG8teS10aWxlZC1jY3MKK2lndEBnZW1f
-cmVuZGVyX2NvcHlAeS10aWxlZC1tYy1jY3MtdG8teWYtdGlsZWQtY2NzCitpZ3RAZ2VtX3JlbmRl
-cl9jb3B5QHktdGlsZWQtY2NzLXRvLXktdGlsZWQtbWMtY2NzCitpZ3RAZ2VtX3JlbmRlcl9jb3B5
-QHktdGlsZWQtY2NzLXRvLXlmLXRpbGVkLW1jLWNjcwogaWd0QGdlbV9yZW5kZXJfbGluZWFyX2Js
-aXRzQGJhc2ljCiBpZ3RAZ2VtX3JlbmRlcl90aWxlZF9ibGl0c0BiYXNpYwogaWd0QGdlbV9yaW5n
-ZmlsbEBiYXNpYy1kZWZhdWx0Ci0tIAoyLjI1LjAKCl9fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxp
-c3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFu
-L2xpc3RpbmZvL2ludGVsLWdmeAo=
+== Series Details ==
+
+Series: series starting with [v3,1/2] drm/i915/userptr: add user_size limit check
+URL   : https://patchwork.freedesktop.org/series/72186/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_7764 -> Patchwork_16154
+====================================================
+
+Summary
+-------
+
+  **WARNING**
+
+  Minor unknown changes coming with Patchwork_16154 need to be verified
+  manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_16154, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16154/index.html
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_16154:
+
+### IGT changes ###
+
+#### Warnings ####
+
+  * igt@kms_chamelium@hdmi-hpd-fast:
+    - fi-cml-u2:          [FAIL][1] ([i915#410]) -> [SKIP][2] +2 similar issues
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7764/fi-cml-u2/igt@kms_chamelium@hdmi-hpd-fast.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16154/fi-cml-u2/igt@kms_chamelium@hdmi-hpd-fast.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_16154 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_module_load@reload-with-fault-injection:
+    - fi-cfl-8700k:       [PASS][3] -> [DMESG-WARN][4] ([i915#889])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7764/fi-cfl-8700k/igt@i915_module_load@reload-with-fault-injection.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16154/fi-cfl-8700k/igt@i915_module_load@reload-with-fault-injection.html
+    - fi-skl-lmem:        [PASS][5] -> [INCOMPLETE][6] ([i915#671])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7764/fi-skl-lmem/igt@i915_module_load@reload-with-fault-injection.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16154/fi-skl-lmem/igt@i915_module_load@reload-with-fault-injection.html
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-cfl-8700k:       [PASS][7] -> [INCOMPLETE][8] ([i915#148])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7764/fi-cfl-8700k/igt@i915_pm_rpm@module-reload.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16154/fi-cfl-8700k/igt@i915_pm_rpm@module-reload.html
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank:
+    - fi-pnv-d510:        [PASS][9] -> [FAIL][10] ([i915#34])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7764/fi-pnv-d510/igt@kms_flip@basic-flip-vs-wf_vblank.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16154/fi-pnv-d510/igt@kms_flip@basic-flip-vs-wf_vblank.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-skl-6600u:       [DMESG-WARN][11] ([i915#889]) -> [PASS][12] +23 similar issues
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7764/fi-skl-6600u/igt@i915_pm_rpm@module-reload.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16154/fi-skl-6600u/igt@i915_pm_rpm@module-reload.html
+
+  * igt@i915_selftest@live_gt_lrc:
+    - fi-skl-6600u:       [DMESG-FAIL][13] ([i915#889]) -> [PASS][14] +7 similar issues
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7764/fi-skl-6600u/igt@i915_selftest@live_gt_lrc.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16154/fi-skl-6600u/igt@i915_selftest@live_gt_lrc.html
+
+  * igt@kms_chamelium@dp-hpd-fast:
+    - fi-cml-u2:          [FAIL][15] ([i915#410]) -> [PASS][16] +2 similar issues
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7764/fi-cml-u2/igt@kms_chamelium@dp-hpd-fast.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16154/fi-cml-u2/igt@kms_chamelium@dp-hpd-fast.html
+
+  
+#### Warnings ####
+
+  * igt@i915_selftest@live_blt:
+    - fi-ivb-3770:        [DMESG-FAIL][17] -> [DMESG-FAIL][18] ([i915#563])
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7764/fi-ivb-3770/igt@i915_selftest@live_blt.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16154/fi-ivb-3770/igt@i915_selftest@live_blt.html
+    - fi-hsw-4770:        [DMESG-FAIL][19] ([i915#770]) -> [DMESG-FAIL][20] ([i915#563])
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7764/fi-hsw-4770/igt@i915_selftest@live_blt.html
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16154/fi-hsw-4770/igt@i915_selftest@live_blt.html
+
+  * igt@kms_chamelium@common-hpd-after-suspend:
+    - fi-cml-u2:          [FAIL][21] ([i915#410]) -> [DMESG-WARN][22] ([IGT#4])
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7764/fi-cml-u2/igt@kms_chamelium@common-hpd-after-suspend.html
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16154/fi-cml-u2/igt@kms_chamelium@common-hpd-after-suspend.html
+
+  * igt@kms_chamelium@vga-edid-read:
+    - fi-cml-u2:          [FAIL][23] ([i915#410]) -> [SKIP][24] ([fdo#109309]) +1 similar issue
+   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7764/fi-cml-u2/igt@kms_chamelium@vga-edid-read.html
+   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16154/fi-cml-u2/igt@kms_chamelium@vga-edid-read.html
+
+  
+  [IGT#4]: https://gitlab.freedesktop.org/drm/igt-gpu-tools/issues/4
+  [fdo#109309]: https://bugs.freedesktop.org/show_bug.cgi?id=109309
+  [i915#148]: https://gitlab.freedesktop.org/drm/intel/issues/148
+  [i915#34]: https://gitlab.freedesktop.org/drm/intel/issues/34
+  [i915#410]: https://gitlab.freedesktop.org/drm/intel/issues/410
+  [i915#563]: https://gitlab.freedesktop.org/drm/intel/issues/563
+  [i915#671]: https://gitlab.freedesktop.org/drm/intel/issues/671
+  [i915#770]: https://gitlab.freedesktop.org/drm/intel/issues/770
+  [i915#889]: https://gitlab.freedesktop.org/drm/intel/issues/889
+
+
+Participating hosts (44 -> 41)
+------------------------------
+
+  Additional (4): fi-hsw-4770r fi-skl-6770hq fi-tgl-y fi-bsw-nick 
+  Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-bsw-n3050 fi-byt-squawks fi-cfl-guc fi-elk-e7500 fi-byt-clapper 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_7764 -> Patchwork_16154
+
+  CI-20190529: 20190529
+  CI_DRM_7764: 390553573eeaaf2d76f53d5fa3dc1aff9acd9140 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5371: 1b2816124ec3dbd53b81725d39292f45d41d895b @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_16154: 4f7ef220831cb765a6ea656b5662883f16e367e4 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Kernel 32bit build ==
+
+Warning: Kernel 32bit buildtest failed:
+https://intel-gfx-ci.01.org/Patchwork_16154/build_32bit.log
+
+  CALL    scripts/checksyscalls.sh
+  CALL    scripts/atomic/check-atomics.sh
+  CHK     include/generated/compile.h
+Kernel: arch/x86/boot/bzImage is ready  (#1)
+  Building modules, stage 2.
+  MODPOST 122 modules
+ERROR: "__udivdi3" [drivers/gpu/drm/amd/amdgpu/amdgpu.ko] undefined!
+scripts/Makefile.modpost:93: recipe for target '__modpost' failed
+make[1]: *** [__modpost] Error 1
+Makefile:1282: recipe for target 'modules' failed
+make: *** [modules] Error 2
+
+
+== Linux commits ==
+
+4f7ef220831c drm/i915/userptr: fix size calculation
+584a25fcf61b drm/i915/userptr: add user_size limit check
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16154/index.html
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
