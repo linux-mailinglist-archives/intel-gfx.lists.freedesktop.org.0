@@ -1,34 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C18F5140D6D
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Jan 2020 16:08:14 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1592E140D77
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Jan 2020 16:10:33 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8E3A16F5CF;
-	Fri, 17 Jan 2020 15:08:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B1C356F5DC;
+	Fri, 17 Jan 2020 15:10:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C6C0D6F5CF
- for <intel-gfx@lists.freedesktop.org>; Fri, 17 Jan 2020 15:08:10 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8EA246F5D9
+ for <intel-gfx@lists.freedesktop.org>; Fri, 17 Jan 2020 15:10:28 +0000 (UTC)
+X-Amp-Result: UNSCANNABLE
 X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 17 Jan 2020 07:05:57 -0800
-X-IronPort-AV: E=Sophos;i="5.70,330,1574150400"; d="scan'208";a="214499756"
-Received: from jnikula-mobl3.fi.intel.com (HELO localhost) ([10.237.66.161])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 17 Jan 2020 07:05:56 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri, 17 Jan 2020 17:05:51 +0200
-Message-Id: <20200117150551.9836-1-jani.nikula@intel.com>
-X-Mailer: git-send-email 2.20.1
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 17 Jan 2020 07:10:28 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,330,1574150400"; d="scan'208";a="218933107"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by orsmga008.jf.intel.com with SMTP; 17 Jan 2020 07:10:25 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 17 Jan 2020 17:10:24 +0200
+Date: Fri, 17 Jan 2020 17:10:24 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Message-ID: <20200117151024.GO13686@intel.com>
+References: <cover.1579270868.git.jani.nikula@intel.com>
+ <21549ff74e8e5746917b0e2be4afbfb141e26657.1579270868.git.jani.nikula@intel.com>
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Subject: [Intel-gfx] [PATCH] drm/i915/debugfs: remove i915_dpcd file
+Content-Disposition: inline
+In-Reply-To: <21549ff74e8e5746917b0e2be4afbfb141e26657.1579270868.git.jani.nikula@intel.com>
+X-Patchwork-Hint: comment
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH 7/9] drm/i915/bios: add
+ intel_bios_port_supports_*()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,105 +48,150 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-We've long had the more generic /dev/drm_dp_auxN devices for the same
-purpose. Drop the redundant and limited DPCD debugfs file.
+On Fri, Jan 17, 2020 at 04:29:27PM +0200, Jani Nikula wrote:
+> Don't access i915->vbt.ddi_port_info[] directly.
 
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/i915_debugfs.c | 64 -----------------------------
- 1 file changed, 64 deletions(-)
+3-7
+Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
 
-diff --git a/drivers/gpu/drm/i915/i915_debugfs.c b/drivers/gpu/drm/i915/i915_debugfs.c
-index c05fa4205de8..e320b957b792 100644
---- a/drivers/gpu/drm/i915/i915_debugfs.c
-+++ b/drivers/gpu/drm/i915/i915_debugfs.c
-@@ -4329,65 +4329,6 @@ int i915_debugfs_register(struct drm_i915_private *dev_priv)
- 					minor->debugfs_root, minor);
- }
- 
--struct dpcd_block {
--	/* DPCD dump start address. */
--	unsigned int offset;
--	/* DPCD dump end address, inclusive. If unset, .size will be used. */
--	unsigned int end;
--	/* DPCD dump size. Used if .end is unset. If unset, defaults to 1. */
--	size_t size;
--	/* Only valid for eDP. */
--	bool edp;
--};
--
--static const struct dpcd_block i915_dpcd_debug[] = {
--	{ .offset = DP_DPCD_REV, .size = DP_RECEIVER_CAP_SIZE },
--	{ .offset = DP_PSR_SUPPORT, .end = DP_PSR_CAPS },
--	{ .offset = DP_DOWNSTREAM_PORT_0, .size = 16 },
--	{ .offset = DP_LINK_BW_SET, .end = DP_EDP_CONFIGURATION_SET },
--	{ .offset = DP_SINK_COUNT, .end = DP_ADJUST_REQUEST_LANE2_3 },
--	{ .offset = DP_SET_POWER },
--	{ .offset = DP_EDP_DPCD_REV },
--	{ .offset = DP_EDP_GENERAL_CAP_1, .end = DP_EDP_GENERAL_CAP_3 },
--	{ .offset = DP_EDP_DISPLAY_CONTROL_REGISTER, .end = DP_EDP_BACKLIGHT_FREQ_CAP_MAX_LSB },
--	{ .offset = DP_EDP_DBC_MINIMUM_BRIGHTNESS_SET, .end = DP_EDP_DBC_MAXIMUM_BRIGHTNESS_SET },
--};
--
--static int i915_dpcd_show(struct seq_file *m, void *data)
--{
--	struct drm_connector *connector = m->private;
--	struct intel_dp *intel_dp =
--		enc_to_intel_dp(intel_attached_encoder(to_intel_connector(connector)));
--	u8 buf[16];
--	ssize_t err;
--	int i;
--
--	if (connector->status != connector_status_connected)
--		return -ENODEV;
--
--	for (i = 0; i < ARRAY_SIZE(i915_dpcd_debug); i++) {
--		const struct dpcd_block *b = &i915_dpcd_debug[i];
--		size_t size = b->end ? b->end - b->offset + 1 : (b->size ?: 1);
--
--		if (b->edp &&
--		    connector->connector_type != DRM_MODE_CONNECTOR_eDP)
--			continue;
--
--		/* low tech for now */
--		if (WARN_ON(size > sizeof(buf)))
--			continue;
--
--		err = drm_dp_dpcd_read(&intel_dp->aux, b->offset, buf, size);
--		if (err < 0)
--			seq_printf(m, "%04x: ERROR %d\n", b->offset, (int)err);
--		else
--			seq_printf(m, "%04x: %*ph\n", b->offset, (int)err, buf);
--	}
--
--	return 0;
--}
--DEFINE_SHOW_ATTRIBUTE(i915_dpcd);
--
- static int i915_panel_show(struct seq_file *m, void *data)
- {
- 	struct drm_connector *connector = m->private;
-@@ -4552,11 +4493,6 @@ int i915_debugfs_connector_add(struct drm_connector *connector)
- 	if (!root)
- 		return -ENODEV;
- 
--	if (connector->connector_type == DRM_MODE_CONNECTOR_DisplayPort ||
--	    connector->connector_type == DRM_MODE_CONNECTOR_eDP)
--		debugfs_create_file("i915_dpcd", S_IRUGO, root,
--				    connector, &i915_dpcd_fops);
--
- 	if (connector->connector_type == DRM_MODE_CONNECTOR_eDP) {
- 		debugfs_create_file("i915_panel_timings", S_IRUGO, root,
- 				    connector, &i915_panel_fops);
--- 
-2.20.1
+> =
 
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_bios.c | 26 +++++++++++++++++++++++
+>  drivers/gpu/drm/i915/display/intel_bios.h |  5 +++++
+>  drivers/gpu/drm/i915/display/intel_ddi.c  | 12 +++++------
+>  3 files changed, 37 insertions(+), 6 deletions(-)
+> =
+
+> diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/=
+i915/display/intel_bios.c
+> index 23cbbe32e22f..4c69253739ec 100644
+> --- a/drivers/gpu/drm/i915/display/intel_bios.c
+> +++ b/drivers/gpu/drm/i915/display/intel_bios.c
+> @@ -2606,3 +2606,29 @@ int intel_bios_alternate_ddc_pin(struct intel_enco=
+der *encoder)
+>  =
+
+>  	return i915->vbt.ddi_port_info[encoder->port].alternate_ddc_pin;
+>  }
+> +
+> +bool intel_bios_port_supports_dvi(struct drm_i915_private *i915, enum po=
+rt port)
+> +{
+> +	return i915->vbt.ddi_port_info[port].supports_dvi;
+> +}
+> +
+> +bool intel_bios_port_supports_hdmi(struct drm_i915_private *i915, enum p=
+ort port)
+> +{
+> +	return i915->vbt.ddi_port_info[port].supports_hdmi;
+> +}
+> +
+> +bool intel_bios_port_supports_dp(struct drm_i915_private *i915, enum por=
+t port)
+> +{
+> +	return i915->vbt.ddi_port_info[port].supports_dp;
+> +}
+> +
+> +bool intel_bios_port_supports_typec_usb(struct drm_i915_private *i915,
+> +					enum port port)
+> +{
+> +	return i915->vbt.ddi_port_info[port].supports_typec_usb;
+> +}
+> +
+> +bool intel_bios_port_supports_tbt(struct drm_i915_private *i915, enum po=
+rt port)
+> +{
+> +	return i915->vbt.ddi_port_info[port].supports_tbt;
+> +}
+> diff --git a/drivers/gpu/drm/i915/display/intel_bios.h b/drivers/gpu/drm/=
+i915/display/intel_bios.h
+> index 077828d77642..c17199caeff8 100644
+> --- a/drivers/gpu/drm/i915/display/intel_bios.h
+> +++ b/drivers/gpu/drm/i915/display/intel_bios.h
+> @@ -253,5 +253,10 @@ int intel_bios_dp_boost_level(struct intel_encoder *=
+encoder);
+>  int intel_bios_hdmi_boost_level(struct intel_encoder *encoder);
+>  int intel_bios_dp_max_link_rate(struct intel_encoder *encoder);
+>  int intel_bios_alternate_ddc_pin(struct intel_encoder *encoder);
+> +bool intel_bios_port_supports_dvi(struct drm_i915_private *i915, enum po=
+rt port);
+> +bool intel_bios_port_supports_hdmi(struct drm_i915_private *i915, enum p=
+ort port);
+> +bool intel_bios_port_supports_dp(struct drm_i915_private *i915, enum por=
+t port);
+> +bool intel_bios_port_supports_typec_usb(struct drm_i915_private *i915, e=
+num port port);
+> +bool intel_bios_port_supports_tbt(struct drm_i915_private *i915, enum po=
+rt port);
+>  =
+
+>  #endif /* _INTEL_BIOS_H_ */
+> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i=
+915/display/intel_ddi.c
+> index 3697fa047362..18a8186699f9 100644
+> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+> @@ -4780,15 +4780,14 @@ intel_ddi_max_lanes(struct intel_digital_port *in=
+tel_dport)
+>  =
+
+>  void intel_ddi_init(struct drm_i915_private *dev_priv, enum port port)
+>  {
+> -	struct ddi_vbt_port_info *port_info =3D
+> -		&dev_priv->vbt.ddi_port_info[port];
+>  	struct intel_digital_port *intel_dig_port;
+>  	struct intel_encoder *encoder;
+>  	bool init_hdmi, init_dp, init_lspcon =3D false;
+>  	enum phy phy =3D intel_port_to_phy(dev_priv, port);
+>  =
+
+> -	init_hdmi =3D port_info->supports_dvi || port_info->supports_hdmi;
+> -	init_dp =3D port_info->supports_dp;
+> +	init_hdmi =3D intel_bios_port_supports_dvi(dev_priv, port) ||
+> +		intel_bios_port_supports_hdmi(dev_priv, port);
+> +	init_dp =3D intel_bios_port_supports_dp(dev_priv, port);
+>  =
+
+>  	if (intel_bios_is_lspcon_present(dev_priv, port)) {
+>  		/*
+> @@ -4849,8 +4848,9 @@ void intel_ddi_init(struct drm_i915_private *dev_pr=
+iv, enum port port)
+>  	intel_dig_port->aux_ch =3D intel_bios_port_aux_ch(dev_priv, port);
+>  =
+
+>  	if (intel_phy_is_tc(dev_priv, phy)) {
+> -		bool is_legacy =3D !port_info->supports_typec_usb &&
+> -				 !port_info->supports_tbt;
+> +		bool is_legacy =3D
+> +			!intel_bios_port_supports_typec_usb(dev_priv, port) &&
+> +			!intel_bios_port_supports_tbt(dev_priv, port);
+>  =
+
+>  		intel_tc_port_init(intel_dig_port, is_legacy);
+>  =
+
+> -- =
+
+> 2.20.1
+> =
+
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+-- =
+
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
