@@ -2,31 +2,34 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D07D140C52
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Jan 2020 15:20:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6DD06140C73
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Jan 2020 15:29:39 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8C02B6F585;
-	Fri, 17 Jan 2020 14:20:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2834A6F5A6;
+	Fri, 17 Jan 2020 14:29:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 975106E02F;
- Fri, 17 Jan 2020 14:20:40 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 8D539A011A;
- Fri, 17 Jan 2020 14:20:40 +0000 (UTC)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C479B6F5AC
+ for <intel-gfx@lists.freedesktop.org>; Fri, 17 Jan 2020 14:29:35 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga106.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 17 Jan 2020 06:29:35 -0800
+X-IronPort-AV: E=Sophos;i="5.70,330,1574150400"; d="scan'208";a="218922230"
+Received: from jnikula-mobl3.fi.intel.com (HELO localhost) ([10.237.66.161])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 17 Jan 2020 06:29:33 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri, 17 Jan 2020 16:29:20 +0200
+Message-Id: <cover.1579270868.git.jani.nikula@intel.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Fri, 17 Jan 2020 14:20:40 -0000
-Message-ID: <157927084055.26757.12500385563766759776@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200117111546.3012803-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200117111546.3012803-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_series_starting_with_=5B1/4=5D_drm/i915=3A_Only_retire_requ?=
- =?utf-8?q?ests_when_eviction_is_allowed_to_blocked?=
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Subject: [Intel-gfx] [PATCH 0/9] drm/i915/bios: stop using vbt.ddi_port_info
+ directly
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,35 +42,49 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: jani.nikula@intel.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+My long term plan is to reference all post-setup VBT child device
+details through the encoder. We can add an (opaque) encoder->child
+pointer, and forgo the dance to get to the relevant VBT details. This
+will be helpful in, for example, adding support for multiple local
+panels; the data must be made encoder specific instead of just using
+i915->vbt.edp or i915->vbt.dsi directly.
 
-Series: series starting with [1/4] drm/i915: Only retire requests when eviction is allowed to blocked
-URL   : https://patchwork.freedesktop.org/series/72184/
-State : warning
+The i915->vbt.ddi_port_info[] array stands in the way. Start hiding it
+in intel_bios.c. We do gain a lot of intel_bios_*() accessors which may
+seem noisy. But it seems to me this is a helpful iterative step no
+matter what.
 
-== Summary ==
+BR,
+Jani.
 
-$ dim checkpatch origin/drm-tip
-c2291b8125c5 drm/i915: Only retire requests when eviction is allowed to blocked
-7df501b57690 drm/i915: More proactive timeline retirement before new requests
--:19: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#19: 
-References: df9f85d8582e ("drm/i915: Serialise i915_active_fence_set() with itself")
 
--:19: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit df9f85d8582e ("drm/i915: Serialise i915_active_fence_set() with itself")'
-#19: 
-References: df9f85d8582e ("drm/i915: Serialise i915_active_fence_set() with itself")
+Jani Nikula (9):
+  drm/i915/bios: add intel_bios_max_tmds_encoder()
+  drm/i915/bios: add intel_bios_hdmi_level_shift()
+  drm/i915/bios: intel_bios_dp_boost_level()
+  drm/i915/bios: intel_bios_hdmi_boost_level()
+  drm/i915/bios: add intel_bios_dp_max_link_rate()
+  drm/i915/bios: add intel_bios_alternate_ddc_pin()
+  drm/i915/bios: add intel_bios_port_supports_*()
+  drm/i915/bios: check port presence based on child device
+  drm/i915: use intel_bios_is_port_present()
 
-total: 1 errors, 1 warnings, 0 checks, 80 lines checked
-e60423ef7d0b drm/i915/gt: Yield the timeslice if waiting on a semaphore
-6ecd9e89fbe8 drm/i915: Tweak scheduler's kick_submission()
+ drivers/gpu/drm/i915/display/intel_bios.c     | 74 ++++++++++++++++++-
+ drivers/gpu/drm/i915/display/intel_bios.h     | 11 +++
+ .../gpu/drm/i915/display/intel_combo_phy.c    |  4 +-
+ drivers/gpu/drm/i915/display/intel_ddi.c      | 36 ++++-----
+ drivers/gpu/drm/i915/display/intel_dp.c       |  6 +-
+ drivers/gpu/drm/i915/display/intel_hdmi.c     | 25 +++----
+ 6 files changed, 115 insertions(+), 41 deletions(-)
+
+-- 
+2.20.1
 
 _______________________________________________
 Intel-gfx mailing list
