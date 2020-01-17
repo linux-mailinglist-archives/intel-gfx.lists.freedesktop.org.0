@@ -1,37 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B9D2140992
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Jan 2020 13:16:20 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9663C1409B6
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Jan 2020 13:28:42 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5B4166F43D;
-	Fri, 17 Jan 2020 12:16:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 93CB46F547;
+	Fri, 17 Jan 2020 12:28:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3445B6F43D;
- Fri, 17 Jan 2020 12:16:17 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-X-Amp-File-Uploaded: False
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 17 Jan 2020 04:15:51 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,330,1574150400"; d="scan'208";a="424443966"
-Received: from aquilante.fi.intel.com (HELO intel.com) ([10.237.72.158])
- by fmsmga005.fm.intel.com with ESMTP; 17 Jan 2020 04:15:48 -0800
-Date: Fri, 17 Jan 2020 14:15:50 +0200
-From: Andi Shyti <andi.shyti@intel.com>
-To: Zhang Xiaoxu <zhangxiaoxu5@huawei.com>
-Message-ID: <20200117121550.GA3238@intel.intel>
-References: <20200117073436.6507-1-zhangxiaoxu5@huawei.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id B264A6F543;
+ Fri, 17 Jan 2020 12:28:37 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id A95D7A0134;
+ Fri, 17 Jan 2020 12:28:37 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200117073436.6507-1-zhangxiaoxu5@huawei.com>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Fix i915_error_state_store error
- defination
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Fri, 17 Jan 2020 12:28:37 -0000
+Message-ID: <157926411766.26754.5800751038810023902@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200117102145.2948244-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200117102145.2948244-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?drm/i915=3A_Include_the_debugfs_params_header_for_its_own_defin?=
+ =?utf-8?q?ition?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,55 +39,27 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: airlied@linux.ie, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Zhang,
+== Series Details ==
 
-On Fri, Jan 17, 2020 at 03:34:36PM +0800, Zhang Xiaoxu wrote:
-> Since commit 742379c0c4001 ("drm/i915: Start chopping up the GPU error
-> capture"), function 'i915_error_state_store' was defined and used with
-> only one parameter.
-> 
-> But if no 'CONFIG_DRM_I915_CAPTURE_ERROR', this function was defined
-> with two parameter.
-> 
-> This may lead compile error. This patch fix it.
-> 
-> Reported-by: Hulk Robot <hulkci@huawei.com>
+Series: drm/i915: Include the debugfs params header for its own definition
+URL   : https://patchwork.freedesktop.org/series/72181/
+State : warning
 
-I've never been a fan of non human accounts, we had this discussion
-already in a different mailing list. Could you please find a
-different way of giving credit to your CI system?
+== Summary ==
 
-> Signed-off-by: Zhang Xiaoxu <zhangxiaoxu5@huawei.com>
-> ---
->  drivers/gpu/drm/i915/i915_gpu_error.h | 3 +--
->  1 file changed, 1 insertion(+), 2 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/i915_gpu_error.h b/drivers/gpu/drm/i915/i915_gpu_error.h
-> index 9109004956bd..41c1475e1500 100644
-> --- a/drivers/gpu/drm/i915/i915_gpu_error.h
-> +++ b/drivers/gpu/drm/i915/i915_gpu_error.h
-> @@ -314,8 +314,7 @@ i915_vma_capture_finish(struct intel_gt_coredump *gt,
->  }
->  
->  static inline void
-> -i915_error_state_store(struct drm_i915_private *i915,
-> -		       struct i915_gpu_coredump *error)
-> +i915_error_state_store(struct i915_gpu_coredump *error)
+$ dim sparse origin/drm-tip
+Sparse version: v0.6.0
+Commit: drm/i915: Include the debugfs params header for its own definition
+-drivers/gpu/drm/i915/i915_debugfs_params.c:229:15: warning: symbol 'i915_debugfs_params' was not declared. Should it be static?
++
 
-ouch! that's an oversight.
-
-Thanks for your patch,
-
-Reviewed-by: Andi Shyti <andi.shyti@intel.com>
-
-Andi
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
