@@ -1,37 +1,36 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 26E0C140C7B
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Jan 2020 15:29:51 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 35D61140C7C
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Jan 2020 15:29:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 65A256F5A9;
-	Fri, 17 Jan 2020 14:29:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 93B196F5AA;
+	Fri, 17 Jan 2020 14:29:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 537726F5A9
- for <intel-gfx@lists.freedesktop.org>; Fri, 17 Jan 2020 14:29:48 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 926D76F5AA
+ for <intel-gfx@lists.freedesktop.org>; Fri, 17 Jan 2020 14:29:53 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 17 Jan 2020 06:29:47 -0800
-X-IronPort-AV: E=Sophos;i="5.70,330,1574150400"; d="scan'208";a="227207458"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 17 Jan 2020 06:29:53 -0800
+X-IronPort-AV: E=Sophos;i="5.70,330,1574150400"; d="scan'208";a="398658211"
 Received: from jnikula-mobl3.fi.intel.com (HELO localhost) ([10.237.66.161])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 17 Jan 2020 06:29:42 -0800
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 17 Jan 2020 06:29:51 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri, 17 Jan 2020 16:29:22 +0200
-Message-Id: <da8ca144020fe165af33992661568d0586a2fdeb.1579270868.git.jani.nikula@intel.com>
+Date: Fri, 17 Jan 2020 16:29:23 +0200
+Message-Id: <fb8645cecadbc4ebeea1c0de94cb3116a769d9bf.1579270868.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <cover.1579270868.git.jani.nikula@intel.com>
 References: <cover.1579270868.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Subject: [Intel-gfx] [PATCH 2/9] drm/i915/bios: add
- intel_bios_hdmi_level_shift()
+Subject: [Intel-gfx] [PATCH 3/9] drm/i915/bios: intel_bios_dp_boost_level()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,80 +53,60 @@ Don't access i915->vbt.ddi_port_info[] directly.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_bios.c |  9 +++++++++
- drivers/gpu/drm/i915/display/intel_bios.h |  1 +
- drivers/gpu/drm/i915/display/intel_ddi.c  | 14 ++++++--------
- 3 files changed, 16 insertions(+), 8 deletions(-)
+ drivers/gpu/drm/i915/display/intel_bios.c | 7 +++++++
+ drivers/gpu/drm/i915/display/intel_bios.h | 1 +
+ drivers/gpu/drm/i915/display/intel_ddi.c  | 5 ++---
+ 3 files changed, 10 insertions(+), 3 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
-index b231fafc03ca..50bff4e7d5c2 100644
+index 50bff4e7d5c2..88b78eae8bb2 100644
 --- a/drivers/gpu/drm/i915/display/intel_bios.c
 +++ b/drivers/gpu/drm/i915/display/intel_bios.c
-@@ -2569,3 +2569,12 @@ int intel_bios_max_tmds_clock(struct intel_encoder *encoder)
+@@ -2578,3 +2578,10 @@ int intel_bios_hdmi_level_shift(struct intel_encoder *encoder)
  
- 	return i915->vbt.ddi_port_info[encoder->port].max_tmds_clock;
+ 	return info->hdmi_level_shift_set ? info->hdmi_level_shift : -1;
  }
 +
-+int intel_bios_hdmi_level_shift(struct intel_encoder *encoder)
++int intel_bios_dp_boost_level(struct intel_encoder *encoder)
 +{
 +	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
-+	const struct ddi_vbt_port_info *info =
-+		&i915->vbt.ddi_port_info[encoder->port];
 +
-+	return info->hdmi_level_shift_set ? info->hdmi_level_shift : -1;
++	return i915->vbt.ddi_port_info[encoder->port].dp_boost_level;
 +}
 diff --git a/drivers/gpu/drm/i915/display/intel_bios.h b/drivers/gpu/drm/i915/display/intel_bios.h
-index 519e983ee9e7..c6cc413bf8ec 100644
+index c6cc413bf8ec..5e68c58b58ca 100644
 --- a/drivers/gpu/drm/i915/display/intel_bios.h
 +++ b/drivers/gpu/drm/i915/display/intel_bios.h
-@@ -248,5 +248,6 @@ bool intel_bios_get_dsc_params(struct intel_encoder *encoder,
- 			       struct intel_crtc_state *crtc_state,
+@@ -249,5 +249,6 @@ bool intel_bios_get_dsc_params(struct intel_encoder *encoder,
  			       int dsc_max_bpc);
  int intel_bios_max_tmds_clock(struct intel_encoder *encoder);
-+int intel_bios_hdmi_level_shift(struct intel_encoder *encoder);
+ int intel_bios_hdmi_level_shift(struct intel_encoder *encoder);
++int intel_bios_dp_boost_level(struct intel_encoder *encoder);
  
  #endif /* _INTEL_BIOS_H_ */
 diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-index 32ea3c7e8b62..cfaa64df9892 100644
+index cfaa64df9892..7bd5858b1f4a 100644
 --- a/drivers/gpu/drm/i915/display/intel_ddi.c
 +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-@@ -944,11 +944,11 @@ tgl_get_combo_buf_trans(struct drm_i915_private *dev_priv, int type, int rate,
- 	return tgl_combo_phy_ddi_translations_dp_hbr;
- }
+@@ -1022,8 +1022,7 @@ static void intel_prepare_dp_ddi_buffers(struct intel_encoder *encoder,
+ 							      &n_entries);
  
--static int intel_ddi_hdmi_level(struct drm_i915_private *dev_priv, enum port port)
-+static int intel_ddi_hdmi_level(struct intel_encoder *encoder)
- {
--	struct ddi_vbt_port_info *port_info = &dev_priv->vbt.ddi_port_info[port];
-+	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
- 	int n_entries, level, default_entry;
--	enum phy phy = intel_port_to_phy(dev_priv, port);
-+	enum phy phy = intel_port_to_phy(dev_priv, encoder->port);
+ 	/* If we're boosting the current, set bit 31 of trans1 */
+-	if (IS_GEN9_BC(dev_priv) &&
+-	    dev_priv->vbt.ddi_port_info[port].dp_boost_level)
++	if (IS_GEN9_BC(dev_priv) && intel_bios_dp_boost_level(encoder))
+ 		iboost_bit = DDI_BUF_BALANCE_LEG_ENABLE;
  
- 	if (INTEL_GEN(dev_priv) >= 12) {
- 		if (intel_phy_is_combo(dev_priv, phy))
-@@ -987,9 +987,8 @@ static int intel_ddi_hdmi_level(struct drm_i915_private *dev_priv, enum port por
- 	if (WARN_ON_ONCE(n_entries == 0))
- 		return 0;
+ 	for (i = 0; i < n_entries; i++) {
+@@ -2344,7 +2343,7 @@ static void skl_ddi_set_iboost(struct intel_encoder *encoder,
+ 	if (type == INTEL_OUTPUT_HDMI)
+ 		iboost = dev_priv->vbt.ddi_port_info[port].hdmi_boost_level;
+ 	else
+-		iboost = dev_priv->vbt.ddi_port_info[port].dp_boost_level;
++		iboost = intel_bios_dp_boost_level(encoder);
  
--	if (port_info->hdmi_level_shift_set)
--		level = port_info->hdmi_level_shift;
--	else
-+	level = intel_bios_hdmi_level_shift(encoder);
-+	if (level < 0)
- 		level = default_entry;
- 
- 	if (WARN_ON_ONCE(level >= n_entries))
-@@ -3665,8 +3664,7 @@ static void intel_ddi_pre_enable_hdmi(struct intel_encoder *encoder,
- 	struct intel_digital_port *intel_dig_port = enc_to_dig_port(encoder);
- 	struct intel_hdmi *intel_hdmi = &intel_dig_port->hdmi;
- 	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
--	enum port port = encoder->port;
--	int level = intel_ddi_hdmi_level(dev_priv, port);
-+	int level = intel_ddi_hdmi_level(encoder);
- 	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
- 
- 	intel_dp_dual_mode_set_tmds_output(intel_hdmi, true);
+ 	if (iboost == 0) {
+ 		const struct ddi_buf_trans *ddi_translations;
 -- 
 2.20.1
 
