@@ -1,54 +1,54 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3CE87140A91
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Jan 2020 14:19:02 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F6B1140A9F
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Jan 2020 14:22:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8D5F76E514;
-	Fri, 17 Jan 2020 13:19:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F0EC86E53C;
+	Fri, 17 Jan 2020 13:22:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-vs1-xe44.google.com (mail-vs1-xe44.google.com
- [IPv6:2607:f8b0:4864:20::e44])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B4F056E514
- for <intel-gfx@lists.freedesktop.org>; Fri, 17 Jan 2020 13:18:59 +0000 (UTC)
-Received: by mail-vs1-xe44.google.com with SMTP id s16so14773426vsc.10
- for <intel-gfx@lists.freedesktop.org>; Fri, 17 Jan 2020 05:18:59 -0800 (PST)
+Received: from mail-vs1-xe42.google.com (mail-vs1-xe42.google.com
+ [IPv6:2607:f8b0:4864:20::e42])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7BD736E53C
+ for <intel-gfx@lists.freedesktop.org>; Fri, 17 Jan 2020 13:22:02 +0000 (UTC)
+Received: by mail-vs1-xe42.google.com with SMTP id g15so14812990vsf.1
+ for <intel-gfx@lists.freedesktop.org>; Fri, 17 Jan 2020 05:22:02 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=4mrP/nYvCX4ky0EKe8wOGuQDArv1P4RwF3FomgvaFE8=;
- b=ggQfXprwiyIi6I+lH0rQIpsPnguF46EmG0IdNXvqXzmGBcZTdI9pKrlX8/rLwkKA9g
- E5Zu7dW2s4YPqDQK+air95uG7Yhmh7ahtZe3L8kauXgCkUzGYYCk6jgwv9uUVMb/lzeC
- GwFq/T812rv1ZAa8ZCCEDFteWRHk203gRiGCnfpXgFQWtE8p5gmE9wlROxn/kl9khhfX
- aRvgSrR5Gp7teNPCl9k3Pd9M/r2IUGckYGTXkLrXjLHeXUzVSBdvKVmZyhsqETF7R5hu
- 7a/aPyYVZWhqECzOIg3HEW/BL0OI3VZTlO3c+0olASZhY9nCaSN/0nVO4+jrWU73vJ03
- VNJw==
+ :cc; bh=GRCI3eIEvHsaolJ6e39N9ypPi1UpAwaDz2VwL8NsmLo=;
+ b=pBGh9JpeR9ouuTKgH5QeZ60+fWRqjQjh1lJSG1nleBE18doBAUy4ekOhRgd3pHa59L
+ FfsIiMpIk3hxpWohgIOLS6iYbvkzsjoA7A9Be2+SgHkJoQHDbCh444leyRozSJunl5f8
+ 4LicUdI3uJDYKbD+EztMbpIqSPMN9Tu0M6JSdhFu5OhqVnUBuDPixhLJyKACmCW5KBoL
+ g7T8OYNrc5Z/PUd+dLHqHbIHTZjaI9JcWjxFFoQCO9rGXUbQr2su8a5kALkm+XxWcOj3
+ sgd6IJgY3pswibzfQ3CillCkk+E6pNA3uyHT0jRCs3fBysF912ykezemGyqTRCq/dzQn
+ 0MJA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=4mrP/nYvCX4ky0EKe8wOGuQDArv1P4RwF3FomgvaFE8=;
- b=jHv7aKxlkTGkylnxyX0IUb6wr6DUKccgalDpvXa/Lx12soC8teP641SCrmf4R787J/
- +UNL+a/wIihO9mgNj7x5L9MPv1PlRCSk1tvKVru7Fyly9YgMluGrU55dmDn0csY0FCq9
- hcxy2FJ0cNSg2ZHtLsstlecfYe/4EI7t6/tXPDADSdm5wan5GcshckFNvVBQYpuz46eG
- fElMnxs1ofeW70ZhxKXAai3J6XQXUjCmnDDQcgxXByUlLjz8beEIrcjI5oQ+qLUQsp8o
- 5O5C7X0e8FQ1wlV3e+KZTATAXkHoNbWbPeO0YEQerz+7udIXnzilUE1sKmwSLXAR4nSq
- DQQA==
-X-Gm-Message-State: APjAAAXzgYwlRk3tAFwWukLM0upu+F2WY0BQf/baHSjVw4Kz2ea5TlXD
- 4OoOwMeHaJ7Lgxr+ArQ7kTlJ7yTPDsLuWf0TE8Uc2w==
-X-Google-Smtp-Source: APXvYqwWHZbbeCdrX9OgGK5bVSd2jKCc/rmt2kuiFjUHwwXfGf3bjdFi/G8v2/EaD9HVIEHNseRZRWQn5aeGTP2iWe4=
-X-Received: by 2002:a67:c90d:: with SMTP id w13mr4699957vsk.164.1579267138718; 
- Fri, 17 Jan 2020 05:18:58 -0800 (PST)
+ bh=GRCI3eIEvHsaolJ6e39N9ypPi1UpAwaDz2VwL8NsmLo=;
+ b=YAKFpGuwoFGay7TmescGdb6M+QQ9kM5/+0X4MkyleT/Hj26URza/gKcuomR8sv7CAW
+ Mh/vIpFV6L4C0ZYZuu4lPIIiarKCbPWmboCaFvNMjgeXJGEQOnMLbnS6YVm247QA3kx/
+ 9D/KQWvZ4AfTjssGR4Idzp+BRsqKonigVNMSZIIJdV385L/UyQkJcVbBBviaN7tugqtQ
+ ibv+RiuAPYw79YO3eI/vaijLY00sOjM9Fguae0FEea+IIvhH6LiJuQfI5AAbWY49t9AK
+ NGG5KK3nyf/48kaoDsb8ka/5kTvktVtQFuZ1zmif/iCo7fz5FOT79pHkb+nSDVtdF7Qe
+ KpIA==
+X-Gm-Message-State: APjAAAWP+xV4fj3zOLCV+73kQ2POLuOH5L25HSO57PifbsyosGAFPSmD
+ pqvM5YcEGG1aSyoBtlwec05cEma4KMxFHDz7sRo=
+X-Google-Smtp-Source: APXvYqxFuI1Cz58K6lchhdf+NwYSJ17d3w1KAQ0uyGT4D/NvsNNiSDVyrqXDZT7l23DwAasniL1HsVbPRinDeTRxuP0=
+X-Received: by 2002:a67:15c7:: with SMTP id 190mr4913988vsv.178.1579267321553; 
+ Fri, 17 Jan 2020 05:22:01 -0800 (PST)
 MIME-Version: 1.0
-References: <20200117101639.2908469-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200117101639.2908469-1-chris@chris-wilson.co.uk>
+References: <20200117110603.2982286-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200117110603.2982286-1-chris@chris-wilson.co.uk>
 From: Matthew Auld <matthew.william.auld@gmail.com>
-Date: Fri, 17 Jan 2020 13:18:33 +0000
-Message-ID: <CAM0jSHM+SBtSSYZ59O2sM=ZKiJUenjz367C2Xx7j7jAkkqJV=Q@mail.gmail.com>
+Date: Fri, 17 Jan 2020 13:21:36 +0000
+Message-ID: <CAM0jSHM0Fgfhp2joxxDhZ9x+0UjW4EHDwNvLhswpu4OkUeRnCQ@mail.gmail.com>
 To: Chris Wilson <chris@chris-wilson.co.uk>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Fix typo in kerneldoc function
- name
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Satisfy smatch that a loop has at
+ least one iteration
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,10 +67,15 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 17 Jan 2020 at 10:16, Chris Wilson <chris@chris-wilson.co.uk> wrote:
+On Fri, 17 Jan 2020 at 11:06, Chris Wilson <chris@chris-wilson.co.uk> wrote:
 >
-> A forgetful copy'n'paste left the name of the old function intact, and
-> did not introduce the new function 'i915_request_is_ready'
+> Smatch worries that the engine->mask may be 0 leading to the loop being
+> shortcircuited leaving the next pointer unset,
+>
+> drivers/gpu/drm/i915/i915_active.c:667 i915_active_acquire_preallocate_barrier() error: uninitialized symbol 'next'.
+>
+> Assert that mask is not 0 and smatch can then verify that next must be
+> initialised before use.
 >
 > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 > Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
