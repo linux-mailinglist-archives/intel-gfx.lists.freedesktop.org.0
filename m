@@ -2,30 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AAAFD140FE2
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Jan 2020 18:30:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7CAEC141036
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Jan 2020 18:49:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 93F646F64E;
-	Fri, 17 Jan 2020 17:30:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D4C5B6F880;
+	Fri, 17 Jan 2020 17:49:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id D48BE6F879;
- Fri, 17 Jan 2020 17:30:16 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id D040DA47E7;
- Fri, 17 Jan 2020 17:30:16 +0000 (UTC)
+Received: from mail-ua1-x944.google.com (mail-ua1-x944.google.com
+ [IPv6:2607:f8b0:4864:20::944])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 74AF06F880
+ for <intel-gfx@lists.freedesktop.org>; Fri, 17 Jan 2020 17:49:49 +0000 (UTC)
+Received: by mail-ua1-x944.google.com with SMTP id z24so9242485uam.7
+ for <intel-gfx@lists.freedesktop.org>; Fri, 17 Jan 2020 09:49:49 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=v8qZGFI/v0O4NPDW2/Om8EHbft20Fsh7nB3ayo9Wa1M=;
+ b=WM5KvoauEWB9Xduodc29sflYFgc0gqjFbsZ9j908a+Lz0xJPfjUIAFPRkZoDEPNKKJ
+ KcY9dI9FxFeKhTrF1rislwfOug7BhuuExVMhhiPn8huZk+y3HMvgPTTCIMXItZ8Gj5FX
+ CotR9QsZL+fpk/fmRnKtSyeA8joFQ9JejYn+UBXSgO+uBy2ljL47XjA6JXxSMdkNM8o4
+ g4hbqfUNcPuOP0XBhZNN8heKqTXwz44O55PtlsTn1FqYOV/uRirvjS+mM3uOIJ2EnvTZ
+ AeVp3DUfO5uOQK6m4cwVffN/xy/VakgUnPMJ4nvGcfLuutN/ZSqkGjbQ/ucMdGEgxeAW
+ 6G2Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=v8qZGFI/v0O4NPDW2/Om8EHbft20Fsh7nB3ayo9Wa1M=;
+ b=VoU851n6SI8hi7lBZVGmkaGmjNvc0Q1qf7mhD76ClxqR9EyoehRpXUYiFmm4UNXcGR
+ pZUWUZ/yEMkSu++9nYoXEpN4yULZ6WqxAwQS41lnBcMQAyMQvHQ7XDXlzpOQRPu9WTRs
+ kmSixcDBtz6j5Otop4NZO5TQlkffv9HCKxyKhW6KoRiQuDHV1LiDRj0zVOH0hpMaHRkr
+ axqEKXAvPoovxm76q5jmNq/BQ6+R75cAyMsSDqVCYlVkiRZQHmQc9ZklN3mj4Nn6uSdG
+ njxv0BnLC8pPXeirp7qpL07WD0hN1yvL2QN8qeh3dn95Io2rDoV+Ue3cOoFAFNm8t2it
+ pFxQ==
+X-Gm-Message-State: APjAAAUlNh71clTbeDlGAUkZ4Qod+dHiJEpJDRl3VTc89e9zIyG3wt62
+ /CMdbSpSVeOdGrH5hmt8nZngIx45b8oZLzi9IgE=
+X-Google-Smtp-Source: APXvYqw3pwnrd6hNbb/ZLluJDnUjLRllMLnT2D+hVubT403qTe+eggkimgn/iAJJnPDZsuI3sPKPIOELgSACIgZxSGw=
+X-Received: by 2002:a9f:2635:: with SMTP id 50mr7548483uag.2.1579283388588;
+ Fri, 17 Jan 2020 09:49:48 -0800 (PST)
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Fri, 17 Jan 2020 17:30:16 -0000
-Message-ID: <157928221685.26756.12445211003757006448@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
 References: <20200117125849.3024805-1-chris@chris-wilson.co.uk>
 In-Reply-To: <20200117125849.3024805-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiB3YXJuaW5nIGZvciBk?=
- =?utf-8?q?rm/i915/gt=3A_Be_paranoid_and_reset_the_GPU_before_release?=
+From: Matthew Auld <matthew.william.auld@gmail.com>
+Date: Fri, 17 Jan 2020 17:49:23 +0000
+Message-ID: <CAM0jSHMdqWT7zGwEhEB_BgR9h6Z2e-QSoUxzYDA7XX5AiqYFaA@mail.gmail.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/gt: Be paranoid and reset the GPU
+ before release
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,36 +61,19 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
-
-Series: drm/i915/gt: Be paranoid and reset the GPU before release
-URL   : https://patchwork.freedesktop.org/series/72185/
-State : warning
-
-== Summary ==
-
-CALL    scripts/checksyscalls.sh
-  CALL    scripts/atomic/check-atomics.sh
-  CHK     include/generated/compile.h
-Kernel: arch/x86/boot/bzImage is ready  (#1)
-  Building modules, stage 2.
-  MODPOST 122 modules
-ERROR: "__udivdi3" [drivers/gpu/drm/amd/amdgpu/amdgpu.ko] undefined!
-scripts/Makefile.modpost:93: recipe for target '__modpost' failed
-make[1]: *** [__modpost] Error 1
-Makefile:1282: recipe for target 'modules' failed
-make: *** [modules] Error 2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16153/build_32bit.log
+On Fri, 17 Jan 2020 at 12:59, Chris Wilson <chris@chris-wilson.co.uk> wrote:
+>
+> Just in the very unlikely case we have not stopped the GPU before we
+> return the pages being used by the GPU to the system, force a reset.
+>
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Reviewed-by: Matthew Auld <matthew.auld@intel.com>
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
