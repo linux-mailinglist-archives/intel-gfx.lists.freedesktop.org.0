@@ -1,36 +1,35 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 32BA1140D0D
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Jan 2020 15:50:35 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C3884140D33
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Jan 2020 16:02:44 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8A7776F5CB;
-	Fri, 17 Jan 2020 14:50:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1B2DA6F5C6;
+	Fri, 17 Jan 2020 15:02:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B56AC6F5C8;
- Fri, 17 Jan 2020 14:50:31 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 19917706-1500050 for multiple; Fri, 17 Jan 2020 14:50:29 +0000
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D24A26F5C6
+ for <intel-gfx@lists.freedesktop.org>; Fri, 17 Jan 2020 15:02:41 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 17 Jan 2020 07:02:39 -0800
+X-IronPort-AV: E=Sophos;i="5.70,330,1574150400"; d="scan'208";a="218930816"
+Received: from jnikula-mobl3.fi.intel.com (HELO localhost) ([10.237.66.161])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 17 Jan 2020 07:02:39 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri, 17 Jan 2020 17:02:35 +0200
+Message-Id: <20200117150235.22471-1-jani.nikula@intel.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-To: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org
-From: Chris Wilson <chris@chris-wilson.co.uk>
-In-Reply-To: <157927243314.2389.10934965628435405825@skylake-alporthouse-com>
-References: <cover.1575302334.git.jani.nikula@intel.com>
- <bdd0c16b8e2a37589a67e43c70a507001e0e5d27.1575302334.git.jani.nikula@intel.com>
- <157530277477.27263.6028188613442603598@skylake-alporthouse-com>
- <87k15qgnf9.fsf@intel.com>
- <157927243314.2389.10934965628435405825@skylake-alporthouse-com>
-Message-ID: <157927262699.2389.8233680144609510417@skylake-alporthouse-com>
-User-Agent: alot/0.6
-Date: Fri, 17 Jan 2020 14:50:27 +0000
-Subject: Re: [Intel-gfx] [PATCH 01/10] drm/i915/gvt: use intel uncore
- functions for forcewake register access
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Subject: [Intel-gfx] [PATCH] drm/i915/dp: debug log max vswing and
+ pre-emphasis
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -43,29 +42,46 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gvt-dev@lists.freedesktop.org
+Cc: jani.nikula@intel.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Chris Wilson (2020-01-17 14:47:13)
-> Quoting Jani Nikula (2020-01-17 14:36:26)
-> > On Mon, 02 Dec 2019, Chris Wilson <chris@chris-wilson.co.uk> wrote:
-> > > Quoting Jani Nikula (2019-12-02 16:00:49)
-> > >> Move away from I915_READ_FW() and I915_WRITE_FW() and switch to using
-> > >> intel_uncore_read_fw() and intel_uncore_write_fw(), respectively.
-> > >
-> > > I've a patch to switch gvt over to using gt->uncore, gt->engines etc.
-> > 
-> > Have you posted this?
-> 
-> A few months ago,
-> https://patchwork.freedesktop.org/patch/336201/?series=68117&rev=1
+Provide slightly more debugging help.
 
-There's a second for "drm/i915/gvt: Wean gvt off using dev_priv" that
-does the uncore migration after that.
--Chris
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_dp.c | 13 ++++++++-----
+ 1 file changed, 8 insertions(+), 5 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index 4074d83b1a5f..c26be4421f01 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -4142,11 +4142,14 @@ intel_dp_set_signal_levels(struct intel_dp *intel_dp)
+ 	if (mask)
+ 		DRM_DEBUG_KMS("Using signal levels %08x\n", signal_levels);
+ 
+-	DRM_DEBUG_KMS("Using vswing level %d\n",
+-		train_set & DP_TRAIN_VOLTAGE_SWING_MASK);
+-	DRM_DEBUG_KMS("Using pre-emphasis level %d\n",
+-		(train_set & DP_TRAIN_PRE_EMPHASIS_MASK) >>
+-			DP_TRAIN_PRE_EMPHASIS_SHIFT);
++	DRM_DEBUG_KMS("Using vswing level %d%s\n",
++		      train_set & DP_TRAIN_VOLTAGE_SWING_MASK,
++		      train_set & DP_TRAIN_MAX_SWING_REACHED ? " (max)" : "");
++	DRM_DEBUG_KMS("Using pre-emphasis level %d%s\n",
++		      (train_set & DP_TRAIN_PRE_EMPHASIS_MASK) >>
++		      DP_TRAIN_PRE_EMPHASIS_SHIFT,
++		      train_set & DP_TRAIN_MAX_PRE_EMPHASIS_REACHED ?
++		      " (max)" : "");
+ 
+ 	intel_dp->DP = (intel_dp->DP & ~mask) | signal_levels;
+ 
+-- 
+2.20.1
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
