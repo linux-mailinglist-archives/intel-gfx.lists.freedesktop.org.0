@@ -2,36 +2,37 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 54558140D85
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Jan 2020 16:12:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8EF41140D89
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Jan 2020 16:13:31 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 279996F5D8;
-	Fri, 17 Jan 2020 15:12:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E662F6F5DA;
+	Fri, 17 Jan 2020 15:13:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 703CB6F5D8
- for <intel-gfx@lists.freedesktop.org>; Fri, 17 Jan 2020 15:12:42 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7AD6E6F5DA
+ for <intel-gfx@lists.freedesktop.org>; Fri, 17 Jan 2020 15:13:28 +0000 (UTC)
 X-Amp-Result: UNSCANNABLE
 X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 17 Jan 2020 07:12:41 -0800
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 17 Jan 2020 07:13:28 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,330,1574150400"; d="scan'208";a="214503281"
+X-IronPort-AV: E=Sophos;i="5.70,330,1574150400"; d="scan'208";a="220751512"
 Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by orsmga007.jf.intel.com with SMTP; 17 Jan 2020 07:12:39 -0800
+ by fmsmga008.fm.intel.com with SMTP; 17 Jan 2020 07:13:26 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 17 Jan 2020 17:12:38 +0200
-Date: Fri, 17 Jan 2020 17:12:38 +0200
+ Fri, 17 Jan 2020 17:13:25 +0200
+Date: Fri, 17 Jan 2020 17:13:25 +0200
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
 To: Jani Nikula <jani.nikula@intel.com>
-Message-ID: <20200117151238.GP13686@intel.com>
+Message-ID: <20200117151325.GQ13686@intel.com>
 References: <cover.1579270868.git.jani.nikula@intel.com>
  <4338a29e4ed49e69f859dff1490fd85f6ae6177e.1579270868.git.jani.nikula@intel.com>
+ <20200117151238.GP13686@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <4338a29e4ed49e69f859dff1490fd85f6ae6177e.1579270868.git.jani.nikula@intel.com>
+In-Reply-To: <20200117151238.GP13686@intel.com>
 X-Patchwork-Hint: comment
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Subject: Re: [Intel-gfx] [PATCH 8/9] drm/i915/bios: check port presence
@@ -54,53 +55,65 @@ Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Jan 17, 2020 at 04:29:28PM +0200, Jani Nikula wrote:
-> Affects only two calls in output setup, and ddi init will check the
-> features in more fine grained way.
+On Fri, Jan 17, 2020 at 05:12:38PM +0200, Ville Syrj=E4l=E4 wrote:
+> On Fri, Jan 17, 2020 at 04:29:28PM +0200, Jani Nikula wrote:
+> > Affects only two calls in output setup, and ddi init will check the
+> > features in more fine grained way.
+> > =
+
+> > This will make future changes easier.
+> > =
+
+> > Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_bios.c | 4 +---
+> >  1 file changed, 1 insertion(+), 3 deletions(-)
+> > =
+
+> > diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/dr=
+m/i915/display/intel_bios.c
+> > index 4c69253739ec..70fb87e7afb6 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_bios.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_bios.c
+> > @@ -2236,9 +2236,7 @@ bool intel_bios_is_port_present(struct drm_i915_p=
+rivate *dev_priv, enum port por
+> >  		const struct ddi_vbt_port_info *port_info =3D
+> >  			&dev_priv->vbt.ddi_port_info[port];
+> >  =
+
+> > -		return port_info->supports_dp ||
+> > -		       port_info->supports_dvi ||
+> > -		       port_info->supports_hdmi;
+> > +		return port_info->child;
 > =
 
-> This will make future changes easier.
+> Pondering what happens if there's a non-DP/DVI/HDMI port declared in the
+> VBT... I guess those should not have their dvo port set to anything we
+> accept?
+
+Umm, no. We accept DVO_PORT_CRT as PORT_E.
+
 > =
 
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_bios.c | 4 +---
->  1 file changed, 1 insertion(+), 3 deletions(-)
+> >  	}
+> >  =
+
+> >  	/* FIXME maybe deal with port A as well? */
+> > -- =
+
+> > 2.20.1
+> > =
+
+> > _______________________________________________
+> > Intel-gfx mailing list
+> > Intel-gfx@lists.freedesktop.org
+> > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 > =
 
-> diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/=
-i915/display/intel_bios.c
-> index 4c69253739ec..70fb87e7afb6 100644
-> --- a/drivers/gpu/drm/i915/display/intel_bios.c
-> +++ b/drivers/gpu/drm/i915/display/intel_bios.c
-> @@ -2236,9 +2236,7 @@ bool intel_bios_is_port_present(struct drm_i915_pri=
-vate *dev_priv, enum port por
->  		const struct ddi_vbt_port_info *port_info =3D
->  			&dev_priv->vbt.ddi_port_info[port];
->  =
-
-> -		return port_info->supports_dp ||
-> -		       port_info->supports_dvi ||
-> -		       port_info->supports_hdmi;
-> +		return port_info->child;
-
-Pondering what happens if there's a non-DP/DVI/HDMI port declared in the
-VBT... I guess those should not have their dvo port set to anything we
-accept?
-
->  	}
->  =
-
->  	/* FIXME maybe deal with port A as well? */
 > -- =
 
-> 2.20.1
-> =
-
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+> Ville Syrj=E4l=E4
+> Intel
 
 -- =
 
