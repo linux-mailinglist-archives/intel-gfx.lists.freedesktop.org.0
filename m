@@ -2,37 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E1A151407D8
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Jan 2020 11:21:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D8B841407DA
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Jan 2020 11:21:57 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0E8F56F4DA;
-	Fri, 17 Jan 2020 10:21:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3AB9A6F4DB;
+	Fri, 17 Jan 2020 10:21:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D7F9D6F4DA
- for <intel-gfx@lists.freedesktop.org>; Fri, 17 Jan 2020 10:21:49 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-X-Amp-File-Uploaded: False
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 17 Jan 2020 02:21:49 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,329,1574150400"; d="scan'208";a="220006599"
-Received: from ramaling-i9x.iind.intel.com (HELO intel.com) ([10.99.66.154])
- by fmsmga007.fm.intel.com with ESMTP; 17 Jan 2020 02:21:48 -0800
-Date: Fri, 17 Jan 2020 15:51:41 +0530
-From: Ramalingam C <ramalingam.c@intel.com>
-To: Anshuman Gupta <anshuman.gupta@intel.com>
-Message-ID: <20200117102047.GB25764@intel.com>
-References: <20200110134913.24325-1-anshuman.gupta@intel.com>
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2ACF06F4DB
+ for <intel-gfx@lists.freedesktop.org>; Fri, 17 Jan 2020 10:21:54 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19913901-1500050 
+ for multiple; Fri, 17 Jan 2020 10:21:47 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri, 17 Jan 2020 10:21:45 +0000
+Message-Id: <20200117102145.2948244-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.25.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200110134913.24325-1-anshuman.gupta@intel.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH v3] drm/i915/hdcp: update HDCP CP property
- as per port authentication state
+Subject: [Intel-gfx] [PATCH] drm/i915: Include the debugfs params header for
+ its own definition
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,108 +37,28 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Jani Nikula <jani.nikula@intel.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 2020-01-10 at 19:19:13 +0530, Anshuman Gupta wrote:
-> When port is disabled due to modeset crtc disable sequence
-> or DPMS off, it eventually disables the HDCP encryption
-> keeping its content protection property to CP_ENABLED.
-> Since content protection property left at CP_ENABLED by
-> mistake, HDCP authentication is not attempted at next DDI
-> enable sequence.
-> HDCP content property should be updated accordingly
-> as per port authentication state.
-> 
-> v2:
->  - Incorporated the necessary locking. (Ram)
->  - Set content protection property to CP_DESIRED only when
->    user has not asked explicitly to set CP_UNDESIRED.
-> 
-> v3:
->  - Reset the is_hdcp_undesired flag to false. (Ram)
->  - Rephrasing commit log and small comment for is_hdcp_desired
->    flag. (Ram)
-> 
-> CC: Ramalingam C <ramalingam.c@intel.com>
-> Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_display_types.h |  6 ++++++
->  drivers/gpu/drm/i915/display/intel_hdcp.c          | 13 ++++++++++++-
->  2 files changed, 18 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-> index 630a94892b7b..a7b4c8324838 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> @@ -345,6 +345,12 @@ struct intel_hdcp {
->  	struct delayed_work check_work;
->  	struct work_struct prop_work;
->  
-> +	/*
-> +	 * Track new_conn CP UNDESIRED state as DDI disable
-> +	 * code path does't have access to new conn state.
-> +	 */
-Can we call it as "Flag to differentiate the HDCP disable originated
-from userspace from other disables triggered from kernel."
-
-Apart from that this LGTM. Lets wait for the CI.
-
-Reviewed-by: Ramalingam C <ramalingam.c@intel.com>
-> +	bool is_hdcp_undesired;
-> +
->  	/* HDCP1.4 Encryption status */
->  	bool hdcp_encrypted;
->  
-> diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
-> index 0fdbd39f6641..7f631ebd8395 100644
-> --- a/drivers/gpu/drm/i915/display/intel_hdcp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
-> @@ -2002,11 +2002,18 @@ int intel_hdcp_disable(struct intel_connector *connector)
->  	mutex_lock(&hdcp->mutex);
->  
->  	if (hdcp->value != DRM_MODE_CONTENT_PROTECTION_UNDESIRED) {
-> -		hdcp->value = DRM_MODE_CONTENT_PROTECTION_UNDESIRED;
->  		if (hdcp->hdcp2_encrypted)
->  			ret = _intel_hdcp2_disable(connector);
->  		else if (hdcp->hdcp_encrypted)
->  			ret = _intel_hdcp_disable(connector);
-> +
-> +		if (hdcp->is_hdcp_undesired) {
-> +			hdcp->value = DRM_MODE_CONTENT_PROTECTION_UNDESIRED;
-> +			hdcp->is_hdcp_undesired = false;
-> +		} else {
-> +			hdcp->value = DRM_MODE_CONTENT_PROTECTION_DESIRED;
-> +			schedule_work(&hdcp->prop_work);
-> +		}
->  	}
->  
->  	mutex_unlock(&hdcp->mutex);
-> @@ -2044,6 +2051,7 @@ void intel_hdcp_atomic_check(struct drm_connector *connector,
->  {
->  	u64 old_cp = old_state->content_protection;
->  	u64 new_cp = new_state->content_protection;
-> +	struct intel_connector *intel_conn = to_intel_connector(connector);
->  	struct drm_crtc_state *crtc_state;
->  
->  	if (!new_state->crtc) {
-> @@ -2069,6 +2077,9 @@ void intel_hdcp_atomic_check(struct drm_connector *connector,
->  			return;
->  	}
->  
-> +	if (new_cp == DRM_MODE_CONTENT_PROTECTION_UNDESIRED)
-> +		intel_conn->hdcp.is_hdcp_undesired  =  true;
-> +
->  	crtc_state = drm_atomic_get_new_crtc_state(new_state->state,
->  						   new_state->crtc);
->  	crtc_state->mode_changed = true;
-> -- 
-> 2.24.0
-> 
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+ZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9kZWJ1Z2ZzX3BhcmFtcy5jOjIyODoxNTogd2Fybmlu
+Zzogc3ltYm9sICdpOTE1X2RlYnVnZnNfcGFyYW1zJyB3YXMgbm90IGRlY2xhcmVkLiBTaG91bGQg
+aXQgYmUgc3RhdGljPwpkcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2RlYnVnZnNfcGFyYW1zLmM6
+MjI4OjE2OiBlcnJvcjogbm8gcHJldmlvdXMgcHJvdG90eXBlIGZvciDigJhpOTE1X2RlYnVnZnNf
+cGFyYW1z4oCZIFstV2Vycm9yPW1pc3NpbmctcHJvdG90eXBlc10KICAyMjggfCBzdHJ1Y3QgZGVu
+dHJ5ICppOTE1X2RlYnVnZnNfcGFyYW1zKHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICppOTE1KQoK
+U2lnbmVkLW9mZi1ieTogQ2hyaXMgV2lsc29uIDxjaHJpc0BjaHJpcy13aWxzb24uY28udWs+CkNj
+OiBKYW5pIE5pa3VsYSA8amFuaS5uaWt1bGFAaW50ZWwuY29tPgotLS0KIGRyaXZlcnMvZ3B1L2Ry
+bS9pOTE1L2k5MTVfZGVidWdmc19wYXJhbXMuYyB8IDEgKwogMSBmaWxlIGNoYW5nZWQsIDEgaW5z
+ZXJ0aW9uKCspCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9kZWJ1Z2Zz
+X3BhcmFtcy5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9kZWJ1Z2ZzX3BhcmFtcy5jCmlu
+ZGV4IDEyY2JkYmRmNGQ4MC4uNjJiMmM1ZjA0OTVkIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9k
+cm0vaTkxNS9pOTE1X2RlYnVnZnNfcGFyYW1zLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUv
+aTkxNV9kZWJ1Z2ZzX3BhcmFtcy5jCkBAIC01LDYgKzUsNyBAQAogCiAjaW5jbHVkZSA8bGludXgv
+a2VybmVsLmg+CiAKKyNpbmNsdWRlICJpOTE1X2RlYnVnZnNfcGFyYW1zLmgiCiAjaW5jbHVkZSAi
+aTkxNV9kcnYuaCIKICNpbmNsdWRlICJpOTE1X3BhcmFtcy5oIgogCi0tIAoyLjI1LjAKCl9fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWls
+aW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
