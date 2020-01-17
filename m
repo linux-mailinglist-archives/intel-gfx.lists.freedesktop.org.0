@@ -2,41 +2,34 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D7C61141112
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Jan 2020 19:46:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 742A414111B
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Jan 2020 19:49:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 411516F8B9;
-	Fri, 17 Jan 2020 18:46:51 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 059736F8C9
- for <intel-gfx@lists.freedesktop.org>; Fri, 17 Jan 2020 18:46:49 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
+	by gabe.freedesktop.org (Postfix) with ESMTP id 56EAA6F8B4;
+	Fri, 17 Jan 2020 18:49:33 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7336C6F8B4;
+ Fri, 17 Jan 2020 18:49:32 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 17 Jan 2020 10:46:15 -0800
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 17 Jan 2020 10:49:30 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,331,1574150400"; d="scan'208";a="243756314"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by orsmga002.jf.intel.com with SMTP; 17 Jan 2020 10:46:12 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 17 Jan 2020 20:46:11 +0200
-Date: Fri, 17 Jan 2020 20:46:11 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-Message-ID: <20200117184611.GV13686@intel.com>
-References: <20200117095026.1113-1-stanislav.lisovskiy@intel.com>
- <20200117095026.1113-5-stanislav.lisovskiy@intel.com>
+X-IronPort-AV: E=Sophos;i="5.70,331,1574150400"; d="scan'208";a="218995686"
+Received: from mdanino-mobl1.ger.corp.intel.com (HELO localhost.localdomain)
+ ([10.252.23.174])
+ by orsmga008.jf.intel.com with ESMTP; 17 Jan 2020 10:49:30 -0800
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+To: igt-dev@lists.freedesktop.org
+Date: Fri, 17 Jan 2020 18:49:24 +0000
+Message-Id: <20200117184924.12600-1-tvrtko.ursulin@linux.intel.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200117095026.1113-5-stanislav.lisovskiy@intel.com>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH v13 4/5] drm/i915: Manipulate DBuf slices
- properly
+Subject: [Intel-gfx] [PATCH i-g-t] scripts/trace.pl: Update for
+ preempt-to-busy, heartbeats and timeslicing
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,535 +42,427 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: Intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Jan 17, 2020 at 11:50:25AM +0200, Stanislav Lisovskiy wrote:
-> Start manipulating DBuf slices as a mask,
-> but not as a total number, as current approach
-> doesn't give us full control on all combinations
-> of slices, which we might need(like enabling S2
-> only can't enabled by setting enabled_slices=3D1).
-> =
+From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 
-> Removed wrong code from intel_get_ddb_size as
-> it doesn't match to BSpec. For now still just
-> use DBuf slice until proper algorithm is implemented.
-> =
+...
 
-> Other minor code refactoring to get prepared
-> for major DBuf assignment changes landed:
-> - As now enabled slices contain a mask
->   we still need some value which should
->   reflect how much DBuf slices are supported
->   by the platform, now device info contains
->   num_supported_dbuf_slices.
-> - Removed unneeded assertion as we are now
->   manipulating slices in a more proper way.
-> =
+Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Cc: Tony Ye <tony.ye@intel.com>
+---
+Tony could you please check if this works for you and even send me some
+raw trace files you might have so I see how it looks?
 
-> v2: Start using enabled_slices in dev_priv
-> =
+P.S.
+I don't yet guarantee the results are 100% reliable and truthful. Or that
+it won't crash.
+---
+ scripts/trace.pl | 283 +++++++++++++++++++++++++----------------------
+ 1 file changed, 151 insertions(+), 132 deletions(-)
 
-> v3: "enabled_slices" is now "enabled_dbuf_slices_mask",
->     as this now sits in dev_priv independently.
-> =
+diff --git a/scripts/trace.pl b/scripts/trace.pl
+index 77587f24197a..8cad7e6ef65b 100755
+--- a/scripts/trace.pl
++++ b/scripts/trace.pl
+@@ -34,11 +34,10 @@ my $cid = 0;
+ my %queues;
+ my @freqs;
+ 
+-use constant VENG => '255:254';
++use constant VENG => '65534:65534';
+ 
+ my $max_requests = 1000;
+ my $width_us = 32000;
+-my $correct_durations = 0;
+ my %ignore_ring;
+ my %skip_box;
+ my $html = 0;
+@@ -224,18 +223,6 @@ sub arg_zoom_width
+ 	return @_;
+ }
+ 
+-sub arg_split_requests
+-{
+-	return unless scalar(@_);
+-
+-	if ($_[0] eq '--split-requests' or $_[0] eq '-s') {
+-		shift @_;
+-		$correct_durations = 1;
+-	}
+-
+-	return @_;
+-}
+-
+ sub arg_ignore_ring
+ {
+ 	my $val;
+@@ -299,7 +286,6 @@ while (@args) {
+ 	@args = arg_trace(@args);
+ 	@args = arg_max_requests(@args);
+ 	@args = arg_zoom_width(@args);
+-	@args = arg_split_requests(@args);
+ 	@args = arg_ignore_ring(@args);
+ 	@args = arg_skip_box(@args);
+ 	@args = arg_colour_contexts(@args);
+@@ -340,7 +326,79 @@ sub is_veng
+ {
+ 	my ($class, $instance) = split ':', shift;
+ 
+-	return $instance eq '254';
++	return 1 if $instance eq '254' or $instance eq '65534';
++}
++
++my (%port_keys, %port_times);
++
++sub port_in
++{
++	my ($ring, $port, $key, $time) = @_;
++	my ($port_key, $port_time);
++	my @slices;
++
++	$db{$key}->{'slices'} = \@slices
++				unless exists $db{$key}->{'slices'};
++
++	$db{$key}->{'in'}++;
++
++	unless (exists $port_keys{$ring}) {
++		my (@keys, @times);
++
++		$port_keys{$ring} = \@keys;
++		$port_times{$ring} = \@times;
++	}
++
++	$port_key = $port_keys{$ring};
++	$port_time = $port_times{$ring};
++
++	unless (defined $port_key->[$port] and $port_key->[$port] eq $key) {
++		$port_key->[$port] = $key;
++		$port_time->[$port] = $time;
++	}
++}
++
++sub port_out
++{
++	my ($ring, $key, $time) = @_;
++	my ($port_key, $port_time);
++	my $port;
++
++	die unless $db{$key}->{'in'};
++	$db{$key}->{'in'}--;
++
++	$port_key = $port_keys{$ring};
++	$port_time = $port_times{$ring};
++
++	for (my $i = 0; $i < scalar(@{$port_key}); $i++) {
++		next unless defined $port_key->[$i];
++
++		if ($port_key->[$i] eq $key) {
++			$port = $i;
++			last;
++		}
++	}
++
++	return unless defined $port;
++
++	if ($port == 0) {
++		my $s = $db{$key}->{'slices'};
++		my $next;
++
++		push @{$s}, [$port_time->[$port], $time];
++
++		$next = $port + 1;
++		if (defined $port_key->[$next]) {
++			$port_time->[$next] = $time;
++			shift @{$port_key};
++			shift @{$port_time};
++		}
++	}
++
++	if ($db{$key}->{'in'} == 0) {
++		$port_key->[$port] = undef;
++		$port_time->[$port] = undef;
++	}
+ }
+ 
+ # Main input loop - parse lines and build the internal representation of the
+@@ -368,7 +426,6 @@ while (<>) {
+ 
+ 		next unless $f =~ m/=/;
+ 		($k, $v) = ($`, $');
+-		$k = 'global' if $k eq 'global_seqno';
+ 		chop $v if substr($v, -1, 1) eq ',';
+ 		$tp{$k} = $v;
+ 
+@@ -433,76 +490,89 @@ while (<>) {
+ 		}
+ 	} elsif ($tp_name eq 'i915:i915_request_submit:') {
+ 		die if exists $submit{$key};
+-		die unless exists $queue{$key};
++		unless (exists $queue{$key}) { # i915 internal
++			$queue{$key} = $time;
++			$ctxdb{$orig_ctx} = 1;
++		}
+ 		die if $ring eq VENG and not exists $queues{$ctx};
+ 
+ 		$submit{$key} = $time;
+ 	} elsif ($tp_name eq 'i915:i915_request_in:') {
++		my $port = $tp{'port'};
+ 		my ($q, $s);
+ 		my %req;
+ 
+-		# preemption
+-		delete $db{$key} if exists $db{$key};
+-
+ 		unless (exists $queue{$key}) {
+ 			# Virtual engine
+ 			my $vkey = db_key(VENG, $ctx, $seqno);
+ 			my %req;
+ 
+ 			die unless exists $queues{$ctx};
+-			die unless exists $queue{$vkey};
+ 			die unless exists $submit{$vkey};
+ 
+-			# Create separate request record on the queue timeline
+ 			$q = $queue{$vkey};
+ 			$s = $submit{$vkey};
+-			$req{'queue'} = $q;
+-			$req{'submit'} = $s;
++
++			unless (exists $vdb{$vkey}) {
++				# Create separate request record on the queue
++				# timeline.
++				$req{'queue'} = $q;
++				$req{'submit'} = $s;
++				$req{'start'} = $time;
++				$req{'end'} = $time;
++				$req{'ring'} = VENG;
++				$req{'phys-engine'} = $ring;
++				$req{'seqno'} = $seqno;
++				$req{'ctx'} = $ctx;
++				$req{'name'} = $ctx . '/' . $seqno;
++				$req{'port'} = $port;
++
++				$vdb{$vkey} = \%req;
++			}
++		} else {
++			$q = $queue{$key};
++			$s = $submit{$key};
++		}
++
++		unless (exists $db{$key}) {
+ 			$req{'start'} = $time;
+-			$req{'end'} = $time;
+-			$req{'ring'} = VENG;
++			$req{'ring'} = $ring;
+ 			$req{'seqno'} = $seqno;
+ 			$req{'ctx'} = $ctx;
++			$ctxtimelines{$ctx . '/' . $ring} = 1;
+ 			$req{'name'} = $ctx . '/' . $seqno;
+-			$req{'global'} = $tp{'global'};
+-			$req{'port'} = $tp{'port'};
++			$req{'port'} = $port;
++			$req{'queue'} = $q;
++			$req{'submit'} = $s;
++			$req{'virtual'} = 1 if exists $queues{$ctx};
++			$rings{$ring} = $gid++ unless exists $rings{$ring};
++			$ringmap{$rings{$ring}} = $ring;
++			$db{$key} = \%req;
+ 
+-			$vdb{$vkey} = \%req;
+-		} else {
+-			$q = $queue{$key};
+-			$s = $submit{$key};
+ 		}
+ 
+-		$req{'start'} = $time;
+-		$req{'ring'} = $ring;
+-		$req{'seqno'} = $seqno;
+-		$req{'ctx'} = $ctx;
+-		$ctxtimelines{$ctx . '/' . $ring} = 1;
+-		$req{'name'} = $ctx . '/' . $seqno;
+-		$req{'global'} = $tp{'global'};
+-		$req{'port'} = $tp{'port'};
+-		$req{'queue'} = $q;
+-		$req{'submit'} = $s;
+-		$req{'virtual'} = 1 if exists $queues{$ctx};
+-		$rings{$ring} = $gid++ unless exists $rings{$ring};
+-		$ringmap{$rings{$ring}} = $ring;
+-		$db{$key} = \%req;
++		port_in($ring, $port, $key, $time);
+ 	} elsif ($tp_name eq 'i915:i915_request_out:') {
+-		if ($tp{'completed?'}) {
+-			my $nkey;
++		my ($nkey, $completed, $prev_in);
+ 
+-			die unless exists $db{$key};
+-			die unless exists $db{$key}->{'start'};
+-			die if exists $db{$key}->{'end'};
+-
+-			$nkey = notify_key($ctx, $seqno);
++		if ($ring eq VENG and not exists $db{$key}) {
++			my $vkey = db_key(VENG, $ctx, $seqno);
+ 
+-			$db{$key}->{'end'} = $time;
+-			$db{$key}->{'notify'} = $notify{$nkey}
+-						if exists $notify{$nkey};
+-		} else {
+-			delete $db{$key};
++			$ring = $vdb{$vkey}->{'phys-engine'};
++			$key = db_key($ring, $ctx, $seqno);
+ 		}
++
++		die unless exists $db{$key};
++		die unless exists $db{$key}->{'start'};
++
++		$nkey = notify_key($ctx, $seqno);
++
++		port_out($ring, $key, $time);
++
++		$db{$key}->{'notify'} = $notify{$nkey}
++					if exists $notify{$nkey};
++		$db{$key}->{'end'} = $time;
++		$db{$key}->{'completed'} = $tp{'completed?'};
+ 	} elsif ($tp_name eq 'dma_fence:dma_fence_signaled:') {
+ 		my $nkey;
+ 
+@@ -561,6 +631,18 @@ sub sortStart {
+ 	return $val;
+ }
+ 
++sub sortEnd {
++	my $as = $db{$a}->{'end'};
++	my $bs = $db{$b}->{'end'};
++	my $val;
++
++say $a unless defined $as;
++	$val = $as <=> $bs;
++	$val = $a cmp $b if $val == 0;
++
++	return $val;
++}
++
+ sub get_engine_timeline {
+ 	my ($ring) = @_;
+ 	my @timeline;
+@@ -568,7 +650,7 @@ sub get_engine_timeline {
+ 	return $engine_timelines{$ring} if exists $engine_timelines{$ring};
+ 
+ 	@timeline = grep { $db{$_}->{'ring'} eq $ring } keys %db;
+-	@timeline = sort sortStart @timeline;
++	@timeline = sort sortEnd @timeline;
+ 	$engine_timelines{$ring} = \@timeline;
+ 
+ 	return \@timeline;
+@@ -679,73 +761,6 @@ sub get_ctx_timeline {
+ 	return \@timeline;
+ }
+ 
+-# Split out merged batches if requested.
+-if ($correct_durations) {
+-	# Shift !port0 requests start time to after the previous context on the
+-	# same timeline has finished.
+-	foreach my $gid (sort keys %rings) {
+-		my $ring = $ringmap{$rings{$gid}};
+-		my $timeline = get_engine_timeline($ring);
+-		my $complete;
+-
+-		foreach my $pos (0..$#{$timeline}) {
+-			my $key = @{$timeline}[$pos];
+-			my $prev = $complete;
+-			my $pkey;
+-
+-			$complete = $key unless exists $db{$key}->{'no-end'};
+-			$pkey = $complete;
+-
+-			next if $db{$key}->{'port'} == 0;
+-
+-			$pkey = $prev if $complete eq $key;
+-
+-			die unless defined $pkey;
+-
+-			$db{$key}->{'start'} = $db{$pkey}->{'end'};
+-			$db{$key}->{'start'} = $db{$pkey}->{'notify'} if $db{$key}->{'start'} > $db{$key}->{'end'};
+-
+-			die if $db{$key}->{'start'} > $db{$key}->{'end'};
+-
+-			$re_sort = 1;
+-		}
+-	}
+-
+-	maybe_sort_keys();
+-
+-	# Batch with no-end (no request_out) means it was submitted as part of
+-	# coalesced context. This means it's start time should be set to the end
+-	# time of a following request on this context timeline.
+-	foreach my $tkey (sort keys %ctxtimelines) {
+-		my ($ctx, $ring) = split '/', $tkey;
+-		my $timeline = get_ctx_timeline($ctx, $ring, $tkey);
+-		my $last_complete = -1;
+-		my $complete;
+-
+-		foreach my $pos (0..$#{$timeline}) {
+-			my $key = @{$timeline}[$pos];
+-			my $next_key;
+-
+-			next unless exists $db{$key}->{'no-end'};
+-			last if $pos == $#{$timeline};
+-
+-			# Shift following request to start after the current
+-			# one, but only if that wouldn't make it zero duration,
+-			# which would indicate notify arrived after context
+-			# complete.
+-			$next_key = ${$timeline}[$pos + 1];
+-			if (exists $db{$key}->{'notify'} and
+-			    $db{$key}->{'notify'} < $db{$key}->{'end'}) {
+-				$db{$next_key}->{'engine-start'} = $db{$next_key}->{'start'};
+-				$db{$next_key}->{'start'} = $db{$key}->{'notify'};
+-				$re_sort = 1;
+-			}
+-		}
+-	}
+-}
+-
+-maybe_sort_keys();
+-
+ # GPU time accounting
+ my (%running, %runnable, %queued, %batch_avg, %batch_total_avg, %batch_count);
+ my (%submit_avg, %execute_avg, %ctxsave_avg);
+@@ -781,8 +796,7 @@ foreach my $key (@sorted_keys) {
+ 		$db{$key}->{'duration'} = 0;
+ 	}
+ 
+-	$running{$ring} += $end - $start if $correct_durations or
+-					    not exists $db{$key}->{'no-end'};
++	$running{$ring} += $end - $start if not exists $db{$key}->{'no-end'};
+ 	unless (exists $db{$key}->{'virtual'}) {
+ 		$runnable{$ring} += $db{$key}->{'execute-delay'};
+ 		$queued{$ring} += $start - $db{$key}->{'execute-delay'} - $db{$key}->{'queue'};
+@@ -1324,9 +1338,14 @@ foreach my $key (sort sortQueue keys %db) {
+ 		$content .= ' <small><i>++</i></small> ' if exists $db{$key}->{'no-end'};
+ 		$content .= ' <small><i>+</i></small> ' if exists $db{$key}->{'no-notify'};
+ 		$content .= "<br>$db{$key}->{'duration'}us <small>($db{$key}->{'context-complete-delay'}us)</small>";
+-		$startend = 'start: ' . $start . ', end: ' . $notify;
+-		print "\t{id: $i, key: $skey, $type group: $group, subgroup: $subgroup, subgroupOrder: $subgroup, content: '$content', $startend, style: \'$style\'},\n";
+-		$i++;
++		foreach my $slice (@{$db{$key}->{'slices'}}) {
++			my ($s, $e) = ($start, $notify);
++			$s = @{$slice}[0] if @{$slice}[0] >= $start;
++			$e = @{$slice}[1] if @{$slice}[1] <= $notify;
++			$startend = 'start: ' . $s . ', end: ' . $e;
++			print "\t{id: $i, key: $skey, $type group: $group, subgroup: $subgroup, subgroupOrder: $subgroup, content: '$content', $startend, style: \'$style\'},\n";
++			$i++;
++		}
+ 	}
+ 
+ 	# user interrupt to context complete
+-- 
+2.20.1
 
-> v4: - Fixed debug print formatting to hex(Matt Roper)
->     - Optimized dbuf slice updates to be used only
->       if slice union is different from current conf(Matt Roper)
->     - Fixed some functions to be static(Matt Roper)
->     - Created a parameterized version for DBUF_CTL to
->       simplify DBuf programming cycle(Matt Roper)
->     - Removed unrequred field from GEN10_FEATURES(Matt Roper)
-> =
-
-> v5: - Removed redundant programming dbuf slices helper(Ville Syrj=E4l=E4)
->     - Started to use parameterized loop for hw readout to get slices
->       (Ville Syrj=E4l=E4)
->     - Added back assertion checking amount of DBUF slices enabled
->       after DC states 5/6 transition, also added new assertion
->       as starting from ICL DMC seems to restore the last DBuf
->       power state set, rather than power up all dbuf slices
->       as assertion was previously expecting(Ville Syrj=E4l=E4)
-> =
-
-> v6: - Now using enum for DBuf slices in this patch (Ville Syrj=E4l=E4)
->     - Removed gen11_assert_dbuf_enabled and put gen9_assert_dbuf_enabled
->       back, as we really need to have a single unified assert here
->       however currently enabling always slice 1 is enforced by BSpec,
->       so we will have to OR enabled slices mask with 1 in order
->       to be consistent with BSpec, that way we can unify that
->       assertion and against the actual state from the driver, but
->       not some hardcoded value.(concluded with Ville)
->     - Remove parameterized DBUF_CTL version, to extract it to another
->       patch.(Ville Syrj=E4l=E4)
->     - Removed unneeded hardcoded return value for older gens from
->       intel_enabled_dbuf_slices_mask - this now is handled in a
->       unified manner since device info anyway returns max dbuf slices
->       as 1 for older platforms(Matthew Roper)
->     - Now using INTEL_INFO(dev_priv)->num_supported_dbuf_slices instead
->       of intel_dbuf_max_slices function as it is trivial(Matthew Roper)
-> =
-
-> Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_display.c  | 23 ++---
->  .../drm/i915/display/intel_display_power.c    | 92 ++++++-------------
->  .../drm/i915/display/intel_display_types.h    |  2 +-
->  drivers/gpu/drm/i915/i915_drv.h               |  2 +-
->  drivers/gpu/drm/i915/i915_pci.c               |  5 +-
->  drivers/gpu/drm/i915/intel_device_info.h      |  1 +
->  drivers/gpu/drm/i915/intel_pm.c               | 53 +++--------
->  drivers/gpu/drm/i915/intel_pm.h               |  2 +-
->  8 files changed, 63 insertions(+), 117 deletions(-)
-> =
-
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/d=
-rm/i915/display/intel_display.c
-> index 8b06ef29693e..061de161b95b 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -13770,12 +13770,12 @@ static void verify_wm_state(struct intel_crtc *=
-crtc,
->  =
-
->  	skl_pipe_ddb_get_hw_state(crtc, hw->ddb_y, hw->ddb_uv);
->  =
-
-> -	hw_enabled_slices =3D intel_enabled_dbuf_slices_num(dev_priv);
-> +	hw_enabled_slices =3D intel_enabled_dbuf_slices_mask(dev_priv);
->  =
-
->  	if (INTEL_GEN(dev_priv) >=3D 11 &&
-> -	    hw_enabled_slices !=3D dev_priv->enabled_dbuf_slices_num)
-> -		DRM_ERROR("mismatch in DBUF Slices (expected %u, got %u)\n",
-> -			  dev_priv->enabled_dbuf_slices_num,
-> +	    hw_enabled_slices !=3D dev_priv->enabled_dbuf_slices_mask)
-> +		DRM_ERROR("mismatch in DBUF Slices (expected 0x%x, got 0x%x)\n",
-> +			  dev_priv->enabled_dbuf_slices_mask,
->  			  hw_enabled_slices);
->  =
-
->  	/* planes */
-> @@ -15119,22 +15119,23 @@ static void intel_update_trans_port_sync_crtcs(=
-struct intel_crtc *crtc,
->  static void icl_dbuf_slice_pre_update(struct intel_atomic_state *state)
->  {
->  	struct drm_i915_private *dev_priv =3D to_i915(state->base.dev);
-> -	u8 hw_enabled_slices =3D dev_priv->enabled_dbuf_slices_num;
-> -	u8 required_slices =3D state->enabled_dbuf_slices_num;
-> +	u8 hw_enabled_slices =3D dev_priv->enabled_dbuf_slices_mask;
-> +	u8 required_slices =3D state->enabled_dbuf_slices_mask;
-> +	u8 slices_union =3D hw_enabled_slices | required_slices;
->  =
-
->  	/* If 2nd DBuf slice required, enable it here */
-> -	if (INTEL_GEN(dev_priv) >=3D 11 && required_slices > hw_enabled_slices)
-> -		icl_dbuf_slices_update(dev_priv, required_slices);
-> +	if (INTEL_GEN(dev_priv) >=3D 11 && slices_union !=3D hw_enabled_slices)
-> +		icl_dbuf_slices_update(dev_priv, slices_union);
->  }
->  =
-
->  static void icl_dbuf_slice_post_update(struct intel_atomic_state *state)
->  {
->  	struct drm_i915_private *dev_priv =3D to_i915(state->base.dev);
-> -	u8 hw_enabled_slices =3D dev_priv->enabled_dbuf_slices_num;
-> -	u8 required_slices =3D state->enabled_dbuf_slices_num;
-> +	u8 hw_enabled_slices =3D dev_priv->enabled_dbuf_slices_mask;
-> +	u8 required_slices =3D state->enabled_dbuf_slices_mask;
->  =
-
->  	/* If 2nd DBuf slice is no more required disable it */
-> -	if (INTEL_GEN(dev_priv) >=3D 11 && required_slices < hw_enabled_slices)
-> +	if (INTEL_GEN(dev_priv) >=3D 11 && required_slices !=3D hw_enabled_slic=
-es)
->  		icl_dbuf_slices_update(dev_priv, required_slices);
->  }
->  =
-
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers=
-/gpu/drm/i915/display/intel_display_power.c
-> index 08065720391f..b86842b1ff7a 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_power.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
-> @@ -15,6 +15,7 @@
->  #include "intel_display_types.h"
->  #include "intel_dpio_phy.h"
->  #include "intel_hotplug.h"
-> +#include "intel_pm.h"
->  #include "intel_sideband.h"
->  #include "intel_tc.h"
->  #include "intel_vga.h"
-> @@ -1028,11 +1029,13 @@ static bool gen9_dc_off_power_well_enabled(struct=
- drm_i915_private *dev_priv,
->  =
-
->  static void gen9_assert_dbuf_enabled(struct drm_i915_private *dev_priv)
->  {
-> -	u32 tmp =3D I915_READ(DBUF_CTL);
-> +	u8 hw_enabled_dbuf_slices =3D intel_enabled_dbuf_slices_mask(dev_priv);
-> +	u8 enabled_dbuf_slices =3D dev_priv->enabled_dbuf_slices_mask;
->  =
-
-> -	WARN((tmp & (DBUF_POWER_STATE | DBUF_POWER_REQUEST)) !=3D
-> -	     (DBUF_POWER_STATE | DBUF_POWER_REQUEST),
-> -	     "Unexpected DBuf power power state (0x%08x)\n", tmp);
-> +	WARN(hw_enabled_dbuf_slices !=3D enabled_dbuf_slices,
-> +	     "Unexpected DBuf power power state (0x%08x, expected 0x%08x)\n",
-> +	     hw_enabled_dbuf_slices,
-> +	     enabled_dbuf_slices);
->  }
->  =
-
->  static void gen9_disable_dc_states(struct drm_i915_private *dev_priv)
-> @@ -4388,86 +4391,49 @@ bool intel_dbuf_slice_set(struct drm_i915_private=
- *dev_priv,
->  =
-
->  static void gen9_dbuf_enable(struct drm_i915_private *dev_priv)
->  {
-> -	intel_dbuf_slice_set(dev_priv, DBUF_CTL, true);
-> +	icl_dbuf_slices_update(dev_priv, BIT(DBUF_S1));
->  }
->  =
-
->  static void gen9_dbuf_disable(struct drm_i915_private *dev_priv)
->  {
-> -	intel_dbuf_slice_set(dev_priv, DBUF_CTL, false);
-> -}
-> -
-> -static u8 intel_dbuf_max_slices(struct drm_i915_private *dev_priv)
-> -{
-> -	if (INTEL_GEN(dev_priv) < 11)
-> -		return 1;
-> -	return 2;
-> +	icl_dbuf_slices_update(dev_priv, 0);
->  }
->  =
-
->  void icl_dbuf_slices_update(struct drm_i915_private *dev_priv,
->  			    u8 req_slices)
->  {
-> -	const u8 hw_enabled_slices =3D dev_priv->enabled_dbuf_slices_num;
-> -	bool ret;
-> +	int i;
-> +	int max_slices =3D INTEL_INFO(dev_priv)->num_supported_dbuf_slices;
->  =
-
-> -	if (req_slices > intel_dbuf_max_slices(dev_priv)) {
-> -		DRM_ERROR("Invalid number of dbuf slices requested\n");
-> -		return;
-> -	}
-> +	WARN(hweight8(req_slices) > max_slices,
-> +	     "Invalid number of dbuf slices requested\n");
->  =
-
-> -	if (req_slices =3D=3D hw_enabled_slices || req_slices =3D=3D 0)
-> -		return;
-> +	DRM_DEBUG_KMS("Updating dbuf slices to 0x%x\n", req_slices);
->  =
-
-> -	if (req_slices > hw_enabled_slices)
-> -		ret =3D intel_dbuf_slice_set(dev_priv,
-> -					   DBUF_CTL_S(DBUF_S2), true);
-> -	else
-> -		ret =3D intel_dbuf_slice_set(dev_priv,
-> -					   DBUF_CTL_S(DBUF_S2), false);
-> +	for (i =3D 0; i < max_slices; i++) {
-> +		intel_dbuf_slice_set(dev_priv,
-> +				     DBUF_CTL_S(i),
-> +				     (req_slices & BIT(i)) !=3D 0);
-> +	}
->  =
-
-> -	if (ret)
-> -		dev_priv->enabled_dbuf_slices_num =3D req_slices;
-> +	dev_priv->enabled_dbuf_slices_mask =3D req_slices;
->  }
->  =
-
->  static void icl_dbuf_enable(struct drm_i915_private *dev_priv)
->  {
-> -	I915_WRITE(DBUF_CTL_S(DBUF_S1),
-> -		   I915_READ(DBUF_CTL_S(DBUF_S1)) | DBUF_POWER_REQUEST);
-> -	I915_WRITE(DBUF_CTL_S(DBUF_S2),
-> -		   I915_READ(DBUF_CTL_S(DBUF_S2)) | DBUF_POWER_REQUEST);
-> -	POSTING_READ(DBUF_CTL_S(DBUF_S2));
-> -
-> -	udelay(10);
-> -
-> -	if (!(I915_READ(DBUF_CTL_S(DBUF_S1)) & DBUF_POWER_STATE) ||
-> -	    !(I915_READ(DBUF_CTL_S(DBUF_S2)) & DBUF_POWER_STATE))
-> -		DRM_ERROR("DBuf power enable timeout\n");
-> -	else
-> -		/*
-> -		 * FIXME: for now pretend that we only have 1 slice, see
-> -		 * intel_enabled_dbuf_slices_num().
-> -		 */
-> -		dev_priv->enabled_dbuf_slices_num =3D 1;
-> +	/*
-> +	 * Just power up 1 slice, we will
-> +	 * figure out later which slices we have and what we need.
-> +	 */
-> +	icl_dbuf_slices_update(dev_priv, BIT(DBUF_S1));
->  }
->  =
-
->  static void icl_dbuf_disable(struct drm_i915_private *dev_priv)
->  {
-> -	I915_WRITE(DBUF_CTL_S(DBUF_S1),
-> -		   I915_READ(DBUF_CTL_S(DBUF_S1)) & ~DBUF_POWER_REQUEST);
-> -	I915_WRITE(DBUF_CTL_S(DBUF_S2),
-> -		   I915_READ(DBUF_CTL_S(DBUF_S2)) & ~DBUF_POWER_REQUEST);
-> -	POSTING_READ(DBUF_CTL_S(DBUF_S2));
-> -
-> -	udelay(10);
-> -
-> -	if ((I915_READ(DBUF_CTL_S(DBUF_S1)) & DBUF_POWER_STATE) ||
-> -	    (I915_READ(DBUF_CTL_S(DBUF_S2)) & DBUF_POWER_STATE))
-> -		DRM_ERROR("DBuf power disable timeout!\n");
-> -	else
-> -		/*
-> -		 * FIXME: for now pretend that the first slice is always
-> -		 * enabled, see intel_enabled_dbuf_slices_num().
-> -		 */
-> -		dev_priv->enabled_dbuf_slices_num =3D 1;
-> +	/*
-> +	 * As of BSpec Slice 1 is always enabled.
-> +	 */
-> +	icl_dbuf_slices_update(dev_priv, BIT(DBUF_S1));
-
-This should still disable all slices. It's part of the display uninit
-sequence.
-
-With that fixed
-Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-
->  }
->  =
-
->  static void icl_mbus_init(struct drm_i915_private *dev_priv)
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers=
-/gpu/drm/i915/display/intel_display_types.h
-> index 6dca90ebca35..09f14e9e7863 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> @@ -518,7 +518,7 @@ struct intel_atomic_state {
->  	struct skl_ddb_values wm_results;
->  =
-
->  	/* Number of enabled DBuf slices */
-> -	u8 enabled_dbuf_slices_num;
-> +	u8 enabled_dbuf_slices_mask;
->  =
-
->  	struct i915_sw_fence commit_ready;
->  =
-
-> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_=
-drv.h
-> index 9dbf2e57b01b..5b895ad38fbc 100644
-> --- a/drivers/gpu/drm/i915/i915_drv.h
-> +++ b/drivers/gpu/drm/i915/i915_drv.h
-> @@ -1208,7 +1208,7 @@ struct drm_i915_private {
->  		bool distrust_bios_wm;
->  	} wm;
->  =
-
-> -	u8 enabled_dbuf_slices_num; /* GEN11 has configurable 2 slices */
-> +	u8 enabled_dbuf_slices_mask; /* GEN11 has configurable 2 slices */
->  =
-
->  	struct dram_info {
->  		bool valid;
-> diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_=
-pci.c
-> index 83f01401b8b5..6c6daa44c439 100644
-> --- a/drivers/gpu/drm/i915/i915_pci.c
-> +++ b/drivers/gpu/drm/i915/i915_pci.c
-> @@ -615,7 +615,8 @@ static const struct intel_device_info chv_info =3D {
->  	.has_gt_uc =3D 1, \
->  	.display.has_hdcp =3D 1, \
->  	.display.has_ipc =3D 1, \
-> -	.ddb_size =3D 896
-> +	.ddb_size =3D 896, \
-> +	.num_supported_dbuf_slices =3D 1
->  =
-
->  #define SKL_PLATFORM \
->  	GEN9_FEATURES, \
-> @@ -650,6 +651,7 @@ static const struct intel_device_info skl_gt4_info =
-=3D {
->  #define GEN9_LP_FEATURES \
->  	GEN(9), \
->  	.is_lp =3D 1, \
-> +	.num_supported_dbuf_slices =3D 1, \
->  	.display.has_hotplug =3D 1, \
->  	.engine_mask =3D BIT(RCS0) | BIT(VCS0) | BIT(BCS0) | BIT(VECS0), \
->  	.pipe_mask =3D BIT(PIPE_A) | BIT(PIPE_B) | BIT(PIPE_C), \
-> @@ -774,6 +776,7 @@ static const struct intel_device_info cnl_info =3D {
->  	}, \
->  	GEN(11), \
->  	.ddb_size =3D 2048, \
-> +	.num_supported_dbuf_slices =3D 2, \
->  	.has_logical_ring_elsq =3D 1, \
->  	.color =3D { .degamma_lut_size =3D 33, .gamma_lut_size =3D 262145 }
->  =
-
-> diff --git a/drivers/gpu/drm/i915/intel_device_info.h b/drivers/gpu/drm/i=
-915/intel_device_info.h
-> index 2725cb7fc169..7d4d122d2182 100644
-> --- a/drivers/gpu/drm/i915/intel_device_info.h
-> +++ b/drivers/gpu/drm/i915/intel_device_info.h
-> @@ -180,6 +180,7 @@ struct intel_device_info {
->  	} display;
->  =
-
->  	u16 ddb_size; /* in blocks */
-> +	u8 num_supported_dbuf_slices; /* number of DBuf slices */
->  =
-
->  	/* Register offsets for the various display pipes and transcoders */
->  	int pipe_offsets[I915_MAX_TRANSCODERS];
-> diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel=
-_pm.c
-> index f22509f8ac28..b4b291d4244b 100644
-> --- a/drivers/gpu/drm/i915/intel_pm.c
-> +++ b/drivers/gpu/drm/i915/intel_pm.c
-> @@ -3644,26 +3644,18 @@ bool ilk_disable_lp_wm(struct drm_i915_private *d=
-ev_priv)
->  	return _ilk_disable_lp_wm(dev_priv, WM_DIRTY_LP_ALL);
->  }
->  =
-
-> -u8 intel_enabled_dbuf_slices_num(struct drm_i915_private *dev_priv)
-> +u8 intel_enabled_dbuf_slices_mask(struct drm_i915_private *dev_priv)
->  {
-> -	u8 enabled_dbuf_slices_num;
-> -
-> -	/* Slice 1 will always be enabled */
-> -	enabled_dbuf_slices_num =3D 1;
-> -
-> -	/* Gen prior to GEN11 have only one DBuf slice */
-> -	if (INTEL_GEN(dev_priv) < 11)
-> -		return enabled_dbuf_slices_num;
-> +	int i;
-> +	int max_slices =3D INTEL_INFO(dev_priv)->num_supported_dbuf_slices;
-> +	u8 enabled_slices_mask =3D 0;
->  =
-
-> -	/*
-> -	 * FIXME: for now we'll only ever use 1 slice; pretend that we have
-> -	 * only that 1 slice enabled until we have a proper way for on-demand
-> -	 * toggling of the second slice.
-> -	 */
-> -	if (0 && I915_READ(DBUF_CTL_S(DBUF_S2)) & DBUF_POWER_STATE)
-> -		enabled_dbuf_slices_num++;
-> +	for (i =3D 0; i < max_slices; i++) {
-> +		if (I915_READ(DBUF_CTL_S(i)) & DBUF_POWER_STATE)
-> +			enabled_slices_mask |=3D BIT(i);
-> +	}
->  =
-
-> -	return enabled_dbuf_slices_num;
-> +	return enabled_slices_mask;
->  }
->  =
-
->  /*
-> @@ -3871,8 +3863,6 @@ static u16 intel_get_ddb_size(struct drm_i915_priva=
-te *dev_priv,
->  {
->  	struct drm_atomic_state *state =3D crtc_state->uapi.state;
->  	struct intel_atomic_state *intel_state =3D to_intel_atomic_state(state);
-> -	const struct drm_display_mode *adjusted_mode;
-> -	u64 total_data_bw;
->  	u16 ddb_size =3D INTEL_INFO(dev_priv)->ddb_size;
->  =
-
->  	WARN_ON(ddb_size =3D=3D 0);
-> @@ -3880,23 +3870,8 @@ static u16 intel_get_ddb_size(struct drm_i915_priv=
-ate *dev_priv,
->  	if (INTEL_GEN(dev_priv) < 11)
->  		return ddb_size - 4; /* 4 blocks for bypass path allocation */
->  =
-
-> -	adjusted_mode =3D &crtc_state->hw.adjusted_mode;
-> -	total_data_bw =3D total_data_rate * drm_mode_vrefresh(adjusted_mode);
-> -
-> -	/*
-> -	 * 12GB/s is maximum BW supported by single DBuf slice.
-> -	 *
-> -	 * FIXME dbuf slice code is broken:
-> -	 * - must wait for planes to stop using the slice before powering it off
-> -	 * - plane straddling both slices is illegal in multi-pipe scenarios
-> -	 * - should validate we stay within the hw bandwidth limits
-> -	 */
-> -	if (0 && (num_active > 1 || total_data_bw >=3D GBps(12))) {
-> -		intel_state->enabled_dbuf_slices_num =3D 2;
-> -	} else {
-> -		intel_state->enabled_dbuf_slices_num =3D 1;
-> -		ddb_size /=3D 2;
-> -	}
-> +	intel_state->enabled_dbuf_slices_mask =3D BIT(DBUF_S1);
-> +	ddb_size /=3D 2;
->  =
-
->  	return ddb_size;
->  }
-> @@ -4093,8 +4068,8 @@ void skl_pipe_ddb_get_hw_state(struct intel_crtc *c=
-rtc,
->  =
-
->  void skl_ddb_get_hw_state(struct drm_i915_private *dev_priv)
->  {
-> -	dev_priv->enabled_dbuf_slices_num =3D
-> -				intel_enabled_dbuf_slices_num(dev_priv);
-> +	dev_priv->enabled_dbuf_slices_mask =3D
-> +				intel_enabled_dbuf_slices_mask(dev_priv);
->  }
->  =
-
->  /*
-> @@ -5236,7 +5211,7 @@ skl_compute_ddb(struct intel_atomic_state *state)
->  	struct intel_crtc *crtc;
->  	int ret, i;
->  =
-
-> -	state->enabled_dbuf_slices_num =3D dev_priv->enabled_dbuf_slices_num;
-> +	state->enabled_dbuf_slices_mask =3D dev_priv->enabled_dbuf_slices_mask;
->  =
-
->  	for_each_oldnew_intel_crtc_in_state(state, crtc, old_crtc_state,
->  					    new_crtc_state, i) {
-> diff --git a/drivers/gpu/drm/i915/intel_pm.h b/drivers/gpu/drm/i915/intel=
-_pm.h
-> index 22fd2daf608e..d60a85421c5a 100644
-> --- a/drivers/gpu/drm/i915/intel_pm.h
-> +++ b/drivers/gpu/drm/i915/intel_pm.h
-> @@ -32,7 +32,7 @@ void g4x_wm_get_hw_state(struct drm_i915_private *dev_p=
-riv);
->  void vlv_wm_get_hw_state(struct drm_i915_private *dev_priv);
->  void ilk_wm_get_hw_state(struct drm_i915_private *dev_priv);
->  void skl_wm_get_hw_state(struct drm_i915_private *dev_priv);
-> -u8 intel_enabled_dbuf_slices_num(struct drm_i915_private *dev_priv);
-> +u8 intel_enabled_dbuf_slices_mask(struct drm_i915_private *dev_priv);
->  void skl_pipe_ddb_get_hw_state(struct intel_crtc *crtc,
->  			       struct skl_ddb_entry *ddb_y,
->  			       struct skl_ddb_entry *ddb_uv);
-> -- =
-
-> 2.24.1.485.gad05a3d8e5
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
