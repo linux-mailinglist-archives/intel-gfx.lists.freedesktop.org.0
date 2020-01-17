@@ -2,40 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E4C40140CE7
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Jan 2020 15:43:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 191E4140CEA
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Jan 2020 15:43:53 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 30E656F5B7;
-	Fri, 17 Jan 2020 14:43:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7E6016F5BC;
+	Fri, 17 Jan 2020 14:43:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E40F46F5B7
- for <intel-gfx@lists.freedesktop.org>; Fri, 17 Jan 2020 14:43:36 +0000 (UTC)
-X-Amp-Result: UNSCANNABLE
-X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 17 Jan 2020 06:43:36 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,330,1574150400"; d="scan'208";a="214493282"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by orsmga007.jf.intel.com with SMTP; 17 Jan 2020 06:43:33 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 17 Jan 2020 16:43:32 +0200
-Date: Fri, 17 Jan 2020 16:43:32 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Message-ID: <20200117144332.GM13686@intel.com>
-References: <cover.1579270868.git.jani.nikula@intel.com>
- <c52c39df43374b51f56439daf8047079afae7749.1579270868.git.jani.nikula@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 82CF86F5B3;
+ Fri, 17 Jan 2020 14:43:50 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 7A560A0138;
+ Fri, 17 Jan 2020 14:43:50 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <c52c39df43374b51f56439daf8047079afae7749.1579270868.git.jani.nikula@intel.com>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH 1/9] drm/i915/bios: add
- intel_bios_max_tmds_encoder()
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Fri, 17 Jan 2020 14:43:50 -0000
+Message-ID: <157927223049.26756.12929149057569114332@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200117111546.3012803-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200117111546.3012803-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5B1/4=5D_drm/i915=3A_Only_retire_requests_wh?=
+ =?utf-8?q?en_eviction_is_allowed_to_blocked?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,107 +39,122 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Jan 17, 2020 at 04:29:21PM +0200, Jani Nikula wrote:
-> Don't access i915->vbt.ddi_port_info[] directly.
-> =
+== Series Details ==
 
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+Series: series starting with [1/4] drm/i915: Only retire requests when eviction is allowed to blocked
+URL   : https://patchwork.freedesktop.org/series/72184/
+State : success
 
-Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+== Summary ==
 
-> ---
->  drivers/gpu/drm/i915/display/intel_bios.c | 7 +++++++
->  drivers/gpu/drm/i915/display/intel_bios.h | 1 +
->  drivers/gpu/drm/i915/display/intel_hdmi.c | 9 ++++-----
->  3 files changed, 12 insertions(+), 5 deletions(-)
-> =
+CI Bug Log - changes from CI_DRM_7761 -> Patchwork_16151
+====================================================
 
-> diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/=
-i915/display/intel_bios.c
-> index 9a891ef72118..b231fafc03ca 100644
-> --- a/drivers/gpu/drm/i915/display/intel_bios.c
-> +++ b/drivers/gpu/drm/i915/display/intel_bios.c
-> @@ -2562,3 +2562,10 @@ enum aux_ch intel_bios_port_aux_ch(struct drm_i915=
-_private *dev_priv,
->  =
+Summary
+-------
 
->  	return aux_ch;
->  }
-> +
-> +int intel_bios_max_tmds_clock(struct intel_encoder *encoder)
-> +{
-> +	struct drm_i915_private *i915 =3D to_i915(encoder->base.dev);
-> +
-> +	return i915->vbt.ddi_port_info[encoder->port].max_tmds_clock;
-> +}
-> diff --git a/drivers/gpu/drm/i915/display/intel_bios.h b/drivers/gpu/drm/=
-i915/display/intel_bios.h
-> index d6a0c29d37ac..519e983ee9e7 100644
-> --- a/drivers/gpu/drm/i915/display/intel_bios.h
-> +++ b/drivers/gpu/drm/i915/display/intel_bios.h
-> @@ -247,5 +247,6 @@ enum aux_ch intel_bios_port_aux_ch(struct drm_i915_pr=
-ivate *dev_priv, enum port
->  bool intel_bios_get_dsc_params(struct intel_encoder *encoder,
->  			       struct intel_crtc_state *crtc_state,
->  			       int dsc_max_bpc);
-> +int intel_bios_max_tmds_clock(struct intel_encoder *encoder);
->  =
+  **SUCCESS**
 
->  #endif /* _INTEL_BIOS_H_ */
-> diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/=
-i915/display/intel_hdmi.c
-> index 93ac0f296852..e8f8c87cd3e6 100644
-> --- a/drivers/gpu/drm/i915/display/intel_hdmi.c
-> +++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
-> @@ -2090,9 +2090,7 @@ static void pch_post_disable_hdmi(struct intel_enco=
-der *encoder,
->  static int intel_hdmi_source_max_tmds_clock(struct intel_encoder *encode=
-r)
->  {
->  	struct drm_i915_private *dev_priv =3D to_i915(encoder->base.dev);
-> -	const struct ddi_vbt_port_info *info =3D
-> -		&dev_priv->vbt.ddi_port_info[encoder->port];
-> -	int max_tmds_clock;
-> +	int max_tmds_clock, vbt_max_tmds_clock;
->  =
+  No regressions found.
 
->  	if (INTEL_GEN(dev_priv) >=3D 10 || IS_GEMINILAKE(dev_priv))
->  		max_tmds_clock =3D 594000;
-> @@ -2103,8 +2101,9 @@ static int intel_hdmi_source_max_tmds_clock(struct =
-intel_encoder *encoder)
->  	else
->  		max_tmds_clock =3D 165000;
->  =
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16151/index.html
 
-> -	if (info->max_tmds_clock)
-> -		max_tmds_clock =3D min(max_tmds_clock, info->max_tmds_clock);
-> +	vbt_max_tmds_clock =3D intel_bios_max_tmds_clock(encoder);
-> +	if (vbt_max_tmds_clock)
-> +		max_tmds_clock =3D min(max_tmds_clock, vbt_max_tmds_clock);
->  =
+Known issues
+------------
 
->  	return max_tmds_clock;
->  }
-> -- =
+  Here are the changes found in Patchwork_16151 that come from known issues:
 
-> 2.20.1
-> =
+### IGT changes ###
 
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+#### Issues hit ####
 
--- =
+  * igt@i915_module_load@reload-with-fault-injection:
+    - fi-cfl-8700k:       [PASS][1] -> [DMESG-WARN][2] ([i915#889])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7761/fi-cfl-8700k/igt@i915_module_load@reload-with-fault-injection.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16151/fi-cfl-8700k/igt@i915_module_load@reload-with-fault-injection.html
+    - fi-skl-6700k2:      [PASS][3] -> [DMESG-WARN][4] ([i915#889])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7761/fi-skl-6700k2/igt@i915_module_load@reload-with-fault-injection.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16151/fi-skl-6700k2/igt@i915_module_load@reload-with-fault-injection.html
 
-Ville Syrj=E4l=E4
-Intel
+  * igt@i915_pm_rpm@module-reload:
+    - fi-skl-6700k2:      [PASS][5] -> [INCOMPLETE][6] ([i915#151])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7761/fi-skl-6700k2/igt@i915_pm_rpm@module-reload.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16151/fi-skl-6700k2/igt@i915_pm_rpm@module-reload.html
+
+  * igt@kms_chamelium@hdmi-crc-fast:
+    - fi-icl-u2:          [PASS][7] -> [FAIL][8] ([fdo#109635])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7761/fi-icl-u2/igt@kms_chamelium@hdmi-crc-fast.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16151/fi-icl-u2/igt@kms_chamelium@hdmi-crc-fast.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_close_race@basic-threads:
+    - fi-byt-j1900:       [TIMEOUT][9] ([fdo#112271] / [i915#816]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7761/fi-byt-j1900/igt@gem_close_race@basic-threads.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16151/fi-byt-j1900/igt@gem_close_race@basic-threads.html
+
+  
+  [fdo#109635]: https://bugs.freedesktop.org/show_bug.cgi?id=109635
+  [fdo#112271]: https://bugs.freedesktop.org/show_bug.cgi?id=112271
+  [i915#151]: https://gitlab.freedesktop.org/drm/intel/issues/151
+  [i915#816]: https://gitlab.freedesktop.org/drm/intel/issues/816
+  [i915#889]: https://gitlab.freedesktop.org/drm/intel/issues/889
+
+
+Participating hosts (51 -> 37)
+------------------------------
+
+  Missing    (14): fi-hsw-4770r fi-ilk-m540 fi-bsw-n3050 fi-hsw-4200u fi-skl-6770hq fi-byt-squawks fi-bsw-cyan fi-bwr-2160 fi-snb-2520m fi-ivb-3770 fi-byt-clapper fi-kbl-r fi-skl-6600u fi-snb-2600 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_7761 -> Patchwork_16151
+
+  CI-20190529: 20190529
+  CI_DRM_7761: 836adfffce988051aa6b67194be279a9a541539d @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5371: 1b2816124ec3dbd53b81725d39292f45d41d895b @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_16151: 6ecd9e89fbe8e63162423992512d67ecef15d1f0 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Kernel 32bit build ==
+
+Warning: Kernel 32bit buildtest failed:
+https://intel-gfx-ci.01.org/Patchwork_16151/build_32bit.log
+
+  CALL    scripts/checksyscalls.sh
+  CALL    scripts/atomic/check-atomics.sh
+  CHK     include/generated/compile.h
+Kernel: arch/x86/boot/bzImage is ready  (#1)
+  Building modules, stage 2.
+  MODPOST 122 modules
+ERROR: "__udivdi3" [drivers/gpu/drm/amd/amdgpu/amdgpu.ko] undefined!
+scripts/Makefile.modpost:93: recipe for target '__modpost' failed
+make[1]: *** [__modpost] Error 1
+Makefile:1282: recipe for target 'modules' failed
+make: *** [modules] Error 2
+
+
+== Linux commits ==
+
+6ecd9e89fbe8 drm/i915: Tweak scheduler's kick_submission()
+e60423ef7d0b drm/i915/gt: Yield the timeslice if waiting on a semaphore
+7df501b57690 drm/i915: More proactive timeline retirement before new requests
+c2291b8125c5 drm/i915: Only retire requests when eviction is allowed to blocked
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16151/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
