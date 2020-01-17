@@ -2,36 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5DFD114093D
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Jan 2020 12:48:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B53AE140947
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Jan 2020 12:52:22 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 73DA66F522;
-	Fri, 17 Jan 2020 11:48:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9A9D06F521;
+	Fri, 17 Jan 2020 11:52:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6DC716F51F;
- Fri, 17 Jan 2020 11:48:07 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 17 Jan 2020 03:48:01 -0800
-X-IronPort-AV: E=Sophos;i="5.70,330,1574150400"; d="scan'208";a="218886700"
-Received: from jnikula-mobl3.fi.intel.com (HELO localhost) ([10.237.66.161])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 17 Jan 2020 03:47:56 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Lyude Paul <lyude@redhat.com>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <87zhemgvrn.fsf@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20200116211623.53799-1-lyude@redhat.com>
- <20200116211623.53799-5-lyude@redhat.com> <87zhemgvrn.fsf@intel.com>
-Date: Fri, 17 Jan 2020 13:47:53 +0200
-Message-ID: <87wo9qgv86.fsf@intel.com>
+Received: from mail-vk1-xa43.google.com (mail-vk1-xa43.google.com
+ [IPv6:2607:f8b0:4864:20::a43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 08E6F6F521
+ for <intel-gfx@lists.freedesktop.org>; Fri, 17 Jan 2020 11:52:20 +0000 (UTC)
+Received: by mail-vk1-xa43.google.com with SMTP id o187so6575334vka.2
+ for <intel-gfx@lists.freedesktop.org>; Fri, 17 Jan 2020 03:52:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=MUX7fbPa3d+/KtUk3PT6BGC+TuckGxsvOyxX23xDIVI=;
+ b=V34Yqk0aIFSFBzCM1F9Iqk5I6XFtnhtXLq7lr7vGkVVbYxb5jEeBjnIDxz1dbgUtrV
+ r1Tj3DM9PAhSuLGdHBBstxsGb7Xy7M/OEYQVkzL91q9WKTUCeOoe0jtYH5F9gB7H6QcX
+ 53j1yDM3eEB8OxFOhHkkaQlQBDz5NJ/T7ayRf3BxyHusFZnHAR1ZBBHF8ZODIvfAXrmO
+ ifgZewWVSgyELhROUuG3hjykFKd81WaUpetsX/54eTFEzk54ti3JO14Adf5rJQTralGn
+ eEJBHv9vFLsSkGSp6FKxf9tSNIy635RULIXEgr11V/RmMwkAbqfn0Krb2oj81xUHcwgI
+ CbkQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=MUX7fbPa3d+/KtUk3PT6BGC+TuckGxsvOyxX23xDIVI=;
+ b=EWlT5I0h6Jw3ghkQGTUIYQP7T1zve6xw25simnwjx5Rhjjz/kAjDpYSQ5zLi2ePsY1
+ bzN3z08OCzUziBoMYVuQ2w8Fffq+bhi0S9QfAdN1pga3htTOC/H0gdkDGUmUYyUKwskY
+ 7dZ1BKnZdoChgt21j5/kpFOz8oCudtgBYOX6UQO7nV06qtWBNosMtq8pkPslH7mrZIqS
+ YFpTouTjEYyaTW1MZ+0dG4bl3YjxhGpAZODU45czvM/YwiCNJuWlNJ7l6uIrboybY7Iz
+ l0OwWRsHLSCwpwlmrpGgem/tA5yPKl6aMcyTMbSf3jQ2nyZDHxsGD7oGUA+k0FaDI824
+ 4Teg==
+X-Gm-Message-State: APjAAAUdaueVuwDARrDkUU57N7G+xw1LSa7swnk93t7IzsXu2A2h7aiK
+ wtefPrnSzqwmpoWw4+I6SnSDtAizLqILdYIgVo8=
+X-Google-Smtp-Source: APXvYqyGfFuLg57d/Nl/x1Cv7DZA8WNl858vFoP61M6kPtzyoo3ojS7Bt7AF7ax9JlPHccGQVIHwQyjOPpI2SjN7Pa4=
+X-Received: by 2002:a1f:5e54:: with SMTP id s81mr23649102vkb.78.1579261939161; 
+ Fri, 17 Jan 2020 03:52:19 -0800 (PST)
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v3 4/5] drm/i915: Don't use VBT for
- detecting DPCD backlight controls
+References: <20200116203150.923826-1-matthew.auld@intel.com>
+ <157920953480.7612.16415611914387513987@skylake-alporthouse-com>
+In-Reply-To: <157920953480.7612.16415611914387513987@skylake-alporthouse-com>
+From: Matthew Auld <matthew.william.auld@gmail.com>
+Date: Fri, 17 Jan 2020 11:51:53 +0000
+Message-ID: <CAM0jSHPB1Fc9YjL1R57SKg0g1xdHfcoJ0m-1uT2Qb4FwtJhW=w@mail.gmail.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>
+Subject: Re: [Intel-gfx] [PATCH v2 1/2] drm/i915/userptr: add user_size
+ limit check
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,107 +62,55 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, AceLan Kao <acelan.kao@canonical.com>,
- Perry Yuan <pyuan@redhat.com>
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Matthew Auld <matthew.auld@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 17 Jan 2020, Jani Nikula <jani.nikula@intel.com> wrote:
-> On Thu, 16 Jan 2020, Lyude Paul <lyude@redhat.com> wrote:
->> Despite the fact that the VBT appears to have a field for specifying
->> that a system is equipped with a panel that supports standard VESA
->> backlight controls over the DP AUX channel, so far every system we've
->> spotted DPCD backlight control support on doesn't actually set this
->> field correctly and all have it set to INTEL_BACKLIGHT_DISPLAY_DDI.
->>
->> While we don't know the exact reason for this VBT misuse, talking with
->> some vendors indicated that there's a good number of laptop panels out
->> there that supposedly support both PWM backlight controls and DPCD
->> backlight controls as a workaround until Intel supports DPCD backlight
->> controls across platforms universally. This being said, the X1 Extreme
->> 2nd Gen that I have here (note that Lenovo is not the hardware vendor
->> that informed us of this) PWM backlight controls are advertised, but
->> only DPCD controls actually function. I'm going to make an educated
->> guess here and say that on systems like this one, it's likely that PWM
->> backlight controls might have been intended to work but were never
->> really tested by QA.
->>
->> Since we really need backlights to work without any extra module
->> parameters, let's take the risk here and rely on the standard DPCD caps
->> to tell us whether AUX backlight controls are supported or not. We still
->> check the VBT, but only to make sure that we don't enable DPCD backlight
->> controls on a panel that uses something other then the standard VESA
->> interfaces over AUX. Since panels using such non-standard interfaces
->> should probably have support added to i915, we'll print a warning when
->> seeing this in the VBT. We can remove this warning later if we end up
->> adding support for any custom backlight interfaces.
->>
->> Signed-off-by: Lyude Paul <lyude@redhat.com>
->> Bugzilla: https://bugs.freedesktop.org/show_bug.cgi?id=112376
->> Cc: Jani Nikula <jani.nikula@intel.com>
->> Cc: Perry Yuan <pyuan@redhat.com>
->> Cc: AceLan Kao <acelan.kao@canonical.com>
->> ---
->>  .../drm/i915/display/intel_dp_aux_backlight.c    | 16 ++++++++++------
->>  1 file changed, 10 insertions(+), 6 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
->> index 77a759361c5c..3002b600635f 100644
->> --- a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
->> +++ b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
->> @@ -330,13 +330,17 @@ int intel_dp_aux_init_backlight_funcs(struct intel_connector *intel_connector)
->>  	struct intel_panel *panel = &intel_connector->panel;
->>  	struct drm_i915_private *dev_priv = to_i915(intel_connector->base.dev);
->>  
->> -	if (i915_modparams.enable_dpcd_backlight == 0 ||
->> -	    (i915_modparams.enable_dpcd_backlight == -1 &&
->> -	    dev_priv->vbt.backlight.type != INTEL_BACKLIGHT_VESA_EDP_AUX_INTERFACE))
->> -		return -ENODEV;
->> -
->> -	if (!intel_dp_aux_display_control_capable(intel_connector))
->> +	if (i915_modparams.enable_dpcd_backlight == 0)
->>  		return -ENODEV;
->> +	if (i915_modparams.enable_dpcd_backlight == -1) {
->> +		if (dev_priv->vbt.backlight.type
->> +		    == INTEL_BACKLIGHT_PANEL_DRIVER_INTERFACE) {
->> +			DRM_WARN("VBT says panel uses custom panel driver interface, not using DPCD backlight controls\n");
->> +			return -ENODEV;
->> +		}
->> +		if (!intel_dp_aux_display_control_capable(intel_connector))
->> +			return -ENODEV;
+On Thu, 16 Jan 2020 at 21:19, Chris Wilson <chris@chris-wilson.co.uk> wrote:
 >
-> Functionally, I'm fine with trying this. But perhaps we should check aux
-> and early return first, and then check what vbt says, to reduce the
-> dmesg noise.
+> Quoting Matthew Auld (2020-01-16 20:31:49)
+> > Don't allow a mismatch between obj->base.size/vma->size and the actual
+> > number of pages for the backing store, which is limited to INT_MAX
+> > pages.
+> >
+> > Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+> > Cc: Chris Wilson <chris@chris-wilson.co.uk>
+> > ---
+> >  drivers/gpu/drm/i915/gem/i915_gem_userptr.c | 12 ++++++++++++
+> >  1 file changed, 12 insertions(+)
+> >
+> > diff --git a/drivers/gpu/drm/i915/gem/i915_gem_userptr.c b/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
+> > index e5558af111e2..fef96a303d9d 100644
+> > --- a/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
+> > +++ b/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
+> > @@ -768,6 +768,18 @@ i915_gem_userptr_ioctl(struct drm_device *dev,
+> >         if (args->flags & ~(I915_USERPTR_READ_ONLY |
+> >                             I915_USERPTR_UNSYNCHRONIZED))
+> >                 return -EINVAL;
+> > +       /*
+> > +        * XXX: There is a prevalence of the assumption that we fit the
+> > +        * object's page count inside a 32bit _signed_ variable. Let's document
+> > +        * this and catch if we ever need to fix it. In the meantime, if you do
+> > +        * spot such a local variable, please consider fixing!
+> > +        */
+> > +
+> > +       if (args->user_size >> PAGE_SHIFT > INT_MAX)
+> > +               return -E2BIG;
 >
-> I'll probably want to see a debug message if we're enabling aux
-> backlight even if dev_priv->vbt.backlight.type !=
-> INTEL_BACKLIGHT_VESA_EDP_AUX_INTERFACE. It's the kind of debug trace
-> you'll really want to get first.
+> I'm convinced that the following patch is the last bug (excusing
+> i915_gem_internal.c), and think we should commit to removing this limit.
 
-So I've gone ahead and pushed patches 1-3 and 5 in this series, as they
-were tested as part of the series I posted.
+You mean on our side? There is still all the sg_table stuff,
+__get_user_pages_fast etc.
 
-BR,
-Jani.
-
-
->
-> BR,
-> Jani.
->
->
->
->> +	}
->>  
->>  	panel->backlight.setup = intel_dp_aux_setup_backlight;
->>  	panel->backlight.enable = intel_dp_aux_enable_backlight;
-
--- 
-Jani Nikula, Intel Open Source Graphics Center
+> -Chris
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
