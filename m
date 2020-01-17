@@ -1,34 +1,37 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A2F1F140981
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Jan 2020 13:11:06 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B9D2140992
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Jan 2020 13:16:20 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B469F6E4D0;
-	Fri, 17 Jan 2020 12:11:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5B4166F43D;
+	Fri, 17 Jan 2020 12:16:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8A3B16E4D0
- for <intel-gfx@lists.freedesktop.org>; Fri, 17 Jan 2020 12:11:03 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 19915455-1500050 for multiple; Fri, 17 Jan 2020 12:11:01 +0000
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3445B6F43D;
+ Fri, 17 Jan 2020 12:16:17 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 17 Jan 2020 04:15:51 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,330,1574150400"; d="scan'208";a="424443966"
+Received: from aquilante.fi.intel.com (HELO intel.com) ([10.237.72.158])
+ by fmsmga005.fm.intel.com with ESMTP; 17 Jan 2020 04:15:48 -0800
+Date: Fri, 17 Jan 2020 14:15:50 +0200
+From: Andi Shyti <andi.shyti@intel.com>
+To: Zhang Xiaoxu <zhangxiaoxu5@huawei.com>
+Message-ID: <20200117121550.GA3238@intel.intel>
+References: <20200117073436.6507-1-zhangxiaoxu5@huawei.com>
 MIME-Version: 1.0
-To: Matthew Auld <matthew.william.auld@gmail.com>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-In-Reply-To: <CAM0jSHPB1Fc9YjL1R57SKg0g1xdHfcoJ0m-1uT2Qb4FwtJhW=w@mail.gmail.com>
-References: <20200116203150.923826-1-matthew.auld@intel.com>
- <157920953480.7612.16415611914387513987@skylake-alporthouse-com>
- <CAM0jSHPB1Fc9YjL1R57SKg0g1xdHfcoJ0m-1uT2Qb4FwtJhW=w@mail.gmail.com>
-Message-ID: <157926305863.2389.1610916410403647851@skylake-alporthouse-com>
-User-Agent: alot/0.6
-Date: Fri, 17 Jan 2020 12:10:58 +0000
-Subject: Re: [Intel-gfx] [PATCH v2 1/2] drm/i915/userptr: add user_size
- limit check
+Content-Disposition: inline
+In-Reply-To: <20200117073436.6507-1-zhangxiaoxu5@huawei.com>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Fix i915_error_state_store error
+ defination
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,74 +44,55 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Matthew Auld <matthew.auld@intel.com>
+Cc: airlied@linux.ie, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Matthew Auld (2020-01-17 11:51:53)
-> On Thu, 16 Jan 2020 at 21:19, Chris Wilson <chris@chris-wilson.co.uk> wrote:
-> >
-> > Quoting Matthew Auld (2020-01-16 20:31:49)
-> > > Don't allow a mismatch between obj->base.size/vma->size and the actual
-> > > number of pages for the backing store, which is limited to INT_MAX
-> > > pages.
-> > >
-> > > Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-> > > Cc: Chris Wilson <chris@chris-wilson.co.uk>
-> > > ---
-> > >  drivers/gpu/drm/i915/gem/i915_gem_userptr.c | 12 ++++++++++++
-> > >  1 file changed, 12 insertions(+)
-> > >
-> > > diff --git a/drivers/gpu/drm/i915/gem/i915_gem_userptr.c b/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
-> > > index e5558af111e2..fef96a303d9d 100644
-> > > --- a/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
-> > > +++ b/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
-> > > @@ -768,6 +768,18 @@ i915_gem_userptr_ioctl(struct drm_device *dev,
-> > >         if (args->flags & ~(I915_USERPTR_READ_ONLY |
-> > >                             I915_USERPTR_UNSYNCHRONIZED))
-> > >                 return -EINVAL;
-> > > +       /*
-> > > +        * XXX: There is a prevalence of the assumption that we fit the
-> > > +        * object's page count inside a 32bit _signed_ variable. Let's document
-> > > +        * this and catch if we ever need to fix it. In the meantime, if you do
-> > > +        * spot such a local variable, please consider fixing!
-> > > +        */
-> > > +
-> > > +       if (args->user_size >> PAGE_SHIFT > INT_MAX)
-> > > +               return -E2BIG;
-> >
-> > I'm convinced that the following patch is the last bug (excusing
-> > i915_gem_internal.c), and think we should commit to removing this limit.
+Hi Zhang,
+
+On Fri, Jan 17, 2020 at 03:34:36PM +0800, Zhang Xiaoxu wrote:
+> Since commit 742379c0c4001 ("drm/i915: Start chopping up the GPU error
+> capture"), function 'i915_error_state_store' was defined and used with
+> only one parameter.
 > 
-> You mean on our side? There is still all the sg_table stuff,
-> __get_user_pages_fast etc.
+> But if no 'CONFIG_DRM_I915_CAPTURE_ERROR', this function was defined
+> with two parameter.
+> 
+> This may lead compile error. This patch fix it.
+> 
+> Reported-by: Hulk Robot <hulkci@huawei.com>
 
-Didn't notice the get_user_pages -- some use long, sone ints. oops.
+I've never been a fan of non human accounts, we had this discussion
+already in a different mailing list. Could you please find a
+different way of giving credit to your CI system?
 
-sg_table I was thinking of just the sg_length snafu that we work around.
-We can kill off sg_table itself as we never pass that outside of the
-driver, and just assume our chunking is correct. (Basically lifting more
-of lib/scatterlist.c into our control, one day we really should tell
-them their code doesn't scale to our use.)
+> Signed-off-by: Zhang Xiaoxu <zhangxiaoxu5@huawei.com>
+> ---
+>  drivers/gpu/drm/i915/i915_gpu_error.h | 3 +--
+>  1 file changed, 1 insertion(+), 2 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/i915_gpu_error.h b/drivers/gpu/drm/i915/i915_gpu_error.h
+> index 9109004956bd..41c1475e1500 100644
+> --- a/drivers/gpu/drm/i915/i915_gpu_error.h
+> +++ b/drivers/gpu/drm/i915/i915_gpu_error.h
+> @@ -314,8 +314,7 @@ i915_vma_capture_finish(struct intel_gt_coredump *gt,
+>  }
+>  
+>  static inline void
+> -i915_error_state_store(struct drm_i915_private *i915,
+> -		       struct i915_gpu_coredump *error)
+> +i915_error_state_store(struct i915_gpu_coredump *error)
 
-Ok. Let's collate this information into something like
+ouch! that's an oversight.
 
-       /*
-        * XXX: There is a prevalence of the assumption that we fit the
-        * object's page count inside a 32bit _signed_ variable. Let's document
-        * this and catch if we ever need to fix it. In the meantime, if you do
-        * spot such a local variable, please consider fixing!
-	*
-	* Aside from our own locals (for which we have no excuse!):
-	* - sg_table embeds unsigned int for num_pages
-	* - get_user_pages*() mixed ints with longs
-        */
+Thanks for your patch,
 
-We can send patches for get_user_pages...
--Chris
+Reviewed-by: Andi Shyti <andi.shyti@intel.com>
+
+Andi
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
