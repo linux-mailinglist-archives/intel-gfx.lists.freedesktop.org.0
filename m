@@ -1,32 +1,37 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 81EA4140B5E
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Jan 2020 14:48:33 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 382FE140B9A
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Jan 2020 14:51:49 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1E8B16F56D;
-	Fri, 17 Jan 2020 13:48:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D93BF6F57A;
+	Fri, 17 Jan 2020 13:51:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 678646F56E;
- Fri, 17 Jan 2020 13:48:28 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 627A3A363B;
- Fri, 17 Jan 2020 13:48:28 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1CC3D6F579;
+ Fri, 17 Jan 2020 13:51:45 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 17 Jan 2020 05:51:38 -0800
+X-IronPort-AV: E=Sophos;i="5.70,330,1574150400"; d="scan'208";a="218913054"
+Received: from jnikula-mobl3.fi.intel.com (HELO localhost) ([10.237.66.161])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 17 Jan 2020 05:51:33 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Wambui Karuga <wambui.karugax@gmail.com>, joonas.lahtinen@linux.intel.com,
+ rodrigo.vivi@intel.com, airlied@linux.ie, daniel@ffwll.ch
+In-Reply-To: <20200116130947.15464-1-wambui.karugax@gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20200116130947.15464-1-wambui.karugax@gmail.com>
+Date: Fri, 17 Jan 2020 15:51:30 +0200
+Message-ID: <87pnfigpi5.fsf@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Fri, 17 Jan 2020 13:48:28 -0000
-Message-ID: <157926890840.26754.9814540712495327253@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200117110603.2982286-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200117110603.2982286-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiB3YXJuaW5nIGZvciBk?=
- =?utf-8?q?rm/i915=3A_Satisfy_smatch_that_a_loop_has_at_least_one_iteratio?=
- =?utf-8?q?n?=
+Subject: Re: [Intel-gfx] [PATCH 0/4] drm/i915/display: conversion to new
+ logging macros.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,36 +44,41 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Thu, 16 Jan 2020, Wambui Karuga <wambui.karugax@gmail.com> wrote:
+> This series converts the printk based logging macros in
+> drm/i915/display/intel_display.c to the new struct drm_device based
+> logging macros. This change was split into four for manageability and
+> due to the size of drm/i915/display/intel_display.c.
 
-Series: drm/i915: Satisfy smatch that a loop has at least one iteration
-URL   : https://patchwork.freedesktop.org/series/72183/
-State : warning
+Please still write more descriptive commit messages than "part N".
 
-== Summary ==
+What are your basing your patches on? Our CI uses drm-tip, and it's
+failing to apply the patches.
 
-CALL    scripts/checksyscalls.sh
-  CALL    scripts/atomic/check-atomics.sh
-  CHK     include/generated/compile.h
-Kernel: arch/x86/boot/bzImage is ready  (#1)
-  Building modules, stage 2.
-  MODPOST 122 modules
-ERROR: "__udivdi3" [drivers/gpu/drm/amd/amdgpu/amdgpu.ko] undefined!
-scripts/Makefile.modpost:93: recipe for target '__modpost' failed
-make[1]: *** [__modpost] Error 1
-Makefile:1282: recipe for target 'modules' failed
-make: *** [modules] Error 2
+BR,
+Jani.
 
-== Logs ==
 
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16150/build_32bit.log
+
+>
+> Wambui Karuga (4):
+>   drm/i915/display: conversion to new logging macros part 1
+>   drm/i915/display: conversion to new logging macros part 2
+>   drm/i915/display: conversion to new logging macros part 3
+>   drm/i915/display: convert to new logging macros part 4.
+>
+>  drivers/gpu/drm/i915/display/intel_display.c | 1021 ++++++++++--------
+>  1 file changed, 596 insertions(+), 425 deletions(-)
+
+-- 
+Jani Nikula, Intel Open Source Graphics Center
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
