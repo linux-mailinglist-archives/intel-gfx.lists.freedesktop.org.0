@@ -1,32 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 43DD01414C3
-	for <lists+intel-gfx@lfdr.de>; Sat, 18 Jan 2020 00:16:55 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id CF6EC1414CC
+	for <lists+intel-gfx@lfdr.de>; Sat, 18 Jan 2020 00:22:22 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5AEDB6F95C;
-	Fri, 17 Jan 2020 23:16:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6AE126F95E;
+	Fri, 17 Jan 2020 23:22:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 056176F959;
- Fri, 17 Jan 2020 23:16:52 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id F1D5FA00E9;
- Fri, 17 Jan 2020 23:16:51 +0000 (UTC)
+Received: from us-smtp-1.mimecast.com (us-smtp-delivery-1.mimecast.com
+ [207.211.31.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6D3F38972D
+ for <intel-gfx@lists.freedesktop.org>; Fri, 17 Jan 2020 23:22:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1579303334;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=3/SHYbTc4mVQlnGSSRKlNXBA4512ItBob86hriSAwCo=;
+ b=PQQUb8Anov88HLEqj9Uurmi51e/cPPe+8QtSPPQux6A2J4I2Tjz7Jvnx/OR16wRM7cXJIa
+ Oc3UAOR38Seq3iiBIFsAezzWfYtyIkTTKrB5nEYlceD7q1ros9AY2eNfYkLgi3CAD0Jf/d
+ LW4UbpJCJelGeU330ImargskCpQcNBE=
+Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
+ [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-169-W9xSDrvmNN6DIb-3p0VLUw-1; Fri, 17 Jan 2020 18:22:11 -0500
+X-MC-Unique: W9xSDrvmNN6DIb-3p0VLUw-1
+Received: from smtp.corp.redhat.com (int-mx06.intmail.prod.int.phx2.redhat.com
+ [10.5.11.16])
+ (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+ (No client certificate requested)
+ by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 980228017CC;
+ Fri, 17 Jan 2020 23:22:08 +0000 (UTC)
+Received: from malachite.bss.redhat.com (dhcp-10-20-1-90.bss.redhat.com
+ [10.20.1.90])
+ by smtp.corp.redhat.com (Postfix) with ESMTP id 7315A5C1D8;
+ Fri, 17 Jan 2020 23:22:03 +0000 (UTC)
+From: Lyude Paul <lyude@redhat.com>
+To: intel-gfx@lists.freedesktop.org,
+	Jani Nikula <jani.nikula@intel.com>
+Date: Fri, 17 Jan 2020 18:21:54 -0500
+Message-Id: <20200117232155.135579-1-lyude@redhat.com>
+In-Reply-To: <20200116211623.53799-5-lyude@redhat.com>
+References: <20200116211623.53799-5-lyude@redhat.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Fri, 17 Jan 2020 23:16:51 -0000
-Message-ID: <157930301196.26754.16647112724831958692@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200117222240.3410108-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200117222240.3410108-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5B1/2=5D_i915/gem=5Fmmap=5Foffset=3A_Exercis?=
- =?utf-8?q?e_many=2C_many_mmap=5Foffset?=
+X-Scanned-By: MIMEDefang 2.79 on 10.5.11.16
+Subject: [Intel-gfx] [PATCH v4] drm/i915: Don't use VBT for detecting DPCD
+ backlight controls
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,140 +60,80 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: David Airlie <airlied@linux.ie>, linux-kernel@vger.kernel.org,
+ AceLan Kao <acelan.kao@canonical.com>, dri-devel@lists.freedesktop.org,
+ Perry Yuan <pyuan@redhat.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Despite the fact that the VBT appears to have a field for specifying
+that a system is equipped with a panel that supports standard VESA
+backlight controls over the DP AUX channel, so far every system we've
+spotted DPCD backlight control support on doesn't actually set this
+field correctly and all have it set to INTEL_BACKLIGHT_DISPLAY_DDI.
 
-Series: series starting with [1/2] i915/gem_mmap_offset: Exercise many, many mmap_offset
-URL   : https://patchwork.freedesktop.org/series/72222/
-State : failure
+While we don't know the exact reason for this VBT misuse, talking with
+some vendors indicated that there's a good number of laptop panels out
+there that supposedly support both PWM backlight controls and DPCD
+backlight controls as a workaround until Intel supports DPCD backlight
+controls across platforms universally. This being said, the X1 Extreme
+2nd Gen that I have here (note that Lenovo is not the hardware vendor
+that informed us of this) PWM backlight controls are advertised, but
+only DPCD controls actually function. I'm going to make an educated
+guess here and say that on systems like this one, it's likely that PWM
+backlight controls might have been intended to work but were never
+really tested by QA.
 
-== Summary ==
+Since we really need backlights to work without any extra module
+parameters, let's take the risk here and rely on the standard DPCD caps
+to tell us whether AUX backlight controls are supported or not. We still
+check the VBT, just so we can print a debugging message on systems that
+advertise DPCD backlight support on the panel but not in the VBT.
 
-CI Bug Log - changes from CI_DRM_7768 -> IGTPW_3940
-====================================================
+Changes since v3:
+* Print a debugging message if we enable DPCD backlight control on a
+  device which doesn't report DPCD backlight controls in it's VBT,
+  instead of warning on custom panel backlight interfaces.
 
-Summary
--------
+Signed-off-by: Lyude Paul <lyude@redhat.com>
+Bugzilla: https://bugs.freedesktop.org/show_bug.cgi?id=112376
+Cc: Jani Nikula <jani.nikula@intel.com>
+Cc: Perry Yuan <pyuan@redhat.com>
+Cc: AceLan Kao <acelan.kao@canonical.com>
+---
+ drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c | 9 +++++----
+ 1 file changed, 5 insertions(+), 4 deletions(-)
 
-  **FAILURE**
+diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
+index 77a759361c5c..0f8edc775375 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
++++ b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
+@@ -328,15 +328,16 @@ intel_dp_aux_display_control_capable(struct intel_connector *connector)
+ int intel_dp_aux_init_backlight_funcs(struct intel_connector *intel_connector)
+ {
+ 	struct intel_panel *panel = &intel_connector->panel;
+-	struct drm_i915_private *dev_priv = to_i915(intel_connector->base.dev);
++	enum intel_backlight_type type =
++		to_i915(intel_connector->base.dev)->vbt.backlight.type;
+ 
+ 	if (i915_modparams.enable_dpcd_backlight == 0 ||
+ 	    (i915_modparams.enable_dpcd_backlight == -1 &&
+-	    dev_priv->vbt.backlight.type != INTEL_BACKLIGHT_VESA_EDP_AUX_INTERFACE))
++	     !intel_dp_aux_display_control_capable(intel_connector)))
+ 		return -ENODEV;
+ 
+-	if (!intel_dp_aux_display_control_capable(intel_connector))
+-		return -ENODEV;
++	if (type != INTEL_BACKLIGHT_VESA_EDP_AUX_INTERFACE)
++		DRM_DEBUG_DRIVER("Ignoring VBT backlight type\n");
+ 
+ 	panel->backlight.setup = intel_dp_aux_setup_backlight;
+ 	panel->backlight.enable = intel_dp_aux_enable_backlight;
+-- 
+2.24.1
 
-  Serious unknown changes coming with IGTPW_3940 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in IGTPW_3940, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_3940/index.html
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in IGTPW_3940:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@kms_chamelium@dp-edid-read:
-    - fi-cml-u2:          [PASS][1] -> [FAIL][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7768/fi-cml-u2/igt@kms_chamelium@dp-edid-read.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_3940/fi-cml-u2/igt@kms_chamelium@dp-edid-read.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in IGTPW_3940 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_exec_suspend@basic-s3:
-    - fi-cml-s:           [PASS][3] -> [DMESG-WARN][4] ([fdo#111764])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7768/fi-cml-s/igt@gem_exec_suspend@basic-s3.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_3940/fi-cml-s/igt@gem_exec_suspend@basic-s3.html
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-skl-6600u:       [PASS][5] -> [DMESG-WARN][6] ([i915#889]) +23 similar issues
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7768/fi-skl-6600u/igt@i915_pm_rpm@module-reload.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_3940/fi-skl-6600u/igt@i915_pm_rpm@module-reload.html
-
-  * igt@i915_selftest@live_gt_lrc:
-    - fi-skl-6600u:       [PASS][7] -> [DMESG-FAIL][8] ([i915#889]) +7 similar issues
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7768/fi-skl-6600u/igt@i915_selftest@live_gt_lrc.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_3940/fi-skl-6600u/igt@i915_selftest@live_gt_lrc.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_close_race@basic-threads:
-    - fi-byt-j1900:       [TIMEOUT][9] ([fdo#112271] / [i915#816]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7768/fi-byt-j1900/igt@gem_close_race@basic-threads.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_3940/fi-byt-j1900/igt@gem_close_race@basic-threads.html
-
-  * igt@gem_exec_suspend@basic-s0:
-    - fi-cml-s:           [FAIL][11] ([fdo#103375]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7768/fi-cml-s/igt@gem_exec_suspend@basic-s0.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_3940/fi-cml-s/igt@gem_exec_suspend@basic-s0.html
-
-  * igt@i915_selftest@live_blt:
-    - fi-ivb-3770:        [DMESG-FAIL][13] ([i915#563]) -> [PASS][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7768/fi-ivb-3770/igt@i915_selftest@live_blt.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_3940/fi-ivb-3770/igt@i915_selftest@live_blt.html
-
-  
-#### Warnings ####
-
-  * igt@i915_module_load@reload-with-fault-injection:
-    - fi-skl-6770hq:      [DMESG-WARN][15] ([i915#889]) -> [INCOMPLETE][16] ([i915#671])
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7768/fi-skl-6770hq/igt@i915_module_load@reload-with-fault-injection.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_3940/fi-skl-6770hq/igt@i915_module_load@reload-with-fault-injection.html
-
-  
-  [fdo#103375]: https://bugs.freedesktop.org/show_bug.cgi?id=103375
-  [fdo#111764]: https://bugs.freedesktop.org/show_bug.cgi?id=111764
-  [fdo#112271]: https://bugs.freedesktop.org/show_bug.cgi?id=112271
-  [i915#563]: https://gitlab.freedesktop.org/drm/intel/issues/563
-  [i915#671]: https://gitlab.freedesktop.org/drm/intel/issues/671
-  [i915#816]: https://gitlab.freedesktop.org/drm/intel/issues/816
-  [i915#889]: https://gitlab.freedesktop.org/drm/intel/issues/889
-
-
-Participating hosts (47 -> 45)
-------------------------------
-
-  Additional (2): fi-hsw-4770r fi-hsw-4770 
-  Missing    (4): fi-byt-clapper fi-byt-squawks fi-bsw-cyan fi-hsw-4200u 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * IGT: IGT_5372 -> IGTPW_3940
-
-  CI-20190529: 20190529
-  CI_DRM_7768: 7db45c7ebc9f6ce2c31c543f26ebdb385a7a52a0 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGTPW_3940: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_3940/index.html
-  IGT_5372: 0d00a27fbbd4d4a77d24499ea9811e07e65eb0ac @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-
-
-
-== Testlist changes ==
-
-+igt@gem_mmap_offset@open-flood
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_3940/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
