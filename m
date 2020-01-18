@@ -1,31 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 33E4E141596
-	for <lists+intel-gfx@lfdr.de>; Sat, 18 Jan 2020 03:32:01 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C690141597
+	for <lists+intel-gfx@lfdr.de>; Sat, 18 Jan 2020 03:38:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D236E6F997;
-	Sat, 18 Jan 2020 02:31:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BD19B6F998;
+	Sat, 18 Jan 2020 02:38:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 9140B6F996;
- Sat, 18 Jan 2020 02:31:57 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id AA2D16F996;
+ Sat, 18 Jan 2020 02:38:07 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 89975A0134;
- Sat, 18 Jan 2020 02:31:57 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 9ABC4A0118;
+ Sat, 18 Jan 2020 02:38:07 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Zhang Xiaoxu" <zhangxiaoxu5@huawei.com>
-Date: Sat, 18 Jan 2020 02:31:57 -0000
-Message-ID: <157931471753.11508.15096970710149250488@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Sat, 18 Jan 2020 02:38:07 -0000
+Message-ID: <157931508760.11508.4577341781280625299@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20200117073436.6507-1-zhangxiaoxu5@huawei.com>
-In-Reply-To: <20200117073436.6507-1-zhangxiaoxu5@huawei.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Fix_i915=5Ferror=5Fstate=5Fstore_error_defination?=
+References: <20200117220038.3409820-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200117220038.3409820-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915/gem=3A_Store_mmap=5Foffsets_in_an_rbtree_rather_th?=
+ =?utf-8?q?an_a_plain_list_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,17 +48,20 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: drm/i915: Fix i915_error_state_store error defination
-URL   : https://patchwork.freedesktop.org/series/72220/
-State : failure
+Series: drm/i915/gem: Store mmap_offsets in an rbtree rather than a plain list (rev2)
+URL   : https://patchwork.freedesktop.org/series/72221/
+State : warning
 
 == Summary ==
 
-Applying: drm/i915: Fix i915_error_state_store error defination
-Using index info to reconstruct a base tree...
-M	drivers/gpu/drm/i915/i915_gpu_error.h
-Falling back to patching base and 3-way merge...
-No changes -- Patch already applied.
+$ dim checkpatch origin/drm-tip
+a9954bbab8d0 drm/i915/gem: Store mmap_offsets in an rbtree rather than a plain list
+-:66: CHECK:BRACES: Blank lines aren't necessary before a close brace '}'
+#66: FILE: drivers/gpu/drm/i915/gem/i915_gem_mman.c:512:
++
++	}
+
+total: 0 errors, 0 warnings, 1 checks, 190 lines checked
 
 _______________________________________________
 Intel-gfx mailing list
