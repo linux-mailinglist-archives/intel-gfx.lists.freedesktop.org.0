@@ -1,41 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7EB85141552
-	for <lists+intel-gfx@lfdr.de>; Sat, 18 Jan 2020 02:03:54 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9265414155A
+	for <lists+intel-gfx@lfdr.de>; Sat, 18 Jan 2020 02:11:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7AC9E6F982;
-	Sat, 18 Jan 2020 01:03:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E8FC86F984;
+	Sat, 18 Jan 2020 01:11:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1AE656F982
- for <intel-gfx@lists.freedesktop.org>; Sat, 18 Jan 2020 01:03:49 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 17 Jan 2020 17:03:49 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,332,1574150400"; d="scan'208";a="258020911"
-Received: from orsmsx102.amr.corp.intel.com ([10.22.225.129])
- by fmsmga002.fm.intel.com with ESMTP; 17 Jan 2020 17:03:49 -0800
-Received: from orsmsx158.amr.corp.intel.com (10.22.240.20) by
- ORSMSX102.amr.corp.intel.com (10.22.225.129) with Microsoft SMTP Server (TLS)
- id 14.3.439.0; Fri, 17 Jan 2020 17:03:49 -0800
-Received: from vkasired-desk2.fm.intel.com (10.22.254.139) by
- ORSMSX158.amr.corp.intel.com (10.22.240.20) with Microsoft SMTP Server (TLS)
- id 14.3.439.0; Fri, 17 Jan 2020 17:03:48 -0800
-From: Vivek Kasireddy <vivek.kasireddy@intel.com>
-To: <intel-gfx@lists.freedesktop.org>
-Date: Fri, 17 Jan 2020 16:58:48 -0800
-Message-ID: <20200118005848.20382-1-vivek.kasireddy@intel.com>
-X-Mailer: git-send-email 2.21.1
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id C809C6F983;
+ Sat, 18 Jan 2020 01:11:49 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id B94C6A0118;
+ Sat, 18 Jan 2020 01:11:49 +0000 (UTC)
 MIME-Version: 1.0
-X-Originating-IP: [10.22.254.139]
-Subject: [Intel-gfx] [PATCH] drm/i915/dsi: Ensure that the ACPI adapter
- lookup overrides the bus num
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Sat, 18 Jan 2020 01:11:49 -0000
+Message-ID: <157930990973.11508.3914145973515827911@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200117153554.3104278-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200117153554.3104278-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_series_starting_with_=5B1/2=5D_drm/i915/gvt=3A_Wean_gvt_off?=
+ =?utf-8?q?_dev=5Fpriv-=3Eengine=5B=5D?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,44 +39,42 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Remove the i2c_bus_num >= 0 check from the adapter lookup function
-as this would prevent ACPI bus number override. This check was mainly
-there to return early if the bus number has already been found but we
-anyway return in the next line if the slave address does not match.
+== Series Details ==
 
-Fixes: 8cbf89db2941 ("drm/i915/dsi: Parse the I2C element from the VBT MIPI sequence block (v3)")
-Cc: Hans de Goede <hdegoede@redhat.com>
-Cc: Nabendu Maiti <nabendu.bikash.maiti@intel.com>
-Cc: Matt Roper <matthew.d.roper@intel.com>
-Cc: Bob Paauwe <bob.j.paauwe@intel.com>
-Cc: Jani Nikula <jani.nikula@intel.com>
-Signed-off-by: Vivek Kasireddy <vivek.kasireddy@intel.com>
----
- drivers/gpu/drm/i915/display/intel_dsi_vbt.c | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+Series: series starting with [1/2] drm/i915/gvt: Wean gvt off dev_priv->engine[]
+URL   : https://patchwork.freedesktop.org/series/72194/
+State : warning
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dsi_vbt.c b/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
-index 6ec35d975bd7..04f953ba8f00 100644
---- a/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
-+++ b/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
-@@ -394,8 +394,7 @@ static int i2c_adapter_lookup(struct acpi_resource *ares, void *data)
- 	acpi_handle adapter_handle;
- 	acpi_status status;
- 
--	if (intel_dsi->i2c_bus_num >= 0 ||
--	    !i2c_acpi_get_i2c_resource(ares, &sb))
-+	if (!i2c_acpi_get_i2c_resource(ares, &sb))
- 		return 1;
- 
- 	if (lookup->slave_addr != sb->slave_address)
--- 
-2.21.1
+== Summary ==
+
+$ dim checkpatch origin/drm-tip
+ae3c3de52ba8 drm/i915/gvt: Wean gvt off dev_priv->engine[]
+-:681: WARNING:LONG_LINE: line over 100 characters
+#681: FILE: drivers/gpu/drm/i915/gvt/execlist.c:163:
++					       hwsp_gpa + I915_HWS_CSB_BUF0_INDEX * 4 + write_pointer * 8,
+
+-:687: WARNING:LONG_LINE: line over 100 characters
+#687: FILE: drivers/gpu/drm/i915/gvt/execlist.c:166:
++					       hwsp_gpa + intel_hws_csb_write_index(execlist->engine->i915) * 4,
+
+-:1280: CHECK:MULTIPLE_ASSIGNMENTS: multiple assignments should be avoided
+#1280: FILE: drivers/gpu/drm/i915/gvt/mmio_context.c:498:
++			old_v = mmio->value =
+
+total: 0 errors, 2 warnings, 1 checks, 1881 lines checked
+70601304dcee drm/i915/gvt: Wean gvt off using dev_priv
+-:797: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'gvt' - possible side-effects?
+#797: FILE: drivers/gpu/drm/i915/gvt/gvt.h:387:
++#define gvt_hidden_sz(gvt)	(gvt_ggtt_gm_sz(gvt) - gvt_aperture_sz(gvt))
+
+total: 0 errors, 0 warnings, 1 checks, 1232 lines checked
 
 _______________________________________________
 Intel-gfx mailing list
