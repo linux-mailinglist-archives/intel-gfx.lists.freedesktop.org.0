@@ -2,37 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C534142927
-	for <lists+intel-gfx@lfdr.de>; Mon, 20 Jan 2020 12:24:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4BC2914292F
+	for <lists+intel-gfx@lfdr.de>; Mon, 20 Jan 2020 12:24:52 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8E8256E8DF;
-	Mon, 20 Jan 2020 11:24:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B6C9F6E8E2;
+	Mon, 20 Jan 2020 11:24:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 37C2A6E8DF
- for <intel-gfx@lists.freedesktop.org>; Mon, 20 Jan 2020 11:24:11 +0000 (UTC)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ADD556E8E2
+ for <intel-gfx@lists.freedesktop.org>; Mon, 20 Jan 2020 11:24:49 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 20 Jan 2020 03:24:10 -0800
-X-IronPort-AV: E=Sophos;i="5.70,341,1574150400"; d="scan'208";a="228356460"
-Received: from jnikula-mobl3.fi.intel.com (HELO localhost) ([10.237.66.161])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 20 Jan 2020 03:24:08 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Ramalingam C <ramalingam.c@intel.com>
-In-Reply-To: <20200120110044.GB14839@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20200120054954.5786-1-anshuman.gupta@intel.com>
- <20200120064215.GA14839@intel.com> <87v9p6fmjz.fsf@intel.com>
- <20200120110044.GB14839@intel.com>
-Date: Mon, 20 Jan 2020 13:24:05 +0200
-Message-ID: <87sgkafk16.fsf@intel.com>
+ by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 20 Jan 2020 03:24:48 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,341,1574150400"; d="scan'208";a="228356605"
+Received: from linux.intel.com ([10.54.29.200])
+ by orsmga006.jf.intel.com with ESMTP; 20 Jan 2020 03:24:48 -0800
+Received: from [10.125.252.193] (abudanko-mobl.ccr.corp.intel.com
+ [10.125.252.193])
+ by linux.intel.com (Postfix) with ESMTP id D0AB55803C5;
+ Mon, 20 Jan 2020 03:24:40 -0800 (PST)
+From: Alexey Budankov <alexey.budankov@linux.intel.com>
+To: Peter Zijlstra <peterz@infradead.org>,
+ Arnaldo Carvalho de Melo <acme@kernel.org>, Ingo Molnar <mingo@redhat.com>,
+ "jani.nikula@linux.intel.com" <jani.nikula@linux.intel.com>,
+ "joonas.lahtinen@linux.intel.com" <joonas.lahtinen@linux.intel.com>,
+ "rodrigo.vivi@intel.com" <rodrigo.vivi@intel.com>,
+ "benh@kernel.crashing.org" <benh@kernel.crashing.org>,
+ Paul Mackerras <paulus@samba.org>, Michael Ellerman <mpe@ellerman.id.au>,
+ "james.bottomley@hansenpartnership.com"
+ <james.bottomley@hansenpartnership.com>, Serge Hallyn <serge@hallyn.com>,
+ James Morris <jmorris@namei.org>, Will Deacon <will.deacon@arm.com>,
+ Mark Rutland <mark.rutland@arm.com>, Robert Richter <rric@kernel.org>,
+ Alexei Starovoitov <ast@kernel.org>
+References: <0548c832-7f4b-dc4c-8883-3f2b6d351a08@linux.intel.com>
+Organization: Intel Corp.
+Message-ID: <11240db3-a8a0-f925-e905-bfc9dc544646@linux.intel.com>
+Date: Mon, 20 Jan 2020 14:24:39 +0300
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.4.1
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v3] drm/i915/hdcp: Update CP as per the
- kernel internal state
+In-Reply-To: <0548c832-7f4b-dc4c-8883-3f2b6d351a08@linux.intel.com>
+Content-Language: en-US
+Subject: [Intel-gfx] [PATCH v5 02/10] perf/core: open access to the core for
+ CAP_PERFMON privileged process
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,173 +61,88 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Song Liu <songliubraving@fb.com>, Andi Kleen <ak@linux.intel.com>,
+ "linux-parisc@vger.kernel.org" <linux-parisc@vger.kernel.org>,
+ Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+ "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ Igor Lubashev <ilubashe@akamai.com>,
+ linux-kernel <linux-kernel@vger.kernel.org>,
+ Stephane Eranian <eranian@google.com>,
+ "linux-perf-users@vger.kernel.org" <linux-perf-users@vger.kernel.org>,
+ "selinux@vger.kernel.org" <selinux@vger.kernel.org>,
+ "linux-security-module@vger.kernel.org"
+ <linux-security-module@vger.kernel.org>, oprofile-list@lists.sf.net,
+ Namhyung Kim <namhyung@kernel.org>, Thomas Gleixner <tglx@linutronix.de>,
+ Jiri Olsa <jolsa@redhat.com>, linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 20 Jan 2020, Ramalingam C <ramalingam.c@intel.com> wrote:
-> On 2020-01-20 at 12:29:36 +0200, Jani Nikula wrote:
->> On Mon, 20 Jan 2020, Ramalingam C <ramalingam.c@intel.com> wrote:
->> > On 2020-01-20 at 11:19:54 +0530, Anshuman Gupta wrote:
->> >> Content Protection property should be updated as per the kernel
->> >> internal state. Let's say if Content protection is disabled
->> >> by userspace, CP property should be set to UNDESIRED so that
->> >> reauthentication will not happen until userspace request it again,
->> >> but when kernel disables the HDCP due to any DDI disabling sequences
->> >> like modeset/DPMS operation, kernel should set the property to
->> >> DESIRED, so that when opportunity arises, kernel will start the
->> >> HDCP authentication on its own.
->> >> 
->> >> Somewhere in the line, state machine to set content protection to
->> >> DESIRED from kernel was broken and IGT coverage was missing for it.
->> >> This patch fixes it.
->> >> IGT patch to catch further regression on this features is being
->> >> worked upon.
->> >> 
->> >> v2:
->> >>  - Incorporated the necessary locking. (Ram)
->> >>  - Set content protection property to CP_DESIRED only when
->> >>    user has not asked explicitly to set CP_UNDESIRED.
->> >> 
->> >> v3:
->> >>  - Reset the is_hdcp_undesired flag to false. (Ram)
->> >>  - Rephrasing commit log and small comment for is_hdcp_desired
->> >>    flag. (Ram)
->> >> 
->> >> CC: Ramalingam C <ramalingam.c@intel.com>
->> >> Reviewed-by: Ramalingam C <ramalingam.c@intel.com>
->> >> Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
->> >> ---
->> >>  drivers/gpu/drm/i915/display/intel_display_types.h |  6 ++++++
->> >>  drivers/gpu/drm/i915/display/intel_hdcp.c          | 13 ++++++++++++-
->> >>  2 files changed, 18 insertions(+), 1 deletion(-)
->> >> 
->> >> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
->> >> index 630a94892b7b..401a9a7689fb 100644
->> >> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
->> >> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
->> >> @@ -345,6 +345,12 @@ struct intel_hdcp {
->> >>  	struct delayed_work check_work;
->> >>  	struct work_struct prop_work;
->> >>  
->> >> +	/*
->> >> +	 * Flag to differentiate that HDCP is being disabled originated from
->> >> +	 * userspace or triggered from kernel DDI disable sequence.
->> >> +	 */
->> >> +	bool is_hdcp_undesired;
->> > Jani and Daniel,
->> >
->> > This flag is added as we need to know the origin of the HDCP disable
->> > (userspace or kernel modeset/DPMS off) at DDI disable sequence. We
->> > couldn't do that as new_conn state is not available there to retrieve
->> > the corresponding content protection state.
->> >
->> > Hence we do that at atomic check itself and pass the info through this flag,
->> > which will be referred at hdcp_disable.
->> >
->> > If you think we could do it better please suggest the preferred
->> > alternate method. Else I request your ack for merging this.
->> 
->> I don't know hdcp code all that well, but it seems to me at the root of
->> the problem is the duplication of the content protection state
->> (drm_connector_state->content_protection) into the connector
->> (intel_hdcp->value), and them going out of sync.
->> 
->> If you relied on the connector state alone, you wouldn't have to worry
->> about changing the intel_hdcp->value member at disable or anywhere;
->> disable looks at old state and disables based on that. No history/future
->> information needed. Isn't that roughly what everything else does, why is
->> hdcp special?
-> As per uAPI designed for Chrome(first user of HDCP), after the userspace
-> request for HDCP by setting DESIRED to "content protection" only userspace can DISABLED it.
->
-> Incase when HDCP is ENABLED and kernel ended up in disabled the DDI (hot
-> unplug or DPMS ops), it supposed to disable HDCP encryption and leave the
-> "Content protection" at DESIRED. So that when the DDI is re enabled,
-> HDCP authentication will be attempted automatically, as userspace is
-> still interested in HDCP encryption.
->
-> So to set the state of "content protection" as  ENABLED->DESIRED, we
-> need to know the HDCP disable in DDI disable is not because of userspace request
-> (derived based on new connector state existance and its content protection state).
->
-> Hence we need this change.
 
-Okay, why do you need to track desired/undesired in intel_hdcp then?
-Just track enabled/disabled, and do everything else based on connector
-state?
+Open access to monitoring of kernel code, system, tracepoints and namespaces
+data for a CAP_PERFMON privileged process. For backward compatibility
+reasons access to perf_events subsystem remains open for CAP_SYS_ADMIN
+privileged processes but CAP_SYS_ADMIN usage for secure perf_events
+monitoring is discouraged with respect to CAP_PERFMON capability.
+Providing the access under CAP_PERFMON capability singly, without the rest
+of CAP_SYS_ADMIN credentials, excludes chances to misuse the credentials
+and makes operation more secure.
 
-BR,
-Jani.
+Signed-off-by: Alexey Budankov <alexey.budankov@linux.intel.com>
+---
+ include/linux/perf_event.h | 6 +++---
+ kernel/events/core.c       | 2 +-
+ 2 files changed, 4 insertions(+), 4 deletions(-)
 
-
->
-> -Ram
->> 
->> BR,
->> Jani.
->> 
->> 
->> >
->> > Thanks,
->> > -Ram
->> >> +
->> >>  	/* HDCP1.4 Encryption status */
->> >>  	bool hdcp_encrypted;
->> >>  
->> >> diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
->> >> index 0fdbd39f6641..7f631ebd8395 100644
->> >> --- a/drivers/gpu/drm/i915/display/intel_hdcp.c
->> >> +++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
->> >> @@ -2002,11 +2002,18 @@ int intel_hdcp_disable(struct intel_connector *connector)
->> >>  	mutex_lock(&hdcp->mutex);
->> >>  
->> >>  	if (hdcp->value != DRM_MODE_CONTENT_PROTECTION_UNDESIRED) {
->> >> -		hdcp->value = DRM_MODE_CONTENT_PROTECTION_UNDESIRED;
->> >>  		if (hdcp->hdcp2_encrypted)
->> >>  			ret = _intel_hdcp2_disable(connector);
->> >>  		else if (hdcp->hdcp_encrypted)
->> >>  			ret = _intel_hdcp_disable(connector);
->> >> +
->> >> +		if (hdcp->is_hdcp_undesired) {
->> >> +			hdcp->value = DRM_MODE_CONTENT_PROTECTION_UNDESIRED;
->> >> +			hdcp->is_hdcp_undesired = false;
->> >> +		} else {
->> >> +			hdcp->value = DRM_MODE_CONTENT_PROTECTION_DESIRED;
->> >> +			schedule_work(&hdcp->prop_work);
->> >> +		}
->> >>  	}
->> >>  
->> >>  	mutex_unlock(&hdcp->mutex);
->> >> @@ -2044,6 +2051,7 @@ void intel_hdcp_atomic_check(struct drm_connector *connector,
->> >>  {
->> >>  	u64 old_cp = old_state->content_protection;
->> >>  	u64 new_cp = new_state->content_protection;
->> >> +	struct intel_connector *intel_conn = to_intel_connector(connector);
->> >>  	struct drm_crtc_state *crtc_state;
->> >>  
->> >>  	if (!new_state->crtc) {
->> >> @@ -2069,6 +2077,9 @@ void intel_hdcp_atomic_check(struct drm_connector *connector,
->> >>  			return;
->> >>  	}
->> >>  
->> >> +	if (new_cp == DRM_MODE_CONTENT_PROTECTION_UNDESIRED)
->> >> +		intel_conn->hdcp.is_hdcp_undesired  =  true;
->> >> +
->> >>  	crtc_state = drm_atomic_get_new_crtc_state(new_state->state,
->> >>  						   new_state->crtc);
->> >>  	crtc_state->mode_changed = true;
->> >> -- 
->> >> 2.24.0
->> >> 
->> 
->> -- 
->> Jani Nikula, Intel Open Source Graphics Center
-
+diff --git a/include/linux/perf_event.h b/include/linux/perf_event.h
+index 6d4c22aee384..730469babcc2 100644
+--- a/include/linux/perf_event.h
++++ b/include/linux/perf_event.h
+@@ -1285,7 +1285,7 @@ static inline int perf_is_paranoid(void)
+ 
+ static inline int perf_allow_kernel(struct perf_event_attr *attr)
+ {
+-	if (sysctl_perf_event_paranoid > 1 && !capable(CAP_SYS_ADMIN))
++	if (sysctl_perf_event_paranoid > 1 && !perfmon_capable())
+ 		return -EACCES;
+ 
+ 	return security_perf_event_open(attr, PERF_SECURITY_KERNEL);
+@@ -1293,7 +1293,7 @@ static inline int perf_allow_kernel(struct perf_event_attr *attr)
+ 
+ static inline int perf_allow_cpu(struct perf_event_attr *attr)
+ {
+-	if (sysctl_perf_event_paranoid > 0 && !capable(CAP_SYS_ADMIN))
++	if (sysctl_perf_event_paranoid > 0 && !perfmon_capable())
+ 		return -EACCES;
+ 
+ 	return security_perf_event_open(attr, PERF_SECURITY_CPU);
+@@ -1301,7 +1301,7 @@ static inline int perf_allow_cpu(struct perf_event_attr *attr)
+ 
+ static inline int perf_allow_tracepoint(struct perf_event_attr *attr)
+ {
+-	if (sysctl_perf_event_paranoid > -1 && !capable(CAP_SYS_ADMIN))
++	if (sysctl_perf_event_paranoid > -1 && !perfmon_capable())
+ 		return -EPERM;
+ 
+ 	return security_perf_event_open(attr, PERF_SECURITY_TRACEPOINT);
+diff --git a/kernel/events/core.c b/kernel/events/core.c
+index a1f8bde19b56..b1fcbbe24849 100644
+--- a/kernel/events/core.c
++++ b/kernel/events/core.c
+@@ -11186,7 +11186,7 @@ SYSCALL_DEFINE5(perf_event_open,
+ 	}
+ 
+ 	if (attr.namespaces) {
+-		if (!capable(CAP_SYS_ADMIN))
++		if (!perfmon_capable())
+ 			return -EACCES;
+ 	}
+ 
 -- 
-Jani Nikula, Intel Open Source Graphics Center
+2.20.1
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
