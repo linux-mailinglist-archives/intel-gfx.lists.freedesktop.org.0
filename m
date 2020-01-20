@@ -2,37 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A21D142836
-	for <lists+intel-gfx@lfdr.de>; Mon, 20 Jan 2020 11:29:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C1842142841
+	for <lists+intel-gfx@lfdr.de>; Mon, 20 Jan 2020 11:33:21 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ECD4E6E0CB;
-	Mon, 20 Jan 2020 10:29:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C44996E8AE;
+	Mon, 20 Jan 2020 10:33:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6DAF36E0CB
- for <intel-gfx@lists.freedesktop.org>; Mon, 20 Jan 2020 10:29:42 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 20 Jan 2020 02:29:42 -0800
-X-IronPort-AV: E=Sophos;i="5.70,341,1574150400"; d="scan'208";a="219614678"
-Received: from jnikula-mobl3.fi.intel.com (HELO localhost) ([10.237.66.161])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 20 Jan 2020 02:29:39 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Ramalingam C <ramalingam.c@intel.com>,
- Anshuman Gupta <anshuman.gupta@intel.com>, Daniel Vetter <daniel@ffwll.ch>
-In-Reply-To: <20200120064215.GA14839@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20200120054954.5786-1-anshuman.gupta@intel.com>
- <20200120064215.GA14839@intel.com>
-Date: Mon, 20 Jan 2020 12:29:36 +0200
-Message-ID: <87v9p6fmjz.fsf@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 404F46E0DF;
+ Mon, 20 Jan 2020 10:33:17 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 35C4DA011C;
+ Mon, 20 Jan 2020 10:33:17 +0000 (UTC)
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v3] drm/i915/hdcp: Update CP as per the
- kernel internal state
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Yannick FERTRE" <yannick.fertre@st.com>
+Date: Mon, 20 Jan 2020 10:33:17 -0000
+Message-ID: <157951639719.680.3953505236526941546@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200120082314.14756-1-tzimmermann@suse.de>
+In-Reply-To: <20200120082314.14756-1-tzimmermann@suse.de>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm=3A_Clean_up_VBLANK_callbacks_in_struct_drm=5Fdriver_=28?=
+ =?utf-8?q?rev8=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,143 +39,163 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 20 Jan 2020, Ramalingam C <ramalingam.c@intel.com> wrote:
-> On 2020-01-20 at 11:19:54 +0530, Anshuman Gupta wrote:
->> Content Protection property should be updated as per the kernel
->> internal state. Let's say if Content protection is disabled
->> by userspace, CP property should be set to UNDESIRED so that
->> reauthentication will not happen until userspace request it again,
->> but when kernel disables the HDCP due to any DDI disabling sequences
->> like modeset/DPMS operation, kernel should set the property to
->> DESIRED, so that when opportunity arises, kernel will start the
->> HDCP authentication on its own.
->> 
->> Somewhere in the line, state machine to set content protection to
->> DESIRED from kernel was broken and IGT coverage was missing for it.
->> This patch fixes it.
->> IGT patch to catch further regression on this features is being
->> worked upon.
->> 
->> v2:
->>  - Incorporated the necessary locking. (Ram)
->>  - Set content protection property to CP_DESIRED only when
->>    user has not asked explicitly to set CP_UNDESIRED.
->> 
->> v3:
->>  - Reset the is_hdcp_undesired flag to false. (Ram)
->>  - Rephrasing commit log and small comment for is_hdcp_desired
->>    flag. (Ram)
->> 
->> CC: Ramalingam C <ramalingam.c@intel.com>
->> Reviewed-by: Ramalingam C <ramalingam.c@intel.com>
->> Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
->> ---
->>  drivers/gpu/drm/i915/display/intel_display_types.h |  6 ++++++
->>  drivers/gpu/drm/i915/display/intel_hdcp.c          | 13 ++++++++++++-
->>  2 files changed, 18 insertions(+), 1 deletion(-)
->> 
->> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
->> index 630a94892b7b..401a9a7689fb 100644
->> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
->> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
->> @@ -345,6 +345,12 @@ struct intel_hdcp {
->>  	struct delayed_work check_work;
->>  	struct work_struct prop_work;
->>  
->> +	/*
->> +	 * Flag to differentiate that HDCP is being disabled originated from
->> +	 * userspace or triggered from kernel DDI disable sequence.
->> +	 */
->> +	bool is_hdcp_undesired;
-> Jani and Daniel,
->
-> This flag is added as we need to know the origin of the HDCP disable
-> (userspace or kernel modeset/DPMS off) at DDI disable sequence. We
-> couldn't do that as new_conn state is not available there to retrieve
-> the corresponding content protection state.
->
-> Hence we do that at atomic check itself and pass the info through this flag,
-> which will be referred at hdcp_disable.
->
-> If you think we could do it better please suggest the preferred
-> alternate method. Else I request your ack for merging this.
+== Series Details ==
 
-I don't know hdcp code all that well, but it seems to me at the root of
-the problem is the duplication of the content protection state
-(drm_connector_state->content_protection) into the connector
-(intel_hdcp->value), and them going out of sync.
+Series: drm: Clean up VBLANK callbacks in struct drm_driver (rev8)
+URL   : https://patchwork.freedesktop.org/series/71873/
+State : warning
 
-If you relied on the connector state alone, you wouldn't have to worry
-about changing the intel_hdcp->value member at disable or anywhere;
-disable looks at old state and disables based on that. No history/future
-information needed. Isn't that roughly what everything else does, why is
-hdcp special?
+== Summary ==
 
-BR,
-Jani.
+$ dim checkpatch origin/drm-tip
+9ff81bf712fd drm: Remove internal setup of struct drm_device.vblank_disable_immediate
+c83894778e46 drm: Add get_scanout_position() to struct drm_crtc_helper_funcs
+-:83: WARNING:LONG_LINE: line over 100 characters
+#83: FILE: drivers/gpu/drm/drm_vblank.c:616:
++								    crtc->helper_private->get_scanout_position,
 
+-:84: WARNING:LONG_LINE: line over 100 characters
+#84: FILE: drivers/gpu/drm/drm_vblank.c:617:
++								    dev->driver->get_scanout_position);
 
->
-> Thanks,
-> -Ram
->> +
->>  	/* HDCP1.4 Encryption status */
->>  	bool hdcp_encrypted;
->>  
->> diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
->> index 0fdbd39f6641..7f631ebd8395 100644
->> --- a/drivers/gpu/drm/i915/display/intel_hdcp.c
->> +++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
->> @@ -2002,11 +2002,18 @@ int intel_hdcp_disable(struct intel_connector *connector)
->>  	mutex_lock(&hdcp->mutex);
->>  
->>  	if (hdcp->value != DRM_MODE_CONTENT_PROTECTION_UNDESIRED) {
->> -		hdcp->value = DRM_MODE_CONTENT_PROTECTION_UNDESIRED;
->>  		if (hdcp->hdcp2_encrypted)
->>  			ret = _intel_hdcp2_disable(connector);
->>  		else if (hdcp->hdcp_encrypted)
->>  			ret = _intel_hdcp_disable(connector);
->> +
->> +		if (hdcp->is_hdcp_undesired) {
->> +			hdcp->value = DRM_MODE_CONTENT_PROTECTION_UNDESIRED;
->> +			hdcp->is_hdcp_undesired = false;
->> +		} else {
->> +			hdcp->value = DRM_MODE_CONTENT_PROTECTION_DESIRED;
->> +			schedule_work(&hdcp->prop_work);
->> +		}
->>  	}
->>  
->>  	mutex_unlock(&hdcp->mutex);
->> @@ -2044,6 +2051,7 @@ void intel_hdcp_atomic_check(struct drm_connector *connector,
->>  {
->>  	u64 old_cp = old_state->content_protection;
->>  	u64 new_cp = new_state->content_protection;
->> +	struct intel_connector *intel_conn = to_intel_connector(connector);
->>  	struct drm_crtc_state *crtc_state;
->>  
->>  	if (!new_state->crtc) {
->> @@ -2069,6 +2077,9 @@ void intel_hdcp_atomic_check(struct drm_connector *connector,
->>  			return;
->>  	}
->>  
->> +	if (new_cp == DRM_MODE_CONTENT_PROTECTION_UNDESIRED)
->> +		intel_conn->hdcp.is_hdcp_undesired  =  true;
->> +
->>  	crtc_state = drm_atomic_get_new_crtc_state(new_state->state,
->>  						   new_state->crtc);
->>  	crtc_state->mode_changed = true;
->> -- 
->> 2.24.0
->> 
+-:125: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#125: FILE: drivers/gpu/drm/drm_vblank.c:658:
++drm_crtc_vblank_helper_get_vblank_timestamp_internal(
 
--- 
-Jani Nikula, Intel Open Source Graphics Center
+-:299: WARNING:LONG_LINE: line over 100 characters
+#299: FILE: include/drm/drm_vblank.h:260:
++						     drm_vblank_get_scanout_position_func get_scanout_position,
+
+-:300: WARNING:LONG_LINE: line over 100 characters
+#300: FILE: include/drm/drm_vblank.h:261:
++						     drm_vblank_get_scanout_position_legacy_func get_scanout_position_legacy);
+
+total: 0 errors, 4 warnings, 1 checks, 241 lines checked
+5be5473c0489 drm: Add get_vblank_timestamp() to struct drm_crtc_funcs
+-:104: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#104: FILE: drivers/gpu/drm/drm_vblank.c:816:
++	return drm_crtc_vblank_helper_get_vblank_timestamp_internal(
+
+total: 0 errors, 0 warnings, 1 checks, 242 lines checked
+415b65185cc9 drm/amdgpu: Convert to struct drm_crtc_helper_funcs.get_scanout_position()
+-:23: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#23: FILE: drivers/gpu/drm/amd/amdgpu/amdgpu_display.c:929:
++bool amdgpu_crtc_get_scanout_position(struct drm_crtc *crtc,
++			bool in_vblank_irq, int *vpos,
+
+-:71: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#71: FILE: drivers/gpu/drm/amd/amdgpu/amdgpu_mode.h:616:
++bool amdgpu_crtc_get_scanout_position(struct drm_crtc *crtc,
++			bool in_vblank_irq, int *vpos,
+
+total: 0 errors, 0 warnings, 2 checks, 93 lines checked
+62238b52f5ad drm/amdgpu: Convert to CRTC VBLANK callbacks
+58dd8e07443b drm/gma500: Convert to CRTC VBLANK callbacks
+-:57: CHECK:AVOID_EXTERNS: extern prototypes should be avoided in .h files
+#57: FILE: drivers/gpu/drm/gma500/psb_drv.h:684:
++extern int psb_enable_vblank(struct drm_crtc *crtc);
+
+-:58: CHECK:AVOID_EXTERNS: extern prototypes should be avoided in .h files
+#58: FILE: drivers/gpu/drm/gma500/psb_drv.h:685:
++extern void psb_disable_vblank(struct drm_crtc *crtc);
+
+-:66: CHECK:AVOID_EXTERNS: extern prototypes should be avoided in .h files
+#66: FILE: drivers/gpu/drm/gma500/psb_drv.h:692:
++extern u32 psb_get_vblank_counter(struct drm_crtc *crtc);
+
+total: 0 errors, 0 warnings, 3 checks, 104 lines checked
+09f7b2308ef5 drm/i915: Convert to CRTC VBLANK callbacks
+-:136: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#136: FILE: drivers/gpu/drm/i915/i915_irq.c:887:
++	return drm_crtc_vblank_helper_get_vblank_timestamp_internal(
+
+total: 0 errors, 0 warnings, 1 checks, 104 lines checked
+42922e924da6 drm/nouveau: Convert to struct drm_crtc_helper_funcs.get_scanout_position()
+-:75: WARNING:FUNCTION_ARGUMENTS: function definition argument 'struct drm_crtc *' should also have an identifier name
+#75: FILE: drivers/gpu/drm/nouveau/nouveau_display.h:66:
++bool  nouveau_display_scanoutpos(struct drm_crtc *,
+
+-:75: WARNING:FUNCTION_ARGUMENTS: function definition argument 'bool' should also have an identifier name
+#75: FILE: drivers/gpu/drm/nouveau/nouveau_display.h:66:
++bool  nouveau_display_scanoutpos(struct drm_crtc *,
+
+-:75: WARNING:FUNCTION_ARGUMENTS: function definition argument 'int *' should also have an identifier name
+#75: FILE: drivers/gpu/drm/nouveau/nouveau_display.h:66:
++bool  nouveau_display_scanoutpos(struct drm_crtc *,
+
+-:75: WARNING:FUNCTION_ARGUMENTS: function definition argument 'int *' should also have an identifier name
+#75: FILE: drivers/gpu/drm/nouveau/nouveau_display.h:66:
++bool  nouveau_display_scanoutpos(struct drm_crtc *,
+
+-:75: WARNING:FUNCTION_ARGUMENTS: function definition argument 'ktime_t *' should also have an identifier name
+#75: FILE: drivers/gpu/drm/nouveau/nouveau_display.h:66:
++bool  nouveau_display_scanoutpos(struct drm_crtc *,
+
+-:75: WARNING:FUNCTION_ARGUMENTS: function definition argument 'ktime_t *' should also have an identifier name
+#75: FILE: drivers/gpu/drm/nouveau/nouveau_display.h:66:
++bool  nouveau_display_scanoutpos(struct drm_crtc *,
+
+-:75: WARNING:FUNCTION_ARGUMENTS: function definition argument 'const struct drm_display_mode *' should also have an identifier name
+#75: FILE: drivers/gpu/drm/nouveau/nouveau_display.h:66:
++bool  nouveau_display_scanoutpos(struct drm_crtc *,
+
+total: 0 errors, 7 warnings, 0 checks, 53 lines checked
+609bd5e15846 drm/nouveau: Convert to CRTC VBLANK callbacks
+-:95: WARNING:FUNCTION_ARGUMENTS: function definition argument 'struct drm_crtc *' should also have an identifier name
+#95: FILE: drivers/gpu/drm/nouveau/nouveau_display.h:64:
++int  nouveau_display_vblank_enable(struct drm_crtc *);
+
+-:96: WARNING:FUNCTION_ARGUMENTS: function definition argument 'struct drm_crtc *' should also have an identifier name
+#96: FILE: drivers/gpu/drm/nouveau/nouveau_display.h:65:
++void nouveau_display_vblank_disable(struct drm_crtc *);
+
+total: 0 errors, 2 warnings, 0 checks, 77 lines checked
+97ac4623f4db drm/radeon: Convert to struct drm_crtc_helper_funcs.get_scanout_position()
+-:97: CHECK:AVOID_EXTERNS: extern prototypes should be avoided in .h files
+#97: FILE: drivers/gpu/drm/radeon/radeon_mode.h:884:
++extern bool radeon_get_crtc_scanout_position(struct drm_crtc *crtc,
+
+total: 0 errors, 0 warnings, 1 checks, 67 lines checked
+5126874a465c drm/radeon: Convert to CRTC VBLANK callbacks
+-:21: WARNING:AVOID_EXTERNS: externs should be avoided in .c files
+#21: FILE: drivers/gpu/drm/radeon/radeon_display.c:49:
++int radeon_enable_vblank_kms(struct drm_crtc *crtc);
+
+-:22: WARNING:AVOID_EXTERNS: externs should be avoided in .c files
+#22: FILE: drivers/gpu/drm/radeon/radeon_display.c:50:
++void radeon_disable_vblank_kms(struct drm_crtc *crtc);
+
+total: 0 errors, 2 warnings, 0 checks, 133 lines checked
+a2a551836901 drm/msm: Convert to struct drm_crtc_helper_funcs.get_scanout_position()
+-:43: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#43: FILE: drivers/gpu/drm/msm/disp/mdp5/mdp5_crtc.c:430:
++
++
+
+total: 0 errors, 0 warnings, 1 checks, 152 lines checked
+582c54684002 drm/msm: Convert to CRTC VBLANK callbacks
+a9016521a16d drm/stm: Convert to struct drm_crtc_helper_funcs.get_scanout_position()
+84b4fc193aa2 drm/stm: Convert to CRTC VBLANK callbacks
+df86ce675e2a drm/sti: Convert to CRTC VBLANK callbacks
+578cb860b55c drm/vc4: Convert to struct drm_crtc_helper_funcs.get_scanout_position()
+05e2648135b8 drm/vc4: Convert to CRTC VBLANK callbacks
+8f7b89e2e7f0 drm/vkms: Convert to CRTC VBLANK callbacks
+1d5b01bc601e drm/vmwgfx: Convert to CRTC VBLANK callbacks
+637a859efe2f drm: Clean-up VBLANK-related callbacks in struct drm_driver
+ea9e1d01e898 drm: Remove legacy version of get_scanout_position()
+-:113: WARNING:LONG_LINE: line over 100 characters
+#113: FILE: include/drm/drm_vblank.h:253:
++						     drm_vblank_get_scanout_position_func get_scanout_position);
+
+total: 0 errors, 1 warnings, 0 checks, 86 lines checked
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
