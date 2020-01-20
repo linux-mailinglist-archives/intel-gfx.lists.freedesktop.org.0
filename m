@@ -1,32 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C1842142841
-	for <lists+intel-gfx@lfdr.de>; Mon, 20 Jan 2020 11:33:21 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A1AE142856
+	for <lists+intel-gfx@lfdr.de>; Mon, 20 Jan 2020 11:41:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C44996E8AE;
-	Mon, 20 Jan 2020 10:33:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F40AF6E8B3;
+	Mon, 20 Jan 2020 10:41:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 404F46E0DF;
- Mon, 20 Jan 2020 10:33:17 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id E5EC86E8B1;
+ Mon, 20 Jan 2020 10:41:51 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 35C4DA011C;
- Mon, 20 Jan 2020 10:33:17 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id DBBF5A0138;
+ Mon, 20 Jan 2020 10:41:51 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Yannick FERTRE" <yannick.fertre@st.com>
-Date: Mon, 20 Jan 2020 10:33:17 -0000
-Message-ID: <157951639719.680.3953505236526941546@emeril.freedesktop.org>
+Date: Mon, 20 Jan 2020 10:41:51 -0000
+Message-ID: <157951691186.679.1929122645769239737@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20200120082314.14756-1-tzimmermann@suse.de>
 In-Reply-To: <20200120082314.14756-1-tzimmermann@suse.de>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm=3A_Clean_up_VBLANK_callbacks_in_struct_drm=5Fdriver_=28?=
- =?utf-8?q?rev8=29?=
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?drm=3A_Clean_up_VBLANK_callbacks_in_struct_drm=5Fdriver_=28rev8?=
+ =?utf-8?q?=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,162 +41,82 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
-
-Series: drm: Clean up VBLANK callbacks in struct drm_driver (rev8)
-URL   : https://patchwork.freedesktop.org/series/71873/
-State : warning
-
-== Summary ==
-
-$ dim checkpatch origin/drm-tip
-9ff81bf712fd drm: Remove internal setup of struct drm_device.vblank_disable_immediate
-c83894778e46 drm: Add get_scanout_position() to struct drm_crtc_helper_funcs
--:83: WARNING:LONG_LINE: line over 100 characters
-#83: FILE: drivers/gpu/drm/drm_vblank.c:616:
-+								    crtc->helper_private->get_scanout_position,
-
--:84: WARNING:LONG_LINE: line over 100 characters
-#84: FILE: drivers/gpu/drm/drm_vblank.c:617:
-+								    dev->driver->get_scanout_position);
-
--:125: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
-#125: FILE: drivers/gpu/drm/drm_vblank.c:658:
-+drm_crtc_vblank_helper_get_vblank_timestamp_internal(
-
--:299: WARNING:LONG_LINE: line over 100 characters
-#299: FILE: include/drm/drm_vblank.h:260:
-+						     drm_vblank_get_scanout_position_func get_scanout_position,
-
--:300: WARNING:LONG_LINE: line over 100 characters
-#300: FILE: include/drm/drm_vblank.h:261:
-+						     drm_vblank_get_scanout_position_legacy_func get_scanout_position_legacy);
-
-total: 0 errors, 4 warnings, 1 checks, 241 lines checked
-5be5473c0489 drm: Add get_vblank_timestamp() to struct drm_crtc_funcs
--:104: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
-#104: FILE: drivers/gpu/drm/drm_vblank.c:816:
-+	return drm_crtc_vblank_helper_get_vblank_timestamp_internal(
-
-total: 0 errors, 0 warnings, 1 checks, 242 lines checked
-415b65185cc9 drm/amdgpu: Convert to struct drm_crtc_helper_funcs.get_scanout_position()
--:23: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#23: FILE: drivers/gpu/drm/amd/amdgpu/amdgpu_display.c:929:
-+bool amdgpu_crtc_get_scanout_position(struct drm_crtc *crtc,
-+			bool in_vblank_irq, int *vpos,
-
--:71: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#71: FILE: drivers/gpu/drm/amd/amdgpu/amdgpu_mode.h:616:
-+bool amdgpu_crtc_get_scanout_position(struct drm_crtc *crtc,
-+			bool in_vblank_irq, int *vpos,
-
-total: 0 errors, 0 warnings, 2 checks, 93 lines checked
-62238b52f5ad drm/amdgpu: Convert to CRTC VBLANK callbacks
-58dd8e07443b drm/gma500: Convert to CRTC VBLANK callbacks
--:57: CHECK:AVOID_EXTERNS: extern prototypes should be avoided in .h files
-#57: FILE: drivers/gpu/drm/gma500/psb_drv.h:684:
-+extern int psb_enable_vblank(struct drm_crtc *crtc);
-
--:58: CHECK:AVOID_EXTERNS: extern prototypes should be avoided in .h files
-#58: FILE: drivers/gpu/drm/gma500/psb_drv.h:685:
-+extern void psb_disable_vblank(struct drm_crtc *crtc);
-
--:66: CHECK:AVOID_EXTERNS: extern prototypes should be avoided in .h files
-#66: FILE: drivers/gpu/drm/gma500/psb_drv.h:692:
-+extern u32 psb_get_vblank_counter(struct drm_crtc *crtc);
-
-total: 0 errors, 0 warnings, 3 checks, 104 lines checked
-09f7b2308ef5 drm/i915: Convert to CRTC VBLANK callbacks
--:136: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
-#136: FILE: drivers/gpu/drm/i915/i915_irq.c:887:
-+	return drm_crtc_vblank_helper_get_vblank_timestamp_internal(
-
-total: 0 errors, 0 warnings, 1 checks, 104 lines checked
-42922e924da6 drm/nouveau: Convert to struct drm_crtc_helper_funcs.get_scanout_position()
--:75: WARNING:FUNCTION_ARGUMENTS: function definition argument 'struct drm_crtc *' should also have an identifier name
-#75: FILE: drivers/gpu/drm/nouveau/nouveau_display.h:66:
-+bool  nouveau_display_scanoutpos(struct drm_crtc *,
-
--:75: WARNING:FUNCTION_ARGUMENTS: function definition argument 'bool' should also have an identifier name
-#75: FILE: drivers/gpu/drm/nouveau/nouveau_display.h:66:
-+bool  nouveau_display_scanoutpos(struct drm_crtc *,
-
--:75: WARNING:FUNCTION_ARGUMENTS: function definition argument 'int *' should also have an identifier name
-#75: FILE: drivers/gpu/drm/nouveau/nouveau_display.h:66:
-+bool  nouveau_display_scanoutpos(struct drm_crtc *,
-
--:75: WARNING:FUNCTION_ARGUMENTS: function definition argument 'int *' should also have an identifier name
-#75: FILE: drivers/gpu/drm/nouveau/nouveau_display.h:66:
-+bool  nouveau_display_scanoutpos(struct drm_crtc *,
-
--:75: WARNING:FUNCTION_ARGUMENTS: function definition argument 'ktime_t *' should also have an identifier name
-#75: FILE: drivers/gpu/drm/nouveau/nouveau_display.h:66:
-+bool  nouveau_display_scanoutpos(struct drm_crtc *,
-
--:75: WARNING:FUNCTION_ARGUMENTS: function definition argument 'ktime_t *' should also have an identifier name
-#75: FILE: drivers/gpu/drm/nouveau/nouveau_display.h:66:
-+bool  nouveau_display_scanoutpos(struct drm_crtc *,
-
--:75: WARNING:FUNCTION_ARGUMENTS: function definition argument 'const struct drm_display_mode *' should also have an identifier name
-#75: FILE: drivers/gpu/drm/nouveau/nouveau_display.h:66:
-+bool  nouveau_display_scanoutpos(struct drm_crtc *,
-
-total: 0 errors, 7 warnings, 0 checks, 53 lines checked
-609bd5e15846 drm/nouveau: Convert to CRTC VBLANK callbacks
--:95: WARNING:FUNCTION_ARGUMENTS: function definition argument 'struct drm_crtc *' should also have an identifier name
-#95: FILE: drivers/gpu/drm/nouveau/nouveau_display.h:64:
-+int  nouveau_display_vblank_enable(struct drm_crtc *);
-
--:96: WARNING:FUNCTION_ARGUMENTS: function definition argument 'struct drm_crtc *' should also have an identifier name
-#96: FILE: drivers/gpu/drm/nouveau/nouveau_display.h:65:
-+void nouveau_display_vblank_disable(struct drm_crtc *);
-
-total: 0 errors, 2 warnings, 0 checks, 77 lines checked
-97ac4623f4db drm/radeon: Convert to struct drm_crtc_helper_funcs.get_scanout_position()
--:97: CHECK:AVOID_EXTERNS: extern prototypes should be avoided in .h files
-#97: FILE: drivers/gpu/drm/radeon/radeon_mode.h:884:
-+extern bool radeon_get_crtc_scanout_position(struct drm_crtc *crtc,
-
-total: 0 errors, 0 warnings, 1 checks, 67 lines checked
-5126874a465c drm/radeon: Convert to CRTC VBLANK callbacks
--:21: WARNING:AVOID_EXTERNS: externs should be avoided in .c files
-#21: FILE: drivers/gpu/drm/radeon/radeon_display.c:49:
-+int radeon_enable_vblank_kms(struct drm_crtc *crtc);
-
--:22: WARNING:AVOID_EXTERNS: externs should be avoided in .c files
-#22: FILE: drivers/gpu/drm/radeon/radeon_display.c:50:
-+void radeon_disable_vblank_kms(struct drm_crtc *crtc);
-
-total: 0 errors, 2 warnings, 0 checks, 133 lines checked
-a2a551836901 drm/msm: Convert to struct drm_crtc_helper_funcs.get_scanout_position()
--:43: CHECK:LINE_SPACING: Please don't use multiple blank lines
-#43: FILE: drivers/gpu/drm/msm/disp/mdp5/mdp5_crtc.c:430:
-+
-+
-
-total: 0 errors, 0 warnings, 1 checks, 152 lines checked
-582c54684002 drm/msm: Convert to CRTC VBLANK callbacks
-a9016521a16d drm/stm: Convert to struct drm_crtc_helper_funcs.get_scanout_position()
-84b4fc193aa2 drm/stm: Convert to CRTC VBLANK callbacks
-df86ce675e2a drm/sti: Convert to CRTC VBLANK callbacks
-578cb860b55c drm/vc4: Convert to struct drm_crtc_helper_funcs.get_scanout_position()
-05e2648135b8 drm/vc4: Convert to CRTC VBLANK callbacks
-8f7b89e2e7f0 drm/vkms: Convert to CRTC VBLANK callbacks
-1d5b01bc601e drm/vmwgfx: Convert to CRTC VBLANK callbacks
-637a859efe2f drm: Clean-up VBLANK-related callbacks in struct drm_driver
-ea9e1d01e898 drm: Remove legacy version of get_scanout_position()
--:113: WARNING:LONG_LINE: line over 100 characters
-#113: FILE: include/drm/drm_vblank.h:253:
-+						     drm_vblank_get_scanout_position_func get_scanout_position);
-
-total: 0 errors, 1 warnings, 0 checks, 86 lines checked
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+PT0gU2VyaWVzIERldGFpbHMgPT0KClNlcmllczogZHJtOiBDbGVhbiB1cCBWQkxBTksgY2FsbGJh
+Y2tzIGluIHN0cnVjdCBkcm1fZHJpdmVyIChyZXY4KQpVUkwgICA6IGh0dHBzOi8vcGF0Y2h3b3Jr
+LmZyZWVkZXNrdG9wLm9yZy9zZXJpZXMvNzE4NzMvClN0YXRlIDogd2FybmluZwoKPT0gU3VtbWFy
+eSA9PQoKJCBkaW0gc3BhcnNlIG9yaWdpbi9kcm0tdGlwClNwYXJzZSB2ZXJzaW9uOiB2MC42LjAK
+Q29tbWl0OiBkcm06IFJlbW92ZSBpbnRlcm5hbCBzZXR1cCBvZiBzdHJ1Y3QgZHJtX2RldmljZS52
+YmxhbmtfZGlzYWJsZV9pbW1lZGlhdGUKT2theSEKCkNvbW1pdDogZHJtOiBBZGQgZ2V0X3NjYW5v
+dXRfcG9zaXRpb24oKSB0byBzdHJ1Y3QgZHJtX2NydGNfaGVscGVyX2Z1bmNzCk9rYXkhCgpDb21t
+aXQ6IGRybTogQWRkIGdldF92YmxhbmtfdGltZXN0YW1wKCkgdG8gc3RydWN0IGRybV9jcnRjX2Z1
+bmNzCisgICAgICAgICAgICAgIH5+fn5+Xn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+
+fn5+Citkcml2ZXJzL2dwdS9kcm0vZHJtX3ZibGFuay5jOjE4Njk6MTk6IHdhcm5pbmc6IHN1Z2dl
+c3QgcGFyZW50aGVzZXMgYXJvdW5kIOKAmCYm4oCZIHdpdGhpbiDigJh8fOKAmSBbLVdwYXJlbnRo
+ZXNlc10KK2RyaXZlcnMvZ3B1L2RybS9kcm1fdmJsYW5rLmM6IEluIGZ1bmN0aW9uIOKAmGRybV9o
+YW5kbGVfdmJsYW5rX2V2ZW50c+KAmToKKyAgaGlnaF9wcmVjID0gY3J0YyAmJiBjcnRjLT5mdW5j
+cy0+Z2V0X3ZibGFua190aW1lc3RhbXAgfHwKCkNvbW1pdDogZHJtL2FtZGdwdTogQ29udmVydCB0
+byBzdHJ1Y3QgZHJtX2NydGNfaGVscGVyX2Z1bmNzLmdldF9zY2Fub3V0X3Bvc2l0aW9uKCkKLWRy
+aXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1Ly4uL2Rpc3BsYXkvYW1kZ3B1X2RtL2FtZGdwdV9kbS5j
+OjUwNTc6Njogd2FybmluZzogc3ltYm9sICdkbV9kcm1fcGxhbmVfZGVzdHJveV9zdGF0ZScgd2Fz
+IG5vdCBkZWNsYXJlZC4gU2hvdWxkIGl0IGJlIHN0YXRpYz8KK2RyaXZlcnMvZ3B1L2RybS9hbWQv
+YW1kZ3B1Ly4uL2Rpc3BsYXkvYW1kZ3B1X2RtL2FtZGdwdV9kbS5jOjUwNTg6Njogd2FybmluZzog
+c3ltYm9sICdkbV9kcm1fcGxhbmVfZGVzdHJveV9zdGF0ZScgd2FzIG5vdCBkZWNsYXJlZC4gU2hv
+dWxkIGl0IGJlIHN0YXRpYz8KLWRyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1Ly4uL2Rpc3BsYXkv
+YW1kZ3B1X2RtL2FtZGdwdV9kbS5jOjgzOTM6Njogd2FybmluZzogc3ltYm9sICdhbWRncHVfZG1f
+cHNyX2VuYWJsZScgd2FzIG5vdCBkZWNsYXJlZC4gU2hvdWxkIGl0IGJlIHN0YXRpYz8KLWRyaXZl
+cnMvZ3B1L2RybS9hbWQvYW1kZ3B1Ly4uL2Rpc3BsYXkvYW1kZ3B1X2RtL2FtZGdwdV9kbS5jOjgz
+OTc6NTA6IHdhcm5pbmc6IG1pc3NpbmcgYnJhY2VzIGFyb3VuZCBpbml0aWFsaXplcgorZHJpdmVy
+cy9ncHUvZHJtL2FtZC9hbWRncHUvLi4vZGlzcGxheS9hbWRncHVfZG0vYW1kZ3B1X2RtLmM6ODM5
+NDo2OiB3YXJuaW5nOiBzeW1ib2wgJ2FtZGdwdV9kbV9wc3JfZW5hYmxlJyB3YXMgbm90IGRlY2xh
+cmVkLiBTaG91bGQgaXQgYmUgc3RhdGljPworZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvLi4v
+ZGlzcGxheS9hbWRncHVfZG0vYW1kZ3B1X2RtLmM6ODM5ODo1MDogd2FybmluZzogbWlzc2luZyBi
+cmFjZXMgYXJvdW5kIGluaXRpYWxpemVyCgpDb21taXQ6IGRybS9hbWRncHU6IENvbnZlcnQgdG8g
+Q1JUQyBWQkxBTksgY2FsbGJhY2tzCi1kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS8uLi9kaXNw
+bGF5L2FtZGdwdV9kbS9hbWRncHVfZG0uYzo1MDU4OjY6IHdhcm5pbmc6IHN5bWJvbCAnZG1fZHJt
+X3BsYW5lX2Rlc3Ryb3lfc3RhdGUnIHdhcyBub3QgZGVjbGFyZWQuIFNob3VsZCBpdCBiZSBzdGF0
+aWM/Citkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS8uLi9kaXNwbGF5L2FtZGdwdV9kbS9hbWRn
+cHVfZG0uYzo1MDYwOjY6IHdhcm5pbmc6IHN5bWJvbCAnZG1fZHJtX3BsYW5lX2Rlc3Ryb3lfc3Rh
+dGUnIHdhcyBub3QgZGVjbGFyZWQuIFNob3VsZCBpdCBiZSBzdGF0aWM/Ci1kcml2ZXJzL2dwdS9k
+cm0vYW1kL2FtZGdwdS8uLi9kaXNwbGF5L2FtZGdwdV9kbS9hbWRncHVfZG0uYzo4Mzk0OjY6IHdh
+cm5pbmc6IHN5bWJvbCAnYW1kZ3B1X2RtX3Bzcl9lbmFibGUnIHdhcyBub3QgZGVjbGFyZWQuIFNo
+b3VsZCBpdCBiZSBzdGF0aWM/Ci1kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS8uLi9kaXNwbGF5
+L2FtZGdwdV9kbS9hbWRncHVfZG0uYzo4Mzk4OjUwOiB3YXJuaW5nOiBtaXNzaW5nIGJyYWNlcyBh
+cm91bmQgaW5pdGlhbGl6ZXIKK2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1Ly4uL2Rpc3BsYXkv
+YW1kZ3B1X2RtL2FtZGdwdV9kbS5jOjgzOTY6Njogd2FybmluZzogc3ltYm9sICdhbWRncHVfZG1f
+cHNyX2VuYWJsZScgd2FzIG5vdCBkZWNsYXJlZC4gU2hvdWxkIGl0IGJlIHN0YXRpYz8KK2RyaXZl
+cnMvZ3B1L2RybS9hbWQvYW1kZ3B1Ly4uL2Rpc3BsYXkvYW1kZ3B1X2RtL2FtZGdwdV9kbS5jOjg0
+MDA6NTA6IHdhcm5pbmc6IG1pc3NpbmcgYnJhY2VzIGFyb3VuZCBpbml0aWFsaXplcgoKQ29tbWl0
+OiBkcm0vZ21hNTAwOiBDb252ZXJ0IHRvIENSVEMgVkJMQU5LIGNhbGxiYWNrcwpPa2F5IQoKQ29t
+bWl0OiBkcm0vaTkxNTogQ29udmVydCB0byBDUlRDIFZCTEFOSyBjYWxsYmFja3MKT2theSEKCkNv
+bW1pdDogZHJtL25vdXZlYXU6IENvbnZlcnQgdG8gc3RydWN0IGRybV9jcnRjX2hlbHBlcl9mdW5j
+cy5nZXRfc2Nhbm91dF9wb3NpdGlvbigpCk9rYXkhCgpDb21taXQ6IGRybS9ub3V2ZWF1OiBDb252
+ZXJ0IHRvIENSVEMgVkJMQU5LIGNhbGxiYWNrcwpPa2F5IQoKQ29tbWl0OiBkcm0vcmFkZW9uOiBD
+b252ZXJ0IHRvIHN0cnVjdCBkcm1fY3J0Y19oZWxwZXJfZnVuY3MuZ2V0X3NjYW5vdXRfcG9zaXRp
+b24oKQpPa2F5IQoKQ29tbWl0OiBkcm0vcmFkZW9uOiBDb252ZXJ0IHRvIENSVEMgVkJMQU5LIGNh
+bGxiYWNrcwpPa2F5IQoKQ29tbWl0OiBkcm0vbXNtOiBDb252ZXJ0IHRvIHN0cnVjdCBkcm1fY3J0
+Y19oZWxwZXJfZnVuY3MuZ2V0X3NjYW5vdXRfcG9zaXRpb24oKQpPa2F5IQoKQ29tbWl0OiBkcm0v
+bXNtOiBDb252ZXJ0IHRvIENSVEMgVkJMQU5LIGNhbGxiYWNrcwpPa2F5IQoKQ29tbWl0OiBkcm0v
+c3RtOiBDb252ZXJ0IHRvIHN0cnVjdCBkcm1fY3J0Y19oZWxwZXJfZnVuY3MuZ2V0X3NjYW5vdXRf
+cG9zaXRpb24oKQpPa2F5IQoKQ29tbWl0OiBkcm0vc3RtOiBDb252ZXJ0IHRvIENSVEMgVkJMQU5L
+IGNhbGxiYWNrcwpPa2F5IQoKQ29tbWl0OiBkcm0vc3RpOiBDb252ZXJ0IHRvIENSVEMgVkJMQU5L
+IGNhbGxiYWNrcwpPa2F5IQoKQ29tbWl0OiBkcm0vdmM0OiBDb252ZXJ0IHRvIHN0cnVjdCBkcm1f
+Y3J0Y19oZWxwZXJfZnVuY3MuZ2V0X3NjYW5vdXRfcG9zaXRpb24oKQpPa2F5IQoKQ29tbWl0OiBk
+cm0vdmM0OiBDb252ZXJ0IHRvIENSVEMgVkJMQU5LIGNhbGxiYWNrcwpPa2F5IQoKQ29tbWl0OiBk
+cm0vdmttczogQ29udmVydCB0byBDUlRDIFZCTEFOSyBjYWxsYmFja3MKT2theSEKCkNvbW1pdDog
+ZHJtL3Ztd2dmeDogQ29udmVydCB0byBDUlRDIFZCTEFOSyBjYWxsYmFja3MKT2theSEKCkNvbW1p
+dDogZHJtOiBDbGVhbi11cCBWQkxBTkstcmVsYXRlZCBjYWxsYmFja3MgaW4gc3RydWN0IGRybV9k
+cml2ZXIKLSAgICAgICAgICAgICAgfn5+fn5efn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+
+fn5+fn4KLWRyaXZlcnMvZ3B1L2RybS9kcm1fdmJsYW5rLmM6IEluIGZ1bmN0aW9uIOKAmGRybV9o
+YW5kbGVfdmJsYW5rX2V2ZW50c+KAmToKLSAgaGlnaF9wcmVjID0gY3J0YyAmJiBjcnRjLT5mdW5j
+cy0+Z2V0X3ZibGFua190aW1lc3RhbXAgfHwKLU86ZHJpdmVycy9ncHUvZHJtL2RybV92Ymxhbmsu
+YzoxODY5OjE5OiB3YXJuaW5nOiBzdWdnZXN0IHBhcmVudGhlc2VzIGFyb3VuZCDigJgmJuKAmSB3
+aXRoaW4g4oCYfHzigJkgWy1XcGFyZW50aGVzZXNdCgpDb21taXQ6IGRybTogUmVtb3ZlIGxlZ2Fj
+eSB2ZXJzaW9uIG9mIGdldF9zY2Fub3V0X3Bvc2l0aW9uKCkKT2theSEKCl9fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QK
+SW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9w
+Lm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
