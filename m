@@ -1,55 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1F7C142ADE
-	for <lists+intel-gfx@lfdr.de>; Mon, 20 Jan 2020 13:32:35 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5CABF142B4F
+	for <lists+intel-gfx@lfdr.de>; Mon, 20 Jan 2020 13:54:42 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 14B216FAA4;
-	Mon, 20 Jan 2020 12:32:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 898AA6E92B;
+	Mon, 20 Jan 2020 12:54:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-lf1-x142.google.com (mail-lf1-x142.google.com
- [IPv6:2a00:1450:4864:20::142])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F2DE26FAA4;
- Mon, 20 Jan 2020 12:32:32 +0000 (UTC)
-Received: by mail-lf1-x142.google.com with SMTP id r14so23939608lfm.5;
- Mon, 20 Jan 2020 04:32:32 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=AbIDR9pNoiwS2RYYFY1ApWhKRrU6bjvfq6mIUb/01Bw=;
- b=EpIR8NSfxP5x2csxJaulklUlER55UqNeAKkfCrMVT+CrjYdjSbqgcL3/DEfC8DEz5g
- SqqGk83CgCetygy8cP7HzJLNg1nvDf8IuJjahfiBa6E8L28BmB+/ATssPM8Huxxebn2V
- YT+kLovTB1PwUGUnIpRExyXz6QoV8kZppdlaBFEBBkyv7REr2n52a4Ior0K+XAMKxVdQ
- fnlzPC3cHkH+6kyZ9ZPkYOLnl/8gwp3vS+DGJzY3mIgBlhkJGmSCaYasAoLRsgqDNOyx
- +Z0xfrAukB2oyzp+kWoAGrSSJg3OsckY6SQYttd0Z7zja6LA46V9pAcyPv827xYjWn3Q
- 2eDQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=AbIDR9pNoiwS2RYYFY1ApWhKRrU6bjvfq6mIUb/01Bw=;
- b=VaKb9wR012c5FIzHvB5Oo7sbnAiYoxH9ng0lLYTSV1wOK5g531njygWRojmRrpstTv
- WA+qISAYj2UfrcJPDxgxKyaiTIG0xSNQOmz37epKqHIJM/cHJW9G2b7ri/Ww9/VdpfTx
- GJXbHGXsMN0cCd2OJSHIOZqPU9VPTTmi1CUNt8D8W2ZqRBIH34bLsQOmG4ImQdDKy+Dq
- QEo1OA2xCf9bScw/YZqaAime+dDq1ZMoWMDqPjmj88JFefk6M6yQJoCT4+JIE1fp4Wq0
- H2pldUJO4aVmf84oZdjft+3pN9n+EAuqOJ9psF33aAnL+xbMQ48Y0cqAz1tizzHkj96O
- cEZQ==
-X-Gm-Message-State: APjAAAUoWoIaAzC0Cz2cwKr15TDc7uem0ypDOI1Zonhl9ab3XVt6qS6q
- defZ4kRKV/HmY3T7st5OpPL6J8Ctt2D7b2fTJVo=
-X-Google-Smtp-Source: APXvYqwntAlqjr+2aFaQ6gaY6Ui2SgQ0xx2PBNZex/DNDmgaejFFzmYMRIqgIfSQZ60PmUpyUFAuKlEJCo+PJf7Dbys=
-X-Received: by 2002:a19:228c:: with SMTP id i134mr13301617lfi.2.1579523551378; 
- Mon, 20 Jan 2020 04:32:31 -0800 (PST)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 7F80789C61;
+ Mon, 20 Jan 2020 12:54:38 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id A7836A0119;
+ Mon, 20 Jan 2020 12:54:37 +0000 (UTC)
 MIME-Version: 1.0
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Yannick FERTRE" <yannick.fertre@st.com>
+Date: Mon, 20 Jan 2020 12:54:37 -0000
+Message-ID: <157952487765.680.15969509547014454082@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
 References: <20200120082314.14756-1-tzimmermann@suse.de>
- <20200120082314.14756-7-tzimmermann@suse.de>
-In-Reply-To: <20200120082314.14756-7-tzimmermann@suse.de>
-From: Patrik Jakobsson <patrik.r.jakobsson@gmail.com>
-Date: Mon, 20 Jan 2020 13:32:20 +0100
-Message-ID: <CAMeQTsYkvo9Pm=TNW95jH=Ffzo36bSbwf5+6p27T7T5L0aPMAQ@mail.gmail.com>
-To: Thomas Zimmermann <tzimmermann@suse.de>
-Subject: Re: [Intel-gfx] [PATCH v3 06/22] drm/gma500: Convert to CRTC VBLANK
- callbacks
+In-Reply-To: <20200120082314.14756-1-tzimmermann@suse.de>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
+ =?utf-8?q?=3A_Clean_up_VBLANK_callbacks_in_struct_drm=5Fdriver_=28rev8=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,186 +38,169 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: hamohammed.sa@gmail.com, David Airlie <airlied@linux.ie>,
- nouveau@lists.freedesktop.org, dri-devel <dri-devel@lists.freedesktop.org>,
- Eric Anholt <eric@anholt.net>,
- Benjamin Gaignard <benjamin.gaignard@linaro.org>, alexandre.torgue@st.com,
- David1.Zhou@amd.com, Thomas Hellstrom <thellstrom@vmware.com>,
- amd-gfx@lists.freedesktop.org,
- VMware Graphics <linux-graphics-maintainer@vmware.com>,
- Ben Skeggs <bskeggs@redhat.com>, harry.wentland@amd.com,
- mcoquelin.stm32@gmail.com, sunpeng.li@amd.com, linux-arm-msm@vger.kernel.org,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- vincent.abriou@st.com, rodrigosiqueiramelo@gmail.com, philippe.cornu@st.com,
- yannick.fertre@st.com, Alex Deucher <alexander.deucher@amd.com>,
- freedreno@lists.freedesktop.org,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Jan 20, 2020 at 9:23 AM Thomas Zimmermann <tzimmermann@suse.de> wrote:
->
-> VBLANK callbacks in struct drm_driver are deprecated in favor of
-> their equivalents in struct drm_crtc_funcs. Convert gma500 over.
->
-> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+== Series Details ==
 
-Looks good. For this patch:
+Series: drm: Clean up VBLANK callbacks in struct drm_driver (rev8)
+URL   : https://patchwork.freedesktop.org/series/71873/
+State : failure
 
-Acked-by: Patrik Jakobsson <patrik.r.jakobsson@gmail.com>
+== Summary ==
 
-> ---
->  drivers/gpu/drm/gma500/cdv_intel_display.c |  3 +++
->  drivers/gpu/drm/gma500/psb_drv.c           |  4 ----
->  drivers/gpu/drm/gma500/psb_drv.h           |  6 +++---
->  drivers/gpu/drm/gma500/psb_intel_display.c |  3 +++
->  drivers/gpu/drm/gma500/psb_irq.c           | 12 +++++++++---
->  drivers/gpu/drm/gma500/psb_irq.h           |  7 ++++---
->  6 files changed, 22 insertions(+), 13 deletions(-)
->
-> diff --git a/drivers/gpu/drm/gma500/cdv_intel_display.c b/drivers/gpu/drm/gma500/cdv_intel_display.c
-> index 1ed854f498b7..686385a66167 100644
-> --- a/drivers/gpu/drm/gma500/cdv_intel_display.c
-> +++ b/drivers/gpu/drm/gma500/cdv_intel_display.c
-> @@ -977,6 +977,9 @@ const struct drm_crtc_funcs cdv_intel_crtc_funcs = {
->         .set_config = gma_crtc_set_config,
->         .destroy = gma_crtc_destroy,
->         .page_flip = gma_crtc_page_flip,
-> +       .enable_vblank = psb_enable_vblank,
-> +       .disable_vblank = psb_disable_vblank,
-> +       .get_vblank_counter = psb_get_vblank_counter,
->  };
->
->  const struct gma_clock_funcs cdv_clock_funcs = {
-> diff --git a/drivers/gpu/drm/gma500/psb_drv.c b/drivers/gpu/drm/gma500/psb_drv.c
-> index 52591416f8fe..36cb292fdebe 100644
-> --- a/drivers/gpu/drm/gma500/psb_drv.c
-> +++ b/drivers/gpu/drm/gma500/psb_drv.c
-> @@ -363,7 +363,6 @@ static int psb_driver_load(struct drm_device *dev, unsigned long flags)
->         drm_irq_install(dev, dev->pdev->irq);
->
->         dev->max_vblank_count = 0xffffff; /* only 24 bits of frame count */
-> -       dev->driver->get_vblank_counter = psb_get_vblank_counter;
->
->         psb_modeset_init(dev);
->         psb_fbdev_init(dev);
-> @@ -507,9 +506,6 @@ static struct drm_driver driver = {
->         .irq_postinstall = psb_irq_postinstall,
->         .irq_uninstall = psb_irq_uninstall,
->         .irq_handler = psb_irq_handler,
-> -       .enable_vblank = psb_enable_vblank,
-> -       .disable_vblank = psb_disable_vblank,
-> -       .get_vblank_counter = psb_get_vblank_counter,
->
->         .gem_free_object = psb_gem_free_object,
->         .gem_vm_ops = &psb_gem_vm_ops,
-> diff --git a/drivers/gpu/drm/gma500/psb_drv.h b/drivers/gpu/drm/gma500/psb_drv.h
-> index 3d4ef3071d45..956926341316 100644
-> --- a/drivers/gpu/drm/gma500/psb_drv.h
-> +++ b/drivers/gpu/drm/gma500/psb_drv.h
-> @@ -681,15 +681,15 @@ extern void psb_irq_turn_off_dpst(struct drm_device *dev);
->  extern void psb_irq_uninstall_islands(struct drm_device *dev, int hw_islands);
->  extern int psb_vblank_wait2(struct drm_device *dev, unsigned int *sequence);
->  extern int psb_vblank_wait(struct drm_device *dev, unsigned int *sequence);
-> -extern int psb_enable_vblank(struct drm_device *dev, unsigned int pipe);
-> -extern void psb_disable_vblank(struct drm_device *dev, unsigned int pipe);
-> +extern int psb_enable_vblank(struct drm_crtc *crtc);
-> +extern void psb_disable_vblank(struct drm_crtc *crtc);
->  void
->  psb_enable_pipestat(struct drm_psb_private *dev_priv, int pipe, u32 mask);
->
->  void
->  psb_disable_pipestat(struct drm_psb_private *dev_priv, int pipe, u32 mask);
->
-> -extern u32 psb_get_vblank_counter(struct drm_device *dev, unsigned int pipe);
-> +extern u32 psb_get_vblank_counter(struct drm_crtc *crtc);
->
->  /* framebuffer.c */
->  extern int psbfb_probed(struct drm_device *dev);
-> diff --git a/drivers/gpu/drm/gma500/psb_intel_display.c b/drivers/gpu/drm/gma500/psb_intel_display.c
-> index fed3b563e62e..531c5485be17 100644
-> --- a/drivers/gpu/drm/gma500/psb_intel_display.c
-> +++ b/drivers/gpu/drm/gma500/psb_intel_display.c
-> @@ -433,6 +433,9 @@ const struct drm_crtc_funcs psb_intel_crtc_funcs = {
->         .set_config = gma_crtc_set_config,
->         .destroy = gma_crtc_destroy,
->         .page_flip = gma_crtc_page_flip,
-> +       .enable_vblank = psb_enable_vblank,
-> +       .disable_vblank = psb_disable_vblank,
-> +       .get_vblank_counter = psb_get_vblank_counter,
->  };
->
->  const struct gma_clock_funcs psb_clock_funcs = {
-> diff --git a/drivers/gpu/drm/gma500/psb_irq.c b/drivers/gpu/drm/gma500/psb_irq.c
-> index 91f90016dba9..15eb3770d817 100644
-> --- a/drivers/gpu/drm/gma500/psb_irq.c
-> +++ b/drivers/gpu/drm/gma500/psb_irq.c
-> @@ -506,8 +506,10 @@ int psb_irq_disable_dpst(struct drm_device *dev)
->  /*
->   * It is used to enable VBLANK interrupt
->   */
-> -int psb_enable_vblank(struct drm_device *dev, unsigned int pipe)
-> +int psb_enable_vblank(struct drm_crtc *crtc)
->  {
-> +       struct drm_device *dev = crtc->dev;
-> +       unsigned int pipe = crtc->index;
->         struct drm_psb_private *dev_priv = dev->dev_private;
->         unsigned long irqflags;
->         uint32_t reg_val = 0;
-> @@ -545,8 +547,10 @@ int psb_enable_vblank(struct drm_device *dev, unsigned int pipe)
->  /*
->   * It is used to disable VBLANK interrupt
->   */
-> -void psb_disable_vblank(struct drm_device *dev, unsigned int pipe)
-> +void psb_disable_vblank(struct drm_crtc *crtc)
->  {
-> +       struct drm_device *dev = crtc->dev;
-> +       unsigned int pipe = crtc->index;
->         struct drm_psb_private *dev_priv = dev->dev_private;
->         unsigned long irqflags;
->
-> @@ -618,8 +622,10 @@ void mdfld_disable_te(struct drm_device *dev, int pipe)
->  /* Called from drm generic code, passed a 'crtc', which
->   * we use as a pipe index
->   */
-> -u32 psb_get_vblank_counter(struct drm_device *dev, unsigned int pipe)
-> +u32 psb_get_vblank_counter(struct drm_crtc *crtc)
->  {
-> +       struct drm_device *dev = crtc->dev;
-> +       unsigned int pipe = crtc->index;
->         uint32_t high_frame = PIPEAFRAMEHIGH;
->         uint32_t low_frame = PIPEAFRAMEPIXEL;
->         uint32_t pipeconf_reg = PIPEACONF;
-> diff --git a/drivers/gpu/drm/gma500/psb_irq.h b/drivers/gpu/drm/gma500/psb_irq.h
-> index 58fd502e3b9d..4f73998848d1 100644
-> --- a/drivers/gpu/drm/gma500/psb_irq.h
-> +++ b/drivers/gpu/drm/gma500/psb_irq.h
-> @@ -12,6 +12,7 @@
->  #ifndef _PSB_IRQ_H_
->  #define _PSB_IRQ_H_
->
-> +struct drm_crtc;
->  struct drm_device;
->
->  bool sysirq_init(struct drm_device *dev);
-> @@ -26,9 +27,9 @@ int psb_irq_enable_dpst(struct drm_device *dev);
->  int psb_irq_disable_dpst(struct drm_device *dev);
->  void psb_irq_turn_on_dpst(struct drm_device *dev);
->  void psb_irq_turn_off_dpst(struct drm_device *dev);
-> -int  psb_enable_vblank(struct drm_device *dev, unsigned int pipe);
-> -void psb_disable_vblank(struct drm_device *dev, unsigned int pipe);
-> -u32  psb_get_vblank_counter(struct drm_device *dev, unsigned int pipe);
-> +int  psb_enable_vblank(struct drm_crtc *crtc);
-> +void psb_disable_vblank(struct drm_crtc *crtc);
-> +u32  psb_get_vblank_counter(struct drm_crtc *crtc);
->
->  int mdfld_enable_te(struct drm_device *dev, int pipe);
->  void mdfld_disable_te(struct drm_device *dev, int pipe);
-> --
-> 2.24.1
->
+CI Bug Log - changes from CI_DRM_7777 -> Patchwork_16170
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with Patchwork_16170 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_16170, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16170/index.html
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_16170:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@i915_selftest@live_uncore:
+    - fi-cfl-8700k:       [PASS][1] -> [INCOMPLETE][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7777/fi-cfl-8700k/igt@i915_selftest@live_uncore.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16170/fi-cfl-8700k/igt@i915_selftest@live_uncore.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_16170 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_close_race@basic-threads:
+    - fi-byt-j1900:       [PASS][3] -> [TIMEOUT][4] ([fdo#112271] / [i915#816])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7777/fi-byt-j1900/igt@gem_close_race@basic-threads.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16170/fi-byt-j1900/igt@gem_close_race@basic-threads.html
+
+  * igt@gem_exec_suspend@basic-s0:
+    - fi-cml-s:           [PASS][5] -> [FAIL][6] ([fdo#103375])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7777/fi-cml-s/igt@gem_exec_suspend@basic-s0.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16170/fi-cml-s/igt@gem_exec_suspend@basic-s0.html
+
+  * igt@i915_module_load@reload-with-fault-injection:
+    - fi-bxt-dsi:         [PASS][7] -> [INCOMPLETE][8] ([fdo#103927])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7777/fi-bxt-dsi/igt@i915_module_load@reload-with-fault-injection.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16170/fi-bxt-dsi/igt@i915_module_load@reload-with-fault-injection.html
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-cfl-8700k:       [PASS][9] -> [DMESG-WARN][10] ([i915#889]) +2 similar issues
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7777/fi-cfl-8700k/igt@i915_pm_rpm@module-reload.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16170/fi-cfl-8700k/igt@i915_pm_rpm@module-reload.html
+
+  * igt@i915_selftest@live_blt:
+    - fi-hsw-4770r:       [PASS][11] -> [DMESG-FAIL][12] ([i915#563])
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7777/fi-hsw-4770r/igt@i915_selftest@live_blt.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16170/fi-hsw-4770r/igt@i915_selftest@live_blt.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_exec_suspend@basic-s3:
+    - fi-cml-s:           [DMESG-WARN][13] ([fdo#111764]) -> [PASS][14]
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7777/fi-cml-s/igt@gem_exec_suspend@basic-s3.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16170/fi-cml-s/igt@gem_exec_suspend@basic-s3.html
+
+  * igt@i915_selftest@live_blt:
+    - fi-byt-j1900:       [DMESG-FAIL][15] ([i915#725]) -> [PASS][16]
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7777/fi-byt-j1900/igt@i915_selftest@live_blt.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16170/fi-byt-j1900/igt@i915_selftest@live_blt.html
+    - fi-hsw-4770:        [DMESG-FAIL][17] ([i915#553] / [i915#725]) -> [PASS][18]
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7777/fi-hsw-4770/igt@i915_selftest@live_blt.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16170/fi-hsw-4770/igt@i915_selftest@live_blt.html
+
+  * igt@kms_chamelium@dp-edid-read:
+    - fi-icl-u2:          [FAIL][19] ([fdo#109635] / [i915#217]) -> [PASS][20]
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7777/fi-icl-u2/igt@kms_chamelium@dp-edid-read.html
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16170/fi-icl-u2/igt@kms_chamelium@dp-edid-read.html
+
+  
+  [fdo#103375]: https://bugs.freedesktop.org/show_bug.cgi?id=103375
+  [fdo#103927]: https://bugs.freedesktop.org/show_bug.cgi?id=103927
+  [fdo#109635]: https://bugs.freedesktop.org/show_bug.cgi?id=109635
+  [fdo#111764]: https://bugs.freedesktop.org/show_bug.cgi?id=111764
+  [fdo#112271]: https://bugs.freedesktop.org/show_bug.cgi?id=112271
+  [i915#217]: https://gitlab.freedesktop.org/drm/intel/issues/217
+  [i915#553]: https://gitlab.freedesktop.org/drm/intel/issues/553
+  [i915#563]: https://gitlab.freedesktop.org/drm/intel/issues/563
+  [i915#725]: https://gitlab.freedesktop.org/drm/intel/issues/725
+  [i915#816]: https://gitlab.freedesktop.org/drm/intel/issues/816
+  [i915#889]: https://gitlab.freedesktop.org/drm/intel/issues/889
+
+
+Participating hosts (40 -> 37)
+------------------------------
+
+  Additional (7): fi-kbl-soraka fi-snb-2520m fi-ilk-650 fi-elk-e7500 fi-skl-lmem fi-skl-6600u fi-snb-2600 
+  Missing    (10): fi-ilk-m540 fi-kbl-7560u fi-bdw-5557u fi-hsw-peppy fi-byt-squawks fi-bsw-cyan fi-gdg-551 fi-ivb-3770 fi-bsw-kefka fi-blb-e6850 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_7777 -> Patchwork_16170
+
+  CI-20190529: 20190529
+  CI_DRM_7777: 7d2e349542ee3d682a98cc12c3ebdd4677d00d71 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5372: 0d00a27fbbd4d4a77d24499ea9811e07e65eb0ac @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_16170: ea9e1d01e89826eb1492d5e8ac2b8893524d46eb @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+ea9e1d01e898 drm: Remove legacy version of get_scanout_position()
+637a859efe2f drm: Clean-up VBLANK-related callbacks in struct drm_driver
+1d5b01bc601e drm/vmwgfx: Convert to CRTC VBLANK callbacks
+8f7b89e2e7f0 drm/vkms: Convert to CRTC VBLANK callbacks
+05e2648135b8 drm/vc4: Convert to CRTC VBLANK callbacks
+578cb860b55c drm/vc4: Convert to struct drm_crtc_helper_funcs.get_scanout_position()
+df86ce675e2a drm/sti: Convert to CRTC VBLANK callbacks
+84b4fc193aa2 drm/stm: Convert to CRTC VBLANK callbacks
+a9016521a16d drm/stm: Convert to struct drm_crtc_helper_funcs.get_scanout_position()
+582c54684002 drm/msm: Convert to CRTC VBLANK callbacks
+a2a551836901 drm/msm: Convert to struct drm_crtc_helper_funcs.get_scanout_position()
+5126874a465c drm/radeon: Convert to CRTC VBLANK callbacks
+97ac4623f4db drm/radeon: Convert to struct drm_crtc_helper_funcs.get_scanout_position()
+609bd5e15846 drm/nouveau: Convert to CRTC VBLANK callbacks
+42922e924da6 drm/nouveau: Convert to struct drm_crtc_helper_funcs.get_scanout_position()
+09f7b2308ef5 drm/i915: Convert to CRTC VBLANK callbacks
+58dd8e07443b drm/gma500: Convert to CRTC VBLANK callbacks
+62238b52f5ad drm/amdgpu: Convert to CRTC VBLANK callbacks
+415b65185cc9 drm/amdgpu: Convert to struct drm_crtc_helper_funcs.get_scanout_position()
+5be5473c0489 drm: Add get_vblank_timestamp() to struct drm_crtc_funcs
+c83894778e46 drm: Add get_scanout_position() to struct drm_crtc_helper_funcs
+9ff81bf712fd drm: Remove internal setup of struct drm_device.vblank_disable_immediate
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16170/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
