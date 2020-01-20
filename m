@@ -1,31 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F199142871
-	for <lists+intel-gfx@lfdr.de>; Mon, 20 Jan 2020 11:49:47 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E423142877
+	for <lists+intel-gfx@lfdr.de>; Mon, 20 Jan 2020 11:50:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 50E286E8BB;
-	Mon, 20 Jan 2020 10:49:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8918C6E8C0;
+	Mon, 20 Jan 2020 10:50:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C3FE56E8BC
- for <intel-gfx@lists.freedesktop.org>; Mon, 20 Jan 2020 10:49:43 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DDABA6E8BF
+ for <intel-gfx@lists.freedesktop.org>; Mon, 20 Jan 2020 10:50:01 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19944383-1500050 
- for multiple; Mon, 20 Jan 2020 10:49:25 +0000
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19944384-1500050 
+ for multiple; Mon, 20 Jan 2020 10:49:26 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon, 20 Jan 2020 10:49:23 +0000
-Message-Id: <20200120104924.4000706-4-chris@chris-wilson.co.uk>
+Date: Mon, 20 Jan 2020 10:49:24 +0000
+Message-Id: <20200120104924.4000706-5-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.25.0
 In-Reply-To: <20200120104924.4000706-1-chris@chris-wilson.co.uk>
 References: <20200120104924.4000706-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 4/5] drm/i915/gem: Convert vm idr to xarray
+Subject: [Intel-gfx] [PATCH 5/5] drm/i915/display: Squelch kerneldoc
+ complaints
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,203 +45,46 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Replace the vm_idr + vm_idr_mutex to an XArray. The XArray data
-structure is now used to implement IDRs, and provides its won locking.
-We can simply remove the IDR wrapper and in the process also remove our
-extra mutex.
+drivers/gpu/drm/i915/display/intel_atomic.c:185: warning: Function parameter or member 'state' not described in 'intel_connector_needs_modeset'
+drivers/gpu/drm/i915/display/intel_atomic.c:185: warning: Function parameter or member 'connector' not described in 'intel_connector_needs_modeset'
+
+drivers/gpu/drm/i915/display/intel_fbc.c:1124: warning: Function parameter or member 'state' not described in 'intel_fbc_enable'
+drivers/gpu/drm/i915/display/intel_fbc.c:1124: warning: Excess function parameter 'crtc_state' description in 'intel_fbc_enable'
+drivers/gpu/drm/i915/display/intel_fbc.c:1124: warning: Excess function parameter 'plane_state' description in 'intel_fbc_enable'
 
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 ---
- drivers/gpu/drm/i915/gem/i915_gem_context.c | 80 ++++++---------------
- drivers/gpu/drm/i915/i915_drv.h             |  4 +-
- 2 files changed, 22 insertions(+), 62 deletions(-)
+ drivers/gpu/drm/i915/display/intel_atomic.c | 2 ++
+ drivers/gpu/drm/i915/display/intel_fbc.c    | 3 +--
+ 2 files changed, 3 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-index a2e57e62af30..d2e4e8cbf4d4 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-@@ -761,12 +761,6 @@ void i915_gem_driver_release__contexts(struct drm_i915_private *i915)
- 	flush_work(&i915->gem.contexts.free_work);
- }
+diff --git a/drivers/gpu/drm/i915/display/intel_atomic.c b/drivers/gpu/drm/i915/display/intel_atomic.c
+index c362eecdd414..9921b1fa4e70 100644
+--- a/drivers/gpu/drm/i915/display/intel_atomic.c
++++ b/drivers/gpu/drm/i915/display/intel_atomic.c
+@@ -178,6 +178,8 @@ intel_digital_connector_duplicate_state(struct drm_connector *connector)
  
--static int vm_idr_cleanup(int id, void *p, void *data)
--{
--	i915_vm_put(p);
--	return 0;
--}
--
- static int gem_context_register(struct i915_gem_context *ctx,
- 				struct drm_i915_file_private *fpriv,
- 				u32 *id)
-@@ -803,9 +797,7 @@ int i915_gem_context_open(struct drm_i915_private *i915,
- 	u32 id;
- 
- 	xa_init_flags(&file_priv->context_xa, XA_FLAGS_ALLOC);
--
--	mutex_init(&file_priv->vm_idr_lock);
--	idr_init_base(&file_priv->vm_idr, 1);
-+	xa_init_flags(&file_priv->vm_xa, XA_FLAGS_ALLOC1);
- 
- 	ctx = i915_gem_create_context(i915, 0);
- 	if (IS_ERR(ctx)) {
-@@ -823,9 +815,8 @@ int i915_gem_context_open(struct drm_i915_private *i915,
- err_ctx:
- 	context_close(ctx);
- err:
--	idr_destroy(&file_priv->vm_idr);
-+	xa_destroy(&file_priv->vm_xa);
- 	xa_destroy(&file_priv->context_xa);
--	mutex_destroy(&file_priv->vm_idr_lock);
- 	return err;
- }
- 
-@@ -833,6 +824,7 @@ void i915_gem_context_close(struct drm_file *file)
- {
- 	struct drm_i915_file_private *file_priv = file->driver_priv;
- 	struct drm_i915_private *i915 = file_priv->dev_priv;
-+	struct i915_address_space *vm;
- 	struct i915_gem_context *ctx;
- 	unsigned long idx;
- 
-@@ -840,9 +832,9 @@ void i915_gem_context_close(struct drm_file *file)
- 		context_close(ctx);
- 	xa_destroy(&file_priv->context_xa);
- 
--	idr_for_each(&file_priv->vm_idr, vm_idr_cleanup, NULL);
--	idr_destroy(&file_priv->vm_idr);
--	mutex_destroy(&file_priv->vm_idr_lock);
-+	xa_for_each(&file_priv->vm_xa, idx, vm)
-+		i915_vm_put(vm);
-+	xa_destroy(&file_priv->vm_xa);
- 
- 	contexts_flush_free(&i915->gem.contexts);
- }
-@@ -876,23 +868,13 @@ int i915_gem_vm_create_ioctl(struct drm_device *dev, void *data,
- 			goto err_put;
- 	}
- 
--	err = mutex_lock_interruptible(&file_priv->vm_idr_lock);
-+	err = xa_alloc(&file_priv->vm_xa, &args->vm_id,
-+		       &ppgtt->vm, xa_limit_32b, GFP_KERNEL);
- 	if (err)
- 		goto err_put;
- 
--	err = idr_alloc(&file_priv->vm_idr, &ppgtt->vm, 0, 0, GFP_KERNEL);
--	if (err < 0)
--		goto err_unlock;
--
--	GEM_BUG_ON(err == 0); /* reserved for invalid/unassigned ppgtt */
--
--	mutex_unlock(&file_priv->vm_idr_lock);
--
--	args->vm_id = err;
- 	return 0;
- 
--err_unlock:
--	mutex_unlock(&file_priv->vm_idr_lock);
- err_put:
- 	i915_vm_put(&ppgtt->vm);
- 	return err;
-@@ -904,8 +886,6 @@ int i915_gem_vm_destroy_ioctl(struct drm_device *dev, void *data,
- 	struct drm_i915_file_private *file_priv = file->driver_priv;
- 	struct drm_i915_gem_vm_control *args = data;
- 	struct i915_address_space *vm;
--	int err;
--	u32 id;
- 
- 	if (args->flags)
- 		return -EINVAL;
-@@ -913,17 +893,7 @@ int i915_gem_vm_destroy_ioctl(struct drm_device *dev, void *data,
- 	if (args->extensions)
- 		return -EINVAL;
- 
--	id = args->vm_id;
--	if (!id)
--		return -ENOENT;
--
--	err = mutex_lock_interruptible(&file_priv->vm_idr_lock);
--	if (err)
--		return err;
--
--	vm = idr_remove(&file_priv->vm_idr, id);
--
--	mutex_unlock(&file_priv->vm_idr_lock);
-+	vm = xa_erase(&file_priv->vm_xa, args->vm_id);
- 	if (!vm)
- 		return -ENOENT;
- 
-@@ -1021,35 +991,27 @@ static int get_ppgtt(struct drm_i915_file_private *file_priv,
- 		     struct drm_i915_gem_context_param *args)
- {
- 	struct i915_address_space *vm;
--	int ret;
-+	int err = -ENODEV;
-+	u32 id;
- 
- 	if (!rcu_access_pointer(ctx->vm))
- 		return -ENODEV;
- 
- 	rcu_read_lock();
- 	vm = context_get_vm_rcu(ctx);
-+	if (vm)
-+		err = xa_alloc(&file_priv->vm_xa, &id, vm,
-+			       xa_limit_32b, GFP_KERNEL);
- 	rcu_read_unlock();
-+	if (!err) {
-+		i915_vm_open(vm);
- 
--	ret = mutex_lock_interruptible(&file_priv->vm_idr_lock);
--	if (ret)
--		goto err_put;
--
--	ret = idr_alloc(&file_priv->vm_idr, vm, 0, 0, GFP_KERNEL);
--	GEM_BUG_ON(!ret);
--	if (ret < 0)
--		goto err_unlock;
--
--	i915_vm_open(vm);
--
--	args->size = 0;
--	args->value = ret;
-+		args->size = 0;
-+		args->value = id;
-+	}
- 
--	ret = 0;
--err_unlock:
--	mutex_unlock(&file_priv->vm_idr_lock);
--err_put:
- 	i915_vm_put(vm);
--	return ret;
-+	return err;
- }
- 
- static void set_ppgtt_barrier(void *data)
-@@ -1151,7 +1113,7 @@ static int set_ppgtt(struct drm_i915_file_private *file_priv,
- 		return -ENOENT;
- 
- 	rcu_read_lock();
--	vm = idr_find(&file_priv->vm_idr, args->value);
-+	vm = xa_load(&file_priv->vm_xa, args->value);
- 	if (vm && !kref_get_unless_zero(&vm->ref))
- 		vm = NULL;
- 	rcu_read_unlock();
-diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-index 077af22b8340..50abf9113b2f 100644
---- a/drivers/gpu/drm/i915/i915_drv.h
-+++ b/drivers/gpu/drm/i915/i915_drv.h
-@@ -203,9 +203,7 @@ struct drm_i915_file_private {
- 	} mm;
- 
- 	struct xarray context_xa;
--
--	struct idr vm_idr;
--	struct mutex vm_idr_lock; /* guards vm_idr */
-+	struct xarray vm_xa;
- 
- 	unsigned int bsd_engine;
- 
+ /**
+  * intel_connector_needs_modeset - check if connector needs a modeset
++ * @state: the atomic state corresponding to this modeset
++ * @connector: the connector
+  */
+ bool
+ intel_connector_needs_modeset(struct intel_atomic_state *state,
+diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
+index 88a9c2fea695..d3be6f619b31 100644
+--- a/drivers/gpu/drm/i915/display/intel_fbc.c
++++ b/drivers/gpu/drm/i915/display/intel_fbc.c
+@@ -1111,8 +1111,7 @@ void intel_fbc_choose_crtc(struct drm_i915_private *dev_priv,
+ /**
+  * intel_fbc_enable: tries to enable FBC on the CRTC
+  * @crtc: the CRTC
+- * @crtc_state: corresponding &drm_crtc_state for @crtc
+- * @plane_state: corresponding &drm_plane_state for the primary plane of @crtc
++ * @state: corresponding &drm_crtc_state for @crtc
+  *
+  * This function checks if the given CRTC was chosen for FBC, then enables it if
+  * possible. Notice that it doesn't activate FBC. It is valid to call
 -- 
 2.25.0
 
