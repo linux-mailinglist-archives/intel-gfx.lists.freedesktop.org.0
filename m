@@ -1,32 +1,35 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A40B143040
-	for <lists+intel-gfx@lfdr.de>; Mon, 20 Jan 2020 17:50:35 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 10DE91430F5
+	for <lists+intel-gfx@lfdr.de>; Mon, 20 Jan 2020 18:47:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1BAF16EA10;
-	Mon, 20 Jan 2020 16:50:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2A0F16EA4F;
+	Mon, 20 Jan 2020 17:47:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id B4C056EA10;
- Mon, 20 Jan 2020 16:50:31 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id AAF69A0118;
- Mon, 20 Jan 2020 16:50:31 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 958236EA4F
+ for <intel-gfx@lists.freedesktop.org>; Mon, 20 Jan 2020 17:47:31 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 20 Jan 2020 09:47:31 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,342,1574150400"; d="scan'208";a="258780616"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by fmsmga002.fm.intel.com with SMTP; 20 Jan 2020 09:47:29 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Mon, 20 Jan 2020 19:47:28 +0200
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon, 20 Jan 2020 19:47:10 +0200
+Message-Id: <20200120174728.21095-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.24.1
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Alexey Budankov" <alexey.budankov@linux.intel.com>
-Date: Mon, 20 Jan 2020 16:50:31 -0000
-Message-ID: <157953903167.681.4729828491081489938@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <0548c832-7f4b-dc4c-8883-3f2b6d351a08@linux.intel.com>
-In-Reply-To: <0548c832-7f4b-dc4c-8883-3f2b6d351a08@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_Introduce_CAP=5FPERFMON_to_secure_system_performance_monito?=
- =?utf-8?q?ring_and_observability?=
+Subject: [Intel-gfx] [PATCH 00/17] drm/i915: Global state rework
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,44 +42,58 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
-
-Series: Introduce CAP_PERFMON to secure system performance monitoring and observability
-URL   : https://patchwork.freedesktop.org/series/72273/
-State : warning
-
-== Summary ==
-
-$ dim checkpatch origin/drm-tip
-08ee25620fef capabilities: introduce CAP_PERFMON to kernel and user space
--:33: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#33: 
-[2] https://www.kernel.org/doc/html/latest/process/embargoed-hardware-issues.html
-
-total: 0 errors, 1 warnings, 0 checks, 44 lines checked
-b04501d7d623 perf/core: open access to the core for CAP_PERFMON privileged process
--:7: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#7: 
-Open access to monitoring of kernel code, system, tracepoints and namespaces
-
-total: 0 errors, 1 warnings, 0 checks, 32 lines checked
-c74fee681ffe perf/core: open access to anon probes for CAP_PERFMON privileged process
-eca88405d138 perf tool: extend Perf tool with CAP_PERFMON capability support
-0df0e7d3bc27 drm/i915/perf: open access for CAP_PERFMON privileged process
-dc5f0cb73803 trace/bpf_trace: open access for CAP_PERFMON privileged process
-d3168511835d powerpc/perf: open access for CAP_PERFMON privileged process
-035c1d9fc22b parisc/perf: open access for CAP_PERFMON privileged process
-0515549093ae drivers/perf: open access for CAP_PERFMON privileged process
-c7304fe7a410 drivers/oprofile: open access for CAP_PERFMON privileged process
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+RnJvbTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KCkhl
+cmUncyBhbiBhdHRlbXB0IGF0IG1ha2luZyB0aGUgYWQtaG9jIGdsb2JhbCBzdGF0ZSBoYW5kbGlu
+ZyBtb3JlCnN0YW5kYXJkaXplZCBsaWtlIHRoZSBwcml2YXRlIG9iaiBzdHVmZi4gQXMgdGhlIGZp
+cnN0IGV4Y2VyY2lzZSB3ZQpjb252ZXJ0IHRoZSBiYW5kd2lkdGggYW5kIGNkY2xrIHN0YXRlcyB0
+byB1c2UgdGhpcy4gQW5vdGhlciBmdXR1cmUKdGFyZ2V0IGZvciB0aGlzIGlzIHByb2JhYmx5IGRk
+Yi9maWZvIGFsbG9jYXRpb24gZm9yIHRoZSBwaXBlcy4KCkVudGlyZSBzZXJpZXMgYXZhaWxhYmxl
+IGhlcmU6CmdpdDovL2dpdGh1Yi5jb20vdnN5cmphbGEvbGludXguZ2l0IGdsb2JhbF9zdGF0ZV9y
+ZXdvcmtfMgoKVmlsbGUgU3lyasOkbMOkICgxNyk6CiAgZHJtL2k5MTU6IFBvbGlzaCBXTV9MSU5F
+VElNRSByZWdpc3RlciBzdHVmZgogIGRybS9pOTE1OiBNb3ZlIGxpbmV0aW1lIHdtcyBpbnRvIHRo
+ZSBjcnRjIHN0YXRlCiAgZHJtL2k5MTU6IE51a2Ugc2tsIHdtLmRpcnR5X3BpcGVzIGJpdG1hc2sK
+ICBkcm0vaTkxNTogTW92ZSBtb3JlIGNkY2xrIHN0YXRlIGhhbmRsaW5nIGludG8gdGhlIGNkY2xr
+IGNvZGUKICBkcm0vaTkxNTogQ29sbGVjdCBtb3JlIGNkY2xrIHN0YXRlIHVuZGVyIHRoZSBzYW1l
+IHJvb2YKICBkcm0vaTkxNTogcy9uZWVkX2NkMnhfdXBkYXJlL2Nhbl9jZDJ4X3VwZGF0ZS8KICBk
+cm0vaTkxNTogcy9jZGNsa19zdGF0ZS9jZGNsa19jb25maWcvCiAgZHJtL2k5MTU6IFNpbXBsaWZ5
+IGludGVsX3NldF9jZGNsa197cHJlLHBvc3R9X3BsYW5lX3VwZGF0ZSgpIGNhbGxpbmcKICAgIGNv
+bnZlbnRpb24KICBkcm0vaTkxNTogRXh0cmFjdCBpbnRlbF9jZGNsa19zdGF0ZQogIGRybS9pOTE1
+OiBzd2FwKCkgdGhlIGVudGlyZSBjZGNsayBzdGF0ZQogIGRybS9pOTE1OiBzL2luaXRfY2RjbGsv
+aW5pdF9jZGNsa19ody8KICBkcm0vaTkxNTogTW92ZSBpbnRlbF9hdG9taWNfc3RhdGVfZnJlZSgp
+IGludG8gaW50ZWxfYXRvbWljLmMKICBkcm0vaTkxNTogSW50cmR1Y2UgYmV0dGVyIGdsb2JhbCBz
+dGF0ZSBoYW5kbGluZwogIGRybS9pOTE1OiBDb252ZXJ0IGJhbmR3aWR0aCBzdGF0ZSB0byBnbG9i
+YWwgc3RhdGUKICBkcm0vaTkxNTogSW50cm9kdWNlIGludGVsX2NhbGNfYWN0aXZlX3BpcGVzKCkK
+ICBkcm0vaTkxNTogQ29udmVydCBjZGNsayB0byBnbG9iYWwgc3RhdGUKICBkcm0vaTkxNTogU3Rv
+cmUgYWN0aXZlX3BpcGVzIGJpdG1hc2sgaW4gY2RjbGsgc3RhdGUKCiBkcml2ZXJzL2dwdS9kcm0v
+aTkxNS9NYWtlZmlsZSAgICAgICAgICAgICAgICAgfCAgIDEgKwogZHJpdmVycy9ncHUvZHJtL2k5
+MTUvZGlzcGxheS9pbnRlbF9hdG9taWMuYyAgIHwgIDI2ICstCiBkcml2ZXJzL2dwdS9kcm0vaTkx
+NS9kaXNwbGF5L2ludGVsX2F0b21pYy5oICAgfCAgIDUgKy0KIC4uLi9ncHUvZHJtL2k5MTUvZGlz
+cGxheS9pbnRlbF9hdG9taWNfcGxhbmUuYyB8ICA2NiArLQogLi4uL2dwdS9kcm0vaTkxNS9kaXNw
+bGF5L2ludGVsX2F0b21pY19wbGFuZS5oIHwgICA1ICstCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9k
+aXNwbGF5L2ludGVsX2F1ZGlvLmMgICAgfCAgMzkgKy0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rp
+c3BsYXkvaW50ZWxfYncuYyAgICAgICB8ICAzMSArLQogZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlz
+cGxheS9pbnRlbF9idy5oICAgICAgIHwgICA0ICstCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNw
+bGF5L2ludGVsX2NkY2xrLmMgICAgfCA3NDggKysrKysrKysrKy0tLS0tLS0tCiBkcml2ZXJzL2dw
+dS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2NkY2xrLmggICAgfCAgNzEgKy0KIGRyaXZlcnMvZ3B1
+L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jICB8IDI5NyArKysrKy0tCiBkcml2ZXJz
+L2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuaCAgfCAgIDMgKwogLi4uL2RybS9p
+OTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheV9wb3dlci5jICAgIHwgIDI0ICstCiAuLi4vZHJtL2k5
+MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5X3R5cGVzLmggICAgfCAgMzUgKy0KIC4uLi9ncHUvZHJt
+L2k5MTUvZGlzcGxheS9pbnRlbF9nbG9iYWxfc3RhdGUuYyB8IDIyMyArKysrKysKIC4uLi9ncHUv
+ZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9nbG9iYWxfc3RhdGUuaCB8ICA4NyArKwogZHJpdmVycy9n
+cHUvZHJtL2k5MTUvZ3Z0L2hhbmRsZXJzLmMgICAgICAgICAgIHwgICA2ICstCiBkcml2ZXJzL2dw
+dS9kcm0vaTkxNS9pOTE1X2Rydi5oICAgICAgICAgICAgICAgfCAgNDggKy0KIGRyaXZlcnMvZ3B1
+L2RybS9pOTE1L2k5MTVfcmVnLmggICAgICAgICAgICAgICB8ICAxNCArLQogZHJpdmVycy9ncHUv
+ZHJtL2k5MTUvaW50ZWxfcG0uYyAgICAgICAgICAgICAgIHwgMTQ3ICstLS0KIDIwIGZpbGVzIGNo
+YW5nZWQsIDExNDcgaW5zZXJ0aW9ucygrKSwgNzMzIGRlbGV0aW9ucygtKQogY3JlYXRlIG1vZGUg
+MTAwNjQ0IGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZ2xvYmFsX3N0YXRlLmMK
+IGNyZWF0ZSBtb2RlIDEwMDY0NCBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2ds
+b2JhbF9zdGF0ZS5oCgotLSAKMi4yNC4xCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5m
+cmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0
+aW5mby9pbnRlbC1nZngK
