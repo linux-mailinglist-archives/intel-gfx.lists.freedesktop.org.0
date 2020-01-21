@@ -2,31 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A31914479B
-	for <lists+intel-gfx@lfdr.de>; Tue, 21 Jan 2020 23:33:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 73CF81447D4
+	for <lists+intel-gfx@lfdr.de>; Tue, 21 Jan 2020 23:41:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F281B6E4A7;
-	Tue, 21 Jan 2020 22:33:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 306246E4C5;
+	Tue, 21 Jan 2020 22:40:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 4F1276E497;
- Tue, 21 Jan 2020 22:33:07 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 467F1A0134;
- Tue, 21 Jan 2020 22:33:07 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 85FC26E4BB;
+ Tue, 21 Jan 2020 22:40:56 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 21 Jan 2020 14:40:51 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,347,1574150400"; d="scan'208";a="229037591"
+Received: from kevinbra-mobl1.ger.corp.intel.com (HELO intel.com)
+ ([10.251.85.62])
+ by orsmga006.jf.intel.com with ESMTP; 21 Jan 2020 14:40:49 -0800
+Date: Tue, 21 Jan 2020 22:40:48 +0000
+From: Eric Engestrom <eric.engestrom@intel.com>
+To: Imre Deak <imre.deak@intel.com>
+Message-ID: <20200121224048.f7b2kckdjqebnyhi@intel.com>
+Organization: Intel Corporation (UK) Ltd. - Co. Reg. 1134945 - Pipers Way,
+ Swindon SN3 1RJ
+References: <20200120164343.2262-1-imre.deak@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Tue, 21 Jan 2020 22:33:07 -0000
-Message-ID: <157964598728.11478.4723019051607613650@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200121222447.419489-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200121222447.419489-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_series_starting_with_=5B1/7=5D_drm/i915=3A_Clear_the_GGTT?=
- =?utf-8?q?=5FWRITE_bit_on_unbinding_the_vma?=
+Content-Disposition: inline
+In-Reply-To: <20200120164343.2262-1-imre.deak@intel.com>
+Subject: Re: [Intel-gfx] [PATCH libdrm] intel:
+ drm_intel_bo_gem_create_from_* on platforms w/o HW tiling
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,39 +47,122 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Monday, 2020-01-20 18:43:43 +0200, Imre Deak wrote:
+> Platforms without a HW detiler doesn't support the get_tiling IOCTL.
+> Fix the drm_intel_bo_gem_create_from_* functions assuming the default
+> no-tiling, no-swizzling setting for the GEM buffer in this case.
+> 
+> Signed-off-by: Imre Deak <imre.deak@intel.com>
+> ---
+>  intel/intel_bufmgr_gem.c | 42 +++++++++++++++++++++++++---------------
+>  1 file changed, 26 insertions(+), 16 deletions(-)
+> 
+> diff --git a/intel/intel_bufmgr_gem.c b/intel/intel_bufmgr_gem.c
+> index fbf48730..fc249ef1 100644
+> --- a/intel/intel_bufmgr_gem.c
+> +++ b/intel/intel_bufmgr_gem.c
+> @@ -1069,6 +1069,27 @@ check_bo_alloc_userptr(drm_intel_bufmgr *bufmgr,
+>  					  tiling_mode, stride, size, flags);
+>  }
+>  
+> +static int get_tiling_mode(drm_intel_bufmgr_gem *bufmgr_gem,
+> +			   uint32_t gem_handle,
+> +			   uint32_t *tiling_mode,
+> +			   uint32_t *swizzle_mode)
+> +{
+> +	struct drm_i915_gem_get_tiling get_tiling;
+> +	int ret;
+> +
+> +	memclear(get_tiling);
+> +	ret = drmIoctl(bufmgr_gem->fd,
+> +		       DRM_IOCTL_I915_GEM_GET_TILING,
+> +		       &get_tiling);
 
-Series: series starting with [1/7] drm/i915: Clear the GGTT_WRITE bit on unbinding the vma
-URL   : https://patchwork.freedesktop.org/series/72355/
-State : warning
+You're missing `get_tiling.handle = gem_handle;`
 
-== Summary ==
+Or better yet, just initialise `get_tiling` and get rid of the memclear():
+  struct drm_i915_gem_get_tiling get_tiling = {
+    .handle = gem_handle,
+  };
 
-$ dim checkpatch origin/drm-tip
-2068495785db drm/i915: Clear the GGTT_WRITE bit on unbinding the vma
-b04be36c5df3 drm/i915/execlists: Reclaim the hanging virtual request
-231180d28fd3 drm/i915: Don't show the blank process name for internal/simulated errors
-9742a98ce03f drm/i915: Mark the removal of the i915_request from the sched.link
-c6e519447145 drm/i915: Tighten atomicity of i915_active_acquire vs i915_active_release
-1d79c7ddc249 drm/i915/gt: Acquire ce->active before ce->pin_count/ce->pin_mutex
--:7: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#7: 
-<0> [198.668822] gem_exec-1246    0.... 193899010us : timeline_advance: timeline_advance:387 GEM_BUG_ON(!atomic_read(&tl->pin_count))
+With either fix:
+Reviewed-by: Eric Engestrom <eric@engestrom.ch>
 
--:132: ERROR:POINTER_LOCATION: "foo*bar" should be "foo *bar"
-#132: FILE: drivers/gpu/drm/i915/i915_active.h:191:
-+static inline void __i915_active_acquire(struct i915_active*ref)
+FYI, I've posted the following MR for the equivalent Mesa changes:
+https://gitlab.freedesktop.org/mesa/mesa/merge_requests/3497
 
-total: 1 errors, 1 warnings, 0 checks, 89 lines checked
-37d47960d06d drm/i915/gt: Yield the timeslice if waiting on a semaphore
-
+> +	if (ret != 0 && errno != EOPNOTSUPP)
+> +		return ret;
+> +
+> +	*tiling_mode = get_tiling.tiling_mode;
+> +	*swizzle_mode = get_tiling.swizzle_mode;
+> +
+> +	return 0;
+> +}
+> +
+>  /**
+>   * Returns a drm_intel_bo wrapping the given buffer object handle.
+>   *
+> @@ -1084,7 +1105,6 @@ drm_intel_bo_gem_create_from_name(drm_intel_bufmgr *bufmgr,
+>  	drm_intel_bo_gem *bo_gem;
+>  	int ret;
+>  	struct drm_gem_open open_arg;
+> -	struct drm_i915_gem_get_tiling get_tiling;
+>  
+>  	/* At the moment most applications only have a few named bo.
+>  	 * For instance, in a DRI client only the render buffers passed
+> @@ -1146,16 +1166,11 @@ drm_intel_bo_gem_create_from_name(drm_intel_bufmgr *bufmgr,
+>  	HASH_ADD(name_hh, bufmgr_gem->name_table,
+>  		 global_name, sizeof(bo_gem->global_name), bo_gem);
+>  
+> -	memclear(get_tiling);
+> -	get_tiling.handle = bo_gem->gem_handle;
+> -	ret = drmIoctl(bufmgr_gem->fd,
+> -		       DRM_IOCTL_I915_GEM_GET_TILING,
+> -		       &get_tiling);
+> +	ret = get_tiling_mode(bufmgr_gem, bo_gem->gem_handle,
+> +			      &bo_gem->tiling_mode, &bo_gem->swizzle_mode);
+>  	if (ret != 0)
+>  		goto err_unref;
+>  
+> -	bo_gem->tiling_mode = get_tiling.tiling_mode;
+> -	bo_gem->swizzle_mode = get_tiling.swizzle_mode;
+>  	/* XXX stride is unknown */
+>  	drm_intel_bo_gem_set_in_aperture_size(bufmgr_gem, bo_gem, 0);
+>  	DBG("bo_create_from_handle: %d (%s)\n", handle, bo_gem->name);
+> @@ -2634,7 +2649,6 @@ drm_intel_bo_gem_create_from_prime(drm_intel_bufmgr *bufmgr, int prime_fd, int s
+>  	int ret;
+>  	uint32_t handle;
+>  	drm_intel_bo_gem *bo_gem;
+> -	struct drm_i915_gem_get_tiling get_tiling;
+>  
+>  	pthread_mutex_lock(&bufmgr_gem->lock);
+>  	ret = drmPrimeFDToHandle(bufmgr_gem->fd, prime_fd, &handle);
+> @@ -2688,15 +2702,11 @@ drm_intel_bo_gem_create_from_prime(drm_intel_bufmgr *bufmgr, int prime_fd, int s
+>  	bo_gem->has_error = false;
+>  	bo_gem->reusable = false;
+>  
+> -	memclear(get_tiling);
+> -	get_tiling.handle = bo_gem->gem_handle;
+> -	if (drmIoctl(bufmgr_gem->fd,
+> -		     DRM_IOCTL_I915_GEM_GET_TILING,
+> -		     &get_tiling))
+> +	ret = get_tiling_mode(bufmgr_gem, handle,
+> +			      &bo_gem->tiling_mode, &bo_gem->swizzle_mode);
+> +	if (ret)
+>  		goto err;
+>  
+> -	bo_gem->tiling_mode = get_tiling.tiling_mode;
+> -	bo_gem->swizzle_mode = get_tiling.swizzle_mode;
+>  	/* XXX stride is unknown */
+>  	drm_intel_bo_gem_set_in_aperture_size(bufmgr_gem, bo_gem, 0);
+>  
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
