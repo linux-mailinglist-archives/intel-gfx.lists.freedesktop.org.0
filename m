@@ -1,39 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 801411443C7
-	for <lists+intel-gfx@lfdr.de>; Tue, 21 Jan 2020 18:57:59 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B2CF1443CD
+	for <lists+intel-gfx@lfdr.de>; Tue, 21 Jan 2020 18:58:47 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C81E46EE1A;
-	Tue, 21 Jan 2020 17:57:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B9DA56EDF4;
+	Tue, 21 Jan 2020 17:58:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8C2926EDF1
- for <intel-gfx@lists.freedesktop.org>; Tue, 21 Jan 2020 17:57:55 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 19961877-1500050 for multiple; Tue, 21 Jan 2020 17:57:52 +0000
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id CC8436EDF4;
+ Tue, 21 Jan 2020 17:58:44 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id C32FCA363B;
+ Tue, 21 Jan 2020 17:58:44 +0000 (UTC)
 MIME-Version: 1.0
-From: Chris Wilson <chris@chris-wilson.co.uk>
-User-Agent: alot/0.6
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-References: <20200121100927.114886-1-chris@chris-wilson.co.uk>
- <20200121130411.267092-1-chris@chris-wilson.co.uk>
- <524735a8-dc0c-fdfc-941a-5cc3afaac40e@linux.intel.com>
- <157961563444.4434.6318084724990340871@skylake-alporthouse-com>
- <31d2ce9f-2a72-7471-1ad4-26ffa7091be6@linux.intel.com>
- <157962793102.5216.10310770620304053074@skylake-alporthouse-com>
- <341a33c9-d378-ee0f-bc35-cb11d1288732@linux.intel.com>
-In-Reply-To: <341a33c9-d378-ee0f-bc35-cb11d1288732@linux.intel.com>
-Message-ID: <157962947004.6241.16387329374520796728@skylake-alporthouse-com>
-Date: Tue, 21 Jan 2020 17:57:50 +0000
-Subject: Re: [Intel-gfx] [PATCH v3] drm/i915/execlists: Reclaim the hanging
- virtual request
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
+Date: Tue, 21 Jan 2020 17:58:44 -0000
+Message-ID: <157962952479.11480.3387523654678716191@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200120174728.21095-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20200120174728.21095-1-ville.syrjala@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915=3A_Global_state_rework_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,149 +38,180 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Tvrtko Ursulin (2020-01-21 17:43:37)
-> 
-> On 21/01/2020 17:32, Chris Wilson wrote:
-> > Quoting Tvrtko Ursulin (2020-01-21 17:19:52)
-> >>
-> >> On 21/01/2020 14:07, Chris Wilson wrote:
-> >>> Quoting Tvrtko Ursulin (2020-01-21 13:55:29)
-> >>>>
-> >>>>
-> >>>> On 21/01/2020 13:04, Chris Wilson wrote:
-> >>>>> +             GEM_BUG_ON(!reset_in_progress(&engine->execlists));
-> >>>>> +
-> >>>>> +             /*
-> >>>>> +              * An unsubmitted request along a virtual engine will
-> >>>>> +              * remain on the active (this) engine until we are able
-> >>>>> +              * to process the context switch away (and so mark the
-> >>>>> +              * context as no longer in flight). That cannot have happened
-> >>>>> +              * yet, otherwise we would not be hanging!
-> >>>>> +              */
-> >>>>> +             spin_lock_irqsave(&ve->base.active.lock, flags);
-> >>>>> +             GEM_BUG_ON(intel_context_inflight(rq->context) != engine);
-> >>>>> +             GEM_BUG_ON(ve->request != rq);
-> >>>>> +             ve->request = NULL;
-> >>>>> +             spin_unlock_irqrestore(&ve->base.active.lock, flags);
-> >>>>> +
-> >>>>> +             rq->engine = engine;
-> >>>>
-> >>>> Lets see I understand this... tasklet has been disabled and ring paused.
-> >>>> But we find an uncompleted request in the ELSP context, with rq->engine
-> >>>> == virtual engine. Therefore this cannot be the first request on this
-> >>>> timeline but has to be later.
-> >>>
-> >>> Not quite.
-> >>>
-> >>> engine->execlists.active[] tracks the HW, it get's updated only upon
-> >>> receiving HW acks (or we reset).
-> >>>
-> >>> So if execlists_active()->engine == virtual, it can only mean that the
-> >>> inflight _hanging_ request has already been unsubmitted by an earlier
-> >>> preemption in execlists_dequeue(), but that preemption has not yet been
-> >>> processed by the HW. (Hence the preemption-reset underway.)
-> >>>
-> >>> Now while we coalesce the requests for a context into a single ELSP[]
-> >>> slot, and only record the last request submitted for a context, we have
-> >>> to walk back along that context's timeline to find the earliest
-> >>> incomplete request and blame the hang upon it.
-> >>>
-> >>> For a virtual engine, it's much simpler as there is only ever one
-> >>> request in flight, but I don't think that has any impact here other
-> >>> than that we only need to repair the single unsubmitted request that was
-> >>> returned to the virtual engine.
-> >>>
-> >>>> One which has been put on the runqueue but
-> >>>> not yet submitted to hw. (Because one at a time.) Or it has been
-> >>>> unsubmitted by __unwind_incomplete_request already. In the former case
-> >>>> why move it to the physical engine? Also in the latter actually, it
-> >>>> would overwrite rq->engine with the physical one.
-> >>>
-> >>> Yes. For incomplete preemption event, the request is *still* on this
-> >>> engine and has not been released (rq->context->inflight == engine, so it
-> >>> cannot be submitted to any other engine, until after we acknowledge the
-> >>> context has been saved and is no longer being accessed by HW.) It is
-> >>> legal for us to process the hanging request along this engine; we have a
-> >>> suboptimal decision to return the request to the same engine after the
-> >>> reset, but since we have replaced the hanging payload, the request is a
-> >>> mere signaling placeholder (and I do not think will overly burden the
-> >>> system and negatively impact other virtual engines).
-> >>
-> >> What if the request in elsp actually completed in the meantime eg.
-> >> preemption timeout was a false positive?
-> >>
-> >> In execlists_capture we do:
-> >>
-> >>          cap->rq = execlists_active(&engine->execlists);
-> >>
-> >> This gets a completed request, then we do:
-> >>
-> >>          cap->rq = active_request(cap->rq->context->timeline, cap->rq);
-> >>
-> >> This walks along the virtual timeline and finds a next virtual request.
-> >> It then binds this request to a physical engine and sets ve->request to
-> >> NULL.
-> > 
-> > If we miss the completion event, then active_request() returns the
-> > original request and we blame it for a having a 650ms preemption-off
-> > shader with a 640ms preemption timeout.
-> 
-> I am thinking of this sequence of interleaved events:
-> 
->         preempt_timeout
->                                 tasklet_disable
->                                 ring_pause
->                                 execlist_active
->         seqno write visible
->                                 active_request - walks the tl to next
+== Series Details ==
 
-... tries to walk to next, sees no incomplete request, returns original
-request.
+Series: drm/i915: Global state rework (rev2)
+URL   : https://patchwork.freedesktop.org/series/72301/
+State : warning
 
-static struct i915_request *
-active_request(const struct intel_timeline * const tl, struct i915_request *rq)
-{
-        struct i915_request *active = rq;
-	^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ this sneaky line
+== Summary ==
 
-        rcu_read_lock();
-        list_for_each_entry_continue_reverse(rq, &tl->requests, link) {
-                if (i915_request_completed(rq))
-                        break;
+$ dim checkpatch origin/drm-tip
+6ee8aa846aab drm/i915: Polish WM_LINETIME register stuff
+a5c714cbc1b1 drm/i915: Move linetime wms into the crtc state
+3d4bad98ff35 drm/i915: Nuke skl wm.dirty_pipes bitmask
+91a2393ccd09 drm/i915: Move more cdclk state handling into the cdclk code
+2dc3b77d21ab drm/i915: Collect more cdclk state under the same roof
+58762cf832fb drm/i915: s/need_cd2x_updare/can_cd2x_update/
+882b4774005d drm/i915: s/cdclk_state/cdclk_config/
+-:519: CHECK:MULTIPLE_ASSIGNMENTS: multiple assignments should be avoided
+#519: FILE: drivers/gpu/drm/i915/display/intel_cdclk.c:870:
++	cdclk_config->cdclk = cdclk_config->bypass = cdclk_config->ref;
 
-                active = rq;
-		^^^^^^^^^^^^ these too may complete at any moment after
-		our inspection
+total: 0 errors, 0 warnings, 1 checks, 1148 lines checked
+7cd74aefdc85 drm/i915: Simplify intel_set_cdclk_{pre, post}_plane_update() calling convention
+156b0ecd892d drm/i915: Extract intel_cdclk_state
+-:541: CHECK:MULTIPLE_ASSIGNMENTS: multiple assignments should be avoided
+#541: FILE: drivers/gpu/drm/i915/display/intel_display.c:17366:
++	cdclk_state->logical = cdclk_state->actual = i915->cdclk.hw;
 
+total: 0 errors, 0 warnings, 1 checks, 621 lines checked
+49fde73eb22f drm/i915: swap() the entire cdclk state
+9e2da7c71fec drm/i915: s/init_cdclk/init_cdclk_hw/
+131e92e40122 drm/i915: Move intel_atomic_state_free() into intel_atomic.c
+91fd07c1cb34 drm/i915: Intrduce better global state handling
+-:230: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#230: 
+new file mode 100644
 
-        }
-        rcu_read_unlock();
+-:235: WARNING:SPDX_LICENSE_TAG: Improper SPDX comment style for 'drivers/gpu/drm/i915/display/intel_global_state.c', please use '//' instead
+#235: FILE: drivers/gpu/drm/i915/display/intel_global_state.c:1:
++/* SPDX-License-Identifier: MIT */
 
-        return active;
-}
+-:235: WARNING:SPDX_LICENSE_TAG: Missing or malformed SPDX-License-Identifier tag in line 1
+#235: FILE: drivers/gpu/drm/i915/display/intel_global_state.c:1:
++/* SPDX-License-Identifier: MIT */
 
->                                 execlist_hold
->                                 schedule_worker
->                                 tasklet_enable
->         process_csb completed
-> 
-> This is not possible? Seqno write happening needs only to be roughly 
-> there since as long as tasklet has been disabled execlist->active 
-> remains fixed.
+-:494: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__state' - possible side-effects?
+#494: FILE: drivers/gpu/drm/i915/display/intel_global_state.h:31:
++#define for_each_new_global_obj_in_state(__state, obj, new_obj_state, __i) \
++	for ((__i) = 0; \
++	     (__i) < (__state)->num_global_objs && \
++		     ((obj) = (__state)->global_objs[__i].ptr, \
++		      (new_obj_state) = (__state)->global_objs[__i].new_state, 1); \
++	     (__i)++) \
++		for_each_if(obj)
 
-It's certainly possible, the requests do keep going on the HW up until
-the next semaphore (which is after the seqno write). That is taken into
-account in that we may end up trying to reset a completed request, which
-should be avoided in execlists_reset() [after the HW has processed the
-reset request], but we capture the request anyway and put it back for
-execution (which is avoided in execlists_dequeue). Isn't preempt-to-busy
-fun?
--Chris
+-:494: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'obj' - possible side-effects?
+#494: FILE: drivers/gpu/drm/i915/display/intel_global_state.h:31:
++#define for_each_new_global_obj_in_state(__state, obj, new_obj_state, __i) \
++	for ((__i) = 0; \
++	     (__i) < (__state)->num_global_objs && \
++		     ((obj) = (__state)->global_objs[__i].ptr, \
++		      (new_obj_state) = (__state)->global_objs[__i].new_state, 1); \
++	     (__i)++) \
++		for_each_if(obj)
+
+-:494: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__i' - possible side-effects?
+#494: FILE: drivers/gpu/drm/i915/display/intel_global_state.h:31:
++#define for_each_new_global_obj_in_state(__state, obj, new_obj_state, __i) \
++	for ((__i) = 0; \
++	     (__i) < (__state)->num_global_objs && \
++		     ((obj) = (__state)->global_objs[__i].ptr, \
++		      (new_obj_state) = (__state)->global_objs[__i].new_state, 1); \
++	     (__i)++) \
++		for_each_if(obj)
+
+-:502: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__state' - possible side-effects?
+#502: FILE: drivers/gpu/drm/i915/display/intel_global_state.h:39:
++#define for_each_old_global_obj_in_state(__state, obj, new_obj_state, __i) \
++	for ((__i) = 0; \
++	     (__i) < (__state)->num_global_objs && \
++		     ((obj) = (__state)->global_objs[__i].ptr, \
++		      (new_obj_state) = (__state)->global_objs[__i].old_state, 1); \
++	     (__i)++) \
++		for_each_if(obj)
+
+-:502: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'obj' - possible side-effects?
+#502: FILE: drivers/gpu/drm/i915/display/intel_global_state.h:39:
++#define for_each_old_global_obj_in_state(__state, obj, new_obj_state, __i) \
++	for ((__i) = 0; \
++	     (__i) < (__state)->num_global_objs && \
++		     ((obj) = (__state)->global_objs[__i].ptr, \
++		      (new_obj_state) = (__state)->global_objs[__i].old_state, 1); \
++	     (__i)++) \
++		for_each_if(obj)
+
+-:502: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__i' - possible side-effects?
+#502: FILE: drivers/gpu/drm/i915/display/intel_global_state.h:39:
++#define for_each_old_global_obj_in_state(__state, obj, new_obj_state, __i) \
++	for ((__i) = 0; \
++	     (__i) < (__state)->num_global_objs && \
++		     ((obj) = (__state)->global_objs[__i].ptr, \
++		      (new_obj_state) = (__state)->global_objs[__i].old_state, 1); \
++	     (__i)++) \
++		for_each_if(obj)
+
+-:510: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__state' - possible side-effects?
+#510: FILE: drivers/gpu/drm/i915/display/intel_global_state.h:47:
++#define for_each_oldnew_global_obj_in_state(__state, obj, old_obj_state, new_obj_state, __i) \
++	for ((__i) = 0; \
++	     (__i) < (__state)->num_global_objs && \
++		     ((obj) = (__state)->global_objs[__i].ptr, \
++		      (old_obj_state) = (__state)->global_objs[__i].old_state, \
++		      (new_obj_state) = (__state)->global_objs[__i].new_state, 1); \
++	     (__i)++) \
++		for_each_if(obj)
+
+-:510: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'obj' - possible side-effects?
+#510: FILE: drivers/gpu/drm/i915/display/intel_global_state.h:47:
++#define for_each_oldnew_global_obj_in_state(__state, obj, old_obj_state, new_obj_state, __i) \
++	for ((__i) = 0; \
++	     (__i) < (__state)->num_global_objs && \
++		     ((obj) = (__state)->global_objs[__i].ptr, \
++		      (old_obj_state) = (__state)->global_objs[__i].old_state, \
++		      (new_obj_state) = (__state)->global_objs[__i].new_state, 1); \
++	     (__i)++) \
++		for_each_if(obj)
+
+-:510: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__i' - possible side-effects?
+#510: FILE: drivers/gpu/drm/i915/display/intel_global_state.h:47:
++#define for_each_oldnew_global_obj_in_state(__state, obj, old_obj_state, new_obj_state, __i) \
++	for ((__i) = 0; \
++	     (__i) < (__state)->num_global_objs && \
++		     ((obj) = (__state)->global_objs[__i].ptr, \
++		      (old_obj_state) = (__state)->global_objs[__i].old_state, \
++		      (new_obj_state) = (__state)->global_objs[__i].new_state, 1); \
++	     (__i)++) \
++		for_each_if(obj)
+
+total: 0 errors, 3 warnings, 9 checks, 484 lines checked
+82426865c238 drm/i915: Convert bandwidth state to global state
+81d4a119f677 drm/i915: Introduce intel_calc_active_pipes()
+8b4ed3aff508 drm/i915: Convert cdclk to global state
+-:635: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'state' - possible side-effects?
+#635: FILE: drivers/gpu/drm/i915/display/intel_cdclk.h:74:
++#define intel_atomic_get_old_cdclk_state(state) \
++	to_intel_cdclk_state(intel_atomic_get_old_global_obj_state(state, &to_i915(state->base.dev)->cdclk.obj))
+
+-:636: WARNING:LONG_LINE: line over 100 characters
+#636: FILE: drivers/gpu/drm/i915/display/intel_cdclk.h:75:
++	to_intel_cdclk_state(intel_atomic_get_old_global_obj_state(state, &to_i915(state->base.dev)->cdclk.obj))
+
+-:637: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'state' - possible side-effects?
+#637: FILE: drivers/gpu/drm/i915/display/intel_cdclk.h:76:
++#define intel_atomic_get_new_cdclk_state(state) \
++	to_intel_cdclk_state(intel_atomic_get_new_global_obj_state(state, &to_i915(state->base.dev)->cdclk.obj))
+
+-:638: WARNING:LONG_LINE: line over 100 characters
+#638: FILE: drivers/gpu/drm/i915/display/intel_cdclk.h:77:
++	to_intel_cdclk_state(intel_atomic_get_new_global_obj_state(state, &to_i915(state->base.dev)->cdclk.obj))
+
+total: 0 errors, 2 warnings, 2 checks, 922 lines checked
+c3282508b4ed drm/i915: Store active_pipes bitmask in cdclk state
+-:164: CHECK:MULTIPLE_ASSIGNMENTS: multiple assignments should be avoided
+#164: FILE: drivers/gpu/drm/i915/display/intel_display.c:18149:
++	dev_priv->active_pipes = cdclk_state->active_pipes = active_pipes;
+
+total: 0 errors, 0 warnings, 1 checks, 123 lines checked
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
