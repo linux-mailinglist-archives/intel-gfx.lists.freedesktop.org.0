@@ -2,104 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 095031436FB
-	for <lists+intel-gfx@lfdr.de>; Tue, 21 Jan 2020 07:17:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 48D7314371C
+	for <lists+intel-gfx@lfdr.de>; Tue, 21 Jan 2020 07:31:02 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 871436EBA8;
-	Tue, 21 Jan 2020 06:17:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2BF1F6EA79;
+	Tue, 21 Jan 2020 06:31:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam10on2074.outbound.protection.outlook.com [40.107.93.74])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F150A6EBA8
- for <intel-gfx@lists.freedesktop.org>; Tue, 21 Jan 2020 06:16:58 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Lh7IDg77vCVP6jfjwrvQRNshtciEEAF66AwLia30I+pkHNAGOnfdp7661KsNlJD+Z7moBx6UubdAGvGSVf+SG5alXTGggFmHmQZk21JZ4YyYlp2I6ewoj1hrnJCLM71AE+0jG2WyASrTNoyumi/v5UaAlvNqO2OgM4TkA0t5546lZDXhHyElDiOrO0OqJm9g1EsGcpjkOUJ8VyAuzL8VuWrsj6wZj5YvGtLQoURfi6RpushBGGs8yOrc0o6Sd2qN+L9FVsSMufob/2diDPFtHtuy5gHtIbAAVi11I3/rH0vWn0mtjv70lV11x387bO55P3Q4WJwtLnr48SZMAVjhsg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=wK9e6IXB7vfza1pfDnXOmMo4KG7rVMM89vWFUGJZJWU=;
- b=cG7S0bFGHNXfNPdIYRTLw4vKafn448UBlmfJjpqa+/xsmlWv5I4D4VCx0k0LGHRFv9cxMZw9rYZ4i5XmgVWmyRT/Pn9T/g6a8lY7AVZbwWfDTJOvqywwNwV7vYKSLW0lrW0bB8dtqQ+baVd3NJYrQ2RTxxw5Nm7XY+m17YCxnKD3AlkzE3tmxeyDxBmy1Hu/BS5itye7Dw+G4mZOBhOcG/g8u3vk0SFbmJd1vXcBzVgxF/eKY5O1IJaazTugkZjOatNmuF2d9psXu3qBcmSenBlyrcvYWQp2dN7QtwUDyLTOdEiSrD5x/r5+5LCCVNGV7o+DkX1xTWH/60VAsONk6g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=wK9e6IXB7vfza1pfDnXOmMo4KG7rVMM89vWFUGJZJWU=;
- b=vthGCf3z+dubX9dRYU2UjS4V4AhBZ1wDODcRCtYx4NxVocZNYnQTHV7wJh9nTCT/kOah+5Pc4A7I0H059lmQfEF/65LEg5d6QRrBKnsp20lcFNM3+Sfxdi9AFdIG4JZHsVL5eG7WCQZKQVLIxxdf4gk6WpQcyU0TNh3sIBqvCK0=
-Received: from BYAPR12MB2630.namprd12.prod.outlook.com (20.177.124.91) by
- BYAPR12MB3574.namprd12.prod.outlook.com (20.178.197.16) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2644.23; Tue, 21 Jan 2020 06:16:56 +0000
-Received: from BYAPR12MB2630.namprd12.prod.outlook.com
- ([fe80::5cfc:6eae:fc87:58a6]) by BYAPR12MB2630.namprd12.prod.outlook.com
- ([fe80::5cfc:6eae:fc87:58a6%7]) with mapi id 15.20.2644.027; Tue, 21 Jan 2020
- 06:16:56 +0000
-From: "Sharma, Shashank" <Shashank.Sharma@amd.com>
-To: Lee Shawn C <shawn.c.lee@intel.com>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [Intel-gfx] [PATCH v2] drm/i915: Check require bandwidth did not
- exceed LSPCON limitation
-Thread-Index: AQHV0BuS1ko3+qdOVUiGpMeYc7RpT6f0oqRwgAABaHA=
-Date: Tue, 21 Jan 2020 06:16:56 +0000
-Message-ID: <BYAPR12MB2630B329DB348931398C938AF20D0@BYAPR12MB2630.namprd12.prod.outlook.com>
-References: <20200117134717.2703-1-shawn.c.lee@intel.com>
- <20200121132621.22194-1-shawn.c.lee@intel.com>
- <BYAPR12MB2630244A7A895790D3C16851F20D0@BYAPR12MB2630.namprd12.prod.outlook.com>
-In-Reply-To: <BYAPR12MB2630244A7A895790D3C16851F20D0@BYAPR12MB2630.namprd12.prod.outlook.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_Enabled=true;
- MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_SetDate=2020-01-21T06:14:16Z; 
- MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_Method=Standard;
- MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_Name=Internal Use Only -
- Unrestricted;
- MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
- MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_ActionId=324126d9-a452-4989-9d3b-000086e54dbc;
- MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_ContentBits=1
-msip_label_76546daa-41b6-470c-bb85-f6f40f044d7f_enabled: true
-msip_label_76546daa-41b6-470c-bb85-f6f40f044d7f_setdate: 2020-01-21T06:16:53Z
-msip_label_76546daa-41b6-470c-bb85-f6f40f044d7f_method: Standard
-msip_label_76546daa-41b6-470c-bb85-f6f40f044d7f_name: Internal Use Only -
- Unrestricted
-msip_label_76546daa-41b6-470c-bb85-f6f40f044d7f_siteid: 3dd8961f-e488-4e60-8e11-a82d994e183d
-msip_label_76546daa-41b6-470c-bb85-f6f40f044d7f_actionid: 2f459a03-c6c7-4422-844d-0000b2985e9e
-msip_label_76546daa-41b6-470c-bb85-f6f40f044d7f_contentbits: 0
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=Shashank.Sharma@amd.com; 
-x-originating-ip: [165.204.157.251]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-ht: Tenant
-x-ms-office365-filtering-correlation-id: a79635a4-26e6-4564-8d0f-08d79e398432
-x-ms-traffictypediagnostic: BYAPR12MB3574:
-x-microsoft-antispam-prvs: <BYAPR12MB35749A9AA6492A0ACB5DD07AF20D0@BYAPR12MB3574.namprd12.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:7219;
-x-forefront-prvs: 0289B6431E
-x-forefront-antispam-report: SFV:NSPM;
- SFS:(10009020)(4636009)(366004)(136003)(39860400002)(376002)(396003)(346002)(199004)(189003)(66574012)(55016002)(9686003)(2940100002)(66476007)(66556008)(64756008)(66446008)(76116006)(5660300002)(66946007)(52536014)(4326008)(478600001)(8936002)(186003)(8676002)(86362001)(71200400001)(7696005)(966005)(53546011)(6506007)(2906002)(26005)(81166006)(316002)(33656002)(81156014)(45080400002)(54906003)(110136005);
- DIR:OUT; SFP:1101; SCL:1; SRVR:BYAPR12MB3574;
- H:BYAPR12MB2630.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
- PTR:InfoNoRecords; A:1; MX:1; 
-received-spf: None (protection.outlook.com: amd.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: EO9VL4eQGVX3Qp3T2NdTrexHgap5Xlb14rRFPu9E73q5AbqjYJD3j26yMNryf9RIwc+MvfW/tzTDKwJJXyAUkFOZI6dvYIxVnCiFJXikrAeiTbbc7xa+icDwjZxC1oCyOmEWyMnfLGY9ENWxSrbdLmd/C+PXAqmod1miQTi2hxTDm98fsbRJ2/ANMSu7JZUstDQeTztGDIEfww1tEZMpHrGvxlDLw0dfyIKg2csVjXXuQgXqpTW1NNAx/YTfDyNFQWBczGlHc3x809PBDCmuPBdtDD6j6qtY4ZjSoDnx+Lg6vbJFpgBi2cnpRN9Lz9Z0vDObf356WS7fJODj39Mo4swAo33McvjxRX4B2vagZ2Wmf3Xfa81RZetkAU8xixKF+5hboIBU13EZue8RxAshUqEFLn11iaDPRpKxB7ZrmwjsjOFQew+Nlr5sbT1qA5hoP/tcLFfaqhyUlKTve0siGFX4h/OZ76/+ikEhW7BJy2g=
-x-ms-exchange-transport-forked: True
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id D61F36EA3D;
+ Tue, 21 Jan 2020 06:30:58 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id C3505A0138;
+ Tue, 21 Jan 2020 06:30:58 +0000 (UTC)
 MIME-Version: 1.0
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: a79635a4-26e6-4564-8d0f-08d79e398432
-X-MS-Exchange-CrossTenant-originalarrivaltime: 21 Jan 2020 06:16:56.2195 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 6DA8AzLPU5hGRee7a3nhDTg+ynRSUyCk3Ej88UlNq2L42PgWf/wG2qj78rU6olrg//bTvzsncg3NAMyVNkWkDQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR12MB3574
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915: Check require bandwidth did
- not exceed LSPCON limitation
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Sharma, Shashank" <Shashank.Sharma@amd.com>
+Date: Tue, 21 Jan 2020 06:30:58 -0000
+Message-ID: <157958825876.11478.9911355882365654501@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200117134717.2703-1-shawn.c.lee@intel.com>
+In-Reply-To: <20200117134717.2703-1-shawn.c.lee@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBk?=
+ =?utf-8?q?rm/i915=3A_Check_require_bandwidth_did_not_exceed_LSPCON_limita?=
+ =?utf-8?q?tion_=28rev5=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -112,107 +39,31 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Cooper Chiou <cooper.chiou@intel.com>, Sam McNally <sammc@google.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-W0FNRCBPZmZpY2lhbCBVc2UgT25seSAtIEludGVybmFsIERpc3RyaWJ1dGlvbiBPbmx5XQ0KDQoN
-Cg0KLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCkZyb206IFNoYXJtYSwgU2hhc2hhbmsgDQpT
-ZW50OiBUdWVzZGF5LCBKYW51YXJ5IDIxLCAyMDIwIDExOjQ0IEFNDQpUbzogTGVlIFNoYXduIEMg
-PHNoYXduLmMubGVlQGludGVsLmNvbT47IGludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcN
-CkNjOiBDb29wZXIgQ2hpb3UgPGNvb3Blci5jaGlvdUBpbnRlbC5jb20+OyBTYW0gTWNOYWxseSA8
-c2FtbWNAZ29vZ2xlLmNvbT4NClN1YmplY3Q6IFJFOiBbSW50ZWwtZ2Z4XSBbUEFUQ0ggdjJdIGRy
-bS9pOTE1OiBDaGVjayByZXF1aXJlIGJhbmR3aWR0aCBkaWQgbm90IGV4Y2VlZCBMU1BDT04gbGlt
-aXRhdGlvbg0KDQpbQU1EIE9mZmljaWFsIFVzZSBPbmx5IC0gSW50ZXJuYWwgRGlzdHJpYnV0aW9u
-IE9ubHldDQoNCkhlbGxvIFNoYXduLCANCg0KLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCkZy
-b206IEludGVsLWdmeCA8aW50ZWwtZ2Z4LWJvdW5jZXNAbGlzdHMuZnJlZWRlc2t0b3Aub3JnPiBP
-biBCZWhhbGYgT2YgTGVlIFNoYXduIEMNClNlbnQ6IFR1ZXNkYXksIEphbnVhcnkgMjEsIDIwMjAg
-Njo1NiBQTQ0KVG86IGludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcNCkNjOiBDb29wZXIg
-Q2hpb3UgPGNvb3Blci5jaGlvdUBpbnRlbC5jb20+OyBTYW0gTWNOYWxseSA8c2FtbWNAZ29vZ2xl
-LmNvbT4NClN1YmplY3Q6IFtJbnRlbC1nZnhdIFtQQVRDSCB2Ml0gZHJtL2k5MTU6IENoZWNrIHJl
-cXVpcmUgYmFuZHdpZHRoIGRpZCBub3QgZXhjZWVkIExTUENPTiBsaW1pdGF0aW9uDQoNCldoaWxl
-IG1vZGUgc2V0dGluZywgZHJpdmVyIHdvdWxkIGNhbGN1bGF0ZSBtb2RlIHJhdGUgYmFzZWQgb24g
-cmVzb2x1dGlvbiBhbmQgYnBwLiBBbmQgY2hvb3NlIHRoZSBiZXN0IGJwcCB0aGF0IGRpZCBub3Qg
-ZXhjZWVkIERQIGJhbmR3aWR0ZC4NCg0KQnV0IExTUENPTiBoYWQgbW9yZSByZXN0cmljdGlvbiBk
-dWUgdG8gaXQgY29udmVydCBEUCB0byBIRE1JLg0KRHJpdmVyIHNob3VsZCByZXNwZWN0IEhETUkn
-cyBiYW5kd2lkdGggbGltaXRhdGlvbiBpZiBMU1BDT04gd2FzIGFjdGl2ZS4gVGhpcyBjaGFuZ2Ug
-d291bGQgaWdub3JlIHRoZSBicHAgd2hlbiBpdHMgcmVxdWlyZWQgb3V0cHV0IGJhbmR3aWR0aCBh
-bHJlYWR5IG92ZXIgSERNSSAyLjAgb3IgMS40IHNwZWMuDQoNCkNjOiBJbXJlIERlYWsgPGltcmUu
-ZGVha0BpbnRlbC5jb20+DQpDYzogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4
-LmludGVsLmNvbT4NCkNjOiBNYWFydGVuIExhbmtob3JzdCA8bWFhcnRlbi5sYW5raG9yc3RAbGlu
-dXguaW50ZWwuY29tPg0KQ2M6IEphbmkgTmlrdWxhIDxqYW5pLm5pa3VsYUBsaW51eC5pbnRlbC5j
-b20+DQpDYzogQ29vcGVyIENoaW91IDxjb29wZXIuY2hpb3VAaW50ZWwuY29tPg0KQ2M6IFNhbSBN
-Y05hbGx5IDxzYW1tY0Bnb29nbGUuY29tPg0KU2lnbmVkLW9mZi1ieTogTGVlIFNoYXduIEMgPHNo
-YXduLmMubGVlQGludGVsLmNvbT4NCg0KdjI6IG1vdmUgbHNwY29uX21heF9yYXRlKCkgaW50byBp
-bnRlbF9sc3Bjb24uYy4NCi0tLQ0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxf
-ZHAuYyAgICAgfCAgNSArKysrKw0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxf
-bHNwY29uLmMgfCAxMCArKysrKysrKysrICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2lu
-dGVsX2xzcGNvbi5oIHwgIDEgKw0KIDMgZmlsZXMgY2hhbmdlZCwgMTYgaW5zZXJ0aW9ucygrKQ0K
-DQpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcC5jIGIv
-ZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcC5jDQppbmRleCBjNzQyNGUyYTA0
-YTMuLjY3OTYwNTVhY2U2OSAxMDA2NDQNCi0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3Bs
-YXkvaW50ZWxfZHAuYw0KKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9k
-cC5jDQpAQCAtMTk4Myw2ICsxOTgzLDcgQEAgaW50ZWxfZHBfY29tcHV0ZV9saW5rX2NvbmZpZ193
-aWRlKHN0cnVjdCBpbnRlbF9kcCAqaW50ZWxfZHAsDQogCQkJCSAgY29uc3Qgc3RydWN0IGxpbmtf
-Y29uZmlnX2xpbWl0cyAqbGltaXRzKSAgew0KIAlzdHJ1Y3QgZHJtX2Rpc3BsYXlfbW9kZSAqYWRq
-dXN0ZWRfbW9kZSA9ICZwaXBlX2NvbmZpZy0+aHcuYWRqdXN0ZWRfbW9kZTsNCisJc3RydWN0IGlu
-dGVsX2xzcGNvbiAqbHNwY29uID0gZHBfdG9fbHNwY29uKGludGVsX2RwKTsNCiAJaW50IGJwcCwg
-Y2xvY2ssIGxhbmVfY291bnQ7DQogCWludCBtb2RlX3JhdGUsIGxpbmtfY2xvY2ssIGxpbmtfYXZh
-aWw7DQogDQpAQCAtMTk5Miw2ICsxOTkzLDEwIEBAIGludGVsX2RwX2NvbXB1dGVfbGlua19jb25m
-aWdfd2lkZShzdHJ1Y3QgaW50ZWxfZHAgKmludGVsX2RwLA0KIAkJbW9kZV9yYXRlID0gaW50ZWxf
-ZHBfbGlua19yZXF1aXJlZChhZGp1c3RlZF9tb2RlLT5jcnRjX2Nsb2NrLA0KIAkJCQkJCSAgIG91
-dHB1dF9icHApOw0KIA0KKwkJLyogQnlwYXNzIHRoaXMgbW9kZSBpZiByZXF1aXJlIGJhbmR3aWR0
-aCBvdmVyIEhETUkgc3BlYyB3aGVuIExTUENPTiBhY3RpdmUgKi8NCisJCWlmIChsc3Bjb24tPmFj
-dGl2ZSAmJiBtb2RlX3JhdGUgPiBsc3Bjb25fbWF4X3JhdGUobHNwY29uKSkNCisJCQljb250aW51
-ZTsNCisNCiAJCWZvciAoY2xvY2sgPSBsaW1pdHMtPm1pbl9jbG9jazsgY2xvY2sgPD0gbGltaXRz
-LT5tYXhfY2xvY2s7IGNsb2NrKyspIHsNCiAJCQlmb3IgKGxhbmVfY291bnQgPSBsaW1pdHMtPm1p
-bl9sYW5lX2NvdW50Ow0KIAkJCSAgICAgbGFuZV9jb3VudCA8PSBsaW1pdHMtPm1heF9sYW5lX2Nv
-dW50OyBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9sc3Bj
-b24uYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfbHNwY29uLmMNCmluZGV4
-IGQ4MDdjNTY0OGM4Ny4uNTY1N2U5NDlhYWJmIDEwMDY0NA0KLS0tIGEvZHJpdmVycy9ncHUvZHJt
-L2k5MTUvZGlzcGxheS9pbnRlbF9sc3Bjb24uYw0KKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUv
-ZGlzcGxheS9pbnRlbF9sc3Bjb24uYw0KQEAgLTUxOCw2ICs1MTgsMTYgQEAgdm9pZCBsc3Bjb25f
-c2V0X2luZm9mcmFtZXMoc3RydWN0IGludGVsX2VuY29kZXIgKmVuY29kZXIsDQogCQkJCSAgYnVm
-LCByZXQpOw0KIH0NCiANCitpbnQgbHNwY29uX21heF9yYXRlKHN0cnVjdCBpbnRlbF9sc3Bjb24g
-KmxzcGNvbikgew0KKwllbnVtIGRybV9sc3Bjb25fbW9kZSBjdXJyZW50X21vZGUgPSBsc3Bjb25f
-Z2V0X2N1cnJlbnRfbW9kZShsc3Bjb24pOw0KKw0KKwlpZiAobHNwY29uX2N1cnJlbnRfbW9kZSA9
-PSBEUk1fTFNQQ09OX01PREVfTFMpDQpBbHNvLCBpZiBJIHJlY2FsbCBjb3JyZWN0bHksIHdlIGFy
-ZSBkcml2aW5nIGFsd2F5cyBvbiBQQ09OIG1vZGUuIFNvIGlmIExTUENPTiBpcyBhY3RpdmUsIGl0
-IHdvdWxkIGJlIGluIFBDT04gbW9kZS4gRG8geW91IHNlZSBzY2VuYXJpb3Mgd2hlcmUgeW91IGFy
-ZSBmaW5kaW5nIGl0IGluIExTIG1vZGUgPyANCg0KLSBTaGFzaGFuaw0KKwkJcmV0dXJuIERJVl9S
-T1VORF9VUCgzNDAwMDAgKiAyNCwgOCk7DQorDQorCXJldHVybiBESVZfUk9VTkRfVVAoNjAwMDAw
-ICogMjQsIDgpOw0KSW5zdGVhZCBvZiBhc3N1bWluZyBtYXggY2xvY2sgMzQwIG9yIDYwMCwgbXkg
-c3VnZ2VzdGlvbiB3b3VsZCBiZSB0byBpbnRyb2R1Y2UgYSBuZXcgdmFyaWFibGUgaW4gc3RydWN0
-IGludGVsX2xzcGNvbiBjYWxsZWQgbWF4X3JhdGUsIGFuZCB0aGVuIGluaXRpYWxpemUgdGhhdCBw
-cm9wZXJseSBhdCBsc3Bjb25fcHJvYmUvaW5pdCwgdGhpcyB3aWxsIG1ha2UgdGhlIHNvbHV0aW9u
-IGdlbmVyaWMgZm9yIGFueSBMU1BDT04gdHlwZSBkb25nbGUgb24gSW50ZWwgYm9hcmQuIFdlIGhh
-dmUgc2VlbiBmZXcgZHAtPmhkbWkgdHlwZTIgY29udmVydG9ycyBhbHNvIG9uLWJvYXJkIG9uIElD
-TCBjaGlwcywgd2hpY2ggYmVoYXZlIGxpa2UgTFNQQ09OLCBidXQgY2FuIGJlIEhETUkgMS40IG9y
-IEhETUkgMi4wIGRlcGVuZGluZyBvbiB0aGUgYm9hcmQgY29uZmlnLiAgIA0KDQotIFNoYXNoYW5r
-IA0KK30NCisNCiB1MzIgbHNwY29uX2luZm9mcmFtZXNfZW5hYmxlZChzdHJ1Y3QgaW50ZWxfZW5j
-b2RlciAqZW5jb2RlciwNCiAJCQkgICAgICBjb25zdCBzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZSAq
-cGlwZV9jb25maWcpICB7IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5
-L2ludGVsX2xzcGNvbi5oIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9sc3Bj
-b24uaA0KaW5kZXggMzdjZmRkZjhhOWM1Li5iNTg0YzAyYWIzM2IgMTAwNjQ0DQotLS0gYS9kcml2
-ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2xzcGNvbi5oDQorKysgYi9kcml2ZXJzL2dw
-dS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2xzcGNvbi5oDQpAQCAtMTgsNiArMTgsNyBAQCBzdHJ1
-Y3QgaW50ZWxfbHNwY29uOw0KIGJvb2wgbHNwY29uX2luaXQoc3RydWN0IGludGVsX2RpZ2l0YWxf
-cG9ydCAqaW50ZWxfZGlnX3BvcnQpOyAgdm9pZCBsc3Bjb25fcmVzdW1lKHN0cnVjdCBpbnRlbF9s
-c3Bjb24gKmxzcGNvbik7ICB2b2lkIGxzcGNvbl93YWl0X3Bjb25fbW9kZShzdHJ1Y3QgaW50ZWxf
-bHNwY29uICpsc3Bjb24pOw0KK2ludCBsc3Bjb25fbWF4X3JhdGUoc3RydWN0IGludGVsX2xzcGNv
-biAqbHNwY29uKTsNCiB2b2lkIGxzcGNvbl93cml0ZV9pbmZvZnJhbWUoc3RydWN0IGludGVsX2Vu
-Y29kZXIgKmVuY29kZXIsDQogCQkJICAgIGNvbnN0IHN0cnVjdCBpbnRlbF9jcnRjX3N0YXRlICpj
-cnRjX3N0YXRlLA0KIAkJCSAgICB1bnNpZ25lZCBpbnQgdHlwZSwNCi0tDQoyLjE3LjENCg0KX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18NCkludGVsLWdmeCBt
-YWlsaW5nIGxpc3QNCkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcNCmh0dHBzOi8vbmFt
-MTEuc2FmZWxpbmtzLnByb3RlY3Rpb24ub3V0bG9vay5jb20vP3VybD1odHRwcyUzQSUyRiUyRmxp
-c3RzLmZyZWVkZXNrdG9wLm9yZyUyRm1haWxtYW4lMkZsaXN0aW5mbyUyRmludGVsLWdmeCZhbXA7
-ZGF0YT0wMiU3QzAxJTdDc2hhc2hhbmsuc2hhcm1hJTQwYW1kLmNvbSU3QzE0Nzc5NTA1NDk3ODQw
-OGEzYTA0MDhkNzllMzJiM2I4JTdDM2RkODk2MWZlNDg4NGU2MDhlMTFhODJkOTk0ZTE4M2QlN0Mw
-JTdDMCU3QzYzNzE1MTgxMjkxNDI4NDIyNyZhbXA7c2RhdGE9RThxRzlQNEFCQmFGOVA4SG1XNE5n
-cE80b1NiZjFsdkJIamtIaHAzaEVYOCUzRCZhbXA7cmVzZXJ2ZWQ9MA0KX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJ
-bnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Au
-b3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+== Series Details ==
+
+Series: drm/i915: Check require bandwidth did not exceed LSPCON limitation (rev5)
+URL   : https://patchwork.freedesktop.org/series/72157/
+State : failure
+
+== Summary ==
+
+Applying: drm/i915: Check require bandwidth did not exceed LSPCON limitation
+error: corrupt patch at line 22
+error: could not build fake ancestor
+hint: Use 'git am --show-current-patch' to see the failed patch
+Patch failed at 0001 drm/i915: Check require bandwidth did not exceed LSPCON limitation
+When you have resolved this problem, run "git am --continue".
+If you prefer to skip this patch, run "git am --skip" instead.
+To restore the original branch and stop patching, run "git am --abort".
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
