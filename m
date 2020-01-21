@@ -1,32 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E676A1437E1
-	for <lists+intel-gfx@lfdr.de>; Tue, 21 Jan 2020 08:49:37 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8867C14386F
+	for <lists+intel-gfx@lfdr.de>; Tue, 21 Jan 2020 09:39:49 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2A0996EBC3;
-	Tue, 21 Jan 2020 07:49:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6D5646EBE8;
+	Tue, 21 Jan 2020 08:39:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id B71386EBC2;
- Tue, 21 Jan 2020 07:49:33 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id AE11BA011C;
- Tue, 21 Jan 2020 07:49:33 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AA3FA6EBE7;
+ Tue, 21 Jan 2020 08:39:41 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 21 Jan 2020 00:39:41 -0800
+X-IronPort-AV: E=Sophos;i="5.70,345,1574150400"; d="scan'208";a="219880620"
+Received: from jnikula-mobl3.fi.intel.com (HELO localhost) ([10.237.66.161])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 21 Jan 2020 00:39:37 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: Pankaj Bharadiya <pankaj.laxminarayan.bharadiya@intel.com>, daniel@ffwll.ch,
+ sam@ravnborg.org, sudeep.dutt@intel.com, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, David Airlie <airlied@linux.ie>
+In-Reply-To: <87y2u9jav8.fsf@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20200115034455.17658-1-pankaj.laxminarayan.bharadiya@intel.com>
+ <20200115034455.17658-2-pankaj.laxminarayan.bharadiya@intel.com>
+ <87y2u9jav8.fsf@intel.com>
+Date: Tue, 21 Jan 2020 10:39:34 +0200
+Message-ID: <87muahfbjt.fsf@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Sharma, Shashank" <Shashank.Sharma@amd.com>
-Date: Tue, 21 Jan 2020 07:49:33 -0000
-Message-ID: <157959297368.11481.10807946945665141233@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200117134717.2703-1-shawn.c.lee@intel.com>
-In-Reply-To: <20200117134717.2703-1-shawn.c.lee@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Check_require_bandwidth_did_not_exceed_LSPCON_limitati?=
- =?utf-8?b?b24gKHJldjMp?=
+Subject: Re: [Intel-gfx] [ [PATCH v2 01/10] drm/print: introduce new struct
+ drm_device based WARN* macros
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,109 +49,85 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Wed, 15 Jan 2020, Jani Nikula <jani.nikula@intel.com> wrote:
+> On Wed, 15 Jan 2020, Pankaj Bharadiya <pankaj.laxminarayan.bharadiya@intel.com> wrote:
+>> Add new struct drm_device based WARN* macros. These are modeled after
+>> the core kernel device based WARN* macros. These would be preferred
+>> over the regular WARN* macros, where possible.
+>>
+>> These macros include device information in the backtrace, so we know
+>> what device the warnings originate from.
+>>
+>> Knowing the device specific information in the backtrace would be
+>> helpful in development all around.
+>>
+>> Signed-off-by: Pankaj Bharadiya <pankaj.laxminarayan.bharadiya@intel.com>
+>
+> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
-Series: drm/i915: Check require bandwidth did not exceed LSPCON limitation (rev3)
-URL   : https://patchwork.freedesktop.org/series/72157/
-State : success
+All, I'd really appreciate acks or reviews on this one to unblock the
+rest. I think the patch is fine, but I'd like wider approval before
+merging.
 
-== Summary ==
+I'm thinking of putting this in a topic branch and merging to both
+drm-intel-next-queued and drm-misc-next, so we can start converting i915
+to use this.
 
-CI Bug Log - changes from CI_DRM_7781 -> Patchwork_16180
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16180/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_16180 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_module_load@reload-with-fault-injection:
-    - fi-skl-lmem:        [PASS][1] -> [DMESG-WARN][2] ([i915#889])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7781/fi-skl-lmem/igt@i915_module_load@reload-with-fault-injection.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16180/fi-skl-lmem/igt@i915_module_load@reload-with-fault-injection.html
-
-  * igt@i915_selftest@live_blt:
-    - fi-ivb-3770:        [PASS][3] -> [DMESG-FAIL][4] ([i915#725])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7781/fi-ivb-3770/igt@i915_selftest@live_blt.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16180/fi-ivb-3770/igt@i915_selftest@live_blt.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_exec_gttfill@basic:
-    - {fi-ehl-1}:         [INCOMPLETE][5] ([i915#937]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7781/fi-ehl-1/igt@gem_exec_gttfill@basic.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16180/fi-ehl-1/igt@gem_exec_gttfill@basic.html
-
-  * igt@kms_chamelium@hdmi-hpd-fast:
-    - fi-kbl-7500u:       [FAIL][7] ([fdo#111407]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7781/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16180/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
-
-  
-#### Warnings ####
-
-  * igt@i915_selftest@live_blt:
-    - fi-hsw-4770r:       [DMESG-FAIL][9] ([i915#553] / [i915#725]) -> [DMESG-FAIL][10] ([i915#725])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7781/fi-hsw-4770r/igt@i915_selftest@live_blt.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16180/fi-hsw-4770r/igt@i915_selftest@live_blt.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#111407]: https://bugs.freedesktop.org/show_bug.cgi?id=111407
-  [i915#553]: https://gitlab.freedesktop.org/drm/intel/issues/553
-  [i915#725]: https://gitlab.freedesktop.org/drm/intel/issues/725
-  [i915#889]: https://gitlab.freedesktop.org/drm/intel/issues/889
-  [i915#937]: https://gitlab.freedesktop.org/drm/intel/issues/937
+BR,
+Jani.
 
 
-Participating hosts (50 -> 42)
-------------------------------
+>
+>> ---
+>>  include/drm/drm_print.h | 29 +++++++++++++++++++++++++++++
+>>  1 file changed, 29 insertions(+)
+>>
+>> diff --git a/include/drm/drm_print.h b/include/drm/drm_print.h
+>> index 8f99d389792d..894a0b9437e2 100644
+>> --- a/include/drm/drm_print.h
+>> +++ b/include/drm/drm_print.h
+>> @@ -553,4 +553,33 @@ void __drm_err(const char *format, ...);
+>>  #define DRM_DEBUG_PRIME_RATELIMITED(fmt, ...)				\
+>>  	DRM_DEV_DEBUG_PRIME_RATELIMITED(NULL, fmt, ##__VA_ARGS__)
+>>  
+>> +/*
+>> + * struct drm_device based WARNs
+>> + *
+>> + * drm_WARN*() acts like WARN*(), but with the key difference of
+>> + * using device specific information so that we know from which device
+>> + * warning is originating from.
+>> + *
+>> + * Prefer drm_device based drm_WARN* over regular WARN*
+>> + */
+>> +
+>> +/* Helper for struct drm_device based WARNs */
+>> +#define drm_WARN(drm, condition, format, arg...)			\
+>> +	WARN(condition, "%s %s: " format,				\
+>> +			dev_driver_string((drm)->dev),			\
+>> +			dev_name((drm)->dev), ## arg)
+>> +
+>> +#define drm_WARN_ONCE(drm, condition, format, arg...)			\
+>> +	WARN_ONCE(condition, "%s %s: " format,				\
+>> +			dev_driver_string((drm)->dev),			\
+>> +			dev_name((drm)->dev), ## arg)
+>> +
+>> +#define drm_WARN_ON(drm, x)						\
+>> +	drm_WARN((drm), (x), "%s",					\
+>> +		 "drm_WARN_ON(" __stringify(x) ")")
+>> +
+>> +#define drm_WARN_ON_ONCE(drm, x)					\
+>> +	drm_WARN_ONCE((drm), (x), "%s",					\
+>> +		      "drm_WARN_ON_ONCE(" __stringify(x) ")")
+>> +
+>>  #endif /* DRM_PRINT_H_ */
 
-  Missing    (8): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-snb-2520m fi-ctg-p8600 fi-byt-n2820 fi-byt-clapper 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_7781 -> Patchwork_16180
-
-  CI-20190529: 20190529
-  CI_DRM_7781: 3f2b341ae1fde67f823aeb715c6f489affdef8b1 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5374: 83c32e859202e43ff6a8cca162c76fcd90ad6e3b @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_16180: cf0c5ceadb01123a9ff5fed190167847bfcb2926 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-cf0c5ceadb01 drm/i915: Check require bandwidth did not exceed LSPCON limitation
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16180/index.html
+-- 
+Jani Nikula, Intel Open Source Graphics Center
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
