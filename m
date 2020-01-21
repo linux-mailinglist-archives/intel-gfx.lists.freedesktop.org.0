@@ -1,32 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF511143D99
-	for <lists+intel-gfx@lfdr.de>; Tue, 21 Jan 2020 14:03:59 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id BA65A143D9C
+	for <lists+intel-gfx@lfdr.de>; Tue, 21 Jan 2020 14:04:24 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 34A076ECD9;
-	Tue, 21 Jan 2020 13:03:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 099856ECE3;
+	Tue, 21 Jan 2020 13:04:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 183B66ECD9
- for <intel-gfx@lists.freedesktop.org>; Tue, 21 Jan 2020 13:03:55 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 76FA46ECE3
+ for <intel-gfx@lists.freedesktop.org>; Tue, 21 Jan 2020 13:04:21 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 19958215-1500050 for multiple; Tue, 21 Jan 2020 13:03:43 +0000
-MIME-Version: 1.0
-To: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19958227-1500050 
+ for multiple; Tue, 21 Jan 2020 13:04:12 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
-In-Reply-To: <20200121113915.9813-1-jani.nikula@intel.com>
-References: <20200121113915.9813-1-jani.nikula@intel.com>
-Message-ID: <157961182151.3096.1560629940510754606@skylake-alporthouse-com>
-User-Agent: alot/0.6
-Date: Tue, 21 Jan 2020 13:03:41 +0000
-Subject: Re: [Intel-gfx] [PATCH RESEND] drm/i915: add display engine uncore
- helpers
+To: intel-gfx@lists.freedesktop.org
+Date: Tue, 21 Jan 2020 13:04:11 +0000
+Message-Id: <20200121130411.267092-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.25.0
+In-Reply-To: <20200121100927.114886-1-chris@chris-wilson.co.uk>
+References: <20200121100927.114886-1-chris@chris-wilson.co.uk>
+MIME-Version: 1.0
+Subject: [Intel-gfx] [PATCH v3] drm/i915/execlists: Reclaim the hanging
+ virtual request
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,92 +39,259 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-UXVvdGluZyBKYW5pIE5pa3VsYSAoMjAyMC0wMS0yMSAxMTozOToxNSkKPiBBZGQgY29udmVuaWVu
-Y2UgaGVscGVycyBmb3IgdGhlIG1vc3QgY29tbW9uIHVuY29yZSBvcGVyYXRpb25zIHdpdGgKPiBz
-dHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqIGFzIGNvbnRleHQgcmF0aGVyIHRoYW4gc3RydWN0IGlu
-dGVsX3VuY29yZSAqLgo+IAo+IFRoZSBnb2FsIGlzIHRvIHJlcGxhY2UgYWxsIGluc3RhbmNlcyBv
-ZiBJOTE1X1JFQUQoKSwKPiBJOTE1X1BPU1RJTkdfUkVBRCgpLCBJOTE1X1dSSVRFKCksIEk5MTVf
-UkVBRF9GVygpLCBhbmQgSTkxNV9XUklURV9GVygpCj4gaW4gZGlzcGxheS8gd2l0aCB0aGVzZSwg
-dG8gZmluYWxseSBiZSBhYmxlIHRvIGdldCByaWQgb2YgdGhlIGltcGxpY2l0Cj4gZGV2X3ByaXYg
-bG9jYWwgcGFyYW1ldGVyIHVzZS4KPiAKPiBUaGUgaWRlYSBpcyB0aGF0IGFueSBub24tdTMyIHJl
-YWRzIG9yIHdyaXRlcyBhcmUgc3BlY2lhbCBlbm91Z2ggdGhhdAo+IHRoZXkgY2FuIHVzZSB0aGUg
-aW50ZWxfdW5jb3JlXyogZnVuY3Rpb25zIGRpcmVjdGx5Lgo+IAo+IHYyOgo+IC0gcmVuYW1lIHRo
-ZSBmaWxlIGludGVsX2RlLmgKPiAtIG1vdmUgaW50ZWxfZGVfd2FpdF9mb3JfKiB0aGVyZSB0b28K
-PiAtIGFsc28gYWRkIGRlIGZ3IGhlbHBlcnMKPiAKPiBDYzogQ2hyaXMgV2lsc29uIDxjaHJpc0Bj
-aHJpcy13aWxzb24uY28udWs+Cj4gQ2M6IERhbmllbGUgQ2VyYW9sbyBTcHVyaW8gPGRhbmllbGUu
-Y2VyYW9sb3NwdXJpb0BpbnRlbC5jb20+Cj4gQ2M6IEpvb25hcyBMYWh0aW5lbiA8am9vbmFzLmxh
-aHRpbmVuQGxpbnV4LmludGVsLmNvbT4KPiBDYzogTHVjYXMgRGUgTWFyY2hpIDxsdWNhcy5kZW1h
-cmNoaUBpbnRlbC5jb20+Cj4gQ2M6IFJvZHJpZ28gVml2aSA8cm9kcmlnby52aXZpQGludGVsLmNv
-bT4KPiBDYzogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4K
-PiBTaWduZWQtb2ZmLWJ5OiBKYW5pIE5pa3VsYSA8amFuaS5uaWt1bGFAaW50ZWwuY29tPgo+IC0t
-LQo+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RlLmggICAgICAgfCA3MiAr
-KysrKysrKysrKysrKysrKysrCj4gIC4uLi9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXlf
-dHlwZXMuaCAgICB8ICAxICsKPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9kcnYuaCAgICAg
-ICAgICAgICAgIHwgMTQgLS0tLQo+ICAzIGZpbGVzIGNoYW5nZWQsIDczIGluc2VydGlvbnMoKyks
-IDE0IGRlbGV0aW9ucygtKQo+ICBjcmVhdGUgbW9kZSAxMDA2NDQgZHJpdmVycy9ncHUvZHJtL2k5
-MTUvZGlzcGxheS9pbnRlbF9kZS5oCj4gCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9p
-OTE1L2Rpc3BsYXkvaW50ZWxfZGUuaCBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50
-ZWxfZGUuaAo+IG5ldyBmaWxlIG1vZGUgMTAwNjQ0Cj4gaW5kZXggMDAwMDAwMDAwMDAwLi4wMGRh
-MTBiZjM1ZjUKPiAtLS0gL2Rldi9udWxsCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlz
-cGxheS9pbnRlbF9kZS5oCj4gQEAgLTAsMCArMSw3MiBAQAo+ICsvKiBTUERYLUxpY2Vuc2UtSWRl
-bnRpZmllcjogTUlUICovCj4gKy8qCj4gKyAqIENvcHlyaWdodCDCqSAyMDE5IEludGVsIENvcnBv
-cmF0aW9uCj4gKyAqLwo+ICsKPiArI2lmbmRlZiBfX0lOVEVMX0RFX0hfXwo+ICsjZGVmaW5lIF9f
-SU5URUxfREVfSF9fCj4gKwo+ICsjaW5jbHVkZSAiaTkxNV9kcnYuaCIKPiArI2luY2x1ZGUgImk5
-MTVfcmVnLmgiCj4gKyNpbmNsdWRlICJpbnRlbF91bmNvcmUuaCIKPiArCj4gK3N0YXRpYyBpbmxp
-bmUgdTMyCj4gK2ludGVsX2RlX3JlYWQoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmk5MTUsIGk5
-MTVfcmVnX3QgcmVnKQo+ICt7Cj4gKyAgICAgICByZXR1cm4gaW50ZWxfdW5jb3JlX3JlYWQoJmk5
-MTUtPnVuY29yZSwgcmVnKTsKPiArfQo+ICsKPiArc3RhdGljIGlubGluZSB2b2lkCj4gK2ludGVs
-X2RlX3Bvc3RpbmdfcmVhZChzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqaTkxNSwgaTkxNV9yZWdf
-dCByZWcpCj4gK3sKPiArICAgICAgIGludGVsX3VuY29yZV9wb3N0aW5nX3JlYWQoJmk5MTUtPnVu
-Y29yZSwgcmVnKTsKPiArfQo+ICsKPiArLyogTm90ZTogcmVhZCB0aGUgd2FybmluZ3MgZm9yIGlu
-dGVsX3VuY29yZV8qX2Z3KCkgZnVuY3Rpb25zISAqLwo+ICtzdGF0aWMgaW5saW5lIHUzMgo+ICtp
-bnRlbF9kZV9yZWFkX2Z3KHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICppOTE1LCBpOTE1X3JlZ190
-IHJlZykKPiArewo+ICsgICAgICAgcmV0dXJuIGludGVsX3VuY29yZV9yZWFkX2Z3KCZpOTE1LT51
-bmNvcmUsIHJlZyk7Cj4gK30KPiArCj4gK3N0YXRpYyBpbmxpbmUgdm9pZAo+ICtpbnRlbF9kZV93
-cml0ZShzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqaTkxNSwgaTkxNV9yZWdfdCByZWcsIHUzMiB2
-YWwpCj4gK3sKPiArICAgICAgIGludGVsX3VuY29yZV93cml0ZSgmaTkxNS0+dW5jb3JlLCByZWcs
-IHZhbCk7Cj4gK30KPiArCj4gKy8qIE5vdGU6IHJlYWQgdGhlIHdhcm5pbmdzIGZvciBpbnRlbF91
-bmNvcmVfKl9mdygpIGZ1bmN0aW9ucyEgKi8KPiArc3RhdGljIGlubGluZSB2b2lkCj4gK2ludGVs
-X2RlX3dyaXRlX2Z3KHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICppOTE1LCBpOTE1X3JlZ190IHJl
-ZywgdTMyIHZhbCkKPiArewo+ICsgICAgICAgaW50ZWxfdW5jb3JlX3dyaXRlX2Z3KCZpOTE1LT51
-bmNvcmUsIHJlZywgdmFsKTsKPiArfQo+ICsKPiArc3RhdGljIGlubGluZSB2b2lkCj4gK2ludGVs
-X2RlX3JtdyhzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqaTkxNSwgaTkxNV9yZWdfdCByZWcsIHUz
-MiBjbGVhciwgdTMyIHNldCkKPiArewo+ICsgICAgICAgaW50ZWxfdW5jb3JlX3JtdygmaTkxNS0+
-dW5jb3JlLCByZWcsIGNsZWFyLCBzZXQpOwo+ICt9Cj4gKwo+ICtzdGF0aWMgaW5saW5lIGludAo+
-ICtpbnRlbF9kZV93YWl0X2Zvcl9yZWdpc3RlcihzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqaTkx
-NSwgaTkxNV9yZWdfdCByZWcsCj4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgdTMyIG1hc2ss
-IHUzMiB2YWx1ZSwgdW5zaWduZWQgaW50IHRpbWVvdXQpCj4gK3sKPiArICAgICAgIHJldHVybiBp
-bnRlbF93YWl0X2Zvcl9yZWdpc3RlcigmaTkxNS0+dW5jb3JlLCByZWcsIG1hc2ssIHZhbHVlLCB0
-aW1lb3V0KTsKPiArfQo+ICsKPiArc3RhdGljIGlubGluZSBpbnQKPiAraW50ZWxfZGVfd2FpdF9m
-b3Jfc2V0KHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICppOTE1LCBpOTE1X3JlZ190IHJlZywKPiAr
-ICAgICAgICAgICAgICAgICAgICAgdTMyIG1hc2ssIHVuc2lnbmVkIGludCB0aW1lb3V0KQo+ICt7
-Cj4gKyAgICAgICByZXR1cm4gaW50ZWxfZGVfd2FpdF9mb3JfcmVnaXN0ZXIoaTkxNSwgcmVnLCBt
-YXNrLCBtYXNrLCB0aW1lb3V0KTsKPiArfQo+ICsKPiArc3RhdGljIGlubGluZSBpbnQKPiAraW50
-ZWxfZGVfd2FpdF9mb3JfY2xlYXIoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmk5MTUsIGk5MTVf
-cmVnX3QgcmVnLAo+ICsgICAgICAgICAgICAgICAgICAgICAgIHUzMiBtYXNrLCB1bnNpZ25lZCBp
-bnQgdGltZW91dCkKPiArewo+ICsgICAgICAgcmV0dXJuIGludGVsX2RlX3dhaXRfZm9yX3JlZ2lz
-dGVyKGk5MTUsIHJlZywgbWFzaywgMCwgdGltZW91dCk7Cj4gK30KPiArCj4gKyNlbmRpZiAvKiBf
-X0lOVEVMX0RFX0hfXyAqLwo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNw
-bGF5L2ludGVsX2Rpc3BsYXlfdHlwZXMuaCBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkv
-aW50ZWxfZGlzcGxheV90eXBlcy5oCj4gaW5kZXggMTU1Y2U0OWFlNzY0Li4wZDdhZGMyYzE2N2Eg
-MTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5
-X3R5cGVzLmgKPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3Bs
-YXlfdHlwZXMuaAo+IEBAIC00NCw2ICs0NCw3IEBACj4gICNpbmNsdWRlIDxtZWRpYS9jZWMtbm90
-aWZpZXIuaD4KPiAgCj4gICNpbmNsdWRlICJpOTE1X2Rydi5oIgo+ICsjaW5jbHVkZSAiaW50ZWxf
-ZGUuaCIKCkkgZG9uJ3QgdGhpbmsgeW91IHdhbnQgdG8gaW5jbHVkZSBpdCBmcm9tIHR5cGVzLmgg
-dGhvdWdoIC0tIEkgdGhpbmsgeW91CndhbnQgdG8gYXZvaWQgaW5saW5lcyAoYXQgbGVhc3QgaW5s
-aW5lcyB0aGF0IGRlcGVuZCB1cG9uIGV4dGVybmFsIHR5cGVzKQphd2F5IGZyb20gdGhlIHR5cGVz
-Lmggc28geW91IGNhbiBhdm9pZCB0aGUgZHJlYWRlZCBjeWNsZXMuCgpTbyBvdGhlciB0aGFuIHRo
-YXQsClJldmlld2VkLWJ5OiBDaHJpcyBXaWxzb24gPGNocmlzQGNocmlzLXdpbHNvbi5jby51az4K
-Ck9yIHlvdSBtYXkgd2FudCB0byBtYWtlIHRoZSBwbGFjZW1lbnQgb2YgdGhlIGZpbmFsIGluY2x1
-ZGUocykgYQpzZXBhcmF0ZSBwYXRjaC4KLUNocmlzCl9fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxp
-c3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFu
-L2xpc3RpbmZvL2ludGVsLWdmeAo=
+If we encounter a hang on a virtual engine, as we process the hang the
+request may already have been moved back to the virtual engine (we are
+processing the hang on the physical engine). We need to reclaim the
+request from the virtual engine so that the locking is consistent and
+local to the real engine on which we will hold the request for error
+state capturing.
+
+v2: Pull the reclamation into execlists_hold() and assert that cannot be
+called from outside of the reset (i.e. with the tasklet disabled).
+v3: Added selftest
+
+Fixes: 748317386afb ("drm/i915/execlists: Offline error capture")
+Testcase: igt/gem_exec_balancer/hang
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+---
+ drivers/gpu/drm/i915/gt/intel_lrc.c    |  29 +++++
+ drivers/gpu/drm/i915/gt/selftest_lrc.c | 158 ++++++++++++++++++++++++-
+ 2 files changed, 186 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+index 3a30767ff0c4..11dfee4fe9ea 100644
+--- a/drivers/gpu/drm/i915/gt/intel_lrc.c
++++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+@@ -2396,6 +2396,35 @@ static void __execlists_hold(struct i915_request *rq)
+ static void execlists_hold(struct intel_engine_cs *engine,
+ 			   struct i915_request *rq)
+ {
++	if (rq->engine != engine) { /* preempted virtual engine */
++		struct virtual_engine *ve = to_virtual_engine(rq->engine);
++		unsigned long flags;
++
++		/*
++		 * intel_context_inflight() is only protected by virtue
++		 * of process_csb() being called only by the tasklet (or
++		 * directly from inside reset while the tasklet is suspended).
++		 * Assert that neither of those are allowed to run while we
++		 * poke at the request queues.
++		 */
++		GEM_BUG_ON(!reset_in_progress(&engine->execlists));
++
++		/*
++		 * An unsubmitted request along a virtual engine will
++		 * remain on the active (this) engine until we are able
++		 * to process the context switch away (and so mark the
++		 * context as no longer in flight). That cannot have happened
++		 * yet, otherwise we would not be hanging!
++		 */
++		spin_lock_irqsave(&ve->base.active.lock, flags);
++		GEM_BUG_ON(intel_context_inflight(rq->context) != engine);
++		GEM_BUG_ON(ve->request != rq);
++		ve->request = NULL;
++		spin_unlock_irqrestore(&ve->base.active.lock, flags);
++
++		rq->engine = engine;
++	}
++
+ 	spin_lock_irq(&engine->active.lock);
+ 
+ 	/*
+diff --git a/drivers/gpu/drm/i915/gt/selftest_lrc.c b/drivers/gpu/drm/i915/gt/selftest_lrc.c
+index b208c2176bbd..1beb47c3ba9e 100644
+--- a/drivers/gpu/drm/i915/gt/selftest_lrc.c
++++ b/drivers/gpu/drm/i915/gt/selftest_lrc.c
+@@ -335,7 +335,6 @@ static int live_hold_reset(void *arg)
+ 
+ 		if (test_and_set_bit(I915_RESET_ENGINE + id,
+ 				     &gt->reset.flags)) {
+-			spin_unlock_irq(&engine->active.lock);
+ 			intel_gt_set_wedged(gt);
+ 			err = -EBUSY;
+ 			goto out;
+@@ -3411,6 +3410,162 @@ static int live_virtual_bond(void *arg)
+ 	return 0;
+ }
+ 
++static int reset_virtual_engine(struct intel_gt *gt,
++				struct intel_engine_cs **siblings,
++				unsigned int nsibling)
++{
++	struct intel_engine_cs *engine;
++	struct intel_context *ve;
++	unsigned long *heartbeat;
++	struct igt_spinner spin;
++	struct i915_request *rq;
++	unsigned int n;
++	int err = 0;
++
++	/*
++	 * In order to support offline error capture for fast preempt reset,
++	 * we need to decouple the guilty request and ensure that it and its
++	 * descendents are not executed while the capture is in progress.
++	 */
++
++	if (!intel_has_reset_engine(gt))
++		return 0;
++
++	heartbeat = kmalloc_array(nsibling, sizeof(*heartbeat), GFP_KERNEL);
++	if (!heartbeat)
++		return -ENOMEM;
++
++	if (igt_spinner_init(&spin, gt)) {
++		err = -ENOMEM;
++		goto out_heartbeat;
++	}
++
++	ve = intel_execlists_create_virtual(siblings, nsibling);
++	if (IS_ERR(ve)) {
++		err = PTR_ERR(ve);
++		goto out_spin;
++	}
++
++	for (n = 0; n < nsibling; n++)
++		engine_heartbeat_disable(siblings[n], &heartbeat[n]);
++
++	rq = igt_spinner_create_request(&spin, ve, MI_ARB_CHECK);
++	if (IS_ERR(rq)) {
++		err = PTR_ERR(rq);
++		goto out;
++	}
++	i915_request_add(rq);
++
++	if (!igt_wait_for_spinner(&spin, rq)) {
++		intel_gt_set_wedged(gt);
++		err = -ETIME;
++		goto out;
++	}
++
++	engine = rq->engine;
++	GEM_BUG_ON(engine == ve->engine);
++
++	/* Take ownership of the reset and tasklet */
++	if (test_and_set_bit(I915_RESET_ENGINE + engine->id,
++			     &gt->reset.flags)) {
++		intel_gt_set_wedged(gt);
++		err = -EBUSY;
++		goto out;
++	}
++	tasklet_disable(&engine->execlists.tasklet);
++
++	engine->execlists.tasklet.func(engine->execlists.tasklet.data);
++	GEM_BUG_ON(execlists_active(&engine->execlists) != rq);
++
++	/* Fake a preemption event; failed of course */
++	spin_lock_irq(&engine->active.lock);
++	__unwind_incomplete_requests(engine);
++	spin_unlock_irq(&engine->active.lock);
++
++	/* Reset the engine while keeping our active request on hold */
++	execlists_hold(engine, rq);
++	GEM_BUG_ON(!i915_request_on_hold(rq));
++
++	intel_engine_reset(engine, NULL);
++	GEM_BUG_ON(rq->fence.error != -EIO);
++
++	/* Release our grasp on the engine, letting CS flow again */
++	tasklet_enable(&engine->execlists.tasklet);
++	clear_and_wake_up_bit(I915_RESET_ENGINE + engine->id, &gt->reset.flags);
++
++	/* Check that we do not resubmit the held request */
++	i915_request_get(rq);
++	if (!i915_request_wait(rq, 0, HZ / 5)) {
++		pr_err("%s: on hold request completed!\n",
++		       engine->name);
++		i915_request_put(rq);
++		err = -EIO;
++		goto out;
++	}
++	GEM_BUG_ON(!i915_request_on_hold(rq));
++
++	/* But is resubmitted on release */
++	execlists_unhold(engine, rq);
++	if (i915_request_wait(rq, 0, HZ / 5) < 0) {
++		pr_err("%s: held request did not complete!\n",
++		       engine->name);
++		intel_gt_set_wedged(gt);
++		err = -ETIME;
++	}
++	i915_request_put(rq);
++
++out:
++	for (n = 0; n < nsibling; n++)
++		engine_heartbeat_enable(siblings[n], heartbeat[n]);
++
++	intel_context_put(ve);
++out_spin:
++	igt_spinner_fini(&spin);
++out_heartbeat:
++	kfree(heartbeat);
++	return err;
++}
++
++static int live_virtual_reset(void *arg)
++{
++	struct intel_gt *gt = arg;
++	struct intel_engine_cs *siblings[MAX_ENGINE_INSTANCE + 1];
++	unsigned int class, inst;
++
++	/*
++	 * Check that the context image retains non-privileged (user) registers
++	 * from one engine to the next. For this we check that the CS_GPR
++	 * are preserved.
++	 */
++
++	if (USES_GUC_SUBMISSION(gt->i915))
++		return 0;
++
++	/* As we use CS_GPR we cannot run before they existed on all engines. */
++	if (INTEL_GEN(gt->i915) < 9)
++		return 0;
++
++	for (class = 0; class <= MAX_ENGINE_CLASS; class++) {
++		int nsibling, err;
++
++		nsibling = 0;
++		for (inst = 0; inst <= MAX_ENGINE_INSTANCE; inst++) {
++			if (!gt->engine_class[class][inst])
++				continue;
++
++			siblings[nsibling++] = gt->engine_class[class][inst];
++		}
++		if (nsibling < 2)
++			continue;
++
++		err = reset_virtual_engine(gt, siblings, nsibling);
++		if (err)
++			return err;
++	}
++
++	return 0;
++}
++
+ int intel_execlists_live_selftests(struct drm_i915_private *i915)
+ {
+ 	static const struct i915_subtest tests[] = {
+@@ -3436,6 +3591,7 @@ int intel_execlists_live_selftests(struct drm_i915_private *i915)
+ 		SUBTEST(live_virtual_mask),
+ 		SUBTEST(live_virtual_preserved),
+ 		SUBTEST(live_virtual_bond),
++		SUBTEST(live_virtual_reset),
+ 	};
+ 
+ 	if (!HAS_EXECLISTS(i915))
+-- 
+2.25.0
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
