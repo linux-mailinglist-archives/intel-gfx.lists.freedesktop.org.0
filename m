@@ -1,31 +1,48 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B2CF1443CD
-	for <lists+intel-gfx@lfdr.de>; Tue, 21 Jan 2020 18:58:47 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 992A814443B
+	for <lists+intel-gfx@lfdr.de>; Tue, 21 Jan 2020 19:27:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B9DA56EDF4;
-	Tue, 21 Jan 2020 17:58:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6DA6E6EE17;
+	Tue, 21 Jan 2020 18:27:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id CC8436EDF4;
- Tue, 21 Jan 2020 17:58:44 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id C32FCA363B;
- Tue, 21 Jan 2020 17:58:44 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 98EDC6EE17
+ for <intel-gfx@lists.freedesktop.org>; Tue, 21 Jan 2020 18:27:53 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 21 Jan 2020 10:27:53 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,346,1574150400"; d="scan'208";a="228946136"
+Received: from linux.intel.com ([10.54.29.200])
+ by orsmga006.jf.intel.com with ESMTP; 21 Jan 2020 10:27:52 -0800
+Received: from [10.252.13.111] (abudanko-mobl.ccr.corp.intel.com
+ [10.252.13.111])
+ by linux.intel.com (Postfix) with ESMTP id 76FDE58033E;
+ Tue, 21 Jan 2020 10:27:42 -0800 (PST)
+To: Alexei Starovoitov <alexei.starovoitov@gmail.com>,
+ Stephen Smalley <sds@tycho.nsa.gov>
+References: <0548c832-7f4b-dc4c-8883-3f2b6d351a08@linux.intel.com>
+ <9b77124b-675d-5ac7-3741-edec575bd425@linux.intel.com>
+ <64cab472-806e-38c4-fb26-0ffbee485367@tycho.nsa.gov>
+ <05297eff-8e14-ccdf-55a4-870c64516de8@linux.intel.com>
+ <CAADnVQK-JzK-GUk4KOozn4c1xr=7TiCpB9Fi0QDC9nE6iVn8iQ@mail.gmail.com>
+From: Alexey Budankov <alexey.budankov@linux.intel.com>
+Organization: Intel Corp.
+Message-ID: <537bdb28-c9e4-f44f-d665-25250065a6bb@linux.intel.com>
+Date: Tue, 21 Jan 2020 21:27:41 +0300
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.4.1
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
-Date: Tue, 21 Jan 2020 17:58:44 -0000
-Message-ID: <157962952479.11480.3387523654678716191@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200120174728.21095-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20200120174728.21095-1-ville.syrjala@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/i915=3A_Global_state_rework_=28rev2=29?=
+In-Reply-To: <CAADnVQK-JzK-GUk4KOozn4c1xr=7TiCpB9Fi0QDC9nE6iVn8iQ@mail.gmail.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH v5 01/10] capabilities: introduce
+ CAP_PERFMON to kernel and user space
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,180 +55,127 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Mark Rutland <mark.rutland@arm.com>, Song Liu <songliubraving@fb.com>,
+ Peter Zijlstra <peterz@infradead.org>,
+ "benh@kernel.crashing.org" <benh@kernel.crashing.org>,
+ Will Deacon <will.deacon@arm.com>, Alexei Starovoitov <ast@kernel.org>,
+ Stephane Eranian <eranian@google.com>,
+ "james.bottomley@hansenpartnership.com"
+ <james.bottomley@hansenpartnership.com>, Paul Mackerras <paulus@samba.org>,
+ Jiri Olsa <jolsa@redhat.com>, Andi Kleen <ak@linux.intel.com>,
+ Michael Ellerman <mpe@ellerman.id.au>, Igor Lubashev <ilubashe@akamai.com>,
+ James Morris <jmorris@namei.org>,
+ Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+ Ingo Molnar <mingo@redhat.com>, oprofile-list@lists.sf.net,
+ Serge Hallyn <serge@hallyn.com>, Robert Richter <rric@kernel.org>,
+ "selinux@vger.kernel.org" <selinux@vger.kernel.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ Arnaldo Carvalho de Melo <acme@kernel.org>, Namhyung Kim <namhyung@kernel.org>,
+ Thomas Gleixner <tglx@linutronix.de>,
+ linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+ "linux-parisc@vger.kernel.org" <linux-parisc@vger.kernel.org>,
+ linux-kernel <linux-kernel@vger.kernel.org>,
+ Andy Lutomirski <luto@amacapital.net>,
+ "linux-perf-users@vger.kernel.org" <linux-perf-users@vger.kernel.org>,
+ "linux-security-module@vger.kernel.org"
+ <linux-security-module@vger.kernel.org>,
+ "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
 
-Series: drm/i915: Global state rework (rev2)
-URL   : https://patchwork.freedesktop.org/series/72301/
-State : warning
+On 21.01.2020 20:55, Alexei Starovoitov wrote:
+> On Tue, Jan 21, 2020 at 9:31 AM Alexey Budankov
+> <alexey.budankov@linux.intel.com> wrote:
+>>
+>>
+>> On 21.01.2020 17:43, Stephen Smalley wrote:
+>>> On 1/20/20 6:23 AM, Alexey Budankov wrote:
+>>>>
+>>>> Introduce CAP_PERFMON capability designed to secure system performance
+>>>> monitoring and observability operations so that CAP_PERFMON would assist
+>>>> CAP_SYS_ADMIN capability in its governing role for perf_events, i915_perf
+>>>> and other performance monitoring and observability subsystems.
+>>>>
+>>>> CAP_PERFMON intends to harden system security and integrity during system
+>>>> performance monitoring and observability operations by decreasing attack
+>>>> surface that is available to a CAP_SYS_ADMIN privileged process [1].
+>>>> Providing access to system performance monitoring and observability
+>>>> operations under CAP_PERFMON capability singly, without the rest of
+>>>> CAP_SYS_ADMIN credentials, excludes chances to misuse the credentials and
+>>>> makes operation more secure.
+>>>>
+>>>> CAP_PERFMON intends to take over CAP_SYS_ADMIN credentials related to
+>>>> system performance monitoring and observability operations and balance
+>>>> amount of CAP_SYS_ADMIN credentials following the recommendations in the
+>>>> capabilities man page [1] for CAP_SYS_ADMIN: "Note: this capability is
+>>>> overloaded; see Notes to kernel developers, below."
+>>>>
+>>>> Although the software running under CAP_PERFMON can not ensure avoidance
+>>>> of related hardware issues, the software can still mitigate these issues
+>>>> following the official embargoed hardware issues mitigation procedure [2].
+>>>> The bugs in the software itself could be fixed following the standard
+>>>> kernel development process [3] to maintain and harden security of system
+>>>> performance monitoring and observability operations.
+>>>>
+>>>> [1] http://man7.org/linux/man-pages/man7/capabilities.7.html
+>>>> [2] https://www.kernel.org/doc/html/latest/process/embargoed-hardware-issues.html
+>>>> [3] https://www.kernel.org/doc/html/latest/admin-guide/security-bugs.html
+>>>>
+>>>> Signed-off-by: Alexey Budankov <alexey.budankov@linux.intel.com>
+>>>> ---
+>>>>   include/linux/capability.h          | 12 ++++++++++++
+>>>>   include/uapi/linux/capability.h     |  8 +++++++-
+>>>>   security/selinux/include/classmap.h |  4 ++--
+>>>>   3 files changed, 21 insertions(+), 3 deletions(-)
+>>>>
+>>>> diff --git a/include/linux/capability.h b/include/linux/capability.h
+>>>> index ecce0f43c73a..8784969d91e1 100644
+>>>> --- a/include/linux/capability.h
+>>>> +++ b/include/linux/capability.h
+>>>> @@ -251,6 +251,18 @@ extern bool privileged_wrt_inode_uidgid(struct user_namespace *ns, const struct
+>>>>   extern bool capable_wrt_inode_uidgid(const struct inode *inode, int cap);
+>>>>   extern bool file_ns_capable(const struct file *file, struct user_namespace *ns, int cap);
+>>>>   extern bool ptracer_capable(struct task_struct *tsk, struct user_namespace *ns);
+>>>> +static inline bool perfmon_capable(void)
+>>>> +{
+>>>> +    struct user_namespace *ns = &init_user_ns;
+>>>> +
+>>>> +    if (ns_capable_noaudit(ns, CAP_PERFMON))
+>>>> +        return ns_capable(ns, CAP_PERFMON);
+>>>> +
+>>>> +    if (ns_capable_noaudit(ns, CAP_SYS_ADMIN))
+>>>> +        return ns_capable(ns, CAP_SYS_ADMIN);
+>>>> +
+>>>> +    return false;
+>>>> +}
+>>>
+>>> Why _noaudit()?  Normally only used when a permission failure is non-fatal to the operation.  Otherwise, we want the audit message.
+>>
+>> Some of ideas from v4 review.
+> 
+> well, in the requested changes form v4 I wrote:
+> return capable(CAP_PERFMON);
+> instead of
+> return false;
 
-== Summary ==
+Aww, indeed. I was concerning exactly about it when updating the patch
+and simply put false, missing the fact that capable() also logs.
 
-$ dim checkpatch origin/drm-tip
-6ee8aa846aab drm/i915: Polish WM_LINETIME register stuff
-a5c714cbc1b1 drm/i915: Move linetime wms into the crtc state
-3d4bad98ff35 drm/i915: Nuke skl wm.dirty_pipes bitmask
-91a2393ccd09 drm/i915: Move more cdclk state handling into the cdclk code
-2dc3b77d21ab drm/i915: Collect more cdclk state under the same roof
-58762cf832fb drm/i915: s/need_cd2x_updare/can_cd2x_update/
-882b4774005d drm/i915: s/cdclk_state/cdclk_config/
--:519: CHECK:MULTIPLE_ASSIGNMENTS: multiple assignments should be avoided
-#519: FILE: drivers/gpu/drm/i915/display/intel_cdclk.c:870:
-+	cdclk_config->cdclk = cdclk_config->bypass = cdclk_config->ref;
+I suppose the idea is originally from here [1].
+BTW, Has it already seen any _more optimal_ implementation?
+Anyway, original or optimized version could be reused for CAP_PERFMON.
 
-total: 0 errors, 0 warnings, 1 checks, 1148 lines checked
-7cd74aefdc85 drm/i915: Simplify intel_set_cdclk_{pre, post}_plane_update() calling convention
-156b0ecd892d drm/i915: Extract intel_cdclk_state
--:541: CHECK:MULTIPLE_ASSIGNMENTS: multiple assignments should be avoided
-#541: FILE: drivers/gpu/drm/i915/display/intel_display.c:17366:
-+	cdclk_state->logical = cdclk_state->actual = i915->cdclk.hw;
+~Alexey
 
-total: 0 errors, 0 warnings, 1 checks, 621 lines checked
-49fde73eb22f drm/i915: swap() the entire cdclk state
-9e2da7c71fec drm/i915: s/init_cdclk/init_cdclk_hw/
-131e92e40122 drm/i915: Move intel_atomic_state_free() into intel_atomic.c
-91fd07c1cb34 drm/i915: Intrduce better global state handling
--:230: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#230: 
-new file mode 100644
+[1] https://patchwork.ozlabs.org/patch/1159243/
 
--:235: WARNING:SPDX_LICENSE_TAG: Improper SPDX comment style for 'drivers/gpu/drm/i915/display/intel_global_state.c', please use '//' instead
-#235: FILE: drivers/gpu/drm/i915/display/intel_global_state.c:1:
-+/* SPDX-License-Identifier: MIT */
-
--:235: WARNING:SPDX_LICENSE_TAG: Missing or malformed SPDX-License-Identifier tag in line 1
-#235: FILE: drivers/gpu/drm/i915/display/intel_global_state.c:1:
-+/* SPDX-License-Identifier: MIT */
-
--:494: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__state' - possible side-effects?
-#494: FILE: drivers/gpu/drm/i915/display/intel_global_state.h:31:
-+#define for_each_new_global_obj_in_state(__state, obj, new_obj_state, __i) \
-+	for ((__i) = 0; \
-+	     (__i) < (__state)->num_global_objs && \
-+		     ((obj) = (__state)->global_objs[__i].ptr, \
-+		      (new_obj_state) = (__state)->global_objs[__i].new_state, 1); \
-+	     (__i)++) \
-+		for_each_if(obj)
-
--:494: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'obj' - possible side-effects?
-#494: FILE: drivers/gpu/drm/i915/display/intel_global_state.h:31:
-+#define for_each_new_global_obj_in_state(__state, obj, new_obj_state, __i) \
-+	for ((__i) = 0; \
-+	     (__i) < (__state)->num_global_objs && \
-+		     ((obj) = (__state)->global_objs[__i].ptr, \
-+		      (new_obj_state) = (__state)->global_objs[__i].new_state, 1); \
-+	     (__i)++) \
-+		for_each_if(obj)
-
--:494: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__i' - possible side-effects?
-#494: FILE: drivers/gpu/drm/i915/display/intel_global_state.h:31:
-+#define for_each_new_global_obj_in_state(__state, obj, new_obj_state, __i) \
-+	for ((__i) = 0; \
-+	     (__i) < (__state)->num_global_objs && \
-+		     ((obj) = (__state)->global_objs[__i].ptr, \
-+		      (new_obj_state) = (__state)->global_objs[__i].new_state, 1); \
-+	     (__i)++) \
-+		for_each_if(obj)
-
--:502: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__state' - possible side-effects?
-#502: FILE: drivers/gpu/drm/i915/display/intel_global_state.h:39:
-+#define for_each_old_global_obj_in_state(__state, obj, new_obj_state, __i) \
-+	for ((__i) = 0; \
-+	     (__i) < (__state)->num_global_objs && \
-+		     ((obj) = (__state)->global_objs[__i].ptr, \
-+		      (new_obj_state) = (__state)->global_objs[__i].old_state, 1); \
-+	     (__i)++) \
-+		for_each_if(obj)
-
--:502: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'obj' - possible side-effects?
-#502: FILE: drivers/gpu/drm/i915/display/intel_global_state.h:39:
-+#define for_each_old_global_obj_in_state(__state, obj, new_obj_state, __i) \
-+	for ((__i) = 0; \
-+	     (__i) < (__state)->num_global_objs && \
-+		     ((obj) = (__state)->global_objs[__i].ptr, \
-+		      (new_obj_state) = (__state)->global_objs[__i].old_state, 1); \
-+	     (__i)++) \
-+		for_each_if(obj)
-
--:502: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__i' - possible side-effects?
-#502: FILE: drivers/gpu/drm/i915/display/intel_global_state.h:39:
-+#define for_each_old_global_obj_in_state(__state, obj, new_obj_state, __i) \
-+	for ((__i) = 0; \
-+	     (__i) < (__state)->num_global_objs && \
-+		     ((obj) = (__state)->global_objs[__i].ptr, \
-+		      (new_obj_state) = (__state)->global_objs[__i].old_state, 1); \
-+	     (__i)++) \
-+		for_each_if(obj)
-
--:510: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__state' - possible side-effects?
-#510: FILE: drivers/gpu/drm/i915/display/intel_global_state.h:47:
-+#define for_each_oldnew_global_obj_in_state(__state, obj, old_obj_state, new_obj_state, __i) \
-+	for ((__i) = 0; \
-+	     (__i) < (__state)->num_global_objs && \
-+		     ((obj) = (__state)->global_objs[__i].ptr, \
-+		      (old_obj_state) = (__state)->global_objs[__i].old_state, \
-+		      (new_obj_state) = (__state)->global_objs[__i].new_state, 1); \
-+	     (__i)++) \
-+		for_each_if(obj)
-
--:510: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'obj' - possible side-effects?
-#510: FILE: drivers/gpu/drm/i915/display/intel_global_state.h:47:
-+#define for_each_oldnew_global_obj_in_state(__state, obj, old_obj_state, new_obj_state, __i) \
-+	for ((__i) = 0; \
-+	     (__i) < (__state)->num_global_objs && \
-+		     ((obj) = (__state)->global_objs[__i].ptr, \
-+		      (old_obj_state) = (__state)->global_objs[__i].old_state, \
-+		      (new_obj_state) = (__state)->global_objs[__i].new_state, 1); \
-+	     (__i)++) \
-+		for_each_if(obj)
-
--:510: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__i' - possible side-effects?
-#510: FILE: drivers/gpu/drm/i915/display/intel_global_state.h:47:
-+#define for_each_oldnew_global_obj_in_state(__state, obj, old_obj_state, new_obj_state, __i) \
-+	for ((__i) = 0; \
-+	     (__i) < (__state)->num_global_objs && \
-+		     ((obj) = (__state)->global_objs[__i].ptr, \
-+		      (old_obj_state) = (__state)->global_objs[__i].old_state, \
-+		      (new_obj_state) = (__state)->global_objs[__i].new_state, 1); \
-+	     (__i)++) \
-+		for_each_if(obj)
-
-total: 0 errors, 3 warnings, 9 checks, 484 lines checked
-82426865c238 drm/i915: Convert bandwidth state to global state
-81d4a119f677 drm/i915: Introduce intel_calc_active_pipes()
-8b4ed3aff508 drm/i915: Convert cdclk to global state
--:635: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'state' - possible side-effects?
-#635: FILE: drivers/gpu/drm/i915/display/intel_cdclk.h:74:
-+#define intel_atomic_get_old_cdclk_state(state) \
-+	to_intel_cdclk_state(intel_atomic_get_old_global_obj_state(state, &to_i915(state->base.dev)->cdclk.obj))
-
--:636: WARNING:LONG_LINE: line over 100 characters
-#636: FILE: drivers/gpu/drm/i915/display/intel_cdclk.h:75:
-+	to_intel_cdclk_state(intel_atomic_get_old_global_obj_state(state, &to_i915(state->base.dev)->cdclk.obj))
-
--:637: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'state' - possible side-effects?
-#637: FILE: drivers/gpu/drm/i915/display/intel_cdclk.h:76:
-+#define intel_atomic_get_new_cdclk_state(state) \
-+	to_intel_cdclk_state(intel_atomic_get_new_global_obj_state(state, &to_i915(state->base.dev)->cdclk.obj))
-
--:638: WARNING:LONG_LINE: line over 100 characters
-#638: FILE: drivers/gpu/drm/i915/display/intel_cdclk.h:77:
-+	to_intel_cdclk_state(intel_atomic_get_new_global_obj_state(state, &to_i915(state->base.dev)->cdclk.obj))
-
-total: 0 errors, 2 warnings, 2 checks, 922 lines checked
-c3282508b4ed drm/i915: Store active_pipes bitmask in cdclk state
--:164: CHECK:MULTIPLE_ASSIGNMENTS: multiple assignments should be avoided
-#164: FILE: drivers/gpu/drm/i915/display/intel_display.c:18149:
-+	dev_priv->active_pipes = cdclk_state->active_pipes = active_pipes;
-
-total: 0 errors, 0 warnings, 1 checks, 123 lines checked
-
+> 
+> That's what Andy suggested earlier for CAP_BPF.
+> I think that should resolve Stephen's concern.
+> 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
