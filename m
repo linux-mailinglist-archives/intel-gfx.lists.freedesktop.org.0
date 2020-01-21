@@ -1,43 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB21C1442FD
-	for <lists+intel-gfx@lfdr.de>; Tue, 21 Jan 2020 18:19:59 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id B77F8144325
+	for <lists+intel-gfx@lfdr.de>; Tue, 21 Jan 2020 18:27:40 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 24BA26EDDF;
-	Tue, 21 Jan 2020 17:19:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C338A6EDF3;
+	Tue, 21 Jan 2020 17:27:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CCCE96EDDF
- for <intel-gfx@lists.freedesktop.org>; Tue, 21 Jan 2020 17:19:56 +0000 (UTC)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E921A6EDF3
+ for <intel-gfx@lists.freedesktop.org>; Tue, 21 Jan 2020 17:27:36 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 21 Jan 2020 09:19:56 -0800
-X-IronPort-AV: E=Sophos;i="5.70,346,1574150400"; d="scan'208";a="228917187"
-Received: from wmszyfel-mobl2.ger.corp.intel.com (HELO [10.252.10.247])
- ([10.252.10.247])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/AES256-SHA;
- 21 Jan 2020 09:19:55 -0800
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-References: <20200121100927.114886-1-chris@chris-wilson.co.uk>
- <20200121130411.267092-1-chris@chris-wilson.co.uk>
- <524735a8-dc0c-fdfc-941a-5cc3afaac40e@linux.intel.com>
- <157961563444.4434.6318084724990340871@skylake-alporthouse-com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <31d2ce9f-2a72-7471-1ad4-26ffa7091be6@linux.intel.com>
-Date: Tue, 21 Jan 2020 17:19:52 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
-MIME-Version: 1.0
-In-Reply-To: <157961563444.4434.6318084724990340871@skylake-alporthouse-com>
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga106.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 21 Jan 2020 09:27:36 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,346,1574150400"; 
+ d="scan'208,217";a="215609007"
+Received: from fmsmsx104.amr.corp.intel.com ([10.18.124.202])
+ by orsmga007.jf.intel.com with ESMTP; 21 Jan 2020 09:27:35 -0800
+Received: from fmsmsx114.amr.corp.intel.com (10.18.116.8) by
+ fmsmsx104.amr.corp.intel.com (10.18.124.202) with Microsoft SMTP Server (TLS)
+ id 14.3.439.0; Tue, 21 Jan 2020 09:27:35 -0800
+Received: from fmsmsx116.amr.corp.intel.com ([169.254.2.111]) by
+ FMSMSX114.amr.corp.intel.com ([169.254.6.143]) with mapi id 14.03.0439.000;
+ Tue, 21 Jan 2020 09:27:35 -0800
+From: "Vivi, Rodrigo" <rodrigo.vivi@intel.com>
+To: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+Thread-Topic: [PATCH] drm/i915: drop alpha_support for good in favour of
+ force_probe
+Thread-Index: AQHV0EXOkZULZQDQF0uZyX225SXzkqf1iqqAgABbB4A=
+Date: Tue, 21 Jan 2020 17:27:34 +0000
+Message-ID: <BBD667F4-13F1-48BA-9F3D-BA8A3CA548FC@intel.com>
+References: <20200121103020.26494-1-jani.nikula@intel.com>
+ <157960810578.23235.12006380676824156361@jlahtine-desk.ger.corp.intel.com>
+In-Reply-To: <157960810578.23235.12006380676824156361@jlahtine-desk.ger.corp.intel.com>
+Accept-Language: en-US
 Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH v3] drm/i915/execlists: Reclaim the hanging
- virtual request
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [134.134.244.72]
+MIME-Version: 1.0
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: drop alpha_support for good in
+ favour of force_probe
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,99 +58,127 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Cc: "Nikula, Jani" <jani.nikula@intel.com>, "Sarvela,
+ Tomi P" <tomi.p.sarvela@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Content-Type: multipart/mixed; boundary="===============0763883570=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+--===============0763883570==
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_BBD667F413F148BA9F3DBA8A3CA548FCintelcom_"
 
-On 21/01/2020 14:07, Chris Wilson wrote:
-> Quoting Tvrtko Ursulin (2020-01-21 13:55:29)
->>
->>
->> On 21/01/2020 13:04, Chris Wilson wrote:
->>> +             GEM_BUG_ON(!reset_in_progress(&engine->execlists));
->>> +
->>> +             /*
->>> +              * An unsubmitted request along a virtual engine will
->>> +              * remain on the active (this) engine until we are able
->>> +              * to process the context switch away (and so mark the
->>> +              * context as no longer in flight). That cannot have happened
->>> +              * yet, otherwise we would not be hanging!
->>> +              */
->>> +             spin_lock_irqsave(&ve->base.active.lock, flags);
->>> +             GEM_BUG_ON(intel_context_inflight(rq->context) != engine);
->>> +             GEM_BUG_ON(ve->request != rq);
->>> +             ve->request = NULL;
->>> +             spin_unlock_irqrestore(&ve->base.active.lock, flags);
->>> +
->>> +             rq->engine = engine;
->>
->> Lets see I understand this... tasklet has been disabled and ring paused.
->> But we find an uncompleted request in the ELSP context, with rq->engine
->> == virtual engine. Therefore this cannot be the first request on this
->> timeline but has to be later.
-> 
-> Not quite.
-> 
-> engine->execlists.active[] tracks the HW, it get's updated only upon
-> receiving HW acks (or we reset).
-> 
-> So if execlists_active()->engine == virtual, it can only mean that the
-> inflight _hanging_ request has already been unsubmitted by an earlier
-> preemption in execlists_dequeue(), but that preemption has not yet been
-> processed by the HW. (Hence the preemption-reset underway.)
-> 
-> Now while we coalesce the requests for a context into a single ELSP[]
-> slot, and only record the last request submitted for a context, we have
-> to walk back along that context's timeline to find the earliest
-> incomplete request and blame the hang upon it.
-> 
-> For a virtual engine, it's much simpler as there is only ever one
-> request in flight, but I don't think that has any impact here other
-> than that we only need to repair the single unsubmitted request that was
-> returned to the virtual engine.
-> 
->> One which has been put on the runqueue but
->> not yet submitted to hw. (Because one at a time.) Or it has been
->> unsubmitted by __unwind_incomplete_request already. In the former case
->> why move it to the physical engine? Also in the latter actually, it
->> would overwrite rq->engine with the physical one.
-> 
-> Yes. For incomplete preemption event, the request is *still* on this
-> engine and has not been released (rq->context->inflight == engine, so it
-> cannot be submitted to any other engine, until after we acknowledge the
-> context has been saved and is no longer being accessed by HW.) It is
-> legal for us to process the hanging request along this engine; we have a
-> suboptimal decision to return the request to the same engine after the
-> reset, but since we have replaced the hanging payload, the request is a
-> mere signaling placeholder (and I do not think will overly burden the
-> system and negatively impact other virtual engines).
+--_000_BBD667F413F148BA9F3DBA8A3CA548FCintelcom_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-What if the request in elsp actually completed in the meantime eg. 
-preemption timeout was a false positive?
 
-In execlists_capture we do:
 
-	cap->rq = execlists_active(&engine->execlists);
+On Jan 21, 2020, at 4:01 AM, Joonas Lahtinen <joonas.lahtinen@linux.intel.c=
+om<mailto:joonas.lahtinen@linux.intel.com>> wrote:
 
-This gets a completed request, then we do:
+Quoting Jani Nikula (2020-01-21 12:30:20)
+It's been a long enough transition period since the DRM_I915_FORCE_PROBE
+config and i915.force_probe module parameter were introduced in commit
+7ef5ef5cdead ("drm/i915: add force_probe module parameter to replace
+alpha_support"). Remove alpha support.
 
-	cap->rq = active_request(cap->rq->context->timeline, cap->rq);
+Cc: Arkadiusz Hiler <arkadiusz.hiler@intel.com<mailto:arkadiusz.hiler@intel=
+.com>>
+Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com<mailto:joonas.lahtinen=
+@linux.intel.com>>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com<mailto:rodrigo.vivi@intel.com>>
+Cc: Tomi Sarvela <tomi.p.sarvela@intel.com<mailto:tomi.p.sarvela@intel.com>=
+>
+Signed-off-by: Jani Nikula <jani.nikula@intel.com<mailto:jani.nikula@intel.=
+com>>
 
-This walks along the virtual timeline and finds a next virtual request. 
-It then binds this request to a physical engine and sets ve->request to 
-NULL.
+Reviewed-by: Joonas Lahtinen <joonas.lahtinen@linux.intel.com<mailto:joonas=
+.lahtinen@linux.intel.com>>
 
-Then on unhold ve->submit_notify is called which sets ve->request to 
-this request but the rq->engine points to the physical engine.
+Acked-by: Rodrigo Vivi <rodrigo.vivi@intel.com<mailto:rodrigo.vivi@intel.co=
+m>>
 
-Regards,
 
-Tvrtko
+Regards, Joonas
 
+
+--_000_BBD667F413F148BA9F3DBA8A3CA548FCintelcom_
+Content-Type: text/html; charset="us-ascii"
+Content-ID: <E75BD760E2BC4045B22819A7016B3E5F@intel.com>
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+</head>
+<body style=3D"word-wrap: break-word; -webkit-nbsp-mode: space; line-break:=
+ after-white-space;" class=3D"">
+<br class=3D"">
+<div><br class=3D"">
+<blockquote type=3D"cite" class=3D"">
+<div class=3D"">On Jan 21, 2020, at 4:01 AM, Joonas Lahtinen &lt;<a href=3D=
+"mailto:joonas.lahtinen@linux.intel.com" class=3D"">joonas.lahtinen@linux.i=
+ntel.com</a>&gt; wrote:</div>
+<br class=3D"Apple-interchange-newline">
+<div class=3D"">
+<div class=3D"">Quoting Jani Nikula (2020-01-21 12:30:20)<br class=3D"">
+<blockquote type=3D"cite" class=3D"">It's been a long enough transition per=
+iod since the DRM_I915_FORCE_PROBE<br class=3D"">
+config and i915.force_probe module parameter were introduced in commit<br c=
+lass=3D"">
+7ef5ef5cdead (&quot;drm/i915: add force_probe module parameter to replace<b=
+r class=3D"">
+alpha_support&quot;). Remove alpha support.<br class=3D"">
+<br class=3D"">
+Cc: Arkadiusz Hiler &lt;<a href=3D"mailto:arkadiusz.hiler@intel.com" class=
+=3D"">arkadiusz.hiler@intel.com</a>&gt;<br class=3D"">
+Cc: Joonas Lahtinen &lt;<a href=3D"mailto:joonas.lahtinen@linux.intel.com" =
+class=3D"">joonas.lahtinen@linux.intel.com</a>&gt;<br class=3D"">
+Cc: Rodrigo Vivi &lt;<a href=3D"mailto:rodrigo.vivi@intel.com" class=3D"">r=
+odrigo.vivi@intel.com</a>&gt;<br class=3D"">
+Cc: Tomi Sarvela &lt;<a href=3D"mailto:tomi.p.sarvela@intel.com" class=3D""=
+>tomi.p.sarvela@intel.com</a>&gt;<br class=3D"">
+Signed-off-by: Jani Nikula &lt;<a href=3D"mailto:jani.nikula@intel.com" cla=
+ss=3D"">jani.nikula@intel.com</a>&gt;<br class=3D"">
+</blockquote>
+<br class=3D"">
+Reviewed-by: Joonas Lahtinen &lt;<a href=3D"mailto:joonas.lahtinen@linux.in=
+tel.com" class=3D"">joonas.lahtinen@linux.intel.com</a>&gt;<br class=3D"">
+</div>
+</div>
+</blockquote>
+<div><br class=3D"">
+</div>
+<div>Acked-by: Rodrigo Vivi &lt;<a href=3D"mailto:rodrigo.vivi@intel.com" c=
+lass=3D"">rodrigo.vivi@intel.com</a>&gt;</div>
+<br class=3D"">
+<blockquote type=3D"cite" class=3D"">
+<div class=3D"">
+<div class=3D""><br class=3D"">
+Regards, Joonas<br class=3D"">
+</div>
+</div>
+</blockquote>
+</div>
+<br class=3D"">
+</body>
+</html>
+
+--_000_BBD667F413F148BA9F3DBA8A3CA548FCintelcom_--
+
+--===============0763883570==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0763883570==--
