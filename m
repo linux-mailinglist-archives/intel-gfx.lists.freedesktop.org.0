@@ -2,31 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 31E23144746
-	for <lists+intel-gfx@lfdr.de>; Tue, 21 Jan 2020 23:25:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 27D25144747
+	for <lists+intel-gfx@lfdr.de>; Tue, 21 Jan 2020 23:25:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8ED6E6E483;
-	Tue, 21 Jan 2020 22:25:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 72D796E486;
+	Tue, 21 Jan 2020 22:25:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9C4BA6E479
- for <intel-gfx@lists.freedesktop.org>; Tue, 21 Jan 2020 22:25:25 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BF16A6E47A
+ for <intel-gfx@lists.freedesktop.org>; Tue, 21 Jan 2020 22:25:24 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19963745-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19963746-1500050 
  for multiple; Tue, 21 Jan 2020 22:24:49 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 21 Jan 2020 22:24:44 +0000
-Message-Id: <20200121222447.419489-4-chris@chris-wilson.co.uk>
+Date: Tue, 21 Jan 2020 22:24:45 +0000
+Message-Id: <20200121222447.419489-5-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.25.0
 In-Reply-To: <20200121222447.419489-1-chris@chris-wilson.co.uk>
 References: <20200121222447.419489-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 4/7] drm/i915: Mark the removal of the
- i915_request from the sched.link
+Subject: [Intel-gfx] [PATCH 5/7] drm/i915: Tighten atomicity of
+ i915_active_acquire vs i915_active_release
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,32 +44,44 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Keep the rq->fence.flags consistent with the status of the
-rq->sched.link, and clear the associated bits when decoupling the link
-on retirement (as we may wish to inspect those flags independent of
-other state).
+As we use a mutex to serialise the first acquire (as it may be a lengthy
+operation), but only an atomic decrement for the release, we have to
+be careful in case a second thread races and completes both
+acquire/release as the first finishes its acquire.
 
-Fixes: 32ff621fd744 ("drm/i915/gt: Allow temporary suspension of inflight requests")
-References: https://gitlab.freedesktop.org/drm/intel/issues/997
+Fixes: c9ad602feabe ("drm/i915: Split i915_active.mutex into an irq-safe spinlock for the rbtree")
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 ---
- drivers/gpu/drm/i915/i915_request.c | 2 ++
- 1 file changed, 2 insertions(+)
+ drivers/gpu/drm/i915/i915_active.c | 16 +++++++++-------
+ 1 file changed, 9 insertions(+), 7 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
-index 9ed0d3bc7249..78a5f5d3c070 100644
---- a/drivers/gpu/drm/i915/i915_request.c
-+++ b/drivers/gpu/drm/i915/i915_request.c
-@@ -221,6 +221,8 @@ static void remove_from_engine(struct i915_request *rq)
- 		locked = engine;
- 	}
- 	list_del_init(&rq->sched.link);
-+	clear_bit(I915_FENCE_FLAG_PQUEUE, &rq->fence.flags);
-+	clear_bit(I915_FENCE_FLAG_HOLD, &rq->fence.flags);
- 	spin_unlock_irq(&locked->active.lock);
- }
+diff --git a/drivers/gpu/drm/i915/i915_active.c b/drivers/gpu/drm/i915/i915_active.c
+index ace55d5d4ca7..9d6830885d2e 100644
+--- a/drivers/gpu/drm/i915/i915_active.c
++++ b/drivers/gpu/drm/i915/i915_active.c
+@@ -416,13 +416,15 @@ int i915_active_acquire(struct i915_active *ref)
+ 	if (err)
+ 		return err;
  
+-	if (!atomic_read(&ref->count) && ref->active)
+-		err = ref->active(ref);
+-	if (!err) {
+-		spin_lock_irq(&ref->tree_lock); /* vs __active_retire() */
+-		debug_active_activate(ref);
+-		atomic_inc(&ref->count);
+-		spin_unlock_irq(&ref->tree_lock);
++	if (likely(!i915_active_acquire_if_busy(ref))) {
++		if (ref->active)
++			err = ref->active(ref);
++		if (!err) {
++			spin_lock_irq(&ref->tree_lock); /* __active_retire() */
++			debug_active_activate(ref);
++			atomic_inc(&ref->count);
++			spin_unlock_irq(&ref->tree_lock);
++		}
+ 	}
+ 
+ 	mutex_unlock(&ref->mutex);
 -- 
 2.25.0
 
