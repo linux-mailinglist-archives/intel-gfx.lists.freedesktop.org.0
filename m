@@ -1,33 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 34EB0143C00
-	for <lists+intel-gfx@lfdr.de>; Tue, 21 Jan 2020 12:27:37 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7BA4B143C15
+	for <lists+intel-gfx@lfdr.de>; Tue, 21 Jan 2020 12:31:21 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CB0036EC76;
-	Tue, 21 Jan 2020 11:27:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BA0A66E212;
+	Tue, 21 Jan 2020 11:31:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 90EF96EC76
- for <intel-gfx@lists.freedesktop.org>; Tue, 21 Jan 2020 11:27:33 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 19956836-1500050 for multiple; Tue, 21 Jan 2020 11:27:28 +0000
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 2FF326E20A;
+ Tue, 21 Jan 2020 11:31:19 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 25F2DA0119;
+ Tue, 21 Jan 2020 11:31:19 +0000 (UTC)
 MIME-Version: 1.0
-To: Thomas Preston <thomas.preston@codethink.co.uk>,
- intel-gfx@lists.freedesktop.org
-From: Chris Wilson <chris@chris-wilson.co.uk>
-In-Reply-To: <20200121102858.3027175-1-thomas.preston@codethink.co.uk>
-References: <20200121102858.3027175-1-thomas.preston@codethink.co.uk>
-Message-ID: <157960604632.3096.5992754158480904746@skylake-alporthouse-com>
-User-Agent: alot/0.6
-Date: Tue, 21 Jan 2020 11:27:26 +0000
-Subject: Re: [Intel-gfx] [PATCH xf86-video-intel] sna: Use correct struct
- sna in sna_mode_wakeup
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Date: Tue, 21 Jan 2020 11:31:19 -0000
+Message-ID: <157960627912.11480.3754246252689505806@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200121103020.26494-1-jani.nikula@intel.com>
+In-Reply-To: <20200121103020.26494-1-jani.nikula@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_drop_alpha=5Fsupport_for_good_in_favour_of_force=5Fpro?=
+ =?utf-8?q?be?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,60 +39,102 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: james.thomas@codethink.co.uk, michael.drake@codethink.co.uk
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Thomas Preston (2020-01-21 10:28:58)
-> When deciding if we should defer_vblanks we should reference the event's
-> struct sna, rather than the caller's struct sna. In order to do this, we
-> must grab a new struct sna for each event in the buffer. Move this logic
-> out of `case DRM_EVENT_FLIP_COMPLETE` and create a new variable
-> sna_event, so that it is clear which struct sna we are referring to.
-> Also add another ZaphodHead comment by the struct sna argument, in case
-> someone misses the comment below.
-> 
-> Fixes issue #184 with ZaphodHead and TearFree, introduced in this commit:
-> 
->         12db28ab sna: Reorder vblank/flip event handling to avoid TearFree recursion
-> 
-> Signed-off-by: Thomas Preston <thomas.preston@codethink.co.uk>
-> ---
->  src/sna/sna_display.c | 48 +++++++++++++++++++++++--------------------
->  1 file changed, 26 insertions(+), 22 deletions(-)
-> 
-> diff --git a/src/sna/sna_display.c b/src/sna/sna_display.c
-> index 874292bc..b40a6c4a 100644
-> --- a/src/sna/sna_display.c
-> +++ b/src/sna/sna_display.c
-> @@ -9711,9 +9711,12 @@ fixup_flip:
->         RegionEmpty(region);
->  }
->  
-> +/* In the case of ZaphodHead, there is only one event queue in the main
-> + * struct sna. Only refer to this struct sna when dealing with the event queue.
-> + * Otherwise, extract the struct sna from the event user_data.
-> + */
->  int sna_mode_wakeup(struct sna *sna)
->  {
-> -       bool defer_vblanks = sna->mode.flip_active && sna->mode.shadow_enabled;
+== Series Details ==
 
-My thinking was that I only cared about re-entrancy on the local sna for
-processing this event queue. And there is no threading, so only one
-sna is processed at a time... Hmm, I don't think we can in the situation
-of being inside one shadow flip and care much about the other.
+Series: drm/i915: drop alpha_support for good in favour of force_probe
+URL   : https://patchwork.freedesktop.org/series/72326/
+State : success
 
-Nevertheless, you are confident enough in your test results. And there
-should be nothing wrong with deferring the event to the head that is
-expecting it. (If I were to tackle the problem again, I would split into
-tasklets to avoid re-entrancy of the event handling and flip queue
-entirely. Oh well, all I can advise is not to make the same mistakes I
-did :)
+== Summary ==
 
-Give me a moment to think about just how it ends up confused.
--Chris
+CI Bug Log - changes from CI_DRM_7783 -> Patchwork_16184
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16184/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_16184 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_module_load@reload-with-fault-injection:
+    - fi-skl-lmem:        [PASS][1] -> [INCOMPLETE][2] ([i915#671] / [i915#971])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7783/fi-skl-lmem/igt@i915_module_load@reload-with-fault-injection.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16184/fi-skl-lmem/igt@i915_module_load@reload-with-fault-injection.html
+
+  * igt@kms_chamelium@hdmi-hpd-fast:
+    - fi-kbl-7500u:       [PASS][3] -> [FAIL][4] ([fdo#111407])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7783/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16184/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_module_load@reload-with-fault-injection:
+    - fi-cfl-8700k:       [DMESG-WARN][5] ([i915#889]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7783/fi-cfl-8700k/igt@i915_module_load@reload-with-fault-injection.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16184/fi-cfl-8700k/igt@i915_module_load@reload-with-fault-injection.html
+    - fi-kbl-x1275:       [DMESG-WARN][7] ([i915#889]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7783/fi-kbl-x1275/igt@i915_module_load@reload-with-fault-injection.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16184/fi-kbl-x1275/igt@i915_module_load@reload-with-fault-injection.html
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-kbl-x1275:       [INCOMPLETE][9] ([i915#151]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7783/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16184/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
+
+  
+  [fdo#111407]: https://bugs.freedesktop.org/show_bug.cgi?id=111407
+  [i915#151]: https://gitlab.freedesktop.org/drm/intel/issues/151
+  [i915#671]: https://gitlab.freedesktop.org/drm/intel/issues/671
+  [i915#889]: https://gitlab.freedesktop.org/drm/intel/issues/889
+  [i915#971]: https://gitlab.freedesktop.org/drm/intel/issues/971
+
+
+Participating hosts (44 -> 41)
+------------------------------
+
+  Additional (5): fi-glk-dsi fi-gdg-551 fi-bsw-kefka fi-bsw-nick fi-snb-2600 
+  Missing    (8): fi-ilk-m540 fi-tgl-u fi-ehl-1 fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-n2820 fi-byt-clapper 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_7783 -> Patchwork_16184
+
+  CI-20190529: 20190529
+  CI_DRM_7783: 3ee976286895f0bd54388efc16b12f62c624ff19 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5376: 5cf58d947a02379d2885d6dd4f8bb487cfc3eed2 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_16184: 36e3f33f03b8b30776caa59658d60c86bf2b1d8c @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+36e3f33f03b8 drm/i915: drop alpha_support for good in favour of force_probe
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16184/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
