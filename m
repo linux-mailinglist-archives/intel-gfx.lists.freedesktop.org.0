@@ -2,30 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C8EFE144037
-	for <lists+intel-gfx@lfdr.de>; Tue, 21 Jan 2020 16:10:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CCE16144092
+	for <lists+intel-gfx@lfdr.de>; Tue, 21 Jan 2020 16:35:16 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B6A9B6ED24;
-	Tue, 21 Jan 2020 15:10:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E89A96EA7C;
+	Tue, 21 Jan 2020 15:35:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 3EBE26ED29;
- Tue, 21 Jan 2020 15:10:52 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 36ECCA00E9;
- Tue, 21 Jan 2020 15:10:52 +0000 (UTC)
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8C8E76EA7C
+ for <intel-gfx@lists.freedesktop.org>; Tue, 21 Jan 2020 15:35:12 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19960033-1500050 
+ for multiple; Tue, 21 Jan 2020 15:35:06 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue, 21 Jan 2020 15:35:05 +0000
+Message-Id: <20200121153505.339402-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.25.0
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Date: Tue, 21 Jan 2020 15:10:52 -0000
-Message-ID: <157961945222.11479.9100305045942911133@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200121113915.9813-1-jani.nikula@intel.com>
-In-Reply-To: <20200121113915.9813-1-jani.nikula@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/i915=3A_add_display_engine_uncore_helpers_=28rev2=29?=
+Subject: [Intel-gfx] [PATCH] drm/i915: Clear the GGTT_WRITE bit on unbinding
+ the vma
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,28 +37,70 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+While we do flush writes to the vma before unbinding (to make sure they
+go through the right detiling register), we may also be concurrently
+poking at the GGTT_WRITE bit from set-domain, as we mark all GGTT vma
+associated with an object. We know this is for another vma, as we
+are currently unbind this one -- so if this vma will be reused, it will
+be refaulted and have its dirty bit set before the next write.
 
-Series: drm/i915: add display engine uncore helpers (rev2)
-URL   : https://patchwork.freedesktop.org/series/72331/
-State : warning
+Closes: https://gitlab.freedesktop.org/drm/intel/issues/999
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+---
+ drivers/gpu/drm/i915/i915_vma.c       | 11 +++++++++--
+ drivers/gpu/drm/i915/i915_vma_types.h |  1 +
+ 2 files changed, 10 insertions(+), 2 deletions(-)
 
-== Summary ==
-
-$ dim checkpatch origin/drm-tip
-21a0a18251df drm/i915: add display engine uncore helpers
--:35: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#35: 
-new file mode 100644
-
-total: 0 errors, 1 warnings, 0 checks, 99 lines checked
+diff --git a/drivers/gpu/drm/i915/i915_vma.c b/drivers/gpu/drm/i915/i915_vma.c
+index 17d7c525ea5c..eb18b56af3af 100644
+--- a/drivers/gpu/drm/i915/i915_vma.c
++++ b/drivers/gpu/drm/i915/i915_vma.c
+@@ -1218,9 +1218,15 @@ int __i915_vma_unbind(struct i915_vma *vma)
+ 		 * before the unbind, other due to non-strict nature of those
+ 		 * indirect writes they may end up referencing the GGTT PTE
+ 		 * after the unbind.
++		 *
++		 * Note that we may be concurrently poking at the GGTT_WRITE
++		 * bit from set-domain, as we mark all GGTT vma associated
++		 * with an object. We know this is for another vma, as we
++		 * are currently unbind this one -- so if this vma will be
++		 * reused, it will be refaulted and have its dirty bit set
++		 * before the next write.
+ 		 */
+ 		i915_vma_flush_writes(vma);
+-		GEM_BUG_ON(i915_vma_has_ggtt_write(vma));
+ 
+ 		/* release the fence reg _after_ flushing */
+ 		ret = i915_vma_revoke_fence(vma);
+@@ -1240,7 +1246,8 @@ int __i915_vma_unbind(struct i915_vma *vma)
+ 		trace_i915_vma_unbind(vma);
+ 		vma->ops->unbind_vma(vma);
+ 	}
+-	atomic_and(~(I915_VMA_BIND_MASK | I915_VMA_ERROR), &vma->flags);
++	atomic_and(~(I915_VMA_BIND_MASK | I915_VMA_ERROR | I915_VMA_DIRTY),
++		   &vma->flags);
+ 
+ 	i915_vma_detach(vma);
+ 	vma_unbind_pages(vma);
+diff --git a/drivers/gpu/drm/i915/i915_vma_types.h b/drivers/gpu/drm/i915/i915_vma_types.h
+index e0942efd5236..1ddc450ae766 100644
+--- a/drivers/gpu/drm/i915/i915_vma_types.h
++++ b/drivers/gpu/drm/i915/i915_vma_types.h
+@@ -244,6 +244,7 @@ struct i915_vma {
+ #define I915_VMA_CAN_FENCE_BIT	15
+ #define I915_VMA_USERFAULT_BIT	16
+ #define I915_VMA_GGTT_WRITE_BIT	17
++#define I915_VMA_DIRTY		((int)BIT(I915_VMA_GGTT_WRITE_BIT))
+ 
+ #define I915_VMA_GGTT		((int)BIT(I915_VMA_GGTT_BIT))
+ #define I915_VMA_CAN_FENCE	((int)BIT(I915_VMA_CAN_FENCE_BIT))
+-- 
+2.25.0
 
 _______________________________________________
 Intel-gfx mailing list
