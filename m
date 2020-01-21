@@ -2,33 +2,37 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5BDB31434C2
-	for <lists+intel-gfx@lfdr.de>; Tue, 21 Jan 2020 01:39:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A8BE1434DF
+	for <lists+intel-gfx@lfdr.de>; Tue, 21 Jan 2020 01:50:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 204C66EB64;
-	Tue, 21 Jan 2020 00:39:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3841388D1E;
+	Tue, 21 Jan 2020 00:50:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2C0A86EB64
- for <intel-gfx@lists.freedesktop.org>; Tue, 21 Jan 2020 00:39:19 +0000 (UTC)
-X-Amp-Result: UNSCANNABLE
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EE32C6E138
+ for <intel-gfx@lists.freedesktop.org>; Tue, 21 Jan 2020 00:50:08 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
 X-Amp-File-Uploaded: False
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 20 Jan 2020 16:39:18 -0800
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga105.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 20 Jan 2020 16:49:43 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,343,1574150400"; d="scan'208";a="277242256"
+X-IronPort-AV: E=Sophos;i="5.70,343,1574150400"; d="scan'208";a="275161104"
 Received: from ramaling-i9x.iind.intel.com (HELO intel.com) ([10.99.66.154])
- by fmsmga001.fm.intel.com with ESMTP; 20 Jan 2020 16:39:17 -0800
-Date: Tue, 21 Jan 2020 06:09:13 +0530
+ by FMSMGA003.fm.intel.com with ESMTP; 20 Jan 2020 16:49:41 -0800
+Date: Tue, 21 Jan 2020 06:19:37 +0530
 From: Ramalingam C <ramalingam.c@intel.com>
-To: Anshuman Gupta <anshuman.gupta@intel.com>
-Message-ID: <20200121003913.GA5190@intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Message-ID: <20200121004937.GB5190@intel.com>
 References: <20200120054954.5786-1-anshuman.gupta@intel.com>
+ <20200120064215.GA14839@intel.com> <87v9p6fmjz.fsf@intel.com>
+ <20200120110044.GB14839@intel.com> <87sgkafk16.fsf@intel.com>
+ <20200120115134.GB15991@intel.com> <87pnfeffgp.fsf@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20200120054954.5786-1-anshuman.gupta@intel.com>
+In-Reply-To: <87pnfeffgp.fsf@intel.com>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Subject: Re: [Intel-gfx] [PATCH v3] drm/i915/hdcp: Update CP as per the
  kernel internal state
@@ -50,107 +54,50 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 2020-01-20 at 11:19:54 +0530, Anshuman Gupta wrote:
-> Content Protection property should be updated as per the kernel
-> internal state. Let's say if Content protection is disabled
-> by userspace, CP property should be set to UNDESIRED so that
-> reauthentication will not happen until userspace request it again,
-> but when kernel disables the HDCP due to any DDI disabling sequences
-> like modeset/DPMS operation, kernel should set the property to
-> DESIRED, so that when opportunity arises, kernel will start the
-> HDCP authentication on its own.
+On 2020-01-20 at 15:02:46 +0200, Jani Nikula wrote:
+> On Mon, 20 Jan 2020, Ramalingam C <ramalingam.c@intel.com> wrote:
+> > hdcp->value is used to track the internal transistions during the link
+> > failure and re-establishing it. When ever kernel want to update the
+> > "content protection" we take the required locks and update the property
+> > state along with uevent.
 > 
-> Somewhere in the line, state machine to set content protection to
-> DESIRED from kernel was broken and IGT coverage was missing for it.
-> This patch fixes it.
-> IGT patch to catch further regression on this features is being
-> worked upon.
+> My point is this: How many states does your state machine need?
 > 
-> v2:
->  - Incorporated the necessary locking. (Ram)
->  - Set content protection property to CP_DESIRED only when
->    user has not asked explicitly to set CP_UNDESIRED.
+> Considering the tri-state content_protection and tri-state hdcp->value,
+> you have 9 possible states and 362880 transitions. Add the new flag from
+> this patch, and you have 18 possible states and 6e15 transitions.
 > 
-> v3:
->  - Reset the is_hdcp_undesired flag to false. (Ram)
->  - Rephrasing commit log and small comment for is_hdcp_desired
->    flag. (Ram)
+> Obviously you don't need or use that many states or transitions, but you
+> need the code to limit the states and the transitions. You need the
+> review to ensure any changes take into account all the possible states
+> and transitions.
+Yes. We dont use all those combination. Agreed that we need to review the
+changes which impacts the updatation of hdcp state of internal state machine or
+property state.
+
 > 
-> CC: Ramalingam C <ramalingam.c@intel.com>
-> Reviewed-by: Ramalingam C <ramalingam.c@intel.com>
-> Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
+> I've already noted one possible scenario in the proposed patch where
+> stuff goes out of sync, and I don't know what's really going to happen.
+> 
 > ---
->  drivers/gpu/drm/i915/display/intel_display_types.h |  6 ++++++
->  drivers/gpu/drm/i915/display/intel_hdcp.c          | 13 ++++++++++++-
->  2 files changed, 18 insertions(+), 1 deletion(-)
 > 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-> index 630a94892b7b..401a9a7689fb 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> @@ -345,6 +345,12 @@ struct intel_hdcp {
->  	struct delayed_work check_work;
->  	struct work_struct prop_work;
->  
-> +	/*
-> +	 * Flag to differentiate that HDCP is being disabled originated from
-> +	 * userspace or triggered from kernel DDI disable sequence.
-> +	 */
-> +	bool is_hdcp_undesired;
-> +
->  	/* HDCP1.4 Encryption status */
->  	bool hdcp_encrypted;
->  
-> diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
-> index 0fdbd39f6641..7f631ebd8395 100644
-> --- a/drivers/gpu/drm/i915/display/intel_hdcp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
-> @@ -2002,11 +2002,18 @@ int intel_hdcp_disable(struct intel_connector *connector)
->  	mutex_lock(&hdcp->mutex);
->  
->  	if (hdcp->value != DRM_MODE_CONTENT_PROTECTION_UNDESIRED) {
-> -		hdcp->value = DRM_MODE_CONTENT_PROTECTION_UNDESIRED;
->  		if (hdcp->hdcp2_encrypted)
->  			ret = _intel_hdcp2_disable(connector);
->  		else if (hdcp->hdcp_encrypted)
->  			ret = _intel_hdcp_disable(connector);
-> +
-> +		if (hdcp->is_hdcp_undesired) {
-> +			hdcp->value = DRM_MODE_CONTENT_PROTECTION_UNDESIRED;
-> +			hdcp->is_hdcp_undesired = false;
-> +		} else {
-> +			hdcp->value = DRM_MODE_CONTENT_PROTECTION_DESIRED;
-> +			schedule_work(&hdcp->prop_work);
-> +		}
->  	}
->  
->  	mutex_unlock(&hdcp->mutex);
-> @@ -2044,6 +2051,7 @@ void intel_hdcp_atomic_check(struct drm_connector *connector,
->  {
->  	u64 old_cp = old_state->content_protection;
->  	u64 new_cp = new_state->content_protection;
-> +	struct intel_connector *intel_conn = to_intel_connector(connector);
->  	struct drm_crtc_state *crtc_state;
->  
->  	if (!new_state->crtc) {
-> @@ -2069,6 +2077,9 @@ void intel_hdcp_atomic_check(struct drm_connector *connector,
->  			return;
->  	}
->  
-> +	if (new_cp == DRM_MODE_CONTENT_PROTECTION_UNDESIRED)
-> +		intel_conn->hdcp.is_hdcp_undesired  =  true;
-This flag is reset at commit only. What if the atomic check failed?
-Usually atomic check wont fail for HDCP state change. Possible if it is submitted with other request.
-So we need to set true and false both here.
+> So maybe I don't understand what the hdcp code does, but then maybe you
+> shouldn't ask me to have a look at it... ;) I'm trying to point out why
+> I think it's maybe difficult to understand, and why I think adding
+> another flag might make it more difficult to maintain.
+
+Even we tried alternate solutions like retrieving the new drm_connector
+state at DDI disable. We dropped it as that wont be received well. Any
+suggestion on alternate approach to get the new connector state at
+DDI disable call.
 
 -Ram
-> +
->  	crtc_state = drm_atomic_get_new_crtc_state(new_state->state,
->  						   new_state->crtc);
->  	crtc_state->mode_changed = true;
-> -- 
-> 2.24.0
 > 
+> BR,
+> Jani.
+> 
+> -- 
+> Jani Nikula, Intel Open Source Graphics Center
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
