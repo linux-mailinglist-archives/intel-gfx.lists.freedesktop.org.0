@@ -2,61 +2,159 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B213E144300
-	for <lists+intel-gfx@lfdr.de>; Tue, 21 Jan 2020 18:20:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 069CE1442FF
+	for <lists+intel-gfx@lfdr.de>; Tue, 21 Jan 2020 18:20:41 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5DB866EDE3;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 03A9C6EDE1;
 	Tue, 21 Jan 2020 17:20:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x443.google.com (mail-wr1-x443.google.com
- [IPv6:2a00:1450:4864:20::443])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C849E6ED28;
- Tue, 21 Jan 2020 14:32:22 +0000 (UTC)
-Received: by mail-wr1-x443.google.com with SMTP id z3so3472379wru.3;
- Tue, 21 Jan 2020 06:32:22 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:subject:date:message-id:in-reply-to:references;
- bh=k3sVQxFN9Jt4vZYxvCH5I4zJetCqBCSztJTvthu9bDk=;
- b=ZDwNg6lkgAofDtTf4YmV3wzBHeoRWwk44Ita5Sw6pJugWuO+ycqpbPP8rQAsOtrRBX
- FA9mFeMkyW8OeEEYZ45mPf8Lw9m7SzUAVyRrLE9+FmJU+N9lHAU+9f1YqsNesWmbxG0k
- byes1QMC+z0zVhm5RurL/MO6DAkW5hSM5xJ39bNylC0dxHMLVOkpLEWfxeBBqoNvOrnw
- Ye6lCM4bdsrNkuctLS15yDWnhAqWabZgpRhIJA8qeZ6sHk2UYyu+br4CRoWzFC5+LJ94
- 8vmlzhFRsi97ONJqkBpMkOACxLZVw4DcmaXtA+wqtafh8oMXoX/hqTxUZpGkpi47NEqD
- bEjg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
- :references;
- bh=k3sVQxFN9Jt4vZYxvCH5I4zJetCqBCSztJTvthu9bDk=;
- b=JlWN/UYR0zVZSmKDWJEBwVkitCQeL6CDQwkcEgGAKTu5oYRTtrcKtzHBQ1YMbKdRV7
- 6AbZSDR8vCFRlXnwMwURT+bt1pjmbefOpzEmbgBSWsizNlJqiT9lKjZqH8MX1FmmdGXg
- GUj6cRVN92uq5RKQkKki/ztHF5wDMkUBPl+S27aJVfQs1TAPLoDicWSCY8KTN8wdONUy
- oKLprv13t9I1pfDsy89UbIeAeKHm4HFwina5HoUOnNLNuorVkXpycVeCLDrAgcKwlRh/
- 9lecM9Q20ZHTe8T8ZW9G8Wkj6/K8e8Vx1gbBB4Vtw1rpUQDEy7+SEfKnNCiUyARbsIDv
- Xx7Q==
-X-Gm-Message-State: APjAAAWralvyvZfo3k0+PcZQE7Rz5vStoWAcgCESEWkIVR+7tiHhPrAX
- QIw+ocXGlQKjaTXs+ANyrA0=
-X-Google-Smtp-Source: APXvYqzdkYCRQpsDwAOkJcDDv5Rg9uCF5l895NTMvUl9TehindAQTkm+WcovDHuIwOCYso3EA42sCA==
-X-Received: by 2002:adf:e58b:: with SMTP id l11mr5559237wrm.402.1579617141285; 
- Tue, 21 Jan 2020 06:32:21 -0800 (PST)
-Received: from localhost.localdomain ([197.254.95.38])
- by smtp.googlemail.com with ESMTPSA id g2sm52781284wrw.76.2020.01.21.06.32.18
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 21 Jan 2020 06:32:20 -0800 (PST)
-From: Wambui Karuga <wambui.karugax@gmail.com>
-To: jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
- rodrigo.vivi@intel.com, airlied@linux.ie, daniel@ffwll.ch,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-Date: Tue, 21 Jan 2020 17:31:55 +0300
-Message-Id: <20200121143155.20856-7-wambui.karugax@gmail.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200121143155.20856-1-wambui.karugax@gmail.com>
-References: <20200121143155.20856-1-wambui.karugax@gmail.com>
+Received: from UPDC19PA23.eemsg.mail.mil (UPDC19PA23.eemsg.mail.mil
+ [214.24.27.198])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AA41A6E219
+ for <intel-gfx@lists.freedesktop.org>; Tue, 21 Jan 2020 14:43:20 +0000 (UTC)
+X-EEMSG-check-017: 47993871|UPDC19PA23_ESA_OUT05.csd.disa.mil
+X-IronPort-AV: E=Sophos;i="5.70,346,1574121600"; d="scan'208";a="47993871"
+Received: from emsm-gh1-uea11.ncsc.mil ([214.29.60.3])
+ by UPDC19PA23.eemsg.mail.mil with ESMTP/TLS/DHE-RSA-AES256-SHA256;
+ 21 Jan 2020 14:43:14 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=tycho.nsa.gov; i=@tycho.nsa.gov; q=dns/txt;
+ s=tycho.nsa.gov; t=1579617794; x=1611153794;
+ h=subject:to:cc:references:from:message-id:date:
+ mime-version:in-reply-to:content-transfer-encoding;
+ bh=Q7wU+nWbAbNGsWzh4Vz0AEmjlART2AXJwd31XJVS1FY=;
+ b=LAD7ebN4OnSuvx5xpHNgO0NFOLmGglrHTw7V8cfNECph/l/v7wKrQp8m
+ SKd1ynm7JnX+lN4ujhjQLsxwpXw1eUxV9QZ8GaBVIz6cAmxUAV4wORr4o
+ SDMAt2Wea/8FtVyU2wbmHoKlzn88OU1tDV/dQ9v6D68YChtVABa088ucR
+ wbAfiQakt8+FXQ8uq5S9pHmbLt7IkoIzXd7w12PXf/8nMLmRco5grJ8dF
+ PZakhc7BAVeaB8JSsMKk5IEJI/01HoyN07hyWDHMwQZUlxYjt+mfJm3un
+ whQe7jr+4ZnQzGb9nYbArU9EaFUDxTaK0uv+kgdda6BLeGSX+xgOzGPV9 w==;
+X-IronPort-AV: E=Sophos;i="5.70,346,1574121600"; d="scan'208";a="38029898"
+IronPort-PHdr: =?us-ascii?q?9a23=3AQrLYLh3RJDRd/hJUsmDT+DRfVm0co7zxezQtwd?=
+ =?us-ascii?q?8ZsekRIv3xwZ3uMQTl6Ol3ixeRBMOHsq4C0rqd7f2oGTRZp8rY6zZaKN0Efi?=
+ =?us-ascii?q?RGoP1epxYnDs+BBB+zB9/RRAt+Iv5/UkR49WqwK0lfFZW2TVTTpnqv8WxaQU?=
+ =?us-ascii?q?2nZkJ6KevvB4Hdkdm82fys9J3PeQVIgye2ba9vIBmsogjdq8YbjZF/JqsyxR?=
+ =?us-ascii?q?fEo3tFcPlSyW90OF6fhRnx6tq+8ZJ57yhcp/ct/NNcXKvneKg1UaZWByk8PW?=
+ =?us-ascii?q?Av483ruxjDTQ+R6XYZT24bjBlGDRXb4R/jRpv+vTf0ueR72CmBIM35Vqs0Vi?=
+ =?us-ascii?q?i476dqUxDnliEKPCMk/W7Ni8xwiKVboA+9pxF63oXZbp2ZOOZ4c6jAZt4RW3?=
+ =?us-ascii?q?ZPUdhNWCxAGoO8bpUAD+wdPeZDsoLxo0ICoQaiCQWwAe/izDFHhmXy3aYnze?=
+ =?us-ascii?q?ovFw/I1xEkE94XrnjZqND5OaEPWu630abI1y3OYe5I1zfz6IbGcR4vrv+DUr?=
+ =?us-ascii?q?1ybcXfxlIiFx/Hg1iKtYDpIz2Y2+YLvmOG7+RgT+Wvi2s/pg9svjig2N8sio?=
+ =?us-ascii?q?nXiYIT11vK6CB5z5wxJd28VkF6YcOvHZxLty6HLIt7Wd8iQmF0tyY6zb0Ko5?=
+ =?us-ascii?q?i7fDMQx5g9yB7fbOKHfpGO7xn+WuiRJjJ4i2hkeLK5nxuy8lavyvf6Vsaq1F?=
+ =?us-ascii?q?ZGtC1FksPDtnwV0hzc8M6HR/ln8kemwzaP2Abe4fxHL0AsjafXNpEsz7Eqmp?=
+ =?us-ascii?q?cTrEjPBDH6lUrogKOMa0kp/PWj5f79bbX8vJCcMpd5igT5MqszhMOyGf84Mg?=
+ =?us-ascii?q?0SX2iD/uS8yaHj8VX5QLpUiv02lbHUsIzAKsQBp665HhRV3pwi6xa5ATem18?=
+ =?us-ascii?q?8YkmcbI15fZBKGj5TmO1HJIPziC/ewn0+snytxy/DDP73hBo3BLnnFkLj/Yb?=
+ =?us-ascii?q?Zw81NQxQU8wNxF559YF6sNLOz8V0PvrtDUEwc1MwmuzObmDNV92JkeWWWKAq?=
+ =?us-ascii?q?KBK6PdrESI6/kzI+iMeIAVuDH9J+Ij5/71l3A1g1Adfa633ZcPcnC3AuxmI1?=
+ =?us-ascii?q?mFYXrrmtoOC2MKsRQxTeP0iFyOSyVcZ2uvUK0m4DE7C4WmDZnYS4CpgbyB2j?=
+ =?us-ascii?q?q7H5JMamBHDFCMDWnnd4GeV/gQbyKSJ9drkiYYWri5V48hyRauuRfiy7V5Mu?=
+ =?us-ascii?q?rb5DcYtJP42dh04e3Tmwsy+iZpAMuDyW6CUnt4nmQSRz85xKp/u1Byyk+f0a?=
+ =?us-ascii?q?hkhPxVDcZc6O9MUggkLpPczPJ1C8r0Wg3feteFUlGmQs+pATspVNI+38cOY1?=
+ =?us-ascii?q?phG9Wllh3D2iuqA7kal7yMH5E06LzT0GXxJ8ln13bKzrUuj14jQsFXL22pmr?=
+ =?us-ascii?q?Z/9xTPB47Oi0iZlbyldaId3CLX8meDzGmOvFxcUAFqSqjFWXEfZk3LrdX2/E?=
+ =?us-ascii?q?/CTrmuCag5PQtF08KNNqxKatjxh1VcWPjjIMjeY362m2qoBxaIwbSMbIzwdG?=
+ =?us-ascii?q?UGxindDFILkwAP/XaHMwgxGCGhrnnaDDxvE1Lvfkzt/fN/qHO9Uk870QWKY1?=
+ =?us-ascii?q?d92Lqy/x4fneacRO8L3rIYpCchrC15HEy6393LEdqApgVhfKJGbdMj4VdHy2?=
+ =?us-ascii?q?PZuhd8PpymM6BtmFoefx5rsEPp0hV9Ep9AntQyrHM20ApyLrqV30hfeDOe3Z?=
+ =?us-ascii?q?D9Ib7XJXfo/BCpdaHW3kvS38qM+qgV8/Q4q1TjvAemFkY49HVnydZV2WOG5p?=
+ =?us-ascii?q?rWFAoSTY7xUkEv+hhivb7afy09557P1XB3Kqm7qDrC1MkzC+c/zRagZdhfOr?=
+ =?us-ascii?q?ueFADuC80aG9SuKOsyllisdhILIvtf+7AwP8OiafSGwqurM/xmnD68jGRI/Z?=
+ =?us-ascii?q?px3ViR9yBkUO7Hw44Fw+2E3guATzr8jk2ussXploBffz0dBW2/yTT4BI5WY6?=
+ =?us-ascii?q?1yeZgECGe1Ls233Np+gYXtVGBe9F67HVwGwtOpeRyMYFznxg1Q1UUXoWS9lS?=
+ =?us-ascii?q?SkyDx0likjrrCD0yzW3+TiaB0HN3ZQRGZ8l1fsLpa7gssaXEeyawgpkBuk5U?=
+ =?us-ascii?q?Dgy6dHo6R/KnHZQV1UcCjuM2FiTqywu6KAY85K75Moqz9XUOWnYV2BTL7yuR?=
+ =?us-ascii?q?4a3D3iH2dEwzA7bT6qsI3jnxNmkGKdMGpzrH3BdMB+xBff4NjcSeRM0TUYXi?=
+ =?us-ascii?q?Z3lT7XBl6nMtaz59WUko3Pvfy5V2KkTpdTazXkzZuctCun4m1nGRi/kOqpmt?=
+ =?us-ascii?q?3kCwQ6yzL718VuVSrSqhbzf5Lm2L6gMeJiZEVnGFj8689iEIFkjoQwnI0Q2W?=
+ =?us-ascii?q?QdhpiN53oHi2bzPslA1KL9cnUNXzgLzMDR4AT/301jNH2JzZrjVnqB2sthe8?=
+ =?us-ascii?q?W6YmQO1y0n9MBKFLyZ7L9akitvpFq3swbRbeJ6njcHxvsk8GQajP0RuAox0i?=
+ =?us-ascii?q?WdBagfHUtfPSzojBSH9cuzrL9Ja2mycbi/zlZ+kcq9A7GFpwFWQGz5dYs6HS?=
+ =?us-ascii?q?9s8sV/N0rB32fw6oz/fNnQbNQTtgCbkhvajuhVLo4xmeQOhSZ9JW39unglwf?=
+ =?us-ascii?q?YhjRNyxZG6oJSHK2J18a2nGB5XLDv1Z8IJ9THrlqtekcGW34egHpVlBDoHRo?=
+ =?us-ascii?q?fnTfWtEDgKr/ToKx6OECEgqnecAbffHAuf6Fp9oH3VCJCrN2+YKWIDwtVhXh?=
+ =?us-ascii?q?adIVZQgAEOUDommZ45ExigxNb9f0dh+jAR+ln4pwNWxeJsKRb+XX3QpAG1ZT?=
+ =?us-ascii?q?gqUpiTNgFW7gFD50fOMcye7eNzHydD852lrQyNLHGbZgtSAWEIXEyEG07sPr?=
+ =?us-ascii?q?206dbc9OiYA/K0L+HSbrWWtexeS/CIyIqp0oR8+jaMNsWOPmRkD/00wUdDXm?=
+ =?us-ascii?q?52G97fmzoRTywbjSXNb9SUpB2k4C14sti/8Oj3WALo/YaPELxSMdNg+xCygK?=
+ =?us-ascii?q?eDKvWfhDxjJjZG15MMw3DIxaMR3FEJkS1haz6tEbEYvy7XUK3QgrNXDwIcay?=
+ =?us-ascii?q?5rMMtI7qU83g9TNs7fkN/12aR0jvovBFdDSFPglN+mZdYOI2G8MlPKH0eLNL?=
+ =?us-ascii?q?KaJTLVx8H7e7+zSbpVjO9MrR2/pS6bE1P/PjSEjzTpSx+vMeVDjSyAOBxeuY?=
+ =?us-ascii?q?e9cgtxCWj5S9LmbBy7MdBtgTIr37I+nmnKOnIEMThgb0NNqaWd7SdZgvV5Bm?=
+ =?us-ascii?q?xA4WNpLeqalCaD6enXNJIWvOB1AiR7ie1a+m42y7hL4yFeQvx6hi/SosRpo1?=
+ =?us-ascii?q?G8nemF0iBnXwZWqjZXmIKLul1vOaHY9plGRHbF8wsB7X6OBBsWuttlENzvu7?=
+ =?us-ascii?q?xQy9TWkaLzLypN88/Q/cQCHMXUNs2HP2Q7MRbzGz7bEhEFTTi1OmHbnUBdl+?=
+ =?us-ascii?q?uS9nKNpJggtpfsgIYOSqNcVFEtDfMVFEBlHN0EIJdqUTIpiqCbjMEW6nqkth?=
+ =?us-ascii?q?XRR9tVvorBVv2MBfXjMjGZjaNLZxEQ27P3MZwTNpHn20xlclR6nYLKG1bOUt?=
+ =?us-ascii?q?BJuyFhYQE0oUpW/Xh6T20zwF7lahi37H8dD/67gAA5hRZgbuQ29zfs/1A3Jk?=
+ =?us-ascii?q?LQqCs3ikkxls3vgSqNfz7pMKewQYZWBjLwt0gwNJP7Xgl0YRSqnUN+LjfERq?=
+ =?us-ascii?q?lRgKd7eGB1hw/Tp4FPFeRfTaJaeh8Qw++YZ/Ey3VRbsCWnyldN5fHZBpt6iA?=
+ =?us-ascii?q?sqbZmsompE2wJiat41OKPRJLJRzldMn66BozGn1v4qzQ8aJkYN63+SeDUStE?=
+ =?us-ascii?q?wPN7gmIzCn8fd36QCYnDtDYmcMXeIwov127kM9J/iAzyX43r5HK0CxMfGfLq?=
+ =?us-ascii?q?yAt2faj86IR0o81kAWmElf+7h5z8MjflGQV0Au17uRCw8JOdDDKQFTYcpS7m?=
+ =?us-ascii?q?LccjuQvurX3J15JYK9FvrnTeWWrqYbnlqkHBo1H4QL9skBGpis0EfFLcboNb?=
+ =?us-ascii?q?IF0Qsi5B7lJFmcEfRJYwyEkC0co8yk0p930pdSJisHDWV+Lyq3/LDXqREugP?=
+ =?us-ascii?q?aZW9c2eHgaVJMeNn0qQM26hzJZv3NYATmwyuIZ0g+C7zH9piTUEjbwdt5jZP?=
+ =?us-ascii?q?aPZRNwE9y2/TQ/87OqiV7M6JnePG/6Oc5kutDR9eNJ76qAXtpQQKlwog/2ho?=
+ =?us-ascii?q?VRQX+tTSabGNq4N5XhLYMxYdXyCXGkeli+jS8lCcb3INupaKOPhFesDb5ZrI?=
+ =?us-ascii?q?SBlAIiN8umCisXU0Noqv0O/rBUZAsNeZM3bBfk8QMkOPr7aC6C1NyqT2HlAj?=
+ =?us-ascii?q?JMUfBbzeLya7Ef6icoaafuwXAlQ7k5wvOx/EpLQ4sF2FWW5PCsYMF7Viz1E2?=
+ =?us-ascii?q?YVLwDOoyU+v3JsOuY73qE0xxae9RFWMTmNdapvaW9Zu9gUAVKUPGUwC2wkSl?=
+ =?us-ascii?q?vaho3GqEb43bkU/m1bntVJ1eRttHn4o4+ZYTSwVajtopLQ5W5oJ9ohpKt4Ks?=
+ =?us-ascii?q?rnK8uatZXTmBTbTZ/NokuEVjK3E7xRnd0aaHZaR/5OkHpjPcUGpYtH5EwZUs?=
+ =?us-ascii?q?Y4OqwJCa8wq7TsYj1hW2pahzUeW5mB0ztEnOai2pPbkAuddNIpNxlO+MFYhd?=
+ =?us-ascii?q?cHUiFxJD0fuq6LVoPKmmvCQW8OdkNbpw5B4gIolYJqeO3hpoHSRYRMyjhZ5f?=
+ =?us-ascii?q?VuXWGDQpNl8VvTSWyMh1X8Dv67mvep3ARdivX23Y9fECZ2FEwV4u9dlUYyMr?=
+ =?us-ascii?q?hsY/0It5POrySgbkr/tmurz/Gpch0Z7Mzfd1T1CMLosW7xSCgV/zVAQJdC4H?=
+ =?us-ascii?q?zbEZkIlgN/Lqcn4lxRdsTuMET34jE/gY5uA6W/UMSm1n4lpHAdSiGyGsBdDe?=
+ =?us-ascii?q?x8q1LWQHtuZJXh4MHnMpBfWSla/4GBrFJdnVRFMye/0pdaM8hX/jgBRiNPoC?=
+ =?us-ascii?q?3bt9y3HokL4sJsAJJEAt57v2b7UPdfNYKerlU2s7jr23mf8Dc55hPy5jy2Fr?=
+ =?us-ascii?q?TwauVD5WwFUlErImOEsEg0J+0l92rTtFfXvQYwt9haArzHoUh4qzF7VsRRBz?=
+ =?us-ascii?q?JNk3yoJl90SlFPqeAcI6PQJYgUZvAoZleVJgA6HPgqlxiM9Ft3223kfyh7sA?=
+ =?us-ascii?q?dy8jrYGQIzUH9Ryo3qkzAEtomdODQaV59SJWE7dSbOAwGWgyZauFBYcU48H9?=
+ =?us-ascii?q?gwBttV9rBT5pdd5M3cTkewLj9NCBV5Kio73OBZmEoFt1+XL3PzFw2tIM3Tvw?=
+ =?us-ascii?q?V3cMHZl8ugKPD07U8TkY/8mPwp/KUEAXu9kEuiRs6I/Ny0jcGDqkbbLPSwCO?=
+ =?us-ascii?q?a7e3KUCWGW3B0=3D?=
+X-IPAS-Result: =?us-ascii?q?A2BRBACODCde/wHyM5BlHQEBAQkBEQUFAYF7gX2BGFQBI?=
+ =?us-ascii?q?BIqhBKJA4ZjAQEEBoE3iW6RSQkBAQEBAQEBAQEtCgEBgUyCL0UCgjY4EwIQA?=
+ =?us-ascii?q?QEBBAEBAQEBBQMBAWyFNwyCOykBgnoBBQ4VFS0UEAsYAgImAgJXBgEMBgIBA?=
+ =?us-ascii?q?YJjPwGCViUPrX2BMoRJQUCDM4E+gQ4qiUuCY3mBB4E4D4JdPoJkAQIBAoRvg?=
+ =?us-ascii?q?l4EkBaHHEaXWoJDgkmEdI5uBhuDP5c4LY4xiGGUNiKBWCsIAhgIIQ+DJwkWM?=
+ =?us-ascii?q?RgNiA0XFYhPhQgBVCMDMAIFBo4EAQE?=
+Received: from tarius.tycho.ncsc.mil (HELO tarius.infosec.tycho.ncsc.mil)
+ ([144.51.242.1])
+ by emsm-gh1-uea11.NCSC.MIL with ESMTP; 21 Jan 2020 14:43:11 +0000
+Received: from moss-pluto.infosec.tycho.ncsc.mil (moss-pluto [192.168.25.131])
+ by tarius.infosec.tycho.ncsc.mil (8.14.7/8.14.4) with ESMTP id
+ 00LEfrIu015620; Tue, 21 Jan 2020 09:41:56 -0500
+To: Alexey Budankov <alexey.budankov@linux.intel.com>,
+ Peter Zijlstra <peterz@infradead.org>,
+ Arnaldo Carvalho de Melo <acme@kernel.org>, Ingo Molnar <mingo@redhat.com>,
+ "jani.nikula@linux.intel.com" <jani.nikula@linux.intel.com>,
+ "joonas.lahtinen@linux.intel.com" <joonas.lahtinen@linux.intel.com>,
+ "rodrigo.vivi@intel.com" <rodrigo.vivi@intel.com>,
+ "benh@kernel.crashing.org" <benh@kernel.crashing.org>,
+ Paul Mackerras <paulus@samba.org>, Michael Ellerman <mpe@ellerman.id.au>,
+ "james.bottomley@hansenpartnership.com"
+ <james.bottomley@hansenpartnership.com>,
+ Serge Hallyn <serge@hallyn.com>, James Morris <jmorris@namei.org>,
+ Will Deacon <will.deacon@arm.com>, Mark Rutland <mark.rutland@arm.com>,
+ Robert Richter <rric@kernel.org>, Alexei Starovoitov <ast@kernel.org>
+References: <0548c832-7f4b-dc4c-8883-3f2b6d351a08@linux.intel.com>
+ <9b77124b-675d-5ac7-3741-edec575bd425@linux.intel.com>
+From: Stephen Smalley <sds@tycho.nsa.gov>
+Message-ID: <64cab472-806e-38c4-fb26-0ffbee485367@tycho.nsa.gov>
+Date: Tue, 21 Jan 2020 09:43:49 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.3.1
+MIME-Version: 1.0
+In-Reply-To: <9b77124b-675d-5ac7-3741-edec575bd425@linux.intel.com>
+Content-Language: en-US
 X-Mailman-Approved-At: Tue, 21 Jan 2020 17:20:38 +0000
-Subject: [Intel-gfx] [PATCH 6/6] drm/i915/hdcp: conversion to struct
- drm_device based logging macros
+Subject: Re: [Intel-gfx] [PATCH v5 01/10] capabilities: introduce
+ CAP_PERFMON to kernel and user space
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,495 +167,87 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Cc: Song Liu <songliubraving@fb.com>, Andi Kleen <ak@linux.intel.com>,
+ "linux-parisc@vger.kernel.org" <linux-parisc@vger.kernel.org>,
+ Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+ "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ Igor Lubashev <ilubashe@akamai.com>,
+ linux-kernel <linux-kernel@vger.kernel.org>,
+ Stephane Eranian <eranian@google.com>,
+ "linux-perf-users@vger.kernel.org" <linux-perf-users@vger.kernel.org>,
+ "selinux@vger.kernel.org" <selinux@vger.kernel.org>,
+ "linux-security-module@vger.kernel.org"
+ <linux-security-module@vger.kernel.org>, oprofile-list@lists.sf.net,
+ Namhyung Kim <namhyung@kernel.org>, Thomas Gleixner <tglx@linutronix.de>,
+ Jiri Olsa <jolsa@redhat.com>, linux-arm-kernel@lists.infradead.org
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Converts various instances of the printk based logging macros in
-i915/display/intel_hdcp.c with the struct drm_device based macros using
-coccinelle. The script matches based on the existence of an existing
-struct drm_i915_private device:
-@rule1@
-identifier fn, T;
-@@
+On 1/20/20 6:23 AM, Alexey Budankov wrote:
+> 
+> Introduce CAP_PERFMON capability designed to secure system performance
+> monitoring and observability operations so that CAP_PERFMON would assist
+> CAP_SYS_ADMIN capability in its governing role for perf_events, i915_perf
+> and other performance monitoring and observability subsystems.
+> 
+> CAP_PERFMON intends to harden system security and integrity during system
+> performance monitoring and observability operations by decreasing attack
+> surface that is available to a CAP_SYS_ADMIN privileged process [1].
+> Providing access to system performance monitoring and observability
+> operations under CAP_PERFMON capability singly, without the rest of
+> CAP_SYS_ADMIN credentials, excludes chances to misuse the credentials and
+> makes operation more secure.
+> 
+> CAP_PERFMON intends to take over CAP_SYS_ADMIN credentials related to
+> system performance monitoring and observability operations and balance
+> amount of CAP_SYS_ADMIN credentials following the recommendations in the
+> capabilities man page [1] for CAP_SYS_ADMIN: "Note: this capability is
+> overloaded; see Notes to kernel developers, below."
+> 
+> Although the software running under CAP_PERFMON can not ensure avoidance
+> of related hardware issues, the software can still mitigate these issues
+> following the official embargoed hardware issues mitigation procedure [2].
+> The bugs in the software itself could be fixed following the standard
+> kernel development process [3] to maintain and harden security of system
+> performance monitoring and observability operations.
+> 
+> [1] http://man7.org/linux/man-pages/man7/capabilities.7.html
+> [2] https://www.kernel.org/doc/html/latest/process/embargoed-hardware-issues.html
+> [3] https://www.kernel.org/doc/html/latest/admin-guide/security-bugs.html
+> 
+> Signed-off-by: Alexey Budankov <alexey.budankov@linux.intel.com>
+> ---
+>   include/linux/capability.h          | 12 ++++++++++++
+>   include/uapi/linux/capability.h     |  8 +++++++-
+>   security/selinux/include/classmap.h |  4 ++--
+>   3 files changed, 21 insertions(+), 3 deletions(-)
+> 
+> diff --git a/include/linux/capability.h b/include/linux/capability.h
+> index ecce0f43c73a..8784969d91e1 100644
+> --- a/include/linux/capability.h
+> +++ b/include/linux/capability.h
+> @@ -251,6 +251,18 @@ extern bool privileged_wrt_inode_uidgid(struct user_namespace *ns, const struct
+>   extern bool capable_wrt_inode_uidgid(const struct inode *inode, int cap);
+>   extern bool file_ns_capable(const struct file *file, struct user_namespace *ns, int cap);
+>   extern bool ptracer_capable(struct task_struct *tsk, struct user_namespace *ns);
+> +static inline bool perfmon_capable(void)
+> +{
+> +	struct user_namespace *ns = &init_user_ns;
+> +
+> +	if (ns_capable_noaudit(ns, CAP_PERFMON))
+> +		return ns_capable(ns, CAP_PERFMON);
+> +
+> +	if (ns_capable_noaudit(ns, CAP_SYS_ADMIN))
+> +		return ns_capable(ns, CAP_SYS_ADMIN);
+> +
+> +	return false;
+> +}
 
-fn(...,struct drm_i915_private *T,...) {
-<+...
-(
--DRM_INFO(
-+drm_info(&T->drm,
-...)
-|
--DRM_ERROR(
-+drm_err(&T->drm,
-...)
-|
--DRM_WARN(
-+drm_warn(&T->drm,
-...)
-|
--DRM_DEBUG(
-+drm_dbg(&T->drm,
-...)
-|
--DRM_DEBUG_DRIVER(
-+drm_dbg(&T->drm,
-...)
-|
--DRM_DEBUG_KMS(
-+drm_dbg_kms(&T->drm,
-...)
-|
--DRM_DEBUG_ATOMIC(
-+drm_dbg_atomic(&T->drm,
-...)
-)
-...+>
-}
-
-@rule2@
-identifier fn, T;
-@@
-
-fn(...) {
-...
-struct drm_i915_private *T = ...;
-<+...
-(
--DRM_INFO(
-+drm_info(&T->drm,
-...)
-|
--DRM_ERROR(
-+drm_err(&T->drm,
-...)
-|
--DRM_WARN(
-+drm_warn(&T->drm,
-...)
-|
--DRM_DEBUG(
-+drm_dbg(&T->drm,
-...)
-|
--DRM_DEBUG_KMS(
-+drm_dbg_kms(&T->drm,
-...)
-|
--DRM_DEBUG_DRIVER(
-+drm_dbg(&T->drm,
-...)
-|
--DRM_DEBUG_ATOMIC(
-+drm_dbg_atomic(&T->drm,
-...)
-)
-...+>
-}
-
-New checkpatch warnings were addressed manually.
-
-Signed-off-by: Wambui Karuga <wambui.karugax@gmail.com>
----
- drivers/gpu/drm/i915/display/intel_hdcp.c | 138 +++++++++++++---------
- 1 file changed, 81 insertions(+), 57 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
-index 0fdbd39f6641..01acf6c5d04d 100644
---- a/drivers/gpu/drm/i915/display/intel_hdcp.c
-+++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
-@@ -217,8 +217,9 @@ static int intel_hdcp_load_keys(struct drm_i915_private *dev_priv)
- 		ret = sandybridge_pcode_write(dev_priv,
- 					      SKL_PCODE_LOAD_HDCP_KEYS, 1);
- 		if (ret) {
--			DRM_ERROR("Failed to initiate HDCP key load (%d)\n",
--			          ret);
-+			drm_err(&dev_priv->drm,
-+				"Failed to initiate HDCP key load (%d)\n",
-+				ret);
- 			return ret;
- 		}
- 	} else {
-@@ -245,7 +246,7 @@ static int intel_write_sha_text(struct drm_i915_private *dev_priv, u32 sha_text)
- {
- 	I915_WRITE(HDCP_SHA_TEXT, sha_text);
- 	if (intel_de_wait_for_set(dev_priv, HDCP_REP_CTL, HDCP_SHA1_READY, 1)) {
--		DRM_ERROR("Timed out waiting for SHA1 ready\n");
-+		drm_err(&dev_priv->drm, "Timed out waiting for SHA1 ready\n");
- 		return -ETIMEDOUT;
- 	}
- 	return 0;
-@@ -270,7 +271,8 @@ u32 intel_hdcp_get_repeater_ctl(struct drm_i915_private *dev_priv,
- 			return HDCP_TRANSD_REP_PRESENT |
- 			       HDCP_TRANSD_SHA1_M0;
- 		default:
--			DRM_ERROR("Unknown transcoder %d\n", cpu_transcoder);
-+			drm_err(&dev_priv->drm, "Unknown transcoder %d\n",
-+				cpu_transcoder);
- 			return -EINVAL;
- 		}
- 	}
-@@ -287,7 +289,7 @@ u32 intel_hdcp_get_repeater_ctl(struct drm_i915_private *dev_priv,
- 	case PORT_E:
- 		return HDCP_DDIE_REP_PRESENT | HDCP_DDIE_SHA1_M0;
- 	default:
--		DRM_ERROR("Unknown port %d\n", port);
-+		drm_err(&dev_priv->drm, "Unknown port %d\n", port);
- 		return -EINVAL;
- 	}
- }
-@@ -762,25 +764,26 @@ static int _intel_hdcp_disable(struct intel_connector *connector)
- 	enum transcoder cpu_transcoder = hdcp->cpu_transcoder;
- 	int ret;
- 
--	DRM_DEBUG_KMS("[%s:%d] HDCP is being disabled...\n",
--		      connector->base.name, connector->base.base.id);
-+	drm_dbg_kms(&dev_priv->drm, "[%s:%d] HDCP is being disabled...\n",
-+		    connector->base.name, connector->base.base.id);
- 
- 	hdcp->hdcp_encrypted = false;
- 	I915_WRITE(HDCP_CONF(dev_priv, cpu_transcoder, port), 0);
- 	if (intel_de_wait_for_clear(dev_priv,
- 				    HDCP_STATUS(dev_priv, cpu_transcoder, port),
- 				    ~0, ENCRYPT_STATUS_CHANGE_TIMEOUT_MS)) {
--		DRM_ERROR("Failed to disable HDCP, timeout clearing status\n");
-+		drm_err(&dev_priv->drm,
-+			"Failed to disable HDCP, timeout clearing status\n");
- 		return -ETIMEDOUT;
- 	}
- 
- 	ret = hdcp->shim->toggle_signalling(intel_dig_port, false);
- 	if (ret) {
--		DRM_ERROR("Failed to disable HDCP signalling\n");
-+		drm_err(&dev_priv->drm, "Failed to disable HDCP signalling\n");
- 		return ret;
- 	}
- 
--	DRM_DEBUG_KMS("HDCP is disabled\n");
-+	drm_dbg_kms(&dev_priv->drm, "HDCP is disabled\n");
- 	return 0;
- }
- 
-@@ -790,11 +793,11 @@ static int _intel_hdcp_enable(struct intel_connector *connector)
- 	struct drm_i915_private *dev_priv = connector->base.dev->dev_private;
- 	int i, ret, tries = 3;
- 
--	DRM_DEBUG_KMS("[%s:%d] HDCP is being enabled...\n",
--		      connector->base.name, connector->base.base.id);
-+	drm_dbg_kms(&dev_priv->drm, "[%s:%d] HDCP is being enabled...\n",
-+		    connector->base.name, connector->base.base.id);
- 
- 	if (!hdcp_key_loadable(dev_priv)) {
--		DRM_ERROR("HDCP key Load is not possible\n");
-+		drm_err(&dev_priv->drm, "HDCP key Load is not possible\n");
- 		return -ENXIO;
- 	}
- 
-@@ -805,7 +808,8 @@ static int _intel_hdcp_enable(struct intel_connector *connector)
- 		intel_hdcp_clear_keys(dev_priv);
- 	}
- 	if (ret) {
--		DRM_ERROR("Could not load HDCP keys, (%d)\n", ret);
-+		drm_err(&dev_priv->drm, "Could not load HDCP keys, (%d)\n",
-+			ret);
- 		return ret;
- 	}
- 
-@@ -817,13 +821,14 @@ static int _intel_hdcp_enable(struct intel_connector *connector)
- 			return 0;
- 		}
- 
--		DRM_DEBUG_KMS("HDCP Auth failure (%d)\n", ret);
-+		drm_dbg_kms(&dev_priv->drm, "HDCP Auth failure (%d)\n", ret);
- 
- 		/* Ensuring HDCP encryption and signalling are stopped. */
- 		_intel_hdcp_disable(connector);
- 	}
- 
--	DRM_DEBUG_KMS("HDCP authentication failed (%d tries/%d)\n", tries, ret);
-+	drm_dbg_kms(&dev_priv->drm,
-+		    "HDCP authentication failed (%d tries/%d)\n", tries, ret);
- 	return ret;
- }
- 
-@@ -854,10 +859,11 @@ static int intel_hdcp_check_link(struct intel_connector *connector)
- 	}
- 
- 	if (WARN_ON(!intel_hdcp_in_use(dev_priv, cpu_transcoder, port))) {
--		DRM_ERROR("%s:%d HDCP link stopped encryption,%x\n",
--			  connector->base.name, connector->base.base.id,
--			  I915_READ(HDCP_STATUS(dev_priv, cpu_transcoder,
--						port)));
-+		drm_err(&dev_priv->drm,
-+			"%s:%d HDCP link stopped encryption,%x\n",
-+			connector->base.name, connector->base.base.id,
-+			I915_READ(HDCP_STATUS(dev_priv, cpu_transcoder,
-+					      port)));
- 		ret = -ENXIO;
- 		hdcp->value = DRM_MODE_CONTENT_PROTECTION_DESIRED;
- 		schedule_work(&hdcp->prop_work);
-@@ -872,12 +878,13 @@ static int intel_hdcp_check_link(struct intel_connector *connector)
- 		goto out;
- 	}
- 
--	DRM_DEBUG_KMS("[%s:%d] HDCP link failed, retrying authentication\n",
--		      connector->base.name, connector->base.base.id);
-+	drm_dbg_kms(&dev_priv->drm,
-+		    "[%s:%d] HDCP link failed, retrying authentication\n",
-+		    connector->base.name, connector->base.base.id);
- 
- 	ret = _intel_hdcp_disable(connector);
- 	if (ret) {
--		DRM_ERROR("Failed to disable hdcp (%d)\n", ret);
-+		drm_err(&dev_priv->drm, "Failed to disable hdcp (%d)\n", ret);
- 		hdcp->value = DRM_MODE_CONTENT_PROTECTION_DESIRED;
- 		schedule_work(&hdcp->prop_work);
- 		goto out;
-@@ -885,7 +892,7 @@ static int intel_hdcp_check_link(struct intel_connector *connector)
- 
- 	ret = _intel_hdcp_enable(connector);
- 	if (ret) {
--		DRM_ERROR("Failed to enable hdcp (%d)\n", ret);
-+		drm_err(&dev_priv->drm, "Failed to enable hdcp (%d)\n", ret);
- 		hdcp->value = DRM_MODE_CONTENT_PROTECTION_DESIRED;
- 		schedule_work(&hdcp->prop_work);
- 		goto out;
-@@ -944,7 +951,8 @@ hdcp2_prepare_ake_init(struct intel_connector *connector,
- 
- 	ret = comp->ops->initiate_hdcp2_session(comp->mei_dev, data, ake_data);
- 	if (ret)
--		DRM_DEBUG_KMS("Prepare_ake_init failed. %d\n", ret);
-+		drm_dbg_kms(&dev_priv->drm, "Prepare_ake_init failed. %d\n",
-+			    ret);
- 	mutex_unlock(&dev_priv->hdcp_comp_mutex);
- 
- 	return ret;
-@@ -974,7 +982,8 @@ hdcp2_verify_rx_cert_prepare_km(struct intel_connector *connector,
- 							 rx_cert, paired,
- 							 ek_pub_km, msg_sz);
- 	if (ret < 0)
--		DRM_DEBUG_KMS("Verify rx_cert failed. %d\n", ret);
-+		drm_dbg_kms(&dev_priv->drm, "Verify rx_cert failed. %d\n",
-+			    ret);
- 	mutex_unlock(&dev_priv->hdcp_comp_mutex);
- 
- 	return ret;
-@@ -998,7 +1007,7 @@ static int hdcp2_verify_hprime(struct intel_connector *connector,
- 
- 	ret = comp->ops->verify_hprime(comp->mei_dev, data, rx_hprime);
- 	if (ret < 0)
--		DRM_DEBUG_KMS("Verify hprime failed. %d\n", ret);
-+		drm_dbg_kms(&dev_priv->drm, "Verify hprime failed. %d\n", ret);
- 	mutex_unlock(&dev_priv->hdcp_comp_mutex);
- 
- 	return ret;
-@@ -1023,7 +1032,8 @@ hdcp2_store_pairing_info(struct intel_connector *connector,
- 
- 	ret = comp->ops->store_pairing_info(comp->mei_dev, data, pairing_info);
- 	if (ret < 0)
--		DRM_DEBUG_KMS("Store pairing info failed. %d\n", ret);
-+		drm_dbg_kms(&dev_priv->drm, "Store pairing info failed. %d\n",
-+			    ret);
- 	mutex_unlock(&dev_priv->hdcp_comp_mutex);
- 
- 	return ret;
-@@ -1048,7 +1058,8 @@ hdcp2_prepare_lc_init(struct intel_connector *connector,
- 
- 	ret = comp->ops->initiate_locality_check(comp->mei_dev, data, lc_init);
- 	if (ret < 0)
--		DRM_DEBUG_KMS("Prepare lc_init failed. %d\n", ret);
-+		drm_dbg_kms(&dev_priv->drm, "Prepare lc_init failed. %d\n",
-+			    ret);
- 	mutex_unlock(&dev_priv->hdcp_comp_mutex);
- 
- 	return ret;
-@@ -1073,7 +1084,8 @@ hdcp2_verify_lprime(struct intel_connector *connector,
- 
- 	ret = comp->ops->verify_lprime(comp->mei_dev, data, rx_lprime);
- 	if (ret < 0)
--		DRM_DEBUG_KMS("Verify L_Prime failed. %d\n", ret);
-+		drm_dbg_kms(&dev_priv->drm, "Verify L_Prime failed. %d\n",
-+			    ret);
- 	mutex_unlock(&dev_priv->hdcp_comp_mutex);
- 
- 	return ret;
-@@ -1097,7 +1109,8 @@ static int hdcp2_prepare_skey(struct intel_connector *connector,
- 
- 	ret = comp->ops->get_session_key(comp->mei_dev, data, ske_data);
- 	if (ret < 0)
--		DRM_DEBUG_KMS("Get session key failed. %d\n", ret);
-+		drm_dbg_kms(&dev_priv->drm, "Get session key failed. %d\n",
-+			    ret);
- 	mutex_unlock(&dev_priv->hdcp_comp_mutex);
- 
- 	return ret;
-@@ -1126,7 +1139,8 @@ hdcp2_verify_rep_topology_prepare_ack(struct intel_connector *connector,
- 							 rep_topology,
- 							 rep_send_ack);
- 	if (ret < 0)
--		DRM_DEBUG_KMS("Verify rep topology failed. %d\n", ret);
-+		drm_dbg_kms(&dev_priv->drm,
-+			    "Verify rep topology failed. %d\n", ret);
- 	mutex_unlock(&dev_priv->hdcp_comp_mutex);
- 
- 	return ret;
-@@ -1151,7 +1165,7 @@ hdcp2_verify_mprime(struct intel_connector *connector,
- 
- 	ret = comp->ops->verify_mprime(comp->mei_dev, data, stream_ready);
- 	if (ret < 0)
--		DRM_DEBUG_KMS("Verify mprime failed. %d\n", ret);
-+		drm_dbg_kms(&dev_priv->drm, "Verify mprime failed. %d\n", ret);
- 	mutex_unlock(&dev_priv->hdcp_comp_mutex);
- 
- 	return ret;
-@@ -1174,7 +1188,8 @@ static int hdcp2_authenticate_port(struct intel_connector *connector)
- 
- 	ret = comp->ops->enable_hdcp_authentication(comp->mei_dev, data);
- 	if (ret < 0)
--		DRM_DEBUG_KMS("Enable hdcp auth failed. %d\n", ret);
-+		drm_dbg_kms(&dev_priv->drm, "Enable hdcp auth failed. %d\n",
-+			    ret);
- 	mutex_unlock(&dev_priv->hdcp_comp_mutex);
- 
- 	return ret;
-@@ -1536,8 +1551,9 @@ static int hdcp2_enable_encryption(struct intel_connector *connector)
- 	if (hdcp->shim->toggle_signalling) {
- 		ret = hdcp->shim->toggle_signalling(intel_dig_port, true);
- 		if (ret) {
--			DRM_ERROR("Failed to enable HDCP signalling. %d\n",
--				  ret);
-+			drm_err(&dev_priv->drm,
-+				"Failed to enable HDCP signalling. %d\n",
-+				ret);
- 			return ret;
- 		}
- 	}
-@@ -1582,13 +1598,14 @@ static int hdcp2_disable_encryption(struct intel_connector *connector)
- 				      LINK_ENCRYPTION_STATUS,
- 				      ENCRYPT_STATUS_CHANGE_TIMEOUT_MS);
- 	if (ret == -ETIMEDOUT)
--		DRM_DEBUG_KMS("Disable Encryption Timedout");
-+		drm_dbg_kms(&dev_priv->drm, "Disable Encryption Timedout");
- 
- 	if (hdcp->shim->toggle_signalling) {
- 		ret = hdcp->shim->toggle_signalling(intel_dig_port, false);
- 		if (ret) {
--			DRM_ERROR("Failed to disable HDCP signalling. %d\n",
--				  ret);
-+			drm_err(&dev_priv->drm,
-+				"Failed to disable HDCP signalling. %d\n",
-+				ret);
- 			return ret;
- 		}
- 	}
-@@ -1691,9 +1708,10 @@ static int intel_hdcp2_check_link(struct intel_connector *connector)
- 	}
- 
- 	if (WARN_ON(!intel_hdcp2_in_use(dev_priv, cpu_transcoder, port))) {
--		DRM_ERROR("HDCP2.2 link stopped the encryption, %x\n",
--			  I915_READ(HDCP2_STATUS(dev_priv, cpu_transcoder,
--						 port)));
-+		drm_err(&dev_priv->drm,
-+			"HDCP2.2 link stopped the encryption, %x\n",
-+			I915_READ(HDCP2_STATUS(dev_priv, cpu_transcoder,
-+					       port)));
- 		ret = -ENXIO;
- 		hdcp->value = DRM_MODE_CONTENT_PROTECTION_DESIRED;
- 		schedule_work(&hdcp->prop_work);
-@@ -1713,25 +1731,29 @@ static int intel_hdcp2_check_link(struct intel_connector *connector)
- 		if (hdcp->value == DRM_MODE_CONTENT_PROTECTION_UNDESIRED)
- 			goto out;
- 
--		DRM_DEBUG_KMS("HDCP2.2 Downstream topology change\n");
-+		drm_dbg_kms(&dev_priv->drm,
-+			    "HDCP2.2 Downstream topology change\n");
- 		ret = hdcp2_authenticate_repeater_topology(connector);
- 		if (!ret) {
- 			hdcp->value = DRM_MODE_CONTENT_PROTECTION_ENABLED;
- 			schedule_work(&hdcp->prop_work);
- 			goto out;
- 		}
--		DRM_DEBUG_KMS("[%s:%d] Repeater topology auth failed.(%d)\n",
--			      connector->base.name, connector->base.base.id,
--			      ret);
-+		drm_dbg_kms(&dev_priv->drm,
-+			    "[%s:%d] Repeater topology auth failed.(%d)\n",
-+			    connector->base.name, connector->base.base.id,
-+			    ret);
- 	} else {
--		DRM_DEBUG_KMS("[%s:%d] HDCP2.2 link failed, retrying auth\n",
--			      connector->base.name, connector->base.base.id);
-+		drm_dbg_kms(&dev_priv->drm,
-+			    "[%s:%d] HDCP2.2 link failed, retrying auth\n",
-+			    connector->base.name, connector->base.base.id);
- 	}
- 
- 	ret = _intel_hdcp2_disable(connector);
- 	if (ret) {
--		DRM_ERROR("[%s:%d] Failed to disable hdcp2.2 (%d)\n",
--			  connector->base.name, connector->base.base.id, ret);
-+		drm_err(&dev_priv->drm,
-+			"[%s:%d] Failed to disable hdcp2.2 (%d)\n",
-+			connector->base.name, connector->base.base.id, ret);
- 		hdcp->value = DRM_MODE_CONTENT_PROTECTION_DESIRED;
- 		schedule_work(&hdcp->prop_work);
- 		goto out;
-@@ -1739,9 +1761,10 @@ static int intel_hdcp2_check_link(struct intel_connector *connector)
- 
- 	ret = _intel_hdcp2_enable(connector);
- 	if (ret) {
--		DRM_DEBUG_KMS("[%s:%d] Failed to enable hdcp2.2 (%d)\n",
--			      connector->base.name, connector->base.base.id,
--			      ret);
-+		drm_dbg_kms(&dev_priv->drm,
-+			    "[%s:%d] Failed to enable hdcp2.2 (%d)\n",
-+			    connector->base.name, connector->base.base.id,
-+			    ret);
- 		hdcp->value = DRM_MODE_CONTENT_PROTECTION_DESIRED;
- 		schedule_work(&hdcp->prop_work);
- 		goto out;
-@@ -1772,7 +1795,7 @@ static int i915_hdcp_component_bind(struct device *i915_kdev,
- {
- 	struct drm_i915_private *dev_priv = kdev_to_i915(i915_kdev);
- 
--	DRM_DEBUG("I915 HDCP comp bind\n");
-+	drm_dbg(&dev_priv->drm, "I915 HDCP comp bind\n");
- 	mutex_lock(&dev_priv->hdcp_comp_mutex);
- 	dev_priv->hdcp_master = (struct i915_hdcp_comp_master *)data;
- 	dev_priv->hdcp_master->mei_dev = mei_kdev;
-@@ -1786,7 +1809,7 @@ static void i915_hdcp_component_unbind(struct device *i915_kdev,
- {
- 	struct drm_i915_private *dev_priv = kdev_to_i915(i915_kdev);
- 
--	DRM_DEBUG("I915 HDCP comp unbind\n");
-+	drm_dbg(&dev_priv->drm, "I915 HDCP comp unbind\n");
- 	mutex_lock(&dev_priv->hdcp_comp_mutex);
- 	dev_priv->hdcp_master = NULL;
- 	mutex_unlock(&dev_priv->hdcp_comp_mutex);
-@@ -1854,7 +1877,7 @@ static inline int initialize_hdcp_port_data(struct intel_connector *connector,
- 					sizeof(struct hdcp2_streamid_type),
- 					GFP_KERNEL);
- 	if (!data->streams) {
--		DRM_ERROR("Out of Memory\n");
-+		drm_err(&dev_priv->drm, "Out of Memory\n");
- 		return -ENOMEM;
- 	}
- 
-@@ -1888,7 +1911,8 @@ void intel_hdcp_component_init(struct drm_i915_private *dev_priv)
- 	ret = component_add_typed(dev_priv->drm.dev, &i915_hdcp_component_ops,
- 				  I915_COMPONENT_HDCP);
- 	if (ret < 0) {
--		DRM_DEBUG_KMS("Failed at component add(%d)\n", ret);
-+		drm_dbg_kms(&dev_priv->drm, "Failed at component add(%d)\n",
-+			    ret);
- 		mutex_lock(&dev_priv->hdcp_comp_mutex);
- 		dev_priv->hdcp_comp_added = false;
- 		mutex_unlock(&dev_priv->hdcp_comp_mutex);
--- 
-2.17.1
-
+Why _noaudit()?  Normally only used when a permission failure is 
+non-fatal to the operation.  Otherwise, we want the audit message.
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
