@@ -2,31 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A2293143E82
-	for <lists+intel-gfx@lfdr.de>; Tue, 21 Jan 2020 14:48:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B1C46143E9B
+	for <lists+intel-gfx@lfdr.de>; Tue, 21 Jan 2020 14:50:46 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9BCC26ED08;
-	Tue, 21 Jan 2020 13:48:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EEE916ED03;
+	Tue, 21 Jan 2020 13:50:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C70506ED08
- for <intel-gfx@lists.freedesktop.org>; Tue, 21 Jan 2020 13:48:17 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 934D56ED03
+ for <intel-gfx@lists.freedesktop.org>; Tue, 21 Jan 2020 13:50:43 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
-Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19958713-1500050 
- for multiple; Tue, 21 Jan 2020 13:48:04 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 21 Jan 2020 13:48:02 +0000
-Message-Id: <20200121134802.301920-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.25.0
-In-Reply-To: <20200121100927.114886-1-chris@chris-wilson.co.uk>
-References: <20200121100927.114886-1-chris@chris-wilson.co.uk>
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 19958746-1500050 for multiple; Tue, 21 Jan 2020 13:50:40 +0000
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v4] drm/i915/execlists: Reclaim the hanging
- virtual request
+From: Chris Wilson <chris@chris-wilson.co.uk>
+User-Agent: alot/0.6
+To: Mika Kuoppala <mika.kuoppala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+References: <20200118105217.3484773-1-chris@chris-wilson.co.uk>
+ <87lfq0q5zd.fsf@gaia.fi.intel.com>
+In-Reply-To: <87lfq0q5zd.fsf@gaia.fi.intel.com>
+Message-ID: <157961463891.4434.14485421708219131239@skylake-alporthouse-com>
+Date: Tue, 21 Jan 2020 13:50:38 +0000
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/gt: Clear the whole first page of
+ LRC on gen9
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,258 +46,54 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-If we encounter a hang on a virtual engine, as we process the hang the
-request may already have been moved back to the virtual engine (we are
-processing the hang on the physical engine). We need to reclaim the
-request from the virtual engine so that the locking is consistent and
-local to the real engine on which we will hold the request for error
-state capturing.
+Quoting Mika Kuoppala (2020-01-21 13:44:22)
+> Chris Wilson <chris@chris-wilson.co.uk> writes:
+> 
+> > Try clearing the whole first page of the LRC on gen9, just in case HW
+> 
+> First page of LRC is a bit misleading as this is first page of
+> LRC registers and techincally first page of LRC would be hwsp?
 
-v2: Pull the reclamation into execlists_hold() and assert that cannot be
-called from outside of the reset (i.e. with the tasklet disabled).
-v3: Added selftest
-v4: Drop the reference owned by the virtual engine
+I refer to the "Logical Ring" :)
 
-Fixes: 748317386afb ("drm/i915/execlists: Offline error capture")
-Testcase: igt/gem_exec_balancer/hang
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
----
- drivers/gpu/drm/i915/gt/intel_lrc.c    |  30 +++++
- drivers/gpu/drm/i915/gt/selftest_lrc.c | 161 ++++++++++++++++++++++++-
- 2 files changed, 190 insertions(+), 1 deletion(-)
+> So,
+> 
+> s/LRC/LRC register state
+> 
+> > tries peeking at the poisoned data.
+> >
+> > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> > Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/gt/intel_lrc.c | 16 ++++++++--------
+> >  1 file changed, 8 insertions(+), 8 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+> > index 2d6b41e66b16..bf0c5a998428 100644
+> > --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
+> > +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+> > @@ -549,7 +549,7 @@ static void set_offsets(u32 *regs,
+> >       }
+> >  
+> >       if (clear) {
+> > -             u8 count = *++data;
+> > +             unsigned int count = *++data * 16u;
+> 
+> Nitpick: const 
+> 
+> >  
+> >               /* Clear past the tail for HW access */
+> >               GEM_BUG_ON(dword_in_page(regs) > count);
+> 
+> You might want to add also check that you dont write past page.
+> As this seems to be always confined inside a page.
+> 
+> No other complaints, and above are minor so
+> 
+> Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-index 3a30767ff0c4..3072e1f7cd9b 100644
---- a/drivers/gpu/drm/i915/gt/intel_lrc.c
-+++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-@@ -2396,6 +2396,36 @@ static void __execlists_hold(struct i915_request *rq)
- static void execlists_hold(struct intel_engine_cs *engine,
- 			   struct i915_request *rq)
- {
-+	if (rq->engine != engine) { /* preempted virtual engine */
-+		struct virtual_engine *ve = to_virtual_engine(rq->engine);
-+		unsigned long flags;
-+
-+		/*
-+		 * intel_context_inflight() is only protected by virtue
-+		 * of process_csb() being called only by the tasklet (or
-+		 * directly from inside reset while the tasklet is suspended).
-+		 * Assert that neither of those are allowed to run while we
-+		 * poke at the request queues.
-+		 */
-+		GEM_BUG_ON(!reset_in_progress(&engine->execlists));
-+
-+		/*
-+		 * An unsubmitted request along a virtual engine will
-+		 * remain on the active (this) engine until we are able
-+		 * to process the context switch away (and so mark the
-+		 * context as no longer in flight). That cannot have happened
-+		 * yet, otherwise we would not be hanging!
-+		 */
-+		spin_lock_irqsave(&ve->base.active.lock, flags);
-+		GEM_BUG_ON(intel_context_inflight(rq->context) != engine);
-+		GEM_BUG_ON(ve->request != rq);
-+		ve->request = NULL;
-+		spin_unlock_irqrestore(&ve->base.active.lock, flags);
-+		i915_request_put(rq);
-+
-+		rq->engine = engine;
-+	}
-+
- 	spin_lock_irq(&engine->active.lock);
- 
- 	/*
-diff --git a/drivers/gpu/drm/i915/gt/selftest_lrc.c b/drivers/gpu/drm/i915/gt/selftest_lrc.c
-index b208c2176bbd..9c4d1c682c8d 100644
---- a/drivers/gpu/drm/i915/gt/selftest_lrc.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_lrc.c
-@@ -335,7 +335,6 @@ static int live_hold_reset(void *arg)
- 
- 		if (test_and_set_bit(I915_RESET_ENGINE + id,
- 				     &gt->reset.flags)) {
--			spin_unlock_irq(&engine->active.lock);
- 			intel_gt_set_wedged(gt);
- 			err = -EBUSY;
- 			goto out;
-@@ -3411,6 +3410,165 @@ static int live_virtual_bond(void *arg)
- 	return 0;
- }
- 
-+static int reset_virtual_engine(struct intel_gt *gt,
-+				struct intel_engine_cs **siblings,
-+				unsigned int nsibling)
-+{
-+	struct intel_engine_cs *engine;
-+	struct intel_context *ve;
-+	unsigned long *heartbeat;
-+	struct igt_spinner spin;
-+	struct i915_request *rq;
-+	unsigned int n;
-+	int err = 0;
-+
-+	/*
-+	 * In order to support offline error capture for fast preempt reset,
-+	 * we need to decouple the guilty request and ensure that it and its
-+	 * descendents are not executed while the capture is in progress.
-+	 */
-+
-+	if (!intel_has_reset_engine(gt))
-+		return 0;
-+
-+	heartbeat = kmalloc_array(nsibling, sizeof(*heartbeat), GFP_KERNEL);
-+	if (!heartbeat)
-+		return -ENOMEM;
-+
-+	if (igt_spinner_init(&spin, gt)) {
-+		err = -ENOMEM;
-+		goto out_free;
-+	}
-+
-+	ve = intel_execlists_create_virtual(siblings, nsibling);
-+	if (IS_ERR(ve)) {
-+		err = PTR_ERR(ve);
-+		goto out_spin;
-+	}
-+
-+	for (n = 0; n < nsibling; n++)
-+		engine_heartbeat_disable(siblings[n], &heartbeat[n]);
-+
-+	rq = igt_spinner_create_request(&spin, ve, MI_ARB_CHECK);
-+	if (IS_ERR(rq)) {
-+		err = PTR_ERR(rq);
-+		goto out_heartbeat;
-+	}
-+	i915_request_add(rq);
-+
-+	if (!igt_wait_for_spinner(&spin, rq)) {
-+		intel_gt_set_wedged(gt);
-+		err = -ETIME;
-+		goto out_heartbeat;
-+	}
-+
-+	engine = rq->engine;
-+	GEM_BUG_ON(engine == ve->engine);
-+
-+	/* Take ownership of the reset and tasklet */
-+	if (test_and_set_bit(I915_RESET_ENGINE + engine->id,
-+			     &gt->reset.flags)) {
-+		intel_gt_set_wedged(gt);
-+		err = -EBUSY;
-+		goto out_heartbeat;
-+	}
-+	tasklet_disable(&engine->execlists.tasklet);
-+
-+	engine->execlists.tasklet.func(engine->execlists.tasklet.data);
-+	GEM_BUG_ON(execlists_active(&engine->execlists) != rq);
-+
-+	/* Fake a preemption event; failed of course */
-+	spin_lock_irq(&engine->active.lock);
-+	__unwind_incomplete_requests(engine);
-+	spin_unlock_irq(&engine->active.lock);
-+	GEM_BUG_ON(rq->engine != ve->engine);
-+
-+	/* Reset the engine while keeping our active request on hold */
-+	execlists_hold(engine, rq);
-+	GEM_BUG_ON(!i915_request_on_hold(rq));
-+
-+	intel_engine_reset(engine, NULL);
-+	GEM_BUG_ON(rq->fence.error != -EIO);
-+
-+	/* Release our grasp on the engine, letting CS flow again */
-+	tasklet_enable(&engine->execlists.tasklet);
-+	clear_and_wake_up_bit(I915_RESET_ENGINE + engine->id, &gt->reset.flags);
-+
-+	/* Check that we do not resubmit the held request */
-+	i915_request_get(rq);
-+	if (!i915_request_wait(rq, 0, HZ / 5)) {
-+		pr_err("%s: on hold request completed!\n",
-+		       engine->name);
-+		intel_gt_set_wedged(gt);
-+		err = -EIO;
-+		goto out_rq;
-+	}
-+	GEM_BUG_ON(!i915_request_on_hold(rq));
-+
-+	/* But is resubmitted on release */
-+	execlists_unhold(engine, rq);
-+	if (i915_request_wait(rq, 0, HZ / 5) < 0) {
-+		pr_err("%s: held request did not complete!\n",
-+		       engine->name);
-+		intel_gt_set_wedged(gt);
-+		err = -ETIME;
-+	}
-+
-+out_rq:
-+	i915_request_put(rq);
-+out_heartbeat:
-+	for (n = 0; n < nsibling; n++)
-+		engine_heartbeat_enable(siblings[n], heartbeat[n]);
-+
-+	intel_context_put(ve);
-+out_spin:
-+	igt_spinner_fini(&spin);
-+out_free:
-+	kfree(heartbeat);
-+	return err;
-+}
-+
-+static int live_virtual_reset(void *arg)
-+{
-+	struct intel_gt *gt = arg;
-+	struct intel_engine_cs *siblings[MAX_ENGINE_INSTANCE + 1];
-+	unsigned int class, inst;
-+
-+	/*
-+	 * Check that we handle a reset event within a virtual engine.
-+	 * Only the physical engine is reset, but we have to check the flow
-+	 * of the virtual requests around the reset, and make sure it is not
-+	 * forgotten.
-+	 */
-+
-+	if (USES_GUC_SUBMISSION(gt->i915))
-+		return 0;
-+
-+	/* As we use CS_GPR we cannot run before they existed on all engines. */
-+	if (INTEL_GEN(gt->i915) < 9)
-+		return 0;
-+
-+	for (class = 0; class <= MAX_ENGINE_CLASS; class++) {
-+		int nsibling, err;
-+
-+		nsibling = 0;
-+		for (inst = 0; inst <= MAX_ENGINE_INSTANCE; inst++) {
-+			if (!gt->engine_class[class][inst])
-+				continue;
-+
-+			siblings[nsibling++] = gt->engine_class[class][inst];
-+		}
-+		if (nsibling < 2)
-+			continue;
-+
-+		err = reset_virtual_engine(gt, siblings, nsibling);
-+		if (err)
-+			return err;
-+	}
-+
-+	return 0;
-+}
-+
- int intel_execlists_live_selftests(struct drm_i915_private *i915)
- {
- 	static const struct i915_subtest tests[] = {
-@@ -3436,6 +3594,7 @@ int intel_execlists_live_selftests(struct drm_i915_private *i915)
- 		SUBTEST(live_virtual_mask),
- 		SUBTEST(live_virtual_preserved),
- 		SUBTEST(live_virtual_bond),
-+		SUBTEST(live_virtual_reset),
- 	};
- 
- 	if (!HAS_EXECLISTS(i915))
--- 
-2.25.0
-
+It didn't stop gen9 from eating the poison, so something else is afoot.
+-Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
