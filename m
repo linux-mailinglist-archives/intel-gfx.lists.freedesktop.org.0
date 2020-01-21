@@ -1,32 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7BA4B143C15
-	for <lists+intel-gfx@lfdr.de>; Tue, 21 Jan 2020 12:31:21 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 43CDA143C17
+	for <lists+intel-gfx@lfdr.de>; Tue, 21 Jan 2020 12:33:45 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BA0A66E212;
-	Tue, 21 Jan 2020 11:31:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 265F86EC79;
+	Tue, 21 Jan 2020 11:33:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 2FF326E20A;
- Tue, 21 Jan 2020 11:31:19 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 25F2DA0119;
- Tue, 21 Jan 2020 11:31:19 +0000 (UTC)
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8E22E6EC79
+ for <intel-gfx@lists.freedesktop.org>; Tue, 21 Jan 2020 11:33:41 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 19956918-1500050 for multiple; Tue, 21 Jan 2020 11:33:38 +0000
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Date: Tue, 21 Jan 2020 11:31:19 -0000
-Message-ID: <157960627912.11480.3754246252689505806@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200121103020.26494-1-jani.nikula@intel.com>
-In-Reply-To: <20200121103020.26494-1-jani.nikula@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_drop_alpha=5Fsupport_for_good_in_favour_of_force=5Fpro?=
- =?utf-8?q?be?=
+From: Chris Wilson <chris@chris-wilson.co.uk>
+User-Agent: alot/0.6
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+References: <20200121100927.114886-1-chris@chris-wilson.co.uk>
+ <df451345-5332-7e2f-be9b-76b37006dfe6@linux.intel.com>
+In-Reply-To: <df451345-5332-7e2f-be9b-76b37006dfe6@linux.intel.com>
+Message-ID: <157960641676.3096.902833858100417667@skylake-alporthouse-com>
+Date: Tue, 21 Jan 2020 11:33:36 +0000
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/execlists: Reclaim hanging virtual
+ request
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,102 +41,80 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Quoting Tvrtko Ursulin (2020-01-21 11:20:36)
+> 
+> On 21/01/2020 10:09, Chris Wilson wrote:
+> > If we encounter a hang on a virtual engine, as we process the hang the
+> > request may already have been moved back to the virtual engine (we are
+> > processing the hang on the physical engine). We need to reclaim the
+> > request from the virtual engine so that the locking is consistent and
+> > local to the real engine on which we will hold the request for error
+> > state capturing.
+> > 
+> > Fixes: 748317386afb ("drm/i915/execlists: Offline error capture")
+> > Testcase: igt/gem_exec_balancer/hang
+> > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> > Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+> > Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> > ---
+> >   drivers/gpu/drm/i915/gt/intel_lrc.c | 20 ++++++++++++++++++++
+> >   1 file changed, 20 insertions(+)
+> > 
+> > diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+> > index 3a30767ff0c4..a0acf1898c1e 100644
+> > --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
+> > +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+> > @@ -2582,6 +2582,26 @@ static void execlists_capture(struct intel_engine_cs *engine)
+> >       cap->rq = active_request(cap->rq->context->timeline, cap->rq);
+> >       GEM_BUG_ON(!cap->rq);
+> >   
+> > +     if (cap->rq->engine != engine) { /* preempted virtual engine */
+> > +             struct virtual_engine *ve = to_virtual_engine(cap->rq->engine);
+> > +             unsigned long flags;
+> > +
+> > +             /*
+> > +              * An unsubmitted request along a virtual engine will
+> > +              * remain on the active (this) engine until we are able
+> > +              * to process the context switch away (and so mark the
+> > +              * context as no longer in flight). That cannot have happened
+> > +              * yet, otherwise we would not be hanging!
+> > +              */
+> > +             spin_lock_irqsave(&ve->base.active.lock, flags);
+> > +             GEM_BUG_ON(intel_context_inflight(cap->rq->context) != engine);
+> > +             GEM_BUG_ON(ve->request != cap->rq);
+> > +             ve->request = NULL;
+> > +             spin_unlock_irqrestore(&ve->base.active.lock, flags);
+> > +
+> > +             cap->rq->engine = engine;
+> > +     }
+> 
+> Conceptually this I think belongs in execlists_hold, not capture. Since 
+> hold has the responsibility to hold correctly.
 
-Series: drm/i915: drop alpha_support for good in favour of force_probe
-URL   : https://patchwork.freedesktop.org/series/72326/
-State : success
+Yeah, I didn't put it into execlists_hold() as thought that would be
+clearer without it, and that this was more a side-effect of
+process_csb() vs __unwind_incomplete_requests(), and didn't want to mix
+up with the question of engine->active.lock
 
-== Summary ==
+Agreed that execlists_capture() does not describe it well, so probably
+shouldn't be called directly from here.
 
-CI Bug Log - changes from CI_DRM_7783 -> Patchwork_16184
-====================================================
+> Then also, this is all about a race with __unwind_incomplete_requests, 
+> yes? If so would need to be done under the engine->active.lock or this 
+> can still happen between now and execlists_hold.
 
-Summary
--------
+The serialisation here is on process_csb(), since we have prevented the
+tasklet being called and own the reset on the engine, we know that
+execlists_schedule_out() can't be called on this engine, and so we own
+the virtual request. It's not protected by the engine->active.lock.
 
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16184/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_16184 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_module_load@reload-with-fault-injection:
-    - fi-skl-lmem:        [PASS][1] -> [INCOMPLETE][2] ([i915#671] / [i915#971])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7783/fi-skl-lmem/igt@i915_module_load@reload-with-fault-injection.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16184/fi-skl-lmem/igt@i915_module_load@reload-with-fault-injection.html
-
-  * igt@kms_chamelium@hdmi-hpd-fast:
-    - fi-kbl-7500u:       [PASS][3] -> [FAIL][4] ([fdo#111407])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7783/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16184/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_module_load@reload-with-fault-injection:
-    - fi-cfl-8700k:       [DMESG-WARN][5] ([i915#889]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7783/fi-cfl-8700k/igt@i915_module_load@reload-with-fault-injection.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16184/fi-cfl-8700k/igt@i915_module_load@reload-with-fault-injection.html
-    - fi-kbl-x1275:       [DMESG-WARN][7] ([i915#889]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7783/fi-kbl-x1275/igt@i915_module_load@reload-with-fault-injection.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16184/fi-kbl-x1275/igt@i915_module_load@reload-with-fault-injection.html
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-kbl-x1275:       [INCOMPLETE][9] ([i915#151]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7783/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16184/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
-
-  
-  [fdo#111407]: https://bugs.freedesktop.org/show_bug.cgi?id=111407
-  [i915#151]: https://gitlab.freedesktop.org/drm/intel/issues/151
-  [i915#671]: https://gitlab.freedesktop.org/drm/intel/issues/671
-  [i915#889]: https://gitlab.freedesktop.org/drm/intel/issues/889
-  [i915#971]: https://gitlab.freedesktop.org/drm/intel/issues/971
-
-
-Participating hosts (44 -> 41)
-------------------------------
-
-  Additional (5): fi-glk-dsi fi-gdg-551 fi-bsw-kefka fi-bsw-nick fi-snb-2600 
-  Missing    (8): fi-ilk-m540 fi-tgl-u fi-ehl-1 fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-n2820 fi-byt-clapper 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_7783 -> Patchwork_16184
-
-  CI-20190529: 20190529
-  CI_DRM_7783: 3ee976286895f0bd54388efc16b12f62c624ff19 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5376: 5cf58d947a02379d2885d6dd4f8bb487cfc3eed2 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_16184: 36e3f33f03b8b30776caa59658d60c86bf2b1d8c @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-36e3f33f03b8 drm/i915: drop alpha_support for good in favour of force_probe
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16184/index.html
+So happy with moving it to before the lock in execlists_hold()?
+-Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
