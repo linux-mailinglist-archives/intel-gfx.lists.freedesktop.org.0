@@ -2,33 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 13881143EF7
-	for <lists+intel-gfx@lfdr.de>; Tue, 21 Jan 2020 15:11:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 84E80143F77
+	for <lists+intel-gfx@lfdr.de>; Tue, 21 Jan 2020 15:26:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3E8836ECF8;
-	Tue, 21 Jan 2020 14:11:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 049A46ED17;
+	Tue, 21 Jan 2020 14:26:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 90F0B6ECF8
- for <intel-gfx@lists.freedesktop.org>; Tue, 21 Jan 2020 14:11:32 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 19959017-1500050 for multiple; Tue, 21 Jan 2020 14:11:16 +0000
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6A7546ED15;
+ Tue, 21 Jan 2020 14:26:28 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 21 Jan 2020 06:26:27 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,346,1574150400"; d="scan'208";a="215552065"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by orsmga007.jf.intel.com with SMTP; 21 Jan 2020 06:26:25 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Tue, 21 Jan 2020 16:26:24 +0200
+Date: Tue, 21 Jan 2020 16:26:24 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Message-ID: <20200121142624.GA13686@intel.com>
+References: <20200121105331.6825-1-jani.nikula@intel.com>
 MIME-Version: 1.0
-To: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org
-From: Chris Wilson <chris@chris-wilson.co.uk>
-In-Reply-To: <87zhegewsv.fsf@intel.com>
-References: <20200121113915.9813-1-jani.nikula@intel.com>
- <157961182151.3096.1560629940510754606@skylake-alporthouse-com>
- <87zhegewsv.fsf@intel.com>
-Message-ID: <157961587448.4434.994438477611520370@skylake-alporthouse-com>
-User-Agent: alot/0.6
-Date: Tue, 21 Jan 2020 14:11:14 +0000
-Subject: Re: [Intel-gfx] [PATCH RESEND] drm/i915: add display engine uncore
- helpers
+Content-Disposition: inline
+In-Reply-To: <20200121105331.6825-1-jani.nikula@intel.com>
+X-Patchwork-Hint: comment
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH 1/2] drm: support feature masks in
+ drm_core_check_feature()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,105 +48,86 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-UXVvdGluZyBKYW5pIE5pa3VsYSAoMjAyMC0wMS0yMSAxMzo1ODowOCkKPiBPbiBUdWUsIDIxIEph
-biAyMDIwLCBDaHJpcyBXaWxzb24gPGNocmlzQGNocmlzLXdpbHNvbi5jby51az4gd3JvdGU6Cj4g
-PiBRdW90aW5nIEphbmkgTmlrdWxhICgyMDIwLTAxLTIxIDExOjM5OjE1KQo+ID4+IEFkZCBjb252
-ZW5pZW5jZSBoZWxwZXJzIGZvciB0aGUgbW9zdCBjb21tb24gdW5jb3JlIG9wZXJhdGlvbnMgd2l0
-aAo+ID4+IHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICogYXMgY29udGV4dCByYXRoZXIgdGhhbiBz
-dHJ1Y3QgaW50ZWxfdW5jb3JlICouCj4gPj4gCj4gPj4gVGhlIGdvYWwgaXMgdG8gcmVwbGFjZSBh
-bGwgaW5zdGFuY2VzIG9mIEk5MTVfUkVBRCgpLAo+ID4+IEk5MTVfUE9TVElOR19SRUFEKCksIEk5
-MTVfV1JJVEUoKSwgSTkxNV9SRUFEX0ZXKCksIGFuZCBJOTE1X1dSSVRFX0ZXKCkKPiA+PiBpbiBk
-aXNwbGF5LyB3aXRoIHRoZXNlLCB0byBmaW5hbGx5IGJlIGFibGUgdG8gZ2V0IHJpZCBvZiB0aGUg
-aW1wbGljaXQKPiA+PiBkZXZfcHJpdiBsb2NhbCBwYXJhbWV0ZXIgdXNlLgo+ID4+IAo+ID4+IFRo
-ZSBpZGVhIGlzIHRoYXQgYW55IG5vbi11MzIgcmVhZHMgb3Igd3JpdGVzIGFyZSBzcGVjaWFsIGVu
-b3VnaCB0aGF0Cj4gPj4gdGhleSBjYW4gdXNlIHRoZSBpbnRlbF91bmNvcmVfKiBmdW5jdGlvbnMg
-ZGlyZWN0bHkuCj4gPj4gCj4gPj4gdjI6Cj4gPj4gLSByZW5hbWUgdGhlIGZpbGUgaW50ZWxfZGUu
-aAo+ID4+IC0gbW92ZSBpbnRlbF9kZV93YWl0X2Zvcl8qIHRoZXJlIHRvbwo+ID4+IC0gYWxzbyBh
-ZGQgZGUgZncgaGVscGVycwo+ID4+IAo+ID4+IENjOiBDaHJpcyBXaWxzb24gPGNocmlzQGNocmlz
-LXdpbHNvbi5jby51az4KPiA+PiBDYzogRGFuaWVsZSBDZXJhb2xvIFNwdXJpbyA8ZGFuaWVsZS5j
-ZXJhb2xvc3B1cmlvQGludGVsLmNvbT4KPiA+PiBDYzogSm9vbmFzIExhaHRpbmVuIDxqb29uYXMu
-bGFodGluZW5AbGludXguaW50ZWwuY29tPgo+ID4+IENjOiBMdWNhcyBEZSBNYXJjaGkgPGx1Y2Fz
-LmRlbWFyY2hpQGludGVsLmNvbT4KPiA+PiBDYzogUm9kcmlnbyBWaXZpIDxyb2RyaWdvLnZpdmlA
-aW50ZWwuY29tPgo+ID4+IENjOiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXgu
-aW50ZWwuY29tPgo+ID4+IFNpZ25lZC1vZmYtYnk6IEphbmkgTmlrdWxhIDxqYW5pLm5pa3VsYUBp
-bnRlbC5jb20+Cj4gPj4gLS0tCj4gPj4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50
-ZWxfZGUuaCAgICAgICB8IDcyICsrKysrKysrKysrKysrKysrKysKPiA+PiAgLi4uL2RybS9pOTE1
-L2Rpc3BsYXkvaW50ZWxfZGlzcGxheV90eXBlcy5oICAgIHwgIDEgKwo+ID4+ICBkcml2ZXJzL2dw
-dS9kcm0vaTkxNS9pOTE1X2Rydi5oICAgICAgICAgICAgICAgfCAxNCAtLS0tCj4gPj4gIDMgZmls
-ZXMgY2hhbmdlZCwgNzMgaW5zZXJ0aW9ucygrKSwgMTQgZGVsZXRpb25zKC0pCj4gPj4gIGNyZWF0
-ZSBtb2RlIDEwMDY0NCBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RlLmgKPiA+
-PiAKPiA+PiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9k
-ZS5oIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kZS5oCj4gPj4gbmV3IGZp
-bGUgbW9kZSAxMDA2NDQKPiA+PiBpbmRleCAwMDAwMDAwMDAwMDAuLjAwZGExMGJmMzVmNQo+ID4+
-IC0tLSAvZGV2L251bGwKPiA+PiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2lu
-dGVsX2RlLmgKPiA+PiBAQCAtMCwwICsxLDcyIEBACj4gPj4gKy8qIFNQRFgtTGljZW5zZS1JZGVu
-dGlmaWVyOiBNSVQgKi8KPiA+PiArLyoKPiA+PiArICogQ29weXJpZ2h0IMKpIDIwMTkgSW50ZWwg
-Q29ycG9yYXRpb24KPiA+PiArICovCj4gPj4gKwo+ID4+ICsjaWZuZGVmIF9fSU5URUxfREVfSF9f
-Cj4gPj4gKyNkZWZpbmUgX19JTlRFTF9ERV9IX18KPiA+PiArCj4gPj4gKyNpbmNsdWRlICJpOTE1
-X2Rydi5oIgo+ID4+ICsjaW5jbHVkZSAiaTkxNV9yZWcuaCIKPiA+PiArI2luY2x1ZGUgImludGVs
-X3VuY29yZS5oIgo+ID4+ICsKPiA+PiArc3RhdGljIGlubGluZSB1MzIKPiA+PiAraW50ZWxfZGVf
-cmVhZChzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqaTkxNSwgaTkxNV9yZWdfdCByZWcpCj4gPj4g
-K3sKPiA+PiArICAgICAgIHJldHVybiBpbnRlbF91bmNvcmVfcmVhZCgmaTkxNS0+dW5jb3JlLCBy
-ZWcpOwo+ID4+ICt9Cj4gPj4gKwo+ID4+ICtzdGF0aWMgaW5saW5lIHZvaWQKPiA+PiAraW50ZWxf
-ZGVfcG9zdGluZ19yZWFkKHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICppOTE1LCBpOTE1X3JlZ190
-IHJlZykKPiA+PiArewo+ID4+ICsgICAgICAgaW50ZWxfdW5jb3JlX3Bvc3RpbmdfcmVhZCgmaTkx
-NS0+dW5jb3JlLCByZWcpOwo+ID4+ICt9Cj4gPj4gKwo+ID4+ICsvKiBOb3RlOiByZWFkIHRoZSB3
-YXJuaW5ncyBmb3IgaW50ZWxfdW5jb3JlXypfZncoKSBmdW5jdGlvbnMhICovCj4gPj4gK3N0YXRp
-YyBpbmxpbmUgdTMyCj4gPj4gK2ludGVsX2RlX3JlYWRfZncoc3RydWN0IGRybV9pOTE1X3ByaXZh
-dGUgKmk5MTUsIGk5MTVfcmVnX3QgcmVnKQo+ID4+ICt7Cj4gPj4gKyAgICAgICByZXR1cm4gaW50
-ZWxfdW5jb3JlX3JlYWRfZncoJmk5MTUtPnVuY29yZSwgcmVnKTsKPiA+PiArfQo+ID4+ICsKPiA+
-PiArc3RhdGljIGlubGluZSB2b2lkCj4gPj4gK2ludGVsX2RlX3dyaXRlKHN0cnVjdCBkcm1faTkx
-NV9wcml2YXRlICppOTE1LCBpOTE1X3JlZ190IHJlZywgdTMyIHZhbCkKPiA+PiArewo+ID4+ICsg
-ICAgICAgaW50ZWxfdW5jb3JlX3dyaXRlKCZpOTE1LT51bmNvcmUsIHJlZywgdmFsKTsKPiA+PiAr
-fQo+ID4+ICsKPiA+PiArLyogTm90ZTogcmVhZCB0aGUgd2FybmluZ3MgZm9yIGludGVsX3VuY29y
-ZV8qX2Z3KCkgZnVuY3Rpb25zISAqLwo+ID4+ICtzdGF0aWMgaW5saW5lIHZvaWQKPiA+PiAraW50
-ZWxfZGVfd3JpdGVfZncoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmk5MTUsIGk5MTVfcmVnX3Qg
-cmVnLCB1MzIgdmFsKQo+ID4+ICt7Cj4gPj4gKyAgICAgICBpbnRlbF91bmNvcmVfd3JpdGVfZnco
-Jmk5MTUtPnVuY29yZSwgcmVnLCB2YWwpOwo+ID4+ICt9Cj4gPj4gKwo+ID4+ICtzdGF0aWMgaW5s
-aW5lIHZvaWQKPiA+PiAraW50ZWxfZGVfcm13KHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICppOTE1
-LCBpOTE1X3JlZ190IHJlZywgdTMyIGNsZWFyLCB1MzIgc2V0KQo+ID4+ICt7Cj4gPj4gKyAgICAg
-ICBpbnRlbF91bmNvcmVfcm13KCZpOTE1LT51bmNvcmUsIHJlZywgY2xlYXIsIHNldCk7Cj4gPj4g
-K30KPiA+PiArCj4gPj4gK3N0YXRpYyBpbmxpbmUgaW50Cj4gPj4gK2ludGVsX2RlX3dhaXRfZm9y
-X3JlZ2lzdGVyKHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICppOTE1LCBpOTE1X3JlZ190IHJlZywK
-PiA+PiArICAgICAgICAgICAgICAgICAgICAgICAgICB1MzIgbWFzaywgdTMyIHZhbHVlLCB1bnNp
-Z25lZCBpbnQgdGltZW91dCkKPiA+PiArewo+ID4+ICsgICAgICAgcmV0dXJuIGludGVsX3dhaXRf
-Zm9yX3JlZ2lzdGVyKCZpOTE1LT51bmNvcmUsIHJlZywgbWFzaywgdmFsdWUsIHRpbWVvdXQpOwo+
-ID4+ICt9Cj4gPj4gKwo+ID4+ICtzdGF0aWMgaW5saW5lIGludAo+ID4+ICtpbnRlbF9kZV93YWl0
-X2Zvcl9zZXQoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmk5MTUsIGk5MTVfcmVnX3QgcmVnLAo+
-ID4+ICsgICAgICAgICAgICAgICAgICAgICB1MzIgbWFzaywgdW5zaWduZWQgaW50IHRpbWVvdXQp
-Cj4gPj4gK3sKPiA+PiArICAgICAgIHJldHVybiBpbnRlbF9kZV93YWl0X2Zvcl9yZWdpc3Rlcihp
-OTE1LCByZWcsIG1hc2ssIG1hc2ssIHRpbWVvdXQpOwo+ID4+ICt9Cj4gPj4gKwo+ID4+ICtzdGF0
-aWMgaW5saW5lIGludAo+ID4+ICtpbnRlbF9kZV93YWl0X2Zvcl9jbGVhcihzdHJ1Y3QgZHJtX2k5
-MTVfcHJpdmF0ZSAqaTkxNSwgaTkxNV9yZWdfdCByZWcsCj4gPj4gKyAgICAgICAgICAgICAgICAg
-ICAgICAgdTMyIG1hc2ssIHVuc2lnbmVkIGludCB0aW1lb3V0KQo+ID4+ICt7Cj4gPj4gKyAgICAg
-ICByZXR1cm4gaW50ZWxfZGVfd2FpdF9mb3JfcmVnaXN0ZXIoaTkxNSwgcmVnLCBtYXNrLCAwLCB0
-aW1lb3V0KTsKPiA+PiArfQo+ID4+ICsKPiA+PiArI2VuZGlmIC8qIF9fSU5URUxfREVfSF9fICov
-Cj4gPj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlz
-cGxheV90eXBlcy5oIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5
-X3R5cGVzLmgKPiA+PiBpbmRleCAxNTVjZTQ5YWU3NjQuLjBkN2FkYzJjMTY3YSAxMDA2NDQKPiA+
-PiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXlfdHlwZXMu
-aAo+ID4+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheV90
-eXBlcy5oCj4gPj4gQEAgLTQ0LDYgKzQ0LDcgQEAKPiA+PiAgI2luY2x1ZGUgPG1lZGlhL2NlYy1u
-b3RpZmllci5oPgo+ID4+ICAKPiA+PiAgI2luY2x1ZGUgImk5MTVfZHJ2LmgiCj4gPj4gKyNpbmNs
-dWRlICJpbnRlbF9kZS5oIgo+ID4KPiA+IEkgZG9uJ3QgdGhpbmsgeW91IHdhbnQgdG8gaW5jbHVk
-ZSBpdCBmcm9tIHR5cGVzLmggdGhvdWdoIC0tIEkgdGhpbmsgeW91Cj4gPiB3YW50IHRvIGF2b2lk
-IGlubGluZXMgKGF0IGxlYXN0IGlubGluZXMgdGhhdCBkZXBlbmQgdXBvbiBleHRlcm5hbCB0eXBl
-cykKPiA+IGF3YXkgZnJvbSB0aGUgdHlwZXMuaCBzbyB5b3UgY2FuIGF2b2lkIHRoZSBkcmVhZGVk
-IGN5Y2xlcy4KPiAKPiBFdmVudHVhbGx5IHllcywgYnV0IEkgYWxzbyBkb24ndCB3YW50IHRvIHNw
-bGF0dGVyICNpbmNsdWRlICJpbnRlbF9kZS5oIgo+IGV2ZXJ5d2hlcmUganVzdCB5ZXQuLi4gdGhp
-cyBzZWVtZWQgdG8gZml0IHRoZSBiaWxsLiA7KQo+IAo+ID4gU28gb3RoZXIgdGhhbiB0aGF0LAo+
-ID4gUmV2aWV3ZWQtYnk6IENocmlzIFdpbHNvbiA8Y2hyaXNAY2hyaXMtd2lsc29uLmNvLnVrPgo+
-ID4KPiA+IE9yIHlvdSBtYXkgd2FudCB0byBtYWtlIHRoZSBwbGFjZW1lbnQgb2YgdGhlIGZpbmFs
-IGluY2x1ZGUocykgYQo+ID4gc2VwYXJhdGUgcGF0Y2guCj4gCj4gVGhhbmtzIGZvciB0aGUgcmV2
-aWV3LiBEbyB5b3UgaW5zaXN0IG9uIGEgcmUtc3BpbiB3aXRoIHRoZSBpbmNsdWRlcwo+IHNvcnRl
-ZCBvdXQgYmVmb3JlIG1lcmdlPwoKTm9wZS4gU28gbG9uZyBhcyB5b3UgYXJlIGF3YXJlIHRoYXQg
-dGhlIGN1cnJlbnQgcGxhY2VtZW50IGNhbiBlYXNpbHkgbGVhZAppbnRvIGEgdHJhcCwgZmluZS4K
-LUNocmlzCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCklu
-dGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRw
-czovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+On Tue, Jan 21, 2020 at 12:53:30PM +0200, Jani Nikula wrote:
+> Allow a mask of features to be passed to drm_core_check_feature(). All
+> features in the mask are required.
+> =
+
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> ---
+>  include/drm/drm_drv.h | 10 ++++++----
+>  1 file changed, 6 insertions(+), 4 deletions(-)
+> =
+
+> diff --git a/include/drm/drm_drv.h b/include/drm/drm_drv.h
+> index cf13470810a5..51b486d1ee81 100644
+> --- a/include/drm/drm_drv.h
+> +++ b/include/drm/drm_drv.h
+> @@ -826,16 +826,18 @@ static inline bool drm_dev_is_unplugged(struct drm_=
+device *dev)
+>  /**
+>   * drm_core_check_feature - check driver feature flags
+>   * @dev: DRM device to check
+> - * @feature: feature flag
+> + * @feature: feature flag(s)
+              ^
+missing 's'
+
+>   *
+>   * This checks @dev for driver features, see &drm_driver.driver_features,
+>   * &drm_device.driver_features, and the various &enum drm_driver_feature=
+ flags.
+>   *
+> - * Returns true if the @feature is supported, false otherwise.
+> + * Returns true if all features in the @feature mask are supported, false
+
+same here
+
+> + * otherwise.
+>   */
+> -static inline bool drm_core_check_feature(const struct drm_device *dev, =
+u32 feature)
+> +static inline bool drm_core_check_feature(const struct drm_device *dev, =
+u32 features)
+>  {
+> -	return dev->driver->driver_features & dev->driver_features & feature;
+> +	return features && (dev->driver->driver_features & dev->driver_features=
+ &
+> +			    features) =3D=3D features;
+
+Could maybe do with an extra variable?
+
+u32 supported =3D driver->driver_features & dev->driver_features;
+return features && (features & supported) =3D=3D features;
+
+Series is
+Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+
+>  }
+>  =
+
+>  /**
+> -- =
+
+> 2.20.1
+> =
+
+> _______________________________________________
+> dri-devel mailing list
+> dri-devel@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/dri-devel
+
+-- =
+
+Ville Syrj=E4l=E4
+Intel
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
