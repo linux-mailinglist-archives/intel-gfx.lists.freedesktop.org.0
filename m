@@ -1,41 +1,35 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 84E80143F77
-	for <lists+intel-gfx@lfdr.de>; Tue, 21 Jan 2020 15:26:35 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id DB510143FFA
+	for <lists+intel-gfx@lfdr.de>; Tue, 21 Jan 2020 15:51:03 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 049A46ED17;
-	Tue, 21 Jan 2020 14:26:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3A5396EAE7;
+	Tue, 21 Jan 2020 14:51:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6A7546ED15;
- Tue, 21 Jan 2020 14:26:28 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 21 Jan 2020 06:26:27 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,346,1574150400"; d="scan'208";a="215552065"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by orsmga007.jf.intel.com with SMTP; 21 Jan 2020 06:26:25 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 21 Jan 2020 16:26:24 +0200
-Date: Tue, 21 Jan 2020 16:26:24 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Message-ID: <20200121142624.GA13686@intel.com>
-References: <20200121105331.6825-1-jani.nikula@intel.com>
+X-Greylist: delayed 2397 seconds by postgrey-1.36 at gabe;
+ Tue, 21 Jan 2020 14:51:01 UTC
+Received: from imap3.hz.codethink.co.uk (imap3.hz.codethink.co.uk [176.9.8.87])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 198116EAE7
+ for <intel-gfx@lists.freedesktop.org>; Tue, 21 Jan 2020 14:51:01 +0000 (UTC)
+Received: from [167.98.27.226] (helo=[10.35.4.116])
+ by imap3.hz.codethink.co.uk with esmtpsa  (Exim 4.92 #3 (Debian))
+ id 1ituFC-000085-4T; Tue, 21 Jan 2020 14:11:02 +0000
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+References: <20200121102858.3027175-1-thomas.preston@codethink.co.uk>
+ <157960604632.3096.5992754158480904746@skylake-alporthouse-com>
+From: Thomas Preston <thomas.preston@codethink.co.uk>
+Message-ID: <5453ecfc-d6cf-8e70-2654-e991954a9c89@codethink.co.uk>
+Date: Tue, 21 Jan 2020 14:11:01 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.3.1
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200121105331.6825-1-jani.nikula@intel.com>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH 1/2] drm: support feature masks in
- drm_core_check_feature()
+In-Reply-To: <157960604632.3096.5992754158480904746@skylake-alporthouse-com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH xf86-video-intel] sna: Use correct struct
+ sna in sna_mode_wakeup
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,85 +42,79 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: james.thomas@codethink.co.uk, michael.drake@codethink.co.uk
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Jan 21, 2020 at 12:53:30PM +0200, Jani Nikula wrote:
-> Allow a mask of features to be passed to drm_core_check_feature(). All
-> features in the mask are required.
-> =
+On 21/01/2020 11:27, Chris Wilson wrote:
+> Quoting Thomas Preston (2020-01-21 10:28:58)
+>> When deciding if we should defer_vblanks we should reference the event's
+>> struct sna, rather than the caller's struct sna. In order to do this, we
+>> must grab a new struct sna for each event in the buffer. Move this logic
+>> out of `case DRM_EVENT_FLIP_COMPLETE` and create a new variable
+>> sna_event, so that it is clear which struct sna we are referring to.
+>> Also add another ZaphodHead comment by the struct sna argument, in case
+>> someone misses the comment below.
+>>
+>> Fixes issue #184 with ZaphodHead and TearFree, introduced in this commit:
+>>
+>>         12db28ab sna: Reorder vblank/flip event handling to avoid TearFree recursion
+>>
+>> Signed-off-by: Thomas Preston <thomas.preston@codethink.co.uk>
+>> ---
+>>  src/sna/sna_display.c | 48 +++++++++++++++++++++++--------------------
+>>  1 file changed, 26 insertions(+), 22 deletions(-)
+>>
+>> diff --git a/src/sna/sna_display.c b/src/sna/sna_display.c
+>> index 874292bc..b40a6c4a 100644
+>> --- a/src/sna/sna_display.c
+>> +++ b/src/sna/sna_display.c
+>> @@ -9711,9 +9711,12 @@ fixup_flip:
+>>         RegionEmpty(region);
+>>  }
+>>  
+>> +/* In the case of ZaphodHead, there is only one event queue in the main
+>> + * struct sna. Only refer to this struct sna when dealing with the event queue.
+>> + * Otherwise, extract the struct sna from the event user_data.
+>> + */
+>>  int sna_mode_wakeup(struct sna *sna)
+>>  {
+>> -       bool defer_vblanks = sna->mode.flip_active && sna->mode.shadow_enabled;
+> 
+> My thinking was that I only cared about re-entrancy on the local sna for
+> processing this event queue. And there is no threading, so only one
+> sna is processed at a time... Hmm, I don't think we can in the situation
+> of being inside one shadow flip and care much about the other.
+> 
 
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-> ---
->  include/drm/drm_drv.h | 10 ++++++----
->  1 file changed, 6 insertions(+), 4 deletions(-)
-> =
+If it helps, the hanging display described in #184 only happens when
+TearFree (shadow_enabled) is enabled for both displays. Maybe
+sna_mode_wakeup is called on a :0.1 head event, but sna_dri2_vblank_handler
+is never called because :0.0 flip_active >= 1, causing us to always defer
+the event.
 
-> diff --git a/include/drm/drm_drv.h b/include/drm/drm_drv.h
-> index cf13470810a5..51b486d1ee81 100644
-> --- a/include/drm/drm_drv.h
-> +++ b/include/drm/drm_drv.h
-> @@ -826,16 +826,18 @@ static inline bool drm_dev_is_unplugged(struct drm_=
-device *dev)
->  /**
->   * drm_core_check_feature - check driver feature flags
->   * @dev: DRM device to check
-> - * @feature: feature flag
-> + * @feature: feature flag(s)
-              ^
-missing 's'
+It's not entirely clear to me why this would stop :0.0 flip_active changing
+though.
 
->   *
->   * This checks @dev for driver features, see &drm_driver.driver_features,
->   * &drm_device.driver_features, and the various &enum drm_driver_feature=
- flags.
->   *
-> - * Returns true if the @feature is supported, false otherwise.
-> + * Returns true if all features in the @feature mask are supported, false
+Anyway, paying more attention to which event's sna has
+flip_active/shadow_enabled (as the original comments describe) makes the
+problem go away.
 
-same here
+We're actually debugging this to close-in on *another* ZaphodHead+TearFree
+issue which appears on a 4.14 kernel (among other userland upgrades). At
+some point :0.0 head gets stuck between two buffers (current + shadow) and
+switches between the two causing a flicker or ghosting effect. It's
+possibly got something to do with these patches:
 
-> + * otherwise.
->   */
-> -static inline bool drm_core_check_feature(const struct drm_device *dev, =
-u32 feature)
-> +static inline bool drm_core_check_feature(const struct drm_device *dev, =
-u32 features)
->  {
-> -	return dev->driver->driver_features & dev->driver_features & feature;
-> +	return features && (dev->driver->driver_features & dev->driver_features=
- &
-> +			    features) =3D=3D features;
+	8bfac0f2 sna/dri2: Only force the TearFree/swcursor hack when using TearFree
+	26f8ab54 sna: Restore local damage processing for TearFree/DRI2/swcursor early
+	7cf67022 sna/dri2: Prevent the sw cursor from copyig to a buffer as we discard it
 
-Could maybe do with an extra variable?
+and it goes away when `-Dasync-swap=true` (APPLY_DAMAGE is 0) or we set:
 
-u32 supported =3D driver->driver_features & dev->driver_features;
-return features && (features & supported) =3D=3D features;
-
-Series is
-Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-
->  }
->  =
-
->  /**
-> -- =
-
-> 2.20.1
-> =
-
-> _______________________________________________
-> dri-devel mailing list
-> dri-devel@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/dri-devel
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
+	 sna->ignore_copy_area = false; //sna->flags & SNA_TEAR_FREE;
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
