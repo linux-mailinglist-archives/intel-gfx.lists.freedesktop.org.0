@@ -2,51 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 19732145BA6
-	for <lists+intel-gfx@lfdr.de>; Wed, 22 Jan 2020 19:42:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 78A18145BA7
+	for <lists+intel-gfx@lfdr.de>; Wed, 22 Jan 2020 19:43:04 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 484CA6F63E;
-	Wed, 22 Jan 2020 18:42:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9BCE86F641;
+	Wed, 22 Jan 2020 18:43:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9E9DB6F63E
- for <intel-gfx@lists.freedesktop.org>; Wed, 22 Jan 2020 18:42:43 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga105.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 22 Jan 2020 10:39:46 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,350,1574150400"; d="scan'208";a="220404774"
-Received: from fmsmsx107.amr.corp.intel.com ([10.18.124.205])
- by orsmga008.jf.intel.com with ESMTP; 22 Jan 2020 10:39:46 -0800
-Received: from fmsmsx116.amr.corp.intel.com (10.18.116.20) by
- fmsmsx107.amr.corp.intel.com (10.18.124.205) with Microsoft SMTP Server (TLS)
- id 14.3.439.0; Wed, 22 Jan 2020 10:39:44 -0800
-Received: from fmsmsx117.amr.corp.intel.com ([169.254.3.3]) by
- fmsmsx116.amr.corp.intel.com ([169.254.2.111]) with mapi id 14.03.0439.000;
- Wed, 22 Jan 2020 10:39:44 -0800
-From: "Souza, Jose" <jose.souza@intel.com>
-To: "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [Intel-gfx] [PATCH 04/17] drm/i915: Move more cdclk state
- handling into the cdclk code
-Thread-Index: AQHVz7m9FhhFRfLj3kqDpV1GETQdzaf3jUkA
-Date: Wed, 22 Jan 2020 18:39:44 +0000
-Message-ID: <2ec65516cf9f62f2d8f551f5c242c662a68317c9.camel@intel.com>
-References: <20200120174728.21095-1-ville.syrjala@linux.intel.com>
- <20200120174728.21095-5-ville.syrjala@linux.intel.com>
-In-Reply-To: <20200120174728.21095-5-ville.syrjala@linux.intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.24.12.154]
-Content-ID: <D73BE3E7058F7B429ACD218C25735196@intel.com>
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D09866F641
+ for <intel-gfx@lists.freedesktop.org>; Wed, 22 Jan 2020 18:43:00 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19974736-1500050 
+ for multiple; Wed, 22 Jan 2020 18:42:50 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 22 Jan 2020 18:42:46 +0000
+Message-Id: <20200122184249.551268-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.25.0
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 04/17] drm/i915: Move more cdclk state
- handling into the cdclk code
+Subject: [Intel-gfx] [PATCH 1/4] drm/i915: Check i915_active wait status
+ after flushing
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,88 +37,89 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gTW9uLCAyMDIwLTAxLTIwIGF0IDE5OjQ3ICswMjAwLCBWaWxsZSBTeXJqYWxhIHdyb3RlOg0K
-PiBGcm9tOiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwuY29tPg0K
-PiANCj4gTW92ZSB0aGUgaW5pdGlhbCBzZXR1cCBvZiBzdGF0ZS0NCj4gPntjZGNsayxtaW5fY2Rj
-bGtbXSxtaW5fdm9sdGFnZV9sZXZlbFtdfQ0KPiBpbnRvIGludGVsX21vZGVzZXRfY2FsY19jZGNs
-aygpLCBhbmQgd2UnbGwgbW92ZSB0aGUgY291bnRlcnBhcnRzIGludG8NCj4gaW50ZWxfY2RjbGtf
-c3dhcF9zdGF0ZSgpLiBUaGlzIGVuY2Fwc3VsYXRlcyB0aGUgY2RjbGsgc3RhdGUgbXVjaA0KPiBi
-ZXR0ZXIuDQo+IA0KDQpSZXZpZXdlZC1ieTogSm9zw6kgUm9iZXJ0byBkZSBTb3V6YSA8am9zZS5z
-b3V6YUBpbnRlbC5jb20+DQoNCj4gU2lnbmVkLW9mZi1ieTogVmlsbGUgU3lyasOkbMOkIDx2aWxs
-ZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4NCj4gLS0tDQo+ICBkcml2ZXJzL2dwdS9kcm0vaTkx
-NS9kaXNwbGF5L2ludGVsX2NkY2xrLmMgICB8IDI2ICsrKysrKysrKysrKysrKy0tLQ0KPiAtLQ0K
-PiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMgfCAxMSAtLS0t
-LS0tLS0NCj4gIDIgZmlsZXMgY2hhbmdlZCwgMjAgaW5zZXJ0aW9ucygrKSwgMTcgZGVsZXRpb25z
-KC0pDQo+IA0KPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRl
-bF9jZGNsay5jDQo+IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9jZGNsay5j
-DQo+IGluZGV4IDBjZTU5MjYwMDZjYS4uMDVmNmM2NDU2ZGRmIDEwMDY0NA0KPiAtLS0gYS9kcml2
-ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2NkY2xrLmMNCj4gKysrIGIvZHJpdmVycy9n
-cHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9jZGNsay5jDQo+IEBAIC0xODE5LDYgKzE4MTksMTQg
-QEAgdm9pZCBpbnRlbF9jZGNsa19zd2FwX3N0YXRlKHN0cnVjdA0KPiBpbnRlbF9hdG9taWNfc3Rh
-dGUgKnN0YXRlKQ0KPiAgew0KPiAgCXN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJpdiA9
-IHRvX2k5MTUoc3RhdGUtPmJhc2UuZGV2KTsNCj4gIA0KPiArCS8qIEZJWE1FIG1heWJlIHN3YXAo
-KSB0aGVzZSB0b28gKi8NCj4gKwltZW1jcHkoZGV2X3ByaXYtPm1pbl9jZGNsaywgc3RhdGUtPm1p
-bl9jZGNsaywNCj4gKwkgICAgICAgc2l6ZW9mKHN0YXRlLT5taW5fY2RjbGspKTsNCj4gKwltZW1j
-cHkoZGV2X3ByaXYtPm1pbl92b2x0YWdlX2xldmVsLCBzdGF0ZS0+bWluX3ZvbHRhZ2VfbGV2ZWws
-DQo+ICsJICAgICAgIHNpemVvZihzdGF0ZS0+bWluX3ZvbHRhZ2VfbGV2ZWwpKTsNCj4gKw0KPiAr
-CWRldl9wcml2LT5jZGNsay5mb3JjZV9taW5fY2RjbGsgPSBzdGF0ZS0+Y2RjbGsuZm9yY2VfbWlu
-X2NkY2xrOw0KPiArDQo+ICAJc3dhcChzdGF0ZS0+Y2RjbGsubG9naWNhbCwgZGV2X3ByaXYtPmNk
-Y2xrLmxvZ2ljYWwpOw0KPiAgCXN3YXAoc3RhdGUtPmNkY2xrLmFjdHVhbCwgZGV2X3ByaXYtPmNk
-Y2xrLmFjdHVhbCk7DQo+ICB9DQo+IEBAIC0yMDMzLDkgKzIwNDEsNiBAQCBzdGF0aWMgaW50IGlu
-dGVsX2NvbXB1dGVfbWluX2NkY2xrKHN0cnVjdA0KPiBpbnRlbF9hdG9taWNfc3RhdGUgKnN0YXRl
-KQ0KPiAgCWludCBtaW5fY2RjbGssIGk7DQo+ICAJZW51bSBwaXBlIHBpcGU7DQo+ICANCj4gLQlt
-ZW1jcHkoc3RhdGUtPm1pbl9jZGNsaywgZGV2X3ByaXYtPm1pbl9jZGNsaywNCj4gLQkgICAgICAg
-c2l6ZW9mKHN0YXRlLT5taW5fY2RjbGspKTsNCj4gLQ0KPiAgCWZvcl9lYWNoX25ld19pbnRlbF9j
-cnRjX2luX3N0YXRlKHN0YXRlLCBjcnRjLCBjcnRjX3N0YXRlLCBpKSB7DQo+ICAJCWludCByZXQ7
-DQo+ICANCj4gQEAgLTIwODIsOSArMjA4Nyw2IEBAIHN0YXRpYyBpbnQgYnh0X2NvbXB1dGVfbWlu
-X3ZvbHRhZ2VfbGV2ZWwoc3RydWN0DQo+IGludGVsX2F0b21pY19zdGF0ZSAqc3RhdGUpDQo+ICAJ
-aW50IGk7DQo+ICAJZW51bSBwaXBlIHBpcGU7DQo+ICANCj4gLQltZW1jcHkoc3RhdGUtPm1pbl92
-b2x0YWdlX2xldmVsLCBkZXZfcHJpdi0+bWluX3ZvbHRhZ2VfbGV2ZWwsDQo+IC0JICAgICAgIHNp
-emVvZihzdGF0ZS0+bWluX3ZvbHRhZ2VfbGV2ZWwpKTsNCj4gLQ0KPiAgCWZvcl9lYWNoX25ld19p
-bnRlbF9jcnRjX2luX3N0YXRlKHN0YXRlLCBjcnRjLCBjcnRjX3N0YXRlLCBpKSB7DQo+ICAJCWlu
-dCByZXQ7DQo+ICANCj4gQEAgLTIzMzksNiArMjM0MSwxOCBAQCBpbnQgaW50ZWxfbW9kZXNldF9j
-YWxjX2NkY2xrKHN0cnVjdA0KPiBpbnRlbF9hdG9taWNfc3RhdGUgKnN0YXRlKQ0KPiAgCWVudW0g
-cGlwZSBwaXBlOw0KPiAgCWludCByZXQ7DQo+ICANCj4gKwltZW1jcHkoc3RhdGUtPm1pbl9jZGNs
-aywgZGV2X3ByaXYtPm1pbl9jZGNsaywNCj4gKwkgICAgICAgc2l6ZW9mKHN0YXRlLT5taW5fY2Rj
-bGspKTsNCj4gKwltZW1jcHkoc3RhdGUtPm1pbl92b2x0YWdlX2xldmVsLCBkZXZfcHJpdi0+bWlu
-X3ZvbHRhZ2VfbGV2ZWwsDQo+ICsJICAgICAgIHNpemVvZihzdGF0ZS0+bWluX3ZvbHRhZ2VfbGV2
-ZWwpKTsNCj4gKw0KPiArCS8qIGtlZXAgdGhlIGN1cnJlbnQgc2V0dGluZyAqLw0KPiArCWlmICgh
-c3RhdGUtPmNkY2xrLmZvcmNlX21pbl9jZGNsa19jaGFuZ2VkKQ0KPiArCQlzdGF0ZS0+Y2RjbGsu
-Zm9yY2VfbWluX2NkY2xrID0gZGV2X3ByaXYtDQo+ID5jZGNsay5mb3JjZV9taW5fY2RjbGs7DQo+
-ICsNCj4gKwlzdGF0ZS0+Y2RjbGsubG9naWNhbCA9IGRldl9wcml2LT5jZGNsay5sb2dpY2FsOw0K
-PiArCXN0YXRlLT5jZGNsay5hY3R1YWwgPSBkZXZfcHJpdi0+Y2RjbGsuYWN0dWFsOw0KPiArDQo+
-ICAJcmV0ID0gZGV2X3ByaXYtPmRpc3BsYXkubW9kZXNldF9jYWxjX2NkY2xrKHN0YXRlKTsNCj4g
-IAlpZiAocmV0KQ0KPiAgCQlyZXR1cm4gcmV0Ow0KPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUv
-ZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMNCj4gYi9kcml2ZXJzL2dwdS9kcm0vaTkx
-NS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuYw0KPiBpbmRleCA4ZGNiODZjNTFhYWEuLjkzMGU5MjU2
-NTk2YyAxMDA2NDQNCj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9k
-aXNwbGF5LmMNCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNw
-bGF5LmMNCj4gQEAgLTE0MzYwLDE0ICsxNDM2MCw4IEBAIHN0YXRpYyBpbnQgaW50ZWxfbW9kZXNl
-dF9jaGVja3Moc3RydWN0DQo+IGludGVsX2F0b21pY19zdGF0ZSAqc3RhdGUpDQo+ICAJc3RydWN0
-IGludGVsX2NydGMgKmNydGM7DQo+ICAJaW50IHJldCwgaTsNCj4gIA0KPiAtCS8qIGtlZXAgdGhl
-IGN1cnJlbnQgc2V0dGluZyAqLw0KPiAtCWlmICghc3RhdGUtPmNkY2xrLmZvcmNlX21pbl9jZGNs
-a19jaGFuZ2VkKQ0KPiAtCQlzdGF0ZS0+Y2RjbGsuZm9yY2VfbWluX2NkY2xrID0gZGV2X3ByaXYt
-DQo+ID5jZGNsay5mb3JjZV9taW5fY2RjbGs7DQo+IC0NCj4gIAlzdGF0ZS0+bW9kZXNldCA9IHRy
-dWU7DQo+ICAJc3RhdGUtPmFjdGl2ZV9waXBlcyA9IGRldl9wcml2LT5hY3RpdmVfcGlwZXM7DQo+
-IC0Jc3RhdGUtPmNkY2xrLmxvZ2ljYWwgPSBkZXZfcHJpdi0+Y2RjbGsubG9naWNhbDsNCj4gLQlz
-dGF0ZS0+Y2RjbGsuYWN0dWFsID0gZGV2X3ByaXYtPmNkY2xrLmFjdHVhbDsNCj4gIA0KPiAgCWZv
-cl9lYWNoX29sZG5ld19pbnRlbF9jcnRjX2luX3N0YXRlKHN0YXRlLCBjcnRjLA0KPiBvbGRfY3J0
-Y19zdGF0ZSwNCj4gIAkJCQkJICAgIG5ld19jcnRjX3N0YXRlLCBpKSB7DQo+IEBAIC0xNTY3Mywx
-MiArMTU2NjcsNyBAQCBzdGF0aWMgaW50IGludGVsX2F0b21pY19jb21taXQoc3RydWN0DQo+IGRy
-bV9kZXZpY2UgKmRldiwNCj4gIAlpZiAoc3RhdGUtPmdsb2JhbF9zdGF0ZV9jaGFuZ2VkKSB7DQo+
-ICAJCWFzc2VydF9nbG9iYWxfc3RhdGVfbG9ja2VkKGRldl9wcml2KTsNCj4gIA0KPiAtCQltZW1j
-cHkoZGV2X3ByaXYtPm1pbl9jZGNsaywgc3RhdGUtPm1pbl9jZGNsaywNCj4gLQkJICAgICAgIHNp
-emVvZihzdGF0ZS0+bWluX2NkY2xrKSk7DQo+IC0JCW1lbWNweShkZXZfcHJpdi0+bWluX3ZvbHRh
-Z2VfbGV2ZWwsIHN0YXRlLQ0KPiA+bWluX3ZvbHRhZ2VfbGV2ZWwsDQo+IC0JCSAgICAgICBzaXpl
-b2Yoc3RhdGUtPm1pbl92b2x0YWdlX2xldmVsKSk7DQo+ICAJCWRldl9wcml2LT5hY3RpdmVfcGlw
-ZXMgPSBzdGF0ZS0+YWN0aXZlX3BpcGVzOw0KPiAtCQlkZXZfcHJpdi0+Y2RjbGsuZm9yY2VfbWlu
-X2NkY2xrID0gc3RhdGUtDQo+ID5jZGNsay5mb3JjZV9taW5fY2RjbGs7DQo+ICANCj4gIAkJaW50
-ZWxfY2RjbGtfc3dhcF9zdGF0ZShzdGF0ZSk7DQo+ICAJfQ0KX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1n
-ZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21h
-aWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+Double check that the i915_active is finally idle after waiting, and
+flushing its callback, just in case we need to re-activate it, for
+example to keep the vma alive a bit longer due to last minute HW
+activity (e.g. saving the context before unbinding).
+
+Closes: https://gitlab.freedesktop.org/drm/intel/issues/530
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+---
+ drivers/gpu/drm/i915/i915_active.c | 38 ++++++++++++++++++------------
+ 1 file changed, 23 insertions(+), 15 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/i915_active.c b/drivers/gpu/drm/i915/i915_active.c
+index ace55d5d4ca7..204564944dde 100644
+--- a/drivers/gpu/drm/i915/i915_active.c
++++ b/drivers/gpu/drm/i915/i915_active.c
+@@ -448,17 +448,11 @@ static void enable_signaling(struct i915_active_fence *active)
+ 	dma_fence_put(fence);
+ }
+ 
+-int i915_active_wait(struct i915_active *ref)
++static int flush_lazy_signals(struct i915_active *ref)
+ {
+ 	struct active_node *it, *n;
+ 	int err = 0;
+ 
+-	might_sleep();
+-
+-	if (!i915_active_acquire_if_busy(ref))
+-		return 0;
+-
+-	/* Flush lazy signals */
+ 	enable_signaling(&ref->excl);
+ 	rbtree_postorder_for_each_entry_safe(it, n, &ref->tree, node) {
+ 		if (is_barrier(&it->base)) /* unconnected idle barrier */
+@@ -466,17 +460,31 @@ int i915_active_wait(struct i915_active *ref)
+ 
+ 		enable_signaling(&it->base);
+ 	}
+-	/* Any fence added after the wait begins will not be auto-signaled */
+ 
+-	i915_active_release(ref);
+-	if (err)
+-		return err;
++	return err;
++}
+ 
+-	if (wait_var_event_interruptible(ref, i915_active_is_idle(ref)))
+-		return -EINTR;
++int i915_active_wait(struct i915_active *ref)
++{
++	might_sleep();
+ 
+-	flush_work(&ref->work);
+-	return 0;
++	do {
++		int err;
++
++		if (!i915_active_acquire_if_busy(ref))
++			return 0;
++
++		/* Any fence added late will not be auto-signaled */
++		err = flush_lazy_signals(ref);
++		i915_active_release(ref);
++		if (err)
++			return err;
++
++		if (wait_var_event_interruptible(ref, i915_active_is_idle(ref)))
++			return -EINTR;
++
++		flush_work(&ref->work);
++	} while (1);
+ }
+ 
+ int i915_request_await_active(struct i915_request *rq, struct i915_active *ref)
+-- 
+2.25.0
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
