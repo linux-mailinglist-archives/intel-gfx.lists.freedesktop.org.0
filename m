@@ -2,29 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 78A18145BA7
-	for <lists+intel-gfx@lfdr.de>; Wed, 22 Jan 2020 19:43:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D1A5145BA9
+	for <lists+intel-gfx@lfdr.de>; Wed, 22 Jan 2020 19:43:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9BCE86F641;
-	Wed, 22 Jan 2020 18:43:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8CF466F645;
+	Wed, 22 Jan 2020 18:43:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D09866F641
- for <intel-gfx@lists.freedesktop.org>; Wed, 22 Jan 2020 18:43:00 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E0FBE6F646
+ for <intel-gfx@lists.freedesktop.org>; Wed, 22 Jan 2020 18:43:01 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19974736-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19974737-1500050 
  for multiple; Wed, 22 Jan 2020 18:42:50 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed, 22 Jan 2020 18:42:46 +0000
-Message-Id: <20200122184249.551268-1-chris@chris-wilson.co.uk>
+Date: Wed, 22 Jan 2020 18:42:47 +0000
+Message-Id: <20200122184249.551268-2-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.25.0
+In-Reply-To: <20200122184249.551268-1-chris@chris-wilson.co.uk>
+References: <20200122184249.551268-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 1/4] drm/i915: Check i915_active wait status
- after flushing
+Subject: [Intel-gfx] [PATCH 2/4] drm/i915: Tighten atomicity of
+ i915_active_acquire vs i915_active_release
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,80 +44,44 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Double check that the i915_active is finally idle after waiting, and
-flushing its callback, just in case we need to re-activate it, for
-example to keep the vma alive a bit longer due to last minute HW
-activity (e.g. saving the context before unbinding).
+As we use a mutex to serialise the first acquire (as it may be a lengthy
+operation), but only an atomic decrement for the release, we have to
+be careful in case a second thread races and completes both
+acquire/release as the first finishes its acquire.
 
-Closes: https://gitlab.freedesktop.org/drm/intel/issues/530
+Fixes: c9ad602feabe ("drm/i915: Split i915_active.mutex into an irq-safe spinlock for the rbtree")
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 ---
- drivers/gpu/drm/i915/i915_active.c | 38 ++++++++++++++++++------------
- 1 file changed, 23 insertions(+), 15 deletions(-)
+ drivers/gpu/drm/i915/i915_active.c | 16 +++++++++-------
+ 1 file changed, 9 insertions(+), 7 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/i915_active.c b/drivers/gpu/drm/i915/i915_active.c
-index ace55d5d4ca7..204564944dde 100644
+index 204564944dde..044be2315cbd 100644
 --- a/drivers/gpu/drm/i915/i915_active.c
 +++ b/drivers/gpu/drm/i915/i915_active.c
-@@ -448,17 +448,11 @@ static void enable_signaling(struct i915_active_fence *active)
- 	dma_fence_put(fence);
- }
+@@ -416,13 +416,15 @@ int i915_active_acquire(struct i915_active *ref)
+ 	if (err)
+ 		return err;
  
--int i915_active_wait(struct i915_active *ref)
-+static int flush_lazy_signals(struct i915_active *ref)
- {
- 	struct active_node *it, *n;
- 	int err = 0;
- 
--	might_sleep();
--
--	if (!i915_active_acquire_if_busy(ref))
--		return 0;
--
--	/* Flush lazy signals */
- 	enable_signaling(&ref->excl);
- 	rbtree_postorder_for_each_entry_safe(it, n, &ref->tree, node) {
- 		if (is_barrier(&it->base)) /* unconnected idle barrier */
-@@ -466,17 +460,31 @@ int i915_active_wait(struct i915_active *ref)
- 
- 		enable_signaling(&it->base);
+-	if (!atomic_read(&ref->count) && ref->active)
+-		err = ref->active(ref);
+-	if (!err) {
+-		spin_lock_irq(&ref->tree_lock); /* vs __active_retire() */
+-		debug_active_activate(ref);
+-		atomic_inc(&ref->count);
+-		spin_unlock_irq(&ref->tree_lock);
++	if (likely(!i915_active_acquire_if_busy(ref))) {
++		if (ref->active)
++			err = ref->active(ref);
++		if (!err) {
++			spin_lock_irq(&ref->tree_lock); /* __active_retire() */
++			debug_active_activate(ref);
++			atomic_inc(&ref->count);
++			spin_unlock_irq(&ref->tree_lock);
++		}
  	}
--	/* Any fence added after the wait begins will not be auto-signaled */
  
--	i915_active_release(ref);
--	if (err)
--		return err;
-+	return err;
-+}
- 
--	if (wait_var_event_interruptible(ref, i915_active_is_idle(ref)))
--		return -EINTR;
-+int i915_active_wait(struct i915_active *ref)
-+{
-+	might_sleep();
- 
--	flush_work(&ref->work);
--	return 0;
-+	do {
-+		int err;
-+
-+		if (!i915_active_acquire_if_busy(ref))
-+			return 0;
-+
-+		/* Any fence added late will not be auto-signaled */
-+		err = flush_lazy_signals(ref);
-+		i915_active_release(ref);
-+		if (err)
-+			return err;
-+
-+		if (wait_var_event_interruptible(ref, i915_active_is_idle(ref)))
-+			return -EINTR;
-+
-+		flush_work(&ref->work);
-+	} while (1);
- }
- 
- int i915_request_await_active(struct i915_request *rq, struct i915_active *ref)
+ 	mutex_unlock(&ref->mutex);
 -- 
 2.25.0
 
