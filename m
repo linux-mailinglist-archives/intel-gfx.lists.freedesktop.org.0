@@ -1,37 +1,62 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B9B61145E42
-	for <lists+intel-gfx@lfdr.de>; Wed, 22 Jan 2020 22:45:37 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E8A6145E53
+	for <lists+intel-gfx@lfdr.de>; Wed, 22 Jan 2020 23:01:33 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D42FA6F909;
-	Wed, 22 Jan 2020 21:45:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 78C306F911;
+	Wed, 22 Jan 2020 22:01:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BEB936F908
- for <intel-gfx@lists.freedesktop.org>; Wed, 22 Jan 2020 21:45:34 +0000 (UTC)
-X-Amp-Result: UNSCANNABLE
-X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 22 Jan 2020 13:45:34 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,351,1574150400"; d="scan'208";a="220451739"
-Received: from scarbo-desk.jf.intel.com (HELO scarbo-DESK) ([10.165.21.146])
- by orsmga008.jf.intel.com with ESMTP; 22 Jan 2020 13:45:33 -0800
-Date: Wed, 22 Jan 2020 13:38:55 -0800
-From: Steve Carbonari <steven.carbonari@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Message-ID: <20200122213855.GG30454@scarbo-DESK>
-References: <20191212140459.1307617-32-chris@chris-wilson.co.uk>
+X-Greylist: delayed 541 seconds by postgrey-1.36 at gabe;
+ Wed, 22 Jan 2020 22:01:30 UTC
+Received: from pio-pvt-msa2.bahnhof.se (pio-pvt-msa2.bahnhof.se [79.136.2.41])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4DFF76F911
+ for <intel-gfx@lists.freedesktop.org>; Wed, 22 Jan 2020 22:01:30 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+ by pio-pvt-msa2.bahnhof.se (Postfix) with ESMTP id 351B040283;
+ Wed, 22 Jan 2020 22:52:27 +0100 (CET)
+Authentication-Results: pio-pvt-msa2.bahnhof.se; dkim=pass (1024-bit key;
+ unprotected) header.d=shipmail.org header.i=@shipmail.org header.b=l4xB613+; 
+ dkim-atps=neutral
+X-Virus-Scanned: Debian amavisd-new at bahnhof.se
+X-Spam-Flag: NO
+X-Spam-Score: -2.099
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.099 tagged_above=-999 required=6.31
+ tests=[BAYES_00=-1.9, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+ DKIM_VALID_AU=-0.1, DKIM_VALID_EF=-0.1, URIBL_BLOCKED=0.001]
+ autolearn=ham autolearn_force=no
+Received: from pio-pvt-msa2.bahnhof.se ([127.0.0.1])
+ by localhost (pio-pvt-msa2.bahnhof.se [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id gBHKem6YwskI; Wed, 22 Jan 2020 22:52:26 +0100 (CET)
+Received: from mail1.shipmail.org (h-205-35.A357.priv.bahnhof.se
+ [155.4.205.35]) (Authenticated sender: mb878879)
+ by pio-pvt-msa2.bahnhof.se (Postfix) with ESMTPA id AC9FD4026C;
+ Wed, 22 Jan 2020 22:52:24 +0100 (CET)
+Received: from localhost.localdomain (h-205-35.A357.priv.bahnhof.se
+ [155.4.205.35])
+ by mail1.shipmail.org (Postfix) with ESMTPSA id EE48A360057;
+ Wed, 22 Jan 2020 22:52:23 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=shipmail.org; s=mail;
+ t=1579729944; bh=CE+m6jz9osyaGNkFMzcG8nTiif0YN1jWHHmULGfPXgs=;
+ h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+ b=l4xB613+3TmCZRv5IMA+dZl5OQwyD2T8xC4xKAL39auq7BUpy18+xZKYPKgFvMnES
+ yUjsiAfAcWtOV91F1qOL3YajPDz+0eCNmG36F6wPIa/Bfezn+LrEM0sFXH9J34BaEo
+ zZlk0V+ZhOl7uD7YqzGd7JXEliuboDK7FPWRglM8=
+To: Chris Wilson <chris@chris-wilson.co.uk>, dri-devel@lists.freedesktop.org
+References: <20200122155637.496291-1-chris@chris-wilson.co.uk>
+From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m_=28VMware=29?= <thomas_os@shipmail.org>
+Organization: VMware Inc.
+Message-ID: <d5facf06-14d6-0203-f43c-22400588ab70@shipmail.org>
+Date: Wed, 22 Jan 2020 22:52:23 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20191212140459.1307617-32-chris@chris-wilson.co.uk>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [32/33] drm/i915/gt: Expose heartbeat interval via
- sysfs
+In-Reply-To: <20200122155637.496291-1-chris@chris-wilson.co.uk>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH] drm: Release filp before global lock
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,125 +69,65 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
+Cc: intel-gfx@lists.freedesktop.org
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Dec 12, 2019 at 02:04:58PM +0000, Chris Wilson wrote:
-> We monitor the health of the system via periodic heartbeat pulses. The
-> pulses also provide the opportunity to perform garbage collection.
-> However, we interpret an incomplete pulse (a missed heartbeat) as an
-> indication that the system is no longer responsive, i.e. hung, and
-> perform an engine or full GPU reset. Given that the preemption
-> granularity can be very coarse on a system, we let the sysadmin override
-> our legacy timeouts which were "optimised" for desktop applications.
-> 
-> The heartbeat interval can be adjusted per-engine using,
-> 
-> 	/sys/class/drm/card?/engine/*/heartbeat_interval_ms
-> 
+Hi, Chris,
+
+On 1/22/20 4:56 PM, Chris Wilson wrote:
+> The file is not part of the global drm resource and can be released
+> prior to take the global mutex to drop the open_count (and potentially
+> close) the drm device.
+>
+> However, inside drm_close_helper() there are a number of dev->driver
+> callbacks that take the drm_device as the first parameter... Worryingly
+> some of those callbacks may be (implicitly) depending on the global
+> mutex.
+
+I read this as you suspect that there are driver callbacks inside 
+drm_close_helper() that might need the global mutex held? But then it 
+wouldn't be safe to move the lock? Is there a strong motivation for 
+moving the locking in the first place? Also a minor nit below:
+
+>
 > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-
-Code looks good.
-Performed light testing with other sysfs related patches in the series.
-The heartbeat_interval_ms file exists and can be modified.
-
-Reviewed-by: Steve Carbonari <steven.carbonari@intel.com>
-Tested-by: Steve Carbonari <steven.carbonari@intel.com
-
-
 > ---
->  drivers/gpu/drm/i915/Kconfig.profile         |  3 ++
->  drivers/gpu/drm/i915/gt/intel_engine_sysfs.c | 47 ++++++++++++++++++++
->  2 files changed, 50 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/i915/Kconfig.profile b/drivers/gpu/drm/i915/Kconfig.profile
-> index 1f4e98a8532f..ba8767fc0d6e 100644
-> --- a/drivers/gpu/drm/i915/Kconfig.profile
-> +++ b/drivers/gpu/drm/i915/Kconfig.profile
-> @@ -20,6 +20,9 @@ config DRM_I915_HEARTBEAT_INTERVAL
->  	  check the health of the GPU and undertake regular house-keeping of
->  	  internal driver state.
->  
-> +	  This is adjustable via
-> +	  /sys/class/drm/card?/engine/*/heartbeat_interval_ms
+>   drivers/gpu/drm/drm_file.c | 4 ++--
+>   1 file changed, 2 insertions(+), 2 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/drm_file.c b/drivers/gpu/drm/drm_file.c
+> index 92d16724f949..84ed313ee2e9 100644
+> --- a/drivers/gpu/drm/drm_file.c
+> +++ b/drivers/gpu/drm/drm_file.c
+> @@ -438,12 +438,12 @@ int drm_release(struct inode *inode, struct file *filp)
+>   	struct drm_minor *minor = file_priv->minor;
+>   	struct drm_device *dev = minor->dev;
+>   
+> -	mutex_lock(&drm_global_mutex);
+> -
+>   	DRM_DEBUG("open_count = %d\n", dev->open_count);
+
+The read of dev->open_count should still be inside the lock to be 
+consistent with the value that is decremented below. Perhaps move the 
+DRM_DEBUG()?
+
+>   
+>   	drm_close_helper(filp);
+>   
+> +	mutex_lock(&drm_global_mutex);
 > +
->  	  May be 0 to disable heartbeats and therefore disable automatic GPU
->  	  hang detection.
->  
-> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_sysfs.c b/drivers/gpu/drm/i915/gt/intel_engine_sysfs.c
-> index d299c66cf7ec..33b4c00b93f2 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_engine_sysfs.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_engine_sysfs.c
-> @@ -9,6 +9,7 @@
->  
->  #include "i915_drv.h"
->  #include "intel_engine.h"
-> +#include "intel_engine_heartbeat.h"
->  #include "intel_engine_sysfs.h"
->  
->  struct kobj_engine {
-> @@ -315,6 +316,49 @@ preempt_timeout_show(struct kobject *kobj, struct kobj_attribute *attr,
->  static struct kobj_attribute preempt_timeout_attr =
->  __ATTR(preempt_timeout_ms, 0644, preempt_timeout_show, preempt_timeout_store);
->  
-> +static ssize_t
-> +heartbeat_store(struct kobject *kobj, struct kobj_attribute *attr,
-> +		const char *buf, size_t count)
-> +{
-> +	struct intel_engine_cs *engine = kobj_to_engine(kobj);
-> +	unsigned long long delay;
-> +	int err;
-> +
-> +	/*
-> +	 * We monitor the health of the system via periodic heartbeat pulses.
-> +	 * The pulses also provide the opportunity to perform garbage
-> +	 * collection.  However, we interpret an incomplete pulse (a missed
-> +	 * heartbeat) as an indication that the system is no longer responsive,
-> +	 * i.e. hung, and perform an engine or full GPU reset. Given that the
-> +	 * preemption granularity can be very coarse on a system, the optimal
-> +	 * value for any workload is unknowable!
-> +	 */
-> +
-> +	err = kstrtoull(buf, 0, &delay);
-> +	if (err)
-> +		return err;
-> +
-> +	if (delay >= jiffies_to_msecs(MAX_SCHEDULE_TIMEOUT))
-> +		return -EINVAL;
-> +
-> +	err = intel_engine_set_heartbeat(engine, delay);
-> +	if (err)
-> +		return err;
-> +
-> +	return count;
-> +}
-> +
-> +static ssize_t
-> +heartbeat_show(struct kobject *kobj, struct kobj_attribute *attr, char *buf)
-> +{
-> +	struct intel_engine_cs *engine = kobj_to_engine(kobj);
-> +
-> +	return sprintf(buf, "%lu\n", engine->props.heartbeat_interval_ms);
-> +}
-> +
-> +static struct kobj_attribute heartbeat_interval_attr =
-> +__ATTR(heartbeat_interval_ms, 0644, heartbeat_show, heartbeat_store);
-> +
->  static void kobj_engine_release(struct kobject *kobj)
->  {
->  	kfree(kobj);
-> @@ -357,6 +401,9 @@ void intel_engines_add_sysfs(struct drm_i915_private *i915)
->  		&all_caps_attr.attr,
->  		&max_spin_attr.attr,
->  		&stop_timeout_attr.attr,
-> +#if CONFIG_DRM_I915_HEARTBEAT_INTERVAL
-> +		&heartbeat_interval_attr.attr,
-> +#endif
->  		NULL
->  	};
->  
+>   	if (!--dev->open_count)
+>   		drm_lastclose(dev);
+>   
+
+Thanks,
+
+Thomas
+
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
