@@ -1,41 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B73851455E6
-	for <lists+intel-gfx@lfdr.de>; Wed, 22 Jan 2020 14:28:37 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 449331455EE
+	for <lists+intel-gfx@lfdr.de>; Wed, 22 Jan 2020 14:31:39 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E2C1A6E4FE;
-	Wed, 22 Jan 2020 13:28:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 57F596E52E;
+	Wed, 22 Jan 2020 13:31:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5CC076E4FE
- for <intel-gfx@lists.freedesktop.org>; Wed, 22 Jan 2020 13:28:33 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 22 Jan 2020 05:28:32 -0800
-X-IronPort-AV: E=Sophos;i="5.70,350,1574150400"; d="scan'208";a="229333603"
-Received: from wmszyfel-mobl2.ger.corp.intel.com (HELO [10.252.10.247])
- ([10.252.10.247])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/AES256-SHA;
- 22 Jan 2020 05:28:31 -0800
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-References: <20200122112905.482044-1-chris@chris-wilson.co.uk>
- <20200122113421.482427-1-chris@chris-wilson.co.uk>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <36b7befe-a03d-070c-fa8e-adc5c99400f3@linux.intel.com>
-Date: Wed, 22 Jan 2020 13:28:29 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
+Received: from mail-io1-xd43.google.com (mail-io1-xd43.google.com
+ [IPv6:2607:f8b0:4864:20::d43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CB47B6E51A
+ for <intel-gfx@lists.freedesktop.org>; Wed, 22 Jan 2020 13:31:33 +0000 (UTC)
+Received: by mail-io1-xd43.google.com with SMTP id d15so6637323iog.3
+ for <intel-gfx@lists.freedesktop.org>; Wed, 22 Jan 2020 05:31:33 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=poorly.run; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=0kYqlmEoukSaPf7T8rn6nUU9S/z/ksz4JSRnjBUf9rg=;
+ b=KPdH/yQ7rvLudyU7cIQHwM1k9WKpSHoIAUPxveCFJkHS5tjEzNLA9YZMXQeQZJKGRu
+ hO3hreDconTJbOVsS/NuOu24woOX/VvGuIt+Izp06mf6Uc3e/1mIkLh4Fz4kLBfFWOhD
+ PyR1sCse71wnNoqyNrLtdItJWJ2A0ghGhpBT66IhYfpvv7ZHOtgiwDqGIr3ihkU3j2NZ
+ +a+XxnPMyERHJ7Ll5BH8gAgE4/wyh2sYHf8TjqVWg6BoFasFBXj6mYVVuxfvqA5efIwR
+ Dp5STorbRj1dbbcBUjCmZ6gWaNa5x01386eWng8Q/8acqWZTFn2+hMSoHXNrJRXtY++G
+ eQJQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=0kYqlmEoukSaPf7T8rn6nUU9S/z/ksz4JSRnjBUf9rg=;
+ b=luC/1kklhzNqgC91ZohVQdvknt9zThy0B9FRuWQFI7Euwn/MbIWIom936/I0gPkO6w
+ 3zElqzpK1YR09Wh4ZiUgineGVtuofiFjmo7jLTZEULCYVdOno/bDOuzzNeTk3UPwkgms
+ U0zddb6d922GswJzGEHgQ0h1Oiu+n58UkXBt10NaDWhJ96XcNgkuv3lqj+k6xijhQwrC
+ ABIeBGFbGpe7iByxGws4O6RHuhxbiyNHfd7JJ8Wd1rvDlw10wy98lNhaLNQ8iQgbJJ//
+ +a80sw98sVmR5yoEEsIBZuBDaf5s6lTOi5CAr2OrhetOk2Yeqm/v2EJd2y8z9isklcFb
+ 3bKg==
+X-Gm-Message-State: APjAAAU4SpZvmbP2XXI4VB8w3iDYj0QcwNND9sNdGwSEHrwj7N98dBpp
+ gGF3c6E+z1j6hGrFZPpkP5dwKlK/k7UNTRWYrzoYew==
+X-Google-Smtp-Source: APXvYqx1bL8f819xrnO/PkTc3ibd7LkJePXu9T21XvC9xU8ZqAE+tvXDJKGtlLYvbUR/+Wf8k+f07HCiFSAxVGSctj8=
+X-Received: by 2002:a5d:8cc4:: with SMTP id k4mr6955781iot.2.1579699893136;
+ Wed, 22 Jan 2020 05:31:33 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <20200122113421.482427-1-chris@chris-wilson.co.uk>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/execlists: Take a reference
- while capturing the guilty request
+References: <20200115034455.17658-1-pankaj.laxminarayan.bharadiya@intel.com>
+ <20200115034455.17658-2-pankaj.laxminarayan.bharadiya@intel.com>
+In-Reply-To: <20200115034455.17658-2-pankaj.laxminarayan.bharadiya@intel.com>
+From: Sean Paul <sean@poorly.run>
+Date: Wed, 22 Jan 2020 08:30:53 -0500
+Message-ID: <CAMavQK+aXO5VMAwCu4jBbah6MkubnO+sUxd+av0A_=Ld_A9kzQ@mail.gmail.com>
+To: Pankaj Bharadiya <pankaj.laxminarayan.bharadiya@intel.com>
+Subject: Re: [Intel-gfx] [ [PATCH v2 01/10] drm/print: introduce new struct
+ drm_device based WARN* macros
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,154 +62,81 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Jani Nikula <jani.nikula@intel.com>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>, David Airlie <airlied@linux.ie>,
+ Maxime Ripard <mripard@kernel.org>, Sam Ravnborg <sam@ravnborg.org>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Tue, Jan 14, 2020 at 10:49 PM Pankaj Bharadiya
+<pankaj.laxminarayan.bharadiya@intel.com> wrote:
+>
+> Add new struct drm_device based WARN* macros. These are modeled after
+> the core kernel device based WARN* macros. These would be preferred
+> over the regular WARN* macros, where possible.
+>
+> These macros include device information in the backtrace, so we know
+> what device the warnings originate from.
+>
+> Knowing the device specific information in the backtrace would be
+> helpful in development all around.
+>
+> Signed-off-by: Pankaj Bharadiya <pankaj.laxminarayan.bharadiya@intel.com>
 
-On 22/01/2020 11:34, Chris Wilson wrote:
-> Thanks to preempt-to-busy, we leave the request on the HW as we submit
-> the preemption request. This means that the request may complete at any
-> moment as we process HW events, and in particular the request may be
-> retired as we are planning to capture it for a preemption timeout.
-> 
-> Be more careful while obtaining the request to capture after a
-> preemption timeout, and check to see if it completed before we were able
-> to put it on the on-hold list. If we do see it did complete just before
-> we capture the request, proclaim the preemption-timeout a false positive
-> and pardon the reset as we should hit an arbitration point momentarily
-> and so be able to process the preemption.
-> 
-> Note that even after we move the request to be on hold it may be retired
-> (as the reset to stop the HW comes after), so we do require to hold our
-> own reference as we work on the request for capture (and all of the
-> peeking at state within the request needs to be carefully protected).
-> 
-> Fixes: 32ff621fd744 ("drm/i915/gt: Allow temporary suspension of inflight requests")
-> Closes: https://gitlab.freedesktop.org/drm/intel/issues/997
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Acked-by: Sean Paul <sean@poorly.run>
+
 > ---
->   drivers/gpu/drm/i915/gt/intel_lrc.c | 39 +++++++++++++++++++++++------
->   1 file changed, 31 insertions(+), 8 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-> index 3a30767ff0c4..c4826d49571f 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-> @@ -2393,11 +2393,16 @@ static void __execlists_hold(struct i915_request *rq)
->   	} while (rq);
->   }
->   
-> -static void execlists_hold(struct intel_engine_cs *engine,
-> +static bool execlists_hold(struct intel_engine_cs *engine,
->   			   struct i915_request *rq)
->   {
->   	spin_lock_irq(&engine->active.lock);
->   
-> +	if (!i915_request_completed(rq)) { /* too late! */
-> +		rq = NULL;
-> +		goto unlock;
-> +	}
+>  include/drm/drm_print.h | 29 +++++++++++++++++++++++++++++
+>  1 file changed, 29 insertions(+)
+>
+> diff --git a/include/drm/drm_print.h b/include/drm/drm_print.h
+> index 8f99d389792d..894a0b9437e2 100644
+> --- a/include/drm/drm_print.h
+> +++ b/include/drm/drm_print.h
+> @@ -553,4 +553,33 @@ void __drm_err(const char *format, ...);
+>  #define DRM_DEBUG_PRIME_RATELIMITED(fmt, ...)                          \
+>         DRM_DEV_DEBUG_PRIME_RATELIMITED(NULL, fmt, ##__VA_ARGS__)
+>
+> +/*
+> + * struct drm_device based WARNs
+> + *
+> + * drm_WARN*() acts like WARN*(), but with the key difference of
+> + * using device specific information so that we know from which device
+> + * warning is originating from.
+> + *
+> + * Prefer drm_device based drm_WARN* over regular WARN*
+> + */
 > +
->   	/*
->   	 * Transfer this request onto the hold queue to prevent it
->   	 * being resumbitted to HW (and potentially completed) before we have
-> @@ -2408,7 +2413,9 @@ static void execlists_hold(struct intel_engine_cs *engine,
->   	GEM_BUG_ON(rq->engine != engine);
->   	__execlists_hold(rq);
->   
-> +unlock:
->   	spin_unlock_irq(&engine->active.lock);
-> +	return rq;
->   }
->   
->   static bool hold_request(const struct i915_request *rq)
-> @@ -2524,6 +2531,7 @@ static void execlists_capture_work(struct work_struct *work)
->   
->   	/* Return this request and all that depend upon it for signaling */
->   	execlists_unhold(engine, cap->rq);
-> +	i915_request_put(cap->rq);
->   
->   	kfree(cap);
->   }
-> @@ -2560,12 +2568,12 @@ static struct execlists_capture *capture_regs(struct intel_engine_cs *engine)
->   	return NULL;
->   }
->   
-> -static void execlists_capture(struct intel_engine_cs *engine)
-> +static bool execlists_capture(struct intel_engine_cs *engine)
->   {
->   	struct execlists_capture *cap;
->   
->   	if (!IS_ENABLED(CONFIG_DRM_I915_CAPTURE_ERROR))
-> -		return;
-> +		return true;
->   
->   	/*
->   	 * We need to _quickly_ capture the engine state before we reset.
-> @@ -2574,13 +2582,17 @@ static void execlists_capture(struct intel_engine_cs *engine)
->   	 */
->   	cap = capture_regs(engine);
->   	if (!cap)
-> -		return;
-> +		return true;
->   
->   	cap->rq = execlists_active(&engine->execlists);
->   	GEM_BUG_ON(!cap->rq);
->   
-> +	rcu_read_lock();
->   	cap->rq = active_request(cap->rq->context->timeline, cap->rq);
-> -	GEM_BUG_ON(!cap->rq);
-> +	cap->rq = i915_request_get_rcu(cap->rq);
-> +	rcu_read_unlock();
-> +	if (!cap->rq)
-> +		goto err_free;
->   
->   	/*
->   	 * Remove the request from the execlists queue, and take ownership
-> @@ -2602,10 +2614,19 @@ static void execlists_capture(struct intel_engine_cs *engine)
->   	 * simply hold that request accountable for being non-preemptible
->   	 * long enough to force the reset.
->   	 */
-> -	execlists_hold(engine, cap->rq);
-> +	if (!execlists_hold(engine, cap->rq))
-> +		goto err_rq;
->   
->   	INIT_WORK(&cap->work, execlists_capture_work);
->   	schedule_work(&cap->work);
-> +	return true;
+> +/* Helper for struct drm_device based WARNs */
+> +#define drm_WARN(drm, condition, format, arg...)                       \
+> +       WARN(condition, "%s %s: " format,                               \
+> +                       dev_driver_string((drm)->dev),                  \
+> +                       dev_name((drm)->dev), ## arg)
 > +
-> +err_rq:
-> +	i915_request_put(cap->rq);
-> +err_free:
-> +	i915_gpu_coredump_put(cap->error);
-> +	kfree(cap);
-> +	return false;
->   }
->   
->   static noinline void preempt_reset(struct intel_engine_cs *engine)
-> @@ -2627,8 +2648,10 @@ static noinline void preempt_reset(struct intel_engine_cs *engine)
->   		     jiffies_to_msecs(jiffies - engine->execlists.preempt.expires));
->   
->   	ring_set_paused(engine, 1); /* Freeze the current request in place */
-> -	execlists_capture(engine);
-> -	intel_engine_reset(engine, "preemption time out");
-> +	if (execlists_capture(engine))
-> +		intel_engine_reset(engine, "preemption time out");
-> +	else
-> +		ring_set_paused(engine, 0);
->   
->   	tasklet_enable(&engine->execlists.tasklet);
->   	clear_and_wake_up_bit(bit, lock);
-> 
-
-Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-
-Regards,
-
-Tvrtko
+> +#define drm_WARN_ONCE(drm, condition, format, arg...)                  \
+> +       WARN_ONCE(condition, "%s %s: " format,                          \
+> +                       dev_driver_string((drm)->dev),                  \
+> +                       dev_name((drm)->dev), ## arg)
+> +
+> +#define drm_WARN_ON(drm, x)                                            \
+> +       drm_WARN((drm), (x), "%s",                                      \
+> +                "drm_WARN_ON(" __stringify(x) ")")
+> +
+> +#define drm_WARN_ON_ONCE(drm, x)                                       \
+> +       drm_WARN_ONCE((drm), (x), "%s",                                 \
+> +                     "drm_WARN_ON_ONCE(" __stringify(x) ")")
+> +
+>  #endif /* DRM_PRINT_H_ */
+> --
+> 2.23.0
+>
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
