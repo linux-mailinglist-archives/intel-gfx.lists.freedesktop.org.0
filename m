@@ -1,33 +1,35 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 76ACB145F5F
-	for <lists+intel-gfx@lfdr.de>; Thu, 23 Jan 2020 00:52:48 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id CAFBF145F41
+	for <lists+intel-gfx@lfdr.de>; Thu, 23 Jan 2020 00:41:11 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C95B76F93E;
-	Wed, 22 Jan 2020 23:52:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 12BD16F93A;
+	Wed, 22 Jan 2020 23:41:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 906206F93E
- for <intel-gfx@lists.freedesktop.org>; Wed, 22 Jan 2020 23:52:44 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 22 Jan 2020 15:52:43 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,351,1574150400"; d="scan'208";a="216086177"
-Received: from anusha.jf.intel.com ([10.165.21.155])
- by orsmga007.jf.intel.com with ESMTP; 22 Jan 2020 15:52:43 -0800
-From: Anusha Srivatsa <anusha.srivatsa@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 22 Jan 2020 15:40:27 -0800
-Message-Id: <20200122234027.9373-1-anusha.srivatsa@intel.com>
-X-Mailer: git-send-email 2.23.0
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 65F936F93A;
+ Wed, 22 Jan 2020 23:41:08 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 19976455-1500050 for multiple; Wed, 22 Jan 2020 23:41:04 +0000
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/tgl: Implement Wa_1606931601
+To: Patchwork <patchwork@emeril.freedesktop.org>,
+ intel-gfx@lists.freedesktop.org
+From: Chris Wilson <chris@chris-wilson.co.uk>
+In-Reply-To: <157973475639.22392.3031691993637428611@emeril.freedesktop.org>
+References: <20200122163720.526344-1-chris@chris-wilson.co.uk>
+ <157973475639.22392.3031691993637428611@emeril.freedesktop.org>
+Message-ID: <157973646328.17083.5230032467603048458@skylake-alporthouse-com>
+User-Agent: alot/0.6
+Date: Wed, 22 Jan 2020 23:41:03 +0000
+Subject: Re: [Intel-gfx] 
+ =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_Check_i915=5Factive_wait_status_after_flushing?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,54 +42,53 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Disable Early Read and Src Swap by setting the bit 14
-and 15 in the chicken register.
+Quoting Patchwork (2020-01-22 23:12:36)
+> == Series Details ==
+> 
+> Series: drm/i915: Check i915_active wait status after flushing
+> URL   : https://patchwork.freedesktop.org/series/72412/
+> State : failure
+> 
+> == Summary ==
+> 
+> CI Bug Log - changes from CI_DRM_7797 -> Patchwork_16216
+> ====================================================
+> 
+> Summary
+> -------
+> 
+>   **FAILURE**
+> 
+>   Serious unknown changes coming with Patchwork_16216 absolutely need to be
+>   verified manually.
+>   
+>   If you think the reported changes have nothing to do with the changes
+>   introduced in Patchwork_16216, please notify your bug team to allow them
+>   to document this new failure mode, which will reduce false positives in CI.
+> 
+>   External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16216/index.html
+> 
+> Possible new issues
+> -------------------
+> 
+>   Here are the unknown changes that may have been introduced in Patchwork_16216:
+> 
+> ### IGT changes ###
+> 
+> #### Possible regressions ####
+> 
+>   * igt@kms_cursor_legacy@basic-flip-after-cursor-atomic:
+>     - fi-tgl-y:           NOTRUN -> [SKIP][1] +29 similar issues
+>    [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16216/fi-tgl-y/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html
 
-BSpec: 46045,52890
-HSDES: 1606931601
-
-Signed-off-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
----
- drivers/gpu/drm/i915/gt/intel_workarounds.c | 5 +++++
- drivers/gpu/drm/i915/i915_reg.h             | 1 +
- 2 files changed, 6 insertions(+)
-
-diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-index 5a7db279f702..53b448b61a5f 100644
---- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
-+++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-@@ -593,6 +593,11 @@ static void tgl_ctx_workarounds_init(struct intel_engine_cs *engine,
- 	wa_add(wal, FF_MODE2, FF_MODE2_TDS_TIMER_MASK, val,
- 	       IS_TGL_REVID(engine->i915, TGL_REVID_A0, TGL_REVID_A0) ? 0 :
- 			    FF_MODE2_TDS_TIMER_MASK);
-+
-+	/* Wa_1606931601:tgl */
-+	WA_SET_BIT_MASKED(GEN7_ROW_CHICKEN2,
-+			  GEN11_EARLY_READ_SRC0_DISABLE_MASK);
-+
- }
- 
- static void
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index b93c4c18f05c..69a1c2227b91 100644
---- a/drivers/gpu/drm/i915/i915_reg.h
-+++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -9146,6 +9146,7 @@ enum {
- #define   DOP_CLOCK_GATING_DISABLE	(1 << 0)
- #define   PUSH_CONSTANT_DEREF_DISABLE	(1 << 8)
- #define   GEN11_TDL_CLOCK_GATING_FIX_DISABLE	(1 << 1)
-+#define   GEN11_EARLY_READ_SRC0_DISABLE_MASK	REG_GENMASK(15, 14)
- 
- #define HSW_ROW_CHICKEN3		_MMIO(0xe49c)
- #define  HSW_ROW_CHICKEN3_L3_GLOBAL_ATOMICS_DISABLE    (1 << 6)
--- 
-2.23.0
-
+Ahem. Go fix your script,
+-Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
