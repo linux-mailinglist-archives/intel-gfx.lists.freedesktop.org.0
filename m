@@ -1,32 +1,35 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1FADB14575E
-	for <lists+intel-gfx@lfdr.de>; Wed, 22 Jan 2020 15:02:53 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 83221145763
+	for <lists+intel-gfx@lfdr.de>; Wed, 22 Jan 2020 15:03:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7C2746F529;
-	Wed, 22 Jan 2020 14:02:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 652A56F530;
+	Wed, 22 Jan 2020 14:03:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1D32D6F51F
- for <intel-gfx@lists.freedesktop.org>; Wed, 22 Jan 2020 14:02:48 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19971355-1500050 
- for <intel-gfx@lists.freedesktop.org>; Wed, 22 Jan 2020 14:02:43 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 22 Jan 2020 14:02:43 +0000
-Message-Id: <20200122140243.495621-3-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.25.0
-In-Reply-To: <20200122140243.495621-1-chris@chris-wilson.co.uk>
-References: <20200122140243.495621-1-chris@chris-wilson.co.uk>
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 77C7D6F52C;
+ Wed, 22 Jan 2020 14:03:07 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 22 Jan 2020 06:03:07 -0800
+X-IronPort-AV: E=Sophos;i="5.70,350,1574150400"; d="scan'208";a="220321176"
+Received: from jnikula-mobl3.fi.intel.com (HELO localhost) ([10.237.66.161])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 22 Jan 2020 06:03:04 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: dri-devel@lists.freedesktop.org
+Date: Wed, 22 Jan 2020 16:02:58 +0200
+Message-Id: <20200122140259.12086-1-jani.nikula@intel.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Subject: [Intel-gfx] [CI 3/3] drm/i915: Mark the removal of the i915_request
- from the sched.link
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Subject: [Intel-gfx] [PATCH v2 1/2] drm: support feature masks in
+ drm_core_check_feature()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,42 +42,39 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: jani.nikula@intel.com, intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Keep the rq->fence.flags consistent with the status of the
-rq->sched.link, and clear the associated bits when decoupling the link
-on retirement (as we may wish to inspect those flags independent of
-other state).
-
-Fixes: 32ff621fd744 ("drm/i915/gt: Allow temporary suspension of inflight requests")
-References: https://gitlab.freedesktop.org/drm/intel/issues/997
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
----
- drivers/gpu/drm/i915/i915_request.c | 2 ++
- 1 file changed, 2 insertions(+)
-
-diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
-index 9ed0d3bc7249..78a5f5d3c070 100644
---- a/drivers/gpu/drm/i915/i915_request.c
-+++ b/drivers/gpu/drm/i915/i915_request.c
-@@ -221,6 +221,8 @@ static void remove_from_engine(struct i915_request *rq)
- 		locked = engine;
- 	}
- 	list_del_init(&rq->sched.link);
-+	clear_bit(I915_FENCE_FLAG_PQUEUE, &rq->fence.flags);
-+	clear_bit(I915_FENCE_FLAG_HOLD, &rq->fence.flags);
- 	spin_unlock_irq(&locked->active.lock);
- }
- 
--- 
-2.25.0
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+QWxsb3cgYSBtYXNrIG9mIGZlYXR1cmVzIHRvIGJlIHBhc3NlZCB0byBkcm1fY29yZV9jaGVja19m
+ZWF0dXJlKCkuIEFsbApmZWF0dXJlcyBpbiB0aGUgbWFzayBhcmUgcmVxdWlyZWQuCgp2MjoKLSBm
+aXgga2VybmVsLWRvYyAoVmlsbGUpCi0gYWRkIGFuIGV4dHJhIHZhcmlhYmxlIGZvciBjbGFyaXR5
+IChWaWxsZSkKClJldmlld2VkLWJ5OiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFAbGlu
+dXguaW50ZWwuY29tPgpTaWduZWQtb2ZmLWJ5OiBKYW5pIE5pa3VsYSA8amFuaS5uaWt1bGFAaW50
+ZWwuY29tPgotLS0KIGluY2x1ZGUvZHJtL2RybV9kcnYuaCB8IDEyICsrKysrKysrLS0tLQogMSBm
+aWxlIGNoYW5nZWQsIDggaW5zZXJ0aW9ucygrKSwgNCBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQg
+YS9pbmNsdWRlL2RybS9kcm1fZHJ2LmggYi9pbmNsdWRlL2RybS9kcm1fZHJ2LmgKaW5kZXggY2Yx
+MzQ3MDgxMGE1Li5mMThlMTlmM2YyZDAgMTAwNjQ0Ci0tLSBhL2luY2x1ZGUvZHJtL2RybV9kcnYu
+aAorKysgYi9pbmNsdWRlL2RybS9kcm1fZHJ2LmgKQEAgLTgyNiwxNiArODI2LDIwIEBAIHN0YXRp
+YyBpbmxpbmUgYm9vbCBkcm1fZGV2X2lzX3VucGx1Z2dlZChzdHJ1Y3QgZHJtX2RldmljZSAqZGV2
+KQogLyoqCiAgKiBkcm1fY29yZV9jaGVja19mZWF0dXJlIC0gY2hlY2sgZHJpdmVyIGZlYXR1cmUg
+ZmxhZ3MKICAqIEBkZXY6IERSTSBkZXZpY2UgdG8gY2hlY2sKLSAqIEBmZWF0dXJlOiBmZWF0dXJl
+IGZsYWcKKyAqIEBmZWF0dXJlczogZmVhdHVyZSBmbGFnKHMpCiAgKgogICogVGhpcyBjaGVja3Mg
+QGRldiBmb3IgZHJpdmVyIGZlYXR1cmVzLCBzZWUgJmRybV9kcml2ZXIuZHJpdmVyX2ZlYXR1cmVz
+LAogICogJmRybV9kZXZpY2UuZHJpdmVyX2ZlYXR1cmVzLCBhbmQgdGhlIHZhcmlvdXMgJmVudW0g
+ZHJtX2RyaXZlcl9mZWF0dXJlIGZsYWdzLgogICoKLSAqIFJldHVybnMgdHJ1ZSBpZiB0aGUgQGZl
+YXR1cmUgaXMgc3VwcG9ydGVkLCBmYWxzZSBvdGhlcndpc2UuCisgKiBSZXR1cm5zIHRydWUgaWYg
+YWxsIGZlYXR1cmVzIGluIHRoZSBAZmVhdHVyZXMgbWFzayBhcmUgc3VwcG9ydGVkLCBmYWxzZQor
+ICogb3RoZXJ3aXNlLgogICovCi1zdGF0aWMgaW5saW5lIGJvb2wgZHJtX2NvcmVfY2hlY2tfZmVh
+dHVyZShjb25zdCBzdHJ1Y3QgZHJtX2RldmljZSAqZGV2LCB1MzIgZmVhdHVyZSkKK3N0YXRpYyBp
+bmxpbmUgYm9vbCBkcm1fY29yZV9jaGVja19mZWF0dXJlKGNvbnN0IHN0cnVjdCBkcm1fZGV2aWNl
+ICpkZXYsCisJCQkJCSAgdTMyIGZlYXR1cmVzKQogewotCXJldHVybiBkZXYtPmRyaXZlci0+ZHJp
+dmVyX2ZlYXR1cmVzICYgZGV2LT5kcml2ZXJfZmVhdHVyZXMgJiBmZWF0dXJlOworCXUzMiBzdXBw
+b3J0ZWQgPSBkZXYtPmRyaXZlci0+ZHJpdmVyX2ZlYXR1cmVzICYgZGV2LT5kcml2ZXJfZmVhdHVy
+ZXM7CisKKwlyZXR1cm4gZmVhdHVyZXMgJiYgKHN1cHBvcnRlZCAmIGZlYXR1cmVzKSA9PSBmZWF0
+dXJlczsKIH0KIAogLyoqCi0tIAoyLjIwLjEKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3Rz
+LmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xp
+c3RpbmZvL2ludGVsLWdmeAo=
