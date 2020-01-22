@@ -2,37 +2,36 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 57F8A144E7B
-	for <lists+intel-gfx@lfdr.de>; Wed, 22 Jan 2020 10:16:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 85C6D144EC0
+	for <lists+intel-gfx@lfdr.de>; Wed, 22 Jan 2020 10:31:32 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9B8EC6F40B;
-	Wed, 22 Jan 2020 09:16:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A045C6F43F;
+	Wed, 22 Jan 2020 09:31:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9EB5C6E4C4;
- Wed, 22 Jan 2020 09:16:43 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E9E696F43E;
+ Wed, 22 Jan 2020 09:31:25 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 22 Jan 2020 01:16:43 -0800
-X-IronPort-AV: E=Sophos;i="5.70,349,1574150400"; d="scan'208";a="215840368"
-Received: from mlblandf-mobl2.amr.corp.intel.com (HELO localhost)
- ([10.252.37.232])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 22 Jan 2020 01:16:38 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Lyude Paul <lyude@redhat.com>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20200117232155.135579-1-lyude@redhat.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20200116211623.53799-5-lyude@redhat.com>
- <20200117232155.135579-1-lyude@redhat.com>
-Date: Wed, 22 Jan 2020 11:17:32 +0200
-Message-ID: <87lfpzj1eb.fsf@intel.com>
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 22 Jan 2020 01:31:25 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,349,1574150400"; d="scan'208";a="227619165"
+Received: from ideak-desk.fi.intel.com ([10.237.72.183])
+ by orsmga003.jf.intel.com with ESMTP; 22 Jan 2020 01:31:23 -0800
+From: Imre Deak <imre.deak@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org
+Date: Wed, 22 Jan 2020 11:31:22 +0200
+Message-Id: <20200122093122.15476-1-imre.deak@intel.com>
+X-Mailer: git-send-email 2.23.1
+In-Reply-To: <20200120164343.2262-1-imre.deak@intel.com>
+References: <20200120164343.2262-1-imre.deak@intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v4] drm/i915: Don't use VBT for detecting
- DPCD backlight controls
+Subject: [Intel-gfx] [PATCH libdrm v2] intel: drm_intel_bo_gem_create_from_*
+ on platforms w/o HW tiling
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,87 +44,117 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, AceLan Kao <acelan.kao@canonical.com>,
- Perry Yuan <pyuan@redhat.com>
+Cc: Eric Engestrom <eric@engestrom.ch>,
+ Emil Velikov <emil.velikov@collabora.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 17 Jan 2020, Lyude Paul <lyude@redhat.com> wrote:
-> Despite the fact that the VBT appears to have a field for specifying
-> that a system is equipped with a panel that supports standard VESA
-> backlight controls over the DP AUX channel, so far every system we've
-> spotted DPCD backlight control support on doesn't actually set this
-> field correctly and all have it set to INTEL_BACKLIGHT_DISPLAY_DDI.
->
-> While we don't know the exact reason for this VBT misuse, talking with
-> some vendors indicated that there's a good number of laptop panels out
-> there that supposedly support both PWM backlight controls and DPCD
-> backlight controls as a workaround until Intel supports DPCD backlight
-> controls across platforms universally. This being said, the X1 Extreme
-> 2nd Gen that I have here (note that Lenovo is not the hardware vendor
-> that informed us of this) PWM backlight controls are advertised, but
-> only DPCD controls actually function. I'm going to make an educated
-> guess here and say that on systems like this one, it's likely that PWM
-> backlight controls might have been intended to work but were never
-> really tested by QA.
->
-> Since we really need backlights to work without any extra module
-> parameters, let's take the risk here and rely on the standard DPCD caps
-> to tell us whether AUX backlight controls are supported or not. We still
-> check the VBT, just so we can print a debugging message on systems that
-> advertise DPCD backlight support on the panel but not in the VBT.
->
-> Changes since v3:
-> * Print a debugging message if we enable DPCD backlight control on a
->   device which doesn't report DPCD backlight controls in it's VBT,
->   instead of warning on custom panel backlight interfaces.
->
-> Signed-off-by: Lyude Paul <lyude@redhat.com>
-> Bugzilla: https://bugs.freedesktop.org/show_bug.cgi?id=112376
-> Cc: Jani Nikula <jani.nikula@intel.com>
-> Cc: Perry Yuan <pyuan@redhat.com>
-> Cc: AceLan Kao <acelan.kao@canonical.com>
+Platforms without a HW detiler doesn't support the get_tiling IOCTL.
+Fix the drm_intel_bo_gem_create_from_* functions assuming the default
+no-tiling, no-swizzling setting for the GEM buffer in this case.
 
-Thanks for the patch, pushed to dinq, fingers crossed! ;)
+v2:
+- Add the missing gem handle IOCTL parameter. (Eric)
 
-BR,
-Jani.
+Signed-off-by: Imre Deak <imre.deak@intel.com>
+Reviewed-by: Emil Velikov <emil.velikov@collabora.com>
+Reviewed-by: Eric Engestrom <eric@engestrom.ch>
+---
+ intel/intel_bufmgr_gem.c | 43 +++++++++++++++++++++++++---------------
+ 1 file changed, 27 insertions(+), 16 deletions(-)
 
-> ---
->  drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c | 9 +++++----
->  1 file changed, 5 insertions(+), 4 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-> index 77a759361c5c..0f8edc775375 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-> @@ -328,15 +328,16 @@ intel_dp_aux_display_control_capable(struct intel_connector *connector)
->  int intel_dp_aux_init_backlight_funcs(struct intel_connector *intel_connector)
->  {
->  	struct intel_panel *panel = &intel_connector->panel;
-> -	struct drm_i915_private *dev_priv = to_i915(intel_connector->base.dev);
-> +	enum intel_backlight_type type =
-> +		to_i915(intel_connector->base.dev)->vbt.backlight.type;
->  
->  	if (i915_modparams.enable_dpcd_backlight == 0 ||
->  	    (i915_modparams.enable_dpcd_backlight == -1 &&
-> -	    dev_priv->vbt.backlight.type != INTEL_BACKLIGHT_VESA_EDP_AUX_INTERFACE))
-> +	     !intel_dp_aux_display_control_capable(intel_connector)))
->  		return -ENODEV;
->  
-> -	if (!intel_dp_aux_display_control_capable(intel_connector))
-> -		return -ENODEV;
-> +	if (type != INTEL_BACKLIGHT_VESA_EDP_AUX_INTERFACE)
-> +		DRM_DEBUG_DRIVER("Ignoring VBT backlight type\n");
->  
->  	panel->backlight.setup = intel_dp_aux_setup_backlight;
->  	panel->backlight.enable = intel_dp_aux_enable_backlight;
-
+diff --git a/intel/intel_bufmgr_gem.c b/intel/intel_bufmgr_gem.c
+index fbf48730..ade13a4c 100644
+--- a/intel/intel_bufmgr_gem.c
++++ b/intel/intel_bufmgr_gem.c
+@@ -1069,6 +1069,28 @@ check_bo_alloc_userptr(drm_intel_bufmgr *bufmgr,
+ 					  tiling_mode, stride, size, flags);
+ }
+ 
++static int get_tiling_mode(drm_intel_bufmgr_gem *bufmgr_gem,
++			   uint32_t gem_handle,
++			   uint32_t *tiling_mode,
++			   uint32_t *swizzle_mode)
++{
++	struct drm_i915_gem_get_tiling get_tiling = {
++		.handle = gem_handle,
++	};
++	int ret;
++
++	ret = drmIoctl(bufmgr_gem->fd,
++		       DRM_IOCTL_I915_GEM_GET_TILING,
++		       &get_tiling);
++	if (ret != 0 && errno != EOPNOTSUPP)
++		return ret;
++
++	*tiling_mode = get_tiling.tiling_mode;
++	*swizzle_mode = get_tiling.swizzle_mode;
++
++	return 0;
++}
++
+ /**
+  * Returns a drm_intel_bo wrapping the given buffer object handle.
+  *
+@@ -1084,7 +1106,6 @@ drm_intel_bo_gem_create_from_name(drm_intel_bufmgr *bufmgr,
+ 	drm_intel_bo_gem *bo_gem;
+ 	int ret;
+ 	struct drm_gem_open open_arg;
+-	struct drm_i915_gem_get_tiling get_tiling;
+ 
+ 	/* At the moment most applications only have a few named bo.
+ 	 * For instance, in a DRI client only the render buffers passed
+@@ -1146,16 +1167,11 @@ drm_intel_bo_gem_create_from_name(drm_intel_bufmgr *bufmgr,
+ 	HASH_ADD(name_hh, bufmgr_gem->name_table,
+ 		 global_name, sizeof(bo_gem->global_name), bo_gem);
+ 
+-	memclear(get_tiling);
+-	get_tiling.handle = bo_gem->gem_handle;
+-	ret = drmIoctl(bufmgr_gem->fd,
+-		       DRM_IOCTL_I915_GEM_GET_TILING,
+-		       &get_tiling);
++	ret = get_tiling_mode(bufmgr_gem, bo_gem->gem_handle,
++			      &bo_gem->tiling_mode, &bo_gem->swizzle_mode);
+ 	if (ret != 0)
+ 		goto err_unref;
+ 
+-	bo_gem->tiling_mode = get_tiling.tiling_mode;
+-	bo_gem->swizzle_mode = get_tiling.swizzle_mode;
+ 	/* XXX stride is unknown */
+ 	drm_intel_bo_gem_set_in_aperture_size(bufmgr_gem, bo_gem, 0);
+ 	DBG("bo_create_from_handle: %d (%s)\n", handle, bo_gem->name);
+@@ -2634,7 +2650,6 @@ drm_intel_bo_gem_create_from_prime(drm_intel_bufmgr *bufmgr, int prime_fd, int s
+ 	int ret;
+ 	uint32_t handle;
+ 	drm_intel_bo_gem *bo_gem;
+-	struct drm_i915_gem_get_tiling get_tiling;
+ 
+ 	pthread_mutex_lock(&bufmgr_gem->lock);
+ 	ret = drmPrimeFDToHandle(bufmgr_gem->fd, prime_fd, &handle);
+@@ -2688,15 +2703,11 @@ drm_intel_bo_gem_create_from_prime(drm_intel_bufmgr *bufmgr, int prime_fd, int s
+ 	bo_gem->has_error = false;
+ 	bo_gem->reusable = false;
+ 
+-	memclear(get_tiling);
+-	get_tiling.handle = bo_gem->gem_handle;
+-	if (drmIoctl(bufmgr_gem->fd,
+-		     DRM_IOCTL_I915_GEM_GET_TILING,
+-		     &get_tiling))
++	ret = get_tiling_mode(bufmgr_gem, handle,
++			      &bo_gem->tiling_mode, &bo_gem->swizzle_mode);
++	if (ret)
+ 		goto err;
+ 
+-	bo_gem->tiling_mode = get_tiling.tiling_mode;
+-	bo_gem->swizzle_mode = get_tiling.swizzle_mode;
+ 	/* XXX stride is unknown */
+ 	drm_intel_bo_gem_set_in_aperture_size(bufmgr_gem, bo_gem, 0);
+ 
 -- 
-Jani Nikula, Intel Open Source Graphics Center
+2.23.1
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
