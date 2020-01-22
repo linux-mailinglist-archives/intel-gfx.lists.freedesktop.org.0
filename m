@@ -2,38 +2,34 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD6971458E6
-	for <lists+intel-gfx@lfdr.de>; Wed, 22 Jan 2020 16:39:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 68F14145901
+	for <lists+intel-gfx@lfdr.de>; Wed, 22 Jan 2020 16:50:46 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D63B76F590;
-	Wed, 22 Jan 2020 15:39:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D3AC06F5A7;
+	Wed, 22 Jan 2020 15:50:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 00EFA6F590;
- Wed, 22 Jan 2020 15:39:04 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DFFEA6F57B;
+ Wed, 22 Jan 2020 15:50:39 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
  by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 22 Jan 2020 07:32:56 -0800
-X-IronPort-AV: E=Sophos;i="5.70,350,1574150400"; d="scan'208";a="400039753"
+ 22 Jan 2020 07:50:39 -0800
+X-IronPort-AV: E=Sophos;i="5.70,350,1574150400"; d="scan'208";a="220351265"
 Received: from jnikula-mobl3.fi.intel.com (HELO localhost) ([10.237.66.161])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 22 Jan 2020 07:32:52 -0800
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 22 Jan 2020 07:50:36 -0800
 From: Jani Nikula <jani.nikula@intel.com>
-To: Sean Paul <sean@poorly.run>,
- Pankaj Bharadiya <pankaj.laxminarayan.bharadiya@intel.com>
-In-Reply-To: <CAMavQK+aXO5VMAwCu4jBbah6MkubnO+sUxd+av0A_=Ld_A9kzQ@mail.gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20200115034455.17658-1-pankaj.laxminarayan.bharadiya@intel.com>
- <20200115034455.17658-2-pankaj.laxminarayan.bharadiya@intel.com>
- <CAMavQK+aXO5VMAwCu4jBbah6MkubnO+sUxd+av0A_=Ld_A9kzQ@mail.gmail.com>
-Date: Wed, 22 Jan 2020 17:32:49 +0200
-Message-ID: <87blqvecbi.fsf@intel.com>
+To: dri-devel@lists.freedesktop.org
+Date: Wed, 22 Jan 2020 17:50:29 +0200
+Message-Id: <20200122155030.29304-1-jani.nikula@intel.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [ [PATCH v2 01/10] drm/print: introduce new struct
- drm_device based WARN* macros
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Subject: [Intel-gfx] [PATCH v3 1/2] drm: add drm_core_check_all_features()
+ to check for a mask of features
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,101 +42,51 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- dri-devel <dri-devel@lists.freedesktop.org>,
- Maxime Ripard <mripard@kernel.org>, Sam Ravnborg <sam@ravnborg.org>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org,
+ Thomas Zimmermann <tzimmermann@suse.de>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 22 Jan 2020, Sean Paul <sean@poorly.run> wrote:
-> On Tue, Jan 14, 2020 at 10:49 PM Pankaj Bharadiya
-> <pankaj.laxminarayan.bharadiya@intel.com> wrote:
->>
->> Add new struct drm_device based WARN* macros. These are modeled after
->> the core kernel device based WARN* macros. These would be preferred
->> over the regular WARN* macros, where possible.
->>
->> These macros include device information in the backtrace, so we know
->> what device the warnings originate from.
->>
->> Knowing the device specific information in the backtrace would be
->> helpful in development all around.
->>
->> Signed-off-by: Pankaj Bharadiya <pankaj.laxminarayan.bharadiya@intel.com>
->
-> Acked-by: Sean Paul <sean@poorly.run>
-
-Maarten and Maxime also provided their acks on IRC. Thanks for the
-review and acks, I've pushed this to a topic branch, sent the pull
-request for drm-misc-next [1], and pulled the same to
-drm-intel-next-queued [2] to unblock further work there.
-
-BR,
-Jani.
-
-
-[1] http://lore.kernel.org/r/87eevrecnf.fsf@intel.com
-[2] 7c7d5b1ce739 ("Merge tag 'topic/drm-warn-2020-01-22' of git://anongit.freedesktop.org/drm/drm-intel into drm-intel-next-queued")
-
-
-
->
->> ---
->>  include/drm/drm_print.h | 29 +++++++++++++++++++++++++++++
->>  1 file changed, 29 insertions(+)
->>
->> diff --git a/include/drm/drm_print.h b/include/drm/drm_print.h
->> index 8f99d389792d..894a0b9437e2 100644
->> --- a/include/drm/drm_print.h
->> +++ b/include/drm/drm_print.h
->> @@ -553,4 +553,33 @@ void __drm_err(const char *format, ...);
->>  #define DRM_DEBUG_PRIME_RATELIMITED(fmt, ...)                          \
->>         DRM_DEV_DEBUG_PRIME_RATELIMITED(NULL, fmt, ##__VA_ARGS__)
->>
->> +/*
->> + * struct drm_device based WARNs
->> + *
->> + * drm_WARN*() acts like WARN*(), but with the key difference of
->> + * using device specific information so that we know from which device
->> + * warning is originating from.
->> + *
->> + * Prefer drm_device based drm_WARN* over regular WARN*
->> + */
->> +
->> +/* Helper for struct drm_device based WARNs */
->> +#define drm_WARN(drm, condition, format, arg...)                       \
->> +       WARN(condition, "%s %s: " format,                               \
->> +                       dev_driver_string((drm)->dev),                  \
->> +                       dev_name((drm)->dev), ## arg)
->> +
->> +#define drm_WARN_ONCE(drm, condition, format, arg...)                  \
->> +       WARN_ONCE(condition, "%s %s: " format,                          \
->> +                       dev_driver_string((drm)->dev),                  \
->> +                       dev_name((drm)->dev), ## arg)
->> +
->> +#define drm_WARN_ON(drm, x)                                            \
->> +       drm_WARN((drm), (x), "%s",                                      \
->> +                "drm_WARN_ON(" __stringify(x) ")")
->> +
->> +#define drm_WARN_ON_ONCE(drm, x)                                       \
->> +       drm_WARN_ONCE((drm), (x), "%s",                                 \
->> +                     "drm_WARN_ON_ONCE(" __stringify(x) ")")
->> +
->>  #endif /* DRM_PRINT_H_ */
->> --
->> 2.23.0
->>
->> _______________________________________________
->> Intel-gfx mailing list
->> Intel-gfx@lists.freedesktop.org
->> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
--- 
-Jani Nikula, Intel Open Source Graphics Center
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+QWRkIG5ldyBkcm1fY29yZV9jaGVja19hbGxfZmVhdHVyZXMoKSBmdW5jdGlvbiB0byBjaGVjayBm
+b3IgYSBtYXNrIG9mCmZlYXR1cmVzLiBBbGwgZmVhdHVyZXMgaW4gdGhlIG1hc2sgYXJlIHJlcXVp
+cmVkLgoKUmVkZWZpbmUgZXhpc3RpbmcgZHJtX2NvcmVfY2hlY2tfZmVhdHVyZSgpIGluIHRlcm1z
+IG9mIHRoaXMgZnVuY3Rpb24sCnVzaW5nIHRoZSBkcm1fZHJpdmVyX2ZlYXR1cmUgZW51bSBmb3Ig
+dGhlIHBhcmFtZXRlci4KCnYzOgotIGFkZCBkcm1fY29yZV9jaGVja19hbGxfZmVhdHVyZXMoKSAo
+VGhvbWFzKQoKdjI6Ci0gZml4IGtlcm5lbC1kb2MgKFZpbGxlKQotIGFkZCBhbiBleHRyYSB2YXJp
+YWJsZSBmb3IgY2xhcml0eSAoVmlsbGUpCgpDYzogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJq
+YWxhQGxpbnV4LmludGVsLmNvbT4KQ2M6IFRob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBz
+dXNlLmRlPgpTaWduZWQtb2ZmLWJ5OiBKYW5pIE5pa3VsYSA8amFuaS5uaWt1bGFAaW50ZWwuY29t
+PgotLS0KIGluY2x1ZGUvZHJtL2RybV9kcnYuaCB8IDI0ICsrKysrKysrKysrKysrKysrKysrKyst
+LQogMSBmaWxlIGNoYW5nZWQsIDIyIGluc2VydGlvbnMoKyksIDIgZGVsZXRpb25zKC0pCgpkaWZm
+IC0tZ2l0IGEvaW5jbHVkZS9kcm0vZHJtX2Rydi5oIGIvaW5jbHVkZS9kcm0vZHJtX2Rydi5oCmlu
+ZGV4IGNmMTM0NzA4MTBhNS4uMjNiNjM2NjkxZmI0IDEwMDY0NAotLS0gYS9pbmNsdWRlL2RybS9k
+cm1fZHJ2LmgKKysrIGIvaW5jbHVkZS9kcm0vZHJtX2Rydi5oCkBAIC04MjMsNiArODIzLDI1IEBA
+IHN0YXRpYyBpbmxpbmUgYm9vbCBkcm1fZGV2X2lzX3VucGx1Z2dlZChzdHJ1Y3QgZHJtX2Rldmlj
+ZSAqZGV2KQogCXJldHVybiB0cnVlOwogfQogCisvKioKKyAqIGRybV9jb3JlX2NoZWNrX2FsbF9m
+ZWF0dXJlcyAtIGNoZWNrIGRyaXZlciBmZWF0dXJlIGZsYWdzIG1hc2sKKyAqIEBkZXY6IERSTSBk
+ZXZpY2UgdG8gY2hlY2sKKyAqIEBmZWF0dXJlczogZmVhdHVyZSBmbGFnKHMpIG1hc2sKKyAqCisg
+KiBUaGlzIGNoZWNrcyBAZGV2IGZvciBkcml2ZXIgZmVhdHVyZXMsIHNlZSAmZHJtX2RyaXZlci5k
+cml2ZXJfZmVhdHVyZXMsCisgKiAmZHJtX2RldmljZS5kcml2ZXJfZmVhdHVyZXMsIGFuZCB0aGUg
+dmFyaW91cyAmZW51bSBkcm1fZHJpdmVyX2ZlYXR1cmUgZmxhZ3MuCisgKgorICogUmV0dXJucyB0
+cnVlIGlmIGFsbCBmZWF0dXJlcyBpbiB0aGUgQGZlYXR1cmVzIG1hc2sgYXJlIHN1cHBvcnRlZCwg
+ZmFsc2UKKyAqIG90aGVyd2lzZS4KKyAqLworc3RhdGljIGlubGluZSBib29sIGRybV9jb3JlX2No
+ZWNrX2FsbF9mZWF0dXJlcyhjb25zdCBzdHJ1Y3QgZHJtX2RldmljZSAqZGV2LAorCQkJCQkgICAg
+ICAgdTMyIGZlYXR1cmVzKQoreworCXUzMiBzdXBwb3J0ZWQgPSBkZXYtPmRyaXZlci0+ZHJpdmVy
+X2ZlYXR1cmVzICYgZGV2LT5kcml2ZXJfZmVhdHVyZXM7CisKKwlyZXR1cm4gZmVhdHVyZXMgJiYg
+KHN1cHBvcnRlZCAmIGZlYXR1cmVzKSA9PSBmZWF0dXJlczsKK30KKwogLyoqCiAgKiBkcm1fY29y
+ZV9jaGVja19mZWF0dXJlIC0gY2hlY2sgZHJpdmVyIGZlYXR1cmUgZmxhZ3MKICAqIEBkZXY6IERS
+TSBkZXZpY2UgdG8gY2hlY2sKQEAgLTgzMyw5ICs4NTIsMTAgQEAgc3RhdGljIGlubGluZSBib29s
+IGRybV9kZXZfaXNfdW5wbHVnZ2VkKHN0cnVjdCBkcm1fZGV2aWNlICpkZXYpCiAgKgogICogUmV0
+dXJucyB0cnVlIGlmIHRoZSBAZmVhdHVyZSBpcyBzdXBwb3J0ZWQsIGZhbHNlIG90aGVyd2lzZS4K
+ICAqLwotc3RhdGljIGlubGluZSBib29sIGRybV9jb3JlX2NoZWNrX2ZlYXR1cmUoY29uc3Qgc3Ry
+dWN0IGRybV9kZXZpY2UgKmRldiwgdTMyIGZlYXR1cmUpCitzdGF0aWMgaW5saW5lIGJvb2wgZHJt
+X2NvcmVfY2hlY2tfZmVhdHVyZShjb25zdCBzdHJ1Y3QgZHJtX2RldmljZSAqZGV2LAorCQkJCQkg
+IGVudW0gZHJtX2RyaXZlcl9mZWF0dXJlIGZlYXR1cmUpCiB7Ci0JcmV0dXJuIGRldi0+ZHJpdmVy
+LT5kcml2ZXJfZmVhdHVyZXMgJiBkZXYtPmRyaXZlcl9mZWF0dXJlcyAmIGZlYXR1cmU7CisJcmV0
+dXJuIGRybV9jb3JlX2NoZWNrX2FsbF9mZWF0dXJlcyhkZXYsIGZlYXR1cmUpOwogfQogCiAvKioK
+LS0gCjIuMjAuMQoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
+Cmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
+Cg==
