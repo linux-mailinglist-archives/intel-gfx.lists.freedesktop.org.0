@@ -2,57 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 36704145987
-	for <lists+intel-gfx@lfdr.de>; Wed, 22 Jan 2020 17:11:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6BA98145995
+	for <lists+intel-gfx@lfdr.de>; Wed, 22 Jan 2020 17:15:24 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7E5086F5C7;
-	Wed, 22 Jan 2020 16:11:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DE4ED6F5CF;
+	Wed, 22 Jan 2020 16:15:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mx2.suse.de (mx2.suse.de [195.135.220.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4B8AD6F5C7;
- Wed, 22 Jan 2020 16:11:53 +0000 (UTC)
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-Received: from relay2.suse.de (unknown [195.135.220.254])
- by mx2.suse.de (Postfix) with ESMTP id 08190ADE2;
- Wed, 22 Jan 2020 16:11:52 +0000 (UTC)
-To: Jani Nikula <jani.nikula@intel.com>, dri-devel@lists.freedesktop.org
-References: <20200122155030.29304-1-jani.nikula@intel.com>
- <20200122155030.29304-2-jani.nikula@intel.com>
-From: Thomas Zimmermann <tzimmermann@suse.de>
-Autocrypt: addr=tzimmermann@suse.de; keydata=
- mQENBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
- XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
- BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
- hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
- 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
- AAG0J1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPokBVAQTAQgAPhYh
- BHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJbOdLgAhsDBQkDwmcABQsJCAcCBhUKCQgLAgQWAgMB
- Ah4BAheAAAoJEGgNwR1TC3ojR80H/jH+vYavwQ+TvO8ksXL9JQWc3IFSiGpuSVXLCdg62AmR
- irxW+qCwNncNQyb9rd30gzdectSkPWL3KSqEResBe24IbA5/jSkPweJasgXtfhuyoeCJ6PXo
- clQQGKIoFIAEv1s8l0ggPZswvCinegl1diyJXUXmdEJRTWYAtxn/atut1o6Giv6D2qmYbXN7
- mneMC5MzlLaJKUtoH7U/IjVw1sx2qtxAZGKVm4RZxPnMCp9E1MAr5t4dP5gJCIiqsdrVqI6i
- KupZstMxstPU//azmz7ZWWxT0JzgJqZSvPYx/SATeexTYBP47YFyri4jnsty2ErS91E6H8os
- Bv6pnSn7eAq5AQ0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRH
- UE9eosYbT6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgT
- RjP+qbU63Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+R
- dhgATnWWGKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zb
- ehDda8lvhFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r
- 12+lqdsAEQEAAYkBPAQYAQgAJhYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJbOdLgAhsMBQkD
- wmcAAAoJEGgNwR1TC3ojpfcIAInwP5OlcEKokTnHCiDTz4Ony4GnHRP2fXATQZCKxmu4AJY2
- h9ifw9Nf2TjCZ6AMvC3thAN0rFDj55N9l4s1CpaDo4J+0fkrHuyNacnT206CeJV1E7NYntxU
- n+LSiRrOdywn6erjxRi9EYTVLCHcDhBEjKmFZfg4AM4GZMWX1lg0+eHbd5oL1as28WvvI/uI
- aMyV8RbyXot1r/8QLlWldU3NrTF5p7TMU2y3ZH2mf5suSKHAMtbE4jKJ8ZHFOo3GhLgjVrBW
- HE9JXO08xKkgD+w6v83+nomsEuf6C6LYrqY/tsZvyEX6zN8CtirPdPWu/VXNRYAl/lat7lSI
- 3H26qrE=
-Message-ID: <a71522fa-780d-1c09-17dc-46230967223f@suse.de>
-Date: Wed, 22 Jan 2020 17:11:51 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.4.1
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7D1896F5CF
+ for <intel-gfx@lists.freedesktop.org>; Wed, 22 Jan 2020 16:15:20 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 22 Jan 2020 08:15:20 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,350,1574150400"; d="scan'208";a="374963980"
+Received: from fmsmsx106.amr.corp.intel.com ([10.18.124.204])
+ by orsmga004.jf.intel.com with ESMTP; 22 Jan 2020 08:15:19 -0800
+Received: from fmsmsx120.amr.corp.intel.com (10.18.124.208) by
+ FMSMSX106.amr.corp.intel.com (10.18.124.204) with Microsoft SMTP Server (TLS)
+ id 14.3.439.0; Wed, 22 Jan 2020 08:15:18 -0800
+Received: from fmsmsx108.amr.corp.intel.com ([169.254.9.51]) by
+ fmsmsx120.amr.corp.intel.com ([169.254.15.223]) with mapi id 14.03.0439.000;
+ Wed, 22 Jan 2020 08:15:18 -0800
+From: "Ruhl, Michael J" <michael.j.ruhl@intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>, "intel-gfx@lists.freedesktop.org"
+ <intel-gfx@lists.freedesktop.org>
+Thread-Topic: [Intel-gfx] [PATCH 4/5] drm/i915/gem: Convert vm idr to xarray
+Thread-Index: AQHVz39Zf5VImNV9pkCJoHqsxsmDwaf21OiAgACOmgD//3qRgA==
+Date: Wed, 22 Jan 2020 16:15:17 +0000
+Message-ID: <14063C7AD467DE4B82DEDB5C278E8663EE18F465@FMSMSX108.amr.corp.intel.com>
+References: <20200120104924.4000706-1-chris@chris-wilson.co.uk>
+ <20200120104924.4000706-4-chris@chris-wilson.co.uk>
+ <14063C7AD467DE4B82DEDB5C278E8663EE18F37E@FMSMSX108.amr.corp.intel.com>
+ <157970931487.7477.3304015911577031575@skylake-alporthouse-com>
+In-Reply-To: <157970931487.7477.3304015911577031575@skylake-alporthouse-com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ctpclassification: CTP_NT
+x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiNTVmZjY4NTEtMGExNy00ZTlkLWFkNGItZGI0NTZmZmJhNTRjIiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX05UIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE3LjEwLjE4MDQuNDkiLCJUcnVzdGVkTGFiZWxIYXNoIjoib1hwOVlrd1hpNU94Z0ZJSnFIWmRWY3l0N2ZCcFUwVWwwNHhOTnBOSWJxQzZPZk45MGlvM2s2dWl4MkhrMGl1WSJ9
+dlp-product: dlpe-windows
+dlp-version: 11.2.0.6
+dlp-reaction: no-action
+x-originating-ip: [10.1.200.108]
 MIME-Version: 1.0
-In-Reply-To: <20200122155030.29304-2-jani.nikula@intel.com>
-Subject: Re: [Intel-gfx] [PATCH v3 2/2] drm/debugfs: also take per device
- driver features into account
+Subject: Re: [Intel-gfx] [PATCH 4/5] drm/i915/gem: Convert vm idr to xarray
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,116 +63,115 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============1634484304=="
+Cc: "Auld, Matthew" <matthew.auld@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---===============1634484304==
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="JO7kNaKHL2QhnkjCrg4znoRZiixcI3Wk6"
-
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---JO7kNaKHL2QhnkjCrg4znoRZiixcI3Wk6
-Content-Type: multipart/mixed; boundary="JicMlObE1PGXk8WUxphLQHHWXwUEXp7hr";
- protected-headers="v1"
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: Jani Nikula <jani.nikula@intel.com>, dri-devel@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Message-ID: <a71522fa-780d-1c09-17dc-46230967223f@suse.de>
-Subject: Re: [PATCH v3 2/2] drm/debugfs: also take per device driver features
- into account
-References: <20200122155030.29304-1-jani.nikula@intel.com>
- <20200122155030.29304-2-jani.nikula@intel.com>
-In-Reply-To: <20200122155030.29304-2-jani.nikula@intel.com>
-
---JicMlObE1PGXk8WUxphLQHHWXwUEXp7hr
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: quoted-printable
-
-Hi
-
-Am 22.01.20 um 16:50 schrieb Jani Nikula:
-> Use drm_core_check_all_features() to ensure both the driver features an=
-d
-> the per-device driver features are taken into account when registering
-> debugfs files.
->=20
-> v2:
-> - use drm_core_check_all_features()
->=20
-> Cc: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
-> Cc: Thomas Zimmermann <tzimmermann@suse.de>
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-
-Reviewed-by: Thomas Zimmermann <tzimmermann@suse.de>
-
-> ---
->  drivers/gpu/drm/drm_debugfs.c | 5 +----
->  1 file changed, 1 insertion(+), 4 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/drm_debugfs.c b/drivers/gpu/drm/drm_debugf=
-s.c
-> index eab0f2687cd6..0c70b4b22c8a 100644
-> --- a/drivers/gpu/drm/drm_debugfs.c
-> +++ b/drivers/gpu/drm/drm_debugfs.c
-> @@ -180,10 +180,7 @@ int drm_debugfs_create_files(const struct drm_info=
-_list *files, int count,
->  	int i;
-> =20
->  	for (i =3D 0; i < count; i++) {
-> -		u32 features =3D files[i].driver_features;
-> -
-> -		if (features !=3D 0 &&
-> -		    (dev->driver->driver_features & features) !=3D features)
-> +		if (!drm_core_check_all_features(dev, files[i].driver_features))
->  			continue;
-> =20
->  		tmp =3D kmalloc(sizeof(struct drm_info_node), GFP_KERNEL);
->=20
-
---=20
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Maxfeldstr. 5, 90409 N=C3=BCrnberg, Germany
-(HRB 36809, AG N=C3=BCrnberg)
-Gesch=C3=A4ftsf=C3=BChrer: Felix Imend=C3=B6rffer
 
 
---JicMlObE1PGXk8WUxphLQHHWXwUEXp7hr--
+>-----Original Message-----
+>From: Chris Wilson <chris@chris-wilson.co.uk>
+>Sent: Wednesday, January 22, 2020 11:09 AM
+>To: Ruhl, Michael J <michael.j.ruhl@intel.com>; intel-
+>gfx@lists.freedesktop.org
+>Cc: Auld, Matthew <matthew.auld@intel.com>
+>Subject: RE: [Intel-gfx] [PATCH 4/5] drm/i915/gem: Convert vm idr to xarray
+>
+>Quoting Ruhl, Michael J (2020-01-22 16:00:25)
+>> >-----Original Message-----
+>> >From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of
+>Chris
+>> >Wilson
+>> >@@ -876,23 +868,13 @@ int i915_gem_vm_create_ioctl(struct drm_device
+>> >*dev, void *data,
+>> >                       goto err_put;
+>> >       }
+>> >
+>> >-      err = mutex_lock_interruptible(&file_priv->vm_idr_lock);
+>> >+      err = xa_alloc(&file_priv->vm_xa, &args->vm_id,
+>> >+                     &ppgtt->vm, xa_limit_32b, GFP_KERNEL);
+>> >       if (err)
+>> >               goto err_put;
+>> >
+>> >-      err = idr_alloc(&file_priv->vm_idr, &ppgtt->vm, 0, 0, GFP_KERNEL);
+>> >-      if (err < 0)
+>> >-              goto err_unlock;
+>> >-
+>> >-      GEM_BUG_ON(err == 0); /* reserved for invalid/unassigned ppgtt */
+>>
+>> Moving this comment to the xa_init_flags() would help me understand
+>> why the index started at 1.
+>
+>Hey, I take 0 being reserved for granted, and had to think about why
+>the context_xa was not 1-biased!
+>
+>> >@@ -1021,35 +991,27 @@ static int get_ppgtt(struct drm_i915_file_private
+>> >*file_priv,
+>> >                    struct drm_i915_gem_context_param *args)
+>> > {
+>> >       struct i915_address_space *vm;
+>> >-      int ret;
+>> >+      int err = -ENODEV;
+>> >+      u32 id;
+>> >
+>> >       if (!rcu_access_pointer(ctx->vm))
+>> >               return -ENODEV;
+>> >
+>> >       rcu_read_lock();
+>> >       vm = context_get_vm_rcu(ctx);
+>> >+      if (vm)
+>> >+              err = xa_alloc(&file_priv->vm_xa, &id, vm,
+>> >+                             xa_limit_32b, GFP_KERNEL);
+>> >       rcu_read_unlock();
+>> >+      if (!err) {
+>> >+              i915_vm_open(vm);
+>>
+>> Why did you switch to success path in the if here?
+>
+>No good reason, just simple enough to fit inside one if {}.
+>
+>> Can you do:
+>>
+>> if (err)
+>>         goto err_put;
+>>
+>> ?
+>>
+>> >-      ret = mutex_lock_interruptible(&file_priv->vm_idr_lock);
+>> >-      if (ret)
+>> >-              goto err_put;
+>> >-
+>> >-      ret = idr_alloc(&file_priv->vm_idr, vm, 0, 0, GFP_KERNEL);
+>> >-      GEM_BUG_ON(!ret);
+>> >-      if (ret < 0)
+>> >-              goto err_unlock;
+>> >-
+>> >-      i915_vm_open(vm);
+>> >-
+>> >-      args->size = 0;
+>> >-      args->value = ret;
+>> >+              args->size = 0;
+>> >+              args->value = id;
+>>
+>> Would passing args->value to the xa_alloc be a useful?
+>
+>General rule is not to alter user params except on success. While not
+>always required, the pattern does help to avoid common pitfalls where
+>userspace has to repeat an ioctl (e.g. SIGINT).
 
---JO7kNaKHL2QhnkjCrg4znoRZiixcI3Wk6
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="signature.asc"
+Yup.  Following that rule, xa_array() will only update the value on success.
 
------BEGIN PGP SIGNATURE-----
+I was mostly commenting on it because you had done that in the previous
+xa_alloc call.
 
-iQEzBAEBCAAdFiEEchf7rIzpz2NEoWjlaA3BHVMLeiMFAl4odEcACgkQaA3BHVML
-eiP+AggAqJZTsXw9+7UTXDf6G/8nN/7VxxR89399y8wiu4BufndKOO3ZIdTzM0b8
-nVYiJWDsAuJuBBYdG+q4NDpNGyAzYhD+SYKYYPzXJNSsJ4PfaUHC87lOzVBNsr8T
-Cjt1miR5O2QLweH3kMoql5z9vygiXUOmWm9EN0qbs2ON+R6Dlan/WCCzuv3ajcV6
-EqT92creT+SCCcNE61DIRsjfO3BV4v7ELZhLlSGJkdA4IBzEekmRuRz1fLr8rz+V
-BTjeu5BbDnxI4IjLVXhM29y4bKRORWotApMM5QZn9KJj4iUUf14o/Nzzfnisxbon
-aiNB1HfqEpOezUxtZDCJaa89O/FEog==
-=z87s
------END PGP SIGNATURE-----
+Thanks,
 
---JO7kNaKHL2QhnkjCrg4znoRZiixcI3Wk6--
+Mike
 
---===============1634484304==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+>-Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1634484304==--
