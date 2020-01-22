@@ -1,35 +1,39 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CAFBF145F41
-	for <lists+intel-gfx@lfdr.de>; Thu, 23 Jan 2020 00:41:11 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E6443145F64
+	for <lists+intel-gfx@lfdr.de>; Thu, 23 Jan 2020 00:53:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 12BD16F93A;
-	Wed, 22 Jan 2020 23:41:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4D7916F940;
+	Wed, 22 Jan 2020 23:53:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 65F936F93A;
- Wed, 22 Jan 2020 23:41:08 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 19976455-1500050 for multiple; Wed, 22 Jan 2020 23:41:04 +0000
-MIME-Version: 1.0
-To: Patchwork <patchwork@emeril.freedesktop.org>,
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9C1896F940
+ for <intel-gfx@lists.freedesktop.org>; Wed, 22 Jan 2020 23:53:06 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga105.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 22 Jan 2020 15:53:00 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,351,1574150400"; d="scan'208";a="216086201"
+Received: from dceraolo-linux.fm.intel.com (HELO [10.1.27.145]) ([10.1.27.145])
+ by orsmga007.jf.intel.com with ESMTP; 22 Jan 2020 15:52:59 -0800
+To: Michal Wajdeczko <michal.wajdeczko@intel.com>,
  intel-gfx@lists.freedesktop.org
-From: Chris Wilson <chris@chris-wilson.co.uk>
-In-Reply-To: <157973475639.22392.3031691993637428611@emeril.freedesktop.org>
-References: <20200122163720.526344-1-chris@chris-wilson.co.uk>
- <157973475639.22392.3031691993637428611@emeril.freedesktop.org>
-Message-ID: <157973646328.17083.5230032467603048458@skylake-alporthouse-com>
-User-Agent: alot/0.6
-Date: Wed, 22 Jan 2020 23:41:03 +0000
-Subject: Re: [Intel-gfx] 
- =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Check_i915=5Factive_wait_status_after_flushing?=
+References: <20200122194825.101240-1-michal.wajdeczko@intel.com>
+From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Message-ID: <67edac14-e319-a1b2-76a1-1404ca5836e2@intel.com>
+Date: Wed, 22 Jan 2020 15:52:33 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.2.2
+MIME-Version: 1.0
+In-Reply-To: <20200122194825.101240-1-michal.wajdeczko@intel.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/huc: Fix error reported by
+ I915_PARAM_HUC_STATUS
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,53 +46,53 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Patchwork (2020-01-22 23:12:36)
-> == Series Details ==
-> 
-> Series: drm/i915: Check i915_active wait status after flushing
-> URL   : https://patchwork.freedesktop.org/series/72412/
-> State : failure
-> 
-> == Summary ==
-> 
-> CI Bug Log - changes from CI_DRM_7797 -> Patchwork_16216
-> ====================================================
-> 
-> Summary
-> -------
-> 
->   **FAILURE**
-> 
->   Serious unknown changes coming with Patchwork_16216 absolutely need to be
->   verified manually.
->   
->   If you think the reported changes have nothing to do with the changes
->   introduced in Patchwork_16216, please notify your bug team to allow them
->   to document this new failure mode, which will reduce false positives in CI.
-> 
->   External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16216/index.html
-> 
-> Possible new issues
-> -------------------
-> 
->   Here are the unknown changes that may have been introduced in Patchwork_16216:
-> 
-> ### IGT changes ###
-> 
-> #### Possible regressions ####
-> 
->   * igt@kms_cursor_legacy@basic-flip-after-cursor-atomic:
->     - fi-tgl-y:           NOTRUN -> [SKIP][1] +29 similar issues
->    [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16216/fi-tgl-y/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html
 
-Ahem. Go fix your script,
--Chris
+
+On 1/22/20 11:48 AM, Michal Wajdeczko wrote:
+>  From commit 84b1ca2f0e68 ("drm/i915/uc: prefer intel_gt over i915
+> in GuC/HuC paths") we stopped using HUC_STATUS error -ENODEV only
+> to indicate lack of HuC hardware and we started to use this error
+> also for all other cases when HuC was not in use or supported.
+> 
+> Fix that by relying again on HAS_GT_UC macro, since currently
+> used function intel_huc_is_supported() is based on HuC firmware
+> support which could be unsupported also due to force disabled
+> GuC firmware.
+> 
+> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+> Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+> Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+> Cc: Tony Ye <tony.ye@intel.com>
+
+Reviewed-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+
+Do we need a fixes tag?
+
+Daniele
+
+> ---
+>   drivers/gpu/drm/i915/gt/uc/intel_huc.c | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_huc.c b/drivers/gpu/drm/i915/gt/uc/intel_huc.c
+> index 32a069841c14..ad4d9e16a24e 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_huc.c
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_huc.c
+> @@ -209,7 +209,7 @@ int intel_huc_check_status(struct intel_huc *huc)
+>   	intel_wakeref_t wakeref;
+>   	u32 status = 0;
+>   
+> -	if (!intel_huc_is_supported(huc))
+> +	if (!HAS_GT_UC(gt->i915))
+>   		return -ENODEV;
+>   
+>   	with_intel_runtime_pm(gt->uncore->rpm, wakeref)
+> 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
