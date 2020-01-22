@@ -1,37 +1,37 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D16B91457D7
-	for <lists+intel-gfx@lfdr.de>; Wed, 22 Jan 2020 15:28:26 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D6EB145800
+	for <lists+intel-gfx@lfdr.de>; Wed, 22 Jan 2020 15:40:06 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 513A26F553;
-	Wed, 22 Jan 2020 14:28:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AECAD6F560;
+	Wed, 22 Jan 2020 14:40:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CEECC6F552;
- Wed, 22 Jan 2020 14:28:22 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 694C86F560
+ for <intel-gfx@lists.freedesktop.org>; Wed, 22 Jan 2020 14:40:02 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga105.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 22 Jan 2020 06:27:07 -0800
-X-IronPort-AV: E=Sophos;i="5.70,350,1574150400"; d="scan'208";a="215922155"
-Received: from jnikula-mobl3.fi.intel.com (HELO localhost) ([10.237.66.161])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 22 Jan 2020 06:27:05 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Thomas Zimmermann <tzimmermann@suse.de>, dri-devel@lists.freedesktop.org
-In-Reply-To: <4eec4b04-23ab-9c48-d27c-9679974d1dbd@suse.de>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20200122140259.12086-1-jani.nikula@intel.com>
- <4eec4b04-23ab-9c48-d27c-9679974d1dbd@suse.de>
-Date: Wed, 22 Jan 2020 16:27:02 +0200
-Message-ID: <87pnfbefd5.fsf@intel.com>
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 22 Jan 2020 06:40:01 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,350,1574150400"; d="scan'208";a="222050928"
+Received: from gaia.fi.intel.com ([10.237.72.192])
+ by fmsmga008.fm.intel.com with ESMTP; 22 Jan 2020 06:40:01 -0800
+Received: by gaia.fi.intel.com (Postfix, from userid 1000)
+ id 387885C1DD9; Wed, 22 Jan 2020 16:39:19 +0200 (EET)
+From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20200122124154.483444-1-chris@chris-wilson.co.uk>
+References: <20200122124154.483444-1-chris@chris-wilson.co.uk>
+Date: Wed, 22 Jan 2020 16:39:19 +0200
+Message-ID: <87d0bbpnc8.fsf@gaia.fi.intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v2 1/2] drm: support feature masks in
- drm_core_check_feature()
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/gt: Include a tell-tale for engine
+ parking
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,50 +44,64 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gV2VkLCAyMiBKYW4gMjAyMCwgVGhvbWFzIFppbW1lcm1hbm4gPHR6aW1tZXJtYW5uQHN1c2Uu
-ZGU+IHdyb3RlOgo+IEhpIEphbmkKPgo+IEFtIDIyLjAxLjIwIHVtIDE1OjAyIHNjaHJpZWIgSmFu
-aSBOaWt1bGE6Cj4+IEFsbG93IGEgbWFzayBvZiBmZWF0dXJlcyB0byBiZSBwYXNzZWQgdG8gZHJt
-X2NvcmVfY2hlY2tfZmVhdHVyZSgpLiBBbGwKPj4gZmVhdHVyZXMgaW4gdGhlIG1hc2sgYXJlIHJl
-cXVpcmVkLgo+PiAKPj4gdjI6Cj4+IC0gZml4IGtlcm5lbC1kb2MgKFZpbGxlKQo+PiAtIGFkZCBh
-biBleHRyYSB2YXJpYWJsZSBmb3IgY2xhcml0eSAoVmlsbGUpCj4+IAo+PiBSZXZpZXdlZC1ieTog
-VmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KPj4gU2lnbmVk
-LW9mZi1ieTogSmFuaSBOaWt1bGEgPGphbmkubmlrdWxhQGludGVsLmNvbT4KPj4gLS0tCj4+ICBp
-bmNsdWRlL2RybS9kcm1fZHJ2LmggfCAxMiArKysrKysrKy0tLS0KPj4gIDEgZmlsZSBjaGFuZ2Vk
-LCA4IGluc2VydGlvbnMoKyksIDQgZGVsZXRpb25zKC0pCj4+IAo+PiBkaWZmIC0tZ2l0IGEvaW5j
-bHVkZS9kcm0vZHJtX2Rydi5oIGIvaW5jbHVkZS9kcm0vZHJtX2Rydi5oCj4+IGluZGV4IGNmMTM0
-NzA4MTBhNS4uZjE4ZTE5ZjNmMmQwIDEwMDY0NAo+PiAtLS0gYS9pbmNsdWRlL2RybS9kcm1fZHJ2
-LmgKPj4gKysrIGIvaW5jbHVkZS9kcm0vZHJtX2Rydi5oCj4+IEBAIC04MjYsMTYgKzgyNiwyMCBA
-QCBzdGF0aWMgaW5saW5lIGJvb2wgZHJtX2Rldl9pc191bnBsdWdnZWQoc3RydWN0IGRybV9kZXZp
-Y2UgKmRldikKPj4gIC8qKgo+PiAgICogZHJtX2NvcmVfY2hlY2tfZmVhdHVyZSAtIGNoZWNrIGRy
-aXZlciBmZWF0dXJlIGZsYWdzCj4+ICAgKiBAZGV2OiBEUk0gZGV2aWNlIHRvIGNoZWNrCj4+IC0g
-KiBAZmVhdHVyZTogZmVhdHVyZSBmbGFnCj4+ICsgKiBAZmVhdHVyZXM6IGZlYXR1cmUgZmxhZyhz
-KQo+PiAgICoKPj4gICAqIFRoaXMgY2hlY2tzIEBkZXYgZm9yIGRyaXZlciBmZWF0dXJlcywgc2Vl
-ICZkcm1fZHJpdmVyLmRyaXZlcl9mZWF0dXJlcywKPj4gICAqICZkcm1fZGV2aWNlLmRyaXZlcl9m
-ZWF0dXJlcywgYW5kIHRoZSB2YXJpb3VzICZlbnVtIGRybV9kcml2ZXJfZmVhdHVyZSBmbGFncy4K
-Pj4gICAqCj4+IC0gKiBSZXR1cm5zIHRydWUgaWYgdGhlIEBmZWF0dXJlIGlzIHN1cHBvcnRlZCwg
-ZmFsc2Ugb3RoZXJ3aXNlLgo+PiArICogUmV0dXJucyB0cnVlIGlmIGFsbCBmZWF0dXJlcyBpbiB0
-aGUgQGZlYXR1cmVzIG1hc2sgYXJlIHN1cHBvcnRlZCwgZmFsc2UKPj4gKyAqIG90aGVyd2lzZS4K
-Pj4gICAqLwo+PiAtc3RhdGljIGlubGluZSBib29sIGRybV9jb3JlX2NoZWNrX2ZlYXR1cmUoY29u
-c3Qgc3RydWN0IGRybV9kZXZpY2UgKmRldiwgdTMyIGZlYXR1cmUpCj4+ICtzdGF0aWMgaW5saW5l
-IGJvb2wgZHJtX2NvcmVfY2hlY2tfZmVhdHVyZShjb25zdCBzdHJ1Y3QgZHJtX2RldmljZSAqZGV2
-LAo+PiArCQkJCQkgIHUzMiBmZWF0dXJlcykKPgo+IEl0J3MgbWlzbmFtZWQgbm93LiBJJ2QgYWRk
-IGEgbmV3IGZ1bmN0aW9uLCBzYXkKPiBkcm1fY29yZV9jaGVja19hbGxfZmVhdHVyZXMoKSwgd2hp
-Y2ggbWFrZXMgdGhlIHB1cnBvc2UgY2xlYXIuCgpXZSBkb24ndCByZWFsbHkgbmVlZCBhbm90aGVy
-IGZ1bmN0aW9uLiBXZSBuZWVkIHRoaXMgb25lIHRvIGNoZWNrIGFsbCB0aGUKZmVhdHVyZXMuIEJ1
-dCBJJ2QgcmF0aGVyIG5vdCBkbyB0aGUgbWFzcyByZW5hbWUgb2YgYWxsIGNhbGwgc2l0ZXMgZm9y
-IG5vCnJlYWwgYmVuZWZpdC4KCkJSLApKYW5pLgoKCj4KPiBCZXN0IHJlZ2FyZHMKPiBUaG9tYXMK
-Pgo+PiAgewo+PiAtCXJldHVybiBkZXYtPmRyaXZlci0+ZHJpdmVyX2ZlYXR1cmVzICYgZGV2LT5k
-cml2ZXJfZmVhdHVyZXMgJiBmZWF0dXJlOwo+PiArCXUzMiBzdXBwb3J0ZWQgPSBkZXYtPmRyaXZl
-ci0+ZHJpdmVyX2ZlYXR1cmVzICYgZGV2LT5kcml2ZXJfZmVhdHVyZXM7Cj4+ICsKPj4gKwlyZXR1
-cm4gZmVhdHVyZXMgJiYgKHN1cHBvcnRlZCAmIGZlYXR1cmVzKSA9PSBmZWF0dXJlczsKPj4gIH0K
-Pj4gIAo+PiAgLyoqCj4+IAoKLS0gCkphbmkgTmlrdWxhLCBJbnRlbCBPcGVuIFNvdXJjZSBHcmFw
-aGljcyBDZW50ZXIKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
-Cmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
-Cg==
+Chris Wilson <chris@chris-wilson.co.uk> writes:
+
+> We have two trace messages that rely on the function name for
+> distinction. However, if gcc inlines the function, the two traces end up
+> with the same function name and are indistinguishable. Add a different
+> message to each to clarify which one we hit, i.e. which phase of engine
+> parking we are processing.
+>
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> ---
+>  drivers/gpu/drm/i915/gt/intel_engine_pm.c | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_pm.c b/drivers/gpu/drm/i915/gt/intel_engine_pm.c
+> index ea90ab3e396e..b6cf284e3a2d 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_engine_pm.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_engine_pm.c
+> @@ -112,7 +112,7 @@ __queue_and_release_pm(struct i915_request *rq,
+>  {
+>  	struct intel_gt_timelines *timelines = &engine->gt->timelines;
+>  
+> -	ENGINE_TRACE(engine, "\n");
+> +	ENGINE_TRACE(engine, "parking\n");
+>  
+>  	/*
+>  	 * We have to serialise all potential retirement paths with our
+> @@ -249,7 +249,7 @@ static int __engine_park(struct intel_wakeref *wf)
+>  	if (!switch_to_kernel_context(engine))
+>  		return -EBUSY;
+>  
+> -	ENGINE_TRACE(engine, "\n");
+> +	ENGINE_TRACE(engine, "parked\n");
+
+Reading the functions, the exact spots are a mystery for me still
+as of why in these exact lines. Like the 'parked' would mean it
+is parked already, which it seems not to.
+
+However, what comes to the commit message and to
+immediate problem and fixing it,
+
+Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+
+>  
+>  	call_idle_barriers(engine); /* cleanup after wedging */
+>  
+> -- 
+> 2.25.0
+>
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
