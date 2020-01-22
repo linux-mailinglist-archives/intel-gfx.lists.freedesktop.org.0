@@ -1,41 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6DA61456DF
-	for <lists+intel-gfx@lfdr.de>; Wed, 22 Jan 2020 14:38:28 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id D5A4A1456E1
+	for <lists+intel-gfx@lfdr.de>; Wed, 22 Jan 2020 14:39:04 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B35676E50B;
-	Wed, 22 Jan 2020 13:38:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 236BE6E50E;
+	Wed, 22 Jan 2020 13:39:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 16A616E50B
- for <intel-gfx@lists.freedesktop.org>; Wed, 22 Jan 2020 13:38:25 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B7FE36E50E
+ for <intel-gfx@lists.freedesktop.org>; Wed, 22 Jan 2020 13:39:01 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 22 Jan 2020 05:38:24 -0800
-X-IronPort-AV: E=Sophos;i="5.70,350,1574150400"; d="scan'208";a="229336866"
+ by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 22 Jan 2020 05:39:01 -0800
+X-IronPort-AV: E=Sophos;i="5.70,350,1574150400"; d="scan'208";a="229337084"
 Received: from wmszyfel-mobl2.ger.corp.intel.com (HELO [10.252.10.247])
  ([10.252.10.247])
  by orsmga006-auth.jf.intel.com with ESMTP/TLS/AES256-SHA;
- 22 Jan 2020 05:38:23 -0800
+ 22 Jan 2020 05:39:00 -0800
 To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
 References: <20200122112905.482044-1-chris@chris-wilson.co.uk>
- <20200122112905.482044-2-chris@chris-wilson.co.uk>
+ <20200122112905.482044-3-chris@chris-wilson.co.uk>
 From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
 Organization: Intel Corporation UK Plc
-Message-ID: <32459a71-4f5a-03f3-462a-ca734e424654@linux.intel.com>
-Date: Wed, 22 Jan 2020 13:38:20 +0000
+Message-ID: <f26fb7a0-fc18-01b0-315e-15ade823cccf@linux.intel.com>
+Date: Wed, 22 Jan 2020 13:38:58 +0000
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.9.0
 MIME-Version: 1.0
-In-Reply-To: <20200122112905.482044-2-chris@chris-wilson.co.uk>
+In-Reply-To: <20200122112905.482044-3-chris@chris-wilson.co.uk>
 Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH 2/3] drm/i915/execlists: Reclaim the hanging
- virtual request
+Subject: Re: [Intel-gfx] [PATCH 3/3] drm/i915: Mark the removal of the
+ i915_request from the sched.link
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,250 +55,32 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
 On 22/01/2020 11:29, Chris Wilson wrote:
-> If we encounter a hang on a virtual engine, as we process the hang the
-> request may already have been moved back to the virtual engine (we are
-> processing the hang on the physical engine). We need to reclaim the
-> request from the virtual engine so that the locking is consistent and
-> local to the real engine on which we will hold the request for error
-> state capturing.
+> Keep the rq->fence.flags consistent with the status of the
+> rq->sched.link, and clear the associated bits when decoupling the link
+> on retirement (as we may wish to inspect those flags independent of
+> other state).
 > 
-> v2: Pull the reclamation into execlists_hold() and assert that cannot be
-> called from outside of the reset (i.e. with the tasklet disabled).
-> v3: Added selftest
-> v4: Drop the reference owned by the virtual engine
-> 
-> Fixes: 748317386afb ("drm/i915/execlists: Offline error capture")
-> Testcase: igt/gem_exec_balancer/hang
+> Fixes: 32ff621fd744 ("drm/i915/gt: Allow temporary suspension of inflight requests")
+> References: https://gitlab.freedesktop.org/drm/intel/issues/997
 > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 > Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 > ---
->   drivers/gpu/drm/i915/gt/intel_lrc.c    |  29 +++++
->   drivers/gpu/drm/i915/gt/selftest_lrc.c | 157 ++++++++++++++++++++++++-
->   2 files changed, 185 insertions(+), 1 deletion(-)
+>   drivers/gpu/drm/i915/i915_request.c | 2 ++
+>   1 file changed, 2 insertions(+)
 > 
-> diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-> index 59af136e1b1d..5bacff7724e9 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-> @@ -2403,6 +2403,35 @@ static bool execlists_hold(struct intel_engine_cs *engine,
->   		goto unlock;
+> diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
+> index 9ed0d3bc7249..78a5f5d3c070 100644
+> --- a/drivers/gpu/drm/i915/i915_request.c
+> +++ b/drivers/gpu/drm/i915/i915_request.c
+> @@ -221,6 +221,8 @@ static void remove_from_engine(struct i915_request *rq)
+>   		locked = engine;
 >   	}
->   
-> +	if (rq->engine != engine) { /* preempted virtual engine */
-> +		struct virtual_engine *ve = to_virtual_engine(rq->engine);
-> +
-> +		/*
-> +		 * intel_context_inflight() is only protected by virtue
-> +		 * of process_csb() being called only by the tasklet (or
-> +		 * directly from inside reset while the tasklet is suspended).
-> +		 * Assert that neither of those are allowed to run while we
-> +		 * poke at the request queues.
-> +		 */
-> +		GEM_BUG_ON(!reset_in_progress(&engine->execlists));
-> +
-> +		/*
-> +		 * An unsubmitted request along a virtual engine will
-> +		 * remain on the active (this) engine until we are able
-> +		 * to process the context switch away (and so mark the
-> +		 * context as no longer in flight). That cannot have happened
-> +		 * yet, otherwise we would not be hanging!
-> +		 */
-> +		spin_lock(&ve->base.active.lock);
-> +		GEM_BUG_ON(intel_context_inflight(rq->context) != engine);
-> +		GEM_BUG_ON(ve->request != rq);
-> +		ve->request = NULL;
-> +		spin_unlock(&ve->base.active.lock);
-> +		i915_request_put(rq);
-> +
-> +		rq->engine = engine;
-> +	}
-> +
->   	/*
->   	 * Transfer this request onto the hold queue to prevent it
->   	 * being resumbitted to HW (and potentially completed) before we have
-> diff --git a/drivers/gpu/drm/i915/gt/selftest_lrc.c b/drivers/gpu/drm/i915/gt/selftest_lrc.c
-> index b208c2176bbd..f830bd81d913 100644
-> --- a/drivers/gpu/drm/i915/gt/selftest_lrc.c
-> +++ b/drivers/gpu/drm/i915/gt/selftest_lrc.c
-> @@ -335,7 +335,6 @@ static int live_hold_reset(void *arg)
->   
->   		if (test_and_set_bit(I915_RESET_ENGINE + id,
->   				     &gt->reset.flags)) {
-> -			spin_unlock_irq(&engine->active.lock);
->   			intel_gt_set_wedged(gt);
->   			err = -EBUSY;
->   			goto out;
-> @@ -3411,6 +3410,161 @@ static int live_virtual_bond(void *arg)
->   	return 0;
+>   	list_del_init(&rq->sched.link);
+> +	clear_bit(I915_FENCE_FLAG_PQUEUE, &rq->fence.flags);
+> +	clear_bit(I915_FENCE_FLAG_HOLD, &rq->fence.flags);
+>   	spin_unlock_irq(&locked->active.lock);
 >   }
 >   
-> +static int reset_virtual_engine(struct intel_gt *gt,
-> +				struct intel_engine_cs **siblings,
-> +				unsigned int nsibling)
-> +{
-> +	struct intel_engine_cs *engine;
-> +	struct intel_context *ve;
-> +	unsigned long *heartbeat;
-> +	struct igt_spinner spin;
-> +	struct i915_request *rq;
-> +	unsigned int n;
-> +	int err = 0;
-> +
-> +	/*
-> +	 * In order to support offline error capture for fast preempt reset,
-> +	 * we need to decouple the guilty request and ensure that it and its
-> +	 * descendents are not executed while the capture is in progress.
-> +	 */
-> +
-> +	heartbeat = kmalloc_array(nsibling, sizeof(*heartbeat), GFP_KERNEL);
-> +	if (!heartbeat)
-> +		return -ENOMEM;
-> +
-> +	if (igt_spinner_init(&spin, gt)) {
-> +		err = -ENOMEM;
-> +		goto out_free;
-> +	}
-> +
-> +	ve = intel_execlists_create_virtual(siblings, nsibling);
-> +	if (IS_ERR(ve)) {
-> +		err = PTR_ERR(ve);
-> +		goto out_spin;
-> +	}
-> +
-> +	for (n = 0; n < nsibling; n++)
-> +		engine_heartbeat_disable(siblings[n], &heartbeat[n]);
-> +
-> +	rq = igt_spinner_create_request(&spin, ve, MI_ARB_CHECK);
-> +	if (IS_ERR(rq)) {
-> +		err = PTR_ERR(rq);
-> +		goto out_heartbeat;
-> +	}
-> +	i915_request_add(rq);
-> +
-> +	if (!igt_wait_for_spinner(&spin, rq)) {
-> +		intel_gt_set_wedged(gt);
-> +		err = -ETIME;
-> +		goto out_heartbeat;
-> +	}
-> +
-> +	engine = rq->engine;
-> +	GEM_BUG_ON(engine == ve->engine);
-> +
-> +	/* Take ownership of the reset and tasklet */
-> +	if (test_and_set_bit(I915_RESET_ENGINE + engine->id,
-> +			     &gt->reset.flags)) {
-> +		intel_gt_set_wedged(gt);
-> +		err = -EBUSY;
-> +		goto out_heartbeat;
-> +	}
-> +	tasklet_disable(&engine->execlists.tasklet);
-> +
-> +	engine->execlists.tasklet.func(engine->execlists.tasklet.data);
-> +	GEM_BUG_ON(execlists_active(&engine->execlists) != rq);
-> +
-> +	/* Fake a preemption event; failed of course */
-> +	spin_lock_irq(&engine->active.lock);
-> +	__unwind_incomplete_requests(engine);
-> +	spin_unlock_irq(&engine->active.lock);
-> +	GEM_BUG_ON(rq->engine != ve->engine);
-> +
-> +	/* Reset the engine while keeping our active request on hold */
-> +	execlists_hold(engine, rq);
-> +	GEM_BUG_ON(!i915_request_on_hold(rq));
-> +
-> +	intel_engine_reset(engine, NULL);
-> +	GEM_BUG_ON(rq->fence.error != -EIO);
-> +
-> +	/* Release our grasp on the engine, letting CS flow again */
-> +	tasklet_enable(&engine->execlists.tasklet);
-> +	clear_and_wake_up_bit(I915_RESET_ENGINE + engine->id, &gt->reset.flags);
-> +
-> +	/* Check that we do not resubmit the held request */
-> +	i915_request_get(rq);
-> +	if (!i915_request_wait(rq, 0, HZ / 5)) {
-> +		pr_err("%s: on hold request completed!\n",
-> +		       engine->name);
-> +		intel_gt_set_wedged(gt);
-> +		err = -EIO;
-> +		goto out_rq;
-> +	}
-> +	GEM_BUG_ON(!i915_request_on_hold(rq));
-> +
-> +	/* But is resubmitted on release */
-> +	execlists_unhold(engine, rq);
-> +	if (i915_request_wait(rq, 0, HZ / 5) < 0) {
-> +		pr_err("%s: held request did not complete!\n",
-> +		       engine->name);
-> +		intel_gt_set_wedged(gt);
-> +		err = -ETIME;
-> +	}
-> +
-> +out_rq:
-> +	i915_request_put(rq);
-> +out_heartbeat:
-> +	for (n = 0; n < nsibling; n++)
-> +		engine_heartbeat_enable(siblings[n], heartbeat[n]);
-> +
-> +	intel_context_put(ve);
-> +out_spin:
-> +	igt_spinner_fini(&spin);
-> +out_free:
-> +	kfree(heartbeat);
-> +	return err;
-> +}
-> +
-> +static int live_virtual_reset(void *arg)
-> +{
-> +	struct intel_gt *gt = arg;
-> +	struct intel_engine_cs *siblings[MAX_ENGINE_INSTANCE + 1];
-> +	unsigned int class, inst;
-> +
-> +	/*
-> +	 * Check that we handle a reset event within a virtual engine.
-> +	 * Only the physical engine is reset, but we have to check the flow
-> +	 * of the virtual requests around the reset, and make sure it is not
-> +	 * forgotten.
-> +	 */
-> +
-> +	if (USES_GUC_SUBMISSION(gt->i915))
-> +		return 0;
-> +
-> +	if (!intel_has_reset_engine(gt))
-> +		return 0;
-> +
-> +	for (class = 0; class <= MAX_ENGINE_CLASS; class++) {
-> +		int nsibling, err;
-> +
-> +		nsibling = 0;
-> +		for (inst = 0; inst <= MAX_ENGINE_INSTANCE; inst++) {
-> +			if (!gt->engine_class[class][inst])
-> +				continue;
-> +
-> +			siblings[nsibling++] = gt->engine_class[class][inst];
-> +		}
-> +		if (nsibling < 2)
-> +			continue;
-> +
-> +		err = reset_virtual_engine(gt, siblings, nsibling);
-> +		if (err)
-> +			return err;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
->   int intel_execlists_live_selftests(struct drm_i915_private *i915)
->   {
->   	static const struct i915_subtest tests[] = {
-> @@ -3436,6 +3590,7 @@ int intel_execlists_live_selftests(struct drm_i915_private *i915)
->   		SUBTEST(live_virtual_mask),
->   		SUBTEST(live_virtual_preserved),
->   		SUBTEST(live_virtual_bond),
-> +		SUBTEST(live_virtual_reset),
->   	};
->   
->   	if (!HAS_EXECLISTS(i915))
 > 
 
 Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
