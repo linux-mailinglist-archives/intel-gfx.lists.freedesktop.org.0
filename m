@@ -1,46 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C3A01455EF
-	for <lists+intel-gfx@lfdr.de>; Wed, 22 Jan 2020 14:32:37 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D6DA61456DF
+	for <lists+intel-gfx@lfdr.de>; Wed, 22 Jan 2020 14:38:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6A8D36F502;
-	Wed, 22 Jan 2020 13:32:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B35676E50B;
+	Wed, 22 Jan 2020 13:38:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1D8656E536
- for <intel-gfx@lists.freedesktop.org>; Wed, 22 Jan 2020 13:32:34 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 16A616E50B
+ for <intel-gfx@lists.freedesktop.org>; Wed, 22 Jan 2020 13:38:25 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga106.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 22 Jan 2020 05:32:33 -0800
-X-IronPort-AV: E=Sophos;i="5.70,350,1574150400"; d="scan'208";a="229334990"
+ by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 22 Jan 2020 05:38:24 -0800
+X-IronPort-AV: E=Sophos;i="5.70,350,1574150400"; d="scan'208";a="229336866"
 Received: from wmszyfel-mobl2.ger.corp.intel.com (HELO [10.252.10.247])
  ([10.252.10.247])
  by orsmga006-auth.jf.intel.com with ESMTP/TLS/AES256-SHA;
- 22 Jan 2020 05:32:32 -0800
+ 22 Jan 2020 05:38:23 -0800
 To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-References: <20200121100927.114886-1-chris@chris-wilson.co.uk>
- <20200121130411.267092-1-chris@chris-wilson.co.uk>
- <524735a8-dc0c-fdfc-941a-5cc3afaac40e@linux.intel.com>
- <157961563444.4434.6318084724990340871@skylake-alporthouse-com>
- <31d2ce9f-2a72-7471-1ad4-26ffa7091be6@linux.intel.com>
- <157962793102.5216.10310770620304053074@skylake-alporthouse-com>
- <341a33c9-d378-ee0f-bc35-cb11d1288732@linux.intel.com>
- <157962947004.6241.16387329374520796728@skylake-alporthouse-com>
+References: <20200122112905.482044-1-chris@chris-wilson.co.uk>
+ <20200122112905.482044-2-chris@chris-wilson.co.uk>
 From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
 Organization: Intel Corporation UK Plc
-Message-ID: <1d605d9a-dff4-2ff5-30bb-6c5a7350a9cf@linux.intel.com>
-Date: Wed, 22 Jan 2020 13:32:31 +0000
+Message-ID: <32459a71-4f5a-03f3-462a-ca734e424654@linux.intel.com>
+Date: Wed, 22 Jan 2020 13:38:20 +0000
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.9.0
 MIME-Version: 1.0
-In-Reply-To: <157962947004.6241.16387329374520796728@skylake-alporthouse-com>
+In-Reply-To: <20200122112905.482044-2-chris@chris-wilson.co.uk>
 Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH v3] drm/i915/execlists: Reclaim the hanging
+Subject: Re: [Intel-gfx] [PATCH 2/3] drm/i915/execlists: Reclaim the hanging
  virtual request
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -60,152 +54,258 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
-On 21/01/2020 17:57, Chris Wilson wrote:
-> Quoting Tvrtko Ursulin (2020-01-21 17:43:37)
->>
->> On 21/01/2020 17:32, Chris Wilson wrote:
->>> Quoting Tvrtko Ursulin (2020-01-21 17:19:52)
->>>>
->>>> On 21/01/2020 14:07, Chris Wilson wrote:
->>>>> Quoting Tvrtko Ursulin (2020-01-21 13:55:29)
->>>>>>
->>>>>>
->>>>>> On 21/01/2020 13:04, Chris Wilson wrote:
->>>>>>> +             GEM_BUG_ON(!reset_in_progress(&engine->execlists));
->>>>>>> +
->>>>>>> +             /*
->>>>>>> +              * An unsubmitted request along a virtual engine will
->>>>>>> +              * remain on the active (this) engine until we are able
->>>>>>> +              * to process the context switch away (and so mark the
->>>>>>> +              * context as no longer in flight). That cannot have happened
->>>>>>> +              * yet, otherwise we would not be hanging!
->>>>>>> +              */
->>>>>>> +             spin_lock_irqsave(&ve->base.active.lock, flags);
->>>>>>> +             GEM_BUG_ON(intel_context_inflight(rq->context) != engine);
->>>>>>> +             GEM_BUG_ON(ve->request != rq);
->>>>>>> +             ve->request = NULL;
->>>>>>> +             spin_unlock_irqrestore(&ve->base.active.lock, flags);
->>>>>>> +
->>>>>>> +             rq->engine = engine;
->>>>>>
->>>>>> Lets see I understand this... tasklet has been disabled and ring paused.
->>>>>> But we find an uncompleted request in the ELSP context, with rq->engine
->>>>>> == virtual engine. Therefore this cannot be the first request on this
->>>>>> timeline but has to be later.
->>>>>
->>>>> Not quite.
->>>>>
->>>>> engine->execlists.active[] tracks the HW, it get's updated only upon
->>>>> receiving HW acks (or we reset).
->>>>>
->>>>> So if execlists_active()->engine == virtual, it can only mean that the
->>>>> inflight _hanging_ request has already been unsubmitted by an earlier
->>>>> preemption in execlists_dequeue(), but that preemption has not yet been
->>>>> processed by the HW. (Hence the preemption-reset underway.)
->>>>>
->>>>> Now while we coalesce the requests for a context into a single ELSP[]
->>>>> slot, and only record the last request submitted for a context, we have
->>>>> to walk back along that context's timeline to find the earliest
->>>>> incomplete request and blame the hang upon it.
->>>>>
->>>>> For a virtual engine, it's much simpler as there is only ever one
->>>>> request in flight, but I don't think that has any impact here other
->>>>> than that we only need to repair the single unsubmitted request that was
->>>>> returned to the virtual engine.
->>>>>
->>>>>> One which has been put on the runqueue but
->>>>>> not yet submitted to hw. (Because one at a time.) Or it has been
->>>>>> unsubmitted by __unwind_incomplete_request already. In the former case
->>>>>> why move it to the physical engine? Also in the latter actually, it
->>>>>> would overwrite rq->engine with the physical one.
->>>>>
->>>>> Yes. For incomplete preemption event, the request is *still* on this
->>>>> engine and has not been released (rq->context->inflight == engine, so it
->>>>> cannot be submitted to any other engine, until after we acknowledge the
->>>>> context has been saved and is no longer being accessed by HW.) It is
->>>>> legal for us to process the hanging request along this engine; we have a
->>>>> suboptimal decision to return the request to the same engine after the
->>>>> reset, but since we have replaced the hanging payload, the request is a
->>>>> mere signaling placeholder (and I do not think will overly burden the
->>>>> system and negatively impact other virtual engines).
->>>>
->>>> What if the request in elsp actually completed in the meantime eg.
->>>> preemption timeout was a false positive?
->>>>
->>>> In execlists_capture we do:
->>>>
->>>>           cap->rq = execlists_active(&engine->execlists);
->>>>
->>>> This gets a completed request, then we do:
->>>>
->>>>           cap->rq = active_request(cap->rq->context->timeline, cap->rq);
->>>>
->>>> This walks along the virtual timeline and finds a next virtual request.
->>>> It then binds this request to a physical engine and sets ve->request to
->>>> NULL.
->>>
->>> If we miss the completion event, then active_request() returns the
->>> original request and we blame it for a having a 650ms preemption-off
->>> shader with a 640ms preemption timeout.
->>
->> I am thinking of this sequence of interleaved events:
->>
->>          preempt_timeout
->>                                  tasklet_disable
->>                                  ring_pause
->>                                  execlist_active
->>          seqno write visible
->>                                  active_request - walks the tl to next
+On 22/01/2020 11:29, Chris Wilson wrote:
+> If we encounter a hang on a virtual engine, as we process the hang the
+> request may already have been moved back to the virtual engine (we are
+> processing the hang on the physical engine). We need to reclaim the
+> request from the virtual engine so that the locking is consistent and
+> local to the real engine on which we will hold the request for error
+> state capturing.
 > 
-> ... tries to walk to next, sees no incomplete request, returns original
-> request.
+> v2: Pull the reclamation into execlists_hold() and assert that cannot be
+> called from outside of the reset (i.e. with the tasklet disabled).
+> v3: Added selftest
+> v4: Drop the reference owned by the virtual engine
 > 
-> static struct i915_request *
-> active_request(const struct intel_timeline * const tl, struct i915_request *rq)
-> {
->          struct i915_request *active = rq;
-> 	^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ this sneaky line
+> Fixes: 748317386afb ("drm/i915/execlists: Offline error capture")
+> Testcase: igt/gem_exec_balancer/hang
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> ---
+>   drivers/gpu/drm/i915/gt/intel_lrc.c    |  29 +++++
+>   drivers/gpu/drm/i915/gt/selftest_lrc.c | 157 ++++++++++++++++++++++++-
+>   2 files changed, 185 insertions(+), 1 deletion(-)
 > 
->          rcu_read_lock();
->          list_for_each_entry_continue_reverse(rq, &tl->requests, link) {
->                  if (i915_request_completed(rq))
->                          break;
+> diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+> index 59af136e1b1d..5bacff7724e9 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+> @@ -2403,6 +2403,35 @@ static bool execlists_hold(struct intel_engine_cs *engine,
+>   		goto unlock;
+>   	}
+>   
+> +	if (rq->engine != engine) { /* preempted virtual engine */
+> +		struct virtual_engine *ve = to_virtual_engine(rq->engine);
+> +
+> +		/*
+> +		 * intel_context_inflight() is only protected by virtue
+> +		 * of process_csb() being called only by the tasklet (or
+> +		 * directly from inside reset while the tasklet is suspended).
+> +		 * Assert that neither of those are allowed to run while we
+> +		 * poke at the request queues.
+> +		 */
+> +		GEM_BUG_ON(!reset_in_progress(&engine->execlists));
+> +
+> +		/*
+> +		 * An unsubmitted request along a virtual engine will
+> +		 * remain on the active (this) engine until we are able
+> +		 * to process the context switch away (and so mark the
+> +		 * context as no longer in flight). That cannot have happened
+> +		 * yet, otherwise we would not be hanging!
+> +		 */
+> +		spin_lock(&ve->base.active.lock);
+> +		GEM_BUG_ON(intel_context_inflight(rq->context) != engine);
+> +		GEM_BUG_ON(ve->request != rq);
+> +		ve->request = NULL;
+> +		spin_unlock(&ve->base.active.lock);
+> +		i915_request_put(rq);
+> +
+> +		rq->engine = engine;
+> +	}
+> +
+>   	/*
+>   	 * Transfer this request onto the hold queue to prevent it
+>   	 * being resumbitted to HW (and potentially completed) before we have
+> diff --git a/drivers/gpu/drm/i915/gt/selftest_lrc.c b/drivers/gpu/drm/i915/gt/selftest_lrc.c
+> index b208c2176bbd..f830bd81d913 100644
+> --- a/drivers/gpu/drm/i915/gt/selftest_lrc.c
+> +++ b/drivers/gpu/drm/i915/gt/selftest_lrc.c
+> @@ -335,7 +335,6 @@ static int live_hold_reset(void *arg)
+>   
+>   		if (test_and_set_bit(I915_RESET_ENGINE + id,
+>   				     &gt->reset.flags)) {
+> -			spin_unlock_irq(&engine->active.lock);
+>   			intel_gt_set_wedged(gt);
+>   			err = -EBUSY;
+>   			goto out;
+> @@ -3411,6 +3410,161 @@ static int live_virtual_bond(void *arg)
+>   	return 0;
+>   }
+>   
+> +static int reset_virtual_engine(struct intel_gt *gt,
+> +				struct intel_engine_cs **siblings,
+> +				unsigned int nsibling)
+> +{
+> +	struct intel_engine_cs *engine;
+> +	struct intel_context *ve;
+> +	unsigned long *heartbeat;
+> +	struct igt_spinner spin;
+> +	struct i915_request *rq;
+> +	unsigned int n;
+> +	int err = 0;
+> +
+> +	/*
+> +	 * In order to support offline error capture for fast preempt reset,
+> +	 * we need to decouple the guilty request and ensure that it and its
+> +	 * descendents are not executed while the capture is in progress.
+> +	 */
+> +
+> +	heartbeat = kmalloc_array(nsibling, sizeof(*heartbeat), GFP_KERNEL);
+> +	if (!heartbeat)
+> +		return -ENOMEM;
+> +
+> +	if (igt_spinner_init(&spin, gt)) {
+> +		err = -ENOMEM;
+> +		goto out_free;
+> +	}
+> +
+> +	ve = intel_execlists_create_virtual(siblings, nsibling);
+> +	if (IS_ERR(ve)) {
+> +		err = PTR_ERR(ve);
+> +		goto out_spin;
+> +	}
+> +
+> +	for (n = 0; n < nsibling; n++)
+> +		engine_heartbeat_disable(siblings[n], &heartbeat[n]);
+> +
+> +	rq = igt_spinner_create_request(&spin, ve, MI_ARB_CHECK);
+> +	if (IS_ERR(rq)) {
+> +		err = PTR_ERR(rq);
+> +		goto out_heartbeat;
+> +	}
+> +	i915_request_add(rq);
+> +
+> +	if (!igt_wait_for_spinner(&spin, rq)) {
+> +		intel_gt_set_wedged(gt);
+> +		err = -ETIME;
+> +		goto out_heartbeat;
+> +	}
+> +
+> +	engine = rq->engine;
+> +	GEM_BUG_ON(engine == ve->engine);
+> +
+> +	/* Take ownership of the reset and tasklet */
+> +	if (test_and_set_bit(I915_RESET_ENGINE + engine->id,
+> +			     &gt->reset.flags)) {
+> +		intel_gt_set_wedged(gt);
+> +		err = -EBUSY;
+> +		goto out_heartbeat;
+> +	}
+> +	tasklet_disable(&engine->execlists.tasklet);
+> +
+> +	engine->execlists.tasklet.func(engine->execlists.tasklet.data);
+> +	GEM_BUG_ON(execlists_active(&engine->execlists) != rq);
+> +
+> +	/* Fake a preemption event; failed of course */
+> +	spin_lock_irq(&engine->active.lock);
+> +	__unwind_incomplete_requests(engine);
+> +	spin_unlock_irq(&engine->active.lock);
+> +	GEM_BUG_ON(rq->engine != ve->engine);
+> +
+> +	/* Reset the engine while keeping our active request on hold */
+> +	execlists_hold(engine, rq);
+> +	GEM_BUG_ON(!i915_request_on_hold(rq));
+> +
+> +	intel_engine_reset(engine, NULL);
+> +	GEM_BUG_ON(rq->fence.error != -EIO);
+> +
+> +	/* Release our grasp on the engine, letting CS flow again */
+> +	tasklet_enable(&engine->execlists.tasklet);
+> +	clear_and_wake_up_bit(I915_RESET_ENGINE + engine->id, &gt->reset.flags);
+> +
+> +	/* Check that we do not resubmit the held request */
+> +	i915_request_get(rq);
+> +	if (!i915_request_wait(rq, 0, HZ / 5)) {
+> +		pr_err("%s: on hold request completed!\n",
+> +		       engine->name);
+> +		intel_gt_set_wedged(gt);
+> +		err = -EIO;
+> +		goto out_rq;
+> +	}
+> +	GEM_BUG_ON(!i915_request_on_hold(rq));
+> +
+> +	/* But is resubmitted on release */
+> +	execlists_unhold(engine, rq);
+> +	if (i915_request_wait(rq, 0, HZ / 5) < 0) {
+> +		pr_err("%s: held request did not complete!\n",
+> +		       engine->name);
+> +		intel_gt_set_wedged(gt);
+> +		err = -ETIME;
+> +	}
+> +
+> +out_rq:
+> +	i915_request_put(rq);
+> +out_heartbeat:
+> +	for (n = 0; n < nsibling; n++)
+> +		engine_heartbeat_enable(siblings[n], heartbeat[n]);
+> +
+> +	intel_context_put(ve);
+> +out_spin:
+> +	igt_spinner_fini(&spin);
+> +out_free:
+> +	kfree(heartbeat);
+> +	return err;
+> +}
+> +
+> +static int live_virtual_reset(void *arg)
+> +{
+> +	struct intel_gt *gt = arg;
+> +	struct intel_engine_cs *siblings[MAX_ENGINE_INSTANCE + 1];
+> +	unsigned int class, inst;
+> +
+> +	/*
+> +	 * Check that we handle a reset event within a virtual engine.
+> +	 * Only the physical engine is reset, but we have to check the flow
+> +	 * of the virtual requests around the reset, and make sure it is not
+> +	 * forgotten.
+> +	 */
+> +
+> +	if (USES_GUC_SUBMISSION(gt->i915))
+> +		return 0;
+> +
+> +	if (!intel_has_reset_engine(gt))
+> +		return 0;
+> +
+> +	for (class = 0; class <= MAX_ENGINE_CLASS; class++) {
+> +		int nsibling, err;
+> +
+> +		nsibling = 0;
+> +		for (inst = 0; inst <= MAX_ENGINE_INSTANCE; inst++) {
+> +			if (!gt->engine_class[class][inst])
+> +				continue;
+> +
+> +			siblings[nsibling++] = gt->engine_class[class][inst];
+> +		}
+> +		if (nsibling < 2)
+> +			continue;
+> +
+> +		err = reset_virtual_engine(gt, siblings, nsibling);
+> +		if (err)
+> +			return err;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+>   int intel_execlists_live_selftests(struct drm_i915_private *i915)
+>   {
+>   	static const struct i915_subtest tests[] = {
+> @@ -3436,6 +3590,7 @@ int intel_execlists_live_selftests(struct drm_i915_private *i915)
+>   		SUBTEST(live_virtual_mask),
+>   		SUBTEST(live_virtual_preserved),
+>   		SUBTEST(live_virtual_bond),
+> +		SUBTEST(live_virtual_reset),
+>   	};
+>   
+>   	if (!HAS_EXECLISTS(i915))
 > 
->                  active = rq;
-> 		^^^^^^^^^^^^ these too may complete at any moment after
-> 		our inspection
-> 
-> 
->          }
->          rcu_read_unlock();
-> 
->          return active;
-> }
 
-Brain fart on my part, sorry. I was confused.
+Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 
 Regards,
 
 Tvrtko
-
->>                                  execlist_hold
->>                                  schedule_worker
->>                                  tasklet_enable
->>          process_csb completed
->>
->> This is not possible? Seqno write happening needs only to be roughly
->> there since as long as tasklet has been disabled execlist->active
->> remains fixed.
-> 
-> It's certainly possible, the requests do keep going on the HW up until
-> the next semaphore (which is after the seqno write). That is taken into
-> account in that we may end up trying to reset a completed request, which
-> should be avoided in execlists_reset() [after the HW has processed the
-> reset request], but we capture the request anyway and put it back for
-> execution (which is avoided in execlists_dequeue). Isn't preempt-to-busy
-> fun?
-> -Chris
-> 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
