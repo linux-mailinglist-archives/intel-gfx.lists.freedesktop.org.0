@@ -1,55 +1,47 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 449331455EE
-	for <lists+intel-gfx@lfdr.de>; Wed, 22 Jan 2020 14:31:39 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C3A01455EF
+	for <lists+intel-gfx@lfdr.de>; Wed, 22 Jan 2020 14:32:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 57F596E52E;
-	Wed, 22 Jan 2020 13:31:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6A8D36F502;
+	Wed, 22 Jan 2020 13:32:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-io1-xd43.google.com (mail-io1-xd43.google.com
- [IPv6:2607:f8b0:4864:20::d43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CB47B6E51A
- for <intel-gfx@lists.freedesktop.org>; Wed, 22 Jan 2020 13:31:33 +0000 (UTC)
-Received: by mail-io1-xd43.google.com with SMTP id d15so6637323iog.3
- for <intel-gfx@lists.freedesktop.org>; Wed, 22 Jan 2020 05:31:33 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=poorly.run; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=0kYqlmEoukSaPf7T8rn6nUU9S/z/ksz4JSRnjBUf9rg=;
- b=KPdH/yQ7rvLudyU7cIQHwM1k9WKpSHoIAUPxveCFJkHS5tjEzNLA9YZMXQeQZJKGRu
- hO3hreDconTJbOVsS/NuOu24woOX/VvGuIt+Izp06mf6Uc3e/1mIkLh4Fz4kLBfFWOhD
- PyR1sCse71wnNoqyNrLtdItJWJ2A0ghGhpBT66IhYfpvv7ZHOtgiwDqGIr3ihkU3j2NZ
- +a+XxnPMyERHJ7Ll5BH8gAgE4/wyh2sYHf8TjqVWg6BoFasFBXj6mYVVuxfvqA5efIwR
- Dp5STorbRj1dbbcBUjCmZ6gWaNa5x01386eWng8Q/8acqWZTFn2+hMSoHXNrJRXtY++G
- eQJQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=0kYqlmEoukSaPf7T8rn6nUU9S/z/ksz4JSRnjBUf9rg=;
- b=luC/1kklhzNqgC91ZohVQdvknt9zThy0B9FRuWQFI7Euwn/MbIWIom936/I0gPkO6w
- 3zElqzpK1YR09Wh4ZiUgineGVtuofiFjmo7jLTZEULCYVdOno/bDOuzzNeTk3UPwkgms
- U0zddb6d922GswJzGEHgQ0h1Oiu+n58UkXBt10NaDWhJ96XcNgkuv3lqj+k6xijhQwrC
- ABIeBGFbGpe7iByxGws4O6RHuhxbiyNHfd7JJ8Wd1rvDlw10wy98lNhaLNQ8iQgbJJ//
- +a80sw98sVmR5yoEEsIBZuBDaf5s6lTOi5CAr2OrhetOk2Yeqm/v2EJd2y8z9isklcFb
- 3bKg==
-X-Gm-Message-State: APjAAAU4SpZvmbP2XXI4VB8w3iDYj0QcwNND9sNdGwSEHrwj7N98dBpp
- gGF3c6E+z1j6hGrFZPpkP5dwKlK/k7UNTRWYrzoYew==
-X-Google-Smtp-Source: APXvYqx1bL8f819xrnO/PkTc3ibd7LkJePXu9T21XvC9xU8ZqAE+tvXDJKGtlLYvbUR/+Wf8k+f07HCiFSAxVGSctj8=
-X-Received: by 2002:a5d:8cc4:: with SMTP id k4mr6955781iot.2.1579699893136;
- Wed, 22 Jan 2020 05:31:33 -0800 (PST)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1D8656E536
+ for <intel-gfx@lists.freedesktop.org>; Wed, 22 Jan 2020 13:32:34 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 22 Jan 2020 05:32:33 -0800
+X-IronPort-AV: E=Sophos;i="5.70,350,1574150400"; d="scan'208";a="229334990"
+Received: from wmszyfel-mobl2.ger.corp.intel.com (HELO [10.252.10.247])
+ ([10.252.10.247])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/AES256-SHA;
+ 22 Jan 2020 05:32:32 -0800
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+References: <20200121100927.114886-1-chris@chris-wilson.co.uk>
+ <20200121130411.267092-1-chris@chris-wilson.co.uk>
+ <524735a8-dc0c-fdfc-941a-5cc3afaac40e@linux.intel.com>
+ <157961563444.4434.6318084724990340871@skylake-alporthouse-com>
+ <31d2ce9f-2a72-7471-1ad4-26ffa7091be6@linux.intel.com>
+ <157962793102.5216.10310770620304053074@skylake-alporthouse-com>
+ <341a33c9-d378-ee0f-bc35-cb11d1288732@linux.intel.com>
+ <157962947004.6241.16387329374520796728@skylake-alporthouse-com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <1d605d9a-dff4-2ff5-30bb-6c5a7350a9cf@linux.intel.com>
+Date: Wed, 22 Jan 2020 13:32:31 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
 MIME-Version: 1.0
-References: <20200115034455.17658-1-pankaj.laxminarayan.bharadiya@intel.com>
- <20200115034455.17658-2-pankaj.laxminarayan.bharadiya@intel.com>
-In-Reply-To: <20200115034455.17658-2-pankaj.laxminarayan.bharadiya@intel.com>
-From: Sean Paul <sean@poorly.run>
-Date: Wed, 22 Jan 2020 08:30:53 -0500
-Message-ID: <CAMavQK+aXO5VMAwCu4jBbah6MkubnO+sUxd+av0A_=Ld_A9kzQ@mail.gmail.com>
-To: Pankaj Bharadiya <pankaj.laxminarayan.bharadiya@intel.com>
-Subject: Re: [Intel-gfx] [ [PATCH v2 01/10] drm/print: introduce new struct
- drm_device based WARN* macros
+In-Reply-To: <157962947004.6241.16387329374520796728@skylake-alporthouse-com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH v3] drm/i915/execlists: Reclaim the hanging
+ virtual request
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,81 +54,158 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- dri-devel <dri-devel@lists.freedesktop.org>, David Airlie <airlied@linux.ie>,
- Maxime Ripard <mripard@kernel.org>, Sam Ravnborg <sam@ravnborg.org>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Jan 14, 2020 at 10:49 PM Pankaj Bharadiya
-<pankaj.laxminarayan.bharadiya@intel.com> wrote:
->
-> Add new struct drm_device based WARN* macros. These are modeled after
-> the core kernel device based WARN* macros. These would be preferred
-> over the regular WARN* macros, where possible.
->
-> These macros include device information in the backtrace, so we know
-> what device the warnings originate from.
->
-> Knowing the device specific information in the backtrace would be
-> helpful in development all around.
->
-> Signed-off-by: Pankaj Bharadiya <pankaj.laxminarayan.bharadiya@intel.com>
 
-Acked-by: Sean Paul <sean@poorly.run>
+On 21/01/2020 17:57, Chris Wilson wrote:
+> Quoting Tvrtko Ursulin (2020-01-21 17:43:37)
+>>
+>> On 21/01/2020 17:32, Chris Wilson wrote:
+>>> Quoting Tvrtko Ursulin (2020-01-21 17:19:52)
+>>>>
+>>>> On 21/01/2020 14:07, Chris Wilson wrote:
+>>>>> Quoting Tvrtko Ursulin (2020-01-21 13:55:29)
+>>>>>>
+>>>>>>
+>>>>>> On 21/01/2020 13:04, Chris Wilson wrote:
+>>>>>>> +             GEM_BUG_ON(!reset_in_progress(&engine->execlists));
+>>>>>>> +
+>>>>>>> +             /*
+>>>>>>> +              * An unsubmitted request along a virtual engine will
+>>>>>>> +              * remain on the active (this) engine until we are able
+>>>>>>> +              * to process the context switch away (and so mark the
+>>>>>>> +              * context as no longer in flight). That cannot have happened
+>>>>>>> +              * yet, otherwise we would not be hanging!
+>>>>>>> +              */
+>>>>>>> +             spin_lock_irqsave(&ve->base.active.lock, flags);
+>>>>>>> +             GEM_BUG_ON(intel_context_inflight(rq->context) != engine);
+>>>>>>> +             GEM_BUG_ON(ve->request != rq);
+>>>>>>> +             ve->request = NULL;
+>>>>>>> +             spin_unlock_irqrestore(&ve->base.active.lock, flags);
+>>>>>>> +
+>>>>>>> +             rq->engine = engine;
+>>>>>>
+>>>>>> Lets see I understand this... tasklet has been disabled and ring paused.
+>>>>>> But we find an uncompleted request in the ELSP context, with rq->engine
+>>>>>> == virtual engine. Therefore this cannot be the first request on this
+>>>>>> timeline but has to be later.
+>>>>>
+>>>>> Not quite.
+>>>>>
+>>>>> engine->execlists.active[] tracks the HW, it get's updated only upon
+>>>>> receiving HW acks (or we reset).
+>>>>>
+>>>>> So if execlists_active()->engine == virtual, it can only mean that the
+>>>>> inflight _hanging_ request has already been unsubmitted by an earlier
+>>>>> preemption in execlists_dequeue(), but that preemption has not yet been
+>>>>> processed by the HW. (Hence the preemption-reset underway.)
+>>>>>
+>>>>> Now while we coalesce the requests for a context into a single ELSP[]
+>>>>> slot, and only record the last request submitted for a context, we have
+>>>>> to walk back along that context's timeline to find the earliest
+>>>>> incomplete request and blame the hang upon it.
+>>>>>
+>>>>> For a virtual engine, it's much simpler as there is only ever one
+>>>>> request in flight, but I don't think that has any impact here other
+>>>>> than that we only need to repair the single unsubmitted request that was
+>>>>> returned to the virtual engine.
+>>>>>
+>>>>>> One which has been put on the runqueue but
+>>>>>> not yet submitted to hw. (Because one at a time.) Or it has been
+>>>>>> unsubmitted by __unwind_incomplete_request already. In the former case
+>>>>>> why move it to the physical engine? Also in the latter actually, it
+>>>>>> would overwrite rq->engine with the physical one.
+>>>>>
+>>>>> Yes. For incomplete preemption event, the request is *still* on this
+>>>>> engine and has not been released (rq->context->inflight == engine, so it
+>>>>> cannot be submitted to any other engine, until after we acknowledge the
+>>>>> context has been saved and is no longer being accessed by HW.) It is
+>>>>> legal for us to process the hanging request along this engine; we have a
+>>>>> suboptimal decision to return the request to the same engine after the
+>>>>> reset, but since we have replaced the hanging payload, the request is a
+>>>>> mere signaling placeholder (and I do not think will overly burden the
+>>>>> system and negatively impact other virtual engines).
+>>>>
+>>>> What if the request in elsp actually completed in the meantime eg.
+>>>> preemption timeout was a false positive?
+>>>>
+>>>> In execlists_capture we do:
+>>>>
+>>>>           cap->rq = execlists_active(&engine->execlists);
+>>>>
+>>>> This gets a completed request, then we do:
+>>>>
+>>>>           cap->rq = active_request(cap->rq->context->timeline, cap->rq);
+>>>>
+>>>> This walks along the virtual timeline and finds a next virtual request.
+>>>> It then binds this request to a physical engine and sets ve->request to
+>>>> NULL.
+>>>
+>>> If we miss the completion event, then active_request() returns the
+>>> original request and we blame it for a having a 650ms preemption-off
+>>> shader with a 640ms preemption timeout.
+>>
+>> I am thinking of this sequence of interleaved events:
+>>
+>>          preempt_timeout
+>>                                  tasklet_disable
+>>                                  ring_pause
+>>                                  execlist_active
+>>          seqno write visible
+>>                                  active_request - walks the tl to next
+> 
+> ... tries to walk to next, sees no incomplete request, returns original
+> request.
+> 
+> static struct i915_request *
+> active_request(const struct intel_timeline * const tl, struct i915_request *rq)
+> {
+>          struct i915_request *active = rq;
+> 	^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ this sneaky line
+> 
+>          rcu_read_lock();
+>          list_for_each_entry_continue_reverse(rq, &tl->requests, link) {
+>                  if (i915_request_completed(rq))
+>                          break;
+> 
+>                  active = rq;
+> 		^^^^^^^^^^^^ these too may complete at any moment after
+> 		our inspection
+> 
+> 
+>          }
+>          rcu_read_unlock();
+> 
+>          return active;
+> }
 
-> ---
->  include/drm/drm_print.h | 29 +++++++++++++++++++++++++++++
->  1 file changed, 29 insertions(+)
->
-> diff --git a/include/drm/drm_print.h b/include/drm/drm_print.h
-> index 8f99d389792d..894a0b9437e2 100644
-> --- a/include/drm/drm_print.h
-> +++ b/include/drm/drm_print.h
-> @@ -553,4 +553,33 @@ void __drm_err(const char *format, ...);
->  #define DRM_DEBUG_PRIME_RATELIMITED(fmt, ...)                          \
->         DRM_DEV_DEBUG_PRIME_RATELIMITED(NULL, fmt, ##__VA_ARGS__)
->
-> +/*
-> + * struct drm_device based WARNs
-> + *
-> + * drm_WARN*() acts like WARN*(), but with the key difference of
-> + * using device specific information so that we know from which device
-> + * warning is originating from.
-> + *
-> + * Prefer drm_device based drm_WARN* over regular WARN*
-> + */
-> +
-> +/* Helper for struct drm_device based WARNs */
-> +#define drm_WARN(drm, condition, format, arg...)                       \
-> +       WARN(condition, "%s %s: " format,                               \
-> +                       dev_driver_string((drm)->dev),                  \
-> +                       dev_name((drm)->dev), ## arg)
-> +
-> +#define drm_WARN_ONCE(drm, condition, format, arg...)                  \
-> +       WARN_ONCE(condition, "%s %s: " format,                          \
-> +                       dev_driver_string((drm)->dev),                  \
-> +                       dev_name((drm)->dev), ## arg)
-> +
-> +#define drm_WARN_ON(drm, x)                                            \
-> +       drm_WARN((drm), (x), "%s",                                      \
-> +                "drm_WARN_ON(" __stringify(x) ")")
-> +
-> +#define drm_WARN_ON_ONCE(drm, x)                                       \
-> +       drm_WARN_ONCE((drm), (x), "%s",                                 \
-> +                     "drm_WARN_ON_ONCE(" __stringify(x) ")")
-> +
->  #endif /* DRM_PRINT_H_ */
-> --
-> 2.23.0
->
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+Brain fart on my part, sorry. I was confused.
+
+Regards,
+
+Tvrtko
+
+>>                                  execlist_hold
+>>                                  schedule_worker
+>>                                  tasklet_enable
+>>          process_csb completed
+>>
+>> This is not possible? Seqno write happening needs only to be roughly
+>> there since as long as tasklet has been disabled execlist->active
+>> remains fixed.
+> 
+> It's certainly possible, the requests do keep going on the HW up until
+> the next semaphore (which is after the seqno write). That is taken into
+> account in that we may end up trying to reset a completed request, which
+> should be avoided in execlists_reset() [after the HW has processed the
+> reset request], but we capture the request anyway and put it back for
+> execution (which is avoided in execlists_dequeue). Isn't preempt-to-busy
+> fun?
+> -Chris
+> 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
