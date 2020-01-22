@@ -2,37 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 80583145841
-	for <lists+intel-gfx@lfdr.de>; Wed, 22 Jan 2020 15:56:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E97B614587F
+	for <lists+intel-gfx@lfdr.de>; Wed, 22 Jan 2020 16:16:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 704286F576;
-	Wed, 22 Jan 2020 14:56:14 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4D2646F576
- for <intel-gfx@lists.freedesktop.org>; Wed, 22 Jan 2020 14:56:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9857C6F57C;
+	Wed, 22 Jan 2020 15:16:11 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 72D186F57B;
+ Wed, 22 Jan 2020 15:16:10 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga106.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 22 Jan 2020 06:56:11 -0800
-X-IronPort-AV: E=Sophos;i="5.70,350,1574150400"; d="scan'208";a="220335900"
-Received: from jnikula-mobl3.fi.intel.com (HELO localhost) ([10.237.66.161])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 22 Jan 2020 06:56:09 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Ramalingam C <ramalingam.c@intel.com>
-In-Reply-To: <20200122141142.GA29793@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20200120054954.5786-1-anshuman.gupta@intel.com>
- <20200121003913.GA5190@intel.com> <8736c9f1j6.fsf@intel.com>
- <20200122141142.GA29793@intel.com>
-Date: Wed, 22 Jan 2020 16:56:06 +0200
-Message-ID: <87h80nee0p.fsf@intel.com>
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 22 Jan 2020 07:16:09 -0800
+X-IronPort-AV: E=Sophos;i="5.70,350,1574150400"; d="scan'208";a="229371757"
+Received: from wmszyfel-mobl2.ger.corp.intel.com (HELO [10.252.10.247])
+ ([10.252.10.247])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/AES256-SHA;
+ 22 Jan 2020 07:16:08 -0800
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>, igt-dev@lists.freedesktop.org
+References: <20200122101043.21347-1-tvrtko.ursulin@linux.intel.com>
+ <20200122144028.27346-1-tvrtko.ursulin@linux.intel.com>
+ <157970441989.7477.13168128747438871488@skylake-alporthouse-com>
+ <dcadd92b-5f5b-ac99-d6c4-ed9beb19f6ca@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <754810cf-420a-4920-dae3-8bcbf2e267a9@linux.intel.com>
+Date: Wed, 22 Jan 2020 15:16:05 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v3] drm/i915/hdcp: Update CP as per the
- kernel internal state
+In-Reply-To: <dcadd92b-5f5b-ac99-d6c4-ed9beb19f6ca@linux.intel.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [igt-dev] [PATCH i-g-t v2]
+ i915/gem_engine_topology: Generate engine names based on class
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,190 +50,34 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Intel-gfx@lists.freedesktop.org
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 22 Jan 2020, Ramalingam C <ramalingam.c@intel.com> wrote:
-> On 2020-01-21 at 14:15:57 +0200, Jani Nikula wrote:
->> On Tue, 21 Jan 2020, Ramalingam C <ramalingam.c@intel.com> wrote:
->> > On 2020-01-20 at 11:19:54 +0530, Anshuman Gupta wrote:
->> >> Content Protection property should be updated as per the kernel
->> >> internal state. Let's say if Content protection is disabled
->> >> by userspace, CP property should be set to UNDESIRED so that
->> >> reauthentication will not happen until userspace request it again,
->> >> but when kernel disables the HDCP due to any DDI disabling sequences
->> >> like modeset/DPMS operation, kernel should set the property to
->> >> DESIRED, so that when opportunity arises, kernel will start the
->> >> HDCP authentication on its own.
->> >> 
->> >> Somewhere in the line, state machine to set content protection to
->> >> DESIRED from kernel was broken and IGT coverage was missing for it.
->> >> This patch fixes it.
->> >> IGT patch to catch further regression on this features is being
->> >> worked upon.
->> >> 
->> >> v2:
->> >>  - Incorporated the necessary locking. (Ram)
->> >>  - Set content protection property to CP_DESIRED only when
->> >>    user has not asked explicitly to set CP_UNDESIRED.
->> >> 
->> >> v3:
->> >>  - Reset the is_hdcp_undesired flag to false. (Ram)
->> >>  - Rephrasing commit log and small comment for is_hdcp_desired
->> >>    flag. (Ram)
->> >> 
->> >> CC: Ramalingam C <ramalingam.c@intel.com>
->> >> Reviewed-by: Ramalingam C <ramalingam.c@intel.com>
->> >> Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
->> >> ---
->> >>  drivers/gpu/drm/i915/display/intel_display_types.h |  6 ++++++
->> >>  drivers/gpu/drm/i915/display/intel_hdcp.c          | 13 ++++++++++++-
->> >>  2 files changed, 18 insertions(+), 1 deletion(-)
->> >> 
->> >> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
->> >> index 630a94892b7b..401a9a7689fb 100644
->> >> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
->> >> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
->> >> @@ -345,6 +345,12 @@ struct intel_hdcp {
->> >>  	struct delayed_work check_work;
->> >>  	struct work_struct prop_work;
->> >>  
->> >> +	/*
->> >> +	 * Flag to differentiate that HDCP is being disabled originated from
->> >> +	 * userspace or triggered from kernel DDI disable sequence.
->> >> +	 */
->> >> +	bool is_hdcp_undesired;
->> >> +
->> >>  	/* HDCP1.4 Encryption status */
->> >>  	bool hdcp_encrypted;
->> >>  
->> >> diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
->> >> index 0fdbd39f6641..7f631ebd8395 100644
->> >> --- a/drivers/gpu/drm/i915/display/intel_hdcp.c
->> >> +++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
->> >> @@ -2002,11 +2002,18 @@ int intel_hdcp_disable(struct intel_connector *connector)
->> >>  	mutex_lock(&hdcp->mutex);
->> >>  
->> >>  	if (hdcp->value != DRM_MODE_CONTENT_PROTECTION_UNDESIRED) {
->> >> -		hdcp->value = DRM_MODE_CONTENT_PROTECTION_UNDESIRED;
->> >>  		if (hdcp->hdcp2_encrypted)
->> >>  			ret = _intel_hdcp2_disable(connector);
->> >>  		else if (hdcp->hdcp_encrypted)
->> >>  			ret = _intel_hdcp_disable(connector);
->> >> +
->> >> +		if (hdcp->is_hdcp_undesired) {
->> >> +			hdcp->value = DRM_MODE_CONTENT_PROTECTION_UNDESIRED;
->> >> +			hdcp->is_hdcp_undesired = false;
->> >> +		} else {
->> >> +			hdcp->value = DRM_MODE_CONTENT_PROTECTION_DESIRED;
->> >> +			schedule_work(&hdcp->prop_work);
->> >> +		}
->> >>  	}
->> >>  
->> >>  	mutex_unlock(&hdcp->mutex);
->> >> @@ -2044,6 +2051,7 @@ void intel_hdcp_atomic_check(struct drm_connector *connector,
->> >>  {
->> >>  	u64 old_cp = old_state->content_protection;
->> >>  	u64 new_cp = new_state->content_protection;
->> >> +	struct intel_connector *intel_conn = to_intel_connector(connector);
->> >>  	struct drm_crtc_state *crtc_state;
->> >>  
->> >>  	if (!new_state->crtc) {
->> >> @@ -2069,6 +2077,9 @@ void intel_hdcp_atomic_check(struct drm_connector *connector,
->> >>  			return;
->> >>  	}
->> >>  
->> >> +	if (new_cp == DRM_MODE_CONTENT_PROTECTION_UNDESIRED)
->> >> +		intel_conn->hdcp.is_hdcp_undesired  =  true;
->> > This flag is reset at commit only. What if the atomic check failed?
->> > Usually atomic check wont fail for HDCP state change. Possible if it is submitted with other request.
->> > So we need to set true and false both here.
->> 
->> As I explained in my other mail, you don't have the information
->> available at this point about possible later atomic check failures. I
->> think it's wrong to change the connector at check phase. You'd need to
->> be able to revert the change back to what it was... and that's exactly
->> the reason why we have old and new states, so we can just throw away the
->> new state if the check fails.
-> I completely understand that part. And this flag set at atomic_check
-> will not change the connector state, untill hdcp_disable called at
-> atomic commit.
->
-> I am completely fine if this method is not acceptable. But uAPI documented is
-> already broken (ENABLED "content protection" will remain DESIRED/ENABLED until userspace
-> set it to UNDESIRED). So I am just trying to find a solution to it.
->
-> Requirement is as follows:
-> ddi_disable()->hdcp_disable() gets called for two scenarios 
-> 1. userspace setting the "content protection" to UNDESIRED hence
-> atomic_check will mark it as modeset hence hdcp will be disabled.
-> 2. userspace is not changing the "content protection", but other display
-> operations are leading to the ddi_disable hence hdcp is getting disabled
->
-> We need to differentiate these two cause for hdcp disable at
-> hdcp_disable so that "content protection" can be set to "DESIRED" from
-> "ENABLED" at second case. else HDCP would have been disabled but
-> property will be left at "ENABLED".
->
-> In first scenario we dont need to change the "content protection" as the
-> userspace itself set it to "UNDESIRED". kernel just need to disable the
-> authentication.
->
-> So yes, this broken uAPI needs to be attended, not sure if anyone is
-> affected by this already. Please throw some light on the possible
-> direction from this point.
-
-I still think a large part of your problems are due to duplicating the
-content_protection state to hdcp->value.
-
-You *are* setting new state content_protection to DESIRED at
-intel_hdcp_atomic_check() if it was ENABLED. This should work for both
-of your scenarios; I think it's only broken because you lose sync with
-hdcp->value.
-
-intel_hdcp_disable() should look at old state and disable if hdcp is
-enabled.
-
-intel_hdcp_enable() should look at new state and enable if hdcp is
-desired.
-
-
-BR,
-Jani.
-
-
-
->
-> -Ram
->
->> 
->> BR,
->> Jani.
->> 
->> 
->> >
->> > -Ram
->> >> +
->> >>  	crtc_state = drm_atomic_get_new_crtc_state(new_state->state,
->> >>  						   new_state->crtc);
->> >>  	crtc_state->mode_changed = true;
->> >> -- 
->> >> 2.24.0
->> >> 
->> > _______________________________________________
->> > Intel-gfx mailing list
->> > Intel-gfx@lists.freedesktop.org
->> > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
->> 
->> -- 
->> Jani Nikula, Intel Open Source Graphics Center
-
--- 
-Jani Nikula, Intel Open Source Graphics Center
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+Ck9uIDIyLzAxLzIwMjAgMTQ6NTMsIFR2cnRrbyBVcnN1bGluIHdyb3RlOgo+IAo+IE9uIDIyLzAx
+LzIwMjAgMTQ6NDYsIENocmlzIFdpbHNvbiB3cm90ZToKPj4gUXVvdGluZyBUdnJ0a28gVXJzdWxp
+biAoMjAyMC0wMS0yMiAxNDo0MDoyOCkKPj4+IMKgIHN0YXRpYyB2b2lkIGluaXRfZW5naW5lKHN0
+cnVjdCBpbnRlbF9leGVjdXRpb25fZW5naW5lMiAqZTIsCj4+PiDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgaW50IGNsYXNzLCBpbnQgaW5zdGFuY2UsIHVp
+bnQ2NF90IGZsYWdzKQo+Pj4gwqAgewo+Pj4gLcKgwqDCoMKgwqDCoCBjb25zdCBzdHJ1Y3QgaW50
+ZWxfZXhlY3V0aW9uX2VuZ2luZTIgKl9fZTI7Cj4+PiAtwqDCoMKgwqDCoMKgIHN0YXRpYyBjb25z
+dCBjaGFyICp1bmtub3duX25hbWUgPSAidW5rbm93biIsCj4+PiAtwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgICp2aXJ0dWFsX25hbWUgPSAidmlydHVhbCI7
+Cj4+PiArwqDCoMKgwqDCoMKgIGludCByZXQ7Cj4+PiDCoMKgwqDCoMKgwqDCoMKgIGUyLT5jbGFz
+c8KgwqDCoCA9IGNsYXNzOwo+Pj4gwqDCoMKgwqDCoMKgwqDCoCBlMi0+aW5zdGFuY2UgPSBpbnN0
+YW5jZTsKPj4+IC3CoMKgwqDCoMKgwqAgZTItPmZsYWdzwqDCoMKgID0gZmxhZ3M7Cj4+PiDCoMKg
+wqDCoMKgwqDCoMKgIC8qIGVuZ2luZSBpcyBhIHZpcnR1YWwgZW5naW5lICovCj4+PiDCoMKgwqDC
+oMKgwqDCoMKgIGlmIChjbGFzcyA9PSBJOTE1X0VOR0lORV9DTEFTU19JTlZBTElEICYmCj4+PiDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgaW5zdGFuY2UgPT0gSTkxNV9FTkdJTkVfQ0xBU1NfSU5W
+QUxJRF9WSVJUVUFMKSB7Cj4+Cj4+IENhbiB0aGlzIGV2ZXIgbWF0Y2g/wqAgaW5zdGFuY2UgaXMg
+NjU1MzQgYW5kIElOVkFMSURfVklSVFVBTCBpcyAtMi4KPj4gaW50IGNsYXNzL2luc3RhbmNlIHNo
+b3VsZCBiZSB1MTY/Cj4gCj4gWWVhaCwgbm8gaXQgY2FuJ3QgZXZlciBtYXRjaC4gSSdsbCBoYXZl
+IGEgbG9vayBob3cgZWFzeSB0byBjaGFuZ2UgaXQgYWxsIAo+IHRvIHN0cnVjdCBpOTE1X2VuZ2lu
+ZV9jbGFzc19pbnN0YW5jZS4KClRvbyBtdWNoIGNodXJuLiBJIGRpZCBzaW1wbGUgdWludDE2X3Qg
+aGVyZSBhbmQgaW4gc3RydWN0IAppbnRlbF9leGVjdXRpb25fZW5naW5lMiBhcyBhIGZvbGxvdyB1
+cCBwYXRjaCB0byB0aGlzIG9uZS4KClJlZ2FyZHMsCgpUdnJ0a28KX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRl
+bC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
+L21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
