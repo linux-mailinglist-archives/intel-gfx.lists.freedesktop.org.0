@@ -1,37 +1,37 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D6EB145800
-	for <lists+intel-gfx@lfdr.de>; Wed, 22 Jan 2020 15:40:06 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D6A1145802
+	for <lists+intel-gfx@lfdr.de>; Wed, 22 Jan 2020 15:40:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AECAD6F560;
-	Wed, 22 Jan 2020 14:40:03 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
+	by gabe.freedesktop.org (Postfix) with ESMTP id D6E6A6F562;
+	Wed, 22 Jan 2020 14:40:34 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
 Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 694C86F560
- for <intel-gfx@lists.freedesktop.org>; Wed, 22 Jan 2020 14:40:02 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B12DD6F561;
+ Wed, 22 Jan 2020 14:40:32 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
  by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 22 Jan 2020 06:40:01 -0800
+ 22 Jan 2020 06:40:32 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,350,1574150400"; d="scan'208";a="222050928"
-Received: from gaia.fi.intel.com ([10.237.72.192])
- by fmsmga008.fm.intel.com with ESMTP; 22 Jan 2020 06:40:01 -0800
-Received: by gaia.fi.intel.com (Postfix, from userid 1000)
- id 387885C1DD9; Wed, 22 Jan 2020 16:39:19 +0200 (EET)
-From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20200122124154.483444-1-chris@chris-wilson.co.uk>
-References: <20200122124154.483444-1-chris@chris-wilson.co.uk>
-Date: Wed, 22 Jan 2020 16:39:19 +0200
-Message-ID: <87d0bbpnc8.fsf@gaia.fi.intel.com>
+X-IronPort-AV: E=Sophos;i="5.70,350,1574150400"; d="scan'208";a="221248128"
+Received: from wmszyfel-mobl2.ger.corp.intel.com (HELO localhost.localdomain)
+ ([10.252.10.247])
+ by fmsmga007.fm.intel.com with ESMTP; 22 Jan 2020 06:40:30 -0800
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+To: igt-dev@lists.freedesktop.org
+Date: Wed, 22 Jan 2020 14:40:28 +0000
+Message-Id: <20200122144028.27346-1-tvrtko.ursulin@linux.intel.com>
+X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20200122101043.21347-1-tvrtko.ursulin@linux.intel.com>
+References: <20200122101043.21347-1-tvrtko.ursulin@linux.intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/gt: Include a tell-tale for engine
- parking
+Subject: [Intel-gfx] [PATCH i-g-t v2] i915/gem_engine_topology: Generate
+ engine names based on class
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,63 +44,156 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Chris Wilson <chris@chris-wilson.co.uk> writes:
+From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 
-> We have two trace messages that rely on the function name for
-> distinction. However, if gcc inlines the function, the two traces end up
-> with the same function name and are indistinguishable. Add a different
-> message to each to clarify which one we hit, i.e. which phase of engine
-> parking we are processing.
->
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> ---
->  drivers/gpu/drm/i915/gt/intel_engine_pm.c | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_pm.c b/drivers/gpu/drm/i915/gt/intel_engine_pm.c
-> index ea90ab3e396e..b6cf284e3a2d 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_engine_pm.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_engine_pm.c
-> @@ -112,7 +112,7 @@ __queue_and_release_pm(struct i915_request *rq,
->  {
->  	struct intel_gt_timelines *timelines = &engine->gt->timelines;
->  
-> -	ENGINE_TRACE(engine, "\n");
-> +	ENGINE_TRACE(engine, "parking\n");
->  
->  	/*
->  	 * We have to serialise all potential retirement paths with our
-> @@ -249,7 +249,7 @@ static int __engine_park(struct intel_wakeref *wf)
->  	if (!switch_to_kernel_context(engine))
->  		return -EBUSY;
->  
-> -	ENGINE_TRACE(engine, "\n");
-> +	ENGINE_TRACE(engine, "parked\n");
+With the introduction of dynamic subtests we got one step closer towards
+eliminating the duality of static and dynamic engine enumeration.
 
-Reading the functions, the exact spots are a mystery for me still
-as of why in these exact lines. Like the 'parked' would mean it
-is parked already, which it seems not to.
+This patch makes one more step in that direction by removing the
+dependency on the static list when generating probed engine names.
 
-However, what comes to the commit message and to
-immediate problem and fixing it,
+v2:
+ * Fix __for_each_static_engine iterator.
+ * Prefix unknown engines with 'unknown'.
 
-Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Cc: Andi Shyti <andi.shyti@intel.com>
+Cc: Petri Latvala <petri.latvala@intel.com>
+---
+ lib/i915/gem_engine_topology.c | 39 +++++++++++++++++++---------------
+ lib/i915/gem_engine_topology.h |  2 +-
+ lib/igt_gt.h                   |  2 +-
+ 3 files changed, 24 insertions(+), 19 deletions(-)
 
->  
->  	call_idle_barriers(engine); /* cleanup after wedging */
->  
-> -- 
-> 2.25.0
->
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+diff --git a/lib/i915/gem_engine_topology.c b/lib/i915/gem_engine_topology.c
+index 790d455ff2ad..c3645eab8538 100644
+--- a/lib/i915/gem_engine_topology.c
++++ b/lib/i915/gem_engine_topology.c
+@@ -97,39 +97,43 @@ static void ctx_map_engines(int fd, struct intel_engine_data *ed,
+ 	gem_context_set_param(fd, param);
+ }
+ 
++static const char *class_names[] = {
++	[I915_ENGINE_CLASS_RENDER]	  = "rcs",
++	[I915_ENGINE_CLASS_COPY]	  = "bcs",
++	[I915_ENGINE_CLASS_VIDEO]	  = "vcs",
++	[I915_ENGINE_CLASS_VIDEO_ENHANCE] = "vecs",
++};
++
+ static void init_engine(struct intel_execution_engine2 *e2,
+ 			int class, int instance, uint64_t flags)
+ {
+-	const struct intel_execution_engine2 *__e2;
+-	static const char *unknown_name = "unknown",
+-			  *virtual_name = "virtual";
++	int ret;
+ 
+ 	e2->class    = class;
+ 	e2->instance = instance;
+-	e2->flags    = flags;
+ 
+ 	/* engine is a virtual engine */
+ 	if (class == I915_ENGINE_CLASS_INVALID &&
+ 	    instance == I915_ENGINE_CLASS_INVALID_VIRTUAL) {
+-		e2->name = virtual_name;
++		strcpy(e2->name, "virtual");
+ 		e2->is_virtual = true;
+ 		return;
++	} else {
++		e2->is_virtual = false;
+ 	}
+ 
+-	__for_each_static_engine(__e2)
+-		if (__e2->class == class && __e2->instance == instance)
+-			break;
+-
+-	if (__e2->name) {
+-		e2->name = __e2->name;
++	if (class < ARRAY_SIZE(class_names)) {
++		e2->flags = flags;
++		ret = snprintf(e2->name, sizeof(e2->name), "%s%u",
++			       class_names[class], instance);
+ 	} else {
+ 		igt_warn("found unknown engine (%d, %d)\n", class, instance);
+-		e2->name = unknown_name;
+ 		e2->flags = -1;
++		ret = snprintf(e2->name, sizeof(e2->name), "unknown%u-%u",
++			       class, instance);
+ 	}
+ 
+-	/* just to remark it */
+-	e2->is_virtual = false;
++	igt_assert(ret < sizeof(e2->name));
+ }
+ 
+ static void query_engine_list(int fd, struct intel_engine_data *ed)
+@@ -223,7 +227,7 @@ struct intel_engine_data intel_init_engine_list(int fd, uint32_t ctx_id)
+ 			struct intel_execution_engine2 *__e2 =
+ 				&engine_data.engines[engine_data.nengines];
+ 
+-			__e2->name       = e2->name;
++			strcpy(__e2->name, e2->name);
+ 			__e2->instance   = e2->instance;
+ 			__e2->class      = e2->class;
+ 			__e2->flags      = e2->flags;
+@@ -297,12 +301,11 @@ struct intel_execution_engine2 gem_eb_flags_to_engine(unsigned int flags)
+ 		.class = -1,
+ 		.instance = -1,
+ 		.flags = -1,
+-		.name = "invalid"
+ 	};
+ 
+ 	if (ring == I915_EXEC_DEFAULT) {
+ 		e2__.flags = I915_EXEC_DEFAULT;
+-		e2__.name = "default";
++		strcpy(e2__.name, "default");
+ 	} else {
+ 		const struct intel_execution_engine2 *e2;
+ 
+@@ -310,6 +313,8 @@ struct intel_execution_engine2 gem_eb_flags_to_engine(unsigned int flags)
+ 			if (e2->flags == ring)
+ 				return *e2;
+ 		}
++
++		strcpy(e2__.name, "invalid");
+ 	}
+ 
+ 	return e2__;
+diff --git a/lib/i915/gem_engine_topology.h b/lib/i915/gem_engine_topology.h
+index d98773e06783..525741cc8a08 100644
+--- a/lib/i915/gem_engine_topology.h
++++ b/lib/i915/gem_engine_topology.h
+@@ -61,7 +61,7 @@ bool gem_engine_is_equal(const struct intel_execution_engine2 *e1,
+ struct intel_execution_engine2 gem_eb_flags_to_engine(unsigned int flags);
+ 
+ #define __for_each_static_engine(e__) \
+-	for ((e__) = intel_execution_engines2; (e__)->name; (e__)++)
++	for ((e__) = intel_execution_engines2; (e__)->name[0]; (e__)++)
+ 
+ #define for_each_context_engine(fd__, ctx__, e__) \
+ 	for (struct intel_engine_data i__ = intel_init_engine_list(fd__, ctx__); \
+diff --git a/lib/igt_gt.h b/lib/igt_gt.h
+index 66088d39176a..6a8eceb68817 100644
+--- a/lib/igt_gt.h
++++ b/lib/igt_gt.h
+@@ -95,7 +95,7 @@ bool gem_can_store_dword(int fd, unsigned int engine);
+ bool gem_class_can_store_dword(int fd, int class);
+ 
+ extern const struct intel_execution_engine2 {
+-	const char *name;
++	char name[16];
+ 	int class;
+ 	int instance;
+ 	uint64_t flags;
+-- 
+2.20.1
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
