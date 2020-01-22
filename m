@@ -1,40 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F8B4145891
-	for <lists+intel-gfx@lfdr.de>; Wed, 22 Jan 2020 16:25:03 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6DEAC145892
+	for <lists+intel-gfx@lfdr.de>; Wed, 22 Jan 2020 16:25:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9358C6F583;
-	Wed, 22 Jan 2020 15:25:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C027C6F589;
+	Wed, 22 Jan 2020 15:25:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8C9116F583;
- Wed, 22 Jan 2020 15:25:00 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 22 Jan 2020 07:24:59 -0800
-X-IronPort-AV: E=Sophos;i="5.70,350,1574150400"; d="scan'208";a="220344287"
-Received: from jkrzyszt-desk.igk.intel.com (HELO
- jkrzyszt-desk.ger.corp.intel.com) ([172.22.244.17])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 22 Jan 2020 07:24:55 -0800
-From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>
-Date: Wed, 22 Jan 2020 16:24:49 +0100
-Message-ID: <11711055.DxJhndXA8j@jkrzyszt-desk.ger.corp.intel.com>
-Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
- 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
-In-Reply-To: <157858221040.2197.11860218526538512609@skylake-alporthouse-com>
-References: <20200109140125.18483-1-janusz.krzysztofik@linux.intel.com>
- <20200109140125.18483-3-janusz.krzysztofik@linux.intel.com>
- <157858221040.2197.11860218526538512609@skylake-alporthouse-com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 0EA7E89CB2;
+ Wed, 22 Jan 2020 15:25:12 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id F3DEBA0087;
+ Wed, 22 Jan 2020 15:25:11 +0000 (UTC)
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH i-g-t 2/2] tests/prime_vgem: Examine blitter
- access path
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Wed, 22 Jan 2020 15:25:11 -0000
+Message-ID: <157970671199.22392.16011739177363097019@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200122140243.495621-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200122140243.495621-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_series_starting_with_=5BCI=2C1/3=5D_drm/i915/execlists=3A_T?=
+ =?utf-8?q?ake_a_reference_while_capturing_the_guilty_request?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,91 +39,30 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: igt-dev@lists.freedesktop.org, Daniel Vetter <daniel.vetter@ffwll.ch>,
- intel-gfx@lists.freedesktop.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Chris,
+== Series Details ==
 
-On Thursday, January 9, 2020 4:03:30 PM CET Chris Wilson wrote:
-> Quoting Janusz Krzysztofik (2020-01-09 14:01:25)
-> > On future hardware with missing GGTT BAR we won't be able to exercise
-> > dma-buf access via that path.  An alternative to basic-gtt subtest for
-> > testing dma-buf access is required, as well as basic-fence-mmap and
-> > coherency-gtt subtest alternatives for testing WC coherency.
-> > 
-> > Access to the dma sg list feature exposed by dma-buf can be tested
-> > through blitter.  Unfortunately we don't have any equivalently simple
-> > tests that use blitter.  Provide them.
-> > 
-> > Blitter XY_SRC_COPY method implemented by igt_blitter_src_copy__raw()
-> > IGT library function has been chosen.
-> > 
-> > v2: As fast copy is not supported on platforms older than Gen 9,
-> >     use XY_SRC_COPY instead (Chris),
-> >   - add subtest descriptions.
-> > 
-> > Suggested-by: Chris Wilson <chris@chris-wilson.co.uk>
-> > Suggested-by: Daniel Vetter <daniel.vetter@ffwll.ch>
-> > Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-> > ---
-> >  tests/prime_vgem.c | 192 +++++++++++++++++++++++++++++++++++++++++++++
-> >  1 file changed, 192 insertions(+)
-> > 
-> > diff --git a/tests/prime_vgem.c b/tests/prime_vgem.c
-> > index 69ae8c9b..9ceee47a 100644
-> > --- a/tests/prime_vgem.c
-> > +++ b/tests/prime_vgem.c
-<SNIP>
-> >  
-> > +static void test_blt(int vgem, int i915)
-> > +{
-> > +       struct vgem_bo scratch;
-> > +       uint32_t prime, native;
-> > +       uint32_t *ptr;
-> > +       int dmabuf, i;
-> > +
-> > +       scratch.width = 1024;
-> > +       scratch.height = 1024;
-> > +       scratch.bpp = 32;
-> > +       vgem_create(vgem, &scratch);
-> > +
-> > +       dmabuf = prime_handle_to_fd(vgem, scratch.handle);
-> > +       prime = prime_fd_to_handle(i915, dmabuf);
-> > +       close(dmabuf);
-> > +
-> > +       native = gem_create(i915, scratch.size);
-> > +
-> > +       ptr = gem_mmap__wc(i915, native, 0, scratch.size, PROT_WRITE);
-> > +       for (i = 0; i < 1024; i++)
-> > +               ptr[1024 * i] = i;
-> > +       munmap(ptr, scratch.size);
-> > +
-> > +       igt_blitter_src_copy__raw(i915,
-> > +                                 native, 0, scratch.width * scratch.bpp / 8,
-> > +                                 I915_TILING_NONE, 0, 0,
-> > +                                 scratch.width, scratch.height, scratch.bpp,
-> > +                                 prime, 0, scratch.width * scratch.bpp / 8,
-> > +                                 I915_TILING_NONE, 0, 0);
-> > +       gem_sync(i915, prime);
-> 
-> Would this be better with prime_sync_start(dmabuf, true); ?
+Series: series starting with [CI,1/3] drm/i915/execlists: Take a reference while capturing the guilty request
+URL   : https://patchwork.freedesktop.org/series/72400/
+State : warning
 
-I'm not sure why you suggest true for write access, not false for just having 
-the prime object confirmed ready for reading.  Could you please explain?
+== Summary ==
 
-Thanks,
-Janusz
+$ dim checkpatch origin/drm-tip
+8f0868652c32 drm/i915/execlists: Take a reference while capturing the guilty request
+-:28: WARNING:BAD_SIGN_OFF: Non-standard signature: Reviewd-by:
+#28: 
+Reviewd-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 
-> gem_sync(prime) is nice in its own way (checking sync on imported handle
-> provides correct serialisation for the vgem_mmap). But I think the
-> recommended practice would be to use dmabuf for the inter-device sync?
-
-
-
+total: 0 errors, 1 warnings, 0 checks, 119 lines checked
+472e1c4d5efe drm/i915/execlists: Reclaim the hanging virtual request
+84eecabf77f0 drm/i915: Mark the removal of the i915_request from the sched.link
 
 _______________________________________________
 Intel-gfx mailing list
