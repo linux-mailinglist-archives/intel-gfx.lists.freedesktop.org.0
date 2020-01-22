@@ -1,60 +1,50 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6040C1457A4
-	for <lists+intel-gfx@lfdr.de>; Wed, 22 Jan 2020 15:22:00 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E3AF81457BD
+	for <lists+intel-gfx@lfdr.de>; Wed, 22 Jan 2020 15:25:24 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 445B36F54B;
-	Wed, 22 Jan 2020 14:21:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2C6716F54F;
+	Wed, 22 Jan 2020 14:25:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-yb1-xb44.google.com (mail-yb1-xb44.google.com
- [IPv6:2607:f8b0:4864:20::b44])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 77FC26F549
- for <intel-gfx@lists.freedesktop.org>; Wed, 22 Jan 2020 14:21:52 +0000 (UTC)
-Received: by mail-yb1-xb44.google.com with SMTP id w17so460377ybm.1
- for <intel-gfx@lists.freedesktop.org>; Wed, 22 Jan 2020 06:21:52 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=poorly.run; s=google;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to:user-agent;
- bh=+/p86Y+DK7SRlgsg41Io0iP7JH8+JfcvGxwgzWMIUh0=;
- b=YlEEsc/wKCcfjuqpTZ3/7J+9AliQiPhSQDJ3yyrqKgcJf3Z1j+oUtuG0r8D7FBUfQx
- eK7Igb/ptk8Zlr5hGsbQC1lI+GfxzuWiKKxPmrpaBoQmgK8HEPJ9dvZDeuiTgT+HzlYM
- uonjZLVOT7HhaPtG0GgJB76EHDhI3O1HW306zrAvyPLcfQHyO2PW72kyCN9Reo02PAGt
- zFYK0bF4Qcd6HdmpW6c+gSOYDljiTOliGPKU0Vmph7yS2wVwYP6ZmW4AED+9jr1bnPPY
- +NkQlcCzcOBOhJzM5uF1R1QorCZ5opejVibTRxyd6GGrOGWSxbg3qW/i9N93Ko7coTzK
- Iq6w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to:user-agent;
- bh=+/p86Y+DK7SRlgsg41Io0iP7JH8+JfcvGxwgzWMIUh0=;
- b=UCQbzqMtsBFzzeoH3iVz3xr9ZuHdrXgMaDCiedI3IqUaLgHTlAsK2+Jf3+3JdmuFg+
- eJO9B34ZCQrR+5sEpjT2exQMmaFBwRwgFjA4hJ/FNfTepp0/fhzpaFFLrAhSAcfxKCFR
- SVQk8xGsT0o3PXmCkIaei9t0VDEbank3HpeLz3ZFiBfyATTfPdQTHtAINtBzkL24//ab
- TFT22Sxxh0JAMCxPwn53yCq6w/o/TJpwxkp01EKVGVIXG1E41nQ4xArXL4AmuOhBhkGc
- ky2hHpL9jjMtmW8fEX+6QYStlKOUvUVUrxtD9Kj1cyfo/IHas7jhBcNlDqlOjOWZkgVK
- 3DMw==
-X-Gm-Message-State: APjAAAW746pPDd/4fpM0HpFKanDyIPfJyv3HQuNIUqDLLyeLJ7E/QN5u
- 40PvHY90RVVFNCdGcH7RMCt1/w==
-X-Google-Smtp-Source: APXvYqwBVgs5+k4H+bdqXBI4VLEhD+rljxdbJRr6UnK6U1/rd0lwaMnvZXb2Px6XENj5+qGatmwmmg==
-X-Received: by 2002:a25:424c:: with SMTP id p73mr7743400yba.332.1579702911938; 
- Wed, 22 Jan 2020 06:21:51 -0800 (PST)
-Received: from localhost ([2620:0:1013:11:1e1:4760:6ce4:fc64])
- by smtp.gmail.com with ESMTPSA id x184sm18699418ywg.4.2020.01.22.06.21.51
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 22 Jan 2020 06:21:51 -0800 (PST)
-Date: Wed, 22 Jan 2020 09:21:50 -0500
-From: Sean Paul <sean@poorly.run>
-To: Ramalingam C <ramalingam.c@intel.com>
-Message-ID: <20200122142150.GF25564@art_vandelay>
-References: <20200121070955.26426-1-ramalingam.c@intel.com>
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 39F1C6F54E
+ for <intel-gfx@lists.freedesktop.org>; Wed, 22 Jan 2020 14:25:22 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 22 Jan 2020 06:25:21 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,350,1574150400"; d="scan'208";a="259481099"
+Received: from linux.intel.com ([10.54.29.200])
+ by fmsmga002.fm.intel.com with ESMTP; 22 Jan 2020 06:25:20 -0800
+Received: from [10.252.5.6] (unknown [10.252.5.6])
+ by linux.intel.com (Postfix) with ESMTP id C8A54580100;
+ Wed, 22 Jan 2020 06:25:10 -0800 (PST)
+To: Stephen Smalley <sds@tycho.nsa.gov>,
+ Alexei Starovoitov <alexei.starovoitov@gmail.com>
+References: <0548c832-7f4b-dc4c-8883-3f2b6d351a08@linux.intel.com>
+ <9b77124b-675d-5ac7-3741-edec575bd425@linux.intel.com>
+ <64cab472-806e-38c4-fb26-0ffbee485367@tycho.nsa.gov>
+ <05297eff-8e14-ccdf-55a4-870c64516de8@linux.intel.com>
+ <CAADnVQK-JzK-GUk4KOozn4c1xr=7TiCpB9Fi0QDC9nE6iVn8iQ@mail.gmail.com>
+ <537bdb28-c9e4-f44f-d665-25250065a6bb@linux.intel.com>
+ <63d9700f-231d-7973-5307-3e56a48c54cb@linux.intel.com>
+ <d7213569-9578-7201-6106-f5ebc95bd6be@tycho.nsa.gov>
+From: Alexey Budankov <alexey.budankov@linux.intel.com>
+Organization: Intel Corp.
+Message-ID: <ac0dbab7-de47-ee34-bb88-4c43d3538b7d@linux.intel.com>
+Date: Wed, 22 Jan 2020 17:25:09 +0300
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.4.1
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200121070955.26426-1-ramalingam.c@intel.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [RFC] drm/hdcp: optimizing the srm handling
+In-Reply-To: <d7213569-9578-7201-6106-f5ebc95bd6be@tycho.nsa.gov>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH v5 01/10] capabilities: introduce
+ CAP_PERFMON to kernel and user space
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,261 +57,124 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
- Sean Paul <seanpaul@chromium.org>, dri-devel <dri-devel@lists.freedesktop.org>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Mark Rutland <mark.rutland@arm.com>, Song Liu <songliubraving@fb.com>,
+ Peter Zijlstra <peterz@infradead.org>,
+ "benh@kernel.crashing.org" <benh@kernel.crashing.org>,
+ Will Deacon <will.deacon@arm.com>, Alexei Starovoitov <ast@kernel.org>,
+ Stephane Eranian <eranian@google.com>,
+ "james.bottomley@hansenpartnership.com"
+ <james.bottomley@hansenpartnership.com>, Paul Mackerras <paulus@samba.org>,
+ Jiri Olsa <jolsa@redhat.com>, Andi Kleen <ak@linux.intel.com>,
+ Michael Ellerman <mpe@ellerman.id.au>, Igor Lubashev <ilubashe@akamai.com>,
+ James Morris <jmorris@namei.org>,
+ Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+ Ingo Molnar <mingo@redhat.com>, oprofile-list@lists.sf.net,
+ Serge Hallyn <serge@hallyn.com>, Robert Richter <rric@kernel.org>,
+ "selinux@vger.kernel.org" <selinux@vger.kernel.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ Arnaldo Carvalho de Melo <acme@kernel.org>, Namhyung Kim <namhyung@kernel.org>,
+ Thomas Gleixner <tglx@linutronix.de>,
+ linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+ "linux-parisc@vger.kernel.org" <linux-parisc@vger.kernel.org>,
+ linux-kernel <linux-kernel@vger.kernel.org>,
+ Andy Lutomirski <luto@amacapital.net>,
+ "linux-perf-users@vger.kernel.org" <linux-perf-users@vger.kernel.org>,
+ "linux-security-module@vger.kernel.org"
+ <linux-security-module@vger.kernel.org>,
+ "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Jan 21, 2020 at 12:39:55PM +0530, Ramalingam C wrote:
-> As we are not using the sysfs infrastructure anymore, link to it is
-> removed. And global srm data and mutex to protect it are removed,
-> with required handling at revocation check function.
-> 
-
-Hi Ram,
-Thanks for taking this on. A few comments below..
-
-> Yet to test hence RFC tag is added.
-> 
-> Signed-off-by: Ramalingam C <ramalingam.c@intel.com>
-> Suggested-by: Sean Paul <seanpaul@chromium.org>
-> ---
->  drivers/gpu/drm/drm_hdcp.c     | 68 ++++++++++++++--------------------
->  drivers/gpu/drm/drm_internal.h |  4 --
->  drivers/gpu/drm/drm_sysfs.c    |  2 -
->  3 files changed, 27 insertions(+), 47 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/drm_hdcp.c b/drivers/gpu/drm/drm_hdcp.c
-> index 9191633a3c43..cc08d953eb53 100644
-> --- a/drivers/gpu/drm/drm_hdcp.c
-> +++ b/drivers/gpu/drm/drm_hdcp.c
-> @@ -23,13 +23,10 @@
->  
->  #include "drm_internal.h"
->  
-> -static struct hdcp_srm {
-> +struct hdcp_srm {
-
-struct drm_hdcp_srm
-
-would be more consistent with the rest of the subsystem
-
->  	u32 revoked_ksv_cnt;
->  	u8 *revoked_ksv_list;
-> -
-> -	/* Mutex to protect above struct member */
-> -	struct mutex mutex;
-> -} *srm_data;
-> +};
->  
->  static inline void drm_hdcp_print_ksv(const u8 *ksv)
->  {
-> @@ -91,7 +88,8 @@ static inline u32 get_vrl_length(const u8 *buf)
->  	return drm_hdcp_be24_to_cpu(buf);
->  }
->  
-> -static int drm_hdcp_parse_hdcp1_srm(const u8 *buf, size_t count)
-> +static int drm_hdcp_parse_hdcp1_srm(const u8 *buf, size_t count,
-> +				    struct hdcp_srm *srm_data)
-
-Usually the drm structs are the first argument.
-
->  {
->  	struct hdcp_srm_header *header;
->  	u32 vrl_length, ksv_count;
-> @@ -153,7 +151,8 @@ static int drm_hdcp_parse_hdcp1_srm(const u8 *buf, size_t count)
->  	return count;
->  }
->  
-> -static int drm_hdcp_parse_hdcp2_srm(const u8 *buf, size_t count)
-> +static int drm_hdcp_parse_hdcp2_srm(const u8 *buf, size_t count,
-> +				    struct hdcp_srm *srm_data)
->  {
->  	struct hdcp_srm_header *header;
->  	u32 vrl_length, ksv_count, ksv_sz;
-> @@ -226,18 +225,20 @@ static inline bool is_srm_version_hdcp2(const u8 *buf)
->  	return *buf == (u8)(DRM_HDCP_2_SRM_ID << 4 | DRM_HDCP_2_INDICATOR);
->  }
->  
-> -static void drm_hdcp_srm_update(const u8 *buf, size_t count)
-> +static void drm_hdcp_srm_update(const u8 *buf, size_t count,
-> +				struct hdcp_srm *srm_data)
->  {
->  	if (count < sizeof(struct hdcp_srm_header))
->  		return;
->  
->  	if (is_srm_version_hdcp1(buf))
-> -		drm_hdcp_parse_hdcp1_srm(buf, count);
-> +		drm_hdcp_parse_hdcp1_srm(buf, count, srm_data);
->  	else if (is_srm_version_hdcp2(buf))
-> -		drm_hdcp_parse_hdcp2_srm(buf, count);
-> +		drm_hdcp_parse_hdcp2_srm(buf, count, srm_data);
->  }
->  
-> -static void drm_hdcp_request_srm(struct drm_device *drm_dev)
-> +static void drm_hdcp_request_srm(struct drm_device *drm_dev,
-> +				 struct hdcp_srm *srm_data)
->  {
->  	char fw_name[36] = "display_hdcp_srm.bin";
->  	const struct firmware *fw;
-> @@ -250,7 +251,7 @@ static void drm_hdcp_request_srm(struct drm_device *drm_dev)
->  		goto exit;
->  
->  	if (fw->size && fw->data)
-> -		drm_hdcp_srm_update(fw->data, fw->size);
-> +		drm_hdcp_srm_update(fw->data, fw->size, srm_data);
->  
->  exit:
->  	release_firmware(fw);
-> @@ -284,35 +285,33 @@ static void drm_hdcp_request_srm(struct drm_device *drm_dev)
->  bool drm_hdcp_check_ksvs_revoked(struct drm_device *drm_dev, u8 *ksvs,
-
-Unrelated nit: This function should really return int and let the caller decide what to do
-with the result.
-
->  				 u32 ksv_count)
->  {
-> -	u32 rev_ksv_cnt, cnt, i, j;
-> +	struct hdcp_srm *srm_data;
->  	u8 *rev_ksv_list;
-> +	bool ret = false;
-> +	u32 cnt, i, j;
->  
-> +	srm_data = kzalloc(sizeof(*srm_data), GFP_KERNEL);
-
-No need to put srm_data on the heap, it's only a pointer and a u32.
-
->  	if (!srm_data)
-> -		return false;
-> +		return ret;
->  
-> -	mutex_lock(&srm_data->mutex);
-> -	drm_hdcp_request_srm(drm_dev);
-> -
-> -	rev_ksv_cnt = srm_data->revoked_ksv_cnt;
-> +	drm_hdcp_request_srm(drm_dev, srm_data);
->  	rev_ksv_list = srm_data->revoked_ksv_list;
->  
->  	/* If the Revoked ksv list is empty */
-> -	if (!rev_ksv_cnt || !rev_ksv_list) {
-> -		mutex_unlock(&srm_data->mutex);
-> -		return false;
-> -	}
-> +	if (!srm_data->revoked_ksv_cnt || !rev_ksv_list)
-
-You can't have one of these true without the other, right?
-
-I think you should just reverse the loops below and remove this condition
-entirely.
-
-> +		goto out;
->  
->  	for  (cnt = 0; cnt < ksv_count; cnt++) {
->  		rev_ksv_list = srm_data->revoked_ksv_list;
-> -		for (i = 0; i < rev_ksv_cnt; i++) {
-> +		for (i = 0; i < srm_data->revoked_ksv_cnt; i++) {
->  			for (j = 0; j < DRM_HDCP_KSV_LEN; j++)
-
-Multi-line loops should have braces.
-
->  				if (ksvs[j] != rev_ksv_list[j]) {
->  					break;
->  				} else if (j == (DRM_HDCP_KSV_LEN - 1)) {
-
-This can be checked outside the 'j' loop (see below). but even better would be
-to replace this whole loop with a memcmp.
-
->  					DRM_DEBUG("Revoked KSV is ");
->  					drm_hdcp_print_ksv(ksvs);
-> -					mutex_unlock(&srm_data->mutex);
-> -					return true;
-> +					ret = true;
-> +					goto out;
->  				}
->  			/* Move the offset to next KSV in the revoked list */
->  			rev_ksv_list += DRM_HDCP_KSV_LEN;
-> @@ -321,28 +320,15 @@ bool drm_hdcp_check_ksvs_revoked(struct drm_device *drm_dev, u8 *ksvs,
->  		/* Iterate to next ksv_offset */
->  		ksvs += DRM_HDCP_KSV_LEN;
->  	}
-> -	mutex_unlock(&srm_data->mutex);
-> -	return false;
-> -}
-> -EXPORT_SYMBOL_GPL(drm_hdcp_check_ksvs_revoked);
->  
-> -int drm_setup_hdcp_srm(struct class *drm_class)
-> -{
-> -	srm_data = kzalloc(sizeof(*srm_data), GFP_KERNEL);
-> -	if (!srm_data)
-> -		return -ENOMEM;
-> -	mutex_init(&srm_data->mutex);
-> -
-> -	return 0;
-> -}
-> -
-> -void drm_teardown_hdcp_srm(struct class *drm_class)
-> -{
-> +out:
->  	if (srm_data) {
->  		kfree(srm_data->revoked_ksv_list);
-
-IMO, we shouldn't be reaching into the struct to clear it. The struct is so
-simple you could just pass the array and count around and get rid of it. The
-alternative is adding a drm_hdcp_srm_destroy helper function to do this.
-
->  		kfree(srm_data);
->  	}
-> +	return ret;
->  }
-> +EXPORT_SYMBOL_GPL(drm_hdcp_check_ksvs_revoked);
->  
->  static struct drm_prop_enum_list drm_cp_enum_list[] = {
->  	{ DRM_MODE_CONTENT_PROTECTION_UNDESIRED, "Undesired" },
-> diff --git a/drivers/gpu/drm/drm_internal.h b/drivers/gpu/drm/drm_internal.h
-> index 6937bf923f05..a34c7f8373fa 100644
-> --- a/drivers/gpu/drm/drm_internal.h
-> +++ b/drivers/gpu/drm/drm_internal.h
-> @@ -235,7 +235,3 @@ int drm_syncobj_query_ioctl(struct drm_device *dev, void *data,
->  void drm_framebuffer_print_info(struct drm_printer *p, unsigned int indent,
->  				const struct drm_framebuffer *fb);
->  int drm_framebuffer_debugfs_init(struct drm_minor *minor);
-> -
-> -/* drm_hdcp.c */
-> -int drm_setup_hdcp_srm(struct class *drm_class);
-> -void drm_teardown_hdcp_srm(struct class *drm_class);
-> diff --git a/drivers/gpu/drm/drm_sysfs.c b/drivers/gpu/drm/drm_sysfs.c
-> index dd2bc85f43cc..2e83c3d72af9 100644
-> --- a/drivers/gpu/drm/drm_sysfs.c
-> +++ b/drivers/gpu/drm/drm_sysfs.c
-> @@ -85,7 +85,6 @@ int drm_sysfs_init(void)
->  	}
->  
->  	drm_class->devnode = drm_devnode;
-> -	drm_setup_hdcp_srm(drm_class);
->  	return 0;
->  }
->  
-> @@ -98,7 +97,6 @@ void drm_sysfs_destroy(void)
->  {
->  	if (IS_ERR_OR_NULL(drm_class))
->  		return;
-> -	drm_teardown_hdcp_srm(drm_class);
->  	class_remove_file(drm_class, &class_attr_version.attr);
->  	class_destroy(drm_class);
->  	drm_class = NULL;
-> -- 
-> 2.20.1
-> 
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
--- 
-Sean Paul, Software Engineer, Google / Chromium OS
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+Ck9uIDIyLjAxLjIwMjAgMTc6MDcsIFN0ZXBoZW4gU21hbGxleSB3cm90ZToKPiBPbiAxLzIyLzIw
+IDU6NDUgQU0sIEFsZXhleSBCdWRhbmtvdiB3cm90ZToKPj4KPj4gT24gMjEuMDEuMjAyMCAyMToy
+NywgQWxleGV5IEJ1ZGFua292IHdyb3RlOgo+Pj4KPj4+IE9uIDIxLjAxLjIwMjAgMjA6NTUsIEFs
+ZXhlaSBTdGFyb3ZvaXRvdiB3cm90ZToKPj4+PiBPbiBUdWUsIEphbiAyMSwgMjAyMCBhdCA5OjMx
+IEFNIEFsZXhleSBCdWRhbmtvdgo+Pj4+IDxhbGV4ZXkuYnVkYW5rb3ZAbGludXguaW50ZWwuY29t
+PiB3cm90ZToKPj4+Pj4KPj4+Pj4KPj4+Pj4gT24gMjEuMDEuMjAyMCAxNzo0MywgU3RlcGhlbiBT
+bWFsbGV5IHdyb3RlOgo+Pj4+Pj4gT24gMS8yMC8yMCA2OjIzIEFNLCBBbGV4ZXkgQnVkYW5rb3Yg
+d3JvdGU6Cj4+Pj4+Pj4KPj4+Pj4+PiBJbnRyb2R1Y2UgQ0FQX1BFUkZNT04gY2FwYWJpbGl0eSBk
+ZXNpZ25lZCB0byBzZWN1cmUgc3lzdGVtIHBlcmZvcm1hbmNlCj4+Pj4+Pj4gbW9uaXRvcmluZyBh
+bmQgb2JzZXJ2YWJpbGl0eSBvcGVyYXRpb25zIHNvIHRoYXQgQ0FQX1BFUkZNT04gd291bGQgYXNz
+aXN0Cj4+Pj4+Pj4gQ0FQX1NZU19BRE1JTiBjYXBhYmlsaXR5IGluIGl0cyBnb3Zlcm5pbmcgcm9s
+ZSBmb3IgcGVyZl9ldmVudHMsIGk5MTVfcGVyZgo+Pj4+Pj4+IGFuZCBvdGhlciBwZXJmb3JtYW5j
+ZSBtb25pdG9yaW5nIGFuZCBvYnNlcnZhYmlsaXR5IHN1YnN5c3RlbXMuCj4+Pj4+Pj4KPj4+Pj4+
+PiBDQVBfUEVSRk1PTiBpbnRlbmRzIHRvIGhhcmRlbiBzeXN0ZW0gc2VjdXJpdHkgYW5kIGludGVn
+cml0eSBkdXJpbmcgc3lzdGVtCj4+Pj4+Pj4gcGVyZm9ybWFuY2UgbW9uaXRvcmluZyBhbmQgb2Jz
+ZXJ2YWJpbGl0eSBvcGVyYXRpb25zIGJ5IGRlY3JlYXNpbmcgYXR0YWNrCj4+Pj4+Pj4gc3VyZmFj
+ZSB0aGF0IGlzIGF2YWlsYWJsZSB0byBhIENBUF9TWVNfQURNSU4gcHJpdmlsZWdlZCBwcm9jZXNz
+IFsxXS4KPj4+Pj4+PiBQcm92aWRpbmcgYWNjZXNzIHRvIHN5c3RlbSBwZXJmb3JtYW5jZSBtb25p
+dG9yaW5nIGFuZCBvYnNlcnZhYmlsaXR5Cj4+Pj4+Pj4gb3BlcmF0aW9ucyB1bmRlciBDQVBfUEVS
+Rk1PTiBjYXBhYmlsaXR5IHNpbmdseSwgd2l0aG91dCB0aGUgcmVzdCBvZgo+Pj4+Pj4+IENBUF9T
+WVNfQURNSU4gY3JlZGVudGlhbHMsIGV4Y2x1ZGVzIGNoYW5jZXMgdG8gbWlzdXNlIHRoZSBjcmVk
+ZW50aWFscyBhbmQKPj4+Pj4+PiBtYWtlcyBvcGVyYXRpb24gbW9yZSBzZWN1cmUuCj4+Pj4+Pj4K
+Pj4+Pj4+PiBDQVBfUEVSRk1PTiBpbnRlbmRzIHRvIHRha2Ugb3ZlciBDQVBfU1lTX0FETUlOIGNy
+ZWRlbnRpYWxzIHJlbGF0ZWQgdG8KPj4+Pj4+PiBzeXN0ZW0gcGVyZm9ybWFuY2UgbW9uaXRvcmlu
+ZyBhbmQgb2JzZXJ2YWJpbGl0eSBvcGVyYXRpb25zIGFuZCBiYWxhbmNlCj4+Pj4+Pj4gYW1vdW50
+IG9mIENBUF9TWVNfQURNSU4gY3JlZGVudGlhbHMgZm9sbG93aW5nIHRoZSByZWNvbW1lbmRhdGlv
+bnMgaW4gdGhlCj4+Pj4+Pj4gY2FwYWJpbGl0aWVzIG1hbiBwYWdlIFsxXSBmb3IgQ0FQX1NZU19B
+RE1JTjogIk5vdGU6IHRoaXMgY2FwYWJpbGl0eSBpcwo+Pj4+Pj4+IG92ZXJsb2FkZWQ7IHNlZSBO
+b3RlcyB0byBrZXJuZWwgZGV2ZWxvcGVycywgYmVsb3cuIgo+Pj4+Pj4+Cj4+Pj4+Pj4gQWx0aG91
+Z2ggdGhlIHNvZnR3YXJlIHJ1bm5pbmcgdW5kZXIgQ0FQX1BFUkZNT04gY2FuIG5vdCBlbnN1cmUg
+YXZvaWRhbmNlCj4+Pj4+Pj4gb2YgcmVsYXRlZCBoYXJkd2FyZSBpc3N1ZXMsIHRoZSBzb2Z0d2Fy
+ZSBjYW4gc3RpbGwgbWl0aWdhdGUgdGhlc2UgaXNzdWVzCj4+Pj4+Pj4gZm9sbG93aW5nIHRoZSBv
+ZmZpY2lhbCBlbWJhcmdvZWQgaGFyZHdhcmUgaXNzdWVzIG1pdGlnYXRpb24gcHJvY2VkdXJlIFsy
+XS4KPj4+Pj4+PiBUaGUgYnVncyBpbiB0aGUgc29mdHdhcmUgaXRzZWxmIGNvdWxkIGJlIGZpeGVk
+IGZvbGxvd2luZyB0aGUgc3RhbmRhcmQKPj4+Pj4+PiBrZXJuZWwgZGV2ZWxvcG1lbnQgcHJvY2Vz
+cyBbM10gdG8gbWFpbnRhaW4gYW5kIGhhcmRlbiBzZWN1cml0eSBvZiBzeXN0ZW0KPj4+Pj4+PiBw
+ZXJmb3JtYW5jZSBtb25pdG9yaW5nIGFuZCBvYnNlcnZhYmlsaXR5IG9wZXJhdGlvbnMuCj4+Pj4+
+Pj4KPj4+Pj4+PiBbMV0gaHR0cDovL21hbjcub3JnL2xpbnV4L21hbi1wYWdlcy9tYW43L2NhcGFi
+aWxpdGllcy43Lmh0bWwKPj4+Pj4+PiBbMl0gaHR0cHM6Ly93d3cua2VybmVsLm9yZy9kb2MvaHRt
+bC9sYXRlc3QvcHJvY2Vzcy9lbWJhcmdvZWQtaGFyZHdhcmUtaXNzdWVzLmh0bWwKPj4+Pj4+PiBb
+M10gaHR0cHM6Ly93d3cua2VybmVsLm9yZy9kb2MvaHRtbC9sYXRlc3QvYWRtaW4tZ3VpZGUvc2Vj
+dXJpdHktYnVncy5odG1sCj4+Pj4+Pj4KPj4+Pj4+PiBTaWduZWQtb2ZmLWJ5OiBBbGV4ZXkgQnVk
+YW5rb3YgPGFsZXhleS5idWRhbmtvdkBsaW51eC5pbnRlbC5jb20+Cj4+Pj4+Pj4gLS0tCj4+Pj4+
+Pj4gwqDCoCBpbmNsdWRlL2xpbnV4L2NhcGFiaWxpdHkuaMKgwqDCoMKgwqDCoMKgwqDCoCB8IDEy
+ICsrKysrKysrKysrKwo+Pj4+Pj4+IMKgwqAgaW5jbHVkZS91YXBpL2xpbnV4L2NhcGFiaWxpdHku
+aMKgwqDCoMKgIHzCoCA4ICsrKysrKystCj4+Pj4+Pj4gwqDCoCBzZWN1cml0eS9zZWxpbnV4L2lu
+Y2x1ZGUvY2xhc3NtYXAuaCB8wqAgNCArKy0tCj4+Pj4+Pj4gwqDCoCAzIGZpbGVzIGNoYW5nZWQs
+IDIxIGluc2VydGlvbnMoKyksIDMgZGVsZXRpb25zKC0pCj4+Pj4+Pj4KPj4+Pj4+PiBkaWZmIC0t
+Z2l0IGEvaW5jbHVkZS9saW51eC9jYXBhYmlsaXR5LmggYi9pbmNsdWRlL2xpbnV4L2NhcGFiaWxp
+dHkuaAo+Pj4+Pj4+IGluZGV4IGVjY2UwZjQzYzczYS4uODc4NDk2OWQ5MWUxIDEwMDY0NAo+Pj4+
+Pj4+IC0tLSBhL2luY2x1ZGUvbGludXgvY2FwYWJpbGl0eS5oCj4+Pj4+Pj4gKysrIGIvaW5jbHVk
+ZS9saW51eC9jYXBhYmlsaXR5LmgKPj4+Pj4+PiBAQCAtMjUxLDYgKzI1MSwxOCBAQCBleHRlcm4g
+Ym9vbCBwcml2aWxlZ2VkX3dydF9pbm9kZV91aWRnaWQoc3RydWN0IHVzZXJfbmFtZXNwYWNlICpu
+cywgY29uc3Qgc3RydWN0Cj4+Pj4+Pj4gwqDCoCBleHRlcm4gYm9vbCBjYXBhYmxlX3dydF9pbm9k
+ZV91aWRnaWQoY29uc3Qgc3RydWN0IGlub2RlICppbm9kZSwgaW50IGNhcCk7Cj4+Pj4+Pj4gwqDC
+oCBleHRlcm4gYm9vbCBmaWxlX25zX2NhcGFibGUoY29uc3Qgc3RydWN0IGZpbGUgKmZpbGUsIHN0
+cnVjdCB1c2VyX25hbWVzcGFjZSAqbnMsIGludCBjYXApOwo+Pj4+Pj4+IMKgwqAgZXh0ZXJuIGJv
+b2wgcHRyYWNlcl9jYXBhYmxlKHN0cnVjdCB0YXNrX3N0cnVjdCAqdHNrLCBzdHJ1Y3QgdXNlcl9u
+YW1lc3BhY2UgKm5zKTsKPj4+Pj4+PiArc3RhdGljIGlubGluZSBib29sIHBlcmZtb25fY2FwYWJs
+ZSh2b2lkKQo+Pj4+Pj4+ICt7Cj4+Pj4+Pj4gK8KgwqDCoCBzdHJ1Y3QgdXNlcl9uYW1lc3BhY2Ug
+Km5zID0gJmluaXRfdXNlcl9uczsKPj4+Pj4+PiArCj4+Pj4+Pj4gK8KgwqDCoCBpZiAobnNfY2Fw
+YWJsZV9ub2F1ZGl0KG5zLCBDQVBfUEVSRk1PTikpCj4+Pj4+Pj4gK8KgwqDCoMKgwqDCoMKgIHJl
+dHVybiBuc19jYXBhYmxlKG5zLCBDQVBfUEVSRk1PTik7Cj4+Pj4+Pj4gKwo+Pj4+Pj4+ICvCoMKg
+wqAgaWYgKG5zX2NhcGFibGVfbm9hdWRpdChucywgQ0FQX1NZU19BRE1JTikpCj4+Pj4+Pj4gK8Kg
+wqDCoMKgwqDCoMKgIHJldHVybiBuc19jYXBhYmxlKG5zLCBDQVBfU1lTX0FETUlOKTsKPj4+Pj4+
+PiArCj4+Pj4+Pj4gK8KgwqDCoCByZXR1cm4gZmFsc2U7Cj4+Pj4+Pj4gK30KPj4+Pj4+Cj4+Pj4+
+PiBXaHkgX25vYXVkaXQoKT/CoCBOb3JtYWxseSBvbmx5IHVzZWQgd2hlbiBhIHBlcm1pc3Npb24g
+ZmFpbHVyZSBpcyBub24tZmF0YWwgdG8gdGhlIG9wZXJhdGlvbi7CoCBPdGhlcndpc2UsIHdlIHdh
+bnQgdGhlIGF1ZGl0IG1lc3NhZ2UuCj4+Cj4+IFNvIGZhciBzbyBnb29kLCBJIHN1Z2dlc3QgdXNp
+bmcgdGhlIHNpbXBsZXN0IHZlcnNpb24gZm9yIHY2Ogo+Pgo+PiBzdGF0aWMgaW5saW5lIGJvb2wg
+cGVyZm1vbl9jYXBhYmxlKHZvaWQpCj4+IHsKPj4gwqDCoMKgwqByZXR1cm4gY2FwYWJsZShDQVBf
+UEVSRk1PTikgfHwgY2FwYWJsZShDQVBfU1lTX0FETUlOKTsKPj4gfQo+Pgo+PiBJdCBrZWVwcyB0
+aGUgaW1wbGVtZW50YXRpb24gc2ltcGxlIGFuZCByZWFkYWJsZS4gVGhlIGltcGxlbWVudGF0aW9u
+IGlzIG1vcmUKPj4gcGVyZm9ybWFudCBpbiB0aGUgc2Vuc2Ugb2YgY2FsbGluZyB0aGUgQVBJIC0g
+b25lIGNhcGFibGUoKSBjYWxsIGZvciBDQVBfUEVSRk1PTgo+PiBwcml2aWxlZ2VkIHByb2Nlc3Mu
+Cj4+Cj4+IFllcywgaXQgYmxvYXRzIGF1ZGl0IGxvZyBmb3IgQ0FQX1NZU19BRE1JTiBwcml2aWxl
+Z2VkIGFuZCB1bnByaXZpbGVnZWQgcHJvY2Vzc2VzLAo+PiBidXQgdGhpcyBibG9hdGluZyBhbHNv
+IGFkdmVydGlzZXMgYW5kIGxldmVyYWdlcyB1c2luZyBtb3JlIHNlY3VyZSBDQVBfUEVSRk1PTgo+
+PiBiYXNlZCBhcHByb2FjaCB0byB1c2UgcGVyZl9ldmVudF9vcGVuIHN5c3RlbSBjYWxsLgo+IAo+
+IEkgY2FuIGxpdmUgd2l0aCB0aGF0LsKgIFdlIGp1c3QgbmVlZCB0byBkb2N1bWVudCB0aGF0IHdo
+ZW4geW91IHNlZSBib3RoIGEgQ0FQX1BFUkZNT04gYW5kIGEgQ0FQX1NZU19BRE1JTiBhdWRpdCBt
+ZXNzYWdlIGZvciBhIHByb2Nlc3MsIHRyeSBvbmx5IGFsbG93aW5nIENBUF9QRVJGTU9OIGZpcnN0
+IGFuZCBzZWUgaWYgdGhhdCByZXNvbHZlcyB0aGUgaXNzdWUuwqAgV2UgaGF2ZSBhIHNpbWlsYXIg
+aXNzdWUgd2l0aCBDQVBfREFDX1JFQURfU0VBUkNIIHZlcnN1cyBDQVBfREFDX09WRVJSSURFLgoK
+cGVyZiBzZWN1cml0eSBbMV0gZG9jdW1lbnQgY2FuIGJlIHVwZGF0ZWQsIGF0IGxlYXN0LCB0byBh
+bGlnbiBhbmQgZG9jdW1lbnQgCnRoaXMgYXVkaXQgbG9nZ2luZyBzcGVjaWZpY3MuCgp+QWxleGV5
+CgpbMV0gaHR0cHM6Ly93d3cua2VybmVsLm9yZy9kb2MvaHRtbC9sYXRlc3QvYWRtaW4tZ3VpZGUv
+cGVyZi1zZWN1cml0eS5odG1sCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNr
+dG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2lu
+dGVsLWdmeAo=
