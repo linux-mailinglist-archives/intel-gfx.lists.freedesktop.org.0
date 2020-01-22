@@ -1,34 +1,39 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8513D1459CC
-	for <lists+intel-gfx@lfdr.de>; Wed, 22 Jan 2020 17:27:07 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 469461459F1
+	for <lists+intel-gfx@lfdr.de>; Wed, 22 Jan 2020 17:36:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A153A6F5E0;
-	Wed, 22 Jan 2020 16:27:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3F3996F5E5;
+	Wed, 22 Jan 2020 16:36:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 756C56F5DF;
- Wed, 22 Jan 2020 16:27:04 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 99DE76F5E5
+ for <intel-gfx@lists.freedesktop.org>; Wed, 22 Jan 2020 16:36:04 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 22 Jan 2020 08:27:03 -0800
-X-IronPort-AV: E=Sophos;i="5.70,350,1574150400"; d="scan'208";a="220363791"
-Received: from jkrzyszt-desk.igk.intel.com ([172.22.244.17])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 22 Jan 2020 08:27:01 -0800
-From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-To: igt-dev@lists.freedesktop.org
-Date: Wed, 22 Jan 2020 17:26:51 +0100
-Message-Id: <20200122162651.1111-1-janusz.krzysztofik@linux.intel.com>
-X-Mailer: git-send-email 2.21.0
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 22 Jan 2020 08:36:04 -0800
+X-IronPort-AV: E=Sophos;i="5.70,350,1574150400"; d="scan'208";a="229402775"
+Received: from wmszyfel-mobl2.ger.corp.intel.com (HELO [10.252.10.247])
+ ([10.252.10.247])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/AES256-SHA;
+ 22 Jan 2020 08:36:02 -0800
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+References: <20200122161531.508903-1-chris@chris-wilson.co.uk>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <e582b572-c1d1-60d9-52c6-b9ed70dfa1e5@linux.intel.com>
+Date: Wed, 22 Jan 2020 16:36:00 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
 MIME-Version: 1.0
-Subject: [Intel-gfx] [RFC PATCH i-g-t] tests/gem_userptr_blits: Enhance
- invalid mapping exercise
+In-Reply-To: <20200122161531.508903-1-chris@chris-wilson.co.uk>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [CI] drm/i915/gem: Convert vm idr to xarray
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,162 +46,228 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, Matthew Auld <matthew.auld@intel.com>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Working with a userptr GEM object backed by any type of mapping to
-another GEM object, not only GTT mapping currently examined bu the
-test, may cause a currently unavoidable lockdep splat inside the i915
-driver.  Then, such operations are expected to fail in advance to
-prevent from that badness to happen.
 
-Extend the scope of the test by adding subtests which exercise other,
-non-GTT mapping types.  Moreover, also succeed if a failure happens
-as soon as a userptr object is created on top of an invalid mapping.
+On 22/01/2020 16:15, Chris Wilson wrote:
+> Replace the vm_idr + vm_idr_mutex to an XArray. The XArray data
+> structure is now used to implement IDRs, and provides its own locking.
+> We can simply remove the IDR wrapper and in the process also remove our
+> extra mutex.
+> 
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> Reviewed-by: Michael J. Ruhl <michael.j.ruhl@intel.com>
 
-Suggested-by: Chris Wilson <chris@chris-wilson.co.uk>
-Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
----
- tests/i915/gem_userptr_blits.c | 87 +++++++++++++++++++++++-----------
- 1 file changed, 59 insertions(+), 28 deletions(-)
+Acked-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 
-diff --git a/tests/i915/gem_userptr_blits.c b/tests/i915/gem_userptr_blits.c
-index a8d3783f..69e5bd1f 100644
---- a/tests/i915/gem_userptr_blits.c
-+++ b/tests/i915/gem_userptr_blits.c
-@@ -60,6 +60,7 @@
- 
- #include "drm.h"
- #include "i915_drm.h"
-+#include "i915/gem_mman.h"
- 
- #include "intel_bufmgr.h"
- 
-@@ -577,11 +578,11 @@ static int test_invalid_null_pointer(int fd)
- 	return 0;
- }
- 
--static int test_invalid_gtt_mapping(int fd)
-+static int test_invalid_mapping(int fd, uint64_t flags)
- {
--	struct drm_i915_gem_mmap_gtt arg;
-+	struct drm_i915_gem_mmap_offset arg;
- 	uint32_t handle;
--	char *gtt, *map;
-+	char *offset, *map;
- 
- 	/* Anonymous mapping to find a hole */
- 	map = mmap(NULL, sizeof(linear) + 2 * PAGE_SIZE,
-@@ -602,39 +603,46 @@ static int test_invalid_gtt_mapping(int fd)
- 	igt_assert_eq(copy(fd, handle, handle), 0);
- 	gem_close(fd, handle);
- 
--	/* GTT mapping */
-+	/* object mapping */
- 	memset(&arg, 0, sizeof(arg));
- 	arg.handle = create_bo(fd, 0);
--	do_ioctl(fd, DRM_IOCTL_I915_GEM_MMAP_GTT, &arg);
--	gtt = mmap(map + PAGE_SIZE, sizeof(linear),
--		   PROT_READ | PROT_WRITE,
--		   MAP_SHARED | MAP_FIXED,
--		   fd, arg.offset);
--	igt_assert(gtt == map + PAGE_SIZE);
-+	arg.flags = flags;
-+	do_ioctl(fd, DRM_IOCTL_I915_GEM_MMAP_OFFSET, &arg);
-+	offset = mmap(map + PAGE_SIZE, sizeof(linear), PROT_READ | PROT_WRITE,
-+		      MAP_SHARED | MAP_FIXED, fd, arg.offset);
-+	igt_assert(offset == map + PAGE_SIZE);
- 	gem_close(fd, arg.handle);
--	igt_assert(((unsigned long)gtt & (PAGE_SIZE - 1)) == 0);
-+	igt_assert(((unsigned long)offset & (PAGE_SIZE - 1)) == 0);
- 	igt_assert((sizeof(linear) & (PAGE_SIZE - 1)) == 0);
- 
--	gem_userptr(fd, gtt, sizeof(linear), 0, userptr_flags, &handle);
--	igt_assert_eq(copy(fd, handle, handle), -EFAULT);
--	gem_close(fd, handle);
-+	if (!__gem_userptr(fd, offset, sizeof(linear), 0, userptr_flags,
-+	    &handle)) {
-+		igt_assert_eq(copy(fd, handle, handle), -EFAULT);
-+		gem_close(fd, handle);
-+	}
- 
--	gem_userptr(fd, gtt, PAGE_SIZE, 0, userptr_flags, &handle);
--	igt_assert_eq(copy(fd, handle, handle), -EFAULT);
--	gem_close(fd, handle);
-+	if (!__gem_userptr(fd, offset, PAGE_SIZE, 0, userptr_flags, &handle)) {
-+		igt_assert_eq(copy(fd, handle, handle), -EFAULT);
-+		gem_close(fd, handle);
-+	}
- 
--	gem_userptr(fd, gtt + sizeof(linear) - PAGE_SIZE, PAGE_SIZE, 0, userptr_flags, &handle);
--	igt_assert_eq(copy(fd, handle, handle), -EFAULT);
--	gem_close(fd, handle);
-+	if (!__gem_userptr(fd, offset + sizeof(linear) - PAGE_SIZE, PAGE_SIZE,
-+	    0, userptr_flags, &handle)) {
-+		igt_assert_eq(copy(fd, handle, handle), -EFAULT);
-+		gem_close(fd, handle);
-+	}
- 
- 	/* boundaries */
--	gem_userptr(fd, map, 2*PAGE_SIZE, 0, userptr_flags, &handle);
--	igt_assert_eq(copy(fd, handle, handle), -EFAULT);
--	gem_close(fd, handle);
-+	if (!__gem_userptr(fd, map, 2 * PAGE_SIZE, 0, userptr_flags, &handle)) {
-+		igt_assert_eq(copy(fd, handle, handle), -EFAULT);
-+		gem_close(fd, handle);
-+	}
- 
--	gem_userptr(fd, map + sizeof(linear), 2*PAGE_SIZE, 0, userptr_flags, &handle);
--	igt_assert_eq(copy(fd, handle, handle), -EFAULT);
--	gem_close(fd, handle);
-+	if (!__gem_userptr(fd, map + sizeof(linear), 2 * PAGE_SIZE, 0,
-+	    userptr_flags, &handle)) {
-+		igt_assert_eq(copy(fd, handle, handle), -EFAULT);
-+		gem_close(fd, handle);
-+	}
- 
- 	munmap(map, sizeof(linear) + 2*PAGE_SIZE);
- 
-@@ -2009,8 +2017,31 @@ igt_main_args("c:", NULL, help_str, opt_handler, NULL)
- 		igt_subtest("invalid-null-pointer")
- 			test_invalid_null_pointer(fd);
- 
--		igt_subtest("invalid-gtt-mapping")
--			test_invalid_gtt_mapping(fd);
-+		igt_describe("Verify userptr on top of GTT mapping to GEM object will fail");
-+		igt_subtest("invalid-gtt-mapping") {
-+			gem_require_mappable_ggtt(fd);
-+			test_invalid_mapping(fd, I915_MMAP_OFFSET_GTT);
-+		}
-+		igt_subtest_group {
-+			igt_fixture
-+				igt_require(gem_has_mmap_offset(fd));
-+
-+			igt_describe("Verify userptr on top of CPU mapping to GEM object will fail");
-+			igt_subtest("invalid-wb-mapping")
-+				test_invalid_mapping(fd, I915_MMAP_OFFSET_WB);
-+
-+			igt_subtest_group {
-+				igt_fixture
-+					igt_require(gem_mmap_offset__has_wc(fd));
-+
-+				igt_describe("Verify userptr on top of coherent mapping to GEM object will fail");
-+				igt_subtest("invalid-wc-mapping")
-+					test_invalid_mapping(fd, I915_MMAP_OFFSET_WC);
-+				igt_describe("Verify userptr on top of uncached mapping to GEM object will fail");
-+				igt_subtest("invalid-uc-mapping")
-+					test_invalid_mapping(fd, I915_MMAP_OFFSET_UC);
-+			}
-+		}
- 
- 		igt_subtest("forked-access")
- 			test_forked_access(fd);
--- 
-2.21.0
+Regards,
 
+Tvrtko
+
+> ---
+>   drivers/gpu/drm/i915/gem/i915_gem_context.c | 77 +++++++--------------
+>   drivers/gpu/drm/i915/i915_drv.h             |  4 +-
+>   2 files changed, 25 insertions(+), 56 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+> index a2e57e62af30..5d4157e1ccf7 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+> @@ -761,12 +761,6 @@ void i915_gem_driver_release__contexts(struct drm_i915_private *i915)
+>   	flush_work(&i915->gem.contexts.free_work);
+>   }
+>   
+> -static int vm_idr_cleanup(int id, void *p, void *data)
+> -{
+> -	i915_vm_put(p);
+> -	return 0;
+> -}
+> -
+>   static int gem_context_register(struct i915_gem_context *ctx,
+>   				struct drm_i915_file_private *fpriv,
+>   				u32 *id)
+> @@ -804,8 +798,8 @@ int i915_gem_context_open(struct drm_i915_private *i915,
+>   
+>   	xa_init_flags(&file_priv->context_xa, XA_FLAGS_ALLOC);
+>   
+> -	mutex_init(&file_priv->vm_idr_lock);
+> -	idr_init_base(&file_priv->vm_idr, 1);
+> +	/* 0 reserved for invalid/unassigned ppgtt */
+> +	xa_init_flags(&file_priv->vm_xa, XA_FLAGS_ALLOC1);
+>   
+>   	ctx = i915_gem_create_context(i915, 0);
+>   	if (IS_ERR(ctx)) {
+> @@ -823,9 +817,8 @@ int i915_gem_context_open(struct drm_i915_private *i915,
+>   err_ctx:
+>   	context_close(ctx);
+>   err:
+> -	idr_destroy(&file_priv->vm_idr);
+> +	xa_destroy(&file_priv->vm_xa);
+>   	xa_destroy(&file_priv->context_xa);
+> -	mutex_destroy(&file_priv->vm_idr_lock);
+>   	return err;
+>   }
+>   
+> @@ -833,6 +826,7 @@ void i915_gem_context_close(struct drm_file *file)
+>   {
+>   	struct drm_i915_file_private *file_priv = file->driver_priv;
+>   	struct drm_i915_private *i915 = file_priv->dev_priv;
+> +	struct i915_address_space *vm;
+>   	struct i915_gem_context *ctx;
+>   	unsigned long idx;
+>   
+> @@ -840,9 +834,9 @@ void i915_gem_context_close(struct drm_file *file)
+>   		context_close(ctx);
+>   	xa_destroy(&file_priv->context_xa);
+>   
+> -	idr_for_each(&file_priv->vm_idr, vm_idr_cleanup, NULL);
+> -	idr_destroy(&file_priv->vm_idr);
+> -	mutex_destroy(&file_priv->vm_idr_lock);
+> +	xa_for_each(&file_priv->vm_xa, idx, vm)
+> +		i915_vm_put(vm);
+> +	xa_destroy(&file_priv->vm_xa);
+>   
+>   	contexts_flush_free(&i915->gem.contexts);
+>   }
+> @@ -854,6 +848,7 @@ int i915_gem_vm_create_ioctl(struct drm_device *dev, void *data,
+>   	struct drm_i915_gem_vm_control *args = data;
+>   	struct drm_i915_file_private *file_priv = file->driver_priv;
+>   	struct i915_ppgtt *ppgtt;
+> +	u32 id;
+>   	int err;
+>   
+>   	if (!HAS_FULL_PPGTT(i915))
+> @@ -876,23 +871,15 @@ int i915_gem_vm_create_ioctl(struct drm_device *dev, void *data,
+>   			goto err_put;
+>   	}
+>   
+> -	err = mutex_lock_interruptible(&file_priv->vm_idr_lock);
+> +	err = xa_alloc(&file_priv->vm_xa, &id, &ppgtt->vm,
+> +		       xa_limit_32b, GFP_KERNEL);
+>   	if (err)
+>   		goto err_put;
+>   
+> -	err = idr_alloc(&file_priv->vm_idr, &ppgtt->vm, 0, 0, GFP_KERNEL);
+> -	if (err < 0)
+> -		goto err_unlock;
+> -
+> -	GEM_BUG_ON(err == 0); /* reserved for invalid/unassigned ppgtt */
+> -
+> -	mutex_unlock(&file_priv->vm_idr_lock);
+> -
+> -	args->vm_id = err;
+> +	GEM_BUG_ON(id == 0); /* reserved for invalid/unassigned ppgtt */
+> +	args->vm_id = id;
+>   	return 0;
+>   
+> -err_unlock:
+> -	mutex_unlock(&file_priv->vm_idr_lock);
+>   err_put:
+>   	i915_vm_put(&ppgtt->vm);
+>   	return err;
+> @@ -904,8 +891,6 @@ int i915_gem_vm_destroy_ioctl(struct drm_device *dev, void *data,
+>   	struct drm_i915_file_private *file_priv = file->driver_priv;
+>   	struct drm_i915_gem_vm_control *args = data;
+>   	struct i915_address_space *vm;
+> -	int err;
+> -	u32 id;
+>   
+>   	if (args->flags)
+>   		return -EINVAL;
+> @@ -913,17 +898,7 @@ int i915_gem_vm_destroy_ioctl(struct drm_device *dev, void *data,
+>   	if (args->extensions)
+>   		return -EINVAL;
+>   
+> -	id = args->vm_id;
+> -	if (!id)
+> -		return -ENOENT;
+> -
+> -	err = mutex_lock_interruptible(&file_priv->vm_idr_lock);
+> -	if (err)
+> -		return err;
+> -
+> -	vm = idr_remove(&file_priv->vm_idr, id);
+> -
+> -	mutex_unlock(&file_priv->vm_idr_lock);
+> +	vm = xa_erase(&file_priv->vm_xa, args->vm_id);
+>   	if (!vm)
+>   		return -ENOENT;
+>   
+> @@ -1021,35 +996,31 @@ static int get_ppgtt(struct drm_i915_file_private *file_priv,
+>   		     struct drm_i915_gem_context_param *args)
+>   {
+>   	struct i915_address_space *vm;
+> -	int ret;
+> +	int err;
+> +	u32 id;
+>   
+>   	if (!rcu_access_pointer(ctx->vm))
+>   		return -ENODEV;
+>   
+> +	err = -ENODEV;
+>   	rcu_read_lock();
+>   	vm = context_get_vm_rcu(ctx);
+> +	if (vm)
+> +		err = xa_alloc(&file_priv->vm_xa, &id, vm,
+> +			       xa_limit_32b, GFP_KERNEL);
+>   	rcu_read_unlock();
+> -
+> -	ret = mutex_lock_interruptible(&file_priv->vm_idr_lock);
+> -	if (ret)
+> +	if (err)
+>   		goto err_put;
+>   
+> -	ret = idr_alloc(&file_priv->vm_idr, vm, 0, 0, GFP_KERNEL);
+> -	GEM_BUG_ON(!ret);
+> -	if (ret < 0)
+> -		goto err_unlock;
+> -
+>   	i915_vm_open(vm);
+>   
+> +	GEM_BUG_ON(id == 0); /* reserved for invalid/unassigned ppgtt */
+> +	args->value = id;
+>   	args->size = 0;
+> -	args->value = ret;
+>   
+> -	ret = 0;
+> -err_unlock:
+> -	mutex_unlock(&file_priv->vm_idr_lock);
+>   err_put:
+>   	i915_vm_put(vm);
+> -	return ret;
+> +	return err;
+>   }
+>   
+>   static void set_ppgtt_barrier(void *data)
+> @@ -1151,7 +1122,7 @@ static int set_ppgtt(struct drm_i915_file_private *file_priv,
+>   		return -ENOENT;
+>   
+>   	rcu_read_lock();
+> -	vm = idr_find(&file_priv->vm_idr, args->value);
+> +	vm = xa_load(&file_priv->vm_xa, args->value);
+>   	if (vm && !kref_get_unless_zero(&vm->ref))
+>   		vm = NULL;
+>   	rcu_read_unlock();
+> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+> index 077af22b8340..50abf9113b2f 100644
+> --- a/drivers/gpu/drm/i915/i915_drv.h
+> +++ b/drivers/gpu/drm/i915/i915_drv.h
+> @@ -203,9 +203,7 @@ struct drm_i915_file_private {
+>   	} mm;
+>   
+>   	struct xarray context_xa;
+> -
+> -	struct idr vm_idr;
+> -	struct mutex vm_idr_lock; /* guards vm_idr */
+> +	struct xarray vm_xa;
+>   
+>   	unsigned int bsd_engine;
+>   
+> 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
