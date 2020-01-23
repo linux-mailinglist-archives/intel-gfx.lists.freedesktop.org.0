@@ -1,31 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 77B2414720B
-	for <lists+intel-gfx@lfdr.de>; Thu, 23 Jan 2020 20:47:05 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 95ED914721C
+	for <lists+intel-gfx@lfdr.de>; Thu, 23 Jan 2020 20:50:31 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D08876FE55;
-	Thu, 23 Jan 2020 19:47:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E37726E124;
+	Thu, 23 Jan 2020 19:50:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id AFF566FE55;
- Thu, 23 Jan 2020 19:47:02 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 9FAD9A0087;
- Thu, 23 Jan 2020 19:47:02 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 384FF6E124
+ for <intel-gfx@lists.freedesktop.org>; Thu, 23 Jan 2020 19:50:29 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 23 Jan 2020 11:50:28 -0800
+X-IronPort-AV: E=Sophos;i="5.70,354,1574150400"; d="scan'208";a="220775535"
+Received: from zye4-mobl1.amr.corp.intel.com (HELO [10.79.152.138])
+ ([10.79.152.138])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-SHA;
+ 23 Jan 2020 11:50:27 -0800
+To: Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
+ intel-gfx@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>
+References: <20200122194825.101240-1-michal.wajdeczko@intel.com>
+ <67edac14-e319-a1b2-76a1-1404ca5836e2@intel.com>
+ <157979173710.19995.3438477214193047615@skylake-alporthouse-com>
+ <op.0euq22k9xaggs7@mwajdecz-mobl1.ger.corp.intel.com>
+From: "Ye, Tony" <tony.ye@intel.com>
+Message-ID: <2343d52c-0648-71b7-5092-c69c16602e56@intel.com>
+Date: Thu, 23 Jan 2020 11:50:25 -0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.2.2
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Wambui Karuga" <wambui.karugax@gmail.com>
-Date: Thu, 23 Jan 2020 19:47:02 -0000
-Message-ID: <157980882265.1144.10091572307233689769@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200122125750.9737-1-wambui.karugax@gmail.com>
-In-Reply-To: <20200122125750.9737-1-wambui.karugax@gmail.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/gem=3A_conversion_to_new_drm_logging_macros?=
+In-Reply-To: <op.0euq22k9xaggs7@mwajdecz-mobl1.ger.corp.intel.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/huc: Fix error reported by
+ I915_PARAM_HUC_STATUS
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,178 +51,123 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-15"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
-
-Series: drm/i915/gem: conversion to new drm logging macros
-URL   : https://patchwork.freedesktop.org/series/72454/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_7802 -> Patchwork_16231
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16231/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_16231 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live_blt:
-    - fi-hsw-4770r:       [PASS][1] -> [DMESG-FAIL][2] ([i915#563])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7802/fi-hsw-4770r/igt@i915_selftest@live_blt.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16231/fi-hsw-4770r/igt@i915_selftest@live_blt.html
-    - fi-hsw-4770:        [PASS][3] -> [DMESG-FAIL][4] ([i915#563])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7802/fi-hsw-4770/igt@i915_selftest@live_blt.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16231/fi-hsw-4770/igt@i915_selftest@live_blt.html
-
-  * igt@i915_selftest@live_hangcheck:
-    - fi-icl-guc:         [PASS][5] -> [INCOMPLETE][6] ([fdo#108569] / [i915#140])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7802/fi-icl-guc/igt@i915_selftest@live_hangcheck.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16231/fi-icl-guc/igt@i915_selftest@live_hangcheck.html
-
-  * igt@i915_selftest@live_mman:
-    - fi-bxt-dsi:         [PASS][7] -> [DMESG-WARN][8] ([i915#889]) +22 similar issues
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7802/fi-bxt-dsi/igt@i915_selftest@live_mman.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16231/fi-bxt-dsi/igt@i915_selftest@live_mman.html
-
-  * igt@i915_selftest@live_reset:
-    - fi-bxt-dsi:         [PASS][9] -> [DMESG-FAIL][10] ([i915#889]) +7 similar issues
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7802/fi-bxt-dsi/igt@i915_selftest@live_reset.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16231/fi-bxt-dsi/igt@i915_selftest@live_reset.html
-
-  * igt@prime_vgem@basic-gtt:
-    - fi-tgl-y:           [PASS][11] -> [DMESG-WARN][12] ([CI#94] / [i915#402])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7802/fi-tgl-y/igt@prime_vgem@basic-gtt.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16231/fi-tgl-y/igt@prime_vgem@basic-gtt.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_exec_parallel@fds:
-    - fi-byt-j1900:       [INCOMPLETE][13] ([i915#45]) -> [PASS][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7802/fi-byt-j1900/igt@gem_exec_parallel@fds.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16231/fi-byt-j1900/igt@gem_exec_parallel@fds.html
-
-  * igt@gem_exec_suspend@basic-s4-devices:
-    - fi-tgl-y:           [FAIL][15] ([CI#94]) -> [PASS][16]
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7802/fi-tgl-y/igt@gem_exec_suspend@basic-s4-devices.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16231/fi-tgl-y/igt@gem_exec_suspend@basic-s4-devices.html
-
-  * igt@i915_module_load@reload-with-fault-injection:
-    - fi-cfl-8700k:       [INCOMPLETE][17] ([i915#505]) -> [PASS][18]
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7802/fi-cfl-8700k/igt@i915_module_load@reload-with-fault-injection.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16231/fi-cfl-8700k/igt@i915_module_load@reload-with-fault-injection.html
-
-  * igt@i915_selftest@live_blt:
-    - fi-ivb-3770:        [DMESG-FAIL][19] ([i915#563]) -> [PASS][20]
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7802/fi-ivb-3770/igt@i915_selftest@live_blt.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16231/fi-ivb-3770/igt@i915_selftest@live_blt.html
-
-  * igt@kms_chamelium@hdmi-hpd-fast:
-    - fi-kbl-7500u:       [FAIL][21] ([fdo#111407]) -> [PASS][22]
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7802/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16231/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
-
-  * igt@prime_busy@basic-wait-before-default:
-    - fi-tgl-y:           [DMESG-WARN][23] ([CI#94] / [i915#402]) -> [PASS][24] +1 similar issue
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7802/fi-tgl-y/igt@prime_busy@basic-wait-before-default.html
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16231/fi-tgl-y/igt@prime_busy@basic-wait-before-default.html
-
-  
-#### Warnings ####
-
-  * igt@gem_exec_parallel@contexts:
-    - fi-byt-j1900:       [TIMEOUT][25] ([fdo#112271]) -> [FAIL][26] ([i915#694])
-   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7802/fi-byt-j1900/igt@gem_exec_parallel@contexts.html
-   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16231/fi-byt-j1900/igt@gem_exec_parallel@contexts.html
-
-  * igt@i915_selftest@live_gt_heartbeat:
-    - fi-bxt-dsi:         [DMESG-FAIL][27] ([fdo#112406]) -> [DMESG-WARN][28] ([i915#889])
-   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7802/fi-bxt-dsi/igt@i915_selftest@live_gt_heartbeat.html
-   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16231/fi-bxt-dsi/igt@i915_selftest@live_gt_heartbeat.html
-
-  * igt@kms_chamelium@vga-edid-read:
-    - fi-tgl-y:           [SKIP][29] ([CI#94] / [fdo#111827]) -> [SKIP][30] ([CI#94] / [fdo#111827] / [i915#1017]) +8 similar issues
-   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7802/fi-tgl-y/igt@kms_chamelium@vga-edid-read.html
-   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16231/fi-tgl-y/igt@kms_chamelium@vga-edid-read.html
-
-  * igt@kms_force_connector_basic@force-load-detect:
-    - fi-tgl-y:           [SKIP][31] ([CI#94] / [fdo#109285]) -> [SKIP][32] ([CI#94] / [fdo#109285] / [i915#1017])
-   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7802/fi-tgl-y/igt@kms_force_connector_basic@force-load-detect.html
-   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16231/fi-tgl-y/igt@kms_force_connector_basic@force-load-detect.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [CI#94]: https://gitlab.freedesktop.org/gfx-ci/i915-infra/issues/94
-  [fdo#108569]: https://bugs.freedesktop.org/show_bug.cgi?id=108569
-  [fdo#109284]: https://bugs.freedesktop.org/show_bug.cgi?id=109284
-  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
-  [fdo#109315]: https://bugs.freedesktop.org/show_bug.cgi?id=109315
-  [fdo#111407]: https://bugs.freedesktop.org/show_bug.cgi?id=111407
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [fdo#112271]: https://bugs.freedesktop.org/show_bug.cgi?id=112271
-  [fdo#112406]: https://bugs.freedesktop.org/show_bug.cgi?id=112406
-  [i915#1017]: https://gitlab.freedesktop.org/drm/intel/issues/1017
-  [i915#140]: https://gitlab.freedesktop.org/drm/intel/issues/140
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
-  [i915#45]: https://gitlab.freedesktop.org/drm/intel/issues/45
-  [i915#505]: https://gitlab.freedesktop.org/drm/intel/issues/505
-  [i915#563]: https://gitlab.freedesktop.org/drm/intel/issues/563
-  [i915#668]: https://gitlab.freedesktop.org/drm/intel/issues/668
-  [i915#694]: https://gitlab.freedesktop.org/drm/intel/issues/694
-  [i915#889]: https://gitlab.freedesktop.org/drm/intel/issues/889
-  [i915#937]: https://gitlab.freedesktop.org/drm/intel/issues/937
 
 
-Participating hosts (43 -> 44)
-------------------------------
+On 1/23/2020 7:38 AM, Michal Wajdeczko wrote:
+> On Thu, 23 Jan 2020 16:02:17 +0100, Chris Wilson =
 
-  Additional (7): fi-bdw-5557u fi-hsw-peppy fi-snb-2520m fi-gdg-551 fi-skl-lmem fi-blb-e6850 fi-snb-2600 
-  Missing    (6): fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-skl-6700k2 
+> <chris@chris-wilson.co.uk> wrote:
+> =
 
+>> Quoting Daniele Ceraolo Spurio (2020-01-22 23:52:33)
+>>>
+>>>
+>>> On 1/22/20 11:48 AM, Michal Wajdeczko wrote:
+>>> >=A0 From commit 84b1ca2f0e68 ("drm/i915/uc: prefer intel_gt over i915
+>>> > in GuC/HuC paths") we stopped using HUC_STATUS error -ENODEV only
+>>> > to indicate lack of HuC hardware and we started to use this error
+>>> > also for all other cases when HuC was not in use or supported.
+>>> >
+>>> > Fix that by relying again on HAS_GT_UC macro, since currently
+>>> > used function intel_huc_is_supported() is based on HuC firmware
+>>> > support which could be unsupported also due to force disabled
+>>> > GuC firmware.
+>>> >
+>>> > Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+>>> > Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+>>> > Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+>>> > Cc: Tony Ye <tony.ye@intel.com>
+>>>
+>>> Reviewed-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+>>
+>> Once upon a time did you (Michal) not argue we should indicate the lack
+>> of firmware in the error code? Something like
+>>
+>> if (!HAS_GT_UC(gt->i915))
+>> =A0=A0=A0=A0return -ENODEV;
+>>
+>> if (!intel_huc_is_supported(huc))
+>> =A0=A0=A0=A0return -ENOEXEC;
+> =
 
-Build changes
--------------
+> Yes, we discussed this here [1] together with [2] but we didn't
+> conclude our discussion due to different opinions on how represent
+> some states, in particular "manually disabled" state.
+> =
 
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_7802 -> Patchwork_16231
+> In this patch I just wanted to restore old notation.
+> =
 
-  CI-20190529: 20190529
-  CI_DRM_7802: cd932df72f11bdff93423a8d4a9e0e9ccb0985d7 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5381: 4ff48cdd5c94140d2dd9bfa3225a6e1e0238e247 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_16231: 861ca3b565c71d604edcc127031327c14312f8ef @ git://anongit.freedesktop.org/gfx-ci/linux
+> But we can start new discussion, here is summary:
+> =
 
+> ------------------+----------+----------+----------
+>  =A0HuC state=A0=A0=A0=A0=A0=A0=A0 | today*=A0=A0 | option A | option B
+> ------------------+----------+----------+----------
+> no HuC hardware=A0=A0 | -ENODEV=A0 | -ENODEV=A0 | -ENODEV
+> GuC fw disabled=A0=A0 |=A0=A0 0=A0=A0=A0=A0=A0 |=A0=A0=A0=A0 0=A0=A0=A0 |=
+ -EOPNOTSUPP
+> HuC fw disabled=A0=A0 |=A0=A0 0=A0=A0=A0=A0=A0 |=A0=A0=A0=A0 0=A0=A0=A0 |=
+ -EOPNOTSUPP
+> HuC fw missing=A0=A0=A0 |=A0=A0 0=A0=A0=A0=A0=A0 | -ENOPKG=A0 | -ENOEXEC
+> HuC fw error=A0=A0=A0=A0=A0 |=A0=A0 0=A0=A0=A0=A0=A0 | -ENOEXEC | -ENOEXEC
+> HuC fw fail=A0=A0=A0=A0=A0=A0 |=A0=A0 0=A0=A0=A0=A0=A0 | -EACCES=A0 |=A0=
+=A0=A0 0
+> HuC authenticated |=A0=A0 1=A0=A0=A0=A0=A0 |=A0=A0=A0=A0 1=A0=A0=A0 |=A0=
+=A0=A0 1
+> ------------------+----------+----------+----------
+> =
 
-== Linux commits ==
+> Note that all above should be compatible with media driver,
+> which explicitly looks for no error and value 1
 
-861ca3b565c7 drm/i915/gem: manual conversion to struct drm_device logging macros.
-dba9aa46dfdf drm/i915/gem: initial conversion to new logging macros using coccinelle
+ From user space perspective, e.g. the new igt huc_copy, option B looks =
 
-== Logs ==
+like this:
 
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16231/index.html
+    pg.param =3D I915_PARAM_HUC_STATUS;
+    pg.value =3D &val;
+    ret =3D ioctl(fd, DRM_IOCTL_I915_GETPARAM, &pg);
+
+------------------+----------+----------+------------+----------
+   HuC state       | ret      | pg.value |  errno     | huc_copy
+------------------+----------+----------+------------+----------
+no HuC hardware   |  -1      |     0    | -ENODEV    | SKIP
+GuC fw disabled   |  -1      |     0    | -EOPNOTSUPP| SKIP
+HuC fw disabled   |  -1      |     0    | -EOPNOTSUPP| SKIP
+HuC fw missing    |  -1      |     0    | -ENOEXEC   | FAIL
+HuC fw error      |  -1      |     0    | -ENOEXEC   | FAIL
+HuC fw fail       |   0      |     0    |    0       | FAIL
+HuC authenticated |   0      |     1    |    0       | continue
+------------------+----------+----------+------------+----------
+
+It can distinguish the SKIP and FAIL conditions. But looks not elegant =
+
+enough.
+The pg.value is wasted as it is not pushed back to user space when =
+
+intel_huc_check_status() < 0.
+
+	case I915_PARAM_HUC_STATUS:
+		value =3D intel_huc_check_status(&i915->gt.uc.huc);
+		if (value < 0)
+			return value;
+		break;
+
+Regards,
+Tony
+> =
+
+> Michal
+> =
+
+> [1] https://patchwork.freedesktop.org/patch/306419/?series=3D61001&rev=3D1
+> [2] https://patchwork.freedesktop.org/series/60800/#rev1
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
