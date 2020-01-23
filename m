@@ -2,42 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D03E146A97
-	for <lists+intel-gfx@lfdr.de>; Thu, 23 Jan 2020 15:01:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E4CC146ADA
+	for <lists+intel-gfx@lfdr.de>; Thu, 23 Jan 2020 15:06:42 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7089D6FCEF;
-	Thu, 23 Jan 2020 14:01:56 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6CB426FCDE;
- Thu, 23 Jan 2020 14:01:45 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 23 Jan 2020 06:01:44 -0800
-X-IronPort-AV: E=Sophos;i="5.70,354,1574150400"; d="scan'208";a="229838964"
-Received: from wmszyfel-mobl2.ger.corp.intel.com (HELO [10.252.10.247])
- ([10.252.10.247])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/AES256-SHA;
- 23 Jan 2020 06:01:43 -0800
-To: Chris Wilson <chris@chris-wilson.co.uk>, igt-dev@lists.freedesktop.org
-References: <20200123124306.18857-1-tvrtko.ursulin@linux.intel.com>
- <157978404508.19995.12294352233320424183@skylake-alporthouse-com>
- <ec205d22-3882-d655-921d-d35f24f99763@linux.intel.com>
- <157978539009.19995.13535399102451802903@skylake-alporthouse-com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <8ddcfcb7-d701-01a1-e208-c18c207b21fa@linux.intel.com>
-Date: Thu, 23 Jan 2020 14:01:41 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4EBBA6E0A5;
+	Thu, 23 Jan 2020 14:06:39 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mx2.suse.de (mx2.suse.de [195.135.220.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BC8316E098;
+ Thu, 23 Jan 2020 14:06:37 +0000 (UTC)
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.220.254])
+ by mx2.suse.de (Postfix) with ESMTP id 6C352AD45;
+ Thu, 23 Jan 2020 14:06:36 +0000 (UTC)
+To: Jani Nikula <jani.nikula@intel.com>, dri-devel@lists.freedesktop.org
+References: <20200123124801.14958-1-jani.nikula@intel.com>
+ <20200123124801.14958-2-jani.nikula@intel.com>
+From: Thomas Zimmermann <tzimmermann@suse.de>
+Autocrypt: addr=tzimmermann@suse.de; keydata=
+ mQENBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
+ XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
+ BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
+ hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
+ 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
+ AAG0J1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPokBVAQTAQgAPhYh
+ BHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJbOdLgAhsDBQkDwmcABQsJCAcCBhUKCQgLAgQWAgMB
+ Ah4BAheAAAoJEGgNwR1TC3ojR80H/jH+vYavwQ+TvO8ksXL9JQWc3IFSiGpuSVXLCdg62AmR
+ irxW+qCwNncNQyb9rd30gzdectSkPWL3KSqEResBe24IbA5/jSkPweJasgXtfhuyoeCJ6PXo
+ clQQGKIoFIAEv1s8l0ggPZswvCinegl1diyJXUXmdEJRTWYAtxn/atut1o6Giv6D2qmYbXN7
+ mneMC5MzlLaJKUtoH7U/IjVw1sx2qtxAZGKVm4RZxPnMCp9E1MAr5t4dP5gJCIiqsdrVqI6i
+ KupZstMxstPU//azmz7ZWWxT0JzgJqZSvPYx/SATeexTYBP47YFyri4jnsty2ErS91E6H8os
+ Bv6pnSn7eAq5AQ0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRH
+ UE9eosYbT6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgT
+ RjP+qbU63Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+R
+ dhgATnWWGKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zb
+ ehDda8lvhFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r
+ 12+lqdsAEQEAAYkBPAQYAQgAJhYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJbOdLgAhsMBQkD
+ wmcAAAoJEGgNwR1TC3ojpfcIAInwP5OlcEKokTnHCiDTz4Ony4GnHRP2fXATQZCKxmu4AJY2
+ h9ifw9Nf2TjCZ6AMvC3thAN0rFDj55N9l4s1CpaDo4J+0fkrHuyNacnT206CeJV1E7NYntxU
+ n+LSiRrOdywn6erjxRi9EYTVLCHcDhBEjKmFZfg4AM4GZMWX1lg0+eHbd5oL1as28WvvI/uI
+ aMyV8RbyXot1r/8QLlWldU3NrTF5p7TMU2y3ZH2mf5suSKHAMtbE4jKJ8ZHFOo3GhLgjVrBW
+ HE9JXO08xKkgD+w6v83+nomsEuf6C6LYrqY/tsZvyEX6zN8CtirPdPWu/VXNRYAl/lat7lSI
+ 3H26qrE=
+Message-ID: <6aa5cab2-6d5f-1a9e-6e04-261ef3476fdb@suse.de>
+Date: Thu, 23 Jan 2020 15:06:31 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.4.1
 MIME-Version: 1.0
-In-Reply-To: <157978539009.19995.13535399102451802903@skylake-alporthouse-com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH i-g-t] i915/gem_engine_topology: Introduce
- and use gem_context_clone_with_engines
+In-Reply-To: <20200123124801.14958-2-jani.nikula@intel.com>
+Subject: Re: [Intel-gfx] [PATCH v4 2/2] drm/debugfs: also take per device
+ driver features into account
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,151 +65,117 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel-gfx@lists.freedesktop.org
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============2053614912=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--===============2053614912==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="ovEXwzOuSh5e9Viug0g2OU7Cf9m4K3P9E"
 
-On 23/01/2020 13:16, Chris Wilson wrote:
-> Quoting Tvrtko Ursulin (2020-01-23 13:08:26)
->>
->> On 23/01/2020 12:54, Chris Wilson wrote:
->>> Quoting Tvrtko Ursulin (2020-01-23 12:43:06)
->>>> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->>>>
->>>> In test cases which create new contexts and submit work against them using
->>>> the passed in engine index we are sometimes unsure whether this engine
->>>> index was potentially created based on a default context with engine map
->>>> configured (such as when under the __for_each_physical_engine iterator.
->>>>
->>>> To simplify test code we add gem_context/queue_clone_with_engines which
->>>> is to be used in such scenario instead of the current pattern of
->>>> gem_context_create followed by gem_context_set_all_engines (which is also
->>>> removed by the patch).
->>>>
->>>> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->>>> Suggested-by: Chris Wilson <chris@chris-wilson.co.uk>
->>>> ---
->>>>    lib/i915/gem_context.c         | 59 ++++++++++++++++++++++++++++++++++
->>>>    lib/i915/gem_context.h         |  4 +++
->>>>    lib/i915/gem_engine_topology.c | 11 -------
->>>>    lib/i915/gem_engine_topology.h |  2 --
->>>>    tests/i915/gem_ctx_clone.c     | 15 +--------
->>>>    tests/i915/gem_ctx_switch.c    | 19 ++++-------
->>>>    tests/i915/gem_exec_parallel.c |  3 +-
->>>>    tests/i915/gem_spin_batch.c    | 11 +++----
->>>>    tests/perf_pmu.c               |  3 +-
->>>>    9 files changed, 76 insertions(+), 51 deletions(-)
->>>>
->>>> diff --git a/lib/i915/gem_context.c b/lib/i915/gem_context.c
->>>> index 1fae5191f83f..f92d5ff3dfc5 100644
->>>> --- a/lib/i915/gem_context.c
->>>> +++ b/lib/i915/gem_context.c
->>>> @@ -372,6 +372,50 @@ uint32_t gem_context_clone(int i915,
->>>>           return ctx;
->>>>    }
->>>>    
->>>> +bool gem_has_context_clone(int i915)
->>>> +{
->>>> +       struct drm_i915_gem_context_create_ext_clone ext = {
->>>> +               { .name = I915_CONTEXT_CREATE_EXT_CLONE },
->>>> +               .clone_id = -1,
->>>> +       };
->>>> +       struct drm_i915_gem_context_create_ext create = {
->>>> +               .flags = I915_CONTEXT_CREATE_FLAGS_USE_EXTENSIONS,
->>>> +               .extensions = to_user_pointer(&ext),
->>>> +       };
->>>> +       int err;
->>>> +
->>>> +       err = 0;
->>>> +       if (igt_ioctl(i915, DRM_IOCTL_I915_GEM_CONTEXT_CREATE_EXT, &create)) {
->>>> +               err = -errno;
->>>> +               igt_assume(err);
->>>> +       }
->>>> +       errno = 0;
->>>> +
->>>> +       return err == -ENOENT;
->>>> +}
->>>> +
->>>> +/**
->>>> + * gem_context_clone_with_engines:
->>>> + * @i915: open i915 drm file descriptor
->>>> + * @src: i915 context id
->>>> + *
->>>> + * Special purpose wrapper to create a new context by cloning engines from @src.
->>>> + *
->>>> + * In can be called regardless of whether the kernel supports context cloning.
->>>> + *
->>>> + * Intended purpose is to use for creating contexts against which work will be
->>>> + * submitted and the engine index came from external source, derived from a
->>>> + * default context potentially configured with an engine map.
->>>> + */
->>>> +uint32_t gem_context_clone_with_engines(int i915, uint32_t src)
->>>> +{
->>>> +       if (!gem_has_context_clone(i915))
->>>> +               return gem_context_create(i915);
->>>
->>> Yes, that should cover us for older kernels and keep the for_each loops
->>> happy.
->>>
->>>> +       else
->>>> +               return gem_context_clone(i915, src, 0,
->>>> +                                        I915_CONTEXT_CLONE_ENGINES);
->>>
->>> 0 and CLONE are the wrong way around.
->>
->> Oopsie.
->>
->>>
->>> I would have done
->>>
->>> int __gem_context_clone_with_engines(int i915, uint32_t src, uint32_t *out)
->>> {
->>>        int err;
->>>
->>>        err = __gem_context_clone(i915, src, CLONE_ENGINES, 0, out);
->>>        if (err && !gem_has_context_clone(i915))
->>>                err = __gem_context_create(i915, out);
->>>
->>>        return err;
->>> }
->>>
->>> uint32_t gem_context_clone_with_engines(int i915, uint32_t src)
->>> {
->>>        uint32_t ctx;
->>>
->>>        igt_assert_eq(__gem_context_clone_with_engine(i915, src, &ctx), 0);
->>>
->>>        return ctx;
->>> }
->>
->> I think I prefer my version as it is a bit more explicit.
-> 
-> I was hoping to do something more like
-> 	err = __clone()
-> 	if (err == ENOSYS)
-> 		err = __create()
-> 
-> Either way, I would suggest doing
-> 
-> int __gem_context_clone_with_engines(int i915, uint32_t src, uint32_t *out);
-> uint32_t gem_context_clone_with_engines(int i915, uint32_t src);
-> 
-> as I prefer that style of error message.
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--ovEXwzOuSh5e9Viug0g2OU7Cf9m4K3P9E
+Content-Type: multipart/mixed; boundary="2LIlq3fCIt5LTZALS3lrZAaBbUloCugqz";
+ protected-headers="v1"
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: Jani Nikula <jani.nikula@intel.com>, dri-devel@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Message-ID: <6aa5cab2-6d5f-1a9e-6e04-261ef3476fdb@suse.de>
+Subject: Re: [PATCH v4 2/2] drm/debugfs: also take per device driver features
+ into account
+References: <20200123124801.14958-1-jani.nikula@intel.com>
+ <20200123124801.14958-2-jani.nikula@intel.com>
+In-Reply-To: <20200123124801.14958-2-jani.nikula@intel.com>
 
-Error message? What do you mean?
+--2LIlq3fCIt5LTZALS3lrZAaBbUloCugqz
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: quoted-printable
 
-> Nothing else to complain about,
-> Reviewed-by: Chris Wilson <chris@chris-wilson.co.uk>
 
-So this is conditional on rewriting it as above or not?
 
-Regards,
+Am 23.01.20 um 13:48 schrieb Jani Nikula:
+> Use drm_core_check_all_features() to ensure both the driver features an=
+d
+> the per-device driver features are taken into account when registering
+> debugfs files.
+>=20
+> v3:
+> - files[i].driver_features =3D=3D 0 actually means "don't care"
+>=20
+> v2:
+> - use drm_core_check_all_features()
+>=20
+> Cc: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+> Cc: Thomas Zimmermann <tzimmermann@suse.de>
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> ---
+>  drivers/gpu/drm/drm_debugfs.c | 3 +--
+>  1 file changed, 1 insertion(+), 2 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/drm_debugfs.c b/drivers/gpu/drm/drm_debugf=
+s.c
+> index eab0f2687cd6..4e673d318503 100644
+> --- a/drivers/gpu/drm/drm_debugfs.c
+> +++ b/drivers/gpu/drm/drm_debugfs.c
+> @@ -182,8 +182,7 @@ int drm_debugfs_create_files(const struct drm_info_=
+list *files, int count,
+>  	for (i =3D 0; i < count; i++) {
+>  		u32 features =3D files[i].driver_features;
+> =20
+> -		if (features !=3D 0 &&
+> -		    (dev->driver->driver_features & features) !=3D features)
+> +		if (features && !drm_core_check_all_features(dev, features))
+>  			continue;
 
-Tvrtko
+Reviewed-by: Thomas Zimmermann <tzimmermann@suse.de>
+
+> =20
+>  		tmp =3D kmalloc(sizeof(struct drm_info_node), GFP_KERNEL);
+>=20
+
+--=20
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Maxfeldstr. 5, 90409 N=C3=BCrnberg, Germany
+(HRB 36809, AG N=C3=BCrnberg)
+Gesch=C3=A4ftsf=C3=BChrer: Felix Imend=C3=B6rffer
+
+
+--2LIlq3fCIt5LTZALS3lrZAaBbUloCugqz--
+
+--ovEXwzOuSh5e9Viug0g2OU7Cf9m4K3P9E
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEEchf7rIzpz2NEoWjlaA3BHVMLeiMFAl4pqGcACgkQaA3BHVML
+eiPvDggAvNXv/gGvKMxZT7Q9Lw5hM3Lq0+AJeC1scquEu8apFmsGiKC+wu30dclW
+rS3mxDyBNUkwIuH+6cSHb60ATycGWR/u2UoHr6xsQwl5IqABEeyxwgZZPxqiZ+LB
+ZX5mUhBpbdRrRMMwJpB/5DrZqABQdsi8iFm9NqCghxVEzmhp+tpCKBBvzsDvx8cl
+OgNnOmb6Iq9HHlIy0/GW0lr1lOvPwBU0cKoB0NcY7zN+fpGdzMdwjb2qrxunSOP1
+UwobJORV5xIZa8zzKgcMhp0+tdnb1yxhXmwoaEg4henE17PQPBISgQ1Yc4hsLFew
+wm2vBlwR9uDJTgMVLZTLdBqUeadJHg==
+=QkKi
+-----END PGP SIGNATURE-----
+
+--ovEXwzOuSh5e9Viug0g2OU7Cf9m4K3P9E--
+
+--===============2053614912==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============2053614912==--
