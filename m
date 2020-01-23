@@ -1,42 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C3671146A09
-	for <lists+intel-gfx@lfdr.de>; Thu, 23 Jan 2020 14:58:45 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id AB920146A2C
+	for <lists+intel-gfx@lfdr.de>; Thu, 23 Jan 2020 15:00:09 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3C4166FBEE;
-	Thu, 23 Jan 2020 13:58:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3391C6FCCD;
+	Thu, 23 Jan 2020 13:59:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0BA076FBEE
- for <intel-gfx@lists.freedesktop.org>; Thu, 23 Jan 2020 13:58:42 +0000 (UTC)
-X-Amp-Result: UNSCANNABLE
-X-Amp-File-Uploaded: False
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 23 Jan 2020 05:58:41 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,354,1574150400"; d="scan'208";a="288314808"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by fmsmga001.fm.intel.com with SMTP; 23 Jan 2020 05:58:39 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 23 Jan 2020 15:58:38 +0200
-Date: Thu, 23 Jan 2020 15:58:38 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>
-Message-ID: <20200123135838.GQ13686@intel.com>
-References: <20200123125934.1401755-1-chris@chris-wilson.co.uk>
- <20200123132707.GK13686@intel.com>
- <157978674377.19995.13523461350756168685@skylake-alporthouse-com>
+Received: from mx2.suse.de (mx2.suse.de [195.135.220.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 151106FCCB;
+ Thu, 23 Jan 2020 13:59:56 +0000 (UTC)
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.220.254])
+ by mx2.suse.de (Postfix) with ESMTP id 127B7B354;
+ Thu, 23 Jan 2020 13:59:52 +0000 (UTC)
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: airlied@linux.ie, daniel@ffwll.ch, alexander.deucher@amd.com,
+ christian.koenig@amd.com, David1.Zhou@amd.com,
+ maarten.lankhorst@linux.intel.com, patrik.r.jakobsson@gmail.com,
+ robdclark@gmail.com, sean@poorly.run, benjamin.gaignard@linaro.org,
+ vincent.abriou@st.com, yannick.fertre@st.com, philippe.cornu@st.com,
+ mcoquelin.stm32@gmail.com, alexandre.torgue@st.com, eric@anholt.net,
+ rodrigosiqueiramelo@gmail.com, hamohammed.sa@gmail.com,
+ linux-graphics-maintainer@vmware.com, thellstrom@vmware.com,
+ bskeggs@redhat.com, harry.wentland@amd.com, sunpeng.li@amd.com,
+ jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
+ rodrigo.vivi@intel.com
+Date: Thu, 23 Jan 2020 14:59:22 +0100
+Message-Id: <20200123135943.24140-2-tzimmermann@suse.de>
+X-Mailer: git-send-email 2.24.1
+In-Reply-To: <20200123135943.24140-1-tzimmermann@suse.de>
+References: <20200123135943.24140-1-tzimmermann@suse.de>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <157978674377.19995.13523461350756168685@skylake-alporthouse-com>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/gem: Detect overflow in
- calculating dumb buffer size
+Subject: [Intel-gfx] [PATCH v4 01/22] drm: Remove internal setup of struct
+ drm_device.vblank_disable_immediate
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,73 +48,42 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, stable@vger.kernel.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: linux-arm-msm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Thomas Zimmermann <tzimmermann@suse.de>, nouveau@lists.freedesktop.org,
+ freedreno@lists.freedesktop.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Jan 23, 2020 at 01:39:03PM +0000, Chris Wilson wrote:
-> Quoting Ville Syrj=E4l=E4 (2020-01-23 13:27:07)
-> > On Thu, Jan 23, 2020 at 12:59:34PM +0000, Chris Wilson wrote:
-> > > To multiply 2 u32 numbers to generate a u64 in C requires a bit of
-> > > forewarning for the compiler.
-> > > =
-
-> > > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> > > Cc: Ramalingam C <ramalingam.c@intel.com>
-> > > Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-> > > Cc: stable@vger.kernel.org
-> > > ---
-> > >  drivers/gpu/drm/i915/i915_gem.c | 5 ++++-
-> > >  1 file changed, 4 insertions(+), 1 deletion(-)
-> > > =
-
-> > > diff --git a/drivers/gpu/drm/i915/i915_gem.c b/drivers/gpu/drm/i915/i=
-915_gem.c
-> > > index 0a20083321a3..ff79da5657f8 100644
-> > > --- a/drivers/gpu/drm/i915/i915_gem.c
-> > > +++ b/drivers/gpu/drm/i915/i915_gem.c
-> > > @@ -265,7 +265,10 @@ i915_gem_dumb_create(struct drm_file *file,
-> > >                                                   DRM_FORMAT_MOD_LINE=
-AR))
-> > >               args->pitch =3D ALIGN(args->pitch, 4096);
-> > >  =
-
-> > > -     args->size =3D args->pitch * args->height;
-> > > +     if (args->pitch < args->width)
-> > > +             return -EINVAL;
-> > > +
-> > > +     args->size =3D mul_u32_u32(args->pitch, args->height);
-> > =
-
-> > I thought something would have checked these against the mode_config
-> > fb limits already. But can't see code like that anywhere. Maybe we
-> > should just do that in the core?
-> =
-
-> While it is in uapi/drm_mode.h, is there any restriction that the dumb
-> buffer has to be used with a framebuffer? Not that I have a good use
-> case, just wondering if we need to be so proscriptive.
-
-I think the general concensus has been that anything else is an abuse
-of the interface (not that it has stopped people from doing it IIRC).
-
-But maybe there's some good use for it that I can't think up.
-
-Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-
-> =
-
-> We create something that is compatible but presume we will need later
-> validation against HW.
-> -Chris
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+VkJMQU5LIGludGVycnVwdHMgY2FuIGJlIGRpc2FibGVkIGltbWVkaWF0ZWx5IG9yIHdpdGggYSBk
+ZWxheSwgd2hlcmUgdGhlCmxhdHRlciBpcyB0aGUgZGVmYXVsdC4gVGhlIGZvcm1lciBvcHRpb24g
+Y2FuIGJlIHNlbGVjdGVkIGJ5IHNldHRpbmcKZ2V0X3ZibGFua190aW1lc3RhbXAgYW5kIGVuYWJs
+aW5nIHZibGFua19kaXNhYmxlX2ltbWVkaWF0ZSBpbiBzdHJ1Y3QKZHJtX2RldmljZS4gU2ltcGxp
+ZnkgdGhlIGNvZGUgaW4gcHJlcGFyYXRpb24gb2YgdGhlIHJlbW92YWwgb2Ygc3RydWN0CmRybV9k
+ZXZpY2UuZ2V0X3ZibGFua190aW1lc3RhbXAuCgp2MzoKCSogcmVtb3ZlIGludGVybmFsIHNldHVw
+IG9mIHZibGFua19kaXNhYmxlX2ltbWVkaWF0ZQoKU2lnbmVkLW9mZi1ieTogVGhvbWFzIFppbW1l
+cm1hbm4gPHR6aW1tZXJtYW5uQHN1c2UuZGU+ClJldmlld2VkLWJ5OiBWaWxsZSBTeXJqw6Rsw6Qg
+PHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwuY29tPgotLS0KIGRyaXZlcnMvZ3B1L2RybS9kcm1f
+dmJsYW5rLmMgfCAxMyAtLS0tLS0tLS0tLS0tCiAxIGZpbGUgY2hhbmdlZCwgMTMgZGVsZXRpb25z
+KC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2RybV92YmxhbmsuYyBiL2RyaXZlcnMv
+Z3B1L2RybS9kcm1fdmJsYW5rLmMKaW5kZXggMTY1OWIxM2IxNzhjLi4zMjZkYjUyZjJhZDggMTAw
+NjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9kcm1fdmJsYW5rLmMKKysrIGIvZHJpdmVycy9ncHUv
+ZHJtL2RybV92YmxhbmsuYwpAQCAtNDgwLDE5ICs0ODAsNiBAQCBpbnQgZHJtX3ZibGFua19pbml0
+KHN0cnVjdCBkcm1fZGV2aWNlICpkZXYsIHVuc2lnbmVkIGludCBudW1fY3J0Y3MpCiAKIAlEUk1f
+SU5GTygiU3VwcG9ydHMgdmJsYW5rIHRpbWVzdGFtcCBjYWNoaW5nIFJldiAyICgyMS4xMC4yMDEz
+KS5cbiIpOwogCi0JLyogRHJpdmVyIHNwZWNpZmljIGhpZ2gtcHJlY2lzaW9uIHZibGFuayB0aW1l
+c3RhbXBpbmcgc3VwcG9ydGVkPyAqLwotCWlmIChkZXYtPmRyaXZlci0+Z2V0X3ZibGFua190aW1l
+c3RhbXApCi0JCURSTV9JTkZPKCJEcml2ZXIgc3VwcG9ydHMgcHJlY2lzZSB2YmxhbmsgdGltZXN0
+YW1wIHF1ZXJ5LlxuIik7Ci0JZWxzZQotCQlEUk1fSU5GTygiTm8gZHJpdmVyIHN1cHBvcnQgZm9y
+IHZibGFuayB0aW1lc3RhbXAgcXVlcnkuXG4iKTsKLQotCS8qIE11c3QgaGF2ZSBwcmVjaXNlIHRp
+bWVzdGFtcGluZyBmb3IgcmVsaWFibGUgdmJsYW5rIGluc3RhbnQgZGlzYWJsZSAqLwotCWlmIChk
+ZXYtPnZibGFua19kaXNhYmxlX2ltbWVkaWF0ZSAmJiAhZGV2LT5kcml2ZXItPmdldF92Ymxhbmtf
+dGltZXN0YW1wKSB7Ci0JCWRldi0+dmJsYW5rX2Rpc2FibGVfaW1tZWRpYXRlID0gZmFsc2U7Ci0J
+CURSTV9JTkZPKCJTZXR0aW5nIHZibGFua19kaXNhYmxlX2ltbWVkaWF0ZSB0byBmYWxzZSBiZWNh
+dXNlICIKLQkJCSAiZ2V0X3ZibGFua190aW1lc3RhbXAgPT0gTlVMTFxuIik7Ci0JfQotCiAJcmV0
+dXJuIDA7CiAKIGVycjoKLS0gCjIuMjQuMQoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMu
+ZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlz
+dGluZm8vaW50ZWwtZ2Z4Cg==
