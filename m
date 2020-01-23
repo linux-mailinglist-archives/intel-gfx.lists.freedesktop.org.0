@@ -2,30 +2,34 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA280146677
-	for <lists+intel-gfx@lfdr.de>; Thu, 23 Jan 2020 12:18:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E87651466F0
+	for <lists+intel-gfx@lfdr.de>; Thu, 23 Jan 2020 12:39:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 068AB6FBE1;
-	Thu, 23 Jan 2020 11:18:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4E6FF6FA02;
+	Thu, 23 Jan 2020 11:39:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5DDAC6FBE1
- for <intel-gfx@lists.freedesktop.org>; Thu, 23 Jan 2020 11:18:36 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19980789-1500050 
- for multiple; Thu, 23 Jan 2020 11:18:17 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 23 Jan 2020 11:18:16 +0000
-Message-Id: <20200123111816.1292582-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.25.0
-In-Reply-To: <20200122201822.889250-1-chris@chris-wilson.co.uk>
-References: <20200122201822.889250-1-chris@chris-wilson.co.uk>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 303216FA02;
+ Thu, 23 Jan 2020 11:39:54 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 23 Jan 2020 03:39:53 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,353,1574150400"; d="scan'208";a="287853255"
+Received: from plaxmina-desktop.iind.intel.com ([10.145.162.62])
+ by fmsmga001.fm.intel.com with ESMTP; 23 Jan 2020 03:39:49 -0800
+From: Pankaj Bharadiya <pankaj.laxminarayan.bharadiya@intel.com>
+To: jani.nikula@linux.intel.com, daniel@ffwll.ch,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Date: Thu, 23 Jan 2020 16:58:05 +0530
+Message-Id: <20200123112809.12185-1-pankaj.laxminarayan.bharadiya@intel.com>
+X-Mailer: git-send-email 2.23.0
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v3] drm/i915/gt: Poison GTT scratch pages
+Subject: [Intel-gfx] [PATCH v3 0/4] drm: Introduce struct drm_device based
+ WARN* and use them in i915
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -43,195 +47,111 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Using a clear page for scratch means that we have relatively benign
-errors in case it is accidentally used, but that can be rather too
-benign for debugging. If we poison the scratch, ideally it quickly
-results in an obvious error.
+Device specific dev_WARN and dev_WARN_ONCE macros available in kernel
+include device information in the backtrace, so we know what device
+the warnings originate from.
 
-v2: Set each page individually just in case we are using highmem for our
-scratch page.
-v3: Pick a new scratch register as MI_STORE_REGISTER_MEM does not work
-with GPR0 on gen7, unbelievably.
+Similar to this, add new struct drm_device based drm_WARN* macros. These
+macros include device information in the backtrace, so we know
+what device the warnings originate from. Knowing the device specific
+information in the backtrace would be helpful in development all
+around.
 
-Suggested-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-Cc: Matthew Auld <matthew.william.auld@gmail.com>
----
- .../drm/i915/gem/selftests/i915_gem_context.c | 51 ++++++++++++++++---
- drivers/gpu/drm/i915/gt/intel_gtt.c           | 30 +++++++++++
- 2 files changed, 75 insertions(+), 6 deletions(-)
+This patch series aims to convert calls of WARN(), WARN_ON(),
+WARN_ONCE() and WARN_ON_ONCE() in i915 driver to use the drm
+device-specific variants automatically wherever struct device pointer
+is available.
 
-diff --git a/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c b/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c
-index 7fc46861a54d..00a56a8b309a 100644
---- a/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c
-+++ b/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c
-@@ -1575,7 +1575,6 @@ static int read_from_scratch(struct i915_gem_context *ctx,
- 	struct drm_i915_private *i915 = ctx->i915;
- 	struct drm_i915_gem_object *obj;
- 	struct i915_address_space *vm;
--	const u32 RCS_GPR0 = 0x2600; /* not all engines have their own GPR! */
- 	const u32 result = 0x100;
- 	struct i915_request *rq;
- 	struct i915_vma *vma;
-@@ -1596,20 +1595,24 @@ static int read_from_scratch(struct i915_gem_context *ctx,
- 
- 	memset(cmd, POISON_INUSE, PAGE_SIZE);
- 	if (INTEL_GEN(i915) >= 8) {
-+		const u32 GPR0 = engine->mmio_base + 0x600;
-+
- 		*cmd++ = MI_LOAD_REGISTER_MEM_GEN8;
--		*cmd++ = RCS_GPR0;
-+		*cmd++ = GPR0;
- 		*cmd++ = lower_32_bits(offset);
- 		*cmd++ = upper_32_bits(offset);
- 		*cmd++ = MI_STORE_REGISTER_MEM_GEN8;
--		*cmd++ = RCS_GPR0;
-+		*cmd++ = GPR0;
- 		*cmd++ = result;
- 		*cmd++ = 0;
- 	} else {
-+		const u32 reg = engine->mmio_base + 0x420;
-+
- 		*cmd++ = MI_LOAD_REGISTER_MEM;
--		*cmd++ = RCS_GPR0;
-+		*cmd++ = reg;
- 		*cmd++ = offset;
- 		*cmd++ = MI_STORE_REGISTER_MEM;
--		*cmd++ = RCS_GPR0;
-+		*cmd++ = reg;
- 		*cmd++ = result;
- 	}
- 	*cmd = MI_BATCH_BUFFER_END;
-@@ -1686,6 +1689,28 @@ static int read_from_scratch(struct i915_gem_context *ctx,
- 	return err;
- }
- 
-+static int check_scratch_page(struct i915_gem_context *ctx, u32 *out)
-+{
-+	struct page *page = ctx_vm(ctx)->scratch[0].base.page;
-+	u32 *vaddr;
-+	int err = 0;
-+
-+	if (!page) {
-+		pr_err("No scratch page!\n");
-+		return -EINVAL;
-+	}
-+
-+	vaddr = kmap(page);
-+	memcpy(out, vaddr, sizeof(*out));
-+	if (memchr_inv(vaddr, *out, PAGE_SIZE)) {
-+		pr_err("Inconsistent initial state of scratch page!\n");
-+		err = -EINVAL;
-+	}
-+	kunmap(page);
-+
-+	return err;
-+}
-+
- static int igt_vm_isolation(void *arg)
- {
- 	struct drm_i915_private *i915 = arg;
-@@ -1696,6 +1721,7 @@ static int igt_vm_isolation(void *arg)
- 	I915_RND_STATE(prng);
- 	struct file *file;
- 	u64 vm_total;
-+	u32 expected;
- 	int err;
- 
- 	if (INTEL_GEN(i915) < 7)
-@@ -1720,12 +1746,21 @@ static int igt_vm_isolation(void *arg)
- 		goto out_file;
- 	}
- 
-+	/* Read the initial state of the scratch page */
-+	err = check_scratch_page(ctx_a, &expected);
-+	if (err)
-+		goto out_file;
-+
- 	ctx_b = live_context(i915, file);
- 	if (IS_ERR(ctx_b)) {
- 		err = PTR_ERR(ctx_b);
- 		goto out_file;
- 	}
- 
-+	err = check_scratch_page(ctx_b, &expected);
-+	if (err)
-+		goto out_file;
-+
- 	/* We can only test vm isolation, if the vm are distinct */
- 	if (ctx_vm(ctx_a) == ctx_vm(ctx_b))
- 		goto out_file;
-@@ -1743,6 +1778,10 @@ static int igt_vm_isolation(void *arg)
- 		if (!intel_engine_can_store_dword(engine))
- 			continue;
- 
-+		/* Not all engines have their own GPR! */
-+		if (INTEL_GEN(i915) < 8 && engine->class != RENDER_CLASS)
-+			continue;
-+
- 		while (!__igt_timeout(end_time, NULL)) {
- 			u32 value = 0xc5c5c5c5;
- 			u64 offset;
-@@ -1760,7 +1799,7 @@ static int igt_vm_isolation(void *arg)
- 			if (err)
- 				goto out_file;
- 
--			if (value) {
-+			if (value != expected) {
- 				pr_err("%s: Read %08x from scratch (offset 0x%08x_%08x), after %lu reads!\n",
- 				       engine->name, value,
- 				       upper_32_bits(offset),
-diff --git a/drivers/gpu/drm/i915/gt/intel_gtt.c b/drivers/gpu/drm/i915/gt/intel_gtt.c
-index 45d8e0019a8e..bb9a6e638175 100644
---- a/drivers/gpu/drm/i915/gt/intel_gtt.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gtt.c
-@@ -299,6 +299,25 @@ fill_page_dma(const struct i915_page_dma *p, const u64 val, unsigned int count)
- 	kunmap_atomic(memset64(kmap_atomic(p->page), val, count));
- }
- 
-+static void poison_scratch_page(struct page *page, unsigned long size)
-+{
-+	if (!IS_ENABLED(CONFIG_DRM_I915_DEBUG_GEM))
-+		return;
-+
-+	GEM_BUG_ON(!IS_ALIGNED(size, PAGE_SIZE));
-+
-+	do {
-+		void *vaddr;
-+
-+		vaddr = kmap(page);
-+		memset(vaddr, POISON_FREE, PAGE_SIZE);
-+		kunmap(page);
-+
-+		page = pfn_to_page(page_to_pfn(page) + 1);
-+		size -= PAGE_SIZE;
-+	} while (size);
-+}
-+
- int setup_scratch_page(struct i915_address_space *vm, gfp_t gfp)
- {
- 	unsigned long size;
-@@ -331,6 +350,17 @@ int setup_scratch_page(struct i915_address_space *vm, gfp_t gfp)
- 		if (unlikely(!page))
- 			goto skip;
- 
-+		/*
-+		 * Use a non-zero scratch page for debugging.
-+		 *
-+		 * We want a value that should be reasonably obvious
-+		 * to spot in the error state, while also causing a GPU hang
-+		 * if executed. We prefer using a clear page in production, so
-+		 * should it ever be accidentally used, the effect should be
-+		 * fairly benign.
-+		 */
-+		poison_scratch_page(page, size);
-+
- 		addr = dma_map_page_attrs(vm->dma,
- 					  page, 0, size,
- 					  PCI_DMA_BIDIRECTIONAL,
+To do this, this patch series -
+  - introduces new struct drm_device based WARN* macros
+  - automatically converts WARN* with device specific dev_WARN*
+    variants using coccinelle semantic patch scripts.
+
+The goal is to convert all the calls of WARN* with drm_WARN* in i915,
+but there are still cases where device pointer is not readily
+available in some functions (or I missed them somehow) using WARN*
+hence some manual churning is needed. Handle such remaining cases
+separately later.
+
+changes since v2:
+  - rebase pending unmerged patches on drm-tip
+
+changes since v1:
+  - Address Jani's review comments
+    - Fix typo in comment of patch 0001
+    - Get rid of helper functions
+    - Split patches by directory
+
+Changes since RFC at [1]
+  - Introduce drm_WARN* macros and use them as suggested by Sam and Jani
+  - Get rid of extra local variables
+
+[1] https://patchwork.freedesktop.org/series/71668/
+
+
+Pankaj Bharadiya (4):
+  drm/i915/display: Make WARN* drm specific where drm_device ptr is available
+  drm/i915/display: Make WARN* drm specific where drm_priv ptr is available
+  drm/i915/gvt: Make WARN* drm specific where drm_priv ptr is available
+  drm/i915/gvt: Make WARN* drm specific where vgpu ptr is available
+
+ drivers/gpu/drm/i915/display/icl_dsi.c        |  14 +-
+ drivers/gpu/drm/i915/display/intel_atomic.c   |   6 +-
+ drivers/gpu/drm/i915/display/intel_audio.c    |  19 +-
+ drivers/gpu/drm/i915/display/intel_bios.c     |  10 +-
+ drivers/gpu/drm/i915/display/intel_bw.c       |   3 +-
+ drivers/gpu/drm/i915/display/intel_cdclk.c    |  81 ++++---
+ drivers/gpu/drm/i915/display/intel_color.c    |   4 +-
+ .../gpu/drm/i915/display/intel_combo_phy.c    |   2 +-
+ .../gpu/drm/i915/display/intel_connector.c    |   3 +-
+ drivers/gpu/drm/i915/display/intel_crt.c      |  10 +-
+ drivers/gpu/drm/i915/display/intel_ddi.c      |  94 ++++----
+ drivers/gpu/drm/i915/display/intel_display.c  | 218 ++++++++++--------
+ .../drm/i915/display/intel_display_power.c    | 167 ++++++++------
+ drivers/gpu/drm/i915/display/intel_dp.c       | 117 ++++++----
+ drivers/gpu/drm/i915/display/intel_dp_mst.c   |  10 +-
+ drivers/gpu/drm/i915/display/intel_dpio_phy.c |   3 +-
+ drivers/gpu/drm/i915/display/intel_dpll_mgr.c |  37 +--
+ drivers/gpu/drm/i915/display/intel_dsb.c      |   6 +-
+ .../i915/display/intel_dsi_dcs_backlight.c    |   2 +-
+ drivers/gpu/drm/i915/display/intel_dsi_vbt.c  |   5 +-
+ drivers/gpu/drm/i915/display/intel_fbc.c      |  23 +-
+ drivers/gpu/drm/i915/display/intel_fbdev.c    |  13 +-
+ drivers/gpu/drm/i915/display/intel_gmbus.c    |   3 +-
+ drivers/gpu/drm/i915/display/intel_hdcp.c     |  21 +-
+ drivers/gpu/drm/i915/display/intel_hdmi.c     |  51 ++--
+ drivers/gpu/drm/i915/display/intel_hotplug.c  |   7 +-
+ .../gpu/drm/i915/display/intel_lpe_audio.c    |   2 +-
+ drivers/gpu/drm/i915/display/intel_lvds.c     |   7 +-
+ drivers/gpu/drm/i915/display/intel_opregion.c |   7 +-
+ drivers/gpu/drm/i915/display/intel_overlay.c  |  12 +-
+ drivers/gpu/drm/i915/display/intel_panel.c    |  19 +-
+ drivers/gpu/drm/i915/display/intel_pipe_crc.c |   7 +-
+ drivers/gpu/drm/i915/display/intel_psr.c      |  34 +--
+ drivers/gpu/drm/i915/display/intel_sdvo.c     |  14 +-
+ drivers/gpu/drm/i915/display/intel_sprite.c   |   5 +-
+ drivers/gpu/drm/i915/display/intel_tc.c       |  17 +-
+ drivers/gpu/drm/i915/display/intel_vdsc.c     |   2 +-
+ drivers/gpu/drm/i915/display/vlv_dsi.c        |   2 +-
+ drivers/gpu/drm/i915/gvt/aperture_gm.c        |   6 +-
+ drivers/gpu/drm/i915/gvt/cfg_space.c          |  23 +-
+ drivers/gpu/drm/i915/gvt/cmd_parser.c         |   4 +-
+ drivers/gpu/drm/i915/gvt/display.c            |   6 +-
+ drivers/gpu/drm/i915/gvt/dmabuf.c             |   4 +-
+ drivers/gpu/drm/i915/gvt/edid.c               |  19 +-
+ drivers/gpu/drm/i915/gvt/gtt.c                |  21 +-
+ drivers/gpu/drm/i915/gvt/gvt.c                |   4 +-
+ drivers/gpu/drm/i915/gvt/handlers.c           |  22 +-
+ drivers/gpu/drm/i915/gvt/interrupt.c          |  15 +-
+ drivers/gpu/drm/i915/gvt/kvmgt.c              |  10 +-
+ drivers/gpu/drm/i915/gvt/mmio.c               |  30 ++-
+ drivers/gpu/drm/i915/gvt/mmio_context.c       |   8 +-
+ drivers/gpu/drm/i915/gvt/scheduler.c          |   6 +-
+ drivers/gpu/drm/i915/gvt/vgpu.c               |   6 +-
+ 53 files changed, 714 insertions(+), 527 deletions(-)
+
 -- 
-2.25.0
+2.23.0
 
 _______________________________________________
 Intel-gfx mailing list
