@@ -2,38 +2,34 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CAF8014642D
-	for <lists+intel-gfx@lfdr.de>; Thu, 23 Jan 2020 10:12:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4779F146426
+	for <lists+intel-gfx@lfdr.de>; Thu, 23 Jan 2020 10:09:21 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ECABF6F9CE;
-	Thu, 23 Jan 2020 09:12:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5FCEA6FB63;
+	Thu, 23 Jan 2020 09:09:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E3F856F9CE;
- Thu, 23 Jan 2020 09:12:50 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-X-Amp-File-Uploaded: False
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 23 Jan 2020 01:12:25 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,353,1574150400"; d="scan'208";a="227946080"
-Received: from plaxmina-desktop.iind.intel.com ([10.145.162.62])
- by orsmga003.jf.intel.com with ESMTP; 23 Jan 2020 01:12:22 -0800
-Date: Thu, 23 Jan 2020 14:30:41 +0530
-From: "Bharadiya,Pankaj" <pankaj.laxminarayan.bharadiya@intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Message-ID: <20200123090041.GA804@plaxmina-desktop.iind.intel.com>
-References: <20200115034455.17658-1-pankaj.laxminarayan.bharadiya@intel.com>
- <878slzea12.fsf@intel.com>
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 521726FB62;
+ Thu, 23 Jan 2020 09:09:16 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 19979029-1500050 for multiple; Thu, 23 Jan 2020 09:09:02 +0000
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <878slzea12.fsf@intel.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-Subject: Re: [Intel-gfx] [ [PATCH v2 00/10] drm: Introduce struct drm_device
- based WARN* and use them in i915
+To: Dale B Stimson <dale.b.stimson@intel.com>, igt-dev@lists.freedesktop.org, 
+ intel-gfx@lists.freedesktop.org
+From: Chris Wilson <chris@chris-wilson.co.uk>
+In-Reply-To: <225f88d1044053674cbd632998c69c0c677a530e.1579731227.git.dale.b.stimson@intel.com>
+References: <cover.1579731227.git.dale.b.stimson@intel.com>
+ <76818a8047c4b9da76d0619c7b8f58c89449b4ed.1579731227.git.dale.b.stimson@intel.com>
+ <225f88d1044053674cbd632998c69c0c677a530e.1579731227.git.dale.b.stimson@intel.com>
+Message-ID: <157977054018.18920.9879323586181021015@skylake-alporthouse-com>
+User-Agent: alot/0.6
+Date: Thu, 23 Jan 2020 09:09:00 +0000
+Subject: Re: [Intel-gfx] [PATCH i-g-t 2/2] DBS:
+ tests/i915/gem_ctx_isolation: use the gem_engine_topology library, part 2
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,174 +42,55 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- sam@ravnborg.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Jan 22, 2020 at 06:22:17PM +0200, Jani Nikula wrote:
-> On Wed, 15 Jan 2020, Pankaj Bharadiya <pankaj.laxminarayan.bharadiya@intel.com> wrote:
-> > Device specific dev_WARN and dev_WARN_ONCE macros available in kernel
-> > include device information in the backtrace, so we know what device
-> > the warnings originate from.
-> >
-> > Similar to this, add new struct drm_device based drm_WARN* macros. These
-> > macros include device information in the backtrace, so we know
-> > what device the warnings originate from. Knowing the device specific
-> > information in the backtrace would be helpful in development all
-> > around.
-> >
-> > This patch series aims to convert calls of WARN(), WARN_ON(),
-> > WARN_ONCE() and WARN_ON_ONCE() in i916 driver to use the drm
-> > device-specific variants automatically wherever struct device pointer
-> > is available.
-> >
-> > To do this, this patch series -
-> >   - introduces new struct drm_device based WARN* macros
-> >   - automatically converts WARN* with device specific dev_WARN*
-> >     variants using coccinelle semantic patch scripts.
-> >
-> > The goal is to convert all the calls of WARN* with drm_WARN* in i915,
-> > but there are still cases where device pointer is not readily
-> > available in some functions (or I missed them somehow) using WARN*
-> > hence some manual churning is needed. Handle such remaining cases
-> > separately later.
-> >
-> > changes since v1:
-> >   - Address Jani's review comments
-> >     - Fix typo in comment of patch 0001
-> >     - Get rid of helper functions
-> >     - Split patches by directory 
-> >
-> > Changes since RFC at [1]
-> >   - Introduce drm_WARN* macros and use them as suggested by Sam and Jani
-> >   - Get rid of extra local variables
-> >
-> > [1] https://patchwork.freedesktop.org/series/71668/
-> >
-> >
-> > Pankaj Bharadiya (10):
-> >   drm/print: introduce new struct drm_device based WARN* macros
+Quoting Dale B Stimson (2020-01-22 23:26:57)
+> Switch from simple iteration over all potential engines to using
+> macro __for_each_physical_engine which only returns engines that are
+> actually present.
 > 
-> Pushed.
+> For each context (as it is created) call gem_context_set_all_engines
+> so that execbuf will interpret the engine specification in the new way.
 > 
-> >   drm/i915/display: Make WARN* drm specific where drm_device ptr is available
-> >   drm/i915/display: Make WARN* drm specific where drm_priv ptr is available
+> Signed-off-by: Dale B Stimson <dale.b.stimson@intel.com>
+> ---
+>  tests/i915/gem_ctx_isolation.c | 41 ++++++++++++++++++++++++++--------
+>  1 file changed, 32 insertions(+), 9 deletions(-)
 > 
-> The above two conflict and need to be rebased.
-> 
-> >   drm/i915/display: Make WARN* drm specific where encoder ptr is available
-> >   drm/i915/gem: Make WARN* drm specific where drm_priv ptr is available
-> >   drm/i915/gt: Make WARN* drm specific where drm_priv ptr is available
-> 
-> Pushed the above three.
-> 
-> >   drm/i915/gvt: Make WARN* drm specific where drm_priv ptr is available
-> >   drm/i915/gvt: Make WARN* drm specific where vgpu ptr is available
-> 
-> The gvt patches need to be applied through the gvt tree and maintainers
-> once they've backmerged the logging changes.
-> 
-> >   drm/i915: Make WARN* drm specific where drm_priv ptr is available
-> >   drm/i915: Make WARN* drm specific where uncore or stream ptr is available
-> 
-> Pushed the above two.
-> 
-> Thanks for the patches.
+> diff --git a/tests/i915/gem_ctx_isolation.c b/tests/i915/gem_ctx_isolation.c
+> index 25113b054..31a20ed3a 100644
+> --- a/tests/i915/gem_ctx_isolation.c
+> +++ b/tests/i915/gem_ctx_isolation.c
+> @@ -240,6 +240,25 @@ static bool ignore_register(uint32_t offset)
+>         return false;
+>  }
+>  
+> +/*
+> + * context_create_plus_all_engines - Same as gem_context_create plus setup.
+> + *
+> + * This is a convenience function that may be called instead of the sequence
+> + * of gem_context_create followed by gem_context_set_all_engines.
+> + * If gem_has_engine_topology(), then function gem_context_set_all_engines
+> + * indicates that future execbuf calls for this context should interpret the
+> + * engine specification in a gem_engine_topology-compatible way.
+> + */
+> +static uint32_t context_create_plus_all_engines(int fd)
+> +{
+> +       uint32_t ctx;
+> +
+> +       ctx = gem_context_create(fd);
+> +       gem_context_set_all_engines(fd, ctx);
+> +
+> +       return ctx;
+> +}
 
-Thank you :).
-Will rebase remaining patches and submit.
-
-Thanks,
-Pankaj
-> 
-> BR,
-> Jani.
-> 
-> >
-> >  drivers/gpu/drm/i915/display/icl_dsi.c        |  14 +-
-> >  drivers/gpu/drm/i915/display/intel_atomic.c   |   6 +-
-> >  drivers/gpu/drm/i915/display/intel_audio.c    |  19 +-
-> >  drivers/gpu/drm/i915/display/intel_bios.c     |  10 +-
-> >  drivers/gpu/drm/i915/display/intel_bw.c       |   3 +-
-> >  drivers/gpu/drm/i915/display/intel_cdclk.c    |  81 ++++---
-> >  drivers/gpu/drm/i915/display/intel_color.c    |   4 +-
-> >  .../gpu/drm/i915/display/intel_combo_phy.c    |   2 +-
-> >  .../gpu/drm/i915/display/intel_connector.c    |   3 +-
-> >  drivers/gpu/drm/i915/display/intel_crt.c      |  10 +-
-> >  drivers/gpu/drm/i915/display/intel_ddi.c      | 100 ++++----
-> >  drivers/gpu/drm/i915/display/intel_display.c  | 228 ++++++++++--------
-> >  .../drm/i915/display/intel_display_power.c    | 169 +++++++------
-> >  drivers/gpu/drm/i915/display/intel_dp.c       | 123 ++++++----
-> >  drivers/gpu/drm/i915/display/intel_dp_mst.c   |  10 +-
-> >  drivers/gpu/drm/i915/display/intel_dpio_phy.c |   3 +-
-> >  drivers/gpu/drm/i915/display/intel_dpll_mgr.c |  37 +--
-> >  drivers/gpu/drm/i915/display/intel_dsb.c      |   6 +-
-> >  .../i915/display/intel_dsi_dcs_backlight.c    |   2 +-
-> >  drivers/gpu/drm/i915/display/intel_dsi_vbt.c  |   5 +-
-> >  drivers/gpu/drm/i915/display/intel_fbc.c      |  23 +-
-> >  drivers/gpu/drm/i915/display/intel_fbdev.c    |  13 +-
-> >  drivers/gpu/drm/i915/display/intel_gmbus.c    |   3 +-
-> >  drivers/gpu/drm/i915/display/intel_hdcp.c     |  21 +-
-> >  drivers/gpu/drm/i915/display/intel_hdmi.c     |  71 +++---
-> >  drivers/gpu/drm/i915/display/intel_hotplug.c  |   7 +-
-> >  .../gpu/drm/i915/display/intel_lpe_audio.c    |   2 +-
-> >  drivers/gpu/drm/i915/display/intel_lvds.c     |   7 +-
-> >  drivers/gpu/drm/i915/display/intel_opregion.c |   7 +-
-> >  drivers/gpu/drm/i915/display/intel_overlay.c  |  14 +-
-> >  drivers/gpu/drm/i915/display/intel_panel.c    |  19 +-
-> >  drivers/gpu/drm/i915/display/intel_pipe_crc.c |   7 +-
-> >  drivers/gpu/drm/i915/display/intel_psr.c      |  32 +--
-> >  drivers/gpu/drm/i915/display/intel_sdvo.c     |  14 +-
-> >  drivers/gpu/drm/i915/display/intel_sprite.c   |   5 +-
-> >  drivers/gpu/drm/i915/display/intel_tc.c       |  18 +-
-> >  drivers/gpu/drm/i915/display/intel_vdsc.c     |   2 +-
-> >  drivers/gpu/drm/i915/display/vlv_dsi.c        |   2 +-
-> >  drivers/gpu/drm/i915/gem/i915_gem_pm.c        |   3 +-
-> >  drivers/gpu/drm/i915/gem/i915_gem_shmem.c     |   3 +-
-> >  drivers/gpu/drm/i915/gem/i915_gem_shrinker.c  |  13 +-
-> >  drivers/gpu/drm/i915/gem/i915_gem_stolen.c    |  15 +-
-> >  drivers/gpu/drm/i915/gt/intel_engine_cs.c     |   8 +-
-> >  drivers/gpu/drm/i915/gt/intel_engine_user.c   |   3 +-
-> >  drivers/gpu/drm/i915/gt/intel_gtt.c           |   6 +-
-> >  drivers/gpu/drm/i915/gt/intel_mocs.c          |   4 +-
-> >  drivers/gpu/drm/i915/gt/intel_rc6.c           |   2 +-
-> >  .../gpu/drm/i915/gt/intel_ring_submission.c   |   7 +-
-> >  drivers/gpu/drm/i915/gt/intel_rps.c           |  20 +-
-> >  drivers/gpu/drm/i915/gt/intel_workarounds.c   |   2 +-
-> >  drivers/gpu/drm/i915/gvt/aperture_gm.c        |   6 +-
-> >  drivers/gpu/drm/i915/gvt/cfg_space.c          |  23 +-
-> >  drivers/gpu/drm/i915/gvt/cmd_parser.c         |   4 +-
-> >  drivers/gpu/drm/i915/gvt/display.c            |   6 +-
-> >  drivers/gpu/drm/i915/gvt/dmabuf.c             |   4 +-
-> >  drivers/gpu/drm/i915/gvt/edid.c               |  19 +-
-> >  drivers/gpu/drm/i915/gvt/gtt.c                |  21 +-
-> >  drivers/gpu/drm/i915/gvt/gvt.c                |   4 +-
-> >  drivers/gpu/drm/i915/gvt/handlers.c           |  22 +-
-> >  drivers/gpu/drm/i915/gvt/interrupt.c          |  15 +-
-> >  drivers/gpu/drm/i915/gvt/kvmgt.c              |  10 +-
-> >  drivers/gpu/drm/i915/gvt/mmio.c               |  30 ++-
-> >  drivers/gpu/drm/i915/gvt/mmio_context.c       |   8 +-
-> >  drivers/gpu/drm/i915/gvt/scheduler.c          |   6 +-
-> >  drivers/gpu/drm/i915/gvt/vgpu.c               |   6 +-
-> >  drivers/gpu/drm/i915/i915_drv.c               |  19 +-
-> >  drivers/gpu/drm/i915/i915_gem.c               |   7 +-
-> >  drivers/gpu/drm/i915/i915_gem_fence_reg.c     |  11 +-
-> >  drivers/gpu/drm/i915/i915_irq.c               |  85 ++++---
-> >  drivers/gpu/drm/i915/i915_perf.c              |  38 +--
-> >  drivers/gpu/drm/i915/i915_pmu.c               |   6 +-
-> >  drivers/gpu/drm/i915/intel_csr.c              |   4 +-
-> >  drivers/gpu/drm/i915/intel_pch.c              |  66 +++--
-> >  drivers/gpu/drm/i915/intel_pm.c               |  24 +-
-> >  drivers/gpu/drm/i915/intel_sideband.c         |   7 +-
-> >  drivers/gpu/drm/i915/intel_uncore.c           |  54 +++--
-> >  include/drm/drm_print.h                       |  29 +++
-> >  77 files changed, 1000 insertions(+), 722 deletions(-)
-> 
-> -- 
-> Jani Nikula, Intel Open Source Graphics Center
+gem_context_clone_with_engines() so we can stop assuming that
+all-engines is the right answer, because that depends on the conditions
+set up by the iterator on the first context.
+-Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
