@@ -2,40 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A5A11146902
-	for <lists+intel-gfx@lfdr.de>; Thu, 23 Jan 2020 14:27:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 07F26146910
+	for <lists+intel-gfx@lfdr.de>; Thu, 23 Jan 2020 14:28:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C27A36FCAD;
-	Thu, 23 Jan 2020 13:27:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 280216FCAE;
+	Thu, 23 Jan 2020 13:28:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 371E46FCAD
- for <intel-gfx@lists.freedesktop.org>; Thu, 23 Jan 2020 13:27:11 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D08986FCAE;
+ Thu, 23 Jan 2020 13:28:32 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga106.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 23 Jan 2020 05:27:10 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,354,1574150400"; d="scan'208";a="229827766"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by orsmga006.jf.intel.com with SMTP; 23 Jan 2020 05:27:08 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 23 Jan 2020 15:27:07 +0200
-Date: Thu, 23 Jan 2020 15:27:07 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>
-Message-ID: <20200123132707.GK13686@intel.com>
-References: <20200123125934.1401755-1-chris@chris-wilson.co.uk>
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 23 Jan 2020 05:28:32 -0800
+X-IronPort-AV: E=Sophos;i="5.70,354,1574150400"; d="scan'208";a="216257967"
+Received: from jnikula-mobl3.fi.intel.com (HELO localhost) ([10.237.66.161])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 23 Jan 2020 05:28:28 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Wambui Karuga <wambui.karugax@gmail.com>, joonas.lahtinen@linux.intel.com,
+ rodrigo.vivi@intel.com, airlied@linux.ie, daniel@ffwll.ch,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
+In-Reply-To: <20200121134559.17355-1-wambui.karugax@gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20200121134559.17355-1-wambui.karugax@gmail.com>
+Date: Thu, 23 Jan 2020 15:28:25 +0200
+Message-ID: <87zheecneu.fsf@intel.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200123125934.1401755-1-chris@chris-wilson.co.uk>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/gem: Detect overflow in
- calculating dumb buffer size
+Subject: Re: [Intel-gfx] [PATCH v2 0/5] drm/i915: conversion to new drm
+ logging macros.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,64 +46,42 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, stable@vger.kernel.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Jan 23, 2020 at 12:59:34PM +0000, Chris Wilson wrote:
-> To multiply 2 u32 numbers to generate a u64 in C requires a bit of
-> forewarning for the compiler.
-> =
+On Tue, 21 Jan 2020, Wambui Karuga <wambui.karugax@gmail.com> wrote:
+> This series continues the conversion to the new struct drm_device based
+> logging macros in various files in drm/i915. These patches were
+> achieved both using coccinelle and manually.
+>
+> v2: rebase patches onto drm-tip to fix merge conflict in v1 series.
 
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> Cc: Ramalingam C <ramalingam.c@intel.com>
-> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-> Cc: stable@vger.kernel.org
-> ---
->  drivers/gpu/drm/i915/i915_gem.c | 5 ++++-
->  1 file changed, 4 insertions(+), 1 deletion(-)
-> =
+Pushed all to drm-intel-next-queued, many thanks for the patches, and
+keep up the good work!
 
-> diff --git a/drivers/gpu/drm/i915/i915_gem.c b/drivers/gpu/drm/i915/i915_=
-gem.c
-> index 0a20083321a3..ff79da5657f8 100644
-> --- a/drivers/gpu/drm/i915/i915_gem.c
-> +++ b/drivers/gpu/drm/i915/i915_gem.c
-> @@ -265,7 +265,10 @@ i915_gem_dumb_create(struct drm_file *file,
->  						    DRM_FORMAT_MOD_LINEAR))
->  		args->pitch =3D ALIGN(args->pitch, 4096);
->  =
+BR,
+Jani.
 
-> -	args->size =3D args->pitch * args->height;
-> +	if (args->pitch < args->width)
-> +		return -EINVAL;
-> +
-> +	args->size =3D mul_u32_u32(args->pitch, args->height);
 
-I thought something would have checked these against the mode_config
-fb limits already. But can't see code like that anywhere. Maybe we
-should just do that in the core?
+>
+> Wambui Karuga (5):
+>   drm/i915/atomic: use struct drm_device logging macros for debug
+>   drm/i915/bios: convert to struct drm_device based logging macros.
+>   drm/i915/audio: convert to new struct drm_device logging macros.
+>   drm/i915/bw: convert to new drm_device based logging macros.
+>   drm/i915/cdclk: use new struct drm_device logging macros.
+>
+>  .../gpu/drm/i915/display/intel_atomic_plane.c |   9 +-
+>  drivers/gpu/drm/i915/display/intel_audio.c    |  73 ++--
+>  drivers/gpu/drm/i915/display/intel_bios.c     | 357 +++++++++++-------
+>  drivers/gpu/drm/i915/display/intel_bw.c       |  29 +-
+>  drivers/gpu/drm/i915/display/intel_cdclk.c    | 109 +++---
+>  5 files changed, 339 insertions(+), 238 deletions(-)
 
->  =
-
->  	mem_type =3D INTEL_MEMORY_SYSTEM;
->  	if (HAS_LMEM(to_i915(dev)))
-> -- =
-
-> 2.25.0
-> =
-
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
+-- 
+Jani Nikula, Intel Open Source Graphics Center
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
