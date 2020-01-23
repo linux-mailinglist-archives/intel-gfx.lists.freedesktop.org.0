@@ -2,50 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 416431470E2
-	for <lists+intel-gfx@lfdr.de>; Thu, 23 Jan 2020 19:37:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C9B181470D1
+	for <lists+intel-gfx@lfdr.de>; Thu, 23 Jan 2020 19:33:04 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5879E6E10C;
-	Thu, 23 Jan 2020 18:37:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 22E546FE27;
+	Thu, 23 Jan 2020 18:33:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 331FD6E107
- for <intel-gfx@lists.freedesktop.org>; Thu, 23 Jan 2020 18:36:59 +0000 (UTC)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9E21E6FE27
+ for <intel-gfx@lists.freedesktop.org>; Thu, 23 Jan 2020 18:33:01 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by orsmga105.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 23 Jan 2020 10:19:49 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,354,1574150400"; d="scan'208";a="289257004"
-Received: from fmsmsx104.amr.corp.intel.com ([10.18.124.202])
- by fmsmga001.fm.intel.com with ESMTP; 23 Jan 2020 10:19:48 -0800
-Received: from FMSMSX110.amr.corp.intel.com (10.18.116.10) by
- fmsmsx104.amr.corp.intel.com (10.18.124.202) with Microsoft SMTP Server (TLS)
- id 14.3.439.0; Thu, 23 Jan 2020 10:19:48 -0800
-Received: from fmsmsx117.amr.corp.intel.com ([169.254.3.3]) by
- FMSMSX110.amr.corp.intel.com ([169.254.14.114]) with mapi id 14.03.0439.000;
- Thu, 23 Jan 2020 10:19:48 -0800
-From: "Souza, Jose" <jose.souza@intel.com>
-To: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "Kasireddy, Vivek" <vivek.kasireddy@intel.com>
-Thread-Topic: [Intel-gfx] [PATCH] drm/i915/ehl: Ensure that the DDI
- selection MUX is programmed correctly
-Thread-Index: AQHV0Ld9cDwTZlM6UkSs74Y77hdBsqf5GA4A
-Date: Thu, 23 Jan 2020 18:19:47 +0000
-Message-ID: <dea7654f96c5910f8386b936668df68f81f28a52.camel@intel.com>
-References: <20200121235848.8457-1-vivek.kasireddy@intel.com>
-In-Reply-To: <20200121235848.8457-1-vivek.kasireddy@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.24.12.248]
-Content-ID: <CA18852BA714974BB7820C38F72B8397@intel.com>
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga106.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 23 Jan 2020 10:27:01 -0800
+X-IronPort-AV: E=Sophos;i="5.70,354,1574150400"; d="scan'208";a="220751884"
+Received: from zye4-mobl1.amr.corp.intel.com (HELO [10.79.152.138])
+ ([10.79.152.138])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-SHA;
+ 23 Jan 2020 10:27:00 -0800
+To: Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
+ intel-gfx@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>
+References: <20200122194825.101240-1-michal.wajdeczko@intel.com>
+ <67edac14-e319-a1b2-76a1-1404ca5836e2@intel.com>
+ <157979173710.19995.3438477214193047615@skylake-alporthouse-com>
+ <op.0euq22k9xaggs7@mwajdecz-mobl1.ger.corp.intel.com>
+From: "Ye, Tony" <tony.ye@intel.com>
+Message-ID: <2f7cc5aa-026f-c710-fc98-383d455d3b01@intel.com>
+Date: Thu, 23 Jan 2020 10:26:58 -0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.2.2
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/ehl: Ensure that the DDI selection
- MUX is programmed correctly
+In-Reply-To: <op.0euq22k9xaggs7@mwajdecz-mobl1.ger.corp.intel.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/huc: Fix error reported by
+ I915_PARAM_HUC_STATUS
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,99 +51,94 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-15"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gVHVlLCAyMDIwLTAxLTIxIGF0IDE1OjU4IC0wODAwLCBWaXZlayBLYXNpcmVkZHkgd3JvdGU6
-DQo+IFBlcmhhcHMgaW4gc29tZSBjYXNlcyB0aGUgQklPUy9HT1Agb3Igb3RoZXIgZmlybXdhcmUg
-bWF5IHR1cm4gb24NCj4gUEhZIEEgYnV0IG1heSBub3QgcHJvZ3JhbSB0aGUgTVVYIGNvcnJlY3Rs
-eS4gVGhlcmVmb3JlLCByZS1wcm9ncmFtDQo+IFBIWSBBIGlmIGl0IGlzIGRldGVybWluZWQgYWZ0
-ZXIgcmVhZGluZyB0aGUgVkJUIHRoYXQgdGhlIHZhbHVlDQo+IHByb2dyYW1tZWQgZm9yIHRoZSBN
-VVggYml0IGRvZXMgbm90IG1hdGNoIHRoZSBleHBlY3RlZCB2YWx1ZS4NCg0KVGhpcyB3YXMgY2F1
-c2luZyB0aGUgTVNUIGlzc3VlIHRoYXQgeW91IG1lbnRpb25lZD8NCkFueXdheSBsb29rcyBtb3Jl
-IHNhZmUgZG8gdGhpcyB0byBwcm90ZWN0IGk5MTUgZnJvbSBpc3N1ZXMgaW4gZmlybXdhcmUuDQoN
-ClJldmlld2VkLWJ5OiBKb3PDqSBSb2JlcnRvIGRlIFNvdXphIDxqb3NlLnNvdXphQGludGVsLmNv
-bT4NCg0KPiANCj4gQ2M6IE1hdHQgUm9wZXIgPG1hdHRoZXcuZC5yb3BlckBpbnRlbC5jb20+DQo+
-IFNpZ25lZC1vZmYtYnk6IFZpdmVrIEthc2lyZWRkeSA8dml2ZWsua2FzaXJlZGR5QGludGVsLmNv
-bT4NCj4gLS0tDQo+ICAuLi4vZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfY29tYm9fcGh5LmMg
-ICAgfCA3NCArKysrKysrKysrKy0tLS0NCj4gLS0tLQ0KPiAgMSBmaWxlIGNoYW5nZWQsIDQ1IGlu
-c2VydGlvbnMoKyksIDI5IGRlbGV0aW9ucygtKQ0KPiANCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMv
-Z3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfY29tYm9fcGh5LmMNCj4gYi9kcml2ZXJzL2dwdS9k
-cm0vaTkxNS9kaXNwbGF5L2ludGVsX2NvbWJvX3BoeS5jDQo+IGluZGV4IDVmNTRhY2E3YzM2Zi4u
-ZWM2M2MyNjU3OTIzIDEwMDY0NA0KPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5
-L2ludGVsX2NvbWJvX3BoeS5jDQo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkv
-aW50ZWxfY29tYm9fcGh5LmMNCj4gQEAgLTE5MSwyMCArMTkxLDU3IEBAIHN0YXRpYyBib29sIGlj
-bF9jb21ib19waHlfZW5hYmxlZChzdHJ1Y3QNCj4gZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYs
-DQo+ICAJCQkoSTkxNV9SRUFEKElDTF9QT1JUX0NPTVBfRFcwKHBoeSkpICYNCj4gQ09NUF9JTklU
-KTsNCj4gIH0NCj4gIA0KPiArc3RhdGljIGJvb2wgZWhsX3ZidF9kZGlfZF9wcmVzZW50KHN0cnVj
-dCBkcm1faTkxNV9wcml2YXRlICppOTE1KQ0KPiArew0KPiArCWJvb2wgZGRpX2FfcHJlc2VudCA9
-IGludGVsX2Jpb3NfaXNfcG9ydF9wcmVzZW50KGk5MTUsIFBPUlRfQSk7DQo+ICsJYm9vbCBkZGlf
-ZF9wcmVzZW50ID0gaW50ZWxfYmlvc19pc19wb3J0X3ByZXNlbnQoaTkxNSwgUE9SVF9EKTsNCj4g
-Kwlib29sIGRzaV9wcmVzZW50ID0gaW50ZWxfYmlvc19pc19kc2lfcHJlc2VudChpOTE1LCBOVUxM
-KTsNCj4gKw0KPiArCS8qDQo+ICsJICogVkJUJ3MgJ2R2byBwb3J0JyBmaWVsZCBmb3IgY2hpbGQg
-ZGV2aWNlcyByZWZlcmVuY2VzIHRoZSBEREksDQo+IG5vdA0KPiArCSAqIHRoZSBQSFkuICBTbyBp
-ZiBjb21ibyBQSFkgQSBpcyB3aXJlZCB1cCB0byBkcml2ZSBhbiBleHRlcm5hbA0KPiArCSAqIGRp
-c3BsYXksIHdlIHNob3VsZCBzZWUgYSBjaGlsZCBkZXZpY2UgcHJlc2VudCBvbiBQT1JUX0QgYW5k
-DQo+ICsJICogbm90aGluZyBvbiBQT1JUX0EgYW5kIG5vIERTSS4NCj4gKwkgKi8NCj4gKwlpZiAo
-ZGRpX2RfcHJlc2VudCAmJiAhZGRpX2FfcHJlc2VudCAmJiAhZHNpX3ByZXNlbnQpDQo+ICsJCXJl
-dHVybiB0cnVlOw0KPiArDQo+ICsJLyoNCj4gKwkgKiBJZiB3ZSBlbmNvdW50ZXIgYSBWQlQgdGhh
-dCBjbGFpbXMgdG8gaGF2ZSBhbiBleHRlcm5hbA0KPiBkaXNwbGF5IG9uDQo+ICsJICogRERJLUQg
-X2FuZF8gYW4gaW50ZXJuYWwgZGlzcGxheSBvbiBEREktQS9EU0kgbGVhdmUgYW4gZXJyb3INCj4g
-bWVzc2FnZQ0KPiArCSAqIGluIHRoZSBsb2cgYW5kIGxldCB0aGUgaW50ZXJuYWwgZGlzcGxheSB3
-aW4uDQo+ICsJICovDQo+ICsJaWYgKGRkaV9kX3ByZXNlbnQpDQo+ICsJCURSTV9FUlJPUigiVkJU
-IGNsYWltcyB0byBoYXZlIGJvdGggaW50ZXJuYWwgYW5kDQo+IGV4dGVybmFsIGRpc3BsYXlzIG9u
-IFBIWSBBLiAgQ29uZmlndXJpbmcgZm9yIGludGVybmFsLlxuIik7DQo+ICsNCj4gKwlyZXR1cm4g
-ZmFsc2U7DQo+ICt9DQo+ICsNCj4gIHN0YXRpYyBib29sIGljbF9jb21ib19waHlfdmVyaWZ5X3N0
-YXRlKHN0cnVjdCBkcm1faTkxNV9wcml2YXRlDQo+ICpkZXZfcHJpdiwNCj4gIAkJCQkgICAgICAg
-ZW51bSBwaHkgcGh5KQ0KPiAgew0KPiAgCWJvb2wgcmV0Ow0KPiArCXUzMiBleHBlY3RlZF92YWwg
-PSAwOw0KPiAgDQo+ICAJaWYgKCFpY2xfY29tYm9fcGh5X2VuYWJsZWQoZGV2X3ByaXYsIHBoeSkp
-DQo+ICAJCXJldHVybiBmYWxzZTsNCj4gIA0KPiAgCXJldCA9IGNubF92ZXJpZnlfcHJvY21vbl9y
-ZWZfdmFsdWVzKGRldl9wcml2LCBwaHkpOw0KPiAgDQo+IC0JaWYgKHBoeSA9PSBQSFlfQSkNCj4g
-KwlpZiAocGh5ID09IFBIWV9BKSB7DQo+ICAJCXJldCAmPSBjaGVja19waHlfcmVnKGRldl9wcml2
-LCBwaHksDQo+IElDTF9QT1JUX0NPTVBfRFc4KHBoeSksDQo+ICAJCQkJICAgICBJUkVGR0VOLCBJ
-UkVGR0VOKTsNCj4gIA0KPiArCQlpZiAoSVNfRUxLSEFSVExBS0UoZGV2X3ByaXYpKSB7DQo+ICsJ
-CQlpZiAoZWhsX3ZidF9kZGlfZF9wcmVzZW50KGRldl9wcml2KSkNCj4gKwkJCQlleHBlY3RlZF92
-YWwgPSBJQ0xfUEhZX01JU0NfTVVYX0RESUQ7DQo+ICsNCj4gKwkJCXJldCAmPSBjaGVja19waHlf
-cmVnKGRldl9wcml2LCBwaHksDQo+IElDTF9QSFlfTUlTQyhwaHkpLA0KPiArCQkJCQkgICAgIElD
-TF9QSFlfTUlTQ19NVVhfRERJRCwNCj4gKwkJCQkJICAgICBleHBlY3RlZF92YWwpOw0KPiArCQl9
-DQo+ICsJfQ0KPiArDQo+ICAJcmV0ICY9IGNoZWNrX3BoeV9yZWcoZGV2X3ByaXYsIHBoeSwgSUNM
-X1BPUlRfQ0xfRFc1KHBoeSksDQo+ICAJCQkgICAgIENMX1BPV0VSX0RPV05fRU5BQkxFLA0KPiBD
-TF9QT1dFUl9ET1dOX0VOQUJMRSk7DQo+ICANCj4gQEAgLTI2MywzMiArMzAwLDYgQEAgdm9pZCBp
-bnRlbF9jb21ib19waHlfcG93ZXJfdXBfbGFuZXMoc3RydWN0DQo+IGRybV9pOTE1X3ByaXZhdGUg
-KmRldl9wcml2LA0KPiAgCUk5MTVfV1JJVEUoSUNMX1BPUlRfQ0xfRFcxMChwaHkpLCB2YWwpOw0K
-PiAgfQ0KPiAgDQo+IC1zdGF0aWMgdTMyIGVobF9jb21ib19waHlfYV9tdXgoc3RydWN0IGRybV9p
-OTE1X3ByaXZhdGUgKmk5MTUsIHUzMg0KPiB2YWwpDQo+IC17DQo+IC0JYm9vbCBkZGlfYV9wcmVz
-ZW50ID0gaW50ZWxfYmlvc19pc19wb3J0X3ByZXNlbnQoaTkxNSwgUE9SVF9BKTsNCj4gLQlib29s
-IGRkaV9kX3ByZXNlbnQgPSBpbnRlbF9iaW9zX2lzX3BvcnRfcHJlc2VudChpOTE1LCBQT1JUX0Qp
-Ow0KPiAtCWJvb2wgZHNpX3ByZXNlbnQgPSBpbnRlbF9iaW9zX2lzX2RzaV9wcmVzZW50KGk5MTUs
-IE5VTEwpOw0KPiAtDQo+IC0JLyoNCj4gLQkgKiBWQlQncyAnZHZvIHBvcnQnIGZpZWxkIGZvciBj
-aGlsZCBkZXZpY2VzIHJlZmVyZW5jZXMgdGhlIERESSwNCj4gbm90DQo+IC0JICogdGhlIFBIWS4g
-IFNvIGlmIGNvbWJvIFBIWSBBIGlzIHdpcmVkIHVwIHRvIGRyaXZlIGFuIGV4dGVybmFsDQo+IC0J
-ICogZGlzcGxheSwgd2Ugc2hvdWxkIHNlZSBhIGNoaWxkIGRldmljZSBwcmVzZW50IG9uIFBPUlRf
-RCBhbmQNCj4gLQkgKiBub3RoaW5nIG9uIFBPUlRfQSBhbmQgbm8gRFNJLg0KPiAtCSAqLw0KPiAt
-CWlmIChkZGlfZF9wcmVzZW50ICYmICFkZGlfYV9wcmVzZW50ICYmICFkc2lfcHJlc2VudCkNCj4g
-LQkJcmV0dXJuIHZhbCB8IElDTF9QSFlfTUlTQ19NVVhfRERJRDsNCj4gLQ0KPiAtCS8qDQo+IC0J
-ICogSWYgd2UgZW5jb3VudGVyIGEgVkJUIHRoYXQgY2xhaW1zIHRvIGhhdmUgYW4gZXh0ZXJuYWwN
-Cj4gZGlzcGxheSBvbg0KPiAtCSAqIERESS1EIF9hbmRfIGFuIGludGVybmFsIGRpc3BsYXkgb24g
-RERJLUEvRFNJIGxlYXZlIGFuIGVycm9yDQo+IG1lc3NhZ2UNCj4gLQkgKiBpbiB0aGUgbG9nIGFu
-ZCBsZXQgdGhlIGludGVybmFsIGRpc3BsYXkgd2luLg0KPiAtCSAqLw0KPiAtCWlmIChkZGlfZF9w
-cmVzZW50KQ0KPiAtCQlEUk1fRVJST1IoIlZCVCBjbGFpbXMgdG8gaGF2ZSBib3RoIGludGVybmFs
-IGFuZA0KPiBleHRlcm5hbCBkaXNwbGF5cyBvbiBQSFkgQS4gIENvbmZpZ3VyaW5nIGZvciBpbnRl
-cm5hbC5cbiIpOw0KPiAtDQo+IC0JcmV0dXJuIHZhbCAmIH5JQ0xfUEhZX01JU0NfTVVYX0RESUQ7
-DQo+IC19DQo+IC0NCj4gIHN0YXRpYyB2b2lkIGljbF9jb21ib19waHlzX2luaXQoc3RydWN0IGRy
-bV9pOTE1X3ByaXZhdGUgKmRldl9wcml2KQ0KPiAgew0KPiAgCWVudW0gcGh5IHBoeTsNCj4gQEAg
-LTMxOSw4ICszMzAsMTMgQEAgc3RhdGljIHZvaWQgaWNsX2NvbWJvX3BoeXNfaW5pdChzdHJ1Y3QN
-Cj4gZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYpDQo+ICAJCSAqICJpbnRlcm5hbCIgY2hpbGQg
-ZGV2aWNlcy4NCj4gIAkJICovDQo+ICAJCXZhbCA9IEk5MTVfUkVBRChJQ0xfUEhZX01JU0MocGh5
-KSk7DQo+IC0JCWlmIChJU19FTEtIQVJUTEFLRShkZXZfcHJpdikgJiYgcGh5ID09IFBIWV9BKQ0K
-PiAtCQkJdmFsID0gZWhsX2NvbWJvX3BoeV9hX211eChkZXZfcHJpdiwgdmFsKTsNCj4gKwkJaWYg
-KElTX0VMS0hBUlRMQUtFKGRldl9wcml2KSAmJiBwaHkgPT0gUEhZX0EpIHsNCj4gKwkJCXZhbCAm
-PSB+SUNMX1BIWV9NSVNDX01VWF9ERElEOw0KPiArDQo+ICsJCQlpZiAoZWhsX3ZidF9kZGlfZF9w
-cmVzZW50KGRldl9wcml2KSkNCj4gKwkJCQl2YWwgfD0gSUNMX1BIWV9NSVNDX01VWF9ERElEOw0K
-PiArCQl9DQo+ICsNCj4gIAkJdmFsICY9IH5JQ0xfUEhZX01JU0NfREVfSU9fQ09NUF9QV1JfRE9X
-TjsNCj4gIAkJSTkxNV9XUklURShJQ0xfUEhZX01JU0MocGh5KSwgdmFsKTsNCj4gIA0KX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxp
-bmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJl
-ZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+
+
+On 1/23/2020 7:38 AM, Michal Wajdeczko wrote:
+> On Thu, 23 Jan 2020 16:02:17 +0100, Chris Wilson =
+
+> <chris@chris-wilson.co.uk> wrote:
+> =
+
+>> Quoting Daniele Ceraolo Spurio (2020-01-22 23:52:33)
+>>>
+>>>
+>>> On 1/22/20 11:48 AM, Michal Wajdeczko wrote:
+>>> >=A0 From commit 84b1ca2f0e68 ("drm/i915/uc: prefer intel_gt over i915
+>>> > in GuC/HuC paths") we stopped using HUC_STATUS error -ENODEV only
+>>> > to indicate lack of HuC hardware and we started to use this error
+>>> > also for all other cases when HuC was not in use or supported.
+>>> >
+>>> > Fix that by relying again on HAS_GT_UC macro, since currently
+>>> > used function intel_huc_is_supported() is based on HuC firmware
+>>> > support which could be unsupported also due to force disabled
+>>> > GuC firmware.
+>>> >
+>>> > Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+>>> > Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+>>> > Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+>>> > Cc: Tony Ye <tony.ye@intel.com>
+>>>
+>>> Reviewed-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+>>
+>> Once upon a time did you (Michal) not argue we should indicate the lack
+>> of firmware in the error code? Something like
+>>
+>> if (!HAS_GT_UC(gt->i915))
+>> =A0=A0=A0=A0return -ENODEV;
+>>
+>> if (!intel_huc_is_supported(huc))
+>> =A0=A0=A0=A0return -ENOEXEC;
+> =
+
+> Yes, we discussed this here [1] together with [2] but we didn't
+> conclude our discussion due to different opinions on how represent
+> some states, in particular "manually disabled" state.
+> =
+
+> In this patch I just wanted to restore old notation.
+> =
+
+> But we can start new discussion, here is summary:
+> =
+
+> ------------------+----------+----------+----------
+>  =A0HuC state=A0=A0=A0=A0=A0=A0=A0 | today*=A0=A0 | option A | option B
+> ------------------+----------+----------+----------
+> no HuC hardware=A0=A0 | -ENODEV=A0 | -ENODEV=A0 | -ENODEV
+> GuC fw disabled=A0=A0 |=A0=A0 0=A0=A0=A0=A0=A0 |=A0=A0=A0=A0 0=A0=A0=A0 |=
+ -EOPNOTSUPP
+> HuC fw disabled=A0=A0 |=A0=A0 0=A0=A0=A0=A0=A0 |=A0=A0=A0=A0 0=A0=A0=A0 |=
+ -EOPNOTSUPP
+> HuC fw missing=A0=A0=A0 |=A0=A0 0=A0=A0=A0=A0=A0 | -ENOPKG=A0 | -ENOEXEC
+> HuC fw error=A0=A0=A0=A0=A0 |=A0=A0 0=A0=A0=A0=A0=A0 | -ENOEXEC | -ENOEXEC
+> HuC fw fail=A0=A0=A0=A0=A0=A0 |=A0=A0 0=A0=A0=A0=A0=A0 | -EACCES=A0 |=A0=
+=A0=A0 0
+
+What is the difference of HuC fw error and HuC fw fail here?
+
+Regards,
+Tony
+
+> HuC authenticated |=A0=A0 1=A0=A0=A0=A0=A0 |=A0=A0=A0=A0 1=A0=A0=A0 |=A0=
+=A0=A0 1
+> ------------------+----------+----------+----------
+> =
+
+> Note that all above should be compatible with media driver,
+> which explicitly looks for no error and value 1
+> =
+
+> Michal
+> =
+
+> [1] https://patchwork.freedesktop.org/patch/306419/?series=3D61001&rev=3D1
+> [2] https://patchwork.freedesktop.org/series/60800/#rev1
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
