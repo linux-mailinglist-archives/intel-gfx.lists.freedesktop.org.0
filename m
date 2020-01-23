@@ -1,31 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A8D5514733B
-	for <lists+intel-gfx@lfdr.de>; Thu, 23 Jan 2020 22:38:24 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id B031E147379
+	for <lists+intel-gfx@lfdr.de>; Thu, 23 Jan 2020 22:59:32 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 842146FE73;
-	Thu, 23 Jan 2020 21:38:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A29FA6E141;
+	Thu, 23 Jan 2020 21:59:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id D92416FE73;
- Thu, 23 Jan 2020 21:38:20 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id CF7C8A0119;
- Thu, 23 Jan 2020 21:38:20 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8D40D6E141
+ for <intel-gfx@lists.freedesktop.org>; Thu, 23 Jan 2020 21:59:28 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 23 Jan 2020 13:59:27 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,355,1574150400"; d="scan'208";a="228145567"
+Received: from labuser-z97x-ud5h.jf.intel.com (HELO intel.com)
+ ([10.165.21.211])
+ by orsmga003.jf.intel.com with ESMTP; 23 Jan 2020 13:59:27 -0800
+Date: Thu, 23 Jan 2020 14:00:33 -0800
+From: Manasi Navare <manasi.d.navare@intel.com>
+To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+Message-ID: <20200123220032.GA4379@intel.com>
+References: <20200123002415.31478-1-manasi.d.navare@intel.com>
+ <2b07d85811faa1a630403742975914bf5fc1c7ec.camel@intel.com>
+ <20200123183155.GW13686@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Anshuman Gupta" <anshuman.gupta@intel.com>
-Date: Thu, 23 Jan 2020 21:38:20 -0000
-Message-ID: <157981550082.1147.17829196462074336081@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200123132659.725-1-anshuman.gupta@intel.com>
-In-Reply-To: <20200123132659.725-1-anshuman.gupta@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_3_display_pipes_combination_system_support?=
+Content-Disposition: inline
+In-Reply-To: <20200123183155.GW13686@intel.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915/dp: Do not set master_trans
+ bit in bitmak if INVALID_TRANSCODER
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,35 +48,82 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Thu, Jan 23, 2020 at 08:31:55PM +0200, Ville Syrj=E4l=E4 wrote:
+> On Thu, Jan 23, 2020 at 06:25:29PM +0000, Souza, Jose wrote:
+> > On Wed, 2020-01-22 at 16:24 -0800, Manasi Navare wrote:
+> > > In the port sync mode, for the master crtc, the master_transcoder is
+> > > INVALID.
+> > > In that case since its value is -1, do not set the bit in the
+> > > bitmask.
+> > > =
 
-Series: 3 display pipes combination system support
-URL   : https://patchwork.freedesktop.org/series/72468/
-State : warning
+> > > Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > > Fixes: d0eed1545fe7 ("drm/i915: Fix post-fastset modeset check for
+> > > port sync")
+> > > Signed-off-by: Manasi Navare <manasi.d.navare@intel.com>
+> > > ---
+> > >  drivers/gpu/drm/i915/display/intel_display.c | 6 ++++--
+> > >  1 file changed, 4 insertions(+), 2 deletions(-)
+> > > =
 
-== Summary ==
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_display.c
+> > > b/drivers/gpu/drm/i915/display/intel_display.c
+> > > index 878d331b9e8c..79f9054078ea 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_display.c
+> > > +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> > > @@ -14649,8 +14649,10 @@ static int intel_atomic_check(struct
+> > > drm_device *dev,
+> > >  		}
+> > >  =
 
-$ dim checkpatch origin/drm-tip
-ff6c602c84d0 drm/i915: Iterate over pipe and skip the disabled one
-dbdf2193b56c drm/i915: Remove (pipe == crtc->index) asummption
-d0cb3e6e2556 drm/i915: Fix wrongly populated plane possible_crtcs bit mask
-3d9a940bfc7e drm/i915: Get right max plane stride
-7c0eef4e0e3c drm/i915: Add WARN_ON in intel_get_crtc_for_pipe()
-ca9423f88fb2 drm/i915: Enable 3 display pipes support
--:31: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#31: FILE: drivers/gpu/drm/i915/intel_device_info.c:1004:
-+		if (enabled_mask == 0 || (!is_power_of_2(enabled_mask + 1) &&
-+		    (INTEL_GEN(dev_priv) <= 11 || IS_TIGERLAKE(dev_priv))))
+> > >  		if (is_trans_port_sync_mode(new_crtc_state)) {
+> > > -			u8 trans =3D new_crtc_state-
+> > > >sync_mode_slaves_mask |
+> > > -				   BIT(new_crtc_state-
+> > > >master_transcoder);
+> > > +			u8 trans =3D new_crtc_state-
+> > > >sync_mode_slaves_mask;
+> > > +
+> > > +			if (new_crtc_state->master_transcoder !=3D
+> > > INVALID_TRANSCODER)
+> > > +				trans |=3D BIT(new_crtc_state-
+> > > >master_transcoder);
+> > =
 
-total: 0 errors, 0 warnings, 1 checks, 14 lines checked
+> > Why not set master_transcoder in port sync master too? Would avoid have
+> > this check here and in future other places.
+> =
 
+> Not how the hardware works. So would complicate hw readout and
+> programming code needlessly.
+
+Yes and thats how we identify that it is the master since its master trans =
+is INVALID
+
+Manasi
+
+> =
+
+> > =
+
+> > >  =
+
+> > >  			if (intel_cpu_transcoders_need_modeset(state,
+> > > trans)) {
+> > >  				new_crtc_state->uapi.mode_changed =3D
+> > > true;
+> =
+
+> -- =
+
+> Ville Syrj=E4l=E4
+> Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
