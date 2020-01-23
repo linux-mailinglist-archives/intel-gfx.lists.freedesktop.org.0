@@ -2,31 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B5D4E146D2B
-	for <lists+intel-gfx@lfdr.de>; Thu, 23 Jan 2020 16:45:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CE680146D33
+	for <lists+intel-gfx@lfdr.de>; Thu, 23 Jan 2020 16:45:48 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 21B396FD8F;
-	Thu, 23 Jan 2020 15:45:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2F57D6E0D1;
+	Thu, 23 Jan 2020 15:45:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A91EB6FD8F
- for <intel-gfx@lists.freedesktop.org>; Thu, 23 Jan 2020 15:45:27 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8FADF6E0D1;
+ Thu, 23 Jan 2020 15:45:46 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 23 Jan 2020 07:45:26 -0800
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 23 Jan 2020 07:45:46 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,354,1574150400"; d="scan'208";a="221558940"
+X-IronPort-AV: E=Sophos;i="5.70,354,1574150400"; d="scan'208";a="307859382"
 Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by fmsmga007.fm.intel.com with SMTP; 23 Jan 2020 07:45:24 -0800
+ by orsmga001.jf.intel.com with SMTP; 23 Jan 2020 07:45:42 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 23 Jan 2020 17:45:24 +0200
+ Thu, 23 Jan 2020 17:45:42 +0200
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 23 Jan 2020 17:45:22 +0200
-Message-Id: <20200123154524.12206-1-ville.syrjala@linux.intel.com>
+To: dri-devel@lists.freedesktop.org
+Date: Thu, 23 Jan 2020 17:45:40 +0200
+Message-Id: <20200123154542.12271-1-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.24.1
 MIME-Version: 1.0
 Subject: [Intel-gfx] [PATCH 1/3] drm/dp: Include the AUX CH name in the
@@ -43,6 +43,7 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
