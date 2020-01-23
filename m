@@ -1,37 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8DB4A146A95
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id D9A72146A96
 	for <lists+intel-gfx@lfdr.de>; Thu, 23 Jan 2020 15:01:39 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2E8EC6FCDD;
-	Thu, 23 Jan 2020 14:00:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A965B6E06B;
+	Thu, 23 Jan 2020 14:01:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 610EE6FCDE
- for <intel-gfx@lists.freedesktop.org>; Thu, 23 Jan 2020 14:00:39 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 339396E06B
+ for <intel-gfx@lists.freedesktop.org>; Thu, 23 Jan 2020 14:01:31 +0000 (UTC)
+X-Amp-Result: UNSCANNABLE
 X-Amp-File-Uploaded: False
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 23 Jan 2020 06:00:38 -0800
-X-IronPort-AV: E=Sophos;i="5.70,354,1574150400"; d="scan'208";a="228005359"
-Received: from jnikula-mobl3.fi.intel.com (HELO localhost) ([10.237.66.161])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 23 Jan 2020 06:00:36 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 23 Jan 2020 16:00:04 +0200
-Message-Id: <20200123140004.14136-6-jani.nikula@intel.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200123140004.14136-1-jani.nikula@intel.com>
-References: <20200123140004.14136-1-jani.nikula@intel.com>
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 23 Jan 2020 06:01:30 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,354,1574150400"; d="scan'208";a="259840293"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by fmsmga002.fm.intel.com with SMTP; 23 Jan 2020 06:01:28 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Thu, 23 Jan 2020 16:01:28 +0200
+Date: Thu, 23 Jan 2020 16:01:28 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Manasi Navare <manasi.d.navare@intel.com>
+Message-ID: <20200123140128.GR13686@intel.com>
+References: <20200123002415.31478-1-manasi.d.navare@intel.com>
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Subject: [Intel-gfx] [PATCH RESEND 6/6] drm/i915/pm: use intel de functions
- for forcewake register access
+Content-Disposition: inline
+In-Reply-To: <20200123002415.31478-1-manasi.d.navare@intel.com>
+X-Patchwork-Hint: comment
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915/dp: Do not set master_trans
+ bit in bitmak if INVALID_TRANSCODER
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,52 +47,59 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Move away from I915_READ_FW() and I915_WRITE_FW() in display code, and
-switch to using intel_de_read_fw() and intel_de_write_fw(),
-respectively.
+On Wed, Jan 22, 2020 at 04:24:14PM -0800, Manasi Navare wrote:
+> In the port sync mode, for the master crtc, the master_transcoder is INVA=
+LID.
+> In that case since its value is -1, do not set the bit in the bitmask.
+> =
 
-No functional changes.
+> Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> Fixes: d0eed1545fe7 ("drm/i915: Fix post-fastset modeset check for port s=
+ync")
+> Signed-off-by: Manasi Navare <manasi.d.navare@intel.com>
 
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/intel_pm.c | 7 ++++---
- 1 file changed, 4 insertions(+), 3 deletions(-)
+Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
 
-diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel_pm.c
-index 36d158d6c5b2..1cf909d8347b 100644
---- a/drivers/gpu/drm/i915/intel_pm.c
-+++ b/drivers/gpu/drm/i915/intel_pm.c
-@@ -5061,9 +5061,10 @@ static void skl_ddb_entry_write(struct drm_i915_private *dev_priv,
- 				const struct skl_ddb_entry *entry)
- {
- 	if (entry->end)
--		I915_WRITE_FW(reg, (entry->end - 1) << 16 | entry->start);
-+		intel_de_write_fw(dev_priv, reg,
-+				  (entry->end - 1) << 16 | entry->start);
- 	else
--		I915_WRITE_FW(reg, 0);
-+		intel_de_write_fw(dev_priv, reg, 0);
- }
- 
- static void skl_write_wm_level(struct drm_i915_private *dev_priv,
-@@ -5079,7 +5080,7 @@ static void skl_write_wm_level(struct drm_i915_private *dev_priv,
- 	val |= level->plane_res_b;
- 	val |= level->plane_res_l << PLANE_WM_LINES_SHIFT;
- 
--	I915_WRITE_FW(reg, val);
-+	intel_de_write_fw(dev_priv, reg, val);
- }
- 
- void skl_write_plane_wm(struct intel_plane *plane,
--- 
-2.20.1
+> ---
+>  drivers/gpu/drm/i915/display/intel_display.c | 6 ++++--
+>  1 file changed, 4 insertions(+), 2 deletions(-)
+> =
 
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/d=
+rm/i915/display/intel_display.c
+> index 878d331b9e8c..79f9054078ea 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -14649,8 +14649,10 @@ static int intel_atomic_check(struct drm_device =
+*dev,
+>  		}
+>  =
+
+>  		if (is_trans_port_sync_mode(new_crtc_state)) {
+> -			u8 trans =3D new_crtc_state->sync_mode_slaves_mask |
+> -				   BIT(new_crtc_state->master_transcoder);
+> +			u8 trans =3D new_crtc_state->sync_mode_slaves_mask;
+> +
+> +			if (new_crtc_state->master_transcoder !=3D INVALID_TRANSCODER)
+> +				trans |=3D BIT(new_crtc_state->master_transcoder);
+>  =
+
+>  			if (intel_cpu_transcoders_need_modeset(state, trans)) {
+>  				new_crtc_state->uapi.mode_changed =3D true;
+> -- =
+
+> 2.19.1
+
+-- =
+
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
