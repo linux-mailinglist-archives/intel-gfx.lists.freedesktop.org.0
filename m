@@ -1,44 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 95ED914721C
-	for <lists+intel-gfx@lfdr.de>; Thu, 23 Jan 2020 20:50:31 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D98BF147234
+	for <lists+intel-gfx@lfdr.de>; Thu, 23 Jan 2020 20:57:45 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E37726E124;
-	Thu, 23 Jan 2020 19:50:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A57846E126;
+	Thu, 23 Jan 2020 19:57:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 384FF6E124
- for <intel-gfx@lists.freedesktop.org>; Thu, 23 Jan 2020 19:50:29 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 23 Jan 2020 11:50:28 -0800
-X-IronPort-AV: E=Sophos;i="5.70,354,1574150400"; d="scan'208";a="220775535"
-Received: from zye4-mobl1.amr.corp.intel.com (HELO [10.79.152.138])
- ([10.79.152.138])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-SHA;
- 23 Jan 2020 11:50:27 -0800
-To: Michal Wajdeczko <michal.wajdeczko@intel.com>,
- Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
- intel-gfx@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>
-References: <20200122194825.101240-1-michal.wajdeczko@intel.com>
- <67edac14-e319-a1b2-76a1-1404ca5836e2@intel.com>
- <157979173710.19995.3438477214193047615@skylake-alporthouse-com>
- <op.0euq22k9xaggs7@mwajdecz-mobl1.ger.corp.intel.com>
-From: "Ye, Tony" <tony.ye@intel.com>
-Message-ID: <2343d52c-0648-71b7-5092-c69c16602e56@intel.com>
-Date: Thu, 23 Jan 2020 11:50:25 -0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
- Thunderbird/68.2.2
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id A277D6E126;
+ Thu, 23 Jan 2020 19:57:42 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 9A0F7A0118;
+ Thu, 23 Jan 2020 19:57:42 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <op.0euq22k9xaggs7@mwajdecz-mobl1.ger.corp.intel.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/huc: Fix error reported by
- I915_PARAM_HUC_STATUS
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Pankaj Bharadiya" <pankaj.laxminarayan.bharadiya@intel.com>
+Date: Thu, 23 Jan 2020 19:57:42 -0000
+Message-ID: <157980946260.1144.7028520315962507813@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200123112809.12185-1-pankaj.laxminarayan.bharadiya@intel.com>
+In-Reply-To: <20200123112809.12185-1-pankaj.laxminarayan.bharadiya@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm=3A_Introduce_struct_drm=5Fdevice_based_WARN*_and_use_th?=
+ =?utf-8?q?em_in_i915_=28rev3=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,123 +39,78 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-15"; Format="flowed"
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+== Series Details ==
 
+Series: drm: Introduce struct drm_device based WARN* and use them in i915 (rev3)
+URL   : https://patchwork.freedesktop.org/series/72035/
+State : warning
 
-On 1/23/2020 7:38 AM, Michal Wajdeczko wrote:
-> On Thu, 23 Jan 2020 16:02:17 +0100, Chris Wilson =
+== Summary ==
 
-> <chris@chris-wilson.co.uk> wrote:
-> =
+$ dim checkpatch origin/drm-tip
+ab441b2f141b drm/i915/display: Make WARN* drm specific where drm_device ptr is available
+-:226: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#226: FILE: drivers/gpu/drm/i915/display/intel_display.c:10514:
++		drm_WARN_ON(dev, !pll->info->funcs->get_hw_state(dev_priv, pll,
+ 						&pipe_config->dpll_hw_state));
 
->> Quoting Daniele Ceraolo Spurio (2020-01-22 23:52:33)
->>>
->>>
->>> On 1/22/20 11:48 AM, Michal Wajdeczko wrote:
->>> >=A0 From commit 84b1ca2f0e68 ("drm/i915/uc: prefer intel_gt over i915
->>> > in GuC/HuC paths") we stopped using HUC_STATUS error -ENODEV only
->>> > to indicate lack of HuC hardware and we started to use this error
->>> > also for all other cases when HuC was not in use or supported.
->>> >
->>> > Fix that by relying again on HAS_GT_UC macro, since currently
->>> > used function intel_huc_is_supported() is based on HuC firmware
->>> > support which could be unsupported also due to force disabled
->>> > GuC firmware.
->>> >
->>> > Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
->>> > Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
->>> > Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
->>> > Cc: Tony Ye <tony.ye@intel.com>
->>>
->>> Reviewed-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
->>
->> Once upon a time did you (Michal) not argue we should indicate the lack
->> of firmware in the error code? Something like
->>
->> if (!HAS_GT_UC(gt->i915))
->> =A0=A0=A0=A0return -ENODEV;
->>
->> if (!intel_huc_is_supported(huc))
->> =A0=A0=A0=A0return -ENOEXEC;
-> =
+total: 0 errors, 0 warnings, 1 checks, 390 lines checked
+f0a3afb9ae23 drm/i915/display: Make WARN* drm specific where drm_priv ptr is available
+-:1247: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#1247: FILE: drivers/gpu/drm/i915/display/intel_display.c:15207:
++		drm_WARN_ON(&dev_priv->drm,
++		    skl_ddb_allocation_overlaps(&new_crtc_state->wm.skl.ddb,
 
-> Yes, we discussed this here [1] together with [2] but we didn't
-> conclude our discussion due to different opinions on how represent
-> some states, in particular "manually disabled" state.
-> =
+-:1258: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#1258: FILE: drivers/gpu/drm/i915/display/intel_display.c:15243:
++		drm_WARN_ON(&dev_priv->drm,
++			skl_ddb_allocation_overlaps(&new_crtc_state->wm.skl.ddb,
 
-> In this patch I just wanted to restore old notation.
-> =
+-:1548: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#1548: FILE: drivers/gpu/drm/i915/display/intel_display_power.c:1067:
++	drm_WARN_ON(&dev_priv->drm,
++	    intel_cdclk_needs_modeset(&dev_priv->cdclk.hw, &cdclk_state));
 
-> But we can start new discussion, here is summary:
-> =
+-:2052: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#2052: FILE: drivers/gpu/drm/i915/display/intel_dpll_mgr.c:107:
++	if (drm_WARN_ON(&dev_priv->drm, pll < dev_priv->shared_dplls ||
++		pll > &dev_priv->shared_dplls[dev_priv->num_shared_dpll]))
 
-> ------------------+----------+----------+----------
->  =A0HuC state=A0=A0=A0=A0=A0=A0=A0 | today*=A0=A0 | option A | option B
-> ------------------+----------+----------+----------
-> no HuC hardware=A0=A0 | -ENODEV=A0 | -ENODEV=A0 | -ENODEV
-> GuC fw disabled=A0=A0 |=A0=A0 0=A0=A0=A0=A0=A0 |=A0=A0=A0=A0 0=A0=A0=A0 |=
- -EOPNOTSUPP
-> HuC fw disabled=A0=A0 |=A0=A0 0=A0=A0=A0=A0=A0 |=A0=A0=A0=A0 0=A0=A0=A0 |=
- -EOPNOTSUPP
-> HuC fw missing=A0=A0=A0 |=A0=A0 0=A0=A0=A0=A0=A0 | -ENOPKG=A0 | -ENOEXEC
-> HuC fw error=A0=A0=A0=A0=A0 |=A0=A0 0=A0=A0=A0=A0=A0 | -ENOEXEC | -ENOEXEC
-> HuC fw fail=A0=A0=A0=A0=A0=A0 |=A0=A0 0=A0=A0=A0=A0=A0 | -EACCES=A0 |=A0=
-=A0=A0 0
-> HuC authenticated |=A0=A0 1=A0=A0=A0=A0=A0 |=A0=A0=A0=A0 1=A0=A0=A0 |=A0=
-=A0=A0 1
-> ------------------+----------+----------+----------
-> =
+-:2071: CHECK:COMPARISON_TO_NULL: Comparison to NULL could be written "!pll"
+#2071: FILE: drivers/gpu/drm/i915/display/intel_dpll_mgr.c:144:
++	if (drm_WARN_ON(&dev_priv->drm, pll == NULL))
 
-> Note that all above should be compatible with media driver,
-> which explicitly looks for no error and value 1
+-:2089: CHECK:COMPARISON_TO_NULL: Comparison to NULL could be written "!pll"
+#2089: FILE: drivers/gpu/drm/i915/display/intel_dpll_mgr.c:173:
++	if (drm_WARN_ON(&dev_priv->drm, pll == NULL))
 
- From user space perspective, e.g. the new igt huc_copy, option B looks =
+-:2917: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#2917: FILE: drivers/gpu/drm/i915/display/intel_tc.c:414:
++	drm_WARN_ON(&i915->drm, intel_display_power_is_enabled(i915,
++					intel_aux_power_domain(dig_port)));
 
-like this:
+total: 0 errors, 0 warnings, 7 checks, 2502 lines checked
+a4e641c96669 drm/i915/gvt: Make WARN* drm specific where drm_priv ptr is available
+ee7e674f9214 drm/i915/gvt: Make WARN* drm specific where vgpu ptr is available
+-:296: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#296: FILE: drivers/gpu/drm/i915/gvt/handlers.c:1373:
++		drm_WARN_ONCE(&i915->drm, 1,
++				"VM(%d): iGVT-g doesn't support GuC\n",
 
-    pg.param =3D I915_PARAM_HUC_STATUS;
-    pg.value =3D &val;
-    ret =3D ioctl(fd, DRM_IOCTL_I915_GETPARAM, &pg);
+-:310: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#310: FILE: drivers/gpu/drm/i915/gvt/handlers.c:1389:
++		drm_WARN(&i915->drm, 1,
++				"VM(%d): Use physical address for TRTT!\n",
 
-------------------+----------+----------+------------+----------
-   HuC state       | ret      | pg.value |  errno     | huc_copy
-------------------+----------+----------+------------+----------
-no HuC hardware   |  -1      |     0    | -ENODEV    | SKIP
-GuC fw disabled   |  -1      |     0    | -EOPNOTSUPP| SKIP
-HuC fw disabled   |  -1      |     0    | -EOPNOTSUPP| SKIP
-HuC fw missing    |  -1      |     0    | -ENOEXEC   | FAIL
-HuC fw error      |  -1      |     0    | -ENOEXEC   | FAIL
-HuC fw fail       |   0      |     0    |    0       | FAIL
-HuC authenticated |   0      |     1    |    0       | continue
-------------------+----------+----------+------------+----------
+total: 0 errors, 0 warnings, 2 checks, 519 lines checked
 
-It can distinguish the SKIP and FAIL conditions. But looks not elegant =
-
-enough.
-The pg.value is wasted as it is not pushed back to user space when =
-
-intel_huc_check_status() < 0.
-
-	case I915_PARAM_HUC_STATUS:
-		value =3D intel_huc_check_status(&i915->gt.uc.huc);
-		if (value < 0)
-			return value;
-		break;
-
-Regards,
-Tony
-> =
-
-> Michal
-> =
-
-> [1] https://patchwork.freedesktop.org/patch/306419/?series=3D61001&rev=3D1
-> [2] https://patchwork.freedesktop.org/series/60800/#rev1
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
