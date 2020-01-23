@@ -2,30 +2,37 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 27B4914656C
-	for <lists+intel-gfx@lfdr.de>; Thu, 23 Jan 2020 11:13:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A3C6B1465DA
+	for <lists+intel-gfx@lfdr.de>; Thu, 23 Jan 2020 11:35:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4886B6FBA7;
-	Thu, 23 Jan 2020 10:13:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DF4696FBD5;
+	Thu, 23 Jan 2020 10:35:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8BC2E6FBA7
- for <intel-gfx@lists.freedesktop.org>; Thu, 23 Jan 2020 10:13:15 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19979854-1500050 
- for multiple; Thu, 23 Jan 2020 10:12:14 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 23 Jan 2020 10:12:12 +0000
-Message-Id: <20200123101212.1281264-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.25.0
-In-Reply-To: <20200122201822.889250-1-chris@chris-wilson.co.uk>
-References: <20200122201822.889250-1-chris@chris-wilson.co.uk>
+Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DE3586FBD4;
+ Thu, 23 Jan 2020 10:35:06 +0000 (UTC)
+Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr
+ [90.89.68.76])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by mail.kernel.org (Postfix) with ESMTPSA id 4EDF424125;
+ Thu, 23 Jan 2020 10:35:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=default; t=1579775706;
+ bh=IXu+CLEblbAfeMyZJCmgJZsaCksImenwoK2df5bxwE4=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=cdk+7rh7vZ1sMNRBWjqf62EqgAM5TKCvX++XhGiwdL/tiBMAat16JRdq5a+GXn3wn
+ R10QsyYOyfZ5JdG9gM70P3bvJtH8znbiOddJoAtiwjIb9hYLpxIWrMp40C3mr+/NTk
+ J6Gw5vYN+2qNINcatwN5LIzJ0E1hB1cXmUlewSwE=
+Date: Thu, 23 Jan 2020 11:35:03 +0100
+From: Maxime Ripard <mripard@kernel.org>
+To: Jani Nikula <jani.nikula@intel.com>
+Message-ID: <20200123103503.cgjqxbv6aw5pqtdp@gilmour.lan>
+References: <87eevrecnf.fsf@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v2] drm/i915/gt: Poison GTT scratch pages
+In-Reply-To: <87eevrecnf.fsf@intel.com>
+Subject: Re: [Intel-gfx] [PULL] topic/drm-warn for drm-misc-next
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,196 +45,61 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: dim-tools@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, Daniel Vetter <daniel.vetter@ffwll.ch>
+Content-Type: multipart/mixed; boundary="===============0281348199=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Using a clear page for scratch means that we have relatively benign
-errors in case it is accidentally used, but that can be rather too
-benign for debugging. If we poison the scratch, ideally it quickly
-results in an obvious error.
 
-v2: Set each page individual just in case we are using highmem for our
-scratch page.
+--===============0281348199==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="fvryeusxzof7xe6k"
+Content-Disposition: inline
 
-Suggested-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-Cc: Matthew Auld <matthew.william.auld@gmail.com>
----
- .../drm/i915/gem/selftests/i915_gem_context.c | 48 ++++++++++++++++---
- drivers/gpu/drm/i915/gt/intel_gtt.c           | 30 ++++++++++++
- 2 files changed, 72 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c b/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c
-index 7fc46861a54d..e23280dd8a98 100644
---- a/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c
-+++ b/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c
-@@ -1575,7 +1575,7 @@ static int read_from_scratch(struct i915_gem_context *ctx,
- 	struct drm_i915_private *i915 = ctx->i915;
- 	struct drm_i915_gem_object *obj;
- 	struct i915_address_space *vm;
--	const u32 RCS_GPR0 = 0x2600; /* not all engines have their own GPR! */
-+	const u32 GPR0 = engine->mmio_base + 0x600;
- 	const u32 result = 0x100;
- 	struct i915_request *rq;
- 	struct i915_vma *vma;
-@@ -1597,19 +1597,19 @@ static int read_from_scratch(struct i915_gem_context *ctx,
- 	memset(cmd, POISON_INUSE, PAGE_SIZE);
- 	if (INTEL_GEN(i915) >= 8) {
- 		*cmd++ = MI_LOAD_REGISTER_MEM_GEN8;
--		*cmd++ = RCS_GPR0;
-+		*cmd++ = GPR0;
- 		*cmd++ = lower_32_bits(offset);
- 		*cmd++ = upper_32_bits(offset);
- 		*cmd++ = MI_STORE_REGISTER_MEM_GEN8;
--		*cmd++ = RCS_GPR0;
-+		*cmd++ = GPR0;
- 		*cmd++ = result;
- 		*cmd++ = 0;
- 	} else {
- 		*cmd++ = MI_LOAD_REGISTER_MEM;
--		*cmd++ = RCS_GPR0;
-+		*cmd++ = GPR0;
- 		*cmd++ = offset;
- 		*cmd++ = MI_STORE_REGISTER_MEM;
--		*cmd++ = RCS_GPR0;
-+		*cmd++ = GPR0;
- 		*cmd++ = result;
- 	}
- 	*cmd = MI_BATCH_BUFFER_END;
-@@ -1686,6 +1686,28 @@ static int read_from_scratch(struct i915_gem_context *ctx,
- 	return err;
- }
- 
-+static int check_scratch_page(struct i915_gem_context *ctx, u32 *out)
-+{
-+	struct page *page = ctx_vm(ctx)->scratch[0].base.page;
-+	u32 *vaddr;
-+	int err = 0;
-+
-+	if (!page) {
-+		pr_err("No scratch page!\n");
-+		return -EINVAL;
-+	}
-+
-+	vaddr = kmap(page);
-+	memcpy(out, vaddr, sizeof(*out));
-+	if (memchr_inv(vaddr, *out, PAGE_SIZE)) {
-+		pr_err("Inconsistent initial state of scratch page!\n");
-+		err = -EINVAL;
-+	}
-+	kunmap(page);
-+
-+	return err;
-+}
-+
- static int igt_vm_isolation(void *arg)
- {
- 	struct drm_i915_private *i915 = arg;
-@@ -1696,6 +1718,7 @@ static int igt_vm_isolation(void *arg)
- 	I915_RND_STATE(prng);
- 	struct file *file;
- 	u64 vm_total;
-+	u32 expected;
- 	int err;
- 
- 	if (INTEL_GEN(i915) < 7)
-@@ -1720,12 +1743,21 @@ static int igt_vm_isolation(void *arg)
- 		goto out_file;
- 	}
- 
-+	/* Read the initial state of the scratch page */
-+	err = check_scratch_page(ctx_a, &expected);
-+	if (err)
-+		goto out_file;
-+
- 	ctx_b = live_context(i915, file);
- 	if (IS_ERR(ctx_b)) {
- 		err = PTR_ERR(ctx_b);
- 		goto out_file;
- 	}
- 
-+	err = check_scratch_page(ctx_b, &expected);
-+	if (err)
-+		goto out_file;
-+
- 	/* We can only test vm isolation, if the vm are distinct */
- 	if (ctx_vm(ctx_a) == ctx_vm(ctx_b))
- 		goto out_file;
-@@ -1743,6 +1775,10 @@ static int igt_vm_isolation(void *arg)
- 		if (!intel_engine_can_store_dword(engine))
- 			continue;
- 
-+		/* Not all engines have their own GPR! */
-+		if (INTEL_GEN(i915) < 8 && engine->class != RENDER_CLASS)
-+			continue;
-+
- 		while (!__igt_timeout(end_time, NULL)) {
- 			u32 value = 0xc5c5c5c5;
- 			u64 offset;
-@@ -1760,7 +1796,7 @@ static int igt_vm_isolation(void *arg)
- 			if (err)
- 				goto out_file;
- 
--			if (value) {
-+			if (value != expected) {
- 				pr_err("%s: Read %08x from scratch (offset 0x%08x_%08x), after %lu reads!\n",
- 				       engine->name, value,
- 				       upper_32_bits(offset),
-diff --git a/drivers/gpu/drm/i915/gt/intel_gtt.c b/drivers/gpu/drm/i915/gt/intel_gtt.c
-index 45d8e0019a8e..bb9a6e638175 100644
---- a/drivers/gpu/drm/i915/gt/intel_gtt.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gtt.c
-@@ -299,6 +299,25 @@ fill_page_dma(const struct i915_page_dma *p, const u64 val, unsigned int count)
- 	kunmap_atomic(memset64(kmap_atomic(p->page), val, count));
- }
- 
-+static void poison_scratch_page(struct page *page, unsigned long size)
-+{
-+	if (!IS_ENABLED(CONFIG_DRM_I915_DEBUG_GEM))
-+		return;
-+
-+	GEM_BUG_ON(!IS_ALIGNED(size, PAGE_SIZE));
-+
-+	do {
-+		void *vaddr;
-+
-+		vaddr = kmap(page);
-+		memset(vaddr, POISON_FREE, PAGE_SIZE);
-+		kunmap(page);
-+
-+		page = pfn_to_page(page_to_pfn(page) + 1);
-+		size -= PAGE_SIZE;
-+	} while (size);
-+}
-+
- int setup_scratch_page(struct i915_address_space *vm, gfp_t gfp)
- {
- 	unsigned long size;
-@@ -331,6 +350,17 @@ int setup_scratch_page(struct i915_address_space *vm, gfp_t gfp)
- 		if (unlikely(!page))
- 			goto skip;
- 
-+		/*
-+		 * Use a non-zero scratch page for debugging.
-+		 *
-+		 * We want a value that should be reasonably obvious
-+		 * to spot in the error state, while also causing a GPU hang
-+		 * if executed. We prefer using a clear page in production, so
-+		 * should it ever be accidentally used, the effect should be
-+		 * fairly benign.
-+		 */
-+		poison_scratch_page(page, size);
-+
- 		addr = dma_map_page_attrs(vm->dma,
- 					  page, 0, size,
- 					  PCI_DMA_BIDIRECTIONAL,
--- 
-2.25.0
+--fvryeusxzof7xe6k
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+
+On Wed, Jan 22, 2020 at 05:25:40PM +0200, Jani Nikula wrote:
+>
+> Hi Maarten/Maxime,
+>
+> Please pull the drm_device based drm_WARN* macros from the topic
+> branch. I'll pull the same to drm-intel-next-queued.
+>
+> I like to use the topic branch here, because due to timing it'll take
+> forever for the full feature route through drm-next and backmerges.
+>
+> The baseline was chosen using 'git merge-base drm-misc/drm-misc-next
+> drm-intel/drm-intel-next-queued'.
+
+Pulled, thanks!
+Maxime
+
+--fvryeusxzof7xe6k
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXil21wAKCRDj7w1vZxhR
+xegJAQCcAUM3OaZ+tUtMN5vBVLi8xAVQlI0B+Td+y11hxL08TAEAssoUr161MoB+
+ZrrJm/1kr1FwQYilY/QHcERVi0lIsQ0=
+=Emd1
+-----END PGP SIGNATURE-----
+
+--fvryeusxzof7xe6k--
+
+--===============0281348199==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0281348199==--
