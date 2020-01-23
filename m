@@ -1,42 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4EC43146954
-	for <lists+intel-gfx@lfdr.de>; Thu, 23 Jan 2020 14:41:04 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C50B146986
+	for <lists+intel-gfx@lfdr.de>; Thu, 23 Jan 2020 14:47:57 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ABE5E6E067;
-	Thu, 23 Jan 2020 13:41:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 90BA76E081;
+	Thu, 23 Jan 2020 13:47:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9F9A76E067
- for <intel-gfx@lists.freedesktop.org>; Thu, 23 Jan 2020 13:41:01 +0000 (UTC)
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 765556E081
+ for <intel-gfx@lists.freedesktop.org>; Thu, 23 Jan 2020 13:47:53 +0000 (UTC)
 X-Amp-Result: UNKNOWN
 X-Amp-Original-Verdict: FILE UNKNOWN
 X-Amp-File-Uploaded: False
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 23 Jan 2020 05:41:01 -0800
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 23 Jan 2020 05:47:52 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,354,1574150400"; d="scan'208";a="259835149"
+X-IronPort-AV: E=Sophos;i="5.70,354,1574150400"; d="scan'208";a="220668926"
 Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by fmsmga002.fm.intel.com with SMTP; 23 Jan 2020 05:40:58 -0800
+ by orsmga008.jf.intel.com with SMTP; 23 Jan 2020 05:47:49 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 23 Jan 2020 15:40:57 +0200
-Date: Thu, 23 Jan 2020 15:40:57 +0200
+ Thu, 23 Jan 2020 15:47:48 +0200
+Date: Thu, 23 Jan 2020 15:47:48 +0200
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
 To: Anshuman Gupta <anshuman.gupta@intel.com>
-Message-ID: <20200123134057.GL13686@intel.com>
+Message-ID: <20200123134748.GM13686@intel.com>
 References: <20200123132659.725-1-anshuman.gupta@intel.com>
- <20200123132659.725-3-anshuman.gupta@intel.com>
+ <20200123132659.725-4-anshuman.gupta@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20200123132659.725-3-anshuman.gupta@intel.com>
+In-Reply-To: <20200123132659.725-4-anshuman.gupta@intel.com>
 X-Patchwork-Hint: comment
 User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [RFC 2/6] drm/i915: Remove (pipe == crtc->index)
- asummption
+Subject: Re: [Intel-gfx] [RFC 3/6] drm/i915: Fix wrongly populated plane
+ possible_crtcs bit mask
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,75 +55,82 @@ Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Jan 23, 2020 at 06:56:55PM +0530, Anshuman Gupta wrote:
-> we can't have (pipe =3D=3D crtc->index) assumption in
-> driver in order to support 3 non-contiguous
-> display pipe system.
+On Thu, Jan 23, 2020 at 06:56:56PM +0530, Anshuman Gupta wrote:
+> As a disabled pipe in pipe_mask is not having a valid intel crtc,
+> driver wrongly populates the possible_crtcs mask while initializing
+> the plane for a CRTC. Fixing up the plane possible_crtc mask.
 > =
 
 > Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
 > Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_display.c | 10 ++++------
->  1 file changed, 4 insertions(+), 6 deletions(-)
+>  drivers/gpu/drm/i915/display/intel_display.c | 23 ++++++++++++++++++++
+>  1 file changed, 23 insertions(+)
 > =
 
 > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/d=
 rm/i915/display/intel_display.c
-> index 878d331b9e8c..afd8d43160c6 100644
+> index afd8d43160c6..b250b31f6000 100644
 > --- a/drivers/gpu/drm/i915/display/intel_display.c
 > +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -14070,11 +14070,11 @@ verify_single_dpll_state(struct drm_i915_privat=
-e *dev_priv,
->  	if (new_crtc_state->hw.active)
->  		I915_STATE_WARN(!(pll->active_mask & crtc_mask),
->  				"pll active mismatch (expected pipe %c in active mask 0x%02x)\n",
-> -				pipe_name(drm_crtc_index(&crtc->base)), pll->active_mask);
-> +				pipe_name(crtc->pipe), pll->active_mask);
->  	else
->  		I915_STATE_WARN(pll->active_mask & crtc_mask,
->  				"pll active mismatch (didn't expect pipe %c in active mask 0x%02x)\n=
-",
-> -				pipe_name(drm_crtc_index(&crtc->base)), pll->active_mask);
-> +				pipe_name(crtc->pipe), pll->active_mask);
->  =
-
->  	I915_STATE_WARN(!(pll->state.crtc_mask & crtc_mask),
->  			"pll enabled crtcs mismatch (expected 0x%x in 0x%02x)\n",
-> @@ -14103,10 +14103,10 @@ verify_shared_dpll_state(struct intel_crtc *crt=
-c,
->  =
-
->  		I915_STATE_WARN(pll->active_mask & crtc_mask,
->  				"pll active mismatch (didn't expect pipe %c in active mask)\n",
-> -				pipe_name(drm_crtc_index(&crtc->base)));
-> +				pipe_name(crtc->pipe));
->  		I915_STATE_WARN(pll->state.crtc_mask & crtc_mask,
->  				"pll enabled crtcs mismatch (found %x in enabled mask)\n",
-> -				pipe_name(drm_crtc_index(&crtc->base)));
-> +				pipe_name(crtc->pipe));
->  	}
+> @@ -16407,6 +16407,28 @@ static void intel_crtc_free(struct intel_crtc *c=
+rtc)
+>  	kfree(crtc);
 >  }
 >  =
 
-> @@ -16485,8 +16485,6 @@ static int intel_crtc_init(struct drm_i915_privat=
-e *dev_priv, enum pipe pipe)
+> +static void intel_plane_possible_crtc_fixup(struct drm_i915_private *dev=
+_priv)
+> +{
+> +	struct intel_crtc *crtc;
+> +	struct intel_plane *plane;
+> +
+> +	/*
+> +	 * if in case the disabled fused pipe is not the last pipe,
+> +	 * it requires to fix the wrong populated possible_crtcs mask.
+> +	 */
+> +	if (is_power_of_2(INTEL_INFO(dev_priv)->pipe_mask + 1))
+> +		return;
+
+I don't undestand what you're trying to do here. Looks totally
+pointless.
+
+> +
+> +	for_each_intel_crtc(&dev_priv->drm, crtc) {
+> +		for_each_intel_plane_on_crtc(&dev_priv->drm, crtc, plane) {
+> +			if (WARN_ON(!(plane->base.possible_crtcs & BIT(crtc->pipe))))
+> +				return;
+
+Rather ugly abuse of possible_crtcs. I would remove the current
+possible_crtcs assignments totally, and just do something simple like
+
+for_each_intel_plane() {
+	crtc =3D crtc_for_pipe(plane->pipe);
+	plane->possible_crtcs =3D crtc_mask(&crtc->base);
+}
+
+
+> +			plane->base.possible_crtcs =3D
+> +					drm_crtc_mask(&crtc->base);
+> +		}
+> +	}
+> +}
+> +
+>  static int intel_crtc_init(struct drm_i915_private *dev_priv, enum pipe =
+pipe)
+>  {
+>  	struct intel_plane *primary, *cursor;
+> @@ -17544,6 +17566,7 @@ int intel_modeset_init(struct drm_i915_private *i=
+915)
+>  		}
+>  	}
 >  =
 
->  	intel_color_init(crtc);
+> +	intel_plane_possible_crtc_fixup(i915);
+>  	intel_shared_dpll_init(dev);
+>  	intel_update_fdi_pll_freq(i915);
 >  =
 
-> -	WARN_ON(drm_crtc_index(&crtc->base) !=3D crtc->pipe);
-> -
-
-The first and second hunks don't really have anything to do with
-each other. Also the WARN_ON() should not be removed until all the
-assumptions are fixed.
-
->  	return 0;
->  =
-
->  fail:
 > -- =
 
 > 2.24.0
