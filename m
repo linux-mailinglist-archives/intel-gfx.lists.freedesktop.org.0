@@ -1,37 +1,37 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A75CE146A90
-	for <lists+intel-gfx@lfdr.de>; Thu, 23 Jan 2020 15:01:35 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4DB5E146A92
+	for <lists+intel-gfx@lfdr.de>; Thu, 23 Jan 2020 15:01:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7C5DF6FCE9;
-	Thu, 23 Jan 2020 14:00:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 24F75890A9;
+	Thu, 23 Jan 2020 14:00:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8C945890B9
- for <intel-gfx@lists.freedesktop.org>; Thu, 23 Jan 2020 14:00:17 +0000 (UTC)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0FE3F89CDE
+ for <intel-gfx@lists.freedesktop.org>; Thu, 23 Jan 2020 14:00:22 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 23 Jan 2020 06:00:16 -0800
-X-IronPort-AV: E=Sophos;i="5.70,354,1574150400"; d="scan'208";a="216266086"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 23 Jan 2020 06:00:21 -0800
+X-IronPort-AV: E=Sophos;i="5.70,354,1574150400"; d="scan'208";a="229838292"
 Received: from jnikula-mobl3.fi.intel.com (HELO localhost) ([10.237.66.161])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 23 Jan 2020 06:00:15 -0800
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 23 Jan 2020 06:00:19 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 23 Jan 2020 16:00:00 +0200
-Message-Id: <20200123140004.14136-2-jani.nikula@intel.com>
+Date: Thu, 23 Jan 2020 16:00:01 +0200
+Message-Id: <20200123140004.14136-3-jani.nikula@intel.com>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20200123140004.14136-1-jani.nikula@intel.com>
 References: <20200123140004.14136-1-jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Subject: [Intel-gfx] [PATCH RESEND 2/6] drm/i915/display: use intel de
- functions for forcewake register access
+Subject: [Intel-gfx] [PATCH RESEND 3/6] drm/i915/irq: use intel de functions
+ for forcewake register access
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,160 +58,89 @@ No functional changes.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c | 79 +++++++++++---------
- 1 file changed, 42 insertions(+), 37 deletions(-)
+ drivers/gpu/drm/i915/i915_irq.c | 27 ++++++++++++++++-----------
+ 1 file changed, 16 insertions(+), 11 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 878d331b9e8c..0fb0773c70b6 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -4331,7 +4331,8 @@ static void i9xx_update_plane(struct intel_plane *plane,
+diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_irq.c
+index 94cb25ac504d..87a6662abc1b 100644
+--- a/drivers/gpu/drm/i915/i915_irq.c
++++ b/drivers/gpu/drm/i915/i915_irq.c
+@@ -629,9 +629,9 @@ u32 i915_get_vblank_counter(struct drm_crtc *crtc)
+ 	 * register.
+ 	 */
+ 	do {
+-		high1 = I915_READ_FW(high_frame) & PIPE_FRAME_HIGH_MASK;
+-		low   = I915_READ_FW(low_frame);
+-		high2 = I915_READ_FW(high_frame) & PIPE_FRAME_HIGH_MASK;
++		high1 = intel_de_read_fw(dev_priv, high_frame) & PIPE_FRAME_HIGH_MASK;
++		low   = intel_de_read_fw(dev_priv, low_frame);
++		high2 = intel_de_read_fw(dev_priv, high_frame) & PIPE_FRAME_HIGH_MASK;
+ 	} while (high1 != high2);
  
- 	spin_lock_irqsave(&dev_priv->uncore.lock, irqflags);
- 
--	I915_WRITE_FW(DSPSTRIDE(i9xx_plane), plane_state->color_plane[0].stride);
-+	intel_de_write_fw(dev_priv, DSPSTRIDE(i9xx_plane),
-+			  plane_state->color_plane[0].stride);
- 
- 	if (INTEL_GEN(dev_priv) < 4) {
- 		/*
-@@ -4339,21 +4340,26 @@ static void i9xx_update_plane(struct intel_plane *plane,
- 		 * generator but let's assume we still need to
- 		 * program whatever is there.
+ 	spin_unlock_irqrestore(&dev_priv->uncore.lock, irqflags);
+@@ -688,15 +688,17 @@ static u32 __intel_get_crtc_scanline_from_timestamp(struct intel_crtc *crtc)
+ 		 * pipe frame time stamp. The time stamp value
+ 		 * is sampled at every start of vertical blank.
  		 */
--		I915_WRITE_FW(DSPPOS(i9xx_plane), (crtc_y << 16) | crtc_x);
--		I915_WRITE_FW(DSPSIZE(i9xx_plane),
--			      ((crtc_h - 1) << 16) | (crtc_w - 1));
-+		intel_de_write_fw(dev_priv, DSPPOS(i9xx_plane),
-+				  (crtc_y << 16) | crtc_x);
-+		intel_de_write_fw(dev_priv, DSPSIZE(i9xx_plane),
-+				  ((crtc_h - 1) << 16) | (crtc_w - 1));
- 	} else if (IS_CHERRYVIEW(dev_priv) && i9xx_plane == PLANE_B) {
--		I915_WRITE_FW(PRIMPOS(i9xx_plane), (crtc_y << 16) | crtc_x);
--		I915_WRITE_FW(PRIMSIZE(i9xx_plane),
--			      ((crtc_h - 1) << 16) | (crtc_w - 1));
--		I915_WRITE_FW(PRIMCNSTALPHA(i9xx_plane), 0);
-+		intel_de_write_fw(dev_priv, PRIMPOS(i9xx_plane),
-+				  (crtc_y << 16) | crtc_x);
-+		intel_de_write_fw(dev_priv, PRIMSIZE(i9xx_plane),
-+				  ((crtc_h - 1) << 16) | (crtc_w - 1));
-+		intel_de_write_fw(dev_priv, PRIMCNSTALPHA(i9xx_plane), 0);
- 	}
+-		scan_prev_time = I915_READ_FW(PIPE_FRMTMSTMP(crtc->pipe));
++		scan_prev_time = intel_de_read_fw(dev_priv,
++						  PIPE_FRMTMSTMP(crtc->pipe));
  
- 	if (IS_HASWELL(dev_priv) || IS_BROADWELL(dev_priv)) {
--		I915_WRITE_FW(DSPOFFSET(i9xx_plane), (y << 16) | x);
-+		intel_de_write_fw(dev_priv, DSPOFFSET(i9xx_plane),
-+				  (y << 16) | x);
- 	} else if (INTEL_GEN(dev_priv) >= 4) {
--		I915_WRITE_FW(DSPLINOFF(i9xx_plane), linear_offset);
--		I915_WRITE_FW(DSPTILEOFF(i9xx_plane), (y << 16) | x);
-+		intel_de_write_fw(dev_priv, DSPLINOFF(i9xx_plane),
-+				  linear_offset);
-+		intel_de_write_fw(dev_priv, DSPTILEOFF(i9xx_plane),
-+				  (y << 16) | x);
- 	}
+ 		/*
+ 		 * The TIMESTAMP_CTR register has the current
+ 		 * time stamp value.
+ 		 */
+-		scan_curr_time = I915_READ_FW(IVB_TIMESTAMP_CTR);
++		scan_curr_time = intel_de_read_fw(dev_priv, IVB_TIMESTAMP_CTR);
+ 
+-		scan_post_time = I915_READ_FW(PIPE_FRMTMSTMP(crtc->pipe));
++		scan_post_time = intel_de_read_fw(dev_priv,
++						  PIPE_FRMTMSTMP(crtc->pipe));
+ 	} while (scan_post_time != scan_prev_time);
+ 
+ 	scanline = div_u64(mul_u32_u32(scan_curr_time - scan_prev_time,
+@@ -707,7 +709,10 @@ static u32 __intel_get_crtc_scanline_from_timestamp(struct intel_crtc *crtc)
+ 	return scanline;
+ }
+ 
+-/* I915_READ_FW, only for fast reads of display block, no need for forcewake etc. */
++/*
++ * intel_de_read_fw(), only for fast reads of display block, no need for
++ * forcewake etc.
++ */
+ static int __intel_get_crtc_scanline(struct intel_crtc *crtc)
+ {
+ 	struct drm_device *dev = crtc->base.dev;
+@@ -731,9 +736,9 @@ static int __intel_get_crtc_scanline(struct intel_crtc *crtc)
+ 		vtotal /= 2;
+ 
+ 	if (IS_GEN(dev_priv, 2))
+-		position = I915_READ_FW(PIPEDSL(pipe)) & DSL_LINEMASK_GEN2;
++		position = intel_de_read_fw(dev_priv, PIPEDSL(pipe)) & DSL_LINEMASK_GEN2;
+ 	else
+-		position = I915_READ_FW(PIPEDSL(pipe)) & DSL_LINEMASK_GEN3;
++		position = intel_de_read_fw(dev_priv, PIPEDSL(pipe)) & DSL_LINEMASK_GEN3;
  
  	/*
-@@ -4361,15 +4367,13 @@ static void i9xx_update_plane(struct intel_plane *plane,
- 	 * disabled. Try to make the plane enable atomic by writing
- 	 * the control register just before the surface register.
- 	 */
--	I915_WRITE_FW(DSPCNTR(i9xx_plane), dspcntr);
-+	intel_de_write_fw(dev_priv, DSPCNTR(i9xx_plane), dspcntr);
- 	if (INTEL_GEN(dev_priv) >= 4)
--		I915_WRITE_FW(DSPSURF(i9xx_plane),
--			      intel_plane_ggtt_offset(plane_state) +
--			      dspaddr_offset);
-+		intel_de_write_fw(dev_priv, DSPSURF(i9xx_plane),
-+				  intel_plane_ggtt_offset(plane_state) + dspaddr_offset);
- 	else
--		I915_WRITE_FW(DSPADDR(i9xx_plane),
--			      intel_plane_ggtt_offset(plane_state) +
--			      dspaddr_offset);
-+		intel_de_write_fw(dev_priv, DSPADDR(i9xx_plane),
-+				  intel_plane_ggtt_offset(plane_state) + dspaddr_offset);
+ 	 * On HSW, the DSL reg (0x70000) appears to return 0 if we
+@@ -752,7 +757,7 @@ static int __intel_get_crtc_scanline(struct intel_crtc *crtc)
  
- 	spin_unlock_irqrestore(&dev_priv->uncore.lock, irqflags);
- }
-@@ -4396,11 +4400,11 @@ static void i9xx_disable_plane(struct intel_plane *plane,
+ 		for (i = 0; i < 100; i++) {
+ 			udelay(1);
+-			temp = I915_READ_FW(PIPEDSL(pipe)) & DSL_LINEMASK_GEN3;
++			temp = intel_de_read_fw(dev_priv, PIPEDSL(pipe)) & DSL_LINEMASK_GEN3;
+ 			if (temp != position) {
+ 				position = temp;
+ 				break;
+@@ -823,7 +828,7 @@ bool i915_get_crtc_scanoutpos(struct drm_device *dev, unsigned int index,
+ 		 * We can split this into vertical and horizontal
+ 		 * scanout position.
+ 		 */
+-		position = (I915_READ_FW(PIPEFRAMEPIXEL(pipe)) & PIPE_PIXEL_MASK) >> PIPE_PIXEL_SHIFT;
++		position = (intel_de_read_fw(dev_priv, PIPEFRAMEPIXEL(pipe)) & PIPE_PIXEL_MASK) >> PIPE_PIXEL_SHIFT;
  
- 	spin_lock_irqsave(&dev_priv->uncore.lock, irqflags);
- 
--	I915_WRITE_FW(DSPCNTR(i9xx_plane), dspcntr);
-+	intel_de_write_fw(dev_priv, DSPCNTR(i9xx_plane), dspcntr);
- 	if (INTEL_GEN(dev_priv) >= 4)
--		I915_WRITE_FW(DSPSURF(i9xx_plane), 0);
-+		intel_de_write_fw(dev_priv, DSPSURF(i9xx_plane), 0);
- 	else
--		I915_WRITE_FW(DSPADDR(i9xx_plane), 0);
-+		intel_de_write_fw(dev_priv, DSPADDR(i9xx_plane), 0);
- 
- 	spin_unlock_irqrestore(&dev_priv->uncore.lock, irqflags);
- }
-@@ -6175,10 +6179,10 @@ static void skl_pfit_enable(const struct intel_crtc_state *crtc_state)
- 		id = scaler_state->scaler_id;
- 		I915_WRITE(SKL_PS_CTRL(pipe, id), PS_SCALER_EN |
- 			PS_FILTER_MEDIUM | scaler_state->scalers[id].mode);
--		I915_WRITE_FW(SKL_PS_VPHASE(pipe, id),
--			      PS_Y_PHASE(0) | PS_UV_RGB_PHASE(uv_rgb_vphase));
--		I915_WRITE_FW(SKL_PS_HPHASE(pipe, id),
--			      PS_Y_PHASE(0) | PS_UV_RGB_PHASE(uv_rgb_hphase));
-+		intel_de_write_fw(dev_priv, SKL_PS_VPHASE(pipe, id),
-+				  PS_Y_PHASE(0) | PS_UV_RGB_PHASE(uv_rgb_vphase));
-+		intel_de_write_fw(dev_priv, SKL_PS_HPHASE(pipe, id),
-+				  PS_Y_PHASE(0) | PS_UV_RGB_PHASE(uv_rgb_hphase));
- 		I915_WRITE(SKL_PS_WIN_POS(pipe, id), crtc_state->pch_pfit.pos);
- 		I915_WRITE(SKL_PS_WIN_SZ(pipe, id), crtc_state->pch_pfit.size);
- 	}
-@@ -11315,17 +11319,17 @@ static void i845_update_cursor(struct intel_plane *plane,
- 	if (plane->cursor.base != base ||
- 	    plane->cursor.size != size ||
- 	    plane->cursor.cntl != cntl) {
--		I915_WRITE_FW(CURCNTR(PIPE_A), 0);
--		I915_WRITE_FW(CURBASE(PIPE_A), base);
--		I915_WRITE_FW(CURSIZE, size);
--		I915_WRITE_FW(CURPOS(PIPE_A), pos);
--		I915_WRITE_FW(CURCNTR(PIPE_A), cntl);
-+		intel_de_write_fw(dev_priv, CURCNTR(PIPE_A), 0);
-+		intel_de_write_fw(dev_priv, CURBASE(PIPE_A), base);
-+		intel_de_write_fw(dev_priv, CURSIZE, size);
-+		intel_de_write_fw(dev_priv, CURPOS(PIPE_A), pos);
-+		intel_de_write_fw(dev_priv, CURCNTR(PIPE_A), cntl);
- 
- 		plane->cursor.base = base;
- 		plane->cursor.size = size;
- 		plane->cursor.cntl = cntl;
- 	} else {
--		I915_WRITE_FW(CURPOS(PIPE_A), pos);
-+		intel_de_write_fw(dev_priv, CURPOS(PIPE_A), pos);
- 	}
- 
- 	spin_unlock_irqrestore(&dev_priv->uncore.lock, irqflags);
-@@ -11566,17 +11570,18 @@ static void i9xx_update_cursor(struct intel_plane *plane,
- 	    plane->cursor.size != fbc_ctl ||
- 	    plane->cursor.cntl != cntl) {
- 		if (HAS_CUR_FBC(dev_priv))
--			I915_WRITE_FW(CUR_FBC_CTL(pipe), fbc_ctl);
--		I915_WRITE_FW(CURCNTR(pipe), cntl);
--		I915_WRITE_FW(CURPOS(pipe), pos);
--		I915_WRITE_FW(CURBASE(pipe), base);
-+			intel_de_write_fw(dev_priv, CUR_FBC_CTL(pipe),
-+					  fbc_ctl);
-+		intel_de_write_fw(dev_priv, CURCNTR(pipe), cntl);
-+		intel_de_write_fw(dev_priv, CURPOS(pipe), pos);
-+		intel_de_write_fw(dev_priv, CURBASE(pipe), base);
- 
- 		plane->cursor.base = base;
- 		plane->cursor.size = fbc_ctl;
- 		plane->cursor.cntl = cntl;
- 	} else {
--		I915_WRITE_FW(CURPOS(pipe), pos);
--		I915_WRITE_FW(CURBASE(pipe), base);
-+		intel_de_write_fw(dev_priv, CURPOS(pipe), pos);
-+		intel_de_write_fw(dev_priv, CURBASE(pipe), base);
- 	}
- 
- 	spin_unlock_irqrestore(&dev_priv->uncore.lock, irqflags);
+ 		/* convert to pixel counts */
+ 		vbl_start *= htotal;
 -- 
 2.20.1
 
