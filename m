@@ -1,39 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 07F26146910
-	for <lists+intel-gfx@lfdr.de>; Thu, 23 Jan 2020 14:28:36 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 55943146936
+	for <lists+intel-gfx@lfdr.de>; Thu, 23 Jan 2020 14:36:32 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 280216FCAE;
-	Thu, 23 Jan 2020 13:28:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AA82A6FCB6;
+	Thu, 23 Jan 2020 13:36:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D08986FCAE;
- Thu, 23 Jan 2020 13:28:32 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 716FE6FA26
+ for <intel-gfx@lists.freedesktop.org>; Thu, 23 Jan 2020 13:36:29 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 23 Jan 2020 05:28:32 -0800
-X-IronPort-AV: E=Sophos;i="5.70,354,1574150400"; d="scan'208";a="216257967"
-Received: from jnikula-mobl3.fi.intel.com (HELO localhost) ([10.237.66.161])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 23 Jan 2020 05:28:28 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Wambui Karuga <wambui.karugax@gmail.com>, joonas.lahtinen@linux.intel.com,
- rodrigo.vivi@intel.com, airlied@linux.ie, daniel@ffwll.ch,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-In-Reply-To: <20200121134559.17355-1-wambui.karugax@gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20200121134559.17355-1-wambui.karugax@gmail.com>
-Date: Thu, 23 Jan 2020 15:28:25 +0200
-Message-ID: <87zheecneu.fsf@intel.com>
+ by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 23 Jan 2020 05:36:28 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,354,1574150400"; d="scan'208";a="216259523"
+Received: from unknown (HELO genxfsim-desktop.iind.intel.com) ([10.223.74.178])
+ by orsmga007.jf.intel.com with ESMTP; 23 Jan 2020 05:36:26 -0800
+From: Anshuman Gupta <anshuman.gupta@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu, 23 Jan 2020 18:56:53 +0530
+Message-Id: <20200123132659.725-1-anshuman.gupta@intel.com>
+X-Mailer: git-send-email 2.24.0
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v2 0/5] drm/i915: conversion to new drm
- logging macros.
+Subject: [Intel-gfx] [RFC 0/6] 3 display pipes combination system support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,42 +40,33 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: jani.nikula@intel.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 21 Jan 2020, Wambui Karuga <wambui.karugax@gmail.com> wrote:
-> This series continues the conversion to the new struct drm_device based
-> logging macros in various files in drm/i915. These patches were
-> achieved both using coccinelle and manually.
->
-> v2: rebase patches onto drm-tip to fix merge conflict in v1 series.
+This is a proposed RFC solution for 3 display pipes combination
+system support.
 
-Pushed all to drm-intel-next-queued, many thanks for the patches, and
-keep up the good work!
+Anshuman Gupta (6):
+  drm/i915: Iterate over pipe and skip the disabled one
+  drm/i915: Remove (pipe == crtc->index) asummption
+  drm/i915: Fix wrongly populated plane possible_crtcs bit mask
+  drm/i915: Get right max plane stride
+  drm/i915: Add WARN_ON in intel_get_crtc_for_pipe()
+  drm/i915: Enable 3 display pipes support
 
-BR,
-Jani.
-
-
->
-> Wambui Karuga (5):
->   drm/i915/atomic: use struct drm_device logging macros for debug
->   drm/i915/bios: convert to struct drm_device based logging macros.
->   drm/i915/audio: convert to new struct drm_device logging macros.
->   drm/i915/bw: convert to new drm_device based logging macros.
->   drm/i915/cdclk: use new struct drm_device logging macros.
->
->  .../gpu/drm/i915/display/intel_atomic_plane.c |   9 +-
->  drivers/gpu/drm/i915/display/intel_audio.c    |  73 ++--
->  drivers/gpu/drm/i915/display/intel_bios.c     | 357 +++++++++++-------
->  drivers/gpu/drm/i915/display/intel_bw.c       |  29 +-
->  drivers/gpu/drm/i915/display/intel_cdclk.c    | 109 +++---
->  5 files changed, 339 insertions(+), 238 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display.c  | 40 +++++++++++++++----
+ drivers/gpu/drm/i915/display/intel_display.h  |  5 ++-
+ .../drm/i915/display/intel_display_types.h    |  2 +
+ drivers/gpu/drm/i915/i915_irq.c               |  6 ++-
+ drivers/gpu/drm/i915/intel_device_info.c      |  7 ++--
+ 5 files changed, 45 insertions(+), 15 deletions(-)
 
 -- 
-Jani Nikula, Intel Open Source Graphics Center
+2.24.0
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
