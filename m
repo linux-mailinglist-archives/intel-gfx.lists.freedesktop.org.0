@@ -2,30 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9BC9C146372
-	for <lists+intel-gfx@lfdr.de>; Thu, 23 Jan 2020 09:25:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BE85E1463E9
+	for <lists+intel-gfx@lfdr.de>; Thu, 23 Jan 2020 09:51:47 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D563B6F9C0;
-	Thu, 23 Jan 2020 08:25:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 169816FB56;
+	Thu, 23 Jan 2020 08:51:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id E82786F9BF;
- Thu, 23 Jan 2020 08:25:47 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id BC7FBA0087;
- Thu, 23 Jan 2020 08:25:47 +0000 (UTC)
-MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Thu, 23 Jan 2020 08:25:47 -0000
-Message-ID: <157976794774.1147.15254788110973306830@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200122201822.889250-1-chris@chris-wilson.co.uk>
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3EB7C6FB56
+ for <intel-gfx@lists.freedesktop.org>; Thu, 23 Jan 2020 08:51:44 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19978779-1500050 
+ for multiple; Thu, 23 Jan 2020 08:51:26 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu, 23 Jan 2020 08:51:24 +0000
+Message-Id: <20200123085124.1256919-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.25.0
 In-Reply-To: <20200122201822.889250-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
- =?utf-8?q?/i915/gt=3A_Poison_GTT_scratch_pages_=28rev3=29?=
+References: <20200122201822.889250-1-chris@chris-wilson.co.uk>
+MIME-Version: 1.0
+Subject: [Intel-gfx] [PATCH] drm/i915/gt: Poison GTT scratch pages
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,225 +38,175 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Using a clear page for scratch means that we have relatively benign
+errors in case it is accidentally used, but that can be rather too
+benign for debugging. If we poison the scratch, ideally it quickly
+results in an obvious error.
 
-Series: drm/i915/gt: Poison GTT scratch pages (rev3)
-URL   : https://patchwork.freedesktop.org/series/72423/
-State : failure
+Suggested-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+---
+ .../drm/i915/gem/selftests/i915_gem_context.c | 43 ++++++++++++++++---
+ drivers/gpu/drm/i915/gt/intel_gtt.c           | 19 ++++++++
+ 2 files changed, 56 insertions(+), 6 deletions(-)
 
-== Summary ==
+diff --git a/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c b/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c
+index 7fc46861a54d..c93fb0d8c597 100644
+--- a/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c
++++ b/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c
+@@ -1575,7 +1575,7 @@ static int read_from_scratch(struct i915_gem_context *ctx,
+ 	struct drm_i915_private *i915 = ctx->i915;
+ 	struct drm_i915_gem_object *obj;
+ 	struct i915_address_space *vm;
+-	const u32 RCS_GPR0 = 0x2600; /* not all engines have their own GPR! */
++	const u32 GPR0 = engine->mmio_base + 0x600;
+ 	const u32 result = 0x100;
+ 	struct i915_request *rq;
+ 	struct i915_vma *vma;
+@@ -1597,19 +1597,19 @@ static int read_from_scratch(struct i915_gem_context *ctx,
+ 	memset(cmd, POISON_INUSE, PAGE_SIZE);
+ 	if (INTEL_GEN(i915) >= 8) {
+ 		*cmd++ = MI_LOAD_REGISTER_MEM_GEN8;
+-		*cmd++ = RCS_GPR0;
++		*cmd++ = GPR0;
+ 		*cmd++ = lower_32_bits(offset);
+ 		*cmd++ = upper_32_bits(offset);
+ 		*cmd++ = MI_STORE_REGISTER_MEM_GEN8;
+-		*cmd++ = RCS_GPR0;
++		*cmd++ = GPR0;
+ 		*cmd++ = result;
+ 		*cmd++ = 0;
+ 	} else {
+ 		*cmd++ = MI_LOAD_REGISTER_MEM;
+-		*cmd++ = RCS_GPR0;
++		*cmd++ = GPR0;
+ 		*cmd++ = offset;
+ 		*cmd++ = MI_STORE_REGISTER_MEM;
+-		*cmd++ = RCS_GPR0;
++		*cmd++ = GPR0;
+ 		*cmd++ = result;
+ 	}
+ 	*cmd = MI_BATCH_BUFFER_END;
+@@ -1686,6 +1686,23 @@ static int read_from_scratch(struct i915_gem_context *ctx,
+ 	return err;
+ }
+ 
++static int check_scratch_page(struct i915_gem_context *ctx, u32 *out)
++{
++	struct page *page = ctx_vm(ctx)->scratch[0].base.page;
++	u32 *vaddr;
++	int err = 0;
++
++	vaddr = kmap(page);
++	memcpy(out, vaddr, sizeof(*out));
++	if (memchr_inv(vaddr, *out, PAGE_SIZE)) {
++		pr_err("Inconsistent initial state of scratch page!\n");
++		err = -EINVAL;
++	}
++	kunmap(page);
++
++	return err;
++}
++
+ static int igt_vm_isolation(void *arg)
+ {
+ 	struct drm_i915_private *i915 = arg;
+@@ -1696,6 +1713,7 @@ static int igt_vm_isolation(void *arg)
+ 	I915_RND_STATE(prng);
+ 	struct file *file;
+ 	u64 vm_total;
++	u32 expected;
+ 	int err;
+ 
+ 	if (INTEL_GEN(i915) < 7)
+@@ -1720,12 +1738,21 @@ static int igt_vm_isolation(void *arg)
+ 		goto out_file;
+ 	}
+ 
++	/* Read the initial state of the scratch page */
++	err = check_scratch_page(ctx_a, &expected);
++	if (err)
++		goto out_file;
++
+ 	ctx_b = live_context(i915, file);
+ 	if (IS_ERR(ctx_b)) {
+ 		err = PTR_ERR(ctx_b);
+ 		goto out_file;
+ 	}
+ 
++	err = check_scratch_page(ctx_b, &expected);
++	if (err)
++		goto out_file;
++
+ 	/* We can only test vm isolation, if the vm are distinct */
+ 	if (ctx_vm(ctx_a) == ctx_vm(ctx_b))
+ 		goto out_file;
+@@ -1743,6 +1770,10 @@ static int igt_vm_isolation(void *arg)
+ 		if (!intel_engine_can_store_dword(engine))
+ 			continue;
+ 
++		/* not all engines have their own GPR! */
++		if (INTEL_GEN(i915) < 9 && engine->class != RENDER_CLASS)
++			continue;
++
+ 		while (!__igt_timeout(end_time, NULL)) {
+ 			u32 value = 0xc5c5c5c5;
+ 			u64 offset;
+@@ -1760,7 +1791,7 @@ static int igt_vm_isolation(void *arg)
+ 			if (err)
+ 				goto out_file;
+ 
+-			if (value) {
++			if (value != expected) {
+ 				pr_err("%s: Read %08x from scratch (offset 0x%08x_%08x), after %lu reads!\n",
+ 				       engine->name, value,
+ 				       upper_32_bits(offset),
+diff --git a/drivers/gpu/drm/i915/gt/intel_gtt.c b/drivers/gpu/drm/i915/gt/intel_gtt.c
+index 45d8e0019a8e..804da478d8f9 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gtt.c
++++ b/drivers/gpu/drm/i915/gt/intel_gtt.c
+@@ -299,6 +299,14 @@ fill_page_dma(const struct i915_page_dma *p, const u64 val, unsigned int count)
+ 	kunmap_atomic(memset64(kmap_atomic(p->page), val, count));
+ }
+ 
++static void poison_scratch_page(struct page *page, unsigned long size)
++{
++	if (!IS_ENABLED(CONFIG_DRM_I915_DEBUG_GEM))
++		return;
++
++	kunmap_atomic(memset(kmap_atomic(page), POISON_FREE, size));
++}
++
+ int setup_scratch_page(struct i915_address_space *vm, gfp_t gfp)
+ {
+ 	unsigned long size;
+@@ -331,6 +339,17 @@ int setup_scratch_page(struct i915_address_space *vm, gfp_t gfp)
+ 		if (unlikely(!page))
+ 			goto skip;
+ 
++		/*
++		 * Use a non-zero scratch page for debugging.
++		 *
++		 * We want a value that should be reasonably obvious
++		 * to spot in the error state, while also causing a GPU hang
++		 * if executed. We prefer using a clear page in production, so
++		 * should it ever be accidentally used, the effect should be
++		 * fairly benign.
++		 */
++		poison_scratch_page(page, size);
++
+ 		addr = dma_map_page_attrs(vm->dma,
+ 					  page, 0, size,
+ 					  PCI_DMA_BIDIRECTIONAL,
+-- 
+2.25.0
 
-CI Bug Log - changes from CI_DRM_7799 -> Patchwork_16225
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_16225 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_16225, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16225/index.html
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_16225:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@i915_selftest@live_gem_contexts:
-    - fi-apl-guc:         [PASS][1] -> [DMESG-FAIL][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7799/fi-apl-guc/igt@i915_selftest@live_gem_contexts.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16225/fi-apl-guc/igt@i915_selftest@live_gem_contexts.html
-    - fi-skl-lmem:        [PASS][3] -> [DMESG-FAIL][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7799/fi-skl-lmem/igt@i915_selftest@live_gem_contexts.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16225/fi-skl-lmem/igt@i915_selftest@live_gem_contexts.html
-    - fi-bxt-dsi:         [PASS][5] -> [DMESG-FAIL][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7799/fi-bxt-dsi/igt@i915_selftest@live_gem_contexts.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16225/fi-bxt-dsi/igt@i915_selftest@live_gem_contexts.html
-    - fi-icl-u2:          [PASS][7] -> [DMESG-FAIL][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7799/fi-icl-u2/igt@i915_selftest@live_gem_contexts.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16225/fi-icl-u2/igt@i915_selftest@live_gem_contexts.html
-    - fi-ivb-3770:        [PASS][9] -> [DMESG-FAIL][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7799/fi-ivb-3770/igt@i915_selftest@live_gem_contexts.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16225/fi-ivb-3770/igt@i915_selftest@live_gem_contexts.html
-    - fi-skl-6600u:       [PASS][11] -> [DMESG-FAIL][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7799/fi-skl-6600u/igt@i915_selftest@live_gem_contexts.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16225/fi-skl-6600u/igt@i915_selftest@live_gem_contexts.html
-    - fi-cml-u2:          [PASS][13] -> [DMESG-FAIL][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7799/fi-cml-u2/igt@i915_selftest@live_gem_contexts.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16225/fi-cml-u2/igt@i915_selftest@live_gem_contexts.html
-    - fi-whl-u:           [PASS][15] -> [DMESG-FAIL][16]
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7799/fi-whl-u/igt@i915_selftest@live_gem_contexts.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16225/fi-whl-u/igt@i915_selftest@live_gem_contexts.html
-    - fi-cfl-8700k:       [PASS][17] -> [DMESG-FAIL][18]
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7799/fi-cfl-8700k/igt@i915_selftest@live_gem_contexts.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16225/fi-cfl-8700k/igt@i915_selftest@live_gem_contexts.html
-    - fi-icl-dsi:         [PASS][19] -> [DMESG-FAIL][20]
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7799/fi-icl-dsi/igt@i915_selftest@live_gem_contexts.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16225/fi-icl-dsi/igt@i915_selftest@live_gem_contexts.html
-    - fi-kbl-guc:         [PASS][21] -> [DMESG-FAIL][22]
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7799/fi-kbl-guc/igt@i915_selftest@live_gem_contexts.html
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16225/fi-kbl-guc/igt@i915_selftest@live_gem_contexts.html
-    - fi-kbl-7500u:       [PASS][23] -> [DMESG-FAIL][24]
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7799/fi-kbl-7500u/igt@i915_selftest@live_gem_contexts.html
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16225/fi-kbl-7500u/igt@i915_selftest@live_gem_contexts.html
-    - fi-hsw-4770:        [PASS][25] -> [DMESG-FAIL][26]
-   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7799/fi-hsw-4770/igt@i915_selftest@live_gem_contexts.html
-   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16225/fi-hsw-4770/igt@i915_selftest@live_gem_contexts.html
-    - fi-skl-guc:         [PASS][27] -> [DMESG-FAIL][28]
-   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7799/fi-skl-guc/igt@i915_selftest@live_gem_contexts.html
-   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16225/fi-skl-guc/igt@i915_selftest@live_gem_contexts.html
-    - fi-bdw-5557u:       [PASS][29] -> [DMESG-FAIL][30]
-   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7799/fi-bdw-5557u/igt@i915_selftest@live_gem_contexts.html
-   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16225/fi-bdw-5557u/igt@i915_selftest@live_gem_contexts.html
-    - fi-kbl-r:           [PASS][31] -> [DMESG-FAIL][32]
-   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7799/fi-kbl-r/igt@i915_selftest@live_gem_contexts.html
-   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16225/fi-kbl-r/igt@i915_selftest@live_gem_contexts.html
-    - fi-icl-y:           [PASS][33] -> [DMESG-FAIL][34]
-   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7799/fi-icl-y/igt@i915_selftest@live_gem_contexts.html
-   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16225/fi-icl-y/igt@i915_selftest@live_gem_contexts.html
-    - fi-kbl-8809g:       [PASS][35] -> [DMESG-FAIL][36]
-   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7799/fi-kbl-8809g/igt@i915_selftest@live_gem_contexts.html
-   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16225/fi-kbl-8809g/igt@i915_selftest@live_gem_contexts.html
-    - fi-glk-dsi:         NOTRUN -> [DMESG-FAIL][37]
-   [37]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16225/fi-glk-dsi/igt@i915_selftest@live_gem_contexts.html
-    - fi-hsw-peppy:       [PASS][38] -> [DMESG-FAIL][39]
-   [38]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7799/fi-hsw-peppy/igt@i915_selftest@live_gem_contexts.html
-   [39]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16225/fi-hsw-peppy/igt@i915_selftest@live_gem_contexts.html
-    - fi-tgl-y:           [PASS][40] -> [DMESG-FAIL][41]
-   [40]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7799/fi-tgl-y/igt@i915_selftest@live_gem_contexts.html
-   [41]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16225/fi-tgl-y/igt@i915_selftest@live_gem_contexts.html
-    - fi-hsw-4770r:       [PASS][42] -> [DMESG-FAIL][43]
-   [42]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7799/fi-hsw-4770r/igt@i915_selftest@live_gem_contexts.html
-   [43]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16225/fi-hsw-4770r/igt@i915_selftest@live_gem_contexts.html
-    - fi-icl-u3:          [PASS][44] -> [DMESG-FAIL][45]
-   [44]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7799/fi-icl-u3/igt@i915_selftest@live_gem_contexts.html
-   [45]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16225/fi-icl-u3/igt@i915_selftest@live_gem_contexts.html
-    - fi-kbl-x1275:       [PASS][46] -> [DMESG-FAIL][47]
-   [46]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7799/fi-kbl-x1275/igt@i915_selftest@live_gem_contexts.html
-   [47]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16225/fi-kbl-x1275/igt@i915_selftest@live_gem_contexts.html
-    - fi-skl-6700k2:      [PASS][48] -> [DMESG-FAIL][49]
-   [48]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7799/fi-skl-6700k2/igt@i915_selftest@live_gem_contexts.html
-   [49]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16225/fi-skl-6700k2/igt@i915_selftest@live_gem_contexts.html
-    - fi-icl-guc:         [PASS][50] -> [DMESG-FAIL][51]
-   [50]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7799/fi-icl-guc/igt@i915_selftest@live_gem_contexts.html
-   [51]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16225/fi-icl-guc/igt@i915_selftest@live_gem_contexts.html
-    - fi-cfl-guc:         NOTRUN -> [DMESG-FAIL][52]
-   [52]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16225/fi-cfl-guc/igt@i915_selftest@live_gem_contexts.html
-
-  
-#### Suppressed ####
-
-  The following results come from untrusted machines, tests, or statuses.
-  They do not affect the overall result.
-
-  * igt@i915_selftest@live_gem_contexts:
-    - {fi-tgl-u}:         [PASS][53] -> [DMESG-FAIL][54]
-   [53]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7799/fi-tgl-u/igt@i915_selftest@live_gem_contexts.html
-   [54]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16225/fi-tgl-u/igt@i915_selftest@live_gem_contexts.html
-    - {fi-ehl-1}:         [PASS][55] -> [DMESG-FAIL][56]
-   [55]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7799/fi-ehl-1/igt@i915_selftest@live_gem_contexts.html
-   [56]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16225/fi-ehl-1/igt@i915_selftest@live_gem_contexts.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_16225 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live_blt:
-    - fi-hsw-4770:        [PASS][57] -> [DMESG-FAIL][58] ([i915#563])
-   [57]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7799/fi-hsw-4770/igt@i915_selftest@live_blt.html
-   [58]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16225/fi-hsw-4770/igt@i915_selftest@live_blt.html
-
-  * igt@i915_selftest@live_gem_contexts:
-    - fi-bsw-nick:        [PASS][59] -> [INCOMPLETE][60] ([i915#392])
-   [59]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7799/fi-bsw-nick/igt@i915_selftest@live_gem_contexts.html
-   [60]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16225/fi-bsw-nick/igt@i915_selftest@live_gem_contexts.html
-    - fi-bsw-kefka:       [PASS][61] -> [INCOMPLETE][62] ([i915#392])
-   [61]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7799/fi-bsw-kefka/igt@i915_selftest@live_gem_contexts.html
-   [62]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16225/fi-bsw-kefka/igt@i915_selftest@live_gem_contexts.html
-    - fi-bsw-n3050:       [PASS][63] -> [INCOMPLETE][64] ([i915#392])
-   [63]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7799/fi-bsw-n3050/igt@i915_selftest@live_gem_contexts.html
-   [64]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16225/fi-bsw-n3050/igt@i915_selftest@live_gem_contexts.html
-
-  * igt@kms_chamelium@hdmi-hpd-fast:
-    - fi-icl-u2:          [PASS][65] -> [FAIL][66] ([i915#217])
-   [65]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7799/fi-icl-u2/igt@kms_chamelium@hdmi-hpd-fast.html
-   [66]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16225/fi-icl-u2/igt@kms_chamelium@hdmi-hpd-fast.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_module_load@reload-with-fault-injection:
-    - fi-cfl-guc:         [INCOMPLETE][67] ([i915#505] / [i915#671]) -> [PASS][68]
-   [67]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7799/fi-cfl-guc/igt@i915_module_load@reload-with-fault-injection.html
-   [68]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16225/fi-cfl-guc/igt@i915_module_load@reload-with-fault-injection.html
-
-  * igt@i915_selftest@live_blt:
-    - fi-hsw-4770r:       [DMESG-FAIL][69] ([i915#553] / [i915#725]) -> [PASS][70]
-   [69]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7799/fi-hsw-4770r/igt@i915_selftest@live_blt.html
-   [70]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16225/fi-hsw-4770r/igt@i915_selftest@live_blt.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#217]: https://gitlab.freedesktop.org/drm/intel/issues/217
-  [i915#392]: https://gitlab.freedesktop.org/drm/intel/issues/392
-  [i915#505]: https://gitlab.freedesktop.org/drm/intel/issues/505
-  [i915#553]: https://gitlab.freedesktop.org/drm/intel/issues/553
-  [i915#563]: https://gitlab.freedesktop.org/drm/intel/issues/563
-  [i915#671]: https://gitlab.freedesktop.org/drm/intel/issues/671
-  [i915#725]: https://gitlab.freedesktop.org/drm/intel/issues/725
-
-
-Participating hosts (50 -> 44)
-------------------------------
-
-  Additional (2): fi-glk-dsi fi-ilk-650 
-  Missing    (8): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-n2820 fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_7799 -> Patchwork_16225
-
-  CI-20190529: 20190529
-  CI_DRM_7799: 0f8a46a25a7781ef6ede604c9cb50f82cfb5e960 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5377: 1e6cb3e75925cf623df04f78430ae9299632ec3f @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_16225: dd9d5619b95bd1a232a5b21e34153cf91f1428c4 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-dd9d5619b95b drm/i915/gt: Poison GTT scratch pages
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16225/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
