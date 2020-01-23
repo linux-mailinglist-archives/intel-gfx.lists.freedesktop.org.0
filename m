@@ -2,38 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 356AA146BCE
-	for <lists+intel-gfx@lfdr.de>; Thu, 23 Jan 2020 15:52:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B6E50146BDD
+	for <lists+intel-gfx@lfdr.de>; Thu, 23 Jan 2020 15:53:43 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4D7A46FA21;
-	Thu, 23 Jan 2020 14:51:58 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1E0276FD44;
+	Thu, 23 Jan 2020 14:53:42 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9A70D6FA0E;
- Thu, 23 Jan 2020 14:51:56 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 64D596FD44
+ for <intel-gfx@lists.freedesktop.org>; Thu, 23 Jan 2020 14:53:40 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 19983785-1500050 for multiple; Thu, 23 Jan 2020 14:51:51 +0000
-MIME-Version: 1.0
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- igt-dev@lists.freedesktop.org
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19983809-1500050 
+ for multiple; Thu, 23 Jan 2020 14:53:11 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
-In-Reply-To: <1b69e977-5597-217b-f3c8-ccb1e24fced5@linux.intel.com>
-References: <20200123124306.18857-1-tvrtko.ursulin@linux.intel.com>
- <157978404508.19995.12294352233320424183@skylake-alporthouse-com>
- <ec205d22-3882-d655-921d-d35f24f99763@linux.intel.com>
- <157978539009.19995.13535399102451802903@skylake-alporthouse-com>
- <8ddcfcb7-d701-01a1-e208-c18c207b21fa@linux.intel.com>
- <157978900463.19995.12327750600329302953@skylake-alporthouse-com>
- <1b69e977-5597-217b-f3c8-ccb1e24fced5@linux.intel.com>
-Message-ID: <157979110937.19995.14064795687896872714@skylake-alporthouse-com>
-User-Agent: alot/0.6
-Date: Thu, 23 Jan 2020 14:51:49 +0000
-Subject: Re: [Intel-gfx] [PATCH i-g-t] i915/gem_engine_topology: Introduce
- and use gem_context_clone_with_engines
+To: intel-gfx@lists.freedesktop.org
+Date: Thu, 23 Jan 2020 14:53:09 +0000
+Message-Id: <20200123145309.1403527-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.25.0
+In-Reply-To: <20200122201822.889250-1-chris@chris-wilson.co.uk>
+References: <20200122201822.889250-1-chris@chris-wilson.co.uk>
+MIME-Version: 1.0
+Subject: [Intel-gfx] [PATCH v4] drm/i915/gt: Poison GTT scratch pages
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,39 +38,206 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Tvrtko Ursulin (2020-01-23 14:48:24)
-> 
-> On 23/01/2020 14:16, Chris Wilson wrote:
-> > Quoting Tvrtko Ursulin (2020-01-23 14:01:41)
-> >>
-> >> On 23/01/2020 13:16, Chris Wilson wrote:
-> >>> Either way, I would suggest doing
-> >>>
-> >>> int __gem_context_clone_with_engines(int i915, uint32_t src, uint32_t *out);
-> >>> uint32_t gem_context_clone_with_engines(int i915, uint32_t src);
-> >>>
-> >>> as I prefer that style of error message.
-> >>
-> >> Error message? What do you mean?
-> > 
-> > igt_assert_eq(__gem_context_clone_with_engine(i915, src, &ctx), 0);
-> > is the nicest assert message without using igt_assert_f and writing an
-> > information message by hand.
-> 
-> But you will get that, either helper gem_context_clone_with_engines 
-> calls uses that style.
+Using a clear page for scratch means that we have relatively benign
+errors in case it is accidentally used, but that can be rather too
+benign for debugging. If we poison the scratch, ideally it quickly
+results in an obvious error.
 
-Yeah, depends on whether you want to see the error for the underlying
-ioctl and then have to look at the stack to work out we are in clone, or
-if the clone itself is the interesting detail that wants to standout in
-the assert message :)
--Chris
+v2: Set each page individually just in case we are using highmem for our
+scratch page.
+v3: Pick a new scratch register as MI_STORE_REGISTER_MEM does not work
+with GPR0 on gen7, unbelievably.
+
+Suggested-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+Cc: Matthew Auld <matthew.william.auld@gmail.com>
+---
+ .../drm/i915/gem/selftests/i915_gem_context.c | 62 +++++++++++++++++--
+ drivers/gpu/drm/i915/gt/intel_gtt.c           | 30 +++++++++
+ 2 files changed, 86 insertions(+), 6 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c b/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c
+index 7fc46861a54d..d61f9934a244 100644
+--- a/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c
++++ b/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c
+@@ -1575,7 +1575,6 @@ static int read_from_scratch(struct i915_gem_context *ctx,
+ 	struct drm_i915_private *i915 = ctx->i915;
+ 	struct drm_i915_gem_object *obj;
+ 	struct i915_address_space *vm;
+-	const u32 RCS_GPR0 = 0x2600; /* not all engines have their own GPR! */
+ 	const u32 result = 0x100;
+ 	struct i915_request *rq;
+ 	struct i915_vma *vma;
+@@ -1596,20 +1595,24 @@ static int read_from_scratch(struct i915_gem_context *ctx,
+ 
+ 	memset(cmd, POISON_INUSE, PAGE_SIZE);
+ 	if (INTEL_GEN(i915) >= 8) {
++		const u32 GPR0 = engine->mmio_base + 0x600;
++
+ 		*cmd++ = MI_LOAD_REGISTER_MEM_GEN8;
+-		*cmd++ = RCS_GPR0;
++		*cmd++ = GPR0;
+ 		*cmd++ = lower_32_bits(offset);
+ 		*cmd++ = upper_32_bits(offset);
+ 		*cmd++ = MI_STORE_REGISTER_MEM_GEN8;
+-		*cmd++ = RCS_GPR0;
++		*cmd++ = GPR0;
+ 		*cmd++ = result;
+ 		*cmd++ = 0;
+ 	} else {
++		const u32 reg = engine->mmio_base + 0x420;
++
+ 		*cmd++ = MI_LOAD_REGISTER_MEM;
+-		*cmd++ = RCS_GPR0;
++		*cmd++ = reg;
+ 		*cmd++ = offset;
+ 		*cmd++ = MI_STORE_REGISTER_MEM;
+-		*cmd++ = RCS_GPR0;
++		*cmd++ = reg;
+ 		*cmd++ = result;
+ 	}
+ 	*cmd = MI_BATCH_BUFFER_END;
+@@ -1686,6 +1689,39 @@ static int read_from_scratch(struct i915_gem_context *ctx,
+ 	return err;
+ }
+ 
++static int check_scratch_page(struct i915_gem_context *ctx, u32 *out)
++{
++	struct i915_address_space *vm;
++	struct page *page;
++	u32 *vaddr;
++	int err = 0;
++
++	vm = ctx_vm(ctx);
++	if (!vm)
++		return -ENODEV;
++
++	page = vm->scratch[0].base.page;
++	if (!page) {
++		pr_err("No scratch page!\n");
++		return -EINVAL;
++	}
++
++	vaddr = kmap(page);
++	if (!vaddr) {
++		pr_err("No (mappable) scratch page!\n");
++		return -EINVAL;
++	}
++
++	memcpy(out, vaddr, sizeof(*out));
++	if (memchr_inv(vaddr, *out, PAGE_SIZE)) {
++		pr_err("Inconsistent initial state of scratch page!\n");
++		err = -EINVAL;
++	}
++	kunmap(page);
++
++	return err;
++}
++
+ static int igt_vm_isolation(void *arg)
+ {
+ 	struct drm_i915_private *i915 = arg;
+@@ -1696,6 +1732,7 @@ static int igt_vm_isolation(void *arg)
+ 	I915_RND_STATE(prng);
+ 	struct file *file;
+ 	u64 vm_total;
++	u32 expected;
+ 	int err;
+ 
+ 	if (INTEL_GEN(i915) < 7)
+@@ -1730,6 +1767,15 @@ static int igt_vm_isolation(void *arg)
+ 	if (ctx_vm(ctx_a) == ctx_vm(ctx_b))
+ 		goto out_file;
+ 
++	/* Read the initial state of the scratch page */
++	err = check_scratch_page(ctx_a, &expected);
++	if (err)
++		goto out_file;
++
++	err = check_scratch_page(ctx_b, &expected);
++	if (err)
++		goto out_file;
++
+ 	vm_total = ctx_vm(ctx_a)->total;
+ 	GEM_BUG_ON(ctx_vm(ctx_b)->total != vm_total);
+ 	vm_total -= I915_GTT_PAGE_SIZE;
+@@ -1743,6 +1789,10 @@ static int igt_vm_isolation(void *arg)
+ 		if (!intel_engine_can_store_dword(engine))
+ 			continue;
+ 
++		/* Not all engines have their own GPR! */
++		if (INTEL_GEN(i915) < 8 && engine->class != RENDER_CLASS)
++			continue;
++
+ 		while (!__igt_timeout(end_time, NULL)) {
+ 			u32 value = 0xc5c5c5c5;
+ 			u64 offset;
+@@ -1760,7 +1810,7 @@ static int igt_vm_isolation(void *arg)
+ 			if (err)
+ 				goto out_file;
+ 
+-			if (value) {
++			if (value != expected) {
+ 				pr_err("%s: Read %08x from scratch (offset 0x%08x_%08x), after %lu reads!\n",
+ 				       engine->name, value,
+ 				       upper_32_bits(offset),
+diff --git a/drivers/gpu/drm/i915/gt/intel_gtt.c b/drivers/gpu/drm/i915/gt/intel_gtt.c
+index 45d8e0019a8e..bb9a6e638175 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gtt.c
++++ b/drivers/gpu/drm/i915/gt/intel_gtt.c
+@@ -299,6 +299,25 @@ fill_page_dma(const struct i915_page_dma *p, const u64 val, unsigned int count)
+ 	kunmap_atomic(memset64(kmap_atomic(p->page), val, count));
+ }
+ 
++static void poison_scratch_page(struct page *page, unsigned long size)
++{
++	if (!IS_ENABLED(CONFIG_DRM_I915_DEBUG_GEM))
++		return;
++
++	GEM_BUG_ON(!IS_ALIGNED(size, PAGE_SIZE));
++
++	do {
++		void *vaddr;
++
++		vaddr = kmap(page);
++		memset(vaddr, POISON_FREE, PAGE_SIZE);
++		kunmap(page);
++
++		page = pfn_to_page(page_to_pfn(page) + 1);
++		size -= PAGE_SIZE;
++	} while (size);
++}
++
+ int setup_scratch_page(struct i915_address_space *vm, gfp_t gfp)
+ {
+ 	unsigned long size;
+@@ -331,6 +350,17 @@ int setup_scratch_page(struct i915_address_space *vm, gfp_t gfp)
+ 		if (unlikely(!page))
+ 			goto skip;
+ 
++		/*
++		 * Use a non-zero scratch page for debugging.
++		 *
++		 * We want a value that should be reasonably obvious
++		 * to spot in the error state, while also causing a GPU hang
++		 * if executed. We prefer using a clear page in production, so
++		 * should it ever be accidentally used, the effect should be
++		 * fairly benign.
++		 */
++		poison_scratch_page(page, size);
++
+ 		addr = dma_map_page_attrs(vm->dma,
+ 					  page, 0, size,
+ 					  PCI_DMA_BIDIRECTIONAL,
+-- 
+2.25.0
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
