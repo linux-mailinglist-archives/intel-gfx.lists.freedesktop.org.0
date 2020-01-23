@@ -1,43 +1,36 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 54B41146D16
-	for <lists+intel-gfx@lfdr.de>; Thu, 23 Jan 2020 16:38:59 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id B5D4E146D2B
+	for <lists+intel-gfx@lfdr.de>; Thu, 23 Jan 2020 16:45:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AE9D26FD86;
-	Thu, 23 Jan 2020 15:38:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 21B396FD8F;
+	Thu, 23 Jan 2020 15:45:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F1B9A6FD86
- for <intel-gfx@lists.freedesktop.org>; Thu, 23 Jan 2020 15:38:55 +0000 (UTC)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A91EB6FD8F
+ for <intel-gfx@lists.freedesktop.org>; Thu, 23 Jan 2020 15:45:27 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 23 Jan 2020 07:38:55 -0800
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 23 Jan 2020 07:45:26 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,354,1574150400"; d="scan'208";a="216293027"
-Received: from irvmail001.ir.intel.com ([163.33.26.43])
- by orsmga007.jf.intel.com with ESMTP; 23 Jan 2020 07:38:53 -0800
-Received: from mwajdecz-mobl1.ger.corp.intel.com
- (mwajdecz-mobl1.ger.corp.intel.com [172.28.174.138])
- by irvmail001.ir.intel.com (8.14.3/8.13.6/MailSET/Hub) with ESMTP id
- 00NFcqKX019599; Thu, 23 Jan 2020 15:38:53 GMT
-To: "Daniele Ceraolo Spurio" <daniele.ceraolospurio@intel.com>,
- intel-gfx@lists.freedesktop.org, "Chris Wilson" <chris@chris-wilson.co.uk>
-References: <20200122194825.101240-1-michal.wajdeczko@intel.com>
- <67edac14-e319-a1b2-76a1-1404ca5836e2@intel.com>
- <157979173710.19995.3438477214193047615@skylake-alporthouse-com>
-Date: Thu, 23 Jan 2020 16:38:52 +0100
+X-IronPort-AV: E=Sophos;i="5.70,354,1574150400"; d="scan'208";a="221558940"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by fmsmga007.fm.intel.com with SMTP; 23 Jan 2020 07:45:24 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Thu, 23 Jan 2020 17:45:24 +0200
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu, 23 Jan 2020 17:45:22 +0200
+Message-Id: <20200123154524.12206-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.24.1
 MIME-Version: 1.0
-From: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
-Message-ID: <op.0euq22k9xaggs7@mwajdecz-mobl1.ger.corp.intel.com>
-In-Reply-To: <157979173710.19995.3438477214193047615@skylake-alporthouse-com>
-User-Agent: Opera Mail/1.0 (Win32)
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/huc: Fix error reported by
- I915_PARAM_HUC_STATUS
+Subject: [Intel-gfx] [PATCH 1/3] drm/dp: Include the AUX CH name in the
+ debug messages
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,72 +43,95 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"; DelSp="yes"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 23 Jan 2020 16:02:17 +0100, Chris Wilson  
-<chris@chris-wilson.co.uk> wrote:
-
-> Quoting Daniele Ceraolo Spurio (2020-01-22 23:52:33)
->>
->>
->> On 1/22/20 11:48 AM, Michal Wajdeczko wrote:
->> >  From commit 84b1ca2f0e68 ("drm/i915/uc: prefer intel_gt over i915
->> > in GuC/HuC paths") we stopped using HUC_STATUS error -ENODEV only
->> > to indicate lack of HuC hardware and we started to use this error
->> > also for all other cases when HuC was not in use or supported.
->> >
->> > Fix that by relying again on HAS_GT_UC macro, since currently
->> > used function intel_huc_is_supported() is based on HuC firmware
->> > support which could be unsupported also due to force disabled
->> > GuC firmware.
->> >
->> > Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
->> > Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
->> > Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
->> > Cc: Tony Ye <tony.ye@intel.com>
->>
->> Reviewed-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
->
-> Once upon a time did you (Michal) not argue we should indicate the lack
-> of firmware in the error code? Something like
->
-> if (!HAS_GT_UC(gt->i915))
-> 	return -ENODEV;
->
-> if (!intel_huc_is_supported(huc))
-> 	return -ENOEXEC;
-
-Yes, we discussed this here [1] together with [2] but we didn't
-conclude our discussion due to different opinions on how represent
-some states, in particular "manually disabled" state.
-
-In this patch I just wanted to restore old notation.
-
-But we can start new discussion, here is summary:
-
-------------------+----------+----------+----------
-  HuC state        | today*   | option A | option B
-------------------+----------+----------+----------
-no HuC hardware   | -ENODEV  | -ENODEV  | -ENODEV
-GuC fw disabled   |   0      |     0    | -EOPNOTSUPP
-HuC fw disabled   |   0      |     0    | -EOPNOTSUPP
-HuC fw missing    |   0      | -ENOPKG  | -ENOEXEC
-HuC fw error      |   0      | -ENOEXEC | -ENOEXEC
-HuC fw fail       |   0      | -EACCES  |    0
-HuC authenticated |   1      |     1    |    1
-------------------+----------+----------+----------
-
-Note that all above should be compatible with media driver,
-which explicitly looks for no error and value 1
-
-Michal
-
-[1] https://patchwork.freedesktop.org/patch/306419/?series=61001&rev=1
-[2] https://patchwork.freedesktop.org/series/60800/#rev1
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+RnJvbTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KClRv
+IG1ha2UgaXQgZWFzaWVyIHRvIGZpZ3VyZSBvdXQgd2hhdCBjYXVzZWQgYSBwYXJ0aWN1bGFyIGRl
+YnVnCm1lc3NhZ2UgbGV0J3MgcHJpbnQgb3V0IGF1eC0+bmFtZS4KClNpZ25lZC1vZmYtYnk6IFZp
+bGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5jb20+Ci0tLQogZHJpdmVy
+cy9ncHUvZHJtL2RybV9kcF9oZWxwZXIuYyB8IDQ0ICsrKysrKysrKysrKysrKysrKystLS0tLS0t
+LS0tLS0tLQogMSBmaWxlIGNoYW5nZWQsIDI1IGluc2VydGlvbnMoKyksIDE5IGRlbGV0aW9ucygt
+KQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9kcm1fZHBfaGVscGVyLmMgYi9kcml2ZXJz
+L2dwdS9kcm0vZHJtX2RwX2hlbHBlci5jCmluZGV4IDVhMTAzZTliM2M4Ni4uZjhjZWRiYzNkYTVk
+IDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vZHJtX2RwX2hlbHBlci5jCisrKyBiL2RyaXZl
+cnMvZ3B1L2RybS9kcm1fZHBfaGVscGVyLmMKQEAgLTI1Nyw3ICsyNTcsOCBAQCBzdGF0aWMgaW50
+IGRybV9kcF9kcGNkX2FjY2VzcyhzdHJ1Y3QgZHJtX2RwX2F1eCAqYXV4LCB1OCByZXF1ZXN0LAog
+CQkJZXJyID0gcmV0OwogCX0KIAotCURSTV9ERUJVR19LTVMoIlRvbyBtYW55IHJldHJpZXMsIGdp
+dmluZyB1cC4gRmlyc3QgZXJyb3I6ICVkXG4iLCBlcnIpOworCURSTV9ERUJVR19LTVMoIiVzOiBU
+b28gbWFueSByZXRyaWVzLCBnaXZpbmcgdXAuIEZpcnN0IGVycm9yOiAlZFxuIiwKKwkJICAgICAg
+YXV4LT5uYW1lLCBlcnIpOwogCXJldCA9IGVycjsKIAogdW5sb2NrOgpAQCAtNjc4LDEwICs2Nzks
+MTEgQEAgc3RhdGljIGludCBkcm1fZHBfaTJjX2RvX21zZyhzdHJ1Y3QgZHJtX2RwX2F1eCAqYXV4
+LCBzdHJ1Y3QgZHJtX2RwX2F1eF9tc2cgKm1zZykKIAkJCSAqIEF2b2lkIHNwYW1taW5nIHRoZSBr
+ZXJuZWwgbG9nIHdpdGggdGltZW91dCBlcnJvcnMuCiAJCQkgKi8KIAkJCWlmIChyZXQgPT0gLUVU
+SU1FRE9VVCkKLQkJCQlEUk1fREVCVUdfS01TX1JBVEVMSU1JVEVEKCJ0cmFuc2FjdGlvbiB0aW1l
+ZCBvdXRcbiIpOworCQkJCURSTV9ERUJVR19LTVNfUkFURUxJTUlURUQoIiVzOiB0cmFuc2FjdGlv
+biB0aW1lZCBvdXRcbiIsCisJCQkJCQkJICBhdXgtPm5hbWUpOwogCQkJZWxzZQotCQkJCURSTV9E
+RUJVR19LTVMoInRyYW5zYWN0aW9uIGZhaWxlZDogJWRcbiIsIHJldCk7Ci0KKwkJCQlEUk1fREVC
+VUdfS01TKCIlczogdHJhbnNhY3Rpb24gZmFpbGVkOiAlZFxuIiwKKwkJCQkJICAgICAgYXV4LT5u
+YW1lLCByZXQpOwogCQkJcmV0dXJuIHJldDsKIAkJfQogCkBAIC02OTUsMTEgKzY5NywxMiBAQCBz
+dGF0aWMgaW50IGRybV9kcF9pMmNfZG9fbXNnKHN0cnVjdCBkcm1fZHBfYXV4ICphdXgsIHN0cnVj
+dCBkcm1fZHBfYXV4X21zZyAqbXNnKQogCQkJYnJlYWs7CiAKIAkJY2FzZSBEUF9BVVhfTkFUSVZF
+X1JFUExZX05BQ0s6Ci0JCQlEUk1fREVCVUdfS01TKCJuYXRpdmUgbmFjayAocmVzdWx0PSVkLCBz
+aXplPSV6dSlcbiIsIHJldCwgbXNnLT5zaXplKTsKKwkJCURSTV9ERUJVR19LTVMoIiVzOiBuYXRp
+dmUgbmFjayAocmVzdWx0PSVkLCBzaXplPSV6dSlcbiIsCisJCQkJICAgICAgYXV4LT5uYW1lLCBy
+ZXQsIG1zZy0+c2l6ZSk7CiAJCQlyZXR1cm4gLUVSRU1PVEVJTzsKIAogCQljYXNlIERQX0FVWF9O
+QVRJVkVfUkVQTFlfREVGRVI6Ci0JCQlEUk1fREVCVUdfS01TKCJuYXRpdmUgZGVmZXJcbiIpOwor
+CQkJRFJNX0RFQlVHX0tNUygiJXM6IG5hdGl2ZSBkZWZlclxuIiwgYXV4LT5uYW1lKTsKIAkJCS8q
+CiAJCQkgKiBXZSBjb3VsZCBjaGVjayBmb3IgSTJDIGJpdCByYXRlIGNhcGFiaWxpdGllcyBhbmQg
+aWYKIAkJCSAqIGF2YWlsYWJsZSBhZGp1c3QgdGhpcyBpbnRlcnZhbC4gV2UgY291bGQgYWxzbyBi
+ZQpAQCAtNzEzLDcgKzcxNiw4IEBAIHN0YXRpYyBpbnQgZHJtX2RwX2kyY19kb19tc2coc3RydWN0
+IGRybV9kcF9hdXggKmF1eCwgc3RydWN0IGRybV9kcF9hdXhfbXNnICptc2cpCiAJCQljb250aW51
+ZTsKIAogCQlkZWZhdWx0OgotCQkJRFJNX0VSUk9SKCJpbnZhbGlkIG5hdGl2ZSByZXBseSAlIzA0
+eFxuIiwgbXNnLT5yZXBseSk7CisJCQlEUk1fRVJST1IoIiVzOiBpbnZhbGlkIG5hdGl2ZSByZXBs
+eSAlIzA0eFxuIiwKKwkJCQkgIGF1eC0+bmFtZSwgbXNnLT5yZXBseSk7CiAJCQlyZXR1cm4gLUVS
+RU1PVEVJTzsKIAkJfQogCkBAIC03MjgsMTMgKzczMiwxMyBAQCBzdGF0aWMgaW50IGRybV9kcF9p
+MmNfZG9fbXNnKHN0cnVjdCBkcm1fZHBfYXV4ICphdXgsIHN0cnVjdCBkcm1fZHBfYXV4X21zZyAq
+bXNnKQogCQkJcmV0dXJuIHJldDsKIAogCQljYXNlIERQX0FVWF9JMkNfUkVQTFlfTkFDSzoKLQkJ
+CURSTV9ERUJVR19LTVMoIkkyQyBuYWNrIChyZXN1bHQ9JWQsIHNpemU9JXp1KVxuIiwKLQkJCQkg
+ICAgICByZXQsIG1zZy0+c2l6ZSk7CisJCQlEUk1fREVCVUdfS01TKCIlczogSTJDIG5hY2sgKHJl
+c3VsdD0lZCwgc2l6ZT0lenUpXG4iLAorCQkJCSAgICAgIGF1eC0+bmFtZSwgcmV0LCBtc2ctPnNp
+emUpOwogCQkJYXV4LT5pMmNfbmFja19jb3VudCsrOwogCQkJcmV0dXJuIC1FUkVNT1RFSU87CiAK
+IAkJY2FzZSBEUF9BVVhfSTJDX1JFUExZX0RFRkVSOgotCQkJRFJNX0RFQlVHX0tNUygiSTJDIGRl
+ZmVyXG4iKTsKKwkJCURSTV9ERUJVR19LTVMoIiVzOiBJMkMgZGVmZXJcbiIsIGF1eC0+bmFtZSk7
+CiAJCQkvKiBEUCBDb21wbGlhbmNlIFRlc3QgNC4yLjIuNSBSZXF1aXJlbWVudDoKIAkJCSAqIE11
+c3QgaGF2ZSBhdCBsZWFzdCA3IHJldHJpZXMgZm9yIEkyQyBkZWZlcnMgb24gdGhlCiAJCQkgKiB0
+cmFuc2FjdGlvbiB0byBwYXNzIHRoaXMgdGVzdApAQCAtNzQ4LDEyICs3NTIsMTMgQEAgc3RhdGlj
+IGludCBkcm1fZHBfaTJjX2RvX21zZyhzdHJ1Y3QgZHJtX2RwX2F1eCAqYXV4LCBzdHJ1Y3QgZHJt
+X2RwX2F1eF9tc2cgKm1zZykKIAkJCWNvbnRpbnVlOwogCiAJCWRlZmF1bHQ6Ci0JCQlEUk1fRVJS
+T1IoImludmFsaWQgSTJDIHJlcGx5ICUjMDR4XG4iLCBtc2ctPnJlcGx5KTsKKwkJCURSTV9FUlJP
+UigiJXM6IGludmFsaWQgSTJDIHJlcGx5ICUjMDR4XG4iLAorCQkJCSAgYXV4LT5uYW1lLCBtc2ct
+PnJlcGx5KTsKIAkJCXJldHVybiAtRVJFTU9URUlPOwogCQl9CiAJfQogCi0JRFJNX0RFQlVHX0tN
+UygidG9vIG1hbnkgcmV0cmllcywgZ2l2aW5nIHVwXG4iKTsKKwlEUk1fREVCVUdfS01TKCIlczog
+VG9vIG1hbnkgcmV0cmllcywgZ2l2aW5nIHVwXG4iLCBhdXgtPm5hbWUpOwogCXJldHVybiAtRVJF
+TU9URUlPOwogfQogCkBAIC03ODIsOCArNzg3LDggQEAgc3RhdGljIGludCBkcm1fZHBfaTJjX2Ry
+YWluX21zZyhzdHJ1Y3QgZHJtX2RwX2F1eCAqYXV4LCBzdHJ1Y3QgZHJtX2RwX2F1eF9tc2cgKm8K
+IAkJCXJldHVybiBlcnIgPT0gMCA/IC1FUFJPVE8gOiBlcnI7CiAKIAkJaWYgKGVyciA8IG1zZy5z
+aXplICYmIGVyciA8IHJldCkgewotCQkJRFJNX0RFQlVHX0tNUygiUGFydGlhbCBJMkMgcmVwbHk6
+IHJlcXVlc3RlZCAlenUgYnl0ZXMgZ290ICVkIGJ5dGVzXG4iLAotCQkJCSAgICAgIG1zZy5zaXpl
+LCBlcnIpOworCQkJRFJNX0RFQlVHX0tNUygiJXM6IFBhcnRpYWwgSTJDIHJlcGx5OiByZXF1ZXN0
+ZWQgJXp1IGJ5dGVzIGdvdCAlZCBieXRlc1xuIiwKKwkJCQkgICAgICBhdXgtPm5hbWUsIG1zZy5z
+aXplLCBlcnIpOwogCQkJcmV0ID0gZXJyOwogCQl9CiAKQEAgLTk2MiwxMSArOTY3LDEyIEBAIHN0
+YXRpYyB2b2lkIGRybV9kcF9hdXhfY3JjX3dvcmsoc3RydWN0IHdvcmtfc3RydWN0ICp3b3JrKQog
+CQl9CiAKIAkJaWYgKHJldCA9PSAtRUFHQUlOKSB7Ci0JCQlEUk1fREVCVUdfS01TKCJHZXQgQ1JD
+IGZhaWxlZCBhZnRlciByZXRyeWluZzogJWRcbiIsCi0JCQkJICAgICAgcmV0KTsKKwkJCURSTV9E
+RUJVR19LTVMoIiVzOiBHZXQgQ1JDIGZhaWxlZCBhZnRlciByZXRyeWluZzogJWRcbiIsCisJCQkJ
+ICAgICAgYXV4LT5uYW1lLCByZXQpOwogCQkJY29udGludWU7CiAJCX0gZWxzZSBpZiAocmV0KSB7
+Ci0JCQlEUk1fREVCVUdfS01TKCJGYWlsZWQgdG8gZ2V0IGEgQ1JDOiAlZFxuIiwgcmV0KTsKKwkJ
+CURSTV9ERUJVR19LTVMoIiVzOiBGYWlsZWQgdG8gZ2V0IGEgQ1JDOiAlZFxuIiwKKwkJCQkgICAg
+ICBhdXgtPm5hbWUsIHJldCk7CiAJCQljb250aW51ZTsKIAkJfQogCkBAIC0xMjQ3LDggKzEyNTMs
+OCBAQCBpbnQgZHJtX2RwX3JlYWRfZGVzYyhzdHJ1Y3QgZHJtX2RwX2F1eCAqYXV4LCBzdHJ1Y3Qg
+ZHJtX2RwX2Rlc2MgKmRlc2MsCiAKIAlkZXZfaWRfbGVuID0gc3RybmxlbihpZGVudC0+ZGV2aWNl
+X2lkLCBzaXplb2YoaWRlbnQtPmRldmljZV9pZCkpOwogCi0JRFJNX0RFQlVHX0tNUygiRFAgJXM6
+IE9VSSAlKnBoRCBkZXYtSUQgJSpwRSBIVy1yZXYgJWQuJWQgU1ctcmV2ICVkLiVkIHF1aXJrcyAw
+eCUwNHhcbiIsCi0JCSAgICAgIGlzX2JyYW5jaCA/ICJicmFuY2giIDogInNpbmsiLAorCURSTV9E
+RUJVR19LTVMoIiVzOiBEUCAlczogT1VJICUqcGhEIGRldi1JRCAlKnBFIEhXLXJldiAlZC4lZCBT
+Vy1yZXYgJWQuJWQgcXVpcmtzIDB4JTA0eFxuIiwKKwkJICAgICAgYXV4LT5uYW1lLCBpc19icmFu
+Y2ggPyAiYnJhbmNoIiA6ICJzaW5rIiwKIAkJICAgICAgKGludClzaXplb2YoaWRlbnQtPm91aSks
+IGlkZW50LT5vdWksCiAJCSAgICAgIGRldl9pZF9sZW4sIGlkZW50LT5kZXZpY2VfaWQsCiAJCSAg
+ICAgIGlkZW50LT5od19yZXYgPj4gNCwgaWRlbnQtPmh3X3JldiAmIDB4ZiwKLS0gCjIuMjQuMQoK
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
+IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
