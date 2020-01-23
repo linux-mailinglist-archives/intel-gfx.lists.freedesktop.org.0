@@ -1,40 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B107146642
-	for <lists+intel-gfx@lfdr.de>; Thu, 23 Jan 2020 12:02:09 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id CA280146677
+	for <lists+intel-gfx@lfdr.de>; Thu, 23 Jan 2020 12:18:40 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 048EB6F9FB;
-	Thu, 23 Jan 2020 11:02:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 068AB6FBE1;
+	Thu, 23 Jan 2020 11:18:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 11B596F9FB;
- Thu, 23 Jan 2020 11:02:05 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 23 Jan 2020 03:02:04 -0800
-X-IronPort-AV: E=Sophos;i="5.70,353,1574150400"; d="scan'208";a="229779107"
-Received: from jkrzyszt-desk.igk.intel.com (HELO
- jkrzyszt-desk.ger.corp.intel.com) ([172.22.244.17])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 23 Jan 2020 03:02:02 -0800
-From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>
-Date: Thu, 23 Jan 2020 12:01:57 +0100
-Message-ID: <4915664.0qtKoWCMDK@jkrzyszt-desk.ger.corp.intel.com>
-Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
- 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
-In-Reply-To: <11711055.DxJhndXA8j@jkrzyszt-desk.ger.corp.intel.com>
-References: <20200109140125.18483-1-janusz.krzysztofik@linux.intel.com>
- <157858221040.2197.11860218526538512609@skylake-alporthouse-com>
- <11711055.DxJhndXA8j@jkrzyszt-desk.ger.corp.intel.com>
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5DDAC6FBE1
+ for <intel-gfx@lists.freedesktop.org>; Thu, 23 Jan 2020 11:18:36 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19980789-1500050 
+ for multiple; Thu, 23 Jan 2020 11:18:17 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu, 23 Jan 2020 11:18:16 +0000
+Message-Id: <20200123111816.1292582-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.25.0
+In-Reply-To: <20200122201822.889250-1-chris@chris-wilson.co.uk>
+References: <20200122201822.889250-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH i-g-t 2/2] tests/prime_vgem: Examine blitter
- access path
+Subject: [Intel-gfx] [PATCH v3] drm/i915/gt: Poison GTT scratch pages
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,106 +38,200 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: igt-dev@lists.freedesktop.org, Daniel Vetter <daniel.vetter@ffwll.ch>,
- intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Sorry for replying to myself again.
+Using a clear page for scratch means that we have relatively benign
+errors in case it is accidentally used, but that can be rather too
+benign for debugging. If we poison the scratch, ideally it quickly
+results in an obvious error.
 
-On Wednesday, January 22, 2020 4:24:49 PM CET Janusz Krzysztofik wrote:
-> Hi Chris,
-> 
-> On Thursday, January 9, 2020 4:03:30 PM CET Chris Wilson wrote:
-> > Quoting Janusz Krzysztofik (2020-01-09 14:01:25)
-> > > On future hardware with missing GGTT BAR we won't be able to exercise
-> > > dma-buf access via that path.  An alternative to basic-gtt subtest for
-> > > testing dma-buf access is required, as well as basic-fence-mmap and
-> > > coherency-gtt subtest alternatives for testing WC coherency.
-> > > 
-> > > Access to the dma sg list feature exposed by dma-buf can be tested
-> > > through blitter.  Unfortunately we don't have any equivalently simple
-> > > tests that use blitter.  Provide them.
-> > > 
-> > > Blitter XY_SRC_COPY method implemented by igt_blitter_src_copy__raw()
-> > > IGT library function has been chosen.
-> > > 
-> > > v2: As fast copy is not supported on platforms older than Gen 9,
-> > >     use XY_SRC_COPY instead (Chris),
-> > >   - add subtest descriptions.
-> > > 
-> > > Suggested-by: Chris Wilson <chris@chris-wilson.co.uk>
-> > > Suggested-by: Daniel Vetter <daniel.vetter@ffwll.ch>
-> > > Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-> > > ---
-> > >  tests/prime_vgem.c | 192 +++++++++++++++++++++++++++++++++++++++++++++
-> > >  1 file changed, 192 insertions(+)
-> > > 
-> > > diff --git a/tests/prime_vgem.c b/tests/prime_vgem.c
-> > > index 69ae8c9b..9ceee47a 100644
-> > > --- a/tests/prime_vgem.c
-> > > +++ b/tests/prime_vgem.c
-> <SNIP>
-> > >  
-> > > +static void test_blt(int vgem, int i915)
-> > > +{
-> > > +       struct vgem_bo scratch;
-> > > +       uint32_t prime, native;
-> > > +       uint32_t *ptr;
-> > > +       int dmabuf, i;
-> > > +
-> > > +       scratch.width = 1024;
-> > > +       scratch.height = 1024;
-> > > +       scratch.bpp = 32;
-> > > +       vgem_create(vgem, &scratch);
-> > > +
-> > > +       dmabuf = prime_handle_to_fd(vgem, scratch.handle);
-> > > +       prime = prime_fd_to_handle(i915, dmabuf);
-> > > +       close(dmabuf);
-> > > +
-> > > +       native = gem_create(i915, scratch.size);
-> > > +
-> > > +       ptr = gem_mmap__wc(i915, native, 0, scratch.size, PROT_WRITE);
-> > > +       for (i = 0; i < 1024; i++)
-> > > +               ptr[1024 * i] = i;
-> > > +       munmap(ptr, scratch.size);
-> > > +
-> > > +       igt_blitter_src_copy__raw(i915,
-> > > +                                 native, 0, scratch.width * scratch.bpp / 8,
-> > > +                                 I915_TILING_NONE, 0, 0,
-> > > +                                 scratch.width, scratch.height, scratch.bpp,
-> > > +                                 prime, 0, scratch.width * scratch.bpp / 8,
-> > > +                                 I915_TILING_NONE, 0, 0);
-> > > +       gem_sync(i915, prime);
-> > 
-> > Would this be better with prime_sync_start(dmabuf, true); ?
-> 
-> I'm not sure why you suggest true for write access, not false for just having 
-> the prime object confirmed ready for reading.  Could you please explain?
+v2: Set each page individually just in case we are using highmem for our
+scratch page.
+v3: Pick a new scratch register as MI_STORE_REGISTER_MEM does not work
+with GPR0 on gen7, unbelievably.
 
-Now I think that by requesting a write sync, as suggested by Chris, we make 
-sure that all former write operations have completed.  That might be not true 
-if we requested a read sync as we might get a snapshot taken while the write 
-we wanted to serialize against was still pending.  I hope my understanding of 
-this is now correct.
+Suggested-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+Cc: Matthew Auld <matthew.william.auld@gmail.com>
+---
+ .../drm/i915/gem/selftests/i915_gem_context.c | 51 ++++++++++++++++---
+ drivers/gpu/drm/i915/gt/intel_gtt.c           | 30 +++++++++++
+ 2 files changed, 75 insertions(+), 6 deletions(-)
 
-Thanks,
-Janusz
-
-> 
-> Thanks,
-> Janusz
-> 
-> > gem_sync(prime) is nice in its own way (checking sync on imported handle
-> > provides correct serialisation for the vgem_mmap). But I think the
-> > recommended practice would be to use dmabuf for the inter-device sync?
-> 
-> 
-
-
-
+diff --git a/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c b/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c
+index 7fc46861a54d..00a56a8b309a 100644
+--- a/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c
++++ b/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c
+@@ -1575,7 +1575,6 @@ static int read_from_scratch(struct i915_gem_context *ctx,
+ 	struct drm_i915_private *i915 = ctx->i915;
+ 	struct drm_i915_gem_object *obj;
+ 	struct i915_address_space *vm;
+-	const u32 RCS_GPR0 = 0x2600; /* not all engines have their own GPR! */
+ 	const u32 result = 0x100;
+ 	struct i915_request *rq;
+ 	struct i915_vma *vma;
+@@ -1596,20 +1595,24 @@ static int read_from_scratch(struct i915_gem_context *ctx,
+ 
+ 	memset(cmd, POISON_INUSE, PAGE_SIZE);
+ 	if (INTEL_GEN(i915) >= 8) {
++		const u32 GPR0 = engine->mmio_base + 0x600;
++
+ 		*cmd++ = MI_LOAD_REGISTER_MEM_GEN8;
+-		*cmd++ = RCS_GPR0;
++		*cmd++ = GPR0;
+ 		*cmd++ = lower_32_bits(offset);
+ 		*cmd++ = upper_32_bits(offset);
+ 		*cmd++ = MI_STORE_REGISTER_MEM_GEN8;
+-		*cmd++ = RCS_GPR0;
++		*cmd++ = GPR0;
+ 		*cmd++ = result;
+ 		*cmd++ = 0;
+ 	} else {
++		const u32 reg = engine->mmio_base + 0x420;
++
+ 		*cmd++ = MI_LOAD_REGISTER_MEM;
+-		*cmd++ = RCS_GPR0;
++		*cmd++ = reg;
+ 		*cmd++ = offset;
+ 		*cmd++ = MI_STORE_REGISTER_MEM;
+-		*cmd++ = RCS_GPR0;
++		*cmd++ = reg;
+ 		*cmd++ = result;
+ 	}
+ 	*cmd = MI_BATCH_BUFFER_END;
+@@ -1686,6 +1689,28 @@ static int read_from_scratch(struct i915_gem_context *ctx,
+ 	return err;
+ }
+ 
++static int check_scratch_page(struct i915_gem_context *ctx, u32 *out)
++{
++	struct page *page = ctx_vm(ctx)->scratch[0].base.page;
++	u32 *vaddr;
++	int err = 0;
++
++	if (!page) {
++		pr_err("No scratch page!\n");
++		return -EINVAL;
++	}
++
++	vaddr = kmap(page);
++	memcpy(out, vaddr, sizeof(*out));
++	if (memchr_inv(vaddr, *out, PAGE_SIZE)) {
++		pr_err("Inconsistent initial state of scratch page!\n");
++		err = -EINVAL;
++	}
++	kunmap(page);
++
++	return err;
++}
++
+ static int igt_vm_isolation(void *arg)
+ {
+ 	struct drm_i915_private *i915 = arg;
+@@ -1696,6 +1721,7 @@ static int igt_vm_isolation(void *arg)
+ 	I915_RND_STATE(prng);
+ 	struct file *file;
+ 	u64 vm_total;
++	u32 expected;
+ 	int err;
+ 
+ 	if (INTEL_GEN(i915) < 7)
+@@ -1720,12 +1746,21 @@ static int igt_vm_isolation(void *arg)
+ 		goto out_file;
+ 	}
+ 
++	/* Read the initial state of the scratch page */
++	err = check_scratch_page(ctx_a, &expected);
++	if (err)
++		goto out_file;
++
+ 	ctx_b = live_context(i915, file);
+ 	if (IS_ERR(ctx_b)) {
+ 		err = PTR_ERR(ctx_b);
+ 		goto out_file;
+ 	}
+ 
++	err = check_scratch_page(ctx_b, &expected);
++	if (err)
++		goto out_file;
++
+ 	/* We can only test vm isolation, if the vm are distinct */
+ 	if (ctx_vm(ctx_a) == ctx_vm(ctx_b))
+ 		goto out_file;
+@@ -1743,6 +1778,10 @@ static int igt_vm_isolation(void *arg)
+ 		if (!intel_engine_can_store_dword(engine))
+ 			continue;
+ 
++		/* Not all engines have their own GPR! */
++		if (INTEL_GEN(i915) < 8 && engine->class != RENDER_CLASS)
++			continue;
++
+ 		while (!__igt_timeout(end_time, NULL)) {
+ 			u32 value = 0xc5c5c5c5;
+ 			u64 offset;
+@@ -1760,7 +1799,7 @@ static int igt_vm_isolation(void *arg)
+ 			if (err)
+ 				goto out_file;
+ 
+-			if (value) {
++			if (value != expected) {
+ 				pr_err("%s: Read %08x from scratch (offset 0x%08x_%08x), after %lu reads!\n",
+ 				       engine->name, value,
+ 				       upper_32_bits(offset),
+diff --git a/drivers/gpu/drm/i915/gt/intel_gtt.c b/drivers/gpu/drm/i915/gt/intel_gtt.c
+index 45d8e0019a8e..bb9a6e638175 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gtt.c
++++ b/drivers/gpu/drm/i915/gt/intel_gtt.c
+@@ -299,6 +299,25 @@ fill_page_dma(const struct i915_page_dma *p, const u64 val, unsigned int count)
+ 	kunmap_atomic(memset64(kmap_atomic(p->page), val, count));
+ }
+ 
++static void poison_scratch_page(struct page *page, unsigned long size)
++{
++	if (!IS_ENABLED(CONFIG_DRM_I915_DEBUG_GEM))
++		return;
++
++	GEM_BUG_ON(!IS_ALIGNED(size, PAGE_SIZE));
++
++	do {
++		void *vaddr;
++
++		vaddr = kmap(page);
++		memset(vaddr, POISON_FREE, PAGE_SIZE);
++		kunmap(page);
++
++		page = pfn_to_page(page_to_pfn(page) + 1);
++		size -= PAGE_SIZE;
++	} while (size);
++}
++
+ int setup_scratch_page(struct i915_address_space *vm, gfp_t gfp)
+ {
+ 	unsigned long size;
+@@ -331,6 +350,17 @@ int setup_scratch_page(struct i915_address_space *vm, gfp_t gfp)
+ 		if (unlikely(!page))
+ 			goto skip;
+ 
++		/*
++		 * Use a non-zero scratch page for debugging.
++		 *
++		 * We want a value that should be reasonably obvious
++		 * to spot in the error state, while also causing a GPU hang
++		 * if executed. We prefer using a clear page in production, so
++		 * should it ever be accidentally used, the effect should be
++		 * fairly benign.
++		 */
++		poison_scratch_page(page, size);
++
+ 		addr = dma_map_page_attrs(vm->dma,
+ 					  page, 0, size,
+ 					  PCI_DMA_BIDIRECTIONAL,
+-- 
+2.25.0
 
 _______________________________________________
 Intel-gfx mailing list
