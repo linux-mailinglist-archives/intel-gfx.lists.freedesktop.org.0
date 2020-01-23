@@ -1,47 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 76026146DAD
-	for <lists+intel-gfx@lfdr.de>; Thu, 23 Jan 2020 16:59:42 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 60DBB146F6F
+	for <lists+intel-gfx@lfdr.de>; Thu, 23 Jan 2020 18:19:09 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CAB7C6FD9F;
-	Thu, 23 Jan 2020 15:59:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 93B516FA28;
+	Thu, 23 Jan 2020 17:19:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D00DF6FD9D;
- Thu, 23 Jan 2020 15:59:38 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8B36C6FD97;
+ Thu, 23 Jan 2020 17:19:05 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
 X-Amp-File-Uploaded: False
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 23 Jan 2020 07:59:38 -0800
-X-IronPort-AV: E=Sophos;i="5.70,354,1574150400"; d="scan'208";a="229887787"
-Received: from wmszyfel-mobl2.ger.corp.intel.com (HELO [10.252.10.247])
- ([10.252.10.247])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/AES256-SHA;
- 23 Jan 2020 07:59:36 -0800
-To: Chris Wilson <chris@chris-wilson.co.uk>,
- Dale B Stimson <dale.b.stimson@intel.com>, igt-dev@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org,
- Bommu Krishnaiah <krishnaiah.bommu@intel.com>,
- Sreedhar Telukuntla <sreedhar.telukuntla@intel.com>
-References: <cover.1579731227.git.dale.b.stimson@intel.com>
- <76818a8047c4b9da76d0619c7b8f58c89449b4ed.1579731227.git.dale.b.stimson@intel.com>
- <225f88d1044053674cbd632998c69c0c677a530e.1579731227.git.dale.b.stimson@intel.com>
- <157977054018.18920.9879323586181021015@skylake-alporthouse-com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <c192e00d-1997-c714-50be-91fc64f9cc29@linux.intel.com>
-Date: Thu, 23 Jan 2020 15:59:33 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 23 Jan 2020 09:19:04 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,354,1574150400"; d="scan'208";a="245447835"
+Received: from mdroper-desk1.fm.intel.com (HELO
+ mdroper-desk1.amr.corp.intel.com) ([10.1.27.64])
+ by orsmga002.jf.intel.com with ESMTP; 23 Jan 2020 09:19:04 -0800
+Date: Thu, 23 Jan 2020 09:19:04 -0800
+From: Matt Roper <matthew.d.roper@intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>
+Message-ID: <20200123171904.GG2244136@mdroper-desk1.amr.corp.intel.com>
+References: <20200123154542.12271-1-ville.syrjala@linux.intel.com>
+ <20200123154542.12271-2-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
-In-Reply-To: <157977054018.18920.9879323586181021015@skylake-alporthouse-com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [igt-dev] [PATCH i-g-t 2/2] DBS:
- tests/i915/gem_ctx_isolation: use the gem_engine_topology library, part 2
+Content-Disposition: inline
+In-Reply-To: <20200123154542.12271-2-ville.syrjala@linux.intel.com>
+User-Agent: Mutt/1.12.1 (2019-06-15)
+Subject: Re: [Intel-gfx] [PATCH 2/3] drm/i915: Include the AUX CH name in
+ the debug messages
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,74 +47,124 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Melkaveri, Arjun" <arjun.melkaveri@intel.com>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Thu, Jan 23, 2020 at 05:45:41PM +0200, Ville Syrjala wrote:
+> From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> =
 
-On 23/01/2020 09:09, Chris Wilson wrote:
-> Quoting Dale B Stimson (2020-01-22 23:26:57)
->> Switch from simple iteration over all potential engines to using
->> macro __for_each_physical_engine which only returns engines that are
->> actually present.
->>
->> For each context (as it is created) call gem_context_set_all_engines
->> so that execbuf will interpret the engine specification in the new way.
->>
->> Signed-off-by: Dale B Stimson <dale.b.stimson@intel.com>
->> ---
->>   tests/i915/gem_ctx_isolation.c | 41 ++++++++++++++++++++++++++--------
->>   1 file changed, 32 insertions(+), 9 deletions(-)
->>
->> diff --git a/tests/i915/gem_ctx_isolation.c b/tests/i915/gem_ctx_isolation.c
->> index 25113b054..31a20ed3a 100644
->> --- a/tests/i915/gem_ctx_isolation.c
->> +++ b/tests/i915/gem_ctx_isolation.c
->> @@ -240,6 +240,25 @@ static bool ignore_register(uint32_t offset)
->>          return false;
->>   }
->>   
->> +/*
->> + * context_create_plus_all_engines - Same as gem_context_create plus setup.
->> + *
->> + * This is a convenience function that may be called instead of the sequence
->> + * of gem_context_create followed by gem_context_set_all_engines.
->> + * If gem_has_engine_topology(), then function gem_context_set_all_engines
->> + * indicates that future execbuf calls for this context should interpret the
->> + * engine specification in a gem_engine_topology-compatible way.
->> + */
->> +static uint32_t context_create_plus_all_engines(int fd)
->> +{
->> +       uint32_t ctx;
->> +
->> +       ctx = gem_context_create(fd);
->> +       gem_context_set_all_engines(fd, ctx);
->> +
->> +       return ctx;
->> +}
-> 
-> gem_context_clone_with_engines() so we can stop assuming that
-> all-engines is the right answer, because that depends on the conditions
-> set up by the iterator on the first context.
+> To make it easier to figure out what caused a particular debug
+> message let's print out aux->name.
+> =
 
-gem_context_clone_with_engines was agreed upon in principle some time 
-ago but never implemented. I have now posted this as 
-https://patchwork.freedesktop.org/series/72464/ and plan to merge it 
-once it passes CI.
+> Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
 
-Dale, Arjun, Krishnaiah and Sreedhar - you have in progress patches 
-which use gem_context_set_all_engines which will be gone and you will 
-need to adjust your work accordingly.
+It might be worth adding commas to some of these messages too while
+we're at it (e.g., "not started, status").  But either way, this is a
+really helpful cleanup.
 
-Sreedhar specifically for your change in gem_exec_parallel we will need 
-to add a new helper which transfers the engine map from one fd/context 
-to another. I will copy you on a patch which will add it.
+Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
 
-Regards,
 
-Tvrtko
+> ---
+>  drivers/gpu/drm/i915/display/intel_dp.c | 19 +++++++++++--------
+>  1 file changed, 11 insertions(+), 8 deletions(-)
+> =
+
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i9=
+15/display/intel_dp.c
+> index 1795963e1866..941f0f6d55c1 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -1186,7 +1186,7 @@ intel_dp_aux_wait_done(struct intel_dp *intel_dp)
+>  	trace_i915_reg_rw(false, ch_ctl, status, sizeof(status), true);
+>  =
+
+>  	if (!done)
+> -		DRM_ERROR("%s did not complete or timeout within %ums (status 0x%08x)\=
+n",
+> +		DRM_ERROR("%s: did not complete or timeout within %ums (status 0x%08x)=
+\n",
+>  			  intel_dp->aux.name, timeout_ms, status);
+>  #undef C
+>  =
+
+> @@ -1373,8 +1373,8 @@ intel_dp_aux_xfer(struct intel_dp *intel_dp,
+>  		const u32 status =3D intel_uncore_read(uncore, ch_ctl);
+>  =
+
+>  		if (status !=3D intel_dp->aux_busy_last_status) {
+> -			WARN(1, "dp_aux_ch not started status 0x%08x\n",
+> -			     status);
+> +			WARN(1, "%s: not started status 0x%08x\n",
+> +			     intel_dp->aux.name, status);
+>  			intel_dp->aux_busy_last_status =3D status;
+>  		}
+>  =
+
+> @@ -1435,7 +1435,8 @@ intel_dp_aux_xfer(struct intel_dp *intel_dp,
+>  	}
+>  =
+
+>  	if ((status & DP_AUX_CH_CTL_DONE) =3D=3D 0) {
+> -		DRM_ERROR("dp_aux_ch not done status 0x%08x\n", status);
+> +		DRM_ERROR("%s: not done status 0x%08x\n",
+> +			  intel_dp->aux.name, status);
+>  		ret =3D -EBUSY;
+>  		goto out;
+>  	}
+> @@ -1445,7 +1446,8 @@ intel_dp_aux_xfer(struct intel_dp *intel_dp,
+>  	 * Timeouts occur when the sink is not connected
+>  	 */
+>  	if (status & DP_AUX_CH_CTL_RECEIVE_ERROR) {
+> -		DRM_ERROR("dp_aux_ch receive error status 0x%08x\n", status);
+> +		DRM_ERROR("%s: receive error status 0x%08x\n",
+> +			  intel_dp->aux.name, status);
+>  		ret =3D -EIO;
+>  		goto out;
+>  	}
+> @@ -1453,7 +1455,8 @@ intel_dp_aux_xfer(struct intel_dp *intel_dp,
+>  	/* Timeouts occur when the device isn't connected, so they're
+>  	 * "normal" -- don't fill the kernel log with these */
+>  	if (status & DP_AUX_CH_CTL_TIME_OUT_ERROR) {
+> -		DRM_DEBUG_KMS("dp_aux_ch timeout status 0x%08x\n", status);
+> +		DRM_DEBUG_KMS("%s: timeout status 0x%08x\n",
+> +			      intel_dp->aux.name, status);
+>  		ret =3D -ETIMEDOUT;
+>  		goto out;
+>  	}
+> @@ -1468,8 +1471,8 @@ intel_dp_aux_xfer(struct intel_dp *intel_dp,
+>  	 * drm layer takes care for the necessary retries.
+>  	 */
+>  	if (recv_bytes =3D=3D 0 || recv_bytes > 20) {
+> -		DRM_DEBUG_KMS("Forbidden recv_bytes =3D %d on aux transaction\n",
+> -			      recv_bytes);
+> +		DRM_DEBUG_KMS("%s: Forbidden recv_bytes =3D %d on aux transaction\n",
+> +			      intel_dp->aux.name, recv_bytes);
+>  		ret =3D -EBUSY;
+>  		goto out;
+>  	}
+> -- =
+
+> 2.24.1
+> =
+
+> _______________________________________________
+> dri-devel mailing list
+> dri-devel@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/dri-devel
+
+-- =
+
+Matt Roper
+Graphics Software Engineer
+VTT-OSGC Platform Enablement
+Intel Corporation
+(916) 356-2795
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
