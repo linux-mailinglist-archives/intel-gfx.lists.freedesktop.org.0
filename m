@@ -2,30 +2,44 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CBE98146BB4
-	for <lists+intel-gfx@lfdr.de>; Thu, 23 Jan 2020 15:48:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 64368146BB3
+	for <lists+intel-gfx@lfdr.de>; Thu, 23 Jan 2020 15:48:31 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A70AB6FD3D;
-	Thu, 23 Jan 2020 14:48:31 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 380F26FD3F
- for <intel-gfx@lists.freedesktop.org>; Thu, 23 Jan 2020 14:48:30 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19983743-1500050 
- for multiple; Thu, 23 Jan 2020 14:47:58 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 23 Jan 2020 14:47:56 +0000
-Message-Id: <20200123144756.1403252-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.25.0
-In-Reply-To: <20200122201822.889250-1-chris@chris-wilson.co.uk>
-References: <20200122201822.889250-1-chris@chris-wilson.co.uk>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7714A6FD3B;
+	Thu, 23 Jan 2020 14:48:29 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 869FB6FD3A;
+ Thu, 23 Jan 2020 14:48:27 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 23 Jan 2020 06:48:27 -0800
+X-IronPort-AV: E=Sophos;i="5.70,354,1574150400"; d="scan'208";a="229855858"
+Received: from wmszyfel-mobl2.ger.corp.intel.com (HELO [10.252.10.247])
+ ([10.252.10.247])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/AES256-SHA;
+ 23 Jan 2020 06:48:25 -0800
+To: Chris Wilson <chris@chris-wilson.co.uk>, igt-dev@lists.freedesktop.org
+References: <20200123124306.18857-1-tvrtko.ursulin@linux.intel.com>
+ <157978404508.19995.12294352233320424183@skylake-alporthouse-com>
+ <ec205d22-3882-d655-921d-d35f24f99763@linux.intel.com>
+ <157978539009.19995.13535399102451802903@skylake-alporthouse-com>
+ <8ddcfcb7-d701-01a1-e208-c18c207b21fa@linux.intel.com>
+ <157978900463.19995.12327750600329302953@skylake-alporthouse-com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <1b69e977-5597-217b-f3c8-ccb1e24fced5@linux.intel.com>
+Date: Thu, 23 Jan 2020 14:48:24 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v3] drm/i915/gt: Poison GTT scratch pages
+In-Reply-To: <157978900463.19995.12327750600329302953@skylake-alporthouse-com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH i-g-t] i915/gem_engine_topology: Introduce
+ and use gem_context_clone_with_engines
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,206 +52,167 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
+Cc: Intel-gfx@lists.freedesktop.org
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Using a clear page for scratch means that we have relatively benign
-errors in case it is accidentally used, but that can be rather too
-benign for debugging. If we poison the scratch, ideally it quickly
-results in an obvious error.
 
-v2: Set each page individually just in case we are using highmem for our
-scratch page.
-v3: Pick a new scratch register as MI_STORE_REGISTER_MEM does not work
-with GPR0 on gen7, unbelievably.
+On 23/01/2020 14:16, Chris Wilson wrote:
+> Quoting Tvrtko Ursulin (2020-01-23 14:01:41)
+>>
+>> On 23/01/2020 13:16, Chris Wilson wrote:
+>>> Quoting Tvrtko Ursulin (2020-01-23 13:08:26)
+>>>>
+>>>> On 23/01/2020 12:54, Chris Wilson wrote:
+>>>>> Quoting Tvrtko Ursulin (2020-01-23 12:43:06)
+>>>>>> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+>>>>>>
+>>>>>> In test cases which create new contexts and submit work against them using
+>>>>>> the passed in engine index we are sometimes unsure whether this engine
+>>>>>> index was potentially created based on a default context with engine map
+>>>>>> configured (such as when under the __for_each_physical_engine iterator.
+>>>>>>
+>>>>>> To simplify test code we add gem_context/queue_clone_with_engines which
+>>>>>> is to be used in such scenario instead of the current pattern of
+>>>>>> gem_context_create followed by gem_context_set_all_engines (which is also
+>>>>>> removed by the patch).
+>>>>>>
+>>>>>> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+>>>>>> Suggested-by: Chris Wilson <chris@chris-wilson.co.uk>
+>>>>>> ---
+>>>>>>     lib/i915/gem_context.c         | 59 ++++++++++++++++++++++++++++++++++
+>>>>>>     lib/i915/gem_context.h         |  4 +++
+>>>>>>     lib/i915/gem_engine_topology.c | 11 -------
+>>>>>>     lib/i915/gem_engine_topology.h |  2 --
+>>>>>>     tests/i915/gem_ctx_clone.c     | 15 +--------
+>>>>>>     tests/i915/gem_ctx_switch.c    | 19 ++++-------
+>>>>>>     tests/i915/gem_exec_parallel.c |  3 +-
+>>>>>>     tests/i915/gem_spin_batch.c    | 11 +++----
+>>>>>>     tests/perf_pmu.c               |  3 +-
+>>>>>>     9 files changed, 76 insertions(+), 51 deletions(-)
+>>>>>>
+>>>>>> diff --git a/lib/i915/gem_context.c b/lib/i915/gem_context.c
+>>>>>> index 1fae5191f83f..f92d5ff3dfc5 100644
+>>>>>> --- a/lib/i915/gem_context.c
+>>>>>> +++ b/lib/i915/gem_context.c
+>>>>>> @@ -372,6 +372,50 @@ uint32_t gem_context_clone(int i915,
+>>>>>>            return ctx;
+>>>>>>     }
+>>>>>>     
+>>>>>> +bool gem_has_context_clone(int i915)
+>>>>>> +{
+>>>>>> +       struct drm_i915_gem_context_create_ext_clone ext = {
+>>>>>> +               { .name = I915_CONTEXT_CREATE_EXT_CLONE },
+>>>>>> +               .clone_id = -1,
+>>>>>> +       };
+>>>>>> +       struct drm_i915_gem_context_create_ext create = {
+>>>>>> +               .flags = I915_CONTEXT_CREATE_FLAGS_USE_EXTENSIONS,
+>>>>>> +               .extensions = to_user_pointer(&ext),
+>>>>>> +       };
+>>>>>> +       int err;
+>>>>>> +
+>>>>>> +       err = 0;
+>>>>>> +       if (igt_ioctl(i915, DRM_IOCTL_I915_GEM_CONTEXT_CREATE_EXT, &create)) {
+>>>>>> +               err = -errno;
+>>>>>> +               igt_assume(err);
+>>>>>> +       }
+>>>>>> +       errno = 0;
+>>>>>> +
+>>>>>> +       return err == -ENOENT;
+>>>>>> +}
+>>>>>> +
+>>>>>> +/**
+>>>>>> + * gem_context_clone_with_engines:
+>>>>>> + * @i915: open i915 drm file descriptor
+>>>>>> + * @src: i915 context id
+>>>>>> + *
+>>>>>> + * Special purpose wrapper to create a new context by cloning engines from @src.
+>>>>>> + *
+>>>>>> + * In can be called regardless of whether the kernel supports context cloning.
+>>>>>> + *
+>>>>>> + * Intended purpose is to use for creating contexts against which work will be
+>>>>>> + * submitted and the engine index came from external source, derived from a
+>>>>>> + * default context potentially configured with an engine map.
+>>>>>> + */
+>>>>>> +uint32_t gem_context_clone_with_engines(int i915, uint32_t src)
+>>>>>> +{
+>>>>>> +       if (!gem_has_context_clone(i915))
+>>>>>> +               return gem_context_create(i915);
+>>>>>
+>>>>> Yes, that should cover us for older kernels and keep the for_each loops
+>>>>> happy.
+>>>>>
+>>>>>> +       else
+>>>>>> +               return gem_context_clone(i915, src, 0,
+>>>>>> +                                        I915_CONTEXT_CLONE_ENGINES);
+>>>>>
+>>>>> 0 and CLONE are the wrong way around.
+>>>>
+>>>> Oopsie.
+>>>>
+>>>>>
+>>>>> I would have done
+>>>>>
+>>>>> int __gem_context_clone_with_engines(int i915, uint32_t src, uint32_t *out)
+>>>>> {
+>>>>>         int err;
+>>>>>
+>>>>>         err = __gem_context_clone(i915, src, CLONE_ENGINES, 0, out);
+>>>>>         if (err && !gem_has_context_clone(i915))
+>>>>>                 err = __gem_context_create(i915, out);
+>>>>>
+>>>>>         return err;
+>>>>> }
+>>>>>
+>>>>> uint32_t gem_context_clone_with_engines(int i915, uint32_t src)
+>>>>> {
+>>>>>         uint32_t ctx;
+>>>>>
+>>>>>         igt_assert_eq(__gem_context_clone_with_engine(i915, src, &ctx), 0);
+>>>>>
+>>>>>         return ctx;
+>>>>> }
+>>>>
+>>>> I think I prefer my version as it is a bit more explicit.
+>>>
+>>> I was hoping to do something more like
+>>>        err = __clone()
+>>>        if (err == ENOSYS)
+>>>                err = __create()
+>>>
+>>> Either way, I would suggest doing
+>>>
+>>> int __gem_context_clone_with_engines(int i915, uint32_t src, uint32_t *out);
+>>> uint32_t gem_context_clone_with_engines(int i915, uint32_t src);
+>>>
+>>> as I prefer that style of error message.
+>>
+>> Error message? What do you mean?
+> 
+> igt_assert_eq(__gem_context_clone_with_engine(i915, src, &ctx), 0);
+> is the nicest assert message without using igt_assert_f and writing an
+> information message by hand.
 
-Suggested-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-Cc: Matthew Auld <matthew.william.auld@gmail.com>
----
- .../drm/i915/gem/selftests/i915_gem_context.c | 62 +++++++++++++++++--
- drivers/gpu/drm/i915/gt/intel_gtt.c           | 30 +++++++++
- 2 files changed, 86 insertions(+), 6 deletions(-)
+But you will get that, either helper gem_context_clone_with_engines 
+calls uses that style.
 
-diff --git a/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c b/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c
-index 7fc46861a54d..cae3c0004a40 100644
---- a/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c
-+++ b/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c
-@@ -1575,7 +1575,6 @@ static int read_from_scratch(struct i915_gem_context *ctx,
- 	struct drm_i915_private *i915 = ctx->i915;
- 	struct drm_i915_gem_object *obj;
- 	struct i915_address_space *vm;
--	const u32 RCS_GPR0 = 0x2600; /* not all engines have their own GPR! */
- 	const u32 result = 0x100;
- 	struct i915_request *rq;
- 	struct i915_vma *vma;
-@@ -1596,20 +1595,24 @@ static int read_from_scratch(struct i915_gem_context *ctx,
- 
- 	memset(cmd, POISON_INUSE, PAGE_SIZE);
- 	if (INTEL_GEN(i915) >= 8) {
-+		const u32 GPR0 = engine->mmio_base + 0x600;
-+
- 		*cmd++ = MI_LOAD_REGISTER_MEM_GEN8;
--		*cmd++ = RCS_GPR0;
-+		*cmd++ = GPR0;
- 		*cmd++ = lower_32_bits(offset);
- 		*cmd++ = upper_32_bits(offset);
- 		*cmd++ = MI_STORE_REGISTER_MEM_GEN8;
--		*cmd++ = RCS_GPR0;
-+		*cmd++ = GPR0;
- 		*cmd++ = result;
- 		*cmd++ = 0;
- 	} else {
-+		const u32 reg = engine->mmio_base + 0x420;
-+
- 		*cmd++ = MI_LOAD_REGISTER_MEM;
--		*cmd++ = RCS_GPR0;
-+		*cmd++ = reg;
- 		*cmd++ = offset;
- 		*cmd++ = MI_STORE_REGISTER_MEM;
--		*cmd++ = RCS_GPR0;
-+		*cmd++ = reg;
- 		*cmd++ = result;
- 	}
- 	*cmd = MI_BATCH_BUFFER_END;
-@@ -1686,6 +1689,39 @@ static int read_from_scratch(struct i915_gem_context *ctx,
- 	return err;
- }
- 
-+static int check_scratch_page(struct i915_gem_context *ctx, u32 *out)
-+{
-+	struct i915_address_space *vm;
-+	struct page *page;
-+	u32 *vaddr;
-+	int err = 0;
-+
-+	vm = ctx_vm(ctx);
-+	if (!vm)
-+		return -ENODEV;
-+
-+	page = vm->scratch[0].base.page;
-+	if (!page) {
-+		pr_err("No scratch page!\n");
-+		return -EINVAL;
-+	}
-+
-+	vaddr = kmap(page);
-+	if (vaddr) {
-+		pr_err("No (mappable) scratch page!\n");
-+		return -EINVAL;
-+	}
-+
-+	memcpy(out, vaddr, sizeof(*out));
-+	if (memchr_inv(vaddr, *out, PAGE_SIZE)) {
-+		pr_err("Inconsistent initial state of scratch page!\n");
-+		err = -EINVAL;
-+	}
-+	kunmap(page);
-+
-+	return err;
-+}
-+
- static int igt_vm_isolation(void *arg)
- {
- 	struct drm_i915_private *i915 = arg;
-@@ -1696,6 +1732,7 @@ static int igt_vm_isolation(void *arg)
- 	I915_RND_STATE(prng);
- 	struct file *file;
- 	u64 vm_total;
-+	u32 expected;
- 	int err;
- 
- 	if (INTEL_GEN(i915) < 7)
-@@ -1730,6 +1767,15 @@ static int igt_vm_isolation(void *arg)
- 	if (ctx_vm(ctx_a) == ctx_vm(ctx_b))
- 		goto out_file;
- 
-+	/* Read the initial state of the scratch page */
-+	err = check_scratch_page(ctx_a, &expected);
-+	if (err)
-+		goto out_file;
-+
-+	err = check_scratch_page(ctx_b, &expected);
-+	if (err)
-+		goto out_file;
-+
- 	vm_total = ctx_vm(ctx_a)->total;
- 	GEM_BUG_ON(ctx_vm(ctx_b)->total != vm_total);
- 	vm_total -= I915_GTT_PAGE_SIZE;
-@@ -1743,6 +1789,10 @@ static int igt_vm_isolation(void *arg)
- 		if (!intel_engine_can_store_dword(engine))
- 			continue;
- 
-+		/* Not all engines have their own GPR! */
-+		if (INTEL_GEN(i915) < 8 && engine->class != RENDER_CLASS)
-+			continue;
-+
- 		while (!__igt_timeout(end_time, NULL)) {
- 			u32 value = 0xc5c5c5c5;
- 			u64 offset;
-@@ -1760,7 +1810,7 @@ static int igt_vm_isolation(void *arg)
- 			if (err)
- 				goto out_file;
- 
--			if (value) {
-+			if (value != expected) {
- 				pr_err("%s: Read %08x from scratch (offset 0x%08x_%08x), after %lu reads!\n",
- 				       engine->name, value,
- 				       upper_32_bits(offset),
-diff --git a/drivers/gpu/drm/i915/gt/intel_gtt.c b/drivers/gpu/drm/i915/gt/intel_gtt.c
-index 45d8e0019a8e..bb9a6e638175 100644
---- a/drivers/gpu/drm/i915/gt/intel_gtt.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gtt.c
-@@ -299,6 +299,25 @@ fill_page_dma(const struct i915_page_dma *p, const u64 val, unsigned int count)
- 	kunmap_atomic(memset64(kmap_atomic(p->page), val, count));
- }
- 
-+static void poison_scratch_page(struct page *page, unsigned long size)
-+{
-+	if (!IS_ENABLED(CONFIG_DRM_I915_DEBUG_GEM))
-+		return;
-+
-+	GEM_BUG_ON(!IS_ALIGNED(size, PAGE_SIZE));
-+
-+	do {
-+		void *vaddr;
-+
-+		vaddr = kmap(page);
-+		memset(vaddr, POISON_FREE, PAGE_SIZE);
-+		kunmap(page);
-+
-+		page = pfn_to_page(page_to_pfn(page) + 1);
-+		size -= PAGE_SIZE;
-+	} while (size);
-+}
-+
- int setup_scratch_page(struct i915_address_space *vm, gfp_t gfp)
- {
- 	unsigned long size;
-@@ -331,6 +350,17 @@ int setup_scratch_page(struct i915_address_space *vm, gfp_t gfp)
- 		if (unlikely(!page))
- 			goto skip;
- 
-+		/*
-+		 * Use a non-zero scratch page for debugging.
-+		 *
-+		 * We want a value that should be reasonably obvious
-+		 * to spot in the error state, while also causing a GPU hang
-+		 * if executed. We prefer using a clear page in production, so
-+		 * should it ever be accidentally used, the effect should be
-+		 * fairly benign.
-+		 */
-+		poison_scratch_page(page, size);
-+
- 		addr = dma_map_page_attrs(vm->dma,
- 					  page, 0, size,
- 					  PCI_DMA_BIDIRECTIONAL,
--- 
-2.25.0
+>>> Nothing else to complain about,
+>>> Reviewed-by: Chris Wilson <chris@chris-wilson.co.uk>
+>>
+>> So this is conditional on rewriting it as above or not?
+> 
+> Mere recommendations. Knowing full well that if at some point we need
+> __gem_context_clone_with_engines() the above will happen anyway :)
 
+Ack, leaving it for later. Now need to wait for the results here and 
+then coordinate with at least three people who will need to adjust their 
+patches.
+
+Regards,
+
+Tvrtko
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
