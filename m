@@ -2,39 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 322C41470B2
-	for <lists+intel-gfx@lfdr.de>; Thu, 23 Jan 2020 19:25:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AD2221470B7
+	for <lists+intel-gfx@lfdr.de>; Thu, 23 Jan 2020 19:25:34 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6C2376FA43;
-	Thu, 23 Jan 2020 18:25:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F3E4B6E0A6;
+	Thu, 23 Jan 2020 18:25:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 42F906E0A6
- for <intel-gfx@lists.freedesktop.org>; Thu, 23 Jan 2020 18:25:00 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 792576E0A6
+ for <intel-gfx@lists.freedesktop.org>; Thu, 23 Jan 2020 18:25:31 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 23 Jan 2020 10:16:35 -0800
-X-IronPort-AV: E=Sophos;i="5.70,354,1574150400"; d="scan'208";a="220749068"
-Received: from zye4-mobl1.amr.corp.intel.com (HELO [10.79.152.138])
- ([10.79.152.138])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-SHA;
- 23 Jan 2020 10:15:41 -0800
-To: Michal Wajdeczko <michal.wajdeczko@intel.com>,
- intel-gfx@lists.freedesktop.org
-References: <20200122194825.101240-1-michal.wajdeczko@intel.com>
-From: "Ye, Tony" <tony.ye@intel.com>
-Message-ID: <55c6cf0f-9254-f19b-5356-54de167daf8c@intel.com>
-Date: Thu, 23 Jan 2020 10:12:42 -0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
- Thunderbird/68.2.2
-MIME-Version: 1.0
-In-Reply-To: <20200122194825.101240-1-michal.wajdeczko@intel.com>
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 23 Jan 2020 10:25:31 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,354,1574150400"; d="scan'208";a="259958921"
+Received: from fmsmsx108.amr.corp.intel.com ([10.18.124.206])
+ by fmsmga002.fm.intel.com with ESMTP; 23 Jan 2020 10:25:30 -0800
+Received: from fmsmsx115.amr.corp.intel.com (10.18.116.19) by
+ FMSMSX108.amr.corp.intel.com (10.18.124.206) with Microsoft SMTP Server (TLS)
+ id 14.3.439.0; Thu, 23 Jan 2020 10:25:30 -0800
+Received: from fmsmsx117.amr.corp.intel.com ([169.254.3.3]) by
+ fmsmsx115.amr.corp.intel.com ([169.254.4.191]) with mapi id 14.03.0439.000;
+ Thu, 23 Jan 2020 10:25:30 -0800
+From: "Souza, Jose" <jose.souza@intel.com>
+To: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "Navare, Manasi D" <manasi.d.navare@intel.com>
+Thread-Topic: [Intel-gfx] [PATCH 1/2] drm/i915/dp: Do not set master_trans
+ bit in bitmak if INVALID_TRANSCODER
+Thread-Index: AQHV0YNaQc/pVRPx+UGOonIfbI5IYKf5GBCA
+Date: Thu, 23 Jan 2020 18:25:29 +0000
+Message-ID: <2b07d85811faa1a630403742975914bf5fc1c7ec.camel@intel.com>
+References: <20200123002415.31478-1-manasi.d.navare@intel.com>
+In-Reply-To: <20200123002415.31478-1-manasi.d.navare@intel.com>
+Accept-Language: en-US
 Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/huc: Fix error reported by
- I915_PARAM_HUC_STATUS
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.24.12.248]
+Content-ID: <0EF7ED90DDC13641B7F43A10141E2167@intel.com>
+MIME-Version: 1.0
+Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915/dp: Do not set master_trans
+ bit in bitmak if INVALID_TRANSCODER
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,47 +58,38 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Acked-by: Tony Ye <tony.ye@intel.com>
-
-On 1/22/2020 11:48 AM, Michal Wajdeczko wrote:
->  From commit 84b1ca2f0e68 ("drm/i915/uc: prefer intel_gt over i915
-> in GuC/HuC paths") we stopped using HUC_STATUS error -ENODEV only
-> to indicate lack of HuC hardware and we started to use this error
-> also for all other cases when HuC was not in use or supported.
-> 
-> Fix that by relying again on HAS_GT_UC macro, since currently
-> used function intel_huc_is_supported() is based on HuC firmware
-> support which could be unsupported also due to force disabled
-> GuC firmware.
-> 
-> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
-> Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-> Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-> Cc: Tony Ye <tony.ye@intel.com>
-> ---
->   drivers/gpu/drm/i915/gt/uc/intel_huc.c | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_huc.c b/drivers/gpu/drm/i915/gt/uc/intel_huc.c
-> index 32a069841c14..ad4d9e16a24e 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_huc.c
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_huc.c
-> @@ -209,7 +209,7 @@ int intel_huc_check_status(struct intel_huc *huc)
->   	intel_wakeref_t wakeref;
->   	u32 status = 0;
->   
-> -	if (!intel_huc_is_supported(huc))
-> +	if (!HAS_GT_UC(gt->i915))
->   		return -ENODEV;
->   
->   	with_intel_runtime_pm(gt->uncore->rpm, wakeref)
-> 
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gV2VkLCAyMDIwLTAxLTIyIGF0IDE2OjI0IC0wODAwLCBNYW5hc2kgTmF2YXJlIHdyb3RlOg0K
+PiBJbiB0aGUgcG9ydCBzeW5jIG1vZGUsIGZvciB0aGUgbWFzdGVyIGNydGMsIHRoZSBtYXN0ZXJf
+dHJhbnNjb2RlciBpcw0KPiBJTlZBTElELg0KPiBJbiB0aGF0IGNhc2Ugc2luY2UgaXRzIHZhbHVl
+IGlzIC0xLCBkbyBub3Qgc2V0IHRoZSBiaXQgaW4gdGhlDQo+IGJpdG1hc2suDQo+IA0KPiBDYzog
+VmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4NCj4gRml4ZXM6
+IGQwZWVkMTU0NWZlNyAoImRybS9pOTE1OiBGaXggcG9zdC1mYXN0c2V0IG1vZGVzZXQgY2hlY2sg
+Zm9yDQo+IHBvcnQgc3luYyIpDQo+IFNpZ25lZC1vZmYtYnk6IE1hbmFzaSBOYXZhcmUgPG1hbmFz
+aS5kLm5hdmFyZUBpbnRlbC5jb20+DQo+IC0tLQ0KPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlz
+cGxheS9pbnRlbF9kaXNwbGF5LmMgfCA2ICsrKystLQ0KPiAgMSBmaWxlIGNoYW5nZWQsIDQgaW5z
+ZXJ0aW9ucygrKSwgMiBkZWxldGlvbnMoLSkNCj4gDQo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dw
+dS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuYw0KPiBiL2RyaXZlcnMvZ3B1L2RybS9p
+OTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jDQo+IGluZGV4IDg3OGQzMzFiOWU4Yy4uNzlmOTA1
+NDA3OGVhIDEwMDY0NA0KPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVs
+X2Rpc3BsYXkuYw0KPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rp
+c3BsYXkuYw0KPiBAQCAtMTQ2NDksOCArMTQ2NDksMTAgQEAgc3RhdGljIGludCBpbnRlbF9hdG9t
+aWNfY2hlY2soc3RydWN0DQo+IGRybV9kZXZpY2UgKmRldiwNCj4gIAkJfQ0KPiAgDQo+ICAJCWlm
+IChpc190cmFuc19wb3J0X3N5bmNfbW9kZShuZXdfY3J0Y19zdGF0ZSkpIHsNCj4gLQkJCXU4IHRy
+YW5zID0gbmV3X2NydGNfc3RhdGUtDQo+ID5zeW5jX21vZGVfc2xhdmVzX21hc2sgfA0KPiAtCQkJ
+CSAgIEJJVChuZXdfY3J0Y19zdGF0ZS0NCj4gPm1hc3Rlcl90cmFuc2NvZGVyKTsNCj4gKwkJCXU4
+IHRyYW5zID0gbmV3X2NydGNfc3RhdGUtDQo+ID5zeW5jX21vZGVfc2xhdmVzX21hc2s7DQo+ICsN
+Cj4gKwkJCWlmIChuZXdfY3J0Y19zdGF0ZS0+bWFzdGVyX3RyYW5zY29kZXIgIT0NCj4gSU5WQUxJ
+RF9UUkFOU0NPREVSKQ0KPiArCQkJCXRyYW5zIHw9IEJJVChuZXdfY3J0Y19zdGF0ZS0NCj4gPm1h
+c3Rlcl90cmFuc2NvZGVyKTsNCg0KV2h5IG5vdCBzZXQgbWFzdGVyX3RyYW5zY29kZXIgaW4gcG9y
+dCBzeW5jIG1hc3RlciB0b28/IFdvdWxkIGF2b2lkIGhhdmUNCnRoaXMgY2hlY2sgaGVyZSBhbmQg
+aW4gZnV0dXJlIG90aGVyIHBsYWNlcy4NCg0KPiAgDQo+ICAJCQlpZiAoaW50ZWxfY3B1X3RyYW5z
+Y29kZXJzX25lZWRfbW9kZXNldChzdGF0ZSwNCj4gdHJhbnMpKSB7DQo+ICAJCQkJbmV3X2NydGNf
+c3RhdGUtPnVhcGkubW9kZV9jaGFuZ2VkID0NCj4gdHJ1ZTsNCl9fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwt
+Z2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9t
+YWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
