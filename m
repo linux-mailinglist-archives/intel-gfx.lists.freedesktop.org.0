@@ -1,37 +1,47 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 57DC5146D5D
-	for <lists+intel-gfx@lfdr.de>; Thu, 23 Jan 2020 16:52:18 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 76026146DAD
+	for <lists+intel-gfx@lfdr.de>; Thu, 23 Jan 2020 16:59:42 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0EB236FD99;
-	Thu, 23 Jan 2020 15:52:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CAB7C6FD9F;
+	Thu, 23 Jan 2020 15:59:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DB9206FD99
- for <intel-gfx@lists.freedesktop.org>; Thu, 23 Jan 2020 15:52:14 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 19984562-1500050 for multiple; Thu, 23 Jan 2020 15:52:00 +0000
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D00DF6FD9D;
+ Thu, 23 Jan 2020 15:59:38 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 23 Jan 2020 07:59:38 -0800
+X-IronPort-AV: E=Sophos;i="5.70,354,1574150400"; d="scan'208";a="229887787"
+Received: from wmszyfel-mobl2.ger.corp.intel.com (HELO [10.252.10.247])
+ ([10.252.10.247])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/AES256-SHA;
+ 23 Jan 2020 07:59:36 -0800
+To: Chris Wilson <chris@chris-wilson.co.uk>,
+ Dale B Stimson <dale.b.stimson@intel.com>, igt-dev@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org,
+ Bommu Krishnaiah <krishnaiah.bommu@intel.com>,
+ Sreedhar Telukuntla <sreedhar.telukuntla@intel.com>
+References: <cover.1579731227.git.dale.b.stimson@intel.com>
+ <76818a8047c4b9da76d0619c7b8f58c89449b4ed.1579731227.git.dale.b.stimson@intel.com>
+ <225f88d1044053674cbd632998c69c0c677a530e.1579731227.git.dale.b.stimson@intel.com>
+ <157977054018.18920.9879323586181021015@skylake-alporthouse-com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <c192e00d-1997-c714-50be-91fc64f9cc29@linux.intel.com>
+Date: Thu, 23 Jan 2020 15:59:33 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
 MIME-Version: 1.0
-To: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
- Michal Wajdeczko <michal.wajdeczko@intel.com>,
- intel-gfx@lists.freedesktop.org
-From: Chris Wilson <chris@chris-wilson.co.uk>
-In-Reply-To: <op.0euq22k9xaggs7@mwajdecz-mobl1.ger.corp.intel.com>
-References: <20200122194825.101240-1-michal.wajdeczko@intel.com>
- <67edac14-e319-a1b2-76a1-1404ca5836e2@intel.com>
- <157979173710.19995.3438477214193047615@skylake-alporthouse-com>
- <op.0euq22k9xaggs7@mwajdecz-mobl1.ger.corp.intel.com>
-Message-ID: <157979471850.19995.901739010740499969@skylake-alporthouse-com>
-User-Agent: alot/0.6
-Date: Thu, 23 Jan 2020 15:51:58 +0000
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/huc: Fix error reported by
- I915_PARAM_HUC_STATUS
+In-Reply-To: <157977054018.18920.9879323586181021015@skylake-alporthouse-com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [igt-dev] [PATCH i-g-t 2/2] DBS:
+ tests/i915/gem_ctx_isolation: use the gem_engine_topology library, part 2
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,92 +54,74 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
+Cc: "Melkaveri, Arjun" <arjun.melkaveri@intel.com>
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Michal Wajdeczko (2020-01-23 15:38:52)
-> On Thu, 23 Jan 2020 16:02:17 +0100, Chris Wilson  
-> <chris@chris-wilson.co.uk> wrote:
+
+On 23/01/2020 09:09, Chris Wilson wrote:
+> Quoting Dale B Stimson (2020-01-22 23:26:57)
+>> Switch from simple iteration over all potential engines to using
+>> macro __for_each_physical_engine which only returns engines that are
+>> actually present.
+>>
+>> For each context (as it is created) call gem_context_set_all_engines
+>> so that execbuf will interpret the engine specification in the new way.
+>>
+>> Signed-off-by: Dale B Stimson <dale.b.stimson@intel.com>
+>> ---
+>>   tests/i915/gem_ctx_isolation.c | 41 ++++++++++++++++++++++++++--------
+>>   1 file changed, 32 insertions(+), 9 deletions(-)
+>>
+>> diff --git a/tests/i915/gem_ctx_isolation.c b/tests/i915/gem_ctx_isolation.c
+>> index 25113b054..31a20ed3a 100644
+>> --- a/tests/i915/gem_ctx_isolation.c
+>> +++ b/tests/i915/gem_ctx_isolation.c
+>> @@ -240,6 +240,25 @@ static bool ignore_register(uint32_t offset)
+>>          return false;
+>>   }
+>>   
+>> +/*
+>> + * context_create_plus_all_engines - Same as gem_context_create plus setup.
+>> + *
+>> + * This is a convenience function that may be called instead of the sequence
+>> + * of gem_context_create followed by gem_context_set_all_engines.
+>> + * If gem_has_engine_topology(), then function gem_context_set_all_engines
+>> + * indicates that future execbuf calls for this context should interpret the
+>> + * engine specification in a gem_engine_topology-compatible way.
+>> + */
+>> +static uint32_t context_create_plus_all_engines(int fd)
+>> +{
+>> +       uint32_t ctx;
+>> +
+>> +       ctx = gem_context_create(fd);
+>> +       gem_context_set_all_engines(fd, ctx);
+>> +
+>> +       return ctx;
+>> +}
 > 
-> > Quoting Daniele Ceraolo Spurio (2020-01-22 23:52:33)
-> >>
-> >>
-> >> On 1/22/20 11:48 AM, Michal Wajdeczko wrote:
-> >> >  From commit 84b1ca2f0e68 ("drm/i915/uc: prefer intel_gt over i915
-> >> > in GuC/HuC paths") we stopped using HUC_STATUS error -ENODEV only
-> >> > to indicate lack of HuC hardware and we started to use this error
-> >> > also for all other cases when HuC was not in use or supported.
-> >> >
-> >> > Fix that by relying again on HAS_GT_UC macro, since currently
-> >> > used function intel_huc_is_supported() is based on HuC firmware
-> >> > support which could be unsupported also due to force disabled
-> >> > GuC firmware.
-> >> >
-> >> > Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
-> >> > Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-> >> > Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-> >> > Cc: Tony Ye <tony.ye@intel.com>
-> >>
-> >> Reviewed-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-> >
-> > Once upon a time did you (Michal) not argue we should indicate the lack
-> > of firmware in the error code? Something like
-> >
-> > if (!HAS_GT_UC(gt->i915))
-> >       return -ENODEV;
-> >
-> > if (!intel_huc_is_supported(huc))
-> >       return -ENOEXEC;
-> 
-> Yes, we discussed this here [1] together with [2] but we didn't
-> conclude our discussion due to different opinions on how represent
-> some states, in particular "manually disabled" state.
-> 
-> In this patch I just wanted to restore old notation.
-> 
-> But we can start new discussion, here is summary:
-> 
-> ------------------+----------+----------+----------
->   HuC state        | today*   | option A | option B
-> ------------------+----------+----------+----------
-> no HuC hardware   | -ENODEV  | -ENODEV  | -ENODEV
-> GuC fw disabled   |   0      |     0    | -EOPNOTSUPP
-> HuC fw disabled   |   0      |     0    | -EOPNOTSUPP
-> HuC fw missing    |   0      | -ENOPKG  | -ENOEXEC
-> HuC fw error      |   0      | -ENOEXEC | -ENOEXEC
-> HuC fw fail       |   0      | -EACCES  |    0
-> HuC authenticated |   1      |     1    |    1
-> ------------------+----------+----------+----------
+> gem_context_clone_with_engines() so we can stop assuming that
+> all-engines is the right answer, because that depends on the conditions
+> set up by the iterator on the first context.
 
-By fw fail, you mean we loaded the firmware (to our knowledge)
-correctly, but HUC_STATUS is not reported as valid?
+gem_context_clone_with_engines was agreed upon in principle some time 
+ago but never implemented. I have now posted this as 
+https://patchwork.freedesktop.org/series/72464/ and plan to merge it 
+once it passes CI.
 
-If so, I support option B. I like the idea of saying
-"no HuC" (machine too old)
-"no firmware" (user action, or lack thereof)
-0 (fw unhappy)
-1 (fw reports success)
+Dale, Arjun, Krishnaiah and Sreedhar - you have in progress patches 
+which use gem_context_set_all_engines which will be gone and you will 
+need to adjust your work accordingly.
 
-In between states for failures in fw loading? Not so sure. But I can see
-the nicety in distinguishing between lack of firmware and some random
-failure in loading the firmware (the former being user action required
-to rectify, command line parameter whatever and the latter being the
-firmware file is either invalid or a stray neutrino prevented loading).
+Sreedhar specifically for your change in gem_exec_parallel we will need 
+to add a new helper which transfers the engine map from one fd/context 
+to another. I will copy you on a patch which will add it.
 
-Imo the error messages should be about why we cannot probe/trust the
-HUC_STATUS register. If everything is setup correctly then the returned
-value should be from reading the register. I dislike only returning 1 if
-supported, and converting a valid read of 0 into another error.
+Regards,
 
-So Option B :)
-
-> Note that all above should be compatible with media driver,
-> which explicitly looks for no error and value 1
-
-Cool.
--Chris
+Tvrtko
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
