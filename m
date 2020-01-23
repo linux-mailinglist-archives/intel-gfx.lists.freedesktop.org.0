@@ -2,41 +2,36 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C50B146986
-	for <lists+intel-gfx@lfdr.de>; Thu, 23 Jan 2020 14:47:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A8DE5146987
+	for <lists+intel-gfx@lfdr.de>; Thu, 23 Jan 2020 14:48:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 90BA76E081;
-	Thu, 23 Jan 2020 13:47:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EFD7B6FCBF;
+	Thu, 23 Jan 2020 13:48:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 765556E081
- for <intel-gfx@lists.freedesktop.org>; Thu, 23 Jan 2020 13:47:53 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 631716FCBF
+ for <intel-gfx@lists.freedesktop.org>; Thu, 23 Jan 2020 13:48:12 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 23 Jan 2020 05:47:52 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,354,1574150400"; d="scan'208";a="220668926"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by orsmga008.jf.intel.com with SMTP; 23 Jan 2020 05:47:49 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 23 Jan 2020 15:47:48 +0200
-Date: Thu, 23 Jan 2020 15:47:48 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Anshuman Gupta <anshuman.gupta@intel.com>
-Message-ID: <20200123134748.GM13686@intel.com>
+ by orsmga105.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 23 Jan 2020 05:48:11 -0800
+X-IronPort-AV: E=Sophos;i="5.70,354,1574150400"; d="scan'208";a="220669044"
+Received: from jnikula-mobl3.fi.intel.com (HELO localhost) ([10.237.66.161])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 23 Jan 2020 05:48:09 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: Anshuman Gupta <anshuman.gupta@intel.com>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20200123132659.725-2-anshuman.gupta@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20200123132659.725-1-anshuman.gupta@intel.com>
- <20200123132659.725-4-anshuman.gupta@intel.com>
+ <20200123132659.725-2-anshuman.gupta@intel.com>
+Date: Thu, 23 Jan 2020 15:48:05 +0200
+Message-ID: <87wo9icmi2.fsf@intel.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200123132659.725-4-anshuman.gupta@intel.com>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [RFC 3/6] drm/i915: Fix wrongly populated plane
- possible_crtcs bit mask
+Subject: Re: [Intel-gfx] [RFC 1/6] drm/i915: Iterate over pipe and skip the
+ disabled one
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,97 +44,69 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com, intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Jan 23, 2020 at 06:56:56PM +0530, Anshuman Gupta wrote:
-> As a disabled pipe in pipe_mask is not having a valid intel crtc,
-> driver wrongly populates the possible_crtcs mask while initializing
-> the plane for a CRTC. Fixing up the plane possible_crtc mask.
-> =
-
-> Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_display.c | 23 ++++++++++++++++++++
->  1 file changed, 23 insertions(+)
-> =
-
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/d=
-rm/i915/display/intel_display.c
-> index afd8d43160c6..b250b31f6000 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -16407,6 +16407,28 @@ static void intel_crtc_free(struct intel_crtc *c=
-rtc)
->  	kfree(crtc);
->  }
->  =
-
-> +static void intel_plane_possible_crtc_fixup(struct drm_i915_private *dev=
-_priv)
-> +{
-> +	struct intel_crtc *crtc;
-> +	struct intel_plane *plane;
-> +
-> +	/*
-> +	 * if in case the disabled fused pipe is not the last pipe,
-> +	 * it requires to fix the wrong populated possible_crtcs mask.
-> +	 */
-> +	if (is_power_of_2(INTEL_INFO(dev_priv)->pipe_mask + 1))
-> +		return;
-
-I don't undestand what you're trying to do here. Looks totally
-pointless.
-
-> +
-> +	for_each_intel_crtc(&dev_priv->drm, crtc) {
-> +		for_each_intel_plane_on_crtc(&dev_priv->drm, crtc, plane) {
-> +			if (WARN_ON(!(plane->base.possible_crtcs & BIT(crtc->pipe))))
-> +				return;
-
-Rather ugly abuse of possible_crtcs. I would remove the current
-possible_crtcs assignments totally, and just do something simple like
-
-for_each_intel_plane() {
-	crtc =3D crtc_for_pipe(plane->pipe);
-	plane->possible_crtcs =3D crtc_mask(&crtc->base);
-}
-
-
-> +			plane->base.possible_crtcs =3D
-> +					drm_crtc_mask(&crtc->base);
-> +		}
-> +	}
-> +}
-> +
->  static int intel_crtc_init(struct drm_i915_private *dev_priv, enum pipe =
-pipe)
->  {
->  	struct intel_plane *primary, *cursor;
-> @@ -17544,6 +17566,7 @@ int intel_modeset_init(struct drm_i915_private *i=
-915)
->  		}
->  	}
->  =
-
-> +	intel_plane_possible_crtc_fixup(i915);
->  	intel_shared_dpll_init(dev);
->  	intel_update_fdi_pll_freq(i915);
->  =
-
-> -- =
-
-> 2.24.0
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gVGh1LCAyMyBKYW4gMjAyMCwgQW5zaHVtYW4gR3VwdGEgPGFuc2h1bWFuLmd1cHRhQGludGVs
+LmNvbT4gd3JvdGU6Cj4gSXQgc2hvdWxkIG5vdCBiZSBhc3N1bWVkIHRoYXQgYSBkaXNhYmxlZCBk
+aXNwbGF5IHBpcGUgd2lsbCBiZQo+IGFsd2F5cyBsYXN0IHRoZSBwaXBlLgo+IGZvcl9lYWNoX3Bp
+cGUoKSBzaG91bGQgaXRlcmF0ZSBvdmVyIEk5MTVfTUFYX1BJUEVTIGFuZCBjaGVjawo+IGZvciB0
+aGUgZGlzYWJsZWQgcGlwZSBhbmQgc2tpcCB0aGF0IHBpcGUgc28gdGhhdCBpdCBzaG91bGQgbm90
+Cj4gaW5pdGlhbGl6ZSB0aGUgaW50ZWwgY3J0YyBmb3IgYW55IGRpc2FibGVkIHBpcGVzLgo+Cj4g
+RmV3IGNvbXBpbGF0aW9uIGVycm9yIG5lZWRlZCB0byBoYW5kbGUgYWNjb3JkaW5nbHkgZHVlIHRv
+Cj4gY2hhbmdlIGluIGZvcl9lYWNoX3BpcGUoKSBtYWNyby4KClJlYWxseT8gUGxlYXNlIHBhc3Rl
+LgoKPgo+IENjOiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwuY29t
+Pgo+IFNpZ25lZC1vZmYtYnk6IEFuc2h1bWFuIEd1cHRhIDxhbnNodW1hbi5ndXB0YUBpbnRlbC5j
+b20+Cj4gLS0tCj4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5o
+IHwgNSArKystLQo+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2lycS5jICAgICAgICAgICAg
+ICB8IDYgKysrKy0tCj4gIDIgZmlsZXMgY2hhbmdlZCwgNyBpbnNlcnRpb25zKCspLCA0IGRlbGV0
+aW9ucygtKQo+Cj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50
+ZWxfZGlzcGxheS5oIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5
+LmgKPiBpbmRleCAwMjhhYWI3Mjg1MTQuLjQ3ODEzYTUwYWRkNCAxMDA2NDQKPiAtLS0gYS9kcml2
+ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuaAo+ICsrKyBiL2RyaXZlcnMv
+Z3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5oCj4gQEAgLTMxMiwxMCArMzEyLDEx
+IEBAIGVudW0gcGh5X2ZpYSB7Cj4gIH07Cj4gIAo+ICAjZGVmaW5lIGZvcl9lYWNoX3BpcGUoX19k
+ZXZfcHJpdiwgX19wKSBcCj4gLQlmb3IgKChfX3ApID0gMDsgKF9fcCkgPCBJTlRFTF9OVU1fUElQ
+RVMoX19kZXZfcHJpdik7IChfX3ApKyspCj4gKwlmb3IgKChfX3ApID0gMDsgKF9fcCkgPCBJOTE1
+X01BWF9QSVBFUzsgKF9fcCkrKykgXAoKT3JpZ2luYWxseSBJIHdhcyBlbnZpc2lvbmluZyB1c2lu
+ZyBmb3JfZWFjaF9zZXRfYml0KCkgZnJvbSBiaXRvcHMuaCBmb3IKdGhpcy4gSXQncyBwcm9iYWJs
+eSBtb3JlIGVmZmljaWVudCwgaG93ZXZlciBJJ20gbm90IHN1cmUgaWYgZWZmaWNpZW5jeQptYXR0
+ZXJzIG11Y2ggaGVyZS4gVGhlIHVnbHkgcGFydCBpcyB0aGF0IGZvcl9lYWNoX3NldF9iaXQoKSBy
+ZXF1aXJlcyBhbgpleHBsaWNpdCBjYXN0IHRvIHVuc2lnbmVkIGxvbmcgKi4KClBlcmhhcHMgdGhp
+cyBpcyBqdXN0IGFzIHdlbGwsIGl0J3Mgbm90IHdyb25nLCBhbmQgY2FuIGFsd2F5cyBiZSB1cGRh
+dGVkCmxhdGVyLgoKPiArCQlmb3JfZWFjaF9pZigoSU5URUxfSU5GTyhfX2Rldl9wcml2KS0+cGlw
+ZV9tYXNrKSAmIEJJVChfX3ApKQo+ICAKPiAgI2RlZmluZSBmb3JfZWFjaF9waXBlX21hc2tlZChf
+X2Rldl9wcml2LCBfX3AsIF9fbWFzaykgXAo+IC0JZm9yICgoX19wKSA9IDA7IChfX3ApIDwgSU5U
+RUxfTlVNX1BJUEVTKF9fZGV2X3ByaXYpOyAoX19wKSsrKSBcCj4gKwlmb3JfZWFjaF9waXBlKF9f
+ZGV2X3ByaXYsIF9fcCkgXAo+ICAJCWZvcl9lYWNoX2lmKChfX21hc2spICYgQklUKF9fcCkpCj4g
+IAo+ICAjZGVmaW5lIGZvcl9lYWNoX2NwdV90cmFuc2NvZGVyX21hc2tlZChfX2Rldl9wcml2LCBf
+X3QsIF9fbWFzaykgXAo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2ly
+cS5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9pcnEuYwo+IGluZGV4IDk0Y2IyNWFjNTA0
+ZC4uMjJlY2Q1YmM0MDdlIDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVf
+aXJxLmMKPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2lycS5jCj4gQEAgLTE3MzUs
+MTEgKzE3MzUsMTIgQEAgc3RhdGljIHZvaWQgaWJ4X2lycV9oYW5kbGVyKHN0cnVjdCBkcm1faTkx
+NV9wcml2YXRlICpkZXZfcHJpdiwgdTMyIHBjaF9paXIpCj4gIAlpZiAocGNoX2lpciAmIFNERV9Q
+T0lTT04pCj4gIAkJRFJNX0VSUk9SKCJQQ0ggcG9pc29uIGludGVycnVwdFxuIik7Cj4gIAo+IC0J
+aWYgKHBjaF9paXIgJiBTREVfRkRJX01BU0spCj4gKwlpZiAocGNoX2lpciAmIFNERV9GRElfTUFT
+Sykgewo+ICAJCWZvcl9lYWNoX3BpcGUoZGV2X3ByaXYsIHBpcGUpCj4gIAkJCURSTV9ERUJVR19E
+UklWRVIoIiAgcGlwZSAlYyBGREkgSUlSOiAweCUwOHhcbiIsCj4gIAkJCQkJIHBpcGVfbmFtZShw
+aXBlKSwKPiAgCQkJCQkgSTkxNV9SRUFEKEZESV9SWF9JSVIocGlwZSkpKTsKPiArCX0KCkFyZSB0
+aGUgYnJhY2UgY2hhbmdlcyByZWFsbHkgbmVlZGVkPyBUaGlzIGlzIHdoYXQgdGhlIGZvcl9lYWNo
+X2lmIGhhY2sKaXMgc3VwcG9zZWQgdG8gdGFja2xlLgoKPiAgCj4gIAlpZiAocGNoX2lpciAmIChT
+REVfVFJBTlNCX0NSQ19ET05FIHwgU0RFX1RSQU5TQV9DUkNfRE9ORSkpCj4gIAkJRFJNX0RFQlVH
+X0RSSVZFUigiUENIIHRyYW5zY29kZXIgQ1JDIGRvbmUgaW50ZXJydXB0XG4iKTsKPiBAQCAtMTgx
+OCwxMSArMTgxOSwxMiBAQCBzdGF0aWMgdm9pZCBjcHRfaXJxX2hhbmRsZXIoc3RydWN0IGRybV9p
+OTE1X3ByaXZhdGUgKmRldl9wcml2LCB1MzIgcGNoX2lpcikKPiAgCWlmIChwY2hfaWlyICYgU0RF
+X0FVRElPX0NQX0NIR19DUFQpCj4gIAkJRFJNX0RFQlVHX0RSSVZFUigiQXVkaW8gQ1AgY2hhbmdl
+IGludGVycnVwdFxuIik7Cj4gIAo+IC0JaWYgKHBjaF9paXIgJiBTREVfRkRJX01BU0tfQ1BUKQo+
+ICsJaWYgKHBjaF9paXIgJiBTREVfRkRJX01BU0tfQ1BUKSB7Cj4gIAkJZm9yX2VhY2hfcGlwZShk
+ZXZfcHJpdiwgcGlwZSkKPiAgCQkJRFJNX0RFQlVHX0RSSVZFUigiICBwaXBlICVjIEZESSBJSVI6
+IDB4JTA4eFxuIiwKPiAgCQkJCQkgcGlwZV9uYW1lKHBpcGUpLAo+ICAJCQkJCSBJOTE1X1JFQUQo
+RkRJX1JYX0lJUihwaXBlKSkpOwo+ICsJfQo+ICAKPiAgCWlmIChwY2hfaWlyICYgU0RFX0VSUk9S
+X0NQVCkKPiAgCQljcHRfc2Vycl9pbnRfaGFuZGxlcihkZXZfcHJpdik7CgotLSAKSmFuaSBOaWt1
+bGEsIEludGVsIE9wZW4gU291cmNlIEdyYXBoaWNzIENlbnRlcgpfX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVs
+LWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcv
+bWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
