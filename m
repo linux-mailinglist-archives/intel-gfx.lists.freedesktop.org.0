@@ -1,40 +1,39 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C559149028
-	for <lists+intel-gfx@lfdr.de>; Fri, 24 Jan 2020 22:31:21 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A6A2C149037
+	for <lists+intel-gfx@lfdr.de>; Fri, 24 Jan 2020 22:36:22 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 577C06E454;
-	Fri, 24 Jan 2020 21:31:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9F8C56E048;
+	Fri, 24 Jan 2020 21:36:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 106336E454
- for <intel-gfx@lists.freedesktop.org>; Fri, 24 Jan 2020 21:31:17 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6B3256E048
+ for <intel-gfx@lists.freedesktop.org>; Fri, 24 Jan 2020 21:36:19 +0000 (UTC)
 X-Amp-Result: UNKNOWN
 X-Amp-Original-Verdict: FILE UNKNOWN
 X-Amp-File-Uploaded: False
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
  by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 24 Jan 2020 13:30:52 -0800
+ 24 Jan 2020 13:35:53 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,359,1574150400"; d="scan'208";a="428415104"
+X-IronPort-AV: E=Sophos;i="5.70,359,1574150400"; d="scan'208";a="375620548"
 Received: from mdroper-desk1.fm.intel.com (HELO
  mdroper-desk1.amr.corp.intel.com) ([10.1.27.64])
- by fmsmga006.fm.intel.com with ESMTP; 24 Jan 2020 13:30:51 -0800
-Date: Fri, 24 Jan 2020 13:30:51 -0800
+ by orsmga004.jf.intel.com with ESMTP; 24 Jan 2020 13:35:53 -0800
+Date: Fri, 24 Jan 2020 13:35:53 -0800
 From: Matt Roper <matthew.d.roper@intel.com>
 To: Jani Nikula <jani.nikula@intel.com>
-Message-ID: <20200124213051.GG459881@mdroper-desk1.amr.corp.intel.com>
+Message-ID: <20200124213553.GH459881@mdroper-desk1.amr.corp.intel.com>
 References: <cover.1579871655.git.jani.nikula@intel.com>
- <3dd667bdc6fa38fb7bca3f44fbed601f5250f027.1579871655.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <3dd667bdc6fa38fb7bca3f44fbed601f5250f027.1579871655.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1579871655.git.jani.nikula@intel.com>
 User-Agent: Mutt/1.12.1 (2019-06-15)
-Subject: Re: [Intel-gfx] [RFC 05/33] drm/i915/combo_phy: use intel_de_*()
- functions for register access
+Subject: Re: [Intel-gfx] [RFC 00/33] drm/i915/display: mass conversion to
+ intel_de_*() register accessors
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,251 +46,161 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: intel-gfx@lists.freedesktop.org, Lucas De Marchi <lucas.demarchi@intel.com>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Jan 24, 2020 at 03:25:26PM +0200, Jani Nikula wrote:
-> The implicit "dev_priv" local variable use has been a long-standing pain
-> point in the register access macros I915_READ(), I915_WRITE(),
-> POSTING_READ(), I915_READ_FW(), and I915_WRITE_FW().
-> 
-> Replace them with the corresponding new display engine register
-> accessors intel_de_read(), intel_de_write(), intel_de_posting_read(),
-> intel_de_read_fw(), and intel_de_write_fw().
-> 
-> No functional changes.
-> 
-> Generated using the following semantic patch:
-> 
-> @@
-> expression REG, OFFSET;
-> @@
-> - I915_READ(REG)
-> + intel_de_read(dev_priv, REG)
-> 
-> @@
-> expression REG, OFFSET;
-> @@
-> - POSTING_READ(REG)
-> + intel_de_posting_read(dev_priv, REG)
-> 
-> @@
-> expression REG, OFFSET;
-> @@
-> - I915_WRITE(REG, OFFSET)
-> + intel_de_write(dev_priv, REG, OFFSET)
-> 
-> @@
-> expression REG;
-> @@
-> - I915_READ_FW(REG)
-> + intel_de_read_fw(dev_priv, REG)
-> 
-> @@
-> expression REG, OFFSET;
-> @@
-> - I915_WRITE_FW(REG, OFFSET)
-> + intel_de_write_fw(dev_priv, REG, OFFSET)
-> 
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-> ---
->  .../gpu/drm/i915/display/intel_combo_phy.c    | 66 +++++++++----------
->  1 file changed, 33 insertions(+), 33 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_combo_phy.c b/drivers/gpu/drm/i915/display/intel_combo_phy.c
-> index 5f54aca7c36f..a45b934fab0a 100644
-> --- a/drivers/gpu/drm/i915/display/intel_combo_phy.c
-> +++ b/drivers/gpu/drm/i915/display/intel_combo_phy.c
-> @@ -48,7 +48,7 @@ cnl_get_procmon_ref_values(struct drm_i915_private *dev_priv, enum phy phy)
->  	const struct cnl_procmon *procmon;
->  	u32 val;
->  
-> -	val = I915_READ(ICL_PORT_COMP_DW3(phy));
-> +	val = intel_de_read(dev_priv, ICL_PORT_COMP_DW3(phy));
->  	switch (val & (PROCESS_INFO_MASK | VOLTAGE_INFO_MASK)) {
->  	default:
->  		MISSING_CASE(val);
-> @@ -81,20 +81,20 @@ static void cnl_set_procmon_ref_values(struct drm_i915_private *dev_priv,
->  
->  	procmon = cnl_get_procmon_ref_values(dev_priv, phy);
->  
-> -	val = I915_READ(ICL_PORT_COMP_DW1(phy));
-> +	val = intel_de_read(dev_priv, ICL_PORT_COMP_DW1(phy));
->  	val &= ~((0xff << 16) | 0xff);
->  	val |= procmon->dw1;
-> -	I915_WRITE(ICL_PORT_COMP_DW1(phy), val);
-> +	intel_de_write(dev_priv, ICL_PORT_COMP_DW1(phy), val);
->  
-> -	I915_WRITE(ICL_PORT_COMP_DW9(phy), procmon->dw9);
-> -	I915_WRITE(ICL_PORT_COMP_DW10(phy), procmon->dw10);
-> +	intel_de_write(dev_priv, ICL_PORT_COMP_DW9(phy), procmon->dw9);
-> +	intel_de_write(dev_priv, ICL_PORT_COMP_DW10(phy), procmon->dw10);
->  }
->  
->  static bool check_phy_reg(struct drm_i915_private *dev_priv,
->  			  enum phy phy, i915_reg_t reg, u32 mask,
->  			  u32 expected_val)
->  {
-> -	u32 val = I915_READ(reg);
-> +	u32 val = intel_de_read(dev_priv, reg);
->  
->  	if ((val & mask) != expected_val) {
->  		DRM_DEBUG_DRIVER("Combo PHY %c reg %08x state mismatch: "
-> @@ -127,8 +127,8 @@ static bool cnl_verify_procmon_ref_values(struct drm_i915_private *dev_priv,
->  
->  static bool cnl_combo_phy_enabled(struct drm_i915_private *dev_priv)
->  {
-> -	return !(I915_READ(CHICKEN_MISC_2) & CNL_COMP_PWR_DOWN) &&
-> -		(I915_READ(CNL_PORT_COMP_DW0) & COMP_INIT);
-> +	return !(intel_de_read(dev_priv, CHICKEN_MISC_2) & CNL_COMP_PWR_DOWN) &&
-> +		(intel_de_read(dev_priv, CNL_PORT_COMP_DW0) & COMP_INIT);
->  }
->  
->  static bool cnl_combo_phy_verify_state(struct drm_i915_private *dev_priv)
-> @@ -151,20 +151,20 @@ static void cnl_combo_phys_init(struct drm_i915_private *dev_priv)
->  {
->  	u32 val;
->  
-> -	val = I915_READ(CHICKEN_MISC_2);
-> +	val = intel_de_read(dev_priv, CHICKEN_MISC_2);
->  	val &= ~CNL_COMP_PWR_DOWN;
-> -	I915_WRITE(CHICKEN_MISC_2, val);
-> +	intel_de_write(dev_priv, CHICKEN_MISC_2, val);
->  
->  	/* Dummy PORT_A to get the correct CNL register from the ICL macro */
->  	cnl_set_procmon_ref_values(dev_priv, PHY_A);
->  
-> -	val = I915_READ(CNL_PORT_COMP_DW0);
-> +	val = intel_de_read(dev_priv, CNL_PORT_COMP_DW0);
->  	val |= COMP_INIT;
-> -	I915_WRITE(CNL_PORT_COMP_DW0, val);
-> +	intel_de_write(dev_priv, CNL_PORT_COMP_DW0, val);
+On Fri, Jan 24, 2020 at 03:25:21PM +0200, Jani Nikula wrote:
+> Hey all,
+> =
 
-Drive by comment...could some fancier coccinelle usage change these to
-intel_de_rmw() instead?  We have a lot of rmw behavior for PHY
-registers, and I believe some for pre-ilk watermarks and clock gating
-workarounds in intel_pm.c too.
+> So I sent [1] to convert some forcewake register accessors... but what if=
+ we
+> just ripped off the bandage once and for all? It's going to hurt, a lot, =
+but
+> we'd get it done.
+> =
+
+> This completely rids us of the "dev_priv" dependency in display/.
+> =
+
+> All the patches here are per-file and independent of each other. We could=
+ also
+> pick and apply the ones that are least likely to conflict.
+> =
+
+> Opinions?
+> =
+
+> =
+
+> BR,
+> Jani.
+> =
+
+> =
+
+> PS. I didn't bother looking at the checkpatch warnings this may generate =
+at this
+> point. I just used the --linux-spacing option for spatch, and closed my e=
+yes. I
+> completely scripted the generation of the series, apart from just a coupl=
+e of
+> build fixes.
+> =
+
+> =
+
+> Cc: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> =
+
+> [1] https://patchwork.freedesktop.org/series/72476/
+> =
+
+> =
+
+> Jani Nikula (33):
+>   drm/i915/icl_dsi: use intel_de_*() functions for register access
+>   drm/i915/audio: use intel_de_*() functions for register access
+>   drm/i915/cdclk: use intel_de_*() functions for register access
+>   drm/i915/color: use intel_de_*() functions for register access
+>   drm/i915/combo_phy: use intel_de_*() functions for register access
+>   drm/i915/crt: use intel_de_*() functions for register access
+>   drm/i915/ddi: use intel_de_*() functions for register access
+>   drm/i915/display: use intel_de_*() functions for register access
+>   drm/i915/display_power: use intel_de_*() functions for register access
+>   drm/i915/dp: use intel_de_*() functions for register access
+>   drm/i915/dpio_phy: use intel_de_*() functions for register access
+>   drm/i915/dpll_mgr: use intel_de_*() functions for register access
+>   drm/i915/dp_mst: use intel_de_*() functions for register access
+>   drm/i915/dsb: use intel_de_*() functions for register access
+>   drm/i915/dvo: use intel_de_*() functions for register access
+>   drm/i915/fbc: use intel_de_*() functions for register access
+>   drm/i915/fifo_underrun: use intel_de_*() functions for register access
+>   drm/i915/gmbus: use intel_de_*() functions for register access
+>   drm/i915/hdcp: use intel_de_*() functions for register access
+>   drm/i915/hdmi: use intel_de_*() functions for register access
+>   drm/i915/lpe_audio: use intel_de_*() functions for register access
+>   drm/i915/lvds: use intel_de_*() functions for register access
+>   drm/i915/overlay: use intel_de_*() functions for register access
+>   drm/i915/panel: use intel_de_*() functions for register access
+>   drm/i915/pipe_crc: use intel_de_*() functions for register access
+>   drm/i915/psr: use intel_de_*() functions for register access
+>   drm/i915/sdvo: use intel_de_*() functions for register access
+>   drm/i915/sprite: use intel_de_*() functions for register access
+>   drm/i915/tv: use intel_de_*() functions for register access
+>   drm/i915/vdsc: use intel_de_*() functions for register access
+>   drm/i915/vga: use intel_de_*() functions for register access
+>   drm/i915/vlv_dsi: use intel_de_*() functions for register access
+>   drm/i915/vlv_dsi_pll: use intel_de_*() functions for register access
+> =
+
+>  drivers/gpu/drm/i915/display/icl_dsi.c        |  271 ++--
+>  drivers/gpu/drm/i915/display/intel_audio.c    |  112 +-
+>  drivers/gpu/drm/i915/display/intel_cdclk.c    |  133 +-
+>  drivers/gpu/drm/i915/display/intel_color.c    |  204 +--
+>  .../gpu/drm/i915/display/intel_combo_phy.c    |   66 +-
+>  drivers/gpu/drm/i915/display/intel_crt.c      |   51 +-
+>  drivers/gpu/drm/i915/display/intel_ddi.c      |  474 +++----
+>  drivers/gpu/drm/i915/display/intel_display.c  | 1171 +++++++++--------
+>  .../drm/i915/display/intel_display_power.c    |  294 +++--
+>  drivers/gpu/drm/i915/display/intel_dp.c       |  234 ++--
+>  drivers/gpu/drm/i915/display/intel_dp_mst.c   |   11 +-
+>  drivers/gpu/drm/i915/display/intel_dpio_phy.c |   77 +-
+>  drivers/gpu/drm/i915/display/intel_dpll_mgr.c |  388 +++---
+>  drivers/gpu/drm/i915/display/intel_dsb.c      |   24 +-
+>  drivers/gpu/drm/i915/display/intel_dvo.c      |   34 +-
+>  drivers/gpu/drm/i915/display/intel_fbc.c      |  106 +-
+>  .../drm/i915/display/intel_fifo_underrun.c    |   37 +-
+>  drivers/gpu/drm/i915/display/intel_gmbus.c    |   74 +-
+>  drivers/gpu/drm/i915/display/intel_hdcp.c     |  142 +-
+>  drivers/gpu/drm/i915/display/intel_hdmi.c     |  258 ++--
+>  .../gpu/drm/i915/display/intel_lpe_audio.c    |   14 +-
+>  drivers/gpu/drm/i915/display/intel_lvds.c     |   57 +-
+>  drivers/gpu/drm/i915/display/intel_overlay.c  |   45 +-
+>  drivers/gpu/drm/i915/display/intel_panel.c    |  255 ++--
+>  drivers/gpu/drm/i915/display/intel_pipe_crc.c |   20 +-
+>  drivers/gpu/drm/i915/display/intel_psr.c      |   70 +-
+>  drivers/gpu/drm/i915/display/intel_sdvo.c     |   30 +-
+>  drivers/gpu/drm/i915/display/intel_sprite.c   |  320 +++--
+>  drivers/gpu/drm/i915/display/intel_tv.c       |  138 +-
+>  drivers/gpu/drm/i915/display/intel_vdsc.c     |  413 +++---
+>  drivers/gpu/drm/i915/display/intel_vga.c      |    7 +-
+>  drivers/gpu/drm/i915/display/vlv_dsi.c        |  345 ++---
+>  drivers/gpu/drm/i915/display/vlv_dsi_pll.c    |   49 +-
+>  33 files changed, 3158 insertions(+), 2766 deletions(-)
+
+There's a lot of display (watermark) code in intel_pm.c as well, even
+though it doesn't live in the display/ directory.  We should probably
+pull the watermark stuff out into a separate display/intel_wm.c or
+something soon, but in the meantime we'll probably want to switch a
+bunch of that code over to using these new functions.  But I guess you
+can't do that with coccinelle though since there are parts of the file
+that aren't display-related and shouldn't use the same display helpers.
 
 
 Matt
 
->  
-> -	val = I915_READ(CNL_PORT_CL1CM_DW5);
-> +	val = intel_de_read(dev_priv, CNL_PORT_CL1CM_DW5);
->  	val |= CL_POWER_DOWN_ENABLE;
-> -	I915_WRITE(CNL_PORT_CL1CM_DW5, val);
-> +	intel_de_write(dev_priv, CNL_PORT_CL1CM_DW5, val);
->  }
->  
->  static void cnl_combo_phys_uninit(struct drm_i915_private *dev_priv)
-> @@ -174,9 +174,9 @@ static void cnl_combo_phys_uninit(struct drm_i915_private *dev_priv)
->  	if (!cnl_combo_phy_verify_state(dev_priv))
->  		DRM_WARN("Combo PHY HW state changed unexpectedly.\n");
->  
-> -	val = I915_READ(CHICKEN_MISC_2);
-> +	val = intel_de_read(dev_priv, CHICKEN_MISC_2);
->  	val |= CNL_COMP_PWR_DOWN;
-> -	I915_WRITE(CHICKEN_MISC_2, val);
-> +	intel_de_write(dev_priv, CHICKEN_MISC_2, val);
->  }
->  
->  static bool icl_combo_phy_enabled(struct drm_i915_private *dev_priv,
-> @@ -184,11 +184,11 @@ static bool icl_combo_phy_enabled(struct drm_i915_private *dev_priv,
->  {
->  	/* The PHY C added by EHL has no PHY_MISC register */
->  	if (IS_ELKHARTLAKE(dev_priv) && phy == PHY_C)
-> -		return I915_READ(ICL_PORT_COMP_DW0(phy)) & COMP_INIT;
-> +		return intel_de_read(dev_priv, ICL_PORT_COMP_DW0(phy)) & COMP_INIT;
->  	else
-> -		return !(I915_READ(ICL_PHY_MISC(phy)) &
-> +		return !(intel_de_read(dev_priv, ICL_PHY_MISC(phy)) &
->  			 ICL_PHY_MISC_DE_IO_COMP_PWR_DOWN) &&
-> -			(I915_READ(ICL_PORT_COMP_DW0(phy)) & COMP_INIT);
-> +			(intel_de_read(dev_priv, ICL_PORT_COMP_DW0(phy)) & COMP_INIT);
->  }
->  
->  static bool icl_combo_phy_verify_state(struct drm_i915_private *dev_priv,
-> @@ -257,10 +257,10 @@ void intel_combo_phy_power_up_lanes(struct drm_i915_private *dev_priv,
->  		}
->  	}
->  
-> -	val = I915_READ(ICL_PORT_CL_DW10(phy));
-> +	val = intel_de_read(dev_priv, ICL_PORT_CL_DW10(phy));
->  	val &= ~PWR_DOWN_LN_MASK;
->  	val |= lane_mask << PWR_DOWN_LN_SHIFT;
-> -	I915_WRITE(ICL_PORT_CL_DW10(phy), val);
-> +	intel_de_write(dev_priv, ICL_PORT_CL_DW10(phy), val);
->  }
->  
->  static u32 ehl_combo_phy_a_mux(struct drm_i915_private *i915, u32 val)
-> @@ -318,28 +318,28 @@ static void icl_combo_phys_init(struct drm_i915_private *dev_priv)
->  		 * based on whether our VBT indicates the presence of any
->  		 * "internal" child devices.
->  		 */
-> -		val = I915_READ(ICL_PHY_MISC(phy));
-> +		val = intel_de_read(dev_priv, ICL_PHY_MISC(phy));
->  		if (IS_ELKHARTLAKE(dev_priv) && phy == PHY_A)
->  			val = ehl_combo_phy_a_mux(dev_priv, val);
->  		val &= ~ICL_PHY_MISC_DE_IO_COMP_PWR_DOWN;
-> -		I915_WRITE(ICL_PHY_MISC(phy), val);
-> +		intel_de_write(dev_priv, ICL_PHY_MISC(phy), val);
->  
->  skip_phy_misc:
->  		cnl_set_procmon_ref_values(dev_priv, phy);
->  
->  		if (phy == PHY_A) {
-> -			val = I915_READ(ICL_PORT_COMP_DW8(phy));
-> +			val = intel_de_read(dev_priv, ICL_PORT_COMP_DW8(phy));
->  			val |= IREFGEN;
-> -			I915_WRITE(ICL_PORT_COMP_DW8(phy), val);
-> +			intel_de_write(dev_priv, ICL_PORT_COMP_DW8(phy), val);
->  		}
->  
-> -		val = I915_READ(ICL_PORT_COMP_DW0(phy));
-> +		val = intel_de_read(dev_priv, ICL_PORT_COMP_DW0(phy));
->  		val |= COMP_INIT;
-> -		I915_WRITE(ICL_PORT_COMP_DW0(phy), val);
-> +		intel_de_write(dev_priv, ICL_PORT_COMP_DW0(phy), val);
->  
-> -		val = I915_READ(ICL_PORT_CL_DW5(phy));
-> +		val = intel_de_read(dev_priv, ICL_PORT_CL_DW5(phy));
->  		val |= CL_POWER_DOWN_ENABLE;
-> -		I915_WRITE(ICL_PORT_CL_DW5(phy), val);
-> +		intel_de_write(dev_priv, ICL_PORT_CL_DW5(phy), val);
->  	}
->  }
->  
-> @@ -363,14 +363,14 @@ static void icl_combo_phys_uninit(struct drm_i915_private *dev_priv)
->  		if (IS_ELKHARTLAKE(dev_priv) && phy == PHY_C)
->  			goto skip_phy_misc;
->  
-> -		val = I915_READ(ICL_PHY_MISC(phy));
-> +		val = intel_de_read(dev_priv, ICL_PHY_MISC(phy));
->  		val |= ICL_PHY_MISC_DE_IO_COMP_PWR_DOWN;
-> -		I915_WRITE(ICL_PHY_MISC(phy), val);
-> +		intel_de_write(dev_priv, ICL_PHY_MISC(phy), val);
->  
->  skip_phy_misc:
-> -		val = I915_READ(ICL_PORT_COMP_DW0(phy));
-> +		val = intel_de_read(dev_priv, ICL_PORT_COMP_DW0(phy));
->  		val &= ~COMP_INIT;
-> -		I915_WRITE(ICL_PORT_COMP_DW0(phy), val);
-> +		intel_de_write(dev_priv, ICL_PORT_COMP_DW0(phy), val);
->  	}
->  }
->  
-> -- 
+> =
+
+> -- =
+
 > 2.20.1
-> 
+> =
+
 > _______________________________________________
 > Intel-gfx mailing list
 > Intel-gfx@lists.freedesktop.org
 > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 
--- 
+-- =
+
 Matt Roper
 Graphics Software Engineer
 VTT-OSGC Platform Enablement
