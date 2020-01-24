@@ -1,35 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DAC451476C3
-	for <lists+intel-gfx@lfdr.de>; Fri, 24 Jan 2020 02:37:05 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id BC5CA1476CD
+	for <lists+intel-gfx@lfdr.de>; Fri, 24 Jan 2020 02:45:04 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E37816FA39;
-	Fri, 24 Jan 2020 01:37:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3A70D6FEAB;
+	Fri, 24 Jan 2020 01:45:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7858A6FA39
- for <intel-gfx@lists.freedesktop.org>; Fri, 24 Jan 2020 01:37:02 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 23 Jan 2020 17:37:02 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,355,1574150400"; d="scan'208";a="276206820"
-Received: from orsosgc001.ra.intel.com ([10.23.184.150])
- by FMSMGA003.fm.intel.com with ESMTP; 23 Jan 2020 17:37:01 -0800
-From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-To: Chris Wilson <chris.p.wilson@intel.com>,
-	intel-gfx@lists.freedesktop.org
-Date: Thu, 23 Jan 2020 17:37:01 -0800
-Message-Id: <20200124013701.40609-1-umesh.nerlige.ramappa@intel.com>
-X-Mailer: git-send-email 2.20.1
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 1A5D66FEAA;
+ Fri, 24 Jan 2020 01:45:00 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 1054AA00C7;
+ Fri, 24 Jan 2020 01:45:00 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/perf: Fix OA context id overlap with
- idle context id
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Fri, 24 Jan 2020 01:45:00 -0000
+Message-ID: <157983030003.15089.6029243729413647497@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200123151406.51679-1-colin.king@canonical.com>
+In-Reply-To: <20200123151406.51679-1-colin.king@canonical.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/gem=3A_fix_null_pointer_dereference_on_vm_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,72 +38,147 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Engine context pinned in perf OA was set to same context id as
-the idle context. Set the context id to an unused value.
+== Series Details ==
 
-Clear the sw context id field in lrc descriptor before ORing with
-ce->tag (Chris)
+Series: drm/i915/gem: fix null pointer dereference on vm (rev2)
+URL   : https://patchwork.freedesktop.org/series/72482/
+State : success
 
-Fixes: https://gitlab.freedesktop.org/drm/intel/issues/756
-Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
----
- drivers/gpu/drm/i915/gt/intel_lrc.c | 2 +-
- drivers/gpu/drm/i915/i915_perf.c    | 9 +++++++--
- 2 files changed, 8 insertions(+), 3 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-index a13a8c4b65ab..cf6c43bd540a 100644
---- a/drivers/gpu/drm/i915/gt/intel_lrc.c
-+++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-@@ -1211,12 +1211,12 @@ __execlists_schedule_in(struct i915_request *rq)
- 	if (IS_ENABLED(CONFIG_DRM_I915_DEBUG_GEM))
- 		execlists_check_context(ce, engine);
- 
-+	ce->lrc_desc &= ~GENMASK_ULL(47, 37);
- 	if (ce->tag) {
- 		/* Use a fixed tag for OA and friends */
- 		ce->lrc_desc |= (u64)ce->tag << 32;
- 	} else {
- 		/* We don't need a strict matching tag, just different values */
--		ce->lrc_desc &= ~GENMASK_ULL(47, 37);
- 		ce->lrc_desc |=
- 			(u64)(++engine->context_tag % NUM_CONTEXT_TAG) <<
- 			GEN11_SW_CTX_ID_SHIFT;
-diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
-index 3c4647054557..5bd878c64504 100644
---- a/drivers/gpu/drm/i915/i915_perf.c
-+++ b/drivers/gpu/drm/i915/i915_perf.c
-@@ -1323,7 +1323,12 @@ static int oa_get_render_ctx_id(struct i915_perf_stream *stream)
- 	case 12: {
- 		stream->specific_ctx_id_mask =
- 			((1U << GEN11_SW_CTX_ID_WIDTH) - 1) << (GEN11_SW_CTX_ID_SHIFT - 32);
--		stream->specific_ctx_id = stream->specific_ctx_id_mask;
-+		/* Pick an unused context id
-+		 * 0 - (NUM_CONTEXT_TAG - 1) are used by other contexts
-+		 * GEN12_MAX_CONTEXT_HW_ID (0x7ff) is used by idle context
-+		 */
-+		stream->specific_ctx_id = (GEN12_MAX_CONTEXT_HW_ID - 1) << (GEN11_SW_CTX_ID_SHIFT - 32);
-+		BUILD_BUG_ON((GEN12_MAX_CONTEXT_HW_ID - 1) < NUM_CONTEXT_TAG);
- 		break;
- 	}
- 
-@@ -1331,7 +1336,7 @@ static int oa_get_render_ctx_id(struct i915_perf_stream *stream)
- 		MISSING_CASE(INTEL_GEN(ce->engine->i915));
- 	}
- 
--	ce->tag = stream->specific_ctx_id_mask;
-+	ce->tag = stream->specific_ctx_id;
- 
- 	DRM_DEBUG_DRIVER("filtering on ctx_id=0x%x ctx_id_mask=0x%x\n",
- 			 stream->specific_ctx_id,
--- 
-2.20.1
+CI Bug Log - changes from CI_DRM_7805 -> Patchwork_16241
+====================================================
 
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16241/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_16241 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_module_load@reload-with-fault-injection:
+    - fi-skl-6700k2:      [PASS][1] -> [DMESG-WARN][2] ([i915#889])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7805/fi-skl-6700k2/igt@i915_module_load@reload-with-fault-injection.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16241/fi-skl-6700k2/igt@i915_module_load@reload-with-fault-injection.html
+
+  * igt@i915_selftest@live_blt:
+    - fi-hsw-4770r:       [PASS][3] -> [DMESG-FAIL][4] ([i915#770])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7805/fi-hsw-4770r/igt@i915_selftest@live_blt.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16241/fi-hsw-4770r/igt@i915_selftest@live_blt.html
+    - fi-ivb-3770:        [PASS][5] -> [DMESG-FAIL][6] ([i915#725])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7805/fi-ivb-3770/igt@i915_selftest@live_blt.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16241/fi-ivb-3770/igt@i915_selftest@live_blt.html
+    - fi-hsw-4770:        [PASS][7] -> [DMESG-FAIL][8] ([i915#725])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7805/fi-hsw-4770/igt@i915_selftest@live_blt.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16241/fi-hsw-4770/igt@i915_selftest@live_blt.html
+
+  * igt@kms_chamelium@hdmi-edid-read:
+    - fi-kbl-7500u:       [PASS][9] -> [FAIL][10] ([i915#217])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7805/fi-kbl-7500u/igt@kms_chamelium@hdmi-edid-read.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16241/fi-kbl-7500u/igt@kms_chamelium@hdmi-edid-read.html
+
+  * igt@prime_self_import@basic-with_one_bo_two_files:
+    - fi-tgl-y:           [PASS][11] -> [DMESG-WARN][12] ([CI#94] / [i915#402])
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7805/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16241/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_exec_parallel@fds:
+    - fi-byt-n2820:       [TIMEOUT][13] ([fdo#112271]) -> [PASS][14]
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7805/fi-byt-n2820/igt@gem_exec_parallel@fds.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16241/fi-byt-n2820/igt@gem_exec_parallel@fds.html
+
+  * igt@gem_exec_suspend@basic-s4-devices:
+    - fi-tgl-y:           [FAIL][15] ([CI#94]) -> [PASS][16]
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7805/fi-tgl-y/igt@gem_exec_suspend@basic-s4-devices.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16241/fi-tgl-y/igt@gem_exec_suspend@basic-s4-devices.html
+
+  * igt@i915_module_load@reload-with-fault-injection:
+    - fi-kbl-x1275:       [INCOMPLETE][17] ([i915#879]) -> [PASS][18]
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7805/fi-kbl-x1275/igt@i915_module_load@reload-with-fault-injection.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16241/fi-kbl-x1275/igt@i915_module_load@reload-with-fault-injection.html
+
+  * igt@i915_selftest@live_gem_contexts:
+    - fi-cfl-guc:         [INCOMPLETE][19] ([fdo#106070] / [i915#424]) -> [PASS][20]
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7805/fi-cfl-guc/igt@i915_selftest@live_gem_contexts.html
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16241/fi-cfl-guc/igt@i915_selftest@live_gem_contexts.html
+
+  
+#### Warnings ####
+
+  * igt@gem_exec_parallel@contexts:
+    - fi-byt-n2820:       [FAIL][21] ([i915#694]) -> [TIMEOUT][22] ([fdo#112271])
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7805/fi-byt-n2820/igt@gem_exec_parallel@contexts.html
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16241/fi-byt-n2820/igt@gem_exec_parallel@contexts.html
+
+  * igt@kms_chamelium@hdmi-hpd-fast:
+    - fi-kbl-7500u:       [FAIL][23] ([fdo#111407]) -> [FAIL][24] ([fdo#111096] / [i915#323])
+   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7805/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16241/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+
+  
+  [CI#94]: https://gitlab.freedesktop.org/gfx-ci/i915-infra/issues/94
+  [fdo#106070]: https://bugs.freedesktop.org/show_bug.cgi?id=106070
+  [fdo#111096]: https://bugs.freedesktop.org/show_bug.cgi?id=111096
+  [fdo#111407]: https://bugs.freedesktop.org/show_bug.cgi?id=111407
+  [fdo#112271]: https://bugs.freedesktop.org/show_bug.cgi?id=112271
+  [i915#217]: https://gitlab.freedesktop.org/drm/intel/issues/217
+  [i915#323]: https://gitlab.freedesktop.org/drm/intel/issues/323
+  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+  [i915#424]: https://gitlab.freedesktop.org/drm/intel/issues/424
+  [i915#694]: https://gitlab.freedesktop.org/drm/intel/issues/694
+  [i915#725]: https://gitlab.freedesktop.org/drm/intel/issues/725
+  [i915#770]: https://gitlab.freedesktop.org/drm/intel/issues/770
+  [i915#879]: https://gitlab.freedesktop.org/drm/intel/issues/879
+  [i915#889]: https://gitlab.freedesktop.org/drm/intel/issues/889
+
+
+Participating hosts (45 -> 41)
+------------------------------
+
+  Additional (4): fi-bsw-nick fi-gdg-551 fi-bsw-n3050 fi-snb-2600 
+  Missing    (8): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-bsw-kefka fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_7805 -> Patchwork_16241
+
+  CI-20190529: 20190529
+  CI_DRM_7805: 447386749394e3b5cf296bfada83ed429fa5f1fe @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5382: 8dbe5ce61baa2d563d4dd7c56a018bb1e1077467 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_16241: 27553c3b3728650cd16bbb092bdd7112239358c0 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+27553c3b3728 drm/i915/gem: Prevent NULL pointer dereference on missing ctx->vm
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16241/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
