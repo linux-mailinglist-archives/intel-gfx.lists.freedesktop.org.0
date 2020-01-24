@@ -1,38 +1,38 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A869E148614
-	for <lists+intel-gfx@lfdr.de>; Fri, 24 Jan 2020 14:27:05 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D672148617
+	for <lists+intel-gfx@lfdr.de>; Fri, 24 Jan 2020 14:27:11 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E66E872A94;
-	Fri, 24 Jan 2020 13:27:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D081572A93;
+	Fri, 24 Jan 2020 13:27:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F330572A93
- for <intel-gfx@lists.freedesktop.org>; Fri, 24 Jan 2020 13:27:02 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ACB0F72A93
+ for <intel-gfx@lists.freedesktop.org>; Fri, 24 Jan 2020 13:27:07 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 24 Jan 2020 05:27:02 -0800
-X-IronPort-AV: E=Sophos;i="5.70,357,1574150400"; d="scan'208";a="260243974"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 24 Jan 2020 05:27:07 -0800
+X-IronPort-AV: E=Sophos;i="5.70,357,1574150400"; d="scan'208";a="292424347"
 Received: from omarkovx-mobl.ger.corp.intel.com (HELO localhost)
  ([10.249.37.60])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 24 Jan 2020 05:27:01 -0800
+ by fmsmga001-auth.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 24 Jan 2020 05:27:05 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri, 24 Jan 2020 15:25:50 +0200
-Message-Id: <6e6238e75f5a4155b1021736937b1fd7a0756a00.1579871655.git.jani.nikula@intel.com>
+Date: Fri, 24 Jan 2020 15:25:51 +0200
+Message-Id: <735389bfa1f9c4be8080f3187ea1dbde308d1ce2.1579871655.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <cover.1579871655.git.jani.nikula@intel.com>
 References: <cover.1579871655.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Subject: [Intel-gfx] [RFC 29/33] drm/i915/tv: use intel_de_*() functions for
- register access
+Subject: [Intel-gfx] [RFC 30/33] drm/i915/vdsc: use intel_de_*() functions
+ for register access
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -95,286 +95,653 @@ expression REG, OFFSET;
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_tv.c | 138 ++++++++++++------------
- 1 file changed, 72 insertions(+), 66 deletions(-)
+ drivers/gpu/drm/i915/display/intel_vdsc.c | 413 +++++++++++++---------
+ 1 file changed, 249 insertions(+), 164 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_tv.c b/drivers/gpu/drm/i915/display/intel_tv.c
-index c75e0ceecee6..fa155a028e2b 100644
---- a/drivers/gpu/drm/i915/display/intel_tv.c
-+++ b/drivers/gpu/drm/i915/display/intel_tv.c
-@@ -907,7 +907,7 @@ static bool
- intel_tv_get_hw_state(struct intel_encoder *encoder, enum pipe *pipe)
- {
- 	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
--	u32 tmp = I915_READ(TV_CTL);
-+	u32 tmp = intel_de_read(dev_priv, TV_CTL);
- 
- 	*pipe = (tmp & TV_ENC_PIPE_SEL_MASK) >> TV_ENC_PIPE_SEL_SHIFT;
- 
-@@ -926,7 +926,8 @@ intel_enable_tv(struct intel_encoder *encoder,
- 	intel_wait_for_vblank(dev_priv,
- 			      to_intel_crtc(pipe_config->uapi.crtc)->pipe);
- 
--	I915_WRITE(TV_CTL, I915_READ(TV_CTL) | TV_ENC_ENABLE);
-+	intel_de_write(dev_priv, TV_CTL,
-+		       intel_de_read(dev_priv, TV_CTL) | TV_ENC_ENABLE);
- }
- 
- static void
-@@ -937,7 +938,8 @@ intel_disable_tv(struct intel_encoder *encoder,
- 	struct drm_device *dev = encoder->base.dev;
- 	struct drm_i915_private *dev_priv = to_i915(dev);
- 
--	I915_WRITE(TV_CTL, I915_READ(TV_CTL) & ~TV_ENC_ENABLE);
-+	intel_de_write(dev_priv, TV_CTL,
-+		       intel_de_read(dev_priv, TV_CTL) & ~TV_ENC_ENABLE);
- }
- 
- static const struct tv_mode *intel_tv_mode_find(const struct drm_connector_state *conn_state)
-@@ -1095,11 +1097,11 @@ intel_tv_get_config(struct intel_encoder *encoder,
- 
- 	pipe_config->output_types |= BIT(INTEL_OUTPUT_TVOUT);
- 
--	tv_ctl = I915_READ(TV_CTL);
--	hctl1 = I915_READ(TV_H_CTL_1);
--	hctl3 = I915_READ(TV_H_CTL_3);
--	vctl1 = I915_READ(TV_V_CTL_1);
--	vctl2 = I915_READ(TV_V_CTL_2);
-+	tv_ctl = intel_de_read(dev_priv, TV_CTL);
-+	hctl1 = intel_de_read(dev_priv, TV_H_CTL_1);
-+	hctl3 = intel_de_read(dev_priv, TV_H_CTL_3);
-+	vctl1 = intel_de_read(dev_priv, TV_V_CTL_1);
-+	vctl2 = intel_de_read(dev_priv, TV_V_CTL_2);
- 
- 	tv_mode.htotal = (hctl1 & TV_HTOTAL_MASK) >> TV_HTOTAL_SHIFT;
- 	tv_mode.hsync_end = (hctl1 & TV_HSYNC_END_MASK) >> TV_HSYNC_END_SHIFT;
-@@ -1134,11 +1136,11 @@ intel_tv_get_config(struct intel_encoder *encoder,
- 		break;
+diff --git a/drivers/gpu/drm/i915/display/intel_vdsc.c b/drivers/gpu/drm/i915/display/intel_vdsc.c
+index 9e6aaa302e40..a81abadb067f 100644
+--- a/drivers/gpu/drm/i915/display/intel_vdsc.c
++++ b/drivers/gpu/drm/i915/display/intel_vdsc.c
+@@ -520,18 +520,23 @@ static void intel_dsc_pps_configure(struct intel_encoder *encoder,
+ 		pps_val |= DSC_VBR_ENABLE;
+ 	DRM_INFO("PPS0 = 0x%08x\n", pps_val);
+ 	if (!is_pipe_dsc(crtc_state)) {
+-		I915_WRITE(DSCA_PICTURE_PARAMETER_SET_0, pps_val);
++		intel_de_write(dev_priv, DSCA_PICTURE_PARAMETER_SET_0,
++			       pps_val);
+ 		/*
+ 		 * If 2 VDSC instances are needed, configure PPS for second
+ 		 * VDSC
+ 		 */
+ 		if (crtc_state->dsc.dsc_split)
+-			I915_WRITE(DSCC_PICTURE_PARAMETER_SET_0, pps_val);
++			intel_de_write(dev_priv, DSCC_PICTURE_PARAMETER_SET_0,
++				       pps_val);
+ 	} else {
+-		I915_WRITE(ICL_DSC0_PICTURE_PARAMETER_SET_0(pipe), pps_val);
++		intel_de_write(dev_priv,
++			       ICL_DSC0_PICTURE_PARAMETER_SET_0(pipe),
++			       pps_val);
+ 		if (crtc_state->dsc.dsc_split)
+-			I915_WRITE(ICL_DSC1_PICTURE_PARAMETER_SET_0(pipe),
+-				   pps_val);
++			intel_de_write(dev_priv,
++				       ICL_DSC1_PICTURE_PARAMETER_SET_0(pipe),
++				       pps_val);
  	}
  
--	tmp = I915_READ(TV_WIN_POS);
-+	tmp = intel_de_read(dev_priv, TV_WIN_POS);
- 	xpos = tmp >> 16;
- 	ypos = tmp & 0xffff;
+ 	/* Populate PICTURE_PARAMETER_SET_1 registers */
+@@ -539,18 +544,23 @@ static void intel_dsc_pps_configure(struct intel_encoder *encoder,
+ 	pps_val |= DSC_BPP(vdsc_cfg->bits_per_pixel);
+ 	DRM_INFO("PPS1 = 0x%08x\n", pps_val);
+ 	if (!is_pipe_dsc(crtc_state)) {
+-		I915_WRITE(DSCA_PICTURE_PARAMETER_SET_1, pps_val);
++		intel_de_write(dev_priv, DSCA_PICTURE_PARAMETER_SET_1,
++			       pps_val);
+ 		/*
+ 		 * If 2 VDSC instances are needed, configure PPS for second
+ 		 * VDSC
+ 		 */
+ 		if (crtc_state->dsc.dsc_split)
+-			I915_WRITE(DSCC_PICTURE_PARAMETER_SET_1, pps_val);
++			intel_de_write(dev_priv, DSCC_PICTURE_PARAMETER_SET_1,
++				       pps_val);
+ 	} else {
+-		I915_WRITE(ICL_DSC0_PICTURE_PARAMETER_SET_1(pipe), pps_val);
++		intel_de_write(dev_priv,
++			       ICL_DSC0_PICTURE_PARAMETER_SET_1(pipe),
++			       pps_val);
+ 		if (crtc_state->dsc.dsc_split)
+-			I915_WRITE(ICL_DSC1_PICTURE_PARAMETER_SET_1(pipe),
+-				   pps_val);
++			intel_de_write(dev_priv,
++				       ICL_DSC1_PICTURE_PARAMETER_SET_1(pipe),
++				       pps_val);
+ 	}
  
--	tmp = I915_READ(TV_WIN_SIZE);
-+	tmp = intel_de_read(dev_priv, TV_WIN_SIZE);
- 	xsize = tmp >> 16;
- 	ysize = tmp & 0xffff;
+ 	/* Populate PICTURE_PARAMETER_SET_2 registers */
+@@ -559,18 +569,23 @@ static void intel_dsc_pps_configure(struct intel_encoder *encoder,
+ 		DSC_PIC_WIDTH(vdsc_cfg->pic_width / num_vdsc_instances);
+ 	DRM_INFO("PPS2 = 0x%08x\n", pps_val);
+ 	if (!is_pipe_dsc(crtc_state)) {
+-		I915_WRITE(DSCA_PICTURE_PARAMETER_SET_2, pps_val);
++		intel_de_write(dev_priv, DSCA_PICTURE_PARAMETER_SET_2,
++			       pps_val);
+ 		/*
+ 		 * If 2 VDSC instances are needed, configure PPS for second
+ 		 * VDSC
+ 		 */
+ 		if (crtc_state->dsc.dsc_split)
+-			I915_WRITE(DSCC_PICTURE_PARAMETER_SET_2, pps_val);
++			intel_de_write(dev_priv, DSCC_PICTURE_PARAMETER_SET_2,
++				       pps_val);
+ 	} else {
+-		I915_WRITE(ICL_DSC0_PICTURE_PARAMETER_SET_2(pipe), pps_val);
++		intel_de_write(dev_priv,
++			       ICL_DSC0_PICTURE_PARAMETER_SET_2(pipe),
++			       pps_val);
+ 		if (crtc_state->dsc.dsc_split)
+-			I915_WRITE(ICL_DSC1_PICTURE_PARAMETER_SET_2(pipe),
+-				   pps_val);
++			intel_de_write(dev_priv,
++				       ICL_DSC1_PICTURE_PARAMETER_SET_2(pipe),
++				       pps_val);
+ 	}
  
-@@ -1380,16 +1382,16 @@ set_tv_mode_timings(struct drm_i915_private *dev_priv,
- 	vctl7 = (tv_mode->vburst_start_f4 << TV_VBURST_START_F4_SHIFT) |
- 		(tv_mode->vburst_end_f4 << TV_VBURST_END_F4_SHIFT);
+ 	/* Populate PICTURE_PARAMETER_SET_3 registers */
+@@ -579,18 +594,23 @@ static void intel_dsc_pps_configure(struct intel_encoder *encoder,
+ 		DSC_SLICE_WIDTH(vdsc_cfg->slice_width);
+ 	DRM_INFO("PPS3 = 0x%08x\n", pps_val);
+ 	if (!is_pipe_dsc(crtc_state)) {
+-		I915_WRITE(DSCA_PICTURE_PARAMETER_SET_3, pps_val);
++		intel_de_write(dev_priv, DSCA_PICTURE_PARAMETER_SET_3,
++			       pps_val);
+ 		/*
+ 		 * If 2 VDSC instances are needed, configure PPS for second
+ 		 * VDSC
+ 		 */
+ 		if (crtc_state->dsc.dsc_split)
+-			I915_WRITE(DSCC_PICTURE_PARAMETER_SET_3, pps_val);
++			intel_de_write(dev_priv, DSCC_PICTURE_PARAMETER_SET_3,
++				       pps_val);
+ 	} else {
+-		I915_WRITE(ICL_DSC0_PICTURE_PARAMETER_SET_3(pipe), pps_val);
++		intel_de_write(dev_priv,
++			       ICL_DSC0_PICTURE_PARAMETER_SET_3(pipe),
++			       pps_val);
+ 		if (crtc_state->dsc.dsc_split)
+-			I915_WRITE(ICL_DSC1_PICTURE_PARAMETER_SET_3(pipe),
+-				   pps_val);
++			intel_de_write(dev_priv,
++				       ICL_DSC1_PICTURE_PARAMETER_SET_3(pipe),
++				       pps_val);
+ 	}
  
--	I915_WRITE(TV_H_CTL_1, hctl1);
--	I915_WRITE(TV_H_CTL_2, hctl2);
--	I915_WRITE(TV_H_CTL_3, hctl3);
--	I915_WRITE(TV_V_CTL_1, vctl1);
--	I915_WRITE(TV_V_CTL_2, vctl2);
--	I915_WRITE(TV_V_CTL_3, vctl3);
--	I915_WRITE(TV_V_CTL_4, vctl4);
--	I915_WRITE(TV_V_CTL_5, vctl5);
--	I915_WRITE(TV_V_CTL_6, vctl6);
--	I915_WRITE(TV_V_CTL_7, vctl7);
-+	intel_de_write(dev_priv, TV_H_CTL_1, hctl1);
-+	intel_de_write(dev_priv, TV_H_CTL_2, hctl2);
-+	intel_de_write(dev_priv, TV_H_CTL_3, hctl3);
-+	intel_de_write(dev_priv, TV_V_CTL_1, vctl1);
-+	intel_de_write(dev_priv, TV_V_CTL_2, vctl2);
-+	intel_de_write(dev_priv, TV_V_CTL_3, vctl3);
-+	intel_de_write(dev_priv, TV_V_CTL_4, vctl4);
-+	intel_de_write(dev_priv, TV_V_CTL_5, vctl5);
-+	intel_de_write(dev_priv, TV_V_CTL_6, vctl6);
-+	intel_de_write(dev_priv, TV_V_CTL_7, vctl7);
+ 	/* Populate PICTURE_PARAMETER_SET_4 registers */
+@@ -599,18 +619,23 @@ static void intel_dsc_pps_configure(struct intel_encoder *encoder,
+ 		DSC_INITIAL_DEC_DELAY(vdsc_cfg->initial_dec_delay);
+ 	DRM_INFO("PPS4 = 0x%08x\n", pps_val);
+ 	if (!is_pipe_dsc(crtc_state)) {
+-		I915_WRITE(DSCA_PICTURE_PARAMETER_SET_4, pps_val);
++		intel_de_write(dev_priv, DSCA_PICTURE_PARAMETER_SET_4,
++			       pps_val);
+ 		/*
+ 		 * If 2 VDSC instances are needed, configure PPS for second
+ 		 * VDSC
+ 		 */
+ 		if (crtc_state->dsc.dsc_split)
+-			I915_WRITE(DSCC_PICTURE_PARAMETER_SET_4, pps_val);
++			intel_de_write(dev_priv, DSCC_PICTURE_PARAMETER_SET_4,
++				       pps_val);
+ 	} else {
+-		I915_WRITE(ICL_DSC0_PICTURE_PARAMETER_SET_4(pipe), pps_val);
++		intel_de_write(dev_priv,
++			       ICL_DSC0_PICTURE_PARAMETER_SET_4(pipe),
++			       pps_val);
+ 		if (crtc_state->dsc.dsc_split)
+-			I915_WRITE(ICL_DSC1_PICTURE_PARAMETER_SET_4(pipe),
+-				   pps_val);
++			intel_de_write(dev_priv,
++				       ICL_DSC1_PICTURE_PARAMETER_SET_4(pipe),
++				       pps_val);
+ 	}
+ 
+ 	/* Populate PICTURE_PARAMETER_SET_5 registers */
+@@ -619,18 +644,23 @@ static void intel_dsc_pps_configure(struct intel_encoder *encoder,
+ 		DSC_SCALE_DEC_INT(vdsc_cfg->scale_decrement_interval);
+ 	DRM_INFO("PPS5 = 0x%08x\n", pps_val);
+ 	if (!is_pipe_dsc(crtc_state)) {
+-		I915_WRITE(DSCA_PICTURE_PARAMETER_SET_5, pps_val);
++		intel_de_write(dev_priv, DSCA_PICTURE_PARAMETER_SET_5,
++			       pps_val);
+ 		/*
+ 		 * If 2 VDSC instances are needed, configure PPS for second
+ 		 * VDSC
+ 		 */
+ 		if (crtc_state->dsc.dsc_split)
+-			I915_WRITE(DSCC_PICTURE_PARAMETER_SET_5, pps_val);
++			intel_de_write(dev_priv, DSCC_PICTURE_PARAMETER_SET_5,
++				       pps_val);
+ 	} else {
+-		I915_WRITE(ICL_DSC0_PICTURE_PARAMETER_SET_5(pipe), pps_val);
++		intel_de_write(dev_priv,
++			       ICL_DSC0_PICTURE_PARAMETER_SET_5(pipe),
++			       pps_val);
+ 		if (crtc_state->dsc.dsc_split)
+-			I915_WRITE(ICL_DSC1_PICTURE_PARAMETER_SET_5(pipe),
+-				   pps_val);
++			intel_de_write(dev_priv,
++				       ICL_DSC1_PICTURE_PARAMETER_SET_5(pipe),
++				       pps_val);
+ 	}
+ 
+ 	/* Populate PICTURE_PARAMETER_SET_6 registers */
+@@ -641,18 +671,23 @@ static void intel_dsc_pps_configure(struct intel_encoder *encoder,
+ 		DSC_FLATNESS_MAX_QP(vdsc_cfg->flatness_max_qp);
+ 	DRM_INFO("PPS6 = 0x%08x\n", pps_val);
+ 	if (!is_pipe_dsc(crtc_state)) {
+-		I915_WRITE(DSCA_PICTURE_PARAMETER_SET_6, pps_val);
++		intel_de_write(dev_priv, DSCA_PICTURE_PARAMETER_SET_6,
++			       pps_val);
+ 		/*
+ 		 * If 2 VDSC instances are needed, configure PPS for second
+ 		 * VDSC
+ 		 */
+ 		if (crtc_state->dsc.dsc_split)
+-			I915_WRITE(DSCC_PICTURE_PARAMETER_SET_6, pps_val);
++			intel_de_write(dev_priv, DSCC_PICTURE_PARAMETER_SET_6,
++				       pps_val);
+ 	} else {
+-		I915_WRITE(ICL_DSC0_PICTURE_PARAMETER_SET_6(pipe), pps_val);
++		intel_de_write(dev_priv,
++			       ICL_DSC0_PICTURE_PARAMETER_SET_6(pipe),
++			       pps_val);
+ 		if (crtc_state->dsc.dsc_split)
+-			I915_WRITE(ICL_DSC1_PICTURE_PARAMETER_SET_6(pipe),
+-				   pps_val);
++			intel_de_write(dev_priv,
++				       ICL_DSC1_PICTURE_PARAMETER_SET_6(pipe),
++				       pps_val);
+ 	}
+ 
+ 	/* Populate PICTURE_PARAMETER_SET_7 registers */
+@@ -661,18 +696,23 @@ static void intel_dsc_pps_configure(struct intel_encoder *encoder,
+ 		DSC_NFL_BPG_OFFSET(vdsc_cfg->nfl_bpg_offset);
+ 	DRM_INFO("PPS7 = 0x%08x\n", pps_val);
+ 	if (!is_pipe_dsc(crtc_state)) {
+-		I915_WRITE(DSCA_PICTURE_PARAMETER_SET_7, pps_val);
++		intel_de_write(dev_priv, DSCA_PICTURE_PARAMETER_SET_7,
++			       pps_val);
+ 		/*
+ 		 * If 2 VDSC instances are needed, configure PPS for second
+ 		 * VDSC
+ 		 */
+ 		if (crtc_state->dsc.dsc_split)
+-			I915_WRITE(DSCC_PICTURE_PARAMETER_SET_7, pps_val);
++			intel_de_write(dev_priv, DSCC_PICTURE_PARAMETER_SET_7,
++				       pps_val);
+ 	} else {
+-		I915_WRITE(ICL_DSC0_PICTURE_PARAMETER_SET_7(pipe), pps_val);
++		intel_de_write(dev_priv,
++			       ICL_DSC0_PICTURE_PARAMETER_SET_7(pipe),
++			       pps_val);
+ 		if (crtc_state->dsc.dsc_split)
+-			I915_WRITE(ICL_DSC1_PICTURE_PARAMETER_SET_7(pipe),
+-				   pps_val);
++			intel_de_write(dev_priv,
++				       ICL_DSC1_PICTURE_PARAMETER_SET_7(pipe),
++				       pps_val);
+ 	}
+ 
+ 	/* Populate PICTURE_PARAMETER_SET_8 registers */
+@@ -681,18 +721,23 @@ static void intel_dsc_pps_configure(struct intel_encoder *encoder,
+ 		DSC_INITIAL_OFFSET(vdsc_cfg->initial_offset);
+ 	DRM_INFO("PPS8 = 0x%08x\n", pps_val);
+ 	if (!is_pipe_dsc(crtc_state)) {
+-		I915_WRITE(DSCA_PICTURE_PARAMETER_SET_8, pps_val);
++		intel_de_write(dev_priv, DSCA_PICTURE_PARAMETER_SET_8,
++			       pps_val);
+ 		/*
+ 		 * If 2 VDSC instances are needed, configure PPS for second
+ 		 * VDSC
+ 		 */
+ 		if (crtc_state->dsc.dsc_split)
+-			I915_WRITE(DSCC_PICTURE_PARAMETER_SET_8, pps_val);
++			intel_de_write(dev_priv, DSCC_PICTURE_PARAMETER_SET_8,
++				       pps_val);
+ 	} else {
+-		I915_WRITE(ICL_DSC0_PICTURE_PARAMETER_SET_8(pipe), pps_val);
++		intel_de_write(dev_priv,
++			       ICL_DSC0_PICTURE_PARAMETER_SET_8(pipe),
++			       pps_val);
+ 		if (crtc_state->dsc.dsc_split)
+-			I915_WRITE(ICL_DSC1_PICTURE_PARAMETER_SET_8(pipe),
+-				   pps_val);
++			intel_de_write(dev_priv,
++				       ICL_DSC1_PICTURE_PARAMETER_SET_8(pipe),
++				       pps_val);
+ 	}
+ 
+ 	/* Populate PICTURE_PARAMETER_SET_9 registers */
+@@ -701,18 +746,23 @@ static void intel_dsc_pps_configure(struct intel_encoder *encoder,
+ 		DSC_RC_EDGE_FACTOR(DSC_RC_EDGE_FACTOR_CONST);
+ 	DRM_INFO("PPS9 = 0x%08x\n", pps_val);
+ 	if (!is_pipe_dsc(crtc_state)) {
+-		I915_WRITE(DSCA_PICTURE_PARAMETER_SET_9, pps_val);
++		intel_de_write(dev_priv, DSCA_PICTURE_PARAMETER_SET_9,
++			       pps_val);
+ 		/*
+ 		 * If 2 VDSC instances are needed, configure PPS for second
+ 		 * VDSC
+ 		 */
+ 		if (crtc_state->dsc.dsc_split)
+-			I915_WRITE(DSCC_PICTURE_PARAMETER_SET_9, pps_val);
++			intel_de_write(dev_priv, DSCC_PICTURE_PARAMETER_SET_9,
++				       pps_val);
+ 	} else {
+-		I915_WRITE(ICL_DSC0_PICTURE_PARAMETER_SET_9(pipe), pps_val);
++		intel_de_write(dev_priv,
++			       ICL_DSC0_PICTURE_PARAMETER_SET_9(pipe),
++			       pps_val);
+ 		if (crtc_state->dsc.dsc_split)
+-			I915_WRITE(ICL_DSC1_PICTURE_PARAMETER_SET_9(pipe),
+-				   pps_val);
++			intel_de_write(dev_priv,
++				       ICL_DSC1_PICTURE_PARAMETER_SET_9(pipe),
++				       pps_val);
+ 	}
+ 
+ 	/* Populate PICTURE_PARAMETER_SET_10 registers */
+@@ -723,18 +773,23 @@ static void intel_dsc_pps_configure(struct intel_encoder *encoder,
+ 		DSC_RC_TARGET_OFF_LOW(DSC_RC_TGT_OFFSET_LO_CONST);
+ 	DRM_INFO("PPS10 = 0x%08x\n", pps_val);
+ 	if (!is_pipe_dsc(crtc_state)) {
+-		I915_WRITE(DSCA_PICTURE_PARAMETER_SET_10, pps_val);
++		intel_de_write(dev_priv, DSCA_PICTURE_PARAMETER_SET_10,
++			       pps_val);
+ 		/*
+ 		 * If 2 VDSC instances are needed, configure PPS for second
+ 		 * VDSC
+ 		 */
+ 		if (crtc_state->dsc.dsc_split)
+-			I915_WRITE(DSCC_PICTURE_PARAMETER_SET_10, pps_val);
++			intel_de_write(dev_priv,
++				       DSCC_PICTURE_PARAMETER_SET_10, pps_val);
+ 	} else {
+-		I915_WRITE(ICL_DSC0_PICTURE_PARAMETER_SET_10(pipe), pps_val);
++		intel_de_write(dev_priv,
++			       ICL_DSC0_PICTURE_PARAMETER_SET_10(pipe),
++			       pps_val);
+ 		if (crtc_state->dsc.dsc_split)
+-			I915_WRITE(ICL_DSC1_PICTURE_PARAMETER_SET_10(pipe),
+-				   pps_val);
++			intel_de_write(dev_priv,
++				       ICL_DSC1_PICTURE_PARAMETER_SET_10(pipe),
++				       pps_val);
+ 	}
+ 
+ 	/* Populate Picture parameter set 16 */
+@@ -746,18 +801,23 @@ static void intel_dsc_pps_configure(struct intel_encoder *encoder,
+ 					vdsc_cfg->slice_height);
+ 	DRM_INFO("PPS16 = 0x%08x\n", pps_val);
+ 	if (!is_pipe_dsc(crtc_state)) {
+-		I915_WRITE(DSCA_PICTURE_PARAMETER_SET_16, pps_val);
++		intel_de_write(dev_priv, DSCA_PICTURE_PARAMETER_SET_16,
++			       pps_val);
+ 		/*
+ 		 * If 2 VDSC instances are needed, configure PPS for second
+ 		 * VDSC
+ 		 */
+ 		if (crtc_state->dsc.dsc_split)
+-			I915_WRITE(DSCC_PICTURE_PARAMETER_SET_16, pps_val);
++			intel_de_write(dev_priv,
++				       DSCC_PICTURE_PARAMETER_SET_16, pps_val);
+ 	} else {
+-		I915_WRITE(ICL_DSC0_PICTURE_PARAMETER_SET_16(pipe), pps_val);
++		intel_de_write(dev_priv,
++			       ICL_DSC0_PICTURE_PARAMETER_SET_16(pipe),
++			       pps_val);
+ 		if (crtc_state->dsc.dsc_split)
+-			I915_WRITE(ICL_DSC1_PICTURE_PARAMETER_SET_16(pipe),
+-				   pps_val);
++			intel_de_write(dev_priv,
++				       ICL_DSC1_PICTURE_PARAMETER_SET_16(pipe),
++				       pps_val);
+ 	}
+ 
+ 	/* Populate the RC_BUF_THRESH registers */
+@@ -770,38 +830,46 @@ static void intel_dsc_pps_configure(struct intel_encoder *encoder,
+ 			 rc_buf_thresh_dword[i / 4]);
+ 	}
+ 	if (!is_pipe_dsc(crtc_state)) {
+-		I915_WRITE(DSCA_RC_BUF_THRESH_0, rc_buf_thresh_dword[0]);
+-		I915_WRITE(DSCA_RC_BUF_THRESH_0_UDW, rc_buf_thresh_dword[1]);
+-		I915_WRITE(DSCA_RC_BUF_THRESH_1, rc_buf_thresh_dword[2]);
+-		I915_WRITE(DSCA_RC_BUF_THRESH_1_UDW, rc_buf_thresh_dword[3]);
++		intel_de_write(dev_priv, DSCA_RC_BUF_THRESH_0,
++			       rc_buf_thresh_dword[0]);
++		intel_de_write(dev_priv, DSCA_RC_BUF_THRESH_0_UDW,
++			       rc_buf_thresh_dword[1]);
++		intel_de_write(dev_priv, DSCA_RC_BUF_THRESH_1,
++			       rc_buf_thresh_dword[2]);
++		intel_de_write(dev_priv, DSCA_RC_BUF_THRESH_1_UDW,
++			       rc_buf_thresh_dword[3]);
+ 		if (crtc_state->dsc.dsc_split) {
+-			I915_WRITE(DSCC_RC_BUF_THRESH_0,
+-				   rc_buf_thresh_dword[0]);
+-			I915_WRITE(DSCC_RC_BUF_THRESH_0_UDW,
+-				   rc_buf_thresh_dword[1]);
+-			I915_WRITE(DSCC_RC_BUF_THRESH_1,
+-				   rc_buf_thresh_dword[2]);
+-			I915_WRITE(DSCC_RC_BUF_THRESH_1_UDW,
+-				   rc_buf_thresh_dword[3]);
++			intel_de_write(dev_priv, DSCC_RC_BUF_THRESH_0,
++				       rc_buf_thresh_dword[0]);
++			intel_de_write(dev_priv, DSCC_RC_BUF_THRESH_0_UDW,
++				       rc_buf_thresh_dword[1]);
++			intel_de_write(dev_priv, DSCC_RC_BUF_THRESH_1,
++				       rc_buf_thresh_dword[2]);
++			intel_de_write(dev_priv, DSCC_RC_BUF_THRESH_1_UDW,
++				       rc_buf_thresh_dword[3]);
+ 		}
+ 	} else {
+-		I915_WRITE(ICL_DSC0_RC_BUF_THRESH_0(pipe),
+-			   rc_buf_thresh_dword[0]);
+-		I915_WRITE(ICL_DSC0_RC_BUF_THRESH_0_UDW(pipe),
+-			   rc_buf_thresh_dword[1]);
+-		I915_WRITE(ICL_DSC0_RC_BUF_THRESH_1(pipe),
+-			   rc_buf_thresh_dword[2]);
+-		I915_WRITE(ICL_DSC0_RC_BUF_THRESH_1_UDW(pipe),
+-			   rc_buf_thresh_dword[3]);
++		intel_de_write(dev_priv, ICL_DSC0_RC_BUF_THRESH_0(pipe),
++			       rc_buf_thresh_dword[0]);
++		intel_de_write(dev_priv, ICL_DSC0_RC_BUF_THRESH_0_UDW(pipe),
++			       rc_buf_thresh_dword[1]);
++		intel_de_write(dev_priv, ICL_DSC0_RC_BUF_THRESH_1(pipe),
++			       rc_buf_thresh_dword[2]);
++		intel_de_write(dev_priv, ICL_DSC0_RC_BUF_THRESH_1_UDW(pipe),
++			       rc_buf_thresh_dword[3]);
+ 		if (crtc_state->dsc.dsc_split) {
+-			I915_WRITE(ICL_DSC1_RC_BUF_THRESH_0(pipe),
+-				   rc_buf_thresh_dword[0]);
+-			I915_WRITE(ICL_DSC1_RC_BUF_THRESH_0_UDW(pipe),
+-				   rc_buf_thresh_dword[1]);
+-			I915_WRITE(ICL_DSC1_RC_BUF_THRESH_1(pipe),
+-				   rc_buf_thresh_dword[2]);
+-			I915_WRITE(ICL_DSC1_RC_BUF_THRESH_1_UDW(pipe),
+-				   rc_buf_thresh_dword[3]);
++			intel_de_write(dev_priv,
++				       ICL_DSC1_RC_BUF_THRESH_0(pipe),
++				       rc_buf_thresh_dword[0]);
++			intel_de_write(dev_priv,
++				       ICL_DSC1_RC_BUF_THRESH_0_UDW(pipe),
++				       rc_buf_thresh_dword[1]);
++			intel_de_write(dev_priv,
++				       ICL_DSC1_RC_BUF_THRESH_1(pipe),
++				       rc_buf_thresh_dword[2]);
++			intel_de_write(dev_priv,
++				       ICL_DSC1_RC_BUF_THRESH_1_UDW(pipe),
++				       rc_buf_thresh_dword[3]);
+ 		}
+ 	}
+ 
+@@ -819,74 +887,90 @@ static void intel_dsc_pps_configure(struct intel_encoder *encoder,
+ 			 rc_range_params_dword[i / 2]);
+ 	}
+ 	if (!is_pipe_dsc(crtc_state)) {
+-		I915_WRITE(DSCA_RC_RANGE_PARAMETERS_0,
+-			   rc_range_params_dword[0]);
+-		I915_WRITE(DSCA_RC_RANGE_PARAMETERS_0_UDW,
+-			   rc_range_params_dword[1]);
+-		I915_WRITE(DSCA_RC_RANGE_PARAMETERS_1,
+-			   rc_range_params_dword[2]);
+-		I915_WRITE(DSCA_RC_RANGE_PARAMETERS_1_UDW,
+-			   rc_range_params_dword[3]);
+-		I915_WRITE(DSCA_RC_RANGE_PARAMETERS_2,
+-			   rc_range_params_dword[4]);
+-		I915_WRITE(DSCA_RC_RANGE_PARAMETERS_2_UDW,
+-			   rc_range_params_dword[5]);
+-		I915_WRITE(DSCA_RC_RANGE_PARAMETERS_3,
+-			   rc_range_params_dword[6]);
+-		I915_WRITE(DSCA_RC_RANGE_PARAMETERS_3_UDW,
+-			   rc_range_params_dword[7]);
++		intel_de_write(dev_priv, DSCA_RC_RANGE_PARAMETERS_0,
++			       rc_range_params_dword[0]);
++		intel_de_write(dev_priv, DSCA_RC_RANGE_PARAMETERS_0_UDW,
++			       rc_range_params_dword[1]);
++		intel_de_write(dev_priv, DSCA_RC_RANGE_PARAMETERS_1,
++			       rc_range_params_dword[2]);
++		intel_de_write(dev_priv, DSCA_RC_RANGE_PARAMETERS_1_UDW,
++			       rc_range_params_dword[3]);
++		intel_de_write(dev_priv, DSCA_RC_RANGE_PARAMETERS_2,
++			       rc_range_params_dword[4]);
++		intel_de_write(dev_priv, DSCA_RC_RANGE_PARAMETERS_2_UDW,
++			       rc_range_params_dword[5]);
++		intel_de_write(dev_priv, DSCA_RC_RANGE_PARAMETERS_3,
++			       rc_range_params_dword[6]);
++		intel_de_write(dev_priv, DSCA_RC_RANGE_PARAMETERS_3_UDW,
++			       rc_range_params_dword[7]);
+ 		if (crtc_state->dsc.dsc_split) {
+-			I915_WRITE(DSCC_RC_RANGE_PARAMETERS_0,
+-				   rc_range_params_dword[0]);
+-			I915_WRITE(DSCC_RC_RANGE_PARAMETERS_0_UDW,
+-				   rc_range_params_dword[1]);
+-			I915_WRITE(DSCC_RC_RANGE_PARAMETERS_1,
+-				   rc_range_params_dword[2]);
+-			I915_WRITE(DSCC_RC_RANGE_PARAMETERS_1_UDW,
+-				   rc_range_params_dword[3]);
+-			I915_WRITE(DSCC_RC_RANGE_PARAMETERS_2,
+-				   rc_range_params_dword[4]);
+-			I915_WRITE(DSCC_RC_RANGE_PARAMETERS_2_UDW,
+-				   rc_range_params_dword[5]);
+-			I915_WRITE(DSCC_RC_RANGE_PARAMETERS_3,
+-				   rc_range_params_dword[6]);
+-			I915_WRITE(DSCC_RC_RANGE_PARAMETERS_3_UDW,
+-				   rc_range_params_dword[7]);
++			intel_de_write(dev_priv, DSCC_RC_RANGE_PARAMETERS_0,
++				       rc_range_params_dword[0]);
++			intel_de_write(dev_priv,
++				       DSCC_RC_RANGE_PARAMETERS_0_UDW,
++				       rc_range_params_dword[1]);
++			intel_de_write(dev_priv, DSCC_RC_RANGE_PARAMETERS_1,
++				       rc_range_params_dword[2]);
++			intel_de_write(dev_priv,
++				       DSCC_RC_RANGE_PARAMETERS_1_UDW,
++				       rc_range_params_dword[3]);
++			intel_de_write(dev_priv, DSCC_RC_RANGE_PARAMETERS_2,
++				       rc_range_params_dword[4]);
++			intel_de_write(dev_priv,
++				       DSCC_RC_RANGE_PARAMETERS_2_UDW,
++				       rc_range_params_dword[5]);
++			intel_de_write(dev_priv, DSCC_RC_RANGE_PARAMETERS_3,
++				       rc_range_params_dword[6]);
++			intel_de_write(dev_priv,
++				       DSCC_RC_RANGE_PARAMETERS_3_UDW,
++				       rc_range_params_dword[7]);
+ 		}
+ 	} else {
+-		I915_WRITE(ICL_DSC0_RC_RANGE_PARAMETERS_0(pipe),
+-			   rc_range_params_dword[0]);
+-		I915_WRITE(ICL_DSC0_RC_RANGE_PARAMETERS_0_UDW(pipe),
+-			   rc_range_params_dword[1]);
+-		I915_WRITE(ICL_DSC0_RC_RANGE_PARAMETERS_1(pipe),
+-			   rc_range_params_dword[2]);
+-		I915_WRITE(ICL_DSC0_RC_RANGE_PARAMETERS_1_UDW(pipe),
+-			   rc_range_params_dword[3]);
+-		I915_WRITE(ICL_DSC0_RC_RANGE_PARAMETERS_2(pipe),
+-			   rc_range_params_dword[4]);
+-		I915_WRITE(ICL_DSC0_RC_RANGE_PARAMETERS_2_UDW(pipe),
+-			   rc_range_params_dword[5]);
+-		I915_WRITE(ICL_DSC0_RC_RANGE_PARAMETERS_3(pipe),
+-			   rc_range_params_dword[6]);
+-		I915_WRITE(ICL_DSC0_RC_RANGE_PARAMETERS_3_UDW(pipe),
+-			   rc_range_params_dword[7]);
++		intel_de_write(dev_priv, ICL_DSC0_RC_RANGE_PARAMETERS_0(pipe),
++			       rc_range_params_dword[0]);
++		intel_de_write(dev_priv,
++			       ICL_DSC0_RC_RANGE_PARAMETERS_0_UDW(pipe),
++			       rc_range_params_dword[1]);
++		intel_de_write(dev_priv, ICL_DSC0_RC_RANGE_PARAMETERS_1(pipe),
++			       rc_range_params_dword[2]);
++		intel_de_write(dev_priv,
++			       ICL_DSC0_RC_RANGE_PARAMETERS_1_UDW(pipe),
++			       rc_range_params_dword[3]);
++		intel_de_write(dev_priv, ICL_DSC0_RC_RANGE_PARAMETERS_2(pipe),
++			       rc_range_params_dword[4]);
++		intel_de_write(dev_priv,
++			       ICL_DSC0_RC_RANGE_PARAMETERS_2_UDW(pipe),
++			       rc_range_params_dword[5]);
++		intel_de_write(dev_priv, ICL_DSC0_RC_RANGE_PARAMETERS_3(pipe),
++			       rc_range_params_dword[6]);
++		intel_de_write(dev_priv,
++			       ICL_DSC0_RC_RANGE_PARAMETERS_3_UDW(pipe),
++			       rc_range_params_dword[7]);
+ 		if (crtc_state->dsc.dsc_split) {
+-			I915_WRITE(ICL_DSC1_RC_RANGE_PARAMETERS_0(pipe),
+-				   rc_range_params_dword[0]);
+-			I915_WRITE(ICL_DSC1_RC_RANGE_PARAMETERS_0_UDW(pipe),
+-				   rc_range_params_dword[1]);
+-			I915_WRITE(ICL_DSC1_RC_RANGE_PARAMETERS_1(pipe),
+-				   rc_range_params_dword[2]);
+-			I915_WRITE(ICL_DSC1_RC_RANGE_PARAMETERS_1_UDW(pipe),
+-				   rc_range_params_dword[3]);
+-			I915_WRITE(ICL_DSC1_RC_RANGE_PARAMETERS_2(pipe),
+-				   rc_range_params_dword[4]);
+-			I915_WRITE(ICL_DSC1_RC_RANGE_PARAMETERS_2_UDW(pipe),
+-				   rc_range_params_dword[5]);
+-			I915_WRITE(ICL_DSC1_RC_RANGE_PARAMETERS_3(pipe),
+-				   rc_range_params_dword[6]);
+-			I915_WRITE(ICL_DSC1_RC_RANGE_PARAMETERS_3_UDW(pipe),
+-				   rc_range_params_dword[7]);
++			intel_de_write(dev_priv,
++				       ICL_DSC1_RC_RANGE_PARAMETERS_0(pipe),
++				       rc_range_params_dword[0]);
++			intel_de_write(dev_priv,
++				       ICL_DSC1_RC_RANGE_PARAMETERS_0_UDW(pipe),
++				       rc_range_params_dword[1]);
++			intel_de_write(dev_priv,
++				       ICL_DSC1_RC_RANGE_PARAMETERS_1(pipe),
++				       rc_range_params_dword[2]);
++			intel_de_write(dev_priv,
++				       ICL_DSC1_RC_RANGE_PARAMETERS_1_UDW(pipe),
++				       rc_range_params_dword[3]);
++			intel_de_write(dev_priv,
++				       ICL_DSC1_RC_RANGE_PARAMETERS_2(pipe),
++				       rc_range_params_dword[4]);
++			intel_de_write(dev_priv,
++				       ICL_DSC1_RC_RANGE_PARAMETERS_2_UDW(pipe),
++				       rc_range_params_dword[5]);
++			intel_de_write(dev_priv,
++				       ICL_DSC1_RC_RANGE_PARAMETERS_3(pipe),
++				       rc_range_params_dword[6]);
++			intel_de_write(dev_priv,
++				       ICL_DSC1_RC_RANGE_PARAMETERS_3_UDW(pipe),
++				       rc_range_params_dword[7]);
+ 		}
+ 	}
  }
- 
- static void set_color_conversion(struct drm_i915_private *dev_priv,
-@@ -1398,18 +1400,18 @@ static void set_color_conversion(struct drm_i915_private *dev_priv,
- 	if (!color_conversion)
+@@ -912,11 +996,11 @@ void intel_dsc_get_config(struct intel_encoder *encoder,
  		return;
  
--	I915_WRITE(TV_CSC_Y, (color_conversion->ry << 16) |
--		   color_conversion->gy);
--	I915_WRITE(TV_CSC_Y2, (color_conversion->by << 16) |
--		   color_conversion->ay);
--	I915_WRITE(TV_CSC_U, (color_conversion->ru << 16) |
--		   color_conversion->gu);
--	I915_WRITE(TV_CSC_U2, (color_conversion->bu << 16) |
--		   color_conversion->au);
--	I915_WRITE(TV_CSC_V, (color_conversion->rv << 16) |
--		   color_conversion->gv);
--	I915_WRITE(TV_CSC_V2, (color_conversion->bv << 16) |
--		   color_conversion->av);
-+	intel_de_write(dev_priv, TV_CSC_Y,
-+		       (color_conversion->ry << 16) | color_conversion->gy);
-+	intel_de_write(dev_priv, TV_CSC_Y2,
-+		       (color_conversion->by << 16) | color_conversion->ay);
-+	intel_de_write(dev_priv, TV_CSC_U,
-+		       (color_conversion->ru << 16) | color_conversion->gu);
-+	intel_de_write(dev_priv, TV_CSC_U2,
-+		       (color_conversion->bu << 16) | color_conversion->au);
-+	intel_de_write(dev_priv, TV_CSC_V,
-+		       (color_conversion->rv << 16) | color_conversion->gv);
-+	intel_de_write(dev_priv, TV_CSC_V2,
-+		       (color_conversion->bv << 16) | color_conversion->av);
- }
+ 	if (!is_pipe_dsc(crtc_state)) {
+-		dss_ctl1 = I915_READ(DSS_CTL1);
+-		dss_ctl2 = I915_READ(DSS_CTL2);
++		dss_ctl1 = intel_de_read(dev_priv, DSS_CTL1);
++		dss_ctl2 = intel_de_read(dev_priv, DSS_CTL2);
+ 	} else {
+-		dss_ctl1 = I915_READ(ICL_PIPE_DSS_CTL1(pipe));
+-		dss_ctl2 = I915_READ(ICL_PIPE_DSS_CTL2(pipe));
++		dss_ctl1 = intel_de_read(dev_priv, ICL_PIPE_DSS_CTL1(pipe));
++		dss_ctl2 = intel_de_read(dev_priv, ICL_PIPE_DSS_CTL2(pipe));
+ 	}
  
- static void intel_tv_pre_enable(struct intel_encoder *encoder,
-@@ -1434,7 +1436,7 @@ static void intel_tv_pre_enable(struct intel_encoder *encoder,
- 	if (!tv_mode)
- 		return;	/* can't happen (mode_prepare prevents this) */
+ 	crtc_state->dsc.compression_enable = dss_ctl2 & LEFT_BRANCH_VDSC_ENABLE;
+@@ -930,9 +1014,10 @@ void intel_dsc_get_config(struct intel_encoder *encoder,
  
--	tv_ctl = I915_READ(TV_CTL);
-+	tv_ctl = intel_de_read(dev_priv, TV_CTL);
- 	tv_ctl &= TV_CTL_SAVE;
- 
- 	switch (intel_tv->type) {
-@@ -1511,21 +1513,20 @@ static void intel_tv_pre_enable(struct intel_encoder *encoder,
- 
- 	set_tv_mode_timings(dev_priv, tv_mode, burst_ena);
- 
--	I915_WRITE(TV_SC_CTL_1, scctl1);
--	I915_WRITE(TV_SC_CTL_2, scctl2);
--	I915_WRITE(TV_SC_CTL_3, scctl3);
-+	intel_de_write(dev_priv, TV_SC_CTL_1, scctl1);
-+	intel_de_write(dev_priv, TV_SC_CTL_2, scctl2);
-+	intel_de_write(dev_priv, TV_SC_CTL_3, scctl3);
- 
- 	set_color_conversion(dev_priv, color_conversion);
- 
- 	if (INTEL_GEN(dev_priv) >= 4)
--		I915_WRITE(TV_CLR_KNOBS, 0x00404000);
-+		intel_de_write(dev_priv, TV_CLR_KNOBS, 0x00404000);
+ 	/* PPS1 */
+ 	if (!is_pipe_dsc(crtc_state))
+-		val = I915_READ(DSCA_PICTURE_PARAMETER_SET_1);
++		val = intel_de_read(dev_priv, DSCA_PICTURE_PARAMETER_SET_1);
  	else
--		I915_WRITE(TV_CLR_KNOBS, 0x00606000);
-+		intel_de_write(dev_priv, TV_CLR_KNOBS, 0x00606000);
- 
- 	if (video_levels)
--		I915_WRITE(TV_CLR_LEVEL,
--			   ((video_levels->black << TV_BLACK_LEVEL_SHIFT) |
--			    (video_levels->blank << TV_BLANK_LEVEL_SHIFT)));
-+		intel_de_write(dev_priv, TV_CLR_LEVEL,
-+			       ((video_levels->black << TV_BLACK_LEVEL_SHIFT) | (video_levels->blank << TV_BLANK_LEVEL_SHIFT)));
- 
- 	assert_pipe_disabled(dev_priv, pipe_config->cpu_transcoder);
- 
-@@ -1533,7 +1534,7 @@ static void intel_tv_pre_enable(struct intel_encoder *encoder,
- 	tv_filter_ctl = TV_AUTO_SCALE;
- 	if (tv_conn_state->bypass_vfilter)
- 		tv_filter_ctl |= TV_V_FILTER_BYPASS;
--	I915_WRITE(TV_FILTER_CTL_1, tv_filter_ctl);
-+	intel_de_write(dev_priv, TV_FILTER_CTL_1, tv_filter_ctl);
- 
- 	xsize = tv_mode->hblank_start - tv_mode->hblank_end;
- 	ysize = intel_tv_mode_vdisplay(tv_mode);
-@@ -1544,20 +1545,25 @@ static void intel_tv_pre_enable(struct intel_encoder *encoder,
- 		  conn_state->tv.margins.right);
- 	ysize -= (tv_conn_state->margins.top +
- 		  tv_conn_state->margins.bottom);
--	I915_WRITE(TV_WIN_POS, (xpos<<16)|ypos);
--	I915_WRITE(TV_WIN_SIZE, (xsize<<16)|ysize);
-+	intel_de_write(dev_priv, TV_WIN_POS, (xpos << 16) | ypos);
-+	intel_de_write(dev_priv, TV_WIN_SIZE, (xsize << 16) | ysize);
- 
- 	j = 0;
- 	for (i = 0; i < 60; i++)
--		I915_WRITE(TV_H_LUMA(i), tv_mode->filter_table[j++]);
-+		intel_de_write(dev_priv, TV_H_LUMA(i),
-+			       tv_mode->filter_table[j++]);
- 	for (i = 0; i < 60; i++)
--		I915_WRITE(TV_H_CHROMA(i), tv_mode->filter_table[j++]);
-+		intel_de_write(dev_priv, TV_H_CHROMA(i),
-+			       tv_mode->filter_table[j++]);
- 	for (i = 0; i < 43; i++)
--		I915_WRITE(TV_V_LUMA(i), tv_mode->filter_table[j++]);
-+		intel_de_write(dev_priv, TV_V_LUMA(i),
-+			       tv_mode->filter_table[j++]);
- 	for (i = 0; i < 43; i++)
--		I915_WRITE(TV_V_CHROMA(i), tv_mode->filter_table[j++]);
--	I915_WRITE(TV_DAC, I915_READ(TV_DAC) & TV_DAC_SAVE);
--	I915_WRITE(TV_CTL, tv_ctl);
-+		intel_de_write(dev_priv, TV_V_CHROMA(i),
-+			       tv_mode->filter_table[j++]);
-+	intel_de_write(dev_priv, TV_DAC,
-+		       intel_de_read(dev_priv, TV_DAC) & TV_DAC_SAVE);
-+	intel_de_write(dev_priv, TV_CTL, tv_ctl);
+-		val = I915_READ(ICL_DSC0_PICTURE_PARAMETER_SET_1(pipe));
++		val = intel_de_read(dev_priv,
++				    ICL_DSC0_PICTURE_PARAMETER_SET_1(pipe));
+ 	vdsc_cfg->bits_per_pixel = val;
+ 	crtc_state->dsc.compressed_bpp = vdsc_cfg->bits_per_pixel >> 4;
+ out:
+@@ -1013,8 +1098,8 @@ void intel_dsc_enable(struct intel_encoder *encoder,
+ 		dss_ctl2_val |= RIGHT_BRANCH_VDSC_ENABLE;
+ 		dss_ctl1_val |= JOINER_ENABLE;
+ 	}
+-	I915_WRITE(dss_ctl1_reg, dss_ctl1_val);
+-	I915_WRITE(dss_ctl2_reg, dss_ctl2_val);
++	intel_de_write(dev_priv, dss_ctl1_reg, dss_ctl1_val);
++	intel_de_write(dev_priv, dss_ctl2_reg, dss_ctl2_val);
  }
  
- static int
-@@ -1581,8 +1587,8 @@ intel_tv_detect_type(struct intel_tv *intel_tv,
- 		spin_unlock_irq(&dev_priv->irq_lock);
+ void intel_dsc_disable(const struct intel_crtc_state *old_crtc_state)
+@@ -1035,17 +1120,17 @@ void intel_dsc_disable(const struct intel_crtc_state *old_crtc_state)
+ 		dss_ctl1_reg = ICL_PIPE_DSS_CTL1(pipe);
+ 		dss_ctl2_reg = ICL_PIPE_DSS_CTL2(pipe);
  	}
+-	dss_ctl1_val = I915_READ(dss_ctl1_reg);
++	dss_ctl1_val = intel_de_read(dev_priv, dss_ctl1_reg);
+ 	if (dss_ctl1_val & JOINER_ENABLE)
+ 		dss_ctl1_val &= ~JOINER_ENABLE;
+-	I915_WRITE(dss_ctl1_reg, dss_ctl1_val);
++	intel_de_write(dev_priv, dss_ctl1_reg, dss_ctl1_val);
  
--	save_tv_dac = tv_dac = I915_READ(TV_DAC);
--	save_tv_ctl = tv_ctl = I915_READ(TV_CTL);
-+	save_tv_dac = tv_dac = intel_de_read(dev_priv, TV_DAC);
-+	save_tv_ctl = tv_ctl = intel_de_read(dev_priv, TV_CTL);
+-	dss_ctl2_val = I915_READ(dss_ctl2_reg);
++	dss_ctl2_val = intel_de_read(dev_priv, dss_ctl2_reg);
+ 	if (dss_ctl2_val & LEFT_BRANCH_VDSC_ENABLE ||
+ 	    dss_ctl2_val & RIGHT_BRANCH_VDSC_ENABLE)
+ 		dss_ctl2_val &= ~(LEFT_BRANCH_VDSC_ENABLE |
+ 				  RIGHT_BRANCH_VDSC_ENABLE);
+-	I915_WRITE(dss_ctl2_reg, dss_ctl2_val);
++	intel_de_write(dev_priv, dss_ctl2_reg, dss_ctl2_val);
  
- 	/* Poll for TV detection */
- 	tv_ctl &= ~(TV_ENC_ENABLE | TV_ENC_PIPE_SEL_MASK | TV_TEST_MODE_MASK);
-@@ -1608,14 +1614,14 @@ intel_tv_detect_type(struct intel_tv *intel_tv,
- 		tv_dac &= ~(TVDAC_STATE_CHG_EN | TVDAC_A_SENSE_CTL |
- 			    TVDAC_B_SENSE_CTL | TVDAC_C_SENSE_CTL);
- 
--	I915_WRITE(TV_CTL, tv_ctl);
--	I915_WRITE(TV_DAC, tv_dac);
--	POSTING_READ(TV_DAC);
-+	intel_de_write(dev_priv, TV_CTL, tv_ctl);
-+	intel_de_write(dev_priv, TV_DAC, tv_dac);
-+	intel_de_posting_read(dev_priv, TV_DAC);
- 
- 	intel_wait_for_vblank(dev_priv, intel_crtc->pipe);
- 
- 	type = -1;
--	tv_dac = I915_READ(TV_DAC);
-+	tv_dac = intel_de_read(dev_priv, TV_DAC);
- 	DRM_DEBUG_KMS("TV detected: %x, %x\n", tv_ctl, tv_dac);
- 	/*
- 	 *  A B C
-@@ -1637,9 +1643,9 @@ intel_tv_detect_type(struct intel_tv *intel_tv,
- 		type = -1;
- 	}
- 
--	I915_WRITE(TV_DAC, save_tv_dac & ~TVDAC_STATE_CHG_EN);
--	I915_WRITE(TV_CTL, save_tv_ctl);
--	POSTING_READ(TV_CTL);
-+	intel_de_write(dev_priv, TV_DAC, save_tv_dac & ~TVDAC_STATE_CHG_EN);
-+	intel_de_write(dev_priv, TV_CTL, save_tv_ctl);
-+	intel_de_posting_read(dev_priv, TV_CTL);
- 
- 	/* For unknown reasons the hw barfs if we don't do this vblank wait. */
- 	intel_wait_for_vblank(dev_priv, intel_crtc->pipe);
-@@ -1870,7 +1876,7 @@ intel_tv_init(struct drm_i915_private *dev_priv)
- 	int i, initial_mode = 0;
- 	struct drm_connector_state *state;
- 
--	if ((I915_READ(TV_CTL) & TV_FUSE_STATE_MASK) == TV_FUSE_STATE_DISABLED)
-+	if ((intel_de_read(dev_priv, TV_CTL) & TV_FUSE_STATE_MASK) == TV_FUSE_STATE_DISABLED)
- 		return;
- 
- 	if (!intel_bios_is_tv_present(dev_priv)) {
-@@ -1882,15 +1888,15 @@ intel_tv_init(struct drm_i915_private *dev_priv)
- 	 * Sanity check the TV output by checking to see if the
- 	 * DAC register holds a value
- 	 */
--	save_tv_dac = I915_READ(TV_DAC);
-+	save_tv_dac = intel_de_read(dev_priv, TV_DAC);
- 
--	I915_WRITE(TV_DAC, save_tv_dac | TVDAC_STATE_CHG_EN);
--	tv_dac_on = I915_READ(TV_DAC);
-+	intel_de_write(dev_priv, TV_DAC, save_tv_dac | TVDAC_STATE_CHG_EN);
-+	tv_dac_on = intel_de_read(dev_priv, TV_DAC);
- 
--	I915_WRITE(TV_DAC, save_tv_dac & ~TVDAC_STATE_CHG_EN);
--	tv_dac_off = I915_READ(TV_DAC);
-+	intel_de_write(dev_priv, TV_DAC, save_tv_dac & ~TVDAC_STATE_CHG_EN);
-+	tv_dac_off = intel_de_read(dev_priv, TV_DAC);
- 
--	I915_WRITE(TV_DAC, save_tv_dac);
-+	intel_de_write(dev_priv, TV_DAC, save_tv_dac);
- 
- 	/*
- 	 * If the register does not hold the state change enable
+ 	/* Disable Power wells for VDSC/joining */
+ 	intel_display_power_put_unchecked(dev_priv,
 -- 
 2.20.1
 
