@@ -2,39 +2,35 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E64BB148522
-	for <lists+intel-gfx@lfdr.de>; Fri, 24 Jan 2020 13:26:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4625D148523
+	for <lists+intel-gfx@lfdr.de>; Fri, 24 Jan 2020 13:28:44 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 574C26FA45;
-	Fri, 24 Jan 2020 12:26:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5D3156FA51;
+	Fri, 24 Jan 2020 12:28:41 +0000 (UTC)
 X-Original-To: Intel-gfx@lists.freedesktop.org
 Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D1C1E6FA45;
- Fri, 24 Jan 2020 12:26:35 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 41A446FA4A;
+ Fri, 24 Jan 2020 12:28:39 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 24 Jan 2020 04:26:35 -0800
-X-IronPort-AV: E=Sophos;i="5.70,357,1574150400"; d="scan'208";a="230273709"
-Received: from wmszyfel-mobl2.ger.corp.intel.com (HELO [10.252.10.247])
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 24 Jan 2020 04:28:38 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,357,1574150400"; d="scan'208";a="251274676"
+Received: from wmszyfel-mobl2.ger.corp.intel.com (HELO localhost.localdomain)
  ([10.252.10.247])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/AES256-SHA;
- 24 Jan 2020 04:26:33 -0800
-To: Chris Wilson <chris@chris-wilson.co.uk>, igt-dev@lists.freedesktop.org
-References: <20200124121759.22308-1-tvrtko.ursulin@linux.intel.com>
- <157986861487.2524.12141917333565358192@skylake-alporthouse-com>
+ by fmsmga004.fm.intel.com with ESMTP; 24 Jan 2020 04:28:37 -0800
 From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <9593ea49-ceb1-011a-bcd9-e194bf0eda9c@linux.intel.com>
-Date: Fri, 24 Jan 2020 12:26:31 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
+To: igt-dev@lists.freedesktop.org
+Date: Fri, 24 Jan 2020 12:28:33 +0000
+Message-Id: <20200124122833.26392-1-tvrtko.ursulin@linux.intel.com>
+X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20200124121759.22308-1-tvrtko.ursulin@linux.intel.com>
+References: <20200124121759.22308-1-tvrtko.ursulin@linux.intel.com>
 MIME-Version: 1.0
-In-Reply-To: <157986861487.2524.12141917333565358192@skylake-alporthouse-com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH i-g-t 1/2] lib/i915: Add helper for copying
+Subject: [Intel-gfx] [PATCH i-g-t v2 1/2] lib/i915: Add helper for copying
  engine maps from one context to another
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -49,73 +45,80 @@ List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: Intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 
-On 24/01/2020 12:23, Chris Wilson wrote:
-> Quoting Tvrtko Ursulin (2020-01-24 12:17:58)
->> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->>
->> We also need to support copying across file descriptors.
->>
->> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->> Cc: Chris Wilson <chris@chris-wilson.co.uk>
->> Cc: Sreedhar Telukuntla <sreedhar.telukuntla@intel.com>
->> ---
->>   lib/i915/gem_context.c | 30 ++++++++++++++++++++++++++++++
->>   lib/i915/gem_context.h |  2 ++
->>   2 files changed, 32 insertions(+)
->>
->> diff --git a/lib/i915/gem_context.c b/lib/i915/gem_context.c
->> index 0b6a554dfe27..41957b66ca52 100644
->> --- a/lib/i915/gem_context.c
->> +++ b/lib/i915/gem_context.c
->> @@ -462,3 +462,33 @@ bool gem_context_has_engine(int fd, uint32_t ctx, uint64_t engine)
->>   
->>          return __gem_execbuf(fd, &execbuf) == -ENOENT;
->>   }
->> +
->> +/**
->> + * gem_context_copy_engines:
->> + * @src_fd: open i915 drm file descriptor where @src context belongs to
->> + * @src: source engine map context id
->> + * @dst_fd: open i915 drm file descriptor where @dst context belongs to
->> + * @dst: destination engine map context id
->> + *
->> + * Special purpose wrapper for copying engine map from one context to another.
->> + *
->> + * In can be called regardless of whether the kernel supports context engine
->> + * maps and is a no-op if not supported.
->> + */
->> +void
->> +gem_context_copy_engines(int src_fd, uint32_t src, int dst_fd, uint32_t dst)
->> +{
->> +       I915_DEFINE_CONTEXT_PARAM_ENGINES(engines, I915_EXEC_RING_MASK + 1);
->> +       struct drm_i915_gem_context_param param = {
->> +               .param = I915_CONTEXT_PARAM_ENGINES,
->> +               .ctx_id = src,
->> +               .size = sizeof(engines),
->> +               .value = to_user_pointer(&engines),
->> +       };
->> +
->> +       if (__gem_context_get_param(src_fd, &param) || !param.size)
->> +               return;
->> +
->> +       param.ctx_id = dst;
->> +       gem_context_set_param(dst_fd, &param);
-> 
-> You don't want to copy across the use-default set? You presume dst is
-> already using defaults?
+We also need to support copying across file descriptors.
 
-Hm hm.. not sure. I guess it would be most in-line with what the helper 
-say on the tin to copy as is. I'll respin.
+v2:
+ * Copy over even if src is unset. (Chris)
 
-Regards,
+Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Sreedhar Telukuntla <sreedhar.telukuntla@intel.com>
+---
+ lib/i915/gem_context.c | 30 ++++++++++++++++++++++++++++++
+ lib/i915/gem_context.h |  2 ++
+ 2 files changed, 32 insertions(+)
 
-Tvrtko
+diff --git a/lib/i915/gem_context.c b/lib/i915/gem_context.c
+index 0b6a554dfe27..50dfee3d1030 100644
+--- a/lib/i915/gem_context.c
++++ b/lib/i915/gem_context.c
+@@ -462,3 +462,33 @@ bool gem_context_has_engine(int fd, uint32_t ctx, uint64_t engine)
+ 
+ 	return __gem_execbuf(fd, &execbuf) == -ENOENT;
+ }
++
++/**
++ * gem_context_copy_engines:
++ * @src_fd: open i915 drm file descriptor where @src context belongs to
++ * @src: source engine map context id
++ * @dst_fd: open i915 drm file descriptor where @dst context belongs to
++ * @dst: destination engine map context id
++ *
++ * Special purpose helper for copying engine map from one context to another.
++ *
++ * In can be called regardless of whether the kernel supports context engine
++ * maps and is a no-op if not supported.
++ */
++void
++gem_context_copy_engines(int src_fd, uint32_t src, int dst_fd, uint32_t dst)
++{
++	I915_DEFINE_CONTEXT_PARAM_ENGINES(engines, I915_EXEC_RING_MASK + 1);
++	struct drm_i915_gem_context_param param = {
++		.param = I915_CONTEXT_PARAM_ENGINES,
++		.ctx_id = src,
++		.size = sizeof(engines),
++		.value = to_user_pointer(&engines),
++	};
++
++	if (__gem_context_get_param(src_fd, &param))
++		return;
++
++	param.ctx_id = dst;
++	gem_context_set_param(dst_fd, &param);
++}
+diff --git a/lib/i915/gem_context.h b/lib/i915/gem_context.h
+index cf2ba33fee8f..15e5db281b79 100644
+--- a/lib/i915/gem_context.h
++++ b/lib/i915/gem_context.h
+@@ -42,6 +42,8 @@ uint32_t gem_context_clone(int i915,
+ 			   uint32_t src, unsigned int share,
+ 			   unsigned int flags);
+ uint32_t gem_context_clone_with_engines(int i915, uint32_t src);
++void gem_context_copy_engines(int src_fd, uint32_t src,
++			      int dst_fd, uint32_t dst);
+ 
+ uint32_t gem_queue_create(int i915);
+ uint32_t gem_queue_clone_with_engines(int i915, uint32_t src);
+-- 
+2.20.1
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
