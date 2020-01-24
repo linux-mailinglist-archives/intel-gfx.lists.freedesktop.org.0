@@ -1,38 +1,38 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE60814860D
-	for <lists+intel-gfx@lfdr.de>; Fri, 24 Jan 2020 14:26:39 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F9E214860E
+	for <lists+intel-gfx@lfdr.de>; Fri, 24 Jan 2020 14:26:43 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 310B972A8A;
-	Fri, 24 Jan 2020 13:26:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9F97772A86;
+	Fri, 24 Jan 2020 13:26:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5D0F072A8D
- for <intel-gfx@lists.freedesktop.org>; Fri, 24 Jan 2020 13:26:36 +0000 (UTC)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 51B6D72A86
+ for <intel-gfx@lists.freedesktop.org>; Fri, 24 Jan 2020 13:26:40 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 24 Jan 2020 05:26:36 -0800
-X-IronPort-AV: E=Sophos;i="5.70,357,1574150400"; d="scan'208";a="308126493"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 24 Jan 2020 05:26:39 -0800
+X-IronPort-AV: E=Sophos;i="5.70,357,1574150400"; d="scan'208";a="222620366"
 Received: from omarkovx-mobl.ger.corp.intel.com (HELO localhost)
  ([10.249.37.60])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 24 Jan 2020 05:26:34 -0800
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 24 Jan 2020 05:26:38 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri, 24 Jan 2020 15:25:43 +0200
-Message-Id: <75c2aa6ff0f0aa744de006c0bd6e33fb91b20994.1579871655.git.jani.nikula@intel.com>
+Date: Fri, 24 Jan 2020 15:25:44 +0200
+Message-Id: <03a907100bf86e877247df804104c50240e3b38c.1579871655.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <cover.1579871655.git.jani.nikula@intel.com>
 References: <cover.1579871655.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Subject: [Intel-gfx] [RFC 22/33] drm/i915/lvds: use intel_de_*() functions
- for register access
+Subject: [Intel-gfx] [RFC 23/33] drm/i915/overlay: use intel_de_*()
+ functions for register access
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -95,158 +95,118 @@ expression REG, OFFSET;
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_lvds.c | 57 +++++++++++------------
- 1 file changed, 28 insertions(+), 29 deletions(-)
+ drivers/gpu/drm/i915/display/intel_overlay.c | 45 ++++++++++----------
+ 1 file changed, 23 insertions(+), 22 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_lvds.c b/drivers/gpu/drm/i915/display/intel_lvds.c
-index 10696bb99dcf..47c49f317e07 100644
---- a/drivers/gpu/drm/i915/display/intel_lvds.c
-+++ b/drivers/gpu/drm/i915/display/intel_lvds.c
-@@ -85,7 +85,7 @@ bool intel_lvds_port_enabled(struct drm_i915_private *dev_priv,
- {
- 	u32 val;
+diff --git a/drivers/gpu/drm/i915/display/intel_overlay.c b/drivers/gpu/drm/i915/display/intel_overlay.c
+index e40c3a0e2cd7..365ec6cab3c5 100644
+--- a/drivers/gpu/drm/i915/display/intel_overlay.c
++++ b/drivers/gpu/drm/i915/display/intel_overlay.c
+@@ -204,9 +204,10 @@ static void i830_overlay_clock_gating(struct drm_i915_private *dev_priv,
  
--	val = I915_READ(lvds_reg);
-+	val = intel_de_read(dev_priv, lvds_reg);
- 
- 	/* asserts want to know the pipe even if the port is disabled */
- 	if (HAS_PCH_CPT(dev_priv))
-@@ -125,7 +125,7 @@ static void intel_lvds_get_config(struct intel_encoder *encoder,
- 
- 	pipe_config->output_types |= BIT(INTEL_OUTPUT_LVDS);
- 
--	tmp = I915_READ(lvds_encoder->reg);
-+	tmp = intel_de_read(dev_priv, lvds_encoder->reg);
- 	if (tmp & LVDS_HSYNC_POLARITY)
- 		flags |= DRM_MODE_FLAG_NHSYNC;
+ 	/* WA_OVERLAY_CLKGATE:alm */
+ 	if (enable)
+-		I915_WRITE(DSPCLK_GATE_D, 0);
++		intel_de_write(dev_priv, DSPCLK_GATE_D, 0);
  	else
-@@ -143,7 +143,7 @@ static void intel_lvds_get_config(struct intel_encoder *encoder,
+-		I915_WRITE(DSPCLK_GATE_D, OVRUNIT_CLOCK_GATE_DISABLE);
++		intel_de_write(dev_priv, DSPCLK_GATE_D,
++			       OVRUNIT_CLOCK_GATE_DISABLE);
  
- 	/* gen2/3 store dither state in pfit control, needs to match */
- 	if (INTEL_GEN(dev_priv) < 4) {
--		tmp = I915_READ(PFIT_CONTROL);
-+		tmp = intel_de_read(dev_priv, PFIT_CONTROL);
+ 	/* WA_DISABLE_L2CACHE_CLOCK_GATING:alm */
+ 	pci_bus_read_config_byte(pdev->bus,
+@@ -321,7 +322,7 @@ static int intel_overlay_continue(struct intel_overlay *overlay,
+ 		flip_addr |= OFC_UPDATE;
  
- 		pipe_config->gmch_pfit.control |= tmp & PANEL_8TO6_DITHER_ENABLE;
+ 	/* check for underruns */
+-	tmp = I915_READ(DOVSTA);
++	tmp = intel_de_read(dev_priv, DOVSTA);
+ 	if (tmp & (1 << 17))
+ 		DRM_DEBUG("overlay underrun, DOVSTA: %x\n", tmp);
+ 
+@@ -456,7 +457,7 @@ static int intel_overlay_release_old_vid(struct intel_overlay *overlay)
+ 	if (!overlay->old_vma)
+ 		return 0;
+ 
+-	if (!(I915_READ(GEN2_ISR) & I915_OVERLAY_PLANE_FLIP_PENDING_INTERRUPT)) {
++	if (!(intel_de_read(dev_priv, GEN2_ISR) & I915_OVERLAY_PLANE_FLIP_PENDING_INTERRUPT)) {
+ 		intel_overlay_release_old_vid_tail(overlay);
+ 		return 0;
  	}
-@@ -156,18 +156,18 @@ static void intel_lvds_pps_get_hw_state(struct drm_i915_private *dev_priv,
+@@ -891,7 +892,7 @@ static int check_overlay_possible_on_crtc(struct intel_overlay *overlay,
+ static void update_pfit_vscale_ratio(struct intel_overlay *overlay)
  {
- 	u32 val;
+ 	struct drm_i915_private *dev_priv = overlay->i915;
+-	u32 pfit_control = I915_READ(PFIT_CONTROL);
++	u32 pfit_control = intel_de_read(dev_priv, PFIT_CONTROL);
+ 	u32 ratio;
  
--	pps->powerdown_on_reset = I915_READ(PP_CONTROL(0)) & PANEL_POWER_RESET;
-+	pps->powerdown_on_reset = intel_de_read(dev_priv, PP_CONTROL(0)) & PANEL_POWER_RESET;
- 
--	val = I915_READ(PP_ON_DELAYS(0));
-+	val = intel_de_read(dev_priv, PP_ON_DELAYS(0));
- 	pps->port = REG_FIELD_GET(PANEL_PORT_SELECT_MASK, val);
- 	pps->t1_t2 = REG_FIELD_GET(PANEL_POWER_UP_DELAY_MASK, val);
- 	pps->t5 = REG_FIELD_GET(PANEL_LIGHT_ON_DELAY_MASK, val);
- 
--	val = I915_READ(PP_OFF_DELAYS(0));
-+	val = intel_de_read(dev_priv, PP_OFF_DELAYS(0));
- 	pps->t3 = REG_FIELD_GET(PANEL_POWER_DOWN_DELAY_MASK, val);
- 	pps->tx = REG_FIELD_GET(PANEL_LIGHT_OFF_DELAY_MASK, val);
- 
--	val = I915_READ(PP_DIVISOR(0));
-+	val = intel_de_read(dev_priv, PP_DIVISOR(0));
- 	pps->divider = REG_FIELD_GET(PP_REFERENCE_DIVIDER_MASK, val);
- 	val = REG_FIELD_GET(PANEL_POWER_CYCLE_DELAY_MASK, val);
- 	/*
-@@ -203,25 +203,20 @@ static void intel_lvds_pps_init_hw(struct drm_i915_private *dev_priv,
- {
- 	u32 val;
- 
--	val = I915_READ(PP_CONTROL(0));
-+	val = intel_de_read(dev_priv, PP_CONTROL(0));
- 	WARN_ON((val & PANEL_UNLOCK_MASK) != PANEL_UNLOCK_REGS);
- 	if (pps->powerdown_on_reset)
- 		val |= PANEL_POWER_RESET;
--	I915_WRITE(PP_CONTROL(0), val);
-+	intel_de_write(dev_priv, PP_CONTROL(0), val);
- 
--	I915_WRITE(PP_ON_DELAYS(0),
--		   REG_FIELD_PREP(PANEL_PORT_SELECT_MASK, pps->port) |
--		   REG_FIELD_PREP(PANEL_POWER_UP_DELAY_MASK, pps->t1_t2) |
--		   REG_FIELD_PREP(PANEL_LIGHT_ON_DELAY_MASK, pps->t5));
-+	intel_de_write(dev_priv, PP_ON_DELAYS(0),
-+		       REG_FIELD_PREP(PANEL_PORT_SELECT_MASK, pps->port) | REG_FIELD_PREP(PANEL_POWER_UP_DELAY_MASK, pps->t1_t2) | REG_FIELD_PREP(PANEL_LIGHT_ON_DELAY_MASK, pps->t5));
- 
--	I915_WRITE(PP_OFF_DELAYS(0),
--		   REG_FIELD_PREP(PANEL_POWER_DOWN_DELAY_MASK, pps->t3) |
--		   REG_FIELD_PREP(PANEL_LIGHT_OFF_DELAY_MASK, pps->tx));
-+	intel_de_write(dev_priv, PP_OFF_DELAYS(0),
-+		       REG_FIELD_PREP(PANEL_POWER_DOWN_DELAY_MASK, pps->t3) | REG_FIELD_PREP(PANEL_LIGHT_OFF_DELAY_MASK, pps->tx));
- 
--	I915_WRITE(PP_DIVISOR(0),
--		   REG_FIELD_PREP(PP_REFERENCE_DIVIDER_MASK, pps->divider) |
--		   REG_FIELD_PREP(PANEL_POWER_CYCLE_DELAY_MASK,
--				  DIV_ROUND_UP(pps->t4, 1000) + 1));
-+	intel_de_write(dev_priv, PP_DIVISOR(0),
-+		       REG_FIELD_PREP(PP_REFERENCE_DIVIDER_MASK, pps->divider) | REG_FIELD_PREP(PANEL_POWER_CYCLE_DELAY_MASK, DIV_ROUND_UP(pps->t4, 1000) + 1));
- }
- 
- static void intel_pre_enable_lvds(struct intel_encoder *encoder,
-@@ -299,7 +294,7 @@ static void intel_pre_enable_lvds(struct intel_encoder *encoder,
- 	if (adjusted_mode->flags & DRM_MODE_FLAG_NVSYNC)
- 		temp |= LVDS_VSYNC_POLARITY;
- 
--	I915_WRITE(lvds_encoder->reg, temp);
-+	intel_de_write(dev_priv, lvds_encoder->reg, temp);
- }
- 
- /*
-@@ -313,10 +308,12 @@ static void intel_enable_lvds(struct intel_encoder *encoder,
- 	struct intel_lvds_encoder *lvds_encoder = to_lvds_encoder(&encoder->base);
- 	struct drm_i915_private *dev_priv = to_i915(dev);
- 
--	I915_WRITE(lvds_encoder->reg, I915_READ(lvds_encoder->reg) | LVDS_PORT_EN);
-+	intel_de_write(dev_priv, lvds_encoder->reg,
-+		       intel_de_read(dev_priv, lvds_encoder->reg) | LVDS_PORT_EN);
- 
--	I915_WRITE(PP_CONTROL(0), I915_READ(PP_CONTROL(0)) | PANEL_POWER_ON);
--	POSTING_READ(lvds_encoder->reg);
-+	intel_de_write(dev_priv, PP_CONTROL(0),
-+		       intel_de_read(dev_priv, PP_CONTROL(0)) | PANEL_POWER_ON);
-+	intel_de_posting_read(dev_priv, lvds_encoder->reg);
- 
- 	if (intel_de_wait_for_set(dev_priv, PP_STATUS(0), PP_ON, 5000))
- 		DRM_ERROR("timed out waiting for panel to power on\n");
-@@ -331,12 +328,14 @@ static void intel_disable_lvds(struct intel_encoder *encoder,
- 	struct intel_lvds_encoder *lvds_encoder = to_lvds_encoder(&encoder->base);
- 	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
- 
--	I915_WRITE(PP_CONTROL(0), I915_READ(PP_CONTROL(0)) & ~PANEL_POWER_ON);
-+	intel_de_write(dev_priv, PP_CONTROL(0),
-+		       intel_de_read(dev_priv, PP_CONTROL(0)) & ~PANEL_POWER_ON);
- 	if (intel_de_wait_for_clear(dev_priv, PP_STATUS(0), PP_ON, 1000))
- 		DRM_ERROR("timed out waiting for panel to power off\n");
- 
--	I915_WRITE(lvds_encoder->reg, I915_READ(lvds_encoder->reg) & ~LVDS_PORT_EN);
--	POSTING_READ(lvds_encoder->reg);
-+	intel_de_write(dev_priv, lvds_encoder->reg,
-+		       intel_de_read(dev_priv, lvds_encoder->reg) & ~LVDS_PORT_EN);
-+	intel_de_posting_read(dev_priv, lvds_encoder->reg);
- }
- 
- static void gmch_disable_lvds(struct intel_encoder *encoder,
-@@ -791,7 +790,7 @@ static bool compute_is_dual_link_lvds(struct intel_lvds_encoder *lvds_encoder)
- 	 * we need to check "the value to be set" in VBT when LVDS
- 	 * register is uninitialized.
+ 	/* XXX: This is not the same logic as in the xorg driver, but more in
+@@ -899,12 +900,12 @@ static void update_pfit_vscale_ratio(struct intel_overlay *overlay)
  	 */
--	val = I915_READ(lvds_encoder->reg);
-+	val = intel_de_read(dev_priv, lvds_encoder->reg);
- 	if (HAS_PCH_CPT(dev_priv))
- 		val &= ~(LVDS_DETECTED | LVDS_PIPE_SEL_MASK_CPT);
- 	else
-@@ -842,7 +841,7 @@ void intel_lvds_init(struct drm_i915_private *dev_priv)
- 	else
- 		lvds_reg = LVDS;
+ 	if (INTEL_GEN(dev_priv) >= 4) {
+ 		/* on i965 use the PGM reg to read out the autoscaler values */
+-		ratio = I915_READ(PFIT_PGM_RATIOS) >> PFIT_VERT_SCALE_SHIFT_965;
++		ratio = intel_de_read(dev_priv, PFIT_PGM_RATIOS) >> PFIT_VERT_SCALE_SHIFT_965;
+ 	} else {
+ 		if (pfit_control & VERT_AUTO_SCALE)
+-			ratio = I915_READ(PFIT_AUTO_RATIOS);
++			ratio = intel_de_read(dev_priv, PFIT_AUTO_RATIOS);
+ 		else
+-			ratio = I915_READ(PFIT_PGM_RATIOS);
++			ratio = intel_de_read(dev_priv, PFIT_PGM_RATIOS);
+ 		ratio >>= PFIT_VERT_SCALE_SHIFT;
+ 	}
  
--	lvds = I915_READ(lvds_reg);
-+	lvds = intel_de_read(dev_priv, lvds_reg);
+@@ -1239,12 +1240,12 @@ int intel_overlay_attrs_ioctl(struct drm_device *dev, void *data,
+ 		attrs->saturation = overlay->saturation;
  
- 	if (HAS_PCH_SPLIT(dev_priv)) {
- 		if ((lvds & LVDS_DETECTED) == 0)
+ 		if (!IS_GEN(dev_priv, 2)) {
+-			attrs->gamma0 = I915_READ(OGAMC0);
+-			attrs->gamma1 = I915_READ(OGAMC1);
+-			attrs->gamma2 = I915_READ(OGAMC2);
+-			attrs->gamma3 = I915_READ(OGAMC3);
+-			attrs->gamma4 = I915_READ(OGAMC4);
+-			attrs->gamma5 = I915_READ(OGAMC5);
++			attrs->gamma0 = intel_de_read(dev_priv, OGAMC0);
++			attrs->gamma1 = intel_de_read(dev_priv, OGAMC1);
++			attrs->gamma2 = intel_de_read(dev_priv, OGAMC2);
++			attrs->gamma3 = intel_de_read(dev_priv, OGAMC3);
++			attrs->gamma4 = intel_de_read(dev_priv, OGAMC4);
++			attrs->gamma5 = intel_de_read(dev_priv, OGAMC5);
+ 		}
+ 	} else {
+ 		if (attrs->brightness < -128 || attrs->brightness > 127)
+@@ -1274,12 +1275,12 @@ int intel_overlay_attrs_ioctl(struct drm_device *dev, void *data,
+ 			if (ret)
+ 				goto out_unlock;
+ 
+-			I915_WRITE(OGAMC0, attrs->gamma0);
+-			I915_WRITE(OGAMC1, attrs->gamma1);
+-			I915_WRITE(OGAMC2, attrs->gamma2);
+-			I915_WRITE(OGAMC3, attrs->gamma3);
+-			I915_WRITE(OGAMC4, attrs->gamma4);
+-			I915_WRITE(OGAMC5, attrs->gamma5);
++			intel_de_write(dev_priv, OGAMC0, attrs->gamma0);
++			intel_de_write(dev_priv, OGAMC1, attrs->gamma1);
++			intel_de_write(dev_priv, OGAMC2, attrs->gamma2);
++			intel_de_write(dev_priv, OGAMC3, attrs->gamma3);
++			intel_de_write(dev_priv, OGAMC4, attrs->gamma4);
++			intel_de_write(dev_priv, OGAMC5, attrs->gamma5);
+ 		}
+ 	}
+ 	overlay->color_key_enabled = (attrs->flags & I915_OVERLAY_DISABLE_DEST_COLORKEY) == 0;
+@@ -1419,8 +1420,8 @@ intel_overlay_capture_error_state(struct drm_i915_private *dev_priv)
+ 	if (error == NULL)
+ 		return NULL;
+ 
+-	error->dovsta = I915_READ(DOVSTA);
+-	error->isr = I915_READ(GEN2_ISR);
++	error->dovsta = intel_de_read(dev_priv, DOVSTA);
++	error->isr = intel_de_read(dev_priv, GEN2_ISR);
+ 	error->base = overlay->flip_addr;
+ 
+ 	memcpy_fromio(&error->regs, overlay->regs, sizeof(error->regs));
 -- 
 2.20.1
 
