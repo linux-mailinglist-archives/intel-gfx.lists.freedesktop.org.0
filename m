@@ -1,38 +1,38 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B084F1485F9
-	for <lists+intel-gfx@lfdr.de>; Fri, 24 Jan 2020 14:25:25 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A4631485FA
+	for <lists+intel-gfx@lfdr.de>; Fri, 24 Jan 2020 14:25:29 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EDD2F72A6E;
-	Fri, 24 Jan 2020 13:25:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DD32D72A70;
+	Fri, 24 Jan 2020 13:25:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D1D1372A6E
- for <intel-gfx@lists.freedesktop.org>; Fri, 24 Jan 2020 13:25:22 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E074C72A70
+ for <intel-gfx@lists.freedesktop.org>; Fri, 24 Jan 2020 13:25:26 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by orsmga105.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 24 Jan 2020 05:25:22 -0800
-X-IronPort-AV: E=Sophos;i="5.70,357,1574150400"; d="scan'208";a="228316545"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 24 Jan 2020 05:25:26 -0800
+X-IronPort-AV: E=Sophos;i="5.70,357,1574150400"; d="scan'208";a="245707215"
 Received: from omarkovx-mobl.ger.corp.intel.com (HELO localhost)
  ([10.249.37.60])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 24 Jan 2020 05:25:21 -0800
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 24 Jan 2020 05:25:25 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri, 24 Jan 2020 15:25:26 +0200
-Message-Id: <3dd667bdc6fa38fb7bca3f44fbed601f5250f027.1579871655.git.jani.nikula@intel.com>
+Date: Fri, 24 Jan 2020 15:25:27 +0200
+Message-Id: <d66c0ea3abbed1ddb575e37da74b823b5085469a.1579871655.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <cover.1579871655.git.jani.nikula@intel.com>
 References: <cover.1579871655.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Subject: [Intel-gfx] [RFC 05/33] drm/i915/combo_phy: use intel_de_*()
- functions for register access
+Subject: [Intel-gfx] [RFC 06/33] drm/i915/crt: use intel_de_*() functions
+ for register access
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -95,182 +95,183 @@ expression REG, OFFSET;
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- .../gpu/drm/i915/display/intel_combo_phy.c    | 66 +++++++++----------
- 1 file changed, 33 insertions(+), 33 deletions(-)
+ drivers/gpu/drm/i915/display/intel_crt.c | 51 ++++++++++++------------
+ 1 file changed, 26 insertions(+), 25 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_combo_phy.c b/drivers/gpu/drm/i915/display/intel_combo_phy.c
-index 5f54aca7c36f..a45b934fab0a 100644
---- a/drivers/gpu/drm/i915/display/intel_combo_phy.c
-+++ b/drivers/gpu/drm/i915/display/intel_combo_phy.c
-@@ -48,7 +48,7 @@ cnl_get_procmon_ref_values(struct drm_i915_private *dev_priv, enum phy phy)
- 	const struct cnl_procmon *procmon;
- 	u32 val;
- 
--	val = I915_READ(ICL_PORT_COMP_DW3(phy));
-+	val = intel_de_read(dev_priv, ICL_PORT_COMP_DW3(phy));
- 	switch (val & (PROCESS_INFO_MASK | VOLTAGE_INFO_MASK)) {
- 	default:
- 		MISSING_CASE(val);
-@@ -81,20 +81,20 @@ static void cnl_set_procmon_ref_values(struct drm_i915_private *dev_priv,
- 
- 	procmon = cnl_get_procmon_ref_values(dev_priv, phy);
- 
--	val = I915_READ(ICL_PORT_COMP_DW1(phy));
-+	val = intel_de_read(dev_priv, ICL_PORT_COMP_DW1(phy));
- 	val &= ~((0xff << 16) | 0xff);
- 	val |= procmon->dw1;
--	I915_WRITE(ICL_PORT_COMP_DW1(phy), val);
-+	intel_de_write(dev_priv, ICL_PORT_COMP_DW1(phy), val);
- 
--	I915_WRITE(ICL_PORT_COMP_DW9(phy), procmon->dw9);
--	I915_WRITE(ICL_PORT_COMP_DW10(phy), procmon->dw10);
-+	intel_de_write(dev_priv, ICL_PORT_COMP_DW9(phy), procmon->dw9);
-+	intel_de_write(dev_priv, ICL_PORT_COMP_DW10(phy), procmon->dw10);
- }
- 
- static bool check_phy_reg(struct drm_i915_private *dev_priv,
- 			  enum phy phy, i915_reg_t reg, u32 mask,
- 			  u32 expected_val)
- {
--	u32 val = I915_READ(reg);
-+	u32 val = intel_de_read(dev_priv, reg);
- 
- 	if ((val & mask) != expected_val) {
- 		DRM_DEBUG_DRIVER("Combo PHY %c reg %08x state mismatch: "
-@@ -127,8 +127,8 @@ static bool cnl_verify_procmon_ref_values(struct drm_i915_private *dev_priv,
- 
- static bool cnl_combo_phy_enabled(struct drm_i915_private *dev_priv)
- {
--	return !(I915_READ(CHICKEN_MISC_2) & CNL_COMP_PWR_DOWN) &&
--		(I915_READ(CNL_PORT_COMP_DW0) & COMP_INIT);
-+	return !(intel_de_read(dev_priv, CHICKEN_MISC_2) & CNL_COMP_PWR_DOWN) &&
-+		(intel_de_read(dev_priv, CNL_PORT_COMP_DW0) & COMP_INIT);
- }
- 
- static bool cnl_combo_phy_verify_state(struct drm_i915_private *dev_priv)
-@@ -151,20 +151,20 @@ static void cnl_combo_phys_init(struct drm_i915_private *dev_priv)
+diff --git a/drivers/gpu/drm/i915/display/intel_crt.c b/drivers/gpu/drm/i915/display/intel_crt.c
+index f976b800b245..d250ddde0296 100644
+--- a/drivers/gpu/drm/i915/display/intel_crt.c
++++ b/drivers/gpu/drm/i915/display/intel_crt.c
+@@ -75,7 +75,7 @@ bool intel_crt_port_enabled(struct drm_i915_private *dev_priv,
  {
  	u32 val;
  
--	val = I915_READ(CHICKEN_MISC_2);
-+	val = intel_de_read(dev_priv, CHICKEN_MISC_2);
- 	val &= ~CNL_COMP_PWR_DOWN;
--	I915_WRITE(CHICKEN_MISC_2, val);
-+	intel_de_write(dev_priv, CHICKEN_MISC_2, val);
+-	val = I915_READ(adpa_reg);
++	val = intel_de_read(dev_priv, adpa_reg);
  
- 	/* Dummy PORT_A to get the correct CNL register from the ICL macro */
- 	cnl_set_procmon_ref_values(dev_priv, PHY_A);
+ 	/* asserts want to know the pipe even if the port is disabled */
+ 	if (HAS_PCH_CPT(dev_priv))
+@@ -112,7 +112,7 @@ static unsigned int intel_crt_get_flags(struct intel_encoder *encoder)
+ 	struct intel_crt *crt = intel_encoder_to_crt(encoder);
+ 	u32 tmp, flags = 0;
  
--	val = I915_READ(CNL_PORT_COMP_DW0);
-+	val = intel_de_read(dev_priv, CNL_PORT_COMP_DW0);
- 	val |= COMP_INIT;
--	I915_WRITE(CNL_PORT_COMP_DW0, val);
-+	intel_de_write(dev_priv, CNL_PORT_COMP_DW0, val);
+-	tmp = I915_READ(crt->adpa_reg);
++	tmp = intel_de_read(dev_priv, crt->adpa_reg);
  
--	val = I915_READ(CNL_PORT_CL1CM_DW5);
-+	val = intel_de_read(dev_priv, CNL_PORT_CL1CM_DW5);
- 	val |= CL_POWER_DOWN_ENABLE;
--	I915_WRITE(CNL_PORT_CL1CM_DW5, val);
-+	intel_de_write(dev_priv, CNL_PORT_CL1CM_DW5, val);
+ 	if (tmp & ADPA_HSYNC_ACTIVE_HIGH)
+ 		flags |= DRM_MODE_FLAG_PHSYNC;
+@@ -184,7 +184,7 @@ static void intel_crt_set_dpms(struct intel_encoder *encoder,
+ 		adpa |= ADPA_PIPE_SEL(crtc->pipe);
+ 
+ 	if (!HAS_PCH_SPLIT(dev_priv))
+-		I915_WRITE(BCLRPAT(crtc->pipe), 0);
++		intel_de_write(dev_priv, BCLRPAT(crtc->pipe), 0);
+ 
+ 	switch (mode) {
+ 	case DRM_MODE_DPMS_ON:
+@@ -201,7 +201,7 @@ static void intel_crt_set_dpms(struct intel_encoder *encoder,
+ 		break;
+ 	}
+ 
+-	I915_WRITE(crt->adpa_reg, adpa);
++	intel_de_write(dev_priv, crt->adpa_reg, adpa);
  }
  
- static void cnl_combo_phys_uninit(struct drm_i915_private *dev_priv)
-@@ -174,9 +174,9 @@ static void cnl_combo_phys_uninit(struct drm_i915_private *dev_priv)
- 	if (!cnl_combo_phy_verify_state(dev_priv))
- 		DRM_WARN("Combo PHY HW state changed unexpectedly.\n");
+ static void intel_disable_crt(struct intel_encoder *encoder,
+@@ -442,14 +442,14 @@ static bool ilk_crt_detect_hotplug(struct drm_connector *connector)
  
--	val = I915_READ(CHICKEN_MISC_2);
-+	val = intel_de_read(dev_priv, CHICKEN_MISC_2);
- 	val |= CNL_COMP_PWR_DOWN;
--	I915_WRITE(CHICKEN_MISC_2, val);
-+	intel_de_write(dev_priv, CHICKEN_MISC_2, val);
- }
+ 		crt->force_hotplug_required = false;
  
- static bool icl_combo_phy_enabled(struct drm_i915_private *dev_priv,
-@@ -184,11 +184,11 @@ static bool icl_combo_phy_enabled(struct drm_i915_private *dev_priv,
- {
- 	/* The PHY C added by EHL has no PHY_MISC register */
- 	if (IS_ELKHARTLAKE(dev_priv) && phy == PHY_C)
--		return I915_READ(ICL_PORT_COMP_DW0(phy)) & COMP_INIT;
-+		return intel_de_read(dev_priv, ICL_PORT_COMP_DW0(phy)) & COMP_INIT;
+-		save_adpa = adpa = I915_READ(crt->adpa_reg);
++		save_adpa = adpa = intel_de_read(dev_priv, crt->adpa_reg);
+ 		DRM_DEBUG_KMS("trigger hotplug detect cycle: adpa=0x%x\n", adpa);
+ 
+ 		adpa |= ADPA_CRT_HOTPLUG_FORCE_TRIGGER;
+ 		if (turn_off_dac)
+ 			adpa &= ~ADPA_DAC_ENABLE;
+ 
+-		I915_WRITE(crt->adpa_reg, adpa);
++		intel_de_write(dev_priv, crt->adpa_reg, adpa);
+ 
+ 		if (intel_de_wait_for_clear(dev_priv,
+ 					    crt->adpa_reg,
+@@ -458,13 +458,13 @@ static bool ilk_crt_detect_hotplug(struct drm_connector *connector)
+ 			DRM_DEBUG_KMS("timed out waiting for FORCE_TRIGGER");
+ 
+ 		if (turn_off_dac) {
+-			I915_WRITE(crt->adpa_reg, save_adpa);
+-			POSTING_READ(crt->adpa_reg);
++			intel_de_write(dev_priv, crt->adpa_reg, save_adpa);
++			intel_de_posting_read(dev_priv, crt->adpa_reg);
+ 		}
+ 	}
+ 
+ 	/* Check the status to see if both blue and green are on now */
+-	adpa = I915_READ(crt->adpa_reg);
++	adpa = intel_de_read(dev_priv, crt->adpa_reg);
+ 	if ((adpa & ADPA_CRT_HOTPLUG_MONITOR_MASK) != 0)
+ 		ret = true;
  	else
--		return !(I915_READ(ICL_PHY_MISC(phy)) &
-+		return !(intel_de_read(dev_priv, ICL_PHY_MISC(phy)) &
- 			 ICL_PHY_MISC_DE_IO_COMP_PWR_DOWN) &&
--			(I915_READ(ICL_PORT_COMP_DW0(phy)) & COMP_INIT);
-+			(intel_de_read(dev_priv, ICL_PORT_COMP_DW0(phy)) & COMP_INIT);
- }
+@@ -498,21 +498,21 @@ static bool valleyview_crt_detect_hotplug(struct drm_connector *connector)
+ 	 */
+ 	reenable_hpd = intel_hpd_disable(dev_priv, crt->base.hpd_pin);
  
- static bool icl_combo_phy_verify_state(struct drm_i915_private *dev_priv,
-@@ -257,10 +257,10 @@ void intel_combo_phy_power_up_lanes(struct drm_i915_private *dev_priv,
- 		}
+-	save_adpa = adpa = I915_READ(crt->adpa_reg);
++	save_adpa = adpa = intel_de_read(dev_priv, crt->adpa_reg);
+ 	DRM_DEBUG_KMS("trigger hotplug detect cycle: adpa=0x%x\n", adpa);
+ 
+ 	adpa |= ADPA_CRT_HOTPLUG_FORCE_TRIGGER;
+ 
+-	I915_WRITE(crt->adpa_reg, adpa);
++	intel_de_write(dev_priv, crt->adpa_reg, adpa);
+ 
+ 	if (intel_de_wait_for_clear(dev_priv, crt->adpa_reg,
+ 				    ADPA_CRT_HOTPLUG_FORCE_TRIGGER, 1000)) {
+ 		DRM_DEBUG_KMS("timed out waiting for FORCE_TRIGGER");
+-		I915_WRITE(crt->adpa_reg, save_adpa);
++		intel_de_write(dev_priv, crt->adpa_reg, save_adpa);
  	}
  
--	val = I915_READ(ICL_PORT_CL_DW10(phy));
-+	val = intel_de_read(dev_priv, ICL_PORT_CL_DW10(phy));
- 	val &= ~PWR_DOWN_LN_MASK;
- 	val |= lane_mask << PWR_DOWN_LN_SHIFT;
--	I915_WRITE(ICL_PORT_CL_DW10(phy), val);
-+	intel_de_write(dev_priv, ICL_PORT_CL_DW10(phy), val);
- }
+ 	/* Check the status to see if both blue and green are on now */
+-	adpa = I915_READ(crt->adpa_reg);
++	adpa = intel_de_read(dev_priv, crt->adpa_reg);
+ 	if ((adpa & ADPA_CRT_HOTPLUG_MONITOR_MASK) != 0)
+ 		ret = true;
+ 	else
+@@ -561,12 +561,12 @@ static bool intel_crt_detect_hotplug(struct drm_connector *connector)
+ 			DRM_DEBUG_KMS("timed out waiting for FORCE_DETECT to go off");
+ 	}
  
- static u32 ehl_combo_phy_a_mux(struct drm_i915_private *i915, u32 val)
-@@ -318,28 +318,28 @@ static void icl_combo_phys_init(struct drm_i915_private *dev_priv)
- 		 * based on whether our VBT indicates the presence of any
- 		 * "internal" child devices.
+-	stat = I915_READ(PORT_HOTPLUG_STAT);
++	stat = intel_de_read(dev_priv, PORT_HOTPLUG_STAT);
+ 	if ((stat & CRT_HOTPLUG_MONITOR_MASK) != CRT_HOTPLUG_MONITOR_NONE)
+ 		ret = true;
+ 
+ 	/* clear the interrupt we just generated, if any */
+-	I915_WRITE(PORT_HOTPLUG_STAT, CRT_HOTPLUG_INT_STATUS);
++	intel_de_write(dev_priv, PORT_HOTPLUG_STAT, CRT_HOTPLUG_INT_STATUS);
+ 
+ 	i915_hotplug_interrupt_update(dev_priv, CRT_HOTPLUG_FORCE_DETECT, 0);
+ 
+@@ -706,7 +706,7 @@ intel_crt_load_detect(struct intel_crt *crt, u32 pipe)
+ 		* Yes, this will flicker
+ 		*/
+ 		if (vblank_start <= vactive && vblank_end >= vtotal) {
+-			u32 vsync = I915_READ(vsync_reg);
++			u32 vsync = intel_de_read(dev_priv, vsync_reg);
+ 			u32 vsync_start = (vsync & 0xffff) + 1;
+ 
+ 			vblank_start = vsync_start;
+@@ -918,11 +918,11 @@ void intel_crt_reset(struct drm_encoder *encoder)
+ 	if (INTEL_GEN(dev_priv) >= 5) {
+ 		u32 adpa;
+ 
+-		adpa = I915_READ(crt->adpa_reg);
++		adpa = intel_de_read(dev_priv, crt->adpa_reg);
+ 		adpa &= ~ADPA_CRT_HOTPLUG_MASK;
+ 		adpa |= ADPA_HOTPLUG_BITS;
+-		I915_WRITE(crt->adpa_reg, adpa);
+-		POSTING_READ(crt->adpa_reg);
++		intel_de_write(dev_priv, crt->adpa_reg, adpa);
++		intel_de_posting_read(dev_priv, crt->adpa_reg);
+ 
+ 		DRM_DEBUG_KMS("crt adpa set to 0x%x\n", adpa);
+ 		crt->force_hotplug_required = true;
+@@ -969,7 +969,7 @@ void intel_crt_init(struct drm_i915_private *dev_priv)
+ 	else
+ 		adpa_reg = ADPA;
+ 
+-	adpa = I915_READ(adpa_reg);
++	adpa = intel_de_read(dev_priv, adpa_reg);
+ 	if ((adpa & ADPA_DAC_ENABLE) == 0) {
+ 		/*
+ 		 * On some machines (some IVB at least) CRT can be
+@@ -979,11 +979,11 @@ void intel_crt_init(struct drm_i915_private *dev_priv)
+ 		 * take. So the only way to tell is attempt to enable
+ 		 * it and see what happens.
  		 */
--		val = I915_READ(ICL_PHY_MISC(phy));
-+		val = intel_de_read(dev_priv, ICL_PHY_MISC(phy));
- 		if (IS_ELKHARTLAKE(dev_priv) && phy == PHY_A)
- 			val = ehl_combo_phy_a_mux(dev_priv, val);
- 		val &= ~ICL_PHY_MISC_DE_IO_COMP_PWR_DOWN;
--		I915_WRITE(ICL_PHY_MISC(phy), val);
-+		intel_de_write(dev_priv, ICL_PHY_MISC(phy), val);
- 
- skip_phy_misc:
- 		cnl_set_procmon_ref_values(dev_priv, phy);
- 
- 		if (phy == PHY_A) {
--			val = I915_READ(ICL_PORT_COMP_DW8(phy));
-+			val = intel_de_read(dev_priv, ICL_PORT_COMP_DW8(phy));
- 			val |= IREFGEN;
--			I915_WRITE(ICL_PORT_COMP_DW8(phy), val);
-+			intel_de_write(dev_priv, ICL_PORT_COMP_DW8(phy), val);
- 		}
- 
--		val = I915_READ(ICL_PORT_COMP_DW0(phy));
-+		val = intel_de_read(dev_priv, ICL_PORT_COMP_DW0(phy));
- 		val |= COMP_INIT;
--		I915_WRITE(ICL_PORT_COMP_DW0(phy), val);
-+		intel_de_write(dev_priv, ICL_PORT_COMP_DW0(phy), val);
- 
--		val = I915_READ(ICL_PORT_CL_DW5(phy));
-+		val = intel_de_read(dev_priv, ICL_PORT_CL_DW5(phy));
- 		val |= CL_POWER_DOWN_ENABLE;
--		I915_WRITE(ICL_PORT_CL_DW5(phy), val);
-+		intel_de_write(dev_priv, ICL_PORT_CL_DW5(phy), val);
+-		I915_WRITE(adpa_reg, adpa | ADPA_DAC_ENABLE |
+-			   ADPA_HSYNC_CNTL_DISABLE | ADPA_VSYNC_CNTL_DISABLE);
+-		if ((I915_READ(adpa_reg) & ADPA_DAC_ENABLE) == 0)
++		intel_de_write(dev_priv, adpa_reg,
++			       adpa | ADPA_DAC_ENABLE | ADPA_HSYNC_CNTL_DISABLE | ADPA_VSYNC_CNTL_DISABLE);
++		if ((intel_de_read(dev_priv, adpa_reg) & ADPA_DAC_ENABLE) == 0)
+ 			return;
+-		I915_WRITE(adpa_reg, adpa);
++		intel_de_write(dev_priv, adpa_reg, adpa);
  	}
- }
  
-@@ -363,14 +363,14 @@ static void icl_combo_phys_uninit(struct drm_i915_private *dev_priv)
- 		if (IS_ELKHARTLAKE(dev_priv) && phy == PHY_C)
- 			goto skip_phy_misc;
+ 	crt = kzalloc(sizeof(struct intel_crt), GFP_KERNEL);
+@@ -1074,7 +1074,8 @@ void intel_crt_init(struct drm_i915_private *dev_priv)
+ 		u32 fdi_config = FDI_RX_POLARITY_REVERSED_LPT |
+ 				 FDI_RX_LINK_REVERSAL_OVERRIDE;
  
--		val = I915_READ(ICL_PHY_MISC(phy));
-+		val = intel_de_read(dev_priv, ICL_PHY_MISC(phy));
- 		val |= ICL_PHY_MISC_DE_IO_COMP_PWR_DOWN;
--		I915_WRITE(ICL_PHY_MISC(phy), val);
-+		intel_de_write(dev_priv, ICL_PHY_MISC(phy), val);
- 
- skip_phy_misc:
--		val = I915_READ(ICL_PORT_COMP_DW0(phy));
-+		val = intel_de_read(dev_priv, ICL_PORT_COMP_DW0(phy));
- 		val &= ~COMP_INIT;
--		I915_WRITE(ICL_PORT_COMP_DW0(phy), val);
-+		intel_de_write(dev_priv, ICL_PORT_COMP_DW0(phy), val);
+-		dev_priv->fdi_rx_config = I915_READ(FDI_RX_CTL(PIPE_A)) & fdi_config;
++		dev_priv->fdi_rx_config = intel_de_read(dev_priv,
++							FDI_RX_CTL(PIPE_A)) & fdi_config;
  	}
- }
  
+ 	intel_crt_reset(&crt->base.base);
 -- 
 2.20.1
 
