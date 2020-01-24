@@ -2,37 +2,37 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 46D04148604
-	for <lists+intel-gfx@lfdr.de>; Fri, 24 Jan 2020 14:26:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D6D80148607
+	for <lists+intel-gfx@lfdr.de>; Fri, 24 Jan 2020 14:26:17 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 82B0172A81;
-	Fri, 24 Jan 2020 13:26:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 227B672A85;
+	Fri, 24 Jan 2020 13:26:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4722E72A81
- for <intel-gfx@lists.freedesktop.org>; Fri, 24 Jan 2020 13:26:11 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3B4B672A82
+ for <intel-gfx@lists.freedesktop.org>; Fri, 24 Jan 2020 13:26:15 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga106.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 24 Jan 2020 05:26:10 -0800
-X-IronPort-AV: E=Sophos;i="5.70,357,1574150400"; d="scan'208";a="216592935"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga105.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 24 Jan 2020 05:26:14 -0800
+X-IronPort-AV: E=Sophos;i="5.70,357,1574150400"; d="scan'208";a="230291250"
 Received: from omarkovx-mobl.ger.corp.intel.com (HELO localhost)
  ([10.249.37.60])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 24 Jan 2020 05:26:09 -0800
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 24 Jan 2020 05:26:13 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri, 24 Jan 2020 15:25:37 +0200
-Message-Id: <bf67d57a7d760fb557325690f634799751d36f12.1579871655.git.jani.nikula@intel.com>
+Date: Fri, 24 Jan 2020 15:25:38 +0200
+Message-Id: <fca7d63b3aa669b5984be45b5968f47fb0b64b2b.1579871655.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <cover.1579871655.git.jani.nikula@intel.com>
 References: <cover.1579871655.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Subject: [Intel-gfx] [RFC 16/33] drm/i915/fbc: use intel_de_*() functions
- for register access
+Subject: [Intel-gfx] [RFC 17/33] drm/i915/fifo_underrun: use intel_de_*()
+ functions for register access
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -95,275 +95,122 @@ expression REG, OFFSET;
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_fbc.c | 106 ++++++++++++-----------
- 1 file changed, 55 insertions(+), 51 deletions(-)
+ .../drm/i915/display/intel_fifo_underrun.c    | 37 ++++++++++---------
+ 1 file changed, 20 insertions(+), 17 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
-index 88a9c2fea695..fc999ecd3af1 100644
---- a/drivers/gpu/drm/i915/display/intel_fbc.c
-+++ b/drivers/gpu/drm/i915/display/intel_fbc.c
-@@ -93,12 +93,12 @@ static void i8xx_fbc_deactivate(struct drm_i915_private *dev_priv)
- 	u32 fbc_ctl;
+diff --git a/drivers/gpu/drm/i915/display/intel_fifo_underrun.c b/drivers/gpu/drm/i915/display/intel_fifo_underrun.c
+index 6c83b350525d..470b3b0b9bdb 100644
+--- a/drivers/gpu/drm/i915/display/intel_fifo_underrun.c
++++ b/drivers/gpu/drm/i915/display/intel_fifo_underrun.c
+@@ -95,12 +95,12 @@ static void i9xx_check_fifo_underruns(struct intel_crtc *crtc)
  
- 	/* Disable compression */
--	fbc_ctl = I915_READ(FBC_CONTROL);
-+	fbc_ctl = intel_de_read(dev_priv, FBC_CONTROL);
- 	if ((fbc_ctl & FBC_CTL_EN) == 0)
+ 	lockdep_assert_held(&dev_priv->irq_lock);
+ 
+-	if ((I915_READ(reg) & PIPE_FIFO_UNDERRUN_STATUS) == 0)
++	if ((intel_de_read(dev_priv, reg) & PIPE_FIFO_UNDERRUN_STATUS) == 0)
  		return;
  
- 	fbc_ctl &= ~FBC_CTL_EN;
--	I915_WRITE(FBC_CONTROL, fbc_ctl);
-+	intel_de_write(dev_priv, FBC_CONTROL, fbc_ctl);
+ 	enable_mask = i915_pipestat_enable_mask(dev_priv, crtc->pipe);
+-	I915_WRITE(reg, enable_mask | PIPE_FIFO_UNDERRUN_STATUS);
+-	POSTING_READ(reg);
++	intel_de_write(dev_priv, reg, enable_mask | PIPE_FIFO_UNDERRUN_STATUS);
++	intel_de_posting_read(dev_priv, reg);
  
- 	/* Wait for compressing bit to clear */
- 	if (intel_de_wait_for_clear(dev_priv, FBC_STATUS,
-@@ -128,7 +128,7 @@ static void i8xx_fbc_activate(struct drm_i915_private *dev_priv)
+ 	trace_intel_cpu_fifo_underrun(dev_priv, crtc->pipe);
+ 	DRM_ERROR("pipe %c underrun\n", pipe_name(crtc->pipe));
+@@ -118,10 +118,11 @@ static void i9xx_set_fifo_underrun_reporting(struct drm_device *dev,
+ 	if (enable) {
+ 		u32 enable_mask = i915_pipestat_enable_mask(dev_priv, pipe);
  
- 	/* Clear old tags */
- 	for (i = 0; i < (FBC_LL_SIZE / 32) + 1; i++)
--		I915_WRITE(FBC_TAG(i), 0);
-+		intel_de_write(dev_priv, FBC_TAG(i), 0);
- 
- 	if (IS_GEN(dev_priv, 4)) {
- 		u32 fbc_ctl2;
-@@ -138,12 +138,13 @@ static void i8xx_fbc_activate(struct drm_i915_private *dev_priv)
- 		fbc_ctl2 |= FBC_CTL_PLANE(params->crtc.i9xx_plane);
- 		if (params->fence_id >= 0)
- 			fbc_ctl2 |= FBC_CTL_CPU_FENCE;
--		I915_WRITE(FBC_CONTROL2, fbc_ctl2);
--		I915_WRITE(FBC_FENCE_OFF, params->crtc.fence_y_offset);
-+		intel_de_write(dev_priv, FBC_CONTROL2, fbc_ctl2);
-+		intel_de_write(dev_priv, FBC_FENCE_OFF,
-+			       params->crtc.fence_y_offset);
- 	}
- 
- 	/* enable it... */
--	fbc_ctl = I915_READ(FBC_CONTROL);
-+	fbc_ctl = intel_de_read(dev_priv, FBC_CONTROL);
- 	fbc_ctl &= 0x3fff << FBC_CTL_INTERVAL_SHIFT;
- 	fbc_ctl |= FBC_CTL_EN | FBC_CTL_PERIODIC;
- 	if (IS_I945GM(dev_priv))
-@@ -151,12 +152,12 @@ static void i8xx_fbc_activate(struct drm_i915_private *dev_priv)
- 	fbc_ctl |= (cfb_pitch & 0xff) << FBC_CTL_STRIDE_SHIFT;
- 	if (params->fence_id >= 0)
- 		fbc_ctl |= params->fence_id;
--	I915_WRITE(FBC_CONTROL, fbc_ctl);
-+	intel_de_write(dev_priv, FBC_CONTROL, fbc_ctl);
- }
- 
- static bool i8xx_fbc_is_active(struct drm_i915_private *dev_priv)
- {
--	return I915_READ(FBC_CONTROL) & FBC_CTL_EN;
-+	return intel_de_read(dev_priv, FBC_CONTROL) & FBC_CTL_EN;
- }
- 
- static void g4x_fbc_activate(struct drm_i915_private *dev_priv)
-@@ -172,13 +173,14 @@ static void g4x_fbc_activate(struct drm_i915_private *dev_priv)
- 
- 	if (params->fence_id >= 0) {
- 		dpfc_ctl |= DPFC_CTL_FENCE_EN | params->fence_id;
--		I915_WRITE(DPFC_FENCE_YOFF, params->crtc.fence_y_offset);
-+		intel_de_write(dev_priv, DPFC_FENCE_YOFF,
-+			       params->crtc.fence_y_offset);
+-		I915_WRITE(reg, enable_mask | PIPE_FIFO_UNDERRUN_STATUS);
+-		POSTING_READ(reg);
++		intel_de_write(dev_priv, reg,
++			       enable_mask | PIPE_FIFO_UNDERRUN_STATUS);
++		intel_de_posting_read(dev_priv, reg);
  	} else {
--		I915_WRITE(DPFC_FENCE_YOFF, 0);
-+		intel_de_write(dev_priv, DPFC_FENCE_YOFF, 0);
- 	}
- 
- 	/* enable it... */
--	I915_WRITE(DPFC_CONTROL, dpfc_ctl | DPFC_CTL_EN);
-+	intel_de_write(dev_priv, DPFC_CONTROL, dpfc_ctl | DPFC_CTL_EN);
- }
- 
- static void g4x_fbc_deactivate(struct drm_i915_private *dev_priv)
-@@ -186,16 +188,16 @@ static void g4x_fbc_deactivate(struct drm_i915_private *dev_priv)
- 	u32 dpfc_ctl;
- 
- 	/* Disable compression */
--	dpfc_ctl = I915_READ(DPFC_CONTROL);
-+	dpfc_ctl = intel_de_read(dev_priv, DPFC_CONTROL);
- 	if (dpfc_ctl & DPFC_CTL_EN) {
- 		dpfc_ctl &= ~DPFC_CTL_EN;
--		I915_WRITE(DPFC_CONTROL, dpfc_ctl);
-+		intel_de_write(dev_priv, DPFC_CONTROL, dpfc_ctl);
+-		if (old && I915_READ(reg) & PIPE_FIFO_UNDERRUN_STATUS)
++		if (old && intel_de_read(dev_priv, reg) & PIPE_FIFO_UNDERRUN_STATUS)
+ 			DRM_ERROR("pipe %c underrun\n", pipe_name(pipe));
  	}
  }
- 
- static bool g4x_fbc_is_active(struct drm_i915_private *dev_priv)
+@@ -143,15 +144,15 @@ static void ivb_check_fifo_underruns(struct intel_crtc *crtc)
  {
--	return I915_READ(DPFC_CONTROL) & DPFC_CTL_EN;
-+	return intel_de_read(dev_priv, DPFC_CONTROL) & DPFC_CTL_EN;
- }
+ 	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
+ 	enum pipe pipe = crtc->pipe;
+-	u32 err_int = I915_READ(GEN7_ERR_INT);
++	u32 err_int = intel_de_read(dev_priv, GEN7_ERR_INT);
  
- /* This function forces a CFB recompression through the nuke operation. */
-@@ -205,8 +207,8 @@ static void intel_fbc_recompress(struct drm_i915_private *dev_priv)
+ 	lockdep_assert_held(&dev_priv->irq_lock);
  
- 	trace_intel_fbc_nuke(fbc->crtc);
+ 	if ((err_int & ERR_INT_FIFO_UNDERRUN(pipe)) == 0)
+ 		return;
  
--	I915_WRITE(MSG_FBC_REND_STATE, FBC_REND_NUKE);
--	POSTING_READ(MSG_FBC_REND_STATE);
-+	intel_de_write(dev_priv, MSG_FBC_REND_STATE, FBC_REND_NUKE);
-+	intel_de_posting_read(dev_priv, MSG_FBC_REND_STATE);
- }
+-	I915_WRITE(GEN7_ERR_INT, ERR_INT_FIFO_UNDERRUN(pipe));
+-	POSTING_READ(GEN7_ERR_INT);
++	intel_de_write(dev_priv, GEN7_ERR_INT, ERR_INT_FIFO_UNDERRUN(pipe));
++	intel_de_posting_read(dev_priv, GEN7_ERR_INT);
  
- static void ilk_fbc_activate(struct drm_i915_private *dev_priv)
-@@ -237,22 +239,22 @@ static void ilk_fbc_activate(struct drm_i915_private *dev_priv)
- 		if (IS_GEN(dev_priv, 5))
- 			dpfc_ctl |= params->fence_id;
- 		if (IS_GEN(dev_priv, 6)) {
--			I915_WRITE(SNB_DPFC_CTL_SA,
--				   SNB_CPU_FENCE_ENABLE |
--				   params->fence_id);
--			I915_WRITE(DPFC_CPU_FENCE_OFFSET,
--				   params->crtc.fence_y_offset);
-+			intel_de_write(dev_priv, SNB_DPFC_CTL_SA,
-+				       SNB_CPU_FENCE_ENABLE | params->fence_id);
-+			intel_de_write(dev_priv, DPFC_CPU_FENCE_OFFSET,
-+				       params->crtc.fence_y_offset);
+ 	trace_intel_cpu_fifo_underrun(dev_priv, pipe);
+ 	DRM_ERROR("fifo underrun on pipe %c\n", pipe_name(pipe));
+@@ -163,7 +164,8 @@ static void ivb_set_fifo_underrun_reporting(struct drm_device *dev,
+ {
+ 	struct drm_i915_private *dev_priv = to_i915(dev);
+ 	if (enable) {
+-		I915_WRITE(GEN7_ERR_INT, ERR_INT_FIFO_UNDERRUN(pipe));
++		intel_de_write(dev_priv, GEN7_ERR_INT,
++			       ERR_INT_FIFO_UNDERRUN(pipe));
+ 
+ 		if (!ivb_can_enable_err_int(dev))
+ 			return;
+@@ -173,7 +175,7 @@ static void ivb_set_fifo_underrun_reporting(struct drm_device *dev,
+ 		ilk_disable_display_irq(dev_priv, DE_ERR_INT_IVB);
+ 
+ 		if (old &&
+-		    I915_READ(GEN7_ERR_INT) & ERR_INT_FIFO_UNDERRUN(pipe)) {
++		    intel_de_read(dev_priv, GEN7_ERR_INT) & ERR_INT_FIFO_UNDERRUN(pipe)) {
+ 			DRM_ERROR("uncleared fifo underrun on pipe %c\n",
+ 				  pipe_name(pipe));
  		}
- 	} else {
- 		if (IS_GEN(dev_priv, 6)) {
--			I915_WRITE(SNB_DPFC_CTL_SA, 0);
--			I915_WRITE(DPFC_CPU_FENCE_OFFSET, 0);
-+			intel_de_write(dev_priv, SNB_DPFC_CTL_SA, 0);
-+			intel_de_write(dev_priv, DPFC_CPU_FENCE_OFFSET, 0);
- 		}
- 	}
- 
--	I915_WRITE(ILK_DPFC_FENCE_YOFF, params->crtc.fence_y_offset);
-+	intel_de_write(dev_priv, ILK_DPFC_FENCE_YOFF,
-+		       params->crtc.fence_y_offset);
- 	/* enable it... */
--	I915_WRITE(ILK_DPFC_CONTROL, dpfc_ctl | DPFC_CTL_EN);
-+	intel_de_write(dev_priv, ILK_DPFC_CONTROL, dpfc_ctl | DPFC_CTL_EN);
- 
- 	intel_fbc_recompress(dev_priv);
- }
-@@ -262,16 +264,16 @@ static void ilk_fbc_deactivate(struct drm_i915_private *dev_priv)
- 	u32 dpfc_ctl;
- 
- 	/* Disable compression */
--	dpfc_ctl = I915_READ(ILK_DPFC_CONTROL);
-+	dpfc_ctl = intel_de_read(dev_priv, ILK_DPFC_CONTROL);
- 	if (dpfc_ctl & DPFC_CTL_EN) {
- 		dpfc_ctl &= ~DPFC_CTL_EN;
--		I915_WRITE(ILK_DPFC_CONTROL, dpfc_ctl);
-+		intel_de_write(dev_priv, ILK_DPFC_CONTROL, dpfc_ctl);
- 	}
- }
- 
- static bool ilk_fbc_is_active(struct drm_i915_private *dev_priv)
+@@ -209,15 +211,16 @@ static void cpt_check_pch_fifo_underruns(struct intel_crtc *crtc)
  {
--	return I915_READ(ILK_DPFC_CONTROL) & DPFC_CTL_EN;
-+	return intel_de_read(dev_priv, ILK_DPFC_CONTROL) & DPFC_CTL_EN;
- }
+ 	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
+ 	enum pipe pch_transcoder = crtc->pipe;
+-	u32 serr_int = I915_READ(SERR_INT);
++	u32 serr_int = intel_de_read(dev_priv, SERR_INT);
  
- static void gen7_fbc_activate(struct drm_i915_private *dev_priv)
-@@ -282,14 +284,14 @@ static void gen7_fbc_activate(struct drm_i915_private *dev_priv)
+ 	lockdep_assert_held(&dev_priv->irq_lock);
  
- 	/* Display WA #0529: skl, kbl, bxt. */
- 	if (IS_GEN9_BC(dev_priv) || IS_BROXTON(dev_priv)) {
--		u32 val = I915_READ(CHICKEN_MISC_4);
-+		u32 val = intel_de_read(dev_priv, CHICKEN_MISC_4);
+ 	if ((serr_int & SERR_INT_TRANS_FIFO_UNDERRUN(pch_transcoder)) == 0)
+ 		return;
  
- 		val &= ~(FBC_STRIDE_OVERRIDE | FBC_STRIDE_MASK);
+-	I915_WRITE(SERR_INT, SERR_INT_TRANS_FIFO_UNDERRUN(pch_transcoder));
+-	POSTING_READ(SERR_INT);
++	intel_de_write(dev_priv, SERR_INT,
++		       SERR_INT_TRANS_FIFO_UNDERRUN(pch_transcoder));
++	intel_de_posting_read(dev_priv, SERR_INT);
  
- 		if (params->gen9_wa_cfb_stride)
- 			val |= FBC_STRIDE_OVERRIDE | params->gen9_wa_cfb_stride;
+ 	trace_intel_pch_fifo_underrun(dev_priv, pch_transcoder);
+ 	DRM_ERROR("pch fifo underrun on pch transcoder %c\n",
+@@ -231,8 +234,8 @@ static void cpt_set_fifo_underrun_reporting(struct drm_device *dev,
+ 	struct drm_i915_private *dev_priv = to_i915(dev);
  
--		I915_WRITE(CHICKEN_MISC_4, val);
-+		intel_de_write(dev_priv, CHICKEN_MISC_4, val);
- 	}
+ 	if (enable) {
+-		I915_WRITE(SERR_INT,
+-			   SERR_INT_TRANS_FIFO_UNDERRUN(pch_transcoder));
++		intel_de_write(dev_priv, SERR_INT,
++			       SERR_INT_TRANS_FIFO_UNDERRUN(pch_transcoder));
  
- 	dpfc_ctl = 0;
-@@ -314,13 +316,13 @@ static void gen7_fbc_activate(struct drm_i915_private *dev_priv)
- 
- 	if (params->fence_id >= 0) {
- 		dpfc_ctl |= IVB_DPFC_CTL_FENCE_EN;
--		I915_WRITE(SNB_DPFC_CTL_SA,
--			   SNB_CPU_FENCE_ENABLE |
--			   params->fence_id);
--		I915_WRITE(DPFC_CPU_FENCE_OFFSET, params->crtc.fence_y_offset);
-+		intel_de_write(dev_priv, SNB_DPFC_CTL_SA,
-+			       SNB_CPU_FENCE_ENABLE | params->fence_id);
-+		intel_de_write(dev_priv, DPFC_CPU_FENCE_OFFSET,
-+			       params->crtc.fence_y_offset);
+ 		if (!cpt_can_enable_serr_int(dev))
+ 			return;
+@@ -241,7 +244,7 @@ static void cpt_set_fifo_underrun_reporting(struct drm_device *dev,
  	} else {
--		I915_WRITE(SNB_DPFC_CTL_SA,0);
--		I915_WRITE(DPFC_CPU_FENCE_OFFSET, 0);
-+		intel_de_write(dev_priv, SNB_DPFC_CTL_SA, 0);
-+		intel_de_write(dev_priv, DPFC_CPU_FENCE_OFFSET, 0);
- 	}
+ 		ibx_disable_display_interrupt(dev_priv, SDE_ERROR_CPT);
  
- 	if (dev_priv->fbc.false_color)
-@@ -328,21 +330,20 @@ static void gen7_fbc_activate(struct drm_i915_private *dev_priv)
- 
- 	if (IS_IVYBRIDGE(dev_priv)) {
- 		/* WaFbcAsynchFlipDisableFbcQueue:ivb */
--		I915_WRITE(ILK_DISPLAY_CHICKEN1,
--			   I915_READ(ILK_DISPLAY_CHICKEN1) |
--			   ILK_FBCQ_DIS);
-+		intel_de_write(dev_priv, ILK_DISPLAY_CHICKEN1,
-+			       intel_de_read(dev_priv, ILK_DISPLAY_CHICKEN1) | ILK_FBCQ_DIS);
- 	} else if (IS_HASWELL(dev_priv) || IS_BROADWELL(dev_priv)) {
- 		/* WaFbcAsynchFlipDisableFbcQueue:hsw,bdw */
--		I915_WRITE(CHICKEN_PIPESL_1(params->crtc.pipe),
--			   I915_READ(CHICKEN_PIPESL_1(params->crtc.pipe)) |
--			   HSW_FBCQ_DIS);
-+		intel_de_write(dev_priv, CHICKEN_PIPESL_1(params->crtc.pipe),
-+			       intel_de_read(dev_priv, CHICKEN_PIPESL_1(params->crtc.pipe)) | HSW_FBCQ_DIS);
- 	}
- 
- 	if (INTEL_GEN(dev_priv) >= 11)
- 		/* Wa_1409120013:icl,ehl,tgl */
--		I915_WRITE(ILK_DPFC_CHICKEN, ILK_DPFC_CHICKEN_COMP_DUMMY_PIXEL);
-+		intel_de_write(dev_priv, ILK_DPFC_CHICKEN,
-+			       ILK_DPFC_CHICKEN_COMP_DUMMY_PIXEL);
- 
--	I915_WRITE(ILK_DPFC_CONTROL, dpfc_ctl | DPFC_CTL_EN);
-+	intel_de_write(dev_priv, ILK_DPFC_CONTROL, dpfc_ctl | DPFC_CTL_EN);
- 
- 	intel_fbc_recompress(dev_priv);
- }
-@@ -489,9 +490,11 @@ static int intel_fbc_alloc_cfb(struct drm_i915_private *dev_priv,
- 	fbc->threshold = ret;
- 
- 	if (INTEL_GEN(dev_priv) >= 5)
--		I915_WRITE(ILK_DPFC_CB_BASE, fbc->compressed_fb.start);
-+		intel_de_write(dev_priv, ILK_DPFC_CB_BASE,
-+			       fbc->compressed_fb.start);
- 	else if (IS_GM45(dev_priv)) {
--		I915_WRITE(DPFC_CB_BASE, fbc->compressed_fb.start);
-+		intel_de_write(dev_priv, DPFC_CB_BASE,
-+			       fbc->compressed_fb.start);
- 	} else {
- 		compressed_llb = kzalloc(sizeof(*compressed_llb), GFP_KERNEL);
- 		if (!compressed_llb)
-@@ -510,10 +513,10 @@ static int intel_fbc_alloc_cfb(struct drm_i915_private *dev_priv,
- 		GEM_BUG_ON(range_overflows_t(u64, dev_priv->dsm.start,
- 					     fbc->compressed_llb->start,
- 					     U32_MAX));
--		I915_WRITE(FBC_CFB_BASE,
--			   dev_priv->dsm.start + fbc->compressed_fb.start);
--		I915_WRITE(FBC_LL_BASE,
--			   dev_priv->dsm.start + compressed_llb->start);
-+		intel_de_write(dev_priv, FBC_CFB_BASE,
-+			       dev_priv->dsm.start + fbc->compressed_fb.start);
-+		intel_de_write(dev_priv, FBC_LL_BASE,
-+			       dev_priv->dsm.start + compressed_llb->start);
- 	}
- 
- 	DRM_DEBUG_KMS("reserved %llu bytes of contiguous stolen space for FBC, threshold: %d\n",
-@@ -1364,7 +1367,8 @@ void intel_fbc_init(struct drm_i915_private *dev_priv)
- 
- 	/* This value was pulled out of someone's hat */
- 	if (INTEL_GEN(dev_priv) <= 4 && !IS_GM45(dev_priv))
--		I915_WRITE(FBC_CONTROL, 500 << FBC_CTL_INTERVAL_SHIFT);
-+		intel_de_write(dev_priv, FBC_CONTROL,
-+		               500 << FBC_CTL_INTERVAL_SHIFT);
- 
- 	/* We still don't have any sort of hardware state readout for FBC, so
- 	 * deactivate it in case the BIOS activated it to make sure software
+-		if (old && I915_READ(SERR_INT) &
++		if (old && intel_de_read(dev_priv, SERR_INT) &
+ 		    SERR_INT_TRANS_FIFO_UNDERRUN(pch_transcoder)) {
+ 			DRM_ERROR("uncleared pch fifo underrun on pch transcoder %c\n",
+ 				  pipe_name(pch_transcoder));
 -- 
 2.20.1
 
