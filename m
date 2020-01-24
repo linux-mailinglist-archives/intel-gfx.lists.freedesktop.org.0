@@ -2,36 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 67662148745
-	for <lists+intel-gfx@lfdr.de>; Fri, 24 Jan 2020 15:22:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 06E771488DC
+	for <lists+intel-gfx@lfdr.de>; Fri, 24 Jan 2020 15:32:04 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C04F36FA61;
-	Fri, 24 Jan 2020 14:22:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4070872AD2;
+	Fri, 24 Jan 2020 14:32:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A04AE72AC6
- for <intel-gfx@lists.freedesktop.org>; Fri, 24 Jan 2020 14:22:03 +0000 (UTC)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EDABD72AD2
+ for <intel-gfx@lists.freedesktop.org>; Fri, 24 Jan 2020 14:32:00 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 24 Jan 2020 06:22:03 -0800
-X-IronPort-AV: E=Sophos;i="5.70,357,1574150400"; d="scan'208";a="221033748"
-Received: from omarkovx-mobl.ger.corp.intel.com (HELO localhost)
- ([10.249.37.60])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 24 Jan 2020 06:22:01 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Vandita Kulkarni <vandita.kulkarni@intel.com>,
- intel-gfx@lists.freedesktop.org
-In-Reply-To: <20200124125829.16973-1-vandita.kulkarni@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20200124125829.16973-1-vandita.kulkarni@intel.com>
-Date: Fri, 24 Jan 2020 16:23:00 +0200
-Message-ID: <87eevpgchn.fsf@intel.com>
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga106.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 24 Jan 2020 06:31:50 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,357,1574150400"; d="scan'208";a="222634004"
+Received: from slisovsk-lenovo-ideapad-720s-13ikb.fi.intel.com ([10.237.72.89])
+ by fmsmga008.fm.intel.com with ESMTP; 24 Jan 2020 06:31:48 -0800
+From: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri, 24 Jan 2020 16:28:13 +0200
+Message-Id: <20200124142813.3751-1-stanislav.lisovskiy@intel.com>
+X-Mailer: git-send-email 2.24.1.485.gad05a3d8e5
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/vbt: Fix the timing parameters
+Subject: [Intel-gfx] [PATCH v1] drm/i915: Fix inconsistance between
+ pfit.enable and scaler freeing
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,45 +46,46 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 24 Jan 2020, Vandita Kulkarni <vandita.kulkarni@intel.com> wrote:
-> Fix htotal and vtotal parameters derived from
-> DTD block of VBT.
->
-> Fixes: 33ef6d4fd8df ("drm/i915/vbt: Handle generic DTD block")
-> Signed-off-by: Vandita Kulkarni <vandita.kulkarni@intel.com>
+Despite that during hw readout we seem to have scalers assigned
+to pipes, then call atomic_setup_scalers, at the commit stage in
+skl_update_scaler there is a check, that if we have fb src and
+dest of same size, we stage freeing of that scaler.
 
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+However we don't update pfit.enabled flag then, which makes
+the state inconsistent, which in turn triggers a WARN_ON
+in skl_pfit_enable, because we have pfit enabled,
+but no assigned scaler.
 
-> ---
->  drivers/gpu/drm/i915/display/intel_bios.c | 6 ++++--
->  1 file changed, 4 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
-> index 1e675aa55938..942a073d5768 100644
-> --- a/drivers/gpu/drm/i915/display/intel_bios.c
-> +++ b/drivers/gpu/drm/i915/display/intel_bios.c
-> @@ -366,14 +366,16 @@ parse_generic_dtd(struct drm_i915_private *dev_priv,
->  		panel_fixed_mode->hdisplay + dtd->hfront_porch;
->  	panel_fixed_mode->hsync_end =
->  		panel_fixed_mode->hsync_start + dtd->hsync;
-> -	panel_fixed_mode->htotal = panel_fixed_mode->hsync_end;
-> +	panel_fixed_mode->htotal =
-> +		panel_fixed_mode->hdisplay + dtd->hblank;
->  
->  	panel_fixed_mode->vdisplay = dtd->vactive;
->  	panel_fixed_mode->vsync_start =
->  		panel_fixed_mode->vdisplay + dtd->vfront_porch;
->  	panel_fixed_mode->vsync_end =
->  		panel_fixed_mode->vsync_start + dtd->vsync;
-> -	panel_fixed_mode->vtotal = panel_fixed_mode->vsync_end;
-> +	panel_fixed_mode->vtotal =
-> +		panel_fixed_mode->vdisplay + dtd->vblank;
->  
->  	panel_fixed_mode->clock = dtd->pixel_clock;
->  	panel_fixed_mode->width_mm = dtd->width_mm;
+To me this looks weird that we kind of do the decision
+to use or not use the scaler at skl_update_scaler stage
+but not in intel_atomic_setup_scalers, moreover
+not updating the whole state consistently.
 
+This fix is to not free the scaler if we have pfit.enabled
+flag set, so that the state is now consistent
+and the warnings are gone.
+
+Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_display.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 5768cfcf71c4..23221b8d244d 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -5953,7 +5953,7 @@ skl_update_scaler(struct intel_crtc_state *crtc_state, bool force_detach,
+ 	 * the 90/270 degree plane rotation cases (to match the
+ 	 * GTT mapping), hence no need to account for rotation here.
+ 	 */
+-	if (src_w != dst_w || src_h != dst_h)
++	if (src_w != dst_w || src_h != dst_h || crtc_state->pch_pfit.enabled)
+ 		need_scaler = true;
+ 
+ 	/*
 -- 
-Jani Nikula, Intel Open Source Graphics Center
+2.24.1.485.gad05a3d8e5
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
