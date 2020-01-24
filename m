@@ -2,35 +2,34 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 628851479FD
-	for <lists+intel-gfx@lfdr.de>; Fri, 24 Jan 2020 10:06:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C9D601479F9
+	for <lists+intel-gfx@lfdr.de>; Fri, 24 Jan 2020 10:06:32 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9FD7D6FFA8;
-	Fri, 24 Jan 2020 09:06:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4FC056FFA1;
+	Fri, 24 Jan 2020 09:06:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9A9E86FF9F
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EE5546FF9F
  for <intel-gfx@lists.freedesktop.org>; Fri, 24 Jan 2020 09:06:28 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga002.jf.intel.com ([10.7.209.21])
  by orsmga106.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 24 Jan 2020 01:04:48 -0800
+ 24 Jan 2020 01:04:49 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,357,1574150400"; d="scan'208";a="245655138"
+X-IronPort-AV: E=Sophos;i="5.70,357,1574150400"; d="scan'208";a="245655142"
 Received: from nvishwa1-desk.sc.intel.com ([10.3.160.185])
  by orsmga002.jf.intel.com with ESMTP; 24 Jan 2020 01:04:48 -0800
 From: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri, 24 Jan 2020 00:53:56 -0800
-Message-Id: <20200124085402.11644-3-niranjana.vishwanathapura@intel.com>
+Date: Fri, 24 Jan 2020 00:53:57 -0800
+Message-Id: <20200124085402.11644-4-niranjana.vishwanathapura@intel.com>
 X-Mailer: git-send-email 2.21.0.rc0.32.g243a4c7e27
 In-Reply-To: <20200124085402.11644-1-niranjana.vishwanathapura@intel.com>
 References: <20200124085402.11644-1-niranjana.vishwanathapura@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [RFC 2/8] drm/i915/svm: Add support to mark VMs as
- active
+Subject: [Intel-gfx] [RFC 3/8] drm/i915/svm: Introduce VM_BIND ioctl
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,10 +48,9 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add support to determine if an address space (VM) is active.
-ie., are there any active requests using the address space.
-This allows us to wait for VM to be idle before carrying out
-some operations.
+Add VM_BIND ioctl to bind/unbind an array of gem buffer
+objects at specified virtual addresses.
+Support partial binding with offset and length fields.
 
 Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
 Cc: Jon Bloomfield <jon.bloomfield@intel.com>
@@ -62,152 +60,179 @@ Cc: Sudeep Dutt <sudeep.dutt@intel.com>
 Cc: Stuart Summers <stuart.summers@intel.com>
 Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
 ---
- .../gpu/drm/i915/gem/i915_gem_execbuffer.c    |  5 +++
- drivers/gpu/drm/i915/gt/intel_gtt.c           | 32 +++++++++++++++++++
- drivers/gpu/drm/i915/gt/intel_gtt.h           | 13 ++++++++
- drivers/gpu/drm/i915/i915_gem_gtt.h           | 14 ++++++++
- 4 files changed, 64 insertions(+)
+ drivers/gpu/drm/i915/i915_drv.c | 40 +++++++++++++++++++++++++
+ drivers/gpu/drm/i915/i915_drv.h | 22 ++++++++++++++
+ include/uapi/drm/i915_drm.h     | 53 +++++++++++++++++++++++++++++++++
+ 3 files changed, 115 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-index 60c984e10c4a..b3d9a4a02568 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-@@ -1880,6 +1880,11 @@ static int eb_move_to_gpu(struct i915_execbuffer *eb)
- 	if (unlikely(err))
- 		goto err_skip;
- 
-+	/* XXX: Should probably be done first */
-+	err = i915_vm_move_to_active(eb->context->vm, eb->request);
-+	if (err)
-+		goto err_skip;
-+
- 	eb->exec = NULL;
- 
- 	/* Unconditionally flush any chipset caches (for streaming writes). */
-diff --git a/drivers/gpu/drm/i915/gt/intel_gtt.c b/drivers/gpu/drm/i915/gt/intel_gtt.c
-index 16acdc5d6734..ad5bf7fc851a 100644
---- a/drivers/gpu/drm/i915/gt/intel_gtt.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gtt.c
-@@ -191,6 +191,7 @@ void __i915_vm_close(struct i915_address_space *vm)
- 
- void i915_address_space_fini(struct i915_address_space *vm)
- {
-+	i915_active_fini(&vm->active);
- 	spin_lock(&vm->free_pages.lock);
- 	if (pagevec_count(&vm->free_pages.pvec))
- 		vm_free_pages_release(vm, true);
-@@ -200,6 +201,7 @@ void i915_address_space_fini(struct i915_address_space *vm)
- 	drm_mm_takedown(&vm->mm);
- 
- 	mutex_destroy(&vm->mutex);
-+	mutex_destroy(&vm->svm_mutex);
+diff --git a/drivers/gpu/drm/i915/i915_drv.c b/drivers/gpu/drm/i915/i915_drv.c
+index f7385abdd74b..64ba02c55282 100644
+--- a/drivers/gpu/drm/i915/i915_drv.c
++++ b/drivers/gpu/drm/i915/i915_drv.c
+@@ -2688,6 +2688,45 @@ i915_gem_reject_pin_ioctl(struct drm_device *dev, void *data,
+ 	return -ENODEV;
  }
  
- static void __i915_vm_release(struct work_struct *work)
-@@ -224,6 +226,33 @@ void i915_vm_release(struct kref *kref)
- 	queue_rcu_work(vm->i915->wq, &vm->rcu);
- }
- 
-+static inline struct i915_address_space *active_to_vm(struct i915_active *ref)
++static int i915_gem_vm_bind_ioctl(struct drm_device *dev, void *data,
++				  struct drm_file *file)
 +{
-+	return container_of(ref, typeof(struct i915_address_space), active);
-+}
++	struct drm_i915_gem_vm_bind_va __user *vas;
++	struct drm_i915_gem_vm_bind *args = data;
++	struct i915_address_space *vm;
++	int i, ret = 0;
 +
-+int i915_vm_move_to_active(struct i915_address_space *vm,
-+			   struct i915_request *rq)
-+{
-+	int ret = 0;
++	vm = i915_gem_address_space_lookup(file->driver_priv, args->vm_id);
++	if (unlikely(!vm))
++		return -ENOENT;
 +
-+	mutex_lock(&vm->svm_mutex);
-+	ret = i915_active_add_request(&vm->active, rq);
-+	mutex_unlock(&vm->svm_mutex);
++	if (!args->num_vas)
++		goto bind_done;
++
++	vas = u64_to_user_ptr(args->vas_ptr);
++	if (!access_ok(vas, args->num_vas * sizeof(*vas))) {
++		ret = -EFAULT;
++		goto bind_done;
++	}
++
++	for (i = 0; !ret && i < args->num_vas; i++) {
++		struct drm_i915_gem_vm_bind_va va;
++
++		if (__copy_from_user(&va, vas++, sizeof(va))) {
++			ret = -EFAULT;
++			goto bind_done;
++		}
++
++		switch (va.type) {
++		default:
++			ret = -EINVAL;
++		}
++	}
++bind_done:
++	i915_vm_put(vm);
 +	return ret;
 +}
 +
-+static int __i915_vm_active(struct i915_active *ref)
-+{
-+	return i915_vm_tryget(active_to_vm(ref)) ? 0 : -ENOENT;
-+}
-+
-+__i915_active_call
-+static void __i915_vm_retire(struct i915_active *ref)
-+{
-+	i915_vm_put(active_to_vm(ref));
-+}
-+
- void i915_address_space_init(struct i915_address_space *vm, int subclass)
- {
- 	kref_init(&vm->ref);
-@@ -246,6 +275,9 @@ void i915_address_space_init(struct i915_address_space *vm, int subclass)
- 	stash_init(&vm->free_pages);
- 
- 	INIT_LIST_HEAD(&vm->bound_list);
-+
-+	mutex_init(&vm->svm_mutex);
-+	i915_active_init(&vm->active, __i915_vm_active, __i915_vm_retire);
- }
- 
- void clear_pages(struct i915_vma *vma)
-diff --git a/drivers/gpu/drm/i915/gt/intel_gtt.h b/drivers/gpu/drm/i915/gt/intel_gtt.h
-index bb59f57b88e1..f3e5469c4dc6 100644
---- a/drivers/gpu/drm/i915/gt/intel_gtt.h
-+++ b/drivers/gpu/drm/i915/gt/intel_gtt.h
-@@ -263,6 +263,8 @@ struct i915_address_space {
- 	 */
- 	struct list_head bound_list;
- 
-+	struct mutex svm_mutex; /* protects svm operations */
-+
- 	struct pagestash free_pages;
- 
- 	/* Global GTT */
-@@ -298,6 +300,8 @@ struct i915_address_space {
- 
- 	I915_SELFTEST_DECLARE(struct fault_attr fault_attr);
- 	I915_SELFTEST_DECLARE(bool scrub_64K);
-+
-+	struct i915_active active;
+ static const struct drm_ioctl_desc i915_ioctls[] = {
+ 	DRM_IOCTL_DEF_DRV(I915_INIT, drm_noop, DRM_AUTH|DRM_MASTER|DRM_ROOT_ONLY),
+ 	DRM_IOCTL_DEF_DRV(I915_FLUSH, drm_noop, DRM_AUTH),
+@@ -2747,6 +2786,7 @@ static const struct drm_ioctl_desc i915_ioctls[] = {
+ 	DRM_IOCTL_DEF_DRV(I915_QUERY, i915_query_ioctl, DRM_RENDER_ALLOW),
+ 	DRM_IOCTL_DEF_DRV(I915_GEM_VM_CREATE, i915_gem_vm_create_ioctl, DRM_RENDER_ALLOW),
+ 	DRM_IOCTL_DEF_DRV(I915_GEM_VM_DESTROY, i915_gem_vm_destroy_ioctl, DRM_RENDER_ALLOW),
++	DRM_IOCTL_DEF_DRV(I915_GEM_VM_BIND, i915_gem_vm_bind_ioctl, DRM_RENDER_ALLOW),
  };
  
- /*
-@@ -400,6 +404,15 @@ i915_vm_get(struct i915_address_space *vm)
- 	return vm;
+ static struct drm_driver driver = {
+diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+index 077af22b8340..7be87bc37cc0 100644
+--- a/drivers/gpu/drm/i915/i915_drv.h
++++ b/drivers/gpu/drm/i915/i915_drv.h
+@@ -1919,6 +1919,28 @@ i915_gem_context_lookup(struct drm_i915_file_private *file_priv, u32 id)
+ 	return ctx;
  }
  
 +static inline struct i915_address_space *
-+i915_vm_tryget(struct i915_address_space *vm)
++__i915_gem_address_space_lookup_rcu(struct drm_i915_file_private *file_priv,
++				    u32 id)
 +{
-+	if (likely(kref_get_unless_zero(&vm->ref)))
-+		return vm;
-+
-+	return NULL;
++	return idr_find(&file_priv->vm_idr, id);
 +}
 +
- void i915_vm_release(struct kref *kref);
- 
- static inline void i915_vm_put(struct i915_address_space *vm)
-diff --git a/drivers/gpu/drm/i915/i915_gem_gtt.h b/drivers/gpu/drm/i915/i915_gem_gtt.h
-index f6226df9f972..3e46fd119a42 100644
---- a/drivers/gpu/drm/i915/i915_gem_gtt.h
-+++ b/drivers/gpu/drm/i915/i915_gem_gtt.h
-@@ -48,4 +48,18 @@ int i915_gem_gtt_insert(struct i915_address_space *vm,
- 
- #define PIN_OFFSET_MASK		I915_GTT_PAGE_MASK
- 
-+int i915_vm_move_to_active(struct i915_address_space *vm,
-+			   struct i915_request *rq);
-+
-+static inline int i915_vm_sync(struct i915_address_space *vm)
++static inline struct i915_address_space *
++i915_gem_address_space_lookup(struct drm_i915_file_private *file_priv,
++			      u32 id)
 +{
-+	/* Wait for all requests under this vm to finish */
-+	return i915_active_wait(&vm->active);
++	struct i915_address_space *vm;
++
++	rcu_read_lock();
++	vm = __i915_gem_address_space_lookup_rcu(file_priv, id);
++	if (vm)
++		vm = i915_vm_get(vm);
++	rcu_read_unlock();
++
++	return vm;
 +}
 +
-+static inline bool i915_vm_is_active(const struct i915_address_space *vm)
-+{
-+	return !i915_active_is_idle(&vm->active);
-+}
+ /* i915_gem_evict.c */
+ int __must_check i915_gem_evict_something(struct i915_address_space *vm,
+ 					  u64 min_size, u64 alignment,
+diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
+index 829c0a48577f..e696854829ab 100644
+--- a/include/uapi/drm/i915_drm.h
++++ b/include/uapi/drm/i915_drm.h
+@@ -359,6 +359,7 @@ typedef struct _drm_i915_sarea {
+ #define DRM_I915_QUERY			0x39
+ #define DRM_I915_GEM_VM_CREATE		0x3a
+ #define DRM_I915_GEM_VM_DESTROY		0x3b
++#define DRM_I915_GEM_VM_BIND		0x3c
+ /* Must be kept compact -- no holes */
+ 
+ #define DRM_IOCTL_I915_INIT		DRM_IOW( DRM_COMMAND_BASE + DRM_I915_INIT, drm_i915_init_t)
+@@ -422,6 +423,7 @@ typedef struct _drm_i915_sarea {
+ #define DRM_IOCTL_I915_QUERY			DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_QUERY, struct drm_i915_query)
+ #define DRM_IOCTL_I915_GEM_VM_CREATE	DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_GEM_VM_CREATE, struct drm_i915_gem_vm_control)
+ #define DRM_IOCTL_I915_GEM_VM_DESTROY	DRM_IOW (DRM_COMMAND_BASE + DRM_I915_GEM_VM_DESTROY, struct drm_i915_gem_vm_control)
++#define DRM_IOCTL_I915_GEM_VM_BIND		DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_GEM_VM_BIND, struct drm_i915_gem_vm_bind)
+ 
+ /* Allow drivers to submit batchbuffers directly to hardware, relying
+  * on the security mechanisms provided by hardware.
+@@ -2277,6 +2279,57 @@ struct drm_i915_query_perf_config {
+ 	__u8 data[];
+ };
+ 
++/**
++ * struct drm_i915_gem_vm_bind_va
++ *
++ * VA to object mapping to [un]bind.
++ */
++struct drm_i915_gem_vm_bind_va {
++	/** VA start to [un]bind **/
++	__u64 start;
 +
++	/** Offset in Object to [un]bind for I915_GEM_VM_BIND_SVM_OBJ type **/
++	__u64 offset;
++
++	/** VA length to [un]bind **/
++	__u64 length;
++
++	/** Type of memory to [un]bind **/
++	__u32 type;
++#define I915_GEM_VM_BIND_SVM_OBJ      0
++
++	/** Object handle to [un]bind for I915_GEM_VM_BIND_SVM_OBJ type **/
++	__u32 handle;
++
++	/** Flags **/
++	__u32 flags;
++#define I915_GEM_VM_BIND_UNBIND      (1 << 0)
++#define I915_GEM_VM_BIND_READONLY    (1 << 1)
++};
++
++/**
++ * struct drm_i915_gem_vm_bind
++ *
++ * [Un]Bind an array of objects in a vm's page table.
++ */
++struct drm_i915_gem_vm_bind {
++	/** vm to [un]bind **/
++	__u32 vm_id;
++
++	/** number of VAs to [un]bind **/
++	__u32 num_vas;
++
++	/** Array of VAs to [un]bind **/
++	__u64 vas_ptr;
++
++	/**
++	 * Zero-terminated chain of extensions.
++	 *
++	 * No current extensions defined; mbz.
++	 */
++	__u64 extensions;
++};
++
+ #if defined(__cplusplus)
+ }
  #endif
 -- 
 2.21.0.rc0.32.g243a4c7e27
