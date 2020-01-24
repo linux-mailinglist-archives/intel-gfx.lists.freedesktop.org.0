@@ -1,37 +1,61 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4625D148523
-	for <lists+intel-gfx@lfdr.de>; Fri, 24 Jan 2020 13:28:44 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C83B148525
+	for <lists+intel-gfx@lfdr.de>; Fri, 24 Jan 2020 13:29:11 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5D3156FA51;
-	Fri, 24 Jan 2020 12:28:41 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 41A446FA4A;
- Fri, 24 Jan 2020 12:28:39 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 24 Jan 2020 04:28:38 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,357,1574150400"; d="scan'208";a="251274676"
-Received: from wmszyfel-mobl2.ger.corp.intel.com (HELO localhost.localdomain)
- ([10.252.10.247])
- by fmsmga004.fm.intel.com with ESMTP; 24 Jan 2020 04:28:37 -0800
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-To: igt-dev@lists.freedesktop.org
-Date: Fri, 24 Jan 2020 12:28:33 +0000
-Message-Id: <20200124122833.26392-1-tvrtko.ursulin@linux.intel.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200124121759.22308-1-tvrtko.ursulin@linux.intel.com>
-References: <20200124121759.22308-1-tvrtko.ursulin@linux.intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 48B2E6FA53;
+	Fri, 24 Jan 2020 12:29:06 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from pio-pvt-msa2.bahnhof.se (pio-pvt-msa2.bahnhof.se [79.136.2.41])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A877C6FA4A;
+ Fri, 24 Jan 2020 12:29:04 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+ by pio-pvt-msa2.bahnhof.se (Postfix) with ESMTP id DE4EA3F39C;
+ Fri, 24 Jan 2020 13:29:02 +0100 (CET)
+Authentication-Results: pio-pvt-msa2.bahnhof.se; dkim=pass (1024-bit key;
+ unprotected) header.d=shipmail.org header.i=@shipmail.org header.b=fmn/uwOf; 
+ dkim-atps=neutral
+X-Virus-Scanned: Debian amavisd-new at bahnhof.se
+X-Spam-Flag: NO
+X-Spam-Score: -2.099
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.099 tagged_above=-999 required=6.31
+ tests=[BAYES_00=-1.9, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+ DKIM_VALID_AU=-0.1, DKIM_VALID_EF=-0.1, URIBL_BLOCKED=0.001]
+ autolearn=ham autolearn_force=no
+Received: from pio-pvt-msa2.bahnhof.se ([127.0.0.1])
+ by localhost (pio-pvt-msa2.bahnhof.se [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id wf9tc-gPkaPd; Fri, 24 Jan 2020 13:29:02 +0100 (CET)
+Received: from mail1.shipmail.org (h-205-35.A357.priv.bahnhof.se
+ [155.4.205.35]) (Authenticated sender: mb878879)
+ by pio-pvt-msa2.bahnhof.se (Postfix) with ESMTPA id 69BAE3F36B;
+ Fri, 24 Jan 2020 13:29:00 +0100 (CET)
+Received: from localhost.localdomain (h-205-35.A357.priv.bahnhof.se
+ [155.4.205.35])
+ by mail1.shipmail.org (Postfix) with ESMTPSA id 8EDEA36015F;
+ Fri, 24 Jan 2020 13:29:00 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=shipmail.org; s=mail;
+ t=1579868940; bh=39fWQg6VSLXjSvmE+Hqa3YydW9mZEqNCTX4MsHfyyc0=;
+ h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+ b=fmn/uwOfWubGYy+HzDh47xmzlhO80Qln1807n0/w1+cH7F7NqQRyHV4Q9A0ixNBXy
+ yX/EWy6o1w3F9y4Thz59kjrWGtX+b6cZRW73nQunvPp5xfoEzJs3L669crGAsLqa51
+ r/g5vIt5wEc7/7VSEESILeQG38df7mUkfZAC7pmw=
+To: Chris Wilson <chris@chris-wilson.co.uk>, dri-devel@lists.freedesktop.org
+References: <20200122155637.496291-1-chris@chris-wilson.co.uk>
+ <20200123222112.26840-1-chris@chris-wilson.co.uk>
+From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m_=28VMware=29?= <thomas_os@shipmail.org>
+Organization: VMware Inc.
+Message-ID: <42d50b1f-8e9d-ef5d-88d2-74cde7c09ce8@shipmail.org>
+Date: Fri, 24 Jan 2020 13:29:00 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH i-g-t v2 1/2] lib/i915: Add helper for copying
- engine maps from one context to another
+In-Reply-To: <20200123222112.26840-1-chris@chris-wilson.co.uk>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH v2] drm: Release filp before global lock
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,80 +68,35 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
+Cc: intel-gfx@lists.freedesktop.org
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+On 1/23/20 11:21 PM, Chris Wilson wrote:
+> The file is not part of the global drm resource and can be released
+> prior to take the global mutex to drop the open_count (and potentially
+> close) the drm device. As the global mutex is indeed global, not only
+> within the device but across devices, a slow file release mechanism can
+> bottleneck the entire system.
+>
+> However, inside drm_close_helper() there are a number of dev->driver
+> callbacks that take the drm_device as the first parameter... Worryingly
+> some of those callbacks may be (implicitly) depending on the global
+> mutex.
 
-We also need to support copying across file descriptors.
+ From a quick audit, via, sis and vmwgfx are safe, so for those
 
-v2:
- * Copy over even if src is unset. (Chris)
+Acked-by: Thomas Hellstrom <thellstrom@vmware.com>
 
-Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Sreedhar Telukuntla <sreedhar.telukuntla@intel.com>
----
- lib/i915/gem_context.c | 30 ++++++++++++++++++++++++++++++
- lib/i915/gem_context.h |  2 ++
- 2 files changed, 32 insertions(+)
+Savage appears to be unsafe, due to unprotected access in the dma device 
+member. Haven't audited i810 or potential other drivers affected. 
+Perhaps it makes sense to enable lockfree filp release on a per-driver 
+basis to begin with?
 
-diff --git a/lib/i915/gem_context.c b/lib/i915/gem_context.c
-index 0b6a554dfe27..50dfee3d1030 100644
---- a/lib/i915/gem_context.c
-+++ b/lib/i915/gem_context.c
-@@ -462,3 +462,33 @@ bool gem_context_has_engine(int fd, uint32_t ctx, uint64_t engine)
- 
- 	return __gem_execbuf(fd, &execbuf) == -ENOENT;
- }
-+
-+/**
-+ * gem_context_copy_engines:
-+ * @src_fd: open i915 drm file descriptor where @src context belongs to
-+ * @src: source engine map context id
-+ * @dst_fd: open i915 drm file descriptor where @dst context belongs to
-+ * @dst: destination engine map context id
-+ *
-+ * Special purpose helper for copying engine map from one context to another.
-+ *
-+ * In can be called regardless of whether the kernel supports context engine
-+ * maps and is a no-op if not supported.
-+ */
-+void
-+gem_context_copy_engines(int src_fd, uint32_t src, int dst_fd, uint32_t dst)
-+{
-+	I915_DEFINE_CONTEXT_PARAM_ENGINES(engines, I915_EXEC_RING_MASK + 1);
-+	struct drm_i915_gem_context_param param = {
-+		.param = I915_CONTEXT_PARAM_ENGINES,
-+		.ctx_id = src,
-+		.size = sizeof(engines),
-+		.value = to_user_pointer(&engines),
-+	};
-+
-+	if (__gem_context_get_param(src_fd, &param))
-+		return;
-+
-+	param.ctx_id = dst;
-+	gem_context_set_param(dst_fd, &param);
-+}
-diff --git a/lib/i915/gem_context.h b/lib/i915/gem_context.h
-index cf2ba33fee8f..15e5db281b79 100644
---- a/lib/i915/gem_context.h
-+++ b/lib/i915/gem_context.h
-@@ -42,6 +42,8 @@ uint32_t gem_context_clone(int i915,
- 			   uint32_t src, unsigned int share,
- 			   unsigned int flags);
- uint32_t gem_context_clone_with_engines(int i915, uint32_t src);
-+void gem_context_copy_engines(int src_fd, uint32_t src,
-+			      int dst_fd, uint32_t dst);
- 
- uint32_t gem_queue_create(int i915);
- uint32_t gem_queue_clone_with_engines(int i915, uint32_t src);
--- 
-2.20.1
+/Thomas
+
 
 _______________________________________________
 Intel-gfx mailing list
