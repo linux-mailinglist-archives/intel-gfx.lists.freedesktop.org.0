@@ -2,39 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6BB821484F7
-	for <lists+intel-gfx@lfdr.de>; Fri, 24 Jan 2020 13:08:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B8D101484F5
+	for <lists+intel-gfx@lfdr.de>; Fri, 24 Jan 2020 13:08:09 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B3A5C6FA40;
-	Fri, 24 Jan 2020 12:08:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 48BFA6E375;
+	Fri, 24 Jan 2020 12:08:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6E0AC6FA40
- for <intel-gfx@lists.freedesktop.org>; Fri, 24 Jan 2020 12:08:54 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-X-Amp-File-Uploaded: False
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 24 Jan 2020 04:08:53 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,357,1574150400"; d="scan'208";a="260224381"
-Received: from unknown (HELO intel.com) ([10.223.74.178])
- by fmsmga002.fm.intel.com with ESMTP; 24 Jan 2020 04:08:52 -0800
-Date: Fri, 24 Jan 2020 17:29:51 +0530
-From: Anshuman Gupta <anshuman.gupta@intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Message-ID: <20200124115951.GC24118@intel.com>
-References: <20200123132659.725-1-anshuman.gupta@intel.com>
- <20200123132659.725-2-anshuman.gupta@intel.com>
- <87wo9icmi2.fsf@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 342C66E364;
+ Fri, 24 Jan 2020 12:08:05 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 2C78BA011A;
+ Fri, 24 Jan 2020 12:08:05 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <87wo9icmi2.fsf@intel.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-Subject: Re: [Intel-gfx] [RFC 1/6] drm/i915: Iterate over pipe and skip the
- disabled one
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>
+Date: Fri, 24 Jan 2020 12:08:05 -0000
+Message-ID: <157986768517.15092.9964774633869983650@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200124095521.2006632-1-maarten.lankhorst@linux.intel.com>
+In-Reply-To: <20200124095521.2006632-1-maarten.lankhorst@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915/gem=3A_Implement_parallel_execbuffer_submission=2E?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,83 +38,83 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gMjAyMC0wMS0yMyBhdCAxNTo0ODowNSArMDIwMCwgSmFuaSBOaWt1bGEgd3JvdGU6Cj4gT24g
-VGh1LCAyMyBKYW4gMjAyMCwgQW5zaHVtYW4gR3VwdGEgPGFuc2h1bWFuLmd1cHRhQGludGVsLmNv
-bT4gd3JvdGU6Cj4gPiBJdCBzaG91bGQgbm90IGJlIGFzc3VtZWQgdGhhdCBhIGRpc2FibGVkIGRp
-c3BsYXkgcGlwZSB3aWxsIGJlCj4gPiBhbHdheXMgbGFzdCB0aGUgcGlwZS4KPiA+IGZvcl9lYWNo
-X3BpcGUoKSBzaG91bGQgaXRlcmF0ZSBvdmVyIEk5MTVfTUFYX1BJUEVTIGFuZCBjaGVjawo+ID4g
-Zm9yIHRoZSBkaXNhYmxlZCBwaXBlIGFuZCBza2lwIHRoYXQgcGlwZSBzbyB0aGF0IGl0IHNob3Vs
-ZCBub3QKPiA+IGluaXRpYWxpemUgdGhlIGludGVsIGNydGMgZm9yIGFueSBkaXNhYmxlZCBwaXBl
-cy4KPiA+Cj4gPiBGZXcgY29tcGlsYXRpb24gZXJyb3IgbmVlZGVkIHRvIGhhbmRsZSBhY2NvcmRp
-bmdseSBkdWUgdG8KPiA+IGNoYW5nZSBpbiBmb3JfZWFjaF9waXBlKCkgbWFjcm8uCj4gCj4gUmVh
-bGx5PyBQbGVhc2UgcGFzdGUuCkl0IGlzIGRhbmdsaW5nLWVsc2Ugd2FybmluZyBhdCBjb3VwbGUg
-b2YgcGxhY2VzLgpkcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2lycS5jOjE4NjE6NTogZXJyb3I6
-IHN1Z2dlc3QgZXhwbGljaXQgYnJhY2VzIHRvIGF2b2lkIGFtYmlndW91cyDigJhlbHNl4oCZIFst
-V2Vycm9yPWRhbmdsaW5nLWVsc2VdCiAxODYxIHwgIGlmIChwY2hfaWlyICYgU0RFX0ZESV9NQVNL
-KQpkcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2lycS5jOjE5NDQ6NTogZXJyb3I6IHN1Z2dlc3Qg
-ZXhwbGljaXQgYnJhY2VzIHRvIGF2b2lkIGFtYmlndW91cyDigJhlbHNl4oCZIFstV2Vycm9yPWRh
-bmdsaW5nLWVsc2VdCjE5NDQgfCAgaWYgKHBjaF9paXIgJiBTREVfRkRJX01BU0tfQ1BUKQo+IAo+
-ID4KPiA+IENjOiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwuY29t
-Pgo+ID4gU2lnbmVkLW9mZi1ieTogQW5zaHVtYW4gR3VwdGEgPGFuc2h1bWFuLmd1cHRhQGludGVs
-LmNvbT4KPiA+IC0tLQo+ID4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlz
-cGxheS5oIHwgNSArKystLQo+ID4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfaXJxLmMgICAg
-ICAgICAgICAgIHwgNiArKysrLS0KPiA+ICAyIGZpbGVzIGNoYW5nZWQsIDcgaW5zZXJ0aW9ucygr
-KSwgNCBkZWxldGlvbnMoLSkKPiA+Cj4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5
-MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmggYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5
-L2ludGVsX2Rpc3BsYXkuaAo+ID4gaW5kZXggMDI4YWFiNzI4NTE0Li40NzgxM2E1MGFkZDQgMTAw
-NjQ0Cj4gPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXku
-aAo+ID4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmgK
-PiA+IEBAIC0zMTIsMTAgKzMxMiwxMSBAQCBlbnVtIHBoeV9maWEgewo+ID4gIH07Cj4gPiAgCj4g
-PiAgI2RlZmluZSBmb3JfZWFjaF9waXBlKF9fZGV2X3ByaXYsIF9fcCkgXAo+ID4gLQlmb3IgKChf
-X3ApID0gMDsgKF9fcCkgPCBJTlRFTF9OVU1fUElQRVMoX19kZXZfcHJpdik7IChfX3ApKyspCj4g
-PiArCWZvciAoKF9fcCkgPSAwOyAoX19wKSA8IEk5MTVfTUFYX1BJUEVTOyAoX19wKSsrKSBcCj4g
-Cj4gT3JpZ2luYWxseSBJIHdhcyBlbnZpc2lvbmluZyB1c2luZyBmb3JfZWFjaF9zZXRfYml0KCkg
-ZnJvbSBiaXRvcHMuaCBmb3IKPiB0aGlzLiBJdCdzIHByb2JhYmx5IG1vcmUgZWZmaWNpZW50LCBo
-b3dldmVyIEknbSBub3Qgc3VyZSBpZiBlZmZpY2llbmN5Cj4gbWF0dGVycyBtdWNoIGhlcmUuIFRo
-ZSB1Z2x5IHBhcnQgaXMgdGhhdCBmb3JfZWFjaF9zZXRfYml0KCkgcmVxdWlyZXMgYW4KPiBleHBs
-aWNpdCBjYXN0IHRvIHVuc2lnbmVkIGxvbmcgKi4KPiAKPiBQZXJoYXBzIHRoaXMgaXMganVzdCBh
-cyB3ZWxsLCBpdCdzIG5vdCB3cm9uZywgYW5kIGNhbiBhbHdheXMgYmUgdXBkYXRlZAo+IGxhdGVy
-Lgo+IAo+ID4gKwkJZm9yX2VhY2hfaWYoKElOVEVMX0lORk8oX19kZXZfcHJpdiktPnBpcGVfbWFz
-aykgJiBCSVQoX19wKSkKPiA+ICAKPiA+ICAjZGVmaW5lIGZvcl9lYWNoX3BpcGVfbWFza2VkKF9f
-ZGV2X3ByaXYsIF9fcCwgX19tYXNrKSBcCj4gPiAtCWZvciAoKF9fcCkgPSAwOyAoX19wKSA8IElO
-VEVMX05VTV9QSVBFUyhfX2Rldl9wcml2KTsgKF9fcCkrKykgXAo+ID4gKwlmb3JfZWFjaF9waXBl
-KF9fZGV2X3ByaXYsIF9fcCkgXAo+ID4gIAkJZm9yX2VhY2hfaWYoKF9fbWFzaykgJiBCSVQoX19w
-KSkKPiA+ICAKPiA+ICAjZGVmaW5lIGZvcl9lYWNoX2NwdV90cmFuc2NvZGVyX21hc2tlZChfX2Rl
-dl9wcml2LCBfX3QsIF9fbWFzaykgXAo+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9p
-OTE1L2k5MTVfaXJxLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2lycS5jCj4gPiBpbmRl
-eCA5NGNiMjVhYzUwNGQuLjIyZWNkNWJjNDA3ZSAxMDA2NDQKPiA+IC0tLSBhL2RyaXZlcnMvZ3B1
-L2RybS9pOTE1L2k5MTVfaXJxLmMKPiA+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVf
-aXJxLmMKPiA+IEBAIC0xNzM1LDExICsxNzM1LDEyIEBAIHN0YXRpYyB2b2lkIGlieF9pcnFfaGFu
-ZGxlcihzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYsIHUzMiBwY2hfaWlyKQo+ID4g
-IAlpZiAocGNoX2lpciAmIFNERV9QT0lTT04pCj4gPiAgCQlEUk1fRVJST1IoIlBDSCBwb2lzb24g
-aW50ZXJydXB0XG4iKTsKPiA+ICAKPiA+IC0JaWYgKHBjaF9paXIgJiBTREVfRkRJX01BU0spCj4g
-PiArCWlmIChwY2hfaWlyICYgU0RFX0ZESV9NQVNLKSB7Cj4gPiAgCQlmb3JfZWFjaF9waXBlKGRl
-dl9wcml2LCBwaXBlKQo+ID4gIAkJCURSTV9ERUJVR19EUklWRVIoIiAgcGlwZSAlYyBGREkgSUlS
-OiAweCUwOHhcbiIsCj4gPiAgCQkJCQkgcGlwZV9uYW1lKHBpcGUpLAo+ID4gIAkJCQkJIEk5MTVf
-UkVBRChGRElfUlhfSUlSKHBpcGUpKSk7Cj4gPiArCX0KPiAKPiBBcmUgdGhlIGJyYWNlIGNoYW5n
-ZXMgcmVhbGx5IG5lZWRlZD8gVGhpcyBpcyB3aGF0IHRoZSBmb3JfZWFjaF9pZiBoYWNrCj4gaXMg
-c3VwcG9zZWQgdG8gdGFja2xlLgpJTUhPIGl0IHdhcyBkYW5nbGluZy1lbHNlIGNvbXBpbGF0aW9u
-LCB3YXJuaW5nIHRoYXQgcmVxdWlyZXMgYnJhY2VzLgpwbGVhc2UgY29ycmVjdCBtZSBpZiBpIGFt
-IHdyb25nLgpUaGFua3MsCkFuc2h1bWFuCj4gCj4gPiAgCj4gPiAgCWlmIChwY2hfaWlyICYgKFNE
-RV9UUkFOU0JfQ1JDX0RPTkUgfCBTREVfVFJBTlNBX0NSQ19ET05FKSkKPiA+ICAJCURSTV9ERUJV
-R19EUklWRVIoIlBDSCB0cmFuc2NvZGVyIENSQyBkb25lIGludGVycnVwdFxuIik7Cj4gPiBAQCAt
-MTgxOCwxMSArMTgxOSwxMiBAQCBzdGF0aWMgdm9pZCBjcHRfaXJxX2hhbmRsZXIoc3RydWN0IGRy
-bV9pOTE1X3ByaXZhdGUgKmRldl9wcml2LCB1MzIgcGNoX2lpcikKPiA+ICAJaWYgKHBjaF9paXIg
-JiBTREVfQVVESU9fQ1BfQ0hHX0NQVCkKPiA+ICAJCURSTV9ERUJVR19EUklWRVIoIkF1ZGlvIENQ
-IGNoYW5nZSBpbnRlcnJ1cHRcbiIpOwo+ID4gIAo+ID4gLQlpZiAocGNoX2lpciAmIFNERV9GRElf
-TUFTS19DUFQpCj4gPiArCWlmIChwY2hfaWlyICYgU0RFX0ZESV9NQVNLX0NQVCkgewo+ID4gIAkJ
-Zm9yX2VhY2hfcGlwZShkZXZfcHJpdiwgcGlwZSkKPiA+ICAJCQlEUk1fREVCVUdfRFJJVkVSKCIg
-IHBpcGUgJWMgRkRJIElJUjogMHglMDh4XG4iLAo+ID4gIAkJCQkJIHBpcGVfbmFtZShwaXBlKSwK
-PiA+ICAJCQkJCSBJOTE1X1JFQUQoRkRJX1JYX0lJUihwaXBlKSkpOwo+ID4gKwl9Cj4gPiAgCj4g
-PiAgCWlmIChwY2hfaWlyICYgU0RFX0VSUk9SX0NQVCkKPiA+ICAJCWNwdF9zZXJyX2ludF9oYW5k
-bGVyKGRldl9wcml2KTsKPiAKPiAtLSAKPiBKYW5pIE5pa3VsYSwgSW50ZWwgT3BlbiBTb3VyY2Ug
-R3JhcGhpY3MgQ2VudGVyCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9w
-Lm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVs
-LWdmeAo=
+== Series Details ==
+
+Series: drm/i915/gem: Implement parallel execbuffer submission.
+URL   : https://patchwork.freedesktop.org/series/72521/
+State : warning
+
+== Summary ==
+
+$ dim checkpatch origin/drm-tip
+ac32dc249279 drm/i915: Drop inspection of execbuf flags during evict
+dbffec8e6129 drm/i915/gem: Extract transient execbuf flags from i915_vma
+b3ff4cd5c2b0 drm/i915: Separate lookup and pinning in execbuf.
+-:153: CHECK:BRACES: Blank lines aren't necessary before a close brace '}'
+#153: FILE: drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c:858:
+ 
++	}
+
+total: 0 errors, 0 warnings, 1 checks, 190 lines checked
+8745975ba8ef drm/i915: Add an implementation for i915_gem_ww_ctx locking, v2.
+-:528: WARNING:LONG_LINE: line over 100 characters
+#528: FILE: drivers/gpu/drm/i915/i915_gem.c:1337:
++	while ((obj = list_first_entry_or_null(&ww->obj_list, struct drm_i915_gem_object, obj_link))) {
+
+total: 0 errors, 1 warnings, 0 checks, 497 lines checked
+e0cd1376e2da drm/i915: Remove locking from i915_gem_object_prepare_read/write
+ceeddaf549ea drm/i915: Parse command buffer earlier in eb_relocate(slow)
+7a269ec65bee drm/i915: Use per object locking in execbuf on top of struct_mutex, v2.
+-:212: CHECK:BRACES: braces {} should be used on all arms of this statement
+#212: FILE: drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c:1834:
++	if (err == -EDEADLK) {
+[...]
++	else if (err)
+[...]
+
+-:220: ERROR:ELSE_AFTER_BRACE: else should follow close brace '}'
+#220: FILE: drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c:1842:
++	}
++	else if (err)
+
+total: 1 errors, 0 warnings, 1 checks, 315 lines checked
+c4a3a05075bb drm/i915: Use ww locking in intel_renderstate.
+-:10: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#10: 
+Convert to using ww-waiting, and make sure we always pin intel_context_state,
+
+total: 0 errors, 1 warnings, 0 checks, 202 lines checked
+137db377e250 drm/i915: Add ww context handling to context_barrier_task
+-:19: WARNING:LONG_LINE: line over 100 characters
+#19: FILE: drivers/gpu/drm/i915/gem/i915_gem_context.c:931:
++				int (*pin)(struct intel_context *ce, struct i915_gem_ww_ctx *ww, void *data),
+
+total: 0 errors, 1 warnings, 0 checks, 146 lines checked
+02495dc4b9f9 drm/i915: Nuke arguments to eb_pin_engine
+af62c8b5c8b4 drm/i915: Pin engine before pinning all objects
+cae78048f977 drm/i915: Rework intel_context pinning to do everything outside of pin_mutex
+-:314: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#314: FILE: drivers/gpu/drm/i915/gt/intel_lrc.c:2894:
++	*vaddr = i915_gem_object_pin_map(ce->state->obj,
++					i915_coherent_map_type(ce->engine->i915) |
+
+total: 0 errors, 0 warnings, 1 checks, 420 lines checked
+1744b1a75cc8 drm/i915: Make sure execbuffer always passes ww state to i915_vma_pin.
+-:64: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#64: FILE: drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c:582:
++	err = i915_vma_pin_ww(vma, &eb->ww,
+ 			   entry->pad_to_size, entry->alignment,
+
+total: 0 errors, 0 warnings, 1 checks, 532 lines checked
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
