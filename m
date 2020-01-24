@@ -2,55 +2,66 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A654E148F47
-	for <lists+intel-gfx@lfdr.de>; Fri, 24 Jan 2020 21:23:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E8A53148F65
+	for <lists+intel-gfx@lfdr.de>; Fri, 24 Jan 2020 21:32:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 182516E437;
-	Fri, 24 Jan 2020 20:23:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D28266E442;
+	Fri, 24 Jan 2020 20:32:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-lf1-x144.google.com (mail-lf1-x144.google.com
- [IPv6:2a00:1450:4864:20::144])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 92EA772BB4
- for <intel-gfx@lists.freedesktop.org>; Fri, 24 Jan 2020 20:23:39 +0000 (UTC)
-Received: by mail-lf1-x144.google.com with SMTP id l18so2029669lfc.1
- for <intel-gfx@lists.freedesktop.org>; Fri, 24 Jan 2020 12:23:39 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=eibpFJ/dL/po7h/5lUN6b9t7vGqoq6edRosDwybFErA=;
- b=THXVTwkodkl4NV0lthJq64T8BkB+kb+ffvrbOIIER8YxEvQBCT2o/7LDw2RGVsJRL2
- uXOqDAz/tYlhLLwyQPSbMtBDwZfl9wCyed52H+MSR+Bhx3i7TtCEQ5VJU92oS91V0RFM
- ZV5jHG9CroKc3T7vN4hYoBeavgcbdaIhntw1I43u67p8jWEleo+IoYekee0/fKj5k0q5
- j7pVKy/aHd/X5lwcOmIBtCfUfiW1DfPSHtSfw5MX86ChFkP7YXD5BEfd29Jxxk9IAv24
- S4NJIPiBbOExUxqQNGmNrCJhRl4iIoj27x5+BxRyuAPtp8XZPn0qsKyzOjcH1s/aC3Lz
- SQow==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=eibpFJ/dL/po7h/5lUN6b9t7vGqoq6edRosDwybFErA=;
- b=cgWJZguNsKR0uUYYANhBcIyzYulYwSa5TH7/HYNU+wGXYOkf1gcs3EHH+PefEW59d2
- AOteyip1JPdfFYnSITQzUlbgIvcmksTxCLcC9xOudEIDrGwuiebrbdk9j+WzHnEh1J6K
- o0TT1H+nRPe0SZQP6ZXAZqTjCsJe51MYifgiG9Z1toF6Uw2flw783iCM/pUBfe4PPPXg
- 59oCyUawEimhtbZ/g6rithcR85jaxOAfR0TqSyjUSJYEl0MVUT0aspo/mZzNYxHSKC5a
- ddv/zjlTdLvAxKU7nC1VmWtQQPwuxZaMNxPZTVXannlYkV9NjM77dn4vzbYzadZ9TATV
- AVNw==
-X-Gm-Message-State: APjAAAWsNOs56yBVa7cSHiJB8WRaov3odzT1vOVa4ufYShU+uWmuBpNa
- RfQBwFQMhmgaWFSxMIHICUS2e00w949qHb0NgDk/dQ==
-X-Google-Smtp-Source: APXvYqxuuu1/zxYUm5WDAcBoC5BQJSb6/tHB3M19FeY/I611GVLHEkCovpovRlvKoQIBXafdXuc2bwrDj8ePsYYTNKk=
-X-Received: by 2002:a19:4208:: with SMTP id p8mr2257984lfa.160.1579897417530; 
- Fri, 24 Jan 2020 12:23:37 -0800 (PST)
+Received: from ste-pvt-msa2.bahnhof.se (ste-pvt-msa2.bahnhof.se
+ [213.80.101.71])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2ECD86E043;
+ Fri, 24 Jan 2020 20:32:48 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+ by ste-pvt-msa2.bahnhof.se (Postfix) with ESMTP id 3EEF43FAF7;
+ Fri, 24 Jan 2020 21:32:46 +0100 (CET)
+Authentication-Results: ste-pvt-msa2.bahnhof.se; dkim=pass (1024-bit key;
+ unprotected) header.d=shipmail.org header.i=@shipmail.org header.b=bjMIqa7P; 
+ dkim-atps=neutral
+X-Virus-Scanned: Debian amavisd-new at bahnhof.se
+X-Spam-Flag: NO
+X-Spam-Score: -2.099
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.099 tagged_above=-999 required=6.31
+ tests=[BAYES_00=-1.9, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+ DKIM_VALID_AU=-0.1, DKIM_VALID_EF=-0.1, URIBL_BLOCKED=0.001]
+ autolearn=ham autolearn_force=no
+Authentication-Results: ste-ftg-msa2.bahnhof.se (amavisd-new);
+ dkim=pass (1024-bit key) header.d=shipmail.org
+Received: from ste-pvt-msa2.bahnhof.se ([127.0.0.1])
+ by localhost (ste-ftg-msa2.bahnhof.se [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id Cx9psLqG8DRM; Fri, 24 Jan 2020 21:32:44 +0100 (CET)
+Received: from mail1.shipmail.org (h-205-35.A357.priv.bahnhof.se
+ [155.4.205.35]) (Authenticated sender: mb878879)
+ by ste-pvt-msa2.bahnhof.se (Postfix) with ESMTPA id 919423F5EC;
+ Fri, 24 Jan 2020 21:32:43 +0100 (CET)
+Received: from localhost.localdomain (h-205-35.A357.priv.bahnhof.se
+ [155.4.205.35])
+ by mail1.shipmail.org (Postfix) with ESMTPSA id C9B3036015F;
+ Fri, 24 Jan 2020 21:32:42 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=shipmail.org; s=mail;
+ t=1579897962; bh=2NaGwElzqFny5tB4L83I3vn6XfjnjJvgOTHCSvWQYlQ=;
+ h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+ b=bjMIqa7PKOHNTrmPdhZddpUCBxe+REZ2RIQFye0U7XqdGLDMbWWxb2pT0tQKmIeT0
+ tzO49tAFajAZUMiTydqv0cSLIH62z/96JeXYiTJWZTSCr5fCgOfwPrQjZ8FSPqqAEA
+ HCvBeQ7SCXmhkdrbertXG9ltb1mAKDhRceIXMOYs=
+To: Chris Wilson <chris@chris-wilson.co.uk>, dri-devel@lists.freedesktop.org
+References: <20200124125627.125042-2-chris@chris-wilson.co.uk>
+ <20200124130107.125404-1-chris@chris-wilson.co.uk>
+ <38d3a0bf-4dfa-c8e4-c429-8c95854a9b8c@shipmail.org>
+ <157989116639.2524.11400196809963426024@skylake-alporthouse-com>
+From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m_=28VMware=29?= <thomas_os@shipmail.org>
+Organization: VMware Inc.
+Message-ID: <2d7c3a6b-7e08-2937-47b9-9148d885a8c1@shipmail.org>
+Date: Fri, 24 Jan 2020 21:32:42 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
 MIME-Version: 1.0
-References: <20191220200353.252399-1-rajatja@google.com>
- <20191220200353.252399-2-rajatja@google.com>
- <87v9p1gk4z.fsf@intel.com>
-In-Reply-To: <87v9p1gk4z.fsf@intel.com>
-From: Rajat Jain <rajatja@google.com>
-Date: Fri, 24 Jan 2020 12:23:00 -0800
-Message-ID: <CACK8Z6GN1tXj+a3HHgyVKzTcgYBB+v8gpLCqh+YgTU0tS5b-OA@mail.gmail.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Subject: Re: [Intel-gfx] [PATCH v5 2/3] drm/i915: Lookup and attach ACPI
- device node for connectors
+In-Reply-To: <157989116639.2524.11400196809963426024@skylake-alporthouse-com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH] drm: Avoid drm_global_mutex for simple
+ inc/dec of dev->open_count
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,208 +74,33 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Sean Paul <seanpaul@google.com>, David Airlie <airlied@linux.ie>,
- dri-devel <dri-devel@lists.freedesktop.org>,
- Daniel Thompson <daniel.thompson@linaro.org>, Jonathan Corbet <corbet@lwn.net>,
- Rajat Jain <rajatxjain@gmail.com>, intel-gfx@lists.freedesktop.org,
- Maxime Ripard <mripard@kernel.org>, Mat King <mathewk@google.com>,
- Duncan Laurie <dlaurie@google.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- Pavel Machek <pavel@denx.de>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: intel-gfx@lists.freedesktop.org
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Jani,
-
-Thank you for the review. Please see inline.
-
-On Fri, Jan 24, 2020 at 3:37 AM Jani Nikula <jani.nikula@linux.intel.com> wrote:
->
-> On Fri, 20 Dec 2019, Rajat Jain <rajatja@google.com> wrote:
-> > Lookup and attach ACPI nodes for intel connectors. The lookup is done
-> > in compliance with ACPI Spec 6.3
-> > https://uefi.org/sites/default/files/resources/ACPI_6_3_final_Jan30.pdf
-> > (Ref: Pages 1119 - 1123).
-> >
-> > This can be useful for any connector specific platform properties. (This
-> > will be used for privacy screen in next patch).
-> >
-> > Signed-off-by: Rajat Jain <rajatja@google.com>
-> > ---
-> > v5: same as v4
-> > v4: Same as v3
-> > v3: fold the code into existing acpi_device_id_update() function
-> > v2: formed by splitting the original patch into ACPI lookup, and privacy
-> >     screen property. Also move it into i915 now that I found existing code
-> >     in i915 that can be re-used.
-> >
-> >  drivers/gpu/drm/i915/display/intel_acpi.c     | 24 +++++++++++++++++++
-> >  .../drm/i915/display/intel_display_types.h    |  3 +++
-> >  drivers/gpu/drm/i915/display/intel_dp.c       |  3 +++
-> >  3 files changed, 30 insertions(+)
-> >
-> > diff --git a/drivers/gpu/drm/i915/display/intel_acpi.c b/drivers/gpu/drm/i915/display/intel_acpi.c
-> > index e21fb14d5e07..101a56c08996 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_acpi.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_acpi.c
-> > @@ -222,11 +222,23 @@ static u32 acpi_display_type(struct intel_connector *connector)
-> >       return display_type;
-> >  }
-> >
-> > +/*
-> > + * Ref: ACPI Spec 6.3
-> > + * https://uefi.org/sites/default/files/resources/ACPI_6_3_final_Jan30.pdf
-> > + * Pages 1119 - 1123 describe, what I believe, a standard way of
-> > + * identifying / addressing "display panels" in the ACPI. It provides
-> > + * a way for the ACPI to define devices for the display panels attached
-> > + * to the system. It thus provides a way for the BIOS to export any panel
-> > + * specific properties to the system via ACPI (like device trees).
-> > + */
-> >  void intel_acpi_device_id_update(struct drm_i915_private *dev_priv)
-> >  {
-> >       struct drm_device *drm_dev = &dev_priv->drm;
-> >       struct intel_connector *connector;
-> >       struct drm_connector_list_iter conn_iter;
-> > +     struct device *dev = &drm_dev->pdev->dev;
->
-> Hmm, already pushed patch 1 with the unfortunate "drm_dev" local. We use
-> "dev" for struct drm_device * and almost never use struct device.
-
-Sorry, I did not know. I'll send an independent fixup patch for patch
-1 on top of drm-intel-next-queued (or let me know if you want to
-handle it). I will also change this patch to rename the variable.
-
->
-> > +     struct acpi_device *conn_dev;
-> > +     u64 conn_addr;
-> >       u8 display_index[16] = {};
-> >
-> >       /* Populate the ACPI IDs for all connectors for a given drm_device */
-> > @@ -242,6 +254,18 @@ void intel_acpi_device_id_update(struct drm_i915_private *dev_priv)
-> >               device_id |= display_index[type]++ << ACPI_DISPLAY_INDEX_SHIFT;
-> >
-> >               connector->acpi_device_id = device_id;
-> > +
-> > +             /* Build the _ADR to look for */
-> > +             conn_addr = device_id | ACPI_DEVICE_ID_SCHEME |
-> > +                             ACPI_BIOS_CAN_DETECT;
-> > +
-> > +             DRM_DEV_INFO(dev, "Checking connector ACPI node at _ADR=%llX\n",
-> > +                          conn_addr);
->
-> This is more than a little verbose. One line of INFO level dmesg for
-> every connector at boot and at resume.
->
-> Please use the new drm_dbg_kms() macro for this.
-
-Will do.
-
->
-> > +
-> > +             /* Look up the connector device, under the PCI device */
-> > +             conn_dev = acpi_find_child_device(ACPI_COMPANION(dev),
-> > +                                               conn_addr, false);
-> > +             connector->acpi_handle = conn_dev ? conn_dev->handle : NULL;
->
-> acpi_device_handle(conn_dev)
->
-
-Will do.
-
-
-> >       }
-> >       drm_connector_list_iter_end(&conn_iter);
-> >  }
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-> > index 1a7334dbe802..0a4a04116091 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> > +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> > @@ -407,6 +407,9 @@ struct intel_connector {
-> >       /* ACPI device id for ACPI and driver cooperation */
-> >       u32 acpi_device_id;
-> >
-> > +     /* ACPI handle corresponding to this connector display, if found */
-> > +     void *acpi_handle;
-> > +
->
-> The type is acpi_handle. It's none of our business to know what the
-> underlying type is.
-
-Will do.
-
->
-> >       /* Reads out the current hw, returning true if the connector is enabled
-> >        * and active (i.e. dpms ON state). */
-> >       bool (*get_hw_state)(struct intel_connector *);
-> > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> > index b05b2191b919..93cece8e2516 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> > @@ -45,6 +45,7 @@
-> >  #include "i915_debugfs.h"
-> >  #include "i915_drv.h"
-> >  #include "i915_trace.h"
-> > +#include "intel_acpi.h"
-> >  #include "intel_atomic.h"
-> >  #include "intel_audio.h"
-> >  #include "intel_connector.h"
-> > @@ -6623,6 +6624,8 @@ intel_dp_add_properties(struct intel_dp *intel_dp, struct drm_connector *connect
-> >
-> >               connector->state->scaling_mode = DRM_MODE_SCALE_ASPECT;
-> >
-> > +             /* Lookup the ACPI node corresponding to the connector */
-> > +             intel_acpi_device_id_update(dev_priv);
->
-> Auch, this is problematic. It iterates all connectors, for every DP
-> connector being added. In the middle of registering all connectors.
->
-> From the POV of this patch alone, this is also unnecessary. This gets
-> called via intel_opregion_register() after all connectors have been
-> registered.
->
-> I am aware it's not enough for your next patch, because it will need the
-> acpi handle right here.
->
-> I'm wondering if we need to maintain display_index[] in struct
-> drm_i915_private, and update that as connectors get added instead of all
-> at once in the end.
-
-Sure, I can do that.
-
-> connector->acpi_device_id never changes, does it,
-> even though we keep updating it?
-
-This is the part I am not so sure about - I hypothesized that theory
-because of the current behavior in code (i.e. it is getting updated in
-intel_opregion_resume() path). May be it does not change, I was not
-sure, so I did not want to create any regression in the intel_opregion
-code that I did not understand. I tried on my system and as far as I
-could experiment, I did not see it changing. Please let me know if you
-would like me to change my code to:
-
-1) Maintain drm_i915_private->display_index[] and update it as
-connectors are added.
-2) Remove the code to update it on every resume and while registering
-the connector.
-
-Thanks & Best Regards,
-
-Rajat
-
->
-> BR,
-> Jani.
->
->
-> >       }
-> >  }
->
-> --
-> Jani Nikula, Intel Open Source Graphics Center
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gMS8yNC8yMCA3OjM5IFBNLCBDaHJpcyBXaWxzb24gd3JvdGU6Cj4gUXVvdGluZyBUaG9tYXMg
+SGVsbHN0csO2bSAoVk13YXJlKSAoMjAyMC0wMS0yNCAxMzozNzo0NykKPj4gT24gMS8yNC8yMCAy
+OjAxIFBNLCBDaHJpcyBXaWxzb24gd3JvdGU6Cj4+PiBTaW5jZSBkcm1fZ2xvYmFsX211dGV4IGlz
+IGEgdHJ1ZSBnbG9iYWwgbXV0ZXggYWNyb3NzIGRldmljZXMsIHdlIGRvbid0Cj4+PiB3YW50IHRv
+IGFjcXVpcmUgaXQgdW5sZXNzIGFic29sdXRlbHkgbmVjZXNzYXJ5LiBGb3IgbWFpbnRhaW5pbmcg
+dGhlCj4+PiBkZXZpY2UgbG9jYWwgb3Blbl9jb3VudCwgd2UgY2FuIHVzZSBhdG9taWMgb3BlcmF0
+aW9ucyBvbiB0aGUgY291bnRlcgo+Pj4gaXRzZWxmLCBleGNlcHQgd2hlbiBtYWtpbmcgdGhlIHRy
+YW5zaXRpb24gdG8vZnJvbSAwLiBIZXJlLCB3ZSB0YWNrbGUgdGhlCj4+PiBlYXN5IHBvcnRpb24g
+b2YgZGVsYXlpbmcgYWNxdWlyaW5nIHRoZSBkcm1fZ2xvYmFsX211dGV4IGZvciB0aGUgZmluYWwK
+Pj4+IHJlbGVhc2UgYnkgdXNpbmcgYXRvbWljX2RlY19hbmRfbXV0ZXhfbG9jaygpLCBsZWF2aW5n
+IHRoZSBnbG9iYWwKPj4+IHNlcmlhbGlzYXRpb24gYWNyb3NzIHRoZSBkZXZpY2Ugb3BlbnMuCj4+
+Pgo+Pj4gU2lnbmVkLW9mZi1ieTogQ2hyaXMgV2lsc29uIDxjaHJpc0BjaHJpcy13aWxzb24uY28u
+dWs+Cj4+PiBDYzogVGhvbWFzIEhlbGxzdHLDtm0gKFZNd2FyZSkgPHRob21hc19vc0BzaGlwbWFp
+bC5vcmc+Cj4+IEZvciB0aGUgc2VyaWVzOgo+Pgo+PiBSZXZpZXdlZC1ieTogVGhvbWFzIEhlbGxz
+dHLDtm0gPHRoZWxsc3Ryb21Adm13YXJlLmNvbT4KPiBOb3cgYmVpbmcgb3B0LWluLCBpdCBpcyBm
+YWlybHkgbGltaXRlZCBpbiBzY29wZSBhbmQgd2lsbCBub3QgcmFuZG9tbHkKPiBicmVhayBvdGhl
+cnMgKHRvdWNoIHdvb2QpIGFuZCB0aGUgY2xvc2UoKSByYWNpbmcgaW4gQkFUIGRpZG4ndCB0aHJv
+dwo+IGFueXRoaW5nIHVwLCBzbyBwdXNoZWQgdG8gZHJtLW1pc2MtbmV4dC4gVGhhbmtzIGZvciB0
+aGUgcmV2aWV3IGFuZAo+IHN1Z2dlc3Rpb25zLAo+Cj4gTmV4dCB0YXNrIGlzIHRvIHN1Z2dlc3Qg
+b3RoZXJzIG1pZ2h0IGxpa2UgdG8gdXNlIGl0IGFzIHdlbGwuCj4gLUNocmlzCgpUaGFua3MuIEkn
+bGwgbG9vayBhdCBkb2luZyB0aGUgc2FtZSBmb3IgdGhvc2UgZHJpdmVycyBJIGF1ZGl0ZWQuCgov
+VGhvbWFzCgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18K
+SW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0
+dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
