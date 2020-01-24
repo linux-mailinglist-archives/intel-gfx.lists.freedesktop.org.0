@@ -1,39 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C50E81490D9
-	for <lists+intel-gfx@lfdr.de>; Fri, 24 Jan 2020 23:28:53 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 24F64149149
+	for <lists+intel-gfx@lfdr.de>; Fri, 24 Jan 2020 23:46:16 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8BEF06E455;
-	Fri, 24 Jan 2020 22:28:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A78F46E45D;
+	Fri, 24 Jan 2020 22:46:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D164B6E455
- for <intel-gfx@lists.freedesktop.org>; Fri, 24 Jan 2020 22:28:49 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-X-Amp-File-Uploaded: False
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 24 Jan 2020 14:28:49 -0800
-X-IronPort-AV: E=Sophos;i="5.70,359,1574150400"; d="scan'208";a="251425113"
-Received: from rdvivi-losangeles.jf.intel.com (HELO intel.com)
- ([10.165.21.202])
- by fmsmga004-auth.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 24 Jan 2020 14:28:48 -0800
-Date: Fri, 24 Jan 2020 14:30:19 -0800
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>
-Message-ID: <20200124223019.GA3529069@intel.com>
-References: <cover.1579871655.git.jani.nikula@intel.com>
- <157987409843.2524.2998401254997919669@skylake-alporthouse-com>
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 485F56E45D
+ for <intel-gfx@lists.freedesktop.org>; Fri, 24 Jan 2020 22:46:12 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20001569-1500050 
+ for multiple; Fri, 24 Jan 2020 22:45:51 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri, 24 Jan 2020 22:45:50 +0000
+Message-Id: <20200124224550.663437-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.25.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <157987409843.2524.2998401254997919669@skylake-alporthouse-com>
-Subject: Re: [Intel-gfx] [RFC 00/33] drm/i915/display: mass conversion to
- intel_de_*() register accessors
+Subject: [Intel-gfx] [PATCH] drm/i915: Check current i915_vma.pin_count
+ status first on unbind
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,55 +37,93 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org,
- Lucas De Marchi <lucas.demarchi@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Jan 24, 2020 at 01:54:58PM +0000, Chris Wilson wrote:
-> Quoting Jani Nikula (2020-01-24 13:25:21)
-> > Hey all,
-> > 
-> > So I sent [1] to convert some forcewake register accessors... but what if we
-> > just ripped off the bandage once and for all? It's going to hurt, a lot, but
-> > we'd get it done.
-> > 
-> > This completely rids us of the "dev_priv" dependency in display/.
-> > 
-> > All the patches here are per-file and independent of each other. We could also
-> > pick and apply the ones that are least likely to conflict.
-> > 
-> > Opinions?
-> > 
-> > 
-> > BR,
-> > Jani.
-> > 
-> > 
-> > PS. I didn't bother looking at the checkpatch warnings this may generate at this
-> > point. I just used the --linux-spacing option for spatch, and closed my eyes. I
-> > completely scripted the generation of the series, apart from just a couple of
-> > build fixes.
-> 
-> Yup. Suck it all in, clean up with the usual code refreshes.
-> Schadenfreude-by: Chris Wilson <chris@chris-wilson.co.uk>
-> 
-> I've looked at a couple of patches to confirm that it does appear purely
-> mechanical,
-> Acked-by: Chris Wilson <chris@chris-wilson.co.uk>
+Do an early rejection of a i915_vma_unbind() attempt if the i915_vma is
+currently pinned, without waiting to see if the inflight operations may
+unpin it. We see this problem with the shrinker trying to unbind the
+active vma from inside its bind worker:
 
-Since it is purely mechanical with coccinelle, why not to make in only one patch?
+<6> [472.618968] Workqueue: events_unbound fence_work [i915]
+<4> [472.618970] Call Trace:
+<4> [472.618974]  ? __schedule+0x2e5/0x810
+<4> [472.618978]  schedule+0x37/0xe0
+<4> [472.618982]  schedule_preempt_disabled+0xf/0x20
+<4> [472.618984]  __mutex_lock+0x281/0x9c0
+<4> [472.618987]  ? mark_held_locks+0x49/0x70
+<4> [472.618989]  ? _raw_spin_unlock_irqrestore+0x47/0x60
+<4> [472.619038]  ? i915_vma_unbind+0xae/0x110 [i915]
+<4> [472.619084]  ? i915_vma_unbind+0xae/0x110 [i915]
+<4> [472.619122]  i915_vma_unbind+0xae/0x110 [i915]
+<4> [472.619165]  i915_gem_object_unbind+0x1dc/0x400 [i915]
+<4> [472.619208]  i915_gem_shrink+0x328/0x660 [i915]
+<4> [472.619250]  ? i915_gem_shrink_all+0x38/0x60 [i915]
+<4> [472.619282]  i915_gem_shrink_all+0x38/0x60 [i915]
+<4> [472.619325]  vm_alloc_page.constprop.25+0x1aa/0x240 [i915]
+<4> [472.619330]  ? rcu_read_lock_sched_held+0x4d/0x80
+<4> [472.619363]  ? __alloc_pd+0xb/0x30 [i915]
+<4> [472.619366]  ? module_assert_mutex_or_preempt+0xf/0x30
+<4> [472.619368]  ? __module_address+0x23/0xe0
+<4> [472.619371]  ? is_module_address+0x26/0x40
+<4> [472.619374]  ? static_obj+0x34/0x50
+<4> [472.619376]  ? lockdep_init_map+0x4d/0x1e0
+<4> [472.619407]  setup_page_dma+0xd/0x90 [i915]
+<4> [472.619437]  alloc_pd+0x29/0x50 [i915]
+<4> [472.619470]  __gen8_ppgtt_alloc+0x443/0x6b0 [i915]
+<4> [472.619503]  gen8_ppgtt_alloc+0xd7/0x300 [i915]
+<4> [472.619535]  ppgtt_bind_vma+0x2a/0xe0 [i915]
+<4> [472.619577]  __vma_bind+0x26/0x40 [i915]
+<4> [472.619611]  fence_work+0x1c/0x90 [i915]
+<4> [472.619617]  process_one_work+0x26a/0x620
 
-Anyway:
-Acked-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Fixes: 2850748ef876 ("drm/i915: Pull i915_vma_pin under the vm->mutex")
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+---
+ drivers/gpu/drm/i915/i915_vma.c | 17 +++++------------
+ 1 file changed, 5 insertions(+), 12 deletions(-)
 
-> -Chris
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+diff --git a/drivers/gpu/drm/i915/i915_vma.c b/drivers/gpu/drm/i915/i915_vma.c
+index 84e03da0d5f9..2ffc68e18dd0 100644
+--- a/drivers/gpu/drm/i915/i915_vma.c
++++ b/drivers/gpu/drm/i915/i915_vma.c
+@@ -1190,18 +1190,6 @@ int __i915_vma_unbind(struct i915_vma *vma)
+ 
+ 	lockdep_assert_held(&vma->vm->mutex);
+ 
+-	/*
+-	 * First wait upon any activity as retiring the request may
+-	 * have side-effects such as unpinning or even unbinding this vma.
+-	 *
+-	 * XXX Actually waiting under the vm->mutex is a hinderance and
+-	 * should be pipelined wherever possible. In cases where that is
+-	 * unavoidable, we should lift the wait to before the mutex.
+-	 */
+-	ret = i915_vma_sync(vma);
+-	if (ret)
+-		return ret;
+-
+ 	if (i915_vma_is_pinned(vma)) {
+ 		vma_print_allocator(vma, "is pinned");
+ 		return -EAGAIN;
+@@ -1275,6 +1263,11 @@ int i915_vma_unbind(struct i915_vma *vma)
+ 	if (!drm_mm_node_allocated(&vma->node))
+ 		return 0;
+ 
++	if (i915_vma_is_pinned(vma)) {
++		vma_print_allocator(vma, "is pinned");
++		return -EAGAIN;
++	}
++
+ 	if (i915_vma_is_bound(vma, I915_VMA_GLOBAL_BIND))
+ 		/* XXX not always required: nop_clear_range */
+ 		wakeref = intel_runtime_pm_get(&vm->i915->runtime_pm);
+-- 
+2.25.0
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
