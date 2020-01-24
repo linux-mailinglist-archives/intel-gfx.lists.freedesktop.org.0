@@ -2,34 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 52C251479FE
-	for <lists+intel-gfx@lfdr.de>; Fri, 24 Jan 2020 10:06:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D10DB1479F7
+	for <lists+intel-gfx@lfdr.de>; Fri, 24 Jan 2020 10:06:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 081A66FFAD;
-	Fri, 24 Jan 2020 09:06:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0B3726FF9C;
+	Fri, 24 Jan 2020 09:06:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7A2F56FF9E
- for <intel-gfx@lists.freedesktop.org>; Fri, 24 Jan 2020 09:06:29 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga106.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 24 Jan 2020 01:04:51 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,357,1574150400"; d="scan'208";a="245655161"
-Received: from nvishwa1-desk.sc.intel.com ([10.3.160.185])
- by orsmga002.jf.intel.com with ESMTP; 24 Jan 2020 01:04:50 -0800
-From: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri, 24 Jan 2020 00:54:02 -0800
-Message-Id: <20200124085402.11644-9-niranjana.vishwanathapura@intel.com>
-X-Mailer: git-send-email 2.21.0.rc0.32.g243a4c7e27
-In-Reply-To: <20200124085402.11644-1-niranjana.vishwanathapura@intel.com>
-References: <20200124085402.11644-1-niranjana.vishwanathapura@intel.com>
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C4B316FF9C
+ for <intel-gfx@lists.freedesktop.org>; Fri, 24 Jan 2020 09:06:02 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 19991214-1500050 for multiple; Fri, 24 Jan 2020 09:05:59 +0000
 MIME-Version: 1.0
-Subject: [Intel-gfx] [RFC 8/8] drm/i915/svm: VM_BIND for endless batch buffer
+From: Chris Wilson <chris@chris-wilson.co.uk>
+User-Agent: alot/0.6
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+References: <20200122204329.2477-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20200122204329.2477-1-ville.syrjala@linux.intel.com>
+Message-ID: <157985675792.6050.13590254937126760466@skylake-alporthouse-com>
+Date: Fri, 24 Jan 2020 09:05:57 +0000
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Fix modeset locks in
+ sanitize_watermarks()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,55 +40,30 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: chris.p.wilson@intel.com, jason.ekstrand@intel.com, daniel.vetter@intel.com
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Initial attempt at supporting VM_BIND for  endless batch buffer.
-Not tested.
-
-Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Cc: Jon Bloomfield <jon.bloomfield@intel.com>
-Cc: Daniel Vetter <daniel.vetter@intel.com>
-Cc: Chris P Wilson <chris.p.wilson@intel.com>
-Cc: Sudeep Dutt <sudeep.dutt@intel.com>
-Cc: Stuart Summers <stuart.summers@intel.com>
-Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
----
- drivers/gpu/drm/i915/gem/i915_gem_svm.c | 11 +++++++++++
- 1 file changed, 11 insertions(+)
-
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_svm.c b/drivers/gpu/drm/i915/gem/i915_gem_svm.c
-index e5e45ccc4262..dd12c2c46aa8 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_svm.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_svm.c
-@@ -68,9 +68,20 @@ int i915_gem_vm_bind_svm_obj(struct i915_address_space *vm,
- 		 * and we don't need to store va_start.
- 		 */
- 		mutex_lock(&vm->svm_mutex);
-+		if (i915_vm_is_active(vm)) {
-+			u64 pin_flags = vma->va_start |
-+					PIN_OFFSET_FIXED | PIN_USER;
-+
-+			ret = i915_vma_pin(vma, 0, 0, pin_flags);
-+			if (ret) {
-+				mutex_unlock(&vm->mutex);
-+				goto put_obj;
-+			}
-+		}
- 		list_add(&vma->svm_link, &vm->svm_list);
- 		mutex_unlock(&vm->svm_mutex);
- 	} else {
-+		/* FIXME: Do async unbind if vm is active */
- 		vma = i915_gem_vm_lookup_svm_vma(vm, obj, va);
- 		if (vma) {
- 			__i915_vma_unpin(vma);
--- 
-2.21.0.rc0.32.g243a4c7e27
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+UXVvdGluZyBWaWxsZSBTeXJqYWxhICgyMDIwLTAxLTIyIDIwOjQzOjI5KQo+IEZyb206IFZpbGxl
+IFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5jb20+Cj4gCj4gV2UndmUgYWRk
+ZWQgbW9yZSBpbnRlcm5hbCB0aGluZ3MgdGhhdCB1c2UgbW9kZXNldCBsb2NrcyBhbmQKPiB0aHVz
+IHdlIG5lZWQgdG8gYmUgcHJlcGFyZWQgZm9yIGludGVsX2F0b21pY19jaGVjaygpIGdyYWJiaW5n
+Cj4gbW9yZSBsb2NrcyB0aGFuIHdoYXQgb3VyIGluaXRpYWwgZHJtX21vZGVzZXRfbG9ja19hbGxf
+Y3R4KCkKPiB0b29rLiBTbyB3ZSdyZSBtaXNzaW5nIHRoZSBiYWNrb2ZmIGhhbmRsaW5nIGhlcmUu
+Cj4gCj4gQWxzbyBkcm1fYXRvbWljX2hlbHBlcl9kdXBsaWNhdGVfc3RhdGUoKSB3b3JrcyBhZ2Fp
+bnN0IHVzCj4gYnkgY2xlYXJpbmcgc3RhdGUtPmFjcXVpcmVfY3R4IGluIGFudGljaXBhdGlvbiBv
+Zgo+IGRybV9hdG9taWNfaGVscGVyX2NvbW1pdF9kdXBsaWNhdGVkX3N0YXRlKCkgYmVpbmcgdXNl
+ZCB0bwo+IGNvbW1pdCB0aGUgc3RhdGUuCj4gCj4gV2UgY291bGQgcHJvYmFibHkganVzdCByZXNl
+dCBhY3F1aXJlX2N0eCBiYWNrLCBidXQgaW5zdGVhZAo+IGxldCdzIGp1c3QgcmV3cml0ZSB0aGUg
+d2hvbGUgdGhpbmcgd2l0aG91dCB1c2luZyBlaXRoZXIgb2YKPiB0aG9zZSAiaGVscGVycyIuIFRo
+ZXJlJ3MgYWxzbyBubyBuZWVkIHRvIGFkZCBhbnkgY29ubmVjdG9ycwo+IHRvIHRoZSBzdGF0ZSBo
+ZXJlIHNpbmNlIHdlIGp1c3Qgd2FudCB0aGUgbmV3IHdhdGVybWFya3MKPiB3aGljaCBkb24ndCBk
+ZXBlbmQgb24gY29ubmVjdG9ycy4KPiAKPiBDYzogQ2hyaXMgV2lsc29uIDxjaHJpc0BjaHJpcy13
+aWxzb24uY28udWs+Cj4gU2lnbmVkLW9mZi1ieTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJq
+YWxhQGxpbnV4LmludGVsLmNvbT4KClNvbWUgYW1vdW50IG9mIHN0YXJpbmcgbGF0ZXIsIGFpdWkg
+dGhlIG5ldyBmbG93IGlzIGNvcnJlY3QuClJldmlld2VkLWJ5OiBDaHJpcyBXaWxzb24gPGNocmlz
+QGNocmlzLXdpbHNvbi5jby51az4KLUNocmlzCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3Rz
+LmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xp
+c3RpbmZvL2ludGVsLWdmeAo=
