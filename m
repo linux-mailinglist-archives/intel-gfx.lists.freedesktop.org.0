@@ -1,38 +1,38 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D58401485F5
-	for <lists+intel-gfx@lfdr.de>; Fri, 24 Jan 2020 14:25:08 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 082D51485F6
+	for <lists+intel-gfx@lfdr.de>; Fri, 24 Jan 2020 14:25:14 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A2A1A72A69;
-	Fri, 24 Jan 2020 13:25:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DE22472A6B;
+	Fri, 24 Jan 2020 13:25:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B058E72A69
- for <intel-gfx@lists.freedesktop.org>; Fri, 24 Jan 2020 13:25:05 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5252E72A6B
+ for <intel-gfx@lists.freedesktop.org>; Fri, 24 Jan 2020 13:25:10 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 24 Jan 2020 05:25:05 -0800
-X-IronPort-AV: E=Sophos;i="5.70,357,1574150400"; d="scan'208";a="216592730"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 24 Jan 2020 05:25:09 -0800
+X-IronPort-AV: E=Sophos;i="5.70,357,1574150400"; d="scan'208";a="230290753"
 Received: from omarkovx-mobl.ger.corp.intel.com (HELO localhost)
  ([10.249.37.60])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 24 Jan 2020 05:25:03 -0800
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 24 Jan 2020 05:25:08 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri, 24 Jan 2020 15:25:22 +0200
-Message-Id: <21ae8459273922283d6d79ad5aed8564440bdcf0.1579871655.git.jani.nikula@intel.com>
+Date: Fri, 24 Jan 2020 15:25:23 +0200
+Message-Id: <ca53d8a5ecd1045325447b728376c8aa2891905f.1579871655.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <cover.1579871655.git.jani.nikula@intel.com>
 References: <cover.1579871655.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Subject: [Intel-gfx] [RFC 01/33] drm/i915/icl_dsi: use intel_de_*()
- functions for register access
+Subject: [Intel-gfx] [RFC 02/33] drm/i915/audio: use intel_de_*() functions
+ for register access
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -95,737 +95,338 @@ expression REG, OFFSET;
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/icl_dsi.c | 271 +++++++++++++------------
- 1 file changed, 145 insertions(+), 126 deletions(-)
+ drivers/gpu/drm/i915/display/intel_audio.c | 112 +++++++++++----------
+ 1 file changed, 58 insertions(+), 54 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i915/display/icl_dsi.c
-index a7457303c62e..db75a4c8c722 100644
---- a/drivers/gpu/drm/i915/display/icl_dsi.c
-+++ b/drivers/gpu/drm/i915/display/icl_dsi.c
-@@ -39,14 +39,14 @@
- static inline int header_credits_available(struct drm_i915_private *dev_priv,
- 					   enum transcoder dsi_trans)
- {
--	return (I915_READ(DSI_CMD_TXCTL(dsi_trans)) & FREE_HEADER_CREDIT_MASK)
-+	return (intel_de_read(dev_priv, DSI_CMD_TXCTL(dsi_trans)) & FREE_HEADER_CREDIT_MASK)
- 		>> FREE_HEADER_CREDIT_SHIFT;
- }
+diff --git a/drivers/gpu/drm/i915/display/intel_audio.c b/drivers/gpu/drm/i915/display/intel_audio.c
+index f9f4460136b0..3926b9b9a09f 100644
+--- a/drivers/gpu/drm/i915/display/intel_audio.c
++++ b/drivers/gpu/drm/i915/display/intel_audio.c
+@@ -291,18 +291,18 @@ static bool intel_eld_uptodate(struct drm_connector *connector,
+ 	u32 tmp;
+ 	int i;
  
- static inline int payload_credits_available(struct drm_i915_private *dev_priv,
- 					    enum transcoder dsi_trans)
- {
--	return (I915_READ(DSI_CMD_TXCTL(dsi_trans)) & FREE_PLOAD_CREDIT_MASK)
-+	return (intel_de_read(dev_priv, DSI_CMD_TXCTL(dsi_trans)) & FREE_PLOAD_CREDIT_MASK)
- 		>> FREE_PLOAD_CREDIT_SHIFT;
- }
+-	tmp = I915_READ(reg_eldv);
++	tmp = intel_de_read(dev_priv, reg_eldv);
+ 	tmp &= bits_eldv;
  
-@@ -109,7 +109,7 @@ static void wait_for_cmds_dispatched_to_panel(struct intel_encoder *encoder)
- 	/* wait for LP TX in progress bit to be cleared */
- 	for_each_dsi_port(port, intel_dsi->ports) {
- 		dsi_trans = dsi_port_to_transcoder(port);
--		if (wait_for_us(!(I915_READ(DSI_LP_MSG(dsi_trans)) &
-+		if (wait_for_us(!(intel_de_read(dev_priv, DSI_LP_MSG(dsi_trans)) &
- 				  LPTX_IN_PROGRESS), 20))
- 			DRM_ERROR("LPTX bit not cleared\n");
- 	}
-@@ -136,7 +136,7 @@ static bool add_payld_to_queue(struct intel_dsi_host *host, const u8 *data,
- 		for (j = 0; j < min_t(u32, len - i, 4); j++)
- 			tmp |= *data++ << 8 * j;
+ 	if (!tmp)
+ 		return false;
  
--		I915_WRITE(DSI_CMD_TXPYLD(dsi_trans), tmp);
-+		intel_de_write(dev_priv, DSI_CMD_TXPYLD(dsi_trans), tmp);
- 	}
+-	tmp = I915_READ(reg_elda);
++	tmp = intel_de_read(dev_priv, reg_elda);
+ 	tmp &= ~bits_elda;
+-	I915_WRITE(reg_elda, tmp);
++	intel_de_write(dev_priv, reg_elda, tmp);
+ 
+ 	for (i = 0; i < drm_eld_size(eld) / 4; i++)
+-		if (I915_READ(reg_edid) != *((const u32 *)eld + i))
++		if (intel_de_read(dev_priv, reg_edid) != *((const u32 *)eld + i))
+ 			return false;
  
  	return true;
-@@ -158,7 +158,7 @@ static int dsi_send_pkt_hdr(struct intel_dsi_host *host,
- 		return -1;
- 	}
+@@ -317,16 +317,16 @@ static void g4x_audio_codec_disable(struct intel_encoder *encoder,
  
--	tmp = I915_READ(DSI_CMD_TXHDR(dsi_trans));
-+	tmp = intel_de_read(dev_priv, DSI_CMD_TXHDR(dsi_trans));
+ 	drm_dbg_kms(&dev_priv->drm, "Disable audio codec\n");
  
- 	if (pkt.payload)
- 		tmp |= PAYLOAD_PRESENT;
-@@ -175,7 +175,7 @@ static int dsi_send_pkt_hdr(struct intel_dsi_host *host,
- 	tmp |= ((pkt.header[0] & DT_MASK) << DT_SHIFT);
- 	tmp |= (pkt.header[1] << PARAM_WC_LOWER_SHIFT);
- 	tmp |= (pkt.header[2] << PARAM_WC_UPPER_SHIFT);
--	I915_WRITE(DSI_CMD_TXHDR(dsi_trans), tmp);
-+	intel_de_write(dev_priv, DSI_CMD_TXHDR(dsi_trans), tmp);
+-	tmp = I915_READ(G4X_AUD_VID_DID);
++	tmp = intel_de_read(dev_priv, G4X_AUD_VID_DID);
+ 	if (tmp == INTEL_AUDIO_DEVBLC || tmp == INTEL_AUDIO_DEVCL)
+ 		eldv = G4X_ELDV_DEVCL_DEVBLC;
+ 	else
+ 		eldv = G4X_ELDV_DEVCTG;
  
- 	return 0;
- }
-@@ -212,53 +212,55 @@ static void dsi_program_swing_and_deemphasis(struct intel_encoder *encoder)
- 		 * Program voltage swing and pre-emphasis level values as per
- 		 * table in BSPEC under DDI buffer programing
- 		 */
--		tmp = I915_READ(ICL_PORT_TX_DW5_LN0(phy));
-+		tmp = intel_de_read(dev_priv, ICL_PORT_TX_DW5_LN0(phy));
- 		tmp &= ~(SCALING_MODE_SEL_MASK | RTERM_SELECT_MASK);
- 		tmp |= SCALING_MODE_SEL(0x2);
- 		tmp |= TAP2_DISABLE | TAP3_DISABLE;
- 		tmp |= RTERM_SELECT(0x6);
--		I915_WRITE(ICL_PORT_TX_DW5_GRP(phy), tmp);
-+		intel_de_write(dev_priv, ICL_PORT_TX_DW5_GRP(phy), tmp);
- 
--		tmp = I915_READ(ICL_PORT_TX_DW5_AUX(phy));
-+		tmp = intel_de_read(dev_priv, ICL_PORT_TX_DW5_AUX(phy));
- 		tmp &= ~(SCALING_MODE_SEL_MASK | RTERM_SELECT_MASK);
- 		tmp |= SCALING_MODE_SEL(0x2);
- 		tmp |= TAP2_DISABLE | TAP3_DISABLE;
- 		tmp |= RTERM_SELECT(0x6);
--		I915_WRITE(ICL_PORT_TX_DW5_AUX(phy), tmp);
-+		intel_de_write(dev_priv, ICL_PORT_TX_DW5_AUX(phy), tmp);
- 
--		tmp = I915_READ(ICL_PORT_TX_DW2_LN0(phy));
-+		tmp = intel_de_read(dev_priv, ICL_PORT_TX_DW2_LN0(phy));
- 		tmp &= ~(SWING_SEL_LOWER_MASK | SWING_SEL_UPPER_MASK |
- 			 RCOMP_SCALAR_MASK);
- 		tmp |= SWING_SEL_UPPER(0x2);
- 		tmp |= SWING_SEL_LOWER(0x2);
- 		tmp |= RCOMP_SCALAR(0x98);
--		I915_WRITE(ICL_PORT_TX_DW2_GRP(phy), tmp);
-+		intel_de_write(dev_priv, ICL_PORT_TX_DW2_GRP(phy), tmp);
- 
--		tmp = I915_READ(ICL_PORT_TX_DW2_AUX(phy));
-+		tmp = intel_de_read(dev_priv, ICL_PORT_TX_DW2_AUX(phy));
- 		tmp &= ~(SWING_SEL_LOWER_MASK | SWING_SEL_UPPER_MASK |
- 			 RCOMP_SCALAR_MASK);
- 		tmp |= SWING_SEL_UPPER(0x2);
- 		tmp |= SWING_SEL_LOWER(0x2);
- 		tmp |= RCOMP_SCALAR(0x98);
--		I915_WRITE(ICL_PORT_TX_DW2_AUX(phy), tmp);
-+		intel_de_write(dev_priv, ICL_PORT_TX_DW2_AUX(phy), tmp);
- 
--		tmp = I915_READ(ICL_PORT_TX_DW4_AUX(phy));
-+		tmp = intel_de_read(dev_priv, ICL_PORT_TX_DW4_AUX(phy));
- 		tmp &= ~(POST_CURSOR_1_MASK | POST_CURSOR_2_MASK |
- 			 CURSOR_COEFF_MASK);
- 		tmp |= POST_CURSOR_1(0x0);
- 		tmp |= POST_CURSOR_2(0x0);
- 		tmp |= CURSOR_COEFF(0x3f);
--		I915_WRITE(ICL_PORT_TX_DW4_AUX(phy), tmp);
-+		intel_de_write(dev_priv, ICL_PORT_TX_DW4_AUX(phy), tmp);
- 
- 		for (lane = 0; lane <= 3; lane++) {
- 			/* Bspec: must not use GRP register for write */
--			tmp = I915_READ(ICL_PORT_TX_DW4_LN(lane, phy));
-+			tmp = intel_de_read(dev_priv,
-+					    ICL_PORT_TX_DW4_LN(lane, phy));
- 			tmp &= ~(POST_CURSOR_1_MASK | POST_CURSOR_2_MASK |
- 				 CURSOR_COEFF_MASK);
- 			tmp |= POST_CURSOR_1(0x0);
- 			tmp |= POST_CURSOR_2(0x0);
- 			tmp |= CURSOR_COEFF(0x3f);
--			I915_WRITE(ICL_PORT_TX_DW4_LN(lane, phy), tmp);
-+			intel_de_write(dev_priv,
-+				       ICL_PORT_TX_DW4_LN(lane, phy), tmp);
- 		}
- 	}
- }
-@@ -270,7 +272,7 @@ static void configure_dual_link_mode(struct intel_encoder *encoder,
- 	struct intel_dsi *intel_dsi = enc_to_intel_dsi(encoder);
- 	u32 dss_ctl1;
- 
--	dss_ctl1 = I915_READ(DSS_CTL1);
-+	dss_ctl1 = intel_de_read(dev_priv, DSS_CTL1);
- 	dss_ctl1 |= SPLITTER_ENABLE;
- 	dss_ctl1 &= ~OVERLAP_PIXELS_MASK;
- 	dss_ctl1 |= OVERLAP_PIXELS(intel_dsi->pixel_overlap);
-@@ -290,16 +292,16 @@ static void configure_dual_link_mode(struct intel_encoder *encoder,
- 
- 		dss_ctl1 &= ~LEFT_DL_BUF_TARGET_DEPTH_MASK;
- 		dss_ctl1 |= LEFT_DL_BUF_TARGET_DEPTH(dl_buffer_depth);
--		dss_ctl2 = I915_READ(DSS_CTL2);
-+		dss_ctl2 = intel_de_read(dev_priv, DSS_CTL2);
- 		dss_ctl2 &= ~RIGHT_DL_BUF_TARGET_DEPTH_MASK;
- 		dss_ctl2 |= RIGHT_DL_BUF_TARGET_DEPTH(dl_buffer_depth);
--		I915_WRITE(DSS_CTL2, dss_ctl2);
-+		intel_de_write(dev_priv, DSS_CTL2, dss_ctl2);
- 	} else {
- 		/* Interleave */
- 		dss_ctl1 |= DUAL_LINK_MODE_INTERLEAVE;
- 	}
- 
--	I915_WRITE(DSS_CTL1, dss_ctl1);
-+	intel_de_write(dev_priv, DSS_CTL1, dss_ctl1);
+ 	/* Invalidate ELD */
+-	tmp = I915_READ(G4X_AUD_CNTL_ST);
++	tmp = intel_de_read(dev_priv, G4X_AUD_CNTL_ST);
+ 	tmp &= ~eldv;
+-	I915_WRITE(G4X_AUD_CNTL_ST, tmp);
++	intel_de_write(dev_priv, G4X_AUD_CNTL_ST, tmp);
  }
  
- /* aka DSI 8X clock */
-@@ -330,15 +332,15 @@ static void gen11_dsi_program_esc_clk_div(struct intel_encoder *encoder,
- 	esc_clk_div_m = DIV_ROUND_UP(afe_clk_khz, DSI_MAX_ESC_CLK);
+ static void g4x_audio_codec_enable(struct intel_encoder *encoder,
+@@ -343,7 +343,7 @@ static void g4x_audio_codec_enable(struct intel_encoder *encoder,
+ 	drm_dbg_kms(&dev_priv->drm, "Enable audio codec, %u bytes ELD\n",
+ 		    drm_eld_size(eld));
  
- 	for_each_dsi_port(port, intel_dsi->ports) {
--		I915_WRITE(ICL_DSI_ESC_CLK_DIV(port),
--			   esc_clk_div_m & ICL_ESC_CLK_DIV_MASK);
--		POSTING_READ(ICL_DSI_ESC_CLK_DIV(port));
-+		intel_de_write(dev_priv, ICL_DSI_ESC_CLK_DIV(port),
-+			       esc_clk_div_m & ICL_ESC_CLK_DIV_MASK);
-+		intel_de_posting_read(dev_priv, ICL_DSI_ESC_CLK_DIV(port));
- 	}
+-	tmp = I915_READ(G4X_AUD_VID_DID);
++	tmp = intel_de_read(dev_priv, G4X_AUD_VID_DID);
+ 	if (tmp == INTEL_AUDIO_DEVBLC || tmp == INTEL_AUDIO_DEVCL)
+ 		eldv = G4X_ELDV_DEVCL_DEVBLC;
+ 	else
+@@ -355,19 +355,20 @@ static void g4x_audio_codec_enable(struct intel_encoder *encoder,
+ 			       G4X_HDMIW_HDMIEDID))
+ 		return;
  
- 	for_each_dsi_port(port, intel_dsi->ports) {
--		I915_WRITE(ICL_DPHY_ESC_CLK_DIV(port),
--			   esc_clk_div_m & ICL_ESC_CLK_DIV_MASK);
--		POSTING_READ(ICL_DPHY_ESC_CLK_DIV(port));
-+		intel_de_write(dev_priv, ICL_DPHY_ESC_CLK_DIV(port),
-+			       esc_clk_div_m & ICL_ESC_CLK_DIV_MASK);
-+		intel_de_posting_read(dev_priv, ICL_DPHY_ESC_CLK_DIV(port));
- 	}
+-	tmp = I915_READ(G4X_AUD_CNTL_ST);
++	tmp = intel_de_read(dev_priv, G4X_AUD_CNTL_ST);
+ 	tmp &= ~(eldv | G4X_ELD_ADDR_MASK);
+ 	len = (tmp >> 9) & 0x1f;		/* ELD buffer size */
+-	I915_WRITE(G4X_AUD_CNTL_ST, tmp);
++	intel_de_write(dev_priv, G4X_AUD_CNTL_ST, tmp);
+ 
+ 	len = min(drm_eld_size(eld) / 4, len);
+ 	drm_dbg(&dev_priv->drm, "ELD size %d\n", len);
+ 	for (i = 0; i < len; i++)
+-		I915_WRITE(G4X_HDMIW_HDMIEDID, *((const u32 *)eld + i));
++		intel_de_write(dev_priv, G4X_HDMIW_HDMIEDID,
++			       *((const u32 *)eld + i));
+ 
+-	tmp = I915_READ(G4X_AUD_CNTL_ST);
++	tmp = intel_de_read(dev_priv, G4X_AUD_CNTL_ST);
+ 	tmp |= eldv;
+-	I915_WRITE(G4X_AUD_CNTL_ST, tmp);
++	intel_de_write(dev_priv, G4X_AUD_CNTL_ST, tmp);
  }
  
-@@ -365,9 +367,9 @@ static void gen11_dsi_enable_io_power(struct intel_encoder *encoder)
- 	u32 tmp;
+ static void
+@@ -390,7 +391,7 @@ hsw_dp_audio_config_update(struct intel_encoder *encoder,
+ 	else
+ 		drm_dbg_kms(&dev_priv->drm, "using automatic Maud, Naud\n");
  
- 	for_each_dsi_port(port, intel_dsi->ports) {
--		tmp = I915_READ(ICL_DSI_IO_MODECTL(port));
-+		tmp = intel_de_read(dev_priv, ICL_DSI_IO_MODECTL(port));
- 		tmp |= COMBO_PHY_MODE_DSI;
--		I915_WRITE(ICL_DSI_IO_MODECTL(port), tmp);
-+		intel_de_write(dev_priv, ICL_DSI_IO_MODECTL(port), tmp);
+-	tmp = I915_READ(HSW_AUD_CFG(cpu_transcoder));
++	tmp = intel_de_read(dev_priv, HSW_AUD_CFG(cpu_transcoder));
+ 	tmp &= ~AUD_CONFIG_N_VALUE_INDEX;
+ 	tmp &= ~AUD_CONFIG_PIXEL_CLOCK_HDMI_MASK;
+ 	tmp &= ~AUD_CONFIG_N_PROG_ENABLE;
+@@ -402,9 +403,9 @@ hsw_dp_audio_config_update(struct intel_encoder *encoder,
+ 		tmp |= AUD_CONFIG_N_PROG_ENABLE;
  	}
  
- 	get_dsi_io_power_domains(dev_priv, intel_dsi);
-@@ -394,40 +396,46 @@ static void gen11_dsi_config_phy_lanes_sequence(struct intel_encoder *encoder)
+-	I915_WRITE(HSW_AUD_CFG(cpu_transcoder), tmp);
++	intel_de_write(dev_priv, HSW_AUD_CFG(cpu_transcoder), tmp);
  
- 	/* Step 4b(i) set loadgen select for transmit and aux lanes */
- 	for_each_dsi_phy(phy, intel_dsi->phys) {
--		tmp = I915_READ(ICL_PORT_TX_DW4_AUX(phy));
-+		tmp = intel_de_read(dev_priv, ICL_PORT_TX_DW4_AUX(phy));
- 		tmp &= ~LOADGEN_SELECT;
--		I915_WRITE(ICL_PORT_TX_DW4_AUX(phy), tmp);
-+		intel_de_write(dev_priv, ICL_PORT_TX_DW4_AUX(phy), tmp);
- 		for (lane = 0; lane <= 3; lane++) {
--			tmp = I915_READ(ICL_PORT_TX_DW4_LN(lane, phy));
-+			tmp = intel_de_read(dev_priv,
-+					    ICL_PORT_TX_DW4_LN(lane, phy));
- 			tmp &= ~LOADGEN_SELECT;
- 			if (lane != 2)
- 				tmp |= LOADGEN_SELECT;
--			I915_WRITE(ICL_PORT_TX_DW4_LN(lane, phy), tmp);
-+			intel_de_write(dev_priv,
-+				       ICL_PORT_TX_DW4_LN(lane, phy), tmp);
- 		}
+-	tmp = I915_READ(HSW_AUD_M_CTS_ENABLE(cpu_transcoder));
++	tmp = intel_de_read(dev_priv, HSW_AUD_M_CTS_ENABLE(cpu_transcoder));
+ 	tmp &= ~AUD_CONFIG_M_MASK;
+ 	tmp &= ~AUD_M_CTS_M_VALUE_INDEX;
+ 	tmp &= ~AUD_M_CTS_M_PROG_ENABLE;
+@@ -415,7 +416,7 @@ hsw_dp_audio_config_update(struct intel_encoder *encoder,
+ 		tmp |= AUD_M_CTS_M_PROG_ENABLE;
  	}
  
- 	/* Step 4b(ii) set latency optimization for transmit and aux lanes */
- 	for_each_dsi_phy(phy, intel_dsi->phys) {
--		tmp = I915_READ(ICL_PORT_TX_DW2_AUX(phy));
-+		tmp = intel_de_read(dev_priv, ICL_PORT_TX_DW2_AUX(phy));
- 		tmp &= ~FRC_LATENCY_OPTIM_MASK;
- 		tmp |= FRC_LATENCY_OPTIM_VAL(0x5);
--		I915_WRITE(ICL_PORT_TX_DW2_AUX(phy), tmp);
--		tmp = I915_READ(ICL_PORT_TX_DW2_LN0(phy));
-+		intel_de_write(dev_priv, ICL_PORT_TX_DW2_AUX(phy), tmp);
-+		tmp = intel_de_read(dev_priv, ICL_PORT_TX_DW2_LN0(phy));
- 		tmp &= ~FRC_LATENCY_OPTIM_MASK;
- 		tmp |= FRC_LATENCY_OPTIM_VAL(0x5);
--		I915_WRITE(ICL_PORT_TX_DW2_GRP(phy), tmp);
-+		intel_de_write(dev_priv, ICL_PORT_TX_DW2_GRP(phy), tmp);
+-	I915_WRITE(HSW_AUD_M_CTS_ENABLE(cpu_transcoder), tmp);
++	intel_de_write(dev_priv, HSW_AUD_M_CTS_ENABLE(cpu_transcoder), tmp);
+ }
  
- 		/* For EHL, TGL, set latency optimization for PCS_DW1 lanes */
- 		if (IS_ELKHARTLAKE(dev_priv) || (INTEL_GEN(dev_priv) >= 12)) {
--			tmp = I915_READ(ICL_PORT_PCS_DW1_AUX(phy));
-+			tmp = intel_de_read(dev_priv,
-+					    ICL_PORT_PCS_DW1_AUX(phy));
- 			tmp &= ~LATENCY_OPTIM_MASK;
- 			tmp |= LATENCY_OPTIM_VAL(0);
--			I915_WRITE(ICL_PORT_PCS_DW1_AUX(phy), tmp);
-+			intel_de_write(dev_priv, ICL_PORT_PCS_DW1_AUX(phy),
-+				       tmp);
+ static void
+@@ -431,7 +432,7 @@ hsw_hdmi_audio_config_update(struct intel_encoder *encoder,
  
--			tmp = I915_READ(ICL_PORT_PCS_DW1_LN0(phy));
-+			tmp = intel_de_read(dev_priv,
-+					    ICL_PORT_PCS_DW1_LN0(phy));
- 			tmp &= ~LATENCY_OPTIM_MASK;
- 			tmp |= LATENCY_OPTIM_VAL(0x1);
--			I915_WRITE(ICL_PORT_PCS_DW1_GRP(phy), tmp);
-+			intel_de_write(dev_priv, ICL_PORT_PCS_DW1_GRP(phy),
-+				       tmp);
- 		}
+ 	rate = acomp ? acomp->aud_sample_rate[port] : 0;
+ 
+-	tmp = I915_READ(HSW_AUD_CFG(cpu_transcoder));
++	tmp = intel_de_read(dev_priv, HSW_AUD_CFG(cpu_transcoder));
+ 	tmp &= ~AUD_CONFIG_N_VALUE_INDEX;
+ 	tmp &= ~AUD_CONFIG_PIXEL_CLOCK_HDMI_MASK;
+ 	tmp &= ~AUD_CONFIG_N_PROG_ENABLE;
+@@ -448,16 +449,16 @@ hsw_hdmi_audio_config_update(struct intel_encoder *encoder,
+ 		drm_dbg_kms(&dev_priv->drm, "using automatic N\n");
  	}
  
-@@ -442,12 +450,12 @@ static void gen11_dsi_voltage_swing_program_seq(struct intel_encoder *encoder)
- 
- 	/* clear common keeper enable bit */
- 	for_each_dsi_phy(phy, intel_dsi->phys) {
--		tmp = I915_READ(ICL_PORT_PCS_DW1_LN0(phy));
-+		tmp = intel_de_read(dev_priv, ICL_PORT_PCS_DW1_LN0(phy));
- 		tmp &= ~COMMON_KEEPER_EN;
--		I915_WRITE(ICL_PORT_PCS_DW1_GRP(phy), tmp);
--		tmp = I915_READ(ICL_PORT_PCS_DW1_AUX(phy));
-+		intel_de_write(dev_priv, ICL_PORT_PCS_DW1_GRP(phy), tmp);
-+		tmp = intel_de_read(dev_priv, ICL_PORT_PCS_DW1_AUX(phy));
- 		tmp &= ~COMMON_KEEPER_EN;
--		I915_WRITE(ICL_PORT_PCS_DW1_AUX(phy), tmp);
-+		intel_de_write(dev_priv, ICL_PORT_PCS_DW1_AUX(phy), tmp);
- 	}
+-	I915_WRITE(HSW_AUD_CFG(cpu_transcoder), tmp);
++	intel_de_write(dev_priv, HSW_AUD_CFG(cpu_transcoder), tmp);
  
  	/*
-@@ -456,19 +464,19 @@ static void gen11_dsi_voltage_swing_program_seq(struct intel_encoder *encoder)
- 	 * as part of lane phy sequence configuration
+ 	 * Let's disable "Enable CTS or M Prog bit"
+ 	 * and let HW calculate the value
  	 */
- 	for_each_dsi_phy(phy, intel_dsi->phys) {
--		tmp = I915_READ(ICL_PORT_CL_DW5(phy));
-+		tmp = intel_de_read(dev_priv, ICL_PORT_CL_DW5(phy));
- 		tmp |= SUS_CLOCK_CONFIG;
--		I915_WRITE(ICL_PORT_CL_DW5(phy), tmp);
-+		intel_de_write(dev_priv, ICL_PORT_CL_DW5(phy), tmp);
- 	}
- 
- 	/* Clear training enable to change swing values */
- 	for_each_dsi_phy(phy, intel_dsi->phys) {
--		tmp = I915_READ(ICL_PORT_TX_DW5_LN0(phy));
-+		tmp = intel_de_read(dev_priv, ICL_PORT_TX_DW5_LN0(phy));
- 		tmp &= ~TX_TRAINING_EN;
--		I915_WRITE(ICL_PORT_TX_DW5_GRP(phy), tmp);
--		tmp = I915_READ(ICL_PORT_TX_DW5_AUX(phy));
-+		intel_de_write(dev_priv, ICL_PORT_TX_DW5_GRP(phy), tmp);
-+		tmp = intel_de_read(dev_priv, ICL_PORT_TX_DW5_AUX(phy));
- 		tmp &= ~TX_TRAINING_EN;
--		I915_WRITE(ICL_PORT_TX_DW5_AUX(phy), tmp);
-+		intel_de_write(dev_priv, ICL_PORT_TX_DW5_AUX(phy), tmp);
- 	}
- 
- 	/* Program swing and de-emphasis */
-@@ -476,12 +484,12 @@ static void gen11_dsi_voltage_swing_program_seq(struct intel_encoder *encoder)
- 
- 	/* Set training enable to trigger update */
- 	for_each_dsi_phy(phy, intel_dsi->phys) {
--		tmp = I915_READ(ICL_PORT_TX_DW5_LN0(phy));
-+		tmp = intel_de_read(dev_priv, ICL_PORT_TX_DW5_LN0(phy));
- 		tmp |= TX_TRAINING_EN;
--		I915_WRITE(ICL_PORT_TX_DW5_GRP(phy), tmp);
--		tmp = I915_READ(ICL_PORT_TX_DW5_AUX(phy));
-+		intel_de_write(dev_priv, ICL_PORT_TX_DW5_GRP(phy), tmp);
-+		tmp = intel_de_read(dev_priv, ICL_PORT_TX_DW5_AUX(phy));
- 		tmp |= TX_TRAINING_EN;
--		I915_WRITE(ICL_PORT_TX_DW5_AUX(phy), tmp);
-+		intel_de_write(dev_priv, ICL_PORT_TX_DW5_AUX(phy), tmp);
- 	}
+-	tmp = I915_READ(HSW_AUD_M_CTS_ENABLE(cpu_transcoder));
++	tmp = intel_de_read(dev_priv, HSW_AUD_M_CTS_ENABLE(cpu_transcoder));
+ 	tmp &= ~AUD_M_CTS_M_PROG_ENABLE;
+ 	tmp &= ~AUD_M_CTS_M_VALUE_INDEX;
+-	I915_WRITE(HSW_AUD_M_CTS_ENABLE(cpu_transcoder), tmp);
++	intel_de_write(dev_priv, HSW_AUD_M_CTS_ENABLE(cpu_transcoder), tmp);
  }
  
-@@ -493,11 +501,11 @@ static void gen11_dsi_enable_ddi_buffer(struct intel_encoder *encoder)
- 	enum port port;
+ static void
+@@ -484,20 +485,20 @@ static void hsw_audio_codec_disable(struct intel_encoder *encoder,
+ 	mutex_lock(&dev_priv->av_mutex);
  
- 	for_each_dsi_port(port, intel_dsi->ports) {
--		tmp = I915_READ(DDI_BUF_CTL(port));
-+		tmp = intel_de_read(dev_priv, DDI_BUF_CTL(port));
- 		tmp |= DDI_BUF_CTL_ENABLE;
--		I915_WRITE(DDI_BUF_CTL(port), tmp);
-+		intel_de_write(dev_priv, DDI_BUF_CTL(port), tmp);
+ 	/* Disable timestamps */
+-	tmp = I915_READ(HSW_AUD_CFG(cpu_transcoder));
++	tmp = intel_de_read(dev_priv, HSW_AUD_CFG(cpu_transcoder));
+ 	tmp &= ~AUD_CONFIG_N_VALUE_INDEX;
+ 	tmp |= AUD_CONFIG_N_PROG_ENABLE;
+ 	tmp &= ~AUD_CONFIG_UPPER_N_MASK;
+ 	tmp &= ~AUD_CONFIG_LOWER_N_MASK;
+ 	if (intel_crtc_has_dp_encoder(old_crtc_state))
+ 		tmp |= AUD_CONFIG_N_VALUE_INDEX;
+-	I915_WRITE(HSW_AUD_CFG(cpu_transcoder), tmp);
++	intel_de_write(dev_priv, HSW_AUD_CFG(cpu_transcoder), tmp);
  
--		if (wait_for_us(!(I915_READ(DDI_BUF_CTL(port)) &
-+		if (wait_for_us(!(intel_de_read(dev_priv, DDI_BUF_CTL(port)) &
- 				  DDI_BUF_IS_IDLE),
- 				  500))
- 			DRM_ERROR("DDI port:%c buffer idle\n", port_name(port));
-@@ -516,28 +524,30 @@ gen11_dsi_setup_dphy_timings(struct intel_encoder *encoder,
+ 	/* Invalidate ELD */
+-	tmp = I915_READ(HSW_AUD_PIN_ELD_CP_VLD);
++	tmp = intel_de_read(dev_priv, HSW_AUD_PIN_ELD_CP_VLD);
+ 	tmp &= ~AUDIO_ELD_VALID(cpu_transcoder);
+ 	tmp &= ~AUDIO_OUTPUT_ENABLE(cpu_transcoder);
+-	I915_WRITE(HSW_AUD_PIN_ELD_CP_VLD, tmp);
++	intel_de_write(dev_priv, HSW_AUD_PIN_ELD_CP_VLD, tmp);
  
- 	/* Program T-INIT master registers */
- 	for_each_dsi_port(port, intel_dsi->ports) {
--		tmp = I915_READ(ICL_DSI_T_INIT_MASTER(port));
-+		tmp = intel_de_read(dev_priv, ICL_DSI_T_INIT_MASTER(port));
- 		tmp &= ~MASTER_INIT_TIMER_MASK;
- 		tmp |= intel_dsi->init_count;
--		I915_WRITE(ICL_DSI_T_INIT_MASTER(port), tmp);
-+		intel_de_write(dev_priv, ICL_DSI_T_INIT_MASTER(port), tmp);
- 	}
+ 	mutex_unlock(&dev_priv->av_mutex);
+ }
+@@ -520,10 +521,10 @@ static void hsw_audio_codec_enable(struct intel_encoder *encoder,
+ 	mutex_lock(&dev_priv->av_mutex);
  
- 	/* Program DPHY clock lanes timings */
- 	for_each_dsi_port(port, intel_dsi->ports) {
--		I915_WRITE(DPHY_CLK_TIMING_PARAM(port), intel_dsi->dphy_reg);
-+		intel_de_write(dev_priv, DPHY_CLK_TIMING_PARAM(port),
-+			       intel_dsi->dphy_reg);
- 
- 		/* shadow register inside display core */
--		I915_WRITE(DSI_CLK_TIMING_PARAM(port), intel_dsi->dphy_reg);
-+		intel_de_write(dev_priv, DSI_CLK_TIMING_PARAM(port),
-+			       intel_dsi->dphy_reg);
- 	}
- 
- 	/* Program DPHY data lanes timings */
- 	for_each_dsi_port(port, intel_dsi->ports) {
--		I915_WRITE(DPHY_DATA_TIMING_PARAM(port),
--			   intel_dsi->dphy_data_lane_reg);
-+		intel_de_write(dev_priv, DPHY_DATA_TIMING_PARAM(port),
-+			       intel_dsi->dphy_data_lane_reg);
- 
- 		/* shadow register inside display core */
--		I915_WRITE(DSI_DATA_TIMING_PARAM(port),
--			   intel_dsi->dphy_data_lane_reg);
-+		intel_de_write(dev_priv, DSI_DATA_TIMING_PARAM(port),
-+			       intel_dsi->dphy_data_lane_reg);
- 	}
+ 	/* Enable audio presence detect, invalidate ELD */
+-	tmp = I915_READ(HSW_AUD_PIN_ELD_CP_VLD);
++	tmp = intel_de_read(dev_priv, HSW_AUD_PIN_ELD_CP_VLD);
+ 	tmp |= AUDIO_OUTPUT_ENABLE(cpu_transcoder);
+ 	tmp &= ~AUDIO_ELD_VALID(cpu_transcoder);
+-	I915_WRITE(HSW_AUD_PIN_ELD_CP_VLD, tmp);
++	intel_de_write(dev_priv, HSW_AUD_PIN_ELD_CP_VLD, tmp);
  
  	/*
-@@ -549,25 +559,30 @@ gen11_dsi_setup_dphy_timings(struct intel_encoder *encoder,
- 	if (IS_GEN(dev_priv, 11)) {
- 		if (afe_clk(encoder, crtc_state) <= 800000) {
- 			for_each_dsi_port(port, intel_dsi->ports) {
--				tmp = I915_READ(DPHY_TA_TIMING_PARAM(port));
-+				tmp = intel_de_read(dev_priv,
-+						    DPHY_TA_TIMING_PARAM(port));
- 				tmp &= ~TA_SURE_MASK;
- 				tmp |= TA_SURE_OVERRIDE | TA_SURE(0);
--				I915_WRITE(DPHY_TA_TIMING_PARAM(port), tmp);
-+				intel_de_write(dev_priv,
-+					       DPHY_TA_TIMING_PARAM(port),
-+					       tmp);
- 
- 				/* shadow register inside display core */
--				tmp = I915_READ(DSI_TA_TIMING_PARAM(port));
-+				tmp = intel_de_read(dev_priv,
-+						    DSI_TA_TIMING_PARAM(port));
- 				tmp &= ~TA_SURE_MASK;
- 				tmp |= TA_SURE_OVERRIDE | TA_SURE(0);
--				I915_WRITE(DSI_TA_TIMING_PARAM(port), tmp);
-+				intel_de_write(dev_priv,
-+					       DSI_TA_TIMING_PARAM(port), tmp);
- 			}
- 		}
- 	}
- 
- 	if (IS_ELKHARTLAKE(dev_priv)) {
- 		for_each_dsi_phy(phy, intel_dsi->phys) {
--			tmp = I915_READ(ICL_DPHY_CHKN(phy));
-+			tmp = intel_de_read(dev_priv, ICL_DPHY_CHKN(phy));
- 			tmp |= ICL_DPHY_CHKN_AFE_OVER_PPI_STRAP;
--			I915_WRITE(ICL_DPHY_CHKN(phy), tmp);
-+			intel_de_write(dev_priv, ICL_DPHY_CHKN(phy), tmp);
- 		}
- 	}
- }
-@@ -580,11 +595,11 @@ static void gen11_dsi_gate_clocks(struct intel_encoder *encoder)
- 	enum phy phy;
- 
- 	mutex_lock(&dev_priv->dpll_lock);
--	tmp = I915_READ(ICL_DPCLKA_CFGCR0);
-+	tmp = intel_de_read(dev_priv, ICL_DPCLKA_CFGCR0);
- 	for_each_dsi_phy(phy, intel_dsi->phys)
- 		tmp |= ICL_DPCLKA_CFGCR0_DDI_CLK_OFF(phy);
- 
--	I915_WRITE(ICL_DPCLKA_CFGCR0, tmp);
-+	intel_de_write(dev_priv, ICL_DPCLKA_CFGCR0, tmp);
- 	mutex_unlock(&dev_priv->dpll_lock);
- }
- 
-@@ -596,11 +611,11 @@ static void gen11_dsi_ungate_clocks(struct intel_encoder *encoder)
- 	enum phy phy;
- 
- 	mutex_lock(&dev_priv->dpll_lock);
--	tmp = I915_READ(ICL_DPCLKA_CFGCR0);
-+	tmp = intel_de_read(dev_priv, ICL_DPCLKA_CFGCR0);
- 	for_each_dsi_phy(phy, intel_dsi->phys)
- 		tmp &= ~ICL_DPCLKA_CFGCR0_DDI_CLK_OFF(phy);
- 
--	I915_WRITE(ICL_DPCLKA_CFGCR0, tmp);
-+	intel_de_write(dev_priv, ICL_DPCLKA_CFGCR0, tmp);
- 	mutex_unlock(&dev_priv->dpll_lock);
- }
- 
-@@ -615,12 +630,12 @@ static void gen11_dsi_map_pll(struct intel_encoder *encoder,
- 
- 	mutex_lock(&dev_priv->dpll_lock);
- 
--	val = I915_READ(ICL_DPCLKA_CFGCR0);
-+	val = intel_de_read(dev_priv, ICL_DPCLKA_CFGCR0);
- 	for_each_dsi_phy(phy, intel_dsi->phys) {
- 		val &= ~ICL_DPCLKA_CFGCR0_DDI_CLK_SEL_MASK(phy);
- 		val |= ICL_DPCLKA_CFGCR0_DDI_CLK_SEL(pll->info->id, phy);
- 	}
--	I915_WRITE(ICL_DPCLKA_CFGCR0, val);
-+	intel_de_write(dev_priv, ICL_DPCLKA_CFGCR0, val);
- 
- 	for_each_dsi_phy(phy, intel_dsi->phys) {
- 		if (INTEL_GEN(dev_priv) >= 12)
-@@ -628,9 +643,9 @@ static void gen11_dsi_map_pll(struct intel_encoder *encoder,
- 		else
- 			val &= ~ICL_DPCLKA_CFGCR0_DDI_CLK_OFF(phy);
- 	}
--	I915_WRITE(ICL_DPCLKA_CFGCR0, val);
-+	intel_de_write(dev_priv, ICL_DPCLKA_CFGCR0, val);
- 
--	POSTING_READ(ICL_DPCLKA_CFGCR0);
-+	intel_de_posting_read(dev_priv, ICL_DPCLKA_CFGCR0);
- 
- 	mutex_unlock(&dev_priv->dpll_lock);
- }
-@@ -649,7 +664,7 @@ gen11_dsi_configure_transcoder(struct intel_encoder *encoder,
- 
- 	for_each_dsi_port(port, intel_dsi->ports) {
- 		dsi_trans = dsi_port_to_transcoder(port);
--		tmp = I915_READ(DSI_TRANS_FUNC_CONF(dsi_trans));
-+		tmp = intel_de_read(dev_priv, DSI_TRANS_FUNC_CONF(dsi_trans));
- 
- 		if (intel_dsi->eotp_pkt)
- 			tmp &= ~EOTP_DISABLED;
-@@ -726,16 +741,18 @@ gen11_dsi_configure_transcoder(struct intel_encoder *encoder,
- 			}
- 		}
- 
--		I915_WRITE(DSI_TRANS_FUNC_CONF(dsi_trans), tmp);
-+		intel_de_write(dev_priv, DSI_TRANS_FUNC_CONF(dsi_trans), tmp);
- 	}
- 
- 	/* enable port sync mode if dual link */
- 	if (intel_dsi->dual_link) {
- 		for_each_dsi_port(port, intel_dsi->ports) {
- 			dsi_trans = dsi_port_to_transcoder(port);
--			tmp = I915_READ(TRANS_DDI_FUNC_CTL2(dsi_trans));
-+			tmp = intel_de_read(dev_priv,
-+					    TRANS_DDI_FUNC_CTL2(dsi_trans));
- 			tmp |= PORT_SYNC_MODE_ENABLE;
--			I915_WRITE(TRANS_DDI_FUNC_CTL2(dsi_trans), tmp);
-+			intel_de_write(dev_priv,
-+				       TRANS_DDI_FUNC_CTL2(dsi_trans), tmp);
- 		}
- 
- 		/* configure stream splitting */
-@@ -746,7 +763,7 @@ gen11_dsi_configure_transcoder(struct intel_encoder *encoder,
- 		dsi_trans = dsi_port_to_transcoder(port);
- 
- 		/* select data lane width */
--		tmp = I915_READ(TRANS_DDI_FUNC_CTL(dsi_trans));
-+		tmp = intel_de_read(dev_priv, TRANS_DDI_FUNC_CTL(dsi_trans));
- 		tmp &= ~DDI_PORT_WIDTH_MASK;
- 		tmp |= DDI_PORT_WIDTH(intel_dsi->lane_count);
- 
-@@ -772,14 +789,14 @@ gen11_dsi_configure_transcoder(struct intel_encoder *encoder,
- 
- 		/* enable DDI buffer */
- 		tmp |= TRANS_DDI_FUNC_ENABLE;
--		I915_WRITE(TRANS_DDI_FUNC_CTL(dsi_trans), tmp);
-+		intel_de_write(dev_priv, TRANS_DDI_FUNC_CTL(dsi_trans), tmp);
- 	}
- 
- 	/* wait for link ready */
- 	for_each_dsi_port(port, intel_dsi->ports) {
- 		dsi_trans = dsi_port_to_transcoder(port);
--		if (wait_for_us((I915_READ(DSI_TRANS_FUNC_CONF(dsi_trans)) &
--				LINK_READY), 2500))
-+		if (wait_for_us((intel_de_read(dev_priv, DSI_TRANS_FUNC_CONF(dsi_trans)) &
-+				 LINK_READY), 2500))
- 			DRM_ERROR("DSI link not ready\n");
- 	}
- }
-@@ -845,8 +862,8 @@ gen11_dsi_set_transcoder_timings(struct intel_encoder *encoder,
- 	/* program TRANS_HTOTAL register */
- 	for_each_dsi_port(port, intel_dsi->ports) {
- 		dsi_trans = dsi_port_to_transcoder(port);
--		I915_WRITE(HTOTAL(dsi_trans),
--			   (hactive - 1) | ((htotal - 1) << 16));
-+		intel_de_write(dev_priv, HTOTAL(dsi_trans),
-+			       (hactive - 1) | ((htotal - 1) << 16));
- 	}
- 
- 	/* TRANS_HSYNC register to be programmed only for video mode */
-@@ -868,8 +885,8 @@ gen11_dsi_set_transcoder_timings(struct intel_encoder *encoder,
- 
- 		for_each_dsi_port(port, intel_dsi->ports) {
- 			dsi_trans = dsi_port_to_transcoder(port);
--			I915_WRITE(HSYNC(dsi_trans),
--				   (hsync_start - 1) | ((hsync_end - 1) << 16));
-+			intel_de_write(dev_priv, HSYNC(dsi_trans),
-+				       (hsync_start - 1) | ((hsync_end - 1) << 16));
- 		}
- 	}
- 
-@@ -882,8 +899,8 @@ gen11_dsi_set_transcoder_timings(struct intel_encoder *encoder,
- 		 * struct drm_display_mode.
- 		 * For interlace mode: program required pixel minus 2
- 		 */
--		I915_WRITE(VTOTAL(dsi_trans),
--			   (vactive - 1) | ((vtotal - 1) << 16));
-+		intel_de_write(dev_priv, VTOTAL(dsi_trans),
-+			       (vactive - 1) | ((vtotal - 1) << 16));
- 	}
- 
- 	if (vsync_end < vsync_start || vsync_end > vtotal)
-@@ -895,8 +912,8 @@ gen11_dsi_set_transcoder_timings(struct intel_encoder *encoder,
- 	/* program TRANS_VSYNC register */
- 	for_each_dsi_port(port, intel_dsi->ports) {
- 		dsi_trans = dsi_port_to_transcoder(port);
--		I915_WRITE(VSYNC(dsi_trans),
--			   (vsync_start - 1) | ((vsync_end - 1) << 16));
-+		intel_de_write(dev_priv, VSYNC(dsi_trans),
-+			       (vsync_start - 1) | ((vsync_end - 1) << 16));
- 	}
- 
- 	/*
-@@ -907,15 +924,15 @@ gen11_dsi_set_transcoder_timings(struct intel_encoder *encoder,
+ 	 * FIXME: We're supposed to wait for vblank here, but we have vblanks
+@@ -533,19 +534,20 @@ static void hsw_audio_codec_enable(struct intel_encoder *encoder,
  	 */
- 	for_each_dsi_port(port, intel_dsi->ports) {
- 		dsi_trans = dsi_port_to_transcoder(port);
--		I915_WRITE(VSYNCSHIFT(dsi_trans), vsync_shift);
-+		intel_de_write(dev_priv, VSYNCSHIFT(dsi_trans), vsync_shift);
+ 
+ 	/* Reset ELD write address */
+-	tmp = I915_READ(HSW_AUD_DIP_ELD_CTRL(cpu_transcoder));
++	tmp = intel_de_read(dev_priv, HSW_AUD_DIP_ELD_CTRL(cpu_transcoder));
+ 	tmp &= ~IBX_ELD_ADDRESS_MASK;
+-	I915_WRITE(HSW_AUD_DIP_ELD_CTRL(cpu_transcoder), tmp);
++	intel_de_write(dev_priv, HSW_AUD_DIP_ELD_CTRL(cpu_transcoder), tmp);
+ 
+ 	/* Up to 84 bytes of hw ELD buffer */
+ 	len = min(drm_eld_size(eld), 84);
+ 	for (i = 0; i < len / 4; i++)
+-		I915_WRITE(HSW_AUD_EDID_DATA(cpu_transcoder), *((const u32 *)eld + i));
++		intel_de_write(dev_priv, HSW_AUD_EDID_DATA(cpu_transcoder),
++			       *((const u32 *)eld + i));
+ 
+ 	/* ELD valid */
+-	tmp = I915_READ(HSW_AUD_PIN_ELD_CP_VLD);
++	tmp = intel_de_read(dev_priv, HSW_AUD_PIN_ELD_CP_VLD);
+ 	tmp |= AUDIO_ELD_VALID(cpu_transcoder);
+-	I915_WRITE(HSW_AUD_PIN_ELD_CP_VLD, tmp);
++	intel_de_write(dev_priv, HSW_AUD_PIN_ELD_CP_VLD, tmp);
+ 
+ 	/* Enable timestamps */
+ 	hsw_audio_config_update(encoder, crtc_state);
+@@ -584,21 +586,21 @@ static void ilk_audio_codec_disable(struct intel_encoder *encoder,
  	}
  
- 	/* program TRANS_VBLANK register, should be same as vtotal programmed */
- 	if (INTEL_GEN(dev_priv) >= 12) {
- 		for_each_dsi_port(port, intel_dsi->ports) {
- 			dsi_trans = dsi_port_to_transcoder(port);
--			I915_WRITE(VBLANK(dsi_trans),
--				   (vactive - 1) | ((vtotal - 1) << 16));
-+			intel_de_write(dev_priv, VBLANK(dsi_trans),
-+				       (vactive - 1) | ((vtotal - 1) << 16));
- 		}
- 	}
- }
-@@ -930,9 +947,9 @@ static void gen11_dsi_enable_transcoder(struct intel_encoder *encoder)
+ 	/* Disable timestamps */
+-	tmp = I915_READ(aud_config);
++	tmp = intel_de_read(dev_priv, aud_config);
+ 	tmp &= ~AUD_CONFIG_N_VALUE_INDEX;
+ 	tmp |= AUD_CONFIG_N_PROG_ENABLE;
+ 	tmp &= ~AUD_CONFIG_UPPER_N_MASK;
+ 	tmp &= ~AUD_CONFIG_LOWER_N_MASK;
+ 	if (intel_crtc_has_dp_encoder(old_crtc_state))
+ 		tmp |= AUD_CONFIG_N_VALUE_INDEX;
+-	I915_WRITE(aud_config, tmp);
++	intel_de_write(dev_priv, aud_config, tmp);
  
- 	for_each_dsi_port(port, intel_dsi->ports) {
- 		dsi_trans = dsi_port_to_transcoder(port);
--		tmp = I915_READ(PIPECONF(dsi_trans));
-+		tmp = intel_de_read(dev_priv, PIPECONF(dsi_trans));
- 		tmp |= PIPECONF_ENABLE;
--		I915_WRITE(PIPECONF(dsi_trans), tmp);
-+		intel_de_write(dev_priv, PIPECONF(dsi_trans), tmp);
+ 	eldv = IBX_ELD_VALID(port);
  
- 		/* wait for transcoder to be enabled */
- 		if (intel_de_wait_for_set(dev_priv, PIPECONF(dsi_trans),
-@@ -968,26 +985,26 @@ static void gen11_dsi_setup_timeouts(struct intel_encoder *encoder,
- 		dsi_trans = dsi_port_to_transcoder(port);
- 
- 		/* program hst_tx_timeout */
--		tmp = I915_READ(DSI_HSTX_TO(dsi_trans));
-+		tmp = intel_de_read(dev_priv, DSI_HSTX_TO(dsi_trans));
- 		tmp &= ~HSTX_TIMEOUT_VALUE_MASK;
- 		tmp |= HSTX_TIMEOUT_VALUE(hs_tx_timeout);
--		I915_WRITE(DSI_HSTX_TO(dsi_trans), tmp);
-+		intel_de_write(dev_priv, DSI_HSTX_TO(dsi_trans), tmp);
- 
- 		/* FIXME: DSI_CALIB_TO */
- 
- 		/* program lp_rx_host timeout */
--		tmp = I915_READ(DSI_LPRX_HOST_TO(dsi_trans));
-+		tmp = intel_de_read(dev_priv, DSI_LPRX_HOST_TO(dsi_trans));
- 		tmp &= ~LPRX_TIMEOUT_VALUE_MASK;
- 		tmp |= LPRX_TIMEOUT_VALUE(lp_rx_timeout);
--		I915_WRITE(DSI_LPRX_HOST_TO(dsi_trans), tmp);
-+		intel_de_write(dev_priv, DSI_LPRX_HOST_TO(dsi_trans), tmp);
- 
- 		/* FIXME: DSI_PWAIT_TO */
- 
- 		/* program turn around timeout */
--		tmp = I915_READ(DSI_TA_TO(dsi_trans));
-+		tmp = intel_de_read(dev_priv, DSI_TA_TO(dsi_trans));
- 		tmp &= ~TA_TIMEOUT_VALUE_MASK;
- 		tmp |= TA_TIMEOUT_VALUE(ta_timeout);
--		I915_WRITE(DSI_TA_TO(dsi_trans), tmp);
-+		intel_de_write(dev_priv, DSI_TA_TO(dsi_trans), tmp);
- 	}
+ 	/* Invalidate ELD */
+-	tmp = I915_READ(aud_cntrl_st2);
++	tmp = intel_de_read(dev_priv, aud_cntrl_st2);
+ 	tmp &= ~eldv;
+-	I915_WRITE(aud_cntrl_st2, tmp);
++	intel_de_write(dev_priv, aud_cntrl_st2, tmp);
  }
  
-@@ -1041,7 +1058,7 @@ static void gen11_dsi_powerup_panel(struct intel_encoder *encoder)
- 		 * FIXME: This uses the number of DW's currently in the payload
- 		 * receive queue. This is probably not what we want here.
- 		 */
--		tmp = I915_READ(DSI_CMD_RXCTL(dsi_trans));
-+		tmp = intel_de_read(dev_priv, DSI_CMD_RXCTL(dsi_trans));
- 		tmp &= NUMBER_RX_PLOAD_DW_MASK;
- 		/* multiply "Number Rx Payload DW" by 4 to get max value */
- 		tmp = tmp * 4;
-@@ -1113,9 +1130,9 @@ static void gen11_dsi_disable_transcoder(struct intel_encoder *encoder)
- 		dsi_trans = dsi_port_to_transcoder(port);
+ static void ilk_audio_codec_enable(struct intel_encoder *encoder,
+@@ -651,27 +653,28 @@ static void ilk_audio_codec_enable(struct intel_encoder *encoder,
+ 	eldv = IBX_ELD_VALID(port);
  
- 		/* disable transcoder */
--		tmp = I915_READ(PIPECONF(dsi_trans));
-+		tmp = intel_de_read(dev_priv, PIPECONF(dsi_trans));
- 		tmp &= ~PIPECONF_ENABLE;
--		I915_WRITE(PIPECONF(dsi_trans), tmp);
-+		intel_de_write(dev_priv, PIPECONF(dsi_trans), tmp);
+ 	/* Invalidate ELD */
+-	tmp = I915_READ(aud_cntrl_st2);
++	tmp = intel_de_read(dev_priv, aud_cntrl_st2);
+ 	tmp &= ~eldv;
+-	I915_WRITE(aud_cntrl_st2, tmp);
++	intel_de_write(dev_priv, aud_cntrl_st2, tmp);
  
- 		/* wait for transcoder to be disabled */
- 		if (intel_de_wait_for_clear(dev_priv, PIPECONF(dsi_trans),
-@@ -1147,13 +1164,13 @@ static void gen11_dsi_deconfigure_trancoder(struct intel_encoder *encoder)
- 	/* put dsi link in ULPS */
- 	for_each_dsi_port(port, intel_dsi->ports) {
- 		dsi_trans = dsi_port_to_transcoder(port);
--		tmp = I915_READ(DSI_LP_MSG(dsi_trans));
-+		tmp = intel_de_read(dev_priv, DSI_LP_MSG(dsi_trans));
- 		tmp |= LINK_ENTER_ULPS;
- 		tmp &= ~LINK_ULPS_TYPE_LP11;
--		I915_WRITE(DSI_LP_MSG(dsi_trans), tmp);
-+		intel_de_write(dev_priv, DSI_LP_MSG(dsi_trans), tmp);
+ 	/* Reset ELD write address */
+-	tmp = I915_READ(aud_cntl_st);
++	tmp = intel_de_read(dev_priv, aud_cntl_st);
+ 	tmp &= ~IBX_ELD_ADDRESS_MASK;
+-	I915_WRITE(aud_cntl_st, tmp);
++	intel_de_write(dev_priv, aud_cntl_st, tmp);
  
--		if (wait_for_us((I915_READ(DSI_LP_MSG(dsi_trans)) &
--				LINK_IN_ULPS),
-+		if (wait_for_us((intel_de_read(dev_priv, DSI_LP_MSG(dsi_trans)) &
-+				 LINK_IN_ULPS),
- 				10))
- 			DRM_ERROR("DSI link not in ULPS\n");
- 	}
-@@ -1161,18 +1178,20 @@ static void gen11_dsi_deconfigure_trancoder(struct intel_encoder *encoder)
- 	/* disable ddi function */
- 	for_each_dsi_port(port, intel_dsi->ports) {
- 		dsi_trans = dsi_port_to_transcoder(port);
--		tmp = I915_READ(TRANS_DDI_FUNC_CTL(dsi_trans));
-+		tmp = intel_de_read(dev_priv, TRANS_DDI_FUNC_CTL(dsi_trans));
- 		tmp &= ~TRANS_DDI_FUNC_ENABLE;
--		I915_WRITE(TRANS_DDI_FUNC_CTL(dsi_trans), tmp);
-+		intel_de_write(dev_priv, TRANS_DDI_FUNC_CTL(dsi_trans), tmp);
- 	}
+ 	/* Up to 84 bytes of hw ELD buffer */
+ 	len = min(drm_eld_size(eld), 84);
+ 	for (i = 0; i < len / 4; i++)
+-		I915_WRITE(hdmiw_hdmiedid, *((const u32 *)eld + i));
++		intel_de_write(dev_priv, hdmiw_hdmiedid,
++			       *((const u32 *)eld + i));
  
- 	/* disable port sync mode if dual link */
- 	if (intel_dsi->dual_link) {
- 		for_each_dsi_port(port, intel_dsi->ports) {
- 			dsi_trans = dsi_port_to_transcoder(port);
--			tmp = I915_READ(TRANS_DDI_FUNC_CTL2(dsi_trans));
-+			tmp = intel_de_read(dev_priv,
-+					    TRANS_DDI_FUNC_CTL2(dsi_trans));
- 			tmp &= ~PORT_SYNC_MODE_ENABLE;
--			I915_WRITE(TRANS_DDI_FUNC_CTL2(dsi_trans), tmp);
-+			intel_de_write(dev_priv,
-+				       TRANS_DDI_FUNC_CTL2(dsi_trans), tmp);
- 		}
- 	}
- }
-@@ -1186,11 +1205,11 @@ static void gen11_dsi_disable_port(struct intel_encoder *encoder)
+ 	/* ELD valid */
+-	tmp = I915_READ(aud_cntrl_st2);
++	tmp = intel_de_read(dev_priv, aud_cntrl_st2);
+ 	tmp |= eldv;
+-	I915_WRITE(aud_cntrl_st2, tmp);
++	intel_de_write(dev_priv, aud_cntrl_st2, tmp);
  
- 	gen11_dsi_ungate_clocks(encoder);
- 	for_each_dsi_port(port, intel_dsi->ports) {
--		tmp = I915_READ(DDI_BUF_CTL(port));
-+		tmp = intel_de_read(dev_priv, DDI_BUF_CTL(port));
- 		tmp &= ~DDI_BUF_CTL_ENABLE;
--		I915_WRITE(DDI_BUF_CTL(port), tmp);
-+		intel_de_write(dev_priv, DDI_BUF_CTL(port), tmp);
- 
--		if (wait_for_us((I915_READ(DDI_BUF_CTL(port)) &
-+		if (wait_for_us((intel_de_read(dev_priv, DDI_BUF_CTL(port)) &
- 				 DDI_BUF_IS_IDLE),
- 				 8))
- 			DRM_ERROR("DDI port:%c buffer not idle\n",
-@@ -1219,9 +1238,9 @@ static void gen11_dsi_disable_io_power(struct intel_encoder *encoder)
- 
- 	/* set mode to DDI */
- 	for_each_dsi_port(port, intel_dsi->ports) {
--		tmp = I915_READ(ICL_DSI_IO_MODECTL(port));
-+		tmp = intel_de_read(dev_priv, ICL_DSI_IO_MODECTL(port));
- 		tmp &= ~COMBO_PHY_MODE_DSI;
--		I915_WRITE(ICL_DSI_IO_MODECTL(port), tmp);
-+		intel_de_write(dev_priv, ICL_DSI_IO_MODECTL(port), tmp);
- 	}
+ 	/* Enable timestamps */
+-	tmp = I915_READ(aud_config);
++	tmp = intel_de_read(dev_priv, aud_config);
+ 	tmp &= ~AUD_CONFIG_N_VALUE_INDEX;
+ 	tmp &= ~AUD_CONFIG_N_PROG_ENABLE;
+ 	tmp &= ~AUD_CONFIG_PIXEL_CLOCK_HDMI_MASK;
+@@ -679,7 +682,7 @@ static void ilk_audio_codec_enable(struct intel_encoder *encoder,
+ 		tmp |= AUD_CONFIG_N_VALUE_INDEX;
+ 	else
+ 		tmp |= audio_config_hdmi_pixel_clock(crtc_state);
+-	I915_WRITE(aud_config, tmp);
++	intel_de_write(dev_priv, aud_config, tmp);
  }
  
-@@ -1443,7 +1462,7 @@ static bool gen11_dsi_get_hw_state(struct intel_encoder *encoder,
+ /**
+@@ -856,7 +859,8 @@ static unsigned long i915_audio_component_get_power(struct device *kdev)
  
- 	for_each_dsi_port(port, intel_dsi->ports) {
- 		dsi_trans = dsi_port_to_transcoder(port);
--		tmp = I915_READ(TRANS_DDI_FUNC_CTL(dsi_trans));
-+		tmp = intel_de_read(dev_priv, TRANS_DDI_FUNC_CTL(dsi_trans));
- 		switch (tmp & TRANS_DDI_EDP_INPUT_MASK) {
- 		case TRANS_DDI_EDP_INPUT_A_ON:
- 			*pipe = PIPE_A;
-@@ -1462,7 +1481,7 @@ static bool gen11_dsi_get_hw_state(struct intel_encoder *encoder,
- 			goto out;
- 		}
+ 	if (dev_priv->audio_power_refcount++ == 0) {
+ 		if (IS_TIGERLAKE(dev_priv) || IS_ICELAKE(dev_priv)) {
+-			I915_WRITE(AUD_FREQ_CNTRL, dev_priv->audio_freq_cntrl);
++			intel_de_write(dev_priv, AUD_FREQ_CNTRL,
++				       dev_priv->audio_freq_cntrl);
+ 			drm_dbg_kms(&dev_priv->drm,
+ 				    "restored AUD_FREQ_CNTRL to 0x%x\n",
+ 				    dev_priv->audio_freq_cntrl);
+@@ -867,9 +871,8 @@ static unsigned long i915_audio_component_get_power(struct device *kdev)
+ 			glk_force_audio_cdclk(dev_priv, true);
  
--		tmp = I915_READ(PIPECONF(dsi_trans));
-+		tmp = intel_de_read(dev_priv, PIPECONF(dsi_trans));
- 		ret = tmp & PIPECONF_ENABLE;
+ 		if (INTEL_GEN(dev_priv) >= 10 || IS_GEMINILAKE(dev_priv))
+-			I915_WRITE(AUD_PIN_BUF_CTL,
+-				   (I915_READ(AUD_PIN_BUF_CTL) |
+-				    AUD_PIN_BUF_ENABLE));
++			intel_de_write(dev_priv, AUD_PIN_BUF_CTL,
++				       (intel_de_read(dev_priv, AUD_PIN_BUF_CTL) | AUD_PIN_BUF_ENABLE));
  	}
- out:
+ 
+ 	return ret;
+@@ -904,15 +907,15 @@ static void i915_audio_component_codec_wake_override(struct device *kdev,
+ 	 * Enable/disable generating the codec wake signal, overriding the
+ 	 * internal logic to generate the codec wake to controller.
+ 	 */
+-	tmp = I915_READ(HSW_AUD_CHICKENBIT);
++	tmp = intel_de_read(dev_priv, HSW_AUD_CHICKENBIT);
+ 	tmp &= ~SKL_AUD_CODEC_WAKE_SIGNAL;
+-	I915_WRITE(HSW_AUD_CHICKENBIT, tmp);
++	intel_de_write(dev_priv, HSW_AUD_CHICKENBIT, tmp);
+ 	usleep_range(1000, 1500);
+ 
+ 	if (enable) {
+-		tmp = I915_READ(HSW_AUD_CHICKENBIT);
++		tmp = intel_de_read(dev_priv, HSW_AUD_CHICKENBIT);
+ 		tmp |= SKL_AUD_CODEC_WAKE_SIGNAL;
+-		I915_WRITE(HSW_AUD_CHICKENBIT, tmp);
++		intel_de_write(dev_priv, HSW_AUD_CHICKENBIT, tmp);
+ 		usleep_range(1000, 1500);
+ 	}
+ 
+@@ -1135,7 +1138,8 @@ static void i915_audio_component_init(struct drm_i915_private *dev_priv)
+ 	}
+ 
+ 	if (IS_TIGERLAKE(dev_priv) || IS_ICELAKE(dev_priv)) {
+-		dev_priv->audio_freq_cntrl = I915_READ(AUD_FREQ_CNTRL);
++		dev_priv->audio_freq_cntrl = intel_de_read(dev_priv,
++							   AUD_FREQ_CNTRL);
+ 		drm_dbg_kms(&dev_priv->drm,
+ 			    "init value of AUD_FREQ_CNTRL of 0x%x\n",
+ 			    dev_priv->audio_freq_cntrl);
 -- 
 2.20.1
 
