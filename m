@@ -2,47 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BECE2148EBE
-	for <lists+intel-gfx@lfdr.de>; Fri, 24 Jan 2020 20:36:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E511148EEA
+	for <lists+intel-gfx@lfdr.de>; Fri, 24 Jan 2020 20:54:22 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2922472B8F;
-	Fri, 24 Jan 2020 19:36:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 13F5372B98;
+	Fri, 24 Jan 2020 19:54:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 911F672B8F
- for <intel-gfx@lists.freedesktop.org>; Fri, 24 Jan 2020 19:36:21 +0000 (UTC)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F33E472B98
+ for <intel-gfx@lists.freedesktop.org>; Fri, 24 Jan 2020 19:54:17 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 24 Jan 2020 11:36:20 -0800
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 24 Jan 2020 11:54:08 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,358,1574150400"; d="scan'208";a="428384996"
-Received: from orsmsx106.amr.corp.intel.com ([10.22.225.133])
- by fmsmga006.fm.intel.com with ESMTP; 24 Jan 2020 11:36:20 -0800
-Received: from orsmsx108.amr.corp.intel.com ([169.254.2.185]) by
- ORSMSX106.amr.corp.intel.com ([169.254.1.190]) with mapi id 14.03.0439.000;
- Fri, 24 Jan 2020 11:36:19 -0800
-From: "Srivatsa, Anusha" <anusha.srivatsa@intel.com>
-To: "Roper, Matthew D" <matthew.d.roper@intel.com>
-Thread-Topic: [Intel-gfx] [PATCH] drm/i915/tgl: Implement Wa_1606931601
-Thread-Index: AQHV0X8Kdmx+4wAPw06sV3+nh3eT6Kf5Dj0AgAEo/JA=
-Date: Fri, 24 Jan 2020 19:36:19 +0000
-Message-ID: <83F5C7385F545743AD4FB2A62F75B073482230AE@ORSMSX108.amr.corp.intel.com>
-References: <20200122234027.9373-1-anusha.srivatsa@intel.com>
- <20200123175012.GI2244136@mdroper-desk1.amr.corp.intel.com>
-In-Reply-To: <20200123175012.GI2244136@mdroper-desk1.amr.corp.intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-version: 11.2.0.6
-dlp-reaction: no-action
-x-originating-ip: [10.22.254.138]
+X-IronPort-AV: E=Sophos;i="5.70,358,1574150400"; d="scan'208";a="228403907"
+Received: from mdroper-desk1.fm.intel.com ([10.1.27.64])
+ by orsmga003.jf.intel.com with ESMTP; 24 Jan 2020 11:54:07 -0800
+From: Matt Roper <matthew.d.roper@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri, 24 Jan 2020 11:53:51 -0800
+Message-Id: <20200124195351.534551-1-matthew.d.roper@intel.com>
+X-Mailer: git-send-email 2.23.0
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/tgl: Implement Wa_1606931601
+Subject: [Intel-gfx] [RFC] drm/i915/tgl: Suppress DC5/DC6 around DSB usage
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,98 +40,113 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+There are reports of unexpected DSB busy/timeout happening after IGT
+tests finish running that apparently go away when the DMC firmware isn't
+loaded.  The bspec doesn't say anything specific about DSB needing us to
+exit DC5/DC6, but let's try adding DSB usage to the "DC off" list and
+see if that changes the behavior.
 
+Cc: Swati Sharma <swati2.sharma@intel.com>
+Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_display_power.c | 3 +++
+ drivers/gpu/drm/i915/display/intel_display_power.h | 1 +
+ drivers/gpu/drm/i915/display/intel_dsb.c           | 7 ++++---
+ drivers/gpu/drm/i915/display/intel_dsb.h           | 1 +
+ 4 files changed, 9 insertions(+), 3 deletions(-)
 
-> -----Original Message-----
-> From: Roper, Matthew D <matthew.d.roper@intel.com>
-> Sent: Thursday, January 23, 2020 9:50 AM
-> To: Srivatsa, Anusha <anusha.srivatsa@intel.com>
-> Cc: intel-gfx@lists.freedesktop.org
-> Subject: Re: [Intel-gfx] [PATCH] drm/i915/tgl: Implement Wa_1606931601
-> 
-> On Wed, Jan 22, 2020 at 03:40:27PM -0800, Anusha Srivatsa wrote:
-> > Disable Early Read and Src Swap by setting the bit 14 and 15 in the
-> > chicken register.
-> >
-> > BSpec: 46045,52890
-> > HSDES: 1606931601
-> 
-> Hmm.  The bspec WA description (which is very poorly written) only
-> mentions setting bit 14, but comments in the HSD indicate that both 14 and
-> 15 should be set.  Do we have offline confirmation/clarification about which
-> we should trust?
-> 
-> If we do need to program both bits, it might still be a good idea to use two
-> separate #define's for those rather than a single bitmask to make it more
-> clear what we're doing and also to give us the option of just setting one or
-> the other in case that winds up being necessary as a workaround for a
-> different platform or future stepping.
-> 
-Going ahead with what the BSpec expects us to do - setting just bit 14. Sending v2 version shortly.
+diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
+index 761be9fcaf10..99e6afda2db9 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_power.c
++++ b/drivers/gpu/drm/i915/display/intel_display_power.c
+@@ -150,6 +150,8 @@ intel_display_power_domain_str(enum intel_display_power_domain domain)
+ 		return "GT_IRQ";
+ 	case POWER_DOMAIN_DPLL_DC_OFF:
+ 		return "DPLL_DC_OFF";
++	case POWER_DOMAIN_DSB:
++		return "DSB";
+ 	default:
+ 		MISSING_CASE(domain);
+ 		return "?";
+@@ -2679,6 +2681,7 @@ void intel_display_power_put(struct drm_i915_private *dev_priv,
+ 	BIT_ULL(POWER_DOMAIN_AUX_A) |			\
+ 	BIT_ULL(POWER_DOMAIN_AUX_B) |			\
+ 	BIT_ULL(POWER_DOMAIN_AUX_C) |			\
++	BIT_ULL(POWER_DOMAIN_DSB) |			\
+ 	BIT_ULL(POWER_DOMAIN_INIT))
+ 
+ #define TGL_DDI_IO_D_TC1_POWER_DOMAINS (	\
+diff --git a/drivers/gpu/drm/i915/display/intel_display_power.h b/drivers/gpu/drm/i915/display/intel_display_power.h
+index 2608a65af7fa..5e8136c65e02 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_power.h
++++ b/drivers/gpu/drm/i915/display/intel_display_power.h
+@@ -77,6 +77,7 @@ enum intel_display_power_domain {
+ 	POWER_DOMAIN_GT_IRQ,
+ 	POWER_DOMAIN_DPLL_DC_OFF,
+ 	POWER_DOMAIN_INIT,
++	POWER_DOMAIN_DSB,
+ 
+ 	POWER_DOMAIN_NUM,
+ };
+diff --git a/drivers/gpu/drm/i915/display/intel_dsb.c b/drivers/gpu/drm/i915/display/intel_dsb.c
+index ada006a690df..156a94a1be05 100644
+--- a/drivers/gpu/drm/i915/display/intel_dsb.c
++++ b/drivers/gpu/drm/i915/display/intel_dsb.c
+@@ -103,7 +103,6 @@ intel_dsb_get(struct intel_crtc *crtc)
+ 	struct drm_i915_gem_object *obj;
+ 	struct i915_vma *vma;
+ 	u32 *buf;
+-	intel_wakeref_t wakeref;
+ 
+ 	if (!HAS_DSB(i915))
+ 		return dsb;
+@@ -111,7 +110,7 @@ intel_dsb_get(struct intel_crtc *crtc)
+ 	if (dsb->refcount++ != 0)
+ 		return dsb;
+ 
+-	wakeref = intel_runtime_pm_get(&i915->runtime_pm);
++	dsb->wakeref = intel_display_power_get(i915, POWER_DOMAIN_DSB);
+ 
+ 	obj = i915_gem_object_create_internal(i915, DSB_BUF_SIZE);
+ 	if (IS_ERR(obj)) {
+@@ -144,7 +143,7 @@ intel_dsb_get(struct intel_crtc *crtc)
+ 	 * already be logged above.
+ 	 */
+ 
+-	intel_runtime_pm_put(&i915->runtime_pm, wakeref);
++	intel_display_power_put(i915, POWER_DOMAIN_DSB, dsb->wakeref);
+ 
+ 	return dsb;
+ }
+@@ -174,6 +173,8 @@ void intel_dsb_put(struct intel_dsb *dsb)
+ 		dsb->free_pos = 0;
+ 		dsb->ins_start_offset = 0;
+ 	}
++
++	intel_display_power_put(i915, POWER_DOMAIN_DSB, dsb->wakeref);
+ }
+ 
+ /**
+diff --git a/drivers/gpu/drm/i915/display/intel_dsb.h b/drivers/gpu/drm/i915/display/intel_dsb.h
+index 395ef9ce558e..b7ea6e24a78c 100644
+--- a/drivers/gpu/drm/i915/display/intel_dsb.h
++++ b/drivers/gpu/drm/i915/display/intel_dsb.h
+@@ -26,6 +26,7 @@ struct intel_dsb {
+ 	enum dsb_id id;
+ 	u32 *cmd_buf;
+ 	struct i915_vma *vma;
++	intel_wakeref_t wakeref;
+ 
+ 	/*
+ 	 * free_pos will point the first free entry position
+-- 
+2.23.0
 
-Anusha  
-
-> Matt
-> 
-> >
-> > Signed-off-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/gt/intel_workarounds.c | 5 +++++
-> >  drivers/gpu/drm/i915/i915_reg.h             | 1 +
-> >  2 files changed, 6 insertions(+)
-> >
-> > diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> > b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> > index 5a7db279f702..53b448b61a5f 100644
-> > --- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> > +++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> > @@ -593,6 +593,11 @@ static void tgl_ctx_workarounds_init(struct
-> intel_engine_cs *engine,
-> >  	wa_add(wal, FF_MODE2, FF_MODE2_TDS_TIMER_MASK, val,
-> >  	       IS_TGL_REVID(engine->i915, TGL_REVID_A0, TGL_REVID_A0) ? 0 :
-> >  			    FF_MODE2_TDS_TIMER_MASK);
-> > +
-> > +	/* Wa_1606931601:tgl */
-> > +	WA_SET_BIT_MASKED(GEN7_ROW_CHICKEN2,
-> > +			  GEN11_EARLY_READ_SRC0_DISABLE_MASK);
-> > +
-> >  }
-> >
-> >  static void
-> > diff --git a/drivers/gpu/drm/i915/i915_reg.h
-> > b/drivers/gpu/drm/i915/i915_reg.h index b93c4c18f05c..69a1c2227b91
-> > 100644
-> > --- a/drivers/gpu/drm/i915/i915_reg.h
-> > +++ b/drivers/gpu/drm/i915/i915_reg.h
-> > @@ -9146,6 +9146,7 @@ enum {
-> >  #define   DOP_CLOCK_GATING_DISABLE	(1 << 0)
-> >  #define   PUSH_CONSTANT_DEREF_DISABLE	(1 << 8)
-> >  #define   GEN11_TDL_CLOCK_GATING_FIX_DISABLE	(1 << 1)
-> > +#define   GEN11_EARLY_READ_SRC0_DISABLE_MASK
-> 	REG_GENMASK(15, 14)
-> >
-> >  #define HSW_ROW_CHICKEN3		_MMIO(0xe49c)
-> >  #define  HSW_ROW_CHICKEN3_L3_GLOBAL_ATOMICS_DISABLE    (1 << 6)
-> > --
-> > 2.23.0
-> >
-> > _______________________________________________
-> > Intel-gfx mailing list
-> > Intel-gfx@lists.freedesktop.org
-> > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-> 
-> --
-> Matt Roper
-> Graphics Software Engineer
-> VTT-OSGC Platform Enablement
-> Intel Corporation
-> (916) 356-2795
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
