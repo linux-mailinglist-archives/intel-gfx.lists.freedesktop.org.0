@@ -1,37 +1,37 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 082D51485F6
-	for <lists+intel-gfx@lfdr.de>; Fri, 24 Jan 2020 14:25:14 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8257F1485F7
+	for <lists+intel-gfx@lfdr.de>; Fri, 24 Jan 2020 14:25:17 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DE22472A6B;
-	Fri, 24 Jan 2020 13:25:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DB15072A6C;
+	Fri, 24 Jan 2020 13:25:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5252E72A6B
- for <intel-gfx@lists.freedesktop.org>; Fri, 24 Jan 2020 13:25:10 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B006872A6D
+ for <intel-gfx@lists.freedesktop.org>; Fri, 24 Jan 2020 13:25:14 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga106.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 24 Jan 2020 05:25:09 -0800
-X-IronPort-AV: E=Sophos;i="5.70,357,1574150400"; d="scan'208";a="230290753"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga105.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 24 Jan 2020 05:25:14 -0800
+X-IronPort-AV: E=Sophos;i="5.70,357,1574150400"; d="scan'208";a="400661061"
 Received: from omarkovx-mobl.ger.corp.intel.com (HELO localhost)
  ([10.249.37.60])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 24 Jan 2020 05:25:08 -0800
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 24 Jan 2020 05:25:12 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri, 24 Jan 2020 15:25:23 +0200
-Message-Id: <ca53d8a5ecd1045325447b728376c8aa2891905f.1579871655.git.jani.nikula@intel.com>
+Date: Fri, 24 Jan 2020 15:25:24 +0200
+Message-Id: <762b11289d22e1db46697c5b4596e49defc8190f.1579871655.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <cover.1579871655.git.jani.nikula@intel.com>
 References: <cover.1579871655.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Subject: [Intel-gfx] [RFC 02/33] drm/i915/audio: use intel_de_*() functions
+Subject: [Intel-gfx] [RFC 03/33] drm/i915/cdclk: use intel_de_*() functions
  for register access
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -95,338 +95,443 @@ expression REG, OFFSET;
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_audio.c | 112 +++++++++++----------
- 1 file changed, 58 insertions(+), 54 deletions(-)
+ drivers/gpu/drm/i915/display/intel_cdclk.c | 133 +++++++++++----------
+ 1 file changed, 68 insertions(+), 65 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_audio.c b/drivers/gpu/drm/i915/display/intel_audio.c
-index f9f4460136b0..3926b9b9a09f 100644
---- a/drivers/gpu/drm/i915/display/intel_audio.c
-+++ b/drivers/gpu/drm/i915/display/intel_audio.c
-@@ -291,18 +291,18 @@ static bool intel_eld_uptodate(struct drm_connector *connector,
- 	u32 tmp;
- 	int i;
- 
--	tmp = I915_READ(reg_eldv);
-+	tmp = intel_de_read(dev_priv, reg_eldv);
- 	tmp &= bits_eldv;
- 
- 	if (!tmp)
- 		return false;
- 
--	tmp = I915_READ(reg_elda);
-+	tmp = intel_de_read(dev_priv, reg_elda);
- 	tmp &= ~bits_elda;
--	I915_WRITE(reg_elda, tmp);
-+	intel_de_write(dev_priv, reg_elda, tmp);
- 
- 	for (i = 0; i < drm_eld_size(eld) / 4; i++)
--		if (I915_READ(reg_edid) != *((const u32 *)eld + i))
-+		if (intel_de_read(dev_priv, reg_edid) != *((const u32 *)eld + i))
- 			return false;
- 
- 	return true;
-@@ -317,16 +317,16 @@ static void g4x_audio_codec_disable(struct intel_encoder *encoder,
- 
- 	drm_dbg_kms(&dev_priv->drm, "Disable audio codec\n");
- 
--	tmp = I915_READ(G4X_AUD_VID_DID);
-+	tmp = intel_de_read(dev_priv, G4X_AUD_VID_DID);
- 	if (tmp == INTEL_AUDIO_DEVBLC || tmp == INTEL_AUDIO_DEVCL)
- 		eldv = G4X_ELDV_DEVCL_DEVBLC;
+diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
+index 50d235d037a1..e17b5a444887 100644
+--- a/drivers/gpu/drm/i915/display/intel_cdclk.c
++++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
+@@ -237,8 +237,8 @@ static unsigned int intel_hpll_vco(struct drm_i915_private *dev_priv)
  	else
- 		eldv = G4X_ELDV_DEVCTG;
+ 		return 0;
  
- 	/* Invalidate ELD */
--	tmp = I915_READ(G4X_AUD_CNTL_ST);
-+	tmp = intel_de_read(dev_priv, G4X_AUD_CNTL_ST);
- 	tmp &= ~eldv;
--	I915_WRITE(G4X_AUD_CNTL_ST, tmp);
-+	intel_de_write(dev_priv, G4X_AUD_CNTL_ST, tmp);
+-	tmp = I915_READ(IS_PINEVIEW(dev_priv) || IS_MOBILE(dev_priv) ?
+-			HPLLVCO_MOBILE : HPLLVCO);
++	tmp = intel_de_read(dev_priv,
++			    IS_PINEVIEW(dev_priv) || IS_MOBILE(dev_priv) ? HPLLVCO_MOBILE : HPLLVCO);
+ 
+ 	vco = vco_table[tmp & 0x7];
+ 	if (vco == 0)
+@@ -412,12 +412,12 @@ static void gm45_get_cdclk(struct drm_i915_private *dev_priv,
+ static void hsw_get_cdclk(struct drm_i915_private *dev_priv,
+ 			  struct intel_cdclk_state *cdclk_state)
+ {
+-	u32 lcpll = I915_READ(LCPLL_CTL);
++	u32 lcpll = intel_de_read(dev_priv, LCPLL_CTL);
+ 	u32 freq = lcpll & LCPLL_CLK_FREQ_MASK;
+ 
+ 	if (lcpll & LCPLL_CD_SOURCE_FCLK)
+ 		cdclk_state->cdclk = 800000;
+-	else if (I915_READ(FUSE_STRAP) & HSW_CDCLK_LIMIT)
++	else if (intel_de_read(dev_priv, FUSE_STRAP) & HSW_CDCLK_LIMIT)
+ 		cdclk_state->cdclk = 450000;
+ 	else if (freq == LCPLL_CLK_FREQ_450)
+ 		cdclk_state->cdclk = 450000;
+@@ -515,17 +515,17 @@ static void vlv_program_pfi_credits(struct drm_i915_private *dev_priv)
+ 	 * WA - write default credits before re-programming
+ 	 * FIXME: should we also set the resend bit here?
+ 	 */
+-	I915_WRITE(GCI_CONTROL, VGA_FAST_MODE_DISABLE |
+-		   default_credits);
++	intel_de_write(dev_priv, GCI_CONTROL,
++		       VGA_FAST_MODE_DISABLE | default_credits);
+ 
+-	I915_WRITE(GCI_CONTROL, VGA_FAST_MODE_DISABLE |
+-		   credits | PFI_CREDIT_RESEND);
++	intel_de_write(dev_priv, GCI_CONTROL,
++		       VGA_FAST_MODE_DISABLE | credits | PFI_CREDIT_RESEND);
+ 
+ 	/*
+ 	 * FIXME is this guaranteed to clear
+ 	 * immediately or should we poll for it?
+ 	 */
+-	WARN_ON(I915_READ(GCI_CONTROL) & PFI_CREDIT_RESEND);
++	WARN_ON(intel_de_read(dev_priv, GCI_CONTROL) & PFI_CREDIT_RESEND);
  }
  
- static void g4x_audio_codec_enable(struct intel_encoder *encoder,
-@@ -343,7 +343,7 @@ static void g4x_audio_codec_enable(struct intel_encoder *encoder,
- 	drm_dbg_kms(&dev_priv->drm, "Enable audio codec, %u bytes ELD\n",
- 		    drm_eld_size(eld));
+ static void vlv_set_cdclk(struct drm_i915_private *dev_priv,
+@@ -695,12 +695,12 @@ static u8 bdw_calc_voltage_level(int cdclk)
+ static void bdw_get_cdclk(struct drm_i915_private *dev_priv,
+ 			  struct intel_cdclk_state *cdclk_state)
+ {
+-	u32 lcpll = I915_READ(LCPLL_CTL);
++	u32 lcpll = intel_de_read(dev_priv, LCPLL_CTL);
+ 	u32 freq = lcpll & LCPLL_CLK_FREQ_MASK;
  
--	tmp = I915_READ(G4X_AUD_VID_DID);
-+	tmp = intel_de_read(dev_priv, G4X_AUD_VID_DID);
- 	if (tmp == INTEL_AUDIO_DEVBLC || tmp == INTEL_AUDIO_DEVCL)
- 		eldv = G4X_ELDV_DEVCL_DEVBLC;
- 	else
-@@ -355,19 +355,20 @@ static void g4x_audio_codec_enable(struct intel_encoder *encoder,
- 			       G4X_HDMIW_HDMIEDID))
+ 	if (lcpll & LCPLL_CD_SOURCE_FCLK)
+ 		cdclk_state->cdclk = 800000;
+-	else if (I915_READ(FUSE_STRAP) & HSW_CDCLK_LIMIT)
++	else if (intel_de_read(dev_priv, FUSE_STRAP) & HSW_CDCLK_LIMIT)
+ 		cdclk_state->cdclk = 450000;
+ 	else if (freq == LCPLL_CLK_FREQ_450)
+ 		cdclk_state->cdclk = 450000;
+@@ -727,7 +727,7 @@ static void bdw_set_cdclk(struct drm_i915_private *dev_priv,
+ 	u32 val;
+ 	int ret;
+ 
+-	if (WARN((I915_READ(LCPLL_CTL) &
++	if (WARN((intel_de_read(dev_priv, LCPLL_CTL) &
+ 		  (LCPLL_PLL_DISABLE | LCPLL_PLL_LOCK |
+ 		   LCPLL_CD_CLOCK_DISABLE | LCPLL_ROOT_CD_CLOCK_DISABLE |
+ 		   LCPLL_CD2X_CLOCK_DISABLE | LCPLL_POWER_DOWN_ALLOW |
+@@ -743,19 +743,19 @@ static void bdw_set_cdclk(struct drm_i915_private *dev_priv,
+ 		return;
+ 	}
+ 
+-	val = I915_READ(LCPLL_CTL);
++	val = intel_de_read(dev_priv, LCPLL_CTL);
+ 	val |= LCPLL_CD_SOURCE_FCLK;
+-	I915_WRITE(LCPLL_CTL, val);
++	intel_de_write(dev_priv, LCPLL_CTL, val);
+ 
+ 	/*
+ 	 * According to the spec, it should be enough to poll for this 1 us.
+ 	 * However, extensive testing shows that this can take longer.
+ 	 */
+-	if (wait_for_us(I915_READ(LCPLL_CTL) &
++	if (wait_for_us(intel_de_read(dev_priv, LCPLL_CTL) &
+ 			LCPLL_CD_SOURCE_FCLK_DONE, 100))
+ 		drm_err(&dev_priv->drm, "Switching to FCLK failed\n");
+ 
+-	val = I915_READ(LCPLL_CTL);
++	val = intel_de_read(dev_priv, LCPLL_CTL);
+ 	val &= ~LCPLL_CLK_FREQ_MASK;
+ 
+ 	switch (cdclk) {
+@@ -776,20 +776,21 @@ static void bdw_set_cdclk(struct drm_i915_private *dev_priv,
+ 		break;
+ 	}
+ 
+-	I915_WRITE(LCPLL_CTL, val);
++	intel_de_write(dev_priv, LCPLL_CTL, val);
+ 
+-	val = I915_READ(LCPLL_CTL);
++	val = intel_de_read(dev_priv, LCPLL_CTL);
+ 	val &= ~LCPLL_CD_SOURCE_FCLK;
+-	I915_WRITE(LCPLL_CTL, val);
++	intel_de_write(dev_priv, LCPLL_CTL, val);
+ 
+-	if (wait_for_us((I915_READ(LCPLL_CTL) &
+-			LCPLL_CD_SOURCE_FCLK_DONE) == 0, 1))
++	if (wait_for_us((intel_de_read(dev_priv, LCPLL_CTL) &
++			 LCPLL_CD_SOURCE_FCLK_DONE) == 0, 1))
+ 		drm_err(&dev_priv->drm, "Switching back to LCPLL failed\n");
+ 
+ 	sandybridge_pcode_write(dev_priv, HSW_PCODE_DE_WRITE_FREQ_REQ,
+ 				cdclk_state->voltage_level);
+ 
+-	I915_WRITE(CDCLK_FREQ, DIV_ROUND_CLOSEST(cdclk, 1000) - 1);
++	intel_de_write(dev_priv, CDCLK_FREQ,
++		       DIV_ROUND_CLOSEST(cdclk, 1000) - 1);
+ 
+ 	intel_update_cdclk(dev_priv);
+ }
+@@ -837,14 +838,14 @@ static void skl_dpll0_update(struct drm_i915_private *dev_priv,
+ 	cdclk_state->ref = 24000;
+ 	cdclk_state->vco = 0;
+ 
+-	val = I915_READ(LCPLL1_CTL);
++	val = intel_de_read(dev_priv, LCPLL1_CTL);
+ 	if ((val & LCPLL_PLL_ENABLE) == 0)
  		return;
  
--	tmp = I915_READ(G4X_AUD_CNTL_ST);
-+	tmp = intel_de_read(dev_priv, G4X_AUD_CNTL_ST);
- 	tmp &= ~(eldv | G4X_ELD_ADDR_MASK);
- 	len = (tmp >> 9) & 0x1f;		/* ELD buffer size */
--	I915_WRITE(G4X_AUD_CNTL_ST, tmp);
-+	intel_de_write(dev_priv, G4X_AUD_CNTL_ST, tmp);
+ 	if (WARN_ON((val & LCPLL_PLL_LOCK) == 0))
+ 		return;
  
- 	len = min(drm_eld_size(eld) / 4, len);
- 	drm_dbg(&dev_priv->drm, "ELD size %d\n", len);
- 	for (i = 0; i < len; i++)
--		I915_WRITE(G4X_HDMIW_HDMIEDID, *((const u32 *)eld + i));
-+		intel_de_write(dev_priv, G4X_HDMIW_HDMIEDID,
-+			       *((const u32 *)eld + i));
+-	val = I915_READ(DPLL_CTRL1);
++	val = intel_de_read(dev_priv, DPLL_CTRL1);
  
--	tmp = I915_READ(G4X_AUD_CNTL_ST);
-+	tmp = intel_de_read(dev_priv, G4X_AUD_CNTL_ST);
- 	tmp |= eldv;
--	I915_WRITE(G4X_AUD_CNTL_ST, tmp);
-+	intel_de_write(dev_priv, G4X_AUD_CNTL_ST, tmp);
- }
+ 	if (WARN_ON((val & (DPLL_CTRL1_HDMI_MODE(SKL_DPLL0) |
+ 			    DPLL_CTRL1_SSC(SKL_DPLL0) |
+@@ -881,7 +882,7 @@ static void skl_get_cdclk(struct drm_i915_private *dev_priv,
+ 	if (cdclk_state->vco == 0)
+ 		goto out;
  
- static void
-@@ -390,7 +391,7 @@ hsw_dp_audio_config_update(struct intel_encoder *encoder,
+-	cdctl = I915_READ(CDCLK_CTL);
++	cdctl = intel_de_read(dev_priv, CDCLK_CTL);
+ 
+ 	if (cdclk_state->vco == 8640000) {
+ 		switch (cdctl & CDCLK_FREQ_SEL_MASK) {
+@@ -962,7 +963,7 @@ static void skl_dpll0_enable(struct drm_i915_private *dev_priv, int vco)
+ 	 * rate later on, with the constraint of choosing a frequency that
+ 	 * works with vco.
+ 	 */
+-	val = I915_READ(DPLL_CTRL1);
++	val = intel_de_read(dev_priv, DPLL_CTRL1);
+ 
+ 	val &= ~(DPLL_CTRL1_HDMI_MODE(SKL_DPLL0) | DPLL_CTRL1_SSC(SKL_DPLL0) |
+ 		 DPLL_CTRL1_LINK_RATE_MASK(SKL_DPLL0));
+@@ -974,10 +975,11 @@ static void skl_dpll0_enable(struct drm_i915_private *dev_priv, int vco)
+ 		val |= DPLL_CTRL1_LINK_RATE(DPLL_CTRL1_LINK_RATE_810,
+ 					    SKL_DPLL0);
+ 
+-	I915_WRITE(DPLL_CTRL1, val);
+-	POSTING_READ(DPLL_CTRL1);
++	intel_de_write(dev_priv, DPLL_CTRL1, val);
++	intel_de_posting_read(dev_priv, DPLL_CTRL1);
+ 
+-	I915_WRITE(LCPLL1_CTL, I915_READ(LCPLL1_CTL) | LCPLL_PLL_ENABLE);
++	intel_de_write(dev_priv, LCPLL1_CTL,
++		       intel_de_read(dev_priv, LCPLL1_CTL) | LCPLL_PLL_ENABLE);
+ 
+ 	if (intel_de_wait_for_set(dev_priv, LCPLL1_CTL, LCPLL_PLL_LOCK, 5))
+ 		drm_err(&dev_priv->drm, "DPLL0 not locked\n");
+@@ -990,7 +992,8 @@ static void skl_dpll0_enable(struct drm_i915_private *dev_priv, int vco)
+ 
+ static void skl_dpll0_disable(struct drm_i915_private *dev_priv)
+ {
+-	I915_WRITE(LCPLL1_CTL, I915_READ(LCPLL1_CTL) & ~LCPLL_PLL_ENABLE);
++	intel_de_write(dev_priv, LCPLL1_CTL,
++		       intel_de_read(dev_priv, LCPLL1_CTL) & ~LCPLL_PLL_ENABLE);
+ 	if (intel_de_wait_for_clear(dev_priv, LCPLL1_CTL, LCPLL_PLL_LOCK, 1))
+ 		drm_err(&dev_priv->drm, "Couldn't disable DPLL0\n");
+ 
+@@ -1053,34 +1056,34 @@ static void skl_set_cdclk(struct drm_i915_private *dev_priv,
+ 	    dev_priv->cdclk.hw.vco != vco)
+ 		skl_dpll0_disable(dev_priv);
+ 
+-	cdclk_ctl = I915_READ(CDCLK_CTL);
++	cdclk_ctl = intel_de_read(dev_priv, CDCLK_CTL);
+ 
+ 	if (dev_priv->cdclk.hw.vco != vco) {
+ 		/* Wa Display #1183: skl,kbl,cfl */
+ 		cdclk_ctl &= ~(CDCLK_FREQ_SEL_MASK | CDCLK_FREQ_DECIMAL_MASK);
+ 		cdclk_ctl |= freq_select | skl_cdclk_decimal(cdclk);
+-		I915_WRITE(CDCLK_CTL, cdclk_ctl);
++		intel_de_write(dev_priv, CDCLK_CTL, cdclk_ctl);
+ 	}
+ 
+ 	/* Wa Display #1183: skl,kbl,cfl */
+ 	cdclk_ctl |= CDCLK_DIVMUX_CD_OVERRIDE;
+-	I915_WRITE(CDCLK_CTL, cdclk_ctl);
+-	POSTING_READ(CDCLK_CTL);
++	intel_de_write(dev_priv, CDCLK_CTL, cdclk_ctl);
++	intel_de_posting_read(dev_priv, CDCLK_CTL);
+ 
+ 	if (dev_priv->cdclk.hw.vco != vco)
+ 		skl_dpll0_enable(dev_priv, vco);
+ 
+ 	/* Wa Display #1183: skl,kbl,cfl */
+ 	cdclk_ctl &= ~(CDCLK_FREQ_SEL_MASK | CDCLK_FREQ_DECIMAL_MASK);
+-	I915_WRITE(CDCLK_CTL, cdclk_ctl);
++	intel_de_write(dev_priv, CDCLK_CTL, cdclk_ctl);
+ 
+ 	cdclk_ctl |= freq_select | skl_cdclk_decimal(cdclk);
+-	I915_WRITE(CDCLK_CTL, cdclk_ctl);
++	intel_de_write(dev_priv, CDCLK_CTL, cdclk_ctl);
+ 
+ 	/* Wa Display #1183: skl,kbl,cfl */
+ 	cdclk_ctl &= ~CDCLK_DIVMUX_CD_OVERRIDE;
+-	I915_WRITE(CDCLK_CTL, cdclk_ctl);
+-	POSTING_READ(CDCLK_CTL);
++	intel_de_write(dev_priv, CDCLK_CTL, cdclk_ctl);
++	intel_de_posting_read(dev_priv, CDCLK_CTL);
+ 
+ 	/* inform PCU of the change */
+ 	sandybridge_pcode_write(dev_priv, SKL_PCODE_CDCLK_CONTROL,
+@@ -1098,7 +1101,7 @@ static void skl_sanitize_cdclk(struct drm_i915_private *dev_priv)
+ 	 * There is SWF18 scratchpad register defined which is set by the
+ 	 * pre-os which can be used by the OS drivers to check the status
+ 	 */
+-	if ((I915_READ(SWF_ILK(0x18)) & 0x00FFFFFF) == 0)
++	if ((intel_de_read(dev_priv, SWF_ILK(0x18)) & 0x00FFFFFF) == 0)
+ 		goto sanitize;
+ 
+ 	intel_update_cdclk(dev_priv);
+@@ -1115,7 +1118,7 @@ static void skl_sanitize_cdclk(struct drm_i915_private *dev_priv)
+ 	 * decimal part is programmed wrong from BIOS where pre-os does not
+ 	 * enable display. Verify the same as well.
+ 	 */
+-	cdctl = I915_READ(CDCLK_CTL);
++	cdctl = intel_de_read(dev_priv, CDCLK_CTL);
+ 	expected = (cdctl & CDCLK_FREQ_SEL_MASK) |
+ 		skl_cdclk_decimal(dev_priv->cdclk.hw.cdclk);
+ 	if (cdctl == expected)
+@@ -1295,7 +1298,7 @@ static u8 ehl_calc_voltage_level(int cdclk)
+ static void cnl_readout_refclk(struct drm_i915_private *dev_priv,
+ 			       struct intel_cdclk_state *cdclk_state)
+ {
+-	if (I915_READ(SKL_DSSM) & CNL_DSSM_CDCLK_PLL_REFCLK_24MHz)
++	if (intel_de_read(dev_priv, SKL_DSSM) & CNL_DSSM_CDCLK_PLL_REFCLK_24MHz)
+ 		cdclk_state->ref = 24000;
  	else
- 		drm_dbg_kms(&dev_priv->drm, "using automatic Maud, Naud\n");
+ 		cdclk_state->ref = 19200;
+@@ -1304,7 +1307,7 @@ static void cnl_readout_refclk(struct drm_i915_private *dev_priv,
+ static void icl_readout_refclk(struct drm_i915_private *dev_priv,
+ 			       struct intel_cdclk_state *cdclk_state)
+ {
+-	u32 dssm = I915_READ(SKL_DSSM) & ICL_DSSM_CDCLK_PLL_REFCLK_MASK;
++	u32 dssm = intel_de_read(dev_priv, SKL_DSSM) & ICL_DSSM_CDCLK_PLL_REFCLK_MASK;
  
--	tmp = I915_READ(HSW_AUD_CFG(cpu_transcoder));
-+	tmp = intel_de_read(dev_priv, HSW_AUD_CFG(cpu_transcoder));
- 	tmp &= ~AUD_CONFIG_N_VALUE_INDEX;
- 	tmp &= ~AUD_CONFIG_PIXEL_CLOCK_HDMI_MASK;
- 	tmp &= ~AUD_CONFIG_N_PROG_ENABLE;
-@@ -402,9 +403,9 @@ hsw_dp_audio_config_update(struct intel_encoder *encoder,
- 		tmp |= AUD_CONFIG_N_PROG_ENABLE;
- 	}
- 
--	I915_WRITE(HSW_AUD_CFG(cpu_transcoder), tmp);
-+	intel_de_write(dev_priv, HSW_AUD_CFG(cpu_transcoder), tmp);
- 
--	tmp = I915_READ(HSW_AUD_M_CTS_ENABLE(cpu_transcoder));
-+	tmp = intel_de_read(dev_priv, HSW_AUD_M_CTS_ENABLE(cpu_transcoder));
- 	tmp &= ~AUD_CONFIG_M_MASK;
- 	tmp &= ~AUD_M_CTS_M_VALUE_INDEX;
- 	tmp &= ~AUD_M_CTS_M_PROG_ENABLE;
-@@ -415,7 +416,7 @@ hsw_dp_audio_config_update(struct intel_encoder *encoder,
- 		tmp |= AUD_M_CTS_M_PROG_ENABLE;
- 	}
- 
--	I915_WRITE(HSW_AUD_M_CTS_ENABLE(cpu_transcoder), tmp);
-+	intel_de_write(dev_priv, HSW_AUD_M_CTS_ENABLE(cpu_transcoder), tmp);
- }
- 
- static void
-@@ -431,7 +432,7 @@ hsw_hdmi_audio_config_update(struct intel_encoder *encoder,
- 
- 	rate = acomp ? acomp->aud_sample_rate[port] : 0;
- 
--	tmp = I915_READ(HSW_AUD_CFG(cpu_transcoder));
-+	tmp = intel_de_read(dev_priv, HSW_AUD_CFG(cpu_transcoder));
- 	tmp &= ~AUD_CONFIG_N_VALUE_INDEX;
- 	tmp &= ~AUD_CONFIG_PIXEL_CLOCK_HDMI_MASK;
- 	tmp &= ~AUD_CONFIG_N_PROG_ENABLE;
-@@ -448,16 +449,16 @@ hsw_hdmi_audio_config_update(struct intel_encoder *encoder,
- 		drm_dbg_kms(&dev_priv->drm, "using automatic N\n");
- 	}
- 
--	I915_WRITE(HSW_AUD_CFG(cpu_transcoder), tmp);
-+	intel_de_write(dev_priv, HSW_AUD_CFG(cpu_transcoder), tmp);
- 
- 	/*
- 	 * Let's disable "Enable CTS or M Prog bit"
- 	 * and let HW calculate the value
- 	 */
--	tmp = I915_READ(HSW_AUD_M_CTS_ENABLE(cpu_transcoder));
-+	tmp = intel_de_read(dev_priv, HSW_AUD_M_CTS_ENABLE(cpu_transcoder));
- 	tmp &= ~AUD_M_CTS_M_PROG_ENABLE;
- 	tmp &= ~AUD_M_CTS_M_VALUE_INDEX;
--	I915_WRITE(HSW_AUD_M_CTS_ENABLE(cpu_transcoder), tmp);
-+	intel_de_write(dev_priv, HSW_AUD_M_CTS_ENABLE(cpu_transcoder), tmp);
- }
- 
- static void
-@@ -484,20 +485,20 @@ static void hsw_audio_codec_disable(struct intel_encoder *encoder,
- 	mutex_lock(&dev_priv->av_mutex);
- 
- 	/* Disable timestamps */
--	tmp = I915_READ(HSW_AUD_CFG(cpu_transcoder));
-+	tmp = intel_de_read(dev_priv, HSW_AUD_CFG(cpu_transcoder));
- 	tmp &= ~AUD_CONFIG_N_VALUE_INDEX;
- 	tmp |= AUD_CONFIG_N_PROG_ENABLE;
- 	tmp &= ~AUD_CONFIG_UPPER_N_MASK;
- 	tmp &= ~AUD_CONFIG_LOWER_N_MASK;
- 	if (intel_crtc_has_dp_encoder(old_crtc_state))
- 		tmp |= AUD_CONFIG_N_VALUE_INDEX;
--	I915_WRITE(HSW_AUD_CFG(cpu_transcoder), tmp);
-+	intel_de_write(dev_priv, HSW_AUD_CFG(cpu_transcoder), tmp);
- 
- 	/* Invalidate ELD */
--	tmp = I915_READ(HSW_AUD_PIN_ELD_CP_VLD);
-+	tmp = intel_de_read(dev_priv, HSW_AUD_PIN_ELD_CP_VLD);
- 	tmp &= ~AUDIO_ELD_VALID(cpu_transcoder);
- 	tmp &= ~AUDIO_OUTPUT_ENABLE(cpu_transcoder);
--	I915_WRITE(HSW_AUD_PIN_ELD_CP_VLD, tmp);
-+	intel_de_write(dev_priv, HSW_AUD_PIN_ELD_CP_VLD, tmp);
- 
- 	mutex_unlock(&dev_priv->av_mutex);
- }
-@@ -520,10 +521,10 @@ static void hsw_audio_codec_enable(struct intel_encoder *encoder,
- 	mutex_lock(&dev_priv->av_mutex);
- 
- 	/* Enable audio presence detect, invalidate ELD */
--	tmp = I915_READ(HSW_AUD_PIN_ELD_CP_VLD);
-+	tmp = intel_de_read(dev_priv, HSW_AUD_PIN_ELD_CP_VLD);
- 	tmp |= AUDIO_OUTPUT_ENABLE(cpu_transcoder);
- 	tmp &= ~AUDIO_ELD_VALID(cpu_transcoder);
--	I915_WRITE(HSW_AUD_PIN_ELD_CP_VLD, tmp);
-+	intel_de_write(dev_priv, HSW_AUD_PIN_ELD_CP_VLD, tmp);
- 
- 	/*
- 	 * FIXME: We're supposed to wait for vblank here, but we have vblanks
-@@ -533,19 +534,20 @@ static void hsw_audio_codec_enable(struct intel_encoder *encoder,
- 	 */
- 
- 	/* Reset ELD write address */
--	tmp = I915_READ(HSW_AUD_DIP_ELD_CTRL(cpu_transcoder));
-+	tmp = intel_de_read(dev_priv, HSW_AUD_DIP_ELD_CTRL(cpu_transcoder));
- 	tmp &= ~IBX_ELD_ADDRESS_MASK;
--	I915_WRITE(HSW_AUD_DIP_ELD_CTRL(cpu_transcoder), tmp);
-+	intel_de_write(dev_priv, HSW_AUD_DIP_ELD_CTRL(cpu_transcoder), tmp);
- 
- 	/* Up to 84 bytes of hw ELD buffer */
- 	len = min(drm_eld_size(eld), 84);
- 	for (i = 0; i < len / 4; i++)
--		I915_WRITE(HSW_AUD_EDID_DATA(cpu_transcoder), *((const u32 *)eld + i));
-+		intel_de_write(dev_priv, HSW_AUD_EDID_DATA(cpu_transcoder),
-+			       *((const u32 *)eld + i));
- 
- 	/* ELD valid */
--	tmp = I915_READ(HSW_AUD_PIN_ELD_CP_VLD);
-+	tmp = intel_de_read(dev_priv, HSW_AUD_PIN_ELD_CP_VLD);
- 	tmp |= AUDIO_ELD_VALID(cpu_transcoder);
--	I915_WRITE(HSW_AUD_PIN_ELD_CP_VLD, tmp);
-+	intel_de_write(dev_priv, HSW_AUD_PIN_ELD_CP_VLD, tmp);
- 
- 	/* Enable timestamps */
- 	hsw_audio_config_update(encoder, crtc_state);
-@@ -584,21 +586,21 @@ static void ilk_audio_codec_disable(struct intel_encoder *encoder,
- 	}
- 
- 	/* Disable timestamps */
--	tmp = I915_READ(aud_config);
-+	tmp = intel_de_read(dev_priv, aud_config);
- 	tmp &= ~AUD_CONFIG_N_VALUE_INDEX;
- 	tmp |= AUD_CONFIG_N_PROG_ENABLE;
- 	tmp &= ~AUD_CONFIG_UPPER_N_MASK;
- 	tmp &= ~AUD_CONFIG_LOWER_N_MASK;
- 	if (intel_crtc_has_dp_encoder(old_crtc_state))
- 		tmp |= AUD_CONFIG_N_VALUE_INDEX;
--	I915_WRITE(aud_config, tmp);
-+	intel_de_write(dev_priv, aud_config, tmp);
- 
- 	eldv = IBX_ELD_VALID(port);
- 
- 	/* Invalidate ELD */
--	tmp = I915_READ(aud_cntrl_st2);
-+	tmp = intel_de_read(dev_priv, aud_cntrl_st2);
- 	tmp &= ~eldv;
--	I915_WRITE(aud_cntrl_st2, tmp);
-+	intel_de_write(dev_priv, aud_cntrl_st2, tmp);
- }
- 
- static void ilk_audio_codec_enable(struct intel_encoder *encoder,
-@@ -651,27 +653,28 @@ static void ilk_audio_codec_enable(struct intel_encoder *encoder,
- 	eldv = IBX_ELD_VALID(port);
- 
- 	/* Invalidate ELD */
--	tmp = I915_READ(aud_cntrl_st2);
-+	tmp = intel_de_read(dev_priv, aud_cntrl_st2);
- 	tmp &= ~eldv;
--	I915_WRITE(aud_cntrl_st2, tmp);
-+	intel_de_write(dev_priv, aud_cntrl_st2, tmp);
- 
- 	/* Reset ELD write address */
--	tmp = I915_READ(aud_cntl_st);
-+	tmp = intel_de_read(dev_priv, aud_cntl_st);
- 	tmp &= ~IBX_ELD_ADDRESS_MASK;
--	I915_WRITE(aud_cntl_st, tmp);
-+	intel_de_write(dev_priv, aud_cntl_st, tmp);
- 
- 	/* Up to 84 bytes of hw ELD buffer */
- 	len = min(drm_eld_size(eld), 84);
- 	for (i = 0; i < len / 4; i++)
--		I915_WRITE(hdmiw_hdmiedid, *((const u32 *)eld + i));
-+		intel_de_write(dev_priv, hdmiw_hdmiedid,
-+			       *((const u32 *)eld + i));
- 
- 	/* ELD valid */
--	tmp = I915_READ(aud_cntrl_st2);
-+	tmp = intel_de_read(dev_priv, aud_cntrl_st2);
- 	tmp |= eldv;
--	I915_WRITE(aud_cntrl_st2, tmp);
-+	intel_de_write(dev_priv, aud_cntrl_st2, tmp);
- 
- 	/* Enable timestamps */
--	tmp = I915_READ(aud_config);
-+	tmp = intel_de_read(dev_priv, aud_config);
- 	tmp &= ~AUD_CONFIG_N_VALUE_INDEX;
- 	tmp &= ~AUD_CONFIG_N_PROG_ENABLE;
- 	tmp &= ~AUD_CONFIG_PIXEL_CLOCK_HDMI_MASK;
-@@ -679,7 +682,7 @@ static void ilk_audio_codec_enable(struct intel_encoder *encoder,
- 		tmp |= AUD_CONFIG_N_VALUE_INDEX;
+ 	switch (dssm) {
+ 	default:
+@@ -1334,7 +1337,7 @@ static void bxt_de_pll_readout(struct drm_i915_private *dev_priv,
  	else
- 		tmp |= audio_config_hdmi_pixel_clock(crtc_state);
--	I915_WRITE(aud_config, tmp);
-+	intel_de_write(dev_priv, aud_config, tmp);
+ 		cdclk_state->ref = 19200;
+ 
+-	val = I915_READ(BXT_DE_PLL_ENABLE);
++	val = intel_de_read(dev_priv, BXT_DE_PLL_ENABLE);
+ 	if ((val & BXT_DE_PLL_PLL_ENABLE) == 0 ||
+ 	    (val & BXT_DE_PLL_LOCK) == 0) {
+ 		/*
+@@ -1352,7 +1355,7 @@ static void bxt_de_pll_readout(struct drm_i915_private *dev_priv,
+ 	if (INTEL_GEN(dev_priv) >= 10)
+ 		ratio = val & CNL_CDCLK_PLL_RATIO_MASK;
+ 	else
+-		ratio = I915_READ(BXT_DE_PLL_CTL) & BXT_DE_PLL_RATIO_MASK;
++		ratio = intel_de_read(dev_priv, BXT_DE_PLL_CTL) & BXT_DE_PLL_RATIO_MASK;
+ 
+ 	cdclk_state->vco = ratio * cdclk_state->ref;
+ }
+@@ -1377,7 +1380,7 @@ static void bxt_get_cdclk(struct drm_i915_private *dev_priv,
+ 		goto out;
+ 	}
+ 
+-	divider = I915_READ(CDCLK_CTL) & BXT_CDCLK_CD2X_DIV_SEL_MASK;
++	divider = intel_de_read(dev_priv, CDCLK_CTL) & BXT_CDCLK_CD2X_DIV_SEL_MASK;
+ 
+ 	switch (divider) {
+ 	case BXT_CDCLK_CD2X_DIV_SEL_1:
+@@ -1413,7 +1416,7 @@ static void bxt_get_cdclk(struct drm_i915_private *dev_priv,
+ 
+ static void bxt_de_pll_disable(struct drm_i915_private *dev_priv)
+ {
+-	I915_WRITE(BXT_DE_PLL_ENABLE, 0);
++	intel_de_write(dev_priv, BXT_DE_PLL_ENABLE, 0);
+ 
+ 	/* Timeout 200us */
+ 	if (intel_de_wait_for_clear(dev_priv,
+@@ -1428,12 +1431,12 @@ static void bxt_de_pll_enable(struct drm_i915_private *dev_priv, int vco)
+ 	int ratio = DIV_ROUND_CLOSEST(vco, dev_priv->cdclk.hw.ref);
+ 	u32 val;
+ 
+-	val = I915_READ(BXT_DE_PLL_CTL);
++	val = intel_de_read(dev_priv, BXT_DE_PLL_CTL);
+ 	val &= ~BXT_DE_PLL_RATIO_MASK;
+ 	val |= BXT_DE_PLL_RATIO(ratio);
+-	I915_WRITE(BXT_DE_PLL_CTL, val);
++	intel_de_write(dev_priv, BXT_DE_PLL_CTL, val);
+ 
+-	I915_WRITE(BXT_DE_PLL_ENABLE, BXT_DE_PLL_PLL_ENABLE);
++	intel_de_write(dev_priv, BXT_DE_PLL_ENABLE, BXT_DE_PLL_PLL_ENABLE);
+ 
+ 	/* Timeout 200us */
+ 	if (intel_de_wait_for_set(dev_priv,
+@@ -1447,12 +1450,12 @@ static void cnl_cdclk_pll_disable(struct drm_i915_private *dev_priv)
+ {
+ 	u32 val;
+ 
+-	val = I915_READ(BXT_DE_PLL_ENABLE);
++	val = intel_de_read(dev_priv, BXT_DE_PLL_ENABLE);
+ 	val &= ~BXT_DE_PLL_PLL_ENABLE;
+-	I915_WRITE(BXT_DE_PLL_ENABLE, val);
++	intel_de_write(dev_priv, BXT_DE_PLL_ENABLE, val);
+ 
+ 	/* Timeout 200us */
+-	if (wait_for((I915_READ(BXT_DE_PLL_ENABLE) & BXT_DE_PLL_LOCK) == 0, 1))
++	if (wait_for((intel_de_read(dev_priv, BXT_DE_PLL_ENABLE) & BXT_DE_PLL_LOCK) == 0, 1))
+ 		drm_err(&dev_priv->drm,
+ 			"timeout waiting for CDCLK PLL unlock\n");
+ 
+@@ -1465,13 +1468,13 @@ static void cnl_cdclk_pll_enable(struct drm_i915_private *dev_priv, int vco)
+ 	u32 val;
+ 
+ 	val = CNL_CDCLK_PLL_RATIO(ratio);
+-	I915_WRITE(BXT_DE_PLL_ENABLE, val);
++	intel_de_write(dev_priv, BXT_DE_PLL_ENABLE, val);
+ 
+ 	val |= BXT_DE_PLL_PLL_ENABLE;
+-	I915_WRITE(BXT_DE_PLL_ENABLE, val);
++	intel_de_write(dev_priv, BXT_DE_PLL_ENABLE, val);
+ 
+ 	/* Timeout 200us */
+-	if (wait_for((I915_READ(BXT_DE_PLL_ENABLE) & BXT_DE_PLL_LOCK) != 0, 1))
++	if (wait_for((intel_de_read(dev_priv, BXT_DE_PLL_ENABLE) & BXT_DE_PLL_LOCK) != 0, 1))
+ 		drm_err(&dev_priv->drm,
+ 			"timeout waiting for CDCLK PLL lock\n");
+ 
+@@ -1578,7 +1581,7 @@ static void bxt_set_cdclk(struct drm_i915_private *dev_priv,
+ 	 */
+ 	if (IS_GEN9_LP(dev_priv) && cdclk >= 500000)
+ 		val |= BXT_CDCLK_SSA_PRECHARGE_ENABLE;
+-	I915_WRITE(CDCLK_CTL, val);
++	intel_de_write(dev_priv, CDCLK_CTL, val);
+ 
+ 	if (pipe != INVALID_PIPE)
+ 		intel_wait_for_vblank(dev_priv, pipe);
+@@ -1634,7 +1637,7 @@ static void bxt_sanitize_cdclk(struct drm_i915_private *dev_priv)
+ 	 * set reserved MBZ bits in CDCLK_CTL at least during exiting from S4,
+ 	 * so sanitize this register.
+ 	 */
+-	cdctl = I915_READ(CDCLK_CTL);
++	cdctl = intel_de_read(dev_priv, CDCLK_CTL);
+ 	/*
+ 	 * Let's ignore the pipe field, since BIOS could have configured the
+ 	 * dividers both synching to an active pipe, or asynchronously
+@@ -2471,7 +2474,7 @@ void intel_update_max_cdclk(struct drm_i915_private *dev_priv)
+ 	} else if (IS_CANNONLAKE(dev_priv)) {
+ 		dev_priv->max_cdclk_freq = 528000;
+ 	} else if (IS_GEN9_BC(dev_priv)) {
+-		u32 limit = I915_READ(SKL_DFSM) & SKL_DFSM_CDCLK_LIMIT_MASK;
++		u32 limit = intel_de_read(dev_priv, SKL_DFSM) & SKL_DFSM_CDCLK_LIMIT_MASK;
+ 		int max_cdclk, vco;
+ 
+ 		vco = dev_priv->skl_preferred_vco_freq;
+@@ -2503,7 +2506,7 @@ void intel_update_max_cdclk(struct drm_i915_private *dev_priv)
+ 		 * How can we know if extra cooling is
+ 		 * available? PCI ID, VTB, something else?
+ 		 */
+-		if (I915_READ(FUSE_STRAP) & HSW_CDCLK_LIMIT)
++		if (intel_de_read(dev_priv, FUSE_STRAP) & HSW_CDCLK_LIMIT)
+ 			dev_priv->max_cdclk_freq = 450000;
+ 		else if (IS_BDW_ULX(dev_priv))
+ 			dev_priv->max_cdclk_freq = 450000;
+@@ -2546,8 +2549,8 @@ void intel_update_cdclk(struct drm_i915_private *dev_priv)
+ 	 * generate GMBus clock. This will vary with the cdclk freq.
+ 	 */
+ 	if (IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv))
+-		I915_WRITE(GMBUSFREQ_VLV,
+-			   DIV_ROUND_UP(dev_priv->cdclk.hw.cdclk, 1000));
++		intel_de_write(dev_priv, GMBUSFREQ_VLV,
++		               DIV_ROUND_UP(dev_priv->cdclk.hw.cdclk, 1000));
  }
  
- /**
-@@ -856,7 +859,8 @@ static unsigned long i915_audio_component_get_power(struct device *kdev)
+ static int cnp_rawclk(struct drm_i915_private *dev_priv)
+@@ -2555,7 +2558,7 @@ static int cnp_rawclk(struct drm_i915_private *dev_priv)
+ 	u32 rawclk;
+ 	int divider, fraction;
  
- 	if (dev_priv->audio_power_refcount++ == 0) {
- 		if (IS_TIGERLAKE(dev_priv) || IS_ICELAKE(dev_priv)) {
--			I915_WRITE(AUD_FREQ_CNTRL, dev_priv->audio_freq_cntrl);
-+			intel_de_write(dev_priv, AUD_FREQ_CNTRL,
-+				       dev_priv->audio_freq_cntrl);
- 			drm_dbg_kms(&dev_priv->drm,
- 				    "restored AUD_FREQ_CNTRL to 0x%x\n",
- 				    dev_priv->audio_freq_cntrl);
-@@ -867,9 +871,8 @@ static unsigned long i915_audio_component_get_power(struct device *kdev)
- 			glk_force_audio_cdclk(dev_priv, true);
- 
- 		if (INTEL_GEN(dev_priv) >= 10 || IS_GEMINILAKE(dev_priv))
--			I915_WRITE(AUD_PIN_BUF_CTL,
--				   (I915_READ(AUD_PIN_BUF_CTL) |
--				    AUD_PIN_BUF_ENABLE));
-+			intel_de_write(dev_priv, AUD_PIN_BUF_CTL,
-+				       (intel_de_read(dev_priv, AUD_PIN_BUF_CTL) | AUD_PIN_BUF_ENABLE));
+-	if (I915_READ(SFUSE_STRAP) & SFUSE_STRAP_RAW_FREQUENCY) {
++	if (intel_de_read(dev_priv, SFUSE_STRAP) & SFUSE_STRAP_RAW_FREQUENCY) {
+ 		/* 24 MHz */
+ 		divider = 24000;
+ 		fraction = 0;
+@@ -2575,13 +2578,13 @@ static int cnp_rawclk(struct drm_i915_private *dev_priv)
+ 			rawclk |= ICP_RAWCLK_NUM(numerator);
  	}
  
- 	return ret;
-@@ -904,15 +907,15 @@ static void i915_audio_component_codec_wake_override(struct device *kdev,
- 	 * Enable/disable generating the codec wake signal, overriding the
- 	 * internal logic to generate the codec wake to controller.
- 	 */
--	tmp = I915_READ(HSW_AUD_CHICKENBIT);
-+	tmp = intel_de_read(dev_priv, HSW_AUD_CHICKENBIT);
- 	tmp &= ~SKL_AUD_CODEC_WAKE_SIGNAL;
--	I915_WRITE(HSW_AUD_CHICKENBIT, tmp);
-+	intel_de_write(dev_priv, HSW_AUD_CHICKENBIT, tmp);
- 	usleep_range(1000, 1500);
+-	I915_WRITE(PCH_RAWCLK_FREQ, rawclk);
++	intel_de_write(dev_priv, PCH_RAWCLK_FREQ, rawclk);
+ 	return divider + fraction;
+ }
  
- 	if (enable) {
--		tmp = I915_READ(HSW_AUD_CHICKENBIT);
-+		tmp = intel_de_read(dev_priv, HSW_AUD_CHICKENBIT);
- 		tmp |= SKL_AUD_CODEC_WAKE_SIGNAL;
--		I915_WRITE(HSW_AUD_CHICKENBIT, tmp);
-+		intel_de_write(dev_priv, HSW_AUD_CHICKENBIT, tmp);
- 		usleep_range(1000, 1500);
- 	}
+ static int pch_rawclk(struct drm_i915_private *dev_priv)
+ {
+-	return (I915_READ(PCH_RAWCLK_FREQ) & RAWCLK_FREQ_MASK) * 1000;
++	return (intel_de_read(dev_priv, PCH_RAWCLK_FREQ) & RAWCLK_FREQ_MASK) * 1000;
+ }
  
-@@ -1135,7 +1138,8 @@ static void i915_audio_component_init(struct drm_i915_private *dev_priv)
- 	}
+ static int vlv_hrawclk(struct drm_i915_private *dev_priv)
+@@ -2596,7 +2599,7 @@ static int g4x_hrawclk(struct drm_i915_private *dev_priv)
+ 	u32 clkcfg;
  
- 	if (IS_TIGERLAKE(dev_priv) || IS_ICELAKE(dev_priv)) {
--		dev_priv->audio_freq_cntrl = I915_READ(AUD_FREQ_CNTRL);
-+		dev_priv->audio_freq_cntrl = intel_de_read(dev_priv,
-+							   AUD_FREQ_CNTRL);
- 		drm_dbg_kms(&dev_priv->drm,
- 			    "init value of AUD_FREQ_CNTRL of 0x%x\n",
- 			    dev_priv->audio_freq_cntrl);
+ 	/* hrawclock is 1/4 the FSB frequency */
+-	clkcfg = I915_READ(CLKCFG);
++	clkcfg = intel_de_read(dev_priv, CLKCFG);
+ 	switch (clkcfg & CLKCFG_FSB_MASK) {
+ 	case CLKCFG_FSB_400:
+ 		return 100000;
 -- 
 2.20.1
 
