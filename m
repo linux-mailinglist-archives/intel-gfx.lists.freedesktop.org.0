@@ -2,34 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 544D9148642
-	for <lists+intel-gfx@lfdr.de>; Fri, 24 Jan 2020 14:40:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A3B914866C
+	for <lists+intel-gfx@lfdr.de>; Fri, 24 Jan 2020 14:55:17 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8BD7A6E394;
-	Fri, 24 Jan 2020 13:40:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6A0516E4B7;
+	Fri, 24 Jan 2020 13:55:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0C1416E394;
- Fri, 24 Jan 2020 13:40:36 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E35956E4B7
+ for <intel-gfx@lists.freedesktop.org>; Fri, 24 Jan 2020 13:55:12 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from localhost (unverified [78.156.65.138]) 
  by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 19995659-1500050 for multiple; Fri, 24 Jan 2020 13:40:34 +0000
+ 19995798-1500050 for multiple; Fri, 24 Jan 2020 13:55:00 +0000
 MIME-Version: 1.0
-To: =?utf-8?q?Thomas_Hellstr=C3=B6m_=28VMware=29?= <thomas_os@shipmail.org>,
- dri-devel@lists.freedesktop.org
+To: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org
 From: Chris Wilson <chris@chris-wilson.co.uk>
-In-Reply-To: <38d3a0bf-4dfa-c8e4-c429-8c95854a9b8c@shipmail.org>
-References: <20200124125627.125042-2-chris@chris-wilson.co.uk>
- <20200124130107.125404-1-chris@chris-wilson.co.uk>
- <38d3a0bf-4dfa-c8e4-c429-8c95854a9b8c@shipmail.org>
-Message-ID: <157987323212.2524.13837110059871754877@skylake-alporthouse-com>
+In-Reply-To: <cover.1579871655.git.jani.nikula@intel.com>
+References: <cover.1579871655.git.jani.nikula@intel.com>
+Message-ID: <157987409843.2524.2998401254997919669@skylake-alporthouse-com>
 User-Agent: alot/0.6
-Date: Fri, 24 Jan 2020 13:40:32 +0000
-Subject: Re: [Intel-gfx] [PATCH] drm: Avoid drm_global_mutex for simple
- inc/dec of dev->open_count
+Date: Fri, 24 Jan 2020 13:54:58 +0000
+Subject: Re: [Intel-gfx] [RFC 00/33] drm/i915/display: mass conversion to
+ intel_de_*() register accessors
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,32 +39,45 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Jani Nikula <jani.nikula@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-UXVvdGluZyBUaG9tYXMgSGVsbHN0csO2bSAoVk13YXJlKSAoMjAyMC0wMS0yNCAxMzozNzo0NykK
-PiBPbiAxLzI0LzIwIDI6MDEgUE0sIENocmlzIFdpbHNvbiB3cm90ZToKPiA+IFNpbmNlIGRybV9n
-bG9iYWxfbXV0ZXggaXMgYSB0cnVlIGdsb2JhbCBtdXRleCBhY3Jvc3MgZGV2aWNlcywgd2UgZG9u
-J3QKPiA+IHdhbnQgdG8gYWNxdWlyZSBpdCB1bmxlc3MgYWJzb2x1dGVseSBuZWNlc3NhcnkuIEZv
-ciBtYWludGFpbmluZyB0aGUKPiA+IGRldmljZSBsb2NhbCBvcGVuX2NvdW50LCB3ZSBjYW4gdXNl
-IGF0b21pYyBvcGVyYXRpb25zIG9uIHRoZSBjb3VudGVyCj4gPiBpdHNlbGYsIGV4Y2VwdCB3aGVu
-IG1ha2luZyB0aGUgdHJhbnNpdGlvbiB0by9mcm9tIDAuIEhlcmUsIHdlIHRhY2tsZSB0aGUKPiA+
-IGVhc3kgcG9ydGlvbiBvZiBkZWxheWluZyBhY3F1aXJpbmcgdGhlIGRybV9nbG9iYWxfbXV0ZXgg
-Zm9yIHRoZSBmaW5hbAo+ID4gcmVsZWFzZSBieSB1c2luZyBhdG9taWNfZGVjX2FuZF9tdXRleF9s
-b2NrKCksIGxlYXZpbmcgdGhlIGdsb2JhbAo+ID4gc2VyaWFsaXNhdGlvbiBhY3Jvc3MgdGhlIGRl
-dmljZSBvcGVucy4KPiA+Cj4gPiBTaWduZWQtb2ZmLWJ5OiBDaHJpcyBXaWxzb24gPGNocmlzQGNo
-cmlzLXdpbHNvbi5jby51az4KPiA+IENjOiBUaG9tYXMgSGVsbHN0csO2bSAoVk13YXJlKSA8dGhv
-bWFzX29zQHNoaXBtYWlsLm9yZz4KPiAKPiBGb3IgdGhlIHNlcmllczoKPiAKPiBSZXZpZXdlZC1i
-eTogVGhvbWFzIEhlbGxzdHLDtm0gPHRoZWxsc3Ryb21Adm13YXJlLmNvbT4KPiAKPiBOb3cgdGhl
-IG9ubHkgcmVtYWluaW5nICh0aG91Z2ggcHJlLWV4aXN0aW5nKSBwcm9ibGVtIEkgY2FuIHNlZSBp
-cyB0aGF0IAo+IHRoZXJlIGlzIG5vIGNvcnJlc3BvbmRpbmcgbXV0ZXggbG9jayBpbiBkcm1fb3Bl
-bigpIHNvIHRoYXQgZmlyc3RvcGVuIAo+IG1pZ2h0IHJhY2Ugd2l0aCBsYXN0Y2xvc2UuLiBPciBJ
-IG1pZ2h0IGJlIG1pc3Npbmcgc29tZXRoaW5nLi4KCmlpcmMsIGl0J3MgYSBjb21wbGljYXRlZCBk
-YW5jZSB3aGVyZSBpdCBnb2VzIHRocm91Z2ggZHJtX3N0dWJfb3BlbigpCmZpcnN0IHdoaWNoIGFj
-cXVpcmVzIHRoZSBkcm1fZ2xvYmFsX211dGV4LgotQ2hyaXMKX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1n
-ZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21h
-aWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+Quoting Jani Nikula (2020-01-24 13:25:21)
+> Hey all,
+> 
+> So I sent [1] to convert some forcewake register accessors... but what if we
+> just ripped off the bandage once and for all? It's going to hurt, a lot, but
+> we'd get it done.
+> 
+> This completely rids us of the "dev_priv" dependency in display/.
+> 
+> All the patches here are per-file and independent of each other. We could also
+> pick and apply the ones that are least likely to conflict.
+> 
+> Opinions?
+> 
+> 
+> BR,
+> Jani.
+> 
+> 
+> PS. I didn't bother looking at the checkpatch warnings this may generate at this
+> point. I just used the --linux-spacing option for spatch, and closed my eyes. I
+> completely scripted the generation of the series, apart from just a couple of
+> build fixes.
+
+Yup. Suck it all in, clean up with the usual code refreshes.
+Schadenfreude-by: Chris Wilson <chris@chris-wilson.co.uk>
+
+I've looked at a couple of patches to confirm that it does appear purely
+mechanical,
+Acked-by: Chris Wilson <chris@chris-wilson.co.uk>
+-Chris
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
