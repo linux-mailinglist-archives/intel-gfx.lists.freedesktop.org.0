@@ -2,37 +2,37 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6D80148607
-	for <lists+intel-gfx@lfdr.de>; Fri, 24 Jan 2020 14:26:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8DA92148608
+	for <lists+intel-gfx@lfdr.de>; Fri, 24 Jan 2020 14:26:22 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 227B672A85;
-	Fri, 24 Jan 2020 13:26:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F05F372A84;
+	Fri, 24 Jan 2020 13:26:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3B4B672A82
- for <intel-gfx@lists.freedesktop.org>; Fri, 24 Jan 2020 13:26:15 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 99B4B72A84
+ for <intel-gfx@lists.freedesktop.org>; Fri, 24 Jan 2020 13:26:19 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga105.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 24 Jan 2020 05:26:14 -0800
-X-IronPort-AV: E=Sophos;i="5.70,357,1574150400"; d="scan'208";a="230291250"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 24 Jan 2020 05:26:19 -0800
+X-IronPort-AV: E=Sophos;i="5.70,357,1574150400"; d="scan'208";a="400661231"
 Received: from omarkovx-mobl.ger.corp.intel.com (HELO localhost)
  ([10.249.37.60])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 24 Jan 2020 05:26:13 -0800
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 24 Jan 2020 05:26:17 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri, 24 Jan 2020 15:25:38 +0200
-Message-Id: <fca7d63b3aa669b5984be45b5968f47fb0b64b2b.1579871655.git.jani.nikula@intel.com>
+Date: Fri, 24 Jan 2020 15:25:39 +0200
+Message-Id: <1fca6f7e201fb2c75fcfff213ebd982a988eb40d.1579871655.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <cover.1579871655.git.jani.nikula@intel.com>
 References: <cover.1579871655.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Subject: [Intel-gfx] [RFC 17/33] drm/i915/fifo_underrun: use intel_de_*()
- functions for register access
+Subject: [Intel-gfx] [RFC 18/33] drm/i915/gmbus: use intel_de_*() functions
+ for register access
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -95,122 +95,236 @@ expression REG, OFFSET;
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- .../drm/i915/display/intel_fifo_underrun.c    | 37 ++++++++++---------
- 1 file changed, 20 insertions(+), 17 deletions(-)
+ drivers/gpu/drm/i915/display/intel_gmbus.c | 74 ++++++++++------------
+ 1 file changed, 35 insertions(+), 39 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_fifo_underrun.c b/drivers/gpu/drm/i915/display/intel_fifo_underrun.c
-index 6c83b350525d..470b3b0b9bdb 100644
---- a/drivers/gpu/drm/i915/display/intel_fifo_underrun.c
-+++ b/drivers/gpu/drm/i915/display/intel_fifo_underrun.c
-@@ -95,12 +95,12 @@ static void i9xx_check_fifo_underruns(struct intel_crtc *crtc)
- 
- 	lockdep_assert_held(&dev_priv->irq_lock);
- 
--	if ((I915_READ(reg) & PIPE_FIFO_UNDERRUN_STATUS) == 0)
-+	if ((intel_de_read(dev_priv, reg) & PIPE_FIFO_UNDERRUN_STATUS) == 0)
- 		return;
- 
- 	enable_mask = i915_pipestat_enable_mask(dev_priv, crtc->pipe);
--	I915_WRITE(reg, enable_mask | PIPE_FIFO_UNDERRUN_STATUS);
--	POSTING_READ(reg);
-+	intel_de_write(dev_priv, reg, enable_mask | PIPE_FIFO_UNDERRUN_STATUS);
-+	intel_de_posting_read(dev_priv, reg);
- 
- 	trace_intel_cpu_fifo_underrun(dev_priv, crtc->pipe);
- 	DRM_ERROR("pipe %c underrun\n", pipe_name(crtc->pipe));
-@@ -118,10 +118,11 @@ static void i9xx_set_fifo_underrun_reporting(struct drm_device *dev,
- 	if (enable) {
- 		u32 enable_mask = i915_pipestat_enable_mask(dev_priv, pipe);
- 
--		I915_WRITE(reg, enable_mask | PIPE_FIFO_UNDERRUN_STATUS);
--		POSTING_READ(reg);
-+		intel_de_write(dev_priv, reg,
-+			       enable_mask | PIPE_FIFO_UNDERRUN_STATUS);
-+		intel_de_posting_read(dev_priv, reg);
- 	} else {
--		if (old && I915_READ(reg) & PIPE_FIFO_UNDERRUN_STATUS)
-+		if (old && intel_de_read(dev_priv, reg) & PIPE_FIFO_UNDERRUN_STATUS)
- 			DRM_ERROR("pipe %c underrun\n", pipe_name(pipe));
- 	}
+diff --git a/drivers/gpu/drm/i915/display/intel_gmbus.c b/drivers/gpu/drm/i915/display/intel_gmbus.c
+index 3d4d19ac1d14..508308555dc6 100644
+--- a/drivers/gpu/drm/i915/display/intel_gmbus.c
++++ b/drivers/gpu/drm/i915/display/intel_gmbus.c
+@@ -143,8 +143,8 @@ to_intel_gmbus(struct i2c_adapter *i2c)
+ void
+ intel_gmbus_reset(struct drm_i915_private *dev_priv)
+ {
+-	I915_WRITE(GMBUS0, 0);
+-	I915_WRITE(GMBUS4, 0);
++	intel_de_write(dev_priv, GMBUS0, 0);
++	intel_de_write(dev_priv, GMBUS4, 0);
  }
-@@ -143,15 +144,15 @@ static void ivb_check_fifo_underruns(struct intel_crtc *crtc)
+ 
+ static void pnv_gmbus_clock_gating(struct drm_i915_private *dev_priv,
+@@ -153,12 +153,12 @@ static void pnv_gmbus_clock_gating(struct drm_i915_private *dev_priv,
+ 	u32 val;
+ 
+ 	/* When using bit bashing for I2C, this bit needs to be set to 1 */
+-	val = I915_READ(DSPCLK_GATE_D);
++	val = intel_de_read(dev_priv, DSPCLK_GATE_D);
+ 	if (!enable)
+ 		val |= PNV_GMBUSUNIT_CLOCK_GATE_DISABLE;
+ 	else
+ 		val &= ~PNV_GMBUSUNIT_CLOCK_GATE_DISABLE;
+-	I915_WRITE(DSPCLK_GATE_D, val);
++	intel_de_write(dev_priv, DSPCLK_GATE_D, val);
+ }
+ 
+ static void pch_gmbus_clock_gating(struct drm_i915_private *dev_priv,
+@@ -166,12 +166,12 @@ static void pch_gmbus_clock_gating(struct drm_i915_private *dev_priv,
  {
- 	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
- 	enum pipe pipe = crtc->pipe;
--	u32 err_int = I915_READ(GEN7_ERR_INT);
-+	u32 err_int = intel_de_read(dev_priv, GEN7_ERR_INT);
+ 	u32 val;
  
- 	lockdep_assert_held(&dev_priv->irq_lock);
+-	val = I915_READ(SOUTH_DSPCLK_GATE_D);
++	val = intel_de_read(dev_priv, SOUTH_DSPCLK_GATE_D);
+ 	if (!enable)
+ 		val |= PCH_GMBUSUNIT_CLOCK_GATE_DISABLE;
+ 	else
+ 		val &= ~PCH_GMBUSUNIT_CLOCK_GATE_DISABLE;
+-	I915_WRITE(SOUTH_DSPCLK_GATE_D, val);
++	intel_de_write(dev_priv, SOUTH_DSPCLK_GATE_D, val);
+ }
  
- 	if ((err_int & ERR_INT_FIFO_UNDERRUN(pipe)) == 0)
- 		return;
- 
--	I915_WRITE(GEN7_ERR_INT, ERR_INT_FIFO_UNDERRUN(pipe));
--	POSTING_READ(GEN7_ERR_INT);
-+	intel_de_write(dev_priv, GEN7_ERR_INT, ERR_INT_FIFO_UNDERRUN(pipe));
-+	intel_de_posting_read(dev_priv, GEN7_ERR_INT);
- 
- 	trace_intel_cpu_fifo_underrun(dev_priv, pipe);
- 	DRM_ERROR("fifo underrun on pipe %c\n", pipe_name(pipe));
-@@ -163,7 +164,8 @@ static void ivb_set_fifo_underrun_reporting(struct drm_device *dev,
+ static void bxt_gmbus_clock_gating(struct drm_i915_private *dev_priv,
+@@ -179,12 +179,12 @@ static void bxt_gmbus_clock_gating(struct drm_i915_private *dev_priv,
  {
- 	struct drm_i915_private *dev_priv = to_i915(dev);
- 	if (enable) {
--		I915_WRITE(GEN7_ERR_INT, ERR_INT_FIFO_UNDERRUN(pipe));
-+		intel_de_write(dev_priv, GEN7_ERR_INT,
-+			       ERR_INT_FIFO_UNDERRUN(pipe));
+ 	u32 val;
  
- 		if (!ivb_can_enable_err_int(dev))
- 			return;
-@@ -173,7 +175,7 @@ static void ivb_set_fifo_underrun_reporting(struct drm_device *dev,
- 		ilk_disable_display_irq(dev_priv, DE_ERR_INT_IVB);
+-	val = I915_READ(GEN9_CLKGATE_DIS_4);
++	val = intel_de_read(dev_priv, GEN9_CLKGATE_DIS_4);
+ 	if (!enable)
+ 		val |= BXT_GMBUS_GATING_DIS;
+ 	else
+ 		val &= ~BXT_GMBUS_GATING_DIS;
+-	I915_WRITE(GEN9_CLKGATE_DIS_4, val);
++	intel_de_write(dev_priv, GEN9_CLKGATE_DIS_4, val);
+ }
  
- 		if (old &&
--		    I915_READ(GEN7_ERR_INT) & ERR_INT_FIFO_UNDERRUN(pipe)) {
-+		    intel_de_read(dev_priv, GEN7_ERR_INT) & ERR_INT_FIFO_UNDERRUN(pipe)) {
- 			DRM_ERROR("uncleared fifo underrun on pipe %c\n",
- 				  pipe_name(pipe));
+ static u32 get_reserved(struct intel_gmbus *bus)
+@@ -337,14 +337,16 @@ static int gmbus_wait(struct drm_i915_private *dev_priv, u32 status, u32 irq_en)
+ 		irq_en = 0;
+ 
+ 	add_wait_queue(&dev_priv->gmbus_wait_queue, &wait);
+-	I915_WRITE_FW(GMBUS4, irq_en);
++	intel_de_write_fw(dev_priv, GMBUS4, irq_en);
+ 
+ 	status |= GMBUS_SATOER;
+-	ret = wait_for_us((gmbus2 = I915_READ_FW(GMBUS2)) & status, 2);
++	ret = wait_for_us((gmbus2 = intel_de_read_fw(dev_priv, GMBUS2)) & status,
++			  2);
+ 	if (ret)
+-		ret = wait_for((gmbus2 = I915_READ_FW(GMBUS2)) & status, 50);
++		ret = wait_for((gmbus2 = intel_de_read_fw(dev_priv, GMBUS2)) & status,
++			       50);
+ 
+-	I915_WRITE_FW(GMBUS4, 0);
++	intel_de_write_fw(dev_priv, GMBUS4, 0);
+ 	remove_wait_queue(&dev_priv->gmbus_wait_queue, &wait);
+ 
+ 	if (gmbus2 & GMBUS_SATOER)
+@@ -366,13 +368,13 @@ gmbus_wait_idle(struct drm_i915_private *dev_priv)
+ 		irq_enable = GMBUS_IDLE_EN;
+ 
+ 	add_wait_queue(&dev_priv->gmbus_wait_queue, &wait);
+-	I915_WRITE_FW(GMBUS4, irq_enable);
++	intel_de_write_fw(dev_priv, GMBUS4, irq_enable);
+ 
+ 	ret = intel_wait_for_register_fw(&dev_priv->uncore,
+ 					 GMBUS2, GMBUS_ACTIVE, 0,
+ 					 10);
+ 
+-	I915_WRITE_FW(GMBUS4, 0);
++	intel_de_write_fw(dev_priv, GMBUS4, 0);
+ 	remove_wait_queue(&dev_priv->gmbus_wait_queue, &wait);
+ 
+ 	return ret;
+@@ -404,15 +406,12 @@ gmbus_xfer_read_chunk(struct drm_i915_private *dev_priv,
+ 			len++;
  		}
-@@ -209,15 +211,16 @@ static void cpt_check_pch_fifo_underruns(struct intel_crtc *crtc)
- {
- 	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
- 	enum pipe pch_transcoder = crtc->pipe;
--	u32 serr_int = I915_READ(SERR_INT);
-+	u32 serr_int = intel_de_read(dev_priv, SERR_INT);
+ 		size = len % 256 + 256;
+-		I915_WRITE_FW(GMBUS0, gmbus0_reg | GMBUS_BYTE_CNT_OVERRIDE);
++		intel_de_write_fw(dev_priv, GMBUS0,
++				  gmbus0_reg | GMBUS_BYTE_CNT_OVERRIDE);
+ 	}
  
- 	lockdep_assert_held(&dev_priv->irq_lock);
+-	I915_WRITE_FW(GMBUS1,
+-		      gmbus1_index |
+-		      GMBUS_CYCLE_WAIT |
+-		      (size << GMBUS_BYTE_COUNT_SHIFT) |
+-		      (addr << GMBUS_SLAVE_ADDR_SHIFT) |
+-		      GMBUS_SLAVE_READ | GMBUS_SW_RDY);
++	intel_de_write_fw(dev_priv, GMBUS1,
++			  gmbus1_index | GMBUS_CYCLE_WAIT | (size << GMBUS_BYTE_COUNT_SHIFT) | (addr << GMBUS_SLAVE_ADDR_SHIFT) | GMBUS_SLAVE_READ | GMBUS_SW_RDY);
+ 	while (len) {
+ 		int ret;
+ 		u32 val, loop = 0;
+@@ -421,7 +420,7 @@ gmbus_xfer_read_chunk(struct drm_i915_private *dev_priv,
+ 		if (ret)
+ 			return ret;
  
- 	if ((serr_int & SERR_INT_TRANS_FIFO_UNDERRUN(pch_transcoder)) == 0)
- 		return;
+-		val = I915_READ_FW(GMBUS3);
++		val = intel_de_read_fw(dev_priv, GMBUS3);
+ 		do {
+ 			if (extra_byte_added && len == 1)
+ 				break;
+@@ -432,7 +431,7 @@ gmbus_xfer_read_chunk(struct drm_i915_private *dev_priv,
  
--	I915_WRITE(SERR_INT, SERR_INT_TRANS_FIFO_UNDERRUN(pch_transcoder));
--	POSTING_READ(SERR_INT);
-+	intel_de_write(dev_priv, SERR_INT,
-+		       SERR_INT_TRANS_FIFO_UNDERRUN(pch_transcoder));
-+	intel_de_posting_read(dev_priv, SERR_INT);
+ 		if (burst_read && len == size - 4)
+ 			/* Reset the override bit */
+-			I915_WRITE_FW(GMBUS0, gmbus0_reg);
++			intel_de_write_fw(dev_priv, GMBUS0, gmbus0_reg);
+ 	}
  
- 	trace_intel_pch_fifo_underrun(dev_priv, pch_transcoder);
- 	DRM_ERROR("pch fifo underrun on pch transcoder %c\n",
-@@ -231,8 +234,8 @@ static void cpt_set_fifo_underrun_reporting(struct drm_device *dev,
- 	struct drm_i915_private *dev_priv = to_i915(dev);
+ 	return 0;
+@@ -489,12 +488,9 @@ gmbus_xfer_write_chunk(struct drm_i915_private *dev_priv,
+ 		len -= 1;
+ 	}
  
- 	if (enable) {
--		I915_WRITE(SERR_INT,
--			   SERR_INT_TRANS_FIFO_UNDERRUN(pch_transcoder));
-+		intel_de_write(dev_priv, SERR_INT,
-+			       SERR_INT_TRANS_FIFO_UNDERRUN(pch_transcoder));
+-	I915_WRITE_FW(GMBUS3, val);
+-	I915_WRITE_FW(GMBUS1,
+-		      gmbus1_index | GMBUS_CYCLE_WAIT |
+-		      (chunk_size << GMBUS_BYTE_COUNT_SHIFT) |
+-		      (addr << GMBUS_SLAVE_ADDR_SHIFT) |
+-		      GMBUS_SLAVE_WRITE | GMBUS_SW_RDY);
++	intel_de_write_fw(dev_priv, GMBUS3, val);
++	intel_de_write_fw(dev_priv, GMBUS1,
++			  gmbus1_index | GMBUS_CYCLE_WAIT | (chunk_size << GMBUS_BYTE_COUNT_SHIFT) | (addr << GMBUS_SLAVE_ADDR_SHIFT) | GMBUS_SLAVE_WRITE | GMBUS_SW_RDY);
+ 	while (len) {
+ 		int ret;
  
- 		if (!cpt_can_enable_serr_int(dev))
- 			return;
-@@ -241,7 +244,7 @@ static void cpt_set_fifo_underrun_reporting(struct drm_device *dev,
- 	} else {
- 		ibx_disable_display_interrupt(dev_priv, SDE_ERROR_CPT);
+@@ -503,7 +499,7 @@ gmbus_xfer_write_chunk(struct drm_i915_private *dev_priv,
+ 			val |= *buf++ << (8 * loop);
+ 		} while (--len && ++loop < 4);
  
--		if (old && I915_READ(SERR_INT) &
-+		if (old && intel_de_read(dev_priv, SERR_INT) &
- 		    SERR_INT_TRANS_FIFO_UNDERRUN(pch_transcoder)) {
- 			DRM_ERROR("uncleared pch fifo underrun on pch transcoder %c\n",
- 				  pipe_name(pch_transcoder));
+-		I915_WRITE_FW(GMBUS3, val);
++		intel_de_write_fw(dev_priv, GMBUS3, val);
+ 
+ 		ret = gmbus_wait(dev_priv, GMBUS_HW_RDY, GMBUS_HW_RDY_EN);
+ 		if (ret)
+@@ -568,7 +564,7 @@ gmbus_index_xfer(struct drm_i915_private *dev_priv, struct i2c_msg *msgs,
+ 
+ 	/* GMBUS5 holds 16-bit index */
+ 	if (gmbus5)
+-		I915_WRITE_FW(GMBUS5, gmbus5);
++		intel_de_write_fw(dev_priv, GMBUS5, gmbus5);
+ 
+ 	if (msgs[1].flags & I2C_M_RD)
+ 		ret = gmbus_xfer_read(dev_priv, &msgs[1], gmbus0_reg,
+@@ -578,7 +574,7 @@ gmbus_index_xfer(struct drm_i915_private *dev_priv, struct i2c_msg *msgs,
+ 
+ 	/* Clear GMBUS5 after each index transfer */
+ 	if (gmbus5)
+-		I915_WRITE_FW(GMBUS5, 0);
++		intel_de_write_fw(dev_priv, GMBUS5, 0);
+ 
+ 	return ret;
+ }
+@@ -601,7 +597,7 @@ do_gmbus_xfer(struct i2c_adapter *adapter, struct i2c_msg *msgs, int num,
+ 		pch_gmbus_clock_gating(dev_priv, false);
+ 
+ retry:
+-	I915_WRITE_FW(GMBUS0, gmbus0_source | bus->reg0);
++	intel_de_write_fw(dev_priv, GMBUS0, gmbus0_source | bus->reg0);
+ 
+ 	for (; i < num; i += inc) {
+ 		inc = 1;
+@@ -629,7 +625,7 @@ do_gmbus_xfer(struct i2c_adapter *adapter, struct i2c_msg *msgs, int num,
+ 	 * a STOP on the very first cycle. To simplify the code we
+ 	 * unconditionally generate the STOP condition with an additional gmbus
+ 	 * cycle. */
+-	I915_WRITE_FW(GMBUS1, GMBUS_CYCLE_STOP | GMBUS_SW_RDY);
++	intel_de_write_fw(dev_priv, GMBUS1, GMBUS_CYCLE_STOP | GMBUS_SW_RDY);
+ 
+ 	/* Mark the GMBUS interface as disabled after waiting for idle.
+ 	 * We will re-enable it at the start of the next xfer,
+@@ -640,7 +636,7 @@ do_gmbus_xfer(struct i2c_adapter *adapter, struct i2c_msg *msgs, int num,
+ 			 adapter->name);
+ 		ret = -ETIMEDOUT;
+ 	}
+-	I915_WRITE_FW(GMBUS0, 0);
++	intel_de_write_fw(dev_priv, GMBUS0, 0);
+ 	ret = ret ?: i;
+ 	goto out;
+ 
+@@ -669,9 +665,9 @@ do_gmbus_xfer(struct i2c_adapter *adapter, struct i2c_msg *msgs, int num,
+ 	 * of resetting the GMBUS controller and so clearing the
+ 	 * BUS_ERROR raised by the slave's NAK.
+ 	 */
+-	I915_WRITE_FW(GMBUS1, GMBUS_SW_CLR_INT);
+-	I915_WRITE_FW(GMBUS1, 0);
+-	I915_WRITE_FW(GMBUS0, 0);
++	intel_de_write_fw(dev_priv, GMBUS1, GMBUS_SW_CLR_INT);
++	intel_de_write_fw(dev_priv, GMBUS1, 0);
++	intel_de_write_fw(dev_priv, GMBUS0, 0);
+ 
+ 	DRM_DEBUG_KMS("GMBUS [%s] NAK for addr: %04x %c(%d)\n",
+ 			 adapter->name, msgs[i].addr,
+@@ -694,7 +690,7 @@ do_gmbus_xfer(struct i2c_adapter *adapter, struct i2c_msg *msgs, int num,
+ timeout:
+ 	DRM_DEBUG_KMS("GMBUS [%s] timed out, falling back to bit banging on pin %d\n",
+ 		      bus->adapter.name, bus->reg0 & 0xff);
+-	I915_WRITE_FW(GMBUS0, 0);
++	intel_de_write_fw(dev_priv, GMBUS0, 0);
+ 
+ 	/*
+ 	 * Hardware may not support GMBUS over these pins? Try GPIO bitbanging
 -- 
 2.20.1
 
