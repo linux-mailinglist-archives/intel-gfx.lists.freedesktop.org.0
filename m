@@ -2,30 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A27B1475B7
-	for <lists+intel-gfx@lfdr.de>; Fri, 24 Jan 2020 01:50:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C60E1475BB
+	for <lists+intel-gfx@lfdr.de>; Fri, 24 Jan 2020 01:51:21 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 51F2F6E192;
-	Fri, 24 Jan 2020 00:50:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 606EE6E191;
+	Fri, 24 Jan 2020 00:51:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id D702A6E191;
- Fri, 24 Jan 2020 00:50:15 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id C6C9BA010F;
- Fri, 24 Jan 2020 00:50:15 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DBB6D6E191
+ for <intel-gfx@lists.freedesktop.org>; Fri, 24 Jan 2020 00:51:17 +0000 (UTC)
+X-Amp-Result: UNSCANNABLE
+X-Amp-File-Uploaded: False
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 23 Jan 2020 16:51:17 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,355,1574150400"; d="scan'208";a="276198819"
+Received: from mdroper-desk1.fm.intel.com (HELO
+ mdroper-desk1.amr.corp.intel.com) ([10.1.27.64])
+ by FMSMGA003.fm.intel.com with ESMTP; 23 Jan 2020 16:51:17 -0800
+Date: Thu, 23 Jan 2020 16:51:17 -0800
+From: Matt Roper <matthew.d.roper@intel.com>
+To: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+Message-ID: <20200124005117.GE459881@mdroper-desk1.amr.corp.intel.com>
+References: <20200102131707.1463945-1-chris@chris-wilson.co.uk>
+ <871rsg6azg.fsf@gaia.fi.intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Fri, 24 Jan 2020 00:50:15 -0000
-Message-ID: <157982701578.15091.4414286146793698202@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200122201822.889250-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200122201822.889250-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
- =?utf-8?q?/i915/gt=3A_Poison_GTT_scratch_pages_=28rev8=29?=
+Content-Disposition: inline
+In-Reply-To: <871rsg6azg.fsf@gaia.fi.intel.com>
+User-Agent: Mutt/1.12.1 (2019-06-15)
+Subject: Re: [Intel-gfx] [PATCH 1/5] drm/i915/gt: Include a bunch more rcs
+ image state
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,139 +46,187 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Fri, Jan 03, 2020 at 01:22:11PM +0200, Mika Kuoppala wrote:
+> Chris Wilson <chris@chris-wilson.co.uk> writes:
+> 
+> > Empirically the minimal context image we use for rcs is insufficient to
+> > state the engine. This is demonstrated if we poison the context image
+> > such that any uninitialised state is invalid, and so if the engine
+> > samples beyond our defined region, will fail to start.
 
-Series: drm/i915/gt: Poison GTT scratch pages (rev8)
-URL   : https://patchwork.freedesktop.org/series/72423/
-State : failure
+Just out of curiosity, is this something we only need to worry about on
+gen9 and not on gen11/gen12?
 
-== Summary ==
+I'm not terribly familiar with the context management code, so I was
+just curious how we know which parts of the context image are actually
+important to define in the *cs_offsets[] arrays and which we can safely
+leave uninitialized.
 
-CI Bug Log - changes from CI_DRM_7805 -> Patchwork_16239
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_16239 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_16239, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16239/index.html
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_16239:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@i915_selftest@live_gem_contexts:
-    - fi-hsw-4770:        [PASS][1] -> [DMESG-FAIL][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7805/fi-hsw-4770/igt@i915_selftest@live_gem_contexts.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16239/fi-hsw-4770/igt@i915_selftest@live_gem_contexts.html
-    - fi-hsw-4770r:       [PASS][3] -> [DMESG-FAIL][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7805/fi-hsw-4770r/igt@i915_selftest@live_gem_contexts.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16239/fi-hsw-4770r/igt@i915_selftest@live_gem_contexts.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_16239 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_exec_parallel@basic:
-    - fi-tgl-y:           [PASS][5] -> [DMESG-WARN][6] ([CI#94] / [i915#402]) +2 similar issues
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7805/fi-tgl-y/igt@gem_exec_parallel@basic.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16239/fi-tgl-y/igt@gem_exec_parallel@basic.html
-
-  * igt@gem_exec_parallel@fds:
-    - fi-hsw-peppy:       [PASS][7] -> [INCOMPLETE][8] ([i915#694])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7805/fi-hsw-peppy/igt@gem_exec_parallel@fds.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16239/fi-hsw-peppy/igt@gem_exec_parallel@fds.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_module_load@reload-with-fault-injection:
-    - fi-kbl-x1275:       [INCOMPLETE][9] ([i915#879]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7805/fi-kbl-x1275/igt@i915_module_load@reload-with-fault-injection.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16239/fi-kbl-x1275/igt@i915_module_load@reload-with-fault-injection.html
-
-  * igt@i915_selftest@live_gem_contexts:
-    - fi-cfl-guc:         [INCOMPLETE][11] ([fdo#106070] / [i915#424]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7805/fi-cfl-guc/igt@i915_selftest@live_gem_contexts.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16239/fi-cfl-guc/igt@i915_selftest@live_gem_contexts.html
-
-  * igt@kms_prop_blob@basic:
-    - fi-tgl-y:           [DMESG-WARN][13] ([CI#94] / [i915#402]) -> [PASS][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7805/fi-tgl-y/igt@kms_prop_blob@basic.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16239/fi-tgl-y/igt@kms_prop_blob@basic.html
-
-  
-#### Warnings ####
-
-  * igt@kms_chamelium@hdmi-hpd-fast:
-    - fi-kbl-7500u:       [FAIL][15] ([fdo#111407]) -> [FAIL][16] ([fdo#111096] / [i915#323])
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7805/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16239/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
-
-  
-  [CI#94]: https://gitlab.freedesktop.org/gfx-ci/i915-infra/issues/94
-  [fdo#106070]: https://bugs.freedesktop.org/show_bug.cgi?id=106070
-  [fdo#111096]: https://bugs.freedesktop.org/show_bug.cgi?id=111096
-  [fdo#111407]: https://bugs.freedesktop.org/show_bug.cgi?id=111407
-  [i915#323]: https://gitlab.freedesktop.org/drm/intel/issues/323
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
-  [i915#424]: https://gitlab.freedesktop.org/drm/intel/issues/424
-  [i915#694]: https://gitlab.freedesktop.org/drm/intel/issues/694
-  [i915#879]: https://gitlab.freedesktop.org/drm/intel/issues/879
+Thanks.
 
 
-Participating hosts (45 -> 44)
-------------------------------
+Matt
 
-  Additional (8): fi-kbl-7560u fi-bsw-n3050 fi-gdg-551 fi-skl-lmem fi-blb-e6850 fi-bsw-nick fi-skl-6600u fi-snb-2600 
-  Missing    (9): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ilk-650 fi-ctg-p8600 fi-byt-n2820 fi-byt-clapper fi-bdw-samus 
+> >
+> > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> 
+> Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+> 
+> > ---
+> >  drivers/gpu/drm/i915/gt/intel_lrc.c    | 88 +++++++++++++++++++++++++-
+> >  drivers/gpu/drm/i915/gt/selftest_lrc.c |  7 ++
+> >  2 files changed, 94 insertions(+), 1 deletion(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+> > index 00895f83f61e..029496d2dfb5 100644
+> > --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
+> > +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+> > @@ -492,7 +492,7 @@ static u32 *set_offsets(u32 *regs,
+> >  			const u8 *data,
+> >  			const struct intel_engine_cs *engine)
+> >  #define NOP(x) (BIT(7) | (x))
+> > -#define LRI(count, flags) ((flags) << 6 | (count))
+> > +#define LRI(count, flags) ((flags) << 6 | (count) | BUILD_BUG_ON_ZERO(count >= BIT(6)))
+> >  #define POSTED BIT(0)
+> >  #define REG(x) (((x) >> 2) | BUILD_BUG_ON_ZERO(x >= 0x200))
+> >  #define REG16(x) \
+> > @@ -728,6 +728,90 @@ static const u8 gen8_rcs_offsets[] = {
+> >  	END(),
+> >  };
+> >  
+> > +static const u8 gen9_rcs_offsets[] = {
+> > +	NOP(1),
+> > +	LRI(14, POSTED),
+> > +	REG16(0x244),
+> > +	REG(0x34),
+> > +	REG(0x30),
+> > +	REG(0x38),
+> > +	REG(0x3c),
+> > +	REG(0x168),
+> > +	REG(0x140),
+> > +	REG(0x110),
+> > +	REG(0x11c),
+> > +	REG(0x114),
+> > +	REG(0x118),
+> > +	REG(0x1c0),
+> > +	REG(0x1c4),
+> > +	REG(0x1c8),
+> > +
+> > +	NOP(3),
+> > +	LRI(9, POSTED),
+> > +	REG16(0x3a8),
+> > +	REG16(0x28c),
+> > +	REG16(0x288),
+> > +	REG16(0x284),
+> > +	REG16(0x280),
+> > +	REG16(0x27c),
+> > +	REG16(0x278),
+> > +	REG16(0x274),
+> > +	REG16(0x270),
+> > +
+> > +	NOP(13),
+> > +	LRI(1, 0),
+> > +	REG(0xc8),
+> > +
+> > +	NOP(13),
+> > +	LRI(44, POSTED),
+> > +	REG(0x28),
+> > +	REG(0x9c),
+> > +	REG(0xc0),
+> > +	REG(0x178),
+> > +	REG(0x17c),
+> > +	REG16(0x358),
+> > +	REG(0x170),
+> > +	REG(0x150),
+> > +	REG(0x154),
+> > +	REG(0x158),
+> > +	REG16(0x41c),
+> > +	REG16(0x600),
+> > +	REG16(0x604),
+> > +	REG16(0x608),
+> > +	REG16(0x60c),
+> > +	REG16(0x610),
+> > +	REG16(0x614),
+> > +	REG16(0x618),
+> > +	REG16(0x61c),
+> > +	REG16(0x620),
+> > +	REG16(0x624),
+> > +	REG16(0x628),
+> > +	REG16(0x62c),
+> > +	REG16(0x630),
+> > +	REG16(0x634),
+> > +	REG16(0x638),
+> > +	REG16(0x63c),
+> > +	REG16(0x640),
+> > +	REG16(0x644),
+> > +	REG16(0x648),
+> > +	REG16(0x64c),
+> > +	REG16(0x650),
+> > +	REG16(0x654),
+> > +	REG16(0x658),
+> > +	REG16(0x65c),
+> > +	REG16(0x660),
+> > +	REG16(0x664),
+> > +	REG16(0x668),
+> > +	REG16(0x66c),
+> > +	REG16(0x670),
+> > +	REG16(0x674),
+> > +	REG16(0x678),
+> > +	REG16(0x67c),
+> > +	REG(0x68),
+> > +
+> > +	END()
+> > +};
+> > +
+> >  static const u8 gen11_rcs_offsets[] = {
+> >  	NOP(1),
+> >  	LRI(15, POSTED),
+> > @@ -832,6 +916,8 @@ static const u8 *reg_offsets(const struct intel_engine_cs *engine)
+> >  			return gen12_rcs_offsets;
+> >  		else if (INTEL_GEN(engine->i915) >= 11)
+> >  			return gen11_rcs_offsets;
+> > +		else if (INTEL_GEN(engine->i915) >= 9)
+> > +			return gen9_rcs_offsets;
+> >  		else
+> >  			return gen8_rcs_offsets;
+> >  	} else {
+> > diff --git a/drivers/gpu/drm/i915/gt/selftest_lrc.c b/drivers/gpu/drm/i915/gt/selftest_lrc.c
+> > index 9ec9833c9c7b..943b623f00e9 100644
+> > --- a/drivers/gpu/drm/i915/gt/selftest_lrc.c
+> > +++ b/drivers/gpu/drm/i915/gt/selftest_lrc.c
+> > @@ -3406,6 +3406,13 @@ static int live_lrc_layout(void *arg)
+> >  				continue;
+> >  			}
+> >  
+> > +			if (lrc[dw] == 0) {
+> > +				pr_debug("%s: skipped instruction %x at dword %d\n",
+> > +					 engine->name, lri, dw);
+> > +				dw++;
+> > +				continue;
+> > +			}
+> > +
+> >  			if ((lri & GENMASK(31, 23)) != MI_INSTR(0x22, 0)) {
+> >  				pr_err("%s: Expected LRI command at dword %d, found %08x\n",
+> >  				       engine->name, dw, lri);
+> > -- 
+> > 2.25.0.rc0
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_7805 -> Patchwork_16239
-
-  CI-20190529: 20190529
-  CI_DRM_7805: 447386749394e3b5cf296bfada83ed429fa5f1fe @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5382: 8dbe5ce61baa2d563d4dd7c56a018bb1e1077467 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_16239: 9d845748883a06142161a6a8c74c0bc34577a3f9 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-9d845748883a drm/i915/gt: Poison GTT scratch pages
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16239/index.html
+-- 
+Matt Roper
+Graphics Software Engineer
+VTT-OSGC Platform Enablement
+Intel Corporation
+(916) 356-2795
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
