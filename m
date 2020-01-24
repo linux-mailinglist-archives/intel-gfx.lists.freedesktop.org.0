@@ -2,15 +2,15 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C0421479F8
-	for <lists+intel-gfx@lfdr.de>; Fri, 24 Jan 2020 10:06:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 628851479FD
+	for <lists+intel-gfx@lfdr.de>; Fri, 24 Jan 2020 10:06:39 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B4D246FF9E;
-	Fri, 24 Jan 2020 09:06:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9FD7D6FFA8;
+	Fri, 24 Jan 2020 09:06:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CA3EC6FF9E
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9A9E86FF9F
  for <intel-gfx@lists.freedesktop.org>; Fri, 24 Jan 2020 09:06:28 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
@@ -18,18 +18,19 @@ Received: from orsmga002.jf.intel.com ([10.7.209.21])
  by orsmga106.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
  24 Jan 2020 01:04:48 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,357,1574150400"; d="scan'208";a="245655135"
+X-IronPort-AV: E=Sophos;i="5.70,357,1574150400"; d="scan'208";a="245655138"
 Received: from nvishwa1-desk.sc.intel.com ([10.3.160.185])
  by orsmga002.jf.intel.com with ESMTP; 24 Jan 2020 01:04:48 -0800
 From: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri, 24 Jan 2020 00:53:55 -0800
-Message-Id: <20200124085402.11644-2-niranjana.vishwanathapura@intel.com>
+Date: Fri, 24 Jan 2020 00:53:56 -0800
+Message-Id: <20200124085402.11644-3-niranjana.vishwanathapura@intel.com>
 X-Mailer: git-send-email 2.21.0.rc0.32.g243a4c7e27
 In-Reply-To: <20200124085402.11644-1-niranjana.vishwanathapura@intel.com>
 References: <20200124085402.11644-1-niranjana.vishwanathapura@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [RFC 1/8] drm/i915/svm: Support partial binding in ppgtt
+Subject: [Intel-gfx] [RFC 2/8] drm/i915/svm: Add support to mark VMs as
+ active
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,7 +49,10 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add support to partially bind objects in ppgtt.
+Add support to determine if an address space (VM) is active.
+ie., are there any active requests using the address space.
+This allows us to wait for VM to be idle before carrying out
+some operations.
 
 Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
 Cc: Jon Bloomfield <jon.bloomfield@intel.com>
@@ -58,166 +62,153 @@ Cc: Sudeep Dutt <sudeep.dutt@intel.com>
 Cc: Stuart Summers <stuart.summers@intel.com>
 Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
 ---
- drivers/gpu/drm/i915/gt/gen8_ppgtt.c | 37 +++++++++++++++++-----------
- drivers/gpu/drm/i915/gt/intel_gtt.h  | 21 +++++++++++++---
- drivers/gpu/drm/i915/i915_vma.c      |  1 -
- drivers/gpu/drm/i915/i915_vma.h      |  2 --
- 4 files changed, 41 insertions(+), 20 deletions(-)
+ .../gpu/drm/i915/gem/i915_gem_execbuffer.c    |  5 +++
+ drivers/gpu/drm/i915/gt/intel_gtt.c           | 32 +++++++++++++++++++
+ drivers/gpu/drm/i915/gt/intel_gtt.h           | 13 ++++++++
+ drivers/gpu/drm/i915/i915_gem_gtt.h           | 14 ++++++++
+ 4 files changed, 64 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/gt/gen8_ppgtt.c b/drivers/gpu/drm/i915/gt/gen8_ppgtt.c
-index 077b8f7cf6cb..d1f18b150600 100644
---- a/drivers/gpu/drm/i915/gt/gen8_ppgtt.c
-+++ b/drivers/gpu/drm/i915/gt/gen8_ppgtt.c
-@@ -382,15 +382,20 @@ gen8_ppgtt_insert_pte(struct i915_ppgtt *ppgtt,
- 		vaddr[gen8_pd_index(idx, 0)] = pte_encode | iter->dma;
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+index 60c984e10c4a..b3d9a4a02568 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+@@ -1880,6 +1880,11 @@ static int eb_move_to_gpu(struct i915_execbuffer *eb)
+ 	if (unlikely(err))
+ 		goto err_skip;
  
- 		iter->dma += I915_GTT_PAGE_SIZE;
-+		iter->rem -= I915_GTT_PAGE_SIZE;
-+		if (!iter->rem) {
-+			idx = 0;
-+			break;
-+		}
++	/* XXX: Should probably be done first */
++	err = i915_vm_move_to_active(eb->context->vm, eb->request);
++	if (err)
++		goto err_skip;
 +
- 		if (iter->dma >= iter->max) {
- 			iter->sg = __sg_next(iter->sg);
--			if (!iter->sg) {
--				idx = 0;
--				break;
--			}
-+			GEM_BUG_ON(!iter->sg);
+ 	eb->exec = NULL;
  
- 			iter->dma = sg_dma_address(iter->sg);
--			iter->max = iter->dma + iter->sg->length;
-+			iter->max = iter->dma +
-+				    min_t(u64, (u64)iter->sg->length,
-+					  iter->rem);
- 		}
+ 	/* Unconditionally flush any chipset caches (for streaming writes). */
+diff --git a/drivers/gpu/drm/i915/gt/intel_gtt.c b/drivers/gpu/drm/i915/gt/intel_gtt.c
+index 16acdc5d6734..ad5bf7fc851a 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gtt.c
++++ b/drivers/gpu/drm/i915/gt/intel_gtt.c
+@@ -191,6 +191,7 @@ void __i915_vm_close(struct i915_address_space *vm)
  
- 		if (gen8_pd_index(++idx, 0) == 0) {
-@@ -418,7 +423,7 @@ static void gen8_ppgtt_insert_huge(struct i915_vma *vma,
+ void i915_address_space_fini(struct i915_address_space *vm)
  {
- 	const gen8_pte_t pte_encode = gen8_pte_encode(0, cache_level, flags);
- 	u64 start = vma->node.start;
--	dma_addr_t rem = iter->sg->length;
-+	dma_addr_t rem = min_t(u64, (u64)iter->sg->length, iter->rem);
++	i915_active_fini(&vm->active);
+ 	spin_lock(&vm->free_pages.lock);
+ 	if (pagevec_count(&vm->free_pages.pvec))
+ 		vm_free_pages_release(vm, true);
+@@ -200,6 +201,7 @@ void i915_address_space_fini(struct i915_address_space *vm)
+ 	drm_mm_takedown(&vm->mm);
  
- 	GEM_BUG_ON(!i915_vm_is_4lvl(vma->vm));
- 
-@@ -460,18 +465,22 @@ static void gen8_ppgtt_insert_huge(struct i915_vma *vma,
- 		}
- 
- 		do {
--			GEM_BUG_ON(iter->sg->length < page_size);
-+			GEM_BUG_ON(rem < page_size);
- 			vaddr[index++] = encode | iter->dma;
- 
- 			start += page_size;
- 			iter->dma += page_size;
-+			iter->rem -= page_size;
-+			if (!iter->rem)
-+				break;
-+
- 			rem -= page_size;
- 			if (iter->dma >= iter->max) {
- 				iter->sg = __sg_next(iter->sg);
--				if (!iter->sg)
--					break;
-+				GEM_BUG_ON(!iter->sg);
- 
--				rem = iter->sg->length;
-+				rem = min_t(u64, (u64)iter->sg->length,
-+					    iter->rem);
- 				iter->dma = sg_dma_address(iter->sg);
- 				iter->max = iter->dma + rem;
- 
-@@ -497,9 +506,9 @@ static void gen8_ppgtt_insert_huge(struct i915_vma *vma,
- 		if (maybe_64K != -1 &&
- 		    (index == I915_PDES ||
- 		     (i915_vm_has_scratch_64K(vma->vm) &&
--		      !iter->sg && IS_ALIGNED(vma->node.start +
--					      vma->node.size,
--					      I915_GTT_PAGE_SIZE_2M)))) {
-+		      !iter->rem && IS_ALIGNED(vma->node.start +
-+					       vma->node.size,
-+					       I915_GTT_PAGE_SIZE_2M)))) {
- 			vaddr = kmap_atomic_px(pd);
- 			vaddr[maybe_64K] |= GEN8_PDE_IPS_64K;
- 			kunmap_atomic(vaddr);
-@@ -528,7 +537,7 @@ static void gen8_ppgtt_insert_huge(struct i915_vma *vma,
- 		}
- 
- 		vma->page_sizes.gtt |= page_size;
--	} while (iter->sg);
-+	} while (iter->rem);
+ 	mutex_destroy(&vm->mutex);
++	mutex_destroy(&vm->svm_mutex);
  }
  
- static void gen8_ppgtt_insert(struct i915_address_space *vm,
+ static void __i915_vm_release(struct work_struct *work)
+@@ -224,6 +226,33 @@ void i915_vm_release(struct kref *kref)
+ 	queue_rcu_work(vm->i915->wq, &vm->rcu);
+ }
+ 
++static inline struct i915_address_space *active_to_vm(struct i915_active *ref)
++{
++	return container_of(ref, typeof(struct i915_address_space), active);
++}
++
++int i915_vm_move_to_active(struct i915_address_space *vm,
++			   struct i915_request *rq)
++{
++	int ret = 0;
++
++	mutex_lock(&vm->svm_mutex);
++	ret = i915_active_add_request(&vm->active, rq);
++	mutex_unlock(&vm->svm_mutex);
++	return ret;
++}
++
++static int __i915_vm_active(struct i915_active *ref)
++{
++	return i915_vm_tryget(active_to_vm(ref)) ? 0 : -ENOENT;
++}
++
++__i915_active_call
++static void __i915_vm_retire(struct i915_active *ref)
++{
++	i915_vm_put(active_to_vm(ref));
++}
++
+ void i915_address_space_init(struct i915_address_space *vm, int subclass)
+ {
+ 	kref_init(&vm->ref);
+@@ -246,6 +275,9 @@ void i915_address_space_init(struct i915_address_space *vm, int subclass)
+ 	stash_init(&vm->free_pages);
+ 
+ 	INIT_LIST_HEAD(&vm->bound_list);
++
++	mutex_init(&vm->svm_mutex);
++	i915_active_init(&vm->active, __i915_vm_active, __i915_vm_retire);
+ }
+ 
+ void clear_pages(struct i915_vma *vma)
 diff --git a/drivers/gpu/drm/i915/gt/intel_gtt.h b/drivers/gpu/drm/i915/gt/intel_gtt.h
-index 7da7681c20b1..bb59f57b88e1 100644
+index bb59f57b88e1..f3e5469c4dc6 100644
 --- a/drivers/gpu/drm/i915/gt/intel_gtt.h
 +++ b/drivers/gpu/drm/i915/gt/intel_gtt.h
-@@ -27,6 +27,7 @@
+@@ -263,6 +263,8 @@ struct i915_address_space {
+ 	 */
+ 	struct list_head bound_list;
  
- #include "gt/intel_reset.h"
- #include "i915_gem_fence_reg.h"
-+#include "i915_scatterlist.h"
- #include "i915_selftest.h"
- #include "i915_vma_types.h"
++	struct mutex svm_mutex; /* protects svm operations */
++
+ 	struct pagestash free_pages;
  
-@@ -577,11 +578,25 @@ void setup_private_pat(struct intel_uncore *uncore);
- static inline struct sgt_dma {
- 	struct scatterlist *sg;
- 	dma_addr_t dma, max;
-+	u64 rem;
- } sgt_dma(struct i915_vma *vma) {
- 	struct scatterlist *sg = vma->pages->sgl;
--	dma_addr_t addr = sg_dma_address(sg);
--
--	return (struct sgt_dma){ sg, addr, addr + sg->length };
-+	dma_addr_t addr;
-+	u64 offset = 0;
+ 	/* Global GTT */
+@@ -298,6 +300,8 @@ struct i915_address_space {
+ 
+ 	I915_SELFTEST_DECLARE(struct fault_attr fault_attr);
+ 	I915_SELFTEST_DECLARE(bool scrub_64K);
 +
-+	/* For partial binding, skip until specified offset */
-+	if (vma->ggtt_view.type == I915_GGTT_VIEW_PARTIAL) {
-+		offset = vma->ggtt_view.partial.offset << PAGE_SHIFT;
-+		while (offset >= sg->length) {
-+			offset -= sg->length;
-+			sg = __sg_next(sg);
-+		}
-+	}
-+
-+	addr = sg_dma_address(sg);
-+	return (struct sgt_dma) { sg, addr + offset,
-+				  addr + min_t(u64, (u64)sg->length, vma->size),
-+				  vma->size };
++	struct i915_active active;
+ };
+ 
+ /*
+@@ -400,6 +404,15 @@ i915_vm_get(struct i915_address_space *vm)
+ 	return vm;
  }
  
++static inline struct i915_address_space *
++i915_vm_tryget(struct i915_address_space *vm)
++{
++	if (likely(kref_get_unless_zero(&vm->ref)))
++		return vm;
++
++	return NULL;
++}
++
+ void i915_vm_release(struct kref *kref);
+ 
+ static inline void i915_vm_put(struct i915_address_space *vm)
+diff --git a/drivers/gpu/drm/i915/i915_gem_gtt.h b/drivers/gpu/drm/i915/i915_gem_gtt.h
+index f6226df9f972..3e46fd119a42 100644
+--- a/drivers/gpu/drm/i915/i915_gem_gtt.h
++++ b/drivers/gpu/drm/i915/i915_gem_gtt.h
+@@ -48,4 +48,18 @@ int i915_gem_gtt_insert(struct i915_address_space *vm,
+ 
+ #define PIN_OFFSET_MASK		I915_GTT_PAGE_MASK
+ 
++int i915_vm_move_to_active(struct i915_address_space *vm,
++			   struct i915_request *rq);
++
++static inline int i915_vm_sync(struct i915_address_space *vm)
++{
++	/* Wait for all requests under this vm to finish */
++	return i915_active_wait(&vm->active);
++}
++
++static inline bool i915_vm_is_active(const struct i915_address_space *vm)
++{
++	return !i915_active_is_idle(&vm->active);
++}
++
  #endif
-diff --git a/drivers/gpu/drm/i915/i915_vma.c b/drivers/gpu/drm/i915/i915_vma.c
-index 17d7c525ea5c..48af37355371 100644
---- a/drivers/gpu/drm/i915/i915_vma.c
-+++ b/drivers/gpu/drm/i915/i915_vma.c
-@@ -275,7 +275,6 @@ i915_vma_instance(struct drm_i915_gem_object *obj,
- {
- 	struct i915_vma *vma;
- 
--	GEM_BUG_ON(view && !i915_is_ggtt(vm));
- 	GEM_BUG_ON(!atomic_read(&vm->open));
- 
- 	spin_lock(&obj->vma.lock);
-diff --git a/drivers/gpu/drm/i915/i915_vma.h b/drivers/gpu/drm/i915/i915_vma.h
-index 02b31a62951e..044f3400575c 100644
---- a/drivers/gpu/drm/i915/i915_vma.h
-+++ b/drivers/gpu/drm/i915/i915_vma.h
-@@ -155,8 +155,6 @@ i915_vma_compare(struct i915_vma *vma,
- {
- 	ptrdiff_t cmp;
- 
--	GEM_BUG_ON(view && !i915_is_ggtt(vm));
--
- 	cmp = ptrdiff(vma->vm, vm);
- 	if (cmp)
- 		return cmp;
 -- 
 2.21.0.rc0.32.g243a4c7e27
 
