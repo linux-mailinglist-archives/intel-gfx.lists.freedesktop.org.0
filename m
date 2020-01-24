@@ -2,37 +2,37 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0676E148613
-	for <lists+intel-gfx@lfdr.de>; Fri, 24 Jan 2020 14:27:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A869E148614
+	for <lists+intel-gfx@lfdr.de>; Fri, 24 Jan 2020 14:27:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5E2B072A91;
-	Fri, 24 Jan 2020 13:27:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E66E872A94;
+	Fri, 24 Jan 2020 13:27:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9476672A91
- for <intel-gfx@lists.freedesktop.org>; Fri, 24 Jan 2020 13:26:59 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F330572A93
+ for <intel-gfx@lists.freedesktop.org>; Fri, 24 Jan 2020 13:27:02 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 24 Jan 2020 05:26:58 -0800
-X-IronPort-AV: E=Sophos;i="5.70,357,1574150400"; d="scan'208";a="276324612"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 24 Jan 2020 05:27:02 -0800
+X-IronPort-AV: E=Sophos;i="5.70,357,1574150400"; d="scan'208";a="260243974"
 Received: from omarkovx-mobl.ger.corp.intel.com (HELO localhost)
  ([10.249.37.60])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 24 Jan 2020 05:26:57 -0800
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 24 Jan 2020 05:27:01 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri, 24 Jan 2020 15:25:49 +0200
-Message-Id: <722f73a4529808ef7dad51c03c0a3775d8c5b052.1579871655.git.jani.nikula@intel.com>
+Date: Fri, 24 Jan 2020 15:25:50 +0200
+Message-Id: <6e6238e75f5a4155b1021736937b1fd7a0756a00.1579871655.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <cover.1579871655.git.jani.nikula@intel.com>
 References: <cover.1579871655.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Subject: [Intel-gfx] [RFC 28/33] drm/i915/sprite: use intel_de_*() functions
- for register access
+Subject: [Intel-gfx] [RFC 29/33] drm/i915/tv: use intel_de_*() functions for
+ register access
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -95,544 +95,286 @@ expression REG, OFFSET;
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_sprite.c | 320 +++++++++++---------
- 1 file changed, 175 insertions(+), 145 deletions(-)
+ drivers/gpu/drm/i915/display/intel_tv.c | 138 ++++++++++++------------
+ 1 file changed, 72 insertions(+), 66 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_sprite.c b/drivers/gpu/drm/i915/display/intel_sprite.c
-index fca77ec1e0dd..2f277d1fc6f1 100644
---- a/drivers/gpu/drm/i915/display/intel_sprite.c
-+++ b/drivers/gpu/drm/i915/display/intel_sprite.c
-@@ -434,14 +434,16 @@ skl_program_scaler(struct intel_plane *plane,
- 		uv_rgb_vphase = skl_scaler_calc_phase(1, vscale, false);
- 	}
+diff --git a/drivers/gpu/drm/i915/display/intel_tv.c b/drivers/gpu/drm/i915/display/intel_tv.c
+index c75e0ceecee6..fa155a028e2b 100644
+--- a/drivers/gpu/drm/i915/display/intel_tv.c
++++ b/drivers/gpu/drm/i915/display/intel_tv.c
+@@ -907,7 +907,7 @@ static bool
+ intel_tv_get_hw_state(struct intel_encoder *encoder, enum pipe *pipe)
+ {
+ 	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+-	u32 tmp = I915_READ(TV_CTL);
++	u32 tmp = intel_de_read(dev_priv, TV_CTL);
  
--	I915_WRITE_FW(SKL_PS_CTRL(pipe, scaler_id),
--		      PS_SCALER_EN | PS_PLANE_SEL(plane->id) | scaler->mode);
--	I915_WRITE_FW(SKL_PS_VPHASE(pipe, scaler_id),
--		      PS_Y_PHASE(y_vphase) | PS_UV_RGB_PHASE(uv_rgb_vphase));
--	I915_WRITE_FW(SKL_PS_HPHASE(pipe, scaler_id),
--		      PS_Y_PHASE(y_hphase) | PS_UV_RGB_PHASE(uv_rgb_hphase));
--	I915_WRITE_FW(SKL_PS_WIN_POS(pipe, scaler_id), (crtc_x << 16) | crtc_y);
--	I915_WRITE_FW(SKL_PS_WIN_SZ(pipe, scaler_id), (crtc_w << 16) | crtc_h);
-+	intel_de_write_fw(dev_priv, SKL_PS_CTRL(pipe, scaler_id),
-+			  PS_SCALER_EN | PS_PLANE_SEL(plane->id) | scaler->mode);
-+	intel_de_write_fw(dev_priv, SKL_PS_VPHASE(pipe, scaler_id),
-+			  PS_Y_PHASE(y_vphase) | PS_UV_RGB_PHASE(uv_rgb_vphase));
-+	intel_de_write_fw(dev_priv, SKL_PS_HPHASE(pipe, scaler_id),
-+			  PS_Y_PHASE(y_hphase) | PS_UV_RGB_PHASE(uv_rgb_hphase));
-+	intel_de_write_fw(dev_priv, SKL_PS_WIN_POS(pipe, scaler_id),
-+			  (crtc_x << 16) | crtc_y);
-+	intel_de_write_fw(dev_priv, SKL_PS_WIN_SZ(pipe, scaler_id),
-+			  (crtc_w << 16) | crtc_h);
- }
+ 	*pipe = (tmp & TV_ENC_PIPE_SEL_MASK) >> TV_ENC_PIPE_SEL_SHIFT;
  
- /* Preoffset values for YUV to RGB Conversion */
-@@ -547,28 +549,37 @@ icl_program_input_csc(struct intel_plane *plane,
- 	else
- 		csc = input_csc_matrix_lr[plane_state->hw.color_encoding];
+@@ -926,7 +926,8 @@ intel_enable_tv(struct intel_encoder *encoder,
+ 	intel_wait_for_vblank(dev_priv,
+ 			      to_intel_crtc(pipe_config->uapi.crtc)->pipe);
  
--	I915_WRITE_FW(PLANE_INPUT_CSC_COEFF(pipe, plane_id, 0), ROFF(csc[0]) |
--		      GOFF(csc[1]));
--	I915_WRITE_FW(PLANE_INPUT_CSC_COEFF(pipe, plane_id, 1), BOFF(csc[2]));
--	I915_WRITE_FW(PLANE_INPUT_CSC_COEFF(pipe, plane_id, 2), ROFF(csc[3]) |
--		      GOFF(csc[4]));
--	I915_WRITE_FW(PLANE_INPUT_CSC_COEFF(pipe, plane_id, 3), BOFF(csc[5]));
--	I915_WRITE_FW(PLANE_INPUT_CSC_COEFF(pipe, plane_id, 4), ROFF(csc[6]) |
--		      GOFF(csc[7]));
--	I915_WRITE_FW(PLANE_INPUT_CSC_COEFF(pipe, plane_id, 5), BOFF(csc[8]));
--
--	I915_WRITE_FW(PLANE_INPUT_CSC_PREOFF(pipe, plane_id, 0),
--		      PREOFF_YUV_TO_RGB_HI);
-+	intel_de_write_fw(dev_priv, PLANE_INPUT_CSC_COEFF(pipe, plane_id, 0),
-+			  ROFF(csc[0]) | GOFF(csc[1]));
-+	intel_de_write_fw(dev_priv, PLANE_INPUT_CSC_COEFF(pipe, plane_id, 1),
-+			  BOFF(csc[2]));
-+	intel_de_write_fw(dev_priv, PLANE_INPUT_CSC_COEFF(pipe, plane_id, 2),
-+			  ROFF(csc[3]) | GOFF(csc[4]));
-+	intel_de_write_fw(dev_priv, PLANE_INPUT_CSC_COEFF(pipe, plane_id, 3),
-+			  BOFF(csc[5]));
-+	intel_de_write_fw(dev_priv, PLANE_INPUT_CSC_COEFF(pipe, plane_id, 4),
-+			  ROFF(csc[6]) | GOFF(csc[7]));
-+	intel_de_write_fw(dev_priv, PLANE_INPUT_CSC_COEFF(pipe, plane_id, 5),
-+			  BOFF(csc[8]));
-+
-+	intel_de_write_fw(dev_priv, PLANE_INPUT_CSC_PREOFF(pipe, plane_id, 0),
-+			  PREOFF_YUV_TO_RGB_HI);
- 	if (plane_state->hw.color_range == DRM_COLOR_YCBCR_FULL_RANGE)
--		I915_WRITE_FW(PLANE_INPUT_CSC_PREOFF(pipe, plane_id, 1), 0);
-+		intel_de_write_fw(dev_priv,
-+				  PLANE_INPUT_CSC_PREOFF(pipe, plane_id, 1),
-+				  0);
- 	else
--		I915_WRITE_FW(PLANE_INPUT_CSC_PREOFF(pipe, plane_id, 1),
--			      PREOFF_YUV_TO_RGB_ME);
--	I915_WRITE_FW(PLANE_INPUT_CSC_PREOFF(pipe, plane_id, 2),
--		      PREOFF_YUV_TO_RGB_LO);
--	I915_WRITE_FW(PLANE_INPUT_CSC_POSTOFF(pipe, plane_id, 0), 0x0);
--	I915_WRITE_FW(PLANE_INPUT_CSC_POSTOFF(pipe, plane_id, 1), 0x0);
--	I915_WRITE_FW(PLANE_INPUT_CSC_POSTOFF(pipe, plane_id, 2), 0x0);
-+		intel_de_write_fw(dev_priv,
-+				  PLANE_INPUT_CSC_PREOFF(pipe, plane_id, 1),
-+				  PREOFF_YUV_TO_RGB_ME);
-+	intel_de_write_fw(dev_priv, PLANE_INPUT_CSC_PREOFF(pipe, plane_id, 2),
-+			  PREOFF_YUV_TO_RGB_LO);
-+	intel_de_write_fw(dev_priv,
-+			  PLANE_INPUT_CSC_POSTOFF(pipe, plane_id, 0), 0x0);
-+	intel_de_write_fw(dev_priv,
-+			  PLANE_INPUT_CSC_POSTOFF(pipe, plane_id, 1), 0x0);
-+	intel_de_write_fw(dev_priv,
-+			  PLANE_INPUT_CSC_POSTOFF(pipe, plane_id, 2), 0x0);
+-	I915_WRITE(TV_CTL, I915_READ(TV_CTL) | TV_ENC_ENABLE);
++	intel_de_write(dev_priv, TV_CTL,
++		       intel_de_read(dev_priv, TV_CTL) | TV_ENC_ENABLE);
  }
  
  static void
-@@ -623,44 +634,49 @@ skl_program_plane(struct intel_plane *plane,
+@@ -937,7 +938,8 @@ intel_disable_tv(struct intel_encoder *encoder,
+ 	struct drm_device *dev = encoder->base.dev;
+ 	struct drm_i915_private *dev_priv = to_i915(dev);
  
- 	spin_lock_irqsave(&dev_priv->uncore.lock, irqflags);
- 
--	I915_WRITE_FW(PLANE_STRIDE(pipe, plane_id), stride);
--	I915_WRITE_FW(PLANE_POS(pipe, plane_id), (crtc_y << 16) | crtc_x);
--	I915_WRITE_FW(PLANE_SIZE(pipe, plane_id), (src_h << 16) | src_w);
-+	intel_de_write_fw(dev_priv, PLANE_STRIDE(pipe, plane_id), stride);
-+	intel_de_write_fw(dev_priv, PLANE_POS(pipe, plane_id),
-+			  (crtc_y << 16) | crtc_x);
-+	intel_de_write_fw(dev_priv, PLANE_SIZE(pipe, plane_id),
-+			  (src_h << 16) | src_w);
- 
- 	if (INTEL_GEN(dev_priv) < 12)
- 		aux_dist |= aux_stride;
--	I915_WRITE_FW(PLANE_AUX_DIST(pipe, plane_id), aux_dist);
-+	intel_de_write_fw(dev_priv, PLANE_AUX_DIST(pipe, plane_id), aux_dist);
- 
- 	if (icl_is_hdr_plane(dev_priv, plane_id))
--		I915_WRITE_FW(PLANE_CUS_CTL(pipe, plane_id), plane_state->cus_ctl);
-+		intel_de_write_fw(dev_priv, PLANE_CUS_CTL(pipe, plane_id),
-+				  plane_state->cus_ctl);
- 
- 	if (INTEL_GEN(dev_priv) >= 10 || IS_GEMINILAKE(dev_priv))
--		I915_WRITE_FW(PLANE_COLOR_CTL(pipe, plane_id), plane_color_ctl);
-+		intel_de_write_fw(dev_priv, PLANE_COLOR_CTL(pipe, plane_id),
-+				  plane_color_ctl);
- 
- 	if (fb->format->is_yuv && icl_is_hdr_plane(dev_priv, plane_id))
- 		icl_program_input_csc(plane, crtc_state, plane_state);
- 
- 	skl_write_plane_wm(plane, crtc_state);
- 
--	I915_WRITE_FW(PLANE_KEYVAL(pipe, plane_id), key->min_value);
--	I915_WRITE_FW(PLANE_KEYMSK(pipe, plane_id), keymsk);
--	I915_WRITE_FW(PLANE_KEYMAX(pipe, plane_id), keymax);
-+	intel_de_write_fw(dev_priv, PLANE_KEYVAL(pipe, plane_id),
-+			  key->min_value);
-+	intel_de_write_fw(dev_priv, PLANE_KEYMSK(pipe, plane_id), keymsk);
-+	intel_de_write_fw(dev_priv, PLANE_KEYMAX(pipe, plane_id), keymax);
- 
--	I915_WRITE_FW(PLANE_OFFSET(pipe, plane_id), (y << 16) | x);
-+	intel_de_write_fw(dev_priv, PLANE_OFFSET(pipe, plane_id),
-+			  (y << 16) | x);
- 
- 	if (INTEL_GEN(dev_priv) < 11)
--		I915_WRITE_FW(PLANE_AUX_OFFSET(pipe, plane_id),
--			      (plane_state->color_plane[1].y << 16) |
--			      plane_state->color_plane[1].x);
-+		intel_de_write_fw(dev_priv, PLANE_AUX_OFFSET(pipe, plane_id),
-+				  (plane_state->color_plane[1].y << 16) | plane_state->color_plane[1].x);
- 
- 	/*
- 	 * The control register self-arms if the plane was previously
- 	 * disabled. Try to make the plane enable atomic by writing
- 	 * the control register just before the surface register.
- 	 */
--	I915_WRITE_FW(PLANE_CTL(pipe, plane_id), plane_ctl);
--	I915_WRITE_FW(PLANE_SURF(pipe, plane_id),
--		      intel_plane_ggtt_offset(plane_state) + surf_addr);
-+	intel_de_write_fw(dev_priv, PLANE_CTL(pipe, plane_id), plane_ctl);
-+	intel_de_write_fw(dev_priv, PLANE_SURF(pipe, plane_id),
-+			  intel_plane_ggtt_offset(plane_state) + surf_addr);
- 
- 	if (plane_state->scaler_id >= 0)
- 		skl_program_scaler(plane, crtc_state, plane_state);
-@@ -693,12 +709,12 @@ skl_disable_plane(struct intel_plane *plane,
- 	spin_lock_irqsave(&dev_priv->uncore.lock, irqflags);
- 
- 	if (icl_is_hdr_plane(dev_priv, plane_id))
--		I915_WRITE_FW(PLANE_CUS_CTL(pipe, plane_id), 0);
-+		intel_de_write_fw(dev_priv, PLANE_CUS_CTL(pipe, plane_id), 0);
- 
- 	skl_write_plane_wm(plane, crtc_state);
- 
--	I915_WRITE_FW(PLANE_CTL(pipe, plane_id), 0);
--	I915_WRITE_FW(PLANE_SURF(pipe, plane_id), 0);
-+	intel_de_write_fw(dev_priv, PLANE_CTL(pipe, plane_id), 0);
-+	intel_de_write_fw(dev_priv, PLANE_SURF(pipe, plane_id), 0);
- 
- 	spin_unlock_irqrestore(&dev_priv->uncore.lock, irqflags);
+-	I915_WRITE(TV_CTL, I915_READ(TV_CTL) & ~TV_ENC_ENABLE);
++	intel_de_write(dev_priv, TV_CTL,
++		       intel_de_read(dev_priv, TV_CTL) & ~TV_ENC_ENABLE);
  }
-@@ -718,7 +734,7 @@ skl_plane_get_hw_state(struct intel_plane *plane,
- 	if (!wakeref)
- 		return false;
  
--	ret = I915_READ(PLANE_CTL(plane->pipe, plane_id)) & PLANE_CTL_ENABLE;
-+	ret = intel_de_read(dev_priv, PLANE_CTL(plane->pipe, plane_id)) & PLANE_CTL_ENABLE;
+ static const struct tv_mode *intel_tv_mode_find(const struct drm_connector_state *conn_state)
+@@ -1095,11 +1097,11 @@ intel_tv_get_config(struct intel_encoder *encoder,
  
- 	*pipe = plane->pipe;
+ 	pipe_config->output_types |= BIT(INTEL_OUTPUT_TVOUT);
  
-@@ -774,23 +790,36 @@ chv_update_csc(const struct intel_plane_state *plane_state)
- 	if (!fb->format->is_yuv)
+-	tv_ctl = I915_READ(TV_CTL);
+-	hctl1 = I915_READ(TV_H_CTL_1);
+-	hctl3 = I915_READ(TV_H_CTL_3);
+-	vctl1 = I915_READ(TV_V_CTL_1);
+-	vctl2 = I915_READ(TV_V_CTL_2);
++	tv_ctl = intel_de_read(dev_priv, TV_CTL);
++	hctl1 = intel_de_read(dev_priv, TV_H_CTL_1);
++	hctl3 = intel_de_read(dev_priv, TV_H_CTL_3);
++	vctl1 = intel_de_read(dev_priv, TV_V_CTL_1);
++	vctl2 = intel_de_read(dev_priv, TV_V_CTL_2);
+ 
+ 	tv_mode.htotal = (hctl1 & TV_HTOTAL_MASK) >> TV_HTOTAL_SHIFT;
+ 	tv_mode.hsync_end = (hctl1 & TV_HSYNC_END_MASK) >> TV_HSYNC_END_SHIFT;
+@@ -1134,11 +1136,11 @@ intel_tv_get_config(struct intel_encoder *encoder,
+ 		break;
+ 	}
+ 
+-	tmp = I915_READ(TV_WIN_POS);
++	tmp = intel_de_read(dev_priv, TV_WIN_POS);
+ 	xpos = tmp >> 16;
+ 	ypos = tmp & 0xffff;
+ 
+-	tmp = I915_READ(TV_WIN_SIZE);
++	tmp = intel_de_read(dev_priv, TV_WIN_SIZE);
+ 	xsize = tmp >> 16;
+ 	ysize = tmp & 0xffff;
+ 
+@@ -1380,16 +1382,16 @@ set_tv_mode_timings(struct drm_i915_private *dev_priv,
+ 	vctl7 = (tv_mode->vburst_start_f4 << TV_VBURST_START_F4_SHIFT) |
+ 		(tv_mode->vburst_end_f4 << TV_VBURST_END_F4_SHIFT);
+ 
+-	I915_WRITE(TV_H_CTL_1, hctl1);
+-	I915_WRITE(TV_H_CTL_2, hctl2);
+-	I915_WRITE(TV_H_CTL_3, hctl3);
+-	I915_WRITE(TV_V_CTL_1, vctl1);
+-	I915_WRITE(TV_V_CTL_2, vctl2);
+-	I915_WRITE(TV_V_CTL_3, vctl3);
+-	I915_WRITE(TV_V_CTL_4, vctl4);
+-	I915_WRITE(TV_V_CTL_5, vctl5);
+-	I915_WRITE(TV_V_CTL_6, vctl6);
+-	I915_WRITE(TV_V_CTL_7, vctl7);
++	intel_de_write(dev_priv, TV_H_CTL_1, hctl1);
++	intel_de_write(dev_priv, TV_H_CTL_2, hctl2);
++	intel_de_write(dev_priv, TV_H_CTL_3, hctl3);
++	intel_de_write(dev_priv, TV_V_CTL_1, vctl1);
++	intel_de_write(dev_priv, TV_V_CTL_2, vctl2);
++	intel_de_write(dev_priv, TV_V_CTL_3, vctl3);
++	intel_de_write(dev_priv, TV_V_CTL_4, vctl4);
++	intel_de_write(dev_priv, TV_V_CTL_5, vctl5);
++	intel_de_write(dev_priv, TV_V_CTL_6, vctl6);
++	intel_de_write(dev_priv, TV_V_CTL_7, vctl7);
+ }
+ 
+ static void set_color_conversion(struct drm_i915_private *dev_priv,
+@@ -1398,18 +1400,18 @@ static void set_color_conversion(struct drm_i915_private *dev_priv,
+ 	if (!color_conversion)
  		return;
  
--	I915_WRITE_FW(SPCSCYGOFF(plane_id), SPCSC_OOFF(0) | SPCSC_IOFF(0));
--	I915_WRITE_FW(SPCSCCBOFF(plane_id), SPCSC_OOFF(0) | SPCSC_IOFF(0));
--	I915_WRITE_FW(SPCSCCROFF(plane_id), SPCSC_OOFF(0) | SPCSC_IOFF(0));
--
--	I915_WRITE_FW(SPCSCC01(plane_id), SPCSC_C1(csc[1]) | SPCSC_C0(csc[0]));
--	I915_WRITE_FW(SPCSCC23(plane_id), SPCSC_C1(csc[3]) | SPCSC_C0(csc[2]));
--	I915_WRITE_FW(SPCSCC45(plane_id), SPCSC_C1(csc[5]) | SPCSC_C0(csc[4]));
--	I915_WRITE_FW(SPCSCC67(plane_id), SPCSC_C1(csc[7]) | SPCSC_C0(csc[6]));
--	I915_WRITE_FW(SPCSCC8(plane_id), SPCSC_C0(csc[8]));
--
--	I915_WRITE_FW(SPCSCYGICLAMP(plane_id), SPCSC_IMAX(1023) | SPCSC_IMIN(0));
--	I915_WRITE_FW(SPCSCCBICLAMP(plane_id), SPCSC_IMAX(512) | SPCSC_IMIN(-512));
--	I915_WRITE_FW(SPCSCCRICLAMP(plane_id), SPCSC_IMAX(512) | SPCSC_IMIN(-512));
--
--	I915_WRITE_FW(SPCSCYGOCLAMP(plane_id), SPCSC_OMAX(1023) | SPCSC_OMIN(0));
--	I915_WRITE_FW(SPCSCCBOCLAMP(plane_id), SPCSC_OMAX(1023) | SPCSC_OMIN(0));
--	I915_WRITE_FW(SPCSCCROCLAMP(plane_id), SPCSC_OMAX(1023) | SPCSC_OMIN(0));
-+	intel_de_write_fw(dev_priv, SPCSCYGOFF(plane_id),
-+			  SPCSC_OOFF(0) | SPCSC_IOFF(0));
-+	intel_de_write_fw(dev_priv, SPCSCCBOFF(plane_id),
-+			  SPCSC_OOFF(0) | SPCSC_IOFF(0));
-+	intel_de_write_fw(dev_priv, SPCSCCROFF(plane_id),
-+			  SPCSC_OOFF(0) | SPCSC_IOFF(0));
-+
-+	intel_de_write_fw(dev_priv, SPCSCC01(plane_id),
-+			  SPCSC_C1(csc[1]) | SPCSC_C0(csc[0]));
-+	intel_de_write_fw(dev_priv, SPCSCC23(plane_id),
-+			  SPCSC_C1(csc[3]) | SPCSC_C0(csc[2]));
-+	intel_de_write_fw(dev_priv, SPCSCC45(plane_id),
-+			  SPCSC_C1(csc[5]) | SPCSC_C0(csc[4]));
-+	intel_de_write_fw(dev_priv, SPCSCC67(plane_id),
-+			  SPCSC_C1(csc[7]) | SPCSC_C0(csc[6]));
-+	intel_de_write_fw(dev_priv, SPCSCC8(plane_id), SPCSC_C0(csc[8]));
-+
-+	intel_de_write_fw(dev_priv, SPCSCYGICLAMP(plane_id),
-+			  SPCSC_IMAX(1023) | SPCSC_IMIN(0));
-+	intel_de_write_fw(dev_priv, SPCSCCBICLAMP(plane_id),
-+			  SPCSC_IMAX(512) | SPCSC_IMIN(-512));
-+	intel_de_write_fw(dev_priv, SPCSCCRICLAMP(plane_id),
-+			  SPCSC_IMAX(512) | SPCSC_IMIN(-512));
-+
-+	intel_de_write_fw(dev_priv, SPCSCYGOCLAMP(plane_id),
-+			  SPCSC_OMAX(1023) | SPCSC_OMIN(0));
-+	intel_de_write_fw(dev_priv, SPCSCCBOCLAMP(plane_id),
-+			  SPCSC_OMAX(1023) | SPCSC_OMIN(0));
-+	intel_de_write_fw(dev_priv, SPCSCCROCLAMP(plane_id),
-+			  SPCSC_OMAX(1023) | SPCSC_OMIN(0));
+-	I915_WRITE(TV_CSC_Y, (color_conversion->ry << 16) |
+-		   color_conversion->gy);
+-	I915_WRITE(TV_CSC_Y2, (color_conversion->by << 16) |
+-		   color_conversion->ay);
+-	I915_WRITE(TV_CSC_U, (color_conversion->ru << 16) |
+-		   color_conversion->gu);
+-	I915_WRITE(TV_CSC_U2, (color_conversion->bu << 16) |
+-		   color_conversion->au);
+-	I915_WRITE(TV_CSC_V, (color_conversion->rv << 16) |
+-		   color_conversion->gv);
+-	I915_WRITE(TV_CSC_V2, (color_conversion->bv << 16) |
+-		   color_conversion->av);
++	intel_de_write(dev_priv, TV_CSC_Y,
++		       (color_conversion->ry << 16) | color_conversion->gy);
++	intel_de_write(dev_priv, TV_CSC_Y2,
++		       (color_conversion->by << 16) | color_conversion->ay);
++	intel_de_write(dev_priv, TV_CSC_U,
++		       (color_conversion->ru << 16) | color_conversion->gu);
++	intel_de_write(dev_priv, TV_CSC_U2,
++		       (color_conversion->bu << 16) | color_conversion->au);
++	intel_de_write(dev_priv, TV_CSC_V,
++		       (color_conversion->rv << 16) | color_conversion->gv);
++	intel_de_write(dev_priv, TV_CSC_V2,
++		       (color_conversion->bv << 16) | color_conversion->av);
  }
  
- #define SIN_0 0
-@@ -829,10 +858,10 @@ vlv_update_clrc(const struct intel_plane_state *plane_state)
+ static void intel_tv_pre_enable(struct intel_encoder *encoder,
+@@ -1434,7 +1436,7 @@ static void intel_tv_pre_enable(struct intel_encoder *encoder,
+ 	if (!tv_mode)
+ 		return;	/* can't happen (mode_prepare prevents this) */
+ 
+-	tv_ctl = I915_READ(TV_CTL);
++	tv_ctl = intel_de_read(dev_priv, TV_CTL);
+ 	tv_ctl &= TV_CTL_SAVE;
+ 
+ 	switch (intel_tv->type) {
+@@ -1511,21 +1513,20 @@ static void intel_tv_pre_enable(struct intel_encoder *encoder,
+ 
+ 	set_tv_mode_timings(dev_priv, tv_mode, burst_ena);
+ 
+-	I915_WRITE(TV_SC_CTL_1, scctl1);
+-	I915_WRITE(TV_SC_CTL_2, scctl2);
+-	I915_WRITE(TV_SC_CTL_3, scctl3);
++	intel_de_write(dev_priv, TV_SC_CTL_1, scctl1);
++	intel_de_write(dev_priv, TV_SC_CTL_2, scctl2);
++	intel_de_write(dev_priv, TV_SC_CTL_3, scctl3);
+ 
+ 	set_color_conversion(dev_priv, color_conversion);
+ 
+ 	if (INTEL_GEN(dev_priv) >= 4)
+-		I915_WRITE(TV_CLR_KNOBS, 0x00404000);
++		intel_de_write(dev_priv, TV_CLR_KNOBS, 0x00404000);
+ 	else
+-		I915_WRITE(TV_CLR_KNOBS, 0x00606000);
++		intel_de_write(dev_priv, TV_CLR_KNOBS, 0x00606000);
+ 
+ 	if (video_levels)
+-		I915_WRITE(TV_CLR_LEVEL,
+-			   ((video_levels->black << TV_BLACK_LEVEL_SHIFT) |
+-			    (video_levels->blank << TV_BLANK_LEVEL_SHIFT)));
++		intel_de_write(dev_priv, TV_CLR_LEVEL,
++			       ((video_levels->black << TV_BLACK_LEVEL_SHIFT) | (video_levels->blank << TV_BLANK_LEVEL_SHIFT)));
+ 
+ 	assert_pipe_disabled(dev_priv, pipe_config->cpu_transcoder);
+ 
+@@ -1533,7 +1534,7 @@ static void intel_tv_pre_enable(struct intel_encoder *encoder,
+ 	tv_filter_ctl = TV_AUTO_SCALE;
+ 	if (tv_conn_state->bypass_vfilter)
+ 		tv_filter_ctl |= TV_V_FILTER_BYPASS;
+-	I915_WRITE(TV_FILTER_CTL_1, tv_filter_ctl);
++	intel_de_write(dev_priv, TV_FILTER_CTL_1, tv_filter_ctl);
+ 
+ 	xsize = tv_mode->hblank_start - tv_mode->hblank_end;
+ 	ysize = intel_tv_mode_vdisplay(tv_mode);
+@@ -1544,20 +1545,25 @@ static void intel_tv_pre_enable(struct intel_encoder *encoder,
+ 		  conn_state->tv.margins.right);
+ 	ysize -= (tv_conn_state->margins.top +
+ 		  tv_conn_state->margins.bottom);
+-	I915_WRITE(TV_WIN_POS, (xpos<<16)|ypos);
+-	I915_WRITE(TV_WIN_SIZE, (xsize<<16)|ysize);
++	intel_de_write(dev_priv, TV_WIN_POS, (xpos << 16) | ypos);
++	intel_de_write(dev_priv, TV_WIN_SIZE, (xsize << 16) | ysize);
+ 
+ 	j = 0;
+ 	for (i = 0; i < 60; i++)
+-		I915_WRITE(TV_H_LUMA(i), tv_mode->filter_table[j++]);
++		intel_de_write(dev_priv, TV_H_LUMA(i),
++			       tv_mode->filter_table[j++]);
+ 	for (i = 0; i < 60; i++)
+-		I915_WRITE(TV_H_CHROMA(i), tv_mode->filter_table[j++]);
++		intel_de_write(dev_priv, TV_H_CHROMA(i),
++			       tv_mode->filter_table[j++]);
+ 	for (i = 0; i < 43; i++)
+-		I915_WRITE(TV_V_LUMA(i), tv_mode->filter_table[j++]);
++		intel_de_write(dev_priv, TV_V_LUMA(i),
++			       tv_mode->filter_table[j++]);
+ 	for (i = 0; i < 43; i++)
+-		I915_WRITE(TV_V_CHROMA(i), tv_mode->filter_table[j++]);
+-	I915_WRITE(TV_DAC, I915_READ(TV_DAC) & TV_DAC_SAVE);
+-	I915_WRITE(TV_CTL, tv_ctl);
++		intel_de_write(dev_priv, TV_V_CHROMA(i),
++			       tv_mode->filter_table[j++]);
++	intel_de_write(dev_priv, TV_DAC,
++		       intel_de_read(dev_priv, TV_DAC) & TV_DAC_SAVE);
++	intel_de_write(dev_priv, TV_CTL, tv_ctl);
+ }
+ 
+ static int
+@@ -1581,8 +1587,8 @@ intel_tv_detect_type(struct intel_tv *intel_tv,
+ 		spin_unlock_irq(&dev_priv->irq_lock);
  	}
  
- 	/* FIXME these register are single buffered :( */
--	I915_WRITE_FW(SPCLRC0(pipe, plane_id),
--		      SP_CONTRAST(contrast) | SP_BRIGHTNESS(brightness));
--	I915_WRITE_FW(SPCLRC1(pipe, plane_id),
--		      SP_SH_SIN(sh_sin) | SP_SH_COS(sh_cos));
-+	intel_de_write_fw(dev_priv, SPCLRC0(pipe, plane_id),
-+			  SP_CONTRAST(contrast) | SP_BRIGHTNESS(brightness));
-+	intel_de_write_fw(dev_priv, SPCLRC1(pipe, plane_id),
-+			  SP_SH_SIN(sh_sin) | SP_SH_COS(sh_cos));
- }
+-	save_tv_dac = tv_dac = I915_READ(TV_DAC);
+-	save_tv_ctl = tv_ctl = I915_READ(TV_CTL);
++	save_tv_dac = tv_dac = intel_de_read(dev_priv, TV_DAC);
++	save_tv_ctl = tv_ctl = intel_de_read(dev_priv, TV_CTL);
  
- static void
-@@ -1019,10 +1048,8 @@ static void vlv_update_gamma(const struct intel_plane_state *plane_state)
- 	/* FIXME these register are single buffered :( */
- 	/* The two end points are implicit (0.0 and 1.0) */
- 	for (i = 1; i < 8 - 1; i++)
--		I915_WRITE_FW(SPGAMC(pipe, plane_id, i - 1),
--			      gamma[i] << 16 |
--			      gamma[i] << 8 |
--			      gamma[i]);
-+		intel_de_write_fw(dev_priv, SPGAMC(pipe, plane_id, i - 1),
-+				  gamma[i] << 16 | gamma[i] << 8 | gamma[i]);
- }
+ 	/* Poll for TV detection */
+ 	tv_ctl &= ~(TV_ENC_ENABLE | TV_ENC_PIPE_SEL_MASK | TV_TEST_MODE_MASK);
+@@ -1608,14 +1614,14 @@ intel_tv_detect_type(struct intel_tv *intel_tv,
+ 		tv_dac &= ~(TVDAC_STATE_CHG_EN | TVDAC_A_SENSE_CTL |
+ 			    TVDAC_B_SENSE_CTL | TVDAC_C_SENSE_CTL);
  
- static void
-@@ -1055,32 +1082,37 @@ vlv_update_plane(struct intel_plane *plane,
+-	I915_WRITE(TV_CTL, tv_ctl);
+-	I915_WRITE(TV_DAC, tv_dac);
+-	POSTING_READ(TV_DAC);
++	intel_de_write(dev_priv, TV_CTL, tv_ctl);
++	intel_de_write(dev_priv, TV_DAC, tv_dac);
++	intel_de_posting_read(dev_priv, TV_DAC);
  
- 	spin_lock_irqsave(&dev_priv->uncore.lock, irqflags);
+ 	intel_wait_for_vblank(dev_priv, intel_crtc->pipe);
  
--	I915_WRITE_FW(SPSTRIDE(pipe, plane_id),
--		      plane_state->color_plane[0].stride);
--	I915_WRITE_FW(SPPOS(pipe, plane_id), (crtc_y << 16) | crtc_x);
--	I915_WRITE_FW(SPSIZE(pipe, plane_id), (crtc_h << 16) | crtc_w);
--	I915_WRITE_FW(SPCONSTALPHA(pipe, plane_id), 0);
-+	intel_de_write_fw(dev_priv, SPSTRIDE(pipe, plane_id),
-+			  plane_state->color_plane[0].stride);
-+	intel_de_write_fw(dev_priv, SPPOS(pipe, plane_id),
-+			  (crtc_y << 16) | crtc_x);
-+	intel_de_write_fw(dev_priv, SPSIZE(pipe, plane_id),
-+			  (crtc_h << 16) | crtc_w);
-+	intel_de_write_fw(dev_priv, SPCONSTALPHA(pipe, plane_id), 0);
- 
- 	if (IS_CHERRYVIEW(dev_priv) && pipe == PIPE_B)
- 		chv_update_csc(plane_state);
- 
- 	if (key->flags) {
--		I915_WRITE_FW(SPKEYMINVAL(pipe, plane_id), key->min_value);
--		I915_WRITE_FW(SPKEYMSK(pipe, plane_id), key->channel_mask);
--		I915_WRITE_FW(SPKEYMAXVAL(pipe, plane_id), key->max_value);
-+		intel_de_write_fw(dev_priv, SPKEYMINVAL(pipe, plane_id),
-+				  key->min_value);
-+		intel_de_write_fw(dev_priv, SPKEYMSK(pipe, plane_id),
-+				  key->channel_mask);
-+		intel_de_write_fw(dev_priv, SPKEYMAXVAL(pipe, plane_id),
-+				  key->max_value);
+ 	type = -1;
+-	tv_dac = I915_READ(TV_DAC);
++	tv_dac = intel_de_read(dev_priv, TV_DAC);
+ 	DRM_DEBUG_KMS("TV detected: %x, %x\n", tv_ctl, tv_dac);
+ 	/*
+ 	 *  A B C
+@@ -1637,9 +1643,9 @@ intel_tv_detect_type(struct intel_tv *intel_tv,
+ 		type = -1;
  	}
  
--	I915_WRITE_FW(SPLINOFF(pipe, plane_id), linear_offset);
--	I915_WRITE_FW(SPTILEOFF(pipe, plane_id), (y << 16) | x);
-+	intel_de_write_fw(dev_priv, SPLINOFF(pipe, plane_id), linear_offset);
-+	intel_de_write_fw(dev_priv, SPTILEOFF(pipe, plane_id), (y << 16) | x);
+-	I915_WRITE(TV_DAC, save_tv_dac & ~TVDAC_STATE_CHG_EN);
+-	I915_WRITE(TV_CTL, save_tv_ctl);
+-	POSTING_READ(TV_CTL);
++	intel_de_write(dev_priv, TV_DAC, save_tv_dac & ~TVDAC_STATE_CHG_EN);
++	intel_de_write(dev_priv, TV_CTL, save_tv_ctl);
++	intel_de_posting_read(dev_priv, TV_CTL);
+ 
+ 	/* For unknown reasons the hw barfs if we don't do this vblank wait. */
+ 	intel_wait_for_vblank(dev_priv, intel_crtc->pipe);
+@@ -1870,7 +1876,7 @@ intel_tv_init(struct drm_i915_private *dev_priv)
+ 	int i, initial_mode = 0;
+ 	struct drm_connector_state *state;
+ 
+-	if ((I915_READ(TV_CTL) & TV_FUSE_STATE_MASK) == TV_FUSE_STATE_DISABLED)
++	if ((intel_de_read(dev_priv, TV_CTL) & TV_FUSE_STATE_MASK) == TV_FUSE_STATE_DISABLED)
+ 		return;
+ 
+ 	if (!intel_bios_is_tv_present(dev_priv)) {
+@@ -1882,15 +1888,15 @@ intel_tv_init(struct drm_i915_private *dev_priv)
+ 	 * Sanity check the TV output by checking to see if the
+ 	 * DAC register holds a value
+ 	 */
+-	save_tv_dac = I915_READ(TV_DAC);
++	save_tv_dac = intel_de_read(dev_priv, TV_DAC);
+ 
+-	I915_WRITE(TV_DAC, save_tv_dac | TVDAC_STATE_CHG_EN);
+-	tv_dac_on = I915_READ(TV_DAC);
++	intel_de_write(dev_priv, TV_DAC, save_tv_dac | TVDAC_STATE_CHG_EN);
++	tv_dac_on = intel_de_read(dev_priv, TV_DAC);
+ 
+-	I915_WRITE(TV_DAC, save_tv_dac & ~TVDAC_STATE_CHG_EN);
+-	tv_dac_off = I915_READ(TV_DAC);
++	intel_de_write(dev_priv, TV_DAC, save_tv_dac & ~TVDAC_STATE_CHG_EN);
++	tv_dac_off = intel_de_read(dev_priv, TV_DAC);
+ 
+-	I915_WRITE(TV_DAC, save_tv_dac);
++	intel_de_write(dev_priv, TV_DAC, save_tv_dac);
  
  	/*
- 	 * The control register self-arms if the plane was previously
- 	 * disabled. Try to make the plane enable atomic by writing
- 	 * the control register just before the surface register.
- 	 */
--	I915_WRITE_FW(SPCNTR(pipe, plane_id), sprctl);
--	I915_WRITE_FW(SPSURF(pipe, plane_id),
--		      intel_plane_ggtt_offset(plane_state) + sprsurf_offset);
-+	intel_de_write_fw(dev_priv, SPCNTR(pipe, plane_id), sprctl);
-+	intel_de_write_fw(dev_priv, SPSURF(pipe, plane_id),
-+			  intel_plane_ggtt_offset(plane_state) + sprsurf_offset);
- 
- 	vlv_update_clrc(plane_state);
- 	vlv_update_gamma(plane_state);
-@@ -1099,8 +1131,8 @@ vlv_disable_plane(struct intel_plane *plane,
- 
- 	spin_lock_irqsave(&dev_priv->uncore.lock, irqflags);
- 
--	I915_WRITE_FW(SPCNTR(pipe, plane_id), 0);
--	I915_WRITE_FW(SPSURF(pipe, plane_id), 0);
-+	intel_de_write_fw(dev_priv, SPCNTR(pipe, plane_id), 0);
-+	intel_de_write_fw(dev_priv, SPSURF(pipe, plane_id), 0);
- 
- 	spin_unlock_irqrestore(&dev_priv->uncore.lock, irqflags);
- }
-@@ -1120,7 +1152,7 @@ vlv_plane_get_hw_state(struct intel_plane *plane,
- 	if (!wakeref)
- 		return false;
- 
--	ret = I915_READ(SPCNTR(plane->pipe, plane_id)) & SP_ENABLE;
-+	ret = intel_de_read(dev_priv, SPCNTR(plane->pipe, plane_id)) & SP_ENABLE;
- 
- 	*pipe = plane->pipe;
- 
-@@ -1424,19 +1456,17 @@ static void ivb_update_gamma(const struct intel_plane_state *plane_state)
- 
- 	/* FIXME these register are single buffered :( */
- 	for (i = 0; i < 16; i++)
--		I915_WRITE_FW(SPRGAMC(pipe, i),
--			      gamma[i] << 20 |
--			      gamma[i] << 10 |
--			      gamma[i]);
--
--	I915_WRITE_FW(SPRGAMC16(pipe, 0), gamma[i]);
--	I915_WRITE_FW(SPRGAMC16(pipe, 1), gamma[i]);
--	I915_WRITE_FW(SPRGAMC16(pipe, 2), gamma[i]);
-+		intel_de_write_fw(dev_priv, SPRGAMC(pipe, i),
-+				  gamma[i] << 20 | gamma[i] << 10 | gamma[i]);
-+
-+	intel_de_write_fw(dev_priv, SPRGAMC16(pipe, 0), gamma[i]);
-+	intel_de_write_fw(dev_priv, SPRGAMC16(pipe, 1), gamma[i]);
-+	intel_de_write_fw(dev_priv, SPRGAMC16(pipe, 2), gamma[i]);
- 	i++;
- 
--	I915_WRITE_FW(SPRGAMC17(pipe, 0), gamma[i]);
--	I915_WRITE_FW(SPRGAMC17(pipe, 1), gamma[i]);
--	I915_WRITE_FW(SPRGAMC17(pipe, 2), gamma[i]);
-+	intel_de_write_fw(dev_priv, SPRGAMC17(pipe, 0), gamma[i]);
-+	intel_de_write_fw(dev_priv, SPRGAMC17(pipe, 1), gamma[i]);
-+	intel_de_write_fw(dev_priv, SPRGAMC17(pipe, 2), gamma[i]);
- 	i++;
- }
- 
-@@ -1476,25 +1506,27 @@ ivb_update_plane(struct intel_plane *plane,
- 
- 	spin_lock_irqsave(&dev_priv->uncore.lock, irqflags);
- 
--	I915_WRITE_FW(SPRSTRIDE(pipe), plane_state->color_plane[0].stride);
--	I915_WRITE_FW(SPRPOS(pipe), (crtc_y << 16) | crtc_x);
--	I915_WRITE_FW(SPRSIZE(pipe), (crtc_h << 16) | crtc_w);
-+	intel_de_write_fw(dev_priv, SPRSTRIDE(pipe),
-+			  plane_state->color_plane[0].stride);
-+	intel_de_write_fw(dev_priv, SPRPOS(pipe), (crtc_y << 16) | crtc_x);
-+	intel_de_write_fw(dev_priv, SPRSIZE(pipe), (crtc_h << 16) | crtc_w);
- 	if (IS_IVYBRIDGE(dev_priv))
--		I915_WRITE_FW(SPRSCALE(pipe), sprscale);
-+		intel_de_write_fw(dev_priv, SPRSCALE(pipe), sprscale);
- 
- 	if (key->flags) {
--		I915_WRITE_FW(SPRKEYVAL(pipe), key->min_value);
--		I915_WRITE_FW(SPRKEYMSK(pipe), key->channel_mask);
--		I915_WRITE_FW(SPRKEYMAX(pipe), key->max_value);
-+		intel_de_write_fw(dev_priv, SPRKEYVAL(pipe), key->min_value);
-+		intel_de_write_fw(dev_priv, SPRKEYMSK(pipe),
-+				  key->channel_mask);
-+		intel_de_write_fw(dev_priv, SPRKEYMAX(pipe), key->max_value);
- 	}
- 
- 	/* HSW consolidates SPRTILEOFF and SPRLINOFF into a single SPROFFSET
- 	 * register */
- 	if (IS_HASWELL(dev_priv) || IS_BROADWELL(dev_priv)) {
--		I915_WRITE_FW(SPROFFSET(pipe), (y << 16) | x);
-+		intel_de_write_fw(dev_priv, SPROFFSET(pipe), (y << 16) | x);
- 	} else {
--		I915_WRITE_FW(SPRLINOFF(pipe), linear_offset);
--		I915_WRITE_FW(SPRTILEOFF(pipe), (y << 16) | x);
-+		intel_de_write_fw(dev_priv, SPRLINOFF(pipe), linear_offset);
-+		intel_de_write_fw(dev_priv, SPRTILEOFF(pipe), (y << 16) | x);
- 	}
- 
- 	/*
-@@ -1502,9 +1534,9 @@ ivb_update_plane(struct intel_plane *plane,
- 	 * disabled. Try to make the plane enable atomic by writing
- 	 * the control register just before the surface register.
- 	 */
--	I915_WRITE_FW(SPRCTL(pipe), sprctl);
--	I915_WRITE_FW(SPRSURF(pipe),
--		      intel_plane_ggtt_offset(plane_state) + sprsurf_offset);
-+	intel_de_write_fw(dev_priv, SPRCTL(pipe), sprctl);
-+	intel_de_write_fw(dev_priv, SPRSURF(pipe),
-+			  intel_plane_ggtt_offset(plane_state) + sprsurf_offset);
- 
- 	ivb_update_gamma(plane_state);
- 
-@@ -1521,11 +1553,11 @@ ivb_disable_plane(struct intel_plane *plane,
- 
- 	spin_lock_irqsave(&dev_priv->uncore.lock, irqflags);
- 
--	I915_WRITE_FW(SPRCTL(pipe), 0);
-+	intel_de_write_fw(dev_priv, SPRCTL(pipe), 0);
- 	/* Disable the scaler */
- 	if (IS_IVYBRIDGE(dev_priv))
--		I915_WRITE_FW(SPRSCALE(pipe), 0);
--	I915_WRITE_FW(SPRSURF(pipe), 0);
-+		intel_de_write_fw(dev_priv, SPRSCALE(pipe), 0);
-+	intel_de_write_fw(dev_priv, SPRSURF(pipe), 0);
- 
- 	spin_unlock_irqrestore(&dev_priv->uncore.lock, irqflags);
- }
-@@ -1544,7 +1576,7 @@ ivb_plane_get_hw_state(struct intel_plane *plane,
- 	if (!wakeref)
- 		return false;
- 
--	ret =  I915_READ(SPRCTL(plane->pipe)) & SPRITE_ENABLE;
-+	ret =  intel_de_read(dev_priv, SPRCTL(plane->pipe)) & SPRITE_ENABLE;
- 
- 	*pipe = plane->pipe;
- 
-@@ -1710,10 +1742,8 @@ static void g4x_update_gamma(const struct intel_plane_state *plane_state)
- 	/* FIXME these register are single buffered :( */
- 	/* The two end points are implicit (0.0 and 1.0) */
- 	for (i = 1; i < 8 - 1; i++)
--		I915_WRITE_FW(DVSGAMC_G4X(pipe, i - 1),
--			      gamma[i] << 16 |
--			      gamma[i] << 8 |
--			      gamma[i]);
-+		intel_de_write_fw(dev_priv, DVSGAMC_G4X(pipe, i - 1),
-+				  gamma[i] << 16 | gamma[i] << 8 | gamma[i]);
- }
- 
- static void ilk_sprite_linear_gamma(u16 gamma[17])
-@@ -1741,14 +1771,12 @@ static void ilk_update_gamma(const struct intel_plane_state *plane_state)
- 
- 	/* FIXME these register are single buffered :( */
- 	for (i = 0; i < 16; i++)
--		I915_WRITE_FW(DVSGAMC_ILK(pipe, i),
--			      gamma[i] << 20 |
--			      gamma[i] << 10 |
--			      gamma[i]);
--
--	I915_WRITE_FW(DVSGAMCMAX_ILK(pipe, 0), gamma[i]);
--	I915_WRITE_FW(DVSGAMCMAX_ILK(pipe, 1), gamma[i]);
--	I915_WRITE_FW(DVSGAMCMAX_ILK(pipe, 2), gamma[i]);
-+		intel_de_write_fw(dev_priv, DVSGAMC_ILK(pipe, i),
-+				  gamma[i] << 20 | gamma[i] << 10 | gamma[i]);
-+
-+	intel_de_write_fw(dev_priv, DVSGAMCMAX_ILK(pipe, 0), gamma[i]);
-+	intel_de_write_fw(dev_priv, DVSGAMCMAX_ILK(pipe, 1), gamma[i]);
-+	intel_de_write_fw(dev_priv, DVSGAMCMAX_ILK(pipe, 2), gamma[i]);
- 	i++;
- }
- 
-@@ -1788,28 +1816,30 @@ g4x_update_plane(struct intel_plane *plane,
- 
- 	spin_lock_irqsave(&dev_priv->uncore.lock, irqflags);
- 
--	I915_WRITE_FW(DVSSTRIDE(pipe), plane_state->color_plane[0].stride);
--	I915_WRITE_FW(DVSPOS(pipe), (crtc_y << 16) | crtc_x);
--	I915_WRITE_FW(DVSSIZE(pipe), (crtc_h << 16) | crtc_w);
--	I915_WRITE_FW(DVSSCALE(pipe), dvsscale);
-+	intel_de_write_fw(dev_priv, DVSSTRIDE(pipe),
-+			  plane_state->color_plane[0].stride);
-+	intel_de_write_fw(dev_priv, DVSPOS(pipe), (crtc_y << 16) | crtc_x);
-+	intel_de_write_fw(dev_priv, DVSSIZE(pipe), (crtc_h << 16) | crtc_w);
-+	intel_de_write_fw(dev_priv, DVSSCALE(pipe), dvsscale);
- 
- 	if (key->flags) {
--		I915_WRITE_FW(DVSKEYVAL(pipe), key->min_value);
--		I915_WRITE_FW(DVSKEYMSK(pipe), key->channel_mask);
--		I915_WRITE_FW(DVSKEYMAX(pipe), key->max_value);
-+		intel_de_write_fw(dev_priv, DVSKEYVAL(pipe), key->min_value);
-+		intel_de_write_fw(dev_priv, DVSKEYMSK(pipe),
-+				  key->channel_mask);
-+		intel_de_write_fw(dev_priv, DVSKEYMAX(pipe), key->max_value);
- 	}
- 
--	I915_WRITE_FW(DVSLINOFF(pipe), linear_offset);
--	I915_WRITE_FW(DVSTILEOFF(pipe), (y << 16) | x);
-+	intel_de_write_fw(dev_priv, DVSLINOFF(pipe), linear_offset);
-+	intel_de_write_fw(dev_priv, DVSTILEOFF(pipe), (y << 16) | x);
- 
- 	/*
- 	 * The control register self-arms if the plane was previously
- 	 * disabled. Try to make the plane enable atomic by writing
- 	 * the control register just before the surface register.
- 	 */
--	I915_WRITE_FW(DVSCNTR(pipe), dvscntr);
--	I915_WRITE_FW(DVSSURF(pipe),
--		      intel_plane_ggtt_offset(plane_state) + dvssurf_offset);
-+	intel_de_write_fw(dev_priv, DVSCNTR(pipe), dvscntr);
-+	intel_de_write_fw(dev_priv, DVSSURF(pipe),
-+			  intel_plane_ggtt_offset(plane_state) + dvssurf_offset);
- 
- 	if (IS_G4X(dev_priv))
- 		g4x_update_gamma(plane_state);
-@@ -1829,10 +1859,10 @@ g4x_disable_plane(struct intel_plane *plane,
- 
- 	spin_lock_irqsave(&dev_priv->uncore.lock, irqflags);
- 
--	I915_WRITE_FW(DVSCNTR(pipe), 0);
-+	intel_de_write_fw(dev_priv, DVSCNTR(pipe), 0);
- 	/* Disable the scaler */
--	I915_WRITE_FW(DVSSCALE(pipe), 0);
--	I915_WRITE_FW(DVSSURF(pipe), 0);
-+	intel_de_write_fw(dev_priv, DVSSCALE(pipe), 0);
-+	intel_de_write_fw(dev_priv, DVSSURF(pipe), 0);
- 
- 	spin_unlock_irqrestore(&dev_priv->uncore.lock, irqflags);
- }
-@@ -1851,7 +1881,7 @@ g4x_plane_get_hw_state(struct intel_plane *plane,
- 	if (!wakeref)
- 		return false;
- 
--	ret = I915_READ(DVSCNTR(plane->pipe)) & DVS_ENABLE;
-+	ret = intel_de_read(dev_priv, DVSCNTR(plane->pipe)) & DVS_ENABLE;
- 
- 	*pipe = plane->pipe;
- 
+ 	 * If the register does not hold the state change enable
 -- 
 2.20.1
 
