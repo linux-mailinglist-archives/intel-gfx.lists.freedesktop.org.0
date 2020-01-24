@@ -2,31 +2,34 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C0A2148DD6
-	for <lists+intel-gfx@lfdr.de>; Fri, 24 Jan 2020 19:34:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 97DFB148DE2
+	for <lists+intel-gfx@lfdr.de>; Fri, 24 Jan 2020 19:39:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EF5DE72B61;
-	Fri, 24 Jan 2020 18:34:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C071972B65;
+	Fri, 24 Jan 2020 18:39:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id A222F72B61;
- Fri, 24 Jan 2020 18:34:12 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 998A9A0003;
- Fri, 24 Jan 2020 18:34:12 +0000 (UTC)
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 92F5172B64;
+ Fri, 24 Jan 2020 18:39:31 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 19999650-1500050 for multiple; Fri, 24 Jan 2020 18:39:28 +0000
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Date: Fri, 24 Jan 2020 18:34:12 -0000
-Message-ID: <157989085260.15089.7033318525386093131@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <cover.1579871655.git.jani.nikula@intel.com>
-In-Reply-To: <cover.1579871655.git.jani.nikula@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
- =?utf-8?q?drm/i915/display=3A_mass_conversion_to_intel=5Fde=5F*=28=29_reg?=
- =?utf-8?q?ister_accessors?=
+To: =?utf-8?q?Thomas_Hellstr=C3=B6m_=28VMware=29?= <thomas_os@shipmail.org>,
+ dri-devel@lists.freedesktop.org
+From: Chris Wilson <chris@chris-wilson.co.uk>
+In-Reply-To: <38d3a0bf-4dfa-c8e4-c429-8c95854a9b8c@shipmail.org>
+References: <20200124125627.125042-2-chris@chris-wilson.co.uk>
+ <20200124130107.125404-1-chris@chris-wilson.co.uk>
+ <38d3a0bf-4dfa-c8e4-c429-8c95854a9b8c@shipmail.org>
+Message-ID: <157989116639.2524.11400196809963426024@skylake-alporthouse-com>
+User-Agent: alot/0.6
+Date: Fri, 24 Jan 2020 18:39:26 +0000
+Subject: Re: [Intel-gfx] [PATCH] drm: Avoid drm_global_mutex for simple
+ inc/dec of dev->open_count
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,124 +42,31 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
-
-Series: drm/i915/display: mass conversion to intel_de_*() register accessors
-URL   : https://patchwork.freedesktop.org/series/72533/
-State : warning
-
-== Summary ==
-
-$ dim sparse origin/drm-tip
-Sparse version: v0.6.0
-Commit: drm/i915/icl_dsi: use intel_de_*() functions for register access
-Okay!
-
-Commit: drm/i915/audio: use intel_de_*() functions for register access
-Okay!
-
-Commit: drm/i915/cdclk: use intel_de_*() functions for register access
-Okay!
-
-Commit: drm/i915/color: use intel_de_*() functions for register access
-Okay!
-
-Commit: drm/i915/combo_phy: use intel_de_*() functions for register access
-Okay!
-
-Commit: drm/i915/crt: use intel_de_*() functions for register access
-Okay!
-
-Commit: drm/i915/ddi: use intel_de_*() functions for register access
-Okay!
-
-Commit: drm/i915/display: use intel_de_*() functions for register access
-+drivers/gpu/drm/i915/display/intel_display.c:1216:22: error: Expected constant expression in case statement
--O:drivers/gpu/drm/i915/display/intel_display.c:1217:22: error: Expected constant expression in case statement
-
-Commit: drm/i915/display_power: use intel_de_*() functions for register access
-Okay!
-
-Commit: drm/i915/dp: use intel_de_*() functions for register access
-Okay!
-
-Commit: drm/i915/dpio_phy: use intel_de_*() functions for register access
-Okay!
-
-Commit: drm/i915/dpll_mgr: use intel_de_*() functions for register access
-Okay!
-
-Commit: drm/i915/dp_mst: use intel_de_*() functions for register access
-Okay!
-
-Commit: drm/i915/dsb: use intel_de_*() functions for register access
-Okay!
-
-Commit: drm/i915/dvo: use intel_de_*() functions for register access
-Okay!
-
-Commit: drm/i915/fbc: use intel_de_*() functions for register access
-Okay!
-
-Commit: drm/i915/fifo_underrun: use intel_de_*() functions for register access
-Okay!
-
-Commit: drm/i915/gmbus: use intel_de_*() functions for register access
-Okay!
-
-Commit: drm/i915/hdcp: use intel_de_*() functions for register access
-Okay!
-
-Commit: drm/i915/hdmi: use intel_de_*() functions for register access
-Okay!
-
-Commit: drm/i915/lpe_audio: use intel_de_*() functions for register access
-Okay!
-
-Commit: drm/i915/lvds: use intel_de_*() functions for register access
-Okay!
-
-Commit: drm/i915/overlay: use intel_de_*() functions for register access
-Okay!
-
-Commit: drm/i915/panel: use intel_de_*() functions for register access
-Okay!
-
-Commit: drm/i915/pipe_crc: use intel_de_*() functions for register access
-Okay!
-
-Commit: drm/i915/psr: use intel_de_*() functions for register access
-Okay!
-
-Commit: drm/i915/sdvo: use intel_de_*() functions for register access
-Okay!
-
-Commit: drm/i915/sprite: use intel_de_*() functions for register access
-Okay!
-
-Commit: drm/i915/tv: use intel_de_*() functions for register access
-Okay!
-
-Commit: drm/i915/vdsc: use intel_de_*() functions for register access
-Okay!
-
-Commit: drm/i915/vga: use intel_de_*() functions for register access
-Okay!
-
-Commit: drm/i915/vlv_dsi: use intel_de_*() functions for register access
-Okay!
-
-Commit: drm/i915/vlv_dsi_pll: use intel_de_*() functions for register access
-Okay!
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+UXVvdGluZyBUaG9tYXMgSGVsbHN0csO2bSAoVk13YXJlKSAoMjAyMC0wMS0yNCAxMzozNzo0NykK
+PiBPbiAxLzI0LzIwIDI6MDEgUE0sIENocmlzIFdpbHNvbiB3cm90ZToKPiA+IFNpbmNlIGRybV9n
+bG9iYWxfbXV0ZXggaXMgYSB0cnVlIGdsb2JhbCBtdXRleCBhY3Jvc3MgZGV2aWNlcywgd2UgZG9u
+J3QKPiA+IHdhbnQgdG8gYWNxdWlyZSBpdCB1bmxlc3MgYWJzb2x1dGVseSBuZWNlc3NhcnkuIEZv
+ciBtYWludGFpbmluZyB0aGUKPiA+IGRldmljZSBsb2NhbCBvcGVuX2NvdW50LCB3ZSBjYW4gdXNl
+IGF0b21pYyBvcGVyYXRpb25zIG9uIHRoZSBjb3VudGVyCj4gPiBpdHNlbGYsIGV4Y2VwdCB3aGVu
+IG1ha2luZyB0aGUgdHJhbnNpdGlvbiB0by9mcm9tIDAuIEhlcmUsIHdlIHRhY2tsZSB0aGUKPiA+
+IGVhc3kgcG9ydGlvbiBvZiBkZWxheWluZyBhY3F1aXJpbmcgdGhlIGRybV9nbG9iYWxfbXV0ZXgg
+Zm9yIHRoZSBmaW5hbAo+ID4gcmVsZWFzZSBieSB1c2luZyBhdG9taWNfZGVjX2FuZF9tdXRleF9s
+b2NrKCksIGxlYXZpbmcgdGhlIGdsb2JhbAo+ID4gc2VyaWFsaXNhdGlvbiBhY3Jvc3MgdGhlIGRl
+dmljZSBvcGVucy4KPiA+Cj4gPiBTaWduZWQtb2ZmLWJ5OiBDaHJpcyBXaWxzb24gPGNocmlzQGNo
+cmlzLXdpbHNvbi5jby51az4KPiA+IENjOiBUaG9tYXMgSGVsbHN0csO2bSAoVk13YXJlKSA8dGhv
+bWFzX29zQHNoaXBtYWlsLm9yZz4KPiAKPiBGb3IgdGhlIHNlcmllczoKPiAKPiBSZXZpZXdlZC1i
+eTogVGhvbWFzIEhlbGxzdHLDtm0gPHRoZWxsc3Ryb21Adm13YXJlLmNvbT4KCk5vdyBiZWluZyBv
+cHQtaW4sIGl0IGlzIGZhaXJseSBsaW1pdGVkIGluIHNjb3BlIGFuZCB3aWxsIG5vdCByYW5kb21s
+eQpicmVhayBvdGhlcnMgKHRvdWNoIHdvb2QpIGFuZCB0aGUgY2xvc2UoKSByYWNpbmcgaW4gQkFU
+IGRpZG4ndCB0aHJvdwphbnl0aGluZyB1cCwgc28gcHVzaGVkIHRvIGRybS1taXNjLW5leHQuIFRo
+YW5rcyBmb3IgdGhlIHJldmlldyBhbmQKc3VnZ2VzdGlvbnMsCgpOZXh0IHRhc2sgaXMgdG8gc3Vn
+Z2VzdCBvdGhlcnMgbWlnaHQgbGlrZSB0byB1c2UgaXQgYXMgd2VsbC4KLUNocmlzCl9fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5n
+IGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVk
+ZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
