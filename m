@@ -1,37 +1,37 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8257F1485F7
-	for <lists+intel-gfx@lfdr.de>; Fri, 24 Jan 2020 14:25:17 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 443911485F8
+	for <lists+intel-gfx@lfdr.de>; Fri, 24 Jan 2020 14:25:21 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DB15072A6C;
-	Fri, 24 Jan 2020 13:25:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AE88C72A6D;
+	Fri, 24 Jan 2020 13:25:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B006872A6D
- for <intel-gfx@lists.freedesktop.org>; Fri, 24 Jan 2020 13:25:14 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 05DE372A6E
+ for <intel-gfx@lists.freedesktop.org>; Fri, 24 Jan 2020 13:25:18 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga105.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 24 Jan 2020 05:25:14 -0800
-X-IronPort-AV: E=Sophos;i="5.70,357,1574150400"; d="scan'208";a="400661061"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 24 Jan 2020 05:25:18 -0800
+X-IronPort-AV: E=Sophos;i="5.70,357,1574150400"; d="scan'208";a="375510084"
 Received: from omarkovx-mobl.ger.corp.intel.com (HELO localhost)
  ([10.249.37.60])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 24 Jan 2020 05:25:12 -0800
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 24 Jan 2020 05:25:16 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri, 24 Jan 2020 15:25:24 +0200
-Message-Id: <762b11289d22e1db46697c5b4596e49defc8190f.1579871655.git.jani.nikula@intel.com>
+Date: Fri, 24 Jan 2020 15:25:25 +0200
+Message-Id: <80d2cac864eb3f964587e74fbb004940889a2928.1579871655.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <cover.1579871655.git.jani.nikula@intel.com>
 References: <cover.1579871655.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Subject: [Intel-gfx] [RFC 03/33] drm/i915/cdclk: use intel_de_*() functions
+Subject: [Intel-gfx] [RFC 04/33] drm/i915/color: use intel_de_*() functions
  for register access
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -95,443 +95,458 @@ expression REG, OFFSET;
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_cdclk.c | 133 +++++++++++----------
- 1 file changed, 68 insertions(+), 65 deletions(-)
+ drivers/gpu/drm/i915/display/intel_color.c | 204 ++++++++++++---------
+ 1 file changed, 114 insertions(+), 90 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
-index 50d235d037a1..e17b5a444887 100644
---- a/drivers/gpu/drm/i915/display/intel_cdclk.c
-+++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
-@@ -237,8 +237,8 @@ static unsigned int intel_hpll_vco(struct drm_i915_private *dev_priv)
- 	else
- 		return 0;
+diff --git a/drivers/gpu/drm/i915/display/intel_color.c b/drivers/gpu/drm/i915/display/intel_color.c
+index 3980e8b50c28..b5d9ff56a8eb 100644
+--- a/drivers/gpu/drm/i915/display/intel_color.c
++++ b/drivers/gpu/drm/i915/display/intel_color.c
+@@ -157,23 +157,29 @@ static void ilk_update_pipe_csc(struct intel_crtc *crtc,
+ 	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
+ 	enum pipe pipe = crtc->pipe;
  
--	tmp = I915_READ(IS_PINEVIEW(dev_priv) || IS_MOBILE(dev_priv) ?
--			HPLLVCO_MOBILE : HPLLVCO);
-+	tmp = intel_de_read(dev_priv,
-+			    IS_PINEVIEW(dev_priv) || IS_MOBILE(dev_priv) ? HPLLVCO_MOBILE : HPLLVCO);
+-	I915_WRITE(PIPE_CSC_PREOFF_HI(pipe), preoff[0]);
+-	I915_WRITE(PIPE_CSC_PREOFF_ME(pipe), preoff[1]);
+-	I915_WRITE(PIPE_CSC_PREOFF_LO(pipe), preoff[2]);
++	intel_de_write(dev_priv, PIPE_CSC_PREOFF_HI(pipe), preoff[0]);
++	intel_de_write(dev_priv, PIPE_CSC_PREOFF_ME(pipe), preoff[1]);
++	intel_de_write(dev_priv, PIPE_CSC_PREOFF_LO(pipe), preoff[2]);
  
- 	vco = vco_table[tmp & 0x7];
- 	if (vco == 0)
-@@ -412,12 +412,12 @@ static void gm45_get_cdclk(struct drm_i915_private *dev_priv,
- static void hsw_get_cdclk(struct drm_i915_private *dev_priv,
- 			  struct intel_cdclk_state *cdclk_state)
- {
--	u32 lcpll = I915_READ(LCPLL_CTL);
-+	u32 lcpll = intel_de_read(dev_priv, LCPLL_CTL);
- 	u32 freq = lcpll & LCPLL_CLK_FREQ_MASK;
+-	I915_WRITE(PIPE_CSC_COEFF_RY_GY(pipe), coeff[0] << 16 | coeff[1]);
+-	I915_WRITE(PIPE_CSC_COEFF_BY(pipe), coeff[2] << 16);
++	intel_de_write(dev_priv, PIPE_CSC_COEFF_RY_GY(pipe),
++		       coeff[0] << 16 | coeff[1]);
++	intel_de_write(dev_priv, PIPE_CSC_COEFF_BY(pipe), coeff[2] << 16);
  
- 	if (lcpll & LCPLL_CD_SOURCE_FCLK)
- 		cdclk_state->cdclk = 800000;
--	else if (I915_READ(FUSE_STRAP) & HSW_CDCLK_LIMIT)
-+	else if (intel_de_read(dev_priv, FUSE_STRAP) & HSW_CDCLK_LIMIT)
- 		cdclk_state->cdclk = 450000;
- 	else if (freq == LCPLL_CLK_FREQ_450)
- 		cdclk_state->cdclk = 450000;
-@@ -515,17 +515,17 @@ static void vlv_program_pfi_credits(struct drm_i915_private *dev_priv)
- 	 * WA - write default credits before re-programming
- 	 * FIXME: should we also set the resend bit here?
- 	 */
--	I915_WRITE(GCI_CONTROL, VGA_FAST_MODE_DISABLE |
--		   default_credits);
-+	intel_de_write(dev_priv, GCI_CONTROL,
-+		       VGA_FAST_MODE_DISABLE | default_credits);
+-	I915_WRITE(PIPE_CSC_COEFF_RU_GU(pipe), coeff[3] << 16 | coeff[4]);
+-	I915_WRITE(PIPE_CSC_COEFF_BU(pipe), coeff[5] << 16);
++	intel_de_write(dev_priv, PIPE_CSC_COEFF_RU_GU(pipe),
++		       coeff[3] << 16 | coeff[4]);
++	intel_de_write(dev_priv, PIPE_CSC_COEFF_BU(pipe), coeff[5] << 16);
  
--	I915_WRITE(GCI_CONTROL, VGA_FAST_MODE_DISABLE |
--		   credits | PFI_CREDIT_RESEND);
-+	intel_de_write(dev_priv, GCI_CONTROL,
-+		       VGA_FAST_MODE_DISABLE | credits | PFI_CREDIT_RESEND);
+-	I915_WRITE(PIPE_CSC_COEFF_RV_GV(pipe), coeff[6] << 16 | coeff[7]);
+-	I915_WRITE(PIPE_CSC_COEFF_BV(pipe), coeff[8] << 16);
++	intel_de_write(dev_priv, PIPE_CSC_COEFF_RV_GV(pipe),
++		       coeff[6] << 16 | coeff[7]);
++	intel_de_write(dev_priv, PIPE_CSC_COEFF_BV(pipe), coeff[8] << 16);
  
- 	/*
- 	 * FIXME is this guaranteed to clear
- 	 * immediately or should we poll for it?
- 	 */
--	WARN_ON(I915_READ(GCI_CONTROL) & PFI_CREDIT_RESEND);
-+	WARN_ON(intel_de_read(dev_priv, GCI_CONTROL) & PFI_CREDIT_RESEND);
+ 	if (INTEL_GEN(dev_priv) >= 7) {
+-		I915_WRITE(PIPE_CSC_POSTOFF_HI(pipe), postoff[0]);
+-		I915_WRITE(PIPE_CSC_POSTOFF_ME(pipe), postoff[1]);
+-		I915_WRITE(PIPE_CSC_POSTOFF_LO(pipe), postoff[2]);
++		intel_de_write(dev_priv, PIPE_CSC_POSTOFF_HI(pipe),
++			       postoff[0]);
++		intel_de_write(dev_priv, PIPE_CSC_POSTOFF_ME(pipe),
++			       postoff[1]);
++		intel_de_write(dev_priv, PIPE_CSC_POSTOFF_LO(pipe),
++			       postoff[2]);
+ 	}
  }
  
- static void vlv_set_cdclk(struct drm_i915_private *dev_priv,
-@@ -695,12 +695,12 @@ static u8 bdw_calc_voltage_level(int cdclk)
- static void bdw_get_cdclk(struct drm_i915_private *dev_priv,
- 			  struct intel_cdclk_state *cdclk_state)
- {
--	u32 lcpll = I915_READ(LCPLL_CTL);
-+	u32 lcpll = intel_de_read(dev_priv, LCPLL_CTL);
- 	u32 freq = lcpll & LCPLL_CLK_FREQ_MASK;
+@@ -185,22 +191,28 @@ static void icl_update_output_csc(struct intel_crtc *crtc,
+ 	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
+ 	enum pipe pipe = crtc->pipe;
  
- 	if (lcpll & LCPLL_CD_SOURCE_FCLK)
- 		cdclk_state->cdclk = 800000;
--	else if (I915_READ(FUSE_STRAP) & HSW_CDCLK_LIMIT)
-+	else if (intel_de_read(dev_priv, FUSE_STRAP) & HSW_CDCLK_LIMIT)
- 		cdclk_state->cdclk = 450000;
- 	else if (freq == LCPLL_CLK_FREQ_450)
- 		cdclk_state->cdclk = 450000;
-@@ -727,7 +727,7 @@ static void bdw_set_cdclk(struct drm_i915_private *dev_priv,
+-	I915_WRITE(PIPE_CSC_OUTPUT_PREOFF_HI(pipe), preoff[0]);
+-	I915_WRITE(PIPE_CSC_OUTPUT_PREOFF_ME(pipe), preoff[1]);
+-	I915_WRITE(PIPE_CSC_OUTPUT_PREOFF_LO(pipe), preoff[2]);
++	intel_de_write(dev_priv, PIPE_CSC_OUTPUT_PREOFF_HI(pipe), preoff[0]);
++	intel_de_write(dev_priv, PIPE_CSC_OUTPUT_PREOFF_ME(pipe), preoff[1]);
++	intel_de_write(dev_priv, PIPE_CSC_OUTPUT_PREOFF_LO(pipe), preoff[2]);
+ 
+-	I915_WRITE(PIPE_CSC_OUTPUT_COEFF_RY_GY(pipe), coeff[0] << 16 | coeff[1]);
+-	I915_WRITE(PIPE_CSC_OUTPUT_COEFF_BY(pipe), coeff[2] << 16);
++	intel_de_write(dev_priv, PIPE_CSC_OUTPUT_COEFF_RY_GY(pipe),
++		       coeff[0] << 16 | coeff[1]);
++	intel_de_write(dev_priv, PIPE_CSC_OUTPUT_COEFF_BY(pipe),
++		       coeff[2] << 16);
+ 
+-	I915_WRITE(PIPE_CSC_OUTPUT_COEFF_RU_GU(pipe), coeff[3] << 16 | coeff[4]);
+-	I915_WRITE(PIPE_CSC_OUTPUT_COEFF_BU(pipe), coeff[5] << 16);
++	intel_de_write(dev_priv, PIPE_CSC_OUTPUT_COEFF_RU_GU(pipe),
++		       coeff[3] << 16 | coeff[4]);
++	intel_de_write(dev_priv, PIPE_CSC_OUTPUT_COEFF_BU(pipe),
++		       coeff[5] << 16);
+ 
+-	I915_WRITE(PIPE_CSC_OUTPUT_COEFF_RV_GV(pipe), coeff[6] << 16 | coeff[7]);
+-	I915_WRITE(PIPE_CSC_OUTPUT_COEFF_BV(pipe), coeff[8] << 16);
++	intel_de_write(dev_priv, PIPE_CSC_OUTPUT_COEFF_RV_GV(pipe),
++		       coeff[6] << 16 | coeff[7]);
++	intel_de_write(dev_priv, PIPE_CSC_OUTPUT_COEFF_BV(pipe),
++		       coeff[8] << 16);
+ 
+-	I915_WRITE(PIPE_CSC_OUTPUT_POSTOFF_HI(pipe), postoff[0]);
+-	I915_WRITE(PIPE_CSC_OUTPUT_POSTOFF_ME(pipe), postoff[1]);
+-	I915_WRITE(PIPE_CSC_OUTPUT_POSTOFF_LO(pipe), postoff[2]);
++	intel_de_write(dev_priv, PIPE_CSC_OUTPUT_POSTOFF_HI(pipe), postoff[0]);
++	intel_de_write(dev_priv, PIPE_CSC_OUTPUT_POSTOFF_ME(pipe), postoff[1]);
++	intel_de_write(dev_priv, PIPE_CSC_OUTPUT_POSTOFF_LO(pipe), postoff[2]);
+ }
+ 
+ static bool ilk_csc_limited_range(const struct intel_crtc_state *crtc_state)
+@@ -304,7 +316,8 @@ static void ilk_load_csc_matrix(const struct intel_crtc_state *crtc_state)
+ 				    ilk_csc_off_zero);
+ 	}
+ 
+-	I915_WRITE(PIPE_CSC_MODE(crtc->pipe), crtc_state->csc_mode);
++	intel_de_write(dev_priv, PIPE_CSC_MODE(crtc->pipe),
++		       crtc_state->csc_mode);
+ }
+ 
+ static void icl_load_csc_matrix(const struct intel_crtc_state *crtc_state)
+@@ -330,7 +343,8 @@ static void icl_load_csc_matrix(const struct intel_crtc_state *crtc_state)
+ 				      ilk_csc_postoff_limited_range);
+ 	}
+ 
+-	I915_WRITE(PIPE_CSC_MODE(crtc->pipe), crtc_state->csc_mode);
++	intel_de_write(dev_priv, PIPE_CSC_MODE(crtc->pipe),
++		       crtc_state->csc_mode);
+ }
+ 
+ /*
+@@ -363,18 +377,18 @@ static void cherryview_load_csc_matrix(const struct intel_crtc_state *crtc_state
+ 			coeffs[i] |= (abs_coeff >> 20) & 0xfff;
+ 		}
+ 
+-		I915_WRITE(CGM_PIPE_CSC_COEFF01(pipe),
+-			   coeffs[1] << 16 | coeffs[0]);
+-		I915_WRITE(CGM_PIPE_CSC_COEFF23(pipe),
+-			   coeffs[3] << 16 | coeffs[2]);
+-		I915_WRITE(CGM_PIPE_CSC_COEFF45(pipe),
+-			   coeffs[5] << 16 | coeffs[4]);
+-		I915_WRITE(CGM_PIPE_CSC_COEFF67(pipe),
+-			   coeffs[7] << 16 | coeffs[6]);
+-		I915_WRITE(CGM_PIPE_CSC_COEFF8(pipe), coeffs[8]);
++		intel_de_write(dev_priv, CGM_PIPE_CSC_COEFF01(pipe),
++			       coeffs[1] << 16 | coeffs[0]);
++		intel_de_write(dev_priv, CGM_PIPE_CSC_COEFF23(pipe),
++			       coeffs[3] << 16 | coeffs[2]);
++		intel_de_write(dev_priv, CGM_PIPE_CSC_COEFF45(pipe),
++			       coeffs[5] << 16 | coeffs[4]);
++		intel_de_write(dev_priv, CGM_PIPE_CSC_COEFF67(pipe),
++			       coeffs[7] << 16 | coeffs[6]);
++		intel_de_write(dev_priv, CGM_PIPE_CSC_COEFF8(pipe), coeffs[8]);
+ 	}
+ 
+-	I915_WRITE(CGM_PIPE_MODE(pipe), crtc_state->cgm_mode);
++	intel_de_write(dev_priv, CGM_PIPE_MODE(pipe), crtc_state->cgm_mode);
+ }
+ 
+ /* i965+ "10.6" bit interpolated format "even DW" (low 8 bits) */
+@@ -426,9 +440,11 @@ static void i9xx_load_luts_internal(const struct intel_crtc_state *crtc_state,
+ 				drm_color_lut_extract(lut[i].blue, 8);
+ 
+ 			if (HAS_GMCH(dev_priv))
+-				I915_WRITE(PALETTE(pipe, i), word);
++				intel_de_write(dev_priv, PALETTE(pipe, i),
++					       word);
+ 			else
+-				I915_WRITE(LGC_PALETTE(pipe, i), word);
++				intel_de_write(dev_priv, LGC_PALETTE(pipe, i),
++					       word);
+ 		}
+ 	}
+ }
+@@ -445,10 +461,10 @@ static void i9xx_color_commit(const struct intel_crtc_state *crtc_state)
+ 	enum pipe pipe = crtc->pipe;
  	u32 val;
- 	int ret;
  
--	if (WARN((I915_READ(LCPLL_CTL) &
-+	if (WARN((intel_de_read(dev_priv, LCPLL_CTL) &
- 		  (LCPLL_PLL_DISABLE | LCPLL_PLL_LOCK |
- 		   LCPLL_CD_CLOCK_DISABLE | LCPLL_ROOT_CD_CLOCK_DISABLE |
- 		   LCPLL_CD2X_CLOCK_DISABLE | LCPLL_POWER_DOWN_ALLOW |
-@@ -743,19 +743,19 @@ static void bdw_set_cdclk(struct drm_i915_private *dev_priv,
- 		return;
+-	val = I915_READ(PIPECONF(pipe));
++	val = intel_de_read(dev_priv, PIPECONF(pipe));
+ 	val &= ~PIPECONF_GAMMA_MODE_MASK_I9XX;
+ 	val |= PIPECONF_GAMMA_MODE(crtc_state->gamma_mode);
+-	I915_WRITE(PIPECONF(pipe), val);
++	intel_de_write(dev_priv, PIPECONF(pipe), val);
+ }
+ 
+ static void ilk_color_commit(const struct intel_crtc_state *crtc_state)
+@@ -458,10 +474,10 @@ static void ilk_color_commit(const struct intel_crtc_state *crtc_state)
+ 	enum pipe pipe = crtc->pipe;
+ 	u32 val;
+ 
+-	val = I915_READ(PIPECONF(pipe));
++	val = intel_de_read(dev_priv, PIPECONF(pipe));
+ 	val &= ~PIPECONF_GAMMA_MODE_MASK_ILK;
+ 	val |= PIPECONF_GAMMA_MODE(crtc_state->gamma_mode);
+-	I915_WRITE(PIPECONF(pipe), val);
++	intel_de_write(dev_priv, PIPECONF(pipe), val);
+ 
+ 	ilk_load_csc_matrix(crtc_state);
+ }
+@@ -471,7 +487,8 @@ static void hsw_color_commit(const struct intel_crtc_state *crtc_state)
+ 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+ 	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
+ 
+-	I915_WRITE(GAMMA_MODE(crtc->pipe), crtc_state->gamma_mode);
++	intel_de_write(dev_priv, GAMMA_MODE(crtc->pipe),
++		       crtc_state->gamma_mode);
+ 
+ 	ilk_load_csc_matrix(crtc_state);
+ }
+@@ -492,9 +509,10 @@ static void skl_color_commit(const struct intel_crtc_state *crtc_state)
+ 		val |= SKL_BOTTOM_COLOR_GAMMA_ENABLE;
+ 	if (crtc_state->csc_enable)
+ 		val |= SKL_BOTTOM_COLOR_CSC_ENABLE;
+-	I915_WRITE(SKL_BOTTOM_COLOR(pipe), val);
++	intel_de_write(dev_priv, SKL_BOTTOM_COLOR(pipe), val);
+ 
+-	I915_WRITE(GAMMA_MODE(crtc->pipe), crtc_state->gamma_mode);
++	intel_de_write(dev_priv, GAMMA_MODE(crtc->pipe),
++		       crtc_state->gamma_mode);
+ 
+ 	if (INTEL_GEN(dev_priv) >= 11)
+ 		icl_load_csc_matrix(crtc_state);
+@@ -511,15 +529,15 @@ static void i965_load_lut_10p6(struct intel_crtc *crtc,
+ 	enum pipe pipe = crtc->pipe;
+ 
+ 	for (i = 0; i < lut_size - 1; i++) {
+-		I915_WRITE(PALETTE(pipe, 2 * i + 0),
+-			   i965_lut_10p6_ldw(&lut[i]));
+-		I915_WRITE(PALETTE(pipe, 2 * i + 1),
+-			   i965_lut_10p6_udw(&lut[i]));
++		intel_de_write(dev_priv, PALETTE(pipe, 2 * i + 0),
++			       i965_lut_10p6_ldw(&lut[i]));
++		intel_de_write(dev_priv, PALETTE(pipe, 2 * i + 1),
++			       i965_lut_10p6_udw(&lut[i]));
  	}
  
--	val = I915_READ(LCPLL_CTL);
-+	val = intel_de_read(dev_priv, LCPLL_CTL);
- 	val |= LCPLL_CD_SOURCE_FCLK;
--	I915_WRITE(LCPLL_CTL, val);
-+	intel_de_write(dev_priv, LCPLL_CTL, val);
+-	I915_WRITE(PIPEGCMAX(pipe, 0), lut[i].red);
+-	I915_WRITE(PIPEGCMAX(pipe, 1), lut[i].green);
+-	I915_WRITE(PIPEGCMAX(pipe, 2), lut[i].blue);
++	intel_de_write(dev_priv, PIPEGCMAX(pipe, 0), lut[i].red);
++	intel_de_write(dev_priv, PIPEGCMAX(pipe, 1), lut[i].green);
++	intel_de_write(dev_priv, PIPEGCMAX(pipe, 2), lut[i].blue);
+ }
+ 
+ static void i965_load_luts(const struct intel_crtc_state *crtc_state)
+@@ -542,7 +560,8 @@ static void ilk_load_lut_10(struct intel_crtc *crtc,
+ 	enum pipe pipe = crtc->pipe;
+ 
+ 	for (i = 0; i < lut_size; i++)
+-		I915_WRITE(PREC_PALETTE(pipe, i), ilk_lut_10(&lut[i]));
++		intel_de_write(dev_priv, PREC_PALETTE(pipe, i),
++		               ilk_lut_10(&lut[i]));
+ }
+ 
+ static void ilk_load_luts(const struct intel_crtc_state *crtc_state)
+@@ -584,15 +603,16 @@ static void ivb_load_lut_10(struct intel_crtc *crtc,
+ 		const struct drm_color_lut *entry =
+ 			&lut[i * (lut_size - 1) / (hw_lut_size - 1)];
+ 
+-		I915_WRITE(PREC_PAL_INDEX(pipe), prec_index++);
+-		I915_WRITE(PREC_PAL_DATA(pipe), ilk_lut_10(entry));
++		intel_de_write(dev_priv, PREC_PAL_INDEX(pipe), prec_index++);
++		intel_de_write(dev_priv, PREC_PAL_DATA(pipe),
++			       ilk_lut_10(entry));
+ 	}
  
  	/*
- 	 * According to the spec, it should be enough to poll for this 1 us.
- 	 * However, extensive testing shows that this can take longer.
+ 	 * Reset the index, otherwise it prevents the legacy palette to be
+ 	 * written properly.
  	 */
--	if (wait_for_us(I915_READ(LCPLL_CTL) &
-+	if (wait_for_us(intel_de_read(dev_priv, LCPLL_CTL) &
- 			LCPLL_CD_SOURCE_FCLK_DONE, 100))
- 		drm_err(&dev_priv->drm, "Switching to FCLK failed\n");
- 
--	val = I915_READ(LCPLL_CTL);
-+	val = intel_de_read(dev_priv, LCPLL_CTL);
- 	val &= ~LCPLL_CLK_FREQ_MASK;
- 
- 	switch (cdclk) {
-@@ -776,20 +776,21 @@ static void bdw_set_cdclk(struct drm_i915_private *dev_priv,
- 		break;
- 	}
- 
--	I915_WRITE(LCPLL_CTL, val);
-+	intel_de_write(dev_priv, LCPLL_CTL, val);
- 
--	val = I915_READ(LCPLL_CTL);
-+	val = intel_de_read(dev_priv, LCPLL_CTL);
- 	val &= ~LCPLL_CD_SOURCE_FCLK;
--	I915_WRITE(LCPLL_CTL, val);
-+	intel_de_write(dev_priv, LCPLL_CTL, val);
- 
--	if (wait_for_us((I915_READ(LCPLL_CTL) &
--			LCPLL_CD_SOURCE_FCLK_DONE) == 0, 1))
-+	if (wait_for_us((intel_de_read(dev_priv, LCPLL_CTL) &
-+			 LCPLL_CD_SOURCE_FCLK_DONE) == 0, 1))
- 		drm_err(&dev_priv->drm, "Switching back to LCPLL failed\n");
- 
- 	sandybridge_pcode_write(dev_priv, HSW_PCODE_DE_WRITE_FREQ_REQ,
- 				cdclk_state->voltage_level);
- 
--	I915_WRITE(CDCLK_FREQ, DIV_ROUND_CLOSEST(cdclk, 1000) - 1);
-+	intel_de_write(dev_priv, CDCLK_FREQ,
-+		       DIV_ROUND_CLOSEST(cdclk, 1000) - 1);
- 
- 	intel_update_cdclk(dev_priv);
+-	I915_WRITE(PREC_PAL_INDEX(pipe), 0);
++	intel_de_write(dev_priv, PREC_PAL_INDEX(pipe), 0);
  }
-@@ -837,14 +838,14 @@ static void skl_dpll0_update(struct drm_i915_private *dev_priv,
- 	cdclk_state->ref = 24000;
- 	cdclk_state->vco = 0;
  
--	val = I915_READ(LCPLL1_CTL);
-+	val = intel_de_read(dev_priv, LCPLL1_CTL);
- 	if ((val & LCPLL_PLL_ENABLE) == 0)
- 		return;
+ /* On BDW+ the index auto increment mode actually works */
+@@ -606,22 +626,23 @@ static void bdw_load_lut_10(struct intel_crtc *crtc,
+ 	int i, lut_size = drm_color_lut_size(blob);
+ 	enum pipe pipe = crtc->pipe;
  
- 	if (WARN_ON((val & LCPLL_PLL_LOCK) == 0))
- 		return;
+-	I915_WRITE(PREC_PAL_INDEX(pipe), prec_index |
+-		   PAL_PREC_AUTO_INCREMENT);
++	intel_de_write(dev_priv, PREC_PAL_INDEX(pipe),
++		       prec_index | PAL_PREC_AUTO_INCREMENT);
  
--	val = I915_READ(DPLL_CTRL1);
-+	val = intel_de_read(dev_priv, DPLL_CTRL1);
+ 	for (i = 0; i < hw_lut_size; i++) {
+ 		/* We discard half the user entries in split gamma mode */
+ 		const struct drm_color_lut *entry =
+ 			&lut[i * (lut_size - 1) / (hw_lut_size - 1)];
  
- 	if (WARN_ON((val & (DPLL_CTRL1_HDMI_MODE(SKL_DPLL0) |
- 			    DPLL_CTRL1_SSC(SKL_DPLL0) |
-@@ -881,7 +882,7 @@ static void skl_get_cdclk(struct drm_i915_private *dev_priv,
- 	if (cdclk_state->vco == 0)
- 		goto out;
- 
--	cdctl = I915_READ(CDCLK_CTL);
-+	cdctl = intel_de_read(dev_priv, CDCLK_CTL);
- 
- 	if (cdclk_state->vco == 8640000) {
- 		switch (cdctl & CDCLK_FREQ_SEL_MASK) {
-@@ -962,7 +963,7 @@ static void skl_dpll0_enable(struct drm_i915_private *dev_priv, int vco)
- 	 * rate later on, with the constraint of choosing a frequency that
- 	 * works with vco.
- 	 */
--	val = I915_READ(DPLL_CTRL1);
-+	val = intel_de_read(dev_priv, DPLL_CTRL1);
- 
- 	val &= ~(DPLL_CTRL1_HDMI_MODE(SKL_DPLL0) | DPLL_CTRL1_SSC(SKL_DPLL0) |
- 		 DPLL_CTRL1_LINK_RATE_MASK(SKL_DPLL0));
-@@ -974,10 +975,11 @@ static void skl_dpll0_enable(struct drm_i915_private *dev_priv, int vco)
- 		val |= DPLL_CTRL1_LINK_RATE(DPLL_CTRL1_LINK_RATE_810,
- 					    SKL_DPLL0);
- 
--	I915_WRITE(DPLL_CTRL1, val);
--	POSTING_READ(DPLL_CTRL1);
-+	intel_de_write(dev_priv, DPLL_CTRL1, val);
-+	intel_de_posting_read(dev_priv, DPLL_CTRL1);
- 
--	I915_WRITE(LCPLL1_CTL, I915_READ(LCPLL1_CTL) | LCPLL_PLL_ENABLE);
-+	intel_de_write(dev_priv, LCPLL1_CTL,
-+		       intel_de_read(dev_priv, LCPLL1_CTL) | LCPLL_PLL_ENABLE);
- 
- 	if (intel_de_wait_for_set(dev_priv, LCPLL1_CTL, LCPLL_PLL_LOCK, 5))
- 		drm_err(&dev_priv->drm, "DPLL0 not locked\n");
-@@ -990,7 +992,8 @@ static void skl_dpll0_enable(struct drm_i915_private *dev_priv, int vco)
- 
- static void skl_dpll0_disable(struct drm_i915_private *dev_priv)
- {
--	I915_WRITE(LCPLL1_CTL, I915_READ(LCPLL1_CTL) & ~LCPLL_PLL_ENABLE);
-+	intel_de_write(dev_priv, LCPLL1_CTL,
-+		       intel_de_read(dev_priv, LCPLL1_CTL) & ~LCPLL_PLL_ENABLE);
- 	if (intel_de_wait_for_clear(dev_priv, LCPLL1_CTL, LCPLL_PLL_LOCK, 1))
- 		drm_err(&dev_priv->drm, "Couldn't disable DPLL0\n");
- 
-@@ -1053,34 +1056,34 @@ static void skl_set_cdclk(struct drm_i915_private *dev_priv,
- 	    dev_priv->cdclk.hw.vco != vco)
- 		skl_dpll0_disable(dev_priv);
- 
--	cdclk_ctl = I915_READ(CDCLK_CTL);
-+	cdclk_ctl = intel_de_read(dev_priv, CDCLK_CTL);
- 
- 	if (dev_priv->cdclk.hw.vco != vco) {
- 		/* Wa Display #1183: skl,kbl,cfl */
- 		cdclk_ctl &= ~(CDCLK_FREQ_SEL_MASK | CDCLK_FREQ_DECIMAL_MASK);
- 		cdclk_ctl |= freq_select | skl_cdclk_decimal(cdclk);
--		I915_WRITE(CDCLK_CTL, cdclk_ctl);
-+		intel_de_write(dev_priv, CDCLK_CTL, cdclk_ctl);
+-		I915_WRITE(PREC_PAL_DATA(pipe), ilk_lut_10(entry));
++		intel_de_write(dev_priv, PREC_PAL_DATA(pipe),
++			       ilk_lut_10(entry));
  	}
  
- 	/* Wa Display #1183: skl,kbl,cfl */
- 	cdclk_ctl |= CDCLK_DIVMUX_CD_OVERRIDE;
--	I915_WRITE(CDCLK_CTL, cdclk_ctl);
--	POSTING_READ(CDCLK_CTL);
-+	intel_de_write(dev_priv, CDCLK_CTL, cdclk_ctl);
-+	intel_de_posting_read(dev_priv, CDCLK_CTL);
- 
- 	if (dev_priv->cdclk.hw.vco != vco)
- 		skl_dpll0_enable(dev_priv, vco);
- 
- 	/* Wa Display #1183: skl,kbl,cfl */
- 	cdclk_ctl &= ~(CDCLK_FREQ_SEL_MASK | CDCLK_FREQ_DECIMAL_MASK);
--	I915_WRITE(CDCLK_CTL, cdclk_ctl);
-+	intel_de_write(dev_priv, CDCLK_CTL, cdclk_ctl);
- 
- 	cdclk_ctl |= freq_select | skl_cdclk_decimal(cdclk);
--	I915_WRITE(CDCLK_CTL, cdclk_ctl);
-+	intel_de_write(dev_priv, CDCLK_CTL, cdclk_ctl);
- 
- 	/* Wa Display #1183: skl,kbl,cfl */
- 	cdclk_ctl &= ~CDCLK_DIVMUX_CD_OVERRIDE;
--	I915_WRITE(CDCLK_CTL, cdclk_ctl);
--	POSTING_READ(CDCLK_CTL);
-+	intel_de_write(dev_priv, CDCLK_CTL, cdclk_ctl);
-+	intel_de_posting_read(dev_priv, CDCLK_CTL);
- 
- 	/* inform PCU of the change */
- 	sandybridge_pcode_write(dev_priv, SKL_PCODE_CDCLK_CONTROL,
-@@ -1098,7 +1101,7 @@ static void skl_sanitize_cdclk(struct drm_i915_private *dev_priv)
- 	 * There is SWF18 scratchpad register defined which is set by the
- 	 * pre-os which can be used by the OS drivers to check the status
+ 	/*
+ 	 * Reset the index, otherwise it prevents the legacy palette to be
+ 	 * written properly.
  	 */
--	if ((I915_READ(SWF_ILK(0x18)) & 0x00FFFFFF) == 0)
-+	if ((intel_de_read(dev_priv, SWF_ILK(0x18)) & 0x00FFFFFF) == 0)
- 		goto sanitize;
+-	I915_WRITE(PREC_PAL_INDEX(pipe), 0);
++	intel_de_write(dev_priv, PREC_PAL_INDEX(pipe), 0);
+ }
  
- 	intel_update_cdclk(dev_priv);
-@@ -1115,7 +1118,7 @@ static void skl_sanitize_cdclk(struct drm_i915_private *dev_priv)
- 	 * decimal part is programmed wrong from BIOS where pre-os does not
- 	 * enable display. Verify the same as well.
+ static void ivb_load_lut_ext_max(struct intel_crtc *crtc)
+@@ -712,8 +733,9 @@ static void glk_load_degamma_lut(const struct intel_crtc_state *crtc_state)
+ 	 * ignore the index bits, so we need to reset it to index 0
+ 	 * separately.
  	 */
--	cdctl = I915_READ(CDCLK_CTL);
-+	cdctl = intel_de_read(dev_priv, CDCLK_CTL);
- 	expected = (cdctl & CDCLK_FREQ_SEL_MASK) |
- 		skl_cdclk_decimal(dev_priv->cdclk.hw.cdclk);
- 	if (cdctl == expected)
-@@ -1295,7 +1298,7 @@ static u8 ehl_calc_voltage_level(int cdclk)
- static void cnl_readout_refclk(struct drm_i915_private *dev_priv,
- 			       struct intel_cdclk_state *cdclk_state)
- {
--	if (I915_READ(SKL_DSSM) & CNL_DSSM_CDCLK_PLL_REFCLK_24MHz)
-+	if (intel_de_read(dev_priv, SKL_DSSM) & CNL_DSSM_CDCLK_PLL_REFCLK_24MHz)
- 		cdclk_state->ref = 24000;
- 	else
- 		cdclk_state->ref = 19200;
-@@ -1304,7 +1307,7 @@ static void cnl_readout_refclk(struct drm_i915_private *dev_priv,
- static void icl_readout_refclk(struct drm_i915_private *dev_priv,
- 			       struct intel_cdclk_state *cdclk_state)
- {
--	u32 dssm = I915_READ(SKL_DSSM) & ICL_DSSM_CDCLK_PLL_REFCLK_MASK;
-+	u32 dssm = intel_de_read(dev_priv, SKL_DSSM) & ICL_DSSM_CDCLK_PLL_REFCLK_MASK;
+-	I915_WRITE(PRE_CSC_GAMC_INDEX(pipe), 0);
+-	I915_WRITE(PRE_CSC_GAMC_INDEX(pipe), PRE_CSC_GAMC_AUTO_INCREMENT);
++	intel_de_write(dev_priv, PRE_CSC_GAMC_INDEX(pipe), 0);
++	intel_de_write(dev_priv, PRE_CSC_GAMC_INDEX(pipe),
++		       PRE_CSC_GAMC_AUTO_INCREMENT);
  
- 	switch (dssm) {
- 	default:
-@@ -1334,7 +1337,7 @@ static void bxt_de_pll_readout(struct drm_i915_private *dev_priv,
- 	else
- 		cdclk_state->ref = 19200;
- 
--	val = I915_READ(BXT_DE_PLL_ENABLE);
-+	val = intel_de_read(dev_priv, BXT_DE_PLL_ENABLE);
- 	if ((val & BXT_DE_PLL_PLL_ENABLE) == 0 ||
- 	    (val & BXT_DE_PLL_LOCK) == 0) {
+ 	for (i = 0; i < lut_size; i++) {
  		/*
-@@ -1352,7 +1355,7 @@ static void bxt_de_pll_readout(struct drm_i915_private *dev_priv,
- 	if (INTEL_GEN(dev_priv) >= 10)
- 		ratio = val & CNL_CDCLK_PLL_RATIO_MASK;
- 	else
--		ratio = I915_READ(BXT_DE_PLL_CTL) & BXT_DE_PLL_RATIO_MASK;
-+		ratio = intel_de_read(dev_priv, BXT_DE_PLL_CTL) & BXT_DE_PLL_RATIO_MASK;
- 
- 	cdclk_state->vco = ratio * cdclk_state->ref;
- }
-@@ -1377,7 +1380,7 @@ static void bxt_get_cdclk(struct drm_i915_private *dev_priv,
- 		goto out;
- 	}
- 
--	divider = I915_READ(CDCLK_CTL) & BXT_CDCLK_CD2X_DIV_SEL_MASK;
-+	divider = intel_de_read(dev_priv, CDCLK_CTL) & BXT_CDCLK_CD2X_DIV_SEL_MASK;
- 
- 	switch (divider) {
- 	case BXT_CDCLK_CD2X_DIV_SEL_1:
-@@ -1413,7 +1416,7 @@ static void bxt_get_cdclk(struct drm_i915_private *dev_priv,
- 
- static void bxt_de_pll_disable(struct drm_i915_private *dev_priv)
- {
--	I915_WRITE(BXT_DE_PLL_ENABLE, 0);
-+	intel_de_write(dev_priv, BXT_DE_PLL_ENABLE, 0);
- 
- 	/* Timeout 200us */
- 	if (intel_de_wait_for_clear(dev_priv,
-@@ -1428,12 +1431,12 @@ static void bxt_de_pll_enable(struct drm_i915_private *dev_priv, int vco)
- 	int ratio = DIV_ROUND_CLOSEST(vco, dev_priv->cdclk.hw.ref);
- 	u32 val;
- 
--	val = I915_READ(BXT_DE_PLL_CTL);
-+	val = intel_de_read(dev_priv, BXT_DE_PLL_CTL);
- 	val &= ~BXT_DE_PLL_RATIO_MASK;
- 	val |= BXT_DE_PLL_RATIO(ratio);
--	I915_WRITE(BXT_DE_PLL_CTL, val);
-+	intel_de_write(dev_priv, BXT_DE_PLL_CTL, val);
- 
--	I915_WRITE(BXT_DE_PLL_ENABLE, BXT_DE_PLL_PLL_ENABLE);
-+	intel_de_write(dev_priv, BXT_DE_PLL_ENABLE, BXT_DE_PLL_PLL_ENABLE);
- 
- 	/* Timeout 200us */
- 	if (intel_de_wait_for_set(dev_priv,
-@@ -1447,12 +1450,12 @@ static void cnl_cdclk_pll_disable(struct drm_i915_private *dev_priv)
- {
- 	u32 val;
- 
--	val = I915_READ(BXT_DE_PLL_ENABLE);
-+	val = intel_de_read(dev_priv, BXT_DE_PLL_ENABLE);
- 	val &= ~BXT_DE_PLL_PLL_ENABLE;
--	I915_WRITE(BXT_DE_PLL_ENABLE, val);
-+	intel_de_write(dev_priv, BXT_DE_PLL_ENABLE, val);
- 
- 	/* Timeout 200us */
--	if (wait_for((I915_READ(BXT_DE_PLL_ENABLE) & BXT_DE_PLL_LOCK) == 0, 1))
-+	if (wait_for((intel_de_read(dev_priv, BXT_DE_PLL_ENABLE) & BXT_DE_PLL_LOCK) == 0, 1))
- 		drm_err(&dev_priv->drm,
- 			"timeout waiting for CDCLK PLL unlock\n");
- 
-@@ -1465,13 +1468,13 @@ static void cnl_cdclk_pll_enable(struct drm_i915_private *dev_priv, int vco)
- 	u32 val;
- 
- 	val = CNL_CDCLK_PLL_RATIO(ratio);
--	I915_WRITE(BXT_DE_PLL_ENABLE, val);
-+	intel_de_write(dev_priv, BXT_DE_PLL_ENABLE, val);
- 
- 	val |= BXT_DE_PLL_PLL_ENABLE;
--	I915_WRITE(BXT_DE_PLL_ENABLE, val);
-+	intel_de_write(dev_priv, BXT_DE_PLL_ENABLE, val);
- 
- 	/* Timeout 200us */
--	if (wait_for((I915_READ(BXT_DE_PLL_ENABLE) & BXT_DE_PLL_LOCK) != 0, 1))
-+	if (wait_for((intel_de_read(dev_priv, BXT_DE_PLL_ENABLE) & BXT_DE_PLL_LOCK) != 0, 1))
- 		drm_err(&dev_priv->drm,
- 			"timeout waiting for CDCLK PLL lock\n");
- 
-@@ -1578,7 +1581,7 @@ static void bxt_set_cdclk(struct drm_i915_private *dev_priv,
- 	 */
- 	if (IS_GEN9_LP(dev_priv) && cdclk >= 500000)
- 		val |= BXT_CDCLK_SSA_PRECHARGE_ENABLE;
--	I915_WRITE(CDCLK_CTL, val);
-+	intel_de_write(dev_priv, CDCLK_CTL, val);
- 
- 	if (pipe != INVALID_PIPE)
- 		intel_wait_for_vblank(dev_priv, pipe);
-@@ -1634,7 +1637,7 @@ static void bxt_sanitize_cdclk(struct drm_i915_private *dev_priv)
- 	 * set reserved MBZ bits in CDCLK_CTL at least during exiting from S4,
- 	 * so sanitize this register.
- 	 */
--	cdctl = I915_READ(CDCLK_CTL);
-+	cdctl = intel_de_read(dev_priv, CDCLK_CTL);
- 	/*
- 	 * Let's ignore the pipe field, since BIOS could have configured the
- 	 * dividers both synching to an active pipe, or asynchronously
-@@ -2471,7 +2474,7 @@ void intel_update_max_cdclk(struct drm_i915_private *dev_priv)
- 	} else if (IS_CANNONLAKE(dev_priv)) {
- 		dev_priv->max_cdclk_freq = 528000;
- 	} else if (IS_GEN9_BC(dev_priv)) {
--		u32 limit = I915_READ(SKL_DFSM) & SKL_DFSM_CDCLK_LIMIT_MASK;
-+		u32 limit = intel_de_read(dev_priv, SKL_DFSM) & SKL_DFSM_CDCLK_LIMIT_MASK;
- 		int max_cdclk, vco;
- 
- 		vco = dev_priv->skl_preferred_vco_freq;
-@@ -2503,7 +2506,7 @@ void intel_update_max_cdclk(struct drm_i915_private *dev_priv)
- 		 * How can we know if extra cooling is
- 		 * available? PCI ID, VTB, something else?
+@@ -729,12 +751,13 @@ static void glk_load_degamma_lut(const struct intel_crtc_state *crtc_state)
+ 		 * ToDo: Extend to max 7.0. Enable 32 bit input value
+ 		 * as compared to just 16 to achieve this.
  		 */
--		if (I915_READ(FUSE_STRAP) & HSW_CDCLK_LIMIT)
-+		if (intel_de_read(dev_priv, FUSE_STRAP) & HSW_CDCLK_LIMIT)
- 			dev_priv->max_cdclk_freq = 450000;
- 		else if (IS_BDW_ULX(dev_priv))
- 			dev_priv->max_cdclk_freq = 450000;
-@@ -2546,8 +2549,8 @@ void intel_update_cdclk(struct drm_i915_private *dev_priv)
- 	 * generate GMBus clock. This will vary with the cdclk freq.
- 	 */
- 	if (IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv))
--		I915_WRITE(GMBUSFREQ_VLV,
--			   DIV_ROUND_UP(dev_priv->cdclk.hw.cdclk, 1000));
-+		intel_de_write(dev_priv, GMBUSFREQ_VLV,
-+		               DIV_ROUND_UP(dev_priv->cdclk.hw.cdclk, 1000));
- }
- 
- static int cnp_rawclk(struct drm_i915_private *dev_priv)
-@@ -2555,7 +2558,7 @@ static int cnp_rawclk(struct drm_i915_private *dev_priv)
- 	u32 rawclk;
- 	int divider, fraction;
- 
--	if (I915_READ(SFUSE_STRAP) & SFUSE_STRAP_RAW_FREQUENCY) {
-+	if (intel_de_read(dev_priv, SFUSE_STRAP) & SFUSE_STRAP_RAW_FREQUENCY) {
- 		/* 24 MHz */
- 		divider = 24000;
- 		fraction = 0;
-@@ -2575,13 +2578,13 @@ static int cnp_rawclk(struct drm_i915_private *dev_priv)
- 			rawclk |= ICP_RAWCLK_NUM(numerator);
+-		I915_WRITE(PRE_CSC_GAMC_DATA(pipe), lut[i].green);
++		intel_de_write(dev_priv, PRE_CSC_GAMC_DATA(pipe),
++		               lut[i].green);
  	}
  
--	I915_WRITE(PCH_RAWCLK_FREQ, rawclk);
-+	intel_de_write(dev_priv, PCH_RAWCLK_FREQ, rawclk);
- 	return divider + fraction;
+ 	/* Clamp values > 1.0. */
+ 	while (i++ < 35)
+-		I915_WRITE(PRE_CSC_GAMC_DATA(pipe), 1 << 16);
++		intel_de_write(dev_priv, PRE_CSC_GAMC_DATA(pipe), 1 << 16);
  }
  
- static int pch_rawclk(struct drm_i915_private *dev_priv)
- {
--	return (I915_READ(PCH_RAWCLK_FREQ) & RAWCLK_FREQ_MASK) * 1000;
-+	return (intel_de_read(dev_priv, PCH_RAWCLK_FREQ) & RAWCLK_FREQ_MASK) * 1000;
+ static void glk_load_degamma_lut_linear(const struct intel_crtc_state *crtc_state)
+@@ -750,18 +773,19 @@ static void glk_load_degamma_lut_linear(const struct intel_crtc_state *crtc_stat
+ 	 * ignore the index bits, so we need to reset it to index 0
+ 	 * separately.
+ 	 */
+-	I915_WRITE(PRE_CSC_GAMC_INDEX(pipe), 0);
+-	I915_WRITE(PRE_CSC_GAMC_INDEX(pipe), PRE_CSC_GAMC_AUTO_INCREMENT);
++	intel_de_write(dev_priv, PRE_CSC_GAMC_INDEX(pipe), 0);
++	intel_de_write(dev_priv, PRE_CSC_GAMC_INDEX(pipe),
++		       PRE_CSC_GAMC_AUTO_INCREMENT);
+ 
+ 	for (i = 0; i < lut_size; i++) {
+ 		u32 v = (i << 16) / (lut_size - 1);
+ 
+-		I915_WRITE(PRE_CSC_GAMC_DATA(pipe), v);
++		intel_de_write(dev_priv, PRE_CSC_GAMC_DATA(pipe), v);
+ 	}
+ 
+ 	/* Clamp values > 1.0. */
+ 	while (i++ < 35)
+-		I915_WRITE(PRE_CSC_GAMC_DATA(pipe), 1 << 16);
++		intel_de_write(dev_priv, PRE_CSC_GAMC_DATA(pipe), 1 << 16);
  }
  
- static int vlv_hrawclk(struct drm_i915_private *dev_priv)
-@@ -2596,7 +2599,7 @@ static int g4x_hrawclk(struct drm_i915_private *dev_priv)
- 	u32 clkcfg;
+ static void glk_load_luts(const struct intel_crtc_state *crtc_state)
+@@ -954,10 +978,10 @@ static void chv_load_cgm_degamma(struct intel_crtc *crtc,
+ 	enum pipe pipe = crtc->pipe;
  
- 	/* hrawclock is 1/4 the FSB frequency */
--	clkcfg = I915_READ(CLKCFG);
-+	clkcfg = intel_de_read(dev_priv, CLKCFG);
- 	switch (clkcfg & CLKCFG_FSB_MASK) {
- 	case CLKCFG_FSB_400:
- 		return 100000;
+ 	for (i = 0; i < lut_size; i++) {
+-		I915_WRITE(CGM_PIPE_DEGAMMA(pipe, i, 0),
+-			   chv_cgm_degamma_ldw(&lut[i]));
+-		I915_WRITE(CGM_PIPE_DEGAMMA(pipe, i, 1),
+-			   chv_cgm_degamma_udw(&lut[i]));
++		intel_de_write(dev_priv, CGM_PIPE_DEGAMMA(pipe, i, 0),
++			       chv_cgm_degamma_ldw(&lut[i]));
++		intel_de_write(dev_priv, CGM_PIPE_DEGAMMA(pipe, i, 1),
++			       chv_cgm_degamma_udw(&lut[i]));
+ 	}
+ }
+ 
+@@ -981,10 +1005,10 @@ static void chv_load_cgm_gamma(struct intel_crtc *crtc,
+ 	enum pipe pipe = crtc->pipe;
+ 
+ 	for (i = 0; i < lut_size; i++) {
+-		I915_WRITE(CGM_PIPE_GAMMA(pipe, i, 0),
+-			   chv_cgm_gamma_ldw(&lut[i]));
+-		I915_WRITE(CGM_PIPE_GAMMA(pipe, i, 1),
+-			   chv_cgm_gamma_udw(&lut[i]));
++		intel_de_write(dev_priv, CGM_PIPE_GAMMA(pipe, i, 0),
++			       chv_cgm_gamma_ldw(&lut[i]));
++		intel_de_write(dev_priv, CGM_PIPE_GAMMA(pipe, i, 1),
++			       chv_cgm_gamma_udw(&lut[i]));
+ 	}
+ }
+ 
+@@ -1663,9 +1687,9 @@ i9xx_read_lut_8(const struct intel_crtc_state *crtc_state)
+ 
+ 	for (i = 0; i < LEGACY_LUT_LENGTH; i++) {
+ 		if (HAS_GMCH(dev_priv))
+-			val = I915_READ(PALETTE(pipe, i));
++			val = intel_de_read(dev_priv, PALETTE(pipe, i));
+ 		else
+-			val = I915_READ(LGC_PALETTE(pipe, i));
++			val = intel_de_read(dev_priv, LGC_PALETTE(pipe, i));
+ 
+ 		blob_data[i].red = intel_color_lut_pack(REG_FIELD_GET(
+ 							LGC_PALETTE_RED_MASK, val), 8);
+@@ -1706,8 +1730,8 @@ i965_read_lut_10p6(const struct intel_crtc_state *crtc_state)
+ 	blob_data = blob->data;
+ 
+ 	for (i = 0; i < lut_size - 1; i++) {
+-		val1 = I915_READ(PALETTE(pipe, 2 * i + 0));
+-		val2 = I915_READ(PALETTE(pipe, 2 * i + 1));
++		val1 = intel_de_read(dev_priv, PALETTE(pipe, 2 * i + 0));
++		val2 = intel_de_read(dev_priv, PALETTE(pipe, 2 * i + 1));
+ 
+ 		blob_data[i].red = REG_FIELD_GET(PALETTE_RED_MASK, val2) << 8 |
+ 						 REG_FIELD_GET(PALETTE_RED_MASK, val1);
+@@ -1718,11 +1742,11 @@ i965_read_lut_10p6(const struct intel_crtc_state *crtc_state)
+ 	}
+ 
+ 	blob_data[i].red = REG_FIELD_GET(PIPEGCMAX_RGB_MASK,
+-					 I915_READ(PIPEGCMAX(pipe, 0)));
++					 intel_de_read(dev_priv, PIPEGCMAX(pipe, 0)));
+ 	blob_data[i].green = REG_FIELD_GET(PIPEGCMAX_RGB_MASK,
+-					   I915_READ(PIPEGCMAX(pipe, 1)));
++					   intel_de_read(dev_priv, PIPEGCMAX(pipe, 1)));
+ 	blob_data[i].blue = REG_FIELD_GET(PIPEGCMAX_RGB_MASK,
+-					  I915_READ(PIPEGCMAX(pipe, 2)));
++					  intel_de_read(dev_priv, PIPEGCMAX(pipe, 2)));
+ 
+ 	return blob;
+ }
+@@ -1758,13 +1782,13 @@ chv_read_cgm_lut(const struct intel_crtc_state *crtc_state)
+ 	blob_data = blob->data;
+ 
+ 	for (i = 0; i < lut_size; i++) {
+-		val = I915_READ(CGM_PIPE_GAMMA(pipe, i, 0));
++		val = intel_de_read(dev_priv, CGM_PIPE_GAMMA(pipe, i, 0));
+ 		blob_data[i].green = intel_color_lut_pack(REG_FIELD_GET(
+ 							  CGM_PIPE_GAMMA_GREEN_MASK, val), 10);
+ 		blob_data[i].blue = intel_color_lut_pack(REG_FIELD_GET(
+ 							 CGM_PIPE_GAMMA_BLUE_MASK, val), 10);
+ 
+-		val = I915_READ(CGM_PIPE_GAMMA(pipe, i, 1));
++		val = intel_de_read(dev_priv, CGM_PIPE_GAMMA(pipe, i, 1));
+ 		blob_data[i].red = intel_color_lut_pack(REG_FIELD_GET(
+ 							CGM_PIPE_GAMMA_RED_MASK, val), 10);
+ 	}
+@@ -1800,7 +1824,7 @@ ilk_read_lut_10(const struct intel_crtc_state *crtc_state)
+ 	blob_data = blob->data;
+ 
+ 	for (i = 0; i < lut_size; i++) {
+-		val = I915_READ(PREC_PALETTE(pipe, i));
++		val = intel_de_read(dev_priv, PREC_PALETTE(pipe, i));
+ 
+ 		blob_data[i].red = intel_color_lut_pack(REG_FIELD_GET(
+ 							PREC_PALETTE_RED_MASK, val), 10);
+@@ -1846,11 +1870,11 @@ glk_read_lut_10(const struct intel_crtc_state *crtc_state, u32 prec_index)
+ 
+ 	blob_data = blob->data;
+ 
+-	I915_WRITE(PREC_PAL_INDEX(pipe), prec_index |
+-		   PAL_PREC_AUTO_INCREMENT);
++	intel_de_write(dev_priv, PREC_PAL_INDEX(pipe),
++		       prec_index | PAL_PREC_AUTO_INCREMENT);
+ 
+ 	for (i = 0; i < hw_lut_size; i++) {
+-		val = I915_READ(PREC_PAL_DATA(pipe));
++		val = intel_de_read(dev_priv, PREC_PAL_DATA(pipe));
+ 
+ 		blob_data[i].red = intel_color_lut_pack(REG_FIELD_GET(
+ 							PREC_PAL_DATA_RED_MASK, val), 10);
+@@ -1860,7 +1884,7 @@ glk_read_lut_10(const struct intel_crtc_state *crtc_state, u32 prec_index)
+ 							PREC_PAL_DATA_BLUE_MASK, val), 10);
+ 	}
+ 
+-	I915_WRITE(PREC_PAL_INDEX(pipe), 0);
++	intel_de_write(dev_priv, PREC_PAL_INDEX(pipe), 0);
+ 
+ 	return blob;
+ }
 -- 
 2.20.1
 
