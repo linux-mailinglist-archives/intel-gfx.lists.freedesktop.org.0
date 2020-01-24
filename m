@@ -2,24 +2,27 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C44A147CCE
-	for <lists+intel-gfx@lfdr.de>; Fri, 24 Jan 2020 10:55:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 10004147CCD
+	for <lists+intel-gfx@lfdr.de>; Fri, 24 Jan 2020 10:55:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D81576E2CC;
+	by gabe.freedesktop.org (Postfix) with ESMTP id EA17A6E2CD;
 	Fri, 24 Jan 2020 09:55:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mblankhorst.nl (mblankhorst.nl [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1431B6E2CA
+Received: from mblankhorst.nl (mblankhorst.nl
+ [IPv6:2a02:2308::216:3eff:fe92:dfa3])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1ADCE6E2CD
  for <intel-gfx@lists.freedesktop.org>; Fri, 24 Jan 2020 09:55:25 +0000 (UTC)
 From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri, 24 Jan 2020 10:55:08 +0100
-Message-Id: <20200124095521.2006632-1-maarten.lankhorst@linux.intel.com>
+Date: Fri, 24 Jan 2020 10:55:09 +0100
+Message-Id: <20200124095521.2006632-2-maarten.lankhorst@linux.intel.com>
 X-Mailer: git-send-email 2.24.1
+In-Reply-To: <20200124095521.2006632-1-maarten.lankhorst@linux.intel.com>
+References: <20200124095521.2006632-1-maarten.lankhorst@linux.intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 00/13] drm/i915/gem: Implement parallel
- execbuffer submission.
+Subject: [Intel-gfx] [PATCH 01/13] drm/i915: Drop inspection of execbuf
+ flags during evict
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,83 +40,67 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Working version, at least locally now. :)
+From: Chris Wilson <chris@chris-wilson.co.uk>
 
-This uses ww locking to ensure all buffer objects are locked during
-submission. We still rely on struct_mutex to only submit one execbuf
-at a time, but this is more because we cannot support parallel
-submission yet without risking -EBUSY. When all code is converted to use
-per-object locking, we can get rid of the BKL.
+With the goal of removing the serialisation from around execbuf, we will
+no longer have the privilege of there being a single execbuf in flight
+at any time and so will only be able to inspect the user's flags within
+the carefully controlled execbuf context. i915_gem_evict_for_node() is
+the only user outside of execbuf that currently peeks at the flag to
+convert an overlapping softpinned request from ENOSPC to EINVAL. Retract
+this nicety and only report ENOSPC if the location is in current use,
+either due to this execbuf or another.
 
-Chris Wilson (2):
-  drm/i915: Drop inspection of execbuf flags during evict
-  drm/i915/gem: Extract transient execbuf flags from i915_vma
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+Reviewed-by: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Link: https://patchwork.freedesktop.org/patch/msgid/20191203121316.2972257-1-chris@chris-wilson.co.uk
+---
+ drivers/gpu/drm/i915/i915_gem_evict.c | 15 ++++++---------
+ 1 file changed, 6 insertions(+), 9 deletions(-)
 
-Maarten Lankhorst (11):
-  drm/i915: Separate lookup and pinning in execbuf.
-  drm/i915: Add an implementation for i915_gem_ww_ctx locking, v2.
-  drm/i915: Remove locking from i915_gem_object_prepare_read/write
-  drm/i915: Parse command buffer earlier in eb_relocate(slow)
-  drm/i915: Use per object locking in execbuf on top of struct_mutex,
-    v2.
-  drm/i915: Use ww locking in intel_renderstate.
-  drm/i915: Add ww context handling to context_barrier_task
-  drm/i915: Nuke arguments to eb_pin_engine
-  drm/i915: Pin engine before pinning all objects
-  drm/i915: Rework intel_context pinning to do everything outside of
-    pin_mutex
-  drm/i915: Make sure execbuffer always passes ww state to i915_vma_pin.
-
- drivers/gpu/drm/i915/display/intel_display.c  |   4 +-
- .../gpu/drm/i915/gem/i915_gem_client_blt.c    |   2 +-
- drivers/gpu/drm/i915/gem/i915_gem_context.c   |  57 +-
- drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c    |   4 +-
- drivers/gpu/drm/i915/gem/i915_gem_domain.c    |  26 +-
- .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 682 ++++++++++--------
- drivers/gpu/drm/i915/gem/i915_gem_object.c    |   2 +-
- drivers/gpu/drm/i915/gem/i915_gem_object.h    |  39 +-
- .../gpu/drm/i915/gem/i915_gem_object_blt.c    |   2 +-
- .../gpu/drm/i915/gem/i915_gem_object_types.h  |   9 +
- drivers/gpu/drm/i915/gem/i915_gem_pm.c        |   2 +-
- drivers/gpu/drm/i915/gem/i915_gem_tiling.c    |   2 +-
- .../gpu/drm/i915/gem/selftests/huge_pages.c   |   7 +-
- .../i915/gem/selftests/i915_gem_client_blt.c  |   2 +-
- .../i915/gem/selftests/i915_gem_coherency.c   |  24 +-
- .../drm/i915/gem/selftests/i915_gem_context.c |  38 +-
- .../drm/i915/gem/selftests/i915_gem_mman.c    |   4 +-
- .../i915/gem/selftests/i915_gem_object_blt.c  |   4 +-
- .../drm/i915/gem/selftests/i915_gem_phys.c    |   2 +-
- drivers/gpu/drm/i915/gt/gen6_ppgtt.c          |   4 +-
- drivers/gpu/drm/i915/gt/gen6_ppgtt.h          |   4 +-
- drivers/gpu/drm/i915/gt/intel_context.c       | 250 ++++---
- drivers/gpu/drm/i915/gt/intel_context.h       |  13 +
- drivers/gpu/drm/i915/gt/intel_context_types.h |   5 +-
- drivers/gpu/drm/i915/gt/intel_engine_cs.c     |   2 +-
- drivers/gpu/drm/i915/gt/intel_gt.c            |  23 +-
- drivers/gpu/drm/i915/gt/intel_lrc.c           |  35 +-
- drivers/gpu/drm/i915/gt/intel_renderstate.c   |  65 +-
- drivers/gpu/drm/i915/gt/intel_renderstate.h   |   9 +-
- drivers/gpu/drm/i915/gt/intel_ring.c          |  10 +-
- drivers/gpu/drm/i915/gt/intel_ring.h          |   3 +-
- .../gpu/drm/i915/gt/intel_ring_submission.c   |  20 +-
- drivers/gpu/drm/i915/gt/intel_timeline.c      |  10 +-
- drivers/gpu/drm/i915/gt/intel_timeline.h      |   3 +-
- drivers/gpu/drm/i915/gt/mock_engine.c         |  14 +-
- drivers/gpu/drm/i915/gt/selftest_timeline.c   |   4 +-
- .../gpu/drm/i915/gt/selftest_workarounds.c    |   2 +-
- drivers/gpu/drm/i915/gvt/cmd_parser.c         |  11 +-
- drivers/gpu/drm/i915/i915_drv.h               |   6 -
- drivers/gpu/drm/i915/i915_gem.c               |  72 +-
- drivers/gpu/drm/i915/i915_gem.h               |  11 +
- drivers/gpu/drm/i915/i915_gem_evict.c         |  15 +-
- drivers/gpu/drm/i915/i915_vma.c               |  13 +-
- drivers/gpu/drm/i915/i915_vma.h               |  13 +-
- drivers/gpu/drm/i915/i915_vma_types.h         |  11 -
- drivers/gpu/drm/i915/selftests/i915_gem.c     |  41 ++
- drivers/gpu/drm/i915/selftests/i915_vma.c     |   2 +-
- .../drm/i915/selftests/intel_memory_region.c  |   2 +-
- 48 files changed, 996 insertions(+), 589 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/i915_gem_evict.c b/drivers/gpu/drm/i915/i915_gem_evict.c
+index 0697bedebeef..b75fd3ccd63b 100644
+--- a/drivers/gpu/drm/i915/i915_gem_evict.c
++++ b/drivers/gpu/drm/i915/i915_gem_evict.c
+@@ -292,7 +292,8 @@ int i915_gem_evict_for_node(struct i915_address_space *vm,
+ 		GEM_BUG_ON(!drm_mm_node_allocated(node));
+ 		vma = container_of(node, typeof(*vma), node);
+ 
+-		/* If we are using coloring to insert guard pages between
++		/*
++		 * If we are using coloring to insert guard pages between
+ 		 * different cache domains within the address space, we have
+ 		 * to check whether the objects on either side of our range
+ 		 * abutt and conflict. If they are in conflict, then we evict
+@@ -309,22 +310,18 @@ int i915_gem_evict_for_node(struct i915_address_space *vm,
+ 			}
+ 		}
+ 
+-		if (flags & PIN_NONBLOCK &&
+-		    (i915_vma_is_pinned(vma) || i915_vma_is_active(vma))) {
++		if (i915_vma_is_pinned(vma)) {
+ 			ret = -ENOSPC;
+ 			break;
+ 		}
+ 
+-		/* Overlap of objects in the same batch? */
+-		if (i915_vma_is_pinned(vma)) {
++		if (flags & PIN_NONBLOCK && i915_vma_is_active(vma)) {
+ 			ret = -ENOSPC;
+-			if (vma->exec_flags &&
+-			    *vma->exec_flags & EXEC_OBJECT_PINNED)
+-				ret = -EINVAL;
+ 			break;
+ 		}
+ 
+-		/* Never show fear in the face of dragons!
++		/*
++		 * Never show fear in the face of dragons!
+ 		 *
+ 		 * We cannot directly remove this node from within this
+ 		 * iterator and as with i915_gem_evict_something() we employ
 -- 
 2.24.1
 
