@@ -1,29 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B87E1484B3
-	for <lists+intel-gfx@lfdr.de>; Fri, 24 Jan 2020 12:51:47 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6BB821484F7
+	for <lists+intel-gfx@lfdr.de>; Fri, 24 Jan 2020 13:08:57 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8AA456E33F;
-	Fri, 24 Jan 2020 11:51:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B3A5C6FA40;
+	Fri, 24 Jan 2020 12:08:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F3CFB6E33F
- for <intel-gfx@lists.freedesktop.org>; Fri, 24 Jan 2020 11:51:43 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19994208-1500050 
- for multiple; Fri, 24 Jan 2020 11:51:34 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri, 24 Jan 2020 11:51:33 +0000
-Message-Id: <20200124115133.53360-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.25.0
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6E0AC6FA40
+ for <intel-gfx@lists.freedesktop.org>; Fri, 24 Jan 2020 12:08:54 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 24 Jan 2020 04:08:53 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,357,1574150400"; d="scan'208";a="260224381"
+Received: from unknown (HELO intel.com) ([10.223.74.178])
+ by fmsmga002.fm.intel.com with ESMTP; 24 Jan 2020 04:08:52 -0800
+Date: Fri, 24 Jan 2020 17:29:51 +0530
+From: Anshuman Gupta <anshuman.gupta@intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Message-ID: <20200124115951.GC24118@intel.com>
+References: <20200123132659.725-1-anshuman.gupta@intel.com>
+ <20200123132659.725-2-anshuman.gupta@intel.com>
+ <87wo9icmi2.fsf@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v4] drm/i915/gt: Poison GTT scratch pages
+Content-Disposition: inline
+In-Reply-To: <87wo9icmi2.fsf@intel.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+Subject: Re: [Intel-gfx] [RFC 1/6] drm/i915: Iterate over pipe and skip the
+ disabled one
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,330 +47,83 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Using a clear page for scratch means that we have relatively benign
-errors in case it is accidentally used, but that can be rather too
-benign for debugging. If we poison the scratch, ideally it quickly
-results in an obvious error.
-
-v2: Set each page individually just in case we are using highmem for our
-scratch page.
-v3: Pick a new scratch register as MI_STORE_REGISTER_MEM does not work
-with GPR0 on gen7, unbelievably.
-v4: Haswell still considers 3DPRIM a privileged register!
-
-Suggested-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-Cc: Matthew Auld <matthew.william.auld@gmail.com>
----
- .../drm/i915/gem/selftests/i915_gem_context.c | 154 +++++++++++++-----
- drivers/gpu/drm/i915/gt/intel_gtt.c           |  30 ++++
- 2 files changed, 146 insertions(+), 38 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c b/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c
-index 7fc46861a54d..130c4c522686 100644
---- a/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c
-+++ b/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c
-@@ -1492,6 +1492,10 @@ static int write_to_scratch(struct i915_gem_context *ctx,
- 
- 	GEM_BUG_ON(offset < I915_GTT_PAGE_SIZE);
- 
-+	err = check_scratch(ctx_vm(ctx), offset);
-+	if (err)
-+		return err;
-+
- 	obj = i915_gem_object_create_internal(i915, PAGE_SIZE);
- 	if (IS_ERR(obj))
- 		return PTR_ERR(obj);
-@@ -1528,10 +1532,6 @@ static int write_to_scratch(struct i915_gem_context *ctx,
- 	if (err)
- 		goto out_vm;
- 
--	err = check_scratch(vm, offset);
--	if (err)
--		goto err_unpin;
--
- 	rq = igt_request_alloc(ctx, engine);
- 	if (IS_ERR(rq)) {
- 		err = PTR_ERR(rq);
-@@ -1575,64 +1575,95 @@ static int read_from_scratch(struct i915_gem_context *ctx,
- 	struct drm_i915_private *i915 = ctx->i915;
- 	struct drm_i915_gem_object *obj;
- 	struct i915_address_space *vm;
--	const u32 RCS_GPR0 = 0x2600; /* not all engines have their own GPR! */
- 	const u32 result = 0x100;
- 	struct i915_request *rq;
- 	struct i915_vma *vma;
-+	unsigned int flags;
- 	u32 *cmd;
- 	int err;
- 
- 	GEM_BUG_ON(offset < I915_GTT_PAGE_SIZE);
- 
-+	err = check_scratch(ctx_vm(ctx), offset);
-+	if (err)
-+		return err;
-+
- 	obj = i915_gem_object_create_internal(i915, PAGE_SIZE);
- 	if (IS_ERR(obj))
- 		return PTR_ERR(obj);
- 
--	cmd = i915_gem_object_pin_map(obj, I915_MAP_WB);
--	if (IS_ERR(cmd)) {
--		err = PTR_ERR(cmd);
--		goto out;
--	}
--
--	memset(cmd, POISON_INUSE, PAGE_SIZE);
- 	if (INTEL_GEN(i915) >= 8) {
-+		const u32 GPR0 = engine->mmio_base + 0x600;
-+
-+		vm = i915_gem_context_get_vm_rcu(ctx);
-+		vma = i915_vma_instance(obj, vm, NULL);
-+		if (IS_ERR(vma)) {
-+			err = PTR_ERR(vma);
-+			goto out_vm;
-+		}
-+
-+		err = i915_vma_pin(vma, 0, 0, PIN_USER | PIN_OFFSET_FIXED);
-+		if (err)
-+			goto out_vm;
-+
-+		cmd = i915_gem_object_pin_map(obj, I915_MAP_WB);
-+		if (IS_ERR(cmd)) {
-+			err = PTR_ERR(cmd);
-+			goto out;
-+		}
-+
-+		memset(cmd, POISON_INUSE, PAGE_SIZE);
- 		*cmd++ = MI_LOAD_REGISTER_MEM_GEN8;
--		*cmd++ = RCS_GPR0;
-+		*cmd++ = GPR0;
- 		*cmd++ = lower_32_bits(offset);
- 		*cmd++ = upper_32_bits(offset);
- 		*cmd++ = MI_STORE_REGISTER_MEM_GEN8;
--		*cmd++ = RCS_GPR0;
-+		*cmd++ = GPR0;
- 		*cmd++ = result;
- 		*cmd++ = 0;
-+		*cmd = MI_BATCH_BUFFER_END;
-+
-+		i915_gem_object_flush_map(obj);
-+		i915_gem_object_unpin_map(obj);
-+
-+		flags = 0;
- 	} else {
-+		const u32 reg = engine->mmio_base + 0x420;
-+
-+		/* hsw: register access even to 3DPRIM! is protected */
-+		vm = i915_vm_get(&engine->gt->ggtt->vm);
-+		vma = i915_vma_instance(obj, vm, NULL);
-+		if (IS_ERR(vma)) {
-+			err = PTR_ERR(vma);
-+			goto out_vm;
-+		}
-+
-+		err = i915_vma_pin(vma, 0, 0, PIN_GLOBAL);
-+		if (err)
-+			goto out_vm;
-+
-+		cmd = i915_gem_object_pin_map(obj, I915_MAP_WB);
-+		if (IS_ERR(cmd)) {
-+			err = PTR_ERR(cmd);
-+			goto out;
-+		}
-+
-+		memset(cmd, POISON_INUSE, PAGE_SIZE);
- 		*cmd++ = MI_LOAD_REGISTER_MEM;
--		*cmd++ = RCS_GPR0;
-+		*cmd++ = reg;
- 		*cmd++ = offset;
--		*cmd++ = MI_STORE_REGISTER_MEM;
--		*cmd++ = RCS_GPR0;
--		*cmd++ = result;
--	}
--	*cmd = MI_BATCH_BUFFER_END;
--
--	i915_gem_object_flush_map(obj);
--	i915_gem_object_unpin_map(obj);
-+		*cmd++ = MI_STORE_REGISTER_MEM | MI_USE_GGTT;
-+		*cmd++ = reg;
-+		*cmd++ = vma->node.start + result;
-+		*cmd = MI_BATCH_BUFFER_END;
- 
--	intel_gt_chipset_flush(engine->gt);
-+		i915_gem_object_flush_map(obj);
-+		i915_gem_object_unpin_map(obj);
- 
--	vm = i915_gem_context_get_vm_rcu(ctx);
--	vma = i915_vma_instance(obj, vm, NULL);
--	if (IS_ERR(vma)) {
--		err = PTR_ERR(vma);
--		goto out_vm;
-+		flags = I915_DISPATCH_SECURE;
- 	}
- 
--	err = i915_vma_pin(vma, 0, 0, PIN_USER | PIN_OFFSET_FIXED);
--	if (err)
--		goto out_vm;
--
--	err = check_scratch(vm, offset);
--	if (err)
--		goto err_unpin;
-+	intel_gt_chipset_flush(engine->gt);
- 
- 	rq = igt_request_alloc(ctx, engine);
- 	if (IS_ERR(rq)) {
-@@ -1640,7 +1671,7 @@ static int read_from_scratch(struct i915_gem_context *ctx,
- 		goto err_unpin;
- 	}
- 
--	err = engine->emit_bb_start(rq, vma->node.start, vma->node.size, 0);
-+	err = engine->emit_bb_start(rq, vma->node.start, vma->node.size, flags);
- 	if (err)
- 		goto err_request;
- 
-@@ -1686,6 +1717,39 @@ static int read_from_scratch(struct i915_gem_context *ctx,
- 	return err;
- }
- 
-+static int check_scratch_page(struct i915_gem_context *ctx, u32 *out)
-+{
-+	struct i915_address_space *vm;
-+	struct page *page;
-+	u32 *vaddr;
-+	int err = 0;
-+
-+	vm = ctx_vm(ctx);
-+	if (!vm)
-+		return -ENODEV;
-+
-+	page = vm->scratch[0].base.page;
-+	if (!page) {
-+		pr_err("No scratch page!\n");
-+		return -EINVAL;
-+	}
-+
-+	vaddr = kmap(page);
-+	if (!vaddr) {
-+		pr_err("No (mappable) scratch page!\n");
-+		return -EINVAL;
-+	}
-+
-+	memcpy(out, vaddr, sizeof(*out));
-+	if (memchr_inv(vaddr, *out, PAGE_SIZE)) {
-+		pr_err("Inconsistent initial state of scratch page!\n");
-+		err = -EINVAL;
-+	}
-+	kunmap(page);
-+
-+	return err;
-+}
-+
- static int igt_vm_isolation(void *arg)
- {
- 	struct drm_i915_private *i915 = arg;
-@@ -1696,6 +1760,7 @@ static int igt_vm_isolation(void *arg)
- 	I915_RND_STATE(prng);
- 	struct file *file;
- 	u64 vm_total;
-+	u32 expected;
- 	int err;
- 
- 	if (INTEL_GEN(i915) < 7)
-@@ -1730,6 +1795,15 @@ static int igt_vm_isolation(void *arg)
- 	if (ctx_vm(ctx_a) == ctx_vm(ctx_b))
- 		goto out_file;
- 
-+	/* Read the initial state of the scratch page */
-+	err = check_scratch_page(ctx_a, &expected);
-+	if (err)
-+		goto out_file;
-+
-+	err = check_scratch_page(ctx_b, &expected);
-+	if (err)
-+		goto out_file;
-+
- 	vm_total = ctx_vm(ctx_a)->total;
- 	GEM_BUG_ON(ctx_vm(ctx_b)->total != vm_total);
- 	vm_total -= I915_GTT_PAGE_SIZE;
-@@ -1743,6 +1817,10 @@ static int igt_vm_isolation(void *arg)
- 		if (!intel_engine_can_store_dword(engine))
- 			continue;
- 
-+		/* Not all engines have their own GPR! */
-+		if (INTEL_GEN(i915) < 8 && engine->class != RENDER_CLASS)
-+			continue;
-+
- 		while (!__igt_timeout(end_time, NULL)) {
- 			u32 value = 0xc5c5c5c5;
- 			u64 offset;
-@@ -1760,7 +1838,7 @@ static int igt_vm_isolation(void *arg)
- 			if (err)
- 				goto out_file;
- 
--			if (value) {
-+			if (value != expected) {
- 				pr_err("%s: Read %08x from scratch (offset 0x%08x_%08x), after %lu reads!\n",
- 				       engine->name, value,
- 				       upper_32_bits(offset),
-diff --git a/drivers/gpu/drm/i915/gt/intel_gtt.c b/drivers/gpu/drm/i915/gt/intel_gtt.c
-index 45d8e0019a8e..bb9a6e638175 100644
---- a/drivers/gpu/drm/i915/gt/intel_gtt.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gtt.c
-@@ -299,6 +299,25 @@ fill_page_dma(const struct i915_page_dma *p, const u64 val, unsigned int count)
- 	kunmap_atomic(memset64(kmap_atomic(p->page), val, count));
- }
- 
-+static void poison_scratch_page(struct page *page, unsigned long size)
-+{
-+	if (!IS_ENABLED(CONFIG_DRM_I915_DEBUG_GEM))
-+		return;
-+
-+	GEM_BUG_ON(!IS_ALIGNED(size, PAGE_SIZE));
-+
-+	do {
-+		void *vaddr;
-+
-+		vaddr = kmap(page);
-+		memset(vaddr, POISON_FREE, PAGE_SIZE);
-+		kunmap(page);
-+
-+		page = pfn_to_page(page_to_pfn(page) + 1);
-+		size -= PAGE_SIZE;
-+	} while (size);
-+}
-+
- int setup_scratch_page(struct i915_address_space *vm, gfp_t gfp)
- {
- 	unsigned long size;
-@@ -331,6 +350,17 @@ int setup_scratch_page(struct i915_address_space *vm, gfp_t gfp)
- 		if (unlikely(!page))
- 			goto skip;
- 
-+		/*
-+		 * Use a non-zero scratch page for debugging.
-+		 *
-+		 * We want a value that should be reasonably obvious
-+		 * to spot in the error state, while also causing a GPU hang
-+		 * if executed. We prefer using a clear page in production, so
-+		 * should it ever be accidentally used, the effect should be
-+		 * fairly benign.
-+		 */
-+		poison_scratch_page(page, size);
-+
- 		addr = dma_map_page_attrs(vm->dma,
- 					  page, 0, size,
- 					  PCI_DMA_BIDIRECTIONAL,
--- 
-2.25.0
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gMjAyMC0wMS0yMyBhdCAxNTo0ODowNSArMDIwMCwgSmFuaSBOaWt1bGEgd3JvdGU6Cj4gT24g
+VGh1LCAyMyBKYW4gMjAyMCwgQW5zaHVtYW4gR3VwdGEgPGFuc2h1bWFuLmd1cHRhQGludGVsLmNv
+bT4gd3JvdGU6Cj4gPiBJdCBzaG91bGQgbm90IGJlIGFzc3VtZWQgdGhhdCBhIGRpc2FibGVkIGRp
+c3BsYXkgcGlwZSB3aWxsIGJlCj4gPiBhbHdheXMgbGFzdCB0aGUgcGlwZS4KPiA+IGZvcl9lYWNo
+X3BpcGUoKSBzaG91bGQgaXRlcmF0ZSBvdmVyIEk5MTVfTUFYX1BJUEVTIGFuZCBjaGVjawo+ID4g
+Zm9yIHRoZSBkaXNhYmxlZCBwaXBlIGFuZCBza2lwIHRoYXQgcGlwZSBzbyB0aGF0IGl0IHNob3Vs
+ZCBub3QKPiA+IGluaXRpYWxpemUgdGhlIGludGVsIGNydGMgZm9yIGFueSBkaXNhYmxlZCBwaXBl
+cy4KPiA+Cj4gPiBGZXcgY29tcGlsYXRpb24gZXJyb3IgbmVlZGVkIHRvIGhhbmRsZSBhY2NvcmRp
+bmdseSBkdWUgdG8KPiA+IGNoYW5nZSBpbiBmb3JfZWFjaF9waXBlKCkgbWFjcm8uCj4gCj4gUmVh
+bGx5PyBQbGVhc2UgcGFzdGUuCkl0IGlzIGRhbmdsaW5nLWVsc2Ugd2FybmluZyBhdCBjb3VwbGUg
+b2YgcGxhY2VzLgpkcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2lycS5jOjE4NjE6NTogZXJyb3I6
+IHN1Z2dlc3QgZXhwbGljaXQgYnJhY2VzIHRvIGF2b2lkIGFtYmlndW91cyDigJhlbHNl4oCZIFst
+V2Vycm9yPWRhbmdsaW5nLWVsc2VdCiAxODYxIHwgIGlmIChwY2hfaWlyICYgU0RFX0ZESV9NQVNL
+KQpkcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2lycS5jOjE5NDQ6NTogZXJyb3I6IHN1Z2dlc3Qg
+ZXhwbGljaXQgYnJhY2VzIHRvIGF2b2lkIGFtYmlndW91cyDigJhlbHNl4oCZIFstV2Vycm9yPWRh
+bmdsaW5nLWVsc2VdCjE5NDQgfCAgaWYgKHBjaF9paXIgJiBTREVfRkRJX01BU0tfQ1BUKQo+IAo+
+ID4KPiA+IENjOiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwuY29t
+Pgo+ID4gU2lnbmVkLW9mZi1ieTogQW5zaHVtYW4gR3VwdGEgPGFuc2h1bWFuLmd1cHRhQGludGVs
+LmNvbT4KPiA+IC0tLQo+ID4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlz
+cGxheS5oIHwgNSArKystLQo+ID4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfaXJxLmMgICAg
+ICAgICAgICAgIHwgNiArKysrLS0KPiA+ICAyIGZpbGVzIGNoYW5nZWQsIDcgaW5zZXJ0aW9ucygr
+KSwgNCBkZWxldGlvbnMoLSkKPiA+Cj4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5
+MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmggYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5
+L2ludGVsX2Rpc3BsYXkuaAo+ID4gaW5kZXggMDI4YWFiNzI4NTE0Li40NzgxM2E1MGFkZDQgMTAw
+NjQ0Cj4gPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXku
+aAo+ID4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmgK
+PiA+IEBAIC0zMTIsMTAgKzMxMiwxMSBAQCBlbnVtIHBoeV9maWEgewo+ID4gIH07Cj4gPiAgCj4g
+PiAgI2RlZmluZSBmb3JfZWFjaF9waXBlKF9fZGV2X3ByaXYsIF9fcCkgXAo+ID4gLQlmb3IgKChf
+X3ApID0gMDsgKF9fcCkgPCBJTlRFTF9OVU1fUElQRVMoX19kZXZfcHJpdik7IChfX3ApKyspCj4g
+PiArCWZvciAoKF9fcCkgPSAwOyAoX19wKSA8IEk5MTVfTUFYX1BJUEVTOyAoX19wKSsrKSBcCj4g
+Cj4gT3JpZ2luYWxseSBJIHdhcyBlbnZpc2lvbmluZyB1c2luZyBmb3JfZWFjaF9zZXRfYml0KCkg
+ZnJvbSBiaXRvcHMuaCBmb3IKPiB0aGlzLiBJdCdzIHByb2JhYmx5IG1vcmUgZWZmaWNpZW50LCBo
+b3dldmVyIEknbSBub3Qgc3VyZSBpZiBlZmZpY2llbmN5Cj4gbWF0dGVycyBtdWNoIGhlcmUuIFRo
+ZSB1Z2x5IHBhcnQgaXMgdGhhdCBmb3JfZWFjaF9zZXRfYml0KCkgcmVxdWlyZXMgYW4KPiBleHBs
+aWNpdCBjYXN0IHRvIHVuc2lnbmVkIGxvbmcgKi4KPiAKPiBQZXJoYXBzIHRoaXMgaXMganVzdCBh
+cyB3ZWxsLCBpdCdzIG5vdCB3cm9uZywgYW5kIGNhbiBhbHdheXMgYmUgdXBkYXRlZAo+IGxhdGVy
+Lgo+IAo+ID4gKwkJZm9yX2VhY2hfaWYoKElOVEVMX0lORk8oX19kZXZfcHJpdiktPnBpcGVfbWFz
+aykgJiBCSVQoX19wKSkKPiA+ICAKPiA+ICAjZGVmaW5lIGZvcl9lYWNoX3BpcGVfbWFza2VkKF9f
+ZGV2X3ByaXYsIF9fcCwgX19tYXNrKSBcCj4gPiAtCWZvciAoKF9fcCkgPSAwOyAoX19wKSA8IElO
+VEVMX05VTV9QSVBFUyhfX2Rldl9wcml2KTsgKF9fcCkrKykgXAo+ID4gKwlmb3JfZWFjaF9waXBl
+KF9fZGV2X3ByaXYsIF9fcCkgXAo+ID4gIAkJZm9yX2VhY2hfaWYoKF9fbWFzaykgJiBCSVQoX19w
+KSkKPiA+ICAKPiA+ICAjZGVmaW5lIGZvcl9lYWNoX2NwdV90cmFuc2NvZGVyX21hc2tlZChfX2Rl
+dl9wcml2LCBfX3QsIF9fbWFzaykgXAo+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9p
+OTE1L2k5MTVfaXJxLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2lycS5jCj4gPiBpbmRl
+eCA5NGNiMjVhYzUwNGQuLjIyZWNkNWJjNDA3ZSAxMDA2NDQKPiA+IC0tLSBhL2RyaXZlcnMvZ3B1
+L2RybS9pOTE1L2k5MTVfaXJxLmMKPiA+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVf
+aXJxLmMKPiA+IEBAIC0xNzM1LDExICsxNzM1LDEyIEBAIHN0YXRpYyB2b2lkIGlieF9pcnFfaGFu
+ZGxlcihzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYsIHUzMiBwY2hfaWlyKQo+ID4g
+IAlpZiAocGNoX2lpciAmIFNERV9QT0lTT04pCj4gPiAgCQlEUk1fRVJST1IoIlBDSCBwb2lzb24g
+aW50ZXJydXB0XG4iKTsKPiA+ICAKPiA+IC0JaWYgKHBjaF9paXIgJiBTREVfRkRJX01BU0spCj4g
+PiArCWlmIChwY2hfaWlyICYgU0RFX0ZESV9NQVNLKSB7Cj4gPiAgCQlmb3JfZWFjaF9waXBlKGRl
+dl9wcml2LCBwaXBlKQo+ID4gIAkJCURSTV9ERUJVR19EUklWRVIoIiAgcGlwZSAlYyBGREkgSUlS
+OiAweCUwOHhcbiIsCj4gPiAgCQkJCQkgcGlwZV9uYW1lKHBpcGUpLAo+ID4gIAkJCQkJIEk5MTVf
+UkVBRChGRElfUlhfSUlSKHBpcGUpKSk7Cj4gPiArCX0KPiAKPiBBcmUgdGhlIGJyYWNlIGNoYW5n
+ZXMgcmVhbGx5IG5lZWRlZD8gVGhpcyBpcyB3aGF0IHRoZSBmb3JfZWFjaF9pZiBoYWNrCj4gaXMg
+c3VwcG9zZWQgdG8gdGFja2xlLgpJTUhPIGl0IHdhcyBkYW5nbGluZy1lbHNlIGNvbXBpbGF0aW9u
+LCB3YXJuaW5nIHRoYXQgcmVxdWlyZXMgYnJhY2VzLgpwbGVhc2UgY29ycmVjdCBtZSBpZiBpIGFt
+IHdyb25nLgpUaGFua3MsCkFuc2h1bWFuCj4gCj4gPiAgCj4gPiAgCWlmIChwY2hfaWlyICYgKFNE
+RV9UUkFOU0JfQ1JDX0RPTkUgfCBTREVfVFJBTlNBX0NSQ19ET05FKSkKPiA+ICAJCURSTV9ERUJV
+R19EUklWRVIoIlBDSCB0cmFuc2NvZGVyIENSQyBkb25lIGludGVycnVwdFxuIik7Cj4gPiBAQCAt
+MTgxOCwxMSArMTgxOSwxMiBAQCBzdGF0aWMgdm9pZCBjcHRfaXJxX2hhbmRsZXIoc3RydWN0IGRy
+bV9pOTE1X3ByaXZhdGUgKmRldl9wcml2LCB1MzIgcGNoX2lpcikKPiA+ICAJaWYgKHBjaF9paXIg
+JiBTREVfQVVESU9fQ1BfQ0hHX0NQVCkKPiA+ICAJCURSTV9ERUJVR19EUklWRVIoIkF1ZGlvIENQ
+IGNoYW5nZSBpbnRlcnJ1cHRcbiIpOwo+ID4gIAo+ID4gLQlpZiAocGNoX2lpciAmIFNERV9GRElf
+TUFTS19DUFQpCj4gPiArCWlmIChwY2hfaWlyICYgU0RFX0ZESV9NQVNLX0NQVCkgewo+ID4gIAkJ
+Zm9yX2VhY2hfcGlwZShkZXZfcHJpdiwgcGlwZSkKPiA+ICAJCQlEUk1fREVCVUdfRFJJVkVSKCIg
+IHBpcGUgJWMgRkRJIElJUjogMHglMDh4XG4iLAo+ID4gIAkJCQkJIHBpcGVfbmFtZShwaXBlKSwK
+PiA+ICAJCQkJCSBJOTE1X1JFQUQoRkRJX1JYX0lJUihwaXBlKSkpOwo+ID4gKwl9Cj4gPiAgCj4g
+PiAgCWlmIChwY2hfaWlyICYgU0RFX0VSUk9SX0NQVCkKPiA+ICAJCWNwdF9zZXJyX2ludF9oYW5k
+bGVyKGRldl9wcml2KTsKPiAKPiAtLSAKPiBKYW5pIE5pa3VsYSwgSW50ZWwgT3BlbiBTb3VyY2Ug
+R3JhcGhpY3MgQ2VudGVyCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9w
+Lm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVs
+LWdmeAo=
