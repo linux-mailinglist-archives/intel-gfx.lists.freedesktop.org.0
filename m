@@ -2,30 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 97897148F46
-	for <lists+intel-gfx@lfdr.de>; Fri, 24 Jan 2020 21:22:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A654E148F47
+	for <lists+intel-gfx@lfdr.de>; Fri, 24 Jan 2020 21:23:42 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EAE1E6E03C;
-	Fri, 24 Jan 2020 20:22:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 182516E437;
+	Fri, 24 Jan 2020 20:23:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id DF6976E03C;
- Fri, 24 Jan 2020 20:22:28 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id D6431A0093;
- Fri, 24 Jan 2020 20:22:28 +0000 (UTC)
+Received: from mail-lf1-x144.google.com (mail-lf1-x144.google.com
+ [IPv6:2a00:1450:4864:20::144])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 92EA772BB4
+ for <intel-gfx@lists.freedesktop.org>; Fri, 24 Jan 2020 20:23:39 +0000 (UTC)
+Received: by mail-lf1-x144.google.com with SMTP id l18so2029669lfc.1
+ for <intel-gfx@lists.freedesktop.org>; Fri, 24 Jan 2020 12:23:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=eibpFJ/dL/po7h/5lUN6b9t7vGqoq6edRosDwybFErA=;
+ b=THXVTwkodkl4NV0lthJq64T8BkB+kb+ffvrbOIIER8YxEvQBCT2o/7LDw2RGVsJRL2
+ uXOqDAz/tYlhLLwyQPSbMtBDwZfl9wCyed52H+MSR+Bhx3i7TtCEQ5VJU92oS91V0RFM
+ ZV5jHG9CroKc3T7vN4hYoBeavgcbdaIhntw1I43u67p8jWEleo+IoYekee0/fKj5k0q5
+ j7pVKy/aHd/X5lwcOmIBtCfUfiW1DfPSHtSfw5MX86ChFkP7YXD5BEfd29Jxxk9IAv24
+ S4NJIPiBbOExUxqQNGmNrCJhRl4iIoj27x5+BxRyuAPtp8XZPn0qsKyzOjcH1s/aC3Lz
+ SQow==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=eibpFJ/dL/po7h/5lUN6b9t7vGqoq6edRosDwybFErA=;
+ b=cgWJZguNsKR0uUYYANhBcIyzYulYwSa5TH7/HYNU+wGXYOkf1gcs3EHH+PefEW59d2
+ AOteyip1JPdfFYnSITQzUlbgIvcmksTxCLcC9xOudEIDrGwuiebrbdk9j+WzHnEh1J6K
+ o0TT1H+nRPe0SZQP6ZXAZqTjCsJe51MYifgiG9Z1toF6Uw2flw783iCM/pUBfe4PPPXg
+ 59oCyUawEimhtbZ/g6rithcR85jaxOAfR0TqSyjUSJYEl0MVUT0aspo/mZzNYxHSKC5a
+ ddv/zjlTdLvAxKU7nC1VmWtQQPwuxZaMNxPZTVXannlYkV9NjM77dn4vzbYzadZ9TATV
+ AVNw==
+X-Gm-Message-State: APjAAAWsNOs56yBVa7cSHiJB8WRaov3odzT1vOVa4ufYShU+uWmuBpNa
+ RfQBwFQMhmgaWFSxMIHICUS2e00w949qHb0NgDk/dQ==
+X-Google-Smtp-Source: APXvYqxuuu1/zxYUm5WDAcBoC5BQJSb6/tHB3M19FeY/I611GVLHEkCovpovRlvKoQIBXafdXuc2bwrDj8ePsYYTNKk=
+X-Received: by 2002:a19:4208:: with SMTP id p8mr2257984lfa.160.1579897417530; 
+ Fri, 24 Jan 2020 12:23:37 -0800 (PST)
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Vandita Kulkarni" <vandita.kulkarni@intel.com>
-Date: Fri, 24 Jan 2020 20:22:28 -0000
-Message-ID: <157989734884.15090.1529892911017881417@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200124125829.16973-1-vandita.kulkarni@intel.com>
-In-Reply-To: <20200124125829.16973-1-vandita.kulkarni@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/vbt=3A_Fix_the_timing_parameters?=
+References: <20191220200353.252399-1-rajatja@google.com>
+ <20191220200353.252399-2-rajatja@google.com>
+ <87v9p1gk4z.fsf@intel.com>
+In-Reply-To: <87v9p1gk4z.fsf@intel.com>
+From: Rajat Jain <rajatja@google.com>
+Date: Fri, 24 Jan 2020 12:23:00 -0800
+Message-ID: <CACK8Z6GN1tXj+a3HHgyVKzTcgYBB+v8gpLCqh+YgTU0tS5b-OA@mail.gmail.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Subject: Re: [Intel-gfx] [PATCH v5 2/3] drm/i915: Lookup and attach ACPI
+ device node for connectors
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,132 +63,207 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Sean Paul <seanpaul@google.com>, David Airlie <airlied@linux.ie>,
+ dri-devel <dri-devel@lists.freedesktop.org>,
+ Daniel Thompson <daniel.thompson@linaro.org>, Jonathan Corbet <corbet@lwn.net>,
+ Rajat Jain <rajatxjain@gmail.com>, intel-gfx@lists.freedesktop.org,
+ Maxime Ripard <mripard@kernel.org>, Mat King <mathewk@google.com>,
+ Duncan Laurie <dlaurie@google.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ Pavel Machek <pavel@denx.de>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Hi Jani,
 
-Series: drm/i915/vbt: Fix the timing parameters
-URL   : https://patchwork.freedesktop.org/series/72534/
-State : success
+Thank you for the review. Please see inline.
 
-== Summary ==
+On Fri, Jan 24, 2020 at 3:37 AM Jani Nikula <jani.nikula@linux.intel.com> wrote:
+>
+> On Fri, 20 Dec 2019, Rajat Jain <rajatja@google.com> wrote:
+> > Lookup and attach ACPI nodes for intel connectors. The lookup is done
+> > in compliance with ACPI Spec 6.3
+> > https://uefi.org/sites/default/files/resources/ACPI_6_3_final_Jan30.pdf
+> > (Ref: Pages 1119 - 1123).
+> >
+> > This can be useful for any connector specific platform properties. (This
+> > will be used for privacy screen in next patch).
+> >
+> > Signed-off-by: Rajat Jain <rajatja@google.com>
+> > ---
+> > v5: same as v4
+> > v4: Same as v3
+> > v3: fold the code into existing acpi_device_id_update() function
+> > v2: formed by splitting the original patch into ACPI lookup, and privacy
+> >     screen property. Also move it into i915 now that I found existing code
+> >     in i915 that can be re-used.
+> >
+> >  drivers/gpu/drm/i915/display/intel_acpi.c     | 24 +++++++++++++++++++
+> >  .../drm/i915/display/intel_display_types.h    |  3 +++
+> >  drivers/gpu/drm/i915/display/intel_dp.c       |  3 +++
+> >  3 files changed, 30 insertions(+)
+> >
+> > diff --git a/drivers/gpu/drm/i915/display/intel_acpi.c b/drivers/gpu/drm/i915/display/intel_acpi.c
+> > index e21fb14d5e07..101a56c08996 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_acpi.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_acpi.c
+> > @@ -222,11 +222,23 @@ static u32 acpi_display_type(struct intel_connector *connector)
+> >       return display_type;
+> >  }
+> >
+> > +/*
+> > + * Ref: ACPI Spec 6.3
+> > + * https://uefi.org/sites/default/files/resources/ACPI_6_3_final_Jan30.pdf
+> > + * Pages 1119 - 1123 describe, what I believe, a standard way of
+> > + * identifying / addressing "display panels" in the ACPI. It provides
+> > + * a way for the ACPI to define devices for the display panels attached
+> > + * to the system. It thus provides a way for the BIOS to export any panel
+> > + * specific properties to the system via ACPI (like device trees).
+> > + */
+> >  void intel_acpi_device_id_update(struct drm_i915_private *dev_priv)
+> >  {
+> >       struct drm_device *drm_dev = &dev_priv->drm;
+> >       struct intel_connector *connector;
+> >       struct drm_connector_list_iter conn_iter;
+> > +     struct device *dev = &drm_dev->pdev->dev;
+>
+> Hmm, already pushed patch 1 with the unfortunate "drm_dev" local. We use
+> "dev" for struct drm_device * and almost never use struct device.
 
-CI Bug Log - changes from CI_DRM_7810 -> Patchwork_16256
-====================================================
+Sorry, I did not know. I'll send an independent fixup patch for patch
+1 on top of drm-intel-next-queued (or let me know if you want to
+handle it). I will also change this patch to rename the variable.
 
-Summary
--------
+>
+> > +     struct acpi_device *conn_dev;
+> > +     u64 conn_addr;
+> >       u8 display_index[16] = {};
+> >
+> >       /* Populate the ACPI IDs for all connectors for a given drm_device */
+> > @@ -242,6 +254,18 @@ void intel_acpi_device_id_update(struct drm_i915_private *dev_priv)
+> >               device_id |= display_index[type]++ << ACPI_DISPLAY_INDEX_SHIFT;
+> >
+> >               connector->acpi_device_id = device_id;
+> > +
+> > +             /* Build the _ADR to look for */
+> > +             conn_addr = device_id | ACPI_DEVICE_ID_SCHEME |
+> > +                             ACPI_BIOS_CAN_DETECT;
+> > +
+> > +             DRM_DEV_INFO(dev, "Checking connector ACPI node at _ADR=%llX\n",
+> > +                          conn_addr);
+>
+> This is more than a little verbose. One line of INFO level dmesg for
+> every connector at boot and at resume.
+>
+> Please use the new drm_dbg_kms() macro for this.
 
-  **SUCCESS**
+Will do.
 
-  No regressions found.
+>
+> > +
+> > +             /* Look up the connector device, under the PCI device */
+> > +             conn_dev = acpi_find_child_device(ACPI_COMPANION(dev),
+> > +                                               conn_addr, false);
+> > +             connector->acpi_handle = conn_dev ? conn_dev->handle : NULL;
+>
+> acpi_device_handle(conn_dev)
+>
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16256/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_16256 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_exec_parallel@contexts:
-    - fi-byt-n2820:       [PASS][1] -> [FAIL][2] ([i915#694])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7810/fi-byt-n2820/igt@gem_exec_parallel@contexts.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16256/fi-byt-n2820/igt@gem_exec_parallel@contexts.html
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - fi-tgl-y:           [PASS][3] -> [DMESG-WARN][4] ([CI#94] / [i915#109])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7810/fi-tgl-y/igt@kms_frontbuffer_tracking@basic.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16256/fi-tgl-y/igt@kms_frontbuffer_tracking@basic.html
-
-  * igt@prime_self_import@basic-llseek-bad:
-    - fi-tgl-y:           [PASS][5] -> [DMESG-WARN][6] ([CI#94] / [i915#402]) +1 similar issue
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7810/fi-tgl-y/igt@prime_self_import@basic-llseek-bad.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16256/fi-tgl-y/igt@prime_self_import@basic-llseek-bad.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_module_load@reload-with-fault-injection:
-    - fi-skl-lmem:        [DMESG-WARN][7] ([i915#889]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7810/fi-skl-lmem/igt@i915_module_load@reload-with-fault-injection.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16256/fi-skl-lmem/igt@i915_module_load@reload-with-fault-injection.html
-
-  * igt@i915_selftest@live_blt:
-    - fi-hsw-4770r:       [DMESG-FAIL][9] ([i915#553] / [i915#725]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7810/fi-hsw-4770r/igt@i915_selftest@live_blt.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16256/fi-hsw-4770r/igt@i915_selftest@live_blt.html
-    - fi-hsw-4770:        [DMESG-FAIL][11] ([i915#563]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7810/fi-hsw-4770/igt@i915_selftest@live_blt.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16256/fi-hsw-4770/igt@i915_selftest@live_blt.html
-
-  * igt@kms_chamelium@dp-edid-read:
-    - fi-cml-u2:          [FAIL][13] ([i915#217]) -> [PASS][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7810/fi-cml-u2/igt@kms_chamelium@dp-edid-read.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16256/fi-cml-u2/igt@kms_chamelium@dp-edid-read.html
-
-  * igt@prime_vgem@basic-busy-default:
-    - fi-tgl-y:           [DMESG-WARN][15] ([CI#94] / [i915#402]) -> [PASS][16] +1 similar issue
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7810/fi-tgl-y/igt@prime_vgem@basic-busy-default.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16256/fi-tgl-y/igt@prime_vgem@basic-busy-default.html
-
-  
-#### Warnings ####
-
-  * igt@kms_chamelium@hdmi-hpd-fast:
-    - fi-kbl-7500u:       [FAIL][17] ([fdo#111096] / [i915#323]) -> [FAIL][18] ([fdo#111407])
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7810/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16256/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
-
-  
-  [CI#94]: https://gitlab.freedesktop.org/gfx-ci/i915-infra/issues/94
-  [fdo#111096]: https://bugs.freedesktop.org/show_bug.cgi?id=111096
-  [fdo#111407]: https://bugs.freedesktop.org/show_bug.cgi?id=111407
-  [i915#109]: https://gitlab.freedesktop.org/drm/intel/issues/109
-  [i915#217]: https://gitlab.freedesktop.org/drm/intel/issues/217
-  [i915#323]: https://gitlab.freedesktop.org/drm/intel/issues/323
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
-  [i915#553]: https://gitlab.freedesktop.org/drm/intel/issues/553
-  [i915#563]: https://gitlab.freedesktop.org/drm/intel/issues/563
-  [i915#694]: https://gitlab.freedesktop.org/drm/intel/issues/694
-  [i915#725]: https://gitlab.freedesktop.org/drm/intel/issues/725
-  [i915#889]: https://gitlab.freedesktop.org/drm/intel/issues/889
-
-
-Participating hosts (42 -> 45)
-------------------------------
-
-  Additional (7): fi-bsw-n3050 fi-glk-dsi fi-gdg-551 fi-ivb-3770 fi-elk-e7500 fi-bsw-nick fi-snb-2600 
-  Missing    (4): fi-ctg-p8600 fi-byt-clapper fi-bsw-cyan fi-bdw-samus 
+Will do.
 
 
-Build changes
--------------
+> >       }
+> >       drm_connector_list_iter_end(&conn_iter);
+> >  }
+> > diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+> > index 1a7334dbe802..0a4a04116091 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> > +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> > @@ -407,6 +407,9 @@ struct intel_connector {
+> >       /* ACPI device id for ACPI and driver cooperation */
+> >       u32 acpi_device_id;
+> >
+> > +     /* ACPI handle corresponding to this connector display, if found */
+> > +     void *acpi_handle;
+> > +
+>
+> The type is acpi_handle. It's none of our business to know what the
+> underlying type is.
 
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_7810 -> Patchwork_16256
+Will do.
 
-  CI-20190529: 20190529
-  CI_DRM_7810: 9de9de2b3216bd3cc7862f8280858304bf38297e @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5384: fd6896567f7d612c76207970376d4f1e634ded55 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_16256: 08e2828dac8f2bda09c4fabdbb48004c1cf7059e @ git://anongit.freedesktop.org/gfx-ci/linux
+>
+> >       /* Reads out the current hw, returning true if the connector is enabled
+> >        * and active (i.e. dpms ON state). */
+> >       bool (*get_hw_state)(struct intel_connector *);
+> > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> > index b05b2191b919..93cece8e2516 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> > @@ -45,6 +45,7 @@
+> >  #include "i915_debugfs.h"
+> >  #include "i915_drv.h"
+> >  #include "i915_trace.h"
+> > +#include "intel_acpi.h"
+> >  #include "intel_atomic.h"
+> >  #include "intel_audio.h"
+> >  #include "intel_connector.h"
+> > @@ -6623,6 +6624,8 @@ intel_dp_add_properties(struct intel_dp *intel_dp, struct drm_connector *connect
+> >
+> >               connector->state->scaling_mode = DRM_MODE_SCALE_ASPECT;
+> >
+> > +             /* Lookup the ACPI node corresponding to the connector */
+> > +             intel_acpi_device_id_update(dev_priv);
+>
+> Auch, this is problematic. It iterates all connectors, for every DP
+> connector being added. In the middle of registering all connectors.
+>
+> From the POV of this patch alone, this is also unnecessary. This gets
+> called via intel_opregion_register() after all connectors have been
+> registered.
+>
+> I am aware it's not enough for your next patch, because it will need the
+> acpi handle right here.
+>
+> I'm wondering if we need to maintain display_index[] in struct
+> drm_i915_private, and update that as connectors get added instead of all
+> at once in the end.
 
+Sure, I can do that.
 
-== Linux commits ==
+> connector->acpi_device_id never changes, does it,
+> even though we keep updating it?
 
-08e2828dac8f drm/i915/vbt: Fix the timing parameters
+This is the part I am not so sure about - I hypothesized that theory
+because of the current behavior in code (i.e. it is getting updated in
+intel_opregion_resume() path). May be it does not change, I was not
+sure, so I did not want to create any regression in the intel_opregion
+code that I did not understand. I tried on my system and as far as I
+could experiment, I did not see it changing. Please let me know if you
+would like me to change my code to:
 
-== Logs ==
+1) Maintain drm_i915_private->display_index[] and update it as
+connectors are added.
+2) Remove the code to update it on every resume and while registering
+the connector.
 
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16256/index.html
+Thanks & Best Regards,
+
+Rajat
+
+>
+> BR,
+> Jani.
+>
+>
+> >       }
+> >  }
+>
+> --
+> Jani Nikula, Intel Open Source Graphics Center
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
