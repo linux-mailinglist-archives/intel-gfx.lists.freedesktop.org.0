@@ -1,37 +1,37 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16B68148612
-	for <lists+intel-gfx@lfdr.de>; Fri, 24 Jan 2020 14:26:57 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0676E148613
+	for <lists+intel-gfx@lfdr.de>; Fri, 24 Jan 2020 14:27:02 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 787E872A90;
-	Fri, 24 Jan 2020 13:26:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5E2B072A91;
+	Fri, 24 Jan 2020 13:27:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D694172A90
- for <intel-gfx@lists.freedesktop.org>; Fri, 24 Jan 2020 13:26:54 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9476672A91
+ for <intel-gfx@lists.freedesktop.org>; Fri, 24 Jan 2020 13:26:59 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
  by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 24 Jan 2020 05:26:54 -0800
-X-IronPort-AV: E=Sophos;i="5.70,357,1574150400"; d="scan'208";a="251285892"
+ 24 Jan 2020 05:26:58 -0800
+X-IronPort-AV: E=Sophos;i="5.70,357,1574150400"; d="scan'208";a="276324612"
 Received: from omarkovx-mobl.ger.corp.intel.com (HELO localhost)
  ([10.249.37.60])
- by fmsmga004-auth.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 24 Jan 2020 05:26:53 -0800
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 24 Jan 2020 05:26:57 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri, 24 Jan 2020 15:25:48 +0200
-Message-Id: <b21dbc3c0f349345619590893c8ab96828c39103.1579871655.git.jani.nikula@intel.com>
+Date: Fri, 24 Jan 2020 15:25:49 +0200
+Message-Id: <722f73a4529808ef7dad51c03c0a3775d8c5b052.1579871655.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <cover.1579871655.git.jani.nikula@intel.com>
 References: <cover.1579871655.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Subject: [Intel-gfx] [RFC 27/33] drm/i915/sdvo: use intel_de_*() functions
+Subject: [Intel-gfx] [RFC 28/33] drm/i915/sprite: use intel_de_*() functions
  for register access
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -95,103 +95,543 @@ expression REG, OFFSET;
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_sdvo.c | 30 +++++++++++------------
- 1 file changed, 15 insertions(+), 15 deletions(-)
+ drivers/gpu/drm/i915/display/intel_sprite.c | 320 +++++++++++---------
+ 1 file changed, 175 insertions(+), 145 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_sdvo.c b/drivers/gpu/drm/i915/display/intel_sdvo.c
-index 1b37007f48a1..225b6402718e 100644
---- a/drivers/gpu/drm/i915/display/intel_sdvo.c
-+++ b/drivers/gpu/drm/i915/display/intel_sdvo.c
-@@ -217,23 +217,23 @@ static void intel_sdvo_write_sdvox(struct intel_sdvo *intel_sdvo, u32 val)
- 	int i;
- 
- 	if (HAS_PCH_SPLIT(dev_priv)) {
--		I915_WRITE(intel_sdvo->sdvo_reg, val);
--		POSTING_READ(intel_sdvo->sdvo_reg);
-+		intel_de_write(dev_priv, intel_sdvo->sdvo_reg, val);
-+		intel_de_posting_read(dev_priv, intel_sdvo->sdvo_reg);
- 		/*
- 		 * HW workaround, need to write this twice for issue
- 		 * that may result in first write getting masked.
- 		 */
- 		if (HAS_PCH_IBX(dev_priv)) {
--			I915_WRITE(intel_sdvo->sdvo_reg, val);
--			POSTING_READ(intel_sdvo->sdvo_reg);
-+			intel_de_write(dev_priv, intel_sdvo->sdvo_reg, val);
-+			intel_de_posting_read(dev_priv, intel_sdvo->sdvo_reg);
- 		}
- 		return;
+diff --git a/drivers/gpu/drm/i915/display/intel_sprite.c b/drivers/gpu/drm/i915/display/intel_sprite.c
+index fca77ec1e0dd..2f277d1fc6f1 100644
+--- a/drivers/gpu/drm/i915/display/intel_sprite.c
++++ b/drivers/gpu/drm/i915/display/intel_sprite.c
+@@ -434,14 +434,16 @@ skl_program_scaler(struct intel_plane *plane,
+ 		uv_rgb_vphase = skl_scaler_calc_phase(1, vscale, false);
  	}
  
- 	if (intel_sdvo->port == PORT_B)
--		cval = I915_READ(GEN3_SDVOC);
-+		cval = intel_de_read(dev_priv, GEN3_SDVOC);
- 	else
--		bval = I915_READ(GEN3_SDVOB);
-+		bval = intel_de_read(dev_priv, GEN3_SDVOB);
- 
- 	/*
- 	 * Write the registers twice for luck. Sometimes,
-@@ -241,11 +241,11 @@ static void intel_sdvo_write_sdvox(struct intel_sdvo *intel_sdvo, u32 val)
- 	 * The BIOS does this too. Yay, magic
- 	 */
- 	for (i = 0; i < 2; i++) {
--		I915_WRITE(GEN3_SDVOB, bval);
--		POSTING_READ(GEN3_SDVOB);
-+		intel_de_write(dev_priv, GEN3_SDVOB, bval);
-+		intel_de_posting_read(dev_priv, GEN3_SDVOB);
- 
--		I915_WRITE(GEN3_SDVOC, cval);
--		POSTING_READ(GEN3_SDVOC);
-+		intel_de_write(dev_priv, GEN3_SDVOC, cval);
-+		intel_de_posting_read(dev_priv, GEN3_SDVOC);
- 	}
+-	I915_WRITE_FW(SKL_PS_CTRL(pipe, scaler_id),
+-		      PS_SCALER_EN | PS_PLANE_SEL(plane->id) | scaler->mode);
+-	I915_WRITE_FW(SKL_PS_VPHASE(pipe, scaler_id),
+-		      PS_Y_PHASE(y_vphase) | PS_UV_RGB_PHASE(uv_rgb_vphase));
+-	I915_WRITE_FW(SKL_PS_HPHASE(pipe, scaler_id),
+-		      PS_Y_PHASE(y_hphase) | PS_UV_RGB_PHASE(uv_rgb_hphase));
+-	I915_WRITE_FW(SKL_PS_WIN_POS(pipe, scaler_id), (crtc_x << 16) | crtc_y);
+-	I915_WRITE_FW(SKL_PS_WIN_SZ(pipe, scaler_id), (crtc_w << 16) | crtc_h);
++	intel_de_write_fw(dev_priv, SKL_PS_CTRL(pipe, scaler_id),
++			  PS_SCALER_EN | PS_PLANE_SEL(plane->id) | scaler->mode);
++	intel_de_write_fw(dev_priv, SKL_PS_VPHASE(pipe, scaler_id),
++			  PS_Y_PHASE(y_vphase) | PS_UV_RGB_PHASE(uv_rgb_vphase));
++	intel_de_write_fw(dev_priv, SKL_PS_HPHASE(pipe, scaler_id),
++			  PS_Y_PHASE(y_hphase) | PS_UV_RGB_PHASE(uv_rgb_hphase));
++	intel_de_write_fw(dev_priv, SKL_PS_WIN_POS(pipe, scaler_id),
++			  (crtc_x << 16) | crtc_y);
++	intel_de_write_fw(dev_priv, SKL_PS_WIN_SZ(pipe, scaler_id),
++			  (crtc_w << 16) | crtc_h);
  }
  
-@@ -1525,7 +1525,7 @@ static void intel_sdvo_pre_enable(struct intel_encoder *intel_encoder,
- 		if (INTEL_GEN(dev_priv) < 5)
- 			sdvox |= SDVO_BORDER_ENABLE;
+ /* Preoffset values for YUV to RGB Conversion */
+@@ -547,28 +549,37 @@ icl_program_input_csc(struct intel_plane *plane,
+ 	else
+ 		csc = input_csc_matrix_lr[plane_state->hw.color_encoding];
+ 
+-	I915_WRITE_FW(PLANE_INPUT_CSC_COEFF(pipe, plane_id, 0), ROFF(csc[0]) |
+-		      GOFF(csc[1]));
+-	I915_WRITE_FW(PLANE_INPUT_CSC_COEFF(pipe, plane_id, 1), BOFF(csc[2]));
+-	I915_WRITE_FW(PLANE_INPUT_CSC_COEFF(pipe, plane_id, 2), ROFF(csc[3]) |
+-		      GOFF(csc[4]));
+-	I915_WRITE_FW(PLANE_INPUT_CSC_COEFF(pipe, plane_id, 3), BOFF(csc[5]));
+-	I915_WRITE_FW(PLANE_INPUT_CSC_COEFF(pipe, plane_id, 4), ROFF(csc[6]) |
+-		      GOFF(csc[7]));
+-	I915_WRITE_FW(PLANE_INPUT_CSC_COEFF(pipe, plane_id, 5), BOFF(csc[8]));
+-
+-	I915_WRITE_FW(PLANE_INPUT_CSC_PREOFF(pipe, plane_id, 0),
+-		      PREOFF_YUV_TO_RGB_HI);
++	intel_de_write_fw(dev_priv, PLANE_INPUT_CSC_COEFF(pipe, plane_id, 0),
++			  ROFF(csc[0]) | GOFF(csc[1]));
++	intel_de_write_fw(dev_priv, PLANE_INPUT_CSC_COEFF(pipe, plane_id, 1),
++			  BOFF(csc[2]));
++	intel_de_write_fw(dev_priv, PLANE_INPUT_CSC_COEFF(pipe, plane_id, 2),
++			  ROFF(csc[3]) | GOFF(csc[4]));
++	intel_de_write_fw(dev_priv, PLANE_INPUT_CSC_COEFF(pipe, plane_id, 3),
++			  BOFF(csc[5]));
++	intel_de_write_fw(dev_priv, PLANE_INPUT_CSC_COEFF(pipe, plane_id, 4),
++			  ROFF(csc[6]) | GOFF(csc[7]));
++	intel_de_write_fw(dev_priv, PLANE_INPUT_CSC_COEFF(pipe, plane_id, 5),
++			  BOFF(csc[8]));
++
++	intel_de_write_fw(dev_priv, PLANE_INPUT_CSC_PREOFF(pipe, plane_id, 0),
++			  PREOFF_YUV_TO_RGB_HI);
+ 	if (plane_state->hw.color_range == DRM_COLOR_YCBCR_FULL_RANGE)
+-		I915_WRITE_FW(PLANE_INPUT_CSC_PREOFF(pipe, plane_id, 1), 0);
++		intel_de_write_fw(dev_priv,
++				  PLANE_INPUT_CSC_PREOFF(pipe, plane_id, 1),
++				  0);
+ 	else
+-		I915_WRITE_FW(PLANE_INPUT_CSC_PREOFF(pipe, plane_id, 1),
+-			      PREOFF_YUV_TO_RGB_ME);
+-	I915_WRITE_FW(PLANE_INPUT_CSC_PREOFF(pipe, plane_id, 2),
+-		      PREOFF_YUV_TO_RGB_LO);
+-	I915_WRITE_FW(PLANE_INPUT_CSC_POSTOFF(pipe, plane_id, 0), 0x0);
+-	I915_WRITE_FW(PLANE_INPUT_CSC_POSTOFF(pipe, plane_id, 1), 0x0);
+-	I915_WRITE_FW(PLANE_INPUT_CSC_POSTOFF(pipe, plane_id, 2), 0x0);
++		intel_de_write_fw(dev_priv,
++				  PLANE_INPUT_CSC_PREOFF(pipe, plane_id, 1),
++				  PREOFF_YUV_TO_RGB_ME);
++	intel_de_write_fw(dev_priv, PLANE_INPUT_CSC_PREOFF(pipe, plane_id, 2),
++			  PREOFF_YUV_TO_RGB_LO);
++	intel_de_write_fw(dev_priv,
++			  PLANE_INPUT_CSC_POSTOFF(pipe, plane_id, 0), 0x0);
++	intel_de_write_fw(dev_priv,
++			  PLANE_INPUT_CSC_POSTOFF(pipe, plane_id, 1), 0x0);
++	intel_de_write_fw(dev_priv,
++			  PLANE_INPUT_CSC_POSTOFF(pipe, plane_id, 2), 0x0);
+ }
+ 
+ static void
+@@ -623,44 +634,49 @@ skl_program_plane(struct intel_plane *plane,
+ 
+ 	spin_lock_irqsave(&dev_priv->uncore.lock, irqflags);
+ 
+-	I915_WRITE_FW(PLANE_STRIDE(pipe, plane_id), stride);
+-	I915_WRITE_FW(PLANE_POS(pipe, plane_id), (crtc_y << 16) | crtc_x);
+-	I915_WRITE_FW(PLANE_SIZE(pipe, plane_id), (src_h << 16) | src_w);
++	intel_de_write_fw(dev_priv, PLANE_STRIDE(pipe, plane_id), stride);
++	intel_de_write_fw(dev_priv, PLANE_POS(pipe, plane_id),
++			  (crtc_y << 16) | crtc_x);
++	intel_de_write_fw(dev_priv, PLANE_SIZE(pipe, plane_id),
++			  (src_h << 16) | src_w);
+ 
+ 	if (INTEL_GEN(dev_priv) < 12)
+ 		aux_dist |= aux_stride;
+-	I915_WRITE_FW(PLANE_AUX_DIST(pipe, plane_id), aux_dist);
++	intel_de_write_fw(dev_priv, PLANE_AUX_DIST(pipe, plane_id), aux_dist);
+ 
+ 	if (icl_is_hdr_plane(dev_priv, plane_id))
+-		I915_WRITE_FW(PLANE_CUS_CTL(pipe, plane_id), plane_state->cus_ctl);
++		intel_de_write_fw(dev_priv, PLANE_CUS_CTL(pipe, plane_id),
++				  plane_state->cus_ctl);
+ 
+ 	if (INTEL_GEN(dev_priv) >= 10 || IS_GEMINILAKE(dev_priv))
+-		I915_WRITE_FW(PLANE_COLOR_CTL(pipe, plane_id), plane_color_ctl);
++		intel_de_write_fw(dev_priv, PLANE_COLOR_CTL(pipe, plane_id),
++				  plane_color_ctl);
+ 
+ 	if (fb->format->is_yuv && icl_is_hdr_plane(dev_priv, plane_id))
+ 		icl_program_input_csc(plane, crtc_state, plane_state);
+ 
+ 	skl_write_plane_wm(plane, crtc_state);
+ 
+-	I915_WRITE_FW(PLANE_KEYVAL(pipe, plane_id), key->min_value);
+-	I915_WRITE_FW(PLANE_KEYMSK(pipe, plane_id), keymsk);
+-	I915_WRITE_FW(PLANE_KEYMAX(pipe, plane_id), keymax);
++	intel_de_write_fw(dev_priv, PLANE_KEYVAL(pipe, plane_id),
++			  key->min_value);
++	intel_de_write_fw(dev_priv, PLANE_KEYMSK(pipe, plane_id), keymsk);
++	intel_de_write_fw(dev_priv, PLANE_KEYMAX(pipe, plane_id), keymax);
+ 
+-	I915_WRITE_FW(PLANE_OFFSET(pipe, plane_id), (y << 16) | x);
++	intel_de_write_fw(dev_priv, PLANE_OFFSET(pipe, plane_id),
++			  (y << 16) | x);
+ 
+ 	if (INTEL_GEN(dev_priv) < 11)
+-		I915_WRITE_FW(PLANE_AUX_OFFSET(pipe, plane_id),
+-			      (plane_state->color_plane[1].y << 16) |
+-			      plane_state->color_plane[1].x);
++		intel_de_write_fw(dev_priv, PLANE_AUX_OFFSET(pipe, plane_id),
++				  (plane_state->color_plane[1].y << 16) | plane_state->color_plane[1].x);
+ 
+ 	/*
+ 	 * The control register self-arms if the plane was previously
+ 	 * disabled. Try to make the plane enable atomic by writing
+ 	 * the control register just before the surface register.
+ 	 */
+-	I915_WRITE_FW(PLANE_CTL(pipe, plane_id), plane_ctl);
+-	I915_WRITE_FW(PLANE_SURF(pipe, plane_id),
+-		      intel_plane_ggtt_offset(plane_state) + surf_addr);
++	intel_de_write_fw(dev_priv, PLANE_CTL(pipe, plane_id), plane_ctl);
++	intel_de_write_fw(dev_priv, PLANE_SURF(pipe, plane_id),
++			  intel_plane_ggtt_offset(plane_state) + surf_addr);
+ 
+ 	if (plane_state->scaler_id >= 0)
+ 		skl_program_scaler(plane, crtc_state, plane_state);
+@@ -693,12 +709,12 @@ skl_disable_plane(struct intel_plane *plane,
+ 	spin_lock_irqsave(&dev_priv->uncore.lock, irqflags);
+ 
+ 	if (icl_is_hdr_plane(dev_priv, plane_id))
+-		I915_WRITE_FW(PLANE_CUS_CTL(pipe, plane_id), 0);
++		intel_de_write_fw(dev_priv, PLANE_CUS_CTL(pipe, plane_id), 0);
+ 
+ 	skl_write_plane_wm(plane, crtc_state);
+ 
+-	I915_WRITE_FW(PLANE_CTL(pipe, plane_id), 0);
+-	I915_WRITE_FW(PLANE_SURF(pipe, plane_id), 0);
++	intel_de_write_fw(dev_priv, PLANE_CTL(pipe, plane_id), 0);
++	intel_de_write_fw(dev_priv, PLANE_SURF(pipe, plane_id), 0);
+ 
+ 	spin_unlock_irqrestore(&dev_priv->uncore.lock, irqflags);
+ }
+@@ -718,7 +734,7 @@ skl_plane_get_hw_state(struct intel_plane *plane,
+ 	if (!wakeref)
+ 		return false;
+ 
+-	ret = I915_READ(PLANE_CTL(plane->pipe, plane_id)) & PLANE_CTL_ENABLE;
++	ret = intel_de_read(dev_priv, PLANE_CTL(plane->pipe, plane_id)) & PLANE_CTL_ENABLE;
+ 
+ 	*pipe = plane->pipe;
+ 
+@@ -774,23 +790,36 @@ chv_update_csc(const struct intel_plane_state *plane_state)
+ 	if (!fb->format->is_yuv)
+ 		return;
+ 
+-	I915_WRITE_FW(SPCSCYGOFF(plane_id), SPCSC_OOFF(0) | SPCSC_IOFF(0));
+-	I915_WRITE_FW(SPCSCCBOFF(plane_id), SPCSC_OOFF(0) | SPCSC_IOFF(0));
+-	I915_WRITE_FW(SPCSCCROFF(plane_id), SPCSC_OOFF(0) | SPCSC_IOFF(0));
+-
+-	I915_WRITE_FW(SPCSCC01(plane_id), SPCSC_C1(csc[1]) | SPCSC_C0(csc[0]));
+-	I915_WRITE_FW(SPCSCC23(plane_id), SPCSC_C1(csc[3]) | SPCSC_C0(csc[2]));
+-	I915_WRITE_FW(SPCSCC45(plane_id), SPCSC_C1(csc[5]) | SPCSC_C0(csc[4]));
+-	I915_WRITE_FW(SPCSCC67(plane_id), SPCSC_C1(csc[7]) | SPCSC_C0(csc[6]));
+-	I915_WRITE_FW(SPCSCC8(plane_id), SPCSC_C0(csc[8]));
+-
+-	I915_WRITE_FW(SPCSCYGICLAMP(plane_id), SPCSC_IMAX(1023) | SPCSC_IMIN(0));
+-	I915_WRITE_FW(SPCSCCBICLAMP(plane_id), SPCSC_IMAX(512) | SPCSC_IMIN(-512));
+-	I915_WRITE_FW(SPCSCCRICLAMP(plane_id), SPCSC_IMAX(512) | SPCSC_IMIN(-512));
+-
+-	I915_WRITE_FW(SPCSCYGOCLAMP(plane_id), SPCSC_OMAX(1023) | SPCSC_OMIN(0));
+-	I915_WRITE_FW(SPCSCCBOCLAMP(plane_id), SPCSC_OMAX(1023) | SPCSC_OMIN(0));
+-	I915_WRITE_FW(SPCSCCROCLAMP(plane_id), SPCSC_OMAX(1023) | SPCSC_OMIN(0));
++	intel_de_write_fw(dev_priv, SPCSCYGOFF(plane_id),
++			  SPCSC_OOFF(0) | SPCSC_IOFF(0));
++	intel_de_write_fw(dev_priv, SPCSCCBOFF(plane_id),
++			  SPCSC_OOFF(0) | SPCSC_IOFF(0));
++	intel_de_write_fw(dev_priv, SPCSCCROFF(plane_id),
++			  SPCSC_OOFF(0) | SPCSC_IOFF(0));
++
++	intel_de_write_fw(dev_priv, SPCSCC01(plane_id),
++			  SPCSC_C1(csc[1]) | SPCSC_C0(csc[0]));
++	intel_de_write_fw(dev_priv, SPCSCC23(plane_id),
++			  SPCSC_C1(csc[3]) | SPCSC_C0(csc[2]));
++	intel_de_write_fw(dev_priv, SPCSCC45(plane_id),
++			  SPCSC_C1(csc[5]) | SPCSC_C0(csc[4]));
++	intel_de_write_fw(dev_priv, SPCSCC67(plane_id),
++			  SPCSC_C1(csc[7]) | SPCSC_C0(csc[6]));
++	intel_de_write_fw(dev_priv, SPCSCC8(plane_id), SPCSC_C0(csc[8]));
++
++	intel_de_write_fw(dev_priv, SPCSCYGICLAMP(plane_id),
++			  SPCSC_IMAX(1023) | SPCSC_IMIN(0));
++	intel_de_write_fw(dev_priv, SPCSCCBICLAMP(plane_id),
++			  SPCSC_IMAX(512) | SPCSC_IMIN(-512));
++	intel_de_write_fw(dev_priv, SPCSCCRICLAMP(plane_id),
++			  SPCSC_IMAX(512) | SPCSC_IMIN(-512));
++
++	intel_de_write_fw(dev_priv, SPCSCYGOCLAMP(plane_id),
++			  SPCSC_OMAX(1023) | SPCSC_OMIN(0));
++	intel_de_write_fw(dev_priv, SPCSCCBOCLAMP(plane_id),
++			  SPCSC_OMAX(1023) | SPCSC_OMIN(0));
++	intel_de_write_fw(dev_priv, SPCSCCROCLAMP(plane_id),
++			  SPCSC_OMAX(1023) | SPCSC_OMIN(0));
+ }
+ 
+ #define SIN_0 0
+@@ -829,10 +858,10 @@ vlv_update_clrc(const struct intel_plane_state *plane_state)
+ 	}
+ 
+ 	/* FIXME these register are single buffered :( */
+-	I915_WRITE_FW(SPCLRC0(pipe, plane_id),
+-		      SP_CONTRAST(contrast) | SP_BRIGHTNESS(brightness));
+-	I915_WRITE_FW(SPCLRC1(pipe, plane_id),
+-		      SP_SH_SIN(sh_sin) | SP_SH_COS(sh_cos));
++	intel_de_write_fw(dev_priv, SPCLRC0(pipe, plane_id),
++			  SP_CONTRAST(contrast) | SP_BRIGHTNESS(brightness));
++	intel_de_write_fw(dev_priv, SPCLRC1(pipe, plane_id),
++			  SP_SH_SIN(sh_sin) | SP_SH_COS(sh_cos));
+ }
+ 
+ static void
+@@ -1019,10 +1048,8 @@ static void vlv_update_gamma(const struct intel_plane_state *plane_state)
+ 	/* FIXME these register are single buffered :( */
+ 	/* The two end points are implicit (0.0 and 1.0) */
+ 	for (i = 1; i < 8 - 1; i++)
+-		I915_WRITE_FW(SPGAMC(pipe, plane_id, i - 1),
+-			      gamma[i] << 16 |
+-			      gamma[i] << 8 |
+-			      gamma[i]);
++		intel_de_write_fw(dev_priv, SPGAMC(pipe, plane_id, i - 1),
++				  gamma[i] << 16 | gamma[i] << 8 | gamma[i]);
+ }
+ 
+ static void
+@@ -1055,32 +1082,37 @@ vlv_update_plane(struct intel_plane *plane,
+ 
+ 	spin_lock_irqsave(&dev_priv->uncore.lock, irqflags);
+ 
+-	I915_WRITE_FW(SPSTRIDE(pipe, plane_id),
+-		      plane_state->color_plane[0].stride);
+-	I915_WRITE_FW(SPPOS(pipe, plane_id), (crtc_y << 16) | crtc_x);
+-	I915_WRITE_FW(SPSIZE(pipe, plane_id), (crtc_h << 16) | crtc_w);
+-	I915_WRITE_FW(SPCONSTALPHA(pipe, plane_id), 0);
++	intel_de_write_fw(dev_priv, SPSTRIDE(pipe, plane_id),
++			  plane_state->color_plane[0].stride);
++	intel_de_write_fw(dev_priv, SPPOS(pipe, plane_id),
++			  (crtc_y << 16) | crtc_x);
++	intel_de_write_fw(dev_priv, SPSIZE(pipe, plane_id),
++			  (crtc_h << 16) | crtc_w);
++	intel_de_write_fw(dev_priv, SPCONSTALPHA(pipe, plane_id), 0);
+ 
+ 	if (IS_CHERRYVIEW(dev_priv) && pipe == PIPE_B)
+ 		chv_update_csc(plane_state);
+ 
+ 	if (key->flags) {
+-		I915_WRITE_FW(SPKEYMINVAL(pipe, plane_id), key->min_value);
+-		I915_WRITE_FW(SPKEYMSK(pipe, plane_id), key->channel_mask);
+-		I915_WRITE_FW(SPKEYMAXVAL(pipe, plane_id), key->max_value);
++		intel_de_write_fw(dev_priv, SPKEYMINVAL(pipe, plane_id),
++				  key->min_value);
++		intel_de_write_fw(dev_priv, SPKEYMSK(pipe, plane_id),
++				  key->channel_mask);
++		intel_de_write_fw(dev_priv, SPKEYMAXVAL(pipe, plane_id),
++				  key->max_value);
+ 	}
+ 
+-	I915_WRITE_FW(SPLINOFF(pipe, plane_id), linear_offset);
+-	I915_WRITE_FW(SPTILEOFF(pipe, plane_id), (y << 16) | x);
++	intel_de_write_fw(dev_priv, SPLINOFF(pipe, plane_id), linear_offset);
++	intel_de_write_fw(dev_priv, SPTILEOFF(pipe, plane_id), (y << 16) | x);
+ 
+ 	/*
+ 	 * The control register self-arms if the plane was previously
+ 	 * disabled. Try to make the plane enable atomic by writing
+ 	 * the control register just before the surface register.
+ 	 */
+-	I915_WRITE_FW(SPCNTR(pipe, plane_id), sprctl);
+-	I915_WRITE_FW(SPSURF(pipe, plane_id),
+-		      intel_plane_ggtt_offset(plane_state) + sprsurf_offset);
++	intel_de_write_fw(dev_priv, SPCNTR(pipe, plane_id), sprctl);
++	intel_de_write_fw(dev_priv, SPSURF(pipe, plane_id),
++			  intel_plane_ggtt_offset(plane_state) + sprsurf_offset);
+ 
+ 	vlv_update_clrc(plane_state);
+ 	vlv_update_gamma(plane_state);
+@@ -1099,8 +1131,8 @@ vlv_disable_plane(struct intel_plane *plane,
+ 
+ 	spin_lock_irqsave(&dev_priv->uncore.lock, irqflags);
+ 
+-	I915_WRITE_FW(SPCNTR(pipe, plane_id), 0);
+-	I915_WRITE_FW(SPSURF(pipe, plane_id), 0);
++	intel_de_write_fw(dev_priv, SPCNTR(pipe, plane_id), 0);
++	intel_de_write_fw(dev_priv, SPSURF(pipe, plane_id), 0);
+ 
+ 	spin_unlock_irqrestore(&dev_priv->uncore.lock, irqflags);
+ }
+@@ -1120,7 +1152,7 @@ vlv_plane_get_hw_state(struct intel_plane *plane,
+ 	if (!wakeref)
+ 		return false;
+ 
+-	ret = I915_READ(SPCNTR(plane->pipe, plane_id)) & SP_ENABLE;
++	ret = intel_de_read(dev_priv, SPCNTR(plane->pipe, plane_id)) & SP_ENABLE;
+ 
+ 	*pipe = plane->pipe;
+ 
+@@ -1424,19 +1456,17 @@ static void ivb_update_gamma(const struct intel_plane_state *plane_state)
+ 
+ 	/* FIXME these register are single buffered :( */
+ 	for (i = 0; i < 16; i++)
+-		I915_WRITE_FW(SPRGAMC(pipe, i),
+-			      gamma[i] << 20 |
+-			      gamma[i] << 10 |
+-			      gamma[i]);
+-
+-	I915_WRITE_FW(SPRGAMC16(pipe, 0), gamma[i]);
+-	I915_WRITE_FW(SPRGAMC16(pipe, 1), gamma[i]);
+-	I915_WRITE_FW(SPRGAMC16(pipe, 2), gamma[i]);
++		intel_de_write_fw(dev_priv, SPRGAMC(pipe, i),
++				  gamma[i] << 20 | gamma[i] << 10 | gamma[i]);
++
++	intel_de_write_fw(dev_priv, SPRGAMC16(pipe, 0), gamma[i]);
++	intel_de_write_fw(dev_priv, SPRGAMC16(pipe, 1), gamma[i]);
++	intel_de_write_fw(dev_priv, SPRGAMC16(pipe, 2), gamma[i]);
+ 	i++;
+ 
+-	I915_WRITE_FW(SPRGAMC17(pipe, 0), gamma[i]);
+-	I915_WRITE_FW(SPRGAMC17(pipe, 1), gamma[i]);
+-	I915_WRITE_FW(SPRGAMC17(pipe, 2), gamma[i]);
++	intel_de_write_fw(dev_priv, SPRGAMC17(pipe, 0), gamma[i]);
++	intel_de_write_fw(dev_priv, SPRGAMC17(pipe, 1), gamma[i]);
++	intel_de_write_fw(dev_priv, SPRGAMC17(pipe, 2), gamma[i]);
+ 	i++;
+ }
+ 
+@@ -1476,25 +1506,27 @@ ivb_update_plane(struct intel_plane *plane,
+ 
+ 	spin_lock_irqsave(&dev_priv->uncore.lock, irqflags);
+ 
+-	I915_WRITE_FW(SPRSTRIDE(pipe), plane_state->color_plane[0].stride);
+-	I915_WRITE_FW(SPRPOS(pipe), (crtc_y << 16) | crtc_x);
+-	I915_WRITE_FW(SPRSIZE(pipe), (crtc_h << 16) | crtc_w);
++	intel_de_write_fw(dev_priv, SPRSTRIDE(pipe),
++			  plane_state->color_plane[0].stride);
++	intel_de_write_fw(dev_priv, SPRPOS(pipe), (crtc_y << 16) | crtc_x);
++	intel_de_write_fw(dev_priv, SPRSIZE(pipe), (crtc_h << 16) | crtc_w);
+ 	if (IS_IVYBRIDGE(dev_priv))
+-		I915_WRITE_FW(SPRSCALE(pipe), sprscale);
++		intel_de_write_fw(dev_priv, SPRSCALE(pipe), sprscale);
+ 
+ 	if (key->flags) {
+-		I915_WRITE_FW(SPRKEYVAL(pipe), key->min_value);
+-		I915_WRITE_FW(SPRKEYMSK(pipe), key->channel_mask);
+-		I915_WRITE_FW(SPRKEYMAX(pipe), key->max_value);
++		intel_de_write_fw(dev_priv, SPRKEYVAL(pipe), key->min_value);
++		intel_de_write_fw(dev_priv, SPRKEYMSK(pipe),
++				  key->channel_mask);
++		intel_de_write_fw(dev_priv, SPRKEYMAX(pipe), key->max_value);
+ 	}
+ 
+ 	/* HSW consolidates SPRTILEOFF and SPRLINOFF into a single SPROFFSET
+ 	 * register */
+ 	if (IS_HASWELL(dev_priv) || IS_BROADWELL(dev_priv)) {
+-		I915_WRITE_FW(SPROFFSET(pipe), (y << 16) | x);
++		intel_de_write_fw(dev_priv, SPROFFSET(pipe), (y << 16) | x);
  	} else {
--		sdvox = I915_READ(intel_sdvo->sdvo_reg);
-+		sdvox = intel_de_read(dev_priv, intel_sdvo->sdvo_reg);
- 		if (intel_sdvo->port == PORT_B)
- 			sdvox &= SDVOB_PRESERVE_MASK;
- 		else
-@@ -1571,7 +1571,7 @@ bool intel_sdvo_port_enabled(struct drm_i915_private *dev_priv,
- {
- 	u32 val;
+-		I915_WRITE_FW(SPRLINOFF(pipe), linear_offset);
+-		I915_WRITE_FW(SPRTILEOFF(pipe), (y << 16) | x);
++		intel_de_write_fw(dev_priv, SPRLINOFF(pipe), linear_offset);
++		intel_de_write_fw(dev_priv, SPRTILEOFF(pipe), (y << 16) | x);
+ 	}
  
--	val = I915_READ(sdvo_reg);
-+	val = intel_de_read(dev_priv, sdvo_reg);
+ 	/*
+@@ -1502,9 +1534,9 @@ ivb_update_plane(struct intel_plane *plane,
+ 	 * disabled. Try to make the plane enable atomic by writing
+ 	 * the control register just before the surface register.
+ 	 */
+-	I915_WRITE_FW(SPRCTL(pipe), sprctl);
+-	I915_WRITE_FW(SPRSURF(pipe),
+-		      intel_plane_ggtt_offset(plane_state) + sprsurf_offset);
++	intel_de_write_fw(dev_priv, SPRCTL(pipe), sprctl);
++	intel_de_write_fw(dev_priv, SPRSURF(pipe),
++			  intel_plane_ggtt_offset(plane_state) + sprsurf_offset);
  
- 	/* asserts want to know the pipe even if the port is disabled */
- 	if (HAS_PCH_CPT(dev_priv))
-@@ -1614,7 +1614,7 @@ static void intel_sdvo_get_config(struct intel_encoder *encoder,
+ 	ivb_update_gamma(plane_state);
  
- 	pipe_config->output_types |= BIT(INTEL_OUTPUT_SDVO);
+@@ -1521,11 +1553,11 @@ ivb_disable_plane(struct intel_plane *plane,
  
--	sdvox = I915_READ(intel_sdvo->sdvo_reg);
-+	sdvox = intel_de_read(dev_priv, intel_sdvo->sdvo_reg);
+ 	spin_lock_irqsave(&dev_priv->uncore.lock, irqflags);
  
- 	ret = intel_sdvo_get_input_timing(intel_sdvo, &dtd);
- 	if (!ret) {
-@@ -1741,7 +1741,7 @@ static void intel_disable_sdvo(struct intel_encoder *encoder,
- 		intel_sdvo_set_encoder_power_state(intel_sdvo,
- 						   DRM_MODE_DPMS_OFF);
+-	I915_WRITE_FW(SPRCTL(pipe), 0);
++	intel_de_write_fw(dev_priv, SPRCTL(pipe), 0);
+ 	/* Disable the scaler */
+ 	if (IS_IVYBRIDGE(dev_priv))
+-		I915_WRITE_FW(SPRSCALE(pipe), 0);
+-	I915_WRITE_FW(SPRSURF(pipe), 0);
++		intel_de_write_fw(dev_priv, SPRSCALE(pipe), 0);
++	intel_de_write_fw(dev_priv, SPRSURF(pipe), 0);
  
--	temp = I915_READ(intel_sdvo->sdvo_reg);
-+	temp = intel_de_read(dev_priv, intel_sdvo->sdvo_reg);
+ 	spin_unlock_irqrestore(&dev_priv->uncore.lock, irqflags);
+ }
+@@ -1544,7 +1576,7 @@ ivb_plane_get_hw_state(struct intel_plane *plane,
+ 	if (!wakeref)
+ 		return false;
  
- 	temp &= ~SDVO_ENABLE;
- 	intel_sdvo_write_sdvox(intel_sdvo, temp);
-@@ -1798,7 +1798,7 @@ static void intel_enable_sdvo(struct intel_encoder *encoder,
- 	int i;
- 	bool success;
+-	ret =  I915_READ(SPRCTL(plane->pipe)) & SPRITE_ENABLE;
++	ret =  intel_de_read(dev_priv, SPRCTL(plane->pipe)) & SPRITE_ENABLE;
  
--	temp = I915_READ(intel_sdvo->sdvo_reg);
-+	temp = intel_de_read(dev_priv, intel_sdvo->sdvo_reg);
- 	temp |= SDVO_ENABLE;
- 	intel_sdvo_write_sdvox(intel_sdvo, temp);
+ 	*pipe = plane->pipe;
+ 
+@@ -1710,10 +1742,8 @@ static void g4x_update_gamma(const struct intel_plane_state *plane_state)
+ 	/* FIXME these register are single buffered :( */
+ 	/* The two end points are implicit (0.0 and 1.0) */
+ 	for (i = 1; i < 8 - 1; i++)
+-		I915_WRITE_FW(DVSGAMC_G4X(pipe, i - 1),
+-			      gamma[i] << 16 |
+-			      gamma[i] << 8 |
+-			      gamma[i]);
++		intel_de_write_fw(dev_priv, DVSGAMC_G4X(pipe, i - 1),
++				  gamma[i] << 16 | gamma[i] << 8 | gamma[i]);
+ }
+ 
+ static void ilk_sprite_linear_gamma(u16 gamma[17])
+@@ -1741,14 +1771,12 @@ static void ilk_update_gamma(const struct intel_plane_state *plane_state)
+ 
+ 	/* FIXME these register are single buffered :( */
+ 	for (i = 0; i < 16; i++)
+-		I915_WRITE_FW(DVSGAMC_ILK(pipe, i),
+-			      gamma[i] << 20 |
+-			      gamma[i] << 10 |
+-			      gamma[i]);
+-
+-	I915_WRITE_FW(DVSGAMCMAX_ILK(pipe, 0), gamma[i]);
+-	I915_WRITE_FW(DVSGAMCMAX_ILK(pipe, 1), gamma[i]);
+-	I915_WRITE_FW(DVSGAMCMAX_ILK(pipe, 2), gamma[i]);
++		intel_de_write_fw(dev_priv, DVSGAMC_ILK(pipe, i),
++				  gamma[i] << 20 | gamma[i] << 10 | gamma[i]);
++
++	intel_de_write_fw(dev_priv, DVSGAMCMAX_ILK(pipe, 0), gamma[i]);
++	intel_de_write_fw(dev_priv, DVSGAMCMAX_ILK(pipe, 1), gamma[i]);
++	intel_de_write_fw(dev_priv, DVSGAMCMAX_ILK(pipe, 2), gamma[i]);
+ 	i++;
+ }
+ 
+@@ -1788,28 +1816,30 @@ g4x_update_plane(struct intel_plane *plane,
+ 
+ 	spin_lock_irqsave(&dev_priv->uncore.lock, irqflags);
+ 
+-	I915_WRITE_FW(DVSSTRIDE(pipe), plane_state->color_plane[0].stride);
+-	I915_WRITE_FW(DVSPOS(pipe), (crtc_y << 16) | crtc_x);
+-	I915_WRITE_FW(DVSSIZE(pipe), (crtc_h << 16) | crtc_w);
+-	I915_WRITE_FW(DVSSCALE(pipe), dvsscale);
++	intel_de_write_fw(dev_priv, DVSSTRIDE(pipe),
++			  plane_state->color_plane[0].stride);
++	intel_de_write_fw(dev_priv, DVSPOS(pipe), (crtc_y << 16) | crtc_x);
++	intel_de_write_fw(dev_priv, DVSSIZE(pipe), (crtc_h << 16) | crtc_w);
++	intel_de_write_fw(dev_priv, DVSSCALE(pipe), dvsscale);
+ 
+ 	if (key->flags) {
+-		I915_WRITE_FW(DVSKEYVAL(pipe), key->min_value);
+-		I915_WRITE_FW(DVSKEYMSK(pipe), key->channel_mask);
+-		I915_WRITE_FW(DVSKEYMAX(pipe), key->max_value);
++		intel_de_write_fw(dev_priv, DVSKEYVAL(pipe), key->min_value);
++		intel_de_write_fw(dev_priv, DVSKEYMSK(pipe),
++				  key->channel_mask);
++		intel_de_write_fw(dev_priv, DVSKEYMAX(pipe), key->max_value);
+ 	}
+ 
+-	I915_WRITE_FW(DVSLINOFF(pipe), linear_offset);
+-	I915_WRITE_FW(DVSTILEOFF(pipe), (y << 16) | x);
++	intel_de_write_fw(dev_priv, DVSLINOFF(pipe), linear_offset);
++	intel_de_write_fw(dev_priv, DVSTILEOFF(pipe), (y << 16) | x);
+ 
+ 	/*
+ 	 * The control register self-arms if the plane was previously
+ 	 * disabled. Try to make the plane enable atomic by writing
+ 	 * the control register just before the surface register.
+ 	 */
+-	I915_WRITE_FW(DVSCNTR(pipe), dvscntr);
+-	I915_WRITE_FW(DVSSURF(pipe),
+-		      intel_plane_ggtt_offset(plane_state) + dvssurf_offset);
++	intel_de_write_fw(dev_priv, DVSCNTR(pipe), dvscntr);
++	intel_de_write_fw(dev_priv, DVSSURF(pipe),
++			  intel_plane_ggtt_offset(plane_state) + dvssurf_offset);
+ 
+ 	if (IS_G4X(dev_priv))
+ 		g4x_update_gamma(plane_state);
+@@ -1829,10 +1859,10 @@ g4x_disable_plane(struct intel_plane *plane,
+ 
+ 	spin_lock_irqsave(&dev_priv->uncore.lock, irqflags);
+ 
+-	I915_WRITE_FW(DVSCNTR(pipe), 0);
++	intel_de_write_fw(dev_priv, DVSCNTR(pipe), 0);
+ 	/* Disable the scaler */
+-	I915_WRITE_FW(DVSSCALE(pipe), 0);
+-	I915_WRITE_FW(DVSSURF(pipe), 0);
++	intel_de_write_fw(dev_priv, DVSSCALE(pipe), 0);
++	intel_de_write_fw(dev_priv, DVSSURF(pipe), 0);
+ 
+ 	spin_unlock_irqrestore(&dev_priv->uncore.lock, irqflags);
+ }
+@@ -1851,7 +1881,7 @@ g4x_plane_get_hw_state(struct intel_plane *plane,
+ 	if (!wakeref)
+ 		return false;
+ 
+-	ret = I915_READ(DVSCNTR(plane->pipe)) & DVS_ENABLE;
++	ret = intel_de_read(dev_priv, DVSCNTR(plane->pipe)) & DVS_ENABLE;
+ 
+ 	*pipe = plane->pipe;
  
 -- 
 2.20.1
