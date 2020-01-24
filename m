@@ -2,49 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 033D2148F8E
-	for <lists+intel-gfx@lfdr.de>; Fri, 24 Jan 2020 21:46:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 32D72148FCE
+	for <lists+intel-gfx@lfdr.de>; Fri, 24 Jan 2020 21:53:21 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 61D466E443;
-	Fri, 24 Jan 2020 20:46:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 54FA06E44A;
+	Fri, 24 Jan 2020 20:53:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6F3536E443
- for <intel-gfx@lists.freedesktop.org>; Fri, 24 Jan 2020 20:46:28 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 24 Jan 2020 12:46:28 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,358,1574150400"; d="scan'208";a="260364707"
-Received: from fmsmsx104.amr.corp.intel.com ([10.18.124.202])
- by fmsmga002.fm.intel.com with ESMTP; 24 Jan 2020 12:46:27 -0800
-Received: from fmsmsx162.amr.corp.intel.com (10.18.125.71) by
- fmsmsx104.amr.corp.intel.com (10.18.124.202) with Microsoft SMTP Server (TLS)
- id 14.3.439.0; Fri, 24 Jan 2020 12:46:27 -0800
-Received: from fmsmsx117.amr.corp.intel.com ([169.254.3.3]) by
- fmsmsx162.amr.corp.intel.com ([169.254.5.207]) with mapi id 14.03.0439.000;
- Fri, 24 Jan 2020 12:46:27 -0800
-From: "Souza, Jose" <jose.souza@intel.com>
-To: "Roper, Matthew D" <matthew.d.roper@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [Intel-gfx] [RFC] drm/i915/tgl: Suppress DC5/DC6 around DSB usage
-Thread-Index: AQHV0vAlrJKPmT1LMky2wYSV/VEUT6f6zuwA
-Date: Fri, 24 Jan 2020 20:46:27 +0000
-Message-ID: <7fb58d3ba56312cb5732be144635b745f451fe15.camel@intel.com>
-References: <20200124195351.534551-1-matthew.d.roper@intel.com>
-In-Reply-To: <20200124195351.534551-1-matthew.d.roper@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.24.12.218]
-Content-ID: <1D30948ACA5EBC4A9036CB39924BA838@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id BBE596E448;
+ Fri, 24 Jan 2020 20:53:17 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id B2370A0138;
+ Fri, 24 Jan 2020 20:53:17 +0000 (UTC)
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [RFC] drm/i915/tgl: Suppress DC5/DC6 around DSB
- usage
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Auld" <matthew.auld@intel.com>
+Date: Fri, 24 Jan 2020 20:53:17 -0000
+Message-ID: <157989919770.15091.13659843933378588576@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200124164131.39591-1-matthew.auld@intel.com>
+In-Reply-To: <20200124164131.39591-1-matthew.auld@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBp?=
+ =?utf-8?q?915/tests/gem=5Fexec=5Fbig=3A_prefer_PROT=5FWRITE?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,82 +38,31 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gRnJpLCAyMDIwLTAxLTI0IGF0IDExOjUzIC0wODAwLCBNYXR0IFJvcGVyIHdyb3RlOg0KPiBU
-aGVyZSBhcmUgcmVwb3J0cyBvZiB1bmV4cGVjdGVkIERTQiBidXN5L3RpbWVvdXQgaGFwcGVuaW5n
-IGFmdGVyIElHVA0KPiB0ZXN0cyBmaW5pc2ggcnVubmluZyB0aGF0IGFwcGFyZW50bHkgZ28gYXdh
-eSB3aGVuIHRoZSBETUMgZmlybXdhcmUNCj4gaXNuJ3QNCj4gbG9hZGVkLiAgVGhlIGJzcGVjIGRv
-ZXNuJ3Qgc2F5IGFueXRoaW5nIHNwZWNpZmljIGFib3V0IERTQiBuZWVkaW5nIHVzDQo+IHRvDQo+
-IGV4aXQgREM1L0RDNiwgYnV0IGxldCdzIHRyeSBhZGRpbmcgRFNCIHVzYWdlIHRvIHRoZSAiREMg
-b2ZmIiBsaXN0IGFuZA0KPiBzZWUgaWYgdGhhdCBjaGFuZ2VzIHRoZSBiZWhhdmlvci4NCg0KTWFr
-ZXMgc2Vuc2UgaWYgaXQgZml4IHRoZSBpc3N1ZSBtZW50aW9uZWQNCg0KUmV2aWV3ZWQtYnk6IEpv
-c8OpIFJvYmVydG8gZGUgU291emEgPGpvc2Uuc291emFAaW50ZWwuY29tPg0KDQo+IA0KPiBDYzog
-U3dhdGkgU2hhcm1hIDxzd2F0aTIuc2hhcm1hQGludGVsLmNvbT4NCj4gU2lnbmVkLW9mZi1ieTog
-TWF0dCBSb3BlciA8bWF0dGhldy5kLnJvcGVyQGludGVsLmNvbT4NCj4gLS0tDQo+ICBkcml2ZXJz
-L2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXlfcG93ZXIuYyB8IDMgKysrDQo+ICBk
-cml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXlfcG93ZXIuaCB8IDEgKw0K
-PiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kc2IuYyAgICAgICAgICAgfCA3
-ICsrKystLS0NCj4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHNiLmggICAg
-ICAgICAgIHwgMSArDQo+ICA0IGZpbGVzIGNoYW5nZWQsIDkgaW5zZXJ0aW9ucygrKSwgMyBkZWxl
-dGlvbnMoLSkNCj4gDQo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5
-L2ludGVsX2Rpc3BsYXlfcG93ZXIuYw0KPiBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkv
-aW50ZWxfZGlzcGxheV9wb3dlci5jDQo+IGluZGV4IDc2MWJlOWZjYWYxMC4uOTllNmFmZGEyZGI5
-IDEwMDY0NA0KPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3Bs
-YXlfcG93ZXIuYw0KPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rp
-c3BsYXlfcG93ZXIuYw0KPiBAQCAtMTUwLDYgKzE1MCw4IEBAIGludGVsX2Rpc3BsYXlfcG93ZXJf
-ZG9tYWluX3N0cihlbnVtDQo+IGludGVsX2Rpc3BsYXlfcG93ZXJfZG9tYWluIGRvbWFpbikNCj4g
-IAkJcmV0dXJuICJHVF9JUlEiOw0KPiAgCWNhc2UgUE9XRVJfRE9NQUlOX0RQTExfRENfT0ZGOg0K
-PiAgCQlyZXR1cm4gIkRQTExfRENfT0ZGIjsNCj4gKwljYXNlIFBPV0VSX0RPTUFJTl9EU0I6DQo+
-ICsJCXJldHVybiAiRFNCIjsNCj4gIAlkZWZhdWx0Og0KPiAgCQlNSVNTSU5HX0NBU0UoZG9tYWlu
-KTsNCj4gIAkJcmV0dXJuICI/IjsNCj4gQEAgLTI2NzksNiArMjY4MSw3IEBAIHZvaWQgaW50ZWxf
-ZGlzcGxheV9wb3dlcl9wdXQoc3RydWN0DQo+IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2LA0K
-PiAgCUJJVF9VTEwoUE9XRVJfRE9NQUlOX0FVWF9BKSB8CQkJXA0KPiAgCUJJVF9VTEwoUE9XRVJf
-RE9NQUlOX0FVWF9CKSB8CQkJXA0KPiAgCUJJVF9VTEwoUE9XRVJfRE9NQUlOX0FVWF9DKSB8CQkJ
-XA0KPiArCUJJVF9VTEwoUE9XRVJfRE9NQUlOX0RTQikgfAkJCVwNCj4gIAlCSVRfVUxMKFBPV0VS
-X0RPTUFJTl9JTklUKSkNCj4gIA0KPiAgI2RlZmluZSBUR0xfRERJX0lPX0RfVEMxX1BPV0VSX0RP
-TUFJTlMgKAlcDQo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2lu
-dGVsX2Rpc3BsYXlfcG93ZXIuaA0KPiBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50
-ZWxfZGlzcGxheV9wb3dlci5oDQo+IGluZGV4IDI2MDhhNjVhZjdmYS4uNWU4MTM2YzY1ZTAyIDEw
-MDY0NA0KPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXlf
-cG93ZXIuaA0KPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3Bs
-YXlfcG93ZXIuaA0KPiBAQCAtNzcsNiArNzcsNyBAQCBlbnVtIGludGVsX2Rpc3BsYXlfcG93ZXJf
-ZG9tYWluIHsNCj4gIAlQT1dFUl9ET01BSU5fR1RfSVJRLA0KPiAgCVBPV0VSX0RPTUFJTl9EUExM
-X0RDX09GRiwNCj4gIAlQT1dFUl9ET01BSU5fSU5JVCwNCj4gKwlQT1dFUl9ET01BSU5fRFNCLA0K
-PiAgDQo+ICAJUE9XRVJfRE9NQUlOX05VTSwNCj4gIH07DQo+IGRpZmYgLS1naXQgYS9kcml2ZXJz
-L2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RzYi5jDQo+IGIvZHJpdmVycy9ncHUvZHJtL2k5
-MTUvZGlzcGxheS9pbnRlbF9kc2IuYw0KPiBpbmRleCBhZGEwMDZhNjkwZGYuLjE1NmE5NGExYmUw
-NSAxMDA2NDQNCj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kc2Iu
-Yw0KPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RzYi5jDQo+IEBA
-IC0xMDMsNyArMTAzLDYgQEAgaW50ZWxfZHNiX2dldChzdHJ1Y3QgaW50ZWxfY3J0YyAqY3J0YykN
-Cj4gIAlzdHJ1Y3QgZHJtX2k5MTVfZ2VtX29iamVjdCAqb2JqOw0KPiAgCXN0cnVjdCBpOTE1X3Zt
-YSAqdm1hOw0KPiAgCXUzMiAqYnVmOw0KPiAtCWludGVsX3dha2VyZWZfdCB3YWtlcmVmOw0KPiAg
-DQo+ICAJaWYgKCFIQVNfRFNCKGk5MTUpKQ0KPiAgCQlyZXR1cm4gZHNiOw0KPiBAQCAtMTExLDcg
-KzExMCw3IEBAIGludGVsX2RzYl9nZXQoc3RydWN0IGludGVsX2NydGMgKmNydGMpDQo+ICAJaWYg
-KGRzYi0+cmVmY291bnQrKyAhPSAwKQ0KPiAgCQlyZXR1cm4gZHNiOw0KPiAgDQo+IC0Jd2FrZXJl
-ZiA9IGludGVsX3J1bnRpbWVfcG1fZ2V0KCZpOTE1LT5ydW50aW1lX3BtKTsNCj4gKwlkc2ItPndh
-a2VyZWYgPSBpbnRlbF9kaXNwbGF5X3Bvd2VyX2dldChpOTE1LCBQT1dFUl9ET01BSU5fRFNCKTsN
-Cg0KDQoNCj4gIA0KPiAgCW9iaiA9IGk5MTVfZ2VtX29iamVjdF9jcmVhdGVfaW50ZXJuYWwoaTkx
-NSwgRFNCX0JVRl9TSVpFKTsNCj4gIAlpZiAoSVNfRVJSKG9iaikpIHsNCj4gQEAgLTE0NCw3ICsx
-NDMsNyBAQCBpbnRlbF9kc2JfZ2V0KHN0cnVjdCBpbnRlbF9jcnRjICpjcnRjKQ0KPiAgCSAqIGFs
-cmVhZHkgYmUgbG9nZ2VkIGFib3ZlLg0KPiAgCSAqLw0KPiAgDQo+IC0JaW50ZWxfcnVudGltZV9w
-bV9wdXQoJmk5MTUtPnJ1bnRpbWVfcG0sIHdha2VyZWYpOw0KPiArCWludGVsX2Rpc3BsYXlfcG93
-ZXJfcHV0KGk5MTUsIFBPV0VSX0RPTUFJTl9EU0IsIGRzYi0+d2FrZXJlZik7DQo+ICANCj4gIAly
-ZXR1cm4gZHNiOw0KPiAgfQ0KPiBAQCAtMTc0LDYgKzE3Myw4IEBAIHZvaWQgaW50ZWxfZHNiX3B1
-dChzdHJ1Y3QgaW50ZWxfZHNiICpkc2IpDQo+ICAJCWRzYi0+ZnJlZV9wb3MgPSAwOw0KPiAgCQlk
-c2ItPmluc19zdGFydF9vZmZzZXQgPSAwOw0KPiAgCX0NCj4gKw0KPiArCWludGVsX2Rpc3BsYXlf
-cG93ZXJfcHV0KGk5MTUsIFBPV0VSX0RPTUFJTl9EU0IsIGRzYi0+d2FrZXJlZik7DQo+ICB9DQo+
-ICANCj4gIC8qKg0KPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9p
-bnRlbF9kc2IuaA0KPiBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHNiLmgN
-Cj4gaW5kZXggMzk1ZWY5Y2U1NThlLi5iN2VhNmUyNGE3OGMgMTAwNjQ0DQo+IC0tLSBhL2RyaXZl
-cnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHNiLmgNCj4gKysrIGIvZHJpdmVycy9ncHUv
-ZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kc2IuaA0KPiBAQCAtMjYsNiArMjYsNyBAQCBzdHJ1Y3Qg
-aW50ZWxfZHNiIHsNCj4gIAllbnVtIGRzYl9pZCBpZDsNCj4gIAl1MzIgKmNtZF9idWY7DQo+ICAJ
-c3RydWN0IGk5MTVfdm1hICp2bWE7DQo+ICsJaW50ZWxfd2FrZXJlZl90IHdha2VyZWY7DQo+ICAN
-Cj4gIAkvKg0KPiAgCSAqIGZyZWVfcG9zIHdpbGwgcG9pbnQgdGhlIGZpcnN0IGZyZWUgZW50cnkg
-cG9zaXRpb24NCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-CkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpo
-dHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+== Series Details ==
+
+Series: i915/tests/gem_exec_big: prefer PROT_WRITE
+URL   : https://patchwork.freedesktop.org/series/72544/
+State : failure
+
+== Summary ==
+
+Applying: i915/tests/gem_exec_big: prefer PROT_WRITE
+error: sha1 information is lacking or useless (tests/i915/gem_exec_big.c).
+error: could not build fake ancestor
+hint: Use 'git am --show-current-patch' to see the failed patch
+Patch failed at 0001 i915/tests/gem_exec_big: prefer PROT_WRITE
+When you have resolved this problem, run "git am --continue".
+If you prefer to skip this patch, run "git am --skip" instead.
+To restore the original branch and stop patching, run "git am --abort".
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
