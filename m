@@ -2,40 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 43FC4148DA6
-	for <lists+intel-gfx@lfdr.de>; Fri, 24 Jan 2020 19:15:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2637A148DB4
+	for <lists+intel-gfx@lfdr.de>; Fri, 24 Jan 2020 19:22:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 89BDE6E429;
-	Fri, 24 Jan 2020 18:15:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 13BA86E42F;
+	Fri, 24 Jan 2020 18:21:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C3B1C6E429
- for <intel-gfx@lists.freedesktop.org>; Fri, 24 Jan 2020 18:15:34 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-X-Amp-File-Uploaded: False
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 24 Jan 2020 10:15:34 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,358,1574150400"; d="scan'208";a="276384615"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by FMSMGA003.fm.intel.com with SMTP; 24 Jan 2020 10:15:31 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 24 Jan 2020 20:15:30 +0200
-Date: Fri, 24 Jan 2020 20:15:30 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-Message-ID: <20200124181530.GA13686@intel.com>
-References: <20200124172301.16484-1-stanislav.lisovskiy@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 137666E41A;
+ Fri, 24 Jan 2020 18:21:57 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 0B3DEA0087;
+ Fri, 24 Jan 2020 18:21:57 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200124172301.16484-1-stanislav.lisovskiy@intel.com>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH v3] drm/i915: Fix inconsistance between
- pfit.enable and scaler freeing
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Fri, 24 Jan 2020 18:21:57 -0000
+Message-ID: <157989011702.15090.5993056222586241841@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200124125627.125042-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200124125627.125042-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5B1/2=5D_drm=3A_Release_filp_before_global_l?=
+ =?utf-8?q?ock_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,91 +39,169 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Jan 24, 2020 at 07:23:01PM +0200, Stanislav Lisovskiy wrote:
-> Despite that during hw readout we seem to have scalers assigned
-> to pipes, then call atomic_setup_scalers, at the commit stage in
-> skl_update_scaler there is a check, that if we have fb src and
-> dest of same size, we stage freeing of that scaler.
-> =
+== Series Details ==
 
-> However we don't update pfit.enabled flag then, which makes
-> the state inconsistent, which in turn triggers a WARN_ON
-> in skl_pfit_enable, because we have pfit enabled,
-> but no assigned scaler.
+Series: series starting with [1/2] drm: Release filp before global lock (rev2)
+URL   : https://patchwork.freedesktop.org/series/72530/
+State : success
 
-And the reason for not having updates pfit.enabled is that the
-the modeset was forced by a cdclk change and thus the full state
-recomputation never happened and we're left with the inherited
-pfit.enabled.
+== Summary ==
 
-> =
+CI Bug Log - changes from CI_DRM_7809 -> Patchwork_16254
+====================================================
 
-> To me this looks weird that we kind of do the decision
-> to use or not use the scaler at skl_update_scaler stage
-> but not in intel_atomic_setup_scalers, moreover
-> not updating the whole state consistently.
-> =
+Summary
+-------
 
-> This fix is to not free the scaler if we have pfit.enabled
-> flag set, so that the state is now consistent
-> and the warnings are gone.
-> =
+  **SUCCESS**
 
-> v2: - Put pfit.enable check into crtc specific place
->       (Ville Syrj=E4l=E4)
-> =
+  No regressions found.
 
-> Bugzilla: https://gitlab.freedesktop.org/drm/intel/issues/577
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16254/index.html
 
-Closes: ...
+Known issues
+------------
+
+  Here are the changes found in Patchwork_16254 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_module_load@reload-with-fault-injection:
+    - fi-skl-lmem:        [PASS][1] -> [INCOMPLETE][2] ([i915#671])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7809/fi-skl-lmem/igt@i915_module_load@reload-with-fault-injection.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16254/fi-skl-lmem/igt@i915_module_load@reload-with-fault-injection.html
+
+  * igt@prime_self_import@basic-llseek-bad:
+    - fi-tgl-y:           [PASS][3] -> [DMESG-WARN][4] ([CI#94] / [i915#402]) +1 similar issue
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7809/fi-tgl-y/igt@prime_self_import@basic-llseek-bad.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16254/fi-tgl-y/igt@prime_self_import@basic-llseek-bad.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_getparams_basic@basic-eu-total:
+    - fi-tgl-y:           [DMESG-WARN][5] ([CI#94] / [i915#402]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7809/fi-tgl-y/igt@i915_getparams_basic@basic-eu-total.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16254/fi-tgl-y/igt@i915_getparams_basic@basic-eu-total.html
+
+  * igt@i915_module_load@reload-with-fault-injection:
+    - fi-kbl-7500u:       [INCOMPLETE][7] ([i915#879]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7809/fi-kbl-7500u/igt@i915_module_load@reload-with-fault-injection.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16254/fi-kbl-7500u/igt@i915_module_load@reload-with-fault-injection.html
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-kbl-x1275:       [DMESG-WARN][9] ([i915#889]) -> [PASS][10] +1 similar issue
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7809/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16254/fi-kbl-x1275/igt@i915_pm_rpm@module-reload.html
+
+  * igt@i915_selftest@live_blt:
+    - fi-hsw-4770:        [DMESG-FAIL][11] ([i915#553] / [i915#725]) -> [PASS][12]
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7809/fi-hsw-4770/igt@i915_selftest@live_blt.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16254/fi-hsw-4770/igt@i915_selftest@live_blt.html
+
+  * igt@i915_selftest@live_sanitycheck:
+    - fi-kbl-x1275:       [INCOMPLETE][13] -> [PASS][14]
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7809/fi-kbl-x1275/igt@i915_selftest@live_sanitycheck.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16254/fi-kbl-x1275/igt@i915_selftest@live_sanitycheck.html
+
+  * igt@kms_chamelium@hdmi-crc-fast:
+    - fi-skl-6700k2:      [FAIL][15] ([i915#410]) -> [PASS][16] +3 similar issues
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7809/fi-skl-6700k2/igt@kms_chamelium@hdmi-crc-fast.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16254/fi-skl-6700k2/igt@kms_chamelium@hdmi-crc-fast.html
+
+  * igt@kms_chamelium@hdmi-hpd-fast:
+    - fi-kbl-7500u:       [FAIL][17] ([fdo#111096] / [i915#323]) -> [PASS][18]
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7809/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16254/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+
+  
+#### Warnings ####
+
+  * igt@gem_exec_parallel@contexts:
+    - fi-byt-j1900:       [TIMEOUT][19] ([fdo#112271]) -> [FAIL][20] ([i915#694])
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7809/fi-byt-j1900/igt@gem_exec_parallel@contexts.html
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16254/fi-byt-j1900/igt@gem_exec_parallel@contexts.html
+
+  * igt@i915_selftest@live_blt:
+    - fi-hsw-4770r:       [DMESG-FAIL][21] ([i915#725]) -> [DMESG-FAIL][22] ([i915#553] / [i915#725])
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7809/fi-hsw-4770r/igt@i915_selftest@live_blt.html
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16254/fi-hsw-4770r/igt@i915_selftest@live_blt.html
+
+  * igt@kms_chamelium@dp-hpd-fast:
+    - fi-skl-6700k2:      [FAIL][23] ([i915#410]) -> [SKIP][24] ([fdo#109271]) +4 similar issues
+   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7809/fi-skl-6700k2/igt@kms_chamelium@dp-hpd-fast.html
+   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16254/fi-skl-6700k2/igt@kms_chamelium@dp-hpd-fast.html
+
+  * igt@kms_chamelium@vga-edid-read:
+    - fi-tgl-y:           [SKIP][25] ([CI#94] / [fdo#111827] / [i915#1017]) -> [SKIP][26] ([CI#94] / [fdo#111827]) +8 similar issues
+   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7809/fi-tgl-y/igt@kms_chamelium@vga-edid-read.html
+   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16254/fi-tgl-y/igt@kms_chamelium@vga-edid-read.html
+
+  * igt@kms_force_connector_basic@force-load-detect:
+    - fi-tgl-y:           [SKIP][27] ([CI#94] / [fdo#109285] / [i915#1017]) -> [SKIP][28] ([CI#94] / [fdo#109285])
+   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7809/fi-tgl-y/igt@kms_force_connector_basic@force-load-detect.html
+   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16254/fi-tgl-y/igt@kms_force_connector_basic@force-load-detect.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [CI#94]: https://gitlab.freedesktop.org/gfx-ci/i915-infra/issues/94
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#109284]: https://bugs.freedesktop.org/show_bug.cgi?id=109284
+  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
+  [fdo#109315]: https://bugs.freedesktop.org/show_bug.cgi?id=109315
+  [fdo#111096]: https://bugs.freedesktop.org/show_bug.cgi?id=111096
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [fdo#112271]: https://bugs.freedesktop.org/show_bug.cgi?id=112271
+  [i915#1017]: https://gitlab.freedesktop.org/drm/intel/issues/1017
+  [i915#323]: https://gitlab.freedesktop.org/drm/intel/issues/323
+  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+  [i915#410]: https://gitlab.freedesktop.org/drm/intel/issues/410
+  [i915#553]: https://gitlab.freedesktop.org/drm/intel/issues/553
+  [i915#668]: https://gitlab.freedesktop.org/drm/intel/issues/668
+  [i915#671]: https://gitlab.freedesktop.org/drm/intel/issues/671
+  [i915#694]: https://gitlab.freedesktop.org/drm/intel/issues/694
+  [i915#725]: https://gitlab.freedesktop.org/drm/intel/issues/725
+  [i915#879]: https://gitlab.freedesktop.org/drm/intel/issues/879
+  [i915#889]: https://gitlab.freedesktop.org/drm/intel/issues/889
 
 
-> Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_display.c | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
-> =
+Participating hosts (51 -> 40)
+------------------------------
 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/d=
-rm/i915/display/intel_display.c
-> index 5768cfcf71c4..cd242d91a924 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -6037,7 +6037,8 @@ int skl_update_scaler_crtc(struct intel_crtc_state =
-*state)
->  	const struct drm_display_mode *adjusted_mode =3D &state->hw.adjusted_mo=
-de;
->  	bool need_scaler =3D false;
->  =
+  Missing    (11): fi-bdw-samus fi-bdw-5557u fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-gdg-551 fi-blb-e6850 fi-byt-n2820 fi-byt-clapper fi-skl-6600u 
 
-> -	if (state->output_format =3D=3D INTEL_OUTPUT_FORMAT_YCBCR420)
-> +	if (state->output_format =3D=3D INTEL_OUTPUT_FORMAT_YCBCR420 ||
-> +	    state->pch_pfit.enabled)
 
-Hmm, no hw.enable check here for the existing case either. Shouldn't
-matter now that I made the crtc disable clear the entire state as well.
-Oh, it was handled via that odd force_detach stuff it seems. Whatever.
+Build changes
+-------------
 
-Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_7809 -> Patchwork_16254
 
->  		need_scaler =3D true;
->  =
+  CI-20190529: 20190529
+  CI_DRM_7809: 861f608ce6e3c1a1ad320a5d18055601cff36e45 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5382: 8dbe5ce61baa2d563d4dd7c56a018bb1e1077467 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_16254: f92078334c36120e838d994cd16bf7d1d9907d09 @ git://anongit.freedesktop.org/gfx-ci/linux
 
->  	return skl_update_scaler(state, !state->hw.active, SKL_CRTC_INDEX,
-> -- =
 
-> 2.24.1.485.gad05a3d8e5
+== Linux commits ==
 
--- =
+f92078334c36 drm: Avoid drm_global_mutex for simple inc/dec of dev->open_count
+d491a21e0356 drm: Release filp before global lock
 
-Ville Syrj=E4l=E4
-Intel
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16254/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
