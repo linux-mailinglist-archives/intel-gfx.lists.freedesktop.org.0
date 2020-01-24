@@ -1,41 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2CFDE147EC8
-	for <lists+intel-gfx@lfdr.de>; Fri, 24 Jan 2020 11:33:54 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A7B3147F03
+	for <lists+intel-gfx@lfdr.de>; Fri, 24 Jan 2020 11:52:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 79F8F72348;
-	Fri, 24 Jan 2020 10:33:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BBEC66E30F;
+	Fri, 24 Jan 2020 10:51:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3852C72348
- for <intel-gfx@lists.freedesktop.org>; Fri, 24 Jan 2020 10:33:51 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 24 Jan 2020 02:33:50 -0800
-X-IronPort-AV: E=Sophos;i="5.70,357,1574150400"; d="scan'208";a="230239520"
-Received: from wmszyfel-mobl2.ger.corp.intel.com (HELO [10.252.10.247])
- ([10.252.10.247])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/AES256-SHA;
- 24 Jan 2020 02:33:49 -0800
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-References: <20200123224459.38128-1-chris@chris-wilson.co.uk>
- <20200123224459.38128-2-chris@chris-wilson.co.uk>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <5c1cdaf2-ffec-3db7-2720-cb932cef1631@linux.intel.com>
-Date: Fri, 24 Jan 2020 10:33:48 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0B3116E30D
+ for <intel-gfx@lists.freedesktop.org>; Fri, 24 Jan 2020 10:51:54 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 19993023-1500050 
+ for multiple; Fri, 24 Jan 2020 10:51:40 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri, 24 Jan 2020 10:51:37 +0000
+Message-Id: <20200124105138.40660-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.25.0
 MIME-Version: 1.0
-In-Reply-To: <20200123224459.38128-2-chris@chris-wilson.co.uk>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915: Wait on vma activity before
- taking the mutex
+Subject: [Intel-gfx] [PATCH 1/2] drm/i915: Tighten atomicity of
+ i915_active_acquire vs i915_active_release
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,59 +37,72 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+As we use a mutex to serialise the first acquire (as it may be a lengthy
+operation), but only an atomic decrement for the release, we have to
+be careful in case a second thread races and completes both
+acquire/release as the first finishes its acquire.
 
-On 23/01/2020 22:44, Chris Wilson wrote:
-> Optimistically wait for the prior vma activity before taking the mutex
-> to minimise the mutex hold time while unbinding. We will then verify the
-> vma is idle with a second wait under the mutex to ensure it is safe to
-> unbind.
-> 
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> ---
->   drivers/gpu/drm/i915/i915_vma.c | 9 +++++++--
->   1 file changed, 7 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/i915_vma.c b/drivers/gpu/drm/i915/i915_vma.c
-> index 4999882fbceb..84e03da0d5f9 100644
-> --- a/drivers/gpu/drm/i915/i915_vma.c
-> +++ b/drivers/gpu/drm/i915/i915_vma.c
-> @@ -1279,16 +1279,21 @@ int i915_vma_unbind(struct i915_vma *vma)
->   		/* XXX not always required: nop_clear_range */
->   		wakeref = intel_runtime_pm_get(&vm->i915->runtime_pm);
->   
-> +	/* Optimistic wait before taking the mutex */
-> +	err = i915_vma_sync(vma);
-> +	if (err)
-> +		goto out_rpm;
-> +
->   	err = mutex_lock_interruptible(&vm->mutex);
->   	if (err)
-> -		return err;
-> +		goto out_rpm;
->   
->   	err = __i915_vma_unbind(vma);
->   	mutex_unlock(&vm->mutex);
->   
-> +out_rpm:
->   	if (wakeref)
->   		intel_runtime_pm_put(&vm->i915->runtime_pm, wakeref);
-> -
->   	return err;
->   }
->   
-> 
+Thread A			Thread B
+i915_active_acquire		i915_active_acquire
+  atomic_read() == 0		  atomic_read() == 0
+  mutex_lock()			  mutex_lock()
+				  atomic_read() == 0
+				    ref->active();
+				  atomic_inc()
+				  mutex_unlock()
+  atomic_read() == 1
+				i915_active_release
+				  atomic_dec_and_test() -> 0
+				    ref->retire()
+  atomic_inc() -> 1
+  mutex_unlock()
 
-Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+So thread A has acquired the ref->active_count but since the ref was
+still active at the time, it did not initialise it. By switching the
+check inside the mutex to an atomic increment only if already active, we
+close the race.
 
-Regards,
+Fixes: c9ad602feabe ("drm/i915: Split i915_active.mutex into an irq-safe spinlock for the rbtree")
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+---
+ drivers/gpu/drm/i915/i915_active.c | 16 +++++++++-------
+ 1 file changed, 9 insertions(+), 7 deletions(-)
 
-Tvrtko
+diff --git a/drivers/gpu/drm/i915/i915_active.c b/drivers/gpu/drm/i915/i915_active.c
+index ace55d5d4ca7..9d6830885d2e 100644
+--- a/drivers/gpu/drm/i915/i915_active.c
++++ b/drivers/gpu/drm/i915/i915_active.c
+@@ -416,13 +416,15 @@ int i915_active_acquire(struct i915_active *ref)
+ 	if (err)
+ 		return err;
+ 
+-	if (!atomic_read(&ref->count) && ref->active)
+-		err = ref->active(ref);
+-	if (!err) {
+-		spin_lock_irq(&ref->tree_lock); /* vs __active_retire() */
+-		debug_active_activate(ref);
+-		atomic_inc(&ref->count);
+-		spin_unlock_irq(&ref->tree_lock);
++	if (likely(!i915_active_acquire_if_busy(ref))) {
++		if (ref->active)
++			err = ref->active(ref);
++		if (!err) {
++			spin_lock_irq(&ref->tree_lock); /* __active_retire() */
++			debug_active_activate(ref);
++			atomic_inc(&ref->count);
++			spin_unlock_irq(&ref->tree_lock);
++		}
+ 	}
+ 
+ 	mutex_unlock(&ref->mutex);
+-- 
+2.25.0
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
