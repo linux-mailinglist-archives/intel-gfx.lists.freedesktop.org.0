@@ -1,36 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E63914926B
-	for <lists+intel-gfx@lfdr.de>; Sat, 25 Jan 2020 01:56:23 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5213E14927C
+	for <lists+intel-gfx@lfdr.de>; Sat, 25 Jan 2020 02:13:31 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3682872BF0;
-	Sat, 25 Jan 2020 00:56:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DD3BE6E075;
+	Sat, 25 Jan 2020 01:13:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 201BB72BF1
- for <intel-gfx@lists.freedesktop.org>; Sat, 25 Jan 2020 00:56:17 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 24 Jan 2020 16:56:16 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,359,1574150400"; d="scan'208";a="426790561"
-Received: from dceraolo-linux.fm.intel.com ([10.1.27.145])
- by fmsmga005.fm.intel.com with ESMTP; 24 Jan 2020 16:56:16 -0800
-From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri, 24 Jan 2020 16:55:37 -0800
-Message-Id: <20200125005537.31860-7-daniele.ceraolospurio@intel.com>
-X-Mailer: git-send-email 2.24.1
-In-Reply-To: <20200125005537.31860-1-daniele.ceraolospurio@intel.com>
-References: <20200125005537.31860-1-daniele.ceraolospurio@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 6A2B56E072;
+ Sat, 25 Jan 2020 01:13:26 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 5FD6DA0096;
+ Sat, 25 Jan 2020 01:13:26 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [RFC 6/6] drm/i915/guc: Stop inheriting from
- execlists_set_default_submission
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Sat, 25 Jan 2020 01:13:26 -0000
+Message-ID: <157991480636.29038.2497584747856375170@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200124230656.687503-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200124230656.687503-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_Remove_=27prefault=5Fdisable=27_modparam?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -43,227 +38,142 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Copy the submit_request function (with a small simpliication) and set
-the engine flags independently. No preemption or semaphore support yet
-on the GuC side.
+== Series Details ==
 
-Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Cc: John Harrison <John.C.Harrison@Intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
----
- drivers/gpu/drm/i915/gt/intel_lrc.c           | 30 +++-----
- drivers/gpu/drm/i915/gt/intel_lrc.h           |  5 +-
- .../gpu/drm/i915/gt/uc/intel_guc_submission.c | 72 +++++++++++++++----
- 3 files changed, 70 insertions(+), 37 deletions(-)
+Series: drm/i915: Remove 'prefault_disable' modparam
+URL   : https://patchwork.freedesktop.org/series/72557/
+State : failure
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-index 3178aa38deec..b730d6593da0 100644
---- a/drivers/gpu/drm/i915/gt/intel_lrc.c
-+++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-@@ -2756,19 +2756,6 @@ static void queue_request(struct intel_engine_cs *engine,
- 	set_bit(I915_FENCE_FLAG_PQUEUE, &rq->fence.flags);
- }
- 
--static void __submit_queue_imm(struct intel_engine_cs *engine)
--{
--	struct intel_engine_execlists * const execlists = &engine->execlists;
--
--	if (reset_in_progress(execlists))
--		return; /* defer until we restart the engine following reset */
--
--	if (execlists->tasklet.func == execlists_submission_tasklet)
--		__execlists_submission_tasklet(engine);
--	else
--		tasklet_hi_schedule(&execlists->tasklet);
--}
--
- static void submit_queue(struct intel_engine_cs *engine,
- 			 const struct i915_request *rq)
- {
-@@ -2778,7 +2765,10 @@ static void submit_queue(struct intel_engine_cs *engine,
- 		return;
- 
- 	execlists->queue_priority_hint = rq_prio(rq);
--	__submit_queue_imm(engine);
-+
-+	/* if reset in progress, defer until we restart the engine */
-+	if (!reset_in_progress(execlists))
-+		__execlists_submission_tasklet(engine);
- }
- 
- static bool ancestor_on_hold(const struct intel_engine_cs *engine,
-@@ -3694,9 +3684,9 @@ static void execlists_reset_finish(struct intel_engine_cs *engine)
- 		     atomic_read(&execlists->tasklet.count));
- }
- 
--static int gen8_emit_bb_start_noarb(struct i915_request *rq,
--				    u64 offset, u32 len,
--				    const unsigned int flags)
-+int gen8_emit_bb_start_noarb(struct i915_request *rq,
-+			     u64 offset, u32 len,
-+			     const unsigned int flags)
- {
- 	u32 *cs;
- 
-@@ -4180,7 +4170,7 @@ static void execlists_park(struct intel_engine_cs *engine)
- 	cancel_timer(&engine->execlists.preempt);
- }
- 
--void intel_execlists_set_default_submission(struct intel_engine_cs *engine)
-+static void execlists_set_default_submission(struct intel_engine_cs *engine)
- {
- 	engine->submit_request = execlists_submit_request;
- 	engine->schedule = i915_schedule;
-@@ -4242,7 +4232,7 @@ logical_ring_default_vfuncs(struct intel_engine_cs *engine)
- 	if (INTEL_GEN(engine->i915) >= 12)
- 		engine->emit_fini_breadcrumb = gen12_emit_fini_breadcrumb;
- 
--	engine->set_default_submission = intel_execlists_set_default_submission;
-+	engine->set_default_submission = execlists_set_default_submission;
- 
- 	if (INTEL_GEN(engine->i915) < 11) {
- 		engine->irq_enable = gen8_logical_ring_enable_irq;
-@@ -5266,7 +5256,7 @@ bool
- intel_engine_in_execlists_submission_mode(const struct intel_engine_cs *engine)
- {
- 	return engine->set_default_submission ==
--	       intel_execlists_set_default_submission;
-+	       execlists_set_default_submission;
- }
- 
- #if IS_ENABLED(CONFIG_DRM_I915_SELFTEST)
-diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.h b/drivers/gpu/drm/i915/gt/intel_lrc.h
-index 17cabe4b9898..441cea5150d2 100644
---- a/drivers/gpu/drm/i915/gt/intel_lrc.h
-+++ b/drivers/gpu/drm/i915/gt/intel_lrc.h
-@@ -86,6 +86,9 @@ void intel_logical_ring_cleanup(struct intel_engine_cs *engine);
- 
- int intel_execlists_submission_setup(struct intel_engine_cs *engine);
- 
-+int gen8_emit_bb_start_noarb(struct i915_request *rq,
-+			     u64 offset, u32 len,
-+			     const unsigned int flags);
- int gen8_emit_flush(struct i915_request *request, u32 mode);
- int gen11_emit_flush_render(struct i915_request *request, u32 mode);
- int gen12_emit_flush_render(struct i915_request *request, u32 mode);
-@@ -101,8 +104,6 @@ int gen12_emit_flush_render(struct i915_request *request, u32 mode);
- #define LRC_PPHWSP_SCRATCH		0x34
- #define LRC_PPHWSP_SCRATCH_ADDR		(LRC_PPHWSP_SCRATCH * sizeof(u32))
- 
--void intel_execlists_set_default_submission(struct intel_engine_cs *engine);
--
- int intel_lr_context_objects_create(struct intel_context *ce,
- 				    struct intel_engine_cs *engine);
- void intel_lr_context_objects_destroy(struct intel_context *ce);
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-index 03e0a8180f77..8e958dc9d624 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-@@ -441,6 +441,54 @@ static const struct intel_context_ops guc_context_ops = {
- 	.destroy = guc_submission_context_destroy,
- };
- 
-+static inline bool
-+reset_in_progress(const struct intel_engine_execlists *execlists)
-+{
-+	return unlikely(!__tasklet_is_enabled(&execlists->tasklet));
-+}
-+
-+static void queue_request(struct intel_engine_cs *engine,
-+			  struct i915_request *rq)
-+{
-+	GEM_BUG_ON(!list_empty(&rq->sched.link));
-+	list_add_tail(&rq->sched.link,
-+		      i915_sched_lookup_priolist(engine, rq_prio(rq)));
-+	set_bit(I915_FENCE_FLAG_PQUEUE, &rq->fence.flags);
-+}
-+
-+static void submit_queue(struct intel_engine_cs *engine,
-+			 const struct i915_request *rq)
-+{
-+	struct intel_engine_execlists *execlists = &engine->execlists;
-+
-+	if (rq_prio(rq) <= execlists->queue_priority_hint)
-+		return;
-+
-+	execlists->queue_priority_hint = rq_prio(rq);
-+
-+	/* if reset in progress, defer until we restart the engine */
-+	if (!reset_in_progress(execlists))
-+		tasklet_hi_schedule(&execlists->tasklet);
-+}
-+
-+static void guc_submit_request(struct i915_request *request)
-+{
-+	struct intel_engine_cs *engine = request->engine;
-+	unsigned long flags;
-+
-+	/* Will be called from irq-context when using foreign fences. */
-+	spin_lock_irqsave(&engine->active.lock, flags);
-+
-+	queue_request(engine, request);
-+
-+	GEM_BUG_ON(RB_EMPTY_ROOT(&engine->execlists.queue.rb_root));
-+	GEM_BUG_ON(list_empty(&request->sched.link));
-+
-+	submit_queue(engine, request);
-+
-+	spin_unlock_irqrestore(&engine->active.lock, flags);
-+}
-+
- static void guc_submission_tasklet(unsigned long data)
- {
- 	struct intel_engine_cs * const engine = (struct intel_engine_cs *)data;
-@@ -834,22 +882,10 @@ static void guc_interrupts_release(struct intel_gt *gt)
- 
- static void guc_set_default_submission(struct intel_engine_cs *engine)
- {
--	/*
--	 * We inherit a bunch of functions from execlists that we'd like
--	 * to keep using:
--	 *
--	 *    engine->submit_request = execlists_submit_request;
--	 *    engine->cancel_requests = execlists_cancel_requests;
--	 *    engine->schedule = execlists_schedule;
--	 *
--	 * But we need to override the actual submission backend in order
--	 * to talk to the GuC.
--	 */
--	intel_execlists_set_default_submission(engine);
--
-+	engine->submit_request = guc_submit_request;
-+	engine->schedule = i915_schedule;
- 	engine->execlists.tasklet.func = guc_submission_tasklet;
- 
--	/* do not use execlists park/unpark */
- 	engine->park = engine->unpark = NULL;
- 
- 	engine->reset.prepare = guc_reset_prepare;
-@@ -857,7 +893,13 @@ static void guc_set_default_submission(struct intel_engine_cs *engine)
- 	engine->reset.cancel = guc_reset_cancel;
- 	engine->reset.finish = guc_reset_finish;
- 
--	engine->flags &= ~I915_ENGINE_SUPPORTS_STATS;
-+	if (INTEL_GEN(engine->i915) >= 12)
-+		engine->flags |= I915_ENGINE_HAS_RELATIVE_MMIO;
-+
-+	/* no preempt support yet, so always use the noarb variant of bb_start */
-+	GEM_BUG_ON(intel_engine_has_preemption(engine));
-+	engine->emit_bb_start = gen8_emit_bb_start_noarb;
-+
- 	engine->flags |= I915_ENGINE_NEEDS_BREADCRUMB_TASKLET;
- }
- 
--- 
-2.24.1
+== Summary ==
 
+CI Bug Log - changes from CI_DRM_7811 -> Patchwork_16266
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with Patchwork_16266 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_16266, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16266/index.html
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_16266:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@i915_selftest@live_perf:
+    - fi-bsw-n3050:       [PASS][1] -> [INCOMPLETE][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7811/fi-bsw-n3050/igt@i915_selftest@live_perf.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16266/fi-bsw-n3050/igt@i915_selftest@live_perf.html
+
+  
+#### Warnings ####
+
+  * igt@i915_selftest@live_gem_contexts:
+    - fi-byt-n2820:       [DMESG-FAIL][3] ([i915#722]) -> [DMESG-FAIL][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7811/fi-byt-n2820/igt@i915_selftest@live_gem_contexts.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16266/fi-byt-n2820/igt@i915_selftest@live_gem_contexts.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_16266 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live_blt:
+    - fi-hsw-4770r:       [PASS][5] -> [DMESG-FAIL][6] ([i915#563])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7811/fi-hsw-4770r/igt@i915_selftest@live_blt.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16266/fi-hsw-4770r/igt@i915_selftest@live_blt.html
+    - fi-ivb-3770:        [PASS][7] -> [DMESG-FAIL][8] ([i915#725])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7811/fi-ivb-3770/igt@i915_selftest@live_blt.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16266/fi-ivb-3770/igt@i915_selftest@live_blt.html
+
+  * igt@kms_chamelium@hdmi-hpd-fast:
+    - fi-kbl-7500u:       [PASS][9] -> [FAIL][10] ([fdo#111407])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7811/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16266/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_exec_parallel@fds:
+    - fi-hsw-peppy:       [INCOMPLETE][11] ([i915#694]) -> [PASS][12]
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7811/fi-hsw-peppy/igt@gem_exec_parallel@fds.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16266/fi-hsw-peppy/igt@gem_exec_parallel@fds.html
+
+  * igt@i915_module_load@reload-with-fault-injection:
+    - fi-cfl-8700k:       [DMESG-WARN][13] ([i915#889]) -> [PASS][14]
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7811/fi-cfl-8700k/igt@i915_module_load@reload-with-fault-injection.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16266/fi-cfl-8700k/igt@i915_module_load@reload-with-fault-injection.html
+
+  * igt@i915_selftest@live_blt:
+    - fi-hsw-4770:        [DMESG-FAIL][15] ([i915#725]) -> [PASS][16]
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7811/fi-hsw-4770/igt@i915_selftest@live_blt.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16266/fi-hsw-4770/igt@i915_selftest@live_blt.html
+
+  * igt@kms_chamelium@common-hpd-after-suspend:
+    - fi-icl-u2:          [FAIL][17] ([i915#217]) -> [PASS][18]
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7811/fi-icl-u2/igt@kms_chamelium@common-hpd-after-suspend.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16266/fi-icl-u2/igt@kms_chamelium@common-hpd-after-suspend.html
+
+  
+  [fdo#111407]: https://bugs.freedesktop.org/show_bug.cgi?id=111407
+  [i915#217]: https://gitlab.freedesktop.org/drm/intel/issues/217
+  [i915#563]: https://gitlab.freedesktop.org/drm/intel/issues/563
+  [i915#694]: https://gitlab.freedesktop.org/drm/intel/issues/694
+  [i915#722]: https://gitlab.freedesktop.org/drm/intel/issues/722
+  [i915#725]: https://gitlab.freedesktop.org/drm/intel/issues/725
+  [i915#889]: https://gitlab.freedesktop.org/drm/intel/issues/889
+
+
+Participating hosts (47 -> 41)
+------------------------------
+
+  Additional (2): fi-bsw-kefka fi-skl-6600u 
+  Missing    (8): fi-bdw-5557u fi-hsw-4200u fi-bsw-cyan fi-bwr-2160 fi-ctg-p8600 fi-byt-clapper fi-bdw-samus fi-kbl-r 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_7811 -> Patchwork_16266
+
+  CI-20190529: 20190529
+  CI_DRM_7811: f528982f5c837f075e82ca544df010ca5183064a @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5384: fd6896567f7d612c76207970376d4f1e634ded55 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_16266: b2ee7ba70792eca795c33a2d3c3a55a348424701 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+b2ee7ba70792 drm/i915: Remove 'prefault_disable' modparam
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16266/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
