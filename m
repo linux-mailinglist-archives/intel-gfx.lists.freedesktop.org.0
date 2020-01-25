@@ -1,40 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6BAFF149628
-	for <lists+intel-gfx@lfdr.de>; Sat, 25 Jan 2020 15:55:27 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id BD9B314962D
+	for <lists+intel-gfx@lfdr.de>; Sat, 25 Jan 2020 16:02:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8FA526E870;
-	Sat, 25 Jan 2020 14:55:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B19536E873;
+	Sat, 25 Jan 2020 15:02:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2DE2B6E870
- for <intel-gfx@lists.freedesktop.org>; Sat, 25 Jan 2020 14:55:23 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 84ED76E873
+ for <intel-gfx@lists.freedesktop.org>; Sat, 25 Jan 2020 15:02:26 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 25 Jan 2020 06:55:22 -0800
-X-IronPort-AV: E=Sophos;i="5.70,361,1574150400"; d="scan'208";a="221320764"
-Received: from akoshoki-mobl.ccr.corp.intel.com (HELO localhost)
- ([10.252.51.198])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 25 Jan 2020 06:55:20 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Chris Wilson <chris@chris-wilson.co.uk>
-In-Reply-To: <20200124223019.GA3529069@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1579871655.git.jani.nikula@intel.com>
- <157987409843.2524.2998401254997919669@skylake-alporthouse-com>
- <20200124223019.GA3529069@intel.com>
-Date: Sat, 25 Jan 2020 16:55:18 +0200
-Message-ID: <877e1fd1rd.fsf@intel.com>
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 25 Jan 2020 07:02:23 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,361,1574150400"; d="scan'208";a="216869479"
+Received: from aaltar-mobl.ger.corp.intel.com (HELO [10.252.36.159])
+ ([10.252.36.159])
+ by orsmga007.jf.intel.com with ESMTP; 25 Jan 2020 07:02:22 -0800
+From: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
+To: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>,
+ Chris Wilson <chris.p.wilson@intel.com>, intel-gfx@lists.freedesktop.org
+References: <20200124013701.40609-1-umesh.nerlige.ramappa@intel.com>
+ <0f632875-e78a-22f1-2259-d65fa5e74ef5@intel.com>
+Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way,
+ Swindon SN3 1RJ
+Message-ID: <dcc5909a-f0e5-6572-b563-0ad4011bbbbe@intel.com>
+Date: Sat, 25 Jan 2020 17:02:21 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.4.1
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [RFC 00/33] drm/i915/display: mass conversion to
- intel_de_*() register accessors
+In-Reply-To: <0f632875-e78a-22f1-2259-d65fa5e74ef5@intel.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/perf: Fix OA context id overlap
+ with idle context id
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,67 +50,75 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, Lucas De Marchi <lucas.demarchi@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 24 Jan 2020, Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
-> On Fri, Jan 24, 2020 at 01:54:58PM +0000, Chris Wilson wrote:
->> Quoting Jani Nikula (2020-01-24 13:25:21)
->> > Hey all,
->> > 
->> > So I sent [1] to convert some forcewake register accessors... but what if we
->> > just ripped off the bandage once and for all? It's going to hurt, a lot, but
->> > we'd get it done.
->> > 
->> > This completely rids us of the "dev_priv" dependency in display/.
->> > 
->> > All the patches here are per-file and independent of each other. We could also
->> > pick and apply the ones that are least likely to conflict.
->> > 
->> > Opinions?
->> > 
->> > 
->> > BR,
->> > Jani.
->> > 
->> > 
->> > PS. I didn't bother looking at the checkpatch warnings this may generate at this
->> > point. I just used the --linux-spacing option for spatch, and closed my eyes. I
->> > completely scripted the generation of the series, apart from just a couple of
->> > build fixes.
->> 
->> Yup. Suck it all in, clean up with the usual code refreshes.
->> Schadenfreude-by: Chris Wilson <chris@chris-wilson.co.uk>
->> 
->> I've looked at a couple of patches to confirm that it does appear purely
->> mechanical,
->> Acked-by: Chris Wilson <chris@chris-wilson.co.uk>
->
-> Since it is purely mechanical with coccinelle, why not to make in only one patch?
-
-Because such a mega patch would conflict before being able to
-merge. You'd have to block everything else. I don't think I'd be able to
-merge these in one go either even if we wanted to.
-
-> Anyway:
-> Acked-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-
-Thanks,
-Jani.
-
->
->> -Chris
->> _______________________________________________
->> Intel-gfx mailing list
->> Intel-gfx@lists.freedesktop.org
->> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
--- 
-Jani Nikula, Intel Open Source Graphics Center
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gMjUvMDEvMjAyMCAwMzozNywgTGlvbmVsIExhbmR3ZXJsaW4gd3JvdGU6Cj4gT24gMjQvMDEv
+MjAyMCAwMzozNywgVW1lc2ggTmVybGlnZSBSYW1hcHBhIHdyb3RlOgo+PiBFbmdpbmUgY29udGV4
+dCBwaW5uZWQgaW4gcGVyZiBPQSB3YXMgc2V0IHRvIHNhbWUgY29udGV4dCBpZCBhcwo+PiB0aGUg
+aWRsZSBjb250ZXh0LiBTZXQgdGhlIGNvbnRleHQgaWQgdG8gYW4gdW51c2VkIHZhbHVlLgo+Pgo+
+PiBDbGVhciB0aGUgc3cgY29udGV4dCBpZCBmaWVsZCBpbiBscmMgZGVzY3JpcHRvciBiZWZvcmUg
+T1Jpbmcgd2l0aAo+PiBjZS0+dGFnIChDaHJpcykKPj4KPj4gRml4ZXM6IGh0dHBzOi8vZ2l0bGFi
+LmZyZWVkZXNrdG9wLm9yZy9kcm0vaW50ZWwvaXNzdWVzLzc1NgoKSSB0aGluayB0aGUgRml4ZXM6
+IHRhZyBpcyB0byBwb2ludCB0byBhbm90aGVyIGNvbW1pdC4gQW5kIEkgdGhpbmsgeW91IAp3YW50
+IHRvIHBvaW50IHRvIHRoZSBjb21taXQgdGhhdCB5b3UncmUgZml4aW5nLgoKTm90IHN1cmUgd2hh
+dCB5b3Ugc2hvdWxkIHVzZSBnaXRsYWIgTVJzLgoKLUxpb25lbAoKPj4gU2lnbmVkLW9mZi1ieTog
+VW1lc2ggTmVybGlnZSBSYW1hcHBhIDx1bWVzaC5uZXJsaWdlLnJhbWFwcGFAaW50ZWwuY29tPgo+
+PiAtLS0KPj4gwqAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfbHJjLmMgfCAyICstCj4+
+IMKgIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfcGVyZi5jwqDCoMKgIHwgOSArKysrKysrLS0K
+Pj4gwqAgMiBmaWxlcyBjaGFuZ2VkLCA4IGluc2VydGlvbnMoKyksIDMgZGVsZXRpb25zKC0pCj4+
+Cj4+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRlbF9scmMuYyAKPj4g
+Yi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRlbF9scmMuYwo+PiBpbmRleCBhMTNhOGM0YjY1
+YWIuLmNmNmM0M2JkNTQwYSAxMDA2NDQKPj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3Qv
+aW50ZWxfbHJjLmMKPj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfbHJjLmMK
+Pj4gQEAgLTEyMTEsMTIgKzEyMTEsMTIgQEAgX19leGVjbGlzdHNfc2NoZWR1bGVfaW4oc3RydWN0
+IGk5MTVfcmVxdWVzdCAqcnEpCj4+IMKgwqDCoMKgwqAgaWYgKElTX0VOQUJMRUQoQ09ORklHX0RS
+TV9JOTE1X0RFQlVHX0dFTSkpCj4+IMKgwqDCoMKgwqDCoMKgwqDCoCBleGVjbGlzdHNfY2hlY2tf
+Y29udGV4dChjZSwgZW5naW5lKTsKPj4gwqAgK8KgwqDCoCBjZS0+bHJjX2Rlc2MgJj0gfkdFTk1B
+U0tfVUxMKDQ3LCAzNyk7Cj4+IMKgwqDCoMKgwqAgaWYgKGNlLT50YWcpIHsKPj4gwqDCoMKgwqDC
+oMKgwqDCoMKgIC8qIFVzZSBhIGZpeGVkIHRhZyBmb3IgT0EgYW5kIGZyaWVuZHMgKi8KPj4gwqDC
+oMKgwqDCoMKgwqDCoMKgIGNlLT5scmNfZGVzYyB8PSAodTY0KWNlLT50YWcgPDwgMzI7Cj4+IMKg
+wqDCoMKgwqAgfSBlbHNlIHsKPj4gwqDCoMKgwqDCoMKgwqDCoMKgIC8qIFdlIGRvbid0IG5lZWQg
+YSBzdHJpY3QgbWF0Y2hpbmcgdGFnLCBqdXN0IGRpZmZlcmVudCAKPj4gdmFsdWVzICovCj4+IC3C
+oMKgwqDCoMKgwqDCoCBjZS0+bHJjX2Rlc2MgJj0gfkdFTk1BU0tfVUxMKDQ3LCAzNyk7Cj4gSSBn
+dWVzcyB5b3UgY2FuIHJlbW92ZSB0aGUgbGluZSBqdXN0IGFib3ZlLgo+PiDCoMKgwqDCoMKgwqDC
+oMKgwqAgY2UtPmxyY19kZXNjIHw9Cj4+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgICh1NjQp
+KCsrZW5naW5lLT5jb250ZXh0X3RhZyAlIE5VTV9DT05URVhUX1RBRykgPDwKPj4gwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqAgR0VOMTFfU1dfQ1RYX0lEX1NISUZUOwo+PiBkaWZmIC0tZ2l0IGEv
+ZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9wZXJmLmMgCj4+IGIvZHJpdmVycy9ncHUvZHJtL2k5
+MTUvaTkxNV9wZXJmLmMKPj4gaW5kZXggM2M0NjQ3MDU0NTU3Li41YmQ4NzhjNjQ1MDQgMTAwNjQ0
+Cj4+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfcGVyZi5jCj4+ICsrKyBiL2RyaXZl
+cnMvZ3B1L2RybS9pOTE1L2k5MTVfcGVyZi5jCj4+IEBAIC0xMzIzLDcgKzEzMjMsMTIgQEAgc3Rh
+dGljIGludCBvYV9nZXRfcmVuZGVyX2N0eF9pZChzdHJ1Y3QgCj4+IGk5MTVfcGVyZl9zdHJlYW0g
+KnN0cmVhbSkKPj4gwqDCoMKgwqDCoCBjYXNlIDEyOiB7Cj4+IMKgwqDCoMKgwqDCoMKgwqDCoCBz
+dHJlYW0tPnNwZWNpZmljX2N0eF9pZF9tYXNrID0KPj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqAgKCgxVSA8PCBHRU4xMV9TV19DVFhfSURfV0lEVEgpIC0gMSkgPDwgCj4+IChHRU4xMV9TV19D
+VFhfSURfU0hJRlQgLSAzMik7Cj4+IC3CoMKgwqDCoMKgwqDCoCBzdHJlYW0tPnNwZWNpZmljX2N0
+eF9pZCA9IHN0cmVhbS0+c3BlY2lmaWNfY3R4X2lkX21hc2s7Cj4+ICvCoMKgwqDCoMKgwqDCoCAv
+KiBQaWNrIGFuIHVudXNlZCBjb250ZXh0IGlkCj4+ICvCoMKgwqDCoMKgwqDCoMKgICogMCAtIChO
+VU1fQ09OVEVYVF9UQUcgLSAxKSBhcmUgdXNlZCBieSBvdGhlciBjb250ZXh0cwo+PiArwqDCoMKg
+wqDCoMKgwqDCoCAqIEdFTjEyX01BWF9DT05URVhUX0hXX0lEICgweDdmZikgaXMgdXNlZCBieSBp
+ZGxlIGNvbnRleHQKPj4gK8KgwqDCoMKgwqDCoMKgwqAgKi8KPj4gK8KgwqDCoMKgwqDCoMKgIHN0
+cmVhbS0+c3BlY2lmaWNfY3R4X2lkID0gKEdFTjEyX01BWF9DT05URVhUX0hXX0lEIC0gMSkgPDwg
+Cj4+IChHRU4xMV9TV19DVFhfSURfU0hJRlQgLSAzMik7Cj4+ICvCoMKgwqDCoMKgwqDCoCBCVUlM
+RF9CVUdfT04oKEdFTjEyX01BWF9DT05URVhUX0hXX0lEIC0gMSkgPCBOVU1fQ09OVEVYVF9UQUcp
+Owo+Cj4KPiBBcmcgeWVhaCwgd2UgY2FuJ3QgdXNlIGFuIGlkIHRoYXQgaGFzIGFsbCBiaXRzIHRv
+IDEgYmVjYXVzZSB0aGF0IAo+IG1hdGNoZXMgdGhlIGlkbGUgdmFsdWUgaW4gdGhlIE9BIHJlcG9y
+dHMgOi8KPgo+IFRoaXMgYWxzbyBhZmZlY3RzIGdlbjgtMTAgY2FzZXMgKGFmYWlrKS4KPgo+Cj4g
+VGhhbmtzIGZvciBzcG90dGluZyB0aGlzIQo+Cj4KPiAtTGlvbmVsCj4KPgo+PiDCoMKgwqDCoMKg
+wqDCoMKgwqAgYnJlYWs7Cj4+IMKgwqDCoMKgwqAgfQo+PiDCoCBAQCAtMTMzMSw3ICsxMzM2LDcg
+QEAgc3RhdGljIGludCBvYV9nZXRfcmVuZGVyX2N0eF9pZChzdHJ1Y3QgCj4+IGk5MTVfcGVyZl9z
+dHJlYW0gKnN0cmVhbSkKPj4gwqDCoMKgwqDCoMKgwqDCoMKgIE1JU1NJTkdfQ0FTRShJTlRFTF9H
+RU4oY2UtPmVuZ2luZS0+aTkxNSkpOwo+PiDCoMKgwqDCoMKgIH0KPj4gwqAgLcKgwqDCoCBjZS0+
+dGFnID0gc3RyZWFtLT5zcGVjaWZpY19jdHhfaWRfbWFzazsKPj4gK8KgwqDCoCBjZS0+dGFnID0g
+c3RyZWFtLT5zcGVjaWZpY19jdHhfaWQ7Cj4+IMKgIMKgwqDCoMKgwqAgRFJNX0RFQlVHX0RSSVZF
+UigiZmlsdGVyaW5nIG9uIGN0eF9pZD0weCV4IGN0eF9pZF9tYXNrPTB4JXhcbiIsCj4+IMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgc3RyZWFtLT5zcGVjaWZpY19jdHhfaWQsCj4KPgo+IF9f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCj4gSW50ZWwtZ2Z4
+IG1haWxpbmcgbGlzdAo+IEludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKPiBodHRwczov
+L2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAoKCl9fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWls
+aW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
