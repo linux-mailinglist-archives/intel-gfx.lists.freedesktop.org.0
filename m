@@ -2,42 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC7E914A0A9
-	for <lists+intel-gfx@lfdr.de>; Mon, 27 Jan 2020 10:25:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 12D8F14A0B8
+	for <lists+intel-gfx@lfdr.de>; Mon, 27 Jan 2020 10:28:32 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 355986E4B1;
-	Mon, 27 Jan 2020 09:25:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5BDE66EA97;
+	Mon, 27 Jan 2020 09:28:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AE2526E4B1
- for <intel-gfx@lists.freedesktop.org>; Mon, 27 Jan 2020 09:25:55 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8BB476EA97;
+ Mon, 27 Jan 2020 09:28:29 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by orsmga106.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 27 Jan 2020 01:16:35 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,369,1574150400"; d="scan'208";a="228907373"
-Received: from avaish1-mobl1.gar.corp.intel.com (HELO [10.252.52.26])
- ([10.252.52.26])
- by orsmga003.jf.intel.com with ESMTP; 27 Jan 2020 01:16:33 -0800
-To: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-References: <20200124013701.40609-1-umesh.nerlige.ramappa@intel.com>
- <0f632875-e78a-22f1-2259-d65fa5e74ef5@intel.com>
- <20200127053052.GB35901@orsosgc001.amr.corp.intel.com>
-From: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
-Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way,
- Swindon SN3 1RJ
-Message-ID: <fcd5d9ab-6687-890a-c872-ea048718792d@intel.com>
-Date: Mon, 27 Jan 2020 11:16:32 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.4.1
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 27 Jan 2020 01:17:38 -0800
+X-IronPort-AV: E=Sophos;i="5.70,369,1574150400"; d="scan'208";a="221679165"
+Received: from jpanina-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.52.12])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 27 Jan 2020 01:17:35 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>,
+ Wambui Karuga <wambui.karugax@gmail.com>, airlied@linux.ie, daniel@ffwll.ch,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ joonas.lahtinen@linux.intel.com, linux-kernel@vger.kernel.org,
+ rodrigo.vivi@intel.com
+In-Reply-To: <157996851987.2524.2577321446102599250@skylake-alporthouse-com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20200122125750.9737-1-wambui.karugax@gmail.com>
+ <157996851987.2524.2577321446102599250@skylake-alporthouse-com>
+Date: Mon, 27 Jan 2020 11:17:37 +0200
+Message-ID: <871rrlcl72.fsf@intel.com>
 MIME-Version: 1.0
-In-Reply-To: <20200127053052.GB35901@orsosgc001.amr.corp.intel.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/perf: Fix OA context id overlap
- with idle context id
+Subject: Re: [Intel-gfx] [PATCH 0/2] drm/i915/gem: conversion to new drm
+ logging macros
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,81 +49,47 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, Chris Wilson <chris.p.wilson@intel.com>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gMjcvMDEvMjAyMCAwNzozMCwgVW1lc2ggTmVybGlnZSBSYW1hcHBhIHdyb3RlOgo+IE9uIFNh
-dCwgSmFuIDI1LCAyMDIwIGF0IDAzOjM3OjM4QU0gKzAyMDAsIExpb25lbCBMYW5kd2VybGluIHdy
-b3RlOgo+PiBPbiAyNC8wMS8yMDIwIDAzOjM3LCBVbWVzaCBOZXJsaWdlIFJhbWFwcGEgd3JvdGU6
-Cj4+PiBFbmdpbmUgY29udGV4dCBwaW5uZWQgaW4gcGVyZiBPQSB3YXMgc2V0IHRvIHNhbWUgY29u
-dGV4dCBpZCBhcwo+Pj4gdGhlIGlkbGUgY29udGV4dC4gU2V0IHRoZSBjb250ZXh0IGlkIHRvIGFu
-IHVudXNlZCB2YWx1ZS4KPj4+Cj4+PiBDbGVhciB0aGUgc3cgY29udGV4dCBpZCBmaWVsZCBpbiBs
-cmMgZGVzY3JpcHRvciBiZWZvcmUgT1Jpbmcgd2l0aAo+Pj4gY2UtPnRhZyAoQ2hyaXMpCj4+Pgo+
-Pj4gRml4ZXM6IGh0dHBzOi8vZ2l0bGFiLmZyZWVkZXNrdG9wLm9yZy9kcm0vaW50ZWwvaXNzdWVz
-Lzc1Ngo+Pj4gU2lnbmVkLW9mZi1ieTogVW1lc2ggTmVybGlnZSBSYW1hcHBhIDx1bWVzaC5uZXJs
-aWdlLnJhbWFwcGFAaW50ZWwuY29tPgo+Pj4gLS0tCj4+PiDCoGRyaXZlcnMvZ3B1L2RybS9pOTE1
-L2d0L2ludGVsX2xyYy5jIHwgMiArLQo+Pj4gwqBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3Bl
-cmYuY8KgwqDCoCB8IDkgKysrKysrKy0tCj4+PiDCoDIgZmlsZXMgY2hhbmdlZCwgOCBpbnNlcnRp
-b25zKCspLCAzIGRlbGV0aW9ucygtKQo+Pj4KPj4+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9k
-cm0vaTkxNS9ndC9pbnRlbF9scmMuYyAKPj4+IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50
-ZWxfbHJjLmMKPj4+IGluZGV4IGExM2E4YzRiNjVhYi4uY2Y2YzQzYmQ1NDBhIDEwMDY0NAo+Pj4g
-LS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfbHJjLmMKPj4+ICsrKyBiL2RyaXZl
-cnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX2xyYy5jCj4+PiBAQCAtMTIxMSwxMiArMTIxMSwxMiBA
-QCBfX2V4ZWNsaXN0c19zY2hlZHVsZV9pbihzdHJ1Y3QgaTkxNV9yZXF1ZXN0IAo+Pj4gKnJxKQo+
-Pj4gwqDCoMKgwqAgaWYgKElTX0VOQUJMRUQoQ09ORklHX0RSTV9JOTE1X0RFQlVHX0dFTSkpCj4+
-PiDCoMKgwqDCoMKgwqDCoMKgIGV4ZWNsaXN0c19jaGVja19jb250ZXh0KGNlLCBlbmdpbmUpOwo+
-Pj4gK8KgwqDCoCBjZS0+bHJjX2Rlc2MgJj0gfkdFTk1BU0tfVUxMKDQ3LCAzNyk7Cj4+PiDCoMKg
-wqDCoCBpZiAoY2UtPnRhZykgewo+Pj4gwqDCoMKgwqDCoMKgwqDCoCAvKiBVc2UgYSBmaXhlZCB0
-YWcgZm9yIE9BIGFuZCBmcmllbmRzICovCj4+PiDCoMKgwqDCoMKgwqDCoMKgIGNlLT5scmNfZGVz
-YyB8PSAodTY0KWNlLT50YWcgPDwgMzI7Cj4+PiDCoMKgwqDCoCB9IGVsc2Ugewo+Pj4gwqDCoMKg
-wqDCoMKgwqDCoCAvKiBXZSBkb24ndCBuZWVkIGEgc3RyaWN0IG1hdGNoaW5nIHRhZywganVzdCBk
-aWZmZXJlbnQgCj4+PiB2YWx1ZXMgKi8KPj4+IC3CoMKgwqDCoMKgwqDCoCBjZS0+bHJjX2Rlc2Mg
-Jj0gfkdFTk1BU0tfVUxMKDQ3LCAzNyk7Cj4+IEkgZ3Vlc3MgeW91IGNhbiByZW1vdmUgdGhlIGxp
-bmUganVzdCBhYm92ZS4KPgo+IE5vdCBzdXJlIHdoYXQgeW91IG1lYW4sIHRoZSBsaW5lIGlzIG1v
-dmVkIGZyb20gaGVyZSB0byBhYm92ZSB0aGUgaWYuCgoKT2ggc29ycnksIExvb2tpbmcgYXQgdGhl
-IHJlc3BvbmRpbmcgZW1haWwsIHRoZSAnLScgZGlkbid0IGFwcGVhciA6KAoKCj4KPj4+IMKgwqDC
-oMKgwqDCoMKgwqAgY2UtPmxyY19kZXNjIHw9Cj4+PiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAg
-KHU2NCkoKytlbmdpbmUtPmNvbnRleHRfdGFnICUgTlVNX0NPTlRFWFRfVEFHKSA8PAo+Pj4gwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgIEdFTjExX1NXX0NUWF9JRF9TSElGVDsKPj4+IGRpZmYgLS1n
-aXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3BlcmYuYyAKPj4+IGIvZHJpdmVycy9ncHUv
-ZHJtL2k5MTUvaTkxNV9wZXJmLmMKPj4+IGluZGV4IDNjNDY0NzA1NDU1Ny4uNWJkODc4YzY0NTA0
-IDEwMDY0NAo+Pj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9wZXJmLmMKPj4+ICsr
-KyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfcGVyZi5jCj4+PiBAQCAtMTMyMyw3ICsxMzIz
-LDEyIEBAIHN0YXRpYyBpbnQgb2FfZ2V0X3JlbmRlcl9jdHhfaWQoc3RydWN0IAo+Pj4gaTkxNV9w
-ZXJmX3N0cmVhbSAqc3RyZWFtKQo+Pj4gwqDCoMKgwqAgY2FzZSAxMjogewo+Pj4gwqDCoMKgwqDC
-oMKgwqDCoCBzdHJlYW0tPnNwZWNpZmljX2N0eF9pZF9tYXNrID0KPj4+IMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoCAoKDFVIDw8IEdFTjExX1NXX0NUWF9JRF9XSURUSCkgLSAxKSA8PCAKPj4+IChH
-RU4xMV9TV19DVFhfSURfU0hJRlQgLSAzMik7Cj4+PiAtwqDCoMKgwqDCoMKgwqAgc3RyZWFtLT5z
-cGVjaWZpY19jdHhfaWQgPSBzdHJlYW0tPnNwZWNpZmljX2N0eF9pZF9tYXNrOwo+Pj4gK8KgwqDC
-oMKgwqDCoMKgIC8qIFBpY2sgYW4gdW51c2VkIGNvbnRleHQgaWQKPj4+ICvCoMKgwqDCoMKgwqDC
-oMKgICogMCAtIChOVU1fQ09OVEVYVF9UQUcgLSAxKSBhcmUgdXNlZCBieSBvdGhlciBjb250ZXh0
-cwo+Pj4gK8KgwqDCoMKgwqDCoMKgwqAgKiBHRU4xMl9NQVhfQ09OVEVYVF9IV19JRCAoMHg3ZmYp
-IGlzIHVzZWQgYnkgaWRsZSBjb250ZXh0Cj4+PiArwqDCoMKgwqDCoMKgwqDCoCAqLwo+Pj4gK8Kg
-wqDCoMKgwqDCoMKgIHN0cmVhbS0+c3BlY2lmaWNfY3R4X2lkID0gKEdFTjEyX01BWF9DT05URVhU
-X0hXX0lEIC0gMSkgPDwgCj4+PiAoR0VOMTFfU1dfQ1RYX0lEX1NISUZUIC0gMzIpOwo+Pj4gK8Kg
-wqDCoMKgwqDCoMKgIEJVSUxEX0JVR19PTigoR0VOMTJfTUFYX0NPTlRFWFRfSFdfSUQgLSAxKSA8
-IE5VTV9DT05URVhUX1RBRyk7Cj4+Cj4+Cj4+IEFyZyB5ZWFoLCB3ZSBjYW4ndCB1c2UgYW4gaWQg
-dGhhdCBoYXMgYWxsIGJpdHMgdG8gMSBiZWNhdXNlIHRoYXQgCj4+IG1hdGNoZXMgdGhlIGlkbGUg
-dmFsdWUgaW4gdGhlIE9BIHJlcG9ydHMgOi8KPj4KPj4gVGhpcyBhbHNvIGFmZmVjdHMgZ2VuOC0x
-MCBjYXNlcyAoYWZhaWspLgo+Cj4gRm9yIGdlbjgtMTAsIEkgZGlkIG5vdCBzZWUgYSBzcGVjaWZp
-YyBkZWZpbml0aW9uIGZvciBhbiBpZGxlIGNvbnRleHQgCj4gaWQuwqAgVGhlIGZyb20vdG8gaWRs
-ZSBjb250ZXh0IHN3aXRjaGVzIGFyZSBpbmRpY2F0ZWQgYnkgZGVkaWNhdGVkIGJpdHMgCj4gaW4g
-dGhlIENTQiBpbnN0ZWFkIChmcm9tIHNwZWMpLgoKCkkgbWVhbnQgdGhhdCBJIHJlbWVtYmVyIHRo
-ZSBwZXJpb2RpYyBPQSByZXBvcnRzIHdoZW4gSFcgaXMgaWRsZSB0byBoYXZlIAp0aGUgY29udGV4
-X2lkPTB4ZmZmZmZmZmYuCgpJIGNvdWxkIHJlbWVtYmVyIHdyb25nIDovCgoKLUxpb25lbAoKCj4K
-PiBUaGFua3MsCj4gVW1lc2gKPgo+Pgo+Pgo+PiBUaGFua3MgZm9yIHNwb3R0aW5nIHRoaXMhCj4+
-Cj4+Cj4+IC1MaW9uZWwKPj4KPj4KPj4+IMKgwqDCoMKgwqDCoMKgwqAgYnJlYWs7Cj4+PiDCoMKg
-wqDCoCB9Cj4+PiBAQCAtMTMzMSw3ICsxMzM2LDcgQEAgc3RhdGljIGludCBvYV9nZXRfcmVuZGVy
-X2N0eF9pZChzdHJ1Y3QgCj4+PiBpOTE1X3BlcmZfc3RyZWFtICpzdHJlYW0pCj4+PiDCoMKgwqDC
-oMKgwqDCoMKgIE1JU1NJTkdfQ0FTRShJTlRFTF9HRU4oY2UtPmVuZ2luZS0+aTkxNSkpOwo+Pj4g
-wqDCoMKgwqAgfQo+Pj4gLcKgwqDCoCBjZS0+dGFnID0gc3RyZWFtLT5zcGVjaWZpY19jdHhfaWRf
-bWFzazsKPj4+ICvCoMKgwqAgY2UtPnRhZyA9IHN0cmVhbS0+c3BlY2lmaWNfY3R4X2lkOwo+Pj4g
-wqDCoMKgwqAgRFJNX0RFQlVHX0RSSVZFUigiZmlsdGVyaW5nIG9uIGN0eF9pZD0weCV4IGN0eF9p
-ZF9tYXNrPTB4JXhcbiIsCj4+PiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBzdHJlYW0tPnNw
-ZWNpZmljX2N0eF9pZCwKPj4KPj4KCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVk
-ZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZv
-L2ludGVsLWdmeAo=
+On Sat, 25 Jan 2020, Chris Wilson <chris@chris-wilson.co.uk> wrote:
+> Quoting Wambui Karuga (2020-01-22 12:57:48)
+>> This series is a part of the conversion to  the new struct drm_device
+>> based logging macros in drm/i915.
+>> This series focuses on the drm/i915/gem directory and converts all
+>> straightforward instances of the printk based logging macros to the new
+>> macros.
+>
+> Overall, I'm not keen on this as it perpetuates the mistake of putting
+> client debug message in dmesg and now gives them even more an air of
+> being device driver debug messages. We need a mechanism by which we
+> report the details of what a client did wrong back to that client
+> (tracefs + context/client getparam to return an isolated debug fd is my
+> idea).
+
+I don't disagree, but I also don't think this makes things (much) worse
+in that regard.
+
+>
+>> Wambui Karuga (2):
+>>   drm/i915/gem: initial conversion to new logging macros using
+>>     coccinelle.
+>>   drm/i915/gem: manual conversion to struct drm_device logging macros.
+>
+> Still this is a necessary evil for the current situation,
+> Acked-by: Chris Wilson <chris@chris-wilson.co.uk>
+
+Thanks, pushed both.
+
+BR,
+Jani.
+
+
+-- 
+Jani Nikula, Intel Open Source Graphics Center
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
