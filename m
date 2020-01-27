@@ -1,26 +1,26 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 151DE14A460
-	for <lists+intel-gfx@lfdr.de>; Mon, 27 Jan 2020 14:01:38 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5095B14A48B
+	for <lists+intel-gfx@lfdr.de>; Mon, 27 Jan 2020 14:07:48 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1348E6EB83;
-	Mon, 27 Jan 2020 13:01:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D98776EB88;
+	Mon, 27 Jan 2020 13:07:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 4C1BE6EB83;
- Mon, 27 Jan 2020 13:01:35 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 4F0B36EB87;
+ Mon, 27 Jan 2020 13:07:45 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 42C38A0009;
- Mon, 27 Jan 2020 13:01:35 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 475AFA0003;
+ Mon, 27 Jan 2020 13:07:45 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Stanislav Lisovskiy" <stanislav.lisovskiy@intel.com>
-Date: Mon, 27 Jan 2020 13:01:35 -0000
-Message-ID: <158013009523.9687.16494726745149829398@emeril.freedesktop.org>
+Date: Mon, 27 Jan 2020 13:07:45 -0000
+Message-ID: <158013046527.9686.13141375750799259485@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20200124084456.2961-1-stanislav.lisovskiy@intel.com>
 In-Reply-To: <20200124084456.2961-1-stanislav.lisovskiy@intel.com>
