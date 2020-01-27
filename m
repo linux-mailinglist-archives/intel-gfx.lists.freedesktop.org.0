@@ -2,28 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 520BA14A06E
-	for <lists+intel-gfx@lfdr.de>; Mon, 27 Jan 2020 10:07:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 39B6514A06F
+	for <lists+intel-gfx@lfdr.de>; Mon, 27 Jan 2020 10:07:25 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 76E2F6EA74;
-	Mon, 27 Jan 2020 09:07:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 05B986EA79;
+	Mon, 27 Jan 2020 09:07:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 747386EA74;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 74EBB6EA75;
  Mon, 27 Jan 2020 09:07:21 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20018979-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20018980-1500050 
  for multiple; Mon, 27 Jan 2020 09:07:14 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon, 27 Jan 2020 09:07:09 +0000
-Message-Id: <20200127090712.2324227-1-chris@chris-wilson.co.uk>
+Date: Mon, 27 Jan 2020 09:07:10 +0000
+Message-Id: <20200127090712.2324227-2-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.25.0
+In-Reply-To: <20200127090712.2324227-1-chris@chris-wilson.co.uk>
+References: <20200127090712.2324227-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH i-g-t 1/4] i915/gem_sync: Reduce runtime
+Subject: [Intel-gfx] [PATCH i-g-t 2/4] i915/gem_exec_nop: Reduce runtime
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,119 +49,66 @@ quick tests to 2s.
 
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 ---
- tests/i915/gem_sync.c | 60 +++++++++++++++++++++----------------------
- 1 file changed, 30 insertions(+), 30 deletions(-)
+ tests/i915/gem_exec_nop.c | 22 +++++++++++-----------
+ 1 file changed, 11 insertions(+), 11 deletions(-)
 
-diff --git a/tests/i915/gem_sync.c b/tests/i915/gem_sync.c
-index 0010ac103..2ef55ecc0 100644
---- a/tests/i915/gem_sync.c
-+++ b/tests/i915/gem_sync.c
-@@ -1224,67 +1224,67 @@ igt_main
+diff --git a/tests/i915/gem_exec_nop.c b/tests/i915/gem_exec_nop.c
+index dbedb3561..9a2efd32c 100644
+--- a/tests/i915/gem_exec_nop.c
++++ b/tests/i915/gem_exec_nop.c
+@@ -865,41 +865,41 @@ igt_main
+ 	}
+ 
+ 	igt_subtest("basic-series")
+-		series(device, handle, 5);
++		series(device, handle, 2);
+ 
+ 	igt_subtest("basic-parallel")
+-		parallel(device, handle, 5);
++		parallel(device, handle, 2);
+ 
+ 	igt_subtest("basic-sequential")
+-		sequential(device, handle, 0, 5);
++		sequential(device, handle, 0, 2);
  
  	for (e = intel_execution_engines; e->name; e++) {
  		igt_subtest_f("%s", e->name)
--			sync_ring(fd, eb_ring(e), 1, 150);
-+			sync_ring(fd, eb_ring(e), 1, 20);
- 		igt_subtest_f("idle-%s", e->name)
--			idle_ring(fd, eb_ring(e), 150);
-+			idle_ring(fd, eb_ring(e), 20);
- 		igt_subtest_f("active-%s", e->name)
--			active_ring(fd, eb_ring(e), 150);
-+			active_ring(fd, eb_ring(e), 20);
- 		igt_subtest_f("wakeup-%s", e->name)
--			wakeup_ring(fd, eb_ring(e), 150, 1);
-+			wakeup_ring(fd, eb_ring(e), 20, 1);
- 		igt_subtest_f("active-wakeup-%s", e->name)
--			active_wakeup_ring(fd, eb_ring(e), 150, 1);
-+			active_wakeup_ring(fd, eb_ring(e), 20, 1);
- 		igt_subtest_f("double-wakeup-%s", e->name)
--			wakeup_ring(fd, eb_ring(e), 150, 2);
-+			wakeup_ring(fd, eb_ring(e), 20, 2);
- 		igt_subtest_f("store-%s", e->name)
--			store_ring(fd, eb_ring(e), 1, 150);
-+			store_ring(fd, eb_ring(e), 1, 20);
- 		igt_subtest_f("switch-%s", e->name)
--			switch_ring(fd, eb_ring(e), 1, 150);
-+			switch_ring(fd, eb_ring(e), 1, 20);
- 		igt_subtest_f("forked-switch-%s", e->name)
--			switch_ring(fd, eb_ring(e), ncpus, 150);
-+			switch_ring(fd, eb_ring(e), ncpus, 20);
- 		igt_subtest_f("many-%s", e->name)
--			store_many(fd, eb_ring(e), 150);
-+			store_many(fd, eb_ring(e), 20);
- 		igt_subtest_f("forked-%s", e->name)
--			sync_ring(fd, eb_ring(e), ncpus, 150);
-+			sync_ring(fd, eb_ring(e), ncpus, 20);
- 		igt_subtest_f("forked-store-%s", e->name)
--			store_ring(fd, eb_ring(e), ncpus, 150);
-+			store_ring(fd, eb_ring(e), ncpus, 20);
+ 			single(device, handle, eb_ring(e), e->name);
+ 		igt_subtest_f("signal-%s", e->name)
+-			fence_signal(device, handle, eb_ring(e), e->name, 5);
++			fence_signal(device, handle, eb_ring(e), e->name, 2);
  	}
  
- 	igt_subtest("basic-each")
--		sync_ring(fd, ALL_ENGINES, 1, 5);
-+		sync_ring(fd, ALL_ENGINES, 1, 2);
- 	igt_subtest("basic-store-each")
--		store_ring(fd, ALL_ENGINES, 1, 5);
-+		store_ring(fd, ALL_ENGINES, 1, 2);
- 	igt_subtest("basic-many-each")
--		store_many(fd, ALL_ENGINES, 5);
-+		store_many(fd, ALL_ENGINES, 2);
- 	igt_subtest("switch-each")
--		switch_ring(fd, ALL_ENGINES, 1, 150);
-+		switch_ring(fd, ALL_ENGINES, 1, 20);
- 	igt_subtest("forked-switch-each")
--		switch_ring(fd, ALL_ENGINES, ncpus, 150);
-+		switch_ring(fd, ALL_ENGINES, ncpus, 20);
- 	igt_subtest("forked-each")
--		sync_ring(fd, ALL_ENGINES, ncpus, 150);
-+		sync_ring(fd, ALL_ENGINES, ncpus, 20);
- 	igt_subtest("forked-store-each")
--		store_ring(fd, ALL_ENGINES, ncpus, 150);
-+		store_ring(fd, ALL_ENGINES, ncpus, 20);
- 	igt_subtest("active-each")
--		active_ring(fd, ALL_ENGINES, 150);
-+		active_ring(fd, ALL_ENGINES, 20);
- 	igt_subtest("wakeup-each")
--		wakeup_ring(fd, ALL_ENGINES, 150, 1);
-+		wakeup_ring(fd, ALL_ENGINES, 20, 1);
- 	igt_subtest("active-wakeup-each")
--		active_wakeup_ring(fd, ALL_ENGINES, 150, 1);
-+		active_wakeup_ring(fd, ALL_ENGINES, 20, 1);
- 	igt_subtest("double-wakeup-each")
--		wakeup_ring(fd, ALL_ENGINES, 150, 2);
-+		wakeup_ring(fd, ALL_ENGINES, 20, 2);
+ 	igt_subtest("signal-all")
+-		fence_signal(device, handle, ALL_ENGINES, "all", 150);
++		fence_signal(device, handle, ALL_ENGINES, "all", 20);
  
- 	igt_subtest("basic-all")
--		sync_all(fd, 1, 5);
-+		sync_all(fd, 1, 2);
- 	igt_subtest("basic-store-all")
--		store_all(fd, 1, 5);
-+		store_all(fd, 1, 2);
+ 	igt_subtest("series")
+-		series(device, handle, 150);
++		series(device, handle, 20);
  
- 	igt_subtest("all")
--		sync_all(fd, 1, 150);
-+		sync_all(fd, 1, 20);
- 	igt_subtest("store-all")
--		store_all(fd, 1, 150);
-+		store_all(fd, 1, 20);
- 	igt_subtest("forked-all")
--		sync_all(fd, ncpus, 150);
-+		sync_all(fd, ncpus, 20);
- 	igt_subtest("forked-store-all")
--		store_all(fd, ncpus, 150);
-+		store_all(fd, ncpus, 20);
+ 	igt_subtest("parallel")
+-		parallel(device, handle, 150);
++		parallel(device, handle, 20);
+ 
+ 	igt_subtest("sequential")
+-		sequential(device, handle, 0, 150);
++		sequential(device, handle, 0, 20);
+ 
+ 	igt_subtest("forked-sequential")
+-		sequential(device, handle, FORKED, 150);
++		sequential(device, handle, FORKED, 20);
+ 
+ 	igt_subtest("chained-sequential")
+-		sequential(device, handle, FORKED | CHAINED, 150);
++		sequential(device, handle, FORKED | CHAINED, 20);
+ 
+ 	igt_subtest("context-sequential")
+-		sequential(device, handle, FORKED | CONTEXT, 150);
++		sequential(device, handle, FORKED | CONTEXT, 20);
  
  	igt_subtest_group {
  		igt_fixture {
-@@ -1298,7 +1298,7 @@ igt_main
- 
- 		for (e = intel_execution_engines; e->name; e++) {
- 			igt_subtest_f("preempt-%s", e->name)
--				preempt(fd, eb_ring(e), ncpus, 150);
-+				preempt(fd, eb_ring(e), ncpus, 20);
- 		}
- 	}
- 
 -- 
 2.25.0
 
