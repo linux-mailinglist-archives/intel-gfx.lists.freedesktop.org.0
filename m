@@ -2,37 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A53EF14A9C9
-	for <lists+intel-gfx@lfdr.de>; Mon, 27 Jan 2020 19:27:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4CDDE14A9E9
+	for <lists+intel-gfx@lfdr.de>; Mon, 27 Jan 2020 19:38:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 143586E833;
-	Mon, 27 Jan 2020 18:27:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2E1A76E879;
+	Mon, 27 Jan 2020 18:38:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5B1496E833
- for <intel-gfx@lists.freedesktop.org>; Mon, 27 Jan 2020 18:27:16 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 91A896E879
+ for <intel-gfx@lists.freedesktop.org>; Mon, 27 Jan 2020 18:38:08 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga106.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 27 Jan 2020 10:26:59 -0800
-X-IronPort-AV: E=Sophos;i="5.70,370,1574150400"; d="scan'208";a="223320304"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga105.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 27 Jan 2020 10:10:40 -0800
+X-IronPort-AV: E=Sophos;i="5.70,370,1574150400"; d="scan'208";a="221809852"
 Received: from scharfhe-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.252.52.61])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 27 Jan 2020 10:26:58 -0800
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 27 Jan 2020 10:10:38 -0800
 From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon, 27 Jan 2020 20:26:10 +0200
-Message-Id: <652e16e6168691f89b5cb8c91278a0d960f8f1a9.1580149467.git.jani.nikula@intel.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <cover.1580149467.git.jani.nikula@intel.com>
-References: <cover.1580149467.git.jani.nikula@intel.com>
-MIME-Version: 1.0
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Chris Wilson <chris@chris-wilson.co.uk>
+In-Reply-To: <877e1fd1rd.fsf@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Subject: [Intel-gfx] [PATCH v2 8/8] drm/i915/psr: use intel_de_*() functions
- for register access
+References: <cover.1579871655.git.jani.nikula@intel.com>
+ <157987409843.2524.2998401254997919669@skylake-alporthouse-com>
+ <20200124223019.GA3529069@intel.com> <877e1fd1rd.fsf@intel.com>
+Date: Mon, 27 Jan 2020 20:10:39 +0200
+Message-ID: <87mua8bwio.fsf@intel.com>
+MIME-Version: 1.0
+Subject: Re: [Intel-gfx] [RFC 00/33] drm/i915/display: mass conversion to
+ intel_de_*() register accessors
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,83 +47,78 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, Lucas De Marchi <lucas.demarchi@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The implicit "dev_priv" local variable use has been a long-standing pain
-point in the register access macros I915_READ(), I915_WRITE(),
-POSTING_READ(), I915_READ_FW(), and I915_WRITE_FW().
+On Sat, 25 Jan 2020, Jani Nikula <jani.nikula@intel.com> wrote:
+> On Fri, 24 Jan 2020, Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
+>> On Fri, Jan 24, 2020 at 01:54:58PM +0000, Chris Wilson wrote:
+>>> Quoting Jani Nikula (2020-01-24 13:25:21)
+>>> > Hey all,
+>>> > 
+>>> > So I sent [1] to convert some forcewake register accessors... but what if we
+>>> > just ripped off the bandage once and for all? It's going to hurt, a lot, but
+>>> > we'd get it done.
+>>> > 
+>>> > This completely rids us of the "dev_priv" dependency in display/.
+>>> > 
+>>> > All the patches here are per-file and independent of each other. We could also
+>>> > pick and apply the ones that are least likely to conflict.
+>>> > 
+>>> > Opinions?
+>>> > 
+>>> > 
+>>> > BR,
+>>> > Jani.
+>>> > 
+>>> > 
+>>> > PS. I didn't bother looking at the checkpatch warnings this may generate at this
+>>> > point. I just used the --linux-spacing option for spatch, and closed my eyes. I
+>>> > completely scripted the generation of the series, apart from just a couple of
+>>> > build fixes.
+>>> 
+>>> Yup. Suck it all in, clean up with the usual code refreshes.
+>>> Schadenfreude-by: Chris Wilson <chris@chris-wilson.co.uk>
+>>> 
+>>> I've looked at a couple of patches to confirm that it does appear purely
+>>> mechanical,
+>>> Acked-by: Chris Wilson <chris@chris-wilson.co.uk>
+>>
+>> Since it is purely mechanical with coccinelle, why not to make in only one patch?
+>
+> Because such a mega patch would conflict before being able to
+> merge. You'd have to block everything else. I don't think I'd be able to
+> merge these in one go either even if we wanted to.
 
-Replace them with the corresponding new display engine register
-accessors intel_de_read(), intel_de_write(), intel_de_posting_read(),
-intel_de_read_fw(), and intel_de_write_fw().
+Indeed, I started pushing the patches, pushed all that applied, and
+eight will need a rebase.
 
-No functional changes.
+Thanks for the acks.
 
-Generated using the following semantic patch:
+BR,
+Jani.
 
-@@
-expression REG, OFFSET;
-@@
-- I915_READ(REG)
-+ intel_de_read(dev_priv, REG)
 
-@@
-expression REG, OFFSET;
-@@
-- POSTING_READ(REG)
-+ intel_de_posting_read(dev_priv, REG)
 
-@@
-expression REG, OFFSET;
-@@
-- I915_WRITE(REG, OFFSET)
-+ intel_de_write(dev_priv, REG, OFFSET)
+>
+>> Anyway:
+>> Acked-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+>
+> Thanks,
+> Jani.
+>
+>>
+>>> -Chris
+>>> _______________________________________________
+>>> Intel-gfx mailing list
+>>> Intel-gfx@lists.freedesktop.org
+>>> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 
-@@
-expression REG;
-@@
-- I915_READ_FW(REG)
-+ intel_de_read_fw(dev_priv, REG)
-
-@@
-expression REG, OFFSET;
-@@
-- I915_WRITE_FW(REG, OFFSET)
-+ intel_de_write_fw(dev_priv, REG, OFFSET)
-
-Acked-by: Chris Wilson <chris@chris-wilson.co.uk>
-Acked-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Acked-by: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/display/intel_psr.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index b9dd9763c0f7..e41ed962aa80 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -832,11 +832,11 @@ static void intel_psr_enable_source(struct intel_dp *intel_dp,
- 		 * TODO: if future platforms supports DC3CO in more than one
- 		 * transcoder, EXITLINE will need to be unset when disabling PSR
- 		 */
--		val = I915_READ(EXITLINE(cpu_transcoder));
-+		val = intel_de_read(dev_priv, EXITLINE(cpu_transcoder));
- 		val &= ~EXITLINE_MASK;
- 		val |= crtc_state->dc3co_exitline << EXITLINE_SHIFT;
- 		val |= EXITLINE_ENABLE;
--		I915_WRITE(EXITLINE(cpu_transcoder), val);
-+		intel_de_write(dev_priv, EXITLINE(cpu_transcoder), val);
- 	}
- }
- 
 -- 
-2.20.1
-
+Jani Nikula, Intel Open Source Graphics Center
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
