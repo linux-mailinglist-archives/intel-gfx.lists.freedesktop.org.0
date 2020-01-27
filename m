@@ -1,37 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4596514AC34
-	for <lists+intel-gfx@lfdr.de>; Mon, 27 Jan 2020 23:41:08 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1ADAC14AC52
+	for <lists+intel-gfx@lfdr.de>; Mon, 27 Jan 2020 23:57:49 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 773546EBC1;
-	Mon, 27 Jan 2020 22:41:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3743C6EC19;
+	Mon, 27 Jan 2020 22:57:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DFED66EBC1
- for <intel-gfx@lists.freedesktop.org>; Mon, 27 Jan 2020 22:40:59 +0000 (UTC)
-X-Amp-Result: UNSCANNABLE
-X-Amp-File-Uploaded: False
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 27 Jan 2020 14:40:59 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,371,1574150400"; d="scan'208";a="223381898"
-Received: from labuser-z97x-ud5h.jf.intel.com (HELO intel.com)
- ([10.165.21.211])
- by fmsmga008.fm.intel.com with ESMTP; 27 Jan 2020 14:40:59 -0800
-Date: Mon, 27 Jan 2020 14:42:09 -0800
-From: Manasi Navare <manasi.d.navare@intel.com>
-To: Matt Atwood <matthew.s.atwood@intel.com>
-Message-ID: <20200127224208.GA14219@intel.com>
-References: <20200117091627.1697-1-matthew.s.atwood@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 8BF766EC19;
+ Mon, 27 Jan 2020 22:57:44 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 82CC2A0009;
+ Mon, 27 Jan 2020 22:57:44 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200117091627.1697-1-matthew.s.atwood@intel.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/tgl: Add Wa_1606054188;tgl
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Vandita Kulkarni" <vandita.kulkarni@intel.com>
+Date: Mon, 27 Jan 2020 22:57:44 -0000
+Message-ID: <158016586450.9684.13475573088973765858@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200127111608.7246-1-vandita.kulkarni@intel.com>
+In-Reply-To: <20200127111608.7246-1-vandita.kulkarni@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/dsi=3A_Enable_dsi_as_part_of_encoder-=3Eenable?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,67 +38,108 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Jan 17, 2020 at 04:16:28AM -0500, Matt Atwood wrote:
-> On Tiger Lake we do not support source keying in the pixel formats P010,
-> P012, P016.
-> 
-> Bspec: 52890
-> Cc: Matt Roper <matthew.d.roper@intel.com>
-> Signed-off-by: Matt Atwood <matthew.s.atwood@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_sprite.c | 13 +++++++++++++
->  1 file changed, 13 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_sprite.c b/drivers/gpu/drm/i915/display/intel_sprite.c
-> index fca77ec1e0dd..67176524e60f 100644
-> --- a/drivers/gpu/drm/i915/display/intel_sprite.c
-> +++ b/drivers/gpu/drm/i915/display/intel_sprite.c
-> @@ -2049,6 +2049,19 @@ static int skl_plane_check_fb(const struct intel_crtc_state *crtc_state,
->  	unsigned int rotation = plane_state->hw.rotation;
->  	struct drm_format_name_buf format_name;
->  
-> +	/* Wa_1606054188;tgl
+== Series Details ==
 
-                        ^ This should be a :
+Series: drm/i915/dsi: Enable dsi as part of encoder->enable
+URL   : https://patchwork.freedesktop.org/series/72619/
+State : success
 
-> +	 *
-> +	 * TODO: Add format RGB64i when implemented
-> +	 *
-> +	 */
-> +	if (IS_GEN(dev_priv, 12) &&
-> +	    (plane_state->ckey.flags & I915_SET_COLORKEY_SOURCE))
-> +		if (fb->format->format & (DRM_FORMAT_P010 | DRM_FORMAT_P012
-> +		    | DRM_FORMAT_P016)) {
-> +			DRM_DEBUG_KMS("GEN12 does not support source color key planes in formats P01x\n");
-> +			return -EINVAL;
-> +		}
-> +
+== Summary ==
 
-I think this whole WA and check should be added after the check for !fb else we might have a risk
-of dereferencing a NULL pointer.
+CI Bug Log - changes from CI_DRM_7827 -> Patchwork_16277
+====================================================
 
-With the above fixs
+Summary
+-------
 
-Reviewed-by: Manasi Navare <manasi.d.navare@intel.com>
+  **SUCCESS**
 
-Manasi
+  No regressions found.
 
->  	if (!fb)
->  		return 0;
->  
-> -- 
-> 2.21.1
-> 
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16277/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_16277 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_exec_parallel@fds:
+    - fi-byt-j1900:       [PASS][1] -> [INCOMPLETE][2] ([i915#45])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7827/fi-byt-j1900/igt@gem_exec_parallel@fds.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16277/fi-byt-j1900/igt@gem_exec_parallel@fds.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_close_race@basic-threads:
+    - fi-byt-n2820:       [INCOMPLETE][3] ([i915#45]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7827/fi-byt-n2820/igt@gem_close_race@basic-threads.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16277/fi-byt-n2820/igt@gem_close_race@basic-threads.html
+
+  * igt@i915_selftest@live_hangcheck:
+    - fi-icl-u3:          [INCOMPLETE][5] ([fdo#108569] / [i915#140]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7827/fi-icl-u3/igt@i915_selftest@live_hangcheck.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16277/fi-icl-u3/igt@i915_selftest@live_hangcheck.html
+
+  * igt@kms_flip@basic-flip-vs-dpms:
+    - fi-icl-dsi:         [DMESG-WARN][7] ([fdo#107724]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7827/fi-icl-dsi/igt@kms_flip@basic-flip-vs-dpms.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16277/fi-icl-dsi/igt@kms_flip@basic-flip-vs-dpms.html
+
+  
+#### Warnings ####
+
+  * igt@i915_selftest@live_blt:
+    - fi-hsw-4770:        [DMESG-FAIL][9] ([i915#553] / [i915#725]) -> [DMESG-FAIL][10] ([i915#725])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7827/fi-hsw-4770/igt@i915_selftest@live_blt.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16277/fi-hsw-4770/igt@i915_selftest@live_blt.html
+
+  
+  [fdo#107724]: https://bugs.freedesktop.org/show_bug.cgi?id=107724
+  [fdo#108569]: https://bugs.freedesktop.org/show_bug.cgi?id=108569
+  [i915#140]: https://gitlab.freedesktop.org/drm/intel/issues/140
+  [i915#45]: https://gitlab.freedesktop.org/drm/intel/issues/45
+  [i915#553]: https://gitlab.freedesktop.org/drm/intel/issues/553
+  [i915#725]: https://gitlab.freedesktop.org/drm/intel/issues/725
+
+
+Participating hosts (46 -> 44)
+------------------------------
+
+  Additional (5): fi-bsw-n3050 fi-gdg-551 fi-cfl-8109u fi-ivb-3770 fi-skl-6600u 
+  Missing    (7): fi-ilk-m540 fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-kbl-7560u fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_7827 -> Patchwork_16277
+
+  CI-20190529: 20190529
+  CI_DRM_7827: c8969aeacfff681c83a800e82b0f18a6ab3e77ea @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5389: 966c58649dee31bb5bf2fad92f75ffd365968b81 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_16277: 90cfe8a7b2cb1bccf85c8b718153f3a6ba60cc6c @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+90cfe8a7b2cb drm/i915/dsi: Enable dsi as part of encoder->enable
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16277/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
