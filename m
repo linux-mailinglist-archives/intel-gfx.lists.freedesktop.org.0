@@ -1,31 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F96114A070
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C28FF14A071
 	for <lists+intel-gfx@lfdr.de>; Mon, 27 Jan 2020 10:07:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 747886EA76;
-	Mon, 27 Jan 2020 09:07:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 041FE6EA78;
+	Mon, 27 Jan 2020 09:07:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7FE6F6EA76;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7DC946EA75;
  Mon, 27 Jan 2020 09:07:22 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20018981-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20018982-1500050 
  for multiple; Mon, 27 Jan 2020 09:07:14 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon, 27 Jan 2020 09:07:11 +0000
-Message-Id: <20200127090712.2324227-3-chris@chris-wilson.co.uk>
+Date: Mon, 27 Jan 2020 09:07:12 +0000
+Message-Id: <20200127090712.2324227-4-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.25.0
 In-Reply-To: <20200127090712.2324227-1-chris@chris-wilson.co.uk>
 References: <20200127090712.2324227-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH i-g-t 3/4] i915/gem_ctx_create: Reduce runtime
+Subject: [Intel-gfx] [PATCH i-g-t 4/4] i915/gem_ctx_switch: Reduce runtime
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,35 +49,78 @@ quick tests to 2s.
 
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 ---
- tests/i915/gem_ctx_create.c | 10 +++++-----
- 1 file changed, 5 insertions(+), 5 deletions(-)
+ tests/i915/gem_ctx_switch.c | 24 ++++++++++++------------
+ 1 file changed, 12 insertions(+), 12 deletions(-)
 
-diff --git a/tests/i915/gem_ctx_create.c b/tests/i915/gem_ctx_create.c
-index 83da05690..d9a820e21 100644
---- a/tests/i915/gem_ctx_create.c
-+++ b/tests/i915/gem_ctx_create.c
-@@ -566,16 +566,16 @@ igt_main
- 		maximum(fd, ncpus, CHECK_RAM | CHECK_SWAP);
+diff --git a/tests/i915/gem_ctx_switch.c b/tests/i915/gem_ctx_switch.c
+index 6bbd24972..2f94e326f 100644
+--- a/tests/i915/gem_ctx_switch.c
++++ b/tests/i915/gem_ctx_switch.c
+@@ -364,18 +364,18 @@ igt_main
+ 				}
  
- 	igt_subtest("basic-files")
--		files(fd, 5, 1);
-+		files(fd, 2, 1);
- 	igt_subtest("files")
--		files(fd, 150, 1);
-+		files(fd, 20, 1);
- 	igt_subtest("forked-files")
--		files(fd, 150, ncpus);
-+		files(fd, 20, ncpus);
+ 				igt_subtest_f("legacy-%s%s", e->name, p->name)
+-					single(fd, light, e2, p->flags, 1, 5);
++					single(fd, light, e2, p->flags, 1, 2);
+ 				igt_subtest_f("legacy-%s-heavy%s",
+ 					      e->name, p->name)
+-					single(fd, heavy, e2, p->flags, 1, 5);
++					single(fd, heavy, e2, p->flags, 1, 2);
+ 				igt_subtest_f("legacy-%s-forked%s",
+ 					      e->name, p->name)
+ 					single(fd, light, e2, p->flags, ncpus,
+-					       150);
++					       20);
+ 				igt_subtest_f("legacy-%s-forked-heavy%s",
+ 					      e->name, p->name)
+ 					single(fd, heavy, e2, p->flags, ncpus,
+-					       150);
++					       20);
+ 			}
+ 		}
+ 	}
+@@ -390,33 +390,33 @@ igt_main
+ 				}
  
- 	igt_subtest("active-all")
--		active(fd, ALL_ENGINES, 120, 1);
-+		active(fd, ALL_ENGINES, 20, 1);
- 	igt_subtest("forked-active-all")
--		active(fd, ALL_ENGINES, 120, ncpus);
-+		active(fd, ALL_ENGINES, 20, ncpus);
+ 				igt_subtest_f("%s%s", e2->name, p->name)
+-					single(fd, light, e2, p->flags, 1, 5);
++					single(fd, light, e2, p->flags, 1, 2);
+ 				igt_subtest_f("%s-heavy%s", e2->name, p->name)
+-					single(fd, heavy, e2, p->flags, 1, 5);
++					single(fd, heavy, e2, p->flags, 1, 2);
+ 				igt_subtest_f("%s-forked%s", e2->name, p->name)
+ 					single(fd, light, e2, p->flags, ncpus,
+-					       150);
++					       20);
+ 				igt_subtest_f("%s-forked-heavy%s",
+ 					      e2->name, p->name)
+ 					single(fd, heavy, e2, p->flags, ncpus,
+-					       150);
++					       20);
+ 			}
+ 		}
+ 	}
  
- 	for (const struct intel_execution_engine *e = intel_execution_engines;
- 	     e->name; e++) {
+ 	igt_subtest("all-light")
+-		all(fd, light, 0, 5);
++		all(fd, light, 0, 2);
+ 	igt_subtest("all-heavy")
+-		all(fd, heavy, 0, 5);
++		all(fd, heavy, 0, 2);
+ 
+ 	igt_subtest_group {
+ 		igt_fixture {
+ 			igt_require(gem_has_queues(fd));
+ 		}
+ 		igt_subtest("queue-light")
+-			all(fd, light, QUEUE, 5);
++			all(fd, light, QUEUE, 2);
+ 		igt_subtest("queue-heavy")
+-			all(fd, heavy, QUEUE, 5);
++			all(fd, heavy, QUEUE, 2);
+ 	}
+ 
+ 	igt_fixture {
 -- 
 2.25.0
 
