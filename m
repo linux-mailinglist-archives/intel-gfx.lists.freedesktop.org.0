@@ -1,55 +1,37 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DAF7614AC2D
-	for <lists+intel-gfx@lfdr.de>; Mon, 27 Jan 2020 23:39:07 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4596514AC34
+	for <lists+intel-gfx@lfdr.de>; Mon, 27 Jan 2020 23:41:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 324C46EC14;
-	Mon, 27 Jan 2020 22:39:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 773546EBC1;
+	Mon, 27 Jan 2020 22:41:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x444.google.com (mail-wr1-x444.google.com
- [IPv6:2a00:1450:4864:20::444])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D4F336EC14;
- Mon, 27 Jan 2020 22:39:05 +0000 (UTC)
-Received: by mail-wr1-x444.google.com with SMTP id z7so13650524wrl.13;
- Mon, 27 Jan 2020 14:39:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc:content-transfer-encoding;
- bh=Q0s5fqFPrXjNwEOb2lXn2YSX1DXSdvN7n06j/4ASEm0=;
- b=urMGPWK8OCin/TlOB3KhvdGJa5o3YRnaz+gnsc4JzpCIMr2/rf6pWOClHeYJQ2M11F
- NAhZ8JgZrkrCHwbABOOkZ5MTOlTCyEJOJK7QAiyzaNtnyx3DQnrx50AB3NDzT2ujZPR2
- xwyOH1zXz+ZRZyMw/IFngbxdzxbG792E4poT2SwMTVT2FNUB2lHpiH6ZtqDqXd8Btdm0
- CCqKqYVJktzMCyEnNwNiC+A3oLXei/gHlv+qSgrT8loftIVVLV1Rqi6hLIsipMGwck+0
- CLZaGl46GgMcRnZ++glF6pd+nzf4uEC0b4SQva264a6jt0IUmVWeJaqGBxD9lJ8Ft9yJ
- pieQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc:content-transfer-encoding;
- bh=Q0s5fqFPrXjNwEOb2lXn2YSX1DXSdvN7n06j/4ASEm0=;
- b=EUJH0ExYGxqVM2X6t2NHlO6ofRPtCW/isrtNgTH3V7BTs9YI9SVup9nwP93hraSyk9
- L74dH/eL0aq375y/XwA1NoZeqBR5broWg7Kbevj0CDSibaWVarXM85qdOufT0G63tF3g
- lb8puvsoe08BPdCrFv29MgFqlDzo6UoIbsv7P+FmoUSKtIRkOkQz8CW1Wjbn3iinjTaj
- QMtdS744u/epO4nG2nXqInvTHKQKC7n7+TUHzYCxo8SUAG0UNqpye5p8QoYMXLQZ7+il
- Lcw3sCQNyVnyIaE2rwGOJfztwnNBEv4N2pYCmIKTWsKofMDLg+r9qW1OazkIVb4A9uYa
- bwCQ==
-X-Gm-Message-State: APjAAAU4cNSzPJxVhftooH082LfdjzgaiRj5BWg1FP0j57UwcGBjsi7J
- YL7d8qDZsrAJvo7tzlWO4/JrrzOODPwEnOIUwEE=
-X-Google-Smtp-Source: APXvYqyPTHpLb//wKBSGFP2cTRrxclJulNeDGpxESp3qHATtfmAB/wniVhycXmvuJMt+PHHPdogqtvviQRoDyZqr3h0=
-X-Received: by 2002:a5d:5091:: with SMTP id a17mr24047747wrt.362.1580164744512; 
- Mon, 27 Jan 2020 14:39:04 -0800 (PST)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DFED66EBC1
+ for <intel-gfx@lists.freedesktop.org>; Mon, 27 Jan 2020 22:40:59 +0000 (UTC)
+X-Amp-Result: UNSCANNABLE
+X-Amp-File-Uploaded: False
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 27 Jan 2020 14:40:59 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,371,1574150400"; d="scan'208";a="223381898"
+Received: from labuser-z97x-ud5h.jf.intel.com (HELO intel.com)
+ ([10.165.21.211])
+ by fmsmga008.fm.intel.com with ESMTP; 27 Jan 2020 14:40:59 -0800
+Date: Mon, 27 Jan 2020 14:42:09 -0800
+From: Manasi Navare <manasi.d.navare@intel.com>
+To: Matt Atwood <matthew.s.atwood@intel.com>
+Message-ID: <20200127224208.GA14219@intel.com>
+References: <20200117091627.1697-1-matthew.s.atwood@intel.com>
 MIME-Version: 1.0
-References: <20200124200231.10517-1-ville.syrjala@linux.intel.com>
- <20200124200231.10517-8-ville.syrjala@linux.intel.com>
-In-Reply-To: <20200124200231.10517-8-ville.syrjala@linux.intel.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Mon, 27 Jan 2020 17:38:51 -0500
-Message-ID: <CADnq5_P4z0XFouqQ5idxgBUeT1CSLScgNarKOZ0C2JnKt02ehw@mail.gmail.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>
-Subject: Re: [Intel-gfx] [PATCH 8/8] drm/edid: Dump bogus 18 byte descriptors
+Content-Disposition: inline
+In-Reply-To: <20200117091627.1697-1-matthew.s.atwood@intel.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/tgl: Add Wa_1606054188;tgl
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,69 +44,68 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Maling list - DRI developers <dri-devel@lists.freedesktop.org>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gRnJpLCBKYW4gMjQsIDIwMjAgYXQgMzowMyBQTSBWaWxsZSBTeXJqYWxhCjx2aWxsZS5zeXJq
-YWxhQGxpbnV4LmludGVsLmNvbT4gd3JvdGU6Cj4KPiBGcm9tOiBWaWxsZSBTeXJqw6Rsw6QgPHZp
-bGxlLnN5cmphbGFAbGludXguaW50ZWwuY29tPgo+Cj4gSSdtIGN1cmlvdXMgaWYgdGhlcmUgYXJl
-IGFueSBib2d1cyAxOCBieXRlIGRlc2NyaXB0b3JzIGFyb3VuZC4KPiBMZXQncyBkdW1wIHRoZW0g
-b3V0IGlmIHdlIGVuY291bnRlciB0aGVtLgo+Cj4gTm90IHN1cmUgd2UnZCBhY3R1YWxseSB3YW50
-IHRoaXMsIGJ1dCBhdCBsZWFzdCBJIGdldCB0byBzZWUKPiBpZiBvdXIgQ0kgaGFzIGFueXRoaW5n
-IHRoYXQgaGl0cyB0aGlzIDopCj4KPiBTaWduZWQtb2ZmLWJ5OiBWaWxsZSBTeXJqw6Rsw6QgPHZp
-bGxlLnN5cmphbGFAbGludXguaW50ZWwuY29tPgoKQWNrZWQtYnk6IEFsZXggRGV1Y2hlciA8YWxl
-eGFuZGVyLmRldWNoZXJAYW1kLmNvbT4KCj4gLS0tCj4gIGRyaXZlcnMvZ3B1L2RybS9kcm1fZWRp
-ZC5jIHwgMjIgKysrKysrKysrKysrKysrKysrKy0tLQo+ICAxIGZpbGUgY2hhbmdlZCwgMTkgaW5z
-ZXJ0aW9ucygrKSwgMyBkZWxldGlvbnMoLSkKPgo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9k
-cm0vZHJtX2VkaWQuYyBiL2RyaXZlcnMvZ3B1L2RybS9kcm1fZWRpZC5jCj4gaW5kZXggOGU3NmVm
-ZTE2NTRkLi40ZDgzMDNlNTY1MzYgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2RybV9l
-ZGlkLmMKPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vZHJtX2VkaWQuYwo+IEBAIC0yMjAyLDYgKzIy
-MDIsMTIgQEAgc3RhdGljIGJvb2wgaXNfZGlzcGxheV9kZXNjcmlwdG9yKGNvbnN0IHU4IGRbMThd
-LCB1OCB0YWcpCj4gICAgICAgICAgICAgICAgIGRbMl0gPT0gMHgwMCAmJiBkWzNdID09IHRhZzsK
-PiAgfQo+Cj4gK3N0YXRpYyBib29sIGlzX2FueV9kaXNwbGF5X2Rlc2NyaXB0b3IoY29uc3QgdTgg
-ZFsxOF0pCj4gK3sKPiArICAgICAgIHJldHVybiBkWzBdID09IDB4MDAgJiYgZFsxXSA9PSAweDAw
-ICYmCj4gKyAgICAgICAgICAgICAgIGRbMl0gPT0gMHgwMDsKPiArfQo+ICsKPiAgc3RhdGljIGJv
-b2wgaXNfZGV0YWlsZWRfdGltaW5nX2Rlc2NyaXB0b3IoY29uc3QgdTggZFsxOF0pCj4gIHsKPiAg
-ICAgICAgIHJldHVybiBkWzBdICE9IDB4MDAgfHwgZFsxXSAhPSAweDAwOwo+IEBAIC0yMjA5LDYg
-KzIyMTUsMTUgQEAgc3RhdGljIGJvb2wgaXNfZGV0YWlsZWRfdGltaW5nX2Rlc2NyaXB0b3IoY29u
-c3QgdTggZFsxOF0pCj4KPiAgdHlwZWRlZiB2b2lkIGRldGFpbGVkX2NiKGNvbnN0IHN0cnVjdCBk
-ZXRhaWxlZF90aW1pbmcgKnRpbWluZywgdm9pZCAqY2xvc3VyZSk7Cj4KPiArc3RhdGljIHZvaWQg
-ZG9fZGV0YWlsZWRfYmxvY2soY29uc3QgdTggZFsxOF0sIGRldGFpbGVkX2NiICpjYiwgdm9pZCAq
-Y2xvc3VyZSkKPiArewo+ICsgICAgICAgaWYgKCFpc19kZXRhaWxlZF90aW1pbmdfZGVzY3JpcHRv
-cihkKSAmJgo+ICsgICAgICAgICAgICFpc19hbnlfZGlzcGxheV9kZXNjcmlwdG9yKGQpKQo+ICsg
-ICAgICAgICAgICAgICBEUk1fV0FSTigiVW5yZWNvZ25pemVkIDE4IGJ5dGUgZGVzY3JpcHRvcjog
-JSpwaFxuIiwgMTgsIGQpOwo+ICsKPiArICAgICAgIGNiKChjb25zdCBzdHJ1Y3QgZGV0YWlsZWRf
-dGltaW5nICopZCwgY2xvc3VyZSk7Cj4gK30KPiArCj4gIHN0YXRpYyB2b2lkCj4gIGNlYV9mb3Jf
-ZWFjaF9kZXRhaWxlZF9ibG9jayhjb25zdCB1OCAqZXh0LCBkZXRhaWxlZF9jYiAqY2IsIHZvaWQg
-KmNsb3N1cmUpCj4gIHsKPiBAQCAtMjIyMSw3ICsyMjM2LDcgQEAgY2VhX2Zvcl9lYWNoX2RldGFp
-bGVkX2Jsb2NrKGNvbnN0IHU4ICpleHQsIGRldGFpbGVkX2NiICpjYiwgdm9pZCAqY2xvc3VyZSkK
-Pgo+ICAgICAgICAgbiA9ICgxMjcgLSBkKSAvIDE4Owo+ICAgICAgICAgZm9yIChpID0gMDsgaSA8
-IG47IGkrKykKPiAtICAgICAgICAgICAgICAgY2IoKGNvbnN0IHN0cnVjdCBkZXRhaWxlZF90aW1p
-bmcgKikoZGV0X2Jhc2UgKyAxOCAqIGkpLCBjbG9zdXJlKTsKPiArICAgICAgICAgICAgICAgZG9f
-ZGV0YWlsZWRfYmxvY2soZGV0X2Jhc2UgKyAxOCAqIGksIGNiLCBjbG9zdXJlKTsKPiAgfQo+Cj4g
-IHN0YXRpYyB2b2lkCj4gQEAgLTIyMzQsNyArMjI0OSw3IEBAIHZ0Yl9mb3JfZWFjaF9kZXRhaWxl
-ZF9ibG9jayhjb25zdCB1OCAqZXh0LCBkZXRhaWxlZF9jYiAqY2IsIHZvaWQgKmNsb3N1cmUpCj4g
-ICAgICAgICAgICAgICAgIHJldHVybjsgLyogdW5rbm93biB2ZXJzaW9uICovCj4KPiAgICAgICAg
-IGZvciAoaSA9IDA7IGkgPCBuOyBpKyspCj4gLSAgICAgICAgICAgICAgIGNiKChjb25zdCBzdHJ1
-Y3QgZGV0YWlsZWRfdGltaW5nICopKGRldF9iYXNlICsgMTggKiBpKSwgY2xvc3VyZSk7Cj4gKyAg
-ICAgICAgICAgICAgIGRvX2RldGFpbGVkX2Jsb2NrKGRldF9iYXNlICsgMTggKiBpLCBjYiwgY2xv
-c3VyZSk7Cj4gIH0KPgo+ICBzdGF0aWMgdm9pZAo+IEBAIC0yMjQ3LDcgKzIyNjIsOCBAQCBkcm1f
-Zm9yX2VhY2hfZGV0YWlsZWRfYmxvY2soY29uc3QgdTggKnJhd19lZGlkLCBkZXRhaWxlZF9jYiAq
-Y2IsIHZvaWQgKmNsb3N1cmUpCj4gICAgICAgICAgICAgICAgIHJldHVybjsKPgo+ICAgICAgICAg
-Zm9yIChpID0gMDsgaSA8IEVESURfREVUQUlMRURfVElNSU5HUzsgaSsrKQo+IC0gICAgICAgICAg
-ICAgICBjYigmKGVkaWQtPmRldGFpbGVkX3RpbWluZ3NbaV0pLCBjbG9zdXJlKTsKPiArICAgICAg
-ICAgICAgICAgZG9fZGV0YWlsZWRfYmxvY2soKGNvbnN0IHU4ICopJmVkaWQtPmRldGFpbGVkX3Rp
-bWluZ3NbaV0sCj4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGNiLCBjbG9zdXJl
-KTsKPgo+ICAgICAgICAgZm9yIChpID0gMTsgaSA8PSByYXdfZWRpZFsweDdlXTsgaSsrKSB7Cj4g
-ICAgICAgICAgICAgICAgIGNvbnN0IHU4ICpleHQgPSByYXdfZWRpZCArIChpICogRURJRF9MRU5H
-VEgpOwo+IC0tCj4gMi4yNC4xCj4KPiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fXwo+IGRyaS1kZXZlbCBtYWlsaW5nIGxpc3QKPiBkcmktZGV2ZWxAbGlzdHMu
-ZnJlZWRlc2t0b3Aub3JnCj4gaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9s
-aXN0aW5mby9kcmktZGV2ZWwKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0
-b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50
-ZWwtZ2Z4Cg==
+On Fri, Jan 17, 2020 at 04:16:28AM -0500, Matt Atwood wrote:
+> On Tiger Lake we do not support source keying in the pixel formats P010,
+> P012, P016.
+> 
+> Bspec: 52890
+> Cc: Matt Roper <matthew.d.roper@intel.com>
+> Signed-off-by: Matt Atwood <matthew.s.atwood@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_sprite.c | 13 +++++++++++++
+>  1 file changed, 13 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_sprite.c b/drivers/gpu/drm/i915/display/intel_sprite.c
+> index fca77ec1e0dd..67176524e60f 100644
+> --- a/drivers/gpu/drm/i915/display/intel_sprite.c
+> +++ b/drivers/gpu/drm/i915/display/intel_sprite.c
+> @@ -2049,6 +2049,19 @@ static int skl_plane_check_fb(const struct intel_crtc_state *crtc_state,
+>  	unsigned int rotation = plane_state->hw.rotation;
+>  	struct drm_format_name_buf format_name;
+>  
+> +	/* Wa_1606054188;tgl
+
+                        ^ This should be a :
+
+> +	 *
+> +	 * TODO: Add format RGB64i when implemented
+> +	 *
+> +	 */
+> +	if (IS_GEN(dev_priv, 12) &&
+> +	    (plane_state->ckey.flags & I915_SET_COLORKEY_SOURCE))
+> +		if (fb->format->format & (DRM_FORMAT_P010 | DRM_FORMAT_P012
+> +		    | DRM_FORMAT_P016)) {
+> +			DRM_DEBUG_KMS("GEN12 does not support source color key planes in formats P01x\n");
+> +			return -EINVAL;
+> +		}
+> +
+
+I think this whole WA and check should be added after the check for !fb else we might have a risk
+of dereferencing a NULL pointer.
+
+With the above fixs
+
+Reviewed-by: Manasi Navare <manasi.d.navare@intel.com>
+
+Manasi
+
+>  	if (!fb)
+>  		return 0;
+>  
+> -- 
+> 2.21.1
+> 
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
