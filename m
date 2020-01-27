@@ -2,35 +2,36 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C65514A13B
-	for <lists+intel-gfx@lfdr.de>; Mon, 27 Jan 2020 10:55:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id F399914A15A
+	for <lists+intel-gfx@lfdr.de>; Mon, 27 Jan 2020 10:59:31 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AE53C6EAAF;
-	Mon, 27 Jan 2020 09:55:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CC00C6EA94;
+	Mon, 27 Jan 2020 09:59:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E3A936EABC
- for <intel-gfx@lists.freedesktop.org>; Mon, 27 Jan 2020 09:55:33 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8976C6EA94;
+ Mon, 27 Jan 2020 09:59:27 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 27 Jan 2020 01:55:33 -0800
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 27 Jan 2020 01:59:27 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,369,1574150400"; d="scan'208";a="251898281"
+X-IronPort-AV: E=Sophos;i="5.70,369,1574150400"; d="scan'208";a="376093310"
 Received: from gaia.fi.intel.com ([10.237.72.192])
- by fmsmga004.fm.intel.com with ESMTP; 27 Jan 2020 01:55:31 -0800
+ by orsmga004.jf.intel.com with ESMTP; 27 Jan 2020 01:59:25 -0800
 Received: by gaia.fi.intel.com (Postfix, from userid 1000)
- id D406B5C1DFE; Mon, 27 Jan 2020 11:54:25 +0200 (EET)
+ id DD6CE5C1DFE; Mon, 27 Jan 2020 11:58:39 +0200 (EET)
 From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20200124213903.611152-1-chris@chris-wilson.co.uk>
-References: <20200124213903.611152-1-chris@chris-wilson.co.uk>
-Date: Mon, 27 Jan 2020 11:54:25 +0200
-Message-ID: <87y2ttmdgu.fsf@gaia.fi.intel.com>
+In-Reply-To: <20200127085123.2229746-1-chris@chris-wilson.co.uk>
+References: <20200127085123.2229746-1-chris@chris-wilson.co.uk>
+Date: Mon, 27 Jan 2020 11:58:39 +0200
+Message-ID: <87v9oxmd9s.fsf@gaia.fi.intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH i-g-t] i915_pm_rps: Be wary if RP0 == RPn
+Subject: Re: [Intel-gfx] [igt-dev] [PATCH i-g-t]
+ i915/gem_pipe_control_store_loop: Limit runtime
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -43,7 +44,7 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: igt-dev@lsts.freedesktop.org
+Cc: igt-dev@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
@@ -51,63 +52,57 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 Chris Wilson <chris@chris-wilson.co.uk> writes:
 
-> If the HW min/max frequencies are the same, there is not much range to
-> deal with and a couple of our invalid tests become confused as they are
-> actually no-ops.
+> Use a runtime limit, not a fixed amount of work, so that it doesn't take
+> several hundred seconds on the slower machines.
 >
-> Error reporting in i915_pm_rps is rudimentary and we deserve better.
->
-> Closes: https://gitlab.freedesktop.org/drm/intel/issues/1008
 > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+
+Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+
 > ---
->  tests/i915/i915_pm_rps.c | 16 ++++++++++------
->  1 file changed, 10 insertions(+), 6 deletions(-)
+>  tests/i915/gem_pipe_control_store_loop.c | 8 ++++----
+>  1 file changed, 4 insertions(+), 4 deletions(-)
 >
-> diff --git a/tests/i915/i915_pm_rps.c b/tests/i915/i915_pm_rps.c
-> index b65eefb03..56c745a5b 100644
-> --- a/tests/i915/i915_pm_rps.c
-> +++ b/tests/i915/i915_pm_rps.c
-> @@ -397,9 +397,11 @@ static void min_max_config(void (*check)(void), bool load_gpu)
->  	writeval_inval(sysfs_files[MIN].filp, origfreqs[RP0] + 1000);
->  	check();
+> diff --git a/tests/i915/gem_pipe_control_store_loop.c b/tests/i915/gem_pipe_control_store_loop.c
+> index b8a21d780..9330a47c8 100644
+> --- a/tests/i915/gem_pipe_control_store_loop.c
+> +++ b/tests/i915/gem_pipe_control_store_loop.c
+> @@ -62,13 +62,13 @@ uint32_t devid;
 >  
-> -	igt_debug("\nDecrease max to RPn (invalid)...\n");
-> -	writeval_inval(sysfs_files[MAX].filp, origfreqs[RPn]);
-> -	check();
-> +	if (origfreqs[RPn] < origfreqs[RP0]) {
-> +		igt_debug("\nDecrease max to RPn (invalid)...\n");
-> +		writeval_inval(sysfs_files[MAX].filp, origfreqs[RPn]);
-> +		check();
-> +	}
+>  /* Like the store dword test, but we create new command buffers each time */
+>  static void
+> -store_pipe_control_loop(bool preuse_buffer)
+> +store_pipe_control_loop(bool preuse_buffer, int timeout)
+>  {
+>  	int i, val = 0;
+>  	uint32_t *buf;
+>  	drm_intel_bo *target_bo;
 >  
->  	igt_debug("\nDecrease min to midpoint...\n");
->  	writeval(sysfs_files[MIN].filp, fmid);
-> @@ -429,9 +431,11 @@ static void min_max_config(void (*check)(void), bool load_gpu)
->  	writeval_inval(sysfs_files[MAX].filp, 0);
->  	check();
+> -	for (i = 0; i < SLOW_QUICK(0x10000, 4); i++) {
+> +	igt_until_timeout(timeout) {
+>  		/* we want to check tlb consistency of the pipe_control target,
+>  		 * so get a new buffer every time around */
+>  		target_bo = drm_intel_bo_alloc(bufmgr, "target bo", 4096, 4096);
+> @@ -182,10 +182,10 @@ igt_main
+>  	}
 >  
-> -	igt_debug("\nIncrease min to RP0 (invalid)...\n");
-> -	writeval_inval(sysfs_files[MIN].filp, origfreqs[RP0]);
-> -	check();
-> +	if (origfreqs[RP0] > origfreqs[RP0]) {
-
-RPn?
--Mika
-
-> +		igt_debug("\nIncrease min to RP0 (invalid)...\n");
-> +		writeval_inval(sysfs_files[MIN].filp, origfreqs[RP0]);
-> +		check();
-> +	}
+>  	igt_subtest("fresh-buffer")
+> -		store_pipe_control_loop(false);
+> +		store_pipe_control_loop(false, 2);
 >  
->  	igt_debug("\nIncrease max to midpoint...\n");
->  	writeval(sysfs_files[MAX].filp, fmid);
+>  	igt_subtest("reused-buffer")
+> -		store_pipe_control_loop(true);
+> +		store_pipe_control_loop(true, 2);
+>  
+>  	igt_fixture {
+>  		intel_batchbuffer_free(batch);
 > -- 
 > 2.25.0
 >
 > _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+> igt-dev mailing list
+> igt-dev@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/igt-dev
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
