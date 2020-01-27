@@ -1,61 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0958814AB78
-	for <lists+intel-gfx@lfdr.de>; Mon, 27 Jan 2020 22:10:38 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4104214AB80
+	for <lists+intel-gfx@lfdr.de>; Mon, 27 Jan 2020 22:17:20 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 471996EB3B;
-	Mon, 27 Jan 2020 21:10:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2D0A86EB45;
+	Mon, 27 Jan 2020 21:17:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-yb1-xb41.google.com (mail-yb1-xb41.google.com
- [IPv6:2607:f8b0:4864:20::b41])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7DC716EB31
- for <intel-gfx@lists.freedesktop.org>; Mon, 27 Jan 2020 21:10:34 +0000 (UTC)
-Received: by mail-yb1-xb41.google.com with SMTP id w9so5675299ybs.3
- for <intel-gfx@lists.freedesktop.org>; Mon, 27 Jan 2020 13:10:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=poorly.run; s=google;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to:user-agent;
- bh=Vnw3Ah4JrkMvKt9fKqHBZF1O0aZJrWmh8oqC23PGxAk=;
- b=WIS2cxF2YwNjYNmRUL/huEq2SVB54heqcvQmqC0eepVwmeg+jM7LM0OdHhiCFg5roi
- jwVGtVnkhsMAJsffkWXTr9XKefwBQ1P6rFrWA+6Kca5C1vcWaSOHGrNBdr0cYOG4jpx0
- SDvz+sklRTi4yvwhoffc/ttA6Wylf6pNWU7mtIE/TOgmCjbiAT5WEDLBeEYQ4mQd2SpO
- YB+KNVvd9ynUB5rZ1Um5RZH/YIFugyM7SW3PZbEcPpWoD8biCCWevlWaZ2DHBNDHGCh3
- hM4OzzBvw+GDt9j2Ioo1hVk61UjgF6jNEWSaxSmFrvVYQl7cfBmSoe+cKf/juZs1GD9S
- b+lQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to:user-agent;
- bh=Vnw3Ah4JrkMvKt9fKqHBZF1O0aZJrWmh8oqC23PGxAk=;
- b=lBUbcOJl3boFDYhtgJfI9FlwfpCnkPEx2cQMYyMVABDcn4J7Ch2BnchyiFkmxDl2JL
- Ek+48aSmoGq0NAYBsxguWSpOhXOnRcWTEGtwFpZCmiElLF8GnwsmgQHS2qgvjk+2zMb+
- tEOAE/5+yJQKG4Gi6Tv4zhdGHop8QYcLLCBS24h/uhKNBH+Aov3CgpP1Jr+aUq3ZKkWp
- q1cNMKuQXl/hDAF+B5SDzief4DRh532f+WvR7g4/gYQ0dar9JqGWuNtwgxwFcy/n9S6F
- cEVCuNPXPKRB/YZcFOoZu85mSpP3Rh1uzhvTHWzcXgh3scfke9ohpQv23p+j9QCwwYT4
- ZeOQ==
-X-Gm-Message-State: APjAAAUBMdarLKiv2lQeGIqTaS5fgC4FIZAej5z7Ks6yW8IDrOjuGLH2
- 5WGG99Im685jLOF99tLJ+EzdZw==
-X-Google-Smtp-Source: APXvYqy8szzwYqZfjlC2mVsVS0QwKrW04oHkk0ucMR40rlGdIPUz0OByfjKBmaa8Q36pZ/NLZd1uwA==
-X-Received: by 2002:a25:6a83:: with SMTP id
- f125mr14646885ybc.212.1580159433444; 
- Mon, 27 Jan 2020 13:10:33 -0800 (PST)
-Received: from localhost ([2620:0:1013:11:1e1:4760:6ce4:fc64])
- by smtp.gmail.com with ESMTPSA id w200sm6754894ywa.34.2020.01.27.13.10.32
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 27 Jan 2020 13:10:32 -0800 (PST)
-Date: Mon, 27 Jan 2020 16:10:32 -0500
-From: Sean Paul <sean@poorly.run>
-To: Ramalingam C <ramalingam.c@intel.com>
-Message-ID: <20200127211032.GA56834@art_vandelay>
-References: <20200127181231.5380-1-ramalingam.c@intel.com>
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 471BA6EB45
+ for <intel-gfx@lists.freedesktop.org>; Mon, 27 Jan 2020 21:17:17 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20027556-1500050 
+ for <intel-gfx@lists.freedesktop.org>; Mon, 27 Jan 2020 21:17:14 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon, 27 Jan 2020 21:17:13 +0000
+Message-Id: <20200127211713.3058877-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.25.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200127181231.5380-1-ramalingam.c@intel.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH v2] drm/hdcp: optimizing the srm handling
+Subject: [Intel-gfx] [CI] drm/i915: Check current i915_vma.pin_count status
+ first on unbind
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,358 +37,119 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
- Sean Paul <seanpaul@chromium.org>, dri-devel <dri-devel@lists.freedesktop.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Jan 27, 2020 at 11:42:31PM +0530, Ramalingam C wrote:
-> As we are not using the sysfs infrastructure anymore, link to it is
-> removed. And global srm data and mutex to protect it are removed,
-> with required handling at revocation check function.
-> 
-> v2:
->   srm_data is dropped and few more comments are addressed.
-> 
-> Signed-off-by: Ramalingam C <ramalingam.c@intel.com>
-> Suggested-by: Sean Paul <seanpaul@chromium.org>
-> ---
->  drivers/gpu/drm/drm_hdcp.c     | 144 ++++++++++++---------------------
->  drivers/gpu/drm/drm_internal.h |   4 -
->  drivers/gpu/drm/drm_sysfs.c    |   2 -
->  include/drm/drm_hdcp.h         |   4 +-
->  4 files changed, 55 insertions(+), 99 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/drm_hdcp.c b/drivers/gpu/drm/drm_hdcp.c
-> index 9191633a3c43..30749a13108e 100644
-> --- a/drivers/gpu/drm/drm_hdcp.c
-> +++ b/drivers/gpu/drm/drm_hdcp.c
-> @@ -23,14 +23,6 @@
->  
->  #include "drm_internal.h"
->  
-> -static struct hdcp_srm {
-> -	u32 revoked_ksv_cnt;
-> -	u8 *revoked_ksv_list;
-> -
-> -	/* Mutex to protect above struct member */
-> -	struct mutex mutex;
-> -} *srm_data;
-> -
->  static inline void drm_hdcp_print_ksv(const u8 *ksv)
->  {
->  	DRM_DEBUG("\t%#02x, %#02x, %#02x, %#02x, %#02x\n",
-> @@ -91,7 +83,8 @@ static inline u32 get_vrl_length(const u8 *buf)
->  	return drm_hdcp_be24_to_cpu(buf);
->  }
->  
-> -static int drm_hdcp_parse_hdcp1_srm(const u8 *buf, size_t count)
-> +static int drm_hdcp_parse_hdcp1_srm(const u8 *buf, size_t count,
-> +				    u8 *revoked_ksv_list, u32 *revoked_ksv_cnt)
+Do an early rejection of a i915_vma_unbind() attempt if the i915_vma is
+currently pinned, without waiting to see if the inflight operations may
+unpin it. We see this problem with the shrinker trying to unbind the
+active vma from inside its bind worker:
 
-Shouldn't this be u8 **revoked_ksv_list since you want to return the pointer for
-use in the caller?  I'm surprised any of this worked when you tested it...
+<6> [472.618968] Workqueue: events_unbound fence_work [i915]
+<4> [472.618970] Call Trace:
+<4> [472.618974]  ? __schedule+0x2e5/0x810
+<4> [472.618978]  schedule+0x37/0xe0
+<4> [472.618982]  schedule_preempt_disabled+0xf/0x20
+<4> [472.618984]  __mutex_lock+0x281/0x9c0
+<4> [472.618987]  ? mark_held_locks+0x49/0x70
+<4> [472.618989]  ? _raw_spin_unlock_irqrestore+0x47/0x60
+<4> [472.619038]  ? i915_vma_unbind+0xae/0x110 [i915]
+<4> [472.619084]  ? i915_vma_unbind+0xae/0x110 [i915]
+<4> [472.619122]  i915_vma_unbind+0xae/0x110 [i915]
+<4> [472.619165]  i915_gem_object_unbind+0x1dc/0x400 [i915]
+<4> [472.619208]  i915_gem_shrink+0x328/0x660 [i915]
+<4> [472.619250]  ? i915_gem_shrink_all+0x38/0x60 [i915]
+<4> [472.619282]  i915_gem_shrink_all+0x38/0x60 [i915]
+<4> [472.619325]  vm_alloc_page.constprop.25+0x1aa/0x240 [i915]
+<4> [472.619330]  ? rcu_read_lock_sched_held+0x4d/0x80
+<4> [472.619363]  ? __alloc_pd+0xb/0x30 [i915]
+<4> [472.619366]  ? module_assert_mutex_or_preempt+0xf/0x30
+<4> [472.619368]  ? __module_address+0x23/0xe0
+<4> [472.619371]  ? is_module_address+0x26/0x40
+<4> [472.619374]  ? static_obj+0x34/0x50
+<4> [472.619376]  ? lockdep_init_map+0x4d/0x1e0
+<4> [472.619407]  setup_page_dma+0xd/0x90 [i915]
+<4> [472.619437]  alloc_pd+0x29/0x50 [i915]
+<4> [472.619470]  __gen8_ppgtt_alloc+0x443/0x6b0 [i915]
+<4> [472.619503]  gen8_ppgtt_alloc+0xd7/0x300 [i915]
+<4> [472.619535]  ppgtt_bind_vma+0x2a/0xe0 [i915]
+<4> [472.619577]  __vma_bind+0x26/0x40 [i915]
+<4> [472.619611]  fence_work+0x1c/0x90 [i915]
+<4> [472.619617]  process_one_work+0x26a/0x620
 
->  {
->  	struct hdcp_srm_header *header;
->  	u32 vrl_length, ksv_count;
-> @@ -131,29 +124,28 @@ static int drm_hdcp_parse_hdcp1_srm(const u8 *buf, size_t count)
->  	ksv_count = drm_hdcp_get_revoked_ksv_count(buf, vrl_length);
->  	if (!ksv_count) {
->  		DRM_DEBUG("Revoked KSV count is 0\n");
-> -		return count;
-> +		return 0;
->  	}
->  
-> -	kfree(srm_data->revoked_ksv_list);
-> -	srm_data->revoked_ksv_list = kcalloc(ksv_count, DRM_HDCP_KSV_LEN,
-> -					     GFP_KERNEL);
-> -	if (!srm_data->revoked_ksv_list) {
-> +	revoked_ksv_list = kcalloc(ksv_count, DRM_HDCP_KSV_LEN, GFP_KERNEL);
-> +	if (!revoked_ksv_list) {
->  		DRM_ERROR("Out of Memory\n");
->  		return -ENOMEM;
->  	}
->  
-> -	if (drm_hdcp_get_revoked_ksvs(buf, srm_data->revoked_ksv_list,
-> +	if (drm_hdcp_get_revoked_ksvs(buf, revoked_ksv_list,
->  				      vrl_length) != ksv_count) {
-> -		srm_data->revoked_ksv_cnt = 0;
-> -		kfree(srm_data->revoked_ksv_list);
-> +		*revoked_ksv_cnt = 0;
-> +		kfree(revoked_ksv_list);
->  		return -EINVAL;
->  	}
->  
-> -	srm_data->revoked_ksv_cnt = ksv_count;
-> -	return count;
-> +	*revoked_ksv_cnt = ksv_count;
-> +	return 0;
->  }
->  
-> -static int drm_hdcp_parse_hdcp2_srm(const u8 *buf, size_t count)
-> +static int drm_hdcp_parse_hdcp2_srm(const u8 *buf, size_t count,
-> +				    u8 *revoked_ksv_list, u32 *revoked_ksv_cnt)
+Fixes: 2850748ef876 ("drm/i915: Pull i915_vma_pin under the vm->mutex")
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+---
+ drivers/gpu/drm/i915/i915_vma.c | 21 +++++++++------------
+ 1 file changed, 9 insertions(+), 12 deletions(-)
 
-Same comment here, this should be u8 **
-
->  {
->  	struct hdcp_srm_header *header;
->  	u32 vrl_length, ksv_count, ksv_sz;
-> @@ -195,13 +187,11 @@ static int drm_hdcp_parse_hdcp2_srm(const u8 *buf, size_t count)
->  	ksv_count = (*buf << 2) | DRM_HDCP_2_KSV_COUNT_2_LSBITS(*(buf + 1));
->  	if (!ksv_count) {
->  		DRM_DEBUG("Revoked KSV count is 0\n");
-> -		return count;
-> +		return 0;
->  	}
->  
-> -	kfree(srm_data->revoked_ksv_list);
-> -	srm_data->revoked_ksv_list = kcalloc(ksv_count, DRM_HDCP_KSV_LEN,
-> -					     GFP_KERNEL);
-> -	if (!srm_data->revoked_ksv_list) {
-> +	revoked_ksv_list = kcalloc(ksv_count, DRM_HDCP_KSV_LEN, GFP_KERNEL);
-> +	if (!revoked_ksv_list) {
->  		DRM_ERROR("Out of Memory\n");
->  		return -ENOMEM;
->  	}
-> @@ -210,10 +200,10 @@ static int drm_hdcp_parse_hdcp2_srm(const u8 *buf, size_t count)
->  	buf += DRM_HDCP_2_NO_OF_DEV_PLUS_RESERVED_SZ;
->  
->  	DRM_DEBUG("Revoked KSVs: %d\n", ksv_count);
-> -	memcpy(srm_data->revoked_ksv_list, buf, ksv_sz);
-> +	memcpy(revoked_ksv_list, buf, ksv_sz);
->  
-> -	srm_data->revoked_ksv_cnt = ksv_count;
-> -	return count;
-> +	*revoked_ksv_cnt = ksv_count;
-> +	return 0;
->  }
->  
->  static inline bool is_srm_version_hdcp1(const u8 *buf)
-> @@ -226,18 +216,22 @@ static inline bool is_srm_version_hdcp2(const u8 *buf)
->  	return *buf == (u8)(DRM_HDCP_2_SRM_ID << 4 | DRM_HDCP_2_INDICATOR);
->  }
->  
-> -static void drm_hdcp_srm_update(const u8 *buf, size_t count)
-> +static void drm_hdcp_srm_update(const u8 *buf, size_t count,
-> +				u8 *revoked_ksv_list, u32 *revoked_ksv_cnt)
-
-and here
-
->  {
->  	if (count < sizeof(struct hdcp_srm_header))
->  		return;
->  
->  	if (is_srm_version_hdcp1(buf))
-> -		drm_hdcp_parse_hdcp1_srm(buf, count);
-> +		drm_hdcp_parse_hdcp1_srm(buf, count, revoked_ksv_list,
-> +					 revoked_ksv_cnt);
->  	else if (is_srm_version_hdcp2(buf))
-> -		drm_hdcp_parse_hdcp2_srm(buf, count);
-> +		drm_hdcp_parse_hdcp2_srm(buf, count, revoked_ksv_list,
-> +					 revoked_ksv_cnt);
->  }
->  
-> -static void drm_hdcp_request_srm(struct drm_device *drm_dev)
-> +static void drm_hdcp_request_srm(struct drm_device *drm_dev,
-> +				 u8 *revoked_ksv_list, u32 *revoked_ksv_cnt)
-
-and here
-
->  {
->  	char fw_name[36] = "display_hdcp_srm.bin";
->  	const struct firmware *fw;
-> @@ -250,7 +244,8 @@ static void drm_hdcp_request_srm(struct drm_device *drm_dev)
->  		goto exit;
->  
->  	if (fw->size && fw->data)
-> -		drm_hdcp_srm_update(fw->data, fw->size);
-> +		drm_hdcp_srm_update(fw->data, fw->size, revoked_ksv_list,
-> +				    revoked_ksv_cnt);
->  
->  exit:
->  	release_firmware(fw);
-> @@ -279,70 +274,37 @@ static void drm_hdcp_request_srm(struct drm_device *drm_dev)
->   * https://www.digital-cp.com/sites/default/files/specifications/HDCP%20on%20HDMI%20Specification%20Rev2_2_Final1.pdf
->   *
->   * Returns:
-> - * TRUE on any of the KSV is revoked, else FALSE.
-> + * Count of the revoked KSVs.
-
-What about on error?
-
->   */
-> -bool drm_hdcp_check_ksvs_revoked(struct drm_device *drm_dev, u8 *ksvs,
-> -				 u32 ksv_count)
-> +int drm_hdcp_check_ksvs_revoked(struct drm_device *drm_dev, u8 *ksvs_in,
-> +				u32 ksv_count)
->  {
-> -	u32 rev_ksv_cnt, cnt, i, j;
-> -	u8 *rev_ksv_list;
-> -
-> -	if (!srm_data)
-> -		return false;
-> -
-> -	mutex_lock(&srm_data->mutex);
-> -	drm_hdcp_request_srm(drm_dev);
-> -
-> -	rev_ksv_cnt = srm_data->revoked_ksv_cnt;
-> -	rev_ksv_list = srm_data->revoked_ksv_list;
-> -
-> -	/* If the Revoked ksv list is empty */
-> -	if (!rev_ksv_cnt || !rev_ksv_list) {
-> -		mutex_unlock(&srm_data->mutex);
-> -		return false;
-> -	}
-> -
-> -	for  (cnt = 0; cnt < ksv_count; cnt++) {
-> -		rev_ksv_list = srm_data->revoked_ksv_list;
-> -		for (i = 0; i < rev_ksv_cnt; i++) {
-> -			for (j = 0; j < DRM_HDCP_KSV_LEN; j++)
-> -				if (ksvs[j] != rev_ksv_list[j]) {
-> -					break;
-> -				} else if (j == (DRM_HDCP_KSV_LEN - 1)) {
-> -					DRM_DEBUG("Revoked KSV is ");
-> -					drm_hdcp_print_ksv(ksvs);
-> -					mutex_unlock(&srm_data->mutex);
-> -					return true;
-> -				}
-> -			/* Move the offset to next KSV in the revoked list */
-> -			rev_ksv_list += DRM_HDCP_KSV_LEN;
-> +	u8 *revoked_ksv_list = NULL, *ksvs, *list_itr;
-
-Where is revoked_ksv_list freed?
-
-> +	u32 revoked_ksv_cnt = 0, i, j;
-> +	int ret = 0;
-> +
-> +	drm_hdcp_request_srm(drm_dev, revoked_ksv_list, &revoked_ksv_cnt);
-
-This can't fail?
-
-> +	list_itr = revoked_ksv_list;
-> +
-> +	for (i = 0; i < revoked_ksv_cnt; i++) {
-> +		ksvs = ksvs_in;
-> +		for  (j = 0; j < ksv_count; j++) {
-
-
-You can save yourself the iterators if you just generate the offsets like:
-
-        for (i = 0; i < revoked_ksv_cnt; i++) {
-                u8 *a = &ksvs_in[j * DRM_HDCP_KSV_LEN];
-                for  (j = 0; j < ksv_count; j++) {
-                        u8 *b = &revoked_ksv_list[i * DRM_HDCP_KSV_LEN];
-
-                        if (!memcmp(a, b, DRM_HDCP_KSV_LEN)) {
-                                ...
-                        }
-
-
-
-
-> +			if (!memcmp(ksvs, list_itr, DRM_HDCP_KSV_LEN)) {
-> +				DRM_DEBUG("Revoked KSV is ");
-> +				drm_hdcp_print_ksv(ksvs);
-> +				ret++;
-> +			}
-> +			/* Iterate to next ksv_offset */
-> +			ksvs += DRM_HDCP_KSV_LEN;
->  		}
-> -
-> -		/* Iterate to next ksv_offset */
-> -		ksvs += DRM_HDCP_KSV_LEN;
-> +		/* Move the offset to next KSV in the revoked list */
-> +		list_itr += DRM_HDCP_KSV_LEN;
->  	}
-> -	mutex_unlock(&srm_data->mutex);
-> -	return false;
-> -}
-> -EXPORT_SYMBOL_GPL(drm_hdcp_check_ksvs_revoked);
-> -
-> -int drm_setup_hdcp_srm(struct class *drm_class)
-> -{
-> -	srm_data = kzalloc(sizeof(*srm_data), GFP_KERNEL);
-> -	if (!srm_data)
-> -		return -ENOMEM;
-> -	mutex_init(&srm_data->mutex);
->  
-> -	return 0;
-> -}
-> -
-> -void drm_teardown_hdcp_srm(struct class *drm_class)
-> -{
-> -	if (srm_data) {
-> -		kfree(srm_data->revoked_ksv_list);
-> -		kfree(srm_data);
-> -	}
-> +	kfree(revoked_ksv_list);
-> +	return ret;
->  }
-> +EXPORT_SYMBOL_GPL(drm_hdcp_check_ksvs_revoked);
->  
->  static struct drm_prop_enum_list drm_cp_enum_list[] = {
->  	{ DRM_MODE_CONTENT_PROTECTION_UNDESIRED, "Undesired" },
-> diff --git a/drivers/gpu/drm/drm_internal.h b/drivers/gpu/drm/drm_internal.h
-> index 6937bf923f05..a34c7f8373fa 100644
-> --- a/drivers/gpu/drm/drm_internal.h
-> +++ b/drivers/gpu/drm/drm_internal.h
-> @@ -235,7 +235,3 @@ int drm_syncobj_query_ioctl(struct drm_device *dev, void *data,
->  void drm_framebuffer_print_info(struct drm_printer *p, unsigned int indent,
->  				const struct drm_framebuffer *fb);
->  int drm_framebuffer_debugfs_init(struct drm_minor *minor);
-> -
-> -/* drm_hdcp.c */
-> -int drm_setup_hdcp_srm(struct class *drm_class);
-> -void drm_teardown_hdcp_srm(struct class *drm_class);
-> diff --git a/drivers/gpu/drm/drm_sysfs.c b/drivers/gpu/drm/drm_sysfs.c
-> index dd2bc85f43cc..2e83c3d72af9 100644
-> --- a/drivers/gpu/drm/drm_sysfs.c
-> +++ b/drivers/gpu/drm/drm_sysfs.c
-> @@ -85,7 +85,6 @@ int drm_sysfs_init(void)
->  	}
->  
->  	drm_class->devnode = drm_devnode;
-> -	drm_setup_hdcp_srm(drm_class);
->  	return 0;
->  }
->  
-> @@ -98,7 +97,6 @@ void drm_sysfs_destroy(void)
->  {
->  	if (IS_ERR_OR_NULL(drm_class))
->  		return;
-> -	drm_teardown_hdcp_srm(drm_class);
->  	class_remove_file(drm_class, &class_attr_version.attr);
->  	class_destroy(drm_class);
->  	drm_class = NULL;
-> diff --git a/include/drm/drm_hdcp.h b/include/drm/drm_hdcp.h
-> index 06a11202a097..d512089b873f 100644
-> --- a/include/drm/drm_hdcp.h
-> +++ b/include/drm/drm_hdcp.h
-> @@ -288,8 +288,8 @@ struct hdcp_srm_header {
->  struct drm_device;
->  struct drm_connector;
->  
-> -bool drm_hdcp_check_ksvs_revoked(struct drm_device *dev,
-> -				 u8 *ksvs, u32 ksv_count);
-> +int drm_hdcp_check_ksvs_revoked(struct drm_device *dev,
-> +				u8 *ksvs, u32 ksv_count);
->  int drm_connector_attach_content_protection_property(
->  		struct drm_connector *connector, bool hdcp_content_type);
->  void drm_hdcp_update_content_protection(struct drm_connector *connector,
-> -- 
-> 2.20.1
-> 
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
+diff --git a/drivers/gpu/drm/i915/i915_vma.c b/drivers/gpu/drm/i915/i915_vma.c
+index 84e03da0d5f9..24dd912fdd6b 100644
+--- a/drivers/gpu/drm/i915/i915_vma.c
++++ b/drivers/gpu/drm/i915/i915_vma.c
+@@ -317,6 +317,8 @@ static void __vma_release(struct dma_fence_work *work)
+ 
+ 	if (vw->pinned)
+ 		__i915_gem_object_unpin_pages(vw->pinned);
++	if (vw->vma)
++		i915_vma_unpin(vw->vma);
+ }
+ 
+ static const struct dma_fence_work_ops bind_ops = {
+@@ -407,6 +409,7 @@ int i915_vma_bind(struct i915_vma *vma,
+ 			__i915_gem_object_pin_pages(vma->obj);
+ 			work->pinned = vma->obj;
+ 		}
++		__i915_vma_pin(vma);
+ 	} else {
+ 		GEM_BUG_ON((bind_flags & ~vma_flags) & vma->vm->bind_async_flags);
+ 		ret = vma->ops->bind_vma(vma, cache_level, bind_flags);
+@@ -1033,6 +1036,7 @@ void i915_vma_release(struct kref *ref)
+ 	struct i915_vma *vma = container_of(ref, typeof(*vma), ref);
+ 
+ 	if (drm_mm_node_allocated(&vma->node)) {
++		WARN_ON(i915_vma_sync(vma));
+ 		mutex_lock(&vma->vm->mutex);
+ 		atomic_and(~I915_VMA_PIN_MASK, &vma->flags);
+ 		WARN_ON(__i915_vma_unbind(vma));
+@@ -1190,18 +1194,6 @@ int __i915_vma_unbind(struct i915_vma *vma)
+ 
+ 	lockdep_assert_held(&vma->vm->mutex);
+ 
+-	/*
+-	 * First wait upon any activity as retiring the request may
+-	 * have side-effects such as unpinning or even unbinding this vma.
+-	 *
+-	 * XXX Actually waiting under the vm->mutex is a hinderance and
+-	 * should be pipelined wherever possible. In cases where that is
+-	 * unavoidable, we should lift the wait to before the mutex.
+-	 */
+-	ret = i915_vma_sync(vma);
+-	if (ret)
+-		return ret;
+-
+ 	if (i915_vma_is_pinned(vma)) {
+ 		vma_print_allocator(vma, "is pinned");
+ 		return -EAGAIN;
+@@ -1275,6 +1267,11 @@ int i915_vma_unbind(struct i915_vma *vma)
+ 	if (!drm_mm_node_allocated(&vma->node))
+ 		return 0;
+ 
++	if (i915_vma_is_pinned(vma)) {
++		vma_print_allocator(vma, "is pinned");
++		return -EAGAIN;
++	}
++
+ 	if (i915_vma_is_bound(vma, I915_VMA_GLOBAL_BIND))
+ 		/* XXX not always required: nop_clear_range */
+ 		wakeref = intel_runtime_pm_get(&vm->i915->runtime_pm);
 -- 
-Sean Paul, Software Engineer, Google / Chromium OS
+2.25.0
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
