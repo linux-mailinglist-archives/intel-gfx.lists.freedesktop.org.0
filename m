@@ -1,32 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3005A14AC81
-	for <lists+intel-gfx@lfdr.de>; Tue, 28 Jan 2020 00:16:01 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 66C5614ACB2
+	for <lists+intel-gfx@lfdr.de>; Tue, 28 Jan 2020 00:44:31 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 545666EC22;
-	Mon, 27 Jan 2020 23:15:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C0E446EB27;
+	Mon, 27 Jan 2020 23:44:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1217F6EC22
- for <intel-gfx@lists.freedesktop.org>; Mon, 27 Jan 2020 23:15:56 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20028142-1500050 
- for multiple; Mon, 27 Jan 2020 23:15:42 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon, 27 Jan 2020 23:15:40 +0000
-Message-Id: <20200127231540.3302516-6-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.25.0
-In-Reply-To: <20200127231540.3302516-1-chris@chris-wilson.co.uk>
-References: <20200127231540.3302516-1-chris@chris-wilson.co.uk>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 958F26EB27;
+ Mon, 27 Jan 2020 23:44:27 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 6B72FA011A;
+ Mon, 27 Jan 2020 23:44:27 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 6/6] drm/i915/gt: Lift set-wedged engine dumping
- out of user paths
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Auld" <matthew.auld@intel.com>
+Date: Mon, 27 Jan 2020 23:44:27 -0000
+Message-ID: <158016866741.9687.17028903014188029887@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200127125626.37198-1-matthew.auld@intel.com>
+In-Reply-To: <20200127125626.37198-1-matthew.auld@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
+ =?utf-8?q?/i915/selftests/perf=3A_measure_memcpy_bw_between_regions?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,79 +38,121 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Tomi Sarvela <tomi.p.sarvela@intel.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The user (e.g. gem_eio) can manipulate the driver into wedging itself,
-allowing the user to trigger voluminous logging of inconsequential
-details. If we lift the dump to direct calls to intel_gt_set_wedged(),
-out of the intel_reset failure handling, we keep the detail logging for
-what we expect are true HW or test failures without being tricked.
+== Series Details ==
 
-Reported-by: Tomi Sarvela <tomi.p.sarvela@intel.com>
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-Cc: Tomi Sarvela <tomi.p.sarvela@intel.com>
----
- drivers/gpu/drm/i915/gt/intel_reset.c | 30 +++++++++++++++++++--------
- 1 file changed, 21 insertions(+), 9 deletions(-)
+Series: drm/i915/selftests/perf: measure memcpy bw between regions
+URL   : https://patchwork.freedesktop.org/series/72621/
+State : failure
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_reset.c b/drivers/gpu/drm/i915/gt/intel_reset.c
-index beee0cf89bce..423a02506b2d 100644
---- a/drivers/gpu/drm/i915/gt/intel_reset.c
-+++ b/drivers/gpu/drm/i915/gt/intel_reset.c
-@@ -800,13 +800,6 @@ static void __intel_gt_set_wedged(struct intel_gt *gt)
- 	if (test_bit(I915_WEDGED, &gt->reset.flags))
- 		return;
- 
--	if (GEM_SHOW_DEBUG() && !intel_engines_are_idle(gt)) {
--		struct drm_printer p = drm_debug_printer(__func__);
--
--		for_each_engine(engine, gt, id)
--			intel_engine_dump(engine, &p, "%s\n", engine->name);
--	}
--
- 	GT_TRACE(gt, "start\n");
- 
- 	/*
-@@ -845,10 +838,29 @@ void intel_gt_set_wedged(struct intel_gt *gt)
- {
- 	intel_wakeref_t wakeref;
- 
-+	if (test_bit(I915_WEDGED, &gt->reset.flags))
-+		return;
-+
-+	wakeref = intel_runtime_pm_get(gt->uncore->rpm);
- 	mutex_lock(&gt->reset.mutex);
--	with_intel_runtime_pm(gt->uncore->rpm, wakeref)
--		__intel_gt_set_wedged(gt);
-+
-+	if (GEM_SHOW_DEBUG() && !intel_engines_are_idle(gt)) {
-+		struct drm_printer p = drm_debug_printer(__func__);
-+		struct intel_engine_cs *engine;
-+		enum intel_engine_id id;
-+
-+		for_each_engine(engine, gt, id) {
-+			if (intel_engine_is_idle(engine))
-+				continue;
-+
-+			intel_engine_dump(engine, &p, "%s\n", engine->name);
-+		}
-+	}
-+
-+	__intel_gt_set_wedged(gt);
-+
- 	mutex_unlock(&gt->reset.mutex);
-+	intel_runtime_pm_put(gt->uncore->rpm, wakeref);
- }
- 
- static bool __intel_gt_unset_wedged(struct intel_gt *gt)
--- 
-2.25.0
+== Summary ==
 
+CI Bug Log - changes from CI_DRM_7827 -> Patchwork_16278
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with Patchwork_16278 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_16278, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16278/index.html
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_16278:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@i915_selftest@live_gem_contexts:
+    - fi-byt-j1900:       [PASS][1] -> [DMESG-FAIL][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7827/fi-byt-j1900/igt@i915_selftest@live_gem_contexts.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16278/fi-byt-j1900/igt@i915_selftest@live_gem_contexts.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_16278 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_close_race@basic-threads:
+    - fi-byt-j1900:       [PASS][3] -> [TIMEOUT][4] ([fdo#112271] / [i915#816])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7827/fi-byt-j1900/igt@gem_close_race@basic-threads.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16278/fi-byt-j1900/igt@gem_close_race@basic-threads.html
+
+  * igt@kms_chamelium@hdmi-hpd-fast:
+    - fi-kbl-7500u:       [PASS][5] -> [FAIL][6] ([fdo#111407])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7827/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16278/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live_blt:
+    - fi-hsw-4770:        [DMESG-FAIL][7] ([i915#553] / [i915#725]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7827/fi-hsw-4770/igt@i915_selftest@live_blt.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16278/fi-hsw-4770/igt@i915_selftest@live_blt.html
+
+  * igt@i915_selftest@live_hangcheck:
+    - fi-icl-u3:          [INCOMPLETE][9] ([fdo#108569] / [i915#140]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7827/fi-icl-u3/igt@i915_selftest@live_hangcheck.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16278/fi-icl-u3/igt@i915_selftest@live_hangcheck.html
+
+  
+  [fdo#108569]: https://bugs.freedesktop.org/show_bug.cgi?id=108569
+  [fdo#111407]: https://bugs.freedesktop.org/show_bug.cgi?id=111407
+  [fdo#112271]: https://bugs.freedesktop.org/show_bug.cgi?id=112271
+  [i915#140]: https://gitlab.freedesktop.org/drm/intel/issues/140
+  [i915#553]: https://gitlab.freedesktop.org/drm/intel/issues/553
+  [i915#725]: https://gitlab.freedesktop.org/drm/intel/issues/725
+  [i915#816]: https://gitlab.freedesktop.org/drm/intel/issues/816
+
+
+Participating hosts (46 -> 43)
+------------------------------
+
+  Additional (5): fi-bsw-n3050 fi-gdg-551 fi-cfl-8109u fi-ivb-3770 fi-skl-6600u 
+  Missing    (8): fi-ilk-m540 fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-kbl-x1275 fi-kbl-7560u fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_7827 -> Patchwork_16278
+
+  CI-20190529: 20190529
+  CI_DRM_7827: c8969aeacfff681c83a800e82b0f18a6ab3e77ea @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5389: 966c58649dee31bb5bf2fad92f75ffd365968b81 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_16278: a5ec4dca083a83834ed122d8a96655ad4d05c205 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+a5ec4dca083a drm/i915/selftests/perf: measure memcpy bw between regions
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16278/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
