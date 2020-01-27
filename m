@@ -1,42 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 47A3714A7CA
-	for <lists+intel-gfx@lfdr.de>; Mon, 27 Jan 2020 17:08:16 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id DDAD814A8C1
+	for <lists+intel-gfx@lfdr.de>; Mon, 27 Jan 2020 18:15:02 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A64AE6E4A6;
-	Mon, 27 Jan 2020 16:08:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4176C6E2E5;
+	Mon, 27 Jan 2020 17:15:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 887AF6E4A6;
- Mon, 27 Jan 2020 16:08:13 +0000 (UTC)
-X-Amp-Result: UNSCANNABLE
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 95F216E2E5
+ for <intel-gfx@lists.freedesktop.org>; Mon, 27 Jan 2020 17:14:59 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga106.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 27 Jan 2020 08:08:13 -0800
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 27 Jan 2020 09:01:25 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,370,1574150400"; d="scan'208";a="261097470"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by fmsmga002.fm.intel.com with SMTP; 27 Jan 2020 08:08:11 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 27 Jan 2020 18:08:10 +0200
-Date: Mon, 27 Jan 2020 18:08:10 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Matt Roper <matthew.d.roper@intel.com>
-Message-ID: <20200127160810.GE13686@intel.com>
-References: <20200123154542.12271-1-ville.syrjala@linux.intel.com>
- <20200123154542.12271-2-ville.syrjala@linux.intel.com>
- <20200123171904.GG2244136@mdroper-desk1.amr.corp.intel.com>
+X-IronPort-AV: E=Sophos;i="5.70,370,1574150400"; d="scan'208";a="401384018"
+Received: from eliteleevi.tm.intel.com ([10.237.54.20])
+ by orsmga005.jf.intel.com with ESMTP; 27 Jan 2020 09:01:24 -0800
+Date: Mon, 27 Jan 2020 19:01:23 +0200 (EET)
+From: Kai Vehmanen <kai.vehmanen@linux.intel.com>
+X-X-Sender: kvehmane@eliteleevi.tm.intel.com
+To: =?ISO-8859-15?Q?Ville_Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+In-Reply-To: <20200127132755.GD13686@intel.com>
+Message-ID: <alpine.DEB.2.21.2001271847290.2957@eliteleevi.tm.intel.com>
+References: <20200127113909.11263-1-kai.vehmanen@linux.intel.com>
+ <20200127132755.GD13686@intel.com>
+User-Agent: Alpine 2.21 (DEB 202 2017-01-01)
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7 02160 Espoo
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200123171904.GG2244136@mdroper-desk1.amr.corp.intel.com>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH 2/3] drm/i915: Include the AUX CH name in
- the debug messages
+Content-Type: multipart/mixed;
+ boundary="-318106570-1889353587-1580144485=:2957"
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Add missing HDMI audio pixel
+ clocks for gen12
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,144 +48,48 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Jan 23, 2020 at 09:19:04AM -0800, Matt Roper wrote:
-> On Thu, Jan 23, 2020 at 05:45:41PM +0200, Ville Syrjala wrote:
-> > From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> > =
+  This message is in MIME format.  The first part should be readable text,
+  while the remaining parts are likely unreadable without MIME-aware tools.
 
-> > To make it easier to figure out what caused a particular debug
-> > message let's print out aux->name.
-> > =
+---318106570-1889353587-1580144485=:2957
+Content-Type: text/plain; charset=iso-8859-1
+Content-Transfer-Encoding: 8BIT
 
-> > Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> =
+Hi,
 
-> It might be worth adding commas to some of these messages too while
-> we're at it (e.g., "not started, status").  But either way, this is a
-> really helpful cleanup.
+On Mon, 27 Jan 2020, Ville Syrjälä wrote:
 
-Good idea. The first one of these already uses
-"%s: blah (status 0x%x)" as the format, so I went ahead and
-converted the rest to follow the same style.
+> On Mon, Jan 27, 2020 at 01:39:09PM +0200, Kai Vehmanen wrote:
+> > Gen12 hardware supports HDMI audio pixel clocks of 296.7/297Mhz
+> > and 593.4/594Mhz. Add the missing rates and add logic to ignore
+> > them if running on older hardware.
+[...]
+> >  	for (i = 0; i < ARRAY_SIZE(hdmi_audio_clock); i++) {
+> > +		if (INTEL_GEN(dev_priv) < 12 &&
+> > +		    hdmi_audio_clock[i].clock > 148500) {
+> 
+> Might be cleaner to do the check after the loop.
 
-> =
+hmm, you are right. I'll wait for the CI results to come in and if nothing 
+else found, I'll post V2 with the check moved outside the loop.
 
-> Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+Thanks for the review Ville!
 
-2-3 pushed to dinq. Thanks for the review.
+Br, Kai
 
-> =
+---318106570-1889353587-1580144485=:2957
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
-> =
-
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_dp.c | 19 +++++++++++--------
-> >  1 file changed, 11 insertions(+), 8 deletions(-)
-> > =
-
-> > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/=
-i915/display/intel_dp.c
-> > index 1795963e1866..941f0f6d55c1 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> > @@ -1186,7 +1186,7 @@ intel_dp_aux_wait_done(struct intel_dp *intel_dp)
-> >  	trace_i915_reg_rw(false, ch_ctl, status, sizeof(status), true);
-> >  =
-
-> >  	if (!done)
-> > -		DRM_ERROR("%s did not complete or timeout within %ums (status 0x%08x=
-)\n",
-> > +		DRM_ERROR("%s: did not complete or timeout within %ums (status 0x%08=
-x)\n",
-> >  			  intel_dp->aux.name, timeout_ms, status);
-> >  #undef C
-> >  =
-
-> > @@ -1373,8 +1373,8 @@ intel_dp_aux_xfer(struct intel_dp *intel_dp,
-> >  		const u32 status =3D intel_uncore_read(uncore, ch_ctl);
-> >  =
-
-> >  		if (status !=3D intel_dp->aux_busy_last_status) {
-> > -			WARN(1, "dp_aux_ch not started status 0x%08x\n",
-> > -			     status);
-> > +			WARN(1, "%s: not started status 0x%08x\n",
-> > +			     intel_dp->aux.name, status);
-> >  			intel_dp->aux_busy_last_status =3D status;
-> >  		}
-> >  =
-
-> > @@ -1435,7 +1435,8 @@ intel_dp_aux_xfer(struct intel_dp *intel_dp,
-> >  	}
-> >  =
-
-> >  	if ((status & DP_AUX_CH_CTL_DONE) =3D=3D 0) {
-> > -		DRM_ERROR("dp_aux_ch not done status 0x%08x\n", status);
-> > +		DRM_ERROR("%s: not done status 0x%08x\n",
-> > +			  intel_dp->aux.name, status);
-> >  		ret =3D -EBUSY;
-> >  		goto out;
-> >  	}
-> > @@ -1445,7 +1446,8 @@ intel_dp_aux_xfer(struct intel_dp *intel_dp,
-> >  	 * Timeouts occur when the sink is not connected
-> >  	 */
-> >  	if (status & DP_AUX_CH_CTL_RECEIVE_ERROR) {
-> > -		DRM_ERROR("dp_aux_ch receive error status 0x%08x\n", status);
-> > +		DRM_ERROR("%s: receive error status 0x%08x\n",
-> > +			  intel_dp->aux.name, status);
-> >  		ret =3D -EIO;
-> >  		goto out;
-> >  	}
-> > @@ -1453,7 +1455,8 @@ intel_dp_aux_xfer(struct intel_dp *intel_dp,
-> >  	/* Timeouts occur when the device isn't connected, so they're
-> >  	 * "normal" -- don't fill the kernel log with these */
-> >  	if (status & DP_AUX_CH_CTL_TIME_OUT_ERROR) {
-> > -		DRM_DEBUG_KMS("dp_aux_ch timeout status 0x%08x\n", status);
-> > +		DRM_DEBUG_KMS("%s: timeout status 0x%08x\n",
-> > +			      intel_dp->aux.name, status);
-> >  		ret =3D -ETIMEDOUT;
-> >  		goto out;
-> >  	}
-> > @@ -1468,8 +1471,8 @@ intel_dp_aux_xfer(struct intel_dp *intel_dp,
-> >  	 * drm layer takes care for the necessary retries.
-> >  	 */
-> >  	if (recv_bytes =3D=3D 0 || recv_bytes > 20) {
-> > -		DRM_DEBUG_KMS("Forbidden recv_bytes =3D %d on aux transaction\n",
-> > -			      recv_bytes);
-> > +		DRM_DEBUG_KMS("%s: Forbidden recv_bytes =3D %d on aux transaction\n",
-> > +			      intel_dp->aux.name, recv_bytes);
-> >  		ret =3D -EBUSY;
-> >  		goto out;
-> >  	}
-> > -- =
-
-> > 2.24.1
-> > =
-
-> > _______________________________________________
-> > dri-devel mailing list
-> > dri-devel@lists.freedesktop.org
-> > https://lists.freedesktop.org/mailman/listinfo/dri-devel
-> =
-
-> -- =
-
-> Matt Roper
-> Graphics Software Engineer
-> VTT-OSGC Platform Enablement
-> Intel Corporation
-> (916) 356-2795
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+---318106570-1889353587-1580144485=:2957--
