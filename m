@@ -1,36 +1,38 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A18514A16B
-	for <lists+intel-gfx@lfdr.de>; Mon, 27 Jan 2020 11:05:05 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id BAE3C14A17E
+	for <lists+intel-gfx@lfdr.de>; Mon, 27 Jan 2020 11:09:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5E10A6EAB7;
-	Mon, 27 Jan 2020 10:05:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2C15B6EABD;
+	Mon, 27 Jan 2020 10:09:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A11F86EAB7
- for <intel-gfx@lists.freedesktop.org>; Mon, 27 Jan 2020 10:05:01 +0000 (UTC)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 674F56EABD
+ for <intel-gfx@lists.freedesktop.org>; Mon, 27 Jan 2020 10:09:47 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 27 Jan 2020 02:05:01 -0800
-X-IronPort-AV: E=Sophos;i="5.70,369,1574150400"; d="scan'208";a="221689873"
+ by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 27 Jan 2020 02:09:46 -0800
+X-IronPort-AV: E=Sophos;i="5.70,369,1574150400"; d="scan'208";a="221690712"
 Received: from jpanina-mobl.ger.corp.intel.com (HELO localhost)
  ([10.252.52.12])
  by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 27 Jan 2020 02:04:59 -0800
+ 27 Jan 2020 02:09:45 -0800
 From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20200124230656.687503-1-chris@chris-wilson.co.uk>
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org,
+ Arkadiusz Hiler <arkadiusz.hiler@intel.com>
+In-Reply-To: <20200126195654.2172937-1-chris@chris-wilson.co.uk>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20200124230656.687503-1-chris@chris-wilson.co.uk>
-Date: Mon, 27 Jan 2020 12:05:00 +0200
-Message-ID: <87sgk1b4fn.fsf@intel.com>
+References: <20200126195654.2172937-1-chris@chris-wilson.co.uk>
+Date: Mon, 27 Jan 2020 12:09:46 +0200
+Message-ID: <87pnf5b47p.fsf@intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Remove 'prefault_disable' modparam
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/display: Squelch kerneldoc
+ complaints
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,70 +50,67 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 24 Jan 2020, Chris Wilson <chris@chris-wilson.co.uk> wrote:
-> The 'prefault_disable' modparam was used by IGT to prevent a few
-> prefaulting operations to make fault handling under struct_mutex more
-> prominent. With the removal of struct_mutex, this is not as important
-> any more and we have almost completely stopped using the parameter. The
-> remaining use in execbuf is now immaterial and can be dropped without
-> affecting coverage.
+On Sun, 26 Jan 2020, Chris Wilson <chris@chris-wilson.co.uk> wrote:
+> drivers/gpu/drm/i915/display/intel_atomic.c:185: warning: Function parameter or member 'state' not described in 'intel_connector_needs_modeset'
+> drivers/gpu/drm/i915/display/intel_atomic.c:185: warning: Function parameter or member 'connector' not described in 'intel_connector_needs_modeset'
+>
+> drivers/gpu/drm/i915/display/intel_fbc.c:1124: warning: Function parameter or member 'state' not described in 'intel_fbc_enable'
+> drivers/gpu/drm/i915/display/intel_fbc.c:1124: warning: Excess function parameter 'crtc_state' description in 'intel_fbc_enable'
+> drivers/gpu/drm/i915/display/intel_fbc.c:1124: warning: Excess function parameter 'plane_state' description in 'intel_fbc_enable'
 
-I'll eagerly ack the removal of almost any module parameter!
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
-Acked-by: Jani Nikula <jani.nikula@intel.com>
+Arek, what does it take to enable automated documentation builds and
+error reporting on CI?
 
-> We must re-address the idea of fault injection though.
 >
 > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> Cc: Antonio Argenziano <antonio.argenziano@intel.com>
-> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
 > ---
->  drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c | 3 ---
->  drivers/gpu/drm/i915/i915_params.c             | 4 ----
->  drivers/gpu/drm/i915/i915_params.h             | 1 -
->  3 files changed, 8 deletions(-)
+>  drivers/gpu/drm/i915/display/intel_atomic.c  | 2 ++
+>  drivers/gpu/drm/i915/display/intel_display.c | 2 +-
+>  drivers/gpu/drm/i915/display/intel_fbc.c     | 3 +--
+>  3 files changed, 4 insertions(+), 3 deletions(-)
 >
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-> index 60c984e10c4a..358141e1593c 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-> @@ -1643,9 +1643,6 @@ static int eb_prefault_relocations(const struct i915_execbuffer *eb)
->  	const unsigned int count = eb->buffer_count;
->  	unsigned int i;
+> diff --git a/drivers/gpu/drm/i915/display/intel_atomic.c b/drivers/gpu/drm/i915/display/intel_atomic.c
+> index c362eecdd414..9921b1fa4e70 100644
+> --- a/drivers/gpu/drm/i915/display/intel_atomic.c
+> +++ b/drivers/gpu/drm/i915/display/intel_atomic.c
+> @@ -178,6 +178,8 @@ intel_digital_connector_duplicate_state(struct drm_connector *connector)
 >  
-> -	if (unlikely(i915_modparams.prefault_disable))
-> -		return 0;
-> -
->  	for (i = 0; i < count; i++) {
->  		int err;
+>  /**
+>   * intel_connector_needs_modeset - check if connector needs a modeset
+> + * @state: the atomic state corresponding to this modeset
+> + * @connector: the connector
+>   */
+>  bool
+>  intel_connector_needs_modeset(struct intel_atomic_state *state,
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> index 9c81576dc43e..aaef06e19828 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -15861,7 +15861,7 @@ static void fb_obj_bump_render_priority(struct drm_i915_gem_object *obj)
 >  
-> diff --git a/drivers/gpu/drm/i915/i915_params.c b/drivers/gpu/drm/i915/i915_params.c
-> index 9c8257cf88d0..add00ec1f787 100644
-> --- a/drivers/gpu/drm/i915/i915_params.c
-> +++ b/drivers/gpu/drm/i915/i915_params.c
-> @@ -103,10 +103,6 @@ i915_param_named(fastboot, int, 0600,
->  	"(0=disabled, 1=enabled) "
->  	"Default: -1 (use per-chip default)");
->  
-> -i915_param_named_unsafe(prefault_disable, bool, 0600,
-> -	"Disable page prefaulting for pread/pwrite/reloc (default:false). "
-> -	"For developers only.");
-> -
->  i915_param_named_unsafe(load_detect_test, bool, 0600,
->  	"Force-enable the VGA load detect code for testing (default:false). "
->  	"For developers only.");
-> diff --git a/drivers/gpu/drm/i915/i915_params.h b/drivers/gpu/drm/i915/i915_params.h
-> index ef4069645cb8..cb16410c2ada 100644
-> --- a/drivers/gpu/drm/i915/i915_params.h
-> +++ b/drivers/gpu/drm/i915/i915_params.h
-> @@ -71,7 +71,6 @@ struct drm_printer;
->  	param(unsigned long, fake_lmem_start, 0, 0400) \
->  	/* leave bools at the end to not create holes */ \
->  	param(bool, enable_hangcheck, true, 0600) \
-> -	param(bool, prefault_disable, false, 0600) \
->  	param(bool, load_detect_test, false, 0600) \
->  	param(bool, force_reset_modeset_test, false, 0600) \
->  	param(bool, error_capture, true, 0600) \
+>  /**
+>   * intel_prepare_plane_fb - Prepare fb for usage on plane
+> - * @plane: drm plane to prepare for
+> + * @_plane: drm plane to prepare for
+>   * @_new_plane_state: the plane state being prepared
+>   *
+>   * Prepares a framebuffer for usage on a display plane.  Generally this
+> diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
+> index 88a9c2fea695..d3be6f619b31 100644
+> --- a/drivers/gpu/drm/i915/display/intel_fbc.c
+> +++ b/drivers/gpu/drm/i915/display/intel_fbc.c
+> @@ -1111,8 +1111,7 @@ void intel_fbc_choose_crtc(struct drm_i915_private *dev_priv,
+>  /**
+>   * intel_fbc_enable: tries to enable FBC on the CRTC
+>   * @crtc: the CRTC
+> - * @crtc_state: corresponding &drm_crtc_state for @crtc
+> - * @plane_state: corresponding &drm_plane_state for the primary plane of @crtc
+> + * @state: corresponding &drm_crtc_state for @crtc
+>   *
+>   * This function checks if the given CRTC was chosen for FBC, then enables it if
+>   * possible. Notice that it doesn't activate FBC. It is valid to call
 
 -- 
 Jani Nikula, Intel Open Source Graphics Center
