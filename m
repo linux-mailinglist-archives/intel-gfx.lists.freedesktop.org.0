@@ -2,33 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D5A3414A349
-	for <lists+intel-gfx@lfdr.de>; Mon, 27 Jan 2020 12:50:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E380B14A325
+	for <lists+intel-gfx@lfdr.de>; Mon, 27 Jan 2020 12:39:17 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 46A066EB20;
-	Mon, 27 Jan 2020 11:50:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B81966EB1D;
+	Mon, 27 Jan 2020 11:39:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 236CA6EB20
- for <intel-gfx@lists.freedesktop.org>; Mon, 27 Jan 2020 11:50:08 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F3D646EB1D
+ for <intel-gfx@lists.freedesktop.org>; Mon, 27 Jan 2020 11:39:13 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by orsmga105.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 27 Jan 2020 03:49:59 -0800
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 27 Jan 2020 03:39:13 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,369,1574150400"; d="scan'208";a="428957973"
-Received: from vandita-desktop.iind.intel.com ([10.223.74.218])
- by fmsmga006.fm.intel.com with ESMTP; 27 Jan 2020 03:49:56 -0800
-From: Vandita Kulkarni <vandita.kulkarni@intel.com>
+X-IronPort-AV: E=Sophos;i="5.70,369,1574150400"; d="scan'208";a="251916628"
+Received: from eliteleevi.tm.intel.com ([10.237.54.20])
+ by fmsmga004.fm.intel.com with ESMTP; 27 Jan 2020 03:39:12 -0800
+From: Kai Vehmanen <kai.vehmanen@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon, 27 Jan 2020 16:46:08 +0530
-Message-Id: <20200127111608.7246-1-vandita.kulkarni@intel.com>
-X-Mailer: git-send-email 2.21.0.5.gaeb582a
-MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/dsi: Enable dsi as part of
- encoder->enable
+Date: Mon, 27 Jan 2020 13:39:09 +0200
+Message-Id: <20200127113909.11263-1-kai.vehmanen@linux.intel.com>
+X-Mailer: git-send-email 2.17.1
+Subject: [Intel-gfx] [PATCH] drm/i915: Add missing HDMI audio pixel clocks
+ for gen12
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,57 +40,94 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com
+MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Enable the dsi transcoder, panel and backlight as part
-of encoder->enable and not encoder->pre_enable.
+Gen12 hardware supports HDMI audio pixel clocks of 296.7/297Mhz
+and 593.4/594Mhz. Add the missing rates and add logic to ignore
+them if running on older hardware.
 
-Signed-off-by: Vandita Kulkarni <vandita.kulkarni@intel.com>
+Bspec: 49333
+Signed-off-by: Kai Vehmanen <kai.vehmanen@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/icl_dsi.c | 10 ++++++++--
- 1 file changed, 8 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/intel_audio.c | 16 +++++++++++++---
+ drivers/gpu/drm/i915/i915_reg.h            |  4 ++++
+ 2 files changed, 17 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i915/display/icl_dsi.c
-index 1186a5df057e..d40ee5951168 100644
---- a/drivers/gpu/drm/i915/display/icl_dsi.c
-+++ b/drivers/gpu/drm/i915/display/icl_dsi.c
-@@ -1086,8 +1086,6 @@ static void gen11_dsi_pre_enable(struct intel_encoder *encoder,
- 				 const struct intel_crtc_state *pipe_config,
- 				 const struct drm_connector_state *conn_state)
+diff --git a/drivers/gpu/drm/i915/display/intel_audio.c b/drivers/gpu/drm/i915/display/intel_audio.c
+index b18040793d9e..78f744d220da 100644
+--- a/drivers/gpu/drm/i915/display/intel_audio.c
++++ b/drivers/gpu/drm/i915/display/intel_audio.c
+@@ -148,6 +148,10 @@ static const struct {
+ 	{ 74250, AUD_CONFIG_PIXEL_CLOCK_HDMI_74250 },
+ 	{ 148352, AUD_CONFIG_PIXEL_CLOCK_HDMI_148352 },
+ 	{ 148500, AUD_CONFIG_PIXEL_CLOCK_HDMI_148500 },
++	{ 296703, AUD_CONFIG_PIXEL_CLOCK_HDMI_296703 },
++	{ 297000, AUD_CONFIG_PIXEL_CLOCK_HDMI_297000 },
++	{ 593407, AUD_CONFIG_PIXEL_CLOCK_HDMI_593407 },
++	{ 594000, AUD_CONFIG_PIXEL_CLOCK_HDMI_594000 },
+ };
+ 
+ /* HDMI N/CTS table */
+@@ -231,13 +235,19 @@ static const struct hdmi_aud_ncts hdmi_aud_ncts_36bpp[] = {
+ };
+ 
+ /* get AUD_CONFIG_PIXEL_CLOCK_HDMI_* value for mode */
+-static u32 audio_config_hdmi_pixel_clock(const struct intel_crtc_state *crtc_state)
++static u32 audio_config_hdmi_pixel_clock(struct drm_i915_private *dev_priv,
++					 const struct intel_crtc_state *crtc_state)
  {
--	struct intel_dsi *intel_dsi = enc_to_intel_dsi(encoder);
--
- 	/* step3b */
- 	gen11_dsi_map_pll(encoder, pipe_config);
+ 	const struct drm_display_mode *adjusted_mode =
+ 		&crtc_state->hw.adjusted_mode;
+ 	int i;
  
-@@ -1101,6 +1099,13 @@ static void gen11_dsi_pre_enable(struct intel_encoder *encoder,
+ 	for (i = 0; i < ARRAY_SIZE(hdmi_audio_clock); i++) {
++		if (INTEL_GEN(dev_priv) < 12 &&
++		    hdmi_audio_clock[i].clock > 148500) {
++			i = ARRAY_SIZE(hdmi_audio_clock);
++			break;
++		}
+ 		if (adjusted_mode->crtc_clock == hdmi_audio_clock[i].clock)
+ 			break;
+ 	}
+@@ -433,7 +443,7 @@ hsw_hdmi_audio_config_update(struct intel_encoder *encoder,
+ 	tmp &= ~AUD_CONFIG_N_VALUE_INDEX;
+ 	tmp &= ~AUD_CONFIG_PIXEL_CLOCK_HDMI_MASK;
+ 	tmp &= ~AUD_CONFIG_N_PROG_ENABLE;
+-	tmp |= audio_config_hdmi_pixel_clock(crtc_state);
++	tmp |= audio_config_hdmi_pixel_clock(dev_priv, crtc_state);
  
- 	/* step6c: configure transcoder timings */
- 	gen11_dsi_set_transcoder_timings(encoder, pipe_config);
-+}
-+
-+static void gen11_dsi_enable(struct intel_encoder *encoder,
-+				 const struct intel_crtc_state *pipe_config,
-+				 const struct drm_connector_state *conn_state)
-+{
-+	struct intel_dsi *intel_dsi = enc_to_intel_dsi(encoder);
+ 	n = audio_config_hdmi_get_n(crtc_state, rate);
+ 	if (n != 0) {
+@@ -673,7 +683,7 @@ static void ilk_audio_codec_enable(struct intel_encoder *encoder,
+ 	if (intel_crtc_has_dp_encoder(crtc_state))
+ 		tmp |= AUD_CONFIG_N_VALUE_INDEX;
+ 	else
+-		tmp |= audio_config_hdmi_pixel_clock(crtc_state);
++		tmp |= audio_config_hdmi_pixel_clock(dev_priv, crtc_state);
+ 	I915_WRITE(aud_config, tmp);
+ }
  
- 	/* step6d: enable dsi transcoder */
- 	gen11_dsi_enable_transcoder(encoder);
-@@ -1727,6 +1732,7 @@ void icl_dsi_init(struct drm_i915_private *dev_priv)
+diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+index 6cc55c103f67..61d9d045b2ff 100644
+--- a/drivers/gpu/drm/i915/i915_reg.h
++++ b/drivers/gpu/drm/i915/i915_reg.h
+@@ -9241,6 +9241,10 @@ enum {
+ #define   AUD_CONFIG_PIXEL_CLOCK_HDMI_74250	(7 << 16)
+ #define   AUD_CONFIG_PIXEL_CLOCK_HDMI_148352	(8 << 16)
+ #define   AUD_CONFIG_PIXEL_CLOCK_HDMI_148500	(9 << 16)
++#define   AUD_CONFIG_PIXEL_CLOCK_HDMI_296703	(10 << 16)
++#define   AUD_CONFIG_PIXEL_CLOCK_HDMI_297000	(11 << 16)
++#define   AUD_CONFIG_PIXEL_CLOCK_HDMI_593407	(12 << 16)
++#define   AUD_CONFIG_PIXEL_CLOCK_HDMI_594000	(13 << 16)
+ #define   AUD_CONFIG_DISABLE_NCTS		(1 << 3)
  
- 	encoder->pre_pll_enable = gen11_dsi_pre_pll_enable;
- 	encoder->pre_enable = gen11_dsi_pre_enable;
-+	encoder->enable = gen11_dsi_enable;
- 	encoder->disable = gen11_dsi_disable;
- 	encoder->post_disable = gen11_dsi_post_disable;
- 	encoder->port = port;
+ /* HSW Audio */
 -- 
-2.21.0.5.gaeb582a
+2.17.1
 
 _______________________________________________
 Intel-gfx mailing list
