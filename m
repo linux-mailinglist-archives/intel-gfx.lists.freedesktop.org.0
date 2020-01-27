@@ -1,40 +1,37 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C751C149ECF
-	for <lists+intel-gfx@lfdr.de>; Mon, 27 Jan 2020 06:30:56 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C508D149F0C
+	for <lists+intel-gfx@lfdr.de>; Mon, 27 Jan 2020 07:41:14 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7E8136E356;
-	Mon, 27 Jan 2020 05:30:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3E74E6E478;
+	Mon, 27 Jan 2020 06:41:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 81DFD6E356
- for <intel-gfx@lists.freedesktop.org>; Mon, 27 Jan 2020 05:30:53 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 73B976E471;
+ Mon, 27 Jan 2020 06:41:10 +0000 (UTC)
+X-Amp-Result: UNSCANNABLE
 X-Amp-File-Uploaded: False
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 26 Jan 2020 21:30:52 -0800
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 26 Jan 2020 22:41:10 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,368,1574150400"; d="scan'208";a="376046464"
-Received: from orsosgc001.ra.intel.com (HELO orsosgc001.amr.corp.intel.com)
- ([10.23.184.150])
- by orsmga004.jf.intel.com with ESMTP; 26 Jan 2020 21:30:52 -0800
-Date: Sun, 26 Jan 2020 21:30:52 -0800
-From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-To: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
-Message-ID: <20200127053052.GB35901@orsosgc001.amr.corp.intel.com>
-References: <20200124013701.40609-1-umesh.nerlige.ramappa@intel.com>
- <0f632875-e78a-22f1-2259-d65fa5e74ef5@intel.com>
+X-IronPort-AV: E=Sophos;i="5.70,368,1574150400"; d="scan'208";a="427191145"
+Received: from ramaling-i9x.iind.intel.com (HELO intel.com) ([10.99.66.154])
+ by fmsmga005.fm.intel.com with ESMTP; 26 Jan 2020 22:41:08 -0800
+Date: Mon, 27 Jan 2020 12:11:10 +0530
+From: Ramalingam C <ramalingam.c@intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>
+Message-ID: <20200127064110.GB1840@intel.com>
+References: <20200123122711.1390696-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <0f632875-e78a-22f1-2259-d65fa5e74ef5@intel.com>
-User-Agent: Mutt/1.12.0 (2019-05-25)
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/perf: Fix OA context id overlap
- with idle context id
+In-Reply-To: <20200123122711.1390696-1-chris@chris-wilson.co.uk>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH i-g-t] tests/dumb_buffer: Try to compute the
+ largest possible dumb buffer
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,96 +44,128 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, Chris Wilson <chris.p.wilson@intel.com>
+Cc: igt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Sat, Jan 25, 2020 at 03:37:38AM +0200, Lionel Landwerlin wrote:
->On 24/01/2020 03:37, Umesh Nerlige Ramappa wrote:
->>Engine context pinned in perf OA was set to same context id as
->>the idle context. Set the context id to an unused value.
->>
->>Clear the sw context id field in lrc descriptor before ORing with
->>ce->tag (Chris)
->>
->>Fixes: https://gitlab.freedesktop.org/drm/intel/issues/756
->>Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
->>---
->>  drivers/gpu/drm/i915/gt/intel_lrc.c | 2 +-
->>  drivers/gpu/drm/i915/i915_perf.c    | 9 +++++++--
->>  2 files changed, 8 insertions(+), 3 deletions(-)
->>
->>diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
->>index a13a8c4b65ab..cf6c43bd540a 100644
->>--- a/drivers/gpu/drm/i915/gt/intel_lrc.c
->>+++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
->>@@ -1211,12 +1211,12 @@ __execlists_schedule_in(struct i915_request *rq)
->>  	if (IS_ENABLED(CONFIG_DRM_I915_DEBUG_GEM))
->>  		execlists_check_context(ce, engine);
->>+	ce->lrc_desc &= ~GENMASK_ULL(47, 37);
->>  	if (ce->tag) {
->>  		/* Use a fixed tag for OA and friends */
->>  		ce->lrc_desc |= (u64)ce->tag << 32;
->>  	} else {
->>  		/* We don't need a strict matching tag, just different values */
->>-		ce->lrc_desc &= ~GENMASK_ULL(47, 37);
->I guess you can remove the line just above.
+On 2020-01-23 at 12:27:11 +0000, Chris Wilson wrote:
+> For our threaded clear test, we want to create as many buffers as can
+> fit into the available memory. However, since we don't know the size of
+> that available memory, it can be easy to create too large or too many
+> buffers, and waste our time testing the unobtainable. Instead, try
+> probing the available space by trying to create the largest dumb buffer
+> we possibly can, and assume that is the equivalent to the available
+> space.
+> 
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Ramalingam C <ramalingam.c@intel.com>
+> ---
+>  tests/dumb_buffer.c | 68 +++++++++++++++++++++++++++++++++++++++------
+>  1 file changed, 59 insertions(+), 9 deletions(-)
+> 
+> diff --git a/tests/dumb_buffer.c b/tests/dumb_buffer.c
+> index 3d2dc9966..c1e7b4d3b 100644
+> --- a/tests/dumb_buffer.c
+> +++ b/tests/dumb_buffer.c
+> @@ -31,18 +31,18 @@
+>   * combinations are rejected.
+>   */
+>  
+> -#include <stdlib.h>
+> -#include <sys/ioctl.h>
+> -#include <stdio.h>
+> -#include <string.h>
+> +#include <errno.h>
+>  #include <fcntl.h>
+>  #include <inttypes.h>
+> -#include <errno.h>
+> -#include <sys/stat.h>
+> -#include <sys/time.h>
+> -#include <getopt.h>
+>  #include <pthread.h>
+> +#include <signal.h>
+>  #include <stdatomic.h>
+> +#include <stdio.h>
+> +#include <stdlib.h>
+> +#include <string.h>
+> +#include <sys/ioctl.h>
+> +#include <sys/stat.h>
+> +#include <sys/time.h>
+>  
+>  #include <drm.h>
+>  
+> @@ -325,12 +325,62 @@ static void *thread_clear(void *data)
+>  	return (void *)(uintptr_t)checked;
+>  }
+>  
+> +static jmp_buf sigjmp;
+> +
+> +static void sigprobe(int sig)
+> +{
+> +	longjmp(sigjmp, sig);
+> +}
+> +
+> +static uint64_t estimate_largest_dumb_buffer(int fd)
+> +{
+> +	sighandler_t old_sigbus = signal(SIGBUS, sigprobe);
+> +	sighandler_t old_sigsegv = signal(SIGSEGV, sigprobe);
+> +	struct drm_mode_create_dumb create = {
+> +		.bpp = 32,
+> +		.width = 1 << 20, /* in pixels */
+> +		.height = 1, /* in rows */
+> +	};
+> +	volatile uint64_t largest = 0;
+> +	char * volatile ptr = NULL;
+> +
+> +	if (setjmp(sigjmp)) {
+> +		if (ptr)
+> +			munmap(ptr, create.size);
+> +
+> +		signal(SIGBUS, old_sigbus);
+> +		signal(SIGSEGV, old_sigsegv);
+> +
+> +		igt_info("Largest dumb buffer sucessfully created: %'"PRIu64" bytes\n",
+> +			 largest);
+> +		return largest / PAGE_SIZE;
+> +	}
+> +
+> +	for (create.height = 1; create.height; create.height *= 2) {
+> +		if (__dumb_create(fd, &create))
+> +			longjmp(sigjmp, SIGABRT);
+> +
+> +		ptr = __dumb_map(fd, create.handle, create.size, PROT_READ);
+> +		dumb_destroy(fd, create.handle);
+> +		if (!ptr)
+> +			longjmp(sigjmp, SIGABRT);
+> +
+> +		if (!*ptr)
+> +			largest = create.size;
+> +
+> +		munmap(ptr, create.size);
+> +		ptr = NULL;
+> +	}
+> +
+> +	longjmp(sigjmp, SIGABRT);
+> +}
+> +
+>  static void always_clear(int fd, int timeout)
+>  {
+>  	struct thread_clear arg = {
+>  		.fd = fd,
+>  		.timeout = timeout,
+> -		.max = intel_get_avail_ram_mb() << (20 - 12), /* in pages */
+> +		.max = estimate_largest_dumb_buffer(fd), /* in pages */
+LGTM. I will test with other required LMEM changes.
 
-Not sure what you mean, the line is moved from here to above the if.
-
->>  		ce->lrc_desc |=
->>  			(u64)(++engine->context_tag % NUM_CONTEXT_TAG) <<
->>  			GEN11_SW_CTX_ID_SHIFT;
->>diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
->>index 3c4647054557..5bd878c64504 100644
->>--- a/drivers/gpu/drm/i915/i915_perf.c
->>+++ b/drivers/gpu/drm/i915/i915_perf.c
->>@@ -1323,7 +1323,12 @@ static int oa_get_render_ctx_id(struct i915_perf_stream *stream)
->>  	case 12: {
->>  		stream->specific_ctx_id_mask =
->>  			((1U << GEN11_SW_CTX_ID_WIDTH) - 1) << (GEN11_SW_CTX_ID_SHIFT - 32);
->>-		stream->specific_ctx_id = stream->specific_ctx_id_mask;
->>+		/* Pick an unused context id
->>+		 * 0 - (NUM_CONTEXT_TAG - 1) are used by other contexts
->>+		 * GEN12_MAX_CONTEXT_HW_ID (0x7ff) is used by idle context
->>+		 */
->>+		stream->specific_ctx_id = (GEN12_MAX_CONTEXT_HW_ID - 1) << (GEN11_SW_CTX_ID_SHIFT - 32);
->>+		BUILD_BUG_ON((GEN12_MAX_CONTEXT_HW_ID - 1) < NUM_CONTEXT_TAG);
->
->
->Arg yeah, we can't use an id that has all bits to 1 because that 
->matches the idle value in the OA reports :/
->
->This also affects gen8-10 cases (afaik).
-
-For gen8-10, I did not see a specific definition for an idle context id.  
-The from/to idle context switches are indicated by dedicated bits in the 
-CSB instead (from spec).
-
-Thanks,
-Umesh
-
->
->
->Thanks for spotting this!
->
->
->-Lionel
->
->
->>  		break;
->>  	}
->>@@ -1331,7 +1336,7 @@ static int oa_get_render_ctx_id(struct i915_perf_stream *stream)
->>  		MISSING_CASE(INTEL_GEN(ce->engine->i915));
->>  	}
->>-	ce->tag = stream->specific_ctx_id_mask;
->>+	ce->tag = stream->specific_ctx_id;
->>  	DRM_DEBUG_DRIVER("filtering on ctx_id=0x%x ctx_id_mask=0x%x\n",
->>  			 stream->specific_ctx_id,
->
->
+Reviewed-by: Ramalingam C <ramalingam.c@intel.com>
+>  	};
+>  	const int ncpus = sysconf(_SC_NPROCESSORS_ONLN);
+>  	unsigned long checked;
+> -- 
+> 2.25.0
+> 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
