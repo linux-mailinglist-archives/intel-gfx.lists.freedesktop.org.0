@@ -1,37 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1664A14A989
-	for <lists+intel-gfx@lfdr.de>; Mon, 27 Jan 2020 19:14:39 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D9E614A97E
+	for <lists+intel-gfx@lfdr.de>; Mon, 27 Jan 2020 19:12:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 43A216E81D;
-	Mon, 27 Jan 2020 18:14:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A13BC6E5D3;
+	Mon, 27 Jan 2020 18:12:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0A3686E81D;
- Mon, 27 Jan 2020 18:14:35 +0000 (UTC)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 712B16E5D3;
+ Mon, 27 Jan 2020 18:12:32 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 27 Jan 2020 10:14:34 -0800
-X-IronPort-AV: E=Sophos;i="5.70,370,1574150400"; d="scan'208";a="429063689"
-Received: from dbstims-dev.fm.intel.com ([10.1.27.172])
- by fmsmga006-auth.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-SHA;
- 27 Jan 2020 10:14:34 -0800
-From: Dale B Stimson <dale.b.stimson@intel.com>
-To: igt-dev@lists.freedesktop.org,
-	intel-gfx@lists.freedesktop.org
-Date: Mon, 27 Jan 2020 10:12:19 -0800
-Message-Id: <e589cd4ffd0ed90868cd195cc3e009839f34fe3a.1580147712.git.dale.b.stimson@intel.com>
-X-Mailer: git-send-email 2.25.0
-In-Reply-To: <cover.1580147712.git.dale.b.stimson@intel.com>
-References: <cover.1580147712.git.dale.b.stimson@intel.com>
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 27 Jan 2020 10:12:31 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,370,1574150400"; d="scan'208";a="221810870"
+Received: from ramaling-i9x.iind.intel.com ([10.99.66.154])
+ by orsmga008.jf.intel.com with ESMTP; 27 Jan 2020 10:12:29 -0800
+From: Ramalingam C <ramalingam.c@intel.com>
+To: dri-devel <dri-devel@lists.freedesktop.org>,
+ intel-gfx <intel-gfx@lists.freedesktop.org>
+Date: Mon, 27 Jan 2020 23:42:31 +0530
+Message-Id: <20200127181231.5380-1-ramalingam.c@intel.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH i-g-t v2 1/2] i915/gem_ctx_isolation: use the
- gem_engine_topology library, part 1
+Subject: [Intel-gfx] [PATCH v2] drm/hdcp: optimizing the srm handling
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,155 +41,310 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Sean Paul <seanpaul@chromium.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Ramalingam C <ramalingam.c@intel.com>
+As we are not using the sysfs infrastructure anymore, link to it is
+removed. And global srm data and mutex to protect it are removed,
+with required handling at revocation check function.
 
-Call function gem_class_can_store_dword instead of legacy function
-gem_can_store_dword.  This requires that e->class be available in the
-calling function.
+v2:
+  srm_data is dropped and few more comments are addressed.
 
-Instead of passing "engine" (== "e->flags") to functions, pass "e".
-This makes e->class available where it is needed.
-
-This commit is being kept separate from "part 2" in order to ensure
-proper attribution to the author.  The code associated with this
-commit was written by Ramalingam C <ramalingam.c@intel.com>.
-Since then, slight modifications have been done due to upstream
-changes.
-
-Signed-off-by: Ramalingam C <ramalingam.c@intel.com>.
-X-Original-Author: Ramalingam C <ramalingam.c@intel.com>
-Signed-off-by: Dale B Stimson <dale.b.stimson@intel.com>
+Signed-off-by: Ramalingam C <ramalingam.c@intel.com>
+Suggested-by: Sean Paul <seanpaul@chromium.org>
 ---
- tests/i915/gem_ctx_isolation.c | 25 +++++++++++--------------
- 1 file changed, 11 insertions(+), 14 deletions(-)
+ drivers/gpu/drm/drm_hdcp.c     | 144 ++++++++++++---------------------
+ drivers/gpu/drm/drm_internal.h |   4 -
+ drivers/gpu/drm/drm_sysfs.c    |   2 -
+ include/drm/drm_hdcp.h         |   4 +-
+ 4 files changed, 55 insertions(+), 99 deletions(-)
 
-diff --git a/tests/i915/gem_ctx_isolation.c b/tests/i915/gem_ctx_isolation.c
-index 8b72a16ad..c45617456 100644
---- a/tests/i915/gem_ctx_isolation.c
-+++ b/tests/i915/gem_ctx_isolation.c
-@@ -575,7 +575,6 @@ static void nonpriv(int fd,
- 		0x0505c0c0,
- 		0xdeadbeef
- 	};
--	unsigned int engine = e->flags;
- 	unsigned int num_values = ARRAY_SIZE(values);
+diff --git a/drivers/gpu/drm/drm_hdcp.c b/drivers/gpu/drm/drm_hdcp.c
+index 9191633a3c43..30749a13108e 100644
+--- a/drivers/gpu/drm/drm_hdcp.c
++++ b/drivers/gpu/drm/drm_hdcp.c
+@@ -23,14 +23,6 @@
  
- 	/* Sigh -- hsw: we need cmdparser access to our own registers! */
-@@ -593,7 +592,7 @@ static void nonpriv(int fd,
+ #include "drm_internal.h"
  
- 		tmpl_regs(fd, ctx, e, tmpl, values[v]);
- 
--		spin = igt_spin_new(fd, .ctx = ctx, .engine = engine);
-+		spin = igt_spin_new(fd, .ctx = ctx, .engine = e->flags);
- 
- 		igt_debug("%s[%d]: Setting all registers to 0x%08x\n",
- 			  __func__, v, values[v]);
-@@ -606,12 +605,12 @@ static void nonpriv(int fd,
- 			/* Explicit sync to keep the switch between write/read */
- 			syncpt = igt_spin_new(fd,
- 					      .ctx = ctx,
--					      .engine = engine,
-+					      .engine = e->flags,
- 					      .flags = IGT_SPIN_FENCE_OUT);
- 
- 			dirt = igt_spin_new(fd,
- 					    .ctx = sw,
--					    .engine = engine,
-+					    .engine = e->flags,
- 					    .fence = syncpt->out_fence,
- 					    .flags = (IGT_SPIN_FENCE_IN |
- 						      IGT_SPIN_FENCE_OUT));
-@@ -619,7 +618,7 @@ static void nonpriv(int fd,
- 
- 			syncpt = igt_spin_new(fd,
- 					      .ctx = ctx,
--					      .engine = engine,
-+					      .engine = e->flags,
- 					      .fence = dirt->out_fence,
- 					      .flags = IGT_SPIN_FENCE_IN);
- 			igt_spin_free(fd, dirt);
-@@ -660,7 +659,6 @@ static void isolation(int fd,
- 		0xaaaaaaaa,
- 		0xdeadbeef
- 	};
--	unsigned int engine = e->flags;
- 	unsigned int num_values =
- 		flags & (DIRTY1 | DIRTY2) ? ARRAY_SIZE(values) : 1;
- 
-@@ -673,7 +671,7 @@ static void isolation(int fd,
- 		ctx[0] = gem_context_create(fd);
- 		regs[0] = read_regs(fd, ctx[0], e, flags);
- 
--		spin = igt_spin_new(fd, .ctx = ctx[0], .engine = engine);
-+		spin = igt_spin_new(fd, .ctx = ctx[0], .engine = e->flags);
- 
- 		if (flags & DIRTY1) {
- 			igt_debug("%s[%d]: Setting all registers of ctx 0 to 0x%08x\n",
-@@ -726,11 +724,11 @@ static void isolation(int fd,
- #define S4 (4 << 8)
- #define SLEEP_MASK (0xf << 8)
- 
--static void inject_reset_context(int fd, unsigned int engine)
-+static void inject_reset_context(int fd, const struct intel_execution_engine2 *e)
+-static struct hdcp_srm {
+-	u32 revoked_ksv_cnt;
+-	u8 *revoked_ksv_list;
+-
+-	/* Mutex to protect above struct member */
+-	struct mutex mutex;
+-} *srm_data;
+-
+ static inline void drm_hdcp_print_ksv(const u8 *ksv)
  {
- 	struct igt_spin_factory opts = {
- 		.ctx = gem_context_create(fd),
--		.engine = engine,
-+		.engine = e->flags,
- 		.flags = IGT_SPIN_FAST,
- 	};
- 	igt_spin_t *spin;
-@@ -741,7 +739,7 @@ static void inject_reset_context(int fd, unsigned int engine)
- 	 * HW for screwing up if the context was already broken.
- 	 */
+ 	DRM_DEBUG("\t%#02x, %#02x, %#02x, %#02x, %#02x\n",
+@@ -91,7 +83,8 @@ static inline u32 get_vrl_length(const u8 *buf)
+ 	return drm_hdcp_be24_to_cpu(buf);
+ }
  
--	if (gem_can_store_dword(fd, engine))
-+	if (gem_class_can_store_dword(fd, e->class))
- 		opts.flags |= IGT_SPIN_POLL_RUN;
- 
- 	spin = __igt_spin_factory(fd, &opts);
-@@ -771,7 +769,6 @@ static void preservation(int fd,
- 		0xdeadbeef
- 	};
- 	const unsigned int num_values = ARRAY_SIZE(values);
--	unsigned int engine = e->flags;
- 	uint32_t ctx[num_values +1 ];
- 	uint32_t regs[num_values + 1][2];
- 	igt_spin_t *spin;
-@@ -779,7 +776,7 @@ static void preservation(int fd,
- 	gem_quiescent_gpu(fd);
- 
- 	ctx[num_values] = gem_context_create(fd);
--	spin = igt_spin_new(fd, .ctx = ctx[num_values], .engine = engine);
-+	spin = igt_spin_new(fd, .ctx = ctx[num_values], .engine = e->flags);
- 	regs[num_values][0] = read_regs(fd, ctx[num_values], e, flags);
- 	for (int v = 0; v < num_values; v++) {
- 		ctx[v] = gem_context_create(fd);
-@@ -792,7 +789,7 @@ static void preservation(int fd,
- 	igt_spin_free(fd, spin);
- 
- 	if (flags & RESET)
--		inject_reset_context(fd, engine);
-+		inject_reset_context(fd, e);
- 
- 	switch (flags & SLEEP_MASK) {
- 	case NOSLEEP:
-@@ -819,7 +816,7 @@ static void preservation(int fd,
- 		break;
+-static int drm_hdcp_parse_hdcp1_srm(const u8 *buf, size_t count)
++static int drm_hdcp_parse_hdcp1_srm(const u8 *buf, size_t count,
++				    u8 *revoked_ksv_list, u32 *revoked_ksv_cnt)
+ {
+ 	struct hdcp_srm_header *header;
+ 	u32 vrl_length, ksv_count;
+@@ -131,29 +124,28 @@ static int drm_hdcp_parse_hdcp1_srm(const u8 *buf, size_t count)
+ 	ksv_count = drm_hdcp_get_revoked_ksv_count(buf, vrl_length);
+ 	if (!ksv_count) {
+ 		DRM_DEBUG("Revoked KSV count is 0\n");
+-		return count;
++		return 0;
  	}
  
--	spin = igt_spin_new(fd, .ctx = ctx[num_values], .engine = engine);
-+	spin = igt_spin_new(fd, .ctx = ctx[num_values], .engine = e->flags);
- 	for (int v = 0; v < num_values; v++)
- 		regs[v][1] = read_regs(fd, ctx[v], e, flags);
- 	regs[num_values][1] = read_regs(fd, ctx[num_values], e, flags);
+-	kfree(srm_data->revoked_ksv_list);
+-	srm_data->revoked_ksv_list = kcalloc(ksv_count, DRM_HDCP_KSV_LEN,
+-					     GFP_KERNEL);
+-	if (!srm_data->revoked_ksv_list) {
++	revoked_ksv_list = kcalloc(ksv_count, DRM_HDCP_KSV_LEN, GFP_KERNEL);
++	if (!revoked_ksv_list) {
+ 		DRM_ERROR("Out of Memory\n");
+ 		return -ENOMEM;
+ 	}
+ 
+-	if (drm_hdcp_get_revoked_ksvs(buf, srm_data->revoked_ksv_list,
++	if (drm_hdcp_get_revoked_ksvs(buf, revoked_ksv_list,
+ 				      vrl_length) != ksv_count) {
+-		srm_data->revoked_ksv_cnt = 0;
+-		kfree(srm_data->revoked_ksv_list);
++		*revoked_ksv_cnt = 0;
++		kfree(revoked_ksv_list);
+ 		return -EINVAL;
+ 	}
+ 
+-	srm_data->revoked_ksv_cnt = ksv_count;
+-	return count;
++	*revoked_ksv_cnt = ksv_count;
++	return 0;
+ }
+ 
+-static int drm_hdcp_parse_hdcp2_srm(const u8 *buf, size_t count)
++static int drm_hdcp_parse_hdcp2_srm(const u8 *buf, size_t count,
++				    u8 *revoked_ksv_list, u32 *revoked_ksv_cnt)
+ {
+ 	struct hdcp_srm_header *header;
+ 	u32 vrl_length, ksv_count, ksv_sz;
+@@ -195,13 +187,11 @@ static int drm_hdcp_parse_hdcp2_srm(const u8 *buf, size_t count)
+ 	ksv_count = (*buf << 2) | DRM_HDCP_2_KSV_COUNT_2_LSBITS(*(buf + 1));
+ 	if (!ksv_count) {
+ 		DRM_DEBUG("Revoked KSV count is 0\n");
+-		return count;
++		return 0;
+ 	}
+ 
+-	kfree(srm_data->revoked_ksv_list);
+-	srm_data->revoked_ksv_list = kcalloc(ksv_count, DRM_HDCP_KSV_LEN,
+-					     GFP_KERNEL);
+-	if (!srm_data->revoked_ksv_list) {
++	revoked_ksv_list = kcalloc(ksv_count, DRM_HDCP_KSV_LEN, GFP_KERNEL);
++	if (!revoked_ksv_list) {
+ 		DRM_ERROR("Out of Memory\n");
+ 		return -ENOMEM;
+ 	}
+@@ -210,10 +200,10 @@ static int drm_hdcp_parse_hdcp2_srm(const u8 *buf, size_t count)
+ 	buf += DRM_HDCP_2_NO_OF_DEV_PLUS_RESERVED_SZ;
+ 
+ 	DRM_DEBUG("Revoked KSVs: %d\n", ksv_count);
+-	memcpy(srm_data->revoked_ksv_list, buf, ksv_sz);
++	memcpy(revoked_ksv_list, buf, ksv_sz);
+ 
+-	srm_data->revoked_ksv_cnt = ksv_count;
+-	return count;
++	*revoked_ksv_cnt = ksv_count;
++	return 0;
+ }
+ 
+ static inline bool is_srm_version_hdcp1(const u8 *buf)
+@@ -226,18 +216,22 @@ static inline bool is_srm_version_hdcp2(const u8 *buf)
+ 	return *buf == (u8)(DRM_HDCP_2_SRM_ID << 4 | DRM_HDCP_2_INDICATOR);
+ }
+ 
+-static void drm_hdcp_srm_update(const u8 *buf, size_t count)
++static void drm_hdcp_srm_update(const u8 *buf, size_t count,
++				u8 *revoked_ksv_list, u32 *revoked_ksv_cnt)
+ {
+ 	if (count < sizeof(struct hdcp_srm_header))
+ 		return;
+ 
+ 	if (is_srm_version_hdcp1(buf))
+-		drm_hdcp_parse_hdcp1_srm(buf, count);
++		drm_hdcp_parse_hdcp1_srm(buf, count, revoked_ksv_list,
++					 revoked_ksv_cnt);
+ 	else if (is_srm_version_hdcp2(buf))
+-		drm_hdcp_parse_hdcp2_srm(buf, count);
++		drm_hdcp_parse_hdcp2_srm(buf, count, revoked_ksv_list,
++					 revoked_ksv_cnt);
+ }
+ 
+-static void drm_hdcp_request_srm(struct drm_device *drm_dev)
++static void drm_hdcp_request_srm(struct drm_device *drm_dev,
++				 u8 *revoked_ksv_list, u32 *revoked_ksv_cnt)
+ {
+ 	char fw_name[36] = "display_hdcp_srm.bin";
+ 	const struct firmware *fw;
+@@ -250,7 +244,8 @@ static void drm_hdcp_request_srm(struct drm_device *drm_dev)
+ 		goto exit;
+ 
+ 	if (fw->size && fw->data)
+-		drm_hdcp_srm_update(fw->data, fw->size);
++		drm_hdcp_srm_update(fw->data, fw->size, revoked_ksv_list,
++				    revoked_ksv_cnt);
+ 
+ exit:
+ 	release_firmware(fw);
+@@ -279,70 +274,37 @@ static void drm_hdcp_request_srm(struct drm_device *drm_dev)
+  * https://www.digital-cp.com/sites/default/files/specifications/HDCP%20on%20HDMI%20Specification%20Rev2_2_Final1.pdf
+  *
+  * Returns:
+- * TRUE on any of the KSV is revoked, else FALSE.
++ * Count of the revoked KSVs.
+  */
+-bool drm_hdcp_check_ksvs_revoked(struct drm_device *drm_dev, u8 *ksvs,
+-				 u32 ksv_count)
++int drm_hdcp_check_ksvs_revoked(struct drm_device *drm_dev, u8 *ksvs_in,
++				u32 ksv_count)
+ {
+-	u32 rev_ksv_cnt, cnt, i, j;
+-	u8 *rev_ksv_list;
+-
+-	if (!srm_data)
+-		return false;
+-
+-	mutex_lock(&srm_data->mutex);
+-	drm_hdcp_request_srm(drm_dev);
+-
+-	rev_ksv_cnt = srm_data->revoked_ksv_cnt;
+-	rev_ksv_list = srm_data->revoked_ksv_list;
+-
+-	/* If the Revoked ksv list is empty */
+-	if (!rev_ksv_cnt || !rev_ksv_list) {
+-		mutex_unlock(&srm_data->mutex);
+-		return false;
+-	}
+-
+-	for  (cnt = 0; cnt < ksv_count; cnt++) {
+-		rev_ksv_list = srm_data->revoked_ksv_list;
+-		for (i = 0; i < rev_ksv_cnt; i++) {
+-			for (j = 0; j < DRM_HDCP_KSV_LEN; j++)
+-				if (ksvs[j] != rev_ksv_list[j]) {
+-					break;
+-				} else if (j == (DRM_HDCP_KSV_LEN - 1)) {
+-					DRM_DEBUG("Revoked KSV is ");
+-					drm_hdcp_print_ksv(ksvs);
+-					mutex_unlock(&srm_data->mutex);
+-					return true;
+-				}
+-			/* Move the offset to next KSV in the revoked list */
+-			rev_ksv_list += DRM_HDCP_KSV_LEN;
++	u8 *revoked_ksv_list = NULL, *ksvs, *list_itr;
++	u32 revoked_ksv_cnt = 0, i, j;
++	int ret = 0;
++
++	drm_hdcp_request_srm(drm_dev, revoked_ksv_list, &revoked_ksv_cnt);
++	list_itr = revoked_ksv_list;
++
++	for (i = 0; i < revoked_ksv_cnt; i++) {
++		ksvs = ksvs_in;
++		for  (j = 0; j < ksv_count; j++) {
++			if (!memcmp(ksvs, list_itr, DRM_HDCP_KSV_LEN)) {
++				DRM_DEBUG("Revoked KSV is ");
++				drm_hdcp_print_ksv(ksvs);
++				ret++;
++			}
++			/* Iterate to next ksv_offset */
++			ksvs += DRM_HDCP_KSV_LEN;
+ 		}
+-
+-		/* Iterate to next ksv_offset */
+-		ksvs += DRM_HDCP_KSV_LEN;
++		/* Move the offset to next KSV in the revoked list */
++		list_itr += DRM_HDCP_KSV_LEN;
+ 	}
+-	mutex_unlock(&srm_data->mutex);
+-	return false;
+-}
+-EXPORT_SYMBOL_GPL(drm_hdcp_check_ksvs_revoked);
+-
+-int drm_setup_hdcp_srm(struct class *drm_class)
+-{
+-	srm_data = kzalloc(sizeof(*srm_data), GFP_KERNEL);
+-	if (!srm_data)
+-		return -ENOMEM;
+-	mutex_init(&srm_data->mutex);
+ 
+-	return 0;
+-}
+-
+-void drm_teardown_hdcp_srm(struct class *drm_class)
+-{
+-	if (srm_data) {
+-		kfree(srm_data->revoked_ksv_list);
+-		kfree(srm_data);
+-	}
++	kfree(revoked_ksv_list);
++	return ret;
+ }
++EXPORT_SYMBOL_GPL(drm_hdcp_check_ksvs_revoked);
+ 
+ static struct drm_prop_enum_list drm_cp_enum_list[] = {
+ 	{ DRM_MODE_CONTENT_PROTECTION_UNDESIRED, "Undesired" },
+diff --git a/drivers/gpu/drm/drm_internal.h b/drivers/gpu/drm/drm_internal.h
+index 6937bf923f05..a34c7f8373fa 100644
+--- a/drivers/gpu/drm/drm_internal.h
++++ b/drivers/gpu/drm/drm_internal.h
+@@ -235,7 +235,3 @@ int drm_syncobj_query_ioctl(struct drm_device *dev, void *data,
+ void drm_framebuffer_print_info(struct drm_printer *p, unsigned int indent,
+ 				const struct drm_framebuffer *fb);
+ int drm_framebuffer_debugfs_init(struct drm_minor *minor);
+-
+-/* drm_hdcp.c */
+-int drm_setup_hdcp_srm(struct class *drm_class);
+-void drm_teardown_hdcp_srm(struct class *drm_class);
+diff --git a/drivers/gpu/drm/drm_sysfs.c b/drivers/gpu/drm/drm_sysfs.c
+index dd2bc85f43cc..2e83c3d72af9 100644
+--- a/drivers/gpu/drm/drm_sysfs.c
++++ b/drivers/gpu/drm/drm_sysfs.c
+@@ -85,7 +85,6 @@ int drm_sysfs_init(void)
+ 	}
+ 
+ 	drm_class->devnode = drm_devnode;
+-	drm_setup_hdcp_srm(drm_class);
+ 	return 0;
+ }
+ 
+@@ -98,7 +97,6 @@ void drm_sysfs_destroy(void)
+ {
+ 	if (IS_ERR_OR_NULL(drm_class))
+ 		return;
+-	drm_teardown_hdcp_srm(drm_class);
+ 	class_remove_file(drm_class, &class_attr_version.attr);
+ 	class_destroy(drm_class);
+ 	drm_class = NULL;
+diff --git a/include/drm/drm_hdcp.h b/include/drm/drm_hdcp.h
+index 06a11202a097..d512089b873f 100644
+--- a/include/drm/drm_hdcp.h
++++ b/include/drm/drm_hdcp.h
+@@ -288,8 +288,8 @@ struct hdcp_srm_header {
+ struct drm_device;
+ struct drm_connector;
+ 
+-bool drm_hdcp_check_ksvs_revoked(struct drm_device *dev,
+-				 u8 *ksvs, u32 ksv_count);
++int drm_hdcp_check_ksvs_revoked(struct drm_device *dev,
++				u8 *ksvs, u32 ksv_count);
+ int drm_connector_attach_content_protection_property(
+ 		struct drm_connector *connector, bool hdcp_content_type);
+ void drm_hdcp_update_content_protection(struct drm_connector *connector,
 -- 
-2.25.0
+2.20.1
 
 _______________________________________________
 Intel-gfx mailing list
