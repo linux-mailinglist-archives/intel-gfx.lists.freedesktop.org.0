@@ -1,38 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A516414A15C
-	for <lists+intel-gfx@lfdr.de>; Mon, 27 Jan 2020 10:59:49 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C14B14A162
+	for <lists+intel-gfx@lfdr.de>; Mon, 27 Jan 2020 11:01:10 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0B8906EAB3;
-	Mon, 27 Jan 2020 09:59:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 790766EAB0;
+	Mon, 27 Jan 2020 10:01:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AB3B96EAB3
- for <intel-gfx@lists.freedesktop.org>; Mon, 27 Jan 2020 09:59:46 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 27 Jan 2020 01:59:46 -0800
-X-IronPort-AV: E=Sophos;i="5.70,369,1574150400"; d="scan'208";a="221688724"
-Received: from jpanina-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.52.12])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 27 Jan 2020 01:59:44 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Vandita Kulkarni <vandita.kulkarni@intel.com>,
- intel-gfx@lists.freedesktop.org
-In-Reply-To: <87eevpgchn.fsf@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20200124125829.16973-1-vandita.kulkarni@intel.com>
- <87eevpgchn.fsf@intel.com>
-Date: Mon, 27 Jan 2020 11:59:45 +0200
-Message-ID: <87v9oxb4oe.fsf@intel.com>
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 42B9B6EAB0
+ for <intel-gfx@lists.freedesktop.org>; Mon, 27 Jan 2020 10:01:07 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 20019616-1500050 for multiple; Mon, 27 Jan 2020 10:01:04 +0000
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/vbt: Fix the timing parameters
+To: Mika Kuoppala <mika.kuoppala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+From: Chris Wilson <chris@chris-wilson.co.uk>
+In-Reply-To: <87y2ttmdgu.fsf@gaia.fi.intel.com>
+References: <20200124213903.611152-1-chris@chris-wilson.co.uk>
+ <87y2ttmdgu.fsf@gaia.fi.intel.com>
+Message-ID: <158011926198.25356.13139729386288599633@skylake-alporthouse-com>
+User-Agent: alot/0.6
+Date: Mon, 27 Jan 2020 10:01:02 +0000
+Subject: Re: [Intel-gfx] [PATCH i-g-t] i915_pm_rps: Be wary if RP0 == RPn
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,58 +40,59 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: igt-dev@lsts.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 24 Jan 2020, Jani Nikula <jani.nikula@intel.com> wrote:
-> On Fri, 24 Jan 2020, Vandita Kulkarni <vandita.kulkarni@intel.com> wrote:
->> Fix htotal and vtotal parameters derived from
->> DTD block of VBT.
->>
->> Fixes: 33ef6d4fd8df ("drm/i915/vbt: Handle generic DTD block")
->> Signed-off-by: Vandita Kulkarni <vandita.kulkarni@intel.com>
->
-> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+Quoting Mika Kuoppala (2020-01-27 09:54:25)
+> Chris Wilson <chris@chris-wilson.co.uk> writes:
+> 
+> > If the HW min/max frequencies are the same, there is not much range to
+> > deal with and a couple of our invalid tests become confused as they are
+> > actually no-ops.
+> >
+> > Error reporting in i915_pm_rps is rudimentary and we deserve better.
+> >
+> > Closes: https://gitlab.freedesktop.org/drm/intel/issues/1008
+> > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> > ---
+> >  tests/i915/i915_pm_rps.c | 16 ++++++++++------
+> >  1 file changed, 10 insertions(+), 6 deletions(-)
+> >
+> > diff --git a/tests/i915/i915_pm_rps.c b/tests/i915/i915_pm_rps.c
+> > index b65eefb03..56c745a5b 100644
+> > --- a/tests/i915/i915_pm_rps.c
+> > +++ b/tests/i915/i915_pm_rps.c
+> > @@ -397,9 +397,11 @@ static void min_max_config(void (*check)(void), bool load_gpu)
+> >       writeval_inval(sysfs_files[MIN].filp, origfreqs[RP0] + 1000);
+> >       check();
+> >  
+> > -     igt_debug("\nDecrease max to RPn (invalid)...\n");
+> > -     writeval_inval(sysfs_files[MAX].filp, origfreqs[RPn]);
+> > -     check();
+> > +     if (origfreqs[RPn] < origfreqs[RP0]) {
+> > +             igt_debug("\nDecrease max to RPn (invalid)...\n");
+> > +             writeval_inval(sysfs_files[MAX].filp, origfreqs[RPn]);
+> > +             check();
+> > +     }
+> >  
+> >       igt_debug("\nDecrease min to midpoint...\n");
+> >       writeval(sysfs_files[MIN].filp, fmid);
+> > @@ -429,9 +431,11 @@ static void min_max_config(void (*check)(void), bool load_gpu)
+> >       writeval_inval(sysfs_files[MAX].filp, 0);
+> >       check();
+> >  
+> > -     igt_debug("\nIncrease min to RP0 (invalid)...\n");
+> > -     writeval_inval(sysfs_files[MIN].filp, origfreqs[RP0]);
+> > -     check();
+> > +     if (origfreqs[RP0] > origfreqs[RP0]) {
+> 
+> RPn?
 
-And pushed, thanks for the patch. Amended the commit message to explain
-that the total values were missing the back porch size.
-
-BR,
-Jani.
-
->
->> ---
->>  drivers/gpu/drm/i915/display/intel_bios.c | 6 ++++--
->>  1 file changed, 4 insertions(+), 2 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
->> index 1e675aa55938..942a073d5768 100644
->> --- a/drivers/gpu/drm/i915/display/intel_bios.c
->> +++ b/drivers/gpu/drm/i915/display/intel_bios.c
->> @@ -366,14 +366,16 @@ parse_generic_dtd(struct drm_i915_private *dev_priv,
->>  		panel_fixed_mode->hdisplay + dtd->hfront_porch;
->>  	panel_fixed_mode->hsync_end =
->>  		panel_fixed_mode->hsync_start + dtd->hsync;
->> -	panel_fixed_mode->htotal = panel_fixed_mode->hsync_end;
->> +	panel_fixed_mode->htotal =
->> +		panel_fixed_mode->hdisplay + dtd->hblank;
->>  
->>  	panel_fixed_mode->vdisplay = dtd->vactive;
->>  	panel_fixed_mode->vsync_start =
->>  		panel_fixed_mode->vdisplay + dtd->vfront_porch;
->>  	panel_fixed_mode->vsync_end =
->>  		panel_fixed_mode->vsync_start + dtd->vsync;
->> -	panel_fixed_mode->vtotal = panel_fixed_mode->vsync_end;
->> +	panel_fixed_mode->vtotal =
->> +		panel_fixed_mode->vdisplay + dtd->vblank;
->>  
->>  	panel_fixed_mode->clock = dtd->pixel_clock;
->>  	panel_fixed_mode->width_mm = dtd->width_mm;
-
--- 
-Jani Nikula, Intel Open Source Graphics Center
+if (RP0 > RPn)
+-Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
