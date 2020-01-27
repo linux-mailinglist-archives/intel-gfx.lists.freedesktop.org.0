@@ -2,33 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B976D14AA65
-	for <lists+intel-gfx@lfdr.de>; Mon, 27 Jan 2020 20:23:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C57414AAB9
+	for <lists+intel-gfx@lfdr.de>; Mon, 27 Jan 2020 20:50:10 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BC9636E950;
-	Mon, 27 Jan 2020 19:23:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5568E6E983;
+	Mon, 27 Jan 2020 19:50:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EE1FF6E94E
- for <intel-gfx@lists.freedesktop.org>; Mon, 27 Jan 2020 19:23:16 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 93D9A6E03A;
+ Mon, 27 Jan 2020 19:50:05 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 27 Jan 2020 11:22:11 -0800
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by orsmga105.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 27 Jan 2020 11:29:03 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,370,1574150400"; d="scan'208";a="276989254"
+X-IronPort-AV: E=Sophos;i="5.70,371,1574150400"; d="scan'208";a="252047916"
 Received: from bpaauwe-desk1.fm.intel.com ([10.105.128.11])
- by FMSMGA003.fm.intel.com with ESMTP; 27 Jan 2020 11:22:10 -0800
+ by fmsmga004.fm.intel.com with ESMTP; 27 Jan 2020 11:29:02 -0800
 From: Bob Paauwe <bob.j.paauwe@intel.com>
-To: intel-gfx <intel-gfx@lists.freedesktop.org>
-Date: Mon, 27 Jan 2020 11:22:03 -0800
-Message-Id: <20200127192203.19807-1-bob.j.paauwe@intel.com>
+To: igt-dev@lists.freedesktop.org, intel-gfx <intel-gfx@lists.freedesktop.org>
+Date: Mon, 27 Jan 2020 11:28:59 -0800
+Message-Id: <20200127192859.20029-1-bob.j.paauwe@intel.com>
 X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915: Adding YUV444 packed format support
- for skl+ (V13)
+Subject: [Intel-gfx] [PATCH i-g-t] lib/color_encoding: Fix up support for
+ XYUV format
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,92 +41,55 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-RnJvbTogU3RhbmlzbGF2IExpc292c2tpeSA8c3RhbmlzbGF2Lmxpc292c2tpeUBpbnRlbC5jb20+
-CgpQTEFORV9DVExfRk9STUFUX0FZVVYgaXMgYWxyZWFkeSBzdXBwb3J0ZWQsIGFjY29yZGluZyB0
-byBoYXJkd2FyZSBzcGVjaWZpY2F0aW9uLgoKdjI6IEVkaXRlZCBjb21taXQgbWVzc2FnZSwgcmVt
-b3ZlZCByZWR1bmRhbnQgd2hpdGVzcGFjZXMuCgp2MzogRml4ZWQgZmFsbHRocm91Z2ggbG9naWMg
-Zm9yIHRoZSBmb3JtYXQgc3dpdGNoIGNhc2VzLgoKdjQ6IFlldCBhZ2FpbiBmaXhlZCBmYWxsdGhy
-b3VnaCBsb2dpYywgdG8gcmV1c2UgY29kZSBmcm9tIG90aGVyIGNhc2UKICAgIGxhYmVscy4KCnY1
-OiBTdGFydGVkIHRvIHVzZSBYWVVWIGluc3RlYWQgb2YgQVlVViwgYXMgd2UgZG9uJ3QgdXNlIGFs
-cGhhLgoKdjY6IFJlbW92ZWQgdW5uZWVkZWQgaW5pdGlhbGl6ZXIgZm9yIG5ldyBYWVVWIGZvcm1h
-dC4KCnY3OiBBZGRlZCBzY2FsaW5nIHN1cHBvcnQgZm9yIERSTV9GT1JNQVRfWFlVVgoKdjg6IEVk
-aXRlZCBjb21taXQgbWVzc2FnZSB0byBiZSBtb3JlIGNsZWFyIGFib3V0IHNrbCssIHJlbmFtZWQK
-ICAgIFBMQU5FX0NUTF9GT1JNQVRfQVlVViB0byBQTEFORV9DVExfRk9STUFUX1hZVVYgYXMgdGhp
-cyBmb3JtYXQKICAgIGRvZXNuJ3Qgc3VwcG9ydCBwZXItcGl4ZWwgYWxwaGEuIEZpeGVkIG1pbm9y
-IGNvZGUgaXNzdWVzLgoKdjk6IE1vdmVkIERSTSBmb3JtYXQgY2hlY2sgdG8gcHJvcGVyIHBsYWNl
-IGluIGludGVsX2ZyYW1lYnVmZmVyX2luaXQuCgp2MTA6IEFkZGVkIG1pc3NpbmcgWFlVViBmb3Jt
-YXQgdG8gc3ByaXRlIHBsYW5lcyBmb3Igc2tsKy4KCnYxMTogQ2hhbmdlZCBEUk1fRk9STUFUX1hZ
-VVYgdG8gYmUgRFJNX0ZPUk1BVF9YWVVWODg4OC4KCnYxMjogRml4ZWQgcmViYXNlIGNvbmZsaWN0
-cwoKVjEzOiBSZWJhc2VkLgogICAgIEFkZGVkIGZvcm1hdCB0byBJQ0wgZm9ybWF0IGxpc3RzLgoK
-djEyOgpSZXZpZXdlZC1ieTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4Lmlu
-dGVsLmNvbT4KUmV2aWV3ZWQtYnk6IE1hdHQgUm9wZXIgPG1hdHRoZXcuZC5yb3BlckBpbnRlbC5j
-b20+CgpTaWduZWQtb2ZmLWJ5OiBTdGFuaXNsYXYgTGlzb3Zza2l5IDxzdGFuaXNsYXYubGlzb3Zz
-a2l5QGludGVsLmNvbT4KU2lnbmVkLW9mZi1ieTogQm9iIFBhYXV3ZSA8Ym9iLmoucGFhdXdlQGlu
-dGVsLmNvbT4KLS0tCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXku
-YyB8IDUgKysrKysKIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfc3ByaXRlLmMg
-IHwgNSArKysrKwogZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9yZWcuaCAgICAgICAgICAgICAg
-fCAyICstCiAzIGZpbGVzIGNoYW5nZWQsIDExIGluc2VydGlvbnMoKyksIDEgZGVsZXRpb24oLSkK
-CmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXku
-YyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jCmluZGV4IDdm
-OTRkNWNhNDIwNy4uYjlmOTkzNzY5YTRhIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkx
-NS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNw
-bGF5L2ludGVsX2Rpc3BsYXkuYwpAQCAtMzMyOCw2ICszMzI4LDggQEAgaW50IHNrbF9mb3JtYXRf
-dG9fZm91cmNjKGludCBmb3JtYXQsIGJvb2wgcmdiX29yZGVyLCBib29sIGFscGhhKQogCQlyZXR1
-cm4gRFJNX0ZPUk1BVF9SR0I1NjU7CiAJY2FzZSBQTEFORV9DVExfRk9STUFUX05WMTI6CiAJCXJl
-dHVybiBEUk1fRk9STUFUX05WMTI7CisJY2FzZSBQTEFORV9DVExfRk9STUFUX1hZVVY6CisJCXJl
-dHVybiBEUk1fRk9STUFUX1hZVVY4ODg4OwogCWNhc2UgUExBTkVfQ1RMX0ZPUk1BVF9QMDEwOgog
-CQlyZXR1cm4gRFJNX0ZPUk1BVF9QMDEwOwogCWNhc2UgUExBTkVfQ1RMX0ZPUk1BVF9QMDEyOgpA
-QCAtNDUzOCw2ICs0NTQwLDggQEAgc3RhdGljIHUzMiBza2xfcGxhbmVfY3RsX2Zvcm1hdCh1MzIg
-cGl4ZWxfZm9ybWF0KQogCWNhc2UgRFJNX0ZPUk1BVF9YUkdCMTYxNjE2MTZGOgogCWNhc2UgRFJN
-X0ZPUk1BVF9BUkdCMTYxNjE2MTZGOgogCQlyZXR1cm4gUExBTkVfQ1RMX0ZPUk1BVF9YUkdCXzE2
-MTYxNjE2RjsKKwljYXNlIERSTV9GT1JNQVRfWFlVVjg4ODg6CisJCXJldHVybiBQTEFORV9DVExf
-Rk9STUFUX1hZVVY7CiAJY2FzZSBEUk1fRk9STUFUX1lVWVY6CiAJCXJldHVybiBQTEFORV9DVExf
-Rk9STUFUX1lVVjQyMiB8IFBMQU5FX0NUTF9ZVVY0MjJfWVVZVjsKIAljYXNlIERSTV9GT1JNQVRf
-WVZZVToKQEAgLTYxNDcsNiArNjE1MSw3IEBAIHN0YXRpYyBpbnQgc2tsX3VwZGF0ZV9zY2FsZXJf
-cGxhbmUoc3RydWN0IGludGVsX2NydGNfc3RhdGUgKmNydGNfc3RhdGUsCiAJY2FzZSBEUk1fRk9S
-TUFUX1VZVlk6CiAJY2FzZSBEUk1fRk9STUFUX1ZZVVk6CiAJY2FzZSBEUk1fRk9STUFUX05WMTI6
-CisJY2FzZSBEUk1fRk9STUFUX1hZVVY4ODg4OgogCWNhc2UgRFJNX0ZPUk1BVF9QMDEwOgogCWNh
-c2UgRFJNX0ZPUk1BVF9QMDEyOgogCWNhc2UgRFJNX0ZPUk1BVF9QMDE2OgpkaWZmIC0tZ2l0IGEv
-ZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9zcHJpdGUuYyBiL2RyaXZlcnMvZ3B1
-L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfc3ByaXRlLmMKaW5kZXggMmYyNzdkMWZjNmYxLi5hYWZl
-MDRiMjlhNjEgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxf
-c3ByaXRlLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9zcHJpdGUu
-YwpAQCAtMjQ3MCw2ICsyNDcwLDcgQEAgc3RhdGljIGNvbnN0IHUzMiBza2xfcGxhbmVfZm9ybWF0
-c1tdID0gewogCURSTV9GT1JNQVRfWVZZVSwKIAlEUk1fRk9STUFUX1VZVlksCiAJRFJNX0ZPUk1B
-VF9WWVVZLAorCURSTV9GT1JNQVRfWFlVVjg4ODgsCiB9OwogCiBzdGF0aWMgY29uc3QgdTMyIHNr
-bF9wbGFuYXJfZm9ybWF0c1tdID0gewpAQCAtMjQ4OCw2ICsyNDg5LDcgQEAgc3RhdGljIGNvbnN0
-IHUzMiBza2xfcGxhbmFyX2Zvcm1hdHNbXSA9IHsKIAlEUk1fRk9STUFUX1VZVlksCiAJRFJNX0ZP
-Uk1BVF9WWVVZLAogCURSTV9GT1JNQVRfTlYxMiwKKwlEUk1fRk9STUFUX1hZVVY4ODg4LAogfTsK
-IAogc3RhdGljIGNvbnN0IHUzMiBnbGtfcGxhbmFyX2Zvcm1hdHNbXSA9IHsKQEAgLTI1NTksNiAr
-MjU2MSw3IEBAIHN0YXRpYyBjb25zdCB1MzIgaWNsX3Nkcl91dl9wbGFuZV9mb3JtYXRzW10gPSB7
-CiAJRFJNX0ZPUk1BVF9YVllVMjEwMTAxMCwKIAlEUk1fRk9STUFUX1hWWVUxMl8xNjE2MTYxNiwK
-IAlEUk1fRk9STUFUX1hWWVUxNjE2MTYxNiwKKwlEUk1fRk9STUFUX1hZVVY4ODg4LAogfTsKIAog
-c3RhdGljIGNvbnN0IHUzMiBpY2xfaGRyX3BsYW5lX2Zvcm1hdHNbXSA9IHsKQEAgLTI1OTAsNiAr
-MjU5Myw3IEBAIHN0YXRpYyBjb25zdCB1MzIgaWNsX2hkcl9wbGFuZV9mb3JtYXRzW10gPSB7CiAJ
-RFJNX0ZPUk1BVF9YVllVMjEwMTAxMCwKIAlEUk1fRk9STUFUX1hWWVUxMl8xNjE2MTYxNiwKIAlE
-Uk1fRk9STUFUX1hWWVUxNjE2MTYxNiwKKwlEUk1fRk9STUFUX1hZVVY4ODg4LAogfTsKIAogc3Rh
-dGljIGNvbnN0IHU2NCBza2xfcGxhbmVfZm9ybWF0X21vZGlmaWVyc19ub2Njc1tdID0gewpAQCAt
-Mjc1Nyw2ICsyNzYxLDcgQEAgc3RhdGljIGJvb2wgc2tsX3BsYW5lX2Zvcm1hdF9tb2Rfc3VwcG9y
-dGVkKHN0cnVjdCBkcm1fcGxhbmUgKl9wbGFuZSwKIAljYXNlIERSTV9GT1JNQVRfVVlWWToKIAlj
-YXNlIERSTV9GT1JNQVRfVllVWToKIAljYXNlIERSTV9GT1JNQVRfTlYxMjoKKwljYXNlIERSTV9G
-T1JNQVRfWFlVVjg4ODg6CiAJY2FzZSBEUk1fRk9STUFUX1AwMTA6CiAJY2FzZSBEUk1fRk9STUFU
-X1AwMTI6CiAJY2FzZSBEUk1fRk9STUFUX1AwMTY6CmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9k
-cm0vaTkxNS9pOTE1X3JlZy5oIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9yZWcuaAppbmRl
-eCBiOTNjNGMxOGYwNWMuLmIzODQ4ZTczZGUyOSAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJt
-L2k5MTUvaTkxNV9yZWcuaAorKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3JlZy5oCkBA
-IC02NzY0LDcgKzY3NjQsNyBAQCBlbnVtIHsKICNkZWZpbmUgICBQTEFORV9DVExfRk9STUFUX1Aw
-MTIJCQkoNSA8PCAyNCkKICNkZWZpbmUgICBQTEFORV9DVExfRk9STUFUX1hSR0JfMTYxNjE2MTZG
-CSg2IDw8IDI0KQogI2RlZmluZSAgIFBMQU5FX0NUTF9GT1JNQVRfUDAxNgkJCSg3IDw8IDI0KQot
-I2RlZmluZSAgIFBMQU5FX0NUTF9GT1JNQVRfQVlVVgkJCSg4IDw8IDI0KQorI2RlZmluZSAgIFBM
-QU5FX0NUTF9GT1JNQVRfWFlVVgkJCSg4IDw8IDI0KQogI2RlZmluZSAgIFBMQU5FX0NUTF9GT1JN
-QVRfSU5ERVhFRAkJKDEyIDw8IDI0KQogI2RlZmluZSAgIFBMQU5FX0NUTF9GT1JNQVRfUkdCXzU2
-NQkJKDE0IDw8IDI0KQogI2RlZmluZSAgIElDTF9QTEFORV9DVExfRk9STUFUX01BU0sJCSgweDFm
-IDw8IDIzKQotLSAKMi4yMS4wCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVz
-a3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9p
-bnRlbC1nZngK
+Add XYUV8888 to the list of DRM Formats to test.
+
+Also fix the byte order for the format.
+
+Signed-off-by: Bob Paauwe <bob.j.paauwe@intel.com>
+Reviewed-by: Uma Shankar <uma.shankar@intel.com>
+---
+ lib/igt_color_encoding.c | 1 +
+ lib/igt_fb.c             | 6 +++---
+ 2 files changed, 4 insertions(+), 3 deletions(-)
+
+diff --git a/lib/igt_color_encoding.c b/lib/igt_color_encoding.c
+index 7de6d5ab..a7bd2b22 100644
+--- a/lib/igt_color_encoding.c
++++ b/lib/igt_color_encoding.c
+@@ -160,6 +160,7 @@ static const struct color_encoding_format {
+ 	{ DRM_FORMAT_XVYU2101010, 1023.f, 64.f, 940.f, 64.f, 512.f, 960.f },
+ 	{ DRM_FORMAT_XVYU12_16161616, 65520.f, 4096.f, 60160.f, 4096.f, 32768.f, 61440.f },
+ 	{ DRM_FORMAT_XVYU16161616, 65535.f, 4096.f, 60160.f, 4096.f, 32768.f, 61440.f },
++	{ DRM_FORMAT_XYUV8888, 255.f, 16.f, 235.f, 16.f, 128.f, 240.f },
+ };
+ 
+ static const struct color_encoding_format *lookup_fourcc(uint32_t fourcc)
+diff --git a/lib/igt_fb.c b/lib/igt_fb.c
+index c81b9de8..7409e6b3 100644
+--- a/lib/igt_fb.c
++++ b/lib/igt_fb.c
+@@ -2634,9 +2634,9 @@ static void get_yuv_parameters(struct igt_fb *fb, struct yuv_parameters *params)
+ 		break;
+ 
+ 	case DRM_FORMAT_XYUV8888:
+-		params->y_offset = fb->offsets[0] + 1;
+-		params->u_offset = fb->offsets[0] + 2;
+-		params->v_offset = fb->offsets[0] + 3;
++		params->y_offset = fb->offsets[0] + 2;
++		params->u_offset = fb->offsets[0] + 1;
++		params->v_offset = fb->offsets[0] + 0;
+ 		break;
+ 	}
+ }
+-- 
+2.21.0
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
