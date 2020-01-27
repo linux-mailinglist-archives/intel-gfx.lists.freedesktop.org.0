@@ -2,33 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4010014A4C0
-	for <lists+intel-gfx@lfdr.de>; Mon, 27 Jan 2020 14:18:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9FF3814A51E
+	for <lists+intel-gfx@lfdr.de>; Mon, 27 Jan 2020 14:28:02 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7A9EA6EB95;
-	Mon, 27 Jan 2020 13:18:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7624C6EBA3;
+	Mon, 27 Jan 2020 13:28:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 680496EB95
- for <intel-gfx@lists.freedesktop.org>; Mon, 27 Jan 2020 13:18:30 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 20022582-1500050 for multiple; Mon, 27 Jan 2020 13:18:27 +0000
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1E5F16EBA3
+ for <intel-gfx@lists.freedesktop.org>; Mon, 27 Jan 2020 13:27:59 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 27 Jan 2020 05:27:58 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,369,1574150400"; d="scan'208";a="222476908"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by fmsmga007.fm.intel.com with SMTP; 27 Jan 2020 05:27:56 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Mon, 27 Jan 2020 15:27:55 +0200
+Date: Mon, 27 Jan 2020 15:27:55 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Kai Vehmanen <kai.vehmanen@linux.intel.com>
+Message-ID: <20200127132755.GD13686@intel.com>
+References: <20200127113909.11263-1-kai.vehmanen@linux.intel.com>
 MIME-Version: 1.0
-To: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>,
- =?utf-8?b?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-In-Reply-To: <20200124181530.GA13686@intel.com>
-References: <20200124172301.16484-1-stanislav.lisovskiy@intel.com>
- <20200124181530.GA13686@intel.com>
-Message-ID: <158013110559.25356.16671003310732677949@skylake-alporthouse-com>
-User-Agent: alot/0.6
-Date: Mon, 27 Jan 2020 13:18:25 +0000
-Subject: Re: [Intel-gfx] [PATCH v3] drm/i915: Fix inconsistance between
- pfit.enable and scaler freeing
+Content-Disposition: inline
+In-Reply-To: <20200127113909.11263-1-kai.vehmanen@linux.intel.com>
+X-Patchwork-Hint: comment
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Add missing HDMI audio pixel
+ clocks for gen12
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,38 +49,127 @@ List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-UXVvdGluZyBWaWxsZSBTeXJqw6Rsw6QgKDIwMjAtMDEtMjQgMTg6MTU6MzApCj4gT24gRnJpLCBK
-YW4gMjQsIDIwMjAgYXQgMDc6MjM6MDFQTSArMDIwMCwgU3RhbmlzbGF2IExpc292c2tpeSB3cm90
-ZToKPiA+IERlc3BpdGUgdGhhdCBkdXJpbmcgaHcgcmVhZG91dCB3ZSBzZWVtIHRvIGhhdmUgc2Nh
-bGVycyBhc3NpZ25lZAo+ID4gdG8gcGlwZXMsIHRoZW4gY2FsbCBhdG9taWNfc2V0dXBfc2NhbGVy
-cywgYXQgdGhlIGNvbW1pdCBzdGFnZSBpbgo+ID4gc2tsX3VwZGF0ZV9zY2FsZXIgdGhlcmUgaXMg
-YSBjaGVjaywgdGhhdCBpZiB3ZSBoYXZlIGZiIHNyYyBhbmQKPiA+IGRlc3Qgb2Ygc2FtZSBzaXpl
-LCB3ZSBzdGFnZSBmcmVlaW5nIG9mIHRoYXQgc2NhbGVyLgo+ID4gCj4gPiBIb3dldmVyIHdlIGRv
-bid0IHVwZGF0ZSBwZml0LmVuYWJsZWQgZmxhZyB0aGVuLCB3aGljaCBtYWtlcwo+ID4gdGhlIHN0
-YXRlIGluY29uc2lzdGVudCwgd2hpY2ggaW4gdHVybiB0cmlnZ2VycyBhIFdBUk5fT04KPiA+IGlu
-IHNrbF9wZml0X2VuYWJsZSwgYmVjYXVzZSB3ZSBoYXZlIHBmaXQgZW5hYmxlZCwKPiA+IGJ1dCBu
-byBhc3NpZ25lZCBzY2FsZXIuCj4gCj4gQW5kIHRoZSByZWFzb24gZm9yIG5vdCBoYXZpbmcgdXBk
-YXRlcyBwZml0LmVuYWJsZWQgaXMgdGhhdCB0aGUKPiB0aGUgbW9kZXNldCB3YXMgZm9yY2VkIGJ5
-IGEgY2RjbGsgY2hhbmdlIGFuZCB0aHVzIHRoZSBmdWxsIHN0YXRlCj4gcmVjb21wdXRhdGlvbiBu
-ZXZlciBoYXBwZW5lZCBhbmQgd2UncmUgbGVmdCB3aXRoIHRoZSBpbmhlcml0ZWQKPiBwZml0LmVu
-YWJsZWQuCj4gCj4gPiAKPiA+IFRvIG1lIHRoaXMgbG9va3Mgd2VpcmQgdGhhdCB3ZSBraW5kIG9m
-IGRvIHRoZSBkZWNpc2lvbgo+ID4gdG8gdXNlIG9yIG5vdCB1c2UgdGhlIHNjYWxlciBhdCBza2xf
-dXBkYXRlX3NjYWxlciBzdGFnZQo+ID4gYnV0IG5vdCBpbiBpbnRlbF9hdG9taWNfc2V0dXBfc2Nh
-bGVycywgbW9yZW92ZXIKPiA+IG5vdCB1cGRhdGluZyB0aGUgd2hvbGUgc3RhdGUgY29uc2lzdGVu
-dGx5Lgo+ID4gCj4gPiBUaGlzIGZpeCBpcyB0byBub3QgZnJlZSB0aGUgc2NhbGVyIGlmIHdlIGhh
-dmUgcGZpdC5lbmFibGVkCj4gPiBmbGFnIHNldCwgc28gdGhhdCB0aGUgc3RhdGUgaXMgbm93IGNv
-bnNpc3RlbnQKPiA+IGFuZCB0aGUgd2FybmluZ3MgYXJlIGdvbmUuCj4gPiAKPiA+IHYyOiAtIFB1
-dCBwZml0LmVuYWJsZSBjaGVjayBpbnRvIGNydGMgc3BlY2lmaWMgcGxhY2UKPiA+ICAgICAgIChW
-aWxsZSBTeXJqw6Rsw6QpCj4gPiAKPiA+IEJ1Z3ppbGxhOiBodHRwczovL2dpdGxhYi5mcmVlZGVz
-a3RvcC5vcmcvZHJtL2ludGVsL2lzc3Vlcy81NzcKPiAKPiBDbG9zZXM6IC4uLgoKU2lnaCwgc2hv
-dWxkIGhhdmUgY2hlY2tlZCBmaXJzdC4KCkJ5IHNwZWNpYWwgcmVxdWVzdCBvZiBUb21pLApUZXN0
-ZWQtYnk6IFRvbWkgU2FydmVsYSA8dG9taS5wLnNhcnZlbGFAaW50ZWwuY29tPgoKSSBwdXNoZWQu
-IFRoYW5rcyBmb3IgdGhlIHBhdGNoLAotQ2hyaXMKX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4v
-bGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+On Mon, Jan 27, 2020 at 01:39:09PM +0200, Kai Vehmanen wrote:
+> Gen12 hardware supports HDMI audio pixel clocks of 296.7/297Mhz
+> and 593.4/594Mhz. Add the missing rates and add logic to ignore
+> them if running on older hardware.
+> =
+
+> Bspec: 49333
+> Signed-off-by: Kai Vehmanen <kai.vehmanen@linux.intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_audio.c | 16 +++++++++++++---
+>  drivers/gpu/drm/i915/i915_reg.h            |  4 ++++
+>  2 files changed, 17 insertions(+), 3 deletions(-)
+> =
+
+> diff --git a/drivers/gpu/drm/i915/display/intel_audio.c b/drivers/gpu/drm=
+/i915/display/intel_audio.c
+> index b18040793d9e..78f744d220da 100644
+> --- a/drivers/gpu/drm/i915/display/intel_audio.c
+> +++ b/drivers/gpu/drm/i915/display/intel_audio.c
+> @@ -148,6 +148,10 @@ static const struct {
+>  	{ 74250, AUD_CONFIG_PIXEL_CLOCK_HDMI_74250 },
+>  	{ 148352, AUD_CONFIG_PIXEL_CLOCK_HDMI_148352 },
+>  	{ 148500, AUD_CONFIG_PIXEL_CLOCK_HDMI_148500 },
+> +	{ 296703, AUD_CONFIG_PIXEL_CLOCK_HDMI_296703 },
+> +	{ 297000, AUD_CONFIG_PIXEL_CLOCK_HDMI_297000 },
+> +	{ 593407, AUD_CONFIG_PIXEL_CLOCK_HDMI_593407 },
+> +	{ 594000, AUD_CONFIG_PIXEL_CLOCK_HDMI_594000 },
+>  };
+>  =
+
+>  /* HDMI N/CTS table */
+> @@ -231,13 +235,19 @@ static const struct hdmi_aud_ncts hdmi_aud_ncts_36b=
+pp[] =3D {
+>  };
+>  =
+
+>  /* get AUD_CONFIG_PIXEL_CLOCK_HDMI_* value for mode */
+> -static u32 audio_config_hdmi_pixel_clock(const struct intel_crtc_state *=
+crtc_state)
+> +static u32 audio_config_hdmi_pixel_clock(struct drm_i915_private *dev_pr=
+iv,
+> +					 const struct intel_crtc_state *crtc_state)
+>  {
+>  	const struct drm_display_mode *adjusted_mode =3D
+>  		&crtc_state->hw.adjusted_mode;
+>  	int i;
+>  =
+
+>  	for (i =3D 0; i < ARRAY_SIZE(hdmi_audio_clock); i++) {
+> +		if (INTEL_GEN(dev_priv) < 12 &&
+> +		    hdmi_audio_clock[i].clock > 148500) {
+
+Might be cleaner to do the check after the loop.
+
+Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+
+> +			i =3D ARRAY_SIZE(hdmi_audio_clock);
+> +			break;
+> +		}
+>  		if (adjusted_mode->crtc_clock =3D=3D hdmi_audio_clock[i].clock)
+>  			break;
+>  	}
+> @@ -433,7 +443,7 @@ hsw_hdmi_audio_config_update(struct intel_encoder *en=
+coder,
+>  	tmp &=3D ~AUD_CONFIG_N_VALUE_INDEX;
+>  	tmp &=3D ~AUD_CONFIG_PIXEL_CLOCK_HDMI_MASK;
+>  	tmp &=3D ~AUD_CONFIG_N_PROG_ENABLE;
+> -	tmp |=3D audio_config_hdmi_pixel_clock(crtc_state);
+> +	tmp |=3D audio_config_hdmi_pixel_clock(dev_priv, crtc_state);
+>  =
+
+>  	n =3D audio_config_hdmi_get_n(crtc_state, rate);
+>  	if (n !=3D 0) {
+> @@ -673,7 +683,7 @@ static void ilk_audio_codec_enable(struct intel_encod=
+er *encoder,
+>  	if (intel_crtc_has_dp_encoder(crtc_state))
+>  		tmp |=3D AUD_CONFIG_N_VALUE_INDEX;
+>  	else
+> -		tmp |=3D audio_config_hdmi_pixel_clock(crtc_state);
+> +		tmp |=3D audio_config_hdmi_pixel_clock(dev_priv, crtc_state);
+>  	I915_WRITE(aud_config, tmp);
+>  }
+>  =
+
+> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_=
+reg.h
+> index 6cc55c103f67..61d9d045b2ff 100644
+> --- a/drivers/gpu/drm/i915/i915_reg.h
+> +++ b/drivers/gpu/drm/i915/i915_reg.h
+> @@ -9241,6 +9241,10 @@ enum {
+>  #define   AUD_CONFIG_PIXEL_CLOCK_HDMI_74250	(7 << 16)
+>  #define   AUD_CONFIG_PIXEL_CLOCK_HDMI_148352	(8 << 16)
+>  #define   AUD_CONFIG_PIXEL_CLOCK_HDMI_148500	(9 << 16)
+> +#define   AUD_CONFIG_PIXEL_CLOCK_HDMI_296703	(10 << 16)
+> +#define   AUD_CONFIG_PIXEL_CLOCK_HDMI_297000	(11 << 16)
+> +#define   AUD_CONFIG_PIXEL_CLOCK_HDMI_593407	(12 << 16)
+> +#define   AUD_CONFIG_PIXEL_CLOCK_HDMI_594000	(13 << 16)
+>  #define   AUD_CONFIG_DISABLE_NCTS		(1 << 3)
+>  =
+
+>  /* HSW Audio */
+> -- =
+
+> 2.17.1
+> =
+
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+-- =
+
+Ville Syrj=E4l=E4
+Intel
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
