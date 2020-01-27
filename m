@@ -1,30 +1,36 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A0C5514A1E1
-	for <lists+intel-gfx@lfdr.de>; Mon, 27 Jan 2020 11:23:33 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 65D4214A303
+	for <lists+intel-gfx@lfdr.de>; Mon, 27 Jan 2020 12:27:10 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 805396EACB;
-	Mon, 27 Jan 2020 10:23:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 55D9E6EB16;
+	Mon, 27 Jan 2020 11:27:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 542BC6EACB
- for <intel-gfx@lists.freedesktop.org>; Mon, 27 Jan 2020 10:23:30 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20019987-1500050 
- for multiple; Mon, 27 Jan 2020 10:23:12 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon, 27 Jan 2020 10:23:10 +0000
-Message-Id: <20200127102310.2381960-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.25.0
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B35176EB16
+ for <intel-gfx@lists.freedesktop.org>; Mon, 27 Jan 2020 11:27:07 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 27 Jan 2020 03:27:07 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,369,1574150400"; d="scan'208";a="276881748"
+Received: from aquilante.fi.intel.com (HELO intel.com) ([10.237.72.158])
+ by FMSMGA003.fm.intel.com with ESMTP; 27 Jan 2020 03:27:06 -0800
+Date: Mon, 27 Jan 2020 13:27:06 +0200
+From: Andi Shyti <andi.shyti@intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>
+Message-ID: <20200127112706.GB1459@intel.intel>
+References: <20200124192255.541355-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/gt: Lift set-wedged engine dumping out
- of user paths
+Content-Disposition: inline
+In-Reply-To: <20200124192255.541355-1-chris@chris-wilson.co.uk>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Stub out i915_gpu_coredump_put
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,73 +43,31 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Tomi Sarvela <tomi.p.sarvela@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The user (e.g. gem_eio) can manipulate the driver into wedging itself,
-allowing the user to trigger voluminous logging of inconsequential
-details. If we lift the dump to direct calls to intel_gt_set_wedged(),
-out of the intel_reset failure handling, we keep the detail logging for
-what we expect are true HW or test failures without being tricked.
+Hi Chris,
 
-Reported-by: Tomi Sarvela <tomi.p.sarvela@intel.com>
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-Cc: Tomi Sarvela <tomi.p.sarvela@intel.com>
----
- drivers/gpu/drm/i915/gt/intel_reset.c | 24 +++++++++++++++---------
- 1 file changed, 15 insertions(+), 9 deletions(-)
+On Fri, Jan 24, 2020 at 07:22:55PM +0000, Chris Wilson wrote:
+> i915_gpu_coreddump_put is currently only defined if
+> CONFIG_DRM_I915_CAPTURE_ERROR is enabled, provide a stub otherwise.
+> 
+> Reported-by: Mike Lothian <mike@fireburn.co.uk>
+> Fixes: 742379c0c400 ("drm/i915: Start chopping up the GPU error capture")
+> Fixes: 748317386afb ("drm/i915/execlists: Offline error capture")
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Mike Lothian <mike@fireburn.co.uk>
+> Cc: Andi Shyti <andi.shyti@intel.com>
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_reset.c b/drivers/gpu/drm/i915/gt/intel_reset.c
-index beee0cf89bce..48b42adaffbd 100644
---- a/drivers/gpu/drm/i915/gt/intel_reset.c
-+++ b/drivers/gpu/drm/i915/gt/intel_reset.c
-@@ -800,13 +800,6 @@ static void __intel_gt_set_wedged(struct intel_gt *gt)
- 	if (test_bit(I915_WEDGED, &gt->reset.flags))
- 		return;
- 
--	if (GEM_SHOW_DEBUG() && !intel_engines_are_idle(gt)) {
--		struct drm_printer p = drm_debug_printer(__func__);
--
--		for_each_engine(engine, gt, id)
--			intel_engine_dump(engine, &p, "%s\n", engine->name);
--	}
--
- 	GT_TRACE(gt, "start\n");
- 
- 	/*
-@@ -845,10 +838,23 @@ void intel_gt_set_wedged(struct intel_gt *gt)
- {
- 	intel_wakeref_t wakeref;
- 
-+	if (test_bit(I915_WEDGED, &gt->reset.flags))
-+		return;
-+
-+	wakeref = intel_runtime_pm_get(gt->uncore->rpm);
- 	mutex_lock(&gt->reset.mutex);
--	with_intel_runtime_pm(gt->uncore->rpm, wakeref)
--		__intel_gt_set_wedged(gt);
-+
-+	if (GEM_SHOW_DEBUG() && !intel_engines_are_idle(gt)) {
-+		struct drm_printer p = drm_debug_printer(__func__);
-+
-+		for_each_engine(engine, gt, id)
-+			intel_engine_dump(engine, &p, "%s\n", engine->name);
-+	}
-+
-+	__intel_gt_set_wedged(gt);
-+
- 	mutex_unlock(&gt->reset.mutex);
-+	intel_runtime_pm_put(gt->uncore->rpm, wakeref);
- }
- 
- static bool __intel_gt_unset_wedged(struct intel_gt *gt)
--- 
-2.25.0
+right!
 
+Reviewed-by: Andi Shyti <andi.shyti@intel.com>
+
+Thanks,
+Andi
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
