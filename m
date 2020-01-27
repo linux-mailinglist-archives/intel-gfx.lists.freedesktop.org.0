@@ -2,32 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E380B14A325
-	for <lists+intel-gfx@lfdr.de>; Mon, 27 Jan 2020 12:39:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CB32314A350
+	for <lists+intel-gfx@lfdr.de>; Mon, 27 Jan 2020 12:55:44 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B81966EB1D;
-	Mon, 27 Jan 2020 11:39:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2E3A46EB2A;
+	Mon, 27 Jan 2020 11:55:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F3D646EB1D
- for <intel-gfx@lists.freedesktop.org>; Mon, 27 Jan 2020 11:39:13 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 27 Jan 2020 03:39:13 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,369,1574150400"; d="scan'208";a="251916628"
-Received: from eliteleevi.tm.intel.com ([10.237.54.20])
- by fmsmga004.fm.intel.com with ESMTP; 27 Jan 2020 03:39:12 -0800
-From: Kai Vehmanen <kai.vehmanen@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon, 27 Jan 2020 13:39:09 +0200
-Message-Id: <20200127113909.11263-1-kai.vehmanen@linux.intel.com>
-X-Mailer: git-send-email 2.17.1
-Subject: [Intel-gfx] [PATCH] drm/i915: Add missing HDMI audio pixel clocks
- for gen12
+Received: from mx2.suse.de (mx2.suse.de [195.135.220.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A29C96EB29;
+ Mon, 27 Jan 2020 11:55:36 +0000 (UTC)
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.220.254])
+ by mx2.suse.de (Postfix) with ESMTP id CEE54AB7F;
+ Mon, 27 Jan 2020 11:55:34 +0000 (UTC)
+To: Daniel Vetter <daniel.vetter@ffwll.ch>,
+ DRI Development <dri-devel@lists.freedesktop.org>
+References: <20200127100203.1299322-1-daniel.vetter@ffwll.ch>
+From: Thomas Zimmermann <tzimmermann@suse.de>
+Autocrypt: addr=tzimmermann@suse.de; keydata=
+ mQENBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
+ XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
+ BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
+ hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
+ 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
+ AAG0J1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPokBVAQTAQgAPhYh
+ BHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJbOdLgAhsDBQkDwmcABQsJCAcCBhUKCQgLAgQWAgMB
+ Ah4BAheAAAoJEGgNwR1TC3ojR80H/jH+vYavwQ+TvO8ksXL9JQWc3IFSiGpuSVXLCdg62AmR
+ irxW+qCwNncNQyb9rd30gzdectSkPWL3KSqEResBe24IbA5/jSkPweJasgXtfhuyoeCJ6PXo
+ clQQGKIoFIAEv1s8l0ggPZswvCinegl1diyJXUXmdEJRTWYAtxn/atut1o6Giv6D2qmYbXN7
+ mneMC5MzlLaJKUtoH7U/IjVw1sx2qtxAZGKVm4RZxPnMCp9E1MAr5t4dP5gJCIiqsdrVqI6i
+ KupZstMxstPU//azmz7ZWWxT0JzgJqZSvPYx/SATeexTYBP47YFyri4jnsty2ErS91E6H8os
+ Bv6pnSn7eAq5AQ0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRH
+ UE9eosYbT6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgT
+ RjP+qbU63Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+R
+ dhgATnWWGKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zb
+ ehDda8lvhFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r
+ 12+lqdsAEQEAAYkBPAQYAQgAJhYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJbOdLgAhsMBQkD
+ wmcAAAoJEGgNwR1TC3ojpfcIAInwP5OlcEKokTnHCiDTz4Ony4GnHRP2fXATQZCKxmu4AJY2
+ h9ifw9Nf2TjCZ6AMvC3thAN0rFDj55N9l4s1CpaDo4J+0fkrHuyNacnT206CeJV1E7NYntxU
+ n+LSiRrOdywn6erjxRi9EYTVLCHcDhBEjKmFZfg4AM4GZMWX1lg0+eHbd5oL1as28WvvI/uI
+ aMyV8RbyXot1r/8QLlWldU3NrTF5p7TMU2y3ZH2mf5suSKHAMtbE4jKJ8ZHFOo3GhLgjVrBW
+ HE9JXO08xKkgD+w6v83+nomsEuf6C6LYrqY/tsZvyEX6zN8CtirPdPWu/VXNRYAl/lat7lSI
+ 3H26qrE=
+Message-ID: <e3245912-46ee-d830-39eb-f9d5a32e6bdb@suse.de>
+Date: Mon, 27 Jan 2020 12:55:29 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.4.1
+MIME-Version: 1.0
+In-Reply-To: <20200127100203.1299322-1-daniel.vetter@ffwll.ch>
+Subject: Re: [Intel-gfx] [PATCH] drm/auth: Drop master_create/destroy hooks
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,96 +64,162 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Daniel Vetter <daniel.vetter@intel.com>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ =?UTF-8?Q?Thomas_Hellstr=c3=b6m_=28VMware=29?= <thomas_os@shipmail.org>
+Content-Type: multipart/mixed; boundary="===============1059418325=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Gen12 hardware supports HDMI audio pixel clocks of 296.7/297Mhz
-and 593.4/594Mhz. Add the missing rates and add logic to ignore
-them if running on older hardware.
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--===============1059418325==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="8i6LwF4w3WrWUNM2Wc0Ei8fROvFZDmKZN"
 
-Bspec: 49333
-Signed-off-by: Kai Vehmanen <kai.vehmanen@linux.intel.com>
----
- drivers/gpu/drm/i915/display/intel_audio.c | 16 +++++++++++++---
- drivers/gpu/drm/i915/i915_reg.h            |  4 ++++
- 2 files changed, 17 insertions(+), 3 deletions(-)
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--8i6LwF4w3WrWUNM2Wc0Ei8fROvFZDmKZN
+Content-Type: multipart/mixed; boundary="kB8oQTRYX6Isph9yBXjLb9HIMarAfkTqf";
+ protected-headers="v1"
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>,
+ DRI Development <dri-devel@lists.freedesktop.org>
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ =?UTF-8?Q?Thomas_Hellstr=c3=b6m_=28VMware=29?= <thomas_os@shipmail.org>,
+ Daniel Vetter <daniel.vetter@intel.com>
+Message-ID: <e3245912-46ee-d830-39eb-f9d5a32e6bdb@suse.de>
+Subject: Re: [PATCH] drm/auth: Drop master_create/destroy hooks
+References: <20200127100203.1299322-1-daniel.vetter@ffwll.ch>
+In-Reply-To: <20200127100203.1299322-1-daniel.vetter@ffwll.ch>
 
-diff --git a/drivers/gpu/drm/i915/display/intel_audio.c b/drivers/gpu/drm/i915/display/intel_audio.c
-index b18040793d9e..78f744d220da 100644
---- a/drivers/gpu/drm/i915/display/intel_audio.c
-+++ b/drivers/gpu/drm/i915/display/intel_audio.c
-@@ -148,6 +148,10 @@ static const struct {
- 	{ 74250, AUD_CONFIG_PIXEL_CLOCK_HDMI_74250 },
- 	{ 148352, AUD_CONFIG_PIXEL_CLOCK_HDMI_148352 },
- 	{ 148500, AUD_CONFIG_PIXEL_CLOCK_HDMI_148500 },
-+	{ 296703, AUD_CONFIG_PIXEL_CLOCK_HDMI_296703 },
-+	{ 297000, AUD_CONFIG_PIXEL_CLOCK_HDMI_297000 },
-+	{ 593407, AUD_CONFIG_PIXEL_CLOCK_HDMI_593407 },
-+	{ 594000, AUD_CONFIG_PIXEL_CLOCK_HDMI_594000 },
- };
- 
- /* HDMI N/CTS table */
-@@ -231,13 +235,19 @@ static const struct hdmi_aud_ncts hdmi_aud_ncts_36bpp[] = {
- };
- 
- /* get AUD_CONFIG_PIXEL_CLOCK_HDMI_* value for mode */
--static u32 audio_config_hdmi_pixel_clock(const struct intel_crtc_state *crtc_state)
-+static u32 audio_config_hdmi_pixel_clock(struct drm_i915_private *dev_priv,
-+					 const struct intel_crtc_state *crtc_state)
- {
- 	const struct drm_display_mode *adjusted_mode =
- 		&crtc_state->hw.adjusted_mode;
- 	int i;
- 
- 	for (i = 0; i < ARRAY_SIZE(hdmi_audio_clock); i++) {
-+		if (INTEL_GEN(dev_priv) < 12 &&
-+		    hdmi_audio_clock[i].clock > 148500) {
-+			i = ARRAY_SIZE(hdmi_audio_clock);
-+			break;
-+		}
- 		if (adjusted_mode->crtc_clock == hdmi_audio_clock[i].clock)
- 			break;
- 	}
-@@ -433,7 +443,7 @@ hsw_hdmi_audio_config_update(struct intel_encoder *encoder,
- 	tmp &= ~AUD_CONFIG_N_VALUE_INDEX;
- 	tmp &= ~AUD_CONFIG_PIXEL_CLOCK_HDMI_MASK;
- 	tmp &= ~AUD_CONFIG_N_PROG_ENABLE;
--	tmp |= audio_config_hdmi_pixel_clock(crtc_state);
-+	tmp |= audio_config_hdmi_pixel_clock(dev_priv, crtc_state);
- 
- 	n = audio_config_hdmi_get_n(crtc_state, rate);
- 	if (n != 0) {
-@@ -673,7 +683,7 @@ static void ilk_audio_codec_enable(struct intel_encoder *encoder,
- 	if (intel_crtc_has_dp_encoder(crtc_state))
- 		tmp |= AUD_CONFIG_N_VALUE_INDEX;
- 	else
--		tmp |= audio_config_hdmi_pixel_clock(crtc_state);
-+		tmp |= audio_config_hdmi_pixel_clock(dev_priv, crtc_state);
- 	I915_WRITE(aud_config, tmp);
- }
- 
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index 6cc55c103f67..61d9d045b2ff 100644
---- a/drivers/gpu/drm/i915/i915_reg.h
-+++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -9241,6 +9241,10 @@ enum {
- #define   AUD_CONFIG_PIXEL_CLOCK_HDMI_74250	(7 << 16)
- #define   AUD_CONFIG_PIXEL_CLOCK_HDMI_148352	(8 << 16)
- #define   AUD_CONFIG_PIXEL_CLOCK_HDMI_148500	(9 << 16)
-+#define   AUD_CONFIG_PIXEL_CLOCK_HDMI_296703	(10 << 16)
-+#define   AUD_CONFIG_PIXEL_CLOCK_HDMI_297000	(11 << 16)
-+#define   AUD_CONFIG_PIXEL_CLOCK_HDMI_593407	(12 << 16)
-+#define   AUD_CONFIG_PIXEL_CLOCK_HDMI_594000	(13 << 16)
- #define   AUD_CONFIG_DISABLE_NCTS		(1 << 3)
- 
- /* HSW Audio */
--- 
-2.17.1
+--kB8oQTRYX6Isph9yBXjLb9HIMarAfkTqf
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: quoted-printable
+
+
+
+Am 27.01.20 um 11:02 schrieb Daniel Vetter:
+> vmwgfx stopped using them.
+>=20
+> With the drm device model that we've slowly evolved over the past few
+> years master status essentially controls access to display resources,
+> and nothing else. Since that's a pure access permission check drivers
+> should have no need at all to track additional state on a per file
+> basis.
+>=20
+> Aside: For cleanup and restoring kernel-internal clients the grand
+> plan is to move everyone over to drm_client and
+> drm_master_internal_acquire/release, like the generic fbdev code
+> already does. That should get rid of most ->lastclose implementations,
+> and I think also subsumes any processing vmwgfx does in
+> master_set/drop.
+>=20
+> Cc: "Thomas Hellstr=C3=B6m (VMware)" <thomas_os@shipmail.org>
+> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+
+Reviewed-by: Thomas Zimmermann <tzimmermann@suse.de>
+
+> ---
+>  drivers/gpu/drm/drm_auth.c |  8 --------
+>  include/drm/drm_drv.h      | 14 --------------
+>  2 files changed, 22 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/drm_auth.c b/drivers/gpu/drm/drm_auth.c
+> index cc9acd986c68..531b876d0ed8 100644
+> --- a/drivers/gpu/drm/drm_auth.c
+> +++ b/drivers/gpu/drm/drm_auth.c
+> @@ -153,11 +153,6 @@ static int drm_new_set_master(struct drm_device *d=
+ev, struct drm_file *fpriv)
+>  		return -ENOMEM;
+>  	}
+> =20
+> -	if (dev->driver->master_create) {
+> -		ret =3D dev->driver->master_create(dev, fpriv->master);
+> -		if (ret)
+> -			goto out_err;
+> -	}
+>  	fpriv->is_master =3D 1;
+>  	fpriv->authenticated =3D 1;
+> =20
+> @@ -332,9 +327,6 @@ static void drm_master_destroy(struct kref *kref)
+>  	if (drm_core_check_feature(dev, DRIVER_MODESET))
+>  		drm_lease_destroy(master);
+> =20
+> -	if (dev->driver->master_destroy)
+> -		dev->driver->master_destroy(dev, master);
+> -
+>  	drm_legacy_master_rmmaps(dev, master);
+> =20
+>  	idr_destroy(&master->magic_map);
+> diff --git a/include/drm/drm_drv.h b/include/drm/drm_drv.h
+> index f3f3e10873af..77bc63de0a91 100644
+> --- a/include/drm/drm_drv.h
+> +++ b/include/drm/drm_drv.h
+> @@ -460,20 +460,6 @@ struct drm_driver {
+>  	 */
+>  	void (*irq_uninstall) (struct drm_device *dev);
+> =20
+> -	/**
+> -	 * @master_create:
+> -	 *
+> -	 * Called whenever a new master is created. Only used by vmwgfx.
+> -	 */
+> -	int (*master_create)(struct drm_device *dev, struct drm_master *maste=
+r);
+> -
+> -	/**
+> -	 * @master_destroy:
+> -	 *
+> -	 * Called whenever a master is destroyed. Only used by vmwgfx.
+> -	 */
+> -	void (*master_destroy)(struct drm_device *dev, struct drm_master *mas=
+ter);
+> -
+>  	/**
+>  	 * @master_set:
+>  	 *
+>=20
+
+--=20
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Maxfeldstr. 5, 90409 N=C3=BCrnberg, Germany
+(HRB 36809, AG N=C3=BCrnberg)
+Gesch=C3=A4ftsf=C3=BChrer: Felix Imend=C3=B6rffer
+
+
+--kB8oQTRYX6Isph9yBXjLb9HIMarAfkTqf--
+
+--8i6LwF4w3WrWUNM2Wc0Ei8fROvFZDmKZN
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEEchf7rIzpz2NEoWjlaA3BHVMLeiMFAl4uz7IACgkQaA3BHVML
+eiMwawf+NZ7ANSXF+2lM9FyoM8i/PHCFC/V5Xh/myzQ8glVSGZY2soIgi5CgMXy+
+Pv+pZiFJ5cwH4tCmhpQQnQ1AL1F23cLTAMQu50/1hD67b9PWCuPE6FXK9NantWcM
+Zsqf/LJ2EMoh/eek73gIx1yneFqxP5dkWhT+C0PvIzLsKT5flG/MQvYBA4HYiFX2
+7+3uRMDlYvLm7g1KYYMGnpdCsNr2dotJxx0DMXTPfHX9aEQbw9rc2gQ0yi5B9lHq
+4o36InnKMAWu70U+tX2j8dckBdyV0z6fOEAvnhjTJj1PUw9yHt83sNv6NyEC+Hfy
+t3EpkIudMjy6HH2jTgGDr8ZzkGJIJQ==
+=ewc+
+-----END PGP SIGNATURE-----
+
+--8i6LwF4w3WrWUNM2Wc0Ei8fROvFZDmKZN--
+
+--===============1059418325==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============1059418325==--
