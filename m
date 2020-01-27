@@ -1,31 +1,56 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E9AF14AC0E
-	for <lists+intel-gfx@lfdr.de>; Mon, 27 Jan 2020 23:32:22 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A8DC14AC10
+	for <lists+intel-gfx@lfdr.de>; Mon, 27 Jan 2020 23:32:47 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E1D0C6EC05;
-	Mon, 27 Jan 2020 22:32:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8A98B6EC08;
+	Mon, 27 Jan 2020 22:32:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 711CF6EC05;
- Mon, 27 Jan 2020 22:32:19 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 6A150A011C;
- Mon, 27 Jan 2020 22:32:19 +0000 (UTC)
+Received: from mail-wr1-x444.google.com (mail-wr1-x444.google.com
+ [IPv6:2a00:1450:4864:20::444])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 661436EC07;
+ Mon, 27 Jan 2020 22:32:42 +0000 (UTC)
+Received: by mail-wr1-x444.google.com with SMTP id c9so13664268wrw.8;
+ Mon, 27 Jan 2020 14:32:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc:content-transfer-encoding;
+ bh=7xmxId/hN3e5rAuBqP305UFcoidt2bDdfMSY6RecTCA=;
+ b=Eve4qj86POX93iPMYl/6eWM5mmWMAy2j5K9H1jCIse8WmssYQ45NUGfRxxI7a0pJTt
+ X+7RkfjnRVx1qYjWLPG1THkdhUXwnF4CJ0vJOEFyOnw+/lkaetGWOKKT1JME2c9LXdfr
+ PddwcZLcYOYgtKGw6RichZ0ydX8uPMVhSvEjeYHaZEh17rZANj9DmyInu/0G29AyLsD9
+ O2jrKGJWW48Wy9UDvWNEqEOVzVON2vloGU/oHz4/JO5ZmmwyGhyHN+tq7BjgzcSPWCtQ
+ jBPRdIdHgcScDGEaKZlLP/nEqT2yEL5niiBar/9GXdBuCdujjPgsLAIBkWhbv1dKlktW
+ MOkg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc:content-transfer-encoding;
+ bh=7xmxId/hN3e5rAuBqP305UFcoidt2bDdfMSY6RecTCA=;
+ b=qGnpejjFU17E/RrSOu0ARfjvl/Ou3hTRkjlqLx9oHZnUM84+Q4x5NmUWcsjB/z82dY
+ wNY5PxMbrVJxPODufXTp7CwqjHY5BwNzQ7gfIih69uEpgh2RJFP+Dn7Bicp+j61jOyC+
+ y8x0UI+lcU6Dnpc2EgeFJbOTt2HPTFlWhKtZ9lEAc0dhaEZ3LxDiwRqO7jv4dLoGZ7K0
+ VUyq+gr5s4KOMQWCatYqFG3+qeIOJser3GgAJEptF5xozXrkSSVcI5jt+bNG5ItQbbWs
+ lujDkZua+DMOVJfY0rkYxi2BgM6G+mlEKQvWCvQrEa2Ig3VsXwSVPbcM2SYi0zzpFqy/
+ m9GA==
+X-Gm-Message-State: APjAAAUbdrIsRvaZ+vTAZ7ByfjeMwQEDwN9Q7GZcScoBldsvVhERzimL
+ mAd6JvdAd3+xxIPWE71zGji9rRLSkUFuZXcvCP54nA==
+X-Google-Smtp-Source: APXvYqww645REmcL+/bms0gsua2HY9gHqucxqvqnkGbYKHELwWtPVFANIB9kNzTPUS3WExZVBOVIarg8sxStuUMUGAg=
+X-Received: by 2002:adf:ec4c:: with SMTP id w12mr25526653wrn.124.1580164361144; 
+ Mon, 27 Jan 2020 14:32:41 -0800 (PST)
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Vandita Kulkarni" <vandita.kulkarni@intel.com>
-Date: Mon, 27 Jan 2020 22:32:19 -0000
-Message-ID: <158016433943.9686.3422688540520652451@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200127111608.7246-1-vandita.kulkarni@intel.com>
-In-Reply-To: <20200127111608.7246-1-vandita.kulkarni@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/i915/dsi=3A_Enable_dsi_as_part_of_encoder-=3Eenable?=
+References: <20200124200231.10517-1-ville.syrjala@linux.intel.com>
+ <20200124200231.10517-6-ville.syrjala@linux.intel.com>
+In-Reply-To: <20200124200231.10517-6-ville.syrjala@linux.intel.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Mon, 27 Jan 2020 17:32:29 -0500
+Message-ID: <CADnq5_POWv6Pw2diOveEXsJTgCvDnJj4O8b-iVzPkW4LgEfXEg@mail.gmail.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>
+Subject: Re: [Intel-gfx] [PATCH 6/8] drm/edid: Add a FIXME about DispID CEA
+ data block revision
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,31 +63,40 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Andres Rodriguez <andresx7@gmail.com>,
+ Maling list - DRI developers <dri-devel@lists.freedesktop.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
-
-Series: drm/i915/dsi: Enable dsi as part of encoder->enable
-URL   : https://patchwork.freedesktop.org/series/72619/
-State : warning
-
-== Summary ==
-
-$ dim checkpatch origin/drm-tip
-90cfe8a7b2cb drm/i915/dsi: Enable dsi as part of encoder->enable
--:31: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#31: FILE: drivers/gpu/drm/i915/display/icl_dsi.c:1105:
-+static void gen11_dsi_enable(struct intel_encoder *encoder,
-+				 const struct intel_crtc_state *pipe_config,
-
-total: 0 errors, 0 warnings, 1 checks, 28 lines checked
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gRnJpLCBKYW4gMjQsIDIwMjAgYXQgMzowMiBQTSBWaWxsZSBTeXJqYWxhCjx2aWxsZS5zeXJq
+YWxhQGxpbnV4LmludGVsLmNvbT4gd3JvdGU6Cj4KPiBGcm9tOiBWaWxsZSBTeXJqw6Rsw6QgPHZp
+bGxlLnN5cmphbGFAbGludXguaW50ZWwuY29tPgo+Cj4gSSBkb24ndCB1bmRlcnN0YW5kIHdoYXQg
+dGhlIERpc3BJRCBDRUEgZGF0YSBibG9jayByZXZpc2lvbgo+IG1lYW5zLiBUaGUgc3BlYyBkb2Vz
+bid0IHNheS4gSSBndWVzcyBzb21lIERpc3BJRCBtdXN0IGhhdmUKPiBhIHZhbHVlIG9mID49IDMg
+aW4gdGhlcmUgb3IgZWxzZSB3ZSBnZW5lcmFsbHkgd291bGRuJ3QKPiBldmVuIHBhcnNlIHRoZSBD
+RUEgZGF0YSBibG9ja3MuIE9yIGRvZXMgYWxsIHRoaXMgY29kZQo+IGFjdHVhbGx5IG5vdCBkbyBh
+bnl0aGluZz8KPgo+IENjOiBBbmRyZXMgUm9kcmlndWV6IDxhbmRyZXN4N0BnbWFpbC5jb20+Cj4g
+U2lnbmVkLW9mZi1ieTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVs
+LmNvbT4KPiAtLS0KPiAgZHJpdmVycy9ncHUvZHJtL2RybV9lZGlkLmMgfCA3ICsrKysrKysKPiAg
+MSBmaWxlIGNoYW5nZWQsIDcgaW5zZXJ0aW9ucygrKQo+Cj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMv
+Z3B1L2RybS9kcm1fZWRpZC5jIGIvZHJpdmVycy9ncHUvZHJtL2RybV9lZGlkLmMKPiBpbmRleCAw
+MzY5YTU0ZTNkMzIuLmZkOWI3MjQwNjdhNyAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0v
+ZHJtX2VkaWQuYwo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9kcm1fZWRpZC5jCj4gQEAgLTM5Nzcs
+NiArMzk3NywxMyBAQCBjZWFfZGJfdGFnKGNvbnN0IHU4ICpkYikKPiAgc3RhdGljIGludAo+ICBj
+ZWFfcmV2aXNpb24oY29uc3QgdTggKmNlYSkKPiAgewo+ICsgICAgICAgLyoKPiArICAgICAgICAq
+IEZJWE1FIGlzIHRoaXMgY29ycmVjdCBmb3IgdGhlIERpc3BJRCB2YXJpYW50Pwo+ICsgICAgICAg
+ICogVGhlIERpc3BJRCBzcGVjIGRvZXNuJ3QgcmVhbGx5IHNwZWNpZnkgd2hldGhlcgo+ICsgICAg
+ICAgICogdGhpcyBpcyB0aGUgcmV2aXNpb24gb2YgdGhlIENFQSBleHRlbnNpb24gb3IKPiArICAg
+ICAgICAqIHRoZSBEaXNwSUQgQ0VBIGRhdGEgYmxvY2suIEFuZCB0aGUgb25seSB2YWx1ZQo+ICsg
+ICAgICAgICogZ2l2ZW4gYXMgYW4gZXhhbXBsZSBpcyAwLgo+ICsgICAgICAgICovCgpTYW1lIGNv
+bW1lbnQgYXMgdGhlIHByZXZpb3VzIHBhdGNoIHJlZ2FyZGluZyB0aGUgY29tbWVudCBmb3JtYXR0
+aW5nLgoKQWxleAoKPiAgICAgICAgIHJldHVybiBjZWFbMV07Cj4gIH0KPgo+IC0tCj4gMi4yNC4x
+Cj4KPiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+IGRy
+aS1kZXZlbCBtYWlsaW5nIGxpc3QKPiBkcmktZGV2ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4g
+aHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9kcmktZGV2ZWwK
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
+IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
