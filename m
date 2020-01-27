@@ -1,37 +1,38 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F399914A15A
-	for <lists+intel-gfx@lfdr.de>; Mon, 27 Jan 2020 10:59:31 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A516414A15C
+	for <lists+intel-gfx@lfdr.de>; Mon, 27 Jan 2020 10:59:49 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CC00C6EA94;
-	Mon, 27 Jan 2020 09:59:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0B8906EAB3;
+	Mon, 27 Jan 2020 09:59:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8976C6EA94;
- Mon, 27 Jan 2020 09:59:27 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AB3B96EAB3
+ for <intel-gfx@lists.freedesktop.org>; Mon, 27 Jan 2020 09:59:46 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 27 Jan 2020 01:59:27 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,369,1574150400"; d="scan'208";a="376093310"
-Received: from gaia.fi.intel.com ([10.237.72.192])
- by orsmga004.jf.intel.com with ESMTP; 27 Jan 2020 01:59:25 -0800
-Received: by gaia.fi.intel.com (Postfix, from userid 1000)
- id DD6CE5C1DFE; Mon, 27 Jan 2020 11:58:39 +0200 (EET)
-From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20200127085123.2229746-1-chris@chris-wilson.co.uk>
-References: <20200127085123.2229746-1-chris@chris-wilson.co.uk>
-Date: Mon, 27 Jan 2020 11:58:39 +0200
-Message-ID: <87v9oxmd9s.fsf@gaia.fi.intel.com>
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 27 Jan 2020 01:59:46 -0800
+X-IronPort-AV: E=Sophos;i="5.70,369,1574150400"; d="scan'208";a="221688724"
+Received: from jpanina-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.52.12])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 27 Jan 2020 01:59:44 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: Vandita Kulkarni <vandita.kulkarni@intel.com>,
+ intel-gfx@lists.freedesktop.org
+In-Reply-To: <87eevpgchn.fsf@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20200124125829.16973-1-vandita.kulkarni@intel.com>
+ <87eevpgchn.fsf@intel.com>
+Date: Mon, 27 Jan 2020 11:59:45 +0200
+Message-ID: <87v9oxb4oe.fsf@intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [igt-dev] [PATCH i-g-t]
- i915/gem_pipe_control_store_loop: Limit runtime
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/vbt: Fix the timing parameters
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,65 +45,58 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: igt-dev@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Chris Wilson <chris@chris-wilson.co.uk> writes:
-
-> Use a runtime limit, not a fixed amount of work, so that it doesn't take
-> several hundred seconds on the slower machines.
+On Fri, 24 Jan 2020, Jani Nikula <jani.nikula@intel.com> wrote:
+> On Fri, 24 Jan 2020, Vandita Kulkarni <vandita.kulkarni@intel.com> wrote:
+>> Fix htotal and vtotal parameters derived from
+>> DTD block of VBT.
+>>
+>> Fixes: 33ef6d4fd8df ("drm/i915/vbt: Handle generic DTD block")
+>> Signed-off-by: Vandita Kulkarni <vandita.kulkarni@intel.com>
 >
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
-Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+And pushed, thanks for the patch. Amended the commit message to explain
+that the total values were missing the back porch size.
 
-> ---
->  tests/i915/gem_pipe_control_store_loop.c | 8 ++++----
->  1 file changed, 4 insertions(+), 4 deletions(-)
+BR,
+Jani.
+
 >
-> diff --git a/tests/i915/gem_pipe_control_store_loop.c b/tests/i915/gem_pipe_control_store_loop.c
-> index b8a21d780..9330a47c8 100644
-> --- a/tests/i915/gem_pipe_control_store_loop.c
-> +++ b/tests/i915/gem_pipe_control_store_loop.c
-> @@ -62,13 +62,13 @@ uint32_t devid;
->  
->  /* Like the store dword test, but we create new command buffers each time */
->  static void
-> -store_pipe_control_loop(bool preuse_buffer)
-> +store_pipe_control_loop(bool preuse_buffer, int timeout)
->  {
->  	int i, val = 0;
->  	uint32_t *buf;
->  	drm_intel_bo *target_bo;
->  
-> -	for (i = 0; i < SLOW_QUICK(0x10000, 4); i++) {
-> +	igt_until_timeout(timeout) {
->  		/* we want to check tlb consistency of the pipe_control target,
->  		 * so get a new buffer every time around */
->  		target_bo = drm_intel_bo_alloc(bufmgr, "target bo", 4096, 4096);
-> @@ -182,10 +182,10 @@ igt_main
->  	}
->  
->  	igt_subtest("fresh-buffer")
-> -		store_pipe_control_loop(false);
-> +		store_pipe_control_loop(false, 2);
->  
->  	igt_subtest("reused-buffer")
-> -		store_pipe_control_loop(true);
-> +		store_pipe_control_loop(true, 2);
->  
->  	igt_fixture {
->  		intel_batchbuffer_free(batch);
-> -- 
-> 2.25.0
->
-> _______________________________________________
-> igt-dev mailing list
-> igt-dev@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/igt-dev
+>> ---
+>>  drivers/gpu/drm/i915/display/intel_bios.c | 6 ++++--
+>>  1 file changed, 4 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
+>> index 1e675aa55938..942a073d5768 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_bios.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_bios.c
+>> @@ -366,14 +366,16 @@ parse_generic_dtd(struct drm_i915_private *dev_priv,
+>>  		panel_fixed_mode->hdisplay + dtd->hfront_porch;
+>>  	panel_fixed_mode->hsync_end =
+>>  		panel_fixed_mode->hsync_start + dtd->hsync;
+>> -	panel_fixed_mode->htotal = panel_fixed_mode->hsync_end;
+>> +	panel_fixed_mode->htotal =
+>> +		panel_fixed_mode->hdisplay + dtd->hblank;
+>>  
+>>  	panel_fixed_mode->vdisplay = dtd->vactive;
+>>  	panel_fixed_mode->vsync_start =
+>>  		panel_fixed_mode->vdisplay + dtd->vfront_porch;
+>>  	panel_fixed_mode->vsync_end =
+>>  		panel_fixed_mode->vsync_start + dtd->vsync;
+>> -	panel_fixed_mode->vtotal = panel_fixed_mode->vsync_end;
+>> +	panel_fixed_mode->vtotal =
+>> +		panel_fixed_mode->vdisplay + dtd->vblank;
+>>  
+>>  	panel_fixed_mode->clock = dtd->pixel_clock;
+>>  	panel_fixed_mode->width_mm = dtd->width_mm;
+
+-- 
+Jani Nikula, Intel Open Source Graphics Center
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
