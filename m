@@ -2,33 +2,36 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E050514B2FA
-	for <lists+intel-gfx@lfdr.de>; Tue, 28 Jan 2020 11:49:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E025914B30C
+	for <lists+intel-gfx@lfdr.de>; Tue, 28 Jan 2020 11:52:44 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 51D516EDB5;
-	Tue, 28 Jan 2020 10:49:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EF5106EDB4;
+	Tue, 28 Jan 2020 10:52:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5EDD36EDB5;
- Tue, 28 Jan 2020 10:49:52 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 20032619-1500050 for multiple; Tue, 28 Jan 2020 10:49:35 +0000
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C44CF6EDB4
+ for <intel-gfx@lists.freedesktop.org>; Tue, 28 Jan 2020 10:52:39 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 28 Jan 2020 02:52:39 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,373,1574150400"; d="scan'208";a="217580237"
+Received: from gaia.fi.intel.com ([10.237.72.192])
+ by orsmga007.jf.intel.com with ESMTP; 28 Jan 2020 02:52:38 -0800
+Received: by gaia.fi.intel.com (Postfix, from userid 1000)
+ id B80C25C1E0F; Tue, 28 Jan 2020 12:51:51 +0200 (EET)
+From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20200127231540.3302516-1-chris@chris-wilson.co.uk>
+References: <20200127231540.3302516-1-chris@chris-wilson.co.uk>
+Date: Tue, 28 Jan 2020 12:51:51 +0200
+Message-ID: <87ftfzn9a0.fsf@gaia.fi.intel.com>
 MIME-Version: 1.0
-To: DRI Development <dri-devel@lists.freedesktop.org>,
- Daniel Vetter <daniel.vetter@ffwll.ch>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-In-Reply-To: <20200128104602.1459802-3-daniel.vetter@ffwll.ch>
-References: <20200128104602.1459802-1-daniel.vetter@ffwll.ch>
- <20200128104602.1459802-3-daniel.vetter@ffwll.ch>
-Message-ID: <158020857412.30113.8444620432464189015@skylake-alporthouse-com>
-User-Agent: alot/0.6
-Date: Tue, 28 Jan 2020 10:49:34 +0000
-Subject: Re: [Intel-gfx] [PATCH 3/4] drm: Push drm_global_mutex locking in
- drm_open
+Subject: Re: [Intel-gfx] [PATCH 1/6] drm/i915: Skip capturing errors from
+ internal contexts
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,98 +44,68 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Daniel Vetter <daniel.vetter@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Daniel Vetter (2020-01-28 10:46:00)
-> We want to only take the BKL on crap drivers, but to know whether
-> we have a crap driver we first need to look it up. Split this shuffle
-> out from the main BKL-disabling patch, for more clarity.
-> 
-> Since the minors are refcounted drm_minor_acquire is purely internal
-> and this does not have a driver visible effect.
-> 
-> v2: Push the locking even further into drm_open(), suggested by Chris.
-> This gives us more symmetry with drm_release(), and maybe a futuer
-> avenue where we make drm_globale_mutex locking (partially) opt-in like
-> with drm_release_noglobal().
-> 
-> Cc: Chris Wilson <chris@chris-wilson.co.uk>
-> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+Chris Wilson <chris@chris-wilson.co.uk> writes:
+
+> We don't want to report errors on the internal contexts to userspace,
+> suppressing their own, so treat them as simulated errors. These mostly
+> arise inside selftests and so are simulated anyway. For the rest, we can
+> rely on the normal debug channels in CI.
+>
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+
+Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+
 > ---
->  drivers/gpu/drm/drm_drv.c  | 14 +++++---------
->  drivers/gpu/drm/drm_file.c |  6 ++++++
->  2 files changed, 11 insertions(+), 9 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/drm_drv.c b/drivers/gpu/drm/drm_drv.c
-> index 8deff75b484c..05bdf0b9d2b3 100644
-> --- a/drivers/gpu/drm/drm_drv.c
-> +++ b/drivers/gpu/drm/drm_drv.c
-> @@ -1085,17 +1085,14 @@ static int drm_stub_open(struct inode *inode, struct file *filp)
+>  drivers/gpu/drm/i915/i915_gpu_error.c | 8 ++++----
+>  1 file changed, 4 insertions(+), 4 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/i915_gpu_error.c b/drivers/gpu/drm/i915/i915_gpu_error.c
+> index 594341e27a47..0f67bef83106 100644
+> --- a/drivers/gpu/drm/i915/i915_gpu_error.c
+> +++ b/drivers/gpu/drm/i915/i915_gpu_error.c
+> @@ -1228,7 +1228,7 @@ static bool record_context(struct i915_gem_context_coredump *e,
+>  {
+>  	struct i915_gem_context *ctx;
+>  	struct task_struct *task;
+> -	bool capture;
+> +	bool simulated;
 >  
->         DRM_DEBUG("\n");
+>  	rcu_read_lock();
+>  	ctx = rcu_dereference(rq->context->gem_context);
+> @@ -1236,7 +1236,7 @@ static bool record_context(struct i915_gem_context_coredump *e,
+>  		ctx = NULL;
+>  	rcu_read_unlock();
+>  	if (!ctx)
+> -		return false;
+> +		return true;
 >  
-> -       mutex_lock(&drm_global_mutex);
->         minor = drm_minor_acquire(iminor(inode));
-> -       if (IS_ERR(minor)) {
-> -               err = PTR_ERR(minor);
-> -               goto out_unlock;
-> -       }
-> +       if (IS_ERR(minor))
-> +               return PTR_ERR(minor);
+>  	rcu_read_lock();
+>  	task = pid_task(ctx->pid, PIDTYPE_PID);
+> @@ -1250,10 +1250,10 @@ static bool record_context(struct i915_gem_context_coredump *e,
+>  	e->guilty = atomic_read(&ctx->guilty_count);
+>  	e->active = atomic_read(&ctx->active_count);
 >  
->         new_fops = fops_get(minor->dev->driver->fops);
->         if (!new_fops) {
->                 err = -ENODEV;
-> -               goto out_release;
-> +               goto out;
->         }
+> -	capture = i915_gem_context_no_error_capture(ctx);
+> +	simulated = i915_gem_context_no_error_capture(ctx);
 >  
->         replace_fops(filp, new_fops);
-> @@ -1104,10 +1101,9 @@ static int drm_stub_open(struct inode *inode, struct file *filp)
->         else
->                 err = 0;
->  
-> -out_release:
-> +out:
->         drm_minor_release(minor);
-> -out_unlock:
-> -       mutex_unlock(&drm_global_mutex);
-> +
->         return err;
+>  	i915_gem_context_put(ctx);
+> -	return capture;
+> +	return simulated;
 >  }
 >  
-> diff --git a/drivers/gpu/drm/drm_file.c b/drivers/gpu/drm/drm_file.c
-> index 1075b3a8b5b1..d36cb74ebe0c 100644
-> --- a/drivers/gpu/drm/drm_file.c
-> +++ b/drivers/gpu/drm/drm_file.c
-> @@ -378,6 +378,8 @@ int drm_open(struct inode *inode, struct file *filp)
->         if (IS_ERR(minor))
->                 return PTR_ERR(minor);
->  
-> +       mutex_unlock(&drm_global_mutex);
-> +
->         dev = minor->dev;
->         if (!atomic_fetch_inc(&dev->open_count))
->                 need_setup = 1;
-> @@ -395,10 +397,14 @@ int drm_open(struct inode *inode, struct file *filp)
->                         goto err_undo;
->                 }
->         }
-> +
-> +       mutex_unlock(&drm_global_mutex);
-
-The only reason why I could think it was in drm_stub_open() not
-drm_open() was for the possibility of some driver using a different
-callback. Such a driver would not be partaking in the drm_global_mutex
-so...
-Reviewed-by: Chris Wilson <chris@chris-wilson.co.uk>
--Chris
+>  struct intel_engine_capture_vma {
+> -- 
+> 2.25.0
+>
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
