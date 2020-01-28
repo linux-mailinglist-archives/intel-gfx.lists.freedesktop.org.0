@@ -1,38 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 83B6B14C38C
-	for <lists+intel-gfx@lfdr.de>; Wed, 29 Jan 2020 00:33:15 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id BAF1A14C38D
+	for <lists+intel-gfx@lfdr.de>; Wed, 29 Jan 2020 00:33:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BC06F6F44B;
-	Tue, 28 Jan 2020 23:33:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0C3436F44E;
+	Tue, 28 Jan 2020 23:33:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3CE0B6F44B
- for <intel-gfx@lists.freedesktop.org>; Tue, 28 Jan 2020 23:33:12 +0000 (UTC)
-X-Amp-Result: UNSCANNABLE
-X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 28 Jan 2020 15:33:11 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,375,1574150400"; d="scan'208";a="222274884"
-Received: from mdroper-desk1.fm.intel.com (HELO
- mdroper-desk1.amr.corp.intel.com) ([10.1.27.64])
- by orsmga008.jf.intel.com with SMTP; 28 Jan 2020 15:33:11 -0800
-Date: Tue, 28 Jan 2020 15:33:11 -0800
-From: Matt Roper <matthew.d.roper@intel.com>
-To: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-Message-ID: <20200128233311.GH22783@mdroper-desk1.amr.corp.intel.com>
-References: <20200124084456.2961-1-stanislav.lisovskiy@intel.com>
- <20200124084456.2961-7-stanislav.lisovskiy@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 2032C6F44D;
+ Tue, 28 Jan 2020 23:33:48 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 1782DA0093;
+ Tue, 28 Jan 2020 23:33:48 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200124084456.2961-7-stanislav.lisovskiy@intel.com>
-Subject: Re: [Intel-gfx] [PATCH v16 6/7] drm/i915: Protect
- intel_dbuf_slices_update with mutex
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?b?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Date: Tue, 28 Jan 2020 23:33:48 -0000
+Message-ID: <158025442809.20534.5655711369893213762@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200128155152.21977-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20200128155152.21977-1-ville.syrjala@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5Bv2=2C1/4=5D_drm/i915=3A_Nuke_pre-productio?=
+ =?utf-8?q?n_GLK_HDMI_w/a_1139?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,92 +39,140 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Jan 24, 2020 at 10:44:55AM +0200, Stanislav Lisovskiy wrote:
-> Now using power_domain mutex to protect from race condition, which
-> can occur because intel_dbuf_slices_update might be running in
-> parallel to gen9_dc_off_power_well_enable being called from
-> intel_dp_detect for instance, which causes assertion triggered by
-> race condition, as gen9_assert_dbuf_enabled might preempt this
-> when registers were already updated, while dev_priv was not.
+== Series Details ==
 
-I may be overlooking something, but I think your next patch already
-takes care of this by ensuring we only do dbuf updates during modesets.
-We already had POWER_DOMAIN_MODESET in our various DC_OFF_POWER_DOMAINS
-definitions which would ensure that the "DC off" power well is enabled
-(and DC states themselves are disabled) for the entire duration of the
-modeset process.
+Series: series starting with [v2,1/4] drm/i915: Nuke pre-production GLK HDMI w/a 1139
+URL   : https://patchwork.freedesktop.org/series/72675/
+State : success
 
-If we need this, I'm not sure whether it's a good idea to use
-power_domains->lock rather than a new, dedicated lock.  Anything that
-touches power domains in any manner grabs this lock, even though we only
-really care about it for stopping races with the specific "DC off" power
-well.
+== Summary ==
 
-Also, if we bisect to the point right before these last two patches,
-don't we have a problem since there's a point in the git history where
-we potentially face a race?
+CI Bug Log - changes from CI_DRM_7833 -> Patchwork_16300
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16300/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_16300 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_exec_parallel@fds:
+    - fi-byt-n2820:       [PASS][1] -> [INCOMPLETE][2] ([i915#45])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7833/fi-byt-n2820/igt@gem_exec_parallel@fds.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16300/fi-byt-n2820/igt@gem_exec_parallel@fds.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_close_race@basic-threads:
+    - fi-hsw-peppy:       [INCOMPLETE][3] ([i915#816]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7833/fi-hsw-peppy/igt@gem_close_race@basic-threads.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16300/fi-hsw-peppy/igt@gem_close_race@basic-threads.html
+
+  * igt@gem_exec_suspend@basic-s3:
+    - fi-icl-u2:          [FAIL][5] ([fdo#103375]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7833/fi-icl-u2/igt@gem_exec_suspend@basic-s3.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16300/fi-icl-u2/igt@gem_exec_suspend@basic-s3.html
+
+  * igt@gem_exec_suspend@basic-s4-devices:
+    - fi-icl-u2:          [FAIL][7] ([fdo#111550]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7833/fi-icl-u2/igt@gem_exec_suspend@basic-s4-devices.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16300/fi-icl-u2/igt@gem_exec_suspend@basic-s4-devices.html
+
+  * igt@i915_selftest@live_blt:
+    - fi-hsw-4770r:       [DMESG-FAIL][9] ([i915#563]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7833/fi-hsw-4770r/igt@i915_selftest@live_blt.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16300/fi-hsw-4770r/igt@i915_selftest@live_blt.html
+    - fi-hsw-4770:        [DMESG-FAIL][11] ([i915#725]) -> [PASS][12]
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7833/fi-hsw-4770/igt@i915_selftest@live_blt.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16300/fi-hsw-4770/igt@i915_selftest@live_blt.html
+
+  * igt@i915_selftest@live_gem_contexts:
+    - fi-icl-guc:         [INCOMPLETE][13] ([i915#140]) -> [PASS][14]
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7833/fi-icl-guc/igt@i915_selftest@live_gem_contexts.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16300/fi-icl-guc/igt@i915_selftest@live_gem_contexts.html
+
+  
+#### Warnings ####
+
+  * igt@gem_exec_parallel@contexts:
+    - fi-byt-n2820:       [TIMEOUT][15] ([fdo#112271]) -> [FAIL][16] ([i915#694])
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7833/fi-byt-n2820/igt@gem_exec_parallel@contexts.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16300/fi-byt-n2820/igt@gem_exec_parallel@contexts.html
+
+  * igt@i915_pm_rpm@basic-rte:
+    - fi-kbl-guc:         [FAIL][17] ([i915#579]) -> [SKIP][18] ([fdo#109271])
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7833/fi-kbl-guc/igt@i915_pm_rpm@basic-rte.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16300/fi-kbl-guc/igt@i915_pm_rpm@basic-rte.html
+
+  * igt@kms_chamelium@common-hpd-after-suspend:
+    - fi-icl-u2:          [FAIL][19] ([fdo#103375]) -> [DMESG-WARN][20] ([IGT#4] / [i915#263])
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7833/fi-icl-u2/igt@kms_chamelium@common-hpd-after-suspend.html
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16300/fi-icl-u2/igt@kms_chamelium@common-hpd-after-suspend.html
+
+  
+  [IGT#4]: https://gitlab.freedesktop.org/drm/igt-gpu-tools/issues/4
+  [fdo#103375]: https://bugs.freedesktop.org/show_bug.cgi?id=103375
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#111550]: https://bugs.freedesktop.org/show_bug.cgi?id=111550
+  [fdo#112271]: https://bugs.freedesktop.org/show_bug.cgi?id=112271
+  [i915#140]: https://gitlab.freedesktop.org/drm/intel/issues/140
+  [i915#263]: https://gitlab.freedesktop.org/drm/intel/issues/263
+  [i915#45]: https://gitlab.freedesktop.org/drm/intel/issues/45
+  [i915#563]: https://gitlab.freedesktop.org/drm/intel/issues/563
+  [i915#579]: https://gitlab.freedesktop.org/drm/intel/issues/579
+  [i915#694]: https://gitlab.freedesktop.org/drm/intel/issues/694
+  [i915#725]: https://gitlab.freedesktop.org/drm/intel/issues/725
+  [i915#816]: https://gitlab.freedesktop.org/drm/intel/issues/816
 
 
-Matt
+Participating hosts (50 -> 36)
+------------------------------
 
-> 
-> Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_display_power.c | 12 ++++++++++++
->  1 file changed, 12 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
-> index 96b38252578b..99ddc21e004c 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_power.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
-> @@ -4404,12 +4404,22 @@ void icl_dbuf_slices_update(struct drm_i915_private *dev_priv,
->  {
->  	int i;
->  	int max_slices = INTEL_INFO(dev_priv)->num_supported_dbuf_slices;
-> +	struct i915_power_domains *power_domains = &dev_priv->power_domains;
->  
->  	WARN(hweight8(req_slices) > max_slices,
->  	     "Invalid number of dbuf slices requested\n");
->  
->  	DRM_DEBUG_KMS("Updating dbuf slices to 0x%x\n", req_slices);
->  
-> +	/*
-> +	 * Might be running this in parallel to gen9_dc_off_power_well_enable
-> +	 * being called from intel_dp_detect for instance,
-> +	 * which causes assertion triggered by race condition,
-> +	 * as gen9_assert_dbuf_enabled might preempt this when registers
-> +	 * were already updated, while dev_priv was not.
-> +	 */
-> +	mutex_lock(&power_domains->lock);
-> +
->  	for (i = 0; i < max_slices; i++) {
->  		intel_dbuf_slice_set(dev_priv,
->  				     _DBUF_CTL_S(i),
-> @@ -4417,6 +4427,8 @@ void icl_dbuf_slices_update(struct drm_i915_private *dev_priv,
->  	}
->  
->  	dev_priv->enabled_dbuf_slices_mask = req_slices;
-> +
-> +	mutex_unlock(&power_domains->lock);
->  }
->  
->  static void icl_dbuf_enable(struct drm_i915_private *dev_priv)
-> -- 
-> 2.24.1.485.gad05a3d8e5
-> 
+  Missing    (14): fi-ilk-m540 fi-bdw-samus fi-byt-squawks fi-bsw-cyan fi-cfl-8700k fi-ilk-650 fi-kbl-7500u fi-ctg-p8600 fi-bsw-kefka fi-skl-lmem fi-kbl-7560u fi-byt-clapper fi-skl-6700k2 fi-kbl-r 
 
--- 
-Matt Roper
-Graphics Software Engineer
-VTT-OSGC Platform Enablement
-Intel Corporation
-(916) 356-2795
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_7833 -> Patchwork_16300
+
+  CI-20190529: 20190529
+  CI_DRM_7833: 8210f0f999e2d396a8611e0cabc2f6c6a52468de @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5394: 991fd07bcd7add7a5beca2c95b72a994e62fbb75 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_16300: e3e86885900149a0046ce6ea51a27e1506856b0a @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+e3e868859001 drm/i915: Add glk to intel_detect_preproduction_hw()
+294db7cebb97 drm/i915: Drop WaDDIIOTimeout:glk
+6468a79d15fe drm/i915: Limit display Wa_1405510057 to gen11
+9eff9f70aead drm/i915: Nuke pre-production GLK HDMI w/a 1139
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16300/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
