@@ -2,34 +2,36 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2ABD914C027
-	for <lists+intel-gfx@lfdr.de>; Tue, 28 Jan 2020 19:48:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B4FA514C063
+	for <lists+intel-gfx@lfdr.de>; Tue, 28 Jan 2020 19:53:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7FBEE6E114;
-	Tue, 28 Jan 2020 18:48:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2C9D96F39B;
+	Tue, 28 Jan 2020 18:53:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2B34C6E0B7;
- Tue, 28 Jan 2020 18:48:17 +0000 (UTC)
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F2B1F6F395;
+ Tue, 28 Jan 2020 18:53:09 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 28 Jan 2020 10:48:16 -0800
-X-IronPort-AV: E=Sophos;i="5.70,374,1574150400"; d="scan'208";a="217710622"
+ by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 28 Jan 2020 10:48:36 -0800
+X-IronPort-AV: E=Sophos;i="5.70,374,1574150400"; d="scan'208";a="217710709"
 Received: from dbstims-dev.fm.intel.com ([10.1.27.172])
  by orsmga007-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-SHA;
- 28 Jan 2020 10:48:16 -0800
+ 28 Jan 2020 10:48:36 -0800
 From: Dale B Stimson <dale.b.stimson@intel.com>
 To: igt-dev@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
-Date: Tue, 28 Jan 2020 10:47:41 -0800
-Message-Id: <cover.1580236781.git.dale.b.stimson@intel.com>
+Date: Tue, 28 Jan 2020 10:47:42 -0800
+Message-Id: <ad6ab29b3bde2a85d2dd6666fe5e6b06e404c2c8.1580236781.git.dale.b.stimson@intel.com>
 X-Mailer: git-send-email 2.25.0
+In-Reply-To: <cover.1580236781.git.dale.b.stimson@intel.com>
+References: <cover.1580236781.git.dale.b.stimson@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH i-g-t v3 0/2] i915/gem_ctx_isolation:
- __for_each_physical_engine + engine mapping
+Subject: [Intel-gfx] [PATCH i-g-t v3 1/2] i915/gem_ctx_isolation:
+ gem_engine_topology, part 1
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,30 +49,148 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-i915/gem_ctx_isolation: __for_each_physical_engine and gem_engine_topology
+From: Ramalingam C <ramalingam.c@intel.com>
 
-V2: Use new function gem_context_clone_with_engines
-V3: Revise commit messages including titles
+Call function gem_class_can_store_dword instead of legacy function
+gem_can_store_dword.  This requires that e->class be available in the
+calling function.
 
-Use __for_each_physical_engine with gem_engine_topology.
+Instead of passing "engine" (== "e->flags") to functions, pass "e".
+This makes e->class available where it is needed.
 
-Iterates through the definitive list of all engines
-present.
+This commit is being kept separate from "part 2" in order to ensure
+proper attribution to the author.  The code associated with this
+commit was written by Ramalingam C <ramalingam.c@intel.com>.
+Since then, slight modifications have been done due to upstream
+changes.
 
-Patch 1 was originally posted by Ramalingam C <ramalingam.c@intel.com>.
-Since then, slight modifications have been done to it due to
-upstream changes.  Patch 1 is being kept separate from patch 2 in
-order to assure proper attribution to the author.
+Signed-off-by: Ramalingam C <ramalingam.c@intel.com>.
+X-Original-Author: Ramalingam C <ramalingam.c@intel.com>
+Signed-off-by: Dale B Stimson <dale.b.stimson@intel.com>
+---
+ tests/i915/gem_ctx_isolation.c | 25 +++++++++++--------------
+ 1 file changed, 11 insertions(+), 14 deletions(-)
 
-Dale B Stimson (1):
-  i915/gem_ctx_isolation: gem_engine_topology, part 2
-
-Ramalingam C (1):
-  i915/gem_ctx_isolation: gem_engine_topology, part 1
-
- tests/i915/gem_ctx_isolation.c | 44 +++++++++++++++++-----------------
- 1 file changed, 22 insertions(+), 22 deletions(-)
-
+diff --git a/tests/i915/gem_ctx_isolation.c b/tests/i915/gem_ctx_isolation.c
+index 8b72a16ad..c45617456 100644
+--- a/tests/i915/gem_ctx_isolation.c
++++ b/tests/i915/gem_ctx_isolation.c
+@@ -575,7 +575,6 @@ static void nonpriv(int fd,
+ 		0x0505c0c0,
+ 		0xdeadbeef
+ 	};
+-	unsigned int engine = e->flags;
+ 	unsigned int num_values = ARRAY_SIZE(values);
+ 
+ 	/* Sigh -- hsw: we need cmdparser access to our own registers! */
+@@ -593,7 +592,7 @@ static void nonpriv(int fd,
+ 
+ 		tmpl_regs(fd, ctx, e, tmpl, values[v]);
+ 
+-		spin = igt_spin_new(fd, .ctx = ctx, .engine = engine);
++		spin = igt_spin_new(fd, .ctx = ctx, .engine = e->flags);
+ 
+ 		igt_debug("%s[%d]: Setting all registers to 0x%08x\n",
+ 			  __func__, v, values[v]);
+@@ -606,12 +605,12 @@ static void nonpriv(int fd,
+ 			/* Explicit sync to keep the switch between write/read */
+ 			syncpt = igt_spin_new(fd,
+ 					      .ctx = ctx,
+-					      .engine = engine,
++					      .engine = e->flags,
+ 					      .flags = IGT_SPIN_FENCE_OUT);
+ 
+ 			dirt = igt_spin_new(fd,
+ 					    .ctx = sw,
+-					    .engine = engine,
++					    .engine = e->flags,
+ 					    .fence = syncpt->out_fence,
+ 					    .flags = (IGT_SPIN_FENCE_IN |
+ 						      IGT_SPIN_FENCE_OUT));
+@@ -619,7 +618,7 @@ static void nonpriv(int fd,
+ 
+ 			syncpt = igt_spin_new(fd,
+ 					      .ctx = ctx,
+-					      .engine = engine,
++					      .engine = e->flags,
+ 					      .fence = dirt->out_fence,
+ 					      .flags = IGT_SPIN_FENCE_IN);
+ 			igt_spin_free(fd, dirt);
+@@ -660,7 +659,6 @@ static void isolation(int fd,
+ 		0xaaaaaaaa,
+ 		0xdeadbeef
+ 	};
+-	unsigned int engine = e->flags;
+ 	unsigned int num_values =
+ 		flags & (DIRTY1 | DIRTY2) ? ARRAY_SIZE(values) : 1;
+ 
+@@ -673,7 +671,7 @@ static void isolation(int fd,
+ 		ctx[0] = gem_context_create(fd);
+ 		regs[0] = read_regs(fd, ctx[0], e, flags);
+ 
+-		spin = igt_spin_new(fd, .ctx = ctx[0], .engine = engine);
++		spin = igt_spin_new(fd, .ctx = ctx[0], .engine = e->flags);
+ 
+ 		if (flags & DIRTY1) {
+ 			igt_debug("%s[%d]: Setting all registers of ctx 0 to 0x%08x\n",
+@@ -726,11 +724,11 @@ static void isolation(int fd,
+ #define S4 (4 << 8)
+ #define SLEEP_MASK (0xf << 8)
+ 
+-static void inject_reset_context(int fd, unsigned int engine)
++static void inject_reset_context(int fd, const struct intel_execution_engine2 *e)
+ {
+ 	struct igt_spin_factory opts = {
+ 		.ctx = gem_context_create(fd),
+-		.engine = engine,
++		.engine = e->flags,
+ 		.flags = IGT_SPIN_FAST,
+ 	};
+ 	igt_spin_t *spin;
+@@ -741,7 +739,7 @@ static void inject_reset_context(int fd, unsigned int engine)
+ 	 * HW for screwing up if the context was already broken.
+ 	 */
+ 
+-	if (gem_can_store_dword(fd, engine))
++	if (gem_class_can_store_dword(fd, e->class))
+ 		opts.flags |= IGT_SPIN_POLL_RUN;
+ 
+ 	spin = __igt_spin_factory(fd, &opts);
+@@ -771,7 +769,6 @@ static void preservation(int fd,
+ 		0xdeadbeef
+ 	};
+ 	const unsigned int num_values = ARRAY_SIZE(values);
+-	unsigned int engine = e->flags;
+ 	uint32_t ctx[num_values +1 ];
+ 	uint32_t regs[num_values + 1][2];
+ 	igt_spin_t *spin;
+@@ -779,7 +776,7 @@ static void preservation(int fd,
+ 	gem_quiescent_gpu(fd);
+ 
+ 	ctx[num_values] = gem_context_create(fd);
+-	spin = igt_spin_new(fd, .ctx = ctx[num_values], .engine = engine);
++	spin = igt_spin_new(fd, .ctx = ctx[num_values], .engine = e->flags);
+ 	regs[num_values][0] = read_regs(fd, ctx[num_values], e, flags);
+ 	for (int v = 0; v < num_values; v++) {
+ 		ctx[v] = gem_context_create(fd);
+@@ -792,7 +789,7 @@ static void preservation(int fd,
+ 	igt_spin_free(fd, spin);
+ 
+ 	if (flags & RESET)
+-		inject_reset_context(fd, engine);
++		inject_reset_context(fd, e);
+ 
+ 	switch (flags & SLEEP_MASK) {
+ 	case NOSLEEP:
+@@ -819,7 +816,7 @@ static void preservation(int fd,
+ 		break;
+ 	}
+ 
+-	spin = igt_spin_new(fd, .ctx = ctx[num_values], .engine = engine);
++	spin = igt_spin_new(fd, .ctx = ctx[num_values], .engine = e->flags);
+ 	for (int v = 0; v < num_values; v++)
+ 		regs[v][1] = read_regs(fd, ctx[v], e, flags);
+ 	regs[num_values][1] = read_regs(fd, ctx[num_values], e, flags);
 -- 
 2.25.0
 
