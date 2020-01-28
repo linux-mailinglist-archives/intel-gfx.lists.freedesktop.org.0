@@ -1,32 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2CEC214C06C
-	for <lists+intel-gfx@lfdr.de>; Tue, 28 Jan 2020 19:54:27 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id F294814C08A
+	for <lists+intel-gfx@lfdr.de>; Tue, 28 Jan 2020 20:04:45 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8482A6F395;
-	Tue, 28 Jan 2020 18:54:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6A9A56E108;
+	Tue, 28 Jan 2020 19:04:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3056D6F395
- for <intel-gfx@lists.freedesktop.org>; Tue, 28 Jan 2020 18:54:23 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 20039634-1500050 for multiple; Tue, 28 Jan 2020 18:54:19 +0000
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D86E86E062;
+ Tue, 28 Jan 2020 19:04:35 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 28 Jan 2020 10:27:52 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,374,1574150400"; d="scan'208";a="310817191"
+Received: from plaxmina-desktop.iind.intel.com ([10.145.162.62])
+ by fmsmga001.fm.intel.com with ESMTP; 28 Jan 2020 10:27:47 -0800
+From: Pankaj Bharadiya <pankaj.laxminarayan.bharadiya@intel.com>
+To: jani.nikula@linux.intel.com, daniel@ffwll.ch,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@linux.ie>,
+ =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
+ Matt Roper <matthew.d.roper@intel.com>,
+ Chris Wilson <chris@chris-wilson.co.uk>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Date: Tue, 28 Jan 2020 23:45:45 +0530
+Message-Id: <20200128181603.27767-4-pankaj.laxminarayan.bharadiya@intel.com>
+X-Mailer: git-send-email 2.23.0
+In-Reply-To: <20200128181603.27767-1-pankaj.laxminarayan.bharadiya@intel.com>
+References: <20200128181603.27767-1-pankaj.laxminarayan.bharadiya@intel.com>
 MIME-Version: 1.0
-From: Chris Wilson <chris@chris-wilson.co.uk>
-User-Agent: alot/0.6
-To: Matthew Auld <matthew.auld@intel.com>, intel-gfx@lists.freedesktop.org
-References: <20200128183806.149576-1-matthew.auld@intel.com>
-In-Reply-To: <20200128183806.149576-1-matthew.auld@intel.com>
-Message-ID: <158023765820.2129.13427585414402734376@skylake-alporthouse-com>
-Date: Tue, 28 Jan 2020 18:54:18 +0000
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/selftests/perf: measure memcpy
- bw between regions
+Subject: [Intel-gfx] [PATCH v5 03/21] drm/i915/display/cdclk: Make WARN* drm
+ specific where drm_priv ptr is available
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,249 +55,279 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Matthew Auld (2020-01-28 18:38:06)
-> Measure the memcpy bw between our CPU accessible regions, trying all
-> supported mapping combinations(WC, WB) across various sizes.
-> 
-> v2:
->     use smaller sizes
->     throw in memcpy32/memcpy64/memcpy_from_wc
-> 
-> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-> Cc: Chris Wilson <chris@chris-wilson.co.uk>
-> ---
->  .../drm/i915/selftests/i915_perf_selftests.h  |   1 +
->  .../drm/i915/selftests/intel_memory_region.c  | 218 ++++++++++++++++++
->  2 files changed, 219 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/i915/selftests/i915_perf_selftests.h b/drivers/gpu/drm/i915/selftests/i915_perf_selftests.h
-> index 5a577a1332f5..3bf7f53e9924 100644
-> --- a/drivers/gpu/drm/i915/selftests/i915_perf_selftests.h
-> +++ b/drivers/gpu/drm/i915/selftests/i915_perf_selftests.h
-> @@ -17,3 +17,4 @@
->   */
->  selftest(engine_cs, intel_engine_cs_perf_selftests)
->  selftest(blt, i915_gem_object_blt_perf_selftests)
-> +selftest(region, intel_memory_region_perf_selftests)
-> diff --git a/drivers/gpu/drm/i915/selftests/intel_memory_region.c b/drivers/gpu/drm/i915/selftests/intel_memory_region.c
-> index 3ef3620e0da5..2ae9e9a22ce2 100644
-> --- a/drivers/gpu/drm/i915/selftests/intel_memory_region.c
-> +++ b/drivers/gpu/drm/i915/selftests/intel_memory_region.c
-> @@ -4,6 +4,7 @@
->   */
->  
->  #include <linux/prime_numbers.h>
-> +#include <linux/sort.h>
->  
->  #include "../i915_selftest.h"
->  
-> @@ -19,6 +20,7 @@
->  #include "gem/selftests/mock_context.h"
->  #include "gt/intel_engine_user.h"
->  #include "gt/intel_gt.h"
-> +#include "i915_memcpy.h"
->  #include "selftests/igt_flush_test.h"
->  #include "selftests/i915_random.h"
->  
-> @@ -572,6 +574,210 @@ static int igt_lmem_write_cpu(void *arg)
->         return err;
->  }
->  
-> +static const char *repr_type(u32 type)
-> +{
-> +       switch (type) {
-> +       case I915_MAP_WB:
-> +               return "WB";
-> +       case I915_MAP_WC:
-> +               return "WC";
-> +       }
-> +
-> +       return "";
-> +}
-> +
-> +static struct drm_i915_gem_object *
-> +create_region_for_mapping(struct intel_memory_region *mr, u64 size, u32 type,
-> +                         void **out_addr)
-> +{
-> +       struct drm_i915_gem_object *obj;
-> +       void *addr;
-> +
-> +       obj = i915_gem_object_create_region(mr, size, 0);
-> +       if (IS_ERR(obj))
-> +               return obj;
-> +
-> +       addr = i915_gem_object_pin_map(obj, type);
-> +       if (IS_ERR(addr)) {
-> +               i915_gem_object_put(obj);
-> +               if (PTR_ERR(addr) == -ENXIO)
-> +                       return ERR_PTR(-ENODEV);
-> +               return addr;
-> +       }
-> +
-> +       *out_addr = addr;
-> +       return obj;
-> +}
-> +
-> +static int wrap_ktime_compare(const void *A, const void *B)
-> +{
-> +       const ktime_t *a = A, *b = B;
-> +
-> +       return ktime_compare(*a, *b);
-> +}
-> +
-> +static void igt_memcpy32(void *dst, const void *src, size_t size)
-> +{
-> +       u32 *tmp = dst;
-> +       const u32 *s = src;
-> +
-> +       size = size / sizeof(u32);
-> +       while (size--)
-> +               *tmp++ = *s++;
-> +}
-> +
-> +static void igt_memcpy64(void *dst, const void *src, size_t size)
-> +{
-> +       u64 *tmp = dst;
-> +       const u64 *s = src;
-> +
-> +       size = size / sizeof(u64);
-> +       while (size--)
-> +               *tmp++ = *s++;
+drm specific WARN* calls include device information in the
+backtrace, so we know what device the warnings originate from.
 
-memcpy64 will do. I was mainly worrying about the effect of reps being
-always on WC memory. So potentially bad memcpy, mediocre memcpy64 and
-memcpy_from_wc should cover the possibilities.
+Covert all the calls of WARN* with device specific drm_WARN*
+variants in functions where drm_i915_private struct pointer is readily
+available.
 
-Hmm. How about memcpy_long instead (that should give us x32/x64
-agnosticism).
+The conversion was done automatically with below coccinelle semantic
+patch. checkpatch errors/warnings are fixed manually.
 
-> +}
-> +
-> +static inline void igt_memcpy(void *dst, const void *src, size_t size)
-> +{
-> +       memcpy(dst, src, size);
-> +}
-> +
-> +static inline void igt_memcpy_from_wc(void *dst, const void *src, size_t size)
-> +{
-> +       i915_memcpy_from_wc(dst, src, size);
-> +}
-> +
-> +static int _perf_memcpy(struct intel_memory_region *src_mr,
-> +                       struct intel_memory_region *dst_mr,
-> +                       u64 size, u32 src_type, u32 dst_type)
-> +{
-> +       const struct {
-> +               const char *name;
-> +               void (*copy)(void *dst, const void *src, size_t size);
-> +               bool skip;
-> +       } tests[] = {
-> +               {
-> +                       "memcpy32",
-> +                       igt_memcpy32,
-> +               },
-> +               {
-> +                       "memcpy64",
-> +                       igt_memcpy64,
-> +               },
-> +               {
-> +                       "memcpy",
-> +                       igt_memcpy,
-> +               },
-> +               {
-> +                       "memcpy_from_wc",
-> +                       igt_memcpy_from_wc,
-> +                       src_type != I915_MAP_WC || !i915_has_memcpy_from_wc(),
+@rule1@
+identifier func, T;
+@@
+func(...) {
+...
+struct drm_i915_private *T = ...;
+<+...
+(
+-WARN(
++drm_WARN(&T->drm,
+...)
+|
+-WARN_ON(
++drm_WARN_ON(&T->drm,
+...)
+|
+-WARN_ONCE(
++drm_WARN_ONCE(&T->drm,
+...)
+|
+-WARN_ON_ONCE(
++drm_WARN_ON_ONCE(&T->drm,
+...)
+)
+...+>
+}
 
-Should be safe for any source mapping (at least according to
-experiments), so just !i915_has_memcpy_from_wc.
+@rule2@
+identifier func, T;
+@@
+func(struct drm_i915_private *T,...) {
+<+...
+(
+-WARN(
++drm_WARN(&T->drm,
+...)
+|
+-WARN_ON(
++drm_WARN_ON(&T->drm,
+...)
+|
+-WARN_ONCE(
++drm_WARN_ONCE(&T->drm,
+...)
+|
+-WARN_ON_ONCE(
++drm_WARN_ON_ONCE(&T->drm,
+...)
+)
+...+>
+}
 
-> +               },
-> +       };
-> +       struct drm_i915_gem_object *src, *dst;
-> +       void *src_addr, *dst_addr;
-> +       int ret = 0;
-> +       int i;
-> +
-> +       src = create_region_for_mapping(src_mr, size, src_type, &src_addr);
-> +       if (IS_ERR(src)) {
-> +               ret = PTR_ERR(src);
-> +               goto out;
-> +       }
-> +
-> +       dst = create_region_for_mapping(dst_mr, size, dst_type, &dst_addr);
-> +       if (IS_ERR(dst)) {
-> +               ret = PTR_ERR(dst);
-> +               goto out_unpin_src;
-> +       }
-> +
-> +       for (i = 0; i < ARRAY_SIZE(tests); ++i) {
-> +               ktime_t t[5];
-> +               int pass;
-> +
-> +               if (tests[i].skip)
-> +                       continue;
-> +
-> +               for (pass = 0; pass < ARRAY_SIZE(t); pass++) {
-> +                       ktime_t t0, t1;
-> +
-> +                       t0 = ktime_get();
-> +
-> +                       tests[i].copy(dst_addr, src_addr, size);
-> +
-> +                       t1 = ktime_get();
-> +                       t[pass] = ktime_sub(t1, t0);
-> +               }
-> +
-> +               sort(t, ARRAY_SIZE(t), sizeof(*t), wrap_ktime_compare, NULL);
-> +               pr_info("%s src(%s, %s) -> dst(%s, %s) %s %llu KiB copy: %lld MiB/s\n",
-> +                       __func__,
-> +                       src_mr->name,
-> +                       repr_type(src_type),
-> +                       dst_mr->name,
-> +                       repr_type(dst_type),
-> +                       tests[i].name,
-> +                       size >> 10,
-> +                       div64_u64(mul_u32_u32(4 * size,
-> +                                             1000 * 1000 * 1000),
-> +                                 t[1] + 2 * t[2] + t[3]) >> 20);
+Signed-off-by: Pankaj Bharadiya <pankaj.laxminarayan.bharadiya@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_cdclk.c | 81 +++++++++++++---------
+ 1 file changed, 47 insertions(+), 34 deletions(-)
 
-Should this be >> 22 ? (20 /* to MiB */ + 2 /* for avergage */)
+diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
+index e17b5a444887..3e80adee9b89 100644
+--- a/drivers/gpu/drm/i915/display/intel_cdclk.c
++++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
+@@ -525,7 +525,8 @@ static void vlv_program_pfi_credits(struct drm_i915_private *dev_priv)
+ 	 * FIXME is this guaranteed to clear
+ 	 * immediately or should we poll for it?
+ 	 */
+-	WARN_ON(intel_de_read(dev_priv, GCI_CONTROL) & PFI_CREDIT_RESEND);
++	drm_WARN_ON(&dev_priv->drm,
++		    intel_de_read(dev_priv, GCI_CONTROL) & PFI_CREDIT_RESEND);
+ }
+ 
+ static void vlv_set_cdclk(struct drm_i915_private *dev_priv,
+@@ -727,12 +728,14 @@ static void bdw_set_cdclk(struct drm_i915_private *dev_priv,
+ 	u32 val;
+ 	int ret;
+ 
+-	if (WARN((intel_de_read(dev_priv, LCPLL_CTL) &
+-		  (LCPLL_PLL_DISABLE | LCPLL_PLL_LOCK |
+-		   LCPLL_CD_CLOCK_DISABLE | LCPLL_ROOT_CD_CLOCK_DISABLE |
+-		   LCPLL_CD2X_CLOCK_DISABLE | LCPLL_POWER_DOWN_ALLOW |
+-		   LCPLL_CD_SOURCE_FCLK)) != LCPLL_PLL_LOCK,
+-		 "trying to change cdclk frequency with cdclk not enabled\n"))
++	if (drm_WARN(&dev_priv->drm, (intel_de_read(dev_priv, LCPLL_CTL) &
++				      (LCPLL_PLL_DISABLE | LCPLL_PLL_LOCK |
++				       LCPLL_CD_CLOCK_DISABLE |
++				       LCPLL_ROOT_CD_CLOCK_DISABLE |
++				       LCPLL_CD2X_CLOCK_DISABLE |
++				       LCPLL_POWER_DOWN_ALLOW |
++				       LCPLL_CD_SOURCE_FCLK)) != LCPLL_PLL_LOCK,
++		     "trying to change cdclk frequency with cdclk not enabled\n"))
+ 		return;
+ 
+ 	ret = sandybridge_pcode_write(dev_priv,
+@@ -842,15 +845,16 @@ static void skl_dpll0_update(struct drm_i915_private *dev_priv,
+ 	if ((val & LCPLL_PLL_ENABLE) == 0)
+ 		return;
+ 
+-	if (WARN_ON((val & LCPLL_PLL_LOCK) == 0))
++	if (drm_WARN_ON(&dev_priv->drm, (val & LCPLL_PLL_LOCK) == 0))
+ 		return;
+ 
+ 	val = intel_de_read(dev_priv, DPLL_CTRL1);
+ 
+-	if (WARN_ON((val & (DPLL_CTRL1_HDMI_MODE(SKL_DPLL0) |
+-			    DPLL_CTRL1_SSC(SKL_DPLL0) |
+-			    DPLL_CTRL1_OVERRIDE(SKL_DPLL0))) !=
+-		    DPLL_CTRL1_OVERRIDE(SKL_DPLL0)))
++	if (drm_WARN_ON(&dev_priv->drm,
++			(val & (DPLL_CTRL1_HDMI_MODE(SKL_DPLL0) |
++				DPLL_CTRL1_SSC(SKL_DPLL0) |
++				DPLL_CTRL1_OVERRIDE(SKL_DPLL0))) !=
++			DPLL_CTRL1_OVERRIDE(SKL_DPLL0)))
+ 		return;
+ 
+ 	switch (val & DPLL_CTRL1_LINK_RATE_MASK(SKL_DPLL0)) {
+@@ -952,7 +956,7 @@ static void skl_dpll0_enable(struct drm_i915_private *dev_priv, int vco)
+ {
+ 	u32 val;
+ 
+-	WARN_ON(vco != 8100000 && vco != 8640000);
++	drm_WARN_ON(&dev_priv->drm, vco != 8100000 && vco != 8640000);
+ 
+ 	/*
+ 	 * We always enable DPLL0 with the lowest link rate possible, but still
+@@ -1017,7 +1021,8 @@ static void skl_set_cdclk(struct drm_i915_private *dev_priv,
+ 	 * use the corresponding VCO freq as that always leads to using the
+ 	 * minimum 308MHz CDCLK.
+ 	 */
+-	WARN_ON_ONCE(IS_SKYLAKE(dev_priv) && vco == 8640000);
++	drm_WARN_ON_ONCE(&dev_priv->drm,
++			 IS_SKYLAKE(dev_priv) && vco == 8640000);
+ 
+ 	ret = skl_pcode_request(dev_priv, SKL_PCODE_CDCLK_CONTROL,
+ 				SKL_CDCLK_PREPARE_FOR_CHANGE,
+@@ -1032,8 +1037,9 @@ static void skl_set_cdclk(struct drm_i915_private *dev_priv,
+ 	/* Choose frequency for this cdclk */
+ 	switch (cdclk) {
+ 	default:
+-		WARN_ON(cdclk != dev_priv->cdclk.hw.bypass);
+-		WARN_ON(vco != 0);
++		drm_WARN_ON(&dev_priv->drm,
++			    cdclk != dev_priv->cdclk.hw.bypass);
++		drm_WARN_ON(&dev_priv->drm, vco != 0);
+ 		/* fall through */
+ 	case 308571:
+ 	case 337500:
+@@ -1235,8 +1241,9 @@ static int bxt_calc_cdclk(struct drm_i915_private *dev_priv, int min_cdclk)
+ 		    table[i].cdclk >= min_cdclk)
+ 			return table[i].cdclk;
+ 
+-	WARN(1, "Cannot satisfy minimum cdclk %d with refclk %u\n",
+-	     min_cdclk, dev_priv->cdclk.hw.ref);
++	drm_WARN(&dev_priv->drm, 1,
++		 "Cannot satisfy minimum cdclk %d with refclk %u\n",
++		 min_cdclk, dev_priv->cdclk.hw.ref);
+ 	return 0;
+ }
+ 
+@@ -1253,8 +1260,8 @@ static int bxt_calc_cdclk_pll_vco(struct drm_i915_private *dev_priv, int cdclk)
+ 		    table[i].cdclk == cdclk)
+ 			return dev_priv->cdclk.hw.ref * table[i].ratio;
+ 
+-	WARN(1, "cdclk %d not valid for refclk %u\n",
+-	     cdclk, dev_priv->cdclk.hw.ref);
++	drm_WARN(&dev_priv->drm, 1, "cdclk %d not valid for refclk %u\n",
++		 cdclk, dev_priv->cdclk.hw.ref);
+ 	return 0;
+ }
+ 
+@@ -1387,15 +1394,17 @@ static void bxt_get_cdclk(struct drm_i915_private *dev_priv,
+ 		div = 2;
+ 		break;
+ 	case BXT_CDCLK_CD2X_DIV_SEL_1_5:
+-		WARN(IS_GEMINILAKE(dev_priv) || INTEL_GEN(dev_priv) >= 10,
+-		     "Unsupported divider\n");
++		drm_WARN(&dev_priv->drm,
++			 IS_GEMINILAKE(dev_priv) || INTEL_GEN(dev_priv) >= 10,
++			 "Unsupported divider\n");
+ 		div = 3;
+ 		break;
+ 	case BXT_CDCLK_CD2X_DIV_SEL_2:
+ 		div = 4;
+ 		break;
+ 	case BXT_CDCLK_CD2X_DIV_SEL_4:
+-		WARN(INTEL_GEN(dev_priv) >= 10, "Unsupported divider\n");
++		drm_WARN(&dev_priv->drm, INTEL_GEN(dev_priv) >= 10,
++			 "Unsupported divider\n");
+ 		div = 8;
+ 		break;
+ 	default:
+@@ -1535,22 +1544,25 @@ static void bxt_set_cdclk(struct drm_i915_private *dev_priv,
+ 	/* cdclk = vco / 2 / div{1,1.5,2,4} */
+ 	switch (DIV_ROUND_CLOSEST(vco, cdclk)) {
+ 	default:
+-		WARN_ON(cdclk != dev_priv->cdclk.hw.bypass);
+-		WARN_ON(vco != 0);
++		drm_WARN_ON(&dev_priv->drm,
++			    cdclk != dev_priv->cdclk.hw.bypass);
++		drm_WARN_ON(&dev_priv->drm, vco != 0);
+ 		/* fall through */
+ 	case 2:
+ 		divider = BXT_CDCLK_CD2X_DIV_SEL_1;
+ 		break;
+ 	case 3:
+-		WARN(IS_GEMINILAKE(dev_priv) || INTEL_GEN(dev_priv) >= 10,
+-		     "Unsupported divider\n");
++		drm_WARN(&dev_priv->drm,
++			 IS_GEMINILAKE(dev_priv) || INTEL_GEN(dev_priv) >= 10,
++			 "Unsupported divider\n");
+ 		divider = BXT_CDCLK_CD2X_DIV_SEL_1_5;
+ 		break;
+ 	case 4:
+ 		divider = BXT_CDCLK_CD2X_DIV_SEL_2;
+ 		break;
+ 	case 8:
+-		WARN(INTEL_GEN(dev_priv) >= 10, "Unsupported divider\n");
++		drm_WARN(&dev_priv->drm, INTEL_GEN(dev_priv) >= 10,
++			 "Unsupported divider\n");
+ 		divider = BXT_CDCLK_CD2X_DIV_SEL_4;
+ 		break;
+ 	}
+@@ -1864,15 +1876,16 @@ static void intel_set_cdclk(struct drm_i915_private *dev_priv,
+ 	if (!intel_cdclk_changed(&dev_priv->cdclk.hw, cdclk_state))
+ 		return;
+ 
+-	if (WARN_ON_ONCE(!dev_priv->display.set_cdclk))
++	if (drm_WARN_ON_ONCE(&dev_priv->drm, !dev_priv->display.set_cdclk))
+ 		return;
+ 
+ 	intel_dump_cdclk_state(cdclk_state, "Changing CDCLK to");
+ 
+ 	dev_priv->display.set_cdclk(dev_priv, cdclk_state, pipe);
+ 
+-	if (WARN(intel_cdclk_changed(&dev_priv->cdclk.hw, cdclk_state),
+-		 "cdclk state doesn't match!\n")) {
++	if (drm_WARN(&dev_priv->drm,
++		     intel_cdclk_changed(&dev_priv->cdclk.hw, cdclk_state),
++		     "cdclk state doesn't match!\n")) {
+ 		intel_dump_cdclk_state(&dev_priv->cdclk.hw, "[hw state]");
+ 		intel_dump_cdclk_state(cdclk_state, "[sw state]");
+ 	}
+@@ -2478,7 +2491,7 @@ void intel_update_max_cdclk(struct drm_i915_private *dev_priv)
+ 		int max_cdclk, vco;
+ 
+ 		vco = dev_priv->skl_preferred_vco_freq;
+-		WARN_ON(vco != 8100000 && vco != 8640000);
++		drm_WARN_ON(&dev_priv->drm, vco != 8100000 && vco != 8640000);
+ 
+ 		/*
+ 		 * Use the lower (vco 8640) cdclk values as a
+@@ -2731,8 +2744,8 @@ void intel_init_cdclk_hooks(struct drm_i915_private *dev_priv)
+ 	else if (IS_I845G(dev_priv))
+ 		dev_priv->display.get_cdclk = fixed_200mhz_get_cdclk;
+ 	else { /* 830 */
+-		WARN(!IS_I830(dev_priv),
+-		     "Unknown platform. Assuming 133 MHz CDCLK\n");
++		drm_WARN(&dev_priv->drm, !IS_I830(dev_priv),
++			 "Unknown platform. Assuming 133 MHz CDCLK\n");
+ 		dev_priv->display.get_cdclk = fixed_133mhz_get_cdclk;
+ 	}
+ }
+-- 
+2.23.0
 
-> +
-> +               cond_resched();
-> +       }
-> +
-> +       i915_gem_object_unpin_map(dst);
-> +       __i915_gem_object_put_pages(dst);
-
-put_pages() to speed up the reaping?
-
-How about skipping that leaving it to the ordinary free to cleanup, and
-flushing the free?
-
-	object_unpin_map(dst);
-	object_put(dst);
-
-	object_unpin_map(src);
-	object_put(src);
-
-	i915_gem_drain_freed_objects();
-
-> +
-> +       i915_gem_object_put(dst);
-> +out_unpin_src:
-> +       i915_gem_object_unpin_map(src);
-> +       __i915_gem_object_put_pages(src);
-> +
-> +       i915_gem_object_put(src);
-> +out:
-> +       if (ret == -ENODEV)
-> +               ret = 0;
-> +
-> +       return ret;
-> +}
--Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
