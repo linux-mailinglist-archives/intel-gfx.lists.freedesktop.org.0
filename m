@@ -1,41 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B8D514BEAA
-	for <lists+intel-gfx@lfdr.de>; Tue, 28 Jan 2020 18:36:05 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D391214BF27
+	for <lists+intel-gfx@lfdr.de>; Tue, 28 Jan 2020 19:06:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AE5D86E0EA;
-	Tue, 28 Jan 2020 17:36:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 14DB389C49;
+	Tue, 28 Jan 2020 18:06:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6F4316E0EA
- for <intel-gfx@lists.freedesktop.org>; Tue, 28 Jan 2020 17:36:02 +0000 (UTC)
-X-Amp-Result: UNSCANNABLE
-X-Amp-File-Uploaded: False
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 28 Jan 2020 09:36:01 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,374,1574150400"; d="scan'208";a="232032582"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by orsmga006.jf.intel.com with SMTP; 28 Jan 2020 09:35:59 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 28 Jan 2020 19:35:58 +0200
-Date: Tue, 28 Jan 2020 19:35:58 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-Message-ID: <20200128173558.GP13686@intel.com>
-References: <20200124084456.2961-1-stanislav.lisovskiy@intel.com>
- <20200124084456.2961-4-stanislav.lisovskiy@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id B25A989BF1;
+ Tue, 28 Jan 2020 18:06:10 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id A9CDDA011A;
+ Tue, 28 Jan 2020 18:06:10 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200124084456.2961-4-stanislav.lisovskiy@intel.com>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH v16 3/7] drm/i915: Introduce parameterized
- DBUF_CTL
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>
+Date: Tue, 28 Jan 2020 18:06:10 -0000
+Message-ID: <158023477066.20536.7517733157358915991@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200128083851.2566893-1-maarten.lankhorst@linux.intel.com>
+In-Reply-To: <20200128083851.2566893-1-maarten.lankhorst@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_Move_cec=5Fnotifier_to_intel=5Fconnector?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,192 +38,132 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Jan 24, 2020 at 10:44:52AM +0200, Stanislav Lisovskiy wrote:
-> Now start using parameterized DBUF_CTL instead
-> of hardcoded, this would allow shorter access
-> functions when reading or storing entire state.
-> =
+== Series Details ==
 
-> Tried to implement it in a MMIO_PIPE manner, however
-> DBUF_CTL1 address is higher than DBUF_CTL2, which
-> implies that we have to now subtract from base
-> rather than add.
-> =
+Series: drm/i915: Move cec_notifier to intel_connector
+URL   : https://patchwork.freedesktop.org/series/72649/
+State : success
 
-> v2: - Removed unneeded DBUF_CTL_DIST and DBUF_CTL_ADDR
->       macros. Started to use _PICK construct as suggested
->       by Matt Roper.
-> =
+== Summary ==
 
-> v3: - DBUF_CTL_S* to _DBUF_CTL_S*, changed X to "slice"
->       in macro(Ville Syrj=E4l=E4)
->     - Introduced enum for enumerating DBUF slices(Ville Syrj=E4l=E4)
-> =
+CI Bug Log - changes from CI_DRM_7833 -> Patchwork_16291
+====================================================
 
-> Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
-> Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-> ---
->  .../drm/i915/display/intel_display_power.c    | 30 +++++++++++--------
->  .../drm/i915/display/intel_display_power.h    |  5 ++++
->  drivers/gpu/drm/i915/i915_reg.h               |  7 +++--
->  drivers/gpu/drm/i915/intel_pm.c               |  2 +-
->  4 files changed, 28 insertions(+), 16 deletions(-)
-> =
+Summary
+-------
 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers=
-/gpu/drm/i915/display/intel_display_power.c
-> index 5e1c601f0f99..a59efb24be92 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_power.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
-> @@ -4418,9 +4418,11 @@ void icl_dbuf_slices_update(struct drm_i915_privat=
-e *dev_priv,
->  		return;
->  =
+  **SUCCESS**
 
->  	if (req_slices > hw_enabled_slices)
-> -		ret =3D intel_dbuf_slice_set(dev_priv, DBUF_CTL_S2, true);
-> +		ret =3D intel_dbuf_slice_set(dev_priv,
-> +					   _DBUF_CTL_S(DBUF_S2), true);
->  	else
-> -		ret =3D intel_dbuf_slice_set(dev_priv, DBUF_CTL_S2, false);
-> +		ret =3D intel_dbuf_slice_set(dev_priv,
-> +					   _DBUF_CTL_S(DBUF_S2), false);
->  =
+  No regressions found.
 
->  	if (ret)
->  		dev_priv->enabled_dbuf_slices_num =3D req_slices;
-> @@ -4428,14 +4430,16 @@ void icl_dbuf_slices_update(struct drm_i915_priva=
-te *dev_priv,
->  =
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16291/index.html
 
->  static void icl_dbuf_enable(struct drm_i915_private *dev_priv)
->  {
-> -	I915_WRITE(DBUF_CTL_S1, I915_READ(DBUF_CTL_S1) | DBUF_POWER_REQUEST);
-> -	I915_WRITE(DBUF_CTL_S2, I915_READ(DBUF_CTL_S2) | DBUF_POWER_REQUEST);
-> -	POSTING_READ(DBUF_CTL_S2);
-> +	I915_WRITE(_DBUF_CTL_S(DBUF_S1),
-> +		   I915_READ(_DBUF_CTL_S(DBUF_S1)) | DBUF_POWER_REQUEST);
-> +	I915_WRITE(_DBUF_CTL_S(DBUF_S2),
-> +		   I915_READ(_DBUF_CTL_S(DBUF_S2)) | DBUF_POWER_REQUEST);
-> +	POSTING_READ(_DBUF_CTL_S(DBUF_S2));
->  =
+Known issues
+------------
 
->  	udelay(10);
->  =
+  Here are the changes found in Patchwork_16291 that come from known issues:
 
-> -	if (!(I915_READ(DBUF_CTL_S1) & DBUF_POWER_STATE) ||
-> -	    !(I915_READ(DBUF_CTL_S2) & DBUF_POWER_STATE))
-> +	if (!(I915_READ(_DBUF_CTL_S(DBUF_S1)) & DBUF_POWER_STATE) ||
-> +	    !(I915_READ(_DBUF_CTL_S(DBUF_S2)) & DBUF_POWER_STATE))
->  		DRM_ERROR("DBuf power enable timeout\n");
->  	else
->  		/*
-> @@ -4447,14 +4451,16 @@ static void icl_dbuf_enable(struct drm_i915_priva=
-te *dev_priv)
->  =
+### IGT changes ###
 
->  static void icl_dbuf_disable(struct drm_i915_private *dev_priv)
->  {
-> -	I915_WRITE(DBUF_CTL_S1, I915_READ(DBUF_CTL_S1) & ~DBUF_POWER_REQUEST);
-> -	I915_WRITE(DBUF_CTL_S2, I915_READ(DBUF_CTL_S2) & ~DBUF_POWER_REQUEST);
-> -	POSTING_READ(DBUF_CTL_S2);
-> +	I915_WRITE(_DBUF_CTL_S(DBUF_S1),
-> +		   I915_READ(_DBUF_CTL_S(DBUF_S1)) & ~DBUF_POWER_REQUEST);
-> +	I915_WRITE(_DBUF_CTL_S(DBUF_S2),
-> +		   I915_READ(_DBUF_CTL_S(DBUF_S2)) & ~DBUF_POWER_REQUEST);
-> +	POSTING_READ(_DBUF_CTL_S(DBUF_S2));
->  =
+#### Issues hit ####
 
->  	udelay(10);
->  =
+  * igt@gem_exec_parallel@fds:
+    - fi-byt-n2820:       [PASS][1] -> [TIMEOUT][2] ([fdo#112271])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7833/fi-byt-n2820/igt@gem_exec_parallel@fds.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16291/fi-byt-n2820/igt@gem_exec_parallel@fds.html
 
-> -	if ((I915_READ(DBUF_CTL_S1) & DBUF_POWER_STATE) ||
-> -	    (I915_READ(DBUF_CTL_S2) & DBUF_POWER_STATE))
-> +	if ((I915_READ(_DBUF_CTL_S(DBUF_S1)) & DBUF_POWER_STATE) ||
-> +	    (I915_READ(_DBUF_CTL_S(DBUF_S2)) & DBUF_POWER_STATE))
->  		DRM_ERROR("DBuf power disable timeout!\n");
->  	else
->  		/*
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_power.h b/drivers=
-/gpu/drm/i915/display/intel_display_power.h
-> index 2608a65af7fa..601e000ffd0d 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_power.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_power.h
-> @@ -307,6 +307,11 @@ intel_display_power_put_async(struct drm_i915_privat=
-e *i915,
->  }
->  #endif
->  =
+  * igt@i915_selftest@live_blt:
+    - fi-ivb-3770:        [PASS][3] -> [DMESG-FAIL][4] ([i915#725])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7833/fi-ivb-3770/igt@i915_selftest@live_blt.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16291/fi-ivb-3770/igt@i915_selftest@live_blt.html
 
-> +enum dbuf_slice {
-> +	DBUF_S1,
-> +	DBUF_S2,
-> +};
-> +
->  #define with_intel_display_power(i915, domain, wf) \
->  	for ((wf) =3D intel_display_power_get((i915), (domain)); (wf); \
->  	     intel_display_power_put_async((i915), (domain), (wf)), (wf) =3D 0)
-> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_=
-reg.h
-> index b93c4c18f05c..625be54d3eae 100644
-> --- a/drivers/gpu/drm/i915/i915_reg.h
-> +++ b/drivers/gpu/drm/i915/i915_reg.h
-> @@ -7748,9 +7748,10 @@ enum {
->  #define DISP_ARB_CTL2	_MMIO(0x45004)
->  #define  DISP_DATA_PARTITION_5_6	(1 << 6)
->  #define  DISP_IPC_ENABLE		(1 << 3)
-> -#define DBUF_CTL	_MMIO(0x45008)
-> -#define DBUF_CTL_S1	_MMIO(0x45008)
-> -#define DBUF_CTL_S2	_MMIO(0x44FE8)
-> +#define DBUF_CTL_ADDR1			0x45008
-> +#define DBUF_CTL_ADDR2			0x44FE8
-> +#define _DBUF_CTL_S(X)			_MMIO(_PICK_EVEN(X, DBUF_CTL_ADDR1, DBUF_CTL_AD=
-DR2))
+  * igt@kms_chamelium@dp-edid-read:
+    - fi-cml-u2:          [PASS][5] -> [FAIL][6] ([i915#217])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7833/fi-cml-u2/igt@kms_chamelium@dp-edid-read.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16291/fi-cml-u2/igt@kms_chamelium@dp-edid-read.html
 
-That's not at all what I meant. Also the 'X' is still there despite what
-the changelog says.
+  * igt@kms_chamelium@hdmi-hpd-fast:
+    - fi-kbl-7500u:       [PASS][7] -> [FAIL][8] ([fdo#111096] / [i915#323])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7833/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16291/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
 
-#define _DBUF_CTL_S1	0x45008
-#define _DBUF_CTL_S2	0x44FE8
-#define DBUF_CTL_S(slice)	_MMIO(_PICK_EVEN(slice, _DBUF_CTL_S1, _DBUF_CTL_S=
-2))
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live_gem_contexts:
+    - fi-icl-guc:         [INCOMPLETE][9] ([i915#140]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7833/fi-icl-guc/igt@i915_selftest@live_gem_contexts.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16291/fi-icl-guc/igt@i915_selftest@live_gem_contexts.html
+
+  
+#### Warnings ####
+
+  * igt@gem_exec_parallel@contexts:
+    - fi-byt-n2820:       [TIMEOUT][11] ([fdo#112271]) -> [FAIL][12] ([i915#694])
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7833/fi-byt-n2820/igt@gem_exec_parallel@contexts.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16291/fi-byt-n2820/igt@gem_exec_parallel@contexts.html
+
+  * igt@i915_pm_rpm@basic-rte:
+    - fi-kbl-guc:         [FAIL][13] ([i915#579]) -> [SKIP][14] ([fdo#109271])
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7833/fi-kbl-guc/igt@i915_pm_rpm@basic-rte.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16291/fi-kbl-guc/igt@i915_pm_rpm@basic-rte.html
+
+  * igt@i915_selftest@live_blt:
+    - fi-hsw-4770r:       [DMESG-FAIL][15] ([i915#563]) -> [DMESG-FAIL][16] ([i915#725])
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7833/fi-hsw-4770r/igt@i915_selftest@live_blt.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16291/fi-hsw-4770r/igt@i915_selftest@live_blt.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#111096]: https://bugs.freedesktop.org/show_bug.cgi?id=111096
+  [fdo#112271]: https://bugs.freedesktop.org/show_bug.cgi?id=112271
+  [i915#140]: https://gitlab.freedesktop.org/drm/intel/issues/140
+  [i915#217]: https://gitlab.freedesktop.org/drm/intel/issues/217
+  [i915#323]: https://gitlab.freedesktop.org/drm/intel/issues/323
+  [i915#563]: https://gitlab.freedesktop.org/drm/intel/issues/563
+  [i915#579]: https://gitlab.freedesktop.org/drm/intel/issues/579
+  [i915#694]: https://gitlab.freedesktop.org/drm/intel/issues/694
+  [i915#725]: https://gitlab.freedesktop.org/drm/intel/issues/725
+  [i915#879]: https://gitlab.freedesktop.org/drm/intel/issues/879
+  [i915#998]: https://gitlab.freedesktop.org/drm/intel/issues/998
 
 
-> +#define DBUF_CTL			_DBUF_CTL_S(0)
->  #define  DBUF_POWER_REQUEST		(1 << 31)
->  #define  DBUF_POWER_STATE		(1 << 30)
->  #define GEN7_MSG_CTL	_MMIO(0x45010)
-> diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel=
-_pm.c
-> index 04f94057d6b3..b8d78e26515c 100644
-> --- a/drivers/gpu/drm/i915/intel_pm.c
-> +++ b/drivers/gpu/drm/i915/intel_pm.c
-> @@ -3660,7 +3660,7 @@ u8 intel_enabled_dbuf_slices_num(struct drm_i915_pr=
-ivate *dev_priv)
->  	 * only that 1 slice enabled until we have a proper way for on-demand
->  	 * toggling of the second slice.
->  	 */
-> -	if (0 && I915_READ(DBUF_CTL_S2) & DBUF_POWER_STATE)
-> +	if (0 && I915_READ(_DBUF_CTL_S(DBUF_S2)) & DBUF_POWER_STATE)
->  		enabled_dbuf_slices_num++;
->  =
+Participating hosts (50 -> 36)
+------------------------------
 
->  	return enabled_dbuf_slices_num;
-> -- =
+  Additional (1): fi-snb-2520m 
+  Missing    (15): fi-ilk-m540 fi-bdw-samus fi-hsw-peppy fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-kbl-r fi-gdg-551 fi-cfl-8109u fi-elk-e7500 fi-blb-e6850 fi-byt-clapper fi-bsw-nick fi-skl-6600u fi-snb-2600 
 
-> 2.24.1.485.gad05a3d8e5
 
--- =
+Build changes
+-------------
 
-Ville Syrj=E4l=E4
-Intel
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_7833 -> Patchwork_16291
+
+  CI-20190529: 20190529
+  CI_DRM_7833: 8210f0f999e2d396a8611e0cabc2f6c6a52468de @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5394: 991fd07bcd7add7a5beca2c95b72a994e62fbb75 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_16291: b7a25d4fb9cb2da349220dbdc78a083544d61e08 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+b7a25d4fb9cb drm/i915: Move cec_notifier to intel_connector
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16291/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
