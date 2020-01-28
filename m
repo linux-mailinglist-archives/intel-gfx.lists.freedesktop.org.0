@@ -1,40 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1442214BE49
-	for <lists+intel-gfx@lfdr.de>; Tue, 28 Jan 2020 18:05:45 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id CEB7D14BE62
+	for <lists+intel-gfx@lfdr.de>; Tue, 28 Jan 2020 18:16:47 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4F97C6E0EB;
-	Tue, 28 Jan 2020 17:05:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 26E846E051;
+	Tue, 28 Jan 2020 17:16:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E8E838989F
- for <intel-gfx@lists.freedesktop.org>; Tue, 28 Jan 2020 17:05:41 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-X-Amp-File-Uploaded: False
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 28 Jan 2020 09:05:41 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,374,1574150400"; d="scan'208";a="222808504"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by fmsmga007.fm.intel.com with SMTP; 28 Jan 2020 09:05:39 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 28 Jan 2020 19:05:38 +0200
-Date: Tue, 28 Jan 2020 19:05:38 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Matt Atwood <matthew.s.atwood@intel.com>
-Message-ID: <20200128170538.GN13686@intel.com>
-References: <20200117091627.1697-1-matthew.s.atwood@intel.com>
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B30B66E051
+ for <intel-gfx@lists.freedesktop.org>; Tue, 28 Jan 2020 17:16:44 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20038522-1500050 
+ for multiple; Tue, 28 Jan 2020 17:16:33 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue, 28 Jan 2020 17:16:14 +0000
+Message-Id: <20200128171614.3845825-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.25.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200117091627.1697-1-matthew.s.atwood@intel.com>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/tgl: Add Wa_1606054188;tgl
+Subject: [Intel-gfx] [PATCH] drm/i915/execlist: Mark up racy read of
+ execlists->pending[0]
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,84 +37,39 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Jan 17, 2020 at 04:16:28AM -0500, Matt Atwood wrote:
-> On Tiger Lake we do not support source keying in the pixel formats P010,
-> P012, P016.
-> =
+We write to execlists->pending[0] in process_csb() to acknowledge the
+completion of the ESLP update, outside of the main spinlock. When we
+check the current status of the previous submission in
+__execlists_submission_tasklet() we should therefore use READ_ONCE() to
+reflect and document the unsynchronized read.
 
-> Bspec: 52890
-> Cc: Matt Roper <matthew.d.roper@intel.com>
-> Signed-off-by: Matt Atwood <matthew.s.atwood@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_sprite.c | 13 +++++++++++++
->  1 file changed, 13 insertions(+)
-> =
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+---
+ drivers/gpu/drm/i915/gt/intel_lrc.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-> diff --git a/drivers/gpu/drm/i915/display/intel_sprite.c b/drivers/gpu/dr=
-m/i915/display/intel_sprite.c
-> index fca77ec1e0dd..67176524e60f 100644
-> --- a/drivers/gpu/drm/i915/display/intel_sprite.c
-> +++ b/drivers/gpu/drm/i915/display/intel_sprite.c
-> @@ -2049,6 +2049,19 @@ static int skl_plane_check_fb(const struct intel_c=
-rtc_state *crtc_state,
->  	unsigned int rotation =3D plane_state->hw.rotation;
->  	struct drm_format_name_buf format_name;
->  =
+diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+index cf6c43bd540a..058484958e87 100644
+--- a/drivers/gpu/drm/i915/gt/intel_lrc.c
++++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+@@ -2347,7 +2347,7 @@ static void process_csb(struct intel_engine_cs *engine)
+ static void __execlists_submission_tasklet(struct intel_engine_cs *const engine)
+ {
+ 	lockdep_assert_held(&engine->active.lock);
+-	if (!engine->execlists.pending[0]) {
++	if (!READ_ONCE(engine->execlists.pending[0])) {
+ 		rcu_read_lock(); /* protect peeking at execlists->active */
+ 		execlists_dequeue(engine);
+ 		rcu_read_unlock();
+-- 
+2.25.0
 
-> +	/* Wa_1606054188;tgl
-> +	 *
-> +	 * TODO: Add format RGB64i when implemented
-> +	 *
-> +	 */
-> +	if (IS_GEN(dev_priv, 12) &&
-> +	    (plane_state->ckey.flags & I915_SET_COLORKEY_SOURCE))
-> +		if (fb->format->format & (DRM_FORMAT_P010 | DRM_FORMAT_P012
-> +		    | DRM_FORMAT_P016)) {
-
-if (a && b && c)
-
-Needless parens.
-
-Continuing | should go to the end. Also alignment is borked.
-
-> +			DRM_DEBUG_KMS("GEN12 does not support source color key planes in form=
-ats P01x\n");
-
-Feels a bit overly verbose:
-"Source color keying not supported with P01x formats\n"
-
-> +			return -EINVAL;
-> +		}
-> +
->  	if (!fb)
->  		return 0;
-
-What Manasi said. In fact pls move the thing to the end of the function
-because I have more color key checks queued up in a branch and IIRC
-I put them to the very end of the function.
-
->  =
-
-> -- =
-
-> 2.21.1
-> =
-
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
