@@ -1,37 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9CF8A14C3C3
-	for <lists+intel-gfx@lfdr.de>; Wed, 29 Jan 2020 00:52:49 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 61E8014C3CD
+	for <lists+intel-gfx@lfdr.de>; Wed, 29 Jan 2020 00:59:21 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6B71A6E170;
-	Tue, 28 Jan 2020 23:52:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 222E56F457;
+	Tue, 28 Jan 2020 23:59:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ACE636E170
- for <intel-gfx@lists.freedesktop.org>; Tue, 28 Jan 2020 23:52:45 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 28 Jan 2020 15:52:45 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,375,1574150400"; d="scan'208";a="252435117"
-Received: from josouza-mobl.jf.intel.com (HELO josouza-MOBL.intel.com)
- ([10.24.12.252])
- by fmsmga004.fm.intel.com with ESMTP; 28 Jan 2020 15:52:45 -0800
-From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 28 Jan 2020 15:52:41 -0800
-Message-Id: <20200128235241.169694-2-jose.souza@intel.com>
-X-Mailer: git-send-email 2.25.0
-In-Reply-To: <20200128235241.169694-1-jose.souza@intel.com>
-References: <20200128235241.169694-1-jose.souza@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id AD5DC6F457;
+ Tue, 28 Jan 2020 23:59:16 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 9E463A0134;
+ Tue, 28 Jan 2020 23:59:16 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 2/2] drm/i915/dgfx: Do not write in removed FBC
- fence registers
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Date: Tue, 28 Jan 2020 23:59:16 -0000
+Message-ID: <158025595662.20535.8905556378742999254@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200128163803.5954-1-jani.nikula@intel.com>
+In-Reply-To: <20200128163803.5954-1-jani.nikula@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/hdcp=3A_move_update_pipe_code_to_hdcp?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,36 +38,141 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
- Dhinakaran Pandiyan <dhinakaran.pandiyan@intel.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-RnJvbTogUmFkaGFrcmlzaG5hIFNyaXBhZGEgPHJhZGhha3Jpc2huYS5zcmlwYWRhQGludGVsLmNv
-bT4KCmRnZnggcGxhdGZvcm1zIGRvIG5vdCBzdXBwb3J0IENQVSBmZW5jZSBhbmQgRkJDIGhvc3Qg
-dHJhY2tpbmcgc28KbGV0cyBhdm9pZCB3cml0ZSB0byByZW1vdmVkIHJlZ2lzdGVycy4KCkNjOiBS
-b2RyaWdvIFZpdmkgPHJvZHJpZ28udml2aUBpbnRlbC5jb20+CkNjOiBNYXR0IFJvcGVyIDxtYXR0
-aGV3LmQucm9wZXJAaW50ZWwuY29tPgpDYzogRGhpbmFrYXJhbiBQYW5kaXlhbiA8ZGhpbmFrYXJh
-bi5wYW5kaXlhbkBpbnRlbC5jb20+ClNpZ25lZC1vZmYtYnk6IFJhZGhha3Jpc2huYSBTcmlwYWRh
-IDxyYWRoYWtyaXNobmEuc3JpcGFkYUBpbnRlbC5jb20+ClNpZ25lZC1vZmYtYnk6IEx1Y2FzIERl
-IE1hcmNoaSA8bHVjYXMuZGVtYXJjaGlAaW50ZWwuY29tPgpTaWduZWQtb2ZmLWJ5OiBKb3PDqSBS
-b2JlcnRvIGRlIFNvdXphIDxqb3NlLnNvdXphQGludGVsLmNvbT4KLS0tCiBkcml2ZXJzL2dwdS9k
-cm0vaTkxNS9kaXNwbGF5L2ludGVsX2ZiYy5jIHwgNyArKysrKystCiAxIGZpbGUgY2hhbmdlZCwg
-NiBpbnNlcnRpb25zKCspLCAxIGRlbGV0aW9uKC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUv
-ZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9mYmMuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3Bs
-YXkvaW50ZWxfZmJjLmMKaW5kZXggMWYwZDI0YTFkZWMxLi4xMjkwMGI4Y2UyOGUgMTAwNjQ0Ci0t
-LSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZmJjLmMKKysrIGIvZHJpdmVy
-cy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9mYmMuYwpAQCAtMzE0LDcgKzMxNCwxMiBAQCBz
-dGF0aWMgdm9pZCBnZW43X2ZiY19hY3RpdmF0ZShzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2
-X3ByaXYpCiAJCWJyZWFrOwogCX0KIAotCWlmIChwYXJhbXMtPmZlbmNlX2lkID49IDApIHsKKwlp
-ZiAoSVNfREdGWChkZXZfcHJpdikpIHsKKwkJLyoKKwkJICogZEdGWCBHUFVzIGRvbid0IGhhdmUg
-YXBwZXJ0dXJlIG9yIGZlbmNlcyBhbmQgb25seSByZWx5IG9uIEZCQworCQkgKiByZW5kZXIgbnVr
-ZSB0byB0cmFjayBmcm9udGJ1ZmZlciBtb2RpZmljYXRpb25zCisJCSAqLworCX0gZWxzZSBpZiAo
-cGFyYW1zLT5mZW5jZV9pZCA+PSAwKSB7CiAJCWRwZmNfY3RsIHw9IElWQl9EUEZDX0NUTF9GRU5D
-RV9FTjsKIAkJaW50ZWxfZGVfd3JpdGUoZGV2X3ByaXYsIFNOQl9EUEZDX0NUTF9TQSwKIAkJCSAg
-ICAgICBTTkJfQ1BVX0ZFTkNFX0VOQUJMRSB8IHBhcmFtcy0+ZmVuY2VfaWQpOwotLSAKMi4yNS4w
-CgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1n
-ZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9s
-aXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
+== Series Details ==
+
+Series: drm/i915/hdcp: move update pipe code to hdcp
+URL   : https://patchwork.freedesktop.org/series/72679/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_7833 -> Patchwork_16301
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16301/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_16301 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live_blt:
+    - fi-ivb-3770:        [PASS][1] -> [DMESG-FAIL][2] ([i915#725])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7833/fi-ivb-3770/igt@i915_selftest@live_blt.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16301/fi-ivb-3770/igt@i915_selftest@live_blt.html
+
+  * igt@i915_selftest@live_gem_contexts:
+    - fi-byt-n2820:       [PASS][3] -> [DMESG-FAIL][4] ([i915#722])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7833/fi-byt-n2820/igt@i915_selftest@live_gem_contexts.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16301/fi-byt-n2820/igt@i915_selftest@live_gem_contexts.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_exec_suspend@basic-s3:
+    - fi-icl-u2:          [FAIL][5] ([fdo#103375]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7833/fi-icl-u2/igt@gem_exec_suspend@basic-s3.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16301/fi-icl-u2/igt@gem_exec_suspend@basic-s3.html
+
+  * igt@gem_exec_suspend@basic-s4-devices:
+    - fi-icl-u2:          [FAIL][7] ([fdo#111550]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7833/fi-icl-u2/igt@gem_exec_suspend@basic-s4-devices.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16301/fi-icl-u2/igt@gem_exec_suspend@basic-s4-devices.html
+
+  * igt@i915_selftest@live_blt:
+    - fi-hsw-4770r:       [DMESG-FAIL][9] ([i915#563]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7833/fi-hsw-4770r/igt@i915_selftest@live_blt.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16301/fi-hsw-4770r/igt@i915_selftest@live_blt.html
+
+  * igt@i915_selftest@live_gem_contexts:
+    - fi-icl-guc:         [INCOMPLETE][11] ([i915#140]) -> [PASS][12]
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7833/fi-icl-guc/igt@i915_selftest@live_gem_contexts.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16301/fi-icl-guc/igt@i915_selftest@live_gem_contexts.html
+
+  
+#### Warnings ####
+
+  * igt@gem_close_race@basic-threads:
+    - fi-hsw-peppy:       [INCOMPLETE][13] ([i915#816]) -> [TIMEOUT][14] ([fdo#112271])
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7833/fi-hsw-peppy/igt@gem_close_race@basic-threads.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16301/fi-hsw-peppy/igt@gem_close_race@basic-threads.html
+
+  * igt@i915_pm_rpm@basic-rte:
+    - fi-kbl-guc:         [FAIL][15] ([i915#579]) -> [SKIP][16] ([fdo#109271])
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7833/fi-kbl-guc/igt@i915_pm_rpm@basic-rte.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16301/fi-kbl-guc/igt@i915_pm_rpm@basic-rte.html
+
+  * igt@i915_selftest@live_blt:
+    - fi-hsw-4770:        [DMESG-FAIL][17] ([i915#725]) -> [DMESG-FAIL][18] ([i915#553] / [i915#725])
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7833/fi-hsw-4770/igt@i915_selftest@live_blt.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16301/fi-hsw-4770/igt@i915_selftest@live_blt.html
+
+  * igt@kms_chamelium@common-hpd-after-suspend:
+    - fi-icl-u2:          [FAIL][19] ([fdo#103375]) -> [DMESG-WARN][20] ([IGT#4] / [i915#263])
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7833/fi-icl-u2/igt@kms_chamelium@common-hpd-after-suspend.html
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16301/fi-icl-u2/igt@kms_chamelium@common-hpd-after-suspend.html
+
+  
+  [IGT#4]: https://gitlab.freedesktop.org/drm/igt-gpu-tools/issues/4
+  [fdo#103375]: https://bugs.freedesktop.org/show_bug.cgi?id=103375
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#111550]: https://bugs.freedesktop.org/show_bug.cgi?id=111550
+  [fdo#112271]: https://bugs.freedesktop.org/show_bug.cgi?id=112271
+  [i915#140]: https://gitlab.freedesktop.org/drm/intel/issues/140
+  [i915#263]: https://gitlab.freedesktop.org/drm/intel/issues/263
+  [i915#553]: https://gitlab.freedesktop.org/drm/intel/issues/553
+  [i915#563]: https://gitlab.freedesktop.org/drm/intel/issues/563
+  [i915#579]: https://gitlab.freedesktop.org/drm/intel/issues/579
+  [i915#722]: https://gitlab.freedesktop.org/drm/intel/issues/722
+  [i915#725]: https://gitlab.freedesktop.org/drm/intel/issues/725
+  [i915#816]: https://gitlab.freedesktop.org/drm/intel/issues/816
+
+
+Participating hosts (50 -> 43)
+------------------------------
+
+  Additional (1): fi-snb-2520m 
+  Missing    (8): fi-ilk-m540 fi-byt-squawks fi-bsw-cyan fi-kbl-7500u fi-ctg-p8600 fi-kbl-7560u fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_7833 -> Patchwork_16301
+
+  CI-20190529: 20190529
+  CI_DRM_7833: 8210f0f999e2d396a8611e0cabc2f6c6a52468de @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5394: 991fd07bcd7add7a5beca2c95b72a994e62fbb75 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_16301: c957043623a4fa0e2a5ea4bc9b540ffc1ed22a39 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+c957043623a4 drm/i915/hdcp: move update pipe code to hdcp
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16301/index.html
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
