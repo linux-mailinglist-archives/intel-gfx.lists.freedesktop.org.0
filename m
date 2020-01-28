@@ -1,43 +1,35 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A77414C090
-	for <lists+intel-gfx@lfdr.de>; Tue, 28 Jan 2020 20:06:44 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0FC3E14C0BB
+	for <lists+intel-gfx@lfdr.de>; Tue, 28 Jan 2020 20:13:23 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E2F916E118;
-	Tue, 28 Jan 2020 19:06:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 74DBC6F39F;
+	Tue, 28 Jan 2020 19:13:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 376D86E118;
- Tue, 28 Jan 2020 19:06:42 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 371756F39F
+ for <intel-gfx@lists.freedesktop.org>; Tue, 28 Jan 2020 19:13:20 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by orsmga105.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 28 Jan 2020 10:28:55 -0800
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 28 Jan 2020 10:38:09 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,374,1574150400"; d="scan'208";a="310821223"
-Received: from plaxmina-desktop.iind.intel.com ([10.145.162.62])
- by fmsmga001.fm.intel.com with ESMTP; 28 Jan 2020 10:28:50 -0800
-From: Pankaj Bharadiya <pankaj.laxminarayan.bharadiya@intel.com>
-To: jani.nikula@linux.intel.com, daniel@ffwll.ch,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@linux.ie>,
- =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
- Chris Wilson <chris@chris-wilson.co.uk>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Ramalingam C <ramalingam.c@intel.com>
-Date: Tue, 28 Jan 2020 23:45:55 +0530
-Message-Id: <20200128181603.27767-14-pankaj.laxminarayan.bharadiya@intel.com>
-X-Mailer: git-send-email 2.23.0
-In-Reply-To: <20200128181603.27767-1-pankaj.laxminarayan.bharadiya@intel.com>
-References: <20200128181603.27767-1-pankaj.laxminarayan.bharadiya@intel.com>
+X-IronPort-AV: E=Sophos;i="5.70,374,1574150400"; d="scan'208";a="246805409"
+Received: from lculbert-sp6.amr.corp.intel.com (HELO
+ mwahaha-bdw.amr.corp.intel.com) ([10.254.182.127])
+ by orsmga002.jf.intel.com with ESMTP; 28 Jan 2020 10:38:07 -0800
+From: Matthew Auld <matthew.auld@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue, 28 Jan 2020 18:38:06 +0000
+Message-Id: <20200128183806.149576-1-matthew.auld@intel.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v5 13/21] drm/i915/display/hdmi: Make WARN* drm
- specific where drm_device ptr is available
+Subject: [Intel-gfx] [PATCH v2] drm/i915/selftests/perf: measure memcpy bw
+ between regions
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,268 +47,278 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-drm specific WARN* calls include device information in the
-backtrace, so we know what device the warnings originate from.
+Measure the memcpy bw between our CPU accessible regions, trying all
+supported mapping combinations(WC, WB) across various sizes.
 
-Covert all the calls of WARN* with device specific drm_WARN*
-variants in functions where drm_device or drm_i915_private struct
-pointer is readily available.
+v2:
+    use smaller sizes
+    throw in memcpy32/memcpy64/memcpy_from_wc
 
-The conversion was done automatically with below coccinelle semantic
-patch.
-
-@rule1@
-identifier func, T;
-@@
-func(...) {
-...
-struct drm_device *T = ...;
-<...
-(
--WARN(
-+drm_WARN(T,
-...)
-|
--WARN_ON(
-+drm_WARN_ON(T,
-...)
-|
--WARN_ONCE(
-+drm_WARN_ONCE(T,
-...)
-|
--WARN_ON_ONCE(
-+drm_WARN_ON_ONCE(T,
-...)
-)
-...>
-}
-
-@rule2@
-identifier func, T;
-@@
-func(struct drm_device *T,...) {
-<...
-(
--WARN(
-+drm_WARN(T,
-...)
-|
--WARN_ON(
-+drm_WARN_ON(T,
-...)
-|
--WARN_ONCE(
-+drm_WARN_ONCE(T,
-...)
-|
--WARN_ON_ONCE(
-+drm_WARN_ON_ONCE(T,
-...)
-)
-...>
-}
-
-@rule3@
-identifier func, T;
-@@
-func(...) {
-...
-struct drm_i915_private *T = ...;
-<+...
-(
--WARN(
-+drm_WARN(&T->drm,
-...)
-|
--WARN_ON(
-+drm_WARN_ON(&T->drm,
-...)
-|
--WARN_ONCE(
-+drm_WARN_ONCE(&T->drm,
-...)
-|
--WARN_ON_ONCE(
-+drm_WARN_ON_ONCE(&T->drm,
-...)
-)
-...+>
-}
-
-@rule4@
-identifier func, T;
-@@
-func(struct drm_i915_private *T,...) {
-<+...
-(
--WARN(
-+drm_WARN(&T->drm,
-...)
-|
--WARN_ON(
-+drm_WARN_ON(&T->drm,
-...)
-|
--WARN_ONCE(
-+drm_WARN_ONCE(&T->drm,
-...)
-|
--WARN_ON_ONCE(
-+drm_WARN_ON_ONCE(&T->drm,
-...)
-)
-...+>
-}
-
-Signed-off-by: Pankaj Bharadiya <pankaj.laxminarayan.bharadiya@intel.com>
+Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
 ---
- drivers/gpu/drm/i915/display/intel_hdmi.c | 52 +++++++++++++----------
- 1 file changed, 29 insertions(+), 23 deletions(-)
+ .../drm/i915/selftests/i915_perf_selftests.h  |   1 +
+ .../drm/i915/selftests/intel_memory_region.c  | 218 ++++++++++++++++++
+ 2 files changed, 219 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
-index ab13cf834cc4..e68bafb76cb1 100644
---- a/drivers/gpu/drm/i915/display/intel_hdmi.c
-+++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
-@@ -72,17 +72,19 @@ assert_hdmi_port_disabled(struct intel_hdmi *intel_hdmi)
+diff --git a/drivers/gpu/drm/i915/selftests/i915_perf_selftests.h b/drivers/gpu/drm/i915/selftests/i915_perf_selftests.h
+index 5a577a1332f5..3bf7f53e9924 100644
+--- a/drivers/gpu/drm/i915/selftests/i915_perf_selftests.h
++++ b/drivers/gpu/drm/i915/selftests/i915_perf_selftests.h
+@@ -17,3 +17,4 @@
+  */
+ selftest(engine_cs, intel_engine_cs_perf_selftests)
+ selftest(blt, i915_gem_object_blt_perf_selftests)
++selftest(region, intel_memory_region_perf_selftests)
+diff --git a/drivers/gpu/drm/i915/selftests/intel_memory_region.c b/drivers/gpu/drm/i915/selftests/intel_memory_region.c
+index 3ef3620e0da5..2ae9e9a22ce2 100644
+--- a/drivers/gpu/drm/i915/selftests/intel_memory_region.c
++++ b/drivers/gpu/drm/i915/selftests/intel_memory_region.c
+@@ -4,6 +4,7 @@
+  */
  
- 	enabled_bits = HAS_DDI(dev_priv) ? DDI_BUF_CTL_ENABLE : SDVO_ENABLE;
+ #include <linux/prime_numbers.h>
++#include <linux/sort.h>
  
--	WARN(intel_de_read(dev_priv, intel_hdmi->hdmi_reg) & enabled_bits,
--	     "HDMI port enabled, expecting disabled\n");
-+	drm_WARN(dev,
-+		 intel_de_read(dev_priv, intel_hdmi->hdmi_reg) & enabled_bits,
-+		 "HDMI port enabled, expecting disabled\n");
+ #include "../i915_selftest.h"
+ 
+@@ -19,6 +20,7 @@
+ #include "gem/selftests/mock_context.h"
+ #include "gt/intel_engine_user.h"
+ #include "gt/intel_gt.h"
++#include "i915_memcpy.h"
+ #include "selftests/igt_flush_test.h"
+ #include "selftests/i915_random.h"
+ 
+@@ -572,6 +574,210 @@ static int igt_lmem_write_cpu(void *arg)
+ 	return err;
  }
  
- static void
- assert_hdmi_transcoder_func_disabled(struct drm_i915_private *dev_priv,
- 				     enum transcoder cpu_transcoder)
++static const char *repr_type(u32 type)
++{
++	switch (type) {
++	case I915_MAP_WB:
++		return "WB";
++	case I915_MAP_WC:
++		return "WC";
++	}
++
++	return "";
++}
++
++static struct drm_i915_gem_object *
++create_region_for_mapping(struct intel_memory_region *mr, u64 size, u32 type,
++			  void **out_addr)
++{
++	struct drm_i915_gem_object *obj;
++	void *addr;
++
++	obj = i915_gem_object_create_region(mr, size, 0);
++	if (IS_ERR(obj))
++		return obj;
++
++	addr = i915_gem_object_pin_map(obj, type);
++	if (IS_ERR(addr)) {
++		i915_gem_object_put(obj);
++		if (PTR_ERR(addr) == -ENXIO)
++			return ERR_PTR(-ENODEV);
++		return addr;
++	}
++
++	*out_addr = addr;
++	return obj;
++}
++
++static int wrap_ktime_compare(const void *A, const void *B)
++{
++	const ktime_t *a = A, *b = B;
++
++	return ktime_compare(*a, *b);
++}
++
++static void igt_memcpy32(void *dst, const void *src, size_t size)
++{
++	u32 *tmp = dst;
++	const u32 *s = src;
++
++	size = size / sizeof(u32);
++	while (size--)
++		*tmp++ = *s++;
++}
++
++static void igt_memcpy64(void *dst, const void *src, size_t size)
++{
++	u64 *tmp = dst;
++	const u64 *s = src;
++
++	size = size / sizeof(u64);
++	while (size--)
++		*tmp++ = *s++;
++}
++
++static inline void igt_memcpy(void *dst, const void *src, size_t size)
++{
++	memcpy(dst, src, size);
++}
++
++static inline void igt_memcpy_from_wc(void *dst, const void *src, size_t size)
++{
++	i915_memcpy_from_wc(dst, src, size);
++}
++
++static int _perf_memcpy(struct intel_memory_region *src_mr,
++			struct intel_memory_region *dst_mr,
++			u64 size, u32 src_type, u32 dst_type)
++{
++	const struct {
++		const char *name;
++		void (*copy)(void *dst, const void *src, size_t size);
++		bool skip;
++	} tests[] = {
++		{
++			"memcpy32",
++			igt_memcpy32,
++		},
++		{
++			"memcpy64",
++			igt_memcpy64,
++		},
++		{
++			"memcpy",
++			igt_memcpy,
++		},
++		{
++			"memcpy_from_wc",
++			igt_memcpy_from_wc,
++			src_type != I915_MAP_WC || !i915_has_memcpy_from_wc(),
++		},
++	};
++	struct drm_i915_gem_object *src, *dst;
++	void *src_addr, *dst_addr;
++	int ret = 0;
++	int i;
++
++	src = create_region_for_mapping(src_mr, size, src_type, &src_addr);
++	if (IS_ERR(src)) {
++		ret = PTR_ERR(src);
++		goto out;
++	}
++
++	dst = create_region_for_mapping(dst_mr, size, dst_type, &dst_addr);
++	if (IS_ERR(dst)) {
++		ret = PTR_ERR(dst);
++		goto out_unpin_src;
++	}
++
++	for (i = 0; i < ARRAY_SIZE(tests); ++i) {
++		ktime_t t[5];
++		int pass;
++
++		if (tests[i].skip)
++			continue;
++
++		for (pass = 0; pass < ARRAY_SIZE(t); pass++) {
++			ktime_t t0, t1;
++
++			t0 = ktime_get();
++
++			tests[i].copy(dst_addr, src_addr, size);
++
++			t1 = ktime_get();
++			t[pass] = ktime_sub(t1, t0);
++		}
++
++		sort(t, ARRAY_SIZE(t), sizeof(*t), wrap_ktime_compare, NULL);
++		pr_info("%s src(%s, %s) -> dst(%s, %s) %s %llu KiB copy: %lld MiB/s\n",
++			__func__,
++			src_mr->name,
++			repr_type(src_type),
++			dst_mr->name,
++			repr_type(dst_type),
++			tests[i].name,
++			size >> 10,
++			div64_u64(mul_u32_u32(4 * size,
++					      1000 * 1000 * 1000),
++				  t[1] + 2 * t[2] + t[3]) >> 20);
++
++		cond_resched();
++	}
++
++	i915_gem_object_unpin_map(dst);
++	__i915_gem_object_put_pages(dst);
++
++	i915_gem_object_put(dst);
++out_unpin_src:
++	i915_gem_object_unpin_map(src);
++	__i915_gem_object_put_pages(src);
++
++	i915_gem_object_put(src);
++out:
++	if (ret == -ENODEV)
++		ret = 0;
++
++	return ret;
++}
++
++static int perf_memcpy(void *arg)
++{
++	struct drm_i915_private *i915 = arg;
++	static const u32 types[] = {
++		I915_MAP_WB,
++		I915_MAP_WC,
++	};
++	static const u32 sizes[] = {
++		SZ_4K,
++		SZ_64K,
++		SZ_4M,
++	};
++	struct intel_memory_region *src_mr, *dst_mr;
++	int src_id, dst_id;
++	int i, j, k;
++	int ret;
++
++	for_each_memory_region(src_mr, i915, src_id) {
++		for_each_memory_region(dst_mr, i915, dst_id) {
++			for (i = 0; i < ARRAY_SIZE(sizes); ++i) {
++				for (j = 0; j < ARRAY_SIZE(types); ++j) {
++					for (k = 0; k < ARRAY_SIZE(types); ++k) {
++						ret = _perf_memcpy(src_mr,
++								   dst_mr,
++								   sizes[i],
++								   types[j],
++								   types[k]);
++						if (ret)
++							return ret;
++					}
++				}
++			}
++		}
++	}
++
++	return 0;
++}
++
+ int intel_memory_region_mock_selftests(void)
  {
--	WARN(intel_de_read(dev_priv, TRANS_DDI_FUNC_CTL(cpu_transcoder)) &
--	     TRANS_DDI_FUNC_ENABLE,
--	     "HDMI transcoder function enabled, expecting disabled\n");
-+	drm_WARN(&dev_priv->drm,
-+		 intel_de_read(dev_priv, TRANS_DDI_FUNC_CTL(cpu_transcoder)) &
-+		 TRANS_DDI_FUNC_ENABLE,
-+		 "HDMI transcoder function enabled, expecting disabled\n");
+ 	static const struct i915_subtest tests[] = {
+@@ -619,3 +825,15 @@ int intel_memory_region_live_selftests(struct drm_i915_private *i915)
+ 
+ 	return i915_live_subtests(tests, i915);
  }
- 
- struct intel_hdmi *enc_to_intel_hdmi(struct intel_encoder *encoder)
-@@ -218,7 +220,8 @@ static void g4x_write_infoframe(struct intel_encoder *encoder,
- 	u32 val = intel_de_read(dev_priv, VIDEO_DIP_CTL);
- 	int i;
- 
--	WARN(!(val & VIDEO_DIP_ENABLE), "Writing DIP with CTL reg disabled\n");
-+	drm_WARN(&dev_priv->drm, !(val & VIDEO_DIP_ENABLE),
-+		 "Writing DIP with CTL reg disabled\n");
- 
- 	val &= ~(VIDEO_DIP_SELECT_MASK | 0xf); /* clear DIP data offset */
- 	val |= g4x_infoframe_index(type);
-@@ -291,7 +294,8 @@ static void ibx_write_infoframe(struct intel_encoder *encoder,
- 	u32 val = intel_de_read(dev_priv, reg);
- 	int i;
- 
--	WARN(!(val & VIDEO_DIP_ENABLE), "Writing DIP with CTL reg disabled\n");
-+	drm_WARN(&dev_priv->drm, !(val & VIDEO_DIP_ENABLE),
-+		 "Writing DIP with CTL reg disabled\n");
- 
- 	val &= ~(VIDEO_DIP_SELECT_MASK | 0xf); /* clear DIP data offset */
- 	val |= g4x_infoframe_index(type);
-@@ -369,7 +373,8 @@ static void cpt_write_infoframe(struct intel_encoder *encoder,
- 	u32 val = intel_de_read(dev_priv, reg);
- 	int i;
- 
--	WARN(!(val & VIDEO_DIP_ENABLE), "Writing DIP with CTL reg disabled\n");
-+	drm_WARN(&dev_priv->drm, !(val & VIDEO_DIP_ENABLE),
-+		 "Writing DIP with CTL reg disabled\n");
- 
- 	val &= ~(VIDEO_DIP_SELECT_MASK | 0xf); /* clear DIP data offset */
- 	val |= g4x_infoframe_index(type);
-@@ -446,7 +451,8 @@ static void vlv_write_infoframe(struct intel_encoder *encoder,
- 	u32 val = intel_de_read(dev_priv, reg);
- 	int i;
- 
--	WARN(!(val & VIDEO_DIP_ENABLE), "Writing DIP with CTL reg disabled\n");
-+	drm_WARN(&dev_priv->drm, !(val & VIDEO_DIP_ENABLE),
-+		 "Writing DIP with CTL reg disabled\n");
- 
- 	val &= ~(VIDEO_DIP_SELECT_MASK | 0xf); /* clear DIP data offset */
- 	val |= g4x_infoframe_index(type);
-@@ -528,7 +534,7 @@ static void hsw_write_infoframe(struct intel_encoder *encoder,
- 
- 	data_size = hsw_dip_data_size(dev_priv, type);
- 
--	WARN_ON(len > data_size);
-+	drm_WARN_ON(&dev_priv->drm, len > data_size);
- 
- 	val &= ~hsw_infoframe_enable(type);
- 	intel_de_write(dev_priv, ctl_reg, val);
-@@ -852,7 +858,7 @@ intel_hdmi_compute_drm_infoframe(struct intel_encoder *encoder,
- 	}
- 
- 	ret = hdmi_drm_infoframe_check(frame);
--	if (WARN_ON(ret))
-+	if (drm_WARN_ON(&dev_priv->drm, ret))
- 		return false;
- 
- 	return true;
-@@ -1070,9 +1076,9 @@ static void ibx_set_infoframes(struct intel_encoder *encoder,
- 	}
- 
- 	if (port != (val & VIDEO_DIP_PORT_MASK)) {
--		WARN(val & VIDEO_DIP_ENABLE,
--		     "DIP already enabled on port %c\n",
--		     (val & VIDEO_DIP_PORT_MASK) >> 29);
-+		drm_WARN(&dev_priv->drm, val & VIDEO_DIP_ENABLE,
-+			 "DIP already enabled on port %c\n",
-+			 (val & VIDEO_DIP_PORT_MASK) >> 29);
- 		val &= ~VIDEO_DIP_PORT_MASK;
- 		val |= port;
- 	}
-@@ -1177,9 +1183,9 @@ static void vlv_set_infoframes(struct intel_encoder *encoder,
- 	}
- 
- 	if (port != (val & VIDEO_DIP_PORT_MASK)) {
--		WARN(val & VIDEO_DIP_ENABLE,
--		     "DIP already enabled on port %c\n",
--		     (val & VIDEO_DIP_PORT_MASK) >> 29);
-+		drm_WARN(&dev_priv->drm, val & VIDEO_DIP_ENABLE,
-+			 "DIP already enabled on port %c\n",
-+			 (val & VIDEO_DIP_PORT_MASK) >> 29);
- 		val &= ~VIDEO_DIP_PORT_MASK;
- 		val |= port;
- 	}
-@@ -3011,7 +3017,7 @@ static u8 icl_port_to_ddc_pin(struct drm_i915_private *dev_priv, enum port port)
- 	else if (intel_phy_is_tc(dev_priv, phy))
- 		return GMBUS_PIN_9_TC1_ICP + intel_port_to_tc(dev_priv, port);
- 
--	WARN(1, "Unknown port:%c\n", port_name(port));
-+	drm_WARN(&dev_priv->drm, 1, "Unknown port:%c\n", port_name(port));
- 	return GMBUS_PIN_2_BXT;
- }
- 
-@@ -3148,13 +3154,13 @@ void intel_hdmi_init_connector(struct intel_digital_port *intel_dig_port,
- 	DRM_DEBUG_KMS("Adding HDMI connector on [ENCODER:%d:%s]\n",
- 		      intel_encoder->base.base.id, intel_encoder->base.name);
- 
--	if (INTEL_GEN(dev_priv) < 12 && WARN_ON(port == PORT_A))
-+	if (INTEL_GEN(dev_priv) < 12 && drm_WARN_ON(dev, port == PORT_A))
- 		return;
- 
--	if (WARN(intel_dig_port->max_lanes < 4,
--		 "Not enough lanes (%d) for HDMI on [ENCODER:%d:%s]\n",
--		 intel_dig_port->max_lanes, intel_encoder->base.base.id,
--		 intel_encoder->base.name))
-+	if (drm_WARN(dev, intel_dig_port->max_lanes < 4,
-+		     "Not enough lanes (%d) for HDMI on [ENCODER:%d:%s]\n",
-+		     intel_dig_port->max_lanes, intel_encoder->base.base.id,
-+		     intel_encoder->base.name))
- 		return;
- 
- 	intel_hdmi->ddc_bus = intel_hdmi_ddc_pin(intel_encoder);
++
++int intel_memory_region_perf_selftests(struct drm_i915_private *i915)
++{
++	static const struct i915_subtest tests[] = {
++		SUBTEST(perf_memcpy),
++	};
++
++	if (intel_gt_is_wedged(&i915->gt))
++		return 0;
++
++	return i915_live_subtests(tests, i915);
++}
 -- 
-2.23.0
+2.20.1
 
 _______________________________________________
 Intel-gfx mailing list
