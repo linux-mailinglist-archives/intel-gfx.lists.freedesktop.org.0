@@ -2,35 +2,36 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 215F214B829
-	for <lists+intel-gfx@lfdr.de>; Tue, 28 Jan 2020 15:21:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 90CBF14B82C
+	for <lists+intel-gfx@lfdr.de>; Tue, 28 Jan 2020 15:23:29 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7F1616EE5B;
-	Tue, 28 Jan 2020 14:21:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DC01D6EE65;
+	Tue, 28 Jan 2020 14:23:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D838F6EE5B
- for <intel-gfx@lists.freedesktop.org>; Tue, 28 Jan 2020 14:21:52 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 60D346EE65
+ for <intel-gfx@lists.freedesktop.org>; Tue, 28 Jan 2020 14:23:27 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
  by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 28 Jan 2020 06:21:52 -0800
-X-IronPort-AV: E=Sophos;i="5.70,374,1574150400"; d="scan'208";a="217625197"
+ 28 Jan 2020 06:23:26 -0800
+X-IronPort-AV: E=Sophos;i="5.70,374,1574150400"; d="scan'208";a="231954468"
 Received: from jnikula-mobl3.fi.intel.com (HELO localhost) ([10.237.66.161])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 28 Jan 2020 06:21:50 -0800
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 28 Jan 2020 06:23:24 -0800
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Anshuman Gupta <anshuman.gupta@intel.com>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <878slrd5mh.fsf@intel.com>
+In-Reply-To: <20200128135425.14596-5-anshuman.gupta@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20200128135425.14596-1-anshuman.gupta@intel.com>
- <20200128135425.14596-3-anshuman.gupta@intel.com> <878slrd5mh.fsf@intel.com>
-Date: Tue, 28 Jan 2020 16:21:48 +0200
-Message-ID: <874kwfd5kz.fsf@intel.com>
+ <20200128135425.14596-5-anshuman.gupta@intel.com>
+Date: Tue, 28 Jan 2020 16:23:20 +0200
+Message-ID: <871rrjd5if.fsf@intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 2/4] drm/i915: HDCP support on above PORT_E
+Subject: Re: [Intel-gfx] [PATCH 4/4] drm/i915: Add HDCP2.2 capable debug
+ print
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,41 +49,55 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 28 Jan 2020, Jani Nikula <jani.nikula@linux.intel.com> wrote:
-> On Tue, 28 Jan 2020, Anshuman Gupta <anshuman.gupta@intel.com> wrote:
->> As Gen12 onwards there are HDCP instances for each transcoder
->> instead of port, remove the (port >=PORT_E) hdcp support
->> limitation.
->>
->> CC: Ramalingam C <ramalingam.c@intel.com>
->> Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
->> ---
->>  drivers/gpu/drm/i915/display/intel_hdcp.c | 3 ++-
->>  1 file changed, 2 insertions(+), 1 deletion(-)
->>
->> diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
->> index be083136eee2..d3a1dd791ff9 100644
->> --- a/drivers/gpu/drm/i915/display/intel_hdcp.c
->> +++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
->> @@ -922,7 +922,8 @@ static void intel_hdcp_prop_work(struct work_struct *work)
->>  bool is_hdcp_supported(struct drm_i915_private *dev_priv, enum port port)
->>  {
->>  	/* PORT E doesn't have HDCP, and PORT F is disabled */
+On Tue, 28 Jan 2020, Anshuman Gupta <anshuman.gupta@intel.com> wrote:
+> Few CI panel claims to support HDCP 2.2 but at CI
+> HDCP IGT test execution these panels are not detecting
+> as HDCP 2.2 supported panels. Adding HDCP 2.2 version
+> print will be useful in such cases.
+>
+> CC: Ramalingam C <ramalingam.c@intel.com>
+> Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_dp.c   | 2 ++
+>  drivers/gpu/drm/i915/display/intel_hdmi.c | 2 ++
+>  2 files changed, 4 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> index 991f343579ef..22a3c3e9ade2 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -6449,6 +6449,8 @@ int intel_dp_hdcp2_capable(struct intel_digital_port *intel_dig_port,
+>  	if (ret != HDCP_2_2_RXCAPS_LEN)
+>  		return ret >= 0 ? -EIO : ret;
+>  
+> +	DRM_DEBUG_KMS("HDCP 2.2 RxCaps VERSION 0x%x\n", rx_caps[0]);
 
-PS. It's probably best to nuke the comment.
+Please use drm_dbg_kms().
 
->> -	return INTEL_INFO(dev_priv)->display.has_hdcp && port < PORT_E;
->> +	return INTEL_INFO(dev_priv)->display.has_hdcp &&
->> +		((INTEL_GEN(dev_priv) >= 12) || port < PORT_E);
->
-> Superfluous braces around (INTEL_GEN(dev_priv) >= 12).
->
-> BR,
-> Jani.
->
->>  }
->>  
->>  static int
+> +
+>  	if (rx_caps[0] == HDCP_2_2_RX_CAPS_VERSION_VAL &&
+>  	    HDCP_2_2_DP_HDCP_CAPABLE(rx_caps[2]))
+>  		*capable = true;
+> diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
+> index 685589064d10..a7af0be83397 100644
+> --- a/drivers/gpu/drm/i915/display/intel_hdmi.c
+> +++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
+> @@ -1701,6 +1701,8 @@ int intel_hdmi_hdcp2_capable(struct intel_digital_port *intel_dig_port,
+>  	*capable = false;
+>  	ret = intel_hdmi_hdcp_read(intel_dig_port, HDCP_2_2_HDMI_REG_VER_OFFSET,
+>  				   &hdcp2_version, sizeof(hdcp2_version));
+> +	DRM_DEBUG_KMS("HDCP2Version 0%x\n", hdcp2_version);
+
+Please use drm_dbg_kms(). Why is the previous debug "HDCP 2.2" and this
+one "HDCP2Version"? You're probably missing an x in 0%x.
+
+BR,
+Jani.
+
+
+> +
+>  	if (!ret && hdcp2_version & HDCP_2_2_HDMI_SUPPORT_MASK)
+>  		*capable = true;
 
 -- 
 Jani Nikula, Intel Open Source Graphics Center
