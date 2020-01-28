@@ -1,34 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 595FC14B334
-	for <lists+intel-gfx@lfdr.de>; Tue, 28 Jan 2020 12:02:01 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 19D9A14B38A
+	for <lists+intel-gfx@lfdr.de>; Tue, 28 Jan 2020 12:34:33 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ECD836EDBE;
-	Tue, 28 Jan 2020 11:01:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BCC066EDE3;
+	Tue, 28 Jan 2020 11:34:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 81F366EDBA;
- Tue, 28 Jan 2020 11:01:56 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 832996EDE3
+ for <intel-gfx@lists.freedesktop.org>; Tue, 28 Jan 2020 11:34:29 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 20032817-1500050 for multiple; Tue, 28 Jan 2020 11:01:51 +0000
-MIME-Version: 1.0
-To: DRI Development <dri-devel@lists.freedesktop.org>,
- Daniel Vetter <daniel.vetter@ffwll.ch>
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20033315-1500050 
+ for <intel-gfx@lists.freedesktop.org>; Tue, 28 Jan 2020 11:34:26 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
-In-Reply-To: <158020847932.30113.5492073782079336156@skylake-alporthouse-com>
-References: <20200128104602.1459802-1-daniel.vetter@ffwll.ch>
- <158020847932.30113.5492073782079336156@skylake-alporthouse-com>
-Message-ID: <158020930988.30113.12706536624414683287@skylake-alporthouse-com>
-User-Agent: alot/0.6
-Date: Tue, 28 Jan 2020 11:01:49 +0000
-Subject: Re: [Intel-gfx] [PATCH 1/4] drm: Complain if drivers still use the
- ->load callback
+To: intel-gfx@lists.freedesktop.org
+Date: Tue, 28 Jan 2020 11:34:26 +0000
+Message-Id: <20200128113426.3711294-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.25.0
+MIME-Version: 1.0
+Subject: [Intel-gfx] [CI] drm/i915: Skip capturing errors from internal
+ contexts
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,43 +37,74 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Daniel Vetter <daniel.vetter@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Chris Wilson (2020-01-28 10:47:59)
-> Quoting Daniel Vetter (2020-01-28 10:45:58)
-> > Kinda time to get this sorted. The locking around this really is not
-> > nice.
-> > 
-> > Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
-> > ---
-> >  drivers/gpu/drm/drm_drv.c | 6 ++++++
-> >  include/drm/drm_drv.h     | 3 +++
-> >  2 files changed, 9 insertions(+)
-> > 
-> > diff --git a/drivers/gpu/drm/drm_drv.c b/drivers/gpu/drm/drm_drv.c
-> > index 7c18a980cd4b..8deff75b484c 100644
-> > --- a/drivers/gpu/drm/drm_drv.c
-> > +++ b/drivers/gpu/drm/drm_drv.c
-> > @@ -948,6 +948,12 @@ int drm_dev_register(struct drm_device *dev, unsigned long flags)
-> >  
-> >         mutex_lock(&drm_global_mutex);
-> >  
-> > +       if (dev->driver->load) {
-> > +               if (!drm_core_check_feature(dev, DRIVER_LEGACY))
-> > +                       DRM_INFO("drm driver %s is using deprecated ->load callback\n",
-> > +                                dev->driver->name);
-> 
-> DRM_WARN() if the plan is to remove it?
+We don't want to report errors on the internal contexts to userspace,
+suppressing their own, so treat them as simulated errors. These mostly
+arise inside selftests and so are simulated anyway. For the rest, we can
+rely on the normal debug channels in CI.
 
-Either way though,
-Reviewed-by: Chris Wilson <chris@chris-wilson.co.uk>
--Chris
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+---
+ drivers/gpu/drm/i915/gem/selftests/mock_context.c | 2 ++
+ drivers/gpu/drm/i915/i915_gpu_error.c             | 8 ++++----
+ 2 files changed, 6 insertions(+), 4 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/gem/selftests/mock_context.c b/drivers/gpu/drm/i915/gem/selftests/mock_context.c
+index 384143aa7776..7bad8fed4238 100644
+--- a/drivers/gpu/drm/i915/gem/selftests/mock_context.c
++++ b/drivers/gpu/drm/i915/gem/selftests/mock_context.c
+@@ -83,6 +83,8 @@ live_context(struct drm_i915_private *i915, struct file *file)
+ 	if (IS_ERR(ctx))
+ 		return ctx;
+ 
++	i915_gem_context_set_no_error_capture(ctx);
++
+ 	err = gem_context_register(ctx, to_drm_file(file)->driver_priv, &id);
+ 	if (err < 0)
+ 		goto err_ctx;
+diff --git a/drivers/gpu/drm/i915/i915_gpu_error.c b/drivers/gpu/drm/i915/i915_gpu_error.c
+index 594341e27a47..0f67bef83106 100644
+--- a/drivers/gpu/drm/i915/i915_gpu_error.c
++++ b/drivers/gpu/drm/i915/i915_gpu_error.c
+@@ -1228,7 +1228,7 @@ static bool record_context(struct i915_gem_context_coredump *e,
+ {
+ 	struct i915_gem_context *ctx;
+ 	struct task_struct *task;
+-	bool capture;
++	bool simulated;
+ 
+ 	rcu_read_lock();
+ 	ctx = rcu_dereference(rq->context->gem_context);
+@@ -1236,7 +1236,7 @@ static bool record_context(struct i915_gem_context_coredump *e,
+ 		ctx = NULL;
+ 	rcu_read_unlock();
+ 	if (!ctx)
+-		return false;
++		return true;
+ 
+ 	rcu_read_lock();
+ 	task = pid_task(ctx->pid, PIDTYPE_PID);
+@@ -1250,10 +1250,10 @@ static bool record_context(struct i915_gem_context_coredump *e,
+ 	e->guilty = atomic_read(&ctx->guilty_count);
+ 	e->active = atomic_read(&ctx->active_count);
+ 
+-	capture = i915_gem_context_no_error_capture(ctx);
++	simulated = i915_gem_context_no_error_capture(ctx);
+ 
+ 	i915_gem_context_put(ctx);
+-	return capture;
++	return simulated;
+ }
+ 
+ struct intel_engine_capture_vma {
+-- 
+2.25.0
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
