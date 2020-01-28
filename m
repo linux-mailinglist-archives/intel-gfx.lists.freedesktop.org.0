@@ -2,48 +2,37 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B9C014B3D1
-	for <lists+intel-gfx@lfdr.de>; Tue, 28 Jan 2020 12:57:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CF9A414B41A
+	for <lists+intel-gfx@lfdr.de>; Tue, 28 Jan 2020 13:21:45 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6E4266EDF2;
-	Tue, 28 Jan 2020 11:57:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DD5616EE14;
+	Tue, 28 Jan 2020 12:21:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 313 seconds by postgrey-1.36 at gabe;
- Tue, 28 Jan 2020 11:57:25 UTC
-Received: from smtp.domeneshop.no (smtp.domeneshop.no [194.63.252.55])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B02D26EDF2;
- Tue, 28 Jan 2020 11:57:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=tronnes.org
- ; s=ds201912;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
- MIME-Version:Date:Message-ID:From:References:Cc:To:Subject:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=xUdWWouPoTBLz4SlYbcfDB/esqjTyLlKextVomO06hg=; b=E1V7gKM5iZ7gHvo/0jRtcUIG9j
- 2w4NZhY5mNb8I1KtZbFFATAXKXczW+jaM1ThwC0HRq3gNOZHIUEuntf9QaCMfQnKbtb5RNXuQBtQB
- b5d5yD1P0zdxiElFv1rkQywZ2HsJiOBgpkj5FMwYxHeiOFIwwy8phGv9ijhtqOgBe6KOb/8lvUum6
- 6577ww/jgGd3AqsYu5KCfVmyFLKni04ueCpUUJqsgDFWSQerKyMcvJIc+XbQjlLOSYrelXFVm9X95
- 89qE6NgufO3pyhMSQIQAQrUZXNXYrJhTo+IiPUiNMUsdezIHnylek5ExNx3d6b7XQeQ81kecfnS/O
- qB+EocXA==;
-Received: from 211.81-166-168.customer.lyse.net ([81.166.168.211]:52048
- helo=[192.168.10.61])
- by smtp.domeneshop.no with esmtpsa (TLS1.3:ECDHE_RSA_AES_128_GCM_SHA256:128)
- (Exim 4.92) (envelope-from <noralf@tronnes.org>)
- id 1iwPPe-000880-68; Tue, 28 Jan 2020 12:52:10 +0100
-To: Daniel Vetter <daniel.vetter@ffwll.ch>,
- DRI Development <dri-devel@lists.freedesktop.org>
-References: <20200128104602.1459802-1-daniel.vetter@ffwll.ch>
- <20200128104602.1459802-2-daniel.vetter@ffwll.ch>
-From: =?UTF-8?Q?Noralf_Tr=c3=b8nnes?= <noralf@tronnes.org>
-Message-ID: <098c0e3c-e885-ac32-9c71-77ba75cb33c6@tronnes.org>
-Date: Tue, 28 Jan 2020 12:52:05 +0100
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
- Thunderbird/68.4.1
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E2FE36EE14
+ for <intel-gfx@lists.freedesktop.org>; Tue, 28 Jan 2020 12:21:41 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 28 Jan 2020 04:21:34 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,373,1574150400"; d="scan'208";a="261414065"
+Received: from gaia.fi.intel.com ([10.237.72.192])
+ by fmsmga002.fm.intel.com with ESMTP; 28 Jan 2020 04:21:32 -0800
+Received: by gaia.fi.intel.com (Postfix, from userid 1000)
+ id 1ADB45C1E0F; Tue, 28 Jan 2020 14:20:46 +0200 (EET)
+From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20200127231540.3302516-2-chris@chris-wilson.co.uk>
+References: <20200127231540.3302516-1-chris@chris-wilson.co.uk>
+ <20200127231540.3302516-2-chris@chris-wilson.co.uk>
+Date: Tue, 28 Jan 2020 14:20:46 +0200
+Message-ID: <87d0b3n55t.fsf@gaia.fi.intel.com>
 MIME-Version: 1.0
-In-Reply-To: <20200128104602.1459802-2-daniel.vetter@ffwll.ch>
-Subject: Re: [Intel-gfx] [PATCH 2/4] drm/fbdev-helper: don't force restores
+Subject: Re: [Intel-gfx] [PATCH 2/6] drm/i915/gt: Reorganise gen8+ interrupt
+ handler
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,70 +45,205 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@intel.com>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-CgpEZW4gMjguMDEuMjAyMCAxMS40NSwgc2tyZXYgRGFuaWVsIFZldHRlcjoKPiBJbnN0ZWFkIGNo
-ZWNrIGZvciBtYXN0ZXIgc3RhdHVzLCBpbiBjYXNlIHdlJ3ZlIHJhY2VkLgo+IAo+IFRoaXMgaXMg
-dGhlIGxhc3QgZXhjZXB0aW9uIHRvIHRoZSBnZW5lcmFsIHJ1bGUgdGhhdCB3ZSByZXN0b3JlIGZi
-Y29uCj4gb25seSB3aGVuIHRoZXJlJ3Mgbm8gbWFzdGVyIGFjdGl2ZS4gQ29tcG9zaXRvcnMgYXJl
-IHN1cHBvc2VkIHRvIGRyb3AKPiB0aGVpciBtYXN0ZXIgc3RhdHVzIGJlZm9yZSB0aGV5IHN3aXRj
-aCB0byBhIGRpZmZlcmVudCBjb25zb2xlIGJhY2sgdG8KPiB0ZXh0IG1vZGUgKG9yIGp1c3Qgc3dp
-dGNoIHRvIHRleHQgbW9kZSBkaXJlY3RseSwgd2l0aG91dCBhIHZ0IHN3aXRjaCkuCj4gCj4gVGhp
-cyBpcyBrbm93biB0byBicmVhayBzb21lIHN1YnRlc3RzIG9mIGttc19mYmNvbl9mYnQgaW4gaWd0
-LCBidXQgdGhleSdyZQo+IGp1c3Qgd3JvbmcgLSBpdCBkb2VzIGEgZ3JhcGhpY3MvdGV4dCBtb2Rl
-IHN3aXRjaCBmb3IgdGhlIHZ0IHdpdGhvdXQKPiB1cGRhdGluZyB0aGUgbWFzdGVyIHN0YXR1cy4K
-PiAKPiBBbHNvIGFkZCBhIGNvbW1lbnQgdG8gdGhlIGRybV9jbGllbnQtPnJlc3RvcmUgaG9vayB0
-aGF0IHRoaXMgaXMgZXhwZWN0ZWQKPiBnb2luZyBmb3J3YXJkIGZyb20gYWxsIGNsaWVudHMgKHRo
-ZXJlJ3MgY3VycmVudGx5IGp1c3Qgb25lKS4KPiAKPiB2MjogQWxzbyBkcm9wIHRoZSBmb3JjZSBp
-biBwYW5fZGlzcGxheQo+IAo+IENjOiBOb3JhbGYgVHLDuG5uZXMgPG5vcmFsZkB0cm9ubmVzLm9y
-Zz4KPiBTaWduZWQtb2ZmLWJ5OiBEYW5pZWwgVmV0dGVyIDxkYW5pZWwudmV0dGVyQGludGVsLmNv
-bT4KPiAtLS0KPiAgZHJpdmVycy9ncHUvZHJtL2RybV9mYl9oZWxwZXIuYyB8IDE0ICsrLS0tLS0t
-LS0tLS0tCj4gIGluY2x1ZGUvZHJtL2RybV9jbGllbnQuaCAgICAgICAgfCAgNSArKysrKwo+ICAy
-IGZpbGVzIGNoYW5nZWQsIDcgaW5zZXJ0aW9ucygrKSwgMTIgZGVsZXRpb25zKC0pCj4gCj4gZGlm
-ZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9kcm1fZmJfaGVscGVyLmMgYi9kcml2ZXJzL2dwdS9k
-cm0vZHJtX2ZiX2hlbHBlci5jCj4gaW5kZXggNGM3Y2JjZTdiYWU3Li45MjYxODdhODIyNTUgMTAw
-NjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2RybV9mYl9oZWxwZXIuYwo+ICsrKyBiL2RyaXZl
-cnMvZ3B1L2RybS9kcm1fZmJfaGVscGVyLmMKPiBAQCAtMjUwLDE3ICsyNTAsNyBAQCBpbnQgZHJt
-X2ZiX2hlbHBlcl9yZXN0b3JlX2ZiZGV2X21vZGVfdW5sb2NrZWQoc3RydWN0IGRybV9mYl9oZWxw
-ZXIgKmZiX2hlbHBlcikKPiAgCQlyZXR1cm4gMDsKPiAgCj4gIAltdXRleF9sb2NrKCZmYl9oZWxw
-ZXItPmxvY2spOwo+IC0JLyoKPiAtCSAqIFRPRE86Cj4gLQkgKiBXZSBzaG91bGQgYmFpbCBvdXQg
-aGVyZSBpZiB0aGVyZSBpcyBhIG1hc3RlciBieSBkcm9wcGluZyBfZm9yY2UuCj4gLQkgKiBDdXJy
-ZW50bHkgdGhlc2UgaWd0IHRlc3RzIGZhaWwgaWYgd2UgZG8gdGhhdDoKPiAtCSAqIC0ga21zX2Zi
-Y29uX2ZidEBwc3IKPiAtCSAqIC0ga21zX2ZiY29uX2ZidEBwc3Itc3VzcGVuZAo+IC0JICoKPiAt
-CSAqIFNvIGZpcnN0IHRoZXNlIHRlc3RzIG5lZWQgdG8gYmUgZml4ZWQgc28gdGhleSBkcm9wIG1h
-c3RlciBvciBkb24ndAo+IC0JICogaGF2ZSBhbiBmZCBvcGVuLgo+IC0JICovCj4gLQlyZXQgPSBk
-cm1fY2xpZW50X21vZGVzZXRfY29tbWl0X2ZvcmNlKCZmYl9oZWxwZXItPmNsaWVudCk7Cj4gKwly
-ZXQgPSBkcm1fY2xpZW50X21vZGVzZXRfY29tbWl0KCZmYl9oZWxwZXItPmNsaWVudCk7Cj4gIAo+
-ICAJZG9fZGVsYXllZCA9IGZiX2hlbHBlci0+ZGVsYXllZF9ob3RwbHVnOwo+ICAJaWYgKGRvX2Rl
-bGF5ZWQpCj4gQEAgLTEzNTcsNyArMTM0Nyw3IEBAIHN0YXRpYyBpbnQgcGFuX2Rpc3BsYXlfYXRv
-bWljKHN0cnVjdCBmYl92YXJfc2NyZWVuaW5mbyAqdmFyLAo+ICAKPiAgCXBhbl9zZXQoZmJfaGVs
-cGVyLCB2YXItPnhvZmZzZXQsIHZhci0+eW9mZnNldCk7Cj4gIAo+IC0JcmV0ID0gZHJtX2NsaWVu
-dF9tb2Rlc2V0X2NvbW1pdF9mb3JjZSgmZmJfaGVscGVyLT5jbGllbnQpOwo+ICsJcmV0ID0gZHJt
-X2NsaWVudF9tb2Rlc2V0X2NvbW1pdCgmZmJfaGVscGVyLT5jbGllbnQpOwoKVGhpcyBuZWVkcyBf
-Zm9yY2UgYmVjYXVzZSBkcm1fZmJfaGVscGVyX3Bhbl9kaXNwbGF5KCkgYWxyZWFkeSBob2xkcyB0
-aGUKbG9ja3MuCgpXaXRoIHRoYXQgZml4ZWQ6ClJldmlld2VkLWJ5OiBOb3JhbGYgVHLDuG5uZXMg
-PG5vcmFsZkB0cm9ubmVzLm9yZz4KCk1heWJlIGEgYmV0dGVyIGFuZCBtb3JlIGRlc2NyaXB0aXZl
-IG5hbWUgd291bGQgaGF2ZSBiZWVuCmRybV9jbGllbnRfbW9kZXNldF9jb21taXRfbG9ja2VkKCku
-CgpOb3JhbGYuCgo+ICAJaWYgKCFyZXQpIHsKPiAgCQlpbmZvLT52YXIueG9mZnNldCA9IHZhci0+
-eG9mZnNldDsKPiAgCQlpbmZvLT52YXIueW9mZnNldCA9IHZhci0+eW9mZnNldDsKPiBkaWZmIC0t
-Z2l0IGEvaW5jbHVkZS9kcm0vZHJtX2NsaWVudC5oIGIvaW5jbHVkZS9kcm0vZHJtX2NsaWVudC5o
-Cj4gaW5kZXggNWNmMmM1ZGQ4YjFlLi5kMDFkMzExMDIzYWMgMTAwNjQ0Cj4gLS0tIGEvaW5jbHVk
-ZS9kcm0vZHJtX2NsaWVudC5oCj4gKysrIGIvaW5jbHVkZS9kcm0vZHJtX2NsaWVudC5oCj4gQEAg
-LTQ0LDYgKzQ0LDExIEBAIHN0cnVjdCBkcm1fY2xpZW50X2Z1bmNzIHsKPiAgCSAqIHJldHVybnMg
-emVybyBnZXRzIHRoZSBwcml2aWxlZ2UgdG8gcmVzdG9yZSBhbmQgbm8gbW9yZSBjbGllbnRzIGFy
-ZQo+ICAJICogY2FsbGVkLiBUaGlzIGNhbGxiYWNrIGlzIG5vdCBjYWxsZWQgYWZ0ZXIgQHVucmVn
-aXN0ZXIgaGFzIGJlZW4gY2FsbGVkLgo+ICAJICoKPiArCSAqIE5vdGUgdGhhdCB0aGUgY29yZSBk
-b2VzIG5vdCBndWFyYW50ZWUgZXhjbHVzaW9uIGFnYWluc3QgY29uY3VycmVudAo+ICsJICogZHJt
-X29wZW4oKS4gQ2xpZW50cyBuZWVkIHRvIGVuc3VyZSB0aGlzIHRoZW1zZWx2ZXMsIGZvciBleGFt
-cGxlIGJ5Cj4gKwkgKiB1c2luZyBkcm1fbWFzdGVyX2ludGVybmFsX2FjcXVpcmUoKSBhbmQKPiAr
-CSAqIGRybV9tYXN0ZXJfaW50ZXJuYWxfcmVsZWFzZSgpLgo+ICsJICoKPiAgCSAqIFRoaXMgY2Fs
-bGJhY2sgaXMgb3B0aW9uYWwuCj4gIAkgKi8KPiAgCWludCAoKnJlc3RvcmUpKHN0cnVjdCBkcm1f
-Y2xpZW50X2RldiAqY2xpZW50KTsKPiAKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJl
-ZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGlu
-Zm8vaW50ZWwtZ2Z4Cg==
+Chris Wilson <chris@chris-wilson.co.uk> writes:
+
+> We always use a deferred bottom-half (either tasklet or irq_work) for
+> processing the response to an interrupt which means we can recombine the
+> GT irq ack+handler into one. This simplicity is important in later
+> patches as we will need to handle and then ack multiple interrupt levels
+> before acking the GT and master interrupts.
+>
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> ---
+>  drivers/gpu/drm/i915/gt/intel_gt_irq.c | 70 +++++++++++---------------
+>  drivers/gpu/drm/i915/gt/intel_gt_irq.h |  3 +-
+>  drivers/gpu/drm/i915/i915_irq.c        | 10 +---
+>  3 files changed, 33 insertions(+), 50 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_irq.c b/drivers/gpu/drm/i915/gt/intel_gt_irq.c
+> index f796bdf1ed30..71873a4cafc0 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_gt_irq.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_gt_irq.c
+> @@ -286,59 +286,49 @@ void gen6_gt_irq_handler(struct intel_gt *gt, u32 gt_iir)
+>  		gen7_parity_error_irq_handler(gt, gt_iir);
+>  }
+>  
+> -void gen8_gt_irq_ack(struct intel_gt *gt, u32 master_ctl, u32 gt_iir[4])
+> +void gen8_gt_irq_handler(struct intel_gt *gt, u32 master_ctl)
+>  {
+>  	void __iomem * const regs = gt->uncore->regs;
+> +	u32 iir;
+>  
+>  	if (master_ctl & (GEN8_GT_RCS_IRQ | GEN8_GT_BCS_IRQ)) {
+> -		gt_iir[0] = raw_reg_read(regs, GEN8_GT_IIR(0));
+> -		if (likely(gt_iir[0]))
+> -			raw_reg_write(regs, GEN8_GT_IIR(0), gt_iir[0]);
+> -	}
+> -
+> -	if (master_ctl & (GEN8_GT_VCS0_IRQ | GEN8_GT_VCS1_IRQ)) {
+> -		gt_iir[1] = raw_reg_read(regs, GEN8_GT_IIR(1));
+> -		if (likely(gt_iir[1]))
+> -			raw_reg_write(regs, GEN8_GT_IIR(1), gt_iir[1]);
+> -	}
+> -
+> -	if (master_ctl & (GEN8_GT_PM_IRQ | GEN8_GT_GUC_IRQ)) {
+> -		gt_iir[2] = raw_reg_read(regs, GEN8_GT_IIR(2));
+> -		if (likely(gt_iir[2]))
+> -			raw_reg_write(regs, GEN8_GT_IIR(2), gt_iir[2]);
+> -	}
+> -
+> -	if (master_ctl & GEN8_GT_VECS_IRQ) {
+> -		gt_iir[3] = raw_reg_read(regs, GEN8_GT_IIR(3));
+> -		if (likely(gt_iir[3]))
+> -			raw_reg_write(regs, GEN8_GT_IIR(3), gt_iir[3]);
+> -	}
+> -}
+> -
+> -void gen8_gt_irq_handler(struct intel_gt *gt, u32 master_ctl, u32 gt_iir[4])
+> -{
+> -	if (master_ctl & (GEN8_GT_RCS_IRQ | GEN8_GT_BCS_IRQ)) {
+> -		cs_irq_handler(gt->engine_class[RENDER_CLASS][0],
+> -			       gt_iir[0] >> GEN8_RCS_IRQ_SHIFT);
+> -		cs_irq_handler(gt->engine_class[COPY_ENGINE_CLASS][0],
+> -			       gt_iir[0] >> GEN8_BCS_IRQ_SHIFT);
+> +		iir = raw_reg_read(regs, GEN8_GT_IIR(0));
+> +		if (likely(iir)) {
+> +			cs_irq_handler(gt->engine_class[RENDER_CLASS][0],
+> +				       iir >> GEN8_RCS_IRQ_SHIFT);
+> +			cs_irq_handler(gt->engine_class[COPY_ENGINE_CLASS][0],
+> +				       iir >> GEN8_BCS_IRQ_SHIFT);
+> +			raw_reg_write(regs, GEN8_GT_IIR(0), iir);
+> +		}
+>  	}
+>  
+>  	if (master_ctl & (GEN8_GT_VCS0_IRQ | GEN8_GT_VCS1_IRQ)) {
+> -		cs_irq_handler(gt->engine_class[VIDEO_DECODE_CLASS][0],
+> -			       gt_iir[1] >> GEN8_VCS0_IRQ_SHIFT);
+> -		cs_irq_handler(gt->engine_class[VIDEO_DECODE_CLASS][1],
+> -			       gt_iir[1] >> GEN8_VCS1_IRQ_SHIFT);
+> +		iir = raw_reg_read(regs, GEN8_GT_IIR(1));
+> +		if (likely(iir)) {
+> +			cs_irq_handler(gt->engine_class[VIDEO_DECODE_CLASS][0],
+> +				       iir >> GEN8_VCS0_IRQ_SHIFT);
+> +			cs_irq_handler(gt->engine_class[VIDEO_DECODE_CLASS][1],
+> +				       iir >> GEN8_VCS1_IRQ_SHIFT);
+> +			raw_reg_write(regs, GEN8_GT_IIR(1), iir);
+> +		}
+>  	}
+>  
+>  	if (master_ctl & GEN8_GT_VECS_IRQ) {
+> -		cs_irq_handler(gt->engine_class[VIDEO_ENHANCEMENT_CLASS][0],
+> -			       gt_iir[3] >> GEN8_VECS_IRQ_SHIFT);
+> +		iir = raw_reg_read(regs, GEN8_GT_IIR(3));
+> +		if (likely(iir)) {
+> +			cs_irq_handler(gt->engine_class[VIDEO_ENHANCEMENT_CLASS][0],
+> +				       iir >> GEN8_VECS_IRQ_SHIFT);
+> +			raw_reg_write(regs, GEN8_GT_IIR(3), iir);
+> +		}
+>  	}
+>  
+>  	if (master_ctl & (GEN8_GT_PM_IRQ | GEN8_GT_GUC_IRQ)) {
+> -		gen6_rps_irq_handler(&gt->rps, gt_iir[2]);
+> -		guc_irq_handler(&gt->uc.guc, gt_iir[2] >> 16);
+> +		iir = raw_reg_read(regs, GEN8_GT_IIR(2));
+> +		if (likely(iir)) {
+> +			gen6_rps_irq_handler(&gt->rps, iir);
+> +			guc_irq_handler(&gt->uc.guc, iir >> 16);
+> +			raw_reg_write(regs, GEN8_GT_IIR(2), iir);
+> +		}
+>  	}
+>  }
+>  
+> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_irq.h b/drivers/gpu/drm/i915/gt/intel_gt_irq.h
+> index 8f37593712c9..886c5cf408a2 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_gt_irq.h
+> +++ b/drivers/gpu/drm/i915/gt/intel_gt_irq.h
+> @@ -36,9 +36,8 @@ void gen5_gt_enable_irq(struct intel_gt *gt, u32 mask);
+>  
+>  void gen6_gt_irq_handler(struct intel_gt *gt, u32 gt_iir);
+>  
+> -void gen8_gt_irq_ack(struct intel_gt *gt, u32 master_ctl, u32 gt_iir[4]);
+> +void gen8_gt_irq_handler(struct intel_gt *gt, u32 master_ctl);
+>  void gen8_gt_irq_reset(struct intel_gt *gt);
+> -void gen8_gt_irq_handler(struct intel_gt *gt, u32 master_ctl, u32 gt_iir[4]);
+>  void gen8_gt_irq_postinstall(struct intel_gt *gt);
+>  
+>  #endif /* INTEL_GT_IRQ_H */
+> diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_irq.c
+> index 87a6662abc1b..e40dd226fde8 100644
+> --- a/drivers/gpu/drm/i915/i915_irq.c
+> +++ b/drivers/gpu/drm/i915/i915_irq.c
+> @@ -1614,7 +1614,6 @@ static irqreturn_t cherryview_irq_handler(int irq, void *arg)
+>  		u32 master_ctl, iir;
+>  		u32 pipe_stats[I915_MAX_PIPES] = {};
+>  		u32 hotplug_status = 0;
+> -		u32 gt_iir[4];
+>  		u32 ier = 0;
+>  
+>  		master_ctl = I915_READ(GEN8_MASTER_IRQ) & ~GEN8_MASTER_IRQ_CONTROL;
+> @@ -1642,7 +1641,7 @@ static irqreturn_t cherryview_irq_handler(int irq, void *arg)
+>  		ier = I915_READ(VLV_IER);
+>  		I915_WRITE(VLV_IER, 0);
+>  
+> -		gen8_gt_irq_ack(&dev_priv->gt, master_ctl, gt_iir);
+> +		gen8_gt_irq_handler(&dev_priv->gt, master_ctl);
+>  
+>  		if (iir & I915_DISPLAY_PORT_INTERRUPT)
+>  			hotplug_status = i9xx_hpd_irq_ack(dev_priv);
+> @@ -1666,8 +1665,6 @@ static irqreturn_t cherryview_irq_handler(int irq, void *arg)
+>  		I915_WRITE(VLV_IER, ier);
+>  		I915_WRITE(GEN8_MASTER_IRQ, GEN8_MASTER_IRQ_CONTROL);
+>  
+> -		gen8_gt_irq_handler(&dev_priv->gt, master_ctl, gt_iir);
+> -
+>  		if (hotplug_status)
+>  			i9xx_hpd_irq_handler(dev_priv, hotplug_status);
+>  
+> @@ -2396,7 +2393,6 @@ static irqreturn_t gen8_irq_handler(int irq, void *arg)
+>  	struct drm_i915_private *dev_priv = arg;
+>  	void __iomem * const regs = dev_priv->uncore.regs;
+>  	u32 master_ctl;
+> -	u32 gt_iir[4];
+>  
+>  	if (!intel_irqs_enabled(dev_priv))
+>  		return IRQ_NONE;
+> @@ -2408,7 +2404,7 @@ static irqreturn_t gen8_irq_handler(int irq, void *arg)
+>  	}
+>  
+>  	/* Find, clear, then process each source of interrupt */
+
+/* Find, process and then clear each source of interrupt */
+
+or with removal of the comment,
+Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+
+> -	gen8_gt_irq_ack(&dev_priv->gt, master_ctl, gt_iir);
+> +	gen8_gt_irq_handler(&dev_priv->gt, master_ctl);
+>  
+>  	/* IRQs are synced during runtime_suspend, we don't require a wakeref */
+>  	if (master_ctl & ~GEN8_GT_IRQS) {
+> @@ -2419,8 +2415,6 @@ static irqreturn_t gen8_irq_handler(int irq, void *arg)
+>  
+>  	gen8_master_intr_enable(regs);
+>  
+> -	gen8_gt_irq_handler(&dev_priv->gt, master_ctl, gt_iir);
+> -
+>  	return IRQ_HANDLED;
+>  }
+>  
+> -- 
+> 2.25.0
+>
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
