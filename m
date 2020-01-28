@@ -2,31 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 973A414C1DF
-	for <lists+intel-gfx@lfdr.de>; Tue, 28 Jan 2020 22:04:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AFCB114C247
+	for <lists+intel-gfx@lfdr.de>; Tue, 28 Jan 2020 22:38:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 34B466F414;
-	Tue, 28 Jan 2020 21:04:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2C62F6E132;
+	Tue, 28 Jan 2020 21:38:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id E06946F413;
- Tue, 28 Jan 2020 21:04:46 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id D80A0A010F;
- Tue, 28 Jan 2020 21:04:46 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 845F16E132
+ for <intel-gfx@lists.freedesktop.org>; Tue, 28 Jan 2020 21:38:01 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 28 Jan 2020 13:38:01 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,375,1574150400"; d="scan'208";a="217754201"
+Received: from dceraolo-linux.fm.intel.com (HELO [10.1.27.145]) ([10.1.27.145])
+ by orsmga007.jf.intel.com with ESMTP; 28 Jan 2020 13:37:59 -0800
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+References: <20200128204318.4182039-1-chris@chris-wilson.co.uk>
+ <20200128204318.4182039-4-chris@chris-wilson.co.uk>
+From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Message-ID: <e52b348d-e9fb-9a6b-8b20-dd45e567fad1@intel.com>
+Date: Tue, 28 Jan 2020 13:37:37 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.2.2
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?b?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Date: Tue, 28 Jan 2020 21:04:46 -0000
-Message-ID: <158024548685.20536.5658517515830252508@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200128144501.3714-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20200128144501.3714-1-ville.syrjala@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5B1/2=5D_drm/i915=3A_Nuke_pre-production_GLK?=
- =?utf-8?q?_HDMI_w/a_1139?=
+In-Reply-To: <20200128204318.4182039-4-chris@chris-wilson.co.uk>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH 4/5] drm/i915/gt: Rename lrc.c to
+ execlists_submission.c
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,148 +46,83 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
-
-Series: series starting with [1/2] drm/i915: Nuke pre-production GLK HDMI w/a 1139
-URL   : https://patchwork.freedesktop.org/series/72668/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_7833 -> Patchwork_16296
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16296/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_16296 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_exec_parallel@fds:
-    - fi-byt-n2820:       [PASS][1] -> [TIMEOUT][2] ([fdo#112271])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7833/fi-byt-n2820/igt@gem_exec_parallel@fds.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16296/fi-byt-n2820/igt@gem_exec_parallel@fds.html
-
-  * igt@i915_selftest@live_gem_contexts:
-    - fi-cfl-8700k:       [PASS][3] -> [INCOMPLETE][4] ([i915#424])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7833/fi-cfl-8700k/igt@i915_selftest@live_gem_contexts.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16296/fi-cfl-8700k/igt@i915_selftest@live_gem_contexts.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_close_race@basic-threads:
-    - fi-hsw-peppy:       [INCOMPLETE][5] ([i915#816]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7833/fi-hsw-peppy/igt@gem_close_race@basic-threads.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16296/fi-hsw-peppy/igt@gem_close_race@basic-threads.html
-    - fi-byt-j1900:       [INCOMPLETE][7] ([i915#45]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7833/fi-byt-j1900/igt@gem_close_race@basic-threads.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16296/fi-byt-j1900/igt@gem_close_race@basic-threads.html
-
-  * igt@gem_exec_suspend@basic-s3:
-    - fi-icl-u2:          [FAIL][9] ([fdo#103375]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7833/fi-icl-u2/igt@gem_exec_suspend@basic-s3.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16296/fi-icl-u2/igt@gem_exec_suspend@basic-s3.html
-
-  * igt@gem_exec_suspend@basic-s4-devices:
-    - fi-icl-u2:          [FAIL][11] ([fdo#111550]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7833/fi-icl-u2/igt@gem_exec_suspend@basic-s4-devices.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16296/fi-icl-u2/igt@gem_exec_suspend@basic-s4-devices.html
-
-  * igt@i915_selftest@live_blt:
-    - fi-hsw-4770r:       [DMESG-FAIL][13] ([i915#563]) -> [PASS][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7833/fi-hsw-4770r/igt@i915_selftest@live_blt.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16296/fi-hsw-4770r/igt@i915_selftest@live_blt.html
-
-  * igt@i915_selftest@live_gem_contexts:
-    - fi-icl-guc:         [INCOMPLETE][15] ([i915#140]) -> [PASS][16]
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7833/fi-icl-guc/igt@i915_selftest@live_gem_contexts.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16296/fi-icl-guc/igt@i915_selftest@live_gem_contexts.html
-
-  
-#### Warnings ####
-
-  * igt@gem_exec_parallel@contexts:
-    - fi-byt-n2820:       [TIMEOUT][17] ([fdo#112271]) -> [FAIL][18] ([i915#694])
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7833/fi-byt-n2820/igt@gem_exec_parallel@contexts.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16296/fi-byt-n2820/igt@gem_exec_parallel@contexts.html
-
-  * igt@i915_pm_rpm@basic-rte:
-    - fi-kbl-guc:         [FAIL][19] ([i915#579]) -> [SKIP][20] ([fdo#109271])
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7833/fi-kbl-guc/igt@i915_pm_rpm@basic-rte.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16296/fi-kbl-guc/igt@i915_pm_rpm@basic-rte.html
-
-  * igt@kms_chamelium@common-hpd-after-suspend:
-    - fi-icl-u2:          [FAIL][21] ([fdo#103375]) -> [DMESG-WARN][22] ([IGT#4] / [i915#263])
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7833/fi-icl-u2/igt@kms_chamelium@common-hpd-after-suspend.html
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16296/fi-icl-u2/igt@kms_chamelium@common-hpd-after-suspend.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [IGT#4]: https://gitlab.freedesktop.org/drm/igt-gpu-tools/issues/4
-  [fdo#103375]: https://bugs.freedesktop.org/show_bug.cgi?id=103375
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#111550]: https://bugs.freedesktop.org/show_bug.cgi?id=111550
-  [fdo#112271]: https://bugs.freedesktop.org/show_bug.cgi?id=112271
-  [i915#140]: https://gitlab.freedesktop.org/drm/intel/issues/140
-  [i915#263]: https://gitlab.freedesktop.org/drm/intel/issues/263
-  [i915#424]: https://gitlab.freedesktop.org/drm/intel/issues/424
-  [i915#45]: https://gitlab.freedesktop.org/drm/intel/issues/45
-  [i915#563]: https://gitlab.freedesktop.org/drm/intel/issues/563
-  [i915#579]: https://gitlab.freedesktop.org/drm/intel/issues/579
-  [i915#694]: https://gitlab.freedesktop.org/drm/intel/issues/694
-  [i915#816]: https://gitlab.freedesktop.org/drm/intel/issues/816
-  [i915#937]: https://gitlab.freedesktop.org/drm/intel/issues/937
 
 
-Participating hosts (50 -> 43)
-------------------------------
+On 1/28/20 12:43 PM, Chris Wilson wrote:
+> We want to separate the utility functions for controlling the logical
+> ring context from the execlists submission mechanism (which is an
+> overgrown scheduler).
+> 
+> This is similar to Daniele's work to split up the files, but being
+> selfish I wanted to base it after my own changes to intel_lrc.c petered
+> out.
+> 
 
-  Additional (1): fi-snb-2520m 
-  Missing    (8): fi-ilk-m540 fi-byt-squawks fi-bsw-cyan fi-kbl-7500u fi-ctg-p8600 fi-kbl-7560u fi-byt-clapper fi-bdw-samus 
+Considering patch 5 as well, IMO we need gt/intel_execlists_submission.h 
+as well, with the aim of not including that from any of the GuC files 
+once we're done with adding the GuC version of the functions
+I think it'd be easier to rename lrc.h to execlists_submission.h in this 
+patch (grep says it's only included in 3 places), then split it in the 
+next patch and use the appropriate one when you move the include from 
+drv.h to the specific files.
 
+Daniele
 
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_7833 -> Patchwork_16296
-
-  CI-20190529: 20190529
-  CI_DRM_7833: 8210f0f999e2d396a8611e0cabc2f6c6a52468de @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5394: 991fd07bcd7add7a5beca2c95b72a994e62fbb75 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_16296: 53657e6bd9b52cc32593ecf527ebb1f7dcf5b187 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-53657e6bd9b5 drm/i915: Limit display Wa_1405510057 to gen11
-b2efa4aa220f drm/i915: Nuke pre-production GLK HDMI w/a 1139
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16296/index.html
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> ---
+>   drivers/gpu/drm/i915/Makefile                                   | 2 +-
+>   .../drm/i915/gt/{intel_lrc.c => intel_execlists_submission.c}   | 2 +-
+>   .../gpu/drm/i915/gt/{selftest_lrc.c => selftest_execlists.c}    | 0
+>   3 files changed, 2 insertions(+), 2 deletions(-)
+>   rename drivers/gpu/drm/i915/gt/{intel_lrc.c => intel_execlists_submission.c} (99%)
+>   rename drivers/gpu/drm/i915/gt/{selftest_lrc.c => selftest_execlists.c} (100%)
+> 
+> diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
+> index 3c88d7d8c764..58b0e86c71f7 100644
+> --- a/drivers/gpu/drm/i915/Makefile
+> +++ b/drivers/gpu/drm/i915/Makefile
+> @@ -86,6 +86,7 @@ gt-y += \
+>   	gt/intel_engine_pm.o \
+>   	gt/intel_engine_pool.o \
+>   	gt/intel_engine_user.o \
+> +	gt/intel_execlists_submission.o \
+>   	gt/intel_ggtt.o \
+>   	gt/intel_gt.o \
+>   	gt/intel_gt_irq.o \
+> @@ -94,7 +95,6 @@ gt-y += \
+>   	gt/intel_gt_requests.o \
+>   	gt/intel_gtt.o \
+>   	gt/intel_llc.o \
+> -	gt/intel_lrc.o \
+>   	gt/intel_mocs.o \
+>   	gt/intel_ppgtt.o \
+>   	gt/intel_rc6.o \
+> diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+> similarity index 99%
+> rename from drivers/gpu/drm/i915/gt/intel_lrc.c
+> rename to drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+> index 5b14f5bae68a..aa67561fee53 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+> @@ -5290,5 +5290,5 @@ intel_engine_in_execlists_submission_mode(const struct intel_engine_cs *engine)
+>   }
+>   
+>   #if IS_ENABLED(CONFIG_DRM_I915_SELFTEST)
+> -#include "selftest_lrc.c"
+> +#include "selftest_execlists.c"
+>   #endif
+> diff --git a/drivers/gpu/drm/i915/gt/selftest_lrc.c b/drivers/gpu/drm/i915/gt/selftest_execlists.c
+> similarity index 100%
+> rename from drivers/gpu/drm/i915/gt/selftest_lrc.c
+> rename to drivers/gpu/drm/i915/gt/selftest_execlists.c
+> 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
