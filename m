@@ -2,37 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5018E14BD48
-	for <lists+intel-gfx@lfdr.de>; Tue, 28 Jan 2020 16:52:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D16014BD82
+	for <lists+intel-gfx@lfdr.de>; Tue, 28 Jan 2020 17:15:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9CD416EE91;
-	Tue, 28 Jan 2020 15:52:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E9D4E6EEA6;
+	Tue, 28 Jan 2020 16:15:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 940A26EE91
- for <intel-gfx@lists.freedesktop.org>; Tue, 28 Jan 2020 15:52:12 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4778A6E0CA;
+ Tue, 28 Jan 2020 16:15:43 +0000 (UTC)
+X-Amp-Result: UNSCANNABLE
 X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 28 Jan 2020 07:52:08 -0800
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 28 Jan 2020 08:15:39 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,374,1574150400"; d="scan'208";a="217645751"
+X-IronPort-AV: E=Sophos;i="5.70,374,1574150400"; d="scan'208";a="277224115"
 Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by orsmga007.jf.intel.com with SMTP; 28 Jan 2020 07:52:06 -0800
+ by FMSMGA003.fm.intel.com with SMTP; 28 Jan 2020 08:15:36 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 28 Jan 2020 17:52:03 +0200
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 28 Jan 2020 17:51:52 +0200
-Message-Id: <20200128155152.21977-4-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.24.1
-In-Reply-To: <20200128155152.21977-1-ville.syrjala@linux.intel.com>
-References: <20200128155152.21977-1-ville.syrjala@linux.intel.com>
+ Tue, 28 Jan 2020 18:15:36 +0200
+Date: Tue, 28 Jan 2020 18:15:36 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Daniel Vetter <daniel@ffwll.ch>
+Message-ID: <20200128161536.GL13686@intel.com>
+References: <20200124200231.10517-1-ville.syrjala@linux.intel.com>
+ <20200128151758.GI43062@phenom.ffwll.local>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v2 4/4] drm/i915: Add glk to
- intel_detect_preproduction_hw()
+Content-Disposition: inline
+In-Reply-To: <20200128151758.GI43062@phenom.ffwll.local>
+X-Patchwork-Hint: comment
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH 1/8] drm/edid: Check the number of detailed
+ timing descriptors in the CEA ext block
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,37 +48,49 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Allen Chen <allen.chen@ite.com.tw>, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-RnJvbTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KCkRl
-dGVjdCBHTEsgcHJlLXByb2R1Y3Rpb24gc3RlcHBpbmdzLiBOb3QgMTAwJSBvZiBBMiBiZWluZyBw
-cmUtcHJvZApzaW5jZSB0aGUgc3BlYyBpcyBhIGJpdCBvZiBhIG1lc3MgYnV0IGZlZWxzIG1vcmUg
-b3IgbGVzcyBjb3JyZWN0LgoKU3VnZ2VzdGVkLWJ5OiBDaHJpcyBXaWxzb24gPGNocmlzQGNocmlz
-LXdpbHNvbi5jby51az4KU2lnbmVkLW9mZi1ieTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJq
-YWxhQGxpbnV4LmludGVsLmNvbT4KLS0tCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2Rydi5j
-IHwgMSArCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2Rydi5oIHwgMiArKwogMiBmaWxlcyBj
-aGFuZ2VkLCAzIGluc2VydGlvbnMoKykKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkx
-NS9pOTE1X2Rydi5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9kcnYuYwppbmRleCA1YTU4
-NDZkODkyZjQuLmQ4OWQ1NGY1NTkzYyAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUv
-aTkxNV9kcnYuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2Rydi5jCkBAIC00Mzgs
-NiArNDM4LDcgQEAgc3RhdGljIHZvaWQgaW50ZWxfZGV0ZWN0X3ByZXByb2R1Y3Rpb25faHcoc3Ry
-dWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2KQogCXByZSB8PSBJU19TS0xfUkVWSUQoZGV2
-X3ByaXYsIDAsIFNLTF9SRVZJRF9GMCk7CiAJcHJlIHw9IElTX0JYVF9SRVZJRChkZXZfcHJpdiwg
-MCwgQlhUX1JFVklEX0JfTEFTVCk7CiAJcHJlIHw9IElTX0tCTF9SRVZJRChkZXZfcHJpdiwgMCwg
-S0JMX1JFVklEX0EwKTsKKwlwcmUgfD0gSVNfR0xLX1JFVklEKGRldl9wcml2LCAwLCBHTEtfUkVW
-SURfQTIpOwogCiAJaWYgKHByZSkgewogCQlEUk1fRVJST1IoIlRoaXMgaXMgYSBwcmUtcHJvZHVj
-dGlvbiBzdGVwcGluZy4gIgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9k
-cnYuaCBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZHJ2LmgKaW5kZXggYThhMDhjNjMyNzhl
-Li5kNjJiNTdiYTBjZWQgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZHJ2
-LmgKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9kcnYuaApAQCAtMTU3OCw2ICsxNTc4
-LDggQEAgSVNfU1VCUExBVEZPUk0oY29uc3Qgc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmk5MTUs
-CiAKICNkZWZpbmUgR0xLX1JFVklEX0EwCQkweDAKICNkZWZpbmUgR0xLX1JFVklEX0ExCQkweDEK
-KyNkZWZpbmUgR0xLX1JFVklEX0EyCQkweDIKKyNkZWZpbmUgR0xLX1JFVklEX0IwCQkweDMKIAog
-I2RlZmluZSBJU19HTEtfUkVWSUQoZGV2X3ByaXYsIHNpbmNlLCB1bnRpbCkgXAogCShJU19HRU1J
-TklMQUtFKGRldl9wcml2KSAmJiBJU19SRVZJRChkZXZfcHJpdiwgc2luY2UsIHVudGlsKSkKLS0g
-CjIuMjQuMQoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18K
-SW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0
-dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+On Tue, Jan 28, 2020 at 04:17:58PM +0100, Daniel Vetter wrote:
+> On Fri, Jan 24, 2020 at 10:02:24PM +0200, Ville Syrjala wrote:
+> > From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > =
+
+> > CEA-861 says :
+> > "d =3D offset for the byte following the reserved data block.
+> >  If no data is provided in the reserved data block, then d=3D4.
+> >  If no DTDs are provided, then d=3D0."
+> > =
+
+> > So let's not look for DTDs when d=3D=3D0. In fact let's just make that
+> > <4 since those values would just mean that he DTDs overlap the block
+> > header. And let's also check that d isn't so big as to declare
+> > the descriptors to live past the block end, although the code
+> > does already survive that case as we'd just end up with a negative
+> > number of descriptors and the loop would not do anything.
+> > =
+
+> > Cc: Allen Chen <allen.chen@ite.com.tw>
+> > Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> =
+
+> Hm I think edid parsing is like the perfect use-case for some in-kernel
+> unit tests ... In case anyone feels motivated?
+
+Another idea I've been putting off is simply shoving the parser into
+userspace. Kinda looks like with fork_usermode_blob() we could embed
+the executable into the kernel/module and thus avoid the problem of
+actually shipping the binary somehow.
+
+-- =
+
+Ville Syrj=E4l=E4
+Intel
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
