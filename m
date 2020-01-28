@@ -2,38 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BDF9314C2A1
-	for <lists+intel-gfx@lfdr.de>; Tue, 28 Jan 2020 23:12:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E2AE114C2AD
+	for <lists+intel-gfx@lfdr.de>; Tue, 28 Jan 2020 23:14:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B98A488A36;
-	Tue, 28 Jan 2020 22:12:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4BE0D6E13B;
+	Tue, 28 Jan 2020 22:13:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 44C436E13A
- for <intel-gfx@lists.freedesktop.org>; Tue, 28 Jan 2020 22:12:40 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-X-Amp-File-Uploaded: False
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 28 Jan 2020 14:12:39 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,375,1574150400"; d="scan'208";a="376577918"
-Received: from mdroper-desk1.fm.intel.com (HELO
- mdroper-desk1.amr.corp.intel.com) ([10.1.27.64])
- by orsmga004.jf.intel.com with ESMTP; 28 Jan 2020 14:12:39 -0800
-Date: Tue, 28 Jan 2020 14:12:39 -0800
-From: Matt Roper <matthew.d.roper@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Message-ID: <20200128221239.GF22783@mdroper-desk1.amr.corp.intel.com>
-References: <20200124225922.644673-1-matthew.d.roper@intel.com>
- <20200127205057.831198-1-matthew.d.roper@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 6D85D6E13A;
+ Tue, 28 Jan 2020 22:13:58 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 65A0BA0094;
+ Tue, 28 Jan 2020 22:13:58 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200127205057.831198-1-matthew.d.roper@intel.com>
-Subject: Re: [Intel-gfx] [RFC v3] drm/i915/tgl: Suppress DC5/DC6 around DSB
- usage
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Tue, 28 Jan 2020 22:13:58 -0000
+Message-ID: <158024963841.20536.10891933026568669124@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200128151647.3820659-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200128151647.3820659-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/trace=3A_i915=5Frequest=2Eprio_is_a_signed_value?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,172 +38,125 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Jan 27, 2020 at 12:50:57PM -0800, Matt Roper wrote:
-> There are reports of unexpected DSB busy/timeout happening after IGT
-> tests finish running that apparently go away when the DMC firmware isn't
-> loaded.  The bspec doesn't say anything specific about DSB needing us to
-> exit DC5/DC6, but let's try adding DSB usage to the "DC off" list and
-> see if that changes the behavior.
-> =
+== Series Details ==
 
-> v2: Include intel_wakeref.h from intel_dsb.h to ensure the header stays
->     self-contained.  (CI)
-> =
+Series: drm/i915/trace: i915_request.prio is a signed value
+URL   : https://patchwork.freedesktop.org/series/72671/
+State : success
 
-> v3: Move intel_display_power_get() call earlier to cover cases where
->     dsb->refcount is already non-zero and we return early.  Also don't
->     drop the wakeref at the end of the 'get' routine; wait until the
->     'put' for that, even in error conditions.  (Swati)
-> =
+== Summary ==
 
-> Cc: Swati Sharma <swati2.sharma@intel.com>
-> Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
-> Reviewed-by(v1): Jos=E9 Roberto de Souza <jose.souza@intel.com>
+CI Bug Log - changes from CI_DRM_7833 -> Patchwork_16298
+====================================================
 
-Sounds like this did not fix DSB failures being seen, so DC states don't
-appear to be the culprit; we can disregard this patch.  More
-investigation will be necessary to track down the true root cause.
+Summary
+-------
 
+  **SUCCESS**
 
-Matt
+  No regressions found.
 
-> ---
->  drivers/gpu/drm/i915/display/intel_display_power.c |  3 +++
->  drivers/gpu/drm/i915/display/intel_display_power.h |  1 +
->  drivers/gpu/drm/i915/display/intel_dsb.c           | 10 ++++------
->  drivers/gpu/drm/i915/display/intel_dsb.h           |  2 ++
->  4 files changed, 10 insertions(+), 6 deletions(-)
-> =
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16298/index.html
 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers=
-/gpu/drm/i915/display/intel_display_power.c
-> index 761be9fcaf10..99e6afda2db9 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_power.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
-> @@ -150,6 +150,8 @@ intel_display_power_domain_str(enum intel_display_pow=
-er_domain domain)
->  		return "GT_IRQ";
->  	case POWER_DOMAIN_DPLL_DC_OFF:
->  		return "DPLL_DC_OFF";
-> +	case POWER_DOMAIN_DSB:
-> +		return "DSB";
->  	default:
->  		MISSING_CASE(domain);
->  		return "?";
-> @@ -2679,6 +2681,7 @@ void intel_display_power_put(struct drm_i915_privat=
-e *dev_priv,
->  	BIT_ULL(POWER_DOMAIN_AUX_A) |			\
->  	BIT_ULL(POWER_DOMAIN_AUX_B) |			\
->  	BIT_ULL(POWER_DOMAIN_AUX_C) |			\
-> +	BIT_ULL(POWER_DOMAIN_DSB) |			\
->  	BIT_ULL(POWER_DOMAIN_INIT))
->  =
+Known issues
+------------
 
->  #define TGL_DDI_IO_D_TC1_POWER_DOMAINS (	\
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_power.h b/drivers=
-/gpu/drm/i915/display/intel_display_power.h
-> index 2608a65af7fa..5e8136c65e02 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_power.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_power.h
-> @@ -77,6 +77,7 @@ enum intel_display_power_domain {
->  	POWER_DOMAIN_GT_IRQ,
->  	POWER_DOMAIN_DPLL_DC_OFF,
->  	POWER_DOMAIN_INIT,
-> +	POWER_DOMAIN_DSB,
->  =
+  Here are the changes found in Patchwork_16298 that come from known issues:
 
->  	POWER_DOMAIN_NUM,
->  };
-> diff --git a/drivers/gpu/drm/i915/display/intel_dsb.c b/drivers/gpu/drm/i=
-915/display/intel_dsb.c
-> index ada006a690df..b47c31fa2551 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dsb.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dsb.c
-> @@ -103,16 +103,15 @@ intel_dsb_get(struct intel_crtc *crtc)
->  	struct drm_i915_gem_object *obj;
->  	struct i915_vma *vma;
->  	u32 *buf;
-> -	intel_wakeref_t wakeref;
->  =
+### IGT changes ###
 
->  	if (!HAS_DSB(i915))
->  		return dsb;
->  =
+#### Issues hit ####
 
-> +	dsb->wakeref =3D intel_display_power_get(i915, POWER_DOMAIN_DSB);
-> +
->  	if (dsb->refcount++ !=3D 0)
->  		return dsb;
->  =
+  * igt@i915_selftest@live_blt:
+    - fi-byt-n2820:       [PASS][1] -> [DMESG-FAIL][2] ([i915#725])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7833/fi-byt-n2820/igt@i915_selftest@live_blt.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16298/fi-byt-n2820/igt@i915_selftest@live_blt.html
 
-> -	wakeref =3D intel_runtime_pm_get(&i915->runtime_pm);
-> -
->  	obj =3D i915_gem_object_create_internal(i915, DSB_BUF_SIZE);
->  	if (IS_ERR(obj)) {
->  		DRM_ERROR("Gem object creation failed\n");
-> @@ -143,9 +142,6 @@ intel_dsb_get(struct intel_crtc *crtc)
->  	 * corresponding intel_dsb_put(): the important error message will
->  	 * already be logged above.
->  	 */
-> -
-> -	intel_runtime_pm_put(&i915->runtime_pm, wakeref);
-> -
->  	return dsb;
->  }
->  =
+  
+#### Possible fixes ####
 
-> @@ -174,6 +170,8 @@ void intel_dsb_put(struct intel_dsb *dsb)
->  		dsb->free_pos =3D 0;
->  		dsb->ins_start_offset =3D 0;
->  	}
-> +
-> +	intel_display_power_put(i915, POWER_DOMAIN_DSB, dsb->wakeref);
->  }
->  =
+  * igt@gem_close_race@basic-threads:
+    - fi-hsw-peppy:       [INCOMPLETE][3] ([i915#816]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7833/fi-hsw-peppy/igt@gem_close_race@basic-threads.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16298/fi-hsw-peppy/igt@gem_close_race@basic-threads.html
+    - fi-byt-j1900:       [INCOMPLETE][5] ([i915#45]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7833/fi-byt-j1900/igt@gem_close_race@basic-threads.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16298/fi-byt-j1900/igt@gem_close_race@basic-threads.html
 
->  /**
-> diff --git a/drivers/gpu/drm/i915/display/intel_dsb.h b/drivers/gpu/drm/i=
-915/display/intel_dsb.h
-> index 395ef9ce558e..ffb5afa935b7 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dsb.h
-> +++ b/drivers/gpu/drm/i915/display/intel_dsb.h
-> @@ -9,6 +9,7 @@
->  #include <linux/types.h>
->  =
+  * igt@gem_exec_suspend@basic-s3:
+    - fi-icl-u2:          [FAIL][7] ([fdo#103375]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7833/fi-icl-u2/igt@gem_exec_suspend@basic-s3.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16298/fi-icl-u2/igt@gem_exec_suspend@basic-s3.html
 
->  #include "i915_reg.h"
-> +#include "intel_wakeref.h"
->  =
+  * igt@gem_exec_suspend@basic-s4-devices:
+    - fi-icl-u2:          [FAIL][9] ([fdo#111550]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7833/fi-icl-u2/igt@gem_exec_suspend@basic-s4-devices.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16298/fi-icl-u2/igt@gem_exec_suspend@basic-s4-devices.html
 
->  struct intel_crtc;
->  struct i915_vma;
-> @@ -26,6 +27,7 @@ struct intel_dsb {
->  	enum dsb_id id;
->  	u32 *cmd_buf;
->  	struct i915_vma *vma;
-> +	intel_wakeref_t wakeref;
->  =
+  * igt@i915_selftest@live_gem_contexts:
+    - fi-icl-guc:         [INCOMPLETE][11] ([i915#140]) -> [PASS][12]
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7833/fi-icl-guc/igt@i915_selftest@live_gem_contexts.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16298/fi-icl-guc/igt@i915_selftest@live_gem_contexts.html
 
->  	/*
->  	 * free_pos will point the first free entry position
-> -- =
+  
+#### Warnings ####
 
-> 2.23.0
-> =
+  * igt@gem_exec_parallel@contexts:
+    - fi-byt-n2820:       [TIMEOUT][13] ([fdo#112271]) -> [FAIL][14] ([i915#694])
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7833/fi-byt-n2820/igt@gem_exec_parallel@contexts.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16298/fi-byt-n2820/igt@gem_exec_parallel@contexts.html
+
+  * igt@kms_chamelium@common-hpd-after-suspend:
+    - fi-icl-u2:          [FAIL][15] ([fdo#103375]) -> [DMESG-WARN][16] ([IGT#4] / [i915#263])
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7833/fi-icl-u2/igt@kms_chamelium@common-hpd-after-suspend.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16298/fi-icl-u2/igt@kms_chamelium@common-hpd-after-suspend.html
+
+  
+  [IGT#4]: https://gitlab.freedesktop.org/drm/igt-gpu-tools/issues/4
+  [fdo#103375]: https://bugs.freedesktop.org/show_bug.cgi?id=103375
+  [fdo#111550]: https://bugs.freedesktop.org/show_bug.cgi?id=111550
+  [fdo#112271]: https://bugs.freedesktop.org/show_bug.cgi?id=112271
+  [i915#140]: https://gitlab.freedesktop.org/drm/intel/issues/140
+  [i915#263]: https://gitlab.freedesktop.org/drm/intel/issues/263
+  [i915#45]: https://gitlab.freedesktop.org/drm/intel/issues/45
+  [i915#694]: https://gitlab.freedesktop.org/drm/intel/issues/694
+  [i915#725]: https://gitlab.freedesktop.org/drm/intel/issues/725
+  [i915#816]: https://gitlab.freedesktop.org/drm/intel/issues/816
 
 
--- =
+Participating hosts (50 -> 42)
+------------------------------
 
-Matt Roper
-Graphics Software Engineer
-VTT-OSGC Platform Enablement
-Intel Corporation
-(916) 356-2795
+  Additional (1): fi-snb-2520m 
+  Missing    (9): fi-ilk-m540 fi-byt-squawks fi-bsw-cyan fi-kbl-7500u fi-ctg-p8600 fi-kbl-7560u fi-byt-clapper fi-bsw-nick fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_7833 -> Patchwork_16298
+
+  CI-20190529: 20190529
+  CI_DRM_7833: 8210f0f999e2d396a8611e0cabc2f6c6a52468de @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5394: 991fd07bcd7add7a5beca2c95b72a994e62fbb75 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_16298: 0509c2fd64f8eb8f0e09b4ea8c54c3298d7d5364 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+0509c2fd64f8 drm/i915/trace: i915_request.prio is a signed value
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16298/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
