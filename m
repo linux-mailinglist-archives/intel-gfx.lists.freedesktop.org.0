@@ -1,40 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B5E114ACD7
-	for <lists+intel-gfx@lfdr.de>; Tue, 28 Jan 2020 00:57:44 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4493914AD4C
+	for <lists+intel-gfx@lfdr.de>; Tue, 28 Jan 2020 01:40:49 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BDCA66EC2B;
-	Mon, 27 Jan 2020 23:57:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3F4E26EC3D;
+	Tue, 28 Jan 2020 00:40:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 04B1A6EC34
- for <intel-gfx@lists.freedesktop.org>; Mon, 27 Jan 2020 23:57:36 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by orsmga105.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 27 Jan 2020 15:57:36 -0800
-X-IronPort-AV: E=Sophos;i="5.70,371,1574150400"; d="scan'208";a="429173605"
-Received: from unknown (HELO [10.1.27.35]) ([10.1.27.35])
- by fmsmga006-auth.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-SHA;
- 27 Jan 2020 15:57:36 -0800
-To: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
- intel-gfx@lists.freedesktop.org
-References: <20200115013143.34961-1-daniele.ceraolospurio@intel.com>
- <20200115013143.34961-5-daniele.ceraolospurio@intel.com>
-From: Fernando Pacheco <fernando.pacheco@intel.com>
-Message-ID: <9978b9bc-38fa-5d97-b078-a1d5bd490632@intel.com>
-Date: Mon, 27 Jan 2020 15:57:36 -0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.4.1
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id E2C956EC3D;
+ Tue, 28 Jan 2020 00:40:45 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id D9DF3A0088;
+ Tue, 28 Jan 2020 00:40:45 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <20200115013143.34961-5-daniele.ceraolospurio@intel.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH 4/7] drm/i915/uc: Abort early on uc_init
- failure
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Manasi Navare" <manasi.d.navare@intel.com>
+Date: Tue, 28 Jan 2020 00:40:45 -0000
+Message-ID: <158017204586.20535.16401929460824439216@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200124235440.15974-1-manasi.d.navare@intel.com>
+In-Reply-To: <20200124235440.15974-1-manasi.d.navare@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/dp=3A_Modeset_only_the_tiled_connectors_with_CRTC_=28rev2?=
+ =?utf-8?q?=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,155 +39,105 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+== Series Details ==
 
-On 1/14/20 5:31 PM, Daniele Ceraolo Spurio wrote:
-> Now that we can differentiate wants vs uses GuC/HuC, intel_uc_init is
-> restricted to running only if we have successfully fetched the required
-> blob(s) and are committed to using the microcontroller(s).
-> The only remaining thing that can go wrong in uc_init is the allocation
-> of GuC/HuC related objects; if we get such a failure better to bail out
-> immediately instead of wedging later, like we do for e.g.
-> intel_engines_init, since without objects we can't use the HW, including
-> not being able to attempt the firmware load.
->
-> While at it, remove the unneeded fw_cleanup call (this is handled
-> outside of gt_init) and add a probe failure injection point for testing.
-> Also, update the logs for <g/h>uc_init failures to probe_failure() since
-> they will cause the driver load to fail.
+Series: drm/i915/dp: Modeset only the tiled connectors with CRTC (rev2)
+URL   : https://patchwork.freedesktop.org/series/72559/
+State : success
 
-Reviewed-by: Fernando Pacheco <fernando.pacheco@intel.com>
+== Summary ==
 
->
-> Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-> Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-> Cc: John Harrison <John.C.Harrison@Intel.com>
-> Cc: Matthew Brost <matthew.brost@intel.com>
-> ---
->  drivers/gpu/drm/i915/gt/intel_gt.c     |  4 +++-
->  drivers/gpu/drm/i915/gt/uc/intel_guc.c |  2 +-
->  drivers/gpu/drm/i915/gt/uc/intel_huc.c |  2 +-
->  drivers/gpu/drm/i915/gt/uc/intel_uc.c  | 24 +++++++++++++++++-------
->  drivers/gpu/drm/i915/gt/uc/intel_uc.h  |  4 ++--
->  5 files changed, 24 insertions(+), 12 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c b/drivers/gpu/drm/i915/gt/intel_gt.c
-> index da2b6e2ae692..85f21f18c785 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_gt.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_gt.c
-> @@ -584,7 +584,9 @@ int intel_gt_init(struct intel_gt *gt)
->  	if (err)
->  		goto err_engines;
->  
-> -	intel_uc_init(&gt->uc);
-> +	err = intel_uc_init(&gt->uc);
-> +	if (err)
-> +		goto err_engines;
->  
->  	err = intel_gt_resume(gt);
->  	if (err)
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc.c b/drivers/gpu/drm/i915/gt/uc/intel_guc.c
-> index 5d00a3b2d914..c46f5ae77348 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc.c
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.c
-> @@ -376,7 +376,7 @@ int intel_guc_init(struct intel_guc *guc)
->  	intel_uc_fw_fini(&guc->fw);
->  err_fetch:
->  	intel_uc_fw_cleanup_fetch(&guc->fw);
-> -	DRM_DEV_DEBUG_DRIVER(gt->i915->drm.dev, "failed with %d\n", ret);
-> +	i915_probe_error(gt->i915, "failed with %d\n", ret);
->  	return ret;
->  }
->  
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_huc.c b/drivers/gpu/drm/i915/gt/uc/intel_huc.c
-> index 32a069841c14..5f448d0e360b 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_huc.c
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_huc.c
-> @@ -127,7 +127,7 @@ int intel_huc_init(struct intel_huc *huc)
->  	intel_uc_fw_fini(&huc->fw);
->  out:
->  	intel_uc_fw_cleanup_fetch(&huc->fw);
-> -	DRM_DEV_DEBUG_DRIVER(i915->drm.dev, "failed with %d\n", err);
-> +	i915_probe_error(i915, "failed with %d\n", err);
->  	return err;
->  }
->  
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc.c b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
-> index 8843d4f16a7f..d57b731952ef 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_uc.c
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
-> @@ -273,7 +273,7 @@ static void __uc_cleanup_firmwares(struct intel_uc *uc)
->  	intel_uc_fw_cleanup_fetch(&uc->guc.fw);
->  }
->  
-> -static void __uc_init(struct intel_uc *uc)
-> +static int __uc_init(struct intel_uc *uc)
->  {
->  	struct intel_guc *guc = &uc->guc;
->  	struct intel_huc *huc = &uc->huc;
-> @@ -282,19 +282,29 @@ static void __uc_init(struct intel_uc *uc)
->  	GEM_BUG_ON(!intel_uc_wants_guc(uc));
->  
->  	if (!intel_uc_uses_guc(uc))
-> -		return;
-> +		return 0;
-> +
-> +	if (i915_inject_probe_failure(uc_to_gt(uc)->i915))
-> +		return -ENOMEM;
->  
->  	/* XXX: GuC submission is unavailable for now */
->  	GEM_BUG_ON(intel_uc_supports_guc_submission(uc));
->  
->  	ret = intel_guc_init(guc);
-> -	if (ret) {
-> -		intel_uc_fw_cleanup_fetch(&huc->fw);
-> -		return;
-> +	if (ret)
-> +		return ret;
-> +
-> +	if (intel_uc_uses_huc(uc)) {
-> +		ret = intel_huc_init(huc);
-> +		if (ret)
-> +			goto out_guc;
->  	}
->  
-> -	if (intel_uc_uses_huc(uc))
-> -		intel_huc_init(huc);
-> +	return 0;
-> +
-> +out_guc:
-> +	intel_guc_fini(guc);
-> +	return ret;
->  }
->  
->  static void __uc_fini(struct intel_uc *uc)
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc.h b/drivers/gpu/drm/i915/gt/uc/intel_uc.h
-> index f2f7351ff22a..2d9f17196761 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_uc.h
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_uc.h
-> @@ -16,7 +16,7 @@ struct intel_uc_ops {
->  	int (*sanitize)(struct intel_uc *uc);
->  	void (*init_fw)(struct intel_uc *uc);
->  	void (*fini_fw)(struct intel_uc *uc);
-> -	void (*init)(struct intel_uc *uc);
-> +	int (*init)(struct intel_uc *uc);
->  	void (*fini)(struct intel_uc *uc);
->  	int (*init_hw)(struct intel_uc *uc);
->  	void (*fini_hw)(struct intel_uc *uc);
-> @@ -98,7 +98,7 @@ static inline _TYPE intel_uc_##_NAME(struct intel_uc *uc) \
->  intel_uc_ops_function(sanitize, sanitize, int, 0);
->  intel_uc_ops_function(fetch_firmwares, init_fw, void, );
->  intel_uc_ops_function(cleanup_firmwares, fini_fw, void, );
-> -intel_uc_ops_function(init, init, void, );
-> +intel_uc_ops_function(init, init, int, 0);
->  intel_uc_ops_function(fini, fini, void, );
->  intel_uc_ops_function(init_hw, init_hw, int, 0);
->  intel_uc_ops_function(fini_hw, fini_hw, void, );
+CI Bug Log - changes from CI_DRM_7827 -> Patchwork_16281
+====================================================
 
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16281/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_16281 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-icl-guc:         [PASS][1] -> [DMESG-WARN][2] ([i915#109])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7827/fi-icl-guc/igt@i915_pm_rpm@module-reload.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16281/fi-icl-guc/igt@i915_pm_rpm@module-reload.html
+
+  * igt@i915_selftest@live_blt:
+    - fi-hsw-4770r:       [PASS][3] -> [DMESG-FAIL][4] ([i915#553] / [i915#725])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7827/fi-hsw-4770r/igt@i915_selftest@live_blt.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16281/fi-hsw-4770r/igt@i915_selftest@live_blt.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_close_race@basic-threads:
+    - fi-byt-n2820:       [INCOMPLETE][5] ([i915#45]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7827/fi-byt-n2820/igt@gem_close_race@basic-threads.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16281/fi-byt-n2820/igt@gem_close_race@basic-threads.html
+
+  * igt@i915_selftest@live_blt:
+    - fi-hsw-4770:        [DMESG-FAIL][7] ([i915#553] / [i915#725]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7827/fi-hsw-4770/igt@i915_selftest@live_blt.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16281/fi-hsw-4770/igt@i915_selftest@live_blt.html
+
+  * igt@i915_selftest@live_hangcheck:
+    - fi-icl-u3:          [INCOMPLETE][9] ([fdo#108569] / [i915#140]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7827/fi-icl-u3/igt@i915_selftest@live_hangcheck.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16281/fi-icl-u3/igt@i915_selftest@live_hangcheck.html
+
+  
+  [fdo#108569]: https://bugs.freedesktop.org/show_bug.cgi?id=108569
+  [i915#109]: https://gitlab.freedesktop.org/drm/intel/issues/109
+  [i915#140]: https://gitlab.freedesktop.org/drm/intel/issues/140
+  [i915#45]: https://gitlab.freedesktop.org/drm/intel/issues/45
+  [i915#553]: https://gitlab.freedesktop.org/drm/intel/issues/553
+  [i915#725]: https://gitlab.freedesktop.org/drm/intel/issues/725
+
+
+Participating hosts (46 -> 38)
+------------------------------
+
+  Additional (3): fi-cfl-8109u fi-gdg-551 fi-ivb-3770 
+  Missing    (11): fi-ilk-m540 fi-byt-j1900 fi-byt-squawks fi-bsw-cyan fi-cfl-8700k fi-cfl-guc fi-kbl-7500u fi-ctg-p8600 fi-kbl-7560u fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_7827 -> Patchwork_16281
+
+  CI-20190529: 20190529
+  CI_DRM_7827: c8969aeacfff681c83a800e82b0f18a6ab3e77ea @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5389: 966c58649dee31bb5bf2fad92f75ffd365968b81 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_16281: 37497c9a2541d7074ea72436475569bdaacd2bea @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+37497c9a2541 drm/i915/dp: Modeset only the tiled connectors with CRTC
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16281/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
