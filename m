@@ -2,29 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 47D4714C365
-	for <lists+intel-gfx@lfdr.de>; Wed, 29 Jan 2020 00:08:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6916F14C368
+	for <lists+intel-gfx@lfdr.de>; Wed, 29 Jan 2020 00:10:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1266C6F445;
-	Tue, 28 Jan 2020 23:08:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9E6226F446;
+	Tue, 28 Jan 2020 23:10:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7D4B46F445
- for <intel-gfx@lists.freedesktop.org>; Tue, 28 Jan 2020 23:08:05 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20041571-1500050 
- for multiple; Tue, 28 Jan 2020 23:07:43 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 28 Jan 2020 23:07:41 +0000
-Message-Id: <20200128230741.340859-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.25.0
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 16F876F446;
+ Tue, 28 Jan 2020 23:10:04 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 031E2A0118;
+ Tue, 28 Jan 2020 23:10:04 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/gt: Trim default context register
- state for gen9
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Date: Tue, 28 Jan 2020 23:10:03 -0000
+Message-ID: <158025300398.20534.1407155048114879909@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200128151942.2590-1-jani.nikula@intel.com>
+In-Reply-To: <20200128151942.2590-1-jani.nikula@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/debugfs=3A_remove_VBT_data_about_DRRS?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,143 +38,131 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Now that it appears we have tamed the mystery hang on module reload, we
-can relax some of the counter-measures we employed to help stabilise and
-debug gen9. As we have aggressive poisoning of the context image, we can
-confidently reduce the default context state in gen9 to match the limits
-of the ring regs as laid out on other platforms.
+== Series Details ==
 
-References: 9c6527116e8f ("drm/i915: Restore the kernel context after verifying the w/a")
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
----
- drivers/gpu/drm/i915/gt/intel_lrc.c | 98 +----------------------------
- 1 file changed, 2 insertions(+), 96 deletions(-)
+Series: drm/i915/debugfs: remove VBT data about DRRS
+URL   : https://patchwork.freedesktop.org/series/72672/
+State : success
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-index cf6c43bd540a..7470dad9afff 100644
---- a/drivers/gpu/drm/i915/gt/intel_lrc.c
-+++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-@@ -631,54 +631,7 @@ static const u8 gen9_xcs_offsets[] = {
- 	LRI(1, POSTED),
- 	REG16(0x200),
- 
--	NOP(13),
--	LRI(44, POSTED),
--	REG(0x028),
--	REG(0x09c),
--	REG(0x0c0),
--	REG(0x178),
--	REG(0x17c),
--	REG16(0x358),
--	REG(0x170),
--	REG(0x150),
--	REG(0x154),
--	REG(0x158),
--	REG16(0x41c),
--	REG16(0x600),
--	REG16(0x604),
--	REG16(0x608),
--	REG16(0x60c),
--	REG16(0x610),
--	REG16(0x614),
--	REG16(0x618),
--	REG16(0x61c),
--	REG16(0x620),
--	REG16(0x624),
--	REG16(0x628),
--	REG16(0x62c),
--	REG16(0x630),
--	REG16(0x634),
--	REG16(0x638),
--	REG16(0x63c),
--	REG16(0x640),
--	REG16(0x644),
--	REG16(0x648),
--	REG16(0x64c),
--	REG16(0x650),
--	REG16(0x654),
--	REG16(0x658),
--	REG16(0x65c),
--	REG16(0x660),
--	REG16(0x664),
--	REG16(0x668),
--	REG16(0x66c),
--	REG16(0x670),
--	REG16(0x674),
--	REG16(0x678),
--	REG16(0x67c),
--	REG(0x068),
--
--	END(176)
-+	END(80)
- };
- 
- static const u8 gen12_xcs_offsets[] = {
-@@ -784,54 +737,7 @@ static const u8 gen9_rcs_offsets[] = {
- 	LRI(1, 0),
- 	REG(0xc8),
- 
--	NOP(13),
--	LRI(44, POSTED),
--	REG(0x28),
--	REG(0x9c),
--	REG(0xc0),
--	REG(0x178),
--	REG(0x17c),
--	REG16(0x358),
--	REG(0x170),
--	REG(0x150),
--	REG(0x154),
--	REG(0x158),
--	REG16(0x41c),
--	REG16(0x600),
--	REG16(0x604),
--	REG16(0x608),
--	REG16(0x60c),
--	REG16(0x610),
--	REG16(0x614),
--	REG16(0x618),
--	REG16(0x61c),
--	REG16(0x620),
--	REG16(0x624),
--	REG16(0x628),
--	REG16(0x62c),
--	REG16(0x630),
--	REG16(0x634),
--	REG16(0x638),
--	REG16(0x63c),
--	REG16(0x640),
--	REG16(0x644),
--	REG16(0x648),
--	REG16(0x64c),
--	REG16(0x650),
--	REG16(0x654),
--	REG16(0x658),
--	REG16(0x65c),
--	REG16(0x660),
--	REG16(0x664),
--	REG16(0x668),
--	REG16(0x66c),
--	REG16(0x670),
--	REG16(0x674),
--	REG16(0x678),
--	REG16(0x67c),
--	REG(0x68),
--
--	END(176)
-+	END(80)
- };
- 
- static const u8 gen11_rcs_offsets[] = {
--- 
-2.25.0
+== Summary ==
 
+CI Bug Log - changes from CI_DRM_7833 -> Patchwork_16299
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16299/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_16299 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_exec_parallel@fds:
+    - fi-byt-n2820:       [PASS][1] -> [TIMEOUT][2] ([fdo#112271])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7833/fi-byt-n2820/igt@gem_exec_parallel@fds.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16299/fi-byt-n2820/igt@gem_exec_parallel@fds.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_exec_suspend@basic-s3:
+    - fi-icl-u2:          [FAIL][3] ([fdo#103375]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7833/fi-icl-u2/igt@gem_exec_suspend@basic-s3.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16299/fi-icl-u2/igt@gem_exec_suspend@basic-s3.html
+
+  * igt@gem_exec_suspend@basic-s4-devices:
+    - fi-icl-u2:          [FAIL][5] ([fdo#111550]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7833/fi-icl-u2/igt@gem_exec_suspend@basic-s4-devices.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16299/fi-icl-u2/igt@gem_exec_suspend@basic-s4-devices.html
+
+  * igt@i915_selftest@live_blt:
+    - fi-hsw-4770r:       [DMESG-FAIL][7] ([i915#563]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7833/fi-hsw-4770r/igt@i915_selftest@live_blt.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16299/fi-hsw-4770r/igt@i915_selftest@live_blt.html
+    - fi-hsw-4770:        [DMESG-FAIL][9] ([i915#725]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7833/fi-hsw-4770/igt@i915_selftest@live_blt.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16299/fi-hsw-4770/igt@i915_selftest@live_blt.html
+
+  * igt@i915_selftest@live_gem_contexts:
+    - fi-icl-guc:         [INCOMPLETE][11] ([i915#140]) -> [PASS][12]
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7833/fi-icl-guc/igt@i915_selftest@live_gem_contexts.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16299/fi-icl-guc/igt@i915_selftest@live_gem_contexts.html
+
+  
+#### Warnings ####
+
+  * igt@gem_exec_parallel@contexts:
+    - fi-byt-n2820:       [TIMEOUT][13] ([fdo#112271]) -> [FAIL][14] ([i915#694])
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7833/fi-byt-n2820/igt@gem_exec_parallel@contexts.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16299/fi-byt-n2820/igt@gem_exec_parallel@contexts.html
+
+  * igt@i915_pm_rpm@basic-rte:
+    - fi-kbl-guc:         [FAIL][15] ([i915#579]) -> [SKIP][16] ([fdo#109271])
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7833/fi-kbl-guc/igt@i915_pm_rpm@basic-rte.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16299/fi-kbl-guc/igt@i915_pm_rpm@basic-rte.html
+
+  * igt@kms_chamelium@common-hpd-after-suspend:
+    - fi-icl-u2:          [FAIL][17] ([fdo#103375]) -> [DMESG-WARN][18] ([IGT#4] / [i915#263])
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7833/fi-icl-u2/igt@kms_chamelium@common-hpd-after-suspend.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16299/fi-icl-u2/igt@kms_chamelium@common-hpd-after-suspend.html
+
+  
+  [IGT#4]: https://gitlab.freedesktop.org/drm/igt-gpu-tools/issues/4
+  [fdo#103375]: https://bugs.freedesktop.org/show_bug.cgi?id=103375
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#111550]: https://bugs.freedesktop.org/show_bug.cgi?id=111550
+  [fdo#112271]: https://bugs.freedesktop.org/show_bug.cgi?id=112271
+  [i915#140]: https://gitlab.freedesktop.org/drm/intel/issues/140
+  [i915#263]: https://gitlab.freedesktop.org/drm/intel/issues/263
+  [i915#563]: https://gitlab.freedesktop.org/drm/intel/issues/563
+  [i915#579]: https://gitlab.freedesktop.org/drm/intel/issues/579
+  [i915#694]: https://gitlab.freedesktop.org/drm/intel/issues/694
+  [i915#725]: https://gitlab.freedesktop.org/drm/intel/issues/725
+
+
+Participating hosts (50 -> 40)
+------------------------------
+
+  Additional (1): fi-snb-2520m 
+  Missing    (11): fi-ilk-m540 fi-bdw-samus fi-glk-dsi fi-byt-squawks fi-bsw-cyan fi-kbl-7500u fi-ctg-p8600 fi-ivb-3770 fi-kbl-7560u fi-byt-clapper fi-skl-6600u 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_7833 -> Patchwork_16299
+
+  CI-20190529: 20190529
+  CI_DRM_7833: 8210f0f999e2d396a8611e0cabc2f6c6a52468de @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5394: 991fd07bcd7add7a5beca2c95b72a994e62fbb75 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_16299: 2a8144784c2b100410b5f018728c7c6a17872793 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+2a8144784c2b drm/i915/debugfs: remove VBT data about DRRS
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16299/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
