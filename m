@@ -2,30 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F5B514AD50
-	for <lists+intel-gfx@lfdr.de>; Tue, 28 Jan 2020 01:42:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B873214AD58
+	for <lists+intel-gfx@lfdr.de>; Tue, 28 Jan 2020 01:47:25 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A4A606EC3E;
-	Tue, 28 Jan 2020 00:42:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BFCE56EC3F;
+	Tue, 28 Jan 2020 00:47:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 95C6D6EC3E;
- Tue, 28 Jan 2020 00:42:40 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 9F4176EC3F;
+ Tue, 28 Jan 2020 00:47:21 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 8D87BA0088;
- Tue, 28 Jan 2020 00:42:40 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 9731FA0119;
+ Tue, 28 Jan 2020 00:47:21 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ramalingam C" <ramalingam.c@intel.com>
-Date: Tue, 28 Jan 2020 00:42:40 -0000
-Message-ID: <158017216055.20536.6060965664498657340@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Date: Tue, 28 Jan 2020 00:47:21 -0000
+Message-ID: <158017244159.20535.17221934660806207391@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20200127181231.5380-1-ramalingam.c@intel.com>
-In-Reply-To: <20200127181231.5380-1-ramalingam.c@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/hdcp=3A_optimizing_the_srm_handling_=28rev2=29?=
+References: <cover.1580149467.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1580149467.git.jani.nikula@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915/display=3A_mass_conversion_to_intel=5Fde=5F*=28=29?=
+ =?utf-8?q?_register_accessors_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,109 +48,176 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: drm/hdcp: optimizing the srm handling (rev2)
-URL   : https://patchwork.freedesktop.org/series/72312/
-State : success
+Series: drm/i915/display: mass conversion to intel_de_*() register accessors (rev2)
+URL   : https://patchwork.freedesktop.org/series/72533/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_7827 -> Patchwork_16282
-====================================================
+$ dim checkpatch origin/drm-tip
+e3fe468e8ec9 drm/i915/icl_dsi: use intel_de_*() functions for register access
+bfcd10dad4e2 drm/i915/combo_phy: use intel_de_*() functions for register access
+b38e2a044bff drm/i915/ddi: use intel_de_*() functions for register access
+-:131: WARNING:LONG_LINE: line over 100 characters
+#131: FILE: drivers/gpu/drm/i915/display/intel_ddi.c:1168:
++		       FDI_RX_PWRDN_LANE1_VAL(2) | FDI_RX_PWRDN_LANE0_VAL(2) | FDI_RX_TP1_TO_TP2_48 | FDI_RX_FDI_DELAY_90);
 
-Summary
--------
+-:164: WARNING:LONG_LINE: line over 100 characters
+#164: FILE: drivers/gpu/drm/i915/display/intel_ddi.c:1192:
++			       DP_TP_CTL_FDI_AUTOTRAIN | DP_TP_CTL_ENHANCED_FRAME_ENABLE | DP_TP_CTL_LINK_TRAIN_PAT1 | DP_TP_CTL_ENABLE);
 
-  **SUCCESS**
+-:176: WARNING:LONG_LINE: line over 100 characters
+#176: FILE: drivers/gpu/drm/i915/display/intel_ddi.c:1199:
++			       DDI_BUF_CTL_ENABLE | ((crtc_state->fdi_lanes - 1) << 1) | DDI_BUF_TRANS_SELECT(i / 2));
 
-  No regressions found.
+-:259: WARNING:LONG_LINE: line over 100 characters
+#259: FILE: drivers/gpu/drm/i915/display/intel_ddi.c:1267:
++		       DP_TP_CTL_FDI_AUTOTRAIN | DP_TP_CTL_LINK_TRAIN_NORMAL | DP_TP_CTL_ENHANCED_FRAME_ENABLE | DP_TP_CTL_ENABLE);
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16282/index.html
+-:956: WARNING:LONG_LINE: line over 100 characters
+#956: FILE: drivers/gpu/drm/i915/display/intel_ddi.c:3211:
++			       intel_de_read(dev_priv, DPCLKA_CFGCR0) | DPCLKA_CFGCR0_DDI_CLK_OFF(port));
 
-Known issues
-------------
+total: 0 errors, 5 warnings, 0 checks, 1137 lines checked
+9e1d8d3f24f2 drm/i915/display: use intel_de_*() functions for register access
+-:66: WARNING:LONG_LINE: line over 100 characters
+#66: FILE: drivers/gpu/drm/i915/display/intel_display.c:523:
++		               intel_de_read(dev_priv, CLKGATE_DIS_PSL(pipe)) | DUPS1_GATING_DIS | DUPS2_GATING_DIS);
 
-  Here are the changes found in Patchwork_16282 that come from known issues:
+-:66: ERROR:CODE_INDENT: code indent should use tabs where possible
+#66: FILE: drivers/gpu/drm/i915/display/intel_display.c:523:
++^I^I               intel_de_read(dev_priv, CLKGATE_DIS_PSL(pipe)) | DUPS1_GATING_DIS | DUPS2_GATING_DIS);$
 
-### IGT changes ###
+-:72: WARNING:LONG_LINE: line over 100 characters
+#72: FILE: drivers/gpu/drm/i915/display/intel_display.c:526:
++		               intel_de_read(dev_priv, CLKGATE_DIS_PSL(pipe)) & ~(DUPS1_GATING_DIS | DUPS2_GATING_DIS));
 
-#### Issues hit ####
+-:72: ERROR:CODE_INDENT: code indent should use tabs where possible
+#72: FILE: drivers/gpu/drm/i915/display/intel_display.c:526:
++^I^I               intel_de_read(dev_priv, CLKGATE_DIS_PSL(pipe)) & ~(DUPS1_GATING_DIS | DUPS2_GATING_DIS));$
 
-  * igt@gem_close_race@basic-process:
-    - fi-byt-j1900:       [PASS][1] -> [FAIL][2] ([i915#694])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7827/fi-byt-j1900/igt@gem_close_race@basic-process.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16282/fi-byt-j1900/igt@gem_close_race@basic-process.html
+-:83: ERROR:CODE_INDENT: code indent should use tabs where possible
+#83: FILE: drivers/gpu/drm/i915/display/intel_display.c:536:
++^I^I               intel_de_read(dev_priv, CLKGATE_DIS_PSL(pipe)) | DPFR_GATING_DIS);$
 
-  * igt@gem_exec_parallel@fds:
-    - fi-hsw-peppy:       [PASS][3] -> [INCOMPLETE][4] ([i915#694])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7827/fi-hsw-peppy/igt@gem_exec_parallel@fds.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16282/fi-hsw-peppy/igt@gem_exec_parallel@fds.html
+-:88: ERROR:CODE_INDENT: code indent should use tabs where possible
+#88: FILE: drivers/gpu/drm/i915/display/intel_display.c:539:
++^I^I               intel_de_read(dev_priv, CLKGATE_DIS_PSL(pipe)) & ~DPFR_GATING_DIS);$
 
-  * igt@i915_pm_rpm@basic-rte:
-    - fi-hsw-4770:        [PASS][5] -> [SKIP][6] ([fdo#109271]) +1 similar issue
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7827/fi-hsw-4770/igt@i915_pm_rpm@basic-rte.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16282/fi-hsw-4770/igt@i915_pm_rpm@basic-rte.html
+-:659: WARNING:LONG_LINE: line over 100 characters
+#659: FILE: drivers/gpu/drm/i915/display/intel_display.c:5035:
++		               intel_de_read(dev_priv, reg) | FDI_FS_ERRC_ENABLE | FDI_FE_ERRC_ENABLE);
 
-  * igt@i915_selftest@live_gem_contexts:
-    - fi-byt-j1900:       [PASS][7] -> [DMESG-FAIL][8] ([i915#722])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7827/fi-byt-j1900/igt@i915_selftest@live_gem_contexts.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16282/fi-byt-j1900/igt@i915_selftest@live_gem_contexts.html
+-:659: ERROR:CODE_INDENT: code indent should use tabs where possible
+#659: FILE: drivers/gpu/drm/i915/display/intel_display.c:5035:
++^I^I               intel_de_read(dev_priv, reg) | FDI_FS_ERRC_ENABLE | FDI_FE_ERRC_ENABLE);$
 
-  * igt@kms_chamelium@hdmi-hpd-fast:
-    - fi-kbl-7500u:       [PASS][9] -> [FAIL][10] ([fdo#111096] / [i915#323])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7827/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16282/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+-:1590: WARNING:LONG_LINE: line over 100 characters
+#1590: FILE: drivers/gpu/drm/i915/display/intel_display.c:8298:
++		       pipe_config->dpll_hw_state.dpll & ~(DPLL_VCO_ENABLE | DPLL_EXT_BUFFER_ENABLE_VLV));
 
-  
-#### Possible fixes ####
+-:1631: ERROR:CODE_INDENT: code indent should use tabs where possible
+#1631: FILE: drivers/gpu/drm/i915/display/intel_display.c:8699:
++^I^I               vsyncshift);$
 
-  * igt@i915_selftest@live_hangcheck:
-    - fi-icl-u3:          [INCOMPLETE][11] ([fdo#108569] / [i915#140]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7827/fi-icl-u3/igt@i915_selftest@live_hangcheck.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16282/fi-icl-u3/igt@i915_selftest@live_hangcheck.html
+-:1634: WARNING:LONG_LINE: line over 100 characters
+#1634: FILE: drivers/gpu/drm/i915/display/intel_display.c:8702:
++		       (adjusted_mode->crtc_hdisplay - 1) | ((adjusted_mode->crtc_htotal - 1) << 16));
 
-  * igt@kms_chamelium@common-hpd-after-suspend:
-    - fi-icl-u2:          [DMESG-WARN][13] ([IGT#4] / [i915#263]) -> [PASS][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7827/fi-icl-u2/igt@kms_chamelium@common-hpd-after-suspend.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16282/fi-icl-u2/igt@kms_chamelium@common-hpd-after-suspend.html
+-:1636: WARNING:LONG_LINE: line over 100 characters
+#1636: FILE: drivers/gpu/drm/i915/display/intel_display.c:8704:
++		       (adjusted_mode->crtc_hblank_start - 1) | ((adjusted_mode->crtc_hblank_end - 1) << 16));
 
-  
-  [IGT#4]: https://gitlab.freedesktop.org/drm/igt-gpu-tools/issues/4
-  [fdo#108569]: https://bugs.freedesktop.org/show_bug.cgi?id=108569
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#111096]: https://bugs.freedesktop.org/show_bug.cgi?id=111096
-  [i915#140]: https://gitlab.freedesktop.org/drm/intel/issues/140
-  [i915#263]: https://gitlab.freedesktop.org/drm/intel/issues/263
-  [i915#323]: https://gitlab.freedesktop.org/drm/intel/issues/323
-  [i915#694]: https://gitlab.freedesktop.org/drm/intel/issues/694
-  [i915#722]: https://gitlab.freedesktop.org/drm/intel/issues/722
+-:1638: WARNING:LONG_LINE: line over 100 characters
+#1638: FILE: drivers/gpu/drm/i915/display/intel_display.c:8706:
++		       (adjusted_mode->crtc_hsync_start - 1) | ((adjusted_mode->crtc_hsync_end - 1) << 16));
 
+-:1645: WARNING:LONG_LINE: line over 100 characters
+#1645: FILE: drivers/gpu/drm/i915/display/intel_display.c:8713:
++		       (adjusted_mode->crtc_vsync_start - 1) | ((adjusted_mode->crtc_vsync_end - 1) << 16));
 
-Participating hosts (46 -> 38)
-------------------------------
+-:1655: ERROR:CODE_INDENT: code indent should use tabs where possible
+#1655: FILE: drivers/gpu/drm/i915/display/intel_display.c:8722:
++^I^I               intel_de_read(dev_priv, VTOTAL(cpu_transcoder)));$
 
-  Additional (3): fi-ivb-3770 fi-skl-6600u fi-bsw-n3050 
-  Missing    (11): fi-ilk-m540 fi-kbl-7560u fi-byt-squawks fi-bsw-cyan fi-ilk-650 fi-ctg-p8600 fi-whl-u fi-kbl-8809g fi-blb-e6850 fi-byt-clapper fi-bdw-samus 
+-:1676: WARNING:LONG_LINE: line over 100 characters
+#1676: FILE: drivers/gpu/drm/i915/display/intel_display.c:8749:
++		return intel_de_read(dev_priv, PIPECONF(cpu_transcoder)) & PIPECONF_INTERLACE_MASK_HSW;
 
+-:2082: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#2082: FILE: drivers/gpu/drm/i915/display/intel_display.c:10311:
++			m2_n2->link_n =	intel_de_read(dev_priv,
++							     PIPE_LINK_N2(transcoder));
 
-Build changes
--------------
+-:2084: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#2084: FILE: drivers/gpu/drm/i915/display/intel_display.c:10313:
++			m2_n2->gmch_m =	intel_de_read(dev_priv,
++							     PIPE_DATA_M2(transcoder))
 
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_7827 -> Patchwork_16282
+-:2089: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#2089: FILE: drivers/gpu/drm/i915/display/intel_display.c:10316:
++			m2_n2->gmch_n =	intel_de_read(dev_priv,
++							     PIPE_DATA_N2(transcoder));
 
-  CI-20190529: 20190529
-  CI_DRM_7827: c8969aeacfff681c83a800e82b0f18a6ab3e77ea @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5389: 966c58649dee31bb5bf2fad92f75ffd365968b81 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_16282: 026d21a8ab510a3005f4fdbc95b84ca88449606c @ git://anongit.freedesktop.org/gfx-ci/linux
+-:2329: ERROR:CODE_INDENT: code indent should use tabs where possible
+#2329: FILE: drivers/gpu/drm/i915/display/intel_display.c:11024:
++^I^I^I^I        TRANS_DDI_FUNC_CTL2(cpu_transcoder));$
 
+-:2329: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#2329: FILE: drivers/gpu/drm/i915/display/intel_display.c:11024:
++	trans_port_sync = intel_de_read(dev_priv,
++				        TRANS_DDI_FUNC_CTL2(cpu_transcoder));
 
-== Linux commits ==
+-:2468: CHECK:CAMELCASE: Avoid CamelCase: <ILK_eDP_A_DISABLE>
+#2468: FILE: drivers/gpu/drm/i915/display/intel_display.c:16754:
++	if (IS_GEN(dev_priv, 5) && (intel_de_read(dev_priv, FUSE_STRAP) & ILK_eDP_A_DISABLE))
 
-026d21a8ab51 drm/hdcp: optimizing the srm handling
+total: 8 errors, 9 warnings, 5 checks, 2683 lines checked
+e1d262411740 drm/i915/display_power: use intel_de_*() functions for register access
+-:315: WARNING:LONG_LINE: line over 100 characters
+#315: FILE: drivers/gpu/drm/i915/display/intel_display_power.c:949:
++			       intel_de_read(dev_priv, GEN8_CHICKEN_DCPR_1) | SKL_SELECT_ALTERNATE_DC_EXIT);
 
-== Logs ==
+-:337: WARNING:LONG_LINE: line over 100 characters
+#337: FILE: drivers/gpu/drm/i915/display/intel_display_power.c:973:
++			       intel_de_read(dev_priv, GEN8_CHICKEN_DCPR_1) | SKL_SELECT_ALTERNATE_DC_EXIT);
 
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16282/index.html
+total: 0 errors, 2 warnings, 0 checks, 732 lines checked
+34efc8c86da2 drm/i915/dp: use intel_de_*() functions for register access
+-:714: WARNING:LONG_LINE: line over 100 characters
+#714: FILE: drivers/gpu/drm/i915/display/intel_dp.c:6956:
++			       REG_FIELD_PREP(PP_REFERENCE_DIVIDER_MASK, (100 * div) / 2 - 1) | REG_FIELD_PREP(PANEL_POWER_CYCLE_DELAY_MASK, DIV_ROUND_UP(seq->t11_t12, 1000)));
+
+-:774: WARNING:LINE_SPACING: Missing a blank line after declarations
+#774: FILE: drivers/gpu/drm/i915/display/intel_dp.c:7614:
++		u32 temp = intel_de_read(dev_priv, PEG_BAND_GAP_DATA);
++		intel_de_write(dev_priv, PEG_BAND_GAP_DATA,
+
+total: 0 errors, 2 warnings, 0 checks, 662 lines checked
+ce03b8b21b79 drm/i915/hdcp: use intel_de_*() functions for register access
+-:63: ERROR:CODE_INDENT: code indent should use tabs where possible
+#63: FILE: drivers/gpu/drm/i915/display/intel_hdcp.c:116:
++^I                     HDCP_STATUS(dev_priv, cpu_transcoder, port)) &$
+
+-:73: ERROR:CODE_INDENT: code indent should use tabs where possible
+#73: FILE: drivers/gpu/drm/i915/display/intel_hdcp.c:125:
++^I                     HDCP2_STATUS(dev_priv, cpu_transcoder, port)) &$
+
+-:86: WARNING:LONG_LINE: line over 100 characters
+#86: FILE: drivers/gpu/drm/i915/display/intel_hdcp.c:191:
++		       HDCP_KEY_LOAD_DONE | HDCP_KEY_LOAD_STATUS | HDCP_FUSE_IN_PROGRESS | HDCP_FUSE_ERROR | HDCP_FUSE_DONE);
+
+-:438: WARNING:LONG_LINE: line over 100 characters
+#438: FILE: drivers/gpu/drm/i915/display/intel_hdcp.c:1581:
++			       intel_de_read(dev_priv, HDCP2_CTL(dev_priv, cpu_transcoder, port)) | CTL_LINK_ENCRYPTION_REQ);
+
+-:454: WARNING:LONG_LINE: line over 100 characters
+#454: FILE: drivers/gpu/drm/i915/display/intel_hdcp.c:1606:
++		       intel_de_read(dev_priv, HDCP2_CTL(dev_priv, cpu_transcoder, port)) & ~CTL_LINK_ENCRYPTION_REQ);
+
+total: 2 errors, 3 warnings, 0 checks, 380 lines checked
+926ad0bb0b63 drm/i915/psr: use intel_de_*() functions for register access
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
