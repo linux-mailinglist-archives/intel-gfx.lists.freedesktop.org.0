@@ -2,40 +2,36 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 92D9E14B19F
-	for <lists+intel-gfx@lfdr.de>; Tue, 28 Jan 2020 10:16:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D63B14B23B
+	for <lists+intel-gfx@lfdr.de>; Tue, 28 Jan 2020 11:03:29 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0773F6ED3F;
-	Tue, 28 Jan 2020 09:16:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BB6806ED84;
+	Tue, 28 Jan 2020 10:03:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 785996ED3F
- for <intel-gfx@lists.freedesktop.org>; Tue, 28 Jan 2020 09:16:33 +0000 (UTC)
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 46F256ED83;
+ Tue, 28 Jan 2020 10:03:25 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 28 Jan 2020 01:16:31 -0800
-X-IronPort-AV: E=Sophos;i="5.70,373,1574150400"; d="scan'208";a="222027795"
-Received: from vogginge-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.38.155])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 28 Jan 2020 01:16:29 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Patchwork <patchwork@emeril.freedesktop.org>,
- Pankaj Bharadiya <pankaj.laxminarayan.bharadiya@intel.com>
-In-Reply-To: <158015840134.9687.7990172392824281702@emeril.freedesktop.org>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20200127075653.8523-1-pankaj.laxminarayan.bharadiya@intel.com>
- <158015840134.9687.7990172392824281702@emeril.freedesktop.org>
-Date: Tue, 28 Jan 2020 11:16:31 +0200
-Message-ID: <87o8uo9c0g.fsf@intel.com>
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 28 Jan 2020 02:00:11 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,373,1574150400"; d="scan'208";a="223497420"
+Received: from gaia.fi.intel.com ([10.237.72.192])
+ by fmsmga008.fm.intel.com with ESMTP; 28 Jan 2020 02:00:10 -0800
+Received: by gaia.fi.intel.com (Postfix, from userid 1000)
+ id 68A295C1DD4; Tue, 28 Jan 2020 11:59:23 +0200 (EET)
+From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20200126134811.2084060-1-chris@chris-wilson.co.uk>
+References: <20200126134811.2084060-1-chris@chris-wilson.co.uk>
+Date: Tue, 28 Jan 2020 11:59:23 +0200
+Message-ID: <87lfprnbpg.fsf@gaia.fi.intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] 
- =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBk?=
- =?utf-8?q?rm=3A_Introduce_struct_drm=5Fdevice_based_WARN*_and_use_them_in?=
- =?utf-8?q?_i915_=28rev4=29?=
+Subject: Re: [Intel-gfx] [PATCH i-g-t 1/2] i915: Inject invalid CS into
+ hanging spinners
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,69 +44,190 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: igt-dev@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 27 Jan 2020, Patchwork <patchwork@emeril.freedesktop.org> wrote:
-> == Series Details ==
->
-> Series: drm: Introduce struct drm_device based WARN* and use them in i915 (rev4)
-> URL   : https://patchwork.freedesktop.org/series/72035/
-> State : failure
+Chris Wilson <chris@chris-wilson.co.uk> writes:
 
-I think the repeated attempts with the patches prove that it's really
-hard to get patches with such wide impact merged. The driver moves so
-fast that things like this probably need to be split up more. For
-example per file. It will result in a lot of patches, but at least we
-could merge the patches that don't conflict, and keep moving
-forward. It's also maybe a bad timing, lots of changes like this going
-on atm.
+> Some spinners are used with the intent of never ending and being
+> declared hung by the kernel. In some cases, these are being used to
+> simulate invalid payloads and so we can use an invalid command to
+> trigger a GPU hang. (Other cases, they are simulating infinite workloads
+> that truly never end, but we still need to be able to curtail to provide
+> multi-tasking). This patch adds IGT_SPIN_INVALID_CS to request the
+> injection of 0xdeadbeef into the command stream that should trigger a
+> GPU hang.
 
-BR,
-Jani.
-
+Ok so you want to differentiate between a never ending
+and invalid payload as a separate. And also quicken the
+resolve.
 
 >
-> == Summary ==
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> ---
+>  lib/igt_dummyload.c              |  2 ++
+>  lib/igt_dummyload.h              |  1 +
+>  tests/i915/gem_busy.c            |  3 ++-
+>  tests/i915/gem_ctx_persistence.c | 39 +++++++++++++++++++++++++++++++-
+>  tests/i915/gem_eio.c             |  1 +
+>  tests/i915/gem_exec_balancer.c   |  4 +++-
+>  tests/i915/gem_exec_fence.c      |  3 ++-
+>  7 files changed, 49 insertions(+), 4 deletions(-)
 >
-> Applying: drm/i915/display: Make WARN* drm specific where drm_device ptr is available
-> Using index info to reconstruct a base tree...
-> M	drivers/gpu/drm/i915/display/intel_display.c
-> M	drivers/gpu/drm/i915/display/intel_dp.c
-> M	drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-> M	drivers/gpu/drm/i915/display/intel_hdmi.c
-> M	drivers/gpu/drm/i915/display/intel_hotplug.c
-> M	drivers/gpu/drm/i915/display/intel_lvds.c
-> M	drivers/gpu/drm/i915/display/intel_pipe_crc.c
-> M	drivers/gpu/drm/i915/display/intel_sdvo.c
-> Falling back to patching base and 3-way merge...
-> Auto-merging drivers/gpu/drm/i915/display/intel_sdvo.c
-> Auto-merging drivers/gpu/drm/i915/display/intel_pipe_crc.c
-> Auto-merging drivers/gpu/drm/i915/display/intel_lvds.c
-> Auto-merging drivers/gpu/drm/i915/display/intel_hotplug.c
-> Auto-merging drivers/gpu/drm/i915/display/intel_hdmi.c
-> CONFLICT (content): Merge conflict in drivers/gpu/drm/i915/display/intel_hdmi.c
-> Auto-merging drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-> Auto-merging drivers/gpu/drm/i915/display/intel_dp.c
-> Auto-merging drivers/gpu/drm/i915/display/intel_display.c
-> CONFLICT (content): Merge conflict in drivers/gpu/drm/i915/display/intel_display.c
-> error: Failed to merge in the changes.
-> hint: Use 'git am --show-current-patch' to see the failed patch
-> Patch failed at 0001 drm/i915/display: Make WARN* drm specific where drm_device ptr is available
-> When you have resolved this problem, run "git am --continue".
-> If you prefer to skip this patch, run "git am --skip" instead.
-> To restore the original branch and stop patching, run "git am --abort".
+> diff --git a/lib/igt_dummyload.c b/lib/igt_dummyload.c
+> index b7f4caca3..041122af9 100644
+> --- a/lib/igt_dummyload.c
+> +++ b/lib/igt_dummyload.c
+> @@ -189,6 +189,8 @@ emit_recursive_batch(igt_spin_t *spin,
+>  	/* Allow ourselves to be preempted */
+>  	if (!(opts->flags & IGT_SPIN_NO_PREEMPTION))
+>  		*cs++ = MI_ARB_CHK;
+> +	if (opts->flags & IGT_SPIN_INVALID_CS)
+> +		*cs++ = 0xdeadbeef;
+
+Some cmd streamers might just ignore this but lets
+see how it goes.
+
+Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+
+>  
+>  	/* Pad with a few nops so that we do not completely hog the system.
+>  	 *
+> diff --git a/lib/igt_dummyload.h b/lib/igt_dummyload.h
+> index 421ca183b..cb696009f 100644
+> --- a/lib/igt_dummyload.h
+> +++ b/lib/igt_dummyload.h
+> @@ -62,6 +62,7 @@ struct igt_spin_factory {
+>  #define IGT_SPIN_POLL_RUN      (1 << 2)
+>  #define IGT_SPIN_FAST          (1 << 3)
+>  #define IGT_SPIN_NO_PREEMPTION (1 << 4)
+> +#define IGT_SPIN_INVALID_CS    (1 << 5)
+>  
+>  igt_spin_t *
+>  __igt_spin_factory(int fd, const struct igt_spin_factory *opts);
+> diff --git a/tests/i915/gem_busy.c b/tests/i915/gem_busy.c
+> index 39a6714c2..2f1b04e3c 100644
+> --- a/tests/i915/gem_busy.c
+> +++ b/tests/i915/gem_busy.c
+> @@ -436,7 +436,8 @@ static void basic(int fd, const struct intel_execution_engine2 *e, unsigned flag
+>  	igt_spin_t *spin =
+>  		igt_spin_new(fd,
+>  			     .engine = e->flags,
+> -			     .flags = IGT_SPIN_NO_PREEMPTION);
+> +			     .flags = IGT_SPIN_NO_PREEMPTION |
+> +			     (flags & HANG ? IGT_SPIN_INVALID_CS : 0));
+>  	struct timespec tv;
+>  	int timeout;
+>  	bool busy;
+> diff --git a/tests/i915/gem_ctx_persistence.c b/tests/i915/gem_ctx_persistence.c
+> index d68431ae0..d48234450 100644
+> --- a/tests/i915/gem_ctx_persistence.c
+> +++ b/tests/i915/gem_ctx_persistence.c
+> @@ -345,6 +345,41 @@ static void test_nohangcheck_hostile(int i915)
+>  	close(dir);
+>  }
+>  
+> +static void test_nohangcheck_hang(int i915)
+> +{
+> +	int64_t timeout = reset_timeout_ms * NSEC_PER_MSEC;
+> +	int dir;
+> +
+> +	/*
+> +	 * Even if the user disables hangcheck during their context,
+> +	 * we forcibly terminate that context.
+> +	 */
+> +
+> +	dir = igt_sysfs_open_parameters(i915);
+> +	igt_require(dir != -1);
+> +
+> +	igt_require(__enable_hangcheck(dir, false));
+> +
+> +	for_each_physical_engine(e, i915) {
+> +		uint32_t ctx = gem_context_create(i915);
+> +		igt_spin_t *spin;
+> +
+> +		spin = igt_spin_new(i915, ctx,
+> +				    .engine = eb_ring(e),
+> +				    .flags = IGT_SPIN_INVALID_CS);
+> +		gem_context_destroy(i915, ctx);
+> +
+> +		igt_assert_eq(gem_wait(i915, spin->handle, &timeout), 0);
+> +
+> +		igt_spin_free(i915, spin);
+> +	}
+> +
+> +	igt_require(__enable_hangcheck(dir, true));
+> +
+> +	gem_quiescent_gpu(i915);
+> +	close(dir);
+> +}
+> +
+>  static void test_nonpersistent_file(int i915)
+>  {
+>  	int debugfs = i915;
+> @@ -724,8 +759,10 @@ igt_main
+>  	igt_subtest("processes")
+>  		test_processes(i915);
+>  
+> -	igt_subtest("hangcheck")
+> +	igt_subtest("hostile")
+>  		test_nohangcheck_hostile(i915);
+> +	igt_subtest("hang")
+> +		test_nohangcheck_hang(i915);
+>  
+>  	__for_each_static_engine(e) {
+>  		igt_subtest_group {
+> diff --git a/tests/i915/gem_eio.c b/tests/i915/gem_eio.c
+> index b23dfecc6..aa4accc9d 100644
+> --- a/tests/i915/gem_eio.c
+> +++ b/tests/i915/gem_eio.c
+> @@ -187,6 +187,7 @@ static igt_spin_t * __spin_poll(int fd, uint32_t ctx, unsigned long flags)
+>  		.engine = flags,
+>  		.flags = (IGT_SPIN_FAST |
+>  			  IGT_SPIN_NO_PREEMPTION |
+> +			  IGT_SPIN_INVALID_CS |
+>  			  IGT_SPIN_FENCE_OUT),
+>  	};
+>  
+> diff --git a/tests/i915/gem_exec_balancer.c b/tests/i915/gem_exec_balancer.c
+> index cebcc39c7..6b0c47f09 100644
+> --- a/tests/i915/gem_exec_balancer.c
+> +++ b/tests/i915/gem_exec_balancer.c
+> @@ -1654,7 +1654,9 @@ static void hangme(int i915)
+>  			set_unbannable(i915, ctx);
+>  			set_load_balancer(i915, ctx, ci, count, NULL);
+>  
+> -			flags = IGT_SPIN_FENCE_OUT | IGT_SPIN_NO_PREEMPTION;
+> +			flags = IGT_SPIN_FENCE_OUT |
+> +				IGT_SPIN_NO_PREEMPTION |
+> +				IGT_SPIN_INVALID_CS;
+>  			for (int j = 0; j < ARRAY_SIZE(c->spin); j++)  {
+>  				c->spin[j] = igt_spin_new(i915, ctx,
+>  							  .flags = flags);
+> diff --git a/tests/i915/gem_exec_fence.c b/tests/i915/gem_exec_fence.c
+> index 2f802eece..6d369f589 100644
+> --- a/tests/i915/gem_exec_fence.c
+> +++ b/tests/i915/gem_exec_fence.c
+> @@ -335,7 +335,8 @@ static void test_fence_await(int fd, unsigned ring, unsigned flags)
+>  	spin = igt_spin_new(fd,
+>  			    .engine = ring,
+>  			    .flags = (IGT_SPIN_FENCE_OUT |
+> -				      IGT_SPIN_NO_PREEMPTION));
+> +				      IGT_SPIN_NO_PREEMPTION |
+> +				      (flags & HANG ? IGT_SPIN_INVALID_CS : 0)));
+>  	igt_assert(spin->out_fence != -1);
+>  
+>  	i = 0;
+> -- 
+> 2.25.0
 >
 > _______________________________________________
 > Intel-gfx mailing list
 > Intel-gfx@lists.freedesktop.org
 > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
--- 
-Jani Nikula, Intel Open Source Graphics Center
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
