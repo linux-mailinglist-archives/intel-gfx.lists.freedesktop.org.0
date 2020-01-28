@@ -2,30 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 04E0314C0DE
-	for <lists+intel-gfx@lfdr.de>; Tue, 28 Jan 2020 20:23:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2357614C110
+	for <lists+intel-gfx@lfdr.de>; Tue, 28 Jan 2020 20:34:29 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 361C26F3A1;
-	Tue, 28 Jan 2020 19:23:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 707566E0A0;
+	Tue, 28 Jan 2020 19:34:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 3A19B6F3A0;
- Tue, 28 Jan 2020 19:23:22 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 324AAA0094;
- Tue, 28 Jan 2020 19:23:22 +0000 (UTC)
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0B8DE6E0A0
+ for <intel-gfx@lists.freedesktop.org>; Tue, 28 Jan 2020 19:34:23 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 20040030-1500050 for multiple; Tue, 28 Jan 2020 19:34:19 +0000
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Tue, 28 Jan 2020 19:23:22 -0000
-Message-ID: <158023940217.20537.15616940846894983035@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200128113426.3711294-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200128113426.3711294-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Skip_capturing_errors_from_internal_contexts?=
+From: Chris Wilson <chris@chris-wilson.co.uk>
+User-Agent: alot/0.6
+To: Matthew Auld <matthew.auld@intel.com>, intel-gfx@lists.freedesktop.org
+References: <20200128183806.149576-1-matthew.auld@intel.com>
+In-Reply-To: <20200128183806.149576-1-matthew.auld@intel.com>
+Message-ID: <158024005795.2129.9058539579981993874@skylake-alporthouse-com>
+Date: Tue, 28 Jan 2020 19:34:17 +0000
+Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/selftests/perf: measure memcpy
+ bw between regions
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,28 +39,22 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Quoting Matthew Auld (2020-01-28 18:38:06)
+> +               sort(t, ARRAY_SIZE(t), sizeof(*t), wrap_ktime_compare, NULL);
+> +               pr_info("%s src(%s, %s) -> dst(%s, %s) %s %llu KiB copy: %lld MiB/s\n",
 
-Series: drm/i915: Skip capturing errors from internal contexts
-URL   : https://patchwork.freedesktop.org/series/72656/
-State : failure
+pr_info("%s src(%s, %s) -> dst(%s, %s) %14s %4llu KiB copy: %5lld MiB/s\n",
 
-== Summary ==
+should make it line up and be a little less disorganised.
 
-Applying: drm/i915: Skip capturing errors from internal contexts
-Using index info to reconstruct a base tree...
-M	drivers/gpu/drm/i915/gem/selftests/mock_context.c
-M	drivers/gpu/drm/i915/i915_gpu_error.c
-Falling back to patching base and 3-way merge...
-No changes -- Patch already applied.
-
+Exporting the results in a more convenient format than dmesg is a
+problem to be solved at a later date.
+-Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
