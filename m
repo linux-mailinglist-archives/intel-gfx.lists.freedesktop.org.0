@@ -2,39 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87AF514C1D8
-	for <lists+intel-gfx@lfdr.de>; Tue, 28 Jan 2020 22:00:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 973A414C1DF
+	for <lists+intel-gfx@lfdr.de>; Tue, 28 Jan 2020 22:04:49 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 90A1C6E130;
-	Tue, 28 Jan 2020 21:00:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 34B466F414;
+	Tue, 28 Jan 2020 21:04:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D595B6E130
- for <intel-gfx@lists.freedesktop.org>; Tue, 28 Jan 2020 21:00:52 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-X-Amp-File-Uploaded: False
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by orsmga105.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 28 Jan 2020 12:27:33 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,375,1574150400"; d="scan'208";a="222859890"
-Received: from labuser-z97x-ud5h.jf.intel.com (HELO intel.com)
- ([10.165.21.211])
- by fmsmga007.fm.intel.com with ESMTP; 28 Jan 2020 12:27:32 -0800
-Date: Tue, 28 Jan 2020 12:28:35 -0800
-From: Manasi Navare <manasi.d.navare@intel.com>
-To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Message-ID: <20200128202835.GA3030@intel.com>
-References: <20200117091627.1697-1-matthew.s.atwood@intel.com>
- <20200128170538.GN13686@intel.com>
- <20200128173059.GO13686@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id E06946F413;
+ Tue, 28 Jan 2020 21:04:46 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id D80A0A010F;
+ Tue, 28 Jan 2020 21:04:46 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200128173059.GO13686@intel.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/tgl: Add Wa_1606054188;tgl
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?b?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Date: Tue, 28 Jan 2020 21:04:46 -0000
+Message-ID: <158024548685.20536.5658517515830252508@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200128144501.3714-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20200128144501.3714-1-ville.syrjala@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5B1/2=5D_drm/i915=3A_Nuke_pre-production_GLK?=
+ =?utf-8?q?_HDMI_w/a_1139?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,141 +39,148 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Jan 28, 2020 at 07:30:59PM +0200, Ville Syrj=E4l=E4 wrote:
-> On Tue, Jan 28, 2020 at 07:05:38PM +0200, Ville Syrj=E4l=E4 wrote:
-> > On Fri, Jan 17, 2020 at 04:16:28AM -0500, Matt Atwood wrote:
-> > > On Tiger Lake we do not support source keying in the pixel formats P0=
-10,
-> > > P012, P016.
-> > > =
+== Series Details ==
 
-> > > Bspec: 52890
-> > > Cc: Matt Roper <matthew.d.roper@intel.com>
-> > > Signed-off-by: Matt Atwood <matthew.s.atwood@intel.com>
-> > > ---
-> > >  drivers/gpu/drm/i915/display/intel_sprite.c | 13 +++++++++++++
-> > >  1 file changed, 13 insertions(+)
-> > > =
+Series: series starting with [1/2] drm/i915: Nuke pre-production GLK HDMI w/a 1139
+URL   : https://patchwork.freedesktop.org/series/72668/
+State : success
 
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_sprite.c b/drivers/gp=
-u/drm/i915/display/intel_sprite.c
-> > > index fca77ec1e0dd..67176524e60f 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_sprite.c
-> > > +++ b/drivers/gpu/drm/i915/display/intel_sprite.c
-> > > @@ -2049,6 +2049,19 @@ static int skl_plane_check_fb(const struct int=
-el_crtc_state *crtc_state,
-> > >  	unsigned int rotation =3D plane_state->hw.rotation;
-> > >  	struct drm_format_name_buf format_name;
-> > >  =
+== Summary ==
 
-> > > +	/* Wa_1606054188;tgl
-> > > +	 *
-> > > +	 * TODO: Add format RGB64i when implemented
-> > > +	 *
-> > > +	 */
-> > > +	if (IS_GEN(dev_priv, 12) &&
-> > > +	    (plane_state->ckey.flags & I915_SET_COLORKEY_SOURCE))
+CI Bug Log - changes from CI_DRM_7833 -> Patchwork_16296
+====================================================
 
-Yes I agree here no need to have paranthesis just =
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16296/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_16296 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_exec_parallel@fds:
+    - fi-byt-n2820:       [PASS][1] -> [TIMEOUT][2] ([fdo#112271])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7833/fi-byt-n2820/igt@gem_exec_parallel@fds.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16296/fi-byt-n2820/igt@gem_exec_parallel@fds.html
+
+  * igt@i915_selftest@live_gem_contexts:
+    - fi-cfl-8700k:       [PASS][3] -> [INCOMPLETE][4] ([i915#424])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7833/fi-cfl-8700k/igt@i915_selftest@live_gem_contexts.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16296/fi-cfl-8700k/igt@i915_selftest@live_gem_contexts.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_close_race@basic-threads:
+    - fi-hsw-peppy:       [INCOMPLETE][5] ([i915#816]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7833/fi-hsw-peppy/igt@gem_close_race@basic-threads.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16296/fi-hsw-peppy/igt@gem_close_race@basic-threads.html
+    - fi-byt-j1900:       [INCOMPLETE][7] ([i915#45]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7833/fi-byt-j1900/igt@gem_close_race@basic-threads.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16296/fi-byt-j1900/igt@gem_close_race@basic-threads.html
+
+  * igt@gem_exec_suspend@basic-s3:
+    - fi-icl-u2:          [FAIL][9] ([fdo#103375]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7833/fi-icl-u2/igt@gem_exec_suspend@basic-s3.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16296/fi-icl-u2/igt@gem_exec_suspend@basic-s3.html
+
+  * igt@gem_exec_suspend@basic-s4-devices:
+    - fi-icl-u2:          [FAIL][11] ([fdo#111550]) -> [PASS][12]
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7833/fi-icl-u2/igt@gem_exec_suspend@basic-s4-devices.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16296/fi-icl-u2/igt@gem_exec_suspend@basic-s4-devices.html
+
+  * igt@i915_selftest@live_blt:
+    - fi-hsw-4770r:       [DMESG-FAIL][13] ([i915#563]) -> [PASS][14]
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7833/fi-hsw-4770r/igt@i915_selftest@live_blt.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16296/fi-hsw-4770r/igt@i915_selftest@live_blt.html
+
+  * igt@i915_selftest@live_gem_contexts:
+    - fi-icl-guc:         [INCOMPLETE][15] ([i915#140]) -> [PASS][16]
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7833/fi-icl-guc/igt@i915_selftest@live_gem_contexts.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16296/fi-icl-guc/igt@i915_selftest@live_gem_contexts.html
+
+  
+#### Warnings ####
+
+  * igt@gem_exec_parallel@contexts:
+    - fi-byt-n2820:       [TIMEOUT][17] ([fdo#112271]) -> [FAIL][18] ([i915#694])
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7833/fi-byt-n2820/igt@gem_exec_parallel@contexts.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16296/fi-byt-n2820/igt@gem_exec_parallel@contexts.html
+
+  * igt@i915_pm_rpm@basic-rte:
+    - fi-kbl-guc:         [FAIL][19] ([i915#579]) -> [SKIP][20] ([fdo#109271])
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7833/fi-kbl-guc/igt@i915_pm_rpm@basic-rte.html
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16296/fi-kbl-guc/igt@i915_pm_rpm@basic-rte.html
+
+  * igt@kms_chamelium@common-hpd-after-suspend:
+    - fi-icl-u2:          [FAIL][21] ([fdo#103375]) -> [DMESG-WARN][22] ([IGT#4] / [i915#263])
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7833/fi-icl-u2/igt@kms_chamelium@common-hpd-after-suspend.html
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16296/fi-icl-u2/igt@kms_chamelium@common-hpd-after-suspend.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [IGT#4]: https://gitlab.freedesktop.org/drm/igt-gpu-tools/issues/4
+  [fdo#103375]: https://bugs.freedesktop.org/show_bug.cgi?id=103375
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#111550]: https://bugs.freedesktop.org/show_bug.cgi?id=111550
+  [fdo#112271]: https://bugs.freedesktop.org/show_bug.cgi?id=112271
+  [i915#140]: https://gitlab.freedesktop.org/drm/intel/issues/140
+  [i915#263]: https://gitlab.freedesktop.org/drm/intel/issues/263
+  [i915#424]: https://gitlab.freedesktop.org/drm/intel/issues/424
+  [i915#45]: https://gitlab.freedesktop.org/drm/intel/issues/45
+  [i915#563]: https://gitlab.freedesktop.org/drm/intel/issues/563
+  [i915#579]: https://gitlab.freedesktop.org/drm/intel/issues/579
+  [i915#694]: https://gitlab.freedesktop.org/drm/intel/issues/694
+  [i915#816]: https://gitlab.freedesktop.org/drm/intel/issues/816
+  [i915#937]: https://gitlab.freedesktop.org/drm/intel/issues/937
 
 
-if (IS_GEN(dev_priv, 12) && plane_state->ckey.flags & I915_SET_COLORKEY_SOU=
-RCE)
-should suffice since bitwise & higher precedence than logical AND
+Participating hosts (50 -> 43)
+------------------------------
 
-> > > +		if (fb->format->format & (DRM_FORMAT_P010 | DRM_FORMAT_P012
-> > > +		    | DRM_FORMAT_P016)) {
-> =
+  Additional (1): fi-snb-2520m 
+  Missing    (8): fi-ilk-m540 fi-byt-squawks fi-bsw-cyan fi-kbl-7500u fi-ctg-p8600 fi-kbl-7560u fi-byt-clapper fi-bdw-samus 
 
-> Oh, and that | stuff is actually just nonsense. That's not a
-> bitfield or anything like that. I'd just add a small
-> intel_format_is_p01x() function etc.
 
-Yes I agree with Ville. The DRM_FORMAT_ is a 4CC format identifie not a bit=
-field
-so you would need to define a static function something like:
+Build changes
+-------------
 
-static bool intel_format_is_p01x()
-{
-	if(format =3D=3D DRM_FORMAT_P010 ||
-	format =3D=3D DRM_FORMAT_P012 ||
-	format =3D=3D DRM_FORMAT_P016)
-		return true;
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_7833 -> Patchwork_16296
 
-	return false;
-}
+  CI-20190529: 20190529
+  CI_DRM_7833: 8210f0f999e2d396a8611e0cabc2f6c6a52468de @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5394: 991fd07bcd7add7a5beca2c95b72a994e62fbb75 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_16296: 53657e6bd9b52cc32593ecf527ebb1f7dcf5b187 @ git://anongit.freedesktop.org/gfx-ci/linux
 
-Look at lookup_format_info() for reference.
-Hope this helps.
 
-Manasi
+== Linux commits ==
 
-> =
+53657e6bd9b5 drm/i915: Limit display Wa_1405510057 to gen11
+b2efa4aa220f drm/i915: Nuke pre-production GLK HDMI w/a 1139
 
-> > =
+== Logs ==
 
-> > if (a && b && c)
-> > =
-
-> > Needless parens.
-> > =
-
-> > Continuing | should go to the end. Also alignment is borked.
-> > =
-
-> > > +			DRM_DEBUG_KMS("GEN12 does not support source color key planes in =
-formats P01x\n");
-> > =
-
-> > Feels a bit overly verbose:
-> > "Source color keying not supported with P01x formats\n"
-> > =
-
-> > > +			return -EINVAL;
-> > > +		}
-> > > +
-> > >  	if (!fb)
-> > >  		return 0;
-> > =
-
-> > What Manasi said. In fact pls move the thing to the end of the function
-> > because I have more color key checks queued up in a branch and IIRC
-> > I put them to the very end of the function.
-> > =
-
-> > >  =
-
-> > > -- =
-
-> > > 2.21.1
-> > > =
-
-> > > _______________________________________________
-> > > Intel-gfx mailing list
-> > > Intel-gfx@lists.freedesktop.org
-> > > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-> > =
-
-> > -- =
-
-> > Ville Syrj=E4l=E4
-> > Intel
-> =
-
-> -- =
-
-> Ville Syrj=E4l=E4
-> Intel
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16296/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
