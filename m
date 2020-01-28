@@ -1,32 +1,59 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6532D14AFF0
-	for <lists+intel-gfx@lfdr.de>; Tue, 28 Jan 2020 07:42:29 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A93B514B022
+	for <lists+intel-gfx@lfdr.de>; Tue, 28 Jan 2020 08:14:49 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 377B56ECA3;
-	Tue, 28 Jan 2020 06:42:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DF91D6ECAF;
+	Tue, 28 Jan 2020 07:14:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 421A26ECA1;
- Tue, 28 Jan 2020 06:42:25 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 31372A0019;
- Tue, 28 Jan 2020 06:42:25 +0000 (UTC)
+Received: from mail-wr1-x442.google.com (mail-wr1-x442.google.com
+ [IPv6:2a00:1450:4864:20::442])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B48816ECAE
+ for <intel-gfx@lists.freedesktop.org>; Tue, 28 Jan 2020 07:14:45 +0000 (UTC)
+Received: by mail-wr1-x442.google.com with SMTP id c14so14719673wrn.7
+ for <intel-gfx@lists.freedesktop.org>; Mon, 27 Jan 2020 23:14:45 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=L5rJjGW45Z+8qSbHYVvuoI5CUz6BfgTic5/gZkDJ/Y8=;
+ b=UgRWZAH0XkaMeIU/waZA3b2LhF3N28TF8GD5Xo9y1mKGDWEUh1tqZ09zpXL7qVNev8
+ N7i8zAKXvr3JaRCQLJvH8hmc+EkrkpM4mqflzBWcQe4zqLNOdbLckyVxaev1WybTdUOi
+ NIuNtXL9aZz3mii3UhpG+llabvq3oc6gaSNYDB529xmfU5qwcLs6B6S/hqgygNplF6sO
+ y0o1KDlkiUWbA4/+5nnvJz3OzsuMLlmgHkPFO9Be6M+iBYKfPHge1IRPQfssJr0HwSdJ
+ PztX/AYB/obeK5kLs12XPsLFXQyrfIPopT9JVZtY8KQ/+fB1OWFvqTIMD8cKDnMKZRfx
+ l+yw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=L5rJjGW45Z+8qSbHYVvuoI5CUz6BfgTic5/gZkDJ/Y8=;
+ b=lCwIvHnzKi8onqpxFbqLODB+8024+dobBEB8MaVBaaWUdVdrsq2HbqTgSHeQja4KHF
+ sksV5d6tKHjje4zcUruZf+puAv7pjLYl+quSSV31S+GI2Dslre4hZhwEzs7cpeIPVRTj
+ ZNbjmWK4k+W8teOfm7t+ODLxv0Jio4+rA65f0sbL/FkRTitBJb65fcaFVWJqA5uj+Zvb
+ TTW19lDOXtUgu8Qly0rvSw/zwobGcLRXyYvA/ofVa416AoCPG3GlUseOtQ+fNnVtrSua
+ jwdwkrB3PJhbk26O/FnDYu52nQ1EXMZleqhv53tQ3B3/f/ML8WyGqQUlskWV9ZFQg2Z4
+ hBLA==
+X-Gm-Message-State: APjAAAWTIqdXhaMkhb9XxjW4yWTVJi7nYusNdX0fBRZHvBjNDrH24OBl
+ /KnlW8SlWG+B87PnDPMpZ50=
+X-Google-Smtp-Source: APXvYqwa7tWyBpDRtHnj5Qd9UlSvn8PEuNh5+zk3g2NLNfAuRUUZoeewfloHgJQh/rKSUHnE6h03ZA==
+X-Received: by 2002:adf:ff84:: with SMTP id j4mr27186950wrr.27.1580195684338; 
+ Mon, 27 Jan 2020 23:14:44 -0800 (PST)
+Received: from wambui.zuku.co.ke ([197.237.61.225])
+ by smtp.googlemail.com with ESMTPSA id b67sm1794420wmc.38.2020.01.27.23.14.41
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 27 Jan 2020 23:14:43 -0800 (PST)
+From: Wambui Karuga <wambui.karugax@gmail.com>
+To: jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
+ rodrigo.vivi@intel.com, airlied@linux.ie, daniel@ffwll.ch
+Date: Tue, 28 Jan 2020 10:14:29 +0300
+Message-Id: <20200128071437.9284-1-wambui.karugax@gmail.com>
+X-Mailer: git-send-email 2.25.0
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Alexey Budankov" <alexey.budankov@linux.intel.com>
-Date: Tue, 28 Jan 2020 06:42:25 -0000
-Message-ID: <158019374517.20537.8195386271468846361@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <74d524ab-ac11-a7b8-1052-eba10f117e09@linux.intel.com>
-In-Reply-To: <74d524ab-ac11-a7b8-1052-eba10f117e09@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_Introduce_CAP=5FPERFMON_to_secure_system_performance_monito?=
- =?utf-8?q?ring_and_observability_=28rev2=29?=
+Subject: [Intel-gfx] [PATCH 0/8] drm/i915/gt conversion to new drm logging
+ macros.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,82 +66,46 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+This series continues the conversion to the new drm logging macros
+focused on the drm/i915/gt folder. This was done both manually and using
+coccinelle.
 
-Series: Introduce CAP_PERFMON to secure system performance monitoring and observability (rev2)
-URL   : https://patchwork.freedesktop.org/series/72273/
-State : warning
+Wambui Karuga (8):
+  drm/i915/gt: conversion to struct drm_device macros when struct
+    drm_i915_private is available.
+  drm/i915/ggtt: use new drm logging macros in gt/intel_ggtt.c
+  drm/i915/reset: conversion to new drm logging macros in
+    gt/intel_reset.c
+  drm/i915/engine_cs: use new drm logging macros in gt/intel_engine_cs.c
+  drm/i915/lrc: conversion to new drm logging macros in gt/intel_lrc.c
+  drm/i915/gt: convert to new logging macros in gt/intel_gt.c
+  drm/i915/ring: convert to new logging macros in
+    gt/intel_ring_submission.c
+  drm/i915/rps: move to new drm logging macros in gt/intel_rps.c
 
-== Summary ==
+ drivers/gpu/drm/i915/gt/intel_engine_cs.c     | 11 +--
+ drivers/gpu/drm/i915/gt/intel_engine_user.c   |  2 +-
+ drivers/gpu/drm/i915/gt/intel_ggtt.c          | 63 +++++++++------
+ drivers/gpu/drm/i915/gt/intel_gt.c            | 49 ++++++-----
+ drivers/gpu/drm/i915/gt/intel_lrc.c           | 24 +++---
+ drivers/gpu/drm/i915/gt/intel_rc6.c           | 30 ++++---
+ drivers/gpu/drm/i915/gt/intel_renderstate.c   |  2 +-
+ drivers/gpu/drm/i915/gt/intel_reset.c         | 48 ++++++-----
+ .../gpu/drm/i915/gt/intel_ring_submission.c   | 36 +++++----
+ drivers/gpu/drm/i915/gt/intel_rps.c           | 81 +++++++++----------
+ drivers/gpu/drm/i915/gt/intel_workarounds.c   |  7 +-
+ drivers/gpu/drm/i915/gt/uc/intel_guc_log.c    |  3 +-
+ drivers/gpu/drm/i915/gt/uc/intel_uc.c         |  4 +-
+ 13 files changed, 196 insertions(+), 164 deletions(-)
 
-$ dim checkpatch origin/drm-tip
-00180af79ca9 capabilities: introduce CAP_PERFMON to kernel and user space
--:13: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#13: 
-is available to a CAP_SYS_ADMIN privileged process [2]. Providing the access
-
-total: 0 errors, 1 warnings, 0 checks, 36 lines checked
-2b6eefdcee3f perf/core: open access to the core for CAP_PERFMON privileged process
--:9: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#9: 
-CAP_PERFMON capability singly, without the rest of CAP_SYS_ADMIN credentials,
-
-total: 0 errors, 1 warnings, 0 checks, 32 lines checked
-67949e980fe0 perf/core: open access to probes for CAP_PERFMON privileged process
--:18: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#18: 
-monitoring and observability operations (POSIX IEEE 1003.1e 2.2.2.39 principle
-
-total: 0 errors, 1 warnings, 0 checks, 16 lines checked
-e16c0ae49641 perf tool: extend Perf tool with CAP_PERFMON capability support
--:13: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#13: 
-monitoring and observability operations (POSIX IEEE 1003.1e 2.2.2.39 principle
-
-total: 0 errors, 1 warnings, 0 checks, 56 lines checked
-0ded358c0c9a drm/i915/perf: open access for CAP_PERFMON privileged process
--:12: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#12: 
-monitoring and observability operations (POSIX IEEE 1003.1e 2.2.2.39 principle
-
-total: 0 errors, 1 warnings, 0 checks, 39 lines checked
-1ec452341389 trace/bpf_trace: open access for CAP_PERFMON privileged process
--:13: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#13: 
-monitoring and observability operations (POSIX IEEE 1003.1e 2.2.2.39 principle
-
-total: 0 errors, 1 warnings, 0 checks, 8 lines checked
-346f1feb325c powerpc/perf: open access for CAP_PERFMON privileged process
--:12: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#12: 
-monitoring and observability operations (POSIX IEEE 1003.1e 2.2.2.39 principle
-
-total: 0 errors, 1 warnings, 0 checks, 16 lines checked
-80510aa6fcc1 parisc/perf: open access for CAP_PERFMON privileged process
--:12: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#12: 
-monitoring and observability operations (POSIX IEEE 1003.1e 2.2.2.39 principle
-
-total: 0 errors, 1 warnings, 0 checks, 8 lines checked
-d4bca6e41e7d drivers/perf: open access for CAP_PERFMON privileged process
--:12: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#12: 
-monitoring and observability operations (POSIX IEEE 1003.1e 2.2.2.39 principle
-
-total: 0 errors, 1 warnings, 0 checks, 16 lines checked
-e309daf46905 drivers/oprofile: open access for CAP_PERFMON privileged process
--:13: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#13: 
-monitoring and observability operations (POSIX IEEE 1003.1e 2.2.2.39 principle
-
-total: 0 errors, 1 warnings, 0 checks, 8 lines checked
+-- 
+2.25.0
 
 _______________________________________________
 Intel-gfx mailing list
