@@ -1,40 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DEA6E14BE99
-	for <lists+intel-gfx@lfdr.de>; Tue, 28 Jan 2020 18:31:06 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B8D514BEAA
+	for <lists+intel-gfx@lfdr.de>; Tue, 28 Jan 2020 18:36:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4A0A16EEBA;
-	Tue, 28 Jan 2020 17:31:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AE5D86E0EA;
+	Tue, 28 Jan 2020 17:36:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E64B56EEBA
- for <intel-gfx@lists.freedesktop.org>; Tue, 28 Jan 2020 17:31:03 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6F4316E0EA
+ for <intel-gfx@lists.freedesktop.org>; Tue, 28 Jan 2020 17:36:02 +0000 (UTC)
 X-Amp-Result: UNSCANNABLE
 X-Amp-File-Uploaded: False
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga106.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 28 Jan 2020 09:31:03 -0800
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 28 Jan 2020 09:36:01 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,374,1574150400"; d="scan'208";a="309142235"
+X-IronPort-AV: E=Sophos;i="5.70,374,1574150400"; d="scan'208";a="232032582"
 Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by orsmga001.jf.intel.com with SMTP; 28 Jan 2020 09:31:00 -0800
+ by orsmga006.jf.intel.com with SMTP; 28 Jan 2020 09:35:59 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 28 Jan 2020 19:30:59 +0200
-Date: Tue, 28 Jan 2020 19:30:59 +0200
+ Tue, 28 Jan 2020 19:35:58 +0200
+Date: Tue, 28 Jan 2020 19:35:58 +0200
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Matt Atwood <matthew.s.atwood@intel.com>
-Message-ID: <20200128173059.GO13686@intel.com>
-References: <20200117091627.1697-1-matthew.s.atwood@intel.com>
- <20200128170538.GN13686@intel.com>
+To: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+Message-ID: <20200128173558.GP13686@intel.com>
+References: <20200124084456.2961-1-stanislav.lisovskiy@intel.com>
+ <20200124084456.2961-4-stanislav.lisovskiy@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20200128170538.GN13686@intel.com>
+In-Reply-To: <20200124084456.2961-4-stanislav.lisovskiy@intel.com>
 X-Patchwork-Hint: comment
 User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/tgl: Add Wa_1606054188;tgl
+Subject: Re: [Intel-gfx] [PATCH v16 3/7] drm/i915: Introduce parameterized
+ DBUF_CTL
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,93 +54,181 @@ Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Jan 28, 2020 at 07:05:38PM +0200, Ville Syrj=E4l=E4 wrote:
-> On Fri, Jan 17, 2020 at 04:16:28AM -0500, Matt Atwood wrote:
-> > On Tiger Lake we do not support source keying in the pixel formats P010,
-> > P012, P016.
-> > =
-
-> > Bspec: 52890
-> > Cc: Matt Roper <matthew.d.roper@intel.com>
-> > Signed-off-by: Matt Atwood <matthew.s.atwood@intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_sprite.c | 13 +++++++++++++
-> >  1 file changed, 13 insertions(+)
-> > =
-
-> > diff --git a/drivers/gpu/drm/i915/display/intel_sprite.c b/drivers/gpu/=
-drm/i915/display/intel_sprite.c
-> > index fca77ec1e0dd..67176524e60f 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_sprite.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_sprite.c
-> > @@ -2049,6 +2049,19 @@ static int skl_plane_check_fb(const struct intel=
-_crtc_state *crtc_state,
-> >  	unsigned int rotation =3D plane_state->hw.rotation;
-> >  	struct drm_format_name_buf format_name;
-> >  =
-
-> > +	/* Wa_1606054188;tgl
-> > +	 *
-> > +	 * TODO: Add format RGB64i when implemented
-> > +	 *
-> > +	 */
-> > +	if (IS_GEN(dev_priv, 12) &&
-> > +	    (plane_state->ckey.flags & I915_SET_COLORKEY_SOURCE))
-> > +		if (fb->format->format & (DRM_FORMAT_P010 | DRM_FORMAT_P012
-> > +		    | DRM_FORMAT_P016)) {
-
-Oh, and that | stuff is actually just nonsense. That's not a
-bitfield or anything like that. I'd just add a small
-intel_format_is_p01x() function etc.
-
+On Fri, Jan 24, 2020 at 10:44:52AM +0200, Stanislav Lisovskiy wrote:
+> Now start using parameterized DBUF_CTL instead
+> of hardcoded, this would allow shorter access
+> functions when reading or storing entire state.
 > =
 
-> if (a && b && c)
+> Tried to implement it in a MMIO_PIPE manner, however
+> DBUF_CTL1 address is higher than DBUF_CTL2, which
+> implies that we have to now subtract from base
+> rather than add.
 > =
 
-> Needless parens.
+> v2: - Removed unneeded DBUF_CTL_DIST and DBUF_CTL_ADDR
+>       macros. Started to use _PICK construct as suggested
+>       by Matt Roper.
 > =
 
-> Continuing | should go to the end. Also alignment is borked.
+> v3: - DBUF_CTL_S* to _DBUF_CTL_S*, changed X to "slice"
+>       in macro(Ville Syrj=E4l=E4)
+>     - Introduced enum for enumerating DBUF slices(Ville Syrj=E4l=E4)
 > =
 
-> > +			DRM_DEBUG_KMS("GEN12 does not support source color key planes in fo=
-rmats P01x\n");
+> Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+> Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+> ---
+>  .../drm/i915/display/intel_display_power.c    | 30 +++++++++++--------
+>  .../drm/i915/display/intel_display_power.h    |  5 ++++
+>  drivers/gpu/drm/i915/i915_reg.h               |  7 +++--
+>  drivers/gpu/drm/i915/intel_pm.c               |  2 +-
+>  4 files changed, 28 insertions(+), 16 deletions(-)
 > =
 
-> Feels a bit overly verbose:
-> "Source color keying not supported with P01x formats\n"
-> =
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers=
+/gpu/drm/i915/display/intel_display_power.c
+> index 5e1c601f0f99..a59efb24be92 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_power.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
+> @@ -4418,9 +4418,11 @@ void icl_dbuf_slices_update(struct drm_i915_privat=
+e *dev_priv,
+>  		return;
+>  =
 
-> > +			return -EINVAL;
-> > +		}
-> > +
-> >  	if (!fb)
-> >  		return 0;
-> =
+>  	if (req_slices > hw_enabled_slices)
+> -		ret =3D intel_dbuf_slice_set(dev_priv, DBUF_CTL_S2, true);
+> +		ret =3D intel_dbuf_slice_set(dev_priv,
+> +					   _DBUF_CTL_S(DBUF_S2), true);
+>  	else
+> -		ret =3D intel_dbuf_slice_set(dev_priv, DBUF_CTL_S2, false);
+> +		ret =3D intel_dbuf_slice_set(dev_priv,
+> +					   _DBUF_CTL_S(DBUF_S2), false);
+>  =
 
-> What Manasi said. In fact pls move the thing to the end of the function
-> because I have more color key checks queued up in a branch and IIRC
-> I put them to the very end of the function.
-> =
+>  	if (ret)
+>  		dev_priv->enabled_dbuf_slices_num =3D req_slices;
+> @@ -4428,14 +4430,16 @@ void icl_dbuf_slices_update(struct drm_i915_priva=
+te *dev_priv,
+>  =
 
-> >  =
+>  static void icl_dbuf_enable(struct drm_i915_private *dev_priv)
+>  {
+> -	I915_WRITE(DBUF_CTL_S1, I915_READ(DBUF_CTL_S1) | DBUF_POWER_REQUEST);
+> -	I915_WRITE(DBUF_CTL_S2, I915_READ(DBUF_CTL_S2) | DBUF_POWER_REQUEST);
+> -	POSTING_READ(DBUF_CTL_S2);
+> +	I915_WRITE(_DBUF_CTL_S(DBUF_S1),
+> +		   I915_READ(_DBUF_CTL_S(DBUF_S1)) | DBUF_POWER_REQUEST);
+> +	I915_WRITE(_DBUF_CTL_S(DBUF_S2),
+> +		   I915_READ(_DBUF_CTL_S(DBUF_S2)) | DBUF_POWER_REQUEST);
+> +	POSTING_READ(_DBUF_CTL_S(DBUF_S2));
+>  =
 
-> > -- =
+>  	udelay(10);
+>  =
 
-> > 2.21.1
-> > =
+> -	if (!(I915_READ(DBUF_CTL_S1) & DBUF_POWER_STATE) ||
+> -	    !(I915_READ(DBUF_CTL_S2) & DBUF_POWER_STATE))
+> +	if (!(I915_READ(_DBUF_CTL_S(DBUF_S1)) & DBUF_POWER_STATE) ||
+> +	    !(I915_READ(_DBUF_CTL_S(DBUF_S2)) & DBUF_POWER_STATE))
+>  		DRM_ERROR("DBuf power enable timeout\n");
+>  	else
+>  		/*
+> @@ -4447,14 +4451,16 @@ static void icl_dbuf_enable(struct drm_i915_priva=
+te *dev_priv)
+>  =
 
-> > _______________________________________________
-> > Intel-gfx mailing list
-> > Intel-gfx@lists.freedesktop.org
-> > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-> =
+>  static void icl_dbuf_disable(struct drm_i915_private *dev_priv)
+>  {
+> -	I915_WRITE(DBUF_CTL_S1, I915_READ(DBUF_CTL_S1) & ~DBUF_POWER_REQUEST);
+> -	I915_WRITE(DBUF_CTL_S2, I915_READ(DBUF_CTL_S2) & ~DBUF_POWER_REQUEST);
+> -	POSTING_READ(DBUF_CTL_S2);
+> +	I915_WRITE(_DBUF_CTL_S(DBUF_S1),
+> +		   I915_READ(_DBUF_CTL_S(DBUF_S1)) & ~DBUF_POWER_REQUEST);
+> +	I915_WRITE(_DBUF_CTL_S(DBUF_S2),
+> +		   I915_READ(_DBUF_CTL_S(DBUF_S2)) & ~DBUF_POWER_REQUEST);
+> +	POSTING_READ(_DBUF_CTL_S(DBUF_S2));
+>  =
 
+>  	udelay(10);
+>  =
+
+> -	if ((I915_READ(DBUF_CTL_S1) & DBUF_POWER_STATE) ||
+> -	    (I915_READ(DBUF_CTL_S2) & DBUF_POWER_STATE))
+> +	if ((I915_READ(_DBUF_CTL_S(DBUF_S1)) & DBUF_POWER_STATE) ||
+> +	    (I915_READ(_DBUF_CTL_S(DBUF_S2)) & DBUF_POWER_STATE))
+>  		DRM_ERROR("DBuf power disable timeout!\n");
+>  	else
+>  		/*
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_power.h b/drivers=
+/gpu/drm/i915/display/intel_display_power.h
+> index 2608a65af7fa..601e000ffd0d 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_power.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_power.h
+> @@ -307,6 +307,11 @@ intel_display_power_put_async(struct drm_i915_privat=
+e *i915,
+>  }
+>  #endif
+>  =
+
+> +enum dbuf_slice {
+> +	DBUF_S1,
+> +	DBUF_S2,
+> +};
+> +
+>  #define with_intel_display_power(i915, domain, wf) \
+>  	for ((wf) =3D intel_display_power_get((i915), (domain)); (wf); \
+>  	     intel_display_power_put_async((i915), (domain), (wf)), (wf) =3D 0)
+> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_=
+reg.h
+> index b93c4c18f05c..625be54d3eae 100644
+> --- a/drivers/gpu/drm/i915/i915_reg.h
+> +++ b/drivers/gpu/drm/i915/i915_reg.h
+> @@ -7748,9 +7748,10 @@ enum {
+>  #define DISP_ARB_CTL2	_MMIO(0x45004)
+>  #define  DISP_DATA_PARTITION_5_6	(1 << 6)
+>  #define  DISP_IPC_ENABLE		(1 << 3)
+> -#define DBUF_CTL	_MMIO(0x45008)
+> -#define DBUF_CTL_S1	_MMIO(0x45008)
+> -#define DBUF_CTL_S2	_MMIO(0x44FE8)
+> +#define DBUF_CTL_ADDR1			0x45008
+> +#define DBUF_CTL_ADDR2			0x44FE8
+> +#define _DBUF_CTL_S(X)			_MMIO(_PICK_EVEN(X, DBUF_CTL_ADDR1, DBUF_CTL_AD=
+DR2))
+
+That's not at all what I meant. Also the 'X' is still there despite what
+the changelog says.
+
+#define _DBUF_CTL_S1	0x45008
+#define _DBUF_CTL_S2	0x44FE8
+#define DBUF_CTL_S(slice)	_MMIO(_PICK_EVEN(slice, _DBUF_CTL_S1, _DBUF_CTL_S=
+2))
+
+
+> +#define DBUF_CTL			_DBUF_CTL_S(0)
+>  #define  DBUF_POWER_REQUEST		(1 << 31)
+>  #define  DBUF_POWER_STATE		(1 << 30)
+>  #define GEN7_MSG_CTL	_MMIO(0x45010)
+> diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel=
+_pm.c
+> index 04f94057d6b3..b8d78e26515c 100644
+> --- a/drivers/gpu/drm/i915/intel_pm.c
+> +++ b/drivers/gpu/drm/i915/intel_pm.c
+> @@ -3660,7 +3660,7 @@ u8 intel_enabled_dbuf_slices_num(struct drm_i915_pr=
+ivate *dev_priv)
+>  	 * only that 1 slice enabled until we have a proper way for on-demand
+>  	 * toggling of the second slice.
+>  	 */
+> -	if (0 && I915_READ(DBUF_CTL_S2) & DBUF_POWER_STATE)
+> +	if (0 && I915_READ(_DBUF_CTL_S(DBUF_S2)) & DBUF_POWER_STATE)
+>  		enabled_dbuf_slices_num++;
+>  =
+
+>  	return enabled_dbuf_slices_num;
 > -- =
 
-> Ville Syrj=E4l=E4
-> Intel
+> 2.24.1.485.gad05a3d8e5
 
 -- =
 
