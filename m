@@ -1,31 +1,35 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D391214BF27
-	for <lists+intel-gfx@lfdr.de>; Tue, 28 Jan 2020 19:06:12 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 70C6414BFAC
+	for <lists+intel-gfx@lfdr.de>; Tue, 28 Jan 2020 19:27:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 14DB389C49;
-	Tue, 28 Jan 2020 18:06:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1C81B6E0FD;
+	Tue, 28 Jan 2020 18:27:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id B25A989BF1;
- Tue, 28 Jan 2020 18:06:10 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id A9CDDA011A;
- Tue, 28 Jan 2020 18:06:10 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6B6166E0FD;
+ Tue, 28 Jan 2020 18:27:34 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 28 Jan 2020 10:27:34 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,374,1574150400"; d="scan'208";a="310815904"
+Received: from plaxmina-desktop.iind.intel.com ([10.145.162.62])
+ by fmsmga001.fm.intel.com with ESMTP; 28 Jan 2020 10:27:31 -0800
+From: Pankaj Bharadiya <pankaj.laxminarayan.bharadiya@intel.com>
+To: jani.nikula@linux.intel.com, daniel@ffwll.ch,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Date: Tue, 28 Jan 2020 23:45:42 +0530
+Message-Id: <20200128181603.27767-1-pankaj.laxminarayan.bharadiya@intel.com>
+X-Mailer: git-send-email 2.23.0
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>
-Date: Tue, 28 Jan 2020 18:06:10 -0000
-Message-ID: <158023477066.20536.7517733157358915991@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200128083851.2566893-1-maarten.lankhorst@linux.intel.com>
-In-Reply-To: <20200128083851.2566893-1-maarten.lankhorst@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Move_cec=5Fnotifier_to_intel=5Fconnector?=
+Subject: [Intel-gfx] [PATCH v5 00/21] drm: Introduce struct drm_device based
+ WARN* and use them in i915
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,132 +42,144 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Device specific dev_WARN and dev_WARN_ONCE macros available in kernel
+include device information in the backtrace, so we know what device
+the warnings originate from.
 
-Series: drm/i915: Move cec_notifier to intel_connector
-URL   : https://patchwork.freedesktop.org/series/72649/
-State : success
+Similar to this, add new struct drm_device based drm_WARN* macros. These
+macros include device information in the backtrace, so we know
+what device the warnings originate from. Knowing the device specific
+information in the backtrace would be helpful in development all
+around.
 
-== Summary ==
+This patch series aims to convert calls of WARN(), WARN_ON(),
+WARN_ONCE() and WARN_ON_ONCE() in i915 driver to use the drm
+device-specific variants automatically wherever struct device pointer
+is available.
 
-CI Bug Log - changes from CI_DRM_7833 -> Patchwork_16291
-====================================================
+To do this, this patch series -
+  - introduces new struct drm_device based WARN* macros
+  - automatically converts WARN* with device specific dev_WARN*
+    variants using coccinelle semantic patch scripts.
 
-Summary
--------
+The goal is to convert all the calls of WARN* with drm_WARN* in i915,
+but there are still cases where device pointer is not readily
+available in some functions (or I missed them somehow) using WARN*
+hence some manual churning is needed. Handle such remaining cases
+separately later.
 
-  **SUCCESS**
+changes since v4:
+   - Address Jani's comment
+     - split major i915/display related conversions per file into
+       seperate patches so that non conflicting patches can be
+       merged.
 
-  No regressions found.
+changes since v3:
+  - rebase pending unmerged patches on drm-tip
+	(bc626bbb5b6e drm-tip: 2020y-01m-25d-14h-28m-41s UTC integration manifest)
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16291/index.html
+changes since v2:
+  - rebase pending unmerged patches on drm-tip
 
-Known issues
-------------
+changes since v1:
+  - Address Jani's review comments
+    - Fix typo in comment of patch 0001
+    - Get rid of helper functions
+    - Split patches by directory
 
-  Here are the changes found in Patchwork_16291 that come from known issues:
+Changes since RFC at [1]
+  - Introduce drm_WARN* macros and use them as suggested by Sam and Jani
+  - Get rid of extra local variables
 
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_exec_parallel@fds:
-    - fi-byt-n2820:       [PASS][1] -> [TIMEOUT][2] ([fdo#112271])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7833/fi-byt-n2820/igt@gem_exec_parallel@fds.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16291/fi-byt-n2820/igt@gem_exec_parallel@fds.html
-
-  * igt@i915_selftest@live_blt:
-    - fi-ivb-3770:        [PASS][3] -> [DMESG-FAIL][4] ([i915#725])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7833/fi-ivb-3770/igt@i915_selftest@live_blt.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16291/fi-ivb-3770/igt@i915_selftest@live_blt.html
-
-  * igt@kms_chamelium@dp-edid-read:
-    - fi-cml-u2:          [PASS][5] -> [FAIL][6] ([i915#217])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7833/fi-cml-u2/igt@kms_chamelium@dp-edid-read.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16291/fi-cml-u2/igt@kms_chamelium@dp-edid-read.html
-
-  * igt@kms_chamelium@hdmi-hpd-fast:
-    - fi-kbl-7500u:       [PASS][7] -> [FAIL][8] ([fdo#111096] / [i915#323])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7833/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16291/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live_gem_contexts:
-    - fi-icl-guc:         [INCOMPLETE][9] ([i915#140]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7833/fi-icl-guc/igt@i915_selftest@live_gem_contexts.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16291/fi-icl-guc/igt@i915_selftest@live_gem_contexts.html
-
-  
-#### Warnings ####
-
-  * igt@gem_exec_parallel@contexts:
-    - fi-byt-n2820:       [TIMEOUT][11] ([fdo#112271]) -> [FAIL][12] ([i915#694])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7833/fi-byt-n2820/igt@gem_exec_parallel@contexts.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16291/fi-byt-n2820/igt@gem_exec_parallel@contexts.html
-
-  * igt@i915_pm_rpm@basic-rte:
-    - fi-kbl-guc:         [FAIL][13] ([i915#579]) -> [SKIP][14] ([fdo#109271])
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7833/fi-kbl-guc/igt@i915_pm_rpm@basic-rte.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16291/fi-kbl-guc/igt@i915_pm_rpm@basic-rte.html
-
-  * igt@i915_selftest@live_blt:
-    - fi-hsw-4770r:       [DMESG-FAIL][15] ([i915#563]) -> [DMESG-FAIL][16] ([i915#725])
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7833/fi-hsw-4770r/igt@i915_selftest@live_blt.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16291/fi-hsw-4770r/igt@i915_selftest@live_blt.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#111096]: https://bugs.freedesktop.org/show_bug.cgi?id=111096
-  [fdo#112271]: https://bugs.freedesktop.org/show_bug.cgi?id=112271
-  [i915#140]: https://gitlab.freedesktop.org/drm/intel/issues/140
-  [i915#217]: https://gitlab.freedesktop.org/drm/intel/issues/217
-  [i915#323]: https://gitlab.freedesktop.org/drm/intel/issues/323
-  [i915#563]: https://gitlab.freedesktop.org/drm/intel/issues/563
-  [i915#579]: https://gitlab.freedesktop.org/drm/intel/issues/579
-  [i915#694]: https://gitlab.freedesktop.org/drm/intel/issues/694
-  [i915#725]: https://gitlab.freedesktop.org/drm/intel/issues/725
-  [i915#879]: https://gitlab.freedesktop.org/drm/intel/issues/879
-  [i915#998]: https://gitlab.freedesktop.org/drm/intel/issues/998
+[1] https://patchwork.freedesktop.org/series/71668/
 
 
-Participating hosts (50 -> 36)
-------------------------------
+Pankaj Bharadiya (21):
+  drm/i915/display/icl_dsi: Make WARN* drm specific where drm_priv ptr is available
+  drm/i915/display/audio: Make WARN* drm specific where drm_priv ptr is available
+  drm/i915/display/cdclk: Make WARN* drm specific where drm_priv ptr is available
+  drm/i915/display/crt: Make WARN* drm specific where drm_priv ptr is available
+  drm/i915/display/ddi: Make WARN* drm specific where drm_device ptr is available
+  drm/i915/display/display: Make WARN* drm specific where drm_device ptr is available
+  drm/i915/display/power: Make WARN* drm specific where drm_priv ptr is available
+  drm/i915/display/dp: Make WARN* drm specific where drm_device ptr is available
+  drm/i915/display/dpll_mgr: Make WARN* drm specific where drm_device ptr is available
+  drm/i915/display/fbc: Make WARN* drm specific where drm_priv ptr is available
+  drm/i915/fbdev: Make WARN* drm specific where drm_device ptr is available
+  drm/i915/display/hdcp: Make WARN* drm specific where drm_priv ptr is available
+  drm/i915/display/hdmi: Make WARN* drm specific where drm_device ptr is available
+  drm/i915/display/overlay: Make WARN* drm specific where drm_priv ptr is available
+  drm/i915/display/panel: Make WARN* drm specific where drm_priv ptr is available
+  drm/i915/display/psr: Make WARN* drm specific where drm_priv ptr is available
+  drm/i915/display/sdvo: Make WARN* drm specific where drm_priv ptr is available
+  drm/i915/display/tc: Make WARN* drm specific where drm_priv ptr is available
+  drm/i915/display: Make WARN* drm specific where drm_device ptr is available
+  drm/i915/gvt: Make WARN* drm specific where drm_priv ptr is available
+  drm/i915/gvt: Make WARN* drm specific where vgpu ptr is available
 
-  Additional (1): fi-snb-2520m 
-  Missing    (15): fi-ilk-m540 fi-bdw-samus fi-hsw-peppy fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-kbl-r fi-gdg-551 fi-cfl-8109u fi-elk-e7500 fi-blb-e6850 fi-byt-clapper fi-bsw-nick fi-skl-6600u fi-snb-2600 
+ drivers/gpu/drm/i915/display/icl_dsi.c        |  14 +-
+ drivers/gpu/drm/i915/display/intel_atomic.c   |   6 +-
+ drivers/gpu/drm/i915/display/intel_audio.c    |  19 +-
+ drivers/gpu/drm/i915/display/intel_bios.c     |  10 +-
+ drivers/gpu/drm/i915/display/intel_bw.c       |   3 +-
+ drivers/gpu/drm/i915/display/intel_cdclk.c    |  81 ++++---
+ drivers/gpu/drm/i915/display/intel_color.c    |   3 +-
+ .../gpu/drm/i915/display/intel_combo_phy.c    |   2 +-
+ .../gpu/drm/i915/display/intel_connector.c    |   3 +-
+ drivers/gpu/drm/i915/display/intel_crt.c      |  10 +-
+ drivers/gpu/drm/i915/display/intel_ddi.c      |  92 +++----
+ drivers/gpu/drm/i915/display/intel_display.c  | 226 ++++++++++--------
+ .../drm/i915/display/intel_display_power.c    | 168 +++++++------
+ drivers/gpu/drm/i915/display/intel_dp.c       | 117 +++++----
+ drivers/gpu/drm/i915/display/intel_dp_mst.c   |  10 +-
+ drivers/gpu/drm/i915/display/intel_dpio_phy.c |   3 +-
+ drivers/gpu/drm/i915/display/intel_dpll_mgr.c |  37 +--
+ drivers/gpu/drm/i915/display/intel_dsb.c      |   6 +-
+ .../i915/display/intel_dsi_dcs_backlight.c    |   2 +-
+ drivers/gpu/drm/i915/display/intel_dsi_vbt.c  |   5 +-
+ drivers/gpu/drm/i915/display/intel_fbc.c      |  23 +-
+ drivers/gpu/drm/i915/display/intel_fbdev.c    |  13 +-
+ drivers/gpu/drm/i915/display/intel_gmbus.c    |   3 +-
+ drivers/gpu/drm/i915/display/intel_hdcp.c     |  21 +-
+ drivers/gpu/drm/i915/display/intel_hdmi.c     |  52 ++--
+ drivers/gpu/drm/i915/display/intel_hotplug.c  |   7 +-
+ .../gpu/drm/i915/display/intel_lpe_audio.c    |   2 +-
+ drivers/gpu/drm/i915/display/intel_lvds.c     |   7 +-
+ drivers/gpu/drm/i915/display/intel_opregion.c |   7 +-
+ drivers/gpu/drm/i915/display/intel_overlay.c  |  12 +-
+ drivers/gpu/drm/i915/display/intel_panel.c    |  19 +-
+ drivers/gpu/drm/i915/display/intel_pipe_crc.c |   7 +-
+ drivers/gpu/drm/i915/display/intel_psr.c      |  32 +--
+ drivers/gpu/drm/i915/display/intel_sdvo.c     |  14 +-
+ drivers/gpu/drm/i915/display/intel_sprite.c   |   5 +-
+ drivers/gpu/drm/i915/display/intel_tc.c       |  18 +-
+ drivers/gpu/drm/i915/display/intel_vdsc.c     |   2 +-
+ drivers/gpu/drm/i915/display/vlv_dsi.c        |   2 +-
+ drivers/gpu/drm/i915/gvt/aperture_gm.c        |   6 +-
+ drivers/gpu/drm/i915/gvt/cfg_space.c          |  23 +-
+ drivers/gpu/drm/i915/gvt/cmd_parser.c         |   4 +-
+ drivers/gpu/drm/i915/gvt/display.c            |   6 +-
+ drivers/gpu/drm/i915/gvt/dmabuf.c             |   4 +-
+ drivers/gpu/drm/i915/gvt/edid.c               |  19 +-
+ drivers/gpu/drm/i915/gvt/gtt.c                |  21 +-
+ drivers/gpu/drm/i915/gvt/gvt.c                |   4 +-
+ drivers/gpu/drm/i915/gvt/handlers.c           |  22 +-
+ drivers/gpu/drm/i915/gvt/interrupt.c          |  16 +-
+ drivers/gpu/drm/i915/gvt/kvmgt.c              |  10 +-
+ drivers/gpu/drm/i915/gvt/mmio.c               |  30 ++-
+ drivers/gpu/drm/i915/gvt/mmio_context.c       |   8 +-
+ drivers/gpu/drm/i915/gvt/scheduler.c          |   6 +-
+ drivers/gpu/drm/i915/gvt/vgpu.c               |   6 +-
+ 53 files changed, 716 insertions(+), 532 deletions(-)
 
+-- 
+2.23.0
 
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_7833 -> Patchwork_16291
-
-  CI-20190529: 20190529
-  CI_DRM_7833: 8210f0f999e2d396a8611e0cabc2f6c6a52468de @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5394: 991fd07bcd7add7a5beca2c95b72a994e62fbb75 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_16291: b7a25d4fb9cb2da349220dbdc78a083544d61e08 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-b7a25d4fb9cb drm/i915: Move cec_notifier to intel_connector
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16291/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
