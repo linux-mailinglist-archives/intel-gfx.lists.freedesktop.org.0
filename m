@@ -1,31 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB58714C2B5
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0514314C2B4
 	for <lists+intel-gfx@lfdr.de>; Tue, 28 Jan 2020 23:14:20 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E64836F436;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0A4276E142;
 	Tue, 28 Jan 2020 22:14:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from namei.org (namei.org [65.99.196.166])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 21B756E13A
- for <intel-gfx@lists.freedesktop.org>; Tue, 28 Jan 2020 22:11:39 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E8DA088A36
+ for <intel-gfx@lists.freedesktop.org>; Tue, 28 Jan 2020 22:11:24 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by namei.org (8.14.4/8.14.4) with ESMTP id 00SLI4pL004594;
- Tue, 28 Jan 2020 21:18:04 GMT
-Date: Wed, 29 Jan 2020 08:18:04 +1100 (AEDT)
+ by namei.org (8.14.4/8.14.4) with ESMTP id 00SLIGx1004605;
+ Tue, 28 Jan 2020 21:18:16 GMT
+Date: Wed, 29 Jan 2020 08:18:16 +1100 (AEDT)
 From: James Morris <jmorris@namei.org>
 To: Alexey Budankov <alexey.budankov@linux.intel.com>
-In-Reply-To: <f2877038-da53-f981-4ddb-4e6c1c27c60f@linux.intel.com>
-Message-ID: <alpine.LRH.2.21.2001290817560.2204@namei.org>
+In-Reply-To: <eff5e211-7114-f854-f53f-08491f9dcc26@linux.intel.com>
+Message-ID: <alpine.LRH.2.21.2001290818090.2204@namei.org>
 References: <74d524ab-ac11-a7b8-1052-eba10f117e09@linux.intel.com>
- <f2877038-da53-f981-4ddb-4e6c1c27c60f@linux.intel.com>
+ <eff5e211-7114-f854-f53f-08491f9dcc26@linux.intel.com>
 User-Agent: Alpine 2.21 (LRH 202 2017-01-01)
 MIME-Version: 1.0
 X-Mailman-Approved-At: Tue, 28 Jan 2020 22:14:12 +0000
-Subject: Re: [Intel-gfx] [PATCH v6 09/10] drivers/perf: open access for
+Subject: Re: [Intel-gfx] [PATCH v6 10/10] drivers/oprofile: open access for
  CAP_PERFMON privileged process
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -69,10 +69,10 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 On Tue, 28 Jan 2020, Alexey Budankov wrote:
 
 > 
-> Open access to monitoring for CAP_PERFMON privileged process.
-> Providing the access under CAP_PERFMON capability singly, without the
-> rest of CAP_SYS_ADMIN credentials, excludes chances to misuse the
-> credentials and makes operation more secure.
+> Open access to monitoring for CAP_PERFMON privileged process. Providing
+> the access under CAP_PERFMON capability singly, without the rest of
+> CAP_SYS_ADMIN credentials, excludes chances to misuse the credentials and
+> makes operation more secure.
 > 
 > CAP_PERFMON implements the principal of least privilege for performance
 > monitoring and observability operations (POSIX IEEE 1003.1e 2.2.2.39 principle
@@ -87,36 +87,26 @@ On Tue, 28 Jan 2020, Alexey Budankov wrote:
 > 
 > Signed-off-by: Alexey Budankov <alexey.budankov@linux.intel.com>
 > ---
->  drivers/perf/arm_spe_pmu.c | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
-> 
+>  drivers/oprofile/event_buffer.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 
 
 Acked-by: James Morris <jamorris@linux.microsoft.com>
 
-
-> diff --git a/drivers/perf/arm_spe_pmu.c b/drivers/perf/arm_spe_pmu.c
-> index 4e4984a55cd1..5dff81bc3324 100644
-> --- a/drivers/perf/arm_spe_pmu.c
-> +++ b/drivers/perf/arm_spe_pmu.c
-> @@ -274,7 +274,7 @@ static u64 arm_spe_event_to_pmscr(struct perf_event *event)
->  	if (!attr->exclude_kernel)
->  		reg |= BIT(SYS_PMSCR_EL1_E1SPE_SHIFT);
+> 
+> diff --git a/drivers/oprofile/event_buffer.c b/drivers/oprofile/event_buffer.c
+> index 12ea4a4ad607..6c9edc8bbc95 100644
+> --- a/drivers/oprofile/event_buffer.c
+> +++ b/drivers/oprofile/event_buffer.c
+> @@ -113,7 +113,7 @@ static int event_buffer_open(struct inode *inode, struct file *file)
+>  {
+>  	int err = -EPERM;
 >  
-> -	if (IS_ENABLED(CONFIG_PID_IN_CONTEXTIDR) && capable(CAP_SYS_ADMIN))
-> +	if (IS_ENABLED(CONFIG_PID_IN_CONTEXTIDR) && perfmon_capable())
->  		reg |= BIT(SYS_PMSCR_EL1_CX_SHIFT);
+> -	if (!capable(CAP_SYS_ADMIN))
+> +	if (!perfmon_capable())
+>  		return -EPERM;
 >  
->  	return reg;
-> @@ -700,7 +700,7 @@ static int arm_spe_pmu_event_init(struct perf_event *event)
->  		return -EOPNOTSUPP;
->  
->  	reg = arm_spe_event_to_pmscr(event);
-> -	if (!capable(CAP_SYS_ADMIN) &&
-> +	if (!perfmon_capable() &&
->  	    (reg & (BIT(SYS_PMSCR_EL1_PA_SHIFT) |
->  		    BIT(SYS_PMSCR_EL1_CX_SHIFT) |
->  		    BIT(SYS_PMSCR_EL1_PCT_SHIFT))))
+>  	if (test_and_set_bit_lock(0, &buffer_opened))
 > 
 
 -- 
