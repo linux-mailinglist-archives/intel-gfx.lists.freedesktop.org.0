@@ -1,31 +1,38 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6916F14C368
-	for <lists+intel-gfx@lfdr.de>; Wed, 29 Jan 2020 00:10:07 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 351DB14C373
+	for <lists+intel-gfx@lfdr.de>; Wed, 29 Jan 2020 00:15:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9E6226F446;
-	Tue, 28 Jan 2020 23:10:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8E3F46F448;
+	Tue, 28 Jan 2020 23:15:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 16F876F446;
- Tue, 28 Jan 2020 23:10:04 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 031E2A0118;
- Tue, 28 Jan 2020 23:10:04 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 86BE76F448
+ for <intel-gfx@lists.freedesktop.org>; Tue, 28 Jan 2020 23:15:32 +0000 (UTC)
+X-Amp-Result: UNSCANNABLE
+X-Amp-File-Uploaded: False
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 28 Jan 2020 15:15:31 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,375,1574150400"; d="scan'208";a="429492480"
+Received: from mdroper-desk1.fm.intel.com (HELO
+ mdroper-desk1.amr.corp.intel.com) ([10.1.27.64])
+ by fmsmga006.fm.intel.com with ESMTP; 28 Jan 2020 15:15:30 -0800
+Date: Tue, 28 Jan 2020 15:15:30 -0800
+From: Matt Roper <matthew.d.roper@intel.com>
+To: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+Message-ID: <20200128231530.GG22783@mdroper-desk1.amr.corp.intel.com>
+References: <20200124084456.2961-1-stanislav.lisovskiy@intel.com>
+ <20200124084456.2961-6-stanislav.lisovskiy@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Date: Tue, 28 Jan 2020 23:10:03 -0000
-Message-ID: <158025300398.20534.1407155048114879909@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200128151942.2590-1-jani.nikula@intel.com>
-In-Reply-To: <20200128151942.2590-1-jani.nikula@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/debugfs=3A_remove_VBT_data_about_DRRS?=
+Content-Disposition: inline
+In-Reply-To: <20200124084456.2961-6-stanislav.lisovskiy@intel.com>
+Subject: Re: [Intel-gfx] [PATCH v16 5/7] drm/i915: Correctly map DBUF slices
+ to pipes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,131 +45,620 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Fri, Jan 24, 2020 at 10:44:54AM +0200, Stanislav Lisovskiy wrote:
+> Added proper DBuf slice mapping to correspondent
+> pipes, depending on pipe configuration as stated
+> in BSpec.
+> =
 
-Series: drm/i915/debugfs: remove VBT data about DRRS
-URL   : https://patchwork.freedesktop.org/series/72672/
-State : success
+> v2:
+>     - Remove unneeded braces
+>     - Stop using macro for DBuf assignments as
+>       it seems to reduce readability.
+> =
 
-== Summary ==
+> v3: Start using enabled slices mask in dev_priv
+> =
 
-CI Bug Log - changes from CI_DRM_7833 -> Patchwork_16299
-====================================================
+> v4: Renamed "enabled_slices" used in dev_priv
+>     to "enabled_dbuf_slices_mask"(Matt Roper)
+> =
 
-Summary
--------
+> v5: - Removed redundant parameters from
+>       intel_get_ddb_size function.(Matt Roper)
+>     - Made i915_possible_dbuf_slices static(Matt Roper)
+>     - Renamed total_width into total_width_in_range
+>       so that it now reflects that this is not
+>       a total pipe width but the one in current
+>       dbuf slice allowed range for pipe.(Matt Roper)
+>     - Removed 4th pipe for ICL in DBuf assignment
+>       table(Matt Roper)
+>     - Fixed wrong DBuf slice in DBuf table for TGL
+>       (Matt Roper)
+>     - Added comment regarding why we currently not
+>       using pipe ratio for DBuf assignment for ICL
+> =
 
-  **SUCCESS**
+> v6: - Changed u32 to unsigned int in
+>       icl_get_first_dbuf_slice_offset function signature
+>       (Ville Syrj=E4l=E4)
+>     - Changed also u32 to u8 in dbuf slice mask structure
+>       (Ville Syrj=E4l=E4)
+>     - Switched from DBUF_S1_BIT to enum + explicit
+>       BIT(DBUF_S1) access(Ville Syrj=E4l=E4)
+>     - Switched to named initializers in DBuf assignment
+>       arrays(Ville Syrj=E4l=E4)
+>     - DBuf assignment arrays now use autogeneration tool
+>       from
+>       https://patchwork.freedesktop.org/series/70493/
+>       to avoid typos.
+>     - Renamed i915_find_pipe_conf to *_compute_dbuf_slices
+>       (Ville Syrj=E4l=E4)
+>     - Changed platforms ordering in skl_compute_dbuf_slices
+>       to be from newest to oldest(Ville Syrj=E4l=E4)
+> =
 
-  No regressions found.
+> v7: - Now ORing assigned DBuf slice config always with DBUF_S1
+>       because slice 1 has to be constantly powered on.
+>       (Ville Syrj=E4l=E4)
+> =
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16299/index.html
+> v8: - Added pipe_name for neater printing(Ville Syrj=E4l=E4)
+>     - Renamed width_before_pipe to width_before_pipe_in_range,
+>       to better reflect that now all the calculations are happening
+>       inside DBuf range allowed by current pipe configuration mask
+>       (Ville Syrj=E4l=E4)
+>     - Shortened FIXME comment message, regarding constant ORing with
+>       DBUF_S1(Ville Syrj=E4l=E4)
+>     - Added .dbuf_mask named initializer to pipe assignment array
+>       (Ville Syrj=E4l=E4)
+>     - Edited pipe assignment array to use only single DBuf slice
+>       for gen11 single pipe configurations, until "pipe ratio"
+>       thing is finally sorted out(Ville Syrj=E4l=E4)
+>     - Removed unused parameter crtc_state for now(Ville Syrj=E4l=E4)
+>       from icl/tgl_compute_dbuf_slices function
+> =
 
-Known issues
-------------
+> Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+> ---
+>  drivers/gpu/drm/i915/intel_pm.c | 385 ++++++++++++++++++++++++++++++--
+>  1 file changed, 366 insertions(+), 19 deletions(-)
+> =
 
-  Here are the changes found in Patchwork_16299 that come from known issues:
+> diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel=
+_pm.c
+> index ca5b34d297d9..92c4d4624092 100644
+> --- a/drivers/gpu/drm/i915/intel_pm.c
+> +++ b/drivers/gpu/drm/i915/intel_pm.c
+> @@ -3856,13 +3856,29 @@ bool intel_can_enable_sagv(struct intel_atomic_st=
+ate *state)
+>  	return true;
+>  }
+>  =
 
-### IGT changes ###
+> -static u16 intel_get_ddb_size(struct drm_i915_private *dev_priv,
+> -			      const struct intel_crtc_state *crtc_state,
+> -			      const u64 total_data_rate,
+> -			      const int num_active)
+> +/*
+> + * Calculate initial DBuf slice offset, based on slice size
+> + * and mask(i.e if slice size is 1024 and second slice is enabled
+> + * offset would be 1024)
+> + */
+> +static unsigned int
+> +icl_get_first_dbuf_slice_offset(u32 dbuf_slice_mask,
+> +				u32 slice_size,
+> +				u32 ddb_size)
+> +{
+> +	unsigned int offset =3D 0;
+> +
+> +	if (!dbuf_slice_mask)
+> +		return 0;
+> +
+> +	offset =3D (ffs(dbuf_slice_mask) - 1) * slice_size;
+> +
+> +	WARN_ON(offset >=3D ddb_size);
+> +	return offset;
+> +}
+> +
+> +static u16 intel_get_ddb_size(struct drm_i915_private *dev_priv)
+>  {
+> -	struct drm_atomic_state *state =3D crtc_state->uapi.state;
+> -	struct intel_atomic_state *intel_state =3D to_intel_atomic_state(state);
+>  	u16 ddb_size =3D INTEL_INFO(dev_priv)->ddb_size;
+>  =
 
-#### Issues hit ####
+>  	drm_WARN_ON(&dev_priv->drm, ddb_size =3D=3D 0);
+> @@ -3870,12 +3886,12 @@ static u16 intel_get_ddb_size(struct drm_i915_pri=
+vate *dev_priv,
+>  	if (INTEL_GEN(dev_priv) < 11)
+>  		return ddb_size - 4; /* 4 blocks for bypass path allocation */
+>  =
 
-  * igt@gem_exec_parallel@fds:
-    - fi-byt-n2820:       [PASS][1] -> [TIMEOUT][2] ([fdo#112271])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7833/fi-byt-n2820/igt@gem_exec_parallel@fds.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16299/fi-byt-n2820/igt@gem_exec_parallel@fds.html
+> -	intel_state->enabled_dbuf_slices_mask =3D BIT(DBUF_S1);
+> -	ddb_size /=3D 2;
+> -
+>  	return ddb_size;
+>  }
+>  =
 
-  
-#### Possible fixes ####
+> +static u8 skl_compute_dbuf_slices(const struct intel_crtc_state *crtc_st=
+ate,
+> +				  u32 active_pipes);
+> +
+>  static void
+>  skl_ddb_get_pipe_allocation_limits(struct drm_i915_private *dev_priv,
+>  				   const struct intel_crtc_state *crtc_state,
+> @@ -3887,10 +3903,17 @@ skl_ddb_get_pipe_allocation_limits(struct drm_i91=
+5_private *dev_priv,
+>  	struct intel_atomic_state *intel_state =3D to_intel_atomic_state(state);
+>  	struct drm_crtc *for_crtc =3D crtc_state->uapi.crtc;
+>  	const struct intel_crtc *crtc;
+> -	u32 pipe_width =3D 0, total_width =3D 0, width_before_pipe =3D 0;
+> +	u32 pipe_width =3D 0, total_width_in_range =3D 0, width_before_pipe_in_=
+range =3D 0;
+>  	enum pipe for_pipe =3D to_intel_crtc(for_crtc)->pipe;
+>  	u16 ddb_size;
+> +	u32 ddb_range_size;
+>  	u32 i;
+> +	u32 dbuf_slice_mask;
+> +	u32 active_pipes;
+> +	u32 offset;
+> +	u32 slice_size;
+> +	u32 total_slice_mask;
+> +	u32 start, end;
+>  =
 
-  * igt@gem_exec_suspend@basic-s3:
-    - fi-icl-u2:          [FAIL][3] ([fdo#103375]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7833/fi-icl-u2/igt@gem_exec_suspend@basic-s3.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16299/fi-icl-u2/igt@gem_exec_suspend@basic-s3.html
+>  	if (drm_WARN_ON(&dev_priv->drm, !state) || !crtc_state->hw.active) {
+>  		alloc->start =3D 0;
+> @@ -3900,12 +3923,15 @@ skl_ddb_get_pipe_allocation_limits(struct drm_i91=
+5_private *dev_priv,
+>  	}
+>  =
 
-  * igt@gem_exec_suspend@basic-s4-devices:
-    - fi-icl-u2:          [FAIL][5] ([fdo#111550]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7833/fi-icl-u2/igt@gem_exec_suspend@basic-s4-devices.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16299/fi-icl-u2/igt@gem_exec_suspend@basic-s4-devices.html
+>  	if (intel_state->active_pipe_changes)
+> -		*num_active =3D hweight8(intel_state->active_pipes);
+> +		active_pipes =3D intel_state->active_pipes;
+>  	else
+> -		*num_active =3D hweight8(dev_priv->active_pipes);
+> +		active_pipes =3D dev_priv->active_pipes;
+> +
+> +	*num_active =3D hweight8(active_pipes);
+> +
+> +	ddb_size =3D intel_get_ddb_size(dev_priv);
+>  =
 
-  * igt@i915_selftest@live_blt:
-    - fi-hsw-4770r:       [DMESG-FAIL][7] ([i915#563]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7833/fi-hsw-4770r/igt@i915_selftest@live_blt.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16299/fi-hsw-4770r/igt@i915_selftest@live_blt.html
-    - fi-hsw-4770:        [DMESG-FAIL][9] ([i915#725]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7833/fi-hsw-4770/igt@i915_selftest@live_blt.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16299/fi-hsw-4770/igt@i915_selftest@live_blt.html
+> -	ddb_size =3D intel_get_ddb_size(dev_priv, crtc_state, total_data_rate,
+> -				      *num_active);
+> +	slice_size =3D ddb_size / INTEL_INFO(dev_priv)->num_supported_dbuf_slic=
+es;
+>  =
 
-  * igt@i915_selftest@live_gem_contexts:
-    - fi-icl-guc:         [INCOMPLETE][11] ([i915#140]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7833/fi-icl-guc/igt@i915_selftest@live_gem_contexts.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16299/fi-icl-guc/igt@i915_selftest@live_gem_contexts.html
+>  	/*
+>  	 * If the state doesn't change the active CRTC's or there is no
+> @@ -3924,31 +3950,96 @@ skl_ddb_get_pipe_allocation_limits(struct drm_i91=
+5_private *dev_priv,
+>  		return;
+>  	}
+>  =
 
-  
-#### Warnings ####
+> +	/*
+> +	 * Get allowed DBuf slices for correspondent pipe and platform.
+> +	 */
+> +	dbuf_slice_mask =3D skl_compute_dbuf_slices(crtc_state, active_pipes);
+> +
+> +	DRM_DEBUG_KMS("DBuf slice mask %x pipe %c active pipes %x\n",
+> +		      dbuf_slice_mask,
+> +		      pipe_name(for_pipe), active_pipes);
+> +
+> +	/*
+> +	 * Figure out at which DBuf slice we start, i.e if we start at Dbuf S2
+> +	 * and slice size is 1024, the offset would be 1024
+> +	 */
+> +	offset =3D icl_get_first_dbuf_slice_offset(dbuf_slice_mask,
+> +						 slice_size, ddb_size);
+> +
+> +	/*
+> +	 * Figure out total size of allowed DBuf slices, which is basically
+> +	 * a number of allowed slices for that pipe multiplied by slice size.
+> +	 * Inside of this
+> +	 * range ddb entries are still allocated in proportion to display width.
+> +	 */
+> +	ddb_range_size =3D hweight8(dbuf_slice_mask) * slice_size;
+> +
+>  	/*
+>  	 * Watermark/ddb requirement highly depends upon width of the
+>  	 * framebuffer, So instead of allocating DDB equally among pipes
+>  	 * distribute DDB based on resolution/width of the display.
+>  	 */
+> +	total_slice_mask =3D dbuf_slice_mask;
+>  	for_each_new_intel_crtc_in_state(intel_state, crtc, crtc_state, i) {
+>  		const struct drm_display_mode *adjusted_mode =3D
+>  			&crtc_state->hw.adjusted_mode;
+>  		enum pipe pipe =3D crtc->pipe;
+>  		int hdisplay, vdisplay;
+> +		u32 pipe_dbuf_slice_mask;
+>  =
 
-  * igt@gem_exec_parallel@contexts:
-    - fi-byt-n2820:       [TIMEOUT][13] ([fdo#112271]) -> [FAIL][14] ([i915#694])
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7833/fi-byt-n2820/igt@gem_exec_parallel@contexts.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16299/fi-byt-n2820/igt@gem_exec_parallel@contexts.html
+> -		if (!crtc_state->hw.enable)
+> +		if (!crtc_state->hw.active)
+> +			continue;
+> +
+> +		pipe_dbuf_slice_mask =3D skl_compute_dbuf_slices(crtc_state,
+> +							       active_pipes);
+> +
+> +		/*
+> +		 * According to BSpec pipe can share one dbuf slice with another
+> +		 * pipes or pipe can use multiple dbufs, in both cases we
+> +		 * account for other pipes only if they have exactly same mask.
+> +		 * However we need to account how many slices we should enable
+> +		 * in total.
+> +		 */
+> +		total_slice_mask |=3D pipe_dbuf_slice_mask;
+> +
+> +		/*
+> +		 * Do not account pipes using other slice sets
+> +		 * luckily as of current BSpec slice sets do not partially
+> +		 * intersect(pipes share either same one slice or same slice set
+> +		 * i.e no partial intersection), so it is enough to check for
+> +		 * equality for now.
+> +		 */
+> +		if (dbuf_slice_mask !=3D pipe_dbuf_slice_mask)
+>  			continue;
+>  =
 
-  * igt@i915_pm_rpm@basic-rte:
-    - fi-kbl-guc:         [FAIL][15] ([i915#579]) -> [SKIP][16] ([fdo#109271])
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7833/fi-kbl-guc/igt@i915_pm_rpm@basic-rte.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16299/fi-kbl-guc/igt@i915_pm_rpm@basic-rte.html
+>  		drm_mode_get_hv_timing(adjusted_mode, &hdisplay, &vdisplay);
+> -		total_width +=3D hdisplay;
+> +
+> +		total_width_in_range +=3D hdisplay;
+>  =
 
-  * igt@kms_chamelium@common-hpd-after-suspend:
-    - fi-icl-u2:          [FAIL][17] ([fdo#103375]) -> [DMESG-WARN][18] ([IGT#4] / [i915#263])
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7833/fi-icl-u2/igt@kms_chamelium@common-hpd-after-suspend.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16299/fi-icl-u2/igt@kms_chamelium@common-hpd-after-suspend.html
+>  		if (pipe < for_pipe)
+> -			width_before_pipe +=3D hdisplay;
+> +			width_before_pipe_in_range +=3D hdisplay;
+>  		else if (pipe =3D=3D for_pipe)
+>  			pipe_width =3D hdisplay;
+>  	}
+>  =
 
-  
-  [IGT#4]: https://gitlab.freedesktop.org/drm/igt-gpu-tools/issues/4
-  [fdo#103375]: https://bugs.freedesktop.org/show_bug.cgi?id=103375
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#111550]: https://bugs.freedesktop.org/show_bug.cgi?id=111550
-  [fdo#112271]: https://bugs.freedesktop.org/show_bug.cgi?id=112271
-  [i915#140]: https://gitlab.freedesktop.org/drm/intel/issues/140
-  [i915#263]: https://gitlab.freedesktop.org/drm/intel/issues/263
-  [i915#563]: https://gitlab.freedesktop.org/drm/intel/issues/563
-  [i915#579]: https://gitlab.freedesktop.org/drm/intel/issues/579
-  [i915#694]: https://gitlab.freedesktop.org/drm/intel/issues/694
-  [i915#725]: https://gitlab.freedesktop.org/drm/intel/issues/725
+> -	alloc->start =3D ddb_size * width_before_pipe / total_width;
+> -	alloc->end =3D ddb_size * (width_before_pipe + pipe_width) / total_widt=
+h;
+> +	/*
+> +	 * FIXME: For now we always enable slice S1 as per
+> +	 * the Bspec display initialization sequence.
+> +	 */
+> +	intel_state->enabled_dbuf_slices_mask =3D total_slice_mask | BIT(DBUF_S=
+1);
+> +
+> +	start =3D ddb_range_size * width_before_pipe_in_range / total_width_in_=
+range;
+> +	end =3D ddb_range_size *
+> +		(width_before_pipe_in_range + pipe_width) / total_width_in_range;
+> +
+> +	alloc->start =3D offset + start;
+> +	alloc->end =3D offset + end;
+> +
+> +	DRM_DEBUG_KMS("Pipe %d ddb %d-%d\n", for_pipe,
+> +		      alloc->start, alloc->end);
+> +	DRM_DEBUG_KMS("Enabled ddb slices mask %x num supported %d\n",
+> +		      intel_state->enabled_dbuf_slices_mask,
+> +		      INTEL_INFO(dev_priv)->num_supported_dbuf_slices);
+>  }
+>  =
+
+>  static int skl_compute_wm_params(const struct intel_crtc_state *crtc_sta=
+te,
+> @@ -4119,6 +4210,262 @@ skl_plane_downscale_amount(const struct intel_crt=
+c_state *crtc_state,
+>  	return mul_fixed16(downscale_w, downscale_h);
+>  }
+>  =
+
+> +struct dbuf_slice_conf_entry {
+> +	u8 active_pipes;
+> +	u8 dbuf_mask[I915_MAX_PIPES];
+> +};
+> +
+> +/*
+> + * Table taken from Bspec 12716
+> + * Pipes do have some preferred DBuf slice affinity,
+> + * plus there are some hardcoded requirements on how
+> + * those should be distributed for multipipe scenarios.
+> + * For more DBuf slices algorithm can get even more messy
+> + * and less readable, so decided to use a table almost
+> + * as is from BSpec itself - that way it is at least easier
+> + * to compare, change and check.
+> + */
+> +static struct dbuf_slice_conf_entry icl_allowed_dbufs[] =3D
+> +/* Autogenerated with igt/tools/intel_dbuf_map tool: */
+> +{
+> +	{
+> +		.active_pipes =3D BIT(PIPE_A),
+> +		.dbuf_mask =3D {
+> +			[PIPE_A] =3D BIT(DBUF_S1)
+> +		}
+> +	},
+> +	{
+> +		.active_pipes =3D BIT(PIPE_B),
+> +		.dbuf_mask =3D {
+> +			[PIPE_B] =3D BIT(DBUF_S1)
+> +		}
+> +	},
+> +	{
+> +		.active_pipes =3D BIT(PIPE_A) | BIT(PIPE_B),
+> +		.dbuf_mask =3D {
+> +			[PIPE_A] =3D BIT(DBUF_S1),
+> +			[PIPE_B] =3D BIT(DBUF_S2)
+> +		}
+> +	},
+> +	{
+> +		.active_pipes =3D BIT(PIPE_C),
+> +		.dbuf_mask =3D {
+> +			[PIPE_C] =3D BIT(DBUF_S2)
+> +		}
+> +	},
+> +	{
+> +		.active_pipes =3D BIT(PIPE_A) | BIT(PIPE_C),
+> +		.dbuf_mask =3D {
+> +			[PIPE_A] =3D BIT(DBUF_S1),
+> +			[PIPE_C] =3D BIT(DBUF_S2)
+> +		}
+> +	},
+> +	{
+> +		.active_pipes =3D BIT(PIPE_B) | BIT(PIPE_C),
+> +		.dbuf_mask =3D {
+> +			[PIPE_B] =3D BIT(DBUF_S1),
+> +			[PIPE_C] =3D BIT(DBUF_S2)
+> +		}
+> +	},
+> +	{
+> +		.active_pipes =3D BIT(PIPE_A) | BIT(PIPE_B) | BIT(PIPE_C),
+> +		.dbuf_mask =3D {
+> +			[PIPE_A] =3D BIT(DBUF_S1),
+> +			[PIPE_B] =3D BIT(DBUF_S1),
+> +			[PIPE_C] =3D BIT(DBUF_S2)
+> +		}
+> +	},
+> +};
+> +
+> +/*
+> + * Table taken from Bspec 49255
+> + * Pipes do have some preferred DBuf slice affinity,
+> + * plus there are some hardcoded requirements on how
+> + * those should be distributed for multipipe scenarios.
+> + * For more DBuf slices algorithm can get even more messy
+> + * and less readable, so decided to use a table almost
+> + * as is from BSpec itself - that way it is at least easier
+> + * to compare, change and check.
+> + */
+> +static struct dbuf_slice_conf_entry tgl_allowed_dbufs[] =3D
+> +/* Autogenerated with igt/tools/intel_dbuf_map tool: */
+> +{
+> +	{
+> +		.active_pipes =3D BIT(PIPE_A),
+> +		.dbuf_mask =3D {
+> +			[PIPE_A] =3D BIT(DBUF_S1) | BIT(DBUF_S2)
+> +		}
+> +	},
+> +	{
+> +		.active_pipes =3D BIT(PIPE_B),
+> +		.dbuf_mask =3D {
+> +			[PIPE_B] =3D BIT(DBUF_S1) | BIT(DBUF_S2)
+> +		}
+> +	},
+> +	{
+> +		.active_pipes =3D BIT(PIPE_A) | BIT(PIPE_B),
+> +		.dbuf_mask =3D {
+> +			[PIPE_A] =3D BIT(DBUF_S2),
+> +			[PIPE_B] =3D BIT(DBUF_S1)
+> +		}
+> +	},
+> +	{
+> +		.active_pipes =3D BIT(PIPE_C),
+> +		.dbuf_mask =3D {
+> +			[PIPE_C] =3D BIT(DBUF_S2) | BIT(DBUF_S1)
+> +		}
+> +	},
+> +	{
+> +		.active_pipes =3D BIT(PIPE_A) | BIT(PIPE_C),
+> +		.dbuf_mask =3D {
+> +			[PIPE_A] =3D BIT(DBUF_S1),
+> +			[PIPE_C] =3D BIT(DBUF_S2)
+> +		}
+> +	},
+> +	{
+> +		.active_pipes =3D BIT(PIPE_B) | BIT(PIPE_C),
+> +		.dbuf_mask =3D {
+> +			[PIPE_B] =3D BIT(DBUF_S1),
+> +			[PIPE_C] =3D BIT(DBUF_S2)
+> +		}
+> +	},
+> +	{
+> +		.active_pipes =3D BIT(PIPE_A) | BIT(PIPE_B) | BIT(PIPE_C),
+> +		.dbuf_mask =3D {
+> +			[PIPE_A] =3D BIT(DBUF_S1),
+> +			[PIPE_B] =3D BIT(DBUF_S1),
+> +			[PIPE_C] =3D BIT(DBUF_S2)
+> +		}
+> +	},
+> +	{
+> +		.active_pipes =3D BIT(PIPE_D),
+> +		.dbuf_mask =3D {
+> +			[PIPE_D] =3D BIT(DBUF_S2) | BIT(DBUF_S1)
+> +		}
+> +	},
+> +	{
+> +		.active_pipes =3D BIT(PIPE_A) | BIT(PIPE_D),
+> +		.dbuf_mask =3D {
+> +			[PIPE_A] =3D BIT(DBUF_S1),
+> +			[PIPE_D] =3D BIT(DBUF_S2)
+> +		}
+> +	},
+> +	{
+> +		.active_pipes =3D BIT(PIPE_B) | BIT(PIPE_D),
+> +		.dbuf_mask =3D {
+> +			[PIPE_B] =3D BIT(DBUF_S1),
+> +			[PIPE_D] =3D BIT(DBUF_S2)
+> +		}
+> +	},
+> +	{
+> +		.active_pipes =3D BIT(PIPE_A) | BIT(PIPE_B) | BIT(PIPE_D),
+> +		.dbuf_mask =3D {
+> +			[PIPE_A] =3D BIT(DBUF_S1),
+> +			[PIPE_B] =3D BIT(DBUF_S1),
+> +			[PIPE_D] =3D BIT(DBUF_S2)
+> +		}
+> +	},
+> +	{
+> +		.active_pipes =3D BIT(PIPE_C) | BIT(PIPE_D),
+> +		.dbuf_mask =3D {
+> +			[PIPE_C] =3D BIT(DBUF_S1),
+> +			[PIPE_D] =3D BIT(DBUF_S2)
+> +		}
+> +	},
+> +	{
+> +		.active_pipes =3D BIT(PIPE_A) | BIT(PIPE_C) | BIT(PIPE_D),
+> +		.dbuf_mask =3D {
+> +			[PIPE_A] =3D BIT(DBUF_S1),
+> +			[PIPE_C] =3D BIT(DBUF_S2),
+> +			[PIPE_D] =3D BIT(DBUF_S2)
+> +		}
+> +	},
+> +	{
+> +		.active_pipes =3D BIT(PIPE_B) | BIT(PIPE_C) | BIT(PIPE_D),
+> +		.dbuf_mask =3D {
+> +			[PIPE_B] =3D BIT(DBUF_S1),
+> +			[PIPE_C] =3D BIT(DBUF_S2),
+> +			[PIPE_D] =3D BIT(DBUF_S2)
+> +		}
+> +	},
+> +	{
+> +		.active_pipes =3D BIT(PIPE_A) | BIT(PIPE_B) | BIT(PIPE_C) | BIT(PIPE_D=
+),
+> +		.dbuf_mask =3D {
+> +			[PIPE_A] =3D BIT(DBUF_S1),
+> +			[PIPE_B] =3D BIT(DBUF_S1),
+> +			[PIPE_C] =3D BIT(DBUF_S2),
+> +			[PIPE_D] =3D BIT(DBUF_S2)
+> +		}
+> +	},
+> +};
+> +
+> +static u8 compute_dbuf_slices(enum pipe pipe,
+> +			      u32 active_pipes,
+> +			      const struct dbuf_slice_conf_entry *dbuf_slices,
+> +			      int size)
+> +{
+> +	int i;
+> +
+> +	for (i =3D 0; i < size; i++) {
+> +		if (dbuf_slices[i].active_pipes =3D=3D active_pipes)
+> +			return dbuf_slices[i].dbuf_mask[pipe];
+> +	}
+> +	return 0;
+> +}
+> +
+> +/*
+> + * This function finds an entry with same enabled pipe configuration and
+> + * returns correspondent DBuf slice mask as stated in BSpec for particul=
+ar
+> + * platform.
+> + */
+> +static u32 icl_compute_dbuf_slices(enum pipe pipe,
+> +				   u32 active_pipes)
+> +{
+> +	/*
+> +	 * FIXME: For ICL this is still a bit unclear as prev BSpec revision
+> +	 * required calculating "pipe ratio" in order to determine
+> +	 * if one or two slices can be used for single pipe configurations
+> +	 * as additional constraint to the existing table.
+> +	 * However based on recent info, it should be not "pipe ratio"
+> +	 * but rather ratio between pixel_rate and cdclk with additional
+> +	 * constants, so for now we are using only table until this is
+> +	 * clarified. Also this is the reason why crtc_state param is
+> +	 * still here - we will need it once those additional constraints
+> +	 * pop up.
+
+The last part of this comment no longer applies --- crtc_state isn't
+still here.
+
+I haven't heard any recent discussion with the hardware folks --- if the
+bspec is still unclear in this area, is it safe to try to enable the
+second dbuf slice at this time?  I'm worried that we might add
+regressions due to the incomplete hardware documentation.  Should we
+initially only enable it on TGL until the bspec gets clarified?  Or at
+least only enable it on ICL/EHL as a completely separate patch that's
+really easy to revert?  AFAIK, we don't yet have EHL machines in CI, so
+even if CI results come back clean on ICL, I'd still be a little bit
+nervous about regressing EHL/JSL.
+
+> +	 */
+> +	return compute_dbuf_slices(pipe, active_pipes,
+> +				   icl_allowed_dbufs,
+> +				   ARRAY_SIZE(icl_allowed_dbufs));
+> +}
+> +
+> +static u32 tgl_compute_dbuf_slices(enum pipe pipe,
+> +				   u32 active_pipes)
+> +{
+> +	return compute_dbuf_slices(pipe, active_pipes,
+> +				   tgl_allowed_dbufs,
+> +				   ARRAY_SIZE(tgl_allowed_dbufs));
+> +}
+> +
+> +static u8 skl_compute_dbuf_slices(const struct intel_crtc_state *crtc_st=
+ate,
+> +				  u32 active_pipes)
+
+Given that this is basically a common frontend function that just
+dispatches to an appropriate per-platform handler, maybe we should
+rename this to to an intel_ prefix rather than skl_?  Up to you.
+
+Aside from this and the comments above,
+
+Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+
+> +{
+> +	struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.crtc);
+> +	struct drm_i915_private *dev_priv =3D to_i915(crtc->base.dev);
+> +	enum pipe pipe =3D crtc->pipe;
+> +
+> +	if (IS_GEN(dev_priv, 12))
+> +		return tgl_compute_dbuf_slices(pipe,
+> +					       active_pipes);
+> +	else if (IS_GEN(dev_priv, 11))
+> +		return icl_compute_dbuf_slices(pipe,
+> +					       active_pipes);
+> +	/*
+> +	 * For anything else just return one slice yet.
+> +	 * Should be extended for other platforms.
+> +	 */
+> +	return BIT(DBUF_S1);
+> +}
+> +
+>  static u64
+>  skl_plane_relative_data_rate(const struct intel_crtc_state *crtc_state,
+>  			     const struct intel_plane_state *plane_state,
+> -- =
+
+> 2.24.1.485.gad05a3d8e5
+> =
 
 
-Participating hosts (50 -> 40)
-------------------------------
+-- =
 
-  Additional (1): fi-snb-2520m 
-  Missing    (11): fi-ilk-m540 fi-bdw-samus fi-glk-dsi fi-byt-squawks fi-bsw-cyan fi-kbl-7500u fi-ctg-p8600 fi-ivb-3770 fi-kbl-7560u fi-byt-clapper fi-skl-6600u 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_7833 -> Patchwork_16299
-
-  CI-20190529: 20190529
-  CI_DRM_7833: 8210f0f999e2d396a8611e0cabc2f6c6a52468de @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5394: 991fd07bcd7add7a5beca2c95b72a994e62fbb75 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_16299: 2a8144784c2b100410b5f018728c7c6a17872793 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-2a8144784c2b drm/i915/debugfs: remove VBT data about DRRS
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16299/index.html
+Matt Roper
+Graphics Software Engineer
+VTT-OSGC Platform Enablement
+Intel Corporation
+(916) 356-2795
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
