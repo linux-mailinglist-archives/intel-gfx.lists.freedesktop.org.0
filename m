@@ -1,31 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A25F214C2B2
-	for <lists+intel-gfx@lfdr.de>; Tue, 28 Jan 2020 23:14:17 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id AB58714C2B5
+	for <lists+intel-gfx@lfdr.de>; Tue, 28 Jan 2020 23:14:20 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 12FE46F431;
+	by gabe.freedesktop.org (Postfix) with ESMTP id E64836F436;
 	Tue, 28 Jan 2020 22:14:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from namei.org (namei.org [65.99.196.166])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4F8ED88A36
- for <intel-gfx@lists.freedesktop.org>; Tue, 28 Jan 2020 22:11:09 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 21B756E13A
+ for <intel-gfx@lists.freedesktop.org>; Tue, 28 Jan 2020 22:11:39 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by namei.org (8.14.4/8.14.4) with ESMTP id 00SLHk4L004579;
- Tue, 28 Jan 2020 21:17:46 GMT
-Date: Wed, 29 Jan 2020 08:17:46 +1100 (AEDT)
+ by namei.org (8.14.4/8.14.4) with ESMTP id 00SLI4pL004594;
+ Tue, 28 Jan 2020 21:18:04 GMT
+Date: Wed, 29 Jan 2020 08:18:04 +1100 (AEDT)
 From: James Morris <jmorris@namei.org>
 To: Alexey Budankov <alexey.budankov@linux.intel.com>
-In-Reply-To: <17be72ff-dc52-72ef-fbcc-0e9ec8b61604@linux.intel.com>
-Message-ID: <alpine.LRH.2.21.2001290817390.2204@namei.org>
+In-Reply-To: <f2877038-da53-f981-4ddb-4e6c1c27c60f@linux.intel.com>
+Message-ID: <alpine.LRH.2.21.2001290817560.2204@namei.org>
 References: <74d524ab-ac11-a7b8-1052-eba10f117e09@linux.intel.com>
- <17be72ff-dc52-72ef-fbcc-0e9ec8b61604@linux.intel.com>
+ <f2877038-da53-f981-4ddb-4e6c1c27c60f@linux.intel.com>
 User-Agent: Alpine 2.21 (LRH 202 2017-01-01)
 MIME-Version: 1.0
 X-Mailman-Approved-At: Tue, 28 Jan 2020 22:14:12 +0000
-Subject: Re: [Intel-gfx] [PATCH v6 08/10] parisc/perf: open access for
+Subject: Re: [Intel-gfx] [PATCH v6 09/10] drivers/perf: open access for
  CAP_PERFMON privileged process
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -87,26 +87,37 @@ On Tue, 28 Jan 2020, Alexey Budankov wrote:
 > 
 > Signed-off-by: Alexey Budankov <alexey.budankov@linux.intel.com>
 > ---
->  arch/parisc/kernel/perf.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/arch/parisc/kernel/perf.c b/arch/parisc/kernel/perf.c
-> index 676683641d00..c4208d027794 100644
-> --- a/arch/parisc/kernel/perf.c
-> +++ b/arch/parisc/kernel/perf.c
-> @@ -300,7 +300,7 @@ static ssize_t perf_write(struct file *file, const char __user *buf,
->  	else
->  		return -EFAULT;
->  
-> -	if (!capable(CAP_SYS_ADMIN))
-> +	if (!perfmon_capable())
->  		return -EACCES;
->  
->  	if (count != sizeof(uint32_t))
+>  drivers/perf/arm_spe_pmu.c | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
 > 
 
 
 Acked-by: James Morris <jamorris@linux.microsoft.com>
+
+
+> diff --git a/drivers/perf/arm_spe_pmu.c b/drivers/perf/arm_spe_pmu.c
+> index 4e4984a55cd1..5dff81bc3324 100644
+> --- a/drivers/perf/arm_spe_pmu.c
+> +++ b/drivers/perf/arm_spe_pmu.c
+> @@ -274,7 +274,7 @@ static u64 arm_spe_event_to_pmscr(struct perf_event *event)
+>  	if (!attr->exclude_kernel)
+>  		reg |= BIT(SYS_PMSCR_EL1_E1SPE_SHIFT);
+>  
+> -	if (IS_ENABLED(CONFIG_PID_IN_CONTEXTIDR) && capable(CAP_SYS_ADMIN))
+> +	if (IS_ENABLED(CONFIG_PID_IN_CONTEXTIDR) && perfmon_capable())
+>  		reg |= BIT(SYS_PMSCR_EL1_CX_SHIFT);
+>  
+>  	return reg;
+> @@ -700,7 +700,7 @@ static int arm_spe_pmu_event_init(struct perf_event *event)
+>  		return -EOPNOTSUPP;
+>  
+>  	reg = arm_spe_event_to_pmscr(event);
+> -	if (!capable(CAP_SYS_ADMIN) &&
+> +	if (!perfmon_capable() &&
+>  	    (reg & (BIT(SYS_PMSCR_EL1_PA_SHIFT) |
+>  		    BIT(SYS_PMSCR_EL1_CX_SHIFT) |
+>  		    BIT(SYS_PMSCR_EL1_PCT_SHIFT))))
+> 
 
 -- 
 James Morris
