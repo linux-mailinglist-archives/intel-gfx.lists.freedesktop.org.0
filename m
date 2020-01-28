@@ -1,41 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D0CED14B55A
-	for <lists+intel-gfx@lfdr.de>; Tue, 28 Jan 2020 14:48:24 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 78FDC14B641
+	for <lists+intel-gfx@lfdr.de>; Tue, 28 Jan 2020 15:03:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B2AAD6EE40;
-	Tue, 28 Jan 2020 13:48:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4839F6EE43;
+	Tue, 28 Jan 2020 14:03:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EA6D16EE3E;
- Tue, 28 Jan 2020 13:48:16 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0DC736EE43
+ for <intel-gfx@lists.freedesktop.org>; Tue, 28 Jan 2020 14:03:51 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
  by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 28 Jan 2020 05:48:16 -0800
-X-IronPort-AV: E=Sophos;i="5.70,374,1574150400"; d="scan'208";a="222110629"
-Received: from jnikula-mobl3.fi.intel.com (HELO localhost) ([10.237.66.161])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 28 Jan 2020 05:48:13 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- Wambui Karuga <wambui.karugax@gmail.com>, joonas.lahtinen@linux.intel.com,
- rodrigo.vivi@intel.com, airlied@linux.ie, daniel@ffwll.ch,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-In-Reply-To: <b97de5b8-b87f-3b2d-e8bc-942fc21b266e@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20200122125750.9737-1-wambui.karugax@gmail.com>
- <20200122125750.9737-2-wambui.karugax@gmail.com>
- <b97de5b8-b87f-3b2d-e8bc-942fc21b266e@linux.intel.com>
-Date: Tue, 28 Jan 2020 15:48:10 +0200
-Message-ID: <87h80fd751.fsf@intel.com>
+ 28 Jan 2020 06:03:50 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,374,1574150400"; d="scan'208";a="429334434"
+Received: from unknown (HELO genxfsim-desktop.iind.intel.com) ([10.223.74.178])
+ by fmsmga006.fm.intel.com with ESMTP; 28 Jan 2020 06:03:48 -0800
+From: Anshuman Gupta <anshuman.gupta@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue, 28 Jan 2020 19:24:21 +0530
+Message-Id: <20200128135425.14596-1-anshuman.gupta@intel.com>
+X-Mailer: git-send-email 2.24.0
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915/gem: initial conversion to new
- logging macros using coccinelle
+Subject: [Intel-gfx] [PATCH 0/4] HDCP Misc series
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,31 +45,28 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 28 Jan 2020, Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com> wrote:
->> -DRM_DEBUG(
->> +drm_dbg(&T->drm,
->
-> This changes DRM_UT_CORE to DRM_UT_DRIVER so our typical drm.debug=0xe 
-> becomes much more spammy.
+Test-with: <20200120085158.9151-2-anshuman.gupta@intel.com>
 
-This is what I've instructed Wambui to do in i915. It's my mistake that
-I haven't requested this to be pointed out in the commit message.
+This series have misc fixes for broken uapi and HDCP support
+for Port_E, also there are few patches for DEBUG verbosity.
 
-DRM_DEBUG() and DRM_DEBUG_DRIVER() have been conflated over the
-years. The former is supposed to be for drm core code only, but drivers
-are littered with it. I'm hoping drivers are less likely to use the new
-drm_dbg_core() which maps to DRM_DEBUG(). The shorter drm_dbg() is the
-new DRM_DEBUG_DRIVER().
+Anshuman Gupta (4):
+  drm/i915/hdcp: Update CP as per the kernel internal state
+  drm/i915: HDCP support on above PORT_E
+  drm/i915: debugfs info print "HDCP shim isn't available"
+  drm/i915: Add HDCP2.2 capable debug print
 
-If you think drm.debug=0xe is too spammy now, the fix is not to abuse
-DRM_UT_CORE as a spare category.
-
-
-BR,
-Jani.
+ drivers/gpu/drm/i915/display/intel_display.c |  4 +++
+ drivers/gpu/drm/i915/display/intel_dp.c      |  2 ++
+ drivers/gpu/drm/i915/display/intel_hdcp.c    | 29 +++++++++++++++++++-
+ drivers/gpu/drm/i915/display/intel_hdcp.h    |  2 ++
+ drivers/gpu/drm/i915/display/intel_hdmi.c    |  2 ++
+ drivers/gpu/drm/i915/i915_debugfs.c          |  5 +++-
+ 6 files changed, 42 insertions(+), 2 deletions(-)
 
 -- 
-Jani Nikula, Intel Open Source Graphics Center
+2.24.0
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
