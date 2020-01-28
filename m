@@ -1,38 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 351DB14C373
-	for <lists+intel-gfx@lfdr.de>; Wed, 29 Jan 2020 00:15:37 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E0EB14C38B
+	for <lists+intel-gfx@lfdr.de>; Wed, 29 Jan 2020 00:30:33 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8E3F46F448;
-	Tue, 28 Jan 2020 23:15:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 138C36E165;
+	Tue, 28 Jan 2020 23:30:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 86BE76F448
- for <intel-gfx@lists.freedesktop.org>; Tue, 28 Jan 2020 23:15:32 +0000 (UTC)
-X-Amp-Result: UNSCANNABLE
-X-Amp-File-Uploaded: False
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 28 Jan 2020 15:15:31 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,375,1574150400"; d="scan'208";a="429492480"
-Received: from mdroper-desk1.fm.intel.com (HELO
- mdroper-desk1.amr.corp.intel.com) ([10.1.27.64])
- by fmsmga006.fm.intel.com with ESMTP; 28 Jan 2020 15:15:30 -0800
-Date: Tue, 28 Jan 2020 15:15:30 -0800
-From: Matt Roper <matthew.d.roper@intel.com>
-To: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-Message-ID: <20200128231530.GG22783@mdroper-desk1.amr.corp.intel.com>
-References: <20200124084456.2961-1-stanislav.lisovskiy@intel.com>
- <20200124084456.2961-6-stanislav.lisovskiy@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 437086E165;
+ Tue, 28 Jan 2020 23:30:28 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 2F406A0093;
+ Tue, 28 Jan 2020 23:30:28 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200124084456.2961-6-stanislav.lisovskiy@intel.com>
-Subject: Re: [Intel-gfx] [PATCH v16 5/7] drm/i915: Correctly map DBUF slices
- to pipes
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Date: Tue, 28 Jan 2020 23:30:28 -0000
+Message-ID: <158025422816.20537.4895016081183268640@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <cover.1580149467.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1580149467.git.jani.nikula@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLklHVDogZmFpbHVyZSBmb3IgZHJt?=
+ =?utf-8?q?/i915/display=3A_mass_conversion_to_intel=5Fde=5F*=28=29_regist?=
+ =?utf-8?q?er_accessors_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,620 +39,334 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Jan 24, 2020 at 10:44:54AM +0200, Stanislav Lisovskiy wrote:
-> Added proper DBuf slice mapping to correspondent
-> pipes, depending on pipe configuration as stated
-> in BSpec.
-> =
+== Series Details ==
 
-> v2:
->     - Remove unneeded braces
->     - Stop using macro for DBuf assignments as
->       it seems to reduce readability.
-> =
+Series: drm/i915/display: mass conversion to intel_de_*() register accessors (rev2)
+URL   : https://patchwork.freedesktop.org/series/72533/
+State : failure
 
-> v3: Start using enabled slices mask in dev_priv
-> =
+== Summary ==
 
-> v4: Renamed "enabled_slices" used in dev_priv
->     to "enabled_dbuf_slices_mask"(Matt Roper)
-> =
+CI Bug Log - changes from CI_DRM_7827_full -> Patchwork_16283_full
+====================================================
 
-> v5: - Removed redundant parameters from
->       intel_get_ddb_size function.(Matt Roper)
->     - Made i915_possible_dbuf_slices static(Matt Roper)
->     - Renamed total_width into total_width_in_range
->       so that it now reflects that this is not
->       a total pipe width but the one in current
->       dbuf slice allowed range for pipe.(Matt Roper)
->     - Removed 4th pipe for ICL in DBuf assignment
->       table(Matt Roper)
->     - Fixed wrong DBuf slice in DBuf table for TGL
->       (Matt Roper)
->     - Added comment regarding why we currently not
->       using pipe ratio for DBuf assignment for ICL
-> =
+Summary
+-------
 
-> v6: - Changed u32 to unsigned int in
->       icl_get_first_dbuf_slice_offset function signature
->       (Ville Syrj=E4l=E4)
->     - Changed also u32 to u8 in dbuf slice mask structure
->       (Ville Syrj=E4l=E4)
->     - Switched from DBUF_S1_BIT to enum + explicit
->       BIT(DBUF_S1) access(Ville Syrj=E4l=E4)
->     - Switched to named initializers in DBuf assignment
->       arrays(Ville Syrj=E4l=E4)
->     - DBuf assignment arrays now use autogeneration tool
->       from
->       https://patchwork.freedesktop.org/series/70493/
->       to avoid typos.
->     - Renamed i915_find_pipe_conf to *_compute_dbuf_slices
->       (Ville Syrj=E4l=E4)
->     - Changed platforms ordering in skl_compute_dbuf_slices
->       to be from newest to oldest(Ville Syrj=E4l=E4)
-> =
+  **FAILURE**
 
-> v7: - Now ORing assigned DBuf slice config always with DBUF_S1
->       because slice 1 has to be constantly powered on.
->       (Ville Syrj=E4l=E4)
-> =
+  Serious unknown changes coming with Patchwork_16283_full absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_16283_full, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
 
-> v8: - Added pipe_name for neater printing(Ville Syrj=E4l=E4)
->     - Renamed width_before_pipe to width_before_pipe_in_range,
->       to better reflect that now all the calculations are happening
->       inside DBuf range allowed by current pipe configuration mask
->       (Ville Syrj=E4l=E4)
->     - Shortened FIXME comment message, regarding constant ORing with
->       DBUF_S1(Ville Syrj=E4l=E4)
->     - Added .dbuf_mask named initializer to pipe assignment array
->       (Ville Syrj=E4l=E4)
->     - Edited pipe assignment array to use only single DBuf slice
->       for gen11 single pipe configurations, until "pipe ratio"
->       thing is finally sorted out(Ville Syrj=E4l=E4)
->     - Removed unused parameter crtc_state for now(Ville Syrj=E4l=E4)
->       from icl/tgl_compute_dbuf_slices function
-> =
+  
 
-> Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-> ---
->  drivers/gpu/drm/i915/intel_pm.c | 385 ++++++++++++++++++++++++++++++--
->  1 file changed, 366 insertions(+), 19 deletions(-)
-> =
+Possible new issues
+-------------------
 
-> diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel=
-_pm.c
-> index ca5b34d297d9..92c4d4624092 100644
-> --- a/drivers/gpu/drm/i915/intel_pm.c
-> +++ b/drivers/gpu/drm/i915/intel_pm.c
-> @@ -3856,13 +3856,29 @@ bool intel_can_enable_sagv(struct intel_atomic_st=
-ate *state)
->  	return true;
->  }
->  =
+  Here are the unknown changes that may have been introduced in Patchwork_16283_full:
 
-> -static u16 intel_get_ddb_size(struct drm_i915_private *dev_priv,
-> -			      const struct intel_crtc_state *crtc_state,
-> -			      const u64 total_data_rate,
-> -			      const int num_active)
-> +/*
-> + * Calculate initial DBuf slice offset, based on slice size
-> + * and mask(i.e if slice size is 1024 and second slice is enabled
-> + * offset would be 1024)
-> + */
-> +static unsigned int
-> +icl_get_first_dbuf_slice_offset(u32 dbuf_slice_mask,
-> +				u32 slice_size,
-> +				u32 ddb_size)
-> +{
-> +	unsigned int offset =3D 0;
-> +
-> +	if (!dbuf_slice_mask)
-> +		return 0;
-> +
-> +	offset =3D (ffs(dbuf_slice_mask) - 1) * slice_size;
-> +
-> +	WARN_ON(offset >=3D ddb_size);
-> +	return offset;
-> +}
-> +
-> +static u16 intel_get_ddb_size(struct drm_i915_private *dev_priv)
->  {
-> -	struct drm_atomic_state *state =3D crtc_state->uapi.state;
-> -	struct intel_atomic_state *intel_state =3D to_intel_atomic_state(state);
->  	u16 ddb_size =3D INTEL_INFO(dev_priv)->ddb_size;
->  =
+### IGT changes ###
 
->  	drm_WARN_ON(&dev_priv->drm, ddb_size =3D=3D 0);
-> @@ -3870,12 +3886,12 @@ static u16 intel_get_ddb_size(struct drm_i915_pri=
-vate *dev_priv,
->  	if (INTEL_GEN(dev_priv) < 11)
->  		return ddb_size - 4; /* 4 blocks for bypass path allocation */
->  =
+#### Possible regressions ####
 
-> -	intel_state->enabled_dbuf_slices_mask =3D BIT(DBUF_S1);
-> -	ddb_size /=3D 2;
-> -
->  	return ddb_size;
->  }
->  =
+  * igt@gem_partial_pwrite_pread@writes-after-reads-display:
+    - shard-hsw:          [PASS][1] -> [FAIL][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7827/shard-hsw2/igt@gem_partial_pwrite_pread@writes-after-reads-display.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16283/shard-hsw1/igt@gem_partial_pwrite_pread@writes-after-reads-display.html
 
-> +static u8 skl_compute_dbuf_slices(const struct intel_crtc_state *crtc_st=
-ate,
-> +				  u32 active_pipes);
-> +
->  static void
->  skl_ddb_get_pipe_allocation_limits(struct drm_i915_private *dev_priv,
->  				   const struct intel_crtc_state *crtc_state,
-> @@ -3887,10 +3903,17 @@ skl_ddb_get_pipe_allocation_limits(struct drm_i91=
-5_private *dev_priv,
->  	struct intel_atomic_state *intel_state =3D to_intel_atomic_state(state);
->  	struct drm_crtc *for_crtc =3D crtc_state->uapi.crtc;
->  	const struct intel_crtc *crtc;
-> -	u32 pipe_width =3D 0, total_width =3D 0, width_before_pipe =3D 0;
-> +	u32 pipe_width =3D 0, total_width_in_range =3D 0, width_before_pipe_in_=
-range =3D 0;
->  	enum pipe for_pipe =3D to_intel_crtc(for_crtc)->pipe;
->  	u16 ddb_size;
-> +	u32 ddb_range_size;
->  	u32 i;
-> +	u32 dbuf_slice_mask;
-> +	u32 active_pipes;
-> +	u32 offset;
-> +	u32 slice_size;
-> +	u32 total_slice_mask;
-> +	u32 start, end;
->  =
+  * igt@perf_pmu@semaphore-busy-vecs0:
+    - shard-skl:          [PASS][3] -> [FAIL][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7827/shard-skl5/igt@perf_pmu@semaphore-busy-vecs0.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16283/shard-skl2/igt@perf_pmu@semaphore-busy-vecs0.html
 
->  	if (drm_WARN_ON(&dev_priv->drm, !state) || !crtc_state->hw.active) {
->  		alloc->start =3D 0;
-> @@ -3900,12 +3923,15 @@ skl_ddb_get_pipe_allocation_limits(struct drm_i91=
-5_private *dev_priv,
->  	}
->  =
+  
+Known issues
+------------
 
->  	if (intel_state->active_pipe_changes)
-> -		*num_active =3D hweight8(intel_state->active_pipes);
-> +		active_pipes =3D intel_state->active_pipes;
->  	else
-> -		*num_active =3D hweight8(dev_priv->active_pipes);
-> +		active_pipes =3D dev_priv->active_pipes;
-> +
-> +	*num_active =3D hweight8(active_pipes);
-> +
-> +	ddb_size =3D intel_get_ddb_size(dev_priv);
->  =
+  Here are the changes found in Patchwork_16283_full that come from known issues:
 
-> -	ddb_size =3D intel_get_ddb_size(dev_priv, crtc_state, total_data_rate,
-> -				      *num_active);
-> +	slice_size =3D ddb_size / INTEL_INFO(dev_priv)->num_supported_dbuf_slic=
-es;
->  =
+### IGT changes ###
 
->  	/*
->  	 * If the state doesn't change the active CRTC's or there is no
-> @@ -3924,31 +3950,96 @@ skl_ddb_get_pipe_allocation_limits(struct drm_i91=
-5_private *dev_priv,
->  		return;
->  	}
->  =
+#### Issues hit ####
 
-> +	/*
-> +	 * Get allowed DBuf slices for correspondent pipe and platform.
-> +	 */
-> +	dbuf_slice_mask =3D skl_compute_dbuf_slices(crtc_state, active_pipes);
-> +
-> +	DRM_DEBUG_KMS("DBuf slice mask %x pipe %c active pipes %x\n",
-> +		      dbuf_slice_mask,
-> +		      pipe_name(for_pipe), active_pipes);
-> +
-> +	/*
-> +	 * Figure out at which DBuf slice we start, i.e if we start at Dbuf S2
-> +	 * and slice size is 1024, the offset would be 1024
-> +	 */
-> +	offset =3D icl_get_first_dbuf_slice_offset(dbuf_slice_mask,
-> +						 slice_size, ddb_size);
-> +
-> +	/*
-> +	 * Figure out total size of allowed DBuf slices, which is basically
-> +	 * a number of allowed slices for that pipe multiplied by slice size.
-> +	 * Inside of this
-> +	 * range ddb entries are still allocated in proportion to display width.
-> +	 */
-> +	ddb_range_size =3D hweight8(dbuf_slice_mask) * slice_size;
-> +
->  	/*
->  	 * Watermark/ddb requirement highly depends upon width of the
->  	 * framebuffer, So instead of allocating DDB equally among pipes
->  	 * distribute DDB based on resolution/width of the display.
->  	 */
-> +	total_slice_mask =3D dbuf_slice_mask;
->  	for_each_new_intel_crtc_in_state(intel_state, crtc, crtc_state, i) {
->  		const struct drm_display_mode *adjusted_mode =3D
->  			&crtc_state->hw.adjusted_mode;
->  		enum pipe pipe =3D crtc->pipe;
->  		int hdisplay, vdisplay;
-> +		u32 pipe_dbuf_slice_mask;
->  =
+  * igt@gem_busy@busy-vcs1:
+    - shard-iclb:         [PASS][5] -> [SKIP][6] ([fdo#112080]) +14 similar issues
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7827/shard-iclb1/igt@gem_busy@busy-vcs1.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16283/shard-iclb8/igt@gem_busy@busy-vcs1.html
 
-> -		if (!crtc_state->hw.enable)
-> +		if (!crtc_state->hw.active)
-> +			continue;
-> +
-> +		pipe_dbuf_slice_mask =3D skl_compute_dbuf_slices(crtc_state,
-> +							       active_pipes);
-> +
-> +		/*
-> +		 * According to BSpec pipe can share one dbuf slice with another
-> +		 * pipes or pipe can use multiple dbufs, in both cases we
-> +		 * account for other pipes only if they have exactly same mask.
-> +		 * However we need to account how many slices we should enable
-> +		 * in total.
-> +		 */
-> +		total_slice_mask |=3D pipe_dbuf_slice_mask;
-> +
-> +		/*
-> +		 * Do not account pipes using other slice sets
-> +		 * luckily as of current BSpec slice sets do not partially
-> +		 * intersect(pipes share either same one slice or same slice set
-> +		 * i.e no partial intersection), so it is enough to check for
-> +		 * equality for now.
-> +		 */
-> +		if (dbuf_slice_mask !=3D pipe_dbuf_slice_mask)
->  			continue;
->  =
+  * igt@gem_ctx_isolation@vcs1-none:
+    - shard-iclb:         [PASS][7] -> [SKIP][8] ([fdo#109276] / [fdo#112080]) +4 similar issues
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7827/shard-iclb2/igt@gem_ctx_isolation@vcs1-none.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16283/shard-iclb8/igt@gem_ctx_isolation@vcs1-none.html
 
->  		drm_mode_get_hv_timing(adjusted_mode, &hdisplay, &vdisplay);
-> -		total_width +=3D hdisplay;
-> +
-> +		total_width_in_range +=3D hdisplay;
->  =
+  * igt@gem_eio@kms:
+    - shard-snb:          [PASS][9] -> [INCOMPLETE][10] ([i915#82])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7827/shard-snb1/igt@gem_eio@kms.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16283/shard-snb5/igt@gem_eio@kms.html
 
->  		if (pipe < for_pipe)
-> -			width_before_pipe +=3D hdisplay;
-> +			width_before_pipe_in_range +=3D hdisplay;
->  		else if (pipe =3D=3D for_pipe)
->  			pipe_width =3D hdisplay;
->  	}
->  =
+  * igt@gem_exec_balancer@smoke:
+    - shard-iclb:         [PASS][11] -> [SKIP][12] ([fdo#110854])
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7827/shard-iclb1/igt@gem_exec_balancer@smoke.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16283/shard-iclb8/igt@gem_exec_balancer@smoke.html
 
-> -	alloc->start =3D ddb_size * width_before_pipe / total_width;
-> -	alloc->end =3D ddb_size * (width_before_pipe + pipe_width) / total_widt=
-h;
-> +	/*
-> +	 * FIXME: For now we always enable slice S1 as per
-> +	 * the Bspec display initialization sequence.
-> +	 */
-> +	intel_state->enabled_dbuf_slices_mask =3D total_slice_mask | BIT(DBUF_S=
-1);
-> +
-> +	start =3D ddb_range_size * width_before_pipe_in_range / total_width_in_=
-range;
-> +	end =3D ddb_range_size *
-> +		(width_before_pipe_in_range + pipe_width) / total_width_in_range;
-> +
-> +	alloc->start =3D offset + start;
-> +	alloc->end =3D offset + end;
-> +
-> +	DRM_DEBUG_KMS("Pipe %d ddb %d-%d\n", for_pipe,
-> +		      alloc->start, alloc->end);
-> +	DRM_DEBUG_KMS("Enabled ddb slices mask %x num supported %d\n",
-> +		      intel_state->enabled_dbuf_slices_mask,
-> +		      INTEL_INFO(dev_priv)->num_supported_dbuf_slices);
->  }
->  =
+  * igt@gem_exec_schedule@preempt-other-chain-bsd:
+    - shard-iclb:         [PASS][13] -> [SKIP][14] ([fdo#112146]) +6 similar issues
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7827/shard-iclb7/igt@gem_exec_schedule@preempt-other-chain-bsd.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16283/shard-iclb4/igt@gem_exec_schedule@preempt-other-chain-bsd.html
 
->  static int skl_compute_wm_params(const struct intel_crtc_state *crtc_sta=
-te,
-> @@ -4119,6 +4210,262 @@ skl_plane_downscale_amount(const struct intel_crt=
-c_state *crtc_state,
->  	return mul_fixed16(downscale_w, downscale_h);
->  }
->  =
+  * igt@gem_partial_pwrite_pread@write-snoop:
+    - shard-hsw:          [PASS][15] -> [FAIL][16] ([i915#694]) +1 similar issue
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7827/shard-hsw1/igt@gem_partial_pwrite_pread@write-snoop.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16283/shard-hsw4/igt@gem_partial_pwrite_pread@write-snoop.html
 
-> +struct dbuf_slice_conf_entry {
-> +	u8 active_pipes;
-> +	u8 dbuf_mask[I915_MAX_PIPES];
-> +};
-> +
-> +/*
-> + * Table taken from Bspec 12716
-> + * Pipes do have some preferred DBuf slice affinity,
-> + * plus there are some hardcoded requirements on how
-> + * those should be distributed for multipipe scenarios.
-> + * For more DBuf slices algorithm can get even more messy
-> + * and less readable, so decided to use a table almost
-> + * as is from BSpec itself - that way it is at least easier
-> + * to compare, change and check.
-> + */
-> +static struct dbuf_slice_conf_entry icl_allowed_dbufs[] =3D
-> +/* Autogenerated with igt/tools/intel_dbuf_map tool: */
-> +{
-> +	{
-> +		.active_pipes =3D BIT(PIPE_A),
-> +		.dbuf_mask =3D {
-> +			[PIPE_A] =3D BIT(DBUF_S1)
-> +		}
-> +	},
-> +	{
-> +		.active_pipes =3D BIT(PIPE_B),
-> +		.dbuf_mask =3D {
-> +			[PIPE_B] =3D BIT(DBUF_S1)
-> +		}
-> +	},
-> +	{
-> +		.active_pipes =3D BIT(PIPE_A) | BIT(PIPE_B),
-> +		.dbuf_mask =3D {
-> +			[PIPE_A] =3D BIT(DBUF_S1),
-> +			[PIPE_B] =3D BIT(DBUF_S2)
-> +		}
-> +	},
-> +	{
-> +		.active_pipes =3D BIT(PIPE_C),
-> +		.dbuf_mask =3D {
-> +			[PIPE_C] =3D BIT(DBUF_S2)
-> +		}
-> +	},
-> +	{
-> +		.active_pipes =3D BIT(PIPE_A) | BIT(PIPE_C),
-> +		.dbuf_mask =3D {
-> +			[PIPE_A] =3D BIT(DBUF_S1),
-> +			[PIPE_C] =3D BIT(DBUF_S2)
-> +		}
-> +	},
-> +	{
-> +		.active_pipes =3D BIT(PIPE_B) | BIT(PIPE_C),
-> +		.dbuf_mask =3D {
-> +			[PIPE_B] =3D BIT(DBUF_S1),
-> +			[PIPE_C] =3D BIT(DBUF_S2)
-> +		}
-> +	},
-> +	{
-> +		.active_pipes =3D BIT(PIPE_A) | BIT(PIPE_B) | BIT(PIPE_C),
-> +		.dbuf_mask =3D {
-> +			[PIPE_A] =3D BIT(DBUF_S1),
-> +			[PIPE_B] =3D BIT(DBUF_S1),
-> +			[PIPE_C] =3D BIT(DBUF_S2)
-> +		}
-> +	},
-> +};
-> +
-> +/*
-> + * Table taken from Bspec 49255
-> + * Pipes do have some preferred DBuf slice affinity,
-> + * plus there are some hardcoded requirements on how
-> + * those should be distributed for multipipe scenarios.
-> + * For more DBuf slices algorithm can get even more messy
-> + * and less readable, so decided to use a table almost
-> + * as is from BSpec itself - that way it is at least easier
-> + * to compare, change and check.
-> + */
-> +static struct dbuf_slice_conf_entry tgl_allowed_dbufs[] =3D
-> +/* Autogenerated with igt/tools/intel_dbuf_map tool: */
-> +{
-> +	{
-> +		.active_pipes =3D BIT(PIPE_A),
-> +		.dbuf_mask =3D {
-> +			[PIPE_A] =3D BIT(DBUF_S1) | BIT(DBUF_S2)
-> +		}
-> +	},
-> +	{
-> +		.active_pipes =3D BIT(PIPE_B),
-> +		.dbuf_mask =3D {
-> +			[PIPE_B] =3D BIT(DBUF_S1) | BIT(DBUF_S2)
-> +		}
-> +	},
-> +	{
-> +		.active_pipes =3D BIT(PIPE_A) | BIT(PIPE_B),
-> +		.dbuf_mask =3D {
-> +			[PIPE_A] =3D BIT(DBUF_S2),
-> +			[PIPE_B] =3D BIT(DBUF_S1)
-> +		}
-> +	},
-> +	{
-> +		.active_pipes =3D BIT(PIPE_C),
-> +		.dbuf_mask =3D {
-> +			[PIPE_C] =3D BIT(DBUF_S2) | BIT(DBUF_S1)
-> +		}
-> +	},
-> +	{
-> +		.active_pipes =3D BIT(PIPE_A) | BIT(PIPE_C),
-> +		.dbuf_mask =3D {
-> +			[PIPE_A] =3D BIT(DBUF_S1),
-> +			[PIPE_C] =3D BIT(DBUF_S2)
-> +		}
-> +	},
-> +	{
-> +		.active_pipes =3D BIT(PIPE_B) | BIT(PIPE_C),
-> +		.dbuf_mask =3D {
-> +			[PIPE_B] =3D BIT(DBUF_S1),
-> +			[PIPE_C] =3D BIT(DBUF_S2)
-> +		}
-> +	},
-> +	{
-> +		.active_pipes =3D BIT(PIPE_A) | BIT(PIPE_B) | BIT(PIPE_C),
-> +		.dbuf_mask =3D {
-> +			[PIPE_A] =3D BIT(DBUF_S1),
-> +			[PIPE_B] =3D BIT(DBUF_S1),
-> +			[PIPE_C] =3D BIT(DBUF_S2)
-> +		}
-> +	},
-> +	{
-> +		.active_pipes =3D BIT(PIPE_D),
-> +		.dbuf_mask =3D {
-> +			[PIPE_D] =3D BIT(DBUF_S2) | BIT(DBUF_S1)
-> +		}
-> +	},
-> +	{
-> +		.active_pipes =3D BIT(PIPE_A) | BIT(PIPE_D),
-> +		.dbuf_mask =3D {
-> +			[PIPE_A] =3D BIT(DBUF_S1),
-> +			[PIPE_D] =3D BIT(DBUF_S2)
-> +		}
-> +	},
-> +	{
-> +		.active_pipes =3D BIT(PIPE_B) | BIT(PIPE_D),
-> +		.dbuf_mask =3D {
-> +			[PIPE_B] =3D BIT(DBUF_S1),
-> +			[PIPE_D] =3D BIT(DBUF_S2)
-> +		}
-> +	},
-> +	{
-> +		.active_pipes =3D BIT(PIPE_A) | BIT(PIPE_B) | BIT(PIPE_D),
-> +		.dbuf_mask =3D {
-> +			[PIPE_A] =3D BIT(DBUF_S1),
-> +			[PIPE_B] =3D BIT(DBUF_S1),
-> +			[PIPE_D] =3D BIT(DBUF_S2)
-> +		}
-> +	},
-> +	{
-> +		.active_pipes =3D BIT(PIPE_C) | BIT(PIPE_D),
-> +		.dbuf_mask =3D {
-> +			[PIPE_C] =3D BIT(DBUF_S1),
-> +			[PIPE_D] =3D BIT(DBUF_S2)
-> +		}
-> +	},
-> +	{
-> +		.active_pipes =3D BIT(PIPE_A) | BIT(PIPE_C) | BIT(PIPE_D),
-> +		.dbuf_mask =3D {
-> +			[PIPE_A] =3D BIT(DBUF_S1),
-> +			[PIPE_C] =3D BIT(DBUF_S2),
-> +			[PIPE_D] =3D BIT(DBUF_S2)
-> +		}
-> +	},
-> +	{
-> +		.active_pipes =3D BIT(PIPE_B) | BIT(PIPE_C) | BIT(PIPE_D),
-> +		.dbuf_mask =3D {
-> +			[PIPE_B] =3D BIT(DBUF_S1),
-> +			[PIPE_C] =3D BIT(DBUF_S2),
-> +			[PIPE_D] =3D BIT(DBUF_S2)
-> +		}
-> +	},
-> +	{
-> +		.active_pipes =3D BIT(PIPE_A) | BIT(PIPE_B) | BIT(PIPE_C) | BIT(PIPE_D=
-),
-> +		.dbuf_mask =3D {
-> +			[PIPE_A] =3D BIT(DBUF_S1),
-> +			[PIPE_B] =3D BIT(DBUF_S1),
-> +			[PIPE_C] =3D BIT(DBUF_S2),
-> +			[PIPE_D] =3D BIT(DBUF_S2)
-> +		}
-> +	},
-> +};
-> +
-> +static u8 compute_dbuf_slices(enum pipe pipe,
-> +			      u32 active_pipes,
-> +			      const struct dbuf_slice_conf_entry *dbuf_slices,
-> +			      int size)
-> +{
-> +	int i;
-> +
-> +	for (i =3D 0; i < size; i++) {
-> +		if (dbuf_slices[i].active_pipes =3D=3D active_pipes)
-> +			return dbuf_slices[i].dbuf_mask[pipe];
-> +	}
-> +	return 0;
-> +}
-> +
-> +/*
-> + * This function finds an entry with same enabled pipe configuration and
-> + * returns correspondent DBuf slice mask as stated in BSpec for particul=
-ar
-> + * platform.
-> + */
-> +static u32 icl_compute_dbuf_slices(enum pipe pipe,
-> +				   u32 active_pipes)
-> +{
-> +	/*
-> +	 * FIXME: For ICL this is still a bit unclear as prev BSpec revision
-> +	 * required calculating "pipe ratio" in order to determine
-> +	 * if one or two slices can be used for single pipe configurations
-> +	 * as additional constraint to the existing table.
-> +	 * However based on recent info, it should be not "pipe ratio"
-> +	 * but rather ratio between pixel_rate and cdclk with additional
-> +	 * constants, so for now we are using only table until this is
-> +	 * clarified. Also this is the reason why crtc_state param is
-> +	 * still here - we will need it once those additional constraints
-> +	 * pop up.
+  * igt@gem_wait@basic-await-all:
+    - shard-skl:          [PASS][17] -> [DMESG-WARN][18] ([i915#109]) +1 similar issue
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7827/shard-skl6/igt@gem_wait@basic-await-all.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16283/shard-skl2/igt@gem_wait@basic-await-all.html
 
-The last part of this comment no longer applies --- crtc_state isn't
-still here.
+  * igt@gem_workarounds@suspend-resume-context:
+    - shard-apl:          [PASS][19] -> [DMESG-WARN][20] ([i915#180]) +5 similar issues
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7827/shard-apl6/igt@gem_workarounds@suspend-resume-context.html
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16283/shard-apl4/igt@gem_workarounds@suspend-resume-context.html
 
-I haven't heard any recent discussion with the hardware folks --- if the
-bspec is still unclear in this area, is it safe to try to enable the
-second dbuf slice at this time?  I'm worried that we might add
-regressions due to the incomplete hardware documentation.  Should we
-initially only enable it on TGL until the bspec gets clarified?  Or at
-least only enable it on ICL/EHL as a completely separate patch that's
-really easy to revert?  AFAIK, we don't yet have EHL machines in CI, so
-even if CI results come back clean on ICL, I'd still be a little bit
-nervous about regressing EHL/JSL.
+  * igt@kms_cursor_crc@pipe-a-cursor-suspend:
+    - shard-kbl:          [PASS][21] -> [DMESG-WARN][22] ([i915#180]) +4 similar issues
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7827/shard-kbl3/igt@kms_cursor_crc@pipe-a-cursor-suspend.html
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16283/shard-kbl1/igt@kms_cursor_crc@pipe-a-cursor-suspend.html
 
-> +	 */
-> +	return compute_dbuf_slices(pipe, active_pipes,
-> +				   icl_allowed_dbufs,
-> +				   ARRAY_SIZE(icl_allowed_dbufs));
-> +}
-> +
-> +static u32 tgl_compute_dbuf_slices(enum pipe pipe,
-> +				   u32 active_pipes)
-> +{
-> +	return compute_dbuf_slices(pipe, active_pipes,
-> +				   tgl_allowed_dbufs,
-> +				   ARRAY_SIZE(tgl_allowed_dbufs));
-> +}
-> +
-> +static u8 skl_compute_dbuf_slices(const struct intel_crtc_state *crtc_st=
-ate,
-> +				  u32 active_pipes)
+  * igt@kms_cursor_legacy@2x-long-cursor-vs-flip-atomic:
+    - shard-hsw:          [PASS][23] -> [FAIL][24] ([i915#96])
+   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7827/shard-hsw4/igt@kms_cursor_legacy@2x-long-cursor-vs-flip-atomic.html
+   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16283/shard-hsw8/igt@kms_cursor_legacy@2x-long-cursor-vs-flip-atomic.html
 
-Given that this is basically a common frontend function that just
-dispatches to an appropriate per-platform handler, maybe we should
-rename this to to an intel_ prefix rather than skl_?  Up to you.
+  * igt@kms_flip@2x-flip-vs-expired-vblank:
+    - shard-glk:          [PASS][25] -> [FAIL][26] ([i915#79])
+   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7827/shard-glk7/igt@kms_flip@2x-flip-vs-expired-vblank.html
+   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16283/shard-glk1/igt@kms_flip@2x-flip-vs-expired-vblank.html
 
-Aside from this and the comments above,
+  * igt@kms_flip@flip-vs-expired-vblank:
+    - shard-skl:          [PASS][27] -> [FAIL][28] ([i915#79])
+   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7827/shard-skl10/igt@kms_flip@flip-vs-expired-vblank.html
+   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16283/shard-skl6/igt@kms_flip@flip-vs-expired-vblank.html
 
-Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+  * igt@kms_flip@plain-flip-fb-recreate-interruptible:
+    - shard-skl:          [PASS][29] -> [FAIL][30] ([i915#34])
+   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7827/shard-skl10/igt@kms_flip@plain-flip-fb-recreate-interruptible.html
+   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16283/shard-skl3/igt@kms_flip@plain-flip-fb-recreate-interruptible.html
 
-> +{
-> +	struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.crtc);
-> +	struct drm_i915_private *dev_priv =3D to_i915(crtc->base.dev);
-> +	enum pipe pipe =3D crtc->pipe;
-> +
-> +	if (IS_GEN(dev_priv, 12))
-> +		return tgl_compute_dbuf_slices(pipe,
-> +					       active_pipes);
-> +	else if (IS_GEN(dev_priv, 11))
-> +		return icl_compute_dbuf_slices(pipe,
-> +					       active_pipes);
-> +	/*
-> +	 * For anything else just return one slice yet.
-> +	 * Should be extended for other platforms.
-> +	 */
-> +	return BIT(DBUF_S1);
-> +}
-> +
->  static u64
->  skl_plane_relative_data_rate(const struct intel_crtc_state *crtc_state,
->  			     const struct intel_plane_state *plane_state,
-> -- =
+  * igt@kms_frontbuffer_tracking@psr-1p-offscren-pri-indfb-draw-blt:
+    - shard-tglb:         [PASS][31] -> [SKIP][32] ([i915#668])
+   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7827/shard-tglb4/igt@kms_frontbuffer_tracking@psr-1p-offscren-pri-indfb-draw-blt.html
+   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16283/shard-tglb2/igt@kms_frontbuffer_tracking@psr-1p-offscren-pri-indfb-draw-blt.html
 
-> 2.24.1.485.gad05a3d8e5
-> =
+  * igt@kms_plane_alpha_blend@pipe-a-coverage-7efc:
+    - shard-skl:          [PASS][33] -> [FAIL][34] ([fdo#108145])
+   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7827/shard-skl1/igt@kms_plane_alpha_blend@pipe-a-coverage-7efc.html
+   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16283/shard-skl2/igt@kms_plane_alpha_blend@pipe-a-coverage-7efc.html
+
+  * igt@kms_plane_alpha_blend@pipe-c-coverage-7efc:
+    - shard-skl:          [PASS][35] -> [FAIL][36] ([fdo#108145] / [i915#265]) +1 similar issue
+   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7827/shard-skl2/igt@kms_plane_alpha_blend@pipe-c-coverage-7efc.html
+   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16283/shard-skl5/igt@kms_plane_alpha_blend@pipe-c-coverage-7efc.html
+
+  * igt@kms_psr@psr2_no_drrs:
+    - shard-iclb:         [PASS][37] -> [SKIP][38] ([fdo#109441]) +3 similar issues
+   [37]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7827/shard-iclb2/igt@kms_psr@psr2_no_drrs.html
+   [38]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16283/shard-iclb1/igt@kms_psr@psr2_no_drrs.html
+
+  * igt@kms_setmode@basic:
+    - shard-glk:          [PASS][39] -> [FAIL][40] ([i915#31])
+   [39]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7827/shard-glk6/igt@kms_setmode@basic.html
+   [40]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16283/shard-glk7/igt@kms_setmode@basic.html
+
+  * igt@perf@oa-exponents:
+    - shard-tglb:         [PASS][41] -> [INCOMPLETE][42] ([i915#472] / [i915#807])
+   [41]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7827/shard-tglb5/igt@perf@oa-exponents.html
+   [42]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16283/shard-tglb1/igt@perf@oa-exponents.html
+
+  * igt@prime_mmap_coherency@ioctl-errors:
+    - shard-hsw:          [PASS][43] -> [FAIL][44] ([i915#831])
+   [43]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7827/shard-hsw1/igt@prime_mmap_coherency@ioctl-errors.html
+   [44]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16283/shard-hsw5/igt@prime_mmap_coherency@ioctl-errors.html
+
+  * igt@prime_vgem@fence-wait-bsd2:
+    - shard-iclb:         [PASS][45] -> [SKIP][46] ([fdo#109276]) +22 similar issues
+   [45]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7827/shard-iclb2/igt@prime_vgem@fence-wait-bsd2.html
+   [46]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16283/shard-iclb8/igt@prime_vgem@fence-wait-bsd2.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_ctx_persistence@vcs1-queued:
+    - shard-iclb:         [SKIP][47] ([fdo#109276] / [fdo#112080]) -> [PASS][48] +3 similar issues
+   [47]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7827/shard-iclb7/igt@gem_ctx_persistence@vcs1-queued.html
+   [48]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16283/shard-iclb1/igt@gem_ctx_persistence@vcs1-queued.html
+
+  * igt@gem_ctx_shared@exec-single-timeline-bsd:
+    - shard-iclb:         [SKIP][49] ([fdo#110841]) -> [PASS][50]
+   [49]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7827/shard-iclb4/igt@gem_ctx_shared@exec-single-timeline-bsd.html
+   [50]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16283/shard-iclb6/igt@gem_ctx_shared@exec-single-timeline-bsd.html
+
+  * igt@gem_eio@in-flight-suspend:
+    - shard-skl:          [INCOMPLETE][51] ([i915#69]) -> [PASS][52]
+   [51]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7827/shard-skl5/igt@gem_eio@in-flight-suspend.html
+   [52]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16283/shard-skl4/igt@gem_eio@in-flight-suspend.html
+
+  * igt@gem_exec_parallel@vcs1-fds:
+    - shard-iclb:         [SKIP][53] ([fdo#112080]) -> [PASS][54] +8 similar issues
+   [53]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7827/shard-iclb3/igt@gem_exec_parallel@vcs1-fds.html
+   [54]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16283/shard-iclb4/igt@gem_exec_parallel@vcs1-fds.html
+
+  * igt@gem_exec_schedule@independent-bsd2:
+    - shard-iclb:         [SKIP][55] ([fdo#109276]) -> [PASS][56] +25 similar issues
+   [55]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7827/shard-iclb5/igt@gem_exec_schedule@independent-bsd2.html
+   [56]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16283/shard-iclb2/igt@gem_exec_schedule@independent-bsd2.html
+
+  * igt@gem_exec_schedule@pi-common-bsd:
+    - shard-iclb:         [SKIP][57] ([i915#677]) -> [PASS][58] +1 similar issue
+   [57]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7827/shard-iclb2/igt@gem_exec_schedule@pi-common-bsd.html
+   [58]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16283/shard-iclb5/igt@gem_exec_schedule@pi-common-bsd.html
+
+  * igt@gem_exec_schedule@preemptive-hang-bsd:
+    - shard-iclb:         [SKIP][59] ([fdo#112146]) -> [PASS][60] +3 similar issues
+   [59]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7827/shard-iclb2/igt@gem_exec_schedule@preemptive-hang-bsd.html
+   [60]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16283/shard-iclb8/igt@gem_exec_schedule@preemptive-hang-bsd.html
+
+  * igt@gem_exec_suspend@basic-s3:
+    - shard-kbl:          [DMESG-WARN][61] ([i915#180]) -> [PASS][62] +2 similar issues
+   [61]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7827/shard-kbl4/igt@gem_exec_suspend@basic-s3.html
+   [62]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16283/shard-kbl6/igt@gem_exec_suspend@basic-s3.html
+
+  * igt@gem_softpin@noreloc-s3:
+    - shard-apl:          [DMESG-WARN][63] ([i915#180]) -> [PASS][64]
+   [63]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7827/shard-apl8/igt@gem_softpin@noreloc-s3.html
+   [64]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16283/shard-apl1/igt@gem_softpin@noreloc-s3.html
+
+  * igt@i915_pm_dc@dc5-dpms:
+    - shard-iclb:         [FAIL][65] ([i915#447]) -> [PASS][66]
+   [65]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7827/shard-iclb3/igt@i915_pm_dc@dc5-dpms.html
+   [66]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16283/shard-iclb1/igt@i915_pm_dc@dc5-dpms.html
+
+  * igt@i915_pm_rps@waitboost:
+    - shard-iclb:         [FAIL][67] ([i915#413]) -> [PASS][68]
+   [67]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7827/shard-iclb2/igt@i915_pm_rps@waitboost.html
+   [68]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16283/shard-iclb5/igt@i915_pm_rps@waitboost.html
+
+  * igt@i915_selftest@live_blt:
+    - shard-hsw:          [DMESG-FAIL][69] ([i915#553] / [i915#725]) -> [PASS][70]
+   [69]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7827/shard-hsw1/igt@i915_selftest@live_blt.html
+   [70]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16283/shard-hsw5/igt@i915_selftest@live_blt.html
+
+  * igt@kms_cursor_crc@pipe-c-cursor-suspend:
+    - shard-skl:          [INCOMPLETE][71] ([i915#300]) -> [PASS][72]
+   [71]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7827/shard-skl4/igt@kms_cursor_crc@pipe-c-cursor-suspend.html
+   [72]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16283/shard-skl1/igt@kms_cursor_crc@pipe-c-cursor-suspend.html
+
+  * igt@kms_flip@flip-vs-suspend-interruptible:
+    - shard-skl:          [INCOMPLETE][73] ([i915#221]) -> [PASS][74]
+   [73]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7827/shard-skl3/igt@kms_flip@flip-vs-suspend-interruptible.html
+   [74]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16283/shard-skl4/igt@kms_flip@flip-vs-suspend-interruptible.html
+
+  * igt@kms_psr@psr2_primary_mmap_cpu:
+    - shard-iclb:         [SKIP][75] ([fdo#109441]) -> [PASS][76] +2 similar issues
+   [75]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7827/shard-iclb8/igt@kms_psr@psr2_primary_mmap_cpu.html
+   [76]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16283/shard-iclb2/igt@kms_psr@psr2_primary_mmap_cpu.html
+
+  * igt@kms_setmode@basic:
+    - shard-apl:          [FAIL][77] ([i915#31]) -> [PASS][78]
+   [77]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7827/shard-apl3/igt@kms_setmode@basic.html
+   [78]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16283/shard-apl6/igt@kms_setmode@basic.html
+
+  
+#### Warnings ####
+
+  * igt@gem_ctx_isolation@vcs1-nonpriv:
+    - shard-iclb:         [SKIP][79] ([fdo#109276] / [fdo#112080]) -> [FAIL][80] ([IGT#28]) +1 similar issue
+   [79]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7827/shard-iclb3/igt@gem_ctx_isolation@vcs1-nonpriv.html
+   [80]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16283/shard-iclb1/igt@gem_ctx_isolation@vcs1-nonpriv.html
+
+  * igt@gem_persistent_relocs@forked-interruptible-faulting-reloc-thrashing:
+    - shard-hsw:          [FAIL][81] ([i915#1045]) -> [DMESG-FAIL][82] ([i915#1045])
+   [81]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7827/shard-hsw7/igt@gem_persistent_relocs@forked-interruptible-faulting-reloc-thrashing.html
+   [82]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16283/shard-hsw5/igt@gem_persistent_relocs@forked-interruptible-faulting-reloc-thrashing.html
+
+  * igt@gem_tiled_blits@interruptible:
+    - shard-hsw:          [FAIL][83] ([i915#818]) -> [FAIL][84] ([i915#694])
+   [83]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7827/shard-hsw7/igt@gem_tiled_blits@interruptible.html
+   [84]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16283/shard-hsw6/igt@gem_tiled_blits@interruptible.html
+
+  * igt@i915_pm_rpm@gem-evict-pwrite:
+    - shard-snb:          [SKIP][85] ([fdo#109271]) -> [INCOMPLETE][86] ([i915#82])
+   [85]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7827/shard-snb6/igt@i915_pm_rpm@gem-evict-pwrite.html
+   [86]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16283/shard-snb6/igt@i915_pm_rpm@gem-evict-pwrite.html
+
+  
+  [IGT#28]: https://gitlab.freedesktop.org/drm/igt-gpu-tools/issues/28
+  [fdo#108145]: https://bugs.freedesktop.org/show_bug.cgi?id=108145
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#109276]: https://bugs.freedesktop.org/show_bug.cgi?id=109276
+  [fdo#109441]: https://bugs.freedesktop.org/show_bug.cgi?id=109441
+  [fdo#110841]: https://bugs.freedesktop.org/show_bug.cgi?id=110841
+  [fdo#110854]: https://bugs.freedesktop.org/show_bug.cgi?id=110854
+  [fdo#112080]: https://bugs.freedesktop.org/show_bug.cgi?id=112080
+  [fdo#112146]: https://bugs.freedesktop.org/show_bug.cgi?id=112146
+  [i915#1045]: https://gitlab.freedesktop.org/drm/intel/issues/1045
+  [i915#109]: https://gitlab.freedesktop.org/drm/intel/issues/109
+  [i915#180]: https://gitlab.freedesktop.org/drm/intel/issues/180
+  [i915#221]: https://gitlab.freedesktop.org/drm/intel/issues/221
+  [i915#265]: https://gitlab.freedesktop.org/drm/intel/issues/265
+  [i915#300]: https://gitlab.freedesktop.org/drm/intel/issues/300
+  [i915#31]: https://gitlab.freedesktop.org/drm/intel/issues/31
+  [i915#34]: https://gitlab.freedesktop.org/drm/intel/issues/34
+  [i915#413]: https://gitlab.freedesktop.org/drm/intel/issues/413
+  [i915#447]: https://gitlab.freedesktop.org/drm/intel/issues/447
+  [i915#472]: https://gitlab.freedesktop.org/drm/intel/issues/472
+  [i915#553]: https://gitlab.freedesktop.org/drm/intel/issues/553
+  [i915#668]: https://gitlab.freedesktop.org/drm/intel/issues/668
+  [i915#677]: https://gitlab.freedesktop.org/drm/intel/issues/677
+  [i915#69]: https://gitlab.freedesktop.org/drm/intel/issues/69
+  [i915#694]: https://gitlab.freedesktop.org/drm/intel/issues/694
+  [i915#725]: https://gitlab.freedesktop.org/drm/intel/issues/725
+  [i915#79]: https://gitlab.freedesktop.org/drm/intel/issues/79
+  [i915#807]: https://gitlab.freedesktop.org/drm/intel/issues/807
+  [i915#818]: https://gitlab.freedesktop.org/drm/intel/issues/818
+  [i915#82]: https://gitlab.freedesktop.org/drm/intel/issues/82
+  [i915#831]: https://gitlab.freedesktop.org/drm/intel/issues/831
+  [i915#96]: https://gitlab.freedesktop.org/drm/intel/issues/96
 
 
--- =
+Participating hosts (10 -> 10)
+------------------------------
 
-Matt Roper
-Graphics Software Engineer
-VTT-OSGC Platform Enablement
-Intel Corporation
-(916) 356-2795
+  No changes in participating hosts
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_7827 -> Patchwork_16283
+
+  CI-20190529: 20190529
+  CI_DRM_7827: c8969aeacfff681c83a800e82b0f18a6ab3e77ea @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5389: 966c58649dee31bb5bf2fad92f75ffd365968b81 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_16283: 926ad0bb0b6374995ae9697bfe561eed406609d8 @ git://anongit.freedesktop.org/gfx-ci/linux
+  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.freedesktop.org/piglit
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16283/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
