@@ -2,60 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 62ABE14B026
-	for <lists+intel-gfx@lfdr.de>; Tue, 28 Jan 2020 08:14:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B347014B025
+	for <lists+intel-gfx@lfdr.de>; Tue, 28 Jan 2020 08:14:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 09F926ECB1;
-	Tue, 28 Jan 2020 07:14:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 04D176ECB0;
+	Tue, 28 Jan 2020 07:14:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x441.google.com (mail-wr1-x441.google.com
- [IPv6:2a00:1450:4864:20::441])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 74B116ECAE
- for <intel-gfx@lists.freedesktop.org>; Tue, 28 Jan 2020 07:14:51 +0000 (UTC)
-Received: by mail-wr1-x441.google.com with SMTP id b6so14747002wrq.0
- for <intel-gfx@lists.freedesktop.org>; Mon, 27 Jan 2020 23:14:51 -0800 (PST)
+Received: from mail-wm1-x344.google.com (mail-wm1-x344.google.com
+ [IPv6:2a00:1450:4864:20::344])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D857D6ECAE
+ for <intel-gfx@lists.freedesktop.org>; Tue, 28 Jan 2020 07:14:53 +0000 (UTC)
+Received: by mail-wm1-x344.google.com with SMTP id f129so1299261wmf.2
+ for <intel-gfx@lists.freedesktop.org>; Mon, 27 Jan 2020 23:14:53 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=2FnqPtDH7eBa9pNMLQoYpP3th1q5HAisxsX8PIwSOow=;
- b=f0qkhYLsYaZ/+VX+P6kl1biCVKRx53J93ec43pRl8FwWOsFkk82N22DQK9XlKtntwT
- tQDJgYemueuAG0CcpxS/v4zRmXTcmy8jpFvME7QKGN01z9rwTYnJ2aFji/papYnWV5AP
- ck+/N/rERwdX5uzQFclPCyoMXsyGBe9S+jd1gL6WqTha/Y9tfYAi1OMskbYGqdLwMcml
- FqafvtCZw8/zs5UOE8pk9HjqAFTPP3WnUu9uFG6Fmcl7UO+Igc0t7yZCJ2woOH6O6N3a
- wRPmf6eQ5wBflGNkOJZbWMmNJ2Fped/EdWp6PD011G8+CvUaOnICegTkNcBVtXZIFek1
- UUnA==
+ bh=rGUV5vwC+J4YaGrBfT7SwH7LhrvkG56hLYR+dL52/DQ=;
+ b=IVmrlVWjqiSqCVWoY8P1sVbL3t0YqjmlE/1q3QV+CLtT0dNFlfuwAudV9LUBiMQBEj
+ vBruZ+LzYhSurR0an95IIHRsh8+TwZKWCqOvlGFXsaxBX/G8xFmEBKslEGwTFSa8EMp0
+ Cc357iGFiYyu0+ppxnHaTjr8IZamHqvtrjdyOB41X1YG2ACInBW9rsnmLubv1U4v8ziU
+ JvABc6QmmIJ838IRp7GRLpwGx9hYZTgxCkJ3WKyLoGT7PeyrkxdKxw8zVrR+R4pWS5e4
+ Ubl2SaN6/qvLjeukOPSZV7CNB+Pd8Lc6Pr+f7KtBZ5aTypcBXi3bs92C4RFJvG2foPo/
+ 3A6w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=2FnqPtDH7eBa9pNMLQoYpP3th1q5HAisxsX8PIwSOow=;
- b=Iq3LrktT0zR0OgLKIt70zkR47n3qVuTnw77ODqJfP7tO/h4DflkZEAtF6MU8BGt6QA
- XyjEuMPk7qkeYyl5i74Zx237+uHqXh8UKn2sx70XH6FE/XY+eWH2C4ZRtr93chtnNfQk
- uFFRGIi3nQ2z3ZLKqN/wnvxyZFCtNz2Cec0GEZ332ep1pNHFw++3atudyqR1WjUV8ZHp
- 8yFEDO9V/9UC8MWYXu14yt1F/ZEe4kpTK53Wyf5ytQE2uKHlifOdA1x4i58NCj9TwwLY
- Xsu5A7mnbeOvodtz4/A/mwEwb1hO+3AdnsIsUCIt5QNrvYqgM7FWwDWEQWo4T/MfyvZm
- suuQ==
-X-Gm-Message-State: APjAAAVC5qlizEX73kFt/mkGbcNT8fqyWh9i1MCNuIaP7RB/g+/+2MU2
- dKO/eFKPG6CiX+RcGOClB4c=
-X-Google-Smtp-Source: APXvYqwBMFWjOMProFBm4KgYp61b8eTL+jaX9JbSfUp+o/5EqXUf7OGCi2KP9i40OTz+6R1wRgtABA==
-X-Received: by 2002:adf:e692:: with SMTP id r18mr26768109wrm.413.1580195690093; 
- Mon, 27 Jan 2020 23:14:50 -0800 (PST)
+ bh=rGUV5vwC+J4YaGrBfT7SwH7LhrvkG56hLYR+dL52/DQ=;
+ b=oIxFUSNdVwdxYP4OIvraRw0jlV+OzcLeitQ0W6BfK/fWxCYv0ZLktwStOPbKeUp+eW
+ DhLG9eKXAfO+YFF3lwZOKwIhrbRSFjMrzeziwp1PUs7x9l9Z7RdLuP3++faJtGr4Ea0j
+ on5P9wjnuMjlBfmtLEyYm94jZuggRLGuXth4fFLCgETMG6nHmKImy2Ou5Sd8h2KctJfU
+ Kf7/6oE6mIBBWFrS4dlrGLoX/BAUCoLXEXT/rr36YIz2zZGL9J0v9K8M96dhkXLk0eh7
+ PwqfAQ47ahOKOBT59wqcAJkooIjnmKV7tEg06yZjxa8nW+yJqcy08/BjudiQgJDORCoB
+ 2oDA==
+X-Gm-Message-State: APjAAAUlVykvNn9bQ2L4sEd4NnRVNs/07X8dx/J70oMTyTEXqpBiPSdt
+ J24wTeBVnvoJA7aca006YtI=
+X-Google-Smtp-Source: APXvYqy7tneZOSr5cPawRHXHwuPuG2DuiRgMmHiT18y+CCdP+zpVC9rZ7tutP7wFCNrMYhM7WBZz4A==
+X-Received: by 2002:a1c:e488:: with SMTP id b130mr2994389wmh.108.1580195692538; 
+ Mon, 27 Jan 2020 23:14:52 -0800 (PST)
 Received: from wambui.zuku.co.ke ([197.237.61.225])
- by smtp.googlemail.com with ESMTPSA id b67sm1794420wmc.38.2020.01.27.23.14.47
+ by smtp.googlemail.com with ESMTPSA id b67sm1794420wmc.38.2020.01.27.23.14.50
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 27 Jan 2020 23:14:49 -0800 (PST)
+ Mon, 27 Jan 2020 23:14:52 -0800 (PST)
 From: Wambui Karuga <wambui.karugax@gmail.com>
 To: jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
  rodrigo.vivi@intel.com, airlied@linux.ie, daniel@ffwll.ch
-Date: Tue, 28 Jan 2020 10:14:31 +0300
-Message-Id: <20200128071437.9284-3-wambui.karugax@gmail.com>
+Date: Tue, 28 Jan 2020 10:14:32 +0300
+Message-Id: <20200128071437.9284-4-wambui.karugax@gmail.com>
 X-Mailer: git-send-email 2.25.0
 In-Reply-To: <20200128071437.9284-1-wambui.karugax@gmail.com>
 References: <20200128071437.9284-1-wambui.karugax@gmail.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 2/8] drm/i915/ggtt: use new drm logging macros
- in gt/intel_ggtt.c
+Subject: [Intel-gfx] [PATCH 3/8] drm/i915/reset: conversion to new drm
+ logging macros in gt/intel_reset.c
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,94 +74,157 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Manual conversion of the printk based logging macros to the new struct
-drm_based logging macros in drm/i915/gt/intel_ggtt.c.
-Also includes extracting the struct drm_i915_private device from various
-intel types to use in the new macros.
+This converts most instances of the printk based drm logging macros in
+i915/gt/intel_resect.c to the new struct drm_based logging macros.
 
 Signed-off-by: Wambui Karuga <wambui.karugax@gmail.com>
 ---
- drivers/gpu/drm/i915/gt/intel_ggtt.c | 25 ++++++++++++++++---------
- 1 file changed, 16 insertions(+), 9 deletions(-)
+ drivers/gpu/drm/i915/gt/intel_reset.c | 48 +++++++++++++++------------
+ 1 file changed, 26 insertions(+), 22 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_ggtt.c b/drivers/gpu/drm/i915/gt/intel_ggtt.c
-index d938cf8db460..09f4aa37bf2d 100644
---- a/drivers/gpu/drm/i915/gt/intel_ggtt.c
-+++ b/drivers/gpu/drm/i915/gt/intel_ggtt.c
-@@ -472,7 +472,8 @@ static int ggtt_reserve_guc_top(struct i915_ggtt *ggtt)
- 				   GUC_GGTT_TOP, I915_COLOR_UNEVICTABLE,
- 				   PIN_NOEVICT);
+diff --git a/drivers/gpu/drm/i915/gt/intel_reset.c b/drivers/gpu/drm/i915/gt/intel_reset.c
+index beee0cf89bce..df8240324714 100644
+--- a/drivers/gpu/drm/i915/gt/intel_reset.c
++++ b/drivers/gpu/drm/i915/gt/intel_reset.c
+@@ -72,9 +72,10 @@ static void client_mark_guilty(struct i915_gem_context *ctx, bool banned)
+ 	if (score) {
+ 		atomic_add(score, &file_priv->ban_score);
+ 
+-		DRM_DEBUG_DRIVER("client %s: gained %u ban score, now %u\n",
+-				 ctx->name, score,
+-				 atomic_read(&file_priv->ban_score));
++		drm_dbg(&ctx->i915->drm,
++			"client %s: gained %u ban score, now %u\n",
++			ctx->name, score,
++			atomic_read(&file_priv->ban_score));
+ 	}
+ }
+ 
+@@ -122,8 +123,8 @@ static bool mark_guilty(struct i915_request *rq)
+ 	if (time_before(jiffies, prev_hang + CONTEXT_FAST_HANG_JIFFIES))
+ 		banned = true;
+ 	if (banned) {
+-		DRM_DEBUG_DRIVER("context %s: guilty %d, banned\n",
+-				 ctx->name, atomic_read(&ctx->guilty_count));
++		drm_dbg(&ctx->i915->drm, "context %s: guilty %d, banned\n",
++			ctx->name, atomic_read(&ctx->guilty_count));
+ 		intel_context_set_banned(rq->context);
+ 	}
+ 
+@@ -226,7 +227,7 @@ static int g4x_do_reset(struct intel_gt *gt,
+ 			      GRDOM_MEDIA | GRDOM_RESET_ENABLE);
+ 	ret =  wait_for_atomic(g4x_reset_complete(pdev), 50);
+ 	if (ret) {
+-		DRM_DEBUG_DRIVER("Wait for media reset failed\n");
++		drm_dbg(&gt->i915->drm, "Wait for media reset failed\n");
+ 		goto out;
+ 	}
+ 
+@@ -234,7 +235,7 @@ static int g4x_do_reset(struct intel_gt *gt,
+ 			      GRDOM_RENDER | GRDOM_RESET_ENABLE);
+ 	ret =  wait_for_atomic(g4x_reset_complete(pdev), 50);
+ 	if (ret) {
+-		DRM_DEBUG_DRIVER("Wait for render reset failed\n");
++		drm_dbg(&gt->i915->drm, "Wait for render reset failed\n");
+ 		goto out;
+ 	}
+ 
+@@ -260,7 +261,7 @@ static int ilk_do_reset(struct intel_gt *gt, intel_engine_mask_t engine_mask,
+ 					   5000, 0,
+ 					   NULL);
+ 	if (ret) {
+-		DRM_DEBUG_DRIVER("Wait for render reset failed\n");
++		drm_dbg(&gt->i915->drm, "Wait for render reset failed\n");
+ 		goto out;
+ 	}
+ 
+@@ -271,7 +272,7 @@ static int ilk_do_reset(struct intel_gt *gt, intel_engine_mask_t engine_mask,
+ 					   5000, 0,
+ 					   NULL);
+ 	if (ret) {
+-		DRM_DEBUG_DRIVER("Wait for media reset failed\n");
++		drm_dbg(&gt->i915->drm, "Wait for media reset failed\n");
+ 		goto out;
+ 	}
+ 
+@@ -300,8 +301,9 @@ static int gen6_hw_domain_reset(struct intel_gt *gt, u32 hw_domain_mask)
+ 					   500, 0,
+ 					   NULL);
+ 	if (err)
+-		DRM_DEBUG_DRIVER("Wait for 0x%08x engines reset failed\n",
+-				 hw_domain_mask);
++		drm_dbg(&gt->i915->drm,
++			"Wait for 0x%08x engines reset failed\n",
++			hw_domain_mask);
+ 
+ 	return err;
+ }
+@@ -401,7 +403,8 @@ static int gen11_lock_sfc(struct intel_engine_cs *engine, u32 *hw_mask)
+ 		return 0;
+ 
+ 	if (ret) {
+-		DRM_DEBUG_DRIVER("Wait for SFC forced lock ack failed\n");
++		drm_dbg(&engine->i915->drm,
++			"Wait for SFC forced lock ack failed\n");
+ 		return ret;
+ 	}
+ 
+@@ -515,9 +518,10 @@ static int gen8_engine_reset_prepare(struct intel_engine_cs *engine)
+ 	ret = __intel_wait_for_register_fw(uncore, reg, mask, ack,
+ 					   700, 0, NULL);
  	if (ret)
--		DRM_DEBUG_DRIVER("Failed to reserve top of GGTT for GuC\n");
-+		drm_dbg(&ggtt->vm.i915->drm,
-+			"Failed to reserve top of GGTT for GuC\n");
+-		DRM_ERROR("%s reset request timed out: {request: %08x, RESET_CTL: %08x}\n",
+-			  engine->name, request,
+-			  intel_uncore_read_fw(uncore, reg));
++		drm_err(&engine->i915->drm,
++			"%s reset request timed out: {request: %08x, RESET_CTL: %08x}\n",
++			engine->name, request,
++			intel_uncore_read_fw(uncore, reg));
  
  	return ret;
  }
-@@ -544,8 +545,9 @@ static int init_ggtt(struct i915_ggtt *ggtt)
- 
- 	/* Clear any non-preallocated blocks */
- 	drm_mm_for_each_hole(entry, &ggtt->vm.mm, hole_start, hole_end) {
--		DRM_DEBUG_KMS("clearing unused GTT space: [%lx, %lx]\n",
--			      hole_start, hole_end);
-+		drm_dbg_kms(&ggtt->vm.i915->drm,
-+			    "clearing unused GTT space: [%lx, %lx]\n",
-+			    hole_start, hole_end);
- 		ggtt->vm.clear_range(&ggtt->vm, hole_start,
- 				     hole_end - hole_start);
+@@ -1022,7 +1026,7 @@ void intel_gt_reset(struct intel_gt *gt,
+ 		if (i915_modparams.reset)
+ 			dev_err(gt->i915->drm.dev, "GPU reset not supported\n");
+ 		else
+-			DRM_DEBUG_DRIVER("GPU reset disabled\n");
++			drm_dbg(&gt->i915->drm, "GPU reset disabled\n");
+ 		goto error;
  	}
-@@ -1273,6 +1275,7 @@ intel_rotate_pages(struct intel_rotation_info *rot_info,
- 		   struct drm_i915_gem_object *obj)
- {
- 	unsigned int size = intel_rotation_info_size(rot_info);
-+	struct drm_i915_private *i915 = to_i915(obj->base.dev);
- 	struct sg_table *st;
- 	struct scatterlist *sg;
- 	int ret = -ENOMEM;
-@@ -1302,8 +1305,9 @@ intel_rotate_pages(struct intel_rotation_info *rot_info,
- 	kfree(st);
- err_st_alloc:
  
--	DRM_DEBUG_DRIVER("Failed to create rotated mapping for object size %zu! (%ux%u tiles, %u pages)\n",
--			 obj->base.size, rot_info->plane[0].width, rot_info->plane[0].height, size);
-+	drm_dbg(&i915->drm, "Failed to create rotated mapping for object size %zu! (%ux%u tiles, %u pages)\n",
-+		obj->base.size, rot_info->plane[0].width,
-+		rot_info->plane[0].height, size);
- 
- 	return ERR_PTR(ret);
- }
-@@ -1355,6 +1359,7 @@ intel_remap_pages(struct intel_remapped_info *rem_info,
- 		  struct drm_i915_gem_object *obj)
- {
- 	unsigned int size = intel_remapped_info_size(rem_info);
-+	struct drm_i915_private *i915 = to_i915(obj->base.dev);
- 	struct sg_table *st;
- 	struct scatterlist *sg;
- 	int ret = -ENOMEM;
-@@ -1386,8 +1391,9 @@ intel_remap_pages(struct intel_remapped_info *rem_info,
- 	kfree(st);
- err_st_alloc:
- 
--	DRM_DEBUG_DRIVER("Failed to create remapped mapping for object size %zu! (%ux%u tiles, %u pages)\n",
--			 obj->base.size, rem_info->plane[0].width, rem_info->plane[0].height, size);
-+	drm_dbg(&i915->drm, "Failed to create remapped mapping for object size %zu! (%ux%u tiles, %u pages)\n",
-+		obj->base.size, rem_info->plane[0].width,
-+		rem_info->plane[0].height, size);
- 
- 	return ERR_PTR(ret);
- }
-@@ -1485,8 +1491,9 @@ i915_get_ggtt_vma_pages(struct i915_vma *vma)
- 	if (IS_ERR(vma->pages)) {
- 		ret = PTR_ERR(vma->pages);
- 		vma->pages = NULL;
--		DRM_ERROR("Failed to get pages for VMA view type %u (%d)!\n",
--			  vma->ggtt_view.type, ret);
-+		drm_err(&vma->vm->i915->drm,
-+			"Failed to get pages for VMA view type %u (%d)!\n",
-+			vma->ggtt_view.type, ret);
+@@ -1049,8 +1053,9 @@ void intel_gt_reset(struct intel_gt *gt,
+ 	 */
+ 	ret = intel_gt_init_hw(gt);
+ 	if (ret) {
+-		DRM_ERROR("Failed to initialise HW following reset (%d)\n",
+-			  ret);
++		drm_err(&gt->i915->drm,
++			"Failed to initialise HW following reset (%d)\n",
++			ret);
+ 		goto taint;
  	}
- 	return ret;
- }
+ 
+@@ -1126,9 +1131,8 @@ int intel_engine_reset(struct intel_engine_cs *engine, const char *msg)
+ 		ret = intel_guc_reset_engine(&engine->gt->uc.guc, engine);
+ 	if (ret) {
+ 		/* If we fail here, we expect to fallback to a global reset */
+-		DRM_DEBUG_DRIVER("%sFailed to reset %s, ret=%d\n",
+-				 uses_guc ? "GuC " : "",
+-				 engine->name, ret);
++		drm_dbg(&gt->i915->drm, "%sFailed to reset %s, ret=%d\n",
++			uses_guc ? "GuC " : "", engine->name, ret);
+ 		goto out;
+ 	}
+ 
+@@ -1165,7 +1169,7 @@ static void intel_gt_reset_global(struct intel_gt *gt,
+ 
+ 	kobject_uevent_env(kobj, KOBJ_CHANGE, error_event);
+ 
+-	DRM_DEBUG_DRIVER("resetting chip\n");
++	drm_dbg(&gt->i915->drm, "resetting chip\n");
+ 	kobject_uevent_env(kobj, KOBJ_CHANGE, reset_event);
+ 
+ 	/* Use a watchdog to ensure that our reset completes */
 -- 
 2.25.0
 
