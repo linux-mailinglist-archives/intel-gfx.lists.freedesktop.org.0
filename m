@@ -1,37 +1,35 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5315D14B46C
-	for <lists+intel-gfx@lfdr.de>; Tue, 28 Jan 2020 13:46:26 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A0FD14B46E
+	for <lists+intel-gfx@lfdr.de>; Tue, 28 Jan 2020 13:47:22 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ACE6C6EE23;
-	Tue, 28 Jan 2020 12:46:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 94DC26EE24;
+	Tue, 28 Jan 2020 12:47:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BF8C96EE23;
- Tue, 28 Jan 2020 12:46:23 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by orsmga106.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 28 Jan 2020 04:46:22 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,373,1574150400"; d="scan'208";a="429316875"
-Received: from gaia.fi.intel.com ([10.237.72.192])
- by fmsmga006.fm.intel.com with ESMTP; 28 Jan 2020 04:46:21 -0800
-Received: by gaia.fi.intel.com (Postfix, from userid 1000)
- id B35EE5C1E0F; Tue, 28 Jan 2020 14:45:34 +0200 (EET)
-From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20200128122143.3765164-1-chris@chris-wilson.co.uk>
-References: <20200128122143.3765164-1-chris@chris-wilson.co.uk>
-Date: Tue, 28 Jan 2020 14:45:34 +0200
-Message-ID: <874kwfn40h.fsf@gaia.fi.intel.com>
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 04E8E6EE2B
+ for <intel-gfx@lists.freedesktop.org>; Tue, 28 Jan 2020 12:47:18 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 20034301-1500050 for multiple; Tue, 28 Jan 2020 12:46:49 +0000
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH i-g-t] i915/gem_exec_balancer: Convert to
- use gem_mmap__device_coherent()
+To: Mika Kuoppala <mika.kuoppala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+From: Chris Wilson <chris@chris-wilson.co.uk>
+In-Reply-To: <877e1bn4il.fsf@gaia.fi.intel.com>
+References: <20200127231540.3302516-1-chris@chris-wilson.co.uk>
+ <20200127231540.3302516-6-chris@chris-wilson.co.uk>
+ <877e1bn4il.fsf@gaia.fi.intel.com>
+Message-ID: <158021560766.2129.15846697702640801094@skylake-alporthouse-com>
+User-Agent: alot/0.6
+Date: Tue, 28 Jan 2020 12:46:47 +0000
+Subject: Re: [Intel-gfx] [PATCH 6/6] drm/i915/gt: Lift set-wedged engine
+ dumping out of user paths
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,69 +42,66 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: igt-dev@lists.freedesktop.org
+Cc: Tomi Sarvela <tomi.p.sarvela@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Chris Wilson <chris@chris-wilson.co.uk> writes:
+Quoting Mika Kuoppala (2020-01-28 12:34:42)
+> Chris Wilson <chris@chris-wilson.co.uk> writes:
+> 
+> > The user (e.g. gem_eio) can manipulate the driver into wedging itself,
+> > allowing the user to trigger voluminous logging of inconsequential
+> > details. If we lift the dump to direct calls to intel_gt_set_wedged(),
+> > out of the intel_reset failure handling, we keep the detail logging for
+> > what we expect are true HW or test failures without being tricked.
+> >
+> > Reported-by: Tomi Sarvela <tomi.p.sarvela@intel.com>
+> > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> > Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+> > Cc: Tomi Sarvela <tomi.p.sarvela@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/gt/intel_reset.c | 30 +++++++++++++++++++--------
+> >  1 file changed, 21 insertions(+), 9 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/gt/intel_reset.c b/drivers/gpu/drm/i915/gt/intel_reset.c
+> > index beee0cf89bce..423a02506b2d 100644
+> > --- a/drivers/gpu/drm/i915/gt/intel_reset.c
+> > +++ b/drivers/gpu/drm/i915/gt/intel_reset.c
+> > @@ -800,13 +800,6 @@ static void __intel_gt_set_wedged(struct intel_gt *gt)
+> >       if (test_bit(I915_WEDGED, &gt->reset.flags))
+> >               return;
+> >  
+> > -     if (GEM_SHOW_DEBUG() && !intel_engines_are_idle(gt)) {
+> > -             struct drm_printer p = drm_debug_printer(__func__);
+> > -
+> > -             for_each_engine(engine, gt, id)
+> > -                     intel_engine_dump(engine, &p, "%s\n", engine->name);
+> > -     }
+> > -
+> >       GT_TRACE(gt, "start\n");
+> >  
+> >       /*
+> > @@ -845,10 +838,29 @@ void intel_gt_set_wedged(struct intel_gt *gt)
+> >  {
+> >       intel_wakeref_t wakeref;
+> >  
+> > +     if (test_bit(I915_WEDGED, &gt->reset.flags))
+> > +             return;
+> > +
+> > +     wakeref = intel_runtime_pm_get(gt->uncore->rpm);
+> >       mutex_lock(&gt->reset.mutex);
+> > -     with_intel_runtime_pm(gt->uncore->rpm, wakeref)
+> > -             __intel_gt_set_wedged(gt);
+> > +
+> > +     if (GEM_SHOW_DEBUG() && !intel_engines_are_idle(gt)) {
+> 
+> As you inspect each engine separately the precursory idle check
+> seems superfluous.
 
-> Replace gem_mmap_gtt and write-once mmaps with
-> gem_mmap__device_coherent.
->
-> For use as an invalid pointer, we need only worry about having an
-> mmap_offset (gtt or wc) as they work alike inside the kernel with
-> respect to locking. (GTT has the extra vm->mutex, but if there's no
-> aperture, there's never going to be such a mutex to worry about!)
->
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-
-Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-
-> ---
->  tests/i915/gem_exec_balancer.c | 7 ++++---
->  1 file changed, 4 insertions(+), 3 deletions(-)
->
-> diff --git a/tests/i915/gem_exec_balancer.c b/tests/i915/gem_exec_balancer.c
-> index 6b0c47f09..150eba0db 100644
-> --- a/tests/i915/gem_exec_balancer.c
-> +++ b/tests/i915/gem_exec_balancer.c
-> @@ -278,7 +278,8 @@ static void invalid_balancer(int i915)
->  		igt_assert_eq(__gem_context_set_param(i915, &p), -EFAULT);
->  
->  		handle = gem_create(i915, 4096 * 3);
-> -		ptr = gem_mmap__gtt(i915, handle, 4096 * 3, PROT_WRITE);
-> +		ptr = gem_mmap__device_coherent(i915, handle, 0, 4096 * 3,
-> +						PROT_WRITE);
->  		gem_close(i915, handle);
->  
->  		memset(&engines, 0, sizeof(engines));
-> @@ -369,7 +370,7 @@ static void invalid_bonds(int i915)
->  	gem_context_set_param(i915, &p);
->  
->  	handle = gem_create(i915, 4096 * 3);
-> -	ptr = gem_mmap__gtt(i915, handle, 4096 * 3, PROT_WRITE);
-> +	ptr = gem_mmap__device_coherent(i915, handle, 0, 4096 * 3, PROT_WRITE);
->  	gem_close(i915, handle);
->  
->  	memcpy(ptr + 4096, &bonds[0], sizeof(bonds[0]));
-> @@ -720,7 +721,7 @@ static uint32_t create_semaphore_to_spinner(int i915, igt_spin_t *spin)
->  	uint64_t addr;
->  
->  	handle = gem_create(i915, 4096);
-> -	cs = map = gem_mmap__cpu(i915, handle, 0, 4096, PROT_WRITE);
-> +	cs = map = gem_mmap__device_coherent(i915, handle, 0, 4096, PROT_WRITE);
->  
->  	/* Wait until the spinner is running */
->  	addr = spin->obj[0].offset + 4 * SPIN_POLL_START_IDX;
-> -- 
-> 2.25.0
->
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+Picky. We may throw some other debug in between :)
+-Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
